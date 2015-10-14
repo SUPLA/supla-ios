@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="8191" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <mutableArray key="OpenSans-Bold.ttf">
+            <string>OpenSans-Bold</string>
+        </mutableArray>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="103" id="DlF-gS-cy3" customClass="SAChannelCell">
+            <rect key="frame" x="0.0" y="0.0" width="380" height="103"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="DlF-gS-cy3" id="oDG-Oh-yeF">
+                <rect key="frame" x="0.0" y="0.0" width="380" height="102"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Brama garażowa" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CZP-9z-72p">
+                        <rect key="frame" x="18" y="65" width="344" height="17"/>
+                        <fontDescription key="fontDescription" name="OpenSans-Bold" family="Open Sans" pointSize="12"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mwc-4O-K3V" userLabel="leftDot">
+                        <rect key="frame" x="19" y="46" width="10" height="10"/>
+                        <color key="backgroundColor" red="0.070588235289999995" green="0.65490196079999996" blue="0.1176470588" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="10" id="Dkk-Jg-qSm"/>
+                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="10" id="J18-DV-dmj"/>
+                            <constraint firstAttribute="width" constant="10" id="S8n-Ie-UUr"/>
+                            <constraint firstAttribute="height" constant="10" id="YGV-ZC-kYI"/>
+                        </constraints>
+                    </view>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WUf-g2-rWR" userLabel="bottomLine">
+                        <rect key="frame" x="-2" y="101" width="384" height="1"/>
+                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="1" id="BOO-qf-gdM"/>
+                        </constraints>
+                    </view>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ilZ-Cd-uym" userLabel="rightDot">
+                        <rect key="frame" x="352" y="46" width="10" height="10"/>
+                        <color key="backgroundColor" red="0.070588235289999995" green="0.65490196079999996" blue="0.1176470588" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="10" id="8MR-Jr-6sX"/>
+                            <constraint firstAttribute="height" constant="10" id="H30-RN-0h4"/>
+                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="10" id="cGz-Za-LC7"/>
+                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="10" id="ruv-Lf-fqS"/>
+                        </constraints>
+                    </view>
+                    <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="gate-closed.png" translatesAutoresizingMaskIntoConstraints="NO" id="VDN-tt-KUq">
+                        <rect key="frame" x="167" y="10" width="47" height="52"/>
+                    </imageView>
+                </subviews>
+                <color key="backgroundColor" red="0.98039215690000003" green="0.98431372549999996" blue="0.98823529409999999" alpha="1" colorSpace="calibratedRGB"/>
+                <constraints>
+                    <constraint firstAttribute="trailingMargin" secondItem="ilZ-Cd-uym" secondAttribute="trailing" constant="10" id="4o6-WX-LTG"/>
+                    <constraint firstItem="WUf-g2-rWR" firstAttribute="leading" secondItem="oDG-Oh-yeF" secondAttribute="leadingMargin" constant="-10" id="7JQ-nf-K6X"/>
+                    <constraint firstItem="ilZ-Cd-uym" firstAttribute="centerY" secondItem="oDG-Oh-yeF" secondAttribute="centerY" id="L7i-c0-DBP"/>
+                    <constraint firstItem="mwc-4O-K3V" firstAttribute="centerY" secondItem="oDG-Oh-yeF" secondAttribute="centerY" id="MLv-Ff-uKK"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="WUf-g2-rWR" secondAttribute="bottom" constant="-8" id="Ttl-9z-BW4"/>
+                    <constraint firstItem="WUf-g2-rWR" firstAttribute="trailing" secondItem="oDG-Oh-yeF" secondAttribute="trailingMargin" constant="10" id="U7Q-rd-Ykp"/>
+                    <constraint firstItem="mwc-4O-K3V" firstAttribute="leading" secondItem="oDG-Oh-yeF" secondAttribute="leadingMargin" constant="11" id="Wct-aD-J9X"/>
+                    <constraint firstItem="CZP-9z-72p" firstAttribute="leading" secondItem="oDG-Oh-yeF" secondAttribute="leadingMargin" constant="10" id="WdL-hj-xmT"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="CZP-9z-72p" secondAttribute="trailing" constant="10" id="bdY-6d-AdK"/>
+                    <constraint firstItem="CZP-9z-72p" firstAttribute="top" secondItem="VDN-tt-KUq" secondAttribute="bottom" constant="15" id="cOe-XY-8FK"/>
+                    <constraint firstItem="VDN-tt-KUq" firstAttribute="centerY" secondItem="oDG-Oh-yeF" secondAttribute="centerY" constant="-10" id="lix-yi-6iL"/>
+                    <constraint firstItem="VDN-tt-KUq" firstAttribute="centerX" secondItem="oDG-Oh-yeF" secondAttribute="centerX" id="x5q-BV-mzE"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="caption" destination="CZP-9z-72p" id="VL0-of-fD9"/>
+                <outlet property="image" destination="VDN-tt-KUq" id="gep-Co-Zre"/>
+                <outlet property="leftDot" destination="mwc-4O-K3V" id="UU1-4f-2q6"/>
+                <outlet property="rightDot" destination="ilZ-Cd-uym" id="N22-Fi-pEQ"/>
+            </connections>
+            <point key="canvasLocation" x="170" y="-100.5"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="gate-closed.png" width="49" height="44"/>
+    </resources>
+</document>

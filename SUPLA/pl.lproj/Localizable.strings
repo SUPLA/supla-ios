@@ -1,0 +1,51 @@
+/*
+ This program is free software; you can redistribute it and/or
+ modify it under the terms of the GNU General Public License
+ as published by the Free Software Foundation; either version 2
+ of the License, or (at your option) any later version.
+ 
+ This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ GNU General Public License for more details.
+ 
+ You should have received a copy of the GNU General Public License
+ along with this program; if not, write to the Free Software
+ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
+ 
+ Author: Przemyslaw Zygmunt p.zygmunt@acsoftware.pl [AC SOFTWARE]
+ */
+
+"version" = "wersja";
+"Open" = "Otwórz";
+"Open Close" = "Otwórz Zamknij";
+"Reveal" = "Odsłoń";
+"Cover" = "Zasłoń";
+"On" = "Włącz";
+"Off" = "Wyłącz";
+"opened the gateway" = "otworzył furtkę";
+"opened / closed the gate" = "otworzył / zamknął bramę";
+"opened / closed the gate doors" = "otworzył / zamknął drzwi garażowe";
+"opened the door" = "otworzył drzwi";
+"opened / closed roller shutter" = "otworzył / zamknął roletę";
+"turned the power ON/OFF" = "włączył / wyłączył zasilanie";
+"turned the light ON/OFF" = "włączył / wyłączył światło";
+"Settings" = "Ustawienia";
+"About" = "O programie";
+"Gateway" = "Furtka";
+"Gate" = "Brama";
+"Garage door" = "Brama garażowa";
+"Door" = "Drzwi";
+"Roller shutter" = "Roleta";
+"Power switch" = "Włącznik zasilania";
+"Light switch" = "Włącznik światła";
+"Thermometer" = "Termometr";
+"No liquid sensor" = "Czujnik braku cieczy";
+"E-Mail service unavailable" = "Usługa poczty e-mail jest niedostępna!";
+"Connecting..." = "Łączenie...";
+"Unknown error" = "Nieznany błąd";
+"Service temporarily unavailable" = "Usługa tymczasowo niedostępna";
+"Bad credentials" = "Błędne poświadczenia";
+"Client limit exceeded" = "Przekroczony limit aplikacji klienckich";
+"Access disabled" = "Dostęp wyłączony";
+"Incompatible server version" = "Niekompatybilna wersja serwera";

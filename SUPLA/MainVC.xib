@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="8191" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <mutableArray key="OpenSans-Regular.ttf">
+            <string>OpenSans</string>
+        </mutableArray>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SAMainVC">
+            <connections>
+                <outlet property="channelTable" destination="dAl-yO-9F6" id="aRF-gB-kG4"/>
+                <outlet property="notificationBottom" destination="5rs-v3-0Qj" id="Nte-Qn-CUJ"/>
+                <outlet property="notificationImage" destination="eEj-LK-VDe" id="Ojv-UY-UHJ"/>
+                <outlet property="notificationLabel" destination="vli-qD-V90" id="v1n-Jb-d6b"/>
+                <outlet property="notificationView" destination="yHd-29-OpT" id="cV0-Eo-B7b"/>
+                <outlet property="tableView" destination="dAl-yO-9F6" id="8ud-9k-GtW"/>
+                <outlet property="view" destination="L2D-Yr-cFo" id="zo5-Xy-TJK"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="L2D-Yr-cFo">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yHd-29-OpT">
+                    <rect key="frame" x="0.0" y="625" width="414" height="111"/>
+                    <subviews>
+                        <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="door-open.png" translatesAutoresizingMaskIntoConstraints="NO" id="eEj-LK-VDe">
+                            <rect key="frame" x="172" y="0.0" width="70" height="67"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="67" id="Xuq-cl-ntu"/>
+                                <constraint firstAttribute="width" constant="70" id="k3z-NF-uMz"/>
+                            </constraints>
+                        </imageView>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="17:55 iPhone - opened the door" textAlignment="center" lineBreakMode="middleTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vli-qD-V90">
+                            <rect key="frame" x="8" y="75" width="398" height="21"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="21" id="1yv-dL-4DU"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="11"/>
+                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" red="0.99607843139999996" green="0.90588235289999997" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="trailing" secondItem="vli-qD-V90" secondAttribute="trailing" constant="8" id="8Ga-pI-KiD"/>
+                        <constraint firstItem="eEj-LK-VDe" firstAttribute="centerX" secondItem="yHd-29-OpT" secondAttribute="centerX" id="BHp-A3-ujJ"/>
+                        <constraint firstAttribute="bottom" secondItem="vli-qD-V90" secondAttribute="bottom" constant="3" id="DTg-aC-fGD"/>
+                        <constraint firstItem="eEj-LK-VDe" firstAttribute="top" secondItem="yHd-29-OpT" secondAttribute="top" id="LYd-FH-vWx"/>
+                        <constraint firstAttribute="height" constant="91" id="Lyb-WV-zjy"/>
+                        <constraint firstItem="vli-qD-V90" firstAttribute="leading" secondItem="yHd-29-OpT" secondAttribute="leading" constant="8" id="U4b-xc-NWW"/>
+                    </constraints>
+                </view>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="110" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="dAl-yO-9F6">
+                    <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <color key="separatorColor" red="0.87450980392156863" green="0.8784313725490196" blue="0.88235294117647056" alpha="1" colorSpace="calibratedRGB"/>
+                    <connections>
+                        <outlet property="dataSource" destination="-1" id="9F3-21-26p"/>
+                        <outlet property="delegate" destination="-1" id="GmE-RT-b6z"/>
+                    </connections>
+                </tableView>
+            </subviews>
+            <color key="backgroundColor" red="0.98039215690000003" green="0.98431372549999996" blue="0.98823529409999999" alpha="1" colorSpace="calibratedRGB"/>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="yHd-29-OpT" secondAttribute="bottom" id="5rs-v3-0Qj"/>
+                <constraint firstAttribute="trailing" secondItem="dAl-yO-9F6" secondAttribute="trailing" id="882-DW-toI"/>
+                <constraint firstItem="dAl-yO-9F6" firstAttribute="leading" secondItem="L2D-Yr-cFo" secondAttribute="leading" id="Hu0-2l-CeX"/>
+                <constraint firstItem="dAl-yO-9F6" firstAttribute="top" secondItem="L2D-Yr-cFo" secondAttribute="top" id="Mti-BF-LUU"/>
+                <constraint firstAttribute="bottom" secondItem="dAl-yO-9F6" secondAttribute="bottom" id="Ua3-t5-QqT"/>
+                <constraint firstAttribute="trailing" secondItem="yHd-29-OpT" secondAttribute="trailing" id="b5d-YC-hxh"/>
+                <constraint firstItem="yHd-29-OpT" firstAttribute="leading" secondItem="L2D-Yr-cFo" secondAttribute="leading" id="qnz-2E-zdf"/>
+            </constraints>
+            <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
+            <point key="canvasLocation" x="138" y="-1559"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="door-open.png" width="39" height="58"/>
+    </resources>
+</document>
