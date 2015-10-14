@@ -153,6 +153,7 @@
             if ( br ) {
                 [br setButtonWidth:105];
                 [br.titleLabel setFont:[UIFont fontWithName:@"Quicksand" size:16]];
+                //[br.titleLabel setFont:[UIFont fontWithName:@"OpenSens" size:10]];
                 br.backgroundColor = [UIColor colorWithRed:0.071 green:0.655 blue:0.118 alpha:1.000];
                 [self btn:br SetAction:@selector(rightTouchDown:)];
                 self.rightButtons = @[br];
@@ -161,6 +162,7 @@
             if ( bl ) {
                 [bl setButtonWidth:105];
                 [bl.titleLabel setFont:[UIFont fontWithName:@"Quicksand" size:16]];
+                //[bl.titleLabel setFont:[UIFont fontWithName:@"OpenSens" size:10]];
                 bl.backgroundColor = [UIColor colorWithRed:0.071 green:0.655 blue:0.118 alpha:1.000];
                 [self btn:bl SetAction:@selector(leftTouchDown:)];
                 self.leftButtons = @[bl];

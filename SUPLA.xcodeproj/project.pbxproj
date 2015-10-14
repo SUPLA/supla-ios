@@ -59,7 +59,8 @@
 		40B397CF1BCE7F3200BE7D5A /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 40B397CE1BCE7F3200BE7D5A /* Launch Screen.storyboard */; settings = {ASSET_TAGS = (); }; };
 		40B397D01BCE8B2100BE7D5A /* SettingsVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 40B397D21BCE8B2100BE7D5A /* SettingsVC.xib */; };
 		40B397D81BCEA25700BE7D5A /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 40B397D71BCEA25700BE7D5A /* CFNetwork.framework */; };
-		40B397DA1BCECD5700BE7D5A /* OpenSans-Semibold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 40B397D91BCECD5700BE7D5A /* OpenSans-Semibold.ttf */; settings = {ASSET_TAGS = (); }; };
+		40B397DE1BCED5EB00BE7D5A /* Quicksand-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 40B397DD1BCED5EB00BE7D5A /* Quicksand-Light.ttf */; settings = {ASSET_TAGS = (); }; };
+		40B397E21BCED7C000BE7D5A /* Quicksand-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 40B397E11BCED7C000BE7D5A /* Quicksand-Regular.ttf */; settings = {ASSET_TAGS = (); }; };
 		40BE3E621BCA7AEF00153680 /* ChannelCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 40BE3E611BCA7AEF00153680 /* ChannelCell.xib */; settings = {ASSET_TAGS = (); }; };
 		40CF96AA1BC7D4E70030EFFF /* door-closed@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 40CF96881BC7D4E70030EFFF /* door-closed@2x.png */; settings = {ASSET_TAGS = (); }; };
 		40CF96AB1BC7D4E70030EFFF /* door-closed@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 40CF96891BC7D4E70030EFFF /* door-closed@3x.png */; settings = {ASSET_TAGS = (); }; };
@@ -95,8 +96,6 @@
 		40CF96C91BC7D4E70030EFFF /* rollershutter-open@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 40CF96A71BC7D4E70030EFFF /* rollershutter-open@3x.png */; settings = {ASSET_TAGS = (); }; };
 		40CF96CA1BC7D4E70030EFFF /* thermometer@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 40CF96A81BC7D4E70030EFFF /* thermometer@2x.png */; settings = {ASSET_TAGS = (); }; };
 		40CF96CB1BC7D4E70030EFFF /* thermometer@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 40CF96A91BC7D4E70030EFFF /* thermometer@3x.png */; settings = {ASSET_TAGS = (); }; };
-		40CF96CE1BC7D5A90030EFFF /* Quicksand-light-pl.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 40CF96CC1BC7D5A90030EFFF /* Quicksand-light-pl.ttf */; settings = {ASSET_TAGS = (); }; };
-		40CF96CF1BC7D5A90030EFFF /* Quicksand-regular-pl.otf in Resources */ = {isa = PBXBuildFile; fileRef = 40CF96CD1BC7D5A90030EFFF /* Quicksand-regular-pl.otf */; settings = {ASSET_TAGS = (); }; };
 		40CF96D21BC8034E0030EFFF /* logo-supla-white@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 40CF96D01BC8034E0030EFFF /* logo-supla-white@3x.png */; settings = {ASSET_TAGS = (); }; };
 		40CF96D31BC8034E0030EFFF /* logo-supla@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 40CF96D11BC8034E0030EFFF /* logo-supla@3x.png */; settings = {ASSET_TAGS = (); }; };
 		40CF96D81BC81A470030EFFF /* error@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 40CF96D41BC81A470030EFFF /* error@2x.png */; settings = {ASSET_TAGS = (); }; };
@@ -203,7 +202,8 @@
 		40B397D41BCE8B2700BE7D5A /* pl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pl; path = pl.lproj/SettingsVC.strings; sourceTree = "<group>"; };
 		40B397D61BCE8B2800BE7D5A /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/SettingsVC.strings; sourceTree = "<group>"; };
 		40B397D71BCEA25700BE7D5A /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
-		40B397D91BCECD5700BE7D5A /* OpenSans-Semibold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "OpenSans-Semibold.ttf"; path = "Resources/Assets/Fonts/OpenSans-Semibold.ttf"; sourceTree = "<group>"; };
+		40B397DD1BCED5EB00BE7D5A /* Quicksand-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Quicksand-Light.ttf"; path = "Resources/Assets/Fonts/Quicksand-Light.ttf"; sourceTree = "<group>"; };
+		40B397E11BCED7C000BE7D5A /* Quicksand-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Quicksand-Regular.ttf"; path = "Resources/Assets/Fonts/Quicksand-Regular.ttf"; sourceTree = "<group>"; };
 		40BE3E611BCA7AEF00153680 /* ChannelCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChannelCell.xib; sourceTree = "<group>"; };
 		40CF96881BC7D4E70030EFFF /* door-closed@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "door-closed@2x.png"; path = "Resources/Assets/Img/door-closed@2x.png"; sourceTree = "<group>"; };
 		40CF96891BC7D4E70030EFFF /* door-closed@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "door-closed@3x.png"; path = "Resources/Assets/Img/door-closed@3x.png"; sourceTree = "<group>"; };
@@ -239,8 +239,6 @@
 		40CF96A71BC7D4E70030EFFF /* rollershutter-open@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "rollershutter-open@3x.png"; path = "Resources/Assets/Img/rollershutter-open@3x.png"; sourceTree = "<group>"; };
 		40CF96A81BC7D4E70030EFFF /* thermometer@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "thermometer@2x.png"; path = "Resources/Assets/Img/thermometer@2x.png"; sourceTree = "<group>"; };
 		40CF96A91BC7D4E70030EFFF /* thermometer@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "thermometer@3x.png"; path = "Resources/Assets/Img/thermometer@3x.png"; sourceTree = "<group>"; };
-		40CF96CC1BC7D5A90030EFFF /* Quicksand-light-pl.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Quicksand-light-pl.ttf"; path = "Resources/Assets/Fonts/Quicksand-light-pl.ttf"; sourceTree = "<group>"; };
-		40CF96CD1BC7D5A90030EFFF /* Quicksand-regular-pl.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Quicksand-regular-pl.otf"; path = "Resources/Assets/Fonts/Quicksand-regular-pl.otf"; sourceTree = "<group>"; };
 		40CF96D01BC8034E0030EFFF /* logo-supla-white@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "logo-supla-white@3x.png"; path = "Resources/Assets/Img/logo-supla-white@3x.png"; sourceTree = "<group>"; };
 		40CF96D11BC8034E0030EFFF /* logo-supla@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "logo-supla@3x.png"; path = "Resources/Assets/Img/logo-supla@3x.png"; sourceTree = "<group>"; };
 		40CF96D41BC81A470030EFFF /* error@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "error@2x.png"; path = "Resources/Assets/Img/error@2x.png"; sourceTree = "<group>"; };
@@ -457,9 +455,8 @@
 		405AC4021BC15882004F7311 /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
-				40B397D91BCECD5700BE7D5A /* OpenSans-Semibold.ttf */,
-				40CF96CC1BC7D5A90030EFFF /* Quicksand-light-pl.ttf */,
-				40CF96CD1BC7D5A90030EFFF /* Quicksand-regular-pl.otf */,
+				40B397E11BCED7C000BE7D5A /* Quicksand-Regular.ttf */,
+				40B397DD1BCED5EB00BE7D5A /* Quicksand-Light.ttf */,
 				405AC42F1BC158E8004F7311 /* OpenSans-Bold.ttf */,
 				405AC4301BC158E8004F7311 /* OpenSans-Regular.ttf */,
 			);
@@ -630,9 +627,9 @@
 				406778561BCBF9F4008DD37F /* SectionCell.xib in Resources */,
 				40CF96C01BC7D4E70030EFFF /* noliquid@2x.png in Resources */,
 				407D4AE91BC6C5C7009A5505 /* app_icon87x87@3x.png in Resources */,
-				40CF96CF1BC7D5A90030EFFF /* Quicksand-regular-pl.otf in Resources */,
 				40CF96B61BC7D4E70030EFFF /* gateway-closed@2x.png in Resources */,
 				40CF96BE1BC7D4E70030EFFF /* liquid@2x.png in Resources */,
+				40B397E21BCED7C000BE7D5A /* Quicksand-Regular.ttf in Resources */,
 				407D4AE71BC6C57E009A5505 /* app_icon58x58@2x.png in Resources */,
 				40CF96DA1BC81A470030EFFF /* warning@2x.png in Resources */,
 				40CF96D81BC81A470030EFFF /* error@2x.png in Resources */,
@@ -651,7 +648,6 @@
 				40CF96D21BC8034E0030EFFF /* logo-supla-white@3x.png in Resources */,
 				40CF96C61BC7D4E70030EFFF /* rollershutter-closed@2x.png in Resources */,
 				40B397CF1BCE7F3200BE7D5A /* Launch Screen.storyboard in Resources */,
-				40B397DA1BCECD5700BE7D5A /* OpenSans-Semibold.ttf in Resources */,
 				40DE1A2A1BCCFF8A004CF43B /* feedback@3x.png in Resources */,
 				405AC41B1BC15898004F7311 /* app_icon@3x.png in Resources */,
 				401CA1EF1BA0923600117AF4 /* MainVC.xib in Resources */,
@@ -673,6 +669,7 @@
 				407D4AEC1BC6C64D009A5505 /* app_icon80x80@2x.png in Resources */,
 				407D4ADF1BC6956E009A5505 /* logo-supla-white@2x.png in Resources */,
 				40CF96AF1BC7D4E70030EFFF /* garagedoor-closed@3x.png in Resources */,
+				40B397DE1BCED5EB00BE7D5A /* Quicksand-Light.ttf in Resources */,
 				407D4AF91BC6C7DE009A5505 /* app_icon114x114@2x.png in Resources */,
 				40CF96D31BC8034E0030EFFF /* logo-supla@3x.png in Resources */,
 				40CF96CB1BC7D4E70030EFFF /* thermometer@3x.png in Resources */,
@@ -689,7 +686,6 @@
 				40CF96AD1BC7D4E70030EFFF /* door-open@3x.png in Resources */,
 				40CF96D91BC81A470030EFFF /* error@3x.png in Resources */,
 				405AC4311BC158E8004F7311 /* OpenSans-Bold.ttf in Resources */,
-				40CF96CE1BC7D5A90030EFFF /* Quicksand-light-pl.ttf in Resources */,
 				4067782D1BCBC647008DD37F /* menu@3x.png in Resources */,
 				40CF96AB1BC7D4E70030EFFF /* door-closed@3x.png in Resources */,
 			);
