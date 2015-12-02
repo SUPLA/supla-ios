@@ -1,0 +1,57 @@
+/*
+ This program is free software; you can redistribute it and/or
+ modify it under the terms of the GNU General Public License
+ as published by the Free Software Foundation; either version 2
+ of the License, or (at your option) any later version.
+ 
+ This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ GNU General Public License for more details.
+ 
+ You should have received a copy of the GNU General Public License
+ along with this program; if not, write to the Free Software
+ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
+ 
+ Author: Katarzyna Cieslik katarzyna.cieslik@outlook.de
+ */
+
+"version" = "version";
+"Open" = "Öffnen";
+"Open Close" = "Öffnen Schließen";
+"Reveal" = "Aufdecken";
+"Shut" = "Abdecken";
+"On" = "An";
+"Off" = "Auf";
+"opened the gateway" = "Pforte geöffnet";
+"opened / closed the gate" = "Tor geöffnet/geschlossen ";
+"opened / closed the gate doors" = "Garagentor geöffnet/geschlossen";
+"opened the door" = "Tür geöffnet";
+"opened / closed roller shutter" = "Rolladen auf / zu";
+"turned the power ON/OFF" = "Aufladen anmachen / ausmachen";
+"turned the light ON/OFF" = "Licht anmachen / ausmachen";
+"Settings" = "Einstellungen";
+"About" = "Über das Programm";
+"Gateway" = "Pforte";
+"Gate" = "Tor";
+"Garage door" = "Garagentor";
+"Door" = "Tür";
+"Roller shutter" = "Rolladen";
+"Power switch" = "Aufladen anmachen";
+"Lighting switch" = "Licht anmachen";
+"Thermometer" = "Thermometer";
+"No liquid sensor" = "kein Flüssigkeitssensor";
+"Gateway opening sensor" = "Pforte-Öffnungssensor";
+"Gate opening sensor" = "Tor-Öffnungssensor";
+"Garage door opening sensor" = "Garagentor-Öffnungssensor";
+"Door opening sensor" = "Tür-Öffnungssensor";
+"Roller shutter opening sensor" = "Rolladen-Öffnungssensor";
+"E-Mail service unavailable" = "Email Servis ist nicht verfügbar!";
+"Connecting..." = "Verbindung...";
+"Unknown error" = "Unbekannter Fehler";
+"Service temporarily unavailable" = "Service momentan nicht verfügbar";
+"Bad credentials" = "Schlechte Referenzen";
+"Client limit exceeded" = "Klient-Grenze überschritten";
+"Access disabled" = "Zugriff deaktiviert";
+"Incompatible server version" = "Nicht kompatible Server-Version";
+
