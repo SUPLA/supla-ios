@@ -80,6 +80,7 @@ char supla_client_connected(void *_suplaclient);
 char supla_client_registered(void *_suplaclient);
 void supla_client_disconnect(void *_suplaclient);
 char supla_client_iterate(void *_suplaclient, int wait_usec);
+void* supla_client_get_userdata(void *_suplaclient);
 
 char supla_client_open(void *_suplaclient, int ChannelID, char open);
 

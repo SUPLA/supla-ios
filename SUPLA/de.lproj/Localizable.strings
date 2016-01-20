@@ -22,9 +22,9 @@
 "Reveal" = "Aufdecken";
 "Shut" = "Abdecken";
 "On" = "An";
-"Off" = "Auf";
+"Off" = "Aus";
 "opened the gateway" = "Pforte geöffnet";
-"opened / closed the gate" = "Tor geöffnet/geschlossen ";
+"opened / closed the gate" = "Tor geöffnet/geschlossen";
 "opened / closed the gate doors" = "Garagentor geöffnet/geschlossen";
 "opened the door" = "Tür geöffnet";
 "opened / closed roller shutter" = "Rolladen auf / zu";
