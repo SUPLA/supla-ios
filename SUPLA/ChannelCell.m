@@ -81,7 +81,13 @@
     
     if ( [channel.func intValue] == SUPLA_CHANNELFNC_THERMOMETER ) {
         
-        [self.temp setText:[channel isOnline] && channel.doubleValue > -273 ? [NSString stringWithFormat:@"%0.1f°", channel.doubleValue] : @"----°"];
+        [self.temp setText:[channel isOnline] && channel.temperatureValue > -273 ? [NSString stringWithFormat:@"%0.1f°", channel.temperatureValue] : @"----°"];
+    
+    } else if ( [channel.func intValue] == SUPLA_CHANNELFNC_HUMIDITYANDTEMPERATURE ) {
+        
+        [self.temp setText:[channel isOnline] && channel.temperatureValue > -273 ? [NSString stringWithFormat:@"%0.1f°", channel.temperatureValue] : @"----°"];
+        
+        [self.humidity setText:[channel isOnline] && channel.humidityValue > -1 ? [NSString stringWithFormat:@"%0.1f°", channel.humidityValue] : @"----°"];
         
     } else {
     

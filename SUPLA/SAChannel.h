@@ -38,6 +38,8 @@ NS_ASSUME_NONNULL_BEGIN
 - (BOOL) isOn;
 - (BOOL) hiValue;
 - (double) doubleValue;
+- (double) temperatureValue;
+- (double) humidityValue;
 - (NSString *)getChannelCaption;
 
 - (UIImage *) channelIcon;

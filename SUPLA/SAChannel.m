@@ -18,6 +18,7 @@
 
 #import "SAChannel.h"
 #import "SALocation.h"
+#import "Database.h"
 
 @implementation SAChannel
 
@@ -96,6 +97,22 @@
             double v;
             memcpy(&v, value->value, sizeof(double));
             self.value = [NSNumber numberWithDouble:v];
+            self.sub_value = nil;
+            break;
+        }
+            
+        case SUPLA_CHANNELFNC_HUMIDITYANDTEMPERATURE:
+        {
+            double t,h;
+            int v;
+            
+            memcpy(&v, value->value, 4);
+            t = v/1000.00;
+            
+            memcpy(&v, &value->value[4], 4);
+            h = v/1000.00;
+            
+            self.value = [NSArray arrayWithObjects:[NSNumber numberWithDouble:t], [NSNumber numberWithDouble:h], nil];
             self.sub_value = nil;
             break;
         }
@@ -188,10 +205,49 @@
 - (double) doubleValue {
     
     if ( self.value != nil
-        && [self.value isKindOfClass:[NSNumber class]])
+        && [self.value isKindOfClass:[NSNumber class]] )
         return [self.value doubleValue];
     
     return 0;
+}
+
+- (double) getDoubleValue:(int)idx size:(int)Size unknown_val:(double)unknown {
+    
+    if ( self.value != nil
+        && [self.value isKindOfClass:[NSArray class]] ) {
+        
+        NSArray *arr = self.value;
+        if ( arr.count == Size ) {
+            id obj = [arr objectAtIndex:idx];
+            
+            if ( [obj isKindOfClass:[NSNumber class]] )
+                return [obj doubleValue];
+        }
+    }
+    
+    return unknown;
+}
+
+- (double) temperatureValue {
+    
+    switch([self.func intValue]) {
+        case SUPLA_CHANNELFNC_THERMOMETER:
+            return self.doubleValue;
+        case SUPLA_CHANNELFNC_HUMIDITYANDTEMPERATURE:
+            return [self getDoubleValue:0 size:2 unknown_val:-275];
+
+    }
+    
+    return -275;
+}
+
+- (double) humidityValue {
+    
+    if ( [self.func intValue] == SUPLA_CHANNELFNC_HUMIDITYANDTEMPERATURE ) {
+        return [self getDoubleValue:1 size:2 unknown_val:-1];
+    }
+    
+    return -1;
 }
 
 - (BOOL) isOn {
@@ -288,6 +344,8 @@
                 return NSLocalizedString(@"Lighting switch", nil);
             case SUPLA_CHANNELFNC_THERMOMETER:
                 return NSLocalizedString(@"Thermometer", nil);
+            case SUPLA_CHANNELFNC_HUMIDITYANDTEMPERATURE:
+                return NSLocalizedString(@"Temperature and humidity", nil);
             case SUPLA_CHANNELFNC_NOLIQUIDSENSOR:
                 return NSLocalizedString(@"No liquid sensor", nil);
                 

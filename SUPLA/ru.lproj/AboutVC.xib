@@ -12,7 +12,7 @@
         <mutableArray key="OpenSans-Regular.ttf">
             <string>OpenSans</string>
         </mutableArray>
-        <mutableArray key="Quicksand-Regular.ttf">
+        <mutableArray key="Quicksand-Light.ttf">
             <string>Quicksand-Regular</string>
         </mutableArray>
     </customFonts>
@@ -43,22 +43,23 @@
                     <constraints>
                         <constraint firstAttribute="height" relation="greaterThanOrEqual" id="Dsr-Bx-2Vk"/>
                     </constraints>
-                    <string key="text"> Author: Przemyslaw Zygmunt p.zygmunt@acsoftware.pl 
- UI Design: Mateusz Major mateuszmajor@me.com
- 
- This program is free software; you can redistribute it and/or
- modify it under the terms of the GNU General Public License
- as published by the Free Software Foundation; either version 2
- of the License, or (at your option) any later version.
- 
- This program is distributed in the hope that it will be useful,
- but WITHOUT ANY WARRANTY; without even the implied warranty of
- MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- GNU General Public License for more details.
- 
- You should have received a copy of the GNU General Public License
- along with this program; if not, write to the Free Software
- Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA</string>
+                    <mutableString key="text">Автор: Przemyslaw Zygmunt przemek@supla.org
+ Дизайн интерфейса: Mateusz Major mateusz@supla.org
+ Русский первод: Mike Jangolenko 7472945@mail.ru
+
+ Эта программа с открытым кодом; вы можете использовать ее и/или
+ изменять ее по условиям GNU General Public License
+ которая публикуется Free Software Foundation; по версии 2
+ Лицензии, или (по вашему усмотрению) любой поздней версии.
+
+ Эта пррграмма распространяется в надежде ее полезности,
+ но БЕЗ КАКИХ-ЛИБО ГАРАНТИЙ; безо всяких подразумеваемых гарантий
+ КОММЕРЧЕСКОГО ИЛИ ЧАСТНОГО ПРИМЕНЕНИЯ. Подробнее в тексте
+ GNU General Public License.
+
+ Если к программе не приложена копия GNU General Public License
+ отправте запрос по адресу: Free Software Foundation, Inc., 59
+ Temple Place - Suite 330, Boston, MA  </mutableString>
                     <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="10"/>
                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                 </textView>

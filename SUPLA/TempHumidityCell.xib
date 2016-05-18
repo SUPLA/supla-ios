@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9532" systemVersion="14F1605" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <mutableArray key="OpenSans-Bold.ttf">
+            <string>OpenSans-Bold</string>
+        </mutableArray>
+        <mutableArray key="OpenSans-Regular.ttf">
+            <string>OpenSans</string>
+            <string>OpenSans</string>
+            <string>OpenSans</string>
+        </mutableArray>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="103" id="7rB-iV-i1x" customClass="SAChannelCell">
+            <rect key="frame" x="0.0" y="0.0" width="380" height="103"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="7rB-iV-i1x" id="mtw-YI-uHv">
+                <rect key="frame" x="0.0" y="0.0" width="380" height="102"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Temperature and humidity" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5YC-RH-PM5">
+                        <rect key="frame" x="18" y="78" width="344" height="17"/>
+                        <fontDescription key="fontDescription" name="OpenSans-Bold" family="Open Sans" pointSize="12"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dBx-Oa-uvc" userLabel="bottomLine">
+                        <rect key="frame" x="-2" y="101" width="384" height="1"/>
+                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="1" id="wiO-uk-gao"/>
+                        </constraints>
+                    </view>
+                    <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="thermometer.png" translatesAutoresizingMaskIntoConstraints="NO" id="gra-eg-NfA">
+                        <rect key="frame" x="59" y="9" width="23" height="64"/>
+                    </imageView>
+                    <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="humidity.png" translatesAutoresizingMaskIntoConstraints="NO" id="pue-s1-1cy">
+                        <rect key="frame" x="203" y="19" width="33" height="45"/>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="22.0°" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="15" translatesAutoresizingMaskIntoConstraints="NO" id="NRR-0X-1Zb">
+                        <rect key="frame" x="98" y="23" width="70" height="40"/>
+                        <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="29"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="36.4" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="15" translatesAutoresizingMaskIntoConstraints="NO" id="lPY-xq-yar">
+                        <rect key="frame" x="256" y="23" width="58" height="40"/>
+                        <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="29"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="C°" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RuG-oi-lXW">
+                        <rect key="frame" x="258" y="23" width="58" height="40"/>
+                        <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="29"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <color key="backgroundColor" red="0.98039215690000003" green="0.98431372549999996" blue="0.98823529409999999" alpha="1" colorSpace="calibratedRGB"/>
+                <constraints>
+                    <constraint firstItem="pue-s1-1cy" firstAttribute="centerY" secondItem="mtw-YI-uHv" secondAttribute="centerY" constant="-10" id="04W-T8-jRd"/>
+                    <constraint firstItem="dBx-Oa-uvc" firstAttribute="leading" secondItem="mtw-YI-uHv" secondAttribute="leadingMargin" constant="-10" id="4yi-Og-IK7"/>
+                    <constraint firstItem="NRR-0X-1Zb" firstAttribute="centerX" secondItem="mtw-YI-uHv" secondAttribute="centerX" constant="-57" id="GyX-sK-hSt"/>
+                    <constraint firstItem="gra-eg-NfA" firstAttribute="centerY" secondItem="mtw-YI-uHv" secondAttribute="centerY" constant="-10" id="HIA-L3-5HU"/>
+                    <constraint firstItem="lPY-xq-yar" firstAttribute="top" secondItem="mtw-YI-uHv" secondAttribute="topMargin" constant="15" id="JOD-PR-Db9"/>
+                    <constraint firstItem="NRR-0X-1Zb" firstAttribute="top" secondItem="mtw-YI-uHv" secondAttribute="topMargin" constant="15" id="K7f-7J-rcw"/>
+                    <constraint firstItem="gra-eg-NfA" firstAttribute="centerX" secondItem="mtw-YI-uHv" secondAttribute="centerX" constant="-120" id="M71-yD-Mr4"/>
+                    <constraint firstItem="5YC-RH-PM5" firstAttribute="leading" secondItem="mtw-YI-uHv" secondAttribute="leadingMargin" constant="10" id="NBF-N5-QBf"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="dBx-Oa-uvc" secondAttribute="bottom" constant="-8" id="PLP-l1-YFN"/>
+                    <constraint firstItem="lPY-xq-yar" firstAttribute="centerX" secondItem="mtw-YI-uHv" secondAttribute="centerX" constant="95" id="TPu-j6-7pg"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="5YC-RH-PM5" secondAttribute="trailing" constant="10" id="Ypc-Ku-Xxh"/>
+                    <constraint firstItem="5YC-RH-PM5" firstAttribute="top" secondItem="gra-eg-NfA" secondAttribute="bottom" constant="5" id="Zbu-ex-TMy"/>
+                    <constraint firstItem="5YC-RH-PM5" firstAttribute="top" secondItem="NRR-0X-1Zb" secondAttribute="bottom" constant="15" id="mIY-y3-5UF"/>
+                    <constraint firstItem="pue-s1-1cy" firstAttribute="centerX" secondItem="mtw-YI-uHv" secondAttribute="centerX" constant="29" id="pUg-0r-BLb"/>
+                    <constraint firstItem="dBx-Oa-uvc" firstAttribute="trailing" secondItem="mtw-YI-uHv" secondAttribute="trailingMargin" constant="10" id="tRB-7s-rvx"/>
+                </constraints>
+                <variation key="default">
+                    <mask key="subviews">
+                        <exclude reference="RuG-oi-lXW"/>
+                    </mask>
+                </variation>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="caption" destination="5YC-RH-PM5" id="5Jz-QT-4kl"/>
+                <outlet property="humidity" destination="lPY-xq-yar" id="0qW-7M-qbG"/>
+                <outlet property="image" destination="gra-eg-NfA" id="Gef-VP-e7E"/>
+                <outlet property="temp" destination="NRR-0X-1Zb" id="wwg-Jx-uuO"/>
+            </connections>
+            <point key="canvasLocation" x="39" y="-92.5"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="humidity.png" width="33" height="45"/>
+        <image name="thermometer.png" width="23" height="45"/>
+    </resources>
+</document>

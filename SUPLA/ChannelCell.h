@@ -35,5 +35,6 @@
 @property (weak, nonatomic) IBOutlet UIView *rightDot;
 @property (weak, nonatomic) IBOutlet UIView *leftDot;
 @property (weak, nonatomic) IBOutlet UILabel *temp;
+@property (weak, nonatomic) IBOutlet UILabel *humidity;
 
 @end

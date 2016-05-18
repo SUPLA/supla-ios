@@ -1,0 +1,57 @@
+/*
+ This program is free software; you can redistribute it and/or
+ modify it under the terms of the GNU General Public License
+ as published by the Free Software Foundation; either version 2
+ of the License, or (at your option) any later version.
+ 
+ This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ GNU General Public License for more details.
+ 
+ You should have received a copy of the GNU General Public License
+ along with this program; if not, write to the Free Software
+ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
+ 
+ Author: Mike Jangolenko 7472945@mail.ru
+ */
+
+
+"version" = "версия";
+"Open" = "Открыть";
+"Open Close" = "Открыть Закрыть";
+"Reveal" = "Поднять";
+"Shut" = "Опустить";
+"On" = "Включить";
+"Off" = "Выключить";
+"opened the gateway" = "открытие калитки";
+"opened / closed the gate" = "открытие / закрытие ворот";
+"opened / closed the gate doors" = "открытие / закрытие гаражных ворот";
+"opened the door" = "открытие двери";
+"opened / closed roller shutter" = "поднятие / опускание роллет";
+"turned the power ON/OFF" = "включение/выключение розетки";
+"turned the light ON/OFF" = "включение/выключение света";
+"Settings" = "Установки";
+"About" = "О программе";
+"Gateway" = "Калитка";
+"Gate" = "Ворота";
+"Garage door" = "Гаражные ворота";
+"Door" = "Дверь";
+"Roller shutter" = "Роллеты";
+"Power switch" = "Управление розеткой";
+"Lighting switch" = "Управление светом";
+"Thermometer" = "Термометр";
+"Temperature and humidity" = "Температура и влажность";
+"No liquid sensor" = "Датчик жидкости";
+"Gateway opening sensor" = "Датчик открытия калитки";
+"Gate opening sensor" = "Датчик открытия ворот";
+"Garage door opening sensor" = "Датчик открытия гаражных ворот";
+"Door opening sensor" = "Датчик открытия двери";
+"Roller shutter opening sensor" = "Датчик открытия роллет";
+"Connecting..." = "Подключение...";
+"Unknown error" = "Непонятная ошибка";
+"Service temporarily unavailable" = "Сервис временно не доступен";
+"Bad credentials" = "Неправильные логин/пароль";
+"Client limit exceeded" = "Ограничение количества пользователей";
+"Access disabled" = "оступ ограничен";
+"Incompatible server version" = "Несовместимая версия сервера";

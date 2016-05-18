@@ -18,6 +18,9 @@
 		401CA1ED1BA069CF00117AF4 /* libssl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 401CA1EC1BA069CF00117AF4 /* libssl.a */; };
 		401CA1EF1BA0923600117AF4 /* MainVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 401CA1EE1BA0923600117AF4 /* MainVC.xib */; };
 		401CA1F21BA0A28A00117AF4 /* SuplaClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 401CA1F11BA0A28A00117AF4 /* SuplaClient.m */; };
+		4038A5541CE32B6800180B5D /* TempHumidityCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4038A5531CE32B6800180B5D /* TempHumidityCell.xib */; };
+		4038A5571CE32CD700180B5D /* humidity@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4038A5551CE32CD700180B5D /* humidity@2x.png */; };
+		4038A5581CE32CD700180B5D /* humidity@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4038A5561CE32CD700180B5D /* humidity@3x.png */; };
 		405AC4191BC15898004F7311 /* app_icon-1024.png in Resources */ = {isa = PBXBuildFile; fileRef = 405AC4031BC15898004F7311 /* app_icon-1024.png */; };
 		405AC41A1BC15898004F7311 /* app_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 405AC4041BC15898004F7311 /* app_icon@2x.png */; };
 		405AC41B1BC15898004F7311 /* app_icon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 405AC4051BC15898004F7311 /* app_icon@3x.png */; };
@@ -146,12 +149,18 @@
 		401CA1EE1BA0923600117AF4 /* MainVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainVC.xib; sourceTree = "<group>"; };
 		401CA1F01BA0A28A00117AF4 /* SuplaClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SuplaClient.h; sourceTree = "<group>"; };
 		401CA1F11BA0A28A00117AF4 /* SuplaClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SuplaClient.m; sourceTree = "<group>"; };
+		4038A5531CE32B6800180B5D /* TempHumidityCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TempHumidityCell.xib; sourceTree = "<group>"; };
+		4038A5551CE32CD700180B5D /* humidity@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "humidity@2x.png"; path = "Resources/Assets/Img/humidity@2x.png"; sourceTree = "<group>"; };
+		4038A5561CE32CD700180B5D /* humidity@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "humidity@3x.png"; path = "Resources/Assets/Img/humidity@3x.png"; sourceTree = "<group>"; };
 		405AC4031BC15898004F7311 /* app_icon-1024.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "app_icon-1024.png"; path = "Resources/Assets/Img/app_icon-1024.png"; sourceTree = "<group>"; };
 		405AC4041BC15898004F7311 /* app_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "app_icon@2x.png"; path = "Resources/Assets/Img/app_icon@2x.png"; sourceTree = "<group>"; };
 		405AC4051BC15898004F7311 /* app_icon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "app_icon@3x.png"; path = "Resources/Assets/Img/app_icon@3x.png"; sourceTree = "<group>"; };
 		405AC42F1BC158E8004F7311 /* OpenSans-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "OpenSans-Bold.ttf"; path = "Resources/Assets/Fonts/OpenSans-Bold.ttf"; sourceTree = "<group>"; };
 		405AC4301BC158E8004F7311 /* OpenSans-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "OpenSans-Regular.ttf"; path = "Resources/Assets/Fonts/OpenSans-Regular.ttf"; sourceTree = "<group>"; };
 		405AC4331BC15C08004F7311 /* logo-supla@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "logo-supla@2x.png"; path = "Resources/Assets/Img/logo-supla@2x.png"; sourceTree = "<group>"; };
+		406223DB1CE3211F00E81C76 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
+		406223DC1CE3211F00E81C76 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/SettingsVC.strings; sourceTree = "<group>"; };
+		406223DE1CE3237F00E81C76 /* ru */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ru; path = ru.lproj/AboutVC.xib; sourceTree = "<group>"; };
 		406778281BCBBC83008DD37F /* ThermometerCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ThermometerCell.xib; sourceTree = "<group>"; };
 		4067782A1BCBC647008DD37F /* menu@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "menu@2x.png"; path = "Resources/Assets/Img/menu@2x.png"; sourceTree = "<group>"; };
 		4067782B1BCBC647008DD37F /* menu@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "menu@3x.png"; path = "Resources/Assets/Img/menu@3x.png"; sourceTree = "<group>"; };
@@ -385,6 +394,8 @@
 		405AC4011BC15878004F7311 /* Img */ = {
 			isa = PBXGroup;
 			children = (
+				4038A5551CE32CD700180B5D /* humidity@2x.png */,
+				4038A5561CE32CD700180B5D /* humidity@3x.png */,
 				406C92D31BCD8518007BA87A /* btnOK@2x.png */,
 				40DE1A241BCCFF8A004CF43B /* feedback@2x.png */,
 				40DE1A251BCCFF8A004CF43B /* feedback@3x.png */,
@@ -523,6 +534,7 @@
 				40DE1A341BCD1B55004CF43B /* AboutVC.m */,
 				40DE1A3A1BCD5E9B004CF43B /* AboutVC.xib */,
 				40B397CE1BCE7F3200BE7D5A /* Launch Screen.storyboard */,
+				4038A5531CE32B6800180B5D /* TempHumidityCell.xib */,
 			);
 			name = UI;
 			sourceTree = "<group>";
@@ -593,6 +605,7 @@
 				Base,
 				pl,
 				de,
+				ru,
 			);
 			mainGroup = 401CA1B01BA067DB00117AF4;
 			productRefGroup = 401CA1BA1BA067DB00117AF4 /* Products */;
@@ -676,12 +689,15 @@
 				40CF96B31BC7D4E70030EFFF /* gate-closed@3x.png in Resources */,
 				40CF96C41BC7D4E70030EFFF /* power-on@2x.png in Resources */,
 				406778291BCBBC84008DD37F /* ThermometerCell.xib in Resources */,
+				4038A5581CE32CD700180B5D /* humidity@3x.png in Resources */,
 				40CF96C71BC7D4E70030EFFF /* rollershutter-closed@3x.png in Resources */,
+				4038A5541CE32B6800180B5D /* TempHumidityCell.xib in Resources */,
 				40CF96AA1BC7D4E70030EFFF /* door-closed@2x.png in Resources */,
 				408034E61BC84A89007666E7 /* NavigationController.xib in Resources */,
 				40CF96B11BC7D4E70030EFFF /* garagedoor-open@3x.png in Resources */,
 				40CF96AE1BC7D4E70030EFFF /* garagedoor-closed@2x.png in Resources */,
 				40CF96DB1BC81A470030EFFF /* warning@3x.png in Resources */,
+				4038A5571CE32CD700180B5D /* humidity@2x.png in Resources */,
 				40CF96BC1BC7D4E70030EFFF /* light-on@2x.png in Resources */,
 				40CF96AD1BC7D4E70030EFFF /* door-open@3x.png in Resources */,
 				40CF96D91BC81A470030EFFF /* error@3x.png in Resources */,
@@ -755,6 +771,7 @@
 				40B397D11BCE8B2100BE7D5A /* Base */,
 				40B397D41BCE8B2700BE7D5A /* pl */,
 				40B397D61BCE8B2800BE7D5A /* de */,
+				406223DC1CE3211F00E81C76 /* ru */,
 			);
 			name = SettingsVC.xib;
 			sourceTree = "<group>";
@@ -765,6 +782,7 @@
 				40DE1A3B1BCD5EC7004CF43B /* pl */,
 				40DE1A3C1BCD5ED2004CF43B /* de */,
 				40DE1A3D1BCD5EF0004CF43B /* Base */,
+				406223DE1CE3237F00E81C76 /* ru */,
 			);
 			name = AboutVC.xib;
 			sourceTree = "<group>";
@@ -775,6 +793,7 @@
 				40DE1A431BCD6F08004CF43B /* pl */,
 				40DE1A441BCD6F09004CF43B /* de */,
 				40DE1A471BCD7207004CF43B /* Base */,
+				406223DB1CE3211F00E81C76 /* ru */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";

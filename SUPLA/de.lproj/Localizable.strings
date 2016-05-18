@@ -40,6 +40,7 @@
 "Power switch" = "Aufladen anmachen";
 "Lighting switch" = "Licht anmachen";
 "Thermometer" = "Thermometer";
+"Temperature and humidity" = "Temperatur- und Feuchtigkeitssensor";
 "No liquid sensor" = "kein Flüssigkeitssensor";
 "Gateway opening sensor" = "Pforte-Öffnungssensor";
 "Gate opening sensor" = "Tor-Öffnungssensor";

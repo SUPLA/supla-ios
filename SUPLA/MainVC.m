@@ -28,6 +28,7 @@
     NSFetchedResultsController *_frc;
     UINib *_cell_nib;
     UINib *_temp_nib;
+    UINib *_temphumidity_nib;
     UINib *_section_nib;
     NSTimer *_nTimer;
     UITapGestureRecognizer *_tapRecognizer;
@@ -40,10 +41,12 @@
     
     _cell_nib = [UINib nibWithNibName:@"ChannelCell" bundle:nil];
     _temp_nib = [UINib nibWithNibName:@"ThermometerCell" bundle:nil];
+    _temphumidity_nib = [UINib nibWithNibName:@"TempHumidityCell" bundle:nil];
     _section_nib = [UINib nibWithNibName:@"SectionCell" bundle:nil];
     
     [[self tableView] registerNib:_cell_nib forCellReuseIdentifier:@"ChannelCell"];
     [[self tableView] registerNib:_temp_nib forCellReuseIdentifier:@"ThermometerCell"];
+    [[self tableView] registerNib:_temphumidity_nib forCellReuseIdentifier:@"TempHumidityCell"];
     [[self tableView] registerNib:_section_nib forCellReuseIdentifier:@"SectionCell"];
     
     _tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapGesture:)];
@@ -234,7 +237,21 @@
     
     if ( channel ) {
 
-        cell =  [tableView dequeueReusableCellWithIdentifier: [channel.func intValue] == SUPLA_CHANNELFNC_THERMOMETER ? @"ThermometerCell" : @"ChannelCell"];
+        NSString *identifier;
+        
+        switch([channel.func intValue]) {
+            case SUPLA_CHANNELFNC_THERMOMETER:
+                identifier = @"ThermometerCell";
+                break;
+            case SUPLA_CHANNELFNC_HUMIDITYANDTEMPERATURE:
+                identifier = @"TempHumidityCell";
+                break;
+            default:
+                identifier = @"ChannelCell";
+                break;
+        }
+        
+        cell =  [tableView dequeueReusableCellWithIdentifier: identifier];
         
         if ( cell != nil ) {
             cell.channel = channel;

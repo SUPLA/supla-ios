@@ -1,0 +1,18 @@
+
+/* Class = "UILabel"; text = "PASSWORD"; ObjectID = "9CU-bj-8hI"; */
+"9CU-bj-8hI.text" = "ПАРОЛЬ";
+
+/* Class = "UILabel"; text = "Settings"; ObjectID = "H9Q-az-Fdn"; */
+"H9Q-az-Fdn.text" = "Установки";
+
+/* Class = "UILabel"; text = "Password"; ObjectID = "Iu5-RO-68w"; */
+"Iu5-RO-68w.text" = "Пароль";
+
+/* Class = "UILabel"; text = "SERVER ADDRESS"; ObjectID = "ZGC-5y-vzT"; */
+"ZGC-5y-vzT.text" = "АДРЕС СЕРВЕРА";
+
+/* Class = "UILabel"; text = "ACCESS IDENTIFIER"; ObjectID = "umv-eZ-GG8"; */
+"umv-eZ-GG8.text" = "ЛЮЧ ДОСТУПА";
+
+/* Class = "UILabel"; text = "ACCESS IDENTIFIER"; ObjectID = "xhb-Z8-4up"; */
+"xhb-Z8-4up.text" = "ЛЮЧ ДОСТУПА";
