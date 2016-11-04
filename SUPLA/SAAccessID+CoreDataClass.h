@@ -16,31 +16,15 @@
  Author: Przemyslaw Zygmunt p.zygmunt@acsoftware.pl [AC SOFTWARE]
  */
 
-#import "SALocation.h"
-#import "SAAccessID.h"
+#import <Foundation/Foundation.h>
+#import <CoreData/CoreData.h>
 
-@implementation SALocation
+NS_ASSUME_NONNULL_BEGIN
 
-- (BOOL) setLocationCaption:(char*)caption {
-    
-    NSString *_caption = [NSString stringWithUTF8String:caption];
-    
-    if ( [self.caption isEqualToString:_caption] == NO  ) {
-        self.caption = _caption;
-        return YES;
-    }
-    
-    return NO;
-}
-
-- (BOOL) setLocationVisible:(int)visible {
-    
-    if ( [self.visible isEqualToNumber:[NSNumber numberWithInt:visible]] == NO ) {
-        self.visible = [NSNumber numberWithInt:visible];
-        return YES;
-    }
-    
-    return NO;
-}
+@interface SAAccessID : NSManagedObject
 
 @end
+
+NS_ASSUME_NONNULL_END
+
+#import "SAAccessID+CoreDataProperties.h"

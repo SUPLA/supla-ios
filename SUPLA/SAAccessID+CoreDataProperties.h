@@ -2,21 +2,21 @@
 //  SAAccessID+CoreDataProperties.h
 //  SUPLA
 //
-//  Created by Przemysław Zygmunt on 12.10.2015.
-//  Copyright © 2015 AC SOFTWARE SP. Z O.O. All rights reserved.
-//
-//  Choose "Create NSManagedObject Subclass…" from the Core Data editor menu
-//  to delete and recreate this implementation file for your updated model.
+//  Created by Przemysław Zygmunt on 02.11.2016.
+//  Copyright © 2016 AC SOFTWARE SP. Z O.O. All rights reserved.
 //
 
-#import "SAAccessID.h"
+#import "SAAccessID+CoreDataClass.h"
+
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface SAAccessID (CoreDataProperties)
 
-@property (nullable, nonatomic, retain) NSNumber *access_id;
-@property (nullable, nonatomic, retain) NSString *server_name;
++ (NSFetchRequest<SAAccessID *> *)fetchRequest;
+
+@property (nullable, nonatomic, copy) NSNumber *access_id;
+@property (nullable, nonatomic, copy) NSString *server_name;
 
 @end
 

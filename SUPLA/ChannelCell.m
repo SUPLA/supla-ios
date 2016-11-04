@@ -17,9 +17,10 @@
  */
 
 #import <QuartzCore/QuartzCore.h>
+#import <AudioToolbox/AudioToolbox.h>
 #import "ChannelCell.h"
 #import "MGSwipeButton.h"
-#import "SAChannel.h"
+#import "SAChannel+CoreDataClass.h"
 #import "SuplaApp.h"
 #include "proto.h"
 
@@ -89,6 +90,34 @@
         
         [self.humidity setText:[channel isOnline] && channel.humidityValue > -1 ? [NSString stringWithFormat:@"%0.1f°", channel.humidityValue] : @"----°"];
         
+    } else if ( [channel.func intValue] == SUPLA_CHANNELFNC_DEPTHSENSOR
+                || [channel.func intValue] == SUPLA_CHANNELFNC_DISTANCESENSOR  ) {
+        
+        NSString *text = @"--- m";
+        
+        if ( [channel isOnline] && [channel doubleValue] > -1 ) {
+            
+            double value = [channel doubleValue];
+            
+            if ( value >= 1000 ) {
+                text = [NSString stringWithFormat:@"%0.2f km", value/1000.00];
+            } else if ( value >= 1 ) {
+                text = [NSString stringWithFormat:@"%0.2f m", value];
+            } else {
+                value *= 100;
+                
+                if ( value >= 1 ) {
+                    text = [NSString stringWithFormat:@"%0.1f cm", value];
+                } else {
+                    value *= 10;
+                    text = [NSString stringWithFormat:@"%i mm", (int)value];
+                }
+            }
+
+        }
+        
+        [self.distance setText:text];
+    
     } else {
     
         [self.image setImage:[channel channelIcon]];
@@ -103,7 +132,7 @@
             self.leftDot.layer.cornerRadius = 5;
         }
         
-        self.rightDot.backgroundColor = [channel isOnline] ? [UIColor colorWithRed:0.071 green:0.655 blue:0.118 alpha:1.000] : [UIColor redColor];
+        self.rightDot.backgroundColor = [channel isOnline] ? [UIColor circleOn] : [UIColor redColor];
         self.leftDot.backgroundColor = self.rightDot.backgroundColor;
         
         self.rightButtons = nil;
@@ -122,6 +151,12 @@
             case SUPLA_CHANNELFNC_POWERSWITCH:
             case SUPLA_CHANNELFNC_LIGHTSWITCH:
                 self.leftDot.hidden = NO;
+                self.rightDot.hidden = NO;
+                break;
+            case SUPLA_CHANNELFNC_RGBLIGHTING:
+            case SUPLA_CHANNELFNC_DIMMER:
+            case SUPLA_CHANNELFNC_DIMMERANDRGBLIGHTING:
+                self.leftDot.hidden = YES;
                 self.rightDot.hidden = NO;
                 break;
             default:
@@ -160,7 +195,7 @@
                 [br setButtonWidth:105];
                 [br.titleLabel setFont:[UIFont fontWithName:@"Quicksand" size:16]];
                 //[br.titleLabel setFont:[UIFont fontWithName:@"OpenSens" size:10]];
-                br.backgroundColor = [UIColor colorWithRed:0.071 green:0.655 blue:0.118 alpha:1.000];
+                br.backgroundColor = [UIColor circleOn];
                 [self btn:br SetAction:@selector(rightTouchDown:)];
                 self.rightButtons = @[br];
             }
@@ -169,7 +204,7 @@
                 [bl setButtonWidth:105];
                 [bl.titleLabel setFont:[UIFont fontWithName:@"Quicksand" size:16]];
                 //[bl.titleLabel setFont:[UIFont fontWithName:@"OpenSens" size:10]];
-                bl.backgroundColor = [UIColor colorWithRed:0.071 green:0.655 blue:0.118 alpha:1.000];
+                bl.backgroundColor = [UIColor circleOn];
                 [self btn:bl SetAction:@selector(leftTouchDown:)];
                 self.leftButtons = @[bl];
             }
@@ -184,13 +219,23 @@
     
 }
 
+- (void)vibrate {
+
+    AudioServicesPlayAlertSound(kSystemSoundID_Vibrate);
+
+}
+
 - (IBAction)rightTouchDown:(id)sender {
+    
+    [self vibrate];
     
     [[SAApp SuplaClient] channel:[self.channel.channel_id intValue] Open:[self.channel.func intValue] == SUPLA_CHANNELFNC_CONTROLLINGTHEROLLERSHUTTER ? 2 : 1];
     
 }
 
 - (IBAction)leftTouchDown:(id)sender {
+    
+    [self vibrate];
     
     [[SAApp SuplaClient] channel:[self.channel.channel_id intValue] Open:[self.channel.func intValue] == SUPLA_CHANNELFNC_CONTROLLINGTHEROLLERSHUTTER ? 1 : 0];
     
@@ -199,6 +244,9 @@
 - (IBAction)rlTouchCancel:(id)sender {
     
     if ( [self.channel.func intValue] == SUPLA_CHANNELFNC_CONTROLLINGTHEROLLERSHUTTER ) {
+        
+            [self vibrate];
+        
             [[SAApp SuplaClient] channel:[self.channel.channel_id intValue] Open: 0];
     }
     

@@ -59,6 +59,7 @@
 
 - (void) onVersionError:(SAVersionError*)ve;
 - (void) onConnected;
+- (void) onConnError:(int)code;
 - (void) onDisconnected;
 - (void) onRegistering;
 - (void) onRegistered:(SARegResult *)result;
@@ -72,6 +73,6 @@
 - (BOOL) isConnected;
 - (BOOL) isRegistered;
 - (void) channel:(int)ChannelID Open:(char)open;
-
+- (BOOL) channel:(int)ChannelID setRGB:(UIColor*)color colorBrightness:(int)color_brightness brightness:(int)brightness;
 
 @end

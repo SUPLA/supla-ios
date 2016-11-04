@@ -15,17 +15,33 @@
  
  Author: Przemyslaw Zygmunt p.zygmunt@acsoftware.pl [AC SOFTWARE]
  */
-#import <Foundation/Foundation.h>
-#import <CoreData/CoreData.h>
 
-NS_ASSUME_NONNULL_BEGIN
 
-@interface SAAccessID : NSManagedObject
+#import "_SALocation+CoreDataClass.h"
+#import "SAAccessID+CoreDataClass.h"
 
-// Insert code here to declare functionality of your managed object subclass
+@implementation _SALocation
+
+- (BOOL) setLocationCaption:(char*)caption {
+    
+    NSString *_caption = [NSString stringWithUTF8String:caption];
+    
+    if ( [self.caption isEqualToString:_caption] == NO  ) {
+        self.caption = _caption;
+        return YES;
+    }
+    
+    return NO;
+}
+
+- (BOOL) setLocationVisible:(int)visible {
+    
+    if ( [self.visible isEqualToNumber:[NSNumber numberWithInt:visible]] == NO ) {
+        self.visible = [NSNumber numberWithInt:visible];
+        return YES;
+    }
+    
+    return NO;
+}
 
 @end
-
-NS_ASSUME_NONNULL_END
-
-#import "SAAccessID+CoreDataProperties.h"

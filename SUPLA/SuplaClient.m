@@ -13,7 +13,7 @@
  along with this program; if not, write to the Free Software
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  
- Author: Przemyslaw Zygmunt p.zygmunt@acsoftware.pl [AC SOFTWARE]
+ Author: Przemyslaw Zygmunt przemek@supla.org
  */
 
 #import <UIKit/UIKit.h>
@@ -35,6 +35,14 @@ void sasuplaclient_on_connected(void *_suplaclient, void *user_data) {
     SASuplaClient *sc = (__bridge SASuplaClient*)user_data;
     if ( sc != nil )
         [sc onConnected];
+}
+
+void sasuplaclient_on_connerror(void *_suplaclient, void *user_data, int code) {
+    
+    SASuplaClient *sc = (__bridge SASuplaClient*)user_data;
+    if ( sc != nil )
+        [sc onConnError:code];
+    
 }
 
 void sasuplaclient_on_disconnected(void *_suplaclient, void *user_data) {
@@ -205,6 +213,7 @@ void sasuplaclient_on_event(void *_suplaclient, void *user_data, TSC_SuplaEvent 
     
     scc.cb_on_versionerror = sasuplaclient_on_versionerror;
     scc.cb_on_connected = sasuplaclient_on_connected;
+    scc.cb_on_connerror = sasuplaclient_on_connerror;
     scc.cb_on_disconnected = sasuplaclient_on_disconnected;
     scc.cb_on_registering = sasuplaclient_on_registering;
     scc.cb_on_registered = sasuplaclient_on_registered;
@@ -305,6 +314,14 @@ void sasuplaclient_on_event(void *_suplaclient, void *user_data, TSC_SuplaEvent 
    [self performSelectorOnMainThread:@selector(_onConnected) withObject:nil waitUntilDone:NO];
 }
 
+- (void) _onConnError:(NSNumber*)code {
+    [[SAApp instance] onConnError:code];
+}
+
+- (void) onConnError:(int)code {
+    [self performSelectorOnMainThread:@selector(_onConnError:) withObject:[NSNumber numberWithInt:code] waitUntilDone:NO];
+}
+
 - (void) _onDisconnected {
     [[SAApp instance] onDisconnected];
 }
@@ -331,6 +348,8 @@ void sasuplaclient_on_event(void *_suplaclient, void *user_data, TSC_SuplaEvent 
 }
 
 - (void) onRegisterError:(int)code {
+    
+
     [self performSelectorOnMainThread:@selector(_onRegisterError:) withObject:[NSNumber numberWithInt:code] waitUntilDone:NO];
 }
 
@@ -366,6 +385,15 @@ void sasuplaclient_on_event(void *_suplaclient, void *user_data, TSC_SuplaEvent 
     [self performSelectorOnMainThread:@selector(_onDataChanged) withObject:nil waitUntilDone:NO];
 }
 
+- (void) _onChannelValueChanged:(NSNumber*)Id {
+    [[SAApp instance] onChannelValueChanged:Id];
+}
+
+- (void) onChannelValueChanged:(int)Id {
+    [self performSelectorOnMainThread:@selector(_onChannelValueChanged:) withObject:[NSNumber numberWithInt:Id] waitUntilDone:NO];
+};
+
+
 - (void) locationUpdate:(TSC_SuplaLocation *)location {
     
     if ( [self.DB updateLocation: location] ) {
@@ -397,6 +425,7 @@ void sasuplaclient_on_event(void *_suplaclient, void *user_data, TSC_SuplaEvent 
 
 - (void) channelValueUpdate:(TSC_SuplaChannelValue *)channel_value {
     if ( [self.DB updateChannelValue:channel_value] ) {
+        [self onChannelValueChanged: channel_value->Id];
         [self onDataChanged];
     }
     
@@ -449,6 +478,38 @@ void sasuplaclient_on_event(void *_suplaclient, void *user_data, TSC_SuplaEvent 
         }
     }
     
+}
+
+- (BOOL) channel:(int)ChannelID setRGB:(UIColor*)color colorBrightness:(int)color_brightness brightness:(int)brightness {
+   
+    BOOL result = NO;
+    
+    @synchronized(self) {
+        if ( _sclient ) {
+            
+            CGFloat red,green,blue,alpha;
+            
+            [color getRed:&red green:&green blue:&blue alpha:&alpha];
+            
+            red*=255;
+            green*=255;
+            blue*=255;
+            
+            int _color = (int)blue;
+            _color |= ((int)green) << 8;
+            _color |= ((int)red) << 16;
+            
+            if ( brightness < 0 || brightness > 100 )
+                brightness = 0;
+            
+            if ( color_brightness < 0 || color_brightness > 100 )
+                color_brightness = 0;
+            
+            result = 1 == supla_client_set_rgbw(_sclient, ChannelID, _color, color_brightness, brightness);
+        }
+    }
+    
+    return result;
 }
 
 

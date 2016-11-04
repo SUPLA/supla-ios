@@ -16,36 +16,8 @@
  Author: Przemyslaw Zygmunt p.zygmunt@acsoftware.pl [AC SOFTWARE]
  */
 
-#import <Foundation/Foundation.h>
-#import <CoreData/CoreData.h>
-#import <UIKit/UIKit.h>
-#include "proto.h"
+#import "SAAccessID+CoreDataClass.h"
 
-@class SALocation;
-
-NS_ASSUME_NONNULL_BEGIN
-
-@interface SAChannel : NSManagedObject
-
-- (BOOL) setChannelLocation:(SALocation*)location;
-- (BOOL) setChannelFunction:(int)function;
-- (BOOL) setChannelOnline:(char)online;
-- (BOOL) setChannelValue:(TSuplaChannelValue*)value;
-- (BOOL) setChannelCaption:(char*)caption;
-- (BOOL) setChannelVisible:(int)visible;
-- (BOOL) isOnline;
-- (BOOL) isClosed;
-- (BOOL) isOn;
-- (BOOL) hiValue;
-- (double) doubleValue;
-- (double) temperatureValue;
-- (double) humidityValue;
-- (NSString *)getChannelCaption;
-
-- (UIImage *) channelIcon;
+@implementation SAAccessID
 
 @end
-
-NS_ASSUME_NONNULL_END
-
-#import "SAChannel+CoreDataProperties.h"

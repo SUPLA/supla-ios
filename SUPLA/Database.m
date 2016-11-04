@@ -20,9 +20,9 @@
 
 #import "Database.h"
 #import "SuplaApp.h"
-#import "SAAccessID.h"
-#import "SALocation.h"
-#import "SAChannel.h"
+#import "SAAccessID+CoreDataClass.h"
+#import "_SALocation+CoreDataClass.h"
+#import "SAChannel+CoreDataClass.h"
 
 @implementation SADatabase {
     NSManagedObjectModel *_managedObjectModel;
@@ -53,7 +53,7 @@
     // Create the coordinator and store
     
     _persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:[self managedObjectModel]];
-    NSURL *storeURL = [[SAApp applicationDocumentsDirectory] URLByAppendingPathComponent:@"SUPLA.sqlite"];
+    NSURL *storeURL = [[SAApp applicationDocumentsDirectory] URLByAppendingPathComponent:@"SUPLA_v3.sqlite"];
     NSError *error = nil;
     NSString *failureReason = @"There was an error creating or loading the application's saved data.";
     if (![_persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:storeURL options:nil error:&error]) {
@@ -179,16 +179,16 @@
 
 #pragma mark Locations
 
--(SALocation*) fetchLocationById:(int)location_id {
+-(_SALocation*) fetchLocationById:(int)location_id {
     
     return [self fetchItemByPredicate:[NSPredicate predicateWithFormat:@"location_id = %i", location_id] entityName:@"SALocation"];
 };
 
--(SALocation*) newLocation {
+-(_SALocation*) newLocation {
     
     SAAccessID *aid = [self getCurrentAccessID];
     
-    SALocation *Location = [[SALocation alloc] initWithEntity:[NSEntityDescription entityForName:@"SALocation" inManagedObjectContext:self.managedObjectContext] insertIntoManagedObjectContext:self.managedObjectContext];
+    _SALocation *Location = [[_SALocation alloc] initWithEntity:[NSEntityDescription entityForName:@"SALocation" inManagedObjectContext:self.managedObjectContext] insertIntoManagedObjectContext:self.managedObjectContext];
     
     Location.accessid = aid;
     Location.location_id = [NSNumber numberWithInt:0];
@@ -203,7 +203,7 @@
     
     BOOL save = NO;
     
-    SALocation *Location = [self fetchLocationById:location->Id];
+    _SALocation *Location = [self fetchLocationById:location->Id];
     if ( Location == nil ) {
         Location = [self newLocation];
         Location.location_id = [NSNumber numberWithInt:location->Id];
@@ -252,7 +252,7 @@
     
     BOOL save = NO;
     
-    SALocation *Location = [self fetchLocationById:channel->LocationID];
+    _SALocation *Location = [self fetchLocationById:channel->LocationID];
     
     if ( Location == nil )
         return NO;
@@ -389,6 +389,24 @@
     
     return save;
     
+}
+
+-(NSUInteger) getChannelCount {
+    
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    
+    fetchRequest.predicate = [NSPredicate predicateWithFormat:@"func > 0 AND visible > 0"];
+    [fetchRequest setEntity:[NSEntityDescription entityForName:@"SAChannel" inManagedObjectContext: self.managedObjectContext]];
+    [fetchRequest setIncludesSubentities:NO];
+
+    NSError *fetchError = nil;
+    NSUInteger count = [self.managedObjectContext countForFetchRequest:fetchRequest error:&fetchError];
+    
+    if(count == NSNotFound || fetchError != nil ) {
+        count = 0;
+    }
+    
+    return count;
 }
 
 @end

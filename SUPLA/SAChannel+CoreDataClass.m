@@ -1,28 +1,18 @@
-/*
- This program is free software; you can redistribute it and/or
- modify it under the terms of the GNU General Public License
- as published by the Free Software Foundation; either version 2
- of the License, or (at your option) any later version.
- 
- This program is distributed in the hope that it will be useful,
- but WITHOUT ANY WARRANTY; without even the implied warranty of
- MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- GNU General Public License for more details.
- 
- You should have received a copy of the GNU General Public License
- along with this program; if not, write to the Free Software
- Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
- 
- Author: Przemyslaw Zygmunt p.zygmunt@acsoftware.pl [AC SOFTWARE]
- */
+//
+//  SAChannel+CoreDataClass.m
+//  SUPLA
+//
+//  Created by Przemysław Zygmunt on 02.11.2016.
+//  Copyright © 2016 AC SOFTWARE SP. Z O.O. All rights reserved.
+//
 
-#import "SAChannel.h"
-#import "SALocation.h"
+#import "SAChannel+CoreDataClass.h"
+#import "_SALocation+CoreDataClass.h"
 #import "Database.h"
 
 @implementation SAChannel
 
-- (BOOL) setChannelLocation:(SALocation*)location {
+- (BOOL) setChannelLocation:(_SALocation*)location {
     
     if ( self.location != location ) {
         self.location = location;
@@ -93,6 +83,8 @@
             break;
             
         case SUPLA_CHANNELFNC_THERMOMETER:
+        case SUPLA_CHANNELFNC_DEPTHSENSOR:
+        case SUPLA_CHANNELFNC_DISTANCESENSOR:
         {
             double v;
             memcpy(&v, value->value, sizeof(double));
@@ -126,10 +118,30 @@
             self.value = [NSNumber numberWithBool:value->value[0] == 1];
             self.sub_value = nil;
             break;
+            
+        case SUPLA_CHANNELFNC_DIMMER:
+        case SUPLA_CHANNELFNC_RGBLIGHTING:
+        case SUPLA_CHANNELFNC_DIMMERANDRGBLIGHTING:
+        {
+            int brightness = value->value[0];
+            
+            if ( brightness > 100 || brightness < 0 )
+                brightness = 0;
+            
+            int colorBrightness = value->value[1];
+            
+            if ( colorBrightness > 100 || colorBrightness < 0 )
+                colorBrightness = 0;
+            
+            UIColor *color = [UIColor colorWithRed:(unsigned char)value->value[4]/255.00 green:(unsigned char)value->value[3]/255.00 blue:(unsigned char)value->value[2]/255.00 alpha:1];
+            
+            self.value = [NSArray arrayWithObjects:[NSNumber numberWithInt:brightness], [NSNumber numberWithInt:colorBrightness], color, nil];
+        }
+            break;
     }
     
-    if ( [self number:self.value isEqualToNumber:old_val] == NO
-        || [self number:self.sub_value isEqualToNumber:old_sub_val] == NO ) {
+    if ( [self number:(NSNumber*)self.value isEqualToNumber:old_val] == NO
+        || [self number:(NSNumber*)self.sub_value isEqualToNumber:old_sub_val] == NO ) {
         return YES;
     }
     
@@ -175,7 +187,7 @@
             case SUPLA_CHANNELFNC_CONTROLLINGTHEROLLERSHUTTER:
                 if ( self.sub_value != nil
                     && [self.sub_value isKindOfClass:[NSNumber class]])
-                    return [self.sub_value boolValue];
+                    return [(NSNumber*)self.sub_value boolValue];
                 break;
                 
             case SUPLA_CHANNELFNC_OPENINGSENSOR_GATEWAY:
@@ -196,7 +208,7 @@
     if ( [self isOnline]
         && self.value != nil
         && [self.value isKindOfClass:[NSNumber class]])
-        return [self.value boolValue];
+        return [(NSNumber*)self.value boolValue];
     
     
     return NO;
@@ -206,7 +218,7 @@
     
     if ( self.value != nil
         && [self.value isKindOfClass:[NSNumber class]] )
-        return [self.value doubleValue];
+        return [(NSNumber*)self.value doubleValue];
     
     return 0;
 }
@@ -216,7 +228,7 @@
     if ( self.value != nil
         && [self.value isKindOfClass:[NSArray class]] ) {
         
-        NSArray *arr = self.value;
+        NSArray *arr = (NSArray*)self.value;
         if ( arr.count == Size ) {
             id obj = [arr objectAtIndex:idx];
             
@@ -228,6 +240,7 @@
     return unknown;
 }
 
+
 - (double) temperatureValue {
     
     switch([self.func intValue]) {
@@ -235,7 +248,7 @@
             return self.doubleValue;
         case SUPLA_CHANNELFNC_HUMIDITYANDTEMPERATURE:
             return [self getDoubleValue:0 size:2 unknown_val:-275];
-
+            
     }
     
     return -275;
@@ -261,6 +274,68 @@
     }
     
     return NO;
+}
+
+- (int) getBrightness:(int)idx {
+    
+    switch([self.func intValue]) {
+            
+        case SUPLA_CHANNELFNC_RGBLIGHTING:
+        case SUPLA_CHANNELFNC_DIMMER:
+        case SUPLA_CHANNELFNC_DIMMERANDRGBLIGHTING:
+            
+            if ( self.value != nil
+                && [self.value isKindOfClass:[NSArray class]] ) {
+                
+                NSArray *arr = (NSArray*)self.value;
+                if ( arr.count >= idx
+                    && arr.count >= 3
+                    && [[arr objectAtIndex:idx] isKindOfClass:[NSNumber class]]
+                    && [[arr objectAtIndex:2] isKindOfClass:[UIColor class]] ) {
+                    
+                    return [[arr objectAtIndex:idx] intValue];
+                    
+                }
+            }
+    }
+    
+    return 0;
+    
+    
+}
+
+-(UIColor *)getColor {
+    
+    
+    switch([self.func intValue]) {
+            
+        case SUPLA_CHANNELFNC_RGBLIGHTING:
+        case SUPLA_CHANNELFNC_DIMMERANDRGBLIGHTING:
+            
+            if ( self.value != nil
+                && [self.value isKindOfClass:[NSArray class]] ) {
+                
+                NSArray *arr = (NSArray*)self.value;
+                if ( arr.count >= 3
+                    && [[arr objectAtIndex:2] isKindOfClass:[UIColor class]] ) {
+                    
+                    return [arr objectAtIndex:2];
+                }
+            }
+    }
+    
+    
+    return nil;
+}
+
+- (int) getBrightness {
+    
+    return [self getBrightness:0];
+}
+
+- (int) getColorBrightness {
+    return [self getBrightness:1];
+    
 }
 
 - (UIImage*) channelIcon {
@@ -299,6 +374,15 @@
             return [UIImage imageNamed:@"thermometer"];
         case SUPLA_CHANNELFNC_NOLIQUIDSENSOR:
             return [UIImage imageNamed:[self hiValue] ? @"liquid" : @"noliquid"];
+        case SUPLA_CHANNELFNC_DIMMER:
+            return [UIImage imageNamed:[NSString stringWithFormat:@"dimmer-%@", [self getBrightness] > 0 ? @"on" : @"off"]];
+            
+        case SUPLA_CHANNELFNC_RGBLIGHTING:
+            return [UIImage imageNamed:[NSString stringWithFormat:@"rgb-%@", [self getColorBrightness] > 0 ? @"on" : @"off"]];
+            
+        case SUPLA_CHANNELFNC_DIMMERANDRGBLIGHTING:
+            return [UIImage imageNamed:[NSString stringWithFormat:@"dimmerrgb-%@%@", [self getBrightness] > 0 ? @"on" : @"off", [self getColorBrightness] > 0 ? @"on" : @"off"]];
+            break;
             
     }
     
@@ -309,6 +393,7 @@
     if ( n2 ) {
         return [UIImage imageNamed:[NSString stringWithFormat:@"%@-%@", n2, [self isOn] ? @"on" : @"off"]];
     }
+    
     
     return nil;
 }
@@ -348,6 +433,16 @@
                 return NSLocalizedString(@"Temperature and humidity", nil);
             case SUPLA_CHANNELFNC_NOLIQUIDSENSOR:
                 return NSLocalizedString(@"No liquid sensor", nil);
+            case SUPLA_CHANNELFNC_RGBLIGHTING:
+                return NSLocalizedString(@"RGB Lighting", nil);
+            case SUPLA_CHANNELFNC_DIMMERANDRGBLIGHTING:
+                return NSLocalizedString(@"Dimmer and RGB lighting", nil);
+            case SUPLA_CHANNELFNC_DIMMER:
+                return NSLocalizedString(@"Dimmer", nil);
+            case SUPLA_CHANNELFNC_DISTANCESENSOR:
+                return NSLocalizedString(@"Distance sensor", nil);
+            case SUPLA_CHANNELFNC_DEPTHSENSOR:
+                return NSLocalizedString(@"Depth sensor", nil);
                 
         }
         
@@ -356,6 +451,5 @@
     return self.caption;
     
 }
-
 
 @end

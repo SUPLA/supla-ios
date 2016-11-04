@@ -49,7 +49,9 @@
 +(BOOL) SuplaClientConnected;
 
 -(void)onDataChanged;
+-(void)onChannelValueChanged:(NSNumber*)ChannelId;
 -(void)onConnecting;
+-(void)onConnError:(NSNumber*)code;
 -(void)onRegistered:(SARegResult*)result;
 -(void)onRegistering;
 -(void)onRegisterError:(NSNumber*)code;
@@ -70,3 +72,4 @@ extern NSString *kSADisconnectedNotification;
 extern NSString *kSAConnectedNotification;
 extern NSString *kSAVersionErrorNotification;
 extern NSString *kSAEventNotification;
+extern NSString *kSAChannelValueChangedNotification;

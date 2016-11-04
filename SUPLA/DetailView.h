@@ -13,13 +13,21 @@
  along with this program; if not, write to the Free Software
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  
- Author: Przemyslaw Zygmunt p.zygmunt@acsoftware.pl [AC SOFTWARE]
+ Author: Przemyslaw Zygmunt przemek@supla.org
  */
 
-#import "SAAccessID.h"
+#import <UIKit/UIKit.h>
+#import "SAChannel+CoreDataClass.h"
+#import "MainVC.h"
 
-@implementation SAAccessID
+@interface SADetailView : UIView 
 
-// Insert code here to add functionality to your managed object subclass
+-(void) detailViewInit;
+-(void)updateView;
 
+@property (weak, nonatomic) SAChannel  *channel;
+@property (weak, nonatomic) SAMainView *main_view;
+@property (nonatomic) BOOL initialized;
 @end
+
+

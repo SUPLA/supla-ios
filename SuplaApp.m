@@ -32,6 +32,8 @@ NSString *kSADisconnectedNotification = @"kSA-N06";
 NSString *kSAConnectedNotification = @"kSA-N07";
 NSString *kSAVersionErrorNotification = @"kSA-N08";
 NSString *kSAEventNotification = @"kSA-N09";
+NSString *kSAConnErrorNotification = @"kSA-N10";
+NSString *kSAChannelValueChangedNotification = @"KSA-N11";
 
 @implementation SAApp {
     
@@ -317,6 +319,20 @@ NSString *kSAEventNotification = @"kSA-N09";
     [[NSNotificationCenter defaultCenter] postNotificationName:kSAConnectedNotification object:self userInfo:nil];
 }
 
+-(void)onConnError:(NSNumber*)code {
+    
+    if ( [code intValue] == SUPLA_RESULTCODE_HOSTNOTFOUND ) {
+        
+        [self SuplaClientTerminate];
+        [self.UI showStatusError:NSLocalizedString(@"Host not found", nil)];
+    }
+    
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:kSAConnErrorNotification object:self userInfo:[[NSDictionary alloc] initWithObjects:@[code] forKeys:@[@"code"]]];
+    
+    
+}
+
 -(void)onRegistering {
     [self.UI showStatusConnectingProgress:0.75];
     [[NSNotificationCenter defaultCenter] postNotificationName:kSARegisteringNotification object:self userInfo:nil];
@@ -332,6 +348,7 @@ NSString *kSAEventNotification = @"kSA-N09";
     
     [self SuplaClientTerminate];
     
+
     NSString *msg = [NSString stringWithFormat:@"%@ (%@)", NSLocalizedString(@"Unknown error", nil), code];
     
     switch([code intValue]) {
@@ -371,6 +388,10 @@ NSString *kSAEventNotification = @"kSA-N09";
 
 -(void)onDataChanged {
     [[NSNotificationCenter defaultCenter] postNotificationName:kSADataChangedNotification object:self userInfo:nil];
+}
+
+-(void)onChannelValueChanged:(NSNumber*)ChannelId {
+    [[NSNotificationCenter defaultCenter] postNotificationName:kSAChannelValueChangedNotification object:self userInfo:[[NSDictionary alloc] initWithObjects:@[ChannelId] forKeys:@[@"channelId"]]];
 }
 
 @end

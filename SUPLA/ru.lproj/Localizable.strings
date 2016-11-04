@@ -33,6 +33,7 @@
 "turned the light ON/OFF" = "включение/выключение света";
 "Settings" = "Установки";
 "About" = "О программе";
+"Feedback" = "Отзыв";
 "Gateway" = "Калитка";
 "Gate" = "Ворота";
 "Garage door" = "Гаражные ворота";
@@ -55,3 +56,9 @@
 "Client limit exceeded" = "Ограничение количества пользователей";
 "Access disabled" = "оступ ограничен";
 "Incompatible server version" = "Несовместимая версия сервера";
+"Host not found" = "Хост не найден";
+"RGB Lighting" = "Контроллер освещения RGB";
+"Dimmer and RGB lighting" = "Диммер и контроллер освещения RGB";
+"Dimmer" = "Диммер";
+"Distance sensor" = "датчик расстояния";
+"Depth sensor" = "датчик глубины";

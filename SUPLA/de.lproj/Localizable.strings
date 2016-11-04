@@ -55,4 +55,14 @@
 "Client limit exceeded" = "Klient-Grenze überschritten";
 "Access disabled" = "Zugriff deaktiviert";
 "Incompatible server version" = "Nicht kompatible Server-Version";
+"Host not found" = "Host nicht gefunden";
+"RGB Lighting" = "RGB- Beleuchtungskontroller";
+"Dimmer and RGB lighting" = "Helligkeitsregler und RGB-Beleuchtungskontroller";
+"Dimmer" = "Helligkeitsregler";
+"Distance sensor" = "Abstandssensor";
+"Depth sensor" = "Tiefensensor";
 
+"If you enjoy using this app, please take a moment to rate it. Thanks for your support!" = "Wenn Ihnen diese App gefällt, bewerten Sie sie bitte. Vielen Dank dafür!";
+"Rate Now" = "Bewerten";
+"Later" = "Später";
+"No thanks" = "Nein danke";

@@ -101,6 +101,7 @@
     
 }
 
+
 - (void) showMenu:(BOOL)show withAction:(void (^)(void))action {
     
     self.menuBar.layer.zPosition = 2;

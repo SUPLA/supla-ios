@@ -1,8 +1,8 @@
 /*
  ============================================================================
  Name        : supla-client.h
- Author      : Przemyslaw Zygmunt p.zygmunt@acsoftware.pl [AC SOFTWARE]
- Version     : 1.0
+ Author      : Przemyslaw Zygmunt przemek@supla.org
+ Version     : 1.1.2
  Copyright   : GPLv2
  ============================================================================
  */
@@ -51,6 +51,7 @@ typedef struct {
    int iterate_wait_usec;
 
    _suplaclient_cb_on_versionerror cb_on_versionerror;
+   _suplaclient_cb_on_error cb_on_connerror;
    _suplaclient_cb_on_action cb_on_connected;
    _suplaclient_cb_on_action cb_on_disconnected;
    _suplaclient_cb_on_action cb_on_registering;
@@ -83,6 +84,8 @@ char supla_client_iterate(void *_suplaclient, int wait_usec);
 void* supla_client_get_userdata(void *_suplaclient);
 
 char supla_client_open(void *_suplaclient, int ChannelID, char open);
+char supla_client_set_rgbw(void *_suplaclient, int ChannelID, int color, char color_brightness, char brightness);
+char supla_client_set_dimmer(void *_suplaclient, int ChannelID, char brightness);
 
 #ifdef __cplusplus
 }

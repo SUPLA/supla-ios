@@ -43,6 +43,30 @@
 
 @end
 
+@implementation UIColor (SUPLA)
+
++(UIColor*)circleOn {
+    return [UIColor colorWithRed:0.071 green:0.655 blue:0.118 alpha:1.000];
+}
+
++(UIColor*)colorPickerDefault {
+    return [UIColor colorWithRed:0 green:255 blue:0 alpha:1];
+}
+
++(UIColor*)statusYellow {
+    return [UIColor colorWithRed:0.996 green:0.906 blue:0.000 alpha:1.000];
+}
+
++(UIColor*)cellBackground {
+    return [UIColor colorWithRed:0.98 green:0.98 blue:0.98 alpha:1.0];
+}
+
++(UIColor*)detailBackground {
+    return [UIColor colorWithRed:1.00 green:0.91 blue:0.02 alpha:1.0];
+}
+
+@end
+
 @implementation SAUIHelper {
     
     SANavigationController *_NavController;
@@ -69,6 +93,15 @@
     }
     
     return _NavController;
+}
+
+-(void)showMenuBtn:(BOOL)show {
+    
+    if ( _NavController
+         && _NavController.btnMenu.hidden != !show) {
+        _NavController.btnMenu.hidden = !show;
+    }
+    
 }
 
 -(SASettingsVC *) SettingsVC {
@@ -106,6 +139,8 @@
 }
 
 -(void)showMainVC {
+    
+    [[self MainVC] detailHide];
     
     [self.NavController showViewController:[self MainVC]];
     [self fadeToViewController:[self NavController]];

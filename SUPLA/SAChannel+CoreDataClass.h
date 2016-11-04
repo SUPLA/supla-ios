@@ -18,18 +18,37 @@
 
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
+#import <UIKit/UIKit.h>
+#include "proto.h"
 
-@class SAAccessID;
+@class NSObject, _SALocation;
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface SALocation : NSManagedObject
+@interface SAChannel : NSManagedObject
 
-- (BOOL) setLocationCaption:(char*)caption;
-- (BOOL) setLocationVisible:(int)visible;
+- (BOOL) setChannelLocation:(_SALocation*)location;
+- (BOOL) setChannelFunction:(int)function;
+- (BOOL) setChannelOnline:(char)online;
+- (BOOL) setChannelValue:(TSuplaChannelValue*)value;
+- (BOOL) setChannelCaption:(char*)caption;
+- (BOOL) setChannelVisible:(int)visible;
+- (BOOL) isOnline;
+- (BOOL) isClosed;
+- (BOOL) isOn;
+- (BOOL) hiValue;
+- (double) doubleValue;
+- (double) temperatureValue;
+- (double) humidityValue;
+- (NSString *)getChannelCaption;
+- (int) getBrightness;
+- (int) getColorBrightness;
+- (UIColor *) getColor;
+
+- (UIImage *) channelIcon;
 
 @end
 
 NS_ASSUME_NONNULL_END
 
-#import "SALocation+CoreDataProperties.h"
+#import "SAChannel+CoreDataProperties.h"

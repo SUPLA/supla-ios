@@ -2,27 +2,27 @@
 //  SAChannel+CoreDataProperties.h
 //  SUPLA
 //
-//  Created by Przemysław Zygmunt on 12.10.2015.
-//  Copyright © 2015 AC SOFTWARE SP. Z O.O. All rights reserved.
-//
-//  Choose "Create NSManagedObject Subclass…" from the Core Data editor menu
-//  to delete and recreate this implementation file for your updated model.
+//  Created by Przemysław Zygmunt on 02.11.2016.
+//  Copyright © 2016 AC SOFTWARE SP. Z O.O. All rights reserved.
 //
 
-#import "SAChannel.h"
+#import "SAChannel+CoreDataClass.h"
+
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface SAChannel (CoreDataProperties)
 
-@property (nullable, nonatomic, retain) NSString *caption;
-@property (nullable, nonatomic, retain) NSNumber *channel_id;
-@property (nullable, nonatomic, retain) NSNumber *func;
-@property (nullable, nonatomic, retain) NSNumber *online;
-@property (nullable, nonatomic, retain) id sub_value;
-@property (nullable, nonatomic, retain) id value;
-@property (nullable, nonatomic, retain) NSNumber *visible;
-@property (nullable, nonatomic, retain) SALocation *location;
++ (NSFetchRequest<SAChannel *> *)fetchRequest;
+
+@property (nullable, nonatomic, copy) NSString *caption;
+@property (nullable, nonatomic, copy) NSNumber *channel_id;
+@property (nullable, nonatomic, copy) NSNumber *func;
+@property (nullable, nonatomic, copy) NSNumber *online;
+@property (nullable, nonatomic, retain) NSObject *sub_value;
+@property (nullable, nonatomic, retain) NSObject *value;
+@property (nullable, nonatomic, copy) NSNumber *visible;
+@property (nullable, nonatomic, retain) _SALocation *location;
 
 @end
 

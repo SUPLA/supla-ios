@@ -29,6 +29,16 @@
 
 @end
 
+@interface UIColor (SUPLA)
+
++(UIColor*)circleOn;
++(UIColor*)colorPickerDefault;
++(UIColor*)statusYellow;
++(UIColor*)cellBackground;
++(UIColor*)detailBackground;
+
+@end
+
 @interface SAUIHelper : NSObject
 
 -(void)fadeToViewController:(UIViewController*)vc;
@@ -52,6 +62,10 @@
 
 -(void)showStarterVC;
 
+-(void)showMenuBtn:(BOOL)show;
+
 @property (nonatomic, strong) UIViewController *rootViewController;
 
 @end
+
+

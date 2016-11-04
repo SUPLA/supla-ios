@@ -18,9 +18,11 @@
 
 #import <UIKit/UIKit.h>
 
+@class SADetailView;
+
 @interface SAMainVC : UIViewController <UITableViewDataSource, UITableViewDelegate>
 
-@property (weak, nonatomic) IBOutlet UITableView *channelTable;
+
 - (IBAction)settingsTouched:(id)sender;
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
@@ -28,6 +30,17 @@
 @property (weak, nonatomic) IBOutlet UIView *notificationView;
 @property (weak, nonatomic) IBOutlet UIImageView *notificationImage;
 @property (weak, nonatomic) IBOutlet UILabel *notificationLabel;
+- (void)detailHide;
 
 @end
 
+
+@interface SAMainView : UIView 
+
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (weak, nonatomic, readonly) SADetailView *detailView;
+
+- (void)detailShow:(BOOL)show animated:(BOOL)animated;
+- (void)moveCenter:(float)x_offset;
+
+@end

@@ -42,7 +42,7 @@
 }
 
 -(void)YellowTheme {
-    [self.view setBackgroundColor:[UIColor colorWithRed:0.996 green:0.906 blue:0.000 alpha:1.000]];
+    [self.view setBackgroundColor:[UIColor statusYellow]];
     [self.progress setHidden:YES];
     [self.image setImage:nil];
     [self.label setTextColor:[UIColor blackColor]];
@@ -56,7 +56,7 @@
     [self.view setBackgroundColor:[UIColor colorWithRed:0.071 green:0.655 blue:0.118 alpha:1.000]];
     [self.progress setHidden:NO];
     
-    [self.image setImage:[UIImage imageNamed:@"logo-supla-white"]];
+    [self.image setImage:[UIImage imageNamed:@"logo-supla_white"]];
     [self.label setTextColor:[UIColor whiteColor]];
     [self.button setBackgroundColor:[UIColor whiteColor]];
     [self.button setTitleColor:self.view.backgroundColor forState:UIControlStateNormal];

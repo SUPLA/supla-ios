@@ -21,7 +21,7 @@
 
 #import "proto.h"
 
-@class SALocation;
+@class _SALocation;
 @class SAChannel;
 @interface SADatabase : NSObject
 
@@ -33,8 +33,8 @@
 - (void)releaseSaveObserver;
 - (void)saveContext;
 
--(SALocation*) fetchLocationById:(int)location_id;
--(SALocation*) newLocation;
+-(_SALocation*) fetchLocationById:(int)location_id;
+-(_SALocation*) newLocation;
 -(BOOL) updateLocation:(TSC_SuplaLocation *)location;
 
 -(SAChannel*) fetchChannelById:(int)channel_id;
@@ -43,6 +43,7 @@
 -(NSFetchedResultsController*) getChannelFrc;
 -(BOOL) setChannelsOffline;
 -(BOOL) setChannelsVisible:(int)visible WhereVisibilityIs:(int)wvi;
+-(NSUInteger) getChannelCount;
 
 @end
 
