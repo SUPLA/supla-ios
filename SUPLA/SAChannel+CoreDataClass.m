@@ -51,7 +51,7 @@
     if ( n2 == nil && n1 != nil )
         return NO;
     
-    if ( [n1 isKindOfClass:[NSNumber class]] == NO || [n2 isKindOfClass:[NSNumber class]] == YES )
+    if ( [n1 isKindOfClass:[NSNumber class]] == NO || [n2 isKindOfClass:[NSNumber class]] == NO )
         return NO; // is unknown
     
     if ( n1 != nil && n2 != nil && [n1 isEqualToNumber:n2] == NO )
