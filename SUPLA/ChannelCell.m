@@ -37,11 +37,19 @@
     [super prepareForReuse];
 };
 
+@end
+
+@implementation MGSwipeButton (SUPLA)
+
+-(void) setBackgroundColor:(UIColor *)backgroundColor withDelay:(NSTimeInterval) delay {
+    [self performSelector:@selector(setBackgroundColor:) withObject:backgroundColor afterDelay:delay];
+}
 
 @end
 
 @implementation SAChannelCell {
     SAChannel *_channel;
+    UIColor *delayedColor;
 }
 
 -(id)initWithCoder:(NSCoder *)aDecoder {
@@ -227,6 +235,8 @@
 
 - (IBAction)rightTouchDown:(id)sender {
     
+    [sender setBackgroundColor: [UIColor btnTouched]];
+    
     [self vibrate];
     
     [[SAApp SuplaClient] channel:[self.channel.channel_id intValue] Open:[self.channel.func intValue] == SUPLA_CHANNELFNC_CONTROLLINGTHEROLLERSHUTTER ? 2 : 1];
@@ -235,6 +245,8 @@
 
 - (IBAction)leftTouchDown:(id)sender {
     
+    [sender setBackgroundColor: [UIColor btnTouched]];
+    
     [self vibrate];
     
     [[SAApp SuplaClient] channel:[self.channel.channel_id intValue] Open:[self.channel.func intValue] == SUPLA_CHANNELFNC_CONTROLLINGTHEROLLERSHUTTER ? 1 : 0];
@@ -242,6 +254,8 @@
 }
 
 - (IBAction)rlTouchCancel:(id)sender {
+    
+    [sender setBackgroundColor: [UIColor circleOn] withDelay:0.2];
     
     if ( [self.channel.func intValue] == SUPLA_CHANNELFNC_CONTROLLINGTHEROLLERSHUTTER ) {
         

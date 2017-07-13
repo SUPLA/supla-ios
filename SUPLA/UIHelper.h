@@ -31,6 +31,7 @@
 
 @interface UIColor (SUPLA)
 
++(UIColor*)btnTouched;
 +(UIColor*)circleOn;
 +(UIColor*)colorPickerDefault;
 +(UIColor*)statusYellow;

@@ -18,11 +18,17 @@
 
 #import <UIKit/UIKit.h>
 #import "MGSwipeTableCell.h"
-
+#import "MGSwipeButton.h"
 
 @interface MGSwipeTableCell (SUPLA)
 
 -(void) prepareForReuse;
+
+@end
+
+@interface MGSwipeButton (SUPLA)
+
+-(void) setBackgroundColor:(UIColor *)backgroundColor withDelay:(NSTimeInterval) delay;
 
 @end
 
@@ -38,5 +44,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *temp;
 @property (weak, nonatomic) IBOutlet UILabel *humidity;
 @property (weak, nonatomic) IBOutlet UILabel *distance;
+
 
 @end

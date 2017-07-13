@@ -49,6 +49,10 @@
     return [UIColor colorWithRed:0.071 green:0.655 blue:0.118 alpha:1.000];
 }
 
++(UIColor*)btnTouched {
+    return [UIColor colorWithRed:0.35 green:0.91 blue:0.40 alpha:1.0];
+}
+
 +(UIColor*)colorPickerDefault {
     return [UIColor colorWithRed:0 green:255 blue:0 alpha:1];
 }
