@@ -49,7 +49,6 @@
 
 @implementation SAChannelCell {
     SAChannel *_channel;
-    UIColor *delayedColor;
 }
 
 -(id)initWithCoder:(NSCoder *)aDecoder {
