@@ -1,0 +1,49 @@
+/*
+ This program is free software; you can redistribute it and/or
+ modify it under the terms of the GNU General Public License
+ as published by the Free Software Foundation; either version 2
+ of the License, or (at your option) any later version.
+ 
+ This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ GNU General Public License for more details.
+ 
+ You should have received a copy of the GNU General Public License
+ along with this program; if not, write to the Free Software
+ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
+ */
+
+#import <UIKit/UIKit.h>
+
+@protocol SAColorListPickerDelegate <NSObject>
+
+@required
+-(void)itemTouchedWithColor:(UIColor*)color andPercent:(float)percent;
+-(void)itemEditAtIndex:(int)index;
+@end
+
+@interface SAColorListPickerItem : NSObject
+
+@property(weak, nonatomic) UIColor *color;
+@property(nonatomic, assign) float percent;
+@property(weak, nonatomic) id extraParam1;
+@property(weak, nonatomic) id extraParam2;
+@property(nonatomic, assign) CGRect rect;
+@end
+
+@interface SAColorListPicker : UIView
+
+-(int)addItemWithColor:(UIColor *)color andPercent:(float)percent;
+-(int)addItem;
+-(void)removeItemAtIndex:(int)idx;
+
+
+@property(nonatomic, assign) CGFloat space;
+@property(nonatomic, assign) CGFloat borderWidth;
+@property(weak, nonatomic) UIColor *borderColor;
+@property(weak, nonatomic) UIColor *borderColorSelected;
+
+@property(weak, nonatomic) id<SAColorListPickerDelegate> delegate;
+
+@end
