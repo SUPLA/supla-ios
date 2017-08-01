@@ -36,7 +36,8 @@
 +(UIColor*)colorPickerDefault;
 +(UIColor*)statusYellow;
 +(UIColor*)cellBackground;
-+(UIColor*)detailBackground;
++(UIColor*)rgbDetailBackground;
++(UIColor*)rsDetailBackground;
 
 @end
 

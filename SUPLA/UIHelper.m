@@ -65,10 +65,13 @@
     return [UIColor colorWithRed:0.98 green:0.98 blue:0.98 alpha:1.0];
 }
 
-+(UIColor*)detailBackground {
++(UIColor*)rgbDetailBackground {
     return [UIColor colorWithRed:1.00 green:0.91 blue:0.02 alpha:1.0];
 }
 
++(UIColor*)rsDetailBackground {
+    return [UIColor colorWithRed:0.93 green:0.93 blue:0.93 alpha:1.0];
+}
 
 @end
 

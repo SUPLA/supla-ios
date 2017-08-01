@@ -24,6 +24,7 @@
 #import "SAChannel+CoreDataClass.h"
 #import "SectionCell.h"
 #import "RGBDetailView.h"
+#import "RSDetailView.h"
 #import "SARateApp.h"
 
 @implementation SAMainVC {
@@ -319,6 +320,7 @@
     
     SAChannelCell *cell;
     SARGBDetailView *_rgbDetailView;
+    SARSDetailView *_rsDetailView; // Roller Shutter detail view
     SADetailView *_detailView;
     
     float last_touched_x;
@@ -350,12 +352,12 @@
     
     SADetailView *result = nil;
     
-    switch([_cell.channel.func intValue]) {
-        case SUPLA_CHANNELFNC_DIMMER:
-        case SUPLA_CHANNELFNC_RGBLIGHTING:
-        case SUPLA_CHANNELFNC_DIMMERANDRGBLIGHTING:
-            
-            if ( _cell.channel.isOnline ) {
+    if ( _cell.channel.isOnline ) {
+        
+        switch([_cell.channel.func intValue]) {
+            case SUPLA_CHANNELFNC_DIMMER:
+            case SUPLA_CHANNELFNC_RGBLIGHTING:
+            case SUPLA_CHANNELFNC_DIMMERANDRGBLIGHTING:
                 
                 if ( _rgbDetailView == nil
                     && self.superview != nil ) {
@@ -367,10 +369,23 @@
                 
                 result = _rgbDetailView;
                 
-            }
-
-            break;
-    };
+                break;
+                
+            case SUPLA_CHANNELFNC_CONTROLLINGTHEROLLERSHUTTER:
+                
+                if ( _rsDetailView == nil
+                    && self.superview != nil ) {
+                    
+                    _rsDetailView = [[[NSBundle mainBundle] loadNibNamed:@"RSDetail" owner:self options:nil] objectAtIndex:0];
+                    [_rsDetailView detailViewInit];
+                    
+                }
+                
+                result = _rsDetailView;
+                
+                break;
+        };
+    }
     
     if ( result != nil ) {
     

@@ -73,6 +73,8 @@
 		409934AA1F30C025003110C5 /* SAColorListItem+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 409934A71F30C025003110C5 /* SAColorListItem+CoreDataClass.m */; };
 		409934AB1F30C025003110C5 /* SAColorListItem+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 409934A91F30C025003110C5 /* SAColorListItem+CoreDataProperties.m */; };
 		409934B31F30D827003110C5 /* ModelUpgrade_v1_to_v2.xcmappingmodel in Sources */ = {isa = PBXBuildFile; fileRef = 409934B21F30D827003110C5 /* ModelUpgrade_v1_to_v2.xcmappingmodel */; };
+		409934B61F30EF9C003110C5 /* RSDetailView.m in Sources */ = {isa = PBXBuildFile; fileRef = 409934B51F30EF9C003110C5 /* RSDetailView.m */; };
+		409934C11F30F2F2003110C5 /* RSDetail.xib in Resources */ = {isa = PBXBuildFile; fileRef = 409934C01F30F2F2003110C5 /* RSDetail.xib */; };
 		40A6757F1BA1A5B6004A51C4 /* SuplaApp.m in Sources */ = {isa = PBXBuildFile; fileRef = 40A6757E1BA1A5B6004A51C4 /* SuplaApp.m */; };
 		40A675831BA1BE8E004A51C4 /* SettingsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 40A675811BA1BE8E004A51C4 /* SettingsVC.m */; };
 		40AB8BDE1DCB32EB0030F3DE /* SARateApp.m in Sources */ = {isa = PBXBuildFile; fileRef = 40AB8BDD1DCB32EB0030F3DE /* SARateApp.m */; };
@@ -252,6 +254,9 @@
 		409934A81F30C025003110C5 /* SAColorListItem+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SAColorListItem+CoreDataProperties.h"; sourceTree = "<group>"; };
 		409934A91F30C025003110C5 /* SAColorListItem+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SAColorListItem+CoreDataProperties.m"; sourceTree = "<group>"; };
 		409934B21F30D827003110C5 /* ModelUpgrade_v1_to_v2.xcmappingmodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcmappingmodel; path = ModelUpgrade_v1_to_v2.xcmappingmodel; sourceTree = "<group>"; };
+		409934B41F30EF9C003110C5 /* RSDetailView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSDetailView.h; sourceTree = "<group>"; };
+		409934B51F30EF9C003110C5 /* RSDetailView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSDetailView.m; sourceTree = "<group>"; };
+		409934C01F30F2F2003110C5 /* RSDetail.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RSDetail.xib; sourceTree = "<group>"; };
 		40A6757D1BA1A5B6004A51C4 /* SuplaApp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SuplaApp.h; path = ../SuplaApp.h; sourceTree = "<group>"; };
 		40A6757E1BA1A5B6004A51C4 /* SuplaApp.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SuplaApp.m; path = ../SuplaApp.m; sourceTree = "<group>"; };
 		40A675801BA1BE8E004A51C4 /* SettingsVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsVC.h; sourceTree = "<group>"; };
@@ -674,6 +679,9 @@
 				403150FA1DC769430075D2D2 /* RGBDetailView.m */,
 				40CE7C631DCBBCE400BBACE4 /* DepthCell.xib */,
 				40CE7C6D1DCBBF6D00BBACE4 /* DistanceCell.xib */,
+				409934B41F30EF9C003110C5 /* RSDetailView.h */,
+				409934B51F30EF9C003110C5 /* RSDetailView.m */,
+				409934C01F30F2F2003110C5 /* RSDetail.xib */,
 			);
 			name = UI;
 			sourceTree = "<group>";
@@ -821,6 +829,7 @@
 				40CF96B81BC7D4E70030EFFF /* gateway-open@2x.png in Resources */,
 				40CF96B71BC7D4E70030EFFF /* gateway-closed@3x.png in Resources */,
 				40DE1A401BCD6F06004CF43B /* Localizable.strings in Resources */,
+				409934C11F30F2F2003110C5 /* RSDetail.xib in Resources */,
 				40CF96B51BC7D4E70030EFFF /* gate-open@3x.png in Resources */,
 				40DE1A2B1BCCFF8A004CF43B /* info@2x.png in Resources */,
 				407D4AFB1BC6D6AA009A5505 /* btnOK@3x.png in Resources */,
@@ -912,6 +921,7 @@
 				4006E90A1DC62D0A00C4456D /* DetailView.m in Sources */,
 				40C9E4FD1F2B841400753796 /* SAColorListPicker.m in Sources */,
 				40DA56901DCA1908008F05DE /* _SALocation+CoreDataProperties.m in Sources */,
+				409934B61F30EF9C003110C5 /* RSDetailView.m in Sources */,
 				40DA56851DCA1515008F05DE /* SAChannel+CoreDataClass.m in Sources */,
 				403150FB1DC769430075D2D2 /* RGBDetailView.m in Sources */,
 				407D4AFF1BC6E491009A5505 /* StatusVC.m in Sources */,

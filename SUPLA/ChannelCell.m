@@ -151,10 +151,10 @@
             case SUPLA_CHANNELFNC_CONTROLLINGTHEGARAGEDOOR:
             case SUPLA_CHANNELFNC_CONTROLLINGTHEDOORLOCK:
             case SUPLA_CHANNELFNC_CONTROLLINGTHEGATEWAYLOCK:
+            case SUPLA_CHANNELFNC_CONTROLLINGTHEROLLERSHUTTER:
                 self.leftDot.hidden = YES;
                 self.rightDot.hidden = NO;
                 break;
-            case SUPLA_CHANNELFNC_CONTROLLINGTHEROLLERSHUTTER:
             case SUPLA_CHANNELFNC_POWERSWITCH:
             case SUPLA_CHANNELFNC_LIGHTSWITCH:
                 self.leftDot.hidden = NO;
@@ -186,10 +186,6 @@
                 case SUPLA_CHANNELFNC_CONTROLLINGTHEGATE:
                 case SUPLA_CHANNELFNC_CONTROLLINGTHEGARAGEDOOR:
                     br = [MGSwipeButton buttonWithTitle:NSLocalizedString(@"Open Close", nil) icon:nil backgroundColor:[UIColor blackColor]];
-                    break;
-                case SUPLA_CHANNELFNC_CONTROLLINGTHEROLLERSHUTTER:
-                    br = [MGSwipeButton buttonWithTitle:NSLocalizedString(@"Reveal", nil) icon:nil backgroundColor:[UIColor blackColor]];
-                    bl = [MGSwipeButton buttonWithTitle:NSLocalizedString(@"Shut", nil) icon:nil backgroundColor:[UIColor blackColor]];
                     break;
                 case SUPLA_CHANNELFNC_POWERSWITCH:
                 case SUPLA_CHANNELFNC_LIGHTSWITCH:

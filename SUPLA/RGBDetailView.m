@@ -61,7 +61,7 @@
         [self.clPicker addItem];
         self.clPicker.delegate = self;
         
-        self.backgroundColor = [UIColor detailBackground];
+        self.backgroundColor = [UIColor rgbDetailBackground];
         
         UIFont *font = [UIFont fontWithName:@"OpenSans-Bold" size:10];
         
