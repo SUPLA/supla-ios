@@ -70,6 +70,9 @@
 		408034C51BC83D1A007666E7 /* MGSwipeTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 408034C31BC83D1A007666E7 /* MGSwipeTableCell.m */; };
 		408034E51BC84A89007666E7 /* NavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 408034E31BC84A89007666E7 /* NavigationController.m */; };
 		408034E61BC84A89007666E7 /* NavigationController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 408034E41BC84A89007666E7 /* NavigationController.xib */; };
+		409934AA1F30C025003110C5 /* SAColorListItem+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 409934A71F30C025003110C5 /* SAColorListItem+CoreDataClass.m */; };
+		409934AB1F30C025003110C5 /* SAColorListItem+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 409934A91F30C025003110C5 /* SAColorListItem+CoreDataProperties.m */; };
+		409934B31F30D827003110C5 /* ModelUpgrade_v1_to_v2.xcmappingmodel in Sources */ = {isa = PBXBuildFile; fileRef = 409934B21F30D827003110C5 /* ModelUpgrade_v1_to_v2.xcmappingmodel */; };
 		40A6757F1BA1A5B6004A51C4 /* SuplaApp.m in Sources */ = {isa = PBXBuildFile; fileRef = 40A6757E1BA1A5B6004A51C4 /* SuplaApp.m */; };
 		40A675831BA1BE8E004A51C4 /* SettingsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 40A675811BA1BE8E004A51C4 /* SettingsVC.m */; };
 		40AB8BDE1DCB32EB0030F3DE /* SARateApp.m in Sources */ = {isa = PBXBuildFile; fileRef = 40AB8BDD1DCB32EB0030F3DE /* SARateApp.m */; };
@@ -243,6 +246,12 @@
 		408034E21BC84A89007666E7 /* NavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NavigationController.h; sourceTree = "<group>"; };
 		408034E31BC84A89007666E7 /* NavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NavigationController.m; sourceTree = "<group>"; };
 		408034E41BC84A89007666E7 /* NavigationController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NavigationController.xib; sourceTree = "<group>"; };
+		409934A31F30BBB8003110C5 /* v2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = v2.xcdatamodel; sourceTree = "<group>"; };
+		409934A61F30C025003110C5 /* SAColorListItem+CoreDataClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SAColorListItem+CoreDataClass.h"; sourceTree = "<group>"; };
+		409934A71F30C025003110C5 /* SAColorListItem+CoreDataClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SAColorListItem+CoreDataClass.m"; sourceTree = "<group>"; };
+		409934A81F30C025003110C5 /* SAColorListItem+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SAColorListItem+CoreDataProperties.h"; sourceTree = "<group>"; };
+		409934A91F30C025003110C5 /* SAColorListItem+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SAColorListItem+CoreDataProperties.m"; sourceTree = "<group>"; };
+		409934B21F30D827003110C5 /* ModelUpgrade_v1_to_v2.xcmappingmodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcmappingmodel; path = ModelUpgrade_v1_to_v2.xcmappingmodel; sourceTree = "<group>"; };
 		40A6757D1BA1A5B6004A51C4 /* SuplaApp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SuplaApp.h; path = ../SuplaApp.h; sourceTree = "<group>"; };
 		40A6757E1BA1A5B6004A51C4 /* SuplaApp.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SuplaApp.m; path = ../SuplaApp.m; sourceTree = "<group>"; };
 		40A675801BA1BE8E004A51C4 /* SettingsVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsVC.h; sourceTree = "<group>"; };
@@ -577,6 +586,10 @@
 		407004241BB56EAC00F6187F /* DB */ = {
 			isa = PBXGroup;
 			children = (
+				409934A61F30C025003110C5 /* SAColorListItem+CoreDataClass.h */,
+				409934A71F30C025003110C5 /* SAColorListItem+CoreDataClass.m */,
+				409934A81F30C025003110C5 /* SAColorListItem+CoreDataProperties.h */,
+				409934A91F30C025003110C5 /* SAColorListItem+CoreDataProperties.m */,
 				40DA56871DCA1908008F05DE /* _SALocation+CoreDataClass.h */,
 				40DA56881DCA1908008F05DE /* _SALocation+CoreDataClass.m */,
 				40DA56891DCA1908008F05DE /* _SALocation+CoreDataProperties.h */,
@@ -596,6 +609,7 @@
 				407004251BB5706500F6187F /* SUPLA.xcdatamodeld */,
 				40D69DEC1BB574FE00937769 /* Database.h */,
 				40D69DED1BB574FE00937769 /* Database.m */,
+				409934B21F30D827003110C5 /* ModelUpgrade_v1_to_v2.xcmappingmodel */,
 			);
 			name = DB;
 			sourceTree = "<group>";
@@ -882,16 +896,19 @@
 				401CA1C21BA067DB00117AF4 /* AppDelegate.m in Sources */,
 				40DA56921DCA1908008F05DE /* SAChannel+CoreDataProperties.m in Sources */,
 				40DA56811DCA1515008F05DE /* SAAccessID+CoreDataClass.m in Sources */,
+				409934B31F30D827003110C5 /* ModelUpgrade_v1_to_v2.xcmappingmodel in Sources */,
 				40A675831BA1BE8E004A51C4 /* SettingsVC.m in Sources */,
 				406778551BCBF9F4008DD37F /* SectionCell.m in Sources */,
 				40DA568F1DCA1908008F05DE /* _SALocation+CoreDataClass.m in Sources */,
 				401CA1C81BA067DB00117AF4 /* MainVC.m in Sources */,
 				408034C51BC83D1A007666E7 /* MGSwipeTableCell.m in Sources */,
 				408034C41BC83D1A007666E7 /* MGSwipeButton.m in Sources */,
+				409934AB1F30C025003110C5 /* SAColorListItem+CoreDataProperties.m in Sources */,
 				401CA1BF1BA067DB00117AF4 /* main.m in Sources */,
 				40A6757F1BA1A5B6004A51C4 /* SuplaApp.m in Sources */,
 				40C9E4F71F2A186A00753796 /* SARollerShutter.m in Sources */,
 				401CA1F21BA0A28A00117AF4 /* SuplaClient.m in Sources */,
+				409934AA1F30C025003110C5 /* SAColorListItem+CoreDataClass.m in Sources */,
 				4006E90A1DC62D0A00C4456D /* DetailView.m in Sources */,
 				40C9E4FD1F2B841400753796 /* SAColorListPicker.m in Sources */,
 				40DA56901DCA1908008F05DE /* _SALocation+CoreDataProperties.m in Sources */,
@@ -1162,9 +1179,10 @@
 		407004251BB5706500F6187F /* SUPLA.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				409934A31F30BBB8003110C5 /* v2.xcdatamodel */,
 				407004261BB5706500F6187F /* SUPLA.xcdatamodel */,
 			);
-			currentVersion = 407004261BB5706500F6187F /* SUPLA.xcdatamodel */;
+			currentVersion = 409934A31F30BBB8003110C5 /* v2.xcdatamodel */;
 			path = SUPLA.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

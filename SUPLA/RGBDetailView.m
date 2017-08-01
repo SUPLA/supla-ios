@@ -19,7 +19,10 @@
 #import "RGBDetailView.h"
 #import "UIHelper.h"
 #import "SAChannel+CoreDataClass.h"
+#import "SAColorListItem+CoreDataClass.h"
+#import "Database.h"
 #import "SuplaApp.h"
+
 
 #define MIN_REMOTE_UPDATE_PERIOD 0.25
 #define MIN_UPDATE_DELAY 0.5
@@ -242,7 +245,6 @@
 -(void)updateView {
     
     [super updateView];
-
     
     if ( self.channel != nil ) {
         
@@ -263,6 +265,22 @@
                 break;
         };
         
+
+        
+    }
+    
+    for(int a=1;a<self.clPicker.count;a++) {
+        
+        SAColorListItem *item = [[SAApp DB] getColorListItemForChannel:self.channel andIndex:a];
+        
+        if ( item == nil ) {
+            [self.clPicker itemAtIndex:a setColor:[UIColor clearColor]];
+            [self.clPicker itemAtIndex:a setPercent:0];
+        } else {
+            
+            [self.clPicker itemAtIndex:a setColor:item.color == nil ? [UIColor clearColor] : (UIColor*)item.color];
+            [self.clPicker itemAtIndex:a setPercent:[item.brightness floatValue]];
+        }
     }
 }
 
@@ -385,6 +403,14 @@
     [self.clPicker itemAtIndex:index setColor:self.cbPicker.color];
     [self.clPicker itemAtIndex:index setPercent:self.cbPicker.brightness];
     
+    
+    SAColorListItem *item = [[SAApp DB] getColorListItemForChannel:self.channel andIndex:index];
+    if ( item != nil ) {
+        item.brightness = [NSNumber numberWithFloat:self.cbPicker.brightness];
+        item.color = self.cbPicker.color;
+        
+        [[SAApp DB] updateColorListItem:item];
+    }
 }
 
 @end

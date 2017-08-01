@@ -23,6 +23,7 @@
 #import "SAAccessID+CoreDataClass.h"
 #import "_SALocation+CoreDataClass.h"
 #import "SAChannel+CoreDataClass.h"
+#import "SAColorListItem+CoreDataClass.h"
 
 @implementation SADatabase {
     NSManagedObjectModel *_managedObjectModel;
@@ -53,10 +54,15 @@
     // Create the coordinator and store
     
     _persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:[self managedObjectModel]];
-    NSURL *storeURL = [[SAApp applicationDocumentsDirectory] URLByAppendingPathComponent:@"SUPLA_v3.sqlite"];
+    NSURL *storeURL = [[SAApp applicationDocumentsDirectory] URLByAppendingPathComponent:@"SUPLA_v3.sqlite"]; // v3 it is just file version. Not model version!
     NSError *error = nil;
     NSString *failureReason = @"There was an error creating or loading the application's saved data.";
-    if (![_persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:storeURL options:nil error:&error]) {
+    
+    NSDictionary *options = [NSDictionary dictionaryWithObjectsAndKeys:
+                             [NSNumber numberWithBool:YES], NSMigratePersistentStoresAutomaticallyOption,
+                             [NSNumber numberWithBool:YES], NSInferMappingModelAutomaticallyOption,nil];
+    
+    if (![_persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:storeURL options:options error:&error]) {
         // Report any error we got.
         NSMutableDictionary *dict = [NSMutableDictionary dictionary];
         dict[NSLocalizedDescriptionKey] = @"Failed to initialize the application's saved data";
@@ -407,6 +413,32 @@
     }
     
     return count;
+}
+
+-(SAColorListItem *) getColorListItemForChannel:(SAChannel*)channel andIndex:(int)idx {
+ 
+    if ( channel == nil )
+        return nil;
+    
+    SAColorListItem *item = [self fetchItemByPredicate:[NSPredicate predicateWithFormat:@"channel = %@ AND idx = %i", channel, idx] entityName:@"SAColorListItem"];
+    
+    if ( item == nil ) {
+        
+        item = [[SAColorListItem alloc] initWithEntity:[NSEntityDescription entityForName:@"SAColorListItem" inManagedObjectContext:self.managedObjectContext] insertIntoManagedObjectContext:self.managedObjectContext];
+    
+        item.channel = channel;
+        item.idx = [NSNumber numberWithInt:idx];
+        
+        [self.managedObjectContext insertObject:item];
+        [self saveContext];
+    }
+    
+    return item;
+}
+
+-(void) updateColorListItem:(SAColorListItem *)item {
+    
+    [self saveContext];
 }
 
 @end

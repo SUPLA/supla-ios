@@ -23,6 +23,7 @@
 
 @class _SALocation;
 @class SAChannel;
+@class SAColorListItem;
 @interface SADatabase : NSObject
 
 @property (readonly, strong, nonatomic) NSManagedObjectContext *managedObjectContext;
@@ -44,6 +45,8 @@
 -(BOOL) setChannelsOffline;
 -(BOOL) setChannelsVisible:(int)visible WhereVisibilityIs:(int)wvi;
 -(NSUInteger) getChannelCount;
+-(SAColorListItem *) getColorListItemForChannel:(SAChannel*)channel andIndex:(int)idx;
+-(void) updateColorListItem:(SAColorListItem *)item;
 
 @end
 

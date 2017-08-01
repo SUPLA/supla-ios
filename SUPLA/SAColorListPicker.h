@@ -43,9 +43,10 @@
 @property(nonatomic, assign) CGFloat borderWidth;
 @property(weak, nonatomic) UIColor *borderColor;
 @property(weak, nonatomic) UIColor *borderColorSelected;
+
 -(void)itemAtIndex:(int) idx setPercent:(float) percent;
 -(void)itemAtIndex:(int) idx setColor:(UIColor*) color;
 
 @property(weak, nonatomic) id<SAColorListPickerDelegate> delegate;
-
+@property(nonatomic, readonly) int count;
 @end
