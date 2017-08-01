@@ -83,6 +83,7 @@
 		40B397E21BCED7C000BE7D5A /* Quicksand-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 40B397E11BCED7C000BE7D5A /* Quicksand-Regular.ttf */; };
 		40BE3E621BCA7AEF00153680 /* ChannelCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 40BE3E611BCA7AEF00153680 /* ChannelCell.xib */; };
 		40C9E4F71F2A186A00753796 /* SARollerShutter.m in Sources */ = {isa = PBXBuildFile; fileRef = 40C9E4F61F2A186A00753796 /* SARollerShutter.m */; };
+		40C9E4FD1F2B841400753796 /* SAColorListPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 40C9E4FC1F2B841400753796 /* SAColorListPicker.m */; };
 		40CE7C641DCBBCE400BBACE4 /* DepthCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 40CE7C631DCBBCE400BBACE4 /* DepthCell.xib */; };
 		40CE7C691DCBBD5700BBACE4 /* distance@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 40CE7C651DCBBD5700BBACE4 /* distance@3x.png */; };
 		40CE7C6A1DCBBD5700BBACE4 /* distance@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 40CE7C661DCBBD5700BBACE4 /* distance@2x.png */; };
@@ -261,6 +262,8 @@
 		40BE3E611BCA7AEF00153680 /* ChannelCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChannelCell.xib; sourceTree = "<group>"; };
 		40C9E4F51F2A186A00753796 /* SARollerShutter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SARollerShutter.h; sourceTree = "<group>"; };
 		40C9E4F61F2A186A00753796 /* SARollerShutter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SARollerShutter.m; sourceTree = "<group>"; };
+		40C9E4FB1F2B841400753796 /* SAColorListPicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SAColorListPicker.h; sourceTree = "<group>"; };
+		40C9E4FC1F2B841400753796 /* SAColorListPicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SAColorListPicker.m; sourceTree = "<group>"; };
 		40CE7C631DCBBCE400BBACE4 /* DepthCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DepthCell.xib; sourceTree = "<group>"; };
 		40CE7C651DCBBD5700BBACE4 /* distance@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "distance@3x.png"; path = "Resources/Assets/Img/distance@3x.png"; sourceTree = "<group>"; };
 		40CE7C661DCBBD5700BBACE4 /* distance@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "distance@2x.png"; path = "Resources/Assets/Img/distance@2x.png"; sourceTree = "<group>"; };
@@ -617,6 +620,8 @@
 		40A675851BA1BEBF004A51C4 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				40C9E4FB1F2B841400753796 /* SAColorListPicker.h */,
+				40C9E4FC1F2B841400753796 /* SAColorListPicker.m */,
 				40C9E4F51F2A186A00753796 /* SARollerShutter.h */,
 				40C9E4F61F2A186A00753796 /* SARollerShutter.m */,
 				4004DE8B1DC4E270009C34E3 /* SAColorBrightnessPicker.h */,
@@ -888,6 +893,7 @@
 				40C9E4F71F2A186A00753796 /* SARollerShutter.m in Sources */,
 				401CA1F21BA0A28A00117AF4 /* SuplaClient.m in Sources */,
 				4006E90A1DC62D0A00C4456D /* DetailView.m in Sources */,
+				40C9E4FD1F2B841400753796 /* SAColorListPicker.m in Sources */,
 				40DA56901DCA1908008F05DE /* _SALocation+CoreDataProperties.m in Sources */,
 				40DA56851DCA1515008F05DE /* SAChannel+CoreDataClass.m in Sources */,
 				403150FB1DC769430075D2D2 /* RGBDetailView.m in Sources */,

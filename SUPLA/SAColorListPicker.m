@@ -120,6 +120,7 @@
         SAColorListPickerItem *item = [items objectAtIndex:a];
  
         [item.color setFill];
+        
         [(_touchedItem == item ? _borderColorSelected : _borderColor) setStroke];
         
         item.rect = CGRectMake(x, bw05, width-bw05, self.bounds.size.height-_borderWidth);

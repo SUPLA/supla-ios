@@ -372,7 +372,13 @@
         [[self calculateColorForAngle:angle baseColor:color] setFill];
         
     } else {
-        [[self calculateColorForAngle:angle baseColor:color] setFill];
+
+        if ( [[UIColor whiteColor] isEqual:color] ) {
+            [color setFill];
+        } else {
+            [[self calculateColorForAngle:angle baseColor:color] setFill];
+        }
+        
         angle = [self addAngle:270 toAngle:angle];
     }
 
@@ -499,7 +505,12 @@
         if ( _colorBrightnessWheelVisible ) {
             
             wheelWidth /= 2;
-            base_color = [self calculateColorForAngle:[self addAngle:270 toAngle:_colorAngle] baseColor:nil];
+            
+            if ( [[UIColor whiteColor] isEqual: _color] ) {
+                base_color = [self calculateColorForAngle:_brightness*3.6 baseColor:[UIColor blackColor]];
+            } else {
+                base_color = [self calculateColorForAngle:[self addAngle:270 toAngle:_colorAngle] baseColor:nil];
+            }
             
             [self drawWheelWithRadius:radius wheelWidth:wheelWidth baseColor:base_color];
             [self drawArrowWithAngle:brightness_angle wheelRadius:radius wheelWidth:wheelWidth inverse:YES color:base_color];
@@ -510,7 +521,7 @@
             radius+=wheelWidth;
         
             [self drawWheelWithRadius:radius wheelWidth:wheelWidth baseColor:nil];
-            [self drawArrowWithAngle:_colorAngle wheelRadius:radius wheelWidth:wheelWidth inverse:NO color:nil];
+            [self drawArrowWithAngle:_colorAngle wheelRadius:radius wheelWidth:wheelWidth inverse:NO color:[[UIColor whiteColor] isEqual: _color] ? _color : nil];
             
             _colorWheelRadius = radius;
             _colorWheelWidth = wheelWidth;

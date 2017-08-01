@@ -50,6 +50,14 @@
         
         self.cbPicker.delegate = self;
         
+        [self.clPicker addItemWithColor:[UIColor whiteColor] andPercent:100];
+        [self.clPicker addItem];
+        [self.clPicker addItem];
+        [self.clPicker addItem];
+        [self.clPicker addItem];
+        [self.clPicker addItem];
+        self.clPicker.delegate = self;
+        
         self.backgroundColor = [UIColor detailBackground];
         
         UIFont *font = [UIFont fontWithName:@"OpenSans-Bold" size:10];
@@ -201,7 +209,8 @@
         self.vLine3.hidden = NO;
         self.cintLine3Top.constant = 5;
         self.cintFooterHeight.constant = 140;
-        
+        self.cintFooterTop.constant = 20;
+        self.clPicker.hidden = NO;
         
     } else {
         
@@ -210,7 +219,8 @@
         self.vLine3.hidden = YES;
         self.cintLine3Top.constant = -27;
         self.cintFooterHeight.constant = 108;
-
+        self.cintFooterTop.constant = self.clPicker.frame.size.height*-1;
+        self.clPicker.hidden = YES;
     }
     
 }
@@ -351,6 +361,30 @@
     
     _moveEndTime = [NSDate date];
     [self showValuesWithDelay];
+}
+
+-(void)itemTouchedWithColor:(UIColor*)color andPercent:(float)percent {
+    
+    if ( self.cbPicker.colorBrightnessWheelVisible == NO
+        || self.channel == nil
+        || color == nil
+        || [color isEqual: [UIColor clearColor]]) return;
+    
+    _colorBrightness = percent;
+    _color = color;
+    
+    [self showValues];
+    [self sendNewValues];
+
+}
+
+-(void)itemEditAtIndex:(int)index {
+    
+    if ( index <= 0 ) return;
+    
+    [self.clPicker itemAtIndex:index setColor:self.cbPicker.color];
+    [self.clPicker itemAtIndex:index setPercent:self.cbPicker.brightness];
+    
 }
 
 @end

@@ -18,9 +18,11 @@
 
 #import "DetailView.h"
 #import "SAColorBrightnessPicker.h"
+#import "SAColorListPicker.h"
 
-@interface SARGBDetailView : SADetailView <SAColorBrightnessPickerDelegate>
+@interface SARGBDetailView : SADetailView <SAColorBrightnessPickerDelegate, SAColorListPickerDelegate>
 @property (weak, nonatomic) IBOutlet SAColorBrightnessPicker *cbPicker;
+@property (weak, nonatomic) IBOutlet SAColorListPicker *clPicker;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *segControl;
 @property (weak, nonatomic) IBOutlet UIView *headerView;
 - (IBAction)segChanged:(id)sender;
@@ -34,6 +36,7 @@
 @property (weak, nonatomic) IBOutlet UIView *vLine3;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *cintLine3Top;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *cintFooterHeight;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *cintFooterTop;
 - (IBAction)stateBtnTouch:(id)sender;
 
 @end

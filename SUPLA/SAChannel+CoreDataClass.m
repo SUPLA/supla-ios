@@ -133,6 +133,11 @@
             
             UIColor *color = [UIColor colorWithRed:(unsigned char)value->value[4]/255.00 green:(unsigned char)value->value[3]/255.00 blue:(unsigned char)value->value[2]/255.00 alpha:1];
             
+            if ( (unsigned char) value->value[4] == 255
+                 && (unsigned char) value->value[3] == 255
+                 && (unsigned char) value->value[2] == 255 ) color = [UIColor whiteColor];
+            
+      
             self.value = [NSArray arrayWithObjects:[NSNumber numberWithInt:brightness], [NSNumber numberWithInt:colorBrightness], color, nil];
         }
             break;

@@ -25,10 +25,10 @@
 
 @interface SAColorListPickerItem : NSObject
 
-@property(weak, nonatomic) UIColor *color;
+@property(nonatomic,copy) UIColor *color;
 @property(nonatomic, assign) float percent;
-@property(weak, nonatomic) id extraParam1;
-@property(weak, nonatomic) id extraParam2;
+@property(nonatomic,copy) id extraParam1;
+@property(nonatomic,copy) id extraParam2;
 @property(nonatomic, assign) CGRect rect;
 @end
 
@@ -43,6 +43,8 @@
 @property(nonatomic, assign) CGFloat borderWidth;
 @property(weak, nonatomic) UIColor *borderColor;
 @property(weak, nonatomic) UIColor *borderColorSelected;
+-(void)itemAtIndex:(int) idx setPercent:(float) percent;
+-(void)itemAtIndex:(int) idx setColor:(UIColor*) color;
 
 @property(weak, nonatomic) id<SAColorListPickerDelegate> delegate;
 
