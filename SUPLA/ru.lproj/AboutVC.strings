@@ -1,0 +1,12 @@
+
+/* Class = "UIButton"; normalTitle = "www.supla.org"; ObjectID = "7HF-gX-C5a"; */
+"7HF-gX-C5a.normalTitle" = "www.supla.org";
+
+/* Class = "UILabel"; text = "version 1.0"; ObjectID = "CKD-wx-laR"; */
+"CKD-wx-laR.text" = "version 1.0";
+
+/* Class = "UITextView"; text = "Эта программа с открытым кодом; вы можете использовать ее и/или\n изменять ее по условиям GNU General Public License\n которая публикуется Free Software Foundation; по версии 2\n Лицензии, или (по вашему усмотрению) любой поздней версии.\n\n Эта пррграмма распространяется в надежде ее полезности,\n но БЕЗ КАКИХ-ЛИБО ГАРАНТИЙ; безо всяких подразумеваемых гарантий\n КОММЕРЧЕСКОГО ИЛИ ЧАСТНОГО ПРИМЕНЕНИЯ. Подробнее в тексте\n GNU General Public License.\n\n Если к программе не приложена копия GNU General Public License\n отправте запрос по адресу: Free Software Foundation, Inc., 59\n Temple Place - Suite 330, Boston, MA  "; ObjectID = "dSv-O4-amY"; */
+"dSv-O4-amY.text" = "Эта программа с открытым кодом; вы можете использовать ее и/или\n изменять ее по условиям GNU General Public License\n которая публикуется Free Software Foundation; по версии 2\n Лицензии, или (по вашему усмотрению) любой поздней версии.\n\n Эта пррграмма распространяется в надежде ее полезности,\n но БЕЗ КАКИХ-ЛИБО ГАРАНТИЙ; безо всяких подразумеваемых гарантий\n КОММЕРЧЕСКОГО ИЛИ ЧАСТНОГО ПРИМЕНЕНИЯ. Подробнее в тексте\n GNU General Public License.\n\n Если к программе не приложена копия GNU General Public License\n отправте запрос по адресу: Free Software Foundation, Inc., 59\n Temple Place - Suite 330, Boston, MA  ";
+
+/* Class = "UILabel"; text = "supla"; ObjectID = "zJt-Ww-LVZ"; */
+"zJt-Ww-LVZ.text" = "supla";
