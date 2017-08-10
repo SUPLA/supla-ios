@@ -1,0 +1,67 @@
+/*
+ This program is free software; you can redistribute it and/or
+ modify it under the terms of the GNU General Public License
+ as published by the Free Software Foundation; either version 2
+ of the License, or (at your option) any later version.
+ 
+ This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ GNU General Public License for more details.
+ 
+ You should have received a copy of the GNU General Public License
+ along with this program; if not, write to the Free Software
+ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
+ 
+ */
+
+"version" = "versione";
+"Open" = "Apri";
+"Open Close" = "Apri Chiudi";
+"Reveal" = "Apri";
+"Shut" = "Chiudi";
+"On" = "Abilita";
+"Off" = "Disabilita";
+"opened the gateway" = "ha aperto il cancello";
+"opened / closed the gate" = "ha aperto/chiuso il cancello";
+"opened / closed the gate doors" = "ha aperto/chiuso il cancello per garage";
+"opened the door" = "ha aperto la porta";
+"opened / closed roller shutter" = "ha aperto/chiuso avvolgibili";
+"turned the power ON/OFF" = "ha acceso/spento la corrente";
+"turned the light ON/OFF" = "ha acceso/spento la luce";
+"Settings" = "Impostazioni";
+"About" = "Programma";
+"Gateway" = "Cancello";
+"Gate" = "Cancello";
+"Garage door" = "Cancello per garage";
+"Door" = "Porta";
+"Roller shutter" = "Avvolgibile";
+"Power switch" = "Interruttore di alimentazione";
+"Lighting switch" = "Interruttore di luce";
+"Thermometer" = "Termometro";
+"Temperature and humidity" = "Temperatura e umidità";
+"No liquid sensor" = "Sensore di mancanza liquido";
+"Gateway opening sensor" = "Sensore di apertura del cancello";
+"Gate opening sensor" = "Sensore di apertura del cancello";
+"Garage door opening sensor" = "Sensore di apertura del cancello per garage";
+"Door opening sensor" = "Sensore di apertura della porta";
+"Roller shutter opening sensor" = "Sensore di apertura di avvolgibili";
+"E-Mail service unavailable" = "Usługa poczty e-mail jest niedostępna!";
+"Connecting..." = "Connessione in corso...";
+"Unknown error" = "Errore sconosciuto";
+"Service temporarily unavailable" = "Servizio temporaneamente non disponibile";
+"Bad credentials" = "Credenziali non valide";
+"Client limit exceeded" = "Limite delle applicazioni dei clienti superato";
+"Access disabled" = "Accesso disabilitato";
+"Incompatible server version" = "Versione del server non compatibile";
+"Host not found" = "L’indirizzo del server non è stato trovato";
+"RGB Lighting" = "Illuminazione RGB";
+"Dimmer and RGB lighting" = "Varialuce e illuminazione RGB";
+"Dimmer" = "Varialuce";
+"Distance sensor" = "Sensore di distanza";
+"Depth sensor" = "Sensore di profondità";
+
+"Se questa applicazione Ti piace, Ti preghiamo di dedicare qualche minuto per valutarla. Ti ringraziamo per il Tuo supporto!";
+"Rate Now" = "Valuta adesso";
+"Later" = "Più tardi";
+"No thanks" = "No, grazie";
