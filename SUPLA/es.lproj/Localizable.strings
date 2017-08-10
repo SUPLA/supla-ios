@@ -1,0 +1,67 @@
+/*
+ This program is free software; you can redistribute it and/or
+ modify it under the terms of the GNU General Public License
+ as published by the Free Software Foundation; either version 2
+ of the License, or (at your option) any later version.
+ 
+ This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ GNU General Public License for more details.
+ 
+ You should have received a copy of the GNU General Public License
+ along with this program; if not, write to the Free Software
+ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
+ 
+ */
+
+"version" = "versión";
+"Open" = "Abrir";
+"Open Close" = "Abrir Cerrar";
+"Reveal" = "Abrir";
+"Shut" = "Cerrar";
+"On" = "Activar";
+"Off" = "Desactivar";
+"opened the gateway" = "ha abierto el portillo";
+"opened / closed the gate" = "oha abierto / ha cerrado la puerta";
+"opened / closed the gate doors" = "ha abierto / ha cerrado la puerta de garaje";
+"opened the door" = "ha abierto la puerta";
+"opened / closed roller shutter" = "ha abierto / ha cerrado la persiana";
+"turned the power ON/OFF" = "ha activado / desactivado la alimentación";
+"turned the light ON/OFF" = "ha encendido / ha apagado la luz";
+"Settings" = "Ajustes";
+"About" = "Sobre el programa";
+"Gateway" = "Portillo";
+"Gate" = "Cancela";
+"Garage door" = "Puerta de garaje";
+"Door" = "Puerta";
+"Roller shutter" = "Persiana";
+"Power switch" = "Interruptor de alimentación";
+"Lighting switch" = "Interruptor de luz";
+"Thermometer" = "Termómetro";
+"Temperature and humidity" = "Temperatura y humedad";
+"No liquid sensor" = "Sensor de falta de líquido";
+"Gateway opening sensor" = "Sensor de apertura del portillo";
+"Gate opening sensor" = "Sensor de apertura de la cancela";
+"Garage door opening sensor" = "Sensor de apertura de la puerta de garaje";
+"Door opening sensor" = "Sensor de apertura de la puerta";
+"Roller shutter opening sensor" = "Sensor de apertura de las persianas";
+"E-Mail service unavailable" = "E-Mail service unavailable!";
+"Connecting..." = "Conectando...";
+"Unknown error" = "Error desconocido";
+"Service temporarily unavailable" = "Servicio temporalmente no disponible";
+"Bad credentials" = "Certificaciones incorrectas";
+"Client limit exceeded" = "Se ha superado el límite de aplicaciones del cliente";
+"Access disabled" = "Acceso activado";
+"Incompatible server version" = "Versión del servidor incompatible";
+"Host not found" = "No se ha encontrado la dirección del servidor";
+"RGB Lighting" = "Alumbrado RGB";
+"Dimmer and RGB lighting" = "Atenuador y alumbrado RGB";
+"Dimmer" = "Atenuador";
+"Distance sensor" = "Sensor de distancia";
+"Depth sensor" = "Sensor de profundidad";
+
+"If you enjoy using this app, please take a moment to rate it. Thanks for your support!" = "Si te gusta esta aplicación, dedica un rato a evaluarla. ¡Gracias por tu apoyo!";
+"Rate Now" = "Evalúa ahora";
+"Later" = "Más tarde";
+"No thanks" = "No, gracias";
