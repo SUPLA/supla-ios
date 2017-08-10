@@ -1,0 +1,66 @@
+/*
+ This program is free software; you can redistribute it and/or
+ modify it under the terms of the GNU General Public License
+ as published by the Free Software Foundation; either version 2
+ of the License, or (at your option) any later version.
+ 
+ This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ GNU General Public License for more details.
+ 
+ You should have received a copy of the GNU General Public License
+ along with this program; if not, write to the Free Software
+ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
+ */
+
+"version" = "version";
+"Open" = "Ouvrir";
+"Open Close" = "Ouvrir Fermer";
+"Reveal" = "Ouvrir les volets";
+"Shut" = "Fermer les volets";
+"On" = "Allumer";
+"Off" = "Désactiver";
+"opened the gateway" = "a ouvert le portillon";
+"opened / closed the gate" = "a ouvert/fermé le portail";
+"opened / closed the gate doors" = "a ouvert/fermé la porte";
+"opened the door" = "a ouvert la porte";
+"opened / closed roller shutter" = "a ouvert/fermé les volets roulants";
+"turned the power ON/OFF" = "a allumé/éteint l'électricité";
+"turned the light ON/OFF" = "a allumé / éteint la lumière";
+"Settings" = "Paramètres";
+"About" = "À propos de l'application";
+"Gateway" = "Portillon";
+"Gate" = "Portail";
+"Garage door" = "Porte garage";
+"Door" = "Porte";
+"Roller shutter" = "Volet roulant";
+"Power switch" = "Interrupteur d'alimentation";
+"Lighting switch" = "Interrupteur de lumière";
+"Thermometer" = "Thermomètre";
+"Temperature and humidity" = "Température et humidité";
+"No liquid sensor" = "Capteur d'absence de liquide";
+"Gateway opening sensor" = "Capteur d'ouverture de portillon";
+"Gate opening sensor" = "Capteur d'ouverture de portail";
+"Garage door opening sensor" = "Capteur d'ouverture de porte garage";
+"Door opening sensor" = "Capteur d'ouverture de porte";
+"Roller shutter opening sensor" = "Capteur d'ouverture des volet";
+"E-Mail service unavailable" = "E-Mail service unavailable";
+"Connecting..." = "Connexion en cours...";
+"Unknown error" = "Erreur inconnue";
+"Service temporarily unavailable" = "Ce service est temporairement indisponible";
+"Bad credentials" = "Informations d'identification invalides";
+"Client limit exceeded" = "Vous avez dépassé la limite des applications client-side";
+"Access disabled" = "L'accès a été fermé";
+"Incompatible server version" = "Incompatibilité de la version du serveur";
+"Host not found" = "Nous n'avons pas pu trouver cette adresse du serveur";
+"RGB Lighting" = "Éclairage RGB";
+"Dimmer and RGB lighting" = "Variateur de luminosité et éclairage RGB";
+"Dimmer" = "Variateur de luminosité";
+"Distance sensor" = "Capteur de distance";
+"Depth sensor" = "Capteur de profondeur";
+
+"If you enjoy using this app, please take a moment to rate it. Thanks for your support!" = "Si vous aimez cette application, consacrez un instant afin de l'évaluer. Nous vous remercions de votre support!";
+"Rate Now" = "Évaluer maintenant";
+"Later" = "Plus tard";
+"No thanks" = "Non, merci";
