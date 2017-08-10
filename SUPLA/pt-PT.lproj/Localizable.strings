@@ -1,0 +1,67 @@
+/*
+ This program is free software; you can redistribute it and/or
+ modify it under the terms of the GNU General Public License
+ as published by the Free Software Foundation; either version 2
+ of the License, or (at your option) any later version.
+ 
+ This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ GNU General Public License for more details.
+ 
+ You should have received a copy of the GNU General Public License
+ along with this program; if not, write to the Free Software
+ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
+ 
+ */
+
+"version" = "versão";
+"Open" = "Abrir";
+"Open Close" = "Abrir Fechar";
+"Reveal" = "Esconder";
+"Shut" = "Revelar";
+"On" = "Ligar";
+"Off" = "Desligar";
+"opened the gateway" = "o portão foi aberto";
+"opened / closed the gate" = "abriu / fechou o portão";
+"opened / closed the gate doors" = "abriu / fechou a porta de garagem";
+"opened the door" = "abriu a porta";
+"opened / closed roller shutter" = "abriu / fechou um estore";
+"turned the power ON/OFF" = "luz ON/OFF";
+"turned the light ON/OFF" = "luz ligada / desligada";
+"Settings" = "Configurações";
+"About" = "Sobre o programa";
+"Gateway" = "Portinhola";
+"Gate" = "Portão";
+"Garage door" = "Portão de garagem";
+"Door" = "Porta";
+"Roller shutter" = "Estores";
+"Power switch" = "Interruptor de alimentação";
+"Lighting switch" = "Interruptor de luz";
+"Thermometer" = "Termómetro";
+"Temperature and humidity" = "Temperatura e humidade";
+"No liquid sensor" = "Sensor de falta do líquido";
+"Gateway opening sensor" = "Sensor de abertura da portinhola";
+"Gate opening sensor" = "Sensor de abertura do portão";
+"Garage door opening sensor" = "Sensor de abertura da garagem";
+"Door opening sensor" = "Sensor de abertura da porta";
+"Roller shutter opening sensor" = "Sensor de abertura dos estores";
+"E-Mail service unavailable" = "E-Mail service unavailable";
+"Connecting..." = "Está a ligar...";
+"Unknown error" = "Erro indefinido";
+"Service temporarily unavailable" = "Serviço temporariamente indisponível";
+"Bad credentials" = "Dados de identificação errados";
+"Client limit exceeded" = "Excedeu o limite de aplicações de clientes";
+"Access disabled" = "Acesso desligado";
+"Incompatible server version" = "Versão do servidor incompátivel";
+"Host not found" = "O endereço do servidor não foi encontrado";
+"RGB Lighting" = "Iluminação RGB";
+"Dimmer and RGB lighting" = "Controlador de luz e iluminação RGB";
+"Dimmer" = "Controlador de luz";
+"Distance sensor" = "Sensor de distância";
+"Depth sensor" = "Sensor de profundidade";
+
+"Se gostar da aplicação, avalie-a. Agradecemos o seu apoio!";
+"Rate Now" = "Avalie agora";
+"Later" = "Mais tarde";
+"No thanks" = "Não, obrigado";
