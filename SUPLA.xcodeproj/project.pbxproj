@@ -70,6 +70,11 @@
 		408034C51BC83D1A007666E7 /* MGSwipeTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 408034C31BC83D1A007666E7 /* MGSwipeTableCell.m */; };
 		408034E51BC84A89007666E7 /* NavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 408034E31BC84A89007666E7 /* NavigationController.m */; };
 		408034E61BC84A89007666E7 /* NavigationController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 408034E41BC84A89007666E7 /* NavigationController.xib */; };
+		4091654B1F3CBAF200F49193 /* rs_stop.png in Resources */ = {isa = PBXBuildFile; fileRef = 409165461F3CBAF200F49193 /* rs_stop.png */; };
+		4091654C1F3CBAF200F49193 /* rs_up.png in Resources */ = {isa = PBXBuildFile; fileRef = 409165471F3CBAF200F49193 /* rs_up.png */; };
+		4091654D1F3CBAF200F49193 /* rs_down.png in Resources */ = {isa = PBXBuildFile; fileRef = 409165481F3CBAF200F49193 /* rs_down.png */; };
+		4091654E1F3CBAF200F49193 /* rs_close.png in Resources */ = {isa = PBXBuildFile; fileRef = 409165491F3CBAF200F49193 /* rs_close.png */; };
+		4091654F1F3CBAF200F49193 /* rs_open.png in Resources */ = {isa = PBXBuildFile; fileRef = 4091654A1F3CBAF200F49193 /* rs_open.png */; };
 		409934AA1F30C025003110C5 /* SAColorListItem+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 409934A71F30C025003110C5 /* SAColorListItem+CoreDataClass.m */; };
 		409934AB1F30C025003110C5 /* SAColorListItem+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 409934A91F30C025003110C5 /* SAColorListItem+CoreDataProperties.m */; };
 		409934B31F30D827003110C5 /* ModelUpgrade_v1_to_v2.xcmappingmodel in Sources */ = {isa = PBXBuildFile; fileRef = 409934B21F30D827003110C5 /* ModelUpgrade_v1_to_v2.xcmappingmodel */; };
@@ -266,6 +271,11 @@
 		409165431F3C7C2300F49193 /* pt-PT */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-PT"; path = "pt-PT.lproj/AboutVC.strings"; sourceTree = "<group>"; };
 		409165441F3C7C2300F49193 /* pt-PT */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-PT"; path = "pt-PT.lproj/RGBDetail.strings"; sourceTree = "<group>"; };
 		409165451F3C7C2300F49193 /* pt-PT */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-PT"; path = "pt-PT.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		409165461F3CBAF200F49193 /* rs_stop.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = rs_stop.png; path = Resources/Assets/Img/rs_stop.png; sourceTree = "<group>"; };
+		409165471F3CBAF200F49193 /* rs_up.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = rs_up.png; path = Resources/Assets/Img/rs_up.png; sourceTree = "<group>"; };
+		409165481F3CBAF200F49193 /* rs_down.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = rs_down.png; path = Resources/Assets/Img/rs_down.png; sourceTree = "<group>"; };
+		409165491F3CBAF200F49193 /* rs_close.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = rs_close.png; path = Resources/Assets/Img/rs_close.png; sourceTree = "<group>"; };
+		4091654A1F3CBAF200F49193 /* rs_open.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = rs_open.png; path = Resources/Assets/Img/rs_open.png; sourceTree = "<group>"; };
 		409934A31F30BBB8003110C5 /* v2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = v2.xcdatamodel; sourceTree = "<group>"; };
 		409934A61F30C025003110C5 /* SAColorListItem+CoreDataClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SAColorListItem+CoreDataClass.h"; sourceTree = "<group>"; };
 		409934A71F30C025003110C5 /* SAColorListItem+CoreDataClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SAColorListItem+CoreDataClass.m"; sourceTree = "<group>"; };
@@ -503,6 +513,11 @@
 		405AC4011BC15878004F7311 /* Img */ = {
 			isa = PBXGroup;
 			children = (
+				409165461F3CBAF200F49193 /* rs_stop.png */,
+				409165471F3CBAF200F49193 /* rs_up.png */,
+				409165481F3CBAF200F49193 /* rs_down.png */,
+				409165491F3CBAF200F49193 /* rs_close.png */,
+				4091654A1F3CBAF200F49193 /* rs_open.png */,
 				40B1994D1DCC793700E6444F /* logo-supla_white.png */,
 				40CE7C651DCBBD5700BBACE4 /* distance@3x.png */,
 				40CE7C661DCBBD5700BBACE4 /* distance@2x.png */,
@@ -796,6 +811,7 @@
 				40DE1A2D1BCCFF8A004CF43B /* settings@2x.png in Resources */,
 				405AC4341BC15C08004F7311 /* logo-supla@2x.png in Resources */,
 				40CF96B21BC7D4E70030EFFF /* gate-closed@2x.png in Resources */,
+				4091654D1F3CBAF200F49193 /* rs_down.png in Resources */,
 				40CF96BF1BC7D4E70030EFFF /* liquid@3x.png in Resources */,
 				407D4AED1BC6C64D009A5505 /* app_icon120x120@3x.png in Resources */,
 				40CF96C21BC7D4E70030EFFF /* power-off@2x.png in Resources */,
@@ -804,6 +820,7 @@
 				4052DA051DC515AE000B8C45 /* dimmerrgb-onoff@2x.png in Resources */,
 				40CE7C6C1DCBBD5700BBACE4 /* depth@3x.png in Resources */,
 				407D4AF31BC6C6CB009A5505 /* app_icon120x120@2x.png in Resources */,
+				4091654E1F3CBAF200F49193 /* rs_close.png in Resources */,
 				405AC4191BC15898004F7311 /* app_icon-1024.png in Resources */,
 				405AC41A1BC15898004F7311 /* app_icon@2x.png in Resources */,
 				40CF96BA1BC7D4E70030EFFF /* light-off@2x.png in Resources */,
@@ -847,11 +864,13 @@
 				40CF96BB1BC7D4E70030EFFF /* light-off@3x.png in Resources */,
 				40CF96C91BC7D4E70030EFFF /* rollershutter-open@3x.png in Resources */,
 				40CF96B81BC7D4E70030EFFF /* gateway-open@2x.png in Resources */,
+				4091654C1F3CBAF200F49193 /* rs_up.png in Resources */,
 				40CF96B71BC7D4E70030EFFF /* gateway-closed@3x.png in Resources */,
 				40DE1A401BCD6F06004CF43B /* Localizable.strings in Resources */,
 				409934C11F30F2F2003110C5 /* RSDetail.xib in Resources */,
 				40CF96B51BC7D4E70030EFFF /* gate-open@3x.png in Resources */,
 				40DE1A2B1BCCFF8A004CF43B /* info@2x.png in Resources */,
+				4091654F1F3CBAF200F49193 /* rs_open.png in Resources */,
 				407D4AFB1BC6D6AA009A5505 /* btnOK@3x.png in Resources */,
 				40B397D01BCE8B2100BE7D5A /* SettingsVC.xib in Resources */,
 				407D4AF71BC6C7DE009A5505 /* app_icon29x29.png in Resources */,
@@ -894,6 +913,7 @@
 				40CF96AD1BC7D4E70030EFFF /* door-open@3x.png in Resources */,
 				40CF96D91BC81A470030EFFF /* error@3x.png in Resources */,
 				405AC4311BC158E8004F7311 /* OpenSans-Bold.ttf in Resources */,
+				4091654B1F3CBAF200F49193 /* rs_stop.png in Resources */,
 				4067782D1BCBC647008DD37F /* menu@3x.png in Resources */,
 				40CF96AB1BC7D4E70030EFFF /* door-closed@3x.png in Resources */,
 			);
