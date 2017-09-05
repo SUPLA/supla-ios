@@ -344,11 +344,20 @@ NSString *kSAChannelValueChangedNotification = @"KSA-N11";
     [[NSNotificationCenter defaultCenter] postNotificationName:kSARegisteredNotification object:self userInfo:[[NSDictionary alloc] initWithObjects:@[result] forKeys:@[@"result"]]];
 }
 
+
+-(NSString*)getMsgHostName {
+    NSString *hostname = [SAApp getServerHostName];
+    if ( [[hostname lowercaseString] containsString:@"supla.org"] ) {
+        return @"cloud.supla.org";
+    } else {
+        return hostname;
+    }
+}
+
 -(void)onRegisterError:(NSNumber*)code {
     
     [self SuplaClientTerminate];
     
-
     NSString *msg = [NSString stringWithFormat:@"%@ (%@)", NSLocalizedString(@"Unknown error", nil), code];
     
     switch([code intValue]) {
@@ -362,15 +371,24 @@ NSString *kSAChannelValueChangedNotification = @"KSA-N11";
             msg = NSLocalizedString(@"Client limit exceeded", nil);
             break;
         case SUPLA_RESULTCODE_CLIENT_DISABLED:
-        case SUPLA_RESULTCODE_ACCESSID_DISABLED:
-            msg = NSLocalizedString(@"Access disabled", nil);
+            msg = NSLocalizedString(@"Device is disabled", nil);
             break;
+        case SUPLA_RESULTCODE_ACCESSID_DISABLED:
+            msg = NSLocalizedString(@"Access Identifier is disabled", nil);
+            break;
+        case SUPLA_RESULTCODE_REGISTRATION_DISABLED:
+            msg = [NSString stringWithFormat:NSLocalizedString(@"Client Registration is off. Please go to \"Smartphone\" at %@ to activate it.", nil), [self getMsgHostName]];
+            break;
+        case SUPLA_RESULTCODE_ACCESSID_NOT_ASSIGNED:
+            msg = [NSString stringWithFormat:NSLocalizedString(@"This client does not have access identifier assigned. Please go to \"Smartphone\" at %@ and get a valid identifier.", nil), [self getMsgHostName]];
+            break;
+            
     }
-
+    
     [self.UI showStatusError:msg];
     
     [[NSNotificationCenter defaultCenter] postNotificationName:kSARegisterErrorNotification object:self userInfo:[[NSDictionary alloc] initWithObjects:@[code] forKeys:@[@"code"]]];
-
+    
 }
 
 

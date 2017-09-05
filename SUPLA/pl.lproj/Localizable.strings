@@ -54,6 +54,10 @@
 "Bad credentials" = "Błędne poświadczenia";
 "Client limit exceeded" = "Przekroczony limit aplikacji klienckich";
 "Access disabled" = "Dostęp wyłączony";
+"Device is disabled" = "Urządzenie jest wyłączone";
+"Access Identifier is disabled" = "Identyfikator dostępu jest wyłączony";
+"Client Registration is off. Please go to \"Smartphone\" at %@ to activate it." = "Rejestracja jest obecnie wyłączona. Aby ją włączyć przejdź do zakładki \"Smartfony\" na stronie %@";
+"This client does not have access identifier assigned. Please go to \"Smartphone\" at %@ and get a valid identifier." = "To urządzenie nie ma przypisanego identyfikatora dostępu. Przejdź na stronę %@ i w zakładce \"Smartfony\" przypisz odpowiedni identyfikator.";
 "Incompatible server version" = "Niekompatybilna wersja serwera";
 "Host not found" = "Adres serwera nie został znaleziony";
 "RGB Lighting" = "Oświetlenie RGB";

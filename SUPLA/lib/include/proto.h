@@ -117,7 +117,12 @@ extern "C" {
 #define SUPLA_RESULTCODE_GUID_ERROR                14
 #define SUPLA_RESULTCODE_HOSTNOTFOUND              15 // ver. >= 5
 #define SUPLA_RESULTCODE_CANTCONNECTTOHOST         16 // ver. >= 5
-
+#define SUPLA_RESULTCODE_REGISTRATION_DISABLED     17  // ver. >= 7
+#define SUPLA_RESULTCODE_ACCESSID_NOT_ASSIGNED     18  // ver. >= 7
+#define SUPLA_RESULTCODE_AUTHKEY_ERROR             19  // ver. >= 7
+#define SUPLA_RESULTCODE_NO_LOCATION_AVAILABLE     20  // ver. >= 7
+#define SUPLA_RESULTCODE_USER_CONFLICT             21  // ver. >= 7
+    
 #define SUPLA_DEVICE_NAME_MAXSIZE                  201
 #define SUPLA_DEVICE_NAMEHEX_MAXSIZE               401
 #define SUPLA_CLIENT_NAME_MAXSIZE                  201
