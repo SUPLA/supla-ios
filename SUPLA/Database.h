@@ -39,7 +39,7 @@
 -(BOOL) updateLocation:(TSC_SuplaLocation *)location;
 
 -(SAChannel*) fetchChannelById:(int)channel_id;
--(BOOL) updateChannel:(TSC_SuplaChannel *)channel;
+-(BOOL) updateChannel:(TSC_SuplaChannel_B *)channel;
 -(BOOL) updateChannelValue:(TSC_SuplaChannelValue *)channel_value;
 -(NSFetchedResultsController*) getChannelFrc;
 -(BOOL) setChannelsOffline;

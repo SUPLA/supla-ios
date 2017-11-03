@@ -83,7 +83,7 @@ void sasuplaclient_location_update(void *_suplaclient, void *user_data, TSC_Supl
         [sc locationUpdate:location];
 }
 
-void sasuplaclient_channel_update(void *_suplaclient, void *user_data, TSC_SuplaChannel *channel) {
+void sasuplaclient_channel_update(void *_suplaclient, void *user_data, TSC_SuplaChannel_B *channel) {
     SASuplaClient *sc = (__bridge SASuplaClient*)user_data;
     if ( sc != nil )
         [sc channelUpdate: channel];
@@ -402,7 +402,7 @@ void sasuplaclient_on_event(void *_suplaclient, void *user_data, TSC_SuplaEvent 
     
 }
 
-- (void) channelUpdate:(TSC_SuplaChannel *)channel {
+- (void) channelUpdate:(TSC_SuplaChannel_B *)channel {
     
     BOOL DataChanged = NO;
     

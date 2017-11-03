@@ -33,6 +33,9 @@ NS_ASSUME_NONNULL_BEGIN
 - (BOOL) setChannelValue:(TSuplaChannelValue*)value;
 - (BOOL) setChannelCaption:(char*)caption;
 - (BOOL) setChannelVisible:(int)visible;
+- (BOOL) setChannelAltIcon:(int)altIcon;
+- (BOOL) setChannelProtocolVersion:(int)protocolVersion;
+- (BOOL) setChannelFlags:(int)flags;
 - (BOOL) isOnline;
 - (BOOL) isClosed;
 - (BOOL) isOn;

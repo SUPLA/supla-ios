@@ -54,15 +54,11 @@
     // Create the coordinator and store
     
     _persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:[self managedObjectModel]];
-    NSURL *storeURL = [[SAApp applicationDocumentsDirectory] URLByAppendingPathComponent:@"SUPLA_v3.sqlite"]; // v3 it is just file version. Not model version!
+    NSURL *storeURL = [[SAApp applicationDocumentsDirectory] URLByAppendingPathComponent:@"SUPLA_DB.sqlite"]; 
     NSError *error = nil;
     NSString *failureReason = @"There was an error creating or loading the application's saved data.";
     
-    NSDictionary *options = [NSDictionary dictionaryWithObjectsAndKeys:
-                             [NSNumber numberWithBool:YES], NSMigratePersistentStoresAutomaticallyOption,
-                             [NSNumber numberWithBool:YES], NSInferMappingModelAutomaticallyOption,nil];
-    
-    if (![_persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:storeURL options:options error:&error]) {
+    if (![_persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:storeURL options:nil error:&error]) {
         // Report any error we got.
         NSMutableDictionary *dict = [NSMutableDictionary dictionary];
         dict[NSLocalizedDescriptionKey] = @"Failed to initialize the application's saved data";
@@ -247,6 +243,9 @@
     Channel.func = [NSNumber numberWithInt:0];
     Channel.online = [NSNumber numberWithBool:NO];
     Channel.visible = [NSNumber numberWithInt:1];
+    Channel.alticon = [NSNumber numberWithInt:0];
+    Channel.protocolversion = [NSNumber numberWithInt:0];
+    Channel.flags = [NSNumber numberWithInt:0];
 
     [self.managedObjectContext insertObject:Channel];
     
@@ -254,7 +253,7 @@
 }
 
 
--(BOOL) updateChannel:(TSC_SuplaChannel *)channel {
+-(BOOL) updateChannel:(TSC_SuplaChannel_B *)channel {
     
     BOOL save = NO;
     
@@ -288,13 +287,24 @@
     if ( [Channel setChannelValue:&channel->value] ) {
         save = YES;
     }
-
     
     if ( [Channel setChannelCaption:channel->Caption] ) {
         save = YES;
     }
     
     if ( [Channel setChannelVisible:1] ) {
+        save = YES;
+    }
+    
+    if ( [Channel setChannelAltIcon:channel->AltIcon] ) {
+        save = YES;
+    }
+    
+    if ( [Channel setChannelProtocolVersion:channel->ProtocolVersion] ) {
+        save = YES;
+    }
+    
+    if ( [Channel setChannelFlags:channel->Flags] ) {
         save = YES;
     }
     

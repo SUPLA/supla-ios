@@ -65,7 +65,7 @@
 - (void) onRegistered:(SARegResult *)result;
 - (void) onRegisterError:(int)code;
 - (void) locationUpdate:(TSC_SuplaLocation *)location;
-- (void) channelUpdate:(TSC_SuplaChannel *)channel;
+- (void) channelUpdate:(TSC_SuplaChannel_B *)channel;
 - (void) channelValueUpdate:(TSC_SuplaChannelValue *)channel_value;
 - (void) onEvent:(SAEvent *)event;
 

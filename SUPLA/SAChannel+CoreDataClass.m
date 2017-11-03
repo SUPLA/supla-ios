@@ -184,6 +184,36 @@
     return NO;
 }
 
+- (BOOL) setChannelAltIcon:(int)altIcon {
+    
+    if ( [self.alticon isEqualToNumber:[NSNumber numberWithInt:altIcon]] == NO ) {
+        self.alticon = [NSNumber numberWithInt:altIcon];
+        return YES;
+    }
+    
+    return NO;
+}
+
+- (BOOL) setChannelProtocolVersion:(int)protocolVersion {
+    
+    if ( [self.protocolversion isEqualToNumber:[NSNumber numberWithInt:protocolVersion]] == NO ) {
+        self.protocolversion = [NSNumber numberWithInt:protocolVersion];
+        return YES;
+    }
+    
+    return NO;
+}
+
+- (BOOL) setChannelFlags:(int)flags {
+    
+    if ( [self.flags isEqualToNumber:[NSNumber numberWithInt:flags]] == NO ) {
+        self.flags = [NSNumber numberWithInt:flags];
+        return YES;
+    }
+    
+    return NO;
+}
+
 - (BOOL) isOnline {
     return [self.online isEqualToNumber:[NSNumber numberWithBool:YES]];
 }
