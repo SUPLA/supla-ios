@@ -123,6 +123,8 @@
         case SUPLA_CHANNELFNC_OPENINGSENSOR_DOOR:
         case SUPLA_CHANNELFNC_OPENINGSENSOR_ROLLERSHUTTER:
         case SUPLA_CHANNELFNC_NOLIQUIDSENSOR:
+        case SUPLA_CHANNELFNC_MAILSENSOR:
+        case SUPLA_CHANNELFNC_OPENINGSENSOR_WINDOW:
             self.value = [NSNumber numberWithBool:value->value[0] == 1];
             self.sub_value = nil;
             break;
@@ -238,6 +240,8 @@
             case SUPLA_CHANNELFNC_OPENINGSENSOR_GARAGEDOOR:
             case SUPLA_CHANNELFNC_OPENINGSENSOR_DOOR:
             case SUPLA_CHANNELFNC_OPENINGSENSOR_ROLLERSHUTTER:
+            case SUPLA_CHANNELFNC_MAILSENSOR:
+            case SUPLA_CHANNELFNC_OPENINGSENSOR_WINDOW:
                 return [self hiValue];
                 break;
         }
@@ -393,7 +397,16 @@
             break;
         case SUPLA_CHANNELFNC_OPENINGSENSOR_GATE:
         case SUPLA_CHANNELFNC_CONTROLLINGTHEGATE:
-            n1 = @"gate";
+            switch([self.alticon intValue]) {
+                case 1:
+                    n1 = @"gatealt1";
+                    break;
+                case 2:
+                    n1 = @"barier";
+                    break;
+                default:
+                   n1 = @"gate";
+            }
             break;
         case SUPLA_CHANNELFNC_OPENINGSENSOR_GARAGEDOOR:
         case SUPLA_CHANNELFNC_CONTROLLINGTHEGARAGEDOOR:
@@ -408,10 +421,31 @@
             n1 = @"rollershutter";
             break;
         case SUPLA_CHANNELFNC_POWERSWITCH:
-            n2 = @"power";
+            switch([self.alticon intValue]) {
+                case 1:
+                    n2 = @"tv";
+                    break;
+                case 2:
+                    n2 = @"radio";
+                    break;
+                case 3:
+                    n2 = @"pc";
+                    break;
+                case 4:
+                    n2 = @"fan";
+                    break;
+                default:
+                    n2 = @"power";
+            }
             break;
         case SUPLA_CHANNELFNC_LIGHTSWITCH:
-            n2 = @"light";
+            switch([self.alticon intValue]) {
+                case 1:
+                    n2 = @"xmastree";
+                    break;
+                default:
+                    n2 = @"light";
+            }
             break;
         case SUPLA_CHANNELFNC_THERMOMETER:
             return [UIImage imageNamed:@"thermometer"];
@@ -426,6 +460,13 @@
         case SUPLA_CHANNELFNC_DIMMERANDRGBLIGHTING:
             return [UIImage imageNamed:[NSString stringWithFormat:@"dimmerrgb-%@%@", [self getBrightness] > 0 ? @"on" : @"off", [self getColorBrightness] > 0 ? @"on" : @"off"]];
             break;
+            
+        case SUPLA_CHANNELFNC_OPENINGSENSOR_WINDOW:
+            n1 = @"window";
+            break;
+            
+        case SUPLA_CHANNELFNC_MAILSENSOR:
+            return [UIImage imageNamed:[self isClosed] ? @"mail" : @"nomail"];
             
     }
     
@@ -486,7 +527,10 @@
                 return NSLocalizedString(@"Distance sensor", nil);
             case SUPLA_CHANNELFNC_DEPTHSENSOR:
                 return NSLocalizedString(@"Depth sensor", nil);
-                
+            case SUPLA_CHANNELFNC_MAILSENSOR:
+                return NSLocalizedString(@"Mail sensor", nil);
+            case SUPLA_CHANNELFNC_OPENINGSENSOR_WINDOW:
+                return NSLocalizedString(@"Window opening sensor", nil);
         }
         
     }

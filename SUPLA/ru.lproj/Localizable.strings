@@ -62,3 +62,5 @@
 "Dimmer" = "Диммер";
 "Distance sensor" = "датчик расстояния";
 "Depth sensor" = "датчик глубины";
+"Mail sensor" = "Сигнализатор наличия почты";
+"Window opening sensor" = "Датчик открытия окна";
