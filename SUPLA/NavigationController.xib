@@ -44,7 +44,7 @@
                     <rect key="frame" x="0.0" y="0.0" width="375" height="75"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="supla" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IBu-dl-v6F">
-                            <rect key="frame" x="152" y="33" width="71" height="33"/>
+                            <rect key="frame" x="152" y="34.5" width="71" height="31.5"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="71" id="hb9-67-Qnb"/>
                             </constraints>
