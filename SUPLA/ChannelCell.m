@@ -129,18 +129,12 @@
     
         [self.image setImage:[channel channelIcon]];
         
-        if ( self.rightDot.layer.cornerRadius != 5 ) {
-            self.rightDot.layer.masksToBounds = YES;
-            self.rightDot.layer.cornerRadius = 5;
-        }
+
+        self.rightDot.ring = NO;
+        self.leftDot.ring = NO;
         
-        if ( self.leftDot.layer.cornerRadius != 5 ) {
-            self.leftDot.layer.masksToBounds = YES;
-            self.leftDot.layer.cornerRadius = 5;
-        }
-        
-        self.rightDot.backgroundColor = [channel isOnline] ? [UIColor circleOn] : [UIColor redColor];
-        self.leftDot.backgroundColor = self.rightDot.backgroundColor;
+        self.rightDot.color = [channel isOnline] ? [UIColor circleOn] : [UIColor redColor];
+        self.leftDot.color = self.rightDot.color;
         
         self.rightButtons = nil;
         self.leftButtons = nil;
@@ -165,6 +159,19 @@
             case SUPLA_CHANNELFNC_DIMMERANDRGBLIGHTING:
                 self.leftDot.hidden = YES;
                 self.rightDot.hidden = NO;
+                break;
+            case SUPLA_CHANNELFNC_NOLIQUIDSENSOR:
+            case SUPLA_CHANNELFNC_OPENINGSENSOR_DOOR:
+            case SUPLA_CHANNELFNC_OPENINGSENSOR_GARAGEDOOR:
+            case SUPLA_CHANNELFNC_OPENINGSENSOR_GATE:
+            case SUPLA_CHANNELFNC_OPENINGSENSOR_GATEWAY:
+            case SUPLA_CHANNELFNC_OPENINGSENSOR_ROLLERSHUTTER:
+            case SUPLA_CHANNELFNC_OPENINGSENSOR_WINDOW:
+            case SUPLA_CHANNELFNC_MAILSENSOR:
+                self.leftDot.hidden = NO;
+                self.rightDot.hidden = NO;
+                self.rightDot.ring = YES;
+                self.leftDot.ring = YES;
                 break;
             default:
                 self.leftDot.hidden = YES;

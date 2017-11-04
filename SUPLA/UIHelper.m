@@ -43,6 +43,60 @@
 
 @end
 
+@implementation SAUIStatusDot {
+    BOOL _ring;
+    UIColor *_color;
+}
+
+- (void)setRing:(BOOL)ring {
+    _ring = ring;
+    [self setNeedsDisplay];
+}
+
+- (BOOL)ring {
+    return _ring;
+}
+
+- (void)setBackgroundColor:(UIColor *)backgroundColor {
+    [super setBackgroundColor:[UIColor clearColor]];
+}
+
+- (void)setColor:(UIColor *)color {
+    _color = color;
+    [self setNeedsDisplay];
+}
+
+- (UIColor*)color {
+    return _color == nil ? [UIColor redColor] : _color;
+}
+
+- (void)drawRect:(CGRect)rect {
+
+    CGContextRef ctx = UIGraphicsGetCurrentContext();
+    
+    
+    if ( _ring ) {
+        float width = 1 / [[UIScreen mainScreen] scale];
+        CGContextSetLineWidth(ctx, width);
+        rect.origin.x+=width;
+        rect.origin.y+=width;
+        rect.size.height-=width*2;
+        rect.size.width-=width*2;
+        CGContextAddEllipseInRect(ctx, rect);
+        CGContextSetStrokeColor(ctx, CGColorGetComponents([self.color CGColor]));
+        CGContextStrokePath(ctx);
+    } else {
+        CGContextAddEllipseInRect(ctx, rect);
+        CGContextSetFillColor(ctx, CGColorGetComponents([self.color CGColor]));
+        CGContextFillPath(ctx);
+    }
+
+    
+
+}
+
+@end
+
 @implementation UIColor (SUPLA)
 
 +(UIColor*)circleOn {

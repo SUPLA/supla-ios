@@ -19,6 +19,7 @@
 #import <UIKit/UIKit.h>
 #import "MGSwipeTableCell.h"
 #import "MGSwipeButton.h"
+#import "UIHelper.h"
 
 @interface MGSwipeTableCell (SUPLA)
 
@@ -39,8 +40,8 @@
 @property (strong, nonatomic) SAChannel *channel;
 @property (weak, nonatomic) IBOutlet UIImageView *image;
 @property (weak, nonatomic) IBOutlet UILabel *caption;
-@property (weak, nonatomic) IBOutlet UIView *rightDot;
-@property (weak, nonatomic) IBOutlet UIView *leftDot;
+@property (weak, nonatomic) IBOutlet SAUIStatusDot *rightDot;
+@property (weak, nonatomic) IBOutlet SAUIStatusDot *leftDot;
 @property (weak, nonatomic) IBOutlet UILabel *temp;
 @property (weak, nonatomic) IBOutlet UILabel *humidity;
 @property (weak, nonatomic) IBOutlet UILabel *distance;

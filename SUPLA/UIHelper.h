@@ -41,6 +41,13 @@
 
 @end
 
+
+@interface SAUIStatusDot : UIView
+
+@property (nonatomic, assign) BOOL ring;
+@property (nonatomic, copy) UIColor *color;
+@end
+
 @interface SAUIHelper : NSObject
 
 -(void)fadeToViewController:(UIViewController*)vc;
