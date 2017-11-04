@@ -80,6 +80,8 @@
 		409934C11F30F2F2003110C5 /* RSDetail.xib in Resources */ = {isa = PBXBuildFile; fileRef = 409934C01F30F2F2003110C5 /* RSDetail.xib */; };
 		40A6757F1BA1A5B6004A51C4 /* SuplaApp.m in Sources */ = {isa = PBXBuildFile; fileRef = 40A6757E1BA1A5B6004A51C4 /* SuplaApp.m */; };
 		40A675831BA1BE8E004A51C4 /* SettingsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 40A675811BA1BE8E004A51C4 /* SettingsVC.m */; };
+		40A87DDF1FADDFF900918B54 /* donate@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 40A87DDD1FADDFF800918B54 /* donate@2x.png */; };
+		40A87DE01FADDFF900918B54 /* add_device@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 40A87DDE1FADDFF800918B54 /* add_device@2x.png */; };
 		40AB8BDE1DCB32EB0030F3DE /* SARateApp.m in Sources */ = {isa = PBXBuildFile; fileRef = 40AB8BDD1DCB32EB0030F3DE /* SARateApp.m */; };
 		40AB96601DCB597A00599189 /* logo-supla_white@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 40AB965F1DCB597A00599189 /* logo-supla_white@3x.png */; };
 		40AB96621DCB5A0900599189 /* logo-supla_white@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 40AB96611DCB5A0900599189 /* logo-supla_white@2x.png */; };
@@ -320,6 +322,8 @@
 		40A6757E1BA1A5B6004A51C4 /* SuplaApp.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SuplaApp.m; path = ../SuplaApp.m; sourceTree = "<group>"; };
 		40A675801BA1BE8E004A51C4 /* SettingsVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsVC.h; sourceTree = "<group>"; };
 		40A675811BA1BE8E004A51C4 /* SettingsVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsVC.m; sourceTree = "<group>"; };
+		40A87DDD1FADDFF800918B54 /* donate@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "donate@2x.png"; path = "Resources/Assets/Img/donate@2x.png"; sourceTree = "<group>"; };
+		40A87DDE1FADDFF800918B54 /* add_device@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "add_device@2x.png"; path = "Resources/Assets/Img/add_device@2x.png"; sourceTree = "<group>"; };
 		40AB8BDC1DCB32EB0030F3DE /* SARateApp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SARateApp.h; sourceTree = "<group>"; };
 		40AB8BDD1DCB32EB0030F3DE /* SARateApp.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SARateApp.m; sourceTree = "<group>"; };
 		40AB965F1DCB597A00599189 /* logo-supla_white@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "logo-supla_white@3x.png"; path = "Resources/Assets/Img/logo-supla_white@3x.png"; sourceTree = "<group>"; };
@@ -578,6 +582,8 @@
 		405AC4011BC15878004F7311 /* Img */ = {
 			isa = PBXGroup;
 			children = (
+				40A87DDE1FADDFF800918B54 /* add_device@2x.png */,
+				40A87DDD1FADDFF800918B54 /* donate@2x.png */,
 				40B9ED711FACE15500403B1A /* gatealt1-closed@2x.png */,
 				40B9ED721FACE15500403B1A /* gatealt1-closed@3x.png */,
 				40B9ED751FACE15600403B1A /* gatealt1-open@2x.png */,
@@ -914,6 +920,7 @@
 				40B9ED481FACCE8700403B1A /* tv-on@3x.png in Resources */,
 				40B9ED501FACCF8100403B1A /* radio-off@3x.png in Resources */,
 				407D4AED1BC6C64D009A5505 /* app_icon120x120@3x.png in Resources */,
+				40A87DDF1FADDFF900918B54 /* donate@2x.png in Resources */,
 				40CF96C21BC7D4E70030EFFF /* power-off@2x.png in Resources */,
 				40CF96BD1BC7D4E70030EFFF /* light-on@3x.png in Resources */,
 				40DE1A381BCD5E9B004CF43B /* AboutVC.xib in Resources */,
@@ -1041,6 +1048,7 @@
 				4052DA0A1DC515AE000B8C45 /* dimmer-on@3x.png in Resources */,
 				40CF96AD1BC7D4E70030EFFF /* door-open@3x.png in Resources */,
 				40CF96D91BC81A470030EFFF /* error@3x.png in Resources */,
+				40A87DE01FADDFF900918B54 /* add_device@2x.png in Resources */,
 				405AC4311BC158E8004F7311 /* OpenSans-Bold.ttf in Resources */,
 				40B9ED471FACCE8700403B1A /* tv-off@2x.png in Resources */,
 				4091654B1F3CBAF200F49193 /* rs_stop.png in Resources */,

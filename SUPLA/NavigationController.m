@@ -33,9 +33,11 @@
     self.menuItems.hidden = YES;
     
     [self.btnSettings setTitle:NSLocalizedString(@"Settings", nil) forState:UIControlStateNormal];
+    [self.btnAddDevice setTitle:NSLocalizedString(@"Add I/O device", nil) forState:UIControlStateNormal];
     [self.btnAbout setTitle:NSLocalizedString(@"About", nil) forState:UIControlStateNormal];
+    [self.btnDonate setTitle:NSLocalizedString(@"Donate", nil) forState:UIControlStateNormal];
     [self.btnFeedback setTitle:NSLocalizedString(@"Feedback", nil) forState:UIControlStateNormal];
-    
+   
 }
 
 - (UIStatusBarStyle)preferredStatusBarStyle
@@ -196,6 +198,17 @@
     [self hideMenuWithAction:nil];
     [[UIApplication sharedApplication] openURL:[NSURL URLWithString: @"https://www.supla.org"]];
         
+}
+
+- (IBAction)addDeviceTouch:(id)sender {
+    [self hideMenuWithAction:nil];
+}
+
+- (IBAction)donateTouch:(id)sender {
+    
+    [self hideMenuWithAction:nil];
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString: @"https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=L4N7RSWME6LG2"]];
+    
 }
 
 @end
