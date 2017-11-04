@@ -64,7 +64,7 @@
                                 style:UIAlertActionStyleDefault
                                 handler:^(UIAlertAction * action) {
                                     
-                                    [self moreDays: 36500];
+                                    [self moreDays: 3650];
                                     
                                     [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"itms-apps://itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?id=996384706&onlyLatestVersion=true&pageNumber=0&sortOrdering=1&type=Purple+Software"]];
                                     
@@ -82,7 +82,7 @@
                                style:UIAlertActionStyleDefault
                                handler:^(UIAlertAction * action) {
                                    
-                                   [self moreDays: 36500];
+                                   [self moreDays: 3650];
                                    
                                }];
     
