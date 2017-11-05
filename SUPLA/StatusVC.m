@@ -48,7 +48,9 @@
     [self.label setTextColor:[UIColor blackColor]];
     [self.button setBackgroundColor:[UIColor blackColor]];
     [self.button setTitleColor:self.view.backgroundColor forState:UIControlStateNormal];
-
+    self.btnRetry.hidden = NO;
+    self.cintButtonCenter.constant = -20;
+    
 }
 
 -(void)GreenTheme {
@@ -60,7 +62,8 @@
     [self.label setTextColor:[UIColor whiteColor]];
     [self.button setBackgroundColor:[UIColor whiteColor]];
     [self.button setTitleColor:self.view.backgroundColor forState:UIControlStateNormal];
-    
+    self.btnRetry.hidden = YES;
+    self.cintButtonCenter.constant = 0;
     
     [self setNeedsStatusBarAppearanceUpdate];
 }
@@ -81,5 +84,10 @@
 - (IBAction)btnTouch:(id)sender {
     [[SAApp UI] showSettings];
 }
+
+- (IBAction)btnRetryTouch:(id)sender {
+    [[SAApp SuplaClient] reconnect];
+}
+
 
 @end

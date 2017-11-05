@@ -22,8 +22,11 @@
 @property (weak, nonatomic) IBOutlet UIImageView *image;
 @property (weak, nonatomic) IBOutlet UILabel *label;
 @property (weak, nonatomic) IBOutlet UIButton *button;
+@property (weak, nonatomic) IBOutlet UIButton *btnRetry;
 @property (weak, nonatomic) IBOutlet UIProgressView *progress;
 - (IBAction)btnTouch:(id)sender;
+- (IBAction)btnRetryTouch:(id)sender;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *cintButtonCenter;
 
 
 
