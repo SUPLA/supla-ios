@@ -23,6 +23,14 @@
 @property (weak, nonatomic) IBOutlet UITextField *edServerHost;
 @property (weak, nonatomic) IBOutlet UITextField *edAccessID;
 @property (weak, nonatomic) IBOutlet UITextField *edAccessIDpwd;
+@property (weak, nonatomic) IBOutlet UITextField *edEmail;
 - (IBAction)saveTouch:(id)sender;
+- (IBAction)createTouch:(id)sender;
+- (IBAction)switchValueChanged:(id)sender;
+@property (weak, nonatomic) IBOutlet UISwitch *swAdvanced;
+@property (weak, nonatomic) IBOutlet UISwitch *swBasic;
+@property (strong, nonatomic) IBOutlet UIView *vBasic;
+@property (strong, nonatomic) IBOutlet UIView *vAdvanced;
+@property (weak, nonatomic) IBOutlet UIButton *btnCreate;
 
 @end

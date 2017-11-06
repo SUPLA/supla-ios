@@ -37,6 +37,17 @@
     [self.edServerHost setText:[SAApp getServerHostName]];
     [self.edAccessID setText:[SAApp getAccessID] ? [NSString stringWithFormat:@"%i", [SAApp getAccessID]] : @""];
     [self.edAccessIDpwd setText:[SAApp getAccessIDpwd]];
+
+
+    NSMutableAttributedString *astr = [[NSMutableAttributedString alloc] initWithAttributedString: self.btnCreate.currentAttributedTitle];
+    
+    [astr.mutableString setString:NSLocalizedString(@"Create an account", nil)];
+    
+    [self.btnCreate setAttributedTitle:astr forState:UIControlStateNormal];
+    [self.btnCreate setAttributedTitle:astr forState:UIControlStateHighlighted];
+    [self.btnCreate setAttributedTitle:astr forState:UIControlStateSelected];
+    [self.btnCreate setAttributedTitle:astr forState:UIControlStateDisabled];
+    
     
 }
 
@@ -89,6 +100,27 @@
     }
     
     [[SAApp UI] hideVC];
+    
+}
+
+- (IBAction)createTouch:(id)sender {
+
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString: @"https://cloud.supla.org/account/create"]];
+    
+}
+
+- (IBAction)switchValueChanged:(id)sender {
+    
+    
+    [self.swBasic setOn:NO];
+    [self.swAdvanced setOn:YES];
+    
+    if ( sender == self.swBasic) {
+        self.view = self.vAdvanced;
+    } else {
+        self.view = self.vBasic;
+    }
+    
     
 }
 @end
