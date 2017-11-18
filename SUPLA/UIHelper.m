@@ -342,5 +342,9 @@
     
 }
 
+-(BOOL)addWizardIsVisible {
+    return _AddWizardVC != nil && self.NavController.currentViewController == _AddWizardVC;
+}
+
 
 @end

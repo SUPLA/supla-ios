@@ -18,6 +18,7 @@
 
 #import "AddWizardVC.h"
 #import "SuplaApp.h"
+#import "TFHpple.h"
 
 @interface SAAddWizardVC ()
 
@@ -40,14 +41,23 @@
     // Dispose of any resources that can be recreated.
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+- (IBAction)testTouch:(id)sender {
+    
+    NSMutableURLRequest *request =
+    [NSMutableURLRequest requestWithURL:[NSURL URLWithString:@"http://192.168.4.1"] cachePolicy:NSURLRequestReloadIgnoringLocalAndRemoteCacheData timeoutInterval:5];
+        
+    [request setHTTPMethod: @"GET"];
+        
+    NSError *requestError = nil;
+    NSURLResponse *urlResponse = nil;
+    
+    NSData *response = [NSURLConnection sendSynchronousRequest:request returningResponse:&urlResponse error:&requestError];
+    
+    if ( requestError == nil && response != nil ) {
+        TFHpple *doc = [[TFHpple alloc] initWithHTMLData:response];
+        
+        
+    }
+    
 }
-*/
-
 @end

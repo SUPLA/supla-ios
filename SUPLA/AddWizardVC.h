@@ -19,5 +19,6 @@
 #import <UIKit/UIKit.h>
 
 @interface SAAddWizardVC : UIViewController
+- (IBAction)testTouch:(id)sender;
 
 @end

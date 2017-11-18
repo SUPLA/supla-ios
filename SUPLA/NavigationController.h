@@ -23,6 +23,7 @@
 
 @property (weak, nonatomic) IBOutlet UIView *menuBar;
 -(void)showViewController:(UIViewController *)vc;
+-(UIViewController *)currentViewController;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *menuBarHeight;
 - (IBAction)menuTouched:(id)sender;
 - (IBAction)settingsTouch:(id)sender;

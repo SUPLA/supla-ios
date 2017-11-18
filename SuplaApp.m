@@ -402,11 +402,21 @@ NSString *kSAChannelValueChangedNotification = @"KSA-N11";
 
 
 -(void)onDisconnected {
+    
+    if ( [self.UI addWizardIsVisible] == YES ) {
+        return;
+    }
+    
     [self.UI.StatusVC.progress setProgress:0];
     [[NSNotificationCenter defaultCenter] postNotificationName:kSADisconnectedNotification object:self userInfo:nil];
 }
 
 -(void)onConnecting {
+    
+    if ( [self.UI addWizardIsVisible] == YES ) {
+        return;
+    }
+    
     if ( self.UI.rootViewController == self.UI.SettingsVC ) {
          [self.UI.StatusVC.progress setProgress:0.25];
     } else {
@@ -417,11 +427,20 @@ NSString *kSAChannelValueChangedNotification = @"KSA-N11";
 }
 
 -(void)onConnected {
+    
+    if ( [self.UI addWizardIsVisible] == YES ) {
+        return;
+    }
+    
     [self.UI showStatusConnectingProgress:0.5];
     [[NSNotificationCenter defaultCenter] postNotificationName:kSAConnectedNotification object:self userInfo:nil];
 }
 
 -(void)onConnError:(NSNumber*)code {
+    
+    if ( [self.UI addWizardIsVisible] == YES ) {
+        return;
+    }
     
     if ( [code intValue] == SUPLA_RESULTCODE_HOSTNOTFOUND ) {
         
@@ -436,11 +455,21 @@ NSString *kSAChannelValueChangedNotification = @"KSA-N11";
 }
 
 -(void)onRegistering {
+    
+    if ( [self.UI addWizardIsVisible] == YES ) {
+        return;
+    }
+    
     [self.UI showStatusConnectingProgress:0.75];
     [[NSNotificationCenter defaultCenter] postNotificationName:kSARegisteringNotification object:self userInfo:nil];
 }
 
 -(void)onRegistered:(SARegResult*)result {
+    
+    if ( [self.UI addWizardIsVisible] == YES ) {
+        return;
+    }
+    
     [self.UI showStatusConnectingProgress:1];
     [self.UI showMainVC];
     [[NSNotificationCenter defaultCenter] postNotificationName:kSARegisteredNotification object:self userInfo:[[NSDictionary alloc] initWithObjects:@[result] forKeys:@[@"result"]]];
@@ -457,6 +486,10 @@ NSString *kSAChannelValueChangedNotification = @"KSA-N11";
 }
 
 -(void)onRegisterError:(NSNumber*)code {
+    
+    if ( [self.UI addWizardIsVisible] == YES ) {
+        return;
+    }
     
     [self SuplaClientTerminate];
     
@@ -495,6 +528,10 @@ NSString *kSAChannelValueChangedNotification = @"KSA-N11";
 
 
 -(void)onVersionError:(SAVersionError*)ve {
+    
+    if ( [self.UI addWizardIsVisible] == YES ) {
+        return;
+    }
     
     [self SuplaClientTerminate];
     [[NSNotificationCenter defaultCenter] postNotificationName:kSAVersionErrorNotification object:self userInfo:[[NSDictionary alloc] initWithObjects:@[ve] forKeys:@[@"version_error"]]];

@@ -77,6 +77,8 @@
 
 -(void)showMenuBtn:(BOOL)show;
 
+-(BOOL)addWizardIsVisible;
+
 @property (nonatomic, strong) UIViewController *rootViewController;
 
 @end

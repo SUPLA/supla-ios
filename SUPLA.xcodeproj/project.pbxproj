@@ -194,6 +194,10 @@
 		40DE1A361BCD1B55004CF43B /* AboutVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 40DE1A341BCD1B55004CF43B /* AboutVC.m */; };
 		40DE1A381BCD5E9B004CF43B /* AboutVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 40DE1A3A1BCD5E9B004CF43B /* AboutVC.xib */; };
 		40DE1A401BCD6F06004CF43B /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 40DE1A421BCD6F06004CF43B /* Localizable.strings */; };
+		40E8BE881FC06A5600FB2FE6 /* TFHpple.m in Sources */ = {isa = PBXBuildFile; fileRef = 40E8BE831FC06A5500FB2FE6 /* TFHpple.m */; };
+		40E8BE891FC06A5600FB2FE6 /* TFHppleElement.m in Sources */ = {isa = PBXBuildFile; fileRef = 40E8BE851FC06A5500FB2FE6 /* TFHppleElement.m */; };
+		40E8BE8A1FC06A5600FB2FE6 /* XPathQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = 40E8BE871FC06A5600FB2FE6 /* XPathQuery.m */; };
+		40E8BE8D1FC06B4200FB2FE6 /* libxml2.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 40E8BE8B1FC06B2000FB2FE6 /* libxml2.tbd */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -462,6 +466,13 @@
 		40DE1A431BCD6F08004CF43B /* pl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pl; path = pl.lproj/Localizable.strings; sourceTree = "<group>"; };
 		40DE1A441BCD6F09004CF43B /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
 		40DE1A471BCD7207004CF43B /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
+		40E8BE821FC06A5500FB2FE6 /* TFHpple.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TFHpple.h; path = hpple/TFHpple.h; sourceTree = "<group>"; };
+		40E8BE831FC06A5500FB2FE6 /* TFHpple.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TFHpple.m; path = hpple/TFHpple.m; sourceTree = "<group>"; };
+		40E8BE841FC06A5500FB2FE6 /* TFHppleElement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TFHppleElement.h; path = hpple/TFHppleElement.h; sourceTree = "<group>"; };
+		40E8BE851FC06A5500FB2FE6 /* TFHppleElement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TFHppleElement.m; path = hpple/TFHppleElement.m; sourceTree = "<group>"; };
+		40E8BE861FC06A5500FB2FE6 /* XPathQuery.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = XPathQuery.h; path = hpple/XPathQuery.h; sourceTree = "<group>"; };
+		40E8BE871FC06A5600FB2FE6 /* XPathQuery.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = XPathQuery.m; path = hpple/XPathQuery.m; sourceTree = "<group>"; };
+		40E8BE8B1FC06B2000FB2FE6 /* libxml2.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libxml2.tbd; path = usr/lib/libxml2.tbd; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -469,6 +480,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				40E8BE8D1FC06B4200FB2FE6 /* libxml2.tbd in Frameworks */,
 				407ECDC21DAFBB9600F01C7E /* AudioToolbox.framework in Frameworks */,
 				40B397D81BCEA25700BE7D5A /* CFNetwork.framework in Frameworks */,
 				401CA1ED1BA069CF00117AF4 /* libssl.a in Frameworks */,
@@ -513,6 +525,7 @@
 		401CA1BB1BA067DB00117AF4 /* SUPLA */ = {
 			isa = PBXGroup;
 			children = (
+				40E8BE811FC06A4500FB2FE6 /* hpple */,
 				407E7C331BBEB81B00D8878C /* Resources */,
 				401CA1E51BA068A600117AF4 /* supla-client-lib */,
 				407004241BB56EAC00F6187F /* DB */,
@@ -774,6 +787,7 @@
 		407ECDC01DAFBB9600F01C7E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				40E8BE8B1FC06B2000FB2FE6 /* libxml2.tbd */,
 				407ECDC11DAFBB9600F01C7E /* AudioToolbox.framework */,
 			);
 			name = Frameworks;
@@ -830,6 +844,19 @@
 				403EB1131FBDF47F00AD6460 /* AddWizardVC.xib */,
 			);
 			name = UI;
+			sourceTree = "<group>";
+		};
+		40E8BE811FC06A4500FB2FE6 /* hpple */ = {
+			isa = PBXGroup;
+			children = (
+				40E8BE821FC06A5500FB2FE6 /* TFHpple.h */,
+				40E8BE831FC06A5500FB2FE6 /* TFHpple.m */,
+				40E8BE841FC06A5500FB2FE6 /* TFHppleElement.h */,
+				40E8BE851FC06A5500FB2FE6 /* TFHppleElement.m */,
+				40E8BE861FC06A5500FB2FE6 /* XPathQuery.h */,
+				40E8BE871FC06A5600FB2FE6 /* XPathQuery.m */,
+			);
+			name = hpple;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1086,6 +1113,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				40E8BE891FC06A5600FB2FE6 /* TFHppleElement.m in Sources */,
 				40DA56911DCA1908008F05DE /* SAAccessID+CoreDataProperties.m in Sources */,
 				40DE1A361BCD1B55004CF43B /* AboutVC.m in Sources */,
 				4017E12C1BB9CE2900570AC8 /* ChannelCell.m in Sources */,
@@ -1107,6 +1135,7 @@
 				408034C41BC83D1A007666E7 /* MGSwipeButton.m in Sources */,
 				409934AB1F30C025003110C5 /* SAColorListItem+CoreDataProperties.m in Sources */,
 				401CA1BF1BA067DB00117AF4 /* main.m in Sources */,
+				40E8BE8A1FC06A5600FB2FE6 /* XPathQuery.m in Sources */,
 				40A6757F1BA1A5B6004A51C4 /* SuplaApp.m in Sources */,
 				40C9E4F71F2A186A00753796 /* SARollerShutter.m in Sources */,
 				401CA1F21BA0A28A00117AF4 /* SuplaClient.m in Sources */,
@@ -1117,6 +1146,7 @@
 				409934B61F30EF9C003110C5 /* RSDetailView.m in Sources */,
 				40DA56851DCA1515008F05DE /* SAChannel+CoreDataClass.m in Sources */,
 				403150FB1DC769430075D2D2 /* RGBDetailView.m in Sources */,
+				40E8BE881FC06A5600FB2FE6 /* TFHpple.m in Sources */,
 				407D4AFF1BC6E491009A5505 /* StatusVC.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1308,6 +1338,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				HEADER_SEARCH_PATHS = "$(SDKROOT)/usr/include/libxml2";
 				INFOPLIST_FILE = SUPLA/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -1326,6 +1357,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				HEADER_SEARCH_PATHS = "$(SDKROOT)/usr/include/libxml2";
 				INFOPLIST_FILE = SUPLA/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

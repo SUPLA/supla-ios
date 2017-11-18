@@ -105,6 +105,9 @@
     
 }
 
+-(UIViewController *)currentViewController {
+    return _vc;
+}
 
 - (void) showMenu:(BOOL)show withAction:(void (^)(void))action {
     
