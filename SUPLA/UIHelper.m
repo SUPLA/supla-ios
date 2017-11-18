@@ -136,6 +136,7 @@
     SAMainVC * _MainVC;
     SAStatusVC *_StatusVC;
     SAAboutVC *_AboutVC;
+    SAAddWizardVC *_AddWizardVC;
     
     UIViewController *_nextWaiting;
     BOOL _fading;
@@ -258,6 +259,23 @@
 -(void)showAbout {
     
     [self.NavController showViewController:[self AboutVC]];
+    [self fadeToViewController:[self NavController]];
+    
+}
+
+-(SAAddWizardVC*)AddWizardVC {
+    
+    if ( _AddWizardVC == nil ) {
+        _AddWizardVC = [[SAAddWizardVC alloc] initWithNibName:@"AddWizardVC" bundle:nil];
+    }
+    
+    return _AddWizardVC;
+    
+}
+
+-(void)showAddWizard {
+    
+    [self.NavController showViewController:[self AddWizardVC]];
     [self fadeToViewController:[self NavController]];
     
 }

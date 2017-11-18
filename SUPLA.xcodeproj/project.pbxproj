@@ -24,6 +24,8 @@
 		4038A5541CE32B6800180B5D /* TempHumidityCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4038A5531CE32B6800180B5D /* TempHumidityCell.xib */; };
 		4038A5571CE32CD700180B5D /* humidity@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4038A5551CE32CD700180B5D /* humidity@2x.png */; };
 		4038A5581CE32CD700180B5D /* humidity@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4038A5561CE32CD700180B5D /* humidity@3x.png */; };
+		403EB1141FBDF47F00AD6460 /* AddWizardVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 403EB1121FBDF47F00AD6460 /* AddWizardVC.m */; };
+		403EB1151FBDF47F00AD6460 /* AddWizardVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 403EB1131FBDF47F00AD6460 /* AddWizardVC.xib */; };
 		4052DA001DC515AE000B8C45 /* dimmerrgb-offoff@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4052D9F01DC515AE000B8C45 /* dimmerrgb-offoff@3x.png */; };
 		4052DA011DC515AE000B8C45 /* dimmerrgb-offoff@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4052D9F11DC515AE000B8C45 /* dimmerrgb-offoff@2x.png */; };
 		4052DA021DC515AE000B8C45 /* dimmerrgb-offon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4052D9F21DC515AE000B8C45 /* dimmerrgb-offon@3x.png */; };
@@ -235,6 +237,9 @@
 		4038A5531CE32B6800180B5D /* TempHumidityCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TempHumidityCell.xib; sourceTree = "<group>"; };
 		4038A5551CE32CD700180B5D /* humidity@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "humidity@2x.png"; path = "Resources/Assets/Img/humidity@2x.png"; sourceTree = "<group>"; };
 		4038A5561CE32CD700180B5D /* humidity@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "humidity@3x.png"; path = "Resources/Assets/Img/humidity@3x.png"; sourceTree = "<group>"; };
+		403EB1111FBDF47F00AD6460 /* AddWizardVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AddWizardVC.h; sourceTree = "<group>"; };
+		403EB1121FBDF47F00AD6460 /* AddWizardVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AddWizardVC.m; sourceTree = "<group>"; };
+		403EB1131FBDF47F00AD6460 /* AddWizardVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddWizardVC.xib; sourceTree = "<group>"; };
 		4052D9F01DC515AE000B8C45 /* dimmerrgb-offoff@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "dimmerrgb-offoff@3x.png"; path = "Resources/Assets/Img/dimmerrgb-offoff@3x.png"; sourceTree = "<group>"; };
 		4052D9F11DC515AE000B8C45 /* dimmerrgb-offoff@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "dimmerrgb-offoff@2x.png"; path = "Resources/Assets/Img/dimmerrgb-offoff@2x.png"; sourceTree = "<group>"; };
 		4052D9F21DC515AE000B8C45 /* dimmerrgb-offon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "dimmerrgb-offon@3x.png"; path = "Resources/Assets/Img/dimmerrgb-offon@3x.png"; sourceTree = "<group>"; };
@@ -820,6 +825,9 @@
 				409934B41F30EF9C003110C5 /* RSDetailView.h */,
 				409934B51F30EF9C003110C5 /* RSDetailView.m */,
 				409934C01F30F2F2003110C5 /* RSDetail.xib */,
+				403EB1111FBDF47F00AD6460 /* AddWizardVC.h */,
+				403EB1121FBDF47F00AD6460 /* AddWizardVC.m */,
+				403EB1131FBDF47F00AD6460 /* AddWizardVC.xib */,
 			);
 			name = UI;
 			sourceTree = "<group>";
@@ -1042,6 +1050,7 @@
 				408034E61BC84A89007666E7 /* NavigationController.xib in Resources */,
 				40CF96B11BC7D4E70030EFFF /* garagedoor-open@3x.png in Resources */,
 				40B9ED801FACE15700403B1A /* window-open@3x.png in Resources */,
+				403EB1151FBDF47F00AD6460 /* AddWizardVC.xib in Resources */,
 				4052DA021DC515AE000B8C45 /* dimmerrgb-offon@3x.png in Resources */,
 				40CF96AE1BC7D4E70030EFFF /* garagedoor-closed@2x.png in Resources */,
 				40CF96DB1BC81A470030EFFF /* warning@3x.png in Resources */,
@@ -1094,6 +1103,7 @@
 				40B9ED3A1FAC79FC00403B1A /* SUPLA.xcdatamodeld in Sources */,
 				401CA1C81BA067DB00117AF4 /* MainVC.m in Sources */,
 				408034C51BC83D1A007666E7 /* MGSwipeTableCell.m in Sources */,
+				403EB1141FBDF47F00AD6460 /* AddWizardVC.m in Sources */,
 				408034C41BC83D1A007666E7 /* MGSwipeButton.m in Sources */,
 				409934AB1F30C025003110C5 /* SAColorListItem+CoreDataProperties.m in Sources */,
 				401CA1BF1BA067DB00117AF4 /* main.m in Sources */,

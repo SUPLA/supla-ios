@@ -22,6 +22,7 @@
 #import "MainVC.h"
 #import "StatusVC.h"
 #import "AboutVC.h"
+#import "AddWizardVC.h"
 
 @interface UIView (SUPLA)
 
@@ -65,6 +66,9 @@
 
 -(SAAboutVC*)AboutVC;
 -(void)showAbout;
+
+-(SAAddWizardVC*)AddWizardVC;
+-(void)showAddWizard;
 
 -(void)showStatusConnectingProgress:(float)value;
 -(void)showStatusError:(NSString*)message;

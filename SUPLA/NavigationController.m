@@ -202,6 +202,7 @@
 
 - (IBAction)addDeviceTouch:(id)sender {
     [self hideMenuWithAction:nil];
+    [[SAApp UI] showAddWizard];
 }
 
 - (IBAction)donateTouch:(id)sender {
