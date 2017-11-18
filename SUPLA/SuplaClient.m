@@ -197,17 +197,57 @@ void sasuplaclient_on_event(void *_suplaclient, void *user_data, TSC_SuplaEvent 
     return _DB;
 }
 
+- (char*) getServerHostName {
+    
+    NSString *host = [SAApp getServerHostName];
+    if ( [host isEqualToString:@""] == YES && [SAApp getAdvancedConfig] == NO && ![[SAApp getEmailAddress] isEqualToString:@""] ) {
+        
+        NSMutableURLRequest *request =
+        [NSMutableURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"https://autodiscover.supla.org/users/%@", [SAApp getEmailAddress]]] cachePolicy:NSURLRequestReloadIgnoringLocalAndRemoteCacheData timeoutInterval:5];
+        
+        [request setHTTPMethod: @"GET"];
+        
+        NSError *requestError = nil;
+        NSURLResponse *urlResponse = nil;
+        
+        NSData *response = [NSURLConnection sendSynchronousRequest:request returningResponse:&urlResponse error:&requestError];
+        
+        if ( response != nil && requestError == nil ) {
+            NSError *jsonError = nil;
+           NSDictionary *jsonObj = [NSJSONSerialization JSONObjectWithData: response options: NSJSONReadingMutableContainers error: &jsonError];
+
+            if ( [jsonObj isKindOfClass:[NSDictionary class]] ) {
+                NSString *str = [jsonObj objectForKey:@"server"];
+                if ( str != nil && [str isKindOfClass:[NSString class]]) {
+                    [SAApp setServerHostName:str];
+                    host = str;
+                }
+            }
+        }
+    }
+    
+    return (char*)[host UTF8String];
+
+}
+
 - (void*) client_init {
     
     TSuplaClientCfg scc;
     supla_client_cfginit(&scc);
     
     [SAApp getClientGUID:scc.clientGUID];
+    [SAApp getAuthKey:scc.AuthKey];
     
     scc.user_data = (__bridge void *)self;
-    scc.host = (char*)[[SAApp getServerHostName] UTF8String];
-    scc.AccessID = [SAApp getAccessID];
-    snprintf(scc.AccessIDpwd, SUPLA_ACCESSID_PWD_MAXSIZE, "%s", [[SAApp getAccessIDpwd] UTF8String]);
+    scc.host = [self getServerHostName];
+    
+    if ( [SAApp getAdvancedConfig] ) {
+        scc.AccessID = [SAApp getAccessID];
+        snprintf(scc.AccessIDpwd, SUPLA_ACCESSID_PWD_MAXSIZE, "%s", [[SAApp getAccessIDpwd] UTF8String]);
+    } else {
+       snprintf(scc.Email, SUPLA_EMAIL_MAXSIZE, "%s", [[SAApp getEmailAddress] UTF8String]);
+    }
+
     snprintf(scc.Name, SUPLA_CLIENT_NAME_MAXSIZE, "%s", [[[UIDevice currentDevice] name] UTF8String]);
     snprintf(scc.SoftVer, SUPLA_SOFTVER_MAXSIZE, "iOS%s/%s", [[[UIDevice currentDevice] systemVersion] UTF8String], [[[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleShortVersionString"] UTF8String]);
     

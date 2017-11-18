@@ -34,6 +34,7 @@
 -(void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
+    [self.edEmail setText:[SAApp getEmailAddress]];
     [self.edServerHost setText:[SAApp getServerHostName]];
     [self.edAccessID setText:[SAApp getAccessID] ? [NSString stringWithFormat:@"%i", [SAApp getAccessID]] : @""];
     [self.edAccessIDpwd setText:[SAApp getAccessIDpwd]];
@@ -49,8 +50,19 @@
     [self.btnCreate setAttributedTitle:astr forState:UIControlStateDisabled];
     
     
+
+    
 }
 
+-(void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    
+    if ( [SAApp getAdvancedConfig] ) {
+        self.view = self.vAdvanced;
+    } else {
+        self.view = self.vBasic;
+    }
+}
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
@@ -85,6 +97,11 @@
         aid = 0;
     };
     
+    if ( [[SAApp getEmailAddress] isEqualToString:self.edEmail.text] == NO ) {
+        [SAApp setEmailAddress:self.edEmail.text];
+        changed = YES;
+    }
+    
     if ( [SAApp getAccessID] != aid ) {
         [SAApp setAccessID:aid];
         changed = YES;
@@ -92,6 +109,11 @@
     
     if ( [[SAApp getAccessIDpwd] isEqualToString:self.edAccessIDpwd.text] == NO ) {
         [SAApp setAccessIDpwd:self.edAccessIDpwd.text];
+        changed = YES;
+    }
+    
+    if ( [SAApp getAdvancedConfig] != (self.view == self.vAdvanced) ) {
+        [SAApp setAdvancedConfig:self.view == self.vAdvanced];
         changed = YES;
     }
     
@@ -115,12 +137,18 @@
     [self.swBasic setOn:NO];
     [self.swAdvanced setOn:YES];
     
+
     if ( sender == self.swBasic) {
         self.view = self.vAdvanced;
     } else {
         self.view = self.vBasic;
     }
     
+    
+}
+- (IBAction)emailChanged:(id)sender {
+    
+    [self.edServerHost setText:@""];
     
 }
 @end

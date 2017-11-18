@@ -1,18 +1,36 @@
 
-/* Class = "UILabel"; text = "PASSWORD"; ObjectID = "9CU-bj-8hI"; */
-"9CU-bj-8hI.text" = "CONTRASEÑA";
+/* Class = "UILabel"; text = "Settings"; ObjectID = "6Ji-Wu-NuM"; */
+"6Ji-Wu-NuM.text" = "Ajustes";
 
-/* Class = "UILabel"; text = "Settings"; ObjectID = "H9Q-az-Fdn"; */
-"H9Q-az-Fdn.text" = "Ajustes";
+/* Class = "UILabel"; text = "Advanced settings"; ObjectID = "B9J-rS-YiN"; */
+"B9J-rS-YiN.text" = "Ajustes avanzados";
 
-/* Class = "UILabel"; text = "Password"; ObjectID = "Iu5-RO-68w"; */
-"Iu5-RO-68w.text" = "Contraseña";
+/* Class = "UILabel"; text = "Password"; ObjectID = "BdU-7y-z5H"; */
+"BdU-7y-z5H.text" = "CONTRASEÑA";
 
-/* Class = "UILabel"; text = "SERVER ADDRESS"; ObjectID = "ZGC-5y-vzT"; */
-"ZGC-5y-vzT.text" = "DIRECCIÓN DEL SERVIDOR";
+/* Class = "UILabel"; text = "Advanced settings"; ObjectID = "EpF-Sy-1PE"; */
+"EpF-Sy-1PE.text" = "Ajustes avanzados";
 
-/* Class = "UILabel"; text = "ACCESS IDENTIFIER"; ObjectID = "umv-eZ-GG8"; */
-"umv-eZ-GG8.text" = "IDENTIFICACIÓN DE ACCESO";
+/* Class = "UILabel"; text = "PASSWORD"; ObjectID = "HTX-JT-yIr"; */
+"HTX-JT-yIr.text" = "CONTRASEÑA";
 
-/* Class = "UILabel"; text = "ACCESS IDENTIFIER"; ObjectID = "xhb-Z8-4up"; */
-"xhb-Z8-4up.text" = "IDENTIFICACIÓN DE ACCESO";
+/* Class = "UILabel"; text = "ACCESS IDENTIFIER"; ObjectID = "LpD-C2-bdO"; */
+"LpD-C2-bdO.text" = "IDENTIFICACIÓN DE ACCESO";
+
+/* Class = "UILabel"; text = "ACCESS IDENTIFIER"; ObjectID = "MM3-Y1-eQ3"; */
+"MM3-Y1-eQ3.text" = "IDENTIFICACIÓN DE ACCESO";
+
+/* Class = "UILabel"; text = "SERVER ADDRESS"; ObjectID = "P35-bB-efP"; */
+"P35-bB-efP.text" = "DIRECCIÓN DEL SERVIDOR";
+
+/* Class = "UILabel"; text = "Password"; ObjectID = "P4g-uM-DVf"; */
+"P4g-uM-DVf.text" = "CONTRASEÑA";
+
+/* Class = "UILabel"; text = "ACCESS IDENTIFIER"; ObjectID = "PHo-MD-YLQ"; */
+"PHo-MD-YLQ.text" = "IDENTIFICACIÓN DE ACCESO";
+
+/* Class = "UILabel"; text = "E-MAIL ADDRESS"; ObjectID = "cZS-4u-QMr"; */
+"cZS-4u-QMr.text" = "DIRECCIÓN DE CORREO ELECTRÓNICO";
+
+/* Class = "UILabel"; text = "Settings"; ObjectID = "my9-Mc-v9S"; */
+"my9-Mc-v9S.text" = "Ajustes";

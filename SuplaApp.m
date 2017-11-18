@@ -37,8 +37,10 @@ NSString *kSAChannelValueChangedNotification = @"KSA-N11";
 
 @implementation SAApp {
     
+    int _cfg_ver;
     int _current_access_id;
     NSString *_current_server;
+    NSString *_current_email;
     
     SASuplaClient* _SuplaClient;
     SADatabase *_DB;
@@ -48,8 +50,16 @@ NSString *kSAChannelValueChangedNotification = @"KSA-N11";
 -(id)init {
     self = [super init];
     if ( self ) {
+        _cfg_ver = 0;
         _current_access_id = 0;
         _current_server = nil;
+        
+        if ( [self getCfgVersion] == 0 ) {
+          
+            BOOL advCfg = [[self getServerHostName] isEqualToString:@""] == NO && [self getAccessID] != 0 && [[SAApp getAccessIDpwd] isEqualToString:@""];
+            [self setAdvancedConfig: advCfg];
+            [self setCfgVersion:2];
+        };
 
     }
     return self;
@@ -65,32 +75,92 @@ NSString *kSAChannelValueChangedNotification = @"KSA-N11";
     return _Globals;
 }
 
-+(void) getClientGUID:(char[SUPLA_GUID_SIZE])guid {
-
++(void) getRandomKey:(char*)key keySize:(int)size forPrefKey:(NSString*)pref_key {
+    
     @synchronized(self) {
         
-        NSData *GUID = [[NSUserDefaults standardUserDefaults] dataForKey:@"client_guid"];
-        if ( GUID == nil || [GUID length] != SUPLA_GUID_SIZE ) {
-           
-            NSMutableData* newGUID = [NSMutableData dataWithCapacity:SUPLA_GUID_SIZE];
-            for( int i = 0 ; i < SUPLA_GUID_SIZE; ++i ) {
+        NSData *KEY = [[NSUserDefaults standardUserDefaults] dataForKey:pref_key];
+        if ( KEY == nil || [KEY length] != size ) {
+            
+            NSMutableData* newKEY = [NSMutableData dataWithCapacity:size];
+            for( int i = 0 ; i < size; ++i ) {
                 Byte random = arc4random();
-                [newGUID appendBytes:(void*)&random length:1];
+                [newKEY appendBytes:(void*)&random length:1];
             }
             
-            [[NSUserDefaults standardUserDefaults] setValue:newGUID forKey:@"client_guid"];
-            GUID = newGUID;
+            [[NSUserDefaults standardUserDefaults] setValue:newKEY forKey:pref_key];
+            KEY = newKEY;
         };
         
-        if ( GUID && [GUID length] == SUPLA_GUID_SIZE ) {
-            [GUID getBytes:guid length:SUPLA_GUID_SIZE];
+        if ( KEY && [KEY length] == size ) {
+            [KEY getBytes:key length:size];
         } else {
-            memset(guid, 0, SUPLA_GUID_SIZE);
+            memset(key, 0, size);
         }
-    
+        
     }
-
+    
 }
+
++(void) getClientGUID:(char[SUPLA_GUID_SIZE])guid {
+    [SAApp getRandomKey:guid keySize:SUPLA_GUID_SIZE forPrefKey:@"client_guid"];
+}
+
++(void) getAuthKey:(char [SUPLA_AUTHKEY_SIZE])auth_key {
+    [SAApp getRandomKey:auth_key keySize:SUPLA_AUTHKEY_SIZE forPrefKey:@"auth_key"];
+}
+
+-(int) getCfgVersion {
+    
+    
+    @synchronized(self) {
+        if ( _cfg_ver == 0 ) {
+            _cfg_ver = (int)[[NSUserDefaults standardUserDefaults] integerForKey:@"cfg_version"];
+        }
+    }
+    
+    return _cfg_ver;
+}
+
+-(void) setCfgVersion:(int)cfg_ver {
+    
+    @synchronized(self) {
+        _cfg_ver = cfg_ver;
+        [[NSUserDefaults standardUserDefaults] setInteger:cfg_ver forKey:@"cfg_version"];
+    }
+    
+}
+
+-(BOOL) getAdvancedConfig {
+    
+    BOOL result = NO;
+    
+    @synchronized(self) {
+        result = [[NSUserDefaults standardUserDefaults] boolForKey:@"advanced_config"];
+    }
+    
+    return result;
+}
+
++(BOOL) getAdvancedConfig {
+    
+    return [[self instance] getAdvancedConfig];
+}
+
+-(void) setAdvancedConfig:(BOOL)adv_cfg {
+    
+    @synchronized(self) {
+        [[NSUserDefaults standardUserDefaults] setBool:adv_cfg forKey:@"advanced_config"];
+    }
+    
+}
+
++(void) setAdvancedConfig:(BOOL)adv_cfg {
+    
+    [[self instance] setAdvancedConfig:adv_cfg];
+    
+}
+
 
 -(int) getAccessID {
     
@@ -170,6 +240,38 @@ NSString *kSAChannelValueChangedNotification = @"KSA-N11";
 +(void) setServerHostName:(NSString *)hostname {
     
     [[self instance] setServerHostName:hostname];
+    
+}
+
+
+-(NSString*) getEmailAddress {
+    
+    @synchronized(self) {
+        if ( _current_email == nil ) {
+            _current_email = [[NSUserDefaults standardUserDefaults] stringForKey:@"email_address"];
+        }
+    }
+    
+    return _current_email == nil ? [[NSString alloc] init] : _current_email;
+}
+
++(NSString*) getEmailAddress {
+    
+    return [[self instance] getEmailAddress];
+}
+
+-(void) setEmailAddress:(NSString *)email {
+    
+    @synchronized(self) {
+        [[NSUserDefaults standardUserDefaults] setValue:email forKey:@"email_address"];
+        _current_email = email;
+    }
+    
+}
+
++(void) setEmailAddress:(NSString *)email {
+    
+    [[self instance] setEmailAddress:email];
     
 }
 

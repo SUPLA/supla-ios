@@ -32,5 +32,6 @@
 @property (strong, nonatomic) IBOutlet UIView *vBasic;
 @property (strong, nonatomic) IBOutlet UIView *vAdvanced;
 @property (weak, nonatomic) IBOutlet UIButton *btnCreate;
+- (IBAction)emailChanged:(id)sender;
 
 @end

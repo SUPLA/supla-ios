@@ -30,12 +30,18 @@
 
 +(SAApp*)instance;
 +(void) getClientGUID:(char[SUPLA_GUID_SIZE])guid;
++(void) getAuthKey:(char[SUPLA_AUTHKEY_SIZE])auth_key;
 +(int) getAccessID;
 +(void) setAccessID:(int)aid;
 +(NSString*) getAccessIDpwd;
 +(void) setAccessIDpwd:(NSString *)pwd;
 +(NSString*) getServerHostName;
++(NSString*) getEmailAddress;
++(BOOL) getAdvancedConfig;
 +(void) setServerHostName:(NSString *)hostname;
++(void) setEmailAddress:(NSString *)email;
++(void) setAdvancedConfig:(BOOL)adv_cfg;
+
 +(NSURL *)applicationDocumentsDirectory;
 
 +(void)initClientDelayed:(double)time;
