@@ -1,0 +1,37 @@
+
+/* Class = "UILabel"; text = "Settings"; ObjectID = "6Ji-Wu-NuM"; */
+"6Ji-Wu-NuM.text" = "Ustawienia";
+
+/* Class = "UILabel"; text = "Advanced settings"; ObjectID = "B9J-rS-YiN"; */
+"B9J-rS-YiN.text" = "Ustawienia zaawansowane";
+
+/* Class = "UILabel"; text = "Password"; ObjectID = "BdU-7y-z5H"; */
+"BdU-7y-z5H.text" = "Hasło";
+
+/* Class = "UILabel"; text = "Advanced settings"; ObjectID = "EpF-Sy-1PE"; */
+"EpF-Sy-1PE.text" = "Ustawienia zaawansowane";
+
+/* Class = "UILabel"; text = "PASSWORD"; ObjectID = "HTX-JT-yIr"; */
+"HTX-JT-yIr.text" = "HASŁO";
+
+/* Class = "UILabel"; text = "ACCESS IDENTIFIER"; ObjectID = "LpD-C2-bdO"; */
+"LpD-C2-bdO.text" = "IDENTYFIKATOR DOSTĘPU";
+
+/* Class = "UILabel"; text = "ACCESS IDENTIFIER"; ObjectID = "MM3-Y1-eQ3"; */
+"MM3-Y1-eQ3.text" = "IDENTYFIKATOR DOSTĘPU";
+
+/* Class = "UILabel"; text = "SERVER ADDRESS"; ObjectID = "P35-bB-efP"; */
+"P35-bB-efP.text" = "ADRES SERWERA";
+
+/* Class = "UILabel"; text = "Password"; ObjectID = "P4g-uM-DVf"; */
+"P4g-uM-DVf.text" = "Hasło";
+
+/* Class = "UILabel"; text = "ACCESS IDENTIFIER"; ObjectID = "PHo-MD-YLQ"; */
+"PHo-MD-YLQ.text" = "IDENTYFIKATOR DOSTĘPU";
+
+/* Class = "UILabel"; text = "E-MAIL ADDRESS"; ObjectID = "cZS-4u-QMr"; */
+"cZS-4u-QMr.text" = "ADRES E-MAIL";
+
+/* Class = "UILabel"; text = "Settings"; ObjectID = "my9-Mc-v9S"; */
+"my9-Mc-v9S.text" = "Ustawienia";
+
