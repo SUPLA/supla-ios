@@ -99,7 +99,7 @@
 }
 
 - (void)showValues {
-    
+  
     if ( self.cbPicker.bwBrightnessWheelVisible == YES ) {
         
         if ( (int)self.cbPicker.brightness != (int)_brightness ) {
@@ -171,6 +171,7 @@
     if ( delayTimer2 != nil ) {
         [delayTimer2 invalidate];
         delayTimer2 = nil;
+        return;
     }
 
     if ( self.cbPicker.moving == YES )
@@ -200,6 +201,12 @@
 }
 
 - (void)timer2FireMethod:(NSTimer *)timer {
+    
+    if ( delayTimer2 != nil ) {
+        [delayTimer2 invalidate];
+        delayTimer2 = nil;
+    }
+    
     [self showValuesWithDelay];
 }
 
@@ -259,7 +266,7 @@
                 _brightness = [self.channel getBrightness];
                 _colorBrightness = [self.channel getColorBrightness];
                 _color = [self.channel getColor];
-                
+            
                 [self showValuesWithDelay];
             
                 break;
@@ -294,7 +301,6 @@
         } else {
             [self setColorBrightnessWheelVisible:YES];
         }
-        
         [self showValues];
     }
 
@@ -358,7 +364,6 @@
     } else {
         _brightness = brightness;
     }
-    
     [self showValues];
     [self sendNewValues];
     
@@ -376,9 +381,7 @@
 }
 
 -(void) cbPickerMoveEnded {
-    
     _moveEndTime = [NSDate date];
-    [self showValuesWithDelay];
 }
 
 -(void)itemTouchedWithColor:(UIColor*)color andPercent:(float)percent {
@@ -390,7 +393,7 @@
     
     _colorBrightness = percent;
     _color = color;
-    
+
     [self showValues];
     [self sendNewValues];
 

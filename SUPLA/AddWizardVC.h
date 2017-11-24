@@ -18,7 +18,25 @@
 
 #import <UIKit/UIKit.h>
 
-@interface SAAddWizardVC : UIViewController
-- (IBAction)testTouch:(id)sender;
+@protocol SASetConfOpDelegate <NSObject>
+
+@required
+-(void)setConfigResult:(NSNumber*)result;
+@end
+
+@interface SASetConfigOperation : NSOperation
+
+@property (copy, nonatomic) NSString *SSID;
+@property (copy, nonatomic) NSString *PWD;
+@property (copy, nonatomic) NSString *Server;
+@property (copy, nonatomic) NSString *Email;
+@property(weak, nonatomic) id<SASetConfOpDelegate> delegate;
+@end
+
+@interface SAAddWizardVC : UIViewController <SASetConfOpDelegate>
+- (IBAction)nextTouched:(id)sender;
+@property (weak, nonatomic) IBOutlet UIView *vStepContent;
+@property (strong, nonatomic) IBOutlet UIView *vStep1;
+@property (strong, nonatomic) IBOutlet UIView *vStep2;
 
 @end

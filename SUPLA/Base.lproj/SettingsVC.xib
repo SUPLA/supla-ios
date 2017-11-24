@@ -15,7 +15,7 @@
         <array key="OpenSans-Regular.ttf">
             <string>OpenSans</string>
         </array>
-        <array key="Quicksand-Regular.ttf">
+        <array key="Quicksand-Light.ttf">
             <string>Quicksand-Regular</string>
         </array>
     </customFonts>
@@ -42,7 +42,7 @@
                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="kkM-HY-JhI">
                     <rect key="frame" x="42" y="289" width="330" height="30"/>
                     <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="14"/>
-                    <textInputTraits key="textInputTraits"/>
+                    <textInputTraits key="textInputTraits" textContentType="email"/>
                     <connections>
                         <action selector="emailChanged:" destination="-1" eventType="editingChanged" id="qqs-IU-eRI"/>
                     </connections>
@@ -74,13 +74,13 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Settings" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Ji-Wu-NuM">
-                    <rect key="frame" x="141.33333333333331" y="167" width="132.33333333333331" height="42"/>
+                    <rect key="frame" x="141" y="167" width="132.33333333333337" height="42"/>
                     <fontDescription key="fontDescription" name="Quicksand-Regular" family="Quicksand" pointSize="36"/>
                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Tvh-sc-OjJ">
-                    <rect key="frame" x="158.33333333333334" y="529" width="99.000000000000028" height="26"/>
+                    <rect key="frame" x="158" y="529" width="99" height="26"/>
                     <state key="normal">
                         <attributedString key="attributedTitle">
                             <fragment content="Create an account">
@@ -203,7 +203,7 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Settings" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="my9-Mc-v9S">
-                    <rect key="frame" x="141.33333333333331" y="167" width="132.33333333333331" height="42"/>
+                    <rect key="frame" x="141" y="167" width="132.33333333333337" height="42"/>
                     <fontDescription key="fontDescription" name="Quicksand-Regular" family="Quicksand" pointSize="36"/>
                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>

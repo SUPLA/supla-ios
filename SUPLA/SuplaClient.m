@@ -464,6 +464,9 @@ void sasuplaclient_on_event(void *_suplaclient, void *user_data, TSC_SuplaEvent 
 }
 
 - (void) channelValueUpdate:(TSC_SuplaChannelValue *)channel_value {
+    
+    //NSLog(@"channelValueUpdate %i", channel_value->Id);
+    
     if ( [self.DB updateChannelValue:channel_value] ) {
         [self onChannelValueChanged: channel_value->Id];
         [self onDataChanged];

@@ -16,11 +16,13 @@
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 
-#import <UIKit/UIKit.h>
-#import "AppDelegate.h"
+#ifndef SAClassHelper_h
+#define SAClassHelper_h
 
-int main(int argc, char * argv[]) {
-    @autoreleasepool {
-        return UIApplicationMain(argc, argv, nil, NSStringFromClass([AppDelegate class]));
-    }
-}
+#import <Foundation/Foundation.h>
+
+@interface NSDictionary (SUPLA)
+-(NSString*) urlEncodedString;
+@end
+
+#endif /* SAClassHelper_h */

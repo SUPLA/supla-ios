@@ -26,6 +26,7 @@
 		4038A5581CE32CD700180B5D /* humidity@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4038A5561CE32CD700180B5D /* humidity@3x.png */; };
 		403EB1141FBDF47F00AD6460 /* AddWizardVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 403EB1121FBDF47F00AD6460 /* AddWizardVC.m */; };
 		403EB1151FBDF47F00AD6460 /* AddWizardVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 403EB1131FBDF47F00AD6460 /* AddWizardVC.xib */; };
+		404E48F71FC75D0B001F6266 /* SAClassHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 404E48F51FC75D0B001F6266 /* SAClassHelper.m */; };
 		4052DA001DC515AE000B8C45 /* dimmerrgb-offoff@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4052D9F01DC515AE000B8C45 /* dimmerrgb-offoff@3x.png */; };
 		4052DA011DC515AE000B8C45 /* dimmerrgb-offoff@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4052D9F11DC515AE000B8C45 /* dimmerrgb-offoff@2x.png */; };
 		4052DA021DC515AE000B8C45 /* dimmerrgb-offon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4052D9F21DC515AE000B8C45 /* dimmerrgb-offon@3x.png */; };
@@ -77,6 +78,12 @@
 		4091654D1F3CBAF200F49193 /* rs_down.png in Resources */ = {isa = PBXBuildFile; fileRef = 409165481F3CBAF200F49193 /* rs_down.png */; };
 		4091654E1F3CBAF200F49193 /* rs_close.png in Resources */ = {isa = PBXBuildFile; fileRef = 409165491F3CBAF200F49193 /* rs_close.png */; };
 		4091654F1F3CBAF200F49193 /* rs_open.png in Resources */ = {isa = PBXBuildFile; fileRef = 4091654A1F3CBAF200F49193 /* rs_open.png */; };
+		4091AF3E1FC8405200EFF357 /* btnnextr@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4091AF3B1FC8405100EFF357 /* btnnextr@2x.png */; };
+		4091AF3F1FC8405200EFF357 /* btnnextl@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4091AF3C1FC8405200EFF357 /* btnnextl@2x.png */; };
+		4091AF401FC8405200EFF357 /* btnnextr2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4091AF3D1FC8405200EFF357 /* btnnextr2@2x.png */; };
+		4091AF421FC84AE000EFF357 /* rocket@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4091AF411FC84ADF00EFF357 /* rocket@2x.png */; };
+		4091AF441FC856C200EFF357 /* wifi@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4091AF431FC856C100EFF357 /* wifi@2x.png */; };
+		4091AF461FC86D7B00EFF357 /* look@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4091AF451FC86D7A00EFF357 /* look@2x.png */; };
 		409934AA1F30C025003110C5 /* SAColorListItem+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 409934A71F30C025003110C5 /* SAColorListItem+CoreDataClass.m */; };
 		409934AB1F30C025003110C5 /* SAColorListItem+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 409934A91F30C025003110C5 /* SAColorListItem+CoreDataProperties.m */; };
 		409934B61F30EF9C003110C5 /* RSDetailView.m in Sources */ = {isa = PBXBuildFile; fileRef = 409934B51F30EF9C003110C5 /* RSDetailView.m */; };
@@ -244,6 +251,8 @@
 		403EB1111FBDF47F00AD6460 /* AddWizardVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AddWizardVC.h; sourceTree = "<group>"; };
 		403EB1121FBDF47F00AD6460 /* AddWizardVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AddWizardVC.m; sourceTree = "<group>"; };
 		403EB1131FBDF47F00AD6460 /* AddWizardVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddWizardVC.xib; sourceTree = "<group>"; };
+		404E48F51FC75D0B001F6266 /* SAClassHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SAClassHelper.m; sourceTree = "<group>"; };
+		404E48F61FC75D0B001F6266 /* SAClassHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SAClassHelper.h; sourceTree = "<group>"; };
 		4052D9F01DC515AE000B8C45 /* dimmerrgb-offoff@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "dimmerrgb-offoff@3x.png"; path = "Resources/Assets/Img/dimmerrgb-offoff@3x.png"; sourceTree = "<group>"; };
 		4052D9F11DC515AE000B8C45 /* dimmerrgb-offoff@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "dimmerrgb-offoff@2x.png"; path = "Resources/Assets/Img/dimmerrgb-offoff@2x.png"; sourceTree = "<group>"; };
 		4052D9F21DC515AE000B8C45 /* dimmerrgb-offon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "dimmerrgb-offon@3x.png"; path = "Resources/Assets/Img/dimmerrgb-offon@3x.png"; sourceTree = "<group>"; };
@@ -324,6 +333,12 @@
 		409165481F3CBAF200F49193 /* rs_down.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = rs_down.png; path = Resources/Assets/Img/rs_down.png; sourceTree = "<group>"; };
 		409165491F3CBAF200F49193 /* rs_close.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = rs_close.png; path = Resources/Assets/Img/rs_close.png; sourceTree = "<group>"; };
 		4091654A1F3CBAF200F49193 /* rs_open.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = rs_open.png; path = Resources/Assets/Img/rs_open.png; sourceTree = "<group>"; };
+		4091AF3B1FC8405100EFF357 /* btnnextr@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "btnnextr@2x.png"; path = "Resources/Assets/Img/btnnextr@2x.png"; sourceTree = "<group>"; };
+		4091AF3C1FC8405200EFF357 /* btnnextl@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "btnnextl@2x.png"; path = "Resources/Assets/Img/btnnextl@2x.png"; sourceTree = "<group>"; };
+		4091AF3D1FC8405200EFF357 /* btnnextr2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "btnnextr2@2x.png"; path = "Resources/Assets/Img/btnnextr2@2x.png"; sourceTree = "<group>"; };
+		4091AF411FC84ADF00EFF357 /* rocket@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "rocket@2x.png"; path = "Resources/Assets/Img/rocket@2x.png"; sourceTree = "<group>"; };
+		4091AF431FC856C100EFF357 /* wifi@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "wifi@2x.png"; path = "Resources/Assets/Img/wifi@2x.png"; sourceTree = "<group>"; };
+		4091AF451FC86D7A00EFF357 /* look@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "look@2x.png"; path = "Resources/Assets/Img/look@2x.png"; sourceTree = "<group>"; };
 		409934A61F30C025003110C5 /* SAColorListItem+CoreDataClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SAColorListItem+CoreDataClass.h"; sourceTree = "<group>"; };
 		409934A71F30C025003110C5 /* SAColorListItem+CoreDataClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SAColorListItem+CoreDataClass.m"; sourceTree = "<group>"; };
 		409934A81F30C025003110C5 /* SAColorListItem+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SAColorListItem+CoreDataProperties.h"; sourceTree = "<group>"; };
@@ -540,6 +555,8 @@
 				401CA1F11BA0A28A00117AF4 /* SuplaClient.m */,
 				40AB8BDC1DCB32EB0030F3DE /* SARateApp.h */,
 				40AB8BDD1DCB32EB0030F3DE /* SARateApp.m */,
+				404E48F51FC75D0B001F6266 /* SAClassHelper.m */,
+				404E48F61FC75D0B001F6266 /* SAClassHelper.h */,
 			);
 			path = SUPLA;
 			sourceTree = "<group>";
@@ -602,6 +619,12 @@
 		405AC4011BC15878004F7311 /* Img */ = {
 			isa = PBXGroup;
 			children = (
+				4091AF451FC86D7A00EFF357 /* look@2x.png */,
+				4091AF431FC856C100EFF357 /* wifi@2x.png */,
+				4091AF411FC84ADF00EFF357 /* rocket@2x.png */,
+				4091AF3C1FC8405200EFF357 /* btnnextl@2x.png */,
+				4091AF3B1FC8405100EFF357 /* btnnextr@2x.png */,
+				4091AF3D1FC8405200EFF357 /* btnnextr2@2x.png */,
 				40D397AC1FAF547B00BF477D /* retry@3x.png */,
 				40A87DDE1FADDFF800918B54 /* add_device@2x.png */,
 				40A87DDD1FADDFF800918B54 /* donate@2x.png */,
@@ -970,6 +993,7 @@
 				40CE7C6C1DCBBD5700BBACE4 /* depth@3x.png in Resources */,
 				40B9ED5E1FACD14000403B1A /* fan-on@3x.png in Resources */,
 				407D4AF31BC6C6CB009A5505 /* app_icon120x120@2x.png in Resources */,
+				4091AF421FC84AE000EFF357 /* rocket@2x.png in Resources */,
 				4091654E1F3CBAF200F49193 /* rs_close.png in Resources */,
 				40B9ED811FACE15700403B1A /* nomail@2x.png in Resources */,
 				405AC4191BC15898004F7311 /* app_icon-1024.png in Resources */,
@@ -980,9 +1004,11 @@
 				407D4B001BC6E491009A5505 /* StatusVC.xib in Resources */,
 				406778561BCBF9F4008DD37F /* SectionCell.xib in Resources */,
 				40CF96C01BC7D4E70030EFFF /* noliquid@2x.png in Resources */,
+				4091AF461FC86D7B00EFF357 /* look@2x.png in Resources */,
 				407D4AE91BC6C5C7009A5505 /* app_icon87x87@3x.png in Resources */,
 				40CF96B61BC7D4E70030EFFF /* gateway-closed@2x.png in Resources */,
 				40CF96BE1BC7D4E70030EFFF /* liquid@2x.png in Resources */,
+				4091AF401FC8405200EFF357 /* btnnextr2@2x.png in Resources */,
 				40B397E21BCED7C000BE7D5A /* Quicksand-Regular.ttf in Resources */,
 				4052DA0C1DC515AE000B8C45 /* rgb-off@3x.png in Resources */,
 				407D4AE71BC6C57E009A5505 /* app_icon58x58@2x.png in Resources */,
@@ -1022,6 +1048,7 @@
 				40CF96C61BC7D4E70030EFFF /* rollershutter-closed@2x.png in Resources */,
 				40B397CF1BCE7F3200BE7D5A /* Launch Screen.storyboard in Resources */,
 				40B9ED601FACD14000403B1A /* fan-off@3x.png in Resources */,
+				4091AF3E1FC8405200EFF357 /* btnnextr@2x.png in Resources */,
 				40DE1A2A1BCCFF8A004CF43B /* feedback@3x.png in Resources */,
 				405AC41B1BC15898004F7311 /* app_icon@3x.png in Resources */,
 				401CA1EF1BA0923600117AF4 /* MainVC.xib in Resources */,
@@ -1063,6 +1090,7 @@
 				40B9ED651FACD34C00403B1A /* xmastree-on@3x.png in Resources */,
 				40B9ED571FACD0A100403B1A /* pc-on@2x.png in Resources */,
 				4052DA041DC515AE000B8C45 /* dimmerrgb-onoff@3x.png in Resources */,
+				4091AF441FC856C200EFF357 /* wifi@2x.png in Resources */,
 				406778291BCBBC84008DD37F /* ThermometerCell.xib in Resources */,
 				4038A5581CE32CD700180B5D /* humidity@3x.png in Resources */,
 				40CF96C71BC7D4E70030EFFF /* rollershutter-closed@3x.png in Resources */,
@@ -1081,6 +1109,7 @@
 				4052DA021DC515AE000B8C45 /* dimmerrgb-offon@3x.png in Resources */,
 				40CF96AE1BC7D4E70030EFFF /* garagedoor-closed@2x.png in Resources */,
 				40CF96DB1BC81A470030EFFF /* warning@3x.png in Resources */,
+				4091AF3F1FC8405200EFF357 /* btnnextl@2x.png in Resources */,
 				4038A5571CE32CD700180B5D /* humidity@2x.png in Resources */,
 				40DB208D1DC9049400FAFAB0 /* RGBDetail.xib in Resources */,
 				40CE7C641DCBBCE400BBACE4 /* DepthCell.xib in Resources */,
@@ -1135,6 +1164,7 @@
 				408034C41BC83D1A007666E7 /* MGSwipeButton.m in Sources */,
 				409934AB1F30C025003110C5 /* SAColorListItem+CoreDataProperties.m in Sources */,
 				401CA1BF1BA067DB00117AF4 /* main.m in Sources */,
+				404E48F71FC75D0B001F6266 /* SAClassHelper.m in Sources */,
 				40E8BE8A1FC06A5600FB2FE6 /* XPathQuery.m in Sources */,
 				40A6757F1BA1A5B6004A51C4 /* SuplaApp.m in Sources */,
 				40C9E4F71F2A186A00753796 /* SARollerShutter.m in Sources */,

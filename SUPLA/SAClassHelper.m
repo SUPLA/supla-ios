@@ -16,11 +16,25 @@
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 
-#import <UIKit/UIKit.h>
-#import "AppDelegate.h"
+#include "SAClassHelper.h"
 
-int main(int argc, char * argv[]) {
-    @autoreleasepool {
-        return UIApplicationMain(argc, argv, nil, NSStringFromClass([AppDelegate class]));
-    }
+@implementation NSDictionary (SUPLA)
+
+-(NSString *)urlEncode:(id)obj {
+    return [[NSString stringWithFormat:@"%@", obj] stringByAddingPercentEscapesUsingEncoding: NSUTF8StringEncoding];
 }
+
+-(NSString*) urlEncodedString {
+    
+    NSMutableArray *fields = [NSMutableArray array];
+    
+    for (id key in self) {
+        id value = [self objectForKey: key];
+        NSString *field = [NSString stringWithFormat: @"%@=%@", [self urlEncode:key], [self urlEncode:value]];
+        [fields addObject: field];
+    }
+    return [fields componentsJoinedByString: @"&"];
+}
+
+
+@end
