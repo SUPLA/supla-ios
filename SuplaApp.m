@@ -56,7 +56,7 @@ NSString *kSAChannelValueChangedNotification = @"KSA-N11";
         
         if ( [self getCfgVersion] == 0 ) {
           
-            BOOL advCfg = [[self getServerHostName] isEqualToString:@""] == NO && [self getAccessID] != 0 && [[SAApp getAccessIDpwd] isEqualToString:@""];
+            BOOL advCfg = [[self getServerHostName] isEqualToString:@""] == NO && [self getAccessID] != 0 && [[SAApp getAccessIDpwd] isEqualToString:@""] == NO;
             [self setAdvancedConfig: advCfg];
             [self setCfgVersion:2];
         };

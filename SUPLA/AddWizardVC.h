@@ -34,9 +34,12 @@
 @end
 
 @interface SAAddWizardVC : UIViewController <SASetConfOpDelegate>
-- (IBAction)nextTouched:(id)sender;
+- (IBAction)nextTouchch:(id)sender;
+- (IBAction)cancelTouch:(id)sender;
 @property (weak, nonatomic) IBOutlet UIView *vStepContent;
 @property (strong, nonatomic) IBOutlet UIView *vStep1;
 @property (strong, nonatomic) IBOutlet UIView *vStep2;
+@property (strong, nonatomic) IBOutlet UIView *vStep3;
+@property (strong, nonatomic) IBOutlet UIView *vStep4;
 
 @end

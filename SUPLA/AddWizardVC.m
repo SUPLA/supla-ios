@@ -246,6 +246,7 @@
 
 @implementation SAAddWizardVC {
     NSOperationQueue *_OpQueue;
+    int _x;
 }
 
 -(NSOperationQueue *)OpQueue {
@@ -275,10 +276,10 @@
 
 -(void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    [[SAApp UI] showMenuBtn:YES];
+    [[SAApp UI] showMenuBtn:NO];
     
-
-    [self showStepView:self.vStep2];
+    _x = 1;
+    [self showStepView:self.vStep1];
 }
 
 -(void)viewDidDisappear:(BOOL)animated  {
@@ -296,7 +297,7 @@
 }
 
 
-- (IBAction)nextTouched:(id)sender {
+- (IBAction)nextTouchch:(id)sender {
 
     /*
      [self.OpQueue cancelAllOperations];
@@ -305,8 +306,59 @@
      [self.OpQueue addOperation:setConfigOp];
      */
     
+    /*
     NSArray * networkInterfaces = [NEHotspotHelper supportedNetworkInterfaces];
     NSLog(@"Networks %@",networkInterfaces);
+     */
     
+    _x++;
+    
+    if ( _x > 4 ) _x = 1;
+    
+    switch(_x) {
+        case 1:
+            [self showStepView:self.vStep1];
+            break;
+        case 2:
+            [self showStepView:self.vStep2];
+            break;
+        case 3:
+            [self showStepView:self.vStep3];
+            break;
+        case 4:
+        {
+            [self showStepView:self.vStep4];
+            break;
+            /*
+            NSURL * urlCheck1 = [NSURL URLWithString:@"App-Prefs:root=WIFI"];
+            NSURL * urlCheck2 = [NSURL URLWithString:@"prefs:root=WIFI"];
+            NSURL * urlCheck3 = [NSURL URLWithString:UIApplicationOpenSettingsURLString];
+            
+            if ([[UIApplication sharedApplication] canOpenURL:urlCheck1])
+            {
+                [[UIApplication sharedApplication] openURL:urlCheck1];
+            }
+            else if ([[UIApplication sharedApplication] canOpenURL:urlCheck2])
+            {
+                [[UIApplication sharedApplication] openURL:urlCheck2];
+            }
+            else if ([[UIApplication sharedApplication] canOpenURL:urlCheck3])
+            {
+                [[UIApplication sharedApplication] openURL:urlCheck3];
+            }
+            else
+            {
+                NSLog(@"Unable to open settings app.");
+            }
+             */
+        }
+            break;
+    }
+
+        
+}
+
+- (IBAction)cancelTouch:(id)sender {
+    [[SAApp UI] showMainVC];
 }
 @end
