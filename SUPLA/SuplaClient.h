@@ -53,6 +53,17 @@
 
 @end
 
+@interface SARegistrationEnabled : NSObject
+
+@property (nonatomic)NSDate* ClientRegistrationExpirationDate;
+@property (nonatomic)NSDate* IODeviceRegistrationExpirationDate;
+
+-(BOOL)isClientRegistrationEnabled;
+-(BOOL)isIODeviceRegistrationEnabled;
+
++ (SARegistrationEnabled*) ClientTimestamp:(unsigned int) client_timestamp IODeviceTimestamp:(unsigned int) iodevice_timestamp;
+@end
+
 @interface SASuplaClient : NSThread
 
 - (id)init;
@@ -68,11 +79,12 @@
 - (void) channelUpdate:(TSC_SuplaChannel_B *)channel;
 - (void) channelValueUpdate:(TSC_SuplaChannelValue *)channel_value;
 - (void) onEvent:(SAEvent *)event;
+- (void) onRegistrationEnabled:(SARegistrationEnabled*)reg_enabled;
 
 - (void) reconnect;
 - (BOOL) isConnected;
 - (BOOL) isRegistered;
 - (void) channel:(int)ChannelID Open:(char)open;
 - (BOOL) channel:(int)ChannelID setRGB:(UIColor*)color colorBrightness:(int)color_brightness brightness:(int)brightness;
-
+- (void) getRegistrationEnabled;
 @end

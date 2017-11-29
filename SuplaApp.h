@@ -65,6 +65,7 @@
 -(void)onConnected;
 -(void)onVersionError:(SAVersionError*)ve;
 -(void)onEvent:(SAEvent*)event;
+-(void)onRegistrationEnabled:(SARegistrationEnabled*)reg_enabled;
 -(void)onTerminated:(SASuplaClient*)sender;
 
 @end
@@ -79,3 +80,4 @@ extern NSString *kSAConnectedNotification;
 extern NSString *kSAVersionErrorNotification;
 extern NSString *kSAEventNotification;
 extern NSString *kSAChannelValueChangedNotification;
+extern NSString *kSARegistrationEnabledNotification;

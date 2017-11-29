@@ -102,6 +102,14 @@ void sasuplaclient_on_event(void *_suplaclient, void *user_data, TSC_SuplaEvent 
                          DurationMS:event->DurationMS SenderID:event->SenderID SenderName:[NSString stringWithUTF8String:event->SenderName]]];
 }
 
+void sasuplaclient_on_registration_enabled(void *_suplaclient, void *user_data, TSDC_RegistrationEnabled *reg_enabled) {
+    
+    SASuplaClient *sc = (__bridge SASuplaClient*)user_data;
+    if ( sc != nil && reg_enabled != NULL) {
+        [sc onRegistrationEnabled:[SARegistrationEnabled ClientTimestamp:reg_enabled->client_timestamp IODeviceTimestamp:reg_enabled->iodevice_timestamp]];
+    }
+}
+
 // ------------------------------------------------------------------------------------------------------
 // ------------------------------------------------------------------------------------------------------
 // ------------------------------------------------------------------------------------------------------
@@ -164,6 +172,31 @@ void sasuplaclient_on_event(void *_suplaclient, void *user_data, TSC_SuplaEvent 
     e.SenderName = sender_name;
     
     return e;
+}
+
+@end
+
+
+@implementation SARegistrationEnabled
+@synthesize ClientRegistrationExpirationDate;
+@synthesize IODeviceRegistrationExpirationDate;
+
++ (SARegistrationEnabled*) ClientTimestamp:(unsigned int) client_timestamp IODeviceTimestamp:(unsigned int) iodevice_timestamp {
+    SARegistrationEnabled *r = [[SARegistrationEnabled alloc] init];
+
+    r.ClientRegistrationExpirationDate = client_timestamp == 0 ? nil : [NSDate dateWithTimeIntervalSince1970:client_timestamp];
+    r.IODeviceRegistrationExpirationDate = iodevice_timestamp == 0 ? nil : [NSDate dateWithTimeIntervalSince1970:iodevice_timestamp];
+    
+    return r;
+}
+
+-(BOOL)isClientRegistrationEnabled {
+   
+    return ClientRegistrationExpirationDate != nil && [ClientRegistrationExpirationDate timeIntervalSince1970] >  [[NSDate date] timeIntervalSince1970];
+}
+
+-(BOOL)isIODeviceRegistrationEnabled {
+    return IODeviceRegistrationExpirationDate != nil && [IODeviceRegistrationExpirationDate timeIntervalSince1970] >  [[NSDate date] timeIntervalSince1970];
 }
 
 @end
@@ -262,6 +295,7 @@ void sasuplaclient_on_event(void *_suplaclient, void *user_data, TSC_SuplaEvent 
     scc.cb_channel_update = sasuplaclient_channel_update;
     scc.cb_channel_value_update = sasuplaclient_channel_value_update;
     scc.cb_on_event = sasuplaclient_on_event;
+    scc.cb_on_registration_enabled = sasuplaclient_on_registration_enabled;
     
     return supla_client_init(&scc);
 
@@ -484,6 +518,14 @@ void sasuplaclient_on_event(void *_suplaclient, void *user_data, TSC_SuplaEvent 
     
 }
 
+- (void) _onRegistrationEnabled:(SARegistrationEnabled *)reg_enabled {
+    [[SAApp instance] onRegistrationEnabled:reg_enabled];
+}
+
+- (void) onRegistrationEnabled:(SARegistrationEnabled *)reg_enabled {
+    [self performSelectorOnMainThread:@selector(_onRegistrationEnabled:) withObject:reg_enabled waitUntilDone:NO];
+}
+
 - (void) reconnect {
     @synchronized(self) {
         if ( _sclient ) {
@@ -555,6 +597,14 @@ void sasuplaclient_on_event(void *_suplaclient, void *user_data, TSC_SuplaEvent 
     return result;
 }
 
+- (void) getRegistrationEnabled {
+    
+    @synchronized(self) {
+        if ( _sclient ) {
+            supla_client_get_registration_enabled(_sclient);
+        }
+    }
+}
 
 
 @end

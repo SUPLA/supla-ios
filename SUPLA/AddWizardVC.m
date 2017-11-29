@@ -282,12 +282,15 @@
     
     _x = 1;
     [self showStepView:self.vStep1];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(onRegistrationEnabled:) name:kSARegistrationEnabledNotification object:nil];
 }
 
 -(void)viewDidDisappear:(BOOL)animated  {
     [self.OpQueue cancelAllOperations];
     [self preloaderVisible:NO];
     [super viewDidDisappear:animated];
+    
+    [[NSNotificationCenter defaultCenter]  removeObserver:self];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -361,6 +364,7 @@
      */
     
     [self preloaderVisible:YES];
+    [[SAApp SuplaClient] getRegistrationEnabled];
     return;
     
     _x++;
@@ -420,4 +424,16 @@
     [self preloaderVisible:NO];
    // [[SAApp UI] showMainVC];
 }
+
+- (void)onRegistrationEnabled:(NSNotification *)notification {
+    
+    if ( notification.userInfo == nil ) return;
+    
+    SARegistrationEnabled *reg_enabled = (SARegistrationEnabled *)[notification.userInfo objectForKey:@"reg_enabled"];
+    
+    if ( reg_enabled == nil ) return;
+    
+    NSLog(@"RegEnabled %@, %@", reg_enabled.ClientRegistrationExpirationDate, reg_enabled.IODeviceRegistrationExpirationDate);
+    
+};
 @end

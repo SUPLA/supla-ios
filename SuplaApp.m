@@ -34,6 +34,7 @@ NSString *kSAVersionErrorNotification = @"kSA-N08";
 NSString *kSAEventNotification = @"kSA-N09";
 NSString *kSAConnErrorNotification = @"kSA-N10";
 NSString *kSAChannelValueChangedNotification = @"KSA-N11";
+NSString *kSARegistrationEnabledNotification = @"KSA-N12";
 
 @implementation SAApp {
     
@@ -541,6 +542,10 @@ NSString *kSAChannelValueChangedNotification = @"KSA-N11";
 
 -(void)onEvent:(SAEvent*)event {
      [[NSNotificationCenter defaultCenter] postNotificationName:kSAEventNotification object:self userInfo:[[NSDictionary alloc] initWithObjects:@[event] forKeys:@[@"event"]]];
+}
+
+-(void)onRegistrationEnabled:(SARegistrationEnabled*)reg_enabled {
+    [[NSNotificationCenter defaultCenter] postNotificationName:kSARegistrationEnabledNotification object:self userInfo:[[NSDictionary alloc] initWithObjects:@[reg_enabled] forKeys:@[@"reg_enabled"]]];
 }
 
 -(void)onDataChanged {
