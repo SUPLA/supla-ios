@@ -606,5 +606,13 @@ void sasuplaclient_on_registration_enabled(void *_suplaclient, void *user_data, 
     }
 }
 
+- (int) getProtocolVersion {
+    int result = 0;
+    if ( _sclient ) {
+        result = supla_client_get_proto_version(_sclient);
+    }
+    return result;
+}
+
 
 @end

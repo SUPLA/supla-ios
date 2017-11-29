@@ -80,7 +80,7 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Settings" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Ji-Wu-NuM">
-                    <rect key="frame" x="94" y="35" width="132.5" height="50"/>
+                    <rect key="frame" x="94.5" y="35" width="132.5" height="50"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="50" id="Q4f-Ty-Dfg"/>
                     </constraints>
@@ -234,7 +234,7 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Settings" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="my9-Mc-v9S">
-                    <rect key="frame" x="94" y="35" width="132.5" height="50"/>
+                    <rect key="frame" x="94.5" y="35" width="132.5" height="50"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="50" id="lJ4-Wh-4OA"/>
                     </constraints>

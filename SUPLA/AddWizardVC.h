@@ -18,10 +18,23 @@
 
 #import <UIKit/UIKit.h>
 
+@interface SAConfigResult : NSObject
+
+@property(nonatomic) int resultCode;
+
+@property (copy, nonatomic) NSString *name;
+@property (copy, nonatomic) NSString *state;
+@property (copy, nonatomic) NSString *version;
+@property (copy, nonatomic) NSString *guid;
+@property (copy, nonatomic) NSString *mac;
+
+@end
+
+
 @protocol SASetConfOpDelegate <NSObject>
 
 @required
--(void)setConfigResult:(NSNumber*)result;
+-(void)configResult:(SAConfigResult*)result;
 @end
 
 @interface SASetConfigOperation : NSOperation
@@ -30,13 +43,14 @@
 @property (copy, nonatomic) NSString *PWD;
 @property (copy, nonatomic) NSString *Server;
 @property (copy, nonatomic) NSString *Email;
+
 @property(weak, nonatomic) id<SASetConfOpDelegate> delegate;
 @end
 
 @interface SAAddWizardVC : UIViewController <SASetConfOpDelegate>
 - (IBAction)nextTouchch:(id)sender;
 - (IBAction)cancelTouch:(id)sender;
-@property (weak, nonatomic) IBOutlet UIView *vStepContent;
+@property (weak, nonatomic) IBOutlet UIView *vPageContent;
 @property (strong, nonatomic) IBOutlet UIView *vStep1;
 @property (strong, nonatomic) IBOutlet UIView *vStep2;
 @property (strong, nonatomic) IBOutlet UIView *vStep3;
@@ -47,5 +61,13 @@
 @property (weak, nonatomic) IBOutlet UIButton *btnNext2;
 @property (weak, nonatomic) IBOutlet UIButton *btnNext1;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *btnNext3_width;
+@property (weak, nonatomic) IBOutlet UILabel *txtErrorMEssage;
+@property (weak, nonatomic) IBOutlet UITextField *edSSID;
+@property (weak, nonatomic) IBOutlet UITextField *edPassword;
+@property (weak, nonatomic) IBOutlet UISwitch *cbSavePassword;
+- (IBAction)pwdViewTouchDown:(id)sender;
+- (IBAction)pwdViewTouchCancel:(id)sender;
+@property (weak, nonatomic) IBOutlet UIImageView *vDot;
+- (IBAction)wifiSettingsTouch:(id)sender;
 
 @end

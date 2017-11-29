@@ -29,6 +29,31 @@
 #define RESULT_FAILED         0
 #define RESULT_SUCCESS        1
 
+#define STEP_NONE                              0
+#define STEP_CHECK_REGISTRATION_ENABLED_TRY1   1
+#define STEP_CHECK_REGISTRATION_ENABLED_TRY2   2
+#define STEP_CONFIGURE                         3
+#define STEP_DONE                              4
+
+#define PAGE_STEP_1  1
+#define PAGE_STEP_2  2
+#define PAGE_STEP_3  3
+#define PAGE_STEP_4  4
+#define PAGE_ERROR   5
+#define PAGE_DONE    6
+
+@implementation SAConfigResult
+
+@synthesize resultCode;
+
+@synthesize name;
+@synthesize state;
+@synthesize version;
+@synthesize guid;
+@synthesize mac;
+
+@end
+
 @implementation SASetConfigOperation {
     int _result;
 }
@@ -60,18 +85,20 @@
     return NO;
 }
 
--(void)_onOperationDone:(NSNumber*)result {
+-(void)_onOperationDone:(SAConfigResult*)result {
     if ( self.delegate != nil ) {
-        [self.delegate performSelector:@selector(setConfigResult:) withObject:result];
+        [self.delegate performSelector:@selector(configResult:) withObject:result];
     }
 };
 
-- (void)onOperationDone:(int)result {
-    [self performSelectorOnMainThread:@selector(_onOperationDone:) withObject:[NSNumber numberWithInt:result] waitUntilDone:NO];
+- (void)onOperationDone:(SAConfigResult*)result  {
+
+    [self performSelectorOnMainThread:@selector(_onOperationDone:) withObject:result waitUntilDone:NO];
 }
 
 - (void)main
 {
+    SAConfigResult *result = [[SAConfigResult alloc] init];
     
     if ( self.SSID == nil
         || self.SSID.length == 0
@@ -82,12 +109,14 @@
         || self.Email == nil
         || self.Email.length == 0 ) {
         
-        [self onOperationDone:RESULT_PARAM_ERROR];
+        result.resultCode = RESULT_PARAM_ERROR;
+        [self onOperationDone:result];
         return;
     };
     
     NSData *response = nil;
     NSError *requestError = nil;
+
     int retryCount = 5;
     
     do {
@@ -115,15 +144,10 @@
     } while(retryCount > 0);
     
     if ( requestError != nil || response == nil ) {
-        [self onOperationDone:RESULT_CONN_ERROR];
+        result.resultCode = RESULT_CONN_ERROR;
+        [self onOperationDone:result];
         return;
     }
-        
-    NSString *name = nil;
-    NSString *state = nil;
-    NSString *version = nil;
-    NSString *guid = nil;
-    NSString *mac = nil;
     
     {
         NSString *html = [[NSString alloc] initWithData:response encoding:NSUTF8StringEncoding];
@@ -137,11 +161,11 @@
             NSTextCheckingResult *match = [matches objectAtIndex:0];
             if ([match numberOfRanges] == 6) {
                 
-                name = [html substringWithRange:[match rangeAtIndex:1]];
-                state = [html substringWithRange:[match rangeAtIndex:2]];
-                version = [html substringWithRange:[match rangeAtIndex:3]];
-                guid = [html substringWithRange:[match rangeAtIndex:4]];
-                mac = [html substringWithRange:[match rangeAtIndex:5]];
+                result.name = [html substringWithRange:[match rangeAtIndex:1]];
+                result.state = [html substringWithRange:[match rangeAtIndex:2]];
+                result.version = [html substringWithRange:[match rangeAtIndex:3]];
+                result.guid = [html substringWithRange:[match rangeAtIndex:4]];
+                result.mac = [html substringWithRange:[match rangeAtIndex:5]];
                 
             }
         }
@@ -149,7 +173,7 @@
     
     NSMutableDictionary *fields = [[NSMutableDictionary alloc] init];
     
-    if ( name != nil ) {
+    if ( result.name != nil ) {
         
         TFHpple *doc = [[TFHpple alloc] initWithHTMLData:response];
         NSArray *inputs = [doc searchWithXPathQuery:@"//input"];
@@ -202,7 +226,9 @@
         || [fields objectForKey:@"svr"] == nil
         || [fields objectForKey:@"eml"] == nil ) {
         
-        [self onOperationDone:RESULT_COMPAT_ERROR];
+        result.resultCode = RESULT_COMPAT_ERROR;
+        [self onOperationDone:result];
+        
         return;
         
     }
@@ -224,7 +250,9 @@
         if ( [self postDataWithFields:fields] ) {
             
             [fields setObject:@"1" forKey:@"rbt"];
-            [self onOperationDone:RESULT_SUCCESS];
+
+            result.resultCode = RESULT_SUCCESS;
+            [self onOperationDone:result];
             
             return;
             
@@ -239,16 +267,21 @@
     }while(retryCount > 0);
     
     
-    [self onOperationDone:RESULT_FAILED];
+    result.resultCode = RESULT_FAILED;
+    [self onOperationDone:result];
 }
 
 @end
 
 @implementation SAAddWizardVC {
     NSTimer *_preloaderTimer;
+    NSTimer *_watchDogTimer;
+    NSTimer *_blinkTimer;
     int _preloaderPos;
     NSOperationQueue *_OpQueue;
-    int _x;
+    NSDate *_stepTime;
+    int _step;
+    int _pageId;
 }
 
 -(NSOperationQueue *)OpQueue {
@@ -264,25 +297,61 @@
     // Do any additional setup after loading the view from its nib.
 }
 
--(void)showStepView:(UIView*)stepView {
-    
-    for(UIView *subview in self.vStepContent.subviews) {
-        [subview removeFromSuperview];
-    }
-    
-    stepView.autoresizingMask = (UIViewAutoresizingFlexibleWidth |
-                                  UIViewAutoresizingFlexibleHeight);
-    stepView.frame =  self.vStepContent.frame;
-    [self.vStepContent addSubview:stepView];
-}
-
 -(void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [[SAApp UI] showMenuBtn:NO];
     
-    _x = 1;
-    [self showStepView:self.vStep1];
+    [self cleanUp];
+    [self loadPrefs];
+    
+    self.edSSID.layer.cornerRadius = 5.0;
+    self.edSSID.layer.borderWidth = 2;
+    self.edSSID.layer.borderColor = [UIColor whiteColor].CGColor;
+    
+    self.edPassword.layer.cornerRadius = 5.0;
+    self.edPassword.layer.borderWidth = 2;
+    self.edPassword.layer.borderColor = self.edPassword.backgroundColor.CGColor;
+    
+    if ( [SAApp getAdvancedConfig] == YES ) {
+        [self showError:NSLocalizedString(@"Add Wizard is only available when server connection has been set based on the email address entered in the settings.", NULL)];
+        return;
+    } else {
+        int version = [[SAApp SuplaClient] getProtocolVersion];
+        if ( version > 0 && version < 7 ) {
+            [self showError:NSLocalizedString(@"The connected Server does not support this function!", NULL)];
+            return;
+        }
+    }
+    
+    [self showPage:PAGE_STEP_1];
+    
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(onRegistrationEnabled:) name:kSARegistrationEnabledNotification object:nil];
+
+    _watchDogTimer = [NSTimer scheduledTimerWithTimeInterval:1 repeats:YES block:^(NSTimer *timer) {
+
+        int timeout = 0;
+        
+        switch(_step) {
+            case STEP_CHECK_REGISTRATION_ENABLED_TRY1:
+            case STEP_CHECK_REGISTRATION_ENABLED_TRY2:
+                timeout = 3;
+                break;
+            case STEP_CONFIGURE:
+                timeout = 50;
+                break;
+        }
+        
+        if ( timeout > 0
+            && _stepTime != nil
+            && [[NSDate date] timeIntervalSinceDate:_stepTime] >= timeout ) {
+            
+            [self onWatchDogTimeout];
+            
+        }
+        
+    }];
+
+
 }
 
 -(void)viewDidDisappear:(BOOL)animated  {
@@ -291,6 +360,146 @@
     [super viewDidDisappear:animated];
     
     [[NSNotificationCenter defaultCenter]  removeObserver:self];
+    [self savePrefs];
+}
+
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    [self.view endEditing:YES];
+}
+
+-(void) cleanUp {
+    if ( _watchDogTimer != nil ) {
+        [_watchDogTimer invalidate];
+        _watchDogTimer = nil;
+    }
+    
+    if ( _blinkTimer != nil ) {
+        [_blinkTimer invalidate];
+        _blinkTimer = nil;
+    }
+}
+
+-(void) loadPrefs {
+    
+    NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
+    
+    [self.edSSID setText:[prefs stringForKey:@"wizard_ssid"]];
+
+    if ( [prefs boolForKey:@"wizard_pwd_save"] ) {
+        [self.cbSavePassword setOn:YES];
+        [self.edPassword setText:[prefs stringForKey:@"wizard_pwd"]];
+    } else {
+        [self.cbSavePassword setOn:NO];
+        [self.edPassword setText:@""];
+    }
+    
+}
+
+-(void) savePrefs {
+    
+    NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
+    
+    [prefs setBool:self.cbSavePassword.isOn forKey:@"wizard_pwd_save"];
+    [prefs setValue:self.edSSID.text forKey:@"wizard_ssid"];
+    [prefs setValue:self.cbSavePassword.isOn ? self.edPassword.text : @"" forKey:@"wizard_pwd"];
+    
+}
+
+-(void) onWatchDogTimeout {
+    
+    [_OpQueue cancelAllOperations];
+    
+    switch(_step) {
+        case STEP_CHECK_REGISTRATION_ENABLED_TRY1:
+            [self setStep:STEP_CHECK_REGISTRATION_ENABLED_TRY2];
+            [[SAApp SuplaClient] getRegistrationEnabled];
+            break;
+        case STEP_CHECK_REGISTRATION_ENABLED_TRY2:
+            [self showError:NSLocalizedString(@"Device registration availability information timeout!", NULL)];
+            break;
+        
+        case STEP_CONFIGURE:
+            [self showError:NSLocalizedString(@"Device Configuration Completion timeout!", NULL)];
+            break;
+    }
+}
+
+-(void)setStep:(int)step {
+    
+    if ( step == STEP_DONE || step == STEP_NONE ) {
+        _stepTime = nil;
+    } else {
+        _stepTime = [NSDate date];
+    }
+    
+    _step = step;
+}
+
+-(void)btnNextEnabled:(BOOL)enabled {
+    self.btnNext1.enabled = enabled;
+    self.btnNext2.enabled = enabled;
+    self.btnNext3.enabled = enabled;
+}
+
+-(void)showPageView:(UIView*) pageView {
+    
+    for(UIView *subview in self.vPageContent.subviews) {
+        [subview removeFromSuperview];
+    }
+    
+    pageView.autoresizingMask = (UIViewAutoresizingFlexibleWidth |
+                                 UIViewAutoresizingFlexibleHeight);
+    pageView.frame =  self.vPageContent.frame;
+    
+    [self.vPageContent addSubview:    pageView];
+}
+
+-(void)showPage:(int)page {
+    
+    [self setStep:STEP_NONE];
+    [self btnNextEnabled:YES];
+    [self preloaderVisible:NO];
+    [self.btnNext2 setAttributedTitle:NSLocalizedString(@"Next", NULL)];
+    
+    switch(page) {
+        case PAGE_STEP_1:
+            [self showPageView:self.vStep1];
+            break;
+        case PAGE_STEP_2:
+            [self showPageView:self.vStep2];
+            break;
+        case PAGE_STEP_3:
+        {
+            _blinkTimer = [NSTimer scheduledTimerWithTimeInterval:0.1 repeats:YES block:^(NSTimer *timer) {
+                
+                if ( _pageId == PAGE_STEP_3 ) {
+                    self.vDot.hidden = !self.vDot.hidden;
+                }
+                
+            }];
+            
+            [self showPageView:self.vStep3];
+        }
+            break;
+        case PAGE_STEP_4:
+            [self showPageView:self.vStep4];
+            break;
+        case PAGE_ERROR:
+            [self showPageView:self.vError];
+            break;
+        case PAGE_DONE:
+            [self showPageView:self.vDone];
+            break;
+    }
+    
+    _pageId = page;
+
+}
+
+- (void)showError:(NSString *)message {
+    self.txtErrorMEssage.text = message;
+    [self showPage:PAGE_ERROR];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -298,8 +507,26 @@
     // Dispose of any resources that can be recreated.
 }
 
--(void)setConfigResult:(NSNumber*)result {
-    NSLog(@"Result: %@", result);
+-(void)configResult:(SAConfigResult*)result {
+    
+    switch(result.resultCode) {
+        case RESULT_PARAM_ERROR:
+            [self showError:NSLocalizedString(@"Incorrect input parameters!", NULL)];
+            break;
+        case RESULT_COMPAT_ERROR:
+            [self showError:NSLocalizedString(@"The connected device is not compatible with this Wizard!", NULL)];
+            break;
+        case RESULT_CONN_ERROR:
+            [self showError:NSLocalizedString(@"Connection with the device cannot be set!", NULL)];
+            break;
+        case RESULT_FAILED:
+            [self showError:NSLocalizedString(@"Configuration Failed!", NULL)];
+            break;
+        case RESULT_SUCCESS:
+            [self showPage:PAGE_DONE];
+            break;
+    }
+    
 }
 
 
@@ -344,96 +571,134 @@
         
         _btnNext3_width.constant = 40;
         [self.btnNext3 setBackgroundImage:[UIImage imageNamed:@"btnnextr.png"]];
+        [self.btnNext2 setAttributedTitle:NSLocalizedString(@"Next", NULL)];
         
     }
     
 }
 
-- (IBAction)nextTouchch:(id)sender {
-
-    /*
-     [self.OpQueue cancelAllOperations];
-     SASetConfigOperation *setConfigOp = [[SASetConfigOperation alloc] init];
-     setConfigOp.delegate = self;
-     [self.OpQueue addOperation:setConfigOp];
-     */
-    
-    /*
-    NSArray * networkInterfaces = [NEHotspotHelper supportedNetworkInterfaces];
-    NSLog(@"Networks %@",networkInterfaces);
-     */
-    
-    [self preloaderVisible:YES];
-    [[SAApp SuplaClient] getRegistrationEnabled];
-    return;
-    
-    _x++;
-    
-    if ( _x > 6 ) _x = 1;
-    
-    switch(_x) {
-        case 1:
-            [self showStepView:self.vStep1];
-            break;
-        case 2:
-            [self showStepView:self.vStep2];
-            break;
-        case 3:
-            [self showStepView:self.vStep3];
-            break;
-        case 4:
-        {
-            [self showStepView:self.vStep4];
-            break;
-            /*
-            NSURL * urlCheck1 = [NSURL URLWithString:@"App-Prefs:root=WIFI"];
-            NSURL * urlCheck2 = [NSURL URLWithString:@"prefs:root=WIFI"];
-            NSURL * urlCheck3 = [NSURL URLWithString:UIApplicationOpenSettingsURLString];
-            
-            if ([[UIApplication sharedApplication] canOpenURL:urlCheck1])
-            {
-                [[UIApplication sharedApplication] openURL:urlCheck1];
-            }
-            else if ([[UIApplication sharedApplication] canOpenURL:urlCheck2])
-            {
-                [[UIApplication sharedApplication] openURL:urlCheck2];
-            }
-            else if ([[UIApplication sharedApplication] canOpenURL:urlCheck3])
-            {
-                [[UIApplication sharedApplication] openURL:urlCheck3];
-            }
-            else
-            {
-                NSLog(@"Unable to open settings app.");
-            }
-             */
-        }
-            break;
-        case 5:
-            [self showStepView:self.vError];
-            break;
-        case 6:
-            [self showStepView:self.vDone];
-            break;
-    }
-
-        
-}
-
-- (IBAction)cancelTouch:(id)sender {
-    [self preloaderVisible:NO];
-   // [[SAApp UI] showMainVC];
+-(NSString*)cloudHostName {
+   return [[[SAApp getServerHostName] lowercaseString] containsString:@"supla.org"] ? @"cloud.supla.org" : [SAApp getServerHostName];
 }
 
 - (void)onRegistrationEnabled:(NSNotification *)notification {
     
-    if ( notification.userInfo == nil ) return;
-    
-    SARegistrationEnabled *reg_enabled = (SARegistrationEnabled *)[notification.userInfo objectForKey:@"reg_enabled"];
-    
-    if ( reg_enabled == nil ) return;
-    
-    NSLog(@"RegEnabled %@, %@", reg_enabled.ClientRegistrationExpirationDate, reg_enabled.IODeviceRegistrationExpirationDate);
+    if ( notification.userInfo != nil )  {
+        SARegistrationEnabled *reg_enabled = (SARegistrationEnabled *)[notification.userInfo objectForKey:@"reg_enabled"];
+        
+        if ( reg_enabled != nil ) {
+            
+            if ( [reg_enabled isIODeviceRegistrationEnabled] ) {
+                [self showPage:PAGE_STEP_3];
+            } else {
+                [self showError:[NSString stringWithFormat:NSLocalizedString(@"I/O Device registration is currently off. To continue go to „I/O Devices” at %@ and enable the Device Add Button.", NULL), self.cloudHostName]];
+            }
+            
+        };
+    }
     
 };
+
+- (IBAction)nextTouchch:(id)sender {
+
+    [self preloaderVisible:YES];
+    [self btnNextEnabled:NO];
+    
+    switch(_pageId) {
+        case PAGE_STEP_1:
+            [self showPage:PAGE_STEP_2];
+            break;
+            
+        case PAGE_STEP_2:
+        {
+            BOOL goNext = YES;
+            
+            if ( [self.edSSID.text isEqualToString:@""] ) {
+                self.edSSID.layer.borderColor = [UIColor redColor].CGColor;
+                goNext = NO;
+            }
+            
+            if ( [self.edPassword.text isEqualToString:@""] ) {
+                self.edPassword.layer.borderColor = [UIColor redColor].CGColor;
+                goNext = NO;
+            }
+            
+            if ( goNext ) {
+                [self savePrefs];
+                [self setStep:STEP_CHECK_REGISTRATION_ENABLED_TRY1];
+                [[SAApp SuplaClient] getRegistrationEnabled];
+            } else {
+                [self preloaderVisible:NO];
+                [self btnNextEnabled:YES];
+            }
+            
+        }
+
+            break;
+        case PAGE_STEP_3:
+            [self showPage:PAGE_STEP_4];
+            [self.btnNext2 setAttributedTitle:NSLocalizedString(@"Start", NULL)];
+            break;
+        case PAGE_STEP_4:
+        {
+            [self setStep:STEP_CONFIGURE];
+            
+            [self.OpQueue cancelAllOperations];
+            SASetConfigOperation *setConfigOp = [[SASetConfigOperation alloc] init];
+            setConfigOp.SSID = self.edSSID.text;
+            setConfigOp.PWD = self.edPassword.text;
+            setConfigOp.Server = [SAApp getServerHostName];
+            setConfigOp.Email = [SAApp getEmailAddress];
+            setConfigOp.delegate = self;
+            [self.OpQueue addOperation:setConfigOp];
+        }
+            break;
+        case PAGE_DONE:
+        case PAGE_ERROR:
+            [self cancelTouch:nil];
+            break;
+    }
+    
+}
+
+- (IBAction)cancelTouch:(id)sender {
+    [self cleanUp];
+    [self.OpQueue cancelAllOperations];
+    [self savePrefs];
+    [[SAApp UI] showMainVC];
+    [[SAApp SuplaClient] reconnect];
+}
+
+
+- (IBAction)pwdViewTouchDown:(id)sender {
+    self.edPassword.secureTextEntry = NO;
+}
+
+- (IBAction)pwdViewTouchCancel:(id)sender {
+    self.edPassword.secureTextEntry = YES;
+}
+- (IBAction)wifiSettingsTouch:(id)sender {
+    
+    NSURL * urlCheck1 = [NSURL URLWithString:@"App-Prefs:root=WIFI"];
+    NSURL * urlCheck2 = [NSURL URLWithString:@"prefs:root=WIFI"];
+    NSURL * urlCheck3 = [NSURL URLWithString:UIApplicationOpenSettingsURLString];
+    
+    if ([[UIApplication sharedApplication] canOpenURL:urlCheck1])
+    {
+        [[UIApplication sharedApplication] openURL:urlCheck1];
+    }
+    else if ([[UIApplication sharedApplication] canOpenURL:urlCheck2])
+    {
+        [[UIApplication sharedApplication] openURL:urlCheck2];
+    }
+    else if ([[UIApplication sharedApplication] canOpenURL:urlCheck3])
+    {
+        [[UIApplication sharedApplication] openURL:urlCheck3];
+    }
+    else
+    {
+        NSLog(@"Unable to open settings app.");
+    }
+    
+}
 @end

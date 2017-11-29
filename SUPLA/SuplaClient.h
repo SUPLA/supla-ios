@@ -87,4 +87,5 @@
 - (void) channel:(int)ChannelID Open:(char)open;
 - (BOOL) channel:(int)ChannelID setRGB:(UIColor*)color colorBrightness:(int)color_brightness brightness:(int)brightness;
 - (void) getRegistrationEnabled;
+- (int) getProtocolVersion;
 @end

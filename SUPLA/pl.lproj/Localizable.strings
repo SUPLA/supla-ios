@@ -75,3 +75,19 @@
 "Add I/O device" = "Dodaj urządzenie";
 "Donate" = "Wesprzyj projekt";
 "Create an account" = "Utwórz konto";
+
+"Device registration availability information timeout!" = "";
+"Next" = "";
+"Start" = "";
+"I/O Device registration is currently off. To continue go to „I/O Devices” at %@ and enable the Device Add Button." = "";
+"Add Wizard is only available when server connection has been set based on the email address entered in the settings." = "";
+"The connected Server does not support this function!" = "";
+"Device Configuration Completion timeout!" = "";
+"Incorrect input parameters!" = "";
+"The connected device is not compatible with this Wizard!" = "";
+"Configuration Failed!" = "";
+
+"Incorrect input parameters!" = "";
+"The connected device is not compatible with this Wizard!" = "";
+"Connection with the device cannot be set!" = "";
+"Configuration Failed!" = "";
