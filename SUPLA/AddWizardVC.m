@@ -245,6 +245,8 @@
 @end
 
 @implementation SAAddWizardVC {
+    NSTimer *_preloaderTimer;
+    int _preloaderPos;
     NSOperationQueue *_OpQueue;
     int _x;
 }
@@ -284,6 +286,7 @@
 
 -(void)viewDidDisappear:(BOOL)animated  {
     [self.OpQueue cancelAllOperations];
+    [self preloaderVisible:NO];
     [super viewDidDisappear:animated];
 }
 
@@ -296,6 +299,52 @@
     NSLog(@"Result: %@", result);
 }
 
+
+
+-(void)preloaderVisible:(BOOL)visible {
+    
+    if ( _preloaderTimer ) {
+        _preloaderPos = -1;
+        [_preloaderTimer invalidate];
+        _preloaderTimer = nil;
+    }
+    
+    if ( visible ) {
+        
+        _preloaderPos = 0;
+        
+        _btnNext3_width.constant = 17;
+        [self.btnNext3 setBackgroundImage:[UIImage imageNamed:@"btnnextr2.png"]];
+        
+        _preloaderTimer = [NSTimer scheduledTimerWithTimeInterval:0.1 repeats:YES block:^(NSTimer *timer) {
+            
+            if ( _preloaderPos == -1 ) {
+                return;
+            }
+            
+            NSString *str = @"";
+            
+            for(int a=0;a<10;a++) {
+                str = [NSString stringWithFormat:@"%@%@", str, _preloaderPos == a ? @"|" : @"."];
+            }
+            
+            _preloaderPos++;
+            if ( _preloaderPos > 9 ) {
+                _preloaderPos = 0;
+            }
+            
+            [self.btnNext2 setAttributedTitle:str];
+            
+        }];
+        
+    } else {
+        
+        _btnNext3_width.constant = 40;
+        [self.btnNext3 setBackgroundImage:[UIImage imageNamed:@"btnnextr.png"]];
+        
+    }
+    
+}
 
 - (IBAction)nextTouchch:(id)sender {
 
@@ -311,9 +360,12 @@
     NSLog(@"Networks %@",networkInterfaces);
      */
     
+    [self preloaderVisible:YES];
+    return;
+    
     _x++;
     
-    if ( _x > 4 ) _x = 1;
+    if ( _x > 6 ) _x = 1;
     
     switch(_x) {
         case 1:
@@ -353,12 +405,19 @@
              */
         }
             break;
+        case 5:
+            [self showStepView:self.vError];
+            break;
+        case 6:
+            [self showStepView:self.vDone];
+            break;
     }
 
         
 }
 
 - (IBAction)cancelTouch:(id)sender {
-    [[SAApp UI] showMainVC];
+    [self preloaderVisible:NO];
+   // [[SAApp UI] showMainVC];
 }
 @end

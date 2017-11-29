@@ -18,6 +18,7 @@
 
 #import "SettingsVC.h"
 #import "SuplaApp.h"
+#import "SAClassHelper.h"
 
 @interface SASettingsVC ()
 
@@ -40,17 +41,7 @@
     [self.edAccessIDpwd setText:[SAApp getAccessIDpwd]];
 
 
-    NSMutableAttributedString *astr = [[NSMutableAttributedString alloc] initWithAttributedString: self.btnCreate.currentAttributedTitle];
-    
-    [astr.mutableString setString:NSLocalizedString(@"Create an account", nil)];
-    
-    [self.btnCreate setAttributedTitle:astr forState:UIControlStateNormal];
-    [self.btnCreate setAttributedTitle:astr forState:UIControlStateHighlighted];
-    [self.btnCreate setAttributedTitle:astr forState:UIControlStateSelected];
-    [self.btnCreate setAttributedTitle:astr forState:UIControlStateDisabled];
-    
-    
-
+    [self.btnCreate setAttributedTitle:NSLocalizedString(@"Create an account", nil)];
     
 }
 

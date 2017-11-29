@@ -41,5 +41,11 @@
 @property (strong, nonatomic) IBOutlet UIView *vStep2;
 @property (strong, nonatomic) IBOutlet UIView *vStep3;
 @property (strong, nonatomic) IBOutlet UIView *vStep4;
+@property (strong, nonatomic) IBOutlet UIView *vError;
+@property (strong, nonatomic) IBOutlet UIView *vDone;
+@property (weak, nonatomic) IBOutlet UIButton *btnNext3;
+@property (weak, nonatomic) IBOutlet UIButton *btnNext2;
+@property (weak, nonatomic) IBOutlet UIButton *btnNext1;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *btnNext3_width;
 
 @end

@@ -20,9 +20,16 @@
 #define SAClassHelper_h
 
 #import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
 @interface NSDictionary (SUPLA)
--(NSString*) urlEncodedString;
+-(NSString*_Nullable) urlEncodedString;
+@end
+
+@interface UIButton (SUPLA)
+- (void)setTitle:(nullable NSString *)title;
+- (void)setAttributedTitle:(nullable NSString *)title;
+- (void)setBackgroundImage:(UIImage *_Nullable)image;
 @end
 
 #endif /* SAClassHelper_h */

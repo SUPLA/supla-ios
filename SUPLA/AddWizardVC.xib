@@ -16,6 +16,12 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SAAddWizardVC">
             <connections>
+                <outlet property="btnNext1" destination="TGR-gA-tNb" id="ASk-aX-u0X"/>
+                <outlet property="btnNext2" destination="fGm-C1-0WE" id="5MR-Br-tyr"/>
+                <outlet property="btnNext3" destination="kEz-V1-szv" id="lT1-1s-oJf"/>
+                <outlet property="btnNext3_width" destination="dZQ-BU-BdR" id="dGT-fN-sqd"/>
+                <outlet property="vDone" destination="O29-9p-F9i" id="6P8-NS-uif"/>
+                <outlet property="vError" destination="uTS-MU-A22" id="2u6-h2-H0I"/>
                 <outlet property="vStep1" destination="7B1-OE-46N" id="vfq-tH-ZQz"/>
                 <outlet property="vStep2" destination="S8z-fu-dma" id="p64-KM-JgZ"/>
                 <outlet property="vStep3" destination="x6e-cq-S7L" id="ayf-sO-S2j"/>
