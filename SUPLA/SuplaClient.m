@@ -65,7 +65,7 @@ void sasuplaclient_on_registered(void *_suplaclient, void *user_data, TSC_SuplaR
     
     SASuplaClient *sc = (__bridge SASuplaClient*)user_data;
     if ( sc != nil )
-        [sc onRegistered:[SARegResult RegResultClientID:result->ClientID locationCount:result->LocationCount channelCount:result->ChannelCount]];
+        [sc onRegistered:[SARegResult RegResultClientID:result->ClientID locationCount:result->LocationCount channelCount:result->ChannelCount version:result->version]];
     
 }
 
@@ -138,13 +138,15 @@ void sasuplaclient_on_registration_enabled(void *_suplaclient, void *user_data, 
 @synthesize ClientID;
 @synthesize LocationCount;
 @synthesize ChannelCount;
+@synthesize Version;
 
-+ (SARegResult*) RegResultClientID:(int) clientID locationCount:(int) location_count channelCount:(int) channel_count {
++ (SARegResult*) RegResultClientID:(int) clientID locationCount:(int) location_count channelCount:(int) channel_count version:(int)version {
     SARegResult *rr = [[SARegResult alloc] init];
     
     rr.ClientID = clientID;
     rr.LocationCount = location_count;
     rr.ChannelCount = channel_count;
+    rr.Version = version;
     
     return rr;
 }
@@ -208,6 +210,7 @@ void sasuplaclient_on_registration_enabled(void *_suplaclient, void *user_data, 
     void *_sclient;
     int _client_id;
     BOOL _connected;
+    int _regTryCounter;
 }
 @end
 
@@ -218,6 +221,7 @@ void sasuplaclient_on_registration_enabled(void *_suplaclient, void *user_data, 
 - (id)init {
     self = [super init];
     _sclient = NULL;
+    _regTryCounter = 0;
     
     return self;
 }
@@ -277,6 +281,11 @@ void sasuplaclient_on_registration_enabled(void *_suplaclient, void *user_data, 
     if ( [SAApp getAdvancedConfig] ) {
         scc.AccessID = [SAApp getAccessID];
         snprintf(scc.AccessIDpwd, SUPLA_ACCESSID_PWD_MAXSIZE, "%s", [[SAApp getAccessIDpwd] UTF8String]);
+        
+        if ( _regTryCounter >= 2 ) {
+            [SAApp setPreferedProtocolVersion:4]; // supla-server v1.0 for Raspberry Compatibility fix
+        }
+        
     } else {
        snprintf(scc.Email, SUPLA_EMAIL_MAXSIZE, "%s", [[SAApp getEmailAddress] UTF8String]);
     }
@@ -296,6 +305,8 @@ void sasuplaclient_on_registration_enabled(void *_suplaclient, void *user_data, 
     scc.cb_channel_value_update = sasuplaclient_channel_value_update;
     scc.cb_on_event = sasuplaclient_on_event;
     scc.cb_on_registration_enabled = sasuplaclient_on_registration_enabled;
+    
+    scc.protocol_version = [SAApp getPreferedProtocolVersion];
     
     return supla_client_init(&scc);
 
@@ -376,6 +387,20 @@ void sasuplaclient_on_registration_enabled(void *_suplaclient, void *user_data, 
 }
 
 - (void) onVersionError:(SAVersionError*)ve {
+    
+    _regTryCounter = 0;
+    
+    if ( ([SAApp getAdvancedConfig] || ve.remoteVersion >= 7)
+        && ve.remoteVersion >= 5
+        && ve.version > ve.remoteVersion
+        && [SAApp getPreferedProtocolVersion] != ve.remoteVersion ) {
+        
+        [SAApp setPreferedProtocolVersion:ve.remoteVersion];
+        [self reconnect];
+        return;
+    }
+    
+    
     [self performSelectorOnMainThread:@selector(_onVersionError:)
                            withObject:ve waitUntilDone:NO];
 }
@@ -414,6 +439,7 @@ void sasuplaclient_on_registration_enabled(void *_suplaclient, void *user_data, 
 }
 
 - (void) onRegistering {
+    _regTryCounter++;
    [self performSelectorOnMainThread:@selector(_onRegistering) withObject:nil waitUntilDone:NO];
 }
 
@@ -422,8 +448,7 @@ void sasuplaclient_on_registration_enabled(void *_suplaclient, void *user_data, 
 }
 
 - (void) onRegisterError:(int)code {
-    
-
+     _regTryCounter = 0;
     [self performSelectorOnMainThread:@selector(_onRegisterError:) withObject:[NSNumber numberWithInt:code] waitUntilDone:NO];
 }
 
@@ -432,6 +457,16 @@ void sasuplaclient_on_registration_enabled(void *_suplaclient, void *user_data, 
 }
 
 - (void) onRegistered:(SARegResult*)result {
+
+    _regTryCounter = 0;
+    
+    if ( [SAApp getPreferedProtocolVersion] < SUPLA_PROTO_VERSION
+         && result.Version > [SAApp getPreferedProtocolVersion]
+        && result.Version <= SUPLA_PROTO_VERSION ) {
+        
+        [SAApp setPreferedProtocolVersion:result.Version];
+        
+    };
     
     if ( result.ChannelCount == 0
          && [self.DB setChannelsVisible:0 WhereVisibilityIs:2] ) {

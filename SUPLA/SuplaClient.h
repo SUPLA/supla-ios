@@ -34,9 +34,9 @@
 @property (nonatomic)int ClientID;
 @property (nonatomic)int LocationCount;
 @property (nonatomic)int ChannelCount;
+@property (nonatomic)int Version;
 
-
-+ (SARegResult*) RegResultClientID:(int) clientID locationCount:(int) location_count channelCount:(int) channel_count;
++ (SARegResult*) RegResultClientID:(int) clientID locationCount:(int) location_count channelCount:(int) channel_count version:(int)version;
 
 @end
 

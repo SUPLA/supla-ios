@@ -54,6 +54,9 @@
 +(void) SuplaClientWaitForTerminate;
 +(BOOL) SuplaClientConnected;
 
++(void) setPreferedProtocolVersion:(int)version;
++(int) getPreferedProtocolVersion;
+
 -(void)onDataChanged;
 -(void)onChannelValueChanged:(NSNumber*)ChannelId;
 -(void)onConnecting;

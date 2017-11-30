@@ -276,6 +276,32 @@ NSString *kSARegistrationEnabledNotification = @"KSA-N12";
     
 }
 
+-(int)getPreferedProtocolVersion {
+    
+    int result = 0;
+    
+    @synchronized(self) {
+       result = (int)[[NSUserDefaults standardUserDefaults] integerForKey:@"pref_proto_version"];
+    }
+    
+    return result == 0 ? SUPLA_PROTO_VERSION : result;
+}
+
++(int) getPreferedProtocolVersion {
+   return [[self instance] getPreferedProtocolVersion];
+}
+
+-(void)setPreferedProtocolVersion:(int)version {
+        
+    @synchronized(self) {
+        [[NSUserDefaults standardUserDefaults] setInteger:version forKey:@"pref_proto_version"];
+    }
+}
+
++(void) setPreferedProtocolVersion:(int)version {
+    [[self instance] setPreferedProtocolVersion: version];
+}
+
 + (NSURL *)applicationDocumentsDirectory {
     return [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
 }
