@@ -69,5 +69,9 @@
 - (IBAction)pwdViewTouchCancel:(id)sender;
 @property (weak, nonatomic) IBOutlet UIImageView *vDot;
 - (IBAction)wifiSettingsTouch:(id)sender;
+@property (weak, nonatomic) IBOutlet UILabel *lName;
+@property (weak, nonatomic) IBOutlet UILabel *lFirmware;
+@property (weak, nonatomic) IBOutlet UILabel *lMAC;
+@property (weak, nonatomic) IBOutlet UILabel *lLastState;
 
 @end

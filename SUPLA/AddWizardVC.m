@@ -517,7 +517,7 @@
             [self showError:NSLocalizedString(@"The connected device is not compatible with this Wizard!", NULL)];
             break;
         case RESULT_CONN_ERROR:
-            [self showError:NSLocalizedString(@"Connection with the device cannot be set!", NULL)];
+            [self showError:NSLocalizedString(@"Connection with the device cannot be set! Make sure, if the Wi-fi connection has been set for the I/O device.", NULL)];
             break;
         case RESULT_FAILED:
             [self showError:NSLocalizedString(@"Configuration Failed!", NULL)];
