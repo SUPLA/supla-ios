@@ -43,6 +43,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (double) doubleValue;
 - (double) temperatureValue;
 - (double) humidityValue;
+- (int) percentValue;
 - (NSString *)getChannelCaption;
 - (int) getBrightness;
 - (int) getColorBrightness;

@@ -89,5 +89,8 @@
 
 "Incorrect input parameters!" = "";
 "The connected device is not compatible with this Wizard!" = "";
-"Connection with the device cannot be set!" = "";
+/// -----
+"Connection with the device cannot be set! Make sure, if the Wi-fi connection has been set for the I/O device." = "";
+// ------
 "Configuration Failed!" = "";
+"[Calibration]" = "";

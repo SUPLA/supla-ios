@@ -17,7 +17,16 @@
  */
 
 #import "DetailView.h"
+#import "SARollerShutter.h"
 
-@interface SARSDetailView : SADetailView
+@interface SARSDetailView : SADetailView <SARollerShutterDelegate>
+- (IBAction)upTouch:(id)sender;
+- (IBAction)downTouch:(id)sender;
+- (IBAction)stopTouch:(id)sender;
+- (IBAction)openTouch:(id)sender;
+- (IBAction)closeTouch:(id)sender;
+@property (weak, nonatomic) IBOutlet UILabel *labelCaption;
+@property (weak, nonatomic) IBOutlet UILabel *labelPercent;
+@property (weak, nonatomic) IBOutlet SARollerShutter *rsView;
 
 @end

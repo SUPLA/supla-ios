@@ -93,7 +93,6 @@
 		409934AA1F30C025003110C5 /* SAColorListItem+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 409934A71F30C025003110C5 /* SAColorListItem+CoreDataClass.m */; };
 		409934AB1F30C025003110C5 /* SAColorListItem+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 409934A91F30C025003110C5 /* SAColorListItem+CoreDataProperties.m */; };
 		409934B61F30EF9C003110C5 /* RSDetailView.m in Sources */ = {isa = PBXBuildFile; fileRef = 409934B51F30EF9C003110C5 /* RSDetailView.m */; };
-		409934C11F30F2F2003110C5 /* RSDetail.xib in Resources */ = {isa = PBXBuildFile; fileRef = 409934C01F30F2F2003110C5 /* RSDetail.xib */; };
 		40A6757F1BA1A5B6004A51C4 /* SuplaApp.m in Sources */ = {isa = PBXBuildFile; fileRef = 40A6757E1BA1A5B6004A51C4 /* SuplaApp.m */; };
 		40A675831BA1BE8E004A51C4 /* SettingsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 40A675811BA1BE8E004A51C4 /* SettingsVC.m */; };
 		40A87DDF1FADDFF900918B54 /* donate@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 40A87DDD1FADDFF800918B54 /* donate@2x.png */; };
@@ -211,6 +210,7 @@
 		40E8BE891FC06A5600FB2FE6 /* TFHppleElement.m in Sources */ = {isa = PBXBuildFile; fileRef = 40E8BE851FC06A5500FB2FE6 /* TFHppleElement.m */; };
 		40E8BE8A1FC06A5600FB2FE6 /* XPathQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = 40E8BE871FC06A5600FB2FE6 /* XPathQuery.m */; };
 		40E8BE8D1FC06B4200FB2FE6 /* libxml2.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 40E8BE8B1FC06B2000FB2FE6 /* libxml2.tbd */; };
+		40F951451FD0654900698587 /* RSDetail.xib in Resources */ = {isa = PBXBuildFile; fileRef = 40F951471FD0654900698587 /* RSDetail.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -357,7 +357,6 @@
 		409934A91F30C025003110C5 /* SAColorListItem+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SAColorListItem+CoreDataProperties.m"; sourceTree = "<group>"; };
 		409934B41F30EF9C003110C5 /* RSDetailView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSDetailView.h; sourceTree = "<group>"; };
 		409934B51F30EF9C003110C5 /* RSDetailView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSDetailView.m; sourceTree = "<group>"; };
-		409934C01F30F2F2003110C5 /* RSDetail.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RSDetail.xib; sourceTree = "<group>"; };
 		40A6757D1BA1A5B6004A51C4 /* SuplaApp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SuplaApp.h; path = ../SuplaApp.h; sourceTree = "<group>"; };
 		40A6757E1BA1A5B6004A51C4 /* SuplaApp.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SuplaApp.m; path = ../SuplaApp.m; sourceTree = "<group>"; };
 		40A675801BA1BE8E004A51C4 /* SettingsVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsVC.h; sourceTree = "<group>"; };
@@ -500,6 +499,14 @@
 		40E8BE861FC06A5500FB2FE6 /* XPathQuery.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = XPathQuery.h; path = hpple/XPathQuery.h; sourceTree = "<group>"; };
 		40E8BE871FC06A5600FB2FE6 /* XPathQuery.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = XPathQuery.m; path = hpple/XPathQuery.m; sourceTree = "<group>"; };
 		40E8BE8B1FC06B2000FB2FE6 /* libxml2.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libxml2.tbd; path = usr/lib/libxml2.tbd; sourceTree = SDKROOT; };
+		40F951461FD0654900698587 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/RSDetail.xib; sourceTree = "<group>"; };
+		40F951491FD0657000698587 /* pl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pl; path = pl.lproj/RSDetail.strings; sourceTree = "<group>"; };
+		40F9514B1FD0657F00698587 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/RSDetail.strings; sourceTree = "<group>"; };
+		40F9514D1FD065A400698587 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/RSDetail.strings; sourceTree = "<group>"; };
+		40F9514F1FD065A900698587 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/RSDetail.strings; sourceTree = "<group>"; };
+		40F951511FD065AD00698587 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/RSDetail.strings; sourceTree = "<group>"; };
+		40F951531FD065B200698587 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/RSDetail.strings; sourceTree = "<group>"; };
+		40F951551FD065BB00698587 /* pt-PT */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-PT"; path = "pt-PT.lproj/RSDetail.strings"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -879,7 +886,7 @@
 				40CE7C6D1DCBBF6D00BBACE4 /* DistanceCell.xib */,
 				409934B41F30EF9C003110C5 /* RSDetailView.h */,
 				409934B51F30EF9C003110C5 /* RSDetailView.m */,
-				409934C01F30F2F2003110C5 /* RSDetail.xib */,
+				40F951471FD0654900698587 /* RSDetail.xib */,
 				403EB1111FBDF47F00AD6460 /* AddWizardVC.h */,
 				403EB1121FBDF47F00AD6460 /* AddWizardVC.m */,
 				403EB1131FBDF47F00AD6460 /* AddWizardVC.xib */,
@@ -1078,7 +1085,7 @@
 				40CF96B71BC7D4E70030EFFF /* gateway-closed@3x.png in Resources */,
 				40DE1A401BCD6F06004CF43B /* Localizable.strings in Resources */,
 				40B9ED7B1FACE15700403B1A /* gatealt1-closed@2x.png in Resources */,
-				409934C11F30F2F2003110C5 /* RSDetail.xib in Resources */,
+				40F951451FD0654900698587 /* RSDetail.xib in Resources */,
 				40B9ED661FACD34C00403B1A /* xmastree-on@2x.png in Resources */,
 				40CF96B51BC7D4E70030EFFF /* gate-open@3x.png in Resources */,
 				40DE1A2B1BCCFF8A004CF43B /* info@2x.png in Resources */,
@@ -1282,6 +1289,21 @@
 				409165451F3C7C2300F49193 /* pt-PT */,
 			);
 			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+		40F951471FD0654900698587 /* RSDetail.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				40F951461FD0654900698587 /* Base */,
+				40F951491FD0657000698587 /* pl */,
+				40F9514B1FD0657F00698587 /* de */,
+				40F9514D1FD065A400698587 /* ru */,
+				40F9514F1FD065A900698587 /* it */,
+				40F951511FD065AD00698587 /* fr */,
+				40F951531FD065B200698587 /* es */,
+				40F951551FD065BB00698587 /* pt-PT */,
+			);
+			name = RSDetail.xib;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

@@ -83,9 +83,15 @@
         case SUPLA_CHANNELFNC_CONTROLLINGTHEDOORLOCK:
         case SUPLA_CHANNELFNC_POWERSWITCH:
         case SUPLA_CHANNELFNC_LIGHTSWITCH:
-        case SUPLA_CHANNELFNC_CONTROLLINGTHEROLLERSHUTTER:
             
             self.value = [NSNumber numberWithBool:value->value[0] == 1];
+            self.sub_value = [NSNumber numberWithBool:value->sub_value[0] == 1];
+            
+            break;
+            
+        case SUPLA_CHANNELFNC_CONTROLLINGTHEROLLERSHUTTER:
+            
+            self.value = [NSNumber numberWithInt:value->value[0]];
             self.sub_value = [NSNumber numberWithBool:value->sub_value[0] == 1];
             
             break;
@@ -384,6 +390,16 @@
     return [self getBrightness:1];
     
 }
+
+- (int) percentValue {
+    if ( [self.func intValue] == SUPLA_CHANNELFNC_CONTROLLINGTHEROLLERSHUTTER
+         && [self.value isKindOfClass:[NSNumber class]]) {
+        return [(NSNumber*)self.value intValue];
+    }
+    
+    return -1;
+}
+
 
 - (UIImage*) channelIcon {
     

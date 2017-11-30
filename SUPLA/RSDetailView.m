@@ -19,6 +19,7 @@
 #import "RSDetailView.h"
 #import "DetailView.h"
 #import "UIHelper.h"
+#import "SuplaApp.h"
 
 @implementation SARSDetailView
 
@@ -28,12 +29,88 @@
     if ( self.initialized == NO ) {
         
         self.backgroundColor = [UIColor rsDetailBackground];
-        
+        self.rsView.gestureEnabled = YES;
+        self.rsView.delegate = self;
     }
     
     
     [super detailViewInit];
     
 }
+
+-(void)dataToView {
+    
+    if ( self.channel != nil ) {
+        
+        [self.labelCaption setText:[self.channel getChannelCaption]];
+        
+        int percent = self.channel.percentValue;
+        
+        if ( percent < 100 && self.channel.isClosed ) {
+            percent = 100;
+        }
+        
+        self.rsView.percent = percent;
+        
+        if ( percent < 0 ) {
+            [self.labelPercent setText:NSLocalizedString(@"[Calibration]", NULL)];
+        } else {
+            [self.labelPercent setText:[NSString stringWithFormat:@"%i%%", (int)percent]];
+        }
+        
+    }
+    
+}
+
+-(void)updateView {
+    [super updateView];
+    [self dataToView];
+};
+
+-(void)setChannel:(SAChannel *)channel {
+    [super setChannel:channel];
+    
+    if ( channel != nil && channel.isOnline == NO ) {
+        [self.main_view detailShow:NO animated:NO];
+    }
+};
+
+- (void)open:(int)value {
+    SASuplaClient *client = [SAApp SuplaClient];
+    if ( client != nil && self.channel != nil )  {
+        [[SAApp SuplaClient] channel:[self.channel.channel_id intValue] Open:value];
+    }
+    
+}
+
+- (IBAction)upTouch:(id)sender {
+    [self open:2];
+}
+
+- (IBAction)downTouch:(id)sender {
+    [self open:1];
+}
+
+- (IBAction)stopTouch:(id)sender {
+    [self open:0];
+}
+
+- (IBAction)openTouch:(id)sender {
+    [self open:10];
+}
+
+- (IBAction)closeTouch:(id)sender {
+    [self open:110];
+}
+
+-(void) rsChangeing:(id)rs withPercent:(float)percent {
+    [self.labelPercent setText:[NSString stringWithFormat:@"%i%%", (int)percent]];
+}
+
+-(void) rsChanged:(id)rs withPercent:(float)percent {
+    [self dataToView];
+    [self open:percent+10];
+}
+
 
 @end
