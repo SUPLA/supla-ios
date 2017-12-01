@@ -66,3 +66,18 @@
 "Window opening sensor" = "Датчик открытия окна";
 "Add I/O device" = "Добавить устройство";
 "Donate" = "Donate";
+
+"Device registration availability information timeout!" = "Превышено время ожидания информации о доступности регистрации устройств!";
+"Next" = "Далее";
+"Start" = "Start";
+"Cancel" = "Аннулируйте";
+"Go to the system settings" = "Перейти к системным настройкам";
+"I/O Device registration is currently off. To continue go to „I/O Devices” at %@ and enable the Device Add Button." = "Регистрация устройств ввода/вывода в настоящее время отключена. Для продолжения перейдите на сайт %@ и во вкладке ”Устройства” включите добавление устройств.";
+"Add Wizard is only available when server connection has been set based on the email address entered in the settings." = "Мастер добавления доступен, только когда установлено соединение с сервером по указанному в настройках адресу электронной почты!";
+"The connected Server does not support this function!" = "Сервер, к которому вы подключены, не поддерживает эту функцию!";
+"Device Configuration Completion timeout!" = "Превышено время ожидания завершения конфигурации устройства!";
+"Incorrect input parameters!" = "Неверные входные параметры!";
+"The connected device is not compatible with this Wizard!" = "Устройство, с которым установлено соединение, не совместимо с данным мастером!";
+"Configuration Failed!" = "Конфигурация завершена с ошибкой!";
+"Connection with the device cannot be set! Make sure, if the Wi-fi connection has been set for the I/O device." = "Не удается установить соединение с устройством!";
+"[Calibration]" = "[калибровка]";

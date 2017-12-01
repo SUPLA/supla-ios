@@ -314,6 +314,7 @@
     self.edPassword.layer.borderWidth = 2;
     self.edPassword.layer.borderColor = self.edPassword.backgroundColor.CGColor;
     
+    [self.btnCancel setTitle:NSLocalizedString(@"Cancel", NULL)];
     [self.btnSystemSettings setTitle:NSLocalizedString(@"Go to the system settings", NULL)];
     
     if ( [SAApp getAdvancedConfig] == YES ) {

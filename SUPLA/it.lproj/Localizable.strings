@@ -69,3 +69,18 @@
 "Window opening sensor" = "Sensore di apertura finestra";
 "Add I/O device" = "Aggiungi un dispositivo";
 "Donate" = "Donazione";
+
+"Device registration availability information timeout!" = "Le délai d'attente pour des informations sur la disponibilité d'enregistrement des dispositifs est dépassé !";
+"Next" = "Avanti";
+"Start" = "Start";
+"Cancel" = "Cancella";
+"Go to the system settings" = "Vai alle impostazioni del sistema";
+"I/O Device registration is currently off. To continue go to „I/O Devices” at %@ and enable the Device Add Button." = "La registrazione dei dispositivi di input/output è attualmente disabilitata. Per continuare vai sulla pagina %@ e abilita la funzione per aggiungere i dispositivi nella sezione ”Dispositivi di input/output”.";
+"Add Wizard is only available when server connection has been set based on the email address entered in the settings." = "La procedura guidata Aggiungi un dispositivo è disponibile solo dopo aver stabilito una connessione con il server in base all’indirizzo e-mail inserito nelle impostazioni!";
+"The connected Server does not support this function!" = "Il server, con il quale è stata stabilita la connessione, non supporta questa funzione!";
+"Device Configuration Completion timeout!" = "Il tempo di attesa per la terminazione della configurazione del dispositivo è stato superato!";
+"Incorrect input parameters!" = "Parametri di input non validi!";
+"The connected device is not compatible with this Wizard!" = "Il dispositivo con il quale è stata stabilita la connessione non è compatibile con questa procedura guidata!";
+"Configuration Failed!" = "Configurazione fallita!";
+"Connection with the device cannot be set! Make sure, if the Wi-fi connection has been set for the I/O device." = "Impossibile stabilire una connessione con il dispositivo!";
+"[Calibration]" = "[Calibrazione]";

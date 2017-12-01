@@ -68,3 +68,18 @@
 "Window opening sensor" = "Détecteur de courrier";
 "Add I/O device" = "Ajoutez un dispositif";
 "Donate" = "Faire un don";
+
+"Device registration availability information timeout!" = "Le délai d'attente pour des informations sur la disponibilité d'enregistrement des dispositifs est dépassé !";
+"Next" = "Continuer";
+"Start" = "DÉMARRER";
+"Cancel" = "Annuler";
+"Go to the system settings" = "Passez aux paramètres du système";
+"I/O Device registration is currently off. To continue go to „I/O Devices” at %@ and enable the Device Add Button." = "Enregistrement des dispositifs d'entrée/sortie est actuellement désactivé. Pour continuer, allez à %@ et activez l'ajout de dispositifs dans l'onglet Dispositifs d'E/S.";
+"Add Wizard is only available when server connection has been set based on the email address entered in the settings." = "Assistant d'ajout est disponible uniquement lorsque vous êtes connecté au serveur en entrant votre adresse e-mail conforme à aux paramètres!";
+"The connected Server does not support this function!" = "Le serveur auquel vous êtes connecté ne prend pas en charge cette fonctionnalité!";
+"Device Configuration Completion timeout!" = "Le délai d'attente pour la configuration du dispositif est dépassé!";
+"Incorrect input parameters!" = "Paramètres d'entrée erronés!";
+"The connected device is not compatible with this Wizard!" = "Le dispositif connecté n'est pas compatible avec cet assistant!";
+"Configuration Failed!" = "Échec de la configuration!";
+"Connection with the device cannot be set! Make sure, if the Wi-fi connection has been set for the I/O device." = "Impossible de se connecter au dispositif!";
+"[Calibration]" = "[Calibration]";

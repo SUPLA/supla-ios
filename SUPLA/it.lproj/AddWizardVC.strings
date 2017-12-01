@@ -1,30 +1,30 @@
 
 /* Class = "UILabel"; text = "Press Next to continue."; ObjectID = "3bd-Xm-Rok"; */
-"3bd-Xm-Rok.text" = "Press Next to continue.";
+"3bd-Xm-Rok.text" = "Per continuare clicca Avanti.";
 
 /* Class = "UILabel"; text = "Device parameters"; ObjectID = "8Da-uK-N1d"; */
-"8Da-uK-N1d.text" = "Device parameters";
+"8Da-uK-N1d.text" = "Dati del dispositivo";
 
 /* Class = "UILabel"; text = "MAC"; ObjectID = "CZ4-G4-iFJ"; */
 "CZ4-G4-iFJ.text" = "MAC";
 
 /* Class = "UILabel"; text = "Last state"; ObjectID = "HRH-kq-mbQ"; */
-"HRH-kq-mbQ.text" = "Last state";
+"HRH-kq-mbQ.text" = "Status precedente";
 
 /* Class = "UILabel"; text = "Enter User Name and Password of your domestic or business WiFi network used to have the i/o device connected to server."; ObjectID = "Igv-nx-eY7"; */
-"Igv-nx-eY7.text" = "Enter User Name and Password of your domestic or business WiFi network used to have the i/o device connected to server.";
+"Igv-nx-eY7.text" = "Inserisci il nome e la password della Tua rete ad area domestica oppure aziendale con la quale l’attuatore potrà collegarsi con il server.";
 
 /* Class = "UILabel"; text = "Device configuration completed successfully :)"; ObjectID = "JYg-Vc-pZn"; */
-"JYg-Vc-pZn.text" = "Device configuration completed successfully :)";
+"JYg-Vc-pZn.text" = "Configurazione del dispositivo terminata con successo :)";
 
 /* Class = "UILabel"; text = "Go to the iOS system settings and manually connect to the WiFi network beginning with SUMPLA, ZAMEL or NICE. \n\nFor example: „SUPLA-A220A63612B1”. This is a temporary network of the i/o device enabling configuration. \n\nWhen the connection has been set, go back to the application and  continue adding  procedure by pressing the START button.  "; ObjectID = "LmT-sv-XIj"; */
-"LmT-sv-XIj.text" = "Go to the iOS system settings and manually connect to the WiFi network beginning with SUMPLA, ZAMEL or NICE. \n\nFor example: „SUPLA-A220A63612B1”. This is a temporary network of the i/o device enabling configuration. \n\nWhen the connection has been set, go back to the application and  continue adding  procedure by pressing the START button.  ";
+"LmT-sv-XIj.text" = "Vai alle impostazioni del sistema iOS e connetti alla rete WiFi manualmente, quella che inizia dal nome SUPLA oppure ZAMEL oppure NICE.\n\nPer esempio „SUPLA-A220A63612B1”. È la rete temporanea dell’attuatore che serve alla configurazione.\n\nDopo il collegamento alla rete, torna all’applicazione e continua la procedura di addizione attraverso il click del pulsante Start.";
 
 /* Class = "UILabel"; text = "Remember password"; ObjectID = "OMR-DU-yyQ"; */
-"OMR-DU-yyQ.text" = "Remember password";
+"OMR-DU-yyQ.text" = "Ricorda la password";
 
 /* Class = "UILabel"; text = "Power up your executive device. Configuration mode should be the default mode for the device, confirmed by a status diode flashing as"; ObjectID = "QQN-Ba-rnP"; */
-"QQN-Ba-rnP.text" = "Power up your executive device. Configuration mode should be the default mode for the device, confirmed by a status diode flashing as";
+"QQN-Ba-rnP.text" = "Collega il Tuo dispositivo di input/output all’alimentazione. Il dispositivo deve lavorare di default in modalità di configurazione facendo lampeggiare un diodo dello status nel seguente modo";
 
 /* Class = "UILabel"; text = "Firmware"; ObjectID = "ctG-cj-mpZ"; */
 "ctG-cj-mpZ.text" = "Firmware";
@@ -33,13 +33,13 @@
 "mNF-Uh-cv0.placeholder" = "Password";
 
 /* Class = "UILabel"; text = "Name"; ObjectID = "qa8-ng-PzX"; */
-"qa8-ng-PzX.text" = "Name";
+"qa8-ng-PzX.text" = "Nome";
 
 /* Class = "UITextField"; placeholder = "WiFi Network name"; ObjectID = "t0Z-OG-dra"; */
-"t0Z-OG-dra.placeholder" = "WiFi Network name";
+"t0Z-OG-dra.placeholder" = "Nome della rete WiFi";
 
 /* Class = "UILabel"; text = "Welcome to the Device Add Wizard which will in an easy and simple way help you to add new device to the system."; ObjectID = "vbb-Xd-lIx"; */
-"vbb-Xd-lIx.text" = "Welcome to the Device Add Wizard which will in an easy and simple way help you to add new device to the system.";
+"vbb-Xd-lIx.text" = "Benvenuto nella procedura guidata Aggiungi un dispositivo che Ti aiuterà in modo semplice e veloce ad aggiungere un nuovo dispositivo al sistema.";
 
 /* Class = "UILabel"; text = "If the device when switched on does not work in the configuration mode, press and hold CONFIG button for at least 5 seconds.\n\nPress Next to continue.\n"; ObjectID = "y0X-IV-sH5"; */
-"y0X-IV-sH5.text" = "If the device when switched on does not work in the configuration mode, press and hold CONFIG button for at least 5 seconds.\n\nPress Next to continue.\n";
+"y0X-IV-sH5.text" = "Se dopo aver acceso l’alimentazione il dispositivo non lavora in modalità di configurazione, tieni premuto il tasto CONFIG per almeno 5 secondi..\n\nPer continuare clicca Avanti.";

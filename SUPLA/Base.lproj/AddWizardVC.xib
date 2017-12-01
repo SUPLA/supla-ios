@@ -22,6 +22,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SAAddWizardVC">
             <connections>
+                <outlet property="btnCancel" destination="yFh-DW-X27" id="Zhf-4B-dEZ"/>
                 <outlet property="btnNext1" destination="TGR-gA-tNb" id="ASk-aX-u0X"/>
                 <outlet property="btnNext2" destination="fGm-C1-0WE" id="5MR-Br-tyr"/>
                 <outlet property="btnNext3" destination="kEz-V1-szv" id="lT1-1s-oJf"/>
