@@ -1,15 +1,19 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
+    <device id="retina4_0" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
         <array key="OpenSans-Bold.ttf">
             <string>OpenSans-Bold</string>
         </array>
-        <array key="Quicksand-Regular.ttf">
+        <array key="Quicksand-Light.ttf">
             <string>Quicksand-Regular</string>
         </array>
     </customFonts>
@@ -22,22 +26,26 @@
                         <viewControllerLayoutGuide type="top" id="Llm-lL-Icb"/>
                         <viewControllerLayoutGuide type="bottom" id="xb3-aO-Qok"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="Ze5-6b-2t3">
-                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+                    <view key="view" clipsSubviews="YES" contentMode="scaleToFill" id="Ze5-6b-2t3">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="YOUR HOME CONNECTED" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e3C-4B-3qp">
+                                <rect key="frame" x="73" y="392.5" width="175" height="16.5"/>
                                 <fontDescription key="fontDescription" name="OpenSans-Bold" family="Open Sans" pointSize="14"/>
                                 <color key="textColor" red="0.98039215690000003" green="0.98431372549999996" blue="0.98823529409999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo-supla_white.png" translatesAutoresizingMaskIntoConstraints="NO" id="lbJ-eM-YOg">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo-white.png" translatesAutoresizingMaskIntoConstraints="NO" id="lbJ-eM-YOg">
+                                <rect key="frame" x="71.5" y="115.5" width="177" height="177"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="177" id="aWF-RU-xp6"/>
-                                    <constraint firstAttribute="height" constant="177" id="oVK-47-UbG"/>
+                                    <constraint firstAttribute="width" relation="lessThanOrEqual" constant="177" id="aWF-RU-xp6"/>
+                                    <constraint firstAttribute="height" relation="lessThanOrEqual" constant="177" id="oVK-47-UbG"/>
+                                    <constraint firstAttribute="width" secondItem="lbJ-eM-YOg" secondAttribute="height" multiplier="1:1" id="xTA-kc-z6O"/>
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="supla" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8oi-Ab-cvt">
+                                <rect key="frame" x="120.5" y="327.5" width="79.5" height="38.5"/>
                                 <fontDescription key="fontDescription" name="Quicksand-Regular" family="Quicksand" pointSize="33"/>
                                 <color key="textColor" red="0.98039215690000003" green="0.98431372549999996" blue="0.98823529409999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
@@ -45,6 +53,7 @@
                         </subviews>
                         <color key="backgroundColor" red="0.070588235289999995" green="0.65490196079999996" blue="0.1176470588" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="lbJ-eM-YOg" firstAttribute="top" relation="greaterThanOrEqual" secondItem="Llm-lL-Icb" secondAttribute="bottom" constant="20" id="QYc-55-cEv"/>
                             <constraint firstItem="e3C-4B-3qp" firstAttribute="top" secondItem="lbJ-eM-YOg" secondAttribute="bottom" constant="100" id="RBv-ww-3EW"/>
                             <constraint firstItem="lbJ-eM-YOg" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" constant="-80" id="X6M-ir-TFa"/>
                             <constraint firstItem="lbJ-eM-YOg" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="aPw-LC-XVr"/>
@@ -60,6 +69,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="logo-supla_white.png" width="177" height="177"/>
+        <image name="logo-white.png" width="177" height="177"/>
     </resources>
 </document>

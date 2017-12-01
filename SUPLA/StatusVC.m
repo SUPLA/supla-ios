@@ -58,7 +58,7 @@
     [self.view setBackgroundColor:[UIColor colorWithRed:0.071 green:0.655 blue:0.118 alpha:1.000]];
     [self.progress setHidden:NO];
     
-    [self.image setImage:[UIImage imageNamed:@"logo-supla_white"]];
+    [self.image setImage:[UIImage imageNamed:@"logo-white"]];
     [self.label setTextColor:[UIColor whiteColor]];
     [self.button setBackgroundColor:[UIColor whiteColor]];
     [self.button setTitleColor:self.view.backgroundColor forState:UIControlStateNormal];

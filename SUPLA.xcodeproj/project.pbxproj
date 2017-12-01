@@ -25,7 +25,6 @@
 		4038A5571CE32CD700180B5D /* humidity@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4038A5551CE32CD700180B5D /* humidity@2x.png */; };
 		4038A5581CE32CD700180B5D /* humidity@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4038A5561CE32CD700180B5D /* humidity@3x.png */; };
 		403EB1141FBDF47F00AD6460 /* AddWizardVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 403EB1121FBDF47F00AD6460 /* AddWizardVC.m */; };
-		403EB1151FBDF47F00AD6460 /* AddWizardVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 403EB1131FBDF47F00AD6460 /* AddWizardVC.xib */; };
 		404E48F71FC75D0B001F6266 /* SAClassHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 404E48F51FC75D0B001F6266 /* SAClassHelper.m */; };
 		4052DA001DC515AE000B8C45 /* dimmerrgb-offoff@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4052D9F01DC515AE000B8C45 /* dimmerrgb-offoff@3x.png */; };
 		4052DA011DC515AE000B8C45 /* dimmerrgb-offoff@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4052D9F11DC515AE000B8C45 /* dimmerrgb-offoff@2x.png */; };
@@ -59,6 +58,10 @@
 		406C92D41BCD8518007BA87A /* btnOK@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 406C92D31BCD8518007BA87A /* btnOK@2x.png */; };
 		40766C2B1FC9BC7A009E00BE /* generalsettings@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 40766C2A1FC9BC78009E00BE /* generalsettings@2x.png */; };
 		40766C2D1FC9C36D009E00BE /* iossettings.png in Resources */ = {isa = PBXBuildFile; fileRef = 40766C2C1FC9C36C009E00BE /* iossettings.png */; };
+		407D31931FD17C4D0062FB80 /* wifigeneral@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 407D31921FD17C4B0062FB80 /* wifigeneral@2x.png */; };
+		407D31941FD1A7070062FB80 /* AddWizardVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 407D31961FD1A7070062FB80 /* AddWizardVC.xib */; };
+		407D31A71FD1B75F0062FB80 /* logo-white@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 407D31A51FD1B75E0062FB80 /* logo-white@2x.png */; };
+		407D31A81FD1B75F0062FB80 /* logo-white@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 407D31A61FD1B75E0062FB80 /* logo-white@3x.png */; };
 		407D4AE71BC6C57E009A5505 /* app_icon58x58@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 407D4AE61BC6C57E009A5505 /* app_icon58x58@2x.png */; };
 		407D4AE91BC6C5C7009A5505 /* app_icon87x87@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 407D4AE81BC6C5C7009A5505 /* app_icon87x87@3x.png */; };
 		407D4AEC1BC6C64D009A5505 /* app_icon80x80@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 407D4AEA1BC6C64D009A5505 /* app_icon80x80@2x.png */; };
@@ -98,9 +101,6 @@
 		40A87DDF1FADDFF900918B54 /* donate@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 40A87DDD1FADDFF800918B54 /* donate@2x.png */; };
 		40A87DE01FADDFF900918B54 /* add_device@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 40A87DDE1FADDFF800918B54 /* add_device@2x.png */; };
 		40AB8BDE1DCB32EB0030F3DE /* SARateApp.m in Sources */ = {isa = PBXBuildFile; fileRef = 40AB8BDD1DCB32EB0030F3DE /* SARateApp.m */; };
-		40AB96601DCB597A00599189 /* logo-supla_white@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 40AB965F1DCB597A00599189 /* logo-supla_white@3x.png */; };
-		40AB96621DCB5A0900599189 /* logo-supla_white@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 40AB96611DCB5A0900599189 /* logo-supla_white@2x.png */; };
-		40B1994E1DCC793700E6444F /* logo-supla_white.png in Resources */ = {isa = PBXBuildFile; fileRef = 40B1994D1DCC793700E6444F /* logo-supla_white.png */; };
 		40B397CF1BCE7F3200BE7D5A /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 40B397CE1BCE7F3200BE7D5A /* Launch Screen.storyboard */; };
 		40B397D81BCEA25700BE7D5A /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 40B397D71BCEA25700BE7D5A /* CFNetwork.framework */; };
 		40B397DE1BCED5EB00BE7D5A /* Quicksand-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 40B397DD1BCED5EB00BE7D5A /* Quicksand-Light.ttf */; };
@@ -256,7 +256,6 @@
 		4038A5561CE32CD700180B5D /* humidity@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "humidity@3x.png"; path = "Resources/Assets/Img/humidity@3x.png"; sourceTree = "<group>"; };
 		403EB1111FBDF47F00AD6460 /* AddWizardVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AddWizardVC.h; sourceTree = "<group>"; };
 		403EB1121FBDF47F00AD6460 /* AddWizardVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AddWizardVC.m; sourceTree = "<group>"; };
-		403EB1131FBDF47F00AD6460 /* AddWizardVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddWizardVC.xib; sourceTree = "<group>"; };
 		404E48F51FC75D0B001F6266 /* SAClassHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SAClassHelper.m; sourceTree = "<group>"; };
 		404E48F61FC75D0B001F6266 /* SAClassHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SAClassHelper.h; sourceTree = "<group>"; };
 		4052D9F01DC515AE000B8C45 /* dimmerrgb-offoff@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "dimmerrgb-offoff@3x.png"; path = "Resources/Assets/Img/dimmerrgb-offoff@3x.png"; sourceTree = "<group>"; };
@@ -294,6 +293,17 @@
 		407004261BB5706500F6187F /* SUPLA.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = SUPLA.xcdatamodel; sourceTree = "<group>"; };
 		40766C2A1FC9BC78009E00BE /* generalsettings@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "generalsettings@2x.png"; path = "Resources/Assets/Img/generalsettings@2x.png"; sourceTree = "<group>"; };
 		40766C2C1FC9C36C009E00BE /* iossettings.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = iossettings.png; path = Resources/Assets/Img/iossettings.png; sourceTree = "<group>"; };
+		407D31921FD17C4B0062FB80 /* wifigeneral@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "wifigeneral@2x.png"; path = "Resources/Assets/Img/wifigeneral@2x.png"; sourceTree = "<group>"; };
+		407D31951FD1A7070062FB80 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/AddWizardVC.xib; sourceTree = "<group>"; };
+		407D31981FD1A70B0062FB80 /* pl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pl; path = pl.lproj/AddWizardVC.strings; sourceTree = "<group>"; };
+		407D319A1FD1A70D0062FB80 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/AddWizardVC.strings; sourceTree = "<group>"; };
+		407D319C1FD1A70F0062FB80 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/AddWizardVC.strings; sourceTree = "<group>"; };
+		407D319E1FD1A7110062FB80 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/AddWizardVC.strings; sourceTree = "<group>"; };
+		407D31A01FD1A7130062FB80 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/AddWizardVC.strings; sourceTree = "<group>"; };
+		407D31A21FD1A7160062FB80 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/AddWizardVC.strings; sourceTree = "<group>"; };
+		407D31A41FD1A7190062FB80 /* pt-PT */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-PT"; path = "pt-PT.lproj/AddWizardVC.strings"; sourceTree = "<group>"; };
+		407D31A51FD1B75E0062FB80 /* logo-white@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "logo-white@2x.png"; path = "Resources/Assets/Img/logo-white@2x.png"; sourceTree = "<group>"; };
+		407D31A61FD1B75E0062FB80 /* logo-white@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "logo-white@3x.png"; path = "Resources/Assets/Img/logo-white@3x.png"; sourceTree = "<group>"; };
 		407D4AE61BC6C57E009A5505 /* app_icon58x58@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "app_icon58x58@2x.png"; path = "Resources/Assets/Img/app_icon58x58@2x.png"; sourceTree = "<group>"; };
 		407D4AE81BC6C5C7009A5505 /* app_icon87x87@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "app_icon87x87@3x.png"; path = "Resources/Assets/Img/app_icon87x87@3x.png"; sourceTree = "<group>"; };
 		407D4AEA1BC6C64D009A5505 /* app_icon80x80@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "app_icon80x80@2x.png"; path = "Resources/Assets/Img/app_icon80x80@2x.png"; sourceTree = "<group>"; };
@@ -365,9 +375,6 @@
 		40A87DDE1FADDFF800918B54 /* add_device@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "add_device@2x.png"; path = "Resources/Assets/Img/add_device@2x.png"; sourceTree = "<group>"; };
 		40AB8BDC1DCB32EB0030F3DE /* SARateApp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SARateApp.h; sourceTree = "<group>"; };
 		40AB8BDD1DCB32EB0030F3DE /* SARateApp.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SARateApp.m; sourceTree = "<group>"; };
-		40AB965F1DCB597A00599189 /* logo-supla_white@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "logo-supla_white@3x.png"; path = "Resources/Assets/Img/logo-supla_white@3x.png"; sourceTree = "<group>"; };
-		40AB96611DCB5A0900599189 /* logo-supla_white@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "logo-supla_white@2x.png"; path = "Resources/Assets/Img/logo-supla_white@2x.png"; sourceTree = "<group>"; };
-		40B1994D1DCC793700E6444F /* logo-supla_white.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "logo-supla_white.png"; path = "Resources/Assets/Img/logo-supla_white.png"; sourceTree = "<group>"; };
 		40B397CE1BCE7F3200BE7D5A /* Launch Screen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		40B397D71BCEA25700BE7D5A /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		40B397DD1BCED5EB00BE7D5A /* Quicksand-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Quicksand-Light.ttf"; path = "Resources/Assets/Fonts/Quicksand-Light.ttf"; sourceTree = "<group>"; };
@@ -638,6 +645,9 @@
 		405AC4011BC15878004F7311 /* Img */ = {
 			isa = PBXGroup;
 			children = (
+				407D31A51FD1B75E0062FB80 /* logo-white@2x.png */,
+				407D31A61FD1B75E0062FB80 /* logo-white@3x.png */,
+				407D31921FD17C4B0062FB80 /* wifigeneral@2x.png */,
 				405C499E1FCAFFD100C15602 /* wizard_error@2x.png */,
 				405C499F1FCAFFD200C15602 /* wizard_ok@2x.png */,
 				40766C2C1FC9C36C009E00BE /* iossettings.png */,
@@ -692,13 +702,10 @@
 				409165481F3CBAF200F49193 /* rs_down.png */,
 				409165491F3CBAF200F49193 /* rs_close.png */,
 				4091654A1F3CBAF200F49193 /* rs_open.png */,
-				40B1994D1DCC793700E6444F /* logo-supla_white.png */,
 				40CE7C651DCBBD5700BBACE4 /* distance@3x.png */,
 				40CE7C661DCBBD5700BBACE4 /* distance@2x.png */,
 				40CE7C671DCBBD5700BBACE4 /* depth@2x.png */,
 				40CE7C681DCBBD5700BBACE4 /* depth@3x.png */,
-				40AB96611DCB5A0900599189 /* logo-supla_white@2x.png */,
-				40AB965F1DCB597A00599189 /* logo-supla_white@3x.png */,
 				4052D9F01DC515AE000B8C45 /* dimmerrgb-offoff@3x.png */,
 				4052D9F11DC515AE000B8C45 /* dimmerrgb-offoff@2x.png */,
 				4052D9F21DC515AE000B8C45 /* dimmerrgb-offon@3x.png */,
@@ -889,7 +896,7 @@
 				40F951471FD0654900698587 /* RSDetail.xib */,
 				403EB1111FBDF47F00AD6460 /* AddWizardVC.h */,
 				403EB1121FBDF47F00AD6460 /* AddWizardVC.m */,
-				403EB1131FBDF47F00AD6460 /* AddWizardVC.xib */,
+				407D31961FD1A7070062FB80 /* AddWizardVC.xib */,
 			);
 			name = UI;
 			sourceTree = "<group>";
@@ -1025,7 +1032,6 @@
 				405AC4191BC15898004F7311 /* app_icon-1024.png in Resources */,
 				405AC41A1BC15898004F7311 /* app_icon@2x.png in Resources */,
 				40CF96BA1BC7D4E70030EFFF /* light-off@2x.png in Resources */,
-				40B1994E1DCC793700E6444F /* logo-supla_white.png in Resources */,
 				40B9ED6D1FACD94300403B1A /* barier-open@3x.png in Resources */,
 				407D4B001BC6E491009A5505 /* StatusVC.xib in Resources */,
 				406778561BCBF9F4008DD37F /* SectionCell.xib in Resources */,
@@ -1051,16 +1057,15 @@
 				40CE7C6A1DCBBD5700BBACE4 /* distance@2x.png in Resources */,
 				407D4AF81BC6C7DE009A5505 /* app_icon57x57.png in Resources */,
 				40BE3E621BCA7AEF00153680 /* ChannelCell.xib in Resources */,
-				40AB96621DCB5A0900599189 /* logo-supla_white@2x.png in Resources */,
 				40B9ED561FACD0A100403B1A /* pc-on@3x.png in Resources */,
 				40CF96B91BC7D4E70030EFFF /* gateway-open@3x.png in Resources */,
-				40AB96601DCB597A00599189 /* logo-supla_white@3x.png in Resources */,
 				4067782C1BCBC647008DD37F /* menu@2x.png in Resources */,
 				40DE1A2C1BCCFF8A004CF43B /* info@3x.png in Resources */,
 				40CF96B01BC7D4E70030EFFF /* garagedoor-open@2x.png in Resources */,
 				4052DA071DC515AE000B8C45 /* dimmerrgb-onon@2x.png in Resources */,
 				40B9ED6F1FACD94300403B1A /* barier-closed@2x.png in Resources */,
 				40B9ED7E1FACE15700403B1A /* nomail@3x.png in Resources */,
+				407D31A81FD1B75F0062FB80 /* logo-white@3x.png in Resources */,
 				407D4AF11BC6C6A4009A5505 /* app_icon180x180@3x.png in Resources */,
 				40B9ED831FACE15700403B1A /* mail@3x.png in Resources */,
 				40DE1A291BCCFF8A004CF43B /* feedback@2x.png in Resources */,
@@ -1085,6 +1090,7 @@
 				40CF96B71BC7D4E70030EFFF /* gateway-closed@3x.png in Resources */,
 				40DE1A401BCD6F06004CF43B /* Localizable.strings in Resources */,
 				40B9ED7B1FACE15700403B1A /* gatealt1-closed@2x.png in Resources */,
+				407D31931FD17C4D0062FB80 /* wifigeneral@2x.png in Resources */,
 				40F951451FD0654900698587 /* RSDetail.xib in Resources */,
 				40B9ED661FACD34C00403B1A /* xmastree-on@2x.png in Resources */,
 				40CF96B51BC7D4E70030EFFF /* gate-open@3x.png in Resources */,
@@ -1135,9 +1141,10 @@
 				40CF96B11BC7D4E70030EFFF /* garagedoor-open@3x.png in Resources */,
 				40B9ED801FACE15700403B1A /* window-open@3x.png in Resources */,
 				405C49A01FCAFFD400C15602 /* wizard_error@2x.png in Resources */,
-				403EB1151FBDF47F00AD6460 /* AddWizardVC.xib in Resources */,
+				407D31941FD1A7070062FB80 /* AddWizardVC.xib in Resources */,
 				4052DA021DC515AE000B8C45 /* dimmerrgb-offon@3x.png in Resources */,
 				40CF96AE1BC7D4E70030EFFF /* garagedoor-closed@2x.png in Resources */,
+				407D31A71FD1B75F0062FB80 /* logo-white@2x.png in Resources */,
 				40CF96DB1BC81A470030EFFF /* warning@3x.png in Resources */,
 				4091AF3F1FC8405200EFF357 /* btnnextl@2x.png in Resources */,
 				4038A5571CE32CD700180B5D /* humidity@2x.png in Resources */,
@@ -1231,6 +1238,21 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		407D31961FD1A7070062FB80 /* AddWizardVC.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				407D31951FD1A7070062FB80 /* Base */,
+				407D31981FD1A70B0062FB80 /* pl */,
+				407D319A1FD1A70D0062FB80 /* de */,
+				407D319C1FD1A70F0062FB80 /* ru */,
+				407D319E1FD1A7110062FB80 /* it */,
+				407D31A01FD1A7130062FB80 /* fr */,
+				407D31A21FD1A7160062FB80 /* es */,
+				407D31A41FD1A7190062FB80 /* pt-PT */,
+			);
+			name = AddWizardVC.xib;
+			sourceTree = "<group>";
+		};
 		40844D811FB0DDB000432AA0 /* SettingsVC.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
