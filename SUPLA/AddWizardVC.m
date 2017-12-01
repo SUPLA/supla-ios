@@ -186,8 +186,8 @@
                 NSString *name = [attr objectForKey:@"name"];
                 NSString *value = [attr objectForKey:@"value"];
                 
-                if ( name != nil && value != nil ) {
-                    [fields setObject:value forKey:name];
+                if ( name != nil  ) {
+                    [fields setObject:value == nil ? @"" : value forKey:name];
                 }
             }
             
@@ -250,7 +250,9 @@
         if ( [self postDataWithFields:fields] ) {
             
             [fields setObject:@"1" forKey:@"rbt"];
-
+            [self postDataWithFields:fields];
+            sleep(1);
+            
             result.resultCode = RESULT_SUCCESS;
             [self onOperationDone:result];
             
@@ -311,6 +313,8 @@
     self.edPassword.layer.cornerRadius = 5.0;
     self.edPassword.layer.borderWidth = 2;
     self.edPassword.layer.borderColor = self.edPassword.backgroundColor.CGColor;
+    
+    [self.btnSystemSettings setTitle:NSLocalizedString(@"Go to the system settings", NULL)];
     
     if ( [SAApp getAdvancedConfig] == YES ) {
         [self showError:NSLocalizedString(@"Add Wizard is only available when server connection has been set based on the email address entered in the settings.", NULL)];
@@ -523,6 +527,12 @@
             [self showError:NSLocalizedString(@"Configuration Failed!", NULL)];
             break;
         case RESULT_SUCCESS:
+            
+            self.lName.text = result.name;
+            self.lFirmware.text = result.version;
+            self.lMAC.text = result.mac;
+            self.lLastState.text = result.state;
+            
             [self showPage:PAGE_DONE];
             break;
     }

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
-    <device id="retina5_9" orientation="portrait">
+    <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
@@ -15,7 +15,7 @@
         <array key="OpenSans-Regular.ttf">
             <string>OpenSans</string>
         </array>
-        <array key="Quicksand-Regular.ttf">
+        <array key="Quicksand-Light.ttf">
             <string>Quicksand-Regular</string>
         </array>
     </customFonts>
@@ -26,6 +26,7 @@
                 <outlet property="btnNext2" destination="fGm-C1-0WE" id="5MR-Br-tyr"/>
                 <outlet property="btnNext3" destination="kEz-V1-szv" id="lT1-1s-oJf"/>
                 <outlet property="btnNext3_width" destination="dZQ-BU-BdR" id="dGT-fN-sqd"/>
+                <outlet property="btnSystemSettings" destination="a01-dG-nhT" id="mSA-7Y-Lby"/>
                 <outlet property="cbSavePassword" destination="ydn-id-f0M" id="FCE-mZ-XOw"/>
                 <outlet property="edPassword" destination="mNF-Uh-cv0" id="Jk3-Mm-rN2"/>
                 <outlet property="edSSID" destination="t0Z-OG-dra" id="IEy-uC-C7X"/>
@@ -47,14 +48,14 @@
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT" userLabel="MainView">
-            <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jQ6-hO-PdQ">
-                    <rect key="frame" x="0.0" y="732" width="375" height="80"/>
+                    <rect key="frame" x="0.0" y="587" width="375" height="80"/>
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fGm-C1-0WE">
-                            <rect key="frame" x="255" y="0.0" width="60" height="40"/>
+                            <rect key="frame" x="255" y="5" width="60" height="40"/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="40" id="fWQ-Hq-KLV"/>
@@ -76,7 +77,7 @@
                             </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kEz-V1-szv">
-                            <rect key="frame" x="315" y="0.0" width="40" height="40"/>
+                            <rect key="frame" x="315" y="5" width="40" height="40"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="40" id="dZQ-BU-BdR"/>
                                 <constraint firstAttribute="height" constant="40" id="fW9-zM-GUJ"/>
@@ -90,7 +91,7 @@
                             </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TGR-gA-tNb">
-                            <rect key="frame" x="238" y="0.0" width="17" height="40"/>
+                            <rect key="frame" x="238" y="5" width="17" height="40"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="17" id="22W-h1-ki5"/>
                                 <constraint firstAttribute="height" constant="40" id="SFT-Zh-Btr"/>
@@ -104,7 +105,7 @@
                             </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yFh-DW-X27">
-                            <rect key="frame" x="37" y="0.0" width="74" height="40"/>
+                            <rect key="frame" x="37" y="5" width="74" height="40"/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="40" id="DyN-EM-mYJ"/>
@@ -126,7 +127,7 @@
                             </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GSa-IG-6k4">
-                            <rect key="frame" x="20" y="0.0" width="17" height="40"/>
+                            <rect key="frame" x="20" y="5" width="17" height="40"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="17" id="NIG-uL-8GF"/>
                                 <constraint firstAttribute="height" constant="40" id="XIY-mI-R3e"/>
@@ -140,7 +141,7 @@
                             </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="f7p-Nq-9ed">
-                            <rect key="frame" x="111" y="0.0" width="17" height="40"/>
+                            <rect key="frame" x="111" y="5" width="17" height="40"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="40" id="cJV-f9-Pqs"/>
                                 <constraint firstAttribute="width" constant="17" id="fhF-yA-nqJ"/>
@@ -157,22 +158,22 @@
                     <color key="backgroundColor" red="0.074509803921568626" green="0.65490196078431373" blue="0.11764705882352941" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
                         <constraint firstItem="kEz-V1-szv" firstAttribute="leading" secondItem="fGm-C1-0WE" secondAttribute="trailing" id="ANb-5B-o79"/>
-                        <constraint firstItem="kEz-V1-szv" firstAttribute="top" secondItem="jQ6-hO-PdQ" secondAttribute="top" id="KHu-SC-aiv"/>
-                        <constraint firstItem="f7p-Nq-9ed" firstAttribute="top" secondItem="jQ6-hO-PdQ" secondAttribute="top" id="NUL-U7-v6R"/>
+                        <constraint firstItem="kEz-V1-szv" firstAttribute="top" secondItem="jQ6-hO-PdQ" secondAttribute="top" constant="5" id="KHu-SC-aiv"/>
+                        <constraint firstItem="f7p-Nq-9ed" firstAttribute="top" secondItem="jQ6-hO-PdQ" secondAttribute="top" constant="5" id="NUL-U7-v6R"/>
                         <constraint firstItem="GSa-IG-6k4" firstAttribute="leading" secondItem="jQ6-hO-PdQ" secondAttribute="leading" constant="20" id="PFT-Rc-Mf9"/>
-                        <constraint firstItem="GSa-IG-6k4" firstAttribute="top" secondItem="jQ6-hO-PdQ" secondAttribute="top" id="UAg-qk-6l5"/>
+                        <constraint firstItem="GSa-IG-6k4" firstAttribute="top" secondItem="jQ6-hO-PdQ" secondAttribute="top" constant="5" id="UAg-qk-6l5"/>
                         <constraint firstItem="yFh-DW-X27" firstAttribute="leading" secondItem="GSa-IG-6k4" secondAttribute="trailing" id="Vev-S2-IKx"/>
-                        <constraint firstItem="fGm-C1-0WE" firstAttribute="top" secondItem="jQ6-hO-PdQ" secondAttribute="top" id="f8Y-BV-bJG"/>
+                        <constraint firstItem="fGm-C1-0WE" firstAttribute="top" secondItem="jQ6-hO-PdQ" secondAttribute="top" constant="5" id="f8Y-BV-bJG"/>
                         <constraint firstItem="f7p-Nq-9ed" firstAttribute="leading" secondItem="yFh-DW-X27" secondAttribute="trailing" id="h6z-ab-yLX"/>
-                        <constraint firstItem="TGR-gA-tNb" firstAttribute="top" secondItem="jQ6-hO-PdQ" secondAttribute="top" id="o75-j5-YmO"/>
+                        <constraint firstItem="TGR-gA-tNb" firstAttribute="top" secondItem="jQ6-hO-PdQ" secondAttribute="top" constant="5" id="o75-j5-YmO"/>
                         <constraint firstItem="fGm-C1-0WE" firstAttribute="leading" secondItem="TGR-gA-tNb" secondAttribute="trailing" id="oYk-Hm-Dvp"/>
                         <constraint firstAttribute="trailing" secondItem="kEz-V1-szv" secondAttribute="trailing" constant="20" id="sd4-cd-4B8"/>
                         <constraint firstAttribute="height" constant="80" id="tQk-tr-Sfl"/>
-                        <constraint firstItem="yFh-DW-X27" firstAttribute="top" secondItem="jQ6-hO-PdQ" secondAttribute="top" id="ufc-EK-475"/>
+                        <constraint firstItem="yFh-DW-X27" firstAttribute="top" secondItem="jQ6-hO-PdQ" secondAttribute="top" constant="5" id="ufc-EK-475"/>
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iPy-YB-RiH">
-                    <rect key="frame" x="0.0" y="0.0" width="375" height="732"/>
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="587"/>
                     <color key="backgroundColor" red="0.074509803920000006" green="0.65490196079999996" blue="0.1176470588" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                 </view>
             </subviews>
@@ -186,21 +187,21 @@
                 <constraint firstItem="jQ6-hO-PdQ" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="Y65-PT-hnU"/>
                 <constraint firstItem="jQ6-hO-PdQ" firstAttribute="top" secondItem="iPy-YB-RiH" secondAttribute="bottom" id="t9s-2U-RE9"/>
             </constraints>
-            <point key="canvasLocation" x="-461.5" y="70.5"/>
+            <point key="canvasLocation" x="-458" y="49"/>
         </view>
         <view contentMode="scaleToFill" id="7B1-OE-46N" userLabel="vStep1">
-            <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="rocket.png" translatesAutoresizingMaskIntoConstraints="NO" id="BIm-R9-3vC">
-                    <rect key="frame" x="61" y="196" width="253" height="140"/>
+                    <rect key="frame" x="61" y="123.5" width="253" height="140"/>
                     <constraints>
                         <constraint firstAttribute="height" relation="lessThanOrEqual" constant="140" id="Xzh-lb-aCs"/>
                         <constraint firstAttribute="width" constant="253" id="jti-Mp-GzE"/>
                     </constraints>
                 </imageView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Welcome to the Device Add Wizard which will in an easy and simple way help you to add new device to the system." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="7" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="vbb-Xd-lIx">
-                    <rect key="frame" x="15" y="376.66666666666669" width="345" height="63"/>
+                    <rect key="frame" x="15" y="304" width="345" height="63"/>
                     <constraints>
                         <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="40" id="WbV-QM-MV7"/>
                     </constraints>
@@ -209,7 +210,7 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Press Next to continue." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3bd-Xm-Rok">
-                    <rect key="frame" x="15" y="454.66666666666669" width="345" height="30"/>
+                    <rect key="frame" x="15" y="382" width="345" height="30"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="30" id="lWL-YF-H8X"/>
                     </constraints>
@@ -234,34 +235,33 @@
             <point key="canvasLocation" x="-19" y="49"/>
         </view>
         <view contentMode="scaleToFill" id="S8z-fu-dma" userLabel="vStep2">
-            <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="wifi.png" translatesAutoresizingMaskIntoConstraints="NO" id="viQ-Mh-NPQ">
-                    <rect key="frame" x="61" y="196" width="253" height="140"/>
+                    <rect key="frame" x="61" y="123.5" width="253" height="140"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="253" id="QC4-O5-woD"/>
                         <constraint firstAttribute="height" relation="lessThanOrEqual" constant="140" id="fQL-ui-Vup"/>
                     </constraints>
                 </imageView>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="7" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="Igv-nx-eY7">
-                    <rect key="frame" x="15" y="376" width="345" height="105"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Enter User Name and Password of your domestic or business WiFi network used to have the i/o device connected to server." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="7" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="Igv-nx-eY7">
+                    <rect key="frame" x="15" y="303.5" width="345" height="80"/>
                     <constraints>
                         <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="80" id="70s-QL-5si"/>
                     </constraints>
-                    <string key="text">Wprowadź nazwę oraz hasło Twojej domowej lub firmowej sieci WiFi za pośrednictwem której urządzenie wykonawcze będzie mogło nawiązać połączenie z serwerem. </string>
                     <fontDescription key="fontDescription" name="Quicksand-Regular" family="Quicksand" pointSize="18"/>
                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7Bs-NP-71g">
-                    <rect key="frame" x="30" y="576" width="315" height="35"/>
+                    <rect key="frame" x="30" y="478.5" width="315" height="35"/>
                     <subviews>
                         <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ydn-id-f0M">
                             <rect key="frame" x="0.0" y="0.0" width="51" height="31"/>
                         </switch>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Zapamiętaj hasło" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OMR-DU-yyQ">
-                            <rect key="frame" x="58.999999999999993" y="0.0" width="122.33333333333331" height="30"/>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Remember password" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OMR-DU-yyQ">
+                            <rect key="frame" x="59" y="0.0" width="153.5" height="30"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="30" id="HcX-y6-VLg"/>
                             </constraints>
@@ -296,9 +296,9 @@
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="z7z-ZO-PdB">
-                    <rect key="frame" x="30" y="496" width="315" height="80"/>
+                    <rect key="frame" x="30" y="398.5" width="315" height="80"/>
                     <subviews>
-                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Nazwa sieci WiFi" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="t0Z-OG-dra">
+                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="WiFi Network name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="t0Z-OG-dra">
                             <rect key="frame" x="0.0" y="0.0" width="315" height="30"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="30" id="vIs-M6-77l"/>
@@ -307,7 +307,7 @@
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                             <textInputTraits key="textInputTraits"/>
                         </textField>
-                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Hasło" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="mNF-Uh-cv0">
+                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="mNF-Uh-cv0">
                             <rect key="frame" x="0.0" y="35" width="315" height="30"/>
                             <color key="backgroundColor" red="0.99607843139999996" green="0.90588235289999997" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="textColor"/>
@@ -352,18 +352,18 @@
             <point key="canvasLocation" x="459" y="49"/>
         </view>
         <view contentMode="scaleToFill" id="x6e-cq-S7L" userLabel="vStep3">
-            <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="plug.png" translatesAutoresizingMaskIntoConstraints="NO" id="ulw-KV-Mde">
-                    <rect key="frame" x="61" y="196" width="253" height="140"/>
+                    <rect key="frame" x="61" y="123.5" width="253" height="140"/>
                     <constraints>
                         <constraint firstAttribute="height" relation="lessThanOrEqual" constant="140" id="Wwh-Cj-Und"/>
                         <constraint firstAttribute="width" constant="253" id="iQh-2F-rFH"/>
                     </constraints>
                 </imageView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ej4-ru-hOy">
-                    <rect key="frame" x="5" y="346" width="365" height="329"/>
+                    <rect key="frame" x="5" y="273.5" width="365" height="329"/>
                     <subviews>
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="greendot.png" translatesAutoresizingMaskIntoConstraints="NO" id="zDx-px-3a2">
                             <rect key="frame" x="325" y="135" width="20" height="20"/>
@@ -427,94 +427,73 @@ Press Next to continue.
             <point key="canvasLocation" x="997" y="49"/>
         </view>
         <view contentMode="scaleToFill" id="Ua2-ym-wmd" userLabel="vStep4">
-            <rect key="frame" x="0.0" y="0.0" width="414" height="748"/>
+            <rect key="frame" x="0.0" y="0.0" width="375" height="661"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="a01-dG-nhT" userLabel="btnWifiSettings">
+                    <rect key="frame" x="72.5" y="594" width="230" height="40"/>
+                    <color key="backgroundColor" red="1" green="0.99626988172531128" blue="0.98774594068527222" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="40" id="H47-lj-7FX"/>
+                        <constraint firstAttribute="width" constant="230" id="Wtr-Yo-4kT"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="Quicksand-Regular" family="Quicksand" pointSize="13"/>
+                    <inset key="contentEdgeInsets" minX="5" minY="0.0" maxX="5" maxY="0.0"/>
+                    <state key="normal" title="Go to the system settings" image="wifigeneral.png">
+                        <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </state>
+                    <connections>
+                        <action selector="wifiSettingsTouch:" destination="-1" eventType="touchDown" id="4K6-wV-xKk"/>
+                    </connections>
+                </button>
                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="generalsettings.png" translatesAutoresizingMaskIntoConstraints="NO" id="TIr-Vk-7vg">
-                    <rect key="frame" x="57" y="164" width="300" height="140"/>
+                    <rect key="frame" x="37.5" y="90.5" width="300" height="140"/>
                     <constraints>
                         <constraint firstAttribute="height" relation="lessThanOrEqual" constant="140" id="36e-Ix-q3z"/>
                         <constraint firstAttribute="width" constant="300" id="XTi-4Q-xdr"/>
                     </constraints>
                 </imageView>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="7" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="LmT-sv-XIj">
-                    <rect key="frame" x="5" y="314.66666666666669" width="404" height="150"/>
-                    <constraints>
-                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="150" id="1Al-To-osw"/>
-                    </constraints>
-                    <string key="text">Przejdź do ustawień ogólnych w iOS i ręcznie połącz się z siecią WiFi rozpoczynającą się od nazwy SUPLA lub ZAMEL lub NICE. Przykładowo „SUPLA-A220A63612B1”. Jest to sieć tymczasowa urządzenia wykonawczego służąca do konfiguracji. Po połączeniu się z tą siecią wróć do tej aplikacji i kontynuuj procedurę dodawania poprzez naciśnięcie przycisku Start.</string>
-                    <fontDescription key="fontDescription" name="Quicksand-Regular" family="Quicksand" pointSize="18"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="20" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="LmT-sv-XIj">
+                    <rect key="frame" x="5" y="240.5" width="365" height="333.5"/>
+                    <string key="text">Go to the iOS system settings and manually connect to the WiFi network beginning with SUMPLA, ZAMEL or NICE. 
+
+For example: „SUPLA-A220A63612B1”. This is a temporary network of the i/o device enabling configuration. 
+
+When the connection has been set, go back to the application and  continue adding  procedure by pressing the START button.  </string>
+                    <fontDescription key="fontDescription" name="Quicksand-Regular" family="Quicksand" pointSize="20"/>
                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9Xt-nP-07s">
-                    <rect key="frame" x="5" y="474.66666666666674" width="404" height="80"/>
-                    <subviews>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oNi-4E-3Bu">
-                            <rect key="frame" x="322" y="4" width="74" height="74"/>
-                            <constraints>
-                                <constraint firstAttribute="width" constant="74" id="MgX-Ta-aWY"/>
-                                <constraint firstAttribute="height" constant="74" id="kF1-QX-K8N"/>
-                            </constraints>
-                            <state key="normal" backgroundImage="iossettings.png"/>
-                            <connections>
-                                <action selector="wifiSettingsTouch:" destination="-1" eventType="touchDown" id="SSz-Po-ltM"/>
-                            </connections>
-                        </button>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Naciśnij ikonę aby przejść do ustawień WiFi -&gt;" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="7" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="9JV-sp-kbC">
-                            <rect key="frame" x="8" y="10" width="306" height="60"/>
-                            <constraints>
-                                <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="40" id="cDv-d3-awI"/>
-                                <constraint firstAttribute="height" constant="60" id="fWa-gA-Lv6"/>
-                            </constraints>
-                            <fontDescription key="fontDescription" name="Quicksand-Regular" family="Quicksand" pointSize="18"/>
-                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            <nil key="highlightedColor"/>
-                        </label>
-                    </subviews>
-                    <constraints>
-                        <constraint firstAttribute="trailing" secondItem="oNi-4E-3Bu" secondAttribute="trailing" constant="8" id="2gd-a3-Wim"/>
-                        <constraint firstItem="oNi-4E-3Bu" firstAttribute="top" secondItem="9Xt-nP-07s" secondAttribute="top" constant="3.6699999999999999" id="AHV-Tm-MlC"/>
-                        <constraint firstItem="oNi-4E-3Bu" firstAttribute="leading" secondItem="9JV-sp-kbC" secondAttribute="trailing" constant="8" id="D3i-uL-7DF"/>
-                        <constraint firstItem="oNi-4E-3Bu" firstAttribute="leading" secondItem="9JV-sp-kbC" secondAttribute="trailing" constant="8" id="Lp8-Dt-242"/>
-                        <constraint firstItem="9JV-sp-kbC" firstAttribute="centerY" secondItem="9Xt-nP-07s" secondAttribute="centerY" id="RxJ-4A-xq1"/>
-                        <constraint firstItem="9JV-sp-kbC" firstAttribute="leading" secondItem="9Xt-nP-07s" secondAttribute="leading" constant="8" id="fx7-yq-p2G"/>
-                        <constraint firstAttribute="bottom" secondItem="oNi-4E-3Bu" secondAttribute="bottom" constant="2.3300000000000001" id="jAa-xg-LMO"/>
-                        <constraint firstItem="oNi-4E-3Bu" firstAttribute="centerY" secondItem="9Xt-nP-07s" secondAttribute="centerY" id="mrA-sU-qvq"/>
-                        <constraint firstAttribute="height" relation="lessThanOrEqual" constant="80" id="pdZ-RV-MD8"/>
-                        <constraint firstAttribute="height" priority="750" constant="80" id="wnr-Yk-enL"/>
-                    </constraints>
-                </view>
             </subviews>
             <color key="backgroundColor" red="0.074509803920000006" green="0.65490196079999996" blue="0.1176470588" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstItem="TIr-Vk-7vg" firstAttribute="centerY" secondItem="Ua2-ym-wmd" secondAttribute="centerY" priority="750" constant="-140" id="6io-oW-Mb7"/>
-                <constraint firstItem="9Xt-nP-07s" firstAttribute="top" secondItem="LmT-sv-XIj" secondAttribute="bottom" constant="10" id="GjT-JC-Ef0"/>
+                <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="a01-dG-nhT" secondAttribute="bottom" constant="10" id="2Iu-Iv-Q7m"/>
+                <constraint firstItem="a01-dG-nhT" firstAttribute="top" secondItem="LmT-sv-XIj" secondAttribute="bottom" constant="20" id="2Qv-Q2-WQA"/>
+                <constraint firstItem="TIr-Vk-7vg" firstAttribute="centerY" secondItem="Ua2-ym-wmd" secondAttribute="centerY" priority="750" constant="-170" id="6io-oW-Mb7"/>
                 <constraint firstItem="TIr-Vk-7vg" firstAttribute="top" relation="greaterThanOrEqual" secondItem="Ua2-ym-wmd" secondAttribute="top" constant="5" id="OES-bI-Nlh"/>
-                <constraint firstItem="9Xt-nP-07s" firstAttribute="leading" secondItem="Ua2-ym-wmd" secondAttribute="leading" constant="5" id="PyU-Dm-TcJ"/>
+                <constraint firstAttribute="bottom" secondItem="a01-dG-nhT" secondAttribute="bottom" constant="27" id="W1W-GK-mv0"/>
                 <constraint firstItem="LmT-sv-XIj" firstAttribute="top" secondItem="TIr-Vk-7vg" secondAttribute="bottom" constant="10" id="YBZ-fd-Pgm"/>
                 <constraint firstItem="LmT-sv-XIj" firstAttribute="leading" secondItem="Ua2-ym-wmd" secondAttribute="leading" constant="5" id="aG7-4O-E38"/>
+                <constraint firstItem="a01-dG-nhT" firstAttribute="centerX" secondItem="Ua2-ym-wmd" secondAttribute="centerX" id="cn8-fw-U5d"/>
                 <constraint firstAttribute="trailing" secondItem="LmT-sv-XIj" secondAttribute="trailing" constant="5" id="ifZ-8w-Sj6"/>
-                <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="9Xt-nP-07s" secondAttribute="bottom" constant="10" id="pOA-ep-5Da"/>
                 <constraint firstItem="TIr-Vk-7vg" firstAttribute="centerX" secondItem="Ua2-ym-wmd" secondAttribute="centerX" id="rE0-Q3-gc9"/>
-                <constraint firstAttribute="trailing" secondItem="9Xt-nP-07s" secondAttribute="trailing" constant="5" id="wBL-89-naM"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <point key="canvasLocation" x="1453" y="55"/>
+            <point key="canvasLocation" x="1452.5" y="51.5"/>
         </view>
         <view contentMode="scaleToFill" id="uTS-MU-A22" userLabel="vError">
-            <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="wizard_error.png" translatesAutoresizingMaskIntoConstraints="NO" id="d6Q-IP-jA4">
-                    <rect key="frame" x="61" y="196" width="253" height="140"/>
+                    <rect key="frame" x="61" y="123.5" width="253" height="140"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="253" id="4Lt-2m-5pi"/>
                         <constraint firstAttribute="height" relation="lessThanOrEqual" constant="140" id="FpF-oc-wHG"/>
                     </constraints>
                 </imageView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="7" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="J9f-5g-EoU">
-                    <rect key="frame" x="15" y="396" width="345" height="40"/>
+                    <rect key="frame" x="15" y="323.5" width="345" height="40"/>
                     <constraints>
                         <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="40" id="Yuw-zp-1nd"/>
                     </constraints>
@@ -533,21 +512,21 @@ Press Next to continue.
                 <constraint firstItem="d6Q-IP-jA4" firstAttribute="centerY" secondItem="uTS-MU-A22" secondAttribute="centerY" priority="750" constant="-140" id="li5-tN-XTz"/>
                 <constraint firstItem="J9f-5g-EoU" firstAttribute="top" secondItem="d6Q-IP-jA4" secondAttribute="bottom" constant="60" id="yJk-wd-MTs"/>
             </constraints>
-            <point key="canvasLocation" x="1960" y="88"/>
+            <point key="canvasLocation" x="1937" y="55"/>
         </view>
         <view contentMode="scaleToFill" id="O29-9p-F9i" userLabel="vDone">
-            <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="wizard_ok.png" translatesAutoresizingMaskIntoConstraints="NO" id="bob-LU-zp6">
-                    <rect key="frame" x="61" y="196" width="253" height="140"/>
+                    <rect key="frame" x="61" y="123.5" width="253" height="140"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="253" id="Mei-oL-6HO"/>
                         <constraint firstAttribute="height" relation="lessThanOrEqual" constant="140" id="nOF-xB-Ezk"/>
                     </constraints>
                 </imageView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Device configuration completed successfully :)" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="7" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="JYg-Vc-pZn">
-                    <rect key="frame" x="15" y="376" width="345" height="80"/>
+                    <rect key="frame" x="15" y="303.5" width="345" height="80"/>
                     <constraints>
                         <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="80" id="J2u-ra-mAR"/>
                     </constraints>
@@ -556,7 +535,7 @@ Press Next to continue.
                     <nil key="highlightedColor"/>
                 </label>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="E58-RD-4NN">
-                    <rect key="frame" x="20" y="486" width="335" height="130"/>
+                    <rect key="frame" x="20" y="413.5" width="335" height="130"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Device parameters" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Da-uK-N1d">
                             <rect key="frame" x="10" y="8" width="315" height="21"/>
@@ -693,20 +672,20 @@ Press Next to continue.
                 <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="E58-RD-4NN" secondAttribute="bottom" constant="20" id="h3h-WT-wgd"/>
                 <constraint firstItem="E58-RD-4NN" firstAttribute="top" secondItem="JYg-Vc-pZn" secondAttribute="bottom" constant="30" id="vNE-35-KQf"/>
             </constraints>
-            <point key="canvasLocation" x="2424" y="88"/>
+            <point key="canvasLocation" x="2388" y="55"/>
         </view>
     </objects>
     <resources>
         <image name="btnnextl.png" width="25" height="61"/>
         <image name="btnnextr.png" width="61" height="61"/>
         <image name="btnnextr2.png" width="25" height="61"/>
-        <image name="generalsettings.png" width="296" height="200"/>
+        <image name="generalsettings.png" width="207" height="200"/>
         <image name="greendot.png" width="32" height="32"/>
-        <image name="iossettings.png" width="74" height="74"/>
         <image name="look.png" width="242" height="242"/>
         <image name="plug.png" width="356" height="260"/>
         <image name="rocket.png" width="253" height="253"/>
         <image name="wifi.png" width="200" height="199"/>
+        <image name="wifigeneral.png" width="40" height="40"/>
         <image name="wizard_error.png" width="199" height="199"/>
         <image name="wizard_ok.png" width="199" height="199"/>
     </resources>

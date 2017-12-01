@@ -73,5 +73,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *lFirmware;
 @property (weak, nonatomic) IBOutlet UILabel *lMAC;
 @property (weak, nonatomic) IBOutlet UILabel *lLastState;
+@property (weak, nonatomic) IBOutlet UIButton *btnSystemSettings;
 
 @end
