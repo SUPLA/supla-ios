@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina5_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -56,7 +56,7 @@
                     <rect key="frame" x="0.0" y="656" width="414" height="80"/>
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fGm-C1-0WE">
-                            <rect key="frame" x="294" y="5" width="60" height="40"/>
+                            <rect key="frame" x="293" y="5" width="61" height="40"/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="40" id="fWQ-Hq-KLV"/>
@@ -92,7 +92,7 @@
                             </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TGR-gA-tNb">
-                            <rect key="frame" x="277" y="5" width="17" height="40"/>
+                            <rect key="frame" x="276" y="5" width="17" height="40"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="17" id="22W-h1-ki5"/>
                                 <constraint firstAttribute="height" constant="40" id="SFT-Zh-Btr"/>
@@ -202,7 +202,7 @@
                     </constraints>
                 </imageView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Welcome to the Device Add Wizard which will in an easy and simple way help you to add new device to the system." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="7" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="vbb-Xd-lIx">
-                    <rect key="frame" x="15" y="338.66666666666669" width="384" height="63"/>
+                    <rect key="frame" x="15" y="338.66666666666669" width="384" height="65"/>
                     <constraints>
                         <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="40" id="WbV-QM-MV7"/>
                     </constraints>
@@ -211,7 +211,7 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Press Next to continue." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3bd-Xm-Rok">
-                    <rect key="frame" x="15" y="416.66666666666669" width="384" height="30"/>
+                    <rect key="frame" x="15" y="418.66666666666669" width="384" height="30"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="30" id="lWL-YF-H8X"/>
                     </constraints>
@@ -262,7 +262,7 @@
                             <rect key="frame" x="0.0" y="0.0" width="51" height="31"/>
                         </switch>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Remember password" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OMR-DU-yyQ">
-                            <rect key="frame" x="59.000000000000014" y="0.0" width="153.33333333333337" height="30"/>
+                            <rect key="frame" x="58.999999999999986" y="0.0" width="167.66666666666663" height="30"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="30" id="HcX-y6-VLg"/>
                             </constraints>
