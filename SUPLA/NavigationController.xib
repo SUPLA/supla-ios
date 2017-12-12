@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -15,7 +15,7 @@
         <array key="OpenSans-Regular.ttf">
             <string>OpenSans</string>
         </array>
-        <array key="Quicksand-Light.ttf">
+        <array key="Quicksand-Regular.ttf">
             <string>Quicksand-Regular</string>
         </array>
     </customFonts>
@@ -25,7 +25,7 @@
                 <outlet property="btnAbout" destination="x05-qN-dZB" id="N2d-fn-UYS"/>
                 <outlet property="btnAddDevice" destination="htT-Tf-uAY" id="3vv-WG-HpY"/>
                 <outlet property="btnDonate" destination="TzT-5W-ysJ" id="5oP-r7-oOA"/>
-                <outlet property="btnFeedback" destination="ur3-3n-APa" id="A3d-jD-Tvb"/>
+                <outlet property="btnHelp" destination="ur3-3n-APa" id="Mvj-NS-7Wb"/>
                 <outlet property="btnMenu" destination="5bu-iw-spE" id="8tj-KK-7nE"/>
                 <outlet property="btnSettings" destination="faF-DH-fsk" id="Iqr-kq-u8Z"/>
                 <outlet property="menuBar" destination="YKe-vY-eQe" id="jr1-Gm-bKb"/>
@@ -44,7 +44,7 @@
                     <rect key="frame" x="0.0" y="0.0" width="375" height="75"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="supla" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IBu-dl-v6F">
-                            <rect key="frame" x="152" y="34.5" width="71" height="31.5"/>
+                            <rect key="frame" x="152" y="33.5" width="71" height="32.5"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="71" id="hb9-67-Qnb"/>
                             </constraints>
@@ -154,9 +154,9 @@
                                 <constraint firstAttribute="width" constant="28" id="S44-6N-dP9"/>
                                 <constraint firstAttribute="height" constant="28" id="YNi-yv-064"/>
                             </constraints>
-                            <state key="normal" image="feedback.png"/>
+                            <state key="normal" image="help.png"/>
                             <connections>
-                                <action selector="feedbackTouch:" destination="-1" eventType="touchDown" id="yfw-CH-z1a"/>
+                                <action selector="helpTouch:" destination="-1" eventType="touchDown" id="yfw-CH-z1a"/>
                             </connections>
                         </button>
                         <view alpha="0.40000000000000002" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1w0-Ak-Xva" userLabel="Line5">
@@ -206,9 +206,9 @@
                                 <constraint firstAttribute="height" constant="50" id="bDX-Wt-zxn"/>
                             </constraints>
                             <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="16"/>
-                            <state key="normal" title="Feedback"/>
+                            <state key="normal" title="Help"/>
                             <connections>
-                                <action selector="feedbackTouch:" destination="-1" eventType="touchDown" id="pgg-R4-TLQ"/>
+                                <action selector="helpTouch:" destination="-1" eventType="touchDown" id="pgg-R4-TLQ"/>
                             </connections>
                         </button>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="www." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xsz-Tk-7AC">
@@ -331,7 +331,7 @@
     <resources>
         <image name="add_device.png" width="28" height="28"/>
         <image name="donate.png" width="36" height="28"/>
-        <image name="feedback.png" width="28" height="28"/>
+        <image name="help.png" width="28" height="28"/>
         <image name="info.png" width="28" height="28"/>
         <image name="menu.png" width="21" height="13"/>
         <image name="settings.png" width="28" height="28"/>

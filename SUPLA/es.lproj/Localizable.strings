@@ -84,3 +84,5 @@
 "Configuration Failed!" = "¡Configuración no finalizada con éxito!";
 "Connection with the device cannot be set! Make sure, if the Wi-fi connection has been set for the I/O device." = "¡No se puede establecer una conexión con el dispositivo!";
 "[Calibration]" = "[Calibración]";
+
+"Help" = "Ayuda";

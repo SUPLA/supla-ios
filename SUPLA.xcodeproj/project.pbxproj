@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		4004DE8D1DC4E270009C34E3 /* SAColorBrightnessPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 4004DE8C1DC4E270009C34E3 /* SAColorBrightnessPicker.m */; };
 		4006E90A1DC62D0A00C4456D /* DetailView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4006E9091DC62D0A00C4456D /* DetailView.m */; };
+		4014ADFD1FE01ECD00297A9E /* help@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4014ADFB1FE01EC700297A9E /* help@2x.png */; };
+		4014ADFE1FE01ECD00297A9E /* help@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4014ADFC1FE01EC800297A9E /* help@3x.png */; };
 		4017E12C1BB9CE2900570AC8 /* ChannelCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4017E12A1BB9CE2900570AC8 /* ChannelCell.m */; };
 		401CA1BF1BA067DB00117AF4 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 401CA1BE1BA067DB00117AF4 /* main.m */; };
 		401CA1C21BA067DB00117AF4 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 401CA1C11BA067DB00117AF4 /* AppDelegate.m */; };
@@ -228,6 +230,8 @@
 		4004DE8C1DC4E270009C34E3 /* SAColorBrightnessPicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SAColorBrightnessPicker.m; sourceTree = "<group>"; };
 		4006E9081DC62D0A00C4456D /* DetailView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailView.h; sourceTree = "<group>"; };
 		4006E9091DC62D0A00C4456D /* DetailView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailView.m; sourceTree = "<group>"; };
+		4014ADFB1FE01EC700297A9E /* help@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "help@2x.png"; path = "Resources/Assets/Img/help@2x.png"; sourceTree = "<group>"; };
+		4014ADFC1FE01EC800297A9E /* help@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "help@3x.png"; path = "Resources/Assets/Img/help@3x.png"; sourceTree = "<group>"; };
 		4017E1291BB9CE2900570AC8 /* ChannelCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChannelCell.h; sourceTree = "<group>"; };
 		4017E12A1BB9CE2900570AC8 /* ChannelCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChannelCell.m; sourceTree = "<group>"; };
 		401CA1B91BA067DB00117AF4 /* SUPLA.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SUPLA.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -645,6 +649,8 @@
 		405AC4011BC15878004F7311 /* Img */ = {
 			isa = PBXGroup;
 			children = (
+				4014ADFB1FE01EC700297A9E /* help@2x.png */,
+				4014ADFC1FE01EC800297A9E /* help@3x.png */,
 				407D31A51FD1B75E0062FB80 /* logo-white@2x.png */,
 				407D31A61FD1B75E0062FB80 /* logo-white@3x.png */,
 				407D31921FD17C4B0062FB80 /* wifigeneral@2x.png */,
@@ -1127,12 +1133,14 @@
 				4052DA041DC515AE000B8C45 /* dimmerrgb-onoff@3x.png in Resources */,
 				4091AF441FC856C200EFF357 /* wifi@2x.png in Resources */,
 				406778291BCBBC84008DD37F /* ThermometerCell.xib in Resources */,
+				4014ADFD1FE01ECD00297A9E /* help@2x.png in Resources */,
 				4038A5581CE32CD700180B5D /* humidity@3x.png in Resources */,
 				40CF96C71BC7D4E70030EFFF /* rollershutter-closed@3x.png in Resources */,
 				40B9ED7C1FACE15700403B1A /* gatealt1-closed@3x.png in Resources */,
 				4052DA081DC515AE000B8C45 /* dimmer-off@3x.png in Resources */,
 				4052DA0E1DC515AE000B8C45 /* rgb-on@3x.png in Resources */,
 				4038A5541CE32B6800180B5D /* TempHumidityCell.xib in Resources */,
+				4014ADFE1FE01ECD00297A9E /* help@3x.png in Resources */,
 				40CF96AA1BC7D4E70030EFFF /* door-closed@2x.png in Resources */,
 				40D397AD1FAF547B00BF477D /* retry@3x.png in Resources */,
 				40B9ED7D1FACE15700403B1A /* mail@2x.png in Resources */,

@@ -19,6 +19,7 @@
 
 #import "NavigationController.h"
 #import "SuplaApp.h"
+#import "SAClassHelper.h"
 
 @interface SANavigationController ()
 @end
@@ -32,11 +33,11 @@
     
     self.menuItems.hidden = YES;
     
-    [self.btnSettings setTitle:NSLocalizedString(@"Settings", nil) forState:UIControlStateNormal];
-    [self.btnAddDevice setTitle:NSLocalizedString(@"Add I/O device", nil) forState:UIControlStateNormal];
-    [self.btnAbout setTitle:NSLocalizedString(@"About", nil) forState:UIControlStateNormal];
-    [self.btnDonate setTitle:NSLocalizedString(@"Donate", nil) forState:UIControlStateNormal];
-    [self.btnFeedback setTitle:NSLocalizedString(@"Feedback", nil) forState:UIControlStateNormal];
+    [self.btnSettings setTitle:NSLocalizedString(@"Settings", nil)];
+    [self.btnAddDevice setTitle:NSLocalizedString(@"Add I/O device", nil)];
+    [self.btnAbout setTitle:NSLocalizedString(@"About", nil)];
+    [self.btnDonate setTitle:NSLocalizedString(@"Donate", nil)];
+    [self.btnHelp setTitle:NSLocalizedString(@"Help", nil)];
    
 }
 
@@ -171,29 +172,11 @@
     [self dismissViewControllerAnimated:YES completion: nil];
 }
 
-- (IBAction)feedbackTouch:(id)sender {
+- (IBAction)helpTouch:(id)sender {
     
     [self hideMenuWithAction:nil];
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString: @"https://forum.supla.org"]];
     
-    MFMailComposeViewController *composeVC = [[MFMailComposeViewController alloc] initWithNibName:nil bundle:nil];
-    
-    if ( composeVC ) {
-        
-        [composeVC setMailComposeDelegate:self];
-        [composeVC setToRecipients:@[@"feedback@supla.org"]];
-        [composeVC setSubject:@"SUPLA for iOS feedback"];
-        [self presentViewController:composeVC animated:YES completion:nil];
-        
-    } else {
-        UIAlertView * alert =[[UIAlertView alloc ] initWithTitle:@"E-Mail"
-                                                         message:NSLocalizedString(@"E-Mail service unavailable", nil)
-                                                        delegate:nil
-                                               cancelButtonTitle:@"OK"
-                                               otherButtonTitles: nil];
-        [alert show];
-    }
-    
-
 }
 
 - (IBAction)wwwTouch:(id)sender {

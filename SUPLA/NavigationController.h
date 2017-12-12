@@ -28,13 +28,13 @@
 - (IBAction)menuTouched:(id)sender;
 - (IBAction)settingsTouch:(id)sender;
 - (IBAction)aboutTouch:(id)sender;
-- (IBAction)feedbackTouch:(id)sender;
+- (IBAction)helpTouch:(id)sender;
 - (IBAction)wwwTouch:(id)sender;
 - (IBAction)addDeviceTouch:(id)sender;
 - (IBAction)donateTouch:(id)sender;
 @property (weak, nonatomic) IBOutlet UIButton *btnSettings;
 @property (weak, nonatomic) IBOutlet UIButton *btnAbout;
-@property (weak, nonatomic) IBOutlet UIButton *btnFeedback;
+@property (weak, nonatomic) IBOutlet UIButton *btnHelp;
 @property (weak, nonatomic) IBOutlet UIView *menuItems;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *menuItemsTop;
 @property (weak, nonatomic) IBOutlet UIButton *btnMenu;

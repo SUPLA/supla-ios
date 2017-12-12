@@ -81,3 +81,6 @@
 "Configuration Failed!" = "Конфигурация завершена с ошибкой!";
 "Connection with the device cannot be set! Make sure, if the Wi-fi connection has been set for the I/O device." = "Не удается установить соединение с устройством!";
 "[Calibration]" = "[калибровка]";
+
+"Help" = "Помощь";
+
