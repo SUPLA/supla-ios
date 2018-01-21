@@ -397,8 +397,6 @@
     }];
 }
 
-
-
 -(void) cleanUp {
     if ( _watchDogTimer != nil ) {
         [_watchDogTimer invalidate];
