@@ -299,6 +299,30 @@
     // Do any additional setup after loading the view from its nib.
 }
 
+- (void)watchDogTimerFireMethod:(NSTimer *)timer {
+    
+    int timeout = 0;
+    
+    switch(_step) {
+        case STEP_CHECK_REGISTRATION_ENABLED_TRY1:
+        case STEP_CHECK_REGISTRATION_ENABLED_TRY2:
+            timeout = 3;
+            break;
+        case STEP_CONFIGURE:
+            timeout = 50;
+            break;
+    }
+    
+    if ( timeout > 0
+        && _stepTime != nil
+        && [[NSDate date] timeIntervalSinceDate:_stepTime] >= timeout ) {
+        
+        [self onWatchDogTimeout];
+        
+    }
+    
+}
+
 -(void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [[SAApp UI] showMenuBtn:NO];
@@ -332,30 +356,8 @@
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(onRegistrationEnabled:) name:kSARegistrationEnabledNotification object:nil];
 
-    _watchDogTimer = [NSTimer scheduledTimerWithTimeInterval:1 repeats:YES block:^(NSTimer *timer) {
-
-        int timeout = 0;
-        
-        switch(_step) {
-            case STEP_CHECK_REGISTRATION_ENABLED_TRY1:
-            case STEP_CHECK_REGISTRATION_ENABLED_TRY2:
-                timeout = 3;
-                break;
-            case STEP_CONFIGURE:
-                timeout = 50;
-                break;
-        }
-        
-        if ( timeout > 0
-            && _stepTime != nil
-            && [[NSDate date] timeIntervalSinceDate:_stepTime] >= timeout ) {
-            
-            [self onWatchDogTimeout];
-            
-        }
-        
-    }];
-
+    _watchDogTimer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(watchDogTimerFireMethod:) userInfo:nil repeats:YES];
+    
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(keyboardDidShow:)
                                                  name:UIKeyboardDidShowNotification
@@ -484,6 +486,13 @@
     [self.vPageContent addSubview:    pageView];
 }
 
+- (void)blinkTimerFireMethod:(NSTimer *)timer {
+    
+    if ( _pageId == PAGE_STEP_3 ) {
+        self.vDot.hidden = !self.vDot.hidden;
+    }
+}
+
 -(void)showPage:(int)page {
     
     [self setStep:STEP_NONE];
@@ -500,13 +509,7 @@
             break;
         case PAGE_STEP_3:
         {
-            _blinkTimer = [NSTimer scheduledTimerWithTimeInterval:0.1 repeats:YES block:^(NSTimer *timer) {
-                
-                if ( _pageId == PAGE_STEP_3 ) {
-                    self.vDot.hidden = !self.vDot.hidden;
-                }
-                
-            }];
+            _blinkTimer = [NSTimer scheduledTimerWithTimeInterval:0.1 target:self selector:@selector(blinkTimerFireMethod:) userInfo:nil repeats:YES];
             
             [self showPageView:self.vStep3];
         }
@@ -564,7 +567,26 @@
     
 }
 
-
+- (void)preloaderTimerFireMethod:(NSTimer *)timer {
+    
+    if ( _preloaderPos == -1 ) {
+        return;
+    }
+    
+    NSString *str = @"";
+    
+    for(int a=0;a<10;a++) {
+        str = [NSString stringWithFormat:@"%@%@", str, _preloaderPos == a ? @"|" : @"."];
+    }
+    
+    _preloaderPos++;
+    if ( _preloaderPos > 9 ) {
+        _preloaderPos = 0;
+    }
+    
+    [self.btnNext2 setAttributedTitle:str];
+    
+}
 
 -(void)preloaderVisible:(BOOL)visible {
     
@@ -581,26 +603,7 @@
         _btnNext3_width.constant = 17;
         [self.btnNext3 setBackgroundImage:[UIImage imageNamed:@"btnnextr2.png"]];
         
-        _preloaderTimer = [NSTimer scheduledTimerWithTimeInterval:0.1 repeats:YES block:^(NSTimer *timer) {
-            
-            if ( _preloaderPos == -1 ) {
-                return;
-            }
-            
-            NSString *str = @"";
-            
-            for(int a=0;a<10;a++) {
-                str = [NSString stringWithFormat:@"%@%@", str, _preloaderPos == a ? @"|" : @"."];
-            }
-            
-            _preloaderPos++;
-            if ( _preloaderPos > 9 ) {
-                _preloaderPos = 0;
-            }
-            
-            [self.btnNext2 setAttributedTitle:str];
-            
-        }];
+         _preloaderTimer = [NSTimer scheduledTimerWithTimeInterval:0.1 target:self selector:@selector(preloaderTimerFireMethod:) userInfo:nil repeats:YES];
         
     } else {
         
