@@ -356,7 +356,15 @@
         
     }];
 
-
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(keyboardDidShow:)
+                                                 name:UIKeyboardDidShowNotification
+                                               object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(keyboardDidHide:)
+                                                 name:UIKeyboardDidHideNotification
+                                               object:nil];
 }
 
 -(void)viewDidDisappear:(BOOL)animated  {
@@ -371,6 +379,22 @@
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
     [self.view endEditing:YES];
+}
+
+- (void)keyboardDidShow:(NSNotification*)notification {
+    NSDictionary* info = [notification userInfo];
+    CGSize keyboardSize = [[info objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue].size;
+    CGRect edPasswordRect = [self.edPassword convertRect:self.edPassword.frame toView:self.vStep2];
+    
+    [UIView animateWithDuration:0.2 animations:^{
+        self.vStep2.transform = CGAffineTransformMakeTranslation(0, self.vStep2.frame.size.height - keyboardSize.height - edPasswordRect.origin.y);
+    }];
+}
+
+- (void)keyboardDidHide:(NSNotification*)notification {
+    [UIView animateWithDuration:0.2 animations:^{
+        self.vStep2.transform = CGAffineTransformIdentity;
+    }];
 }
 
 -(void) cleanUp {
