@@ -469,6 +469,12 @@
 		40CF96D71BC81A470030EFFF /* warning@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "warning@3x.png"; path = "Resources/Assets/Img/warning@3x.png"; sourceTree = "<group>"; };
 		40CF96DC1BC820E60030EFFF /* UIHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIHelper.h; sourceTree = "<group>"; };
 		40CF96DD1BC820E60030EFFF /* UIHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIHelper.m; sourceTree = "<group>"; };
+		40D2B413207B857600608312 /* cs */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = cs; path = cs.lproj/SettingsVC.strings; sourceTree = "<group>"; };
+		40D2B414207B857600608312 /* cs */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = cs; path = cs.lproj/AboutVC.strings; sourceTree = "<group>"; };
+		40D2B415207B857600608312 /* cs */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = cs; path = cs.lproj/RGBDetail.strings; sourceTree = "<group>"; };
+		40D2B416207B857700608312 /* cs */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = cs; path = cs.lproj/RSDetail.strings; sourceTree = "<group>"; };
+		40D2B417207B857700608312 /* cs */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = cs; path = cs.lproj/AddWizardVC.strings; sourceTree = "<group>"; };
+		40D2B418207B857700608312 /* cs */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = cs; path = cs.lproj/Localizable.strings; sourceTree = "<group>"; };
 		40D397AC1FAF547B00BF477D /* retry@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "retry@3x.png"; path = "Resources/Assets/Img/retry@3x.png"; sourceTree = "<group>"; };
 		40D69DEC1BB574FE00937769 /* Database.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Database.h; sourceTree = "<group>"; };
 		40D69DED1BB574FE00937769 /* Database.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Database.m; sourceTree = "<group>"; };
@@ -991,6 +997,7 @@
 				fr,
 				es,
 				"pt-PT",
+				cs,
 			);
 			mainGroup = 401CA1B01BA067DB00117AF4;
 			productRefGroup = 401CA1BA1BA067DB00117AF4 /* Products */;
@@ -1257,6 +1264,7 @@
 				407D31A01FD1A7130062FB80 /* fr */,
 				407D31A21FD1A7160062FB80 /* es */,
 				407D31A41FD1A7190062FB80 /* pt-PT */,
+				40D2B417207B857700608312 /* cs */,
 			);
 			name = AddWizardVC.xib;
 			sourceTree = "<group>";
@@ -1272,6 +1280,7 @@
 				40844D881FB0DDCC00432AA0 /* es */,
 				40844D891FB0DDCF00432AA0 /* pt-PT */,
 				40844D8A1FB0DF3B00432AA0 /* Base */,
+				40D2B413207B857600608312 /* cs */,
 			);
 			name = SettingsVC.xib;
 			sourceTree = "<group>";
@@ -1287,6 +1296,7 @@
 				4091653C1F3C7C0E00F49193 /* fr */,
 				409165401F3C7C1900F49193 /* es */,
 				409165441F3C7C2300F49193 /* pt-PT */,
+				40D2B415207B857600608312 /* cs */,
 			);
 			name = RGBDetail.xib;
 			sourceTree = "<group>";
@@ -1302,6 +1312,7 @@
 				4091653B1F3C7C0E00F49193 /* fr */,
 				4091653F1F3C7C1900F49193 /* es */,
 				409165431F3C7C2300F49193 /* pt-PT */,
+				40D2B414207B857600608312 /* cs */,
 			);
 			name = AboutVC.xib;
 			sourceTree = "<group>";
@@ -1317,6 +1328,7 @@
 				4091653D1F3C7C0E00F49193 /* fr */,
 				409165411F3C7C1900F49193 /* es */,
 				409165451F3C7C2300F49193 /* pt-PT */,
+				40D2B418207B857700608312 /* cs */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";
@@ -1332,6 +1344,7 @@
 				40F951511FD065AD00698587 /* fr */,
 				40F951531FD065B200698587 /* es */,
 				40F951551FD065BB00698587 /* pt-PT */,
+				40D2B416207B857700608312 /* cs */,
 			);
 			name = RSDetail.xib;
 			sourceTree = "<group>";
