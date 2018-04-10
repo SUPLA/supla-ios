@@ -36,7 +36,7 @@
     [self.btnSettings setTitle:NSLocalizedString(@"Settings", nil)];
     [self.btnAddDevice setTitle:NSLocalizedString(@"Add I/O device", nil)];
     [self.btnAbout setTitle:NSLocalizedString(@"About", nil)];
-    [self.btnDonate setTitle:NSLocalizedString(@"Donate", nil)];
+    //[self.btnDonate setTitle:NSLocalizedString(@"Donate", nil)];
     [self.btnHelp setTitle:NSLocalizedString(@"Help", nil)];
    
 }
