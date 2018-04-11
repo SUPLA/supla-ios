@@ -43,6 +43,15 @@
 
     [self.btnCreate setAttributedTitle:NSLocalizedString(@"Create an account", nil)];
     
+    NSDateComponents *comps = [[NSDateComponents alloc] init];
+    [comps setDay:14];
+    [comps setMonth:4];
+    [comps setYear:2018];
+    NSDate *date = [[NSCalendar currentCalendar] dateFromComponents:comps];
+    
+    if ( [[NSDate date] timeIntervalSince1970] >= [date timeIntervalSince1970] ) {
+        self.btnCreate.hidden = NO;
+    }
 }
 
 -(void)viewDidAppear:(BOOL)animated {
