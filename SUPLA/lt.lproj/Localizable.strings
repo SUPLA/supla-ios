@@ -1,0 +1,98 @@
+/*
+ Copyright (C) AC SOFTWARE SP. Z O.O.
+ 
+ This program is free software; you can redistribute it and/or
+ modify it under the terms of the GNU General Public License
+ as published by the Free Software Foundation; either version 2
+ of the License, or (at your option) any later version.
+ 
+ This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ GNU General Public License for more details.
+ 
+ You should have received a copy of the GNU General Public License
+ along with this program; if not, write to the Free Software
+ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
+ */
+
+"version" = "versija";
+"Open" = "Atidaryti";
+"Open Close" = "Atidaryti Uždaryti";
+"Reveal" = "Atidengti";
+"Shut" = "Uždengti";
+"On" = "Įjungti";
+"Off" = "Išjungti";
+"opened the gateway" = "atidarė dureles";
+"opened / closed the gate" = "atidarė / uždarė vartus";
+"opened / closed the gate doors" = "atidarė / uždarė garažo vartus";
+"opened the door" = "atidarė duris";
+"opened / closed roller shutter" = "atidengė / uždengė žaliuzes";
+"turned the power ON/OFF" = "įjungė / išjungė maitinimą";
+"turned the light ON/OFF" = "įjungė / išjungė šviesą";
+"Settings" = "Nustatymai";
+"About" = "Apie programą";
+"Gateway" = "Durelės";
+"Gate" = "Vartai";
+"Garage door" = "Garažo vartai";
+"Door" = "Durys";
+"Roller shutter" = "Žaliuzės";
+"Power switch" = "Maitinimo jungiklis";
+"Lighting switch" = "Šviesos jungiklis";
+"Thermometer" = "Termometras";
+"Temperature and humidity" = "Temperatūra ir drėgmė";
+"No liquid sensor" = "Skysčio stygiaus jutiklis";
+"Gateway opening sensor" = "Durelių atidarymo jutiklis";
+"Gate opening sensor" = "Vartų atidarymo jutiklis";
+"Garage door opening sensor" = "Garažo vartų atidarymo jutiklis";
+"Door opening sensor" = "Durų atidarymo jutiklis";
+"Roller shutter opening sensor" = "Žaliuzių atidengimo jutiklis";
+"E-Mail service unavailable" = "El. pašto paslauga neprieinama!";
+"Connecting..." = "Jungimasis...";
+"Unknown error" = "";
+"Service temporarily unavailable" = "Paslauga laikinai nepasiekiama";
+"Bad credentials" = "Klaidingas autentifikavimas";
+"Client limit exceeded" = "Viršutinė klientų programų riba viršyta";
+"Access disabled" = "Prieiga išjungta";
+"Device is disabled" = "Įrenginys išjungtas";
+"Access Identifier is disabled" = "rieigos identifikatorius išjungtas";
+"Client Registration is off. Please go to \"Smartphone\" at %@ to activate it." = "Šiuo metu registracija išjungta. Norėdami ją įjungti eikite prie žymės Išmanieji telefonai puslapyje %@";
+"This client does not have access identifier assigned. Please go to \"Smartphone\" at %@ and get a valid identifier." = "Šis įrenginys neturi priskirto prieigos identifikatoriaus. Eikite į puslapį %@ ir žymėje Išmanieji telefonai priskirkite tinkamą identifikatorių.";
+"Incompatible server version" = "Nesuderinama serverio versija";
+"Host not found" = "Serverio adresas nerastas";
+"RGB Lighting" = "RGB apšvietimas";
+"Dimmer and RGB lighting" = "Šviesos srauto reguliatorius ir RGB apšvietimas";
+"Dimmer" = "Dimmer";
+"Distance sensor" = "Atstumo jutiklis";
+"Depth sensor" = "Gilio jutiklis";
+
+"If you enjoy using this app, please take a moment to rate it. Thanks for your support!" = "Jei Jums patinka ši programa, skirkite minutėle, kad ją įvertintumėte. Ačiū už Jūsų paramą!";
+"Rate Now" = "Įvertinti dabar";
+"Later" = "Vėliau";
+"No thanks" = "Ne, ačiū";
+"Mail sensor" = "Pašto jutiklis";
+"Window opening sensor" = "Lango atidarymo jutiklis";
+"Add I/O device" = "Pridėti įrenginį";
+"Donate" = "Paremti projektą";
+"Create an account" = "Sukurti paskyrą";
+
+
+"Device registration availability information timeout!" = "Viršytas informacijos apie įrenginių registracijos prieinamumą laukimo laikas!";
+"Next" = "Toliau";
+"Start" = "Startas";
+"Cancel" = "Atšaukti";
+"Go to the system settings" = "Eikite į iOS sistemos nustatymus";
+"I/O Device registration is currently off. To continue go to „My SUPLA” at %@ and enable the Device Add Button." = "Įv/iš įrenginių registracija dabar yra išjungta. Norėdami tęsti eikite į puslapį %%@ ir žymėje „Mano SUPLA” įjunkite įrenginių pridėjimą.";
+"Add Wizard is only available when server connection has been set based on the email address entered in the settings." = "Pridėjimų vedlys prieinamas tik kai yra ryšys su serveriu pagal įvestą nustatymuose el. pašto adresą!";
+"The connected Server does not support this function!" = "Serveris, prie kurio prisijungta, nepaliko šios funkcijos!";
+"Device Configuration Completion timeout!" = "Viršytas įrenginio konfigūracijos užbaigimo laukimo laikas!";
+"Incorrect input parameters!" = "Klaidingi įvesties parametrai!";
+"The connected device is not compatible with this Wizard!" = "Įrenginys, su kuriuo užmegztas ryšys nėra suderinamas su šiuo vedliu!";
+"Configuration Failed!" = "Nepavyko sėkmingai baigti konfigūravimo!";
+"Connection with the device cannot be set! Make sure, if the Wi-fi connection has been set for the I/O device." = "Negalima užmegzti ryšio su įrenginiu! Įsitikinkite, kad vykdomasis įrenginys užmezgė ryšį su WiFi tinklu.";
+"[Calibration]" = "[Kalibravimas]";
+
+"Help" = "Pagalba";
+
+"https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=L4N7RSWME6LG2" = "https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=QYN932S5UQG8N";
+

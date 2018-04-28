@@ -379,6 +379,12 @@
 		40A87DDE1FADDFF800918B54 /* add_device@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "add_device@2x.png"; path = "Resources/Assets/Img/add_device@2x.png"; sourceTree = "<group>"; };
 		40AB8BDC1DCB32EB0030F3DE /* SARateApp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SARateApp.h; sourceTree = "<group>"; };
 		40AB8BDD1DCB32EB0030F3DE /* SARateApp.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SARateApp.m; sourceTree = "<group>"; };
+		40AC4F332094B23C004DB7CD /* lt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = lt; path = lt.lproj/SettingsVC.strings; sourceTree = "<group>"; };
+		40AC4F342094B23C004DB7CD /* lt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = lt; path = lt.lproj/AboutVC.strings; sourceTree = "<group>"; };
+		40AC4F352094B23D004DB7CD /* lt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = lt; path = lt.lproj/RGBDetail.strings; sourceTree = "<group>"; };
+		40AC4F362094B23D004DB7CD /* lt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = lt; path = lt.lproj/RSDetail.strings; sourceTree = "<group>"; };
+		40AC4F372094B23D004DB7CD /* lt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = lt; path = lt.lproj/AddWizardVC.strings; sourceTree = "<group>"; };
+		40AC4F382094B23D004DB7CD /* lt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = lt; path = lt.lproj/Localizable.strings; sourceTree = "<group>"; };
 		40B397CE1BCE7F3200BE7D5A /* Launch Screen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		40B397D71BCEA25700BE7D5A /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		40B397DD1BCED5EB00BE7D5A /* Quicksand-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Quicksand-Light.ttf"; path = "Resources/Assets/Fonts/Quicksand-Light.ttf"; sourceTree = "<group>"; };
@@ -998,6 +1004,7 @@
 				es,
 				"pt-PT",
 				cs,
+				lt,
 			);
 			mainGroup = 401CA1B01BA067DB00117AF4;
 			productRefGroup = 401CA1BA1BA067DB00117AF4 /* Products */;
@@ -1265,6 +1272,7 @@
 				407D31A21FD1A7160062FB80 /* es */,
 				407D31A41FD1A7190062FB80 /* pt-PT */,
 				40D2B417207B857700608312 /* cs */,
+				40AC4F372094B23D004DB7CD /* lt */,
 			);
 			name = AddWizardVC.xib;
 			sourceTree = "<group>";
@@ -1281,6 +1289,7 @@
 				40844D891FB0DDCF00432AA0 /* pt-PT */,
 				40844D8A1FB0DF3B00432AA0 /* Base */,
 				40D2B413207B857600608312 /* cs */,
+				40AC4F332094B23C004DB7CD /* lt */,
 			);
 			name = SettingsVC.xib;
 			sourceTree = "<group>";
@@ -1297,6 +1306,7 @@
 				409165401F3C7C1900F49193 /* es */,
 				409165441F3C7C2300F49193 /* pt-PT */,
 				40D2B415207B857600608312 /* cs */,
+				40AC4F352094B23D004DB7CD /* lt */,
 			);
 			name = RGBDetail.xib;
 			sourceTree = "<group>";
@@ -1313,6 +1323,7 @@
 				4091653F1F3C7C1900F49193 /* es */,
 				409165431F3C7C2300F49193 /* pt-PT */,
 				40D2B414207B857600608312 /* cs */,
+				40AC4F342094B23C004DB7CD /* lt */,
 			);
 			name = AboutVC.xib;
 			sourceTree = "<group>";
@@ -1329,6 +1340,7 @@
 				409165411F3C7C1900F49193 /* es */,
 				409165451F3C7C2300F49193 /* pt-PT */,
 				40D2B418207B857700608312 /* cs */,
+				40AC4F382094B23D004DB7CD /* lt */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";
@@ -1345,6 +1357,7 @@
 				40F951531FD065B200698587 /* es */,
 				40F951551FD065BB00698587 /* pt-PT */,
 				40D2B416207B857700608312 /* cs */,
+				40AC4F362094B23D004DB7CD /* lt */,
 			);
 			name = RSDetail.xib;
 			sourceTree = "<group>";
