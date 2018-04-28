@@ -629,7 +629,7 @@
             if ( [reg_enabled isIODeviceRegistrationEnabled] ) {
                 [self showPage:PAGE_STEP_3];
             } else {
-                [self showError:[NSString stringWithFormat:NSLocalizedString(@"I/O Device registration is currently off. To continue go to „I/O Devices” at %@ and enable the Device Add Button.", NULL), self.cloudHostName]];
+                [self showError:[NSString stringWithFormat:NSLocalizedString(@"I/O Device registration is currently off. To continue go to „My SUPLA” at %@ and enable the Device Add Button.", NULL), self.cloudHostName]];
             }
             
         };

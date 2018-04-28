@@ -75,7 +75,7 @@
 "Start" = "Start";
 "Cancel" = "Cancelar";
 "Go to the system settings" = "Proceda a los ajustes del sistema";
-"I/O Device registration is currently off. To continue go to „I/O Devices” at %@ and enable the Device Add Button." = "El registro de dispositivos de entrada/salida está actualmente deshabilitado. Para continuar ve a la página %@ y en la pestaña Dispositivos E/S activa la adición de dispositivos.";
+"I/O Device registration is currently off. To continue go to „My SUPLA” at %@ and enable the Device Add Button." = "El registro de dispositivos de entrada/salida está actualmente deshabilitado. Para continuar ve a la página %@ y en la pestaña Mi SUPLA activa la adición de dispositivos.";
 "Add Wizard is only available when server connection has been set based on the email address entered in the settings." = "¡El creador de adición está disponible solo cuando se ha establecido una conexión con el servidor conforme a la dirección de correo electrónico introducida en los ajustes!";
 "The connected Server does not support this function!" = "¡El servidor al que te has conectado no es compatible con esta característica!";
 "Device Configuration Completion timeout!" = "¡Se ha superado el tiempo de espera a la finalización de la configuración del dispositivo!";
