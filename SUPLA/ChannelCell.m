@@ -236,23 +236,19 @@
 }
 
 - (IBAction)rightTouchDown:(id)sender {
-    
     [sender setBackgroundColor: [UIColor btnTouched]];
     
     [self vibrate];
-    
     [[SAApp SuplaClient] channel:[self.channel.channel_id intValue] Open:[self.channel.func intValue] == SUPLA_CHANNELFNC_CONTROLLINGTHEROLLERSHUTTER ? 2 : 1];
-    
+    [self hideSwipeAnimated:YES];
 }
 
 - (IBAction)leftTouchDown:(id)sender {
-    
     [sender setBackgroundColor: [UIColor btnTouched]];
     
     [self vibrate];
-    
     [[SAApp SuplaClient] channel:[self.channel.channel_id intValue] Open:[self.channel.func intValue] == SUPLA_CHANNELFNC_CONTROLLINGTHEROLLERSHUTTER ? 1 : 0];
-    
+    [self hideSwipeAnimated:YES];
 }
 
 - (IBAction)rlTouchCancel:(id)sender {
@@ -262,7 +258,6 @@
     if ( [self.channel.func intValue] == SUPLA_CHANNELFNC_CONTROLLINGTHEROLLERSHUTTER ) {
         
             [self vibrate];
-        
             [[SAApp SuplaClient] channel:[self.channel.channel_id intValue] Open: 0];
     }
     
