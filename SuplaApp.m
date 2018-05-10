@@ -430,7 +430,7 @@ NSString *kSARegistrationEnabledNotification = @"KSA-N12";
 
 -(void)onDisconnected {
     
-    if ( [self.UI addWizardIsVisible] == YES ) {
+    if ( ![self canChangeView] ) {
         return;
     }
     
@@ -440,7 +440,7 @@ NSString *kSARegistrationEnabledNotification = @"KSA-N12";
 
 -(void)onConnecting {
     
-    if ( [self.UI addWizardIsVisible] == YES ) {
+    if ( ![self canChangeView] ) {
         return;
     }
     
@@ -455,7 +455,7 @@ NSString *kSARegistrationEnabledNotification = @"KSA-N12";
 
 -(void)onConnected {
     
-    if ( [self.UI addWizardIsVisible] == YES ) {
+    if ( ![self canChangeView] ) {
         return;
     }
     
@@ -465,7 +465,7 @@ NSString *kSARegistrationEnabledNotification = @"KSA-N12";
 
 -(void)onConnError:(NSNumber*)code {
     
-    if ( [self.UI addWizardIsVisible] == YES ) {
+    if ( ![self canChangeView] ) {
         return;
     }
     
@@ -483,7 +483,7 @@ NSString *kSARegistrationEnabledNotification = @"KSA-N12";
 
 -(void)onRegistering {
     
-    if ( [self.UI addWizardIsVisible] == YES ) {
+    if ( ![self canChangeView] ) {
         return;
     }
     
@@ -493,7 +493,7 @@ NSString *kSARegistrationEnabledNotification = @"KSA-N12";
 
 -(void)onRegistered:(SARegResult*)result {
     
-    if ( [self.UI addWizardIsVisible] == YES ) {
+    if ( ![self canChangeView] ) {
         return;
     }
     
@@ -514,7 +514,7 @@ NSString *kSARegistrationEnabledNotification = @"KSA-N12";
 
 -(void)onRegisterError:(NSNumber*)code {
     
-    if ( [self.UI addWizardIsVisible] == YES ) {
+    if ( ![self canChangeView] ) {
         return;
     }
     
@@ -553,10 +553,13 @@ NSString *kSARegistrationEnabledNotification = @"KSA-N12";
     
 }
 
-
+-(BOOL)canChangeView {
+    return [self.UI addWizardIsVisible] != YES && [self.UI createAccountVCisVisible] != YES;
+    
+}
 -(void)onVersionError:(SAVersionError*)ve {
     
-    if ( [self.UI addWizardIsVisible] == YES ) {
+    if ( ![self canChangeView] ) {
         return;
     }
     

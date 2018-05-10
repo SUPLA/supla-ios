@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SACreateAccountVC">
+            <connections>
+                <outlet property="activityIndicator" destination="PYY-wC-cYg" id="sES-mo-cSs"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+                <outlet property="webView" destination="vNa-An-u0v" id="ssV-9f-07L"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vNa-An-u0v">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                    <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                </webView>
+                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="PYY-wC-cYg">
+                    <rect key="frame" x="169" y="315" width="37" height="37"/>
+                    <color key="color" red="0.075892440970000002" green="0.65329384800000001" blue="0.1169849709" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                </activityIndicatorView>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="vNa-An-u0v" secondAttribute="bottom" id="4tO-8r-l8B"/>
+                <constraint firstItem="PYY-wC-cYg" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="5Ym-Tg-owu"/>
+                <constraint firstItem="PYY-wC-cYg" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="MAY-4P-Jvo"/>
+                <constraint firstAttribute="trailing" secondItem="vNa-An-u0v" secondAttribute="trailing" id="NWS-Vg-G3I"/>
+                <constraint firstItem="vNa-An-u0v" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="NfR-BE-h9s"/>
+                <constraint firstItem="vNa-An-u0v" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="eRL-tF-AhI"/>
+            </constraints>
+            <point key="canvasLocation" x="-274" y="36"/>
+        </view>
+    </objects>
+</document>

@@ -16,21 +16,11 @@
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 
-#ifndef SAClassHelper_h
-#define SAClassHelper_h
-
-#import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
-@interface NSDictionary (SUPLA)
--(NSString*_Nullable) urlEncodedString;
-@end
+@interface SACreateAccountVC : UIViewController <UIWebViewDelegate>
+@property (weak, nonatomic) IBOutlet UIWebView *webView;
+@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicator;
 
-@interface UIButton (SUPLA)
-- (void)setTitle:(nullable NSString *)title;
-- (void)setAttributedTitle:(nullable NSString *)title;
-- (void)setBackgroundImage:(UIImage *_Nullable)image;
-- (void)setImage:(UIImage *_Nullable)image;
-@end
 
-#endif /* SAClassHelper_h */
+@end

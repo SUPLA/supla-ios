@@ -128,8 +128,8 @@
 
 - (IBAction)createTouch:(id)sender {
 
-        [[UIApplication sharedApplication] openURL:[NSURL URLWithString: @"https://cloud.supla.org/account/create"]];
-    
+       // [[UIApplication sharedApplication] openURL:[NSURL URLWithString: @"https://cloud.supla.org/account/create"]];
+    [SAApp.UI showCreateAccountVC];
 }
 
 - (IBAction)switchValueChanged:(id)sender {

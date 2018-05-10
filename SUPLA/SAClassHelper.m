@@ -70,4 +70,13 @@
     [self setBackgroundImage:image forState:UIControlStateHighlighted];
 }
 
+- (void)setImage:(UIImage *_Nullable)image {
+    
+    [self setImage:image forState:UIControlStateNormal];
+    [self setImage:image forState:UIControlStateDisabled];
+    [self setImage:image forState:UIControlStateSelected];
+    [self setImage:image forState:UIControlStateHighlighted];
+    
+}
+
 @end

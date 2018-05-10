@@ -60,6 +60,8 @@
 		406C92D41BCD8518007BA87A /* btnOK@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 406C92D31BCD8518007BA87A /* btnOK@2x.png */; };
 		40766C2B1FC9BC7A009E00BE /* generalsettings@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 40766C2A1FC9BC78009E00BE /* generalsettings@2x.png */; };
 		40766C2D1FC9C36D009E00BE /* iossettings.png in Resources */ = {isa = PBXBuildFile; fileRef = 40766C2C1FC9C36C009E00BE /* iossettings.png */; };
+		4077ACE320A21BB100BD2216 /* CreateAccountVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 4077ACE120A21BB100BD2216 /* CreateAccountVC.m */; };
+		4077ACE420A21BB100BD2216 /* CreateAccountVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4077ACE220A21BB100BD2216 /* CreateAccountVC.xib */; };
 		407D31931FD17C4D0062FB80 /* wifigeneral@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 407D31921FD17C4B0062FB80 /* wifigeneral@2x.png */; };
 		407D31941FD1A7070062FB80 /* AddWizardVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 407D31961FD1A7070062FB80 /* AddWizardVC.xib */; };
 		407D31A71FD1B75F0062FB80 /* logo-white@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 407D31A51FD1B75E0062FB80 /* logo-white@2x.png */; };
@@ -297,6 +299,9 @@
 		407004261BB5706500F6187F /* SUPLA.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = SUPLA.xcdatamodel; sourceTree = "<group>"; };
 		40766C2A1FC9BC78009E00BE /* generalsettings@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "generalsettings@2x.png"; path = "Resources/Assets/Img/generalsettings@2x.png"; sourceTree = "<group>"; };
 		40766C2C1FC9C36C009E00BE /* iossettings.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = iossettings.png; path = Resources/Assets/Img/iossettings.png; sourceTree = "<group>"; };
+		4077ACE020A21BB100BD2216 /* CreateAccountVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CreateAccountVC.h; sourceTree = "<group>"; };
+		4077ACE120A21BB100BD2216 /* CreateAccountVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CreateAccountVC.m; sourceTree = "<group>"; };
+		4077ACE220A21BB100BD2216 /* CreateAccountVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CreateAccountVC.xib; sourceTree = "<group>"; };
 		407D31921FD17C4B0062FB80 /* wifigeneral@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "wifigeneral@2x.png"; path = "Resources/Assets/Img/wifigeneral@2x.png"; sourceTree = "<group>"; };
 		407D31951FD1A7070062FB80 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/AddWizardVC.xib; sourceTree = "<group>"; };
 		407D31981FD1A70B0062FB80 /* pl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pl; path = pl.lproj/AddWizardVC.strings; sourceTree = "<group>"; };
@@ -915,6 +920,9 @@
 				403EB1111FBDF47F00AD6460 /* AddWizardVC.h */,
 				403EB1121FBDF47F00AD6460 /* AddWizardVC.m */,
 				407D31961FD1A7070062FB80 /* AddWizardVC.xib */,
+				4077ACE020A21BB100BD2216 /* CreateAccountVC.h */,
+				4077ACE120A21BB100BD2216 /* CreateAccountVC.m */,
+				4077ACE220A21BB100BD2216 /* CreateAccountVC.xib */,
 			);
 			name = UI;
 			sourceTree = "<group>";
@@ -1092,6 +1100,7 @@
 				40B9ED671FACD34C00403B1A /* xmastree-off@3x.png in Resources */,
 				40B9ED581FACD0A100403B1A /* pc-off@3x.png in Resources */,
 				40CF96C81BC7D4E70030EFFF /* rollershutter-open@2x.png in Resources */,
+				4077ACE420A21BB100BD2216 /* CreateAccountVC.xib in Resources */,
 				405AC4321BC158E8004F7311 /* OpenSans-Regular.ttf in Resources */,
 				40B9ED701FACD94300403B1A /* barier-open@2x.png in Resources */,
 				40CF96AC1BC7D4E70030EFFF /* door-open@2x.png in Resources */,
@@ -1218,6 +1227,7 @@
 				406778551BCBF9F4008DD37F /* SectionCell.m in Sources */,
 				40DA568F1DCA1908008F05DE /* _SALocation+CoreDataClass.m in Sources */,
 				40B9ED3A1FAC79FC00403B1A /* SUPLA.xcdatamodeld in Sources */,
+				4077ACE320A21BB100BD2216 /* CreateAccountVC.m in Sources */,
 				401CA1C81BA067DB00117AF4 /* MainVC.m in Sources */,
 				408034C51BC83D1A007666E7 /* MGSwipeTableCell.m in Sources */,
 				403EB1141FBDF47F00AD6460 /* AddWizardVC.m in Sources */,

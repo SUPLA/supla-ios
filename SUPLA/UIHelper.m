@@ -19,6 +19,7 @@
 
 #import "UIHelper.h"
 #import "SuplaApp.h"
+#import "SAClassHelper.h"
 #import "NavigationController.h"
 #import <QuartzCore/QuartzCore.h>
 
@@ -71,7 +72,7 @@
 }
 
 - (void)drawRect:(CGRect)rect {
-
+    
     CGContextRef ctx = UIGraphicsGetCurrentContext();
     
     
@@ -90,9 +91,9 @@
         CGContextSetFillColor(ctx, CGColorGetComponents([self.color CGColor]));
         CGContextFillPath(ctx);
     }
-
     
-
+    
+    
 }
 
 @end
@@ -137,6 +138,7 @@
     SAStatusVC *_StatusVC;
     SAAboutVC *_AboutVC;
     SAAddWizardVC *_AddWizardVC;
+    SACreateAccountVC *_CreateAccountVC;
     
     UIViewController *_nextWaiting;
     BOOL _fading;
@@ -160,9 +162,16 @@
 
 -(void)showMenuBtn:(BOOL)show {
     
-    if ( _NavController
-         && _NavController.btnMenu.hidden != !show) {
+    [self showMenuBtn:show withSettingsIcon:false];
+    
+}
+
+-(void)showMenuBtn:(BOOL)show withSettingsIcon:(BOOL)settingsIcon {
+    
+    if (_NavController) {
         _NavController.btnMenu.hidden = !show;
+        _NavController.btnMenu.tag = settingsIcon ? 1 : 0;
+        [_NavController.btnMenu setImage:[UIImage imageNamed:settingsIcon ? @"settings.png" : @"menu.png"]];
     }
     
 }
@@ -280,6 +289,23 @@
     
 }
 
+-(SACreateAccountVC*)CreateAccountVC {
+    
+    if ( _CreateAccountVC == nil ) {
+        _CreateAccountVC = [[SACreateAccountVC alloc] initWithNibName:@"CreateAccountVC" bundle:nil];
+    }
+    
+    return _CreateAccountVC;
+    
+}
+
+-(void)showCreateAccountVC {
+    
+    [self.NavController showViewController:[self CreateAccountVC]];
+    [self fadeToViewController:[self NavController]];
+    
+}
+
 -(void)hideVC {
     
     if ( [SAApp SuplaClientConnected] ) {
@@ -295,7 +321,7 @@
     if ( vc == self.rootViewController ) {
         return;
     }
-
+    
     if ( _fading ) {
         _nextWaiting = vc;
         return;
@@ -306,7 +332,7 @@
     }
     
     _fading = YES;
-
+    
     
     
     UIView *snapShot = nil;
@@ -316,9 +342,9 @@
         snapShot = [self.rootViewController.view snapshot];
     }
     
-   
+    
     if ( snapShot ) {
-       [vc.view addSubview:snapShot];
+        [vc.view addSubview:snapShot];
     }
     
     self.rootViewController = vc;
@@ -326,12 +352,12 @@
     [UIView animateWithDuration:0.25 animations:^{
         
         if ( snapShot )
-        snapShot.alpha = 0.0;
+            snapShot.alpha = 0.0;
         
     } completion:^(BOOL finished) {
         
         if (snapShot )
-        [snapShot removeFromSuperview];
+            [snapShot removeFromSuperview];
         
         _fading = NO;
         
@@ -344,6 +370,10 @@
 
 -(BOOL)addWizardIsVisible {
     return _AddWizardVC != nil && self.NavController.currentViewController == _AddWizardVC;
+}
+
+-(BOOL)createAccountVCisVisible {
+    return _CreateAccountVC != nil && self.NavController.currentViewController == _CreateAccountVC;
 }
 
 

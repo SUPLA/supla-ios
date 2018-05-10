@@ -594,7 +594,7 @@ void sasuplaclient_on_registration_enabled(void *_suplaclient, void *user_data, 
     
     @synchronized(self) {
         if ( _sclient ) {
-            supla_client_open(_sclient, ChannelID, open);
+            supla_client_open(_sclient, ChannelID, false, open);
         }
     }
     
@@ -625,7 +625,7 @@ void sasuplaclient_on_registration_enabled(void *_suplaclient, void *user_data, 
             if ( color_brightness < 0 || color_brightness > 100 )
                 color_brightness = 0;
             
-            result = 1 == supla_client_set_rgbw(_sclient, ChannelID, _color, color_brightness, brightness);
+            result = 1 == supla_client_set_rgbw(_sclient, ChannelID, false, _color, color_brightness, brightness);
         }
     }
     

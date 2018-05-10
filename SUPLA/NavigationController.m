@@ -142,15 +142,16 @@
 
 - (IBAction)menuTouched:(id)sender {
     
-    if ( self.menuItems.hidden ) {
+    if ( self.btnMenu.tag == 1 ) {
+        [[SAApp UI] showSettings];
+        return;
+    }
     
+    if ( self.menuItems.hidden ) {
         [self showMenu:YES withAction:nil];
-        
     } else {
         [self showMenu:NO withAction:nil];
     }
-    
-    
 }
 
 - (IBAction)settingsTouch:(id)sender {

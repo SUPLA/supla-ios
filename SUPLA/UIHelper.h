@@ -23,6 +23,7 @@
 #import "StatusVC.h"
 #import "AboutVC.h"
 #import "AddWizardVC.h"
+#import "CreateAccountVC.h"
 
 @interface UIView (SUPLA)
 
@@ -70,14 +71,19 @@
 -(SAAddWizardVC*)AddWizardVC;
 -(void)showAddWizard;
 
+-(SACreateAccountVC*)CreateAccountVC;
+-(void)showCreateAccountVC;
+
 -(void)showStatusConnectingProgress:(float)value;
 -(void)showStatusError:(NSString*)message;
 
 -(void)showStarterVC;
 
 -(void)showMenuBtn:(BOOL)show;
+-(void)showMenuBtn:(BOOL)show withSettingsIcon:(BOOL)settingsIcon;
 
 -(BOOL)addWizardIsVisible;
+-(BOOL)createAccountVCisVisible;
 
 @property (nonatomic, strong) UIViewController *rootViewController;
 

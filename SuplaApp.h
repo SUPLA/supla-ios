@@ -26,6 +26,7 @@
 @class SASettingsVC;
 @class SAStatusVC;
 @class SAMainVC;
+@class SACreateAccountVC;
 @interface SAApp : NSObject
 
 +(SAApp*)instance;
