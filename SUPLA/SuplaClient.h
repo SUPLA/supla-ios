@@ -84,8 +84,12 @@
 - (void) reconnect;
 - (BOOL) isConnected;
 - (BOOL) isRegistered;
+- (BOOL) cg:(int)ID setRGB:(UIColor*)color colorBrightness:(int)color_brightness brightness:(int)brightness group:(BOOL)group;
+- (void) cg:(int)ID Open:(char)open group:(BOOL)group;
 - (void) channel:(int)ChannelID Open:(char)open;
 - (BOOL) channel:(int)ChannelID setRGB:(UIColor*)color colorBrightness:(int)color_brightness brightness:(int)brightness;
+- (void) group:(int)GroupID Open:(char)open;
+- (BOOL) group:(int)GroupID setRGB:(UIColor*)color colorBrightness:(int)color_brightness brightness:(int)brightness;
 - (void) getRegistrationEnabled;
 - (int) getProtocolVersion;
 @end

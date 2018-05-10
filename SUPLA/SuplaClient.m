@@ -590,18 +590,8 @@ void sasuplaclient_on_registration_enabled(void *_suplaclient, void *user_data, 
     return result;
 }
 
-- (void) channel:(int)ChannelID Open:(char)open {
+- (BOOL) cg:(int)ID setRGB:(UIColor*)color colorBrightness:(int)color_brightness brightness:(int)brightness group:(BOOL)group {
     
-    @synchronized(self) {
-        if ( _sclient ) {
-            supla_client_open(_sclient, ChannelID, false, open);
-        }
-    }
-    
-}
-
-- (BOOL) channel:(int)ChannelID setRGB:(UIColor*)color colorBrightness:(int)color_brightness brightness:(int)brightness {
-   
     BOOL result = NO;
     
     @synchronized(self) {
@@ -625,11 +615,35 @@ void sasuplaclient_on_registration_enabled(void *_suplaclient, void *user_data, 
             if ( color_brightness < 0 || color_brightness > 100 )
                 color_brightness = 0;
             
-            result = 1 == supla_client_set_rgbw(_sclient, ChannelID, false, _color, color_brightness, brightness);
+            result = 1 == supla_client_set_rgbw(_sclient, ID, group, _color, color_brightness, brightness);
         }
     }
     
     return result;
+}
+
+- (void) cg:(int)ID Open:(char)open group:(BOOL)group {
+    @synchronized(self) {
+        if ( _sclient ) {
+            supla_client_open(_sclient, ID, group, open);
+        }
+    }
+}
+
+- (void) channel:(int)ChannelID Open:(char)open {
+    [self cg:ChannelID Open:open group:NO];
+}
+
+- (BOOL) channel:(int)ChannelID setRGB:(UIColor*)color colorBrightness:(int)color_brightness brightness:(int)brightness {
+    return [self cg:ChannelID setRGB:color colorBrightness:color_brightness brightness:brightness group:NO];
+}
+
+- (void) group:(int)GroupID Open:(char)open {
+    [self cg:GroupID Open:open group:YES];
+}
+
+- (BOOL) group:(int)GroupID setRGB:(UIColor*)color colorBrightness:(int)color_brightness brightness:(int)brightness {
+    return [self cg:GroupID setRGB:color colorBrightness:color_brightness brightness:brightness group:YES];
 }
 
 - (void) getRegistrationEnabled {
