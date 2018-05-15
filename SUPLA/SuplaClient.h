@@ -34,9 +34,11 @@
 @property (nonatomic)int ClientID;
 @property (nonatomic)int LocationCount;
 @property (nonatomic)int ChannelCount;
+@property (nonatomic)int ChannelGroupCount;
+@property (nonatomic)int Flags;
 @property (nonatomic)int Version;
 
-+ (SARegResult*) RegResultClientID:(int) clientID locationCount:(int) location_count channelCount:(int) channel_count version:(int)version;
++ (SARegResult*) RegResultClientID:(int) clientID locationCount:(int) location_count channelCount:(int) channel_count channelGroupCount:(int) cgroup_count flags:(int) flags version:(int)version;
 
 @end
 
@@ -78,6 +80,8 @@
 - (void) locationUpdate:(TSC_SuplaLocation *)location;
 - (void) channelUpdate:(TSC_SuplaChannel_B *)channel;
 - (void) channelValueUpdate:(TSC_SuplaChannelValue *)channel_value;
+- (void) channelGroupUpdate:(TSC_SuplaChannelGroup *)cgroup;
+- (void) channelGroupRelationUpdate:(TSC_SuplaChannelGroupRelation *)cgroup_relation;
 - (void) onEvent:(SAEvent *)event;
 - (void) onRegistrationEnabled:(SARegistrationEnabled*)reg_enabled;
 

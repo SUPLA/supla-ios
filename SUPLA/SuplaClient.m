@@ -61,11 +61,11 @@ void sasuplaclient_on_registering(void *_suplaclient, void *user_data) {
     
 }
 
-void sasuplaclient_on_registered(void *_suplaclient, void *user_data, TSC_SuplaRegisterClientResult *result) {
+void sasuplaclient_on_registered(void *_suplaclient, void *user_data, TSC_SuplaRegisterClientResult_B *result) {
     
     SASuplaClient *sc = (__bridge SASuplaClient*)user_data;
     if ( sc != nil )
-        [sc onRegistered:[SARegResult RegResultClientID:result->ClientID locationCount:result->LocationCount channelCount:result->ChannelCount version:result->version]];
+        [sc onRegistered:[SARegResult RegResultClientID:result->ClientID locationCount:result->LocationCount channelCount:result->ChannelCount channelGroupCount:result->ChannelGroupCount flags:result->Flags version:result->version]];
     
 }
 
@@ -93,6 +93,18 @@ void sasuplaclient_channel_value_update(void *_suplaclient, void *user_data, TSC
     SASuplaClient *sc = (__bridge SASuplaClient*)user_data;
     if ( sc != nil )
         [sc channelValueUpdate:channel_value];
+}
+
+void sasuplaclient_channelgroup_update(void *_suplaclient, void *user_data, TSC_SuplaChannelGroup *cgroup) {
+    SASuplaClient *sc = (__bridge SASuplaClient*)user_data;
+    if ( sc != nil )
+        [sc channelGroupUpdate: cgroup];
+}
+
+void sasuplaclient_channelgroup_relation_update(void *_suplaclient, void *user_data, TSC_SuplaChannelGroupRelation *channelgroup_relation) {
+    SASuplaClient *sc = (__bridge SASuplaClient*)user_data;
+    if ( sc != nil )
+        [sc channelGroupRelationUpdate: channelgroup_relation];
 }
 
 void sasuplaclient_on_event(void *_suplaclient, void *user_data, TSC_SuplaEvent *event) {
@@ -138,14 +150,18 @@ void sasuplaclient_on_registration_enabled(void *_suplaclient, void *user_data, 
 @synthesize ClientID;
 @synthesize LocationCount;
 @synthesize ChannelCount;
+@synthesize ChannelGroupCount;
+@synthesize Flags;
 @synthesize Version;
 
-+ (SARegResult*) RegResultClientID:(int) clientID locationCount:(int) location_count channelCount:(int) channel_count version:(int)version {
++ (SARegResult*) RegResultClientID:(int) clientID locationCount:(int) location_count channelCount:(int) channel_count channelGroupCount:(int) cgroup_count flags:(int) flags version:(int)version {
     SARegResult *rr = [[SARegResult alloc] init];
     
     rr.ClientID = clientID;
     rr.LocationCount = location_count;
     rr.ChannelCount = channel_count;
+    rr.ChannelGroupCount = cgroup_count;
+    rr.Flags = flags;
     rr.Version = version;
     
     return rr;
@@ -302,6 +318,8 @@ void sasuplaclient_on_registration_enabled(void *_suplaclient, void *user_data, 
     scc.cb_on_registererror = sasuplaclient_on_register_error;
     scc.cb_location_update = sasuplaclient_location_update;
     scc.cb_channel_update = sasuplaclient_channel_update;
+    scc.cb_channelgroup_update = sasuplaclient_channelgroup_update;
+    scc.cb_channelgroup_relation_update = sasuplaclient_channelgroup_relation_update;
     scc.cb_channel_value_update = sasuplaclient_channel_value_update;
     scc.cb_on_event = sasuplaclient_on_event;
     scc.cb_on_registration_enabled = sasuplaclient_on_registration_enabled;
@@ -541,6 +559,14 @@ void sasuplaclient_on_registration_enabled(void *_suplaclient, void *user_data, 
         [self onDataChanged];
     }
     
+}
+
+- (void) channelGroupUpdate:(TSC_SuplaChannelGroup *)cgroup {
+    NSLog(@"CGroup %i", cgroup->Id);
+}
+
+- (void) channelGroupRelationUpdate:(TSC_SuplaChannelGroupRelation *)cgroup_relation {
+    NSLog(@"CGroup relation %i, %i", cgroup_relation->ChannelGroupID, cgroup_relation->ChannelID);
 }
 
 - (void) _onEvent:(SAEvent *)event {
