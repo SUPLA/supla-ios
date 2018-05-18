@@ -16,15 +16,8 @@
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 
-#import <Foundation/Foundation.h>
-#import <CoreData/CoreData.h>
+#import "SAChannelGroup+CoreDataClass.h"
 
-NS_ASSUME_NONNULL_BEGIN
-
-@interface SAAccessID : NSManagedObject
+@implementation SAChannelGroup
 
 @end
-
-NS_ASSUME_NONNULL_END
-
-#import "SAAccessID+CoreDataProperties.h"

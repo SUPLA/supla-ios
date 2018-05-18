@@ -16,18 +16,24 @@
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 
-#import "_SALocation+CoreDataClass.h"
+#import "SAChannelGroup+CoreDataClass.h"
 
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface _SALocation (CoreDataProperties)
+@interface SAChannelGroup (CoreDataProperties)
 
-+ (NSFetchRequest<_SALocation *> *)fetchRequest;
++ (NSFetchRequest<SAChannelGroup *> *)fetchRequest;
 
+@property (nonatomic) int32_t group_id;
 @property (nullable, nonatomic, copy) NSString *caption;
-@property (nullable, nonatomic, copy) NSNumber *location_id;
-@property (nullable, nonatomic, copy) NSNumber *visible;
+@property (nonatomic) int16_t online;
+@property (nonatomic) int32_t func;
+@property (nonatomic) int16_t visible;
+@property (nonatomic) int32_t alticon;
+@property (nonatomic) int32_t flags;
+@property (nullable, nonatomic, retain) NSObject *total_value;
+@property (nullable, nonatomic, retain) _SALocation *location;
 
 @end
 

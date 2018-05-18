@@ -28,5 +28,6 @@
 @dynamic color;
 @dynamic idx;
 @dynamic channel;
+@dynamic group;
 
 @end

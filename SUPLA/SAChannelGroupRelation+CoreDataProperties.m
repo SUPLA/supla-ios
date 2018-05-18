@@ -16,18 +16,18 @@
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 
-#import "SAAccessID+CoreDataClass.h"
+#import "SAChannelGroupRelation+CoreDataProperties.h"
 
+@implementation SAChannelGroupRelation (CoreDataProperties)
 
-NS_ASSUME_NONNULL_BEGIN
++ (NSFetchRequest<SAChannelGroupRelation *> *)fetchRequest {
+	return [[NSFetchRequest alloc] initWithEntityName:@"SAChannelGroupRelation"];
+}
 
-@interface SAAccessID (CoreDataProperties)
-
-+ (NSFetchRequest<SAAccessID *> *)fetchRequest;
-
-@property (nullable, nonatomic, copy) NSNumber *access_id;
-@property (nullable, nonatomic, copy) NSString *server_name;
+@dynamic visible;
+@dynamic channel_id;
+@dynamic group_id;
+@dynamic value;
+@dynamic group;
 
 @end
-
-NS_ASSUME_NONNULL_END

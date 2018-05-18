@@ -29,6 +29,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nullable, nonatomic, retain) NSObject *color;
 @property (nullable, nonatomic, copy) NSNumber *idx;
 @property (nullable, nonatomic, retain) SAChannel *channel;
+@property (nullable, nonatomic, retain) SAChannelGroup *group;
 
 @end
 

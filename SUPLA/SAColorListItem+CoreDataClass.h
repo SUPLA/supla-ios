@@ -18,6 +18,7 @@
 
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
+#import "SAChannelGroup+CoreDataClass.h"
 
 @class NSObject, SAChannel;
 

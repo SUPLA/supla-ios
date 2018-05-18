@@ -19,6 +19,7 @@
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 #import <UIKit/UIKit.h>
+#import "SAChannelValue+CoreDataClass.h"
 #include "proto.h"
 
 @class NSObject, _SALocation;
@@ -29,8 +30,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (BOOL) setChannelLocation:(_SALocation*)location;
 - (BOOL) setChannelFunction:(int)function;
-- (BOOL) setChannelOnline:(char)online;
-- (BOOL) setChannelValue:(TSuplaChannelValue*)value;
 - (BOOL) setChannelCaption:(char*)caption;
 - (BOOL) setChannelVisible:(int)visible;
 - (BOOL) setChannelAltIcon:(int)altIcon;

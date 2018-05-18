@@ -18,7 +18,6 @@
 
 
 #import "_SALocation+CoreDataClass.h"
-#import "SAAccessID+CoreDataClass.h"
 
 @implementation _SALocation
 

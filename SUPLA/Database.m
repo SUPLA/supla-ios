@@ -20,7 +20,6 @@
 
 #import "Database.h"
 #import "SuplaApp.h"
-#import "SAAccessID+CoreDataClass.h"
 #import "_SALocation+CoreDataClass.h"
 #import "SAChannel+CoreDataClass.h"
 #import "SAColorListItem+CoreDataClass.h"
@@ -152,47 +151,16 @@
     return nil;
 };
 
-#pragma mark AccessIDs
-
--(SAAccessID*) fetchAccessID:(int)access_id serverName:(NSString*)server {
-    
-    return [self fetchItemByPredicate:[NSPredicate predicateWithFormat:@"access_id = %i AND server_name = %@", access_id, server] entityName:@"SAAccessID"];
-}
-
--(SAAccessID*)getCurrentAccessID {
-   
-    int aid = [SAApp getAccessID];
-    NSString *server_name = [SAApp getServerHostName];
-    
-    SAAccessID *AccessID = [self fetchAccessID:aid serverName:server_name];
-    
-    if ( AccessID == nil ) {
-        
-        AccessID = [[SAAccessID alloc] initWithEntity:[NSEntityDescription entityForName:@"SAAccessID" inManagedObjectContext:self.managedObjectContext] insertIntoManagedObjectContext:self.managedObjectContext];
-        
-        AccessID.access_id = [NSNumber numberWithInt:aid];
-        AccessID.server_name = server_name;
-        [self.managedObjectContext insertObject:AccessID];
-        [self saveContext];
-    }
-    
-    return AccessID;
-}
-
 #pragma mark Locations
-
 -(_SALocation*) fetchLocationById:(int)location_id {
     
     return [self fetchItemByPredicate:[NSPredicate predicateWithFormat:@"location_id = %i", location_id] entityName:@"SALocation"];
 };
 
 -(_SALocation*) newLocation {
-    
-    SAAccessID *aid = [self getCurrentAccessID];
-    
+
     _SALocation *Location = [[_SALocation alloc] initWithEntity:[NSEntityDescription entityForName:@"SALocation" inManagedObjectContext:self.managedObjectContext] insertIntoManagedObjectContext:self.managedObjectContext];
     
-    Location.accessid = aid;
     Location.location_id = [NSNumber numberWithInt:0];
     Location.caption = @"";
     [Location setLocationVisible:0];
@@ -241,11 +209,11 @@
     Channel.caption = @"";
     Channel.channel_id = [NSNumber numberWithInt:0];
     Channel.func = [NSNumber numberWithInt:0];
-    Channel.online = [NSNumber numberWithBool:NO];
     Channel.visible = [NSNumber numberWithInt:1];
     Channel.alticon = [NSNumber numberWithInt:0];
     Channel.protocolversion = [NSNumber numberWithInt:0];
     Channel.flags = [NSNumber numberWithInt:0];
+    Channel.value = nil;
 
     [self.managedObjectContext insertObject:Channel];
     
@@ -279,14 +247,6 @@
     if ( [Channel setChannelFunction:channel->Func] ) {
         save = YES;
     }
-
-    if ( [Channel setChannelOnline:channel->online] ) {
-        save = YES;
-    }
-    
-    if ( [Channel setChannelValue:&channel->value] ) {
-        save = YES;
-    }
     
     if ( [Channel setChannelCaption:channel->Caption] ) {
         save = YES;
@@ -318,23 +278,8 @@
 -(BOOL) updateChannelValue:(TSC_SuplaChannelValue *)channel_value {
  
     BOOL save = NO;
-    SAChannel *Channel = [self fetchChannelById:channel_value->Id];
-    
-    if ( Channel != nil ) {
-        
-        if ( [Channel setChannelOnline:channel_value->online] ) {
-            save = YES;
-        }
-        
-        if ( [Channel setChannelValue:&channel_value->value] ) {
-            save = YES;
-        }
-        
-    }
-    
-    if ( save == YES ) {
-        [self saveContext];
-    }
+
+    // TODO: Update channel value
     
     return save;
     

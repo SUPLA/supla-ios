@@ -16,19 +16,8 @@
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 
-#import "_SALocation+CoreDataClass.h"
+#import "SAChannelGroupRelation+CoreDataClass.h"
 
-
-NS_ASSUME_NONNULL_BEGIN
-
-@interface _SALocation (CoreDataProperties)
-
-+ (NSFetchRequest<_SALocation *> *)fetchRequest;
-
-@property (nullable, nonatomic, copy) NSString *caption;
-@property (nullable, nonatomic, copy) NSNumber *location_id;
-@property (nullable, nonatomic, copy) NSNumber *visible;
+@implementation SAChannelGroupRelation
 
 @end
-
-NS_ASSUME_NONNULL_END

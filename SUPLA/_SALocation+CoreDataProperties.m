@@ -27,6 +27,5 @@
 @dynamic caption;
 @dynamic location_id;
 @dynamic visible;
-@dynamic accessid;
 
 @end

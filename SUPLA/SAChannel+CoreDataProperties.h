@@ -25,17 +25,15 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (NSFetchRequest<SAChannel *> *)fetchRequest;
 
+@property (nullable, nonatomic, copy) NSNumber *alticon;
 @property (nullable, nonatomic, copy) NSString *caption;
 @property (nullable, nonatomic, copy) NSNumber *channel_id;
-@property (nullable, nonatomic, copy) NSNumber *func;
-@property (nullable, nonatomic, copy) NSNumber *online;
-@property (nullable, nonatomic, retain) NSObject *sub_value;
-@property (nullable, nonatomic, retain) NSObject *value;
-@property (nullable, nonatomic, copy) NSNumber *visible;
-@property (nullable, nonatomic, copy) NSNumber *alticon;
 @property (nullable, nonatomic, copy) NSNumber *flags;
+@property (nullable, nonatomic, copy) NSNumber *func;
 @property (nullable, nonatomic, copy) NSNumber *protocolversion;
+@property (nullable, nonatomic, copy) NSNumber *visible;
 @property (nullable, nonatomic, retain) _SALocation *location;
+@property (nullable, nonatomic, retain) SAChannelValue *value;
 
 @end
 

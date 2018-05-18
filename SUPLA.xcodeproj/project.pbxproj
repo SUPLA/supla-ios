@@ -144,6 +144,12 @@
 		40B9ED821FACE15700403B1A /* window-closed@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 40B9ED781FACE15700403B1A /* window-closed@3x.png */; };
 		40B9ED831FACE15700403B1A /* mail@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 40B9ED791FACE15700403B1A /* mail@3x.png */; };
 		40B9ED841FACE15700403B1A /* gatealt1-open@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 40B9ED7A1FACE15700403B1A /* gatealt1-open@3x.png */; };
+		40BBA35C20AC6E220054CD20 /* SAChannelGroupRelation+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 40BBA34E20AC6E220054CD20 /* SAChannelGroupRelation+CoreDataClass.m */; };
+		40BBA35D20AC6E220054CD20 /* SAChannelGroupRelation+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 40BBA35020AC6E220054CD20 /* SAChannelGroupRelation+CoreDataProperties.m */; };
+		40BBA35E20AC6E220054CD20 /* SAChannelValue+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 40BBA35220AC6E220054CD20 /* SAChannelValue+CoreDataClass.m */; };
+		40BBA35F20AC6E220054CD20 /* SAChannelValue+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 40BBA35420AC6E220054CD20 /* SAChannelValue+CoreDataProperties.m */; };
+		40BBA36020AC6E220054CD20 /* SAChannelGroup+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 40BBA35620AC6E220054CD20 /* SAChannelGroup+CoreDataClass.m */; };
+		40BBA36120AC6E220054CD20 /* SAChannelGroup+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 40BBA35820AC6E220054CD20 /* SAChannelGroup+CoreDataProperties.m */; };
 		40BE3E621BCA7AEF00153680 /* ChannelCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 40BE3E611BCA7AEF00153680 /* ChannelCell.xib */; };
 		40C9E4F71F2A186A00753796 /* SARollerShutter.m in Sources */ = {isa = PBXBuildFile; fileRef = 40C9E4F61F2A186A00753796 /* SARollerShutter.m */; };
 		40C9E4FD1F2B841400753796 /* SAColorListPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 40C9E4FC1F2B841400753796 /* SAColorListPicker.m */; };
@@ -195,11 +201,9 @@
 		40CF96DE1BC820E60030EFFF /* UIHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 40CF96DD1BC820E60030EFFF /* UIHelper.m */; };
 		40D397AD1FAF547B00BF477D /* retry@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 40D397AC1FAF547B00BF477D /* retry@3x.png */; };
 		40D69DEE1BB574FE00937769 /* Database.m in Sources */ = {isa = PBXBuildFile; fileRef = 40D69DED1BB574FE00937769 /* Database.m */; };
-		40DA56811DCA1515008F05DE /* SAAccessID+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 40DA56761DCA1515008F05DE /* SAAccessID+CoreDataClass.m */; };
 		40DA56851DCA1515008F05DE /* SAChannel+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 40DA567E1DCA1515008F05DE /* SAChannel+CoreDataClass.m */; };
 		40DA568F1DCA1908008F05DE /* _SALocation+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 40DA56881DCA1908008F05DE /* _SALocation+CoreDataClass.m */; };
 		40DA56901DCA1908008F05DE /* _SALocation+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 40DA568A1DCA1908008F05DE /* _SALocation+CoreDataProperties.m */; };
-		40DA56911DCA1908008F05DE /* SAAccessID+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 40DA568C1DCA1908008F05DE /* SAAccessID+CoreDataProperties.m */; };
 		40DA56921DCA1908008F05DE /* SAChannel+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 40DA568E1DCA1908008F05DE /* SAChannel+CoreDataProperties.m */; };
 		40DB208D1DC9049400FAFAB0 /* RGBDetail.xib in Resources */ = {isa = PBXBuildFile; fileRef = 40DB208F1DC9049400FAFAB0 /* RGBDetail.xib */; };
 		40DE1A291BCCFF8A004CF43B /* feedback@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 40DE1A241BCCFF8A004CF43B /* feedback@2x.png */; };
@@ -428,6 +432,19 @@
 		40B9ED781FACE15700403B1A /* window-closed@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "window-closed@3x.png"; path = "Resources/Assets/Img/window-closed@3x.png"; sourceTree = "<group>"; };
 		40B9ED791FACE15700403B1A /* mail@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "mail@3x.png"; path = "Resources/Assets/Img/mail@3x.png"; sourceTree = "<group>"; };
 		40B9ED7A1FACE15700403B1A /* gatealt1-open@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "gatealt1-open@3x.png"; path = "Resources/Assets/Img/gatealt1-open@3x.png"; sourceTree = "<group>"; };
+		40BBA34620AC52EA0054CD20 /* SUPLA 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "SUPLA 2.xcdatamodel"; sourceTree = "<group>"; };
+		40BBA34D20AC6E220054CD20 /* SAChannelGroupRelation+CoreDataClass.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SAChannelGroupRelation+CoreDataClass.h"; sourceTree = "<group>"; };
+		40BBA34E20AC6E220054CD20 /* SAChannelGroupRelation+CoreDataClass.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "SAChannelGroupRelation+CoreDataClass.m"; sourceTree = "<group>"; };
+		40BBA34F20AC6E220054CD20 /* SAChannelGroupRelation+CoreDataProperties.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SAChannelGroupRelation+CoreDataProperties.h"; sourceTree = "<group>"; };
+		40BBA35020AC6E220054CD20 /* SAChannelGroupRelation+CoreDataProperties.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "SAChannelGroupRelation+CoreDataProperties.m"; sourceTree = "<group>"; };
+		40BBA35120AC6E220054CD20 /* SAChannelValue+CoreDataClass.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SAChannelValue+CoreDataClass.h"; sourceTree = "<group>"; };
+		40BBA35220AC6E220054CD20 /* SAChannelValue+CoreDataClass.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "SAChannelValue+CoreDataClass.m"; sourceTree = "<group>"; };
+		40BBA35320AC6E220054CD20 /* SAChannelValue+CoreDataProperties.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SAChannelValue+CoreDataProperties.h"; sourceTree = "<group>"; };
+		40BBA35420AC6E220054CD20 /* SAChannelValue+CoreDataProperties.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "SAChannelValue+CoreDataProperties.m"; sourceTree = "<group>"; };
+		40BBA35520AC6E220054CD20 /* SAChannelGroup+CoreDataClass.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SAChannelGroup+CoreDataClass.h"; sourceTree = "<group>"; };
+		40BBA35620AC6E220054CD20 /* SAChannelGroup+CoreDataClass.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "SAChannelGroup+CoreDataClass.m"; sourceTree = "<group>"; };
+		40BBA35720AC6E220054CD20 /* SAChannelGroup+CoreDataProperties.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SAChannelGroup+CoreDataProperties.h"; sourceTree = "<group>"; };
+		40BBA35820AC6E220054CD20 /* SAChannelGroup+CoreDataProperties.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "SAChannelGroup+CoreDataProperties.m"; sourceTree = "<group>"; };
 		40BE3E611BCA7AEF00153680 /* ChannelCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChannelCell.xib; sourceTree = "<group>"; };
 		40C9E4F51F2A186A00753796 /* SARollerShutter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SARollerShutter.h; sourceTree = "<group>"; };
 		40C9E4F61F2A186A00753796 /* SARollerShutter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SARollerShutter.m; sourceTree = "<group>"; };
@@ -489,10 +506,6 @@
 		40D397AC1FAF547B00BF477D /* retry@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "retry@3x.png"; path = "Resources/Assets/Img/retry@3x.png"; sourceTree = "<group>"; };
 		40D69DEC1BB574FE00937769 /* Database.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Database.h; sourceTree = "<group>"; };
 		40D69DED1BB574FE00937769 /* Database.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Database.m; sourceTree = "<group>"; };
-		40DA56751DCA1515008F05DE /* SAAccessID+CoreDataClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SAAccessID+CoreDataClass.h"; sourceTree = "<group>"; };
-		40DA56761DCA1515008F05DE /* SAAccessID+CoreDataClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SAAccessID+CoreDataClass.m"; sourceTree = "<group>"; };
-		40DA56771DCA1515008F05DE /* SAAccessID+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SAAccessID+CoreDataProperties.h"; sourceTree = "<group>"; };
-		40DA56781DCA1515008F05DE /* SAAccessID+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SAAccessID+CoreDataProperties.m"; sourceTree = "<group>"; };
 		40DA567D1DCA1515008F05DE /* SAChannel+CoreDataClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SAChannel+CoreDataClass.h"; sourceTree = "<group>"; };
 		40DA567E1DCA1515008F05DE /* SAChannel+CoreDataClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SAChannel+CoreDataClass.m"; sourceTree = "<group>"; };
 		40DA567F1DCA1515008F05DE /* SAChannel+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SAChannel+CoreDataProperties.h"; sourceTree = "<group>"; };
@@ -501,8 +514,6 @@
 		40DA56881DCA1908008F05DE /* _SALocation+CoreDataClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "_SALocation+CoreDataClass.m"; sourceTree = "<group>"; };
 		40DA56891DCA1908008F05DE /* _SALocation+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "_SALocation+CoreDataProperties.h"; sourceTree = "<group>"; };
 		40DA568A1DCA1908008F05DE /* _SALocation+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "_SALocation+CoreDataProperties.m"; sourceTree = "<group>"; };
-		40DA568B1DCA1908008F05DE /* SAAccessID+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SAAccessID+CoreDataProperties.h"; sourceTree = "<group>"; };
-		40DA568C1DCA1908008F05DE /* SAAccessID+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SAAccessID+CoreDataProperties.m"; sourceTree = "<group>"; };
 		40DA568D1DCA1908008F05DE /* SAChannel+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SAChannel+CoreDataProperties.h"; sourceTree = "<group>"; };
 		40DA568E1DCA1908008F05DE /* SAChannel+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SAChannel+CoreDataProperties.m"; sourceTree = "<group>"; };
 		40DB209A1DC904BF00FAFAB0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/RGBDetail.xib; sourceTree = "<group>"; };
@@ -826,6 +837,18 @@
 		407004241BB56EAC00F6187F /* DB */ = {
 			isa = PBXGroup;
 			children = (
+				40BBA34D20AC6E220054CD20 /* SAChannelGroupRelation+CoreDataClass.h */,
+				40BBA34E20AC6E220054CD20 /* SAChannelGroupRelation+CoreDataClass.m */,
+				40BBA34F20AC6E220054CD20 /* SAChannelGroupRelation+CoreDataProperties.h */,
+				40BBA35020AC6E220054CD20 /* SAChannelGroupRelation+CoreDataProperties.m */,
+				40BBA35120AC6E220054CD20 /* SAChannelValue+CoreDataClass.h */,
+				40BBA35220AC6E220054CD20 /* SAChannelValue+CoreDataClass.m */,
+				40BBA35320AC6E220054CD20 /* SAChannelValue+CoreDataProperties.h */,
+				40BBA35420AC6E220054CD20 /* SAChannelValue+CoreDataProperties.m */,
+				40BBA35520AC6E220054CD20 /* SAChannelGroup+CoreDataClass.h */,
+				40BBA35620AC6E220054CD20 /* SAChannelGroup+CoreDataClass.m */,
+				40BBA35720AC6E220054CD20 /* SAChannelGroup+CoreDataProperties.h */,
+				40BBA35820AC6E220054CD20 /* SAChannelGroup+CoreDataProperties.m */,
 				409934A61F30C025003110C5 /* SAColorListItem+CoreDataClass.h */,
 				409934A71F30C025003110C5 /* SAColorListItem+CoreDataClass.m */,
 				409934A81F30C025003110C5 /* SAColorListItem+CoreDataProperties.h */,
@@ -834,14 +857,8 @@
 				40DA56881DCA1908008F05DE /* _SALocation+CoreDataClass.m */,
 				40DA56891DCA1908008F05DE /* _SALocation+CoreDataProperties.h */,
 				40DA568A1DCA1908008F05DE /* _SALocation+CoreDataProperties.m */,
-				40DA568B1DCA1908008F05DE /* SAAccessID+CoreDataProperties.h */,
-				40DA568C1DCA1908008F05DE /* SAAccessID+CoreDataProperties.m */,
 				40DA568D1DCA1908008F05DE /* SAChannel+CoreDataProperties.h */,
 				40DA568E1DCA1908008F05DE /* SAChannel+CoreDataProperties.m */,
-				40DA56751DCA1515008F05DE /* SAAccessID+CoreDataClass.h */,
-				40DA56761DCA1515008F05DE /* SAAccessID+CoreDataClass.m */,
-				40DA56771DCA1515008F05DE /* SAAccessID+CoreDataProperties.h */,
-				40DA56781DCA1515008F05DE /* SAAccessID+CoreDataProperties.m */,
 				40DA567D1DCA1515008F05DE /* SAChannel+CoreDataClass.h */,
 				40DA567E1DCA1515008F05DE /* SAChannel+CoreDataClass.m */,
 				40DA567F1DCA1515008F05DE /* SAChannel+CoreDataProperties.h */,
@@ -1212,35 +1229,39 @@
 			buildActionMask = 2147483647;
 			files = (
 				40E8BE891FC06A5600FB2FE6 /* TFHppleElement.m in Sources */,
-				40DA56911DCA1908008F05DE /* SAAccessID+CoreDataProperties.m in Sources */,
+				40BBA35C20AC6E220054CD20 /* SAChannelGroupRelation+CoreDataClass.m in Sources */,
 				40DE1A361BCD1B55004CF43B /* AboutVC.m in Sources */,
 				4017E12C1BB9CE2900570AC8 /* ChannelCell.m in Sources */,
 				40AB8BDE1DCB32EB0030F3DE /* SARateApp.m in Sources */,
 				40CF96DE1BC820E60030EFFF /* UIHelper.m in Sources */,
+				40BBA35F20AC6E220054CD20 /* SAChannelValue+CoreDataProperties.m in Sources */,
 				40D69DEE1BB574FE00937769 /* Database.m in Sources */,
 				408034E51BC84A89007666E7 /* NavigationController.m in Sources */,
 				4004DE8D1DC4E270009C34E3 /* SAColorBrightnessPicker.m in Sources */,
 				401CA1C21BA067DB00117AF4 /* AppDelegate.m in Sources */,
 				40DA56921DCA1908008F05DE /* SAChannel+CoreDataProperties.m in Sources */,
-				40DA56811DCA1515008F05DE /* SAAccessID+CoreDataClass.m in Sources */,
 				40A675831BA1BE8E004A51C4 /* SettingsVC.m in Sources */,
 				406778551BCBF9F4008DD37F /* SectionCell.m in Sources */,
 				40DA568F1DCA1908008F05DE /* _SALocation+CoreDataClass.m in Sources */,
 				40B9ED3A1FAC79FC00403B1A /* SUPLA.xcdatamodeld in Sources */,
 				4077ACE320A21BB100BD2216 /* CreateAccountVC.m in Sources */,
 				401CA1C81BA067DB00117AF4 /* MainVC.m in Sources */,
+				40BBA36120AC6E220054CD20 /* SAChannelGroup+CoreDataProperties.m in Sources */,
 				408034C51BC83D1A007666E7 /* MGSwipeTableCell.m in Sources */,
+				40BBA36020AC6E220054CD20 /* SAChannelGroup+CoreDataClass.m in Sources */,
 				403EB1141FBDF47F00AD6460 /* AddWizardVC.m in Sources */,
 				408034C41BC83D1A007666E7 /* MGSwipeButton.m in Sources */,
 				409934AB1F30C025003110C5 /* SAColorListItem+CoreDataProperties.m in Sources */,
 				401CA1BF1BA067DB00117AF4 /* main.m in Sources */,
 				404E48F71FC75D0B001F6266 /* SAClassHelper.m in Sources */,
+				40BBA35D20AC6E220054CD20 /* SAChannelGroupRelation+CoreDataProperties.m in Sources */,
 				40E8BE8A1FC06A5600FB2FE6 /* XPathQuery.m in Sources */,
 				40A6757F1BA1A5B6004A51C4 /* SuplaApp.m in Sources */,
 				40C9E4F71F2A186A00753796 /* SARollerShutter.m in Sources */,
 				401CA1F21BA0A28A00117AF4 /* SuplaClient.m in Sources */,
 				409934AA1F30C025003110C5 /* SAColorListItem+CoreDataClass.m in Sources */,
 				4006E90A1DC62D0A00C4456D /* DetailView.m in Sources */,
+				40BBA35E20AC6E220054CD20 /* SAChannelValue+CoreDataClass.m in Sources */,
 				40C9E4FD1F2B841400753796 /* SAColorListPicker.m in Sources */,
 				40DA56901DCA1908008F05DE /* _SALocation+CoreDataProperties.m in Sources */,
 				409934B61F30EF9C003110C5 /* RSDetailView.m in Sources */,
@@ -1584,9 +1605,10 @@
 		407004251BB5706500F6187F /* SUPLA.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				40BBA34620AC52EA0054CD20 /* SUPLA 2.xcdatamodel */,
 				407004261BB5706500F6187F /* SUPLA.xcdatamodel */,
 			);
-			currentVersion = 407004261BB5706500F6187F /* SUPLA.xcdatamodel */;
+			currentVersion = 40BBA34620AC52EA0054CD20 /* SUPLA 2.xcdatamodel */;
 			path = SUPLA.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

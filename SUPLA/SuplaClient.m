@@ -539,6 +539,8 @@ void sasuplaclient_on_registration_enabled(void *_suplaclient, void *user_data, 
         DataChanged = YES;
     }
     
+    // TODO: Update channel value
+
     if ( channel->EOL == 1
          && [self.DB setChannelsVisible:0 WhereVisibilityIs:2] ) {
         DataChanged = YES;

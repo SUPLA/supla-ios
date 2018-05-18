@@ -24,16 +24,14 @@
 	return [[NSFetchRequest alloc] initWithEntityName:@"SAChannel"];
 }
 
+@dynamic alticon;
 @dynamic caption;
 @dynamic channel_id;
-@dynamic func;
-@dynamic online;
-@dynamic sub_value;
-@dynamic value;
-@dynamic visible;
-@dynamic alticon;
 @dynamic flags;
+@dynamic func;
 @dynamic protocolversion;
+@dynamic visible;
 @dynamic location;
+@dynamic value;
 
 @end

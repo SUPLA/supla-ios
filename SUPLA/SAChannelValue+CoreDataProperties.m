@@ -16,15 +16,17 @@
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 
-#import "SAAccessID+CoreDataProperties.h"
+#import "SAChannelValue+CoreDataProperties.h"
 
-@implementation SAAccessID (CoreDataProperties)
+@implementation SAChannelValue (CoreDataProperties)
 
-+ (NSFetchRequest<SAAccessID *> *)fetchRequest {
-	return [[NSFetchRequest alloc] initWithEntityName:@"SAAccessID"];
++ (NSFetchRequest<SAChannelValue *> *)fetchRequest {
+	return [[NSFetchRequest alloc] initWithEntityName:@"SAChannelValue"];
 }
 
-@dynamic access_id;
-@dynamic server_name;
+@dynamic channel_id;
+@dynamic value;
+@dynamic sub_value;
+@dynamic online;
 
 @end
