@@ -16,21 +16,40 @@
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 
-#import "SAColorListItem+CoreDataClass.h"
+#import <Foundation/Foundation.h>
+#import <CoreData/CoreData.h>
+#import <UIKit/UIKit.h>
 
+@class _SALocation;
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface SAColorListItem (CoreDataProperties)
+@interface SAChannelBase : NSManagedObject
 
-+ (NSFetchRequest<SAColorListItem *> *)fetchRequest;
+- (BOOL) setChannelLocation:(_SALocation*)location;
+- (BOOL) setChannelFunction:(int)function;
+- (BOOL) setChannelCaption:(char*)caption;
+- (BOOL) setChannelVisible:(int)visible;
+- (BOOL) setChannelAltIcon:(int)altIcon;
+- (BOOL) setChannelFlags:(int)flags;
+- (NSString *)getChannelCaption;
 
-@property (nullable, nonatomic, copy) NSNumber *brightness;
-@property (nullable, nonatomic, retain) NSObject *color;
-@property (nullable, nonatomic, copy) NSNumber *idx;
-@property (nonatomic) int32_t remote_id;
-@property (nonatomic) BOOL group;
+- (BOOL) isOnline;
+- (BOOL) hiValue;
+- (BOOL) hiSubValue;
+- (BOOL) isOn;
+- (BOOL) isClosed;
+- (UIImage*) getIcon;
 
+- (double) temperatureValue;
+- (double) humidityValue;
+- (double) doubleValue;
+- (int) percentValue;
+- (int) brightnessValue;
+- (int) colorBrightnessValue;
+- (UIColor *) colorValue;
 @end
 
 NS_ASSUME_NONNULL_END
+
+#import "SAChannelBase+CoreDataProperties.h"

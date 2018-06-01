@@ -16,18 +16,20 @@
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 
-#import <UIKit/UIKit.h>
-#import "SAChannel+CoreDataClass.h"
-#import "MainVC.h"
+#import "SAChannelBase+CoreDataProperties.h"
 
-@interface SADetailView : UIView 
+@implementation SAChannelBase (CoreDataProperties)
 
--(void) detailViewInit;
--(void)updateView;
++ (NSFetchRequest<SAChannelBase *> *)fetchRequest {
+	return [[NSFetchRequest alloc] initWithEntityName:@"SAChannelBase"];
+}
 
-@property (weak, nonatomic) SAChannelBase  *channelBase;
-@property (weak, nonatomic) SAMainView *main_view;
-@property (nonatomic) BOOL initialized;
+@dynamic remote_id;
+@dynamic caption;
+@dynamic func;
+@dynamic visible;
+@dynamic alticon;
+@dynamic flags;
+@dynamic location;
+
 @end
-
-

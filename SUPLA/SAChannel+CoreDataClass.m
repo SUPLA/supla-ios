@@ -22,76 +22,6 @@
 
 @implementation SAChannel
 
-- (BOOL) setChannelLocation:(_SALocation*)location {
-    
-    if ( self.location != location ) {
-        self.location = location;
-        return YES;
-    }
-    
-    return NO;
-}
-
-
-- (BOOL) setChannelFunction:(int)function {
-    
-    if ( [self.func isEqualToNumber:[NSNumber numberWithInt:function]] == NO ) {
-        self.func = [NSNumber numberWithInt:function];
-        return YES;
-    }
-    
-    return NO;
-}
-
-- (BOOL) number:(NSNumber*)n1 isEqualToNumber:(id)n2 {
-    
-    if ( n1 == nil && n2 != nil )
-        return NO;
-    
-    if ( n2 == nil && n1 != nil )
-        return NO;
-    
-    if ( [n1 isKindOfClass:[NSNumber class]] == NO || [n2 isKindOfClass:[NSNumber class]] == NO )
-        return NO; // is unknown
-    
-    if ( n1 != nil && n2 != nil && [n1 isEqualToNumber:n2] == NO )
-        return NO;
-    
-    return YES;
-}
-
-- (BOOL) setChannelCaption:(char*)caption {
-    
-    NSString *_caption = [NSString stringWithUTF8String:caption];
-    
-    if ( [self.caption isEqualToString:_caption] == NO  ) {
-        self.caption = _caption;
-        return YES;
-    }
-    
-    return NO;
-}
-
-- (BOOL) setChannelVisible:(int)visible {
-    
-    if ( [self.visible isEqualToNumber:[NSNumber numberWithInt:visible]] == NO ) {
-        self.visible = [NSNumber numberWithInt:visible];
-        return YES;
-    }
-    
-    return NO;
-}
-
-- (BOOL) setChannelAltIcon:(int)altIcon {
-    
-    if ( [self.alticon isEqualToNumber:[NSNumber numberWithInt:altIcon]] == NO ) {
-        self.alticon = [NSNumber numberWithInt:altIcon];
-        return YES;
-    }
-    
-    return NO;
-}
-
 - (BOOL) setChannelProtocolVersion:(int)protocolVersion {
     
     if ( [self.protocolversion isEqualToNumber:[NSNumber numberWithInt:protocolVersion]] == NO ) {
@@ -102,347 +32,44 @@
     return NO;
 }
 
-- (BOOL) setChannelFlags:(int)flags {
-    
-    if ( [self.flags isEqualToNumber:[NSNumber numberWithInt:flags]] == NO ) {
-        self.flags = [NSNumber numberWithInt:flags];
-        return YES;
-    }
-    
-    return NO;
-}
-
 - (BOOL) isOnline {
-    return [self.online isEqualToNumber:[NSNumber numberWithBool:YES]];
-}
-
-- (BOOL) isClosed {
-    
-    if ( [self isOnline] ) {
-        switch([self.func intValue]) {
-                
-            case SUPLA_CHANNELFNC_CONTROLLINGTHEGATEWAYLOCK:
-            case SUPLA_CHANNELFNC_CONTROLLINGTHEGATE:
-            case SUPLA_CHANNELFNC_CONTROLLINGTHEGARAGEDOOR:
-            case SUPLA_CHANNELFNC_CONTROLLINGTHEDOORLOCK:
-            case SUPLA_CHANNELFNC_CONTROLLINGTHEROLLERSHUTTER:
-                if ( self.sub_value != nil
-                    && [self.sub_value isKindOfClass:[NSNumber class]])
-                    return [(NSNumber*)self.sub_value boolValue];
-                break;
-                
-            case SUPLA_CHANNELFNC_OPENINGSENSOR_GATEWAY:
-            case SUPLA_CHANNELFNC_OPENINGSENSOR_GATE:
-            case SUPLA_CHANNELFNC_OPENINGSENSOR_GARAGEDOOR:
-            case SUPLA_CHANNELFNC_OPENINGSENSOR_DOOR:
-            case SUPLA_CHANNELFNC_OPENINGSENSOR_ROLLERSHUTTER:
-            case SUPLA_CHANNELFNC_MAILSENSOR:
-            case SUPLA_CHANNELFNC_OPENINGSENSOR_WINDOW:
-                return [self hiValue];
-                break;
-        }
-    }
-    
-    return NO;
+    return self.value == nil ? [super isOnline] : [self.value isOnline];
 }
 
 - (BOOL) hiValue {
-    
-    if ( [self isOnline]
-        && self.value != nil
-        && [self.value isKindOfClass:[NSNumber class]])
-        return [(NSNumber*)self.value boolValue];
-    
-    
-    return NO;
+    return self.value == nil ? [super hiValue] : [self.value hiValue];
 }
 
-- (double) doubleValue {
-    
-    if ( self.value != nil
-        && [self.value isKindOfClass:[NSNumber class]] )
-        return [(NSNumber*)self.value doubleValue];
-    
-    return 0;
+- (BOOL) hiSubValue {
+    return self.value == nil ? [super hiSubValue] : [self.value hiSubValue];
 }
-
-- (double) getDoubleValue:(int)idx size:(int)Size unknown_val:(double)unknown {
-    
-    if ( self.value != nil
-        && [self.value isKindOfClass:[NSArray class]] ) {
-        
-        NSArray *arr = (NSArray*)self.value;
-        if ( arr.count == Size ) {
-            id obj = [arr objectAtIndex:idx];
-            
-            if ( [obj isKindOfClass:[NSNumber class]] )
-                return [obj doubleValue];
-        }
-    }
-    
-    return unknown;
-}
-
 
 - (double) temperatureValue {
-    
-    switch([self.func intValue]) {
-        case SUPLA_CHANNELFNC_THERMOMETER:
-            return self.doubleValue;
-        case SUPLA_CHANNELFNC_HUMIDITYANDTEMPERATURE:
-            return [self getDoubleValue:0 size:2 unknown_val:-275];
-            
-    }
-    
-    return -275;
+    return self.value == nil ? [super temperatureValue] : [self.value getTemperatureForFunction:self.func];
 }
 
 - (double) humidityValue {
-    
-    if ( [self.func intValue] == SUPLA_CHANNELFNC_HUMIDITYANDTEMPERATURE ) {
-        return [self getDoubleValue:1 size:2 unknown_val:-1];
-    }
-    
-    return -1;
+    return self.value == nil ? [super humidityValue] : [self.value humidityValue];
 }
 
-- (BOOL) isOn {
-    
-    switch([self.func intValue]) {
-            
-        case SUPLA_CHANNELFNC_POWERSWITCH:
-        case SUPLA_CHANNELFNC_LIGHTSWITCH:
-            
-            return [self hiValue];
-    }
-    
-    return NO;
-}
-
-- (int) getBrightness:(int)idx {
-    
-    switch([self.func intValue]) {
-            
-        case SUPLA_CHANNELFNC_RGBLIGHTING:
-        case SUPLA_CHANNELFNC_DIMMER:
-        case SUPLA_CHANNELFNC_DIMMERANDRGBLIGHTING:
-            
-            if ( self.value != nil
-                && [self.value isKindOfClass:[NSArray class]] ) {
-                
-                NSArray *arr = (NSArray*)self.value;
-                if ( arr.count >= idx
-                    && arr.count >= 3
-                    && [[arr objectAtIndex:idx] isKindOfClass:[NSNumber class]]
-                    && [[arr objectAtIndex:2] isKindOfClass:[UIColor class]] ) {
-                    
-                    return [[arr objectAtIndex:idx] intValue];
-                    
-                }
-            }
-    }
-    
-    return 0;
-    
-    
-}
-
--(UIColor *)getColor {
-    
-    
-    switch([self.func intValue]) {
-            
-        case SUPLA_CHANNELFNC_RGBLIGHTING:
-        case SUPLA_CHANNELFNC_DIMMERANDRGBLIGHTING:
-            
-            if ( self.value != nil
-                && [self.value isKindOfClass:[NSArray class]] ) {
-                
-                NSArray *arr = (NSArray*)self.value;
-                if ( arr.count >= 3
-                    && [[arr objectAtIndex:2] isKindOfClass:[UIColor class]] ) {
-                    
-                    return [arr objectAtIndex:2];
-                }
-            }
-    }
-    
-    
-    return nil;
-}
-
-- (int) getBrightness {
-    
-    return [self getBrightness:0];
-}
-
-- (int) getColorBrightness {
-    return [self getBrightness:1];
-    
+- (double) doubleValue {
+    return self.value == nil ? [super doubleValue] : [self.value doubleValue];
 }
 
 - (int) percentValue {
-    if ( [self.func intValue] == SUPLA_CHANNELFNC_CONTROLLINGTHEROLLERSHUTTER
-         && [self.value isKindOfClass:[NSNumber class]]) {
-        return [(NSNumber*)self.value intValue];
-    }
-    
-    return -1;
+     return self.value == nil ? [super percentValue] : [self.value percentValue];
 }
 
-
-- (UIImage*) channelIcon {
-    
-    NSString *n1 = nil;
-    NSString *n2 = nil;
-    
-    switch([self.func intValue]) {
-        case SUPLA_CHANNELFNC_OPENINGSENSOR_GATEWAY:
-        case SUPLA_CHANNELFNC_CONTROLLINGTHEGATEWAYLOCK:
-            n1 = @"gateway";
-            break;
-        case SUPLA_CHANNELFNC_OPENINGSENSOR_GATE:
-        case SUPLA_CHANNELFNC_CONTROLLINGTHEGATE:
-            switch([self.alticon intValue]) {
-                case 1:
-                    n1 = @"gatealt1";
-                    break;
-                case 2:
-                    n1 = @"barier";
-                    break;
-                default:
-                   n1 = @"gate";
-            }
-            break;
-        case SUPLA_CHANNELFNC_OPENINGSENSOR_GARAGEDOOR:
-        case SUPLA_CHANNELFNC_CONTROLLINGTHEGARAGEDOOR:
-            n1 = @"garagedoor";
-            break;
-        case SUPLA_CHANNELFNC_OPENINGSENSOR_DOOR:
-        case SUPLA_CHANNELFNC_CONTROLLINGTHEDOORLOCK:
-            n1 = @"door";
-            break;
-        case SUPLA_CHANNELFNC_OPENINGSENSOR_ROLLERSHUTTER:
-        case SUPLA_CHANNELFNC_CONTROLLINGTHEROLLERSHUTTER:
-            n1 = @"rollershutter";
-            break;
-        case SUPLA_CHANNELFNC_POWERSWITCH:
-            switch([self.alticon intValue]) {
-                case 1:
-                    n2 = @"tv";
-                    break;
-                case 2:
-                    n2 = @"radio";
-                    break;
-                case 3:
-                    n2 = @"pc";
-                    break;
-                case 4:
-                    n2 = @"fan";
-                    break;
-                default:
-                    n2 = @"power";
-            }
-            break;
-        case SUPLA_CHANNELFNC_LIGHTSWITCH:
-            switch([self.alticon intValue]) {
-                case 1:
-                    n2 = @"xmastree";
-                    break;
-                default:
-                    n2 = @"light";
-            }
-            break;
-        case SUPLA_CHANNELFNC_THERMOMETER:
-            return [UIImage imageNamed:@"thermometer"];
-        case SUPLA_CHANNELFNC_NOLIQUIDSENSOR:
-            return [UIImage imageNamed:[self hiValue] ? @"liquid" : @"noliquid"];
-        case SUPLA_CHANNELFNC_DIMMER:
-            return [UIImage imageNamed:[NSString stringWithFormat:@"dimmer-%@", [self getBrightness] > 0 ? @"on" : @"off"]];
-            
-        case SUPLA_CHANNELFNC_RGBLIGHTING:
-            return [UIImage imageNamed:[NSString stringWithFormat:@"rgb-%@", [self getColorBrightness] > 0 ? @"on" : @"off"]];
-            
-        case SUPLA_CHANNELFNC_DIMMERANDRGBLIGHTING:
-            return [UIImage imageNamed:[NSString stringWithFormat:@"dimmerrgb-%@%@", [self getBrightness] > 0 ? @"on" : @"off", [self getColorBrightness] > 0 ? @"on" : @"off"]];
-            break;
-            
-        case SUPLA_CHANNELFNC_OPENINGSENSOR_WINDOW:
-            n1 = @"window";
-            break;
-            
-        case SUPLA_CHANNELFNC_MAILSENSOR:
-            return [UIImage imageNamed:[self isClosed] ? @"mail" : @"nomail"];
-            
-    }
-    
-    if ( n1 ) {
-        return [UIImage imageNamed:[NSString stringWithFormat:@"%@-%@", n1, [self isClosed] ? @"closed" : @"open"]];
-    }
-    
-    if ( n2 ) {
-        return [UIImage imageNamed:[NSString stringWithFormat:@"%@-%@", n2, [self isOn] ? @"on" : @"off"]];
-    }
-    
-    
-    return nil;
+- (int) brightnessValue {
+    return self.value == nil ? [super brightnessValue] : [self.value brightnessValue];
 }
 
-- (NSString *)getChannelCaption {
-    
-    if ( [self.caption isEqualToString:@""] ) {
-        
-        switch([self.func intValue]) {
-            case SUPLA_CHANNELFNC_OPENINGSENSOR_GATEWAY:
-                return NSLocalizedString(@"Gateway opening sensor", nil);
-            case SUPLA_CHANNELFNC_CONTROLLINGTHEGATEWAYLOCK:
-                return NSLocalizedString(@"Gateway", nil);
-            case SUPLA_CHANNELFNC_OPENINGSENSOR_GATE:
-                return NSLocalizedString(@"Gate opening sensor", nil);
-            case SUPLA_CHANNELFNC_CONTROLLINGTHEGATE:
-                return NSLocalizedString(@"Gate", nil);
-            case SUPLA_CHANNELFNC_OPENINGSENSOR_GARAGEDOOR:
-                return NSLocalizedString(@"Garage door opening sensor", nil);
-            case SUPLA_CHANNELFNC_CONTROLLINGTHEGARAGEDOOR:
-                return NSLocalizedString(@"Garage door", nil);
-            case SUPLA_CHANNELFNC_OPENINGSENSOR_DOOR:
-                return NSLocalizedString(@"Door opening sensor", nil);
-            case SUPLA_CHANNELFNC_CONTROLLINGTHEDOORLOCK:
-                return NSLocalizedString(@"Door", nil);
-            case SUPLA_CHANNELFNC_OPENINGSENSOR_ROLLERSHUTTER:
-                return NSLocalizedString(@"Roller shutter opening sensor", nil);
-            case SUPLA_CHANNELFNC_CONTROLLINGTHEROLLERSHUTTER:
-                return NSLocalizedString(@"Roller shutter", nil);
-            case SUPLA_CHANNELFNC_POWERSWITCH:
-                return NSLocalizedString(@"Power switch", nil);
-            case SUPLA_CHANNELFNC_LIGHTSWITCH:
-                return NSLocalizedString(@"Lighting switch", nil);
-            case SUPLA_CHANNELFNC_THERMOMETER:
-                return NSLocalizedString(@"Thermometer", nil);
-            case SUPLA_CHANNELFNC_HUMIDITYANDTEMPERATURE:
-                return NSLocalizedString(@"Temperature and humidity", nil);
-            case SUPLA_CHANNELFNC_NOLIQUIDSENSOR:
-                return NSLocalizedString(@"No liquid sensor", nil);
-            case SUPLA_CHANNELFNC_RGBLIGHTING:
-                return NSLocalizedString(@"RGB Lighting", nil);
-            case SUPLA_CHANNELFNC_DIMMERANDRGBLIGHTING:
-                return NSLocalizedString(@"Dimmer and RGB lighting", nil);
-            case SUPLA_CHANNELFNC_DIMMER:
-                return NSLocalizedString(@"Dimmer", nil);
-            case SUPLA_CHANNELFNC_DISTANCESENSOR:
-                return NSLocalizedString(@"Distance sensor", nil);
-            case SUPLA_CHANNELFNC_DEPTHSENSOR:
-                return NSLocalizedString(@"Depth sensor", nil);
-            case SUPLA_CHANNELFNC_MAILSENSOR:
-                return NSLocalizedString(@"Mail sensor", nil);
-            case SUPLA_CHANNELFNC_OPENINGSENSOR_WINDOW:
-                return NSLocalizedString(@"Window opening sensor", nil);
-        }
-        
-    }
-    
-    return self.caption;
-    
+- (int) colorBrightnessValue {
+    return self.value == nil ? [super colorBrightnessValue] : [self.value colorBrightnessValue];
+}
+
+- (UIColor *) colorValue {
+    return self.value == nil ? [super colorValue] : [self.value colorValue];
 }
 
 @end

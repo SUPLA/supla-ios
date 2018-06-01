@@ -40,13 +40,13 @@
 
 -(void)dataToView {
     
-    if ( self.channel != nil ) {
+    if ( self.channelBase != nil ) {
         
-        [self.labelCaption setText:[self.channel getChannelCaption]];
+        [self.labelCaption setText:[self.channelBase getChannelCaption]];
         
-        int percent = self.channel.percentValue;
+        int percent = self.channelBase.percentValue;
         
-        if ( percent < 100 && self.channel.isClosed ) {
+        if ( percent < 100 && self.channelBase.isClosed ) {
             percent = 100;
         }
         
@@ -67,18 +67,18 @@
     [self dataToView];
 };
 
--(void)setChannel:(SAChannel *)channel {
-    [super setChannel:channel];
+-(void)setChannelBase:(SAChannelBase *)channelBase {
+    [super setChannelBase:channelBase];
     
-    if ( channel != nil && channel.isOnline == NO ) {
+    if ( channelBase != nil && channelBase.isOnline == NO ) {
         [self.main_view detailShow:NO animated:NO];
     }
 };
 
 - (void)open:(int)value {
     SASuplaClient *client = [SAApp SuplaClient];
-    if ( client != nil && self.channel != nil )  {
-        [[SAApp SuplaClient] channel:[self.channel.channel_id intValue] Open:value];
+    if ( client != nil && self.channelBase != nil )  {
+        [[SAApp SuplaClient] channel:self.channelBase.remote_id Open:value];
     }
     
 }

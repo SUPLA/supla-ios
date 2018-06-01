@@ -572,6 +572,8 @@ static inline CGFloat mgEaseInOutBounce(CGFloat t, CGFloat b, CGFloat c) {
 
 -(void) awakeFromNib
 {
+    [super awakeFromNib];
+    
     if (!_panRecognizer) {
         [self initViews:YES];
     }

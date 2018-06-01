@@ -25,8 +25,8 @@
 }
 
 @dynamic channel_id;
-@dynamic value;
-@dynamic sub_value;
 @dynamic online;
+@dynamic sub_value;
+@dynamic value;
 
 @end

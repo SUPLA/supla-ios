@@ -53,7 +53,7 @@
     // Create the coordinator and store
     
     _persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:[self managedObjectModel]];
-    NSURL *storeURL = [[SAApp applicationDocumentsDirectory] URLByAppendingPathComponent:@"SUPLA_DB.sqlite"]; 
+    NSURL *storeURL = [[SAApp applicationDocumentsDirectory] URLByAppendingPathComponent:@"SUPLA_DB2.sqlite"];
     NSError *error = nil;
     NSString *failureReason = @"There was an error creating or loading the application's saved data.";
     
@@ -199,20 +199,26 @@
 
 -(SAChannel*) fetchChannelById:(int)channel_id {
     
-    return [self fetchItemByPredicate:[NSPredicate predicateWithFormat:@"channel_id = %i", channel_id] entityName:@"SAChannel"];
+    return [self fetchItemByPredicate:[NSPredicate predicateWithFormat:@"remote_id = %i", channel_id] entityName:@"SAChannel"];
 };
+
+-(SAChannelValue*) fetchChannelValueByChannelId:(int)channel_id {
+    
+    return [self fetchItemByPredicate:[NSPredicate predicateWithFormat:@"channel_id = %i", channel_id] entityName:@"SAChannelValue"];
+};
+
 
 -(SAChannel*) newChannel {
     
     SAChannel *Channel = [[SAChannel alloc] initWithEntity:[NSEntityDescription entityForName:@"SAChannel" inManagedObjectContext:self.managedObjectContext] insertIntoManagedObjectContext:self.managedObjectContext];
     
     Channel.caption = @"";
-    Channel.channel_id = [NSNumber numberWithInt:0];
-    Channel.func = [NSNumber numberWithInt:0];
-    Channel.visible = [NSNumber numberWithInt:1];
-    Channel.alticon = [NSNumber numberWithInt:0];
-    Channel.protocolversion = [NSNumber numberWithInt:0];
-    Channel.flags = [NSNumber numberWithInt:0];
+    Channel.remote_id = 0;
+    Channel.func = 0;
+    Channel.visible = 1;
+    Channel.alticon = 0;
+    Channel.protocolversion = 0;
+    Channel.flags = 0;
     Channel.value = nil;
 
     [self.managedObjectContext insertObject:Channel];
@@ -220,6 +226,20 @@
     return Channel;
 }
 
+-(SAChannelValue*) newChannelValueForChannelId:(int)channel_id {
+    
+    SAChannelValue *Value = [[SAChannelValue alloc] initWithEntity:[NSEntityDescription entityForName:@"SAChannelValue" inManagedObjectContext:self.managedObjectContext] insertIntoManagedObjectContext:self.managedObjectContext];
+    
+    Value.channel_id = channel_id;
+    Value.value = [[NSData alloc] init];
+    Value.sub_value = [[NSData alloc] init];
+    TSuplaChannelValue v;
+    [Value setValueWithChannelValue:&v];
+    
+    [self.managedObjectContext insertObject:Value];
+    
+    return Value;
+}
 
 -(BOOL) updateChannel:(TSC_SuplaChannel_B *)channel {
     
@@ -235,7 +255,7 @@
     if ( Channel == nil ) {
         
         Channel = [self newChannel];
-        Channel.channel_id = [NSNumber numberWithInt:channel->Id];
+        Channel.remote_id = channel->Id;
         save = YES;
     }
     
@@ -268,7 +288,7 @@
         save = YES;
     }
     
-    if ( save == YES ) {
+    if ( save ) {
         [self saveContext];
     }
     
@@ -279,10 +299,36 @@
  
     BOOL save = NO;
 
-    // TODO: Update channel value
+    SAChannelValue *Value= [self fetchChannelValueByChannelId:channel_value->Id];
+    
+    if ( Value == nil ) {
+        
+        Value = [self newChannelValueForChannelId:channel_value->Id];
+        save = YES;
+    }
+    
+    if ( [Value setValueWithChannelValue:&channel_value->value] ) {
+         save = YES;
+    }
+    
+    if ( [Value setOnlineState:channel_value->online]) {
+        save = YES;
+    }
+    
+    if ( save ) {
+        NSArray *r = [self fetchByPredicate:[NSPredicate predicateWithFormat:@"remote_id = %i AND value <> %@", channel_value->Id, Value] entityName:@"SAChannel" limit:0];
+        
+        if ( r != nil ) {
+            for(int a=0;a<r.count;a++) {
+                ((SAChannel*)[r objectAtIndex:a]).value = Value;
+                NSLog(@"value SET - channel id: %i", channel_value->Id);
+            }
+        }
+        
+        [self saveContext];
+    }
     
     return save;
-    
 }
 
 -(NSFetchedResultsController*) getChannelFrc {
@@ -312,9 +358,12 @@
 }
 
 -(BOOL) setChannelsOffline {
-    
+    // TODO: rewrite
+
+         BOOL save = NO;
+        /*
     NSArray *r = [self fetchByPredicate:[NSPredicate predicateWithFormat:@"online = YES"] entityName:@"SAChannel" limit:0];
-    BOOL save = NO;
+
     
     if ( r != nil ) {
         for(int a=0;a<r.count;a++) {
@@ -327,6 +376,7 @@
     if ( save ) {
         [self saveContext];
     }
+         */
     
     return save;
 }
@@ -370,18 +420,16 @@
     return count;
 }
 
--(SAColorListItem *) getColorListItemForChannel:(SAChannel*)channel andIndex:(int)idx {
+-(SAColorListItem *) getColorListItemForRemoteId:(int)remote_id andIndex:(int)idx forGroup:(BOOL)group {
  
-    if ( channel == nil )
-        return nil;
-    
-    SAColorListItem *item = [self fetchItemByPredicate:[NSPredicate predicateWithFormat:@"channel = %@ AND idx = %i", channel, idx] entityName:@"SAColorListItem"];
+    SAColorListItem *item = [self fetchItemByPredicate:[NSPredicate predicateWithFormat:@"remote_id = %i AND group = %@ AND idx = %i", remote_id, [NSNumber numberWithBool:group], idx] entityName:@"SAColorListItem"];
     
     if ( item == nil ) {
         
         item = [[SAColorListItem alloc] initWithEntity:[NSEntityDescription entityForName:@"SAColorListItem" inManagedObjectContext:self.managedObjectContext] insertIntoManagedObjectContext:self.managedObjectContext];
     
-        item.channel = channel;
+        item.remote_id = remote_id;
+        item.group = group;
         item.idx = [NSNumber numberWithInt:idx];
         
         [self.managedObjectContext insertObject:item];

@@ -1,0 +1,339 @@
+/*
+ Copyright (C) AC SOFTWARE SP. Z O.O.
+ 
+ This program is free software; you can redistribute it and/or
+ modify it under the terms of the GNU General Public License
+ as published by the Free Software Foundation; either version 2
+ of the License, or (at your option) any later version.
+ 
+ This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ GNU General Public License for more details.
+ 
+ You should have received a copy of the GNU General Public License
+ along with this program; if not, write to the Free Software
+ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
+ */
+
+#import "SAChannelBase+CoreDataClass.h"
+#include "proto.h"
+
+@implementation SAChannelBase
+
+- (BOOL) setChannelLocation:(_SALocation*)location {
+    
+    if ( self.location != location ) {
+        self.location = location;
+        return YES;
+    }
+    
+    return NO;
+}
+
+
+- (BOOL) setChannelFunction:(int)function {
+    
+    if ( self.func != function ) {
+        self.func = function;
+        return YES;
+    }
+    
+    return NO;
+}
+
+- (BOOL) number:(NSNumber*)n1 isEqualToNumber:(id)n2 {
+    
+    if ( n1 == nil && n2 != nil )
+        return NO;
+    
+    if ( n2 == nil && n1 != nil )
+        return NO;
+    
+    if ( [n1 isKindOfClass:[NSNumber class]] == NO || [n2 isKindOfClass:[NSNumber class]] == NO )
+        return NO; // is unknown
+    
+    if ( n1 != nil && n2 != nil && [n1 isEqualToNumber:n2] == NO )
+        return NO;
+    
+    return YES;
+}
+
+- (BOOL) setChannelCaption:(char*)caption {
+    
+    NSString *_caption = [NSString stringWithUTF8String:caption];
+    
+    if ( [self.caption isEqualToString:_caption] == NO  ) {
+        self.caption = _caption;
+        return YES;
+    }
+    
+    return NO;
+}
+
+- (BOOL) setChannelVisible:(int)visible {
+    
+    if ( self.visible != visible ) {
+        self.visible = visible;
+        return YES;
+    }
+    
+    return NO;
+}
+
+- (BOOL) setChannelAltIcon:(int)altIcon {
+    
+    if ( self.alticon != altIcon ) {
+        self.alticon = altIcon;
+        return YES;
+    }
+    
+    return NO;
+}
+
+- (BOOL) setChannelFlags:(int)flags {
+    
+    if ( self.flags != flags ) {
+        self.flags = flags;
+        return YES;
+    }
+    
+    return NO;
+}
+
+- (NSString *)getChannelCaption {
+    
+    if ( [self.caption isEqualToString:@""] ) {
+        
+        switch(self.func) {
+            case SUPLA_CHANNELFNC_OPENINGSENSOR_GATEWAY:
+                return NSLocalizedString(@"Gateway opening sensor", nil);
+            case SUPLA_CHANNELFNC_CONTROLLINGTHEGATEWAYLOCK:
+                return NSLocalizedString(@"Gateway", nil);
+            case SUPLA_CHANNELFNC_OPENINGSENSOR_GATE:
+                return NSLocalizedString(@"Gate opening sensor", nil);
+            case SUPLA_CHANNELFNC_CONTROLLINGTHEGATE:
+                return NSLocalizedString(@"Gate", nil);
+            case SUPLA_CHANNELFNC_OPENINGSENSOR_GARAGEDOOR:
+                return NSLocalizedString(@"Garage door opening sensor", nil);
+            case SUPLA_CHANNELFNC_CONTROLLINGTHEGARAGEDOOR:
+                return NSLocalizedString(@"Garage door", nil);
+            case SUPLA_CHANNELFNC_OPENINGSENSOR_DOOR:
+                return NSLocalizedString(@"Door opening sensor", nil);
+            case SUPLA_CHANNELFNC_CONTROLLINGTHEDOORLOCK:
+                return NSLocalizedString(@"Door", nil);
+            case SUPLA_CHANNELFNC_OPENINGSENSOR_ROLLERSHUTTER:
+                return NSLocalizedString(@"Roller shutter opening sensor", nil);
+            case SUPLA_CHANNELFNC_CONTROLLINGTHEROLLERSHUTTER:
+                return NSLocalizedString(@"Roller shutter", nil);
+            case SUPLA_CHANNELFNC_POWERSWITCH:
+                return NSLocalizedString(@"Power switch", nil);
+            case SUPLA_CHANNELFNC_LIGHTSWITCH:
+                return NSLocalizedString(@"Lighting switch", nil);
+            case SUPLA_CHANNELFNC_THERMOMETER:
+                return NSLocalizedString(@"Thermometer", nil);
+            case SUPLA_CHANNELFNC_HUMIDITYANDTEMPERATURE:
+                return NSLocalizedString(@"Temperature and humidity", nil);
+            case SUPLA_CHANNELFNC_NOLIQUIDSENSOR:
+                return NSLocalizedString(@"No liquid sensor", nil);
+            case SUPLA_CHANNELFNC_RGBLIGHTING:
+                return NSLocalizedString(@"RGB Lighting", nil);
+            case SUPLA_CHANNELFNC_DIMMERANDRGBLIGHTING:
+                return NSLocalizedString(@"Dimmer and RGB lighting", nil);
+            case SUPLA_CHANNELFNC_DIMMER:
+                return NSLocalizedString(@"Dimmer", nil);
+            case SUPLA_CHANNELFNC_DISTANCESENSOR:
+                return NSLocalizedString(@"Distance sensor", nil);
+            case SUPLA_CHANNELFNC_DEPTHSENSOR:
+                return NSLocalizedString(@"Depth sensor", nil);
+            case SUPLA_CHANNELFNC_MAILSENSOR:
+                return NSLocalizedString(@"Mail sensor", nil);
+            case SUPLA_CHANNELFNC_OPENINGSENSOR_WINDOW:
+                return NSLocalizedString(@"Window opening sensor", nil);
+        }
+        
+    }
+    
+    return self.caption;
+    
+}
+
+- (BOOL) isOnline {
+    return NO;
+}
+
+- (BOOL) hiValue {
+    return NO;
+}
+
+- (BOOL) hiSubValue {
+    return NO;
+}
+
+- (double) temperatureValue {
+    return -275;
+}
+
+- (double) humidityValue {
+    return -1;
+}
+
+- (double) doubleValue {
+    return 0;
+}
+
+- (int) percentValue {
+    return -1;
+}
+
+- (int) brightnessValue {
+    return 0;
+}
+
+- (int) colorBrightnessValue {
+    return 0;
+}
+
+- (UIColor *) colorValue {
+    return nil;
+}
+
+- (BOOL) isOn {
+    
+    switch(self.func) {
+            
+        case SUPLA_CHANNELFNC_POWERSWITCH:
+        case SUPLA_CHANNELFNC_LIGHTSWITCH:
+            
+            return [self hiValue];
+    }
+    
+    return NO;
+}
+
+- (BOOL) isClosed {
+    
+    if ( [self isOnline] ) {
+        switch(self.func) {
+                
+            case SUPLA_CHANNELFNC_CONTROLLINGTHEGATEWAYLOCK:
+            case SUPLA_CHANNELFNC_CONTROLLINGTHEGATE:
+            case SUPLA_CHANNELFNC_CONTROLLINGTHEGARAGEDOOR:
+            case SUPLA_CHANNELFNC_CONTROLLINGTHEDOORLOCK:
+            case SUPLA_CHANNELFNC_CONTROLLINGTHEROLLERSHUTTER:
+                return [self hiSubValue];
+                break;
+                
+            case SUPLA_CHANNELFNC_OPENINGSENSOR_GATEWAY:
+            case SUPLA_CHANNELFNC_OPENINGSENSOR_GATE:
+            case SUPLA_CHANNELFNC_OPENINGSENSOR_GARAGEDOOR:
+            case SUPLA_CHANNELFNC_OPENINGSENSOR_DOOR:
+            case SUPLA_CHANNELFNC_OPENINGSENSOR_ROLLERSHUTTER:
+            case SUPLA_CHANNELFNC_MAILSENSOR:
+            case SUPLA_CHANNELFNC_OPENINGSENSOR_WINDOW:
+                return [self hiValue];
+                break;
+        }
+    }
+    
+    return NO;
+}
+
+- (UIImage*) getIcon {
+    
+    NSString *n1 = nil;
+    NSString *n2 = nil;
+    
+    switch(self.func) {
+        case SUPLA_CHANNELFNC_OPENINGSENSOR_GATEWAY:
+        case SUPLA_CHANNELFNC_CONTROLLINGTHEGATEWAYLOCK:
+            n1 = @"gateway";
+            break;
+        case SUPLA_CHANNELFNC_OPENINGSENSOR_GATE:
+        case SUPLA_CHANNELFNC_CONTROLLINGTHEGATE:
+            switch(self.alticon) {
+                case 1:
+                    n1 = @"gatealt1";
+                    break;
+                case 2:
+                    n1 = @"barier";
+                    break;
+                default:
+                    n1 = @"gate";
+            }
+            break;
+        case SUPLA_CHANNELFNC_OPENINGSENSOR_GARAGEDOOR:
+        case SUPLA_CHANNELFNC_CONTROLLINGTHEGARAGEDOOR:
+            n1 = @"garagedoor";
+            break;
+        case SUPLA_CHANNELFNC_OPENINGSENSOR_DOOR:
+        case SUPLA_CHANNELFNC_CONTROLLINGTHEDOORLOCK:
+            n1 = @"door";
+            break;
+        case SUPLA_CHANNELFNC_OPENINGSENSOR_ROLLERSHUTTER:
+        case SUPLA_CHANNELFNC_CONTROLLINGTHEROLLERSHUTTER:
+            n1 = @"rollershutter";
+            break;
+        case SUPLA_CHANNELFNC_POWERSWITCH:
+            switch(self.alticon) {
+                case 1:
+                    n2 = @"tv";
+                    break;
+                case 2:
+                    n2 = @"radio";
+                    break;
+                case 3:
+                    n2 = @"pc";
+                    break;
+                case 4:
+                    n2 = @"fan";
+                    break;
+                default:
+                    n2 = @"power";
+            }
+            break;
+        case SUPLA_CHANNELFNC_LIGHTSWITCH:
+            switch(self.alticon) {
+                case 1:
+                    n2 = @"xmastree";
+                    break;
+                default:
+                    n2 = @"light";
+            }
+            break;
+        case SUPLA_CHANNELFNC_THERMOMETER:
+            return [UIImage imageNamed:@"thermometer"];
+        case SUPLA_CHANNELFNC_NOLIQUIDSENSOR:
+            return [UIImage imageNamed:[self hiValue] ? @"liquid" : @"noliquid"];
+        case SUPLA_CHANNELFNC_DIMMER:
+            return [UIImage imageNamed:[NSString stringWithFormat:@"dimmer-%@", self.brightnessValue > 0 ? @"on" : @"off"]];
+            
+        case SUPLA_CHANNELFNC_RGBLIGHTING:
+            return [UIImage imageNamed:[NSString stringWithFormat:@"rgb-%@", self.colorBrightnessValue > 0 ? @"on" : @"off"]];
+            
+        case SUPLA_CHANNELFNC_DIMMERANDRGBLIGHTING:
+            return [UIImage imageNamed:[NSString stringWithFormat:@"dimmerrgb-%@%@", self.brightnessValue > 0 ? @"on" : @"off", self.colorBrightnessValue > 0 ? @"on" : @"off"]];
+            break;
+            
+        case SUPLA_CHANNELFNC_OPENINGSENSOR_WINDOW:
+            n1 = @"window";
+            break;
+            
+        case SUPLA_CHANNELFNC_MAILSENSOR:
+            return [UIImage imageNamed:[self isClosed] ? @"mail" : @"nomail"];
+            
+    }
+    
+    if ( n1 ) {
+        return [UIImage imageNamed:[NSString stringWithFormat:@"%@-%@", n1, [self isClosed] ? @"closed" : @"open"]];
+    }
+    
+    if ( n2 ) {
+        return [UIImage imageNamed:[NSString stringWithFormat:@"%@-%@", n2, [self isOn] ? @"on" : @"off"]];
+    }
+    
+    
+    return nil;
+}
+
+@end

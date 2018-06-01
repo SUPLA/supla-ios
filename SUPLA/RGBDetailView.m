@@ -133,7 +133,7 @@
     }
     
     SASuplaClient *client = [SAApp SuplaClient];
-    if ( client == nil || self.channel == nil ) return;
+    if ( client == nil || self.channelBase == nil ) return;
     
     double time = [_remoteUpdateTime timeIntervalSinceNow] * -1;
     
@@ -149,7 +149,7 @@
     }
     
     if ( time >= MIN_REMOTE_UPDATE_PERIOD
-        && [client channel:[self.channel.channel_id intValue] setRGB:color colorBrightness:colorBrightness brightness:brightness] ) {
+        && [client channel:self.channelBase.remote_id setRGB:color colorBrightness:colorBrightness brightness:brightness] ) {
         
         _remoteUpdateTime = [NSDate date];
         _moveEndTime = [NSDate dateWithTimeIntervalSinceNow:2];
@@ -253,19 +253,19 @@
     
     [super updateView];
     
-    if ( self.channel != nil ) {
+    if ( self.channelBase != nil ) {
         
-        [self.labelCaption setText:[self.channel getChannelCaption]];
+        [self.labelCaption setText:[self.channelBase getChannelCaption]];
         
-        switch([self.channel.func intValue]) {
+        switch(self.channelBase.func) {
                 
             case SUPLA_CHANNELFNC_DIMMER:
             case SUPLA_CHANNELFNC_RGBLIGHTING:
             case SUPLA_CHANNELFNC_DIMMERANDRGBLIGHTING:
             
-                _brightness = [self.channel getBrightness];
-                _colorBrightness = [self.channel getColorBrightness];
-                _color = [self.channel getColor];
+                _brightness = self.channelBase.brightnessValue;
+                _colorBrightness = self.channelBase.colorBrightnessValue;
+                _color = self.channelBase.colorValue;
             
                 [self showValuesWithDelay];
             
@@ -278,8 +278,8 @@
     
     for(int a=1;a<self.clPicker.count;a++) {
         
-        SAColorListItem *item = [[SAApp DB] getColorListItemForChannel:self.channel andIndex:a];
-        
+        SAColorListItem *item = [[SAApp DB] getColorListItemForRemoteId:self.channelBase.remote_id andIndex:a forGroup:NO];
+       
         if ( item == nil ) {
             [self.clPicker itemAtIndex:a setColor:[UIColor clearColor]];
             [self.clPicker itemAtIndex:a setPercent:0];
@@ -306,10 +306,10 @@
 
 }
 
--(void)setChannel:(SAChannel *)channel {
+-(void)setChannelBase:(SAChannelBase *)channelBase {
     
-    if ( self.channel == nil
-         || ( channel != nil && [self.channel.channel_id isEqual:channel.channel_id] == NO ) ) {
+    if ( self.channelBase == nil
+         || ( channelBase != nil && self.channelBase.remote_id  != channelBase.remote_id ) ) {
         
 
         [self setBWBrightnessWhellVisible:NO];
@@ -320,10 +320,10 @@
         
         _moveEndTime = [NSDate dateWithTimeIntervalSince1970:0];
         
-        if ( channel != nil ) {
+        if ( channelBase != nil ) {
             
             
-            switch([channel.func intValue]) {
+            switch(channelBase.func) {
                 case SUPLA_CHANNELFNC_DIMMER:
                     [self setBWBrightnessWhellVisible:YES];
                     break;
@@ -344,16 +344,16 @@
         
     }
 
-    [super setChannel:channel];
+    [super setChannelBase:channelBase];
     
-    if ( channel != nil && channel.isOnline == NO ) {
+    if ( channelBase != nil && channelBase.isOnline == NO ) {
         [self.main_view detailShow:NO animated:NO];
     }
 }
 
 - (IBAction)stateBtnTouch:(id)sender {
     
-    if ( self.channel == nil || self.channel.isOnline == NO )
+    if ( self.channelBase == nil || self.channelBase.isOnline == NO )
         return;
 
     self.stateBtn.selected = !self.stateBtn.selected;
@@ -387,7 +387,7 @@
 -(void)itemTouchedWithColor:(UIColor*)color andPercent:(float)percent {
     
     if ( self.cbPicker.colorBrightnessWheelVisible == NO
-        || self.channel == nil
+        || self.channelBase == nil
         || color == nil
         || [color isEqual: [UIColor clearColor]]) return;
     
@@ -406,8 +406,8 @@
     [self.clPicker itemAtIndex:index setColor:self.cbPicker.color];
     [self.clPicker itemAtIndex:index setPercent:self.cbPicker.brightness];
     
+    SAColorListItem *item = [[SAApp DB] getColorListItemForRemoteId:self.channelBase.remote_id andIndex:index forGroup:NO];
     
-    SAColorListItem *item = [[SAApp DB] getColorListItemForChannel:self.channel andIndex:index];
     if ( item != nil ) {
         item.brightness = [NSNumber numberWithFloat:self.cbPicker.brightness];
         item.color = self.cbPicker.color;

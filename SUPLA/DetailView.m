@@ -24,7 +24,7 @@
 @implementation SADetailView {
     
     BOOL _initialized;
-    SAChannel *_channel;
+    SAChannelBase *_channelBase;
     UIPanGestureRecognizer *_panRecognizer;
     float last_touched_x;
     
@@ -41,7 +41,7 @@
     if ( _initialized )
         return;
     
-    self.channel = nil;
+    self.channelBase = nil;
     
     _panRecognizer = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(handlePan:)];
     [self addGestureRecognizer:_panRecognizer];
@@ -55,34 +55,34 @@
 
 - (void)onChannelValueChanged:(NSNotification *)notification {
     
-    if ( notification.userInfo == nil || _channel == nil ) return;
+    if ( notification.userInfo == nil || _channelBase == nil ) return;
     
     NSNumber *Id = (NSNumber *)[notification.userInfo objectForKey:@"channelId"];
     
     if ( Id && [Id isKindOfClass:[NSNumber class]]
-         && [_channel.channel_id isEqual:Id] ) {
+         && _channelBase.remote_id == [Id intValue]) {
         
-        self.channel = [[SAApp DB] fetchChannelById:[Id intValue]];
+        self.channelBase = [[SAApp DB] fetchChannelById:[Id intValue]];
         
     }
 };
 
--(SAChannel*)channel {
-    return _channel;
+-(SAChannelBase*)channelBase {
+    return _channelBase;
 }
 
 -(void)updateView {
     
 }
 
--(void)setChannel:(SAChannel *)channel {
+-(void)setChannelBase:(SAChannelBase *)channelBase {
     
-    _channel = channel;
+    _channelBase = channelBase;
     [self updateView];
 }
 
 -(void)removeFromSuperview {
-    self.channel = nil;
+    self.channelBase = nil;
     self.main_view = nil;
 }
 

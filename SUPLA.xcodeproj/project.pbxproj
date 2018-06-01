@@ -27,6 +27,9 @@
 		4038A5571CE32CD700180B5D /* humidity@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4038A5551CE32CD700180B5D /* humidity@2x.png */; };
 		4038A5581CE32CD700180B5D /* humidity@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4038A5561CE32CD700180B5D /* humidity@3x.png */; };
 		403EB1141FBDF47F00AD6460 /* AddWizardVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 403EB1121FBDF47F00AD6460 /* AddWizardVC.m */; };
+		404749BC20BC6058005DA345 /* SAColorListItem+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 409934A71F30C025003110C5 /* SAColorListItem+CoreDataClass.m */; };
+		404749BD20BC6070005DA345 /* SAChannel+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 40DA567E1DCA1515008F05DE /* SAChannel+CoreDataClass.m */; };
+		404749BE20BC608B005DA345 /* _SALocation+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 40DA56881DCA1908008F05DE /* _SALocation+CoreDataClass.m */; };
 		404E48F71FC75D0B001F6266 /* SAClassHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 404E48F51FC75D0B001F6266 /* SAClassHelper.m */; };
 		4052DA001DC515AE000B8C45 /* dimmerrgb-offoff@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4052D9F01DC515AE000B8C45 /* dimmerrgb-offoff@3x.png */; };
 		4052DA011DC515AE000B8C45 /* dimmerrgb-offoff@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4052D9F11DC515AE000B8C45 /* dimmerrgb-offoff@2x.png */; };
@@ -97,8 +100,6 @@
 		4091AF461FC86D7B00EFF357 /* look@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4091AF451FC86D7A00EFF357 /* look@2x.png */; };
 		4091AF481FC88A8B00EFF357 /* plug@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4091AF471FC88A8900EFF357 /* plug@2x.png */; };
 		4091AF4A1FC88BFB00EFF357 /* greendot@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4091AF491FC88BFA00EFF357 /* greendot@2x.png */; };
-		409934AA1F30C025003110C5 /* SAColorListItem+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 409934A71F30C025003110C5 /* SAColorListItem+CoreDataClass.m */; };
-		409934AB1F30C025003110C5 /* SAColorListItem+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 409934A91F30C025003110C5 /* SAColorListItem+CoreDataProperties.m */; };
 		409934B61F30EF9C003110C5 /* RSDetailView.m in Sources */ = {isa = PBXBuildFile; fileRef = 409934B51F30EF9C003110C5 /* RSDetailView.m */; };
 		40A6757F1BA1A5B6004A51C4 /* SuplaApp.m in Sources */ = {isa = PBXBuildFile; fileRef = 40A6757E1BA1A5B6004A51C4 /* SuplaApp.m */; };
 		40A675831BA1BE8E004A51C4 /* SettingsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 40A675811BA1BE8E004A51C4 /* SettingsVC.m */; };
@@ -144,13 +145,16 @@
 		40B9ED821FACE15700403B1A /* window-closed@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 40B9ED781FACE15700403B1A /* window-closed@3x.png */; };
 		40B9ED831FACE15700403B1A /* mail@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 40B9ED791FACE15700403B1A /* mail@3x.png */; };
 		40B9ED841FACE15700403B1A /* gatealt1-open@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 40B9ED7A1FACE15700403B1A /* gatealt1-open@3x.png */; };
-		40BBA35C20AC6E220054CD20 /* SAChannelGroupRelation+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 40BBA34E20AC6E220054CD20 /* SAChannelGroupRelation+CoreDataClass.m */; };
 		40BBA35D20AC6E220054CD20 /* SAChannelGroupRelation+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 40BBA35020AC6E220054CD20 /* SAChannelGroupRelation+CoreDataProperties.m */; };
-		40BBA35E20AC6E220054CD20 /* SAChannelValue+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 40BBA35220AC6E220054CD20 /* SAChannelValue+CoreDataClass.m */; };
-		40BBA35F20AC6E220054CD20 /* SAChannelValue+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 40BBA35420AC6E220054CD20 /* SAChannelValue+CoreDataProperties.m */; };
-		40BBA36020AC6E220054CD20 /* SAChannelGroup+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 40BBA35620AC6E220054CD20 /* SAChannelGroup+CoreDataClass.m */; };
-		40BBA36120AC6E220054CD20 /* SAChannelGroup+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 40BBA35820AC6E220054CD20 /* SAChannelGroup+CoreDataProperties.m */; };
 		40BE3E621BCA7AEF00153680 /* ChannelCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 40BE3E611BCA7AEF00153680 /* ChannelCell.xib */; };
+		40C7BA5220C007A300ACEE42 /* SAChannelValue+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 40C7BA4F20C007A300ACEE42 /* SAChannelValue+CoreDataClass.m */; };
+		40C7BA5320C007A300ACEE42 /* SAChannelValue+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 40C7BA5120C007A300ACEE42 /* SAChannelValue+CoreDataProperties.m */; };
+		40C7BA5420C008DB00ACEE42 /* SAChannelGroupRelation+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 40BBA34E20AC6E220054CD20 /* SAChannelGroupRelation+CoreDataClass.m */; };
+		40C7BA6C20C045A800ACEE42 /* SAChannelGroup+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 40C7BA6820C045A800ACEE42 /* SAChannelGroup+CoreDataClass.m */; };
+		40C7BA7720C047CF00ACEE42 /* SAChannel+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 40C7BA7220C047CF00ACEE42 /* SAChannel+CoreDataProperties.m */; };
+		40C7BA7920C047CF00ACEE42 /* SAChannelGroup+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 40C7BA7620C047CF00ACEE42 /* SAChannelGroup+CoreDataProperties.m */; };
+		40C7BA8720C0492500ACEE42 /* SAChannelBase+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 40C7BA8420C0492500ACEE42 /* SAChannelBase+CoreDataClass.m */; };
+		40C7BA8820C0492500ACEE42 /* SAChannelBase+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 40C7BA8620C0492500ACEE42 /* SAChannelBase+CoreDataProperties.m */; };
 		40C9E4F71F2A186A00753796 /* SARollerShutter.m in Sources */ = {isa = PBXBuildFile; fileRef = 40C9E4F61F2A186A00753796 /* SARollerShutter.m */; };
 		40C9E4FD1F2B841400753796 /* SAColorListPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 40C9E4FC1F2B841400753796 /* SAColorListPicker.m */; };
 		40CE7C641DCBBCE400BBACE4 /* DepthCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 40CE7C631DCBBCE400BBACE4 /* DepthCell.xib */; };
@@ -201,10 +205,7 @@
 		40CF96DE1BC820E60030EFFF /* UIHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 40CF96DD1BC820E60030EFFF /* UIHelper.m */; };
 		40D397AD1FAF547B00BF477D /* retry@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 40D397AC1FAF547B00BF477D /* retry@3x.png */; };
 		40D69DEE1BB574FE00937769 /* Database.m in Sources */ = {isa = PBXBuildFile; fileRef = 40D69DED1BB574FE00937769 /* Database.m */; };
-		40DA56851DCA1515008F05DE /* SAChannel+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 40DA567E1DCA1515008F05DE /* SAChannel+CoreDataClass.m */; };
-		40DA568F1DCA1908008F05DE /* _SALocation+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 40DA56881DCA1908008F05DE /* _SALocation+CoreDataClass.m */; };
 		40DA56901DCA1908008F05DE /* _SALocation+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 40DA568A1DCA1908008F05DE /* _SALocation+CoreDataProperties.m */; };
-		40DA56921DCA1908008F05DE /* SAChannel+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 40DA568E1DCA1908008F05DE /* SAChannel+CoreDataProperties.m */; };
 		40DB208D1DC9049400FAFAB0 /* RGBDetail.xib in Resources */ = {isa = PBXBuildFile; fileRef = 40DB208F1DC9049400FAFAB0 /* RGBDetail.xib */; };
 		40DE1A291BCCFF8A004CF43B /* feedback@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 40DE1A241BCCFF8A004CF43B /* feedback@2x.png */; };
 		40DE1A2A1BCCFF8A004CF43B /* feedback@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 40DE1A251BCCFF8A004CF43B /* feedback@3x.png */; };
@@ -218,6 +219,7 @@
 		40E8BE891FC06A5600FB2FE6 /* TFHppleElement.m in Sources */ = {isa = PBXBuildFile; fileRef = 40E8BE851FC06A5500FB2FE6 /* TFHppleElement.m */; };
 		40E8BE8A1FC06A5600FB2FE6 /* XPathQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = 40E8BE871FC06A5600FB2FE6 /* XPathQuery.m */; };
 		40E8BE8D1FC06B4200FB2FE6 /* libxml2.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 40E8BE8B1FC06B2000FB2FE6 /* libxml2.tbd */; };
+		40F7301120C19BA600167C2D /* SAColorListItem+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 40F7301020C19BA600167C2D /* SAColorListItem+CoreDataProperties.m */; };
 		40F951451FD0654900698587 /* RSDetail.xib in Resources */ = {isa = PBXBuildFile; fileRef = 40F951471FD0654900698587 /* RSDetail.xib */; };
 /* End PBXBuildFile section */
 
@@ -376,8 +378,6 @@
 		4091AF491FC88BFA00EFF357 /* greendot@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "greendot@2x.png"; path = "Resources/Assets/Img/greendot@2x.png"; sourceTree = "<group>"; };
 		409934A61F30C025003110C5 /* SAColorListItem+CoreDataClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SAColorListItem+CoreDataClass.h"; sourceTree = "<group>"; };
 		409934A71F30C025003110C5 /* SAColorListItem+CoreDataClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SAColorListItem+CoreDataClass.m"; sourceTree = "<group>"; };
-		409934A81F30C025003110C5 /* SAColorListItem+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SAColorListItem+CoreDataProperties.h"; sourceTree = "<group>"; };
-		409934A91F30C025003110C5 /* SAColorListItem+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SAColorListItem+CoreDataProperties.m"; sourceTree = "<group>"; };
 		409934B41F30EF9C003110C5 /* RSDetailView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSDetailView.h; sourceTree = "<group>"; };
 		409934B51F30EF9C003110C5 /* RSDetailView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSDetailView.m; sourceTree = "<group>"; };
 		40A6757D1BA1A5B6004A51C4 /* SuplaApp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SuplaApp.h; path = ../SuplaApp.h; sourceTree = "<group>"; };
@@ -437,15 +437,21 @@
 		40BBA34E20AC6E220054CD20 /* SAChannelGroupRelation+CoreDataClass.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "SAChannelGroupRelation+CoreDataClass.m"; sourceTree = "<group>"; };
 		40BBA34F20AC6E220054CD20 /* SAChannelGroupRelation+CoreDataProperties.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SAChannelGroupRelation+CoreDataProperties.h"; sourceTree = "<group>"; };
 		40BBA35020AC6E220054CD20 /* SAChannelGroupRelation+CoreDataProperties.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "SAChannelGroupRelation+CoreDataProperties.m"; sourceTree = "<group>"; };
-		40BBA35120AC6E220054CD20 /* SAChannelValue+CoreDataClass.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SAChannelValue+CoreDataClass.h"; sourceTree = "<group>"; };
-		40BBA35220AC6E220054CD20 /* SAChannelValue+CoreDataClass.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "SAChannelValue+CoreDataClass.m"; sourceTree = "<group>"; };
-		40BBA35320AC6E220054CD20 /* SAChannelValue+CoreDataProperties.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SAChannelValue+CoreDataProperties.h"; sourceTree = "<group>"; };
-		40BBA35420AC6E220054CD20 /* SAChannelValue+CoreDataProperties.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "SAChannelValue+CoreDataProperties.m"; sourceTree = "<group>"; };
-		40BBA35520AC6E220054CD20 /* SAChannelGroup+CoreDataClass.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SAChannelGroup+CoreDataClass.h"; sourceTree = "<group>"; };
-		40BBA35620AC6E220054CD20 /* SAChannelGroup+CoreDataClass.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "SAChannelGroup+CoreDataClass.m"; sourceTree = "<group>"; };
-		40BBA35720AC6E220054CD20 /* SAChannelGroup+CoreDataProperties.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SAChannelGroup+CoreDataProperties.h"; sourceTree = "<group>"; };
-		40BBA35820AC6E220054CD20 /* SAChannelGroup+CoreDataProperties.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "SAChannelGroup+CoreDataProperties.m"; sourceTree = "<group>"; };
 		40BE3E611BCA7AEF00153680 /* ChannelCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChannelCell.xib; sourceTree = "<group>"; };
+		40C7BA4E20C007A300ACEE42 /* SAChannelValue+CoreDataClass.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SAChannelValue+CoreDataClass.h"; sourceTree = "<group>"; };
+		40C7BA4F20C007A300ACEE42 /* SAChannelValue+CoreDataClass.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "SAChannelValue+CoreDataClass.m"; sourceTree = "<group>"; };
+		40C7BA5020C007A300ACEE42 /* SAChannelValue+CoreDataProperties.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SAChannelValue+CoreDataProperties.h"; sourceTree = "<group>"; };
+		40C7BA5120C007A300ACEE42 /* SAChannelValue+CoreDataProperties.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "SAChannelValue+CoreDataProperties.m"; sourceTree = "<group>"; };
+		40C7BA6720C045A800ACEE42 /* SAChannelGroup+CoreDataClass.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SAChannelGroup+CoreDataClass.h"; sourceTree = "<group>"; };
+		40C7BA6820C045A800ACEE42 /* SAChannelGroup+CoreDataClass.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "SAChannelGroup+CoreDataClass.m"; sourceTree = "<group>"; };
+		40C7BA7120C047CF00ACEE42 /* SAChannel+CoreDataProperties.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SAChannel+CoreDataProperties.h"; sourceTree = "<group>"; };
+		40C7BA7220C047CF00ACEE42 /* SAChannel+CoreDataProperties.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "SAChannel+CoreDataProperties.m"; sourceTree = "<group>"; };
+		40C7BA7520C047CF00ACEE42 /* SAChannelGroup+CoreDataProperties.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SAChannelGroup+CoreDataProperties.h"; sourceTree = "<group>"; };
+		40C7BA7620C047CF00ACEE42 /* SAChannelGroup+CoreDataProperties.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "SAChannelGroup+CoreDataProperties.m"; sourceTree = "<group>"; };
+		40C7BA8320C0492500ACEE42 /* SAChannelBase+CoreDataClass.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SAChannelBase+CoreDataClass.h"; sourceTree = "<group>"; };
+		40C7BA8420C0492500ACEE42 /* SAChannelBase+CoreDataClass.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "SAChannelBase+CoreDataClass.m"; sourceTree = "<group>"; };
+		40C7BA8520C0492500ACEE42 /* SAChannelBase+CoreDataProperties.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SAChannelBase+CoreDataProperties.h"; sourceTree = "<group>"; };
+		40C7BA8620C0492500ACEE42 /* SAChannelBase+CoreDataProperties.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "SAChannelBase+CoreDataProperties.m"; sourceTree = "<group>"; };
 		40C9E4F51F2A186A00753796 /* SARollerShutter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SARollerShutter.h; sourceTree = "<group>"; };
 		40C9E4F61F2A186A00753796 /* SARollerShutter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SARollerShutter.m; sourceTree = "<group>"; };
 		40C9E4FB1F2B841400753796 /* SAColorListPicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SAColorListPicker.h; sourceTree = "<group>"; };
@@ -508,14 +514,10 @@
 		40D69DED1BB574FE00937769 /* Database.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Database.m; sourceTree = "<group>"; };
 		40DA567D1DCA1515008F05DE /* SAChannel+CoreDataClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SAChannel+CoreDataClass.h"; sourceTree = "<group>"; };
 		40DA567E1DCA1515008F05DE /* SAChannel+CoreDataClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SAChannel+CoreDataClass.m"; sourceTree = "<group>"; };
-		40DA567F1DCA1515008F05DE /* SAChannel+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SAChannel+CoreDataProperties.h"; sourceTree = "<group>"; };
-		40DA56801DCA1515008F05DE /* SAChannel+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SAChannel+CoreDataProperties.m"; sourceTree = "<group>"; };
 		40DA56871DCA1908008F05DE /* _SALocation+CoreDataClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "_SALocation+CoreDataClass.h"; sourceTree = "<group>"; };
 		40DA56881DCA1908008F05DE /* _SALocation+CoreDataClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "_SALocation+CoreDataClass.m"; sourceTree = "<group>"; };
 		40DA56891DCA1908008F05DE /* _SALocation+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "_SALocation+CoreDataProperties.h"; sourceTree = "<group>"; };
 		40DA568A1DCA1908008F05DE /* _SALocation+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "_SALocation+CoreDataProperties.m"; sourceTree = "<group>"; };
-		40DA568D1DCA1908008F05DE /* SAChannel+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SAChannel+CoreDataProperties.h"; sourceTree = "<group>"; };
-		40DA568E1DCA1908008F05DE /* SAChannel+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SAChannel+CoreDataProperties.m"; sourceTree = "<group>"; };
 		40DB209A1DC904BF00FAFAB0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/RGBDetail.xib; sourceTree = "<group>"; };
 		40DB209C1DC904D200FAFAB0 /* pl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pl; path = pl.lproj/RGBDetail.strings; sourceTree = "<group>"; };
 		40DB209E1DC904D500FAFAB0 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/RGBDetail.strings; sourceTree = "<group>"; };
@@ -538,6 +540,8 @@
 		40E8BE861FC06A5500FB2FE6 /* XPathQuery.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = XPathQuery.h; path = hpple/XPathQuery.h; sourceTree = "<group>"; };
 		40E8BE871FC06A5600FB2FE6 /* XPathQuery.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = XPathQuery.m; path = hpple/XPathQuery.m; sourceTree = "<group>"; };
 		40E8BE8B1FC06B2000FB2FE6 /* libxml2.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libxml2.tbd; path = usr/lib/libxml2.tbd; sourceTree = SDKROOT; };
+		40F7300F20C19BA600167C2D /* SAColorListItem+CoreDataProperties.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SAColorListItem+CoreDataProperties.h"; sourceTree = "<group>"; };
+		40F7301020C19BA600167C2D /* SAColorListItem+CoreDataProperties.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "SAColorListItem+CoreDataProperties.m"; sourceTree = "<group>"; };
 		40F951461FD0654900698587 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/RSDetail.xib; sourceTree = "<group>"; };
 		40F951491FD0657000698587 /* pl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pl; path = pl.lproj/RSDetail.strings; sourceTree = "<group>"; };
 		40F9514B1FD0657F00698587 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/RSDetail.strings; sourceTree = "<group>"; };
@@ -837,32 +841,34 @@
 		407004241BB56EAC00F6187F /* DB */ = {
 			isa = PBXGroup;
 			children = (
+				40F7300F20C19BA600167C2D /* SAColorListItem+CoreDataProperties.h */,
+				40F7301020C19BA600167C2D /* SAColorListItem+CoreDataProperties.m */,
+				40C7BA8320C0492500ACEE42 /* SAChannelBase+CoreDataClass.h */,
+				40C7BA8420C0492500ACEE42 /* SAChannelBase+CoreDataClass.m */,
+				40C7BA8520C0492500ACEE42 /* SAChannelBase+CoreDataProperties.h */,
+				40C7BA8620C0492500ACEE42 /* SAChannelBase+CoreDataProperties.m */,
+				40C7BA7120C047CF00ACEE42 /* SAChannel+CoreDataProperties.h */,
+				40C7BA7220C047CF00ACEE42 /* SAChannel+CoreDataProperties.m */,
+				40C7BA7520C047CF00ACEE42 /* SAChannelGroup+CoreDataProperties.h */,
+				40C7BA7620C047CF00ACEE42 /* SAChannelGroup+CoreDataProperties.m */,
+				40C7BA6720C045A800ACEE42 /* SAChannelGroup+CoreDataClass.h */,
+				40C7BA6820C045A800ACEE42 /* SAChannelGroup+CoreDataClass.m */,
+				40C7BA4E20C007A300ACEE42 /* SAChannelValue+CoreDataClass.h */,
+				40C7BA4F20C007A300ACEE42 /* SAChannelValue+CoreDataClass.m */,
+				40C7BA5020C007A300ACEE42 /* SAChannelValue+CoreDataProperties.h */,
+				40C7BA5120C007A300ACEE42 /* SAChannelValue+CoreDataProperties.m */,
 				40BBA34D20AC6E220054CD20 /* SAChannelGroupRelation+CoreDataClass.h */,
 				40BBA34E20AC6E220054CD20 /* SAChannelGroupRelation+CoreDataClass.m */,
 				40BBA34F20AC6E220054CD20 /* SAChannelGroupRelation+CoreDataProperties.h */,
 				40BBA35020AC6E220054CD20 /* SAChannelGroupRelation+CoreDataProperties.m */,
-				40BBA35120AC6E220054CD20 /* SAChannelValue+CoreDataClass.h */,
-				40BBA35220AC6E220054CD20 /* SAChannelValue+CoreDataClass.m */,
-				40BBA35320AC6E220054CD20 /* SAChannelValue+CoreDataProperties.h */,
-				40BBA35420AC6E220054CD20 /* SAChannelValue+CoreDataProperties.m */,
-				40BBA35520AC6E220054CD20 /* SAChannelGroup+CoreDataClass.h */,
-				40BBA35620AC6E220054CD20 /* SAChannelGroup+CoreDataClass.m */,
-				40BBA35720AC6E220054CD20 /* SAChannelGroup+CoreDataProperties.h */,
-				40BBA35820AC6E220054CD20 /* SAChannelGroup+CoreDataProperties.m */,
 				409934A61F30C025003110C5 /* SAColorListItem+CoreDataClass.h */,
 				409934A71F30C025003110C5 /* SAColorListItem+CoreDataClass.m */,
-				409934A81F30C025003110C5 /* SAColorListItem+CoreDataProperties.h */,
-				409934A91F30C025003110C5 /* SAColorListItem+CoreDataProperties.m */,
 				40DA56871DCA1908008F05DE /* _SALocation+CoreDataClass.h */,
 				40DA56881DCA1908008F05DE /* _SALocation+CoreDataClass.m */,
 				40DA56891DCA1908008F05DE /* _SALocation+CoreDataProperties.h */,
 				40DA568A1DCA1908008F05DE /* _SALocation+CoreDataProperties.m */,
-				40DA568D1DCA1908008F05DE /* SAChannel+CoreDataProperties.h */,
-				40DA568E1DCA1908008F05DE /* SAChannel+CoreDataProperties.m */,
 				40DA567D1DCA1515008F05DE /* SAChannel+CoreDataClass.h */,
 				40DA567E1DCA1515008F05DE /* SAChannel+CoreDataClass.m */,
-				40DA567F1DCA1515008F05DE /* SAChannel+CoreDataProperties.h */,
-				40DA56801DCA1515008F05DE /* SAChannel+CoreDataProperties.m */,
 				407004251BB5706500F6187F /* SUPLA.xcdatamodeld */,
 				40D69DEC1BB574FE00937769 /* Database.h */,
 				40D69DED1BB574FE00937769 /* Database.m */,
@@ -1228,46 +1234,48 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				40C7BA6C20C045A800ACEE42 /* SAChannelGroup+CoreDataClass.m in Sources */,
+				40C7BA5420C008DB00ACEE42 /* SAChannelGroupRelation+CoreDataClass.m in Sources */,
+				40C7BA8820C0492500ACEE42 /* SAChannelBase+CoreDataProperties.m in Sources */,
+				404749BE20BC608B005DA345 /* _SALocation+CoreDataClass.m in Sources */,
+				404749BD20BC6070005DA345 /* SAChannel+CoreDataClass.m in Sources */,
+				404749BC20BC6058005DA345 /* SAColorListItem+CoreDataClass.m in Sources */,
 				40E8BE891FC06A5600FB2FE6 /* TFHppleElement.m in Sources */,
-				40BBA35C20AC6E220054CD20 /* SAChannelGroupRelation+CoreDataClass.m in Sources */,
 				40DE1A361BCD1B55004CF43B /* AboutVC.m in Sources */,
 				4017E12C1BB9CE2900570AC8 /* ChannelCell.m in Sources */,
 				40AB8BDE1DCB32EB0030F3DE /* SARateApp.m in Sources */,
+				40C7BA7720C047CF00ACEE42 /* SAChannel+CoreDataProperties.m in Sources */,
 				40CF96DE1BC820E60030EFFF /* UIHelper.m in Sources */,
-				40BBA35F20AC6E220054CD20 /* SAChannelValue+CoreDataProperties.m in Sources */,
+				40F7301120C19BA600167C2D /* SAColorListItem+CoreDataProperties.m in Sources */,
+				40C7BA7920C047CF00ACEE42 /* SAChannelGroup+CoreDataProperties.m in Sources */,
 				40D69DEE1BB574FE00937769 /* Database.m in Sources */,
 				408034E51BC84A89007666E7 /* NavigationController.m in Sources */,
 				4004DE8D1DC4E270009C34E3 /* SAColorBrightnessPicker.m in Sources */,
 				401CA1C21BA067DB00117AF4 /* AppDelegate.m in Sources */,
-				40DA56921DCA1908008F05DE /* SAChannel+CoreDataProperties.m in Sources */,
 				40A675831BA1BE8E004A51C4 /* SettingsVC.m in Sources */,
 				406778551BCBF9F4008DD37F /* SectionCell.m in Sources */,
-				40DA568F1DCA1908008F05DE /* _SALocation+CoreDataClass.m in Sources */,
 				40B9ED3A1FAC79FC00403B1A /* SUPLA.xcdatamodeld in Sources */,
 				4077ACE320A21BB100BD2216 /* CreateAccountVC.m in Sources */,
 				401CA1C81BA067DB00117AF4 /* MainVC.m in Sources */,
-				40BBA36120AC6E220054CD20 /* SAChannelGroup+CoreDataProperties.m in Sources */,
 				408034C51BC83D1A007666E7 /* MGSwipeTableCell.m in Sources */,
-				40BBA36020AC6E220054CD20 /* SAChannelGroup+CoreDataClass.m in Sources */,
 				403EB1141FBDF47F00AD6460 /* AddWizardVC.m in Sources */,
 				408034C41BC83D1A007666E7 /* MGSwipeButton.m in Sources */,
-				409934AB1F30C025003110C5 /* SAColorListItem+CoreDataProperties.m in Sources */,
 				401CA1BF1BA067DB00117AF4 /* main.m in Sources */,
 				404E48F71FC75D0B001F6266 /* SAClassHelper.m in Sources */,
 				40BBA35D20AC6E220054CD20 /* SAChannelGroupRelation+CoreDataProperties.m in Sources */,
+				40C7BA8720C0492500ACEE42 /* SAChannelBase+CoreDataClass.m in Sources */,
 				40E8BE8A1FC06A5600FB2FE6 /* XPathQuery.m in Sources */,
 				40A6757F1BA1A5B6004A51C4 /* SuplaApp.m in Sources */,
 				40C9E4F71F2A186A00753796 /* SARollerShutter.m in Sources */,
 				401CA1F21BA0A28A00117AF4 /* SuplaClient.m in Sources */,
-				409934AA1F30C025003110C5 /* SAColorListItem+CoreDataClass.m in Sources */,
 				4006E90A1DC62D0A00C4456D /* DetailView.m in Sources */,
-				40BBA35E20AC6E220054CD20 /* SAChannelValue+CoreDataClass.m in Sources */,
+				40C7BA5220C007A300ACEE42 /* SAChannelValue+CoreDataClass.m in Sources */,
 				40C9E4FD1F2B841400753796 /* SAColorListPicker.m in Sources */,
 				40DA56901DCA1908008F05DE /* _SALocation+CoreDataProperties.m in Sources */,
 				409934B61F30EF9C003110C5 /* RSDetailView.m in Sources */,
-				40DA56851DCA1515008F05DE /* SAChannel+CoreDataClass.m in Sources */,
 				403150FB1DC769430075D2D2 /* RGBDetailView.m in Sources */,
 				40E8BE881FC06A5600FB2FE6 /* TFHpple.m in Sources */,
+				40C7BA5320C007A300ACEE42 /* SAChannelValue+CoreDataProperties.m in Sources */,
 				407D4AFF1BC6E491009A5505 /* StatusVC.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

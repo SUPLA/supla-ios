@@ -17,13 +17,13 @@
  */
 
 #import <Foundation/Foundation.h>
-#import <CoreData/CoreData.h>
+#import "SAChannelBase+CoreDataClass.h"
 
 @class NSObject, _SALocation;
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface SAChannelGroup : NSManagedObject
+@interface SAChannelGroup : SAChannelBase
 
 @end
 

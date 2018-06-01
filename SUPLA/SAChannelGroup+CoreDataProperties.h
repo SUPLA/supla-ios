@@ -25,15 +25,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (NSFetchRequest<SAChannelGroup *> *)fetchRequest;
 
-@property (nonatomic) int32_t group_id;
-@property (nullable, nonatomic, copy) NSString *caption;
 @property (nonatomic) int16_t online;
-@property (nonatomic) int32_t func;
-@property (nonatomic) int16_t visible;
-@property (nonatomic) int32_t alticon;
-@property (nonatomic) int32_t flags;
 @property (nullable, nonatomic, retain) NSObject *total_value;
-@property (nullable, nonatomic, retain) _SALocation *location;
 
 @end
 

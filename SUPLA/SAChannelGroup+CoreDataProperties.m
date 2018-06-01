@@ -24,14 +24,7 @@
 	return [[NSFetchRequest alloc] initWithEntityName:@"SAChannelGroup"];
 }
 
-@dynamic group_id;
-@dynamic caption;
 @dynamic online;
-@dynamic func;
-@dynamic visible;
-@dynamic alticon;
-@dynamic flags;
 @dynamic total_value;
-@dynamic location;
 
 @end

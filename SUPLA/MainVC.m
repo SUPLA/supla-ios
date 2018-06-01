@@ -101,7 +101,7 @@
    
     if ( channel == nil ) return;
     
-    UIImage *img = [channel channelIcon];
+    UIImage *img = [channel getIcon];
     
     if ( img == nil ) return;
     
@@ -246,14 +246,14 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    SAChannel *channel = [self.frc objectAtIndexPath:indexPath];
+    SAChannelBase *channel_base = [self.frc objectAtIndexPath:indexPath];
     SAChannelCell *cell = nil;
     
-    if ( channel ) {
+    if ( channel_base ) {
 
         NSString *identifier;
         
-        switch([channel.func intValue]) {
+        switch(channel_base.func) {
             case SUPLA_CHANNELFNC_THERMOMETER:
                 identifier = @"ThermometerCell";
                 break;
@@ -274,7 +274,7 @@
         cell =  [tableView dequeueReusableCellWithIdentifier: identifier];
         
         if ( cell != nil ) {
-            cell.channel = channel;
+            cell.channelBase = channel_base;
         }
         
     }
@@ -352,9 +352,9 @@
     
     SADetailView *result = nil;
     
-    if ( _cell.channel.isOnline ) {
+    if ( _cell.channelBase.isOnline ) {
         
-        switch([_cell.channel.func intValue]) {
+        switch(_cell.channelBase.func) {
             case SUPLA_CHANNELFNC_DIMMER:
             case SUPLA_CHANNELFNC_RGBLIGHTING:
             case SUPLA_CHANNELFNC_DIMMERANDRGBLIGHTING:
@@ -389,20 +389,17 @@
     
     if ( result != nil ) {
     
-        SAChannel *channel = cell == nil ? nil : cell.channel;
+        SAChannelBase *channelBase = cell == nil ? nil : cell.channelBase;
         
         if ( result.main_view != self ) {
             result.main_view = self;
         }
         
-        if ( result.channel != channel ) {
-            result.channel  = channel;
+        if ( result.channelBase != channelBase ) {
+            result.channelBase  = channelBase;
         }
     }
 
-    
-    
-    
     return result;
 }
 

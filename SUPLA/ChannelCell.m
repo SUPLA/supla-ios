@@ -48,7 +48,7 @@
 @end
 
 @implementation SAChannelCell {
-    SAChannel *_channel;
+    SAChannelBase *_channelBase;
 }
 
 -(id)initWithCoder:(NSCoder *)aDecoder {
@@ -64,11 +64,11 @@
 - (void) setFrame:(CGRect)frame
 {
     [super setFrame:frame];
-    self.channel = _channel;
+    self.channelBase = _channelBase;
 }
 
--(SAChannel*)channel {
-    return _channel;
+-(SAChannelBase*)channelBase {
+    return _channelBase;
 }
 
 -(void)btn:(UIButton *)btn SetAction:(SEL)sel {
@@ -80,31 +80,30 @@
     
 }
 
--(void)setChannel:(SAChannel *)channel {
+-(void)setChannelBase:(SAChannelBase *)channelBase {
     
-    
-    _channel = channel;
+    _channelBase = channelBase;
 
-    [self.caption setText:[channel getChannelCaption]];
+    [self.caption setText:[channelBase getChannelCaption]];
     
-    if ( [channel.func intValue] == SUPLA_CHANNELFNC_THERMOMETER ) {
+    if ( channelBase.func == SUPLA_CHANNELFNC_THERMOMETER ) {
         
-        [self.temp setText:[channel isOnline] && channel.temperatureValue > -273 ? [NSString stringWithFormat:@"%0.1f°", channel.temperatureValue] : @"----°"];
+        [self.temp setText:[channelBase isOnline] && channelBase.temperatureValue > -273 ? [NSString stringWithFormat:@"%0.1f°", channelBase.temperatureValue] : @"----°"];
     
-    } else if ( [channel.func intValue] == SUPLA_CHANNELFNC_HUMIDITYANDTEMPERATURE ) {
+    } else if ( channelBase.func== SUPLA_CHANNELFNC_HUMIDITYANDTEMPERATURE ) {
         
-        [self.temp setText:[channel isOnline] && channel.temperatureValue > -273 ? [NSString stringWithFormat:@"%0.1f°", channel.temperatureValue] : @"----°"];
+        [self.temp setText:[channelBase isOnline] && channelBase.temperatureValue > -273 ? [NSString stringWithFormat:@"%0.1f°", channelBase.temperatureValue] : @"----°"];
         
-        [self.humidity setText:[channel isOnline] && channel.humidityValue > -1 ? [NSString stringWithFormat:@"%0.1f°", channel.humidityValue] : @"----°"];
+        [self.humidity setText:[channelBase isOnline] && channelBase.humidityValue > -1 ? [NSString stringWithFormat:@"%0.1f°", channelBase.humidityValue] : @"----°"];
         
-    } else if ( [channel.func intValue] == SUPLA_CHANNELFNC_DEPTHSENSOR
-                || [channel.func intValue] == SUPLA_CHANNELFNC_DISTANCESENSOR  ) {
+    } else if ( channelBase.func == SUPLA_CHANNELFNC_DEPTHSENSOR
+                || channelBase.func == SUPLA_CHANNELFNC_DISTANCESENSOR  ) {
         
         NSString *text = @"--- m";
         
-        if ( [channel isOnline] && [channel doubleValue] > -1 ) {
+        if ( [channelBase isOnline] && channelBase.doubleValue > -1 ) {
             
-            double value = [channel doubleValue];
+            double value = [channelBase doubleValue];
             
             if ( value >= 1000 ) {
                 text = [NSString stringWithFormat:@"%0.2f km", value/1000.00];
@@ -127,20 +126,20 @@
     
     } else {
     
-        [self.image setImage:[channel channelIcon]];
+        [self.image setImage:[channelBase getIcon]];
         
 
         self.rightDot.ring = NO;
         self.leftDot.ring = NO;
         
-        self.rightDot.color = [channel isOnline] ? [UIColor circleOn] : [UIColor redColor];
+        self.rightDot.color = [channelBase isOnline] ? [UIColor circleOn] : [UIColor redColor];
         self.leftDot.color = self.rightDot.color;
         
         self.rightButtons = nil;
         self.leftButtons = nil;
         
         
-        switch([channel.func intValue]) {
+        switch(channelBase.func) {
             case SUPLA_CHANNELFNC_CONTROLLINGTHEGATE:
             case SUPLA_CHANNELFNC_CONTROLLINGTHEGARAGEDOOR:
             case SUPLA_CHANNELFNC_CONTROLLINGTHEDOORLOCK:
@@ -179,13 +178,13 @@
                 break;
         }
         
-        if ( [channel isOnline] ) {
+        if ( [channelBase isOnline] ) {
             
             MGSwipeButton *bl = nil;
             MGSwipeButton *br = nil;
             
             
-            switch([channel.func intValue]) {
+            switch(channelBase.func) {
                 case SUPLA_CHANNELFNC_CONTROLLINGTHEDOORLOCK:
                 case SUPLA_CHANNELFNC_CONTROLLINGTHEGATEWAYLOCK:
                     br = [MGSwipeButton buttonWithTitle:NSLocalizedString(@"Open", nil) icon:nil backgroundColor:[UIColor blackColor]];
@@ -239,7 +238,7 @@
     [sender setBackgroundColor: [UIColor btnTouched]];
     
     [self vibrate];
-    [[SAApp SuplaClient] channel:[self.channel.channel_id intValue] Open:[self.channel.func intValue] == SUPLA_CHANNELFNC_CONTROLLINGTHEROLLERSHUTTER ? 2 : 1];
+    [[SAApp SuplaClient] channel:self.channelBase.remote_id Open:self.channelBase.func == SUPLA_CHANNELFNC_CONTROLLINGTHEROLLERSHUTTER ? 2 : 1];
     [self hideSwipeAnimated:YES];
 }
 
@@ -247,7 +246,7 @@
     [sender setBackgroundColor: [UIColor btnTouched]];
     
     [self vibrate];
-    [[SAApp SuplaClient] channel:[self.channel.channel_id intValue] Open:[self.channel.func intValue] == SUPLA_CHANNELFNC_CONTROLLINGTHEROLLERSHUTTER ? 1 : 0];
+    [[SAApp SuplaClient] channel:self.channelBase.remote_id Open:self.channelBase.func == SUPLA_CHANNELFNC_CONTROLLINGTHEROLLERSHUTTER ? 1 : 0];
     [self hideSwipeAnimated:YES];
 }
 
@@ -255,10 +254,10 @@
     
     [sender setBackgroundColor: [UIColor circleOn] withDelay:0.2];
     
-    if ( [self.channel.func intValue] == SUPLA_CHANNELFNC_CONTROLLINGTHEROLLERSHUTTER ) {
+    if ( self.channelBase.func == SUPLA_CHANNELFNC_CONTROLLINGTHEROLLERSHUTTER ) {
         
             [self vibrate];
-            [[SAApp SuplaClient] channel:[self.channel.channel_id intValue] Open: 0];
+            [[SAApp SuplaClient] channel:self.channelBase.remote_id Open: 0];
     }
     
 }

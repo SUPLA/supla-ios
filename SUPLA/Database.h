@@ -23,6 +23,7 @@
 
 @class _SALocation;
 @class SAChannel;
+@class SAChannelValue;
 @class SAColorListItem;
 @interface SADatabase : NSObject
 
@@ -39,13 +40,14 @@
 -(BOOL) updateLocation:(TSC_SuplaLocation *)location;
 
 -(SAChannel*) fetchChannelById:(int)channel_id;
+-(SAChannelValue*) fetchChannelValueByChannelId:(int)channel_id;
 -(BOOL) updateChannel:(TSC_SuplaChannel_B *)channel;
 -(BOOL) updateChannelValue:(TSC_SuplaChannelValue *)channel_value;
 -(NSFetchedResultsController*) getChannelFrc;
 -(BOOL) setChannelsOffline;
 -(BOOL) setChannelsVisible:(int)visible WhereVisibilityIs:(int)wvi;
 -(NSUInteger) getChannelCount;
--(SAColorListItem *) getColorListItemForChannel:(SAChannel*)channel andIndex:(int)idx;
+-(SAColorListItem *) getColorListItemForRemoteId:(int)remote_id andIndex:(int)idx forGroup:(BOOL)group;
 -(void) updateColorListItem:(SAColorListItem *)item;
 
 @end

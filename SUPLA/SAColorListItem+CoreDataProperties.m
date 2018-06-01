@@ -27,7 +27,7 @@
 @dynamic brightness;
 @dynamic color;
 @dynamic idx;
-@dynamic channel;
+@dynamic remote_id;
 @dynamic group;
 
 @end

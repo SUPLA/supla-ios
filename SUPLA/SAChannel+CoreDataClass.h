@@ -18,37 +18,17 @@
 
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
-#import <UIKit/UIKit.h>
 #import "SAChannelValue+CoreDataClass.h"
+#import "SAChannelBase+CoreDataProperties.h"
 #include "proto.h"
 
 @class NSObject, _SALocation;
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface SAChannel : NSManagedObject
+@interface SAChannel : SAChannelBase
 
-- (BOOL) setChannelLocation:(_SALocation*)location;
-- (BOOL) setChannelFunction:(int)function;
-- (BOOL) setChannelCaption:(char*)caption;
-- (BOOL) setChannelVisible:(int)visible;
-- (BOOL) setChannelAltIcon:(int)altIcon;
 - (BOOL) setChannelProtocolVersion:(int)protocolVersion;
-- (BOOL) setChannelFlags:(int)flags;
-- (BOOL) isOnline;
-- (BOOL) isClosed;
-- (BOOL) isOn;
-- (BOOL) hiValue;
-- (double) doubleValue;
-- (double) temperatureValue;
-- (double) humidityValue;
-- (int) percentValue;
-- (NSString *)getChannelCaption;
-- (int) getBrightness;
-- (int) getColorBrightness;
-- (UIColor *) getColor;
-
-- (UIImage *) channelIcon;
 
 @end
 

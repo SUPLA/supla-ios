@@ -18,16 +18,31 @@
 
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
-#include "proto.h"
-
+#import <UIKit/UIKit.h>
+#import "proto.h"
 @class NSObject;
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface SAChannelValue : NSManagedObject
 
-- (BOOL) setOnline:(char)online;
-- (BOOL) setValue:(TSuplaChannelValue*)value;
+- (BOOL) setOnlineState:(char)online;
+- (BOOL) setValueWithChannelValue:(TSuplaChannelValue*)value;
+- (NSData *) dataValue;
+- (NSData *) dataSubValue;
+
+- (BOOL) isOnline;
+- (BOOL) hiValue;
+- (BOOL) hiSubValue;
+- (int) intValue;
+- (double) doubleValue;
+- (double) getTemperatureForFunction:(int)func;
+- (double) humidityValue;
+- (int) percentValue;
+- (int) brightnessValue;
+- (int) colorBrightnessValue;
+- (UIColor *) colorValue;
+
 @end
 
 NS_ASSUME_NONNULL_END

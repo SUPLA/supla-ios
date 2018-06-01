@@ -532,6 +532,7 @@ void sasuplaclient_on_registration_enabled(void *_suplaclient, void *user_data, 
 - (void) channelUpdate:(TSC_SuplaChannel_B *)channel {
     
     BOOL DataChanged = NO;
+    BOOL ChannelValueChanged = NO;
     
     //NSLog(@"ChannelID: %i, caption: %@", channel->Id, [NSString stringWithUTF8String:channel->Caption]);
     
@@ -539,15 +540,28 @@ void sasuplaclient_on_registration_enabled(void *_suplaclient, void *user_data, 
         DataChanged = YES;
     }
     
-    // TODO: Update channel value
+    TSC_SuplaChannelValue value;
+    value.EOL = channel->EOL;
+    value.Id = channel->Id;
+    value.online = channel->online;
+    memcpy(&value.value, &channel->value, sizeof(TSuplaChannelValue));
+    
+    if ( [self.DB updateChannelValue:&value] ) {
+        DataChanged = YES;
+        ChannelValueChanged = YES;
+    }
 
     if ( channel->EOL == 1
          && [self.DB setChannelsVisible:0 WhereVisibilityIs:2] ) {
         DataChanged = YES;
     }
     
-    if ( DataChanged == YES ) {
+    if ( DataChanged ) {
         [self onDataChanged];
+    }
+    
+    if ( ChannelValueChanged ) {
+        [self onChannelValueChanged: channel->Id];
     }
     
 }
