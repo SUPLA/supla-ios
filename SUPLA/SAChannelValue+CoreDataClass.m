@@ -45,7 +45,7 @@
     NSData *v =  [NSData dataWithBytes:value->value length:SUPLA_CHANNELVALUE_SIZE];
     NSData *sv = [NSData dataWithBytes:value->sub_value length:SUPLA_CHANNELVALUE_SIZE];
     
-    if ( self.value == nil || [v isEqualToData:[self dataValue]] ) {
+    if ( self.value == nil || ![v isEqualToData:[self dataValue]] ) {
         self.value = v;
         result = YES;
     }
