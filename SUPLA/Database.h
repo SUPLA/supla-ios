@@ -45,8 +45,10 @@
 -(BOOL) updateChannelValue:(TSC_SuplaChannelValue *)channel_value;
 -(NSFetchedResultsController*) getChannelFrc;
 -(BOOL) setChannelsOffline;
--(BOOL) setChannelsVisible:(int)visible WhereVisibilityIs:(int)wvi;
+-(BOOL) setAllOfChannelVisible:(int)visible whereVisibilityIs:(int)wvi;
 -(NSUInteger) getChannelCount;
+-(BOOL) setAllOfChannelGroupVisible:(int)visible whereVisibilityIs:(int)wvi;
+-(BOOL) updateChannelGroup:(TSC_SuplaChannelGroup *)channelGroup;
 -(SAColorListItem *) getColorListItemForRemoteId:(int)remote_id andIndex:(int)idx forGroup:(BOOL)group;
 -(void) updateColorListItem:(SAColorListItem *)item;
 

@@ -381,9 +381,9 @@
     return save;
 }
 
--(BOOL) setChannelsVisible:(int)visible WhereVisibilityIs:(int)wvi {
- 
-    NSArray *r = [self fetchByPredicate:[NSPredicate predicateWithFormat:@"visible = %i", wvi] entityName:@"SAChannel" limit:0];
+-(BOOL) setAllOfChannelBaseVisible:(int)visible whereVisibilityIs:(int)wvi entityName:(NSString*)ename {
+    
+    NSArray *r = [self fetchByPredicate:[NSPredicate predicateWithFormat:@"visible = %i", wvi] entityName:ename limit:0];
     BOOL save = NO;
     
     if ( r != nil ) {
@@ -402,6 +402,10 @@
     
 }
 
+-(BOOL) setAllOfChannelVisible:(int)visible whereVisibilityIs:(int)wvi {
+    return [self setAllOfChannelBaseVisible:visible whereVisibilityIs:wvi entityName:@"SAChannel"];
+}
+
 -(NSUInteger) getChannelCount {
     
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
@@ -418,6 +422,83 @@
     }
     
     return count;
+}
+
+#pragma mark Channel Groups
+
+-(BOOL) setAllOfChannelGroupVisible:(int)visible whereVisibilityIs:(int)wvi {
+    return [self setAllOfChannelBaseVisible:visible whereVisibilityIs:wvi entityName:@"SAChannelGroup"];
+}
+
+-(SAChannelGroup*) fetchChannelGroupById:(int)remote_id {
+    return [self fetchItemByPredicate:[NSPredicate predicateWithFormat:@"remote_id = %i", remote_id] entityName:@"SAChannelGroup"];
+};
+
+-(SAChannelGroup*) newChannelGroup {
+    
+    SAChannelGroup *CGroup = [[SAChannelGroup alloc] initWithEntity:[NSEntityDescription entityForName:@"SAChannelGroup" inManagedObjectContext:self.managedObjectContext] insertIntoManagedObjectContext:self.managedObjectContext];
+    
+    CGroup.caption = @"";
+    CGroup.remote_id = 0;
+    CGroup.func = 0;
+    CGroup.visible = 1;
+    CGroup.alticon = 0;
+    CGroup.flags = 0;
+    CGroup.online = 0;
+    CGroup.total_value = nil;
+    
+    [self.managedObjectContext insertObject:CGroup];
+    
+    return CGroup;
+}
+
+-(BOOL) updateChannelGroup:(TSC_SuplaChannelGroup *)channelGroup {
+    
+    BOOL save = NO;
+    
+    _SALocation *Location = [self fetchLocationById:channelGroup->LocationID];
+    
+    if ( Location == nil )
+        return NO;
+    
+    SAChannelGroup *CGroup = [self fetchChannelGroupById:channelGroup->Id];
+    
+    if ( CGroup == nil ) {
+        CGroup = [self newChannelGroup];
+        CGroup.remote_id = channelGroup->Id;
+        save = YES;
+    }
+    
+    
+    if ( [CGroup setChannelLocation:Location] ) {
+        save = YES;
+    }
+    
+    if ( [CGroup setChannelFunction:channelGroup->Func] ) {
+        save = YES;
+    }
+    
+    if ( [CGroup setChannelCaption:channelGroup->Caption] ) {
+        save = YES;
+    }
+    
+    if ( [CGroup setChannelVisible:1] ) {
+        save = YES;
+    }
+    
+    if ( [CGroup setChannelAltIcon:channelGroup->AltIcon] ) {
+        save = YES;
+    }
+    
+    if ( [CGroup setChannelFlags:channelGroup->Flags] ) {
+        save = YES;
+    }
+    
+    if ( save ) {
+        [self saveContext];
+    }
+    
+    return save;
 }
 
 -(SAColorListItem *) getColorListItemForRemoteId:(int)remote_id andIndex:(int)idx forGroup:(BOOL)group {

@@ -340,7 +340,11 @@ void sasuplaclient_on_registration_enabled(void *_suplaclient, void *user_data, 
             [self onConnecting];
             BOOL DataChanged = NO;
             
-            if ( [self.DB setChannelsVisible:2 WhereVisibilityIs:1] ) {
+            if ( [self.DB setAllOfChannelVisible:2 whereVisibilityIs:1] ) {
+                DataChanged = YES;
+            }
+            
+            if ( [self.DB setAllOfChannelGroupVisible:2 whereVisibilityIs:1] ) {
                 DataChanged = YES;
             }
             
@@ -487,7 +491,12 @@ void sasuplaclient_on_registration_enabled(void *_suplaclient, void *user_data, 
     };
     
     if ( result.ChannelCount == 0
-         && [self.DB setChannelsVisible:0 WhereVisibilityIs:2] ) {
+         && [self.DB setAllOfChannelVisible:0 whereVisibilityIs:2] ) {
+        [self onDataChanged];
+    }
+    
+    if ( result.ChannelGroupCount == 0
+        && [self.DB setAllOfChannelGroupVisible:0 whereVisibilityIs:2] ) {
         [self onDataChanged];
     }
     
@@ -552,7 +561,7 @@ void sasuplaclient_on_registration_enabled(void *_suplaclient, void *user_data, 
     }
 
     if ( channel->EOL == 1
-         && [self.DB setChannelsVisible:0 WhereVisibilityIs:2] ) {
+         && [self.DB setAllOfChannelVisible:0 whereVisibilityIs:2] ) {
         DataChanged = YES;
     }
     
@@ -578,7 +587,22 @@ void sasuplaclient_on_registration_enabled(void *_suplaclient, void *user_data, 
 }
 
 - (void) channelGroupUpdate:(TSC_SuplaChannelGroup *)cgroup {
-    NSLog(@"CGroup %i", cgroup->Id);
+    //NSLog(@"CGroup %i", cgroup->Id);
+    
+    BOOL DataChanged = NO;
+    
+    if ( [self.DB updateChannelGroup:cgroup] ) {
+        DataChanged = YES;
+    }
+    
+    if ( cgroup->EOL == 1
+        && [self.DB setAllOfChannelGroupVisible:0 whereVisibilityIs:2] ) {
+        DataChanged = YES;
+    }
+    
+    if ( DataChanged ) {
+        [self onDataChanged];
+    }
 }
 
 - (void) channelGroupRelationUpdate:(TSC_SuplaChannelGroupRelation *)cgroup_relation {
