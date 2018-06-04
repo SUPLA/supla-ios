@@ -20,4 +20,12 @@
 
 @implementation SAChannelGroupRelation
 
+- (BOOL) setItemVisible:(int)visible {
+    if ( self.visible != visible ) {
+        self.visible = visible;
+        return YES;
+    }
+    
+    return NO;
+}
 @end

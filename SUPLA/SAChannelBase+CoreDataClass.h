@@ -29,7 +29,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (BOOL) setChannelLocation:(_SALocation*)location;
 - (BOOL) setChannelFunction:(int)function;
 - (BOOL) setChannelCaption:(char*)caption;
-- (BOOL) setChannelVisible:(int)visible;
+- (BOOL) setItemVisible:(int)visible;
 - (BOOL) setChannelAltIcon:(int)altIcon;
 - (BOOL) setChannelFlags:(int)flags;
 - (NSString *)getChannelCaption;

@@ -48,7 +48,9 @@
 -(BOOL) setAllOfChannelVisible:(int)visible whereVisibilityIs:(int)wvi;
 -(NSUInteger) getChannelCount;
 -(BOOL) setAllOfChannelGroupVisible:(int)visible whereVisibilityIs:(int)wvi;
--(BOOL) updateChannelGroup:(TSC_SuplaChannelGroup *)channelGroup;
+-(BOOL) setAllOfChannelGroupRelationVisible:(int)visible whereVisibilityIs:(int)wvi;
+-(BOOL) updateChannelGroup:(TSC_SuplaChannelGroup *)channel_group;
+-(BOOL) updateChannelGroupRelation:(TSC_SuplaChannelGroupRelation *)cgroup_relation;
 -(SAColorListItem *) getColorListItemForRemoteId:(int)remote_id andIndex:(int)idx forGroup:(BOOL)group;
 -(void) updateColorListItem:(SAColorListItem *)item;
 

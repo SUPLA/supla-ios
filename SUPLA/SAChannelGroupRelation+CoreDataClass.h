@@ -24,7 +24,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface SAChannelGroupRelation : NSManagedObject
-
+- (BOOL) setItemVisible:(int)visible;
 @end
 
 NS_ASSUME_NONNULL_END

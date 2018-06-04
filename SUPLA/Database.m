@@ -22,6 +22,7 @@
 #import "SuplaApp.h"
 #import "_SALocation+CoreDataClass.h"
 #import "SAChannel+CoreDataClass.h"
+#import "SAChannelGroupRelation+CoreDataClass.h"
 #import "SAColorListItem+CoreDataClass.h"
 
 @implementation SADatabase {
@@ -272,7 +273,7 @@
         save = YES;
     }
     
-    if ( [Channel setChannelVisible:1] ) {
+    if ( [Channel setItemVisible:1] ) {
         save = YES;
     }
     
@@ -321,7 +322,15 @@
         if ( r != nil ) {
             for(int a=0;a<r.count;a++) {
                 ((SAChannel*)[r objectAtIndex:a]).value = Value;
-                NSLog(@"value SET - channel id: %i", channel_value->Id);
+            }
+        }
+        
+        r = [self fetchByPredicate:[NSPredicate predicateWithFormat:@"channel_id = %i AND value <> %@", channel_value->Id, Value] entityName:@"SAChannelGroupRelation" limit:0];
+        
+        if ( r != nil ) {
+            for(int a=0;a<r.count;a++) {
+                ((SAChannelGroupRelation*)[r objectAtIndex:a]).value = Value;
+                NSLog(@"CGroup Rel value updated");
             }
         }
         
@@ -381,14 +390,14 @@
     return save;
 }
 
--(BOOL) setAllOfChannelBaseVisible:(int)visible whereVisibilityIs:(int)wvi entityName:(NSString*)ename {
+-(BOOL) setAllItemsVisible:(int)visible whereVisibilityIs:(int)wvi entityName:(NSString*)ename {
     
     NSArray *r = [self fetchByPredicate:[NSPredicate predicateWithFormat:@"visible = %i", wvi] entityName:ename limit:0];
     BOOL save = NO;
     
     if ( r != nil ) {
         for(int a=0;a<r.count;a++) {
-            if ( [[r objectAtIndex:a] setChannelVisible:visible] ) {
+            if ( [[r objectAtIndex:a] setItemVisible:visible] ) {
                 save = YES;
             }
         }
@@ -403,7 +412,7 @@
 }
 
 -(BOOL) setAllOfChannelVisible:(int)visible whereVisibilityIs:(int)wvi {
-    return [self setAllOfChannelBaseVisible:visible whereVisibilityIs:wvi entityName:@"SAChannel"];
+    return [self setAllItemsVisible:visible whereVisibilityIs:wvi entityName:@"SAChannel"];
 }
 
 -(NSUInteger) getChannelCount {
@@ -427,7 +436,11 @@
 #pragma mark Channel Groups
 
 -(BOOL) setAllOfChannelGroupVisible:(int)visible whereVisibilityIs:(int)wvi {
-    return [self setAllOfChannelBaseVisible:visible whereVisibilityIs:wvi entityName:@"SAChannelGroup"];
+    return [self setAllItemsVisible:visible whereVisibilityIs:wvi entityName:@"SAChannelGroup"];
+}
+
+-(BOOL) setAllOfChannelGroupRelationVisible:(int)visible whereVisibilityIs:(int)wvi {
+    return [self setAllItemsVisible:visible whereVisibilityIs:wvi entityName:@"SAChannelGroupRelation"];
 }
 
 -(SAChannelGroup*) fetchChannelGroupById:(int)remote_id {
@@ -452,20 +465,20 @@
     return CGroup;
 }
 
--(BOOL) updateChannelGroup:(TSC_SuplaChannelGroup *)channelGroup {
+-(BOOL) updateChannelGroup:(TSC_SuplaChannelGroup *)channel_group {
     
     BOOL save = NO;
     
-    _SALocation *Location = [self fetchLocationById:channelGroup->LocationID];
+    _SALocation *Location = [self fetchLocationById:channel_group->LocationID];
     
     if ( Location == nil )
         return NO;
     
-    SAChannelGroup *CGroup = [self fetchChannelGroupById:channelGroup->Id];
+    SAChannelGroup *CGroup = [self fetchChannelGroupById:channel_group->Id];
     
     if ( CGroup == nil ) {
         CGroup = [self newChannelGroup];
-        CGroup.remote_id = channelGroup->Id;
+        CGroup.remote_id = channel_group->Id;
         save = YES;
     }
     
@@ -474,23 +487,23 @@
         save = YES;
     }
     
-    if ( [CGroup setChannelFunction:channelGroup->Func] ) {
+    if ( [CGroup setChannelFunction:channel_group->Func] ) {
         save = YES;
     }
     
-    if ( [CGroup setChannelCaption:channelGroup->Caption] ) {
+    if ( [CGroup setChannelCaption:channel_group->Caption] ) {
         save = YES;
     }
     
-    if ( [CGroup setChannelVisible:1] ) {
+    if ( [CGroup setItemVisible:1] ) {
         save = YES;
     }
     
-    if ( [CGroup setChannelAltIcon:channelGroup->AltIcon] ) {
+    if ( [CGroup setChannelAltIcon:channel_group->AltIcon] ) {
         save = YES;
     }
     
-    if ( [CGroup setChannelFlags:channelGroup->Flags] ) {
+    if ( [CGroup setChannelFlags:channel_group->Flags] ) {
         save = YES;
     }
     
@@ -500,6 +513,67 @@
     
     return save;
 }
+
+-(SAChannelGroupRelation*) newChannelGroupRelation {
+    
+    SAChannelGroupRelation *CGroupRel = [[SAChannelGroupRelation alloc] initWithEntity:[NSEntityDescription entityForName:@"SAChannelGroupRelation" inManagedObjectContext:self.managedObjectContext] insertIntoManagedObjectContext:self.managedObjectContext];
+    
+    CGroupRel.group_id = 0;
+    CGroupRel.channel_id = 0;
+    
+    [self.managedObjectContext insertObject:CGroupRel];
+    
+    return CGroupRel;
+}
+
+-(BOOL) updateChannelGroupRelation:(TSC_SuplaChannelGroupRelation *)cgroup_relation {
+    
+    BOOL save = NO;
+    
+    SAChannelGroupRelation *CGroupRel = [self fetchItemByPredicate:[NSPredicate predicateWithFormat:@"group_id = %i AND channel_id = %i", cgroup_relation->ChannelGroupID, cgroup_relation->ChannelID] entityName:@"SAChannelGroupRelation"];
+    
+    if ( CGroupRel == nil ) {
+        CGroupRel = [self newChannelGroupRelation];
+        CGroupRel.group_id = cgroup_relation->ChannelGroupID;
+        CGroupRel.channel_id = cgroup_relation->ChannelID;
+        save = YES;
+    }
+
+    if ( [CGroupRel setItemVisible:1] ) {
+        save = YES;
+    }
+    
+    if ( CGroupRel.value != nil && CGroupRel.value.channel_id != CGroupRel.channel_id ) {
+        CGroupRel.value = nil;
+        save = YES;
+    }
+    
+    if ( CGroupRel.group != nil && CGroupRel.group.remote_id != CGroupRel.group_id ) {
+        CGroupRel.group = nil;
+        save = YES;
+    }
+    
+    if ( CGroupRel.value == nil ) {
+        CGroupRel.value = [self fetchChannelValueByChannelId:CGroupRel.channel_id];
+        if ( CGroupRel.value != nil ) {
+            save = YES;
+    }
+    
+    if ( CGroupRel.group == nil ) {
+        CGroupRel.group = [self fetchChannelGroupById:CGroupRel.group_id];
+        if ( CGroupRel.group != nil ) {
+            save = YES;
+        }
+    }
+    
+    if ( save ) {
+        [self saveContext];
+    }
+    
+    return save;
+}
+
+#pragma mark Color List
 
 -(SAColorListItem *) getColorListItemForRemoteId:(int)remote_id andIndex:(int)idx forGroup:(BOOL)group {
  

@@ -71,7 +71,7 @@
     return NO;
 }
 
-- (BOOL) setChannelVisible:(int)visible {
+- (BOOL) setItemVisible:(int)visible {
     
     if ( self.visible != visible ) {
         self.visible = visible;

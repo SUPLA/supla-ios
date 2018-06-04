@@ -348,6 +348,10 @@ void sasuplaclient_on_registration_enabled(void *_suplaclient, void *user_data, 
                 DataChanged = YES;
             }
             
+            if ( [self.DB setAllOfChannelGroupRelationVisible:2 whereVisibilityIs:1] ) {
+                DataChanged = YES;
+            }
+            
             if ( [self.DB setChannelsOffline] ) {
                 DataChanged = YES;
             }
@@ -606,7 +610,20 @@ void sasuplaclient_on_registration_enabled(void *_suplaclient, void *user_data, 
 }
 
 - (void) channelGroupRelationUpdate:(TSC_SuplaChannelGroupRelation *)cgroup_relation {
-    NSLog(@"CGroup relation %i, %i", cgroup_relation->ChannelGroupID, cgroup_relation->ChannelID);
+    BOOL DataChanged = NO;
+    
+    if ( [self.DB updateChannelGroupRelation:cgroup_relation] ) {
+        DataChanged = YES;
+    }
+    
+    if ( cgroup_relation->EOL == 1
+        && [self.DB setAllOfChannelGroupRelationVisible:0 whereVisibilityIs:2] ) {
+        DataChanged = YES;
+    }
+    
+    if ( DataChanged ) {
+        [self onDataChanged];
+    }
 }
 
 - (void) _onEvent:(SAEvent *)event {
