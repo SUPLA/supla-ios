@@ -62,6 +62,8 @@
         BufferOnLineCount++;
     }
     
+    BufferOnLine = BufferOnLineCount * 100 / BufferCounter;
+    
     switch(self.func) {
         case SUPLA_CHANNELFNC_CONTROLLINGTHEDOORLOCK:
         case SUPLA_CHANNELFNC_CONTROLLINGTHEGATEWAYLOCK:
@@ -110,4 +112,9 @@
     self.total_value = [NSArray arrayWithArray:BufferTotalValue];
     [self resetBuffer];
 }
+
+- (BOOL) isOnline {
+    return self.online > 0;
+}
+
 @end
