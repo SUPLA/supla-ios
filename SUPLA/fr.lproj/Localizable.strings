@@ -59,7 +59,6 @@
 "Dimmer" = "Variateur de luminosité";
 "Distance sensor" = "Capteur de distance";
 "Depth sensor" = "Capteur de profondeur";
-
 "If you enjoy using this app, please take a moment to rate it. Thanks for your support!" = "Si vous aimez cette application, consacrez un instant afin de l'évaluer. Nous vous remercions de votre support!";
 "Rate Now" = "Évaluer maintenant";
 "Later" = "Plus tard";
@@ -83,5 +82,5 @@
 "Configuration Failed!" = "Échec de la configuration!";
 "Connection with the device cannot be set! Make sure, if the Wi-fi connection has been set for the I/O device." = "Impossible de se connecter au dispositif!";
 "[Calibration]" = "[Calibration]";
-
 "Help" = "Aide";
+"Staircase timer" = "Minuterie d'escalier";

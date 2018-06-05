@@ -30,6 +30,14 @@
 		404749BC20BC6058005DA345 /* SAColorListItem+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 409934A71F30C025003110C5 /* SAColorListItem+CoreDataClass.m */; };
 		404749BD20BC6070005DA345 /* SAChannel+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 40DA567E1DCA1515008F05DE /* SAChannel+CoreDataClass.m */; };
 		404749BE20BC608B005DA345 /* _SALocation+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 40DA56881DCA1908008F05DE /* _SALocation+CoreDataClass.m */; };
+		40477B3D20C6C57700E995E6 /* staircasetimer-off@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 40477B3520C6C57500E995E6 /* staircasetimer-off@3x.png */; };
+		40477B3E20C6C57700E995E6 /* staircasetimer-off@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 40477B3620C6C57600E995E6 /* staircasetimer-off@2x.png */; };
+		40477B4120C6C57700E995E6 /* staircasetimer-on@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 40477B3920C6C57600E995E6 /* staircasetimer-on@2x.png */; };
+		40477B4220C6C57700E995E6 /* staircasetimer-on@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 40477B3A20C6C57600E995E6 /* staircasetimer-on@3x.png */; };
+		40477B4920C6C5FE00E995E6 /* staircasetimer_1-off@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 40477B4520C6C5FD00E995E6 /* staircasetimer_1-off@2x.png */; };
+		40477B4A20C6C5FE00E995E6 /* staircasetimer_1-on@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 40477B4620C6C5FD00E995E6 /* staircasetimer_1-on@3x.png */; };
+		40477B4B20C6C5FE00E995E6 /* staircasetimer_1-off@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 40477B4720C6C5FE00E995E6 /* staircasetimer_1-off@3x.png */; };
+		40477B4C20C6C5FE00E995E6 /* staircasetimer_1-on@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 40477B4820C6C5FE00E995E6 /* staircasetimer_1-on@2x.png */; };
 		404E48F71FC75D0B001F6266 /* SAClassHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 404E48F51FC75D0B001F6266 /* SAClassHelper.m */; };
 		4052DA001DC515AE000B8C45 /* dimmerrgb-offoff@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4052D9F01DC515AE000B8C45 /* dimmerrgb-offoff@3x.png */; };
 		4052DA011DC515AE000B8C45 /* dimmerrgb-offoff@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4052D9F11DC515AE000B8C45 /* dimmerrgb-offoff@2x.png */; };
@@ -268,6 +276,14 @@
 		4038A5561CE32CD700180B5D /* humidity@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "humidity@3x.png"; path = "Resources/Assets/Img/humidity@3x.png"; sourceTree = "<group>"; };
 		403EB1111FBDF47F00AD6460 /* AddWizardVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AddWizardVC.h; sourceTree = "<group>"; };
 		403EB1121FBDF47F00AD6460 /* AddWizardVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AddWizardVC.m; sourceTree = "<group>"; };
+		40477B3520C6C57500E995E6 /* staircasetimer-off@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "staircasetimer-off@3x.png"; path = "Resources/Assets/Img/staircasetimer-off@3x.png"; sourceTree = "<group>"; };
+		40477B3620C6C57600E995E6 /* staircasetimer-off@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "staircasetimer-off@2x.png"; path = "Resources/Assets/Img/staircasetimer-off@2x.png"; sourceTree = "<group>"; };
+		40477B3920C6C57600E995E6 /* staircasetimer-on@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "staircasetimer-on@2x.png"; path = "Resources/Assets/Img/staircasetimer-on@2x.png"; sourceTree = "<group>"; };
+		40477B3A20C6C57600E995E6 /* staircasetimer-on@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "staircasetimer-on@3x.png"; path = "Resources/Assets/Img/staircasetimer-on@3x.png"; sourceTree = "<group>"; };
+		40477B4520C6C5FD00E995E6 /* staircasetimer_1-off@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "staircasetimer_1-off@2x.png"; path = "Resources/Assets/Img/staircasetimer_1-off@2x.png"; sourceTree = "<group>"; };
+		40477B4620C6C5FD00E995E6 /* staircasetimer_1-on@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "staircasetimer_1-on@3x.png"; path = "Resources/Assets/Img/staircasetimer_1-on@3x.png"; sourceTree = "<group>"; };
+		40477B4720C6C5FE00E995E6 /* staircasetimer_1-off@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "staircasetimer_1-off@3x.png"; path = "Resources/Assets/Img/staircasetimer_1-off@3x.png"; sourceTree = "<group>"; };
+		40477B4820C6C5FE00E995E6 /* staircasetimer_1-on@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "staircasetimer_1-on@2x.png"; path = "Resources/Assets/Img/staircasetimer_1-on@2x.png"; sourceTree = "<group>"; };
 		404E48F51FC75D0B001F6266 /* SAClassHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SAClassHelper.m; sourceTree = "<group>"; };
 		404E48F61FC75D0B001F6266 /* SAClassHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SAClassHelper.h; sourceTree = "<group>"; };
 		4052D9F01DC515AE000B8C45 /* dimmerrgb-offoff@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "dimmerrgb-offoff@3x.png"; path = "Resources/Assets/Img/dimmerrgb-offoff@3x.png"; sourceTree = "<group>"; };
@@ -681,6 +697,14 @@
 		405AC4011BC15878004F7311 /* Img */ = {
 			isa = PBXGroup;
 			children = (
+				40477B4520C6C5FD00E995E6 /* staircasetimer_1-off@2x.png */,
+				40477B4720C6C5FE00E995E6 /* staircasetimer_1-off@3x.png */,
+				40477B4820C6C5FE00E995E6 /* staircasetimer_1-on@2x.png */,
+				40477B4620C6C5FD00E995E6 /* staircasetimer_1-on@3x.png */,
+				40477B3620C6C57600E995E6 /* staircasetimer-off@2x.png */,
+				40477B3520C6C57500E995E6 /* staircasetimer-off@3x.png */,
+				40477B3920C6C57600E995E6 /* staircasetimer-on@2x.png */,
+				40477B3A20C6C57600E995E6 /* staircasetimer-on@3x.png */,
 				4014ADFB1FE01EC700297A9E /* help@2x.png */,
 				4014ADFC1FE01EC800297A9E /* help@3x.png */,
 				407D31A51FD1B75E0062FB80 /* logo-white@2x.png */,
@@ -1073,12 +1097,14 @@
 				40B9ED821FACE15700403B1A /* window-closed@3x.png in Resources */,
 				4052DA051DC515AE000B8C45 /* dimmerrgb-onoff@2x.png in Resources */,
 				40B9ED451FACCE8700403B1A /* tv-off@3x.png in Resources */,
+				40477B3E20C6C57700E995E6 /* staircasetimer-off@2x.png in Resources */,
 				40B9ED841FACE15700403B1A /* gatealt1-open@3x.png in Resources */,
 				40CE7C6C1DCBBD5700BBACE4 /* depth@3x.png in Resources */,
 				40B9ED5E1FACD14000403B1A /* fan-on@3x.png in Resources */,
 				407D4AF31BC6C6CB009A5505 /* app_icon120x120@2x.png in Resources */,
 				4091AF421FC84AE000EFF357 /* rocket@2x.png in Resources */,
 				4091654E1F3CBAF200F49193 /* rs_close.png in Resources */,
+				40477B4920C6C5FE00E995E6 /* staircasetimer_1-off@2x.png in Resources */,
 				40B9ED811FACE15700403B1A /* nomail@2x.png in Resources */,
 				405AC4191BC15898004F7311 /* app_icon-1024.png in Resources */,
 				405AC41A1BC15898004F7311 /* app_icon@2x.png in Resources */,
@@ -1127,6 +1153,7 @@
 				405AC4321BC158E8004F7311 /* OpenSans-Regular.ttf in Resources */,
 				40B9ED701FACD94300403B1A /* barier-open@2x.png in Resources */,
 				40CF96AC1BC7D4E70030EFFF /* door-open@2x.png in Resources */,
+				40477B4A20C6C5FE00E995E6 /* staircasetimer_1-on@3x.png in Resources */,
 				4052DA0F1DC515AE000B8C45 /* rgb-on@2x.png in Resources */,
 				40CF96C61BC7D4E70030EFFF /* rollershutter-closed@2x.png in Resources */,
 				40B397CF1BCE7F3200BE7D5A /* Launch Screen.storyboard in Resources */,
@@ -1155,6 +1182,7 @@
 				4052DA031DC515AE000B8C45 /* dimmerrgb-offon@2x.png in Resources */,
 				40CF96C31BC7D4E70030EFFF /* power-off@3x.png in Resources */,
 				4091AF481FC88A8B00EFF357 /* plug@2x.png in Resources */,
+				40477B4220C6C57700E995E6 /* staircasetimer-on@3x.png in Resources */,
 				40CF96C11BC7D4E70030EFFF /* noliquid@3x.png in Resources */,
 				40B9ED4E1FACCF8100403B1A /* radio-on@3x.png in Resources */,
 				406C92D41BCD8518007BA87A /* btnOK@2x.png in Resources */,
@@ -1163,8 +1191,10 @@
 				4052DA091DC515AE000B8C45 /* dimmer-off@2x.png in Resources */,
 				4052DA061DC515AE000B8C45 /* dimmerrgb-onon@3x.png in Resources */,
 				407D4AEC1BC6C64D009A5505 /* app_icon80x80@2x.png in Resources */,
+				40477B4B20C6C5FE00E995E6 /* staircasetimer_1-off@3x.png in Resources */,
 				40CF96AF1BC7D4E70030EFFF /* garagedoor-closed@3x.png in Resources */,
 				40B397DE1BCED5EB00BE7D5A /* Quicksand-Light.ttf in Resources */,
+				40477B4C20C6C5FE00E995E6 /* staircasetimer_1-on@2x.png in Resources */,
 				407D4AF91BC6C7DE009A5505 /* app_icon114x114@2x.png in Resources */,
 				4052DA001DC515AE000B8C45 /* dimmerrgb-offoff@3x.png in Resources */,
 				40CF96D31BC8034E0030EFFF /* logo-supla@3x.png in Resources */,
@@ -1186,6 +1216,7 @@
 				4052DA081DC515AE000B8C45 /* dimmer-off@3x.png in Resources */,
 				4052DA0E1DC515AE000B8C45 /* rgb-on@3x.png in Resources */,
 				4038A5541CE32B6800180B5D /* TempHumidityCell.xib in Resources */,
+				40477B4120C6C57700E995E6 /* staircasetimer-on@2x.png in Resources */,
 				4014ADFE1FE01ECD00297A9E /* help@3x.png in Resources */,
 				40CF96AA1BC7D4E70030EFFF /* door-closed@2x.png in Resources */,
 				40D397AD1FAF547B00BF477D /* retry@3x.png in Resources */,
@@ -1194,6 +1225,7 @@
 				408034E61BC84A89007666E7 /* NavigationController.xib in Resources */,
 				40CF96B11BC7D4E70030EFFF /* garagedoor-open@3x.png in Resources */,
 				40B9ED801FACE15700403B1A /* window-open@3x.png in Resources */,
+				40477B3D20C6C57700E995E6 /* staircasetimer-off@3x.png in Resources */,
 				405C49A01FCAFFD400C15602 /* wizard_error@2x.png in Resources */,
 				407D31941FD1A7070062FB80 /* AddWizardVC.xib in Resources */,
 				4052DA021DC515AE000B8C45 /* dimmerrgb-offon@3x.png in Resources */,

@@ -61,7 +61,6 @@
 "Dimmer" = "Helligkeitsregler";
 "Distance sensor" = "Abstandssensor";
 "Depth sensor" = "Tiefensensor";
-
 "If you enjoy using this app, please take a moment to rate it. Thanks for your support!" = "Wenn Ihnen diese App gefällt, bewerten Sie sie bitte. Vielen Dank dafür!";
 "Rate Now" = "Bewerten";
 "Later" = "Später";
@@ -70,7 +69,6 @@
 "Window opening sensor" = "Fensteröffnungssensor";
 "Add I/O device" = "Gerät hinzufügen";
 "Donate" = "Spenden";
-
 "Device registration availability information timeout!" = "Für die Information von der Verfügbarkeit der Geräteregistrierung wurde das Zeitlimit überschritten!";
 "Next" = "Weiter";
 "Start" = "Start";
@@ -85,5 +83,5 @@
 "Configuration Failed!" = "Die Konfiguration war nicht erfolgreich!";
 "Connection with the device cannot be set! Make sure, if the Wi-fi connection has been set for the I/O device." = "Es gelang nicht, die Verbindung mit dem Gerät herzustellen!";
 "[Calibration]" = "[Kalibrierung]";
-
 "Help" = "Hilfe";
+"Staircase timer" = "Treppenlichtsensor";

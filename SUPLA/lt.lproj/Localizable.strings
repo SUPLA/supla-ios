@@ -65,7 +65,6 @@
 "Dimmer" = "Dimmer";
 "Distance sensor" = "Atstumo jutiklis";
 "Depth sensor" = "Gilio jutiklis";
-
 "If you enjoy using this app, please take a moment to rate it. Thanks for your support!" = "Jei Jums patinka ši programa, skirkite minutėle, kad ją įvertintumėte. Ačiū už Jūsų paramą!";
 "Rate Now" = "Įvertinti dabar";
 "Later" = "Vėliau";
@@ -75,8 +74,6 @@
 "Add I/O device" = "Pridėti įrenginį";
 "Donate" = "Paremti projektą";
 "Create an account" = "Sukurti paskyrą";
-
-
 "Device registration availability information timeout!" = "Viršytas informacijos apie įrenginių registracijos prieinamumą laukimo laikas!";
 "Next" = "Toliau";
 "Start" = "Startas";
@@ -91,8 +88,6 @@
 "Configuration Failed!" = "Nepavyko sėkmingai baigti konfigūravimo!";
 "Connection with the device cannot be set! Make sure, if the Wi-fi connection has been set for the I/O device." = "Negalima užmegzti ryšio su įrenginiu! Įsitikinkite, kad vykdomasis įrenginys užmezgė ryšį su WiFi tinklu.";
 "[Calibration]" = "[Kalibravimas]";
-
 "Help" = "Pagalba";
-
 "https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=L4N7RSWME6LG2" = "https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=QYN932S5UQG8N";
-
+"Staircase timer" = "Laiptų automatas";

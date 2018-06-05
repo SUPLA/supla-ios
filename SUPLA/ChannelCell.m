@@ -150,6 +150,7 @@
                 break;
             case SUPLA_CHANNELFNC_POWERSWITCH:
             case SUPLA_CHANNELFNC_LIGHTSWITCH:
+            case SUPLA_CHANNELFNC_STAIRCASETIMER:
                 self.leftDot.hidden = NO;
                 self.rightDot.hidden = NO;
                 break;
@@ -195,6 +196,7 @@
                     break;
                 case SUPLA_CHANNELFNC_POWERSWITCH:
                 case SUPLA_CHANNELFNC_LIGHTSWITCH:
+                case SUPLA_CHANNELFNC_STAIRCASETIMER:
                     br = [MGSwipeButton buttonWithTitle:NSLocalizedString(@"On", nil) icon:nil backgroundColor:[UIColor blackColor]];
                     bl = [MGSwipeButton buttonWithTitle:NSLocalizedString(@"Off", nil) icon:nil backgroundColor:[UIColor blackColor]];
                     break;

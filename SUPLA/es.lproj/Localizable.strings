@@ -60,7 +60,6 @@
 "Dimmer" = "Atenuador";
 "Distance sensor" = "Sensor de distancia";
 "Depth sensor" = "Sensor de profundidad";
-
 "If you enjoy using this app, please take a moment to rate it. Thanks for your support!" = "Si te gusta esta aplicación, dedica un rato a evaluarla. ¡Gracias por tu apoyo!";
 "Rate Now" = "Evalúa ahora";
 "Later" = "Más tarde";
@@ -69,7 +68,6 @@
 "Window opening sensor" = "Dectector de apertura de ventanas";
 "Add I/O device" = "Añadir dispositivo";
 "Donate" = "Donar";
-
 "Device registration availability information timeout!" = "¡Se ha superado el tiempo de espera a la información sobre la disponibilidad de registro de dispositivos!";
 "Next" = "Siguiente";
 "Start" = "Start";
@@ -84,5 +82,5 @@
 "Configuration Failed!" = "¡Configuración no finalizada con éxito!";
 "Connection with the device cannot be set! Make sure, if the Wi-fi connection has been set for the I/O device." = "¡No se puede establecer una conexión con el dispositivo!";
 "[Calibration]" = "[Calibración]";
-
 "Help" = "Ayuda";
+"Staircase timer" = "Automático de escalera";

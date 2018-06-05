@@ -65,7 +65,6 @@
 "Dimmer" = "Ściemniacz";
 "Distance sensor" = "Czujnik odległości";
 "Depth sensor" = "Czujnik głębokości";
-
 "If you enjoy using this app, please take a moment to rate it. Thanks for your support!" = "Jeśli podoba Ci się ta aplikacja to poświęć moment aby ją ocenić. Dziękujemy za Twoje wsparcie!";
 "Rate Now" = "Oceń teraz";
 "Later" = "Później";
@@ -75,8 +74,6 @@
 "Add I/O device" = "Dodaj urządzenie";
 "Donate" = "Wesprzyj projekt";
 "Create an account" = "Utwórz konto";
-
-
 "Device registration availability information timeout!" = "Przekroczono czas oczekiwania na informację o dostępności rejestracji urządzeń!";
 "Next" = "Dalej";
 "Start" = "Start";
@@ -91,7 +88,6 @@
 "Configuration Failed!" = "Konfiguracja zakończona niepowodzeniem!";
 "Connection with the device cannot be set! Make sure, if the Wi-fi connection has been set for the I/O device." = "Nie można nawiązać połączenia z urządzeniem! Upewnij się, że połączenie z siecią WiFi urządzenia wykonawczego zostało nawiązane.";
 "[Calibration]" = "[Kalibracja]";
-
 "Help" = "Pomoc";
-
 "https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=L4N7RSWME6LG2" = "https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=QYN932S5UQG8N";
+"Staircase timer" = "Automat schodowy";

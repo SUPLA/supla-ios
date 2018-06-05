@@ -130,6 +130,8 @@
                 return NSLocalizedString(@"Power switch", nil);
             case SUPLA_CHANNELFNC_LIGHTSWITCH:
                 return NSLocalizedString(@"Lighting switch", nil);
+            case SUPLA_CHANNELFNC_STAIRCASETIMER:
+                return NSLocalizedString(@"Staircase timer", nil);
             case SUPLA_CHANNELFNC_THERMOMETER:
                 return NSLocalizedString(@"Thermometer", nil);
             case SUPLA_CHANNELFNC_HUMIDITYANDTEMPERATURE:
@@ -204,6 +206,7 @@
             
         case SUPLA_CHANNELFNC_POWERSWITCH:
         case SUPLA_CHANNELFNC_LIGHTSWITCH:
+        case SUPLA_CHANNELFNC_STAIRCASETIMER:
             
             return [self hiValue];
     }
@@ -299,6 +302,15 @@
                     break;
                 default:
                     n2 = @"light";
+            }
+            break;
+        case SUPLA_CHANNELFNC_STAIRCASETIMER:
+            switch(self.alticon) {
+                case 1:
+                    n2 = @"staircasetimer_1";
+                    break;
+                default:
+                    n2 = @"staircasetimer";
             }
             break;
         case SUPLA_CHANNELFNC_THERMOMETER:

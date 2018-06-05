@@ -60,7 +60,6 @@
 "Dimmer" = "Controlador de luz";
 "Distance sensor" = "Sensor de distância";
 "Depth sensor" = "Sensor de profundidade";
-
 "Se gostar da aplicação, avalie-a. Agradecemos o seu apoio!";
 "Rate Now" = "Avalie agora";
 "Later" = "Mais tarde";
@@ -69,7 +68,6 @@
 "Window opening sensor" = "Sensor de abertura para uma janela";
 "Add I/O device" = "Adicionar um dispositivo";
 "Donate" = "Doar";
-
 "Device registration availability information timeout!" = "O tempo-limite de informação sobre a disponibilidade do registo dos dispositivos foi excedido!";
 "Next" = "Continuar";
 "Start" = "Start";
@@ -84,5 +82,5 @@
 "Configuration Failed!" = "A configuração falhou!";
 "Connection with the device cannot be set! Make sure, if the Wi-fi connection has been set for the I/O device." = "Impossível conectar um dispositivo!";
 "[Calibration]" = "[Calibrar]";
-
 "Help" = "Ajuda";
+"Staircase timer" = "Comutador de escada";

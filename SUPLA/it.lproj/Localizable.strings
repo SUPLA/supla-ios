@@ -60,7 +60,6 @@
 "Dimmer" = "Varialuce";
 "Distance sensor" = "Sensore di distanza";
 "Depth sensor" = "Sensore di profondità";
-
 "Se questa applicazione Ti piace, Ti preghiamo di dedicare qualche minuto per valutarla. Ti ringraziamo per il Tuo supporto!";
 "Rate Now" = "Valuta adesso";
 "Later" = "Più tardi";
@@ -69,7 +68,6 @@
 "Window opening sensor" = "Sensore di apertura finestra";
 "Add I/O device" = "Aggiungi un dispositivo";
 "Donate" = "Donazione";
-
 "Device registration availability information timeout!" = "Le délai d'attente pour des informations sur la disponibilité d'enregistrement des dispositifs est dépassé !";
 "Next" = "Avanti";
 "Start" = "Start";
@@ -84,5 +82,5 @@
 "Configuration Failed!" = "Configurazione fallita!";
 "Connection with the device cannot be set! Make sure, if the Wi-fi connection has been set for the I/O device." = "Impossibile stabilire una connessione con il dispositivo!";
 "[Calibration]" = "[Calibrazione]";
-
 "Help" = "Aiuto";
+"Staircase timer" = "Temporizzatore luce scale";
