@@ -35,6 +35,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (NSString *)getChannelCaption;
 
 - (BOOL) isOnline;
+- (int) onlinePercent;
 - (int) hiValue;
 - (int) hiSubValue;
 - (BOOL) isOn;

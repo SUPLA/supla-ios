@@ -130,11 +130,11 @@
         [self.image setImage:[channelBase getIcon]];
         
 
-        self.rightDot.ring = NO;
-        self.leftDot.ring = NO;
+        self.right_OnlineStatus.shapeType = stDot;
+        self.left_OnlineStatus.shapeType = stDot;
         
-        self.rightDot.color = [channelBase isOnline] ? [UIColor circleOn] : [UIColor redColor];
-        self.leftDot.color = self.rightDot.color;
+        self.right_OnlineStatus.percent = [channelBase onlinePercent];
+        self.left_OnlineStatus.percent = self.right_OnlineStatus.percent;
         
         self.rightButtons = nil;
         self.leftButtons = nil;
@@ -146,20 +146,20 @@
             case SUPLA_CHANNELFNC_CONTROLLINGTHEDOORLOCK:
             case SUPLA_CHANNELFNC_CONTROLLINGTHEGATEWAYLOCK:
             case SUPLA_CHANNELFNC_CONTROLLINGTHEROLLERSHUTTER:
-                self.leftDot.hidden = YES;
-                self.rightDot.hidden = NO;
+                self.left_OnlineStatus.hidden = YES;
+                self.right_OnlineStatus.hidden = NO;
                 break;
             case SUPLA_CHANNELFNC_POWERSWITCH:
             case SUPLA_CHANNELFNC_LIGHTSWITCH:
             case SUPLA_CHANNELFNC_STAIRCASETIMER:
-                self.leftDot.hidden = NO;
-                self.rightDot.hidden = NO;
+                self.left_OnlineStatus.hidden = NO;
+                self.right_OnlineStatus.hidden = NO;
                 break;
             case SUPLA_CHANNELFNC_RGBLIGHTING:
             case SUPLA_CHANNELFNC_DIMMER:
             case SUPLA_CHANNELFNC_DIMMERANDRGBLIGHTING:
-                self.leftDot.hidden = YES;
-                self.rightDot.hidden = NO;
+                self.left_OnlineStatus.hidden = YES;
+                self.right_OnlineStatus.hidden = NO;
                 break;
             case SUPLA_CHANNELFNC_NOLIQUIDSENSOR:
             case SUPLA_CHANNELFNC_OPENINGSENSOR_DOOR:
@@ -169,14 +169,14 @@
             case SUPLA_CHANNELFNC_OPENINGSENSOR_ROLLERSHUTTER:
             case SUPLA_CHANNELFNC_OPENINGSENSOR_WINDOW:
             case SUPLA_CHANNELFNC_MAILSENSOR:
-                self.leftDot.hidden = NO;
-                self.rightDot.hidden = NO;
-                self.rightDot.ring = YES;
-                self.leftDot.ring = YES;
+                self.left_OnlineStatus.hidden = NO;
+                self.right_OnlineStatus.hidden = NO;
+                self.right_OnlineStatus.shapeType = stRing;
+                self.left_OnlineStatus.shapeType = stRing;
                 break;
             default:
-                self.leftDot.hidden = YES;
-                self.rightDot.hidden = YES;
+                self.left_OnlineStatus.hidden = YES;
+                self.right_OnlineStatus.hidden = YES;
                 break;
         }
         
@@ -207,7 +207,7 @@
                 [br setButtonWidth:105];
                 [br.titleLabel setFont:[UIFont fontWithName:@"Quicksand" size:16]];
                 //[br.titleLabel setFont:[UIFont fontWithName:@"OpenSens" size:10]];
-                br.backgroundColor = [UIColor circleOn];
+                br.backgroundColor = [UIColor onLine];
                 [self btn:br SetAction:@selector(rightTouchDown:)];
                 self.rightButtons = @[br];
             }
@@ -216,7 +216,7 @@
                 [bl setButtonWidth:105];
                 [bl.titleLabel setFont:[UIFont fontWithName:@"Quicksand" size:16]];
                 //[bl.titleLabel setFont:[UIFont fontWithName:@"OpenSens" size:10]];
-                bl.backgroundColor = [UIColor circleOn];
+                bl.backgroundColor = [UIColor onLine];
                 [self btn:bl SetAction:@selector(leftTouchDown:)];
                 self.leftButtons = @[bl];
             }
@@ -254,7 +254,7 @@
 }
 
 - (IBAction)rlTouchCancel:(id)sender {
-    [sender setBackgroundColor: [UIColor circleOn] withDelay:0.2];
+    [sender setBackgroundColor: [UIColor onLine] withDelay:0.2];
 }
 
 @end

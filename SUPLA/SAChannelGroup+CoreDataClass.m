@@ -117,4 +117,8 @@
     return self.online > 0;
 }
 
+- (int) onlinePercent {
+    return self.online;
+}
+
 @end

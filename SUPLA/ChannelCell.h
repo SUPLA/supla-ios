@@ -41,8 +41,8 @@
 @property (strong, nonatomic) SAChannelBase *channelBase;
 @property (weak, nonatomic) IBOutlet UIImageView *image;
 @property (weak, nonatomic) IBOutlet UILabel *caption;
-@property (weak, nonatomic) IBOutlet SAUIStatusDot *rightDot;
-@property (weak, nonatomic) IBOutlet SAUIStatusDot *leftDot;
+@property (weak, nonatomic) IBOutlet SAUIChannelStatus *right_OnlineStatus;
+@property (weak, nonatomic) IBOutlet SAUIChannelStatus *left_OnlineStatus;
 @property (weak, nonatomic) IBOutlet UILabel *temp;
 @property (weak, nonatomic) IBOutlet UILabel *humidity;
 @property (weak, nonatomic) IBOutlet UILabel *distance;

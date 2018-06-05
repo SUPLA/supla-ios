@@ -44,39 +44,54 @@
 
 @end
 
-@implementation SAUIStatusDot {
-    BOOL _ring;
-    UIColor *_color;
+@implementation SAUIChannelStatus {
+    channelStatusShapeType _shapeType;
+    double _percent;
 }
 
-- (void)setRing:(BOOL)ring {
-    _ring = ring;
+- (channelStatusShapeType) shapeType {
+    return _shapeType;
+}
+
+- (void)setShapeType:(channelStatusShapeType)shapeType {
+    _shapeType = shapeType;
     [self setNeedsDisplay];
 }
 
-- (BOOL)ring {
-    return _ring;
+- (double)percent {
+    return _percent;
+}
+
+- (void)setPercent:(double)percent {
+    _percent = percent;
+    [self setNeedsDisplay];
 }
 
 - (void)setBackgroundColor:(UIColor *)backgroundColor {
     [super setBackgroundColor:[UIColor clearColor]];
 }
 
-- (void)setColor:(UIColor *)color {
-    _color = color;
-    [self setNeedsDisplay];
-}
-
-- (UIColor*)color {
-    return _color == nil ? [UIColor redColor] : _color;
-}
-
 - (void)drawRect:(CGRect)rect {
     
     CGContextRef ctx = UIGraphicsGetCurrentContext();
+    CGColorRef color = _percent > 0 ? [[UIColor onLine] CGColor] : [[UIColor offLine] CGColor];
     
+    if ( _shapeType == stRing || _shapeType == stDot ) {
     
-    if ( _ring ) {
+        CGFloat n = rect.size.height;
+        
+        if (rect.size.height > rect.size.width) {
+            n = rect.size.width;
+        }
+        
+        rect.origin.x = rect.size.width / 2 - n / 2;
+        rect.origin.y = rect.size.height / 2 - n / 2;
+
+        rect.size.height = n;
+        rect.size.width = n;
+    };
+    
+    if ( _shapeType == stRing ) {
         float width = 1 / [[UIScreen mainScreen] scale];
         CGContextSetLineWidth(ctx, width);
         rect.origin.x+=width;
@@ -84,11 +99,11 @@
         rect.size.height-=width*2;
         rect.size.width-=width*2;
         CGContextAddEllipseInRect(ctx, rect);
-        CGContextSetStrokeColor(ctx, CGColorGetComponents([self.color CGColor]));
+        CGContextSetStrokeColor(ctx, CGColorGetComponents(color));
         CGContextStrokePath(ctx);
-    } else {
+    } else if ( _shapeType == stDot ) {
         CGContextAddEllipseInRect(ctx, rect);
-        CGContextSetFillColor(ctx, CGColorGetComponents([self.color CGColor]));
+        CGContextSetFillColor(ctx, CGColorGetComponents(color));
         CGContextFillPath(ctx);
     }
     
@@ -100,8 +115,12 @@
 
 @implementation UIColor (SUPLA)
 
-+(UIColor*)circleOn {
++(UIColor*)onLine {
     return [UIColor colorWithRed:0.071 green:0.655 blue:0.118 alpha:1.000];
+}
+
++(UIColor*)offLine {
+    return [UIColor redColor];
 }
 
 +(UIColor*)btnTouched {

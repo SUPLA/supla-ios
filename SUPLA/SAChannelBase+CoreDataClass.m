@@ -164,6 +164,10 @@
     return NO;
 }
 
+- (int) onlinePercent {
+    return 0;
+}
+
 - (int) hiValue {
     return 0;
 }

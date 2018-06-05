@@ -36,6 +36,10 @@
     return self.value == nil ? [super isOnline] : [self.value isOnline];
 }
 
+- (int) onlinePercent {
+    return [self isOnline] ? 100 : 0;
+}
+
 - (int) hiValue {
     return self.value == nil ? [super hiValue] : [self.value hiValue];
 }

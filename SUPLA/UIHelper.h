@@ -27,27 +27,35 @@
 
 @interface UIView (SUPLA)
 
-- (UIImageView*)snapshot;
+- (nullable UIImageView*)snapshot;
 
 @end
 
 @interface UIColor (SUPLA)
 
-+(UIColor*)btnTouched;
-+(UIColor*)circleOn;
-+(UIColor*)colorPickerDefault;
-+(UIColor*)statusYellow;
-+(UIColor*)cellBackground;
-+(UIColor*)rgbDetailBackground;
-+(UIColor*)rsDetailBackground;
++(nonnull UIColor*)btnTouched;
++(nonnull UIColor*)onLine;
++(nonnull UIColor*)offLine;
++(nonnull UIColor*)colorPickerDefault;
++(nonnull UIColor*)statusYellow;
++(nonnull UIColor*)cellBackground;
++(nonnull UIColor*)rgbDetailBackground;
++(nonnull UIColor*)rsDetailBackground;
 
 @end
 
+typedef enum channelStatusShapeType {
+    stLinearVertical,
+    stLinearHorizontal,
+    stDot,
+    stRing
+}channelStatusShapeType;
 
-@interface SAUIStatusDot : UIView
+@interface SAUIChannelStatus : UIView
 
-@property (nonatomic, assign) BOOL ring;
-@property (nonatomic, copy) UIColor *color;
+@property (nonatomic, assign) channelStatusShapeType shapeType;
+@property (nonatomic, assign) double percent;
+
 @end
 
 @interface SAUIHelper : NSObject

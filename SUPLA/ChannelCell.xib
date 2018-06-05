@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13174"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -30,41 +30,50 @@
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mwc-4O-K3V" userLabel="leftDot" customClass="SAUIStatusDot">
-                        <rect key="frame" x="19" y="46.5" width="10" height="10"/>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mwc-4O-K3V" userLabel="onlineLeft" customClass="SAUIChannelStatus">
+                        <rect key="frame" x="27" y="41.5" width="10" height="20"/>
                         <color key="backgroundColor" red="0.070588235289999995" green="0.65490196079999996" blue="0.1176470588" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="10" id="Dkk-Jg-qSm"/>
-                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="10" id="J18-DV-dmj"/>
+                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="20" id="Dkk-Jg-qSm"/>
                             <constraint firstAttribute="width" constant="10" id="S8n-Ie-UUr"/>
-                            <constraint firstAttribute="height" constant="10" id="YGV-ZC-kYI"/>
+                            <constraint firstAttribute="height" constant="20" id="YGV-ZC-kYI"/>
                         </constraints>
                     </view>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WUf-g2-rWR" userLabel="bottomLine">
-                        <rect key="frame" x="-2" y="101.5" width="384" height="1"/>
+                        <rect key="frame" x="6" y="99" width="368" height="1"/>
                         <color key="backgroundColor" red="0.66666666666666663" green="0.66666666666666663" blue="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="1" id="BOO-qf-gdM"/>
                         </constraints>
                     </view>
-                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ilZ-Cd-uym" userLabel="rightDot" customClass="SAUIStatusDot">
-                        <rect key="frame" x="352" y="46.5" width="10" height="10"/>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ilZ-Cd-uym" userLabel="onlineRight" customClass="SAUIChannelStatus">
+                        <rect key="frame" x="344" y="41.5" width="10" height="20"/>
                         <color key="backgroundColor" red="0.070588235289999995" green="0.65490196079999996" blue="0.1176470588" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="10" id="8MR-Jr-6sX"/>
-                            <constraint firstAttribute="height" constant="10" id="H30-RN-0h4"/>
-                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="10" id="cGz-Za-LC7"/>
-                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="10" id="ruv-Lf-fqS"/>
+                            <constraint firstAttribute="height" constant="20" id="H30-RN-0h4"/>
+                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="20" id="ruv-Lf-fqS"/>
                         </constraints>
                     </view>
                     <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="gate-closed.png" translatesAutoresizingMaskIntoConstraints="NO" id="VDN-tt-KUq">
                         <rect key="frame" x="167" y="10" width="47" height="52"/>
                     </imageView>
+                    <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8O3-5x-52I" userLabel="activeRight" customClass="SAUIChannelStatus">
+                        <rect key="frame" x="338" y="41.5" width="6" height="20"/>
+                        <color key="backgroundColor" red="0.070588235289999995" green="0.65490196079999996" blue="0.1176470588" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="20" id="94E-oS-B3f"/>
+                            <constraint firstAttribute="width" constant="6" id="It3-to-aen"/>
+                            <constraint firstAttribute="height" constant="20" id="zAv-gK-Igj"/>
+                        </constraints>
+                    </view>
                 </subviews>
                 <color key="backgroundColor" red="0.97647058823529409" green="0.98039215686274506" blue="0.98431372549019602" alpha="1" colorSpace="calibratedRGB"/>
                 <constraints>
                     <constraint firstAttribute="trailingMargin" secondItem="ilZ-Cd-uym" secondAttribute="trailing" constant="10" id="4o6-WX-LTG"/>
                     <constraint firstItem="WUf-g2-rWR" firstAttribute="leading" secondItem="oDG-Oh-yeF" secondAttribute="leadingMargin" constant="-10" id="7JQ-nf-K6X"/>
+                    <constraint firstItem="8O3-5x-52I" firstAttribute="centerY" secondItem="oDG-Oh-yeF" secondAttribute="centerY" id="I8q-Ci-FGy"/>
+                    <constraint firstItem="ilZ-Cd-uym" firstAttribute="leading" secondItem="8O3-5x-52I" secondAttribute="trailing" id="J7I-kC-uC0"/>
                     <constraint firstItem="ilZ-Cd-uym" firstAttribute="centerY" secondItem="oDG-Oh-yeF" secondAttribute="centerY" id="L7i-c0-DBP"/>
                     <constraint firstItem="mwc-4O-K3V" firstAttribute="centerY" secondItem="oDG-Oh-yeF" secondAttribute="centerY" id="MLv-Ff-uKK"/>
                     <constraint firstAttribute="bottomMargin" secondItem="WUf-g2-rWR" secondAttribute="bottom" constant="-8" id="Ttl-9z-BW4"/>
@@ -80,8 +89,8 @@
             <connections>
                 <outlet property="caption" destination="CZP-9z-72p" id="VL0-of-fD9"/>
                 <outlet property="image" destination="VDN-tt-KUq" id="gep-Co-Zre"/>
-                <outlet property="leftDot" destination="mwc-4O-K3V" id="UU1-4f-2q6"/>
-                <outlet property="rightDot" destination="ilZ-Cd-uym" id="N22-Fi-pEQ"/>
+                <outlet property="left_OnlineStatus" destination="mwc-4O-K3V" id="UU1-4f-2q6"/>
+                <outlet property="right_OnlineStatus" destination="ilZ-Cd-uym" id="N22-Fi-pEQ"/>
             </connections>
             <point key="canvasLocation" x="170" y="-100.5"/>
         </tableViewCell>
