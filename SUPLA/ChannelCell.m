@@ -21,6 +21,7 @@
 #import "ChannelCell.h"
 #import "MGSwipeButton.h"
 #import "SAChannel+CoreDataClass.h"
+#import "SAChannelGroup+CoreDataClass.h"
 #import "SuplaApp.h"
 #include "proto.h"
 
@@ -240,7 +241,7 @@
     [sender setBackgroundColor: [UIColor btnTouched]];
     
     [self vibrate];
-    [[SAApp SuplaClient] channel:self.channelBase.remote_id Open:self.channelBase.func == SUPLA_CHANNELFNC_CONTROLLINGTHEROLLERSHUTTER ? 2 : 1];
+    [[SAApp SuplaClient] cg:self.channelBase.remote_id Open:1 group:[self.channelBase isKindOfClass:[SAChannelGroup class]]];
     [self hideSwipeAnimated:YES];
 }
 
@@ -248,20 +249,12 @@
     [sender setBackgroundColor: [UIColor btnTouched]];
     
     [self vibrate];
-    [[SAApp SuplaClient] channel:self.channelBase.remote_id Open:self.channelBase.func == SUPLA_CHANNELFNC_CONTROLLINGTHEROLLERSHUTTER ? 1 : 0];
+    [[SAApp SuplaClient] cg:self.channelBase.remote_id Open:0 group:[self.channelBase isKindOfClass:[SAChannelGroup class]]];
     [self hideSwipeAnimated:YES];
 }
 
 - (IBAction)rlTouchCancel:(id)sender {
-    
     [sender setBackgroundColor: [UIColor circleOn] withDelay:0.2];
-    
-    if ( self.channelBase.func == SUPLA_CHANNELFNC_CONTROLLINGTHEROLLERSHUTTER ) {
-        
-            [self vibrate];
-            [[SAApp SuplaClient] channel:self.channelBase.remote_id Open: 0];
-    }
-    
 }
 
 @end
