@@ -54,6 +54,7 @@
 -(BOOL) updateChannelGroup:(TSC_SuplaChannelGroup *)channel_group;
 -(BOOL) updateChannelGroupRelation:(TSC_SuplaChannelGroupRelation *)cgroup_relation;
 - (NSArray*) updateChannelGroups;
+-(NSFetchedResultsController*) getChannelGroupFrc;
 -(SAColorListItem *) getColorListItemForRemoteId:(int)remote_id andIndex:(int)idx forGroup:(BOOL)group;
 -(void) updateColorListItem:(SAColorListItem *)item;
 

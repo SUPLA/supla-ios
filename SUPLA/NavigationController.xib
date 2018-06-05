@@ -24,6 +24,7 @@
             <connections>
                 <outlet property="btnAbout" destination="x05-qN-dZB" id="N2d-fn-UYS"/>
                 <outlet property="btnAddDevice" destination="htT-Tf-uAY" id="3vv-WG-HpY"/>
+                <outlet property="btnGroups" destination="Jpb-2Y-DrN" id="Rzb-ij-K6E"/>
                 <outlet property="btnHelp" destination="ur3-3n-APa" id="Mvj-NS-7Wb"/>
                 <outlet property="btnMenu" destination="5bu-iw-spE" id="8tj-KK-7nE"/>
                 <outlet property="btnSettings" destination="faF-DH-fsk" id="Iqr-kq-u8Z"/>
@@ -42,6 +43,17 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YKe-vY-eQe">
                     <rect key="frame" x="0.0" y="0.0" width="375" height="75"/>
                     <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jpb-2Y-DrN" userLabel="Btn Groups">
+                            <rect key="frame" x="301" y="33" width="74" height="42"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="74" id="8uH-0H-nze"/>
+                                <constraint firstAttribute="height" constant="42" id="v6C-F8-ZUL"/>
+                            </constraints>
+                            <state key="normal" image="groupsoff.png"/>
+                            <connections>
+                                <action selector="groupsTouch:" destination="-1" eventType="touchDown" id="qBq-ob-pWC"/>
+                            </connections>
+                        </button>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="supla" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IBu-dl-v6F">
                             <rect key="frame" x="152" y="33.5" width="71" height="32.5"/>
                             <constraints>
@@ -66,7 +78,9 @@
                     <color key="backgroundColor" red="0.070588235289999995" green="0.65490196079999996" blue="0.1176470588" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
                         <constraint firstAttribute="bottom" secondItem="5bu-iw-spE" secondAttribute="bottom" id="4qK-hg-eRj"/>
+                        <constraint firstAttribute="trailing" secondItem="Jpb-2Y-DrN" secondAttribute="trailing" id="L9S-hL-qMK"/>
                         <constraint firstAttribute="height" constant="75" id="ODp-NT-LRr"/>
+                        <constraint firstAttribute="bottom" secondItem="Jpb-2Y-DrN" secondAttribute="bottom" id="UwQ-3b-9eK"/>
                         <constraint firstItem="5bu-iw-spE" firstAttribute="leading" secondItem="YKe-vY-eQe" secondAttribute="leading" id="YLU-95-KZB"/>
                         <constraint firstItem="IBu-dl-v6F" firstAttribute="centerX" secondItem="YKe-vY-eQe" secondAttribute="centerX" id="kGB-vY-KRL"/>
                         <constraint firstAttribute="bottom" secondItem="IBu-dl-v6F" secondAttribute="bottom" constant="9" id="x29-uY-Jbw"/>
@@ -293,6 +307,7 @@
     </objects>
     <resources>
         <image name="add_device.png" width="28" height="28"/>
+        <image name="groupsoff.png" width="37" height="11"/>
         <image name="help.png" width="28" height="28"/>
         <image name="info.png" width="28" height="28"/>
         <image name="menu.png" width="21" height="13"/>

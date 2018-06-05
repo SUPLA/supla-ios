@@ -42,6 +42,8 @@
 		40477B5220C6CF2600E995E6 /* gatealt1-closed-50percent@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 40477B4E20C6CF2500E995E6 /* gatealt1-closed-50percent@2x.png */; };
 		40477B5320C6CF2600E995E6 /* gate-closed-50percent@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 40477B4F20C6CF2600E995E6 /* gate-closed-50percent@3x.png */; };
 		40477B5420C6CF2600E995E6 /* gatealt1-closed-50percent@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 40477B5020C6CF2600E995E6 /* gatealt1-closed-50percent@3x.png */; };
+		40477B5F20C6F62A00E995E6 /* groupsoff@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 40477B5D20C6F62900E995E6 /* groupsoff@2x.png */; };
+		40477B6020C6F62A00E995E6 /* groupson@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 40477B5E20C6F62900E995E6 /* groupson@2x.png */; };
 		404E48F71FC75D0B001F6266 /* SAClassHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 404E48F51FC75D0B001F6266 /* SAClassHelper.m */; };
 		4052DA001DC515AE000B8C45 /* dimmerrgb-offoff@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4052D9F01DC515AE000B8C45 /* dimmerrgb-offoff@3x.png */; };
 		4052DA011DC515AE000B8C45 /* dimmerrgb-offoff@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4052D9F11DC515AE000B8C45 /* dimmerrgb-offoff@2x.png */; };
@@ -292,6 +294,8 @@
 		40477B4E20C6CF2500E995E6 /* gatealt1-closed-50percent@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "gatealt1-closed-50percent@2x.png"; path = "Resources/Assets/Img/gatealt1-closed-50percent@2x.png"; sourceTree = "<group>"; };
 		40477B4F20C6CF2600E995E6 /* gate-closed-50percent@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "gate-closed-50percent@3x.png"; path = "Resources/Assets/Img/gate-closed-50percent@3x.png"; sourceTree = "<group>"; };
 		40477B5020C6CF2600E995E6 /* gatealt1-closed-50percent@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "gatealt1-closed-50percent@3x.png"; path = "Resources/Assets/Img/gatealt1-closed-50percent@3x.png"; sourceTree = "<group>"; };
+		40477B5D20C6F62900E995E6 /* groupsoff@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "groupsoff@2x.png"; path = "Resources/Assets/Img/groupsoff@2x.png"; sourceTree = "<group>"; };
+		40477B5E20C6F62900E995E6 /* groupson@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "groupson@2x.png"; path = "Resources/Assets/Img/groupson@2x.png"; sourceTree = "<group>"; };
 		404E48F51FC75D0B001F6266 /* SAClassHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SAClassHelper.m; sourceTree = "<group>"; };
 		404E48F61FC75D0B001F6266 /* SAClassHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SAClassHelper.h; sourceTree = "<group>"; };
 		4052D9F01DC515AE000B8C45 /* dimmerrgb-offoff@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "dimmerrgb-offoff@3x.png"; path = "Resources/Assets/Img/dimmerrgb-offoff@3x.png"; sourceTree = "<group>"; };
@@ -705,6 +709,8 @@
 		405AC4011BC15878004F7311 /* Img */ = {
 			isa = PBXGroup;
 			children = (
+				40477B5D20C6F62900E995E6 /* groupsoff@2x.png */,
+				40477B5E20C6F62900E995E6 /* groupson@2x.png */,
 				40477B4D20C6CF2500E995E6 /* gate-closed-50percent@2x.png */,
 				40477B4F20C6CF2600E995E6 /* gate-closed-50percent@3x.png */,
 				40477B4E20C6CF2500E995E6 /* gatealt1-closed-50percent@2x.png */,
@@ -1180,6 +1186,7 @@
 				40CF96C91BC7D4E70030EFFF /* rollershutter-open@3x.png in Resources */,
 				40477B5320C6CF2600E995E6 /* gate-closed-50percent@3x.png in Resources */,
 				40CF96B81BC7D4E70030EFFF /* gateway-open@2x.png in Resources */,
+				40477B6020C6F62A00E995E6 /* groupson@2x.png in Resources */,
 				4091654C1F3CBAF200F49193 /* rs_up.png in Resources */,
 				40CF96B71BC7D4E70030EFFF /* gateway-closed@3x.png in Resources */,
 				40DE1A401BCD6F06004CF43B /* Localizable.strings in Resources */,
@@ -1223,6 +1230,7 @@
 				40B9ED571FACD0A100403B1A /* pc-on@2x.png in Resources */,
 				4091AF4A1FC88BFB00EFF357 /* greendot@2x.png in Resources */,
 				4052DA041DC515AE000B8C45 /* dimmerrgb-onoff@3x.png in Resources */,
+				40477B5F20C6F62A00E995E6 /* groupsoff@2x.png in Resources */,
 				4091AF441FC856C200EFF357 /* wifi@2x.png in Resources */,
 				406778291BCBBC84008DD37F /* ThermometerCell.xib in Resources */,
 				4014ADFD1FE01ECD00297A9E /* help@2x.png in Resources */,

@@ -340,30 +340,34 @@
     return save;
 }
 
--(NSFetchedResultsController*) getChannelFrc {
+-(NSFetchedResultsController*) getChannelBaseFrcForEntityName:(NSString*)entity {
     
-        NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-        
-        fetchRequest.predicate = [NSPredicate predicateWithFormat:@"func > 0 AND visible > 0"];
-        [fetchRequest setEntity:[NSEntityDescription entityForName:@"SAChannel" inManagedObjectContext: self.managedObjectContext]];
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
     
-        NSArray *sortDescriptors = [[NSArray alloc] initWithObjects:[[NSSortDescriptor alloc] initWithKey:@"location.caption" ascending:YES],
-                                    [[NSSortDescriptor alloc] initWithKey:@"func" ascending:NO],
-                                    [[NSSortDescriptor alloc] initWithKey:@"caption" ascending:NO],
-                                    nil];
+    fetchRequest.predicate = [NSPredicate predicateWithFormat:@"func > 0 AND visible > 0"];
+    [fetchRequest setEntity:[NSEntityDescription entityForName:entity inManagedObjectContext: self.managedObjectContext]];
     
-       [fetchRequest setSortDescriptors:sortDescriptors];
-
-       NSFetchedResultsController *frc = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:self.managedObjectContext sectionNameKeyPath:@"location.caption" cacheName:nil];
-
+    NSArray *sortDescriptors = [[NSArray alloc] initWithObjects:[[NSSortDescriptor alloc] initWithKey:@"location.caption" ascending:YES],
+                                [[NSSortDescriptor alloc] initWithKey:@"func" ascending:NO],
+                                [[NSSortDescriptor alloc] initWithKey:@"caption" ascending:NO],
+                                nil];
+    
+    [fetchRequest setSortDescriptors:sortDescriptors];
+    
+    NSFetchedResultsController *frc = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:self.managedObjectContext sectionNameKeyPath:@"location.caption" cacheName:nil];
+    
     NSError *error;
     [frc performFetch:&error];
     
     if ( error ) {
         NSLog(@"%@", error);
     }
-   
+    
     return frc;
+}
+
+-(NSFetchedResultsController*) getChannelFrc {
+    return [self getChannelBaseFrcForEntityName:@"SAChannel"];
 }
 
 -(BOOL) setChannelsOffline {
@@ -622,6 +626,10 @@
     }
     
     return result;
+}
+
+-(NSFetchedResultsController*) getChannelGroupFrc {
+    return [self getChannelBaseFrcForEntityName:@"SAChannelGroup"];
 }
 
 #pragma mark Color List

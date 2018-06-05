@@ -28,7 +28,8 @@
 #import "SARateApp.h"
 
 @implementation SAMainVC {
-    NSFetchedResultsController *_frc;
+    NSFetchedResultsController *_cFrc;
+    NSFetchedResultsController *_gFrc;
     UINib *_cell_nib;
     UINib *_temp_nib;
     UINib *_temphumidity_nib;
@@ -40,6 +41,14 @@
 
 }
 
+- (void)registerNibForTableView:(UITableView*)tv {
+    [tv registerNib:_cell_nib forCellReuseIdentifier:@"ChannelCell"];
+    [tv registerNib:_temp_nib forCellReuseIdentifier:@"ThermometerCell"];
+    [tv registerNib:_temphumidity_nib forCellReuseIdentifier:@"TempHumidityCell"];
+    [tv registerNib:_depth_nib forCellReuseIdentifier:@"DepthCell"];
+    [tv registerNib:_distance_nib forCellReuseIdentifier:@"DistanceCell"];
+    [tv registerNib:_section_nib forCellReuseIdentifier:@"SectionCell"];
+}
 
 - (void)viewDidLoad {
     
@@ -52,12 +61,8 @@
     _distance_nib = [UINib nibWithNibName:@"DistanceCell" bundle:nil];
     _section_nib = [UINib nibWithNibName:@"SectionCell" bundle:nil];
     
-    [[self tableView] registerNib:_cell_nib forCellReuseIdentifier:@"ChannelCell"];
-    [[self tableView] registerNib:_temp_nib forCellReuseIdentifier:@"ThermometerCell"];
-    [[self tableView] registerNib:_temphumidity_nib forCellReuseIdentifier:@"TempHumidityCell"];
-    [[self tableView] registerNib:_depth_nib forCellReuseIdentifier:@"DepthCell"];
-    [[self tableView] registerNib:_distance_nib forCellReuseIdentifier:@"DistanceCell"];
-    [[self tableView] registerNib:_section_nib forCellReuseIdentifier:@"SectionCell"];
+    [self registerNibForTableView:self.cTableView];
+    [self registerNibForTableView:self.gTableView];
     
     _tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapGesture:)];
     [self.notificationView addGestureRecognizer:_tapRecognizer];
@@ -85,8 +90,10 @@
 
 
 -(void)onDataChanged {
-    _frc = nil;
-    [self.tableView reloadData];
+    _cFrc = nil;
+    _gFrc = nil;
+    [self.cTableView reloadData];
+    [self.gTableView reloadData];
 }
 
 - (void)onEvent:(NSNotification *)notification {
@@ -214,30 +221,38 @@
 
 #pragma mark Table Support
 
-- (NSFetchedResultsController*)frc {
+- (NSFetchedResultsController*)frcForTableView:(UITableView*)tableView {
     
-    if ( _frc == nil ) {
-        _frc = [SAApp.DB getChannelFrc];
+    if (tableView == self.cTableView) {
+        if ( _cFrc == nil ) {
+            _cFrc = [SAApp.DB getChannelFrc];
+        }
+        return _cFrc;
+    } else {
+        if ( _gFrc == nil ) {
+            _gFrc = [SAApp.DB getChannelGroupFrc];
+        }
+        return _gFrc;
     }
+
     
-    return _frc;
+    return nil;
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    
-    return self.frc ? [[self.frc sections] count] : 0;
+    NSFetchedResultsController *frc = [self frcForTableView:tableView];
+    return frc ? [[frc sections] count] : 0;
     
 }
 
-- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
-{
-    return  [[[self.frc sections] objectAtIndex:section] name];
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
+    return  [[[[self frcForTableView:tableView] sections] objectAtIndex:section] name];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    
-    if ( self.frc ) {
-        id <NSFetchedResultsSectionInfo> sectionInfo = [[self.frc sections] objectAtIndex:section];
+    NSFetchedResultsController *frc = [self frcForTableView:tableView];
+    if ( frc ) {
+        id <NSFetchedResultsSectionInfo> sectionInfo = [[frc sections] objectAtIndex:section];
         return [sectionInfo numberOfObjects];
     }
     
@@ -246,7 +261,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    SAChannelBase *channel_base = [self.frc objectAtIndexPath:indexPath];
+    SAChannelBase *channel_base = [[self frcForTableView:tableView] objectAtIndexPath:indexPath];
     SAChannelCell *cell = nil;
     
     if ( channel_base ) {
@@ -286,7 +301,7 @@
 {
     SASectionCell *cell = [tableView dequeueReusableCellWithIdentifier:@"SectionCell"];
     if ( cell ) {
-        [cell.label setText:[[[self.frc sections] objectAtIndex:section] name]];
+        [cell.label setText:[[[[self frcForTableView:tableView] sections] objectAtIndex:section] name]];
     }
     
     return cell;
@@ -514,7 +529,9 @@
     if ( _animating )
         return;
     
-    CGPoint touch_point = [gr locationInView:self.tableView];
+    UITableView *tableView = self.cTableView.hidden ? self.gTableView : self.cTableView;
+    
+    CGPoint touch_point = [gr locationInView:tableView];
     
     if ( gr.state == UIGestureRecognizerStateEnded
          && _detailView != nil ) {
@@ -524,12 +541,12 @@
         return;
     }
     
-    NSIndexPath *path = [self.tableView indexPathForRowAtPoint:touch_point];
+    NSIndexPath *path = [tableView indexPathForRowAtPoint:touch_point];
     
     if ( path != nil ) {
         
         if ( cell == nil ) {
-            cell = [self.tableView cellForRowAtIndexPath:path];
+            cell = [tableView cellForRowAtIndexPath:path];
         }
         
         if ( cell == nil || [cell isKindOfClass:[SAChannelCell class]] == NO ) {

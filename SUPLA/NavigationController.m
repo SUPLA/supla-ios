@@ -199,4 +199,26 @@
     
 }
 
+- (IBAction)groupsTouch:(id)sender {
+    
+    if ( !self.menuItems.hidden ) {
+        [self showMenu:NO withAction:nil];
+    }
+    
+    SAMainVC *MainVC = [[SAApp UI] MainVC];
+    
+    if ( self.btnGroups.tag == 1 ) {
+        [self.btnGroups setImage:[UIImage imageNamed:@"groupsoff.png"]];
+        self.btnGroups.tag = 0;
+        MainVC.cTableView.hidden = NO;
+        MainVC.gTableView.hidden = YES;
+    } else {
+        [self.btnGroups setImage:[UIImage imageNamed:@"groupson.png"]];
+        self.btnGroups.tag = 1;
+        MainVC.cTableView.hidden = YES;
+        MainVC.gTableView.hidden = NO;
+    }
+
+}
+
 @end

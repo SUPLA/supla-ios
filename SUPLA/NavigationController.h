@@ -32,6 +32,7 @@
 - (IBAction)wwwTouch:(id)sender;
 - (IBAction)addDeviceTouch:(id)sender;
 - (IBAction)donateTouch:(id)sender;
+- (IBAction)groupsTouch:(id)sender;
 @property (weak, nonatomic) IBOutlet UIButton *btnSettings;
 @property (weak, nonatomic) IBOutlet UIButton *btnAbout;
 @property (weak, nonatomic) IBOutlet UIButton *btnHelp;
@@ -40,6 +41,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *btnMenu;
 @property (weak, nonatomic) IBOutlet UIButton *btnAddDevice;
 @property (weak, nonatomic) IBOutlet UIButton *btnDonate;
+@property (weak, nonatomic) IBOutlet UIButton *btnGroups;
 
 
 @end
