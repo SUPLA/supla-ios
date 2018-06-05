@@ -581,8 +581,8 @@ NSString *kSARegistrationEnabledNotification = @"KSA-N12";
     [[NSNotificationCenter defaultCenter] postNotificationName:kSADataChangedNotification object:self userInfo:nil];
 }
 
--(void)onChannelValueChanged:(NSNumber*)ChannelId {
-    [[NSNotificationCenter defaultCenter] postNotificationName:kSAChannelValueChangedNotification object:self userInfo:[[NSDictionary alloc] initWithObjects:@[ChannelId] forKeys:@[@"channelId"]]];
+-(void)onChannelValueChanged:(NSNumber*)ChannelId isGroup:(NSNumber*)group {
+    [[NSNotificationCenter defaultCenter] postNotificationName:kSAChannelValueChangedNotification object:self userInfo:[[NSDictionary alloc] initWithObjects:@[ChannelId, group] forKeys:@[@"remoteId", @"isGroup"]]];
 }
 
 @end

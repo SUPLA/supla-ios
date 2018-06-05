@@ -59,7 +59,7 @@
 +(int) getPreferedProtocolVersion;
 
 -(void)onDataChanged;
--(void)onChannelValueChanged:(NSNumber*)ChannelId;
+-(void)onChannelValueChanged:(NSNumber*)ChannelId isGroup:(NSNumber*)group;
 -(void)onConnecting;
 -(void)onConnError:(NSNumber*)code;
 -(void)onRegistered:(SARegResult*)result;

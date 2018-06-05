@@ -17,7 +17,97 @@
  */
 
 #import "SAChannelGroup+CoreDataClass.h"
+#import "SAChannelValue+CoreDataClass.h"
+#include "proto.h"
 
-@implementation SAChannelGroup
+@implementation SAChannelGroup {
 
+    int BufferOnLineCount;
+    int16_t BufferOnLine;
+    int BufferCounter;
+    NSMutableArray *BufferTotalValue;
+}
+
+- (void) resetBuffer {
+    BufferTotalValue = [[NSMutableArray alloc] init];
+    BufferOnLine = 0;
+    BufferOnLineCount = 0;
+    BufferCounter = 0;
+}
+
+- (void) addValueToBuffer:(SAChannelValue*)value {
+    if ( BufferTotalValue == nil ) {
+        BufferTotalValue = [[NSMutableArray alloc] init];
+    }
+    
+    switch(self.func) {
+        case SUPLA_CHANNELFNC_CONTROLLINGTHEDOORLOCK:
+        case SUPLA_CHANNELFNC_CONTROLLINGTHEGATEWAYLOCK:
+        case SUPLA_CHANNELFNC_CONTROLLINGTHEGATE:
+        case SUPLA_CHANNELFNC_CONTROLLINGTHEGARAGEDOOR:
+        case SUPLA_CHANNELFNC_CONTROLLINGTHEROLLERSHUTTER:
+        case SUPLA_CHANNELFNC_POWERSWITCH:
+        case SUPLA_CHANNELFNC_LIGHTSWITCH:
+        case SUPLA_CHANNELFNC_DIMMER:
+        case SUPLA_CHANNELFNC_RGBLIGHTING:
+        case SUPLA_CHANNELFNC_DIMMERANDRGBLIGHTING:
+        case SUPLA_CHANNELFNC_STAIRCASETIMER:
+            break;
+        default:
+            return;
+    }
+    
+    BufferCounter++;
+    if ([value isOnline]) {
+        BufferOnLineCount++;
+    }
+    
+    switch(self.func) {
+        case SUPLA_CHANNELFNC_CONTROLLINGTHEDOORLOCK:
+        case SUPLA_CHANNELFNC_CONTROLLINGTHEGATEWAYLOCK:
+        case SUPLA_CHANNELFNC_CONTROLLINGTHEGATE:
+        case SUPLA_CHANNELFNC_CONTROLLINGTHEGARAGEDOOR:
+            [BufferTotalValue addObject:[NSNumber numberWithBool: value.hiSubValue]];
+            break;
+
+        case SUPLA_CHANNELFNC_POWERSWITCH:
+        case SUPLA_CHANNELFNC_LIGHTSWITCH:
+        case SUPLA_CHANNELFNC_STAIRCASETIMER:
+            [BufferTotalValue addObject:[NSNumber numberWithBool: value.hiValue]];
+            break;
+        case SUPLA_CHANNELFNC_CONTROLLINGTHEROLLERSHUTTER: {
+            NSArray *obj = [NSArray arrayWithObjects:[NSNumber numberWithInt: value.percentValue],
+                            [NSNumber numberWithBool: value.hiSubValue], nil];
+            [BufferTotalValue addObject:obj];
+        }
+            break;
+        case SUPLA_CHANNELFNC_DIMMER:
+        case SUPLA_CHANNELFNC_RGBLIGHTING:
+        case SUPLA_CHANNELFNC_DIMMERANDRGBLIGHTING: {
+            NSArray *obj = [NSArray arrayWithObjects:value.colorValue,
+                            [NSNumber numberWithInt: value.colorBrightnessValue],
+                            [NSNumber numberWithInt: value.brightnessValue], nil];
+            [BufferTotalValue addObject:obj];
+        }
+            break;
+        default:
+            return;
+    }
+}
+
+- (BOOL) diffWithBuffer {
+    if ( BufferTotalValue == nil ) {
+        BufferTotalValue = [[NSMutableArray alloc] init];
+    }
+    
+    return BufferOnLine != self.online
+    || self.total_value == nil
+    || ![BufferTotalValue isEqualToArray:(NSArray*)self.total_value];
+}
+
+- (void) assignBuffer {
+    self.online = BufferOnLine;
+    self.total_value = [NSArray arrayWithArray:BufferTotalValue];
+    [self resetBuffer];
+}
 @end

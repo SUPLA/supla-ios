@@ -19,12 +19,15 @@
 #import <Foundation/Foundation.h>
 #import "SAChannelBase+CoreDataClass.h"
 
-@class NSObject, _SALocation;
+@class NSObject, _SALocation, SAChannelValue;
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface SAChannelGroup : SAChannelBase
-
+- (void) resetBuffer;
+- (void) addValueToBuffer:(SAChannelValue*)value;
+- (BOOL) diffWithBuffer;
+- (void) assignBuffer;
 @end
 
 NS_ASSUME_NONNULL_END

@@ -159,7 +159,7 @@
         return [UIColor colorWithRed:(unsigned char)v[4]/255.00 green:(unsigned char)v[3]/255.00 blue:(unsigned char)v[2]/255.00 alpha:1];
     }
 
-    return nil;
+    return [UIColor clearColor];
 }
 
 - (int) brightnessValue {

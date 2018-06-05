@@ -17,6 +17,7 @@
  */
 
 #import "DetailView.h"
+#import "SAChannelGroup+CoreDataClass.h"
 #import "UIHelper.h"
 #import "SuplaApp.h"
 #import "Database.h"
@@ -57,14 +58,21 @@
     
     if ( notification.userInfo == nil || _channelBase == nil ) return;
     
-    NSNumber *Id = (NSNumber *)[notification.userInfo objectForKey:@"channelId"];
+    NSNumber *Id = (NSNumber *)[notification.userInfo objectForKey:@"remoteId"];
+    NSNumber *IsGroup = (NSNumber *)[notification.userInfo objectForKey:@"isGroup"];
     
-    if ( Id && [Id isKindOfClass:[NSNumber class]]
-         && _channelBase.remote_id == [Id intValue]) {
-        
-        self.channelBase = [[SAApp DB] fetchChannelById:[Id intValue]];
-        
+    if ( _channelBase.remote_id == [Id intValue]  ) {
+        if ( [IsGroup boolValue] ) {
+            if ( [_channelBase isKindOfClass:[SAChannelGroup class]] ) {
+                self.channelBase = [[SAApp DB] fetchChannelGroupById:[Id intValue]];
+            }
+        } else {
+            if ( [_channelBase isKindOfClass:[SAChannel class]] ) {
+                self.channelBase = [[SAApp DB] fetchChannelById:[Id intValue]];
+            }
+        }
     }
+
 };
 
 -(SAChannelBase*)channelBase {

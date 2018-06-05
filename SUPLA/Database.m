@@ -574,6 +574,56 @@
     return save;
 }
 
+- (NSArray*) updateChannelGroups {
+    
+    
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    
+    fetchRequest.predicate = [NSPredicate predicateWithFormat:@"visible > 0 AND group <> %@ AND value <> %@ AND group.visible > 0", nil, nil];
+    [fetchRequest setEntity:[NSEntityDescription entityForName:@"SAChannelGroupRelation" inManagedObjectContext: self.managedObjectContext]];
+    NSArray *sortDescriptors = [[NSArray alloc] initWithObjects:[[NSSortDescriptor alloc] initWithKey:@"group_id" ascending:YES],nil];
+    
+    [fetchRequest setSortDescriptors:sortDescriptors];
+
+    NSError *error;
+    NSArray *r = [self.managedObjectContext executeFetchRequest:fetchRequest error:&error];
+    
+    if ( error ) {
+        NSLog(@"%@", error);
+    } else if ( r.count == 0 ) {
+        return nil;
+    }
+    
+    NSMutableArray *result = [[NSMutableArray alloc] init];
+    SAChannelGroup *cgroup = nil;
+    
+    for(int a=0;a<r.count;a++) {
+        SAChannelGroupRelation *cg_rel = [r objectAtIndex:a];
+        if (cgroup == nil) {
+            cgroup = cg_rel.group;
+            [cgroup resetBuffer];
+        }
+        
+        if (cgroup.remote_id == cg_rel.group_id) {
+            [cgroup addValueToBuffer:cg_rel.value];
+        }
+        
+        if (a<r.count-1) {
+            cg_rel = [r objectAtIndex:a+1];
+        }
+        
+        if (a==r.count-1 || cg_rel.group_id != cgroup.remote_id) {
+            if ([cgroup diffWithBuffer]) {
+                [cgroup assignBuffer];
+                [result addObject: [NSNumber numberWithInteger:cgroup.remote_id]];
+            }
+            cgroup = nil;
+        }
+    }
+    
+    return result;
+}
+
 #pragma mark Color List
 
 -(SAColorListItem *) getColorListItemForRemoteId:(int)remote_id andIndex:(int)idx forGroup:(BOOL)group {

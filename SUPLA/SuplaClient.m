@@ -525,14 +525,23 @@ void sasuplaclient_on_registration_enabled(void *_suplaclient, void *user_data, 
     [self performSelectorOnMainThread:@selector(_onDataChanged) withObject:nil waitUntilDone:NO];
 }
 
-- (void) _onChannelValueChanged:(NSNumber*)Id {
-    [[SAApp instance] onChannelValueChanged:Id];
+- (void) _onChannelValueChanged:(NSArray*)arr {
+    [[SAApp instance] onChannelValueChanged:[arr objectAtIndex:0] isGroup:[arr objectAtIndex:1]];
 }
 
-- (void) onChannelValueChanged:(int)Id {
-    [self performSelectorOnMainThread:@selector(_onChannelValueChanged:) withObject:[NSNumber numberWithInt:Id] waitUntilDone:NO];
+- (void) onChannelValueChanged:(int)Id isGroup:(BOOL)group {
+    NSArray *arr = [NSArray arrayWithObjects:[NSNumber numberWithInt:Id], [NSNumber numberWithBool:group], nil];
+    [self performSelectorOnMainThread:@selector(_onChannelValueChanged:) withObject:arr waitUntilDone:NO];
 };
 
+- (void) onChannelGroupValueChanged {
+    NSArray *result = [self.DB updateChannelGroups];
+    if (result!=nil) {
+        for(int a=0;a<result.count;a++) {
+            [self onChannelValueChanged:[[result objectAtIndex:a] intValue] isGroup:YES];
+        }
+    }
+}
 
 - (void) locationUpdate:(TSC_SuplaLocation *)location {
     
@@ -574,7 +583,7 @@ void sasuplaclient_on_registration_enabled(void *_suplaclient, void *user_data, 
     }
     
     if ( ChannelValueChanged ) {
-        [self onChannelValueChanged: channel->Id];
+        [self onChannelValueChanged: channel->Id isGroup:NO];
     }
     
 }
@@ -584,8 +593,12 @@ void sasuplaclient_on_registration_enabled(void *_suplaclient, void *user_data, 
     //NSLog(@"channelValueUpdate %i", channel_value->Id);
     
     if ( [self.DB updateChannelValue:channel_value] ) {
-        [self onChannelValueChanged: channel_value->Id];
+        [self onChannelValueChanged: channel_value->Id isGroup:NO];
         [self onDataChanged];
+    }
+    
+    if (channel_value->EOL == 1) {
+        [self onChannelGroupValueChanged];
     }
     
 }
@@ -602,6 +615,10 @@ void sasuplaclient_on_registration_enabled(void *_suplaclient, void *user_data, 
     if ( cgroup->EOL == 1
         && [self.DB setAllOfChannelGroupVisible:0 whereVisibilityIs:2] ) {
         DataChanged = YES;
+    }
+    
+    if (cgroup->EOL == 1) {
+        [self onChannelGroupValueChanged];
     }
     
     if ( DataChanged ) {

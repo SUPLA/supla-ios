@@ -25,6 +25,7 @@
 @class SAChannel;
 @class SAChannelValue;
 @class SAColorListItem;
+@class SAChannelGroup;
 @interface SADatabase : NSObject
 
 @property (readonly, strong, nonatomic) NSManagedObjectContext *managedObjectContext;
@@ -49,8 +50,10 @@
 -(NSUInteger) getChannelCount;
 -(BOOL) setAllOfChannelGroupVisible:(int)visible whereVisibilityIs:(int)wvi;
 -(BOOL) setAllOfChannelGroupRelationVisible:(int)visible whereVisibilityIs:(int)wvi;
+-(SAChannelGroup*) fetchChannelGroupById:(int)remote_id;
 -(BOOL) updateChannelGroup:(TSC_SuplaChannelGroup *)channel_group;
 -(BOOL) updateChannelGroupRelation:(TSC_SuplaChannelGroupRelation *)cgroup_relation;
+- (NSArray*) updateChannelGroups;
 -(SAColorListItem *) getColorListItemForRemoteId:(int)remote_id andIndex:(int)idx forGroup:(BOOL)group;
 -(void) updateColorListItem:(SAColorListItem *)item;
 
