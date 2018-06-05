@@ -557,6 +557,7 @@
         CGroupRel.value = [self fetchChannelValueByChannelId:CGroupRel.channel_id];
         if ( CGroupRel.value != nil ) {
             save = YES;
+        }
     }
     
     if ( CGroupRel.group == nil ) {
