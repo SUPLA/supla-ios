@@ -164,12 +164,12 @@
     return NO;
 }
 
-- (BOOL) hiValue {
-    return NO;
+- (int) hiValue {
+    return 0;
 }
 
-- (BOOL) hiSubValue {
-    return NO;
+- (int) hiSubValue {
+    return 0;
 }
 
 - (double) temperatureValue {
@@ -252,8 +252,16 @@
         case SUPLA_CHANNELFNC_CONTROLLINGTHEGATEWAYLOCK:
             n1 = @"gateway";
             break;
-        case SUPLA_CHANNELFNC_OPENINGSENSOR_GATE:
         case SUPLA_CHANNELFNC_CONTROLLINGTHEGATE:
+
+        {
+            BOOL _50percent = (self.hiSubValue & 0x2) == 0x2 && (self.hiSubValue & 0x1) == 0;
+            if (_50percent && self.alticon != 2) {
+                return [UIImage imageNamed:self.alticon == 1 ? @"gatealt1-closed-50percent" : @"gate-closed-50percent"];
+            }
+        }
+            // !no break;
+        case SUPLA_CHANNELFNC_OPENINGSENSOR_GATE:
             switch(self.alticon) {
                 case 1:
                     n1 = @"gatealt1";

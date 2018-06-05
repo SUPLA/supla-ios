@@ -38,6 +38,10 @@
 		40477B4A20C6C5FE00E995E6 /* staircasetimer_1-on@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 40477B4620C6C5FD00E995E6 /* staircasetimer_1-on@3x.png */; };
 		40477B4B20C6C5FE00E995E6 /* staircasetimer_1-off@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 40477B4720C6C5FE00E995E6 /* staircasetimer_1-off@3x.png */; };
 		40477B4C20C6C5FE00E995E6 /* staircasetimer_1-on@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 40477B4820C6C5FE00E995E6 /* staircasetimer_1-on@2x.png */; };
+		40477B5120C6CF2600E995E6 /* gate-closed-50percent@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 40477B4D20C6CF2500E995E6 /* gate-closed-50percent@2x.png */; };
+		40477B5220C6CF2600E995E6 /* gatealt1-closed-50percent@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 40477B4E20C6CF2500E995E6 /* gatealt1-closed-50percent@2x.png */; };
+		40477B5320C6CF2600E995E6 /* gate-closed-50percent@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 40477B4F20C6CF2600E995E6 /* gate-closed-50percent@3x.png */; };
+		40477B5420C6CF2600E995E6 /* gatealt1-closed-50percent@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 40477B5020C6CF2600E995E6 /* gatealt1-closed-50percent@3x.png */; };
 		404E48F71FC75D0B001F6266 /* SAClassHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 404E48F51FC75D0B001F6266 /* SAClassHelper.m */; };
 		4052DA001DC515AE000B8C45 /* dimmerrgb-offoff@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4052D9F01DC515AE000B8C45 /* dimmerrgb-offoff@3x.png */; };
 		4052DA011DC515AE000B8C45 /* dimmerrgb-offoff@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4052D9F11DC515AE000B8C45 /* dimmerrgb-offoff@2x.png */; };
@@ -284,6 +288,10 @@
 		40477B4620C6C5FD00E995E6 /* staircasetimer_1-on@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "staircasetimer_1-on@3x.png"; path = "Resources/Assets/Img/staircasetimer_1-on@3x.png"; sourceTree = "<group>"; };
 		40477B4720C6C5FE00E995E6 /* staircasetimer_1-off@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "staircasetimer_1-off@3x.png"; path = "Resources/Assets/Img/staircasetimer_1-off@3x.png"; sourceTree = "<group>"; };
 		40477B4820C6C5FE00E995E6 /* staircasetimer_1-on@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "staircasetimer_1-on@2x.png"; path = "Resources/Assets/Img/staircasetimer_1-on@2x.png"; sourceTree = "<group>"; };
+		40477B4D20C6CF2500E995E6 /* gate-closed-50percent@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "gate-closed-50percent@2x.png"; path = "Resources/Assets/Img/gate-closed-50percent@2x.png"; sourceTree = "<group>"; };
+		40477B4E20C6CF2500E995E6 /* gatealt1-closed-50percent@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "gatealt1-closed-50percent@2x.png"; path = "Resources/Assets/Img/gatealt1-closed-50percent@2x.png"; sourceTree = "<group>"; };
+		40477B4F20C6CF2600E995E6 /* gate-closed-50percent@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "gate-closed-50percent@3x.png"; path = "Resources/Assets/Img/gate-closed-50percent@3x.png"; sourceTree = "<group>"; };
+		40477B5020C6CF2600E995E6 /* gatealt1-closed-50percent@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "gatealt1-closed-50percent@3x.png"; path = "Resources/Assets/Img/gatealt1-closed-50percent@3x.png"; sourceTree = "<group>"; };
 		404E48F51FC75D0B001F6266 /* SAClassHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SAClassHelper.m; sourceTree = "<group>"; };
 		404E48F61FC75D0B001F6266 /* SAClassHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SAClassHelper.h; sourceTree = "<group>"; };
 		4052D9F01DC515AE000B8C45 /* dimmerrgb-offoff@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "dimmerrgb-offoff@3x.png"; path = "Resources/Assets/Img/dimmerrgb-offoff@3x.png"; sourceTree = "<group>"; };
@@ -697,6 +705,10 @@
 		405AC4011BC15878004F7311 /* Img */ = {
 			isa = PBXGroup;
 			children = (
+				40477B4D20C6CF2500E995E6 /* gate-closed-50percent@2x.png */,
+				40477B4F20C6CF2600E995E6 /* gate-closed-50percent@3x.png */,
+				40477B4E20C6CF2500E995E6 /* gatealt1-closed-50percent@2x.png */,
+				40477B5020C6CF2600E995E6 /* gatealt1-closed-50percent@3x.png */,
 				40477B4520C6C5FD00E995E6 /* staircasetimer_1-off@2x.png */,
 				40477B4720C6C5FE00E995E6 /* staircasetimer_1-off@3x.png */,
 				40477B4820C6C5FE00E995E6 /* staircasetimer_1-on@2x.png */,
@@ -1131,6 +1143,7 @@
 				40CF96B41BC7D4E70030EFFF /* gate-open@2x.png in Resources */,
 				4052DA0B1DC515AE000B8C45 /* dimmer-on@2x.png in Resources */,
 				4052DA011DC515AE000B8C45 /* dimmerrgb-offoff@2x.png in Resources */,
+				40477B5420C6CF2600E995E6 /* gatealt1-closed-50percent@3x.png in Resources */,
 				40CE7C6A1DCBBD5700BBACE4 /* distance@2x.png in Resources */,
 				407D4AF81BC6C7DE009A5505 /* app_icon57x57.png in Resources */,
 				40BE3E621BCA7AEF00153680 /* ChannelCell.xib in Resources */,
@@ -1161,9 +1174,11 @@
 				4091AF3E1FC8405200EFF357 /* btnnextr@2x.png in Resources */,
 				40DE1A2A1BCCFF8A004CF43B /* feedback@3x.png in Resources */,
 				405AC41B1BC15898004F7311 /* app_icon@3x.png in Resources */,
+				40477B5120C6CF2600E995E6 /* gate-closed-50percent@2x.png in Resources */,
 				401CA1EF1BA0923600117AF4 /* MainVC.xib in Resources */,
 				40CF96BB1BC7D4E70030EFFF /* light-off@3x.png in Resources */,
 				40CF96C91BC7D4E70030EFFF /* rollershutter-open@3x.png in Resources */,
+				40477B5320C6CF2600E995E6 /* gate-closed-50percent@3x.png in Resources */,
 				40CF96B81BC7D4E70030EFFF /* gateway-open@2x.png in Resources */,
 				4091654C1F3CBAF200F49193 /* rs_up.png in Resources */,
 				40CF96B71BC7D4E70030EFFF /* gateway-closed@3x.png in Resources */,
@@ -1194,6 +1209,7 @@
 				40477B4B20C6C5FE00E995E6 /* staircasetimer_1-off@3x.png in Resources */,
 				40CF96AF1BC7D4E70030EFFF /* garagedoor-closed@3x.png in Resources */,
 				40B397DE1BCED5EB00BE7D5A /* Quicksand-Light.ttf in Resources */,
+				40477B5220C6CF2600E995E6 /* gatealt1-closed-50percent@2x.png in Resources */,
 				40477B4C20C6C5FE00E995E6 /* staircasetimer_1-on@2x.png in Resources */,
 				407D4AF91BC6C7DE009A5505 /* app_icon114x114@2x.png in Resources */,
 				4052DA001DC515AE000B8C45 /* dimmerrgb-offoff@3x.png in Resources */,

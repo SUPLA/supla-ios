@@ -35,8 +35,8 @@ NS_ASSUME_NONNULL_BEGIN
 - (NSString *)getChannelCaption;
 
 - (BOOL) isOnline;
-- (BOOL) hiValue;
-- (BOOL) hiSubValue;
+- (int) hiValue;
+- (int) hiSubValue;
 - (BOOL) isOn;
 - (BOOL) isClosed;
 - (UIImage*) getIcon;

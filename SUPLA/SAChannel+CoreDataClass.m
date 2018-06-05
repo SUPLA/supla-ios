@@ -36,11 +36,11 @@
     return self.value == nil ? [super isOnline] : [self.value isOnline];
 }
 
-- (BOOL) hiValue {
+- (int) hiValue {
     return self.value == nil ? [super hiValue] : [self.value hiValue];
 }
 
-- (BOOL) hiSubValue {
+- (int) hiSubValue {
     return self.value == nil ? [super hiSubValue] : [self.value hiSubValue];
 }
 

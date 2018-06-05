@@ -50,7 +50,7 @@
         result = YES;
     }
     
-    if ( self.sub_value == nil || [sv isEqualToData:[self dataSubValue]] ) {
+    if ( self.sub_value == nil || ![sv isEqualToData:[self dataSubValue]] ) {
         self.sub_value = sv;
         result = YES;
     }
@@ -62,26 +62,26 @@
     return self.online;
 }
 
-- (BOOL) hiValue {
+- (int) hiValue {
     
     if ( self.value != nil ) {
         char c = 0;
         [self.dataValue getBytes:&c length:1];
-        return c > 0;
+        return c > 0 ? 1 : 0;
     }
     
-    return NO;
+    return 0;
 }
 
-- (BOOL) hiSubValue {
+- (int) hiSubValue {
     
     if ( self.sub_value != nil ) {
-        char c = 0;
-        [self.dataSubValue getBytes:&c length:1];
-        return c > 0;
+        char c[2] = {0, 0};
+        [self.dataSubValue getBytes:&c[0] length:2];
+        return (c[0] > 0 ? 0x1 : 0) | (c[1] > 0 ? 0x2 : 0);
     }
     
-    return NO;
+    return 0;
 }
 
 - (double) doubleValue {

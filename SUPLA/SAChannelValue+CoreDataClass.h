@@ -32,8 +32,8 @@ NS_ASSUME_NONNULL_BEGIN
 - (NSData *) dataSubValue;
 
 - (BOOL) isOnline;
-- (BOOL) hiValue;
-- (BOOL) hiSubValue;
+- (int) hiValue;
+- (int) hiSubValue;
 - (int) intValue;
 - (double) doubleValue;
 - (double) getTemperatureForFunction:(int)func;
