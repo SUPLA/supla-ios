@@ -315,25 +315,26 @@
     if ( [Value setOnlineState:channel_value->online]) {
         save = YES;
     }
+
+    NSArray *r = [self fetchByPredicate:[NSPredicate predicateWithFormat:@"remote_id = %i AND (value = nil OR value <> %@)", channel_value->Id, Value] entityName:@"SAChannel" limit:0];
+    
+    if ( r != nil ) {
+        for(int a=0;a<r.count;a++) {
+            ((SAChannel*)[r objectAtIndex:a]).value = Value;
+            save = YES;
+        }
+    }
+    
+    r = [self fetchByPredicate:[NSPredicate predicateWithFormat:@"channel_id = %i AND (value = nil OR value <> %@)", channel_value->Id, Value] entityName:@"SAChannelGroupRelation" limit:0];
+    
+    if ( r != nil ) {
+        for(int a=0;a<r.count;a++) {
+            ((SAChannelGroupRelation*)[r objectAtIndex:a]).value = Value;
+            save = YES;
+        }
+    }
     
     if ( save ) {
-        NSArray *r = [self fetchByPredicate:[NSPredicate predicateWithFormat:@"remote_id = %i AND value <> %@", channel_value->Id, Value] entityName:@"SAChannel" limit:0];
-        
-        if ( r != nil ) {
-            for(int a=0;a<r.count;a++) {
-                ((SAChannel*)[r objectAtIndex:a]).value = Value;
-            }
-        }
-        
-        r = [self fetchByPredicate:[NSPredicate predicateWithFormat:@"channel_id = %i AND value <> %@", channel_value->Id, Value] entityName:@"SAChannelGroupRelation" limit:0];
-        
-        if ( r != nil ) {
-            for(int a=0;a<r.count;a++) {
-                ((SAChannelGroupRelation*)[r objectAtIndex:a]).value = Value;
-                NSLog(@"CGroup Rel value updated");
-            }
-        }
-        
         [self saveContext];
     }
     
