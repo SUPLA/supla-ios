@@ -600,6 +600,7 @@
     
     NSMutableArray *result = [[NSMutableArray alloc] init];
     SAChannelGroup *cgroup = nil;
+    BOOL save = NO;
     
     for(int a=0;a<r.count;a++) {
         SAChannelGroupRelation *cg_rel = [r objectAtIndex:a];
@@ -620,9 +621,14 @@
             if ([cgroup diffWithBuffer]) {
                 [cgroup assignBuffer];
                 [result addObject: [NSNumber numberWithInteger:cgroup.remote_id]];
+                save = YES;
             }
             cgroup = nil;
         }
+    }
+    
+    if ( save ) {
+        [self saveContext];
     }
     
     return result;
