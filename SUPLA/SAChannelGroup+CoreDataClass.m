@@ -136,7 +136,7 @@
     return 0;
 }
 
-- (int) activePercent {
+- (int) activePercentForIndex:(int)idx {
     if (self.total_value == nil || ![self.total_value isKindOfClass:[NSArray class]]) {
         return 0;
     }
@@ -164,21 +164,29 @@
                 if ([self getIntFromObject:[v objectAtIndex:a] atArrIndex:2] > 0 ) {
                     sum++;
                 }
+                count++;
                 break;
             case SUPLA_CHANNELFNC_RGBLIGHTING:
                 if ([self getIntFromObject:[v objectAtIndex:a] atArrIndex:1] > 0 ) {
                     sum++;
                 }
+                count++;
                 break;
             case SUPLA_CHANNELFNC_DIMMERANDRGBLIGHTING:
-                if ([self getIntFromObject:[v objectAtIndex:a] atArrIndex:1] > 0 ) {
+                if ((idx == 0 || idx == 1)
+                    && [self getIntFromObject:[v objectAtIndex:a] atArrIndex:1] > 0 ) {
                     sum++;
                 }
                 
-                if ([self getIntFromObject:[v objectAtIndex:a] atArrIndex:2] > 0 ) {
+                if ((idx == 0 || idx == 2)
+                    && [self getIntFromObject:[v objectAtIndex:a] atArrIndex:2] > 0 ) {
                     sum++;
                 }
-                 count+=2;
+                if (idx) {
+                    count++;
+                } else {
+                   count+=2;
+                }
                 break;
             case SUPLA_CHANNELFNC_CONTROLLINGTHEROLLERSHUTTER:
                 if ([self getIntFromObject:[v objectAtIndex:a] atArrIndex:0] >= 100     // percent
@@ -192,4 +200,26 @@
 
     return count == 0 ? 0 : sum * 100 / count;
 }
+
+- (int) activePercent {
+    return [self activePercentForIndex:0];
+}
+
+- (int) imgIsActive {
+    
+    if (self.func == SUPLA_CHANNELFNC_DIMMERANDRGBLIGHTING) {
+        int active = 0;
+        if ([self activePercentForIndex:2] >= 100) {
+            active = 0x1;
+        }
+        if ([self activePercentForIndex:1] >= 100) {
+            active |= 0x2;
+        }
+        
+        return active;
+    }
+    
+    return self.activePercent >= 100;
+}
+
 @end
