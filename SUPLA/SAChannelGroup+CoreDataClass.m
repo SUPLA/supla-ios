@@ -121,4 +121,7 @@
     return self.online;
 }
 
+- (int) activePercent {
+    return 0;
+}
 @end

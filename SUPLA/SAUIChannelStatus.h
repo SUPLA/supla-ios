@@ -27,6 +27,7 @@ typedef enum channelStatusShapeType {
 
 @interface SAUIChannelStatus : UIView
 
+@property (nonatomic, assign) BOOL singleColor;
 @property (nonatomic, assign) channelStatusShapeType shapeType;
 @property (nonatomic, assign) double percent;
 

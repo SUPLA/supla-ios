@@ -44,9 +44,12 @@
 @property (weak, nonatomic) IBOutlet UILabel *caption;
 @property (weak, nonatomic) IBOutlet SAUIChannelStatus *right_OnlineStatus;
 @property (weak, nonatomic) IBOutlet SAUIChannelStatus *left_OnlineStatus;
+@property (weak, nonatomic) IBOutlet SAUIChannelStatus *right_ActiveStatus;
 @property (weak, nonatomic) IBOutlet UILabel *temp;
 @property (weak, nonatomic) IBOutlet UILabel *humidity;
 @property (weak, nonatomic) IBOutlet UILabel *distance;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *cint_LeftStatusWidth;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *cint_RightStatusWidth;
 
 
 @end

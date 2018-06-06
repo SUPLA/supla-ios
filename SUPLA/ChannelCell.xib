@@ -88,8 +88,11 @@
             </tableViewCellContentView>
             <connections>
                 <outlet property="caption" destination="CZP-9z-72p" id="VL0-of-fD9"/>
+                <outlet property="cint_LeftStatusWidth" destination="S8n-Ie-UUr" id="Vvb-rR-f9L"/>
+                <outlet property="cint_RightStatusWidth" destination="8MR-Jr-6sX" id="H83-AZ-MaW"/>
                 <outlet property="image" destination="VDN-tt-KUq" id="gep-Co-Zre"/>
                 <outlet property="left_OnlineStatus" destination="mwc-4O-K3V" id="UU1-4f-2q6"/>
+                <outlet property="right_ActiveStatus" destination="8O3-5x-52I" id="5a3-0x-PN4"/>
                 <outlet property="right_OnlineStatus" destination="ilZ-Cd-uym" id="N22-Fi-pEQ"/>
             </connections>
             <point key="canvasLocation" x="170" y="-100.5"/>

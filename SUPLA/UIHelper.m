@@ -78,6 +78,10 @@
     return [UIColor colorWithRed:0.93 green:0.93 blue:0.93 alpha:1.0];
 }
 
++(nonnull UIColor*)statusBorder {
+    return [UIColor blackColor];
+}
+
 @end
 
 @implementation SAUIHelper {

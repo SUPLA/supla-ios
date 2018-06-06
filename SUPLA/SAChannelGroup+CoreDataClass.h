@@ -28,6 +28,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (void) addValueToBuffer:(SAChannelValue*)value;
 - (BOOL) diffWithBuffer;
 - (void) assignBuffer;
+- (int) activePercent;
 @end
 
 NS_ASSUME_NONNULL_END

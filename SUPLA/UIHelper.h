@@ -41,6 +41,7 @@
 +(nonnull UIColor*)cellBackground;
 +(nonnull UIColor*)rgbDetailBackground;
 +(nonnull UIColor*)rsDetailBackground;
++(nonnull UIColor*)statusBorder;
 
 @end
 

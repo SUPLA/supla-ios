@@ -53,11 +53,11 @@
 }
 
 -(id)initWithCoder:(NSCoder *)aDecoder {
+    
     self = [super initWithCoder:aDecoder];
     if ( self ) {
          self.leftSwipeSettings.transition = MGSwipeTransitionRotate3D;
          self.rightSwipeSettings.transition = MGSwipeTransitionRotate3D;
-
     }
     return self;
 }
@@ -132,20 +132,25 @@
         
 
         if ( isGroup ) {
+            self.cint_LeftStatusWidth.constant = 6;
+            self.right_ActiveStatus.percent = ((SAChannelGroup*)channelBase).activePercent;
+            self.right_ActiveStatus.singleColor = YES;
+            self.right_ActiveStatus.hidden = NO;
             self.right_OnlineStatus.shapeType = stLinearVertical;
             self.left_OnlineStatus.shapeType = stLinearVertical;
         } else {
+            self.cint_LeftStatusWidth.constant = 10;
+            self.right_ActiveStatus.hidden = YES;
             self.right_OnlineStatus.shapeType = stDot;
             self.left_OnlineStatus.shapeType = stDot;
         }
-
         
+        self.cint_RightStatusWidth.constant = self.cint_LeftStatusWidth.constant;
         self.right_OnlineStatus.percent = [channelBase onlinePercent];
         self.left_OnlineStatus.percent = self.right_OnlineStatus.percent;
         
         self.rightButtons = nil;
         self.leftButtons = nil;
-        
         
         switch(channelBase.func) {
             case SUPLA_CHANNELFNC_CONTROLLINGTHEGATE:
