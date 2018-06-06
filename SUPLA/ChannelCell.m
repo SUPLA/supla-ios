@@ -84,6 +84,7 @@
 -(void)setChannelBase:(SAChannelBase *)channelBase {
     
     _channelBase = channelBase;
+    BOOL isGroup = [channelBase isKindOfClass:[SAChannelGroup class]];
 
     [self.caption setText:[channelBase getChannelCaption]];
     
@@ -130,8 +131,14 @@
         [self.image setImage:[channelBase getIcon]];
         
 
-        self.right_OnlineStatus.shapeType = stDot;
-        self.left_OnlineStatus.shapeType = stDot;
+        if ( isGroup ) {
+            self.right_OnlineStatus.shapeType = stLinearVertical;
+            self.left_OnlineStatus.shapeType = stLinearVertical;
+        } else {
+            self.right_OnlineStatus.shapeType = stDot;
+            self.left_OnlineStatus.shapeType = stDot;
+        }
+
         
         self.right_OnlineStatus.percent = [channelBase onlinePercent];
         self.left_OnlineStatus.percent = self.right_OnlineStatus.percent;

@@ -44,20 +44,6 @@
 
 @end
 
-typedef enum channelStatusShapeType {
-    stLinearVertical,
-    stLinearHorizontal,
-    stDot,
-    stRing
-}channelStatusShapeType;
-
-@interface SAUIChannelStatus : UIView
-
-@property (nonatomic, assign) channelStatusShapeType shapeType;
-@property (nonatomic, assign) double percent;
-
-@end
-
 @interface SAUIHelper : NSObject
 
 -(void)fadeToViewController:(UIViewController*)vc;

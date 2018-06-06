@@ -124,6 +124,7 @@
 		40B397D81BCEA25700BE7D5A /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 40B397D71BCEA25700BE7D5A /* CFNetwork.framework */; };
 		40B397DE1BCED5EB00BE7D5A /* Quicksand-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 40B397DD1BCED5EB00BE7D5A /* Quicksand-Light.ttf */; };
 		40B397E21BCED7C000BE7D5A /* Quicksand-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 40B397E11BCED7C000BE7D5A /* Quicksand-Regular.ttf */; };
+		40B610CC20C7E263002B762A /* SAUIChannelStatus.m in Sources */ = {isa = PBXBuildFile; fileRef = 40B610CB20C7E263002B762A /* SAUIChannelStatus.m */; };
 		40B9ED3A1FAC79FC00403B1A /* SUPLA.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 407004251BB5706500F6187F /* SUPLA.xcdatamodeld */; };
 		40B9ED451FACCE8700403B1A /* tv-off@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 40B9ED411FACCE8600403B1A /* tv-off@3x.png */; };
 		40B9ED461FACCE8700403B1A /* tv-on@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 40B9ED421FACCE8700403B1A /* tv-on@2x.png */; };
@@ -426,6 +427,8 @@
 		40B397D71BCEA25700BE7D5A /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		40B397DD1BCED5EB00BE7D5A /* Quicksand-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Quicksand-Light.ttf"; path = "Resources/Assets/Fonts/Quicksand-Light.ttf"; sourceTree = "<group>"; };
 		40B397E11BCED7C000BE7D5A /* Quicksand-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Quicksand-Regular.ttf"; path = "Resources/Assets/Fonts/Quicksand-Regular.ttf"; sourceTree = "<group>"; };
+		40B610CA20C7E263002B762A /* SAUIChannelStatus.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SAUIChannelStatus.h; sourceTree = "<group>"; };
+		40B610CB20C7E263002B762A /* SAUIChannelStatus.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SAUIChannelStatus.m; sourceTree = "<group>"; };
 		40B9ED411FACCE8600403B1A /* tv-off@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "tv-off@3x.png"; path = "Resources/Assets/Img/tv-off@3x.png"; sourceTree = "<group>"; };
 		40B9ED421FACCE8700403B1A /* tv-on@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "tv-on@2x.png"; path = "Resources/Assets/Img/tv-on@2x.png"; sourceTree = "<group>"; };
 		40B9ED431FACCE8700403B1A /* tv-off@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "tv-off@2x.png"; path = "Resources/Assets/Img/tv-off@2x.png"; sourceTree = "<group>"; };
@@ -988,6 +991,8 @@
 				4077ACE020A21BB100BD2216 /* CreateAccountVC.h */,
 				4077ACE120A21BB100BD2216 /* CreateAccountVC.m */,
 				4077ACE220A21BB100BD2216 /* CreateAccountVC.xib */,
+				40B610CA20C7E263002B762A /* SAUIChannelStatus.h */,
+				40B610CB20C7E263002B762A /* SAUIChannelStatus.m */,
 			);
 			name = UI;
 			sourceTree = "<group>";
@@ -1311,6 +1316,7 @@
 				40A675831BA1BE8E004A51C4 /* SettingsVC.m in Sources */,
 				406778551BCBF9F4008DD37F /* SectionCell.m in Sources */,
 				40B9ED3A1FAC79FC00403B1A /* SUPLA.xcdatamodeld in Sources */,
+				40B610CC20C7E263002B762A /* SAUIChannelStatus.m in Sources */,
 				4077ACE320A21BB100BD2216 /* CreateAccountVC.m in Sources */,
 				401CA1C81BA067DB00117AF4 /* MainVC.m in Sources */,
 				408034C51BC83D1A007666E7 /* MGSwipeTableCell.m in Sources */,
