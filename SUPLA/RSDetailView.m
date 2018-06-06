@@ -46,7 +46,7 @@
         
         int percent = self.channelBase.percentValue;
         
-        if ( percent < 100 && self.channelBase.isClosed ) {
+        if ( percent < 100 && [self.channelBase hiSubValue] > 0 ) {
             percent = 100;
         }
         

@@ -127,10 +127,8 @@
         [self.distance setText:text];
     
     } else {
-    
         [self.image setImage:[channelBase getIcon]];
-        
-
+    
         if ( isGroup ) {
             self.cint_LeftStatusWidth.constant = 6;
             self.right_ActiveStatus.percent = ((SAChannelGroup*)channelBase).activePercent;

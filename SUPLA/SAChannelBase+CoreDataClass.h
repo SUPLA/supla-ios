@@ -38,8 +38,6 @@ NS_ASSUME_NONNULL_BEGIN
 - (int) onlinePercent;
 - (int) hiValue;
 - (int) hiSubValue;
-- (BOOL) isOn;
-- (BOOL) isClosed;
 - (UIImage*) getIcon;
 
 - (double) temperatureValue;

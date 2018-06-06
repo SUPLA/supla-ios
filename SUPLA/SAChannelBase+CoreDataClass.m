@@ -204,32 +204,17 @@
     return nil;
 }
 
-- (BOOL) isOn {
-    
-    switch(self.func) {
-            
-        case SUPLA_CHANNELFNC_POWERSWITCH:
-        case SUPLA_CHANNELFNC_LIGHTSWITCH:
-        case SUPLA_CHANNELFNC_STAIRCASETIMER:
-            
-            return [self hiValue];
-    }
-    
-    return NO;
-}
-
-- (BOOL) isClosed {
+- (int) imgIsActive {
     
     if ( [self isOnline] ) {
         switch(self.func) {
-                
+            
             case SUPLA_CHANNELFNC_CONTROLLINGTHEGATEWAYLOCK:
             case SUPLA_CHANNELFNC_CONTROLLINGTHEGATE:
             case SUPLA_CHANNELFNC_CONTROLLINGTHEGARAGEDOOR:
             case SUPLA_CHANNELFNC_CONTROLLINGTHEDOORLOCK:
             case SUPLA_CHANNELFNC_CONTROLLINGTHEROLLERSHUTTER:
                 return [self hiSubValue];
-                break;
                 
             case SUPLA_CHANNELFNC_OPENINGSENSOR_GATEWAY:
             case SUPLA_CHANNELFNC_OPENINGSENSOR_GATE:
@@ -238,12 +223,31 @@
             case SUPLA_CHANNELFNC_OPENINGSENSOR_ROLLERSHUTTER:
             case SUPLA_CHANNELFNC_MAILSENSOR:
             case SUPLA_CHANNELFNC_OPENINGSENSOR_WINDOW:
+            case SUPLA_CHANNELFNC_POWERSWITCH:
+            case SUPLA_CHANNELFNC_LIGHTSWITCH:
+            case SUPLA_CHANNELFNC_STAIRCASETIMER:
                 return [self hiValue];
-                break;
+
+            case SUPLA_CHANNELFNC_DIMMER:
+                return self.brightnessValue > 0 ? 1 : 0;
+                
+            case SUPLA_CHANNELFNC_RGBLIGHTING:
+                return self.colorBrightnessValue > 0 ? 1 : 0;
+                
+            case SUPLA_CHANNELFNC_DIMMERANDRGBLIGHTING: {
+                int result = 0;
+                if (self.brightnessValue > 0) {
+                    result = 0x1;
+                }
+                if (self.colorBrightnessValue > 0) {
+                    result |= 0x2;
+                }
+                return result;
+            }
         }
     }
     
-    return NO;
+    return 0;
 }
 
 - (UIImage*) getIcon {
@@ -256,10 +260,8 @@
         case SUPLA_CHANNELFNC_CONTROLLINGTHEGATEWAYLOCK:
             n1 = @"gateway";
             break;
-        case SUPLA_CHANNELFNC_CONTROLLINGTHEGATE:
-
-        {
-            BOOL _50percent = (self.hiSubValue & 0x2) == 0x2 && (self.hiSubValue & 0x1) == 0;
+        case SUPLA_CHANNELFNC_CONTROLLINGTHEGATE: {
+            BOOL _50percent = ([self imgIsActive] & 0x2) == 0x2 && ([self imgIsActive] & 0x1) == 0;
             if (_50percent && self.alticon != 2) {
                 return [UIImage imageNamed:self.alticon == 1 ? @"gatealt1-closed-50percent" : @"gate-closed-50percent"];
             }
@@ -328,32 +330,33 @@
         case SUPLA_CHANNELFNC_THERMOMETER:
             return [UIImage imageNamed:@"thermometer"];
         case SUPLA_CHANNELFNC_NOLIQUIDSENSOR:
-            return [UIImage imageNamed:[self hiValue] ? @"liquid" : @"noliquid"];
+            return [UIImage imageNamed:[self imgIsActive] ? @"liquid" : @"noliquid"];
         case SUPLA_CHANNELFNC_DIMMER:
-            return [UIImage imageNamed:[NSString stringWithFormat:@"dimmer-%@", self.brightnessValue > 0 ? @"on" : @"off"]];
+            n2 = @"dimmer";
+            break;
             
         case SUPLA_CHANNELFNC_RGBLIGHTING:
-            return [UIImage imageNamed:[NSString stringWithFormat:@"rgb-%@", self.colorBrightnessValue > 0 ? @"on" : @"off"]];
+            n2 = @"rgb";
+            break;
             
         case SUPLA_CHANNELFNC_DIMMERANDRGBLIGHTING:
-            return [UIImage imageNamed:[NSString stringWithFormat:@"dimmerrgb-%@%@", self.brightnessValue > 0 ? @"on" : @"off", self.colorBrightnessValue > 0 ? @"on" : @"off"]];
-            break;
+            return [UIImage imageNamed:[NSString stringWithFormat:@"dimmerrgb-%@%@", [self imgIsActive] & 0x1 ? @"on" : @"off", [self imgIsActive] & 0x2 ? @"on" : @"off"]];
             
         case SUPLA_CHANNELFNC_OPENINGSENSOR_WINDOW:
             n1 = @"window";
             break;
             
         case SUPLA_CHANNELFNC_MAILSENSOR:
-            return [UIImage imageNamed:[self isClosed] ? @"mail" : @"nomail"];
+            return [UIImage imageNamed:[self imgIsActive] ? @"mail" : @"nomail"];
             
     }
     
     if ( n1 ) {
-        return [UIImage imageNamed:[NSString stringWithFormat:@"%@-%@", n1, [self isClosed] ? @"closed" : @"open"]];
+        return [UIImage imageNamed:[NSString stringWithFormat:@"%@-%@", n1, [self imgIsActive] ? @"closed" : @"open"]];
     }
     
     if ( n2 ) {
-        return [UIImage imageNamed:[NSString stringWithFormat:@"%@-%@", n2, [self isOn] ? @"on" : @"off"]];
+        return [UIImage imageNamed:[NSString stringWithFormat:@"%@-%@", n2, [self imgIsActive] ? @"on" : @"off"]];
     }
     
     

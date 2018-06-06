@@ -73,7 +73,7 @@
         case SUPLA_CHANNELFNC_CONTROLLINGTHEGATEWAYLOCK:
         case SUPLA_CHANNELFNC_CONTROLLINGTHEGATE:
         case SUPLA_CHANNELFNC_CONTROLLINGTHEGARAGEDOOR:
-            [BufferTotalValue addObject:[NSNumber numberWithBool: value.hiSubValue]];
+            [BufferTotalValue addObject:[NSNumber numberWithBool: value.hiSubValue & 0x1]];
             break;
 
         case SUPLA_CHANNELFNC_POWERSWITCH:
@@ -83,7 +83,7 @@
             break;
         case SUPLA_CHANNELFNC_CONTROLLINGTHEROLLERSHUTTER: {
             NSArray *obj = [NSArray arrayWithObjects:[NSNumber numberWithInt: value.percentValue],
-                            [NSNumber numberWithBool: value.hiSubValue], nil];
+                            [NSNumber numberWithBool: value.hiSubValue & 0x1], nil];
             [BufferTotalValue addObject:obj];
         }
             break;
@@ -125,6 +125,17 @@
     return self.online;
 }
 
+- (int) getIntFromObject:(NSObject*)obj atArrIndex:(int)idx {
+    if ( [obj isKindOfClass:[NSArray class]]) {
+        NSArray *arr = (NSArray*)obj;
+        if (arr.count > idx
+            && [[arr objectAtIndex:idx] isKindOfClass:[NSNumber class]]) {
+            return [(NSNumber*)[arr objectAtIndex:idx] intValue];
+        }
+    }
+    return 0;
+}
+
 - (int) activePercent {
     if (self.total_value == nil || ![self.total_value isKindOfClass:[NSArray class]]) {
         return 0;
@@ -142,7 +153,6 @@
             case SUPLA_CHANNELFNC_POWERSWITCH:
             case SUPLA_CHANNELFNC_LIGHTSWITCH:
             case SUPLA_CHANNELFNC_STAIRCASETIMER:
-            case SUPLA_CHANNELFNC_DIMMER:
                 if ( [[v objectAtIndex:a] isKindOfClass:[NSNumber class]]
                     && [[v objectAtIndex:a] boolValue]) {
                     sum++;
@@ -150,12 +160,32 @@
                 count++;
                 break;
                 
-            case SUPLA_CHANNELFNC_RGBLIGHTING:
+            case SUPLA_CHANNELFNC_DIMMER:
+                if ([self getIntFromObject:[v objectAtIndex:a] atArrIndex:2] > 0 ) {
+                    sum++;
+                }
                 break;
-                
+            case SUPLA_CHANNELFNC_RGBLIGHTING:
+                if ([self getIntFromObject:[v objectAtIndex:a] atArrIndex:1] > 0 ) {
+                    sum++;
+                }
+                break;
             case SUPLA_CHANNELFNC_DIMMERANDRGBLIGHTING:
+                if ([self getIntFromObject:[v objectAtIndex:a] atArrIndex:1] > 0 ) {
+                    sum++;
+                }
+                
+                if ([self getIntFromObject:[v objectAtIndex:a] atArrIndex:2] > 0 ) {
+                    sum++;
+                }
+                 count+=2;
                 break;
             case SUPLA_CHANNELFNC_CONTROLLINGTHEROLLERSHUTTER:
+                if ([self getIntFromObject:[v objectAtIndex:a] atArrIndex:0] >= 100     // percent
+                    || [self getIntFromObject:[v objectAtIndex:a] atArrIndex:1] > 0) {  // sensor
+                    sum++;
+                }
+                count++;
                 break;
         }
     }
