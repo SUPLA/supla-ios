@@ -536,10 +536,17 @@ void sasuplaclient_on_registration_enabled(void *_suplaclient, void *user_data, 
 
 - (void) onChannelGroupValueChanged {
     NSArray *result = [self.DB updateChannelGroups];
+    BOOL DataChanged = NO;
+    
     if (result!=nil) {
         for(int a=0;a<result.count;a++) {
             [self onChannelValueChanged:[[result objectAtIndex:a] intValue] isGroup:YES];
+            DataChanged = YES;
         }
+    }
+    
+    if (DataChanged) {
+        [self onDataChanged];
     }
 }
 
