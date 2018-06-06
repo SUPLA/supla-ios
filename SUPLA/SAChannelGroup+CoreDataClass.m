@@ -64,6 +64,10 @@
     
     BufferOnLine = BufferOnLineCount * 100 / BufferCounter;
     
+    if (![value isOnline]) {
+        return;
+    }
+    
     switch(self.func) {
         case SUPLA_CHANNELFNC_CONTROLLINGTHEDOORLOCK:
         case SUPLA_CHANNELFNC_CONTROLLINGTHEGATEWAYLOCK:
@@ -122,6 +126,40 @@
 }
 
 - (int) activePercent {
-    return 0;
+    if (self.total_value == nil || ![self.total_value isKindOfClass:[NSArray class]]) {
+        return 0;
+    }
+    
+    int count = 0, sum = 0;
+    NSArray *v = (NSArray*)self.total_value;
+    
+    for(int a=0;a<v.count;a++) {
+        switch(self.func) {
+            case SUPLA_CHANNELFNC_CONTROLLINGTHEDOORLOCK:
+            case SUPLA_CHANNELFNC_CONTROLLINGTHEGATEWAYLOCK:
+            case SUPLA_CHANNELFNC_CONTROLLINGTHEGATE:
+            case SUPLA_CHANNELFNC_CONTROLLINGTHEGARAGEDOOR:
+            case SUPLA_CHANNELFNC_POWERSWITCH:
+            case SUPLA_CHANNELFNC_LIGHTSWITCH:
+            case SUPLA_CHANNELFNC_STAIRCASETIMER:
+            case SUPLA_CHANNELFNC_DIMMER:
+                if ( [[v objectAtIndex:a] isKindOfClass:[NSNumber class]]
+                    && [[v objectAtIndex:a] boolValue]) {
+                    sum++;
+                }
+                count++;
+                break;
+                
+            case SUPLA_CHANNELFNC_RGBLIGHTING:
+                break;
+                
+            case SUPLA_CHANNELFNC_DIMMERANDRGBLIGHTING:
+                break;
+            case SUPLA_CHANNELFNC_CONTROLLINGTHEROLLERSHUTTER:
+                break;
+        }
+    }
+
+    return count == 0 ? 0 : sum * 100 / count;
 }
 @end
