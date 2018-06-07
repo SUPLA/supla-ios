@@ -18,6 +18,7 @@
 
 #import "DetailView.h"
 #import "SARollerShutter.h"
+#import "SAUIChannelStatus.h"
 
 @interface SARSDetailView : SADetailView <SARollerShutterDelegate>
 - (IBAction)upTouch:(id)sender;
@@ -28,5 +29,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *labelCaption;
 @property (weak, nonatomic) IBOutlet UILabel *labelPercent;
 @property (weak, nonatomic) IBOutlet SARollerShutter *rsView;
+@property (weak, nonatomic) IBOutlet SAUIChannelStatus *onlineStatus;
+
 
 @end

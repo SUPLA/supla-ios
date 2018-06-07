@@ -222,4 +222,26 @@
     return self.activePercent >= 100;
 }
 
+- (NSMutableArray*) rsPositions {
+    NSMutableArray *result = [[NSMutableArray alloc] init];
+    
+    if (self.func == SUPLA_CHANNELFNC_CONTROLLINGTHEROLLERSHUTTER
+        && self.total_value != nil) {
+        NSArray *ar = (NSArray*)self.total_value;
+        for(int a=0;a<ar.count;a++) {
+            int pos = [self getIntFromObject:[ar objectAtIndex:a] atArrIndex:0];
+            int sensor = [self getIntFromObject:[ar objectAtIndex:a] atArrIndex:1];
+            
+            if (pos < 100 && sensor == 1) {
+                pos = 100;
+            }
+            
+            [result addObject:[NSNumber numberWithInt:pos]];
+        }
+    }
+    
+    
+    return result;
+}
+
 @end

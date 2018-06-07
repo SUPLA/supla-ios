@@ -20,43 +20,92 @@
 #import "DetailView.h"
 #import "UIHelper.h"
 #import "SuplaApp.h"
+#import "SAChannelGroup+CoreDataClass.h"
 
 @implementation SARSDetailView
-
 
 -(void)detailViewInit {
     
     if ( self.initialized == NO ) {
-        
         self.backgroundColor = [UIColor rsDetailBackground];
+        self.rsView.markerColor = [UIColor rsMarkerColor];
         self.rsView.gestureEnabled = YES;
         self.rsView.delegate = self;
+        
+        self.onlineStatus.onlineColor = [UIColor onLine];
+        self.onlineStatus.offlineColor = [UIColor offLine];
+        self.onlineStatus.borderColor = [UIColor statusBorder];
     }
     
-    
     [super detailViewInit];
-    
+}
+
+- (void)timer1FireMethod:(NSTimer *)timer {
+    int percent = [timer.userInfo intValue];
+    self.rsView.percent = percent;
+    self.rsView.markers = nil;
+    [self.labelPercent setText:[NSString stringWithFormat:@"%i%%", percent]];
+    [timer invalidate];
 }
 
 -(void)dataToView {
     
+    self.onlineStatus.hidden = YES;
+    
     if ( self.channelBase != nil ) {
         
-        [self.labelCaption setText:[self.channelBase getChannelCaption]];
+        int percent = -1;
         
-        int percent = self.channelBase.percentValue;
-        
-        if ( percent < 100 && [self.channelBase hiSubValue] > 0 ) {
-            percent = 100;
-        }
-        
-        self.rsView.percent = percent;
-        
-        if ( percent < 0 ) {
-            [self.labelPercent setText:NSLocalizedString(@"[Calibration]", NULL)];
+        if ([self.channelBase isKindOfClass: [SAChannelGroup class]]) {
+            SAChannelGroup *cgroup = (SAChannelGroup*)self.channelBase;
+            self.onlineStatus.hidden = NO;
+            self.onlineStatus.percent = cgroup.onlinePercent;
+            
+            NSMutableArray *positions = cgroup.rsPositions;
+            for(int a=0;a<positions.count;a++) {
+                int p = [[positions objectAtIndex:a] intValue];
+                if (p < 0) {
+                    [positions removeObjectAtIndex:p];
+                    a--;
+                } else if (percent == -1) {
+                    percent = p;
+                } else if (percent != -2 && percent != p) {
+                    percent = -2;
+                }
+            }
+            
+            if (percent >= 0) {
+                self.rsView.markers = positions;
+                 [self.labelPercent setText:NSLocalizedString(@"---", NULL)];
+                [NSTimer scheduledTimerWithTimeInterval:2 target:self selector:@selector(timer1FireMethod:) userInfo:[NSNumber numberWithInt:percent] repeats:NO];
+            } else if (percent == -1) {
+                // All of RS wait for calibration
+                self.rsView.percent = 0;
+                self.rsView.markers = nil;
+                 [self.labelPercent setText:NSLocalizedString(@"[Calibration]", NULL)];
+            } else {
+                self.rsView.percent = 0;
+                 self.rsView.markers = positions;
+                [self.labelPercent setText:NSLocalizedString(@"---", NULL)];
+            }
+            
         } else {
-            [self.labelPercent setText:[NSString stringWithFormat:@"%i%%", (int)percent]];
+            percent = self.channelBase.percentValue;
+            
+            if ( percent < 100 && [self.channelBase hiSubValue] > 0 ) {
+                percent = 100;
+            }
+            
+            self.rsView.percent = percent;
+            
+            if ( percent < 0 ) {
+                [self.labelPercent setText:NSLocalizedString(@"[Calibration]", NULL)];
+            } else {
+                [self.labelPercent setText:[NSString stringWithFormat:@"%i%%", (int)percent]];
+            }
         }
+        
+        [self.labelCaption setText:[self.channelBase getChannelCaption]];
         
     }
     
@@ -78,7 +127,7 @@
 - (void)open:(int)value {
     SASuplaClient *client = [SAApp SuplaClient];
     if ( client != nil && self.channelBase != nil )  {
-        [[SAApp SuplaClient] channel:self.channelBase.remote_id Open:value];
+        [[SAApp SuplaClient] cg:self.channelBase.remote_id Open:value group:[self.channelBase isKindOfClass: [SAChannelGroup class]]];
     }
     
 }

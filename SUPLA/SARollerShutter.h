@@ -29,14 +29,16 @@
 @interface SARollerShutter : UIView
 
 
-@property(weak, nonatomic) UIColor *windowColor;
-@property(weak, nonatomic) UIColor *sunColor;
+@property(copy, nonatomic) UIColor *windowColor;
+@property(copy, nonatomic) UIColor *sunColor;
+@property(copy, nonatomic) UIColor *markerColor;
 @property(nonatomic, assign) CGFloat frameLineWidth;
 @property(nonatomic, assign) CGFloat spaceing;
 @property(nonatomic, assign) CGFloat louverSpaceing;
 @property(nonatomic, assign) short louverCount;
 @property(nonatomic, assign) float percent;
 @property(nonatomic, assign) BOOL gestureEnabled;
+@property(nonatomic, copy) NSArray *markers;
 
 @property(weak, nonatomic) id<SARollerShutterDelegate> delegate;
 

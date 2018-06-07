@@ -19,8 +19,10 @@
 @implementation SARollerShutter {
     BOOL initialized;
     BOOL moving;
+    NSArray *_markers;
     UIColor *_windowColor;
     UIColor *_sunColor;
+    UIColor *_markerColor;
     CGFloat _frameLineWidth;
     CGFloat _spaceing;
     CGFloat _louverSpaceing;
@@ -38,6 +40,7 @@
     if ( initialized )
         return;
     
+    _markers = nil;
     _windowColor = [UIColor blackColor];
     _sunColor = _windowColor;
     _frameLineWidth = 2;
@@ -88,6 +91,18 @@
     return self;
 }
 
+-(NSArray*)markers {
+    return _markers;
+}
+
+-(void)setMarkers:(NSArray *)markers {
+    _markers = markers;
+    
+    if ( initialized ) {
+        [self setNeedsDisplay];
+    }
+}
+
 -(UIColor*)windowColor {
     return _windowColor;
 }
@@ -109,6 +124,20 @@
     
     if ( initialized )
         [self setNeedsDisplay];
+}
+
+-(void)setMarkerColor:(UIColor *)markerColor {
+    _markerColor = markerColor;
+  
+    if ( initialized )
+        [self setNeedsDisplay];
+}
+
+-(UIColor*)markerColor {
+    if (_markerColor == nil) {
+        return [UIColor redColor];
+    }
+    return _markerColor;
 }
 
 -(void)setBackgroundColor:(UIColor *)backgroundColor {
@@ -248,6 +277,39 @@
     }
     
     float percent = moving ? virtPercent : _percent;
+    CGContextSetLineWidth(context, 0.5);
+    
+    if (self.percent == 0 && self.markers != nil && self.markers.count > 0) {
+        
+        float markerHalfHeight = _spaceing + _frameLineWidth / 2;
+        float markerArrowWidth = _spaceing * 2;
+        float markerWidth = self.bounds.size.width / 20 + markerArrowWidth;
+        float markerMargin = _frameLineWidth / 2;
+        float pos;
+        
+        CGContextSetFillColorWithColor(context, _markerColor.CGColor);
+        CGContextSetStrokeColorWithColor(context, [UIColor whiteColor].CGColor);
+        for (int a = 0; a < self.markers.count; a++) {
+            for(short b=0;b<2;b++) {
+                path = [UIBezierPath bezierPath];
+                pos = (float) ((self.bounds.size.height - markerHalfHeight * 2) * [[self.markers objectAtIndex:a] intValue] / 100.00) + markerHalfHeight;
+                
+                [path moveToPoint: CGPointMake(markerMargin, pos)];
+                [path addLineToPoint:CGPointMake(markerMargin + markerArrowWidth, pos - markerHalfHeight)];
+                [path addLineToPoint:CGPointMake(markerMargin + markerWidth, pos - markerHalfHeight)];
+                [path addLineToPoint:CGPointMake(markerMargin + markerWidth, pos + markerHalfHeight)];
+                [path addLineToPoint:CGPointMake(markerMargin + markerArrowWidth, pos + markerHalfHeight)];
+                [path addLineToPoint:CGPointMake(markerMargin, pos)];
+                
+                if (b==0) {
+                    [path fill];
+                } else {
+                    [path stroke];
+                }
+                
+            }
+        }
+    }
    
     if ( percent > 100 )
         percent = 100;
@@ -278,11 +340,11 @@
     }
     
     CGContextSetStrokeColorWithColor(context, color.CGColor);
-    CGContextSetLineWidth(context, 0.5);
     CGContextMoveToPoint(context, 0, 0.25);
     CGContextAddLineToPoint(context, self.bounds.size.width, 0.25);
     CGContextStrokePath(context);
     
+
     
 }
 
