@@ -30,9 +30,9 @@ typedef enum channelStatusShapeType {
 @property (nonatomic, assign) BOOL singleColor;
 @property (nonatomic, assign) channelStatusShapeType shapeType;
 @property (nonatomic, assign) double percent;
-@property(weak, nonatomic) UIColor *offlineColor;
-@property(weak, nonatomic) UIColor *onlineColor;
-@property(weak, nonatomic) UIColor *borderColor;
+@property(copy, nonatomic) UIColor *offlineColor;
+@property(copy, nonatomic) UIColor *onlineColor;
+@property(copy, nonatomic) UIColor *borderColor;
 
 -(void)assignColors:(SAUIChannelStatus*)status;
 
