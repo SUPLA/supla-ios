@@ -30,6 +30,9 @@ NS_ASSUME_NONNULL_BEGIN
 - (void) assignBuffer;
 - (int) activePercent;
 - (NSMutableArray*) rsPositions;
+- (NSMutableArray*) colors;
+- (NSMutableArray*) colorBrightness;
+- (NSMutableArray*) brightness;
 @end
 
 NS_ASSUME_NONNULL_END

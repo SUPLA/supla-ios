@@ -125,15 +125,19 @@
     return self.online;
 }
 
-- (int) getIntFromObject:(NSObject*)obj atArrIndex:(int)idx {
+- (NSNumber *) getNumberFromObject:(NSObject*)obj atArrIndex:(int)idx {
     if ( [obj isKindOfClass:[NSArray class]]) {
         NSArray *arr = (NSArray*)obj;
         if (arr.count > idx
             && [[arr objectAtIndex:idx] isKindOfClass:[NSNumber class]]) {
-            return [(NSNumber*)[arr objectAtIndex:idx] intValue];
+            return (NSNumber*)[arr objectAtIndex:idx];
         }
     }
-    return 0;
+    return [NSNumber numberWithInt:0];
+}
+
+- (int) getIntFromObject:(NSObject*)obj atArrIndex:(int)idx {
+    return [[self getNumberFromObject:obj atArrIndex:idx] intValue];
 }
 
 - (int) activePercentForIndex:(int)idx {
@@ -242,6 +246,46 @@
     
     
     return result;
+}
+
+- (NSMutableArray*) rgbValue:(int)idx {
+    NSMutableArray *result = [[NSMutableArray alloc] init];
+    
+    if (self.total_value != nil) {
+        NSArray *ar = (NSArray*)self.total_value;
+        for(int a=0;a<ar.count;a++) {
+            [result addObject:[self getNumberFromObject:[ar objectAtIndex:a] atArrIndex:idx]];
+        }
+    }
+    
+    return result;
+}
+
+- (NSMutableArray*) colors {
+    switch (self.func) {
+        case SUPLA_CHANNELFNC_RGBLIGHTING:
+        case SUPLA_CHANNELFNC_DIMMERANDRGBLIGHTING:
+            return [self rgbValue:0];
+    }
+    return [[NSMutableArray alloc] init];
+}
+
+- (NSMutableArray*) colorBrightness {
+    switch (self.func) {
+        case SUPLA_CHANNELFNC_RGBLIGHTING:
+        case SUPLA_CHANNELFNC_DIMMERANDRGBLIGHTING:
+            return [self rgbValue:1];
+    }
+    return [[NSMutableArray alloc] init];
+}
+
+- (NSMutableArray*) brightness {
+    switch (self.func) {
+        case SUPLA_CHANNELFNC_DIMMER:
+        case SUPLA_CHANNELFNC_DIMMERANDRGBLIGHTING:
+            return [self rgbValue:1];
+    }
+    return [[NSMutableArray alloc] init];
 }
 
 @end
