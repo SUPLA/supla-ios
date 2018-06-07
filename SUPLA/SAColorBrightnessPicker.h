@@ -34,6 +34,8 @@
 @property(weak, nonatomic) IBOutlet UIColor *color;
 @property(nonatomic, assign) float brightness;
 @property(nonatomic, readonly) BOOL moving;
+@property(nonatomic, copy) NSArray *brightnessMarkers;
+@property(nonatomic, copy) NSArray *colorMarkers;
 
 @property(weak, nonatomic) id<SAColorBrightnessPickerDelegate> delegate;
 

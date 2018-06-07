@@ -28,6 +28,8 @@
     
     BOOL initialized;
     
+    NSArray *_colorMarkers;
+    NSArray *_brightnessMarkers;
     BOOL _moving;
     BOOL _colorBrightnessWheelVisible;
     BOOL _bwBrightnessWheelVisible;
@@ -77,32 +79,7 @@
     [_gr setMinimumNumberOfTouches:1];
     [_gr setMaximumNumberOfTouches:1];
     
-    
     [self addGestureRecognizer:_gr];
-
-    NSLog(@"Scale: %f, %f, %f", scale, [[UIScreen mainScreen] bounds].size.height, [[UIScreen mainScreen] bounds].size.width);
-    
-/*
-    self.arrowHeight = scale * 15.0;
-    self.wheelWidth = scale * 16.0;
-    self.margin = scale * 2.0;
-*/
-    /*
-    if ( [[UIScreen mainScreen] bounds].size.height > 480 ) {
-        
-        self.arrowHeight = 30.0;
-        self.wheelWidth =  32.0;
-        self.margin = 4.0;
-        
-    } else {
-        
-        self.arrowHeight = 15.0;
-        self.wheelWidth =  16.0;
-        self.margin = 2.0;
-        
-    }
-    */
-
     
     self.colorBrightnessWheelVisible = YES;
     self.brightness = 0;
@@ -153,37 +130,7 @@
     arrowHeight_a = arrowHeight;
     arrowHeight_b = arrowHeight_a * 0.6;
     arrowHeight_a -= arrowHeight_b;
-    
-    //if ( initialized == YES )
-    //    [self setNeedsDisplay];
 }
-/*
--(float)arrowHeight {
-    return _arrowHeight;
-}
-
--(void)setWheelWidth:(float)wheelWidth {
-    _wheelWidth = wheelWidth;
-    
-    if ( initialized == YES )
-        [self setNeedsDisplay];
-}
-
--(float)wheelWidth {
-    return _wheelWidth;
-}
-
--(void)setMargin:(float)margin {
-    _margin = margin;
-    
-    if ( initialized == YES )
-        [self setNeedsDisplay];
-}
-
--(float)margin {
-    return _margin;
-}
-*/
 
 -(void)setColorBrightnessWheelVisible:(BOOL)colorBrightnessWheelVisible {
     
@@ -215,19 +162,23 @@
     return self.colorBrightnessWheelVisible ? _color : [UIColor blackColor];
 }
 
--(void)setColor:(UIColor *)color {
-    
-    _color = color;
+-(float)colorToAngle:(UIColor *)color {
     
     CGFloat hue;
     CGFloat saturation;
     
-    [_color getHue:&hue saturation:&saturation brightness:nil alpha:nil];
+    [color getHue:&hue saturation:&saturation brightness:nil alpha:nil];
     
-    _colorAngle = 360*hue;
-    _colorAngle = 360 - _colorAngle;
+    float angle = 360*hue;
+    angle = 360 - angle;
     
-    _colorAngle = [self addAngle:90 toAngle:_colorAngle];
+    return [self addAngle:90 toAngle:angle];
+}
+
+-(void)setColor:(UIColor *)color {
+    
+    _color = color;
+    _colorAngle = [self colorToAngle:color];
     
     if ( self.colorBrightnessWheelVisible
          && initialized == YES )
@@ -249,6 +200,30 @@
             [self setNeedsDisplay];
         }
     
+}
+
+-(NSArray*)colorMarkers {
+    return _colorMarkers;
+}
+
+-(void)setColorMarkers:(NSArray *)markers {
+    _colorMarkers = markers;
+    
+    if ( initialized ) {
+        [self setNeedsDisplay];
+    }
+}
+
+-(NSArray*)brightnessMarkers {
+    return _brightnessMarkers;
+}
+
+-(void)setBrightnssMarkers:(NSArray *)markers {
+    _brightnessMarkers = markers;
+    
+    if ( initialized ) {
+        [self setNeedsDisplay];
+    }
 }
 
 -(float)addAngle:(float)angle toAngle:(float)source {
@@ -296,6 +271,56 @@
         [base_color getHue:&hue saturation:&saturation brightness:nil alpha:nil];
         
         return [UIColor colorWithHue:hue saturation:saturation brightness:angle/360 alpha:1];
+    }
+}
+
+- (void)drawMarkers:(NSArray*)markers withRadius:(int)radius markerSize:(float)markerSize brightness:(BOOL)brightness ctx:(CGContextRef)ctx {
+    
+    CGRect rect;
+    float angle;
+    id obj;
+    
+    if (markers==nil) {
+        return;
+    }
+    
+    for(int a=0;a<markers.count;a++) {
+        angle = 0;
+        obj = [markers objectAtIndex:a];
+        
+        if (brightness) {
+            
+            if ([obj isKindOfClass:[NSNumber class]]) {
+                float b = [obj intValue];
+                
+                if (b < 0.5) {
+                    b = 0.5;
+                } else if (b > 99.5) {
+                    b = 99.5;
+                }
+                
+                angle = b*3.6;
+            }
+
+        } else if ([obj isKindOfClass:[UIColor class]]) {
+            angle = [self colorToAngle:obj];
+        }
+        
+        angle = DEGREES_TO_RADIANS([self addAngle:270 toAngle:angle]);
+    
+        rect.origin.x = cosf(angle) * radius - markerSize/2;
+        rect.origin.y = sinf(angle) * radius - markerSize/2;
+        rect.size.height = markerSize;
+        rect.size.width = rect.size.height;
+        
+        CGContextAddEllipseInRect(ctx, rect);
+        CGContextSetFillColorWithColor(ctx, [UIColor whiteColor].CGColor);
+        CGContextFillPath(ctx);
+        
+        CGContextSetLineWidth(ctx, markerSize/8);
+        CGContextAddEllipseInRect(ctx, rect);
+        CGContextSetStrokeColor(ctx, CGColorGetComponents([UIColor blackColor].CGColor));
+        CGContextStrokePath(ctx);
     }
 }
 
@@ -355,8 +380,7 @@
         [aPath closePath];
         [aPath fill];
         [aPath stroke];
-        
-        
+
     }
     
 }
@@ -473,20 +497,20 @@
 -(void)drawRect:(CGRect)rect {
     [super drawRect:rect];
     
+    CGContextRef ctx = UIGraphicsGetCurrentContext();
+    CGContextSetShouldAntialias(ctx, YES);
+    
     _brWheelRadius = 0;
     _colorWheelRadius = 0;
     
     if ( _bwBrightnessWheelVisible
         || _colorBrightnessWheelVisible ) {
         
-        CGContextRef ctx = UIGraphicsGetCurrentContext();
-        
         CGRect r = self.bounds;
         CGContextTranslateCTM(ctx, r.size.width/2, r.size.height/2);
     
         float radius = r.size.width > r.size.height ? r.size.height : r.size.width;
         
-       
         _wheelWidth = radius / 10.00;
         [self setArrowHeight:_wheelWidth * 0.9];
         _margin = 0; //_wheelWidth * 0.01;
@@ -513,7 +537,8 @@
             
             [self drawWheelWithRadius:radius wheelWidth:wheelWidth baseColor:base_color];
             [self drawArrowWithAngle:brightness_angle wheelRadius:radius wheelWidth:wheelWidth inverse:YES color:base_color];
-        
+            [self drawMarkers:self.brightnessMarkers withRadius:radius+wheelWidth/2 markerSize:wheelWidth/3 brightness:YES ctx:ctx];
+            
             _brWheelRadius = radius;
             _brWheelWidth = wheelWidth;
             
@@ -521,9 +546,10 @@
         
             [self drawWheelWithRadius:radius wheelWidth:wheelWidth baseColor:nil];
             [self drawArrowWithAngle:_colorAngle wheelRadius:radius wheelWidth:wheelWidth inverse:NO color:[[UIColor whiteColor] isEqual: _color] ? _color : nil];
-            
+            [self drawMarkers:self.colorMarkers withRadius:radius+wheelWidth/2 markerSize:wheelWidth/3 brightness:NO ctx:ctx];
             _colorWheelRadius = radius;
             _colorWheelWidth = wheelWidth;
+            
             
         } else {
             
@@ -533,7 +559,7 @@
             
             [self drawWheelWithRadius:radius wheelWidth:wheelWidth baseColor:[UIColor blackColor]];
             [self drawArrowWithAngle:_brightness*3.6 wheelRadius:radius wheelWidth:wheelWidth inverse:NO color:base_color];
-            
+            [self drawMarkers:self.brightnessMarkers withRadius:radius+wheelWidth/2 markerSize:wheelWidth/3 brightness:YES ctx:ctx];
         }
         
         
