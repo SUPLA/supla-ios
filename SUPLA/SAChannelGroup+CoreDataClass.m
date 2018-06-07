@@ -283,7 +283,7 @@
     switch (self.func) {
         case SUPLA_CHANNELFNC_DIMMER:
         case SUPLA_CHANNELFNC_DIMMERANDRGBLIGHTING:
-            return [self rgbValue:1];
+            return [self rgbValue:2];
     }
     return [[NSMutableArray alloc] init];
 }

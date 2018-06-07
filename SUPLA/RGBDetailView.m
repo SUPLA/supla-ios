@@ -31,6 +31,9 @@
     int _brightness;
     int _colorBrightness;
     UIColor *_color;
+    NSArray *_colorMarkers;
+    NSArray *_brightnessMarkers;
+    NSArray *_colorBrightnessMarkers;
     
     NSTimer *delayTimer1;
     NSTimer *delayTimer2;
@@ -106,6 +109,7 @@
             self.cbPicker.brightness = (int)_brightness;
         }
         
+        self.cbPicker.brightnessMarkers = _brightnessMarkers;
         [self setBrightnessLabel:_brightness];
         
     }
@@ -116,6 +120,8 @@
             self.cbPicker.brightness = (int)_colorBrightness;
         };
         
+        self.cbPicker.brightnessMarkers = _colorBrightnessMarkers;
+        self.cbPicker.colorMarkers = _colorMarkers;
         [self setBrightnessLabel:_colorBrightness];
         
         self.cbPicker.color = _color;
@@ -266,6 +272,15 @@
                 _brightness = self.channelBase.brightnessValue;
                 _colorBrightness = self.channelBase.colorBrightnessValue;
                 _color = self.channelBase.colorValue;
+                
+                if ([self.channelBase isMemberOfClass:[SAChannelGroup class]]) {
+                    SAChannelGroup *cgroup = (SAChannelGroup*)self.channelBase;
+
+                    _colorMarkers = cgroup.colors;
+                    _colorBrightnessMarkers = cgroup.colorBrightness;
+                    _brightnessMarkers = cgroup.brightness;
+                    
+                }
             
                 [self showValuesWithDelay];
             
@@ -319,10 +334,12 @@
         self.cintPickerTop.constant = self.cintHeaderHeight.constant * -1;
         
         _moveEndTime = [NSDate dateWithTimeIntervalSince1970:0];
+        _brightnessMarkers = nil;
+        _colorBrightnessMarkers = nil;
+        _colorMarkers = nil;
         
         if ( channelBase != nil ) {
-            
-            
+
             switch(channelBase.func) {
                 case SUPLA_CHANNELFNC_DIMMER:
                     [self setBWBrightnessWhellVisible:YES];
@@ -336,10 +353,9 @@
                     self.segControl.selectedSegmentIndex = 0;
                     self.headerView.hidden = NO;
                     self.cintPickerTop.constant = 0;
-                
+                    
                     break;
             };
-            
         }
         
     }

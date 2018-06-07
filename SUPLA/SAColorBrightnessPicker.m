@@ -206,8 +206,8 @@
     return _colorMarkers;
 }
 
--(void)setColorMarkers:(NSArray *)markers {
-    _colorMarkers = markers;
+-(void)setColorMarkers:(NSArray *)colorMarkers {
+    _colorMarkers = colorMarkers;
     
     if ( initialized ) {
         [self setNeedsDisplay];
@@ -218,8 +218,8 @@
     return _brightnessMarkers;
 }
 
--(void)setBrightnssMarkers:(NSArray *)markers {
-    _brightnessMarkers = markers;
+-(void)setBrightnessMarkers:(NSArray *)brightnessMarkers {
+    _brightnessMarkers = brightnessMarkers;
     
     if ( initialized ) {
         [self setNeedsDisplay];
