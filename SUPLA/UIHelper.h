@@ -42,6 +42,7 @@
 +(nonnull UIColor*)rgbDetailBackground;
 +(nonnull UIColor*)rsDetailBackground;
 +(nonnull UIColor*)statusBorder;
++(nonnull UIColor*)rsMarkerColor;
 
 @end
 

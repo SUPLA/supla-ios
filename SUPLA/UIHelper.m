@@ -82,6 +82,10 @@
     return [UIColor blackColor];
 }
 
++(nonnull UIColor*)rsMarkerColor {
+    return [UIColor colorWithRed:0.07 green:0.65 blue:0.12 alpha:1.0];
+}
+
 @end
 
 @implementation SAUIHelper {
