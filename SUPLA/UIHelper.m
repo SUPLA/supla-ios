@@ -119,9 +119,13 @@
 }
 
 -(void)showMenuBtn:(BOOL)show {
-    
     [self showMenuBtn:show withSettingsIcon:false];
-    
+}
+
+-(void)showGroupBtn:(BOOL)show {
+    if (_NavController) {
+        _NavController.btnGroups.hidden = !show;
+    }
 }
 
 -(void)showMenuBtn:(BOOL)show withSettingsIcon:(BOOL)settingsIcon {

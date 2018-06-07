@@ -597,6 +597,7 @@
     }
     
     [[SAApp UI] showMenuBtn:self.frame.origin.x == 0];
+    [[SAApp UI] showGroupBtn:self.frame.origin.x == 0];
 }
 
 -(void)moveCenter:(float)x_offset {

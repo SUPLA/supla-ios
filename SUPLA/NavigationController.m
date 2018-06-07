@@ -68,6 +68,8 @@
 -(void)showViewController:(UIViewController *)vc {
     
     self.btnMenu.hidden = vc != [[SAApp UI] MainVC];
+    self.btnGroups.hidden = self.btnMenu.hidden;
+    
     UIView *snapShot = nil;
     
     if ( _vc != nil ) {

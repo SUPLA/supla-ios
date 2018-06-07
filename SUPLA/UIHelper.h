@@ -78,6 +78,8 @@
 -(void)showMenuBtn:(BOOL)show;
 -(void)showMenuBtn:(BOOL)show withSettingsIcon:(BOOL)settingsIcon;
 
+-(void)showGroupBtn:(BOOL)show;
+
 -(BOOL)addWizardIsVisible;
 -(BOOL)createAccountVCisVisible;
 
