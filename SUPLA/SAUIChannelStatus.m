@@ -17,12 +17,14 @@
  */
 
 #import "SAUIChannelStatus.h"
-#import "UIHelper.h"
 
 @implementation SAUIChannelStatus {
     BOOL _singleColor;
     channelStatusShapeType _shapeType;
     double _percent;
+    UIColor *_offlineColor;
+    UIColor *_onlineColor;
+    UIColor *_borderColor;
 }
 
 - (BOOL) singleColor {
@@ -52,6 +54,48 @@
     [self setNeedsDisplay];
 }
 
+- (UIColor*) offlineColor {
+    if (_offlineColor == nil) {
+        return [UIColor redColor];
+    }
+    return _offlineColor;
+}
+
+- (void) setOfflineColor:(UIColor *)offlineColor {
+    _offlineColor = offlineColor;
+    [self setNeedsDisplay];
+}
+
+- (UIColor*) onlineColor {
+    if (_onlineColor == nil) {
+        return [UIColor greenColor];
+    }
+    return _onlineColor;
+}
+
+- (void) setOnlineColor:(UIColor *)onlineColor {
+    _onlineColor = onlineColor;
+    [self setNeedsDisplay];
+}
+
+- (UIColor*) borderColor {
+    if (_borderColor == nil) {
+        return [UIColor blackColor];
+    }
+    return _borderColor;
+}
+
+- (void) setBorderColor:(UIColor *)borderColor {
+    _borderColor = borderColor;
+    [self setNeedsDisplay];
+}
+
+-(void)assignColors:(SAUIChannelStatus*)status {
+    self.onlineColor = status.onlineColor;
+    self.offlineColor = status.offlineColor;
+    self.borderColor = status.borderColor;
+}
+
 - (void)setBackgroundColor:(UIColor *)backgroundColor {
     [super setBackgroundColor:[UIColor clearColor]];
 }
@@ -61,11 +105,11 @@
     CGContextRef ctx = UIGraphicsGetCurrentContext();
     CGContextSetShouldAntialias(ctx, YES);
     
-    CGColorRef color = [[UIColor offLine] CGColor];
+    CGColorRef color = [self.offlineColor CGColor];
     
-    if ( _shapeType == stRing || _shapeType == stDot ) {
-        if (_percent > 0) {
-            color = [[UIColor onLine] CGColor];
+    if ( self.shapeType == stRing || self.shapeType == stDot ) {
+        if (self.percent > 0) {
+            color = [self.onlineColor CGColor];
         }
         
         CGFloat n = rect.size.height;
@@ -83,37 +127,37 @@
         CGContextSetFillColor(ctx, CGColorGetComponents(color));
     }
     
-    if (_shapeType == stLinearVertical) {
+    if (self.shapeType == stLinearVertical) {
         
         CGRect r = rect;
-        double percentPoint = r.size.height * (100 - _percent) / 100;
+        double percentPoint = r.size.height * (100 - self.percent) / 100;
         r.size.height = percentPoint;
     
         if (!self.singleColor) {
             CGContextFillRect(ctx, r);
         }
         
-        CGContextSetFillColor(ctx, CGColorGetComponents([[UIColor onLine] CGColor]));
+        CGContextSetFillColor(ctx, CGColorGetComponents([self.onlineColor CGColor]));
         r.size.height = rect.size.height - r.size.height;
         r.origin.y += percentPoint;
         CGContextFillRect(ctx, r);
         
-    } else if (_shapeType == stLinearHorizontal) {
+    } else if (self.shapeType == stLinearHorizontal) {
         
         CGRect r = rect;
-        double percentPoint = r.size.width * (100 - _percent) / 100;
+        double percentPoint = r.size.width * (100 - self.percent) / 100;
         r.size.width = percentPoint;
         
         if (!self.singleColor) {
             CGContextFillRect(ctx, r);
         }
         
-        CGContextSetFillColor(ctx, CGColorGetComponents([[UIColor onLine] CGColor]));
+        CGContextSetFillColor(ctx, CGColorGetComponents([self.onlineColor CGColor]));
         r.size.width = rect.size.width - r.size.width;
         r.origin.x += percentPoint;
         CGContextFillRect(ctx, r);
         
-    } else if (_shapeType == stRing) {
+    } else if (self.shapeType == stRing) {
         float width = 1 / [[UIScreen mainScreen] scale];
         CGContextSetLineWidth(ctx, width);
         rect.origin.x+=width;
@@ -123,14 +167,14 @@
         CGContextAddEllipseInRect(ctx, rect);
         CGContextSetStrokeColor(ctx, CGColorGetComponents(color));
         CGContextStrokePath(ctx);
-    } else if (_shapeType == stDot) {
+    } else if (self.shapeType == stDot) {
         CGContextAddEllipseInRect(ctx, rect);
         CGContextSetFillColor(ctx, CGColorGetComponents(color));
         CGContextFillPath(ctx);
     }
     
-    if (_shapeType == stLinearVertical || _shapeType == stLinearHorizontal) {
-        CGContextSetFillColor(ctx, CGColorGetComponents([[UIColor statusBorder] CGColor]));
+    if (self.shapeType == stLinearVertical || self.shapeType == stLinearHorizontal) {
+        CGContextSetFillColor(ctx, CGColorGetComponents([self.borderColor CGColor]));
         CGContextStrokeRect(ctx, rect);
     }
     

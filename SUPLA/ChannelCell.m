@@ -49,17 +49,28 @@
 @end
 
 @implementation SAChannelCell {
+    BOOL _initialized;
     SAChannelBase *_channelBase;
 }
 
--(id)initWithCoder:(NSCoder *)aDecoder {
+- (void)initialize {
+    if (_initialized) return;
+    _initialized = YES;
     
-    self = [super initWithCoder:aDecoder];
-    if ( self ) {
-         self.leftSwipeSettings.transition = MGSwipeTransitionRotate3D;
-         self.rightSwipeSettings.transition = MGSwipeTransitionRotate3D;
-    }
-    return self;
+    self.leftSwipeSettings.transition = MGSwipeTransitionRotate3D;
+    self.rightSwipeSettings.transition = MGSwipeTransitionRotate3D;
+    
+    self.right_OnlineStatus.onlineColor = [UIColor onLine];
+    self.right_OnlineStatus.offlineColor = [UIColor offLine];
+    self.right_OnlineStatus.borderColor = [UIColor statusBorder];
+    
+    [self.left_OnlineStatus assignColors:self.right_OnlineStatus];
+    [self.right_ActiveStatus assignColors:self.right_OnlineStatus];
+}
+
+- (void)awakeFromNib {
+    [super awakeFromNib];
+    [self initialize];
 }
 
 - (void) setFrame:(CGRect)frame
