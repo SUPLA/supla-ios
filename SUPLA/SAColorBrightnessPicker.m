@@ -664,7 +664,7 @@
          
          if ( activeArrow == ACTIVE_ARROW_COLOR ) {
              
-             UIColor *color = [_color copy];
+             UIColor *color;
              
              _colorAngle = [self addAngle:angle_offset toAngle:_colorAngle];
              color = [self calculateColorForAngle:[self addAngle:270 toAngle:_colorAngle] baseColor:nil];
