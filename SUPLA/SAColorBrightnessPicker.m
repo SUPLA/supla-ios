@@ -71,9 +71,7 @@
         return;
     
     [self setBackgroundColor:[UIColor clearColor]];
-    
-    float scale = [[UIScreen mainScreen] scale];
-    
+
     _gr = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(handlePan:)];
     
     [_gr setMinimumNumberOfTouches:1];
