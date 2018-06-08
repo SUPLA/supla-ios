@@ -48,30 +48,30 @@
 
 @interface SAUIHelper : NSObject
 
--(void)fadeToViewController:(UIViewController*)vc;
+-(void)fadeToViewController:(nullable UIViewController*)vc;
 
 -(void)hideVC;
 
--(SASettingsVC *) SettingsVC;
+-(nonnull SASettingsVC *) SettingsVC;
 -(void)showSettings;
 
--(SAMainVC *) MainVC;
+-(nonnull SAMainVC *) MainVC;
 -(void)showMainVC;
 
--(SAStatusVC*) StatusVC;
+-(nonnull SAStatusVC*) StatusVC;
 -(void)showStatusVC;
 
--(SAAboutVC*)AboutVC;
+-(nonnull SAAboutVC*)AboutVC;
 -(void)showAbout;
 
--(SAAddWizardVC*)AddWizardVC;
+-(nonnull SAAddWizardVC*)AddWizardVC;
 -(void)showAddWizard;
 
--(SACreateAccountVC*)CreateAccountVC;
+-(nonnull SACreateAccountVC*)CreateAccountVC;
 -(void)showCreateAccountVC;
 
 -(void)showStatusConnectingProgress:(float)value;
--(void)showStatusError:(NSString*)message;
+-(void)showStatusError:(nonnull NSString*)message;
 
 -(void)showStarterVC;
 
@@ -83,7 +83,7 @@
 -(BOOL)addWizardIsVisible;
 -(BOOL)createAccountVCisVisible;
 
-@property (nonatomic, strong) UIViewController *rootViewController;
+@property (nullable, nonatomic, strong) UIViewController *rootViewController;
 
 @end
 
