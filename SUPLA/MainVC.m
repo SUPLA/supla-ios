@@ -264,10 +264,9 @@
     SAChannelBase *channel_base = [[self frcForTableView:tableView] objectAtIndexPath:indexPath];
     SAChannelCell *cell = nil;
     
+    NSString *identifier = @"ChannelCell";
+    
     if ( channel_base ) {
-
-        NSString *identifier;
-        
         switch(channel_base.func) {
             case SUPLA_CHANNELFNC_THERMOMETER:
                 identifier = @"ThermometerCell";
@@ -281,17 +280,13 @@
             case SUPLA_CHANNELFNC_DISTANCESENSOR:
                 identifier = @"DistanceCell";
                 break;
-            default:
-                identifier = @"ChannelCell";
-                break;
         }
-        
-        cell =  [tableView dequeueReusableCellWithIdentifier: identifier];
-        
-        if ( cell != nil ) {
-            cell.channelBase = channel_base;
-        }
-        
+    }
+    
+    cell =  [tableView dequeueReusableCellWithIdentifier: identifier];
+    
+    if (cell != nil) {
+        cell.channelBase = channel_base;
     }
   
     return cell;
