@@ -314,9 +314,8 @@
 }
 
 - (void) viewWillAppear:(BOOL)animated {
-
+    [super viewWillAppear:animated];
     [[[SARateApp alloc] init] showDialogWithDelay: 1];
-    
 }
 
 @end
