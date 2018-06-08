@@ -360,7 +360,7 @@
     }
     
     
-    return [UIImage imageNamed:[NSString stringWithFormat:@"unknown_channel]];
+    return [UIImage imageNamed:[NSString stringWithFormat:@"unknown_channel"]];
 }
 
 @end
