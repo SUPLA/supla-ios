@@ -178,6 +178,7 @@
 		40CE7C6B1DCBBD5700BBACE4 /* depth@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 40CE7C671DCBBD5700BBACE4 /* depth@2x.png */; };
 		40CE7C6C1DCBBD5700BBACE4 /* depth@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 40CE7C681DCBBD5700BBACE4 /* depth@3x.png */; };
 		40CE7C6E1DCBBF6D00BBACE4 /* DistanceCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 40CE7C6D1DCBBF6D00BBACE4 /* DistanceCell.xib */; };
+		40CEB66420CA95DF009FA2EE /* unknown_channel@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 40CEB66320CA95DF009FA2EE /* unknown_channel@3x.png */; };
 		40CF96AA1BC7D4E70030EFFF /* door-closed@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 40CF96881BC7D4E70030EFFF /* door-closed@2x.png */; };
 		40CF96AB1BC7D4E70030EFFF /* door-closed@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 40CF96891BC7D4E70030EFFF /* door-closed@3x.png */; };
 		40CF96AC1BC7D4E70030EFFF /* door-open@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 40CF968A1BC7D4E70030EFFF /* door-open@2x.png */; };
@@ -493,6 +494,7 @@
 		40CE7C671DCBBD5700BBACE4 /* depth@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "depth@2x.png"; path = "Resources/Assets/Img/depth@2x.png"; sourceTree = "<group>"; };
 		40CE7C681DCBBD5700BBACE4 /* depth@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "depth@3x.png"; path = "Resources/Assets/Img/depth@3x.png"; sourceTree = "<group>"; };
 		40CE7C6D1DCBBF6D00BBACE4 /* DistanceCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DistanceCell.xib; sourceTree = "<group>"; };
+		40CEB66320CA95DF009FA2EE /* unknown_channel@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "unknown_channel@3x.png"; path = "Resources/Assets/Img/unknown_channel@3x.png"; sourceTree = "<group>"; };
 		40CF96881BC7D4E70030EFFF /* door-closed@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "door-closed@2x.png"; path = "Resources/Assets/Img/door-closed@2x.png"; sourceTree = "<group>"; };
 		40CF96891BC7D4E70030EFFF /* door-closed@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "door-closed@3x.png"; path = "Resources/Assets/Img/door-closed@3x.png"; sourceTree = "<group>"; };
 		40CF968A1BC7D4E70030EFFF /* door-open@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "door-open@2x.png"; path = "Resources/Assets/Img/door-open@2x.png"; sourceTree = "<group>"; };
@@ -712,6 +714,7 @@
 		405AC4011BC15878004F7311 /* Img */ = {
 			isa = PBXGroup;
 			children = (
+				40CEB66320CA95DF009FA2EE /* unknown_channel@3x.png */,
 				40477B5D20C6F62900E995E6 /* groupsoff@2x.png */,
 				40477B5E20C6F62900E995E6 /* groupson@2x.png */,
 				40477B4D20C6CF2500E995E6 /* gate-closed-50percent@2x.png */,
@@ -1238,6 +1241,7 @@
 				40477B5F20C6F62A00E995E6 /* groupsoff@2x.png in Resources */,
 				4091AF441FC856C200EFF357 /* wifi@2x.png in Resources */,
 				406778291BCBBC84008DD37F /* ThermometerCell.xib in Resources */,
+				40CEB66420CA95DF009FA2EE /* unknown_channel@3x.png in Resources */,
 				4014ADFD1FE01ECD00297A9E /* help@2x.png in Resources */,
 				4038A5581CE32CD700180B5D /* humidity@3x.png in Resources */,
 				40CF96C71BC7D4E70030EFFF /* rollershutter-closed@3x.png in Resources */,

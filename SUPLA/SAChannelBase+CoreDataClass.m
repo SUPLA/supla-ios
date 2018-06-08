@@ -201,7 +201,7 @@
 }
 
 - (UIColor *) colorValue {
-    return nil;
+    return [UIColor clearColor];
 }
 
 - (int) imgIsActive {
@@ -360,7 +360,7 @@
     }
     
     
-    return nil;
+    return [UIImage imageNamed:[NSString stringWithFormat:@"unknown_channel]];
 }
 
 @end
