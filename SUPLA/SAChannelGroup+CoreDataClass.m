@@ -253,9 +253,24 @@
     
     if (self.total_value != nil) {
         NSArray *ar = (NSArray*)self.total_value;
-        for(int a=0;a<ar.count;a++) {
-            [result addObject:[self getNumberFromObject:[ar objectAtIndex:a] atArrIndex:idx]];
+        int a;
+        if (idx == 0) {
+            id obj1, obj2;
+            for(a=0;a<ar.count;a++) {
+                obj1 = [ar objectAtIndex:a];
+                if ([obj1 isKindOfClass:[NSArray class]]) {
+                    obj2 = [((NSArray*)obj1) objectAtIndex:0];
+                    if ([obj2 isKindOfClass:[UIColor class]]) {
+                       [result addObject:obj2];
+                    }
+                }
+            }
+        } else {
+            for(a=0;a<ar.count;a++) {
+                [result addObject:[self getNumberFromObject:[ar objectAtIndex:a] atArrIndex:idx]];
+            }
         }
+
     }
     
     return result;

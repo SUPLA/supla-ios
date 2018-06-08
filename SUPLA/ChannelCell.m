@@ -202,10 +202,8 @@
         }
         
         if ( [channelBase isOnline] ) {
-            
             MGSwipeButton *bl = nil;
             MGSwipeButton *br = nil;
-            
             
             switch(channelBase.func) {
                 case SUPLA_CHANNELFNC_CONTROLLINGTHEDOORLOCK:

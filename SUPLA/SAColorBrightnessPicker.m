@@ -159,7 +159,7 @@
 }
 
 -(UIColor*)color {
-    return self.colorBrightnessWheelVisible ? _color : [UIColor blackColor];
+    return self.colorBrightnessWheelVisible ? _color : [UIColor redColor];
 }
 
 -(float)colorToAngle:(UIColor *)color {

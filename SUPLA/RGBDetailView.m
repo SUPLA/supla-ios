@@ -30,6 +30,7 @@
 @implementation SARGBDetailView {
     int _brightness;
     int _colorBrightness;
+    BOOL isGroup;
     UIColor *_color;
     NSArray *_colorMarkers;
     NSArray *_brightnessMarkers;
@@ -54,6 +55,10 @@
         _moveEndTime = [NSDate dateWithTimeIntervalSince1970:0];
         _remoteUpdateTime = _moveEndTime;
         
+        if (_color==nil) {
+            _color = [UIColor colorPickerDefault];
+        }
+        
         self.cbPicker.delegate = self;
         
         [self.clPicker addItemWithColor:[UIColor whiteColor] andPercent:100];
@@ -73,6 +78,9 @@
         
         [self.segControl setTitleTextAttributes:attributes forState:UIControlStateNormal];
         
+        self.onlineStatus.onlineColor = [UIColor onLine];
+        self.onlineStatus.offlineColor = [UIColor offLine];
+        self.onlineStatus.borderColor = [UIColor statusBorder];
     }
 
     
@@ -80,53 +88,29 @@
     
 }
 
--(void)setBrightnessLabel:(int)brightness {
-    
-    [self.labelPercent setText:[NSString stringWithFormat:@"%i%%", (int)brightness]];
-    self.stateBtn.selected = brightness > 0;
-    
-}
-
-- (void)setColorLabel:(UIColor*)color {
-    
-    CGFloat red,green,blue,alpha;
-    
-    [color getRed:&red green:&green blue:&blue alpha:&alpha];
-    
-    red*=255;
-    green*=255;
-    blue*=255;
-    
-    [self.labelColorHEX setText:[NSString stringWithFormat:@"#%02X%02X%02X", (int)red, (int)green, (int)blue]];
-    
-}
-
 - (void)showValues {
-  
+    
     if ( self.cbPicker.bwBrightnessWheelVisible == YES ) {
         
-        if ( (int)self.cbPicker.brightness != (int)_brightness ) {
+        if ( !isGroup && (int)self.cbPicker.brightness != (int)_brightness ) {
             self.cbPicker.brightness = (int)_brightness;
         }
         
         self.cbPicker.brightnessMarkers = _brightnessMarkers;
-        [self setBrightnessLabel:_brightness];
-        
     }
     
     if ( self.cbPicker.colorBrightnessWheelVisible == YES ) {
         
-        if ( (int)self.cbPicker.brightness != (int)_colorBrightness ) {
-            self.cbPicker.brightness = (int)_colorBrightness;
-        };
-        
+        if (!isGroup) {
+            if ((int)self.cbPicker.brightness != (int)_colorBrightness ) {
+                self.cbPicker.brightness = (int)_colorBrightness;
+            };
+            
+            self.cbPicker.color = _color;
+        }
+
         self.cbPicker.brightnessMarkers = _colorBrightnessMarkers;
         self.cbPicker.colorMarkers = _colorMarkers;
-        [self setBrightnessLabel:_colorBrightness];
-        
-        self.cbPicker.color = _color;
-        [self setColorLabel:_color];
-
     }
     
 }
@@ -155,7 +139,8 @@
     }
     
     if ( time >= MIN_REMOTE_UPDATE_PERIOD
-        && [client channel:self.channelBase.remote_id setRGB:color colorBrightness:colorBrightness brightness:brightness] ) {
+        && [client cg:self.channelBase.remote_id setRGB:color
+      colorBrightness:colorBrightness brightness:brightness group:isGroup] ) {
         
         _remoteUpdateTime = [NSDate date];
         _moveEndTime = [NSDate dateWithTimeIntervalSinceNow:2];
@@ -217,28 +202,11 @@
 }
 
 - (void)updateFooterView {
-    
     if ( self.cbPicker.colorBrightnessWheelVisible ) {
-        
-        self.labelColorHEX.hidden = NO;
-        self.labelColor.hidden = NO;
-        self.vLine3.hidden = NO;
-        self.cintLine3Top.constant = 5;
-        self.cintFooterHeight.constant = 140;
-        self.cintFooterTop.constant = 20;
         self.clPicker.hidden = NO;
-        
     } else {
-        
-        self.labelColorHEX.hidden = YES;
-        self.labelColor.hidden = YES;
-        self.vLine3.hidden = YES;
-        self.cintLine3Top.constant = -27;
-        self.cintFooterHeight.constant = 108;
-        self.cintFooterTop.constant = self.clPicker.frame.size.height*-1;
         self.clPicker.hidden = YES;
     }
-    
 }
 
 - (void)setBWBrightnessWhellVisible:(BOOL)visible {
@@ -268,21 +236,24 @@
             case SUPLA_CHANNELFNC_DIMMER:
             case SUPLA_CHANNELFNC_RGBLIGHTING:
             case SUPLA_CHANNELFNC_DIMMERANDRGBLIGHTING:
-            
-                _brightness = self.channelBase.brightnessValue;
-                _colorBrightness = self.channelBase.colorBrightnessValue;
-                _color = self.channelBase.colorValue;
                 
-                if ([self.channelBase isMemberOfClass:[SAChannelGroup class]]) {
+                if (isGroup) {
                     SAChannelGroup *cgroup = (SAChannelGroup*)self.channelBase;
 
                     _colorMarkers = cgroup.colors;
                     _colorBrightnessMarkers = cgroup.colorBrightness;
                     _brightnessMarkers = cgroup.brightness;
+                    self.onlineStatus.percent = cgroup.onlinePercent;
                     
+                    [self showValues];
+                    
+                } else {
+                    _brightness = self.channelBase.brightnessValue;
+                    _colorBrightness = self.channelBase.colorBrightnessValue;
+                    _color = self.channelBase.colorValue;
+                    
+                    [self showValuesWithDelay];
                 }
-            
-                [self showValuesWithDelay];
             
                 break;
         };
@@ -324,9 +295,22 @@
 -(void)setChannelBase:(SAChannelBase *)channelBase {
     
     if ( self.channelBase == nil
-         || ( channelBase != nil && self.channelBase.remote_id  != channelBase.remote_id ) ) {
+         || ( channelBase != nil
+             && (self.channelBase.remote_id  != channelBase.remote_id
+                 || ![channelBase isKindOfClass:[self.channelBase class]]) ) ) {
         
+        isGroup = channelBase != nil && [channelBase isKindOfClass:[SAChannelGroup class]];
 
+        if (isGroup) {
+            self.stateBtn.hidden = YES;
+            self.stateLabel.hidden = YES;
+            self.onlineStatus.hidden = NO;
+        } else {
+            self.stateBtn.hidden = NO;
+            self.stateLabel.hidden = NO;
+            self.onlineStatus.hidden = YES;
+        }
+        
         [self setBWBrightnessWhellVisible:NO];
         [self setColorBrightnessWheelVisible:NO];
 
@@ -386,14 +370,7 @@
 }
 
 -(void) cbPickerDataChanged {
-   
-    if ( self.cbPicker.colorBrightnessWheelVisible == YES ) {
-        [self setColorLabel:self.cbPicker.color];
-    }
-    
-    [self setBrightnessLabel:self.cbPicker.brightness];
     [self sendNewValues];
-    
 }
 
 -(void) cbPickerMoveEnded {
@@ -410,6 +387,11 @@
     _colorBrightness = percent;
     _color = color;
 
+    if (isGroup) {
+        self.cbPicker.color = _color;
+        self.cbPicker.brightness = _colorBrightness;
+    }
+    
     [self showValues];
     [self sendNewValues];
 

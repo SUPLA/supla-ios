@@ -19,6 +19,7 @@
 #import "DetailView.h"
 #import "SAColorBrightnessPicker.h"
 #import "SAColorListPicker.h"
+#import "SAUIChannelStatus.h"
 
 @interface SARGBDetailView : SADetailView <SAColorBrightnessPickerDelegate, SAColorListPickerDelegate>
 @property (weak, nonatomic) IBOutlet SAColorBrightnessPicker *cbPicker;
@@ -29,14 +30,12 @@
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *cintPickerTop;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *cintHeaderHeight;
 @property (weak, nonatomic) IBOutlet UILabel *labelCaption;
-@property (weak, nonatomic) IBOutlet UILabel *labelPercent;
-@property (weak, nonatomic) IBOutlet UILabel *labelColorHEX;
-@property (weak, nonatomic) IBOutlet UILabel *labelColor;
 @property (weak, nonatomic) IBOutlet UIButton *stateBtn;
-@property (weak, nonatomic) IBOutlet UIView *vLine3;
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *cintLine3Top;
+@property (weak, nonatomic) IBOutlet UILabel *stateLabel;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *cintFooterHeight;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *cintFooterTop;
+@property (weak, nonatomic) IBOutlet SAUIChannelStatus *onlineStatus;
+
 - (IBAction)stateBtnTouch:(id)sender;
 
 @end
