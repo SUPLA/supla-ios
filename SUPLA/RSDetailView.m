@@ -22,7 +22,9 @@
 #import "SuplaApp.h"
 #import "SAChannelGroup+CoreDataClass.h"
 
-@implementation SARSDetailView
+@implementation SARSDetailView {
+    NSTimer *delayTimer1;
+}
 
 -(void)detailViewInit {
     
@@ -60,6 +62,7 @@
             SAChannelGroup *cgroup = (SAChannelGroup*)self.channelBase;
             self.onlineStatus.hidden = NO;
             self.onlineStatus.percent = cgroup.onlinePercent;
+            self.rsView.percent = 0;
             
             NSMutableArray *positions = cgroup.rsPositions;
             for(int a=0;a<positions.count;a++) {
@@ -74,17 +77,20 @@
                 }
             }
             
+            if (delayTimer1!=nil) {
+                [delayTimer1 invalidate];
+                delayTimer1 = nil;
+            }
+            
             if (percent >= 0) {
                 self.rsView.markers = positions;
                  [self.labelPercent setText:NSLocalizedString(@"---", NULL)];
-                [NSTimer scheduledTimerWithTimeInterval:2 target:self selector:@selector(timer1FireMethod:) userInfo:[NSNumber numberWithInt:percent] repeats:NO];
+                delayTimer1 = [NSTimer scheduledTimerWithTimeInterval:2 target:self selector:@selector(timer1FireMethod:) userInfo:[NSNumber numberWithInt:percent] repeats:NO];
             } else if (percent == -1) {
                 // All of RS wait for calibration
-                self.rsView.percent = 0;
                 self.rsView.markers = nil;
                  [self.labelPercent setText:NSLocalizedString(@"[Calibration]", NULL)];
             } else {
-                self.rsView.percent = 0;
                  self.rsView.markers = positions;
                 [self.labelPercent setText:NSLocalizedString(@"---", NULL)];
             }
