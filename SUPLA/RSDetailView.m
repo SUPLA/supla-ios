@@ -68,7 +68,7 @@
             for(int a=0;a<positions.count;a++) {
                 int p = [[positions objectAtIndex:a] intValue];
                 if (p < 0) {
-                    [positions removeObjectAtIndex:p];
+                    [positions removeObjectAtIndex:a];
                     a--;
                 } else if (percent == -1) {
                     percent = p;
