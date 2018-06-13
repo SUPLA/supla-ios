@@ -645,6 +645,10 @@ void sasuplaclient_on_registration_enabled(void *_suplaclient, void *user_data, 
         DataChanged = YES;
     }
     
+    if (cgroup_relation->EOL == 1) {
+        [self onChannelGroupValueChanged];
+    }
+    
     if ( DataChanged ) {
         [self onDataChanged];
     }
