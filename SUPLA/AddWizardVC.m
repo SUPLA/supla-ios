@@ -154,19 +154,21 @@
         NSError  *error = nil;
         NSString *pattern = @"\\<h1\\>(.*)\\<\\/h1\\>\\<span\\>LAST\\ STATE:\\ (.*)\\<br\\>Firmware:\\ (.*)\\<br\\>GUID:\\ (.*)\\<br\\>MAC:\\ (.*)\\<\\/span\\>";
         
-        NSRegularExpression* regex = [NSRegularExpression regularExpressionWithPattern: pattern options:0 error:&error];
-        NSArray *matches = [regex matchesInString:html options:0 range:NSMakeRange(0, [html length])];
-        
-        if ( error == nil && matches != nil && matches.count == 1 ) {
-            NSTextCheckingResult *match = [matches objectAtIndex:0];
-            if ([match numberOfRanges] == 6) {
-                
-                result.name = [html substringWithRange:[match rangeAtIndex:1]];
-                result.state = [html substringWithRange:[match rangeAtIndex:2]];
-                result.version = [html substringWithRange:[match rangeAtIndex:3]];
-                result.guid = [html substringWithRange:[match rangeAtIndex:4]];
-                result.mac = [html substringWithRange:[match rangeAtIndex:5]];
-                
+        if (html!=nil) {
+            NSRegularExpression* regex = [NSRegularExpression regularExpressionWithPattern: pattern options:0 error:&error];
+            NSArray *matches = [regex matchesInString:html options:0 range:NSMakeRange(0, [html length])];
+            
+            if ( error == nil && matches != nil && matches.count == 1 ) {
+                NSTextCheckingResult *match = [matches objectAtIndex:0];
+                if ([match numberOfRanges] == 6) {
+                    
+                    result.name = [html substringWithRange:[match rangeAtIndex:1]];
+                    result.state = [html substringWithRange:[match rangeAtIndex:2]];
+                    result.version = [html substringWithRange:[match rangeAtIndex:3]];
+                    result.guid = [html substringWithRange:[match rangeAtIndex:4]];
+                    result.mac = [html substringWithRange:[match rangeAtIndex:5]];
+                    
+                }
             }
         }
     }
