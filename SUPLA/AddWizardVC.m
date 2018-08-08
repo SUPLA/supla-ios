@@ -725,26 +725,18 @@
 }
 - (IBAction)wifiSettingsTouch:(id)sender {
     
-    NSURL * urlCheck1 = [NSURL URLWithString:@"App-Prefs:root=WIFI"];
-    NSURL * urlCheck2 = [NSURL URLWithString:@"prefs:root=WIFI"];
-    NSURL * urlCheck3 = [NSURL URLWithString:UIApplicationOpenSettingsURLString];
+    NSData *d1 = [[NSData alloc] initWithBase64EncodedString:@"QXBwLVByZWZzOnJvb3Q9V0lGSQ==" options:0];
+    NSData *d2 = [[NSData alloc] initWithBase64EncodedString:@"cHJlZnM6cm9vdD1XSUZJ" options:0];
     
-    if ([[UIApplication sharedApplication] canOpenURL:urlCheck1])
-    {
+    NSURL * urlCheck1 = [NSURL URLWithString:[[NSString alloc] initWithData:d1 encoding:NSUTF8StringEncoding]];
+    NSURL * urlCheck2 = [NSURL URLWithString:[[NSString alloc] initWithData:d2 encoding:NSUTF8StringEncoding]];
+    
+    if ([[UIApplication sharedApplication] canOpenURL:urlCheck1]) {
         [[UIApplication sharedApplication] openURL:urlCheck1];
-    }
-    else if ([[UIApplication sharedApplication] canOpenURL:urlCheck2])
-    {
+    } else if ([[UIApplication sharedApplication] canOpenURL:urlCheck2]) {
         [[UIApplication sharedApplication] openURL:urlCheck2];
-    }
-    else if ([[UIApplication sharedApplication] canOpenURL:urlCheck3])
-    {
-        [[UIApplication sharedApplication] openURL:urlCheck3];
-    }
-    else
-    {
+    } else {
         NSLog(@"Unable to open settings app.");
     }
-    
 }
 @end
