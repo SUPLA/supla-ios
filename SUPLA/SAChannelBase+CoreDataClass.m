@@ -226,6 +226,7 @@
             case SUPLA_CHANNELFNC_POWERSWITCH:
             case SUPLA_CHANNELFNC_LIGHTSWITCH:
             case SUPLA_CHANNELFNC_STAIRCASETIMER:
+            case SUPLA_CHANNELFNC_NOLIQUIDSENSOR:
                 return [self hiValue];
 
             case SUPLA_CHANNELFNC_DIMMER:
