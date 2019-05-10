@@ -34,6 +34,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (BOOL) setChannelFlags:(int)flags;
 - (NSString *)getChannelCaption;
 
+- (int) imgIsActive;
 - (BOOL) isOnline;
 - (int) onlinePercent;
 - (int) hiValue;

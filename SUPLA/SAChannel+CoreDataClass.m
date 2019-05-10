@@ -76,4 +76,15 @@
     return self.value == nil ? [super colorValue] : [self.value colorValue];
 }
 
+- (int) imgIsActive {
+    
+    if ( [self isOnline]
+        && self.func == SUPLA_CHANNELFNC_CONTROLLINGTHEROLLERSHUTTER
+        && self.percentValue >= 100) {
+        return 1;
+    }
+    
+    return [super imgIsActive];
+}
+
 @end
