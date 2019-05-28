@@ -83,7 +83,7 @@ void sasuplaclient_location_update(void *_suplaclient, void *user_data, TSC_Supl
         [sc locationUpdate:location];
 }
 
-void sasuplaclient_channel_update(void *_suplaclient, void *user_data, TSC_SuplaChannel_B *channel) {
+void sasuplaclient_channel_update(void *_suplaclient, void *user_data, TSC_SuplaChannel_C *channel) {
     SASuplaClient *sc = (__bridge SASuplaClient*)user_data;
     if ( sc != nil )
         [sc channelUpdate: channel];
@@ -95,7 +95,7 @@ void sasuplaclient_channel_value_update(void *_suplaclient, void *user_data, TSC
         [sc channelValueUpdate:channel_value];
 }
 
-void sasuplaclient_channelgroup_update(void *_suplaclient, void *user_data, TSC_SuplaChannelGroup *cgroup) {
+void sasuplaclient_channelgroup_update(void *_suplaclient, void *user_data, TSC_SuplaChannelGroup_B *cgroup) {
     SASuplaClient *sc = (__bridge SASuplaClient*)user_data;
     if ( sc != nil )
         [sc channelGroupUpdate: cgroup];
@@ -558,7 +558,7 @@ void sasuplaclient_on_registration_enabled(void *_suplaclient, void *user_data, 
     
 }
 
-- (void) channelUpdate:(TSC_SuplaChannel_B *)channel {
+- (void) channelUpdate:(TSC_SuplaChannel_C *)channel {
     
     BOOL DataChanged = NO;
     BOOL ChannelValueChanged = NO;
@@ -610,7 +610,7 @@ void sasuplaclient_on_registration_enabled(void *_suplaclient, void *user_data, 
     
 }
 
-- (void) channelGroupUpdate:(TSC_SuplaChannelGroup *)cgroup {
+- (void) channelGroupUpdate:(TSC_SuplaChannelGroup_B *)cgroup {
     //NSLog(@"CGroup %i", cgroup->Id);
     
     BOOL DataChanged = NO;

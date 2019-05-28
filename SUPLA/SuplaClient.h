@@ -78,9 +78,9 @@
 - (void) onRegistered:(SARegResult *)result;
 - (void) onRegisterError:(int)code;
 - (void) locationUpdate:(TSC_SuplaLocation *)location;
-- (void) channelUpdate:(TSC_SuplaChannel_B *)channel;
+- (void) channelUpdate:(TSC_SuplaChannel_C *)channel;
 - (void) channelValueUpdate:(TSC_SuplaChannelValue *)channel_value;
-- (void) channelGroupUpdate:(TSC_SuplaChannelGroup *)cgroup;
+- (void) channelGroupUpdate:(TSC_SuplaChannelGroup_B *)cgroup;
 - (void) channelGroupRelationUpdate:(TSC_SuplaChannelGroupRelation *)cgroup_relation;
 - (void) onEvent:(SAEvent *)event;
 - (void) onRegistrationEnabled:(SARegistrationEnabled*)reg_enabled;

@@ -42,7 +42,7 @@
 
 -(SAChannel*) fetchChannelById:(int)channel_id;
 -(SAChannelValue*) fetchChannelValueByChannelId:(int)channel_id;
--(BOOL) updateChannel:(TSC_SuplaChannel_B *)channel;
+-(BOOL) updateChannel:(TSC_SuplaChannel_C *)channel;
 -(BOOL) updateChannelValue:(TSC_SuplaChannelValue *)channel_value;
 -(NSFetchedResultsController*) getChannelFrc;
 -(BOOL) setChannelsOffline;
@@ -51,7 +51,7 @@
 -(BOOL) setAllOfChannelGroupVisible:(int)visible whereVisibilityIs:(int)wvi;
 -(BOOL) setAllOfChannelGroupRelationVisible:(int)visible whereVisibilityIs:(int)wvi;
 -(SAChannelGroup*) fetchChannelGroupById:(int)remote_id;
--(BOOL) updateChannelGroup:(TSC_SuplaChannelGroup *)channel_group;
+-(BOOL) updateChannelGroup:(TSC_SuplaChannelGroup_B *)channel_group;
 -(BOOL) updateChannelGroupRelation:(TSC_SuplaChannelGroupRelation *)cgroup_relation;
 - (NSArray*) updateChannelGroups;
 -(NSFetchedResultsController*) getChannelGroupFrc;

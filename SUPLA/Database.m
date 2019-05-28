@@ -242,7 +242,7 @@
     return Value;
 }
 
--(BOOL) updateChannel:(TSC_SuplaChannel_B *)channel {
+-(BOOL) updateChannel:(TSC_SuplaChannel_C *)channel {
     
     BOOL save = NO;
     
@@ -470,7 +470,7 @@
     return CGroup;
 }
 
--(BOOL) updateChannelGroup:(TSC_SuplaChannelGroup *)channel_group {
+-(BOOL) updateChannelGroup:(TSC_SuplaChannelGroup_B *)channel_group {
     
     BOOL save = NO;
     
