@@ -7,6 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		01D4293322AAA83E0050C1A2 /* electricitymeter@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 01D4292D22AAA83D0050C1A2 /* electricitymeter@3x.png */; };
+		01D4293422AAA83E0050C1A2 /* watermeter@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 01D4292E22AAA83D0050C1A2 /* watermeter@3x.png */; };
+		01D4293522AAA83E0050C1A2 /* gasmeter@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 01D4292F22AAA83D0050C1A2 /* gasmeter@2x.png */; };
+		01D4293622AAA83E0050C1A2 /* gasmeter@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 01D4293022AAA83D0050C1A2 /* gasmeter@3x.png */; };
+		01D4293722AAA83E0050C1A2 /* watermeter@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 01D4293122AAA83D0050C1A2 /* watermeter@2x.png */; };
+		01D4293822AAA83E0050C1A2 /* electricitymeter@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 01D4293222AAA83D0050C1A2 /* electricitymeter@2x.png */; };
+		01D4293A22AAAA450050C1A2 /* IncrementalMeterCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 01D4293922AAAA450050C1A2 /* IncrementalMeterCell.xib */; };
 		4004DE8D1DC4E270009C34E3 /* SAColorBrightnessPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 4004DE8C1DC4E270009C34E3 /* SAColorBrightnessPicker.m */; };
 		4006E90A1DC62D0A00C4456D /* DetailView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4006E9091DC62D0A00C4456D /* DetailView.m */; };
 		4014ADFD1FE01ECD00297A9E /* help@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4014ADFB1FE01EC700297A9E /* help@2x.png */; };
@@ -250,6 +257,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		01D4292D22AAA83D0050C1A2 /* electricitymeter@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "electricitymeter@3x.png"; path = "Resources/Assets/Img/electricitymeter@3x.png"; sourceTree = "<group>"; };
+		01D4292E22AAA83D0050C1A2 /* watermeter@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "watermeter@3x.png"; path = "Resources/Assets/Img/watermeter@3x.png"; sourceTree = "<group>"; };
+		01D4292F22AAA83D0050C1A2 /* gasmeter@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "gasmeter@2x.png"; path = "Resources/Assets/Img/gasmeter@2x.png"; sourceTree = "<group>"; };
+		01D4293022AAA83D0050C1A2 /* gasmeter@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "gasmeter@3x.png"; path = "Resources/Assets/Img/gasmeter@3x.png"; sourceTree = "<group>"; };
+		01D4293122AAA83D0050C1A2 /* watermeter@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "watermeter@2x.png"; path = "Resources/Assets/Img/watermeter@2x.png"; sourceTree = "<group>"; };
+		01D4293222AAA83D0050C1A2 /* electricitymeter@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "electricitymeter@2x.png"; path = "Resources/Assets/Img/electricitymeter@2x.png"; sourceTree = "<group>"; };
+		01D4293922AAAA450050C1A2 /* IncrementalMeterCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = IncrementalMeterCell.xib; sourceTree = "<group>"; };
 		4004DE8B1DC4E270009C34E3 /* SAColorBrightnessPicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SAColorBrightnessPicker.h; sourceTree = "<group>"; };
 		4004DE8C1DC4E270009C34E3 /* SAColorBrightnessPicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SAColorBrightnessPicker.m; sourceTree = "<group>"; };
 		4006E9081DC62D0A00C4456D /* DetailView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailView.h; sourceTree = "<group>"; };
@@ -714,6 +728,12 @@
 		405AC4011BC15878004F7311 /* Img */ = {
 			isa = PBXGroup;
 			children = (
+				01D4293222AAA83D0050C1A2 /* electricitymeter@2x.png */,
+				01D4292D22AAA83D0050C1A2 /* electricitymeter@3x.png */,
+				01D4292F22AAA83D0050C1A2 /* gasmeter@2x.png */,
+				01D4293022AAA83D0050C1A2 /* gasmeter@3x.png */,
+				01D4293122AAA83D0050C1A2 /* watermeter@2x.png */,
+				01D4292E22AAA83D0050C1A2 /* watermeter@3x.png */,
 				40CEB66320CA95DF009FA2EE /* unknown_channel@3x.png */,
 				40477B5D20C6F62900E995E6 /* groupsoff@2x.png */,
 				40477B5E20C6F62900E995E6 /* groupson@2x.png */,
@@ -969,6 +989,7 @@
 				408034E31BC84A89007666E7 /* NavigationController.m */,
 				408034E41BC84A89007666E7 /* NavigationController.xib */,
 				40BE3E611BCA7AEF00153680 /* ChannelCell.xib */,
+				01D4293922AAAA450050C1A2 /* IncrementalMeterCell.xib */,
 				406778281BCBBC83008DD37F /* ThermometerCell.xib */,
 				406778521BCBF9F4008DD37F /* SectionCell.h */,
 				406778531BCBF9F4008DD37F /* SectionCell.m */,
@@ -1142,10 +1163,12 @@
 				40CF96C01BC7D4E70030EFFF /* noliquid@2x.png in Resources */,
 				4091AF461FC86D7B00EFF357 /* look@2x.png in Resources */,
 				407D4AE91BC6C5C7009A5505 /* app_icon87x87@3x.png in Resources */,
+				01D4293722AAA83E0050C1A2 /* watermeter@2x.png in Resources */,
 				40CF96B61BC7D4E70030EFFF /* gateway-closed@2x.png in Resources */,
 				40CF96BE1BC7D4E70030EFFF /* liquid@2x.png in Resources */,
 				4091AF401FC8405200EFF357 /* btnnextr2@2x.png in Resources */,
 				40B397E21BCED7C000BE7D5A /* Quicksand-Regular.ttf in Resources */,
+				01D4293622AAA83E0050C1A2 /* gasmeter@3x.png in Resources */,
 				4052DA0C1DC515AE000B8C45 /* rgb-off@3x.png in Resources */,
 				407D4AE71BC6C57E009A5505 /* app_icon58x58@2x.png in Resources */,
 				40B9ED461FACCE8700403B1A /* tv-on@2x.png in Resources */,
@@ -1192,7 +1215,9 @@
 				40477B5120C6CF2600E995E6 /* gate-closed-50percent@2x.png in Resources */,
 				401CA1EF1BA0923600117AF4 /* MainVC.xib in Resources */,
 				40CF96BB1BC7D4E70030EFFF /* light-off@3x.png in Resources */,
+				01D4293A22AAAA450050C1A2 /* IncrementalMeterCell.xib in Resources */,
 				40CF96C91BC7D4E70030EFFF /* rollershutter-open@3x.png in Resources */,
+				01D4293822AAA83E0050C1A2 /* electricitymeter@2x.png in Resources */,
 				40477B5320C6CF2600E995E6 /* gate-closed-50percent@3x.png in Resources */,
 				40CF96B81BC7D4E70030EFFF /* gateway-open@2x.png in Resources */,
 				40477B6020C6F62A00E995E6 /* groupson@2x.png in Resources */,
@@ -1203,6 +1228,7 @@
 				407D31931FD17C4D0062FB80 /* wifigeneral@2x.png in Resources */,
 				40F951451FD0654900698587 /* RSDetail.xib in Resources */,
 				40B9ED661FACD34C00403B1A /* xmastree-on@2x.png in Resources */,
+				01D4293322AAA83E0050C1A2 /* electricitymeter@3x.png in Resources */,
 				40CF96B51BC7D4E70030EFFF /* gate-open@3x.png in Resources */,
 				40DE1A2B1BCCFF8A004CF43B /* info@2x.png in Resources */,
 				4091654F1F3CBAF200F49193 /* rs_open.png in Resources */,
@@ -1283,6 +1309,8 @@
 				40B9ED6E1FACD94300403B1A /* barier-closed@3x.png in Resources */,
 				4067782D1BCBC647008DD37F /* menu@3x.png in Resources */,
 				40CF96AB1BC7D4E70030EFFF /* door-closed@3x.png in Resources */,
+				01D4293522AAA83E0050C1A2 /* gasmeter@2x.png in Resources */,
+				01D4293422AAA83E0050C1A2 /* watermeter@3x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
