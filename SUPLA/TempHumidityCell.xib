@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13174"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -28,32 +27,46 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Temperature and humidity" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5YC-RH-PM5">
-                        <rect key="frame" x="18" y="72" width="344" height="14"/>
+                        <rect key="frame" x="26" y="76.5" width="328" height="16.5"/>
                         <fontDescription key="fontDescription" name="OpenSans-Bold" family="Open Sans" pointSize="12"/>
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dBx-Oa-uvc" userLabel="bottomLine">
-                        <rect key="frame" x="-2" y="101.5" width="384" height="1"/>
+                        <rect key="frame" x="6" y="99" width="368" height="1"/>
                         <color key="backgroundColor" red="0.66666666666666663" green="0.66666666666666663" blue="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="1" id="wiO-uk-gao"/>
                         </constraints>
                     </view>
-                    <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="thermometer.png" translatesAutoresizingMaskIntoConstraints="NO" id="gra-eg-NfA">
-                        <rect key="frame" x="59" y="15.5" width="22" height="51.5"/>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="thermometer.png" translatesAutoresizingMaskIntoConstraints="NO" id="gra-eg-NfA">
+                        <rect key="frame" x="45" y="16.5" width="50" height="50"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="50" id="WeJ-Ji-JPF"/>
+                            <constraint firstAttribute="height" constant="50" id="up8-Ib-kLF"/>
+                        </constraints>
                     </imageView>
-                    <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="humidity.png" translatesAutoresizingMaskIntoConstraints="NO" id="pue-s1-1cy">
-                        <rect key="frame" x="202.5" y="19" width="33" height="45"/>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="humidity.png" translatesAutoresizingMaskIntoConstraints="NO" id="pue-s1-1cy">
+                        <rect key="frame" x="194" y="16.5" width="50" height="50"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="50" id="8R4-ai-lER"/>
+                            <constraint firstAttribute="width" constant="50" id="r8x-Sn-gf8"/>
+                        </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="22.0°" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="15" translatesAutoresizingMaskIntoConstraints="NO" id="NRR-0X-1Zb">
-                        <rect key="frame" x="99" y="23" width="68.5" height="34"/>
+                        <rect key="frame" x="95" y="16.5" width="70" height="50"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="50" id="OmO-qR-u9U"/>
+                        </constraints>
                         <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="29"/>
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="36.4" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="15" translatesAutoresizingMaskIntoConstraints="NO" id="lPY-xq-yar">
-                        <rect key="frame" x="257" y="23" width="56.5" height="34"/>
+                        <rect key="frame" x="249" y="16.5" width="57.5" height="50"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="50" id="z1Q-iF-xlY"/>
+                        </constraints>
                         <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="29"/>
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
@@ -70,19 +83,18 @@
                 <constraints>
                     <constraint firstItem="pue-s1-1cy" firstAttribute="centerY" secondItem="mtw-YI-uHv" secondAttribute="centerY" constant="-10" id="04W-T8-jRd"/>
                     <constraint firstItem="dBx-Oa-uvc" firstAttribute="leading" secondItem="mtw-YI-uHv" secondAttribute="leadingMargin" constant="-10" id="4yi-Og-IK7"/>
-                    <constraint firstItem="NRR-0X-1Zb" firstAttribute="centerX" secondItem="mtw-YI-uHv" secondAttribute="centerX" constant="-57" id="GyX-sK-hSt"/>
+                    <constraint firstItem="lPY-xq-yar" firstAttribute="centerY" secondItem="mtw-YI-uHv" secondAttribute="centerY" constant="-10" id="7TR-gh-hWG"/>
+                    <constraint firstItem="lPY-xq-yar" firstAttribute="leading" secondItem="pue-s1-1cy" secondAttribute="trailing" constant="5" id="DyE-u1-zTL"/>
                     <constraint firstItem="gra-eg-NfA" firstAttribute="centerY" secondItem="mtw-YI-uHv" secondAttribute="centerY" constant="-10" id="HIA-L3-5HU"/>
-                    <constraint firstItem="lPY-xq-yar" firstAttribute="top" secondItem="mtw-YI-uHv" secondAttribute="topMargin" constant="15" id="JOD-PR-Db9"/>
-                    <constraint firstItem="NRR-0X-1Zb" firstAttribute="top" secondItem="mtw-YI-uHv" secondAttribute="topMargin" constant="15" id="K7f-7J-rcw"/>
                     <constraint firstItem="gra-eg-NfA" firstAttribute="centerX" secondItem="mtw-YI-uHv" secondAttribute="centerX" constant="-120" id="M71-yD-Mr4"/>
                     <constraint firstItem="5YC-RH-PM5" firstAttribute="leading" secondItem="mtw-YI-uHv" secondAttribute="leadingMargin" constant="10" id="NBF-N5-QBf"/>
                     <constraint firstAttribute="bottomMargin" secondItem="dBx-Oa-uvc" secondAttribute="bottom" constant="-8" id="PLP-l1-YFN"/>
-                    <constraint firstItem="lPY-xq-yar" firstAttribute="centerX" secondItem="mtw-YI-uHv" secondAttribute="centerX" constant="95" id="TPu-j6-7pg"/>
                     <constraint firstAttribute="trailingMargin" secondItem="5YC-RH-PM5" secondAttribute="trailing" constant="10" id="Ypc-Ku-Xxh"/>
-                    <constraint firstItem="5YC-RH-PM5" firstAttribute="top" secondItem="gra-eg-NfA" secondAttribute="bottom" constant="5" id="Zbu-ex-TMy"/>
-                    <constraint firstItem="5YC-RH-PM5" firstAttribute="top" secondItem="NRR-0X-1Zb" secondAttribute="bottom" constant="15" id="mIY-y3-5UF"/>
+                    <constraint firstItem="5YC-RH-PM5" firstAttribute="top" secondItem="gra-eg-NfA" secondAttribute="bottom" constant="10" id="Zbu-ex-TMy"/>
+                    <constraint firstItem="NRR-0X-1Zb" firstAttribute="leading" secondItem="gra-eg-NfA" secondAttribute="trailing" id="ejM-E0-vMa"/>
                     <constraint firstItem="pue-s1-1cy" firstAttribute="centerX" secondItem="mtw-YI-uHv" secondAttribute="centerX" constant="29" id="pUg-0r-BLb"/>
                     <constraint firstItem="dBx-Oa-uvc" firstAttribute="trailing" secondItem="mtw-YI-uHv" secondAttribute="trailingMargin" constant="10" id="tRB-7s-rvx"/>
+                    <constraint firstItem="NRR-0X-1Zb" firstAttribute="centerY" secondItem="mtw-YI-uHv" secondAttribute="centerY" constant="-10" id="vBy-2o-clB"/>
                 </constraints>
                 <variation key="default">
                     <mask key="subviews">
@@ -100,7 +112,7 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="humidity.png" width="33" height="45"/>
-        <image name="thermometer.png" width="22" height="45"/>
+        <image name="humidity.png" width="33.5" height="45"/>
+        <image name="thermometer.png" width="22.5" height="45"/>
     </resources>
 </document>

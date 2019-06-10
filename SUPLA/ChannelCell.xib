@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -24,8 +23,8 @@
                 <rect key="frame" x="0.0" y="0.0" width="380" height="102.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Brama garażowa" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CZP-9z-72p">
-                        <rect key="frame" x="18" y="65" width="344" height="17"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Brama garażowa" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CZP-9z-72p">
+                        <rect key="frame" x="26" y="76.5" width="328" height="17"/>
                         <fontDescription key="fontDescription" name="OpenSans-Bold" family="Open Sans" pointSize="12"/>
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
@@ -55,8 +54,12 @@
                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="20" id="ruv-Lf-fqS"/>
                         </constraints>
                     </view>
-                    <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="gate-closed.png" translatesAutoresizingMaskIntoConstraints="NO" id="VDN-tt-KUq">
-                        <rect key="frame" x="167" y="10" width="47" height="52"/>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="gate-open.png" translatesAutoresizingMaskIntoConstraints="NO" id="VDN-tt-KUq">
+                        <rect key="frame" x="140" y="16.5" width="100" height="50"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="100" id="Jaa-6a-oMJ"/>
+                            <constraint firstAttribute="height" constant="50" id="XDd-eb-8ai"/>
+                        </constraints>
                     </imageView>
                     <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8O3-5x-52I" userLabel="activeRight" customClass="SAUIChannelStatus">
                         <rect key="frame" x="338" y="41.5" width="6" height="20"/>
@@ -81,7 +84,7 @@
                     <constraint firstItem="mwc-4O-K3V" firstAttribute="leading" secondItem="oDG-Oh-yeF" secondAttribute="leadingMargin" constant="11" id="Wct-aD-J9X"/>
                     <constraint firstItem="CZP-9z-72p" firstAttribute="leading" secondItem="oDG-Oh-yeF" secondAttribute="leadingMargin" constant="10" id="WdL-hj-xmT"/>
                     <constraint firstAttribute="trailingMargin" secondItem="CZP-9z-72p" secondAttribute="trailing" constant="10" id="bdY-6d-AdK"/>
-                    <constraint firstItem="CZP-9z-72p" firstAttribute="top" secondItem="VDN-tt-KUq" secondAttribute="bottom" constant="15" id="cOe-XY-8FK"/>
+                    <constraint firstItem="CZP-9z-72p" firstAttribute="top" secondItem="VDN-tt-KUq" secondAttribute="bottom" constant="10" id="cOe-XY-8FK"/>
                     <constraint firstItem="VDN-tt-KUq" firstAttribute="centerY" secondItem="oDG-Oh-yeF" secondAttribute="centerY" constant="-10" id="lix-yi-6iL"/>
                     <constraint firstItem="VDN-tt-KUq" firstAttribute="centerX" secondItem="oDG-Oh-yeF" secondAttribute="centerX" id="x5q-BV-mzE"/>
                 </constraints>
@@ -99,6 +102,6 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="gate-closed.png" width="49" height="44"/>
+        <image name="gate-open.png" width="49.5" height="44.5"/>
     </resources>
 </document>
