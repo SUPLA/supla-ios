@@ -50,7 +50,7 @@
 
 - (BOOL) setDeviceId:(int)deviceId {
     if ( self.device_id != deviceId ) {
-        self.deviceId = deviceId;
+        self.device_id = deviceId;
         return YES;
     }
     return NO;
