@@ -15,7 +15,6 @@
  along with this program; if not, write to the Free Software
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
-
 #import "SAChannelBase+CoreDataClass.h"
 
 
@@ -25,12 +24,14 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (NSFetchRequest<SAChannelBase *> *)fetchRequest;
 
-@property (nonatomic) int32_t remote_id;
-@property (nullable, nonatomic, copy) NSString *caption;
-@property (nonatomic) int32_t func;
-@property (nonatomic) int16_t visible;
 @property (nonatomic) int32_t alticon;
+@property (nullable, nonatomic, copy) NSString *caption;
 @property (nonatomic) int32_t flags;
+@property (nonatomic) int32_t func;
+@property (nonatomic) int32_t location_id;
+@property (nonatomic) int32_t remote_id;
+@property (nonatomic) int32_t usericon_id;
+@property (nonatomic) int16_t visible;
 @property (nullable, nonatomic, retain) _SALocation *location;
 
 @end

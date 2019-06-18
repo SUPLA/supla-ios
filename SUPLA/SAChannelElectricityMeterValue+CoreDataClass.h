@@ -18,25 +18,15 @@
 
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
-#import "SAChannelValue+CoreDataClass.h"
-#import "SAChannelBase+CoreDataProperties.h"
-#import "SAChannelExtendedValue+CoreDataProperties.h"
-#include "proto.h"
 
-@class NSObject, _SALocation;
+@class SAChannelElectricityMeterSummary;
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface SAChannel : SAChannelBase
+@interface SAChannelElectricityMeterValue : NSManagedObject
 
-- (void) setDefaults;
-- (BOOL) setChannelProtocolVersion:(int)protocolVersion;
-- (BOOL) setDeviceId:(int)deviceId;
-- (BOOL) setManufacturerId:(int)manufacturerId;
-- (BOOL) setProductId:(int)productId;
-- (BOOL) setChannelType:(int)type;
 @end
 
 NS_ASSUME_NONNULL_END
 
-#import "SAChannel+CoreDataProperties.h"
+#import "SAChannelElectricityMeterValue+CoreDataProperties.h"

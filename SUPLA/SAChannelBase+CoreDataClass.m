@@ -101,6 +101,33 @@
     return NO;
 }
 
+- (BOOL) setLocationId:(int)locationId {
+    if ( self.location_id != locationId ) {
+        self.location_id = locationId;
+        return YES;
+    }
+    
+    return NO;
+}
+
+- (BOOL) setRemoteId:(int)remoteId {
+    if ( self.remote_id != remoteId ) {
+        self.remote_id = remoteId;
+        return YES;
+    }
+    
+    return NO;
+}
+
+- (BOOL) setUserIconId:(int)userIconId {
+    if ( self.usericon_id != userIconId ) {
+        self.usericon_id = userIconId;
+        return YES;
+    }
+    
+    return NO;
+}
+
 - (NSString *)getChannelCaption {
     
     if ( [self.caption isEqualToString:@""] ) {
@@ -152,6 +179,12 @@
                 return NSLocalizedString(@"Mail sensor", nil);
             case SUPLA_CHANNELFNC_OPENINGSENSOR_WINDOW:
                 return NSLocalizedString(@"Window opening sensor", nil);
+            case SUPLA_CHANNELFNC_ELECTRICITY_METER:
+                return NSLocalizedString(@"Electricity Meter", nil);
+            case SUPLA_CHANNELFNC_GAS_METER:
+                return NSLocalizedString(@"Gas Meter", nil);
+            case SUPLA_CHANNELFNC_WATER_METER:
+                return NSLocalizedString(@"Water Meter", nil);
         }
         
     }
@@ -350,6 +383,14 @@
         case SUPLA_CHANNELFNC_MAILSENSOR:
             return [UIImage imageNamed:[self imgIsActive] ? @"mail" : @"nomail"];
             
+        case SUPLA_CHANNELFNC_ELECTRICITY_METER:
+            return [UIImage imageNamed:@"electricitymeter"];
+            
+        case SUPLA_CHANNELFNC_GAS_METER:
+            return [UIImage imageNamed:@"gasmeter"];
+            
+        case SUPLA_CHANNELFNC_WATER_METER:
+            return [UIImage imageNamed:@"watermeter"];
     }
     
     if ( n1 ) {
@@ -362,6 +403,10 @@
     
     
     return [UIImage imageNamed:[NSString stringWithFormat:@"unknown_channel"]];
+}
+
+- (NSString *) unit {
+    return @"";
 }
 
 @end

@@ -21,10 +21,15 @@
 @implementation SAChannel (CoreDataProperties)
 
 + (NSFetchRequest<SAChannel *> *)fetchRequest {
-	return [[NSFetchRequest alloc] initWithEntityName:@"SAChannel"];
+	return [NSFetchRequest fetchRequestWithEntityName:@"SAChannel"];
 }
 
+@dynamic device_id;
+@dynamic manufacturer_id;
+@dynamic product_id;
 @dynamic protocolversion;
+@dynamic type;
+@dynamic ev;
 @dynamic value;
 
 @end

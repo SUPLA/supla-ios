@@ -54,7 +54,7 @@
     // Create the coordinator and store
     
     _persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:[self managedObjectModel]];
-    NSURL *storeURL = [[SAApp applicationDocumentsDirectory] URLByAppendingPathComponent:@"SUPLA_DB3.sqlite"];
+    NSURL *storeURL = [[SAApp applicationDocumentsDirectory] URLByAppendingPathComponent:@"SUPLA_DB4.sqlite"];
     NSError *error = nil;
     NSString *failureReason = @"There was an error creating or loading the application's saved data.";
     
@@ -212,16 +212,7 @@
 -(SAChannel*) newChannel {
     
     SAChannel *Channel = [[SAChannel alloc] initWithEntity:[NSEntityDescription entityForName:@"SAChannel" inManagedObjectContext:self.managedObjectContext] insertIntoManagedObjectContext:self.managedObjectContext];
-    
-    Channel.caption = @"";
-    Channel.remote_id = 0;
-    Channel.func = 0;
-    Channel.visible = 1;
-    Channel.alticon = 0;
-    Channel.protocolversion = 0;
-    Channel.flags = 0;
-    Channel.value = nil;
-
+    [Channel setDefaults];
     [self.managedObjectContext insertObject:Channel];
     
     return Channel;
@@ -281,7 +272,35 @@
         save = YES;
     }
     
+    if ( [Channel setLocationId:channel->LocationID] ) {
+        save = YES;
+    }
+    
+    if ( [Channel setRemoteId:channel->Id] ) {
+        save = YES;
+    }
+    
+    if ( [Channel setUserIconId:channel->UserIcon] ) {
+        save = YES;
+    }
+    
     if ( [Channel setChannelProtocolVersion:channel->ProtocolVersion] ) {
+        save = YES;
+    }
+    
+    if ( [Channel setDeviceId:channel->DeviceID] ) {
+        save = YES;
+    }
+    
+    if ( [Channel setManufacturerId:channel->ManufacturerID] ) {
+        save = YES;
+    }
+    
+    if ( [Channel setProductId:channel->ProductID] ) {
+        save = YES;
+    }
+    
+    if ( [Channel setChannelType:channel->Type] ) {
         save = YES;
     }
     
@@ -505,6 +524,18 @@
     }
     
     if ( [CGroup setChannelAltIcon:channel_group->AltIcon] ) {
+        save = YES;
+    }
+    
+    if ( [CGroup setLocationId:channel_group->LocationID] ) {
+        save = YES;
+    }
+    
+    if ( [CGroup setRemoteId:channel_group->Id] ) {
+        save = YES;
+    }
+    
+    if ( [CGroup setUserIconId:channel_group->UserIcon] ) {
         save = YES;
     }
     

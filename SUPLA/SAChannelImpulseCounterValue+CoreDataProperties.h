@@ -16,27 +16,16 @@
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 
-#import <Foundation/Foundation.h>
-#import <CoreData/CoreData.h>
-#import "SAChannelValue+CoreDataClass.h"
-#import "SAChannelBase+CoreDataProperties.h"
-#import "SAChannelExtendedValue+CoreDataProperties.h"
-#include "proto.h"
+#import "SAChannelImpulseCounterValue+CoreDataClass.h"
 
-@class NSObject, _SALocation;
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface SAChannel : SAChannelBase
+@interface SAChannelImpulseCounterValue (CoreDataProperties)
 
-- (void) setDefaults;
-- (BOOL) setChannelProtocolVersion:(int)protocolVersion;
-- (BOOL) setDeviceId:(int)deviceId;
-- (BOOL) setManufacturerId:(int)manufacturerId;
-- (BOOL) setProductId:(int)productId;
-- (BOOL) setChannelType:(int)type;
++ (NSFetchRequest<SAChannelImpulseCounterValue *> *)fetchRequest;
+
+
 @end
 
 NS_ASSUME_NONNULL_END
-
-#import "SAChannel+CoreDataProperties.h"

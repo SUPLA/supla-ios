@@ -32,6 +32,9 @@ NS_ASSUME_NONNULL_BEGIN
 - (BOOL) setItemVisible:(int)visible;
 - (BOOL) setChannelAltIcon:(int)altIcon;
 - (BOOL) setChannelFlags:(int)flags;
+- (BOOL) setLocationId:(int)locationId;
+- (BOOL) setRemoteId:(int)remoteId;
+- (BOOL) setUserIconId:(int)userIconId;
 - (NSString *)getChannelCaption;
 
 - (int) imgIsActive;
@@ -48,6 +51,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (int) brightnessValue;
 - (int) colorBrightnessValue;
 - (UIColor *) colorValue;
+- (NSString *) unit;
 @end
 
 NS_ASSUME_NONNULL_END

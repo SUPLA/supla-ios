@@ -22,13 +22,61 @@
 
 @implementation SAChannel
 
+- (void) setDefaults {
+    self.caption = @"";
+    self.remote_id = 0;
+    self.func = 0;
+    self.visible = 1;
+    self.alticon = 0;
+    self.protocolversion = 0;
+    self.flags = 0;
+    self.value = nil;
+    self.device_id = 0;
+    self.manufacturer_id = 0;
+    self.product_id = 0;
+    self.type = 0;
+    self.ev = nil;
+}
+
 - (BOOL) setChannelProtocolVersion:(int)protocolVersion {
     
-    if ( [self.protocolversion isEqualToNumber:[NSNumber numberWithInt:protocolVersion]] == NO ) {
-        self.protocolversion = [NSNumber numberWithInt:protocolVersion];
+    if ( self.protocolversion != protocolVersion ) {
+        self.protocolversion = protocolVersion;
         return YES;
     }
     
+    return NO;
+}
+
+- (BOOL) setDeviceId:(int)deviceId {
+    if ( self.device_id != deviceId ) {
+        self.deviceId = deviceId;
+        return YES;
+    }
+    return NO;
+}
+
+- (BOOL) setManufacturerId:(int)manufacturerId {
+    if ( self.manufacturer_id != manufacturerId ) {
+        self.manufacturer_id = manufacturerId;
+        return YES;
+    }
+    return NO;
+}
+
+- (BOOL) setProductId:(int)productId {
+    if ( self.product_id != productId ) {
+        self.product_id = productId;
+        return YES;
+    }
+    return NO;
+}
+
+- (BOOL) setChannelType:(int)type {
+    if ( self.type != type ) {
+        self.type = type;
+        return YES;
+    }
     return NO;
 }
 

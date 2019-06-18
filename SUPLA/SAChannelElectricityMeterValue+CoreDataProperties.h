@@ -15,28 +15,24 @@
  along with this program; if not, write to the Free Software
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
+#import "SAChannelElectricityMeterValue+CoreDataClass.h"
 
-#import <Foundation/Foundation.h>
-#import <CoreData/CoreData.h>
-#import "SAChannelValue+CoreDataClass.h"
-#import "SAChannelBase+CoreDataProperties.h"
-#import "SAChannelExtendedValue+CoreDataProperties.h"
-#include "proto.h"
-
-@class NSObject, _SALocation;
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface SAChannel : SAChannelBase
+@interface SAChannelElectricityMeterValue (CoreDataProperties)
 
-- (void) setDefaults;
-- (BOOL) setChannelProtocolVersion:(int)protocolVersion;
-- (BOOL) setDeviceId:(int)deviceId;
-- (BOOL) setManufacturerId:(int)manufacturerId;
-- (BOOL) setProductId:(int)productId;
-- (BOOL) setChannelType:(int)type;
++ (NSFetchRequest<SAChannelElectricityMeterValue *> *)fetchRequest;
+
+@property (nullable, nonatomic, copy) NSString *currency;
+@property (nonatomic) int32_t measuredValues;
+@property (nonatomic) int32_t period;
+@property (nonatomic) double pricePerUnit;
+@property (nonatomic) double totalCost;
+@property (nullable, nonatomic, retain) SAChannelElectricityMeterSummary *sumPhase1;
+@property (nullable, nonatomic, retain) SAChannelElectricityMeterSummary *sumPhase2;
+@property (nullable, nonatomic, retain) SAChannelElectricityMeterSummary *sumPhase3;
+
 @end
 
 NS_ASSUME_NONNULL_END
-
-#import "SAChannel+CoreDataProperties.h"

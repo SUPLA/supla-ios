@@ -16,27 +16,26 @@
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 
-#import <Foundation/Foundation.h>
-#import <CoreData/CoreData.h>
-#import "SAChannelValue+CoreDataClass.h"
-#import "SAChannelBase+CoreDataProperties.h"
-#import "SAChannelExtendedValue+CoreDataProperties.h"
-#include "proto.h"
+#import "SAChannelElectricityMeterMeasurement+CoreDataClass.h"
 
-@class NSObject, _SALocation;
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface SAChannel : SAChannelBase
+@interface SAChannelElectricityMeterMeasurement (CoreDataProperties)
 
-- (void) setDefaults;
-- (BOOL) setChannelProtocolVersion:(int)protocolVersion;
-- (BOOL) setDeviceId:(int)deviceId;
-- (BOOL) setManufacturerId:(int)manufacturerId;
-- (BOOL) setProductId:(int)productId;
-- (BOOL) setChannelType:(int)type;
++ (NSFetchRequest<SAChannelElectricityMeterMeasurement *> *)fetchRequest;
+
+@property (nonatomic) double current;
+@property (nonatomic) double freq;
+@property (nonatomic) int16_t phase;
+@property (nonatomic) double phaseAngle;
+@property (nonatomic) double powerActive;
+@property (nonatomic) double powerApparent;
+@property (nonatomic) double powerFactor;
+@property (nonatomic) double powerReactive;
+@property (nonatomic) double voltage;
+@property (nullable, nonatomic, retain) SAChannelElectricityMeterValue *value;
+
 @end
 
 NS_ASSUME_NONNULL_END
-
-#import "SAChannel+CoreDataProperties.h"

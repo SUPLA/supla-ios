@@ -7,6 +7,19 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		01C792F622B7FB610020A900 /* SAChannelElectricityMeterSummary+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 01C792E022B7FB600020A900 /* SAChannelElectricityMeterSummary+CoreDataClass.m */; };
+		01C792F722B7FB610020A900 /* SAChannelElectricityMeterSummary+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 01C792E122B7FB600020A900 /* SAChannelElectricityMeterSummary+CoreDataProperties.m */; };
+		01C792F822B7FB610020A900 /* SAChannelElectricityMeterMeasurement+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 01C792E422B7FB600020A900 /* SAChannelElectricityMeterMeasurement+CoreDataClass.m */; };
+		01C792F922B7FB610020A900 /* SAChannelElectricityMeterMeasurement+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 01C792E522B7FB600020A900 /* SAChannelElectricityMeterMeasurement+CoreDataProperties.m */; };
+		01C792FA22B7FB610020A900 /* SAChannelExtendedValue+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 01C792E822B7FB600020A900 /* SAChannelExtendedValue+CoreDataClass.m */; };
+		01C792FB22B7FB610020A900 /* SAChannelExtendedValue+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 01C792E922B7FB600020A900 /* SAChannelExtendedValue+CoreDataProperties.m */; };
+		01C792FC22B7FB610020A900 /* SAChannelThermostatValue+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 01C792EC22B7FB610020A900 /* SAChannelThermostatValue+CoreDataClass.m */; };
+		01C792FD22B7FB610020A900 /* SAChannelThermostatValue+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 01C792ED22B7FB610020A900 /* SAChannelThermostatValue+CoreDataProperties.m */; };
+		01C792FE22B7FB610020A900 /* SAChannelElectricityMeterValue+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 01C792F022B7FB610020A900 /* SAChannelElectricityMeterValue+CoreDataClass.m */; };
+		01C792FF22B7FB610020A900 /* SAChannelElectricityMeterValue+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 01C792F122B7FB610020A900 /* SAChannelElectricityMeterValue+CoreDataProperties.m */; };
+		01C7930022B7FB610020A900 /* SAChannelImpulseCounterValue+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 01C792F422B7FB610020A900 /* SAChannelImpulseCounterValue+CoreDataClass.m */; };
+		01C7930122B7FB610020A900 /* SAChannelImpulseCounterValue+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 01C792F522B7FB610020A900 /* SAChannelImpulseCounterValue+CoreDataProperties.m */; };
+		01C7930422B804510020A900 /* SAChannel+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 01C7930322B804510020A900 /* SAChannel+CoreDataProperties.m */; };
 		01D4293322AAA83E0050C1A2 /* electricitymeter@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 01D4292D22AAA83D0050C1A2 /* electricitymeter@3x.png */; };
 		01D4293422AAA83E0050C1A2 /* watermeter@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 01D4292E22AAA83D0050C1A2 /* watermeter@3x.png */; };
 		01D4293522AAA83E0050C1A2 /* gasmeter@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 01D4292F22AAA83D0050C1A2 /* gasmeter@2x.png */; };
@@ -257,6 +270,33 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		01B216CF22AECB2F004E0596 /* SUPLA 3.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "SUPLA 3.xcdatamodel"; sourceTree = "<group>"; };
+		01C792DE22B7FB600020A900 /* SAChannelElectricityMeterSummary+CoreDataProperties.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SAChannelElectricityMeterSummary+CoreDataProperties.h"; sourceTree = "<group>"; };
+		01C792DF22B7FB600020A900 /* SAChannelElectricityMeterSummary+CoreDataClass.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SAChannelElectricityMeterSummary+CoreDataClass.h"; sourceTree = "<group>"; };
+		01C792E022B7FB600020A900 /* SAChannelElectricityMeterSummary+CoreDataClass.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "SAChannelElectricityMeterSummary+CoreDataClass.m"; sourceTree = "<group>"; };
+		01C792E122B7FB600020A900 /* SAChannelElectricityMeterSummary+CoreDataProperties.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "SAChannelElectricityMeterSummary+CoreDataProperties.m"; sourceTree = "<group>"; };
+		01C792E222B7FB600020A900 /* SAChannelElectricityMeterMeasurement+CoreDataProperties.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SAChannelElectricityMeterMeasurement+CoreDataProperties.h"; sourceTree = "<group>"; };
+		01C792E322B7FB600020A900 /* SAChannelElectricityMeterMeasurement+CoreDataClass.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SAChannelElectricityMeterMeasurement+CoreDataClass.h"; sourceTree = "<group>"; };
+		01C792E422B7FB600020A900 /* SAChannelElectricityMeterMeasurement+CoreDataClass.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "SAChannelElectricityMeterMeasurement+CoreDataClass.m"; sourceTree = "<group>"; };
+		01C792E522B7FB600020A900 /* SAChannelElectricityMeterMeasurement+CoreDataProperties.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "SAChannelElectricityMeterMeasurement+CoreDataProperties.m"; sourceTree = "<group>"; };
+		01C792E622B7FB600020A900 /* SAChannelExtendedValue+CoreDataProperties.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SAChannelExtendedValue+CoreDataProperties.h"; sourceTree = "<group>"; };
+		01C792E722B7FB600020A900 /* SAChannelExtendedValue+CoreDataClass.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SAChannelExtendedValue+CoreDataClass.h"; sourceTree = "<group>"; };
+		01C792E822B7FB600020A900 /* SAChannelExtendedValue+CoreDataClass.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "SAChannelExtendedValue+CoreDataClass.m"; sourceTree = "<group>"; };
+		01C792E922B7FB600020A900 /* SAChannelExtendedValue+CoreDataProperties.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "SAChannelExtendedValue+CoreDataProperties.m"; sourceTree = "<group>"; };
+		01C792EA22B7FB600020A900 /* SAChannelThermostatValue+CoreDataProperties.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SAChannelThermostatValue+CoreDataProperties.h"; sourceTree = "<group>"; };
+		01C792EB22B7FB610020A900 /* SAChannelThermostatValue+CoreDataClass.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SAChannelThermostatValue+CoreDataClass.h"; sourceTree = "<group>"; };
+		01C792EC22B7FB610020A900 /* SAChannelThermostatValue+CoreDataClass.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "SAChannelThermostatValue+CoreDataClass.m"; sourceTree = "<group>"; };
+		01C792ED22B7FB610020A900 /* SAChannelThermostatValue+CoreDataProperties.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "SAChannelThermostatValue+CoreDataProperties.m"; sourceTree = "<group>"; };
+		01C792EE22B7FB610020A900 /* SAChannelElectricityMeterValue+CoreDataProperties.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SAChannelElectricityMeterValue+CoreDataProperties.h"; sourceTree = "<group>"; };
+		01C792EF22B7FB610020A900 /* SAChannelElectricityMeterValue+CoreDataClass.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SAChannelElectricityMeterValue+CoreDataClass.h"; sourceTree = "<group>"; };
+		01C792F022B7FB610020A900 /* SAChannelElectricityMeterValue+CoreDataClass.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "SAChannelElectricityMeterValue+CoreDataClass.m"; sourceTree = "<group>"; };
+		01C792F122B7FB610020A900 /* SAChannelElectricityMeterValue+CoreDataProperties.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "SAChannelElectricityMeterValue+CoreDataProperties.m"; sourceTree = "<group>"; };
+		01C792F222B7FB610020A900 /* SAChannelImpulseCounterValue+CoreDataProperties.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SAChannelImpulseCounterValue+CoreDataProperties.h"; sourceTree = "<group>"; };
+		01C792F322B7FB610020A900 /* SAChannelImpulseCounterValue+CoreDataClass.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SAChannelImpulseCounterValue+CoreDataClass.h"; sourceTree = "<group>"; };
+		01C792F422B7FB610020A900 /* SAChannelImpulseCounterValue+CoreDataClass.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "SAChannelImpulseCounterValue+CoreDataClass.m"; sourceTree = "<group>"; };
+		01C792F522B7FB610020A900 /* SAChannelImpulseCounterValue+CoreDataProperties.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "SAChannelImpulseCounterValue+CoreDataProperties.m"; sourceTree = "<group>"; };
+		01C7930222B804510020A900 /* SAChannel+CoreDataProperties.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SAChannel+CoreDataProperties.h"; sourceTree = "<group>"; };
+		01C7930322B804510020A900 /* SAChannel+CoreDataProperties.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "SAChannel+CoreDataProperties.m"; sourceTree = "<group>"; };
 		01D4292D22AAA83D0050C1A2 /* electricitymeter@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "electricitymeter@3x.png"; path = "Resources/Assets/Img/electricitymeter@3x.png"; sourceTree = "<group>"; };
 		01D4292E22AAA83D0050C1A2 /* watermeter@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "watermeter@3x.png"; path = "Resources/Assets/Img/watermeter@3x.png"; sourceTree = "<group>"; };
 		01D4292F22AAA83D0050C1A2 /* gasmeter@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "gasmeter@2x.png"; path = "Resources/Assets/Img/gasmeter@2x.png"; sourceTree = "<group>"; };
@@ -909,6 +949,32 @@
 		407004241BB56EAC00F6187F /* DB */ = {
 			isa = PBXGroup;
 			children = (
+				01C7930222B804510020A900 /* SAChannel+CoreDataProperties.h */,
+				01C7930322B804510020A900 /* SAChannel+CoreDataProperties.m */,
+				01C792DE22B7FB600020A900 /* SAChannelElectricityMeterSummary+CoreDataProperties.h */,
+				01C792DF22B7FB600020A900 /* SAChannelElectricityMeterSummary+CoreDataClass.h */,
+				01C792E022B7FB600020A900 /* SAChannelElectricityMeterSummary+CoreDataClass.m */,
+				01C792E122B7FB600020A900 /* SAChannelElectricityMeterSummary+CoreDataProperties.m */,
+				01C792E222B7FB600020A900 /* SAChannelElectricityMeterMeasurement+CoreDataProperties.h */,
+				01C792E322B7FB600020A900 /* SAChannelElectricityMeterMeasurement+CoreDataClass.h */,
+				01C792E422B7FB600020A900 /* SAChannelElectricityMeterMeasurement+CoreDataClass.m */,
+				01C792E522B7FB600020A900 /* SAChannelElectricityMeterMeasurement+CoreDataProperties.m */,
+				01C792E622B7FB600020A900 /* SAChannelExtendedValue+CoreDataProperties.h */,
+				01C792E722B7FB600020A900 /* SAChannelExtendedValue+CoreDataClass.h */,
+				01C792E822B7FB600020A900 /* SAChannelExtendedValue+CoreDataClass.m */,
+				01C792E922B7FB600020A900 /* SAChannelExtendedValue+CoreDataProperties.m */,
+				01C792EA22B7FB600020A900 /* SAChannelThermostatValue+CoreDataProperties.h */,
+				01C792EB22B7FB610020A900 /* SAChannelThermostatValue+CoreDataClass.h */,
+				01C792EC22B7FB610020A900 /* SAChannelThermostatValue+CoreDataClass.m */,
+				01C792ED22B7FB610020A900 /* SAChannelThermostatValue+CoreDataProperties.m */,
+				01C792EE22B7FB610020A900 /* SAChannelElectricityMeterValue+CoreDataProperties.h */,
+				01C792EF22B7FB610020A900 /* SAChannelElectricityMeterValue+CoreDataClass.h */,
+				01C792F022B7FB610020A900 /* SAChannelElectricityMeterValue+CoreDataClass.m */,
+				01C792F122B7FB610020A900 /* SAChannelElectricityMeterValue+CoreDataProperties.m */,
+				01C792F222B7FB610020A900 /* SAChannelImpulseCounterValue+CoreDataProperties.h */,
+				01C792F322B7FB610020A900 /* SAChannelImpulseCounterValue+CoreDataClass.h */,
+				01C792F422B7FB610020A900 /* SAChannelImpulseCounterValue+CoreDataClass.m */,
+				01C792F522B7FB610020A900 /* SAChannelImpulseCounterValue+CoreDataProperties.m */,
 				40F7300F20C19BA600167C2D /* SAColorListItem+CoreDataProperties.h */,
 				40F7301020C19BA600167C2D /* SAColorListItem+CoreDataProperties.m */,
 				40C7BA8320C0492500ACEE42 /* SAChannelBase+CoreDataClass.h */,
@@ -1338,29 +1404,40 @@
 				40DE1A361BCD1B55004CF43B /* AboutVC.m in Sources */,
 				4017E12C1BB9CE2900570AC8 /* ChannelCell.m in Sources */,
 				40AB8BDE1DCB32EB0030F3DE /* SARateApp.m in Sources */,
+				01C792FB22B7FB610020A900 /* SAChannelExtendedValue+CoreDataProperties.m in Sources */,
+				01C792FF22B7FB610020A900 /* SAChannelElectricityMeterValue+CoreDataProperties.m in Sources */,
 				40C7BA7720C047CF00ACEE42 /* SAChannel+CoreDataProperties.m in Sources */,
 				40CF96DE1BC820E60030EFFF /* UIHelper.m in Sources */,
 				40F7301120C19BA600167C2D /* SAColorListItem+CoreDataProperties.m in Sources */,
 				40C7BA7920C047CF00ACEE42 /* SAChannelGroup+CoreDataProperties.m in Sources */,
 				40D69DEE1BB574FE00937769 /* Database.m in Sources */,
+				01C792FD22B7FB610020A900 /* SAChannelThermostatValue+CoreDataProperties.m in Sources */,
 				408034E51BC84A89007666E7 /* NavigationController.m in Sources */,
 				4004DE8D1DC4E270009C34E3 /* SAColorBrightnessPicker.m in Sources */,
 				401CA1C21BA067DB00117AF4 /* AppDelegate.m in Sources */,
 				40A675831BA1BE8E004A51C4 /* SettingsVC.m in Sources */,
 				406778551BCBF9F4008DD37F /* SectionCell.m in Sources */,
 				40B9ED3A1FAC79FC00403B1A /* SUPLA.xcdatamodeld in Sources */,
+				01C792F822B7FB610020A900 /* SAChannelElectricityMeterMeasurement+CoreDataClass.m in Sources */,
 				40B610CC20C7E263002B762A /* SAUIChannelStatus.m in Sources */,
 				4077ACE320A21BB100BD2216 /* CreateAccountVC.m in Sources */,
 				401CA1C81BA067DB00117AF4 /* MainVC.m in Sources */,
 				408034C51BC83D1A007666E7 /* MGSwipeTableCell.m in Sources */,
 				403EB1141FBDF47F00AD6460 /* AddWizardVC.m in Sources */,
 				408034C41BC83D1A007666E7 /* MGSwipeButton.m in Sources */,
+				01C792F622B7FB610020A900 /* SAChannelElectricityMeterSummary+CoreDataClass.m in Sources */,
+				01C7930422B804510020A900 /* SAChannel+CoreDataProperties.m in Sources */,
+				01C7930122B7FB610020A900 /* SAChannelImpulseCounterValue+CoreDataProperties.m in Sources */,
 				401CA1BF1BA067DB00117AF4 /* main.m in Sources */,
 				404E48F71FC75D0B001F6266 /* SAClassHelper.m in Sources */,
 				40BBA35D20AC6E220054CD20 /* SAChannelGroupRelation+CoreDataProperties.m in Sources */,
+				01C792FE22B7FB610020A900 /* SAChannelElectricityMeterValue+CoreDataClass.m in Sources */,
+				01C792F922B7FB610020A900 /* SAChannelElectricityMeterMeasurement+CoreDataProperties.m in Sources */,
 				40C7BA8720C0492500ACEE42 /* SAChannelBase+CoreDataClass.m in Sources */,
 				40E8BE8A1FC06A5600FB2FE6 /* XPathQuery.m in Sources */,
+				01C792FA22B7FB610020A900 /* SAChannelExtendedValue+CoreDataClass.m in Sources */,
 				40A6757F1BA1A5B6004A51C4 /* SuplaApp.m in Sources */,
+				01C792F722B7FB610020A900 /* SAChannelElectricityMeterSummary+CoreDataProperties.m in Sources */,
 				40C9E4F71F2A186A00753796 /* SARollerShutter.m in Sources */,
 				401CA1F21BA0A28A00117AF4 /* SuplaClient.m in Sources */,
 				4006E90A1DC62D0A00C4456D /* DetailView.m in Sources */,
@@ -1369,7 +1446,9 @@
 				40DA56901DCA1908008F05DE /* _SALocation+CoreDataProperties.m in Sources */,
 				409934B61F30EF9C003110C5 /* RSDetailView.m in Sources */,
 				403150FB1DC769430075D2D2 /* RGBDetailView.m in Sources */,
+				01C792FC22B7FB610020A900 /* SAChannelThermostatValue+CoreDataClass.m in Sources */,
 				40E8BE881FC06A5600FB2FE6 /* TFHpple.m in Sources */,
+				01C7930022B7FB610020A900 /* SAChannelImpulseCounterValue+CoreDataClass.m in Sources */,
 				40C7BA5320C007A300ACEE42 /* SAChannelValue+CoreDataProperties.m in Sources */,
 				407D4AFF1BC6E491009A5505 /* StatusVC.m in Sources */,
 			);
@@ -1712,10 +1791,11 @@
 		407004251BB5706500F6187F /* SUPLA.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				01B216CF22AECB2F004E0596 /* SUPLA 3.xcdatamodel */,
 				40BBA34620AC52EA0054CD20 /* SUPLA 2.xcdatamodel */,
 				407004261BB5706500F6187F /* SUPLA.xcdatamodel */,
 			);
-			currentVersion = 40BBA34620AC52EA0054CD20 /* SUPLA 2.xcdatamodel */;
+			currentVersion = 01B216CF22AECB2F004E0596 /* SUPLA 3.xcdatamodel */;
 			path = SUPLA.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

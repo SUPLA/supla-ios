@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14490.99" systemVersion="18F203" minimumToolsVersion="Automatic" sourceLanguage="Objective-C" userDefinedModelVersionIdentifier="">
+    <entity name="SAChannel" representedClassName="SAChannel" parentEntity="SAChannelBase" syncable="YES">
+        <attribute name="device_id" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="manufacturer_id" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="product_id" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="protocolversion" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="type" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <relationship name="ev" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="SAChannelExtendedValue" syncable="YES"/>
+        <relationship name="value" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="SAChannelValue" syncable="YES"/>
+    </entity>
+    <entity name="SAChannelBase" representedClassName="SAChannelBase" isAbstract="YES" syncable="YES">
+        <attribute name="alticon" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="caption" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="flags" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="func" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="location_id" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="remote_id" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="usericon_id" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="visible" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <relationship name="location" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="SALocation" syncable="YES"/>
+    </entity>
+    <entity name="SAChannelElectricityMeterMeasurement" representedClassName="SAChannelElectricityMeterMeasurement" syncable="YES">
+        <attribute name="current" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="freq" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="phase" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="phaseAngle" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="powerActive" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="powerApparent" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="powerFactor" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="powerReactive" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="voltage" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <relationship name="value" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="SAChannelElectricityMeterValue" syncable="YES"/>
+    </entity>
+    <entity name="SAChannelElectricityMeterSummary" representedClassName="SAChannelElectricityMeterSummary" syncable="YES">
+        <attribute name="totalForwardActiveEnergy" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="totalForwardReactiveEnergy" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="totalReverseActiveEnergy" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="totalReverseReactiveEnergy" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+    </entity>
+    <entity name="SAChannelElectricityMeterValue" representedClassName="SAChannelElectricityMeterValue" syncable="YES">
+        <attribute name="currency" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="measuredValues" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="period" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="pricePerUnit" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="totalCost" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <relationship name="sumPhase1" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="SAChannelElectricityMeterSummary" syncable="YES"/>
+        <relationship name="sumPhase2" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="SAChannelElectricityMeterSummary" syncable="YES"/>
+        <relationship name="sumPhase3" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="SAChannelElectricityMeterSummary" syncable="YES"/>
+    </entity>
+    <entity name="SAChannelExtendedValue" representedClassName="SAChannelExtendedValue" syncable="YES">
+        <attribute name="data" optional="YES" attributeType="Binary" syncable="YES"/>
+        <attribute name="type" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <relationship name="emval" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="SAChannelElectricityMeterValue" syncable="YES"/>
+        <relationship name="icval" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="SAChannelImpulseCounterValue" syncable="YES"/>
+        <relationship name="thval" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="SAChannelThermostatValue" syncable="YES"/>
+    </entity>
+    <entity name="SAChannelGroup" representedClassName="SAChannelGroup" parentEntity="SAChannelBase" syncable="YES">
+        <attribute name="online" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="total_value" optional="YES" attributeType="Transformable" syncable="YES"/>
+    </entity>
+    <entity name="SAChannelGroupRelation" representedClassName="SAChannelGroupRelation" syncable="YES">
+        <attribute name="channel_id" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="group_id" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="visible" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <relationship name="group" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="SAChannelGroup" syncable="YES"/>
+        <relationship name="value" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="SAChannelValue" syncable="YES"/>
+    </entity>
+    <entity name="SAChannelImpulseCounterValue" representedClassName="SAChannelImpulseCounterValue" syncable="YES"/>
+    <entity name="SAChannelThermostatValue" representedClassName="SAChannelThermostatValue" syncable="YES"/>
+    <entity name="SAChannelValue" representedClassName="SAChannelValue" syncable="YES">
+        <attribute name="channel_id" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="online" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="sub_value" optional="YES" attributeType="Transformable" syncable="YES"/>
+        <attribute name="value" optional="YES" attributeType="Transformable" syncable="YES"/>
+    </entity>
+    <entity name="SAColorListItem" representedClassName="SAColorListItem" syncable="YES">
+        <attribute name="brightness" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="color" optional="YES" attributeType="Transformable" syncable="YES"/>
+        <attribute name="group" optional="YES" attributeType="Boolean" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="idx" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="remote_id" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+    </entity>
+    <entity name="SALocation" representedClassName="_SALocation" syncable="YES">
+        <attribute name="caption" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="location_id" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="visible" optional="YES" attributeType="Integer 16" usesScalarValueType="NO" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="SAChannel" positionX="36" positionY="-18" width="128" height="150"/>
+        <element name="SAChannelBase" positionX="-540" positionY="72" width="128" height="180"/>
+        <element name="SAChannelElectricityMeterMeasurement" positionX="-540" positionY="81" width="128" height="195"/>
+        <element name="SAChannelElectricityMeterSummary" positionX="-522" positionY="99" width="128" height="105"/>
+        <element name="SAChannelElectricityMeterValue" positionX="-513" positionY="108" width="128" height="165"/>
+        <element name="SAChannelExtendedValue" positionX="-504" positionY="135" width="128" height="120"/>
+        <element name="SAChannelGroup" positionX="-342" positionY="45" width="128" height="75"/>
+        <element name="SAChannelGroupRelation" positionX="-333" positionY="90" width="128" height="120"/>
+        <element name="SAChannelImpulseCounterValue" positionX="-495" positionY="144" width="128" height="45"/>
+        <element name="SAChannelThermostatValue" positionX="-486" positionY="153" width="128" height="45"/>
+        <element name="SAChannelValue" positionX="-351" positionY="54" width="128" height="105"/>
+        <element name="SAColorListItem" positionX="-216" positionY="-54" width="128" height="120"/>
+        <element name="SALocation" positionX="-747" positionY="-54" width="128" height="88"/>
+    </elements>
+</model>

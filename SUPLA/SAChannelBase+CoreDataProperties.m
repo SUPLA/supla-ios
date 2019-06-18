@@ -21,15 +21,17 @@
 @implementation SAChannelBase (CoreDataProperties)
 
 + (NSFetchRequest<SAChannelBase *> *)fetchRequest {
-	return [[NSFetchRequest alloc] initWithEntityName:@"SAChannelBase"];
+	return [NSFetchRequest fetchRequestWithEntityName:@"SAChannelBase"];
 }
 
-@dynamic remote_id;
-@dynamic caption;
-@dynamic func;
-@dynamic visible;
 @dynamic alticon;
+@dynamic caption;
 @dynamic flags;
+@dynamic func;
+@dynamic location_id;
+@dynamic remote_id;
+@dynamic usericon_id;
+@dynamic visible;
 @dynamic location;
 
 @end
