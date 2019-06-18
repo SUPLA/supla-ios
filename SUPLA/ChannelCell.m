@@ -137,6 +137,20 @@
         
         [self.distance setText:text];
     
+    } else if ( channelBase.func == SUPLA_CHANNELFNC_ELECTRICITY_METER
+                || channelBase.func == SUPLA_CHANNELFNC_WATER_METER
+                || channelBase.func == SUPLA_CHANNELFNC_GAS_METER ) {
+        
+        if ( [channelBase isOnline] ) {
+            [self.measuredValue setText:[NSString stringWithFormat:@"%0.1f %@",
+                                         channelBase.doubleValue, channelBase.unit]];
+        } else {
+            [self.measuredValue setText:[NSString stringWithFormat:@"--- %@", channelBase.unit]];
+        }
+        
+        self.right_OnlineStatus.shapeType = stDot;
+        self.right_OnlineStatus.percent = [channelBase onlinePercent];
+        
     } else {
         [self.image setImage:[channelBase getIcon]];
     
@@ -167,6 +181,9 @@
             case SUPLA_CHANNELFNC_CONTROLLINGTHEDOORLOCK:
             case SUPLA_CHANNELFNC_CONTROLLINGTHEGATEWAYLOCK:
             case SUPLA_CHANNELFNC_CONTROLLINGTHEROLLERSHUTTER:
+            case SUPLA_CHANNELFNC_ELECTRICITY_METER:
+            case SUPLA_CHANNELFNC_GAS_METER:
+            case SUPLA_CHANNELFNC_WATER_METER:
                 self.left_OnlineStatus.hidden = YES;
                 self.right_OnlineStatus.hidden = NO;
                 break;

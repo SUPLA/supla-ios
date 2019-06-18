@@ -36,6 +36,7 @@
     UINib *_depth_nib;
     UINib *_distance_nib;
     UINib *_section_nib;
+    UINib *_incmeter_nib;
     NSTimer *_nTimer;
     UITapGestureRecognizer *_tapRecognizer;
 
@@ -47,6 +48,7 @@
     [tv registerNib:_temphumidity_nib forCellReuseIdentifier:@"TempHumidityCell"];
     [tv registerNib:_depth_nib forCellReuseIdentifier:@"DepthCell"];
     [tv registerNib:_distance_nib forCellReuseIdentifier:@"DistanceCell"];
+    [tv registerNib:_incmeter_nib forCellReuseIdentifier:@"IncrementalMeterCell"];
     [tv registerNib:_section_nib forCellReuseIdentifier:@"SectionCell"];
 }
 
@@ -59,6 +61,7 @@
     _temphumidity_nib = [UINib nibWithNibName:@"TempHumidityCell" bundle:nil];
     _depth_nib = [UINib nibWithNibName:@"DepthCell" bundle:nil];
     _distance_nib = [UINib nibWithNibName:@"DistanceCell" bundle:nil];
+    _incmeter_nib = [UINib nibWithNibName:@"IncrementalMeterCell" bundle:nil];
     _section_nib = [UINib nibWithNibName:@"SectionCell" bundle:nil];
     
     [self registerNibForTableView:self.cTableView];
@@ -279,6 +282,11 @@
                 break;
             case SUPLA_CHANNELFNC_DISTANCESENSOR:
                 identifier = @"DistanceCell";
+                break;
+            case SUPLA_CHANNELFNC_ELECTRICITY_METER:
+            case SUPLA_CHANNELFNC_GAS_METER:
+            case SUPLA_CHANNELFNC_WATER_METER:
+                identifier = @"IncrementalMeterCell";
                 break;
         }
     }
