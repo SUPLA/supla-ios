@@ -95,6 +95,18 @@
     return result;
 }
 
+- (double) totalForwardActiveEnergy {
+
+    if ( self.value != nil && self.dataValue.length >= sizeof(TElectricityMeter_Value)) {
+        TElectricityMeter_Value ev;
+        memset(&ev, 0, sizeof(TElectricityMeter_Value));
+        [self.dataValue getBytes:&ev length:sizeof(TElectricityMeter_Value)];
+        return ev.total_forward_active_energy * 0.01;
+    }
+    
+    return 0.0;
+}
+
 - (int) intValue {
     if ( self.value != nil ) {
         int i = 0;

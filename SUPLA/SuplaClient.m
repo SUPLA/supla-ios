@@ -605,7 +605,11 @@ void sasuplaclient_on_registration_enabled(void *_suplaclient, void *user_data, 
 
 - (void) channelValueUpdate:(TSC_SuplaChannelValue *)channel_value {
     
-    //NSLog(@"channelValueUpdate %i", channel_value->Id);
+    for(int a=0;a<8;a++) {
+        NSLog(@"channelValueUpdate %i:%i:%i", channel_value->Id, a, channel_value->value.value[a]);
+        
+    }
+    NSLog(@"channelValueUpdate %i,%i,%f", channel_value->Id, sizeof(double), *((double*)channel_value->value.value));
     
     if ( [self.DB updateChannelValue:channel_value] ) {
         [self onChannelValueChanged: channel_value->Id isGroup:NO];

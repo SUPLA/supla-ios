@@ -19,7 +19,6 @@
 		01C792FF22B7FB610020A900 /* SAChannelElectricityMeterValue+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 01C792F122B7FB610020A900 /* SAChannelElectricityMeterValue+CoreDataProperties.m */; };
 		01C7930022B7FB610020A900 /* SAChannelImpulseCounterValue+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 01C792F422B7FB610020A900 /* SAChannelImpulseCounterValue+CoreDataClass.m */; };
 		01C7930122B7FB610020A900 /* SAChannelImpulseCounterValue+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 01C792F522B7FB610020A900 /* SAChannelImpulseCounterValue+CoreDataProperties.m */; };
-		01C7930422B804510020A900 /* SAChannel+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 01C7930322B804510020A900 /* SAChannel+CoreDataProperties.m */; };
 		01D4293322AAA83E0050C1A2 /* electricitymeter@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 01D4292D22AAA83D0050C1A2 /* electricitymeter@3x.png */; };
 		01D4293422AAA83E0050C1A2 /* watermeter@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 01D4292E22AAA83D0050C1A2 /* watermeter@3x.png */; };
 		01D4293522AAA83E0050C1A2 /* gasmeter@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 01D4292F22AAA83D0050C1A2 /* gasmeter@2x.png */; };
@@ -295,8 +294,6 @@
 		01C792F322B7FB610020A900 /* SAChannelImpulseCounterValue+CoreDataClass.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SAChannelImpulseCounterValue+CoreDataClass.h"; sourceTree = "<group>"; };
 		01C792F422B7FB610020A900 /* SAChannelImpulseCounterValue+CoreDataClass.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "SAChannelImpulseCounterValue+CoreDataClass.m"; sourceTree = "<group>"; };
 		01C792F522B7FB610020A900 /* SAChannelImpulseCounterValue+CoreDataProperties.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "SAChannelImpulseCounterValue+CoreDataProperties.m"; sourceTree = "<group>"; };
-		01C7930222B804510020A900 /* SAChannel+CoreDataProperties.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SAChannel+CoreDataProperties.h"; sourceTree = "<group>"; };
-		01C7930322B804510020A900 /* SAChannel+CoreDataProperties.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "SAChannel+CoreDataProperties.m"; sourceTree = "<group>"; };
 		01D4292D22AAA83D0050C1A2 /* electricitymeter@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "electricitymeter@3x.png"; path = "Resources/Assets/Img/electricitymeter@3x.png"; sourceTree = "<group>"; };
 		01D4292E22AAA83D0050C1A2 /* watermeter@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "watermeter@3x.png"; path = "Resources/Assets/Img/watermeter@3x.png"; sourceTree = "<group>"; };
 		01D4292F22AAA83D0050C1A2 /* gasmeter@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "gasmeter@2x.png"; path = "Resources/Assets/Img/gasmeter@2x.png"; sourceTree = "<group>"; };
@@ -949,8 +946,6 @@
 		407004241BB56EAC00F6187F /* DB */ = {
 			isa = PBXGroup;
 			children = (
-				01C7930222B804510020A900 /* SAChannel+CoreDataProperties.h */,
-				01C7930322B804510020A900 /* SAChannel+CoreDataProperties.m */,
 				01C792DE22B7FB600020A900 /* SAChannelElectricityMeterSummary+CoreDataProperties.h */,
 				01C792DF22B7FB600020A900 /* SAChannelElectricityMeterSummary+CoreDataClass.h */,
 				01C792E022B7FB600020A900 /* SAChannelElectricityMeterSummary+CoreDataClass.m */,
@@ -1426,7 +1421,6 @@
 				403EB1141FBDF47F00AD6460 /* AddWizardVC.m in Sources */,
 				408034C41BC83D1A007666E7 /* MGSwipeButton.m in Sources */,
 				01C792F622B7FB610020A900 /* SAChannelElectricityMeterSummary+CoreDataClass.m in Sources */,
-				01C7930422B804510020A900 /* SAChannel+CoreDataProperties.m in Sources */,
 				01C7930122B7FB610020A900 /* SAChannelImpulseCounterValue+CoreDataProperties.m in Sources */,
 				401CA1BF1BA067DB00117AF4 /* main.m in Sources */,
 				404E48F71FC75D0B001F6266 /* SAClassHelper.m in Sources */,

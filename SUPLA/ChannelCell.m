@@ -141,9 +141,9 @@
                 || channelBase.func == SUPLA_CHANNELFNC_WATER_METER
                 || channelBase.func == SUPLA_CHANNELFNC_GAS_METER ) {
         
-        if ( [channelBase isOnline] ) {
+        if ( [channelBase isOnline] ) {            
             [self.measuredValue setText:[NSString stringWithFormat:@"%0.1f %@",
-                                         channelBase.doubleValue, channelBase.unit]];
+                                         channelBase.totalForwardActiveEnergy, channelBase.unit]];
         } else {
             [self.measuredValue setText:[NSString stringWithFormat:@"--- %@", channelBase.unit]];
         }

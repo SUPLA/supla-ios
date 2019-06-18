@@ -51,6 +51,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (int) brightnessValue;
 - (int) colorBrightnessValue;
 - (UIColor *) colorValue;
+- (double) totalForwardActiveEnergy;
 - (NSString *) unit;
 @end
 

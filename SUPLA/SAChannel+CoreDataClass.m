@@ -108,6 +108,10 @@
     return self.value == nil ? [super doubleValue] : [self.value doubleValue];
 }
 
+- (double) totalForwardActiveEnergy {
+    return self.value == nil ? [super totalForwardActiveEnergy] : [self.value totalForwardActiveEnergy];
+}
+
 - (int) percentValue {
      return self.value == nil ? [super percentValue] : [self.value percentValue];
 }

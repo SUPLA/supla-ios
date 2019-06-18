@@ -35,6 +35,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (BOOL) setManufacturerId:(int)manufacturerId;
 - (BOOL) setProductId:(int)productId;
 - (BOOL) setChannelType:(int)type;
+- (double) totalForwardActiveEnergy;
 @end
 
 NS_ASSUME_NONNULL_END

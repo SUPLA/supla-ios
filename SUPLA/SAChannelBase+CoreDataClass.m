@@ -237,6 +237,10 @@
     return [UIColor clearColor];
 }
 
+- (double) totalForwardActiveEnergy {
+    return 0;
+}
+
 - (int) imgIsActive {
     
     if ( [self isOnline] ) {
