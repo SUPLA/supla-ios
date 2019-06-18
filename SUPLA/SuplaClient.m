@@ -95,6 +95,13 @@ void sasuplaclient_channel_value_update(void *_suplaclient, void *user_data, TSC
         [sc channelValueUpdate:channel_value];
 }
 
+void sasuplaclient_channel_extendedvalue_update(void *_suplaclient, void *user_data,
+                                        TSC_SuplaChannelExtendedValue *channel_extendedvalue) {
+    SASuplaClient *sc = (__bridge SASuplaClient*)user_data;
+    if ( sc != nil )
+        [sc channelExtendedValueUpdate:channel_extendedvalue];
+}
+
 void sasuplaclient_channelgroup_update(void *_suplaclient, void *user_data, TSC_SuplaChannelGroup_B *cgroup) {
     SASuplaClient *sc = (__bridge SASuplaClient*)user_data;
     if ( sc != nil )
@@ -321,6 +328,7 @@ void sasuplaclient_on_registration_enabled(void *_suplaclient, void *user_data, 
     scc.cb_channelgroup_update = sasuplaclient_channelgroup_update;
     scc.cb_channelgroup_relation_update = sasuplaclient_channelgroup_relation_update;
     scc.cb_channel_value_update = sasuplaclient_channel_value_update;
+    scc.cb_channel_extendedvalue_update = sasuplaclient_channel_extendedvalue_update;
     scc.cb_on_event = sasuplaclient_on_event;
     scc.cb_on_registration_enabled = sasuplaclient_on_registration_enabled;
     
@@ -610,6 +618,19 @@ void sasuplaclient_on_registration_enabled(void *_suplaclient, void *user_data, 
     
 }
 
+- (void) channelExtendedValueUpdate:(TSC_SuplaChannelExtendedValue *)channel_extendedvalue {
+  /*
+    if ( [self.DB updateChannelExtendedValue:channel_extendedvalue] ) {
+        [self onChannelExtendedValueChanged: channel_extendedvalue->Id isGroup:NO];
+        [self onDataChanged];
+    }
+    
+    if (channel_value->EOL == 1) {
+        [self onChannelGroupValueChanged];
+    }
+    */
+}
+
 - (void) channelGroupUpdate:(TSC_SuplaChannelGroup_B *)cgroup {
     //NSLog(@"CGroup %i", cgroup->Id);
     
@@ -701,7 +722,7 @@ void sasuplaclient_on_registration_enabled(void *_suplaclient, void *user_data, 
     return result;
 }
 
-- (BOOL) cg:(int)ID setRGB:(UIColor*)color colorBrightness:(int)color_brightness brightness:(int)brightness group:(BOOL)group {
+- (BOOL) cg:(int)ID setRGB:(UIColor*)color colorBrightness:(int)color_brightness brightness:(int)brightness group:(BOOL)group turnOnOff:(BOOL)turnOnOff {
     
     BOOL result = NO;
     
@@ -726,7 +747,7 @@ void sasuplaclient_on_registration_enabled(void *_suplaclient, void *user_data, 
             if ( color_brightness < 0 || color_brightness > 100 )
                 color_brightness = 0;
             
-            result = 1 == supla_client_set_rgbw(_sclient, ID, group, _color, color_brightness, brightness);
+            result = 1 == supla_client_set_rgbw(_sclient, ID, group, _color, color_brightness, brightness, turnOnOff ? 1 : 0);
         }
     }
     
@@ -746,7 +767,7 @@ void sasuplaclient_on_registration_enabled(void *_suplaclient, void *user_data, 
 }
 
 - (BOOL) channel:(int)ChannelID setRGB:(UIColor*)color colorBrightness:(int)color_brightness brightness:(int)brightness {
-    return [self cg:ChannelID setRGB:color colorBrightness:color_brightness brightness:brightness group:NO];
+    return [self cg:ChannelID setRGB:color colorBrightness:color_brightness brightness:brightness group:NO turnOnOff:NO];
 }
 
 - (void) group:(int)GroupID Open:(char)open {
@@ -754,7 +775,7 @@ void sasuplaclient_on_registration_enabled(void *_suplaclient, void *user_data, 
 }
 
 - (BOOL) group:(int)GroupID setRGB:(UIColor*)color colorBrightness:(int)color_brightness brightness:(int)brightness {
-    return [self cg:GroupID setRGB:color colorBrightness:color_brightness brightness:brightness group:YES];
+    return [self cg:GroupID setRGB:color colorBrightness:color_brightness brightness:brightness group:YES turnOnOff:NO];
 }
 
 - (void) getRegistrationEnabled {

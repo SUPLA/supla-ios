@@ -80,6 +80,7 @@
 - (void) locationUpdate:(TSC_SuplaLocation *)location;
 - (void) channelUpdate:(TSC_SuplaChannel_C *)channel;
 - (void) channelValueUpdate:(TSC_SuplaChannelValue *)channel_value;
+- (void) channelExtendedValueUpdate:(TSC_SuplaChannelExtendedValue *)channel_extendedvalue;
 - (void) channelGroupUpdate:(TSC_SuplaChannelGroup_B *)cgroup;
 - (void) channelGroupRelationUpdate:(TSC_SuplaChannelGroupRelation *)cgroup_relation;
 - (void) onEvent:(SAEvent *)event;
@@ -88,7 +89,7 @@
 - (void) reconnect;
 - (BOOL) isConnected;
 - (BOOL) isRegistered;
-- (BOOL) cg:(int)ID setRGB:(UIColor*)color colorBrightness:(int)color_brightness brightness:(int)brightness group:(BOOL)group;
+- (BOOL) cg:(int)ID setRGB:(UIColor*)color colorBrightness:(int)color_brightness brightness:(int)brightness group:(BOOL)group turnOnOff:(BOOL)turnOnOff;
 - (void) cg:(int)ID Open:(char)open group:(BOOL)group;
 - (void) channel:(int)ChannelID Open:(char)open;
 - (BOOL) channel:(int)ChannelID setRGB:(UIColor*)color colorBrightness:(int)color_brightness brightness:(int)brightness;
