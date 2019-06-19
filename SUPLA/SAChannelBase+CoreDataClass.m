@@ -241,6 +241,10 @@
     return 0;
 }
 
+- (double) impulseCounterCalculatedValue {
+    return 0;
+}
+
 - (int) imgIsActive {
     
     if ( [self isOnline] ) {

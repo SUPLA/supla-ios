@@ -107,6 +107,17 @@
     return 0.0;
 }
 
+- (double) impulseCounterCalculatedValue {
+    if ( self.value != nil && self.dataValue.length >= sizeof(TSC_ImpulseCounter_Value)) {
+        TSC_ImpulseCounter_Value icv;
+        memset(&icv, 0, sizeof(TSC_ImpulseCounter_Value));
+        [self.dataValue getBytes:&icv length:sizeof(TSC_ImpulseCounter_Value)];
+        return icv.calculated_value * 0.001;
+    }
+    
+    return 0.0;
+}
+
 - (int) intValue {
     if ( self.value != nil ) {
         int i = 0;

@@ -112,6 +112,10 @@
     return self.value == nil ? [super totalForwardActiveEnergy] : [self.value totalForwardActiveEnergy];
 }
 
+- (double) impulseCounterCalculatedValue {
+    return self.value == nil ? [super impulseCounterCalculatedValue] : [self.value impulseCounterCalculatedValue];
+}
+
 - (int) percentValue {
      return self.value == nil ? [super percentValue] : [self.value percentValue];
 }

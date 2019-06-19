@@ -141,9 +141,18 @@
                 || channelBase.func == SUPLA_CHANNELFNC_WATER_METER
                 || channelBase.func == SUPLA_CHANNELFNC_GAS_METER ) {
         
-        if ( [channelBase isOnline] ) {            
-            [self.measuredValue setText:[NSString stringWithFormat:@"%0.1f %@",
-                                         channelBase.totalForwardActiveEnergy, channelBase.unit]];
+        if ( [channelBase isOnline] ) {
+            
+            double value = 0.0;
+            
+            if ( [channelBase isKindOfClass:SAChannel.class]
+                && ((SAChannel*)channelBase).type == SUPLA_CHANNELTYPE_ELECTRICITY_METER ) {
+                value = channelBase.totalForwardActiveEnergy;
+            } else {
+                value = channelBase.impulseCounterCalculatedValue;
+            }
+            
+            [self.measuredValue setText:[NSString stringWithFormat:@"%0.2f %@", value, channelBase.unit]];
         } else {
             [self.measuredValue setText:[NSString stringWithFormat:@"--- %@", channelBase.unit]];
         }
