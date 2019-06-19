@@ -16,6 +16,7 @@
 		01D4293722AAA83E0050C1A2 /* watermeter@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 01D4293122AAA83D0050C1A2 /* watermeter@2x.png */; };
 		01D4293822AAA83E0050C1A2 /* electricitymeter@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 01D4293222AAA83D0050C1A2 /* electricitymeter@2x.png */; };
 		01D4293A22AAAA450050C1A2 /* IncrementalMeterCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 01D4293922AAAA450050C1A2 /* IncrementalMeterCell.xib */; };
+		01EE9BB022BA4B050029A142 /* SAChannelExtendedValue+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 01EE9BAF22BA4B050029A142 /* SAChannelExtendedValue+CoreDataProperties.m */; };
 		4004DE8D1DC4E270009C34E3 /* SAColorBrightnessPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 4004DE8C1DC4E270009C34E3 /* SAColorBrightnessPicker.m */; };
 		4006E90A1DC62D0A00C4456D /* DetailView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4006E9091DC62D0A00C4456D /* DetailView.m */; };
 		4014ADFD1FE01ECD00297A9E /* help@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4014ADFB1FE01EC700297A9E /* help@2x.png */; };
@@ -260,7 +261,6 @@
 
 /* Begin PBXFileReference section */
 		01B216CF22AECB2F004E0596 /* SUPLA 3.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "SUPLA 3.xcdatamodel"; sourceTree = "<group>"; };
-		01C792E622B7FB600020A900 /* SAChannelExtendedValue+CoreDataProperties.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SAChannelExtendedValue+CoreDataProperties.h"; sourceTree = "<group>"; };
 		01C792E722B7FB600020A900 /* SAChannelExtendedValue+CoreDataClass.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SAChannelExtendedValue+CoreDataClass.h"; sourceTree = "<group>"; };
 		01C792E822B7FB600020A900 /* SAChannelExtendedValue+CoreDataClass.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "SAChannelExtendedValue+CoreDataClass.m"; sourceTree = "<group>"; };
 		01C792E922B7FB600020A900 /* SAChannelExtendedValue+CoreDataProperties.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "SAChannelExtendedValue+CoreDataProperties.m"; sourceTree = "<group>"; };
@@ -271,6 +271,8 @@
 		01D4293122AAA83D0050C1A2 /* watermeter@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "watermeter@2x.png"; path = "Resources/Assets/Img/watermeter@2x.png"; sourceTree = "<group>"; };
 		01D4293222AAA83D0050C1A2 /* electricitymeter@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "electricitymeter@2x.png"; path = "Resources/Assets/Img/electricitymeter@2x.png"; sourceTree = "<group>"; };
 		01D4293922AAAA450050C1A2 /* IncrementalMeterCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = IncrementalMeterCell.xib; sourceTree = "<group>"; };
+		01EE9BAE22BA4B050029A142 /* SAChannelExtendedValue+CoreDataProperties.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SAChannelExtendedValue+CoreDataProperties.h"; sourceTree = "<group>"; };
+		01EE9BAF22BA4B050029A142 /* SAChannelExtendedValue+CoreDataProperties.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "SAChannelExtendedValue+CoreDataProperties.m"; sourceTree = "<group>"; };
 		4004DE8B1DC4E270009C34E3 /* SAColorBrightnessPicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SAColorBrightnessPicker.h; sourceTree = "<group>"; };
 		4004DE8C1DC4E270009C34E3 /* SAColorBrightnessPicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SAColorBrightnessPicker.m; sourceTree = "<group>"; };
 		4006E9081DC62D0A00C4456D /* DetailView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailView.h; sourceTree = "<group>"; };
@@ -916,7 +918,8 @@
 		407004241BB56EAC00F6187F /* DB */ = {
 			isa = PBXGroup;
 			children = (
-				01C792E622B7FB600020A900 /* SAChannelExtendedValue+CoreDataProperties.h */,
+				01EE9BAE22BA4B050029A142 /* SAChannelExtendedValue+CoreDataProperties.h */,
+				01EE9BAF22BA4B050029A142 /* SAChannelExtendedValue+CoreDataProperties.m */,
 				01C792E722B7FB600020A900 /* SAChannelExtendedValue+CoreDataClass.h */,
 				01C792E822B7FB600020A900 /* SAChannelExtendedValue+CoreDataClass.m */,
 				01C792E922B7FB600020A900 /* SAChannelExtendedValue+CoreDataProperties.m */,
@@ -1367,6 +1370,7 @@
 				408034C51BC83D1A007666E7 /* MGSwipeTableCell.m in Sources */,
 				403EB1141FBDF47F00AD6460 /* AddWizardVC.m in Sources */,
 				408034C41BC83D1A007666E7 /* MGSwipeButton.m in Sources */,
+				01EE9BB022BA4B050029A142 /* SAChannelExtendedValue+CoreDataProperties.m in Sources */,
 				401CA1BF1BA067DB00117AF4 /* main.m in Sources */,
 				404E48F71FC75D0B001F6266 /* SAClassHelper.m in Sources */,
 				40BBA35D20AC6E220054CD20 /* SAChannelGroupRelation+CoreDataProperties.m in Sources */,
