@@ -18,7 +18,16 @@
 
 #import "SAChannelValue+CoreDataClass.h"
 
-@implementation SAChannelValue
+@implementation SAChannelValue 
+
+- (void) initWithChannelId:(int)channelId {
+    [super initWithChannelId:<#channelId#>];
+    self.sub_value = [[NSData alloc] init];
+    
+    TSuplaChannelValue v;
+    memset(&v, 0, sizeof(TSuplaChannelValue));
+    [self setValueWithChannelValue:&v];
+}
 
 - (BOOL) setOnlineState:(char)online {
     

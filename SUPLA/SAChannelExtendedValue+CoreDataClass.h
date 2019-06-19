@@ -18,13 +18,12 @@
 
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
-
-@class SAChannelElectricityMeterValue, SAChannelImpulseCounterValue, SAChannelThermostatValue;
+#import "SAChannelValueBase+CoreDataProperties.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface SAChannelExtendedValue : NSManagedObject
-
+@interface SAChannelExtendedValue : SAChannelValueBase
+- (void) initWithChannelId:(int)channelId;
 @end
 
 NS_ASSUME_NONNULL_END

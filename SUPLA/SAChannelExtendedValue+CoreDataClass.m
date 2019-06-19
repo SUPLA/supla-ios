@@ -17,7 +17,12 @@
  */
 
 #import "SAChannelExtendedValue+CoreDataClass.h"
+#import "proto.h"
 
 @implementation SAChannelExtendedValue
 
+- (void) initWithChannelId:(int)channelId {
+    [super initWithChannelId:<#channelId#>];
+    self.type = 0;
+}
 @end

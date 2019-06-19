@@ -22,9 +22,9 @@
 
 @implementation SAChannel
 
-- (void) setDefaults {
+- (void) initWithRemoteId:(int)remoteId {
     self.caption = @"";
-    self.remote_id = 0;
+    self.remote_id = remoteId;
     self.func = 0;
     self.visible = 1;
     self.alticon = 0;
