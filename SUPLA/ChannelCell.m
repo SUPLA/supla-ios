@@ -93,7 +93,7 @@
 }
 
 -(void)setChannelBase:(SAChannelBase *)channelBase {
-    
+    //TODO: Add support for WINDSENSOR, PRESSURESENSOR, RAINSENSOR, WEIGHTSENSOR
     _channelBase = channelBase;
     BOOL isGroup = [channelBase isKindOfClass:[SAChannelGroup class]];
 
@@ -108,7 +108,7 @@
         [self.temp setText:[channelBase isOnline] && channelBase.temperatureValue > -273 ? [NSString stringWithFormat:@"%0.1f°", channelBase.temperatureValue] : @"----°"];
         
         [self.humidity setText:[channelBase isOnline] && channelBase.humidityValue > -1 ? [NSString stringWithFormat:@"%0.1f°", channelBase.humidityValue] : @"----°"];
-        
+       
     } else if ( channelBase.func == SUPLA_CHANNELFNC_DEPTHSENSOR
                 || channelBase.func == SUPLA_CHANNELFNC_DISTANCESENSOR  ) {
         
@@ -140,6 +140,8 @@
     } else if ( channelBase.func == SUPLA_CHANNELFNC_ELECTRICITY_METER
                 || channelBase.func == SUPLA_CHANNELFNC_WATER_METER
                 || channelBase.func == SUPLA_CHANNELFNC_GAS_METER ) {
+        
+        [self.image setImage:[channelBase getIcon]];
         
         if ( [channelBase isOnline] ) {
             
