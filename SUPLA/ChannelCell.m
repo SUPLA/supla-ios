@@ -118,14 +118,14 @@
             
             double value = [channelBase doubleValue];
             
-            if ( value >= 1000 ) {
+            if ( fabs(value) >= 1000 ) {
                 text = [NSString stringWithFormat:@"%0.2f km", value/1000.00];
-            } else if ( value >= 1 ) {
+            } else if ( fabs(value) >= 1 ) {
                 text = [NSString stringWithFormat:@"%0.2f m", value];
             } else {
                 value *= 100;
                 
-                if ( value >= 1 ) {
+                if ( fabs(value) >= 1 ) {
                     text = [NSString stringWithFormat:@"%0.1f cm", value];
                 } else {
                     value *= 10;
