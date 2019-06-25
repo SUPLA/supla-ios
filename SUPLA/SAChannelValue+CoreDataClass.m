@@ -21,7 +21,7 @@
 @implementation SAChannelValue 
 
 - (void) initWithChannelId:(int)channelId {
-    [super initWithChannelId:<#channelId#>];
+    [super initWithChannelId:channelId];
     self.sub_value = [[NSData alloc] init];
     
     TSuplaChannelValue v;
@@ -40,7 +40,8 @@
 }
 
 - (NSData *) dataValue {
-    return self.value && ((NSData*)self.value).length == SUPLA_CHANNELVALUE_SIZE ? (NSData*)self.value : nil;
+    NSData *result = [super dataValue];
+    return result && result.length == SUPLA_CHANNELVALUE_SIZE ? result : nil;
 }
 
 - (NSData *) dataSubValue {

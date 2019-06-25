@@ -58,6 +58,9 @@
     NSError *error = nil;
     NSString *failureReason = @"There was an error creating or loading the application's saved data.";
     
+    //NSFileManager *fileManager = [NSFileManager defaultManager];
+    //[fileManager removeItemAtURL:storeURL error:&error];
+    
     if (![_persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:storeURL options:nil error:&error]) {
         // Report any error we got.
         NSMutableDictionary *dict = [NSMutableDictionary dictionary];
@@ -208,11 +211,14 @@
     return [self fetchItemByPredicate:[NSPredicate predicateWithFormat:@"channel_id = %i", channel_id] entityName:@"SAChannelValue"];
 };
 
+-(SAChannelExtendedValue*) fetchChannelExtendedValueByChannelId:(int)channel_id {
+    return [self fetchItemByPredicate:[NSPredicate predicateWithFormat:@"channel_id = %i", channel_id] entityName:@"SAChannelExtendedValue"];
+};
 
 -(SAChannel*) newChannel {
     
     SAChannel *Channel = [[SAChannel alloc] initWithEntity:[NSEntityDescription entityForName:@"SAChannel" inManagedObjectContext:self.managedObjectContext] insertIntoManagedObjectContext:self.managedObjectContext];
-    [Channel setDefaults];
+    [Channel initWithRemoteId:0];
     [self.managedObjectContext insertObject:Channel];
     
     return Channel;
@@ -222,12 +228,20 @@
     
     SAChannelValue *Value = [[SAChannelValue alloc] initWithEntity:[NSEntityDescription entityForName:@"SAChannelValue" inManagedObjectContext:self.managedObjectContext] insertIntoManagedObjectContext:self.managedObjectContext];
     
-    Value.channel_id = channel_id;
-    Value.value = [[NSData alloc] init];
-    Value.sub_value = [[NSData alloc] init];
-    TSuplaChannelValue v;
-    [Value setValueWithChannelValue:&v];
+    [Value initWithChannelId:channel_id];
+    [self.managedObjectContext insertObject:Value];
     
+    return Value;
+}
+
+-(SAChannelExtendedValue*) newChannelExtendedValueForChannelId:(int)channel_id {
+    
+    SAChannelExtendedValue *Value = [[SAChannelExtendedValue alloc]
+                                     initWithEntity:[NSEntityDescription entityForName:@"SAChannelExtendedValue"
+                                                                inManagedObjectContext:self.managedObjectContext]
+                                     insertIntoManagedObjectContext:self.managedObjectContext];
+    
+    [Value initWithChannelId:channel_id];
     [self.managedObjectContext insertObject:Value];
     
     return Value;
@@ -349,6 +363,37 @@
     if ( r != nil ) {
         for(int a=0;a<r.count;a++) {
             ((SAChannelGroupRelation*)[r objectAtIndex:a]).value = Value;
+            save = YES;
+        }
+    }
+    
+    if ( save ) {
+        [self saveContext];
+    }
+    
+    return save;
+}
+
+-(BOOL) updateChannelExtendedValue:(TSC_SuplaChannelExtendedValue *)channel_value {
+    
+    BOOL save = NO;
+    
+    SAChannelExtendedValue *Value= [self fetchChannelExtendedValueByChannelId:channel_value->Id];
+    
+    if ( Value == nil ) {
+        Value = [self newChannelExtendedValueForChannelId:channel_value->Id];
+        save = YES;
+    }
+    
+    if ( [Value setValueWithChannelExtendedValue:&channel_value->value] ) {
+        save = YES;
+    }
+    
+    NSArray *r = [self fetchByPredicate:[NSPredicate predicateWithFormat:@"remote_id = %i AND (ev = nil OR ev <> %@)", channel_value->Id, Value] entityName:@"SAChannel" limit:0];
+    
+    if ( r != nil ) {
+        for(int a=0;a<r.count;a++) {
+            ((SAChannel*)[r objectAtIndex:a]).ev = Value;
             save = YES;
         }
     }

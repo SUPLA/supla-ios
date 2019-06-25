@@ -604,13 +604,6 @@ void sasuplaclient_on_registration_enabled(void *_suplaclient, void *user_data, 
 }
 
 - (void) channelValueUpdate:(TSC_SuplaChannelValue *)channel_value {
-    
-    for(int a=0;a<8;a++) {
-        NSLog(@"channelValueUpdate %i:%i:%i", channel_value->Id, a, channel_value->value.value[a]);
-        
-    }
-    NSLog(@"channelValueUpdate %i,%i,%f", channel_value->Id, sizeof(double), *((double*)channel_value->value.value));
-    
     if ( [self.DB updateChannelValue:channel_value] ) {
         [self onChannelValueChanged: channel_value->Id isGroup:NO];
         [self onDataChanged];
@@ -623,16 +616,12 @@ void sasuplaclient_on_registration_enabled(void *_suplaclient, void *user_data, 
 }
 
 - (void) channelExtendedValueUpdate:(TSC_SuplaChannelExtendedValue *)channel_extendedvalue {
-  /*
+  
     if ( [self.DB updateChannelExtendedValue:channel_extendedvalue] ) {
-        [self onChannelExtendedValueChanged: channel_extendedvalue->Id isGroup:NO];
+        [self onChannelValueChanged: channel_extendedvalue->Id isGroup:NO];
         [self onDataChanged];
     }
-    
-    if (channel_value->EOL == 1) {
-        [self onChannelGroupValueChanged];
-    }
-    */
+
 }
 
 - (void) channelGroupUpdate:(TSC_SuplaChannelGroup_B *)cgroup {

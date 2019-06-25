@@ -25,6 +25,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface SAChannelValueBase : NSManagedObject
 - (void) initWithChannelId:(int)channelId;
+- (NSData *) dataValue;
 @end
 
 NS_ASSUME_NONNULL_END

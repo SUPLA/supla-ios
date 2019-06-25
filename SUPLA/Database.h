@@ -44,6 +44,7 @@
 -(SAChannelValue*) fetchChannelValueByChannelId:(int)channel_id;
 -(BOOL) updateChannel:(TSC_SuplaChannel_C *)channel;
 -(BOOL) updateChannelValue:(TSC_SuplaChannelValue *)channel_value;
+-(BOOL) updateChannelExtendedValue:(TSC_SuplaChannelExtendedValue *)channel_value;
 -(NSFetchedResultsController*) getChannelFrc;
 -(BOOL) setChannelsOffline;
 -(BOOL) setAllOfChannelVisible:(int)visible whereVisibilityIs:(int)wvi;

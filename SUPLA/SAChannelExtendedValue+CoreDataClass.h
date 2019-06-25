@@ -19,11 +19,18 @@
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 #import "SAChannelValueBase+CoreDataProperties.h"
+#import "proto.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface SAChannelExtendedValue : SAChannelValueBase
 - (void) initWithChannelId:(int)channelId;
+- (BOOL) setValueWithChannelExtendedValue:(TSuplaChannelExtendedValue*)value;
+- (int) valueType;
+- (NSString *) unit;
+- (NSString *) currency;
+- (BOOL) getElectricityMeterExtendedValue:(TElectricityMeter_ExtendedValue*)emev;
+- (BOOL) getImpulseCounterExtendedValue:(TSC_ImpulseCounter_ExtendedValue*)icev;
 @end
 
 NS_ASSUME_NONNULL_END

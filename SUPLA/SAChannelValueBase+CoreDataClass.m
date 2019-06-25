@@ -25,4 +25,8 @@
     self.value = [[NSData alloc] init];
 }
 
+- (NSData *) dataValue {
+    return self.value && [self.value isKindOfClass: NSData.class] ? (NSData*)self.value : nil;
+}
+
 @end

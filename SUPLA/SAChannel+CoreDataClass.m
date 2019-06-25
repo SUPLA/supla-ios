@@ -143,4 +143,28 @@
     return [super imgIsActive];
 }
 
+- (NSString *) unit {
+    if ( self.func == SUPLA_CHANNELFNC_ELECTRICITY_METER
+        || self.func == SUPLA_CHANNELFNC_WATER_METER
+        || self.func == SUPLA_CHANNELFNC_GAS_METER ) {
+        
+        NSString *result = nil;
+        
+        if ( self.ev != nil ) {
+            result = self.ev.unit;
+            if (result != nil) {
+                return result;
+            }
+        }
+        
+        if ( self.func == SUPLA_CHANNELFNC_ELECTRICITY_METER ) {
+            return @"kWh";
+        } else {
+            return @"m\u00B3";
+        }
+    }
+    
+    return super.unit;
+}
+
 @end
