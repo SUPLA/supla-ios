@@ -25,6 +25,7 @@
 #import "SectionCell.h"
 #import "RGBDetailView.h"
 #import "RSDetailView.h"
+#import "ElectricityMeterDetailView.h"
 #import "SARateApp.h"
 
 @implementation SAMainVC {
@@ -338,6 +339,7 @@
     SAChannelCell *cell;
     SARGBDetailView *_rgbDetailView;
     SARSDetailView *_rsDetailView; // Roller Shutter detail view
+    SAElectricityMeterDetailView *_electricityMeterDetailView;
     SADetailView *_detailView;
     
     float last_touched_x;
@@ -349,6 +351,7 @@
    cell = nil;
     
    _rgbDetailView = nil;
+    _electricityMeterDetailView = nil;
     _detailView = nil;
    _animating = NO;
    _panRecognizer = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(handlePan:)];
@@ -371,37 +374,51 @@
     
     if ( _cell.channelBase.isOnline ) {
         
-        switch(_cell.channelBase.func) {
-            case SUPLA_CHANNELFNC_DIMMER:
-            case SUPLA_CHANNELFNC_RGBLIGHTING:
-            case SUPLA_CHANNELFNC_DIMMERANDRGBLIGHTING:
+        if ( [_cell.channelBase isKindOfClass:SAChannel.class]
+             && (((SAChannel*)_cell.channelBase).type == SUPLA_CHANNELTYPE_ELECTRICITY_METER)) {
+            
+            if ( _electricityMeterDetailView == nil
+                && self.superview != nil ) {
                 
-                if ( _rgbDetailView == nil
-                    && self.superview != nil ) {
+                _electricityMeterDetailView = [[[NSBundle mainBundle] loadNibNamed:@"ElectricityMeterDetailView" owner:self options:nil] objectAtIndex:0];
+                [_electricityMeterDetailView detailViewInit];
+            }
+            
+            result = _electricityMeterDetailView;
+        } else {
+            switch(_cell.channelBase.func) {
+                case SUPLA_CHANNELFNC_DIMMER:
+                case SUPLA_CHANNELFNC_RGBLIGHTING:
+                case SUPLA_CHANNELFNC_DIMMERANDRGBLIGHTING:
                     
-                    _rgbDetailView = [[[NSBundle mainBundle] loadNibNamed:@"RGBDetail" owner:self options:nil] objectAtIndex:0];
-                    [_rgbDetailView detailViewInit];
+                    if ( _rgbDetailView == nil
+                        && self.superview != nil ) {
+                        
+                        _rgbDetailView = [[[NSBundle mainBundle] loadNibNamed:@"RGBDetail" owner:self options:nil] objectAtIndex:0];
+                        [_rgbDetailView detailViewInit];
+                        
+                    }
                     
-                }
-                
-                result = _rgbDetailView;
-                
-                break;
-                
-            case SUPLA_CHANNELFNC_CONTROLLINGTHEROLLERSHUTTER:
-                
-                if ( _rsDetailView == nil
-                    && self.superview != nil ) {
+                    result = _rgbDetailView;
                     
-                    _rsDetailView = [[[NSBundle mainBundle] loadNibNamed:@"RSDetail" owner:self options:nil] objectAtIndex:0];
-                    [_rsDetailView detailViewInit];
+                    break;
                     
-                }
-                
-                result = _rsDetailView;
-                
-                break;
-        };
+                case SUPLA_CHANNELFNC_CONTROLLINGTHEROLLERSHUTTER:
+                    
+                    if ( _rsDetailView == nil
+                        && self.superview != nil ) {
+                        
+                        _rsDetailView = [[[NSBundle mainBundle] loadNibNamed:@"RSDetail" owner:self options:nil] objectAtIndex:0];
+                        [_rsDetailView detailViewInit];
+                        
+                    }
+                    
+                    result = _rsDetailView;
+                    
+                    break;
+            };
+        }
+        
     }
     
     if ( result != nil ) {

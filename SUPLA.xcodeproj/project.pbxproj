@@ -9,6 +9,10 @@
 /* Begin PBXBuildFile section */
 		01C792FA22B7FB610020A900 /* SAChannelExtendedValue+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 01C792E822B7FB600020A900 /* SAChannelExtendedValue+CoreDataClass.m */; };
 		01C792FB22B7FB610020A900 /* SAChannelExtendedValue+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 01C792E922B7FB600020A900 /* SAChannelExtendedValue+CoreDataProperties.m */; };
+		01D0616E22C294D90043C947 /* ElectricityMeterDetailView.m in Sources */ = {isa = PBXBuildFile; fileRef = 01D0616D22C294D90043C947 /* ElectricityMeterDetailView.m */; };
+		01D0617122C296850043C947 /* ElectricityMeterDetailView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 01D0617322C296850043C947 /* ElectricityMeterDetailView.xib */; };
+		01D2C38D22C3B0A700BF1A10 /* graphon.png in Resources */ = {isa = PBXBuildFile; fileRef = 01D2C38B22C3B0A700BF1A10 /* graphon.png */; };
+		01D2C38E22C3B0A700BF1A10 /* graphoff.png in Resources */ = {isa = PBXBuildFile; fileRef = 01D2C38C22C3B0A700BF1A10 /* graphoff.png */; };
 		01D4293322AAA83E0050C1A2 /* electricitymeter@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 01D4292D22AAA83D0050C1A2 /* electricitymeter@3x.png */; };
 		01D4293422AAA83E0050C1A2 /* watermeter@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 01D4292E22AAA83D0050C1A2 /* watermeter@3x.png */; };
 		01D4293522AAA83E0050C1A2 /* gasmeter@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 01D4292F22AAA83D0050C1A2 /* gasmeter@2x.png */; };
@@ -266,6 +270,11 @@
 		01C792E722B7FB600020A900 /* SAChannelExtendedValue+CoreDataClass.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SAChannelExtendedValue+CoreDataClass.h"; sourceTree = "<group>"; };
 		01C792E822B7FB600020A900 /* SAChannelExtendedValue+CoreDataClass.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "SAChannelExtendedValue+CoreDataClass.m"; sourceTree = "<group>"; };
 		01C792E922B7FB600020A900 /* SAChannelExtendedValue+CoreDataProperties.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "SAChannelExtendedValue+CoreDataProperties.m"; sourceTree = "<group>"; };
+		01D0616C22C294D90043C947 /* ElectricityMeterDetailView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ElectricityMeterDetailView.h; sourceTree = "<group>"; };
+		01D0616D22C294D90043C947 /* ElectricityMeterDetailView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ElectricityMeterDetailView.m; sourceTree = "<group>"; };
+		01D0617222C296850043C947 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/ElectricityMeterDetailView.xib; sourceTree = "<group>"; };
+		01D2C38B22C3B0A700BF1A10 /* graphon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = graphon.png; path = Resources/Assets/Img/graphon.png; sourceTree = "<group>"; };
+		01D2C38C22C3B0A700BF1A10 /* graphoff.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = graphoff.png; path = Resources/Assets/Img/graphoff.png; sourceTree = "<group>"; };
 		01D4292D22AAA83D0050C1A2 /* electricitymeter@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "electricitymeter@3x.png"; path = "Resources/Assets/Img/electricitymeter@3x.png"; sourceTree = "<group>"; };
 		01D4292E22AAA83D0050C1A2 /* watermeter@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "watermeter@3x.png"; path = "Resources/Assets/Img/watermeter@3x.png"; sourceTree = "<group>"; };
 		01D4292F22AAA83D0050C1A2 /* gasmeter@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "gasmeter@2x.png"; path = "Resources/Assets/Img/gasmeter@2x.png"; sourceTree = "<group>"; };
@@ -743,6 +752,8 @@
 		405AC4011BC15878004F7311 /* Img */ = {
 			isa = PBXGroup;
 			children = (
+				01D2C38C22C3B0A700BF1A10 /* graphoff.png */,
+				01D2C38B22C3B0A700BF1A10 /* graphon.png */,
 				01D4293222AAA83D0050C1A2 /* electricitymeter@2x.png */,
 				01D4292D22AAA83D0050C1A2 /* electricitymeter@3x.png */,
 				01D4292F22AAA83D0050C1A2 /* gasmeter@2x.png */,
@@ -1027,6 +1038,9 @@
 				4006E9091DC62D0A00C4456D /* DetailView.m */,
 				40DB208F1DC9049400FAFAB0 /* RGBDetail.xib */,
 				403150F91DC769430075D2D2 /* RGBDetailView.h */,
+				01D0616C22C294D90043C947 /* ElectricityMeterDetailView.h */,
+				01D0616D22C294D90043C947 /* ElectricityMeterDetailView.m */,
+				01D0617322C296850043C947 /* ElectricityMeterDetailView.xib */,
 				403150FA1DC769430075D2D2 /* RGBDetailView.m */,
 				40CE7C631DCBBCE400BBACE4 /* DepthCell.xib */,
 				40CE7C6D1DCBBF6D00BBACE4 /* DistanceCell.xib */,
@@ -1159,6 +1173,7 @@
 				40CF96B21BC7D4E70030EFFF /* gate-closed@2x.png in Resources */,
 				4091654D1F3CBAF200F49193 /* rs_down.png in Resources */,
 				40CF96BF1BC7D4E70030EFFF /* liquid@3x.png in Resources */,
+				01D0617122C296850043C947 /* ElectricityMeterDetailView.xib in Resources */,
 				40B9ED481FACCE8700403B1A /* tv-on@3x.png in Resources */,
 				40B9ED501FACCF8100403B1A /* radio-off@3x.png in Resources */,
 				407D4AED1BC6C64D009A5505 /* app_icon120x120@3x.png in Resources */,
@@ -1245,6 +1260,7 @@
 				40477B5320C6CF2600E995E6 /* gate-closed-50percent@3x.png in Resources */,
 				40CF96B81BC7D4E70030EFFF /* gateway-open@2x.png in Resources */,
 				40477B6020C6F62A00E995E6 /* groupson@2x.png in Resources */,
+				01D2C38D22C3B0A700BF1A10 /* graphon.png in Resources */,
 				4091654C1F3CBAF200F49193 /* rs_up.png in Resources */,
 				40CF96B71BC7D4E70030EFFF /* gateway-closed@3x.png in Resources */,
 				40DE1A401BCD6F06004CF43B /* Localizable.strings in Resources */,
@@ -1269,6 +1285,7 @@
 				406C92D41BCD8518007BA87A /* btnOK@2x.png in Resources */,
 				401CA1CD1BA067DB00117AF4 /* Images.xcassets in Resources */,
 				40CF96CA1BC7D4E70030EFFF /* thermometer@2x.png in Resources */,
+				01D2C38E22C3B0A700BF1A10 /* graphoff.png in Resources */,
 				4052DA091DC515AE000B8C45 /* dimmer-off@2x.png in Resources */,
 				4052DA061DC515AE000B8C45 /* dimmerrgb-onon@3x.png in Resources */,
 				407D4AEC1BC6C64D009A5505 /* app_icon80x80@2x.png in Resources */,
@@ -1367,6 +1384,7 @@
 				40CF96DE1BC820E60030EFFF /* UIHelper.m in Sources */,
 				01EE9BBB22BA50D90029A142 /* SAChannelValueBase+CoreDataClass.m in Sources */,
 				40F7301120C19BA600167C2D /* SAColorListItem+CoreDataProperties.m in Sources */,
+				01D0616E22C294D90043C947 /* ElectricityMeterDetailView.m in Sources */,
 				40C7BA7920C047CF00ACEE42 /* SAChannelGroup+CoreDataProperties.m in Sources */,
 				40D69DEE1BB574FE00937769 /* Database.m in Sources */,
 				408034E51BC84A89007666E7 /* NavigationController.m in Sources */,
@@ -1423,6 +1441,14 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		01D0617322C296850043C947 /* ElectricityMeterDetailView.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				01D0617222C296850043C947 /* Base */,
+			);
+			name = ElectricityMeterDetailView.xib;
+			sourceTree = "<group>";
+		};
 		407D31961FD1A7070062FB80 /* AddWizardVC.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
