@@ -21,7 +21,10 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface SAElectricityMeterDetailView : SADetailView
-
+@property (weak, nonatomic) IBOutlet UILabel *lTotalForwardActiveEnergy;
+@property (weak, nonatomic) IBOutlet UILabel *lCurrentConsumption;
+@property (weak, nonatomic) IBOutlet UILabel *lCurrentCost;
+@property (weak, nonatomic) IBOutlet UILabel *lTotalCost;
 @property (weak, nonatomic) IBOutlet UILabel *lFrequency;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *cFrequencyTop;
 @property (weak, nonatomic) IBOutlet UILabel *lFrequencyValue;
@@ -70,6 +73,14 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *cReverseReactiveEnergyTop;
 @property (weak, nonatomic) IBOutlet UILabel *lReverseReactiveEnergyValue;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *cReverseReactiveEnergyValueTop;
+@property (weak, nonatomic) IBOutlet UILabel *lCaption;
+@property (weak, nonatomic) IBOutlet UIButton *btnPhase1;
+@property (weak, nonatomic) IBOutlet UIButton *btnPhase2;
+@property (weak, nonatomic) IBOutlet UIButton *btnPhase3;
+- (IBAction)phaseBtnTouch:(id)sender;
+@property (weak, nonatomic) IBOutlet UIButton *btnChart;
+- (IBAction)chartBtnTouch:(id)sender;
+@property (weak, nonatomic) IBOutlet UIView *vPhases;
 @end
 
 NS_ASSUME_NONNULL_END

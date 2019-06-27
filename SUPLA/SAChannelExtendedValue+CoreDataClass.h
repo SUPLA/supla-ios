@@ -29,8 +29,11 @@ NS_ASSUME_NONNULL_BEGIN
 - (int) valueType;
 - (NSString *) unit;
 - (NSString *) currency;
+- (NSString *) decodeCurrency:(char*)currency;
 - (BOOL) getElectricityMeterExtendedValue:(TElectricityMeter_ExtendedValue*)emev;
 - (BOOL) getImpulseCounterExtendedValue:(TSC_ImpulseCounter_ExtendedValue*)icev;
+- (double) getTotalForwardActiveEnergyForExtendedValue:(TElectricityMeter_ExtendedValue*)emev;
+- (double) getTotalForwardActiveEnergy;
 @end
 
 NS_ASSUME_NONNULL_END

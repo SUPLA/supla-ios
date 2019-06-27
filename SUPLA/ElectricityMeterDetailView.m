@@ -17,8 +17,16 @@
  */
 
 #import "ElectricityMeterDetailView.h"
+#import "SAClassHelper.h"
 
-@implementation SAElectricityMeterDetailView
+@implementation SAElectricityMeterDetailView {
+    short selectedPhase;
+}
+
+-(void)detailViewInit {
+    [super detailViewInit];
+    selectedPhase = 0;
+}
 
 - (void)setLabel:(UILabel*)label Visible:(BOOL)visible withConstraint:(NSLayoutConstraint*)cns {
     if (label.hidden == visible) {
@@ -92,25 +100,90 @@
     [self setLabel:self.lReverseReactiveEnergyValue Visible:visible withConstraint:self.cReverseReactiveEnergyValueTop];
 }
 
+- (NSString*)totalForwardActiveEnergyStringForValue:(double)value {
+    int precision = 5;
+    if (value >= 1000) {
+        precision = 3;
+    } else if (value >= 10000) {
+        precision = 2;
+    }
+    
+    return [NSString stringWithFormat:@"%.*f kWh", precision, value];
+}
+
 - (void)updateView {
     
-    short phase = 1;
     unsigned int measured_values = 0;
     SAChannelExtendedValue *ev = nil;
     TElectricityMeter_ExtendedValue emev;
     
+    self.btnPhase1.layer.borderColor = [[UIColor blackColor] CGColor];
+    self.btnPhase2.layer.borderColor = [[UIColor blackColor] CGColor];
+    self.btnPhase3.layer.borderColor = [[UIColor blackColor] CGColor];
+    
+    CGColorRef btnBorderColor = [[UIColor redColor] CGColor];
+    
+    NSString *empty = @"----";
+    
+    [self.lTotalForwardActiveEnergy setText:empty];
+    [self.lCurrentConsumption setText:empty];
+    [self.lCurrentCost setText:empty];
+    [self.lTotalCost setText:empty];
+    
+    [self.lFrequencyValue setText:empty];
+    [self.lVoltageValue setText:empty];
+    [self.lCurrentValue setText:empty];
+    [self.lActivePowerValue setText:empty];
+    [self.lReactivePowerValue setText:empty];
+    [self.lApparentPowerValue setText:empty];
+    [self.lPowerFactorValue setText:empty];
+    [self.lPhaseAngleValue setText:empty];
+    [self.lForwardActiveEnergyValue setText:empty];
+    [self.lReverseActiveEnergyValue setText:empty];
+    [self.lForwardReactiveEnergyValue setText:empty];
+    [self.lReverseReactiveEnergyValue setText:empty];
+    
     if ([self.channelBase isKindOfClass:SAChannel.class]
         && (ev = ((SAChannel*)self.channelBase).ev) != nil
-        && [ev getElectricityMeterExtendedValue:&emev]
-        && emev.m_count > 0 ) {
+        && [ev getElectricityMeterExtendedValue:&emev]) {
+        
+        [self.lTotalForwardActiveEnergy setText:[self totalForwardActiveEnergyStringForValue:[ev getTotalForwardActiveEnergyForExtendedValue:&emev]]];
+        
+        [self.lTotalCost setText:[NSString stringWithFormat:@"%0.2f %@", emev.total_cost * 0.01, [ev decodeCurrency:emev.currency]]];
+    
+        if (emev.m_count > 0) {
+            TElectricityMeter_Measurement *m = emev.m;
+            
+            [self.lFrequencyValue setText:[NSString stringWithFormat:@"%0.2f Hz", m->freq * 0.01]];
+            [self.lVoltageValue setText:[NSString stringWithFormat:@"%0.2f V", m->voltage[selectedPhase] * 0.01]];
+            
+            if ( m->voltage[selectedPhase] > 0 ) {
+                btnBorderColor = [[UIColor greenColor] CGColor];
+            }
+            
+            [self.lCurrentValue setText:[NSString stringWithFormat:@"%0.3f A", m->current[selectedPhase] * 0.001]];
+            
+            [self.lActivePowerValue setText:[NSString stringWithFormat:@"%0.5f W", m->power_active[selectedPhase] * 0.00001]];
+            
+            [self.lReactivePowerValue setText:[NSString stringWithFormat:@"%0.5f var", m->power_reactive[selectedPhase] * 0.00001]];
+            
+            [self.lApparentPowerValue setText:[NSString stringWithFormat:@"%0.5f VA", m->power_apparent[selectedPhase] * 0.00001]];
+            
+            [self.lPowerFactorValue setText:[NSString stringWithFormat:@"%0.3f", m->power_factor[selectedPhase] * 0.001]];
+            
+            [self.lPhaseAngleValue setText:[NSString stringWithFormat:@"%0.2f\u00B0", m->phase_angle[selectedPhase] * 0.1]];
+        }
+
+        [self.lForwardActiveEnergyValue setText:[NSString stringWithFormat:@"%0.5f kWh", emev.total_forward_active_energy[selectedPhase] * 0.00001]];
+        
+        [self.lReverseActiveEnergyValue setText:[NSString stringWithFormat:@"%0.5f kWh", emev.total_reverse_active_energy[selectedPhase] * 0.00001]];
+        
+        [self.lForwardReactiveEnergyValue setText:[NSString stringWithFormat:@"%0.5f kvarh", emev.total_forward_reactive_energy[selectedPhase] * 0.00001]];
+        
+        [self.lReverseReactiveEnergyValue setText:[NSString stringWithFormat:@"%0.5f kvarh", emev.total_reverse_reactive_energy[selectedPhase] * 0.00001]];
         
         measured_values = emev.measured_values;
-        [self.lFrequencyValue setText:[NSString stringWithFormat:@"%0.2f Hz", emev.m[0].freq * 0.01]];
-        [self.lVoltageValue setText:[NSString stringWithFormat:@"%0.2f V", emev.m[0].voltage[phase] * 0.01]];
-        
-        [self.lCurrentValue setText:[NSString stringWithFormat:@"%0.3f A", emev.m[0].current[phase] * 0.001]];
-    } else {
-        
+
     }
     
     [self frequencyVisible:measured_values & EM_VAR_FREQ];
@@ -125,6 +198,42 @@
     [self reverseActiveEnergyVisible:measured_values & EM_VAR_REVERSE_ACTIVE_ENERGY];
     [self forwardReactiveEnergyVisible:measured_values & EM_VAR_FORWARD_REACTIVE_ENERGY];
     [self reverseReactiveEnergyVisible:measured_values & EM_VAR_REVERSE_REACTIVE_ENERGY];
+    
+    [self.lCaption setText:[self.channelBase getChannelCaption]];
+    
+    switch (selectedPhase) {
+        case 0:
+            self.btnPhase1.layer.borderColor = btnBorderColor;
+            break;
+        case 1:
+            self.btnPhase2.layer.borderColor = btnBorderColor;
+            break;
+        case 2:
+            self.btnPhase3.layer.borderColor = btnBorderColor;
+            break;
+    }
+    
+}
+
+- (IBAction)phaseBtnTouch:(id)sender {
+    if (sender == self.btnPhase1) {
+        selectedPhase = 0;
+    } else if (sender == self.btnPhase2) {
+        selectedPhase = 1;
+    } else if (sender == self.btnPhase3) {
+        selectedPhase = 2;
+    }
+    
+    [self updateView];
+}
+- (IBAction)chartBtnTouch:(id)sender {
+    if (self.vPhases.hidden) {
+        self.vPhases.hidden = NO;
+        [self.btnChart setImage:[UIImage imageNamed:@"graphoff.png"]];
+    } else {
+        self.vPhases.hidden = YES;
+        [self.btnChart setImage:[UIImage imageNamed:@"graphon.png"]];
+    }
 }
 
 @end

@@ -73,6 +73,23 @@
     return NO;
 }
 
+- (double) getTotalForwardActiveEnergyForExtendedValue:(TElectricityMeter_ExtendedValue*)emev {
+    double totalForwardActiveEnergy = 0;
+    for(short a=0;a<3;a++) {
+        totalForwardActiveEnergy+=emev->total_forward_active_energy[a]*0.00001;
+    }
+    
+    return totalForwardActiveEnergy;
+}
+
+- (double) getTotalForwardActiveEnergy {
+     TElectricityMeter_ExtendedValue emev;
+    if ([self getElectricityMeterExtendedValue:&emev]) {
+        return [self getElectricityMeterExtendedValue:&emev];
+    }
+    return 0.0;
+}
+
 - (BOOL) getImpulseCounterExtendedValue:(TSC_ImpulseCounter_ExtendedValue*)icev {
     if (icev != NULL) {
         memset(icev, 0, sizeof(TSC_ImpulseCounter_ExtendedValue));
@@ -85,25 +102,37 @@
     return NO;
 }
 
+- (NSString *) decodeCurrency:(char*)currency {
+    short a;
+    NSString *result = @"";
+    for(a=0;a<3;a++) {
+        if (currency[a] == 0) {
+            break;
+        }
+        result = [NSString stringWithFormat:@"%@%c", result, currency[a]];
+    }
+    
+    if (a==3) {
+        return result;
+    }
+    
+    return @"";
+}
+
 - (NSString *) currency {
     if (self.valueType == EV_TYPE_IMPULSE_COUNTER_DETAILS_V1) {
         TSC_ImpulseCounter_ExtendedValue icev;
         if ( [self getImpulseCounterExtendedValue:&icev] ) {
-            short a;
-            NSString *currency = @"";
-            for(a=0;a<3;a++) {
-                if (icev.currency[a] == 0) {
-                    break;
-                }
-                currency = [NSString stringWithFormat:@"%@%c", currency, icev.currency[a]];
-            }
-            if (a==4) {
-                return currency;
-            }
+            return [self decodeCurrency:icev.currency];
+        }
+    } else if (self.valueType == EV_TYPE_ELECTRICITY_METER_MEASUREMENT_V1) {
+        TElectricityMeter_ExtendedValue emev;
+        if ([self getElectricityMeterExtendedValue:&emev]) {
+            return [self decodeCurrency:emev.currency];
         }
     }
     
-    return nil;
+    return @"";
 }
 
 - (NSString *) unit {
