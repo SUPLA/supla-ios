@@ -129,6 +129,14 @@ void sasuplaclient_on_registration_enabled(void *_suplaclient, void *user_data, 
     }
 }
 
+void sasuplaclient_on_oauth_token_request_result(void *_suplaclient, void *user_data, TSC_OAuthTokenRequestResult *result) {
+
+    SASuplaClient *sc = (__bridge SASuplaClient*)user_data;
+    if ( sc != nil && result != NULL) {
+        [sc onOAuthTokenRequestResult:[SAOAuthToken tokenWithRequestResult:result]];
+    }
+}
+
 // ------------------------------------------------------------------------------------------------------
 // ------------------------------------------------------------------------------------------------------
 // ------------------------------------------------------------------------------------------------------
@@ -234,6 +242,7 @@ void sasuplaclient_on_registration_enabled(void *_suplaclient, void *user_data, 
     int _client_id;
     BOOL _connected;
     int _regTryCounter;
+    int _tokenRequestTime;
 }
 @end
 
@@ -331,6 +340,7 @@ void sasuplaclient_on_registration_enabled(void *_suplaclient, void *user_data, 
     scc.cb_channel_extendedvalue_update = sasuplaclient_channel_extendedvalue_update;
     scc.cb_on_event = sasuplaclient_on_event;
     scc.cb_on_registration_enabled = sasuplaclient_on_registration_enabled;
+    scc.cb_on_oauth_token_request_result = sasuplaclient_on_oauth_token_request_result;
     
     scc.protocol_version = [SAApp getPreferedProtocolVersion];
     
@@ -686,6 +696,14 @@ void sasuplaclient_on_registration_enabled(void *_suplaclient, void *user_data, 
     [self performSelectorOnMainThread:@selector(_onRegistrationEnabled:) withObject:reg_enabled waitUntilDone:NO];
 }
 
+- (void) _onOAuthTokenRequestResult:(SAOAuthToken *)token {
+    [[SAApp instance] onOAuthTokenRequestResult:token];
+}
+
+- (void) onOAuthTokenRequestResult:(SAOAuthToken *)token {
+    [self performSelectorOnMainThread:@selector(_onOAuthTokenRequestResult:) withObject:token waitUntilDone:NO];
+}
+
 - (void) reconnect {
     @synchronized(self) {
         if ( _sclient ) {
@@ -772,7 +790,6 @@ void sasuplaclient_on_registration_enabled(void *_suplaclient, void *user_data, 
 }
 
 - (void) getRegistrationEnabled {
-    
     @synchronized(self) {
         if ( _sclient ) {
             supla_client_get_registration_enabled(_sclient);
@@ -782,9 +799,29 @@ void sasuplaclient_on_registration_enabled(void *_suplaclient, void *user_data, 
 
 - (int) getProtocolVersion {
     int result = 0;
-    if ( _sclient ) {
-        result = supla_client_get_proto_version(_sclient);
+    @synchronized(self) {
+        if ( _sclient ) {
+            result = supla_client_get_proto_version(_sclient);
+        }
     }
+    return result;
+}
+
+- (BOOL) OAuthTokenRequest {
+    BOOL result = false;
+    
+    @synchronized(self) {
+        int now = [[NSDate date] timeIntervalSince1970];
+        
+        if (now-_tokenRequestTime > 5 ) {
+            if ( _sclient ) {
+                supla_client_oauth_token_request(_sclient);
+                _tokenRequestTime = now;
+            }
+        }
+
+    }
+    
     return result;
 }
 

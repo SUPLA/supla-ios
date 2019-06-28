@@ -16,20 +16,15 @@
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 
-#import <UIKit/UIKit.h>
-#import "SAChannel+CoreDataClass.h"
-#import "MainVC.h"
+#import "SADownloadMeasurementLogs.h"
 
-@interface SADetailView : UIView 
-
--(void)detailViewInit;
--(void)updateView;
--(void)onDetailShow;
--(void)onDetailHide;
-
-@property (weak, nonatomic) SAChannelBase  *channelBase;
-@property (weak, nonatomic) SAMainView *main_view;
-@property (nonatomic) BOOL initialized;
+@implementation SADownloadMeasurementLogs
+- (void)task {
+    if (self.channelId <= 0) {
+        return;
+    }
+    [self apiRequestForEndpoint:[NSString stringWithFormat:@"channels/%i/measurement-logs?order=ASC&limit=2&offset=0", self.channelId]];
+    
+    
+}
 @end
-
-

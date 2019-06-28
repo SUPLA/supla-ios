@@ -17,6 +17,7 @@
  */
 
 #import <Foundation/Foundation.h>
+#import "SARestApiClientTask.h"
 #include "proto.h"
 
 @interface SAVersionError : NSObject
@@ -85,6 +86,7 @@
 - (void) channelGroupRelationUpdate:(TSC_SuplaChannelGroupRelation *)cgroup_relation;
 - (void) onEvent:(SAEvent *)event;
 - (void) onRegistrationEnabled:(SARegistrationEnabled*)reg_enabled;
+- (void) onOAuthTokenRequestResult:(SAOAuthToken *)token;
 
 - (void) reconnect;
 - (BOOL) isConnected;
@@ -97,4 +99,5 @@
 - (BOOL) group:(int)GroupID setRGB:(UIColor*)color colorBrightness:(int)color_brightness brightness:(int)brightness;
 - (void) getRegistrationEnabled;
 - (int) getProtocolVersion;
+- (BOOL) OAuthTokenRequest;
 @end

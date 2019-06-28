@@ -35,6 +35,7 @@ NSString *kSAEventNotification = @"kSA-N09";
 NSString *kSAConnErrorNotification = @"kSA-N10";
 NSString *kSAChannelValueChangedNotification = @"KSA-N11";
 NSString *kSARegistrationEnabledNotification = @"KSA-N12";
+NSString *kSAOAuthTokenRequestResult = @"KSA-N13";
 
 @implementation SAApp {
     
@@ -46,6 +47,7 @@ NSString *kSARegistrationEnabledNotification = @"KSA-N12";
     SASuplaClient* _SuplaClient;
     SADatabase *_DB;
     SAUIHelper *_UI;
+    NSMutableArray *_RestApiClientTasks;
 }
 
 -(id)init {
@@ -62,6 +64,7 @@ NSString *kSARegistrationEnabledNotification = @"KSA-N12";
             [self setCfgVersion:2];
         };
 
+        _RestApiClientTasks = [[NSMutableArray alloc] init];
     }
     return self;
 }
@@ -583,6 +586,54 @@ NSString *kSARegistrationEnabledNotification = @"KSA-N12";
 
 -(void)onChannelValueChanged:(NSNumber*)ChannelId isGroup:(NSNumber*)group {
     [[NSNotificationCenter defaultCenter] postNotificationName:kSAChannelValueChangedNotification object:self userInfo:[[NSDictionary alloc] initWithObjects:@[ChannelId, group] forKeys:@[@"remoteId", @"isGroup"]]];
+}
+
+-(void)onOAuthTokenRequestResult:(SAOAuthToken *)token {
+    
+    @synchronized (self) {
+        NSEnumerator *e = [_RestApiClientTasks objectEnumerator];
+        SARestApiClientTask *cli;
+        while (cli = [e nextObject]) {
+            cli.token = token;
+        }
+    }
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:kSAOAuthTokenRequestResult object:self userInfo:[[NSDictionary alloc] initWithObjects:@[token] forKeys:@[@"token"]]];
+}
+
+-(SAOAuthToken*) registerRestApiClientTask:(SARestApiClientTask *)task {
+    SAOAuthToken *result = nil;
+    
+    @synchronized (self) {
+        NSEnumerator *e = [_RestApiClientTasks objectEnumerator];
+        SARestApiClientTask *cli;
+        while (cli = [e nextObject]) {
+            result = [cli getTokenWhenIsAlive];
+            if (result != nil) {
+                break;
+            }
+        }
+        
+        [_RestApiClientTasks addObject:task];
+    }
+    
+    return result;
+}
+
+- (void) unregisterRestApiClientTask:(SARestApiClientTask *)task {
+    @synchronized (self) {
+        [_RestApiClientTasks removeObject:task];
+    }
+}
+
+-(void) cancelAllRestApiClientTask:(SARestApiClientTask *)task {
+    @synchronized (self) {
+        NSEnumerator *e = [_RestApiClientTasks objectEnumerator];
+        SARestApiClientTask *cli;
+        while (cli = [e nextObject]) {
+            [cli cancel];
+        }
+    }
 }
 
 @end

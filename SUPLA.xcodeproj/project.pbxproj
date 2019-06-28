@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		01BDAC7522C518DE00915646 /* SARestApiClientTask.m in Sources */ = {isa = PBXBuildFile; fileRef = 01BDAC7422C518DE00915646 /* SARestApiClientTask.m */; };
+		01BDAC7822C5200600915646 /* SAOAuthToken.m in Sources */ = {isa = PBXBuildFile; fileRef = 01BDAC7722C5200600915646 /* SAOAuthToken.m */; };
 		01C792FA22B7FB610020A900 /* SAChannelExtendedValue+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 01C792E822B7FB600020A900 /* SAChannelExtendedValue+CoreDataClass.m */; };
 		01C792FB22B7FB610020A900 /* SAChannelExtendedValue+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 01C792E922B7FB600020A900 /* SAChannelExtendedValue+CoreDataProperties.m */; };
 		01D0616E22C294D90043C947 /* ElectricityMeterDetailView.m in Sources */ = {isa = PBXBuildFile; fileRef = 01D0616D22C294D90043C947 /* ElectricityMeterDetailView.m */; };
@@ -20,6 +22,8 @@
 		01D4293722AAA83E0050C1A2 /* watermeter@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 01D4293122AAA83D0050C1A2 /* watermeter@2x.png */; };
 		01D4293822AAA83E0050C1A2 /* electricitymeter@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 01D4293222AAA83D0050C1A2 /* electricitymeter@2x.png */; };
 		01D4293A22AAAA450050C1A2 /* IncrementalMeterCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 01D4293922AAAA450050C1A2 /* IncrementalMeterCell.xib */; };
+		01E517C322C6AC1E000FE77A /* SADownloadIncrementalMeasurements.m in Sources */ = {isa = PBXBuildFile; fileRef = 01E517C222C6AC1E000FE77A /* SADownloadIncrementalMeasurements.m */; };
+		01E517C622C6AD7D000FE77A /* SADownloadMeasurementLogs.m in Sources */ = {isa = PBXBuildFile; fileRef = 01E517C522C6AD7D000FE77A /* SADownloadMeasurementLogs.m */; };
 		01EE9BB022BA4B050029A142 /* SAChannelExtendedValue+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 01EE9BAF22BA4B050029A142 /* SAChannelExtendedValue+CoreDataProperties.m */; };
 		01EE9BBB22BA50D90029A142 /* SAChannelValueBase+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 01EE9BB722BA50D90029A142 /* SAChannelValueBase+CoreDataClass.m */; };
 		01EE9BBC22BA50D90029A142 /* SAChannelValueBase+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 01EE9BB822BA50D90029A142 /* SAChannelValueBase+CoreDataProperties.m */; };
@@ -267,6 +271,10 @@
 
 /* Begin PBXFileReference section */
 		01B216CF22AECB2F004E0596 /* SUPLA 3.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "SUPLA 3.xcdatamodel"; sourceTree = "<group>"; };
+		01BDAC7322C518DE00915646 /* SARestApiClientTask.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SARestApiClientTask.h; sourceTree = "<group>"; };
+		01BDAC7422C518DE00915646 /* SARestApiClientTask.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SARestApiClientTask.m; sourceTree = "<group>"; };
+		01BDAC7622C5200600915646 /* SAOAuthToken.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SAOAuthToken.h; sourceTree = "<group>"; };
+		01BDAC7722C5200600915646 /* SAOAuthToken.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SAOAuthToken.m; sourceTree = "<group>"; };
 		01C792E722B7FB600020A900 /* SAChannelExtendedValue+CoreDataClass.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SAChannelExtendedValue+CoreDataClass.h"; sourceTree = "<group>"; };
 		01C792E822B7FB600020A900 /* SAChannelExtendedValue+CoreDataClass.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "SAChannelExtendedValue+CoreDataClass.m"; sourceTree = "<group>"; };
 		01C792E922B7FB600020A900 /* SAChannelExtendedValue+CoreDataProperties.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "SAChannelExtendedValue+CoreDataProperties.m"; sourceTree = "<group>"; };
@@ -282,6 +290,10 @@
 		01D4293122AAA83D0050C1A2 /* watermeter@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "watermeter@2x.png"; path = "Resources/Assets/Img/watermeter@2x.png"; sourceTree = "<group>"; };
 		01D4293222AAA83D0050C1A2 /* electricitymeter@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "electricitymeter@2x.png"; path = "Resources/Assets/Img/electricitymeter@2x.png"; sourceTree = "<group>"; };
 		01D4293922AAAA450050C1A2 /* IncrementalMeterCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = IncrementalMeterCell.xib; sourceTree = "<group>"; };
+		01E517C122C6AC1E000FE77A /* SADownloadIncrementalMeasurements.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SADownloadIncrementalMeasurements.h; sourceTree = "<group>"; };
+		01E517C222C6AC1E000FE77A /* SADownloadIncrementalMeasurements.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SADownloadIncrementalMeasurements.m; sourceTree = "<group>"; };
+		01E517C422C6AD7D000FE77A /* SADownloadMeasurementLogs.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SADownloadMeasurementLogs.h; sourceTree = "<group>"; };
+		01E517C522C6AD7D000FE77A /* SADownloadMeasurementLogs.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SADownloadMeasurementLogs.m; sourceTree = "<group>"; };
 		01EE9BAE22BA4B050029A142 /* SAChannelExtendedValue+CoreDataProperties.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SAChannelExtendedValue+CoreDataProperties.h"; sourceTree = "<group>"; };
 		01EE9BAF22BA4B050029A142 /* SAChannelExtendedValue+CoreDataProperties.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "SAChannelExtendedValue+CoreDataProperties.m"; sourceTree = "<group>"; };
 		01EE9BB522BA50D90029A142 /* SAChannelValueBase+CoreDataProperties.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SAChannelValueBase+CoreDataProperties.h"; sourceTree = "<group>"; };
@@ -647,6 +659,21 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		01BDAC7222C5132B00915646 /* restapi */ = {
+			isa = PBXGroup;
+			children = (
+				01BDAC7322C518DE00915646 /* SARestApiClientTask.h */,
+				01BDAC7422C518DE00915646 /* SARestApiClientTask.m */,
+				01BDAC7622C5200600915646 /* SAOAuthToken.h */,
+				01BDAC7722C5200600915646 /* SAOAuthToken.m */,
+				01E517C122C6AC1E000FE77A /* SADownloadIncrementalMeasurements.h */,
+				01E517C222C6AC1E000FE77A /* SADownloadIncrementalMeasurements.m */,
+				01E517C422C6AD7D000FE77A /* SADownloadMeasurementLogs.h */,
+				01E517C522C6AD7D000FE77A /* SADownloadMeasurementLogs.m */,
+			);
+			name = restapi;
+			sourceTree = "<group>";
+		};
 		401CA1B01BA067DB00117AF4 = {
 			isa = PBXGroup;
 			children = (
@@ -673,6 +700,7 @@
 		401CA1BB1BA067DB00117AF4 /* SUPLA */ = {
 			isa = PBXGroup;
 			children = (
+				01BDAC7222C5132B00915646 /* restapi */,
 				40E8BE811FC06A4500FB2FE6 /* hpple */,
 				407E7C331BBEB81B00D8878C /* Resources */,
 				401CA1E51BA068A600117AF4 /* supla-client-lib */,
@@ -1400,6 +1428,7 @@
 				403EB1141FBDF47F00AD6460 /* AddWizardVC.m in Sources */,
 				408034C41BC83D1A007666E7 /* MGSwipeButton.m in Sources */,
 				01EE9BB022BA4B050029A142 /* SAChannelExtendedValue+CoreDataProperties.m in Sources */,
+				01BDAC7522C518DE00915646 /* SARestApiClientTask.m in Sources */,
 				401CA1BF1BA067DB00117AF4 /* main.m in Sources */,
 				404E48F71FC75D0B001F6266 /* SAClassHelper.m in Sources */,
 				40BBA35D20AC6E220054CD20 /* SAChannelGroupRelation+CoreDataProperties.m in Sources */,
@@ -1411,10 +1440,13 @@
 				40C9E4F71F2A186A00753796 /* SARollerShutter.m in Sources */,
 				401CA1F21BA0A28A00117AF4 /* SuplaClient.m in Sources */,
 				4006E90A1DC62D0A00C4456D /* DetailView.m in Sources */,
+				01BDAC7822C5200600915646 /* SAOAuthToken.m in Sources */,
 				40C7BA5220C007A300ACEE42 /* SAChannelValue+CoreDataClass.m in Sources */,
+				01E517C322C6AC1E000FE77A /* SADownloadIncrementalMeasurements.m in Sources */,
 				40C9E4FD1F2B841400753796 /* SAColorListPicker.m in Sources */,
 				40DA56901DCA1908008F05DE /* _SALocation+CoreDataProperties.m in Sources */,
 				409934B61F30EF9C003110C5 /* RSDetailView.m in Sources */,
+				01E517C622C6AD7D000FE77A /* SADownloadMeasurementLogs.m in Sources */,
 				403150FB1DC769430075D2D2 /* RGBDetailView.m in Sources */,
 				40E8BE881FC06A5600FB2FE6 /* TFHpple.m in Sources */,
 				40C7BA5320C007A300ACEE42 /* SAChannelValue+CoreDataProperties.m in Sources */,

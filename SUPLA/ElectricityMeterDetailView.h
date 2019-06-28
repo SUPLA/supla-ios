@@ -17,10 +17,11 @@
  */
 
 #import "DetailView.h"
+#import "SADownloadIncrementalMeasurements.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface SAElectricityMeterDetailView : SADetailView
+@interface SAElectricityMeterDetailView : SADetailView <SARestApiClientTaskDelegate>
 @property (weak, nonatomic) IBOutlet UILabel *lTotalForwardActiveEnergy;
 @property (weak, nonatomic) IBOutlet UILabel *lCurrentConsumption;
 @property (weak, nonatomic) IBOutlet UILabel *lCurrentCost;

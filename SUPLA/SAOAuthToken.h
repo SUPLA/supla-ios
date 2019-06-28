@@ -16,20 +16,23 @@
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 
-#import <UIKit/UIKit.h>
-#import "SAChannel+CoreDataClass.h"
-#import "MainVC.h"
+#import <Foundation/Foundation.h>
+#import "proto.h"
 
-@interface SADetailView : UIView 
+NS_ASSUME_NONNULL_BEGIN
 
--(void)detailViewInit;
--(void)updateView;
--(void)onDetailShow;
--(void)onDetailHide;
+@interface SAOAuthToken : NSObject
+-(id)initWithRequestResult:(TSC_OAuthTokenRequestResult *)result;
+-(id)initWithToken:(SAOAuthToken *)token;
++(SAOAuthToken *)tokenWithRequestResult:(TSC_OAuthTokenRequestResult *)result;
++(SAOAuthToken *)tokenWithToken:(SAOAuthToken *)sourceToken;
 
-@property (weak, nonatomic) SAChannelBase  *channelBase;
-@property (weak, nonatomic) SAMainView *main_view;
-@property (nonatomic) BOOL initialized;
+@property (nonatomic, readonly) unsigned short resultCode;
+@property (nonatomic, readonly) NSString *tokenString;
+@property (nonatomic, readonly) unsigned int expiresIn;
+@property (nonatomic, readonly) NSDate *birthday;
+- (BOOL)isAlive;
+- (NSString*) url;
 @end
 
-
+NS_ASSUME_NONNULL_END

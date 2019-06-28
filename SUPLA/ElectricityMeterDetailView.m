@@ -19,7 +19,8 @@
 #import "ElectricityMeterDetailView.h"
 #import "SAClassHelper.h"
 
-@implementation SAElectricityMeterDetailView {
+
+@implementation SAElectricityMeterDetailView   {
     short selectedPhase;
 }
 
@@ -234,6 +235,26 @@
         self.vPhases.hidden = YES;
         [self.btnChart setImage:[UIImage imageNamed:@"graphon.png"]];
     }
+}
+
+-(void)onDetailShow {
+    [super onDetailShow];
+    SADownloadIncrementalMeasurements *task = [[SADownloadIncrementalMeasurements alloc] init];
+    task.channelId = self.channelBase.remote_id;
+    task.delegate = self;
+    [task start];
+}
+
+-(void) onRestApiTaskStarted: (SARestApiClientTask*)task {
+    NSLog(@"onRestApiTaskStarted");
+}
+
+-(void) onRestApiTaskFinished: (SARestApiClientTask*)task {
+    NSLog(@"onRestApiTaskFinished");
+}
+
+-(void) onRestApiTask: (SARestApiClientTask*)task progressUpdate:(float)progress {
+    NSLog(@"onRestApiTaskProgressUpdate %f", progress);
 }
 
 @end

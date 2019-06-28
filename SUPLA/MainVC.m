@@ -481,6 +481,14 @@
     [UIView commitAnimations];
     _animating = NO;
     
+    if (_detailView) {
+        if (show) {
+            [_detailView onDetailShow];
+        } else {
+            [_detailView onDetailHide];
+        }
+    }
+    
     if ( animated ) {
         
         _animating = YES;
@@ -496,6 +504,7 @@
                              
                              [self setCenter:CGPointMake((self.frame.size.width/2) * multiplier, self.center.y)];
                              [_detailView setFrame:[self getDetailFrame]];
+                        
 
                          }
                          completion:^(BOOL finished){
