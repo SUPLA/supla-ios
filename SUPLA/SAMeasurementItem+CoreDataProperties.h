@@ -16,13 +16,18 @@
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 
-#import "SARestApiClientTask.h"
+#import "SAMeasurementItem+CoreDataClass.h"
+
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface SADownloadMeasurementLogs : SARestApiClientTask
+@interface SAMeasurementItem (CoreDataProperties)
 
-@property (readonly) long afterTimestamp;
++ (NSFetchRequest<SAMeasurementItem *> *)fetchRequest;
+
+@property (nullable, nonatomic, retain) NSObject *channel_id;
+@property (nullable, nonatomic, copy) NSDate *date;
+
 @end
 
 NS_ASSUME_NONNULL_END

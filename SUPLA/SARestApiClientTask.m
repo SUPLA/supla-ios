@@ -18,15 +18,31 @@
 
 #import "SARestApiClientTask.h"
 #import "SuplaApp.h"
+#import "Database.h"
+
+@implementation SAApiRequestResult
+@synthesize responseCode;
+@synthesize totalCount;
+@synthesize jsonObject;
+@end
 
 @implementation SARestApiClientTask {
     int _activityTime;
     NSCondition *thread_cnd;
     SAOAuthToken *_token;
+    SADatabase *_DB;
 }
 
 @synthesize delegate;
 @synthesize channelId;
+
+-(SADatabase*)DB {
+    if ( _DB == nil ) {
+        _DB = [[SADatabase alloc] init];
+    }
+    
+    return _DB;
+}
 
 - (void)setToken:(SAOAuthToken *)token {
     @synchronized(self) {
@@ -121,17 +137,19 @@
     }
 }
 
-- (void)apiRequestForEndpoint:(NSString *)endpoint retry:(BOOL)retry {
+- (SAApiRequestResult *)apiRequestForEndpoint:(NSString *)endpoint retry:(BOOL)retry {
+    SAApiRequestResult *result = [[SAApiRequestResult alloc] init];
+    
     [self performTokenRequest];
     SAOAuthToken *token = self.token;
     
     if (token == nil || !token.isAlive) {
-        return;
+        return result;
     }
     
     NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@/api/2.2.0/%@", token.url, endpoint]];
     if (url == nil) {
-        return;
+        return result;
     }
     
     NSURLSession *session = nil;
@@ -149,18 +167,47 @@
     [request setValue:[NSString stringWithFormat:@"Bearer %@", token.tokenString] forHTTPHeaderField:@"Authorization"];
     
     NSURLSessionDataTask *dataTask = [session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
-        NSLog(@"%@ %@", response, [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
+        
+        result.error = error;
+        if ( response && [response isKindOfClass:NSHTTPURLResponse.class]) {
+            result.responseCode = [((NSHTTPURLResponse*)response) statusCode];
+            result.totalCount = 0;
+            
+            id xTotalCount = [[((NSHTTPURLResponse*)response) allHeaderFields] objectForKey:@"X-Total-Count"];
+            if ( xTotalCount && [xTotalCount isKindOfClass:[NSString class]]) {
+                result.totalCount = [((NSString*)xTotalCount) intValue];
+            }
+            
+        } else {
+            result.responseCode = 0;
+        }
+        
+        error = nil;
+        result.jsonObject = [NSJSONSerialization
+                         JSONObjectWithData:data
+                         options:NSJSONReadingAllowFragments
+                         error:&error];
+        
+        if (error) {
+            result.jsonObject = nil;
+        }
+        
         [cond signal];
     }];
-    [dataTask resume];
     
+    [dataTask resume];
+
     [cond waitUntilDate:[NSDate dateWithTimeIntervalSinceNow:120]];
-    NSLog(@"bbb");
-  
+
+    if (retry && result.responseCode == 401) {
+        return [self apiRequestForEndpoint:endpoint retry:FALSE];
+    }
+    
+    return result;
 }
 
-- (void)apiRequestForEndpoint:(NSString *)endpoint {
-    [self apiRequestForEndpoint:endpoint retry:YES];
+- (SAApiRequestResult*)apiRequestForEndpoint:(NSString *)endpoint {
+    return [self apiRequestForEndpoint:endpoint retry:YES];
 }
 
 - (void)task {}

@@ -16,13 +16,15 @@
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 
-#import "SARestApiClientTask.h"
+#import "SAMeasurementItem+CoreDataProperties.h"
 
-NS_ASSUME_NONNULL_BEGIN
+@implementation SAMeasurementItem (CoreDataProperties)
 
-@interface SADownloadMeasurementLogs : SARestApiClientTask
++ (NSFetchRequest<SAMeasurementItem *> *)fetchRequest {
+	return [NSFetchRequest fetchRequestWithEntityName:@"SAMeasurementItem"];
+}
 
-@property (readonly) long afterTimestamp;
+@dynamic channel_id;
+@dynamic date;
+
 @end
-
-NS_ASSUME_NONNULL_END

@@ -16,13 +16,15 @@
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 
-#import "SARestApiClientTask.h"
+#import <Foundation/Foundation.h>
+#import "SAMeasurementItem.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface SADownloadMeasurementLogs : SARestApiClientTask
+@interface SAIncrementalMeasurementItem : SAMeasurementItem
 
-@property (readonly) long afterTimestamp;
 @end
 
 NS_ASSUME_NONNULL_END
+
+#import "SAIncrementalMeasurementItem+CoreDataProperties.h"

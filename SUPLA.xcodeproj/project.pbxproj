@@ -9,6 +9,12 @@
 /* Begin PBXBuildFile section */
 		01BDAC7522C518DE00915646 /* SARestApiClientTask.m in Sources */ = {isa = PBXBuildFile; fileRef = 01BDAC7422C518DE00915646 /* SARestApiClientTask.m */; };
 		01BDAC7822C5200600915646 /* SAOAuthToken.m in Sources */ = {isa = PBXBuildFile; fileRef = 01BDAC7722C5200600915646 /* SAOAuthToken.m */; };
+		01C1718F22C7F3A2005983E1 /* SAIncrementalMeasurementItem+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 01C1718522C7F3A2005983E1 /* SAIncrementalMeasurementItem+CoreDataClass.m */; };
+		01C1719022C7F3A2005983E1 /* SAIncrementalMeasurementItem+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 01C1718622C7F3A2005983E1 /* SAIncrementalMeasurementItem+CoreDataProperties.m */; };
+		01C1719122C7F3A2005983E1 /* SAElectricityMeasurementItem+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 01C1718922C7F3A2005983E1 /* SAElectricityMeasurementItem+CoreDataClass.m */; };
+		01C1719222C7F3A2005983E1 /* SAElectricityMeasurementItem+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 01C1718A22C7F3A2005983E1 /* SAElectricityMeasurementItem+CoreDataProperties.m */; };
+		01C1719322C7F3A2005983E1 /* SAMeasurementItem+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 01C1718D22C7F3A2005983E1 /* SAMeasurementItem+CoreDataClass.m */; };
+		01C1719422C7F3A2005983E1 /* SAMeasurementItem+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 01C1718E22C7F3A2005983E1 /* SAMeasurementItem+CoreDataProperties.m */; };
 		01C792FA22B7FB610020A900 /* SAChannelExtendedValue+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 01C792E822B7FB600020A900 /* SAChannelExtendedValue+CoreDataClass.m */; };
 		01C792FB22B7FB610020A900 /* SAChannelExtendedValue+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 01C792E922B7FB600020A900 /* SAChannelExtendedValue+CoreDataProperties.m */; };
 		01D0616E22C294D90043C947 /* ElectricityMeterDetailView.m in Sources */ = {isa = PBXBuildFile; fileRef = 01D0616D22C294D90043C947 /* ElectricityMeterDetailView.m */; };
@@ -275,6 +281,18 @@
 		01BDAC7422C518DE00915646 /* SARestApiClientTask.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SARestApiClientTask.m; sourceTree = "<group>"; };
 		01BDAC7622C5200600915646 /* SAOAuthToken.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SAOAuthToken.h; sourceTree = "<group>"; };
 		01BDAC7722C5200600915646 /* SAOAuthToken.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SAOAuthToken.m; sourceTree = "<group>"; };
+		01C1718322C7F3A2005983E1 /* SAIncrementalMeasurementItem+CoreDataProperties.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SAIncrementalMeasurementItem+CoreDataProperties.h"; sourceTree = "<group>"; };
+		01C1718422C7F3A2005983E1 /* SAIncrementalMeasurementItem+CoreDataClass.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SAIncrementalMeasurementItem+CoreDataClass.h"; sourceTree = "<group>"; };
+		01C1718522C7F3A2005983E1 /* SAIncrementalMeasurementItem+CoreDataClass.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "SAIncrementalMeasurementItem+CoreDataClass.m"; sourceTree = "<group>"; };
+		01C1718622C7F3A2005983E1 /* SAIncrementalMeasurementItem+CoreDataProperties.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "SAIncrementalMeasurementItem+CoreDataProperties.m"; sourceTree = "<group>"; };
+		01C1718722C7F3A2005983E1 /* SAElectricityMeasurementItem+CoreDataProperties.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SAElectricityMeasurementItem+CoreDataProperties.h"; sourceTree = "<group>"; };
+		01C1718822C7F3A2005983E1 /* SAElectricityMeasurementItem+CoreDataClass.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SAElectricityMeasurementItem+CoreDataClass.h"; sourceTree = "<group>"; };
+		01C1718922C7F3A2005983E1 /* SAElectricityMeasurementItem+CoreDataClass.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "SAElectricityMeasurementItem+CoreDataClass.m"; sourceTree = "<group>"; };
+		01C1718A22C7F3A2005983E1 /* SAElectricityMeasurementItem+CoreDataProperties.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "SAElectricityMeasurementItem+CoreDataProperties.m"; sourceTree = "<group>"; };
+		01C1718B22C7F3A2005983E1 /* SAMeasurementItem+CoreDataProperties.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SAMeasurementItem+CoreDataProperties.h"; sourceTree = "<group>"; };
+		01C1718C22C7F3A2005983E1 /* SAMeasurementItem+CoreDataClass.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SAMeasurementItem+CoreDataClass.h"; sourceTree = "<group>"; };
+		01C1718D22C7F3A2005983E1 /* SAMeasurementItem+CoreDataClass.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "SAMeasurementItem+CoreDataClass.m"; sourceTree = "<group>"; };
+		01C1718E22C7F3A2005983E1 /* SAMeasurementItem+CoreDataProperties.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "SAMeasurementItem+CoreDataProperties.m"; sourceTree = "<group>"; };
 		01C792E722B7FB600020A900 /* SAChannelExtendedValue+CoreDataClass.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SAChannelExtendedValue+CoreDataClass.h"; sourceTree = "<group>"; };
 		01C792E822B7FB600020A900 /* SAChannelExtendedValue+CoreDataClass.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "SAChannelExtendedValue+CoreDataClass.m"; sourceTree = "<group>"; };
 		01C792E922B7FB600020A900 /* SAChannelExtendedValue+CoreDataProperties.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "SAChannelExtendedValue+CoreDataProperties.m"; sourceTree = "<group>"; };
@@ -963,6 +981,18 @@
 		407004241BB56EAC00F6187F /* DB */ = {
 			isa = PBXGroup;
 			children = (
+				01C1718322C7F3A2005983E1 /* SAIncrementalMeasurementItem+CoreDataProperties.h */,
+				01C1718422C7F3A2005983E1 /* SAIncrementalMeasurementItem+CoreDataClass.h */,
+				01C1718522C7F3A2005983E1 /* SAIncrementalMeasurementItem+CoreDataClass.m */,
+				01C1718622C7F3A2005983E1 /* SAIncrementalMeasurementItem+CoreDataProperties.m */,
+				01C1718722C7F3A2005983E1 /* SAElectricityMeasurementItem+CoreDataProperties.h */,
+				01C1718822C7F3A2005983E1 /* SAElectricityMeasurementItem+CoreDataClass.h */,
+				01C1718922C7F3A2005983E1 /* SAElectricityMeasurementItem+CoreDataClass.m */,
+				01C1718A22C7F3A2005983E1 /* SAElectricityMeasurementItem+CoreDataProperties.m */,
+				01C1718B22C7F3A2005983E1 /* SAMeasurementItem+CoreDataProperties.h */,
+				01C1718C22C7F3A2005983E1 /* SAMeasurementItem+CoreDataClass.h */,
+				01C1718D22C7F3A2005983E1 /* SAMeasurementItem+CoreDataClass.m */,
+				01C1718E22C7F3A2005983E1 /* SAMeasurementItem+CoreDataProperties.m */,
 				01EE9BB522BA50D90029A142 /* SAChannelValueBase+CoreDataProperties.h */,
 				01EE9BB622BA50D90029A142 /* SAChannelValueBase+CoreDataClass.h */,
 				01EE9BB722BA50D90029A142 /* SAChannelValueBase+CoreDataClass.m */,
@@ -1404,12 +1434,17 @@
 				404749BD20BC6070005DA345 /* SAChannel+CoreDataClass.m in Sources */,
 				404749BC20BC6058005DA345 /* SAColorListItem+CoreDataClass.m in Sources */,
 				40E8BE891FC06A5600FB2FE6 /* TFHppleElement.m in Sources */,
+				01C1719322C7F3A2005983E1 /* SAMeasurementItem+CoreDataClass.m in Sources */,
 				40DE1A361BCD1B55004CF43B /* AboutVC.m in Sources */,
 				4017E12C1BB9CE2900570AC8 /* ChannelCell.m in Sources */,
+				01C1719222C7F3A2005983E1 /* SAElectricityMeasurementItem+CoreDataProperties.m in Sources */,
 				40AB8BDE1DCB32EB0030F3DE /* SARateApp.m in Sources */,
 				01C792FB22B7FB610020A900 /* SAChannelExtendedValue+CoreDataProperties.m in Sources */,
+				01C1719122C7F3A2005983E1 /* SAElectricityMeasurementItem+CoreDataClass.m in Sources */,
 				40C7BA7720C047CF00ACEE42 /* SAChannel+CoreDataProperties.m in Sources */,
 				40CF96DE1BC820E60030EFFF /* UIHelper.m in Sources */,
+				01C1718F22C7F3A2005983E1 /* SAIncrementalMeasurementItem+CoreDataClass.m in Sources */,
+				01C1719422C7F3A2005983E1 /* SAMeasurementItem+CoreDataProperties.m in Sources */,
 				01EE9BBB22BA50D90029A142 /* SAChannelValueBase+CoreDataClass.m in Sources */,
 				40F7301120C19BA600167C2D /* SAColorListItem+CoreDataProperties.m in Sources */,
 				01D0616E22C294D90043C947 /* ElectricityMeterDetailView.m in Sources */,
@@ -1446,6 +1481,7 @@
 				40C9E4FD1F2B841400753796 /* SAColorListPicker.m in Sources */,
 				40DA56901DCA1908008F05DE /* _SALocation+CoreDataProperties.m in Sources */,
 				409934B61F30EF9C003110C5 /* RSDetailView.m in Sources */,
+				01C1719022C7F3A2005983E1 /* SAIncrementalMeasurementItem+CoreDataProperties.m in Sources */,
 				01E517C622C6AD7D000FE77A /* SADownloadMeasurementLogs.m in Sources */,
 				403150FB1DC769430075D2D2 /* RGBDetailView.m in Sources */,
 				40E8BE881FC06A5600FB2FE6 /* TFHpple.m in Sources */,

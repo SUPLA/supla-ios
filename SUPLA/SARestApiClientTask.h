@@ -21,6 +21,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+
 @class SARestApiClientTask;
 @protocol SARestApiClientTaskDelegate <NSObject>
 
@@ -31,12 +32,20 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
+@interface SAApiRequestResult : NSObject
+@property (nonatomic) NSInteger responseCode;
+@property (nonatomic) int totalCount;
+@property (nonatomic, strong) _Nullable id jsonObject;
+@property (nonatomic, strong) NSError *error;
+@end
+
 @interface SARestApiClientTask : NSThread <NSURLSessionDelegate>
 
 - (SAOAuthToken *) getTokenWhenIsAlive;
 - (BOOL) isTaskIsAliveWithTimeout:(int)timeout;
 - (void) keepTaskAlive;
-- (void) apiRequestForEndpoint:(NSString *)endpoint;
+- (void) onProgressUpdate:(float)progress;
+- (SAApiRequestResult *) apiRequestForEndpoint:(NSString *)endpoint;
 
 @property (atomic, strong) SAOAuthToken *token;
 @property (weak, nonatomic) id<SARestApiClientTaskDelegate> delegate;

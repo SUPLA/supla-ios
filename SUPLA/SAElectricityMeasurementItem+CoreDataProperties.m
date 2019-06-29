@@ -16,13 +16,17 @@
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 
-#import "SARestApiClientTask.h"
+#import "SAElectricityMeasurementItem+CoreDataProperties.h"
 
-NS_ASSUME_NONNULL_BEGIN
+@implementation SAElectricityMeasurementItem (CoreDataProperties)
 
-@interface SADownloadMeasurementLogs : SARestApiClientTask
++ (NSFetchRequest<SAElectricityMeasurementItem *> *)fetchRequest {
+	return [NSFetchRequest fetchRequestWithEntityName:@"SAElectricityMeasurementItem"];
+}
 
-@property (readonly) long afterTimestamp;
+@dynamic fae;
+@dynamic rae;
+@dynamic fre;
+@dynamic rre;
+
 @end
-
-NS_ASSUME_NONNULL_END

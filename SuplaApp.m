@@ -48,6 +48,7 @@ NSString *kSAOAuthTokenRequestResult = @"KSA-N13";
     SADatabase *_DB;
     SAUIHelper *_UI;
     NSMutableArray *_RestApiClientTasks;
+    SAOAuthToken *_OAuthToken;
 }
 
 -(id)init {
@@ -593,6 +594,7 @@ NSString *kSAOAuthTokenRequestResult = @"KSA-N13";
     @synchronized (self) {
         NSEnumerator *e = [_RestApiClientTasks objectEnumerator];
         SARestApiClientTask *cli;
+        _OAuthToken = token;
         while (cli = [e nextObject]) {
             cli.token = token;
         }
@@ -605,13 +607,8 @@ NSString *kSAOAuthTokenRequestResult = @"KSA-N13";
     SAOAuthToken *result = nil;
     
     @synchronized (self) {
-        NSEnumerator *e = [_RestApiClientTasks objectEnumerator];
-        SARestApiClientTask *cli;
-        while (cli = [e nextObject]) {
-            result = [cli getTokenWhenIsAlive];
-            if (result != nil) {
-                break;
-            }
+        if ( _OAuthToken != nil && [_OAuthToken isAlive]) {
+            result = _OAuthToken;
         }
         
         [_RestApiClientTasks addObject:task];
