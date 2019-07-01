@@ -633,4 +633,9 @@ NSString *kSAOAuthTokenRequestResult = @"KSA-N13";
     }
 }
 
++(void) abstractMethodException:(NSString *)methodName {
+    [NSException raise:NSInternalInconsistencyException
+                format:@"You must override %@ in a subclass", methodName];
+}
+
 @end

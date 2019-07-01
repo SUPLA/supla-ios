@@ -18,7 +18,6 @@
 
 #import "SARestApiClientTask.h"
 #import "SuplaApp.h"
-#import "Database.h"
 
 @implementation SAApiRequestResult
 @synthesize responseCode;

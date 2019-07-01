@@ -22,6 +22,8 @@
 #import "SuplaClient.h"
 #include "proto.h"
 
+#define ABSTRACT_METHOD_EXCEPTION [SAApp abstractMethodException:NSStringFromSelector(_cmd)]
+
 @class SADatabase;
 @class SASettingsVC;
 @class SAStatusVC;
@@ -42,7 +44,7 @@
 +(void) setServerHostName:(NSString *)hostname;
 +(void) setEmailAddress:(NSString *)email;
 +(void) setAdvancedConfig:(BOOL)adv_cfg;
-
++(void) abstractMethodException:(NSString *)methodName;
 +(NSURL *)applicationDocumentsDirectory;
 
 +(void)initClientDelayed:(double)time;

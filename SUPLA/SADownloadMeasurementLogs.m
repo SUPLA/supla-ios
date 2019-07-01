@@ -17,18 +17,45 @@
  */
 
 #import "SADownloadMeasurementLogs.h"
+#import "SuplaApp.h"
 
 @implementation SADownloadMeasurementLogs
 
 @synthesize afterTimestamp = _afterTimestamp;
 
-- (long)getMinTimesatamp { return 0; }
-- (long)getMaxTimesatamp { return 0; }
-- (int)getLocalTotalCount { return 0; }
-- (int)itemsPerRequest { return 1000; }
-- (void)eraseMeasurements {};
-- (void)noRemoteDataAvailable {};
-- (void)saveMeasurementItemWithTimestamp:(long)timestamp values:(NSDictionary *)values {};
+- (long)getMinTimesatamp {
+    ABSTRACT_METHOD_EXCEPTION;
+    return 0;
+}
+- (long)getMaxTimesatamp {
+    ABSTRACT_METHOD_EXCEPTION;
+    return 0;
+}
+
+- (NSUInteger)getLocalTotalCount {
+    ABSTRACT_METHOD_EXCEPTION;
+    return 0;
+}
+
+- (int)itemsPerRequest {
+    return 1000;
+}
+
+- (void)deleteAllMeasurements {
+    ABSTRACT_METHOD_EXCEPTION;
+};
+
+- (void)onFirstItem {
+    ABSTRACT_METHOD_EXCEPTION;
+};
+
+- (void)onLastItem {
+    ABSTRACT_METHOD_EXCEPTION;
+};
+
+- (void)createMeasurementItemEntity:(NSDictionary *)item withDate:(NSDate *)date {
+    ABSTRACT_METHOD_EXCEPTION;
+};
 
 - (void)task {
     if (self.channelId <= 0) {
@@ -45,6 +72,7 @@
             NSDictionary *item;
             NSString *str_ts;
             long min = [self getMinTimesatamp];
+            //NSLog(@"Min: %li", min);
             bool found = NO;
             
             for(int a=0;a<items.count;a++) {
@@ -52,7 +80,7 @@
                     && [item isKindOfClass:[NSDictionary class]]
                     && (str_ts = [item valueForKey:@"date_timestamp"])
                     && min == [str_ts longLongValue]) {
-        
+    
                     found = YES;
                     break;
                 }
@@ -62,12 +90,14 @@
         }
         
         if (doErase) {
-            [self eraseMeasurements];
+            [self deleteAllMeasurements];
         }
     }
     
-    _afterTimestamp = [self getMaxTimesatamp];
-    int localTotalCount = [self getLocalTotalCount];
+    _afterTimestamp = [self getMaxTimesatamp]+1;
+    
+    //NSLog(@"Max: %ld", _afterTimestamp);
+    NSUInteger localTotalCount = [self getLocalTotalCount];
     double percent = 0.0;
     
     do {
@@ -82,13 +112,16 @@
         }
         
         NSArray *items = (NSArray*)result.jsonObject;
-        if ( items.count <= 0 ) {
-            [self noRemoteDataAvailable];
-            [self cancel];
+        
+        if (!items || items.count <=0) {
             break;
         }
         
         for(int a=0;a<items.count;a++) {
+            
+            if ([self isCancelled]) {
+                break;
+            }
             
             NSDictionary *item = [items objectAtIndex:a];
             long timestamp = 0;
@@ -104,10 +137,14 @@
                 _afterTimestamp = timestamp;
             }
             
-            [self saveMeasurementItemWithTimestamp:timestamp values:item];
+            if (a == 0) {
+                [self onFirstItem];
+            }
             
-            if ([self isCancelled]) {
-                break;
+            [self createMeasurementItemEntity:item withDate:[NSDate dateWithTimeIntervalSince1970:timestamp]];
+            
+            if (a == items.count-1) {
+                [self onLastItem];
             }
             
             localTotalCount++;
@@ -123,7 +160,10 @@
             [self keepTaskAlive];
         }
         
+        [self.DB saveContext];
+        
     } while(![self isCancelled]);
-    
+
+    NSLog(@"SUM: %f", [self.DB getSumOfChannelId:self.channelId]);
 }
 @end

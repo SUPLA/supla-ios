@@ -51,15 +51,16 @@
         return _persistentStoreCoordinator;
     }
     
-    // Create the coordinator and store
-    
-    _persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:[self managedObjectModel]];
-    NSURL *storeURL = [[SAApp applicationDocumentsDirectory] URLByAppendingPathComponent:@"SUPLA_DB4.sqlite"];
     NSError *error = nil;
-    NSString *failureReason = @"There was an error creating or loading the application's saved data.";
+    NSURL *storeURL = [[SAApp applicationDocumentsDirectory] URLByAppendingPathComponent:@"SUPLA_DB4.sqlite"];
     
     //NSFileManager *fileManager = [NSFileManager defaultManager];
     //[fileManager removeItemAtURL:storeURL error:&error];
+    
+    // Create the coordinator and store
+    
+    _persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:[self managedObjectModel]];
+    NSString *failureReason = @"There was an error creating or loading the application's saved data.";
     
     if (![_persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:storeURL options:nil error:&error]) {
         // Report any error we got.
@@ -97,6 +98,7 @@
 
 - (void)saveContext {
     NSManagedObjectContext *managedObjectContext = self.managedObjectContext;
+ 
     if (managedObjectContext != nil) {
         NSError *error = nil;
         if ([managedObjectContext hasChanges] && ![managedObjectContext save:&error]) {
@@ -125,10 +127,11 @@
     
 }
 
--(NSArray *) fetchByPredicate:(NSPredicate *)predicate entityName:(NSString*)en limit:(int)l {
+-(NSArray *) fetchByPredicate:(NSPredicate *)predicate entityName:(NSString*)en limit:(int)l sortDescriptors:(NSArray<NSSortDescriptor *> *)sortDescriptors {
     
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
     fetchRequest.predicate = predicate;
+    fetchRequest.sortDescriptors = sortDescriptors;
     
     if ( l > 0 ) {
         [fetchRequest setFetchLimit:l];
@@ -145,15 +148,40 @@
     return nil;
 };
 
--(id) fetchItemByPredicate:(NSPredicate *)predicate entityName:(NSString*)en {
+-(NSArray *) fetchByPredicate:(NSPredicate *)predicate entityName:(NSString*)en limit:(int)l {
+    return [self fetchByPredicate:predicate entityName:en limit:l sortDescriptors:nil];
+}
+
+-(id) fetchItemByPredicate:(NSPredicate *)predicate entityName:(NSString*)en sortDescriptors:(NSArray<NSSortDescriptor *> *)sortDescriptors {
     
-    NSArray *r = [self fetchByPredicate:predicate entityName:en limit:1];
+    NSArray *r = [self fetchByPredicate:predicate entityName:en limit:1 sortDescriptors:sortDescriptors];
     if ( r != nil && r.count > 0 ) {
         return [r objectAtIndex:0];
     }
     
     return nil;
 };
+
+-(id) fetchItemByPredicate:(NSPredicate *)predicate entityName:(NSString*)en {
+    return [self fetchItemByPredicate:predicate entityName:en sortDescriptors:nil];
+}
+
+-(NSUInteger) getCountByPredicate:(NSPredicate *)predicate entityName:(NSString *)en {
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    fetchRequest.predicate = predicate;
+    
+    [fetchRequest setEntity:[NSEntityDescription entityForName:en inManagedObjectContext: self.managedObjectContext]];
+    [fetchRequest setIncludesSubentities:NO];
+    
+    NSError *fetchError = nil;
+    NSUInteger count = [self.managedObjectContext countForFetchRequest:fetchRequest error:&fetchError];
+    
+    if(count == NSNotFound || fetchError != nil ) {
+        count = 0;
+    }
+    
+    return count;
+}
 
 #pragma mark Locations
 -(_SALocation*) fetchLocationById:(int)location_id {
@@ -169,6 +197,7 @@
     Location.caption = @"";
     [Location setLocationVisible:0];
     [self.managedObjectContext insertObject:Location];
+   
     
     return Location;
 }
@@ -485,21 +514,7 @@
 }
 
 -(NSUInteger) getChannelCount {
-    
-    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-    
-    fetchRequest.predicate = [NSPredicate predicateWithFormat:@"func > 0 AND visible > 0"];
-    [fetchRequest setEntity:[NSEntityDescription entityForName:@"SAChannel" inManagedObjectContext: self.managedObjectContext]];
-    [fetchRequest setIncludesSubentities:NO];
-
-    NSError *fetchError = nil;
-    NSUInteger count = [self.managedObjectContext countForFetchRequest:fetchRequest error:&fetchError];
-    
-    if(count == NSNotFound || fetchError != nil ) {
-        count = 0;
-    }
-    
-    return count;
+    return [self getCountByPredicate:[NSPredicate predicateWithFormat:@"func > 0 AND visible > 0"] entityName:@"SAChannel"];
 }
 
 #pragma mark Channel Groups
@@ -740,5 +755,108 @@
     
     [self saveContext];
 }
+
+#pragma mark Incremental Measurements
+
+-(SAIncrementalMeasurementItem*) fetchOlderThanDate:(NSDate*)date uncalculatedIncrementalMeasurementItemWithChannel:(int)channel_id entityName:(NSString*)en {
+    
+    return [self fetchItemByPredicate:[NSPredicate predicateWithFormat:@"channel_id = %i AND calculated = NO AND date < %@", channel_id, date] entityName:en];
+};
+
+-(long) getTimestampOfIncrementalMeasurementItemWithChannelId:(int)channel_id minimum:(BOOL)min entityName:(NSString*)en {
+    SAIncrementalMeasurementItem *item = [self fetchItemByPredicate:[NSPredicate predicateWithFormat:@"channel_id = %i", channel_id] entityName: en sortDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"date" ascending:min]]];
+    
+    return item ? [item.date timeIntervalSince1970] : 0;
+}
+
+-(void) deleteAllIncrementalMeasurementsForChannelId:(int)channel_id entityName:(NSString *)en {
+    BOOL del = YES;
+    do {
+        del = NO;
+        NSArray *arr = [self fetchByPredicate:[NSPredicate predicateWithFormat:@"channel_id = %i", channel_id] entityName:en limit:1000];
+        
+        if (arr && arr.count) {
+            del = YES;
+            for(int a=0;a<arr.count;a++) {
+                [self.managedObjectContext deleteObject:[arr objectAtIndex:a]];
+            }
+            [self saveContext];
+        }
+        
+    } while (del);
+    
+}
+
+-(void) deleteUncalculatedIncrementalMeasurementsForChannelId:(int)channel_id entityName:(NSString *)en {
+    NSArray *arr = [self fetchByPredicate:[NSPredicate predicateWithFormat:@"channel_id = %i AND calculated = NO", channel_id] entityName:en limit:0];
+    
+    if (arr) {
+        for(int a=0;a<arr.count;a++) {
+            [self.managedObjectContext deleteObject:[arr objectAtIndex:a]];
+        }
+    }
+}
+
+-(NSUInteger) getIncrementalMeasurementItemCountWithoutComplementForChannelId:(int)channel_id entityName:(NSString *)en {
+    return [self getCountByPredicate:[NSPredicate predicateWithFormat:@"channel_id = %i AND complement = NO", channel_id] entityName:en];
+}
+
+#pragma mark Electricity Measurements
+
+-(SAElectricityMeasurementItem*) newElectricityMeasurementItemWithManagedObjectContext:(BOOL)moc {
+    SAElectricityMeasurementItem *item = [[SAElectricityMeasurementItem alloc] initWithEntity:[NSEntityDescription entityForName:@"SAElectricityMeasurementItem" inManagedObjectContext:self.managedObjectContext] insertIntoManagedObjectContext:moc ? self.managedObjectContext : nil];
+    
+    if (moc) {
+        [self.managedObjectContext insertObject:item];
+    }
+    return item;
+}
+
+-(SAElectricityMeasurementItem*) fetchOlderThanDate:(NSDate*)date uncalculatedElectricityMeasurementItemWithChannel:(int)channel_id {
+    return (SAElectricityMeasurementItem*) [self fetchOlderThanDate:date uncalculatedIncrementalMeasurementItemWithChannel:channel_id entityName:@"SAElectricityMeasurementItem"];
+}
+
+-(long) getTimestampOfElectricityMeasurementItemWithChannelId:(int)channel_id minimum:(BOOL)min {
+    return [self getTimestampOfIncrementalMeasurementItemWithChannelId:channel_id minimum:min entityName:@"SAElectricityMeasurementItem"];
+}
+
+-(void) deleteAllElectricityMeasurementsForChannelId:(int)channel_id {
+    [self deleteAllIncrementalMeasurementsForChannelId:channel_id entityName:@"SAElectricityMeasurementItem"];
+}
+
+-(void) deleteUncalculatedElectricityMeasurementsForChannelId:(int)channel_id {
+    [self deleteUncalculatedIncrementalMeasurementsForChannelId:channel_id entityName:@"SAElectricityMeasurementItem"];
+}
+
+-(NSUInteger) getElectricityMeasurementItemCountWithoutComplementForChannelId:(int)channel_id {
+    return [self getIncrementalMeasurementItemCountWithoutComplementForChannelId:channel_id entityName:@"SAElectricityMeasurementItem"];
+}
+
+- (double) getSumOfChannelId:(int)channel_id {
+    
+    NSExpressionDescription *ed1 = [[NSExpressionDescription alloc] init];
+    [ed1 setName:@"fae"];
+    [ed1 setExpression:[NSExpression expressionForFunction:@"sum:" arguments:[NSArray arrayWithObject:[NSExpression expressionForKeyPath:@"phase2_fae"]]]];
+    [ed1 setExpressionResultType:NSDoubleAttributeType];
+    
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    fetchRequest.predicate = [NSPredicate predicateWithFormat:@"channel_id = %i AND calculated = YES", channel_id];
+    fetchRequest.propertiesToFetch = @[ed1];
+    [fetchRequest setResultType:NSDictionaryResultType];
+    
+    [fetchRequest setEntity:[NSEntityDescription entityForName:@"SAElectricityMeasurementItem" inManagedObjectContext: self.managedObjectContext]];
+    NSError *error = nil;
+    NSArray *r = [self.managedObjectContext executeFetchRequest:fetchRequest error:&error];
+    
+    if ( error == nil && r.count > 0 ) {
+        NSNumber *sum = [[r objectAtIndex:0] objectForKey:@"fae"];
+        return sum ? [sum doubleValue] : -1;
+    }
+    
+    return -2;
+ 
+}
+
+
 
 @end

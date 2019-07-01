@@ -25,7 +25,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (NSFetchRequest<SAMeasurementItem *> *)fetchRequest;
 
-@property (nullable, nonatomic, retain) NSObject *channel_id;
+@property (nonatomic) int32_t channel_id;
 @property (nullable, nonatomic, copy) NSDate *date;
 
 @end

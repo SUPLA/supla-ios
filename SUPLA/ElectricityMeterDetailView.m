@@ -239,7 +239,7 @@
 
 -(void)onDetailShow {
     [super onDetailShow];
-    SADownloadIncrementalMeasurements *task = [[SADownloadIncrementalMeasurements alloc] init];
+    SADownloadElectricityMeasurements *task = [[SADownloadElectricityMeasurements alloc] init];
     task.channelId = self.channelBase.remote_id;
     task.delegate = self;
     [task start];

@@ -19,5 +19,13 @@
 #import "SAMeasurementItem+CoreDataClass.h"
 
 @implementation SAMeasurementItem
+- (void) assignJSONObject:(NSDictionary *)object {
+    self.date = [NSDate dateWithTimeIntervalSince1970:[[object valueForKey:@"date_timestamp"] longLongValue]];
+}
+
+- (void) assignMeasurementItem:(SAMeasurementItem*)source {
+    self.channel_id = source.channel_id;
+    self.date = source.date;
+}
 
 @end

@@ -16,25 +16,12 @@
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 
-#import "SAIncrementalMeasurementItem+CoreDataClass.h"
-#import "SuplaApp.h"
+#import "SADownloadIncrementalMeasurements.h"
 
-@implementation SAIncrementalMeasurementItem
-- (void) calculateWithSource:(SAMeasurementItem*)source {
-    ABSTRACT_METHOD_EXCEPTION;
-}
+NS_ASSUME_NONNULL_BEGIN
 
-- (void) divideBy:(double)n {
-    ABSTRACT_METHOD_EXCEPTION;
-}
+@interface SADownloadElectricityMeasurements : SADownloadIncrementalMeasurements
 
-- (void) assignMeasurementItem:(SAMeasurementItem*)source {
-    [super assignMeasurementItem:source];
-    if ([source isKindOfClass:[SAIncrementalMeasurementItem class]]) {
-        SAIncrementalMeasurementItem *src = (SAIncrementalMeasurementItem*)source;
-        self.calculated = src.calculated;
-        self.divided = src.divided;
-        self.complement = src.complement;
-    }
-}
 @end
+
+NS_ASSUME_NONNULL_END

@@ -18,7 +18,7 @@
 
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
-
+#import "SAElectricityMeasurementItem+CoreDataClass.h"
 #import "proto.h"
 
 @class _SALocation;
@@ -58,7 +58,14 @@
 -(NSFetchedResultsController*) getChannelGroupFrc;
 -(SAColorListItem *) getColorListItemForRemoteId:(int)remote_id andIndex:(int)idx forGroup:(BOOL)group;
 -(void) updateColorListItem:(SAColorListItem *)item;
-
+-(SAElectricityMeasurementItem*) newElectricityMeasurementItemWithManagedObjectContext:(BOOL)moc;
+-(SAElectricityMeasurementItem*) fetchOlderThanDate:(NSDate*)date uncalculatedElectricityMeasurementItemWithChannel:(int)channel_id;
+-(NSUInteger) getElectricityMeasurementItemCount;
+-(long) getTimestampOfElectricityMeasurementItemWithChannelId:(int)channel_id minimum:(BOOL)min;
+-(void) deleteAllElectricityMeasurementsForChannelId:(int)channel_id;
+-(void) deleteUncalculatedElectricityMeasurementsForChannelId:(int)channel_id;
+-(NSUInteger) getElectricityMeasurementItemCountWithoutComplementForChannelId:(int)channel_id;
+- (double) getSumOfChannelId:(int)channel_id;
 @end
 
 

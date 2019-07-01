@@ -17,7 +17,7 @@
  */
 
 #import "DetailView.h"
-#import "SADownloadIncrementalMeasurements.h"
+#import "SADownloadElectricityMeasurements.h"
 
 NS_ASSUME_NONNULL_BEGIN
 

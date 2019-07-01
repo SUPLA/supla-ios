@@ -25,10 +25,18 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (NSFetchRequest<SAElectricityMeasurementItem *> *)fetchRequest;
 
-@property (nonatomic) double fae;
-@property (nonatomic) double rae;
-@property (nonatomic) double fre;
-@property (nonatomic) double rre;
+@property (nonatomic) double phase1_fae;
+@property (nonatomic) double phase1_fre;
+@property (nonatomic) double phase1_rae;
+@property (nonatomic) double phase1_rre;
+@property (nonatomic) double phase2_fae;
+@property (nonatomic) double phase2_fre;
+@property (nonatomic) double phase2_rae;
+@property (nonatomic) double phase2_rre;
+@property (nonatomic) double phase3_fre;
+@property (nonatomic) double phase3_rae;
+@property (nonatomic) double phase3_rre;
+@property (nonatomic) double phase3_fae;
 
 @end
 

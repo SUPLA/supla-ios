@@ -17,12 +17,13 @@
  */
 
 #import <Foundation/Foundation.h>
-#import "SAMeasurementItem.h"
+#import "SAMeasurementItem+CoreDataProperties.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface SAIncrementalMeasurementItem : SAMeasurementItem
-
+- (void) calculateWithSource:(SAMeasurementItem*)source;
+- (void) divideBy:(double)n;
 @end
 
 NS_ASSUME_NONNULL_END

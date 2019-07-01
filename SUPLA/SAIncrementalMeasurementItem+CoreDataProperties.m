@@ -24,8 +24,8 @@
 	return [NSFetchRequest fetchRequestWithEntityName:@"SAIncrementalMeasurementItem"];
 }
 
-@dynamic divided;
 @dynamic calculated;
 @dynamic complement;
+@dynamic divided;
 
 @end

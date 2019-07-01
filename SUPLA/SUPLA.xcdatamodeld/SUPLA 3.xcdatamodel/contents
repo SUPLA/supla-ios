@@ -50,15 +50,23 @@
         <attribute name="remote_id" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
     </entity>
     <entity name="SAElectricityMeasurementItem" representedClassName="SAElectricityMeasurementItem" parentEntity="SAIncrementalMeasurementItem" syncable="YES">
-        <attribute name="fae" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="fre" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="rae" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="rre" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="phase1_fae" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="phase1_fre" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="phase1_rae" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="phase1_rre" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="phase2_fae" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="phase2_fre" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="phase2_rae" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="phase2_rre" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="phase3_fae" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="phase3_fre" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="phase3_rae" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="phase3_rre" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
     </entity>
     <entity name="SAIncrementalMeasurementItem" representedClassName="SAIncrementalMeasurementItem" isAbstract="YES" parentEntity="SAMeasurementItem" syncable="YES">
-        <attribute name="calculated" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="complement" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="divided" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="calculated" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="complement" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="divided" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
     </entity>
     <entity name="SALocation" representedClassName="_SALocation" syncable="YES">
         <attribute name="caption" optional="YES" attributeType="String" syncable="YES"/>
@@ -66,8 +74,8 @@
         <attribute name="visible" optional="YES" attributeType="Integer 16" usesScalarValueType="NO" syncable="YES"/>
     </entity>
     <entity name="SAMeasurementItem" representedClassName="SAMeasurementItem" isAbstract="YES" syncable="YES">
-        <attribute name="channel_id" optional="YES" syncable="YES"/>
-        <attribute name="date" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="channel_id" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="date" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
     </entity>
     <elements>
         <element name="SAChannel" positionX="-20.5078125" positionY="10.7734375" width="128" height="150"/>
@@ -78,9 +86,9 @@
         <element name="SAChannelValue" positionX="-477" positionY="162" width="128" height="75"/>
         <element name="SAChannelValueBase" positionX="-547.359375" positionY="322.61328125" width="128" height="73"/>
         <element name="SAColorListItem" positionX="-216" positionY="-54" width="128" height="120"/>
+        <element name="SAElectricityMeasurementItem" positionX="-522" positionY="117" width="128" height="225"/>
+        <element name="SAIncrementalMeasurementItem" positionX="-531" positionY="108" width="128" height="90"/>
         <element name="SALocation" positionX="-747" positionY="-54" width="128" height="88"/>
         <element name="SAMeasurementItem" positionX="-540" positionY="99" width="128" height="75"/>
-        <element name="SAIncrementalMeasurementItem" positionX="-531" positionY="108" width="128" height="90"/>
-        <element name="SAElectricityMeasurementItem" positionX="-522" positionY="117" width="128" height="105"/>
     </elements>
 </model>

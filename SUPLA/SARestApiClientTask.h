@@ -18,6 +18,7 @@
 
 #import <Foundation/Foundation.h>
 #import "SAOAuthToken.h"
+#import "Database.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -40,7 +41,7 @@ NS_ASSUME_NONNULL_BEGIN
 @end
 
 @interface SARestApiClientTask : NSThread <NSURLSessionDelegate>
-
+- (SADatabase*) DB;
 - (SAOAuthToken *) getTokenWhenIsAlive;
 - (BOOL) isTaskIsAliveWithTimeout:(int)timeout;
 - (void) keepTaskAlive;
