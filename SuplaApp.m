@@ -623,7 +623,7 @@ NSString *kSAOAuthTokenRequestResult = @"KSA-N13";
     }
 }
 
--(void) cancelAllRestApiClientTask:(SARestApiClientTask *)task {
+-(void) cancelAllRestApiClientTasks {
     @synchronized (self) {
         NSEnumerator *e = [_RestApiClientTasks objectEnumerator];
         SARestApiClientTask *cli;

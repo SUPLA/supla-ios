@@ -77,7 +77,7 @@
 
 -(SAOAuthToken*) registerRestApiClientTask:(SARestApiClientTask *)client;
 -(void) unregisterRestApiClientTask:(SARestApiClientTask *)task;
--(void) cancelAllRestApiClientTask:(SARestApiClientTask *)task;
+-(void) cancelAllRestApiClientTasks;
 @end
 
 extern NSString *kSADataChangedNotification;

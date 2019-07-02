@@ -23,6 +23,22 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wXI-rX-Ghy" userLabel="vContent">
                     <rect key="frame" x="10" y="159" width="300" height="261"/>
                     <subviews>
+                        <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WP8-xn-lei" userLabel="vCharts">
+                            <rect key="frame" x="0.0" y="0.0" width="300" height="261"/>
+                            <subviews>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Dpv-OP-VGS" customClass="CombinedChartView" customModule="Charts">
+                                    <rect key="frame" x="0.0" y="0.0" width="300" height="256"/>
+                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </view>
+                            </subviews>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <constraints>
+                                <constraint firstItem="Dpv-OP-VGS" firstAttribute="top" secondItem="WP8-xn-lei" secondAttribute="top" id="4PJ-ca-HfV"/>
+                                <constraint firstAttribute="bottom" secondItem="Dpv-OP-VGS" secondAttribute="bottom" constant="5" id="Kqa-PV-Ihg"/>
+                                <constraint firstAttribute="trailing" secondItem="Dpv-OP-VGS" secondAttribute="trailing" id="RMD-af-UWP"/>
+                                <constraint firstItem="Dpv-OP-VGS" firstAttribute="leading" secondItem="WP8-xn-lei" secondAttribute="leading" id="SwZ-tK-oN7"/>
+                            </constraints>
+                        </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KE1-vg-Yeo" userLabel="vPhases">
                             <rect key="frame" x="0.0" y="0.0" width="300" height="261"/>
                             <subviews>
@@ -342,10 +358,14 @@
                     </subviews>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
-                        <constraint firstAttribute="bottom" secondItem="KE1-vg-Yeo" secondAttribute="bottom" id="37L-Jm-lMm"/>
-                        <constraint firstItem="KE1-vg-Yeo" firstAttribute="leading" secondItem="wXI-rX-Ghy" secondAttribute="leading" id="45U-CY-Deu"/>
-                        <constraint firstAttribute="trailing" secondItem="KE1-vg-Yeo" secondAttribute="trailing" id="47b-o9-CjR"/>
-                        <constraint firstItem="KE1-vg-Yeo" firstAttribute="top" secondItem="wXI-rX-Ghy" secondAttribute="top" id="cFn-Ub-zyk"/>
+                        <constraint firstAttribute="bottom" secondItem="WP8-xn-lei" secondAttribute="bottom" id="0m0-Zd-yZj"/>
+                        <constraint firstItem="KE1-vg-Yeo" firstAttribute="top" secondItem="wXI-rX-Ghy" secondAttribute="top" id="9Xh-rT-h9s"/>
+                        <constraint firstItem="KE1-vg-Yeo" firstAttribute="leading" secondItem="wXI-rX-Ghy" secondAttribute="leading" id="E3B-kJ-D1b"/>
+                        <constraint firstAttribute="trailing" secondItem="WP8-xn-lei" secondAttribute="trailing" id="HIp-lo-14G"/>
+                        <constraint firstAttribute="bottom" secondItem="KE1-vg-Yeo" secondAttribute="bottom" id="Mfj-fR-wEi"/>
+                        <constraint firstItem="WP8-xn-lei" firstAttribute="top" secondItem="wXI-rX-Ghy" secondAttribute="top" id="OwR-t0-zFT"/>
+                        <constraint firstItem="WP8-xn-lei" firstAttribute="leading" secondItem="wXI-rX-Ghy" secondAttribute="leading" id="koB-gd-TsR"/>
+                        <constraint firstAttribute="trailing" secondItem="KE1-vg-Yeo" secondAttribute="trailing" id="naH-Hg-hFk"/>
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Xur-xZ-dhe" userLabel="vFooter">
@@ -453,6 +473,15 @@
                                         <action selector="chartBtnTouch:" destination="Xvv-Xf-gNW" eventType="touchDown" id="oPr-Qb-t4j"/>
                                     </connections>
                                 </button>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="••••••••••" textAlignment="center" lineBreakMode="clip" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ywd-JH-SeJ">
+                                    <rect key="frame" x="137" y="125" width="30" height="7.5"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="30" id="PbQ-8L-9WP"/>
+                                    </constraints>
+                                    <fontDescription key="fontDescription" type="system" pointSize="6"/>
+                                    <color key="textColor" red="0.37075388431549072" green="0.80883383750915527" blue="0.38227877020835876" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
                             </subviews>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
@@ -461,6 +490,8 @@
                                 <constraint firstAttribute="trailing" secondItem="37U-Zx-YA3" secondAttribute="trailing" id="2rb-tD-h90"/>
                                 <constraint firstItem="qz5-1q-e4C" firstAttribute="leading" secondItem="qPI-tZ-xfE" secondAttribute="leading" id="3tV-Tk-Q5B"/>
                                 <constraint firstItem="Kfn-dN-K0a" firstAttribute="leading" secondItem="qPI-tZ-xfE" secondAttribute="leading" id="4Dz-IR-4Cf"/>
+                                <constraint firstAttribute="trailing" secondItem="Ywd-JH-SeJ" secondAttribute="trailing" constant="3" id="9Bv-rs-nBb"/>
+                                <constraint firstItem="Ywd-JH-SeJ" firstAttribute="top" secondItem="hlZ-mm-clg" secondAttribute="bottom" id="AuV-zr-Zh7"/>
                                 <constraint firstAttribute="height" constant="140" id="DAc-cO-9H1"/>
                                 <constraint firstItem="v3P-DR-NxZ" firstAttribute="leading" secondItem="qPI-tZ-xfE" secondAttribute="leading" id="PJl-SO-i5i"/>
                                 <constraint firstItem="37U-Zx-YA3" firstAttribute="top" secondItem="qz5-1q-e4C" secondAttribute="bottom" id="RGF-GD-Tc7"/>
@@ -551,6 +582,7 @@
                 <outlet property="cReverseReactiveEnergyValueTop" destination="G6o-rb-Cr4" id="fQW-kS-zXR"/>
                 <outlet property="cVoltageTop" destination="YcG-6h-VMF" id="auG-k2-OGb"/>
                 <outlet property="cVoltageValueTop" destination="Rus-im-Kru" id="bmz-j2-uSU"/>
+                <outlet property="combinedChart" destination="Dpv-OP-VGS" id="Ns8-hf-6BI"/>
                 <outlet property="lActivePower" destination="vFK-4R-JvR" id="a20-ON-oyb"/>
                 <outlet property="lActivePowerValue" destination="pzM-3T-vDD" id="77t-Hs-3Kt"/>
                 <outlet property="lApparentPower" destination="el3-yj-vIH" id="O8s-eZ-CqM"/>
@@ -570,6 +602,7 @@
                 <outlet property="lPhaseAngleValue" destination="JPh-7z-arE" id="DxA-0w-cqU"/>
                 <outlet property="lPowerFactor" destination="oZk-rH-6VT" id="bf1-NH-9G3"/>
                 <outlet property="lPowerFactorValue" destination="nCV-73-w6x" id="pLR-aR-3r4"/>
+                <outlet property="lPreloader" destination="Ywd-JH-SeJ" id="JXd-Yp-WfE"/>
                 <outlet property="lReactivePower" destination="NRY-lA-uaG" id="HKh-VR-LGQ"/>
                 <outlet property="lReactivePowerValue" destination="ouy-gz-4Go" id="T7R-Lm-mfl"/>
                 <outlet property="lReverseActiveEnergy" destination="Tl7-wk-oBL" id="vZ4-IM-9Kt"/>
@@ -580,9 +613,11 @@
                 <outlet property="lTotalForwardActiveEnergy" destination="xZr-Dg-scJ" id="vKr-Kx-Af9"/>
                 <outlet property="lVoltage" destination="YDN-T2-eyC" id="KNO-Jz-O4v"/>
                 <outlet property="lVoltageValue" destination="N6X-By-Rip" id="5xM-wg-xSU"/>
+                <outlet property="vCharts" destination="WP8-xn-lei" id="qMg-sQ-CuV"/>
+                <outlet property="vContent" destination="wXI-rX-Ghy" id="TjV-94-xBc"/>
                 <outlet property="vPhases" destination="KE1-vg-Yeo" id="ges-vY-7bQ"/>
             </connections>
-            <point key="canvasLocation" x="146.25" y="-188.75"/>
+            <point key="canvasLocation" x="-292.5" y="-210"/>
         </view>
     </objects>
     <resources>

@@ -163,7 +163,5 @@
         [self.DB saveContext];
         
     } while(![self isCancelled]);
-
-    NSLog(@"SUM: %f", [self.DB getSumOfChannelId:self.channelId]);
 }
 @end

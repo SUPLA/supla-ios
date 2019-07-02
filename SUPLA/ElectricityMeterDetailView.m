@@ -18,10 +18,15 @@
 
 #import "ElectricityMeterDetailView.h"
 #import "SAClassHelper.h"
+#import "SuplaApp.h"
 
 
 @implementation SAElectricityMeterDetailView   {
     short selectedPhase;
+    NSTimer *_preloaderTimer;
+    NSTimer *_taskTimer;
+    SADownloadElectricityMeasurements *_task;
+    int _preloaderPos;
 }
 
 -(void)detailViewInit {
@@ -239,18 +244,96 @@
 
 -(void)onDetailShow {
     [super onDetailShow];
-    SADownloadElectricityMeasurements *task = [[SADownloadElectricityMeasurements alloc] init];
-    task.channelId = self.channelBase.remote_id;
-    task.delegate = self;
-    [task start];
+    [self setPreloaderHidden:YES];
+    [SAApp.instance cancelAllRestApiClientTasks];
+    
+    if (_taskTimer == nil) {
+        _taskTimer = [NSTimer scheduledTimerWithTimeInterval:120
+                                                           target:self
+                                                         selector:@selector(onTaskTimer:)
+                                                         userInfo:nil
+                                                          repeats:YES];
+    }
+    [self runDownloadTask];
+}
+
+-(void)onDetailHide {
+    [super onDetailHide];
+    
+    if (_taskTimer) {
+        [_taskTimer invalidate];
+        _taskTimer = nil;
+    }
+    
+    if (_task) {
+        [_task cancel];
+        _task.delegate = nil;
+    }
+}
+
+-(void)onTaskTimer:(NSTimer *)timer {
+    [self runDownloadTask];
+}
+
+-(void)onPreloaderTimer:(NSTimer *)timer {
+    
+    CGSize dotSize = [@"•" sizeWithAttributes:@{NSFontAttributeName:[self.lPreloader font]}];
+    int count = self.lPreloader.frame.size.width / dotSize.width;
+    
+    NSString *p = @"";
+    
+    for(int a=0;a<count;a++) {
+        p = [NSString stringWithFormat:@"%@%@", p, _preloaderPos == a ? @"o" : @"•"];
+    }
+    
+    _preloaderPos++;
+    if (_preloaderPos >= count) {
+        _preloaderPos = 0;
+    }
+    
+    [self.lPreloader setText:p];
+};
+
+-(void) setPreloaderHidden:(BOOL)hidden {
+
+    if (hidden) {
+        if (_preloaderTimer) {
+            [_preloaderTimer invalidate];
+            _preloaderTimer = nil;
+        }
+    } else {
+        _preloaderTimer = [NSTimer scheduledTimerWithTimeInterval:0.1
+                                                           target:self
+                                                         selector:@selector(onPreloaderTimer:)
+                                                         userInfo:nil
+                                                          repeats:YES];
+    }
+    
+    self.lPreloader.hidden = hidden;
+}
+
+-(void) runDownloadTask {
+    if (_task && ![_task isTaskIsAliveWithTimeout:90]) {
+        [_task cancel];
+        _task = nil;
+    }
+    
+    if (!_task) {
+        _task = [[SADownloadElectricityMeasurements alloc] init];
+        _task.channelId = self.channelBase.remote_id;
+        _task.delegate = self;
+        [_task start];
+    }
 }
 
 -(void) onRestApiTaskStarted: (SARestApiClientTask*)task {
     NSLog(@"onRestApiTaskStarted");
+    [self setPreloaderHidden:NO];
 }
 
 -(void) onRestApiTaskFinished: (SARestApiClientTask*)task {
     NSLog(@"onRestApiTaskFinished");
+    [self setPreloaderHidden:YES];
 }
 
 -(void) onRestApiTask: (SARestApiClientTask*)task progressUpdate:(float)progress {

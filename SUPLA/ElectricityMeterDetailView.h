@@ -18,6 +18,7 @@
 
 #import "DetailView.h"
 #import "SADownloadElectricityMeasurements.h"
+@import Charts;
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -82,6 +83,10 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UIButton *btnChart;
 - (IBAction)chartBtnTouch:(id)sender;
 @property (weak, nonatomic) IBOutlet UIView *vPhases;
+@property (weak, nonatomic) IBOutlet UIView *vContent;
+@property (weak, nonatomic) IBOutlet UIView *vCharts;
+@property (weak, nonatomic) IBOutlet CombinedChartView *combinedChart;
+@property (weak, nonatomic) IBOutlet UILabel *lPreloader;
 @end
 
 NS_ASSUME_NONNULL_END
