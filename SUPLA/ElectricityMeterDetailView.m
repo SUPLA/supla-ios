@@ -154,7 +154,6 @@
         && [ev getElectricityMeterExtendedValue:&emev]) {
         
         [self.lTotalForwardActiveEnergy setText:[self totalForwardActiveEnergyStringForValue:[ev getTotalForwardActiveEnergyForExtendedValue:&emev]]];
-        
         [self.lTotalCost setText:[NSString stringWithFormat:@"%0.2f %@", emev.total_cost * 0.01, [ev decodeCurrency:emev.currency]]];
     
         if (emev.m_count > 0) {
@@ -168,24 +167,16 @@
             }
             
             [self.lCurrentValue setText:[NSString stringWithFormat:@"%0.3f A", m->current[selectedPhase] * 0.001]];
-            
             [self.lActivePowerValue setText:[NSString stringWithFormat:@"%0.5f W", m->power_active[selectedPhase] * 0.00001]];
-            
             [self.lReactivePowerValue setText:[NSString stringWithFormat:@"%0.5f var", m->power_reactive[selectedPhase] * 0.00001]];
-            
             [self.lApparentPowerValue setText:[NSString stringWithFormat:@"%0.5f VA", m->power_apparent[selectedPhase] * 0.00001]];
-            
             [self.lPowerFactorValue setText:[NSString stringWithFormat:@"%0.3f", m->power_factor[selectedPhase] * 0.001]];
-            
             [self.lPhaseAngleValue setText:[NSString stringWithFormat:@"%0.2f\u00B0", m->phase_angle[selectedPhase] * 0.1]];
         }
 
         [self.lForwardActiveEnergyValue setText:[NSString stringWithFormat:@"%0.5f kWh", emev.total_forward_active_energy[selectedPhase] * 0.00001]];
-        
         [self.lReverseActiveEnergyValue setText:[NSString stringWithFormat:@"%0.5f kWh", emev.total_reverse_active_energy[selectedPhase] * 0.00001]];
-        
         [self.lForwardReactiveEnergyValue setText:[NSString stringWithFormat:@"%0.5f kvarh", emev.total_forward_reactive_energy[selectedPhase] * 0.00001]];
-        
         [self.lReverseReactiveEnergyValue setText:[NSString stringWithFormat:@"%0.5f kvarh", emev.total_reverse_reactive_energy[selectedPhase] * 0.00001]];
         
         measured_values = emev.measured_values;
@@ -327,17 +318,18 @@
 }
 
 -(void) onRestApiTaskStarted: (SARestApiClientTask*)task {
-    NSLog(@"onRestApiTaskStarted");
+    //NSLog(@"onRestApiTaskStarted");
     [self setPreloaderHidden:NO];
 }
 
 -(void) onRestApiTaskFinished: (SARestApiClientTask*)task {
-    NSLog(@"onRestApiTaskFinished");
+    //NSLog(@"onRestApiTaskFinished");
     [self setPreloaderHidden:YES];
+    [self updateView];
 }
 
 -(void) onRestApiTask: (SARestApiClientTask*)task progressUpdate:(float)progress {
-    NSLog(@"onRestApiTaskProgressUpdate %f", progress);
+    //NSLog(@"onRestApiTaskProgressUpdate %f", progress);
 }
 
 @end
