@@ -264,6 +264,8 @@
 		40E8BE8D1FC06B4200FB2FE6 /* libxml2.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 40E8BE8B1FC06B2000FB2FE6 /* libxml2.tbd */; };
 		40F7301120C19BA600167C2D /* SAColorListItem+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 40F7301020C19BA600167C2D /* SAColorListItem+CoreDataProperties.m */; };
 		40F951451FD0654900698587 /* RSDetail.xib in Resources */ = {isa = PBXBuildFile; fileRef = 40F951471FD0654900698587 /* RSDetail.xib */; };
+		462253FD963449A978BBDDE8 /* Pods_SUPLA.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 596D36089B2CE979388A06FF /* Pods_SUPLA.framework */; };
+		B2DA9E0A10D8023EEDA25970 /* Pods_SUPLATests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 76FF65EADE7763EB8D61BC35 /* Pods_SUPLATests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -654,6 +656,12 @@
 		40F951511FD065AD00698587 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/RSDetail.strings; sourceTree = "<group>"; };
 		40F951531FD065B200698587 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/RSDetail.strings; sourceTree = "<group>"; };
 		40F951551FD065BB00698587 /* pt-PT */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-PT"; path = "pt-PT.lproj/RSDetail.strings"; sourceTree = "<group>"; };
+		596D36089B2CE979388A06FF /* Pods_SUPLA.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SUPLA.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		5CB83473B6995044CF8448E7 /* Pods-SUPLATests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SUPLATests.release.xcconfig"; path = "Target Support Files/Pods-SUPLATests/Pods-SUPLATests.release.xcconfig"; sourceTree = "<group>"; };
+		76FF65EADE7763EB8D61BC35 /* Pods_SUPLATests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SUPLATests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B89C18EECE6BFD26C7FD75A2 /* Pods-SUPLATests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SUPLATests.debug.xcconfig"; path = "Target Support Files/Pods-SUPLATests/Pods-SUPLATests.debug.xcconfig"; sourceTree = "<group>"; };
+		E44D11C8AE14E2E33F566A79 /* Pods-SUPLA.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SUPLA.debug.xcconfig"; path = "Target Support Files/Pods-SUPLA/Pods-SUPLA.debug.xcconfig"; sourceTree = "<group>"; };
+		F2C5B3CA264E0C52808D2558 /* Pods-SUPLA.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SUPLA.release.xcconfig"; path = "Target Support Files/Pods-SUPLA/Pods-SUPLA.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -667,6 +675,7 @@
 				401CA1ED1BA069CF00117AF4 /* libssl.a in Frameworks */,
 				401CA1EB1BA069BE00117AF4 /* libcrypto.a in Frameworks */,
 				401CA1E91BA0699F00117AF4 /* libsupla-client.a in Frameworks */,
+				462253FD963449A978BBDDE8 /* Pods_SUPLA.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -674,6 +683,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B2DA9E0A10D8023EEDA25970 /* Pods_SUPLATests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -708,6 +718,7 @@
 				401CA1D81BA067DB00117AF4 /* SUPLATests */,
 				401CA1BA1BA067DB00117AF4 /* Products */,
 				407ECDC01DAFBB9600F01C7E /* Frameworks */,
+				8CB4DD9EB4BBF894FE05F21D /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -1056,6 +1067,8 @@
 			children = (
 				40E8BE8B1FC06B2000FB2FE6 /* libxml2.tbd */,
 				407ECDC11DAFBB9600F01C7E /* AudioToolbox.framework */,
+				596D36089B2CE979388A06FF /* Pods_SUPLA.framework */,
+				76FF65EADE7763EB8D61BC35 /* Pods_SUPLATests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -1135,6 +1148,18 @@
 			name = hpple;
 			sourceTree = "<group>";
 		};
+		8CB4DD9EB4BBF894FE05F21D /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				E44D11C8AE14E2E33F566A79 /* Pods-SUPLA.debug.xcconfig */,
+				F2C5B3CA264E0C52808D2558 /* Pods-SUPLA.release.xcconfig */,
+				B89C18EECE6BFD26C7FD75A2 /* Pods-SUPLATests.debug.xcconfig */,
+				5CB83473B6995044CF8448E7 /* Pods-SUPLATests.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1142,9 +1167,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 401CA1DF1BA067DB00117AF4 /* Build configuration list for PBXNativeTarget "SUPLA" */;
 			buildPhases = (
+				7BB9E06954927D1F53A8F4E4 /* [CP] Check Pods Manifest.lock */,
 				401CA1B51BA067DB00117AF4 /* Sources */,
 				401CA1B61BA067DB00117AF4 /* Frameworks */,
 				401CA1B71BA067DB00117AF4 /* Resources */,
+				66E60DF074B3DFF989907118 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -1159,6 +1186,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 401CA1E21BA067DB00117AF4 /* Build configuration list for PBXNativeTarget "SUPLATests" */;
 			buildPhases = (
+				5D514DA93A433ADCE0FF5DE0 /* [CP] Check Pods Manifest.lock */,
 				401CA1D11BA067DB00117AF4 /* Sources */,
 				401CA1D21BA067DB00117AF4 /* Frameworks */,
 				401CA1D31BA067DB00117AF4 /* Resources */,
@@ -1426,6 +1454,71 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		5D514DA93A433ADCE0FF5DE0 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-SUPLATests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		66E60DF074B3DFF989907118 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-SUPLA/Pods-SUPLA-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Charts/Charts.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Charts.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-SUPLA/Pods-SUPLA-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		7BB9E06954927D1F53A8F4E4 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-SUPLA-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		401CA1B51BA067DB00117AF4 /* Sources */ = {
@@ -1733,6 +1826,7 @@
 		};
 		401CA1E01BA067DB00117AF4 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E44D11C8AE14E2E33F566A79 /* Pods-SUPLA.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -1752,6 +1846,7 @@
 		};
 		401CA1E11BA067DB00117AF4 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F2C5B3CA264E0C52808D2558 /* Pods-SUPLA.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -1771,6 +1866,7 @@
 		};
 		401CA1E31BA067DB00117AF4 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B89C18EECE6BFD26C7FD75A2 /* Pods-SUPLATests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1791,6 +1887,7 @@
 		};
 		401CA1E41BA067DB00117AF4 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5CB83473B6995044CF8448E7 /* Pods-SUPLATests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				FRAMEWORK_SEARCH_PATHS = (
