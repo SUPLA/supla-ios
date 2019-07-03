@@ -217,12 +217,14 @@
     NSDate *date = [calendar dateFromComponents:components];
     
     components = [[NSDateComponents alloc] init];
-    [components setSecond:-1];
+    [components setMonth:1+offset];
     date = [calendar dateByAddingComponents:components toDate:date options:0];
     
     components = [[NSDateComponents alloc] init];
-    [components setMonth:1+offset];
-    return [calendar dateByAddingComponents:components toDate:date options:0];
+    [components setSecond:-1];
+    date = [calendar dateByAddingComponents:components toDate:date options:0];
+    
+    return date;
 }
 
 #pragma mark Locations
