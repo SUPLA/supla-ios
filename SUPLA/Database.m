@@ -183,6 +183,48 @@
     return count;
 }
 
+- (NSDictionary *) sumValesOfEntitiesWithProperties:(NSArray *)props predicate:(NSPredicate *)predicate entityName:(NSString *)en {
+    
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    fetchRequest.predicate = predicate;
+    fetchRequest.propertiesToFetch = props;
+    [fetchRequest setResultType:NSDictionaryResultType];
+    
+    [fetchRequest setEntity:[NSEntityDescription entityForName:en inManagedObjectContext: self.managedObjectContext]];
+    NSError *error = nil;
+    NSArray *r = [self.managedObjectContext executeFetchRequest:fetchRequest error:&error];
+    
+    if ( error == nil && r.count > 0 ) {
+        return [r objectAtIndex:0];
+    }
+    
+    return nil;
+}
+
+- (NSDate *) lastSecondInMonthWithOffset:(int)offset {
+    NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier: NSCalendarIdentifierGregorian];
+    NSDateComponents *components = [calendar components:NSCalendarUnitYear
+                                    | NSCalendarUnitMonth
+                                    | NSCalendarUnitDay
+                                    | NSCalendarUnitHour
+                                    | NSCalendarUnitMinute
+                                    | NSCalendarUnitSecond fromDate:[NSDate date]];
+    
+    [components setHour:0];
+    [components setMinute:0];
+    [components setSecond:0];
+    [components setDay:1];
+    NSDate *date = [calendar dateFromComponents:components];
+    
+    components = [[NSDateComponents alloc] init];
+    [components setSecond:-1];
+    date = [calendar dateByAddingComponents:components toDate:date options:0];
+    
+    components = [[NSDateComponents alloc] init];
+    [components setMonth:1+offset];
+    return [calendar dateByAddingComponents:components toDate:date options:0];
+}
+
 #pragma mark Locations
 -(_SALocation*) fetchLocationById:(int)location_id {
     
@@ -801,6 +843,18 @@
     return [self getCountByPredicate:[NSPredicate predicateWithFormat:@"channel_id = %i AND complement = NO", channel_id] entityName:en];
 }
 
+-(BOOL) timestampStartsWithTheCurrentMonth:(long)timestamp {
+    if (timestamp == 0) {
+        return YES;
+    };
+    
+    NSDateComponents *dc1 = [[NSCalendar currentCalendar] components:NSCalendarUnitMonth | NSCalendarUnitYear fromDate:[NSDate dateWithTimeIntervalSince1970:timestamp]];
+    
+    NSDateComponents *dc2 = [[NSCalendar currentCalendar] components:NSCalendarUnitMonth | NSCalendarUnitYear fromDate:[NSDate date]];
+    
+    return dc1.month == dc2.month && dc1.year == dc2.year;
+}
+
 #pragma mark Electricity Measurements
 
 -(SAElectricityMeasurementItem*) newElectricityMeasurementItemWithManagedObjectContext:(BOOL)moc {
@@ -832,31 +886,38 @@
     return [self getIncrementalMeasurementItemCountWithoutComplementForChannelId:channel_id entityName:@"SAElectricityMeasurementItem"];
 }
 
-- (double) getSumOfChannelId:(int)channel_id {
-    
-    NSExpressionDescription *ed1 = [[NSExpressionDescription alloc] init];
-    [ed1 setName:@"fae"];
-    [ed1 setExpression:[NSExpression expressionForFunction:@"sum:" arguments:[NSArray arrayWithObject:[NSExpression expressionForKeyPath:@"phase2_fae"]]]];
-    [ed1 setExpressionResultType:NSDoubleAttributeType];
-    
-    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-    fetchRequest.predicate = [NSPredicate predicateWithFormat:@"channel_id = %i AND calculated = YES", channel_id];
-    fetchRequest.propertiesToFetch = @[ed1];
-    [fetchRequest setResultType:NSDictionaryResultType];
-    
-    [fetchRequest setEntity:[NSEntityDescription entityForName:@"SAElectricityMeasurementItem" inManagedObjectContext: self.managedObjectContext]];
-    NSError *error = nil;
-    NSArray *r = [self.managedObjectContext executeFetchRequest:fetchRequest error:&error];
-    
-    if ( error == nil && r.count > 0 ) {
-        NSNumber *sum = [[r objectAtIndex:0] objectForKey:@"fae"];
-        return sum ? [sum doubleValue] : -1;
-    }
-    
-    return -2;
- 
+
+-(BOOL) electricityMeterMeasurementsStartsWithTheCurrentMonthForChannelId:(int)channel_id {
+    long ts = [self getTimestampOfElectricityMeasurementItemWithChannelId:channel_id minimum:YES];
+    return [self timestampStartsWithTheCurrentMonth:ts];
 }
 
+- (double) sumForwardedActiveEnergyForChannelId:(int)channel_id monthLimitOffset:(int) offset {
+    
+    double result = 0;
+    int a;
+    
+    NSMutableArray *props = [[NSMutableArray alloc] init];
+    for(a=1;a<=3;a++) {
+        NSExpressionDescription *ed = [[NSExpressionDescription alloc] init];
+        [ed setName:[NSString stringWithFormat:@"fae%i", a]];
+        [ed setExpression:[NSExpression expressionForFunction:@"sum:" arguments:[NSArray arrayWithObject:[NSExpression expressionForKeyPath:[NSString stringWithFormat:@"phase%i_fae", a]]]]];
+        [ed setExpressionResultType:NSDoubleAttributeType];
+        [props addObject:ed];
+    }
+    
 
+    NSDate *date = [self lastSecondInMonthWithOffset: offset];
+    NSPredicate *predicte = [NSPredicate predicateWithFormat:@"channel_id = %i AND calculated = YES AND date <= %@", channel_id, date];
+    NSDictionary *sum = [self sumValesOfEntitiesWithProperties:props predicate:predicte entityName:@"SAElectricityMeasurementItem"];
+    
+    if (sum && sum.count == 3) {
+        for(a=1;a<=3;a++) {
+            result += [[sum objectForKey:[NSString stringWithFormat:@"fae%i", a]] doubleValue];
+        }
+    }
+    
+    return result;
+}
 
 @end

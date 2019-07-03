@@ -31,7 +31,7 @@
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </view>
                             </subviews>
-                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
                                 <constraint firstItem="Dpv-OP-VGS" firstAttribute="top" secondItem="WP8-xn-lei" secondAttribute="top" id="4PJ-ca-HfV"/>
                                 <constraint firstAttribute="bottom" secondItem="Dpv-OP-VGS" secondAttribute="bottom" constant="5" id="Kqa-PV-Ihg"/>
@@ -367,6 +367,11 @@
                         <constraint firstItem="WP8-xn-lei" firstAttribute="leading" secondItem="wXI-rX-Ghy" secondAttribute="leading" id="koB-gd-TsR"/>
                         <constraint firstAttribute="trailing" secondItem="KE1-vg-Yeo" secondAttribute="trailing" id="naH-Hg-hFk"/>
                     </constraints>
+                    <variation key="default">
+                        <mask key="subviews">
+                            <exclude reference="KE1-vg-Yeo"/>
+                        </mask>
+                    </variation>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Xur-xZ-dhe" userLabel="vFooter">
                     <rect key="frame" x="10" y="425" width="300" height="40"/>

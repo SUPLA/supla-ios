@@ -108,6 +108,7 @@ NSString *kSAOAuthTokenRequestResult = @"KSA-N13";
 }
 
 +(void) getClientGUID:(char[SUPLA_GUID_SIZE])guid {
+    // TODO: Implement guid encryption with password based on device id
     [SAApp getRandomKey:guid keySize:SUPLA_GUID_SIZE forPrefKey:@"client_guid"];
 }
 

@@ -153,9 +153,6 @@
         && (ev = ((SAChannel*)self.channelBase).ev) != nil
         && [ev getElectricityMeterExtendedValue:&emev]) {
         
-        [self.lTotalForwardActiveEnergy setText:[self totalForwardActiveEnergyStringForValue:[ev getTotalForwardActiveEnergyForExtendedValue:&emev]]];
-        [self.lTotalCost setText:[NSString stringWithFormat:@"%0.2f %@", emev.total_cost * 0.01, [ev decodeCurrency:emev.currency]]];
-    
         if (emev.m_count > 0) {
             TElectricityMeter_Measurement *m = emev.m;
             
@@ -180,7 +177,26 @@
         [self.lReverseReactiveEnergyValue setText:[NSString stringWithFormat:@"%0.5f kvarh", emev.total_reverse_reactive_energy[selectedPhase] * 0.00001]];
         
         measured_values = emev.measured_values;
-
+        
+        double currentConsumption = 0;
+        double currentCost = 0;
+        
+        if ([SAApp.DB electricityMeterMeasurementsStartsWithTheCurrentMonthForChannelId:self.channelBase.remote_id]) {
+            currentConsumption = [ev getTotalForwardActiveEnergyForExtendedValue:&emev];
+            currentCost = emev.total_cost * 0.01;
+        } else {
+            double v0 = [SAApp.DB sumForwardedActiveEnergyForChannelId:self.channelBase.remote_id monthLimitOffset:0];
+            double v1 = [SAApp.DB sumForwardedActiveEnergyForChannelId:self.channelBase.remote_id monthLimitOffset:-1];
+            
+            currentConsumption = v0-v1;
+            currentCost = emev.price_per_unit * 0.0001 * currentConsumption;
+        }
+        
+        [self.lTotalForwardActiveEnergy setText:[self totalForwardActiveEnergyStringForValue:[ev getTotalForwardActiveEnergyForExtendedValue:&emev]]];
+        [self.lTotalCost setText:[NSString stringWithFormat:@"%0.2f %@", emev.total_cost * 0.01, [ev decodeCurrency:emev.currency]]];
+        [self.lCurrentConsumption setText:[NSString stringWithFormat:@"%0.2f kWh", currentConsumption]];
+        [self.lCurrentCost setText:[NSString stringWithFormat:@"%0.2f %@", currentCost, [ev decodeCurrency:emev.currency]]];
+    
     }
     
     [self frequencyVisible:measured_values & EM_VAR_FREQ];
@@ -226,9 +242,11 @@
 - (IBAction)chartBtnTouch:(id)sender {
     if (self.vPhases.hidden) {
         self.vPhases.hidden = NO;
+        self.vCharts.hidden = YES;
         [self.btnChart setImage:[UIImage imageNamed:@"graphoff.png"]];
     } else {
         self.vPhases.hidden = YES;
+        self.vCharts.hidden = NO;
         [self.btnChart setImage:[UIImage imageNamed:@"graphon.png"]];
     }
 }
