@@ -86,6 +86,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UIView *vContent;
 @property (weak, nonatomic) IBOutlet UIView *vCharts;
 @property (weak, nonatomic) IBOutlet CombinedChartView *combinedChart;
+@property (weak, nonatomic) IBOutlet PieChartView *pieChart;
 @property (weak, nonatomic) IBOutlet UILabel *lPreloader;
 @end
 

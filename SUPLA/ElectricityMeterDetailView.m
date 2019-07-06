@@ -19,19 +19,23 @@
 #import "ElectricityMeterDetailView.h"
 #import "SAClassHelper.h"
 #import "SuplaApp.h"
-
+#import "SAChartHelper.h"
 
 @implementation SAElectricityMeterDetailView   {
     short selectedPhase;
     NSTimer *_preloaderTimer;
     NSTimer *_taskTimer;
     SADownloadElectricityMeasurements *_task;
+    SAChartHelper *_chartHelper;
     int _preloaderPos;
 }
 
 -(void)detailViewInit {
     [super detailViewInit];
     selectedPhase = 0;
+    _chartHelper = [[SAChartHelper alloc] init];
+    _chartHelper.combinedChart = self.combinedChart;
+    _chartHelper.pieChart = self.pieChart;
 }
 
 - (void)setLabel:(UILabel*)label Visible:(BOOL)visible withConstraint:(NSLayoutConstraint*)cns {
@@ -226,6 +230,13 @@
             break;
     }
     
+}
+
+-(void)setChannelBase:(SAChannelBase *)channelBase {
+    if (_chartHelper) {
+        _chartHelper.channelId = channelBase ? channelBase.remote_id : 0;
+    }
+    [super setChannelBase:channelBase];
 }
 
 - (IBAction)phaseBtnTouch:(id)sender {

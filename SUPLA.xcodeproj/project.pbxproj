@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		013D1C5D22CE47D5000C0784 /* SAChartHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 013D1C5C22CE47D5000C0784 /* SAChartHelper.m */; };
+		013D1C6022CE757F000C0784 /* SAIncrementalMeterChartHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 013D1C5F22CE757F000C0784 /* SAIncrementalMeterChartHelper.m */; };
+		013D1C6322CE75A3000C0784 /* SAElectricityChartHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 013D1C6222CE75A3000C0784 /* SAElectricityChartHelper.m */; };
 		018E67CF22C8CA0A00FF1427 /* SADownloadElectricityMeasurements.m in Sources */ = {isa = PBXBuildFile; fileRef = 018E67CE22C8CA0A00FF1427 /* SADownloadElectricityMeasurements.m */; };
 		01BDAC7522C518DE00915646 /* SARestApiClientTask.m in Sources */ = {isa = PBXBuildFile; fileRef = 01BDAC7422C518DE00915646 /* SARestApiClientTask.m */; };
 		01BDAC7822C5200600915646 /* SAOAuthToken.m in Sources */ = {isa = PBXBuildFile; fileRef = 01BDAC7722C5200600915646 /* SAOAuthToken.m */; };
@@ -279,6 +282,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		013D1C5B22CE47D5000C0784 /* SAChartHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SAChartHelper.h; sourceTree = "<group>"; };
+		013D1C5C22CE47D5000C0784 /* SAChartHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SAChartHelper.m; sourceTree = "<group>"; };
+		013D1C5E22CE757F000C0784 /* SAIncrementalMeterChartHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SAIncrementalMeterChartHelper.h; sourceTree = "<group>"; };
+		013D1C5F22CE757F000C0784 /* SAIncrementalMeterChartHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SAIncrementalMeterChartHelper.m; sourceTree = "<group>"; };
+		013D1C6122CE75A3000C0784 /* SAElectricityChartHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SAElectricityChartHelper.h; sourceTree = "<group>"; };
+		013D1C6222CE75A3000C0784 /* SAElectricityChartHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SAElectricityChartHelper.m; sourceTree = "<group>"; };
 		018E67CD22C8CA0A00FF1427 /* SADownloadElectricityMeasurements.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SADownloadElectricityMeasurements.h; sourceTree = "<group>"; };
 		018E67CE22C8CA0A00FF1427 /* SADownloadElectricityMeasurements.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SADownloadElectricityMeasurements.m; sourceTree = "<group>"; };
 		01B216CF22AECB2F004E0596 /* SUPLA 3.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "SUPLA 3.xcdatamodel"; sourceTree = "<group>"; };
@@ -323,6 +332,7 @@
 		01EE9BB622BA50D90029A142 /* SAChannelValueBase+CoreDataClass.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SAChannelValueBase+CoreDataClass.h"; sourceTree = "<group>"; };
 		01EE9BB722BA50D90029A142 /* SAChannelValueBase+CoreDataClass.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "SAChannelValueBase+CoreDataClass.m"; sourceTree = "<group>"; };
 		01EE9BB822BA50D90029A142 /* SAChannelValueBase+CoreDataProperties.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "SAChannelValueBase+CoreDataProperties.m"; sourceTree = "<group>"; };
+		01FB5D7F22CF98D200E9EA08 /* pl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pl; path = pl.lproj/ElectricityMeterDetailView.strings; sourceTree = "<group>"; };
 		4004DE8B1DC4E270009C34E3 /* SAColorBrightnessPicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SAColorBrightnessPicker.h; sourceTree = "<group>"; };
 		4004DE8C1DC4E270009C34E3 /* SAColorBrightnessPicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SAColorBrightnessPicker.m; sourceTree = "<group>"; };
 		4006E9081DC62D0A00C4456D /* DetailView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailView.h; sourceTree = "<group>"; };
@@ -690,6 +700,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		013D1C5A22CE4751000C0784 /* charts */ = {
+			isa = PBXGroup;
+			children = (
+				013D1C5B22CE47D5000C0784 /* SAChartHelper.h */,
+				013D1C5C22CE47D5000C0784 /* SAChartHelper.m */,
+				013D1C5E22CE757F000C0784 /* SAIncrementalMeterChartHelper.h */,
+				013D1C5F22CE757F000C0784 /* SAIncrementalMeterChartHelper.m */,
+				013D1C6122CE75A3000C0784 /* SAElectricityChartHelper.h */,
+				013D1C6222CE75A3000C0784 /* SAElectricityChartHelper.m */,
+			);
+			name = charts;
+			sourceTree = "<group>";
+		};
 		01BDAC7222C5132B00915646 /* restapi */ = {
 			isa = PBXGroup;
 			children = (
@@ -734,6 +757,7 @@
 		401CA1BB1BA067DB00117AF4 /* SUPLA */ = {
 			isa = PBXGroup;
 			children = (
+				013D1C5A22CE4751000C0784 /* charts */,
 				01BDAC7222C5132B00915646 /* restapi */,
 				40E8BE811FC06A4500FB2FE6 /* hpple */,
 				407E7C331BBEB81B00D8878C /* Resources */,
@@ -1156,7 +1180,6 @@
 				B89C18EECE6BFD26C7FD75A2 /* Pods-SUPLATests.debug.xcconfig */,
 				5CB83473B6995044CF8448E7 /* Pods-SUPLATests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -1551,7 +1574,9 @@
 				408034E51BC84A89007666E7 /* NavigationController.m in Sources */,
 				4004DE8D1DC4E270009C34E3 /* SAColorBrightnessPicker.m in Sources */,
 				401CA1C21BA067DB00117AF4 /* AppDelegate.m in Sources */,
+				013D1C5D22CE47D5000C0784 /* SAChartHelper.m in Sources */,
 				40A675831BA1BE8E004A51C4 /* SettingsVC.m in Sources */,
+				013D1C6322CE75A3000C0784 /* SAElectricityChartHelper.m in Sources */,
 				406778551BCBF9F4008DD37F /* SectionCell.m in Sources */,
 				40B9ED3A1FAC79FC00403B1A /* SUPLA.xcdatamodeld in Sources */,
 				40B610CC20C7E263002B762A /* SAUIChannelStatus.m in Sources */,
@@ -1577,6 +1602,7 @@
 				01BDAC7822C5200600915646 /* SAOAuthToken.m in Sources */,
 				40C7BA5220C007A300ACEE42 /* SAChannelValue+CoreDataClass.m in Sources */,
 				01E517C322C6AC1E000FE77A /* SADownloadIncrementalMeasurements.m in Sources */,
+				013D1C6022CE757F000C0784 /* SAIncrementalMeterChartHelper.m in Sources */,
 				40C9E4FD1F2B841400753796 /* SAColorListPicker.m in Sources */,
 				40DA56901DCA1908008F05DE /* _SALocation+CoreDataProperties.m in Sources */,
 				409934B61F30EF9C003110C5 /* RSDetailView.m in Sources */,
@@ -1612,6 +1638,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				01D0617222C296850043C947 /* Base */,
+				01FB5D7F22CF98D200E9EA08 /* pl */,
 			);
 			name = ElectricityMeterDetailView.xib;
 			sourceTree = "<group>";
