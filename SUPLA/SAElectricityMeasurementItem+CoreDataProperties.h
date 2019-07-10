@@ -33,10 +33,10 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic) double phase2_fre;
 @property (nonatomic) double phase2_rae;
 @property (nonatomic) double phase2_rre;
+@property (nonatomic) double phase3_fae;
 @property (nonatomic) double phase3_fre;
 @property (nonatomic) double phase3_rae;
 @property (nonatomic) double phase3_rre;
-@property (nonatomic) double phase3_fae;
 
 @end
 

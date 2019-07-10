@@ -17,7 +17,45 @@
  */
 
 #import "SAElectricityChartHelper.h"
+#import "SuplaApp.h"
+#import "UIHelper.h"
 
 @implementation SAElectricityChartHelper
+
+- (NSArray *)getData {
+    return [SAApp.DB getElectricityMeasurementsForChannelId:self.channelId];
+}
+
+- (NSNumber *)doubleValueForKey:(NSString *)key item:(NSDictionary *)i {
+    NSNumber *result = [i valueForKey:key];
+    return result == nil ? [NSNumber numberWithDouble:0.0] : result;
+}
+
+-(void) addBarEntryTo:(NSMutableArray*) entries index:(int)idx time:(double)time item:(id) item {
+    if (![item isKindOfClass:[NSDictionary class]]) {
+        return;
+    }
+
+    NSArray *values = @[[self doubleValueForKey:@"phase1_fae" item:item],
+                        [self doubleValueForKey:@"phase2_fae" item:item],
+                        [self doubleValueForKey:@"phase3_fae" item:item]];
+    
+    [entries addObject:[[BarChartDataEntry alloc] initWithX:idx yValues:values]];
+    
+}
+
+- (BarChartDataSet *) newBarDataSetWithEntries:(NSArray *)entries {
+    BarChartDataSet *result = [super newBarDataSetWithEntries:entries];
+    if (result) {
+        result.stackLabels = @[NSLocalizedString(@"Phase 1", nil),
+                               NSLocalizedString(@"Phase 2", nil),
+                               NSLocalizedString(@"Phase 3", nil)];
+        [result resetColors];
+        result.colors = @[[UIColor phase1Color],
+                          [UIColor phase2Color],
+                          [UIColor phase3Color]];
+    }
+    return result;
+}
 
 @end

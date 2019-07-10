@@ -19,7 +19,7 @@
 #import "ElectricityMeterDetailView.h"
 #import "SAClassHelper.h"
 #import "SuplaApp.h"
-#import "SAChartHelper.h"
+#import "SAElectricityChartHelper.h"
 
 @implementation SAElectricityMeterDetailView   {
     short selectedPhase;
@@ -33,7 +33,7 @@
 -(void)detailViewInit {
     [super detailViewInit];
     selectedPhase = 0;
-    _chartHelper = [[SAChartHelper alloc] init];
+    _chartHelper = [[SAElectricityChartHelper alloc] init];
     _chartHelper.combinedChart = self.combinedChart;
     _chartHelper.pieChart = self.pieChart;
 }
@@ -259,6 +259,7 @@
         self.vPhases.hidden = YES;
         self.vCharts.hidden = NO;
         [self.btnChart setImage:[UIImage imageNamed:@"graphon.png"]];
+        [_chartHelper load];
     }
 }
 

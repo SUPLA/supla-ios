@@ -41,12 +41,23 @@
     return nil;
 }
 
-- (long)getTimestamp:(NSDictionary *)item {
-    ABSTRACT_METHOD_EXCEPTION;
+- (long)getTimestamp:(id)item {
+    if ([item isKindOfClass:[NSDictionary class]]) {
+        id date = [item valueForKey:@"date"];
+        if ( [date isKindOfClass:[NSDate class]] ) {
+            return [date timeIntervalSince1970];
+        } else if ( [date isKindOfClass:[NSNumber class]] ) {
+            return [date longValue];
+        }
+        return 0;
+    }
+    if ([item isKindOfClass:[SAMeasurementItem class]]) {
+        return [((SAMeasurementItem *)item).date timeIntervalSince1970];
+    }
     return 0;
 }
 
--(void) addBarEntryTo:(NSArray*) entries index:(int)idx time:(long)time item:(NSDictionary*)item {
+-(void) addBarEntryTo:(NSMutableArray*) entries index:(int)idx time:(double)time item:(id)item {
     ABSTRACT_METHOD_EXCEPTION;
 }
 
@@ -100,7 +111,6 @@
         return;
     }
     
-
     self.combinedChart.hidden = NO;
     self.combinedChart.xAxis.labelCount = 3;
     self.combinedChart.leftAxis.drawLabelsEnabled = NO;
@@ -110,29 +120,37 @@
 
     [self updateDescription];
     
-    NSArray *barEntries = [[NSArray alloc] init];
+    NSMutableArray *barEntries = [[NSMutableArray alloc] init];
     NSArray *data = [self getData];
     
     if (data && data.count > 0) {
-        
-        _minTimestamp = [self getTimestamp:[data objectAtIndex:0]];
-        
         for(int a=0;a<data.count;a++) {
-            NSDictionary *item = [data objectAtIndex:0];
-            long time = [self getTimestamp:item] / 600.0;
-            [self addBarEntryTo:barEntries index:a time:time item:item];
+            id item = [data objectAtIndex:a];
+            if (![item isKindOfClass:[NSDictionary class]]
+                && ![item isKindOfClass:[SAMeasurementItem class]]) {
+                break;
+            }
+            
+            long time = [self getTimestamp:item];
+            
+            if (a == 0) {
+                _minTimestamp = time;
+            }
+            
+            [self addBarEntryTo:barEntries index:a time:time / 600.0 item:item];
         }
     }
-    
     
     CombinedChartData *chartData = [[CombinedChartData alloc] init];
     
     if (barEntries.count > 0) {
         BarChartDataSet *barDataSet = [self newBarDataSetWithEntries:barEntries];
-        [chartData addDataSet:barDataSet];
+        
+        BarChartData *barData = [[BarChartData alloc] initWithDataSet:barDataSet];
+        chartData.barData = barData;
     }
     
-    
+
     if (chartData.dataSets && chartData.dataSets.count > 0) {
         combinedChart.data = chartData;
     }

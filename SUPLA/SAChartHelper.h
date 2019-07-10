@@ -23,6 +23,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface SAChartHelper : NSObject
 
+- (BarChartDataSet *) newBarDataSetWithEntries:(NSArray *)entries;
 -(void)load;
 @property (nonatomic, weak) CombinedChartView *combinedChart;
 @property (nonatomic, weak) PieChartView *pieChart;

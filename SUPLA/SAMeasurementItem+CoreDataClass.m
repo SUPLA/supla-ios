@@ -20,12 +20,36 @@
 
 @implementation SAMeasurementItem
 - (void) assignJSONObject:(NSDictionary *)object {
-    self.date = [NSDate dateWithTimeIntervalSince1970:[[object valueForKey:@"date_timestamp"] longLongValue]];
+    [self setDateAndDateParts: [NSDate dateWithTimeIntervalSince1970:[[object valueForKey:@"date_timestamp"] longLongValue]]];
 }
 
 - (void) assignMeasurementItem:(SAMeasurementItem*)source {
     self.channel_id = source.channel_id;
-    self.date = source.date;
+    [self setDateAndDateParts:source.date];
+}
+-(void)setDateAndDateParts:(NSDate *)date {
+    NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier: NSCalendarIdentifierGregorian];
+    NSDateComponents *components = [calendar components:NSCalendarUnitYear
+                                    | NSCalendarUnitMonth
+                                    | NSCalendarUnitDay
+                                    | NSCalendarUnitWeekday
+                                    | NSCalendarUnitHour
+                                    | NSCalendarUnitMinute
+                                    | NSCalendarUnitSecond fromDate:date];
+
+    
+    // Unfortunately, date components can not have the "Transient"
+    // property because they can not be grouped or filtered by this type of attribute.
+    // Maybe someone will have a better idea.
+    self.year = components.year;
+    self.month = components.month;
+    self.day = components.day;
+    self.weekday = components.weekday;
+    self.hour = components.hour;
+    self.minute = components.minute;
+    self.second = components.second;
+    
+    self.date = date;
 }
 
 @end

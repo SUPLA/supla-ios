@@ -24,6 +24,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface SAMeasurementItem : NSManagedObject
 - (void) assignJSONObject:(NSDictionary *)object;
 - (void) assignMeasurementItem:(SAMeasurementItem*)source;
+- (void) setDateAndDateParts:(NSDate *)date;
 @end
 
 NS_ASSUME_NONNULL_END

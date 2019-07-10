@@ -67,6 +67,15 @@
         <attribute name="calculated" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="complement" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="divided" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
+        <fetchIndex name="Calculated">
+            <fetchIndexElement property="calculated" type="Binary" order="ascending"/>
+        </fetchIndex>
+        <fetchIndex name="Complement">
+            <fetchIndexElement property="complement" type="Binary" order="ascending"/>
+        </fetchIndex>
+        <fetchIndex name="Divided">
+            <fetchIndexElement property="divided" type="Binary" order="ascending"/>
+        </fetchIndex>
     </entity>
     <entity name="SALocation" representedClassName="_SALocation" syncable="YES">
         <attribute name="caption" optional="YES" attributeType="String" syncable="YES"/>
@@ -76,19 +85,32 @@
     <entity name="SAMeasurementItem" representedClassName="SAMeasurementItem" isAbstract="YES" syncable="YES">
         <attribute name="channel_id" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="date" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="day" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="hour" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="minute" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="month" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="second" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="weekday" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="year" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <fetchIndex name="ChannelId">
+            <fetchIndexElement property="channel_id" type="Binary" order="ascending"/>
+        </fetchIndex>
+        <fetchIndex name="Date">
+            <fetchIndexElement property="date" type="Binary" order="ascending"/>
+        </fetchIndex>
     </entity>
     <elements>
         <element name="SAChannel" positionX="-20.5078125" positionY="10.7734375" width="128" height="150"/>
         <element name="SAChannelBase" positionX="-540" positionY="72" width="128" height="180"/>
         <element name="SAChannelExtendedValue" positionX="-154.34375" positionY="196.6171875" width="128" height="58"/>
         <element name="SAChannelGroup" positionX="-342" positionY="45" width="128" height="75"/>
-        <element name="SAChannelGroupRelation" positionX="-156.40625" positionY="402.3046875" width="128" height="120"/>
+        <element name="SAChannelGroupRelation" positionX="-397.23828125" positionY="502.76953125" width="128" height="118"/>
         <element name="SAChannelValue" positionX="-477" positionY="162" width="128" height="75"/>
         <element name="SAChannelValueBase" positionX="-547.359375" positionY="322.61328125" width="128" height="73"/>
         <element name="SAColorListItem" positionX="-216" positionY="-54" width="128" height="120"/>
-        <element name="SAElectricityMeasurementItem" positionX="-522" positionY="117" width="128" height="225"/>
-        <element name="SAIncrementalMeasurementItem" positionX="-531" positionY="108" width="128" height="90"/>
+        <element name="SAElectricityMeasurementItem" positionX="-31.56640625" positionY="351.9609375" width="128" height="225"/>
+        <element name="SAIncrementalMeasurementItem" positionX="-647.20703125" positionY="380.8671875" width="128" height="88"/>
         <element name="SALocation" positionX="-747" positionY="-54" width="128" height="88"/>
-        <element name="SAMeasurementItem" positionX="-540" positionY="99" width="128" height="75"/>
+        <element name="SAMeasurementItem" positionX="-815.8125" positionY="271.2578125" width="128" height="178"/>
     </elements>
 </model>

@@ -43,6 +43,9 @@
 +(nonnull UIColor*)rsDetailBackground;
 +(nonnull UIColor*)statusBorder;
 +(nonnull UIColor*)rsMarkerColor;
++(nonnull UIColor*)phase1Color;
++(nonnull UIColor*)phase2Color;
++(nonnull UIColor*)phase3Color;
 
 @end
 

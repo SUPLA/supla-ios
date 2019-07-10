@@ -16,6 +16,7 @@
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 
+
 #import "SAMeasurementItem+CoreDataProperties.h"
 
 @implementation SAMeasurementItem (CoreDataProperties)
@@ -26,5 +27,12 @@
 
 @dynamic channel_id;
 @dynamic date;
+@dynamic year;
+@dynamic month;
+@dynamic day;
+@dynamic weekday;
+@dynamic hour;
+@dynamic minute;
+@dynamic second;
 
 @end

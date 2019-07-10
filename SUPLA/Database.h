@@ -66,7 +66,8 @@
 -(void) deleteUncalculatedElectricityMeasurementsForChannelId:(int)channel_id;
 -(NSUInteger) getElectricityMeasurementItemCountWithoutComplementForChannelId:(int)channel_id;
 -(BOOL) electricityMeterMeasurementsStartsWithTheCurrentMonthForChannelId:(int)channel_id;
-- (double) sumForwardedActiveEnergyForChannelId:(int)channel_id monthLimitOffset:(int) offset;
+-(double) sumForwardedActiveEnergyForChannelId:(int)channel_id monthLimitOffset:(int) offset;
+-(NSArray *) getElectricityMeasurementsForChannelId:(int)channel_id;
 @end
 
 

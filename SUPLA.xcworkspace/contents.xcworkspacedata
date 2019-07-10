@@ -2,6 +2,9 @@
 <Workspace
    version = "1.0">
    <FileRef
+      location = "group:SUPLA/SAMeasurementItem+CoreDataProperties.h">
+   </FileRef>
+   <FileRef
       location = "group:SUPLA.xcodeproj">
    </FileRef>
    <FileRef

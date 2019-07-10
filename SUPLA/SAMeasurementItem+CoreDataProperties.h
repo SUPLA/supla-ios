@@ -16,6 +16,7 @@
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 
+
 #import "SAMeasurementItem+CoreDataClass.h"
 
 
@@ -27,6 +28,13 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic) int32_t channel_id;
 @property (nullable, nonatomic, copy) NSDate *date;
+@property (nonatomic) int16_t year;
+@property (nonatomic) int16_t month;
+@property (nonatomic) int16_t day;
+@property (nonatomic) int16_t weekday;
+@property (nonatomic) int16_t hour;
+@property (nonatomic) int16_t minute;
+@property (nonatomic) int16_t second;
 
 @end
 

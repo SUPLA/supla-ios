@@ -86,6 +86,18 @@
     return [UIColor colorWithRed:0.07 green:0.65 blue:0.12 alpha:1.0];
 }
 
++(nonnull UIColor*)phase1Color {
+    return [UIColor colorWithRed:0.56 green:0.92 blue:1.00 alpha:1.0];
+}
+
++(nonnull UIColor*)phase2Color {
+    return [UIColor colorWithRed:0.59 green:0.57 blue:1.00 alpha:1.0];
+}
+
++(nonnull UIColor*)phase3Color {
+    return [UIColor colorWithRed:1.00 green:0.82 blue:0.57 alpha:1.0];
+}
+
 @end
 
 @implementation SAUIHelper {

@@ -52,7 +52,7 @@
     }
     
     NSError *error = nil;
-    NSURL *storeURL = [[SAApp applicationDocumentsDirectory] URLByAppendingPathComponent:@"SUPLA_DB4.sqlite"];
+    NSURL *storeURL = [[SAApp applicationDocumentsDirectory] URLByAppendingPathComponent:@"SUPLA_DB5.sqlite"];
     
     //NSFileManager *fileManager = [NSFileManager defaultManager];
     //[fileManager removeItemAtURL:storeURL error:&error];
@@ -131,6 +131,7 @@
     
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
     fetchRequest.predicate = predicate;
+  
     fetchRequest.sortDescriptors = sortDescriptors;
     
     if ( l > 0 ) {
@@ -920,6 +921,65 @@
     }
     
     return result;
+}
+
+-(NSArray *) getIncrementalMeasurementsForChannelId:(int)channel_id fields:(NSArray*)fields entityName:(NSString*)en dateFrom:(NSDate *)dateFrom dateTo:(NSDate *)dateTo {
+  
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    
+    NSEntityDescription *entity = [NSEntityDescription
+                                   entityForName:en inManagedObjectContext:self.managedObjectContext];
+    
+    [fetchRequest setEntity:entity];
+    [fetchRequest setResultType:NSDictionaryResultType];
+    
+    NSMutableArray *propertiesToFetch = [[NSMutableArray alloc] init];
+    
+    NSExpressionDescription *ed = [[NSExpressionDescription alloc] init];
+    [ed setName:@"date"];
+    [ed setExpression:[NSExpression expressionForFunction:@"max:" arguments:[NSArray arrayWithObject:[NSExpression expressionForKeyPath:@"date"]]]];
+    [ed setExpressionResultType:NSDateAttributeType];
+    
+     [propertiesToFetch addObject:ed];
+    
+    for(int a=0;a<fields.count;a++) {
+        ed = [[NSExpressionDescription alloc] init];
+        [ed setName:[fields objectAtIndex:a]];
+        [ed setExpression:[NSExpression expressionForFunction:@"sum:" arguments:[NSArray arrayWithObject:[NSExpression expressionForKeyPath:[fields objectAtIndex:a]]]]];
+        [ed setExpressionResultType:NSDoubleAttributeType];
+        [propertiesToFetch addObject:ed];
+    }
+    
+    fetchRequest.propertiesToFetch = propertiesToFetch;
+    
+    NSAttributeDescription *p1 = [entity.propertiesByName objectForKey:@"year"];
+    NSAttributeDescription *p2 = [entity.propertiesByName objectForKey:@"month"];
+
+    fetchRequest.propertiesToGroupBy = @[p1, p2];
+
+    fetchRequest.predicate = [NSPredicate predicateWithFormat:@"channel_id = %i AND calculated = YES AND (%@ = nil OR date >= %@) AND (%@ = nil OR date <= %@)", channel_id, dateFrom, dateFrom, dateTo, dateTo];
+    
+    fetchRequest.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"date" ascending:YES]];
+    
+    NSError *error = nil;
+    NSArray *r = [self.managedObjectContext executeFetchRequest:fetchRequest error:&error];
+
+    if ( error == nil && r.count > 0 ) {
+        return r;
+    }
+    
+    return nil;
+    
+}
+
+-(NSArray *) getElectricityMeasurementsForChannelId:(int)channel_id {
+
+    NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
+    NSDateComponents *components = [[NSDateComponents alloc] init];
+    [components setHour:-24];
+    NSDate *date = [calendar dateByAddingComponents:components toDate:[NSDate date] options:0];
+
+    return [self getIncrementalMeasurementsForChannelId:channel_id fields:@[@"phase1_fae",@"phase2_fae",@"phase3_fae"] entityName:@"SAElectricityMeasurementItem" dateFrom:nil dateTo:nil];
 }
 
 @end
