@@ -17,7 +17,11 @@
  */
 
 #import "SAIncrementalMeterChartHelper.h"
+#import "SUPLA-Swift.h"
 
 @implementation SAIncrementalMeterChartHelper
-
+- (id<IChartMarker>) getMarker {
+    return [SAChartMarkerView viewFromXibIn:[NSBundle mainBundle]];
+   // return [[[NSBundle mainBundle] loadNibNamed:@"SAChartMarkerView" owner:self options:nil] objectAtIndex:0];
+}
 @end

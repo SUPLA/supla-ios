@@ -23,10 +23,14 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface SAChartHelper : NSObject
 
+- (NSString *) getFormattedValue:(double) value forAxis:(nullable ChartAxisBase*)axis;
 - (BarChartDataSet *) newBarDataSetWithEntries:(NSArray *)entries;
--(void)load;
+- (id<IChartMarker>) getMarker;
+- (void) load;
+
 @property (nonatomic, weak) CombinedChartView *combinedChart;
 @property (nonatomic, weak) PieChartView *pieChart;
+@property (nonatomic, weak) NSString *unit;
 @property (nonatomic) int channelId;
 @end
 

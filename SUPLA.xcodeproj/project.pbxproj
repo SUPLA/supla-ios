@@ -32,6 +32,8 @@
 		01D4293722AAA83E0050C1A2 /* watermeter@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 01D4293122AAA83D0050C1A2 /* watermeter@2x.png */; };
 		01D4293822AAA83E0050C1A2 /* electricitymeter@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 01D4293222AAA83D0050C1A2 /* electricitymeter@2x.png */; };
 		01D4293A22AAAA450050C1A2 /* IncrementalMeterCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 01D4293922AAAA450050C1A2 /* IncrementalMeterCell.xib */; };
+		01D5E0C822DB7FAF00FBE1DC /* SAChartMarkerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01D5E0C722DB7FAF00FBE1DC /* SAChartMarkerView.swift */; };
+		01D5E0CA22DB8F0A00FBE1DC /* SAChartMarkerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 01D5E0C922DB8F0A00FBE1DC /* SAChartMarkerView.xib */; };
 		01E517C322C6AC1E000FE77A /* SADownloadIncrementalMeasurements.m in Sources */ = {isa = PBXBuildFile; fileRef = 01E517C222C6AC1E000FE77A /* SADownloadIncrementalMeasurements.m */; };
 		01E517C622C6AD7D000FE77A /* SADownloadMeasurementLogs.m in Sources */ = {isa = PBXBuildFile; fileRef = 01E517C522C6AD7D000FE77A /* SADownloadMeasurementLogs.m */; };
 		01EE9BB022BA4B050029A142 /* SAChannelExtendedValue+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 01EE9BAF22BA4B050029A142 /* SAChannelExtendedValue+CoreDataProperties.m */; };
@@ -322,6 +324,9 @@
 		01D4293122AAA83D0050C1A2 /* watermeter@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "watermeter@2x.png"; path = "Resources/Assets/Img/watermeter@2x.png"; sourceTree = "<group>"; };
 		01D4293222AAA83D0050C1A2 /* electricitymeter@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "electricitymeter@2x.png"; path = "Resources/Assets/Img/electricitymeter@2x.png"; sourceTree = "<group>"; };
 		01D4293922AAAA450050C1A2 /* IncrementalMeterCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = IncrementalMeterCell.xib; sourceTree = "<group>"; };
+		01D5E0C622DB7FAE00FBE1DC /* SUPLA-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SUPLA-Bridging-Header.h"; sourceTree = "<group>"; };
+		01D5E0C722DB7FAF00FBE1DC /* SAChartMarkerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SAChartMarkerView.swift; sourceTree = "<group>"; };
+		01D5E0C922DB8F0A00FBE1DC /* SAChartMarkerView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SAChartMarkerView.xib; sourceTree = "<group>"; };
 		01E517C122C6AC1E000FE77A /* SADownloadIncrementalMeasurements.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SADownloadIncrementalMeasurements.h; sourceTree = "<group>"; };
 		01E517C222C6AC1E000FE77A /* SADownloadIncrementalMeasurements.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SADownloadIncrementalMeasurements.m; sourceTree = "<group>"; };
 		01E517C422C6AD7D000FE77A /* SADownloadMeasurementLogs.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SADownloadMeasurementLogs.h; sourceTree = "<group>"; };
@@ -703,12 +708,14 @@
 		013D1C5A22CE4751000C0784 /* charts */ = {
 			isa = PBXGroup;
 			children = (
+				01D5E0C622DB7FAE00FBE1DC /* SUPLA-Bridging-Header.h */,
 				013D1C5B22CE47D5000C0784 /* SAChartHelper.h */,
 				013D1C5C22CE47D5000C0784 /* SAChartHelper.m */,
 				013D1C5E22CE757F000C0784 /* SAIncrementalMeterChartHelper.h */,
 				013D1C5F22CE757F000C0784 /* SAIncrementalMeterChartHelper.m */,
 				013D1C6122CE75A3000C0784 /* SAElectricityChartHelper.h */,
 				013D1C6222CE75A3000C0784 /* SAElectricityChartHelper.m */,
+				01D5E0C722DB7FAF00FBE1DC /* SAChartMarkerView.swift */,
 			);
 			name = charts;
 			sourceTree = "<group>";
@@ -1100,6 +1107,7 @@
 		40A675851BA1BEBF004A51C4 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				01D5E0C922DB8F0A00FBE1DC /* SAChartMarkerView.xib */,
 				40844D811FB0DDB000432AA0 /* SettingsVC.xib */,
 				40C9E4FB1F2B841400753796 /* SAColorListPicker.h */,
 				40C9E4FC1F2B841400753796 /* SAColorListPicker.m */,
@@ -1236,6 +1244,7 @@
 					401CA1B81BA067DB00117AF4 = {
 						CreatedOnToolsVersion = 6.4;
 						DevelopmentTeam = T6ZPGSWA75;
+						LastSwiftMigration = 1020;
 					};
 					401CA1D41BA067DB00117AF4 = {
 						CreatedOnToolsVersion = 6.4;
@@ -1308,6 +1317,7 @@
 				40477B4920C6C5FE00E995E6 /* staircasetimer_1-off@2x.png in Resources */,
 				40B9ED811FACE15700403B1A /* nomail@2x.png in Resources */,
 				405AC4191BC15898004F7311 /* app_icon-1024.png in Resources */,
+				01D5E0CA22DB8F0A00FBE1DC /* SAChartMarkerView.xib in Resources */,
 				405AC41A1BC15898004F7311 /* app_icon@2x.png in Resources */,
 				40CF96BA1BC7D4E70030EFFF /* light-off@2x.png in Resources */,
 				40B9ED6D1FACD94300403B1A /* barier-open@3x.png in Resources */,
@@ -1605,6 +1615,7 @@
 				013D1C6022CE757F000C0784 /* SAIncrementalMeterChartHelper.m in Sources */,
 				40C9E4FD1F2B841400753796 /* SAColorListPicker.m in Sources */,
 				40DA56901DCA1908008F05DE /* _SALocation+CoreDataProperties.m in Sources */,
+				01D5E0C822DB7FAF00FBE1DC /* SAChartMarkerView.swift in Sources */,
 				409934B61F30EF9C003110C5 /* RSDetailView.m in Sources */,
 				01C1719022C7F3A2005983E1 /* SAIncrementalMeasurementItem+CoreDataProperties.m in Sources */,
 				01E517C622C6AD7D000FE77A /* SADownloadMeasurementLogs.m in Sources */,
@@ -1857,7 +1868,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				DEFINES_MODULE = YES;
 				HEADER_SEARCH_PATHS = "$(SDKROOT)/usr/include/libxml2";
 				INFOPLIST_FILE = SUPLA/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
@@ -1868,6 +1881,9 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.acsoftware.ios.supla;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "SUPLA/SUPLA-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
@@ -1877,7 +1893,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				DEFINES_MODULE = YES;
 				HEADER_SEARCH_PATHS = "$(SDKROOT)/usr/include/libxml2";
 				INFOPLIST_FILE = SUPLA/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
@@ -1888,6 +1906,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.acsoftware.ios.supla;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "SUPLA/SUPLA-Bridging-Header.h";
+				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
 		};
@@ -1895,6 +1915,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = B89C18EECE6BFD26C7FD75A2 /* Pods-SUPLATests.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
@@ -1916,6 +1937,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 5CB83473B6995044CF8448E7 /* Pods-SUPLATests.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",

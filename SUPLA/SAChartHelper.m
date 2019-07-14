@@ -18,6 +18,7 @@
 
 #import "SAChartHelper.h"
 #import "SuplaApp.h"
+#import "SUPLA-Swift.h"
 
 @implementation SAChartHelper {
     long _minTimestamp;
@@ -28,6 +29,7 @@
 @synthesize channelId;
 @synthesize combinedChart;
 @synthesize pieChart;
+@synthesize unit;
 
 -(id)init {
     if (self = [super init]) {
@@ -39,6 +41,10 @@
 - (NSArray *)getData {
     ABSTRACT_METHOD_EXCEPTION;
     return nil;
+}
+
+- (NSString *) getFormattedValue:(double) value forAxis:(nullable ChartAxisBase*)axis {
+    return @"";
 }
 
 - (long)getTimestamp:(id)item {
@@ -102,6 +108,20 @@
     return result;
 }
 
+- (id<IChartMarker>)getMarker {
+    return nil;
+}
+
+- (void) setMarkerForChart:(ChartViewBase *)chart {
+    id marker = [self getMarker];
+    [chart setMarker:marker];
+    if (marker != nil && [marker isKindOfClass:[SAChartMarkerView class]]) {
+        ((SAChartMarkerView*)marker).chartView = chart;
+        ((SAChartMarkerView*)marker).chartHelper = self;
+    }
+    [chart setDrawMarkers:marker != nil];
+}
+
 - (void) loadCombinedChart {
     if (self.pieChart) {
         self.pieChart.hidden = YES;
@@ -150,6 +170,7 @@
         chartData.barData = barData;
     }
     
+    [self setMarkerForChart:combinedChart];
 
     if (chartData.dataSets && chartData.dataSets.count > 0) {
         combinedChart.data = chartData;
