@@ -26,7 +26,7 @@
     NSTimer *_preloaderTimer;
     NSTimer *_taskTimer;
     SADownloadElectricityMeasurements *_task;
-    SAChartHelper *_chartHelper;
+    SAElectricityChartHelper *_chartHelper;
     int _preloaderPos;
 }
 
@@ -36,6 +36,11 @@
     _chartHelper = [[SAElectricityChartHelper alloc] init];
     _chartHelper.combinedChart = self.combinedChart;
     _chartHelper.pieChart = self.pieChart;
+    _chartHelper.unit = @"kWh";
+    
+    SAChartPickerView *pv = [[SAChartPickerView alloc] init];
+    pv.showsSelectionIndicator = YES;
+    _chartTypeFilter.inputView = pv;
 }
 
 - (void)setLabel:(UILabel*)label Visible:(BOOL)visible withConstraint:(NSLayoutConstraint*)cns {
@@ -201,6 +206,8 @@
         [self.lCurrentConsumption setText:[NSString stringWithFormat:@"%0.2f kWh", currentConsumption]];
         [self.lCurrentCost setText:[NSString stringWithFormat:@"%0.2f %@", currentCost, [ev decodeCurrency:emev.currency]]];
     
+        _chartHelper.pricePerUnit = emev.price_per_unit * 0.0001;
+        _chartHelper.currency = [ev decodeCurrency:emev.currency];
     }
     
     [self frequencyVisible:measured_values & EM_VAR_FREQ];
@@ -250,8 +257,11 @@
     
     [self updateView];
 }
-- (IBAction)chartBtnTouch:(id)sender {
-    if (self.vPhases.hidden) {
+
+- (void)chartsHidden:(BOOL)hidden {
+    [_chartTypeFilter resignFirstResponder];
+    
+    if (hidden) {
         self.vPhases.hidden = NO;
         self.vCharts.hidden = YES;
         [self.btnChart setImage:[UIImage imageNamed:@"graphoff.png"]];
@@ -259,13 +269,22 @@
         self.vPhases.hidden = YES;
         self.vCharts.hidden = NO;
         [self.btnChart setImage:[UIImage imageNamed:@"graphon.png"]];
+    }
+}
+
+- (IBAction)chartBtnTouch:(id)sender {
+    [self chartsHidden:self.vPhases.hidden];
+    
+    if (!self.vCharts.hidden) {
         [_chartHelper load];
     }
 }
 
 -(void)onDetailShow {
     [super onDetailShow];
+    [self chartsHidden:YES];
     [self setPreloaderHidden:YES];
+    
     [SAApp.instance cancelAllRestApiClientTasks];
     
     if (_taskTimer == nil) {
@@ -280,6 +299,8 @@
 
 -(void)onDetailHide {
     [super onDetailHide];
+    
+    [_chartTypeFilter resignFirstResponder];
     
     if (_taskTimer) {
         [_taskTimer invalidate];
@@ -361,5 +382,7 @@
 -(void) onRestApiTask: (SARestApiClientTask*)task progressUpdate:(float)progress {
     //NSLog(@"onRestApiTaskProgressUpdate %f", progress);
 }
+
+
 
 @end

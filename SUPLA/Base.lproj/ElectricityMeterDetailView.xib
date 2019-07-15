@@ -29,25 +29,60 @@
                         <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WP8-xn-lei" userLabel="vCharts">
                             <rect key="frame" x="0.0" y="0.0" width="300" height="261"/>
                             <subviews>
-                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Dpv-OP-VGS" customClass="CombinedChartView" customModule="Charts">
-                                    <rect key="frame" x="0.0" y="0.0" width="300" height="256"/>
-                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NAr-uo-LMR" userLabel="vFilters">
+                                    <rect key="frame" x="0.0" y="0.0" width="300" height="50"/>
+                                    <subviews>
+                                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Ala ma kota" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="btZ-qJ-HXI" customClass="SATextField">
+                                            <rect key="frame" x="0.0" y="0.0" width="300" height="30"/>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <color key="textColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                            <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardAppearance="light" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no"/>
+                                        </textField>
+                                    </subviews>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <constraints>
+                                        <constraint firstItem="btZ-qJ-HXI" firstAttribute="leading" secondItem="NAr-uo-LMR" secondAttribute="leading" id="0ID-LA-cKo"/>
+                                        <constraint firstAttribute="trailing" secondItem="btZ-qJ-HXI" secondAttribute="trailing" id="Smq-hX-Kkf"/>
+                                        <constraint firstItem="btZ-qJ-HXI" firstAttribute="top" secondItem="NAr-uo-LMR" secondAttribute="top" id="dq3-Rp-Q9K"/>
+                                        <constraint firstAttribute="height" constant="50" id="rjI-yG-B72"/>
+                                    </constraints>
                                 </view>
-                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Q7j-4f-xav" customClass="PieChartView" customModule="Charts">
-                                    <rect key="frame" x="0.0" y="0.0" width="300" height="256"/>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="irI-Gs-GJs" userLabel="vChartContainer">
+                                    <rect key="frame" x="0.0" y="50" width="300" height="211"/>
+                                    <subviews>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Q7j-4f-xav" customClass="PieChartView" customModule="Charts">
+                                            <rect key="frame" x="0.0" y="0.0" width="300" height="211"/>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </view>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Dpv-OP-VGS" customClass="CombinedChartView" customModule="Charts">
+                                            <rect key="frame" x="0.0" y="0.0" width="300" height="211"/>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </view>
+                                    </subviews>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <constraints>
+                                        <constraint firstAttribute="bottom" secondItem="Dpv-OP-VGS" secondAttribute="bottom" id="0pj-YT-GUU"/>
+                                        <constraint firstAttribute="trailing" secondItem="Dpv-OP-VGS" secondAttribute="trailing" id="26z-Y4-XoQ"/>
+                                        <constraint firstAttribute="trailing" secondItem="Q7j-4f-xav" secondAttribute="trailing" id="G0V-8F-eQA"/>
+                                        <constraint firstItem="Dpv-OP-VGS" firstAttribute="top" secondItem="irI-Gs-GJs" secondAttribute="top" id="NhF-Rh-Nqo"/>
+                                        <constraint firstItem="Dpv-OP-VGS" firstAttribute="leading" secondItem="irI-Gs-GJs" secondAttribute="leading" id="YkS-sh-3fM"/>
+                                        <constraint firstItem="Q7j-4f-xav" firstAttribute="leading" secondItem="irI-Gs-GJs" secondAttribute="leading" id="ePT-Zn-jYI"/>
+                                        <constraint firstAttribute="bottom" secondItem="Q7j-4f-xav" secondAttribute="bottom" id="ewg-uG-T1D"/>
+                                        <constraint firstItem="Q7j-4f-xav" firstAttribute="top" secondItem="irI-Gs-GJs" secondAttribute="top" id="mNU-rf-AyR"/>
+                                    </constraints>
                                 </view>
                             </subviews>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
-                                <constraint firstItem="Dpv-OP-VGS" firstAttribute="top" secondItem="WP8-xn-lei" secondAttribute="top" id="4PJ-ca-HfV"/>
-                                <constraint firstAttribute="bottom" secondItem="Q7j-4f-xav" secondAttribute="bottom" constant="5" id="9Xt-yU-SB9"/>
-                                <constraint firstAttribute="bottom" secondItem="Dpv-OP-VGS" secondAttribute="bottom" constant="5" id="Kqa-PV-Ihg"/>
-                                <constraint firstItem="Q7j-4f-xav" firstAttribute="top" secondItem="WP8-xn-lei" secondAttribute="top" id="LeJ-aJ-KmL"/>
-                                <constraint firstAttribute="trailing" secondItem="Dpv-OP-VGS" secondAttribute="trailing" id="RMD-af-UWP"/>
-                                <constraint firstItem="Dpv-OP-VGS" firstAttribute="leading" secondItem="WP8-xn-lei" secondAttribute="leading" id="SwZ-tK-oN7"/>
-                                <constraint firstAttribute="trailing" secondItem="Q7j-4f-xav" secondAttribute="trailing" id="jF4-FJ-rLH"/>
-                                <constraint firstItem="Q7j-4f-xav" firstAttribute="leading" secondItem="WP8-xn-lei" secondAttribute="leading" id="vTi-On-Gc5"/>
+                                <constraint firstAttribute="bottom" secondItem="irI-Gs-GJs" secondAttribute="bottom" id="48q-RM-kiO"/>
+                                <constraint firstItem="irI-Gs-GJs" firstAttribute="top" secondItem="NAr-uo-LMR" secondAttribute="bottom" id="94E-cm-fzK"/>
+                                <constraint firstAttribute="trailing" secondItem="irI-Gs-GJs" secondAttribute="trailing" id="CGk-z1-6HU"/>
+                                <constraint firstItem="NAr-uo-LMR" firstAttribute="top" secondItem="WP8-xn-lei" secondAttribute="top" id="T8S-LO-GVN"/>
+                                <constraint firstItem="NAr-uo-LMR" firstAttribute="leading" secondItem="WP8-xn-lei" secondAttribute="leading" id="UQV-5I-bcv"/>
+                                <constraint firstItem="irI-Gs-GJs" firstAttribute="leading" secondItem="WP8-xn-lei" secondAttribute="leading" id="YQj-es-ORY"/>
+                                <constraint firstAttribute="trailing" secondItem="NAr-uo-LMR" secondAttribute="trailing" id="dAX-Vd-SSU"/>
                             </constraints>
                         </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KE1-vg-Yeo" userLabel="vPhases">
@@ -381,6 +416,11 @@
                         <constraint firstItem="WP8-xn-lei" firstAttribute="leading" secondItem="wXI-rX-Ghy" secondAttribute="leading" id="koB-gd-TsR"/>
                         <constraint firstAttribute="trailing" secondItem="KE1-vg-Yeo" secondAttribute="trailing" id="naH-Hg-hFk"/>
                     </constraints>
+                    <variation key="default">
+                        <mask key="subviews">
+                            <exclude reference="KE1-vg-Yeo"/>
+                        </mask>
+                    </variation>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Xur-xZ-dhe" userLabel="vFooter">
                     <rect key="frame" x="10" y="425" width="300" height="40"/>
@@ -477,7 +517,7 @@
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hlZ-mm-clg" userLabel="btnChart">
-                                    <rect key="frame" x="137" y="105" width="30" height="30"/>
+                                    <rect key="frame" x="137" y="100" width="30" height="30"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="30" id="0rb-fT-U9B"/>
                                         <constraint firstAttribute="width" constant="30" id="CzR-Gr-EYQ"/>
@@ -488,7 +528,7 @@
                                     </connections>
                                 </button>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="••••••••••" textAlignment="center" lineBreakMode="clip" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ywd-JH-SeJ">
-                                    <rect key="frame" x="137" y="135" width="30" height="7.5"/>
+                                    <rect key="frame" x="137" y="130" width="30" height="7.5"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="30" id="PbQ-8L-9WP"/>
                                     </constraints>
@@ -513,7 +553,7 @@
                                 <constraint firstAttribute="trailing" secondItem="hlZ-mm-clg" secondAttribute="trailing" constant="3" id="Spg-bl-WpF"/>
                                 <constraint firstAttribute="trailing" secondItem="Kfn-dN-K0a" secondAttribute="trailing" id="Uki-Tk-Spm"/>
                                 <constraint firstItem="qz5-1q-e4C" firstAttribute="top" secondItem="v3P-DR-NxZ" secondAttribute="bottom" id="VLn-du-dU9"/>
-                                <constraint firstAttribute="bottom" secondItem="hlZ-mm-clg" secondAttribute="bottom" constant="15" id="XIX-NR-prT"/>
+                                <constraint firstAttribute="bottom" secondItem="hlZ-mm-clg" secondAttribute="bottom" constant="20" id="XIX-NR-prT"/>
                                 <constraint firstItem="BZV-5X-lZ7" firstAttribute="leading" secondItem="qPI-tZ-xfE" secondAttribute="leading" id="bEt-qn-typ"/>
                                 <constraint firstItem="zf2-II-RLR" firstAttribute="leading" secondItem="qPI-tZ-xfE" secondAttribute="leading" id="bRD-ug-zuc"/>
                                 <constraint firstAttribute="trailing" secondItem="psK-hZ-nQF" secondAttribute="trailing" id="dTz-4p-CD0"/>
@@ -596,6 +636,7 @@
                 <outlet property="cReverseReactiveEnergyValueTop" destination="G6o-rb-Cr4" id="fQW-kS-zXR"/>
                 <outlet property="cVoltageTop" destination="YcG-6h-VMF" id="auG-k2-OGb"/>
                 <outlet property="cVoltageValueTop" destination="Rus-im-Kru" id="bmz-j2-uSU"/>
+                <outlet property="chartTypeFilter" destination="btZ-qJ-HXI" id="AUI-ya-Egd"/>
                 <outlet property="combinedChart" destination="Dpv-OP-VGS" id="Ns8-hf-6BI"/>
                 <outlet property="lActivePower" destination="vFK-4R-JvR" id="a20-ON-oyb"/>
                 <outlet property="lActivePowerValue" destination="pzM-3T-vDD" id="77t-Hs-3Kt"/>
@@ -634,6 +675,20 @@
             </connections>
             <point key="canvasLocation" x="-292.5" y="-210"/>
         </view>
+        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" id="vFy-p3-mdf">
+            <rect key="frame" x="0.0" y="0.0" width="97" height="30"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <nil key="textColor"/>
+            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+            <textInputTraits key="textInputTraits"/>
+        </textField>
+        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" id="661-WI-vxF">
+            <rect key="frame" x="0.0" y="0.0" width="97" height="30"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <nil key="textColor"/>
+            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+            <textInputTraits key="textInputTraits"/>
+        </textField>
     </objects>
     <resources>
         <image name="electricitymeter.png" width="92" height="83.199996948242188"/>

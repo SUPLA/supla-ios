@@ -21,6 +21,14 @@
 #import "SAElectricityMeasurementItem+CoreDataClass.h"
 #import "proto.h"
 
+typedef NS_ENUM(NSUInteger, GroupingDepth) {
+    gdMinutely,
+    gdHourly,
+    gdDaily,
+    gdMonthly,
+    gdYearly
+};
+
 @class _SALocation;
 @class SAChannel;
 @class SAChannelValue;
@@ -67,7 +75,7 @@
 -(NSUInteger) getElectricityMeasurementItemCountWithoutComplementForChannelId:(int)channel_id;
 -(BOOL) electricityMeterMeasurementsStartsWithTheCurrentMonthForChannelId:(int)channel_id;
 -(double) sumForwardedActiveEnergyForChannelId:(int)channel_id monthLimitOffset:(int) offset;
--(NSArray *) getElectricityMeasurementsForChannelId:(int)channel_id;
+-(NSArray *) getElectricityMeasurementsForChannelId:(int)channel_id dateFrom:(NSDate *)dateFrom dateTo:(NSDate *)dateTo groupingDepth:(GroupingDepth)gd;
 @end
 
 

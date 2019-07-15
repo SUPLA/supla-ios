@@ -10,6 +10,10 @@
 		013D1C5D22CE47D5000C0784 /* SAChartHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 013D1C5C22CE47D5000C0784 /* SAChartHelper.m */; };
 		013D1C6022CE757F000C0784 /* SAIncrementalMeterChartHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 013D1C5F22CE757F000C0784 /* SAIncrementalMeterChartHelper.m */; };
 		013D1C6322CE75A3000C0784 /* SAElectricityChartHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 013D1C6222CE75A3000C0784 /* SAElectricityChartHelper.m */; };
+		013D73A522DCAB4400E3515A /* SAIncrementalMeterChartMarkerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 013D73A422DCAB4400E3515A /* SAIncrementalMeterChartMarkerView.swift */; };
+		013D73A722DCAEF400E3515A /* SAIncrementalMeterChartMarkerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 013D73A622DCAEF400E3515A /* SAIncrementalMeterChartMarkerView.xib */; };
+		013D73AA22DCFC6800E3515A /* SAChartPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 013D73A922DCFC6800E3515A /* SAChartPickerView.m */; };
+		013D73B022DD105400E3515A /* SATextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 013D73AF22DD105400E3515A /* SATextField.m */; };
 		018E67CF22C8CA0A00FF1427 /* SADownloadElectricityMeasurements.m in Sources */ = {isa = PBXBuildFile; fileRef = 018E67CE22C8CA0A00FF1427 /* SADownloadElectricityMeasurements.m */; };
 		01BDAC7522C518DE00915646 /* SARestApiClientTask.m in Sources */ = {isa = PBXBuildFile; fileRef = 01BDAC7422C518DE00915646 /* SARestApiClientTask.m */; };
 		01BDAC7822C5200600915646 /* SAOAuthToken.m in Sources */ = {isa = PBXBuildFile; fileRef = 01BDAC7722C5200600915646 /* SAOAuthToken.m */; };
@@ -290,6 +294,12 @@
 		013D1C5F22CE757F000C0784 /* SAIncrementalMeterChartHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SAIncrementalMeterChartHelper.m; sourceTree = "<group>"; };
 		013D1C6122CE75A3000C0784 /* SAElectricityChartHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SAElectricityChartHelper.h; sourceTree = "<group>"; };
 		013D1C6222CE75A3000C0784 /* SAElectricityChartHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SAElectricityChartHelper.m; sourceTree = "<group>"; };
+		013D73A422DCAB4400E3515A /* SAIncrementalMeterChartMarkerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SAIncrementalMeterChartMarkerView.swift; sourceTree = "<group>"; };
+		013D73A622DCAEF400E3515A /* SAIncrementalMeterChartMarkerView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SAIncrementalMeterChartMarkerView.xib; sourceTree = "<group>"; };
+		013D73A822DCFC6800E3515A /* SAChartPickerView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SAChartPickerView.h; sourceTree = "<group>"; };
+		013D73A922DCFC6800E3515A /* SAChartPickerView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SAChartPickerView.m; sourceTree = "<group>"; };
+		013D73AE22DD105400E3515A /* SATextField.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SATextField.h; sourceTree = "<group>"; };
+		013D73AF22DD105400E3515A /* SATextField.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SATextField.m; sourceTree = "<group>"; };
 		018E67CD22C8CA0A00FF1427 /* SADownloadElectricityMeasurements.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SADownloadElectricityMeasurements.h; sourceTree = "<group>"; };
 		018E67CE22C8CA0A00FF1427 /* SADownloadElectricityMeasurements.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SADownloadElectricityMeasurements.m; sourceTree = "<group>"; };
 		01B216CF22AECB2F004E0596 /* SUPLA 3.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "SUPLA 3.xcdatamodel"; sourceTree = "<group>"; };
@@ -716,6 +726,9 @@
 				013D1C6122CE75A3000C0784 /* SAElectricityChartHelper.h */,
 				013D1C6222CE75A3000C0784 /* SAElectricityChartHelper.m */,
 				01D5E0C722DB7FAF00FBE1DC /* SAChartMarkerView.swift */,
+				013D73A422DCAB4400E3515A /* SAIncrementalMeterChartMarkerView.swift */,
+				013D73A822DCFC6800E3515A /* SAChartPickerView.h */,
+				013D73A922DCFC6800E3515A /* SAChartPickerView.m */,
 			);
 			name = charts;
 			sourceTree = "<group>";
@@ -1163,6 +1176,9 @@
 				4077ACE220A21BB100BD2216 /* CreateAccountVC.xib */,
 				40B610CA20C7E263002B762A /* SAUIChannelStatus.h */,
 				40B610CB20C7E263002B762A /* SAUIChannelStatus.m */,
+				013D73A622DCAEF400E3515A /* SAIncrementalMeterChartMarkerView.xib */,
+				013D73AE22DD105400E3515A /* SATextField.h */,
+				013D73AF22DD105400E3515A /* SATextField.m */,
 			);
 			name = UI;
 			sourceTree = "<group>";
@@ -1472,6 +1488,7 @@
 				4091654B1F3CBAF200F49193 /* rs_stop.png in Resources */,
 				40B9ED4D1FACCF8100403B1A /* radio-on@2x.png in Resources */,
 				40B9ED6E1FACD94300403B1A /* barier-closed@3x.png in Resources */,
+				013D73A722DCAEF400E3515A /* SAIncrementalMeterChartMarkerView.xib in Resources */,
 				4067782D1BCBC647008DD37F /* menu@3x.png in Resources */,
 				40CF96AB1BC7D4E70030EFFF /* door-closed@3x.png in Resources */,
 				01D4293522AAA83E0050C1A2 /* gasmeter@2x.png in Resources */,
@@ -1579,6 +1596,7 @@
 				01EE9BBB22BA50D90029A142 /* SAChannelValueBase+CoreDataClass.m in Sources */,
 				40F7301120C19BA600167C2D /* SAColorListItem+CoreDataProperties.m in Sources */,
 				01D0616E22C294D90043C947 /* ElectricityMeterDetailView.m in Sources */,
+				013D73B022DD105400E3515A /* SATextField.m in Sources */,
 				40C7BA7920C047CF00ACEE42 /* SAChannelGroup+CoreDataProperties.m in Sources */,
 				40D69DEE1BB574FE00937769 /* Database.m in Sources */,
 				408034E51BC84A89007666E7 /* NavigationController.m in Sources */,
@@ -1603,6 +1621,7 @@
 				40BBA35D20AC6E220054CD20 /* SAChannelGroupRelation+CoreDataProperties.m in Sources */,
 				40C7BA8720C0492500ACEE42 /* SAChannelBase+CoreDataClass.m in Sources */,
 				40E8BE8A1FC06A5600FB2FE6 /* XPathQuery.m in Sources */,
+				013D73AA22DCFC6800E3515A /* SAChartPickerView.m in Sources */,
 				01EE9BBC22BA50D90029A142 /* SAChannelValueBase+CoreDataProperties.m in Sources */,
 				01C792FA22B7FB610020A900 /* SAChannelExtendedValue+CoreDataClass.m in Sources */,
 				40A6757F1BA1A5B6004A51C4 /* SuplaApp.m in Sources */,
@@ -1614,6 +1633,7 @@
 				01E517C322C6AC1E000FE77A /* SADownloadIncrementalMeasurements.m in Sources */,
 				013D1C6022CE757F000C0784 /* SAIncrementalMeterChartHelper.m in Sources */,
 				40C9E4FD1F2B841400753796 /* SAColorListPicker.m in Sources */,
+				013D73A522DCAB4400E3515A /* SAIncrementalMeterChartMarkerView.swift in Sources */,
 				40DA56901DCA1908008F05DE /* _SALocation+CoreDataProperties.m in Sources */,
 				01D5E0C822DB7FAF00FBE1DC /* SAChartMarkerView.swift in Sources */,
 				409934B61F30EF9C003110C5 /* RSDetailView.m in Sources */,

@@ -17,11 +17,44 @@
  */
 
 #import "SAIncrementalMeterChartHelper.h"
+#import "SuplaApp.h"
 #import "SUPLA-Swift.h"
 
-@implementation SAIncrementalMeterChartHelper
-- (id<IChartMarker>) getMarker {
-    return [SAChartMarkerView viewFromXibIn:[NSBundle mainBundle]];
-   // return [[[NSBundle mainBundle] loadNibNamed:@"SAChartMarkerView" owner:self options:nil] objectAtIndex:0];
+@implementation SAIncrementalMeterChartHelper {
+    NSMutableArray *_xAxisStrings;
 }
+
+@synthesize currency;
+@synthesize pricePerUnit;
+
+- (id<IChartMarker>) getMarker {
+    return [SAIncrementalMeterChartMarkerView viewFromXibIn:[NSBundle mainBundle]];
+}
+
+-(void) addBarEntryTo:(NSMutableArray*) entries index:(int)idx item:(id)item {
+    ABSTRACT_METHOD_EXCEPTION;
+}
+
+-(void) addBarEntryTo:(NSMutableArray*) entries index:(int)idx time:(double)time timestamp:(long)timestamp item:(id)item {
+    NSDateFormatter *dateFormat = [self dateFormatterForCurrentChartType];
+    NSDate *date = [NSDate dateWithTimeIntervalSince1970:timestamp];
+    
+    [_xAxisStrings addObject: [dateFormat stringFromDate:date]];
+    [self addBarEntryTo:entries index:idx item:item];
+}
+
+- (NSString *)stringForValue:(double)value axis:(ChartAxisBase *)axis {
+    int idx = (int)value;
+    
+    if (idx >=0 && idx < _xAxisStrings.count) {
+        return [_xAxisStrings objectAtIndex:idx];
+    }
+    return @"";
+}
+
+- (void) load {
+    _xAxisStrings = [[NSMutableArray alloc] init];
+    [super load];
+}
+
 @end

@@ -39,8 +39,8 @@ import Charts
     }
     
     private func getWidth(label: UILabel, width: CGFloat) -> CGFloat {
-        if (!label1.isHidden && label1.frame.size.width > width) {
-            return label1.frame.size.width;
+        if (!label.isHidden && label.frame.size.width > width) {
+            return label.frame.size.width;
         }
         
         return width;
@@ -59,38 +59,44 @@ import Charts
         self.frame.size.height = offset;
     }
     
-    private func setLabel(label: UILabel, text: String) {
-        label.text = text;
-        label.isHidden = text.count == 0;
+    private func setLabel(label: UILabel, text: String?) {
+        if (text != nil) {
+            label.text = text;
+            label.isHidden = text!.count == 0;
+        } else {
+            label.text = "";
+            label.isHidden = true;
+        }
+        
         label.sizeToFit();
   
         updatePositions();
     }
     
-    open func getTime(entry: ChartDataEntry) -> String {
+    open func getTime(entry: ChartDataEntry) -> String? {
         
         if (entry is PieChartDataEntry) {
             return (entry as! PieChartDataEntry).label!;
         }
         
         if (chartHelper != nil) {
-            chartHelper?.getFormattedValue(entry.x, forAxis: nil);
+            return chartHelper?.string(forValue: entry.x, axis: nil);
         }
         
         return "";
     }
     
     open func getValue1(entry: ChartDataEntry) -> String {
+        return "";
+    }
+    
+    open func getValue2(entry: ChartDataEntry) -> String {
         var unit = "";
         if (chartHelper != nil && chartHelper?.unit != nil) {
            unit = String(chartHelper!.unit!);
         }
         
-        return String(format: "%.2f %@", entry.x, unit);
-    }
-    
-    open func getValue2(entry: ChartDataEntry) -> String {
-        return "";
+        return String(format: "%.2f %@", entry.y, unit);
     }
     
     open override func refreshContent(entry: ChartDataEntry, highlight: Highlight)

@@ -16,14 +16,20 @@
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 
-#import "SAChartHelper.h"
+import Foundation
 
-NS_ASSUME_NONNULL_BEGIN
-
-@interface SAIncrementalMeterChartHelper : SAChartHelper
-
-@property (nonatomic, weak) NSString *currency;
-@property (nonatomic, assign) double pricePerUnit;
-@end
-
-NS_ASSUME_NONNULL_END
+@objc public class SAIncrementalMeterChartMarkerView: SAChartMarkerView
+{
+    open override func getValue1(entry: ChartDataEntry) -> String {
+        if (chartHelper != nil && chartHelper is SAIncrementalMeterChartHelper) {
+            
+            let helper: SAIncrementalMeterChartHelper =
+                chartHelper as! SAIncrementalMeterChartHelper;
+            
+            let currency: String = helper.currency != nil ? String(helper.currency!) : "";
+        
+            return String(format: "%.2f %@", entry.y*helper.pricePerUnit, currency);
+        }
+        return "";
+    }
+}

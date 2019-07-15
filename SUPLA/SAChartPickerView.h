@@ -16,14 +16,13 @@
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 
-#import "SAChartHelper.h"
+#import <UIKit/UIKit.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface SAIncrementalMeterChartHelper : SAChartHelper
+@interface SAChartPickerView : UIPickerView <UIPickerViewDataSource, UIPickerViewDelegate, UIGestureRecognizerDelegate>
 
-@property (nonatomic, weak) NSString *currency;
-@property (nonatomic, assign) double pricePerUnit;
+@property
 @end
 
 NS_ASSUME_NONNULL_END

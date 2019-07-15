@@ -17,19 +17,42 @@
  */
 
 #import <Foundation/Foundation.h>
+#import "Database.h"
 @import Charts;
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface SAChartHelper : NSObject
+typedef NS_ENUM(NSUInteger, ChartType) {
+    Bar_Minutely,
+    Bar_Hourly,
+    Bar_Daily,
+    Bar_Monthly,
+    Bar_Yearly,
+    Bar_Comparsion_MinMin,
+    Bar_Comparsion_HourHour,
+    Bar_Comparsion_DayDay,
+    Bar_Comparsion_MonthMonth,
+    Bar_Comparsion_YearYear,
+    Pie_HourRank,
+    Pie_WeekdayRank,
+    Pie_MonthRank,
+    Pie_PhaseRank
+};
 
-- (NSString *) getFormattedValue:(double) value forAxis:(nullable ChartAxisBase*)axis;
+@interface SAChartHelper : NSObject <IChartAxisValueFormatter>
+
+- (NSDateFormatter *) dateFormatterForCurrentChartType;
+- (NSString *) stringForValue:(double)value axis:(nullable ChartAxisBase *)axis;
 - (BarChartDataSet *) newBarDataSetWithEntries:(NSArray *)entries;
 - (id<IChartMarker>) getMarker;
+- (GroupingDepth) getGroupungDepthForCurrentChartType;
 - (void) load;
 
 @property (nonatomic, weak) CombinedChartView *combinedChart;
 @property (nonatomic, weak) PieChartView *pieChart;
+@property (nonatomic) ChartType chartType;
+@property (nonatomic, weak) NSDate *dateFrom;
+@property (nonatomic, weak) NSDate *dateTo;
 @property (nonatomic, weak) NSString *unit;
 @property (nonatomic) int channelId;
 @end

@@ -23,7 +23,7 @@
 @implementation SAElectricityChartHelper
 
 - (NSArray *)getData {
-    return [SAApp.DB getElectricityMeasurementsForChannelId:self.channelId];
+    return [SAApp.DB getElectricityMeasurementsForChannelId:self.channelId dateFrom:self.dateFrom dateTo:self.dateTo groupingDepth:[self getGroupungDepthForCurrentChartType]];
 }
 
 - (NSNumber *)doubleValueForKey:(NSString *)key item:(NSDictionary *)i {
@@ -31,7 +31,7 @@
     return result == nil ? [NSNumber numberWithDouble:0.0] : result;
 }
 
--(void) addBarEntryTo:(NSMutableArray*) entries index:(int)idx time:(double)time item:(id) item {
+-(void) addBarEntryTo:(NSMutableArray*) entries index:(int)idx item:(id)item {
     if (![item isKindOfClass:[NSDictionary class]]) {
         return;
     }

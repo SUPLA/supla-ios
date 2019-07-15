@@ -16,14 +16,29 @@
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 
-#import "SAChartHelper.h"
+#import "SATextField.h"
 
-NS_ASSUME_NONNULL_BEGIN
+@implementation SATextField {
+    UIPickerView *_pickerView;
+}
 
-@interface SAIncrementalMeterChartHelper : SAChartHelper
+-(UIPickerView*)pickerView {
+    return _pickerView;
+}
 
-@property (nonatomic, weak) NSString *currency;
-@property (nonatomic, assign) double pricePerUnit;
+-(void)setPickerView:(UIPickerView *)pickerView {
+    if (pickerView != nil) {
+        self.delegate = self;
+    }
+}
+
+- (BOOL)canPerformAction:(SEL)action withSender:(id)sender
+{
+    return NO;
+}
+
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
+    return textField != self;
+}
+
 @end
-
-NS_ASSUME_NONNULL_END

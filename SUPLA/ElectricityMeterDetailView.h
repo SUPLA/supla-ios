@@ -18,6 +18,8 @@
 
 #import "DetailView.h"
 #import "SADownloadElectricityMeasurements.h"
+#import "SAChartPickerView.h"
+#import "SATextField.h"
 @import Charts;
 
 NS_ASSUME_NONNULL_BEGIN
@@ -88,6 +90,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet CombinedChartView *combinedChart;
 @property (weak, nonatomic) IBOutlet PieChartView *pieChart;
 @property (weak, nonatomic) IBOutlet UILabel *lPreloader;
+@property (weak, nonatomic) IBOutlet SATextField *chartTypeFilter;
+
 @end
 
 NS_ASSUME_NONNULL_END

@@ -30,10 +30,14 @@
 @synthesize combinedChart;
 @synthesize pieChart;
 @synthesize unit;
+@synthesize chartType;
+@synthesize dateFrom;
+@synthesize dateTo;
 
 -(id)init {
     if (self = [super init]) {
         _minTimestamp = 0;
+        chartType = Bar_Monthly;
     }
     return self;
 }
@@ -43,7 +47,55 @@
     return nil;
 }
 
-- (NSString *) getFormattedValue:(double) value forAxis:(nullable ChartAxisBase*)axis {
+-(NSDateFormatter *) dateFormatterForCurrentChartType {
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    
+    switch(chartType) {
+        case Bar_Hourly:
+        case Bar_Comparsion_HourHour:
+            [dateFormatter setDateFormat:@"YYYY-MM-dd HH"];
+            break;
+        case Bar_Daily:
+        case Bar_Comparsion_DayDay:
+            [dateFormatter setDateFormat:@"YYYY-MM-dd"];
+            break;
+        case Bar_Monthly:
+        case Bar_Comparsion_MonthMonth:
+            [dateFormatter setDateFormat:@"YYYY LLLL"];
+            break;
+        case Bar_Yearly:
+        case Bar_Comparsion_YearYear:
+            [dateFormatter setDateFormat:@"YYYY"];
+            break;
+        default:
+            [dateFormatter setDateFormat:@"YYYY-MM-dd HH:mm"];
+            break;
+    }
+    
+  
+    return dateFormatter;
+}
+
+- (GroupingDepth) getGroupungDepthForCurrentChartType {
+    switch(chartType) {
+        case Bar_Hourly:
+        case Bar_Comparsion_HourHour:
+            return gdHourly;
+        case Bar_Daily:
+        case Bar_Comparsion_DayDay:
+            return gdDaily;
+        case Bar_Monthly:
+        case Bar_Comparsion_MonthMonth:
+            return gdMonthly;
+        case Bar_Yearly:
+        case Bar_Comparsion_YearYear:
+            return gdYearly;
+        default:
+            return gdMinutely;
+    }
+}
+
+- (NSString *)stringForValue:(double)value axis:(ChartAxisBase *)axis {
     return @"";
 }
 
@@ -63,7 +115,7 @@
     return 0;
 }
 
--(void) addBarEntryTo:(NSMutableArray*) entries index:(int)idx time:(double)time item:(id)item {
+-(void) addBarEntryTo:(NSMutableArray*) entries index:(int)idx time:(double)time timestamp:(long)timestamp item:(id)item {
     ABSTRACT_METHOD_EXCEPTION;
 }
 
@@ -132,6 +184,7 @@
     }
     
     self.combinedChart.hidden = NO;
+    [self.combinedChart.xAxis setValueFormatter:self];
     self.combinedChart.xAxis.labelCount = 3;
     self.combinedChart.leftAxis.drawLabelsEnabled = NO;
     self.combinedChart.legend.enabled = NO;
@@ -157,7 +210,7 @@
                 _minTimestamp = time;
             }
             
-            [self addBarEntryTo:barEntries index:a time:time / 600.0 item:item];
+            [self addBarEntryTo:barEntries index:a time:time / 600.0 timestamp:time item:item];
         }
     }
     
@@ -181,5 +234,7 @@
 -(void) load {
     [self loadCombinedChart];
 }
+
+
 
 @end
