@@ -17,10 +17,31 @@
  */
 
 #import <UIKit/UIKit.h>
+#import "SAChartHelper.h"
 NS_ASSUME_NONNULL_BEGIN
 
-@interface SATextField : UITextField <UITextFieldDelegate>
-@property (weak, nonatomic) UIPickerView *pickerView;
+typedef NS_ENUM(NSUInteger, ChartFilterFieldType) {
+    TypeFilter,
+    DateRangeFilter,
+};
+
+typedef NS_ENUM(NSUInteger, DateRange) {
+    Last24hours,
+    Last7days,
+    Last30days,
+    Last90days,
+    AllAvailableHistory
+};
+
+#define DateRangeMax AllAvailableHistory
+
+@interface SAChartFilterField : UITextField <UITextFieldDelegate, UIGestureRecognizerDelegate, UIPickerViewDataSource, UIPickerViewDelegate>
+
++ (NSString *)stringRepresentationOfDateRange:(DateRange)dateRange;
+
+@property (assign, nonatomic) ChartType chartType;
+@property (assign, nonatomic) DateRange dateRange;
+@property (assign, nonatomic) ChartFilterFieldType filterType;
 @end
 
 NS_ASSUME_NONNULL_END

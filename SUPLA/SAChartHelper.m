@@ -231,6 +231,41 @@
     
 }
 
++ (NSString *)stringRepresentationOfChartType:(ChartType)ct {
+    switch(ct) {
+        case Bar_Minutely:
+            return NSLocalizedString(@"Minutes", nil);
+        case Bar_Hourly:
+            return NSLocalizedString(@"Hours", nil);
+        case Bar_Daily:
+            return NSLocalizedString(@"Days", nil);
+        case Bar_Monthly:
+            return NSLocalizedString(@"Months", nil);
+        case Bar_Yearly:
+            return NSLocalizedString(@"Years", nil);
+        case Bar_Comparsion_MinMin:
+            return NSLocalizedString(@"Minute to minute comparison", nil);
+        case Bar_Comparsion_HourHour:
+            return NSLocalizedString(@"Hour to hour comparison", nil);
+        case Bar_Comparsion_DayDay:
+            return NSLocalizedString(@"Day to day comparison", nil);
+        case Bar_Comparsion_MonthMonth:
+            return NSLocalizedString(@"Month to month comparison", nil);
+        case Bar_Comparsion_YearYear:
+            return NSLocalizedString(@"Year to year comparison", nil);
+        case Pie_HourRank:
+            return NSLocalizedString(@"Ranking of hours", nil);
+        case Pie_WeekdayRank:
+            return NSLocalizedString(@"Ranking of weekdays", nil);
+        case Pie_MonthRank:
+            return  NSLocalizedString(@"Ranking of months", nil);
+        case Pie_PhaseRank:
+            return NSLocalizedString(@"Consumption according to phases", nil);
+    }
+    
+    return @"";
+}
+
 -(void) load {
     [self loadCombinedChart];
 }

@@ -97,3 +97,23 @@
 "Electricity Meter" = "Licznik energii elektrycznej";
 "Water Meter" = "Licznik wody";
 "Gas Meter" = "Licznik gazu";
+
+"Minutes" = "Minuty";
+"Hours" = "Godziny";
+"Days" = "Dni";
+"Months" = "Miesiące";
+"Years" = "Lata";
+"Minute to minute comparison" = "Porównanie minuta do minuty";
+"Hour to hour comparison" = "Porównanie godzina do godziny";
+"Day to day comparison" = "Porównanie dzień do dnia";
+"Month to month comparison" = "Porównanie miesiąc do miesiąca";
+"Year to year comparison" = "Porównanie rok do roku";
+"Ranking of hours" = "Ranking godzin";
+"Ranking of weekdays" = "Ranking dni tygodnia";
+"Ranking of months" = "Ranking miesięcy";
+"Consumption according to phases" = "Zużycie wg. faz";
+"Last 24 hours" = "Ostatnie 24 godziny";
+"Last 7 days" = "Ostatnie 7 dni";
+"Last 30 days" = "Ostatnie 30 dni";
+"Last 90 days" = "Ostatnie 90 dni";
+"All available history" = "Cała dostępna historia";

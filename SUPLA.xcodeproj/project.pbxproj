@@ -12,8 +12,7 @@
 		013D1C6322CE75A3000C0784 /* SAElectricityChartHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 013D1C6222CE75A3000C0784 /* SAElectricityChartHelper.m */; };
 		013D73A522DCAB4400E3515A /* SAIncrementalMeterChartMarkerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 013D73A422DCAB4400E3515A /* SAIncrementalMeterChartMarkerView.swift */; };
 		013D73A722DCAEF400E3515A /* SAIncrementalMeterChartMarkerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 013D73A622DCAEF400E3515A /* SAIncrementalMeterChartMarkerView.xib */; };
-		013D73AA22DCFC6800E3515A /* SAChartPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 013D73A922DCFC6800E3515A /* SAChartPickerView.m */; };
-		013D73B022DD105400E3515A /* SATextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 013D73AF22DD105400E3515A /* SATextField.m */; };
+		013D73B022DD105400E3515A /* SAChartFilterField.m in Sources */ = {isa = PBXBuildFile; fileRef = 013D73AF22DD105400E3515A /* SAChartFilterField.m */; };
 		018E67CF22C8CA0A00FF1427 /* SADownloadElectricityMeasurements.m in Sources */ = {isa = PBXBuildFile; fileRef = 018E67CE22C8CA0A00FF1427 /* SADownloadElectricityMeasurements.m */; };
 		01BDAC7522C518DE00915646 /* SARestApiClientTask.m in Sources */ = {isa = PBXBuildFile; fileRef = 01BDAC7422C518DE00915646 /* SARestApiClientTask.m */; };
 		01BDAC7822C5200600915646 /* SAOAuthToken.m in Sources */ = {isa = PBXBuildFile; fileRef = 01BDAC7722C5200600915646 /* SAOAuthToken.m */; };
@@ -296,10 +295,8 @@
 		013D1C6222CE75A3000C0784 /* SAElectricityChartHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SAElectricityChartHelper.m; sourceTree = "<group>"; };
 		013D73A422DCAB4400E3515A /* SAIncrementalMeterChartMarkerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SAIncrementalMeterChartMarkerView.swift; sourceTree = "<group>"; };
 		013D73A622DCAEF400E3515A /* SAIncrementalMeterChartMarkerView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SAIncrementalMeterChartMarkerView.xib; sourceTree = "<group>"; };
-		013D73A822DCFC6800E3515A /* SAChartPickerView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SAChartPickerView.h; sourceTree = "<group>"; };
-		013D73A922DCFC6800E3515A /* SAChartPickerView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SAChartPickerView.m; sourceTree = "<group>"; };
-		013D73AE22DD105400E3515A /* SATextField.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SATextField.h; sourceTree = "<group>"; };
-		013D73AF22DD105400E3515A /* SATextField.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SATextField.m; sourceTree = "<group>"; };
+		013D73AE22DD105400E3515A /* SAChartFilterField.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SAChartFilterField.h; sourceTree = "<group>"; };
+		013D73AF22DD105400E3515A /* SAChartFilterField.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SAChartFilterField.m; sourceTree = "<group>"; };
 		018E67CD22C8CA0A00FF1427 /* SADownloadElectricityMeasurements.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SADownloadElectricityMeasurements.h; sourceTree = "<group>"; };
 		018E67CE22C8CA0A00FF1427 /* SADownloadElectricityMeasurements.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SADownloadElectricityMeasurements.m; sourceTree = "<group>"; };
 		01B216CF22AECB2F004E0596 /* SUPLA 3.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "SUPLA 3.xcdatamodel"; sourceTree = "<group>"; };
@@ -718,6 +715,10 @@
 		013D1C5A22CE4751000C0784 /* charts */ = {
 			isa = PBXGroup;
 			children = (
+				013D73AE22DD105400E3515A /* SAChartFilterField.h */,
+				013D73AF22DD105400E3515A /* SAChartFilterField.m */,
+				013D73A622DCAEF400E3515A /* SAIncrementalMeterChartMarkerView.xib */,
+				01D5E0C922DB8F0A00FBE1DC /* SAChartMarkerView.xib */,
 				01D5E0C622DB7FAE00FBE1DC /* SUPLA-Bridging-Header.h */,
 				013D1C5B22CE47D5000C0784 /* SAChartHelper.h */,
 				013D1C5C22CE47D5000C0784 /* SAChartHelper.m */,
@@ -727,8 +728,6 @@
 				013D1C6222CE75A3000C0784 /* SAElectricityChartHelper.m */,
 				01D5E0C722DB7FAF00FBE1DC /* SAChartMarkerView.swift */,
 				013D73A422DCAB4400E3515A /* SAIncrementalMeterChartMarkerView.swift */,
-				013D73A822DCFC6800E3515A /* SAChartPickerView.h */,
-				013D73A922DCFC6800E3515A /* SAChartPickerView.m */,
 			);
 			name = charts;
 			sourceTree = "<group>";
@@ -1120,7 +1119,6 @@
 		40A675851BA1BEBF004A51C4 /* UI */ = {
 			isa = PBXGroup;
 			children = (
-				01D5E0C922DB8F0A00FBE1DC /* SAChartMarkerView.xib */,
 				40844D811FB0DDB000432AA0 /* SettingsVC.xib */,
 				40C9E4FB1F2B841400753796 /* SAColorListPicker.h */,
 				40C9E4FC1F2B841400753796 /* SAColorListPicker.m */,
@@ -1176,9 +1174,6 @@
 				4077ACE220A21BB100BD2216 /* CreateAccountVC.xib */,
 				40B610CA20C7E263002B762A /* SAUIChannelStatus.h */,
 				40B610CB20C7E263002B762A /* SAUIChannelStatus.m */,
-				013D73A622DCAEF400E3515A /* SAIncrementalMeterChartMarkerView.xib */,
-				013D73AE22DD105400E3515A /* SATextField.h */,
-				013D73AF22DD105400E3515A /* SATextField.m */,
 			);
 			name = UI;
 			sourceTree = "<group>";
@@ -1596,7 +1591,7 @@
 				01EE9BBB22BA50D90029A142 /* SAChannelValueBase+CoreDataClass.m in Sources */,
 				40F7301120C19BA600167C2D /* SAColorListItem+CoreDataProperties.m in Sources */,
 				01D0616E22C294D90043C947 /* ElectricityMeterDetailView.m in Sources */,
-				013D73B022DD105400E3515A /* SATextField.m in Sources */,
+				013D73B022DD105400E3515A /* SAChartFilterField.m in Sources */,
 				40C7BA7920C047CF00ACEE42 /* SAChannelGroup+CoreDataProperties.m in Sources */,
 				40D69DEE1BB574FE00937769 /* Database.m in Sources */,
 				408034E51BC84A89007666E7 /* NavigationController.m in Sources */,
@@ -1621,7 +1616,6 @@
 				40BBA35D20AC6E220054CD20 /* SAChannelGroupRelation+CoreDataProperties.m in Sources */,
 				40C7BA8720C0492500ACEE42 /* SAChannelBase+CoreDataClass.m in Sources */,
 				40E8BE8A1FC06A5600FB2FE6 /* XPathQuery.m in Sources */,
-				013D73AA22DCFC6800E3515A /* SAChartPickerView.m in Sources */,
 				01EE9BBC22BA50D90029A142 /* SAChannelValueBase+CoreDataProperties.m in Sources */,
 				01C792FA22B7FB610020A900 /* SAChannelExtendedValue+CoreDataClass.m in Sources */,
 				40A6757F1BA1A5B6004A51C4 /* SuplaApp.m in Sources */,

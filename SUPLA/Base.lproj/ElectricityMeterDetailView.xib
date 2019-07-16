@@ -12,7 +12,7 @@
         <array key="OpenSans-Regular.ttf">
             <string>OpenSans</string>
         </array>
-        <array key="Quicksand-Light.ttf">
+        <array key="Quicksand-Regular.ttf">
             <string>Quicksand-Regular</string>
         </array>
     </customFonts>
@@ -30,13 +30,27 @@
                             <rect key="frame" x="0.0" y="0.0" width="300" height="261"/>
                             <subviews>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NAr-uo-LMR" userLabel="vFilters">
-                                    <rect key="frame" x="0.0" y="0.0" width="300" height="50"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="300" height="62"/>
                                     <subviews>
-                                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Ala ma kota" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="btZ-qJ-HXI" customClass="SATextField">
+                                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Minutes" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="btZ-qJ-HXI" customClass="SAChartFilterField">
                                             <rect key="frame" x="0.0" y="0.0" width="300" height="30"/>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                            <color key="textColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="30" id="S8b-gB-EWW"/>
+                                            </constraints>
+                                            <nil key="textColor"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                            <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardAppearance="light" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no"/>
+                                        </textField>
+                                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Last 24 hours" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="pvG-5N-Xhd" customClass="SAChartFilterField">
+                                            <rect key="frame" x="0.0" y="32" width="300" height="30"/>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="30" id="YKw-7s-mfO"/>
+                                            </constraints>
+                                            <nil key="textColor"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                             <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardAppearance="light" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no"/>
                                         </textField>
@@ -44,20 +58,23 @@
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <constraints>
                                         <constraint firstItem="btZ-qJ-HXI" firstAttribute="leading" secondItem="NAr-uo-LMR" secondAttribute="leading" id="0ID-LA-cKo"/>
+                                        <constraint firstAttribute="height" constant="62" id="Cfb-BK-96S"/>
+                                        <constraint firstAttribute="trailing" secondItem="pvG-5N-Xhd" secondAttribute="trailing" id="OwZ-1x-R1R"/>
                                         <constraint firstAttribute="trailing" secondItem="btZ-qJ-HXI" secondAttribute="trailing" id="Smq-hX-Kkf"/>
                                         <constraint firstItem="btZ-qJ-HXI" firstAttribute="top" secondItem="NAr-uo-LMR" secondAttribute="top" id="dq3-Rp-Q9K"/>
-                                        <constraint firstAttribute="height" constant="50" id="rjI-yG-B72"/>
+                                        <constraint firstItem="pvG-5N-Xhd" firstAttribute="top" secondItem="btZ-qJ-HXI" secondAttribute="bottom" constant="2" id="dux-Py-5Ep"/>
+                                        <constraint firstItem="pvG-5N-Xhd" firstAttribute="leading" secondItem="NAr-uo-LMR" secondAttribute="leading" id="nDy-KL-Nj7"/>
                                     </constraints>
                                 </view>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="irI-Gs-GJs" userLabel="vChartContainer">
-                                    <rect key="frame" x="0.0" y="50" width="300" height="211"/>
+                                    <rect key="frame" x="0.0" y="67" width="300" height="194"/>
                                     <subviews>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Q7j-4f-xav" customClass="PieChartView" customModule="Charts">
-                                            <rect key="frame" x="0.0" y="0.0" width="300" height="211"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="300" height="194"/>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </view>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Dpv-OP-VGS" customClass="CombinedChartView" customModule="Charts">
-                                            <rect key="frame" x="0.0" y="0.0" width="300" height="211"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="300" height="194"/>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </view>
                                     </subviews>
@@ -77,12 +94,12 @@
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
                                 <constraint firstAttribute="bottom" secondItem="irI-Gs-GJs" secondAttribute="bottom" id="48q-RM-kiO"/>
-                                <constraint firstItem="irI-Gs-GJs" firstAttribute="top" secondItem="NAr-uo-LMR" secondAttribute="bottom" id="94E-cm-fzK"/>
                                 <constraint firstAttribute="trailing" secondItem="irI-Gs-GJs" secondAttribute="trailing" id="CGk-z1-6HU"/>
                                 <constraint firstItem="NAr-uo-LMR" firstAttribute="top" secondItem="WP8-xn-lei" secondAttribute="top" id="T8S-LO-GVN"/>
                                 <constraint firstItem="NAr-uo-LMR" firstAttribute="leading" secondItem="WP8-xn-lei" secondAttribute="leading" id="UQV-5I-bcv"/>
                                 <constraint firstItem="irI-Gs-GJs" firstAttribute="leading" secondItem="WP8-xn-lei" secondAttribute="leading" id="YQj-es-ORY"/>
                                 <constraint firstAttribute="trailing" secondItem="NAr-uo-LMR" secondAttribute="trailing" id="dAX-Vd-SSU"/>
+                                <constraint firstItem="irI-Gs-GJs" firstAttribute="top" secondItem="NAr-uo-LMR" secondAttribute="bottom" constant="5" id="pJ0-2i-bRU"/>
                             </constraints>
                         </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KE1-vg-Yeo" userLabel="vPhases">
@@ -469,49 +486,49 @@
                             <rect key="frame" x="130" y="-8" width="170" height="150"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Forward active Energy" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Kfn-dN-K0a">
-                                    <rect key="frame" x="0.0" y="0.0" width="170" height="12.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="170" height="10.5"/>
                                     <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="9"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="09,001 kWh" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="xZr-Dg-scJ">
-                                    <rect key="frame" x="0.0" y="12.5" width="170" height="30"/>
+                                    <rect key="frame" x="0.0" y="10.5" width="170" height="26"/>
                                     <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="22"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Consumption in the current month" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="psK-hZ-nQF">
-                                    <rect key="frame" x="0.0" y="42.5" width="170" height="12.5"/>
+                                    <rect key="frame" x="0.0" y="36.5" width="170" height="10.5"/>
                                     <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="9"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="01,0001 kWh" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="8" translatesAutoresizingMaskIntoConstraints="NO" id="zf2-II-RLR">
-                                    <rect key="frame" x="0.0" y="55" width="170" height="20.5"/>
+                                    <rect key="frame" x="0.0" y="47" width="170" height="17.5"/>
                                     <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="15"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="The cost in the current month" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BZV-5X-lZ7">
-                                    <rect key="frame" x="0.0" y="75.5" width="170" height="12.5"/>
+                                    <rect key="frame" x="0.0" y="64.5" width="170" height="10.5"/>
                                     <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="9"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10 EUR" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v3P-DR-NxZ">
-                                    <rect key="frame" x="0.0" y="88" width="170" height="19.5"/>
+                                    <rect key="frame" x="0.0" y="75" width="170" height="16.5"/>
                                     <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="14"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Total cost" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qz5-1q-e4C">
-                                    <rect key="frame" x="0.0" y="107.5" width="170" height="12.5"/>
+                                    <rect key="frame" x="0.0" y="91.5" width="170" height="10.5"/>
                                     <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="9"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10 EUR" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="37U-Zx-YA3">
-                                    <rect key="frame" x="0.0" y="120" width="170" height="16.5"/>
+                                    <rect key="frame" x="0.0" y="102" width="170" height="14"/>
                                     <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="12"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
@@ -636,8 +653,8 @@
                 <outlet property="cReverseReactiveEnergyValueTop" destination="G6o-rb-Cr4" id="fQW-kS-zXR"/>
                 <outlet property="cVoltageTop" destination="YcG-6h-VMF" id="auG-k2-OGb"/>
                 <outlet property="cVoltageValueTop" destination="Rus-im-Kru" id="bmz-j2-uSU"/>
-                <outlet property="chartTypeFilter" destination="btZ-qJ-HXI" id="AUI-ya-Egd"/>
                 <outlet property="combinedChart" destination="Dpv-OP-VGS" id="Ns8-hf-6BI"/>
+                <outlet property="ftDateRangeFilter" destination="pvG-5N-Xhd" id="3zJ-QD-slh"/>
                 <outlet property="lActivePower" destination="vFK-4R-JvR" id="a20-ON-oyb"/>
                 <outlet property="lActivePowerValue" destination="pzM-3T-vDD" id="77t-Hs-3Kt"/>
                 <outlet property="lApparentPower" destination="el3-yj-vIH" id="O8s-eZ-CqM"/>
@@ -669,6 +686,7 @@
                 <outlet property="lVoltage" destination="YDN-T2-eyC" id="KNO-Jz-O4v"/>
                 <outlet property="lVoltageValue" destination="N6X-By-Rip" id="5xM-wg-xSU"/>
                 <outlet property="pieChart" destination="Q7j-4f-xav" id="V26-Vi-WEM"/>
+                <outlet property="tfChartTypeFilter" destination="btZ-qJ-HXI" id="AUI-ya-Egd"/>
                 <outlet property="vCharts" destination="WP8-xn-lei" id="qMg-sQ-CuV"/>
                 <outlet property="vContent" destination="wXI-rX-Ghy" id="TjV-94-xBc"/>
                 <outlet property="vPhases" destination="KE1-vg-Yeo" id="ges-vY-7bQ"/>

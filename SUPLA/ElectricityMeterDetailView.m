@@ -37,10 +37,7 @@
     _chartHelper.combinedChart = self.combinedChart;
     _chartHelper.pieChart = self.pieChart;
     _chartHelper.unit = @"kWh";
-    
-    SAChartPickerView *pv = [[SAChartPickerView alloc] init];
-    pv.showsSelectionIndicator = YES;
-    _chartTypeFilter.inputView = pv;
+    _ftDateRangeFilter.filterType = DateRangeFilter;
 }
 
 - (void)setLabel:(UILabel*)label Visible:(BOOL)visible withConstraint:(NSLayoutConstraint*)cns {
@@ -259,7 +256,7 @@
 }
 
 - (void)chartsHidden:(BOOL)hidden {
-    [_chartTypeFilter resignFirstResponder];
+    [_tfChartTypeFilter resignFirstResponder];
     
     if (hidden) {
         self.vPhases.hidden = NO;
@@ -300,7 +297,7 @@
 -(void)onDetailHide {
     [super onDetailHide];
     
-    [_chartTypeFilter resignFirstResponder];
+    [_tfChartTypeFilter resignFirstResponder];
     
     if (_taskTimer) {
         [_taskTimer invalidate];
@@ -382,7 +379,5 @@
 -(void) onRestApiTask: (SARestApiClientTask*)task progressUpdate:(float)progress {
     //NSLog(@"onRestApiTaskProgressUpdate %f", progress);
 }
-
-
 
 @end
