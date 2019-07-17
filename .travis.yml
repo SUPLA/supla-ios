@@ -1,7 +1,7 @@
 language: objective-c
 osx_image: xcode11
 xcode_project: SUPLA.xcodeproj
-xcode_scheme: SUPLATests
+xcode_scheme: SUPLA
 xcode_destination: platform=iOS Simulator,OS=11.3,name=iPhone X
 
 before_install:
