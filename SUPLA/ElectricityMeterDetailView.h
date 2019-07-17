@@ -23,7 +23,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface SAElectricityMeterDetailView : SADetailView <SARestApiClientTaskDelegate>
+@interface SAElectricityMeterDetailView : SADetailView <SARestApiClientTaskDelegate, SAChartFilterFieldDelegate>
 @property (weak, nonatomic) IBOutlet UILabel *lTotalForwardActiveEnergy;
 @property (weak, nonatomic) IBOutlet UILabel *lCurrentConsumption;
 @property (weak, nonatomic) IBOutlet UILabel *lCurrentCost;

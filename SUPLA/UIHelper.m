@@ -98,6 +98,14 @@
     return [UIColor colorWithRed:1.00 green:0.82 blue:0.57 alpha:1.0];
 }
 
++(nonnull UIColor*)chartValuePositive {
+    return [UIColor colorWithRed:0.91 green:0.30 blue:0.24 alpha:1.0];
+}
+
++(nonnull UIColor*)chartValueNegative {
+    return [UIColor colorWithRed:0.18 green:0.80 blue:0.44 alpha:1.0];
+}
+
 @end
 
 @implementation SAUIHelper {

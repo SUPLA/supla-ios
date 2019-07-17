@@ -46,6 +46,8 @@
 +(nonnull UIColor*)phase1Color;
 +(nonnull UIColor*)phase2Color;
 +(nonnull UIColor*)phase3Color;
++(nonnull UIColor*)chartValuePositive;
++(nonnull UIColor*)chartValueNegative;
 
 @end
 

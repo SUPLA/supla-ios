@@ -47,6 +47,19 @@
     return nil;
 }
 
+-(BOOL)isComparsionChartType {
+    switch (chartType) {
+        case Bar_Comparsion_MinMin:
+        case Bar_Comparsion_HourHour:
+        case Bar_Comparsion_DayDay:
+        case Bar_Comparsion_MonthMonth:
+        case Bar_Comparsion_YearYear:
+            return YES;
+        default:
+            return NO;
+    }
+}
+
 -(NSDateFormatter *) dateFormatterForCurrentChartType {
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     
@@ -154,8 +167,8 @@
     }
 }
 
-- (BarChartDataSet *) newBarDataSetWithEntries:(NSArray *)entries {
-    BarChartDataSet *result = [[BarChartDataSet alloc] initWithEntries:entries label:@""];
+- (SABarChartDataSet *) newBarDataSetWithEntries:(NSArray *)entries {
+    SABarChartDataSet *result = [[SABarChartDataSet alloc] initWithEntries:entries label:@""];
     result.drawValuesEnabled = NO;
     return result;
 }
@@ -214,10 +227,31 @@
         }
     }
     
+    
+    
     CombinedChartData *chartData = [[CombinedChartData alloc] init];
     
+    if (barEntries.count > 0 && [self isComparsionChartType]) {
+        for(NSUInteger a=barEntries.count-1;a>0;a--) {
+            BarChartDataEntry *e1 = [barEntries objectAtIndex:a];
+            BarChartDataEntry *e2 = [barEntries objectAtIndex:a-1];
+            e1.yValues = @[[NSNumber numberWithDouble:e1.y-e2.y]];
+        }
+        
+        [barEntries removeObjectAtIndex:0];
+    }
+    
     if (barEntries.count > 0) {
-        BarChartDataSet *barDataSet = [self newBarDataSetWithEntries:barEntries];
+        SABarChartDataSet *barDataSet = [self newBarDataSetWithEntries:barEntries];
+        
+
+        if ([self isComparsionChartType]) {
+            barDataSet.colorDependsOnTheValue = YES;
+            
+            [barDataSet resetColors];
+            barDataSet.colors = @[[UIColor chartValuePositive],
+                                  [UIColor chartValueNegative]];
+        }
         
         BarChartData *barData = [[BarChartData alloc] initWithDataSet:barDataSet];
         chartData.barData = barData;

@@ -40,12 +40,12 @@ typedef NS_ENUM(NSUInteger, ChartType) {
 };
 
 #define ChartTypeMax Pie_PhaseRank
-
+@class SABarChartDataSet;
 @interface SAChartHelper : NSObject <IChartAxisValueFormatter>
 
 - (NSDateFormatter *) dateFormatterForCurrentChartType;
 - (NSString *) stringForValue:(double)value axis:(nullable ChartAxisBase *)axis;
-- (BarChartDataSet *) newBarDataSetWithEntries:(NSArray *)entries;
+- (SABarChartDataSet *) newBarDataSetWithEntries:(NSArray *)entries;
 - (id<IChartMarker>) getMarker;
 - (GroupingDepth) getGroupungDepthForCurrentChartType;
 + (NSString *)stringRepresentationOfChartType:(ChartType)ct;

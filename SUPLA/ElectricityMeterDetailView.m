@@ -38,6 +38,8 @@
     _chartHelper.pieChart = self.pieChart;
     _chartHelper.unit = @"kWh";
     _tfChartTypeFilter.dateRangeFilterField = _ftDateRangeFilter;
+    _tfChartTypeFilter.ff_delegate = self;
+    _ftDateRangeFilter.ff_delegate = self;
 }
 
 - (void)setLabel:(UILabel*)label Visible:(BOOL)visible withConstraint:(NSLayoutConstraint*)cns {
@@ -269,16 +271,23 @@
     }
 }
 
+- (void)loadChart {
+    _chartHelper.chartType = _tfChartTypeFilter.chartType;
+    _chartHelper.dateFrom = _tfChartTypeFilter.dateRangeFilterField.dateFrom;
+    [_chartHelper load];
+}
+
 - (IBAction)chartBtnTouch:(id)sender {
     [self chartsHidden:self.vPhases.hidden];
     
     if (!self.vCharts.hidden) {
-        [_chartHelper load];
+        [self loadChart];
     }
 }
 
 -(void)onDetailShow {
     [super onDetailShow];
+    _tfChartTypeFilter.chartType = Bar_Minutely;
     [self chartsHidden:YES];
     [self setPreloaderHidden:YES];
     
@@ -378,6 +387,10 @@
 
 -(void) onRestApiTask: (SARestApiClientTask*)task progressUpdate:(float)progress {
     //NSLog(@"onRestApiTaskProgressUpdate %f", progress);
+}
+
+-(void) onFilterChanged: (SAChartFilterField*)filterField {
+    [self loadChart];
 }
 
 @end

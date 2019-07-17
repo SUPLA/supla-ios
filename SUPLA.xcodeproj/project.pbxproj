@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		012F722C22DF3E2300E5F72E /* ChartFilterFieldTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 012F722822DF3CF000E5F72E /* ChartFilterFieldTests.m */; };
+		012F722E22DFA0BE00E5F72E /* SABarChartDataSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 012F722D22DFA0BE00E5F72E /* SABarChartDataSet.swift */; };
 		013D1C5D22CE47D5000C0784 /* SAChartHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 013D1C5C22CE47D5000C0784 /* SAChartHelper.m */; };
 		013D1C6022CE757F000C0784 /* SAIncrementalMeterChartHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 013D1C5F22CE757F000C0784 /* SAIncrementalMeterChartHelper.m */; };
 		013D1C6322CE75A3000C0784 /* SAElectricityChartHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 013D1C6222CE75A3000C0784 /* SAElectricityChartHelper.m */; };
@@ -289,6 +290,7 @@
 
 /* Begin PBXFileReference section */
 		012F722822DF3CF000E5F72E /* ChartFilterFieldTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChartFilterFieldTests.m; sourceTree = "<group>"; };
+		012F722D22DFA0BE00E5F72E /* SABarChartDataSet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SABarChartDataSet.swift; sourceTree = "<group>"; };
 		013D1C5B22CE47D5000C0784 /* SAChartHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SAChartHelper.h; sourceTree = "<group>"; };
 		013D1C5C22CE47D5000C0784 /* SAChartHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SAChartHelper.m; sourceTree = "<group>"; };
 		013D1C5E22CE757F000C0784 /* SAIncrementalMeterChartHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SAIncrementalMeterChartHelper.h; sourceTree = "<group>"; };
@@ -730,6 +732,7 @@
 				013D1C6222CE75A3000C0784 /* SAElectricityChartHelper.m */,
 				01D5E0C722DB7FAF00FBE1DC /* SAChartMarkerView.swift */,
 				013D73A422DCAB4400E3515A /* SAIncrementalMeterChartMarkerView.swift */,
+				012F722D22DFA0BE00E5F72E /* SABarChartDataSet.swift */,
 			);
 			name = charts;
 			sourceTree = "<group>";
@@ -1608,6 +1611,7 @@
 				40B610CC20C7E263002B762A /* SAUIChannelStatus.m in Sources */,
 				4077ACE320A21BB100BD2216 /* CreateAccountVC.m in Sources */,
 				401CA1C81BA067DB00117AF4 /* MainVC.m in Sources */,
+				012F722E22DFA0BE00E5F72E /* SABarChartDataSet.swift in Sources */,
 				408034C51BC83D1A007666E7 /* MGSwipeTableCell.m in Sources */,
 				018E67CF22C8CA0A00FF1427 /* SADownloadElectricityMeasurements.m in Sources */,
 				403EB1141FBDF47F00AD6460 /* AddWizardVC.m in Sources */,

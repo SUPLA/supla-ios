@@ -19,6 +19,7 @@
 #import "SAElectricityChartHelper.h"
 #import "SuplaApp.h"
 #import "UIHelper.h"
+#import "SUPLA-Swift.h"
 
 @implementation SAElectricityChartHelper
 
@@ -44,8 +45,8 @@
     
 }
 
-- (BarChartDataSet *) newBarDataSetWithEntries:(NSArray *)entries {
-    BarChartDataSet *result = [super newBarDataSetWithEntries:entries];
+- (SABarChartDataSet *) newBarDataSetWithEntries:(NSArray *)entries {
+    SABarChartDataSet *result = [super newBarDataSetWithEntries:entries];
     if (result) {
         result.stackLabels = @[NSLocalizedString(@"Phase 1", nil),
                                NSLocalizedString(@"Phase 2", nil),
