@@ -35,13 +35,27 @@ typedef NS_ENUM(NSUInteger, DateRange) {
 
 #define DateRangeMax AllAvailableHistory
 
+@class SAChartFilterField;
+@protocol SAChartFilterFieldDelegate <NSObject>
+
+@required
+-(void) onFilterChanged: (SAChartFilterField*)filterField;
+
+@end
+
 @interface SAChartFilterField : UITextField <UITextFieldDelegate, UIGestureRecognizerDelegate, UIPickerViewDataSource, UIPickerViewDelegate>
 
+- (void)leaveOneElement:(int)el;
+- (BOOL)excludeElements:(nullable NSArray*)el;
+- (NSUInteger)count;
 + (NSString *)stringRepresentationOfDateRange:(DateRange)dateRange;
 
 @property (assign, nonatomic) ChartType chartType;
 @property (assign, nonatomic) DateRange dateRange;
+@property (readonly, nullable) NSDate *dateFrom;
 @property (assign, nonatomic) ChartFilterFieldType filterType;
+@property (nonatomic, weak) SAChartFilterField *dateRangeFilterField;
+@property (nonatomic, weak) id<SAChartFilterFieldDelegate> ff_delegate;
 @end
 
 NS_ASSUME_NONNULL_END

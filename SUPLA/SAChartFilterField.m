@@ -23,9 +23,13 @@
     ChartType _chartType;
     DateRange _dateRange;
     UIPickerView *_pickerView;
+    SAChartFilterField *_dateRangeFilterField;
     ChartFilterFieldType _filterType;
+    NSArray *_items;
     BOOL _initialized;
 }
+
+@synthesize ff_delegate;
 
 -(void) _init {
     if (!_initialized) {
@@ -46,7 +50,7 @@
         tapgr.delegate = self;
         [_pickerView addGestureRecognizer:tapgr];
         
-        self.chartType = TypeFilter;
+        self.filterType = TypeFilter;
     }
 }
 
@@ -80,8 +84,11 @@
 }
 
 -(void)textFieldDidBeginEditing:(UITextField *)textField {
-    [_pickerView reloadComponent:0];
-    [_pickerView selectRow:_filterType == TypeFilter ? self.chartType : self.dateRange inComponent:0 animated:NO];
+    int i = [self findIndexForValue:_filterType == TypeFilter ? self.chartType : self.dateRange];
+    if (i > -1) {
+        [_pickerView reloadComponent:0];
+        [_pickerView selectRow:i inComponent:0 animated:NO];
+    }
 }
 
 -(BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer{
@@ -99,13 +106,19 @@
 }
 
 - (void)pickerViewTapped:(UITapGestureRecognizer *)tapRecognizer {
+    int i = [[_items objectAtIndex:[_pickerView selectedRowInComponent:0]] intValue];
+    
     if (_filterType == TypeFilter) {
-        self.chartType = [_pickerView selectedRowInComponent:0];
+        self.chartType = i;
     } else {
-        self.dateRange = [_pickerView selectedRowInComponent:0];
+        self.dateRange = i;
     }
     
     [self resignFirstResponder];
+    
+    if (self.ff_delegate!=nil) {
+        [ff_delegate onFilterChanged:self];
+    }
 }
 
 - (void)tapped:(UITapGestureRecognizer *)tapRecognizer {
@@ -119,19 +132,50 @@
 }
 
 - (NSInteger)pickerView:(nonnull UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component {
-    return (_filterType == TypeFilter ? ChartTypeMax : DateRangeMax)+1;
+    return _items != nil ? _items.count : 0;
 }
 
 - (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component {
+    NSNumber *idx = [_items objectAtIndex:row];
     return _filterType == TypeFilter
-    ? [SAChartHelper stringRepresentationOfChartType:row] : [SAChartFilterField stringRepresentationOfDateRange:row];
+         ? [SAChartHelper stringRepresentationOfChartType:[idx intValue]] : [SAChartFilterField stringRepresentationOfDateRange:[idx intValue]];
+}
+
+- (int)findIndexForValue:(int)value {
+    for(int a=0;a<_items.count;a++) {
+        if ([[_items objectAtIndex:a] intValue] == value) {
+            return a;
+        }
+    }
+    
+    return -1;
 }
 
 - (void)setChartType:(ChartType)chartType {
-    if (_filterType == TypeFilter
-        && chartType >= 0 && chartType <= ChartTypeMax) {
-        _chartType = chartType;
-        [self setText:[SAChartHelper stringRepresentationOfChartType:_chartType]];
+    if (_filterType == TypeFilter) {
+        int i = [self findIndexForValue:chartType];
+        if ( i > -1 ) {
+            _chartType = chartType;
+            [self setText:[SAChartHelper stringRepresentationOfChartType:_chartType]];
+            
+            if (_dateRangeFilterField != nil) {
+                _dateRangeFilterField.filterType = DateRangeFilter;
+                
+                switch(_chartType) {
+                    case Bar_Minutely:
+                    case Bar_Hourly:
+                    case Bar_Comparsion_MinMin:
+                    case Bar_Comparsion_HourHour:
+                        break;
+                    case Bar_Daily:
+                    case Bar_Comparsion_DayDay:
+                        [_dateRangeFilterField excludeElements:@[[NSNumber numberWithInt:Last24hours]]];
+                        break;
+                    default:
+                        [_dateRangeFilterField leaveOneElement:AllAvailableHistory];
+                }
+            }
+        }
     }
 }
 
@@ -140,10 +184,12 @@
 }
 
 - (void)setDateRange:(DateRange)dateRange {
-    if (_filterType == DateRangeFilter
-        && dateRange >= 0 && dateRange <= DateRangeMax) {
-        _dateRange = dateRange;
-        [self setText:[SAChartFilterField stringRepresentationOfDateRange:dateRange]];
+    if (_filterType == DateRangeFilter) {
+        int i = [self findIndexForValue:dateRange];
+        if ( i > -1 ) {
+            _dateRange = dateRange;
+            [self setText:[SAChartFilterField stringRepresentationOfDateRange:dateRange]];
+        }
     }
 }
 
@@ -168,7 +214,20 @@
 
 }
 
+- (void)assignItemsArrayWithMaximumValue:(int)max {
+    NSMutableArray *items = [[NSMutableArray alloc] init];
+    for(int a=0;a<=max;a++) {
+        NSNumber *v = [NSNumber numberWithInt:a];
+        [items addObject:v];
+    }
+    
+    _items = items;
+}
+
 -(void)setFilterType:(ChartFilterFieldType)filterType {
+    
+    [self assignItemsArrayWithMaximumValue:filterType == TypeFilter ? ChartTypeMax : DateRangeMax];
+    
     _filterType = filterType;
     self.dateRange = self.dateRange;
     self.chartType = self.chartType;
@@ -176,6 +235,111 @@
 
 -(ChartFilterFieldType)filterType {
     return _filterType;
+}
+
+-(void)setDateRangeFilterField:(SAChartFilterField *)dateRangeFilterField {
+    _dateRangeFilterField = dateRangeFilterField;
+    
+    if (dateRangeFilterField!=nil) {
+        self.filterType = TypeFilter;
+    }
+}
+
+-(SAChartFilterField*)dateRangeFilterField {
+    return _dateRangeFilterField;
+}
+
+- (void)setToFirst {
+    if (_filterType == TypeFilter) {
+        self.chartType = [[_items objectAtIndex:0] intValue];
+    } else if (_filterType == DateRangeFilter) {
+        self.dateRange = [[_items objectAtIndex:0] intValue];
+    }
+}
+
+- (BOOL)excludeElements:(NSArray*)el {
+    
+    if (el==nil) {
+        return NO;
+    }
+    
+    BOOL excluded = NO;
+    NSMutableArray *mitems = [NSMutableArray arrayWithArray:_items];
+    
+    for(int a=0;a<el.count;a++) {
+        NSNumber *n = [el objectAtIndex:a];
+        if ([n isKindOfClass:[NSNumber class]]) {
+            int i = [n intValue];
+            
+            for(int b=0;b<mitems.count;b++) {
+                if ([[mitems objectAtIndex:b] intValue] == i) {
+                    
+                    if (mitems.count > 1) {
+                        [mitems removeObjectAtIndex:b];
+                        excluded = YES;
+                        b--;
+                    } else {
+                        break;
+                    }
+                    
+                }
+            }
+        }
+    }
+        
+        
+    if (excluded) {
+        _items = mitems;
+        [self setToFirst];
+    }
+    
+    return excluded;
+}
+
+- (void)leaveOneElement:(int)el {
+    if (el < 0) {
+        return;
+    }
+    
+    if ((_filterType == TypeFilter && el <= ChartTypeMax)
+        || (_filterType == DateRangeFilter && el <= DateRangeMax)) {
+        _items = @[[NSNumber numberWithInt:el]];
+    }
+    
+    [self setToFirst];
+}
+
+- (NSUInteger)count {
+    return _items ? _items.count : 0;
+}
+
+- (NSDate *)dateFrom {
+    
+    if (self.filterType != DateRangeFilter) {
+        return nil;
+    }
+    
+    NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier: NSCalendarIdentifierGregorian];
+    NSDateComponents *components = [[NSDateComponents alloc] init];
+    
+    switch(self.dateRange) {
+        case Last24hours:
+            [components setHour: -24];
+            break;
+        case Last7days:
+            [components setDay: -7];
+            break;
+        case Last30days:
+            [components setDay: -30];
+            break;
+        case Last90days:
+            [components setDay: -90];
+            break;
+        case AllAvailableHistory:
+            return nil;
+    }
+    
+    return [calendar dateByAddingComponents:components toDate:[NSDate date] options:0];
 }
 
 @end
