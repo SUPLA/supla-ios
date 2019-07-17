@@ -37,7 +37,7 @@
     _chartHelper.combinedChart = self.combinedChart;
     _chartHelper.pieChart = self.pieChart;
     _chartHelper.unit = @"kWh";
-    _ftDateRangeFilter.filterType = DateRangeFilter;
+    _tfChartTypeFilter.dateRangeFilterField = _ftDateRangeFilter;
 }
 
 - (void)setLabel:(UILabel*)label Visible:(BOOL)visible withConstraint:(NSLayoutConstraint*)cns {

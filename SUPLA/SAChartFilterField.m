@@ -174,6 +174,8 @@
                     default:
                         [_dateRangeFilterField leaveOneElement:AllAvailableHistory];
                 }
+                
+                [_dateRangeFilterField goToToFirst];
             }
         }
     }
@@ -249,7 +251,7 @@
     return _dateRangeFilterField;
 }
 
-- (void)setToFirst {
+- (void)goToToFirst {
     if (_filterType == TypeFilter) {
         self.chartType = [[_items objectAtIndex:0] intValue];
     } else if (_filterType == DateRangeFilter) {
@@ -290,7 +292,7 @@
         
     if (excluded) {
         _items = mitems;
-        [self setToFirst];
+        [self goToToFirst];
     }
     
     return excluded;
@@ -306,7 +308,7 @@
         _items = @[[NSNumber numberWithInt:el]];
     }
     
-    [self setToFirst];
+    [self goToToFirst];
 }
 
 - (NSUInteger)count {

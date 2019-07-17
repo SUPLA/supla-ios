@@ -49,6 +49,7 @@ typedef NS_ENUM(NSUInteger, DateRange) {
 - (BOOL)excludeElements:(nullable NSArray*)el;
 - (NSUInteger)count;
 + (NSString *)stringRepresentationOfDateRange:(DateRange)dateRange;
+- (void)goToToFirst;
 
 @property (assign, nonatomic) ChartType chartType;
 @property (assign, nonatomic) DateRange dateRange;
