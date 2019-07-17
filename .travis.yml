@@ -2,3 +2,8 @@ language: objective-c
 xcode_project: SUPLA.xcodeproj
 xcode_scheme: SUPLA
 xcode_destination: platform=iOS Simulator,OS=11.3,name=iPhone X
+
+notifications:
+  slack:
+    rooms:
+      - supla:dauFpwhgEGeyy9ERzqOYeJyY#github
