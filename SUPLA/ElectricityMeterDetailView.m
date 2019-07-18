@@ -327,6 +327,7 @@
 }
 
 -(void)onTaskTimer:(NSTimer *)timer {
+    NSLog(@"timer");
     [self runDownloadTask];
 }
 
@@ -388,8 +389,16 @@
 
 -(void) onRestApiTaskFinished: (SARestApiClientTask*)task {
     //NSLog(@"onRestApiTaskFinished");
+    if (_task != nil && task == _task) {
+        _task.delegate = nil;
+        _task = nil;
+    }
+
     [self setPreloaderHidden:YES];
     [self updateView];
+    [self loadChartWithAnimation:NO];
+    
+    NSLog(@"Loaded!");
 }
 
 -(void) onRestApiTask: (SARestApiClientTask*)task progressUpdate:(float)progress {
