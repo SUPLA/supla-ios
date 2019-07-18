@@ -23,7 +23,6 @@
 @implementation SAChartHelper {
     long _minTimestamp;
     NSNumber *_downloadProgress;
-    NSString *_unit;
 }
 
 @synthesize channelId;
@@ -186,12 +185,12 @@
         description = [NSString stringWithFormat:@"%@ ", description];
     }
     
-    if (_unit) {
+    if (unit) {
         if (description.length > 0) {
             description = [NSString stringWithFormat:@"%@ | ", description];
         }
         
-        description = [NSString stringWithFormat:@"%@%@", description, _unit];
+        description = [NSString stringWithFormat:@"%@%@", description, unit];
     }
     
     if (self.combinedChart) {
