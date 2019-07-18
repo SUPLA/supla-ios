@@ -48,8 +48,13 @@ typedef NS_ENUM(NSUInteger, ChartType) {
 - (SABarChartDataSet *) newBarDataSetWithEntries:(NSArray *)entries;
 - (id<IChartMarker>) getMarker;
 - (GroupingDepth) getGroupungDepthForCurrentChartType;
+- (GroupBy) getGroupByForCurrentChartType;
 + (NSString *)stringRepresentationOfChartType:(ChartType)ct;
+-(BOOL)isPieChartType;
+-(BOOL)isComparsionChartType;
+
 - (void) load;
+- (void) animate;
 
 @property (nonatomic, weak) CombinedChartView *combinedChart;
 @property (nonatomic, weak) PieChartView *pieChart;

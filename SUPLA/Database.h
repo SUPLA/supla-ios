@@ -22,11 +22,22 @@
 #import "proto.h"
 
 typedef NS_ENUM(NSUInteger, GroupingDepth) {
+    gdNone,
     gdMinutely,
     gdHourly,
     gdDaily,
     gdMonthly,
     gdYearly
+};
+
+typedef NS_ENUM(NSUInteger, GroupBy) {
+    gbNone,
+    gbMinute,
+    gbHour,
+    gbDay,
+    gbWeekday,
+    gbMonth,
+    gbYear,
 };
 
 @class _SALocation;
@@ -75,7 +86,7 @@ typedef NS_ENUM(NSUInteger, GroupingDepth) {
 -(NSUInteger) getElectricityMeasurementItemCountWithoutComplementForChannelId:(int)channel_id;
 -(BOOL) electricityMeterMeasurementsStartsWithTheCurrentMonthForChannelId:(int)channel_id;
 -(double) sumForwardedActiveEnergyForChannelId:(int)channel_id monthLimitOffset:(int) offset;
--(NSArray *) getElectricityMeasurementsForChannelId:(int)channel_id dateFrom:(NSDate *)dateFrom dateTo:(NSDate *)dateTo groupingDepth:(GroupingDepth)gd;
+-(NSArray *) getElectricityMeasurementsForChannelId:(int)channel_id dateFrom:(NSDate *)dateFrom dateTo:(NSDate *)dateTo groupBy:(GroupBy)gb groupingDepth:(GroupingDepth)gd;
 @end
 
 

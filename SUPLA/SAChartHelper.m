@@ -60,6 +60,18 @@
     }
 }
 
+-(BOOL)isPieChartType {
+    switch (chartType) {
+        case Pie_HourRank:
+        case Pie_WeekdayRank:
+        case Pie_MonthRank:
+        case Pie_PhaseRank:
+            return YES;
+        default:
+            return NO;
+    }
+}
+
 -(NSDateFormatter *) dateFormatterForCurrentChartType {
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     
@@ -80,6 +92,15 @@
         case Bar_Comparsion_YearYear:
             [dateFormatter setDateFormat:@"YYYY"];
             break;
+        case Pie_HourRank:
+            [dateFormatter setDateFormat:@"HH"];
+            break;
+        case Pie_WeekdayRank:
+            [dateFormatter setDateFormat:@"EEE"];
+            break;
+        case Pie_MonthRank:
+            [dateFormatter setDateFormat:@"LLL"];
+            break;
         default:
             [dateFormatter setDateFormat:@"YYYY-MM-dd HH:mm"];
             break;
@@ -91,6 +112,9 @@
 
 - (GroupingDepth) getGroupungDepthForCurrentChartType {
     switch(chartType) {
+        case Bar_Minutely:
+        case Bar_Comparsion_MinMin:
+            return gdMinutely;
         case Bar_Hourly:
         case Bar_Comparsion_HourHour:
             return gdHourly;
@@ -104,7 +128,20 @@
         case Bar_Comparsion_YearYear:
             return gdYearly;
         default:
-            return gdMinutely;
+            return gdNone;
+    }
+}
+
+- (GroupBy) getGroupByForCurrentChartType {
+    switch(chartType) {
+        case Pie_HourRank:
+            return gbHour;
+        case Pie_WeekdayRank:
+            return gbWeekday;
+        case Pie_MonthRank:
+            return gbMonth;
+        default:
+            return gbNone;
     }
 }
 
@@ -129,9 +166,10 @@
 }
 
 -(void) addBarEntryTo:(NSMutableArray*) entries index:(int)idx time:(double)time timestamp:(long)timestamp item:(id)item {
-    ABSTRACT_METHOD_EXCEPTION;
 }
 
+-(void) addPieEntryTo:(NSMutableArray*) entries timestamp:(long)timestamp item:(id)item {
+}
 
 - (void) updateDescription {
 
@@ -249,8 +287,8 @@
             barDataSet.colorDependsOnTheValue = YES;
             
             [barDataSet resetColors];
-            barDataSet.colors = @[[UIColor chartValuePositive],
-                                  [UIColor chartValueNegative]];
+            barDataSet.colors = @[[UIColor chartValuePositiveColor],
+                                  [UIColor chartValueNegativeColor]];
         }
         
         BarChartData *barData = [[BarChartData alloc] initWithDataSet:barDataSet];
@@ -263,6 +301,67 @@
         combinedChart.data = chartData;
     }
     
+}
+
+- (void) loadPieChart {
+    
+    if (combinedChart != nil) {
+        combinedChart.hidden = YES;
+    }
+    
+    if (pieChart == nil) {
+        return;
+    }
+    
+    pieChart.hidden = NO;
+    pieChart.data = nil;
+    [self.pieChart clear];
+    
+    
+    [self updateDescription];
+    
+    NSMutableArray *pieEntries = [[NSMutableArray alloc] init];
+    NSArray *data = [self getData];
+    
+    if (data && data.count > 0) {
+        NSUInteger n = chartType == Pie_PhaseRank ? 1 : data.count;
+        for(int a=0;a<n;a++) {
+            id item = [data objectAtIndex:a];
+            if (![item isKindOfClass:[NSDictionary class]]
+                && ![item isKindOfClass:[SAMeasurementItem class]]) {
+                break;
+            }
+            
+            
+            [self addPieEntryTo:pieEntries timestamp:[self getTimestamp:item] item:item];
+        }
+    }
+
+    [pieEntries sortUsingComparator:^NSComparisonResult(id a, id b) {
+        double d1 = ((PieChartDataEntry*)a).value;
+        double d2 = ((PieChartDataEntry*)b).value;
+                     
+        if (d1 == d2) {
+            return NSOrderedSame;
+        }
+        
+        if (d1 > d2) {
+            return NSOrderedAscending;
+        }
+        
+        return NSOrderedDescending;
+    }];
+    
+    [self setMarkerForChart:pieChart];
+
+    if (pieEntries.count) {
+        PieChartDataSet *pieDataSet = [[PieChartDataSet alloc] initWithEntries:pieEntries label:@""];
+        pieDataSet.colors = [ChartColorTemplates material];
+        
+        PieChartData *chartData = [[PieChartData alloc] initWithDataSets:@[pieDataSet]];
+        pieChart.data = chartData;
+    }
+
 }
 
 + (NSString *)stringRepresentationOfChartType:(ChartType)ct {
@@ -301,9 +400,21 @@
 }
 
 -(void) load {
-    [self loadCombinedChart];
+    if ([self isPieChartType]) {
+        [self loadPieChart];
+    } else {
+       [self loadCombinedChart];
+    }
+    
 }
 
-
+-(void) animate {
+    if (combinedChart != nil
+        && !combinedChart.hidden) {
+        [combinedChart animateWithYAxisDuration:1];
+    } else if (pieChart != nil && !pieChart.hidden) {
+        [pieChart spinWithDuration:0.5 fromAngle:0 toAngle:-360.0 easingOption:ChartEasingOptionEaseInQuad];
+    }
+}
 
 @end

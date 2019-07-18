@@ -46,8 +46,9 @@
 +(nonnull UIColor*)phase1Color;
 +(nonnull UIColor*)phase2Color;
 +(nonnull UIColor*)phase3Color;
-+(nonnull UIColor*)chartValuePositive;
-+(nonnull UIColor*)chartValueNegative;
++(nonnull UIColor*)chartValuePositiveColor;
++(nonnull UIColor*)chartValueNegativeColor;
++(nonnull UIColor*)chartFilterPickerViewColor;
 
 @end
 

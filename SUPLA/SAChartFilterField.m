@@ -18,6 +18,7 @@
 
 #import "SAChartFilterField.h"
 #import "SAChartHelper.h"
+#import "UIHelper.h"
 
 @implementation SAChartFilterField {
     ChartType _chartType;
@@ -40,6 +41,7 @@
         _pickerView = [[UIPickerView alloc] init];
         _pickerView.showsSelectionIndicator = YES;
         _pickerView.delegate = self;
+        _pickerView.backgroundColor = [UIColor chartFilterPickerViewColor];
         self.inputView = _pickerView;
    
         UITapGestureRecognizer *tapgr = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapped:)];
@@ -51,6 +53,7 @@
         [_pickerView addGestureRecognizer:tapgr];
         
         self.filterType = TypeFilter;
+        
     }
 }
 

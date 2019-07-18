@@ -858,7 +858,32 @@
     return dc1.month == dc2.month && dc1.year == dc2.year;
 }
 
--(NSArray *) getIncrementalMeasurementsForChannelId:(int)channel_id fields:(NSArray*)fields entityName:(NSString*)en dateFrom:(NSDate *)dateFrom dateTo:(NSDate *)dateTo groupingDepth:(GroupingDepth)gd {
+- (void) addGroupByProperty:(GroupBy)gb toMutableArray:(NSMutableArray*)props entity:(NSEntityDescription *)entity {
+    switch (gb) {
+        case gbMinute:
+            [props addObject:[entity.propertiesByName objectForKey:@"minute"]];
+            break;
+        case gbHour:
+            [props addObject:[entity.propertiesByName objectForKey:@"hour"]];
+            break;
+        case gbDay:
+            [props addObject:[entity.propertiesByName objectForKey:@"day"]];
+            break;
+        case gbWeekday:
+            [props addObject:[entity.propertiesByName objectForKey:@"weekday"]];
+            break;
+        case gbMonth:
+            [props addObject:[entity.propertiesByName objectForKey:@"month"]];
+            break;
+        case gbYear:
+            [props addObject:[entity.propertiesByName objectForKey:@"year"]];
+            break;
+        default:
+            break;
+    }
+}
+
+-(NSArray *) getIncrementalMeasurementsForChannelId:(int)channel_id fields:(NSArray*)fields entityName:(NSString*)en dateFrom:(NSDate *)dateFrom dateTo:(NSDate *)dateTo  groupBy:(GroupBy)gb groupingDepth:(GroupingDepth)gd {
     
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
     
@@ -888,21 +913,27 @@
     fetchRequest.propertiesToFetch = propertiesToFetch;
     NSMutableArray *propertiesToGroupBy = [[NSMutableArray alloc] init];
     
-    switch (gd) {
-        case gdMinutely:
-            [propertiesToGroupBy addObject:[entity.propertiesByName objectForKey:@"minute"]];
-        case gdHourly:
-            [propertiesToGroupBy addObject:[entity.propertiesByName objectForKey:@"hour"]];
-        case gdDaily:
-            [propertiesToGroupBy addObject:[entity.propertiesByName objectForKey:@"day"]];
-        case gdMonthly:
-            [propertiesToGroupBy addObject:[entity.propertiesByName objectForKey:@"month"]];
-        case gdYearly:
-            [propertiesToGroupBy addObject:[entity.propertiesByName objectForKey:@"year"]];
-            break;
+    if (gd != gdNone) {
+        switch (gd) {
+            case gdMinutely:
+                [self addGroupByProperty:gbMinute toMutableArray:propertiesToGroupBy entity:entity];
+            case gdHourly:
+                [self addGroupByProperty:gbHour toMutableArray:propertiesToGroupBy entity:entity];
+            case gdDaily:
+                [self addGroupByProperty:gbDay toMutableArray:propertiesToGroupBy entity:entity];
+            case gdMonthly:
+                [self addGroupByProperty:gbMonth toMutableArray:propertiesToGroupBy entity:entity];
+            case gdYearly:
+                [self addGroupByProperty:gbYear toMutableArray:propertiesToGroupBy entity:entity];
+                break;
+            default:
+                break;
+        }
+    } else if (gb != gbNone) {
+        [self addGroupByProperty:gb toMutableArray:propertiesToGroupBy entity:entity];
     }
-    
-    fetchRequest.propertiesToGroupBy = propertiesToGroupBy;
+
+    fetchRequest.propertiesToGroupBy = propertiesToGroupBy.count ? propertiesToGroupBy : nil;
     
     fetchRequest.predicate = [NSPredicate predicateWithFormat:@"channel_id = %i AND calculated = YES AND (%@ = nil OR date >= %@) AND (%@ = nil OR date <= %@)", channel_id, dateFrom, dateFrom, dateTo, dateTo];
     
@@ -984,8 +1015,8 @@
     return result;
 }
 
--(NSArray *) getElectricityMeasurementsForChannelId:(int)channel_id dateFrom:(NSDate *)dateFrom dateTo:(NSDate *)dateTo groupingDepth:(GroupingDepth)gd {
-    return [self getIncrementalMeasurementsForChannelId:channel_id fields:@[@"phase1_fae",@"phase2_fae",@"phase3_fae"] entityName:@"SAElectricityMeasurementItem" dateFrom:dateFrom dateTo:dateTo groupingDepth:gd];
+-(NSArray *) getElectricityMeasurementsForChannelId:(int)channel_id dateFrom:(NSDate *)dateFrom dateTo:(NSDate *)dateTo groupBy:(GroupBy)gb groupingDepth:(GroupingDepth)gd {
+    return [self getIncrementalMeasurementsForChannelId:channel_id fields:@[@"phase1_fae",@"phase2_fae",@"phase3_fae"] entityName:@"SAElectricityMeasurementItem" dateFrom:dateFrom dateTo:dateTo groupBy:gb groupingDepth:gd];
 }
 
 @end

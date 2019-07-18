@@ -23,8 +23,20 @@
 
 @implementation SAElectricityChartHelper
 
+@synthesize totalForwardActiveEnergyPhase1;
+@synthesize totalForwardActiveEnergyPhase2;
+@synthesize totalForwardActiveEnergyPhase3;
+
 - (NSArray *)getData {
-    return [SAApp.DB getElectricityMeasurementsForChannelId:self.channelId dateFrom:self.dateFrom dateTo:self.dateTo groupingDepth:[self getGroupungDepthForCurrentChartType]];
+    NSDate *dateFrom = self.dateFrom;
+    NSDate *dateTo = self.dateTo;
+    
+    if ([self isPieChartType]) {
+        dateFrom = nil;
+        dateTo = nil;
+    }
+    
+    return [SAApp.DB getElectricityMeasurementsForChannelId:self.channelId dateFrom:dateFrom dateTo:dateTo groupBy:[self getGroupByForCurrentChartType] groupingDepth:[self getGroupungDepthForCurrentChartType]];
 }
 
 - (NSNumber *)doubleValueForKey:(NSString *)key item:(NSDictionary *)i {
@@ -58,5 +70,29 @@
     }
     return result;
 }
+
+-(void) addPieEntryTo:(NSMutableArray*) entries timestamp:(long)timestamp item:(id)item {
+    
+    if (![item isKindOfClass:[NSDictionary class]]) {
+        return;
+    }
+    
+    if (self.chartType == Pie_PhaseRank) {
+        [entries addObject:[[PieChartDataEntry alloc] initWithValue:totalForwardActiveEnergyPhase1 label:NSLocalizedString(@"Phase 1", nil)]];
+        [entries addObject:[[PieChartDataEntry alloc] initWithValue:totalForwardActiveEnergyPhase2 label:NSLocalizedString(@"Phase 2", nil)]];
+        [entries addObject:[[PieChartDataEntry alloc] initWithValue:totalForwardActiveEnergyPhase3 label:NSLocalizedString(@"Phase 3", nil)]];
+    } else {
+        double sum = [[self doubleValueForKey:@"phase1_fae" item:item] doubleValue]
+        + [[self doubleValueForKey:@"phase2_fae" item:item] doubleValue]
+        + [[self doubleValueForKey:@"phase3_fae" item:item] doubleValue];
+        
+        NSDateFormatter *dateFormat = [self dateFormatterForCurrentChartType];
+        NSDate *date = [NSDate dateWithTimeIntervalSince1970:timestamp];
+        
+        [entries addObject:[[PieChartDataEntry alloc] initWithValue:sum label:[dateFormat stringFromDate:date]]];
+    }
+
+}
+
 
 @end

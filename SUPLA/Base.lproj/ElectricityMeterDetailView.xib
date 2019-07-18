@@ -433,11 +433,6 @@
                         <constraint firstItem="WP8-xn-lei" firstAttribute="leading" secondItem="wXI-rX-Ghy" secondAttribute="leading" id="koB-gd-TsR"/>
                         <constraint firstAttribute="trailing" secondItem="KE1-vg-Yeo" secondAttribute="trailing" id="naH-Hg-hFk"/>
                     </constraints>
-                    <variation key="default">
-                        <mask key="subviews">
-                            <exclude reference="KE1-vg-Yeo"/>
-                        </mask>
-                    </variation>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Xur-xZ-dhe" userLabel="vFooter">
                     <rect key="frame" x="10" y="425" width="300" height="40"/>
@@ -486,49 +481,49 @@
                             <rect key="frame" x="130" y="-8" width="170" height="150"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Forward active Energy" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Kfn-dN-K0a">
-                                    <rect key="frame" x="0.0" y="0.0" width="170" height="10.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="170" height="12.5"/>
                                     <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="9"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="09,001 kWh" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="xZr-Dg-scJ">
-                                    <rect key="frame" x="0.0" y="10.5" width="170" height="26"/>
+                                    <rect key="frame" x="0.0" y="12.5" width="170" height="30"/>
                                     <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="22"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Consumption in the current month" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="psK-hZ-nQF">
-                                    <rect key="frame" x="0.0" y="36.5" width="170" height="10.5"/>
+                                    <rect key="frame" x="0.0" y="42.5" width="170" height="12.5"/>
                                     <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="9"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="01,0001 kWh" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="8" translatesAutoresizingMaskIntoConstraints="NO" id="zf2-II-RLR">
-                                    <rect key="frame" x="0.0" y="47" width="170" height="17.5"/>
+                                    <rect key="frame" x="0.0" y="55" width="170" height="20.5"/>
                                     <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="15"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="The cost in the current month" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BZV-5X-lZ7">
-                                    <rect key="frame" x="0.0" y="64.5" width="170" height="10.5"/>
+                                    <rect key="frame" x="0.0" y="75.5" width="170" height="12.5"/>
                                     <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="9"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10 EUR" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v3P-DR-NxZ">
-                                    <rect key="frame" x="0.0" y="75" width="170" height="16.5"/>
+                                    <rect key="frame" x="0.0" y="88" width="170" height="19.5"/>
                                     <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="14"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Total cost" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qz5-1q-e4C">
-                                    <rect key="frame" x="0.0" y="91.5" width="170" height="10.5"/>
+                                    <rect key="frame" x="0.0" y="107.5" width="170" height="12.5"/>
                                     <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="9"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10 EUR" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="37U-Zx-YA3">
-                                    <rect key="frame" x="0.0" y="102" width="170" height="14"/>
+                                    <rect key="frame" x="0.0" y="120" width="170" height="16.5"/>
                                     <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="12"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>

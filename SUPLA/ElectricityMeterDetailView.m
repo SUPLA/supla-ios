@@ -207,6 +207,10 @@
     
         _chartHelper.pricePerUnit = emev.price_per_unit * 0.0001;
         _chartHelper.currency = [ev decodeCurrency:emev.currency];
+        
+        _chartHelper.totalForwardActiveEnergyPhase1 = emev.total_forward_active_energy[0] * 0.00001;
+        _chartHelper.totalForwardActiveEnergyPhase2 = emev.total_forward_active_energy[1] * 0.00001;
+        _chartHelper.totalForwardActiveEnergyPhase3 = emev.total_forward_active_energy[2] * 0.00001;
     }
     
     [self frequencyVisible:measured_values & EM_VAR_FREQ];
@@ -271,17 +275,20 @@
     }
 }
 
-- (void)loadChart {
+- (void)loadChartWithAnimation:(BOOL)animation {
     _chartHelper.chartType = _tfChartTypeFilter.chartType;
     _chartHelper.dateFrom = _tfChartTypeFilter.dateRangeFilterField.dateFrom;
     [_chartHelper load];
+    if (animation) {
+        [_chartHelper animate];
+    }
 }
 
 - (IBAction)chartBtnTouch:(id)sender {
     [self chartsHidden:self.vPhases.hidden];
     
     if (!self.vCharts.hidden) {
-        [self loadChart];
+        [self loadChartWithAnimation:YES];
     }
 }
 
@@ -390,7 +397,7 @@
 }
 
 -(void) onFilterChanged: (SAChartFilterField*)filterField {
-    [self loadChart];
+    [self loadChartWithAnimation:YES];
 }
 
 @end
