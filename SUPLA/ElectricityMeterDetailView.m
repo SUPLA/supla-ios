@@ -21,6 +21,10 @@
 #import "SuplaApp.h"
 #import "SAElectricityChartHelper.h"
 
+// iPhone <=5 fix.
+// Integer number as boolean method parameter does not work good in iPhone <5
+#define MVAL(val) (measured_values & val) ? YES : NO
+
 @implementation SAElectricityMeterDetailView   {
     short selectedPhase;
     NSTimer *_preloaderTimer;
@@ -213,18 +217,18 @@
         _chartHelper.totalForwardActiveEnergyPhase3 = emev.total_forward_active_energy[2] * 0.00001;
     }
     
-    [self frequencyVisible:measured_values & EM_VAR_FREQ];
-    [self voltageVisible:measured_values & EM_VAR_VOLTAGE];
-    [self currentVisible:measured_values & EM_VAR_CURRENT];
-    [self activePowerVisible:measured_values & EM_VAR_POWER_ACTIVE];
-    [self reactivePowerVisible:measured_values & EM_VAR_POWER_REACTIVE];
-    [self apparentPowerVisible:measured_values & EM_VAR_POWER_APPARENT];
-    [self powerFactorVisible:measured_values & EM_VAR_POWER_FACTOR];
-    [self phaseAngleVisible:measured_values & EM_VAR_PHASE_ANGLE];
-    [self forwardActiveEnergyVisible:measured_values & EM_VAR_FORWARD_ACTIVE_ENERGY];
-    [self reverseActiveEnergyVisible:measured_values & EM_VAR_REVERSE_ACTIVE_ENERGY];
-    [self forwardReactiveEnergyVisible:measured_values & EM_VAR_FORWARD_REACTIVE_ENERGY];
-    [self reverseReactiveEnergyVisible:measured_values & EM_VAR_REVERSE_REACTIVE_ENERGY];
+    [self frequencyVisible:MVAL(EM_VAR_FREQ)];
+    [self voltageVisible:MVAL(EM_VAR_VOLTAGE)];
+    [self currentVisible:MVAL(EM_VAR_CURRENT)];
+    [self activePowerVisible:MVAL(EM_VAR_POWER_ACTIVE)];
+    [self reactivePowerVisible:MVAL(EM_VAR_POWER_REACTIVE)];
+    [self apparentPowerVisible:MVAL(EM_VAR_POWER_APPARENT)];
+    [self powerFactorVisible:MVAL(EM_VAR_POWER_FACTOR)];
+    [self phaseAngleVisible:MVAL(EM_VAR_PHASE_ANGLE)];
+    [self forwardActiveEnergyVisible:MVAL(EM_VAR_FORWARD_ACTIVE_ENERGY)];
+    [self reverseActiveEnergyVisible:MVAL(EM_VAR_REVERSE_ACTIVE_ENERGY)];
+    [self forwardReactiveEnergyVisible:MVAL(EM_VAR_FORWARD_REACTIVE_ENERGY)];
+    [self reverseReactiveEnergyVisible:MVAL(EM_VAR_REVERSE_REACTIVE_ENERGY)];
     
     [self.lCaption setText:[self.channelBase getChannelCaption]];
     
