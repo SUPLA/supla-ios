@@ -22,6 +22,7 @@
 
 @implementation SAChartHelper {
     long _minTimestamp;
+    NSNumber *_downloadProgress;
 }
 
 @synthesize channelId;
@@ -31,7 +32,6 @@
 @synthesize chartType;
 @synthesize dateFrom;
 @synthesize dateTo;
-@synthesize downloadProgress;
 
 -(id)init {
     if (self = [super init]) {
@@ -175,10 +175,10 @@
     NSString *description = @"";
     NSString *noData = NSLocalizedString(@"No chart data available.", nil);
     
-    if (downloadProgress != nil) {
+    if (_downloadProgress != nil) {
         description = NSLocalizedString(@"Retrieving data from the server...", nil);
-        if ([downloadProgress doubleValue] > 0) {
-            description = [NSString stringWithFormat:@"%@ %0.2f%%", description, [downloadProgress doubleValue]];
+        if ([_downloadProgress doubleValue] > 0) {
+            description = [NSString stringWithFormat:@"%@ %0.2f%%", description, [_downloadProgress doubleValue]];
         }
         
         noData = description;
@@ -196,11 +196,13 @@
     if (self.combinedChart) {
         [self.combinedChart.chartDescription setText:description];
         self.combinedChart.noDataText = noData;
+        [self.combinedChart setNeedsDisplay];
     }
     
     if (self.pieChart) {
         [self.pieChart.chartDescription setText:description];
         self.pieChart.noDataText = noData;
+        [self.pieChart setNeedsDisplay];
     }
 }
 
@@ -414,6 +416,15 @@
     } else if (pieChart != nil && !pieChart.hidden) {
         [pieChart spinWithDuration:0.5 fromAngle:0 toAngle:-360.0 easingOption:ChartEasingOptionEaseInQuad];
     }
+}
+
+-(void)setDownloadProgress:(NSNumber *)downloadProgress {
+    _downloadProgress = downloadProgress;
+    [self updateDescription];
+}
+
+-(NSNumber *)downloadProgress {
+    return _downloadProgress;
 }
 
 @end
