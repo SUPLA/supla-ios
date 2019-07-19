@@ -22,7 +22,6 @@
 
 @implementation SAChartHelper {
     long _minTimestamp;
-    NSNumber *_downloadProgress;
 }
 
 @synthesize channelId;
@@ -32,6 +31,7 @@
 @synthesize chartType;
 @synthesize dateFrom;
 @synthesize dateTo;
+@synthesize downloadProgress;
 
 -(id)init {
     if (self = [super init]) {
@@ -175,10 +175,10 @@
     NSString *description = @"";
     NSString *noData = NSLocalizedString(@"No chart data available.", nil);
     
-    if (_downloadProgress != nil) {
+    if (downloadProgress != nil) {
         description = NSLocalizedString(@"Retrieving data from the server...", nil);
-        if ([_downloadProgress doubleValue] > 0) {
-            description = [NSString stringWithFormat:@"%@ %0.2f%%", description, [_downloadProgress doubleValue]];
+        if ([downloadProgress doubleValue] > 0) {
+            description = [NSString stringWithFormat:@"%@ %0.2f%%", description, [downloadProgress doubleValue]];
         }
         
         noData = description;

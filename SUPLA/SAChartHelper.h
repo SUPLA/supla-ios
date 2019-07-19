@@ -62,6 +62,7 @@ typedef NS_ENUM(NSUInteger, ChartType) {
 @property (nonatomic, weak) NSDate *dateFrom;
 @property (nonatomic, weak) NSDate *dateTo;
 @property (nonatomic, weak) NSString *unit;
+@property (nonatomic, weak) NSNumber *downloadProgress;
 @property (nonatomic) int channelId;
 @end
 

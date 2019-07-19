@@ -327,7 +327,6 @@
 }
 
 -(void)onTaskTimer:(NSTimer *)timer {
-    NSLog(@"timer");
     [self runDownloadTask];
 }
 
@@ -396,13 +395,12 @@
 
     [self setPreloaderHidden:YES];
     [self updateView];
+    _chartHelper.downloadProgress = nil;
     [self loadChartWithAnimation:NO];
-    
-    NSLog(@"Loaded!");
 }
 
 -(void) onRestApiTask: (SARestApiClientTask*)task progressUpdate:(float)progress {
-    //NSLog(@"onRestApiTaskProgressUpdate %f", progress);
+    _chartHelper.downloadProgress = [NSNumber numberWithFloat:progress];
 }
 
 -(void) onFilterChanged: (SAChartFilterField*)filterField {
