@@ -17,7 +17,7 @@
  */
 
 #import <Foundation/Foundation.h>
-#import "SAMeasurementItem.h"
+#import "SAMeasurementItem+CoreDataClass.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
