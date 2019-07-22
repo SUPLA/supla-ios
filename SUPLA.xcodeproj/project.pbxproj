@@ -44,6 +44,16 @@
 		01EE9BB022BA4B050029A142 /* SAChannelExtendedValue+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 01EE9BAF22BA4B050029A142 /* SAChannelExtendedValue+CoreDataProperties.m */; };
 		01EE9BBB22BA50D90029A142 /* SAChannelValueBase+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 01EE9BB722BA50D90029A142 /* SAChannelValueBase+CoreDataClass.m */; };
 		01EE9BBC22BA50D90029A142 /* SAChannelValueBase+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 01EE9BB822BA50D90029A142 /* SAChannelValueBase+CoreDataProperties.m */; };
+		01F8856922E5E79100D18373 /* SATempHumidityMeasurementItem+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 01F8855C22E5E79000D18373 /* SATempHumidityMeasurementItem+CoreDataClass.m */; };
+		01F8856A22E5E79100D18373 /* SATempHumidityMeasurementItem+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 01F8856322E5E79100D18373 /* SATempHumidityMeasurementItem+CoreDataProperties.m */; };
+		01F8856B22E5E79100D18373 /* SAThermostatMeasurementItem+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 01F8855522E5E79000D18373 /* SAThermostatMeasurementItem+CoreDataProperties.m */; };
+		01F8856C22E5E79100D18373 /* SAUserIcon+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 01F8855E22E5E79000D18373 /* SAUserIcon+CoreDataClass.m */; };
+		01F8856D22E5E79100D18373 /* SAUserIcon+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 01F8855B22E5E79000D18373 /* SAUserIcon+CoreDataProperties.m */; };
+		01F8856E22E5E79100D18373 /* SAImpulseCounterMeasurementItem+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 01F8855922E5E79000D18373 /* SAImpulseCounterMeasurementItem+CoreDataProperties.m */; };
+		01F8856F22E5E79100D18373 /* SAThermostatMeasurementItem+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 01F8856822E5E79100D18373 /* SAThermostatMeasurementItem+CoreDataClass.m */; };
+		01F8857022E5E79100D18373 /* SATemperatureMeasurementItem+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 01F8855D22E5E79000D18373 /* SATemperatureMeasurementItem+CoreDataProperties.m */; };
+		01F8857122E5E79100D18373 /* SATemperatureMeasurementItem+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 01F8856022E5E79100D18373 /* SATemperatureMeasurementItem+CoreDataClass.m */; };
+		01F8857222E5E79100D18373 /* SAImpulseCounterMeasurementItem+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 01F8855622E5E79000D18373 /* SAImpulseCounterMeasurementItem+CoreDataClass.m */; };
 		4004DE8D1DC4E270009C34E3 /* SAColorBrightnessPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 4004DE8C1DC4E270009C34E3 /* SAColorBrightnessPicker.m */; };
 		4006E90A1DC62D0A00C4456D /* DetailView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4006E9091DC62D0A00C4456D /* DetailView.m */; };
 		4014ADFD1FE01ECD00297A9E /* help@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4014ADFB1FE01EC700297A9E /* help@2x.png */; };
@@ -348,6 +358,26 @@
 		01EE9BB622BA50D90029A142 /* SAChannelValueBase+CoreDataClass.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SAChannelValueBase+CoreDataClass.h"; sourceTree = "<group>"; };
 		01EE9BB722BA50D90029A142 /* SAChannelValueBase+CoreDataClass.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "SAChannelValueBase+CoreDataClass.m"; sourceTree = "<group>"; };
 		01EE9BB822BA50D90029A142 /* SAChannelValueBase+CoreDataProperties.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "SAChannelValueBase+CoreDataProperties.m"; sourceTree = "<group>"; };
+		01F8855522E5E79000D18373 /* SAThermostatMeasurementItem+CoreDataProperties.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = "SAThermostatMeasurementItem+CoreDataProperties.m"; path = "/Users/przemek/XCodeProjects/supla-ios/SUPLA/SAThermostatMeasurementItem+CoreDataProperties.m"; sourceTree = "<absolute>"; };
+		01F8855622E5E79000D18373 /* SAImpulseCounterMeasurementItem+CoreDataClass.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = "SAImpulseCounterMeasurementItem+CoreDataClass.m"; path = "/Users/przemek/XCodeProjects/supla-ios/SUPLA/SAImpulseCounterMeasurementItem+CoreDataClass.m"; sourceTree = "<absolute>"; };
+		01F8855722E5E79000D18373 /* SAImpulseCounterMeasurementItem+CoreDataProperties.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "SAImpulseCounterMeasurementItem+CoreDataProperties.h"; path = "/Users/przemek/XCodeProjects/supla-ios/SUPLA/SAImpulseCounterMeasurementItem+CoreDataProperties.h"; sourceTree = "<absolute>"; };
+		01F8855822E5E79000D18373 /* SATempHumidityMeasurementItem+CoreDataProperties.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "SATempHumidityMeasurementItem+CoreDataProperties.h"; path = "/Users/przemek/XCodeProjects/supla-ios/SUPLA/SATempHumidityMeasurementItem+CoreDataProperties.h"; sourceTree = "<absolute>"; };
+		01F8855922E5E79000D18373 /* SAImpulseCounterMeasurementItem+CoreDataProperties.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = "SAImpulseCounterMeasurementItem+CoreDataProperties.m"; path = "/Users/przemek/XCodeProjects/supla-ios/SUPLA/SAImpulseCounterMeasurementItem+CoreDataProperties.m"; sourceTree = "<absolute>"; };
+		01F8855A22E5E79000D18373 /* SATemperatureMeasurementItem+CoreDataClass.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "SATemperatureMeasurementItem+CoreDataClass.h"; path = "/Users/przemek/XCodeProjects/supla-ios/SUPLA/SATemperatureMeasurementItem+CoreDataClass.h"; sourceTree = "<absolute>"; };
+		01F8855B22E5E79000D18373 /* SAUserIcon+CoreDataProperties.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = "SAUserIcon+CoreDataProperties.m"; path = "/Users/przemek/XCodeProjects/supla-ios/SUPLA/SAUserIcon+CoreDataProperties.m"; sourceTree = "<absolute>"; };
+		01F8855C22E5E79000D18373 /* SATempHumidityMeasurementItem+CoreDataClass.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = "SATempHumidityMeasurementItem+CoreDataClass.m"; path = "/Users/przemek/XCodeProjects/supla-ios/SUPLA/SATempHumidityMeasurementItem+CoreDataClass.m"; sourceTree = "<absolute>"; };
+		01F8855D22E5E79000D18373 /* SATemperatureMeasurementItem+CoreDataProperties.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = "SATemperatureMeasurementItem+CoreDataProperties.m"; path = "/Users/przemek/XCodeProjects/supla-ios/SUPLA/SATemperatureMeasurementItem+CoreDataProperties.m"; sourceTree = "<absolute>"; };
+		01F8855E22E5E79000D18373 /* SAUserIcon+CoreDataClass.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = "SAUserIcon+CoreDataClass.m"; path = "/Users/przemek/XCodeProjects/supla-ios/SUPLA/SAUserIcon+CoreDataClass.m"; sourceTree = "<absolute>"; };
+		01F8855F22E5E79100D18373 /* SAThermostatMeasurementItem+CoreDataProperties.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "SAThermostatMeasurementItem+CoreDataProperties.h"; path = "/Users/przemek/XCodeProjects/supla-ios/SUPLA/SAThermostatMeasurementItem+CoreDataProperties.h"; sourceTree = "<absolute>"; };
+		01F8856022E5E79100D18373 /* SATemperatureMeasurementItem+CoreDataClass.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = "SATemperatureMeasurementItem+CoreDataClass.m"; path = "/Users/przemek/XCodeProjects/supla-ios/SUPLA/SATemperatureMeasurementItem+CoreDataClass.m"; sourceTree = "<absolute>"; };
+		01F8856122E5E79100D18373 /* SATempHumidityMeasurementItem+CoreDataClass.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "SATempHumidityMeasurementItem+CoreDataClass.h"; path = "/Users/przemek/XCodeProjects/supla-ios/SUPLA/SATempHumidityMeasurementItem+CoreDataClass.h"; sourceTree = "<absolute>"; };
+		01F8856222E5E79100D18373 /* SAThermostatMeasurementItem+CoreDataClass.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "SAThermostatMeasurementItem+CoreDataClass.h"; path = "/Users/przemek/XCodeProjects/supla-ios/SUPLA/SAThermostatMeasurementItem+CoreDataClass.h"; sourceTree = "<absolute>"; };
+		01F8856322E5E79100D18373 /* SATempHumidityMeasurementItem+CoreDataProperties.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = "SATempHumidityMeasurementItem+CoreDataProperties.m"; path = "/Users/przemek/XCodeProjects/supla-ios/SUPLA/SATempHumidityMeasurementItem+CoreDataProperties.m"; sourceTree = "<absolute>"; };
+		01F8856422E5E79100D18373 /* SAUserIcon+CoreDataProperties.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "SAUserIcon+CoreDataProperties.h"; path = "/Users/przemek/XCodeProjects/supla-ios/SUPLA/SAUserIcon+CoreDataProperties.h"; sourceTree = "<absolute>"; };
+		01F8856522E5E79100D18373 /* SAUserIcon+CoreDataClass.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "SAUserIcon+CoreDataClass.h"; path = "/Users/przemek/XCodeProjects/supla-ios/SUPLA/SAUserIcon+CoreDataClass.h"; sourceTree = "<absolute>"; };
+		01F8856622E5E79100D18373 /* SAImpulseCounterMeasurementItem+CoreDataClass.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "SAImpulseCounterMeasurementItem+CoreDataClass.h"; path = "/Users/przemek/XCodeProjects/supla-ios/SUPLA/SAImpulseCounterMeasurementItem+CoreDataClass.h"; sourceTree = "<absolute>"; };
+		01F8856722E5E79100D18373 /* SATemperatureMeasurementItem+CoreDataProperties.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "SATemperatureMeasurementItem+CoreDataProperties.h"; path = "/Users/przemek/XCodeProjects/supla-ios/SUPLA/SATemperatureMeasurementItem+CoreDataProperties.h"; sourceTree = "<absolute>"; };
+		01F8856822E5E79100D18373 /* SAThermostatMeasurementItem+CoreDataClass.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = "SAThermostatMeasurementItem+CoreDataClass.m"; path = "/Users/przemek/XCodeProjects/supla-ios/SUPLA/SAThermostatMeasurementItem+CoreDataClass.m"; sourceTree = "<absolute>"; };
 		01FB5D7F22CF98D200E9EA08 /* pl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pl; path = pl.lproj/ElectricityMeterDetailView.strings; sourceTree = "<group>"; };
 		4004DE8B1DC4E270009C34E3 /* SAColorBrightnessPicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SAColorBrightnessPicker.h; sourceTree = "<group>"; };
 		4004DE8C1DC4E270009C34E3 /* SAColorBrightnessPicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SAColorBrightnessPicker.m; sourceTree = "<group>"; };
@@ -1046,6 +1076,26 @@
 		407004241BB56EAC00F6187F /* DB */ = {
 			isa = PBXGroup;
 			children = (
+				01F8855F22E5E79100D18373 /* SAThermostatMeasurementItem+CoreDataProperties.h */,
+				01F8856222E5E79100D18373 /* SAThermostatMeasurementItem+CoreDataClass.h */,
+				01F8856822E5E79100D18373 /* SAThermostatMeasurementItem+CoreDataClass.m */,
+				01F8855522E5E79000D18373 /* SAThermostatMeasurementItem+CoreDataProperties.m */,
+				01F8856722E5E79100D18373 /* SATemperatureMeasurementItem+CoreDataProperties.h */,
+				01F8855A22E5E79000D18373 /* SATemperatureMeasurementItem+CoreDataClass.h */,
+				01F8856022E5E79100D18373 /* SATemperatureMeasurementItem+CoreDataClass.m */,
+				01F8855D22E5E79000D18373 /* SATemperatureMeasurementItem+CoreDataProperties.m */,
+				01F8855822E5E79000D18373 /* SATempHumidityMeasurementItem+CoreDataProperties.h */,
+				01F8856122E5E79100D18373 /* SATempHumidityMeasurementItem+CoreDataClass.h */,
+				01F8855C22E5E79000D18373 /* SATempHumidityMeasurementItem+CoreDataClass.m */,
+				01F8856322E5E79100D18373 /* SATempHumidityMeasurementItem+CoreDataProperties.m */,
+				01F8856422E5E79100D18373 /* SAUserIcon+CoreDataProperties.h */,
+				01F8856522E5E79100D18373 /* SAUserIcon+CoreDataClass.h */,
+				01F8855E22E5E79000D18373 /* SAUserIcon+CoreDataClass.m */,
+				01F8855B22E5E79000D18373 /* SAUserIcon+CoreDataProperties.m */,
+				01F8855722E5E79000D18373 /* SAImpulseCounterMeasurementItem+CoreDataProperties.h */,
+				01F8856622E5E79100D18373 /* SAImpulseCounterMeasurementItem+CoreDataClass.h */,
+				01F8855622E5E79000D18373 /* SAImpulseCounterMeasurementItem+CoreDataClass.m */,
+				01F8855922E5E79000D18373 /* SAImpulseCounterMeasurementItem+CoreDataProperties.m */,
 				01C1719522C7F55B005983E1 /* SAMeasurementItem+CoreDataProperties.h */,
 				01C1719622C7F55B005983E1 /* SAMeasurementItem+CoreDataClass.h */,
 				01C1719722C7F55B005983E1 /* SAMeasurementItem+CoreDataClass.m */,
@@ -1576,6 +1626,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				01F8857222E5E79100D18373 /* SAImpulseCounterMeasurementItem+CoreDataClass.m in Sources */,
 				40C7BA6C20C045A800ACEE42 /* SAChannelGroup+CoreDataClass.m in Sources */,
 				40C7BA5420C008DB00ACEE42 /* SAChannelGroupRelation+CoreDataClass.m in Sources */,
 				40C7BA8820C0492500ACEE42 /* SAChannelBase+CoreDataProperties.m in Sources */,
@@ -1592,11 +1643,14 @@
 				01C1719122C7F3A2005983E1 /* SAElectricityMeasurementItem+CoreDataClass.m in Sources */,
 				40C7BA7720C047CF00ACEE42 /* SAChannel+CoreDataProperties.m in Sources */,
 				40CF96DE1BC820E60030EFFF /* UIHelper.m in Sources */,
+				01F8856E22E5E79100D18373 /* SAImpulseCounterMeasurementItem+CoreDataProperties.m in Sources */,
 				01C1718F22C7F3A2005983E1 /* SAIncrementalMeasurementItem+CoreDataClass.m in Sources */,
 				01C1719A22C7F55B005983E1 /* SAMeasurementItem+CoreDataProperties.m in Sources */,
 				01EE9BBB22BA50D90029A142 /* SAChannelValueBase+CoreDataClass.m in Sources */,
 				40F7301120C19BA600167C2D /* SAColorListItem+CoreDataProperties.m in Sources */,
+				01F8856D22E5E79100D18373 /* SAUserIcon+CoreDataProperties.m in Sources */,
 				01D0616E22C294D90043C947 /* ElectricityMeterDetailView.m in Sources */,
+				01F8856C22E5E79100D18373 /* SAUserIcon+CoreDataClass.m in Sources */,
 				013D73B022DD105400E3515A /* SAChartFilterField.m in Sources */,
 				40C7BA7920C047CF00ACEE42 /* SAChannelGroup+CoreDataProperties.m in Sources */,
 				40D69DEE1BB574FE00937769 /* Database.m in Sources */,
@@ -1620,11 +1674,14 @@
 				01BDAC7522C518DE00915646 /* SARestApiClientTask.m in Sources */,
 				401CA1BF1BA067DB00117AF4 /* main.m in Sources */,
 				404E48F71FC75D0B001F6266 /* SAClassHelper.m in Sources */,
+				01F8857122E5E79100D18373 /* SATemperatureMeasurementItem+CoreDataClass.m in Sources */,
 				40BBA35D20AC6E220054CD20 /* SAChannelGroupRelation+CoreDataProperties.m in Sources */,
+				01F8856922E5E79100D18373 /* SATempHumidityMeasurementItem+CoreDataClass.m in Sources */,
 				40C7BA8720C0492500ACEE42 /* SAChannelBase+CoreDataClass.m in Sources */,
 				40E8BE8A1FC06A5600FB2FE6 /* XPathQuery.m in Sources */,
 				01EE9BBC22BA50D90029A142 /* SAChannelValueBase+CoreDataProperties.m in Sources */,
 				01C792FA22B7FB610020A900 /* SAChannelExtendedValue+CoreDataClass.m in Sources */,
+				01F8856F22E5E79100D18373 /* SAThermostatMeasurementItem+CoreDataClass.m in Sources */,
 				40A6757F1BA1A5B6004A51C4 /* SuplaApp.m in Sources */,
 				40C9E4F71F2A186A00753796 /* SARollerShutter.m in Sources */,
 				401CA1F21BA0A28A00117AF4 /* SuplaClient.m in Sources */,
@@ -1635,12 +1692,15 @@
 				013D1C6022CE757F000C0784 /* SAIncrementalMeterChartHelper.m in Sources */,
 				40C9E4FD1F2B841400753796 /* SAColorListPicker.m in Sources */,
 				013D73A522DCAB4400E3515A /* SAIncrementalMeterChartMarkerView.swift in Sources */,
+				01F8856B22E5E79100D18373 /* SAThermostatMeasurementItem+CoreDataProperties.m in Sources */,
 				40DA56901DCA1908008F05DE /* _SALocation+CoreDataProperties.m in Sources */,
+				01F8857022E5E79100D18373 /* SATemperatureMeasurementItem+CoreDataProperties.m in Sources */,
 				01D5E0C822DB7FAF00FBE1DC /* SAChartMarkerView.swift in Sources */,
 				409934B61F30EF9C003110C5 /* RSDetailView.m in Sources */,
 				01C1719022C7F3A2005983E1 /* SAIncrementalMeasurementItem+CoreDataProperties.m in Sources */,
 				01E517C622C6AD7D000FE77A /* SADownloadMeasurementLogs.m in Sources */,
 				403150FB1DC769430075D2D2 /* RGBDetailView.m in Sources */,
+				01F8856A22E5E79100D18373 /* SATempHumidityMeasurementItem+CoreDataProperties.m in Sources */,
 				40E8BE881FC06A5600FB2FE6 /* TFHpple.m in Sources */,
 				40C7BA5320C007A300ACEE42 /* SAChannelValue+CoreDataProperties.m in Sources */,
 				407D4AFF1BC6E491009A5505 /* StatusVC.m in Sources */,

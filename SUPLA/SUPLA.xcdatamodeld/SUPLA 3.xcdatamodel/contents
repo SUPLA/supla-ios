@@ -63,6 +63,10 @@
         <attribute name="phase3_rae" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="phase3_rre" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
     </entity>
+    <entity name="SAImpulseCounterMeasurementItem" representedClassName="SAImpulseCounterMeasurementItem" parentEntity="SAIncrementalMeasurementItem" syncable="YES">
+        <attribute name="calculated_value" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="counter" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+    </entity>
     <entity name="SAIncrementalMeasurementItem" representedClassName="SAIncrementalMeasurementItem" isAbstract="YES" parentEntity="SAMeasurementItem" syncable="YES">
         <attribute name="calculated" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="complement" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
@@ -99,6 +103,25 @@
             <fetchIndexElement property="date" type="Binary" order="ascending"/>
         </fetchIndex>
     </entity>
+    <entity name="SATemperatureMeasurementItem" representedClassName="SATemperatureMeasurementItem" parentEntity="SAMeasurementItem" syncable="YES">
+        <attribute name="temperature" optional="YES" attributeType="Decimal" minValueString="-273" defaultValueString="0.0" syncable="YES"/>
+    </entity>
+    <entity name="SATempHumidityMeasurementItem" representedClassName="SATempHumidityMeasurementItem" parentEntity="SAMeasurementItem" syncable="YES">
+        <attribute name="humidity" optional="YES" attributeType="Decimal" minValueString="0" maxValueString="100" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="temperature" optional="YES" attributeType="Decimal" minValueString="-273" defaultValueString="0.0" syncable="YES"/>
+    </entity>
+    <entity name="SAThermostatMeasurementItem" representedClassName="SAThermostatMeasurementItem" parentEntity="SAMeasurementItem" syncable="YES">
+        <attribute name="is_on" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="measured" optional="YES" attributeType="Decimal" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="preset" optional="YES" attributeType="Decimal" defaultValueString="0.0" syncable="YES"/>
+    </entity>
+    <entity name="SAUserIcon" representedClassName="SAUserIcon" syncable="YES">
+        <attribute name="remote_id" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="uimage1" optional="YES" attributeType="Transformable" syncable="YES"/>
+        <attribute name="uimage2" optional="YES" attributeType="Transformable" syncable="YES"/>
+        <attribute name="uimage3" optional="YES" attributeType="Transformable" syncable="YES"/>
+        <attribute name="uimage4" optional="YES" attributeType="Transformable" syncable="YES"/>
+    </entity>
     <elements>
         <element name="SAChannel" positionX="-20.5078125" positionY="10.7734375" width="128" height="150"/>
         <element name="SAChannelBase" positionX="-540" positionY="72" width="128" height="180"/>
@@ -112,5 +135,10 @@
         <element name="SAIncrementalMeasurementItem" positionX="-647.20703125" positionY="380.8671875" width="128" height="88"/>
         <element name="SALocation" positionX="-747" positionY="-54" width="128" height="88"/>
         <element name="SAMeasurementItem" positionX="-815.8125" positionY="271.2578125" width="128" height="178"/>
+        <element name="SAUserIcon" positionX="-612" positionY="99" width="128" height="120"/>
+        <element name="SAImpulseCounterMeasurementItem" positionX="-603" positionY="108" width="128" height="75"/>
+        <element name="SAThermostatMeasurementItem" positionX="-594" positionY="117" width="128" height="90"/>
+        <element name="SATemperatureMeasurementItem" positionX="-585" positionY="126" width="128" height="60"/>
+        <element name="SATempHumidityMeasurementItem" positionX="-576" positionY="135" width="128" height="75"/>
     </elements>
 </model>
