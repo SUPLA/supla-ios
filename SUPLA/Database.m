@@ -45,14 +45,32 @@
     return _managedObjectModel;
 }
 
+- (void)removeIfExists:(NSString *)dbFileName {
+    NSURL *storeURL = [[SAApp applicationDocumentsDirectory] URLByAppendingPathComponent:dbFileName];
+    
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    if ([fileManager fileExistsAtPath:[storeURL path]]) {
+        NSError *error = nil;
+        [fileManager removeItemAtURL:storeURL error:&error];
+    }
+}
+
 - (NSPersistentStoreCoordinator *)persistentStoreCoordinator {
     // The persistent store coordinator for the application. This implementation creates and return a coordinator, having added the store for the application to it.
     if (_persistentStoreCoordinator != nil) {
         return _persistentStoreCoordinator;
     }
     
+    int DBv = 5;
+    
+    [self removeIfExists:@"SUPLA_DB.sqlite"];
+    
+    for(int a=0;a<DBv;a++) {
+        [self removeIfExists:[NSString stringWithFormat:@"SUPLA_DB%i.sqlite", a]];
+    }
+    
     NSError *error = nil;
-    NSURL *storeURL = [[SAApp applicationDocumentsDirectory] URLByAppendingPathComponent:@"SUPLA_DB5.sqlite"];
+    NSURL *storeURL = [[SAApp applicationDocumentsDirectory] URLByAppendingPathComponent:[NSString stringWithFormat:@"SUPLA_DB%i.sqlite", DBv]];
     
     //NSFileManager *fileManager = [NSFileManager defaultManager];
     //[fileManager removeItemAtURL:storeURL error:&error];
