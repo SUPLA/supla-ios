@@ -1034,4 +1034,49 @@
     return [self getIncrementalMeasurementsForChannelId:channel_id fields:@[@"phase1_fae",@"phase2_fae",@"phase3_fae"] entityName:@"SAElectricityMeasurementItem" dateFrom:dateFrom dateTo:dateTo groupBy:gb groupingDepth:gd];
 }
 
+#pragma mark User Icons
+
+-(void) userIconsIdsWithEntity:(NSString*)en channelBase:(BOOL)cb idField:(NSString *)field exclude:(NSArray*)ex destination:(NSMutableArray *)dest {
+    
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    
+    NSEntityDescription *entity = [NSEntityDescription
+                                   entityForName:en inManagedObjectContext:self.managedObjectContext];
+    
+    [fetchRequest setEntity:entity];
+    [fetchRequest setResultType:NSDictionaryResultType];
+    if (cb) {
+        fetchRequest.predicate = [NSPredicate predicateWithFormat:[NSString stringWithFormat:@"%@ > 0 AND func > 0 AND visible > 0", field]];
+    } else {
+        fetchRequest.predicate = [NSPredicate predicateWithFormat:[NSString stringWithFormat:@"%@ > 0", field]];
+    }
+    
+    fetchRequest.propertiesToGroupBy = @[[entity.propertiesByName objectForKey:field]];
+    fetchRequest.propertiesToFetch = fetchRequest.propertiesToGroupBy;
+    
+    NSError *error = nil;
+    NSArray *r = [self.managedObjectContext executeFetchRequest:fetchRequest error:&error];
+    
+    if ( error == nil && r.count > 0 ) {
+        for(int a=0;a<r.count;a++) {
+            id obj = [[r objectAtIndex:a] valueForKey:field];
+            if ((ex == nil || NSNotFound == [ex indexOfObject:obj])
+                && NSNotFound == [dest indexOfObject:obj]) {
+                [dest addObject:obj];
+            }
+        }
+    }
+}
+
+-(NSArray *) iconsToDownload {
+    NSMutableArray *i = [[NSMutableArray alloc] init];
+    [self userIconsIdsWithEntity:@"SAUserIcon" channelBase:NO idField:@"remote_id" exclude:nil destination:i];
+    
+    NSMutableArray *result = [[NSMutableArray alloc] init];
+    [self userIconsIdsWithEntity:@"SAChannel" channelBase:NO idField:@"usericon_id" exclude:i destination:result];
+    [self userIconsIdsWithEntity:@"SAChannelGroup" channelBase:NO idField:@"usericon_id" exclude:i destination:result];
+    
+    return nil;
+}
+
 @end

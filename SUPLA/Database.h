@@ -87,6 +87,7 @@ typedef NS_ENUM(NSUInteger, GroupBy) {
 -(BOOL) electricityMeterMeasurementsStartsWithTheCurrentMonthForChannelId:(int)channel_id;
 -(double) sumForwardedActiveEnergyForChannelId:(int)channel_id monthLimitOffset:(int) offset;
 -(NSArray *) getElectricityMeasurementsForChannelId:(int)channel_id dateFrom:(NSDate *)dateFrom dateTo:(NSDate *)dateTo groupBy:(GroupBy)gb groupingDepth:(GroupingDepth)gd;
+-(NSArray *) iconsToDownload;
 @end
 
 
