@@ -72,9 +72,6 @@
     NSError *error = nil;
     NSURL *storeURL = [[SAApp applicationDocumentsDirectory] URLByAppendingPathComponent:[NSString stringWithFormat:@"SUPLA_DB%i.sqlite", DBv]];
     
-    //NSFileManager *fileManager = [NSFileManager defaultManager];
-    //[fileManager removeItemAtURL:storeURL error:&error];
-    
     // Create the coordinator and store
     
     _persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:[self managedObjectModel]];
