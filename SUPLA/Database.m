@@ -1076,7 +1076,7 @@
     [self userIconsIdsWithEntity:@"SAChannel" channelBase:NO idField:@"usericon_id" exclude:i destination:result];
     [self userIconsIdsWithEntity:@"SAChannelGroup" channelBase:NO idField:@"usericon_id" exclude:i destination:result];
     
-    return nil;
+    return result;
 }
 
 @end
