@@ -17,10 +17,11 @@
  */
 
 #import <UIKit/UIKit.h>
+#import "SADownloadUserIcons.h"
 
 @class SADetailView;
 
-@interface SAMainVC : UIViewController <UITableViewDataSource, UITableViewDelegate>
+@interface SAMainVC : UIViewController <UITableViewDataSource, UITableViewDelegate, SARestApiClientTaskDelegate>
 
 
 - (IBAction)settingsTouched:(id)sender;

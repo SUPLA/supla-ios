@@ -40,6 +40,7 @@
     UINib *_incmeter_nib;
     NSTimer *_nTimer;
     UITapGestureRecognizer *_tapRecognizer;
+    SADownloadUserIcons *_task;
 
 }
 
@@ -325,6 +326,32 @@
 - (void) viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [[[SARateApp alloc] init] showDialogWithDelay: 1];
+    [self runDownloadTask];
+}
+
+-(void)runDownloadTask {
+    if (_task && ![_task isTaskIsAliveWithTimeout:90]) {
+        [_task cancel];
+        _task = nil;
+    }
+    
+    if (!_task) {
+        _task = [[SADownloadUserIcons alloc] init];
+        _task.delegate = self;
+        [_task start];
+    }
+}
+
+-(void) onRestApiTaskStarted: (SARestApiClientTask*)task {
+    NSLog(@"onRestApiTaskStarted");
+}
+
+-(void) onRestApiTaskFinished: (SARestApiClientTask*)task {
+    NSLog(@"onRestApiTaskFinished");
+    if (_task != nil && task == _task) {
+        _task.delegate = nil;
+        _task = nil;
+    }
 }
 
 @end
@@ -631,8 +658,6 @@
 -(void)moveCenter:(float)x_offset {
     [self setCenter:CGPointMake(self.center.x+x_offset, self.center.y)];
 }
-
-
 
 
 @end

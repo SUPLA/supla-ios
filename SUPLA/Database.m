@@ -24,6 +24,7 @@
 #import "SAChannel+CoreDataClass.h"
 #import "SAChannelGroupRelation+CoreDataClass.h"
 #import "SAColorListItem+CoreDataClass.h"
+#import "SAUserIcon+CoreDataClass.h"
 
 @implementation SADatabase {
     NSManagedObjectModel *_managedObjectModel;
@@ -291,7 +292,6 @@
 #pragma mark Channels
 
 -(SAChannel*) fetchChannelById:(int)channel_id {
-    
     return [self fetchItemByPredicate:[NSPredicate predicateWithFormat:@"remote_id = %i", channel_id] entityName:@"SAChannel"];
 };
 
@@ -1077,6 +1077,18 @@
     [self userIconsIdsWithEntity:@"SAChannelGroup" channelBase:NO idField:@"usericon_id" exclude:i destination:result];
     
     return result;
+}
+
+-(SAUserIcon*) fetchUserIconById:(int)remote_id {
+    SAUserIcon *i = [self fetchItemByPredicate:[NSPredicate predicateWithFormat:@"remote_id = %i", remote_id] entityName:@"SAUserIcon"];
+    
+    if (i == nil) {
+        i = [[SAUserIcon alloc] initWithEntity:[NSEntityDescription entityForName:@"SAUserIcon" inManagedObjectContext:self.managedObjectContext] insertIntoManagedObjectContext:self.managedObjectContext];
+        i.remote_id = remote_id;
+        [self.managedObjectContext insertObject:i];
+    }
+    
+    return i;
 }
 
 @end

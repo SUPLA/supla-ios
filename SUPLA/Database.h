@@ -45,7 +45,8 @@ typedef NS_ENUM(NSUInteger, GroupBy) {
 @class SAChannelValue;
 @class SAColorListItem;
 @class SAChannelGroup;
-@interface SADatabase : NSObject
+@class SAUserIcon;
+@interface SADatabase :NSObject
 
 @property (readonly, strong, nonatomic) NSManagedObjectContext *managedObjectContext;
 @property (readonly, strong, nonatomic) NSManagedObjectModel *managedObjectModel;
@@ -88,6 +89,7 @@ typedef NS_ENUM(NSUInteger, GroupBy) {
 -(double) sumForwardedActiveEnergyForChannelId:(int)channel_id monthLimitOffset:(int) offset;
 -(NSArray *) getElectricityMeasurementsForChannelId:(int)channel_id dateFrom:(NSDate *)dateFrom dateTo:(NSDate *)dateTo groupBy:(GroupBy)gb groupingDepth:(GroupingDepth)gd;
 -(NSArray *) iconsToDownload;
+-(SAUserIcon*) fetchUserIconById:(int)remote_id;
 @end
 
 

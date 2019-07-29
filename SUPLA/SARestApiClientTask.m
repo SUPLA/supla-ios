@@ -35,6 +35,10 @@
 @synthesize delegate;
 @synthesize channelId;
 
+- (void)task {
+    ABSTRACT_METHOD_EXCEPTION;
+}
+
 -(SADatabase*)DB {
     if ( _DB == nil ) {
         _DB = [[SADatabase alloc] init];
@@ -208,8 +212,6 @@
 - (SAApiRequestResult*)apiRequestForEndpoint:(NSString *)endpoint {
     return [self apiRequestForEndpoint:endpoint retry:YES];
 }
-
-- (void)task {}
 
 - (void)main {
     self.token = [SAApp.instance registerRestApiClientTask:self];
