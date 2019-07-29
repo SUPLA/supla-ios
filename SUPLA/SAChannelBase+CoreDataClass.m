@@ -399,6 +399,12 @@
             
         case SUPLA_CHANNELFNC_WATER_METER:
             return [UIImage imageNamed:@"watermeter"];
+        case SUPLA_CHANNELFNC_THERMOSTAT_HEATPOL_HOMEPLUS:
+            n2 = @"thermostat_hp_homeplus";
+            if (self.alticon > 0 && self.alticon <= 3) {
+                n2 = [NSString stringWithFormat:@"%@%i", n2, self.alticon];
+            }
+            break;
     }
     
     if ( n1 ) {
