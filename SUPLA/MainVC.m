@@ -38,6 +38,7 @@
     UINib *_distance_nib;
     UINib *_section_nib;
     UINib *_incmeter_nib;
+    UINib *_homeplus_nib;
     NSTimer *_nTimer;
     UITapGestureRecognizer *_tapRecognizer;
     SADownloadUserIcons *_task;
@@ -51,6 +52,7 @@
     [tv registerNib:_depth_nib forCellReuseIdentifier:@"DepthCell"];
     [tv registerNib:_distance_nib forCellReuseIdentifier:@"DistanceCell"];
     [tv registerNib:_incmeter_nib forCellReuseIdentifier:@"IncrementalMeterCell"];
+    [tv registerNib:_homeplus_nib forCellReuseIdentifier:@"HomePlusCell"];
     [tv registerNib:_section_nib forCellReuseIdentifier:@"SectionCell"];
 }
 
@@ -64,6 +66,7 @@
     _depth_nib = [UINib nibWithNibName:@"DepthCell" bundle:nil];
     _distance_nib = [UINib nibWithNibName:@"DistanceCell" bundle:nil];
     _incmeter_nib = [UINib nibWithNibName:@"IncrementalMeterCell" bundle:nil];
+    _homeplus_nib = [UINib nibWithNibName:@"HomePlusCell" bundle:nil];
     _section_nib = [UINib nibWithNibName:@"SectionCell" bundle:nil];
     
     [self registerNibForTableView:self.cTableView];
@@ -289,6 +292,9 @@
             case SUPLA_CHANNELFNC_GAS_METER:
             case SUPLA_CHANNELFNC_WATER_METER:
                 identifier = @"IncrementalMeterCell";
+                break;
+            case SUPLA_CHANNELFNC_THERMOSTAT_HEATPOL_HOMEPLUS:
+                identifier = @"HomePlusCell";
                 break;
         }
     }

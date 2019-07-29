@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="OpenSans-Bold.ttf">
+            <string>OpenSans-Bold</string>
+        </array>
+        <array key="OpenSans-Regular.ttf">
+            <string>OpenSans</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="103" id="Aq4-7s-aVV" customClass="SAChannelCell">
+            <rect key="frame" x="0.0" y="0.0" width="380" height="103"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Aq4-7s-aVV" id="Z8a-om-NNe">
+                <rect key="frame" x="0.0" y="0.0" width="380" height="102.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Home+ Heater" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3Jq-KF-Od9">
+                        <rect key="frame" x="30" y="76.5" width="320" height="17"/>
+                        <fontDescription key="fontDescription" name="OpenSans-Bold" family="Open Sans" pointSize="12"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xjz-Yd-8SH" userLabel="bottomLine">
+                        <rect key="frame" x="10" y="99" width="360" height="1"/>
+                        <color key="backgroundColor" red="0.66666666669999997" green="0.66666666669999997" blue="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="1" id="cGu-ML-tEc"/>
+                        </constraints>
+                    </view>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0d0-zV-fRA" userLabel="onlineRight" customClass="SAUIChannelStatus">
+                        <rect key="frame" x="340" y="41.5" width="10" height="20"/>
+                        <color key="backgroundColor" red="0.070588235289999995" green="0.65490196079999996" blue="0.1176470588" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="20" id="2gn-9A-SsD"/>
+                            <constraint firstAttribute="width" constant="10" id="ly3-qF-Dpx"/>
+                            <constraint firstAttribute="height" constant="20" id="wBt-L4-fos"/>
+                        </constraints>
+                    </view>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="thermostat_hp_homeplus-off.png" translatesAutoresizingMaskIntoConstraints="NO" id="6oE-p1-nIz">
+                        <rect key="frame" x="70" y="16.5" width="100" height="50"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="100" id="V9J-uU-By8"/>
+                            <constraint firstAttribute="height" constant="50" id="dax-4Y-2w1"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="21,31° / 20°" lineBreakMode="wordWrap" numberOfLines="2" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0M9-cd-0XF" userLabel="MeasurementValue">
+                        <rect key="frame" x="170" y="16.5" width="120" height="50"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="50" id="RwR-98-Kj3"/>
+                            <constraint firstAttribute="width" constant="120" id="g3A-dk-9BU"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="18"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <color key="backgroundColor" red="0.97647058819999999" green="0.98039215690000003" blue="0.98431372549999996" alpha="1" colorSpace="calibratedRGB"/>
+                <constraints>
+                    <constraint firstAttribute="trailingMargin" secondItem="0d0-zV-fRA" secondAttribute="trailing" constant="10" id="3Yb-gy-Ci1"/>
+                    <constraint firstItem="3Jq-KF-Od9" firstAttribute="top" secondItem="6oE-p1-nIz" secondAttribute="bottom" constant="10" id="9ci-DC-wdw"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="3Jq-KF-Od9" secondAttribute="trailing" constant="10" id="AJK-wC-8BK"/>
+                    <constraint firstItem="6oE-p1-nIz" firstAttribute="centerY" secondItem="Z8a-om-NNe" secondAttribute="centerY" constant="-10" id="CN1-by-KQ8"/>
+                    <constraint firstItem="0d0-zV-fRA" firstAttribute="centerY" secondItem="Z8a-om-NNe" secondAttribute="centerY" id="Xta-Jm-Wsy"/>
+                    <constraint firstItem="xjz-Yd-8SH" firstAttribute="trailing" secondItem="Z8a-om-NNe" secondAttribute="trailingMargin" constant="10" id="YQD-7E-15T"/>
+                    <constraint firstItem="0M9-cd-0XF" firstAttribute="centerY" secondItem="Z8a-om-NNe" secondAttribute="centerY" constant="-10" id="YRb-KW-s8R"/>
+                    <constraint firstItem="6oE-p1-nIz" firstAttribute="centerX" secondItem="Z8a-om-NNe" secondAttribute="centerX" constant="-70" id="d3V-M3-UHB"/>
+                    <constraint firstItem="xjz-Yd-8SH" firstAttribute="leading" secondItem="Z8a-om-NNe" secondAttribute="leadingMargin" constant="-10" id="isN-8h-hkg"/>
+                    <constraint firstItem="3Jq-KF-Od9" firstAttribute="leading" secondItem="Z8a-om-NNe" secondAttribute="leadingMargin" constant="10" id="rai-tt-D6u"/>
+                    <constraint firstItem="0M9-cd-0XF" firstAttribute="leading" secondItem="6oE-p1-nIz" secondAttribute="trailing" id="ujd-mx-eiE"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="xjz-Yd-8SH" secondAttribute="bottom" constant="-8" id="ukL-K1-Zht"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="caption" destination="3Jq-KF-Od9" id="G7u-5D-gAK"/>
+                <outlet property="cint_RightStatusWidth" destination="ly3-qF-Dpx" id="0Ar-ka-oBG"/>
+                <outlet property="image" destination="6oE-p1-nIz" id="bgK-Yk-8Fi"/>
+                <outlet property="right_OnlineStatus" destination="0d0-zV-fRA" id="Ca7-Ax-LKY"/>
+                <outlet property="temp" destination="0M9-cd-0XF" id="HBR-uY-Lco"/>
+            </connections>
+            <point key="canvasLocation" x="336" y="-102"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="thermostat_hp_homeplus-off.png" width="72" height="72"/>
+    </resources>
+</document>

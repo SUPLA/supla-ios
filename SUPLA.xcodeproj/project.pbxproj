@@ -71,6 +71,7 @@
 		01F9110B22EF954400BFF91D /* thermostat_hp_homeplus2-on@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 01F910FD22EF954400BFF91D /* thermostat_hp_homeplus2-on@3x.png */; };
 		01F9110E22EF964900BFF91D /* thermostat_hp_homeplus1-on@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 01F9110C22EF964900BFF91D /* thermostat_hp_homeplus1-on@2x.png */; };
 		01F9110F22EF964900BFF91D /* thermostat_hp_homeplus1-on@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 01F9110D22EF964900BFF91D /* thermostat_hp_homeplus1-on@3x.png */; };
+		01F9111122EF989100BFF91D /* HomePlusCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 01F9111022EF989100BFF91D /* HomePlusCell.xib */; };
 		4004DE8D1DC4E270009C34E3 /* SAColorBrightnessPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 4004DE8C1DC4E270009C34E3 /* SAColorBrightnessPicker.m */; };
 		4006E90A1DC62D0A00C4456D /* DetailView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4006E9091DC62D0A00C4456D /* DetailView.m */; };
 		4014ADFD1FE01ECD00297A9E /* help@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4014ADFB1FE01EC700297A9E /* help@2x.png */; };
@@ -413,6 +414,7 @@
 		01F910FD22EF954400BFF91D /* thermostat_hp_homeplus2-on@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "thermostat_hp_homeplus2-on@3x.png"; path = "Resources/Assets/Img/thermostat_hp_homeplus2-on@3x.png"; sourceTree = "<group>"; };
 		01F9110C22EF964900BFF91D /* thermostat_hp_homeplus1-on@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "thermostat_hp_homeplus1-on@2x.png"; path = "Resources/Assets/Img/thermostat_hp_homeplus1-on@2x.png"; sourceTree = "<group>"; };
 		01F9110D22EF964900BFF91D /* thermostat_hp_homeplus1-on@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "thermostat_hp_homeplus1-on@3x.png"; path = "Resources/Assets/Img/thermostat_hp_homeplus1-on@3x.png"; sourceTree = "<group>"; };
+		01F9111022EF989100BFF91D /* HomePlusCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomePlusCell.xib; sourceTree = "<group>"; };
 		01FB5D7F22CF98D200E9EA08 /* pl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pl; path = pl.lproj/ElectricityMeterDetailView.strings; sourceTree = "<group>"; };
 		4004DE8B1DC4E270009C34E3 /* SAColorBrightnessPicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SAColorBrightnessPicker.h; sourceTree = "<group>"; };
 		4004DE8C1DC4E270009C34E3 /* SAColorBrightnessPicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SAColorBrightnessPicker.m; sourceTree = "<group>"; };
@@ -1283,6 +1285,7 @@
 				4077ACE220A21BB100BD2216 /* CreateAccountVC.xib */,
 				40B610CA20C7E263002B762A /* SAUIChannelStatus.h */,
 				40B610CB20C7E263002B762A /* SAUIChannelStatus.m */,
+				01F9111022EF989100BFF91D /* HomePlusCell.xib */,
 			);
 			name = UI;
 			sourceTree = "<group>";
@@ -1612,6 +1615,7 @@
 				01F9110A22EF954400BFF91D /* thermostat_hp_homeplus-on@3x.png in Resources */,
 				40CF96AB1BC7D4E70030EFFF /* door-closed@3x.png in Resources */,
 				01D4293522AAA83E0050C1A2 /* gasmeter@2x.png in Resources */,
+				01F9111122EF989100BFF91D /* HomePlusCell.xib in Resources */,
 				01D4293422AAA83E0050C1A2 /* watermeter@3x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
