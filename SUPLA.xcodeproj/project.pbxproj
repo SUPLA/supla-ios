@@ -55,6 +55,20 @@
 		01F8857122E5E79100D18373 /* SATemperatureMeasurementItem+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 01F8856022E5E79100D18373 /* SATemperatureMeasurementItem+CoreDataClass.m */; };
 		01F8857222E5E79100D18373 /* SAImpulseCounterMeasurementItem+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 01F8855622E5E79000D18373 /* SAImpulseCounterMeasurementItem+CoreDataClass.m */; };
 		01F8857522E6167100D18373 /* SADownloadUserIcons.m in Sources */ = {isa = PBXBuildFile; fileRef = 01F8857422E6167100D18373 /* SADownloadUserIcons.m */; };
+		01F910FE22EF954400BFF91D /* thermostat_hp_homeplus2-on@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 01F910F022EF954200BFF91D /* thermostat_hp_homeplus2-on@2x.png */; };
+		01F910FF22EF954400BFF91D /* thermostat_hp_homeplus3-off@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 01F910F122EF954300BFF91D /* thermostat_hp_homeplus3-off@3x.png */; };
+		01F9110022EF954400BFF91D /* thermostat_hp_homeplus1-off@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 01F910F222EF954300BFF91D /* thermostat_hp_homeplus1-off@2x.png */; };
+		01F9110122EF954400BFF91D /* thermostat_hp_homeplus2-off@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 01F910F322EF954300BFF91D /* thermostat_hp_homeplus2-off@3x.png */; };
+		01F9110222EF954400BFF91D /* thermostat_hp_homeplus-off@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 01F910F422EF954300BFF91D /* thermostat_hp_homeplus-off@2x.png */; };
+		01F9110322EF954400BFF91D /* thermostat_hp_homeplus-on@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 01F910F522EF954300BFF91D /* thermostat_hp_homeplus-on@2x.png */; };
+		01F9110422EF954400BFF91D /* thermostat_hp_homeplus2-off@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 01F910F622EF954300BFF91D /* thermostat_hp_homeplus2-off@2x.png */; };
+		01F9110522EF954400BFF91D /* thermostat_hp_homeplus-off@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 01F910F722EF954300BFF91D /* thermostat_hp_homeplus-off@3x.png */; };
+		01F9110622EF954400BFF91D /* thermostat_hp_homeplus3-on@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 01F910F822EF954300BFF91D /* thermostat_hp_homeplus3-on@2x.png */; };
+		01F9110722EF954400BFF91D /* thermostat_hp_homeplus3-off@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 01F910F922EF954300BFF91D /* thermostat_hp_homeplus3-off@2x.png */; };
+		01F9110822EF954400BFF91D /* thermostat_hp_homeplus1-off@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 01F910FA22EF954300BFF91D /* thermostat_hp_homeplus1-off@3x.png */; };
+		01F9110922EF954400BFF91D /* thermostat_hp_homeplus3-on@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 01F910FB22EF954300BFF91D /* thermostat_hp_homeplus3-on@3x.png */; };
+		01F9110A22EF954400BFF91D /* thermostat_hp_homeplus-on@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 01F910FC22EF954400BFF91D /* thermostat_hp_homeplus-on@3x.png */; };
+		01F9110B22EF954400BFF91D /* thermostat_hp_homeplus2-on@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 01F910FD22EF954400BFF91D /* thermostat_hp_homeplus2-on@3x.png */; };
 		4004DE8D1DC4E270009C34E3 /* SAColorBrightnessPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 4004DE8C1DC4E270009C34E3 /* SAColorBrightnessPicker.m */; };
 		4006E90A1DC62D0A00C4456D /* DetailView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4006E9091DC62D0A00C4456D /* DetailView.m */; };
 		4014ADFD1FE01ECD00297A9E /* help@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4014ADFB1FE01EC700297A9E /* help@2x.png */; };
@@ -381,6 +395,20 @@
 		01F8856822E5E79100D18373 /* SAThermostatMeasurementItem+CoreDataClass.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = "SAThermostatMeasurementItem+CoreDataClass.m"; path = "/Users/przemek/XCodeProjects/supla-ios/SUPLA/SAThermostatMeasurementItem+CoreDataClass.m"; sourceTree = "<absolute>"; };
 		01F8857322E6167100D18373 /* SADownloadUserIcons.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SADownloadUserIcons.h; sourceTree = "<group>"; };
 		01F8857422E6167100D18373 /* SADownloadUserIcons.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SADownloadUserIcons.m; sourceTree = "<group>"; };
+		01F910F022EF954200BFF91D /* thermostat_hp_homeplus2-on@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "thermostat_hp_homeplus2-on@2x.png"; path = "Resources/Assets/Img/thermostat_hp_homeplus2-on@2x.png"; sourceTree = "<group>"; };
+		01F910F122EF954300BFF91D /* thermostat_hp_homeplus3-off@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "thermostat_hp_homeplus3-off@3x.png"; path = "Resources/Assets/Img/thermostat_hp_homeplus3-off@3x.png"; sourceTree = "<group>"; };
+		01F910F222EF954300BFF91D /* thermostat_hp_homeplus1-off@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "thermostat_hp_homeplus1-off@2x.png"; path = "Resources/Assets/Img/thermostat_hp_homeplus1-off@2x.png"; sourceTree = "<group>"; };
+		01F910F322EF954300BFF91D /* thermostat_hp_homeplus2-off@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "thermostat_hp_homeplus2-off@3x.png"; path = "Resources/Assets/Img/thermostat_hp_homeplus2-off@3x.png"; sourceTree = "<group>"; };
+		01F910F422EF954300BFF91D /* thermostat_hp_homeplus-off@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "thermostat_hp_homeplus-off@2x.png"; path = "Resources/Assets/Img/thermostat_hp_homeplus-off@2x.png"; sourceTree = "<group>"; };
+		01F910F522EF954300BFF91D /* thermostat_hp_homeplus-on@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "thermostat_hp_homeplus-on@2x.png"; path = "Resources/Assets/Img/thermostat_hp_homeplus-on@2x.png"; sourceTree = "<group>"; };
+		01F910F622EF954300BFF91D /* thermostat_hp_homeplus2-off@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "thermostat_hp_homeplus2-off@2x.png"; path = "Resources/Assets/Img/thermostat_hp_homeplus2-off@2x.png"; sourceTree = "<group>"; };
+		01F910F722EF954300BFF91D /* thermostat_hp_homeplus-off@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "thermostat_hp_homeplus-off@3x.png"; path = "Resources/Assets/Img/thermostat_hp_homeplus-off@3x.png"; sourceTree = "<group>"; };
+		01F910F822EF954300BFF91D /* thermostat_hp_homeplus3-on@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "thermostat_hp_homeplus3-on@2x.png"; path = "Resources/Assets/Img/thermostat_hp_homeplus3-on@2x.png"; sourceTree = "<group>"; };
+		01F910F922EF954300BFF91D /* thermostat_hp_homeplus3-off@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "thermostat_hp_homeplus3-off@2x.png"; path = "Resources/Assets/Img/thermostat_hp_homeplus3-off@2x.png"; sourceTree = "<group>"; };
+		01F910FA22EF954300BFF91D /* thermostat_hp_homeplus1-off@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "thermostat_hp_homeplus1-off@3x.png"; path = "Resources/Assets/Img/thermostat_hp_homeplus1-off@3x.png"; sourceTree = "<group>"; };
+		01F910FB22EF954300BFF91D /* thermostat_hp_homeplus3-on@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "thermostat_hp_homeplus3-on@3x.png"; path = "Resources/Assets/Img/thermostat_hp_homeplus3-on@3x.png"; sourceTree = "<group>"; };
+		01F910FC22EF954400BFF91D /* thermostat_hp_homeplus-on@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "thermostat_hp_homeplus-on@3x.png"; path = "Resources/Assets/Img/thermostat_hp_homeplus-on@3x.png"; sourceTree = "<group>"; };
+		01F910FD22EF954400BFF91D /* thermostat_hp_homeplus2-on@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "thermostat_hp_homeplus2-on@3x.png"; path = "Resources/Assets/Img/thermostat_hp_homeplus2-on@3x.png"; sourceTree = "<group>"; };
 		01FB5D7F22CF98D200E9EA08 /* pl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pl; path = pl.lproj/ElectricityMeterDetailView.strings; sourceTree = "<group>"; };
 		4004DE8B1DC4E270009C34E3 /* SAColorBrightnessPicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SAColorBrightnessPicker.h; sourceTree = "<group>"; };
 		4004DE8C1DC4E270009C34E3 /* SAColorBrightnessPicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SAColorBrightnessPicker.m; sourceTree = "<group>"; };
@@ -898,6 +926,20 @@
 		405AC4011BC15878004F7311 /* Img */ = {
 			isa = PBXGroup;
 			children = (
+				01F910F422EF954300BFF91D /* thermostat_hp_homeplus-off@2x.png */,
+				01F910F722EF954300BFF91D /* thermostat_hp_homeplus-off@3x.png */,
+				01F910F522EF954300BFF91D /* thermostat_hp_homeplus-on@2x.png */,
+				01F910FC22EF954400BFF91D /* thermostat_hp_homeplus-on@3x.png */,
+				01F910F222EF954300BFF91D /* thermostat_hp_homeplus1-off@2x.png */,
+				01F910FA22EF954300BFF91D /* thermostat_hp_homeplus1-off@3x.png */,
+				01F910F622EF954300BFF91D /* thermostat_hp_homeplus2-off@2x.png */,
+				01F910F322EF954300BFF91D /* thermostat_hp_homeplus2-off@3x.png */,
+				01F910F022EF954200BFF91D /* thermostat_hp_homeplus2-on@2x.png */,
+				01F910FD22EF954400BFF91D /* thermostat_hp_homeplus2-on@3x.png */,
+				01F910F922EF954300BFF91D /* thermostat_hp_homeplus3-off@2x.png */,
+				01F910F122EF954300BFF91D /* thermostat_hp_homeplus3-off@3x.png */,
+				01F910F822EF954300BFF91D /* thermostat_hp_homeplus3-on@2x.png */,
+				01F910FB22EF954300BFF91D /* thermostat_hp_homeplus3-on@3x.png */,
 				01D2C38C22C3B0A700BF1A10 /* graphoff.png */,
 				01D2C38B22C3B0A700BF1A10 /* graphon.png */,
 				01D4293222AAA83D0050C1A2 /* electricitymeter@2x.png */,
@@ -1365,8 +1407,10 @@
 				40DE1A2D1BCCFF8A004CF43B /* settings@2x.png in Resources */,
 				405AC4341BC15C08004F7311 /* logo-supla@2x.png in Resources */,
 				405C49A11FCAFFD400C15602 /* wizard_ok@2x.png in Resources */,
+				01F9110522EF954400BFF91D /* thermostat_hp_homeplus-off@3x.png in Resources */,
 				40CF96B21BC7D4E70030EFFF /* gate-closed@2x.png in Resources */,
 				4091654D1F3CBAF200F49193 /* rs_down.png in Resources */,
+				01F9110422EF954400BFF91D /* thermostat_hp_homeplus2-off@2x.png in Resources */,
 				40CF96BF1BC7D4E70030EFFF /* liquid@3x.png in Resources */,
 				01D0617122C296850043C947 /* ElectricityMeterDetailView.xib in Resources */,
 				40B9ED481FACCE8700403B1A /* tv-on@3x.png in Resources */,
@@ -1377,6 +1421,7 @@
 				40CF96BD1BC7D4E70030EFFF /* light-on@3x.png in Resources */,
 				40DE1A381BCD5E9B004CF43B /* AboutVC.xib in Resources */,
 				40B9ED821FACE15700403B1A /* window-closed@3x.png in Resources */,
+				01F9110122EF954400BFF91D /* thermostat_hp_homeplus2-off@3x.png in Resources */,
 				4052DA051DC515AE000B8C45 /* dimmerrgb-onoff@2x.png in Resources */,
 				40B9ED451FACCE8700403B1A /* tv-off@3x.png in Resources */,
 				40477B3E20C6C57700E995E6 /* staircasetimer-off@2x.png in Resources */,
@@ -1409,9 +1454,12 @@
 				40B9ED461FACCE8700403B1A /* tv-on@2x.png in Resources */,
 				40B9ED5F1FACD14000403B1A /* fan-off@2x.png in Resources */,
 				40CF96DA1BC81A470030EFFF /* warning@2x.png in Resources */,
+				01F9110222EF954400BFF91D /* thermostat_hp_homeplus-off@2x.png in Resources */,
+				01F9110822EF954400BFF91D /* thermostat_hp_homeplus1-off@3x.png in Resources */,
 				40CF96D81BC81A470030EFFF /* error@2x.png in Resources */,
 				40B9ED4F1FACCF8100403B1A /* radio-off@2x.png in Resources */,
 				40CE7C6E1DCBBF6D00BBACE4 /* DistanceCell.xib in Resources */,
+				01F9110922EF954400BFF91D /* thermostat_hp_homeplus3-on@3x.png in Resources */,
 				40B9ED5D1FACD14000403B1A /* fan-on@2x.png in Resources */,
 				40CF96B41BC7D4E70030EFFF /* gate-open@2x.png in Resources */,
 				4052DA0B1DC515AE000B8C45 /* dimmer-on@2x.png in Resources */,
@@ -1446,6 +1494,7 @@
 				40B9ED601FACD14000403B1A /* fan-off@3x.png in Resources */,
 				4091AF3E1FC8405200EFF357 /* btnnextr@2x.png in Resources */,
 				40DE1A2A1BCCFF8A004CF43B /* feedback@3x.png in Resources */,
+				01F910FE22EF954400BFF91D /* thermostat_hp_homeplus2-on@2x.png in Resources */,
 				405AC41B1BC15898004F7311 /* app_icon@3x.png in Resources */,
 				40477B5120C6CF2600E995E6 /* gate-closed-50percent@2x.png in Resources */,
 				401CA1EF1BA0923600117AF4 /* MainVC.xib in Resources */,
@@ -1455,6 +1504,7 @@
 				01D4293822AAA83E0050C1A2 /* electricitymeter@2x.png in Resources */,
 				40477B5320C6CF2600E995E6 /* gate-closed-50percent@3x.png in Resources */,
 				40CF96B81BC7D4E70030EFFF /* gateway-open@2x.png in Resources */,
+				01F910FF22EF954400BFF91D /* thermostat_hp_homeplus3-off@3x.png in Resources */,
 				40477B6020C6F62A00E995E6 /* groupson@2x.png in Resources */,
 				01D2C38D22C3B0A700BF1A10 /* graphon.png in Resources */,
 				4091654C1F3CBAF200F49193 /* rs_up.png in Resources */,
@@ -1470,6 +1520,7 @@
 				4091654F1F3CBAF200F49193 /* rs_open.png in Resources */,
 				40B9ED681FACD34C00403B1A /* xmastree-off@2x.png in Resources */,
 				407D4AFB1BC6D6AA009A5505 /* btnOK@3x.png in Resources */,
+				01F9110022EF954400BFF91D /* thermostat_hp_homeplus1-off@2x.png in Resources */,
 				40B9ED7F1FACE15700403B1A /* gatealt1-open@2x.png in Resources */,
 				407D4AF71BC6C7DE009A5505 /* app_icon29x29.png in Resources */,
 				4052DA031DC515AE000B8C45 /* dimmerrgb-offon@2x.png in Resources */,
@@ -1482,16 +1533,19 @@
 				401CA1CD1BA067DB00117AF4 /* Images.xcassets in Resources */,
 				40CF96CA1BC7D4E70030EFFF /* thermometer@2x.png in Resources */,
 				01D2C38E22C3B0A700BF1A10 /* graphoff.png in Resources */,
+				01F9110622EF954400BFF91D /* thermostat_hp_homeplus3-on@2x.png in Resources */,
 				4052DA091DC515AE000B8C45 /* dimmer-off@2x.png in Resources */,
 				4052DA061DC515AE000B8C45 /* dimmerrgb-onon@3x.png in Resources */,
 				407D4AEC1BC6C64D009A5505 /* app_icon80x80@2x.png in Resources */,
 				40477B4B20C6C5FE00E995E6 /* staircasetimer_1-off@3x.png in Resources */,
 				40CF96AF1BC7D4E70030EFFF /* garagedoor-closed@3x.png in Resources */,
 				40B397DE1BCED5EB00BE7D5A /* Quicksand-Light.ttf in Resources */,
+				01F9110322EF954400BFF91D /* thermostat_hp_homeplus-on@2x.png in Resources */,
 				40477B5220C6CF2600E995E6 /* gatealt1-closed-50percent@2x.png in Resources */,
 				40477B4C20C6C5FE00E995E6 /* staircasetimer_1-on@2x.png in Resources */,
 				407D4AF91BC6C7DE009A5505 /* app_icon114x114@2x.png in Resources */,
 				4052DA001DC515AE000B8C45 /* dimmerrgb-offoff@3x.png in Resources */,
+				01F9110B22EF954400BFF91D /* thermostat_hp_homeplus2-on@3x.png in Resources */,
 				40CF96D31BC8034E0030EFFF /* logo-supla@3x.png in Resources */,
 				40CF96CB1BC7D4E70030EFFF /* thermometer@3x.png in Resources */,
 				40CF96B31BC7D4E70030EFFF /* gate-closed@3x.png in Resources */,
@@ -1531,6 +1585,7 @@
 				40CF96DB1BC81A470030EFFF /* warning@3x.png in Resources */,
 				4091AF3F1FC8405200EFF357 /* btnnextl@2x.png in Resources */,
 				4038A5571CE32CD700180B5D /* humidity@2x.png in Resources */,
+				01F9110722EF954400BFF91D /* thermostat_hp_homeplus3-off@2x.png in Resources */,
 				40766C2D1FC9C36D009E00BE /* iossettings.png in Resources */,
 				40DB208D1DC9049400FAFAB0 /* RGBDetail.xib in Resources */,
 				40CE7C641DCBBCE400BBACE4 /* DepthCell.xib in Resources */,
@@ -1546,6 +1601,7 @@
 				40B9ED6E1FACD94300403B1A /* barier-closed@3x.png in Resources */,
 				013D73A722DCAEF400E3515A /* SAIncrementalMeterChartMarkerView.xib in Resources */,
 				4067782D1BCBC647008DD37F /* menu@3x.png in Resources */,
+				01F9110A22EF954400BFF91D /* thermostat_hp_homeplus-on@3x.png in Resources */,
 				40CF96AB1BC7D4E70030EFFF /* door-closed@3x.png in Resources */,
 				01D4293522AAA83E0050C1A2 /* gasmeter@2x.png in Resources */,
 				01D4293422AAA83E0050C1A2 /* watermeter@3x.png in Resources */,
