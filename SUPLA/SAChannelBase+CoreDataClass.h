@@ -53,6 +53,8 @@ NS_ASSUME_NONNULL_BEGIN
 - (UIColor *) colorValue;
 - (double) totalForwardActiveEnergy;
 - (double) impulseCounterCalculatedValue;
+- (double) presetTemperature;
+- (double) measuredTemperature;
 - (NSString *) unit;
 @end
 

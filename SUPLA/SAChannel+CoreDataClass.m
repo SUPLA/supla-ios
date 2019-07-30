@@ -167,4 +167,16 @@
     return super.unit;
 }
 
+- (double) presetTemperature {
+    return self.value == nil
+    || self.func != SUPLA_CHANNELFNC_THERMOSTAT_HEATPOL_HOMEPLUS
+    ? [super presetTemperature] : [self.value presetTemperature];
+}
+
+- (double) measuredTemperature {
+    return self.value == nil
+    || self.func != SUPLA_CHANNELFNC_THERMOSTAT_HEATPOL_HOMEPLUS
+    ? [super measuredTemperature] : [self.value measuredTemperature];
+}
+
 @end

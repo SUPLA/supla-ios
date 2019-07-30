@@ -98,6 +98,7 @@
     BOOL isGroup = [channelBase isKindOfClass:[SAChannelGroup class]];
 
     [self.caption setText:[channelBase getChannelCaption]];
+    [self.image setImage:[channelBase getIcon]];
     
     if ( channelBase.func == SUPLA_CHANNELFNC_THERMOMETER ) {
         
@@ -141,8 +142,6 @@
                 || channelBase.func == SUPLA_CHANNELFNC_WATER_METER
                 || channelBase.func == SUPLA_CHANNELFNC_GAS_METER ) {
         
-        [self.image setImage:[channelBase getIcon]];
-        
         if ( [channelBase isOnline] ) {
             
             double value = 0.0;
@@ -162,8 +161,32 @@
         self.right_OnlineStatus.shapeType = stDot;
         self.right_OnlineStatus.percent = [channelBase onlinePercent];
         
+    } else if ( channelBase.func == SUPLA_CHANNELFNC_THERMOSTAT_HEATPOL_HOMEPLUS ) {
+        
+        NSString *v1 = @"---\u00B0";
+        NSString *v2 = @"/---\u00B0";
+        
+        if ( [channelBase isOnline] ) {
+            double mt = channelBase.measuredTemperature;
+            if (mt > -273) {
+                 v1 = [NSString stringWithFormat:@"%0.2f\u00B0", mt];
+            }
+            double pt = channelBase.presetTemperature;
+            if (pt > -273) {
+                v2 = [NSString stringWithFormat:@"/%i\u00B0", (int)pt];
+            }
+        }
+        
+        NSMutableAttributedString *attrTxt = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"%@%@", v1, v2]];
+        [attrTxt addAttribute:NSFontAttributeName
+                      value:[UIFont systemFontOfSize:self.self.temp.font.pointSize * 0.7]
+                      range:NSMakeRange(v1.length, v2.length)];
+        
+        [self.temp setAttributedText:attrTxt];
+        
+        self.right_OnlineStatus.shapeType = stDot;
+        self.right_OnlineStatus.percent = [channelBase onlinePercent];
     } else {
-        [self.image setImage:[channelBase getIcon]];
     
         if ( isGroup ) {
             self.cint_LeftStatusWidth.constant = 6;

@@ -185,6 +185,8 @@
                 return NSLocalizedString(@"Gas Meter", nil);
             case SUPLA_CHANNELFNC_WATER_METER:
                 return NSLocalizedString(@"Water Meter", nil);
+            case SUPLA_CHANNELFNC_THERMOSTAT_HEATPOL_HOMEPLUS:
+                return NSLocalizedString(@"Home+ Heater", nil);
         }
         
     }
@@ -421,6 +423,14 @@
 
 - (NSString *) unit {
     return @"";
+}
+
+- (double) presetTemperature {
+    return -273;
+}
+
+- (double) measuredTemperature {
+   return -273;
 }
 
 @end

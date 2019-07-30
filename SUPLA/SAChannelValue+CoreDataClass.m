@@ -210,4 +210,24 @@
     return p < 0 || p > 100 ? -1 : p;
 }
 
+- (double) presetTemperature {
+    if (self.value != nil) {
+        TThermostat_Value v;
+        [self.dataValue getBytes:&v length:sizeof(TThermostat_Value)];
+        return v.PresetTemperature * 0.01;
+    }
+    
+    return -275;
+}
+
+- (double) measuredTemperature {
+    if (self.value != nil) {
+        TThermostat_Value v;
+        [self.dataValue getBytes:&v length:sizeof(TThermostat_Value)];
+        return v.MeasuredTemperature * 0.01;
+    }
+    
+    return -275;
+}
+
 @end
