@@ -15,6 +15,7 @@
 		013D73A522DCAB4400E3515A /* SAIncrementalMeterChartMarkerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 013D73A422DCAB4400E3515A /* SAIncrementalMeterChartMarkerView.swift */; };
 		013D73A722DCAEF400E3515A /* SAIncrementalMeterChartMarkerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 013D73A622DCAEF400E3515A /* SAIncrementalMeterChartMarkerView.xib */; };
 		013D73B022DD105400E3515A /* SAChartFilterField.m in Sources */ = {isa = PBXBuildFile; fileRef = 013D73AF22DD105400E3515A /* SAChartFilterField.m */; };
+		017554F322F18E4A00EB58B7 /* HomePlusDetailView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 017554F222F18E4A00EB58B7 /* HomePlusDetailView.xib */; };
 		018E67CF22C8CA0A00FF1427 /* SADownloadElectricityMeasurements.m in Sources */ = {isa = PBXBuildFile; fileRef = 018E67CE22C8CA0A00FF1427 /* SADownloadElectricityMeasurements.m */; };
 		01BDAC7522C518DE00915646 /* SARestApiClientTask.m in Sources */ = {isa = PBXBuildFile; fileRef = 01BDAC7422C518DE00915646 /* SARestApiClientTask.m */; };
 		01BDAC7822C5200600915646 /* SAOAuthToken.m in Sources */ = {isa = PBXBuildFile; fileRef = 01BDAC7722C5200600915646 /* SAOAuthToken.m */; };
@@ -329,6 +330,7 @@
 		013D73A622DCAEF400E3515A /* SAIncrementalMeterChartMarkerView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SAIncrementalMeterChartMarkerView.xib; sourceTree = "<group>"; };
 		013D73AE22DD105400E3515A /* SAChartFilterField.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SAChartFilterField.h; sourceTree = "<group>"; };
 		013D73AF22DD105400E3515A /* SAChartFilterField.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SAChartFilterField.m; sourceTree = "<group>"; };
+		017554F222F18E4A00EB58B7 /* HomePlusDetailView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomePlusDetailView.xib; sourceTree = "<group>"; };
 		018E67CD22C8CA0A00FF1427 /* SADownloadElectricityMeasurements.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SADownloadElectricityMeasurements.h; sourceTree = "<group>"; };
 		018E67CE22C8CA0A00FF1427 /* SADownloadElectricityMeasurements.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SADownloadElectricityMeasurements.m; sourceTree = "<group>"; };
 		01B216CF22AECB2F004E0596 /* SUPLA 3.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "SUPLA 3.xcdatamodel"; sourceTree = "<group>"; };
@@ -376,26 +378,26 @@
 		01EE9BB622BA50D90029A142 /* SAChannelValueBase+CoreDataClass.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SAChannelValueBase+CoreDataClass.h"; sourceTree = "<group>"; };
 		01EE9BB722BA50D90029A142 /* SAChannelValueBase+CoreDataClass.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "SAChannelValueBase+CoreDataClass.m"; sourceTree = "<group>"; };
 		01EE9BB822BA50D90029A142 /* SAChannelValueBase+CoreDataProperties.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "SAChannelValueBase+CoreDataProperties.m"; sourceTree = "<group>"; };
-		01F8855522E5E79000D18373 /* SAThermostatMeasurementItem+CoreDataProperties.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = "SAThermostatMeasurementItem+CoreDataProperties.m"; path = "/Users/przemek/XCodeProjects/supla-ios/SUPLA/SAThermostatMeasurementItem+CoreDataProperties.m"; sourceTree = "<absolute>"; };
-		01F8855622E5E79000D18373 /* SAImpulseCounterMeasurementItem+CoreDataClass.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = "SAImpulseCounterMeasurementItem+CoreDataClass.m"; path = "/Users/przemek/XCodeProjects/supla-ios/SUPLA/SAImpulseCounterMeasurementItem+CoreDataClass.m"; sourceTree = "<absolute>"; };
-		01F8855722E5E79000D18373 /* SAImpulseCounterMeasurementItem+CoreDataProperties.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "SAImpulseCounterMeasurementItem+CoreDataProperties.h"; path = "/Users/przemek/XCodeProjects/supla-ios/SUPLA/SAImpulseCounterMeasurementItem+CoreDataProperties.h"; sourceTree = "<absolute>"; };
-		01F8855822E5E79000D18373 /* SATempHumidityMeasurementItem+CoreDataProperties.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "SATempHumidityMeasurementItem+CoreDataProperties.h"; path = "/Users/przemek/XCodeProjects/supla-ios/SUPLA/SATempHumidityMeasurementItem+CoreDataProperties.h"; sourceTree = "<absolute>"; };
-		01F8855922E5E79000D18373 /* SAImpulseCounterMeasurementItem+CoreDataProperties.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = "SAImpulseCounterMeasurementItem+CoreDataProperties.m"; path = "/Users/przemek/XCodeProjects/supla-ios/SUPLA/SAImpulseCounterMeasurementItem+CoreDataProperties.m"; sourceTree = "<absolute>"; };
-		01F8855A22E5E79000D18373 /* SATemperatureMeasurementItem+CoreDataClass.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "SATemperatureMeasurementItem+CoreDataClass.h"; path = "/Users/przemek/XCodeProjects/supla-ios/SUPLA/SATemperatureMeasurementItem+CoreDataClass.h"; sourceTree = "<absolute>"; };
-		01F8855B22E5E79000D18373 /* SAUserIcon+CoreDataProperties.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = "SAUserIcon+CoreDataProperties.m"; path = "/Users/przemek/XCodeProjects/supla-ios/SUPLA/SAUserIcon+CoreDataProperties.m"; sourceTree = "<absolute>"; };
-		01F8855C22E5E79000D18373 /* SATempHumidityMeasurementItem+CoreDataClass.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = "SATempHumidityMeasurementItem+CoreDataClass.m"; path = "/Users/przemek/XCodeProjects/supla-ios/SUPLA/SATempHumidityMeasurementItem+CoreDataClass.m"; sourceTree = "<absolute>"; };
-		01F8855D22E5E79000D18373 /* SATemperatureMeasurementItem+CoreDataProperties.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = "SATemperatureMeasurementItem+CoreDataProperties.m"; path = "/Users/przemek/XCodeProjects/supla-ios/SUPLA/SATemperatureMeasurementItem+CoreDataProperties.m"; sourceTree = "<absolute>"; };
-		01F8855E22E5E79000D18373 /* SAUserIcon+CoreDataClass.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = "SAUserIcon+CoreDataClass.m"; path = "/Users/przemek/XCodeProjects/supla-ios/SUPLA/SAUserIcon+CoreDataClass.m"; sourceTree = "<absolute>"; };
-		01F8855F22E5E79100D18373 /* SAThermostatMeasurementItem+CoreDataProperties.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "SAThermostatMeasurementItem+CoreDataProperties.h"; path = "/Users/przemek/XCodeProjects/supla-ios/SUPLA/SAThermostatMeasurementItem+CoreDataProperties.h"; sourceTree = "<absolute>"; };
-		01F8856022E5E79100D18373 /* SATemperatureMeasurementItem+CoreDataClass.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = "SATemperatureMeasurementItem+CoreDataClass.m"; path = "/Users/przemek/XCodeProjects/supla-ios/SUPLA/SATemperatureMeasurementItem+CoreDataClass.m"; sourceTree = "<absolute>"; };
-		01F8856122E5E79100D18373 /* SATempHumidityMeasurementItem+CoreDataClass.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "SATempHumidityMeasurementItem+CoreDataClass.h"; path = "/Users/przemek/XCodeProjects/supla-ios/SUPLA/SATempHumidityMeasurementItem+CoreDataClass.h"; sourceTree = "<absolute>"; };
-		01F8856222E5E79100D18373 /* SAThermostatMeasurementItem+CoreDataClass.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "SAThermostatMeasurementItem+CoreDataClass.h"; path = "/Users/przemek/XCodeProjects/supla-ios/SUPLA/SAThermostatMeasurementItem+CoreDataClass.h"; sourceTree = "<absolute>"; };
-		01F8856322E5E79100D18373 /* SATempHumidityMeasurementItem+CoreDataProperties.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = "SATempHumidityMeasurementItem+CoreDataProperties.m"; path = "/Users/przemek/XCodeProjects/supla-ios/SUPLA/SATempHumidityMeasurementItem+CoreDataProperties.m"; sourceTree = "<absolute>"; };
-		01F8856422E5E79100D18373 /* SAUserIcon+CoreDataProperties.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "SAUserIcon+CoreDataProperties.h"; path = "/Users/przemek/XCodeProjects/supla-ios/SUPLA/SAUserIcon+CoreDataProperties.h"; sourceTree = "<absolute>"; };
-		01F8856522E5E79100D18373 /* SAUserIcon+CoreDataClass.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "SAUserIcon+CoreDataClass.h"; path = "/Users/przemek/XCodeProjects/supla-ios/SUPLA/SAUserIcon+CoreDataClass.h"; sourceTree = "<absolute>"; };
-		01F8856622E5E79100D18373 /* SAImpulseCounterMeasurementItem+CoreDataClass.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "SAImpulseCounterMeasurementItem+CoreDataClass.h"; path = "/Users/przemek/XCodeProjects/supla-ios/SUPLA/SAImpulseCounterMeasurementItem+CoreDataClass.h"; sourceTree = "<absolute>"; };
-		01F8856722E5E79100D18373 /* SATemperatureMeasurementItem+CoreDataProperties.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "SATemperatureMeasurementItem+CoreDataProperties.h"; path = "/Users/przemek/XCodeProjects/supla-ios/SUPLA/SATemperatureMeasurementItem+CoreDataProperties.h"; sourceTree = "<absolute>"; };
-		01F8856822E5E79100D18373 /* SAThermostatMeasurementItem+CoreDataClass.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = "SAThermostatMeasurementItem+CoreDataClass.m"; path = "/Users/przemek/XCodeProjects/supla-ios/SUPLA/SAThermostatMeasurementItem+CoreDataClass.m"; sourceTree = "<absolute>"; };
+		01F8855522E5E79000D18373 /* SAThermostatMeasurementItem+CoreDataProperties.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "SAThermostatMeasurementItem+CoreDataProperties.m"; sourceTree = "<group>"; };
+		01F8855622E5E79000D18373 /* SAImpulseCounterMeasurementItem+CoreDataClass.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "SAImpulseCounterMeasurementItem+CoreDataClass.m"; sourceTree = "<group>"; };
+		01F8855722E5E79000D18373 /* SAImpulseCounterMeasurementItem+CoreDataProperties.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SAImpulseCounterMeasurementItem+CoreDataProperties.h"; sourceTree = "<group>"; };
+		01F8855822E5E79000D18373 /* SATempHumidityMeasurementItem+CoreDataProperties.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SATempHumidityMeasurementItem+CoreDataProperties.h"; sourceTree = "<group>"; };
+		01F8855922E5E79000D18373 /* SAImpulseCounterMeasurementItem+CoreDataProperties.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "SAImpulseCounterMeasurementItem+CoreDataProperties.m"; sourceTree = "<group>"; };
+		01F8855A22E5E79000D18373 /* SATemperatureMeasurementItem+CoreDataClass.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SATemperatureMeasurementItem+CoreDataClass.h"; sourceTree = "<group>"; };
+		01F8855B22E5E79000D18373 /* SAUserIcon+CoreDataProperties.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "SAUserIcon+CoreDataProperties.m"; sourceTree = "<group>"; };
+		01F8855C22E5E79000D18373 /* SATempHumidityMeasurementItem+CoreDataClass.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "SATempHumidityMeasurementItem+CoreDataClass.m"; sourceTree = "<group>"; };
+		01F8855D22E5E79000D18373 /* SATemperatureMeasurementItem+CoreDataProperties.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "SATemperatureMeasurementItem+CoreDataProperties.m"; sourceTree = "<group>"; };
+		01F8855E22E5E79000D18373 /* SAUserIcon+CoreDataClass.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "SAUserIcon+CoreDataClass.m"; sourceTree = "<group>"; };
+		01F8855F22E5E79100D18373 /* SAThermostatMeasurementItem+CoreDataProperties.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SAThermostatMeasurementItem+CoreDataProperties.h"; sourceTree = "<group>"; };
+		01F8856022E5E79100D18373 /* SATemperatureMeasurementItem+CoreDataClass.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "SATemperatureMeasurementItem+CoreDataClass.m"; sourceTree = "<group>"; };
+		01F8856122E5E79100D18373 /* SATempHumidityMeasurementItem+CoreDataClass.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SATempHumidityMeasurementItem+CoreDataClass.h"; sourceTree = "<group>"; };
+		01F8856222E5E79100D18373 /* SAThermostatMeasurementItem+CoreDataClass.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SAThermostatMeasurementItem+CoreDataClass.h"; sourceTree = "<group>"; };
+		01F8856322E5E79100D18373 /* SATempHumidityMeasurementItem+CoreDataProperties.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "SATempHumidityMeasurementItem+CoreDataProperties.m"; sourceTree = "<group>"; };
+		01F8856422E5E79100D18373 /* SAUserIcon+CoreDataProperties.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SAUserIcon+CoreDataProperties.h"; sourceTree = "<group>"; };
+		01F8856522E5E79100D18373 /* SAUserIcon+CoreDataClass.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SAUserIcon+CoreDataClass.h"; sourceTree = "<group>"; };
+		01F8856622E5E79100D18373 /* SAImpulseCounterMeasurementItem+CoreDataClass.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SAImpulseCounterMeasurementItem+CoreDataClass.h"; sourceTree = "<group>"; };
+		01F8856722E5E79100D18373 /* SATemperatureMeasurementItem+CoreDataProperties.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SATemperatureMeasurementItem+CoreDataProperties.h"; sourceTree = "<group>"; };
+		01F8856822E5E79100D18373 /* SAThermostatMeasurementItem+CoreDataClass.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "SAThermostatMeasurementItem+CoreDataClass.m"; sourceTree = "<group>"; };
 		01F8857322E6167100D18373 /* SADownloadUserIcons.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SADownloadUserIcons.h; sourceTree = "<group>"; };
 		01F8857422E6167100D18373 /* SADownloadUserIcons.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SADownloadUserIcons.m; sourceTree = "<group>"; };
 		01F910F022EF954200BFF91D /* thermostat_hp_homeplus2-on@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "thermostat_hp_homeplus2-on@2x.png"; path = "Resources/Assets/Img/thermostat_hp_homeplus2-on@2x.png"; sourceTree = "<group>"; };
@@ -1271,6 +1273,7 @@
 				01D0616C22C294D90043C947 /* ElectricityMeterDetailView.h */,
 				01D0616D22C294D90043C947 /* ElectricityMeterDetailView.m */,
 				01D0617322C296850043C947 /* ElectricityMeterDetailView.xib */,
+				017554F222F18E4A00EB58B7 /* HomePlusDetailView.xib */,
 				403150FA1DC769430075D2D2 /* RGBDetailView.m */,
 				40CE7C631DCBBCE400BBACE4 /* DepthCell.xib */,
 				40CE7C6D1DCBBF6D00BBACE4 /* DistanceCell.xib */,
@@ -1605,6 +1608,7 @@
 				40CF96AD1BC7D4E70030EFFF /* door-open@3x.png in Resources */,
 				40CF96D91BC81A470030EFFF /* error@3x.png in Resources */,
 				40A87DE01FADDFF900918B54 /* add_device@2x.png in Resources */,
+				017554F322F18E4A00EB58B7 /* HomePlusDetailView.xib in Resources */,
 				405AC4311BC158E8004F7311 /* OpenSans-Bold.ttf in Resources */,
 				40B9ED471FACCE8700403B1A /* tv-off@2x.png in Resources */,
 				4091654B1F3CBAF200F49193 /* rs_stop.png in Resources */,
