@@ -26,6 +26,7 @@
 #import "RGBDetailView.h"
 #import "RSDetailView.h"
 #import "ElectricityMeterDetailView.h"
+#import "HomePlusDetailView.h"
 #import "SARateApp.h"
 
 @implementation SAMainVC {
@@ -373,6 +374,7 @@
     SARGBDetailView *_rgbDetailView;
     SARSDetailView *_rsDetailView; // Roller Shutter detail view
     SAElectricityMeterDetailView *_electricityMeterDetailView;
+    SAHomePlusDetailView *_homePlusDetailView;
     SADetailView *_detailView;
     
     float last_touched_x;
@@ -385,6 +387,7 @@
     
    _rgbDetailView = nil;
     _electricityMeterDetailView = nil;
+    _homePlusDetailView = nil;
     _detailView = nil;
    _animating = NO;
    _panRecognizer = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(handlePan:)];
@@ -405,13 +408,12 @@
     
     SADetailView *result = nil;
     
-    if ( _cell.channelBase.isOnline ) {
+    if ( _cell.channelBase.isOnline && self.superview != nil) {
         
         if ( [_cell.channelBase isKindOfClass:SAChannel.class]
              && (((SAChannel*)_cell.channelBase).type == SUPLA_CHANNELTYPE_ELECTRICITY_METER)) {
             
-            if ( _electricityMeterDetailView == nil
-                && self.superview != nil ) {
+            if ( _electricityMeterDetailView == nil ) {
                 
                 _electricityMeterDetailView = [[[NSBundle mainBundle] loadNibNamed:@"ElectricityMeterDetailView" owner:self options:nil] objectAtIndex:0];
                 [_electricityMeterDetailView detailViewInit];
@@ -424,8 +426,7 @@
                 case SUPLA_CHANNELFNC_RGBLIGHTING:
                 case SUPLA_CHANNELFNC_DIMMERANDRGBLIGHTING:
                     
-                    if ( _rgbDetailView == nil
-                        && self.superview != nil ) {
+                    if ( _rgbDetailView == nil ) {
                         
                         _rgbDetailView = [[[NSBundle mainBundle] loadNibNamed:@"RGBDetail" owner:self options:nil] objectAtIndex:0];
                         [_rgbDetailView detailViewInit];
@@ -433,13 +434,11 @@
                     }
                     
                     result = _rgbDetailView;
-                    
                     break;
                     
                 case SUPLA_CHANNELFNC_CONTROLLINGTHEROLLERSHUTTER:
                     
-                    if ( _rsDetailView == nil
-                        && self.superview != nil ) {
+                    if ( _rsDetailView == nil ) {
                         
                         _rsDetailView = [[[NSBundle mainBundle] loadNibNamed:@"RSDetail" owner:self options:nil] objectAtIndex:0];
                         [_rsDetailView detailViewInit];
@@ -447,7 +446,18 @@
                     }
                     
                     result = _rsDetailView;
+                    break;
                     
+                case SUPLA_CHANNELFNC_THERMOSTAT_HEATPOL_HOMEPLUS:
+                    
+                    if ( _homePlusDetailView == nil ) {
+                        
+                        _homePlusDetailView = [[[NSBundle mainBundle] loadNibNamed:@"HomePlusDetailView" owner:self options:nil] objectAtIndex:0];
+                        [_homePlusDetailView detailViewInit];
+                        
+                    }
+                    
+                    result = _homePlusDetailView;
                     break;
             };
         }

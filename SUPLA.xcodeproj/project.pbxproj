@@ -16,6 +16,12 @@
 		013D73A722DCAEF400E3515A /* SAIncrementalMeterChartMarkerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 013D73A622DCAEF400E3515A /* SAIncrementalMeterChartMarkerView.xib */; };
 		013D73B022DD105400E3515A /* SAChartFilterField.m in Sources */ = {isa = PBXBuildFile; fileRef = 013D73AF22DD105400E3515A /* SAChartFilterField.m */; };
 		017554F322F18E4A00EB58B7 /* HomePlusDetailView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 017554F222F18E4A00EB58B7 /* HomePlusDetailView.xib */; };
+		017554F622F1A62500EB58B7 /* HomePlusDetailView.m in Sources */ = {isa = PBXBuildFile; fileRef = 017554F522F1A62500EB58B7 /* HomePlusDetailView.m */; };
+		017554F822F1CDB900EB58B7 /* heatpollogo@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 017554F722F1CDB900EB58B7 /* heatpollogo@3x.png */; };
+		017554FB22F1D2BE00EB58B7 /* clock@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 017554F922F1D2BE00EB58B7 /* clock@3x.png */; };
+		017554FC22F1D2BE00EB58B7 /* settings2@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 017554FA22F1D2BE00EB58B7 /* settings2@3x.png */; };
+		017554FF22F1DDA300EB58B7 /* hp_plus@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 017554FD22F1DDA300EB58B7 /* hp_plus@3x.png */; };
+		0175550022F1DDA300EB58B7 /* hp_minus@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 017554FE22F1DDA300EB58B7 /* hp_minus@3x.png */; };
 		018E67CF22C8CA0A00FF1427 /* SADownloadElectricityMeasurements.m in Sources */ = {isa = PBXBuildFile; fileRef = 018E67CE22C8CA0A00FF1427 /* SADownloadElectricityMeasurements.m */; };
 		01BDAC7522C518DE00915646 /* SARestApiClientTask.m in Sources */ = {isa = PBXBuildFile; fileRef = 01BDAC7422C518DE00915646 /* SARestApiClientTask.m */; };
 		01BDAC7822C5200600915646 /* SAOAuthToken.m in Sources */ = {isa = PBXBuildFile; fileRef = 01BDAC7722C5200600915646 /* SAOAuthToken.m */; };
@@ -331,6 +337,13 @@
 		013D73AE22DD105400E3515A /* SAChartFilterField.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SAChartFilterField.h; sourceTree = "<group>"; };
 		013D73AF22DD105400E3515A /* SAChartFilterField.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SAChartFilterField.m; sourceTree = "<group>"; };
 		017554F222F18E4A00EB58B7 /* HomePlusDetailView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomePlusDetailView.xib; sourceTree = "<group>"; };
+		017554F422F1A62500EB58B7 /* HomePlusDetailView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HomePlusDetailView.h; sourceTree = "<group>"; };
+		017554F522F1A62500EB58B7 /* HomePlusDetailView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HomePlusDetailView.m; sourceTree = "<group>"; };
+		017554F722F1CDB900EB58B7 /* heatpollogo@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "heatpollogo@3x.png"; path = "Resources/Assets/Img/heatpollogo@3x.png"; sourceTree = "<group>"; };
+		017554F922F1D2BE00EB58B7 /* clock@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "clock@3x.png"; path = "Resources/Assets/Img/clock@3x.png"; sourceTree = "<group>"; };
+		017554FA22F1D2BE00EB58B7 /* settings2@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "settings2@3x.png"; path = "Resources/Assets/Img/settings2@3x.png"; sourceTree = "<group>"; };
+		017554FD22F1DDA300EB58B7 /* hp_plus@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "hp_plus@3x.png"; path = "Resources/Assets/Img/hp_plus@3x.png"; sourceTree = "<group>"; };
+		017554FE22F1DDA300EB58B7 /* hp_minus@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "hp_minus@3x.png"; path = "Resources/Assets/Img/hp_minus@3x.png"; sourceTree = "<group>"; };
 		018E67CD22C8CA0A00FF1427 /* SADownloadElectricityMeasurements.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SADownloadElectricityMeasurements.h; sourceTree = "<group>"; };
 		018E67CE22C8CA0A00FF1427 /* SADownloadElectricityMeasurements.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SADownloadElectricityMeasurements.m; sourceTree = "<group>"; };
 		01B216CF22AECB2F004E0596 /* SUPLA 3.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "SUPLA 3.xcdatamodel"; sourceTree = "<group>"; };
@@ -934,6 +947,11 @@
 		405AC4011BC15878004F7311 /* Img */ = {
 			isa = PBXGroup;
 			children = (
+				017554FE22F1DDA300EB58B7 /* hp_minus@3x.png */,
+				017554FD22F1DDA300EB58B7 /* hp_plus@3x.png */,
+				017554F922F1D2BE00EB58B7 /* clock@3x.png */,
+				017554FA22F1D2BE00EB58B7 /* settings2@3x.png */,
+				017554F722F1CDB900EB58B7 /* heatpollogo@3x.png */,
 				01F9110C22EF964900BFF91D /* thermostat_hp_homeplus1-on@2x.png */,
 				01F9110D22EF964900BFF91D /* thermostat_hp_homeplus1-on@3x.png */,
 				01F910F422EF954300BFF91D /* thermostat_hp_homeplus-off@2x.png */,
@@ -1289,6 +1307,8 @@
 				40B610CA20C7E263002B762A /* SAUIChannelStatus.h */,
 				40B610CB20C7E263002B762A /* SAUIChannelStatus.m */,
 				01F9111022EF989100BFF91D /* HomePlusCell.xib */,
+				017554F422F1A62500EB58B7 /* HomePlusDetailView.h */,
+				017554F522F1A62500EB58B7 /* HomePlusDetailView.m */,
 			);
 			name = UI;
 			sourceTree = "<group>";
@@ -1414,6 +1434,7 @@
 			files = (
 				40CF96C51BC7D4E70030EFFF /* power-on@3x.png in Resources */,
 				40844D7F1FB0DDB000432AA0 /* SettingsVC.xib in Resources */,
+				017554F822F1CDB900EB58B7 /* heatpollogo@3x.png in Resources */,
 				4052DA0D1DC515AE000B8C45 /* rgb-off@2x.png in Resources */,
 				40CE7C6B1DCBBD5700BBACE4 /* depth@2x.png in Resources */,
 				40DE1A2D1BCCFF8A004CF43B /* settings@2x.png in Resources */,
@@ -1471,6 +1492,7 @@
 				40CF96D81BC81A470030EFFF /* error@2x.png in Resources */,
 				40B9ED4F1FACCF8100403B1A /* radio-off@2x.png in Resources */,
 				40CE7C6E1DCBBF6D00BBACE4 /* DistanceCell.xib in Resources */,
+				0175550022F1DDA300EB58B7 /* hp_minus@3x.png in Resources */,
 				01F9110F22EF964900BFF91D /* thermostat_hp_homeplus1-on@3x.png in Resources */,
 				01F9110922EF954400BFF91D /* thermostat_hp_homeplus3-on@3x.png in Resources */,
 				40B9ED5D1FACD14000403B1A /* fan-on@2x.png in Resources */,
@@ -1548,6 +1570,7 @@
 				01D2C38E22C3B0A700BF1A10 /* graphoff.png in Resources */,
 				01F9110622EF954400BFF91D /* thermostat_hp_homeplus3-on@2x.png in Resources */,
 				4052DA091DC515AE000B8C45 /* dimmer-off@2x.png in Resources */,
+				017554FC22F1D2BE00EB58B7 /* settings2@3x.png in Resources */,
 				4052DA061DC515AE000B8C45 /* dimmerrgb-onon@3x.png in Resources */,
 				407D4AEC1BC6C64D009A5505 /* app_icon80x80@2x.png in Resources */,
 				40477B4B20C6C5FE00E995E6 /* staircasetimer_1-off@3x.png in Resources */,
@@ -1564,6 +1587,7 @@
 				40CF96B31BC7D4E70030EFFF /* gate-closed@3x.png in Resources */,
 				40766C2B1FC9BC7A009E00BE /* generalsettings@2x.png in Resources */,
 				40CF96C41BC7D4E70030EFFF /* power-on@2x.png in Resources */,
+				017554FF22F1DDA300EB58B7 /* hp_plus@3x.png in Resources */,
 				40CE7C691DCBBD5700BBACE4 /* distance@3x.png in Resources */,
 				40B9ED651FACD34C00403B1A /* xmastree-on@3x.png in Resources */,
 				40B9ED571FACD0A100403B1A /* pc-on@2x.png in Resources */,
@@ -1600,6 +1624,7 @@
 				4038A5571CE32CD700180B5D /* humidity@2x.png in Resources */,
 				01F9110722EF954400BFF91D /* thermostat_hp_homeplus3-off@2x.png in Resources */,
 				40766C2D1FC9C36D009E00BE /* iossettings.png in Resources */,
+				017554FB22F1D2BE00EB58B7 /* clock@3x.png in Resources */,
 				40DB208D1DC9049400FAFAB0 /* RGBDetail.xib in Resources */,
 				40CE7C641DCBBCE400BBACE4 /* DepthCell.xib in Resources */,
 				01F9110E22EF964900BFF91D /* thermostat_hp_homeplus1-on@2x.png in Resources */,
@@ -1735,6 +1760,7 @@
 				4004DE8D1DC4E270009C34E3 /* SAColorBrightnessPicker.m in Sources */,
 				401CA1C21BA067DB00117AF4 /* AppDelegate.m in Sources */,
 				013D1C5D22CE47D5000C0784 /* SAChartHelper.m in Sources */,
+				017554F622F1A62500EB58B7 /* HomePlusDetailView.m in Sources */,
 				40A675831BA1BE8E004A51C4 /* SettingsVC.m in Sources */,
 				013D1C6322CE75A3000C0784 /* SAElectricityChartHelper.m in Sources */,
 				406778551BCBF9F4008DD37F /* SectionCell.m in Sources */,
