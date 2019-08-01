@@ -16,16 +16,11 @@
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 
-#import "DetailView.h"
-#import "SAThermostatCalendar.h"
+#import <UIKit/UIKit.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface SAHomePlusDetailView : SADetailView
-@property (weak, nonatomic) IBOutlet SAThermostatCalendar *vCalendar;
-@property (weak, nonatomic) IBOutlet UIView *vMain;
-- (IBAction)calendarButtonTouched:(id)sender;
-- (IBAction)settingsButtonTouched:(id)sender;
+@interface SAThermostatCalendar : UIView
 
 @end
 

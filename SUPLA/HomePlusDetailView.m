@@ -20,5 +20,28 @@
 
 @implementation SAHomePlusDetailView
 
+-(void)showCalendar:(BOOL)show {
+    if (show) {
+        self.vMain.hidden = YES;
+        self.vCalendar.hidden = NO;
+    } else {
+        self.vMain.hidden = NO;
+        self.vCalendar.hidden = YES;
+    }
+}
 
+-(void)onDetailShow {
+    [self showCalendar:NO];
+};
+
+-(void)onDetailHide {
+    
+};
+
+- (IBAction)calendarButtonTouched:(id)sender {
+    [self showCalendar:self.vCalendar.hidden];
+}
+
+- (IBAction)settingsButtonTouched:(id)sender {
+}
 @end

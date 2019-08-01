@@ -20,6 +20,10 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3b4-Uj-Mw6" userLabel="vCalendar" customClass="SAThermostatCalendar">
+                    <rect key="frame" x="10" y="45" width="300" height="363"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ipw-iZ-DB9" userLabel="vHader">
                     <rect key="frame" x="5" y="0.0" width="310" height="40"/>
                     <subviews>
@@ -44,6 +48,9 @@
                                 <constraint firstAttribute="width" constant="28" id="jle-cW-y6k"/>
                             </constraints>
                             <state key="normal" image="settings2.png"/>
+                            <connections>
+                                <action selector="settingsButtonTouched:" destination="c9e-qf-AMF" eventType="touchDown" id="Qz0-IE-orm"/>
+                            </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="afB-uY-18S" userLabel="btnSchedule">
                             <rect key="frame" x="234" y="6" width="28" height="28"/>
@@ -52,6 +59,9 @@
                                 <constraint firstAttribute="width" constant="28" id="ztb-7g-hK6"/>
                             </constraints>
                             <state key="normal" image="clock.png"/>
+                            <connections>
+                                <action selector="calendarButtonTouched:" destination="c9e-qf-AMF" eventType="touchDown" id="MUN-kM-dqG"/>
+                            </connections>
                         </button>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -261,17 +271,25 @@
                 <constraint firstItem="feW-hw-dYe" firstAttribute="leading" secondItem="c9e-qf-AMF" secondAttribute="leading" constant="5" id="244-y7-dvE"/>
                 <constraint firstAttribute="trailing" secondItem="TVM-Us-lKn" secondAttribute="trailing" constant="5" id="2hC-gs-ic4"/>
                 <constraint firstItem="k1K-UQ-OTd" firstAttribute="top" secondItem="ipw-iZ-DB9" secondAttribute="bottom" constant="5" id="3FL-qT-L84"/>
+                <constraint firstAttribute="trailing" secondItem="3b4-Uj-Mw6" secondAttribute="trailing" constant="10" id="4xj-hw-0Ow"/>
                 <constraint firstItem="ipw-iZ-DB9" firstAttribute="leading" secondItem="c9e-qf-AMF" secondAttribute="leading" constant="5" id="5Bv-Be-eTY"/>
                 <constraint firstItem="TVM-Us-lKn" firstAttribute="leading" secondItem="c9e-qf-AMF" secondAttribute="leading" constant="5" id="5m7-ag-D2g"/>
                 <constraint firstItem="feW-hw-dYe" firstAttribute="top" secondItem="TVM-Us-lKn" secondAttribute="bottom" id="CtJ-sS-Tbx"/>
+                <constraint firstItem="3b4-Uj-Mw6" firstAttribute="top" secondItem="ipw-iZ-DB9" secondAttribute="bottom" constant="5" id="EFh-Bh-6y8"/>
                 <constraint firstItem="k1K-UQ-OTd" firstAttribute="leading" secondItem="c9e-qf-AMF" secondAttribute="leading" constant="10" id="GLd-Y3-tsp"/>
                 <constraint firstAttribute="trailing" secondItem="k1K-UQ-OTd" secondAttribute="trailing" constant="10" id="Hh8-lj-QVP"/>
                 <constraint firstAttribute="bottom" secondItem="feW-hw-dYe" secondAttribute="bottom" id="KN3-co-KSS"/>
+                <constraint firstItem="3b4-Uj-Mw6" firstAttribute="leading" secondItem="c9e-qf-AMF" secondAttribute="leading" constant="10" id="N2O-tT-n9A"/>
                 <constraint firstAttribute="trailing" secondItem="feW-hw-dYe" secondAttribute="trailing" constant="5" id="QUa-OX-Wka"/>
                 <constraint firstItem="ipw-iZ-DB9" firstAttribute="top" secondItem="c9e-qf-AMF" secondAttribute="top" id="d1q-RY-YWe"/>
                 <constraint firstAttribute="trailing" secondItem="ipw-iZ-DB9" secondAttribute="trailing" constant="5" id="h1i-dE-DtH"/>
                 <constraint firstItem="TVM-Us-lKn" firstAttribute="top" secondItem="k1K-UQ-OTd" secondAttribute="bottom" id="i8B-Sq-QVX"/>
+                <constraint firstItem="TVM-Us-lKn" firstAttribute="top" secondItem="3b4-Uj-Mw6" secondAttribute="bottom" id="q3z-pV-X4M"/>
             </constraints>
+            <connections>
+                <outlet property="vCalendar" destination="3b4-Uj-Mw6" id="gwo-s1-GxS"/>
+                <outlet property="vMain" destination="k1K-UQ-OTd" id="epb-CJ-7LD"/>
+            </connections>
             <point key="canvasLocation" x="76.875" y="108.75"/>
         </view>
     </objects>

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0122613922F396440013E6A2 /* SAThermostatCalendar.m in Sources */ = {isa = PBXBuildFile; fileRef = 0122613822F396440013E6A2 /* SAThermostatCalendar.m */; };
 		012F722C22DF3E2300E5F72E /* ChartFilterFieldTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 012F722822DF3CF000E5F72E /* ChartFilterFieldTests.m */; };
 		012F722E22DFA0BE00E5F72E /* SABarChartDataSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 012F722D22DFA0BE00E5F72E /* SABarChartDataSet.swift */; };
 		013D1C5D22CE47D5000C0784 /* SAChartHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 013D1C5C22CE47D5000C0784 /* SAChartHelper.m */; };
@@ -324,6 +325,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0122613722F396440013E6A2 /* SAThermostatCalendar.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SAThermostatCalendar.h; sourceTree = "<group>"; };
+		0122613822F396440013E6A2 /* SAThermostatCalendar.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SAThermostatCalendar.m; sourceTree = "<group>"; };
 		012F722822DF3CF000E5F72E /* ChartFilterFieldTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChartFilterFieldTests.m; sourceTree = "<group>"; };
 		012F722D22DFA0BE00E5F72E /* SABarChartDataSet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SABarChartDataSet.swift; sourceTree = "<group>"; };
 		013D1C5B22CE47D5000C0784 /* SAChartHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SAChartHelper.h; sourceTree = "<group>"; };
@@ -1309,6 +1312,8 @@
 				01F9111022EF989100BFF91D /* HomePlusCell.xib */,
 				017554F422F1A62500EB58B7 /* HomePlusDetailView.h */,
 				017554F522F1A62500EB58B7 /* HomePlusDetailView.m */,
+				0122613722F396440013E6A2 /* SAThermostatCalendar.h */,
+				0122613822F396440013E6A2 /* SAThermostatCalendar.m */,
 			);
 			name = UI;
 			sourceTree = "<group>";
@@ -1785,6 +1790,7 @@
 				40E8BE8A1FC06A5600FB2FE6 /* XPathQuery.m in Sources */,
 				01EE9BBC22BA50D90029A142 /* SAChannelValueBase+CoreDataProperties.m in Sources */,
 				01C792FA22B7FB610020A900 /* SAChannelExtendedValue+CoreDataClass.m in Sources */,
+				0122613922F396440013E6A2 /* SAThermostatCalendar.m in Sources */,
 				01F8856F22E5E79100D18373 /* SAThermostatMeasurementItem+CoreDataClass.m in Sources */,
 				40A6757F1BA1A5B6004A51C4 /* SuplaApp.m in Sources */,
 				40C9E4F71F2A186A00753796 /* SARollerShutter.m in Sources */,
