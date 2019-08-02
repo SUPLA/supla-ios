@@ -21,7 +21,16 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface SAThermostatCalendar : UIView
+-(void)clear;
 
+@property (nonatomic, weak) NSString *program0Label;
+@property (nonatomic, weak) NSString *program1Label;
+@property (nonatomic, assign) short firstDay;
+@property (nonatomic, assign) CGFloat textSize;
+@property (nonatomic, weak) UIColor *textColor;
+@property (nonatomic, weak) UIColor *program0Color;
+@property (nonatomic, weak) UIColor *program1Color;
+@property (nonatomic, assign) BOOL readOnly;
 @end
 
 NS_ASSUME_NONNULL_END
