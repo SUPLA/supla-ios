@@ -80,6 +80,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UIButton *btnPhase1;
 @property (weak, nonatomic) IBOutlet UIButton *btnPhase2;
 @property (weak, nonatomic) IBOutlet UIButton *btnPhase3;
+@property (weak, nonatomic) IBOutlet UIButton *btnPhaseSum;
 - (IBAction)phaseBtnTouch:(id)sender;
 @property (weak, nonatomic) IBOutlet UIButton *btnChart;
 - (IBAction)chartBtnTouch:(id)sender;

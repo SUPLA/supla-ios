@@ -23,7 +23,7 @@
 
 // iPhone <=5 fix.
 // Integer number as boolean method parameter does not work good in iPhone <5
-#define MVAL(val) (measured_values & val) ? YES : NO
+#define MVAL(val_flag) (measured_values & val_flag) ? YES : NO
 
 @implementation SAElectricityMeterDetailView   {
     short selectedPhase;
@@ -58,64 +58,76 @@
     }
 }
 
-- (void)frequencyVisible:(BOOL)visible {
+- (void)setFrequency:(double)freq visible:(BOOL)visible {
     [self setLabel:self.lFrequency Visible:visible withConstraint:self.cFrequencyTop];
     [self setLabel:self.lFrequencyValue Visible:visible withConstraint:self.cFrequencyValueTop];
+    [self.lFrequencyValue setText:[NSString stringWithFormat:@"%0.2f Hz", freq]];
 }
 
-- (void)voltageVisible:(BOOL)visible {
+- (void)setVoltage:(double)voltage visible:(BOOL)visible {
     [self setLabel:self.lVoltage Visible:visible withConstraint:self.cVoltageTop];
     [self setLabel:self.lVoltageValue Visible:visible withConstraint:self.cVoltageValueTop];
+    [self.lVoltageValue setText:[NSString stringWithFormat:@"%0.2f V", voltage]];
 }
 
-- (void)currentVisible:(BOOL)visible {
+- (void)setCurrent:(double)current visible:(BOOL)visible {
     [self setLabel:self.lCurrent Visible:visible withConstraint:self.cCurrentTop];
     [self setLabel:self.lCurrentValue Visible:visible withConstraint:self.cCurrentValueTop];
+    [self.lCurrentValue setText:[NSString stringWithFormat:@"%0.3f A", current]];
 }
 
-- (void)activePowerVisible:(BOOL)visible {
+- (void)setActivePower:(double)power visible:(BOOL)visible {
     [self setLabel:self.lActivePower Visible:visible withConstraint:self.cActivePowerTop];
     [self setLabel:self.lActivePowerValue Visible:visible withConstraint:self.cActivePowerValueTop];
+    [self.lActivePowerValue setText:[NSString stringWithFormat:@"%0.5f W", power]];
 }
 
-- (void)reactivePowerVisible:(BOOL)visible {
+- (void)setReactivePower:(double)power visible:(BOOL)visible {
     [self setLabel:self.lReactivePower Visible:visible withConstraint:self.cReactivePowerTop];
     [self setLabel:self.lReactivePowerValue Visible:visible withConstraint:self.cReactivePowerValueTop];
+    [self.lReactivePowerValue setText:[NSString stringWithFormat:@"%0.5f var", power]];
 }
 
-- (void)apparentPowerVisible:(BOOL)visible {
+- (void)setApparentPower:(double)power visible:(BOOL)visible {
     [self setLabel:self.lApparentPower Visible:visible withConstraint:self.cApparentPowerTop];
     [self setLabel:self.lApparentPowerValue Visible:visible withConstraint:self.cApparentPowerValueTop];
+    [self.lApparentPowerValue setText:[NSString stringWithFormat:@"%0.5f VA", power]];
 }
 
-- (void)powerFactorVisible:(BOOL)visible {
+- (void)setPowerFactor:(double)factor visible:(BOOL)visible {
     [self setLabel:self.lPowerFactor Visible:visible withConstraint:self.cPowerFactorTop];
     [self setLabel:self.lPowerFactorValue Visible:visible withConstraint:self.cPowerFactorValueTop];
+    [self.lPowerFactorValue setText:[NSString stringWithFormat:@"%0.3f", factor]];
 }
 
-- (void)phaseAngleVisible:(BOOL)visible {
+- (void)setPhaseAngle:(double)angle visible:(BOOL)visible {
     [self setLabel:self.lPhaseAngle Visible:visible withConstraint:self.cPhaseAngleTop];
     [self setLabel:self.lPhaseAngleValue Visible:visible withConstraint:self.cPhaseAngleValueTop];
+    [self.lPhaseAngleValue setText:[NSString stringWithFormat:@"%0.2f\u00B0", angle]];
 }
 
-- (void)forwardActiveEnergyVisible:(BOOL)visible {
+- (void)setForwardActiveEnergy:(double)energy visible:(BOOL)visible {
     [self setLabel:self.lForwardActiveEnergy Visible:visible withConstraint:self.cForwardActiveEnergyTop];
     [self setLabel:self.lForwardActiveEnergyValue Visible:visible withConstraint:self.cForwardActiveEnergyValueTop];
+    [self.lForwardActiveEnergyValue setText:[NSString stringWithFormat:@"%0.5f kWh", energy]];
 }
 
-- (void)reverseActiveEnergyVisible:(BOOL)visible {
+- (void)setReverseActiveEnergy:(double)energy visible:(BOOL)visible {
     [self setLabel:self.lReverseActiveEnergy Visible:visible withConstraint:self.cReverseActiveEnergyTop];
     [self setLabel:self.lReverseActiveEnergyValue Visible:visible withConstraint:self.cReverseActiveEnergyValueTop];
+    [self.lReverseActiveEnergyValue setText:[NSString stringWithFormat:@"%0.5f kWh", energy]];
 }
 
-- (void)forwardReactiveEnergyVisible:(BOOL)visible {
+- (void)setForwardReactiveEnergy:(double)energy visible:(BOOL)visible {
     [self setLabel:self.lForwardReactiveEnergy Visible:visible withConstraint:self.cForwardReactiveEnergyTop];
     [self setLabel:self.lForwardReactiveEnergyValue Visible:visible withConstraint:self.cForwardReactiveEnergyValueTop];
+    [self.lForwardReactiveEnergyValue setText:[NSString stringWithFormat:@"%0.5f kvarh", energy]];
 }
 
-- (void)reverseReactiveEnergyVisible:(BOOL)visible {
+- (void)setReverseReactiveEnergy:(double)energy visible:(BOOL)visible {
     [self setLabel:self.lReverseReactiveEnergy Visible:visible withConstraint:self.cReverseReactiveEnergyTop];
     [self setLabel:self.lReverseReactiveEnergyValue Visible:visible withConstraint:self.cReverseReactiveEnergyValueTop];
+    [self.lReverseReactiveEnergyValue setText:[NSString stringWithFormat:@"%0.5f kvarh", energy]];
 }
 
 - (NSString*)totalForwardActiveEnergyStringForValue:(double)value {
@@ -138,6 +150,7 @@
     self.btnPhase1.layer.borderColor = [[UIColor blackColor] CGColor];
     self.btnPhase2.layer.borderColor = [[UIColor blackColor] CGColor];
     self.btnPhase3.layer.borderColor = [[UIColor blackColor] CGColor];
+    self.btnPhaseSum.layer.borderColor = [[UIColor blackColor] CGColor];
     
     CGColorRef btnBorderColor = [[UIColor redColor] CGColor];
     
@@ -148,45 +161,46 @@
     [self.lCurrentCost setText:empty];
     [self.lTotalCost setText:empty];
     
-    [self.lFrequencyValue setText:empty];
-    [self.lVoltageValue setText:empty];
-    [self.lCurrentValue setText:empty];
-    [self.lActivePowerValue setText:empty];
-    [self.lReactivePowerValue setText:empty];
-    [self.lApparentPowerValue setText:empty];
-    [self.lPowerFactorValue setText:empty];
-    [self.lPhaseAngleValue setText:empty];
-    [self.lForwardActiveEnergyValue setText:empty];
-    [self.lReverseActiveEnergyValue setText:empty];
-    [self.lForwardReactiveEnergyValue setText:empty];
-    [self.lReverseReactiveEnergyValue setText:empty];
+    double freq = 0;
+    double voltage = 0;
+    double current = 0;
+    double powerActive = 0;
+    double powerReactive = 0;
+    double powerApparent = 0;
+    double powerFactor = 0;
+    double phaseAngle = 0;
+    double totalFAE = 0;
+    double totalRAE = 0;
+    double totalFRE = 0;
+    double totalRRE = 0;
     
     if ([self.channelBase isKindOfClass:SAChannel.class]
         && (ev = ((SAChannel*)self.channelBase).ev) != nil
-        && [ev getElectricityMeterExtendedValue:&emev]) {
+        && [ev getElectricityMeterExtendedValue:&emev]
+        && selectedPhase > -1) {
         
         if (emev.m_count > 0) {
             TElectricityMeter_Measurement *m = emev.m;
             
-            [self.lFrequencyValue setText:[NSString stringWithFormat:@"%0.2f Hz", m->freq * 0.01]];
-            [self.lVoltageValue setText:[NSString stringWithFormat:@"%0.2f V", m->voltage[selectedPhase] * 0.01]];
+            freq = m->freq * 0.01;
+            voltage = m->voltage[selectedPhase] * 0.01;
             
-            if ( m->voltage[selectedPhase] > 0 ) {
+            if ( voltage > 0 ) {
                 btnBorderColor = [[UIColor greenColor] CGColor];
             }
             
-            [self.lCurrentValue setText:[NSString stringWithFormat:@"%0.3f A", m->current[selectedPhase] * 0.001]];
-            [self.lActivePowerValue setText:[NSString stringWithFormat:@"%0.5f W", m->power_active[selectedPhase] * 0.00001]];
-            [self.lReactivePowerValue setText:[NSString stringWithFormat:@"%0.5f var", m->power_reactive[selectedPhase] * 0.00001]];
-            [self.lApparentPowerValue setText:[NSString stringWithFormat:@"%0.5f VA", m->power_apparent[selectedPhase] * 0.00001]];
-            [self.lPowerFactorValue setText:[NSString stringWithFormat:@"%0.3f", m->power_factor[selectedPhase] * 0.001]];
-            [self.lPhaseAngleValue setText:[NSString stringWithFormat:@"%0.2f\u00B0", m->phase_angle[selectedPhase] * 0.1]];
+            current = m->current[selectedPhase] * 0.001;
+            powerActive = m->power_active[selectedPhase] * 0.00001;
+            powerReactive = m->power_reactive[selectedPhase] * 0.00001;
+            powerApparent = m->power_apparent[selectedPhase] * 0.00001;
+            powerFactor = m->power_factor[selectedPhase] * 0.001;
+            phaseAngle = m->phase_angle[selectedPhase] * 0.1;
         }
 
-        [self.lForwardActiveEnergyValue setText:[NSString stringWithFormat:@"%0.5f kWh", emev.total_forward_active_energy[selectedPhase] * 0.00001]];
-        [self.lReverseActiveEnergyValue setText:[NSString stringWithFormat:@"%0.5f kWh", emev.total_reverse_active_energy[selectedPhase] * 0.00001]];
-        [self.lForwardReactiveEnergyValue setText:[NSString stringWithFormat:@"%0.5f kvarh", emev.total_forward_reactive_energy[selectedPhase] * 0.00001]];
-        [self.lReverseReactiveEnergyValue setText:[NSString stringWithFormat:@"%0.5f kvarh", emev.total_reverse_reactive_energy[selectedPhase] * 0.00001]];
+        totalFAE = emev.total_forward_active_energy[selectedPhase] * 0.00001;
+        totalRAE = emev.total_reverse_active_energy[selectedPhase] * 0.00001;
+        totalFRE = emev.total_forward_reactive_energy[selectedPhase] * 0.00001;
+        totalRRE = emev.total_reverse_reactive_energy[selectedPhase] * 0.00001;
         
         measured_values = emev.measured_values;
         
@@ -217,22 +231,25 @@
         _chartHelper.totalForwardActiveEnergyPhase3 = emev.total_forward_active_energy[2] * 0.00001;
     }
     
-    [self frequencyVisible:MVAL(EM_VAR_FREQ)];
-    [self voltageVisible:MVAL(EM_VAR_VOLTAGE)];
-    [self currentVisible:MVAL(EM_VAR_CURRENT)];
-    [self activePowerVisible:MVAL(EM_VAR_POWER_ACTIVE)];
-    [self reactivePowerVisible:MVAL(EM_VAR_POWER_REACTIVE)];
-    [self apparentPowerVisible:MVAL(EM_VAR_POWER_APPARENT)];
-    [self powerFactorVisible:MVAL(EM_VAR_POWER_FACTOR)];
-    [self phaseAngleVisible:MVAL(EM_VAR_PHASE_ANGLE)];
-    [self forwardActiveEnergyVisible:MVAL(EM_VAR_FORWARD_ACTIVE_ENERGY)];
-    [self reverseActiveEnergyVisible:MVAL(EM_VAR_REVERSE_ACTIVE_ENERGY)];
-    [self forwardReactiveEnergyVisible:MVAL(EM_VAR_FORWARD_REACTIVE_ENERGY)];
-    [self reverseReactiveEnergyVisible:MVAL(EM_VAR_REVERSE_REACTIVE_ENERGY)];
+    [self setFrequency:freq visible:MVAL(EM_VAR_FREQ)];
+    [self setVoltage:voltage visible:MVAL(EM_VAR_VOLTAGE)];
+    [self setCurrent:current visible:MVAL(EM_VAR_CURRENT)];
+    [self setActivePower:powerActive visible:MVAL(EM_VAR_POWER_ACTIVE)];
+    [self setReactivePower:powerReactive visible:MVAL(EM_VAR_POWER_REACTIVE)];
+    [self setApparentPower:powerApparent visible:MVAL(EM_VAR_POWER_APPARENT)];
+    [self setPowerFactor:powerFactor visible:MVAL(EM_VAR_POWER_FACTOR)];
+    [self setPhaseAngle:phaseAngle visible:MVAL(EM_VAR_PHASE_ANGLE)];
+    [self setForwardActiveEnergy:totalFAE visible:MVAL(EM_VAR_FORWARD_ACTIVE_ENERGY)];
+    [self setReverseActiveEnergy:totalRAE visible:MVAL(EM_VAR_REVERSE_ACTIVE_ENERGY)];
+    [self setForwardReactiveEnergy:totalFRE visible:MVAL(EM_VAR_FORWARD_REACTIVE_ENERGY)];
+    [self setReverseReactiveEnergy:totalRRE visible:MVAL(EM_VAR_REVERSE_REACTIVE_ENERGY)];
     
     [self.lCaption setText:[self.channelBase getChannelCaption]];
     
     switch (selectedPhase) {
+        case -1:
+            self.btnPhaseSum.layer.borderColor = btnBorderColor;
+            break;
         case 0:
             self.btnPhase1.layer.borderColor = btnBorderColor;
             break;
@@ -260,6 +277,8 @@
         selectedPhase = 1;
     } else if (sender == self.btnPhase3) {
         selectedPhase = 2;
+    } else if (sender == self.btnPhaseSum) {
+        selectedPhase = -1;
     }
     
     [self updateView];
