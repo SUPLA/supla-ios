@@ -57,4 +57,14 @@
     [super load];
 }
 
+- (void) prepareBarDataSet:(SABarChartDataSet*)barDataSet {
+    if ([self isComparsionChartType]) {
+        barDataSet.colorDependsOnTheValue = YES;
+        
+        [barDataSet resetColors];
+        barDataSet.colors = @[[UIColor chartValuePositiveColor],
+                              [UIColor chartValueNegativeColor]];
+    }
+}
+
 @end

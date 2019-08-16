@@ -21,7 +21,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface SAIncrementalMeterChartHelper : SAChartHelper
-
+- (void) prepareBarDataSet:(SABarChartDataSet*)barDataSet;
 @property (nonatomic, weak) NSString *currency;
 @property (nonatomic, assign) double pricePerUnit;
 @end

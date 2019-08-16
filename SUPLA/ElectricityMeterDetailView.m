@@ -23,7 +23,7 @@
 
 // iPhone <=5 fix.
 // Integer number as boolean method parameter does not work good in iPhone <5
-#define MVAL(val_flag) (measured_values & val_flag) ? YES : NO
+#define MVAL(val_flag) ((measured_values & val_flag) ? YES : NO)
 
 @implementation SAElectricityMeterDetailView   {
     short selectedPhase;
@@ -41,6 +41,7 @@
     _chartHelper.combinedChart = self.combinedChart;
     _chartHelper.pieChart = self.pieChart;
     _chartHelper.unit = @"kWh";
+    _tfChartTypeFilter.chartHelper = _chartHelper;
     _tfChartTypeFilter.dateRangeFilterField = _ftDateRangeFilter;
     _tfChartTypeFilter.ff_delegate = self;
     _ftDateRangeFilter.ff_delegate = self;
@@ -130,7 +131,7 @@
     [self.lReverseReactiveEnergyValue setText:[NSString stringWithFormat:@"%0.5f kvarh", energy]];
 }
 
-- (NSString*)totalForwardActiveEnergyStringForValue:(double)value {
+- (NSString*)totalActiveEnergyStringForValue:(double)value {
     int precision = 5;
     if (value >= 1000) {
         precision = 3;
@@ -156,8 +157,8 @@
     
     NSString *empty = @"----";
     
-    [self.lTotalForwardActiveEnergy setText:empty];
-    [self.lCurrentConsumption setText:empty];
+    [self.lTotalActiveEnergyValue setText:empty];
+    [self.lConsumptionProductionValue setText:empty];
     [self.lCurrentCost setText:empty];
     [self.lTotalCost setText:empty];
     
@@ -176,69 +177,96 @@
     
     if ([self.channelBase isKindOfClass:SAChannel.class]
         && (ev = ((SAChannel*)self.channelBase).ev) != nil
-        && [ev getElectricityMeterExtendedValue:&emev]
-        && selectedPhase > -1) {
+        && [ev getElectricityMeterExtendedValue:&emev]) {
         
-        if (emev.m_count > 0) {
-            TElectricityMeter_Measurement *m = emev.m;
+        TElectricityMeter_Measurement *m = emev.m;
+        
+        for(int p=0;p<3;p++) {
             
-            freq = m->freq * 0.01;
-            voltage = m->voltage[selectedPhase] * 0.01;
-            
-            if ( voltage > 0 ) {
-                btnBorderColor = [[UIColor greenColor] CGColor];
+            if (selectedPhase > -1) {
+                p = selectedPhase;
             }
+        
+            if (emev.m_count > 0) {
+                freq = m->freq * 0.01;
+                
+                if (voltage == 0) {
+                    voltage = m->voltage[selectedPhase] * 0.01;
+                }
             
-            current = m->current[selectedPhase] * 0.001;
-            powerActive = m->power_active[selectedPhase] * 0.00001;
-            powerReactive = m->power_reactive[selectedPhase] * 0.00001;
-            powerApparent = m->power_apparent[selectedPhase] * 0.00001;
-            powerFactor = m->power_factor[selectedPhase] * 0.001;
-            phaseAngle = m->phase_angle[selectedPhase] * 0.1;
+                if ( voltage > 0 ) {
+                    btnBorderColor = [[UIColor greenColor] CGColor];
+                }
+                
+                current = m->current[p] * 0.001;
+                powerActive += m->power_active[p] * 0.00001;
+                powerReactive += m->power_reactive[p] * 0.00001;
+                powerApparent += m->power_apparent[p] * 0.00001;
+                powerFactor = m->power_factor[p] * 0.001;
+                phaseAngle = m->phase_angle[p] * 0.1;
+            }
+
+            totalFAE += emev.total_forward_active_energy[p] * 0.00001;
+            totalRAE += emev.total_reverse_active_energy[p] * 0.00001;
+            totalFRE += emev.total_forward_reactive_energy[p] * 0.00001;
+            totalRRE += emev.total_reverse_reactive_energy[p] * 0.00001;
+            
+            if (selectedPhase > -1) {
+                break;
+            }
         }
 
-        totalFAE = emev.total_forward_active_energy[selectedPhase] * 0.00001;
-        totalRAE = emev.total_reverse_active_energy[selectedPhase] * 0.00001;
-        totalFRE = emev.total_forward_reactive_energy[selectedPhase] * 0.00001;
-        totalRRE = emev.total_reverse_reactive_energy[selectedPhase] * 0.00001;
-        
         measured_values = emev.measured_values;
         
         double currentConsumption = 0;
+        double currentProduction = 0;
         double currentCost = 0;
         
         if ([SAApp.DB electricityMeterMeasurementsStartsWithTheCurrentMonthForChannelId:self.channelBase.remote_id]) {
-            currentConsumption = [ev getTotalForwardActiveEnergyForExtendedValue:&emev];
+            currentConsumption = [ev getTotalActiveEnergyForExtendedValue:&emev forwarded:YES];
+            currentProduction = [ev getTotalActiveEnergyForExtendedValue:&emev forwarded:NO];
             currentCost = emev.total_cost * 0.01;
         } else {
-            double v0 = [SAApp.DB sumForwardedActiveEnergyForChannelId:self.channelBase.remote_id monthLimitOffset:0];
-            double v1 = [SAApp.DB sumForwardedActiveEnergyForChannelId:self.channelBase.remote_id monthLimitOffset:-1];
+            double v0 = [SAApp.DB sumActiveEnergyForChannelId:self.channelBase.remote_id monthLimitOffset:0 forwarded:YES];
+            double v1 = [SAApp.DB sumActiveEnergyForChannelId:self.channelBase.remote_id monthLimitOffset:-1 forwarded:YES];
             
             currentConsumption = v0-v1;
             currentCost = emev.price_per_unit * 0.0001 * currentConsumption;
+            
+            v0 = [SAApp.DB sumActiveEnergyForChannelId:self.channelBase.remote_id monthLimitOffset:0 forwarded:NO];
+            v1 = [SAApp.DB sumActiveEnergyForChannelId:self.channelBase.remote_id monthLimitOffset:-1 forwarded:NO];
+            
+            currentProduction = v0-v1;
         }
         
-        [self.lTotalForwardActiveEnergy setText:[self totalForwardActiveEnergyStringForValue:[ev getTotalForwardActiveEnergyForExtendedValue:&emev]]];
+        [self.lTotalActiveEnergyValue setText:[self totalActiveEnergyStringForValue:[ev getTotalActiveEnergyForExtendedValue:&emev forwarded:!_chartHelper.productionDataSource]]];
+        [self.lConsumptionProductionValue setText:[NSString stringWithFormat:@"%0.2f kWh", _chartHelper.productionDataSource ? currentProduction : currentConsumption]];
+        
         [self.lTotalCost setText:[NSString stringWithFormat:@"%0.2f %@", emev.total_cost * 0.01, [ev decodeCurrency:emev.currency]]];
-        [self.lCurrentConsumption setText:[NSString stringWithFormat:@"%0.2f kWh", currentConsumption]];
         [self.lCurrentCost setText:[NSString stringWithFormat:@"%0.2f %@", currentCost, [ev decodeCurrency:emev.currency]]];
     
         _chartHelper.pricePerUnit = emev.price_per_unit * 0.0001;
         _chartHelper.currency = [ev decodeCurrency:emev.currency];
         
-        _chartHelper.totalForwardActiveEnergyPhase1 = emev.total_forward_active_energy[0] * 0.00001;
-        _chartHelper.totalForwardActiveEnergyPhase2 = emev.total_forward_active_energy[1] * 0.00001;
-        _chartHelper.totalForwardActiveEnergyPhase3 = emev.total_forward_active_energy[2] * 0.00001;
+        if (_chartHelper.productionDataSource) {
+            _chartHelper.totalActiveEnergyPhase1 = emev.total_reverse_active_energy[0] * 0.00001;
+            _chartHelper.totalActiveEnergyPhase2 = emev.total_reverse_active_energy[1] * 0.00001;
+            _chartHelper.totalActiveEnergyPhase3 = emev.total_reverse_active_energy[2] * 0.00001;
+        } else {
+            _chartHelper.totalActiveEnergyPhase1 = emev.total_forward_active_energy[0] * 0.00001;
+            _chartHelper.totalActiveEnergyPhase2 = emev.total_forward_active_energy[1] * 0.00001;
+            _chartHelper.totalActiveEnergyPhase3 = emev.total_forward_active_energy[2] * 0.00001;
+        }
     }
     
     [self setFrequency:freq visible:MVAL(EM_VAR_FREQ)];
-    [self setVoltage:voltage visible:MVAL(EM_VAR_VOLTAGE)];
-    [self setCurrent:current visible:MVAL(EM_VAR_CURRENT)];
+    [self setVoltage:voltage visible:MVAL(EM_VAR_VOLTAGE) && selectedPhase > -1];
+    [self setCurrent:current visible:MVAL(EM_VAR_CURRENT) && selectedPhase > -1];
     [self setActivePower:powerActive visible:MVAL(EM_VAR_POWER_ACTIVE)];
     [self setReactivePower:powerReactive visible:MVAL(EM_VAR_POWER_REACTIVE)];
     [self setApparentPower:powerApparent visible:MVAL(EM_VAR_POWER_APPARENT)];
-    [self setPowerFactor:powerFactor visible:MVAL(EM_VAR_POWER_FACTOR)];
-    [self setPhaseAngle:phaseAngle visible:MVAL(EM_VAR_PHASE_ANGLE)];
+    [self setPowerFactor:powerFactor visible:MVAL(EM_VAR_POWER_FACTOR) && selectedPhase > -1];
+    [self setPhaseAngle:phaseAngle visible:MVAL(EM_VAR_PHASE_ANGLE) && selectedPhase > -1];
     [self setForwardActiveEnergy:totalFAE visible:MVAL(EM_VAR_FORWARD_ACTIVE_ENERGY)];
     [self setReverseActiveEnergy:totalRAE visible:MVAL(EM_VAR_REVERSE_ACTIVE_ENERGY)];
     [self setForwardReactiveEnergy:totalFRE visible:MVAL(EM_VAR_FORWARD_REACTIVE_ENERGY)];
@@ -284,7 +312,15 @@
     [self updateView];
 }
 
-- (void)chartsHidden:(BOOL)hidden {
+- (IBAction)directionBtnTouch:(id)sender {
+    [self setProductionDataSource:!_chartHelper.productionDataSource];
+    
+    if (!self.vCharts.hidden) {
+        [self loadChartWithAnimation:YES];
+    }
+}
+
+- (void)setChartsHidden:(BOOL)hidden {
     [_tfChartTypeFilter resignFirstResponder];
     
     if (hidden) {
@@ -298,6 +334,24 @@
     }
 }
 
+- (void)setProductionDataSource:(BOOL)production {
+    _chartHelper.productionDataSource = production;
+    [_tfChartTypeFilter resignFirstResponder];
+    _tfChartTypeFilter.chartType = Bar_Minutely;
+    
+    if (production) {
+        [self.btnDirection setImage:[UIImage imageNamed:@"production.png"]];
+        [self.lTotalActiveEnergy setText:NSLocalizedString(@"Reverse active Energy", nil)];
+        [self.lConsumptionProduction setText:NSLocalizedString(@"Production in the current month", nil)];
+    } else {
+        [self.btnDirection setImage:[UIImage imageNamed:@"consumption.png"]];
+        [self.lTotalActiveEnergy setText:NSLocalizedString(@"Forward active Energy", nil)];
+        [self.lConsumptionProduction setText:NSLocalizedString(@"Consumption in the current month", nil)];
+    }
+    
+    [self updateView];
+}
+
 - (void)loadChartWithAnimation:(BOOL)animation {
     _chartHelper.chartType = _tfChartTypeFilter.chartType;
     _chartHelper.dateFrom = _tfChartTypeFilter.dateRangeFilterField.dateFrom;
@@ -308,7 +362,7 @@
 }
 
 - (IBAction)chartBtnTouch:(id)sender {
-    [self chartsHidden:self.vPhases.hidden];
+    [self setChartsHidden:self.vPhases.hidden];
     
     if (!self.vCharts.hidden) {
         [self loadChartWithAnimation:YES];
@@ -317,8 +371,8 @@
 
 -(void)onDetailShow {
     [super onDetailShow];
-    _tfChartTypeFilter.chartType = Bar_Minutely;
-    [self chartsHidden:YES];
+    [self setProductionDataSource:NO];
+    [self setChartsHidden:YES];
     [self setPreloaderHidden:YES];
     
     [SAApp.instance cancelAllRestApiClientTasks];

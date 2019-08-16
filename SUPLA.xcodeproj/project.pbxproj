@@ -16,6 +16,8 @@
 		013D73A522DCAB4400E3515A /* SAIncrementalMeterChartMarkerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 013D73A422DCAB4400E3515A /* SAIncrementalMeterChartMarkerView.swift */; };
 		013D73A722DCAEF400E3515A /* SAIncrementalMeterChartMarkerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 013D73A622DCAEF400E3515A /* SAIncrementalMeterChartMarkerView.xib */; };
 		013D73B022DD105400E3515A /* SAChartFilterField.m in Sources */ = {isa = PBXBuildFile; fileRef = 013D73AF22DD105400E3515A /* SAChartFilterField.m */; };
+		016EE77423074DDC00FD301C /* production@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 016EE77223074DDC00FD301C /* production@3x.png */; };
+		016EE77523074DDC00FD301C /* consumption@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 016EE77323074DDC00FD301C /* consumption@3x.png */; };
 		017554F322F18E4A00EB58B7 /* HomePlusDetailView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 017554F222F18E4A00EB58B7 /* HomePlusDetailView.xib */; };
 		017554F622F1A62500EB58B7 /* HomePlusDetailView.m in Sources */ = {isa = PBXBuildFile; fileRef = 017554F522F1A62500EB58B7 /* HomePlusDetailView.m */; };
 		017554F822F1CDB900EB58B7 /* heatpollogo@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 017554F722F1CDB900EB58B7 /* heatpollogo@3x.png */; };
@@ -339,6 +341,8 @@
 		013D73A622DCAEF400E3515A /* SAIncrementalMeterChartMarkerView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SAIncrementalMeterChartMarkerView.xib; sourceTree = "<group>"; };
 		013D73AE22DD105400E3515A /* SAChartFilterField.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SAChartFilterField.h; sourceTree = "<group>"; };
 		013D73AF22DD105400E3515A /* SAChartFilterField.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SAChartFilterField.m; sourceTree = "<group>"; };
+		016EE77223074DDC00FD301C /* production@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "production@3x.png"; path = "Resources/Assets/Img/production@3x.png"; sourceTree = "<group>"; };
+		016EE77323074DDC00FD301C /* consumption@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "consumption@3x.png"; path = "Resources/Assets/Img/consumption@3x.png"; sourceTree = "<group>"; };
 		017554F222F18E4A00EB58B7 /* HomePlusDetailView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomePlusDetailView.xib; sourceTree = "<group>"; };
 		017554F422F1A62500EB58B7 /* HomePlusDetailView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HomePlusDetailView.h; sourceTree = "<group>"; };
 		017554F522F1A62500EB58B7 /* HomePlusDetailView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HomePlusDetailView.m; sourceTree = "<group>"; };
@@ -950,6 +954,8 @@
 		405AC4011BC15878004F7311 /* Img */ = {
 			isa = PBXGroup;
 			children = (
+				016EE77323074DDC00FD301C /* consumption@3x.png */,
+				016EE77223074DDC00FD301C /* production@3x.png */,
 				017554FE22F1DDA300EB58B7 /* hp_minus@3x.png */,
 				017554FD22F1DDA300EB58B7 /* hp_plus@3x.png */,
 				017554F922F1D2BE00EB58B7 /* clock@3x.png */,
@@ -1468,6 +1474,7 @@
 				40B9ED5E1FACD14000403B1A /* fan-on@3x.png in Resources */,
 				407D4AF31BC6C6CB009A5505 /* app_icon120x120@2x.png in Resources */,
 				4091AF421FC84AE000EFF357 /* rocket@2x.png in Resources */,
+				016EE77523074DDC00FD301C /* consumption@3x.png in Resources */,
 				4091654E1F3CBAF200F49193 /* rs_close.png in Resources */,
 				40477B4920C6C5FE00E995E6 /* staircasetimer_1-off@2x.png in Resources */,
 				40B9ED811FACE15700403B1A /* nomail@2x.png in Resources */,
@@ -1569,6 +1576,7 @@
 				40477B4220C6C57700E995E6 /* staircasetimer-on@3x.png in Resources */,
 				40CF96C11BC7D4E70030EFFF /* noliquid@3x.png in Resources */,
 				40B9ED4E1FACCF8100403B1A /* radio-on@3x.png in Resources */,
+				016EE77423074DDC00FD301C /* production@3x.png in Resources */,
 				406C92D41BCD8518007BA87A /* btnOK@2x.png in Resources */,
 				401CA1CD1BA067DB00117AF4 /* Images.xcassets in Resources */,
 				40CF96CA1BC7D4E70030EFFF /* thermometer@2x.png in Resources */,

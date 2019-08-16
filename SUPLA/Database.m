@@ -1002,16 +1002,17 @@
     return [self timestampStartsWithTheCurrentMonth:ts];
 }
 
-- (double) sumForwardedActiveEnergyForChannelId:(int)channel_id monthLimitOffset:(int) offset {
+- (double) sumActiveEnergyForChannelId:(int)channel_id monthLimitOffset:(int) offset forwarded:(BOOL)fwd {
     
     double result = 0;
     int a;
     
+    NSString *field = fwd ? @"fae" : @"rae";
     NSMutableArray *props = [[NSMutableArray alloc] init];
     for(a=1;a<=3;a++) {
         NSExpressionDescription *ed = [[NSExpressionDescription alloc] init];
-        [ed setName:[NSString stringWithFormat:@"fae%i", a]];
-        [ed setExpression:[NSExpression expressionForFunction:@"sum:" arguments:[NSArray arrayWithObject:[NSExpression expressionForKeyPath:[NSString stringWithFormat:@"phase%i_fae", a]]]]];
+        [ed setName:[NSString stringWithFormat:@"%@%i", field, a]];
+        [ed setExpression:[NSExpression expressionForFunction:@"sum:" arguments:[NSArray arrayWithObject:[NSExpression expressionForKeyPath:[NSString stringWithFormat:@"phase%i_%@", a, field]]]]];
         [ed setExpressionResultType:NSDoubleAttributeType];
         [props addObject:ed];
     }
@@ -1023,15 +1024,15 @@
     
     if (sum && sum.count == 3) {
         for(a=1;a<=3;a++) {
-            result += [[sum objectForKey:[NSString stringWithFormat:@"fae%i", a]] doubleValue];
+            result += [[sum objectForKey:[NSString stringWithFormat:@"%@%i", field, a]] doubleValue];
         }
     }
     
     return result;
 }
 
--(NSArray *) getElectricityMeasurementsForChannelId:(int)channel_id dateFrom:(NSDate *)dateFrom dateTo:(NSDate *)dateTo groupBy:(GroupBy)gb groupingDepth:(GroupingDepth)gd {
-    return [self getIncrementalMeasurementsForChannelId:channel_id fields:@[@"phase1_fae",@"phase2_fae",@"phase3_fae"] entityName:@"SAElectricityMeasurementItem" dateFrom:dateFrom dateTo:dateTo groupBy:gb groupingDepth:gd];
+-(NSArray *) getElectricityMeasurementsForChannelId:(int)channel_id dateFrom:(NSDate *)dateFrom dateTo:(NSDate *)dateTo groupBy:(GroupBy)gb groupingDepth:(GroupingDepth)gd fields:(NSArray*)fields {
+    return [self getIncrementalMeasurementsForChannelId:channel_id fields:fields entityName:@"SAElectricityMeasurementItem" dateFrom:dateFrom dateTo:dateTo groupBy:gb groupingDepth:gd];
 }
 
 #pragma mark User Icons

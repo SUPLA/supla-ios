@@ -26,9 +26,9 @@ import Foundation
             let helper: SAIncrementalMeterChartHelper =
                 chartHelper as! SAIncrementalMeterChartHelper;
             
-            let currency: String = helper.currency != nil ? String(helper.currency!) : "";
-        
-            return String(format: "%.2f %@", entry.y*helper.pricePerUnit, currency);
+            if (helper.currency != nil) {
+                return String(format: "%.2f %@", entry.y*helper.pricePerUnit, helper.currency!);
+            }
         }
         return "";
     }

@@ -98,6 +98,10 @@
 "Water Meter" = "Licznik wody";
 "Gas Meter" = "Licznik gazu";
 
+"Forward active Energy" = "Energia czynna pobrana";
+"Reverse active Energy" = "Energia czynna zwrócona";
+"Consumption in the current month" = "Zużycie w bieżącym miesiącu";
+"Production in the current month" = "Produkcja w bieżącym miesiącu";
 "Minutes" = "Minuty";
 "Hours" = "Godziny";
 "Days" = "Dni";
@@ -112,6 +116,7 @@
 "Ranking of weekdays" = "Ranking dni tygodnia";
 "Ranking of months" = "Ranking miesięcy";
 "Consumption according to phases" = "Zużycie wg. faz";
+"Production according to phases" = "Produkcja wg. faz";
 "Last 24 hours" = "Ostatnie 24 godziny";
 "Last 7 days" = "Ostatnie 7 dni";
 "Last 30 days" = "Ostatnie 30 dni";

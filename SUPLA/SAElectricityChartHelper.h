@@ -22,9 +22,10 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface SAElectricityChartHelper : SAIncrementalMeterChartHelper
 
-@property (nonatomic, assign) double totalForwardActiveEnergyPhase1;
-@property (nonatomic, assign) double totalForwardActiveEnergyPhase2;
-@property (nonatomic, assign) double totalForwardActiveEnergyPhase3;
+@property (nonatomic, assign) double totalActiveEnergyPhase1;
+@property (nonatomic, assign) double totalActiveEnergyPhase2;
+@property (nonatomic, assign) double totalActiveEnergyPhase3;
+@property (nonatomic, assign) BOOL productionDataSource;
 @end
 
 NS_ASSUME_NONNULL_END

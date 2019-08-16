@@ -1,18 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
-    <device id="retina3_5" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14854.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina3_5" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14806.4"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
         <array key="OpenSans-Regular.ttf">
             <string>OpenSans</string>
         </array>
-        <array key="Quicksand-Light.ttf">
+        <array key="Quicksand-Regular.ttf">
             <string>Quicksand-Regular</string>
         </array>
     </customFonts>
@@ -567,6 +565,17 @@
                                     <color key="textColor" red="0.37075388431549072" green="0.80883383750915527" blue="0.38227877020835876" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                     <nil key="highlightedColor"/>
                                 </label>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="krl-AA-VN6" userLabel="btnDirection">
+                                    <rect key="frame" x="97" y="100" width="30" height="30"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="30" id="29E-T8-a34"/>
+                                        <constraint firstAttribute="width" constant="30" id="IlN-X8-fe8"/>
+                                    </constraints>
+                                    <state key="normal" title="Button" image="consumption.png"/>
+                                    <connections>
+                                        <action selector="directionBtnTouch:" destination="Xvv-Xf-gNW" eventType="touchDown" id="NEZ-zi-G5C"/>
+                                    </connections>
+                                </button>
                             </subviews>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
@@ -590,8 +599,10 @@
                                 <constraint firstAttribute="trailing" secondItem="psK-hZ-nQF" secondAttribute="trailing" id="dTz-4p-CD0"/>
                                 <constraint firstItem="Kfn-dN-K0a" firstAttribute="top" secondItem="qPI-tZ-xfE" secondAttribute="top" id="duI-kC-yBn"/>
                                 <constraint firstItem="BZV-5X-lZ7" firstAttribute="top" secondItem="zf2-II-RLR" secondAttribute="bottom" id="gkM-eV-bNr"/>
+                                <constraint firstAttribute="bottom" secondItem="krl-AA-VN6" secondAttribute="bottom" constant="20" id="glI-Z7-e7J"/>
                                 <constraint firstAttribute="trailing" secondItem="BZV-5X-lZ7" secondAttribute="trailing" id="hwm-IQ-RlW"/>
                                 <constraint firstItem="37U-Zx-YA3" firstAttribute="leading" secondItem="qPI-tZ-xfE" secondAttribute="leading" id="i1R-vg-inZ"/>
+                                <constraint firstItem="hlZ-mm-clg" firstAttribute="leading" secondItem="krl-AA-VN6" secondAttribute="trailing" constant="10" id="i3B-MC-AmZ"/>
                                 <constraint firstItem="psK-hZ-nQF" firstAttribute="top" secondItem="xZr-Dg-scJ" secondAttribute="bottom" id="nXf-EE-wkn"/>
                                 <constraint firstItem="psK-hZ-nQF" firstAttribute="leading" secondItem="qPI-tZ-xfE" secondAttribute="leading" id="qon-uZ-GyT"/>
                                 <constraint firstAttribute="trailing" secondItem="zf2-II-RLR" secondAttribute="trailing" id="rkx-XJ-C6Q"/>
@@ -640,6 +651,7 @@
             <nil key="simulatedBottomBarMetrics"/>
             <connections>
                 <outlet property="btnChart" destination="hlZ-mm-clg" id="rpp-0P-Xr4"/>
+                <outlet property="btnDirection" destination="krl-AA-VN6" id="E1a-1c-6ow"/>
                 <outlet property="btnPhase1" destination="MEJ-sn-3qn" id="0vQ-PV-jZi"/>
                 <outlet property="btnPhase2" destination="keR-AG-qQO" id="LmI-HV-a3O"/>
                 <outlet property="btnPhase3" destination="VyG-Y8-JRf" id="he3-Aa-ivF"/>
@@ -675,8 +687,9 @@
                 <outlet property="lApparentPower" destination="el3-yj-vIH" id="O8s-eZ-CqM"/>
                 <outlet property="lApparentPowerValue" destination="SGV-Qi-w6c" id="jry-6y-I3a"/>
                 <outlet property="lCaption" destination="quy-hA-zMO" id="azi-IH-ZQl"/>
+                <outlet property="lConsumptionProduction" destination="psK-hZ-nQF" id="WjQ-m2-pv8"/>
+                <outlet property="lConsumptionProductionValue" destination="zf2-II-RLR" id="gbk-H2-i46"/>
                 <outlet property="lCurrent" destination="g8r-4G-jnQ" id="fGS-qJ-koN"/>
-                <outlet property="lCurrentConsumption" destination="zf2-II-RLR" id="gbk-H2-i46"/>
                 <outlet property="lCurrentCost" destination="v3P-DR-NxZ" id="319-e4-0bA"/>
                 <outlet property="lCurrentValue" destination="Oqx-PK-Kbh" id="kCd-Rn-BaM"/>
                 <outlet property="lForwardActiveEnergy" destination="5dz-EL-yMd" id="hFW-MX-iEx"/>
@@ -696,8 +709,9 @@
                 <outlet property="lReverseActiveEnergyValue" destination="ImY-gJ-dUW" id="K6m-lB-TJE"/>
                 <outlet property="lReverseReactiveEnergy" destination="MHn-5a-5ZR" id="xAS-2u-3CQ"/>
                 <outlet property="lReverseReactiveEnergyValue" destination="6vS-Zf-6XX" id="TDJ-p9-OVY"/>
+                <outlet property="lTotalActiveEnergy" destination="Kfn-dN-K0a" id="cIu-Gf-dEI"/>
+                <outlet property="lTotalActiveEnergyValue" destination="xZr-Dg-scJ" id="vKr-Kx-Af9"/>
                 <outlet property="lTotalCost" destination="37U-Zx-YA3" id="aVD-51-ebf"/>
-                <outlet property="lTotalForwardActiveEnergy" destination="xZr-Dg-scJ" id="vKr-Kx-Af9"/>
                 <outlet property="lVoltage" destination="YDN-T2-eyC" id="KNO-Jz-O4v"/>
                 <outlet property="lVoltageValue" destination="N6X-By-Rip" id="5xM-wg-xSU"/>
                 <outlet property="pieChart" destination="Q7j-4f-xav" id="V26-Vi-WEM"/>
@@ -710,6 +724,7 @@
         </view>
     </objects>
     <resources>
+        <image name="consumption.png" width="102.40000152587891" height="102.40000152587891"/>
         <image name="electricitymeter.png" width="92" height="83.199996948242188"/>
         <image name="graphoff.png" width="128" height="128"/>
     </resources>

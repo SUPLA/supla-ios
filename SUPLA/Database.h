@@ -86,8 +86,8 @@ typedef NS_ENUM(NSUInteger, GroupBy) {
 -(void) deleteUncalculatedElectricityMeasurementsForChannelId:(int)channel_id;
 -(NSUInteger) getElectricityMeasurementItemCountWithoutComplementForChannelId:(int)channel_id;
 -(BOOL) electricityMeterMeasurementsStartsWithTheCurrentMonthForChannelId:(int)channel_id;
--(double) sumForwardedActiveEnergyForChannelId:(int)channel_id monthLimitOffset:(int) offset;
--(NSArray *) getElectricityMeasurementsForChannelId:(int)channel_id dateFrom:(NSDate *)dateFrom dateTo:(NSDate *)dateTo groupBy:(GroupBy)gb groupingDepth:(GroupingDepth)gd;
+- (double) sumActiveEnergyForChannelId:(int)channel_id monthLimitOffset:(int) offset forwarded:(BOOL)fwd;
+-(NSArray *) getElectricityMeasurementsForChannelId:(int)channel_id dateFrom:(NSDate *)dateFrom dateTo:(NSDate *)dateTo groupBy:(GroupBy)gb groupingDepth:(GroupingDepth)gd fields:(NSArray*)fields;
 -(NSArray *) iconsToDownload;
 -(SAUserIcon*) fetchUserIconById:(int)remote_id;
 @end

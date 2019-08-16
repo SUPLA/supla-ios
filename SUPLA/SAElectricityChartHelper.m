@@ -23,9 +23,10 @@
 
 @implementation SAElectricityChartHelper
 
-@synthesize totalForwardActiveEnergyPhase1;
-@synthesize totalForwardActiveEnergyPhase2;
-@synthesize totalForwardActiveEnergyPhase3;
+@synthesize totalActiveEnergyPhase1;
+@synthesize totalActiveEnergyPhase2;
+@synthesize totalActiveEnergyPhase3;
+@synthesize productionDataSource;
 
 - (NSArray *)getData {
     NSDate *dateFrom = self.dateFrom;
@@ -36,7 +37,15 @@
         dateTo = nil;
     }
     
-    return [SAApp.DB getElectricityMeasurementsForChannelId:self.channelId dateFrom:dateFrom dateTo:dateTo groupBy:[self getGroupByForCurrentChartType] groupingDepth:[self getGroupungDepthForCurrentChartType]];
+    NSArray *fields;
+    
+    if ( productionDataSource ) {
+        fields = @[@"phase1_rae",@"phase2_rae",@"phase3_rae"];
+    } else {
+        fields = @[@"phase1_fae",@"phase2_fae",@"phase3_fae"];
+    }
+        
+    return [SAApp.DB getElectricityMeasurementsForChannelId:self.channelId dateFrom:dateFrom dateTo:dateTo groupBy:[self getGroupByForCurrentChartType] groupingDepth:[self getGroupungDepthForCurrentChartType] fields:fields];
 }
 
 - (NSNumber *)doubleValueForKey:(NSString *)key item:(NSDictionary *)i {
@@ -48,13 +57,20 @@
     if (![item isKindOfClass:[NSDictionary class]]) {
         return;
     }
+    
+    NSArray *values;
+            
+    if (productionDataSource) {
+       values = @[[self doubleValueForKey:@"phase1_rae" item:item],
+                [self doubleValueForKey:@"phase2_rae" item:item],
+                [self doubleValueForKey:@"phase3_rae" item:item]];
+    } else {
+        values = @[[self doubleValueForKey:@"phase1_fae" item:item],
+            [self doubleValueForKey:@"phase2_fae" item:item],
+            [self doubleValueForKey:@"phase3_fae" item:item]];
+    }
 
-    NSArray *values = @[[self doubleValueForKey:@"phase1_fae" item:item],
-                        [self doubleValueForKey:@"phase2_fae" item:item],
-                        [self doubleValueForKey:@"phase3_fae" item:item]];
-    
     [entries addObject:[[BarChartDataEntry alloc] initWithX:idx yValues:values]];
-    
 }
 
 - (SABarChartDataSet *) newBarDataSetWithEntries:(NSArray *)entries {
@@ -78,13 +94,21 @@
     }
     
     if (self.chartType == Pie_PhaseRank) {
-        [entries addObject:[[PieChartDataEntry alloc] initWithValue:totalForwardActiveEnergyPhase1 label:NSLocalizedString(@"Phase 1", nil)]];
-        [entries addObject:[[PieChartDataEntry alloc] initWithValue:totalForwardActiveEnergyPhase2 label:NSLocalizedString(@"Phase 2", nil)]];
-        [entries addObject:[[PieChartDataEntry alloc] initWithValue:totalForwardActiveEnergyPhase3 label:NSLocalizedString(@"Phase 3", nil)]];
+        [entries addObject:[[PieChartDataEntry alloc] initWithValue:totalActiveEnergyPhase1 label:NSLocalizedString(@"Phase 1", nil)]];
+        [entries addObject:[[PieChartDataEntry alloc] initWithValue:totalActiveEnergyPhase2 label:NSLocalizedString(@"Phase 2", nil)]];
+        [entries addObject:[[PieChartDataEntry alloc] initWithValue:totalActiveEnergyPhase3 label:NSLocalizedString(@"Phase 3", nil)]];
     } else {
-        double sum = [[self doubleValueForKey:@"phase1_fae" item:item] doubleValue]
-        + [[self doubleValueForKey:@"phase2_fae" item:item] doubleValue]
-        + [[self doubleValueForKey:@"phase3_fae" item:item] doubleValue];
+        double sum;
+        
+        if (productionDataSource) {
+            sum = [[self doubleValueForKey:@"phase1_rae" item:item] doubleValue]
+            + [[self doubleValueForKey:@"phase2_rae" item:item] doubleValue]
+            + [[self doubleValueForKey:@"phase3_rae" item:item] doubleValue];
+        } else {
+            sum = [[self doubleValueForKey:@"phase1_fae" item:item] doubleValue]
+            + [[self doubleValueForKey:@"phase2_fae" item:item] doubleValue]
+            + [[self doubleValueForKey:@"phase3_fae" item:item] doubleValue];
+        }
         
         NSDateFormatter *dateFormat = [self dateFormatterForCurrentChartType];
         NSDate *date = [NSDate dateWithTimeIntervalSince1970:timestamp];
@@ -94,5 +118,25 @@
 
 }
 
+- (NSString *)stringRepresentationOfChartType:(ChartType)ct {
+    if (productionDataSource && ct == Pie_PhaseRank) {
+        return NSLocalizedString(@"Production according to phases", nil);
+    }
+
+    return [super stringRepresentationOfChartType:ct];
+}
+
+- (void) prepareBarDataSet:(SABarChartDataSet*)barDataSet {
+    [super prepareBarDataSet:barDataSet];
+   
+    if ([self isComparsionChartType] && productionDataSource) {
+        barDataSet.colors = @[[UIColor chartValueNegativeColor],
+                              [UIColor chartValuePositiveColor]];
+    }
+}
+
+-(NSString *)currency{
+    return productionDataSource ? nil : super.currency;
+}
 
 @end

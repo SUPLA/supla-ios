@@ -226,6 +226,8 @@
     [chart setDrawMarkers:marker != nil];
 }
 
+- (void) prepareBarDataSet:(SABarChartDataSet*)barDataSet {}
+
 - (void) loadCombinedChart {
     if (self.pieChart) {
         self.pieChart.hidden = YES;
@@ -282,15 +284,7 @@
     
     if (barEntries.count > 0) {
         SABarChartDataSet *barDataSet = [self newBarDataSetWithEntries:barEntries];
-        
-
-        if ([self isComparsionChartType]) {
-            barDataSet.colorDependsOnTheValue = YES;
-            
-            [barDataSet resetColors];
-            barDataSet.colors = @[[UIColor chartValuePositiveColor],
-                                  [UIColor chartValueNegativeColor]];
-        }
+        [self prepareBarDataSet: barDataSet];
         
         BarChartData *barData = [[BarChartData alloc] initWithDataSet:barDataSet];
         chartData.barData = barData;
@@ -365,7 +359,7 @@
 
 }
 
-+ (NSString *)stringRepresentationOfChartType:(ChartType)ct {
+- (NSString *)stringRepresentationOfChartType:(ChartType)ct {
     switch(ct) {
         case Bar_Minutely:
             return NSLocalizedString(@"Minutes", nil);

@@ -49,7 +49,8 @@ typedef NS_ENUM(NSUInteger, ChartType) {
 - (id<IChartMarker>) getMarker;
 - (GroupingDepth) getGroupungDepthForCurrentChartType;
 - (GroupBy) getGroupByForCurrentChartType;
-+ (NSString *)stringRepresentationOfChartType:(ChartType)ct;
+- (NSString *)stringRepresentationOfChartType:(ChartType)ct;
+- (void) prepareBarDataSet:(SABarChartDataSet*)barDataSet;
 -(BOOL)isPieChartType;
 -(BOOL)isComparsionChartType;
 

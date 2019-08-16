@@ -73,19 +73,23 @@
     return NO;
 }
 
-- (double) getTotalForwardActiveEnergyForExtendedValue:(TElectricityMeter_ExtendedValue*)emev {
-    double totalForwardActiveEnergy = 0;
+- (double) getTotalActiveEnergyForExtendedValue:(TElectricityMeter_ExtendedValue*)emev forwarded:(BOOL)fwd {
+    double totalActiveEnergy = 0;
     for(short a=0;a<3;a++) {
-        totalForwardActiveEnergy+=emev->total_forward_active_energy[a]*0.00001;
+        if (fwd) {
+             totalActiveEnergy+=emev->total_forward_active_energy[a]*0.00001;
+        } else {
+             totalActiveEnergy+=emev->total_reverse_active_energy[a]*0.00001;
+        }
     }
     
-    return totalForwardActiveEnergy;
+    return totalActiveEnergy;
 }
 
-- (double) getTotalForwardActiveEnergy {
+- (double) getTotalActiveEnergy:(BOOL)forwarded {
      TElectricityMeter_ExtendedValue emev;
     if ([self getElectricityMeterExtendedValue:&emev]) {
-        return [self getElectricityMeterExtendedValue:&emev];
+        return [self getTotalActiveEnergyForExtendedValue:&emev forwarded:forwarded];
     }
     return 0.0;
 }

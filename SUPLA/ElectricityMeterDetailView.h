@@ -24,8 +24,10 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface SAElectricityMeterDetailView : SADetailView <SARestApiClientTaskDelegate, SAChartFilterFieldDelegate>
-@property (weak, nonatomic) IBOutlet UILabel *lTotalForwardActiveEnergy;
-@property (weak, nonatomic) IBOutlet UILabel *lCurrentConsumption;
+@property (weak, nonatomic) IBOutlet UILabel *lConsumptionProduction;
+@property (weak, nonatomic) IBOutlet UILabel *lTotalActiveEnergy;
+@property (weak, nonatomic) IBOutlet UILabel *lTotalActiveEnergyValue;
+@property (weak, nonatomic) IBOutlet UILabel *lConsumptionProductionValue;
 @property (weak, nonatomic) IBOutlet UILabel *lCurrentCost;
 @property (weak, nonatomic) IBOutlet UILabel *lTotalCost;
 @property (weak, nonatomic) IBOutlet UILabel *lFrequency;
@@ -82,7 +84,9 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UIButton *btnPhase3;
 @property (weak, nonatomic) IBOutlet UIButton *btnPhaseSum;
 - (IBAction)phaseBtnTouch:(id)sender;
+- (IBAction)directionBtnTouch:(id)sender;
 @property (weak, nonatomic) IBOutlet UIButton *btnChart;
+@property (weak, nonatomic) IBOutlet UIButton *btnDirection;
 - (IBAction)chartBtnTouch:(id)sender;
 @property (weak, nonatomic) IBOutlet UIView *vPhases;
 @property (weak, nonatomic) IBOutlet UIView *vContent;

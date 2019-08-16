@@ -31,6 +31,7 @@
 }
 
 @synthesize ff_delegate;
+@synthesize chartHelper;
 
 -(void) _init {
     if (!_initialized) {
@@ -87,7 +88,7 @@
 }
 
 -(void)textFieldDidBeginEditing:(UITextField *)textField {
-    int i = [self findIndexForValue:_filterType == TypeFilter ? self.chartType : self.dateRange];
+    NSInteger i = [self findIndexForValue:_filterType == TypeFilter ? self.chartType : self.dateRange];
     if (i > -1) {
         [_pickerView reloadComponent:0];
         [_pickerView selectRow:i inComponent:0 animated:NO];
@@ -140,12 +141,14 @@
 
 - (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component {
     NSNumber *idx = [_items objectAtIndex:row];
-    return _filterType == TypeFilter
-         ? [SAChartHelper stringRepresentationOfChartType:[idx intValue]] : [SAChartFilterField stringRepresentationOfDateRange:[idx intValue]];
+    if (_filterType == TypeFilter) {
+        return chartHelper == nil ? @"" : [chartHelper stringRepresentationOfChartType:[idx intValue]];
+    }
+    return [SAChartFilterField stringRepresentationOfDateRange:[idx intValue]];
 }
 
-- (int)findIndexForValue:(int)value {
-    for(int a=0;a<_items.count;a++) {
+- (NSInteger)findIndexForValue:(NSUInteger)value {
+    for(NSInteger a=0;a<_items.count;a++) {
         if ([[_items objectAtIndex:a] intValue] == value) {
             return a;
         }
@@ -156,11 +159,11 @@
 
 - (void)setChartType:(ChartType)chartType {
     if (_filterType == TypeFilter) {
-        int i = [self findIndexForValue:chartType];
+        NSInteger i = [self findIndexForValue:chartType];
         if ( i > -1 ) {
             _chartType = chartType;
-            [self setText:[SAChartHelper stringRepresentationOfChartType:_chartType]];
-            
+            [self setText:chartHelper==nil ? @"" : [chartHelper stringRepresentationOfChartType:_chartType]];
+        
             if (_dateRangeFilterField != nil) {
                 _dateRangeFilterField.filterType = DateRangeFilter;
                 
@@ -190,7 +193,7 @@
 
 - (void)setDateRange:(DateRange)dateRange {
     if (_filterType == DateRangeFilter) {
-        int i = [self findIndexForValue:dateRange];
+        NSInteger i = [self findIndexForValue:dateRange];
         if ( i > -1 ) {
             _dateRange = dateRange;
             [self setText:[SAChartFilterField stringRepresentationOfDateRange:dateRange]];
