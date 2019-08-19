@@ -144,7 +144,7 @@
         TSC_ImpulseCounter_ExtendedValue icev;
         if ( [self getImpulseCounterExtendedValue:&icev] ) {
             icev.custom_unit[sizeof(icev.custom_unit)-1] = 0;
-            NSString *unit = [NSString stringWithFormat:@"%s", icev.custom_unit];
+            NSString *unit = [NSString stringWithUTF8String:icev.custom_unit];
             if (unit.length > 0) {
                 return unit;
             }
