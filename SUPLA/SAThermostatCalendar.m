@@ -17,6 +17,12 @@
  */
 
 #import "SAThermostatCalendar.h"
+#define TC_SPACING 2.5
+
+typedef struct {
+    short day;
+    short hour;
+}TCDayHour;
 
 @implementation SAThermostatCalendar {
     BOOL initialized;
@@ -28,15 +34,30 @@
     CGFloat _textSize;
     UIColor *_textColor;
     BOOL _HourProgramGrid[7][24];
+    CGSize _boxSize;
+    NSArray *_dayNames;
+    UIPanGestureRecognizer *_pgr;
+    BOOL _setProgramToOne;
+    TCDayHour _lastDH;
 }
 
-@synthesize readOnly;
+@synthesize delegate;
 
 -(void)_init {
     if ( initialized )
         return;
     
     initialized = YES;
+    _firstDay = 1;
+    _program0Label = @"P0";
+    _program1Label = @"P1";
+    _textSize = 12.0;
+    _textColor = nil;
+    
+    NSDateFormatter * formatter = [[NSDateFormatter alloc] init];
+    _dayNames = [formatter shortWeekdaySymbols];
+    
+    self.readOnly = false;
 }
 
 -(id)init {
@@ -45,12 +66,6 @@
     
     if ( self != nil ) {
         [self _init];
-        
-        _firstDay = 1;
-        _program0Label = @"P0";
-        _program1Label = @"P1";
-        _textSize = 14.0;
-        _textColor = nil;
     }
     
     return self;
@@ -145,12 +160,12 @@
 
 -(void)setProgramForDay:(short)day andHour:(short)hour toOne:(BOOL)one {
     if ([self correctDay:day andHour:hour]) {
-        _HourProgramGrid[day][hour] = one;
+        _HourProgramGrid[day-1][hour] = one;
     }
 }
 
 -(BOOL)programIsSetToOneWithDay:(short)day andHour:(short)hour {
-    return [self correctDay:day andHour:hour] && _HourProgramGrid[day][hour];
+    return [self correctDay:day andHour:hour] && _HourProgramGrid[day-1][hour];
 }
 
 -(void)clear {
@@ -161,10 +176,191 @@
     }
 }
 
--(void)drawRect:(CGRect)rect {
-    [super drawRect:rect];
+-(CGRect)rectangleForDay:(short)day andHour:(short)hour {
+    CGFloat leftOffset = day * (_boxSize.width + TC_SPACING);
+    CGFloat topOffset = (hour+1) * (_boxSize.height + TC_SPACING);
+
+    return CGRectMake(leftOffset, topOffset, _boxSize.width, _boxSize.height);
 }
 
+-(short)addOffsetToDay:(short)day {
+    day += _firstDay-1;
+    if (day > 7) {
+        day-=7;
+    }
 
+    return day;
+}
+
+-(void)drawText:(NSString *)txt inRect:(CGRect)rect context:(CGContextRef)ctx {
+    CGContextSetTextDrawingMode(ctx, kCGTextFill);
+    
+    UIFont *font = [UIFont fontWithName:@"OpenSans" size:self.textSize];
+    NSMutableParagraphStyle *pStyle = [[NSMutableParagraphStyle alloc] init];
+    [pStyle setAlignment:NSTextAlignmentCenter];
+    
+    NSDictionary *attr = @{NSFontAttributeName:font,
+                         NSParagraphStyleAttributeName:pStyle};
+        
+    CGFloat height = [txt sizeWithAttributes:attr].height;
+    rect.origin.y += (rect.size.height - height) / 2;
+    rect.size.height = height;
+
+    [txt drawInRect:rect withAttributes:attr];
+}
+
+-(short)drawLabel:(NSString *)txt withOffset:(short)offset context:(CGContextRef)ctx {
+    if (txt!=nil) {
+        CGRect r1 = [self rectangleForDay:offset+1 andHour:24];
+        CGRect r2 = [self rectangleForDay:offset+3 andHour:24];
+        
+        r1.size.width = r2.origin.x+r2.size.width - r1.origin.x;
+    
+        UIBezierPath *path = [UIBezierPath bezierPathWithRoundedRect:r1 cornerRadius:6];
+        [path fill];
+        
+        [self.textColor setFill];
+        [self drawText:txt inRect:r1 context:ctx];
+        offset+=3;
+    }
+    return offset;
+}
+
+-(void)drawRect:(CGRect)rect {
+    [super drawRect:rect];
+    
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    CGContextSetShouldAntialias(context, YES);
+    
+    _boxSize.height = (self.frame.size.height - TC_SPACING * 25.0) / 26.0;
+    _boxSize.width = (self.frame.size.width - TC_SPACING * 7.0) / 8.0;
+    
+    short dayIdx;
+    UIBezierPath *path;
+   
+    for(short d = 0; d <= 7; d++) {
+        for(short h = -1; h < 24; h++) {
+            rect = [self rectangleForDay:d andHour:h];
+            dayIdx = [self addOffsetToDay:d]-1;
+            
+            if (h == -1 || d == 0) {
+                NSString *label = @"";
+
+                if (h == -1 && d > 0) {
+                    label = [_dayNames objectAtIndex:dayIdx];
+                } else if ( h > -1 )  {
+                    label = [NSString stringWithFormat:@"%02d", h];
+                }
+                
+                [self.textColor setFill];
+                [self drawText:label inRect:rect context:context];
+            } else {
+                path = [UIBezierPath bezierPathWithRoundedRect:rect cornerRadius:6];
+                [(_HourProgramGrid[dayIdx][h] ? self.program1Color : self.program0Color) setFill];
+                [path fill];
+            }
+        }
+    }
+    
+    [self.program0Color setFill];
+    short offset = [self drawLabel:self.program0Label withOffset:0 context:context];
+    [self.program1Color setFill];
+    [self drawLabel:self.program1Label withOffset:offset context:context];
+}
+
+-(BOOL)readOnly {
+    return _pgr == nil;
+}
+
+-(void)setReadOnly:(BOOL)readOnly {
+    
+    if ( readOnly ) {
+        if ( _pgr != nil ) {
+            [self removeGestureRecognizer:_pgr];
+            _pgr = nil;
+        }
+    } else {
+        if ( _pgr == nil ) {
+            _pgr = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(handlePan:)];
+            [_pgr setMinimumNumberOfTouches:1];
+            [_pgr setMaximumNumberOfTouches:1];
+            [self addGestureRecognizer:_pgr];
+        }
+    }
+}
+
+-(TCDayHour)dayHourAndPoint:(CGPoint)point {
+    TCDayHour result;
+    result.day = 0;
+    result.hour = 0;
+    
+    for(short d = 1; d <= 7; d++) {
+        for (short h = 0; h < 24; h++) {
+            CGRect rect = [self rectangleForDay:d andHour:h];
+           
+            if (point.x >= rect.origin.x
+                    && point.y >= rect.origin.y
+                    && point.x <= rect.origin.x + rect.size.width
+                    && point.y <= rect.origin.y + rect.size.height) {
+
+                result.day = d;
+                result.hour = h;
+                break;
+            }
+        }
+    }
+    
+    return result;
+}
+
+- (BOOL)onTouched:(TCDayHour)dh first:(BOOL)first {
+    if (dh.day > 0
+        && (first
+            || _lastDH.day != dh.day
+            || _lastDH.hour != dh.hour)) {
+        _lastDH = dh;
+        short dayIdx = [self addOffsetToDay:dh.day]-1;
+        
+        if (first) {
+            _setProgramToOne = !_HourProgramGrid[dayIdx][dh.hour];
+        }
+        
+        _HourProgramGrid[dayIdx][dh.hour] = _setProgramToOne;
+        
+        if (self.delegate != nil) {
+            [self.delegate thermostatCalendarPragramChanged:self day:dh.day hour:dh.hour program1:_setProgramToOne];
+        }
+        
+        [self setNeedsDisplay];
+        return YES;
+    }
+    return NO;
+}
+
+- (void)handlePan:(UIGestureRecognizer *)gr {
+    CGPoint point = [gr locationInView:self];
+    TCDayHour dh = [self dayHourAndPoint:point];
+    [self onTouched:dh first:NO];
+}
+
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
+    if (touches.allObjects.count > 0) {
+        UITouch *touch = [touches.allObjects objectAtIndex:0];
+        if ([touch isKindOfClass:[UITouch class]]) {
+            CGPoint point = [touch locationInView:self];
+            TCDayHour dh = [self dayHourAndPoint:point];
+            [self onTouched:dh first:YES];
+        }
+    }
+    [super touchesBegan:touches withEvent:event];
+}
+
+-(UIView *) hitTest:(CGPoint)point withEvent:(UIEvent *)event
+{
+    return self.readOnly
+    || point.y < _boxSize.height
+    || point.x < _boxSize.width
+    || point.y > self.frame.size.height - _boxSize.height ? nil : self;
+}
 
 @end

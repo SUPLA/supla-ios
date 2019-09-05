@@ -10,6 +10,7 @@
 		0122613922F396440013E6A2 /* SAThermostatCalendar.m in Sources */ = {isa = PBXBuildFile; fileRef = 0122613822F396440013E6A2 /* SAThermostatCalendar.m */; };
 		012F722C22DF3E2300E5F72E /* ChartFilterFieldTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 012F722822DF3CF000E5F72E /* ChartFilterFieldTests.m */; };
 		012F722E22DFA0BE00E5F72E /* SABarChartDataSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 012F722D22DFA0BE00E5F72E /* SABarChartDataSet.swift */; };
+		012FCBD323217DE000AC6FF6 /* ThermostatCalendarTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 012FCBD223217DE000AC6FF6 /* ThermostatCalendarTests.m */; };
 		013D1C5D22CE47D5000C0784 /* SAChartHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 013D1C5C22CE47D5000C0784 /* SAChartHelper.m */; };
 		013D1C6022CE757F000C0784 /* SAIncrementalMeterChartHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 013D1C5F22CE757F000C0784 /* SAIncrementalMeterChartHelper.m */; };
 		013D1C6322CE75A3000C0784 /* SAElectricityChartHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 013D1C6222CE75A3000C0784 /* SAElectricityChartHelper.m */; };
@@ -331,6 +332,7 @@
 		0122613822F396440013E6A2 /* SAThermostatCalendar.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SAThermostatCalendar.m; sourceTree = "<group>"; };
 		012F722822DF3CF000E5F72E /* ChartFilterFieldTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChartFilterFieldTests.m; sourceTree = "<group>"; };
 		012F722D22DFA0BE00E5F72E /* SABarChartDataSet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SABarChartDataSet.swift; sourceTree = "<group>"; };
+		012FCBD223217DE000AC6FF6 /* ThermostatCalendarTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ThermostatCalendarTests.m; sourceTree = "<group>"; };
 		013D1C5B22CE47D5000C0784 /* SAChartHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SAChartHelper.h; sourceTree = "<group>"; };
 		013D1C5C22CE47D5000C0784 /* SAChartHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SAChartHelper.m; sourceTree = "<group>"; };
 		013D1C5E22CE757F000C0784 /* SAIncrementalMeterChartHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SAIncrementalMeterChartHelper.h; sourceTree = "<group>"; };
@@ -910,6 +912,7 @@
 				012F722822DF3CF000E5F72E /* ChartFilterFieldTests.m */,
 				401CA1DB1BA067DB00117AF4 /* SUPLATests.m */,
 				401CA1D91BA067DB00117AF4 /* Supporting Files */,
+				012FCBD223217DE000AC6FF6 /* ThermostatCalendarTests.m */,
 			);
 			path = SUPLATests;
 			sourceTree = "<group>";
@@ -1831,6 +1834,7 @@
 			files = (
 				401CA1DC1BA067DB00117AF4 /* SUPLATests.m in Sources */,
 				012F722C22DF3E2300E5F72E /* ChartFilterFieldTests.m in Sources */,
+				012FCBD323217DE000AC6FF6 /* ThermostatCalendarTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

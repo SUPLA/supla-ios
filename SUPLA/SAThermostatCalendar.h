@@ -20,8 +20,16 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+@protocol SAThermostatCalendarDelegate <NSObject>
+@required
+-(void) thermostatCalendarPragramChanged:(id)calendar day:(short)d hour:(short)h program1:(BOOL)p1;
+@end
+
 @interface SAThermostatCalendar : UIView
 -(void)clear;
+-(short)addOffsetToDay:(short)day;
+-(BOOL)programIsSetToOneWithDay:(short)day andHour:(short)hour;
+-(void)setProgramForDay:(short)day andHour:(short)hour toOne:(BOOL)one;
 
 @property (nonatomic, weak) NSString *program0Label;
 @property (nonatomic, weak) NSString *program1Label;
@@ -31,6 +39,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, weak) UIColor *program0Color;
 @property (nonatomic, weak) UIColor *program1Color;
 @property (nonatomic, assign) BOOL readOnly;
+@property (weak, nonatomic) id<SAThermostatCalendarDelegate> delegate;
 @end
 
 NS_ASSUME_NONNULL_END
