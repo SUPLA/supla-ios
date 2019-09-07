@@ -175,6 +175,7 @@ typedef struct {
             _HourProgramGrid[d][h] = NO;
         }
     }
+    [self setNeedsDisplay];
 }
 
 -(CGRect)rectangleForDay:(short)day andHour:(short)hour {
