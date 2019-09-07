@@ -340,9 +340,17 @@ typedef struct {
 }
 
 - (void)handlePan:(UIGestureRecognizer *)gr {
-    CGPoint point = [gr locationInView:self];
-    TCDayHour dh = [self dayHourAndPoint:point];
-    [self onTouched:dh first:NO];
+    switch(gr.state) {
+        case UIGestureRecognizerStateBegan:
+        case UIGestureRecognizerStateChanged:
+            _touched = YES;
+            CGPoint point = [gr locationInView:self];
+             TCDayHour dh = [self dayHourAndPoint:point];
+             [self onTouched:dh first:NO];
+            break;
+        default:
+            _touched = NO;
+    }
 }
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
