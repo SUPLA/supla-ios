@@ -20,6 +20,289 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Axk-Um-MAu" userLabel="vSettings">
+                    <rect key="frame" x="10" y="45" width="300" height="363"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Qxh-vw-MlA">
+                            <rect key="frame" x="45" y="36" width="210" height="30"/>
+                            <subviews>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="3 hour" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Sg-3R-fXZ">
+                                    <rect key="frame" x="33" y="4.5" width="144" height="21"/>
+                                    <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="15"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vza-ZU-52a" userLabel="btnTurboMinus">
+                                    <rect key="frame" x="0.0" y="1" width="28" height="28"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="28" id="PeY-nK-686"/>
+                                        <constraint firstAttribute="height" constant="28" id="dBR-26-LGm"/>
+                                    </constraints>
+                                    <state key="normal" image="hp_minus.png"/>
+                                    <connections>
+                                        <action selector="calendarButtonTouched:" destination="c9e-qf-AMF" eventType="touchDown" id="dqs-UH-cvh"/>
+                                    </connections>
+                                </button>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2qm-R5-r5m" userLabel="btnTurboPlus">
+                                    <rect key="frame" x="182" y="1" width="28" height="28"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="28" id="1s6-lR-kp2"/>
+                                        <constraint firstAttribute="height" constant="28" id="ge5-vb-XMK"/>
+                                    </constraints>
+                                    <state key="normal" image="hp_plus.png"/>
+                                    <connections>
+                                        <action selector="calendarButtonTouched:" destination="c9e-qf-AMF" eventType="touchDown" id="Wi3-3v-UY4"/>
+                                    </connections>
+                                </button>
+                            </subviews>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <constraints>
+                                <constraint firstItem="vza-ZU-52a" firstAttribute="leading" secondItem="Qxh-vw-MlA" secondAttribute="leading" id="4aA-YN-MB3"/>
+                                <constraint firstAttribute="height" constant="30" id="FEl-4P-OLj"/>
+                                <constraint firstItem="vza-ZU-52a" firstAttribute="centerY" secondItem="Qxh-vw-MlA" secondAttribute="centerY" id="Pyf-tI-aup"/>
+                                <constraint firstItem="9Sg-3R-fXZ" firstAttribute="leading" secondItem="vza-ZU-52a" secondAttribute="trailing" constant="5" id="bfY-Wv-OxA"/>
+                                <constraint firstItem="9Sg-3R-fXZ" firstAttribute="centerY" secondItem="Qxh-vw-MlA" secondAttribute="centerY" id="bnG-HL-Pby"/>
+                                <constraint firstItem="2qm-R5-r5m" firstAttribute="leading" secondItem="9Sg-3R-fXZ" secondAttribute="trailing" constant="5" id="iJt-4z-bei"/>
+                                <constraint firstAttribute="trailing" secondItem="2qm-R5-r5m" secondAttribute="trailing" id="msz-AS-0ff"/>
+                                <constraint firstItem="2qm-R5-r5m" firstAttribute="centerY" secondItem="Qxh-vw-MlA" secondAttribute="centerY" id="nUP-H2-37i"/>
+                            </constraints>
+                        </view>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Duration of the TURBO mode" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5iX-rc-Viy">
+                            <rect key="frame" x="0.0" y="10" width="205" height="21"/>
+                            <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="15"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Maximum water temperature" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="q66-xm-DaZ">
+                            <rect key="frame" x="0.0" y="76" width="207" height="21"/>
+                            <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="15"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Temperature reduction in ECO mode" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wzO-cl-uG7">
+                            <rect key="frame" x="0.0" y="142" width="256" height="21"/>
+                            <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="15"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ECO temperature in AUTO mode" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sCn-Z8-huV">
+                            <rect key="frame" x="0.0" y="274" width="227" height="21"/>
+                            <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="15"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WGj-bH-DmZ">
+                            <rect key="frame" x="45" y="102" width="210" height="30"/>
+                            <subviews>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="67°" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VcQ-wF-eIG">
+                                    <rect key="frame" x="33" y="4.5" width="144" height="21"/>
+                                    <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="15"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WYq-lY-x5t" userLabel="btnWaterMaxMinus">
+                                    <rect key="frame" x="0.0" y="1" width="28" height="28"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="28" id="NVD-Gk-cLT"/>
+                                        <constraint firstAttribute="width" constant="28" id="bom-ey-Pn9"/>
+                                    </constraints>
+                                    <state key="normal" image="hp_minus.png"/>
+                                    <connections>
+                                        <action selector="calendarButtonTouched:" destination="c9e-qf-AMF" eventType="touchDown" id="cAO-vA-Qag"/>
+                                    </connections>
+                                </button>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Sky-DD-zTq" userLabel="btnWaterMaxPlus">
+                                    <rect key="frame" x="182" y="1" width="28" height="28"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="28" id="4k6-tZ-2sg"/>
+                                        <constraint firstAttribute="width" constant="28" id="uLQ-ly-vp7"/>
+                                    </constraints>
+                                    <state key="normal" image="hp_plus.png"/>
+                                    <connections>
+                                        <action selector="calendarButtonTouched:" destination="c9e-qf-AMF" eventType="touchDown" id="r7F-vP-QCW"/>
+                                    </connections>
+                                </button>
+                            </subviews>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <constraints>
+                                <constraint firstItem="Sky-DD-zTq" firstAttribute="centerY" secondItem="WGj-bH-DmZ" secondAttribute="centerY" id="CbV-58-8fZ"/>
+                                <constraint firstItem="WYq-lY-x5t" firstAttribute="centerY" secondItem="WGj-bH-DmZ" secondAttribute="centerY" id="HRA-eF-WRT"/>
+                                <constraint firstAttribute="height" constant="30" id="JaX-58-9AZ"/>
+                                <constraint firstItem="Sky-DD-zTq" firstAttribute="leading" secondItem="VcQ-wF-eIG" secondAttribute="trailing" constant="5" id="bQY-pF-yN1"/>
+                                <constraint firstItem="WYq-lY-x5t" firstAttribute="leading" secondItem="WGj-bH-DmZ" secondAttribute="leading" id="gLu-XW-pKK"/>
+                                <constraint firstItem="VcQ-wF-eIG" firstAttribute="centerY" secondItem="WGj-bH-DmZ" secondAttribute="centerY" id="mNi-tQ-w0Y"/>
+                                <constraint firstItem="VcQ-wF-eIG" firstAttribute="leading" secondItem="WYq-lY-x5t" secondAttribute="trailing" constant="5" id="rb6-P4-BBk"/>
+                                <constraint firstAttribute="trailing" secondItem="Sky-DD-zTq" secondAttribute="trailing" id="wpd-qB-wSk"/>
+                            </constraints>
+                        </view>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="acF-NT-6KJ">
+                            <rect key="frame" x="45" y="168" width="210" height="30"/>
+                            <subviews>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="5°" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RkN-Zh-C5c">
+                                    <rect key="frame" x="33" y="4.5" width="144" height="21"/>
+                                    <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="15"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="K4V-cj-2JI" userLabel="btnEcoReductionMinus">
+                                    <rect key="frame" x="0.0" y="1" width="28" height="28"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="28" id="nd9-kC-SJ0"/>
+                                        <constraint firstAttribute="height" constant="28" id="xnS-kX-rnx"/>
+                                    </constraints>
+                                    <state key="normal" image="hp_minus.png"/>
+                                    <connections>
+                                        <action selector="calendarButtonTouched:" destination="c9e-qf-AMF" eventType="touchDown" id="X7q-i9-uVe"/>
+                                    </connections>
+                                </button>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BLb-Y2-T8U" userLabel="btnEcoReductionPlus">
+                                    <rect key="frame" x="182" y="1" width="28" height="28"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="28" id="52b-WM-5Gj"/>
+                                        <constraint firstAttribute="height" constant="28" id="7cR-FZ-RvX"/>
+                                    </constraints>
+                                    <state key="normal" image="hp_plus.png"/>
+                                    <connections>
+                                        <action selector="calendarButtonTouched:" destination="c9e-qf-AMF" eventType="touchDown" id="a3B-hT-dRT"/>
+                                    </connections>
+                                </button>
+                            </subviews>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <constraints>
+                                <constraint firstItem="K4V-cj-2JI" firstAttribute="leading" secondItem="acF-NT-6KJ" secondAttribute="leading" id="0k8-2U-vxv"/>
+                                <constraint firstAttribute="trailing" secondItem="BLb-Y2-T8U" secondAttribute="trailing" id="7OV-9g-6Fw"/>
+                                <constraint firstItem="RkN-Zh-C5c" firstAttribute="leading" secondItem="K4V-cj-2JI" secondAttribute="trailing" constant="5" id="Oi8-RI-UHK"/>
+                                <constraint firstItem="RkN-Zh-C5c" firstAttribute="centerY" secondItem="acF-NT-6KJ" secondAttribute="centerY" id="Uqc-hJ-BWN"/>
+                                <constraint firstAttribute="height" constant="30" id="Zcr-Wb-yau"/>
+                                <constraint firstItem="BLb-Y2-T8U" firstAttribute="leading" secondItem="RkN-Zh-C5c" secondAttribute="trailing" constant="5" id="a6E-Fm-2s6"/>
+                                <constraint firstItem="K4V-cj-2JI" firstAttribute="centerY" secondItem="acF-NT-6KJ" secondAttribute="centerY" id="jFn-AP-0sJ"/>
+                                <constraint firstItem="BLb-Y2-T8U" firstAttribute="centerY" secondItem="acF-NT-6KJ" secondAttribute="centerY" id="vYP-WW-y6r"/>
+                            </constraints>
+                        </view>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Comfort temperature in AUTO mode" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oUh-5I-hqg">
+                            <rect key="frame" x="0.0" y="208" width="256" height="21"/>
+                            <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="15"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="We7-JK-U3d">
+                            <rect key="frame" x="45" y="234" width="210" height="30"/>
+                            <subviews>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="22°" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IsR-fe-GqY">
+                                    <rect key="frame" x="33" y="4.5" width="144" height="21"/>
+                                    <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="15"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3nb-Gw-sT9" userLabel="btnComfortMinus">
+                                    <rect key="frame" x="0.0" y="1" width="28" height="28"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="28" id="eku-kD-qa1"/>
+                                        <constraint firstAttribute="height" constant="28" id="n5F-hJ-5jN"/>
+                                    </constraints>
+                                    <state key="normal" image="hp_minus.png"/>
+                                    <connections>
+                                        <action selector="calendarButtonTouched:" destination="c9e-qf-AMF" eventType="touchDown" id="hYC-BB-6B0"/>
+                                    </connections>
+                                </button>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Z09-tG-Dpw" userLabel="btnComfortPlus">
+                                    <rect key="frame" x="182" y="1" width="28" height="28"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="28" id="EV5-ke-h3p"/>
+                                        <constraint firstAttribute="height" constant="28" id="Lak-u6-9oG"/>
+                                    </constraints>
+                                    <state key="normal" image="hp_plus.png"/>
+                                    <connections>
+                                        <action selector="calendarButtonTouched:" destination="c9e-qf-AMF" eventType="touchDown" id="EnU-rZ-0Xs"/>
+                                    </connections>
+                                </button>
+                            </subviews>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <constraints>
+                                <constraint firstItem="3nb-Gw-sT9" firstAttribute="leading" secondItem="We7-JK-U3d" secondAttribute="leading" id="68L-oX-3Gt"/>
+                                <constraint firstAttribute="trailing" secondItem="Z09-tG-Dpw" secondAttribute="trailing" id="Ea9-Ol-O2S"/>
+                                <constraint firstAttribute="height" constant="30" id="OaJ-Tj-TkF"/>
+                                <constraint firstItem="Z09-tG-Dpw" firstAttribute="leading" secondItem="IsR-fe-GqY" secondAttribute="trailing" constant="5" id="SXH-YC-vHC"/>
+                                <constraint firstItem="Z09-tG-Dpw" firstAttribute="centerY" secondItem="We7-JK-U3d" secondAttribute="centerY" id="a4A-rl-Z5Y"/>
+                                <constraint firstItem="3nb-Gw-sT9" firstAttribute="centerY" secondItem="We7-JK-U3d" secondAttribute="centerY" id="efN-wx-dX6"/>
+                                <constraint firstItem="IsR-fe-GqY" firstAttribute="leading" secondItem="3nb-Gw-sT9" secondAttribute="trailing" constant="5" id="f0c-kr-zLs"/>
+                                <constraint firstItem="IsR-fe-GqY" firstAttribute="centerY" secondItem="We7-JK-U3d" secondAttribute="centerY" id="rfa-Qv-aPM"/>
+                            </constraints>
+                        </view>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VVz-p0-3af">
+                            <rect key="frame" x="45" y="300" width="210" height="30"/>
+                            <subviews>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="17°" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dn7-Mf-fO1">
+                                    <rect key="frame" x="33" y="4.5" width="144" height="21"/>
+                                    <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="15"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2h7-yV-VOx" userLabel="btnEcoMinus">
+                                    <rect key="frame" x="0.0" y="1" width="28" height="28"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="28" id="ag4-Hx-fTY"/>
+                                        <constraint firstAttribute="width" constant="28" id="gto-5l-fwQ"/>
+                                    </constraints>
+                                    <state key="normal" image="hp_minus.png"/>
+                                    <connections>
+                                        <action selector="calendarButtonTouched:" destination="c9e-qf-AMF" eventType="touchDown" id="YFk-rq-rIh"/>
+                                    </connections>
+                                </button>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sbK-XJ-L8t" userLabel="btnEcoPlus">
+                                    <rect key="frame" x="182" y="1" width="28" height="28"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="28" id="jCW-kP-27T"/>
+                                        <constraint firstAttribute="height" constant="28" id="sHk-IG-tQu"/>
+                                    </constraints>
+                                    <state key="normal" image="hp_plus.png"/>
+                                    <connections>
+                                        <action selector="calendarButtonTouched:" destination="c9e-qf-AMF" eventType="touchDown" id="jZg-DB-gcE"/>
+                                    </connections>
+                                </button>
+                            </subviews>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <constraints>
+                                <constraint firstItem="2h7-yV-VOx" firstAttribute="leading" secondItem="VVz-p0-3af" secondAttribute="leading" id="F0s-vl-2Lq"/>
+                                <constraint firstItem="2h7-yV-VOx" firstAttribute="centerY" secondItem="VVz-p0-3af" secondAttribute="centerY" id="I7X-hz-144"/>
+                                <constraint firstAttribute="trailing" secondItem="sbK-XJ-L8t" secondAttribute="trailing" id="U8d-Dp-D6U"/>
+                                <constraint firstItem="sbK-XJ-L8t" firstAttribute="leading" secondItem="dn7-Mf-fO1" secondAttribute="trailing" constant="5" id="WQN-yx-7Ny"/>
+                                <constraint firstItem="sbK-XJ-L8t" firstAttribute="centerY" secondItem="VVz-p0-3af" secondAttribute="centerY" id="mQM-E9-h5i"/>
+                                <constraint firstItem="dn7-Mf-fO1" firstAttribute="centerY" secondItem="VVz-p0-3af" secondAttribute="centerY" id="pMe-w1-zTn"/>
+                                <constraint firstAttribute="height" constant="30" id="r4w-AH-3ks"/>
+                                <constraint firstItem="dn7-Mf-fO1" firstAttribute="leading" secondItem="2h7-yV-VOx" secondAttribute="trailing" constant="5" id="rbg-GH-XJo"/>
+                            </constraints>
+                        </view>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="trailing" secondItem="acF-NT-6KJ" secondAttribute="trailing" constant="45" id="0sf-VC-zEz"/>
+                        <constraint firstItem="q66-xm-DaZ" firstAttribute="top" secondItem="Qxh-vw-MlA" secondAttribute="bottom" constant="10" id="6jw-zD-vzE"/>
+                        <constraint firstAttribute="trailing" secondItem="VVz-p0-3af" secondAttribute="trailing" constant="45" id="6zi-bP-F8r"/>
+                        <constraint firstItem="WGj-bH-DmZ" firstAttribute="top" secondItem="q66-xm-DaZ" secondAttribute="bottom" constant="5" id="7cL-DS-vUa"/>
+                        <constraint firstItem="oUh-5I-hqg" firstAttribute="top" secondItem="acF-NT-6KJ" secondAttribute="bottom" constant="10" id="8ye-kI-CbK"/>
+                        <constraint firstItem="Qxh-vw-MlA" firstAttribute="leading" secondItem="Axk-Um-MAu" secondAttribute="leading" constant="45" id="APA-Fr-13q"/>
+                        <constraint firstItem="VVz-p0-3af" firstAttribute="leading" secondItem="Axk-Um-MAu" secondAttribute="leading" constant="45" id="C20-VO-b7b"/>
+                        <constraint firstItem="oUh-5I-hqg" firstAttribute="leading" secondItem="Axk-Um-MAu" secondAttribute="leading" id="E0D-cq-wu1"/>
+                        <constraint firstItem="wzO-cl-uG7" firstAttribute="top" secondItem="WGj-bH-DmZ" secondAttribute="bottom" constant="10" id="HmH-ga-NsN"/>
+                        <constraint firstItem="We7-JK-U3d" firstAttribute="top" secondItem="oUh-5I-hqg" secondAttribute="bottom" constant="5" id="IOF-Xf-cON"/>
+                        <constraint firstItem="q66-xm-DaZ" firstAttribute="leading" secondItem="Axk-Um-MAu" secondAttribute="leading" id="M7E-jb-eFw"/>
+                        <constraint firstAttribute="trailing" secondItem="Qxh-vw-MlA" secondAttribute="trailing" constant="45" id="VPj-PD-XUc"/>
+                        <constraint firstAttribute="trailing" secondItem="We7-JK-U3d" secondAttribute="trailing" constant="45" id="XqY-Zj-Oqr"/>
+                        <constraint firstItem="sCn-Z8-huV" firstAttribute="top" secondItem="We7-JK-U3d" secondAttribute="bottom" constant="10" id="Zgr-bF-neS"/>
+                        <constraint firstItem="WGj-bH-DmZ" firstAttribute="leading" secondItem="Axk-Um-MAu" secondAttribute="leading" constant="45" id="ak9-Iv-3hj"/>
+                        <constraint firstItem="VVz-p0-3af" firstAttribute="top" secondItem="sCn-Z8-huV" secondAttribute="bottom" constant="5" id="bi3-k7-fgc"/>
+                        <constraint firstItem="We7-JK-U3d" firstAttribute="leading" secondItem="Axk-Um-MAu" secondAttribute="leading" constant="45" id="csK-Jq-f2g"/>
+                        <constraint firstItem="wzO-cl-uG7" firstAttribute="leading" secondItem="Axk-Um-MAu" secondAttribute="leading" id="fZg-uJ-TzM"/>
+                        <constraint firstItem="sCn-Z8-huV" firstAttribute="leading" secondItem="Axk-Um-MAu" secondAttribute="leading" id="hII-2E-vUm"/>
+                        <constraint firstItem="acF-NT-6KJ" firstAttribute="top" secondItem="wzO-cl-uG7" secondAttribute="bottom" constant="5" id="hY9-mt-fMK"/>
+                        <constraint firstAttribute="trailing" secondItem="WGj-bH-DmZ" secondAttribute="trailing" constant="45" id="khc-KE-CYB"/>
+                        <constraint firstItem="5iX-rc-Viy" firstAttribute="top" secondItem="Axk-Um-MAu" secondAttribute="top" constant="10" id="m9y-h0-B17"/>
+                        <constraint firstItem="Qxh-vw-MlA" firstAttribute="top" secondItem="5iX-rc-Viy" secondAttribute="bottom" constant="5" id="nPB-UK-7D9"/>
+                        <constraint firstItem="acF-NT-6KJ" firstAttribute="leading" secondItem="Axk-Um-MAu" secondAttribute="leading" constant="45" id="pAs-Hc-2bW"/>
+                        <constraint firstItem="5iX-rc-Viy" firstAttribute="leading" secondItem="Axk-Um-MAu" secondAttribute="leading" id="x2V-O7-3oe"/>
+                    </constraints>
+                </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3b4-Uj-Mw6" userLabel="vCalendar" customClass="SAThermostatCalendar">
                     <rect key="frame" x="10" y="45" width="300" height="363"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -275,16 +558,20 @@
                 <constraint firstItem="ipw-iZ-DB9" firstAttribute="leading" secondItem="c9e-qf-AMF" secondAttribute="leading" constant="5" id="5Bv-Be-eTY"/>
                 <constraint firstItem="TVM-Us-lKn" firstAttribute="leading" secondItem="c9e-qf-AMF" secondAttribute="leading" constant="5" id="5m7-ag-D2g"/>
                 <constraint firstItem="feW-hw-dYe" firstAttribute="top" secondItem="TVM-Us-lKn" secondAttribute="bottom" id="CtJ-sS-Tbx"/>
+                <constraint firstItem="TVM-Us-lKn" firstAttribute="top" secondItem="Axk-Um-MAu" secondAttribute="bottom" id="DUu-AE-btP"/>
                 <constraint firstItem="3b4-Uj-Mw6" firstAttribute="top" secondItem="ipw-iZ-DB9" secondAttribute="bottom" constant="5" id="EFh-Bh-6y8"/>
                 <constraint firstItem="k1K-UQ-OTd" firstAttribute="leading" secondItem="c9e-qf-AMF" secondAttribute="leading" constant="10" id="GLd-Y3-tsp"/>
                 <constraint firstAttribute="trailing" secondItem="k1K-UQ-OTd" secondAttribute="trailing" constant="10" id="Hh8-lj-QVP"/>
                 <constraint firstAttribute="bottom" secondItem="feW-hw-dYe" secondAttribute="bottom" id="KN3-co-KSS"/>
                 <constraint firstItem="3b4-Uj-Mw6" firstAttribute="leading" secondItem="c9e-qf-AMF" secondAttribute="leading" constant="10" id="N2O-tT-n9A"/>
+                <constraint firstItem="Axk-Um-MAu" firstAttribute="leading" secondItem="c9e-qf-AMF" secondAttribute="leading" constant="10" id="QSQ-GR-55k"/>
                 <constraint firstAttribute="trailing" secondItem="feW-hw-dYe" secondAttribute="trailing" constant="5" id="QUa-OX-Wka"/>
+                <constraint firstAttribute="trailing" secondItem="Axk-Um-MAu" secondAttribute="trailing" constant="10" id="YbH-lv-lxn"/>
                 <constraint firstItem="ipw-iZ-DB9" firstAttribute="top" secondItem="c9e-qf-AMF" secondAttribute="top" id="d1q-RY-YWe"/>
                 <constraint firstAttribute="trailing" secondItem="ipw-iZ-DB9" secondAttribute="trailing" constant="5" id="h1i-dE-DtH"/>
                 <constraint firstItem="TVM-Us-lKn" firstAttribute="top" secondItem="k1K-UQ-OTd" secondAttribute="bottom" id="i8B-Sq-QVX"/>
                 <constraint firstItem="TVM-Us-lKn" firstAttribute="top" secondItem="3b4-Uj-Mw6" secondAttribute="bottom" id="q3z-pV-X4M"/>
+                <constraint firstItem="Axk-Um-MAu" firstAttribute="top" secondItem="ipw-iZ-DB9" secondAttribute="bottom" constant="5" id="rKb-0a-3xO"/>
             </constraints>
             <connections>
                 <outlet property="vCalendar" destination="3b4-Uj-Mw6" id="gwo-s1-GxS"/>
