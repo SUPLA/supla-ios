@@ -39,6 +39,7 @@ typedef struct {
     UIPanGestureRecognizer *_pgr;
     BOOL _setProgramToOne;
     TCDayHour _lastDH;
+    BOOL _touched;
 }
 
 @synthesize delegate;
@@ -350,9 +351,15 @@ typedef struct {
             CGPoint point = [touch locationInView:self];
             TCDayHour dh = [self dayHourAndPoint:point];
             [self onTouched:dh first:YES];
+            _touched = YES;
         }
     }
     [super touchesBegan:touches withEvent:event];
+}
+
+-(void)touchesEnded:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
+    [super touchesEnded:touches withEvent:event];
+    _touched = NO;
 }
 
 -(UIView *) hitTest:(CGPoint)point withEvent:(UIEvent *)event
@@ -361,6 +368,10 @@ typedef struct {
     || point.y < _boxSize.height
     || point.x < _boxSize.width
     || point.y > self.frame.size.height - _boxSize.height ? nil : self;
+}
+
+-(BOOL)isTouched {
+    return _touched;
 }
 
 @end

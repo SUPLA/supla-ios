@@ -39,6 +39,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, weak) UIColor *program0Color;
 @property (nonatomic, weak) UIColor *program1Color;
 @property (nonatomic, assign) BOOL readOnly;
+@property (nonatomic, readonly) BOOL isTouched;
 @property (weak, nonatomic) id<SAThermostatCalendarDelegate> delegate;
 @end
 
