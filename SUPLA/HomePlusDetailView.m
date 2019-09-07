@@ -17,8 +17,14 @@
  */
 
 #import "HomePlusDetailView.h"
+#import "SAChannelExtendedValue+CoreDataClass.h"
 
-@implementation SAHomePlusDetailView
+#define PROG_ECO 1
+#define PROG_COMFORT 2
+
+@implementation SAHomePlusDetailView {
+    NSTimeInterval _refreshLock;
+}
 
 -(void)showCalendar:(BOOL)show {
     if (show) {
@@ -32,6 +38,9 @@
 
 -(void)onDetailShow {
     [self showCalendar:NO];
+    self.vCalendar.program0Label = NSLocalizedString(@"ECO", nil);
+    self.vCalendar.program1Label = NSLocalizedString(@"Comfort", nil);
+    self.vCalendar.firstDay = 2;
 };
 
 -(void)onDetailHide {
@@ -44,4 +53,31 @@
 
 - (IBAction)settingsButtonTouched:(id)sender {
 }
+
+- (void)updateView {
+    if (_refreshLock > [[NSDate date] timeIntervalSince1970]) {
+        return;
+    }
+    
+    SAChannelExtendedValue *ev = nil;
+    TThermostat_ExtendedValue thev;
+    
+    if (![self.channelBase isKindOfClass:SAChannel.class]
+    || (ev = ((SAChannel*)self.channelBase).ev) == nil
+    || ![ev getThermostatExtendedValue:&thev]) {
+        return;
+    }
+
+    if (!_vCalendar.isTouched) {
+        [_vCalendar clear];
+        if (thev.Shedule.ValueType == THERMOSTAT_SCHEDULE_HOURVALUE_TYPE_PROGRAM) {
+            for(short d=0;d<7;d++) {
+                 for(short h=0;h<24;h++) {
+                     [self.vCalendar setProgramForDay:d+1 andHour:h toOne:thev.Shedule.HourValue[d][h] == PROG_COMFORT];
+                 }
+             }
+        }
+    }
+}
+
 @end

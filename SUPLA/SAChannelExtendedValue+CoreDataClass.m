@@ -154,4 +154,15 @@
     return nil;
 }
 
+- (BOOL) getThermostatExtendedValue:(TThermostat_ExtendedValue*)thev {
+    if (thev != NULL) {
+        memset(thev, 0, sizeof(TThermostat_ExtendedValue));
+        NSData *data = [super dataValue];
+        if (data && data.length == sizeof(TThermostat_ExtendedValue)) {
+            [data getBytes:thev length:data.length];
+            return YES;
+        }
+    }
+    return NO;
+}
 @end

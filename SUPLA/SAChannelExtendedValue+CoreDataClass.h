@@ -34,6 +34,8 @@ NS_ASSUME_NONNULL_BEGIN
 - (BOOL) getImpulseCounterExtendedValue:(TSC_ImpulseCounter_ExtendedValue*)icev;
 - (double) getTotalActiveEnergyForExtendedValue:(TElectricityMeter_ExtendedValue*)emev forwarded:(BOOL)fwd;
 - (double) getTotalActiveEnergy:(BOOL)forwarded;
+
+- (BOOL) getThermostatExtendedValue:(TThermostat_ExtendedValue*)thev;
 @end
 
 NS_ASSUME_NONNULL_END
