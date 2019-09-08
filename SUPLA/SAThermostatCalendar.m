@@ -373,7 +373,10 @@ typedef struct {
 
 -(UIView *) hitTest:(CGPoint)point withEvent:(UIEvent *)event
 {
-    return self.readOnly
+    UIView *v = [super hitTest:point withEvent:event];
+    
+    return v != self
+    || self.readOnly
     || point.y < _boxSize.height
     || point.x < _boxSize.width
     || point.y > self.frame.size.height - _boxSize.height ? nil : self;
