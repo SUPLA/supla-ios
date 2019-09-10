@@ -21,7 +21,35 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface SAHomePlusDetailView : SADetailView
+@class SAHomePlusCfgItem;
+@protocol SAHomePlusCfgItemDelegate <NSObject>
+@required
+-(void) cfgItemChanged:(SAHomePlusCfgItem*)item;
+@end
+
+@interface SAHomePlusCfgItem : NSObject
+@property (weak, nonatomic) id<SAHomePlusCfgItemDelegate> delegate;
+@property (readonly, nonatomic) short cfgId;
+@property (readonly, nonatomic) short value;
+@end
+
+@interface SAHomePlusDetailView : SADetailView <SAHomePlusCfgItemDelegate>
+@property (weak, nonatomic) IBOutlet UILabel *lCfgEco;
+@property (weak, nonatomic) IBOutlet UILabel *lCfgComfort;
+@property (weak, nonatomic) IBOutlet UILabel *lCfgEcoReduction;
+@property (weak, nonatomic) IBOutlet UILabel *lCfgWaterMax;
+@property (weak, nonatomic) IBOutlet UILabel *lCfgTurbo;
+@property (weak, nonatomic) IBOutlet UIButton *btnEcoPlus;
+@property (weak, nonatomic) IBOutlet UIButton *btnEcoMinus;
+@property (weak, nonatomic) IBOutlet UIButton *btnComfortPlus;
+@property (weak, nonatomic) IBOutlet UIButton *btnComfortMinus;
+@property (weak, nonatomic) IBOutlet UIButton *btnEcoReductionPlus;
+@property (weak, nonatomic) IBOutlet UIButton *btnEcoRecuctionMinus;
+@property (weak, nonatomic) IBOutlet UIButton *btnWaterMaxMinus;
+@property (weak, nonatomic) IBOutlet UIButton *btnWaterMaxPlus;
+@property (weak, nonatomic) IBOutlet UIButton *btnTurboMinus;
+@property (weak, nonatomic) IBOutlet UIButton *btnTurboPlus;
+@property (weak, nonatomic) IBOutlet UIView *vSettings;
 @property (weak, nonatomic) IBOutlet SAThermostatCalendar *vCalendar;
 @property (weak, nonatomic) IBOutlet UIView *vMain;
 - (IBAction)calendarButtonTouched:(id)sender;

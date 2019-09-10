@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
-    <device id="retina3_5" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14865.1" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina3_5" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14819.2"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -26,7 +24,7 @@
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Qxh-vw-MlA">
                             <rect key="frame" x="45" y="36" width="210" height="30"/>
                             <subviews>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="3 hour" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Sg-3R-fXZ">
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="3 h" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Sg-3R-fXZ">
                                     <rect key="frame" x="33" y="4.5" width="144" height="21"/>
                                     <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="15"/>
                                     <nil key="textColor"/>
@@ -39,9 +37,6 @@
                                         <constraint firstAttribute="height" constant="28" id="dBR-26-LGm"/>
                                     </constraints>
                                     <state key="normal" image="hp_minus.png"/>
-                                    <connections>
-                                        <action selector="calendarButtonTouched:" destination="c9e-qf-AMF" eventType="touchDown" id="dqs-UH-cvh"/>
-                                    </connections>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2qm-R5-r5m" userLabel="btnTurboPlus">
                                     <rect key="frame" x="182" y="1" width="28" height="28"/>
@@ -50,9 +45,6 @@
                                         <constraint firstAttribute="height" constant="28" id="ge5-vb-XMK"/>
                                     </constraints>
                                     <state key="normal" image="hp_plus.png"/>
-                                    <connections>
-                                        <action selector="calendarButtonTouched:" destination="c9e-qf-AMF" eventType="touchDown" id="Wi3-3v-UY4"/>
-                                    </connections>
                                 </button>
                             </subviews>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -107,9 +99,6 @@
                                         <constraint firstAttribute="width" constant="28" id="bom-ey-Pn9"/>
                                     </constraints>
                                     <state key="normal" image="hp_minus.png"/>
-                                    <connections>
-                                        <action selector="calendarButtonTouched:" destination="c9e-qf-AMF" eventType="touchDown" id="cAO-vA-Qag"/>
-                                    </connections>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Sky-DD-zTq" userLabel="btnWaterMaxPlus">
                                     <rect key="frame" x="182" y="1" width="28" height="28"/>
@@ -118,9 +107,6 @@
                                         <constraint firstAttribute="width" constant="28" id="uLQ-ly-vp7"/>
                                     </constraints>
                                     <state key="normal" image="hp_plus.png"/>
-                                    <connections>
-                                        <action selector="calendarButtonTouched:" destination="c9e-qf-AMF" eventType="touchDown" id="r7F-vP-QCW"/>
-                                    </connections>
                                 </button>
                             </subviews>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -151,9 +137,6 @@
                                         <constraint firstAttribute="height" constant="28" id="xnS-kX-rnx"/>
                                     </constraints>
                                     <state key="normal" image="hp_minus.png"/>
-                                    <connections>
-                                        <action selector="calendarButtonTouched:" destination="c9e-qf-AMF" eventType="touchDown" id="X7q-i9-uVe"/>
-                                    </connections>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BLb-Y2-T8U" userLabel="btnEcoReductionPlus">
                                     <rect key="frame" x="182" y="1" width="28" height="28"/>
@@ -162,9 +145,6 @@
                                         <constraint firstAttribute="height" constant="28" id="7cR-FZ-RvX"/>
                                     </constraints>
                                     <state key="normal" image="hp_plus.png"/>
-                                    <connections>
-                                        <action selector="calendarButtonTouched:" destination="c9e-qf-AMF" eventType="touchDown" id="a3B-hT-dRT"/>
-                                    </connections>
                                 </button>
                             </subviews>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -201,9 +181,6 @@
                                         <constraint firstAttribute="height" constant="28" id="n5F-hJ-5jN"/>
                                     </constraints>
                                     <state key="normal" image="hp_minus.png"/>
-                                    <connections>
-                                        <action selector="calendarButtonTouched:" destination="c9e-qf-AMF" eventType="touchDown" id="hYC-BB-6B0"/>
-                                    </connections>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Z09-tG-Dpw" userLabel="btnComfortPlus">
                                     <rect key="frame" x="182" y="1" width="28" height="28"/>
@@ -212,9 +189,6 @@
                                         <constraint firstAttribute="height" constant="28" id="Lak-u6-9oG"/>
                                     </constraints>
                                     <state key="normal" image="hp_plus.png"/>
-                                    <connections>
-                                        <action selector="calendarButtonTouched:" destination="c9e-qf-AMF" eventType="touchDown" id="EnU-rZ-0Xs"/>
-                                    </connections>
                                 </button>
                             </subviews>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -245,9 +219,6 @@
                                         <constraint firstAttribute="width" constant="28" id="gto-5l-fwQ"/>
                                     </constraints>
                                     <state key="normal" image="hp_minus.png"/>
-                                    <connections>
-                                        <action selector="calendarButtonTouched:" destination="c9e-qf-AMF" eventType="touchDown" id="YFk-rq-rIh"/>
-                                    </connections>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sbK-XJ-L8t" userLabel="btnEcoPlus">
                                     <rect key="frame" x="182" y="1" width="28" height="28"/>
@@ -256,9 +227,6 @@
                                         <constraint firstAttribute="height" constant="28" id="sHk-IG-tQu"/>
                                     </constraints>
                                     <state key="normal" image="hp_plus.png"/>
-                                    <connections>
-                                        <action selector="calendarButtonTouched:" destination="c9e-qf-AMF" eventType="touchDown" id="jZg-DB-gcE"/>
-                                    </connections>
                                 </button>
                             </subviews>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -409,7 +377,7 @@
                                             <rect key="frame" x="0.0" y="55" width="117.5" height="50"/>
                                             <color key="backgroundColor" red="0.86959415669999995" green="0.32231938840000002" blue="0.31368485089999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                            <state key="normal" title="NORMAL">
+                                            <state key="normal" title="MANUAL">
                                                 <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             </state>
                                             <userDefinedRuntimeAttributes>
@@ -574,8 +542,24 @@
                 <constraint firstItem="Axk-Um-MAu" firstAttribute="top" secondItem="ipw-iZ-DB9" secondAttribute="bottom" constant="5" id="rKb-0a-3xO"/>
             </constraints>
             <connections>
+                <outlet property="btnComfortMinus" destination="3nb-Gw-sT9" id="taK-PC-bH1"/>
+                <outlet property="btnComfortPlus" destination="Z09-tG-Dpw" id="yCA-zQ-H11"/>
+                <outlet property="btnEcoMinus" destination="2h7-yV-VOx" id="wpS-Fm-bdu"/>
+                <outlet property="btnEcoPlus" destination="sbK-XJ-L8t" id="xzL-bx-6gc"/>
+                <outlet property="btnEcoRecuctionMinus" destination="K4V-cj-2JI" id="8J4-Bb-Zyl"/>
+                <outlet property="btnEcoReductionPlus" destination="BLb-Y2-T8U" id="sO9-pu-8H3"/>
+                <outlet property="btnTurboMinus" destination="vza-ZU-52a" id="nK7-vJ-RYY"/>
+                <outlet property="btnTurboPlus" destination="2qm-R5-r5m" id="4RB-fo-eZN"/>
+                <outlet property="btnWaterMaxMinus" destination="WYq-lY-x5t" id="6Mt-MK-XIW"/>
+                <outlet property="btnWaterMaxPlus" destination="Sky-DD-zTq" id="9KH-EF-Jmv"/>
+                <outlet property="lCfgComfort" destination="IsR-fe-GqY" id="fBG-2I-18h"/>
+                <outlet property="lCfgEco" destination="dn7-Mf-fO1" id="H3Y-r3-7BY"/>
+                <outlet property="lCfgEcoReduction" destination="RkN-Zh-C5c" id="3zr-Xd-zL7"/>
+                <outlet property="lCfgTurbo" destination="9Sg-3R-fXZ" id="eMg-82-KYg"/>
+                <outlet property="lCfgWaterMax" destination="VcQ-wF-eIG" id="A8C-8e-hVC"/>
                 <outlet property="vCalendar" destination="3b4-Uj-Mw6" id="gwo-s1-GxS"/>
                 <outlet property="vMain" destination="k1K-UQ-OTd" id="epb-CJ-7LD"/>
+                <outlet property="vSettings" destination="Axk-Um-MAu" id="p7R-ud-wrn"/>
             </connections>
             <point key="canvasLocation" x="76.875" y="108.75"/>
         </view>

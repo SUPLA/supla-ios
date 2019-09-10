@@ -22,11 +22,169 @@
 #define PROG_ECO 1
 #define PROG_COMFORT 2
 
+#define CFGID_TURBO_TIME 1
+#define CFGID_WATER_MAX 2
+#define CFGID_ECO_REDUCTION 3
+#define CFGID_TEMP_COMFORT 4
+#define CFGID_TEMP_ECO 5
+
+@implementation SAHomePlusCfgItem {
+    UIButton *_btnMinus;
+    UIButton *_btnPlus;
+    UILabel *_label;
+    short _min;
+    short _max;
+    short _value;
+    short _cfgId;
+}
+
+@synthesize delegate;
+
+-(void)setValue:(short)value {
+    _value = value;
+    
+    if (_label) {
+        NSString *unit;
+        if (_cfgId == CFGID_TURBO_TIME) {
+            unit = [NSString stringWithFormat:@" %@", NSLocalizedString(@"h", nil)];
+        } else {
+            unit = @"\u00B0";
+        }
+        [_label setText: [NSString stringWithFormat:@"%i%@", value, unit]];
+    }
+}
+
+-(id)initWithButtonMinus:(UIButton *)btnMinus buttonPlus:(UIButton*)btnPlus valueLabel:(UILabel*)label valueMin:(short)min valueMax:(short)max valueDefault:(short)def cfgId:(short)cfgId delegate:(id<SAHomePlusCfgItemDelegate>)delegate{
+    if ((self = [super init]) != nil) {
+        _btnMinus = btnMinus;
+        _btnPlus = btnPlus;
+        _label = label;
+        _min = min;
+        _max = max;
+        _cfgId = cfgId;
+        self.delegate = delegate;
+        
+        if (_btnPlus!=nil) {
+          [_btnPlus addTarget:self action:@selector(btnTouched:) forControlEvents:UIControlEventTouchDown];
+        }
+         
+        if (_btnMinus!=nil) {
+          [_btnMinus addTarget:self action:@selector(btnTouched:) forControlEvents:UIControlEventTouchDown];
+        }
+        
+        [self setValue:def];
+        return self;
+    }
+    return nil;
+}
+
+-(short)cfgId {
+    return _cfgId;
+}
+
+-(short)value {
+    return _value;
+}
+
+-(IBAction)btnTouched:(id)btn {
+    if (btn == _btnPlus && _value < _max) {
+        [self setValue:_value+1];
+    } else if (btn == _btnMinus && _value > _min) {
+        [self setValue:_value-1];
+    } else {
+        return;
+    }
+    
+    if (delegate) {
+        [delegate cfgItemChanged:self];
+    }
+}
+@end
+
 @implementation SAHomePlusDetailView {
     NSTimeInterval _refreshLock;
+    NSMutableArray *_cfgItems;
+}
+
+-(void)detailViewInit {
+    if (!self.initialized) {
+        self.vCalendar.program0Label = NSLocalizedString(@"ECO", nil);
+        self.vCalendar.program1Label = NSLocalizedString(@"Comfort", nil);
+        self.vCalendar.firstDay = 2;
+        _cfgItems = [[NSMutableArray alloc] init];
+ 
+        [_cfgItems addObject:[[SAHomePlusCfgItem alloc]
+                              initWithButtonMinus:self.btnTurboMinus
+                              buttonPlus:self.btnTurboPlus
+                              valueLabel:self.lCfgTurbo
+                              valueMin:1
+                              valueMax:3
+                              valueDefault:1
+                              cfgId:CFGID_TURBO_TIME
+                              delegate:self]];
+        
+        [_cfgItems addObject:[[SAHomePlusCfgItem alloc]
+                              initWithButtonMinus:self.btnWaterMaxMinus
+                              buttonPlus:self.btnWaterMaxPlus
+                              valueLabel:self.lCfgWaterMax
+                              valueMin:30
+                              valueMax:70
+                              valueDefault:70
+                              cfgId:CFGID_WATER_MAX
+                              delegate:self]];
+        
+        [_cfgItems addObject:[[SAHomePlusCfgItem alloc]
+                              initWithButtonMinus:self.btnEcoRecuctionMinus
+                              buttonPlus:self.btnEcoReductionPlus
+                              valueLabel:self.lCfgEcoReduction
+                              valueMin:1
+                              valueMax:5
+                              valueDefault:3
+                              cfgId:CFGID_ECO_REDUCTION
+                              delegate:self]];
+        
+        [_cfgItems addObject:[[SAHomePlusCfgItem alloc]
+                              initWithButtonMinus:self.btnComfortMinus
+                              buttonPlus:self.btnComfortPlus
+                              valueLabel:self.lCfgComfort
+                              valueMin:10
+                              valueMax:30
+                              valueDefault:22
+                              cfgId:CFGID_TEMP_COMFORT
+                              delegate:self]];
+        
+        [_cfgItems addObject:[[SAHomePlusCfgItem alloc]
+                              initWithButtonMinus:self.btnEcoMinus
+                              buttonPlus:self.btnEcoPlus
+                              valueLabel:self.lCfgEco
+                              valueMin:10
+                              valueMax:30
+                              valueDefault:19
+                              cfgId:CFGID_TEMP_ECO
+                              delegate:self]];
+    }
+    [super detailViewInit];
+}
+
+-(void)setCfgValue:(short)value cfgId:(short)cfgId {
+    for(int a=0;a<_cfgItems.count;a++) {
+        SAHomePlusCfgItem *item = [_cfgItems objectAtIndex:a];
+        if (item.cfgId == cfgId) {
+            item.value = value;
+            break;
+        }
+    }
+}
+
+-(void)showMainView {
+    self.vMain.hidden = NO;
+    self.vCalendar.hidden = YES;
+    self.vSettings.hidden = YES;
 }
 
 -(void)showCalendar:(BOOL)show {
+    self.vSettings.hidden = YES;
+    
     if (show) {
         self.vMain.hidden = YES;
         self.vCalendar.hidden = NO;
@@ -36,15 +194,24 @@
     }
 }
 
+-(void)showSettings:(BOOL)show {
+    self.vCalendar.hidden = YES;
+    
+    if (show) {
+        self.vMain.hidden = YES;
+        self.vSettings.hidden = NO;
+    } else {
+        self.vMain.hidden = NO;
+        self.vSettings.hidden = YES;
+    }
+}
+
 -(void)onDetailShow {
-    [self showCalendar:NO];
-    self.vCalendar.program0Label = NSLocalizedString(@"ECO", nil);
-    self.vCalendar.program1Label = NSLocalizedString(@"Comfort", nil);
-    self.vCalendar.firstDay = 2;
+    [self showMainView];
 };
 
 -(void)onDetailHide {
-    
+    [self showMainView];
 };
 
 - (IBAction)calendarButtonTouched:(id)sender {
@@ -52,6 +219,7 @@
 }
 
 - (IBAction)settingsButtonTouched:(id)sender {
+    [self showSettings:self.vSettings.hidden];
 }
 
 - (void)updateView {
@@ -59,25 +227,31 @@
         return;
     }
     
-    SAChannelExtendedValue *ev = nil;
-    TThermostat_ExtendedValue thev;
+/*
     
     if (![self.channelBase isKindOfClass:SAChannel.class]
     || (ev = ((SAChannel*)self.channelBase).ev) == nil
     || ![ev getThermostatExtendedValue:&thev]) {
         return;
     }
+    
+    if (thev.)
 
     if (!_vCalendar.isTouched) {
         [_vCalendar clear];
-        if (thev.Shedule.ValueType == THERMOSTAT_SCHEDULE_HOURVALUE_TYPE_PROGRAM) {
+        if (thev.Schedule.ValueType == THERMOSTAT_SCHEDULE_HOURVALUE_TYPE_PROGRAM) {
             for(short d=0;d<7;d++) {
                  for(short h=0;h<24;h++) {
-                     [self.vCalendar setProgramForDay:d+1 andHour:h toOne:thev.Shedule.HourValue[d][h] == PROG_COMFORT];
+                     [self.vCalendar setProgramForDay:d+1 andHour:h toOne:thev.Schedule.HourValue[d][h] == PROG_COMFORT];
                  }
              }
         }
     }
+ */
+}
+
+-(void) cfgItemChanged:(SAHomePlusCfgItem*)item {
+    NSLog(@"");
 }
 
 @end
