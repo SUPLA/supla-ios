@@ -35,16 +35,19 @@
 }
 
 -(void)detailViewInit {
+    if (!self.initialized) {
+        selectedPhase = 0;
+        _chartHelper = [[SAElectricityChartHelper alloc] init];
+        _chartHelper.combinedChart = self.combinedChart;
+        _chartHelper.pieChart = self.pieChart;
+        _chartHelper.unit = @"kWh";
+        _tfChartTypeFilter.chartHelper = _chartHelper;
+        _tfChartTypeFilter.dateRangeFilterField = _ftDateRangeFilter;
+        _tfChartTypeFilter.ff_delegate = self;
+        _ftDateRangeFilter.ff_delegate = self;
+    }
+    
     [super detailViewInit];
-    selectedPhase = 0;
-    _chartHelper = [[SAElectricityChartHelper alloc] init];
-    _chartHelper.combinedChart = self.combinedChart;
-    _chartHelper.pieChart = self.pieChart;
-    _chartHelper.unit = @"kWh";
-    _tfChartTypeFilter.chartHelper = _chartHelper;
-    _tfChartTypeFilter.dateRangeFilterField = _ftDateRangeFilter;
-    _tfChartTypeFilter.ff_delegate = self;
-    _ftDateRangeFilter.ff_delegate = self;
 }
 
 - (void)setLabel:(UILabel*)label Visible:(BOOL)visible withConstraint:(NSLayoutConstraint*)cns {
@@ -71,10 +74,10 @@
     [self.lVoltageValue setText:[NSString stringWithFormat:@"%0.2f V", voltage]];
 }
 
-- (void)setCurrent:(double)current visible:(BOOL)visible {
+- (void)setCurrent:(double)current visible:(BOOL)visible over65A:(BOOL)over65A {
     [self setLabel:self.lCurrent Visible:visible withConstraint:self.cCurrentTop];
     [self setLabel:self.lCurrentValue Visible:visible withConstraint:self.cCurrentValueTop];
-    [self.lCurrentValue setText:[NSString stringWithFormat:@"%0.3f A", current]];
+    [self.lCurrentValue setText:[NSString stringWithFormat:@"%0.*f A", over65A ? 2 : 3, current]];
 }
 
 - (void)setActivePower:(double)power visible:(BOOL)visible {
@@ -174,13 +177,16 @@
     double totalRAE = 0;
     double totalFRE = 0;
     double totalRRE = 0;
+    BOOL currentOver65A = false;
     
     if ([self.channelBase isKindOfClass:SAChannel.class]
         && (ev = ((SAChannel*)self.channelBase).ev) != nil
         && [ev getElectricityMeterExtendedValue:&emev]) {
         
         TElectricityMeter_Measurement *m = emev.m;
-        
+        measured_values = emev.measured_values;
+        currentOver65A = !MVAL(EM_VAR_CURRENT) && MVAL(EM_VAR_CURRENT_OVER_65A);
+    
         for(int p=0;p<3;p++) {
             
             if (selectedPhase > -1) {
@@ -198,7 +204,7 @@
                     btnBorderColor = [[UIColor greenColor] CGColor];
                 }
                 
-                current = m->current[p] * 0.001;
+                current = m->current[p] * (currentOver65A ? 0.01 : 0.001);
                 powerActive += m->power_active[p] * 0.00001;
                 powerReactive += m->power_reactive[p] * 0.00001;
                 powerApparent += m->power_apparent[p] * 0.00001;
@@ -215,8 +221,6 @@
                 break;
             }
         }
-
-        measured_values = emev.measured_values;
         
         double currentConsumption = 0;
         double currentProduction = 0;
@@ -261,7 +265,7 @@
     
     [self setFrequency:freq visible:MVAL(EM_VAR_FREQ)];
     [self setVoltage:voltage visible:MVAL(EM_VAR_VOLTAGE) && selectedPhase > -1];
-    [self setCurrent:current visible:MVAL(EM_VAR_CURRENT) && selectedPhase > -1];
+    [self setCurrent:current visible:(MVAL(EM_VAR_CURRENT) || MVAL(EM_VAR_CURRENT_OVER_65A)) && selectedPhase > -1 over65A:currentOver65A];
     [self setActivePower:powerActive visible:MVAL(EM_VAR_POWER_ACTIVE)];
     [self setReactivePower:powerReactive visible:MVAL(EM_VAR_POWER_REACTIVE)];
     [self setApparentPower:powerApparent visible:MVAL(EM_VAR_POWER_APPARENT)];
