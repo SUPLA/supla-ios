@@ -17,6 +17,8 @@
 		013D73A522DCAB4400E3515A /* SAIncrementalMeterChartMarkerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 013D73A422DCAB4400E3515A /* SAIncrementalMeterChartMarkerView.swift */; };
 		013D73A722DCAEF400E3515A /* SAIncrementalMeterChartMarkerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 013D73A622DCAEF400E3515A /* SAIncrementalMeterChartMarkerView.xib */; };
 		013D73B022DD105400E3515A /* SAChartFilterField.m in Sources */ = {isa = PBXBuildFile; fileRef = 013D73AF22DD105400E3515A /* SAChartFilterField.m */; };
+		01567446232FCFD700397393 /* SAIncrementalMeterExtendedValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 01567445232FCFD700397393 /* SAIncrementalMeterExtendedValue.m */; };
+		01567449232FD0A100397393 /* SAImpulseCounterExtendedValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 01567448232FD0A100397393 /* SAImpulseCounterExtendedValue.m */; };
 		016EE77423074DDC00FD301C /* production@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 016EE77223074DDC00FD301C /* production@3x.png */; };
 		016EE77523074DDC00FD301C /* consumption@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 016EE77323074DDC00FD301C /* consumption@3x.png */; };
 		017554F322F18E4A00EB58B7 /* HomePlusDetailView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 017554F222F18E4A00EB58B7 /* HomePlusDetailView.xib */; };
@@ -26,7 +28,7 @@
 		017554FC22F1D2BE00EB58B7 /* settings2@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 017554FA22F1D2BE00EB58B7 /* settings2@3x.png */; };
 		017554FF22F1DDA300EB58B7 /* hp_plus@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 017554FD22F1DDA300EB58B7 /* hp_plus@3x.png */; };
 		0175550022F1DDA300EB58B7 /* hp_minus@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 017554FE22F1DDA300EB58B7 /* hp_minus@3x.png */; };
-		018CFD2023281A5900888CB7 /* SAExectricityMeterExtendedValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 018CFD1F23281A5900888CB7 /* SAExectricityMeterExtendedValue.m */; };
+		018CFD2023281A5900888CB7 /* SAElectricityMeterExtendedValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 018CFD1F23281A5900888CB7 /* SAElectricityMeterExtendedValue.m */; };
 		018CFD2323281ADB00888CB7 /* SAThermostatExtendedValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 018CFD2223281ADB00888CB7 /* SAThermostatExtendedValue.m */; };
 		018CFD2623281AF900888CB7 /* SAThermostatHPExtendedValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 018CFD2523281AF900888CB7 /* SAThermostatHPExtendedValue.m */; };
 		018CFD2923281F0C00888CB7 /* SAExtendedValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 018CFD2823281F0C00888CB7 /* SAExtendedValue.m */; };
@@ -347,6 +349,10 @@
 		013D73A622DCAEF400E3515A /* SAIncrementalMeterChartMarkerView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SAIncrementalMeterChartMarkerView.xib; sourceTree = "<group>"; };
 		013D73AE22DD105400E3515A /* SAChartFilterField.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SAChartFilterField.h; sourceTree = "<group>"; };
 		013D73AF22DD105400E3515A /* SAChartFilterField.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SAChartFilterField.m; sourceTree = "<group>"; };
+		01567444232FCFD700397393 /* SAIncrementalMeterExtendedValue.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SAIncrementalMeterExtendedValue.h; sourceTree = "<group>"; };
+		01567445232FCFD700397393 /* SAIncrementalMeterExtendedValue.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SAIncrementalMeterExtendedValue.m; sourceTree = "<group>"; };
+		01567447232FD0A100397393 /* SAImpulseCounterExtendedValue.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SAImpulseCounterExtendedValue.h; sourceTree = "<group>"; };
+		01567448232FD0A100397393 /* SAImpulseCounterExtendedValue.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SAImpulseCounterExtendedValue.m; sourceTree = "<group>"; };
 		016EE77223074DDC00FD301C /* production@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "production@3x.png"; path = "Resources/Assets/Img/production@3x.png"; sourceTree = "<group>"; };
 		016EE77323074DDC00FD301C /* consumption@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "consumption@3x.png"; path = "Resources/Assets/Img/consumption@3x.png"; sourceTree = "<group>"; };
 		017554F222F18E4A00EB58B7 /* HomePlusDetailView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomePlusDetailView.xib; sourceTree = "<group>"; };
@@ -357,8 +363,8 @@
 		017554FA22F1D2BE00EB58B7 /* settings2@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "settings2@3x.png"; path = "Resources/Assets/Img/settings2@3x.png"; sourceTree = "<group>"; };
 		017554FD22F1DDA300EB58B7 /* hp_plus@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "hp_plus@3x.png"; path = "Resources/Assets/Img/hp_plus@3x.png"; sourceTree = "<group>"; };
 		017554FE22F1DDA300EB58B7 /* hp_minus@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "hp_minus@3x.png"; path = "Resources/Assets/Img/hp_minus@3x.png"; sourceTree = "<group>"; };
-		018CFD1E23281A5900888CB7 /* SAExectricityMeterExtendedValue.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SAExectricityMeterExtendedValue.h; sourceTree = "<group>"; };
-		018CFD1F23281A5900888CB7 /* SAExectricityMeterExtendedValue.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SAExectricityMeterExtendedValue.m; sourceTree = "<group>"; };
+		018CFD1E23281A5900888CB7 /* SAElectricityMeterExtendedValue.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SAElectricityMeterExtendedValue.h; sourceTree = "<group>"; };
+		018CFD1F23281A5900888CB7 /* SAElectricityMeterExtendedValue.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SAElectricityMeterExtendedValue.m; sourceTree = "<group>"; };
 		018CFD2123281ADB00888CB7 /* SAThermostatExtendedValue.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SAThermostatExtendedValue.h; sourceTree = "<group>"; };
 		018CFD2223281ADB00888CB7 /* SAThermostatExtendedValue.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SAThermostatExtendedValue.m; sourceTree = "<group>"; };
 		018CFD2423281AF900888CB7 /* SAThermostatHPExtendedValue.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SAThermostatHPExtendedValue.h; sourceTree = "<group>"; };
@@ -840,19 +846,23 @@
 			name = charts;
 			sourceTree = "<group>";
 		};
-		018CFD1D23281A0F00888CB7 /* ExtendedValues */ = {
+		018CFD1D23281A0F00888CB7 /* ExtendedValue */ = {
 			isa = PBXGroup;
 			children = (
-				018CFD1E23281A5900888CB7 /* SAExectricityMeterExtendedValue.h */,
-				018CFD1F23281A5900888CB7 /* SAExectricityMeterExtendedValue.m */,
+				018CFD1E23281A5900888CB7 /* SAElectricityMeterExtendedValue.h */,
+				018CFD1F23281A5900888CB7 /* SAElectricityMeterExtendedValue.m */,
 				018CFD2123281ADB00888CB7 /* SAThermostatExtendedValue.h */,
 				018CFD2223281ADB00888CB7 /* SAThermostatExtendedValue.m */,
 				018CFD2423281AF900888CB7 /* SAThermostatHPExtendedValue.h */,
 				018CFD2523281AF900888CB7 /* SAThermostatHPExtendedValue.m */,
 				018CFD2723281F0C00888CB7 /* SAExtendedValue.h */,
 				018CFD2823281F0C00888CB7 /* SAExtendedValue.m */,
+				01567444232FCFD700397393 /* SAIncrementalMeterExtendedValue.h */,
+				01567445232FCFD700397393 /* SAIncrementalMeterExtendedValue.m */,
+				01567447232FD0A100397393 /* SAImpulseCounterExtendedValue.h */,
+				01567448232FD0A100397393 /* SAImpulseCounterExtendedValue.m */,
 			);
-			name = ExtendedValues;
+			name = ExtendedValue;
 			sourceTree = "<group>";
 		};
 		01BDAC7222C5132B00915646 /* restapi */ = {
@@ -901,7 +911,7 @@
 		401CA1BB1BA067DB00117AF4 /* SUPLA */ = {
 			isa = PBXGroup;
 			children = (
-				018CFD1D23281A0F00888CB7 /* ExtendedValues */,
+				018CFD1D23281A0F00888CB7 /* ExtendedValue */,
 				013D1C5A22CE4751000C0784 /* charts */,
 				01BDAC7222C5132B00915646 /* restapi */,
 				40E8BE811FC06A4500FB2FE6 /* hpple */,
@@ -1805,6 +1815,7 @@
 				4004DE8D1DC4E270009C34E3 /* SAColorBrightnessPicker.m in Sources */,
 				401CA1C21BA067DB00117AF4 /* AppDelegate.m in Sources */,
 				013D1C5D22CE47D5000C0784 /* SAChartHelper.m in Sources */,
+				01567446232FCFD700397393 /* SAIncrementalMeterExtendedValue.m in Sources */,
 				017554F622F1A62500EB58B7 /* HomePlusDetailView.m in Sources */,
 				40A675831BA1BE8E004A51C4 /* SettingsVC.m in Sources */,
 				013D1C6322CE75A3000C0784 /* SAElectricityChartHelper.m in Sources */,
@@ -1835,7 +1846,7 @@
 				0122613922F396440013E6A2 /* SAThermostatCalendar.m in Sources */,
 				01F8856F22E5E79100D18373 /* SAThermostatMeasurementItem+CoreDataClass.m in Sources */,
 				40A6757F1BA1A5B6004A51C4 /* SuplaApp.m in Sources */,
-				018CFD2023281A5900888CB7 /* SAExectricityMeterExtendedValue.m in Sources */,
+				018CFD2023281A5900888CB7 /* SAElectricityMeterExtendedValue.m in Sources */,
 				40C9E4F71F2A186A00753796 /* SARollerShutter.m in Sources */,
 				401CA1F21BA0A28A00117AF4 /* SuplaClient.m in Sources */,
 				4006E90A1DC62D0A00C4456D /* DetailView.m in Sources */,
@@ -1848,6 +1859,7 @@
 				01F8856B22E5E79100D18373 /* SAThermostatMeasurementItem+CoreDataProperties.m in Sources */,
 				40DA56901DCA1908008F05DE /* _SALocation+CoreDataProperties.m in Sources */,
 				01F8857022E5E79100D18373 /* SATemperatureMeasurementItem+CoreDataProperties.m in Sources */,
+				01567449232FD0A100397393 /* SAImpulseCounterExtendedValue.m in Sources */,
 				01D5E0C822DB7FAF00FBE1DC /* SAChartMarkerView.swift in Sources */,
 				409934B61F30EF9C003110C5 /* RSDetailView.m in Sources */,
 				01C1719022C7F3A2005983E1 /* SAIncrementalMeasurementItem+CoreDataProperties.m in Sources */,

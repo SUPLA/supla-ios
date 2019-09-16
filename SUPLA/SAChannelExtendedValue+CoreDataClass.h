@@ -27,15 +27,6 @@ NS_ASSUME_NONNULL_BEGIN
 - (void) initWithChannelId:(int)channelId;
 - (BOOL) setValueWithChannelExtendedValue:(TSuplaChannelExtendedValue*)value;
 - (int) valueType;
-- (NSString *) unit;
-- (NSString *) currency;
-- (NSString *) decodeCurrency:(char*)currency;
-- (BOOL) getElectricityMeterExtendedValue:(TElectricityMeter_ExtendedValue*)emev;
-- (BOOL) getImpulseCounterExtendedValue:(TSC_ImpulseCounter_ExtendedValue*)icev;
-- (double) getTotalActiveEnergyForExtendedValue:(TElectricityMeter_ExtendedValue*)emev forwarded:(BOOL)fwd;
-- (double) getTotalActiveEnergy:(BOOL)forwarded;
-
-- (BOOL) getThermostatExtendedValue:(TThermostat_ExtendedValue*)thev;
 @end
 
 NS_ASSUME_NONNULL_END

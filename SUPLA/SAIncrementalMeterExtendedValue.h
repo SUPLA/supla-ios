@@ -16,21 +16,13 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 */
 
-#import "SAThermostatHPExtendedValue.h"
+#import "SAExtendedValue.h"
 
-@implementation SAThermostatHPExtendedValue
+NS_ASSUME_NONNULL_BEGIN
 
-- (BOOL) getThermostatExtendedValue:(TThermostat_ExtendedValue*)thev {
-    if (thev != NULL) {
-        memset(thev, 0, sizeof(TThermostat_ExtendedValue));
-        NSData *data = [super dataValue];
-        if (data && data.length == sizeof(TThermostat_ExtendedValue)) {
-            [data getBytes:thev length:data.length];
-            return YES;
-        }
-    }
-    return NO;
-}
-
-
+@interface SAIncrementalMeterExtendedValue : SAExtendedValue
+- (NSString *) currency;
+- (NSString *) decodeCurrency:(char*)currency;
 @end
+
+NS_ASSUME_NONNULL_END

@@ -17,12 +17,16 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 */
 
 #import <Foundation/Foundation.h>
-#import "SAChannel+CoreDataClass.h"
+#import "SAChannelExtendedValue+CoreDataClass.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface SAExtendedValue : NSObject
--(id)initWithChannel:(SAChannel*)channel;
+-(id)initWithExtendedValue:(SAChannelExtendedValue *)ev;
+- (NSData *) dataValue;
+- (int) valueType;
+@property (weak, nonatomic) SAChannelExtendedValue *ev;
+
 @end
 
 NS_ASSUME_NONNULL_END

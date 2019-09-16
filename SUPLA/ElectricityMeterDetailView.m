@@ -20,6 +20,7 @@
 #import "SAClassHelper.h"
 #import "SuplaApp.h"
 #import "SAElectricityChartHelper.h"
+#import "SAElectricityMeterExtendedValue.h"
 
 // iPhone <=5 fix.
 // Integer number as boolean method parameter does not work good in iPhone <5
@@ -148,8 +149,7 @@
 - (void)updateView {
     
     unsigned int measured_values = 0;
-    SAChannelExtendedValue *ev = nil;
-    TElectricityMeter_ExtendedValue emev;
+    SAElectricityMeterExtendedValue *emev = nil;
     
     self.btnPhase1.layer.borderColor = [[UIColor blackColor] CGColor];
     self.btnPhase2.layer.borderColor = [[UIColor blackColor] CGColor];
@@ -180,42 +180,39 @@
     BOOL currentOver65A = false;
     
     if ([self.channelBase isKindOfClass:SAChannel.class]
-        && (ev = ((SAChannel*)self.channelBase).ev) != nil
-        && [ev getElectricityMeterExtendedValue:&emev]) {
+        && ((SAChannel*)self.channelBase).ev != nil
+        && (emev = ((SAChannel*)self.channelBase).ev.electricityMeter) != nil) {
         
-        TElectricityMeter_Measurement *m = emev.m;
-        measured_values = emev.measured_values;
-        currentOver65A = !MVAL(EM_VAR_CURRENT) && MVAL(EM_VAR_CURRENT_OVER_65A);
+        measured_values = emev.measuredValues;
+        currentOver65A = emev.currentIsOver65A;
     
-        for(int p=0;p<3;p++) {
+        for(unsigned char p=1;p<=3;p++) {
             
             if (selectedPhase > -1) {
                 p = selectedPhase;
             }
         
-            if (emev.m_count > 0) {
-                freq = m->freq * 0.01;
+            freq = [emev freqForPhase:p];
                 
-                if (voltage == 0) {
-                    voltage = m->voltage[selectedPhase] * 0.01;
-                }
-            
-                if ( voltage > 0 ) {
-                    btnBorderColor = [[UIColor greenColor] CGColor];
-                }
-                
-                current = m->current[p] * (currentOver65A ? 0.01 : 0.001);
-                powerActive += m->power_active[p] * 0.00001;
-                powerReactive += m->power_reactive[p] * 0.00001;
-                powerApparent += m->power_apparent[p] * 0.00001;
-                powerFactor = m->power_factor[p] * 0.001;
-                phaseAngle = m->phase_angle[p] * 0.1;
+            if (voltage == 0) {
+                voltage = [emev voltegeForPhase:p];
             }
-
-            totalFAE += emev.total_forward_active_energy[p] * 0.00001;
-            totalRAE += emev.total_reverse_active_energy[p] * 0.00001;
-            totalFRE += emev.total_forward_reactive_energy[p] * 0.00001;
-            totalRRE += emev.total_reverse_reactive_energy[p] * 0.00001;
+            
+            if ( voltage > 0 ) {
+                btnBorderColor = [[UIColor greenColor] CGColor];
+            }
+                
+            current = [emev currentForPhase:p];
+            powerActive += [emev powerActiveForPhase:p];
+            powerReactive += [emev powerReactiveForPhase:p];
+            powerApparent += [emev powerApparentForPhase:p];
+            powerFactor = [emev powerFactorForPhase:p];
+            phaseAngle = [emev phaseAngleForPhase:p];
+            
+            totalFAE += [emev totalForwardActiveEnergyForPhase:p];
+            totalRAE += [emev totalReverseActiveEnergyForPhase:p];
+            totalFRE += [emev totalForwardReactiveEnergyForPhase:p];
+            totalRRE += [emev totalReverseReactiveEnergyForPhase:p];
             
             if (selectedPhase > -1) {
                 break;
@@ -227,8 +224,8 @@
         double currentCost = 0;
         
         if ([SAApp.DB electricityMeterMeasurementsStartsWithTheCurrentMonthForChannelId:self.channelBase.remote_id]) {
-            currentConsumption = [ev getTotalActiveEnergyForExtendedValue:&emev forwarded:YES];
-            currentProduction = [ev getTotalActiveEnergyForExtendedValue:&emev forwarded:NO];
+            currentConsumption = [emev totalForwardActiveEnergy];
+            currentProduction = [emev totalReverseActiveEnergy];
             currentCost = emev.total_cost * 0.01;
         } else {
             double v0 = [SAApp.DB sumActiveEnergyForChannelId:self.channelBase.remote_id monthLimitOffset:0 forwarded:YES];

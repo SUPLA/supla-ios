@@ -20,8 +20,22 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 @implementation SAExtendedValue
 
--(id)initWithChannel:(SAChannel*)channel {
-    return [self init];
+@synthesize ev;
+
+-(id)initWithExtendedValue:(SAChannelExtendedValue *)ev {
+    if (self = [self init]) {
+        self.ev = ev;
+    }
+    
+    return self;
+}
+
+- (NSData *) dataValue {
+    return ev ? ev.dataValue : nil;
+}
+
+- (int) valueType {
+    return ev ? ev.valueType : 0;
 }
 
 @end

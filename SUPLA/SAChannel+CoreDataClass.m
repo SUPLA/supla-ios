@@ -151,7 +151,7 @@
         NSString *result = nil;
         
         if ( self.ev != nil ) {
-            result = self.ev.unit;
+            result = self.ev.impulseCounter.unit;
             if (result != nil) {
                 return result;
             }

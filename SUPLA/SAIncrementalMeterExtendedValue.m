@@ -16,21 +16,27 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 */
 
-#import "SAThermostatHPExtendedValue.h"
+#import "SAIncrementalMeterExtendedValue.h"
 
-@implementation SAThermostatHPExtendedValue
+@implementation SAIncrementalMeterExtendedValue
 
-- (BOOL) getThermostatExtendedValue:(TThermostat_ExtendedValue*)thev {
-    if (thev != NULL) {
-        memset(thev, 0, sizeof(TThermostat_ExtendedValue));
-        NSData *data = [super dataValue];
-        if (data && data.length == sizeof(TThermostat_ExtendedValue)) {
-            [data getBytes:thev length:data.length];
-            return YES;
+- (NSString *) decodeCurrency:(char*)currency {
+    short a;
+    NSString *result = @"";
+    for(a=0;a<3;a++) {
+        if (currency[a] == 0) {
+            break;
         }
+        result = [NSString stringWithFormat:@"%@%c", result, currency[a]];
     }
-    return NO;
+    
+    if (a==3) {
+        return result;
+    }
+    
+    return @"";
 }
 
+- (NSString *) currency { return @""; }
 
 @end

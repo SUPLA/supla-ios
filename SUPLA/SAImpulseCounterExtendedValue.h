@@ -16,12 +16,13 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 */
 
-#import "SAExtendedValue.h"
+#import "SAIncrementalMeterExtendedValue.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface SAExectricityMeterExtendedValue : SAExtendedValue
-
+@interface SAImpulseCounterExtendedValue : SAIncrementalMeterExtendedValue
+- (NSString *) unit;
+- (BOOL) getImpulseCounterExtendedValue:(TSC_ImpulseCounter_ExtendedValue*)icev;
 @end
 
 NS_ASSUME_NONNULL_END
