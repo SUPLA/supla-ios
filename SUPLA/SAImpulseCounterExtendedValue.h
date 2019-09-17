@@ -25,4 +25,8 @@ NS_ASSUME_NONNULL_BEGIN
 - (BOOL) getImpulseCounterExtendedValue:(TSC_ImpulseCounter_ExtendedValue*)icev;
 @end
 
+@interface SAChannelExtendedValue (SAImpulseCounterExtendedValue)
+- (SAImpulseCounterExtendedValue*)impulseCounter;
+@end
+
 NS_ASSUME_NONNULL_END

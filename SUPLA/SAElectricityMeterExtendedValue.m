@@ -60,7 +60,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 - (double) freqForPhase:(unsigned char)phase {
     TElectricityMeter_Measurement *m = [self measurementForPhase:phase];
-    return m ? m->freq : 0.0;
+    return m ? m->freq * 0.01 : 0.0;
 }
 
 - (double) voltegeForPhase:(unsigned char)phase {

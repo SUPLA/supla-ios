@@ -18,7 +18,17 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 #import "SAImpulseCounterExtendedValue.h"
 
-@implementation SAImpulseCounterExtendedValue
+@implementation SAImpulseCounterExtendedValue {
+    TSC_ImpulseCounter_ExtendedValue _icev;
+}
+
+-(id)initWithExtendedValue:(SAChannelExtendedValue *)ev {
+    if ([super initWithExtendedValue:ev]
+        && [self getImpulseCounterExtendedValue:&_icev]) {
+        return self;
+    }
+    return nil;
+}
 
 - (BOOL) getImpulseCounterExtendedValue:(TSC_ImpulseCounter_ExtendedValue*)icev {
     if (icev != NULL) {
@@ -33,27 +43,24 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 }
 
 - (NSString *) unit {
-    if (self.valueType == EV_TYPE_IMPULSE_COUNTER_DETAILS_V1) {
-        TSC_ImpulseCounter_ExtendedValue icev;
-        if ( [self getImpulseCounterExtendedValue:&icev] ) {
-            icev.custom_unit[sizeof(icev.custom_unit)-1] = 0;
-            NSString *unit = [NSString stringWithUTF8String:icev.custom_unit];
-            if (unit.length > 0) {
-                return unit;
-            }
-        }
+    _icev.custom_unit[sizeof(_icev.custom_unit)-1] = 0;
+    NSString *unit = [NSString stringWithUTF8String:_icev.custom_unit];
+    if (unit.length > 0) {
+        return unit;
     }
-
+    
     return nil;
 }
 
 - (NSString *) currency {
-    if (self.valueType == EV_TYPE_IMPULSE_COUNTER_DETAILS_V1) {
-        TSC_ImpulseCounter_ExtendedValue icev;
-        if ( [self getImpulseCounterExtendedValue:&icev] ) {
-            return [self decodeCurrency:icev.currency];
-        }
-    }
-    return [super currency];
+    return [self decodeCurrency:_icev.currency];
 }
+@end
+
+@implementation SAChannelExtendedValue (SAExectricityMeterExtendedValue)
+
+- (SAImpulseCounterExtendedValue*)impulseCounter {
+    return [[SAImpulseCounterExtendedValue alloc] initWithExtendedValue:self];
+}
+
 @end

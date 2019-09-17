@@ -37,7 +37,7 @@
 
 -(void)detailViewInit {
     if (!self.initialized) {
-        selectedPhase = 0;
+        selectedPhase = 1;
         _chartHelper = [[SAElectricityChartHelper alloc] init];
         _chartHelper.combinedChart = self.combinedChart;
         _chartHelper.pieChart = self.pieChart;
@@ -188,7 +188,7 @@
     
         for(unsigned char p=1;p<=3;p++) {
             
-            if (selectedPhase > -1) {
+            if (selectedPhase > 0) {
                 p = selectedPhase;
             }
         
@@ -214,7 +214,7 @@
             totalFRE += [emev totalForwardReactiveEnergyForPhase:p];
             totalRRE += [emev totalReverseReactiveEnergyForPhase:p];
             
-            if (selectedPhase > -1) {
+            if (selectedPhase > 0) {
                 break;
             }
         }
@@ -224,15 +224,15 @@
         double currentCost = 0;
         
         if ([SAApp.DB electricityMeterMeasurementsStartsWithTheCurrentMonthForChannelId:self.channelBase.remote_id]) {
-            currentConsumption = [emev totalForwardActiveEnergy];
-            currentProduction = [emev totalReverseActiveEnergy];
-            currentCost = emev.total_cost * 0.01;
+            currentConsumption = emev.totalForwardActiveEnergy;
+            currentProduction = emev.totalReverseActiveEnergy;
+            currentCost = emev.totalCost;
         } else {
             double v0 = [SAApp.DB sumActiveEnergyForChannelId:self.channelBase.remote_id monthLimitOffset:0 forwarded:YES];
             double v1 = [SAApp.DB sumActiveEnergyForChannelId:self.channelBase.remote_id monthLimitOffset:-1 forwarded:YES];
             
             currentConsumption = v0-v1;
-            currentCost = emev.price_per_unit * 0.0001 * currentConsumption;
+            currentCost = emev.pricePerUnit * currentConsumption;
             
             v0 = [SAApp.DB sumActiveEnergyForChannelId:self.channelBase.remote_id monthLimitOffset:0 forwarded:NO];
             v1 = [SAApp.DB sumActiveEnergyForChannelId:self.channelBase.remote_id monthLimitOffset:-1 forwarded:NO];
@@ -240,34 +240,35 @@
             currentProduction = v0-v1;
         }
         
-        [self.lTotalActiveEnergyValue setText:[self totalActiveEnergyStringForValue:[ev getTotalActiveEnergyForExtendedValue:&emev forwarded:!_chartHelper.productionDataSource]]];
+        
+        [self.lTotalActiveEnergyValue setText:[self totalActiveEnergyStringForValue:_chartHelper.productionDataSource ? emev.totalReverseActiveEnergy : emev.totalForwardActiveEnergy]];
         [self.lConsumptionProductionValue setText:[NSString stringWithFormat:@"%0.2f kWh", _chartHelper.productionDataSource ? currentProduction : currentConsumption]];
         
-        [self.lTotalCost setText:[NSString stringWithFormat:@"%0.2f %@", emev.total_cost * 0.01, [ev decodeCurrency:emev.currency]]];
-        [self.lCurrentCost setText:[NSString stringWithFormat:@"%0.2f %@", currentCost, [ev decodeCurrency:emev.currency]]];
+        [self.lTotalCost setText:[NSString stringWithFormat:@"%0.2f %@", emev.totalCost, emev.currency]];
+        [self.lCurrentCost setText:[NSString stringWithFormat:@"%0.2f %@", currentCost, emev.currency]];
     
-        _chartHelper.pricePerUnit = emev.price_per_unit * 0.0001;
-        _chartHelper.currency = [ev decodeCurrency:emev.currency];
+        _chartHelper.pricePerUnit = emev.pricePerUnit;
+        _chartHelper.currency = emev.currency;
         
         if (_chartHelper.productionDataSource) {
-            _chartHelper.totalActiveEnergyPhase1 = emev.total_reverse_active_energy[0] * 0.00001;
-            _chartHelper.totalActiveEnergyPhase2 = emev.total_reverse_active_energy[1] * 0.00001;
-            _chartHelper.totalActiveEnergyPhase3 = emev.total_reverse_active_energy[2] * 0.00001;
+            _chartHelper.totalActiveEnergyPhase1 = [emev totalReverseActiveEnergyForPhase:1];
+            _chartHelper.totalActiveEnergyPhase2 = [emev totalReverseActiveEnergyForPhase:2];
+            _chartHelper.totalActiveEnergyPhase3 = [emev totalReverseActiveEnergyForPhase:3];
         } else {
-            _chartHelper.totalActiveEnergyPhase1 = emev.total_forward_active_energy[0] * 0.00001;
-            _chartHelper.totalActiveEnergyPhase2 = emev.total_forward_active_energy[1] * 0.00001;
-            _chartHelper.totalActiveEnergyPhase3 = emev.total_forward_active_energy[2] * 0.00001;
+            _chartHelper.totalActiveEnergyPhase1 = [emev totalForwardActiveEnergyForPhase:1];
+            _chartHelper.totalActiveEnergyPhase2 = [emev totalForwardActiveEnergyForPhase:2];
+            _chartHelper.totalActiveEnergyPhase3 = [emev totalForwardActiveEnergyForPhase:3];
         }
     }
     
     [self setFrequency:freq visible:MVAL(EM_VAR_FREQ)];
-    [self setVoltage:voltage visible:MVAL(EM_VAR_VOLTAGE) && selectedPhase > -1];
-    [self setCurrent:current visible:(MVAL(EM_VAR_CURRENT) || MVAL(EM_VAR_CURRENT_OVER_65A)) && selectedPhase > -1 over65A:currentOver65A];
+    [self setVoltage:voltage visible:MVAL(EM_VAR_VOLTAGE) && selectedPhase > 0];
+    [self setCurrent:current visible:(MVAL(EM_VAR_CURRENT) || MVAL(EM_VAR_CURRENT_OVER_65A)) && selectedPhase > 0 over65A:currentOver65A];
     [self setActivePower:powerActive visible:MVAL(EM_VAR_POWER_ACTIVE)];
     [self setReactivePower:powerReactive visible:MVAL(EM_VAR_POWER_REACTIVE)];
     [self setApparentPower:powerApparent visible:MVAL(EM_VAR_POWER_APPARENT)];
-    [self setPowerFactor:powerFactor visible:MVAL(EM_VAR_POWER_FACTOR) && selectedPhase > -1];
-    [self setPhaseAngle:phaseAngle visible:MVAL(EM_VAR_PHASE_ANGLE) && selectedPhase > -1];
+    [self setPowerFactor:powerFactor visible:MVAL(EM_VAR_POWER_FACTOR) && selectedPhase > 0];
+    [self setPhaseAngle:phaseAngle visible:MVAL(EM_VAR_PHASE_ANGLE) && selectedPhase > 0];
     [self setForwardActiveEnergy:totalFAE visible:MVAL(EM_VAR_FORWARD_ACTIVE_ENERGY)];
     [self setReverseActiveEnergy:totalRAE visible:MVAL(EM_VAR_REVERSE_ACTIVE_ENERGY)];
     [self setForwardReactiveEnergy:totalFRE visible:MVAL(EM_VAR_FORWARD_REACTIVE_ENERGY)];
@@ -276,16 +277,16 @@
     [self.lCaption setText:[self.channelBase getChannelCaption]];
     
     switch (selectedPhase) {
-        case -1:
+        case 0:
             self.btnPhaseSum.layer.borderColor = btnBorderColor;
             break;
-        case 0:
+        case 1:
             self.btnPhase1.layer.borderColor = btnBorderColor;
             break;
-        case 1:
+        case 2:
             self.btnPhase2.layer.borderColor = btnBorderColor;
             break;
-        case 2:
+        case 3:
             self.btnPhase3.layer.borderColor = btnBorderColor;
             break;
     }
@@ -301,13 +302,13 @@
 
 - (IBAction)phaseBtnTouch:(id)sender {
     if (sender == self.btnPhase1) {
-        selectedPhase = 0;
-    } else if (sender == self.btnPhase2) {
         selectedPhase = 1;
-    } else if (sender == self.btnPhase3) {
+    } else if (sender == self.btnPhase2) {
         selectedPhase = 2;
+    } else if (sender == self.btnPhase3) {
+        selectedPhase = 3;
     } else if (sender == self.btnPhaseSum) {
-        selectedPhase = -1;
+        selectedPhase = 0;
     }
     
     [self updateView];

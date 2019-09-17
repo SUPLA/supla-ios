@@ -18,6 +18,7 @@
 
 #import "SAChannel+CoreDataClass.h"
 #import "_SALocation+CoreDataClass.h"
+#import "SAImpulseCounterExtendedValue.h"
 #import "Database.h"
 
 @implementation SAChannel
@@ -149,9 +150,10 @@
         || self.func == SUPLA_CHANNELFNC_GAS_METER ) {
         
         NSString *result = nil;
-        
-        if ( self.ev != nil ) {
-            result = self.ev.impulseCounter.unit;
+        SAImpulseCounterExtendedValue *icev = nil;
+        if ( self.ev != nil
+             && (icev = self.ev.impulseCounter) != nil) {
+            result = icev.unit;
             if (result != nil) {
                 return result;
             }
