@@ -21,7 +21,23 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 NS_ASSUME_NONNULL_BEGIN
 
 @interface SAThermostatExtendedValue : SAExtendedValue
+- (BOOL) isFieldSet:(unsigned char)field;
+- (double) measuredThemperatureWithIndex:(short)idx;
+- (double) presetThemperatureWithIndex:(short)idx;
+- (int) flagsWithIndex:(short)idx;
+- (int) valuesWithIndex:(short)idx;
+- (short)hour;
+- (short)minute;
+- (short)second;
+- (short)dayOfWeek;
 
+- (BOOL) isSheludeProgramValueType;
+- (unsigned char)sheduleValueType;
+- (char)sheduledValueForDay:(short)day andHour:(short)hour;
+@end
+
+@interface SAChannelExtendedValue (SAThermostatExtendedValue)
+- (SAThermostatExtendedValue*)thermostat;
 @end
 
 NS_ASSUME_NONNULL_END

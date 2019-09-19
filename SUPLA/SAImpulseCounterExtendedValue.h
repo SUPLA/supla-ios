@@ -22,7 +22,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface SAImpulseCounterExtendedValue : SAIncrementalMeterExtendedValue
 - (NSString *) unit;
-- (BOOL) getImpulseCounterExtendedValue:(TSC_ImpulseCounter_ExtendedValue*)icev;
 @end
 
 @interface SAChannelExtendedValue (SAImpulseCounterExtendedValue)

@@ -18,19 +18,39 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 #import "SAThermostatHPExtendedValue.h"
 
-@implementation SAThermostatHPExtendedValue
+#define PROG_ECO 1
+#define PROG_COMFORT 2
 
-- (BOOL) getThermostatExtendedValue:(TThermostat_ExtendedValue*)thev {
-    if (thev != NULL) {
-        memset(thev, 0, sizeof(TThermostat_ExtendedValue));
-        NSData *data = [super dataValue];
-        if (data && data.length == sizeof(TThermostat_ExtendedValue)) {
-            [data getBytes:thev length:data.length];
-            return YES;
-        }
-    }
-    return NO;
+@implementation SAThermostatHPExtendedValue
+- (BOOL)sheduledComfortProgramForDay:(short)day andHour:(short)hour {
+    return [self sheduledValueForDay:day andHour:hour] == PROG_COMFORT;
 }
 
+- (int)turboTime {
+    return [self valuesWithIndex:4];
+}
 
+- (double)waterMax {
+    return [self presetThemperatureWithIndex:2];
+}
+
+- (double)ecoReductionTemperature {
+    return [self presetThemperatureWithIndex:3];
+}
+
+- (double)comfortTemp {
+    return [self presetThemperatureWithIndex:4];
+}
+
+- (double)ecoTemp {
+    return [self presetThemperatureWithIndex:5];
+}
+
+@end
+
+@implementation SAChannelExtendedValue (SAThermostatHPExtendedValue)
+
+- (SAThermostatHPExtendedValue*)thermostatHP {
+    return [[SAThermostatHPExtendedValue alloc] initWithExtendedValue:self];
+}
 @end

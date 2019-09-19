@@ -17,10 +17,8 @@
  */
 
 #import "HomePlusDetailView.h"
-#import "SAChannelExtendedValue+CoreDataClass.h"
-
-#define PROG_ECO 1
-#define PROG_COMFORT 2
+#import "SAThermostatHPExtendedValue.h"
+#import "SuplaApp.h"
 
 #define CFGID_TURBO_TIME 1
 #define CFGID_WATER_MAX 2
@@ -226,32 +224,99 @@
     if (_refreshLock > [[NSDate date] timeIntervalSince1970]) {
         return;
     }
-    
-/*
-    
+
+    SAThermostatHPExtendedValue *thev = nil;
     if (![self.channelBase isKindOfClass:SAChannel.class]
-    || (ev = ((SAChannel*)self.channelBase).ev) == nil
-    || ![ev getThermostatExtendedValue:&thev]) {
+        || (thev = ((SAChannel*)self.channelBase).ev.thermostatHP) == nil) {
         return;
     }
-    
-    if (thev.)
 
+    [self setCfgValue:thev.turboTime cfgId:CFGID_TURBO_TIME];
+    [self setCfgValue:thev.waterMax cfgId:CFGID_WATER_MAX];
+    [self setCfgValue:thev.ecoReductionTemperature cfgId:CFGID_ECO_REDUCTION];
+    [self setCfgValue:thev.comfortTemp cfgId:CFGID_TEMP_COMFORT];
+    [self setCfgValue:thev.ecoTemp cfgId:CFGID_TEMP_ECO];
+    
     if (!_vCalendar.isTouched) {
         [_vCalendar clear];
-        if (thev.Schedule.ValueType == THERMOSTAT_SCHEDULE_HOURVALUE_TYPE_PROGRAM) {
-            for(short d=0;d<7;d++) {
+        
+        if ([thev isSheludeProgramValueType]) {
+            for(short d=1;d<=7;d++) {
                  for(short h=0;h<24;h++) {
-                     [self.vCalendar setProgramForDay:d+1 andHour:h toOne:thev.Schedule.HourValue[d][h] == PROG_COMFORT];
+                     [self.vCalendar setProgramForDay:d andHour:h toOne:[thev sheduledComfortProgramForDay:d andHour:h]];
                  }
              }
         }
     }
- */
+    
+}
+
+-(BOOL)isGroup {
+    return NO;
+}
+
+-(void)lockRefreshForAWhile {
+    _refreshLock = [[NSDate date] timeIntervalSince1970] + ([self isGroup] ? 4 : 2);
+}
+
+-(void)calCfgSetTemperature:(double)t withIndex:(short)idx {
+    
+    if (idx < 0 || idx >= 10) {
+          return;
+      }
+    
+    SASuplaClient *client = [SAApp SuplaClient];
+    if (client) {
+        TThermostatTemperatureCfg tcfg;
+        memset(&tcfg, 0, sizeof(TThermostatTemperatureCfg));
+        
+        tcfg.Index = 1;
+        tcfg.Index <<= idx;
+        tcfg.Temperature[idx] = t * 100.0;
+       
+        [client deviceCalCfgCommand:SUPLA_THERMOSTAT_CMD_SET_TEMPERATURE cg:self.channelBase.remote_id group:[self isGroup] data:(char*)&tcfg dataSize:sizeof(TThermostatTemperatureCfg)];
+    }
+}
+
+-(void)calCfgSetTurboTime:(char)t {
+    SASuplaClient *client = [SAApp SuplaClient];
+    if (client) {
+       [client deviceCalCfgCommand:SUPLA_THERMOSTAT_CMD_SET_TIME
+               cg:self.channelBase.remote_id
+               group:[self isGroup]
+               charValue:t];
+    }
 }
 
 -(void) cfgItemChanged:(SAHomePlusCfgItem*)item {
-    NSLog(@"");
+    if (item == nil) {
+        return;
+    }
+    [self lockRefreshForAWhile];
+    
+    short idx = 0;
+    
+    switch (item.cfgId) {
+        case CFGID_WATER_MAX:
+            idx = 2;
+            break;
+        case CFGID_TEMP_COMFORT:
+            idx = 3;
+            break;
+        case CFGID_TEMP_ECO:
+            idx = 4;
+            break;
+        case CFGID_ECO_REDUCTION:
+            idx = 5;
+            break;
+        case CFGID_TURBO_TIME:
+            [self calCfgSetTurboTime:item.value];
+            break;
+    }
+    
+    if (idx > 0) {
+       [self calCfgSetTemperature:item.value withIndex:idx];
+    }
 }
 
 @end

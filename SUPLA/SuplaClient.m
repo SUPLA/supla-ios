@@ -789,6 +789,40 @@ void sasuplaclient_on_oauth_token_request_result(void *_suplaclient, void *user_
     return [self cg:GroupID setRGB:color colorBrightness:color_brightness brightness:brightness group:YES turnOnOff:NO];
 }
 
+- (void) deviceCalCfgRequest:(TCS_DeviceCalCfgRequest_B*)request {
+    @synchronized(self) {
+        if ( _sclient ) {
+            supla_client_device_calcfg_request(_sclient, request);
+        }
+    }
+}
+
+- (void) deviceCalCfgCommand:(int)command cg:(int)ID group:(BOOL)group data:(char*)data dataSize:(unsigned int)size {
+    TCS_DeviceCalCfgRequest_B request;
+    memset(&request, 0, sizeof(TCS_DeviceCalCfgRequest_B));
+    request.Id = ID;
+    request.Target = group ? SUPLA_TARGET_GROUP : SUPLA_TARGET_CHANNEL;
+    request.Command = command;
+    if (data && size > 0 && size <= SUPLA_CALCFG_DATA_MAXSIZE) {
+        request.DataSize = size;
+        memcpy(request.Data, data, size);
+    }
+    
+    [self deviceCalCfgRequest:&request];
+}
+
+- (void) deviceCalCfgCommand:(int)command cg:(int)ID group:(BOOL)group {
+    [self deviceCalCfgCommand:command cg:ID group:group data:NULL dataSize:0];
+}
+
+- (void) deviceCalCfgCommand:(int)command cg:(int)ID group:(BOOL)group charValue:(char)c {
+    [self deviceCalCfgCommand:command cg:ID group:group data:&c dataSize:sizeof(c)];
+}
+
+- (void) deviceCalCfgCommand:(int)command cg:(int)ID group:(BOOL)group shortValue:(short)s {
+   [self deviceCalCfgCommand:command cg:ID group:group data:&s dataSize:sizeof(s)];
+}
+
 - (void) getRegistrationEnabled {
     @synchronized(self) {
         if ( _sclient ) {

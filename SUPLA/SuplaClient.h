@@ -97,6 +97,11 @@
 - (BOOL) channel:(int)ChannelID setRGB:(UIColor*)color colorBrightness:(int)color_brightness brightness:(int)brightness;
 - (void) group:(int)GroupID Open:(char)open;
 - (BOOL) group:(int)GroupID setRGB:(UIColor*)color colorBrightness:(int)color_brightness brightness:(int)brightness;
+- (void) deviceCalCfgRequest:(TCS_DeviceCalCfgRequest_B*)request;
+- (void) deviceCalCfgCommand:(int)command cg:(int)ID group:(BOOL)group data:(char*)data dataSize:(unsigned int)size;
+- (void) deviceCalCfgCommand:(int)command cg:(int)ID group:(BOOL)group;
+- (void) deviceCalCfgCommand:(int)command cg:(int)ID group:(BOOL)group charValue:(char)c;
+- (void) deviceCalCfgCommand:(int)command cg:(int)ID group:(BOOL)group shortValue:(short)s;
 - (void) getRegistrationEnabled;
 - (int) getProtocolVersion;
 - (BOOL) OAuthTokenRequest;

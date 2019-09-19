@@ -21,7 +21,16 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 NS_ASSUME_NONNULL_BEGIN
 
 @interface SAThermostatHPExtendedValue : SAThermostatExtendedValue
-- (BOOL) getThermostatExtendedValue:(TThermostat_ExtendedValue*)thev;
+- (BOOL)sheduledComfortProgramForDay:(short)day andHour:(short)hour;
+- (int)turboTime;
+- (double)waterMax;
+- (double)ecoReductionTemperature;
+- (double)comfortTemp;
+- (double)ecoTemp;
+@end
+
+@interface SAChannelExtendedValue (SAThermostatHPExtendedValue)
+- (SAThermostatHPExtendedValue*)thermostatHP;
 @end
 
 NS_ASSUME_NONNULL_END
