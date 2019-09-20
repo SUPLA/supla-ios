@@ -42,7 +42,6 @@
 		01C1719922C7F55B005983E1 /* SAMeasurementItem+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 01C1719722C7F55B005983E1 /* SAMeasurementItem+CoreDataClass.m */; };
 		01C1719A22C7F55B005983E1 /* SAMeasurementItem+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 01C1719822C7F55B005983E1 /* SAMeasurementItem+CoreDataProperties.m */; };
 		01C792FA22B7FB610020A900 /* SAChannelExtendedValue+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 01C792E822B7FB600020A900 /* SAChannelExtendedValue+CoreDataClass.m */; };
-		01C792FB22B7FB610020A900 /* SAChannelExtendedValue+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 01C792E922B7FB600020A900 /* SAChannelExtendedValue+CoreDataProperties.m */; };
 		01D0616E22C294D90043C947 /* ElectricityMeterDetailView.m in Sources */ = {isa = PBXBuildFile; fileRef = 01D0616D22C294D90043C947 /* ElectricityMeterDetailView.m */; };
 		01D0617122C296850043C947 /* ElectricityMeterDetailView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 01D0617322C296850043C947 /* ElectricityMeterDetailView.xib */; };
 		01D2C38D22C3B0A700BF1A10 /* graphon.png in Resources */ = {isa = PBXBuildFile; fileRef = 01D2C38B22C3B0A700BF1A10 /* graphon.png */; };
@@ -1436,7 +1435,7 @@
 		401CA1B11BA067DB00117AF4 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 1020;
+				LastUpgradeCheck = 1100;
 				ORGANIZATIONNAME = "AC SOFTWARE SP. Z O.O.";
 				TargetAttributes = {
 					401CA1B81BA067DB00117AF4 = {
@@ -1452,10 +1451,9 @@
 			};
 			buildConfigurationList = 401CA1B41BA067DB00117AF4 /* Build configuration list for PBXProject "SUPLA" */;
 			compatibilityVersion = "Xcode 3.2";
-			developmentRegion = English;
+			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
-				English,
 				en,
 				Base,
 				pl,
@@ -1796,7 +1794,6 @@
 				4017E12C1BB9CE2900570AC8 /* ChannelCell.m in Sources */,
 				01C1719222C7F3A2005983E1 /* SAElectricityMeasurementItem+CoreDataProperties.m in Sources */,
 				40AB8BDE1DCB32EB0030F3DE /* SARateApp.m in Sources */,
-				01C792FB22B7FB610020A900 /* SAChannelExtendedValue+CoreDataProperties.m in Sources */,
 				01C1719122C7F3A2005983E1 /* SAElectricityMeasurementItem+CoreDataClass.m in Sources */,
 				40C7BA7720C047CF00ACEE42 /* SAChannel+CoreDataProperties.m in Sources */,
 				40CF96DE1BC820E60030EFFF /* UIHelper.m in Sources */,
@@ -2106,6 +2103,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
