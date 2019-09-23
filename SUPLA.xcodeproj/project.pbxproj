@@ -11,9 +11,11 @@
 		012F722C22DF3E2300E5F72E /* ChartFilterFieldTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 012F722822DF3CF000E5F72E /* ChartFilterFieldTests.m */; };
 		012F722E22DFA0BE00E5F72E /* SABarChartDataSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 012F722D22DFA0BE00E5F72E /* SABarChartDataSet.swift */; };
 		012FCBD323217DE000AC6FF6 /* ThermostatCalendarTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 012FCBD223217DE000AC6FF6 /* ThermostatCalendarTests.m */; };
+		0130894523395F4C00F46FCD /* ThermostatScheduleCfgTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 0130894423395F4C00F46FCD /* ThermostatScheduleCfgTests.m */; };
 		013D1C5D22CE47D5000C0784 /* SAChartHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 013D1C5C22CE47D5000C0784 /* SAChartHelper.m */; };
 		013D1C6022CE757F000C0784 /* SAIncrementalMeterChartHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 013D1C5F22CE757F000C0784 /* SAIncrementalMeterChartHelper.m */; };
 		013D1C6322CE75A3000C0784 /* SAElectricityChartHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 013D1C6222CE75A3000C0784 /* SAElectricityChartHelper.m */; };
+		013D350423350C48006E3B75 /* SAThermostatScheduleCfg.m in Sources */ = {isa = PBXBuildFile; fileRef = 013D350323350C48006E3B75 /* SAThermostatScheduleCfg.m */; };
 		013D73A522DCAB4400E3515A /* SAIncrementalMeterChartMarkerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 013D73A422DCAB4400E3515A /* SAIncrementalMeterChartMarkerView.swift */; };
 		013D73A722DCAEF400E3515A /* SAIncrementalMeterChartMarkerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 013D73A622DCAEF400E3515A /* SAIncrementalMeterChartMarkerView.xib */; };
 		013D73B022DD105400E3515A /* SAChartFilterField.m in Sources */ = {isa = PBXBuildFile; fileRef = 013D73AF22DD105400E3515A /* SAChartFilterField.m */; };
@@ -338,12 +340,15 @@
 		012F722822DF3CF000E5F72E /* ChartFilterFieldTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChartFilterFieldTests.m; sourceTree = "<group>"; };
 		012F722D22DFA0BE00E5F72E /* SABarChartDataSet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SABarChartDataSet.swift; sourceTree = "<group>"; };
 		012FCBD223217DE000AC6FF6 /* ThermostatCalendarTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ThermostatCalendarTests.m; sourceTree = "<group>"; };
+		0130894423395F4C00F46FCD /* ThermostatScheduleCfgTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ThermostatScheduleCfgTests.m; sourceTree = "<group>"; };
 		013D1C5B22CE47D5000C0784 /* SAChartHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SAChartHelper.h; sourceTree = "<group>"; };
 		013D1C5C22CE47D5000C0784 /* SAChartHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SAChartHelper.m; sourceTree = "<group>"; };
 		013D1C5E22CE757F000C0784 /* SAIncrementalMeterChartHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SAIncrementalMeterChartHelper.h; sourceTree = "<group>"; };
 		013D1C5F22CE757F000C0784 /* SAIncrementalMeterChartHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SAIncrementalMeterChartHelper.m; sourceTree = "<group>"; };
 		013D1C6122CE75A3000C0784 /* SAElectricityChartHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SAElectricityChartHelper.h; sourceTree = "<group>"; };
 		013D1C6222CE75A3000C0784 /* SAElectricityChartHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SAElectricityChartHelper.m; sourceTree = "<group>"; };
+		013D350223350C48006E3B75 /* SAThermostatScheduleCfg.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SAThermostatScheduleCfg.h; sourceTree = "<group>"; };
+		013D350323350C48006E3B75 /* SAThermostatScheduleCfg.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SAThermostatScheduleCfg.m; sourceTree = "<group>"; };
 		013D73A422DCAB4400E3515A /* SAIncrementalMeterChartMarkerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SAIncrementalMeterChartMarkerView.swift; sourceTree = "<group>"; };
 		013D73A622DCAEF400E3515A /* SAIncrementalMeterChartMarkerView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SAIncrementalMeterChartMarkerView.xib; sourceTree = "<group>"; };
 		013D73AE22DD105400E3515A /* SAChartFilterField.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SAChartFilterField.h; sourceTree = "<group>"; };
@@ -930,6 +935,8 @@
 				40AB8BDD1DCB32EB0030F3DE /* SARateApp.m */,
 				404E48F51FC75D0B001F6266 /* SAClassHelper.m */,
 				404E48F61FC75D0B001F6266 /* SAClassHelper.h */,
+				013D350223350C48006E3B75 /* SAThermostatScheduleCfg.h */,
+				013D350323350C48006E3B75 /* SAThermostatScheduleCfg.m */,
 			);
 			path = SUPLA;
 			sourceTree = "<group>";
@@ -950,6 +957,7 @@
 				401CA1DB1BA067DB00117AF4 /* SUPLATests.m */,
 				401CA1D91BA067DB00117AF4 /* Supporting Files */,
 				012FCBD223217DE000AC6FF6 /* ThermostatCalendarTests.m */,
+				0130894423395F4C00F46FCD /* ThermostatScheduleCfgTests.m */,
 			);
 			path = SUPLATests;
 			sourceTree = "<group>";
@@ -1826,6 +1834,7 @@
 				01F8857522E6167100D18373 /* SADownloadUserIcons.m in Sources */,
 				018E67CF22C8CA0A00FF1427 /* SADownloadElectricityMeasurements.m in Sources */,
 				403EB1141FBDF47F00AD6460 /* AddWizardVC.m in Sources */,
+				013D350423350C48006E3B75 /* SAThermostatScheduleCfg.m in Sources */,
 				408034C41BC83D1A007666E7 /* MGSwipeButton.m in Sources */,
 				01EE9BB022BA4B050029A142 /* SAChannelExtendedValue+CoreDataProperties.m in Sources */,
 				01BDAC7522C518DE00915646 /* SARestApiClientTask.m in Sources */,
@@ -1875,6 +1884,7 @@
 			files = (
 				401CA1DC1BA067DB00117AF4 /* SUPLATests.m in Sources */,
 				012F722C22DF3E2300E5F72E /* ChartFilterFieldTests.m in Sources */,
+				0130894523395F4C00F46FCD /* ThermostatScheduleCfgTests.m in Sources */,
 				012FCBD323217DE000AC6FF6 /* ThermostatCalendarTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

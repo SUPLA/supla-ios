@@ -109,6 +109,7 @@
         self.vCalendar.program0Label = NSLocalizedString(@"ECO", nil);
         self.vCalendar.program1Label = NSLocalizedString(@"Comfort", nil);
         self.vCalendar.firstDay = 2;
+        self.vCalendar.delegate = self;
         _cfgItems = [[NSMutableArray alloc] init];
  
         [_cfgItems addObject:[[SAHomePlusCfgItem alloc]
@@ -255,8 +256,12 @@
     return NO;
 }
 
--(void)lockRefreshForAWhile {
-    _refreshLock = [[NSDate date] timeIntervalSince1970] + ([self isGroup] ? 4 : 2);
+-(void)lockRefreshForATime:(NSTimeInterval)sec {
+    _refreshLock = [[NSDate date] timeIntervalSince1970] + ([self isGroup] ? 4 : 2) + sec;
+}
+
+-(void)lockRefreshAWhile {
+    [self lockRefreshForATime:[self isGroup] ? 4 : 2];
 }
 
 -(void)calCfgSetTemperature:(double)t withIndex:(short)idx {
@@ -292,7 +297,7 @@
     if (item == nil) {
         return;
     }
-    [self lockRefreshForAWhile];
+    [self lockRefreshAWhile];
     
     short idx = 0;
     
@@ -317,6 +322,27 @@
     if (idx > 0) {
        [self calCfgSetTemperature:item.value withIndex:idx];
     }
+}
+
+-(void)sendScheduleValues {
+    [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(sendScheduleValues)object:nil];
+    /*
+    request.Id = id;
+    request.Target = group > 0 ? SUPLA_TARGET_GROUP : SUPLA_TARGET_CHANNEL;
+    request.Command = SUPLA_THERMOSTAT_CMD_SET_SCHEDULE;
+    request.DataSize = sizeof(TThermostat_ScheduleCfg);
+    
+    TThermostat_ScheduleCfg scfg;
+    memset(&scfg, 0, sizeof(TThermostat_ScheduleCfg));
+    */
+}
+
+-(void) thermostatCalendarPragramChanged:(id)calendar day:(short)d hour:(short)h program1:(BOOL)p1 {
+    [self lockRefreshForATime:4];
+    
+    SEL selector = @selector(sendScheduleValues);
+    [NSObject cancelPreviousPerformRequestsWithTarget:self selector:selector object:nil];
+    [self performSelector:selector withObject:nil afterDelay:2];
 }
 
 @end
