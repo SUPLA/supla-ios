@@ -169,11 +169,27 @@
     [super detailViewInit];
 }
 
+-(void)updateCalendarECOLabelWithCfgItem:(SAHomePlusCfgItem *)item {
+    [self.vCalendar setProgram0Label:
+     [NSString stringWithFormat:@"%@ %i\u00B0", NSLocalizedString(@"ECO", nil), item.value]];
+}
+
+-(void)updateCalendarComfortLabelWithCfgItem:(SAHomePlusCfgItem *)item {
+    [self.vCalendar setProgram1Label:
+     [NSString stringWithFormat:@"%@ %i\u00B0", NSLocalizedString(@"Comfort", nil), item.value]];
+}
+
 -(void)setCfgValue:(short)value cfgId:(short)cfgId {
     for(int a=0;a<_cfgItems.count;a++) {
         SAHomePlusCfgItem *item = [_cfgItems objectAtIndex:a];
         if (item.cfgId == cfgId) {
             item.value = value;
+            
+            if (cfgId == CFGID_TEMP_ECO) {
+                [self updateCalendarECOLabelWithCfgItem:item];
+            } else if (cfgId == CFGID_TEMP_COMFORT) {
+                [self updateCalendarComfortLabelWithCfgItem:item];
+            }
             break;
         }
     }
@@ -310,9 +326,11 @@
             idx = 2;
             break;
         case CFGID_TEMP_COMFORT:
+            [self updateCalendarComfortLabelWithCfgItem:item];
             idx = 3;
             break;
         case CFGID_TEMP_ECO:
+            [self updateCalendarECOLabelWithCfgItem:item];
             idx = 4;
             break;
         case CFGID_ECO_REDUCTION:
