@@ -820,7 +820,44 @@ void sasuplaclient_on_oauth_token_request_result(void *_suplaclient, void *user_
 }
 
 - (void) deviceCalCfgCommand:(int)command cg:(int)ID group:(BOOL)group shortValue:(short)s {
-   [self deviceCalCfgCommand:command cg:ID group:group data:&s dataSize:sizeof(s)];
+   [self deviceCalCfgCommand:command cg:ID group:group data:(char*)&s dataSize:sizeof(s)];
+}
+
+- (void) thermostatScheduleCfgRequest:(SAThermostatScheduleCfg *)cfg cg:(int)ID group:(BOOL)group {
+    if (cfg == nil || cfg.groupCount == 0) {
+        return;
+    }
+    
+    TCS_DeviceCalCfgRequest_B request;
+    memset(&request, 0, sizeof(TCS_DeviceCalCfgRequest_B));
+    request.Id = ID;
+    request.Target = group ? SUPLA_TARGET_GROUP : SUPLA_TARGET_CHANNEL;
+    request.Command = SUPLA_THERMOSTAT_CMD_SET_SCHEDULE;
+    request.DataSize = sizeof(TThermostat_ScheduleCfg);
+    
+    TThermostat_ScheduleCfg *scfg = (TThermostat_ScheduleCfg *)request.Data;
+ 
+    int n = 0;
+    for(int a=0;a<cfg.groupCount;a++) {
+        
+        scfg->Group[n].ValueType = [cfg valueTypeForGroupIndex:a] ==
+        kPROGRAM ? THERMOSTAT_SCHEDULE_HOURVALUE_TYPE_PROGRAM
+        : THERMOSTAT_SCHEDULE_HOURVALUE_TYPE_TEMPERATURE;
+        
+        scfg->Group[n].WeekDays = [cfg weekDaysForGroupIndex:a];
+        [cfg getHourValue:scfg->Group[n].HourValue forGroupIndex:a];
+            
+        n++;
+        if (n==4 || a == cfg.groupCount - 1) {
+            @synchronized(self) {
+                if ( _sclient ) {
+                    supla_client_device_calcfg_request(_sclient, &request);
+                }
+            }
+            n=0;
+            memset(scfg, 0, sizeof(TThermostat_ScheduleCfg));
+        }
+    }
 }
 
 - (void) getRegistrationEnabled {

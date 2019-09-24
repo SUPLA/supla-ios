@@ -18,6 +18,7 @@
 
 #import <Foundation/Foundation.h>
 #import "SARestApiClientTask.h"
+#import "SAThermostatScheduleCfg.h"
 #include "proto.h"
 
 @interface SAVersionError : NSObject
@@ -102,6 +103,7 @@
 - (void) deviceCalCfgCommand:(int)command cg:(int)ID group:(BOOL)group;
 - (void) deviceCalCfgCommand:(int)command cg:(int)ID group:(BOOL)group charValue:(char)c;
 - (void) deviceCalCfgCommand:(int)command cg:(int)ID group:(BOOL)group shortValue:(short)s;
+- (void) thermostatScheduleCfgRequest:(SAThermostatScheduleCfg *)cfg cg:(int)ID group:(BOOL)group;
 - (void) getRegistrationEnabled;
 - (int) getProtocolVersion;
 - (BOOL) OAuthTokenRequest;

@@ -18,6 +18,7 @@
 
 #import "HomePlusDetailView.h"
 #import "SAThermostatHPExtendedValue.h"
+#import "SAThermostatScheduleCfg.h"
 #import "SuplaApp.h"
 
 #define CFGID_TURBO_TIME 1
@@ -25,6 +26,9 @@
 #define CFGID_ECO_REDUCTION 3
 #define CFGID_TEMP_COMFORT 4
 #define CFGID_TEMP_ECO 5
+
+#define PROG_ECO 1
+#define PROG_COMFORT 2
 
 @implementation SAHomePlusCfgItem {
     UIButton *_btnMinus;
@@ -326,15 +330,18 @@
 
 -(void)sendScheduleValues {
     [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(sendScheduleValues)object:nil];
-    /*
-    request.Id = id;
-    request.Target = group > 0 ? SUPLA_TARGET_GROUP : SUPLA_TARGET_CHANNEL;
-    request.Command = SUPLA_THERMOSTAT_CMD_SET_SCHEDULE;
-    request.DataSize = sizeof(TThermostat_ScheduleCfg);
     
-    TThermostat_ScheduleCfg scfg;
-    memset(&scfg, 0, sizeof(TThermostat_ScheduleCfg));
-    */
+    SASuplaClient *client = [SAApp SuplaClient];
+    if (client) {
+        SAThermostatScheduleCfg *cfg = [[SAThermostatScheduleCfg alloc] init];
+        for(short d=1;d<=7;d++) {
+            for(short h=0;h<24;h++) {
+                [cfg setProgram:[_vCalendar programIsSetToOneWithDay:d andHour:h] ? PROG_COMFORT : PROG_ECO forHour:h weekday:[cfg weekDayByIndex: d]];
+            }
+        }
+        
+        [client thermostatScheduleCfgRequest:cfg cg:self.channelBase.remote_id group:[self isGroup]];
+    }
 }
 
 -(void) thermostatCalendarPragramChanged:(id)calendar day:(short)d hour:(short)h program1:(BOOL)p1 {

@@ -162,4 +162,20 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     [_cfg setTemperature:30 forHour:18 weekday:kMONDAY];
     XCTAssertEqual(1, _cfg.groupCount);
 }
+
+- (void) testGetingHourValue {
+    XCTAssertEqual(0, _cfg.groupCount);
+    char value1[24];
+    char value2[24];
+    memset(value1, 0, sizeof(value1));
+    memset(value2, 0, sizeof(value2));
+    
+    [_cfg setTemperature:30 forHour:18 weekday:kWEDNESDAY];
+    XCTAssertEqual(1, _cfg.groupCount);
+    
+    value2[18] = 30;
+    [_cfg getHourValue:value1 forGroupIndex:0];
+    
+    XCTAssertTrue(memcmp(value1, value2, sizeof(value1)) == 0);
+}
 @end

@@ -43,6 +43,8 @@ typedef enum {
 - (void) getHourValue:(char* _Nonnull)value forGroupIndex:(int)idx;
 - (BOOL) hourValueEqualTo:(char* _Nonnull)value forGroupIndex:(int)idx;
 - (void)clear;
+- (SAWeekDay)weekDayByIndex:(short)idx;
+   
 @property (readonly) NSUInteger groupCount;
 @end
 

@@ -148,6 +148,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 - (void) getHourValue:(char*)value forGroupIndex:(int)idx {
     if (idx >= 0 && idx < _groups.count) {
         [[_groups objectAtIndex:idx] getHourValue:value];
+        return;
     }
     
     memset(value, 0, 24);
@@ -167,6 +168,18 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 - (void)clear {
     [_groups removeAllObjects];
+}
+
+- (SAWeekDay)weekDayByIndex:(short)idx {
+    switch(idx) {
+        case 2:  return kMONDAY;
+        case 3:  return kTUESDAY;
+        case 4:  return kWEDNESDAY;
+        case 5:  return kTHURSDAY;
+        case 6:  return kFRIDAY;
+        case 7:  return kSATURDAY;
+        default:  return kSUNDAY;
+    }
 }
 
 @end
