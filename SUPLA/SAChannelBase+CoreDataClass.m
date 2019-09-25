@@ -270,6 +270,7 @@
             case SUPLA_CHANNELFNC_LIGHTSWITCH:
             case SUPLA_CHANNELFNC_STAIRCASETIMER:
             case SUPLA_CHANNELFNC_NOLIQUIDSENSOR:
+            case SUPLA_CHANNELFNC_THERMOSTAT_HEATPOL_HOMEPLUS:
                 return [self hiValue];
 
             case SUPLA_CHANNELFNC_DIMMER:
