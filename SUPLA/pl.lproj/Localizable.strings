@@ -128,3 +128,8 @@
 "Home+ Heater" = "Grzałka Home+";
 "Comfort" = "Komfort";
 "ECO" = "ECO";
+"No water" = "Brak wody";
+"Burnt heater" = "Spalona grzałka";
+"Water temperature sensor error" = "Błąd czujnika temperatury wody";
+"Room temperature sensor error" = "Błąd czujnika temperatury pokojowej";
+"No network interruptions" = "Brak przerwań sieciowych";

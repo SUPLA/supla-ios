@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14865.1" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina3_5" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14819.2"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14824"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -504,9 +504,20 @@
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TVM-Us-lKn" userLabel="vError">
                     <rect key="frame" x="5" y="408" width="310" height="20"/>
-                    <color key="backgroundColor" red="1" green="0.80492788860985443" blue="0.77874959961412826" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QMU-9W-tRX" userLabel="lErrorMessage">
+                            <rect key="frame" x="10" y="1.5" width="290" height="17"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <color key="textColor" red="0.91660004849999999" green="0.34598749880000002" blue="0.32936757799999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" red="0.96356409789999997" green="0.76570326089999996" blue="0.26647022370000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                     <constraints>
+                        <constraint firstAttribute="trailing" secondItem="QMU-9W-tRX" secondAttribute="trailing" constant="10" id="Fpd-s5-n1h"/>
                         <constraint firstAttribute="height" constant="20" id="GhE-No-6eI"/>
+                        <constraint firstItem="QMU-9W-tRX" firstAttribute="centerY" secondItem="TVM-Us-lKn" secondAttribute="centerY" id="abc-FU-f4J"/>
+                        <constraint firstItem="QMU-9W-tRX" firstAttribute="leading" secondItem="TVM-Us-lKn" secondAttribute="leading" constant="10" id="ibf-1O-ajp"/>
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="feW-hw-dYe" userLabel="vFooter">
@@ -552,12 +563,15 @@
                 <outlet property="btnTurboPlus" destination="2qm-R5-r5m" id="4RB-fo-eZN"/>
                 <outlet property="btnWaterMaxMinus" destination="WYq-lY-x5t" id="6Mt-MK-XIW"/>
                 <outlet property="btnWaterMaxPlus" destination="Sky-DD-zTq" id="9KH-EF-Jmv"/>
+                <outlet property="cErrorHeight" destination="GhE-No-6eI" id="0Kw-NV-Ypn"/>
                 <outlet property="lCfgComfort" destination="IsR-fe-GqY" id="fBG-2I-18h"/>
                 <outlet property="lCfgEco" destination="dn7-Mf-fO1" id="H3Y-r3-7BY"/>
                 <outlet property="lCfgEcoReduction" destination="RkN-Zh-C5c" id="3zr-Xd-zL7"/>
                 <outlet property="lCfgTurbo" destination="9Sg-3R-fXZ" id="eMg-82-KYg"/>
                 <outlet property="lCfgWaterMax" destination="VcQ-wF-eIG" id="A8C-8e-hVC"/>
+                <outlet property="lErrorMessage" destination="QMU-9W-tRX" id="7dP-xE-xK5"/>
                 <outlet property="vCalendar" destination="3b4-Uj-Mw6" id="gwo-s1-GxS"/>
+                <outlet property="vError" destination="TVM-Us-lKn" id="51Y-5m-Wcg"/>
                 <outlet property="vMain" destination="k1K-UQ-OTd" id="epb-CJ-7LD"/>
                 <outlet property="vSettings" destination="Axk-Um-MAu" id="p7R-ud-wrn"/>
             </connections>

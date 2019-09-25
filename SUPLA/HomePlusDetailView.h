@@ -53,6 +53,9 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UIView *vSettings;
 @property (weak, nonatomic) IBOutlet SAThermostatCalendar *vCalendar;
 @property (weak, nonatomic) IBOutlet UIView *vMain;
+@property (weak, nonatomic) IBOutlet UIView *vError;
+@property (weak, nonatomic) IBOutlet UILabel *lErrorMessage;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *cErrorHeight;
 - (IBAction)calendarButtonTouched:(id)sender;
 - (IBAction)settingsButtonTouched:(id)sender;
 

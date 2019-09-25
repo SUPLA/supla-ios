@@ -46,6 +46,42 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     return [self presetThemperatureWithIndex:5];
 }
 
+- (int)errors {
+    return [self flagsWithIndex:6];
+}
+
+- (short)error {
+    if ((self.errors & 0x1) > 0) {
+        return 1;
+    } else if ((self.errors & 0x2) > 0) {
+        return 2;
+    } else if ((self.errors & 0x4) > 0) {
+        return 3;
+    } else if ((self.errors & 0x8) > 0) {
+        return 4;
+    } else if ((self.errors & 0x10) > 0) {
+        return 5;
+    }
+    return 0;
+}
+
+- (NSString*)errorMessage {
+    switch (self.error) {
+        case 1:
+            return NSLocalizedString(@"No water", nil);
+        case 2:
+            return NSLocalizedString(@"Burnt heater", nil);
+        case 3:
+            return NSLocalizedString(@"Water temperature sensor error", nil);
+        case 4:
+            return NSLocalizedString(@"Room temperature sensor error", nil);
+        case 5:
+            return NSLocalizedString(@"No network interruptions", nil);
+    }
+    
+    return  nil;
+}
+
 @end
 
 @implementation SAChannelExtendedValue (SAThermostatHPExtendedValue)

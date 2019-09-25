@@ -27,6 +27,9 @@ NS_ASSUME_NONNULL_BEGIN
 - (double)ecoReductionTemperature;
 - (double)comfortTemp;
 - (double)ecoTemp;
+- (int)errors;
+- (short)error;
+- (NSString*)errorMessage;
 @end
 
 @interface SAChannelExtendedValue (SAThermostatHPExtendedValue)

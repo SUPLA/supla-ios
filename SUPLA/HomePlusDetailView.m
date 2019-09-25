@@ -195,6 +195,18 @@
     }
 }
 
+-(void)showErrorMessage:(NSString *)msg {
+    if (msg == nil || [msg isEqualToString:@""]) {
+        self.vError.hidden = YES;
+        self.cErrorHeight.constant = 0;
+        [self.lErrorMessage setText:@""];
+    } else {
+        self.vError.hidden = NO;
+        self.cErrorHeight.constant = 20;
+        [self.lErrorMessage setText:msg];
+    }
+}
+
 -(void)showMainView {
     self.vMain.hidden = NO;
     self.vCalendar.hidden = YES;
@@ -227,6 +239,7 @@
 
 -(void)onDetailShow {
     [self showMainView];
+    [self showErrorMessage:nil];
 };
 
 -(void)onDetailHide {
@@ -257,6 +270,8 @@
     [self setCfgValue:thev.ecoReductionTemperature cfgId:CFGID_ECO_REDUCTION];
     [self setCfgValue:thev.comfortTemp cfgId:CFGID_TEMP_COMFORT];
     [self setCfgValue:thev.ecoTemp cfgId:CFGID_TEMP_ECO];
+    
+    [self showErrorMessage:thev.errorMessage];
     
     if (!_vCalendar.isTouched) {
         [_vCalendar clear];
