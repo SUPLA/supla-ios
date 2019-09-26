@@ -19,6 +19,7 @@
 #import <UIKit/UIKit.h>
 #import "DetailView.h"
 #import "SAThermostatCalendar.h"
+#import "SAPreloader.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -56,8 +57,10 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UIView *vError;
 @property (weak, nonatomic) IBOutlet UILabel *lErrorMessage;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *cErrorHeight;
+@property (weak, nonatomic) IBOutlet SAPreloader *lPreloader;
 - (IBAction)calendarButtonTouched:(id)sender;
 - (IBAction)settingsButtonTouched:(id)sender;
+@property (weak, nonatomic) IBOutlet UILabel *lCaption;
 
 @end
 

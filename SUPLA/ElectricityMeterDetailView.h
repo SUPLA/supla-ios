@@ -19,6 +19,7 @@
 #import "DetailView.h"
 #import "SADownloadElectricityMeasurements.h"
 #import "SAChartFilterField.h"
+#import "SAPreloader.h"
 @import Charts;
 
 NS_ASSUME_NONNULL_BEGIN
@@ -93,7 +94,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UIView *vCharts;
 @property (weak, nonatomic) IBOutlet CombinedChartView *combinedChart;
 @property (weak, nonatomic) IBOutlet PieChartView *pieChart;
-@property (weak, nonatomic) IBOutlet UILabel *lPreloader;
+@property (weak, nonatomic) IBOutlet SAPreloader *lPreloader;
 @property (weak, nonatomic) IBOutlet SAChartFilterField *tfChartTypeFilter;
 @property (weak, nonatomic) IBOutlet SAChartFilterField *ftDateRangeFilter;
 

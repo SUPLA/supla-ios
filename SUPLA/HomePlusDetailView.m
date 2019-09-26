@@ -240,6 +240,7 @@
 -(void)onDetailShow {
     [self showMainView];
     [self showErrorMessage:nil];
+    [self.lPreloader animateWithTimeInterval:0.05];
 };
 
 -(void)onDetailHide {
@@ -258,6 +259,8 @@
     if (_refreshLock > [[NSDate date] timeIntervalSince1970]) {
         return;
     }
+    
+    [self.lCaption setText:[self.channelBase getChannelCaption]];
 
     SAThermostatHPExtendedValue *thev = nil;
     if (![self.channelBase isKindOfClass:SAChannel.class]
@@ -328,7 +331,7 @@
     }
 }
 
--(void) cfgItemChanged:(SAHomePlusCfgItem*)item {
+-(void)cfgItemChanged:(SAHomePlusCfgItem*)item {
     if (item == nil) {
         return;
     }
@@ -377,7 +380,7 @@
     }
 }
 
--(void) thermostatCalendarPragramChanged:(id)calendar day:(short)d hour:(short)h program1:(BOOL)p1 {
+-(void)thermostatCalendarPragramChanged:(id)calendar day:(short)d hour:(short)h program1:(BOOL)p1 {
     [self lockRefreshForATime:4];
     
     SEL selector = @selector(sendScheduleValues);

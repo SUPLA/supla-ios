@@ -35,6 +35,7 @@
 		018CFD2623281AF900888CB7 /* SAThermostatHPExtendedValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 018CFD2523281AF900888CB7 /* SAThermostatHPExtendedValue.m */; };
 		018CFD2923281F0C00888CB7 /* SAExtendedValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 018CFD2823281F0C00888CB7 /* SAExtendedValue.m */; };
 		018E67CF22C8CA0A00FF1427 /* SADownloadElectricityMeasurements.m in Sources */ = {isa = PBXBuildFile; fileRef = 018E67CE22C8CA0A00FF1427 /* SADownloadElectricityMeasurements.m */; };
+		019D22F0233CC2D000F17135 /* SAPreloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 019D22EF233CC2D000F17135 /* SAPreloader.m */; };
 		01BDAC7522C518DE00915646 /* SARestApiClientTask.m in Sources */ = {isa = PBXBuildFile; fileRef = 01BDAC7422C518DE00915646 /* SARestApiClientTask.m */; };
 		01BDAC7822C5200600915646 /* SAOAuthToken.m in Sources */ = {isa = PBXBuildFile; fileRef = 01BDAC7722C5200600915646 /* SAOAuthToken.m */; };
 		01C1718F22C7F3A2005983E1 /* SAIncrementalMeasurementItem+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 01C1718522C7F3A2005983E1 /* SAIncrementalMeasurementItem+CoreDataClass.m */; };
@@ -377,6 +378,8 @@
 		018CFD2823281F0C00888CB7 /* SAExtendedValue.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SAExtendedValue.m; sourceTree = "<group>"; };
 		018E67CD22C8CA0A00FF1427 /* SADownloadElectricityMeasurements.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SADownloadElectricityMeasurements.h; sourceTree = "<group>"; };
 		018E67CE22C8CA0A00FF1427 /* SADownloadElectricityMeasurements.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SADownloadElectricityMeasurements.m; sourceTree = "<group>"; };
+		019D22EE233CC2D000F17135 /* SAPreloader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SAPreloader.h; sourceTree = "<group>"; };
+		019D22EF233CC2D000F17135 /* SAPreloader.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SAPreloader.m; sourceTree = "<group>"; };
 		01B216CF22AECB2F004E0596 /* SUPLA 3.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "SUPLA 3.xcdatamodel"; sourceTree = "<group>"; };
 		01BDAC7322C518DE00915646 /* SARestApiClientTask.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SARestApiClientTask.h; sourceTree = "<group>"; };
 		01BDAC7422C518DE00915646 /* SARestApiClientTask.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SARestApiClientTask.m; sourceTree = "<group>"; };
@@ -1368,6 +1371,8 @@
 				017554F522F1A62500EB58B7 /* HomePlusDetailView.m */,
 				0122613722F396440013E6A2 /* SAThermostatCalendar.h */,
 				0122613822F396440013E6A2 /* SAThermostatCalendar.m */,
+				019D22EE233CC2D000F17135 /* SAPreloader.h */,
+				019D22EF233CC2D000F17135 /* SAPreloader.m */,
 			);
 			name = UI;
 			sourceTree = "<group>";
@@ -1798,6 +1803,7 @@
 				404749BC20BC6058005DA345 /* SAColorListItem+CoreDataClass.m in Sources */,
 				40E8BE891FC06A5600FB2FE6 /* TFHppleElement.m in Sources */,
 				01C1719922C7F55B005983E1 /* SAMeasurementItem+CoreDataClass.m in Sources */,
+				019D22F0233CC2D000F17135 /* SAPreloader.m in Sources */,
 				40DE1A361BCD1B55004CF43B /* AboutVC.m in Sources */,
 				4017E12C1BB9CE2900570AC8 /* ChannelCell.m in Sources */,
 				01C1719222C7F3A2005983E1 /* SAElectricityMeasurementItem+CoreDataProperties.m in Sources */,
