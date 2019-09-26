@@ -48,11 +48,6 @@
     return [SAApp.DB getElectricityMeasurementsForChannelId:self.channelId dateFrom:dateFrom dateTo:dateTo groupBy:[self getGroupByForCurrentChartType] groupingDepth:[self getGroupungDepthForCurrentChartType] fields:fields];
 }
 
-- (NSNumber *)doubleValueForKey:(NSString *)key item:(NSDictionary *)i {
-    NSNumber *result = [i valueForKey:key];
-    return result == nil ? [NSNumber numberWithDouble:0.0] : result;
-}
-
 -(void) addBarEntryTo:(NSMutableArray*) entries index:(int)idx item:(id)item {
     if (![item isKindOfClass:[NSDictionary class]]) {
         return;

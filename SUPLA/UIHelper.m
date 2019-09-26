@@ -110,6 +110,9 @@
     return [UIColor colorWithRed:0.96 green:0.96 blue:0.96 alpha:1.0];
 }
 
++(nonnull UIColor*)chartRoomTemperature {
+    return [UIColor colorWithRed:0.00 green:0.76 blue:0.99 alpha:1.0];
+}
 @end
 
 @implementation SAUIHelper {

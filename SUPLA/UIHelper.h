@@ -49,7 +49,7 @@
 +(nonnull UIColor*)chartValuePositiveColor;
 +(nonnull UIColor*)chartValueNegativeColor;
 +(nonnull UIColor*)chartFilterPickerViewColor;
-
++(nonnull UIColor*)chartRoomTemperature;
 @end
 
 @interface SAUIHelper : NSObject

@@ -21,6 +21,7 @@
 #import "SAThermostatScheduleCfg.h"
 #import "SuplaApp.h"
 #import "SADownloadThermostatMeasurements.h"
+#import "SAThermostatChartHelper.h"
 
 #define CFGID_TURBO_TIME 1
 #define CFGID_WATER_MAX 2
@@ -108,6 +109,7 @@
     NSTimeInterval _refreshLock;
     NSMutableArray *_cfgItems;
     SADownloadThermostatMeasurements *_task;
+    SAThermostatChartHelper *_chartHelper;
 }
 
 -(void)detailViewInit {
@@ -116,6 +118,11 @@
         self.vCalendar.program1Label = NSLocalizedString(@"Comfort", nil);
         self.vCalendar.firstDay = 2;
         self.vCalendar.delegate = self;
+        
+        _chartHelper = [[SAThermostatChartHelper alloc] init];
+        _chartHelper.combinedChart = self.combinedChart;
+        _chartHelper.unit = @"";
+        
         _cfgItems = [[NSMutableArray alloc] init];
  
         [_cfgItems addObject:[[SAHomePlusCfgItem alloc]
@@ -169,6 +176,13 @@
                               delegate:self]];
     }
     [super detailViewInit];
+}
+
+-(void)setChannelBase:(SAChannelBase *)channelBase {
+    if (_chartHelper) {
+        _chartHelper.channelId = channelBase ? channelBase.remote_id : 0;
+    }
+    [super setChannelBase:channelBase];
 }
 
 -(void)updateCalendarECOLabelWithCfgItem:(SAHomePlusCfgItem *)item {
@@ -244,6 +258,8 @@
     [self showErrorMessage:nil];
     self.lPreloader.hidden = YES;
     [self runDownloadTask];
+    [_chartHelper load];
+    [_chartHelper moveToEnd];
 };
 
 -(void)onDetailHide {
@@ -413,6 +429,7 @@
 -(void) onRestApiTaskStarted: (SARestApiClientTask*)task {
     //NSLog(@"onRestApiTaskStarted");
     [self.lPreloader animateWithTimeInterval:0.05];
+    _chartHelper.downloadProgress = 0;
 }
 
 -(void) onRestApiTaskFinished: (SARestApiClientTask*)task {
@@ -424,13 +441,12 @@
 
     self.lPreloader.hidden = YES;
     [self updateView];
-    //_chartHelper.downloadProgress = nil;
-    //[self loadChartWithAnimation:NO];
+    _chartHelper.downloadProgress = nil;
+    [_chartHelper load];
 }
 
 -(void) onRestApiTask: (SARestApiClientTask*)task progressUpdate:(float)progress {
-    //_chartHelper.downloadProgress = [NSNumber numberWithFloat:progress];
-    NSLog(@"Download progress %f", progress);
+    _chartHelper.downloadProgress = [NSNumber numberWithFloat:progress];
 }
 
 @end

@@ -43,6 +43,7 @@ typedef NS_ENUM(NSUInteger, ChartType) {
 @class SABarChartDataSet;
 @interface SAChartHelper : NSObject <IChartAxisValueFormatter>
 
+- (NSNumber *)doubleValueForKey:(NSString *)key item:(NSDictionary *)i;
 - (NSDateFormatter *) dateFormatterForCurrentChartType;
 - (NSString *) stringForValue:(double)value axis:(nullable ChartAxisBase *)axis;
 - (SABarChartDataSet *) newBarDataSetWithEntries:(NSArray *)entries;
@@ -53,7 +54,7 @@ typedef NS_ENUM(NSUInteger, ChartType) {
 - (void) prepareBarDataSet:(SABarChartDataSet*)barDataSet;
 -(BOOL)isPieChartType;
 -(BOOL)isComparsionChartType;
-
+- (void) moveToEnd;
 - (void) load;
 - (void) animate;
 
@@ -65,6 +66,7 @@ typedef NS_ENUM(NSUInteger, ChartType) {
 @property (nonatomic, weak) NSString *unit;
 @property (nonatomic, weak) NSNumber *downloadProgress;
 @property (nonatomic) int channelId;
+@property (nonatomic, readonly) long minTimestamp;
 @end
 
 NS_ASSUME_NONNULL_END

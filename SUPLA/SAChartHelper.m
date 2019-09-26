@@ -41,6 +41,11 @@
     return self;
 }
 
+- (NSNumber *)doubleValueForKey:(NSString *)key item:(NSDictionary *)i {
+    NSNumber *result = [i valueForKey:key];
+    return result == nil ? [NSNumber numberWithDouble:0.0] : result;
+}
+
 - (NSArray *)getData {
     ABSTRACT_METHOD_EXCEPTION;
     return nil;
@@ -264,7 +269,7 @@
                 _minTimestamp = time;
             }
             
-            [self addBarEntryTo:barEntries index:a time:time / 600.0 timestamp:time item:item];
+            [self addBarEntryTo:barEntries index:a time:(time-_minTimestamp) / 600.0 timestamp:time item:item];
         }
     }
     
@@ -421,4 +426,17 @@
     return _downloadProgress;
 }
 
+- (void) moveToXRange1:(double)xRange1 XRange2:(double) xRange2 {
+    [self.combinedChart setVisibleXRangeMaximum:xRange1];
+    [self.combinedChart moveViewToX:[self.combinedChart chartXMax]];
+    [self.combinedChart setVisibleXRangeMaximum:xRange2];
+}
+
+- (void) moveToEnd {
+    [self moveToXRange1:20 XRange2:1000];
+}
+
+- (long) minTimestamp {
+    return _minTimestamp;
+}
 @end

@@ -22,6 +22,7 @@
 #import "SAPreloader.h"
 
 NS_ASSUME_NONNULL_BEGIN
+@import Charts;
 
 @class SAHomePlusCfgItem;
 @protocol SAHomePlusCfgItemDelegate <NSObject>
@@ -61,6 +62,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (IBAction)calendarButtonTouched:(id)sender;
 - (IBAction)settingsButtonTouched:(id)sender;
 @property (weak, nonatomic) IBOutlet UILabel *lCaption;
+@property (weak, nonatomic) IBOutlet CombinedChartView *combinedChart;
 
 @end
 
