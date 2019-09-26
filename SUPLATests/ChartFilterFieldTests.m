@@ -164,7 +164,7 @@
     _filterField.filterType = DateRangeFilter;
     _filterField.dateRange = Last30days;
     XCTAssertNotNil(_filterField.dateFrom);
-    XCTAssertTrue(abs([date timeIntervalSince1970] - [_filterField.dateFrom timeIntervalSince1970]) <= 1);
+    XCTAssertTrue(fabs([date timeIntervalSince1970] - [_filterField.dateFrom timeIntervalSince1970]) <= 1);
 }
 
 @end
