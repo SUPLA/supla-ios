@@ -19,6 +19,7 @@
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 #import "SAElectricityMeasurementItem+CoreDataClass.h"
+#import "SAThermostatMeasurementItem+CoreDataClass.h"
 #import "proto.h"
 
 typedef NS_ENUM(NSUInteger, GroupingDepth) {
@@ -80,7 +81,6 @@ typedef NS_ENUM(NSUInteger, GroupBy) {
 -(void) updateColorListItem:(SAColorListItem *)item;
 -(SAElectricityMeasurementItem*) newElectricityMeasurementItemWithManagedObjectContext:(BOOL)moc;
 -(SAElectricityMeasurementItem*) fetchOlderThanDate:(NSDate*)date uncalculatedElectricityMeasurementItemWithChannel:(int)channel_id;
--(NSUInteger) getElectricityMeasurementItemCount;
 -(long) getTimestampOfElectricityMeasurementItemWithChannelId:(int)channel_id minimum:(BOOL)min;
 -(void) deleteAllElectricityMeasurementsForChannelId:(int)channel_id;
 -(void) deleteUncalculatedElectricityMeasurementsForChannelId:(int)channel_id;
@@ -88,6 +88,10 @@ typedef NS_ENUM(NSUInteger, GroupBy) {
 -(BOOL) electricityMeterMeasurementsStartsWithTheCurrentMonthForChannelId:(int)channel_id;
 - (double) sumActiveEnergyForChannelId:(int)channel_id monthLimitOffset:(int) offset forwarded:(BOOL)fwd;
 -(NSArray *) getElectricityMeasurementsForChannelId:(int)channel_id dateFrom:(NSDate *)dateFrom dateTo:(NSDate *)dateTo groupBy:(GroupBy)gb groupingDepth:(GroupingDepth)gd fields:(NSArray*)fields;
+-(SAThermostatMeasurementItem*) newThermostatMeasurementItem;
+-(long) getTimestampOfThermostatMeasurementItemWithChannelId:(int)channel_id minimum:(BOOL)min;
+-(NSUInteger) getThermostatMeasurementItemCountForChannelId:(int)channel_id;
+-(void) deleteAllThermostatMeasurementsForChannelId:(int)channel_id;
 -(NSArray *) iconsToDownload;
 -(SAUserIcon*) fetchUserIconById:(int)remote_id;
 @end

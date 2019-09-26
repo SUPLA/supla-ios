@@ -35,7 +35,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (readonly, nonatomic) short value;
 @end
 
-@interface SAHomePlusDetailView : SADetailView <SAHomePlusCfgItemDelegate, SAThermostatCalendarDelegate>
+@interface SAHomePlusDetailView : SADetailView <SARestApiClientTaskDelegate, SAHomePlusCfgItemDelegate, SAThermostatCalendarDelegate>
 @property (weak, nonatomic) IBOutlet UILabel *lCfgEco;
 @property (weak, nonatomic) IBOutlet UILabel *lCfgComfort;
 @property (weak, nonatomic) IBOutlet UILabel *lCfgEcoReduction;

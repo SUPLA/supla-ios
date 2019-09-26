@@ -20,6 +20,7 @@
 #import "SAThermostatHPExtendedValue.h"
 #import "SAThermostatScheduleCfg.h"
 #import "SuplaApp.h"
+#import "SADownloadThermostatMeasurements.h"
 
 #define CFGID_TURBO_TIME 1
 #define CFGID_WATER_MAX 2
@@ -106,6 +107,7 @@
 @implementation SAHomePlusDetailView {
     NSTimeInterval _refreshLock;
     NSMutableArray *_cfgItems;
+    SADownloadThermostatMeasurements *_task;
 }
 
 -(void)detailViewInit {
@@ -240,11 +242,17 @@
 -(void)onDetailShow {
     [self showMainView];
     [self showErrorMessage:nil];
-    [self.lPreloader animateWithTimeInterval:0.05];
+    self.lPreloader.hidden = YES;
+    [self runDownloadTask];
 };
 
 -(void)onDetailHide {
     [self showMainView];
+    
+    if (_task) {
+        [_task cancel];
+        _task.delegate = nil;
+    }
 };
 
 - (IBAction)calendarButtonTouched:(id)sender {
@@ -386,6 +394,43 @@
     SEL selector = @selector(sendScheduleValues);
     [NSObject cancelPreviousPerformRequestsWithTarget:self selector:selector object:nil];
     [self performSelector:selector withObject:nil afterDelay:2];
+}
+
+-(void) runDownloadTask {
+    if (_task && ![_task isTaskIsAliveWithTimeout:90]) {
+        [_task cancel];
+        _task = nil;
+    }
+    
+    if (!_task) {
+        _task = [[SADownloadThermostatMeasurements alloc] init];
+        _task.channelId = self.channelBase.remote_id;
+        _task.delegate = self;
+        [_task start];
+    }
+}
+
+-(void) onRestApiTaskStarted: (SARestApiClientTask*)task {
+    //NSLog(@"onRestApiTaskStarted");
+    [self.lPreloader animateWithTimeInterval:0.05];
+}
+
+-(void) onRestApiTaskFinished: (SARestApiClientTask*)task {
+    //NSLog(@"onRestApiTaskFinished");
+    if (_task != nil && task == _task) {
+        _task.delegate = nil;
+        _task = nil;
+    }
+
+    self.lPreloader.hidden = YES;
+    [self updateView];
+    //_chartHelper.downloadProgress = nil;
+    //[self loadChartWithAnimation:NO];
+}
+
+-(void) onRestApiTask: (SARestApiClientTask*)task progressUpdate:(float)progress {
+    //_chartHelper.downloadProgress = [NSNumber numberWithFloat:progress];
+    NSLog(@"Download progress %f", progress);
 }
 
 @end

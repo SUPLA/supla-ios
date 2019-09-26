@@ -52,4 +52,12 @@
     self.date = date;
 }
 
+- (BOOL) boolValueForKey:(NSString*)key withObject:(NSDictionary*)object {
+    NSString *str = [object valueForKey:key];
+     
+    return str != nil
+    && ![str isKindOfClass:[NSNull class]]
+    && ([str boolValue] || [str intValue] > 0);
+}
+
 @end

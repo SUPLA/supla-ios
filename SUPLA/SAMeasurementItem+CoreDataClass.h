@@ -25,6 +25,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (void) assignJSONObject:(NSDictionary *)object;
 - (void) assignMeasurementItem:(SAMeasurementItem*)source;
 - (void) setDateAndDateParts:(NSDate *)date;
+- (BOOL) boolValueForKey:(NSString*)key withObject:(NSDictionary*)object;
 @end
 
 NS_ASSUME_NONNULL_END

@@ -823,13 +823,13 @@
     return [self fetchItemByPredicate:[NSPredicate predicateWithFormat:@"channel_id = %i AND calculated = NO AND date < %@", channel_id, date] entityName:en];
 };
 
--(long) getTimestampOfIncrementalMeasurementItemWithChannelId:(int)channel_id minimum:(BOOL)min entityName:(NSString*)en {
+-(long) getTimestampOfMeasurementItemWithChannelId:(int)channel_id minimum:(BOOL)min entityName:(NSString*)en {
     SAIncrementalMeasurementItem *item = [self fetchItemByPredicate:[NSPredicate predicateWithFormat:@"channel_id = %i", channel_id] entityName: en sortDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"date" ascending:min]]];
     
     return item ? [item.date timeIntervalSince1970] : 0;
 }
 
--(void) deleteAllIncrementalMeasurementsForChannelId:(int)channel_id entityName:(NSString *)en {
+-(void) deleteAllMeasurementsForChannelId:(int)channel_id entityName:(NSString *)en {
     BOOL del = YES;
     do {
         del = NO;
@@ -981,11 +981,11 @@
 }
 
 -(long) getTimestampOfElectricityMeasurementItemWithChannelId:(int)channel_id minimum:(BOOL)min {
-    return [self getTimestampOfIncrementalMeasurementItemWithChannelId:channel_id minimum:min entityName:@"SAElectricityMeasurementItem"];
+    return [self getTimestampOfMeasurementItemWithChannelId:channel_id minimum:min entityName:@"SAElectricityMeasurementItem"];
 }
 
 -(void) deleteAllElectricityMeasurementsForChannelId:(int)channel_id {
-    [self deleteAllIncrementalMeasurementsForChannelId:channel_id entityName:@"SAElectricityMeasurementItem"];
+    [self deleteAllMeasurementsForChannelId:channel_id entityName:@"SAElectricityMeasurementItem"];
 }
 
 -(void) deleteUncalculatedElectricityMeasurementsForChannelId:(int)channel_id {
@@ -1033,6 +1033,27 @@
 
 -(NSArray *) getElectricityMeasurementsForChannelId:(int)channel_id dateFrom:(NSDate *)dateFrom dateTo:(NSDate *)dateTo groupBy:(GroupBy)gb groupingDepth:(GroupingDepth)gd fields:(NSArray*)fields {
     return [self getIncrementalMeasurementsForChannelId:channel_id fields:fields entityName:@"SAElectricityMeasurementItem" dateFrom:dateFrom dateTo:dateTo groupBy:gb groupingDepth:gd];
+}
+
+#pragma mark Thermostat Measurements
+
+-(SAThermostatMeasurementItem*) newThermostatMeasurementItem {
+    SAThermostatMeasurementItem *item = [[SAThermostatMeasurementItem alloc] initWithEntity:[NSEntityDescription entityForName:@"SAThermostatMeasurementItem" inManagedObjectContext:self.managedObjectContext] insertIntoManagedObjectContext:self.managedObjectContext];
+    
+    [self.managedObjectContext insertObject:item];
+    return item;
+}
+
+-(long) getTimestampOfThermostatMeasurementItemWithChannelId:(int)channel_id minimum:(BOOL)min {
+    return [self getTimestampOfMeasurementItemWithChannelId:channel_id minimum:min entityName:@"SAThermostatMeasurementItem"];
+}
+
+-(NSUInteger) getThermostatMeasurementItemCountForChannelId:(int)channel_id {
+    return [self getCountByPredicate:[NSPredicate predicateWithFormat:@"channel_id = %i", channel_id] entityName:@"SAThermostatMeasurementItem"];
+}
+
+-(void) deleteAllThermostatMeasurementsForChannelId:(int)channel_id {
+    [self deleteAllMeasurementsForChannelId:channel_id entityName:@"SAThermostatMeasurementItem"];
 }
 
 #pragma mark User Icons
