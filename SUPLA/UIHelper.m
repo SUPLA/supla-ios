@@ -113,6 +113,18 @@
 +(nonnull UIColor*)chartRoomTemperature {
     return [UIColor colorWithRed:0.00 green:0.76 blue:0.99 alpha:1.0];
 }
+
++(nonnull UIColor*)hpBtnOn {
+    return [UIColor colorWithRed:0.14 green:0.75 blue:0.13 alpha:1.0];
+}
+
++(nonnull UIColor*)hpBtnOff {
+    return [UIColor colorWithRed:0.94 green:0.27 blue:0.29 alpha:1.0];
+}
+
++(nonnull UIColor*)hpBtnUnknown {
+   return [UIColor colorWithRed:0.90 green:0.74 blue:0.49 alpha:1.0];
+}
 @end
 
 @implementation SAUIHelper {

@@ -50,6 +50,9 @@
 +(nonnull UIColor*)chartValueNegativeColor;
 +(nonnull UIColor*)chartFilterPickerViewColor;
 +(nonnull UIColor*)chartRoomTemperature;
++(nonnull UIColor*)hpBtnOn;
++(nonnull UIColor*)hpBtnOff;
++(nonnull UIColor*)hpBtnUnknown;
 @end
 
 @interface SAUIHelper : NSObject

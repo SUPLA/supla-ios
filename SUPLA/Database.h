@@ -93,6 +93,7 @@ typedef NS_ENUM(NSUInteger, GroupBy) {
 -(NSUInteger) getThermostatMeasurementItemCountForChannelId:(int)channel_id;
 -(void) deleteAllThermostatMeasurementsForChannelId:(int)channel_id;
 -(NSArray *) getThermostatMeasurementsForChannelId:(int)channel_id dateFrom:(NSDate *)dateFrom dateTo:(NSDate *)dateTo;
+-(NSFetchedResultsController*) getHomePlusGroupFrcWithGroupId:(int)groupId;
 -(NSArray *) iconsToDownload;
 -(SAUserIcon*) fetchUserIconById:(int)remote_id;
 @end

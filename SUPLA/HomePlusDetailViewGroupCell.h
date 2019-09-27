@@ -16,31 +16,22 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 */
 
-#import "SAThermostatExtendedValue.h"
+#import "MGSwipeTableCell.h"
+#import "SAUIChannelStatus.h"
+#import "SAChannelBase+CoreDataClass.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface SAThermostatHPExtendedValue : SAThermostatExtendedValue
-- (BOOL)sheduledComfortProgramForDay:(short)day andHour:(short)hour;
-- (int)turboTime;
-- (double)waterMax;
-- (double)ecoReductionTemperature;
-- (double)comfortTemp;
-- (double)ecoTemp;
-- (int)errors;
-- (short)error;
-- (NSString*)errorMessage;
-- (int)flags1;
-- (int)flags2;
-- (BOOL)isThermostatOn;
-- (BOOL)isNormalOn;
-- (BOOL)isEcoRecuctionApplied;
-- (BOOL)isTurboOn;
-- (BOOL)isAutoOn;
-@end
+@interface HomePlusDetailViewGroupCell : MGSwipeTableCell
+@property (weak, nonatomic) IBOutlet SAUIChannelStatus *status;
+@property (weak, nonatomic) IBOutlet UIButton *bOnOff;
+@property (weak, nonatomic) IBOutlet UIButton *bNormal;
+@property (weak, nonatomic) IBOutlet UIButton *bEco;
+@property (weak, nonatomic) IBOutlet UIButton *bAuto;
+@property (weak, nonatomic) IBOutlet UIButton *bTurbo;
+@property (weak, nonatomic) SAChannelBase *channelBase;
+@property (weak, nonatomic) IBOutlet UILabel *lCaption;
 
-@interface SAChannelExtendedValue (SAThermostatHPExtendedValue)
-- (SAThermostatHPExtendedValue*)thermostatHP;
 @end
 
 NS_ASSUME_NONNULL_END

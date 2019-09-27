@@ -21,6 +21,14 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #define PROG_ECO 1
 #define PROG_COMFORT 2
 
+#define STATUS_POWERON 0x01
+#define STATUS_PROGRAMMODE 0x04
+#define STATUS_HEATERANDWATERTEST 0x10
+#define STATUS_HEATING 0x20
+
+#define STATUS2_TURBO_ON 0x1
+#define STATUS2_ECOREDUCTION_ON 0x2
+
 @implementation SAThermostatHPExtendedValue
 - (BOOL)sheduledComfortProgramForDay:(short)day andHour:(short)hour {
     return [self sheduledValueForDay:day andHour:hour] == PROG_COMFORT;
@@ -80,6 +88,34 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     }
     
     return  nil;
+}
+
+- (int)flags1 {
+    return [self flagsWithIndex:4];
+}
+
+- (int)flags2 {
+    return [self flagsWithIndex:7];
+}
+
+- (BOOL)isThermostatOn {
+    return (self.flags1 & STATUS_POWERON) > 0;
+}
+
+- (BOOL)isNormalOn {
+    return [self isThermostatOn] && ![self isEcoRecuctionApplied] && ![self isTurboOn] && ![self isAutoOn];
+}
+
+- (BOOL)isEcoRecuctionApplied {
+    return (self.flags2 & STATUS2_ECOREDUCTION_ON) > 0;
+}
+
+- (BOOL)isTurboOn {
+    return (self.flags2 & STATUS2_TURBO_ON) > 0;
+}
+
+- (BOOL)isAutoOn {
+    return (self.flags1 & STATUS_PROGRAMMODE) > 0;
 }
 
 @end

@@ -36,7 +36,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (readonly, nonatomic) short value;
 @end
 
-@interface SAHomePlusDetailView : SADetailView <SARestApiClientTaskDelegate, SAHomePlusCfgItemDelegate, SAThermostatCalendarDelegate>
+@interface SAHomePlusDetailView : SADetailView <SARestApiClientTaskDelegate, SAHomePlusCfgItemDelegate, SAThermostatCalendarDelegate, UITableViewDataSource, UITableViewDelegate>
 @property (weak, nonatomic) IBOutlet UILabel *lCfgEco;
 @property (weak, nonatomic) IBOutlet UILabel *lCfgComfort;
 @property (weak, nonatomic) IBOutlet UILabel *lCfgEcoReduction;
@@ -63,6 +63,8 @@ NS_ASSUME_NONNULL_BEGIN
 - (IBAction)settingsButtonTouched:(id)sender;
 @property (weak, nonatomic) IBOutlet UILabel *lCaption;
 @property (weak, nonatomic) IBOutlet CombinedChartView *combinedChart;
+@property (weak, nonatomic) IBOutlet UITableView *tvChannels;
+@property (weak, nonatomic) IBOutlet UIView *vCharts;
 
 @end
 

@@ -1082,6 +1082,42 @@
 
 #pragma mark User Icons
 
+#pragma mark HomePlus groups
+
+-(NSFetchedResultsController*) getHomePlusGroupFrcWithGroupId:(int)groupId {
+    NSArray *r = [self fetchByPredicate:[NSPredicate predicateWithFormat:@"group_id = %i AND visible > 0", groupId] entityName:@"SAChannelGroupRelation" limit:0];
+    
+    NSMutableArray *ids = [[NSMutableArray alloc] init];
+    
+    if ( r != nil ) {
+        for(int a=0;a<r.count;a++) {
+            [ids addObject:[NSNumber numberWithInt:((SAChannelGroupRelation*)[r objectAtIndex:a]).channel_id]];
+        }
+    }
+    
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    
+    fetchRequest.predicate = [NSPredicate predicateWithFormat:@"func > 0 AND visible > 0 AND remote_id IN %@", ids];
+    [fetchRequest setEntity:[NSEntityDescription entityForName:@"SAChannel" inManagedObjectContext: self.managedObjectContext]];
+    
+    NSArray *sortDescriptors = [[NSArray alloc] initWithObjects:
+                                [[NSSortDescriptor alloc] initWithKey:@"caption" ascending:NO],
+                                nil];
+    
+    [fetchRequest setSortDescriptors:sortDescriptors];
+    
+    NSFetchedResultsController *frc = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:self.managedObjectContext sectionNameKeyPath:nil cacheName:nil];
+    
+    NSError *error;
+    [frc performFetch:&error];
+    
+    if ( error ) {
+        NSLog(@"%@", error);
+    }
+    
+    return frc;
+}
+
 -(void) userIconsIdsWithEntity:(NSString*)en channelBase:(BOOL)cb idField:(NSString *)field exclude:(NSArray*)ex destination:(NSMutableArray *)dest {
     
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];

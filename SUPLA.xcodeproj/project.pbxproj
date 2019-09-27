@@ -40,6 +40,8 @@
 		019D22F0233CC2D000F17135 /* SAPreloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 019D22EF233CC2D000F17135 /* SAPreloader.m */; };
 		01BDAC7522C518DE00915646 /* SARestApiClientTask.m in Sources */ = {isa = PBXBuildFile; fileRef = 01BDAC7422C518DE00915646 /* SARestApiClientTask.m */; };
 		01BDAC7822C5200600915646 /* SAOAuthToken.m in Sources */ = {isa = PBXBuildFile; fileRef = 01BDAC7722C5200600915646 /* SAOAuthToken.m */; };
+		01BE3C84233EA1CE00201B47 /* HomePlusDetailViewGroupCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 01BE3C83233EA1CE00201B47 /* HomePlusDetailViewGroupCell.xib */; };
+		01BE3C87233EAFEC00201B47 /* HomePlusDetailViewGroupCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 01BE3C86233EAFEC00201B47 /* HomePlusDetailViewGroupCell.m */; };
 		01C1718F22C7F3A2005983E1 /* SAIncrementalMeasurementItem+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 01C1718522C7F3A2005983E1 /* SAIncrementalMeasurementItem+CoreDataClass.m */; };
 		01C1719022C7F3A2005983E1 /* SAIncrementalMeasurementItem+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 01C1718622C7F3A2005983E1 /* SAIncrementalMeasurementItem+CoreDataProperties.m */; };
 		01C1719122C7F3A2005983E1 /* SAElectricityMeasurementItem+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 01C1718922C7F3A2005983E1 /* SAElectricityMeasurementItem+CoreDataClass.m */; };
@@ -391,6 +393,9 @@
 		01BDAC7422C518DE00915646 /* SARestApiClientTask.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SARestApiClientTask.m; sourceTree = "<group>"; };
 		01BDAC7622C5200600915646 /* SAOAuthToken.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SAOAuthToken.h; sourceTree = "<group>"; };
 		01BDAC7722C5200600915646 /* SAOAuthToken.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SAOAuthToken.m; sourceTree = "<group>"; };
+		01BE3C83233EA1CE00201B47 /* HomePlusDetailViewGroupCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomePlusDetailViewGroupCell.xib; sourceTree = "<group>"; };
+		01BE3C85233EAFEC00201B47 /* HomePlusDetailViewGroupCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HomePlusDetailViewGroupCell.h; sourceTree = "<group>"; };
+		01BE3C86233EAFEC00201B47 /* HomePlusDetailViewGroupCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HomePlusDetailViewGroupCell.m; sourceTree = "<group>"; };
 		01C1718322C7F3A2005983E1 /* SAIncrementalMeasurementItem+CoreDataProperties.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SAIncrementalMeasurementItem+CoreDataProperties.h"; sourceTree = "<group>"; };
 		01C1718422C7F3A2005983E1 /* SAIncrementalMeasurementItem+CoreDataClass.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SAIncrementalMeasurementItem+CoreDataClass.h"; sourceTree = "<group>"; };
 		01C1718522C7F3A2005983E1 /* SAIncrementalMeasurementItem+CoreDataClass.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "SAIncrementalMeasurementItem+CoreDataClass.m"; sourceTree = "<group>"; };
@@ -1380,9 +1385,12 @@
 				017554F422F1A62500EB58B7 /* HomePlusDetailView.h */,
 				017554F522F1A62500EB58B7 /* HomePlusDetailView.m */,
 				0122613722F396440013E6A2 /* SAThermostatCalendar.h */,
+				01BE3C85233EAFEC00201B47 /* HomePlusDetailViewGroupCell.h */,
+				01BE3C86233EAFEC00201B47 /* HomePlusDetailViewGroupCell.m */,
 				0122613822F396440013E6A2 /* SAThermostatCalendar.m */,
 				019D22EE233CC2D000F17135 /* SAPreloader.h */,
 				019D22EF233CC2D000F17135 /* SAPreloader.m */,
+				01BE3C83233EA1CE00201B47 /* HomePlusDetailViewGroupCell.xib */,
 			);
 			name = UI;
 			sourceTree = "<group>";
@@ -1706,6 +1714,7 @@
 				40CF96BC1BC7D4E70030EFFF /* light-on@2x.png in Resources */,
 				4052DA0A1DC515AE000B8C45 /* dimmer-on@3x.png in Resources */,
 				40CF96AD1BC7D4E70030EFFF /* door-open@3x.png in Resources */,
+				01BE3C84233EA1CE00201B47 /* HomePlusDetailViewGroupCell.xib in Resources */,
 				40CF96D91BC81A470030EFFF /* error@3x.png in Resources */,
 				40A87DE01FADDFF900918B54 /* add_device@2x.png in Resources */,
 				017554F322F18E4A00EB58B7 /* HomePlusDetailView.xib in Resources */,
@@ -1833,6 +1842,7 @@
 				013D73B022DD105400E3515A /* SAChartFilterField.m in Sources */,
 				40C7BA7920C047CF00ACEE42 /* SAChannelGroup+CoreDataProperties.m in Sources */,
 				40D69DEE1BB574FE00937769 /* Database.m in Sources */,
+				01BE3C87233EAFEC00201B47 /* HomePlusDetailViewGroupCell.m in Sources */,
 				408034E51BC84A89007666E7 /* NavigationController.m in Sources */,
 				4004DE8D1DC4E270009C34E3 /* SAColorBrightnessPicker.m in Sources */,
 				401CA1C21BA067DB00117AF4 /* AppDelegate.m in Sources */,

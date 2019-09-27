@@ -134,3 +134,5 @@
 "Room temperature sensor error" = "Błąd czujnika temperatury pokojowej";
 "No network interruptions" = "Brak przerwań sieciowych";
 "Room temperature" = "Temperatura w pomieszczeniu";
+"ON" = "WŁĄCZONY";
+"OFF" = "WYŁĄCZONY";

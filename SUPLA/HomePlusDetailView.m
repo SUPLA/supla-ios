@@ -22,6 +22,7 @@
 #import "SuplaApp.h"
 #import "SADownloadThermostatMeasurements.h"
 #import "SAThermostatChartHelper.h"
+#import "HomePlusDetailViewGroupCell.h"
 
 #define CFGID_TURBO_TIME 1
 #define CFGID_WATER_MAX 2
@@ -110,6 +111,8 @@
     NSMutableArray *_cfgItems;
     SADownloadThermostatMeasurements *_task;
     SAThermostatChartHelper *_chartHelper;
+    NSFetchedResultsController *_frc;
+    UINib *_cell_nib;
 }
 
 -(void)detailViewInit {
@@ -122,6 +125,13 @@
         _chartHelper = [[SAThermostatChartHelper alloc] init];
         _chartHelper.combinedChart = self.combinedChart;
         _chartHelper.unit = @"";
+        
+        _cell_nib = [UINib nibWithNibName:@"HomePlusDetailViewGroupCell" bundle:nil];
+        
+        [self.tvChannels registerNib:_cell_nib forCellReuseIdentifier:@"HomePlusDetailViewGroupCell"];
+        
+        self.tvChannels.delegate = self;
+        self.tvChannels.dataSource = self;
         
         _cfgItems = [[NSMutableArray alloc] init];
  
@@ -254,12 +264,20 @@
 }
 
 -(void)onDetailShow {
+    _frc = nil;
     [self showMainView];
     [self showErrorMessage:nil];
     self.lPreloader.hidden = YES;
     [self runDownloadTask];
     [_chartHelper load];
     [_chartHelper moveToEnd];
+    if ([self isGroup]) {
+       self.tvChannels.hidden = NO;
+       self.vCharts.hidden = YES;
+    } else {
+       self.tvChannels.hidden = YES;
+       self.vCharts.hidden = NO;
+    }
 };
 
 -(void)onDetailHide {
@@ -269,6 +287,7 @@
         [_task cancel];
         _task.delegate = nil;
     }
+    _frc = nil;
 };
 
 - (IBAction)calendarButtonTouched:(id)sender {
@@ -315,7 +334,7 @@
 }
 
 -(BOOL)isGroup {
-    return NO;
+    return YES;
 }
 
 -(void)lockRefreshForATime:(NSTimeInterval)sec {
@@ -447,6 +466,38 @@
 
 -(void) onRestApiTask: (SARestApiClientTask*)task progressUpdate:(float)progress {
     _chartHelper.downloadProgress = [NSNumber numberWithFloat:progress];
+}
+
+- (NSFetchedResultsController*)fetchedResultsController {
+    if ( _frc == nil ) {
+        _frc = [SAApp.DB getHomePlusGroupFrcWithGroupId:self.channelBase.remote_id];
+    }
+    return _frc;
+}
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    NSFetchedResultsController *frc = self.fetchedResultsController;
+    return frc ? [[frc sections] count] : 0;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    NSFetchedResultsController *frc = self.fetchedResultsController;
+    if ( frc ) {
+        id <NSFetchedResultsSectionInfo> sectionInfo = [[frc sections] objectAtIndex:section];
+        return [sectionInfo numberOfObjects];
+    }
+    
+    return 0;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+     SAChannelBase *channel_base = [self.fetchedResultsController objectAtIndexPath:indexPath];
+    HomePlusDetailViewGroupCell *cell = [tableView dequeueReusableCellWithIdentifier: @"HomePlusDetailViewGroupCell"];
+    if (cell) {
+        cell.channelBase = channel_base;
+    }
+    
+    return cell;
 }
 
 @end

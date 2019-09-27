@@ -335,6 +335,12 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="k1K-UQ-OTd" userLabel="vMain">
                     <rect key="frame" x="10" y="45" width="300" height="363"/>
                     <subviews>
+                        <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="owG-Uh-WRT" userLabel="tvChannels">
+                            <rect key="frame" x="0.0" y="225" width="300" height="138"/>
+                            <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                            <color key="separatorColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                        </tableView>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zLk-yd-cUR" userLabel="vTemperature">
                             <rect key="frame" x="0.0" y="0.0" width="300" height="60"/>
                             <subviews>
@@ -527,14 +533,18 @@
                     <constraints>
                         <constraint firstAttribute="bottom" secondItem="5BI-DU-nKP" secondAttribute="bottom" constant="2" id="19F-gv-H71"/>
                         <constraint firstItem="ZKd-Ca-0fc" firstAttribute="top" secondItem="zLk-yd-cUR" secondAttribute="bottom" id="6yy-L4-zw1"/>
+                        <constraint firstAttribute="trailing" secondItem="owG-Uh-WRT" secondAttribute="trailing" id="BmE-Ou-QO6"/>
                         <constraint firstAttribute="trailing" secondItem="ZKd-Ca-0fc" secondAttribute="trailing" id="Edw-hw-FUO"/>
                         <constraint firstItem="5BI-DU-nKP" firstAttribute="top" secondItem="ZKd-Ca-0fc" secondAttribute="bottom" id="UmN-nH-scj"/>
                         <constraint firstItem="zLk-yd-cUR" firstAttribute="top" secondItem="k1K-UQ-OTd" secondAttribute="top" id="fQM-19-dX9"/>
                         <constraint firstItem="zLk-yd-cUR" firstAttribute="leading" secondItem="k1K-UQ-OTd" secondAttribute="leading" id="g9r-mJ-yaA"/>
                         <constraint firstAttribute="trailing" secondItem="5BI-DU-nKP" secondAttribute="trailing" id="kxs-T0-tDy"/>
+                        <constraint firstItem="owG-Uh-WRT" firstAttribute="top" secondItem="ZKd-Ca-0fc" secondAttribute="bottom" id="lfM-Uk-FV2"/>
                         <constraint firstAttribute="trailing" secondItem="zLk-yd-cUR" secondAttribute="trailing" id="m0q-04-iWs"/>
+                        <constraint firstAttribute="bottom" secondItem="owG-Uh-WRT" secondAttribute="bottom" id="pTn-DF-PmT"/>
                         <constraint firstItem="ZKd-Ca-0fc" firstAttribute="leading" secondItem="k1K-UQ-OTd" secondAttribute="leading" id="tRM-xt-TFl"/>
                         <constraint firstItem="5BI-DU-nKP" firstAttribute="leading" secondItem="k1K-UQ-OTd" secondAttribute="leading" id="taY-qs-BHI"/>
+                        <constraint firstItem="owG-Uh-WRT" firstAttribute="leading" secondItem="k1K-UQ-OTd" secondAttribute="leading" id="y69-5X-wOH"/>
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TVM-Us-lKn" userLabel="vError">
@@ -632,7 +642,9 @@
                 <outlet property="lCfgWaterMax" destination="VcQ-wF-eIG" id="A8C-8e-hVC"/>
                 <outlet property="lErrorMessage" destination="QMU-9W-tRX" id="7dP-xE-xK5"/>
                 <outlet property="lPreloader" destination="98P-Io-THg" id="ho9-Gd-ZVn"/>
+                <outlet property="tvChannels" destination="owG-Uh-WRT" id="zPT-PH-ggD"/>
                 <outlet property="vCalendar" destination="3b4-Uj-Mw6" id="gwo-s1-GxS"/>
+                <outlet property="vCharts" destination="5BI-DU-nKP" id="f7O-3W-Tsa"/>
                 <outlet property="vError" destination="TVM-Us-lKn" id="51Y-5m-Wcg"/>
                 <outlet property="vMain" destination="k1K-UQ-OTd" id="epb-CJ-7LD"/>
                 <outlet property="vSettings" destination="Axk-Um-MAu" id="p7R-ud-wrn"/>
