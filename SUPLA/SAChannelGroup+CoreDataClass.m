@@ -52,6 +52,7 @@
         case SUPLA_CHANNELFNC_RGBLIGHTING:
         case SUPLA_CHANNELFNC_DIMMERANDRGBLIGHTING:
         case SUPLA_CHANNELFNC_STAIRCASETIMER:
+        case SUPLA_CHANNELFNC_THERMOSTAT_HEATPOL_HOMEPLUS:
             break;
         default:
             return;
@@ -93,6 +94,13 @@
             NSArray *obj = [NSArray arrayWithObjects:value.colorValue,
                             [NSNumber numberWithInt: value.colorBrightnessValue],
                             [NSNumber numberWithInt: value.brightnessValue], nil];
+            [BufferTotalValue addObject:obj];
+        }
+            break;
+        case SUPLA_CHANNELFNC_THERMOSTAT_HEATPOL_HOMEPLUS: {
+            NSArray *obj = [NSArray arrayWithObjects:[NSNumber numberWithBool: value.hiValue],
+                            [NSNumber numberWithInt: value.measuredTemperature],
+                            [NSNumber numberWithInt: value.presetTemperature], nil];
             [BufferTotalValue addObject:obj];
         }
             break;
@@ -195,6 +203,12 @@
             case SUPLA_CHANNELFNC_CONTROLLINGTHEROLLERSHUTTER:
                 if ([self getIntFromObject:[v objectAtIndex:a] atArrIndex:0] >= 100     // percent
                     || [self getIntFromObject:[v objectAtIndex:a] atArrIndex:1] > 0) {  // sensor
+                    sum++;
+                }
+                count++;
+                break;
+            case SUPLA_CHANNELFNC_THERMOSTAT_HEATPOL_HOMEPLUS:
+                if ([self getIntFromObject:[v objectAtIndex:a] atArrIndex:0] == YES) {
                     sum++;
                 }
                 count++;
