@@ -434,4 +434,77 @@
    return -273;
 }
 
+- (NSAttributedString*) attrStringValueWithIndex:(int)idx font:(nullable UIFont*)font {
+    NSString *result = @"";
+    
+    switch (self.func) {
+        case SUPLA_CHANNELFNC_THERMOMETER:
+            result = [self isOnline] && self.temperatureValue > -273 ? [NSString stringWithFormat:@"%0.1f°", self.temperatureValue] : @"----°";
+            break;
+        case SUPLA_CHANNELFNC_HUMIDITYANDTEMPERATURE:
+            if (idx == 1) {
+                result = [self isOnline] && self.humidityValue > -1 ? [NSString stringWithFormat:@"%0.1f°", self.humidityValue] : @"----°";
+            } else {
+                result = [self isOnline] && self.temperatureValue > -273 ? [NSString stringWithFormat:@"%0.1f°", self.temperatureValue] : @"----°";
+            }
+            break;
+        case SUPLA_CHANNELFNC_DEPTHSENSOR:
+        case SUPLA_CHANNELFNC_DISTANCESENSOR:
+            result = @"--- m";
+            
+            if ( [self isOnline] && self.doubleValue > -1 ) {
+                
+                double value = [self doubleValue];
+                
+                if ( fabs(value) >= 1000 ) {
+                    result = [NSString stringWithFormat:@"%0.2f km", value/1000.00];
+                } else if ( fabs(value) >= 1 ) {
+                    result = [NSString stringWithFormat:@"%0.2f m", value];
+                } else {
+                    value *= 100;
+                    
+                    if ( fabs(value) >= 1 ) {
+                        result = [NSString stringWithFormat:@"%0.1f cm", value];
+                    } else {
+                        value *= 10;
+                        result = [NSString stringWithFormat:@"%i mm", (int)value];
+                    }
+                }
+
+            }
+            break;
+        case SUPLA_CHANNELFNC_THERMOSTAT_HEATPOL_HOMEPLUS: {
+            NSString *v1 = @"---\u00B0";
+            NSString *v2 = @"/---\u00B0";
+            
+            if ( [self isOnline] ) {
+                double mt = self.measuredTemperature;
+                if (mt > -273) {
+                     v1 = [NSString stringWithFormat:@"%0.2f\u00B0", mt];
+                }
+                double pt = self.presetTemperature;
+                if (pt > -273) {
+                    v2 = [NSString stringWithFormat:@"/%i\u00B0", (int)pt];
+                }
+            }
+            
+            NSMutableAttributedString *attrTxt = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"%@%@", v1, v2]];
+            if (font) {
+                [attrTxt addAttribute:NSFontAttributeName
+                              value:[UIFont systemFontOfSize:font.pointSize * 0.7]
+                              range:NSMakeRange(v1.length, v2.length)];
+            }
+
+            return attrTxt;
+        }
+        default:
+            break;
+    }
+    
+    return [[NSMutableAttributedString alloc] initWithString:result];
+}
+
+- (NSAttributedString*) attrStringValue {
+    return [self attrStringValueWithIndex:0 font:nil];
+}
 @end

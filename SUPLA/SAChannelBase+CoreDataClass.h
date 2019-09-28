@@ -56,6 +56,8 @@ NS_ASSUME_NONNULL_BEGIN
 - (double) presetTemperature;
 - (double) measuredTemperature;
 - (NSString *) unit;
+- (NSAttributedString*) attrStringValueWithIndex:(int)idx font:(nullable UIFont*)font;
+- (NSAttributedString*) attrStringValue;
 @end
 
 NS_ASSUME_NONNULL_END

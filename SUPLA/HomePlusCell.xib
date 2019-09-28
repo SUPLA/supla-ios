@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina6_1" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14824"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -20,7 +18,7 @@
             <rect key="frame" x="0.0" y="0.0" width="380" height="103"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Aq4-7s-aVV" id="Z8a-om-NNe">
-                <rect key="frame" x="0.0" y="0.0" width="380" height="102.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="380" height="103"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Home+ Heater" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3Jq-KF-Od9">
@@ -62,13 +60,22 @@
                             <fragment content="21,31° / 20°">
                                 <attributes>
                                     <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                    <font key="NSFont" size="18" name=".AppleSystemUIFont"/>
+                                    <font key="NSFont" metaFont="system" size="18"/>
                                     <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="truncatingTail" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                 </attributes>
                             </fragment>
                         </attributedString>
                         <nil key="highlightedColor"/>
                     </label>
+                    <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aOx-uI-Ya8" userLabel="activeRight" customClass="SAUIChannelStatus">
+                        <rect key="frame" x="334" y="41.5" width="6" height="20"/>
+                        <color key="backgroundColor" red="0.070588235289999995" green="0.65490196079999996" blue="0.1176470588" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="6" id="5TW-mJ-7Sk"/>
+                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="20" id="HUE-UD-pFe"/>
+                            <constraint firstAttribute="height" constant="20" id="PGg-vm-CSV"/>
+                        </constraints>
+                    </view>
                 </subviews>
                 <color key="backgroundColor" red="0.97647058819999999" green="0.98039215690000003" blue="0.98431372549999996" alpha="1" colorSpace="calibratedRGB"/>
                 <constraints>
@@ -77,9 +84,11 @@
                     <constraint firstAttribute="trailingMargin" secondItem="3Jq-KF-Od9" secondAttribute="trailing" constant="10" id="AJK-wC-8BK"/>
                     <constraint firstItem="6oE-p1-nIz" firstAttribute="centerY" secondItem="Z8a-om-NNe" secondAttribute="centerY" constant="-10" id="CN1-by-KQ8"/>
                     <constraint firstItem="0d0-zV-fRA" firstAttribute="centerY" secondItem="Z8a-om-NNe" secondAttribute="centerY" id="Xta-Jm-Wsy"/>
+                    <constraint firstItem="0d0-zV-fRA" firstAttribute="leading" secondItem="aOx-uI-Ya8" secondAttribute="trailing" id="Y31-pg-J7n"/>
                     <constraint firstItem="xjz-Yd-8SH" firstAttribute="trailing" secondItem="Z8a-om-NNe" secondAttribute="trailingMargin" constant="10" id="YQD-7E-15T"/>
                     <constraint firstItem="0M9-cd-0XF" firstAttribute="centerY" secondItem="Z8a-om-NNe" secondAttribute="centerY" constant="-10" id="YRb-KW-s8R"/>
                     <constraint firstItem="6oE-p1-nIz" firstAttribute="centerX" secondItem="Z8a-om-NNe" secondAttribute="centerX" constant="-70" id="d3V-M3-UHB"/>
+                    <constraint firstItem="aOx-uI-Ya8" firstAttribute="centerY" secondItem="Z8a-om-NNe" secondAttribute="centerY" id="db2-4A-ebE"/>
                     <constraint firstItem="xjz-Yd-8SH" firstAttribute="leading" secondItem="Z8a-om-NNe" secondAttribute="leadingMargin" constant="-10" id="isN-8h-hkg"/>
                     <constraint firstItem="3Jq-KF-Od9" firstAttribute="leading" secondItem="Z8a-om-NNe" secondAttribute="leadingMargin" constant="10" id="rai-tt-D6u"/>
                     <constraint firstItem="0M9-cd-0XF" firstAttribute="leading" secondItem="6oE-p1-nIz" secondAttribute="trailing" id="ujd-mx-eiE"/>
@@ -90,10 +99,11 @@
                 <outlet property="caption" destination="3Jq-KF-Od9" id="G7u-5D-gAK"/>
                 <outlet property="cint_RightStatusWidth" destination="ly3-qF-Dpx" id="0Ar-ka-oBG"/>
                 <outlet property="image" destination="6oE-p1-nIz" id="bgK-Yk-8Fi"/>
-                <outlet property="right_OnlineStatus" destination="0d0-zV-fRA" id="Ca7-Ax-LKY"/>
+                <outlet property="right_ActiveStatus" destination="aOx-uI-Ya8" id="twX-H3-HJs"/>
+                <outlet property="right_OnlineStatus" destination="0d0-zV-fRA" id="qlJ-lO-OPm"/>
                 <outlet property="temp" destination="0M9-cd-0XF" id="HBR-uY-Lco"/>
             </connections>
-            <point key="canvasLocation" x="336" y="-102"/>
+            <point key="canvasLocation" x="334.78260869565219" y="-102.12053571428571"/>
         </tableViewCell>
     </objects>
     <resources>

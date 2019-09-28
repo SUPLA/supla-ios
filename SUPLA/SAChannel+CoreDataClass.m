@@ -181,4 +181,31 @@
     ? [super measuredTemperature] : [self.value measuredTemperature];
 }
 
+- (NSAttributedString*) attrStringValueWithIndex:(int)idx font:(nullable UIFont*)font {
+  
+   if ( self.func == SUPLA_CHANNELFNC_ELECTRICITY_METER
+                || self.func == SUPLA_CHANNELFNC_WATER_METER
+                || self.func == SUPLA_CHANNELFNC_GAS_METER ) {
+        
+        if ( [self isOnline] ) {
+            
+            double value = 0.0;
+            
+            if ( self.type == SUPLA_CHANNELTYPE_ELECTRICITY_METER ) {
+                value = self.totalForwardActiveEnergy;
+            } else {
+                value = self.impulseCounterCalculatedValue;
+            }
+            
+            return [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"%0.2f %@", value, self.unit]];
+        
+        } else {
+            return [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"--- %@", self.unit]];
+        }
+                
+    }
+    
+    return [super attrStringValueWithIndex:idx font:font];
+}
+
 @end
