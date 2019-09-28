@@ -212,7 +212,7 @@
 }
 
 - (double) temperatureValue {
-    return -275;
+    return -273;
 }
 
 - (double) humidityValue {

@@ -65,6 +65,9 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet CombinedChartView *combinedChart;
 @property (weak, nonatomic) IBOutlet UITableView *tvChannels;
 @property (weak, nonatomic) IBOutlet UIView *vCharts;
+@property (weak, nonatomic) IBOutlet UIButton *btnSettings;
+@property (weak, nonatomic) IBOutlet UIButton *btnSchedule;
+@property (weak, nonatomic) IBOutlet UILabel *lTemperature;
 
 @end
 

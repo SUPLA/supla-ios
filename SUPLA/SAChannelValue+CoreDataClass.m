@@ -140,7 +140,7 @@
 
 - (double) getTemperatureForFunction:(int)func {
     
-    double result = -275;
+    double result = -273;
     
     switch(func) {
         case SUPLA_CHANNELFNC_THERMOMETER:
@@ -217,7 +217,7 @@
         return v.PresetTemperature * 0.01;
     }
     
-    return -275;
+    return -273;
 }
 
 - (double) measuredTemperature {
@@ -227,7 +227,7 @@
         return v.MeasuredTemperature * 0.01;
     }
     
-    return -275;
+    return -273;
 }
 
 @end

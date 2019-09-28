@@ -10,7 +10,7 @@
         <array key="OpenSans-Regular.ttf">
             <string>OpenSans</string>
         </array>
-        <array key="Quicksand-Regular.ttf">
+        <array key="Quicksand-Light.ttf">
             <string>Quicksand-Regular</string>
         </array>
     </customFonts>
@@ -344,10 +344,10 @@
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zLk-yd-cUR" userLabel="vTemperature">
                             <rect key="frame" x="0.0" y="0.0" width="300" height="60"/>
                             <subviews>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0.00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1SC-7w-YLd">
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0.00" lineBreakMode="tailTruncation" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="1SC-7w-YLd">
                                     <rect key="frame" x="20" y="6" width="260" height="48"/>
                                     <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="35"/>
-                                    <nil key="textColor"/>
+                                    <color key="textColor" red="0.45098352429999999" green="0.45097464320000002" blue="0.45098066329999997" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                             </subviews>
@@ -628,6 +628,8 @@
                 <outlet property="btnEcoPlus" destination="sbK-XJ-L8t" id="xzL-bx-6gc"/>
                 <outlet property="btnEcoRecuctionMinus" destination="K4V-cj-2JI" id="8J4-Bb-Zyl"/>
                 <outlet property="btnEcoReductionPlus" destination="BLb-Y2-T8U" id="sO9-pu-8H3"/>
+                <outlet property="btnSchedule" destination="afB-uY-18S" id="BgD-Ob-gtq"/>
+                <outlet property="btnSettings" destination="GY8-ih-kht" id="j15-vS-cVt"/>
                 <outlet property="btnTurboMinus" destination="vza-ZU-52a" id="nK7-vJ-RYY"/>
                 <outlet property="btnTurboPlus" destination="2qm-R5-r5m" id="4RB-fo-eZN"/>
                 <outlet property="btnWaterMaxMinus" destination="WYq-lY-x5t" id="6Mt-MK-XIW"/>
@@ -642,6 +644,7 @@
                 <outlet property="lCfgWaterMax" destination="VcQ-wF-eIG" id="A8C-8e-hVC"/>
                 <outlet property="lErrorMessage" destination="QMU-9W-tRX" id="7dP-xE-xK5"/>
                 <outlet property="lPreloader" destination="98P-Io-THg" id="ho9-Gd-ZVn"/>
+                <outlet property="lTemperature" destination="1SC-7w-YLd" id="eno-UX-EPr"/>
                 <outlet property="tvChannels" destination="owG-Uh-WRT" id="zPT-PH-ggD"/>
                 <outlet property="vCalendar" destination="3b4-Uj-Mw6" id="gwo-s1-GxS"/>
                 <outlet property="vCharts" destination="5BI-DU-nKP" id="f7O-3W-Tsa"/>

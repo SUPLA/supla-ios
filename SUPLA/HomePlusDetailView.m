@@ -23,6 +23,7 @@
 #import "SADownloadThermostatMeasurements.h"
 #import "SAThermostatChartHelper.h"
 #import "HomePlusDetailViewGroupCell.h"
+#import "SAChannelGroup+CoreDataClass.h"
 
 #define CFGID_TURBO_TIME 1
 #define CFGID_WATER_MAX 2
@@ -268,15 +269,20 @@
     [self showMainView];
     [self showErrorMessage:nil];
     self.lPreloader.hidden = YES;
-    [self runDownloadTask];
-    [_chartHelper load];
-    [_chartHelper moveToEnd];
+
     if ([self isGroup]) {
-       self.tvChannels.hidden = NO;
-       self.vCharts.hidden = YES;
+        self.tvChannels.hidden = NO;
+        self.vCharts.hidden = YES;
+        self.btnSettings.hidden = YES;
+        self.btnSchedule.hidden = YES;
     } else {
-       self.tvChannels.hidden = YES;
-       self.vCharts.hidden = NO;
+        self.tvChannels.hidden = YES;
+        self.vCharts.hidden = NO;
+        self.btnSettings.hidden = NO;
+        self.btnSchedule.hidden = NO;
+        [self runDownloadTask];
+        [_chartHelper load];
+        [_chartHelper moveToEnd];
     }
 };
 
@@ -298,13 +304,23 @@
     [self showSettings:self.vSettings.hidden];
 }
 
+- (void)channelGroupUpdateView{
+    [self.tvChannels reloadData];
+}
+
 - (void)updateView {
     if (_refreshLock > [[NSDate date] timeIntervalSince1970]) {
         return;
     }
     
     [self.lCaption setText:[self.channelBase getChannelCaption]];
+    [self.lTemperature setAttributedText:[self.channelBase attrStringValueWithIndex:0 font:self.lTemperature.font]];
 
+    if ([self isGroup]) {
+        [self channelGroupUpdateView];
+        return;
+    }
+    
     SAThermostatHPExtendedValue *thev = nil;
     if (![self.channelBase isKindOfClass:SAChannel.class]
         || (thev = ((SAChannel*)self.channelBase).ev.thermostatHP) == nil) {
@@ -334,7 +350,7 @@
 }
 
 -(BOOL)isGroup {
-    return YES;
+    return [self.channelBase isKindOfClass:[SAChannelGroup class]];
 }
 
 -(void)lockRefreshForATime:(NSTimeInterval)sec {

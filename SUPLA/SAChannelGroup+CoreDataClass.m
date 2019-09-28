@@ -99,8 +99,8 @@
             break;
         case SUPLA_CHANNELFNC_THERMOSTAT_HEATPOL_HOMEPLUS: {
             NSArray *obj = [NSArray arrayWithObjects:[NSNumber numberWithBool: value.hiValue],
-                            [NSNumber numberWithInt: value.measuredTemperature],
-                            [NSNumber numberWithInt: value.presetTemperature], nil];
+                            [NSNumber numberWithDouble: value.measuredTemperature],
+                            [NSNumber numberWithDouble: value.presetTemperature], nil];
             [BufferTotalValue addObject:obj];
         }
             break;
@@ -315,6 +315,77 @@
             return [self rgbValue:2];
     }
     return [[NSMutableArray alloc] init];
+}
+
+- (double)measuredTemperature:(BOOL)measured min:(BOOL)min {
+    
+    double result = -273;
+    
+    if (self.total_value != nil) {
+        NSArray *arr1 = (NSArray*)self.total_value;
+        if (arr1 != nil && [arr1 isKindOfClass:[NSArray class]]) {
+            for(int a=0;a<arr1.count;a++) {
+                NSArray *arr2 = [arr1 objectAtIndex:a];
+
+                if (arr2 != nil
+                    && [arr2 isKindOfClass:[NSArray class]]
+                    && arr2.count >= 3) {
+                    NSNumber *n = [arr2 objectAtIndex:measured ? 1 : 2];
+                    if (n != nil && [n isKindOfClass:[NSNumber class]]) {
+                        double t = [n doubleValue];
+            
+                        if (min) {
+                            if ( (t < result || result <= -273) && t > -273) {
+                                result = t;
+                            }
+                        } else if (t > result) {
+                            result = t;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
+    return result;
+}
+
+- (NSAttributedString*) attrStringValueWithIndex:(int)idx font:(nullable UIFont*)font {
+    if (self.func == SUPLA_CHANNELFNC_THERMOSTAT_HEATPOL_HOMEPLUS) {
+
+        NSString *measured = @"---\u00B0";
+        NSString *preset = @"/---\u00B0";
+        
+        double measuredFrom = [self measuredTemperature:YES min:YES];
+        double measuredTo = [self measuredTemperature:YES min:NO];
+        double presetFrom = [self measuredTemperature:NO min:YES];
+        double presetTo = [self measuredTemperature:NO min:NO];
+        
+        if (measuredFrom > -273) {
+            measured = [NSString stringWithFormat:@"%0.2f\u00B0", measuredFrom];
+            if (measuredTo > -273) {
+               measured = [NSString stringWithFormat:@"%@ - %0.2f\u00B0", measured, measuredTo];
+            }
+        }
+        
+        if (presetFrom > -273) {
+            preset = [NSString stringWithFormat:@"/%0.2f\u00B0", presetFrom];
+            if (presetTo > -273) {
+               preset = [NSString stringWithFormat:@"%@ - %0.2f\u00B0", preset, presetTo];
+            }
+        }
+        
+        NSMutableAttributedString *attrTxt = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"%@%@", measured, preset]];
+        if (font) {
+            [attrTxt addAttribute:NSFontAttributeName
+                            value:[UIFont systemFontOfSize:font.pointSize * 0.7]
+                            range:NSMakeRange(measured.length, preset.length)];
+        }
+
+        return attrTxt;
+    }
+    
+    return [super attrStringValueWithIndex:idx font:font];
 }
 
 @end
