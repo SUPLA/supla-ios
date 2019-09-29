@@ -175,10 +175,18 @@
     ? [super presetTemperature] : [self.value presetTemperature];
 }
 
+- (double) presetTemperatureMin {
+   return self.presetTemperature;
+}
+
 - (double) measuredTemperature {
     return self.value == nil
     || self.func != SUPLA_CHANNELFNC_THERMOSTAT_HEATPOL_HOMEPLUS
     ? [super measuredTemperature] : [self.value measuredTemperature];
+}
+
+- (double) measuredTemperatureMin {
+   return self.measuredTemperature;
 }
 
 - (NSAttributedString*) attrStringValueWithIndex:(int)idx font:(nullable UIFont*)font {

@@ -54,8 +54,13 @@ NS_ASSUME_NONNULL_BEGIN
 - (double) totalForwardActiveEnergy;
 - (double) impulseCounterCalculatedValue;
 - (double) presetTemperature;
+- (double) presetTemperatureMin;
+- (double) presetTemperatureMax;
 - (double) measuredTemperature;
+- (double) measuredTemperatureMin;
+- (double) measuredTemperatureMax;
 - (NSString *) unit;
+- (NSAttributedString*) thermostatAttrStringWithMeasuredTempMin:(double)mmin measuredTempMax:(double)mmax presetTempMin:(double)pmin presetTempMax:(double)pmax font:(nullable UIFont*)font;
 - (NSAttributedString*) attrStringValueWithIndex:(int)idx font:(nullable UIFont*)font;
 - (NSAttributedString*) attrStringValue;
 @end

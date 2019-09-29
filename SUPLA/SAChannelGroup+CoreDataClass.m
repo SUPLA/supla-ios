@@ -350,42 +350,20 @@
     return result;
 }
 
-- (NSAttributedString*) attrStringValueWithIndex:(int)idx font:(nullable UIFont*)font {
-    if (self.func == SUPLA_CHANNELFNC_THERMOSTAT_HEATPOL_HOMEPLUS) {
+- (double) measuredTemperatureMin {
+    return [self measuredTemperature:YES min:YES];
+}
 
-        NSString *measured = @"---\u00B0";
-        NSString *preset = @"/---\u00B0";
-        
-        double measuredFrom = [self measuredTemperature:YES min:YES];
-        double measuredTo = [self measuredTemperature:YES min:NO];
-        double presetFrom = [self measuredTemperature:NO min:YES];
-        double presetTo = [self measuredTemperature:NO min:NO];
-        
-        if (measuredFrom > -273) {
-            measured = [NSString stringWithFormat:@"%0.2f\u00B0", measuredFrom];
-            if (measuredTo > -273) {
-               measured = [NSString stringWithFormat:@"%@ - %0.2f\u00B0", measured, measuredTo];
-            }
-        }
-        
-        if (presetFrom > -273) {
-            preset = [NSString stringWithFormat:@"/%0.2f\u00B0", presetFrom];
-            if (presetTo > -273) {
-               preset = [NSString stringWithFormat:@"%@ - %0.2f\u00B0", preset, presetTo];
-            }
-        }
-        
-        NSMutableAttributedString *attrTxt = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"%@%@", measured, preset]];
-        if (font) {
-            [attrTxt addAttribute:NSFontAttributeName
-                            value:[UIFont systemFontOfSize:font.pointSize * 0.7]
-                            range:NSMakeRange(measured.length, preset.length)];
-        }
+- (double) measuredTemperatureMax {
+    return [self measuredTemperature:YES min:NO];
+}
 
-        return attrTxt;
-    }
-    
-    return [super attrStringValueWithIndex:idx font:font];
+- (double) presetTemperatureMin {
+    return [self measuredTemperature:NO min:YES];
+}
+
+- (double) presetTemperatureMax {
+    return [self measuredTemperature:NO min:NO];
 }
 
 @end

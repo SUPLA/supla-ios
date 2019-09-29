@@ -10,7 +10,7 @@
         <array key="OpenSans-Regular.ttf">
             <string>OpenSans</string>
         </array>
-        <array key="Quicksand-Light.ttf">
+        <array key="Quicksand-Regular.ttf">
             <string>Quicksand-Regular</string>
         </array>
     </customFonts>
@@ -381,6 +381,9 @@
                                                     <integer key="value" value="20"/>
                                                 </userDefinedRuntimeAttribute>
                                             </userDefinedRuntimeAttributes>
+                                            <connections>
+                                                <action selector="onOffTouched:" destination="c9e-qf-AMF" eventType="touchDown" id="HW9-If-5Ci"/>
+                                            </connections>
                                         </button>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RXJ-hp-AST">
                                             <rect key="frame" x="0.0" y="55" width="117.5" height="50"/>
@@ -394,6 +397,9 @@
                                                     <integer key="value" value="20"/>
                                                 </userDefinedRuntimeAttribute>
                                             </userDefinedRuntimeAttributes>
+                                            <connections>
+                                                <action selector="onOffTouched:" destination="c9e-qf-AMF" eventType="touchDown" id="pyy-Y6-O3p"/>
+                                            </connections>
                                         </button>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aTC-ED-ndf">
                                             <rect key="frame" x="122.5" y="55" width="117.5" height="50"/>
@@ -407,6 +413,9 @@
                                                     <integer key="value" value="20"/>
                                                 </userDefinedRuntimeAttribute>
                                             </userDefinedRuntimeAttributes>
+                                            <connections>
+                                                <action selector="onOffTouched:" destination="c9e-qf-AMF" eventType="touchDown" id="DhW-Ab-W2o"/>
+                                            </connections>
                                         </button>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="u97-J1-5hH">
                                             <rect key="frame" x="0.0" y="110" width="117.5" height="50"/>
@@ -420,6 +429,9 @@
                                                     <integer key="value" value="20"/>
                                                 </userDefinedRuntimeAttribute>
                                             </userDefinedRuntimeAttributes>
+                                            <connections>
+                                                <action selector="onOffTouched:" destination="c9e-qf-AMF" eventType="touchDown" id="ZhW-fU-iF4"/>
+                                            </connections>
                                         </button>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pbd-am-y6L">
                                             <rect key="frame" x="122.5" y="110" width="117.5" height="50"/>
@@ -433,6 +445,9 @@
                                                     <integer key="value" value="20"/>
                                                 </userDefinedRuntimeAttribute>
                                             </userDefinedRuntimeAttributes>
+                                            <connections>
+                                                <action selector="onOffTouched:" destination="c9e-qf-AMF" eventType="touchDown" id="hVV-cg-Yxf"/>
+                                            </connections>
                                         </button>
                                     </subviews>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -469,6 +484,9 @@
                                                 <constraint firstAttribute="height" constant="50" id="snk-wf-Ikn"/>
                                             </constraints>
                                             <state key="normal" image="hp_plus.png"/>
+                                            <connections>
+                                                <action selector="plusMinusTouched:" destination="c9e-qf-AMF" eventType="touchDown" id="M1A-6e-lJN"/>
+                                            </connections>
                                         </button>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JHD-an-MIF">
                                             <rect key="frame" x="0.0" y="97.5" width="50" height="50"/>
@@ -477,6 +495,9 @@
                                                 <constraint firstAttribute="width" constant="50" id="yDD-cv-AP1"/>
                                             </constraints>
                                             <state key="normal" backgroundImage="hp_minus.png"/>
+                                            <connections>
+                                                <action selector="plusMinusTouched:" destination="c9e-qf-AMF" eventType="touchDown" id="Fm9-8k-CvE"/>
+                                            </connections>
                                         </button>
                                     </subviews>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -622,14 +643,20 @@
                 <constraint firstItem="Axk-Um-MAu" firstAttribute="top" secondItem="ipw-iZ-DB9" secondAttribute="bottom" constant="5" id="rKb-0a-3xO"/>
             </constraints>
             <connections>
+                <outlet property="btnAuto" destination="pbd-am-y6L" id="Tek-Xs-3dW"/>
                 <outlet property="btnComfortMinus" destination="3nb-Gw-sT9" id="taK-PC-bH1"/>
                 <outlet property="btnComfortPlus" destination="Z09-tG-Dpw" id="yCA-zQ-H11"/>
+                <outlet property="btnEco" destination="aTC-ED-ndf" id="hHR-RB-6gx"/>
                 <outlet property="btnEcoMinus" destination="2h7-yV-VOx" id="wpS-Fm-bdu"/>
                 <outlet property="btnEcoPlus" destination="sbK-XJ-L8t" id="xzL-bx-6gc"/>
                 <outlet property="btnEcoRecuctionMinus" destination="K4V-cj-2JI" id="8J4-Bb-Zyl"/>
                 <outlet property="btnEcoReductionPlus" destination="BLb-Y2-T8U" id="sO9-pu-8H3"/>
+                <outlet property="btnManual" destination="RXJ-hp-AST" id="q5O-jq-0Cy"/>
+                <outlet property="btnOnOff" destination="mxn-xd-sgq" id="Llh-Wn-rgh"/>
+                <outlet property="btnPlus" destination="7ML-nH-Mby" id="RQ6-u7-xkH"/>
                 <outlet property="btnSchedule" destination="afB-uY-18S" id="BgD-Ob-gtq"/>
                 <outlet property="btnSettings" destination="GY8-ih-kht" id="j15-vS-cVt"/>
+                <outlet property="btnTurbo" destination="u97-J1-5hH" id="P7b-cY-Q6x"/>
                 <outlet property="btnTurboMinus" destination="vza-ZU-52a" id="nK7-vJ-RYY"/>
                 <outlet property="btnTurboPlus" destination="2qm-R5-r5m" id="4RB-fo-eZN"/>
                 <outlet property="btnWaterMaxMinus" destination="WYq-lY-x5t" id="6Mt-MK-XIW"/>

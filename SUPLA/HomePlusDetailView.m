@@ -114,6 +114,8 @@
     SAThermostatChartHelper *_chartHelper;
     NSFetchedResultsController *_frc;
     UINib *_cell_nib;
+    double presetTempMin;
+    double presetTempMax;
 }
 
 -(void)detailViewInit {
@@ -313,6 +315,9 @@
         return;
     }
     
+    presetTempMin = self.channelBase.presetTemperatureMin;
+    presetTempMax = self.channelBase.presetTemperatureMax;
+    
     [self.lCaption setText:[self.channelBase getChannelCaption]];
     [self.lTemperature setAttributedText:[self.channelBase attrStringValueWithIndex:0 font:self.lTemperature.font]];
 
@@ -375,8 +380,22 @@
         tcfg.Index = 1;
         tcfg.Index <<= idx;
         tcfg.Temperature[idx] = t * 100.0;
-       
+        
         [client deviceCalCfgCommand:SUPLA_THERMOSTAT_CMD_SET_TEMPERATURE cg:self.channelBase.remote_id group:[self isGroup] data:(char*)&tcfg dataSize:sizeof(TThermostatTemperatureCfg)];
+    }
+}
+
+-(void)calCfgCommand:(int)command charValue:(char)c {
+    SASuplaClient *client = [SAApp SuplaClient];
+    if (client) {
+        [client deviceCalCfgCommand:command cg:self.channelBase.remote_id group:[self isGroup] charValue:c];
+    }
+}
+
+-(void)calCfgCommand:(int)command {
+    SASuplaClient *client = [SAApp SuplaClient];
+    if (client) {
+        [client deviceCalCfgCommand:command cg:self.channelBase.remote_id group:[self isGroup]];
     }
 }
 
@@ -514,6 +533,55 @@
     }
     
     return cell;
+}
+
+- (IBAction)plusMinusTouched:(id)sender {
+    if (sender == self.btnPlus) {
+        presetTempMin++;
+    } else {
+        if (presetTempMax > -273) {
+            presetTempMin = presetTempMax;
+            presetTempMax = -273;
+        }
+        presetTempMin--;
+    }
+    
+    if (presetTempMin > 30) {
+        presetTempMin = 30;
+    } else if (presetTempMin < 10) {
+        presetTempMin = 10;
+    }
+
+     NSAttributedString *attrText = [self.channelBase thermostatAttrStringWithMeasuredTempMin:self.channelBase.measuredTemperatureMin measuredTempMax:self.channelBase.measuredTemperatureMax presetTempMin:presetTempMin presetTempMax:-273 font:self.lTemperature.font];
+    
+    [self.lTemperature setAttributedText:attrText];
+    [self lockRefreshAWhile];
+    [self calCfgSetTemperature:presetTempMin withIndex:0];
+    
+}
+
+- (IBAction)onOffTouched:(id)sender {
+    [self lockRefreshAWhile];
+    
+    int command = 0;
+    char value = 1;
+    
+    if (sender == self.btnOnOff) {
+        command = SUPLA_THERMOSTAT_CMD_TURNON;
+    } else if ( sender == self.btnManual) {
+        [self calCfgCommand:SUPLA_THERMOSTAT_CMD_SET_MODE_NORMAL];
+        return;
+    } else if ( sender == self.btnEco) {
+        command = SUPLA_THERMOSTAT_CMD_SET_MODE_ECO;
+    } else if ( sender == self.btnAuto) {
+        command = SUPLA_THERMOSTAT_CMD_SET_MODE_AUTO;
+    } else if ( sender == self.btnTurbo) {
+        command = SUPLA_THERMOSTAT_CMD_SET_MODE_TURBO;
+    }
+    
+    if (command) {
+        [self calCfgCommand:command charValue:value];
+    }
 }
 
 @end
