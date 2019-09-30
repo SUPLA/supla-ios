@@ -1,0 +1,57 @@
+
+/* Class = "UILabel"; text = "0.00"; ObjectID = "1SC-7w-YLd"; */
+"1SC-7w-YLd.text" = "0.00";
+
+/* Class = "UILabel"; text = "Caption"; ObjectID = "5CF-im-vy5"; */
+"5CF-im-vy5.text" = "Caption";
+
+/* Class = "UILabel"; text = "Duration of the TURBO mode"; ObjectID = "5iX-rc-Viy"; */
+"5iX-rc-Viy.text" = "Duração do modo TURBO";
+
+/* Class = "UILabel"; text = "••••••••••"; ObjectID = "98P-Io-THg"; */
+"98P-Io-THg.text" = "••••••••••";
+
+/* Class = "UILabel"; text = "3 h"; ObjectID = "9Sg-3R-fXZ"; */
+"9Sg-3R-fXZ.text" = "3 h";
+
+/* Class = "UILabel"; text = "22°"; ObjectID = "IsR-fe-GqY"; */
+"IsR-fe-GqY.text" = "22°";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "QMU-9W-tRX"; */
+"QMU-9W-tRX.text" = "Label";
+
+/* Class = "UIButton"; normalTitle = "MANUAL"; ObjectID = "RXJ-hp-AST"; */
+"RXJ-hp-AST.normalTitle" = "NORMAL";
+
+/* Class = "UILabel"; text = "5°"; ObjectID = "RkN-Zh-C5c"; */
+"RkN-Zh-C5c.text" = "5°";
+
+/* Class = "UILabel"; text = "67°"; ObjectID = "VcQ-wF-eIG"; */
+"VcQ-wF-eIG.text" = "67°";
+
+/* Class = "UIButton"; normalTitle = "ECO"; ObjectID = "aTC-ED-ndf"; */
+"aTC-ED-ndf.normalTitle" = "ECO";
+
+/* Class = "UILabel"; text = "17°"; ObjectID = "dn7-Mf-fO1"; */
+"dn7-Mf-fO1.text" = "17°";
+
+/* Class = "UIButton"; normalTitle = "ON"; ObjectID = "mxn-xd-sgq"; */
+"mxn-xd-sgq.normalTitle" = "LIGADO";
+
+/* Class = "UILabel"; text = "Comfort temperature in AUTO mode"; ObjectID = "oUh-5I-hqg"; */
+"oUh-5I-hqg.text" = "Temperatura de conforto no modo AUTO";
+
+/* Class = "UIButton"; normalTitle = "AUTO"; ObjectID = "pbd-am-y6L"; */
+"pbd-am-y6L.normalTitle" = "AUTO";
+
+/* Class = "UILabel"; text = "Maximum water temperature"; ObjectID = "q66-xm-DaZ"; */
+"q66-xm-DaZ.text" = "Temperatura máxima da água";
+
+/* Class = "UILabel"; text = "ECO temperature in AUTO mode"; ObjectID = "sCn-Z8-huV"; */
+"sCn-Z8-huV.text" = "Temperatura ECO no modo AUTO";
+
+/* Class = "UIButton"; normalTitle = "TURBO"; ObjectID = "u97-J1-5hH"; */
+"u97-J1-5hH.normalTitle" = "TURBO";
+
+/* Class = "UILabel"; text = "Temperature reduction in ECO mode"; ObjectID = "wzO-cl-uG7"; */
+"wzO-cl-uG7.text" = "Redução de temperatura no modo ECO";

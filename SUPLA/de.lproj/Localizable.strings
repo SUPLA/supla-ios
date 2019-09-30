@@ -12,8 +12,6 @@
  You should have received a copy of the GNU General Public License
  along with this program; if not, write to the Free Software
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
- 
- Author: Katarzyna Cieslik katarzyna.cieslik@outlook.de
  */
 
 "version" = "version";
@@ -85,3 +83,56 @@
 "[Calibration]" = "[Kalibrierung]";
 "Help" = "Hilfe";
 "Staircase timer" = "Treppenlichtsensor";
+"https://cloud.supla.org/register" = "https://cloud.supla.org/register?lang=de";
+
+"Create an account" = "Konto erstellen";
+"Device is disabled" = "Gerät ist deaktiviert";
+"Access Identifier is disabled" = "Die Zugriffskennung ist deaktiviert";
+"Client Registration is off. Please go to \"Smartphone\" at %@ to activate it." = "Die Client-Registrierung ist deaktiviert. Bitte gehen Sie zu \"Smartphones\" auf %@, um es zu aktivieren.";
+"This client does not have access identifier assigned. Please go to \"Smartphone\" at %@ and get a valid identifier." = "Diesem Client wurde keine Zugriffskennung zugewiesen. Bitte gehen Sie zu \"Smartphones\" auf %@ und holen Sie sich eine gültige ID.";
+
+"Retrieving data from the server..." = "Daten werden vom Server heruntergeladen...";
+"No chart data available." = "Keine Daten für das Diagramm.";
+"Electricity Meter" = "Stromzähler";
+"Water Meter" = "Wasserzähler";
+"Gas Meter" = "Gaszähler";
+
+"Forward active Energy" = "Wirkenergie aufgenommen";
+"Reverse active Energy" = "Wirkenergie zurückgegeben";
+"Consumption in the current month" = "Verbrauch im laufenden Monat";
+"Production in the current month" = "Produktion im laufenden Monat";
+"Minutes" = "Minuten";
+"Hours" = "Stunden";
+"Days" = "Tage";
+"Months" = "Monate";
+"Years" = "Jahre";
+"Minute to minute comparison" = "Vergleich Minute zu Minute";
+"Hour to hour comparison" = "Vergleich Stunde zu Stunde";
+"Day to day comparison" = "Vergleich Tag zu Tag";
+"Month to month comparison" = "Vergleich Monat zu Monat";
+"Year to year comparison" = "Vergleich Jahr zu Jahr";
+"Ranking of hours" = "Ranking der Stunden";
+"Ranking of weekdays" = "Ranking der Wochentage";
+"Ranking of months" = "Ranking der Monate";
+"Consumption according to phases" = "Verbrauch nach Phase";
+"Production according to phases" = "Produktion nach Phase";
+"Last 24 hours" = "Letzte 24 Stunden";
+"Last 7 days" = "Die letzten 7 Tage";
+"Last 30 days" = "Die letzten 30 Tage";
+"Last 90 days" = "Die letzten 90 Tage";
+"All available history" = "Gesamte verfügbare Geschichte";
+"Phase 1" = "Phase 1";
+"Phase 2" = "Phase 2";
+"Phase 3" = "Phase 3";
+"Home+ Heater" = "Heizelement Home+";
+"Comfort" = "Komfort";
+"ECO" = "ECO";
+"No water" = "Wassermangel";
+"Burnt heater" = "Heizgerät verbrannt";
+"Water temperature sensor error" = "Fehler des Wassertemperatursensors";
+"Room temperature sensor error" = "Fehler des Raumtemperatursensors";
+"No network interruptions" = "Netzunterbrechung nicht vorhanden";
+"Room temperature" = "Raumtemperatur";
+"ON" = "EINGESCHALTET";
+"OFF" = "AUSGESCHALTET";
+"h" = "std";

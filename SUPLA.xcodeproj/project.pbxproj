@@ -23,7 +23,6 @@
 		01567449232FD0A100397393 /* SAImpulseCounterExtendedValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 01567448232FD0A100397393 /* SAImpulseCounterExtendedValue.m */; };
 		016EE77423074DDC00FD301C /* production@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 016EE77223074DDC00FD301C /* production@3x.png */; };
 		016EE77523074DDC00FD301C /* consumption@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 016EE77323074DDC00FD301C /* consumption@3x.png */; };
-		017554F322F18E4A00EB58B7 /* HomePlusDetailView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 017554F222F18E4A00EB58B7 /* HomePlusDetailView.xib */; };
 		017554F622F1A62500EB58B7 /* HomePlusDetailView.m in Sources */ = {isa = PBXBuildFile; fileRef = 017554F522F1A62500EB58B7 /* HomePlusDetailView.m */; };
 		017554F822F1CDB900EB58B7 /* heatpollogo@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 017554F722F1CDB900EB58B7 /* heatpollogo@3x.png */; };
 		017554FB22F1D2BE00EB58B7 /* clock@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 017554F922F1D2BE00EB58B7 /* clock@3x.png */; };
@@ -40,7 +39,6 @@
 		019D22F0233CC2D000F17135 /* SAPreloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 019D22EF233CC2D000F17135 /* SAPreloader.m */; };
 		01BDAC7522C518DE00915646 /* SARestApiClientTask.m in Sources */ = {isa = PBXBuildFile; fileRef = 01BDAC7422C518DE00915646 /* SARestApiClientTask.m */; };
 		01BDAC7822C5200600915646 /* SAOAuthToken.m in Sources */ = {isa = PBXBuildFile; fileRef = 01BDAC7722C5200600915646 /* SAOAuthToken.m */; };
-		01BE3C84233EA1CE00201B47 /* HomePlusDetailViewGroupCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 01BE3C83233EA1CE00201B47 /* HomePlusDetailViewGroupCell.xib */; };
 		01BE3C87233EAFEC00201B47 /* HomePlusDetailViewGroupCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 01BE3C86233EAFEC00201B47 /* HomePlusDetailViewGroupCell.m */; };
 		01C1718F22C7F3A2005983E1 /* SAIncrementalMeasurementItem+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 01C1718522C7F3A2005983E1 /* SAIncrementalMeasurementItem+CoreDataClass.m */; };
 		01C1719022C7F3A2005983E1 /* SAIncrementalMeasurementItem+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 01C1718622C7F3A2005983E1 /* SAIncrementalMeasurementItem+CoreDataProperties.m */; };
@@ -49,6 +47,8 @@
 		01C1719922C7F55B005983E1 /* SAMeasurementItem+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 01C1719722C7F55B005983E1 /* SAMeasurementItem+CoreDataClass.m */; };
 		01C1719A22C7F55B005983E1 /* SAMeasurementItem+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 01C1719822C7F55B005983E1 /* SAMeasurementItem+CoreDataProperties.m */; };
 		01C792FA22B7FB610020A900 /* SAChannelExtendedValue+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 01C792E822B7FB600020A900 /* SAChannelExtendedValue+CoreDataClass.m */; };
+		01C8EBCD23422AC50072AB8C /* HomePlusDetailViewGroupCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 01C8EBCF23422AC50072AB8C /* HomePlusDetailViewGroupCell.xib */; };
+		01C8EBFA234232EC0072AB8C /* HomePlusDetailView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 01C8EBFC234232EC0072AB8C /* HomePlusDetailView.xib */; };
 		01D0616E22C294D90043C947 /* ElectricityMeterDetailView.m in Sources */ = {isa = PBXBuildFile; fileRef = 01D0616D22C294D90043C947 /* ElectricityMeterDetailView.m */; };
 		01D0617122C296850043C947 /* ElectricityMeterDetailView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 01D0617322C296850043C947 /* ElectricityMeterDetailView.xib */; };
 		01D2C38D22C3B0A700BF1A10 /* graphon.png in Resources */ = {isa = PBXBuildFile; fileRef = 01D2C38B22C3B0A700BF1A10 /* graphon.png */; };
@@ -364,7 +364,6 @@
 		01567448232FD0A100397393 /* SAImpulseCounterExtendedValue.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SAImpulseCounterExtendedValue.m; sourceTree = "<group>"; };
 		016EE77223074DDC00FD301C /* production@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "production@3x.png"; path = "Resources/Assets/Img/production@3x.png"; sourceTree = "<group>"; };
 		016EE77323074DDC00FD301C /* consumption@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "consumption@3x.png"; path = "Resources/Assets/Img/consumption@3x.png"; sourceTree = "<group>"; };
-		017554F222F18E4A00EB58B7 /* HomePlusDetailView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomePlusDetailView.xib; sourceTree = "<group>"; };
 		017554F422F1A62500EB58B7 /* HomePlusDetailView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HomePlusDetailView.h; sourceTree = "<group>"; };
 		017554F522F1A62500EB58B7 /* HomePlusDetailView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HomePlusDetailView.m; sourceTree = "<group>"; };
 		017554F722F1CDB900EB58B7 /* heatpollogo@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "heatpollogo@3x.png"; path = "Resources/Assets/Img/heatpollogo@3x.png"; sourceTree = "<group>"; };
@@ -393,7 +392,6 @@
 		01BDAC7422C518DE00915646 /* SARestApiClientTask.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SARestApiClientTask.m; sourceTree = "<group>"; };
 		01BDAC7622C5200600915646 /* SAOAuthToken.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SAOAuthToken.h; sourceTree = "<group>"; };
 		01BDAC7722C5200600915646 /* SAOAuthToken.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SAOAuthToken.m; sourceTree = "<group>"; };
-		01BE3C83233EA1CE00201B47 /* HomePlusDetailViewGroupCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomePlusDetailViewGroupCell.xib; sourceTree = "<group>"; };
 		01BE3C85233EAFEC00201B47 /* HomePlusDetailViewGroupCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HomePlusDetailViewGroupCell.h; sourceTree = "<group>"; };
 		01BE3C86233EAFEC00201B47 /* HomePlusDetailViewGroupCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HomePlusDetailViewGroupCell.m; sourceTree = "<group>"; };
 		01C1718322C7F3A2005983E1 /* SAIncrementalMeasurementItem+CoreDataProperties.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SAIncrementalMeasurementItem+CoreDataProperties.h"; sourceTree = "<group>"; };
@@ -411,6 +409,34 @@
 		01C792E722B7FB600020A900 /* SAChannelExtendedValue+CoreDataClass.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SAChannelExtendedValue+CoreDataClass.h"; sourceTree = "<group>"; };
 		01C792E822B7FB600020A900 /* SAChannelExtendedValue+CoreDataClass.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "SAChannelExtendedValue+CoreDataClass.m"; sourceTree = "<group>"; };
 		01C792E922B7FB600020A900 /* SAChannelExtendedValue+CoreDataProperties.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "SAChannelExtendedValue+CoreDataProperties.m"; sourceTree = "<group>"; };
+		01C8EBCE23422AC50072AB8C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/HomePlusDetailViewGroupCell.xib; sourceTree = "<group>"; };
+		01C8EBE323422B6E0072AB8C /* cs */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = cs; path = cs.lproj/HomePlusDetailViewGroupCell.strings; sourceTree = "<group>"; };
+		01C8EBE523422B770072AB8C /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/HomePlusDetailViewGroupCell.strings; sourceTree = "<group>"; };
+		01C8EBE723422B790072AB8C /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/HomePlusDetailViewGroupCell.strings; sourceTree = "<group>"; };
+		01C8EBE923422B850072AB8C /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/HomePlusDetailViewGroupCell.strings; sourceTree = "<group>"; };
+		01C8EBEB23422B870072AB8C /* lt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = lt; path = lt.lproj/HomePlusDetailViewGroupCell.strings; sourceTree = "<group>"; };
+		01C8EBED23422B880072AB8C /* pl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pl; path = pl.lproj/HomePlusDetailViewGroupCell.strings; sourceTree = "<group>"; };
+		01C8EBEF23422B890072AB8C /* pt-PT */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-PT"; path = "pt-PT.lproj/HomePlusDetailViewGroupCell.strings"; sourceTree = "<group>"; };
+		01C8EBF123422B890072AB8C /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/HomePlusDetailViewGroupCell.strings; sourceTree = "<group>"; };
+		01C8EBF323422B8A0072AB8C /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/HomePlusDetailViewGroupCell.strings; sourceTree = "<group>"; };
+		01C8EBF523422FC80072AB8C /* cs */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = cs; path = cs.lproj/ElectricityMeterDetailView.strings; sourceTree = "<group>"; };
+		01C8EBF72342312D0072AB8C /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/ElectricityMeterDetailView.strings; sourceTree = "<group>"; };
+		01C8EBF9234232D10072AB8C /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/ElectricityMeterDetailView.strings; sourceTree = "<group>"; };
+		01C8EBFB234232EC0072AB8C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/HomePlusDetailView.xib; sourceTree = "<group>"; };
+		01C8EBFE234232F60072AB8C /* pl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pl; path = pl.lproj/HomePlusDetailView.strings; sourceTree = "<group>"; };
+		01C8EC00234235760072AB8C /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/ElectricityMeterDetailView.strings; sourceTree = "<group>"; };
+		01C8EC022342368E0072AB8C /* lt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = lt; path = lt.lproj/ElectricityMeterDetailView.strings; sourceTree = "<group>"; };
+		01C8EC04234237940072AB8C /* pt-PT */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-PT"; path = "pt-PT.lproj/ElectricityMeterDetailView.strings"; sourceTree = "<group>"; };
+		01C8EC062342387A0072AB8C /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/ElectricityMeterDetailView.strings; sourceTree = "<group>"; };
+		01C8EC0823423A230072AB8C /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/ElectricityMeterDetailView.strings; sourceTree = "<group>"; };
+		01C8EC0A23423B290072AB8C /* cs */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = cs; path = cs.lproj/HomePlusDetailView.strings; sourceTree = "<group>"; };
+		01C8EC0C23423B930072AB8C /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/HomePlusDetailView.strings; sourceTree = "<group>"; };
+		01C8EC0E23423C010072AB8C /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/HomePlusDetailView.strings; sourceTree = "<group>"; };
+		01C8EC1023423C8F0072AB8C /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/HomePlusDetailView.strings; sourceTree = "<group>"; };
+		01C8EC1223423F650072AB8C /* lt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = lt; path = lt.lproj/HomePlusDetailView.strings; sourceTree = "<group>"; };
+		01C8EC14234243BE0072AB8C /* pt-PT */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-PT"; path = "pt-PT.lproj/HomePlusDetailView.strings"; sourceTree = "<group>"; };
+		01C8EC162342441B0072AB8C /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/HomePlusDetailView.strings; sourceTree = "<group>"; };
+		01C8EC182342449A0072AB8C /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/HomePlusDetailView.strings; sourceTree = "<group>"; };
 		01D0616C22C294D90043C947 /* ElectricityMeterDetailView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ElectricityMeterDetailView.h; sourceTree = "<group>"; };
 		01D0616D22C294D90043C947 /* ElectricityMeterDetailView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ElectricityMeterDetailView.m; sourceTree = "<group>"; };
 		01D0617222C296850043C947 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/ElectricityMeterDetailView.xib; sourceTree = "<group>"; };
@@ -1366,7 +1392,7 @@
 				01D0616C22C294D90043C947 /* ElectricityMeterDetailView.h */,
 				01D0616D22C294D90043C947 /* ElectricityMeterDetailView.m */,
 				01D0617322C296850043C947 /* ElectricityMeterDetailView.xib */,
-				017554F222F18E4A00EB58B7 /* HomePlusDetailView.xib */,
+				01C8EBFC234232EC0072AB8C /* HomePlusDetailView.xib */,
 				403150FA1DC769430075D2D2 /* RGBDetailView.m */,
 				40CE7C631DCBBCE400BBACE4 /* DepthCell.xib */,
 				40CE7C6D1DCBBF6D00BBACE4 /* DistanceCell.xib */,
@@ -1390,7 +1416,7 @@
 				0122613822F396440013E6A2 /* SAThermostatCalendar.m */,
 				019D22EE233CC2D000F17135 /* SAPreloader.h */,
 				019D22EF233CC2D000F17135 /* SAPreloader.m */,
-				01BE3C83233EA1CE00201B47 /* HomePlusDetailViewGroupCell.xib */,
+				01C8EBCF23422AC50072AB8C /* HomePlusDetailViewGroupCell.xib */,
 			);
 			name = UI;
 			sourceTree = "<group>";
@@ -1714,10 +1740,10 @@
 				40CF96BC1BC7D4E70030EFFF /* light-on@2x.png in Resources */,
 				4052DA0A1DC515AE000B8C45 /* dimmer-on@3x.png in Resources */,
 				40CF96AD1BC7D4E70030EFFF /* door-open@3x.png in Resources */,
-				01BE3C84233EA1CE00201B47 /* HomePlusDetailViewGroupCell.xib in Resources */,
+				01C8EBCD23422AC50072AB8C /* HomePlusDetailViewGroupCell.xib in Resources */,
 				40CF96D91BC81A470030EFFF /* error@3x.png in Resources */,
 				40A87DE01FADDFF900918B54 /* add_device@2x.png in Resources */,
-				017554F322F18E4A00EB58B7 /* HomePlusDetailView.xib in Resources */,
+				01C8EBFA234232EC0072AB8C /* HomePlusDetailView.xib in Resources */,
 				405AC4311BC158E8004F7311 /* OpenSans-Bold.ttf in Resources */,
 				40B9ED471FACCE8700403B1A /* tv-off@2x.png in Resources */,
 				4091654B1F3CBAF200F49193 /* rs_stop.png in Resources */,
@@ -1928,11 +1954,53 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		01C8EBCF23422AC50072AB8C /* HomePlusDetailViewGroupCell.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				01C8EBCE23422AC50072AB8C /* Base */,
+				01C8EBE323422B6E0072AB8C /* cs */,
+				01C8EBE523422B770072AB8C /* fr */,
+				01C8EBE723422B790072AB8C /* de */,
+				01C8EBE923422B850072AB8C /* it */,
+				01C8EBEB23422B870072AB8C /* lt */,
+				01C8EBED23422B880072AB8C /* pl */,
+				01C8EBEF23422B890072AB8C /* pt-PT */,
+				01C8EBF123422B890072AB8C /* ru */,
+				01C8EBF323422B8A0072AB8C /* es */,
+			);
+			name = HomePlusDetailViewGroupCell.xib;
+			sourceTree = "<group>";
+		};
+		01C8EBFC234232EC0072AB8C /* HomePlusDetailView.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				01C8EBFB234232EC0072AB8C /* Base */,
+				01C8EBFE234232F60072AB8C /* pl */,
+				01C8EC0A23423B290072AB8C /* cs */,
+				01C8EC0C23423B930072AB8C /* fr */,
+				01C8EC0E23423C010072AB8C /* de */,
+				01C8EC1023423C8F0072AB8C /* it */,
+				01C8EC1223423F650072AB8C /* lt */,
+				01C8EC14234243BE0072AB8C /* pt-PT */,
+				01C8EC162342441B0072AB8C /* ru */,
+				01C8EC182342449A0072AB8C /* es */,
+			);
+			name = HomePlusDetailView.xib;
+			sourceTree = "<group>";
+		};
 		01D0617322C296850043C947 /* ElectricityMeterDetailView.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
 				01D0617222C296850043C947 /* Base */,
 				01FB5D7F22CF98D200E9EA08 /* pl */,
+				01C8EBF523422FC80072AB8C /* cs */,
+				01C8EBF72342312D0072AB8C /* fr */,
+				01C8EBF9234232D10072AB8C /* de */,
+				01C8EC00234235760072AB8C /* it */,
+				01C8EC022342368E0072AB8C /* lt */,
+				01C8EC04234237940072AB8C /* pt-PT */,
+				01C8EC062342387A0072AB8C /* ru */,
+				01C8EC0823423A230072AB8C /* es */,
 			);
 			name = ElectricityMeterDetailView.xib;
 			sourceTree = "<group>";

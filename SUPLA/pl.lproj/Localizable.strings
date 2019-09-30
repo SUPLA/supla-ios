@@ -12,8 +12,6 @@
  You should have received a copy of the GNU General Public License
  along with this program; if not, write to the Free Software
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
- 
- Author: Przemyslaw Zygmunt p.zygmunt@acsoftware.pl [AC SOFTWARE]
  */
 
 "version" = "wersja";
@@ -91,6 +89,7 @@
 "Help" = "Pomoc";
 "https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=L4N7RSWME6LG2" = "https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=QYN932S5UQG8N";
 "Staircase timer" = "Automat schodowy";
+"https://cloud.supla.org/register" = "https://cloud.supla.org/register?lang=pl";
 
 "Retrieving data from the server..." = "Pobieranie danych z serwera...";
 "No chart data available." = "Brak danych dla wykresu.";
@@ -136,3 +135,4 @@
 "Room temperature" = "Temperatura w pomieszczeniu";
 "ON" = "WŁĄCZONY";
 "OFF" = "WYŁĄCZONY";
+"h" = "godz.";

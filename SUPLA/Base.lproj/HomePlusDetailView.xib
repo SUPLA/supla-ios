@@ -10,7 +10,7 @@
         <array key="OpenSans-Regular.ttf">
             <string>OpenSans</string>
         </array>
-        <array key="Quicksand-Regular.ttf">
+        <array key="Quicksand-Light.ttf">
             <string>Quicksand-Regular</string>
         </array>
     </customFonts>
@@ -25,10 +25,10 @@
                     <rect key="frame" x="10" y="45" width="300" height="363"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Qxh-vw-MlA">
-                            <rect key="frame" x="45" y="36" width="210" height="30"/>
+                            <rect key="frame" x="45" y="35.5" width="210" height="30"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="3 h" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Sg-3R-fXZ">
-                                    <rect key="frame" x="33" y="4.5" width="144" height="21"/>
+                                    <rect key="frame" x="33" y="5" width="144" height="20.5"/>
                                     <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="15"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
@@ -63,34 +63,34 @@
                             </constraints>
                         </view>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Duration of the TURBO mode" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5iX-rc-Viy">
-                            <rect key="frame" x="0.0" y="10" width="205" height="21"/>
+                            <rect key="frame" x="0.0" y="10" width="205" height="20.5"/>
                             <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="15"/>
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Maximum water temperature" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="q66-xm-DaZ">
-                            <rect key="frame" x="0.0" y="76" width="207" height="21"/>
+                            <rect key="frame" x="0.0" y="75.5" width="206.5" height="20.5"/>
                             <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="15"/>
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Temperature reduction in ECO mode" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wzO-cl-uG7">
-                            <rect key="frame" x="0.0" y="142" width="256" height="21"/>
+                            <rect key="frame" x="0.0" y="141" width="256" height="20.5"/>
                             <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="15"/>
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ECO temperature in AUTO mode" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sCn-Z8-huV">
-                            <rect key="frame" x="0.0" y="274" width="227" height="21"/>
+                            <rect key="frame" x="0.0" y="272" width="227" height="20.5"/>
                             <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="15"/>
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WGj-bH-DmZ">
-                            <rect key="frame" x="45" y="102" width="210" height="30"/>
+                            <rect key="frame" x="45" y="101" width="210" height="30"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="67°" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VcQ-wF-eIG">
-                                    <rect key="frame" x="33" y="4.5" width="144" height="21"/>
+                                    <rect key="frame" x="33" y="5" width="144" height="20.5"/>
                                     <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="15"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
@@ -125,10 +125,10 @@
                             </constraints>
                         </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="acF-NT-6KJ">
-                            <rect key="frame" x="45" y="168" width="210" height="30"/>
+                            <rect key="frame" x="45" y="166.5" width="210" height="30"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="5°" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RkN-Zh-C5c">
-                                    <rect key="frame" x="33" y="4.5" width="144" height="21"/>
+                                    <rect key="frame" x="33" y="5" width="144" height="20.5"/>
                                     <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="15"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
@@ -163,16 +163,16 @@
                             </constraints>
                         </view>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Comfort temperature in AUTO mode" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oUh-5I-hqg">
-                            <rect key="frame" x="0.0" y="208" width="256" height="21"/>
+                            <rect key="frame" x="0.0" y="206.5" width="256" height="20.5"/>
                             <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="15"/>
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="We7-JK-U3d">
-                            <rect key="frame" x="45" y="234" width="210" height="30"/>
+                            <rect key="frame" x="45" y="232" width="210" height="30"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="22°" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IsR-fe-GqY">
-                                    <rect key="frame" x="33" y="4.5" width="144" height="21"/>
+                                    <rect key="frame" x="33" y="5" width="144" height="20.5"/>
                                     <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="15"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
@@ -207,10 +207,10 @@
                             </constraints>
                         </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VVz-p0-3af">
-                            <rect key="frame" x="45" y="300" width="210" height="30"/>
+                            <rect key="frame" x="45" y="297.5" width="210" height="30"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="17°" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dn7-Mf-fO1">
-                                    <rect key="frame" x="33" y="4.5" width="144" height="21"/>
+                                    <rect key="frame" x="33" y="5" width="144" height="20.5"/>
                                     <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="15"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
@@ -651,7 +651,7 @@
                 <outlet property="btnEcoPlus" destination="sbK-XJ-L8t" id="xzL-bx-6gc"/>
                 <outlet property="btnEcoRecuctionMinus" destination="K4V-cj-2JI" id="8J4-Bb-Zyl"/>
                 <outlet property="btnEcoReductionPlus" destination="BLb-Y2-T8U" id="sO9-pu-8H3"/>
-                <outlet property="btnManual" destination="RXJ-hp-AST" id="q5O-jq-0Cy"/>
+                <outlet property="btnNormal" destination="RXJ-hp-AST" id="q5O-jq-0Cy"/>
                 <outlet property="btnOnOff" destination="mxn-xd-sgq" id="Llh-Wn-rgh"/>
                 <outlet property="btnPlus" destination="7ML-nH-Mby" id="RQ6-u7-xkH"/>
                 <outlet property="btnSchedule" destination="afB-uY-18S" id="BgD-Ob-gtq"/>
