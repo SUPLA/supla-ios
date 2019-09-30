@@ -70,7 +70,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UILabel *lTemperature;
 @property (weak, nonatomic) IBOutlet UIButton *btnPlus;
 @property (weak, nonatomic) IBOutlet UIButton *btnOnOff;
-@property (weak, nonatomic) IBOutlet UIButton *btnManual;
+@property (weak, nonatomic) IBOutlet UIButton *btnNormal;
 @property (weak, nonatomic) IBOutlet UIButton *btnEco;
 @property (weak, nonatomic) IBOutlet UIButton *btnTurbo;
 @property (weak, nonatomic) IBOutlet UIButton *btnAuto;

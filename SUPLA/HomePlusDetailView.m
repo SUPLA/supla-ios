@@ -34,6 +34,13 @@
 #define PROG_ECO 1
 #define PROG_COMFORT 2
 
+typedef enum {
+    kOFF = 0,
+    kON = 1,
+    kUNKNOWN = 2,
+    kTOOGLE = 3
+} _e_hpBtnApperance;
+
 @implementation SAHomePlusCfgItem {
     UIButton *_btnMinus;
     UIButton *_btnPlus;
@@ -114,8 +121,9 @@
     SAThermostatChartHelper *_chartHelper;
     NSFetchedResultsController *_frc;
     UINib *_cell_nib;
-    double presetTempMin;
-    double presetTempMax;
+    double _presetTempMin;
+    double _presetTempMax;
+    NSTimer *_refreshTimer1;
 }
 
 -(void)detailViewInit {
@@ -188,6 +196,8 @@
                               cfgId:CFGID_TEMP_ECO
                               delegate:self]];
     }
+    
+    _refreshTimer1 = nil;
     [super detailViewInit];
 }
 
@@ -266,11 +276,24 @@
     }
 }
 
+-(void)refreshTimerCancel {
+    if (_refreshTimer1) {
+        [_refreshTimer1 invalidate];
+        _refreshTimer1 = nil;
+    }
+}
+
+-(void)onRefreshTimer:(NSTimer*)timer {
+    [self updateView];
+}
+
 -(void)onDetailShow {
     _frc = nil;
     [self showMainView];
     [self showErrorMessage:nil];
     self.lPreloader.hidden = YES;
+    
+    [self setBtnsOffWithExclude:nil];
 
     if ([self isGroup]) {
         self.tvChannels.hidden = NO;
@@ -286,6 +309,9 @@
         [_chartHelper load];
         [_chartHelper moveToEnd];
     }
+    
+    [self updateView];
+    _refreshTimer1 = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(onRefreshTimer:) userInfo:nil repeats:NO];
 };
 
 -(void)onDetailHide {
@@ -306,32 +332,108 @@
     [self showSettings:self.vSettings.hidden];
 }
 
-- (void)channelGroupUpdateView{
+- (void)loadChannelList{
+    _frc = nil;
+    
+    _e_hpBtnApperance onOffBtnApperance = kUNKNOWN;
+    _e_hpBtnApperance normalBtnApperance = kUNKNOWN;
+    _e_hpBtnApperance ecoBtnApperance = kUNKNOWN;
+    _e_hpBtnApperance turboBtnApperance = kUNKNOWN;
+    _e_hpBtnApperance autoBtnApperance = kUNKNOWN;
+    
+    NSArray *channels = [self.fetchedResultsController fetchedObjects];
+    for(int a=0;a<channels.count;a++) {
+        SAChannel *channel = [channels objectAtIndex:a];
+        SAThermostatHPExtendedValue *thev = nil;
+
+        BOOL thermostatOn = NO;
+        BOOL normalOn = NO;
+        BOOL ecoReductionApplied = NO;
+        BOOL turboOn = NO;
+        BOOL autoOn = NO;
+        
+        if (channel
+            && [channel isKindOfClass:[SAChannel class]]
+            && (thev = channel.ev.thermostatHP) != nil) {
+            
+            thermostatOn = [thev isThermostatOn];
+            normalOn = [thev isNormalOn];
+            ecoReductionApplied = [thev isEcoRecuctionApplied];
+            turboOn = [thev isTurboOn];
+            autoOn = [thev isAutoOn];
+        }
+        
+        if (a == 0) {
+            onOffBtnApperance = thermostatOn ? kON : kOFF;
+            normalBtnApperance = normalOn ? kON : kOFF;
+            ecoBtnApperance = ecoReductionApplied ? kON : kOFF;
+            turboBtnApperance = turboOn ? kON : kOFF;
+            autoBtnApperance = autoOn ? kON : kOFF;
+        } else {
+            if (onOffBtnApperance != kUNKNOWN
+                && onOffBtnApperance != (thermostatOn ? kON : kOFF)) {
+                onOffBtnApperance = kUNKNOWN;
+            }
+            
+            if (normalBtnApperance != kUNKNOWN
+                && normalBtnApperance != (normalOn ? kON : kOFF)) {
+                normalBtnApperance = kUNKNOWN;
+            }
+            
+            if (ecoBtnApperance != kUNKNOWN
+                && ecoBtnApperance != (ecoReductionApplied ? kON : kOFF)) {
+                ecoBtnApperance = kUNKNOWN;
+            }
+            
+            if (turboBtnApperance != kUNKNOWN
+                  && turboBtnApperance != (turboOn ? kON : kOFF)) {
+                  turboBtnApperance = kUNKNOWN;
+            }
+            
+            if (autoBtnApperance != kUNKNOWN
+                  && autoBtnApperance != (autoOn ? kON : kOFF)) {
+                  autoBtnApperance = kUNKNOWN;
+            }
+        }
+        
+    }
+    
+    [self setBtnApperance:onOffBtnApperance button:self.btnOnOff];
+    [self setBtnApperance:normalBtnApperance button:self.btnNormal];
+    [self setBtnApperance:ecoBtnApperance button:self.btnEco];
+    [self setBtnApperance:turboBtnApperance button:self.btnTurbo];
+    [self setBtnApperance:autoBtnApperance button:self.btnAuto];
+    
     [self.tvChannels reloadData];
 }
 
 - (void)updateView {
+    if ([self isGroup]) {
+        [self loadChannelList];
+    }
+    
     if (_refreshLock > [[NSDate date] timeIntervalSince1970]) {
         return;
     }
     
-    presetTempMin = self.channelBase.presetTemperatureMin;
-    presetTempMax = self.channelBase.presetTemperatureMax;
+    _presetTempMin = self.channelBase.presetTemperatureMin;
+    _presetTempMax = self.channelBase.presetTemperatureMax;
     
     [self.lCaption setText:[self.channelBase getChannelCaption]];
     [self.lTemperature setAttributedText:[self.channelBase attrStringValueWithIndex:0 font:self.lTemperature.font]];
-
-    if ([self isGroup]) {
-        [self channelGroupUpdateView];
-        return;
-    }
-    
+        
     SAThermostatHPExtendedValue *thev = nil;
     if (![self.channelBase isKindOfClass:SAChannel.class]
         || (thev = ((SAChannel*)self.channelBase).ev.thermostatHP) == nil) {
         return;
     }
 
+    [self setBtnApperance:[thev isThermostatOn] ? kON : kOFF button:self.btnOnOff];
+    [self setBtnApperance:[thev isNormalOn] ? kON : kOFF button:self.btnNormal];
+    [self setBtnApperance:[thev isEcoRecuctionApplied] ? kON : kOFF button:self.btnEco];
+    [self setBtnApperance:[thev isAutoOn] ? kON : kOFF button:self.btnAuto];
+    [self setBtnApperance:[thev isTurboOn] ? kON : kOFF button:self.btnTurbo];
+    
     [self setCfgValue:thev.turboTime cfgId:CFGID_TURBO_TIME];
     [self setCfgValue:thev.waterMax cfgId:CFGID_WATER_MAX];
     [self setCfgValue:thev.ecoReductionTemperature cfgId:CFGID_ECO_REDUCTION];
@@ -363,7 +465,7 @@
 }
 
 -(void)lockRefreshAWhile {
-    [self lockRefreshForATime:[self isGroup] ? 4 : 2];
+    [self lockRefreshForATime:[self isGroup] ? 4 : 3];
 }
 
 -(void)calCfgSetTemperature:(double)t withIndex:(short)idx {
@@ -510,12 +612,7 @@
     return _frc;
 }
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    NSFetchedResultsController *frc = self.fetchedResultsController;
-    return frc ? [[frc sections] count] : 0;
-}
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+- (NSInteger)channelCountInSection:(NSInteger)section {
     NSFetchedResultsController *frc = self.fetchedResultsController;
     if ( frc ) {
         id <NSFetchedResultsSectionInfo> sectionInfo = [[frc sections] objectAtIndex:section];
@@ -523,6 +620,19 @@
     }
     
     return 0;
+}
+
+- (NSInteger)sectionCount {
+    NSFetchedResultsController *frc = self.fetchedResultsController;
+    return frc ? [[frc sections] count] : 0;
+}
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    return [self sectionCount];
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return [self channelCountInSection:section];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -535,42 +645,86 @@
     return cell;
 }
 
-- (IBAction)plusMinusTouched:(id)sender {
-    if (sender == self.btnPlus) {
-        presetTempMin++;
-    } else {
-        if (presetTempMax > -273) {
-            presetTempMin = presetTempMax;
-            presetTempMax = -273;
-        }
-        presetTempMin--;
+- (_e_hpBtnApperance) setBtnApperance:(_e_hpBtnApperance)apperance button:(UIButton*)btn {
+    
+    if (apperance == kTOOGLE) {
+        apperance = btn.tag == 1 ? kOFF : kON;
     }
     
-    if (presetTempMin > 30) {
-        presetTempMin = 30;
-    } else if (presetTempMin < 10) {
-        presetTempMin = 10;
+    btn.tag = apperance == kON ? 1 : 0;
+    switch (apperance) {
+        case kON:
+            btn.backgroundColor = [UIColor hpBtnOn];
+            break;
+        case kOFF:
+            btn.backgroundColor = [UIColor hpBtnOff];
+            break;
+        case kUNKNOWN:
+            btn.backgroundColor = [UIColor hpBtnUnknown];
+            break;
+        default:
+            break;
+    }
+    return apperance;
+}
+
+- (IBAction)plusMinusTouched:(id)sender {
+    if (sender == self.btnPlus) {
+        _presetTempMin++;
+    } else {
+        if (_presetTempMax > -273) {
+            _presetTempMin = _presetTempMax;
+            _presetTempMax = -273;
+        }
+        _presetTempMin--;
+    }
+    
+    if (_presetTempMin > 30) {
+        _presetTempMin = 30;
+    } else if (_presetTempMin < 10) {
+        _presetTempMin = 10;
     }
 
-     NSAttributedString *attrText = [self.channelBase thermostatAttrStringWithMeasuredTempMin:self.channelBase.measuredTemperatureMin measuredTempMax:self.channelBase.measuredTemperatureMax presetTempMin:presetTempMin presetTempMax:-273 font:self.lTemperature.font];
+     NSAttributedString *attrText = [self.channelBase thermostatAttrStringWithMeasuredTempMin:self.channelBase.measuredTemperatureMin measuredTempMax:self.channelBase.measuredTemperatureMax presetTempMin:_presetTempMin presetTempMax:-273 font:self.lTemperature.font];
     
     [self.lTemperature setAttributedText:attrText];
     [self lockRefreshAWhile];
-    [self calCfgSetTemperature:presetTempMin withIndex:0];
+    [self calCfgSetTemperature:_presetTempMin withIndex:0];
     
+}
+
+- (void)setBtn:(UIButton *)btn offIfNotExcluded:(NSArray *)exclude {
+    if (!exclude || [exclude indexOfObject:btn] == NSNotFound) {
+       [self setBtnApperance:[self isGroup] ? kUNKNOWN : kOFF button:btn];
+    }
+}
+
+- (void)setBtnsOffWithExclude:(NSArray *)exclude {
+    [self setBtn:self.btnOnOff offIfNotExcluded:exclude];
+    [self setBtn:self.btnNormal offIfNotExcluded:exclude];
+    [self setBtn:self.btnEco offIfNotExcluded:exclude];
+    [self setBtn:self.btnAuto offIfNotExcluded:exclude];
+    [self setBtn:self.btnTurbo offIfNotExcluded:exclude];
 }
 
 - (IBAction)onOffTouched:(id)sender {
     [self lockRefreshAWhile];
     
+    if ( sender == self.btnNormal) {
+        [self setBtnApperance:kON button:sender];
+        [self calCfgCommand:SUPLA_THERMOSTAT_CMD_SET_MODE_NORMAL];
+        [self setBtnsOffWithExclude:@[sender, self.btnOnOff]];
+        return;
+    }
+    
     int command = 0;
-    char value = 1;
+    char value = [self setBtnApperance:kTOOGLE button:sender] == kON ? 1 : 0;
     
     if (sender == self.btnOnOff) {
         command = SUPLA_THERMOSTAT_CMD_TURNON;
-    } else if ( sender == self.btnManual) {
-        [self calCfgCommand:SUPLA_THERMOSTAT_CMD_SET_MODE_NORMAL];
-        return;
+        if (value == 0) {
+            [self setBtnsOffWithExclude:nil];
+        }
     } else if ( sender == self.btnEco) {
         command = SUPLA_THERMOSTAT_CMD_SET_MODE_ECO;
     } else if ( sender == self.btnAuto) {
@@ -581,6 +735,10 @@
     
     if (command) {
         [self calCfgCommand:command charValue:value];
+    }
+    
+    if (value == 1 && sender != self.btnOnOff) {
+        [self setBtnsOffWithExclude:@[sender, self.btnOnOff]];
     }
 }
 

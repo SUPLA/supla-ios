@@ -59,7 +59,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     
     self.status.shapeType = stDot;
     if (_channelBase != nil) {
-        [self.lCaption setText:[channelBase getChannelCaption]];
         self.status.percent = _channelBase.onlinePercent;
         
         if (_channelBase.onlinePercent == 100) {
@@ -74,6 +73,11 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
             [self setEcoOn:[thev isEcoRecuctionApplied]];
             [self setAutoOn:[thev isAutoOn]];
             [self setTurboOn:[thev isTurboOn]];
+            
+            [self.lCaption setText:[NSString stringWithFormat:@"%@ | %@", [channelBase getChannelCaption], [[channelBase attrStringValue] string]]];
+            
+        } else {
+            [self.lCaption setText:[channelBase getChannelCaption]];
         }
     }
 }
