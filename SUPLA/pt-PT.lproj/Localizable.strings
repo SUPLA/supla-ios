@@ -86,6 +86,12 @@
 "Staircase timer" = "Comutador de escada";
 "https://cloud.supla.org/register" = "https://cloud.supla.org/register?lang=pt";
 
+"Create an account" = "Crie uma conta";
+"Device is disabled" = "O dispositivo está desligado";
+"Access Identifier is disabled" = "O ID de acesso está desativado";
+"Client Registration is off. Please go to \"Smartphone\" at %@ to activate it." = "Atualmente o registro está desativado. Para activá-lo, vá para a guia \"Smartphones\" na página %@";
+"This client does not have access identifier assigned. Please go to \"Smartphone\" at %@ and get a valid identifier." = "Este dispositivo não possui um ID de acesso atribuído. Vá para a página %@ e atribua o ID apropriado na guia \"Smartphones\".";
+
 "Retrieving data from the server..." = "Baixando dados do servidor ...";
 "No chart data available." = "Nenhum dado para o gráfico.";
 "Electricity Meter" = "Medidor de energia elétrica";
