@@ -86,6 +86,12 @@
 "Staircase timer" = "Automático de escalera";
 "https://cloud.supla.org/register" = "https://cloud.supla.org/register?lang=es";
 
+"Create an account" = "Crea un Account";
+"Device is disabled" = "Il dispositivo è  disabilitato";
+"Access Identifier is disabled" = "L'ID di accesso è disabilitato";
+"Client Registration is off. Please go to \"Smartphone\" at %@ to activate it." = "La registrazione è attualmente disabilitata. Per abilitarlo, vai alla scheda \"Smartphone\" a pagina %@";
+"This client does not have access identifier assigned. Please go to \"Smartphone\" at %@ and get a valid identifier." = "A questo dispositivo non è stato assegnato un ID di accesso. Vai a pagina %@ e assegna l'identificatore appropriato nella scheda \"Smartphone\"";
+
 "Retrieving data from the server..." = "Descargando datos del servidor ...";
 "No chart data available." = "No hay datos para el gráfico.";
 "Electricity Meter" = "Contador de electricidad";
