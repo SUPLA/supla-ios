@@ -373,6 +373,7 @@
             }
             break;
         case SUPLA_CHANNELFNC_THERMOMETER:
+        case SUPLA_CHANNELFNC_HUMIDITYANDTEMPERATURE:
             return [UIImage imageNamed:@"thermometer"];
         case SUPLA_CHANNELFNC_NOLIQUIDSENSOR:
             return [UIImage imageNamed:[self imgIsActive] ? @"liquid" : @"noliquid"];
