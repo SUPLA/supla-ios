@@ -35,7 +35,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         && self.valueType == EV_TYPE_ELECTRICITY_METER_MEASUREMENT_V1) {
         memset(emev, 0, sizeof(TElectricityMeter_ExtendedValue));
         NSData *data = self.dataValue;
-        if (data && data.length == sizeof(TElectricityMeter_ExtendedValue)) {
+        if (data && data.length <= sizeof(TElectricityMeter_ExtendedValue)) {
             [data getBytes:emev length:data.length];
             return YES;
         }
