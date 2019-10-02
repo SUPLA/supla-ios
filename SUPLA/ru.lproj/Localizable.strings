@@ -84,6 +84,12 @@
 "Staircase timer" = "Лестничный автомат";
 "https://cloud.supla.org/register" = "https://cloud.supla.org/register?lang=ru";
 
+"Create an account" = "Создать учетку";
+"Device is disabled" = "Устройство выключено";
+"Access Identifier is disabled" = "Ключ доступа отключен";
+"Client Registration is off. Please go to \"Smartphone\" at %@ to activate it." = "Регистрация в настоящее время отключена. Для ее включения перейдите на вкладку Смартфоны на странице %@";
+"This client does not have access identifier assigned. Please go to \"Smartphone\" at %@ and get a valid identifier." = "Это устройство не имеет назначенного ключа доступа. Перейдите на страницу %@ и  на вкладке Смартфоны назначьте соответствующий ключ.";
+
 "Retrieving data from the server..." = "Загрузка данных с сервера ...";
 "No chart data available." = "Нет данных для графика.";
 "Electricity Meter" = "Счётчик электроэнергии";
