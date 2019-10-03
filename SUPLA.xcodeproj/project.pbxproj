@@ -2222,7 +2222,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 34;
+				CURRENT_PROJECT_VERSION = 35;
 				DEFINES_MODULE = YES;
 				HEADER_SEARCH_PATHS = "$(SDKROOT)/usr/include/libxml2";
 				INFOPLIST_FILE = SUPLA/Info.plist;
@@ -2232,7 +2232,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/SUPLA/lib",
 				);
-				MARKETING_VERSION = 2.2.9;
+				MARKETING_VERSION = 2.2.10;
 				PRODUCT_BUNDLE_IDENTIFIER = com.acsoftware.ios.supla;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "SUPLA/SUPLA-Bridging-Header.h";
@@ -2249,7 +2249,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 34;
+				CURRENT_PROJECT_VERSION = 35;
 				DEFINES_MODULE = YES;
 				HEADER_SEARCH_PATHS = "$(SDKROOT)/usr/include/libxml2";
 				INFOPLIST_FILE = SUPLA/Info.plist;
@@ -2259,7 +2259,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/SUPLA/lib",
 				);
-				MARKETING_VERSION = 2.2.9;
+				MARKETING_VERSION = 2.2.10;
 				PRODUCT_BUNDLE_IDENTIFIER = com.acsoftware.ios.supla;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "SUPLA/SUPLA-Bridging-Header.h";
