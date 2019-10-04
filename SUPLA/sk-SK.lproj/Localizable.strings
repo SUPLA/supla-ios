@@ -1,0 +1,137 @@
+/*
+ This program is free software; you can redistribute it and/or
+ modify it under the terms of the GNU General Public License
+ as published by the Free Software Foundation; either version 2
+ of the License, or (at your option) any later version.
+ 
+ This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ GNU General Public License for more details.
+ 
+ You should have received a copy of the GNU General Public License
+ along with this program; if not, write to the Free Software
+ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
+ */
+
+"version" = "verzia";
+"Open" = "Otvoriť";
+"Open Close" = "Otvoriť Zatvoriť";
+"Reveal" = "Otvoriť";
+"Shut" = "Zatvoriť";
+"On" = "Zapnúť";
+"Off" = "Vypnúť";
+"opened the gateway" = "otvoril bráničku";
+"opened / closed the gate" = "otvoril / zatvoril bránu";
+"opened / closed the gate doors" = "otvoril / zatvoril garážové dvere";
+"opened the door" = "otvoril dvere";
+"opened / closed roller shutter" = "otvoril / zatvoril roletu";
+"turned the power ON/OFF" = "zapol / vypol napájanie";
+"turned the light ON/OFF" = "zapol / vypol svetlo";
+"Settings" = "Nastavenia";
+"About" = "O programe";
+"Gateway" = "Bránička";
+"Gate" = "Brána";
+"Garage door" = "Garážová brána";
+"Door" = "Dvere";
+"Roller shutter" = "Roleta";
+"Power switch" = "Zapínač napájania";
+"Lighting switch" = "Zapínač svetla";
+"Thermometer" = "Teplomer";
+"Temperature and humidity" = "Teplota a vlhkosť";
+"No liquid sensor" = "Snímač prítomnosti kvapaliny";
+"Gateway opening sensor" = "Snímač otvorenia bráničky";
+"Gate opening sensor" = "Snímač otvorenia brány";
+"Garage door opening sensor" = "Snímač otvorenia garážovej brány";
+"Door opening sensor" = "Snímač otvorenia dverí";
+"Roller shutter opening sensor" = "Snímač otvorenia roliet";
+"Connecting..." = "Pripája sa...";
+"Unknown error" = "Neznáma chyba";
+"Service temporarily unavailable" = "Služba je dočasne nedostupná";
+"Bad credentials" = "Nesprávne autentifikačné údaje";
+"Client limit exceeded" = "Prekročený limit klientskych aplikácií";
+"Device is disabled" = "Zariadenie je vypnuté";
+"Access Identifier is disabled" = "Identifikátor prístupu je vypnutý";
+"Client Registration is off. Please go to \"Smartphone\" at %@ to activate it." = "Registrácia je momentálne vypnutá. Ak ju chcete zapnúť, prejdite do záložky \"Smartfóny\" na  stránke %@";
+"This client does not have access identifier assigned. Please go to \"Smartphone\" at %@ and get a valid identifier." = "Toto zariadenie nemá priradený identifikátor prístupu. Prejdite na stránku %@ a v záložke \"Smartfóny\" priraďte príslušný identifikátor.";
+"Incompatible server version" = "Nekompatibilná verzia servera";
+"Host not found" = "Adresa servera nebola nájdená";
+"RGB Lighting" = "RGB osvetlenie";
+"Dimmer and RGB lighting" = "Stmievač a RGB osvetlenie";
+"Dimmer" = "Stmievač";
+"Distance sensor" = "Snímač vzdialenosti";
+"Depth sensor" = "Snímač hĺbky";
+"If you enjoy using this app, please take a moment to rate it. Thanks for your support!" = "Páči sa vám táto aplikácia? Venujte chvíľku a ohodnoťte ju. Ďakujeme za vašu podporu!";
+"Rate Now" = "Ohodnotiť teraz";
+"Later" = "Neskôr";
+"No thanks" = "Nie, ďakujem";
+"Mail sensor" = "Snímač pošty";
+"Window opening sensor" = "Snímač otvorenia okna";
+"Add I/O device" = "Pridať zariadenie";
+"Donate" = "Podporiť projekt";
+"Create an account" = "Vytvoriť účet";
+"Device registration availability information timeout!" = "Bola prekročená lehota čakania na informácie o dostupnosti registrácie zariadení!";
+"Next" = "Ďalej";
+"Start" = "Štart";
+"Cancel" = "Zrušiť";
+"Go to the system settings" = "Przejdź do ustawień systemowych";
+"I/O Device registration is currently off. To continue go to „My SUPLA” at %@ and enable the Device Add Button." = "Registrácia I / O zariadení je momentálne vypnutá. Ak chcete pokračovať, prejdite na stránku %@ a v záložke \"Moja SUPLA\" zapnite pridávanie zariadení.";
+"Add Wizard is only available when server connection has been set based on the email address entered in the settings." = "Sprievodca pridaním je k dispozícii iba vtedy, keď bolo nadviazané spojenie so serverom na základe e-mailovej adresy zadanej v nastaveniach!";
+"The connected Server does not support this function!" = "Server, s ktorým bolo nadviazané spojenie, túto funkciu nepodporuje!";
+"Device Configuration Completion timeout!" = "Bola prekročená lehota čakania na dokončenie konfigurácie zariadenia!";
+"Incorrect input parameters!" = "Nesprávne vstupné parametre!";
+"The connected device is not compatible with this Wizard!" = "Pripojené zariadenie nie je kompatibilné s týmto sprievodcom!";
+"Configuration Failed!" = "Konfigurácia zlyhala!";
+"Connection with the device cannot be set! Make sure, if the Wi-fi connection has been set for the I/O device." = "Nie można nawiązać połączenia z urządzeniem! Upewnij się, że połączenie z siecią WiFi urządzenia wykonawczego zostało nawiązane.";
+"[Calibration]" = "[Kalibrácia]";
+"Help" = "Pomoc";
+"https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=L4N7RSWME6LG2" = "https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=QYN932S5UQG8N";
+"Staircase timer" = "Schodiskový automat";
+"https://cloud.supla.org/register" = "https://cloud.supla.org/register?lang=sk";
+
+"Retrieving data from the server..." = "Údaje sa načítavajú zo servera...";
+"No chart data available." = "Žiadne údaje pre graf.";
+"Electricity Meter" = "Elektromer";
+"Water Meter" = "Vodomer";
+"Gas Meter" = "Plynomer";
+
+"Forward active Energy" = "Činná energia prijatá";
+"Reverse active Energy" = "Činná energia odovzdaná";
+"Consumption in the current month" = "Spotreba v aktuálnom mesiaci";
+"Production in the current month" = "Výroba v aktuálnom mesiaci";
+"Minutes" = "Minúty";
+"Hours" = "Hodiny";
+"Days" = "Dni";
+"Months" = "Mesiace";
+"Years" = "Roky";
+"Minute to minute comparison" = "Porovnanie minúta po minúte";
+"Hour to hour comparison" = "Porovnanie hodina po hodine";
+"Day to day comparison" = "Porovnanie deň po dni";
+"Month to month comparison" = "Porovnanie mesiac po mesiaci";
+"Year to year comparison" = "Porovnanie rok po rokuu";
+"Ranking of hours" = "Rebríček hodín";
+"Ranking of weekdays" = "Rebríček dní týždňa";
+"Ranking of months" = "Rebríček mesiacov";
+"Consumption according to phases" = "Spotreba podľa fáz";
+"Production according to phases" = "Výroba podľa fáz";
+"Last 24 hours" = "Posledných 24 hodín";
+"Last 7 days" = "Posledných 7 dní";
+"Last 30 days" = "Posledných 30 dní";
+"Last 90 days" = "Posledných 90 dní";
+"All available history" = "Celá dostupná história";
+"Phase 1" = "Fáza 1";
+"Phase 2" = "Fáza 2";
+"Phase 3" = "Fáza 3";
+"Home+ Heater" = "Špirála Home+";
+"Comfort" = "Komfortná";
+"ECO" = "ECO";
+"No water" = "Žiadna voda";
+"Burnt heater" = "Zhorená špirála";
+"Water temperature sensor error" = "Chyba snímača teploty vody";
+"Room temperature sensor error" = "Chyba snímača izbovej teploty";
+"No network interruptions" = "Žiadne prerušenia el. napätia";
+"Room temperature" = "Teplota v miestnosti";
+"ON" = "ZAPNUTÉ";
+"OFF" = "VYPNUTÉ";
+"h" = "h";
+
