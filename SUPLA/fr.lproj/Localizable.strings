@@ -50,7 +50,6 @@
 "Service temporarily unavailable" = "Ce service est temporairement indisponible";
 "Bad credentials" = "Informations d'identification invalides";
 "Client limit exceeded" = "Vous avez dépassé la limite des applications client-side";
-"Access disabled" = "L'accès a été fermé";
 "Incompatible server version" = "Incompatibilité de la version du serveur";
 "Host not found" = "Nous n'avons pas pu trouver cette adresse du serveur";
 "RGB Lighting" = "Éclairage RGB";

@@ -51,7 +51,6 @@
 "Service temporarily unavailable" = "Servizio temporaneamente non disponibile";
 "Bad credentials" = "Credenziali non valide";
 "Client limit exceeded" = "Limite delle applicazioni dei clienti superato";
-"Access disabled" = "Accesso disabilitato";
 "Incompatible server version" = "Versione del server non compatibile";
 "Host not found" = "L’indirizzo del server non è stato trovato";
 "RGB Lighting" = "Illuminazione RGB";

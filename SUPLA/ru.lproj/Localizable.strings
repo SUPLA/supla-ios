@@ -54,7 +54,6 @@
 "Service temporarily unavailable" = "Сервис временно не доступен";
 "Bad credentials" = "Неправильные логин/пароль";
 "Client limit exceeded" = "Ограничение количества пользователей";
-"Access disabled" = "оступ ограничен";
 "Incompatible server version" = "Несовместимая версия сервера";
 "Host not found" = "Хост не найден";
 "RGB Lighting" = "Контроллер освещения RGB";

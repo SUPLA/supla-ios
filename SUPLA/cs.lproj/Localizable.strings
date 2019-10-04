@@ -50,7 +50,6 @@
 "Service temporarily unavailable" = "Služba dočasně nedostupná";
 "Bad credentials" = "Chybné pověření";
 "Client limit exceeded" = "Limit klientské aplikace překročen";
-"Access disabled" = "Přístup zakázán";
 "Device is disabled" = "Zařízení je vypnuté";
 "Access Identifier is disabled" = "Identifikátor přístupu je vypnutý";
 "Client Registration is off. Please go to \"Smartphone\" at %@ to activate it." = "Registrace je momentálně zakázána. Chcete-li ji povolit, přejděte na kartu \"Smartphone\" na stránce %@";

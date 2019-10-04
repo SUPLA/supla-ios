@@ -52,7 +52,6 @@
 "Service temporarily unavailable" = "Paslauga laikinai nepasiekiama";
 "Bad credentials" = "Klaidingas autentifikavimas";
 "Client limit exceeded" = "Viršutinė klientų programų riba viršyta";
-"Access disabled" = "Prieiga išjungta";
 "Device is disabled" = "Įrenginys išjungtas";
 "Access Identifier is disabled" = "rieigos identifikatorius išjungtas";
 "Client Registration is off. Please go to \"Smartphone\" at %@ to activate it." = "Šiuo metu registracija išjungta. Norėdami ją įjungti eikite prie žymės Išmanieji telefonai puslapyje %@";

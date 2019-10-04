@@ -50,7 +50,6 @@
 "Service temporarily unavailable" = "Usługa tymczasowo niedostępna";
 "Bad credentials" = "Błędne poświadczenia";
 "Client limit exceeded" = "Przekroczony limit aplikacji klienckich";
-"Access disabled" = "Dostęp wyłączony";
 "Device is disabled" = "Urządzenie jest wyłączone";
 "Access Identifier is disabled" = "Identyfikator dostępu jest wyłączony";
 "Client Registration is off. Please go to \"Smartphone\" at %@ to activate it." = "Rejestracja jest obecnie wyłączona. Aby ją włączyć przejdź do zakładki \"Smartfony\" na stronie %@";
