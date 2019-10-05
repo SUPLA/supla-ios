@@ -12,13 +12,13 @@
 "HRH-kq-mbQ.text" = "Predchádzajúci status";
 
 /* Class = "UILabel"; text = "Enter User Name and Password of your domestic or business WiFi network used to have the i/o device connected to server."; ObjectID = "Igv-nx-eY7"; */
-"Igv-nx-eY7.text" = "Enter User Name and Password of your domestic or business WiFi network used to have the i/o device connected to server.";
+"Igv-nx-eY7.text" = "Zadajte názov a heslo vašej domácej alebo obchodnej WiFi siete, prostredníctvom ktorej sa bude môcť výkonné zariadenie pripojiť k serveru.";
 
 /* Class = "UILabel"; text = "Device configuration completed successfully :)"; ObjectID = "JYg-Vc-pZn"; */
 "JYg-Vc-pZn.text" = "Konfigurácia zariadenia bola úspešne dokončená :)";
 
 /* Class = "UILabel"; text = "Go to the iOS system settings and manually connect to the WiFi network beginning with SUPLA, ZAMEL or NICE or HEATPOL. \n\nFor example: „SUPLA-A220A63612B1”. This is a temporary network of the i/o device enabling configuration. \n\nWhen the connection has been set, go back to the application and  continue adding  procedure by pressing the START button.  "; ObjectID = "LmT-sv-XIj"; */
-"LmT-sv-XIj.text" = "Go to the iOS system settings and manually connect to the WiFi network beginning with SUPLA, ZAMEL or NICE or HEATPOL. \n\nFor example: „SUPLA-A220A63612B1”. This is a temporary network of the i/o device enabling configuration. \n\nWhen the connection has been set, go back to the application and  continue adding  procedure by pressing the START button.  ";
+"LmT-sv-XIj.text" = "Prejdite na nastavenia systému iOS a manuálne sa pripojte k WiFi sieti, ktorá začína názvom SUPLA, ZAMEL, NICE alebo HEATPOL.\n\nnNapríklad \"SUPLA-A220A63612B1\". Toto je dočasná sieť výkonného zariadenia používaná na konfiguráciu.\n\nPo pripojení k tejto sieti sa vráťte do tejto aplikácie a pokračujte v pridávaní kliknutím na tlačidlo ŠTART";
 
 /* Class = "UILabel"; text = "Remember password"; ObjectID = "OMR-DU-yyQ"; */
 "OMR-DU-yyQ.text" = "Zapamätať si heslo";
@@ -27,7 +27,7 @@
 "QQN-Ba-rnP.text" = "Pripojte vaše vykonávacie zariadenie k el. napätiu. Zariadenie musí byť predvolene spustené v konfiguračnom režime, čo signalizuje blikanie kontrolky stavu nasledujúcim spôsobom";
 
 /* Class = "UIButton"; normalTitle = "Go to the system settings"; ObjectID = "a01-dG-nhT"; */
-"a01-dG-nhT.normalTitle" = "Go to the system settings";
+"a01-dG-nhT.normalTitle" = "Prejdite na nastavenia systému";
 
 /* Class = "UILabel"; text = "Firmware"; ObjectID = "ctG-cj-mpZ"; */
 "ctG-cj-mpZ.text" = "Firmware";
@@ -39,7 +39,7 @@
 "qa8-ng-PzX.text" = "Názov";
 
 /* Class = "UITextField"; placeholder = "WiFi Network name"; ObjectID = "t0Z-OG-dra"; */
-"t0Z-OG-dra.placeholder" = "WiFi Network name";
+"t0Z-OG-dra.placeholder" = "Nazwa sieci WiFi";
 
 /* Class = "UILabel"; text = "Welcome to the Device Add Wizard which will in an easy and simple way help you to add new device to the system."; ObjectID = "vbb-Xd-lIx"; */
 "vbb-Xd-lIx.text" = "Vitajte v sprievodcovi pridaním zariadenia, ktorý vám pomôže rýchlo a jednoducho pridať nové zariadenie do systému.";

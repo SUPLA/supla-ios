@@ -74,7 +74,7 @@
 "Next" = "Ďalej";
 "Start" = "Štart";
 "Cancel" = "Zrušiť";
-"Go to the system settings" = "Przejdź do ustawień systemowych";
+"Go to the system settings" = "Prejdite na nastavenia systému";
 "I/O Device registration is currently off. To continue go to „My SUPLA” at %@ and enable the Device Add Button." = "Registrácia I / O zariadení je momentálne vypnutá. Ak chcete pokračovať, prejdite na stránku %@ a v záložke \"Moja SUPLA\" zapnite pridávanie zariadení.";
 "Add Wizard is only available when server connection has been set based on the email address entered in the settings." = "Sprievodca pridaním je k dispozícii iba vtedy, keď bolo nadviazané spojenie so serverom na základe e-mailovej adresy zadanej v nastaveniach!";
 "The connected Server does not support this function!" = "Server, s ktorým bolo nadviazané spojenie, túto funkciu nepodporuje!";
@@ -82,7 +82,7 @@
 "Incorrect input parameters!" = "Nesprávne vstupné parametre!";
 "The connected device is not compatible with this Wizard!" = "Pripojené zariadenie nie je kompatibilné s týmto sprievodcom!";
 "Configuration Failed!" = "Konfigurácia zlyhala!";
-"Connection with the device cannot be set! Make sure, if the Wi-fi connection has been set for the I/O device." = "Nie można nawiązać połączenia z urządzeniem! Upewnij się, że połączenie z siecią WiFi urządzenia wykonawczego zostało nawiązane.";
+"Connection with the device cannot be set! Make sure, if the Wi-fi connection has been set for the I/O device." = "Nedá sa pripojiť k zariadeniu! „Skontrolujte, či bolo naviazané pripojenie k sieti WiFi daného výkonného zariadenia.";
 "[Calibration]" = "[Kalibrácia]";
 "Help" = "Pomoc";
 "https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=L4N7RSWME6LG2" = "https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=QYN932S5UQG8N";
