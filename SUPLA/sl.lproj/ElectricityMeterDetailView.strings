@@ -33,7 +33,7 @@
 "MEJ-sn-3qn.normalTitle" = "1. faza";
 
 /* Class = "UILabel"; text = "Reverse reactive Energy"; ObjectID = "MHn-5a-5ZR"; */
-"MHn-5a-5ZR.text" = "Aktivna vrnjena energija";
+"MHn-5a-5ZR.text" = "Reaktivna vrnjena energija";
 
 /* Class = "UILabel"; text = "230 V"; ObjectID = "N6X-By-Rip"; */
 "N6X-By-Rip.text" = "230 V";
