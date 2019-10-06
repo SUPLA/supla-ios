@@ -45,4 +45,4 @@
 "vbb-Xd-lIx.text" = "Dobrodošli v čarovniku za dodajanje naprav, ki vam bo pomagal hitro in enostavno dodati novo napravo v sistem.";
 
 /* Class = "UILabel"; text = "If the device when switched on does not work in the configuration mode, press and hold CONFIG button for at least 5 seconds.\n\nPress Next to continue.\n"; ObjectID = "y0X-IV-sH5"; */
-"y0X-IV-sH5.text" = "Če naprava po vklopu napajanja ne deluje v konfiguracijskem načinu, držite gumb CONFIG najmanj 5 sekund.\n";
+"y0X-IV-sH5.text" = "Če naprava po vklopu napajanja ne deluje v konfiguracijskem načinu, držite gumb CONFIG najmanj 5 sekund.\nČe želite nadaljevati, pritisnite Naprej.";
