@@ -3,7 +3,7 @@
 "1SC-7w-YLd.text" = "0.00";
 
 /* Class = "UILabel"; text = "Caption"; ObjectID = "5CF-im-vy5"; */
-"5CF-im-vy5.text" = "Podpis";
+"5CF-im-vy5.text" = "Titulok";
 
 /* Class = "UILabel"; text = "Duration of the TURBO mode"; ObjectID = "5iX-rc-Viy"; */
 "5iX-rc-Viy.text" = "Trvanie režimu TURBO";
