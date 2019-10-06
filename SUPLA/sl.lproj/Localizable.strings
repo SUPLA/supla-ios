@@ -1,0 +1,137 @@
+/*
+ This program is free software; you can redistribute it and/or
+ modify it under the terms of the GNU General Public License
+ as published by the Free Software Foundation; either version 2
+ of the License, or (at your option) any later version.
+ 
+ This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ GNU General Public License for more details.
+ 
+ You should have received a copy of the GNU General Public License
+ along with this program; if not, write to the Free Software
+ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
+ */
+
+"version" = "različica";
+"Open" = "Odprite";
+"Open Close" = "Odprite Zaprite";
+"Reveal" = "Razkrijte";
+"Shut" = "Zastrite";
+"On" = "Vklopite";
+"Off" = "Izklopite";
+"opened the gateway" = "odprl je vratca";
+"opened / closed the gate" = "odprl / zaprl je dvoriščna vrata";
+"opened / closed the gate doors" = "odprl / zaprl je garažna vrata";
+"opened the door" = "odprl je vrata";
+"opened / closed roller shutter" = "odprl / zaprl je roleto";
+"turned the power ON/OFF" = "vklopil / izklopil je napajanje";
+"turned the light ON/OFF" = "vklopil / izklopil je luč";
+"Settings" = "Nastavitve";
+"About" = "O programu";
+"Gateway" = "Vratca";
+"Gate" = "Dvoriščna vrata";
+"Garage door" = "Garažna vrata";
+"Door" = "Vrata";
+"Roller shutter" = "Roleta";
+"Power switch" = "Stikalo za vklop";
+"Lighting switch" = "Stikalo luči";
+"Thermometer" = "Termometer";
+"Temperature and humidity" = "Temperatura in vlažnost";
+"No liquid sensor" = "Senzor pomanjkanja tekočine";
+"Gateway opening sensor" = "Senzor odprtja vratc";
+"Gate opening sensor" = "Senzor odprtja dvoriščnih vrat";
+"Garage door opening sensor" = "Senzor odprtja garažnih vrat";
+"Door opening sensor" = "Senzor odprtja vrat";
+"Roller shutter opening sensor" = "Senzor odprtja rolet";
+"Connecting..." = "Povezovanje...";
+"Unknown error" = "Neznana napaka";
+"Service temporarily unavailable" = "Storitev trenutno ni na voljo";
+"Bad credentials" = "Napačne poverilnice";
+"Client limit exceeded" = "Omejitev odjemalskih aplikacij je presežena";
+"Device is disabled" = "Naprava je izklopljena";
+"Access Identifier is disabled" = "Identifikator dostopa je izklopljen";
+"Client Registration is off. Please go to \"Smartphone\" at %@ to activate it." = "Registracija je trenutno izklopljena. Če jo želite omogočiti, pojdite na zavihek \"Pametni telefoni\" na strani %@";
+"This client does not have access identifier assigned. Please go to \"Smartphone\" at %@ and get a valid identifier." = "Ta naprava nima dodeljenega identifikatorja dostopa. Pojdite na stran %@ in na zavihku \"Pametni telefoni\" dodelite ustrezen identifikator.";
+"Incompatible server version" = "Nezdružljiva različica strežnika";
+"Host not found" = "Naslova strežnika ni mogoče najti";
+"RGB Lighting" = "RGB osvetlitev";
+"Dimmer and RGB lighting" = "Zatemnilnik in RGB osvetlitev";
+"Dimmer" = "Zatemnilnik";
+"Distance sensor" = "Senzor razdalje";
+"Depth sensor" = "Senzor globine";
+"If you enjoy using this app, please take a moment to rate it. Thanks for your support!" = "Če vam je ta aplikacija všeč, prosim, da posvetite trenutek in jo ocenite. Hvala za vašo podporo!";
+"Rate Now" = "Ocenite zdaj";
+"Later" = "Pozneje";
+"No thanks" = "Ne, hvala";
+"Mail sensor" = "Senzor pošte";
+"Window opening sensor" = "Senzor odprtja oken";
+"Add I/O device" = "Dodajte napravo";
+"Donate" = "Podprite projekt";
+"Create an account" = "Ustvarite račun";
+"Device registration availability information timeout!" = "Čakalna doba za pridobitev informacije o razpoložljivosti registracije naprav je prekoračena!";
+"Next" = "Naprej";
+"Start" = "Start";
+"Cancel" = "Prekličite";
+"Go to the system settings" = "Pojdi na sistemske nastavitve";
+"I/O Device registration is currently off. To continue go to „My SUPLA” at %@ and enable the Device Add Button." = "Registracija naprav je trenutno izklopljena. Za nadaljevanje pojdite na stran %@ in v zavihku \"Moja SUPLA\" omogočite dodajanje naprav.";
+"Add Wizard is only available when server connection has been set based on the email address entered in the settings." = "Čarovnik za dodajanje je na voljo samo, če je vzpostavljena povezava s strežnikom na podlagi e-naslova, vpisanega v nastavitvah!";
+"The connected Server does not support this function!" = "Strežnik, na katerega ste se povezali, ne podpira te funkcije!";
+"Device Configuration Completion timeout!" = "Čakalna doba za dokončanje konfiguracije naprave je prekoračena!";
+"Incorrect input parameters!" = "Napačni vhodni parametri!";
+"The connected device is not compatible with this Wizard!" = "Naprava, na katero ste se povezali, ni združljiva s tem čarovnikom!";
+"Configuration Failed!" = "Konfiguracija ni bila uspešna!";
+"Connection with the device cannot be set! Make sure, if the Wi-fi connection has been set for the I/O device." = "Nie można nawiązać połączenia z urządzeniem! Upewnij się, że połączenie z siecią WiFi urządzenia wykonawczego zostało nawiązane.";
+"[Calibration]" = "[Kalibracija]";
+"Help" = "Pomoč";
+"https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=L4N7RSWME6LG2" = "https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=QYN932S5UQG8N";
+"Staircase timer" = "Stopniščni avtomat";
+"https://cloud.supla.org/register" = "https://cloud.supla.org/register?lang=sl";
+
+"Retrieving data from the server..." = "Prenos podatkov s strežnika...";
+"No chart data available." = "Za tabelo ni podatkov.";
+"Electricity Meter" = "Števec električne energije";
+"Water Meter" = "Merilnik vode";
+"Gas Meter" = "Merilnik plina";
+
+"Forward active Energy" = "Aktivna porabljena energija";
+"Reverse active Energy" = "Aktivna porabljena energija";
+"Consumption in the current month" = "Poraba v tekočem mesecu";
+"Production in the current month" = "Proizvodnja v tekočem mesecu";
+"Minutes" = "Minute";
+"Hours" = "Ure";
+"Days" = "Dni";
+"Months" = "Meseci";
+"Years" = "Leta";
+"Minute to minute comparison" = "Primerjava iz minute v minuto";
+"Hour to hour comparison" = "Primerjava iz ure v uro";
+"Day to day comparison" = "Primerjava iz dneva v dan";
+"Month to month comparison" = "Primerjava iz meseca v mesec";
+"Year to year comparison" = "Primerjava iz leta v leto";
+"Ranking of hours" = "Razvrstitev ur";
+"Ranking of weekdays" = "Razvrstitev dni v tednu";
+"Ranking of months" = "Razvrstitev mesecev";
+"Consumption according to phases" = "Poraba v skladu s fazami";
+"Production according to phases" = "Izdelava v skladu s fazami";
+"Last 24 hours" = "Zadnjih 24 ur";
+"Last 7 days" = "Zadnjih 7 dni";
+"Last 30 days" = "Zadnjih 30 dni";
+"Last 90 days" = "Zadnjih 90 dni";
+"All available history" = "Vsa zgodovina je na voljo";
+"Phase 1" = "1. faza";
+"Phase 2" = "2. faza";
+"Phase 3" = "3. faza";
+"Home+ Heater" = "Gralec Home+";
+"Comfort" = "Udobje";
+"ECO" = "ECO";
+"No water" = "Brez vode";
+"Burnt heater" = "Izgoreli grelec";
+"Water temperature sensor error" = "Napaka senzorja temperature vode";
+"Room temperature sensor error" = "Napaka senzorja sobne temperature";
+"No network interruptions" = "Brez prekinitev omrežja";
+"Room temperature" = "Temperatura v prostoru";
+"ON" = "VKLJUČENO";
+"OFF" = "IZKLJUČENO";
+"h" = "ura";
+
