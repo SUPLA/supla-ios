@@ -26,6 +26,7 @@
 #import "RGBDetailView.h"
 #import "RSDetailView.h"
 #import "ElectricityMeterDetailView.h"
+#import "ImpulseCounterDetailView.h"
 #import "HomePlusDetailView.h"
 #import "SARateApp.h"
 
@@ -374,6 +375,7 @@
     SARGBDetailView *_rgbDetailView;
     SARSDetailView *_rsDetailView; // Roller Shutter detail view
     SAElectricityMeterDetailView *_electricityMeterDetailView;
+    SAImpulseCounterDetailView *_impulseCounterDetailView;
     SAHomePlusDetailView *_homePlusDetailView;
     SADetailView *_detailView;
     
@@ -387,6 +389,7 @@
     
    _rgbDetailView = nil;
     _electricityMeterDetailView = nil;
+    _impulseCounterDetailView = nil;
     _homePlusDetailView = nil;
     _detailView = nil;
    _animating = NO;
@@ -420,6 +423,16 @@
             }
             
             result = _electricityMeterDetailView;
+        } else if ( [_cell.channelBase isKindOfClass:SAChannel.class]
+             && (((SAChannel*)_cell.channelBase).type == SUPLA_CHANNELTYPE_IMPULSE_COUNTER)) {
+            
+            if ( _impulseCounterDetailView == nil ) {
+                
+                _impulseCounterDetailView = [[[NSBundle mainBundle] loadNibNamed:@"ImpulseCounterDetailView" owner:self options:nil] objectAtIndex:0];
+                [_impulseCounterDetailView detailViewInit];
+            }
+            
+            result = _impulseCounterDetailView;
         } else {
             switch(_cell.channelBase.func) {
                 case SUPLA_CHANNELFNC_DIMMER:

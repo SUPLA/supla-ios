@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		012023C2234E54ED00E131B7 /* ImpulseCounterDetailView.m in Sources */ = {isa = PBXBuildFile; fileRef = 012023C1234E54ED00E131B7 /* ImpulseCounterDetailView.m */; };
+		012023C4234E557900E131B7 /* ImpulseCounterDetailView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 012023C3234E557900E131B7 /* ImpulseCounterDetailView.xib */; };
 		0122613922F396440013E6A2 /* SAThermostatCalendar.m in Sources */ = {isa = PBXBuildFile; fileRef = 0122613822F396440013E6A2 /* SAThermostatCalendar.m */; };
 		012F722C22DF3E2300E5F72E /* ChartFilterFieldTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 012F722822DF3CF000E5F72E /* ChartFilterFieldTests.m */; };
 		012F722E22DFA0BE00E5F72E /* SABarChartDataSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 012F722D22DFA0BE00E5F72E /* SABarChartDataSet.swift */; };
@@ -340,6 +342,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		012023C0234E54ED00E131B7 /* ImpulseCounterDetailView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ImpulseCounterDetailView.h; sourceTree = "<group>"; };
+		012023C1234E54ED00E131B7 /* ImpulseCounterDetailView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ImpulseCounterDetailView.m; sourceTree = "<group>"; };
+		012023C3234E557900E131B7 /* ImpulseCounterDetailView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ImpulseCounterDetailView.xib; sourceTree = "<group>"; };
 		0122613722F396440013E6A2 /* SAThermostatCalendar.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SAThermostatCalendar.h; sourceTree = "<group>"; };
 		0122613822F396440013E6A2 /* SAThermostatCalendar.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SAThermostatCalendar.m; sourceTree = "<group>"; };
 		012F722822DF3CF000E5F72E /* ChartFilterFieldTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChartFilterFieldTests.m; sourceTree = "<group>"; };
@@ -1435,6 +1440,9 @@
 				40DB208F1DC9049400FAFAB0 /* RGBDetail.xib */,
 				403150F91DC769430075D2D2 /* RGBDetailView.h */,
 				01D0616C22C294D90043C947 /* ElectricityMeterDetailView.h */,
+				012023C0234E54ED00E131B7 /* ImpulseCounterDetailView.h */,
+				012023C1234E54ED00E131B7 /* ImpulseCounterDetailView.m */,
+				012023C3234E557900E131B7 /* ImpulseCounterDetailView.xib */,
 				01D0616D22C294D90043C947 /* ElectricityMeterDetailView.m */,
 				01D0617322C296850043C947 /* ElectricityMeterDetailView.xib */,
 				01C8EBFC234232EC0072AB8C /* HomePlusDetailView.xib */,
@@ -1767,6 +1775,7 @@
 				4014ADFE1FE01ECD00297A9E /* help@3x.png in Resources */,
 				40CF96AA1BC7D4E70030EFFF /* door-closed@2x.png in Resources */,
 				40D397AD1FAF547B00BF477D /* retry@3x.png in Resources */,
+				012023C4234E557900E131B7 /* ImpulseCounterDetailView.xib in Resources */,
 				40B9ED7D1FACE15700403B1A /* mail@2x.png in Resources */,
 				40B9ED551FACD0A100403B1A /* pc-off@2x.png in Resources */,
 				408034E61BC84A89007666E7 /* NavigationController.xib in Resources */,
@@ -1912,6 +1921,7 @@
 				01C1719A22C7F55B005983E1 /* SAMeasurementItem+CoreDataProperties.m in Sources */,
 				01EE9BBB22BA50D90029A142 /* SAChannelValueBase+CoreDataClass.m in Sources */,
 				40F7301120C19BA600167C2D /* SAColorListItem+CoreDataProperties.m in Sources */,
+				012023C2234E54ED00E131B7 /* ImpulseCounterDetailView.m in Sources */,
 				01F8856D22E5E79100D18373 /* SAUserIcon+CoreDataProperties.m in Sources */,
 				01D0616E22C294D90043C947 /* ElectricityMeterDetailView.m in Sources */,
 				01F8856C22E5E79100D18373 /* SAUserIcon+CoreDataClass.m in Sources */,
