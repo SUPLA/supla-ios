@@ -25,6 +25,7 @@
 		01567449232FD0A100397393 /* SAImpulseCounterExtendedValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 01567448232FD0A100397393 /* SAImpulseCounterExtendedValue.m */; };
 		016EE77423074DDC00FD301C /* production@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 016EE77223074DDC00FD301C /* production@3x.png */; };
 		016EE77523074DDC00FD301C /* consumption@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 016EE77323074DDC00FD301C /* consumption@3x.png */; };
+		0172677D234FAF78000F1CFB /* SADownloadImpulseCounterMeasurements.m in Sources */ = {isa = PBXBuildFile; fileRef = 0172677C234FAF78000F1CFB /* SADownloadImpulseCounterMeasurements.m */; };
 		017554F622F1A62500EB58B7 /* HomePlusDetailView.m in Sources */ = {isa = PBXBuildFile; fileRef = 017554F522F1A62500EB58B7 /* HomePlusDetailView.m */; };
 		017554F822F1CDB900EB58B7 /* heatpollogo@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 017554F722F1CDB900EB58B7 /* heatpollogo@3x.png */; };
 		017554FB22F1D2BE00EB58B7 /* clock@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 017554F922F1D2BE00EB58B7 /* clock@3x.png */; };
@@ -369,6 +370,8 @@
 		01567448232FD0A100397393 /* SAImpulseCounterExtendedValue.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SAImpulseCounterExtendedValue.m; sourceTree = "<group>"; };
 		016EE77223074DDC00FD301C /* production@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "production@3x.png"; path = "Resources/Assets/Img/production@3x.png"; sourceTree = "<group>"; };
 		016EE77323074DDC00FD301C /* consumption@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "consumption@3x.png"; path = "Resources/Assets/Img/consumption@3x.png"; sourceTree = "<group>"; };
+		0172677B234FAF78000F1CFB /* SADownloadImpulseCounterMeasurements.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SADownloadImpulseCounterMeasurements.h; sourceTree = "<group>"; };
+		0172677C234FAF78000F1CFB /* SADownloadImpulseCounterMeasurements.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SADownloadImpulseCounterMeasurements.m; sourceTree = "<group>"; };
 		017554F422F1A62500EB58B7 /* HomePlusDetailView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HomePlusDetailView.h; sourceTree = "<group>"; };
 		017554F522F1A62500EB58B7 /* HomePlusDetailView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HomePlusDetailView.m; sourceTree = "<group>"; };
 		017554F722F1CDB900EB58B7 /* heatpollogo@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "heatpollogo@3x.png"; path = "Resources/Assets/Img/heatpollogo@3x.png"; sourceTree = "<group>"; };
@@ -973,6 +976,8 @@
 				01E517C422C6AD7D000FE77A /* SADownloadMeasurementLogs.h */,
 				01E517C522C6AD7D000FE77A /* SADownloadMeasurementLogs.m */,
 				018E67CD22C8CA0A00FF1427 /* SADownloadElectricityMeasurements.h */,
+				0172677B234FAF78000F1CFB /* SADownloadImpulseCounterMeasurements.h */,
+				0172677C234FAF78000F1CFB /* SADownloadImpulseCounterMeasurements.m */,
 				018E67CE22C8CA0A00FF1427 /* SADownloadElectricityMeasurements.m */,
 				01F8857322E6167100D18373 /* SADownloadUserIcons.h */,
 				01F8857422E6167100D18373 /* SADownloadUserIcons.m */,
@@ -1918,6 +1923,7 @@
 				40CF96DE1BC820E60030EFFF /* UIHelper.m in Sources */,
 				01F8856E22E5E79100D18373 /* SAImpulseCounterMeasurementItem+CoreDataProperties.m in Sources */,
 				01C1718F22C7F3A2005983E1 /* SAIncrementalMeasurementItem+CoreDataClass.m in Sources */,
+				0172677D234FAF78000F1CFB /* SADownloadImpulseCounterMeasurements.m in Sources */,
 				01C1719A22C7F55B005983E1 /* SAMeasurementItem+CoreDataProperties.m in Sources */,
 				01EE9BBB22BA50D90029A142 /* SAChannelValueBase+CoreDataClass.m in Sources */,
 				40F7301120C19BA600167C2D /* SAColorListItem+CoreDataProperties.m in Sources */,

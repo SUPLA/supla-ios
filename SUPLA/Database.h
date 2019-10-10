@@ -19,6 +19,7 @@
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 #import "SAElectricityMeasurementItem+CoreDataClass.h"
+#import "SAImpulseCounterMeasurementItem+CoreDataClass.h"
 #import "SAThermostatMeasurementItem+CoreDataClass.h"
 #import "proto.h"
 
@@ -88,6 +89,12 @@ typedef NS_ENUM(NSUInteger, GroupBy) {
 -(BOOL) electricityMeterMeasurementsStartsWithTheCurrentMonthForChannelId:(int)channel_id;
 - (double) sumActiveEnergyForChannelId:(int)channel_id monthLimitOffset:(int) offset forwarded:(BOOL)fwd;
 -(NSArray *) getElectricityMeasurementsForChannelId:(int)channel_id dateFrom:(NSDate *)dateFrom dateTo:(NSDate *)dateTo groupBy:(GroupBy)gb groupingDepth:(GroupingDepth)gd fields:(NSArray*)fields;
+-(long) getTimestampOfImpulseCounterMeasurementItemWithChannelId:(int)channel_id minimum:(BOOL)min;
+-(SAImpulseCounterMeasurementItem*) newImpulseCounterMeasurementItemWithManagedObjectContext:(BOOL)moc;
+-(SAImpulseCounterMeasurementItem*) fetchOlderThanDate:(NSDate*)date uncalculatedImpulseCounterMeasurementItemWithChannel:(int)channel_id;
+-(void) deleteAllImpulseCounterMeasurementsForChannelId:(int)channel_id;
+-(NSUInteger) getImpulseCounterMeasurementItemCountWithoutComplementForChannelId:(int)channel_id;
+-(void) deleteUncalculatedImpulseCounterMeasurementsForChannelId:(int)channel_id;
 -(SAThermostatMeasurementItem*) newThermostatMeasurementItem;
 -(long) getTimestampOfThermostatMeasurementItemWithChannelId:(int)channel_id minimum:(BOOL)min;
 -(NSUInteger) getThermostatMeasurementItemCountForChannelId:(int)channel_id;

@@ -1035,6 +1035,37 @@
     return [self getIncrementalMeasurementsForChannelId:channel_id fields:fields entityName:@"SAElectricityMeasurementItem" dateFrom:dateFrom dateTo:dateTo groupBy:gb groupingDepth:gd];
 }
 
+#pragma mark Impulse Counter Measurements
+
+-(SAImpulseCounterMeasurementItem*) newImpulseCounterMeasurementItemWithManagedObjectContext:(BOOL)moc {
+    SAImpulseCounterMeasurementItem *item = [[SAImpulseCounterMeasurementItem alloc] initWithEntity:[NSEntityDescription entityForName:@"SAImpulseCounterMeasurementItem" inManagedObjectContext:self.managedObjectContext] insertIntoManagedObjectContext:moc ? self.managedObjectContext : nil];
+    
+    if (moc) {
+        [self.managedObjectContext insertObject:item];
+    }
+    return item;
+}
+
+-(long) getTimestampOfImpulseCounterMeasurementItemWithChannelId:(int)channel_id minimum:(BOOL)min {
+    return [self getTimestampOfMeasurementItemWithChannelId:channel_id minimum:min entityName:@"SAImpulseCounterMeasurementItem"];
+}
+
+-(SAImpulseCounterMeasurementItem*) fetchOlderThanDate:(NSDate*)date uncalculatedImpulseCounterMeasurementItemWithChannel:(int)channel_id {
+    return (SAImpulseCounterMeasurementItem*) [self fetchOlderThanDate:date uncalculatedIncrementalMeasurementItemWithChannel:channel_id entityName:@"SAImpulseCounterMeasurementItem"];
+}
+
+-(void) deleteAllImpulseCounterMeasurementsForChannelId:(int)channel_id {
+    [self deleteAllMeasurementsForChannelId:channel_id entityName:@"SAImpulseCounterMeasurementItem"];
+}
+
+-(NSUInteger) getImpulseCounterMeasurementItemCountWithoutComplementForChannelId:(int)channel_id {
+    return [self getIncrementalMeasurementItemCountWithoutComplementForChannelId:channel_id entityName:@"SAImpulseCounterMeasurementItem"];
+}
+
+-(void) deleteUncalculatedImpulseCounterMeasurementsForChannelId:(int)channel_id {
+    [self deleteUncalculatedIncrementalMeasurementsForChannelId:channel_id entityName:@"SAImpulseCounterMeasurementItem"];
+}
+
 #pragma mark Thermostat Measurements
 
 -(SAThermostatMeasurementItem*) newThermostatMeasurementItem {

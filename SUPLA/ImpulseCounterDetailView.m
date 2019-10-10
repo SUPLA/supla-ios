@@ -17,7 +17,59 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 */
 
 #import "ImpulseCounterDetailView.h"
+#import "SADownloadImpulseCounterMeasurements.h"
+#import "SuplaApp.h"
 
-@implementation SAImpulseCounterDetailView
+@implementation SAImpulseCounterDetailView {
+    SADownloadImpulseCounterMeasurements *_task;
+    NSTimer *_taskTimer;
+}
+
+-(void)onDetailShow {
+    [super onDetailShow];
+    
+    [SAApp.instance cancelAllRestApiClientTasks];
+    
+    if (_taskTimer == nil) {
+        _taskTimer = [NSTimer scheduledTimerWithTimeInterval:120
+                                                           target:self
+                                                         selector:@selector(onTaskTimer:)
+                                                         userInfo:nil
+                                                          repeats:YES];
+    }
+    [self runDownloadTask];
+}
+
+-(void)onDetailHide {
+    [super onDetailHide];
+    
+    if (_taskTimer) {
+        [_taskTimer invalidate];
+        _taskTimer = nil;
+    }
+    
+    if (_task) {
+        [_task cancel];
+        _task.delegate = nil;
+    }
+}
+
+-(void)onTaskTimer:(NSTimer *)timer {
+    [self runDownloadTask];
+}
+
+-(void) runDownloadTask {
+    if (_task && ![_task isTaskIsAliveWithTimeout:90]) {
+        [_task cancel];
+        _task = nil;
+    }
+    
+    if (!_task) {
+        _task = [[SADownloadImpulseCounterMeasurements alloc] init];
+        _task.channelId = self.channelBase.remote_id;
+        _task.delegate = self;
+        [_task start];
+    }
+}
 
 @end
