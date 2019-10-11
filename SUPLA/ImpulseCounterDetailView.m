@@ -17,7 +17,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 */
 
 #import "ImpulseCounterDetailView.h"
-#import "SADownloadImpulseCounterMeasurements.h"
 #import "SuplaApp.h"
 
 @implementation SAImpulseCounterDetailView {
@@ -69,6 +68,18 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         _task.channelId = self.channelBase.remote_id;
         _task.delegate = self;
         [_task start];
+    }
+}
+
+-(void) onRestApiTaskStarted: (SARestApiClientTask*)task {
+    NSLog(@"onRestApiTaskStarted");
+}
+
+-(void) onRestApiTaskFinished: (SARestApiClientTask*)task {
+    NSLog(@"onRestApiTaskFinished");
+    if (_task != nil && task == _task) {
+        _task.delegate = nil;
+        _task = nil;
     }
 }
 
