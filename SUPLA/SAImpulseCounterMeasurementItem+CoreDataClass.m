@@ -20,4 +20,49 @@
 
 @implementation SAImpulseCounterMeasurementItem
 
+- (double) doubleForKey:(NSString*)key withObject:(NSDictionary*)object {
+    NSString *str = [object valueForKey:key];
+    return str == nil || [str isKindOfClass:[NSNull class]] ? 0.0 : [str doubleValue];
+}
+
+- (long long) longLongForKey:(NSString*)key withObject:(NSDictionary*)object {
+    NSString *str = [object valueForKey:key];
+    return str == nil || [str isKindOfClass:[NSNull class]] ? 0 : [str longLongValue];
+}
+
+
+- (void) assignJSONObject:(NSDictionary *)object {
+    [super assignJSONObject:object];
+    self.counter = [self longLongForKey:@"counter" withObject:object];
+    self.calculated_value = [self doubleForKey:@"calculated_value" withObject:object];
+}
+
+- (void) assignMeasurementItem:(SAMeasurementItem*)source {
+    [super assignMeasurementItem:source];
+    if ([source isKindOfClass:[SAImpulseCounterMeasurementItem class]]) {
+        SAImpulseCounterMeasurementItem *src = (SAImpulseCounterMeasurementItem*)source;
+        self.counter = src.counter;
+        self.calculated_value = src.calculated_value;
+    }
+    
+}
+
+- (void) calculateWithSource:(SAMeasurementItem*)source {
+    if ([source isKindOfClass:[SAImpulseCounterMeasurementItem class]]) {
+        SAImpulseCounterMeasurementItem *src = (SAImpulseCounterMeasurementItem*)source;
+        self.counter  = self.counter  - src.counter;
+        self.calculated_value = self.calculated_value - src.calculated_value;
+        
+        self.calculated = YES;
+    }
+}
+
+- (void) divideBy:(double)n {
+    
+    self.counter = self.counter / n;
+    self.calculated_value = self.calculated_value / n;
+    
+    self.divided = YES;
+}
+
 @end
