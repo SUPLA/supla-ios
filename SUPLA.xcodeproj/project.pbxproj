@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		012023C2234E54ED00E131B7 /* ImpulseCounterDetailView.m in Sources */ = {isa = PBXBuildFile; fileRef = 012023C1234E54ED00E131B7 /* ImpulseCounterDetailView.m */; };
-		012023C4234E557900E131B7 /* ImpulseCounterDetailView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 012023C3234E557900E131B7 /* ImpulseCounterDetailView.xib */; };
 		0122613922F396440013E6A2 /* SAThermostatCalendar.m in Sources */ = {isa = PBXBuildFile; fileRef = 0122613822F396440013E6A2 /* SAThermostatCalendar.m */; };
 		012F722C22DF3E2300E5F72E /* ChartFilterFieldTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 012F722822DF3CF000E5F72E /* ChartFilterFieldTests.m */; };
 		012F722E22DFA0BE00E5F72E /* SABarChartDataSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 012F722D22DFA0BE00E5F72E /* SABarChartDataSet.swift */; };
@@ -40,6 +39,7 @@
 		019170A1233D4D5A00820BDB /* SADownloadThermostatMeasurements.m in Sources */ = {isa = PBXBuildFile; fileRef = 019170A0233D4D5A00820BDB /* SADownloadThermostatMeasurements.m */; };
 		019170A4233D67E900820BDB /* SAThermostatChartHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 019170A3233D67E900820BDB /* SAThermostatChartHelper.m */; };
 		019D22F0233CC2D000F17135 /* SAPreloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 019D22EF233CC2D000F17135 /* SAPreloader.m */; };
+		019F4CAC2354DC3300286139 /* ImpulseCounterDetailView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 019F4CAE2354DC3300286139 /* ImpulseCounterDetailView.xib */; };
 		01BDAC7522C518DE00915646 /* SARestApiClientTask.m in Sources */ = {isa = PBXBuildFile; fileRef = 01BDAC7422C518DE00915646 /* SARestApiClientTask.m */; };
 		01BDAC7822C5200600915646 /* SAOAuthToken.m in Sources */ = {isa = PBXBuildFile; fileRef = 01BDAC7722C5200600915646 /* SAOAuthToken.m */; };
 		01BE3C87233EAFEC00201B47 /* HomePlusDetailViewGroupCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 01BE3C86233EAFEC00201B47 /* HomePlusDetailViewGroupCell.m */; };
@@ -345,7 +345,6 @@
 /* Begin PBXFileReference section */
 		012023C0234E54ED00E131B7 /* ImpulseCounterDetailView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ImpulseCounterDetailView.h; sourceTree = "<group>"; };
 		012023C1234E54ED00E131B7 /* ImpulseCounterDetailView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ImpulseCounterDetailView.m; sourceTree = "<group>"; };
-		012023C3234E557900E131B7 /* ImpulseCounterDetailView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ImpulseCounterDetailView.xib; sourceTree = "<group>"; };
 		0122613722F396440013E6A2 /* SAThermostatCalendar.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SAThermostatCalendar.h; sourceTree = "<group>"; };
 		0122613822F396440013E6A2 /* SAThermostatCalendar.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SAThermostatCalendar.m; sourceTree = "<group>"; };
 		012F722822DF3CF000E5F72E /* ChartFilterFieldTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChartFilterFieldTests.m; sourceTree = "<group>"; };
@@ -395,6 +394,21 @@
 		019170A3233D67E900820BDB /* SAThermostatChartHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SAThermostatChartHelper.m; sourceTree = "<group>"; };
 		019D22EE233CC2D000F17135 /* SAPreloader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SAPreloader.h; sourceTree = "<group>"; };
 		019D22EF233CC2D000F17135 /* SAPreloader.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SAPreloader.m; sourceTree = "<group>"; };
+		019F4CAD2354DC3300286139 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/ImpulseCounterDetailView.xib; sourceTree = "<group>"; };
+		019F4CB02354DC3B00286139 /* cs */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = cs; path = cs.lproj/ImpulseCounterDetailView.strings; sourceTree = "<group>"; };
+		019F4CB22354DC3C00286139 /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = nl.lproj/ImpulseCounterDetailView.strings; sourceTree = "<group>"; };
+		019F4CB42354DC3E00286139 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/ImpulseCounterDetailView.strings; sourceTree = "<group>"; };
+		019F4CB62354DC3F00286139 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/ImpulseCounterDetailView.strings; sourceTree = "<group>"; };
+		019F4CB82354DC4000286139 /* el */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = el; path = el.lproj/ImpulseCounterDetailView.strings; sourceTree = "<group>"; };
+		019F4CBA2354DC4100286139 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/ImpulseCounterDetailView.strings; sourceTree = "<group>"; };
+		019F4CBC2354DC4200286139 /* lt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = lt; path = lt.lproj/ImpulseCounterDetailView.strings; sourceTree = "<group>"; };
+		019F4CBE2354DC4400286139 /* nb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nb; path = nb.lproj/ImpulseCounterDetailView.strings; sourceTree = "<group>"; };
+		019F4CC02354DC4500286139 /* pl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pl; path = pl.lproj/ImpulseCounterDetailView.strings; sourceTree = "<group>"; };
+		019F4CC22354DC4500286139 /* pt-PT */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-PT"; path = "pt-PT.lproj/ImpulseCounterDetailView.strings"; sourceTree = "<group>"; };
+		019F4CC42354DC4600286139 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/ImpulseCounterDetailView.strings; sourceTree = "<group>"; };
+		019F4CC62354DC4700286139 /* sk-SK */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "sk-SK"; path = "sk-SK.lproj/ImpulseCounterDetailView.strings"; sourceTree = "<group>"; };
+		019F4CC82354DC4800286139 /* sl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sl; path = sl.lproj/ImpulseCounterDetailView.strings; sourceTree = "<group>"; };
+		019F4CCA2354DC4900286139 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/ImpulseCounterDetailView.strings; sourceTree = "<group>"; };
 		01B216CF22AECB2F004E0596 /* SUPLA 3.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "SUPLA 3.xcdatamodel"; sourceTree = "<group>"; };
 		01BDAC7322C518DE00915646 /* SARestApiClientTask.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SARestApiClientTask.h; sourceTree = "<group>"; };
 		01BDAC7422C518DE00915646 /* SARestApiClientTask.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SARestApiClientTask.m; sourceTree = "<group>"; };
@@ -1447,7 +1461,7 @@
 				01D0616C22C294D90043C947 /* ElectricityMeterDetailView.h */,
 				012023C0234E54ED00E131B7 /* ImpulseCounterDetailView.h */,
 				012023C1234E54ED00E131B7 /* ImpulseCounterDetailView.m */,
-				012023C3234E557900E131B7 /* ImpulseCounterDetailView.xib */,
+				019F4CAE2354DC3300286139 /* ImpulseCounterDetailView.xib */,
 				01D0616D22C294D90043C947 /* ElectricityMeterDetailView.m */,
 				01D0617322C296850043C947 /* ElectricityMeterDetailView.xib */,
 				01C8EBFC234232EC0072AB8C /* HomePlusDetailView.xib */,
@@ -1780,7 +1794,7 @@
 				4014ADFE1FE01ECD00297A9E /* help@3x.png in Resources */,
 				40CF96AA1BC7D4E70030EFFF /* door-closed@2x.png in Resources */,
 				40D397AD1FAF547B00BF477D /* retry@3x.png in Resources */,
-				012023C4234E557900E131B7 /* ImpulseCounterDetailView.xib in Resources */,
+				019F4CAC2354DC3300286139 /* ImpulseCounterDetailView.xib in Resources */,
 				40B9ED7D1FACE15700403B1A /* mail@2x.png in Resources */,
 				40B9ED551FACD0A100403B1A /* pc-off@2x.png in Resources */,
 				408034E61BC84A89007666E7 /* NavigationController.xib in Resources */,
@@ -2020,6 +2034,28 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		019F4CAE2354DC3300286139 /* ImpulseCounterDetailView.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				019F4CAD2354DC3300286139 /* Base */,
+				019F4CB02354DC3B00286139 /* cs */,
+				019F4CB22354DC3C00286139 /* nl */,
+				019F4CB42354DC3E00286139 /* fr */,
+				019F4CB62354DC3F00286139 /* de */,
+				019F4CB82354DC4000286139 /* el */,
+				019F4CBA2354DC4100286139 /* it */,
+				019F4CBC2354DC4200286139 /* lt */,
+				019F4CBE2354DC4400286139 /* nb */,
+				019F4CC02354DC4500286139 /* pl */,
+				019F4CC22354DC4500286139 /* pt-PT */,
+				019F4CC42354DC4600286139 /* ru */,
+				019F4CC62354DC4700286139 /* sk-SK */,
+				019F4CC82354DC4800286139 /* sl */,
+				019F4CCA2354DC4900286139 /* es */,
+			);
+			name = ImpulseCounterDetailView.xib;
+			sourceTree = "<group>";
+		};
 		01C8EBCF23422AC50072AB8C /* HomePlusDetailViewGroupCell.xib */ = {
 			isa = PBXVariantGroup;
 			children = (

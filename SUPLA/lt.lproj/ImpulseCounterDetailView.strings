@@ -1,0 +1,39 @@
+
+/* Class = "UILabel"; text = "10 EUR"; ObjectID = "37U-Zx-YA3"; */
+"37U-Zx-YA3.text" = "10 EUR";
+
+/* Class = "UILabel"; text = "The cost in the current month"; ObjectID = "BZV-5X-lZ7"; */
+"BZV-5X-lZ7.text" = "Kaina einamąjį mėnesį";
+
+/* Class = "UILabel"; text = "Meter value"; ObjectID = "Kfn-dN-K0a"; */
+"Kfn-dN-K0a.text" = "Skaitiklio būsena";
+
+/* Class = "UILabel"; text = "••••••••••"; ObjectID = "Ywd-JH-SeJ"; */
+"Ywd-JH-SeJ.text" = "••••••••••";
+
+/* Class = "UITextField"; text = "Minutes"; ObjectID = "btZ-qJ-HXI"; */
+"btZ-qJ-HXI.text" = "Minutės";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "hlZ-mm-clg"; */
+"hlZ-mm-clg.normalTitle" = "Button";
+
+/* Class = "UILabel"; text = "Consumption in the current month"; ObjectID = "psK-hZ-nQF"; */
+"psK-hZ-nQF.text" = "Suvartojimas einamąjį mėnesį";
+
+/* Class = "UITextField"; text = "Last 24 hours"; ObjectID = "pvG-5N-Xhd"; */
+"pvG-5N-Xhd.text" = "Pastarosios 24 valandos";
+
+/* Class = "UILabel"; text = "Caption"; ObjectID = "quy-hA-zMO"; */
+"quy-hA-zMO.text" = "Caption";
+
+/* Class = "UILabel"; text = "Total cost"; ObjectID = "qz5-1q-e4C"; */
+"qz5-1q-e4C.text" = "Bendra kaina";
+
+/* Class = "UILabel"; text = "10 EUR"; ObjectID = "v3P-DR-NxZ"; */
+"v3P-DR-NxZ.text" = "10 EUR";
+
+/* Class = "UILabel"; text = "09,001 m³"; ObjectID = "xZr-Dg-scJ"; */
+"xZr-Dg-scJ.text" = "09,001 m³";
+
+/* Class = "UILabel"; text = "09,001 m³"; ObjectID = "zf2-II-RLR"; */
+"zf2-II-RLR.text" = "09,001 m³";
