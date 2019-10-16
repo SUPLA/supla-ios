@@ -56,6 +56,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
                                                           repeats:YES];
     }
     [self runDownloadTask];
+    [self loadChartWithAnimation:YES];
 }
 
 -(void)onDetailHide {
@@ -155,6 +156,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         [self.lCurrentConsumption setText:[NSString stringWithFormat:@"%0.2f %@", currentConsumption,  icev.unit]];
         [self.lCurrentCost setText:[NSString stringWithFormat:@"%0.2f %@", currentCost, icev.currency]];
     
+        NSLog(@"Unit %@", icev.unit);
+        _chartHelper.unit = icev.unit;
     }
 }
 
