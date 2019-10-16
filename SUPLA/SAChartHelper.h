@@ -61,10 +61,10 @@ typedef NS_ENUM(NSUInteger, ChartType) {
 @property (nonatomic, weak) CombinedChartView *combinedChart;
 @property (nonatomic, weak) PieChartView *pieChart;
 @property (nonatomic) ChartType chartType;
-@property (nonatomic, weak) NSDate *dateFrom;
-@property (nonatomic, weak) NSDate *dateTo;
-@property (nonatomic, weak) NSString *unit;
-@property (nonatomic, weak) NSNumber *downloadProgress;
+@property (nonatomic, strong) NSDate *dateFrom;
+@property (nonatomic, strong) NSDate *dateTo;
+@property (nonatomic, strong) NSString *unit;
+@property (nonatomic, strong) NSNumber *downloadProgress;
 @property (nonatomic) int channelId;
 @property (nonatomic, readonly) long minTimestamp;
 @end

@@ -93,7 +93,7 @@ import Charts
     open func getValue2(entry: ChartDataEntry) -> String {
         var unit = "";
         if (chartHelper != nil && chartHelper?.unit != nil) {
-           unit = String(chartHelper!.unit!);
+           unit = String(chartHelper!.unit);
         }
         
         return String(format: "%.2f %@", entry.y, unit);
