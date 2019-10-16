@@ -171,6 +171,11 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         [_chartHelper animate];
     }
 }
+
+-(void) onRestApiTask: (SARestApiClientTask*)task progressUpdate:(float)progress {
+    _chartHelper.downloadProgress = [NSNumber numberWithFloat:progress];
+}
+
 -(void) onFilterChanged: (SAChartFilterField*)filterField {
     [self loadChartWithAnimation:YES];
 }
