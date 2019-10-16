@@ -24,7 +24,7 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wXI-rX-Ghy" userLabel="vContent">
                     <rect key="frame" x="10" y="159" width="300" height="261"/>
                     <subviews>
-                        <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WP8-xn-lei" userLabel="vCharts">
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WP8-xn-lei" userLabel="vCharts">
                             <rect key="frame" x="0.0" y="0.0" width="300" height="261"/>
                             <subviews>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NAr-uo-LMR" userLabel="vFilters">
@@ -291,13 +291,16 @@
             <nil key="simulatedTopBarMetrics"/>
             <nil key="simulatedBottomBarMetrics"/>
             <connections>
+                <outlet property="combinedChart" destination="Dpv-OP-VGS" id="amT-nd-jSn"/>
                 <outlet property="ftDateRangeFilter" destination="pvG-5N-Xhd" id="li3-Ug-XbF"/>
                 <outlet property="ivImage" destination="INI-Px-fdb" id="E46-v0-4Lu"/>
+                <outlet property="lCaption" destination="quy-hA-zMO" id="9m4-6N-ynZ"/>
                 <outlet property="lCurrentConsumption" destination="zf2-II-RLR" id="y3c-2X-UMP"/>
                 <outlet property="lCurrentCost" destination="v3P-DR-NxZ" id="h0J-1b-qyX"/>
                 <outlet property="lMeterValue" destination="xZr-Dg-scJ" id="m9a-Li-ruS"/>
                 <outlet property="lPreloader" destination="Ywd-JH-SeJ" id="RGU-OA-zCt"/>
                 <outlet property="lTotalCost" destination="37U-Zx-YA3" id="x15-Xt-Co9"/>
+                <outlet property="pieChart" destination="Q7j-4f-xav" id="opz-OZ-Ndv"/>
                 <outlet property="tfChartTypeFilter" destination="btZ-qJ-HXI" id="L7g-u6-7IL"/>
             </connections>
             <point key="canvasLocation" x="-792" y="-269"/>

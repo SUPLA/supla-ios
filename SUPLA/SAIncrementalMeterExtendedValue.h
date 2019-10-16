@@ -23,6 +23,8 @@ NS_ASSUME_NONNULL_BEGIN
 @interface SAIncrementalMeterExtendedValue : SAExtendedValue
 - (NSString *) currency;
 - (NSString *) decodeCurrency:(char*)currency;
+- (double) totalCost;
+- (double) pricePerUnit;
 @end
 
 NS_ASSUME_NONNULL_END

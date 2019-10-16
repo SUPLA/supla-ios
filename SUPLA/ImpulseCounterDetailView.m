@@ -17,11 +17,30 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 */
 
 #import "ImpulseCounterDetailView.h"
+#import "SAImpulseCounterExtendedValue.h"
+#import "SAImpulseCounterChartHelper.h"
 #import "SuplaApp.h"
 
 @implementation SAImpulseCounterDetailView {
     SADownloadImpulseCounterMeasurements *_task;
+    SAImpulseCounterChartHelper *_chartHelper;
     NSTimer *_taskTimer;
+}
+
+-(void)detailViewInit {
+    if (!self.initialized) {
+        _chartHelper = [[SAImpulseCounterChartHelper alloc] init];
+        _chartHelper.combinedChart = self.combinedChart;
+        _chartHelper.pieChart = self.pieChart;
+        _chartHelper.unit = @"kWh";
+        _tfChartTypeFilter.chartHelper = _chartHelper;
+        _tfChartTypeFilter.dateRangeFilterField = _ftDateRangeFilter;
+        [_tfChartTypeFilter excludeElements:@[[NSNumber numberWithInt:Pie_PhaseRank]]];
+        _tfChartTypeFilter.ff_delegate = self;
+        _ftDateRangeFilter.ff_delegate = self;
+    }
+    
+    [super detailViewInit];
 }
 
 -(void)onDetailShow {
@@ -73,6 +92,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 -(void) onRestApiTaskStarted: (SARestApiClientTask*)task {
     NSLog(@"onRestApiTaskStarted");
+    [self.lPreloader animateWithTimeInterval:0.1];
 }
 
 -(void) onRestApiTaskFinished: (SARestApiClientTask*)task {
@@ -81,8 +101,72 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         _task.delegate = nil;
         _task = nil;
     }
+    
+    self.lPreloader.hidden = YES;
+    [self updateView];
+    _chartHelper.downloadProgress = nil;
+    [self loadChartWithAnimation:NO];
 }
 
 - (IBAction)chartBtnTouch:(id)sender {
+    if (self.lPreloader.hidden) {
+        [self runDownloadTask];
+    }
+}
+
+-(void)setChannelBase:(SAChannelBase *)channelBase {
+    if (_chartHelper) {
+        _chartHelper.channelId = channelBase ? channelBase.remote_id : 0;
+    }
+    [super setChannelBase:channelBase];
+}
+
+- (void)updateView {
+    NSString *empty = @"----";
+    
+    [self.lMeterValue setText:empty];
+    [self.lCurrentConsumption setText:empty];
+    [self.lCurrentCost setText:empty];
+    [self.lTotalCost setText:empty];
+    [self.lCaption setText:[self.channelBase getChannelCaption]];
+    
+    SAImpulseCounterExtendedValue *icev = nil;
+    
+    if ([self.channelBase isKindOfClass:SAChannel.class]
+        && ((SAChannel*)self.channelBase).ev != nil
+        && (icev = ((SAChannel*)self.channelBase).ev.impulseCounter) != nil) {
+        
+        double currentConsumption = 0;
+        double currentCost = 0;
+        
+        if ([SAApp.DB impulseCounterMeasurementsStartsWithTheCurrentMonthForChannelId:self.channelBase.remote_id]) {
+            currentConsumption = icev.calculatedValue;
+            currentCost = icev.totalCost;
+        } else {
+            double v0 = [SAApp.DB calculatedValueSumForChannelId:self.channelBase.remote_id monthLimitOffset:0];
+            double v1 = [SAApp.DB calculatedValueSumForChannelId:self.channelBase.remote_id monthLimitOffset:-1];
+            
+            currentConsumption = v0-v1;
+            currentCost = icev.pricePerUnit * currentConsumption;
+        }
+        
+        [self.lMeterValue setText:[NSString stringWithFormat:@"%0.2f %@", icev.calculatedValue, icev.unit]];
+        [self.lTotalCost setText:[NSString stringWithFormat:@"%0.2f %@", icev.totalCost, icev.currency]];
+        [self.lCurrentConsumption setText:[NSString stringWithFormat:@"%0.2f %@", currentConsumption,  icev.unit]];
+        [self.lCurrentCost setText:[NSString stringWithFormat:@"%0.2f %@", currentCost, icev.currency]];
+    
+    }
+}
+
+- (void)loadChartWithAnimation:(BOOL)animation {
+    _chartHelper.chartType = _tfChartTypeFilter.chartType;
+    _chartHelper.dateFrom = _tfChartTypeFilter.dateRangeFilterField.dateFrom;
+    [_chartHelper load];
+    if (animation) {
+        [_chartHelper animate];
+    }
+}
+-(void) onFilterChanged: (SAChartFilterField*)filterField {
+    [self loadChartWithAnimation:YES];
 }
 @end

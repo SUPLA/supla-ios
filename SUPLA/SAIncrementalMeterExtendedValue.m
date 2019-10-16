@@ -39,4 +39,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 - (NSString *) currency { return @""; }
 
+- (double) totalCost { return 0.0; }
+
+- (double) pricePerUnit { return 0.0; };
+
 @end

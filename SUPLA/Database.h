@@ -95,6 +95,9 @@ typedef NS_ENUM(NSUInteger, GroupBy) {
 -(void) deleteAllImpulseCounterMeasurementsForChannelId:(int)channel_id;
 -(NSUInteger) getImpulseCounterMeasurementItemCountWithoutComplementForChannelId:(int)channel_id;
 -(void) deleteUncalculatedImpulseCounterMeasurementsForChannelId:(int)channel_id;
+-(BOOL) impulseCounterMeasurementsStartsWithTheCurrentMonthForChannelId:(int)channel_id;
+-(double) calculatedValueSumForChannelId:(int)channel_id monthLimitOffset:(int)offset;
+-(NSArray *) getImpulseCounterMeasurementsForChannelId:(int)channel_id dateFrom:(NSDate *)dateFrom dateTo:(NSDate *)dateTo groupBy:(GroupBy)gb groupingDepth:(GroupingDepth)gd;
 -(SAThermostatMeasurementItem*) newThermostatMeasurementItem;
 -(long) getTimestampOfThermostatMeasurementItemWithChannelId:(int)channel_id minimum:(BOOL)min;
 -(NSUInteger) getThermostatMeasurementItemCountForChannelId:(int)channel_id;

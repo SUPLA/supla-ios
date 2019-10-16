@@ -40,6 +40,7 @@
 		019170A4233D67E900820BDB /* SAThermostatChartHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 019170A3233D67E900820BDB /* SAThermostatChartHelper.m */; };
 		019D22F0233CC2D000F17135 /* SAPreloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 019D22EF233CC2D000F17135 /* SAPreloader.m */; };
 		019F4CAC2354DC3300286139 /* ImpulseCounterDetailView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 019F4CAE2354DC3300286139 /* ImpulseCounterDetailView.xib */; };
+		019F4CCD23577C3700286139 /* SAImpulseCounterChartHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 019F4CCC23577C3700286139 /* SAImpulseCounterChartHelper.m */; };
 		01BDAC7522C518DE00915646 /* SARestApiClientTask.m in Sources */ = {isa = PBXBuildFile; fileRef = 01BDAC7422C518DE00915646 /* SARestApiClientTask.m */; };
 		01BDAC7822C5200600915646 /* SAOAuthToken.m in Sources */ = {isa = PBXBuildFile; fileRef = 01BDAC7722C5200600915646 /* SAOAuthToken.m */; };
 		01BE3C87233EAFEC00201B47 /* HomePlusDetailViewGroupCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 01BE3C86233EAFEC00201B47 /* HomePlusDetailViewGroupCell.m */; };
@@ -409,6 +410,8 @@
 		019F4CC62354DC4700286139 /* sk-SK */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "sk-SK"; path = "sk-SK.lproj/ImpulseCounterDetailView.strings"; sourceTree = "<group>"; };
 		019F4CC82354DC4800286139 /* sl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sl; path = sl.lproj/ImpulseCounterDetailView.strings; sourceTree = "<group>"; };
 		019F4CCA2354DC4900286139 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/ImpulseCounterDetailView.strings; sourceTree = "<group>"; };
+		019F4CCB23577C3700286139 /* SAImpulseCounterChartHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SAImpulseCounterChartHelper.h; sourceTree = "<group>"; };
+		019F4CCC23577C3700286139 /* SAImpulseCounterChartHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SAImpulseCounterChartHelper.m; sourceTree = "<group>"; };
 		01B216CF22AECB2F004E0596 /* SUPLA 3.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "SUPLA 3.xcdatamodel"; sourceTree = "<group>"; };
 		01BDAC7322C518DE00915646 /* SARestApiClientTask.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SARestApiClientTask.h; sourceTree = "<group>"; };
 		01BDAC7422C518DE00915646 /* SARestApiClientTask.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SARestApiClientTask.m; sourceTree = "<group>"; };
@@ -949,6 +952,8 @@
 				013D1C5E22CE757F000C0784 /* SAIncrementalMeterChartHelper.h */,
 				013D1C5F22CE757F000C0784 /* SAIncrementalMeterChartHelper.m */,
 				013D1C6122CE75A3000C0784 /* SAElectricityChartHelper.h */,
+				019F4CCB23577C3700286139 /* SAImpulseCounterChartHelper.h */,
+				019F4CCC23577C3700286139 /* SAImpulseCounterChartHelper.m */,
 				013D1C6222CE75A3000C0784 /* SAElectricityChartHelper.m */,
 				01D5E0C722DB7FAF00FBE1DC /* SAChartMarkerView.swift */,
 				013D73A422DCAB4400E3515A /* SAIncrementalMeterChartMarkerView.swift */,
@@ -1953,6 +1958,7 @@
 				4004DE8D1DC4E270009C34E3 /* SAColorBrightnessPicker.m in Sources */,
 				401CA1C21BA067DB00117AF4 /* AppDelegate.m in Sources */,
 				013D1C5D22CE47D5000C0784 /* SAChartHelper.m in Sources */,
+				019F4CCD23577C3700286139 /* SAImpulseCounterChartHelper.m in Sources */,
 				01567446232FCFD700397393 /* SAIncrementalMeterExtendedValue.m in Sources */,
 				017554F622F1A62500EB58B7 /* HomePlusDetailView.m in Sources */,
 				40A675831BA1BE8E004A51C4 /* SettingsVC.m in Sources */,

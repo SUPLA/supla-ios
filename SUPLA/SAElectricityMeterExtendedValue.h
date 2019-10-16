@@ -35,9 +35,6 @@ NS_ASSUME_NONNULL_BEGIN
 - (double) totalReverseActiveEnergyForPhase:(unsigned char)phase;
 - (double) totalReverseReactiveEnergyForPhase:(unsigned char)phase;
 
-- (double) totalCost;
-- (double) pricePerUnit;
-
 - (double) totalForwardActiveEnergy;
 - (double) totalReverseActiveEnergy;
 - (unsigned int) measuredValues;

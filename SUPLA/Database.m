@@ -1066,6 +1066,37 @@
     [self deleteUncalculatedIncrementalMeasurementsForChannelId:channel_id entityName:@"SAImpulseCounterMeasurementItem"];
 }
 
+-(BOOL) impulseCounterMeasurementsStartsWithTheCurrentMonthForChannelId:(int)channel_id {
+    long ts = [self getTimestampOfImpulseCounterMeasurementItemWithChannelId:channel_id minimum:YES];
+    return [self timestampStartsWithTheCurrentMonth:ts];
+}
+
+- (double) calculatedValueSumForChannelId:(int)channel_id monthLimitOffset:(int)offset {
+    
+    double result = 0;
+
+    NSMutableArray *props = [[NSMutableArray alloc] init];
+    NSExpressionDescription *ed = [[NSExpressionDescription alloc] init];
+    [ed setName:@"calculated_value"];
+    [ed setExpression:[NSExpression expressionForFunction:@"sum:" arguments:[NSArray arrayWithObject:[NSExpression expressionForKeyPath:@"calculated_value"]]]];
+    [ed setExpressionResultType:NSDoubleAttributeType];
+    [props addObject:ed];
+
+    NSDate *date = [self lastSecondInMonthWithOffset: offset];
+    NSPredicate *predicte = [NSPredicate predicateWithFormat:@"channel_id = %i AND calculated = YES AND date <= %@", channel_id, date];
+    NSDictionary *sum = [self sumValesOfEntitiesWithProperties:props predicate:predicte entityName:@"SAImpulseCounterMeasurementItem"];
+    
+    if (sum && sum.count == 1) {
+        result = [[sum objectForKey:@"calculated_value"] doubleValue];
+    }
+    
+    return result;
+}
+
+-(NSArray *) getImpulseCounterMeasurementsForChannelId:(int)channel_id dateFrom:(NSDate *)dateFrom dateTo:(NSDate *)dateTo groupBy:(GroupBy)gb groupingDepth:(GroupingDepth)gd {
+    return [self getIncrementalMeasurementsForChannelId:channel_id fields:@[@"calculated_value"] entityName:@"SAImpulseCounterMeasurementItem" dateFrom:dateFrom dateTo:dateTo groupBy:gb groupingDepth:gd];
+}
+
 #pragma mark Thermostat Measurements
 
 -(SAThermostatMeasurementItem*) newThermostatMeasurementItem {

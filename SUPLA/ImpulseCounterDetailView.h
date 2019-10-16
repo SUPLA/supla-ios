@@ -18,18 +18,23 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 #import "DetailView.h"
 #import "SADownloadImpulseCounterMeasurements.h"
+#import "SAPreloader.h"
+#import "SAChartFilterField.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface SAImpulseCounterDetailView : SADetailView <SARestApiClientTaskDelegate>
+@interface SAImpulseCounterDetailView : SADetailView <SARestApiClientTaskDelegate, SAChartFilterFieldDelegate>
 @property (weak, nonatomic) IBOutlet UIImageView *ivImage;
 @property (weak, nonatomic) IBOutlet UILabel *lMeterValue;
 @property (weak, nonatomic) IBOutlet UILabel *lCurrentConsumption;
 @property (weak, nonatomic) IBOutlet UILabel *lCurrentCost;
 @property (weak, nonatomic) IBOutlet UILabel *lTotalCost;
+@property (weak, nonatomic) IBOutlet UILabel *lCaption;
 @property (weak, nonatomic) IBOutlet SAPreloader *lPreloader;
 @property (weak, nonatomic) IBOutlet SAChartFilterField *tfChartTypeFilter;
 @property (weak, nonatomic) IBOutlet SAChartFilterField *ftDateRangeFilter;
+@property (weak, nonatomic) IBOutlet PieChartView *pieChart;
+@property (weak, nonatomic) IBOutlet CombinedChartView *combinedChart;
 - (IBAction)chartBtnTouch:(id)sender;
 
 @end

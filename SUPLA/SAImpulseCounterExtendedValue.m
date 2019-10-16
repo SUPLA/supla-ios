@@ -55,6 +55,26 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 - (NSString *) currency {
     return [self decodeCurrency:_icev.currency];
 }
+
+- (double) totalCost {
+    return _icev.total_cost * 0.01;
+}
+
+- (double) pricePerUnit {
+    return _icev.price_per_unit * 0.0001;
+}
+
+- (double) calculatedValue {
+    return _icev.calculated_value * 0.001;
+}
+
+- (unsigned long long) counter {
+    return _icev.counter;
+}
+
+- (int)impulsesPerUnit {
+    return _icev.impulses_per_unit;
+}
 @end
 
 @implementation SAChannelExtendedValue (SAExectricityMeterExtendedValue)

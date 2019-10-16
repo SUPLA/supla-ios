@@ -22,6 +22,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface SAImpulseCounterExtendedValue : SAIncrementalMeterExtendedValue
 - (NSString *) unit;
+- (double) calculatedValue;
+- (unsigned long long) counter;
+- (int)impulsesPerUnit;
 @end
 
 @interface SAChannelExtendedValue (SAImpulseCounterExtendedValue)
