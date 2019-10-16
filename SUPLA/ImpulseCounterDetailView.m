@@ -130,6 +130,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     [self.lCurrentCost setText:empty];
     [self.lTotalCost setText:empty];
     [self.lCaption setText:[self.channelBase getChannelCaption]];
+    [self.ivImage setImage:[self.channelBase getIcon]];
     
     SAImpulseCounterExtendedValue *icev = nil;
     
