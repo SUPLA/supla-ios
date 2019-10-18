@@ -1,18 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
-    <device id="retina3_5" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15504" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina3_5" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15508"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
         <array key="OpenSans-Bold.ttf">
             <string>OpenSans-Bold</string>
         </array>
-        <array key="Quicksand-Regular.ttf">
+        <array key="Quicksand-Light.ttf">
             <string>Quicksand-Regular</string>
         </array>
     </customFonts>
@@ -27,7 +25,7 @@
                     <rect key="frame" x="0.0" y="0.0" width="320" height="80"/>
                     <subviews>
                         <segmentedControl opaque="NO" contentMode="center" contentHorizontalAlignment="center" contentVerticalAlignment="center" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="gkt-nD-iBa">
-                            <rect key="frame" x="10" y="26" width="300" height="29"/>
+                            <rect key="frame" x="10" y="24.5" width="300" height="32"/>
                             <segments>
                                 <segment title="RGB"/>
                                 <segment title="DIMMER"/>
@@ -100,8 +98,8 @@
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nha-HR-X8h">
-                            <rect key="frame" x="270" y="36" width="40" height="30"/>
+                        <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nha-HR-X8h">
+                            <rect key="frame" x="280" y="36" width="30" height="30"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="30" id="TzJ-fG-FEn"/>
                                 <constraint firstAttribute="width" constant="40" id="kH8-bG-ipj"/>
@@ -162,7 +160,7 @@
                 <outlet property="stateBtn" destination="nha-HR-X8h" id="P33-8J-h0d"/>
                 <outlet property="stateLabel" destination="tbH-fp-FSn" id="htL-BR-d3f"/>
             </connections>
-            <point key="canvasLocation" x="-1114" y="-20"/>
+            <point key="canvasLocation" x="-1115.625" y="-20"/>
         </view>
     </objects>
     <resources>
