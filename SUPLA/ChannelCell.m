@@ -133,6 +133,8 @@
         case SUPLA_CHANNELFNC_DIMMER:
         case SUPLA_CHANNELFNC_DIMMERANDRGBLIGHTING:
         case SUPLA_CHANNELFNC_THERMOSTAT_HEATPOL_HOMEPLUS:
+        case SUPLA_CHANNELFNC_THERMOMETER:
+        case SUPLA_CHANNELFNC_HUMIDITYANDTEMPERATURE:
             self.left_OnlineStatus.hidden = YES;
             self.right_OnlineStatus.hidden = NO;
             break;

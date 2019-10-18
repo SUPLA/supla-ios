@@ -28,6 +28,8 @@
 #import "ElectricityMeterDetailView.h"
 #import "ImpulseCounterDetailView.h"
 #import "HomePlusDetailView.h"
+#import "TemperatureDetailView.h"
+#import "TempHumidityDetailView.h"
 #import "SARateApp.h"
 
 @implementation SAMainVC {
@@ -376,7 +378,10 @@
     SARSDetailView *_rsDetailView; // Roller Shutter detail view
     SAElectricityMeterDetailView *_electricityMeterDetailView;
     SAImpulseCounterDetailView *_impulseCounterDetailView;
+    SATemperatureDetailView *_temperatureDetailView;
+    SATempHumidityDetailView *_tempHumidityDetailView;
     SAHomePlusDetailView *_homePlusDetailView;
+    
     SADetailView *_detailView;
     
     float last_touched_x;
@@ -391,6 +396,8 @@
     _electricityMeterDetailView = nil;
     _impulseCounterDetailView = nil;
     _homePlusDetailView = nil;
+    _tempHumidityDetailView = nil;
+    _temperatureDetailView = nil;
     _detailView = nil;
    _animating = NO;
    _panRecognizer = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(handlePan:)];
@@ -471,6 +478,28 @@
                     }
                     
                     result = _homePlusDetailView;
+                    break;
+                case SUPLA_CHANNELFNC_THERMOMETER:
+                    
+                    if ( _temperatureDetailView == nil ) {
+                        
+                        _temperatureDetailView = [[[NSBundle mainBundle] loadNibNamed:@"TemperatureDetailView" owner:self options:nil] objectAtIndex:0];
+                        [_temperatureDetailView  detailViewInit];
+                        
+                    }
+                    
+                    result = _temperatureDetailView;
+                    break;
+                case SUPLA_CHANNELFNC_HUMIDITYANDTEMPERATURE:
+                    
+                    if ( _tempHumidityDetailView == nil ) {
+                        
+                        _tempHumidityDetailView = [[[NSBundle mainBundle] loadNibNamed:@"TempHumidityDetailView" owner:self options:nil] objectAtIndex:0];
+                        [_tempHumidityDetailView  detailViewInit];
+                        
+                    }
+                    
+                    result = _tempHumidityDetailView;
                     break;
             };
         }

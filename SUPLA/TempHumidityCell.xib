@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
-    <device id="retina4_7" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15504" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15508"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -23,17 +21,17 @@
             <rect key="frame" x="0.0" y="0.0" width="380" height="103"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="7rB-iV-i1x" id="mtw-YI-uHv">
-                <rect key="frame" x="0.0" y="0.0" width="380" height="102.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="380" height="103"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Temperature and humidity" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5YC-RH-PM5">
-                        <rect key="frame" x="26" y="76.5" width="328" height="16.5"/>
+                        <rect key="frame" x="25" y="76.5" width="330" height="16.5"/>
                         <fontDescription key="fontDescription" name="OpenSans-Bold" family="Open Sans" pointSize="12"/>
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dBx-Oa-uvc" userLabel="bottomLine">
-                        <rect key="frame" x="6" y="99" width="368" height="1"/>
+                        <rect key="frame" x="5" y="99" width="370" height="1"/>
                         <color key="backgroundColor" red="0.66666666666666663" green="0.66666666666666663" blue="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="1" id="wiO-uk-gao"/>
@@ -71,6 +69,14 @@
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FuF-jE-JMA" userLabel="onlineRight" customClass="SAUIChannelStatus">
+                        <rect key="frame" x="345" y="41.5" width="10" height="20"/>
+                        <color key="backgroundColor" red="0.070588235289999995" green="0.65490196079999996" blue="0.1176470588" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="10" id="ONq-xT-x2l"/>
+                            <constraint firstAttribute="height" constant="20" id="Vyl-iq-Y6r"/>
+                        </constraints>
+                    </view>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="C°" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RuG-oi-lXW">
                         <rect key="frame" x="258" y="23" width="58" height="40"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -92,8 +98,10 @@
                     <constraint firstAttribute="trailingMargin" secondItem="5YC-RH-PM5" secondAttribute="trailing" constant="10" id="Ypc-Ku-Xxh"/>
                     <constraint firstItem="5YC-RH-PM5" firstAttribute="top" secondItem="gra-eg-NfA" secondAttribute="bottom" constant="10" id="Zbu-ex-TMy"/>
                     <constraint firstItem="NRR-0X-1Zb" firstAttribute="leading" secondItem="gra-eg-NfA" secondAttribute="trailing" id="ejM-E0-vMa"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="FuF-jE-JMA" secondAttribute="trailing" constant="10" id="h4P-YP-nfl"/>
                     <constraint firstItem="pue-s1-1cy" firstAttribute="centerX" secondItem="mtw-YI-uHv" secondAttribute="centerX" constant="29" id="pUg-0r-BLb"/>
                     <constraint firstItem="dBx-Oa-uvc" firstAttribute="trailing" secondItem="mtw-YI-uHv" secondAttribute="trailingMargin" constant="10" id="tRB-7s-rvx"/>
+                    <constraint firstItem="FuF-jE-JMA" firstAttribute="centerY" secondItem="mtw-YI-uHv" secondAttribute="centerY" id="tWf-U5-4bY"/>
                     <constraint firstItem="NRR-0X-1Zb" firstAttribute="centerY" secondItem="mtw-YI-uHv" secondAttribute="centerY" constant="-10" id="vBy-2o-clB"/>
                 </constraints>
                 <variation key="default">
@@ -106,9 +114,10 @@
                 <outlet property="caption" destination="5YC-RH-PM5" id="5Jz-QT-4kl"/>
                 <outlet property="humidity" destination="lPY-xq-yar" id="0qW-7M-qbG"/>
                 <outlet property="image" destination="gra-eg-NfA" id="Gef-VP-e7E"/>
+                <outlet property="right_OnlineStatus" destination="FuF-jE-JMA" id="WfA-1f-tas"/>
                 <outlet property="temp" destination="NRR-0X-1Zb" id="wwg-Jx-uuO"/>
             </connections>
-            <point key="canvasLocation" x="39" y="-92.5"/>
+            <point key="canvasLocation" x="-397" y="-108"/>
         </tableViewCell>
     </objects>
     <resources>
