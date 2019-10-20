@@ -19,117 +19,40 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #import "ImpulseCounterDetailView.h"
 #import "SAImpulseCounterExtendedValue.h"
 #import "SAImpulseCounterChartHelper.h"
+#import "SADownloadImpulseCounterMeasurements.h"
 #import "SuplaApp.h"
 
-@implementation SAImpulseCounterDetailView {
-    SADownloadImpulseCounterMeasurements *_task;
-    SAImpulseCounterChartHelper *_chartHelper;
-    NSTimer *_taskTimer;
+@implementation SAImpulseCounterDetailView
+
+-(SAChartHelper*)newChartHelper {
+    SAChartHelper *chartHelper = [[SAImpulseCounterChartHelper alloc] init];
+    chartHelper.combinedChart = self.combinedChart;
+    chartHelper.pieChart = self.pieChart;
+    chartHelper.unit = @"kWh";
+    return chartHelper;
 }
 
--(void)detailViewInit {
-    if (!self.initialized) {
-        _chartHelper = [[SAImpulseCounterChartHelper alloc] init];
-        _chartHelper.combinedChart = self.combinedChart;
-        _chartHelper.pieChart = self.pieChart;
-        _chartHelper.unit = @"kWh";
-        _tfChartTypeFilter.chartHelper = _chartHelper;
-        _tfChartTypeFilter.dateRangeFilterField = _ftDateRangeFilter;
-        [_tfChartTypeFilter excludeElements:@[[NSNumber numberWithInt:Pie_PhaseRank]]];
-        _tfChartTypeFilter.ff_delegate = self;
-        _ftDateRangeFilter.ff_delegate = self;
-    }
-    
-    [super detailViewInit];
+-(SADownloadMeasurementLogs*)newDownloadTask {
+    return [[SADownloadImpulseCounterMeasurements alloc] init];;
 }
 
--(void)onDetailShow {
-    [super onDetailShow];
-    
-    [SAApp.instance cancelAllRestApiClientTasks];
-    
-    if (_taskTimer == nil) {
-        _taskTimer = [NSTimer scheduledTimerWithTimeInterval:120
-                                                           target:self
-                                                         selector:@selector(onTaskTimer:)
-                                                         userInfo:nil
-                                                          repeats:YES];
-    }
-    [self runDownloadTask];
-    [self loadChartWithAnimation:YES];
-}
-
--(void)onDetailHide {
-    [super onDetailHide];
-    
-    if (_taskTimer) {
-        [_taskTimer invalidate];
-        _taskTimer = nil;
-    }
-    
-    if (_task) {
-        [_task cancel];
-        _task.delegate = nil;
-    }
-}
-
--(void)onTaskTimer:(NSTimer *)timer {
-    [self runDownloadTask];
-}
-
--(void) runDownloadTask {
-    if (_task && ![_task isTaskIsAliveWithTimeout:90]) {
-        [_task cancel];
-        _task = nil;
-    }
-    
-    if (!_task) {
-        _task = [[SADownloadImpulseCounterMeasurements alloc] init];
-        _task.channelId = self.channelBase.remote_id;
-        _task.delegate = self;
-        [_task start];
-    }
-}
-
--(void) onRestApiTaskStarted: (SARestApiClientTask*)task {
-    NSLog(@"onRestApiTaskStarted");
-    [self.lPreloader animateWithTimeInterval:0.1];
-}
-
--(void) onRestApiTaskFinished: (SARestApiClientTask*)task {
-    NSLog(@"onRestApiTaskFinished");
-    if (_task != nil && task == _task) {
-        _task.delegate = nil;
-        _task = nil;
-    }
-    
-    self.lPreloader.hidden = YES;
-    [self updateView];
-    _chartHelper.downloadProgress = nil;
-    [self loadChartWithAnimation:NO];
-}
-
-- (IBAction)chartBtnTouch:(id)sender {
-    if (self.lPreloader.hidden) {
-        [self runDownloadTask];
-    }
-}
-
--(void)setChannelBase:(SAChannelBase *)channelBase {
-    if (_chartHelper) {
-        _chartHelper.channelId = channelBase ? channelBase.remote_id : 0;
-    }
-    [super setChannelBase:channelBase];
+- (void)initChartFilters {
+    self.tfChartTypeFilter.chartHelper = self.chartHelper;
+    self.tfChartTypeFilter.dateRangeFilterField = self.ftDateRangeFilter;
+        [self.tfChartTypeFilter excludeElements:@[[NSNumber numberWithInt:Pie_PhaseRank]]];
+    self.tfChartTypeFilter.ff_delegate = self;
+    self.ftDateRangeFilter.ff_delegate = self;
 }
 
 - (void)updateView {
+    [super updateView];
+    
     NSString *empty = @"----";
     
     [self.lMeterValue setText:empty];
     [self.lCurrentConsumption setText:empty];
     [self.lCurrentCost setText:empty];
     [self.lTotalCost setText:empty];
-    [self.lCaption setText:[self.channelBase getChannelCaption]];
     [self.ivImage setImage:[self.channelBase getIcon]];
     
     SAImpulseCounterExtendedValue *icev = nil;
@@ -157,26 +80,20 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         [self.lCurrentConsumption setText:[NSString stringWithFormat:@"%0.2f %@", currentConsumption,  icev.unit]];
         [self.lCurrentCost setText:[NSString stringWithFormat:@"%0.2f %@", currentCost, icev.currency]];
     
-        _chartHelper.unit = icev.unit;
-        _chartHelper.currency = icev.currency;
-        _chartHelper.pricePerUnit = icev.pricePerUnit;
+        SAImpulseCounterChartHelper *chartHelper = (SAImpulseCounterChartHelper*)self.chartHelper;
+        chartHelper.unit = icev.unit;
+        chartHelper.currency = icev.currency;
+        chartHelper.pricePerUnit = icev.pricePerUnit;
     }
 }
 
 - (void)loadChartWithAnimation:(BOOL)animation {
-    _chartHelper.chartType = _tfChartTypeFilter.chartType;
-    _chartHelper.dateFrom = _tfChartTypeFilter.dateRangeFilterField.dateFrom;
-    [_chartHelper load];
+    SAImpulseCounterChartHelper *chartHelper = (SAImpulseCounterChartHelper*)self.chartHelper;
+    chartHelper.chartType = _tfChartTypeFilter.chartType;
+    chartHelper.dateFrom = _tfChartTypeFilter.dateRangeFilterField.dateFrom;
+    [chartHelper load];
     if (animation) {
-        [_chartHelper animate];
+        [chartHelper animate];
     }
-}
-
--(void) onRestApiTask: (SARestApiClientTask*)task progressUpdate:(float)progress {
-    _chartHelper.downloadProgress = [NSNumber numberWithFloat:progress];
-}
-
--(void) onFilterChanged: (SAChartFilterField*)filterField {
-    [self loadChartWithAnimation:YES];
 }
 @end

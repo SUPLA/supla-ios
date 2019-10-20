@@ -13,6 +13,8 @@
 		012F722E22DFA0BE00E5F72E /* SABarChartDataSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 012F722D22DFA0BE00E5F72E /* SABarChartDataSet.swift */; };
 		012FCBD323217DE000AC6FF6 /* ThermostatCalendarTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 012FCBD223217DE000AC6FF6 /* ThermostatCalendarTests.m */; };
 		0130894523395F4C00F46FCD /* ThermostatScheduleCfgTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 0130894423395F4C00F46FCD /* ThermostatScheduleCfgTests.m */; };
+		01392B37235C91C1003A2BAD /* SADownloadTemperatureMeasurements.m in Sources */ = {isa = PBXBuildFile; fileRef = 01392B36235C91C1003A2BAD /* SADownloadTemperatureMeasurements.m */; };
+		01392B3A235CA8B1003A2BAD /* ChartDetailView.m in Sources */ = {isa = PBXBuildFile; fileRef = 01392B39235CA8B1003A2BAD /* ChartDetailView.m */; };
 		013D1C5D22CE47D5000C0784 /* SAChartHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 013D1C5C22CE47D5000C0784 /* SAChartHelper.m */; };
 		013D1C6022CE757F000C0784 /* SAIncrementalMeterChartHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 013D1C5F22CE757F000C0784 /* SAIncrementalMeterChartHelper.m */; };
 		013D1C6322CE75A3000C0784 /* SAElectricityChartHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 013D1C6222CE75A3000C0784 /* SAElectricityChartHelper.m */; };
@@ -356,6 +358,10 @@
 		012F722D22DFA0BE00E5F72E /* SABarChartDataSet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SABarChartDataSet.swift; sourceTree = "<group>"; };
 		012FCBD223217DE000AC6FF6 /* ThermostatCalendarTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ThermostatCalendarTests.m; sourceTree = "<group>"; };
 		0130894423395F4C00F46FCD /* ThermostatScheduleCfgTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ThermostatScheduleCfgTests.m; sourceTree = "<group>"; };
+		01392B35235C91C1003A2BAD /* SADownloadTemperatureMeasurements.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SADownloadTemperatureMeasurements.h; sourceTree = "<group>"; };
+		01392B36235C91C1003A2BAD /* SADownloadTemperatureMeasurements.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SADownloadTemperatureMeasurements.m; sourceTree = "<group>"; };
+		01392B38235CA8B1003A2BAD /* ChartDetailView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChartDetailView.h; sourceTree = "<group>"; };
+		01392B39235CA8B1003A2BAD /* ChartDetailView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChartDetailView.m; sourceTree = "<group>"; };
 		013D1C5B22CE47D5000C0784 /* SAChartHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SAChartHelper.h; sourceTree = "<group>"; };
 		013D1C5C22CE47D5000C0784 /* SAChartHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SAChartHelper.m; sourceTree = "<group>"; };
 		013D1C5E22CE757F000C0784 /* SAIncrementalMeterChartHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SAIncrementalMeterChartHelper.h; sourceTree = "<group>"; };
@@ -1006,6 +1012,8 @@
 				01E517C522C6AD7D000FE77A /* SADownloadMeasurementLogs.m */,
 				018E67CD22C8CA0A00FF1427 /* SADownloadElectricityMeasurements.h */,
 				0172677B234FAF78000F1CFB /* SADownloadImpulseCounterMeasurements.h */,
+				01392B35235C91C1003A2BAD /* SADownloadTemperatureMeasurements.h */,
+				01392B36235C91C1003A2BAD /* SADownloadTemperatureMeasurements.m */,
 				0172677C234FAF78000F1CFB /* SADownloadImpulseCounterMeasurements.m */,
 				018E67CE22C8CA0A00FF1427 /* SADownloadElectricityMeasurements.m */,
 				01F8857322E6167100D18373 /* SADownloadUserIcons.h */,
@@ -1476,6 +1484,8 @@
 				01D0616C22C294D90043C947 /* ElectricityMeterDetailView.h */,
 				012023C0234E54ED00E131B7 /* ImpulseCounterDetailView.h */,
 				012023C1234E54ED00E131B7 /* ImpulseCounterDetailView.m */,
+				01392B38235CA8B1003A2BAD /* ChartDetailView.h */,
+				01392B39235CA8B1003A2BAD /* ChartDetailView.m */,
 				01902A23235A17E9005ED935 /* TemperatureDetailView.h */,
 				01902A2B235A1860005ED935 /* TempHumidityDetailView.xib */,
 				01902A29235A1840005ED935 /* TemperatureDetailView.xib */,
@@ -1961,6 +1971,7 @@
 				01F8856E22E5E79100D18373 /* SAImpulseCounterMeasurementItem+CoreDataProperties.m in Sources */,
 				01C1718F22C7F3A2005983E1 /* SAIncrementalMeasurementItem+CoreDataClass.m in Sources */,
 				0172677D234FAF78000F1CFB /* SADownloadImpulseCounterMeasurements.m in Sources */,
+				01392B37235C91C1003A2BAD /* SADownloadTemperatureMeasurements.m in Sources */,
 				01C1719A22C7F55B005983E1 /* SAMeasurementItem+CoreDataProperties.m in Sources */,
 				01902A25235A17E9005ED935 /* TemperatureDetailView.m in Sources */,
 				01EE9BBB22BA50D90029A142 /* SAChannelValueBase+CoreDataClass.m in Sources */,
@@ -1978,6 +1989,7 @@
 				401CA1C21BA067DB00117AF4 /* AppDelegate.m in Sources */,
 				013D1C5D22CE47D5000C0784 /* SAChartHelper.m in Sources */,
 				019F4CCD23577C3700286139 /* SAImpulseCounterChartHelper.m in Sources */,
+				01392B3A235CA8B1003A2BAD /* ChartDetailView.m in Sources */,
 				01567446232FCFD700397393 /* SAIncrementalMeterExtendedValue.m in Sources */,
 				017554F622F1A62500EB58B7 /* HomePlusDetailView.m in Sources */,
 				40A675831BA1BE8E004A51C4 /* SettingsVC.m in Sources */,

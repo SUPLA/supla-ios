@@ -64,7 +64,7 @@ typedef NS_ENUM(NSUInteger, ChartType) {
 @property (nonatomic, strong) NSDate *dateFrom;
 @property (nonatomic, strong) NSDate *dateTo;
 @property (nonatomic, strong) NSString *unit;
-@property (nonatomic, strong) NSNumber *downloadProgress;
+@property (nullable, nonatomic, strong) NSNumber *downloadProgress;
 @property (nonatomic) int channelId;
 @property (nonatomic, readonly) long minTimestamp;
 @end
