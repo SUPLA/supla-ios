@@ -16,11 +16,11 @@
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 
-#import "SADownloadMeasurementLogs.h"
+#import "SADownloadMeasurements.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface SADownloadIncrementalMeasurements : SADownloadMeasurementLogs
+@interface SADownloadIncrementalMeasurements : SADownloadMeasurements
 
 @end
 

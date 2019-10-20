@@ -17,7 +17,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 */
 
 #import "DetailView.h"
-#import "SADownloadMeasurementLogs.h"
+#import "SADownloadMeasurements.h"
 #import "SAPreloader.h"
 #import "SAChartFilterField.h"
 

@@ -73,7 +73,7 @@
 		01D5E0C822DB7FAF00FBE1DC /* SAChartMarkerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01D5E0C722DB7FAF00FBE1DC /* SAChartMarkerView.swift */; };
 		01D5E0CA22DB8F0A00FBE1DC /* SAChartMarkerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 01D5E0C922DB8F0A00FBE1DC /* SAChartMarkerView.xib */; };
 		01E517C322C6AC1E000FE77A /* SADownloadIncrementalMeasurements.m in Sources */ = {isa = PBXBuildFile; fileRef = 01E517C222C6AC1E000FE77A /* SADownloadIncrementalMeasurements.m */; };
-		01E517C622C6AD7D000FE77A /* SADownloadMeasurementLogs.m in Sources */ = {isa = PBXBuildFile; fileRef = 01E517C522C6AD7D000FE77A /* SADownloadMeasurementLogs.m */; };
+		01E517C622C6AD7D000FE77A /* SADownloadMeasurements.m in Sources */ = {isa = PBXBuildFile; fileRef = 01E517C522C6AD7D000FE77A /* SADownloadMeasurements.m */; };
 		01EE9BB022BA4B050029A142 /* SAChannelExtendedValue+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 01EE9BAF22BA4B050029A142 /* SAChannelExtendedValue+CoreDataProperties.m */; };
 		01EE9BBB22BA50D90029A142 /* SAChannelValueBase+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 01EE9BB722BA50D90029A142 /* SAChannelValueBase+CoreDataClass.m */; };
 		01EE9BBC22BA50D90029A142 /* SAChannelValueBase+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 01EE9BB822BA50D90029A142 /* SAChannelValueBase+CoreDataProperties.m */; };
@@ -540,8 +540,8 @@
 		01D5E0C922DB8F0A00FBE1DC /* SAChartMarkerView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SAChartMarkerView.xib; sourceTree = "<group>"; };
 		01E517C122C6AC1E000FE77A /* SADownloadIncrementalMeasurements.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SADownloadIncrementalMeasurements.h; sourceTree = "<group>"; };
 		01E517C222C6AC1E000FE77A /* SADownloadIncrementalMeasurements.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SADownloadIncrementalMeasurements.m; sourceTree = "<group>"; };
-		01E517C422C6AD7D000FE77A /* SADownloadMeasurementLogs.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SADownloadMeasurementLogs.h; sourceTree = "<group>"; };
-		01E517C522C6AD7D000FE77A /* SADownloadMeasurementLogs.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SADownloadMeasurementLogs.m; sourceTree = "<group>"; };
+		01E517C422C6AD7D000FE77A /* SADownloadMeasurements.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SADownloadMeasurements.h; sourceTree = "<group>"; };
+		01E517C522C6AD7D000FE77A /* SADownloadMeasurements.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SADownloadMeasurements.m; sourceTree = "<group>"; };
 		01EE9BAE22BA4B050029A142 /* SAChannelExtendedValue+CoreDataProperties.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SAChannelExtendedValue+CoreDataProperties.h"; sourceTree = "<group>"; };
 		01EE9BAF22BA4B050029A142 /* SAChannelExtendedValue+CoreDataProperties.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "SAChannelExtendedValue+CoreDataProperties.m"; sourceTree = "<group>"; };
 		01EE9BB522BA50D90029A142 /* SAChannelValueBase+CoreDataProperties.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SAChannelValueBase+CoreDataProperties.h"; sourceTree = "<group>"; };
@@ -1008,8 +1008,8 @@
 				01BDAC7722C5200600915646 /* SAOAuthToken.m */,
 				01E517C122C6AC1E000FE77A /* SADownloadIncrementalMeasurements.h */,
 				01E517C222C6AC1E000FE77A /* SADownloadIncrementalMeasurements.m */,
-				01E517C422C6AD7D000FE77A /* SADownloadMeasurementLogs.h */,
-				01E517C522C6AD7D000FE77A /* SADownloadMeasurementLogs.m */,
+				01E517C422C6AD7D000FE77A /* SADownloadMeasurements.h */,
+				01E517C522C6AD7D000FE77A /* SADownloadMeasurements.m */,
 				018E67CD22C8CA0A00FF1427 /* SADownloadElectricityMeasurements.h */,
 				0172677B234FAF78000F1CFB /* SADownloadImpulseCounterMeasurements.h */,
 				01392B35235C91C1003A2BAD /* SADownloadTemperatureMeasurements.h */,
@@ -2040,7 +2040,7 @@
 				01D5E0C822DB7FAF00FBE1DC /* SAChartMarkerView.swift in Sources */,
 				409934B61F30EF9C003110C5 /* RSDetailView.m in Sources */,
 				01C1719022C7F3A2005983E1 /* SAIncrementalMeasurementItem+CoreDataProperties.m in Sources */,
-				01E517C622C6AD7D000FE77A /* SADownloadMeasurementLogs.m in Sources */,
+				01E517C622C6AD7D000FE77A /* SADownloadMeasurements.m in Sources */,
 				403150FB1DC769430075D2D2 /* RGBDetailView.m in Sources */,
 				01F8856A22E5E79100D18373 /* SATempHumidityMeasurementItem+CoreDataProperties.m in Sources */,
 				40E8BE881FC06A5600FB2FE6 /* TFHpple.m in Sources */,

@@ -17,12 +17,12 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 */
 
 #import "ChartDetailView.h"
-#import "SADownloadMeasurementLogs.h"
+#import "SADownloadMeasurements.h"
 #import "SAChartHelper.h"
 #import "SuplaApp.h"
 
 @implementation SAChartDetailView {
-    SADownloadMeasurementLogs *_task;
+    SADownloadMeasurements *_task;
     NSTimer *_taskTimer;
 }
 
@@ -33,7 +33,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     return nil;
 }
 
--(SADownloadMeasurementLogs*)newDownloadTask {
+-(SADownloadMeasurements*)newDownloadTask {
     ABSTRACT_METHOD_EXCEPTION;
     return nil;
 }
