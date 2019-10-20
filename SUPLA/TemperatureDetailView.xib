@@ -7,7 +7,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
-        <array key="Quicksand-Light.ttf">
+        <array key="Quicksand-Regular.ttf">
             <string>Quicksand-Regular</string>
         </array>
     </customFonts>
@@ -19,10 +19,10 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yfP-yw-6n8" userLabel="vContent">
-                    <rect key="frame" x="10" y="159" width="394" height="677"/>
+                    <rect key="frame" x="10" y="130" width="394" height="706"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NHU-CU-o8S" userLabel="vCharts">
-                            <rect key="frame" x="0.0" y="0.0" width="394" height="677"/>
+                            <rect key="frame" x="0.0" y="0.0" width="394" height="706"/>
                             <subviews>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WTB-jW-RVM" userLabel="vFilters">
                                     <rect key="frame" x="0.0" y="0.0" width="394" height="32"/>
@@ -47,10 +47,10 @@
                                     </constraints>
                                 </view>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KC1-jt-PpO" userLabel="vChartContainer">
-                                    <rect key="frame" x="0.0" y="37" width="394" height="640"/>
+                                    <rect key="frame" x="0.0" y="37" width="394" height="669"/>
                                     <subviews>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ebk-eZ-hgm" customClass="CombinedChartView" customModule="Charts">
-                                            <rect key="frame" x="0.0" y="0.0" width="394" height="640"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="394" height="669"/>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </view>
                                     </subviews>
@@ -115,28 +115,31 @@
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AxH-u1-nUN" userLabel="vHeader">
-                    <rect key="frame" x="10" y="20" width="394" height="134"/>
+                    <rect key="frame" x="10" y="10" width="394" height="115"/>
                     <subviews>
                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="thermometer.png" translatesAutoresizingMaskIntoConstraints="NO" id="tH1-rG-hL3">
-                            <rect key="frame" x="10" y="17" width="100" height="100"/>
+                            <rect key="frame" x="10" y="12.5" width="100" height="90"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="100" id="Zj1-We-Ldb"/>
-                                <constraint firstAttribute="height" constant="100" id="c3v-H4-lHM"/>
+                                <constraint firstAttribute="height" constant="90" id="c3v-H4-lHM"/>
                             </constraints>
                         </imageView>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8zc-Rh-Ik4">
-                            <rect key="frame" x="130" y="-8" width="264" height="150"/>
+                            <rect key="frame" x="130" y="-17.5" width="264" height="150"/>
                             <subviews>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="630-dh-HYl" userLabel="btnChart">
-                                    <rect key="frame" x="231" y="100" width="30" height="30"/>
+                                    <rect key="frame" x="231" y="90" width="30" height="30"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="30" id="h3w-p2-q8L"/>
                                         <constraint firstAttribute="width" constant="30" id="p5g-Xr-Oki"/>
                                     </constraints>
                                     <state key="normal" title="Button" image="graphon.png"/>
+                                    <connections>
+                                        <action selector="chartBtnTouch:" destination="71g-3z-Pqd" eventType="touchDown" id="zDA-qV-KuB"/>
+                                    </connections>
                                 </button>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="••••••••••" textAlignment="center" lineBreakMode="clip" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jlr-wT-Bib" customClass="SAPreloader">
-                                    <rect key="frame" x="231" y="130" width="30" height="7.5"/>
+                                    <rect key="frame" x="231" y="120" width="30" height="7.5"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="30" id="pHN-nC-gQV"/>
                                     </constraints>
@@ -150,21 +153,28 @@
                                 <constraint firstAttribute="trailing" secondItem="630-dh-HYl" secondAttribute="trailing" constant="3" id="BUh-nG-IUW"/>
                                 <constraint firstAttribute="height" constant="150" id="GDN-WU-4Wp"/>
                                 <constraint firstAttribute="trailing" secondItem="Jlr-wT-Bib" secondAttribute="trailing" constant="3" id="k5e-sN-Isd"/>
-                                <constraint firstAttribute="bottom" secondItem="630-dh-HYl" secondAttribute="bottom" constant="20" id="oDb-eL-7aM"/>
+                                <constraint firstAttribute="bottom" secondItem="630-dh-HYl" secondAttribute="bottom" constant="30" id="oDb-eL-7aM"/>
                                 <constraint firstItem="Jlr-wT-Bib" firstAttribute="top" secondItem="630-dh-HYl" secondAttribute="bottom" id="vdF-Q8-fdm"/>
                             </constraints>
                         </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wAz-gh-705" userLabel="vLine1">
-                            <rect key="frame" x="0.0" y="133" width="394" height="1"/>
+                            <rect key="frame" x="0.0" y="114" width="394" height="1"/>
                             <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="1" id="ye2-gO-gBc"/>
                             </constraints>
                         </view>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="20.0°" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="q9E-Xx-wtX">
+                            <rect key="frame" x="120" y="34.5" width="94" height="46"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="38"/>
+                            <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <nil key="highlightedColor"/>
+                        </label>
                     </subviews>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstItem="8zc-Rh-Ik4" firstAttribute="centerY" secondItem="AxH-u1-nUN" secondAttribute="centerY" id="6zC-zE-Y1p"/>
+                        <constraint firstItem="q9E-Xx-wtX" firstAttribute="centerY" secondItem="AxH-u1-nUN" secondAttribute="centerY" id="DPS-jf-yDP"/>
                         <constraint firstItem="wAz-gh-705" firstAttribute="leading" secondItem="AxH-u1-nUN" secondAttribute="leading" id="Ejh-0h-wTa"/>
                         <constraint firstItem="tH1-rG-hL3" firstAttribute="leading" secondItem="AxH-u1-nUN" secondAttribute="leading" constant="10" id="Oxc-4y-t6V"/>
                         <constraint firstAttribute="trailing" secondItem="8zc-Rh-Ik4" secondAttribute="trailing" id="WeV-To-Xbb"/>
@@ -172,7 +182,8 @@
                         <constraint firstAttribute="trailing" secondItem="wAz-gh-705" secondAttribute="trailing" id="iPD-En-Rci"/>
                         <constraint firstAttribute="bottom" secondItem="wAz-gh-705" secondAttribute="bottom" id="jSg-dg-Mon"/>
                         <constraint firstItem="tH1-rG-hL3" firstAttribute="centerY" secondItem="AxH-u1-nUN" secondAttribute="centerY" id="lRr-UA-KuJ"/>
-                        <constraint firstAttribute="height" constant="134" id="wb2-MT-7XP"/>
+                        <constraint firstItem="q9E-Xx-wtX" firstAttribute="leading" secondItem="tH1-rG-hL3" secondAttribute="trailing" constant="10" id="n6P-Lg-mn3"/>
+                        <constraint firstAttribute="height" constant="115" id="wb2-MT-7XP"/>
                     </constraints>
                 </view>
             </subviews>
@@ -185,12 +196,20 @@
                 <constraint firstAttribute="trailing" secondItem="AxH-u1-nUN" secondAttribute="trailing" constant="10" id="LXv-Eh-7SF"/>
                 <constraint firstItem="hh4-KJ-dCY" firstAttribute="top" secondItem="yfP-yw-6n8" secondAttribute="bottom" constant="5" id="Ttc-fh-8ET"/>
                 <constraint firstAttribute="trailing" secondItem="yfP-yw-6n8" secondAttribute="trailing" constant="10" id="cNN-97-R0R"/>
-                <constraint firstItem="AxH-u1-nUN" firstAttribute="top" secondItem="71g-3z-Pqd" secondAttribute="top" constant="20" id="cZI-hv-NKH"/>
+                <constraint firstItem="AxH-u1-nUN" firstAttribute="top" secondItem="71g-3z-Pqd" secondAttribute="top" constant="10" id="cZI-hv-NKH"/>
                 <constraint firstItem="yfP-yw-6n8" firstAttribute="top" secondItem="AxH-u1-nUN" secondAttribute="bottom" constant="5" id="ceV-bz-5cO"/>
                 <constraint firstItem="yfP-yw-6n8" firstAttribute="leading" secondItem="71g-3z-Pqd" secondAttribute="leading" constant="10" id="pJu-ue-15G"/>
             </constraints>
             <nil key="simulatedTopBarMetrics"/>
             <nil key="simulatedBottomBarMetrics"/>
+            <connections>
+                <outlet property="combinedChart" destination="ebk-eZ-hgm" id="Pt8-LO-NkP"/>
+                <outlet property="ftDateRangeFilter" destination="D3J-bk-5wW" id="xz5-Oe-6fN"/>
+                <outlet property="ivImage" destination="tH1-rG-hL3" id="5Gg-vG-ZNg"/>
+                <outlet property="lCaption" destination="Byq-37-72m" id="lpw-rw-KzM"/>
+                <outlet property="lPreloader" destination="Jlr-wT-Bib" id="kNL-cC-ENz"/>
+                <outlet property="lTemperature" destination="q9E-Xx-wtX" id="u9s-oS-LJ3"/>
+            </connections>
             <point key="canvasLocation" x="-792.75362318840587" y="-269.19642857142856"/>
         </view>
     </objects>

@@ -60,4 +60,24 @@
     && ([str boolValue] || [str intValue] > 0);
 }
 
+- (double) doubleForKey:(NSString*)key withObject:(NSDictionary*)object {
+    NSString *str = [object valueForKey:key];
+    return str == nil || [str isKindOfClass:[NSNull class]] ? 0.0 : [str doubleValue];
+}
+
+- (long long) longLongForKey:(NSString*)key withObject:(NSDictionary*)object {
+    NSString *str = [object valueForKey:key];
+    return str == nil || [str isKindOfClass:[NSNull class]] ? 0 : [str longLongValue];
+}
+
+-(NSDecimalNumber*)temperatureForKey:(NSString*)key withObject:(NSDictionary*)object {
+   NSString *str = [object valueForKey:key];
+    if (str != nil && ![str isKindOfClass:[NSNull class]]) {
+        double temperature = [str doubleValue];
+        if (temperature > -273) {
+            return [[NSDecimalNumber alloc] initWithDouble:temperature];
+        }
+    }
+    return nil;
+}
 @end

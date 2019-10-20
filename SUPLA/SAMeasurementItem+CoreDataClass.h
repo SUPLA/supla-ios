@@ -26,6 +26,9 @@ NS_ASSUME_NONNULL_BEGIN
 - (void) assignMeasurementItem:(SAMeasurementItem*)source;
 - (void) setDateAndDateParts:(NSDate *)date;
 - (BOOL) boolValueForKey:(NSString*)key withObject:(NSDictionary*)object;
+- (double) doubleForKey:(NSString*)key withObject:(NSDictionary*)object;
+- (long long) longLongForKey:(NSString*)key withObject:(NSDictionary*)object;
+- (NSDecimalNumber*)temperatureForKey:(NSString*)key withObject:(NSDictionary*)object;
 @end
 
 NS_ASSUME_NONNULL_END

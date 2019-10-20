@@ -16,13 +16,12 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 */
 
-#import "SAThermostatChartHelper.h"
+#import "SATemperatureChartHelper.h"
 #import "SuplaApp.h"
 #import "UIHelper.h"
 #import "SUPLA-Swift.h"
 
-@implementation SAThermostatChartHelper
-
+@implementation SATemperatureChartHelper
 -(id)init {
     if (self = [super init]) {
         self.chartType = Bar_Minutely;
@@ -31,7 +30,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 }
 
 - (NSArray *)getData {
-    return [SAApp.DB getThermostatMeasurementsForChannelId:self.channelId dateFrom:self.dateFrom dateTo:self.dateTo];
+    return [SAApp.DB getTemperatureMeasurementsForChannelId:self.channelId dateFrom:self.dateFrom dateTo:self.dateTo];
 }
 
 
@@ -41,13 +40,13 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         return;
     }
 
-    [entries addObject:[[BarChartDataEntry alloc] initWithX:time yValues:@[[self doubleValueForKey:@"measured" item:item]]]];
+    [entries addObject:[[BarChartDataEntry alloc] initWithX:time yValues:@[[self doubleValueForKey:@"temperature" item:item]]]];
 }
 
 - (SABarChartDataSet *) newBarDataSetWithEntries:(NSArray *)entries {
     SABarChartDataSet *result = [super newBarDataSetWithEntries:entries];
     if (result) {
-        result.stackLabels = @[NSLocalizedString(@"Room temperature", nil)];
+        result.stackLabels = @[NSLocalizedString(@"Temperature", nil)];
         [result resetColors];
         result.colors = @[[UIColor chartRoomTemperature]];
     }

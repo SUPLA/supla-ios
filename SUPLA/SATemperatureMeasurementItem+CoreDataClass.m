@@ -20,4 +20,9 @@
 
 @implementation SATemperatureMeasurementItem
 
+- (void) assignJSONObject:(NSDictionary *)object {
+    [super assignJSONObject:object];
+
+    self.temperature = [self temperatureForKey:@"temperature" withObject:object];
+}
 @end

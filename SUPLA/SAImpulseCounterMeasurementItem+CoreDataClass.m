@@ -20,17 +20,6 @@
 
 @implementation SAImpulseCounterMeasurementItem
 
-- (double) doubleForKey:(NSString*)key withObject:(NSDictionary*)object {
-    NSString *str = [object valueForKey:key];
-    return str == nil || [str isKindOfClass:[NSNull class]] ? 0.0 : [str doubleValue];
-}
-
-- (long long) longLongForKey:(NSString*)key withObject:(NSDictionary*)object {
-    NSString *str = [object valueForKey:key];
-    return str == nil || [str isKindOfClass:[NSNull class]] ? 0 : [str longLongValue];
-}
-
-
 - (void) assignJSONObject:(NSDictionary *)object {
     [super assignJSONObject:object];
     self.counter = [self longLongForKey:@"counter" withObject:object];

@@ -15,6 +15,7 @@
 		0130894523395F4C00F46FCD /* ThermostatScheduleCfgTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 0130894423395F4C00F46FCD /* ThermostatScheduleCfgTests.m */; };
 		01392B37235C91C1003A2BAD /* SADownloadTemperatureMeasurements.m in Sources */ = {isa = PBXBuildFile; fileRef = 01392B36235C91C1003A2BAD /* SADownloadTemperatureMeasurements.m */; };
 		01392B3A235CA8B1003A2BAD /* ChartDetailView.m in Sources */ = {isa = PBXBuildFile; fileRef = 01392B39235CA8B1003A2BAD /* ChartDetailView.m */; };
+		01392B3D235CE68D003A2BAD /* SATemperatureChartHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 01392B3C235CE68D003A2BAD /* SATemperatureChartHelper.m */; };
 		013D1C5D22CE47D5000C0784 /* SAChartHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 013D1C5C22CE47D5000C0784 /* SAChartHelper.m */; };
 		013D1C6022CE757F000C0784 /* SAIncrementalMeterChartHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 013D1C5F22CE757F000C0784 /* SAIncrementalMeterChartHelper.m */; };
 		013D1C6322CE75A3000C0784 /* SAElectricityChartHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 013D1C6222CE75A3000C0784 /* SAElectricityChartHelper.m */; };
@@ -362,6 +363,8 @@
 		01392B36235C91C1003A2BAD /* SADownloadTemperatureMeasurements.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SADownloadTemperatureMeasurements.m; sourceTree = "<group>"; };
 		01392B38235CA8B1003A2BAD /* ChartDetailView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChartDetailView.h; sourceTree = "<group>"; };
 		01392B39235CA8B1003A2BAD /* ChartDetailView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChartDetailView.m; sourceTree = "<group>"; };
+		01392B3B235CE68D003A2BAD /* SATemperatureChartHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SATemperatureChartHelper.h; sourceTree = "<group>"; };
+		01392B3C235CE68D003A2BAD /* SATemperatureChartHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SATemperatureChartHelper.m; sourceTree = "<group>"; };
 		013D1C5B22CE47D5000C0784 /* SAChartHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SAChartHelper.h; sourceTree = "<group>"; };
 		013D1C5C22CE47D5000C0784 /* SAChartHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SAChartHelper.m; sourceTree = "<group>"; };
 		013D1C5E22CE757F000C0784 /* SAIncrementalMeterChartHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SAIncrementalMeterChartHelper.h; sourceTree = "<group>"; };
@@ -976,6 +979,8 @@
 				012F722D22DFA0BE00E5F72E /* SABarChartDataSet.swift */,
 				019170A2233D67E900820BDB /* SAThermostatChartHelper.h */,
 				019170A3233D67E900820BDB /* SAThermostatChartHelper.m */,
+				01392B3B235CE68D003A2BAD /* SATemperatureChartHelper.h */,
+				01392B3C235CE68D003A2BAD /* SATemperatureChartHelper.m */,
 			);
 			name = charts;
 			sourceTree = "<group>";
@@ -2025,6 +2030,7 @@
 				40A6757F1BA1A5B6004A51C4 /* SuplaApp.m in Sources */,
 				018CFD2023281A5900888CB7 /* SAElectricityMeterExtendedValue.m in Sources */,
 				40C9E4F71F2A186A00753796 /* SARollerShutter.m in Sources */,
+				01392B3D235CE68D003A2BAD /* SATemperatureChartHelper.m in Sources */,
 				401CA1F21BA0A28A00117AF4 /* SuplaClient.m in Sources */,
 				4006E90A1DC62D0A00C4456D /* DetailView.m in Sources */,
 				01BDAC7822C5200600915646 /* SAOAuthToken.m in Sources */,

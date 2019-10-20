@@ -816,7 +816,31 @@
     [self saveContext];
 }
 
-#pragma mark Incremental Measurements
+#pragma mark Measurements - Common
+
+-(NSArray *) getMeasurementsForChannelId:(int)channel_id dateFrom:(NSDate *)dateFrom dateTo:(NSDate *)dateTo entityName:(NSString*)entityName {
+    
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    
+    NSEntityDescription *entity = [NSEntityDescription
+                                   entityForName:entityName inManagedObjectContext:self.managedObjectContext];
+    
+    [fetchRequest setEntity:entity];
+    [fetchRequest setResultType:NSDictionaryResultType];
+ 
+    fetchRequest.predicate = [NSPredicate predicateWithFormat:@"channel_id = %i AND (%@ = nil OR date >= %@) AND (%@ = nil OR date <= %@)", channel_id, dateFrom, dateFrom, dateTo, dateTo];
+    
+    fetchRequest.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"date" ascending:YES]];
+    
+    NSError *error = nil;
+    NSArray *r = [self.managedObjectContext executeFetchRequest:fetchRequest error:&error];
+    
+    if ( error == nil && r.count > 0 ) {
+        return r;
+    }
+    
+    return nil;
+}
 
 -(SAIncrementalMeasurementItem*) fetchOlderThanDate:(NSDate*)date uncalculatedIncrementalMeasurementItemWithChannel:(int)channel_id entityName:(NSString*)en {
     
@@ -1097,6 +1121,31 @@
     return [self getIncrementalMeasurementsForChannelId:channel_id fields:@[@"calculated_value"] entityName:@"SAImpulseCounterMeasurementItem" dateFrom:dateFrom dateTo:dateTo groupBy:gb groupingDepth:gd];
 }
 
+#pragma mark Thermometer Measurements
+
+-(SATemperatureMeasurementItem*) newTemperatureMeasurementItem {
+    SATemperatureMeasurementItem *item = [[SAThermostatMeasurementItem alloc] initWithEntity:[NSEntityDescription entityForName:@"SATemperatureMeasurementItem" inManagedObjectContext:self.managedObjectContext] insertIntoManagedObjectContext:self.managedObjectContext];
+    
+    [self.managedObjectContext insertObject:item];
+    return item;
+}
+
+-(long) getTimestampOfTemperatureMeasurementItemWithChannelId:(int)channel_id minimum:(BOOL)min {
+    return [self getTimestampOfMeasurementItemWithChannelId:channel_id minimum:min entityName:@"SATemperatureMeasurementItem"];
+}
+
+-(NSUInteger) getTemperatureMeasurementItemCountForChannelId:(int)channel_id {
+    return [self getCountByPredicate:[NSPredicate predicateWithFormat:@"channel_id = %i", channel_id] entityName:@"SATemperatureMeasurementItem"];
+}
+
+-(void) deleteAllTemperatureMeasurementsForChannelId:(int)channel_id {
+    [self deleteAllMeasurementsForChannelId:channel_id entityName:@"SATemperatureMeasurementItem"];
+}
+
+-(NSArray *) getTemperatureMeasurementsForChannelId:(int)channel_id dateFrom:(NSDate *)dateFrom dateTo:(NSDate *)dateTo {
+    return [self getMeasurementsForChannelId:channel_id dateFrom:dateFrom dateTo:dateTo entityName:@"SATemperatureMeasurementItem"];
+}
+
 #pragma mark Thermostat Measurements
 
 -(SAThermostatMeasurementItem*) newThermostatMeasurementItem {
@@ -1119,27 +1168,7 @@
 }
 
 -(NSArray *) getThermostatMeasurementsForChannelId:(int)channel_id dateFrom:(NSDate *)dateFrom dateTo:(NSDate *)dateTo {
-    
-    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-    
-    NSEntityDescription *entity = [NSEntityDescription
-                                   entityForName:@"SAThermostatMeasurementItem" inManagedObjectContext:self.managedObjectContext];
-    
-    [fetchRequest setEntity:entity];
-    [fetchRequest setResultType:NSDictionaryResultType];
- 
-    fetchRequest.predicate = [NSPredicate predicateWithFormat:@"channel_id = %i AND (%@ = nil OR date >= %@) AND (%@ = nil OR date <= %@)", channel_id, dateFrom, dateFrom, dateTo, dateTo];
-    
-    fetchRequest.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"date" ascending:YES]];
-    
-    NSError *error = nil;
-    NSArray *r = [self.managedObjectContext executeFetchRequest:fetchRequest error:&error];
-    
-    if ( error == nil && r.count > 0 ) {
-        return r;
-    }
-    
-    return nil;
+    return [self getMeasurementsForChannelId:channel_id dateFrom:dateFrom dateTo:dateTo entityName:@"SAThermostatMeasurementItem"];
 }
 
 #pragma mark User Icons

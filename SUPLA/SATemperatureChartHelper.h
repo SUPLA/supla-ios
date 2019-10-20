@@ -16,23 +16,12 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 */
 
-#import "TemperatureDetailView.h"
-#import "SADownloadTemperatureMeasurements.h"
-#import "SATemperatureChartHelper.h"
+#import "SAChartHelper.h"
 
-@implementation SATemperatureDetailView
+NS_ASSUME_NONNULL_BEGIN
 
--(SAChartHelper*)newChartHelper {
-    return [[SATemperatureChartHelper alloc] init];
-}
-
--(SADownloadMeasurements*)newDownloadTask {
-   return [[SADownloadTemperatureMeasurements alloc] init];
-}
-
-- (void)updateView {
-    [super updateView];
-    [self.lTemperature setText:[[self.channelBase attrStringValue] string]];
-}
+@interface SATemperatureChartHelper : SAChartHelper
 
 @end
+
+NS_ASSUME_NONNULL_END

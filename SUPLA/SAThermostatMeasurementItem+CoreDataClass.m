@@ -20,23 +20,12 @@
 
 @implementation SAThermostatMeasurementItem
 
--(NSDecimalNumber*)getTemperatureForKey:(NSString*)key withObject:(NSDictionary*)object {
-   NSString *str = [object valueForKey:key];
-    if (str != nil && ![str isKindOfClass:[NSNull class]]) {
-        double temperature = [str doubleValue];
-        if (temperature > -273) {
-            return [[NSDecimalNumber alloc] initWithDouble:temperature];
-        }
-    }
-    return nil;
-}
-
 - (void) assignJSONObject:(NSDictionary *)object {
     [super assignJSONObject:object];
     
     self.is_on = [self boolValueForKey:@"on" withObject:object];
-    self.measured = [self getTemperatureForKey:@"measured_temperature" withObject:object];
-    self.preset = [self getTemperatureForKey:@"preset_temperature" withObject:object];
+    self.measured = [self temperatureForKey:@"measured_temperature" withObject:object];
+    self.preset = [self temperatureForKey:@"preset_temperature" withObject:object];
 }
 
 @end
