@@ -47,6 +47,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 -(void)detailViewInit {
     if (!self.initialized) {
         self.chartHelper = [self newChartHelper];
+        self.chartHelper.combinedChart = self.combinedChart;
         [self initChartFilters];
     }
     
@@ -152,6 +153,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 - (void)updateView {
     [super updateView];
+    [self.ivImage setImage:[self.channelBase getIcon]];
     [self.lCaption setText:[self.channelBase getChannelCaption]];
 }
 

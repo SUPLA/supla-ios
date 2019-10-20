@@ -26,7 +26,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 -(SAChartHelper*)newChartHelper {
     SAChartHelper *chartHelper = [[SAImpulseCounterChartHelper alloc] init];
-    chartHelper.combinedChart = self.combinedChart;
     chartHelper.pieChart = self.pieChart;
     chartHelper.unit = @"kWh";
     return chartHelper;
