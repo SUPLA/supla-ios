@@ -4,7 +4,7 @@ target 'SUPLA' do
   use_frameworks!
 
   # Pods for SUPLA
-  pod 'Charts', '3.3.0'
+  pod 'Charts', '3.4.0'
 
   target 'SUPLATests' do
     inherit! :search_paths
