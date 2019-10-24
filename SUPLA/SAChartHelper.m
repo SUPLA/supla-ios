@@ -175,6 +175,9 @@
 -(void) addPieEntryTo:(NSMutableArray*) entries timestamp:(long)timestamp item:(id)item {
 }
 
+-(void) addLineEntryTo:(NSMutableArray*) entries index:(int)idx time:(double)time timestamp:(long)timestamp item:(id)item {
+}
+
 - (void) updateDescription {
 
     NSString *description = @"";
@@ -217,6 +220,16 @@
     return result;
 }
 
+- (LineChartDataSet *) newLineDataSetWithEntries:(NSArray *)entries {
+    LineChartDataSet *result = [[LineChartDataSet alloc] initWithEntries:entries label:@""];
+    result.drawValuesEnabled = NO;
+    result.drawCirclesEnabled = NO;
+    result.drawFilledEnabled = YES;
+    [result setMode: LineChartModeHorizontalBezier];
+    [result setCubicIntensity:0.05];
+    return result;
+}
+
 - (id<IChartMarker>)getMarker {
     return nil;
 }
@@ -232,6 +245,8 @@
 }
 
 - (void) prepareBarDataSet:(SABarChartDataSet*)barDataSet {}
+
+- (void) prepareLineDataSet:(LineChartDataSet*)lineDataSet {}
 
 - (void) loadCombinedChart {
     if (self.pieChart) {
@@ -253,8 +268,10 @@
     [self updateDescription];
     
     NSMutableArray *barEntries = [[NSMutableArray alloc] init];
+    NSMutableArray *lineEntries = [[NSMutableArray alloc] init];
     NSArray *data = [self getData];
-    
+  
+
     if (data && data.count > 0) {
         for(int a=0;a<data.count;a++) {
             id item = [data objectAtIndex:a];
@@ -264,12 +281,15 @@
             }
             
             long time = [self getTimestamp:item];
-            
+    
             if (a == 0) {
                 _minTimestamp = time;
             }
             
-            [self addBarEntryTo:barEntries index:a time:(time-_minTimestamp) / 600.0 timestamp:time item:item];
+            double dtime = (time-_minTimestamp) / 600.0;
+            
+            [self addBarEntryTo:barEntries index:a time:dtime timestamp:time item:item];
+            [self addLineEntryTo:lineEntries index:a time:dtime timestamp:time item:item];
         }
     }
     
@@ -294,6 +314,15 @@
         BarChartData *barData = [[BarChartData alloc] initWithDataSet:barDataSet];
         chartData.barData = barData;
     }
+ 
+    if (lineEntries.count > 0) {
+        LineChartDataSet *lineDataSet = [self newLineDataSetWithEntries:lineEntries];
+        [self prepareLineDataSet: lineDataSet];
+        
+        LineChartData *lineData = [[LineChartData alloc] initWithDataSet:lineDataSet];
+        chartData.lineData = lineData;
+    }
+     
     
     [self setMarkerForChart:combinedChart];
 

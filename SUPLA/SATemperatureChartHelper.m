@@ -34,13 +34,13 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 }
 
 
--(void) addBarEntryTo:(NSMutableArray*) entries index:(int)idx time:(double)time timestamp:(long)timestamp item:(id)item {
+-(void) addLineEntryTo:(NSMutableArray*) entries index:(int)idx time:(double)time timestamp:(long)timestamp item:(id)item {
     
     if (![item isKindOfClass:[NSDictionary class]]) {
         return;
     }
 
-    [entries addObject:[[BarChartDataEntry alloc] initWithX:time yValues:@[[self doubleValueForKey:@"temperature" item:item]]]];
+    [entries addObject:[[ChartDataEntry alloc] initWithX:time y:[[self doubleValueForKey:@"temperature" item:item] doubleValue]]];
 }
 
 - (SABarChartDataSet *) newBarDataSetWithEntries:(NSArray *)entries {
@@ -56,7 +56,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 - (NSString *)stringForValue:(double)value axis:(ChartAxisBase *)axis {
     NSDateFormatter *dateFormat = [self dateFormatterForCurrentChartType];
     NSDate *date = [NSDate dateWithTimeIntervalSince1970:self.minTimestamp+value*600];
-    
-    return[dateFormat stringFromDate:date];
+      
+    return [dateFormat stringFromDate:date];
 }
 @end
