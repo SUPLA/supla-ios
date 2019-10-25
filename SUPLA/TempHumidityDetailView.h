@@ -22,6 +22,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface SATempHumidityDetailView : SATemperatureDetailView
 @property (weak, nonatomic) IBOutlet UILabel *lHumidity;
+@property (weak, nonatomic) IBOutlet UISwitch *swTemperature;
+@property (weak, nonatomic) IBOutlet UISwitch *swHumidity;
+- (IBAction)optionValueChanged:(id)sender;
 
 @end
 

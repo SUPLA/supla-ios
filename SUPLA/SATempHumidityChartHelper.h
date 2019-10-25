@@ -22,6 +22,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface SATempHumidityChartHelper : SATemperatureChartHelper
 
+@property (nonatomic, assign)BOOL displayTemperature;
+@property (nonatomic, assign)BOOL displayHumidity;
 @end
 
 NS_ASSUME_NONNULL_END

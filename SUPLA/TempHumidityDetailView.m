@@ -34,4 +34,34 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     [super updateView];
     [self.lHumidity setText:[[self.channelBase attrStringValueWithIndex:1 font:nil] string]];
 }
+
+-(void)onDetailShow {
+    self.swTemperature.on = YES;
+    self.swHumidity.on= YES;
+    
+    [super onDetailShow];
+}
+
+- (void)applyChartFilter {
+    [super applyChartFilter];
+    
+    SATempHumidityChartHelper* chartHelper = (SATempHumidityChartHelper*)self.chartHelper;
+    chartHelper.displayHumidity = self.swHumidity.on;
+    chartHelper.displayTemperature = self.swTemperature.on;
+}
+
+- (IBAction)optionValueChanged:(id)sender {
+    if (!self.swHumidity.on
+        && !self.swTemperature.on) {
+        if (sender == self.swHumidity) {
+            self.swTemperature.on = YES;
+        } else {
+            self.swHumidity.on= YES;
+        }
+    }
+    
+
+    [self loadChartWithAnimation:YES moveToEnd:YES];
+}
+
 @end

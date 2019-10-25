@@ -24,6 +24,9 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 NS_ASSUME_NONNULL_BEGIN
 
 @interface SAChartDetailView : SADetailView <SARestApiClientTaskDelegate, SAChartFilterFieldDelegate>
+- (void)applyChartFilter;
+- (void)loadChartWithAnimation:(BOOL)animation moveToEnd:(BOOL)moveToEnd;
+- (void)loadChartWithAnimation:(BOOL)animation;
 @property (weak, nonatomic) IBOutlet UIImageView *ivImage;
 @property (weak, nonatomic) IBOutlet UILabel *lCaption;
 @property (weak, nonatomic) IBOutlet SAPreloader *lPreloader;

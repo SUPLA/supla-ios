@@ -29,6 +29,9 @@
                             <subviews>
                                 <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9vs-Po-KOi">
                                     <rect key="frame" x="10" y="9.5" width="51" height="31"/>
+                                    <connections>
+                                        <action selector="optionValueChanged:" destination="noP-Sv-wiB" eventType="valueChanged" id="Rri-7n-g4e"/>
+                                    </connections>
                                 </switch>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Temperature" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xAM-Zz-PGl">
                                     <rect key="frame" x="64" y="14.5" width="91" height="21"/>
@@ -38,6 +41,9 @@
                                 </label>
                                 <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4MW-0I-d06">
                                     <rect key="frame" x="170" y="9.5" width="51" height="31"/>
+                                    <connections>
+                                        <action selector="optionValueChanged:" destination="noP-Sv-wiB" eventType="valueChanged" id="Idm-Uv-FH0"/>
+                                    </connections>
                                 </switch>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Humidity" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LDn-UY-kz8">
                                     <rect key="frame" x="224" y="14.5" width="64" height="21"/>
@@ -268,6 +274,8 @@
                 <outlet property="lHumidity" destination="MSW-a7-MF2" id="WkC-ap-cLP"/>
                 <outlet property="lPreloader" destination="0Ut-ce-7ai" id="ILj-MS-AWh"/>
                 <outlet property="lTemperature" destination="qAx-Ae-Wgn" id="IIT-Uy-dk2"/>
+                <outlet property="swHumidity" destination="4MW-0I-d06" id="trc-Oy-oax"/>
+                <outlet property="swTemperature" destination="9vs-Po-KOi" id="y1n-pB-Cfu"/>
             </connections>
             <point key="canvasLocation" x="-792.75362318840587" y="-269.19642857142856"/>
         </view>

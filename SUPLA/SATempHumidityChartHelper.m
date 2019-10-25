@@ -23,12 +23,21 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 @implementation SATempHumidityChartHelper
 
+@synthesize displayTemperature;
+@synthesize displayHumidity;
+
 - (NSArray *)getData {
     return [SAApp.DB getTempHumidityMeasurementsForChannelId:self.channelId dateFrom:self.dateFrom dateTo:self.dateTo];
 }
 
+-(void) addLineEntryTo:(NSMutableArray*) entries index:(int)idx time:(double)time timestamp:(long)timestamp item:(id)item {
+    if (displayTemperature) {
+       [super addLineEntryTo:entries index:idx time:time timestamp:timestamp item:item];
+    }
+}
+
 -(void) addBarEntryTo:(NSMutableArray*) entries index:(int)idx time:(double)time timestamp:(long)timestamp item:(id)item {
-    if (![item isKindOfClass:[NSDictionary class]]) {
+    if (!displayHumidity || ![item isKindOfClass:[NSDictionary class]]) {
         return;
     }
 
