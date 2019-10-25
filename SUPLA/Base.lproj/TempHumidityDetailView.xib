@@ -7,6 +7,9 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
+        <array key="OpenSans-Regular.ttf">
+            <string>OpenSans</string>
+        </array>
         <array key="Quicksand-Regular.ttf">
             <string>Quicksand-Regular</string>
         </array>
@@ -21,8 +24,43 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7N4-8Z-Qys" userLabel="vContent">
                     <rect key="frame" x="10" y="130" width="394" height="706"/>
                     <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KJO-jy-HZm" userLabel="vOptions">
+                            <rect key="frame" x="0.0" y="656" width="394" height="50"/>
+                            <subviews>
+                                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9vs-Po-KOi">
+                                    <rect key="frame" x="10" y="9.5" width="51" height="31"/>
+                                </switch>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Temperature" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xAM-Zz-PGl">
+                                    <rect key="frame" x="64" y="14.5" width="91" height="21"/>
+                                    <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="15"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4MW-0I-d06">
+                                    <rect key="frame" x="170" y="9.5" width="51" height="31"/>
+                                </switch>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Humidity" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LDn-UY-kz8">
+                                    <rect key="frame" x="224" y="14.5" width="64" height="21"/>
+                                    <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="15"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                            </subviews>
+                            <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="50" id="7Hn-gR-qZ5"/>
+                                <constraint firstItem="9vs-Po-KOi" firstAttribute="centerY" secondItem="KJO-jy-HZm" secondAttribute="centerY" id="9UX-Gk-Pfz"/>
+                                <constraint firstItem="LDn-UY-kz8" firstAttribute="centerY" secondItem="KJO-jy-HZm" secondAttribute="centerY" id="J2w-ak-ys4"/>
+                                <constraint firstItem="9vs-Po-KOi" firstAttribute="leading" secondItem="KJO-jy-HZm" secondAttribute="leading" constant="10" id="Jwo-4q-bzW"/>
+                                <constraint firstItem="xAM-Zz-PGl" firstAttribute="leading" secondItem="9vs-Po-KOi" secondAttribute="trailing" constant="5" id="OOa-vx-MVD"/>
+                                <constraint firstItem="4MW-0I-d06" firstAttribute="leading" secondItem="xAM-Zz-PGl" secondAttribute="trailing" constant="15" id="dhY-md-doe"/>
+                                <constraint firstItem="4MW-0I-d06" firstAttribute="centerY" secondItem="KJO-jy-HZm" secondAttribute="centerY" id="kMB-dF-wn1"/>
+                                <constraint firstItem="LDn-UY-kz8" firstAttribute="leading" secondItem="4MW-0I-d06" secondAttribute="trailing" constant="5" id="tHH-aG-011"/>
+                                <constraint firstItem="xAM-Zz-PGl" firstAttribute="centerY" secondItem="KJO-jy-HZm" secondAttribute="centerY" id="uYL-Bj-HZN"/>
+                            </constraints>
+                        </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Viq-ki-oJb" userLabel="vCharts">
-                            <rect key="frame" x="0.0" y="0.0" width="394" height="706"/>
+                            <rect key="frame" x="0.0" y="0.0" width="394" height="656"/>
                             <subviews>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Zgr-lZ-ARK" userLabel="vFilters">
                                     <rect key="frame" x="0.0" y="0.0" width="394" height="32"/>
@@ -47,10 +85,10 @@
                                     </constraints>
                                 </view>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gjc-cN-kLg" userLabel="vChartContainer">
-                                    <rect key="frame" x="0.0" y="37" width="394" height="669"/>
+                                    <rect key="frame" x="0.0" y="37" width="394" height="619"/>
                                     <subviews>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8Ol-0h-IA4" customClass="CombinedChartView" customModule="Charts">
-                                            <rect key="frame" x="0.0" y="0.0" width="394" height="669"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="394" height="619"/>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </view>
                                     </subviews>
@@ -77,10 +115,13 @@
                     </subviews>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
+                        <constraint firstItem="KJO-jy-HZm" firstAttribute="leading" secondItem="7N4-8Z-Qys" secondAttribute="leading" id="0oS-cF-WXR"/>
                         <constraint firstAttribute="trailing" secondItem="Viq-ki-oJb" secondAttribute="trailing" id="6hr-bt-fDI"/>
-                        <constraint firstAttribute="bottom" secondItem="Viq-ki-oJb" secondAttribute="bottom" id="iOZ-El-fEk"/>
+                        <constraint firstAttribute="trailing" secondItem="KJO-jy-HZm" secondAttribute="trailing" id="WVN-gs-5A0"/>
+                        <constraint firstItem="KJO-jy-HZm" firstAttribute="top" secondItem="Viq-ki-oJb" secondAttribute="bottom" id="j3X-Of-FR4"/>
                         <constraint firstItem="Viq-ki-oJb" firstAttribute="leading" secondItem="7N4-8Z-Qys" secondAttribute="leading" id="pw5-Uk-SCS"/>
                         <constraint firstItem="Viq-ki-oJb" firstAttribute="top" secondItem="7N4-8Z-Qys" secondAttribute="top" id="sZf-9t-Ad6"/>
+                        <constraint firstAttribute="bottom" secondItem="KJO-jy-HZm" secondAttribute="bottom" id="whb-ll-ZV2"/>
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8E1-lV-kYB" userLabel="vFooter">

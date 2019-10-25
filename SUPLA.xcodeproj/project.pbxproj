@@ -36,6 +36,7 @@
 		0175550022F1DDA300EB58B7 /* hp_minus@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 017554FE22F1DDA300EB58B7 /* hp_minus@3x.png */; };
 		017A3C8223631302004AD1FC /* SATempHumidityChartHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 017A3C8123631302004AD1FC /* SATempHumidityChartHelper.m */; };
 		017A3C8523631796004AD1FC /* SADownloadTempHumidityMeasurements.m in Sources */ = {isa = PBXBuildFile; fileRef = 017A3C8423631796004AD1FC /* SADownloadTempHumidityMeasurements.m */; };
+		017A3C8623633A70004AD1FC /* TempHumidityDetailView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 017A3C8823633A70004AD1FC /* TempHumidityDetailView.xib */; };
 		018CFD2023281A5900888CB7 /* SAElectricityMeterExtendedValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 018CFD1F23281A5900888CB7 /* SAElectricityMeterExtendedValue.m */; };
 		018CFD2323281ADB00888CB7 /* SAThermostatExtendedValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 018CFD2223281ADB00888CB7 /* SAThermostatExtendedValue.m */; };
 		018CFD2623281AF900888CB7 /* SAThermostatHPExtendedValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 018CFD2523281AF900888CB7 /* SAThermostatHPExtendedValue.m */; };
@@ -44,7 +45,6 @@
 		01902A25235A17E9005ED935 /* TemperatureDetailView.m in Sources */ = {isa = PBXBuildFile; fileRef = 01902A24235A17E9005ED935 /* TemperatureDetailView.m */; };
 		01902A28235A180F005ED935 /* TempHumidityDetailView.m in Sources */ = {isa = PBXBuildFile; fileRef = 01902A27235A180F005ED935 /* TempHumidityDetailView.m */; };
 		01902A2A235A1840005ED935 /* TemperatureDetailView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 01902A29235A1840005ED935 /* TemperatureDetailView.xib */; };
-		01902A2C235A1860005ED935 /* TempHumidityDetailView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 01902A2B235A1860005ED935 /* TempHumidityDetailView.xib */; };
 		019170A1233D4D5A00820BDB /* SADownloadThermostatMeasurements.m in Sources */ = {isa = PBXBuildFile; fileRef = 019170A0233D4D5A00820BDB /* SADownloadThermostatMeasurements.m */; };
 		019170A4233D67E900820BDB /* SAThermostatChartHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 019170A3233D67E900820BDB /* SAThermostatChartHelper.m */; };
 		019D22F0233CC2D000F17135 /* SAPreloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 019D22EF233CC2D000F17135 /* SAPreloader.m */; };
@@ -398,6 +398,21 @@
 		017A3C8123631302004AD1FC /* SATempHumidityChartHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SATempHumidityChartHelper.m; sourceTree = "<group>"; };
 		017A3C8323631796004AD1FC /* SADownloadTempHumidityMeasurements.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SADownloadTempHumidityMeasurements.h; sourceTree = "<group>"; };
 		017A3C8423631796004AD1FC /* SADownloadTempHumidityMeasurements.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SADownloadTempHumidityMeasurements.m; sourceTree = "<group>"; };
+		017A3C8723633A70004AD1FC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/TempHumidityDetailView.xib; sourceTree = "<group>"; };
+		017A3C8A23633A77004AD1FC /* cs */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = cs; path = cs.lproj/TempHumidityDetailView.strings; sourceTree = "<group>"; };
+		017A3C8C23633A78004AD1FC /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = nl.lproj/TempHumidityDetailView.strings; sourceTree = "<group>"; };
+		017A3C8E23633A79004AD1FC /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/TempHumidityDetailView.strings; sourceTree = "<group>"; };
+		017A3C9023633A79004AD1FC /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/TempHumidityDetailView.strings; sourceTree = "<group>"; };
+		017A3C9223633A7A004AD1FC /* el */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = el; path = el.lproj/TempHumidityDetailView.strings; sourceTree = "<group>"; };
+		017A3C9423633A7D004AD1FC /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/TempHumidityDetailView.strings; sourceTree = "<group>"; };
+		017A3C9623633A7D004AD1FC /* lt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = lt; path = lt.lproj/TempHumidityDetailView.strings; sourceTree = "<group>"; };
+		017A3C9823633A7E004AD1FC /* nb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nb; path = nb.lproj/TempHumidityDetailView.strings; sourceTree = "<group>"; };
+		017A3C9A23633A7F004AD1FC /* pl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pl; path = pl.lproj/TempHumidityDetailView.strings; sourceTree = "<group>"; };
+		017A3C9C23633A7F004AD1FC /* pt-PT */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-PT"; path = "pt-PT.lproj/TempHumidityDetailView.strings"; sourceTree = "<group>"; };
+		017A3C9E23633A80004AD1FC /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/TempHumidityDetailView.strings; sourceTree = "<group>"; };
+		017A3CA023633A80004AD1FC /* sk-SK */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "sk-SK"; path = "sk-SK.lproj/TempHumidityDetailView.strings"; sourceTree = "<group>"; };
+		017A3CA223633A81004AD1FC /* sl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sl; path = sl.lproj/TempHumidityDetailView.strings; sourceTree = "<group>"; };
+		017A3CA423633A82004AD1FC /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/TempHumidityDetailView.strings; sourceTree = "<group>"; };
 		018CFD1E23281A5900888CB7 /* SAElectricityMeterExtendedValue.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SAElectricityMeterExtendedValue.h; sourceTree = "<group>"; };
 		018CFD1F23281A5900888CB7 /* SAElectricityMeterExtendedValue.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SAElectricityMeterExtendedValue.m; sourceTree = "<group>"; };
 		018CFD2123281ADB00888CB7 /* SAThermostatExtendedValue.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SAThermostatExtendedValue.h; sourceTree = "<group>"; };
@@ -413,7 +428,6 @@
 		01902A26235A180F005ED935 /* TempHumidityDetailView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TempHumidityDetailView.h; sourceTree = "<group>"; };
 		01902A27235A180F005ED935 /* TempHumidityDetailView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TempHumidityDetailView.m; sourceTree = "<group>"; };
 		01902A29235A1840005ED935 /* TemperatureDetailView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TemperatureDetailView.xib; sourceTree = "<group>"; };
-		01902A2B235A1860005ED935 /* TempHumidityDetailView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TempHumidityDetailView.xib; sourceTree = "<group>"; };
 		0191709F233D4D5A00820BDB /* SADownloadThermostatMeasurements.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SADownloadThermostatMeasurements.h; sourceTree = "<group>"; };
 		019170A0233D4D5A00820BDB /* SADownloadThermostatMeasurements.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SADownloadThermostatMeasurements.m; sourceTree = "<group>"; };
 		019170A2233D67E900820BDB /* SAThermostatChartHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SAThermostatChartHelper.h; sourceTree = "<group>"; };
@@ -1502,7 +1516,7 @@
 				01392B38235CA8B1003A2BAD /* ChartDetailView.h */,
 				01392B39235CA8B1003A2BAD /* ChartDetailView.m */,
 				01902A23235A17E9005ED935 /* TemperatureDetailView.h */,
-				01902A2B235A1860005ED935 /* TempHumidityDetailView.xib */,
+				017A3C8823633A70004AD1FC /* TempHumidityDetailView.xib */,
 				01902A29235A1840005ED935 /* TemperatureDetailView.xib */,
 				01902A24235A17E9005ED935 /* TemperatureDetailView.m */,
 				01902A26235A180F005ED935 /* TempHumidityDetailView.h */,
@@ -1670,7 +1684,7 @@
 				40DE1A2D1BCCFF8A004CF43B /* settings@2x.png in Resources */,
 				405AC4341BC15C08004F7311 /* logo-supla@2x.png in Resources */,
 				405C49A11FCAFFD400C15602 /* wizard_ok@2x.png in Resources */,
-				01902A2C235A1860005ED935 /* TempHumidityDetailView.xib in Resources */,
+				017A3C8623633A70004AD1FC /* TempHumidityDetailView.xib in Resources */,
 				01F9110522EF954400BFF91D /* thermostat_hp_homeplus-off@3x.png in Resources */,
 				40CF96B21BC7D4E70030EFFF /* gate-closed@2x.png in Resources */,
 				4091654D1F3CBAF200F49193 /* rs_down.png in Resources */,
@@ -2090,6 +2104,28 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		017A3C8823633A70004AD1FC /* TempHumidityDetailView.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				017A3C8723633A70004AD1FC /* Base */,
+				017A3C8A23633A77004AD1FC /* cs */,
+				017A3C8C23633A78004AD1FC /* nl */,
+				017A3C8E23633A79004AD1FC /* fr */,
+				017A3C9023633A79004AD1FC /* de */,
+				017A3C9223633A7A004AD1FC /* el */,
+				017A3C9423633A7D004AD1FC /* it */,
+				017A3C9623633A7D004AD1FC /* lt */,
+				017A3C9823633A7E004AD1FC /* nb */,
+				017A3C9A23633A7F004AD1FC /* pl */,
+				017A3C9C23633A7F004AD1FC /* pt-PT */,
+				017A3C9E23633A80004AD1FC /* ru */,
+				017A3CA023633A80004AD1FC /* sk-SK */,
+				017A3CA223633A81004AD1FC /* sl */,
+				017A3CA423633A82004AD1FC /* es */,
+			);
+			name = TempHumidityDetailView.xib;
+			sourceTree = "<group>";
+		};
 		019F4CAE2354DC3300286139 /* ImpulseCounterDetailView.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
