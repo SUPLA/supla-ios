@@ -135,3 +135,7 @@
 "OFF" = "VYPNUTÉ";
 "h" = "h";
 
+"Wind sensor" = "Rýchlosť vetra";
+"Weight sensor" = "Hmotnosť";
+"Pressure sensor" = "Snímač tlaku";
+"Rain sensor" = "Meranie zrážok";

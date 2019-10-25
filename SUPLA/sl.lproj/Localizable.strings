@@ -135,3 +135,7 @@
 "OFF" = "IZKLJUČENO";
 "h" = "ura";
 
+"Wind sensor" = "Hitrost vetra";
+"Weight sensor" = "Teža";
+"Pressure sensor" = "Tlačni senzor";
+"Rain sensor" = "Merjenje padavin";

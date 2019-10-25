@@ -37,6 +37,14 @@
 		017A3C8223631302004AD1FC /* SATempHumidityChartHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 017A3C8123631302004AD1FC /* SATempHumidityChartHelper.m */; };
 		017A3C8523631796004AD1FC /* SADownloadTempHumidityMeasurements.m in Sources */ = {isa = PBXBuildFile; fileRef = 017A3C8423631796004AD1FC /* SADownloadTempHumidityMeasurements.m */; };
 		017A3C8623633A70004AD1FC /* TempHumidityDetailView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 017A3C8823633A70004AD1FC /* TempHumidityDetailView.xib */; };
+		017A3CA723635C22004AD1FC /* weight@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 017A3CA523635C22004AD1FC /* weight@2x.png */; };
+		017A3CA823635C22004AD1FC /* weight@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 017A3CA623635C22004AD1FC /* weight@3x.png */; };
+		017A3CAF23635DF7004AD1FC /* rain@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 017A3CA923635DF6004AD1FC /* rain@2x.png */; };
+		017A3CB023635DF7004AD1FC /* rain@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 017A3CAA23635DF6004AD1FC /* rain@3x.png */; };
+		017A3CB123635DF7004AD1FC /* wind@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 017A3CAB23635DF6004AD1FC /* wind@2x.png */; };
+		017A3CB223635DF7004AD1FC /* wind@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 017A3CAC23635DF6004AD1FC /* wind@3x.png */; };
+		017A3CB323635DF7004AD1FC /* pressure@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 017A3CAD23635DF7004AD1FC /* pressure@2x.png */; };
+		017A3CB423635DF7004AD1FC /* pressure@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 017A3CAE23635DF7004AD1FC /* pressure@3x.png */; };
 		018CFD2023281A5900888CB7 /* SAElectricityMeterExtendedValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 018CFD1F23281A5900888CB7 /* SAElectricityMeterExtendedValue.m */; };
 		018CFD2323281ADB00888CB7 /* SAThermostatExtendedValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 018CFD2223281ADB00888CB7 /* SAThermostatExtendedValue.m */; };
 		018CFD2623281AF900888CB7 /* SAThermostatHPExtendedValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 018CFD2523281AF900888CB7 /* SAThermostatHPExtendedValue.m */; };
@@ -273,7 +281,7 @@
 		40C7BA8820C0492500ACEE42 /* SAChannelBase+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 40C7BA8620C0492500ACEE42 /* SAChannelBase+CoreDataProperties.m */; };
 		40C9E4F71F2A186A00753796 /* SARollerShutter.m in Sources */ = {isa = PBXBuildFile; fileRef = 40C9E4F61F2A186A00753796 /* SARollerShutter.m */; };
 		40C9E4FD1F2B841400753796 /* SAColorListPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 40C9E4FC1F2B841400753796 /* SAColorListPicker.m */; };
-		40CE7C641DCBBCE400BBACE4 /* DepthCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 40CE7C631DCBBCE400BBACE4 /* DepthCell.xib */; };
+		40CE7C641DCBBCE400BBACE4 /* MeasurementCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 40CE7C631DCBBCE400BBACE4 /* MeasurementCell.xib */; };
 		40CE7C691DCBBD5700BBACE4 /* distance@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 40CE7C651DCBBD5700BBACE4 /* distance@3x.png */; };
 		40CE7C6A1DCBBD5700BBACE4 /* distance@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 40CE7C661DCBBD5700BBACE4 /* distance@2x.png */; };
 		40CE7C6B1DCBBD5700BBACE4 /* depth@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 40CE7C671DCBBD5700BBACE4 /* depth@2x.png */; };
@@ -413,6 +421,14 @@
 		017A3CA023633A80004AD1FC /* sk-SK */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "sk-SK"; path = "sk-SK.lproj/TempHumidityDetailView.strings"; sourceTree = "<group>"; };
 		017A3CA223633A81004AD1FC /* sl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sl; path = sl.lproj/TempHumidityDetailView.strings; sourceTree = "<group>"; };
 		017A3CA423633A82004AD1FC /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/TempHumidityDetailView.strings; sourceTree = "<group>"; };
+		017A3CA523635C22004AD1FC /* weight@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "weight@2x.png"; path = "Resources/Assets/Img/weight@2x.png"; sourceTree = "<group>"; };
+		017A3CA623635C22004AD1FC /* weight@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "weight@3x.png"; path = "Resources/Assets/Img/weight@3x.png"; sourceTree = "<group>"; };
+		017A3CA923635DF6004AD1FC /* rain@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "rain@2x.png"; path = "Resources/Assets/Img/rain@2x.png"; sourceTree = "<group>"; };
+		017A3CAA23635DF6004AD1FC /* rain@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "rain@3x.png"; path = "Resources/Assets/Img/rain@3x.png"; sourceTree = "<group>"; };
+		017A3CAB23635DF6004AD1FC /* wind@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "wind@2x.png"; path = "Resources/Assets/Img/wind@2x.png"; sourceTree = "<group>"; };
+		017A3CAC23635DF6004AD1FC /* wind@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "wind@3x.png"; path = "Resources/Assets/Img/wind@3x.png"; sourceTree = "<group>"; };
+		017A3CAD23635DF7004AD1FC /* pressure@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "pressure@2x.png"; path = "Resources/Assets/Img/pressure@2x.png"; sourceTree = "<group>"; };
+		017A3CAE23635DF7004AD1FC /* pressure@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "pressure@3x.png"; path = "Resources/Assets/Img/pressure@3x.png"; sourceTree = "<group>"; };
 		018CFD1E23281A5900888CB7 /* SAElectricityMeterExtendedValue.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SAElectricityMeterExtendedValue.h; sourceTree = "<group>"; };
 		018CFD1F23281A5900888CB7 /* SAElectricityMeterExtendedValue.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SAElectricityMeterExtendedValue.m; sourceTree = "<group>"; };
 		018CFD2123281ADB00888CB7 /* SAThermostatExtendedValue.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SAThermostatExtendedValue.h; sourceTree = "<group>"; };
@@ -849,7 +865,7 @@
 		40C9E4F61F2A186A00753796 /* SARollerShutter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SARollerShutter.m; sourceTree = "<group>"; };
 		40C9E4FB1F2B841400753796 /* SAColorListPicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SAColorListPicker.h; sourceTree = "<group>"; };
 		40C9E4FC1F2B841400753796 /* SAColorListPicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SAColorListPicker.m; sourceTree = "<group>"; };
-		40CE7C631DCBBCE400BBACE4 /* DepthCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DepthCell.xib; sourceTree = "<group>"; };
+		40CE7C631DCBBCE400BBACE4 /* MeasurementCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MeasurementCell.xib; sourceTree = "<group>"; };
 		40CE7C651DCBBD5700BBACE4 /* distance@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "distance@3x.png"; path = "Resources/Assets/Img/distance@3x.png"; sourceTree = "<group>"; };
 		40CE7C661DCBBD5700BBACE4 /* distance@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "distance@2x.png"; path = "Resources/Assets/Img/distance@2x.png"; sourceTree = "<group>"; };
 		40CE7C671DCBBD5700BBACE4 /* depth@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "depth@2x.png"; path = "Resources/Assets/Img/depth@2x.png"; sourceTree = "<group>"; };
@@ -1167,6 +1183,14 @@
 		405AC4011BC15878004F7311 /* Img */ = {
 			isa = PBXGroup;
 			children = (
+				017A3CA523635C22004AD1FC /* weight@2x.png */,
+				017A3CA623635C22004AD1FC /* weight@3x.png */,
+				017A3CAD23635DF7004AD1FC /* pressure@2x.png */,
+				017A3CAE23635DF7004AD1FC /* pressure@3x.png */,
+				017A3CA923635DF6004AD1FC /* rain@2x.png */,
+				017A3CAA23635DF6004AD1FC /* rain@3x.png */,
+				017A3CAB23635DF6004AD1FC /* wind@2x.png */,
+				017A3CAC23635DF6004AD1FC /* wind@3x.png */,
 				016EE77323074DDC00FD301C /* consumption@3x.png */,
 				016EE77223074DDC00FD301C /* production@3x.png */,
 				017554FE22F1DDA300EB58B7 /* hp_minus@3x.png */,
@@ -1526,7 +1550,7 @@
 				01D0617322C296850043C947 /* ElectricityMeterDetailView.xib */,
 				01C8EBFC234232EC0072AB8C /* HomePlusDetailView.xib */,
 				403150FA1DC769430075D2D2 /* RGBDetailView.m */,
-				40CE7C631DCBBCE400BBACE4 /* DepthCell.xib */,
+				40CE7C631DCBBCE400BBACE4 /* MeasurementCell.xib */,
 				40CE7C6D1DCBBF6D00BBACE4 /* DistanceCell.xib */,
 				409934B41F30EF9C003110C5 /* RSDetailView.h */,
 				409934B51F30EF9C003110C5 /* RSDetailView.m */,
@@ -1727,6 +1751,7 @@
 				40CF96BE1BC7D4E70030EFFF /* liquid@2x.png in Resources */,
 				4091AF401FC8405200EFF357 /* btnnextr2@2x.png in Resources */,
 				40B397E21BCED7C000BE7D5A /* Quicksand-Regular.ttf in Resources */,
+				017A3CB023635DF7004AD1FC /* rain@3x.png in Resources */,
 				01D4293622AAA83E0050C1A2 /* gasmeter@3x.png in Resources */,
 				4052DA0C1DC515AE000B8C45 /* rgb-off@3x.png in Resources */,
 				407D4AE71BC6C57E009A5505 /* app_icon58x58@2x.png in Resources */,
@@ -1749,12 +1774,14 @@
 				40CE7C6A1DCBBD5700BBACE4 /* distance@2x.png in Resources */,
 				407D4AF81BC6C7DE009A5505 /* app_icon57x57.png in Resources */,
 				40BE3E621BCA7AEF00153680 /* ChannelCell.xib in Resources */,
+				017A3CA823635C22004AD1FC /* weight@3x.png in Resources */,
 				40B9ED561FACD0A100403B1A /* pc-on@3x.png in Resources */,
 				40CF96B91BC7D4E70030EFFF /* gateway-open@3x.png in Resources */,
 				4067782C1BCBC647008DD37F /* menu@2x.png in Resources */,
 				40DE1A2C1BCCFF8A004CF43B /* info@3x.png in Resources */,
 				40CF96B01BC7D4E70030EFFF /* garagedoor-open@2x.png in Resources */,
 				4052DA071DC515AE000B8C45 /* dimmerrgb-onon@2x.png in Resources */,
+				017A3CB223635DF7004AD1FC /* wind@3x.png in Resources */,
 				40B9ED6F1FACD94300403B1A /* barier-closed@2x.png in Resources */,
 				40B9ED7E1FACE15700403B1A /* nomail@3x.png in Resources */,
 				407D31A81FD1B75F0062FB80 /* logo-white@3x.png in Resources */,
@@ -1798,6 +1825,7 @@
 				40B9ED661FACD34C00403B1A /* xmastree-on@2x.png in Resources */,
 				01D4293322AAA83E0050C1A2 /* electricitymeter@3x.png in Resources */,
 				40CF96B51BC7D4E70030EFFF /* gate-open@3x.png in Resources */,
+				017A3CB123635DF7004AD1FC /* wind@2x.png in Resources */,
 				40DE1A2B1BCCFF8A004CF43B /* info@2x.png in Resources */,
 				4091654F1F3CBAF200F49193 /* rs_open.png in Resources */,
 				40B9ED681FACD34C00403B1A /* xmastree-off@2x.png in Resources */,
@@ -1811,6 +1839,7 @@
 				40477B4220C6C57700E995E6 /* staircasetimer-on@3x.png in Resources */,
 				40CF96C11BC7D4E70030EFFF /* noliquid@3x.png in Resources */,
 				40B9ED4E1FACCF8100403B1A /* radio-on@3x.png in Resources */,
+				017A3CA723635C22004AD1FC /* weight@2x.png in Resources */,
 				016EE77423074DDC00FD301C /* production@3x.png in Resources */,
 				406C92D41BCD8518007BA87A /* btnOK@2x.png in Resources */,
 				401CA1CD1BA067DB00117AF4 /* Images.xcassets in Resources */,
@@ -1845,6 +1874,7 @@
 				4091AF441FC856C200EFF357 /* wifi@2x.png in Resources */,
 				406778291BCBBC84008DD37F /* ThermometerCell.xib in Resources */,
 				40CEB66420CA95DF009FA2EE /* unknown_channel@3x.png in Resources */,
+				017A3CB323635DF7004AD1FC /* pressure@2x.png in Resources */,
 				4014ADFD1FE01ECD00297A9E /* help@2x.png in Resources */,
 				4038A5581CE32CD700180B5D /* humidity@3x.png in Resources */,
 				40CF96C71BC7D4E70030EFFF /* rollershutter-closed@3x.png in Resources */,
@@ -1867,15 +1897,17 @@
 				407D31941FD1A7070062FB80 /* AddWizardVC.xib in Resources */,
 				4052DA021DC515AE000B8C45 /* dimmerrgb-offon@3x.png in Resources */,
 				40CF96AE1BC7D4E70030EFFF /* garagedoor-closed@2x.png in Resources */,
+				017A3CAF23635DF7004AD1FC /* rain@2x.png in Resources */,
 				407D31A71FD1B75F0062FB80 /* logo-white@2x.png in Resources */,
 				40CF96DB1BC81A470030EFFF /* warning@3x.png in Resources */,
 				4091AF3F1FC8405200EFF357 /* btnnextl@2x.png in Resources */,
 				4038A5571CE32CD700180B5D /* humidity@2x.png in Resources */,
+				017A3CB423635DF7004AD1FC /* pressure@3x.png in Resources */,
 				01F9110722EF954400BFF91D /* thermostat_hp_homeplus3-off@2x.png in Resources */,
 				40766C2D1FC9C36D009E00BE /* iossettings.png in Resources */,
 				017554FB22F1D2BE00EB58B7 /* clock@3x.png in Resources */,
 				40DB208D1DC9049400FAFAB0 /* RGBDetail.xib in Resources */,
-				40CE7C641DCBBCE400BBACE4 /* DepthCell.xib in Resources */,
+				40CE7C641DCBBCE400BBACE4 /* MeasurementCell.xib in Resources */,
 				01F9110E22EF964900BFF91D /* thermostat_hp_homeplus1-on@2x.png in Resources */,
 				40CF96BC1BC7D4E70030EFFF /* light-on@2x.png in Resources */,
 				4052DA0A1DC515AE000B8C45 /* dimmer-on@3x.png in Resources */,

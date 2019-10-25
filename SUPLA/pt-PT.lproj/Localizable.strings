@@ -135,3 +135,8 @@
 "ON" = "LIGADO";
 "OFF" = "DESLIGADO";
 "h" = "h";
+
+"Wind sensor" = "Velocidade do vento";
+"Weight sensor" = "Peso";
+"Pressure sensor" = "Sensor de pressão";
+"Rain sensor" = "Medições da precipitação";

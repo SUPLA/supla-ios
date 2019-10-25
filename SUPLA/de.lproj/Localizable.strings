@@ -134,3 +134,8 @@
 "ON" = "EINGESCHALTET";
 "OFF" = "AUSGESCHALTET";
 "h" = "std";
+
+"Wind sensor" = "Windgeschwindigkeit";
+"Weight sensor" = "Gewicht";
+"Pressure sensor" = "Drucksensor";
+"Rain sensor" = "Niederschlagsmessung";

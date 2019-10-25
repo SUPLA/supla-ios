@@ -172,10 +172,13 @@
         [self.humidity setText:[[channelBase attrStringValueWithIndex:1 font:nil] string]];
        
     } else if ( channelBase.func == SUPLA_CHANNELFNC_DEPTHSENSOR
-                || channelBase.func == SUPLA_CHANNELFNC_DISTANCESENSOR  ) {
-        
+                 || channelBase.func == SUPLA_CHANNELFNC_WINDSENSOR
+                 || channelBase.func == SUPLA_CHANNELFNC_WEIGHTSENSOR
+                 || channelBase.func == SUPLA_CHANNELFNC_PRESSURESENSOR
+                 || channelBase.func == SUPLA_CHANNELFNC_RAINSENSOR ) {
+        [self.measuredValue setText:[[channelBase attrStringValue] string]];
+    } else if ( channelBase.func == SUPLA_CHANNELFNC_DISTANCESENSOR  ) {
         [self.distance setText:[[channelBase attrStringValue] string]];
-    
     } else if ( channelBase.func == SUPLA_CHANNELFNC_ELECTRICITY_METER
                 || channelBase.func == SUPLA_CHANNELFNC_WATER_METER
                 || channelBase.func == SUPLA_CHANNELFNC_GAS_METER ) {

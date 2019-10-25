@@ -135,3 +135,7 @@
 "OFF" = "AV";
 "h" = "t";
 
+"Wind sensor" = "Vindhastighet";
+"Weight sensor" = "Vekt";
+"Pressure sensor" = "Trykksensor";
+"Rain sensor" = "Nedbørsmåling";

@@ -136,3 +136,7 @@
 "OFF" = "OFF";
 "h" = "h";
 
+"Wind sensor" = "Velocità del vento";
+"Weight sensor" = "Peso";
+"Pressure sensor" = "Sensore di pressione";
+"Rain sensor" = "Misura della quantità di pioggia caduta";

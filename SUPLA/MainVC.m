@@ -38,7 +38,7 @@
     UINib *_cell_nib;
     UINib *_temp_nib;
     UINib *_temphumidity_nib;
-    UINib *_depth_nib;
+    UINib *_measurement_nib;
     UINib *_distance_nib;
     UINib *_section_nib;
     UINib *_incmeter_nib;
@@ -53,7 +53,7 @@
     [tv registerNib:_cell_nib forCellReuseIdentifier:@"ChannelCell"];
     [tv registerNib:_temp_nib forCellReuseIdentifier:@"ThermometerCell"];
     [tv registerNib:_temphumidity_nib forCellReuseIdentifier:@"TempHumidityCell"];
-    [tv registerNib:_depth_nib forCellReuseIdentifier:@"DepthCell"];
+    [tv registerNib:_measurement_nib forCellReuseIdentifier:@"MeasurementCell"];
     [tv registerNib:_distance_nib forCellReuseIdentifier:@"DistanceCell"];
     [tv registerNib:_incmeter_nib forCellReuseIdentifier:@"IncrementalMeterCell"];
     [tv registerNib:_homeplus_nib forCellReuseIdentifier:@"HomePlusCell"];
@@ -67,7 +67,7 @@
     _cell_nib = [UINib nibWithNibName:@"ChannelCell" bundle:nil];
     _temp_nib = [UINib nibWithNibName:@"ThermometerCell" bundle:nil];
     _temphumidity_nib = [UINib nibWithNibName:@"TempHumidityCell" bundle:nil];
-    _depth_nib = [UINib nibWithNibName:@"DepthCell" bundle:nil];
+    _measurement_nib = [UINib nibWithNibName:@"MeasurementCell" bundle:nil];
     _distance_nib = [UINib nibWithNibName:@"DistanceCell" bundle:nil];
     _incmeter_nib = [UINib nibWithNibName:@"IncrementalMeterCell" bundle:nil];
     _homeplus_nib = [UINib nibWithNibName:@"HomePlusCell" bundle:nil];
@@ -287,7 +287,11 @@
                 identifier = @"TempHumidityCell";
                 break;
             case SUPLA_CHANNELFNC_DEPTHSENSOR:
-                identifier = @"DepthCell";
+            case SUPLA_CHANNELFNC_WINDSENSOR:
+            case SUPLA_CHANNELFNC_WEIGHTSENSOR:
+            case SUPLA_CHANNELFNC_PRESSURESENSOR:
+            case SUPLA_CHANNELFNC_RAINSENSOR:
+                identifier = @"MeasurementCell";
                 break;
             case SUPLA_CHANNELFNC_DISTANCESENSOR:
                 identifier = @"DistanceCell";

@@ -135,3 +135,7 @@
 "OFF" = "UIT";
 "h" = "u";
 
+"Wind sensor" = "Windsnelheid";
+"Weight sensor" = "Gewicht";
+"Pressure sensor" = "Druksensor";
+"Rain sensor" = "Neerslag meting";
