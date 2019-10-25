@@ -43,6 +43,11 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     self.ftDateRangeFilter.ff_delegate = self;
 }
 
+- (void)applyChartFilter {
+    self.chartHelper.chartType = self.tfChartTypeFilter.chartType;
+    self.chartHelper.dateFrom = self.ftDateRangeFilter.dateFrom;
+}
+
 - (void)updateView {
     [super updateView];
     

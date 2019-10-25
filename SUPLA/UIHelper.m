@@ -125,6 +125,22 @@
 +(nonnull UIColor*)hpBtnUnknown {
    return [UIColor colorWithRed:0.90 green:0.74 blue:0.49 alpha:1.0];
 }
+
++(nonnull UIColor*)chartTemperatureFillColor {
+    return [UIColor colorWithRed:0.99 green:0.97 blue:0.79 alpha:1.0];
+}
+
++(nonnull UIColor*)chartTemperatureLineColor {
+    return [UIColor colorWithRed:0.99 green:0.29 blue:0.30 alpha:1.0];
+}
+
++(nonnull UIColor*)chartHumidityColor {
+    return [UIColor colorWithRed:0.00 green:0.63 blue:0.99 alpha:1.0];
+}
+
++(nonnull UIColor*)chartIncrementalValueColor {
+    return [UIColor colorWithRed:0.00 green:0.63 blue:0.99 alpha:1.0];
+}
 @end
 
 @implementation SAUIHelper {

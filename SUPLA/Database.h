@@ -22,6 +22,7 @@
 #import "SAImpulseCounterMeasurementItem+CoreDataClass.h"
 #import "SAThermostatMeasurementItem+CoreDataClass.h"
 #import "SATemperatureMeasurementItem+CoreDataClass.h"
+#import "SATempHumidityMeasurementItem+CoreDataClass.h"
 #import "proto.h"
 
 typedef NS_ENUM(NSUInteger, GroupingDepth) {
@@ -105,6 +106,12 @@ typedef NS_ENUM(NSUInteger, GroupBy) {
 -(NSUInteger) getTemperatureMeasurementItemCountForChannelId:(int)channel_id;
 -(void) deleteAllTemperatureMeasurementsForChannelId:(int)channel_id;
 -(NSArray *) getTemperatureMeasurementsForChannelId:(int)channel_id dateFrom:(NSDate *)dateFrom dateTo:(NSDate *)dateTo;
+
+-(SATempHumidityMeasurementItem*) newTempHumidityMeasurementItem;
+-(long) getTimestampOfTempHumidityMeasurementItemWithChannelId:(int)channel_id minimum:(BOOL)min;
+-(NSUInteger) getTempHumidityMeasurementItemCountForChannelId:(int)channel_id;
+-(void) deleteAllTempHumidityMeasurementsForChannelId:(int)channel_id;
+-(NSArray *) getTempHumidityMeasurementsForChannelId:(int)channel_id dateFrom:(NSDate *)dateFrom dateTo:(NSDate *)dateTo;
 
 -(SAThermostatMeasurementItem*) newThermostatMeasurementItem;
 -(long) getTimestampOfThermostatMeasurementItemWithChannelId:(int)channel_id minimum:(BOOL)min;

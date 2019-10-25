@@ -16,22 +16,12 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 */
 
-#import "TempHumidityDetailView.h"
-#import "SATempHumidityChartHelper.h"
-#import "SADownloadTempHumidityMeasurements.h"
+#import "SADownloadMeasurements.h"
 
-@implementation SATempHumidityDetailView
+NS_ASSUME_NONNULL_BEGIN
 
--(SAChartHelper*)newChartHelper {
-    return [[SATempHumidityChartHelper alloc] init];
-}
+@interface SADownloadTempHumidityMeasurements : SADownloadMeasurements
 
--(SADownloadMeasurements*)newDownloadTask {
-   return [[SADownloadTempHumidityMeasurements alloc] init];
-}
-
-- (void)updateView {
-    [super updateView];
-    [self.lHumidity setText:[[self.channelBase attrStringValueWithIndex:1 font:nil] string]];
-}
 @end
+
+NS_ASSUME_NONNULL_END

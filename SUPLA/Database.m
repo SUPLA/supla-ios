@@ -1124,7 +1124,7 @@
 #pragma mark Thermometer Measurements
 
 -(SATemperatureMeasurementItem*) newTemperatureMeasurementItem {
-    SATemperatureMeasurementItem *item = [[SAThermostatMeasurementItem alloc] initWithEntity:[NSEntityDescription entityForName:@"SATemperatureMeasurementItem" inManagedObjectContext:self.managedObjectContext] insertIntoManagedObjectContext:self.managedObjectContext];
+    SATemperatureMeasurementItem *item = [[SATemperatureMeasurementItem alloc] initWithEntity:[NSEntityDescription entityForName:@"SATemperatureMeasurementItem" inManagedObjectContext:self.managedObjectContext] insertIntoManagedObjectContext:self.managedObjectContext];
     
     [self.managedObjectContext insertObject:item];
     return item;
@@ -1144,6 +1144,31 @@
 
 -(NSArray *) getTemperatureMeasurementsForChannelId:(int)channel_id dateFrom:(NSDate *)dateFrom dateTo:(NSDate *)dateTo {
     return [self getMeasurementsForChannelId:channel_id dateFrom:dateFrom dateTo:dateTo entityName:@"SATemperatureMeasurementItem"];
+}
+
+#pragma mark Temperature and Humidity Measurements
+
+-(SATempHumidityMeasurementItem*) newTempHumidityMeasurementItem {
+    SATempHumidityMeasurementItem *item = [[SATempHumidityMeasurementItem alloc] initWithEntity:[NSEntityDescription entityForName:@"SATempHumidityMeasurementItem" inManagedObjectContext:self.managedObjectContext] insertIntoManagedObjectContext:self.managedObjectContext];
+    
+    [self.managedObjectContext insertObject:item];
+    return item;
+}
+
+-(long) getTimestampOfTempHumidityMeasurementItemWithChannelId:(int)channel_id minimum:(BOOL)min {
+    return [self getTimestampOfMeasurementItemWithChannelId:channel_id minimum:min entityName:@"SATempHumidityMeasurementItem"];
+}
+
+-(NSUInteger) getTempHumidityMeasurementItemCountForChannelId:(int)channel_id {
+    return [self getCountByPredicate:[NSPredicate predicateWithFormat:@"channel_id = %i", channel_id] entityName:@"SATempHumidityMeasurementItem"];
+}
+
+-(void) deleteAllTempHumidityMeasurementsForChannelId:(int)channel_id {
+    [self deleteAllMeasurementsForChannelId:channel_id entityName:@"SATempHumidityMeasurementItem"];
+}
+
+-(NSArray *) getTempHumidityMeasurementsForChannelId:(int)channel_id dateFrom:(NSDate *)dateFrom dateTo:(NSDate *)dateTo {
+    return [self getMeasurementsForChannelId:channel_id dateFrom:dateFrom dateTo:dateTo entityName:@"SATempHumidityMeasurementItem"];
 }
 
 #pragma mark Thermostat Measurements

@@ -29,10 +29,13 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     return self;
 }
 
+- (id<IChartMarker>) getMarker {
+    return [SAChartMarkerView viewFromXibIn:[NSBundle mainBundle]];
+}
+
 - (NSArray *)getData {
     return [SAApp.DB getTemperatureMeasurementsForChannelId:self.channelId dateFrom:self.dateFrom dateTo:self.dateTo];
 }
-
 
 -(void) addLineEntryTo:(NSMutableArray*) entries index:(int)idx time:(double)time timestamp:(long)timestamp item:(id)item {
     
@@ -43,20 +46,15 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     [entries addObject:[[ChartDataEntry alloc] initWithX:time y:[[self doubleValueForKey:@"temperature" item:item] doubleValue]]];
 }
 
-- (SABarChartDataSet *) newBarDataSetWithEntries:(NSArray *)entries {
-    SABarChartDataSet *result = [super newBarDataSetWithEntries:entries];
-    if (result) {
-        result.stackLabels = @[NSLocalizedString(@"Temperature", nil)];
-        [result resetColors];
-        result.colors = @[[UIColor chartRoomTemperature]];
-    }
-    return result;
-}
-
 - (NSString *)stringForValue:(double)value axis:(ChartAxisBase *)axis {
     NSDateFormatter *dateFormat = [self dateFormatterForCurrentChartType];
     NSDate *date = [NSDate dateWithTimeIntervalSince1970:self.minTimestamp+value*600];
       
     return [dateFormat stringFromDate:date];
+}
+
+- (void) prepareLineDataSet:(LineChartDataSet*)lineDataSet {
+    lineDataSet.fillColor = [UIColor chartTemperatureFillColor];
+    lineDataSet.colors = @[[UIColor chartTemperatureLineColor]];
 }
 @end

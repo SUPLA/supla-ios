@@ -67,7 +67,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
                                                           repeats:YES];
     }
     [self runDownloadTask];
-    [self loadChartWithAnimation:YES];
+    [self loadChartWithAnimation:YES moveToEnd:YES];
 }
 
 -(void)onDetailHide {
@@ -133,14 +133,26 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     [super setChannelBase:channelBase];
 }
 
-- (void)loadChartWithAnimation:(BOOL)animation {
+- (void)applyChartFilter {
     self.chartHelper.chartType = Bar_Minutely;
     self.chartHelper.dateFrom = _ftDateRangeFilter.dateFrom;
-    
+}
+
+- (void)loadChartWithAnimation:(BOOL)animation moveToEnd:(BOOL)moveToEnd {
+    [self applyChartFilter];
     [self.chartHelper load];
+    
+    if (moveToEnd) {
+      [self.chartHelper moveToEnd];
+    }
+    
     if (animation) {
         [self.chartHelper animate];
     }
+}
+
+- (void)loadChartWithAnimation:(BOOL)animation {
+    [self loadChartWithAnimation:animation moveToEnd:NO];
 }
 
 -(void) onRestApiTask: (SARestApiClientTask*)task progressUpdate:(float)progress {
@@ -148,7 +160,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 }
 
 -(void) onFilterChanged: (SAChartFilterField*)filterField {
-    [self loadChartWithAnimation:YES];
+    [self loadChartWithAnimation:YES moveToEnd:YES];
 }
 
 - (void)updateView {

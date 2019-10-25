@@ -19,5 +19,10 @@
 #import "SATempHumidityMeasurementItem+CoreDataClass.h"
 
 @implementation SATempHumidityMeasurementItem
+- (void) assignJSONObject:(NSDictionary *)object {
+    [super assignJSONObject:object];
 
+    self.temperature = [self temperatureForKey:@"temperature" withObject:object];
+    self.humidity = [self temperatureForKey:@"humidity" withObject:object];
+}
 @end

@@ -16,22 +16,28 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 */
 
-#import "TempHumidityDetailView.h"
 #import "SATempHumidityChartHelper.h"
-#import "SADownloadTempHumidityMeasurements.h"
+#import "SuplaApp.h"
+#import "UIHelper.h"
+#import "SUPLA-Swift.h"
 
-@implementation SATempHumidityDetailView
+@implementation SATempHumidityChartHelper
 
--(SAChartHelper*)newChartHelper {
-    return [[SATempHumidityChartHelper alloc] init];
+- (NSArray *)getData {
+    return [SAApp.DB getTempHumidityMeasurementsForChannelId:self.channelId dateFrom:self.dateFrom dateTo:self.dateTo];
 }
 
--(SADownloadMeasurements*)newDownloadTask {
-   return [[SADownloadTempHumidityMeasurements alloc] init];
+-(void) addBarEntryTo:(NSMutableArray*) entries index:(int)idx time:(double)time timestamp:(long)timestamp item:(id)item {
+    if (![item isKindOfClass:[NSDictionary class]]) {
+        return;
+    }
+
+    [entries addObject:[[BarChartDataEntry alloc] initWithX:time y:[[self doubleValueForKey:@"humidity" item:item] doubleValue]]];
 }
 
-- (void)updateView {
-    [super updateView];
-    [self.lHumidity setText:[[self.channelBase attrStringValueWithIndex:1 font:nil] string]];
+- (void) prepareBarDataSet:(SABarChartDataSet*)barDataSet {
+    [barDataSet resetColors];
+    barDataSet.colors = @[[UIColor chartHumidityColor]];
 }
+
 @end

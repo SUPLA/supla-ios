@@ -53,6 +53,10 @@
 +(nonnull UIColor*)hpBtnOn;
 +(nonnull UIColor*)hpBtnOff;
 +(nonnull UIColor*)hpBtnUnknown;
++(nonnull UIColor*)chartTemperatureFillColor;
++(nonnull UIColor*)chartTemperatureLineColor;
++(nonnull UIColor*)chartHumidityColor;
++(nonnull UIColor*)chartIncrementalValueColor;
 @end
 
 @interface SAUIHelper : NSObject
