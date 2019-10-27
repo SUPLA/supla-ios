@@ -35,6 +35,7 @@ NSString *kSAEventNotification = @"kSA-N09";
 NSString *kSAConnErrorNotification = @"kSA-N10";
 NSString *kSAChannelValueChangedNotification = @"KSA-N11";
 NSString *kSARegistrationEnabledNotification = @"KSA-N12";
+NSString *kSAOAuthTokenRequestResult = @"KSA-N13";
 
 @implementation SAApp {
     
@@ -46,6 +47,8 @@ NSString *kSARegistrationEnabledNotification = @"KSA-N12";
     SASuplaClient* _SuplaClient;
     SADatabase *_DB;
     SAUIHelper *_UI;
+    NSMutableArray *_RestApiClientTasks;
+    SAOAuthToken *_OAuthToken;
 }
 
 -(id)init {
@@ -62,6 +65,7 @@ NSString *kSARegistrationEnabledNotification = @"KSA-N12";
             [self setCfgVersion:2];
         };
 
+        _RestApiClientTasks = [[NSMutableArray alloc] init];
     }
     return self;
 }
@@ -104,6 +108,7 @@ NSString *kSARegistrationEnabledNotification = @"KSA-N12";
 }
 
 +(void) getClientGUID:(char[SUPLA_GUID_SIZE])guid {
+    // TODO: Implement guid encryption with password based on device id
     [SAApp getRandomKey:guid keySize:SUPLA_GUID_SIZE forPrefKey:@"client_guid"];
 }
 
@@ -583,6 +588,55 @@ NSString *kSARegistrationEnabledNotification = @"KSA-N12";
 
 -(void)onChannelValueChanged:(NSNumber*)ChannelId isGroup:(NSNumber*)group {
     [[NSNotificationCenter defaultCenter] postNotificationName:kSAChannelValueChangedNotification object:self userInfo:[[NSDictionary alloc] initWithObjects:@[ChannelId, group] forKeys:@[@"remoteId", @"isGroup"]]];
+}
+
+-(void)onOAuthTokenRequestResult:(SAOAuthToken *)token {
+    
+    @synchronized (self) {
+        NSEnumerator *e = [_RestApiClientTasks objectEnumerator];
+        SARestApiClientTask *cli;
+        _OAuthToken = token;
+        while (cli = [e nextObject]) {
+            cli.token = token;
+        }
+    }
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:kSAOAuthTokenRequestResult object:self userInfo:[[NSDictionary alloc] initWithObjects:@[token] forKeys:@[@"token"]]];
+}
+
+-(SAOAuthToken*) registerRestApiClientTask:(SARestApiClientTask *)task {
+    SAOAuthToken *result = nil;
+    
+    @synchronized (self) {
+        if ( _OAuthToken != nil && [_OAuthToken isAlive]) {
+            result = _OAuthToken;
+        }
+        
+        [_RestApiClientTasks addObject:task];
+    }
+    
+    return result;
+}
+
+- (void) unregisterRestApiClientTask:(SARestApiClientTask *)task {
+    @synchronized (self) {
+        [_RestApiClientTasks removeObject:task];
+    }
+}
+
+-(void) cancelAllRestApiClientTasks {
+    @synchronized (self) {
+        NSEnumerator *e = [_RestApiClientTasks objectEnumerator];
+        SARestApiClientTask *cli;
+        while (cli = [e nextObject]) {
+            [cli cancel];
+        }
+    }
+}
+
++(void) abstractMethodException:(NSString *)methodName {
+    [NSException raise:NSInternalInconsistencyException
+                format:@"You must override %@ in a subclass", methodName];
 }
 
 @end

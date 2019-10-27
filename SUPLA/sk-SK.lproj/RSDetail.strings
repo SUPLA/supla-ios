@@ -1,0 +1,9 @@
+
+/* Class = "UILabel"; text = "Caption"; ObjectID = "3AR-Xz-kRv"; */
+"3AR-Xz-kRv.text" = "Titulok";
+
+/* Class = "UILabel"; text = "Percent of closing"; ObjectID = "Xs8-qc-Uab"; */
+"Xs8-qc-Uab.text" = "Percento zatvorenia";
+
+/* Class = "UILabel"; text = "0%"; ObjectID = "jRJ-6Q-E7a"; */
+"jRJ-6Q-E7a.text" = "0%";

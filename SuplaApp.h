@@ -22,6 +22,8 @@
 #import "SuplaClient.h"
 #include "proto.h"
 
+#define ABSTRACT_METHOD_EXCEPTION [SAApp abstractMethodException:NSStringFromSelector(_cmd)]
+
 @class SADatabase;
 @class SASettingsVC;
 @class SAStatusVC;
@@ -42,7 +44,7 @@
 +(void) setServerHostName:(NSString *)hostname;
 +(void) setEmailAddress:(NSString *)email;
 +(void) setAdvancedConfig:(BOOL)adv_cfg;
-
++(void) abstractMethodException:(NSString *)methodName;
 +(NSURL *)applicationDocumentsDirectory;
 
 +(void)initClientDelayed:(double)time;
@@ -71,7 +73,11 @@
 -(void)onEvent:(SAEvent*)event;
 -(void)onRegistrationEnabled:(SARegistrationEnabled*)reg_enabled;
 -(void)onTerminated:(SASuplaClient*)sender;
+-(void)onOAuthTokenRequestResult:(SAOAuthToken *)token;
 
+-(SAOAuthToken*) registerRestApiClientTask:(SARestApiClientTask *)client;
+-(void) unregisterRestApiClientTask:(SARestApiClientTask *)task;
+-(void) cancelAllRestApiClientTasks;
 @end
 
 extern NSString *kSADataChangedNotification;
@@ -85,3 +91,4 @@ extern NSString *kSAVersionErrorNotification;
 extern NSString *kSAEventNotification;
 extern NSString *kSAChannelValueChangedNotification;
 extern NSString *kSARegistrationEnabledNotification;
+extern NSString *kSAOAuthTokenRequestResult;

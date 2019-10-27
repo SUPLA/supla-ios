@@ -18,14 +18,16 @@
 
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
+#import "SAChannelValueBase+CoreDataProperties.h"
 #import <UIKit/UIKit.h>
 #import "proto.h"
 @class NSObject;
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface SAChannelValue : NSManagedObject
+@interface SAChannelValue : SAChannelValueBase
 
+- (void) initWithChannelId:(int)channelId;
 - (BOOL) setOnlineState:(char)online;
 - (BOOL) setValueWithChannelValue:(TSuplaChannelValue*)value;
 - (NSData *) dataValue;
@@ -42,6 +44,10 @@ NS_ASSUME_NONNULL_BEGIN
 - (int) brightnessValue;
 - (int) colorBrightnessValue;
 - (UIColor *) colorValue;
+- (double) totalForwardActiveEnergy;
+- (double) impulseCounterCalculatedValue;
+- (double) presetTemperature;
+- (double) measuredTemperature;
 
 @end
 

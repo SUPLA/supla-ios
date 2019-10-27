@@ -19,6 +19,7 @@
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 #import <UIKit/UIKit.h>
+#import "SAUserIcon+CoreDataClass.h"
 
 @class _SALocation;
 
@@ -32,13 +33,18 @@ NS_ASSUME_NONNULL_BEGIN
 - (BOOL) setItemVisible:(int)visible;
 - (BOOL) setChannelAltIcon:(int)altIcon;
 - (BOOL) setChannelFlags:(int)flags;
+- (BOOL) setLocationId:(int)locationId;
+- (BOOL) setRemoteId:(int)remoteId;
+- (BOOL) setUserIconId:(int)userIconId;
 - (NSString *)getChannelCaption;
 
+- (int) imgIsActive;
 - (BOOL) isOnline;
 - (int) onlinePercent;
 - (int) hiValue;
 - (int) hiSubValue;
 - (UIImage*) getIcon;
+- (UIImage*) getIconWithIndex:(short)idx;
 
 - (double) temperatureValue;
 - (double) humidityValue;
@@ -47,6 +53,18 @@ NS_ASSUME_NONNULL_BEGIN
 - (int) brightnessValue;
 - (int) colorBrightnessValue;
 - (UIColor *) colorValue;
+- (double) totalForwardActiveEnergy;
+- (double) impulseCounterCalculatedValue;
+- (double) presetTemperature;
+- (double) presetTemperatureMin;
+- (double) presetTemperatureMax;
+- (double) measuredTemperature;
+- (double) measuredTemperatureMin;
+- (double) measuredTemperatureMax;
+- (NSString *) unit;
+- (NSAttributedString*) thermostatAttrStringWithMeasuredTempMin:(double)mmin measuredTempMax:(double)mmax presetTempMin:(double)pmin presetTempMax:(double)pmax font:(nullable UIFont*)font;
+- (NSAttributedString*) attrStringValueWithIndex:(int)idx font:(nullable UIFont*)font;
+- (NSAttributedString*) attrStringValue;
 @end
 
 NS_ASSUME_NONNULL_END

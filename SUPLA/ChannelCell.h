@@ -40,7 +40,8 @@
 
 
 @property (strong, nonatomic) SAChannelBase *channelBase;
-@property (weak, nonatomic) IBOutlet UIImageView *image;
+@property (weak, nonatomic) IBOutlet UIImageView *image1;
+@property (weak, nonatomic) IBOutlet UIImageView *image2;
 @property (weak, nonatomic) IBOutlet UILabel *caption;
 @property (weak, nonatomic) IBOutlet SAUIChannelStatus *right_OnlineStatus;
 @property (weak, nonatomic) IBOutlet SAUIChannelStatus *left_OnlineStatus;
@@ -50,6 +51,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *distance;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *cint_LeftStatusWidth;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *cint_RightStatusWidth;
+@property (weak, nonatomic) IBOutlet UILabel *measuredValue;
 
 
 @end

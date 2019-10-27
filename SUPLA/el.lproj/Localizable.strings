@@ -1,0 +1,141 @@
+/*
+ This program is free software; you can redistribute it and/or
+ modify it under the terms of the GNU General Public License
+ as published by the Free Software Foundation; either version 2
+ of the License, or (at your option) any later version.
+ 
+ This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ GNU General Public License for more details.
+ 
+ You should have received a copy of the GNU General Public License
+ along with this program; if not, write to the Free Software
+ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
+ */
+
+"version" = "Η έκδοση";
+"Open" = "Άνοιγμα";
+"Open Close" = "Άνοιγμα Κλείσιμο";
+"Reveal" = "Αποκάλυψη";
+"Shut" = "Κάλυψη";
+"On" = "Ενεργοποιηση";
+"Off" = "Απενεργοποιηση";
+"opened the gateway" = "άνοιξε την αυλόπορτα";
+"opened / closed the gate" = "άνοιξε / έκλεισε την πύλη";
+"opened / closed the gate doors" = "άνοιξε / έκλεισε την γκαραζὀπορτα";
+"opened the door" = "άνοιξε την πόρτα";
+"opened / closed roller shutter" = "άνοιξε / έκλεισε τις περσίδες";
+"turned the power ON/OFF" = "ενεργοποίησε / απενεργοποίησε την παροχή ρεύματος";
+"turned the light ON/OFF" = "ενεργοποίησε / απενεργοποίησε το φως";
+"Settings" = "Ρυθμίσεις";
+"About" = "Για το πρόγραμμα";
+"Gateway" = "Αυλόπορτα";
+"Gate" = "Πύλη";
+"Garage door" = "Γκαραζόπορτα";
+"Door" = "Πόρτα";
+"Roller shutter" = "Περσίδες";
+"Power switch" = "Διακόπτης παροχής ρεύματος";
+"Lighting switch" = "Διακόπτης φωτισμού";
+"Thermometer" = "Θερμόμετρο";
+"Temperature and humidity" = "Θερμοκρασία και υγρασία";
+"No liquid sensor" = "Αισθητήρας έλλειψης υγρού";
+"Gateway opening sensor" = "Αισθητήρας ανοίγματος της αυλόπορτας";
+"Gate opening sensor" = "Αισθητήρας ανοίγματος της πύλης";
+"Garage door opening sensor" = "Αισθητήρας ανοίγματος της γκαραζόπορτας";
+"Door opening sensor" = "Αισθητήρας ανοίγματος πόρτας";
+"Roller shutter opening sensor" = ">Αισθητήρας ανοίγματος περσίδων";
+"Connecting..." = "Σύνδεση...";
+"Unknown error" = "Άγνωστο σφάλμα";
+"Service temporarily unavailable" = "Υπηρεσία προσωρινά μη διαθέσιμη";
+"Bad credentials" = "Λανθασμένα διαπιστευτήρια";
+"Client limit exceeded" = "Υπέρβαση ορίου των εφαρμογών πελάτη";
+"Device is disabled" = "Η συσκευή είναι απενεργοποιημένη";
+"Access Identifier is disabled" = "Το αναγνωριστικό πρόσβασης είναι απενεργοποιημένο";
+"Client Registration is off. Please go to \"Smartphone\" at %@ to activate it." = "Η εγγραφή είναι αυτή τη στιγμή απενεργοποιημένη. Για να την ενεργοποιήσετε, μεταβείτε στην καρτέλα \"Smartphones\" στη σελίδα %@";
+"This client does not have access identifier assigned. Please go to \"Smartphone\" at %@ and get a valid identifier." = "Αυτή η συσκευή δεν έχει παραχωρημένο αναγνωριστικό πρόσβασης. Μεταβείτε στη σελίδα %@  στην καρτέλα \"Smartphones\" και παραχωρήστε το κατάλληλο αναγνωριστικό.";
+"Incompatible server version" = "Μη συμβατή έκδοση διακομιστή";
+"Host not found" = "Η διεύθυνση του διακομιστή δεν βρέθηκε";
+"RGB Lighting" = "Φωτισμός RGB";
+"Dimmer and RGB lighting" = "Ρεοστάτης και φωτισμός RGB";
+"Dimmer" = "Ρεοστάτης";
+"Distance sensor" = "Αισθητήρας απόστασης";
+"Depth sensor" = "Αισθητήρας βάθους";
+"If you enjoy using this app, please take a moment to rate it. Thanks for your support!" = "Αν σας αρέσει αυτή η εφαρμογή, παρακαλώ αφιερώστε λίγο χρόνο για να την αξιολογήσετε. Σας ευχαριστώ για την υποστήριξή σας!";
+"Rate Now" = "Βαθμολογήστε τώρα";
+"Later" = "Αργότερα";
+"No thanks" = "Όχι, ευχαριστώ";
+"Mail sensor" = "Αισθητήρας ταχυδρομείου";
+"Window opening sensor" = "Αισθητήρας ανοίγματος παραθύρου";
+"Add I/O device" = "Προσθήκη συσκευής";
+"Donate" = "Υποστηρίξτε το έργο";
+"Create an account" = "Δημιουργία λογαριασμού";
+"Device registration availability information timeout!" = "Υπέρβαση χρόνου αναμονής για τις πληροφορίες σχετικά με τη διαθεσιμότητα εγγραφής των συσκευών!";
+"Next" = "Επόμενο";
+"Start" = "Εναρξη";
+"Cancel" = "Ακύρωση";
+"Go to the system settings" = "Μετάβαση στις ρυθμίσεις συστήματος";
+"I/O Device registration is currently off. To continue go to „My SUPLA” at %@ and enable the Device Add Button." = "Η εγγραφή συσκευών εισόδου/εξόδου είναι αυτή τη στιγμή απενεργοποιημένη. Για να συνεχίσετε, μεταβείτε στην ιστοσελίδα %@ και στην καρτέλα \"Η SUPLA μου\" ενεργοποιήστε την προσθήκη συσκευών.";
+"Add Wizard is only available when server connection has been set based on the email address entered in the settings." = "Ο οδηγός προσθήκης είναι διαθέσιμος μόνο όταν έχει δημιουργηθεί μια σύνδεση με το διακομιστή με βάση τη διεύθυνση ηλεκτρονικού ταχυδρομείου που είχε εισαχθεί στις ρυθμίσεις!";
+"The connected Server does not support this function!" = "Ο διακομιστής στον οποίο συνδέεστε δεν υποστηρίζει αυτή τη λειτουργία!";
+"Device Configuration Completion timeout!" = "Υπέρβαση χρόνου αναμονής για την ολοκλήρωση διαμόρφωσης της συσκευής!";
+"Incorrect input parameters!" = "Μη έγκυρες παράμετροι εισόδου!";
+"The connected device is not compatible with this Wizard!" = "Η συσκευή με την οποία συνδεθήκατε δεν είναι συμβατή με αυτόν τον οδηγό!";
+"Configuration Failed!" = "Η διαμόρφωση απέτυχε!";
+"Connection with the device cannot be set! Make sure, if the Wi-fi connection has been set for the I/O device." = "Δεν είναι δυνατή η σύνδεση με τη συσκευή! Βεβαιωθείτε ότι έχει πραγματοποιηθεί η σύνδεση της εκτελεστικής συσκευής στο δίκτυο WiFi.";
+"[Calibration]" = "[Βαθμονόμηση]";
+"Help" = "Βοήθεια";
+"https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=L4N7RSWME6LG2" = "https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=QYN932S5UQG8N";
+"Staircase timer" = "Αυτόματη σκάλα";
+"https://cloud.supla.org/register" = "https://cloud.supla.org/register?lang=pl";
+
+"Retrieving data from the server..." = "Λήψη δεδομένων από διακομιστή...";
+"No chart data available." = "Δεν υπάρχουν δεδομένα για το γράφημα.";
+"Electricity Meter" = "Μετρητής ηλεκτρικής ενέργειας";
+"Water Meter" = "Μετρητής νερού";
+"Gas Meter" = "Μετρητής αερίου";
+
+"Forward active Energy" = "Ληφθείσα ενεργή ενέργεια";
+"Reverse active Energy" = "Επιστραφείσα ενεργή ενέργεια";
+"Consumption in the current month" = "Κατανάλωση τον τρέχοντα μήνα";
+"Production in the current month" = "Παραγωγή τον τρέχοντα μήνα";
+"Minutes" = "Λεπτά";
+"Hours" = "Ώρες";
+"Days" = "Ημέρες";
+"Months" = "Μήνες";
+"Years" = "Χρόνια";
+"Minute to minute comparison" = "Σύγκριση λεπτό προς λεπτό";
+"Hour to hour comparison" = "Σύγκριση ώρα προς ώρα";
+"Day to day comparison" = "Σύγκριση μέρα προς μέρα";
+"Month to month comparison" = "Σύγκριση ώρα προς ώρα";
+"Year to year comparison" = "Σύγκριση έτος προς έτος";
+"Ranking of hours" = "Κατάταξη των ωρών";
+"Ranking of weekdays" = "Κατάταξη των ημερών της εβδομάδας";
+"Ranking of months" = "Κατάταξη των μηνών";
+"Consumption according to phases" = "Κατανάλωση ανάλογα με τις φάσεις";
+"Production according to phases" = "Παραγωγή ανάλογα με τις φάσεις";
+"Last 24 hours" = "Οι τελευταίες 24 ώρες";
+"Last 7 days" = "Οι τελευταίες 7 ημέρες";
+"Last 30 days" = "Οι τελευταίες 30 ημέρες";
+"Last 90 days" = "Οι τελευταίες 90 ημέρες";
+"All available history" = "Όλο το διαθέσιμο ιστορικό";
+"Phase 1" = "Φάση 1";
+"Phase 2" = "Φάση 2";
+"Phase 3" = "Φάση 3";
+"Home+ Heater" = "Θερμαντήρας Home+";
+"Comfort" = "Κομφόρ";
+"ECO" = "ECO";
+"No water" = "Έλλειψη νερού";
+"Burnt heater" = "Καμμένος θερμαντήρας";
+"Water temperature sensor error" = "Σφάλμα αισθητήρα θερμοκρασίας νερού";
+"Room temperature sensor error" = "Σφάλμα αισθητήρα θερμοκρασίας δωματίου";
+"No network interruptions" = "Δεν υπάρχουν διακοπές στο δίκτυο";
+"Room temperature" = "Θερμοκρασία δωματίου";
+"ON" = "ΕΝΕΡΓΟΠΟΙΗΜΕΝΟΣ";
+"OFF" = "ΑΠΕΝΕΡΓΟΠΟΙΗΜΕΝΟΣ";
+"h" = "ώρα";
+
+"Wind sensor" = "Ταχύτητα αέρα";
+"Weight sensor" = "Βάρος";
+"Pressure sensor" = "Αισθητήρας πίεσης";
+"Rain sensor" = "Μέτρηση βροχοπτώσεων";

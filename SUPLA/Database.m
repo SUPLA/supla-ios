@@ -24,6 +24,7 @@
 #import "SAChannel+CoreDataClass.h"
 #import "SAChannelGroupRelation+CoreDataClass.h"
 #import "SAColorListItem+CoreDataClass.h"
+#import "SAUserIcon+CoreDataClass.h"
 
 @implementation SADatabase {
     NSManagedObjectModel *_managedObjectModel;
@@ -45,17 +46,36 @@
     return _managedObjectModel;
 }
 
+- (void)removeIfExists:(NSString *)dbFileName {
+    NSURL *storeURL = [[SAApp applicationDocumentsDirectory] URLByAppendingPathComponent:dbFileName];
+    
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    if ([fileManager fileExistsAtPath:[storeURL path]]) {
+        NSError *error = nil;
+        [fileManager removeItemAtURL:storeURL error:&error];
+    }
+}
+
 - (NSPersistentStoreCoordinator *)persistentStoreCoordinator {
     // The persistent store coordinator for the application. This implementation creates and return a coordinator, having added the store for the application to it.
     if (_persistentStoreCoordinator != nil) {
         return _persistentStoreCoordinator;
     }
     
+    int DBv = 7;
+    
+    [self removeIfExists:@"SUPLA_DB.sqlite"];
+    
+    for(int a=0;a<DBv;a++) {
+        [self removeIfExists:[NSString stringWithFormat:@"SUPLA_DB%i.sqlite", a]];
+    }
+    
+    NSError *error = nil;
+    NSURL *storeURL = [[SAApp applicationDocumentsDirectory] URLByAppendingPathComponent:[NSString stringWithFormat:@"SUPLA_DB%i.sqlite", DBv]];
+    
     // Create the coordinator and store
     
     _persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:[self managedObjectModel]];
-    NSURL *storeURL = [[SAApp applicationDocumentsDirectory] URLByAppendingPathComponent:@"SUPLA_DB3.sqlite"];
-    NSError *error = nil;
     NSString *failureReason = @"There was an error creating or loading the application's saved data.";
     
     if (![_persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:storeURL options:nil error:&error]) {
@@ -94,6 +114,7 @@
 
 - (void)saveContext {
     NSManagedObjectContext *managedObjectContext = self.managedObjectContext;
+ 
     if (managedObjectContext != nil) {
         NSError *error = nil;
         if ([managedObjectContext hasChanges] && ![managedObjectContext save:&error]) {
@@ -122,10 +143,12 @@
     
 }
 
--(NSArray *) fetchByPredicate:(NSPredicate *)predicate entityName:(NSString*)en limit:(int)l {
+-(NSArray *) fetchByPredicate:(NSPredicate *)predicate entityName:(NSString*)en limit:(int)l sortDescriptors:(NSArray<NSSortDescriptor *> *)sortDescriptors {
     
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
     fetchRequest.predicate = predicate;
+  
+    fetchRequest.sortDescriptors = sortDescriptors;
     
     if ( l > 0 ) {
         [fetchRequest setFetchLimit:l];
@@ -142,15 +165,84 @@
     return nil;
 };
 
--(id) fetchItemByPredicate:(NSPredicate *)predicate entityName:(NSString*)en {
+-(NSArray *) fetchByPredicate:(NSPredicate *)predicate entityName:(NSString*)en limit:(int)l {
+    return [self fetchByPredicate:predicate entityName:en limit:l sortDescriptors:nil];
+}
+
+-(id) fetchItemByPredicate:(NSPredicate *)predicate entityName:(NSString*)en sortDescriptors:(NSArray<NSSortDescriptor *> *)sortDescriptors {
     
-    NSArray *r = [self fetchByPredicate:predicate entityName:en limit:1];
+    NSArray *r = [self fetchByPredicate:predicate entityName:en limit:1 sortDescriptors:sortDescriptors];
     if ( r != nil && r.count > 0 ) {
         return [r objectAtIndex:0];
     }
     
     return nil;
 };
+
+-(id) fetchItemByPredicate:(NSPredicate *)predicate entityName:(NSString*)en {
+    return [self fetchItemByPredicate:predicate entityName:en sortDescriptors:nil];
+}
+
+-(NSUInteger) getCountByPredicate:(NSPredicate *)predicate entityName:(NSString *)en {
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    fetchRequest.predicate = predicate;
+    
+    [fetchRequest setEntity:[NSEntityDescription entityForName:en inManagedObjectContext: self.managedObjectContext]];
+    [fetchRequest setIncludesSubentities:NO];
+    
+    NSError *fetchError = nil;
+    NSUInteger count = [self.managedObjectContext countForFetchRequest:fetchRequest error:&fetchError];
+    
+    if(count == NSNotFound || fetchError != nil ) {
+        count = 0;
+    }
+    
+    return count;
+}
+
+- (NSDictionary *) sumValesOfEntitiesWithProperties:(NSArray *)props predicate:(NSPredicate *)predicate entityName:(NSString *)en {
+    
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    fetchRequest.predicate = predicate;
+    fetchRequest.propertiesToFetch = props;
+    [fetchRequest setResultType:NSDictionaryResultType];
+    
+    [fetchRequest setEntity:[NSEntityDescription entityForName:en inManagedObjectContext: self.managedObjectContext]];
+    NSError *error = nil;
+    NSArray *r = [self.managedObjectContext executeFetchRequest:fetchRequest error:&error];
+    
+    if ( error == nil && r.count > 0 ) {
+        return [r objectAtIndex:0];
+    }
+    
+    return nil;
+}
+
+- (NSDate *) lastSecondInMonthWithOffset:(int)offset {
+    NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier: NSCalendarIdentifierGregorian];
+    NSDateComponents *components = [calendar components:NSCalendarUnitYear
+                                    | NSCalendarUnitMonth
+                                    | NSCalendarUnitDay
+                                    | NSCalendarUnitHour
+                                    | NSCalendarUnitMinute
+                                    | NSCalendarUnitSecond fromDate:[NSDate date]];
+    
+    [components setHour:0];
+    [components setMinute:0];
+    [components setSecond:0];
+    [components setDay:1];
+    NSDate *date = [calendar dateFromComponents:components];
+    
+    components = [[NSDateComponents alloc] init];
+    [components setMonth:1+offset];
+    date = [calendar dateByAddingComponents:components toDate:date options:0];
+    
+    components = [[NSDateComponents alloc] init];
+    [components setSecond:-1];
+    date = [calendar dateByAddingComponents:components toDate:date options:0];
+    
+    return date;
+}
 
 #pragma mark Locations
 -(_SALocation*) fetchLocationById:(int)location_id {
@@ -166,6 +258,7 @@
     Location.caption = @"";
     [Location setLocationVisible:0];
     [self.managedObjectContext insertObject:Location];
+   
     
     return Location;
 }
@@ -199,7 +292,6 @@
 #pragma mark Channels
 
 -(SAChannel*) fetchChannelById:(int)channel_id {
-    
     return [self fetchItemByPredicate:[NSPredicate predicateWithFormat:@"remote_id = %i", channel_id] entityName:@"SAChannel"];
 };
 
@@ -208,20 +300,14 @@
     return [self fetchItemByPredicate:[NSPredicate predicateWithFormat:@"channel_id = %i", channel_id] entityName:@"SAChannelValue"];
 };
 
+-(SAChannelExtendedValue*) fetchChannelExtendedValueByChannelId:(int)channel_id {
+    return [self fetchItemByPredicate:[NSPredicate predicateWithFormat:@"channel_id = %i", channel_id] entityName:@"SAChannelExtendedValue"];
+};
 
 -(SAChannel*) newChannel {
     
     SAChannel *Channel = [[SAChannel alloc] initWithEntity:[NSEntityDescription entityForName:@"SAChannel" inManagedObjectContext:self.managedObjectContext] insertIntoManagedObjectContext:self.managedObjectContext];
-    
-    Channel.caption = @"";
-    Channel.remote_id = 0;
-    Channel.func = 0;
-    Channel.visible = 1;
-    Channel.alticon = 0;
-    Channel.protocolversion = 0;
-    Channel.flags = 0;
-    Channel.value = nil;
-
+    [Channel initWithRemoteId:0];
     [self.managedObjectContext insertObject:Channel];
     
     return Channel;
@@ -231,18 +317,26 @@
     
     SAChannelValue *Value = [[SAChannelValue alloc] initWithEntity:[NSEntityDescription entityForName:@"SAChannelValue" inManagedObjectContext:self.managedObjectContext] insertIntoManagedObjectContext:self.managedObjectContext];
     
-    Value.channel_id = channel_id;
-    Value.value = [[NSData alloc] init];
-    Value.sub_value = [[NSData alloc] init];
-    TSuplaChannelValue v;
-    [Value setValueWithChannelValue:&v];
-    
+    [Value initWithChannelId:channel_id];
     [self.managedObjectContext insertObject:Value];
     
     return Value;
 }
 
--(BOOL) updateChannel:(TSC_SuplaChannel_B *)channel {
+-(SAChannelExtendedValue*) newChannelExtendedValueForChannelId:(int)channel_id {
+    
+    SAChannelExtendedValue *Value = [[SAChannelExtendedValue alloc]
+                                     initWithEntity:[NSEntityDescription entityForName:@"SAChannelExtendedValue"
+                                                                inManagedObjectContext:self.managedObjectContext]
+                                     insertIntoManagedObjectContext:self.managedObjectContext];
+    
+    [Value initWithChannelId:channel_id];
+    [self.managedObjectContext insertObject:Value];
+    
+    return Value;
+}
+
+-(BOOL) updateChannel:(TSC_SuplaChannel_C *)channel {
     
     BOOL save = NO;
     
@@ -281,7 +375,35 @@
         save = YES;
     }
     
+    if ( [Channel setLocationId:channel->LocationID] ) {
+        save = YES;
+    }
+    
+    if ( [Channel setRemoteId:channel->Id] ) {
+        save = YES;
+    }
+    
+    if ( [Channel setUserIconId:channel->UserIcon] ) {
+        save = YES;
+    }
+    
     if ( [Channel setChannelProtocolVersion:channel->ProtocolVersion] ) {
+        save = YES;
+    }
+    
+    if ( [Channel setDeviceId:channel->DeviceID] ) {
+        save = YES;
+    }
+    
+    if ( [Channel setManufacturerId:channel->ManufacturerID] ) {
+        save = YES;
+    }
+    
+    if ( [Channel setProductId:channel->ProductID] ) {
+        save = YES;
+    }
+    
+    if ( [Channel setChannelType:channel->Type] ) {
         save = YES;
     }
     
@@ -330,6 +452,37 @@
     if ( r != nil ) {
         for(int a=0;a<r.count;a++) {
             ((SAChannelGroupRelation*)[r objectAtIndex:a]).value = Value;
+            save = YES;
+        }
+    }
+    
+    if ( save ) {
+        [self saveContext];
+    }
+    
+    return save;
+}
+
+-(BOOL) updateChannelExtendedValue:(TSC_SuplaChannelExtendedValue *)channel_value {
+    
+    BOOL save = NO;
+    
+    SAChannelExtendedValue *Value= [self fetchChannelExtendedValueByChannelId:channel_value->Id];
+    
+    if ( Value == nil ) {
+        Value = [self newChannelExtendedValueForChannelId:channel_value->Id];
+        save = YES;
+    }
+    
+    if ( [Value setValueWithChannelExtendedValue:&channel_value->value] ) {
+        save = YES;
+    }
+    
+    NSArray *r = [self fetchByPredicate:[NSPredicate predicateWithFormat:@"remote_id = %i AND (ev = nil OR ev <> %@)", channel_value->Id, Value] entityName:@"SAChannel" limit:0];
+    
+    if ( r != nil ) {
+        for(int a=0;a<r.count;a++) {
+            ((SAChannel*)[r objectAtIndex:a]).ev = Value;
             save = YES;
         }
     }
@@ -421,21 +574,7 @@
 }
 
 -(NSUInteger) getChannelCount {
-    
-    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-    
-    fetchRequest.predicate = [NSPredicate predicateWithFormat:@"func > 0 AND visible > 0"];
-    [fetchRequest setEntity:[NSEntityDescription entityForName:@"SAChannel" inManagedObjectContext: self.managedObjectContext]];
-    [fetchRequest setIncludesSubentities:NO];
-
-    NSError *fetchError = nil;
-    NSUInteger count = [self.managedObjectContext countForFetchRequest:fetchRequest error:&fetchError];
-    
-    if(count == NSNotFound || fetchError != nil ) {
-        count = 0;
-    }
-    
-    return count;
+    return [self getCountByPredicate:[NSPredicate predicateWithFormat:@"func > 0 AND visible > 0"] entityName:@"SAChannel"];
 }
 
 #pragma mark Channel Groups
@@ -470,7 +609,7 @@
     return CGroup;
 }
 
--(BOOL) updateChannelGroup:(TSC_SuplaChannelGroup *)channel_group {
+-(BOOL) updateChannelGroup:(TSC_SuplaChannelGroup_B *)channel_group {
     
     BOOL save = NO;
     
@@ -505,6 +644,18 @@
     }
     
     if ( [CGroup setChannelAltIcon:channel_group->AltIcon] ) {
+        save = YES;
+    }
+    
+    if ( [CGroup setLocationId:channel_group->LocationID] ) {
+        save = YES;
+    }
+    
+    if ( [CGroup setRemoteId:channel_group->Id] ) {
+        save = YES;
+    }
+    
+    if ( [CGroup setUserIconId:channel_group->UserIcon] ) {
         save = YES;
     }
     
@@ -665,4 +816,530 @@
     [self saveContext];
 }
 
+#pragma mark Measurements - Common
+
+-(NSArray *) getMeasurementsForChannelId:(int)channel_id dateFrom:(NSDate *)dateFrom dateTo:(NSDate *)dateTo entityName:(NSString*)entityName {
+    
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    
+    NSEntityDescription *entity = [NSEntityDescription
+                                   entityForName:entityName inManagedObjectContext:self.managedObjectContext];
+    
+    [fetchRequest setEntity:entity];
+    [fetchRequest setResultType:NSDictionaryResultType];
+ 
+    fetchRequest.predicate = [NSPredicate predicateWithFormat:@"channel_id = %i AND (%@ = nil OR date >= %@) AND (%@ = nil OR date <= %@)", channel_id, dateFrom, dateFrom, dateTo, dateTo];
+    
+    fetchRequest.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"date" ascending:YES]];
+    
+    NSError *error = nil;
+    NSArray *r = [self.managedObjectContext executeFetchRequest:fetchRequest error:&error];
+    
+    if ( error == nil && r.count > 0 ) {
+        return r;
+    }
+    
+    return nil;
+}
+
+-(SAIncrementalMeasurementItem*) fetchOlderThanDate:(NSDate*)date uncalculatedIncrementalMeasurementItemWithChannel:(int)channel_id entityName:(NSString*)en {
+    
+    return [self fetchItemByPredicate:[NSPredicate predicateWithFormat:@"channel_id = %i AND calculated = NO AND date < %@", channel_id, date] entityName:en];
+};
+
+-(long) getTimestampOfMeasurementItemWithChannelId:(int)channel_id minimum:(BOOL)min entityName:(NSString*)en {
+    SAIncrementalMeasurementItem *item = [self fetchItemByPredicate:[NSPredicate predicateWithFormat:@"channel_id = %i", channel_id] entityName: en sortDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"date" ascending:min]]];
+    
+    return item ? [item.date timeIntervalSince1970] : 0;
+}
+
+-(void) deleteAllMeasurementsForChannelId:(int)channel_id entityName:(NSString *)en {
+    BOOL del = YES;
+    do {
+        del = NO;
+        NSArray *arr = [self fetchByPredicate:[NSPredicate predicateWithFormat:@"channel_id = %i", channel_id] entityName:en limit:1000];
+        
+        if (arr && arr.count) {
+            del = YES;
+            for(int a=0;a<arr.count;a++) {
+                [self.managedObjectContext deleteObject:[arr objectAtIndex:a]];
+            }
+            [self saveContext];
+        }
+        
+    } while (del);
+    
+}
+
+-(void) deleteUncalculatedIncrementalMeasurementsForChannelId:(int)channel_id entityName:(NSString *)en {
+    NSArray *arr = [self fetchByPredicate:[NSPredicate predicateWithFormat:@"channel_id = %i AND calculated = NO", channel_id] entityName:en limit:0];
+    
+    if (arr) {
+        for(int a=0;a<arr.count;a++) {
+            [self.managedObjectContext deleteObject:[arr objectAtIndex:a]];
+        }
+    }
+}
+
+-(NSUInteger) getIncrementalMeasurementItemCountWithoutComplementForChannelId:(int)channel_id entityName:(NSString *)en {
+    return [self getCountByPredicate:[NSPredicate predicateWithFormat:@"channel_id = %i AND complement = NO", channel_id] entityName:en];
+}
+
+-(BOOL) timestampStartsWithTheCurrentMonth:(long)timestamp {
+    if (timestamp == 0) {
+        return YES;
+    };
+    
+    NSDateComponents *dc1 = [[NSCalendar currentCalendar] components:NSCalendarUnitMonth | NSCalendarUnitYear fromDate:[NSDate dateWithTimeIntervalSince1970:timestamp]];
+    
+    NSDateComponents *dc2 = [[NSCalendar currentCalendar] components:NSCalendarUnitMonth | NSCalendarUnitYear fromDate:[NSDate date]];
+    
+    return dc1.month == dc2.month && dc1.year == dc2.year;
+}
+
+- (void) addGroupByProperty:(GroupBy)gb toMutableArray:(NSMutableArray*)props entity:(NSEntityDescription *)entity {
+    switch (gb) {
+        case gbMinute:
+            [props addObject:[entity.propertiesByName objectForKey:@"minute"]];
+            break;
+        case gbHour:
+            [props addObject:[entity.propertiesByName objectForKey:@"hour"]];
+            break;
+        case gbDay:
+            [props addObject:[entity.propertiesByName objectForKey:@"day"]];
+            break;
+        case gbWeekday:
+            [props addObject:[entity.propertiesByName objectForKey:@"weekday"]];
+            break;
+        case gbMonth:
+            [props addObject:[entity.propertiesByName objectForKey:@"month"]];
+            break;
+        case gbYear:
+            [props addObject:[entity.propertiesByName objectForKey:@"year"]];
+            break;
+        default:
+            break;
+    }
+}
+
+-(NSArray *) getIncrementalMeasurementsForChannelId:(int)channel_id fields:(NSArray*)fields entityName:(NSString*)en dateFrom:(NSDate *)dateFrom dateTo:(NSDate *)dateTo  groupBy:(GroupBy)gb groupingDepth:(GroupingDepth)gd {
+    
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    
+    NSEntityDescription *entity = [NSEntityDescription
+                                   entityForName:en inManagedObjectContext:self.managedObjectContext];
+    
+    [fetchRequest setEntity:entity];
+    [fetchRequest setResultType:NSDictionaryResultType];
+    
+    NSMutableArray *propertiesToFetch = [[NSMutableArray alloc] init];
+    
+    NSExpressionDescription *ed = [[NSExpressionDescription alloc] init];
+    [ed setName:@"date"];
+    [ed setExpression:[NSExpression expressionForFunction:@"max:" arguments:[NSArray arrayWithObject:[NSExpression expressionForKeyPath:@"date"]]]];
+    [ed setExpressionResultType:NSDateAttributeType];
+    
+    [propertiesToFetch addObject:ed];
+    
+    for(int a=0;a<fields.count;a++) {
+        ed = [[NSExpressionDescription alloc] init];
+        [ed setName:[fields objectAtIndex:a]];
+        [ed setExpression:[NSExpression expressionForFunction:@"sum:" arguments:[NSArray arrayWithObject:[NSExpression expressionForKeyPath:[fields objectAtIndex:a]]]]];
+        [ed setExpressionResultType:NSDoubleAttributeType];
+        [propertiesToFetch addObject:ed];
+    }
+    
+    fetchRequest.propertiesToFetch = propertiesToFetch;
+    NSMutableArray *propertiesToGroupBy = [[NSMutableArray alloc] init];
+    
+    if (gd != gdNone) {
+        switch (gd) {
+            case gdMinutely:
+                [self addGroupByProperty:gbMinute toMutableArray:propertiesToGroupBy entity:entity];
+            case gdHourly:
+                [self addGroupByProperty:gbHour toMutableArray:propertiesToGroupBy entity:entity];
+            case gdDaily:
+                [self addGroupByProperty:gbDay toMutableArray:propertiesToGroupBy entity:entity];
+            case gdMonthly:
+                [self addGroupByProperty:gbMonth toMutableArray:propertiesToGroupBy entity:entity];
+            case gdYearly:
+                [self addGroupByProperty:gbYear toMutableArray:propertiesToGroupBy entity:entity];
+                break;
+            default:
+                break;
+        }
+    } else if (gb != gbNone) {
+        [self addGroupByProperty:gb toMutableArray:propertiesToGroupBy entity:entity];
+    }
+
+    fetchRequest.propertiesToGroupBy = propertiesToGroupBy.count ? propertiesToGroupBy : nil;
+    
+    fetchRequest.predicate = [NSPredicate predicateWithFormat:@"channel_id = %i AND calculated = YES AND (%@ = nil OR date >= %@) AND (%@ = nil OR date <= %@)", channel_id, dateFrom, dateFrom, dateTo, dateTo];
+    
+    fetchRequest.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"date" ascending:YES]];
+    
+    NSError *error = nil;
+    NSArray *r = [self.managedObjectContext executeFetchRequest:fetchRequest error:&error];
+    
+    if ( error == nil && r.count > 0 ) {
+        return r;
+    }
+    
+    return nil;
+    
+}
+
+#pragma mark Electricity Measurements
+
+-(SAElectricityMeasurementItem*) newElectricityMeasurementItemWithManagedObjectContext:(BOOL)moc {
+    SAElectricityMeasurementItem *item = [[SAElectricityMeasurementItem alloc] initWithEntity:[NSEntityDescription entityForName:@"SAElectricityMeasurementItem" inManagedObjectContext:self.managedObjectContext] insertIntoManagedObjectContext:moc ? self.managedObjectContext : nil];
+    
+    if (moc) {
+        [self.managedObjectContext insertObject:item];
+    }
+    return item;
+}
+
+-(SAElectricityMeasurementItem*) fetchOlderThanDate:(NSDate*)date uncalculatedElectricityMeasurementItemWithChannel:(int)channel_id {
+    return (SAElectricityMeasurementItem*) [self fetchOlderThanDate:date uncalculatedIncrementalMeasurementItemWithChannel:channel_id entityName:@"SAElectricityMeasurementItem"];
+}
+
+-(long) getTimestampOfElectricityMeasurementItemWithChannelId:(int)channel_id minimum:(BOOL)min {
+    return [self getTimestampOfMeasurementItemWithChannelId:channel_id minimum:min entityName:@"SAElectricityMeasurementItem"];
+}
+
+-(void) deleteAllElectricityMeasurementsForChannelId:(int)channel_id {
+    [self deleteAllMeasurementsForChannelId:channel_id entityName:@"SAElectricityMeasurementItem"];
+}
+
+-(void) deleteUncalculatedElectricityMeasurementsForChannelId:(int)channel_id {
+    [self deleteUncalculatedIncrementalMeasurementsForChannelId:channel_id entityName:@"SAElectricityMeasurementItem"];
+}
+
+-(NSUInteger) getElectricityMeasurementItemCountWithoutComplementForChannelId:(int)channel_id {
+    return [self getIncrementalMeasurementItemCountWithoutComplementForChannelId:channel_id entityName:@"SAElectricityMeasurementItem"];
+}
+
+
+-(BOOL) electricityMeterMeasurementsStartsWithTheCurrentMonthForChannelId:(int)channel_id {
+    long ts = [self getTimestampOfElectricityMeasurementItemWithChannelId:channel_id minimum:YES];
+    return [self timestampStartsWithTheCurrentMonth:ts];
+}
+
+- (double) sumActiveEnergyForChannelId:(int)channel_id monthLimitOffset:(int) offset forwarded:(BOOL)fwd {
+    
+    double result = 0;
+    int a;
+    
+    NSString *field = fwd ? @"fae" : @"rae";
+    NSMutableArray *props = [[NSMutableArray alloc] init];
+    for(a=1;a<=3;a++) {
+        NSExpressionDescription *ed = [[NSExpressionDescription alloc] init];
+        [ed setName:[NSString stringWithFormat:@"%@%i", field, a]];
+        [ed setExpression:[NSExpression expressionForFunction:@"sum:" arguments:[NSArray arrayWithObject:[NSExpression expressionForKeyPath:[NSString stringWithFormat:@"phase%i_%@", a, field]]]]];
+        [ed setExpressionResultType:NSDoubleAttributeType];
+        [props addObject:ed];
+    }
+    
+
+    NSDate *date = [self lastSecondInMonthWithOffset: offset];
+    NSPredicate *predicte = [NSPredicate predicateWithFormat:@"channel_id = %i AND calculated = YES AND date <= %@", channel_id, date];
+    NSDictionary *sum = [self sumValesOfEntitiesWithProperties:props predicate:predicte entityName:@"SAElectricityMeasurementItem"];
+    
+    if (sum && sum.count == 3) {
+        for(a=1;a<=3;a++) {
+            result += [[sum objectForKey:[NSString stringWithFormat:@"%@%i", field, a]] doubleValue];
+        }
+    }
+    
+    return result;
+}
+
+-(NSArray *) getElectricityMeasurementsForChannelId:(int)channel_id dateFrom:(NSDate *)dateFrom dateTo:(NSDate *)dateTo groupBy:(GroupBy)gb groupingDepth:(GroupingDepth)gd fields:(NSArray*)fields {
+    return [self getIncrementalMeasurementsForChannelId:channel_id fields:fields entityName:@"SAElectricityMeasurementItem" dateFrom:dateFrom dateTo:dateTo groupBy:gb groupingDepth:gd];
+}
+
+#pragma mark Impulse Counter Measurements
+
+-(SAImpulseCounterMeasurementItem*) newImpulseCounterMeasurementItemWithManagedObjectContext:(BOOL)moc {
+    SAImpulseCounterMeasurementItem *item = [[SAImpulseCounterMeasurementItem alloc] initWithEntity:[NSEntityDescription entityForName:@"SAImpulseCounterMeasurementItem" inManagedObjectContext:self.managedObjectContext] insertIntoManagedObjectContext:moc ? self.managedObjectContext : nil];
+    
+    if (moc) {
+        [self.managedObjectContext insertObject:item];
+    }
+    return item;
+}
+
+-(long) getTimestampOfImpulseCounterMeasurementItemWithChannelId:(int)channel_id minimum:(BOOL)min {
+    return [self getTimestampOfMeasurementItemWithChannelId:channel_id minimum:min entityName:@"SAImpulseCounterMeasurementItem"];
+}
+
+-(SAImpulseCounterMeasurementItem*) fetchOlderThanDate:(NSDate*)date uncalculatedImpulseCounterMeasurementItemWithChannel:(int)channel_id {
+    return (SAImpulseCounterMeasurementItem*) [self fetchOlderThanDate:date uncalculatedIncrementalMeasurementItemWithChannel:channel_id entityName:@"SAImpulseCounterMeasurementItem"];
+}
+
+-(void) deleteAllImpulseCounterMeasurementsForChannelId:(int)channel_id {
+    [self deleteAllMeasurementsForChannelId:channel_id entityName:@"SAImpulseCounterMeasurementItem"];
+}
+
+-(NSUInteger) getImpulseCounterMeasurementItemCountWithoutComplementForChannelId:(int)channel_id {
+    return [self getIncrementalMeasurementItemCountWithoutComplementForChannelId:channel_id entityName:@"SAImpulseCounterMeasurementItem"];
+}
+
+-(void) deleteUncalculatedImpulseCounterMeasurementsForChannelId:(int)channel_id {
+    [self deleteUncalculatedIncrementalMeasurementsForChannelId:channel_id entityName:@"SAImpulseCounterMeasurementItem"];
+}
+
+-(BOOL) impulseCounterMeasurementsStartsWithTheCurrentMonthForChannelId:(int)channel_id {
+    long ts = [self getTimestampOfImpulseCounterMeasurementItemWithChannelId:channel_id minimum:YES];
+    return [self timestampStartsWithTheCurrentMonth:ts];
+}
+
+- (double) calculatedValueSumForChannelId:(int)channel_id monthLimitOffset:(int)offset {
+    
+    double result = 0;
+
+    NSMutableArray *props = [[NSMutableArray alloc] init];
+    NSExpressionDescription *ed = [[NSExpressionDescription alloc] init];
+    [ed setName:@"calculated_value"];
+    [ed setExpression:[NSExpression expressionForFunction:@"sum:" arguments:[NSArray arrayWithObject:[NSExpression expressionForKeyPath:@"calculated_value"]]]];
+    [ed setExpressionResultType:NSDoubleAttributeType];
+    [props addObject:ed];
+
+    NSDate *date = [self lastSecondInMonthWithOffset: offset];
+    NSPredicate *predicte = [NSPredicate predicateWithFormat:@"channel_id = %i AND calculated = YES AND date <= %@", channel_id, date];
+    NSDictionary *sum = [self sumValesOfEntitiesWithProperties:props predicate:predicte entityName:@"SAImpulseCounterMeasurementItem"];
+    
+    if (sum && sum.count == 1) {
+        result = [[sum objectForKey:@"calculated_value"] doubleValue];
+    }
+    
+    return result;
+}
+
+-(NSArray *) getImpulseCounterMeasurementsForChannelId:(int)channel_id dateFrom:(NSDate *)dateFrom dateTo:(NSDate *)dateTo groupBy:(GroupBy)gb groupingDepth:(GroupingDepth)gd {
+    return [self getIncrementalMeasurementsForChannelId:channel_id fields:@[@"calculated_value"] entityName:@"SAImpulseCounterMeasurementItem" dateFrom:dateFrom dateTo:dateTo groupBy:gb groupingDepth:gd];
+}
+
+#pragma mark Thermometer Measurements
+
+-(SATemperatureMeasurementItem*) newTemperatureMeasurementItem {
+    SATemperatureMeasurementItem *item = [[SATemperatureMeasurementItem alloc] initWithEntity:[NSEntityDescription entityForName:@"SATemperatureMeasurementItem" inManagedObjectContext:self.managedObjectContext] insertIntoManagedObjectContext:self.managedObjectContext];
+    
+    [self.managedObjectContext insertObject:item];
+    return item;
+}
+
+-(long) getTimestampOfTemperatureMeasurementItemWithChannelId:(int)channel_id minimum:(BOOL)min {
+    return [self getTimestampOfMeasurementItemWithChannelId:channel_id minimum:min entityName:@"SATemperatureMeasurementItem"];
+}
+
+-(NSUInteger) getTemperatureMeasurementItemCountForChannelId:(int)channel_id {
+    return [self getCountByPredicate:[NSPredicate predicateWithFormat:@"channel_id = %i", channel_id] entityName:@"SATemperatureMeasurementItem"];
+}
+
+-(void) deleteAllTemperatureMeasurementsForChannelId:(int)channel_id {
+    [self deleteAllMeasurementsForChannelId:channel_id entityName:@"SATemperatureMeasurementItem"];
+}
+
+-(NSArray *) getTemperatureMeasurementsForChannelId:(int)channel_id dateFrom:(NSDate *)dateFrom dateTo:(NSDate *)dateTo {
+    return [self getMeasurementsForChannelId:channel_id dateFrom:dateFrom dateTo:dateTo entityName:@"SATemperatureMeasurementItem"];
+}
+
+#pragma mark Temperature and Humidity Measurements
+
+-(SATempHumidityMeasurementItem*) newTempHumidityMeasurementItem {
+    SATempHumidityMeasurementItem *item = [[SATempHumidityMeasurementItem alloc] initWithEntity:[NSEntityDescription entityForName:@"SATempHumidityMeasurementItem" inManagedObjectContext:self.managedObjectContext] insertIntoManagedObjectContext:self.managedObjectContext];
+    
+    [self.managedObjectContext insertObject:item];
+    return item;
+}
+
+-(long) getTimestampOfTempHumidityMeasurementItemWithChannelId:(int)channel_id minimum:(BOOL)min {
+    return [self getTimestampOfMeasurementItemWithChannelId:channel_id minimum:min entityName:@"SATempHumidityMeasurementItem"];
+}
+
+-(NSUInteger) getTempHumidityMeasurementItemCountForChannelId:(int)channel_id {
+    return [self getCountByPredicate:[NSPredicate predicateWithFormat:@"channel_id = %i", channel_id] entityName:@"SATempHumidityMeasurementItem"];
+}
+
+-(void) deleteAllTempHumidityMeasurementsForChannelId:(int)channel_id {
+    [self deleteAllMeasurementsForChannelId:channel_id entityName:@"SATempHumidityMeasurementItem"];
+}
+
+-(NSArray *) getTempHumidityMeasurementsForChannelId:(int)channel_id dateFrom:(NSDate *)dateFrom dateTo:(NSDate *)dateTo {
+    return [self getMeasurementsForChannelId:channel_id dateFrom:dateFrom dateTo:dateTo entityName:@"SATempHumidityMeasurementItem"];
+}
+
+#pragma mark Thermostat Measurements
+
+-(SAThermostatMeasurementItem*) newThermostatMeasurementItem {
+    SAThermostatMeasurementItem *item = [[SAThermostatMeasurementItem alloc] initWithEntity:[NSEntityDescription entityForName:@"SAThermostatMeasurementItem" inManagedObjectContext:self.managedObjectContext] insertIntoManagedObjectContext:self.managedObjectContext];
+    
+    [self.managedObjectContext insertObject:item];
+    return item;
+}
+
+-(long) getTimestampOfThermostatMeasurementItemWithChannelId:(int)channel_id minimum:(BOOL)min {
+    return [self getTimestampOfMeasurementItemWithChannelId:channel_id minimum:min entityName:@"SAThermostatMeasurementItem"];
+}
+
+-(NSUInteger) getThermostatMeasurementItemCountForChannelId:(int)channel_id {
+    return [self getCountByPredicate:[NSPredicate predicateWithFormat:@"channel_id = %i", channel_id] entityName:@"SAThermostatMeasurementItem"];
+}
+
+-(void) deleteAllThermostatMeasurementsForChannelId:(int)channel_id {
+    [self deleteAllMeasurementsForChannelId:channel_id entityName:@"SAThermostatMeasurementItem"];
+}
+
+-(NSArray *) getThermostatMeasurementsForChannelId:(int)channel_id dateFrom:(NSDate *)dateFrom dateTo:(NSDate *)dateTo {
+    return [self getMeasurementsForChannelId:channel_id dateFrom:dateFrom dateTo:dateTo entityName:@"SAThermostatMeasurementItem"];
+}
+
+#pragma mark HomePlus groups
+
+-(NSFetchedResultsController*) getHomePlusGroupFrcWithGroupId:(int)groupId {
+    NSArray *r = [self fetchByPredicate:[NSPredicate predicateWithFormat:@"group_id = %i AND visible > 0", groupId] entityName:@"SAChannelGroupRelation" limit:0];
+    
+    NSMutableArray *ids = [[NSMutableArray alloc] init];
+    
+    if ( r != nil ) {
+        for(int a=0;a<r.count;a++) {
+            [ids addObject:[NSNumber numberWithInt:((SAChannelGroupRelation*)[r objectAtIndex:a]).channel_id]];
+        }
+    }
+    
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    
+    fetchRequest.predicate = [NSPredicate predicateWithFormat:@"func > 0 AND visible > 0 AND remote_id IN %@", ids];
+    [fetchRequest setEntity:[NSEntityDescription entityForName:@"SAChannel" inManagedObjectContext: self.managedObjectContext]];
+    
+    NSArray *sortDescriptors = [[NSArray alloc] initWithObjects:
+                                [[NSSortDescriptor alloc] initWithKey:@"caption" ascending:NO],
+                                nil];
+    
+    [fetchRequest setSortDescriptors:sortDescriptors];
+    
+    NSFetchedResultsController *frc = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:self.managedObjectContext sectionNameKeyPath:nil cacheName:nil];
+    
+    NSError *error;
+    [frc performFetch:&error];
+    
+    if ( error ) {
+        NSLog(@"%@", error);
+    }
+    
+    return frc;
+}
+
+#pragma mark User Icons
+
+-(BOOL) updateChannelUserIconsWithEntityName:(NSString *)entityName {
+    BOOL save = NO;
+        
+    NSArray *r = [self fetchByPredicate:[NSPredicate predicateWithFormat:@"(usericon_id <> 0 AND usericon = nil) OR (usericon != nil AND usericon.remote_id != usericon_id)"] entityName:entityName limit:0];
+    
+    if ( r != nil ) {
+        for(int a=0;a<r.count;a++) {
+            SAChannelBase *c = (SAChannelBase*)[r objectAtIndex:a];
+    
+            if (c.usericon_id) {
+                SAUserIcon *userIcon = [self fetchUserIconById:c.usericon_id createNewObject:NO];
+                if (userIcon != c.usericon) {
+                    c.usericon = userIcon;
+                    save = YES;
+                }
+            } else if (c.usericon) {
+                c.usericon = nil;
+                save = YES;
+            }
+           
+        }
+    }
+    
+    if ( save ) {
+        [self saveContext];
+    }
+    
+    return save;
+}
+
+-(BOOL) updateChannelUserIcons {
+    return [self updateChannelUserIconsWithEntityName:@"SAChannel"]
+    || [self updateChannelUserIconsWithEntityName:@"SAChannelGroup"];
+}
+
+-(void) userIconsIdsWithEntity:(NSString*)en channelBase:(BOOL)cb idField:(NSString *)field exclude:(NSArray*)ex destination:(NSMutableArray *)dest {
+    
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    
+    NSEntityDescription *entity = [NSEntityDescription
+                                   entityForName:en inManagedObjectContext:self.managedObjectContext];
+    
+    [fetchRequest setEntity:entity];
+    [fetchRequest setResultType:NSDictionaryResultType];
+    if (cb) {
+        fetchRequest.predicate = [NSPredicate predicateWithFormat:[NSString stringWithFormat:@"%@ > 0 AND func > 0 AND visible > 0", field]];
+    } else {
+        fetchRequest.predicate = [NSPredicate predicateWithFormat:[NSString stringWithFormat:@"%@ > 0", field]];
+    }
+    
+    fetchRequest.propertiesToGroupBy = @[[entity.propertiesByName objectForKey:field]];
+    fetchRequest.propertiesToFetch = fetchRequest.propertiesToGroupBy;
+    
+    NSError *error = nil;
+    NSArray *r = [self.managedObjectContext executeFetchRequest:fetchRequest error:&error];
+    
+    if ( error == nil && r.count > 0 ) {
+        for(int a=0;a<r.count;a++) {
+            id obj = [[r objectAtIndex:a] valueForKey:field];
+            if ((ex == nil || NSNotFound == [ex indexOfObject:obj])
+                && NSNotFound == [dest indexOfObject:obj]) {
+                [dest addObject:obj];
+            }
+        }
+    }
+}
+
+-(NSArray *) iconsToDownload {
+    NSMutableArray *i = [[NSMutableArray alloc] init];
+    [self userIconsIdsWithEntity:@"SAUserIcon" channelBase:NO idField:@"remote_id" exclude:nil destination:i];
+    
+    NSMutableArray *result = [[NSMutableArray alloc] init];
+    [self userIconsIdsWithEntity:@"SAChannel" channelBase:NO idField:@"usericon_id" exclude:i destination:result];
+    [self userIconsIdsWithEntity:@"SAChannelGroup" channelBase:NO idField:@"usericon_id" exclude:i destination:result];
+    
+    return result;
+}
+
+-(SAUserIcon*) fetchUserIconById:(int)remote_id createNewObject:(BOOL)create {
+    SAUserIcon *i = [self fetchItemByPredicate:[NSPredicate predicateWithFormat:@"remote_id = %i", remote_id] entityName:@"SAUserIcon"];
+    
+    if (i == nil) {
+        i = [[SAUserIcon alloc] initWithEntity:[NSEntityDescription entityForName:@"SAUserIcon" inManagedObjectContext:self.managedObjectContext] insertIntoManagedObjectContext:self.managedObjectContext];
+        i.remote_id = remote_id;
+        [self.managedObjectContext insertObject:i];
+    }
+    
+    return i;
+}
+
+-(void) deleteAllUserIcons {
+    BOOL del = YES;
+    do {
+        del = NO;
+        NSArray *arr = [self fetchByPredicate:nil entityName:@"SAUserIcon" limit:1000];
+        
+        if (arr && arr.count) {
+            del = YES;
+            for(int a=0;a<arr.count;a++) {
+                [self.managedObjectContext deleteObject:[arr objectAtIndex:a]];
+                NSLog(@"Delete icon: %i", a);
+            }
+            [self saveContext];
+        }
+        
+    } while (del);
+    
+}
 @end

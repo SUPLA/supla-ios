@@ -1,0 +1,24 @@
+
+/* Class = "UILabel"; text = "••••••••••"; ObjectID = "0Ut-ce-7ai"; */
+"0Ut-ce-7ai.text" = "••••••••••";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "Hmm-fC-ByX"; */
+"Hmm-fC-ByX.normalTitle" = "Button";
+
+/* Class = "UILabel"; text = "Humidity"; ObjectID = "LDn-UY-kz8"; */
+"LDn-UY-kz8.text" = "Влажность";
+
+/* Class = "UILabel"; text = "33.0"; ObjectID = "MSW-a7-MF2"; */
+"MSW-a7-MF2.text" = "33.0";
+
+/* Class = "UITextField"; text = "Last 24 hours"; ObjectID = "kgv-fs-w8P"; */
+"kgv-fs-w8P.text" = "Last 24 hours";
+
+/* Class = "UILabel"; text = "20.0°"; ObjectID = "qAx-Ae-Wgn"; */
+"qAx-Ae-Wgn.text" = "20.0°";
+
+/* Class = "UILabel"; text = "Caption"; ObjectID = "wSk-vi-yhX"; */
+"wSk-vi-yhX.text" = "Caption";
+
+/* Class = "UILabel"; text = "Temperature"; ObjectID = "xAM-Zz-PGl"; */
+"xAM-Zz-PGl.text" = "Температура";

@@ -21,12 +21,10 @@
 @implementation SAChannelValue (CoreDataProperties)
 
 + (NSFetchRequest<SAChannelValue *> *)fetchRequest {
-	return [[NSFetchRequest alloc] initWithEntityName:@"SAChannelValue"];
+	return [NSFetchRequest fetchRequestWithEntityName:@"SAChannelValue"];
 }
 
-@dynamic channel_id;
 @dynamic online;
 @dynamic sub_value;
-@dynamic value;
 
 @end

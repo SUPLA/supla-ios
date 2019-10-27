@@ -18,7 +18,7 @@
 "JYg-Vc-pZn.text" = "Конфигурация устройства завершена успешно :)";
 
 /* Class = "UILabel"; text = "Go to the iOS system settings and manually connect to the WiFi network beginning with SUPLA, ZAMEL or NICE. \n\nFor example: „SUPLA-A220A63612B1”. This is a temporary network of the i/o device enabling configuration. \n\nWhen the connection has been set, go back to the application and  continue adding  procedure by pressing the START button.  "; ObjectID = "LmT-sv-XIj"; */
-"LmT-sv-XIj.text" = "Перейдите к настройкам системы iOS и вручную подключитесь к сети WiFi, начиная с SUPLA или ZAMEL или NICE.-\n\nНапример, «SUPLA-A220A63612B1». Это временная сеть исполнитиельных устройств для конфигурации.\n\nПосле подключения к этой сети вернитесь к этому приложению и продолжите процедуру добавления, нажав кнопку «Пуск».
+"LmT-sv-XIj.text" = "Перейдите к настройкам системы iOS и вручную подключитесь к сети WiFi, начиная с SUPLA или ZAMEL или NICE или HEATPOL.-\n\nНапример, «SUPLA-A220A63612B1». Это временная сеть исполнитиельных устройств для конфигурации.\n\nПосле подключения к этой сети вернитесь к этому приложению и продолжите процедуру добавления, нажав кнопку «Пуск».
 ";
 
 /* Class = "UILabel"; text = "Remember password"; ObjectID = "OMR-DU-yyQ"; */

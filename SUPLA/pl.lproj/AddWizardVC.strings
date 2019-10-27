@@ -18,13 +18,16 @@
 "JYg-Vc-pZn.text" = "Konfiguracja urządzenia zakończona powodzeniem :)";
 
 /* Class = "UILabel"; text = "Go to the iOS system settings and manually connect to the WiFi network beginning with SUPLA, ZAMEL or NICE. \n\nFor example: „SUPLA-A220A63612B1”. This is a temporary network of the i/o device enabling configuration. \n\nWhen the connection has been set, go back to the application and  continue adding  procedure by pressing the START button.  "; ObjectID = "LmT-sv-XIj"; */
-"LmT-sv-XIj.text" = "Przejdź do ustawień systemowych iOS i ręcznie połącz się z siecią WiFi rozpoczynającą się od nazwy SUPLA lub ZAMEL lub NICE. \n\nPrzykładowo „SUPLA-A220A63612B1”. Jest to sieć tymczasowa urządzenia wykonawczego służąca do konfiguracji. \n\nPo połączeniu się z tą siecią wróć do tej aplikacji i kontynuuj procedurę dodawania poprzez naciśnięcie przycisku Start";
+"LmT-sv-XIj.text" = "Przejdź do ustawień systemowych iOS i ręcznie połącz się z siecią WiFi rozpoczynającą się od nazwy SUPLA lub ZAMEL lub NICE lub HEATPOL. \n\nPrzykładowo „SUPLA-A220A63612B1”. Jest to sieć tymczasowa urządzenia wykonawczego służąca do konfiguracji. \n\nPo połączeniu się z tą siecią wróć do tej aplikacji i kontynuuj procedurę dodawania poprzez naciśnięcie przycisku Start";
 
 /* Class = "UILabel"; text = "Remember password"; ObjectID = "OMR-DU-yyQ"; */
 "OMR-DU-yyQ.text" = "Zapamiętaj hasło";
 
 /* Class = "UILabel"; text = "Power up your executive device. Configuration mode should be the default mode for the device, confirmed by a status diode flashing as"; ObjectID = "QQN-Ba-rnP"; */
 "QQN-Ba-rnP.text" = "Podłącz Twoje urządzenie wykonawcze do zasilania. Urządzenie powinno domyślnie pracować w trybie konfiguracji, sygnalizując to miganiem diody statusu w następujący sposób";
+
+/* Class = "UIButton"; normalTitle = "Go to the system settings"; ObjectID = "a01-dG-nhT"; */
+"a01-dG-nhT.normalTitle" = "Przejdź do ustawień systemowych";
 
 /* Class = "UILabel"; text = "Firmware"; ObjectID = "ctG-cj-mpZ"; */
 "ctG-cj-mpZ.text" = "Firmware";

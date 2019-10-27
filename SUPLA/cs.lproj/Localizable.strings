@@ -12,8 +12,6 @@
  You should have received a copy of the GNU General Public License
  along with this program; if not, write to the Free Software
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
- 
- Author: Przemyslaw Zygmunt p.zygmunt@acsoftware.pl [AC SOFTWARE]
  */
 
 "version" = "verze";
@@ -47,13 +45,11 @@
 "Garage door opening sensor" = "CSnímač otevření garážových dveří";
 "Door opening sensor" = "Snímač otevření dveří";
 "Roller shutter opening sensor" = "Snímač otevření rolet";
-"E-Mail service unavailable" = "E-mailová služba není k dispozici!";
 "Connecting..." = "Připojování...";
 "Unknown error" = "Neznámá chyba";
 "Service temporarily unavailable" = "Služba dočasně nedostupná";
 "Bad credentials" = "Chybné pověření";
 "Client limit exceeded" = "Limit klientské aplikace překročen";
-"Access disabled" = "Přístup zakázán";
 "Device is disabled" = "Zařízení je vypnuté";
 "Access Identifier is disabled" = "Identifikátor přístupu je vypnutý";
 "Client Registration is off. Please go to \"Smartphone\" at %@ to activate it." = "Registrace je momentálně zakázána. Chcete-li ji povolit, přejděte na kartu \"Smartphone\" na stránce %@";
@@ -91,3 +87,55 @@
 "Help" = "Pomoc";
 "https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=L4N7RSWME6LG2" = "https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=QYN932S5UQG8N";
 "Staircase timer" = "Schodišťový automat";
+"https://cloud.supla.org/register" = "https://cloud.supla.org/register?lang=cs";
+
+"Retrieving data from the server..." = "Stahování dat ze serveru ...";
+"No chart data available." = "Žádné údaje o graf.";
+"Electricity Meter" = "Elektroměr";
+"Water Meter" = "Vodoměr";
+"Gas Meter" = "Plynoměr";
+
+"Forward active Energy" = "Pobíraná činná energie";
+"Reverse active Energy" = "Zpětná činná energie";
+"Consumption in the current month" = "Spotřeba v tomto měsíci";
+"Production in the current month" = "Produkce v tomto měsíci";
+"Minutes" = "Minuty";
+"Hours" = "Hodiny";
+"Days" = "Dny";
+"Months" = "Měsíce";
+"Years" = "Roky";
+"Minute to minute comparison" = "Srovnání minuty do minuty";
+"Hour to hour comparison" = "Mezihodinové srovnání";
+"Day to day comparison" = "Mezidenní srovnání";
+"Month to month comparison" = "Meziměsíční srovnání";
+"Year to year comparison" = "Meziroční srovnání";
+"Ranking of hours" = "Pořadí hodin";
+"Ranking of weekdays" = "Pořadí dnů v týdnu";
+"Ranking of months" = "Pořadí měsíců";
+"Consumption according to phases" = "Spotřeba podle fáze";
+"Production according to phases" = "Produkce podle fáze";
+"Last 24 hours" = "Posledních 24 hodin";
+"Last 7 days" = "Posledních 7 dní";
+"Last 30 days" = "Posledních 30 dní";
+"Last 90 days" = "Posledních 90 dní";
+"All available history" = "Kompletní dostupná historie";
+"Phase 1" = "Fáze 1";
+"Phase 2" = "Fáze 2";
+"Phase 3" = "Fáze 3";
+"Home+ Heater" = "Topení Home+";
+"Comfort" = "Ideální teplota";
+"ECO" = "ECO";
+"No water" = "Chybí voda";
+"Burnt heater" = "Spálené topení";
+"Water temperature sensor error" = "Chyba snímače teploty vody";
+"Room temperature sensor error" = "Chyba snímače pokojové teploty";
+"No network interruptions" = "Źádné síťové spojení";
+"Room temperature" = "Teplota v místnosti";
+"ON" = "ZAPNUTÝ";
+"OFF" = "VYPNUTÝ";
+"h" = "h";
+
+"Wind sensor" = "Rychlost větru";
+"Weight sensor" = "Hmotnost";
+"Pressure sensor" = "Snímač tlaku";
+"Rain sensor" = "Měření úhrnu srážek";

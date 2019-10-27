@@ -25,6 +25,11 @@
 #import "SectionCell.h"
 #import "RGBDetailView.h"
 #import "RSDetailView.h"
+#import "ElectricityMeterDetailView.h"
+#import "ImpulseCounterDetailView.h"
+#import "HomePlusDetailView.h"
+#import "TemperatureDetailView.h"
+#import "TempHumidityDetailView.h"
 #import "SARateApp.h"
 
 @implementation SAMainVC {
@@ -33,11 +38,14 @@
     UINib *_cell_nib;
     UINib *_temp_nib;
     UINib *_temphumidity_nib;
-    UINib *_depth_nib;
+    UINib *_measurement_nib;
     UINib *_distance_nib;
     UINib *_section_nib;
+    UINib *_incmeter_nib;
+    UINib *_homeplus_nib;
     NSTimer *_nTimer;
     UITapGestureRecognizer *_tapRecognizer;
+    SADownloadUserIcons *_task;
 
 }
 
@@ -45,8 +53,10 @@
     [tv registerNib:_cell_nib forCellReuseIdentifier:@"ChannelCell"];
     [tv registerNib:_temp_nib forCellReuseIdentifier:@"ThermometerCell"];
     [tv registerNib:_temphumidity_nib forCellReuseIdentifier:@"TempHumidityCell"];
-    [tv registerNib:_depth_nib forCellReuseIdentifier:@"DepthCell"];
+    [tv registerNib:_measurement_nib forCellReuseIdentifier:@"MeasurementCell"];
     [tv registerNib:_distance_nib forCellReuseIdentifier:@"DistanceCell"];
+    [tv registerNib:_incmeter_nib forCellReuseIdentifier:@"IncrementalMeterCell"];
+    [tv registerNib:_homeplus_nib forCellReuseIdentifier:@"HomePlusCell"];
     [tv registerNib:_section_nib forCellReuseIdentifier:@"SectionCell"];
 }
 
@@ -57,8 +67,10 @@
     _cell_nib = [UINib nibWithNibName:@"ChannelCell" bundle:nil];
     _temp_nib = [UINib nibWithNibName:@"ThermometerCell" bundle:nil];
     _temphumidity_nib = [UINib nibWithNibName:@"TempHumidityCell" bundle:nil];
-    _depth_nib = [UINib nibWithNibName:@"DepthCell" bundle:nil];
+    _measurement_nib = [UINib nibWithNibName:@"MeasurementCell" bundle:nil];
     _distance_nib = [UINib nibWithNibName:@"DistanceCell" bundle:nil];
+    _incmeter_nib = [UINib nibWithNibName:@"IncrementalMeterCell" bundle:nil];
+    _homeplus_nib = [UINib nibWithNibName:@"HomePlusCell" bundle:nil];
     _section_nib = [UINib nibWithNibName:@"SectionCell" bundle:nil];
     
     [self registerNibForTableView:self.cTableView];
@@ -275,10 +287,22 @@
                 identifier = @"TempHumidityCell";
                 break;
             case SUPLA_CHANNELFNC_DEPTHSENSOR:
-                identifier = @"DepthCell";
+            case SUPLA_CHANNELFNC_WINDSENSOR:
+            case SUPLA_CHANNELFNC_WEIGHTSENSOR:
+            case SUPLA_CHANNELFNC_PRESSURESENSOR:
+            case SUPLA_CHANNELFNC_RAINSENSOR:
+                identifier = @"MeasurementCell";
                 break;
             case SUPLA_CHANNELFNC_DISTANCESENSOR:
                 identifier = @"DistanceCell";
+                break;
+            case SUPLA_CHANNELFNC_ELECTRICITY_METER:
+            case SUPLA_CHANNELFNC_GAS_METER:
+            case SUPLA_CHANNELFNC_WATER_METER:
+                identifier = @"IncrementalMeterCell";
+                break;
+            case SUPLA_CHANNELFNC_THERMOSTAT_HEATPOL_HOMEPLUS:
+                identifier = @"HomePlusCell";
                 break;
         }
     }
@@ -316,6 +340,35 @@
 - (void) viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [[[SARateApp alloc] init] showDialogWithDelay: 1];
+    [self runDownloadTask];
+}
+
+-(void)runDownloadTask {
+    if (_task && ![_task isTaskIsAliveWithTimeout:90]) {
+        [_task cancel];
+        _task = nil;
+    }
+    
+    if (!_task) {
+        _task = [[SADownloadUserIcons alloc] init];
+        _task.delegate = self;
+        [_task start];
+    }
+}
+
+-(void) onRestApiTaskStarted: (SARestApiClientTask*)task {
+    NSLog(@"onRestApiTaskStarted");
+}
+
+-(void) onRestApiTaskFinished: (SARestApiClientTask*)task {
+    NSLog(@"onRestApiTaskFinished");
+    if (_task != nil && task == _task) {
+        if (_task.channelsUpdated) {
+            [self onDataChanged];
+        }
+        _task.delegate = nil;
+        _task = nil;
+    }
 }
 
 @end
@@ -330,6 +383,12 @@
     SAChannelCell *cell;
     SARGBDetailView *_rgbDetailView;
     SARSDetailView *_rsDetailView; // Roller Shutter detail view
+    SAElectricityMeterDetailView *_electricityMeterDetailView;
+    SAImpulseCounterDetailView *_impulseCounterDetailView;
+    SATemperatureDetailView *_temperatureDetailView;
+    SATempHumidityDetailView *_tempHumidityDetailView;
+    SAHomePlusDetailView *_homePlusDetailView;
+    
     SADetailView *_detailView;
     
     float last_touched_x;
@@ -341,6 +400,11 @@
    cell = nil;
     
    _rgbDetailView = nil;
+    _electricityMeterDetailView = nil;
+    _impulseCounterDetailView = nil;
+    _homePlusDetailView = nil;
+    _tempHumidityDetailView = nil;
+    _temperatureDetailView = nil;
     _detailView = nil;
    _animating = NO;
    _panRecognizer = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(handlePan:)];
@@ -361,39 +425,92 @@
     
     SADetailView *result = nil;
     
-    if ( _cell.channelBase.isOnline ) {
+    if ( _cell.channelBase.isOnline && self.superview != nil) {
         
-        switch(_cell.channelBase.func) {
-            case SUPLA_CHANNELFNC_DIMMER:
-            case SUPLA_CHANNELFNC_RGBLIGHTING:
-            case SUPLA_CHANNELFNC_DIMMERANDRGBLIGHTING:
+        if ( [_cell.channelBase isKindOfClass:SAChannel.class]
+             && (((SAChannel*)_cell.channelBase).type == SUPLA_CHANNELTYPE_ELECTRICITY_METER)) {
+            
+            if ( _electricityMeterDetailView == nil ) {
                 
-                if ( _rgbDetailView == nil
-                    && self.superview != nil ) {
+                _electricityMeterDetailView = [[[NSBundle mainBundle] loadNibNamed:@"ElectricityMeterDetailView" owner:self options:nil] objectAtIndex:0];
+                [_electricityMeterDetailView detailViewInit];
+            }
+            
+            result = _electricityMeterDetailView;
+        } else if ( [_cell.channelBase isKindOfClass:SAChannel.class]
+             && (((SAChannel*)_cell.channelBase).type == SUPLA_CHANNELTYPE_IMPULSE_COUNTER)) {
+            
+            if ( _impulseCounterDetailView == nil ) {
+                
+                _impulseCounterDetailView = [[[NSBundle mainBundle] loadNibNamed:@"ImpulseCounterDetailView" owner:self options:nil] objectAtIndex:0];
+                [_impulseCounterDetailView detailViewInit];
+            }
+            
+            result = _impulseCounterDetailView;
+        } else {
+            switch(_cell.channelBase.func) {
+                case SUPLA_CHANNELFNC_DIMMER:
+                case SUPLA_CHANNELFNC_RGBLIGHTING:
+                case SUPLA_CHANNELFNC_DIMMERANDRGBLIGHTING:
                     
-                    _rgbDetailView = [[[NSBundle mainBundle] loadNibNamed:@"RGBDetail" owner:self options:nil] objectAtIndex:0];
-                    [_rgbDetailView detailViewInit];
+                    if ( _rgbDetailView == nil ) {
+                        
+                        _rgbDetailView = [[[NSBundle mainBundle] loadNibNamed:@"RGBDetail" owner:self options:nil] objectAtIndex:0];
+                        [_rgbDetailView detailViewInit];
+                        
+                    }
                     
-                }
-                
-                result = _rgbDetailView;
-                
-                break;
-                
-            case SUPLA_CHANNELFNC_CONTROLLINGTHEROLLERSHUTTER:
-                
-                if ( _rsDetailView == nil
-                    && self.superview != nil ) {
+                    result = _rgbDetailView;
+                    break;
                     
-                    _rsDetailView = [[[NSBundle mainBundle] loadNibNamed:@"RSDetail" owner:self options:nil] objectAtIndex:0];
-                    [_rsDetailView detailViewInit];
+                case SUPLA_CHANNELFNC_CONTROLLINGTHEROLLERSHUTTER:
                     
-                }
-                
-                result = _rsDetailView;
-                
-                break;
-        };
+                    if ( _rsDetailView == nil ) {
+                        
+                        _rsDetailView = [[[NSBundle mainBundle] loadNibNamed:@"RSDetail" owner:self options:nil] objectAtIndex:0];
+                        [_rsDetailView detailViewInit];
+                        
+                    }
+                    
+                    result = _rsDetailView;
+                    break;
+                    
+                case SUPLA_CHANNELFNC_THERMOSTAT_HEATPOL_HOMEPLUS:
+                    
+                    if ( _homePlusDetailView == nil ) {
+                        
+                        _homePlusDetailView = [[[NSBundle mainBundle] loadNibNamed:@"HomePlusDetailView" owner:self options:nil] objectAtIndex:0];
+                        [_homePlusDetailView detailViewInit];
+                        
+                    }
+                    
+                    result = _homePlusDetailView;
+                    break;
+                case SUPLA_CHANNELFNC_THERMOMETER:
+                    
+                    if ( _temperatureDetailView == nil ) {
+                        
+                        _temperatureDetailView = [[[NSBundle mainBundle] loadNibNamed:@"TemperatureDetailView" owner:self options:nil] objectAtIndex:0];
+                        [_temperatureDetailView  detailViewInit];
+                        
+                    }
+                    
+                    result = _temperatureDetailView;
+                    break;
+                case SUPLA_CHANNELFNC_HUMIDITYANDTEMPERATURE:
+                    
+                    if ( _tempHumidityDetailView == nil ) {
+                        
+                        _tempHumidityDetailView = [[[NSBundle mainBundle] loadNibNamed:@"TempHumidityDetailView" owner:self options:nil] objectAtIndex:0];
+                        [_tempHumidityDetailView  detailViewInit];
+                        
+                    }
+                    
+                    result = _tempHumidityDetailView;
+                    break;
+            };
+        }
+        
     }
     
     if ( result != nil ) {
@@ -456,6 +573,14 @@
     [UIView commitAnimations];
     _animating = NO;
     
+    if (_detailView) {
+        if (show) {
+            [_detailView onDetailShow];
+        } else {
+            [_detailView onDetailHide];
+        }
+    }
+    
     if ( animated ) {
         
         _animating = YES;
@@ -471,6 +596,7 @@
                              
                              [self setCenter:CGPointMake((self.frame.size.width/2) * multiplier, self.center.y)];
                              [_detailView setFrame:[self getDetailFrame]];
+                        
 
                          }
                          completion:^(BOOL finished){
@@ -597,8 +723,6 @@
 -(void)moveCenter:(float)x_offset {
     [self setCenter:CGPointMake(self.center.x+x_offset, self.center.y)];
 }
-
-
 
 
 @end

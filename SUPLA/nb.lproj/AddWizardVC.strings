@@ -1,0 +1,48 @@
+
+/* Class = "UILabel"; text = "Press Next to continue."; ObjectID = "3bd-Xm-Rok"; */
+"3bd-Xm-Rok.text" = "For å fortsette trykk på Videre.";
+
+/* Class = "UILabel"; text = "Device parameters"; ObjectID = "8Da-uK-N1d"; */
+"8Da-uK-N1d.text" = "Opplysninger om enheten";
+
+/* Class = "UILabel"; text = "MAC"; ObjectID = "CZ4-G4-iFJ"; */
+"CZ4-G4-iFJ.text" = "MAC";
+
+/* Class = "UILabel"; text = "Last state"; ObjectID = "HRH-kq-mbQ"; */
+"HRH-kq-mbQ.text" = "Forrige status";
+
+/* Class = "UILabel"; text = "Enter User Name and Password of your domestic or business WiFi network used to have the i/o device connected to server."; ObjectID = "Igv-nx-eY7"; */
+"Igv-nx-eY7.text" = "Tast inn navnet og passordet til ditt hjemme- eller firmanettverk som enheten inngang/utgang kan bruke for å koble til serveren.";
+
+/* Class = "UILabel"; text = "Device configuration completed successfully :)"; ObjectID = "JYg-Vc-pZn"; */
+"JYg-Vc-pZn.text" = "Konfigurering av enheten ble vellykket :)";
+
+/* Class = "UILabel"; text = "Go to the iOS system settings and manually connect to the WiFi network beginning with SUPLA, ZAMEL or NICE. \n\nFor example: „SUPLA-A220A63612B1”. This is a temporary network of the i/o device enabling configuration. \n\nWhen the connection has been set, go back to the application and  continue adding  procedure by pressing the START button.  "; ObjectID = "LmT-sv-XIj"; */
+"LmT-sv-XIj.text" = "Gå til iOS-systeminnstillinger og koble manuelt til et WiFi-nettverk som begynner med navnet SUPLA, ZAMEL, NICE eller HEATPOL.\n\nFor eksempel \"SUPLA-A220A63612B1\". Dette er et midlertidig nettverk for enheter inngang/utgang som brukes til konfigurasjon.\n\nNår du er koblet til nettverket, gå tilbake til denne applikasjonen og fortsette med leggingsprosedyren ved å trykke på Start-knappen";
+
+/* Class = "UILabel"; text = "Remember password"; ObjectID = "OMR-DU-yyQ"; */
+"OMR-DU-yyQ.text" = "Husk passord";
+
+/* Class = "UILabel"; text = "Power up your executive device. Configuration mode should be the default mode for the device, confirmed by a status diode flashing as"; ObjectID = "QQN-Ba-rnP"; */
+"QQN-Ba-rnP.text" = "Sett din aktuator til lading. Enheten bør jobbe i standard konfigurasjonsmodus, og signalisere det ved en LED-diode blinkende på denne måten";
+
+/* Class = "UIButton"; normalTitle = "Go to the system settings"; ObjectID = "a01-dG-nhT"; */
+"a01-dG-nhT.normalTitle" = "Gå til systeminnstillinger";
+
+/* Class = "UILabel"; text = "Firmware"; ObjectID = "ctG-cj-mpZ"; */
+"ctG-cj-mpZ.text" = "Firmware";
+
+/* Class = "UITextField"; placeholder = "Password"; ObjectID = "mNF-Uh-cv0"; */
+"mNF-Uh-cv0.placeholder" = "Passord";
+
+/* Class = "UILabel"; text = "Name"; ObjectID = "qa8-ng-PzX"; */
+"qa8-ng-PzX.text" = "Navn";
+
+/* Class = "UITextField"; placeholder = "WiFi Network name"; ObjectID = "t0Z-OG-dra"; */
+"t0Z-OG-dra.placeholder" = "WiFi-nettverksnavn";
+
+/* Class = "UILabel"; text = "Welcome to the Device Add Wizard which will in an easy and simple way help you to add new device to the system."; ObjectID = "vbb-Xd-lIx"; */
+"vbb-Xd-lIx.text" = "Velkommen til assistenten for å legge til enheter som vil hjelpe deg å legge til enheter til systemet på en enkel og rask måte.";
+
+/* Class = "UILabel"; text = "If the device when switched on does not work in the configuration mode, press and hold CONFIG button for at least 5 seconds.\n\nPress Next to continue.\n"; ObjectID = "y0X-IV-sH5"; */
+"y0X-IV-sH5.text" = "Hvis enheten etter å ha blitt satt til lading ikke jobber i konfigurasjonsmodus hold inne knappen CONFIG i 5 sekunder.\n\nFor å fortsette trykk på Videre.\n";

@@ -25,7 +25,12 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (NSFetchRequest<SAChannel *> *)fetchRequest;
 
-@property (nullable, nonatomic, copy) NSNumber *protocolversion;
+@property (nonatomic) int32_t device_id;
+@property (nonatomic) int16_t manufacturer_id;
+@property (nonatomic) int16_t product_id;
+@property (nonatomic) int32_t protocolversion;
+@property (nonatomic) int32_t type;
+@property (nullable, nonatomic, retain) SAChannelExtendedValue *ev;
 @property (nullable, nonatomic, retain) SAChannelValue *value;
 
 @end

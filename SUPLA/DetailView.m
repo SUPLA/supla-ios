@@ -79,9 +79,9 @@
     return _channelBase;
 }
 
--(void)updateView {
-    
-}
+-(void)updateView {}
+-(void)onDetailShow {};
+-(void)onDetailHide {};
 
 -(void)setChannelBase:(SAChannelBase *)channelBase {
     

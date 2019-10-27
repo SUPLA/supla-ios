@@ -44,14 +44,18 @@ typedef void (*_suplaclient_cb_location_update)(void *_suplaclient,
                                                 TSC_SuplaLocation *location);
 typedef void (*_suplaclient_cb_channel_update)(void *_suplaclient,
                                                void *user_data,
-                                               TSC_SuplaChannel_B *channel);
+                                               TSC_SuplaChannel_C *channel);
 typedef void (*_suplaclient_cb_channelgroup_update)(
-    void *_suplaclient, void *user_data, TSC_SuplaChannelGroup *channel_group);
+    void *_suplaclient, void *user_data,
+    TSC_SuplaChannelGroup_B *channel_group);
 typedef void (*_suplaclient_cb_channelgroup_relation_update)(
     void *_suplaclient, void *user_data,
     TSC_SuplaChannelGroupRelation *channelgroup_relation);
 typedef void (*_suplaclient_cb_channel_value_update)(
     void *_suplaclient, void *user_data, TSC_SuplaChannelValue *channel_value);
+typedef void (*_suplaclient_cb_channel_extendedvalue_update)(
+    void *_suplaclient, void *user_data,
+    TSC_SuplaChannelExtendedValue *channel_extendedvalue);
 typedef void (*_suplaclient_cb_on_event)(void *_suplaclient, void *user_data,
                                          TSC_SuplaEvent *event);
 typedef void (*_suplaclient_cb_on_registration_enabled)(
@@ -59,6 +63,12 @@ typedef void (*_suplaclient_cb_on_registration_enabled)(
 typedef void (*_suplaclient_cb_on_min_version_required)(
     void *_suplaclient, void *user_data, unsigned int call_type,
     unsigned char min_version);
+typedef void (*_suplaclient_cb_on_oauth_token_request_result)(
+    void *_suplaclient, void *user_data, TSC_OAuthTokenRequestResult *result);
+typedef void (*_suplaclient_cb_on_superuser_authorization_result)(
+    void *_suplaclient, void *user_data, char authorized, _supla_int_t code);
+typedef void (*_suplaclient_cb_on_device_calcfg_result)(
+    void *_suplaclient, void *user_data, TSC_DeviceCalCfgResult *result);
 
 typedef struct {
   char clientGUID[SUPLA_GUID_SIZE];
@@ -93,6 +103,7 @@ typedef struct {
   _suplaclient_cb_location_update cb_location_update;
   _suplaclient_cb_channel_update cb_channel_update;
   _suplaclient_cb_channel_value_update cb_channel_value_update;
+  _suplaclient_cb_channel_extendedvalue_update cb_channel_extendedvalue_update;
 
   _suplaclient_cb_channelgroup_update cb_channelgroup_update;
   _suplaclient_cb_channelgroup_relation_update cb_channelgroup_relation_update;
@@ -101,6 +112,13 @@ typedef struct {
   _suplaclient_cb_on_registration_enabled cb_on_registration_enabled;
 
   _suplaclient_cb_on_min_version_required cb_on_min_version_required;
+
+  _suplaclient_cb_on_oauth_token_request_result
+      cb_on_oauth_token_request_result;
+  _suplaclient_cb_on_superuser_authorization_result
+      cb_on_superuser_authorization_result;
+
+  _suplaclient_cb_on_device_calcfg_result cb_on_device_calcfg_result;
 } TSuplaClientCfg;
 
 #ifdef __cplusplus
@@ -119,15 +137,25 @@ void supla_client_disconnect(void *_suplaclient);
 
 // For _WIN32 wait_usec mean wait_msec
 char supla_client_iterate(void *_suplaclient, int wait_usec);
+void supla_client_raise_event(void *_suplaclient);
 void *supla_client_get_userdata(void *_suplaclient);
 
+char supla_client_send_raw_value(void *_suplaclient, int ID,
+                                 char value[SUPLA_CHANNELVALUE_SIZE],
+                                 char Target);
 char supla_client_open(void *_suplaclient, int ID, char group, char open);
 char supla_client_set_rgbw(void *_suplaclient, int ID, char group, int color,
-                           char color_brightness, char brightness);
+                           char color_brightness, char brightness,
+                           char turn_onoff);
 char supla_client_set_dimmer(void *_suplaclient, int ID, char group,
-                             char brightness);
+                             char brightness, char turn_onoff);
 char supla_client_get_registration_enabled(void *_suplaclient);
 unsigned char supla_client_get_proto_version(void *_suplaclient);
+char supla_client_oauth_token_request(void *_suplaclient);
+char supla_client_superuser_authorization_request(void *_suplaclient,
+                                                  char *email, char *password);
+char supla_client_device_calcfg_request(void *_suplaclient,
+                                        TCS_DeviceCalCfgRequest_B *request);
 
 #ifdef __cplusplus
 }

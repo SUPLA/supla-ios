@@ -1,0 +1,12 @@
+
+/* Class = "UILabel"; text = "Caption"; ObjectID = "fC2-Fn-Tzr"; */
+"fC2-Fn-Tzr.text" = "Bildetekst";
+
+/* Class = "UISegmentedControl"; gkt-nD-iBa.segmentTitles[0] = "RGB"; ObjectID = "gkt-nD-iBa"; */
+"gkt-nD-iBa.segmentTitles[0]" = "RGB";
+
+/* Class = "UISegmentedControl"; gkt-nD-iBa.segmentTitles[1] = "DIMMER"; ObjectID = "gkt-nD-iBa"; */
+"gkt-nD-iBa.segmentTitles[1]" = "DIMMER";
+
+/* Class = "UILabel"; text = "State"; ObjectID = "tbH-fp-FSn"; */
+"tbH-fp-FSn.text" = "Tilstand";

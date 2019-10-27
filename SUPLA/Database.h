@@ -18,15 +18,39 @@
 
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
-
+#import "SAElectricityMeasurementItem+CoreDataClass.h"
+#import "SAImpulseCounterMeasurementItem+CoreDataClass.h"
+#import "SAThermostatMeasurementItem+CoreDataClass.h"
+#import "SATemperatureMeasurementItem+CoreDataClass.h"
+#import "SATempHumidityMeasurementItem+CoreDataClass.h"
 #import "proto.h"
+
+typedef NS_ENUM(NSUInteger, GroupingDepth) {
+    gdNone,
+    gdMinutely,
+    gdHourly,
+    gdDaily,
+    gdMonthly,
+    gdYearly
+};
+
+typedef NS_ENUM(NSUInteger, GroupBy) {
+    gbNone,
+    gbMinute,
+    gbHour,
+    gbDay,
+    gbWeekday,
+    gbMonth,
+    gbYear,
+};
 
 @class _SALocation;
 @class SAChannel;
 @class SAChannelValue;
 @class SAColorListItem;
 @class SAChannelGroup;
-@interface SADatabase : NSObject
+@class SAUserIcon;
+@interface SADatabase :NSObject
 
 @property (readonly, strong, nonatomic) NSManagedObjectContext *managedObjectContext;
 @property (readonly, strong, nonatomic) NSManagedObjectModel *managedObjectModel;
@@ -42,8 +66,9 @@
 
 -(SAChannel*) fetchChannelById:(int)channel_id;
 -(SAChannelValue*) fetchChannelValueByChannelId:(int)channel_id;
--(BOOL) updateChannel:(TSC_SuplaChannel_B *)channel;
+-(BOOL) updateChannel:(TSC_SuplaChannel_C *)channel;
 -(BOOL) updateChannelValue:(TSC_SuplaChannelValue *)channel_value;
+-(BOOL) updateChannelExtendedValue:(TSC_SuplaChannelExtendedValue *)channel_value;
 -(NSFetchedResultsController*) getChannelFrc;
 -(BOOL) setChannelsOffline;
 -(BOOL) setAllOfChannelVisible:(int)visible whereVisibilityIs:(int)wvi;
@@ -51,13 +76,53 @@
 -(BOOL) setAllOfChannelGroupVisible:(int)visible whereVisibilityIs:(int)wvi;
 -(BOOL) setAllOfChannelGroupRelationVisible:(int)visible whereVisibilityIs:(int)wvi;
 -(SAChannelGroup*) fetchChannelGroupById:(int)remote_id;
--(BOOL) updateChannelGroup:(TSC_SuplaChannelGroup *)channel_group;
+-(BOOL) updateChannelGroup:(TSC_SuplaChannelGroup_B *)channel_group;
 -(BOOL) updateChannelGroupRelation:(TSC_SuplaChannelGroupRelation *)cgroup_relation;
 - (NSArray*) updateChannelGroups;
 -(NSFetchedResultsController*) getChannelGroupFrc;
 -(SAColorListItem *) getColorListItemForRemoteId:(int)remote_id andIndex:(int)idx forGroup:(BOOL)group;
 -(void) updateColorListItem:(SAColorListItem *)item;
+-(SAElectricityMeasurementItem*) newElectricityMeasurementItemWithManagedObjectContext:(BOOL)moc;
+-(SAElectricityMeasurementItem*) fetchOlderThanDate:(NSDate*)date uncalculatedElectricityMeasurementItemWithChannel:(int)channel_id;
+-(long) getTimestampOfElectricityMeasurementItemWithChannelId:(int)channel_id minimum:(BOOL)min;
+-(void) deleteAllElectricityMeasurementsForChannelId:(int)channel_id;
+-(void) deleteUncalculatedElectricityMeasurementsForChannelId:(int)channel_id;
+-(NSUInteger) getElectricityMeasurementItemCountWithoutComplementForChannelId:(int)channel_id;
+-(BOOL) electricityMeterMeasurementsStartsWithTheCurrentMonthForChannelId:(int)channel_id;
+- (double) sumActiveEnergyForChannelId:(int)channel_id monthLimitOffset:(int) offset forwarded:(BOOL)fwd;
+-(NSArray *) getElectricityMeasurementsForChannelId:(int)channel_id dateFrom:(NSDate *)dateFrom dateTo:(NSDate *)dateTo groupBy:(GroupBy)gb groupingDepth:(GroupingDepth)gd fields:(NSArray*)fields;
+-(long) getTimestampOfImpulseCounterMeasurementItemWithChannelId:(int)channel_id minimum:(BOOL)min;
+-(SAImpulseCounterMeasurementItem*) newImpulseCounterMeasurementItemWithManagedObjectContext:(BOOL)moc;
+-(SAImpulseCounterMeasurementItem*) fetchOlderThanDate:(NSDate*)date uncalculatedImpulseCounterMeasurementItemWithChannel:(int)channel_id;
+-(void) deleteAllImpulseCounterMeasurementsForChannelId:(int)channel_id;
+-(NSUInteger) getImpulseCounterMeasurementItemCountWithoutComplementForChannelId:(int)channel_id;
+-(void) deleteUncalculatedImpulseCounterMeasurementsForChannelId:(int)channel_id;
+-(BOOL) impulseCounterMeasurementsStartsWithTheCurrentMonthForChannelId:(int)channel_id;
+-(double) calculatedValueSumForChannelId:(int)channel_id monthLimitOffset:(int)offset;
+-(NSArray *) getImpulseCounterMeasurementsForChannelId:(int)channel_id dateFrom:(NSDate *)dateFrom dateTo:(NSDate *)dateTo groupBy:(GroupBy)gb groupingDepth:(GroupingDepth)gd;
 
+-(SATemperatureMeasurementItem*) newTemperatureMeasurementItem;
+-(long) getTimestampOfTemperatureMeasurementItemWithChannelId:(int)channel_id minimum:(BOOL)min;
+-(NSUInteger) getTemperatureMeasurementItemCountForChannelId:(int)channel_id;
+-(void) deleteAllTemperatureMeasurementsForChannelId:(int)channel_id;
+-(NSArray *) getTemperatureMeasurementsForChannelId:(int)channel_id dateFrom:(NSDate *)dateFrom dateTo:(NSDate *)dateTo;
+
+-(SATempHumidityMeasurementItem*) newTempHumidityMeasurementItem;
+-(long) getTimestampOfTempHumidityMeasurementItemWithChannelId:(int)channel_id minimum:(BOOL)min;
+-(NSUInteger) getTempHumidityMeasurementItemCountForChannelId:(int)channel_id;
+-(void) deleteAllTempHumidityMeasurementsForChannelId:(int)channel_id;
+-(NSArray *) getTempHumidityMeasurementsForChannelId:(int)channel_id dateFrom:(NSDate *)dateFrom dateTo:(NSDate *)dateTo;
+
+-(SAThermostatMeasurementItem*) newThermostatMeasurementItem;
+-(long) getTimestampOfThermostatMeasurementItemWithChannelId:(int)channel_id minimum:(BOOL)min;
+-(NSUInteger) getThermostatMeasurementItemCountForChannelId:(int)channel_id;
+-(void) deleteAllThermostatMeasurementsForChannelId:(int)channel_id;
+-(NSArray *) getThermostatMeasurementsForChannelId:(int)channel_id dateFrom:(NSDate *)dateFrom dateTo:(NSDate *)dateTo;
+-(NSFetchedResultsController*) getHomePlusGroupFrcWithGroupId:(int)groupId;
+-(BOOL) updateChannelUserIcons;
+-(NSArray *) iconsToDownload;
+-(SAUserIcon*) fetchUserIconById:(int)remote_id createNewObject:(BOOL)create;
+-(void) deleteAllUserIcons;
 @end
 
 

@@ -20,6 +20,7 @@
 #import <CoreData/CoreData.h>
 #import "SAChannelValue+CoreDataClass.h"
 #import "SAChannelBase+CoreDataProperties.h"
+#import "SAChannelExtendedValue+CoreDataProperties.h"
 #include "proto.h"
 
 @class NSObject, _SALocation;
@@ -28,8 +29,13 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface SAChannel : SAChannelBase
 
+- (void) initWithRemoteId:(int)remoteId;
 - (BOOL) setChannelProtocolVersion:(int)protocolVersion;
-
+- (BOOL) setDeviceId:(int)deviceId;
+- (BOOL) setManufacturerId:(int)manufacturerId;
+- (BOOL) setProductId:(int)productId;
+- (BOOL) setChannelType:(int)type;
+- (double) totalForwardActiveEnergy;
 @end
 
 NS_ASSUME_NONNULL_END

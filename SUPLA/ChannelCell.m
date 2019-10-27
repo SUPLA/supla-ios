@@ -93,114 +93,105 @@
 }
 
 -(void)setChannelBase:(SAChannelBase *)channelBase {
-    
+    //TODO: Add support for WINDSENSOR, PRESSURESENSOR, RAINSENSOR, WEIGHTSENSOR
+   
     _channelBase = channelBase;
     BOOL isGroup = [channelBase isKindOfClass:[SAChannelGroup class]];
+    
+    if ( isGroup ) {
+        self.cint_LeftStatusWidth.constant = 6;
+        self.cint_RightStatusWidth.constant = 6;
+        self.right_ActiveStatus.percent = ((SAChannelGroup*)channelBase).activePercent;
+        self.right_ActiveStatus.singleColor = YES;
+        self.right_ActiveStatus.hidden = NO;
+        self.right_OnlineStatus.shapeType = stLinearVertical;
+        self.left_OnlineStatus.shapeType = stLinearVertical;
+    } else {
+        self.cint_LeftStatusWidth.constant = 10;
+        self.cint_RightStatusWidth.constant = 10;
+        self.right_ActiveStatus.hidden = YES;
+        self.right_OnlineStatus.shapeType = stDot;
+        self.left_OnlineStatus.shapeType = stDot;
+    }
+    
+    self.right_OnlineStatus.percent = [channelBase onlinePercent];
+    self.left_OnlineStatus.percent = self.right_OnlineStatus.percent;
 
     [self.caption setText:[channelBase getChannelCaption]];
+    [self.image1 setImage:[channelBase getIconWithIndex:0]];
+    [self.image2 setImage:[channelBase getIconWithIndex:1]];
+    
+    switch(channelBase.func) {
+        case SUPLA_CHANNELFNC_CONTROLLINGTHEGATE:
+        case SUPLA_CHANNELFNC_CONTROLLINGTHEGARAGEDOOR:
+        case SUPLA_CHANNELFNC_CONTROLLINGTHEDOORLOCK:
+        case SUPLA_CHANNELFNC_CONTROLLINGTHEGATEWAYLOCK:
+        case SUPLA_CHANNELFNC_CONTROLLINGTHEROLLERSHUTTER:
+        case SUPLA_CHANNELFNC_ELECTRICITY_METER:
+        case SUPLA_CHANNELFNC_GAS_METER:
+        case SUPLA_CHANNELFNC_WATER_METER:
+        case SUPLA_CHANNELFNC_RGBLIGHTING:
+        case SUPLA_CHANNELFNC_DIMMER:
+        case SUPLA_CHANNELFNC_DIMMERANDRGBLIGHTING:
+        case SUPLA_CHANNELFNC_THERMOSTAT_HEATPOL_HOMEPLUS:
+        case SUPLA_CHANNELFNC_THERMOMETER:
+        case SUPLA_CHANNELFNC_HUMIDITYANDTEMPERATURE:
+            self.left_OnlineStatus.hidden = YES;
+            self.right_OnlineStatus.hidden = NO;
+            break;
+        case SUPLA_CHANNELFNC_POWERSWITCH:
+        case SUPLA_CHANNELFNC_LIGHTSWITCH:
+        case SUPLA_CHANNELFNC_STAIRCASETIMER:
+            self.left_OnlineStatus.hidden = NO;
+            self.right_OnlineStatus.hidden = NO;
+            break;
+        case SUPLA_CHANNELFNC_NOLIQUIDSENSOR:
+        case SUPLA_CHANNELFNC_OPENINGSENSOR_DOOR:
+        case SUPLA_CHANNELFNC_OPENINGSENSOR_GARAGEDOOR:
+        case SUPLA_CHANNELFNC_OPENINGSENSOR_GATE:
+        case SUPLA_CHANNELFNC_OPENINGSENSOR_GATEWAY:
+        case SUPLA_CHANNELFNC_OPENINGSENSOR_ROLLERSHUTTER:
+        case SUPLA_CHANNELFNC_OPENINGSENSOR_WINDOW:
+        case SUPLA_CHANNELFNC_MAILSENSOR:
+            self.left_OnlineStatus.hidden = NO;
+            self.right_OnlineStatus.hidden = NO;
+            self.right_OnlineStatus.shapeType = stRing;
+            self.left_OnlineStatus.shapeType = stRing;
+            break;
+        default:
+            self.left_OnlineStatus.hidden = YES;
+            self.right_OnlineStatus.hidden = YES;
+            break;
+    }
+    
     
     if ( channelBase.func == SUPLA_CHANNELFNC_THERMOMETER ) {
-        
-        [self.temp setText:[channelBase isOnline] && channelBase.temperatureValue > -273 ? [NSString stringWithFormat:@"%0.1f°", channelBase.temperatureValue] : @"----°"];
-    
+        [self.temp setText:[[channelBase attrStringValue] string]];
     } else if ( channelBase.func== SUPLA_CHANNELFNC_HUMIDITYANDTEMPERATURE ) {
         
-        [self.temp setText:[channelBase isOnline] && channelBase.temperatureValue > -273 ? [NSString stringWithFormat:@"%0.1f°", channelBase.temperatureValue] : @"----°"];
-        
-        [self.humidity setText:[channelBase isOnline] && channelBase.humidityValue > -1 ? [NSString stringWithFormat:@"%0.1f°", channelBase.humidityValue] : @"----°"];
-        
+        [self.temp setText:[[channelBase attrStringValue] string]];
+        [self.humidity setText:[[channelBase attrStringValueWithIndex:1 font:nil] string]];
+       
     } else if ( channelBase.func == SUPLA_CHANNELFNC_DEPTHSENSOR
-                || channelBase.func == SUPLA_CHANNELFNC_DISTANCESENSOR  ) {
+                 || channelBase.func == SUPLA_CHANNELFNC_WINDSENSOR
+                 || channelBase.func == SUPLA_CHANNELFNC_WEIGHTSENSOR
+                 || channelBase.func == SUPLA_CHANNELFNC_PRESSURESENSOR
+                 || channelBase.func == SUPLA_CHANNELFNC_RAINSENSOR ) {
+        [self.measuredValue setText:[[channelBase attrStringValue] string]];
+    } else if ( channelBase.func == SUPLA_CHANNELFNC_DISTANCESENSOR  ) {
+        [self.distance setText:[[channelBase attrStringValue] string]];
+    } else if ( channelBase.func == SUPLA_CHANNELFNC_ELECTRICITY_METER
+                || channelBase.func == SUPLA_CHANNELFNC_WATER_METER
+                || channelBase.func == SUPLA_CHANNELFNC_GAS_METER ) {
         
-        NSString *text = @"--- m";
-        
-        if ( [channelBase isOnline] && channelBase.doubleValue > -1 ) {
-            
-            double value = [channelBase doubleValue];
-            
-            if ( value >= 1000 ) {
-                text = [NSString stringWithFormat:@"%0.2f km", value/1000.00];
-            } else if ( value >= 1 ) {
-                text = [NSString stringWithFormat:@"%0.2f m", value];
-            } else {
-                value *= 100;
+        [self.measuredValue setText:[[channelBase attrStringValue] string]];
                 
-                if ( value >= 1 ) {
-                    text = [NSString stringWithFormat:@"%0.1f cm", value];
-                } else {
-                    value *= 10;
-                    text = [NSString stringWithFormat:@"%i mm", (int)value];
-                }
-            }
-
-        }
-        
-        [self.distance setText:text];
-    
+    } else if ( channelBase.func == SUPLA_CHANNELFNC_THERMOSTAT_HEATPOL_HOMEPLUS ) {
+        [self.temp setAttributedText:[channelBase attrStringValueWithIndex:0 font:self.temp.font]];
     } else {
-        [self.image setImage:[channelBase getIcon]];
-    
-        if ( isGroup ) {
-            self.cint_LeftStatusWidth.constant = 6;
-            self.right_ActiveStatus.percent = ((SAChannelGroup*)channelBase).activePercent;
-            self.right_ActiveStatus.singleColor = YES;
-            self.right_ActiveStatus.hidden = NO;
-            self.right_OnlineStatus.shapeType = stLinearVertical;
-            self.left_OnlineStatus.shapeType = stLinearVertical;
-        } else {
-            self.cint_LeftStatusWidth.constant = 10;
-            self.right_ActiveStatus.hidden = YES;
-            self.right_OnlineStatus.shapeType = stDot;
-            self.left_OnlineStatus.shapeType = stDot;
-        }
-        
-        self.cint_RightStatusWidth.constant = self.cint_LeftStatusWidth.constant;
-        self.right_OnlineStatus.percent = [channelBase onlinePercent];
-        self.left_OnlineStatus.percent = self.right_OnlineStatus.percent;
-        
         self.rightButtons = nil;
         self.leftButtons = nil;
-        
-        switch(channelBase.func) {
-            case SUPLA_CHANNELFNC_CONTROLLINGTHEGATE:
-            case SUPLA_CHANNELFNC_CONTROLLINGTHEGARAGEDOOR:
-            case SUPLA_CHANNELFNC_CONTROLLINGTHEDOORLOCK:
-            case SUPLA_CHANNELFNC_CONTROLLINGTHEGATEWAYLOCK:
-            case SUPLA_CHANNELFNC_CONTROLLINGTHEROLLERSHUTTER:
-                self.left_OnlineStatus.hidden = YES;
-                self.right_OnlineStatus.hidden = NO;
-                break;
-            case SUPLA_CHANNELFNC_POWERSWITCH:
-            case SUPLA_CHANNELFNC_LIGHTSWITCH:
-            case SUPLA_CHANNELFNC_STAIRCASETIMER:
-                self.left_OnlineStatus.hidden = NO;
-                self.right_OnlineStatus.hidden = NO;
-                break;
-            case SUPLA_CHANNELFNC_RGBLIGHTING:
-            case SUPLA_CHANNELFNC_DIMMER:
-            case SUPLA_CHANNELFNC_DIMMERANDRGBLIGHTING:
-                self.left_OnlineStatus.hidden = YES;
-                self.right_OnlineStatus.hidden = NO;
-                break;
-            case SUPLA_CHANNELFNC_NOLIQUIDSENSOR:
-            case SUPLA_CHANNELFNC_OPENINGSENSOR_DOOR:
-            case SUPLA_CHANNELFNC_OPENINGSENSOR_GARAGEDOOR:
-            case SUPLA_CHANNELFNC_OPENINGSENSOR_GATE:
-            case SUPLA_CHANNELFNC_OPENINGSENSOR_GATEWAY:
-            case SUPLA_CHANNELFNC_OPENINGSENSOR_ROLLERSHUTTER:
-            case SUPLA_CHANNELFNC_OPENINGSENSOR_WINDOW:
-            case SUPLA_CHANNELFNC_MAILSENSOR:
-                self.left_OnlineStatus.hidden = NO;
-                self.right_OnlineStatus.hidden = NO;
-                self.right_OnlineStatus.shapeType = stRing;
-                self.left_OnlineStatus.shapeType = stRing;
-                break;
-            default:
-                self.left_OnlineStatus.hidden = YES;
-                self.right_OnlineStatus.hidden = YES;
-                break;
-        }
-        
+                
         if ( [channelBase isOnline] ) {
             MGSwipeButton *bl = nil;
             MGSwipeButton *br = nil;
@@ -243,11 +234,8 @@
         }
         
     }
-
-
     
     [self refreshContentView];
-    
 }
 
 - (void)vibrate {

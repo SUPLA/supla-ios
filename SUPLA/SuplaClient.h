@@ -17,6 +17,8 @@
  */
 
 #import <Foundation/Foundation.h>
+#import "SARestApiClientTask.h"
+#import "SAThermostatScheduleCfg.h"
 #include "proto.h"
 
 @interface SAVersionError : NSObject
@@ -78,22 +80,31 @@
 - (void) onRegistered:(SARegResult *)result;
 - (void) onRegisterError:(int)code;
 - (void) locationUpdate:(TSC_SuplaLocation *)location;
-- (void) channelUpdate:(TSC_SuplaChannel_B *)channel;
+- (void) channelUpdate:(TSC_SuplaChannel_C *)channel;
 - (void) channelValueUpdate:(TSC_SuplaChannelValue *)channel_value;
-- (void) channelGroupUpdate:(TSC_SuplaChannelGroup *)cgroup;
+- (void) channelExtendedValueUpdate:(TSC_SuplaChannelExtendedValue *)channel_extendedvalue;
+- (void) channelGroupUpdate:(TSC_SuplaChannelGroup_B *)cgroup;
 - (void) channelGroupRelationUpdate:(TSC_SuplaChannelGroupRelation *)cgroup_relation;
 - (void) onEvent:(SAEvent *)event;
 - (void) onRegistrationEnabled:(SARegistrationEnabled*)reg_enabled;
+- (void) onOAuthTokenRequestResult:(SAOAuthToken *)token;
 
 - (void) reconnect;
 - (BOOL) isConnected;
 - (BOOL) isRegistered;
-- (BOOL) cg:(int)ID setRGB:(UIColor*)color colorBrightness:(int)color_brightness brightness:(int)brightness group:(BOOL)group;
+- (BOOL) cg:(int)ID setRGB:(UIColor*)color colorBrightness:(int)color_brightness brightness:(int)brightness group:(BOOL)group turnOnOff:(BOOL)turnOnOff;
 - (void) cg:(int)ID Open:(char)open group:(BOOL)group;
 - (void) channel:(int)ChannelID Open:(char)open;
 - (BOOL) channel:(int)ChannelID setRGB:(UIColor*)color colorBrightness:(int)color_brightness brightness:(int)brightness;
 - (void) group:(int)GroupID Open:(char)open;
 - (BOOL) group:(int)GroupID setRGB:(UIColor*)color colorBrightness:(int)color_brightness brightness:(int)brightness;
+- (void) deviceCalCfgRequest:(TCS_DeviceCalCfgRequest_B*)request;
+- (void) deviceCalCfgCommand:(int)command cg:(int)ID group:(BOOL)group data:(char*)data dataSize:(unsigned int)size;
+- (void) deviceCalCfgCommand:(int)command cg:(int)ID group:(BOOL)group;
+- (void) deviceCalCfgCommand:(int)command cg:(int)ID group:(BOOL)group charValue:(char)c;
+- (void) deviceCalCfgCommand:(int)command cg:(int)ID group:(BOOL)group shortValue:(short)s;
+- (void) thermostatScheduleCfgRequest:(SAThermostatScheduleCfg *)cfg cg:(int)ID group:(BOOL)group;
 - (void) getRegistrationEnabled;
 - (int) getProtocolVersion;
+- (BOOL) OAuthTokenRequest;
 @end

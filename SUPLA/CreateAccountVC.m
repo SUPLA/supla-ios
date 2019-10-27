@@ -43,7 +43,7 @@
 - (void)webViewDidFinishLoad:(UIWebView *)webView {
     if ( [webView.request.URL.absoluteString isEqualToString:@"about:blank"] ) {
         
-        NSString *url = @"https://cloud.supla.org/auth/create";
+        NSString *url = NSLocalizedString(@"https://cloud.supla.org/register", nil);
         NSURL *nsUrl = [NSURL URLWithString:url];
         NSURLRequest *request = [NSURLRequest requestWithURL:nsUrl cachePolicy:NSURLRequestReloadIgnoringLocalAndRemoteCacheData timeoutInterval:30];
         

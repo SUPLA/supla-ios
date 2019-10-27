@@ -18,7 +18,7 @@
 "JYg-Vc-pZn.text" = "Įrenginio konfigūravimas baigtas sėkmingai :)";
 
 /* Class = "UILabel"; text = "Go to the iOS system settings and manually connect to the WiFi network beginning with SUPLA, ZAMEL or NICE. \n\nFor example: „SUPLA-A220A63612B1”. This is a temporary network of the i/o device enabling configuration. \n\nWhen the connection has been set, go back to the application and  continue adding  procedure by pressing the START button.  "; ObjectID = "LmT-sv-XIj"; */
-"LmT-sv-XIj.text" = "Eikite į iOS sistemos nustatymus ir rankiniu būdu prisijunkite prie WiFi tinklo, kuris prasideda pavadinimu SUPLA ar ZAMEL ar NICE.\n\nPavyzdžiui „SUPLA-A220A63612B1“.Tai yra vykdomojo įrenginio laikinas tinklas, skirtas konfigūravimui. \n\nPrisijungus prie šio tinklo grįžkite prie šios programos ir tęskite pridėjimo procedūrą paspausdami mygtuką Startas.";
+"LmT-sv-XIj.text" = "Eikite į iOS sistemos nustatymus ir rankiniu būdu prisijunkite prie WiFi tinklo, kuris prasideda pavadinimu SUPLA ar ZAMEL ar NICE ar HEATPOL.\n\nPavyzdžiui „SUPLA-A220A63612B1“.Tai yra vykdomojo įrenginio laikinas tinklas, skirtas konfigūravimui. \n\nPrisijungus prie šio tinklo grįžkite prie šios programos ir tęskite pridėjimo procedūrą paspausdami mygtuką Startas.";
 
 
 

@@ -86,6 +86,61 @@
     return [UIColor colorWithRed:0.07 green:0.65 blue:0.12 alpha:1.0];
 }
 
++(nonnull UIColor*)phase1Color {
+    return [UIColor colorWithRed:0.56 green:0.92 blue:1.00 alpha:1.0];
+}
+
++(nonnull UIColor*)phase2Color {
+    return [UIColor colorWithRed:0.59 green:0.57 blue:1.00 alpha:1.0];
+}
+
++(nonnull UIColor*)phase3Color {
+    return [UIColor colorWithRed:1.00 green:0.82 blue:0.57 alpha:1.0];
+}
+
++(nonnull UIColor*)chartValuePositiveColor {
+    return [UIColor colorWithRed:0.91 green:0.30 blue:0.24 alpha:1.0];
+}
+
++(nonnull UIColor*)chartValueNegativeColor {
+    return [UIColor colorWithRed:0.18 green:0.80 blue:0.44 alpha:1.0];
+}
+
++(nonnull UIColor*)chartFilterPickerViewColor {
+    return [UIColor colorWithRed:0.96 green:0.96 blue:0.96 alpha:1.0];
+}
+
++(nonnull UIColor*)chartRoomTemperature {
+    return [UIColor colorWithRed:0.00 green:0.76 blue:0.99 alpha:1.0];
+}
+
++(nonnull UIColor*)hpBtnOn {
+    return [UIColor colorWithRed:0.14 green:0.75 blue:0.13 alpha:1.0];
+}
+
++(nonnull UIColor*)hpBtnOff {
+    return [UIColor colorWithRed:0.94 green:0.27 blue:0.29 alpha:1.0];
+}
+
++(nonnull UIColor*)hpBtnUnknown {
+   return [UIColor colorWithRed:0.90 green:0.74 blue:0.49 alpha:1.0];
+}
+
++(nonnull UIColor*)chartTemperatureFillColor {
+    return [UIColor colorWithRed:0.99 green:0.97 blue:0.79 alpha:1.0];
+}
+
++(nonnull UIColor*)chartTemperatureLineColor {
+    return [UIColor colorWithRed:0.99 green:0.29 blue:0.30 alpha:1.0];
+}
+
++(nonnull UIColor*)chartHumidityColor {
+    return [UIColor colorWithRed:0.00 green:0.63 blue:0.99 alpha:1.0];
+}
+
++(nonnull UIColor*)chartIncrementalValueColor {
+    return [UIColor colorWithRed:0.00 green:0.63 blue:0.99 alpha:1.0];
+}
 @end
 
 @implementation SAUIHelper {

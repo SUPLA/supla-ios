@@ -22,8 +22,10 @@
 
 @interface SADetailView : UIView 
 
--(void) detailViewInit;
+-(void)detailViewInit;
 -(void)updateView;
+-(void)onDetailShow;
+-(void)onDetailHide;
 
 @property (weak, nonatomic) SAChannelBase  *channelBase;
 @property (weak, nonatomic) SAMainView *main_view;

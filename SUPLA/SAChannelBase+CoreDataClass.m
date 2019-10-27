@@ -101,57 +101,100 @@
     return NO;
 }
 
+- (BOOL) setLocationId:(int)locationId {
+    if ( self.location_id != locationId ) {
+        self.location_id = locationId;
+        return YES;
+    }
+    
+    return NO;
+}
+
+- (BOOL) setRemoteId:(int)remoteId {
+    if ( self.remote_id != remoteId ) {
+        self.remote_id = remoteId;
+        return YES;
+    }
+    
+    return NO;
+}
+
+- (BOOL) setUserIconId:(int)userIconId {
+    if ( self.usericon_id != userIconId ) {
+        self.usericon_id = userIconId;
+        return YES;
+    }
+    
+    return NO;
+}
+
 - (NSString *)getChannelCaption {
     
     if ( [self.caption isEqualToString:@""] ) {
         
         switch(self.func) {
-            case SUPLA_CHANNELFNC_OPENINGSENSOR_GATEWAY:
-                return NSLocalizedString(@"Gateway opening sensor", nil);
-            case SUPLA_CHANNELFNC_CONTROLLINGTHEGATEWAYLOCK:
-                return NSLocalizedString(@"Gateway", nil);
-            case SUPLA_CHANNELFNC_OPENINGSENSOR_GATE:
-                return NSLocalizedString(@"Gate opening sensor", nil);
-            case SUPLA_CHANNELFNC_CONTROLLINGTHEGATE:
-                return NSLocalizedString(@"Gate", nil);
-            case SUPLA_CHANNELFNC_OPENINGSENSOR_GARAGEDOOR:
-                return NSLocalizedString(@"Garage door opening sensor", nil);
-            case SUPLA_CHANNELFNC_CONTROLLINGTHEGARAGEDOOR:
-                return NSLocalizedString(@"Garage door", nil);
-            case SUPLA_CHANNELFNC_OPENINGSENSOR_DOOR:
-                return NSLocalizedString(@"Door opening sensor", nil);
-            case SUPLA_CHANNELFNC_CONTROLLINGTHEDOORLOCK:
-                return NSLocalizedString(@"Door", nil);
-            case SUPLA_CHANNELFNC_OPENINGSENSOR_ROLLERSHUTTER:
-                return NSLocalizedString(@"Roller shutter opening sensor", nil);
-            case SUPLA_CHANNELFNC_CONTROLLINGTHEROLLERSHUTTER:
-                return NSLocalizedString(@"Roller shutter", nil);
-            case SUPLA_CHANNELFNC_POWERSWITCH:
-                return NSLocalizedString(@"Power switch", nil);
-            case SUPLA_CHANNELFNC_LIGHTSWITCH:
-                return NSLocalizedString(@"Lighting switch", nil);
-            case SUPLA_CHANNELFNC_STAIRCASETIMER:
-                return NSLocalizedString(@"Staircase timer", nil);
-            case SUPLA_CHANNELFNC_THERMOMETER:
-                return NSLocalizedString(@"Thermometer", nil);
-            case SUPLA_CHANNELFNC_HUMIDITYANDTEMPERATURE:
-                return NSLocalizedString(@"Temperature and humidity", nil);
-            case SUPLA_CHANNELFNC_NOLIQUIDSENSOR:
-                return NSLocalizedString(@"No liquid sensor", nil);
-            case SUPLA_CHANNELFNC_RGBLIGHTING:
-                return NSLocalizedString(@"RGB Lighting", nil);
-            case SUPLA_CHANNELFNC_DIMMERANDRGBLIGHTING:
-                return NSLocalizedString(@"Dimmer and RGB lighting", nil);
-            case SUPLA_CHANNELFNC_DIMMER:
-                return NSLocalizedString(@"Dimmer", nil);
-            case SUPLA_CHANNELFNC_DISTANCESENSOR:
-                return NSLocalizedString(@"Distance sensor", nil);
-            case SUPLA_CHANNELFNC_DEPTHSENSOR:
-                return NSLocalizedString(@"Depth sensor", nil);
-            case SUPLA_CHANNELFNC_MAILSENSOR:
-                return NSLocalizedString(@"Mail sensor", nil);
-            case SUPLA_CHANNELFNC_OPENINGSENSOR_WINDOW:
-                return NSLocalizedString(@"Window opening sensor", nil);
+                case SUPLA_CHANNELFNC_OPENINGSENSOR_GATEWAY:
+                    return NSLocalizedString(@"Gateway opening sensor", nil);
+                case SUPLA_CHANNELFNC_CONTROLLINGTHEGATEWAYLOCK:
+                    return NSLocalizedString(@"Gateway", nil);
+                case SUPLA_CHANNELFNC_OPENINGSENSOR_GATE:
+                    return NSLocalizedString(@"Gate opening sensor", nil);
+                case SUPLA_CHANNELFNC_CONTROLLINGTHEGATE:
+                    return NSLocalizedString(@"Gate", nil);
+                case SUPLA_CHANNELFNC_OPENINGSENSOR_GARAGEDOOR:
+                    return NSLocalizedString(@"Garage door opening sensor", nil);
+                case SUPLA_CHANNELFNC_CONTROLLINGTHEGARAGEDOOR:
+                    return NSLocalizedString(@"Garage door", nil);
+                case SUPLA_CHANNELFNC_OPENINGSENSOR_DOOR:
+                    return NSLocalizedString(@"Door opening sensor", nil);
+                case SUPLA_CHANNELFNC_CONTROLLINGTHEDOORLOCK:
+                    return NSLocalizedString(@"Door", nil);
+                case SUPLA_CHANNELFNC_OPENINGSENSOR_ROLLERSHUTTER:
+                    return NSLocalizedString(@"Roller shutter opening sensor", nil);
+                case SUPLA_CHANNELFNC_CONTROLLINGTHEROLLERSHUTTER:
+                    return NSLocalizedString(@"Roller shutter", nil);
+                case SUPLA_CHANNELFNC_POWERSWITCH:
+                    return NSLocalizedString(@"Power switch", nil);
+                case SUPLA_CHANNELFNC_LIGHTSWITCH:
+                    return NSLocalizedString(@"Lighting switch", nil);
+                case SUPLA_CHANNELFNC_STAIRCASETIMER:
+                    return NSLocalizedString(@"Staircase timer", nil);
+                case SUPLA_CHANNELFNC_THERMOMETER:
+                    return NSLocalizedString(@"Thermometer", nil);
+                case SUPLA_CHANNELFNC_HUMIDITYANDTEMPERATURE:
+                    return NSLocalizedString(@"Temperature and humidity", nil);
+                case SUPLA_CHANNELFNC_NOLIQUIDSENSOR:
+                    return NSLocalizedString(@"No liquid sensor", nil);
+                case SUPLA_CHANNELFNC_RGBLIGHTING:
+                    return NSLocalizedString(@"RGB Lighting", nil);
+                case SUPLA_CHANNELFNC_DIMMERANDRGBLIGHTING:
+                    return NSLocalizedString(@"Dimmer and RGB lighting", nil);
+                case SUPLA_CHANNELFNC_DIMMER:
+                    return NSLocalizedString(@"Dimmer", nil);
+                case SUPLA_CHANNELFNC_DISTANCESENSOR:
+                    return NSLocalizedString(@"Distance sensor", nil);
+                case SUPLA_CHANNELFNC_DEPTHSENSOR:
+                    return NSLocalizedString(@"Depth sensor", nil);
+                case SUPLA_CHANNELFNC_WINDSENSOR:
+                    return NSLocalizedString(@"Wind sensor", nil);
+                case SUPLA_CHANNELFNC_WEIGHTSENSOR:
+                    return NSLocalizedString(@"Weight sensor", nil);
+                case SUPLA_CHANNELFNC_PRESSURESENSOR:
+                    return NSLocalizedString(@"Pressure sensor", nil);
+                case SUPLA_CHANNELFNC_RAINSENSOR:
+                    return NSLocalizedString(@"Rain sensor", nil);
+                case SUPLA_CHANNELFNC_MAILSENSOR:
+                    return NSLocalizedString(@"Mail sensor", nil);
+                case SUPLA_CHANNELFNC_OPENINGSENSOR_WINDOW:
+                    return NSLocalizedString(@"Window opening sensor", nil);
+                case SUPLA_CHANNELFNC_ELECTRICITY_METER:
+                    return NSLocalizedString(@"Electricity Meter", nil);
+                case SUPLA_CHANNELFNC_GAS_METER:
+                    return NSLocalizedString(@"Gas Meter", nil);
+                case SUPLA_CHANNELFNC_WATER_METER:
+                    return NSLocalizedString(@"Water Meter", nil);
+                case SUPLA_CHANNELFNC_THERMOSTAT_HEATPOL_HOMEPLUS:
+                    return NSLocalizedString(@"Home+ Heater", nil);
         }
         
     }
@@ -177,7 +220,7 @@
 }
 
 - (double) temperatureValue {
-    return -275;
+    return -273;
 }
 
 - (double) humidityValue {
@@ -204,6 +247,14 @@
     return [UIColor clearColor];
 }
 
+- (double) totalForwardActiveEnergy {
+    return 0;
+}
+
+- (double) impulseCounterCalculatedValue {
+    return 0;
+}
+
 - (int) imgIsActive {
     
     if ( [self isOnline] ) {
@@ -227,6 +278,7 @@
             case SUPLA_CHANNELFNC_LIGHTSWITCH:
             case SUPLA_CHANNELFNC_STAIRCASETIMER:
             case SUPLA_CHANNELFNC_NOLIQUIDSENSOR:
+            case SUPLA_CHANNELFNC_THERMOSTAT_HEATPOL_HOMEPLUS:
                 return [self hiValue];
 
             case SUPLA_CHANNELFNC_DIMMER:
@@ -251,7 +303,66 @@
     return 0;
 }
 
-- (UIImage*) getIcon {
+- (UIImage*) getIconWithIndex:(short)idx {
+    
+    if (idx > 0
+        && self.func != SUPLA_CHANNELFNC_HUMIDITYANDTEMPERATURE) {
+        return nil;
+    }
+    
+    if (self.usericon != nil) {
+        NSObject *data = nil;
+        
+        switch(self.func) {
+            case SUPLA_CHANNELFNC_HUMIDITYANDTEMPERATURE:
+            data = idx == 0 ? self.usericon.uimage2 : self.usericon.uimage1;
+            break;
+            case SUPLA_CHANNELFNC_THERMOMETER:
+            data = self.usericon.uimage1;
+            break;
+            case SUPLA_CHANNELFNC_CONTROLLINGTHEGATE:
+                if (([self imgIsActive] & 0x1) > 0) {
+                    data = self.usericon.uimage2;
+                } else if (([self imgIsActive] & 0x2) > 0) {
+                    data = self.usericon.uimage3;
+                } else {
+                    data = self.usericon.uimage1;
+                }
+            break;
+            case SUPLA_CHANNELFNC_DIMMERANDRGBLIGHTING:
+                if (([self imgIsActive] & 0x1) == 0x1
+                    && ([self imgIsActive] & 0x2) == 0x2) {
+                    data = self.usericon.uimage4;
+                } else if (([self imgIsActive] & 0x1) == 0x1) {
+                    data = self.usericon.uimage2;
+                } else if (([self imgIsActive] & 0x2) == 0x2) {
+                    data = self.usericon.uimage3;
+                } else {
+                    data = self.usericon.uimage1;
+                }
+                break;
+            default:
+                data = [self imgIsActive]
+                ? self.usericon.uimage2 : self.usericon.uimage1;
+            break;
+        }
+        
+        UIImage *img = nil;
+        @try {
+            if (self.remote_id == 127) {
+                NSLog(@"%@", self.usericon);
+            }
+            if (data != nil && [data isKindOfClass:[NSData class]]) {
+                img = [UIImage imageWithData:(NSData*)data];
+            }
+        } @catch (NSException *exception) {
+          img = nil;
+        }
+        
+        if (img != nil) {
+            return img;
+        }
+    }
     
     NSString *n1 = nil;
     NSString *n2 = nil;
@@ -329,7 +440,8 @@
             }
             break;
         case SUPLA_CHANNELFNC_THERMOMETER:
-            return [UIImage imageNamed:@"thermometer"];
+        case SUPLA_CHANNELFNC_HUMIDITYANDTEMPERATURE:
+            return [UIImage imageNamed:idx == 0 ? @"thermometer" : @"humidity"];
         case SUPLA_CHANNELFNC_NOLIQUIDSENSOR:
             return [UIImage imageNamed:[self imgIsActive] ? @"liquid" : @"noliquid"];
         case SUPLA_CHANNELFNC_DIMMER:
@@ -350,6 +462,32 @@
         case SUPLA_CHANNELFNC_MAILSENSOR:
             return [UIImage imageNamed:[self imgIsActive] ? @"mail" : @"nomail"];
             
+        case SUPLA_CHANNELFNC_ELECTRICITY_METER:
+            return [UIImage imageNamed:@"electricitymeter"];
+            
+        case SUPLA_CHANNELFNC_GAS_METER:
+            return [UIImage imageNamed:@"gasmeter"];
+            
+        case SUPLA_CHANNELFNC_WATER_METER:
+            return [UIImage imageNamed:@"watermeter"];
+        case SUPLA_CHANNELFNC_THERMOSTAT_HEATPOL_HOMEPLUS:
+            n2 = @"thermostat_hp_homeplus";
+            if (self.alticon > 0 && self.alticon <= 3) {
+                n2 = [NSString stringWithFormat:@"%@%i", n2, self.alticon];
+            }
+            break;
+        case SUPLA_CHANNELFNC_DISTANCESENSOR:
+           return [UIImage imageNamed:@"distance"];
+        case SUPLA_CHANNELFNC_DEPTHSENSOR:
+           return [UIImage imageNamed:@"depth"];
+        case SUPLA_CHANNELFNC_WINDSENSOR:
+           return [UIImage imageNamed:@"wind"];
+        case SUPLA_CHANNELFNC_PRESSURESENSOR:
+            return [UIImage imageNamed:@"pressure"];
+        case SUPLA_CHANNELFNC_WEIGHTSENSOR:
+            return [UIImage imageNamed:@"weight"];
+        case SUPLA_CHANNELFNC_RAINSENSOR:
+            return [UIImage imageNamed:@"rain"];
     }
     
     if ( n1 ) {
@@ -364,4 +502,151 @@
     return [UIImage imageNamed:[NSString stringWithFormat:@"unknown_channel"]];
 }
 
+- (UIImage*) getIcon {
+    return [self getIconWithIndex:0];
+}
+
+- (NSString *) unit {
+    return @"";
+}
+
+- (double) presetTemperature {
+    return -273;
+}
+
+- (double) presetTemperatureMin {
+    return -273;
+}
+
+- (double) presetTemperatureMax {
+    return -273;
+}
+
+- (double) measuredTemperature {
+   return -273;
+}
+
+- (double) measuredTemperatureMin {
+   return -273;
+}
+
+- (double) measuredTemperatureMax {
+   return -273;
+}
+
+- (NSAttributedString*) thermostatAttrStringWithMeasuredTempMin:(double)mmin measuredTempMax:(double)mmax presetTempMin:(double)pmin presetTempMax:(double)pmax font:(nullable UIFont*)font {
+    NSString *measured = @"---\u00B0";
+    NSString *preset = @"/---\u00B0";
+        
+    if (self.isOnline) {
+        if (mmin > -273) {
+            measured = [NSString stringWithFormat:@"%0.2f\u00B0", mmin];
+            if (mmax > -273) {
+               measured = [NSString stringWithFormat:@"%@ - %0.2f\u00B0", measured, mmax];
+            }
+        }
+        
+        if (pmin > -273) {
+            preset = [NSString stringWithFormat:@"/%0.2f\u00B0", pmin];
+            if (pmax > -273) {
+               preset = [NSString stringWithFormat:@"%@ - %0.2f\u00B0", preset, pmax];
+            }
+        }
+    }
+    
+    NSMutableAttributedString *attrTxt = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"%@%@", measured, preset]];
+    if (font) {
+        [attrTxt addAttribute:NSFontAttributeName
+                        value:[UIFont systemFontOfSize:font.pointSize * 0.7]
+                        range:NSMakeRange(measured.length, preset.length)];
+    }
+
+    return attrTxt;
+}
+
+
+- (NSAttributedString*) attrStringValueWithIndex:(int)idx font:(nullable UIFont*)font {
+    NSString *result = @"";
+    
+    switch (self.func) {
+        case SUPLA_CHANNELFNC_THERMOMETER:
+            result = [self isOnline] && self.temperatureValue > -273 ? [NSString stringWithFormat:@"%0.1f°", self.temperatureValue] : @"----°";
+            break;
+        case SUPLA_CHANNELFNC_HUMIDITYANDTEMPERATURE:
+            if (idx == 1) {
+                result = [self isOnline] && self.humidityValue > -1 ? [NSString stringWithFormat:@"%0.1f", self.humidityValue] : @"----";
+            } else {
+                result = [self isOnline] && self.temperatureValue > -273 ? [NSString stringWithFormat:@"%0.1f°", self.temperatureValue] : @"----°";
+            }
+            break;
+        case SUPLA_CHANNELFNC_DEPTHSENSOR:
+        case SUPLA_CHANNELFNC_DISTANCESENSOR:
+            result = @"--- m";
+            
+            if ( [self isOnline] && self.doubleValue > -1 ) {
+                
+                double value = [self doubleValue];
+                
+                if ( fabs(value) >= 1000 ) {
+                    result = [NSString stringWithFormat:@"%0.2f km", value/1000.00];
+                } else if ( fabs(value) >= 1 ) {
+                    result = [NSString stringWithFormat:@"%0.2f m", value];
+                } else {
+                    value *= 100;
+                    
+                    if ( fabs(value) >= 1 ) {
+                        result = [NSString stringWithFormat:@"%0.1f cm", value];
+                    } else {
+                        value *= 10;
+                        result = [NSString stringWithFormat:@"%i mm", (int)value];
+                    }
+                }
+
+            }
+            break;
+        case SUPLA_CHANNELFNC_WINDSENSOR:
+            if ([self isOnline]) {
+               result = [NSString stringWithFormat:@"%0.1f m/s", [self doubleValue]];
+            } else {
+               result = @"--- m/s";
+            }
+            break;
+        case SUPLA_CHANNELFNC_PRESSURESENSOR:
+            if ([self isOnline]) {
+               result = [NSString stringWithFormat:@"%i hPa", (int)[self doubleValue]];
+            } else {
+               result = @"--- hPa";
+            }
+            break;
+        case SUPLA_CHANNELFNC_RAINSENSOR:
+            if ([self isOnline]) {
+                result = [NSString stringWithFormat:@"%0.2f l/m²", [self doubleValue]/1000.00];
+            } else {
+                result = @"--- l/m²";
+            }
+            break;
+        case SUPLA_CHANNELFNC_WEIGHTSENSOR:
+            if ([self isOnline]) {
+                double weight = [self doubleValue];
+                if (fabs(weight) >= 2000) {
+                    result = [NSString stringWithFormat:@"%0.2f kg", weight/1000.00];
+                } else {
+                    result = [NSString stringWithFormat:@"%i g", (int)weight];
+                }
+            } else {
+                result = @"--- kg";
+            }
+            break;
+        case SUPLA_CHANNELFNC_THERMOSTAT_HEATPOL_HOMEPLUS:
+            return [self thermostatAttrStringWithMeasuredTempMin:self.measuredTemperatureMin measuredTempMax:self.measuredTemperatureMax presetTempMin:self.presetTemperatureMin presetTempMax:self.presetTemperatureMax font:font];
+        default:
+            break;
+    }
+    
+    return [[NSMutableAttributedString alloc] initWithString:result];
+}
+
+- (NSAttributedString*) attrStringValue {
+    return [self attrStringValueWithIndex:0 font:nil];
+}
 @end

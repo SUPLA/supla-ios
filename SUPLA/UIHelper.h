@@ -43,7 +43,20 @@
 +(nonnull UIColor*)rsDetailBackground;
 +(nonnull UIColor*)statusBorder;
 +(nonnull UIColor*)rsMarkerColor;
-
++(nonnull UIColor*)phase1Color;
++(nonnull UIColor*)phase2Color;
++(nonnull UIColor*)phase3Color;
++(nonnull UIColor*)chartValuePositiveColor;
++(nonnull UIColor*)chartValueNegativeColor;
++(nonnull UIColor*)chartFilterPickerViewColor;
++(nonnull UIColor*)chartRoomTemperature;
++(nonnull UIColor*)hpBtnOn;
++(nonnull UIColor*)hpBtnOff;
++(nonnull UIColor*)hpBtnUnknown;
++(nonnull UIColor*)chartTemperatureFillColor;
++(nonnull UIColor*)chartTemperatureLineColor;
++(nonnull UIColor*)chartHumidityColor;
++(nonnull UIColor*)chartIncrementalValueColor;
 @end
 
 @interface SAUIHelper : NSObject

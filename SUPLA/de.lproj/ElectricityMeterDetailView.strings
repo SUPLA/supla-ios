@@ -1,0 +1,126 @@
+
+/* Class = "UILabel"; text = "Phase angle"; ObjectID = "076-HU-QdY"; */
+"076-HU-QdY.text" = "Phasenwinkel";
+
+/* Class = "UILabel"; text = "10 EUR"; ObjectID = "37U-Zx-YA3"; */
+"37U-Zx-YA3.text" = "10 EUR";
+
+/* Class = "UILabel"; text = "Forward active Energy"; ObjectID = "5dz-EL-yMd"; */
+"5dz-EL-yMd.text" = "Wirkenergie aufgenommen";
+
+/* Class = "UILabel"; text = "60 kvarh"; ObjectID = "6vS-Zf-6XX"; */
+"6vS-Zf-6XX.text" = "60 kvarh";
+
+/* Class = "UILabel"; text = "The cost in the current month"; ObjectID = "BZV-5X-lZ7"; */
+"BZV-5X-lZ7.text" = "Die Kosten im laufenden Monat";
+
+/* Class = "UIButton"; normalTitle = "1+2+3"; ObjectID = "CZD-Xw-vbM"; */
+"CZD-Xw-vbM.normalTitle" = "1+2+3";
+
+/* Class = "UILabel"; text = "Frequency"; ObjectID = "DlL-bA-H7x"; */
+"DlL-bA-H7x.text" = "Frequenz";
+
+/* Class = "UILabel"; text = "0 kWh"; ObjectID = "ImY-gJ-dUW"; */
+"ImY-gJ-dUW.text" = "0 kWh";
+
+/* Class = "UILabel"; text = "342.60"; ObjectID = "JPh-7z-arE"; */
+"JPh-7z-arE.text" = "342.60";
+
+/* Class = "UILabel"; text = "Forward active Energy"; ObjectID = "Kfn-dN-K0a"; */
+"Kfn-dN-K0a.text" = "Wirkenergie aufgenommen";
+
+/* Class = "UIButton"; normalTitle = "Phase 1"; ObjectID = "MEJ-sn-3qn"; */
+"MEJ-sn-3qn.normalTitle" = "Phase 1";
+
+/* Class = "UILabel"; text = "Reverse reactive Energy"; ObjectID = "MHn-5a-5ZR"; */
+"MHn-5a-5ZR.text" = "Wirkenergie zurückgegeben";
+
+/* Class = "UILabel"; text = "230 V"; ObjectID = "N6X-By-Rip"; */
+"N6X-By-Rip.text" = "230 V";
+
+/* Class = "UILabel"; text = "Reactive Power"; ObjectID = "NRY-lA-uaG"; */
+"NRY-lA-uaG.text" = "Blindleistung";
+
+/* Class = "UILabel"; text = "1 A"; ObjectID = "Oqx-PK-Kbh"; */
+"Oqx-PK-Kbh.text" = "1 A";
+
+/* Class = "UILabel"; text = "100 VA"; ObjectID = "SGV-Qi-w6c"; */
+"SGV-Qi-w6c.text" = "100 VA";
+
+/* Class = "UILabel"; text = "Reverse active Energy"; ObjectID = "Tl7-wk-oBL"; */
+"Tl7-wk-oBL.text" = "Wirkenergie zurückgegeben";
+
+/* Class = "UIButton"; normalTitle = "Phase 3"; ObjectID = "VyG-Y8-JRf"; */
+"VyG-Y8-JRf.normalTitle" = "Phase 3";
+
+/* Class = "UILabel"; text = "Voltage"; ObjectID = "YDN-T2-eyC"; */
+"YDN-T2-eyC.text" = "Spannung";
+
+/* Class = "UILabel"; text = "••••••••••"; ObjectID = "Ywd-JH-SeJ"; */
+"Ywd-JH-SeJ.text" = "••••••••••";
+
+/* Class = "UILabel"; text = "50 Hz"; ObjectID = "Zz9-Ny-np2"; */
+"Zz9-Ny-np2.text" = "50 Hz";
+
+/* Class = "UILabel"; text = "Forward reactive Energy"; ObjectID = "aZs-XI-wYP"; */
+"aZs-XI-wYP.text" = "Blindenergie aufgenommen";
+
+/* Class = "UITextField"; text = "Minutes"; ObjectID = "btZ-qJ-HXI"; */
+"btZ-qJ-HXI.text" = "Minuten";
+
+/* Class = "UILabel"; text = "115 kWh"; ObjectID = "ekV-lw-CKj"; */
+"ekV-lw-CKj.text" = "115 kWh";
+
+/* Class = "UILabel"; text = "Apparent Power"; ObjectID = "el3-yj-vIH"; */
+"el3-yj-vIH.text" = "Scheinleistung";
+
+/* Class = "UILabel"; text = "Current"; ObjectID = "g8r-4G-jnQ"; */
+"g8r-4G-jnQ.text" = "Stärke";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "hlZ-mm-clg"; */
+"hlZ-mm-clg.normalTitle" = "Button";
+
+/* Class = "UIButton"; normalTitle = "Phase 2"; ObjectID = "keR-AG-qQO"; */
+"keR-AG-qQO.normalTitle" = "Phase 2";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "krl-AA-VN6"; */
+"krl-AA-VN6.normalTitle" = "Button";
+
+/* Class = "UILabel"; text = "21 kvarh"; ObjectID = "lVE-7o-bXy"; */
+"lVE-7o-bXy.text" = "21 kvarh";
+
+/* Class = "UILabel"; text = "0.868"; ObjectID = "nCV-73-w6x"; */
+"nCV-73-w6x.text" = "0.868";
+
+/* Class = "UILabel"; text = "Power factor"; ObjectID = "oZk-rH-6VT"; */
+"oZk-rH-6VT.text" = "Leistungsfaktor";
+
+/* Class = "UILabel"; text = "100 var"; ObjectID = "ouy-gz-4Go"; */
+"ouy-gz-4Go.text" = "100 var";
+
+/* Class = "UILabel"; text = "Consumption in the current month"; ObjectID = "psK-hZ-nQF"; */
+"psK-hZ-nQF.text" = "Verbrauch im laufenden Monat";
+
+/* Class = "UITextField"; text = "Last 24 hours"; ObjectID = "pvG-5N-Xhd"; */
+"pvG-5N-Xhd.text" = "Letzte 24 Stunden";
+
+/* Class = "UILabel"; text = "100 W"; ObjectID = "pzM-3T-vDD"; */
+"pzM-3T-vDD.text" = "100 W";
+
+/* Class = "UILabel"; text = "Caption"; ObjectID = "quy-hA-zMO"; */
+"quy-hA-zMO.text" = "Caption";
+
+/* Class = "UILabel"; text = "Total cost"; ObjectID = "qz5-1q-e4C"; */
+"qz5-1q-e4C.text" = "Gesamtkosten";
+
+/* Class = "UILabel"; text = "10 EUR"; ObjectID = "v3P-DR-NxZ"; */
+"v3P-DR-NxZ.text" = "10 EUR";
+
+/* Class = "UILabel"; text = "Active Power"; ObjectID = "vFK-4R-JvR"; */
+"vFK-4R-JvR.text" = "Wirkleistung";
+
+/* Class = "UILabel"; text = "09,001 kWh"; ObjectID = "xZr-Dg-scJ"; */
+"xZr-Dg-scJ.text" = "09,001 kWh";
+
+/* Class = "UILabel"; text = "01,0001 kWh"; ObjectID = "zf2-II-RLR"; */
+"zf2-II-RLR.text" = "01,0001 kWh";

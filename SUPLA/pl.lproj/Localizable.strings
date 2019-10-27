@@ -12,8 +12,6 @@
  You should have received a copy of the GNU General Public License
  along with this program; if not, write to the Free Software
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
- 
- Author: Przemyslaw Zygmunt p.zygmunt@acsoftware.pl [AC SOFTWARE]
  */
 
 "version" = "wersja";
@@ -47,13 +45,11 @@
 "Garage door opening sensor" = "Czujnik otwacia bramy garażowej";
 "Door opening sensor" = "Czujnik otwacia drzwi";
 "Roller shutter opening sensor" = "Czujnik otwacia rolet";
-"E-Mail service unavailable" = "Usługa poczty e-mail jest niedostępna!";
 "Connecting..." = "Łączenie...";
 "Unknown error" = "Nieznany błąd";
 "Service temporarily unavailable" = "Usługa tymczasowo niedostępna";
 "Bad credentials" = "Błędne poświadczenia";
 "Client limit exceeded" = "Przekroczony limit aplikacji klienckich";
-"Access disabled" = "Dostęp wyłączony";
 "Device is disabled" = "Urządzenie jest wyłączone";
 "Access Identifier is disabled" = "Identyfikator dostępu jest wyłączony";
 "Client Registration is off. Please go to \"Smartphone\" at %@ to activate it." = "Rejestracja jest obecnie wyłączona. Aby ją włączyć przejdź do zakładki \"Smartfony\" na stronie %@";
@@ -91,3 +87,55 @@
 "Help" = "Pomoc";
 "https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=L4N7RSWME6LG2" = "https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=QYN932S5UQG8N";
 "Staircase timer" = "Automat schodowy";
+"https://cloud.supla.org/register" = "https://cloud.supla.org/register?lang=pl";
+
+"Retrieving data from the server..." = "Pobieranie danych z serwera...";
+"No chart data available." = "Brak danych dla wykresu.";
+"Electricity Meter" = "Licznik energii elektrycznej";
+"Water Meter" = "Licznik wody";
+"Gas Meter" = "Licznik gazu";
+
+"Forward active Energy" = "Energia czynna pobrana";
+"Reverse active Energy" = "Energia czynna zwrócona";
+"Consumption in the current month" = "Zużycie w bieżącym miesiącu";
+"Production in the current month" = "Produkcja w bieżącym miesiącu";
+"Minutes" = "Minuty";
+"Hours" = "Godziny";
+"Days" = "Dni";
+"Months" = "Miesiące";
+"Years" = "Lata";
+"Minute to minute comparison" = "Porównanie minuta do minuty";
+"Hour to hour comparison" = "Porównanie godzina do godziny";
+"Day to day comparison" = "Porównanie dzień do dnia";
+"Month to month comparison" = "Porównanie miesiąc do miesiąca";
+"Year to year comparison" = "Porównanie rok do roku";
+"Ranking of hours" = "Ranking godzin";
+"Ranking of weekdays" = "Ranking dni tygodnia";
+"Ranking of months" = "Ranking miesięcy";
+"Consumption according to phases" = "Zużycie wg. faz";
+"Production according to phases" = "Produkcja wg. faz";
+"Last 24 hours" = "Ostatnie 24 godziny";
+"Last 7 days" = "Ostatnie 7 dni";
+"Last 30 days" = "Ostatnie 30 dni";
+"Last 90 days" = "Ostatnie 90 dni";
+"All available history" = "Cała dostępna historia";
+"Phase 1" = "Faza 1";
+"Phase 2" = "Faza 2";
+"Phase 3" = "Faza 3";
+"Home+ Heater" = "Grzałka Home+";
+"Comfort" = "Komfort";
+"ECO" = "ECO";
+"No water" = "Brak wody";
+"Burnt heater" = "Spalona grzałka";
+"Water temperature sensor error" = "Błąd czujnika temperatury wody";
+"Room temperature sensor error" = "Błąd czujnika temperatury pokojowej";
+"No network interruptions" = "Brak przerwań sieciowych";
+"Room temperature" = "Temperatura w pomieszczeniu";
+"ON" = "WŁĄCZONY";
+"OFF" = "WYŁĄCZONY";
+"h" = "godz.";
+
+"Wind sensor" = "Prędkość wiatru";
+"Weight sensor" = "Waga";
+"Pressure sensor" = "Czujnik ciśnienia";
+"Rain sensor" = "Pomiar opadów";

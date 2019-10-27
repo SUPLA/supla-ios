@@ -18,7 +18,16 @@
 
 #import "SAChannelValue+CoreDataClass.h"
 
-@implementation SAChannelValue
+@implementation SAChannelValue 
+
+- (void) initWithChannelId:(int)channelId {
+    [super initWithChannelId:channelId];
+    self.sub_value = [[NSData alloc] init];
+    
+    TSuplaChannelValue v;
+    memset(&v, 0, sizeof(TSuplaChannelValue));
+    [self setValueWithChannelValue:&v];
+}
 
 - (BOOL) setOnlineState:(char)online {
     
@@ -31,7 +40,8 @@
 }
 
 - (NSData *) dataValue {
-    return self.value && ((NSData*)self.value).length == SUPLA_CHANNELVALUE_SIZE ? (NSData*)self.value : nil;
+    NSData *result = [super dataValue];
+    return result && result.length == SUPLA_CHANNELVALUE_SIZE ? result : nil;
 }
 
 - (NSData *) dataSubValue {
@@ -95,6 +105,29 @@
     return result;
 }
 
+- (double) totalForwardActiveEnergy {
+
+    if ( self.value != nil && self.dataValue.length >= sizeof(TElectricityMeter_Value)) {
+        TElectricityMeter_Value ev;
+        memset(&ev, 0, sizeof(TElectricityMeter_Value));
+        [self.dataValue getBytes:&ev length:sizeof(TElectricityMeter_Value)];
+        return ev.total_forward_active_energy * 0.01;
+    }
+    
+    return 0.0;
+}
+
+- (double) impulseCounterCalculatedValue {
+    if ( self.value != nil && self.dataValue.length >= sizeof(TSC_ImpulseCounter_Value)) {
+        TSC_ImpulseCounter_Value icv;
+        memset(&icv, 0, sizeof(TSC_ImpulseCounter_Value));
+        [self.dataValue getBytes:&icv length:sizeof(TSC_ImpulseCounter_Value)];
+        return icv.calculated_value * 0.001;
+    }
+    
+    return 0.0;
+}
+
 - (int) intValue {
     if ( self.value != nil ) {
         int i = 0;
@@ -107,7 +140,7 @@
 
 - (double) getTemperatureForFunction:(int)func {
     
-    double result = -275;
+    double result = -273;
     
     switch(func) {
         case SUPLA_CHANNELFNC_THERMOMETER:
@@ -175,6 +208,26 @@
 - (int) percentValue {
     int p = self.intValue;
     return p < 0 || p > 100 ? -1 : p;
+}
+
+- (double) presetTemperature {
+    if (self.value != nil) {
+        TThermostat_Value v;
+        [self.dataValue getBytes:&v length:sizeof(TThermostat_Value)];
+        return v.PresetTemperature * 0.01;
+    }
+    
+    return -273;
+}
+
+- (double) measuredTemperature {
+    if (self.value != nil) {
+        TThermostat_Value v;
+        [self.dataValue getBytes:&v length:sizeof(TThermostat_Value)];
+        return v.MeasuredTemperature * 0.01;
+    }
+    
+    return -273;
 }
 
 @end

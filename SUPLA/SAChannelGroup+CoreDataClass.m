@@ -52,6 +52,7 @@
         case SUPLA_CHANNELFNC_RGBLIGHTING:
         case SUPLA_CHANNELFNC_DIMMERANDRGBLIGHTING:
         case SUPLA_CHANNELFNC_STAIRCASETIMER:
+        case SUPLA_CHANNELFNC_THERMOSTAT_HEATPOL_HOMEPLUS:
             break;
         default:
             return;
@@ -93,6 +94,13 @@
             NSArray *obj = [NSArray arrayWithObjects:value.colorValue,
                             [NSNumber numberWithInt: value.colorBrightnessValue],
                             [NSNumber numberWithInt: value.brightnessValue], nil];
+            [BufferTotalValue addObject:obj];
+        }
+            break;
+        case SUPLA_CHANNELFNC_THERMOSTAT_HEATPOL_HOMEPLUS: {
+            NSArray *obj = [NSArray arrayWithObjects:[NSNumber numberWithBool: value.hiValue],
+                            [NSNumber numberWithDouble: value.measuredTemperature],
+                            [NSNumber numberWithDouble: value.presetTemperature], nil];
             [BufferTotalValue addObject:obj];
         }
             break;
@@ -199,6 +207,12 @@
                 }
                 count++;
                 break;
+            case SUPLA_CHANNELFNC_THERMOSTAT_HEATPOL_HOMEPLUS:
+                if ([self getIntFromObject:[v objectAtIndex:a] atArrIndex:0] == YES) {
+                    sum++;
+                }
+                count++;
+                break;
         }
     }
 
@@ -301,6 +315,55 @@
             return [self rgbValue:2];
     }
     return [[NSMutableArray alloc] init];
+}
+
+- (double)measuredTemperature:(BOOL)measured min:(BOOL)min {
+    
+    double result = -273;
+    
+    if (self.total_value != nil) {
+        NSArray *arr1 = (NSArray*)self.total_value;
+        if (arr1 != nil && [arr1 isKindOfClass:[NSArray class]]) {
+            for(int a=0;a<arr1.count;a++) {
+                NSArray *arr2 = [arr1 objectAtIndex:a];
+
+                if (arr2 != nil
+                    && [arr2 isKindOfClass:[NSArray class]]
+                    && arr2.count >= 3) {
+                    NSNumber *n = [arr2 objectAtIndex:measured ? 1 : 2];
+                    if (n != nil && [n isKindOfClass:[NSNumber class]]) {
+                        double t = [n doubleValue];
+            
+                        if (min) {
+                            if ( (t < result || result <= -273) && t > -273) {
+                                result = t;
+                            }
+                        } else if (t > result) {
+                            result = t;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
+    return result;
+}
+
+- (double) measuredTemperatureMin {
+    return [self measuredTemperature:YES min:YES];
+}
+
+- (double) measuredTemperatureMax {
+    return [self measuredTemperature:YES min:NO];
+}
+
+- (double) presetTemperatureMin {
+    return [self measuredTemperature:NO min:YES];
+}
+
+- (double) presetTemperatureMax {
+    return [self measuredTemperature:NO min:NO];
 }
 
 @end

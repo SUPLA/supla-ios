@@ -1,0 +1,141 @@
+/*
+ This program is free software; you can redistribute it and/or
+ modify it under the terms of the GNU General Public License
+ as published by the Free Software Foundation; either version 2
+ of the License, or (at your option) any later version.
+ 
+ This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ GNU General Public License for more details.
+ 
+ You should have received a copy of the GNU General Public License
+ along with this program; if not, write to the Free Software
+ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
+ */
+
+"version" = "versjon";
+"Open" = "Åpne";
+"Open Close" = "Åpne Steng";
+"Reveal" = "Avdekk";
+"Shut" = "Lukke";
+"On" = "Skru på";
+"Off" = "Skru av";
+"opened the gateway" = "hageport åpnet";
+"opened / closed the gate" = "port åpnet/ stengt";
+"opened / closed the gate doors" = "garasjeport åpnet / stengt";
+"opened the door" = "dør åpnet";
+"opened / closed roller shutter" = "rullegardin åpnet / stengt";
+"turned the power ON/OFF" = "strøm av/på";
+"turned the light ON/OFF" = "lys av/på";
+"Settings" = "Innstillinger";
+"About" = "Om programmet";
+"Gateway" = "Hageport";
+"Gate" = "Port";
+"Garage door" = "Garasjeport";
+"Door" = "Dør";
+"Roller shutter" = "Rullegardiner";
+"Power switch" = "Strømbryter";
+"Lighting switch" = "Lysbryter";
+"Thermometer" = "Termometer";
+"Temperature and humidity" = "Temperatur og fuktighet";
+"No liquid sensor" = "Væskemangelsensor";
+"Gateway opening sensor" = "Hageportåpner sensor";
+"Gate opening sensor" = "Portåpner sensor";
+"Garage door opening sensor" = "Garasjeportåpner sensor";
+"Door opening sensor" = "Døråpner sensor";
+"Roller shutter opening sensor" = "Rullegardineråpner sensor";
+"Connecting..." = "Kobling...";
+"Unknown error" = "Ukjent feil";
+"Service temporarily unavailable" = "Tjenesten er midlertidig utilgjengelig";
+"Bad credentials" = "Feil bekreftelser";
+"Client limit exceeded" = "Grensen på antall kundeapplikasjoner er overskredet";
+"Device is disabled" = "Enheten er skrudd av";
+"Access Identifier is disabled" = "Tilgang identifikator er av";
+"Client Registration is off. Please go to \"Smartphone\" at %@ to activate it." = "Registering er for tiden ikke på. For å skru den på gå til fanen \"Smarttelefoner\" på nettsiden %@";
+"This client does not have access identifier assigned. Please go to \"Smartphone\" at %@ and get a valid identifier." = "Denne enheten har ikke tilknyttet tilgang identifikator. Gå til nettsiden %@ tilpass riktig identifikator i fanen \"Smarttelefoner\".";
+"Incompatible server version" = "Inkompatibel serverversjon";
+"Host not found" = "Serveradresse ikke funnet";
+"RGB Lighting" = "RGB belysning";
+"Dimmer and RGB lighting" = "Dimmer og RGB belysning";
+"Dimmer" = "Dimmer";
+"Distance sensor" = "Avstandssensor";
+"Depth sensor" = "Dybdesensor";
+"If you enjoy using this app, please take a moment to rate it. Thanks for your support!" = "Dersom du liker denne appen ta litt tid til å vurdere den. Takk for ditt støtte!";
+"Rate Now" = "Vurder nå";
+"Later" = "Senere";
+"No thanks" = "Nei takk";
+"Mail sensor" = "Postsensor";
+"Window opening sensor" = "Vindusåpner sensor";
+"Add I/O device" = "Legg til enhet";
+"Donate" = "Støtt prosjektet";
+"Create an account" = "Opprett konto";
+"Device registration availability information timeout!" = "Ventetiden for informasjon om registrering av enheter er tilgjengelig er overskredet!";
+"Next" = "Videre";
+"Start" = "Start";
+"Cancel" = "Avbryt";
+"Go to the system settings" = "Gå til systeminnstillinger";
+"I/O Device registration is currently off. To continue go to „My SUPLA” at %@ and enable the Device Add Button." = "Registering av enheter inngang/utgang er for tiden skrudd av. For å fortsette, gå til nettsiden %@ og i fanen \"Min SUPLA\" skru på legg til enheter.";
+"Add Wizard is only available when server connection has been set based on the email address entered in the settings." = "Assistenten for å legge til er kun tilgjengelig når en tilkobling til serveren har blitt opprettet på bakgrunn av e-post adresse oppført i innstillingene!";
+"The connected Server does not support this function!" = "Serveren du er koblet til, støtter ikke denne funksjonen!";
+"Device Configuration Completion timeout!" = "Ventetiden for avslutning av konfigurasjon av enheten er overskredet!";
+"Incorrect input parameters!" = "wizard_result_param_error!";
+"The connected device is not compatible with this Wizard!" = "Enheten som er koblet til er ikke kompatibel med denne assistenten!";
+"Configuration Failed!" = "Konfigurasjon mislykket!";
+"Connection with the device cannot be set! Make sure, if the Wi-fi connection has been set for the I/O device." = "Kunne ikke koble til enheten! Sjekk om din enhet inngang-utgang er tilkoblet WiFi-nettverk.";
+"[Calibration]" = "[Kalibrering]";
+"Help" = "Hjelp";
+"https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=L4N7RSWME6LG2" = "https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=QYN932S5UQG8N";
+"Staircase timer" = "Trappeautomat";
+"https://cloud.supla.org/register" = "https://cloud.supla.org/register?lang=pl";
+
+"Retrieving data from the server..." = "Nedlasting av data fra serveren...";
+"No chart data available." = "Manglende data for diagrammet.";
+"Electricity Meter" = "Elektrisitetsmåler";
+"Water Meter" = "Vannmåler";
+"Gas Meter" = "Gassmåler";
+
+"Forward active Energy" = "Aktiv strøm mottatt";
+"Reverse active Energy" = "Aktiv strøm returnert";
+"Consumption in the current month" = "Forbruk i gjeldende måned";
+"Production in the current month" = "Produksjon i gjeldende måned";
+"Minutes" = "Minutter";
+"Hours" = "Timer";
+"Days" = "Dager";
+"Months" = "Måneder";
+"Years" = "År";
+"Minute to minute comparison" = "Sammenligning minutt etter minutt";
+"Hour to hour comparison" = "Sammenligning time etter time";
+"Day to day comparison" = "Sammenligning dag etter dag";
+"Month to month comparison" = "Sammenligning måned etter måned";
+"Year to year comparison" = "Sammenligning år etter år";
+"Ranking of hours" = "Time rangering";
+"Ranking of weekdays" = "Ukedager rangering";
+"Ranking of months" = "Måneder rangering";
+"Consumption according to phases" = "Forbruk i forhold til faser";
+"Production according to phases" = "Produksjon i forhold til faser";
+"Last 24 hours" = "Siste 24 timer";
+"Last 7 days" = "Siste 7 dager";
+"Last 30 days" = "Siste 30 dager";
+"Last 90 days" = "Siste 90 dager";
+"All available history" = "Tilgjengelig historie";
+"Phase 1" = "Fase 1";
+"Phase 2" = "Fase 2";
+"Phase 3" = "Fase 3";
+"Home+ Heater" = "Varmeapparat Home+";
+"Comfort" = "Komfort";
+"ECO" = "ECO";
+"No water" = "Ingen vann";
+"Burnt heater" = "Brent varmeapparat";
+"Water temperature sensor error" = "Vanntemperatursensor feil";
+"Room temperature sensor error" = "Romtemperatursensor feil";
+"No network interruptions" = "Ingen nettverk avbrudd";
+"Room temperature" = "Romtemperatur";
+"ON" = "PÅ";
+"OFF" = "AV";
+"h" = "t";
+
+"Wind sensor" = "Vindhastighet";
+"Weight sensor" = "Vekt";
+"Pressure sensor" = "Trykksensor";
+"Rain sensor" = "Nedbørsmåling";

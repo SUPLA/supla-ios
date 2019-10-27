@@ -113,9 +113,11 @@
         self.cbPicker.colorMarkers = _colorMarkers;
     }
     
+    self.stateBtn.selected = self.cbPicker.brightness > 0;
+    
 }
 
-- (void)sendNewValues {
+- (void)sendNewValuesWithTurnOnOff:(BOOL)turnOnOff {
     
     if ( delayTimer1 != nil ) {
         [delayTimer1 invalidate];
@@ -140,7 +142,7 @@
     
     if ( time >= MIN_REMOTE_UPDATE_PERIOD
         && [client cg:self.channelBase.remote_id setRGB:color
-      colorBrightness:colorBrightness brightness:brightness group:isGroup] ) {
+      colorBrightness:colorBrightness brightness:brightness group:isGroup turnOnOff:turnOnOff] ) {
         
         _remoteUpdateTime = [NSDate date];
         _moveEndTime = [NSDate dateWithTimeIntervalSinceNow:2];
@@ -155,6 +157,10 @@
         delayTimer1 = [NSTimer scheduledTimerWithTimeInterval:time target:self selector:@selector(timer1FireMethod:) userInfo:nil repeats:NO];
     }
     
+}
+
+- (void)sendNewValues {
+    [self sendNewValuesWithTurnOnOff:NO];
 }
 
 - (void)showValuesWithDelay {
@@ -356,21 +362,20 @@
     if ( self.channelBase == nil || self.channelBase.isOnline == NO )
         return;
 
-    self.stateBtn.selected = !self.stateBtn.selected;
-    int brightness = self.stateBtn.selected ? 100 : 0;
-    
-    if ( self.cbPicker.colorBrightnessWheelVisible ) {
-        _colorBrightness = brightness;
+    self.cbPicker.brightness = self.cbPicker.brightness > 0 ? 0 : 100;
+    if (self.cbPicker.colorBrightnessWheelVisible) {
+        _colorBrightness = self.cbPicker.brightness;
     } else {
-        _brightness = brightness;
-    }
+        _brightness = self.cbPicker.brightness;
+    };
+
     [self showValues];
-    [self sendNewValues];
-    
+    [self sendNewValuesWithTurnOnOff:YES];
 }
 
 -(void) cbPickerDataChanged {
     [self sendNewValues];
+    self.stateBtn.selected = self.cbPicker.brightness > 0;
 }
 
 -(void) cbPickerMoveEnded {

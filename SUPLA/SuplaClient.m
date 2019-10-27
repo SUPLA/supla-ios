@@ -83,7 +83,7 @@ void sasuplaclient_location_update(void *_suplaclient, void *user_data, TSC_Supl
         [sc locationUpdate:location];
 }
 
-void sasuplaclient_channel_update(void *_suplaclient, void *user_data, TSC_SuplaChannel_B *channel) {
+void sasuplaclient_channel_update(void *_suplaclient, void *user_data, TSC_SuplaChannel_C *channel) {
     SASuplaClient *sc = (__bridge SASuplaClient*)user_data;
     if ( sc != nil )
         [sc channelUpdate: channel];
@@ -95,7 +95,14 @@ void sasuplaclient_channel_value_update(void *_suplaclient, void *user_data, TSC
         [sc channelValueUpdate:channel_value];
 }
 
-void sasuplaclient_channelgroup_update(void *_suplaclient, void *user_data, TSC_SuplaChannelGroup *cgroup) {
+void sasuplaclient_channel_extendedvalue_update(void *_suplaclient, void *user_data,
+                                        TSC_SuplaChannelExtendedValue *channel_extendedvalue) {
+    SASuplaClient *sc = (__bridge SASuplaClient*)user_data;
+    if ( sc != nil )
+        [sc channelExtendedValueUpdate:channel_extendedvalue];
+}
+
+void sasuplaclient_channelgroup_update(void *_suplaclient, void *user_data, TSC_SuplaChannelGroup_B *cgroup) {
     SASuplaClient *sc = (__bridge SASuplaClient*)user_data;
     if ( sc != nil )
         [sc channelGroupUpdate: cgroup];
@@ -119,6 +126,14 @@ void sasuplaclient_on_registration_enabled(void *_suplaclient, void *user_data, 
     SASuplaClient *sc = (__bridge SASuplaClient*)user_data;
     if ( sc != nil && reg_enabled != NULL) {
         [sc onRegistrationEnabled:[SARegistrationEnabled ClientTimestamp:reg_enabled->client_timestamp IODeviceTimestamp:reg_enabled->iodevice_timestamp]];
+    }
+}
+
+void sasuplaclient_on_oauth_token_request_result(void *_suplaclient, void *user_data, TSC_OAuthTokenRequestResult *result) {
+
+    SASuplaClient *sc = (__bridge SASuplaClient*)user_data;
+    if ( sc != nil && result != NULL) {
+        [sc onOAuthTokenRequestResult:[SAOAuthToken tokenWithRequestResult:result]];
     }
 }
 
@@ -227,6 +242,7 @@ void sasuplaclient_on_registration_enabled(void *_suplaclient, void *user_data, 
     int _client_id;
     BOOL _connected;
     int _regTryCounter;
+    int _tokenRequestTime;
 }
 @end
 
@@ -321,8 +337,10 @@ void sasuplaclient_on_registration_enabled(void *_suplaclient, void *user_data, 
     scc.cb_channelgroup_update = sasuplaclient_channelgroup_update;
     scc.cb_channelgroup_relation_update = sasuplaclient_channelgroup_relation_update;
     scc.cb_channel_value_update = sasuplaclient_channel_value_update;
+    scc.cb_channel_extendedvalue_update = sasuplaclient_channel_extendedvalue_update;
     scc.cb_on_event = sasuplaclient_on_event;
     scc.cb_on_registration_enabled = sasuplaclient_on_registration_enabled;
+    scc.cb_on_oauth_token_request_result = sasuplaclient_on_oauth_token_request_result;
     
     scc.protocol_version = [SAApp getPreferedProtocolVersion];
     
@@ -558,7 +576,7 @@ void sasuplaclient_on_registration_enabled(void *_suplaclient, void *user_data, 
     
 }
 
-- (void) channelUpdate:(TSC_SuplaChannel_B *)channel {
+- (void) channelUpdate:(TSC_SuplaChannel_C *)channel {
     
     BOOL DataChanged = NO;
     BOOL ChannelValueChanged = NO;
@@ -596,9 +614,6 @@ void sasuplaclient_on_registration_enabled(void *_suplaclient, void *user_data, 
 }
 
 - (void) channelValueUpdate:(TSC_SuplaChannelValue *)channel_value {
-    
-    //NSLog(@"channelValueUpdate %i", channel_value->Id);
-    
     if ( [self.DB updateChannelValue:channel_value] ) {
         [self onChannelValueChanged: channel_value->Id isGroup:NO];
         [self onDataChanged];
@@ -610,7 +625,16 @@ void sasuplaclient_on_registration_enabled(void *_suplaclient, void *user_data, 
     
 }
 
-- (void) channelGroupUpdate:(TSC_SuplaChannelGroup *)cgroup {
+- (void) channelExtendedValueUpdate:(TSC_SuplaChannelExtendedValue *)channel_extendedvalue {
+  
+    if ( [self.DB updateChannelExtendedValue:channel_extendedvalue] ) {
+        [self onChannelValueChanged: channel_extendedvalue->Id isGroup:NO];
+        [self onDataChanged];
+    }
+
+}
+
+- (void) channelGroupUpdate:(TSC_SuplaChannelGroup_B *)cgroup {
     //NSLog(@"CGroup %i", cgroup->Id);
     
     BOOL DataChanged = NO;
@@ -672,6 +696,14 @@ void sasuplaclient_on_registration_enabled(void *_suplaclient, void *user_data, 
     [self performSelectorOnMainThread:@selector(_onRegistrationEnabled:) withObject:reg_enabled waitUntilDone:NO];
 }
 
+- (void) _onOAuthTokenRequestResult:(SAOAuthToken *)token {
+    [[SAApp instance] onOAuthTokenRequestResult:token];
+}
+
+- (void) onOAuthTokenRequestResult:(SAOAuthToken *)token {
+    [self performSelectorOnMainThread:@selector(_onOAuthTokenRequestResult:) withObject:token waitUntilDone:NO];
+}
+
 - (void) reconnect {
     @synchronized(self) {
         if ( _sclient ) {
@@ -701,7 +733,7 @@ void sasuplaclient_on_registration_enabled(void *_suplaclient, void *user_data, 
     return result;
 }
 
-- (BOOL) cg:(int)ID setRGB:(UIColor*)color colorBrightness:(int)color_brightness brightness:(int)brightness group:(BOOL)group {
+- (BOOL) cg:(int)ID setRGB:(UIColor*)color colorBrightness:(int)color_brightness brightness:(int)brightness group:(BOOL)group turnOnOff:(BOOL)turnOnOff {
     
     BOOL result = NO;
     
@@ -726,7 +758,7 @@ void sasuplaclient_on_registration_enabled(void *_suplaclient, void *user_data, 
             if ( color_brightness < 0 || color_brightness > 100 )
                 color_brightness = 0;
             
-            result = 1 == supla_client_set_rgbw(_sclient, ID, group, _color, color_brightness, brightness);
+            result = 1 == supla_client_set_rgbw(_sclient, ID, group, _color, color_brightness, brightness, turnOnOff ? 1 : 0);
         }
     }
     
@@ -746,7 +778,7 @@ void sasuplaclient_on_registration_enabled(void *_suplaclient, void *user_data, 
 }
 
 - (BOOL) channel:(int)ChannelID setRGB:(UIColor*)color colorBrightness:(int)color_brightness brightness:(int)brightness {
-    return [self cg:ChannelID setRGB:color colorBrightness:color_brightness brightness:brightness group:NO];
+    return [self cg:ChannelID setRGB:color colorBrightness:color_brightness brightness:brightness group:NO turnOnOff:NO];
 }
 
 - (void) group:(int)GroupID Open:(char)open {
@@ -754,11 +786,81 @@ void sasuplaclient_on_registration_enabled(void *_suplaclient, void *user_data, 
 }
 
 - (BOOL) group:(int)GroupID setRGB:(UIColor*)color colorBrightness:(int)color_brightness brightness:(int)brightness {
-    return [self cg:GroupID setRGB:color colorBrightness:color_brightness brightness:brightness group:YES];
+    return [self cg:GroupID setRGB:color colorBrightness:color_brightness brightness:brightness group:YES turnOnOff:NO];
+}
+
+- (void) deviceCalCfgRequest:(TCS_DeviceCalCfgRequest_B*)request {
+    @synchronized(self) {
+        if ( _sclient ) {
+            supla_client_device_calcfg_request(_sclient, request);
+        }
+    }
+}
+
+- (void) deviceCalCfgCommand:(int)command cg:(int)ID group:(BOOL)group data:(char*)data dataSize:(unsigned int)size {
+    TCS_DeviceCalCfgRequest_B request;
+    memset(&request, 0, sizeof(TCS_DeviceCalCfgRequest_B));
+    request.Id = ID;
+    request.Target = group ? SUPLA_TARGET_GROUP : SUPLA_TARGET_CHANNEL;
+    request.Command = command;
+    if (data && size > 0 && size <= SUPLA_CALCFG_DATA_MAXSIZE) {
+        request.DataSize = size;
+        memcpy(request.Data, data, size);
+    }
+    
+    [self deviceCalCfgRequest:&request];
+}
+
+- (void) deviceCalCfgCommand:(int)command cg:(int)ID group:(BOOL)group {
+    [self deviceCalCfgCommand:command cg:ID group:group data:NULL dataSize:0];
+}
+
+- (void) deviceCalCfgCommand:(int)command cg:(int)ID group:(BOOL)group charValue:(char)c {
+    [self deviceCalCfgCommand:command cg:ID group:group data:&c dataSize:sizeof(c)];
+}
+
+- (void) deviceCalCfgCommand:(int)command cg:(int)ID group:(BOOL)group shortValue:(short)s {
+   [self deviceCalCfgCommand:command cg:ID group:group data:(char*)&s dataSize:sizeof(s)];
+}
+
+- (void) thermostatScheduleCfgRequest:(SAThermostatScheduleCfg *)cfg cg:(int)ID group:(BOOL)group {
+    if (cfg == nil || cfg.groupCount == 0) {
+        return;
+    }
+    
+    TCS_DeviceCalCfgRequest_B request;
+    memset(&request, 0, sizeof(TCS_DeviceCalCfgRequest_B));
+    request.Id = ID;
+    request.Target = group ? SUPLA_TARGET_GROUP : SUPLA_TARGET_CHANNEL;
+    request.Command = SUPLA_THERMOSTAT_CMD_SET_SCHEDULE;
+    request.DataSize = sizeof(TThermostat_ScheduleCfg);
+    
+    TThermostat_ScheduleCfg *scfg = (TThermostat_ScheduleCfg *)request.Data;
+ 
+    int n = 0;
+    for(int a=0;a<cfg.groupCount;a++) {
+        
+        scfg->Group[n].ValueType = [cfg valueTypeForGroupIndex:a] ==
+        kPROGRAM ? THERMOSTAT_SCHEDULE_HOURVALUE_TYPE_PROGRAM
+        : THERMOSTAT_SCHEDULE_HOURVALUE_TYPE_TEMPERATURE;
+        
+        scfg->Group[n].WeekDays = [cfg weekDaysForGroupIndex:a];
+        [cfg getHourValue:scfg->Group[n].HourValue forGroupIndex:a];
+            
+        n++;
+        if (n==4 || a == cfg.groupCount - 1) {
+            @synchronized(self) {
+                if ( _sclient ) {
+                    supla_client_device_calcfg_request(_sclient, &request);
+                }
+            }
+            n=0;
+            memset(scfg, 0, sizeof(TThermostat_ScheduleCfg));
+        }
+    }
 }
 
 - (void) getRegistrationEnabled {
-    
     @synchronized(self) {
         if ( _sclient ) {
             supla_client_get_registration_enabled(_sclient);
@@ -768,9 +870,29 @@ void sasuplaclient_on_registration_enabled(void *_suplaclient, void *user_data, 
 
 - (int) getProtocolVersion {
     int result = 0;
-    if ( _sclient ) {
-        result = supla_client_get_proto_version(_sclient);
+    @synchronized(self) {
+        if ( _sclient ) {
+            result = supla_client_get_proto_version(_sclient);
+        }
     }
+    return result;
+}
+
+- (BOOL) OAuthTokenRequest {
+    BOOL result = false;
+    
+    @synchronized(self) {
+        int now = [[NSDate date] timeIntervalSince1970];
+        
+        if (now-_tokenRequestTime > 5 ) {
+            if ( _sclient ) {
+                supla_client_oauth_token_request(_sclient);
+                _tokenRequestTime = now;
+            }
+        }
+
+    }
+    
     return result;
 }
 
