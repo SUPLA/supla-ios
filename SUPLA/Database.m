@@ -1334,7 +1334,6 @@
             del = YES;
             for(int a=0;a<arr.count;a++) {
                 [self.managedObjectContext deleteObject:[arr objectAtIndex:a]];
-                NSLog(@"Delete icon: %i", a);
             }
             [self saveContext];
         }

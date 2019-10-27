@@ -357,11 +357,11 @@
 }
 
 -(void) onRestApiTaskStarted: (SARestApiClientTask*)task {
-    NSLog(@"onRestApiTaskStarted");
+    // NSLog(@"onRestApiTaskStarted");
 }
 
 -(void) onRestApiTaskFinished: (SARestApiClientTask*)task {
-    NSLog(@"onRestApiTaskFinished");
+    // NSLog(@"onRestApiTaskFinished");
     if (_task != nil && task == _task) {
         if (_task.channelsUpdated) {
             [self onDataChanged];
