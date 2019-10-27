@@ -63,10 +63,11 @@
         }
     }
     
-    if (older_item!=nil) {
-        if ([younger_item.date timeIntervalSince1970] < [older_item.date timeIntervalSince1970]) {
-            @throw [NSException exceptionWithName:@"BadTimestampException" reason:@"Erroneous dates when comparing an older item to a younger one" userInfo:nil];
-        }
+    bool correctDateOrder = older_item == nil
+    || [younger_item.date timeIntervalSince1970] > [older_item.date timeIntervalSince1970];
+    
+    if (older_item!=nil
+        && correctDateOrder) {
         
         SAIncrementalMeasurementItem *calculatedItem = [self newObjectWithManagedObjectContext:NO];
         [calculatedItem assignMeasurementItem:younger_item];
@@ -96,7 +97,9 @@
     
     }
     
-    older_item = younger_item;
+    if (correctDateOrder) {
+       older_item = younger_item;
+    }
 
 };
 
