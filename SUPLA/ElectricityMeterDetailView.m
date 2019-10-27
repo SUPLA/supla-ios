@@ -273,6 +273,7 @@
     [self setReverseReactiveEnergy:totalRRE visible:MVAL(EM_VAR_REVERSE_REACTIVE_ENERGY)];
     
     [self.lCaption setText:[self.channelBase getChannelCaption]];
+    [self.ivImage setImage:[self.channelBase getIcon]];
     
     switch (selectedPhase) {
         case 0:

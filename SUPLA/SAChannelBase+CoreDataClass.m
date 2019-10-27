@@ -303,7 +303,66 @@
     return 0;
 }
 
-- (UIImage*) getIcon {
+- (UIImage*) getIconWithIndex:(short)idx {
+    
+    if (idx > 0
+        && self.func != SUPLA_CHANNELFNC_HUMIDITYANDTEMPERATURE) {
+        return nil;
+    }
+    
+    if (self.usericon != nil) {
+        NSObject *data = nil;
+        
+        switch(self.func) {
+            case SUPLA_CHANNELFNC_HUMIDITYANDTEMPERATURE:
+            data = idx == 0 ? self.usericon.uimage2 : self.usericon.uimage1;
+            break;
+            case SUPLA_CHANNELFNC_THERMOMETER:
+            data = self.usericon.uimage1;
+            break;
+            case SUPLA_CHANNELFNC_CONTROLLINGTHEGATE:
+                if (([self imgIsActive] & 0x1) > 0) {
+                    data = self.usericon.uimage2;
+                } else if (([self imgIsActive] & 0x2) > 0) {
+                    data = self.usericon.uimage3;
+                } else {
+                    data = self.usericon.uimage1;
+                }
+            break;
+            case SUPLA_CHANNELFNC_DIMMERANDRGBLIGHTING:
+                if (([self imgIsActive] & 0x1) == 0x1
+                    && ([self imgIsActive] & 0x2) == 0x2) {
+                    data = self.usericon.uimage4;
+                } else if (([self imgIsActive] & 0x1) == 0x1) {
+                    data = self.usericon.uimage2;
+                } else if (([self imgIsActive] & 0x2) == 0x2) {
+                    data = self.usericon.uimage3;
+                } else {
+                    data = self.usericon.uimage1;
+                }
+                break;
+            default:
+                data = [self imgIsActive]
+                ? self.usericon.uimage2 : self.usericon.uimage1;
+            break;
+        }
+        
+        UIImage *img = nil;
+        @try {
+            if (self.remote_id == 127) {
+                NSLog(@"%@", self.usericon);
+            }
+            if (data != nil && [data isKindOfClass:[NSData class]]) {
+                img = [UIImage imageWithData:(NSData*)data];
+            }
+        } @catch (NSException *exception) {
+          img = nil;
+        }
+        
+        if (img != nil) {
+            return img;
+        }
+    }
     
     NSString *n1 = nil;
     NSString *n2 = nil;
@@ -382,7 +441,7 @@
             break;
         case SUPLA_CHANNELFNC_THERMOMETER:
         case SUPLA_CHANNELFNC_HUMIDITYANDTEMPERATURE:
-            return [UIImage imageNamed:@"thermometer"];
+            return [UIImage imageNamed:idx == 0 ? @"thermometer" : @"humidity"];
         case SUPLA_CHANNELFNC_NOLIQUIDSENSOR:
             return [UIImage imageNamed:[self imgIsActive] ? @"liquid" : @"noliquid"];
         case SUPLA_CHANNELFNC_DIMMER:
@@ -443,6 +502,10 @@
     return [UIImage imageNamed:[NSString stringWithFormat:@"unknown_channel"]];
 }
 
+- (UIImage*) getIcon {
+    return [self getIconWithIndex:0];
+}
+
 - (NSString *) unit {
     return @"";
 }
@@ -475,17 +538,19 @@
     NSString *measured = @"---\u00B0";
     NSString *preset = @"/---\u00B0";
         
-    if (mmin > -273) {
-        measured = [NSString stringWithFormat:@"%0.2f\u00B0", mmin];
-        if (mmax > -273) {
-           measured = [NSString stringWithFormat:@"%@ - %0.2f\u00B0", measured, mmax];
+    if (self.isOnline) {
+        if (mmin > -273) {
+            measured = [NSString stringWithFormat:@"%0.2f\u00B0", mmin];
+            if (mmax > -273) {
+               measured = [NSString stringWithFormat:@"%@ - %0.2f\u00B0", measured, mmax];
+            }
         }
-    }
-    
-    if (pmin > -273) {
-        preset = [NSString stringWithFormat:@"/%0.2f\u00B0", pmin];
-        if (pmax > -273) {
-           preset = [NSString stringWithFormat:@"%@ - %0.2f\u00B0", preset, pmax];
+        
+        if (pmin > -273) {
+            preset = [NSString stringWithFormat:@"/%0.2f\u00B0", pmin];
+            if (pmax > -273) {
+               preset = [NSString stringWithFormat:@"%@ - %0.2f\u00B0", preset, pmax];
+            }
         }
     }
     

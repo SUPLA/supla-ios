@@ -32,6 +32,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 - (void)updateView {
     [super updateView];
+    [self.ivHumidityImage setImage:[self.channelBase getIconWithIndex:1]];
     [self.lHumidity setText:[[self.channelBase attrStringValueWithIndex:1 font:nil] string]];
 }
 

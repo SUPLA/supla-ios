@@ -62,7 +62,7 @@
         return _persistentStoreCoordinator;
     }
     
-    int DBv = 6;
+    int DBv = 7;
     
     [self removeIfExists:@"SUPLA_DB.sqlite"];
     
@@ -1196,8 +1196,6 @@
     return [self getMeasurementsForChannelId:channel_id dateFrom:dateFrom dateTo:dateTo entityName:@"SAThermostatMeasurementItem"];
 }
 
-#pragma mark User Icons
-
 #pragma mark HomePlus groups
 
 -(NSFetchedResultsController*) getHomePlusGroupFrcWithGroupId:(int)groupId {
@@ -1232,6 +1230,43 @@
     }
     
     return frc;
+}
+
+#pragma mark User Icons
+
+-(BOOL) updateChannelUserIconsWithEntityName:(NSString *)entityName {
+    BOOL save = NO;
+        
+    NSArray *r = [self fetchByPredicate:[NSPredicate predicateWithFormat:@"(usericon_id <> 0 AND usericon = nil) OR (usericon != nil AND usericon.remote_id != usericon_id)"] entityName:entityName limit:0];
+    
+    if ( r != nil ) {
+        for(int a=0;a<r.count;a++) {
+            SAChannelBase *c = (SAChannelBase*)[r objectAtIndex:a];
+    
+            if (c.usericon_id) {
+                SAUserIcon *userIcon = [self fetchUserIconById:c.usericon_id createNewObject:NO];
+                if (userIcon != c.usericon) {
+                    c.usericon = userIcon;
+                    save = YES;
+                }
+            } else if (c.usericon) {
+                c.usericon = nil;
+                save = YES;
+            }
+           
+        }
+    }
+    
+    if ( save ) {
+        [self saveContext];
+    }
+    
+    return save;
+}
+
+-(BOOL) updateChannelUserIcons {
+    return [self updateChannelUserIconsWithEntityName:@"SAChannel"]
+    || [self updateChannelUserIconsWithEntityName:@"SAChannelGroup"];
 }
 
 -(void) userIconsIdsWithEntity:(NSString*)en channelBase:(BOOL)cb idField:(NSString *)field exclude:(NSArray*)ex destination:(NSMutableArray *)dest {
@@ -1277,7 +1312,7 @@
     return result;
 }
 
--(SAUserIcon*) fetchUserIconById:(int)remote_id {
+-(SAUserIcon*) fetchUserIconById:(int)remote_id createNewObject:(BOOL)create {
     SAUserIcon *i = [self fetchItemByPredicate:[NSPredicate predicateWithFormat:@"remote_id = %i", remote_id] entityName:@"SAUserIcon"];
     
     if (i == nil) {
@@ -1289,4 +1324,22 @@
     return i;
 }
 
+-(void) deleteAllUserIcons {
+    BOOL del = YES;
+    do {
+        del = NO;
+        NSArray *arr = [self fetchByPredicate:nil entityName:@"SAUserIcon" limit:1000];
+        
+        if (arr && arr.count) {
+            del = YES;
+            for(int a=0;a<arr.count;a++) {
+                [self.managedObjectContext deleteObject:[arr objectAtIndex:a]];
+                NSLog(@"Delete icon: %i", a);
+            }
+            [self saveContext];
+        }
+        
+    } while (del);
+    
+}
 @end

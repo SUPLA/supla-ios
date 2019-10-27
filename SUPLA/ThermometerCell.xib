@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15504" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
-    <device id="retina4_7" orientation="portrait" appearance="light"/>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <dependencies>
-        <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15508"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -25,7 +23,7 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Thermometer" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6kK-vn-eyZ">
-                        <rect key="frame" x="25" y="76.5" width="330" height="16.5"/>
+                        <rect key="frame" x="25" y="76.5" width="330" height="14"/>
                         <fontDescription key="fontDescription" name="OpenSans-Bold" family="Open Sans" pointSize="12"/>
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
@@ -45,7 +43,7 @@
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="20.0°" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eE4-A3-beA">
-                        <rect key="frame" x="165" y="19" width="70" height="45"/>
+                        <rect key="frame" x="165" y="19" width="68.5" height="45"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="45" id="zsy-ee-9pa"/>
                         </constraints>
@@ -92,7 +90,7 @@
             </tableViewCellContentView>
             <connections>
                 <outlet property="caption" destination="6kK-vn-eyZ" id="lv9-7b-UK8"/>
-                <outlet property="image" destination="6qf-O5-kUK" id="Lle-bD-aUf"/>
+                <outlet property="image1" destination="6qf-O5-kUK" id="Lle-bD-aUf"/>
                 <outlet property="right_OnlineStatus" destination="UPv-WM-Z5M" id="dp3-R0-lo2"/>
                 <outlet property="temp" destination="eE4-A3-beA" id="n2U-ey-3dR"/>
             </connections>

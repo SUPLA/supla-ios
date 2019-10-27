@@ -25,6 +25,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UISwitch *swTemperature;
 @property (weak, nonatomic) IBOutlet UISwitch *swHumidity;
 - (IBAction)optionValueChanged:(id)sender;
+@property (weak, nonatomic) IBOutlet UIImageView *ivHumidityImage;
 
 @end
 

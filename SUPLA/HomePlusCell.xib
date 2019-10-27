@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina6_1" orientation="portrait" appearance="light"/>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <dependencies>
-        <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14824"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -22,20 +20,20 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Home+ Heater" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3Jq-KF-Od9">
-                        <rect key="frame" x="30" y="76.5" width="320" height="17"/>
+                        <rect key="frame" x="25" y="76.5" width="330" height="14"/>
                         <fontDescription key="fontDescription" name="OpenSans-Bold" family="Open Sans" pointSize="12"/>
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xjz-Yd-8SH" userLabel="bottomLine">
-                        <rect key="frame" x="10" y="99" width="360" height="1"/>
+                        <rect key="frame" x="5" y="99" width="370" height="1"/>
                         <color key="backgroundColor" red="0.66666666669999997" green="0.66666666669999997" blue="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="1" id="cGu-ML-tEc"/>
                         </constraints>
                     </view>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0d0-zV-fRA" userLabel="onlineRight" customClass="SAUIChannelStatus">
-                        <rect key="frame" x="340" y="41.5" width="10" height="20"/>
+                        <rect key="frame" x="345" y="41.5" width="10" height="20"/>
                         <color key="backgroundColor" red="0.070588235289999995" green="0.65490196079999996" blue="0.1176470588" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="20" id="2gn-9A-SsD"/>
@@ -68,7 +66,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aOx-uI-Ya8" userLabel="activeRight" customClass="SAUIChannelStatus">
-                        <rect key="frame" x="334" y="41.5" width="6" height="20"/>
+                        <rect key="frame" x="339" y="41.5" width="6" height="20"/>
                         <color key="backgroundColor" red="0.070588235289999995" green="0.65490196079999996" blue="0.1176470588" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="6" id="5TW-mJ-7Sk"/>
@@ -98,7 +96,7 @@
             <connections>
                 <outlet property="caption" destination="3Jq-KF-Od9" id="G7u-5D-gAK"/>
                 <outlet property="cint_RightStatusWidth" destination="ly3-qF-Dpx" id="0Ar-ka-oBG"/>
-                <outlet property="image" destination="6oE-p1-nIz" id="bgK-Yk-8Fi"/>
+                <outlet property="image1" destination="6oE-p1-nIz" id="bgK-Yk-8Fi"/>
                 <outlet property="right_ActiveStatus" destination="aOx-uI-Ya8" id="twX-H3-HJs"/>
                 <outlet property="right_OnlineStatus" destination="0d0-zV-fRA" id="qlJ-lO-OPm"/>
                 <outlet property="temp" destination="0M9-cd-0XF" id="HBR-uY-Lco"/>

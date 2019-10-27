@@ -119,8 +119,10 @@ typedef NS_ENUM(NSUInteger, GroupBy) {
 -(void) deleteAllThermostatMeasurementsForChannelId:(int)channel_id;
 -(NSArray *) getThermostatMeasurementsForChannelId:(int)channel_id dateFrom:(NSDate *)dateFrom dateTo:(NSDate *)dateTo;
 -(NSFetchedResultsController*) getHomePlusGroupFrcWithGroupId:(int)groupId;
+-(BOOL) updateChannelUserIcons;
 -(NSArray *) iconsToDownload;
--(SAUserIcon*) fetchUserIconById:(int)remote_id;
+-(SAUserIcon*) fetchUserIconById:(int)remote_id createNewObject:(BOOL)create;
+-(void) deleteAllUserIcons;
 @end
 
 

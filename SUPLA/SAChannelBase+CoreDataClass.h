@@ -19,6 +19,7 @@
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 #import <UIKit/UIKit.h>
+#import "SAUserIcon+CoreDataClass.h"
 
 @class _SALocation;
 
@@ -43,6 +44,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (int) hiValue;
 - (int) hiSubValue;
 - (UIImage*) getIcon;
+- (UIImage*) getIconWithIndex:(short)idx;
 
 - (double) temperatureValue;
 - (double) humidityValue;

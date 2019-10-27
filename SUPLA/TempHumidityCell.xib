@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15504" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15508"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -113,7 +113,8 @@
             <connections>
                 <outlet property="caption" destination="5YC-RH-PM5" id="5Jz-QT-4kl"/>
                 <outlet property="humidity" destination="lPY-xq-yar" id="0qW-7M-qbG"/>
-                <outlet property="image" destination="gra-eg-NfA" id="Gef-VP-e7E"/>
+                <outlet property="image1" destination="gra-eg-NfA" id="Gef-VP-e7E"/>
+                <outlet property="image2" destination="pue-s1-1cy" id="P2i-HW-Vcx"/>
                 <outlet property="right_OnlineStatus" destination="FuF-jE-JMA" id="WfA-1f-tas"/>
                 <outlet property="temp" destination="NRR-0X-1Zb" id="wwg-Jx-uuO"/>
             </connections>

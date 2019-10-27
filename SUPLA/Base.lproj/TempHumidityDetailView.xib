@@ -269,6 +269,7 @@
             <connections>
                 <outlet property="combinedChart" destination="8Ol-0h-IA4" id="sa5-rD-BCE"/>
                 <outlet property="ftDateRangeFilter" destination="kgv-fs-w8P" id="YPM-61-lE7"/>
+                <outlet property="ivHumidityImage" destination="Xtg-6O-JcQ" id="CsD-hS-MBF"/>
                 <outlet property="ivImage" destination="Dzh-y9-CnX" id="7Tg-sk-Edh"/>
                 <outlet property="lCaption" destination="wSk-vi-yhX" id="QMw-yW-z12"/>
                 <outlet property="lHumidity" destination="MSW-a7-MF2" id="WkC-ap-cLP"/>

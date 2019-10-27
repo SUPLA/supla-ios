@@ -562,6 +562,7 @@
 		01C8EC14234243BE0072AB8C /* pt-PT */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-PT"; path = "pt-PT.lproj/HomePlusDetailView.strings"; sourceTree = "<group>"; };
 		01C8EC162342441B0072AB8C /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/HomePlusDetailView.strings; sourceTree = "<group>"; };
 		01C8EC182342449A0072AB8C /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/HomePlusDetailView.strings; sourceTree = "<group>"; };
+		01CFF6D12365BCCD00C827FB /* SUPLA 4.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "SUPLA 4.xcdatamodel"; sourceTree = "<group>"; };
 		01D0616C22C294D90043C947 /* ElectricityMeterDetailView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ElectricityMeterDetailView.h; sourceTree = "<group>"; };
 		01D0616D22C294D90043C947 /* ElectricityMeterDetailView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ElectricityMeterDetailView.m; sourceTree = "<group>"; };
 		01D0617222C296850043C947 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/ElectricityMeterDetailView.xib; sourceTree = "<group>"; };
@@ -2614,11 +2615,12 @@
 		407004251BB5706500F6187F /* SUPLA.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				01CFF6D12365BCCD00C827FB /* SUPLA 4.xcdatamodel */,
 				01B216CF22AECB2F004E0596 /* SUPLA 3.xcdatamodel */,
 				40BBA34620AC52EA0054CD20 /* SUPLA 2.xcdatamodel */,
 				407004261BB5706500F6187F /* SUPLA.xcdatamodel */,
 			);
-			currentVersion = 01B216CF22AECB2F004E0596 /* SUPLA 3.xcdatamodel */;
+			currentVersion = 01CFF6D12365BCCD00C827FB /* SUPLA 4.xcdatamodel */;
 			path = SUPLA.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

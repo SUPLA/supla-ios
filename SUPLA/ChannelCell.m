@@ -118,7 +118,8 @@
     self.left_OnlineStatus.percent = self.right_OnlineStatus.percent;
 
     [self.caption setText:[channelBase getChannelCaption]];
-    [self.image setImage:[channelBase getIcon]];
+    [self.image1 setImage:[channelBase getIconWithIndex:0]];
+    [self.image2 setImage:[channelBase getIconWithIndex:1]];
     
     switch(channelBase.func) {
         case SUPLA_CHANNELFNC_CONTROLLINGTHEGATE:

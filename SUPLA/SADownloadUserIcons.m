@@ -23,7 +23,9 @@
 #define PACKAGE_SIZE 4
 #define START_DELAY 2.5
 
-@implementation SADownloadUserIcons
+@implementation SADownloadUserIcons {
+    BOOL _channelsUpdated;
+}
 
 - (NSData *) imageAtIndex:(int)idx data:(NSArray *)arr {
     if (arr.count > idx) {
@@ -33,6 +35,10 @@
 }
 
 - (void)task {
+    @synchronized(self) {
+        _channelsUpdated = NO;
+    }
+    
     [NSThread sleepForTimeInterval:START_DELAY];
     
     NSArray *ids = [SAApp.DB iconsToDownload];
@@ -66,12 +72,13 @@
                         && (remote_id = [i valueForKey:@"id"])
                         && [remote_id isKindOfClass:[NSNumber class]]) {
                     
-                        SAUserIcon *userIcon = [self.DB fetchUserIconById:[remote_id intValue]];
+                        SAUserIcon *userIcon = [self.DB fetchUserIconById:[remote_id intValue] createNewObject:YES];
                         if (userIcon != nil) {
                             userIcon.uimage1 = [self imageAtIndex:0 data:images];
                             userIcon.uimage2 = [self imageAtIndex:1 data:images];
                             userIcon.uimage3 = [self imageAtIndex:2 data:images];
                             userIcon.uimage4 = [self imageAtIndex:3 data:images];
+                            
                             [self.DB saveContext];
                         }
                     }
@@ -80,5 +87,18 @@
             packageIds = @"";
         }
     }
+    
+    @synchronized(self) {
+      _channelsUpdated = [self.DB updateChannelUserIcons];
+    }
 }
+
+- (BOOL)channelsUpdated {
+    BOOL result = NO;
+    @synchronized(self) {
+        result = _channelsUpdated;
+    }
+    return result;
+}
+
 @end

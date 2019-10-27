@@ -363,6 +363,9 @@
 -(void) onRestApiTaskFinished: (SARestApiClientTask*)task {
     NSLog(@"onRestApiTaskFinished");
     if (_task != nil && task == _task) {
+        if (_task.channelsUpdated) {
+            [self onDataChanged];
+        }
         _task.delegate = nil;
         _task = nil;
     }
