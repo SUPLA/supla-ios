@@ -62,7 +62,7 @@
         return _persistentStoreCoordinator;
     }
     
-    int DBv = 7;
+    int DBv = 8;
     
     [self removeIfExists:@"SUPLA_DB.sqlite"];
     
@@ -249,6 +249,10 @@
     
     return [self fetchItemByPredicate:[NSPredicate predicateWithFormat:@"location_id = %i", location_id] entityName:@"SALocation"];
 };
+
+-(NSArray*) fetchVisibleLocations {
+   return [self fetchByPredicate:[NSPredicate predicateWithFormat:@"visible > 0"] entityName:@"SALocation" limit:0 sortDescriptors:nil];
+}
 
 -(_SALocation*) newLocation {
 

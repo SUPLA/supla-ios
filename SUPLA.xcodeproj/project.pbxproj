@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		012023C2234E54ED00E131B7 /* ImpulseCounterDetailView.m in Sources */ = {isa = PBXBuildFile; fileRef = 012023C1234E54ED00E131B7 /* ImpulseCounterDetailView.m */; };
+		012119152368C3B2004C1993 /* collapsed@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 012119142368C3B2004C1993 /* collapsed@3x.png */; };
 		0122613922F396440013E6A2 /* SAThermostatCalendar.m in Sources */ = {isa = PBXBuildFile; fileRef = 0122613822F396440013E6A2 /* SAThermostatCalendar.m */; };
 		012F722C22DF3E2300E5F72E /* ChartFilterFieldTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 012F722822DF3CF000E5F72E /* ChartFilterFieldTests.m */; };
 		012F722E22DFA0BE00E5F72E /* SABarChartDataSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 012F722D22DFA0BE00E5F72E /* SABarChartDataSet.swift */; };
@@ -363,6 +364,8 @@
 /* Begin PBXFileReference section */
 		012023C0234E54ED00E131B7 /* ImpulseCounterDetailView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ImpulseCounterDetailView.h; sourceTree = "<group>"; };
 		012023C1234E54ED00E131B7 /* ImpulseCounterDetailView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ImpulseCounterDetailView.m; sourceTree = "<group>"; };
+		012119132368BDB0004C1993 /* SUPLA 5.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "SUPLA 5.xcdatamodel"; sourceTree = "<group>"; };
+		012119142368C3B2004C1993 /* collapsed@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "collapsed@3x.png"; path = "Resources/Assets/Img/collapsed@3x.png"; sourceTree = "<group>"; };
 		0122613722F396440013E6A2 /* SAThermostatCalendar.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SAThermostatCalendar.h; sourceTree = "<group>"; };
 		0122613822F396440013E6A2 /* SAThermostatCalendar.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SAThermostatCalendar.m; sourceTree = "<group>"; };
 		012F722822DF3CF000E5F72E /* ChartFilterFieldTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChartFilterFieldTests.m; sourceTree = "<group>"; };
@@ -1214,6 +1217,7 @@
 		405AC4011BC15878004F7311 /* Img */ = {
 			isa = PBXGroup;
 			children = (
+				012119142368C3B2004C1993 /* collapsed@3x.png */,
 				017A3CA523635C22004AD1FC /* weight@2x.png */,
 				017A3CA623635C22004AD1FC /* weight@3x.png */,
 				017A3CAD23635DF7004AD1FC /* pressure@2x.png */,
@@ -1715,6 +1719,7 @@
 				4052DA0D1DC515AE000B8C45 /* rgb-off@2x.png in Resources */,
 				40CE7C6B1DCBBD5700BBACE4 /* depth@2x.png in Resources */,
 				40DE1A2D1BCCFF8A004CF43B /* settings@2x.png in Resources */,
+				012119152368C3B2004C1993 /* collapsed@3x.png in Resources */,
 				405AC4341BC15C08004F7311 /* logo-supla@2x.png in Resources */,
 				405C49A11FCAFFD400C15602 /* wizard_ok@2x.png in Resources */,
 				017A3C8623633A70004AD1FC /* TempHumidityDetailView.xib in Resources */,
@@ -2623,12 +2628,13 @@
 		407004251BB5706500F6187F /* SUPLA.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				012119132368BDB0004C1993 /* SUPLA 5.xcdatamodel */,
 				01CFF6D12365BCCD00C827FB /* SUPLA 4.xcdatamodel */,
 				01B216CF22AECB2F004E0596 /* SUPLA 3.xcdatamodel */,
 				40BBA34620AC52EA0054CD20 /* SUPLA 2.xcdatamodel */,
 				407004261BB5706500F6187F /* SUPLA.xcdatamodel */,
 			);
-			currentVersion = 01CFF6D12365BCCD00C827FB /* SUPLA 4.xcdatamodel */;
+			currentVersion = 012119132368BDB0004C1993 /* SUPLA 5.xcdatamodel */;
 			path = SUPLA.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

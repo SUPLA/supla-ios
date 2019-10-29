@@ -18,10 +18,11 @@
 
 #import <UIKit/UIKit.h>
 #import "SADownloadUserIcons.h"
+#import "SectionCell.h"
 
 @class SADetailView;
 
-@interface SAMainVC : UIViewController <UITableViewDataSource, UITableViewDelegate, SARestApiClientTaskDelegate>
+@interface SAMainVC : UIViewController <UITableViewDataSource, UITableViewDelegate, SARestApiClientTaskDelegate, SASectionCellDelegate>
 
 
 - (IBAction)settingsTouched:(id)sender;
@@ -34,7 +35,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *notificationLabel;
 
 - (void)detailHide;
-
+- (void)groupTableHidden:(BOOL)hidden;
 @end
 
 

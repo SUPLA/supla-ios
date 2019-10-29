@@ -61,6 +61,7 @@ typedef NS_ENUM(NSUInteger, GroupBy) {
 - (void)saveContext;
 
 -(_SALocation*) fetchLocationById:(int)location_id;
+-(NSArray*) fetchVisibleLocations;
 -(_SALocation*) newLocation;
 -(BOOL) updateLocation:(TSC_SuplaLocation *)location;
 
