@@ -22,18 +22,20 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 @implementation NSData (AES)
 
--(NSData *)aes128Operation:(CCOperation)operation withKey:(NSString *)key {
+-(NSData *)aes128Operation:(CCOperation)operation withPassword:(NSString *)password {
     
-    while(key.length < 32) {
-        key = [NSString stringWithFormat:@"%@0", key];
+    // *Password
+    // This is not a good implementation but sufficient for current use
+    while(password.length < 32) {
+        password = [NSString stringWithFormat:@"%@0", password];
     }
     
-    key = [key substringToIndex:32];
+    password = [password substringToIndex:32];
     
     size_t bufferSize = [self length] + kCCBlockSizeAES128;
     void *buffer = malloc(bufferSize);
     
-    NSData *_key = [key dataUsingEncoding:NSUTF8StringEncoding];
+    NSData *_key = [password dataUsingEncoding:NSUTF8StringEncoding];
     
     size_t encryptedSize = 0;
     CCCryptorStatus cryptStatus = CCCrypt(operation,
@@ -56,22 +58,22 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     return nil;
 }
 
-- (NSData *)aes128EncryptWithKey:(NSString *)key {
-    return [self aes128Operation:kCCEncrypt withKey:key];
+- (NSData *)aes128EncryptWithPassword:(NSString *)password {
+    return [self aes128Operation:kCCEncrypt withPassword:password];
 }
 
-- (NSData *)aes128DecryptWithKey:(NSString *)key {
-    return [self aes128Operation:kCCDecrypt withKey:key];
+- (NSData *)aes128DecryptWithPassword:(NSString *)password {
+    return [self aes128Operation:kCCDecrypt withPassword:password];
 }
 
 - (NSData *)aes128EncryptWithDeviceUniqueId {
-    NSString *key = [[[UIDevice currentDevice] identifierForVendor] UUIDString];
-    return [self aes128EncryptWithKey:key];
+    NSString *pwd = [[[UIDevice currentDevice] identifierForVendor] UUIDString];
+    return [self aes128EncryptWithPassword:pwd];
 }
 
 - (NSData *)aes128DecryptWithDeviceUniqueId {
-    NSString *key = [[[UIDevice currentDevice] identifierForVendor] UUIDString];
-    return [self aes128DecryptWithKey:key];
+    NSString *pwd = [[[UIDevice currentDevice] identifierForVendor] UUIDString];
+    return [self aes128DecryptWithPassword:pwd];
     
 }
 @end

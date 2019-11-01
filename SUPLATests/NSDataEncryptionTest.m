@@ -31,11 +31,11 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     NSData *sourceData = [sourceText dataUsingEncoding:NSUTF8StringEncoding];
     
     // Key is aligned to 32 characters
-    NSData *encrypted = [sourceData aes128EncryptWithKey:@"X"];
+    NSData *encrypted = [sourceData aes128EncryptWithPassword:@"X"];
     XCTAssertNotNil(encrypted);
     XCTAssertFalse([encrypted isEqualToData:sourceData]);
     
-    NSData *decrypted = [encrypted aes128DecryptWithKey:@"X"];
+    NSData *decrypted = [encrypted aes128DecryptWithPassword:@"X"];
     XCTAssertNotNil(decrypted);
     XCTAssertFalse([encrypted isEqualToData:decrypted]);
     XCTAssertTrue([decrypted isEqualToData:sourceData]);
@@ -44,13 +44,13 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
                                initWithData:decrypted encoding:NSUTF8StringEncoding];
     XCTAssertTrue([decryptedText isEqualToString:sourceText]);
     
-    decrypted = [encrypted aes128DecryptWithKey:@"Y"];
+    decrypted = [encrypted aes128DecryptWithPassword:@"Y"];
     XCTAssertFalse([sourceData isEqualToData:decrypted]);
     
-    decrypted = [encrypted aes128DecryptWithKey:@"X000000000000000000000000000000Y"];
+    decrypted = [encrypted aes128DecryptWithPassword:@"X000000000000000000000000000000Y"];
     XCTAssertFalse([sourceData isEqualToData:decrypted]);
     
-    decrypted = [encrypted aes128DecryptWithKey:@"X0000000000000000000000000000000Y"];
+    decrypted = [encrypted aes128DecryptWithPassword:@"X0000000000000000000000000000000Y"];
     XCTAssertTrue([sourceData isEqualToData:decrypted]);
 }
 

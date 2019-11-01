@@ -21,8 +21,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 NS_ASSUME_NONNULL_BEGIN
 
 @interface NSData (AES)
-- (NSData *)aes128EncryptWithKey:(NSString *)key;
-- (NSData *)aes128DecryptWithKey:(NSString *)key;
+- (NSData *)aes128EncryptWithPassword:(NSString *)password;
+- (NSData *)aes128DecryptWithPassword:(NSString *)password;
 
 - (NSData *)aes128EncryptWithDeviceUniqueId;
 - (NSData *)aes128DecryptWithDeviceUniqueId;
