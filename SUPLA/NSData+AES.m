@@ -17,6 +17,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 */
 
 #import "NSData+AES.h"
+#import <UIKit/UIKit.h>
 #import <CommonCrypto/CommonCryptor.h>
 
 @implementation NSData (AES)
@@ -61,5 +62,16 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 - (NSData *)aes128DecryptWithKey:(NSString *)key {
     return [self aes128Operation:kCCDecrypt withKey:key];
+}
+
+- (NSData *)aes128EncryptWithDeviceUniqueId {
+    NSString *key = [[[UIDevice currentDevice] identifierForVendor] UUIDString];
+    return [self aes128EncryptWithKey:key];
+}
+
+- (NSData *)aes128DecryptWithDeviceUniqueId {
+    NSString *key = [[[UIDevice currentDevice] identifierForVendor] UUIDString];
+    return [self aes128DecryptWithKey:key];
+    
 }
 @end

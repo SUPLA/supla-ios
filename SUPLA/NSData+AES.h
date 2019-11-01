@@ -23,6 +23,9 @@ NS_ASSUME_NONNULL_BEGIN
 @interface NSData (AES)
 - (NSData *)aes128EncryptWithKey:(NSString *)key;
 - (NSData *)aes128DecryptWithKey:(NSString *)key;
+
+- (NSData *)aes128EncryptWithDeviceUniqueId;
+- (NSData *)aes128DecryptWithDeviceUniqueId;
 @end
 
 NS_ASSUME_NONNULL_END
