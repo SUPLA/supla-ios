@@ -18,7 +18,14 @@
 
 #import <UIKit/UIKit.h>
 
-@interface SASectionCell : UITableViewCell
-@property (weak, nonatomic) IBOutlet UILabel *label;
+@class SASectionCell;
+@protocol SASectionCellDelegate
+@optional
+- (void)sectionCellTouch:(SASectionCell*)section;
+@end
 
+@interface SASectionCell : UITableViewCell
+@property (weak, nonatomic) IBOutlet UIImageView *ivCollapsed;
+@property (weak, nonatomic) IBOutlet UILabel *label;
+@property (nonatomic, weak, nullable) id <SASectionCellDelegate> delegate;
 @end

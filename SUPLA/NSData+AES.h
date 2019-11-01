@@ -16,17 +16,16 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 */
 
-#import "_SALocation+CoreDataProperties.h"
+#import <Foundation/Foundation.h>
 
-@implementation _SALocation (CoreDataProperties)
+NS_ASSUME_NONNULL_BEGIN
 
-+ (NSFetchRequest<_SALocation *> *)fetchRequest {
-	return [NSFetchRequest fetchRequestWithEntityName:@"SALocation"];
-}
+@interface NSData (AES)
+- (NSData *)aes128EncryptWithPassword:(NSString *)password;
+- (NSData *)aes128DecryptWithPassword:(NSString *)password;
 
-@dynamic caption;
-@dynamic location_id;
-@dynamic visible;
-@dynamic collapsed;
-
+- (NSData *)aes128EncryptWithDeviceUniqueId;
+- (NSData *)aes128DecryptWithDeviceUniqueId;
 @end
+
+NS_ASSUME_NONNULL_END

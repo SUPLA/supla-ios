@@ -349,9 +349,6 @@
         
         UIImage *img = nil;
         @try {
-            if (self.remote_id == 127) {
-                NSLog(@"%@", self.usericon);
-            }
             if (data != nil && [data isKindOfClass:[NSData class]]) {
                 img = [UIImage imageWithData:(NSData*)data];
             }

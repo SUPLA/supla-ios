@@ -1,13 +1,13 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11201" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
-        <array key="Quicksand-Regular.ttf">
+        <array key="Quicksand-Light.ttf">
             <string>Quicksand-Regular</string>
         </array>
     </customFonts>
@@ -18,35 +18,50 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="40"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <frame key="frameInset" width="320" height="39"/>
+                <rect key="frame" x="0.0" y="0.0" width="320" height="40"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label #1" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Uuz-MN-REw">
+                        <rect key="frame" x="18" y="6" width="125.5" height="30"/>
                         <fontDescription key="fontDescription" name="Quicksand-Regular" family="Quicksand" pointSize="31"/>
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MSR-t5-TxP" userLabel="bottomLine">
+                        <rect key="frame" x="8" y="36" width="304" height="1"/>
                         <color key="backgroundColor" red="0.66666666666666663" green="0.66666666666666663" blue="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="1" id="vp8-u9-vHj"/>
                         </constraints>
                     </view>
+                    <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="collapsed.png" translatesAutoresizingMaskIntoConstraints="NO" id="Qli-HA-Vy6">
+                        <rect key="frame" x="270" y="5" width="30" height="30"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="30" id="U5C-ay-7HW"/>
+                            <constraint firstAttribute="height" constant="30" id="jj4-fk-m2g"/>
+                        </constraints>
+                    </imageView>
                 </subviews>
-                <color key="backgroundColor" red="0.98039215690000003" green="0.98431372549999996" blue="0.98823529409999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                <color key="backgroundColor" red="0.92931526900000005" green="0.98436766860000002" blue="0.93322169779999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                 <constraints>
                     <constraint firstItem="Uuz-MN-REw" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="2" id="DAu-tZ-AdI"/>
+                    <constraint firstAttribute="trailing" secondItem="Qli-HA-Vy6" secondAttribute="trailing" constant="20" id="FIB-aG-0t0"/>
                     <constraint firstAttribute="trailingMargin" secondItem="MSR-t5-TxP" secondAttribute="trailing" constant="-8" id="HVh-Lz-2yG"/>
                     <constraint firstItem="Uuz-MN-REw" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="-5" id="NID-Ej-i86"/>
                     <constraint firstAttribute="bottomMargin" secondItem="Uuz-MN-REw" secondAttribute="bottom" constant="-7" id="YPM-iY-VNb"/>
+                    <constraint firstItem="Qli-HA-Vy6" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="mSI-TI-E0v"/>
                     <constraint firstItem="MSR-t5-TxP" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="-8" id="mum-eM-25d"/>
                     <constraint firstAttribute="bottomMargin" secondItem="MSR-t5-TxP" secondAttribute="bottom" constant="-8" id="xfL-ln-ooF"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
+                <outlet property="ivCollapsed" destination="Qli-HA-Vy6" id="pW8-bx-99t"/>
                 <outlet property="label" destination="Uuz-MN-REw" id="zhW-ha-RES"/>
             </connections>
-            <point key="canvasLocation" x="415" y="432"/>
+            <point key="canvasLocation" x="414.49275362318843" y="431.91964285714283"/>
         </tableViewCell>
     </objects>
+    <resources>
+        <image name="collapsed.png" width="200" height="124.80000305175781"/>
+    </resources>
 </document>

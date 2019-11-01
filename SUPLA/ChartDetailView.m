@@ -103,12 +103,12 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 }
 
 -(void) onRestApiTaskStarted: (SARestApiClientTask*)task {
-    NSLog(@"onRestApiTaskStarted");
+    // NSLog(@"onRestApiTaskStarted");
     [self.lPreloader animateWithTimeInterval:0.1];
 }
 
 -(void) onRestApiTaskFinished: (SARestApiClientTask*)task {
-    NSLog(@"onRestApiTaskFinished");
+    // NSLog(@"onRestApiTaskFinished");
     if (_task != nil && task == _task) {
         _task.delegate = nil;
         _task = nil;

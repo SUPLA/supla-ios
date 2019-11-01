@@ -18,13 +18,38 @@
 
 #import "SectionCell.h"
 
-@implementation SASectionCell
-
-
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
-    [super setSelected:selected animated:animated];
-
-    // Configure the view for the selected state
+@implementation SASectionCell {
+    UITapGestureRecognizer *_tap;
 }
 
+- (void)initialize {
+    if (_tap == nil) {
+        _tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapped:)];
+        _tap.delegate = self;
+        [self addGestureRecognizer:_tap];
+    }
+}
+
+- (id)initWithCoder:(NSCoder *)coder
+{
+    self = [super initWithCoder:coder];
+    if (self) {
+        [self initialize];
+    }
+    return self;
+}
+
+- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(nullable NSString *)reuseIdentifier {
+    self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
+    if (self) {
+       [self initialize];
+    }
+    return self;
+}
+
+- (void)tapped:(UITapGestureRecognizer *)gr {
+    if (self.delegate) {
+        [self.delegate sectionCellTouch:self];
+    }
+}
 @end

@@ -22,7 +22,6 @@
 #import "SuplaApp.h"
 #import "Database.h"
 #import "SAChannel+CoreDataClass.h"
-#import "SectionCell.h"
 #import "RGBDetailView.h"
 #import "RSDetailView.h"
 #import "ElectricityMeterDetailView.h"
@@ -31,6 +30,7 @@
 #import "TemperatureDetailView.h"
 #import "TempHumidityDetailView.h"
 #import "SARateApp.h"
+#import "_SALocation+CoreDataClass.h"
 
 @implementation SAMainVC {
     NSFetchedResultsController *_cFrc;
@@ -46,7 +46,7 @@
     NSTimer *_nTimer;
     UITapGestureRecognizer *_tapRecognizer;
     SADownloadUserIcons *_task;
-
+    NSArray *_locations;
 }
 
 - (void)registerNibForTableView:(UITableView*)tv {
@@ -104,6 +104,8 @@
 -(void)onDataChanged {
     _cFrc = nil;
     _gFrc = nil;
+    _locations = nil;
+    
     [self.cTableView reloadData];
     [self.gTableView reloadData];
 }
@@ -231,6 +233,27 @@
     [(SAMainView*)self.view detailShow:NO animated:NO];
 }
 
+#pragma mark Locations
+
+- (_SALocation *) locationByName:(NSString *)name {
+    if (name == nil) {
+        return nil;
+    }
+    
+    if (_locations == nil) {
+        _locations = [SAApp.DB fetchVisibleLocations];
+        if (_locations == nil) {
+            _locations = [[NSArray alloc] init];
+        }
+    }
+    
+    NSUInteger idx = [_locations indexOfObjectPassingTest:^BOOL(id obj, NSUInteger idx, BOOL *stop) {
+        return [((_SALocation*)obj).caption isEqualToString:name];
+    }];
+    
+    return idx == NSNotFound ? nil : (_SALocation*)[_locations objectAtIndex:idx];
+}
+
 #pragma mark Table Support
 
 - (NSFetchedResultsController*)frcForTableView:(UITableView*)tableView {
@@ -261,14 +284,40 @@
     return  [[[[self frcForTableView:tableView] sections] objectAtIndex:section] name];
 }
 
+- (short)bitFlagCollapse {
+    return self.cTableView.hidden == NO ? 0x1 : 0x2;
+}
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    
     NSFetchedResultsController *frc = [self frcForTableView:tableView];
     if ( frc ) {
         id <NSFetchedResultsSectionInfo> sectionInfo = [[frc sections] objectAtIndex:section];
+        _SALocation *location = [self locationByName:sectionInfo.name];
+        if (location != nil
+            && (location.collapsed & [self bitFlagCollapse]) > 0) {
+            return 0;
+        }
         return [sectionInfo numberOfObjects];
     }
     
     return 0;
+}
+
+- (void)sectionCellTouch:(SASectionCell*)section {
+ 
+    _SALocation *location = [self locationByName:section.label.text];
+    if (location) {
+        short bit = [self bitFlagCollapse];
+        if ((location.collapsed & bit) > 0) {
+            location.collapsed ^= bit;
+        } else {
+            location.collapsed |= bit;
+        }
+        
+        [SAApp.DB saveContext];
+        [self onDataChanged];
+    }
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -320,15 +369,25 @@
 {
     SASectionCell *cell = [tableView dequeueReusableCellWithIdentifier:@"SectionCell"];
     if ( cell ) {
-        [cell.label setText:[[[[self frcForTableView:tableView] sections] objectAtIndex:section] name]];
+        NSString *name = [[[[self frcForTableView:tableView] sections] objectAtIndex:section] name];
+        _SALocation *location = [self locationByName:name];
+        cell.ivCollapsed.hidden = location == nil || (location.collapsed & [self bitFlagCollapse]) == 0;
+        [cell.label setText:name];
+        cell.delegate = self;
     }
-    
     return cell;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
     return 50;
+}
+
+- (void)groupTableHidden:(BOOL)hidden {
+    self.cTableView.hidden = !hidden;
+    self.gTableView.hidden = hidden;
+    
+    [self onDataChanged];
 }
 
 - (IBAction)settingsTouched:(id)sender {
@@ -357,11 +416,11 @@
 }
 
 -(void) onRestApiTaskStarted: (SARestApiClientTask*)task {
-    NSLog(@"onRestApiTaskStarted");
+    // NSLog(@"onRestApiTaskStarted");
 }
 
 -(void) onRestApiTaskFinished: (SARestApiClientTask*)task {
-    NSLog(@"onRestApiTaskFinished");
+    // NSLog(@"onRestApiTaskFinished");
     if (_task != nil && task == _task) {
         if (_task.channelsUpdated) {
             [self onDataChanged];
@@ -409,7 +468,6 @@
    _animating = NO;
    _panRecognizer = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(handlePan:)];
     [self addGestureRecognizer:_panRecognizer];
-    
 }
 
 -(SADetailView*)detailView {
@@ -638,11 +696,8 @@
         }
         
     }
-    
 
-    
 }
-
 
 - (void)handlePan:(UIPanGestureRecognizer *)gr {
     
@@ -724,5 +779,18 @@
     [self setCenter:CGPointMake(self.center.x+x_offset, self.center.y)];
 }
 
+- (void)handleTap:(UITapGestureRecognizer *)gr {
+    if ( _animating )
+           return;
+    
+    UITableView *tableView = self.cTableView.hidden ? self.gTableView : self.cTableView;
+    CGPoint touch_point = [gr locationInView:tableView];
+    NSIndexPath *path = [tableView indexPathForRowAtPoint:touch_point];
+    
+    SASectionCell *section = [tableView cellForRowAtIndexPath:path];
+    if ([section isKindOfClass:[SASectionCell class]]) {
+        
+    }
+}
 
 @end

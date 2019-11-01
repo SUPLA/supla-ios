@@ -19,7 +19,7 @@
 
 #import "SuplaApp.h"
 #import "Database.h"
-
+#import "NSData+AES.h"
 
 static SAApp* _Globals = nil;
 
@@ -80,25 +80,39 @@ NSString *kSAOAuthTokenRequestResult = @"KSA-N13";
     return _Globals;
 }
 
-+(void) getRandomKey:(char*)key keySize:(int)size forPrefKey:(NSString*)pref_key {
+-(void) encryptData:(NSData *)data andSaveWithPrefKey:(NSString *)pref_key {
+    @synchronized(self) {
+        NSData *encryptedData = [data aes128EncryptWithDeviceUniqueId];
+        NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
+        [ud setValue:(encryptedData != nil ? encryptedData : data) forKey:pref_key];
+        [ud setBool:(encryptedData != nil) forKey:[NSString stringWithFormat:@"%@_encrypted", pref_key]];
+    }
+}
+
+-(void) getRandom:(char*)key size:(int)size forPrefKey:(NSString*)pref_key {
     
     @synchronized(self) {
+        NSData *data = [[NSUserDefaults standardUserDefaults] dataForKey:pref_key];
+                
+        if ([[NSUserDefaults standardUserDefaults] boolForKey:[NSString stringWithFormat:@"%@_encrypted", pref_key]]) {
+            data = [data aes128DecryptWithDeviceUniqueId];
+        } else {
+            [self encryptData:data andSaveWithPrefKey:pref_key];
+        }
         
-        NSData *KEY = [[NSUserDefaults standardUserDefaults] dataForKey:pref_key];
-        if ( KEY == nil || [KEY length] != size ) {
-            
-            NSMutableData* newKEY = [NSMutableData dataWithCapacity:size];
+        if ( data == nil || [data length] != size ) {
+            NSMutableData* newRandomData = [NSMutableData dataWithCapacity:size];
             for( int i = 0 ; i < size; ++i ) {
                 Byte random = arc4random();
-                [newKEY appendBytes:(void*)&random length:1];
+                [newRandomData appendBytes:(void*)&random length:1];
             }
             
-            [[NSUserDefaults standardUserDefaults] setValue:newKEY forKey:pref_key];
-            KEY = newKEY;
+            [self encryptData:newRandomData andSaveWithPrefKey:pref_key];
+            data = newRandomData;
         };
         
-        if ( KEY && [KEY length] == size ) {
-            [KEY getBytes:key length:size];
+        if ( data && [data length] == size ) {
+            [data getBytes:key length:size];
         } else {
             memset(key, 0, size);
         }
@@ -108,12 +122,11 @@ NSString *kSAOAuthTokenRequestResult = @"KSA-N13";
 }
 
 +(void) getClientGUID:(char[SUPLA_GUID_SIZE])guid {
-    // TODO: Implement guid encryption with password based on device id
-    [SAApp getRandomKey:guid keySize:SUPLA_GUID_SIZE forPrefKey:@"client_guid"];
+    [[self instance] getRandom:guid size:SUPLA_GUID_SIZE forPrefKey:@"client_guid"];
 }
 
 +(void) getAuthKey:(char [SUPLA_AUTHKEY_SIZE])auth_key {
-    [SAApp getRandomKey:auth_key keySize:SUPLA_AUTHKEY_SIZE forPrefKey:@"auth_key"];
+    [[self instance] getRandom:auth_key size:SUPLA_AUTHKEY_SIZE forPrefKey:@"auth_key"];
 }
 
 -(int) getCfgVersion {

@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		012023C2234E54ED00E131B7 /* ImpulseCounterDetailView.m in Sources */ = {isa = PBXBuildFile; fileRef = 012023C1234E54ED00E131B7 /* ImpulseCounterDetailView.m */; };
+		012119152368C3B2004C1993 /* collapsed@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 012119142368C3B2004C1993 /* collapsed@3x.png */; };
 		0122613922F396440013E6A2 /* SAThermostatCalendar.m in Sources */ = {isa = PBXBuildFile; fileRef = 0122613822F396440013E6A2 /* SAThermostatCalendar.m */; };
 		012F722C22DF3E2300E5F72E /* ChartFilterFieldTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 012F722822DF3CF000E5F72E /* ChartFilterFieldTests.m */; };
 		012F722E22DFA0BE00E5F72E /* SABarChartDataSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 012F722D22DFA0BE00E5F72E /* SABarChartDataSet.swift */; };
@@ -88,6 +89,8 @@
 		01EE9BB022BA4B050029A142 /* SAChannelExtendedValue+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 01EE9BAF22BA4B050029A142 /* SAChannelExtendedValue+CoreDataProperties.m */; };
 		01EE9BBB22BA50D90029A142 /* SAChannelValueBase+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 01EE9BB722BA50D90029A142 /* SAChannelValueBase+CoreDataClass.m */; };
 		01EE9BBC22BA50D90029A142 /* SAChannelValueBase+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 01EE9BB822BA50D90029A142 /* SAChannelValueBase+CoreDataProperties.m */; };
+		01EFD94A236CA94400893489 /* NSData+AES.m in Sources */ = {isa = PBXBuildFile; fileRef = 01EFD949236CA94400893489 /* NSData+AES.m */; };
+		01EFD94C236CA9AE00893489 /* NSDataEncryptionTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 01EFD94B236CA9AE00893489 /* NSDataEncryptionTest.m */; };
 		01F8856922E5E79100D18373 /* SATempHumidityMeasurementItem+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 01F8855C22E5E79000D18373 /* SATempHumidityMeasurementItem+CoreDataClass.m */; };
 		01F8856A22E5E79100D18373 /* SATempHumidityMeasurementItem+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 01F8856322E5E79100D18373 /* SATempHumidityMeasurementItem+CoreDataProperties.m */; };
 		01F8856B22E5E79100D18373 /* SAThermostatMeasurementItem+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 01F8855522E5E79000D18373 /* SAThermostatMeasurementItem+CoreDataProperties.m */; };
@@ -363,6 +366,8 @@
 /* Begin PBXFileReference section */
 		012023C0234E54ED00E131B7 /* ImpulseCounterDetailView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ImpulseCounterDetailView.h; sourceTree = "<group>"; };
 		012023C1234E54ED00E131B7 /* ImpulseCounterDetailView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ImpulseCounterDetailView.m; sourceTree = "<group>"; };
+		012119132368BDB0004C1993 /* SUPLA 5.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "SUPLA 5.xcdatamodel"; sourceTree = "<group>"; };
+		012119142368C3B2004C1993 /* collapsed@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "collapsed@3x.png"; path = "Resources/Assets/Img/collapsed@3x.png"; sourceTree = "<group>"; };
 		0122613722F396440013E6A2 /* SAThermostatCalendar.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SAThermostatCalendar.h; sourceTree = "<group>"; };
 		0122613822F396440013E6A2 /* SAThermostatCalendar.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SAThermostatCalendar.m; sourceTree = "<group>"; };
 		012F722822DF3CF000E5F72E /* ChartFilterFieldTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChartFilterFieldTests.m; sourceTree = "<group>"; };
@@ -588,6 +593,9 @@
 		01EE9BB622BA50D90029A142 /* SAChannelValueBase+CoreDataClass.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SAChannelValueBase+CoreDataClass.h"; sourceTree = "<group>"; };
 		01EE9BB722BA50D90029A142 /* SAChannelValueBase+CoreDataClass.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "SAChannelValueBase+CoreDataClass.m"; sourceTree = "<group>"; };
 		01EE9BB822BA50D90029A142 /* SAChannelValueBase+CoreDataProperties.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "SAChannelValueBase+CoreDataProperties.m"; sourceTree = "<group>"; };
+		01EFD948236CA94400893489 /* NSData+AES.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSData+AES.h"; sourceTree = "<group>"; };
+		01EFD949236CA94400893489 /* NSData+AES.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSData+AES.m"; sourceTree = "<group>"; };
+		01EFD94B236CA9AE00893489 /* NSDataEncryptionTest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSDataEncryptionTest.m; sourceTree = "<group>"; };
 		01F8855522E5E79000D18373 /* SAThermostatMeasurementItem+CoreDataProperties.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "SAThermostatMeasurementItem+CoreDataProperties.m"; sourceTree = "<group>"; };
 		01F8855622E5E79000D18373 /* SAImpulseCounterMeasurementItem+CoreDataClass.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "SAImpulseCounterMeasurementItem+CoreDataClass.m"; sourceTree = "<group>"; };
 		01F8855722E5E79000D18373 /* SAImpulseCounterMeasurementItem+CoreDataProperties.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SAImpulseCounterMeasurementItem+CoreDataProperties.h"; sourceTree = "<group>"; };
@@ -995,6 +1003,36 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		012119122368B597004C1993 /* xib */ = {
+			isa = PBXGroup;
+			children = (
+				01C8EBCF23422AC50072AB8C /* HomePlusDetailViewGroupCell.xib */,
+				40CE7C6D1DCBBF6D00BBACE4 /* DistanceCell.xib */,
+				017A3C8823633A70004AD1FC /* TempHumidityDetailView.xib */,
+				01902A29235A1840005ED935 /* TemperatureDetailView.xib */,
+				407D4AFE1BC6E491009A5505 /* StatusVC.xib */,
+				40BE3E611BCA7AEF00153680 /* ChannelCell.xib */,
+				406778541BCBF9F4008DD37F /* SectionCell.xib */,
+				40DE1A3A1BCD5E9B004CF43B /* AboutVC.xib */,
+				4038A5531CE32B6800180B5D /* TempHumidityCell.xib */,
+				40DB208F1DC9049400FAFAB0 /* RGBDetail.xib */,
+				019F4CAE2354DC3300286139 /* ImpulseCounterDetailView.xib */,
+				01D0617322C296850043C947 /* ElectricityMeterDetailView.xib */,
+				01C8EBFC234232EC0072AB8C /* HomePlusDetailView.xib */,
+				40CE7C631DCBBCE400BBACE4 /* MeasurementCell.xib */,
+				40F951471FD0654900698587 /* RSDetail.xib */,
+				407D31961FD1A7070062FB80 /* AddWizardVC.xib */,
+				4077ACE220A21BB100BD2216 /* CreateAccountVC.xib */,
+				01F9111022EF989100BFF91D /* HomePlusCell.xib */,
+				40844D811FB0DDB000432AA0 /* SettingsVC.xib */,
+				401CA1EE1BA0923600117AF4 /* MainVC.xib */,
+				408034E41BC84A89007666E7 /* NavigationController.xib */,
+				01D4293922AAAA450050C1A2 /* IncrementalMeterCell.xib */,
+				406778281BCBBC83008DD37F /* ThermometerCell.xib */,
+			);
+			name = xib;
+			sourceTree = "<group>";
+		};
 		013D1C5A22CE4751000C0784 /* charts */ = {
 			isa = PBXGroup;
 			children = (
@@ -1107,6 +1145,8 @@
 				40A675851BA1BEBF004A51C4 /* UI */,
 				40A6757D1BA1A5B6004A51C4 /* SuplaApp.h */,
 				40A6757E1BA1A5B6004A51C4 /* SuplaApp.m */,
+				01EFD948236CA94400893489 /* NSData+AES.h */,
+				01EFD949236CA94400893489 /* NSData+AES.m */,
 				401CA1C01BA067DB00117AF4 /* AppDelegate.h */,
 				401CA1C11BA067DB00117AF4 /* AppDelegate.m */,
 				401CA1CC1BA067DB00117AF4 /* Images.xcassets */,
@@ -1135,6 +1175,7 @@
 		401CA1D81BA067DB00117AF4 /* SUPLATests */ = {
 			isa = PBXGroup;
 			children = (
+				01EFD94B236CA9AE00893489 /* NSDataEncryptionTest.m */,
 				012F722822DF3CF000E5F72E /* ChartFilterFieldTests.m */,
 				401CA1DB1BA067DB00117AF4 /* SUPLATests.m */,
 				401CA1D91BA067DB00117AF4 /* Supporting Files */,
@@ -1184,6 +1225,7 @@
 		405AC4011BC15878004F7311 /* Img */ = {
 			isa = PBXGroup;
 			children = (
+				012119142368C3B2004C1993 /* collapsed@3x.png */,
 				017A3CA523635C22004AD1FC /* weight@2x.png */,
 				017A3CA623635C22004AD1FC /* weight@3x.png */,
 				017A3CAD23635DF7004AD1FC /* pressure@2x.png */,
@@ -1497,7 +1539,7 @@
 		40A675851BA1BEBF004A51C4 /* UI */ = {
 			isa = PBXGroup;
 			children = (
-				40844D811FB0DDB000432AA0 /* SettingsVC.xib */,
+				012119122368B597004C1993 /* xib */,
 				40C9E4FB1F2B841400753796 /* SAColorListPicker.h */,
 				40C9E4FC1F2B841400753796 /* SAColorListPicker.m */,
 				40C9E4F51F2A186A00753796 /* SARollerShutter.h */,
@@ -1507,33 +1549,23 @@
 				4031ACFA1BBC0FFB00CF9D8B /* MGSwipe */,
 				40A675801BA1BE8E004A51C4 /* SettingsVC.h */,
 				40A675811BA1BE8E004A51C4 /* SettingsVC.m */,
-				401CA1EE1BA0923600117AF4 /* MainVC.xib */,
 				401CA1C61BA067DB00117AF4 /* MainVC.h */,
 				401CA1C71BA067DB00117AF4 /* MainVC.m */,
 				4017E1291BB9CE2900570AC8 /* ChannelCell.h */,
 				4017E12A1BB9CE2900570AC8 /* ChannelCell.m */,
 				407D4AFC1BC6E491009A5505 /* StatusVC.h */,
 				407D4AFD1BC6E491009A5505 /* StatusVC.m */,
-				407D4AFE1BC6E491009A5505 /* StatusVC.xib */,
 				40CF96DC1BC820E60030EFFF /* UIHelper.h */,
 				40CF96DD1BC820E60030EFFF /* UIHelper.m */,
 				408034E21BC84A89007666E7 /* NavigationController.h */,
 				408034E31BC84A89007666E7 /* NavigationController.m */,
-				408034E41BC84A89007666E7 /* NavigationController.xib */,
-				40BE3E611BCA7AEF00153680 /* ChannelCell.xib */,
-				01D4293922AAAA450050C1A2 /* IncrementalMeterCell.xib */,
-				406778281BCBBC83008DD37F /* ThermometerCell.xib */,
 				406778521BCBF9F4008DD37F /* SectionCell.h */,
 				406778531BCBF9F4008DD37F /* SectionCell.m */,
-				406778541BCBF9F4008DD37F /* SectionCell.xib */,
 				40DE1A331BCD1B55004CF43B /* AboutVC.h */,
 				40DE1A341BCD1B55004CF43B /* AboutVC.m */,
-				40DE1A3A1BCD5E9B004CF43B /* AboutVC.xib */,
 				40B397CE1BCE7F3200BE7D5A /* Launch Screen.storyboard */,
-				4038A5531CE32B6800180B5D /* TempHumidityCell.xib */,
 				4006E9081DC62D0A00C4456D /* DetailView.h */,
 				4006E9091DC62D0A00C4456D /* DetailView.m */,
-				40DB208F1DC9049400FAFAB0 /* RGBDetail.xib */,
 				403150F91DC769430075D2D2 /* RGBDetailView.h */,
 				01D0616C22C294D90043C947 /* ElectricityMeterDetailView.h */,
 				012023C0234E54ED00E131B7 /* ImpulseCounterDetailView.h */,
@@ -1541,30 +1573,19 @@
 				01392B38235CA8B1003A2BAD /* ChartDetailView.h */,
 				01392B39235CA8B1003A2BAD /* ChartDetailView.m */,
 				01902A23235A17E9005ED935 /* TemperatureDetailView.h */,
-				017A3C8823633A70004AD1FC /* TempHumidityDetailView.xib */,
-				01902A29235A1840005ED935 /* TemperatureDetailView.xib */,
 				01902A24235A17E9005ED935 /* TemperatureDetailView.m */,
 				01902A26235A180F005ED935 /* TempHumidityDetailView.h */,
 				01902A27235A180F005ED935 /* TempHumidityDetailView.m */,
-				019F4CAE2354DC3300286139 /* ImpulseCounterDetailView.xib */,
 				01D0616D22C294D90043C947 /* ElectricityMeterDetailView.m */,
-				01D0617322C296850043C947 /* ElectricityMeterDetailView.xib */,
-				01C8EBFC234232EC0072AB8C /* HomePlusDetailView.xib */,
 				403150FA1DC769430075D2D2 /* RGBDetailView.m */,
-				40CE7C631DCBBCE400BBACE4 /* MeasurementCell.xib */,
-				40CE7C6D1DCBBF6D00BBACE4 /* DistanceCell.xib */,
 				409934B41F30EF9C003110C5 /* RSDetailView.h */,
 				409934B51F30EF9C003110C5 /* RSDetailView.m */,
-				40F951471FD0654900698587 /* RSDetail.xib */,
 				403EB1111FBDF47F00AD6460 /* AddWizardVC.h */,
 				403EB1121FBDF47F00AD6460 /* AddWizardVC.m */,
-				407D31961FD1A7070062FB80 /* AddWizardVC.xib */,
 				4077ACE020A21BB100BD2216 /* CreateAccountVC.h */,
 				4077ACE120A21BB100BD2216 /* CreateAccountVC.m */,
-				4077ACE220A21BB100BD2216 /* CreateAccountVC.xib */,
 				40B610CA20C7E263002B762A /* SAUIChannelStatus.h */,
 				40B610CB20C7E263002B762A /* SAUIChannelStatus.m */,
-				01F9111022EF989100BFF91D /* HomePlusCell.xib */,
 				017554F422F1A62500EB58B7 /* HomePlusDetailView.h */,
 				017554F522F1A62500EB58B7 /* HomePlusDetailView.m */,
 				0122613722F396440013E6A2 /* SAThermostatCalendar.h */,
@@ -1573,7 +1594,6 @@
 				0122613822F396440013E6A2 /* SAThermostatCalendar.m */,
 				019D22EE233CC2D000F17135 /* SAPreloader.h */,
 				019D22EF233CC2D000F17135 /* SAPreloader.m */,
-				01C8EBCF23422AC50072AB8C /* HomePlusDetailViewGroupCell.xib */,
 			);
 			name = UI;
 			sourceTree = "<group>";
@@ -1707,6 +1727,7 @@
 				4052DA0D1DC515AE000B8C45 /* rgb-off@2x.png in Resources */,
 				40CE7C6B1DCBBD5700BBACE4 /* depth@2x.png in Resources */,
 				40DE1A2D1BCCFF8A004CF43B /* settings@2x.png in Resources */,
+				012119152368C3B2004C1993 /* collapsed@3x.png in Resources */,
 				405AC4341BC15C08004F7311 /* logo-supla@2x.png in Resources */,
 				405C49A11FCAFFD400C15602 /* wizard_ok@2x.png in Resources */,
 				017A3C8623633A70004AD1FC /* TempHumidityDetailView.xib in Resources */,
@@ -2025,6 +2046,7 @@
 				019D22F0233CC2D000F17135 /* SAPreloader.m in Sources */,
 				40DE1A361BCD1B55004CF43B /* AboutVC.m in Sources */,
 				4017E12C1BB9CE2900570AC8 /* ChannelCell.m in Sources */,
+				01EFD94A236CA94400893489 /* NSData+AES.m in Sources */,
 				01C1719222C7F3A2005983E1 /* SAElectricityMeasurementItem+CoreDataProperties.m in Sources */,
 				40AB8BDE1DCB32EB0030F3DE /* SARateApp.m in Sources */,
 				01C1719122C7F3A2005983E1 /* SAElectricityMeasurementItem+CoreDataClass.m in Sources */,
@@ -2120,6 +2142,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				401CA1DC1BA067DB00117AF4 /* SUPLATests.m in Sources */,
+				01EFD94C236CA9AE00893489 /* NSDataEncryptionTest.m in Sources */,
 				012F722C22DF3E2300E5F72E /* ChartFilterFieldTests.m in Sources */,
 				0130894523395F4C00F46FCD /* ThermostatScheduleCfgTests.m in Sources */,
 				012FCBD323217DE000AC6FF6 /* ThermostatCalendarTests.m in Sources */,
@@ -2504,7 +2527,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/SUPLA/lib",
 				);
-				MARKETING_VERSION = 2.3.0;
+				MARKETING_VERSION = 2.3.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.acsoftware.ios.supla;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "SUPLA/SUPLA-Bridging-Header.h";
@@ -2531,7 +2554,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/SUPLA/lib",
 				);
-				MARKETING_VERSION = 2.3.0;
+				MARKETING_VERSION = 2.3.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.acsoftware.ios.supla;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "SUPLA/SUPLA-Bridging-Header.h";
@@ -2615,12 +2638,13 @@
 		407004251BB5706500F6187F /* SUPLA.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				012119132368BDB0004C1993 /* SUPLA 5.xcdatamodel */,
 				01CFF6D12365BCCD00C827FB /* SUPLA 4.xcdatamodel */,
 				01B216CF22AECB2F004E0596 /* SUPLA 3.xcdatamodel */,
 				40BBA34620AC52EA0054CD20 /* SUPLA 2.xcdatamodel */,
 				407004261BB5706500F6187F /* SUPLA.xcdatamodel */,
 			);
-			currentVersion = 01CFF6D12365BCCD00C827FB /* SUPLA 4.xcdatamodel */;
+			currentVersion = 012119132368BDB0004C1993 /* SUPLA 5.xcdatamodel */;
 			path = SUPLA.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
