@@ -30,7 +30,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     
     key = [key substringToIndex:32];
     
-    size_t bufferSize = [self length] + kCCBlockSizeAES128 * 2;
+    size_t bufferSize = [self length] + kCCBlockSizeAES128;
     void *buffer = malloc(bufferSize);
     
     NSData *_key = [key dataUsingEncoding:NSUTF8StringEncoding];
