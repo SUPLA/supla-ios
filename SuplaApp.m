@@ -82,9 +82,10 @@ NSString *kSAOAuthTokenRequestResult = @"KSA-N13";
 
 -(void) encryptData:(NSData *)data andSaveWithPrefKey:(NSString *)pref_key {
     @synchronized(self) {
-        data = [data aes128EncryptWithDeviceUniqueId];
-        [[NSUserDefaults standardUserDefaults] setValue:data forKey:pref_key];
-        [[NSUserDefaults standardUserDefaults] setBool:true forKey:[NSString stringWithFormat:@"%@_encrypted", pref_key]];
+        NSData *encryptedData = [data aes128EncryptWithDeviceUniqueId];
+        NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
+        [ud setValue:(encryptedData != nil ? encryptedData : data) forKey:pref_key];
+        [ud setBool:(encryptedData != nil) forKey:[NSString stringWithFormat:@"%@_encrypted", pref_key]];
     }
 }
 
