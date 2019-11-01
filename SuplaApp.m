@@ -80,25 +80,25 @@ NSString *kSAOAuthTokenRequestResult = @"KSA-N13";
     return _Globals;
 }
 
-+(void) getRandomKey:(char*)key keySize:(int)size forPrefKey:(NSString*)pref_key {
++(void) getRandom:(char*)key size:(int)size forPrefKey:(NSString*)pref_key {
     
     @synchronized(self) {
-        
-        NSData *KEY = [[NSUserDefaults standardUserDefaults] dataForKey:pref_key];
-        if ( KEY == nil || [KEY length] != size ) {
+        NSData *randomData = [[NSUserDefaults standardUserDefaults] dataForKey:pref_key];
+                
+        if ( randomData == nil || [randomData length] != size ) {
             
-            NSMutableData* newKEY = [NSMutableData dataWithCapacity:size];
+            NSMutableData* newRandomData = [NSMutableData dataWithCapacity:size];
             for( int i = 0 ; i < size; ++i ) {
                 Byte random = arc4random();
-                [newKEY appendBytes:(void*)&random length:1];
+                [newRandomData appendBytes:(void*)&random length:1];
             }
             
-            [[NSUserDefaults standardUserDefaults] setValue:newKEY forKey:pref_key];
-            KEY = newKEY;
+            [[NSUserDefaults standardUserDefaults] setValue:newRandomData forKey:pref_key];
+            randomData = newRandomData;
         };
         
-        if ( KEY && [KEY length] == size ) {
-            [KEY getBytes:key length:size];
+        if ( randomData && [randomData length] == size ) {
+            [randomData getBytes:key length:size];
         } else {
             memset(key, 0, size);
         }
@@ -109,11 +109,11 @@ NSString *kSAOAuthTokenRequestResult = @"KSA-N13";
 
 +(void) getClientGUID:(char[SUPLA_GUID_SIZE])guid {
     // TODO: Implement guid encryption with password based on device id
-    [SAApp getRandomKey:guid keySize:SUPLA_GUID_SIZE forPrefKey:@"client_guid"];
+    [SAApp getRandom:guid size:SUPLA_GUID_SIZE forPrefKey:@"client_guid"];
 }
 
 +(void) getAuthKey:(char [SUPLA_AUTHKEY_SIZE])auth_key {
-    [SAApp getRandomKey:auth_key keySize:SUPLA_AUTHKEY_SIZE forPrefKey:@"auth_key"];
+    [SAApp getRandom:auth_key size:SUPLA_AUTHKEY_SIZE forPrefKey:@"auth_key"];
 }
 
 -(int) getCfgVersion {
