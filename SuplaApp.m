@@ -96,6 +96,7 @@ NSString *kSAOAuthTokenRequestResult = @"KSA-N13";
             if ([[NSUserDefaults standardUserDefaults]
                  boolForKey:[NSString stringWithFormat:@"%@_keychain", pref_key]]) {
                 // Something goes wrong
+                // Maybe beacuse of kSecAttrAccessibleAfterFirstUnlockThisDeviceOnly
                 return false;
             }
             
