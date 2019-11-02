@@ -26,6 +26,8 @@
 		013D73B022DD105400E3515A /* SAChartFilterField.m in Sources */ = {isa = PBXBuildFile; fileRef = 013D73AF22DD105400E3515A /* SAChartFilterField.m */; };
 		01567446232FCFD700397393 /* SAIncrementalMeterExtendedValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 01567445232FCFD700397393 /* SAIncrementalMeterExtendedValue.m */; };
 		01567449232FD0A100397393 /* SAImpulseCounterExtendedValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 01567448232FD0A100397393 /* SAImpulseCounterExtendedValue.m */; };
+		016ABE16236D8363001BF5FB /* SAKeychain.m in Sources */ = {isa = PBXBuildFile; fileRef = 016ABE15236D8363001BF5FB /* SAKeychain.m */; };
+		016ABE18236DA795001BF5FB /* KeychainTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 016ABE17236DA795001BF5FB /* KeychainTests.m */; };
 		016EE77423074DDC00FD301C /* production@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 016EE77223074DDC00FD301C /* production@3x.png */; };
 		016EE77523074DDC00FD301C /* consumption@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 016EE77323074DDC00FD301C /* consumption@3x.png */; };
 		0172677D234FAF78000F1CFB /* SADownloadImpulseCounterMeasurements.m in Sources */ = {isa = PBXBuildFile; fileRef = 0172677C234FAF78000F1CFB /* SADownloadImpulseCounterMeasurements.m */; };
@@ -396,6 +398,9 @@
 		01567445232FCFD700397393 /* SAIncrementalMeterExtendedValue.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SAIncrementalMeterExtendedValue.m; sourceTree = "<group>"; };
 		01567447232FD0A100397393 /* SAImpulseCounterExtendedValue.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SAImpulseCounterExtendedValue.h; sourceTree = "<group>"; };
 		01567448232FD0A100397393 /* SAImpulseCounterExtendedValue.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SAImpulseCounterExtendedValue.m; sourceTree = "<group>"; };
+		016ABE14236D8363001BF5FB /* SAKeychain.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SAKeychain.h; sourceTree = "<group>"; };
+		016ABE15236D8363001BF5FB /* SAKeychain.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SAKeychain.m; sourceTree = "<group>"; };
+		016ABE17236DA795001BF5FB /* KeychainTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KeychainTests.m; sourceTree = "<group>"; };
 		016EE77223074DDC00FD301C /* production@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "production@3x.png"; path = "Resources/Assets/Img/production@3x.png"; sourceTree = "<group>"; };
 		016EE77323074DDC00FD301C /* consumption@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "consumption@3x.png"; path = "Resources/Assets/Img/consumption@3x.png"; sourceTree = "<group>"; };
 		0172677B234FAF78000F1CFB /* SADownloadImpulseCounterMeasurements.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SADownloadImpulseCounterMeasurements.h; sourceTree = "<group>"; };
@@ -1159,6 +1164,8 @@
 				404E48F61FC75D0B001F6266 /* SAClassHelper.h */,
 				013D350223350C48006E3B75 /* SAThermostatScheduleCfg.h */,
 				013D350323350C48006E3B75 /* SAThermostatScheduleCfg.m */,
+				016ABE14236D8363001BF5FB /* SAKeychain.h */,
+				016ABE15236D8363001BF5FB /* SAKeychain.m */,
 			);
 			path = SUPLA;
 			sourceTree = "<group>";
@@ -1176,6 +1183,7 @@
 			isa = PBXGroup;
 			children = (
 				01EFD94B236CA9AE00893489 /* NSDataEncryptionTest.m */,
+				016ABE17236DA795001BF5FB /* KeychainTests.m */,
 				012F722822DF3CF000E5F72E /* ChartFilterFieldTests.m */,
 				401CA1DB1BA067DB00117AF4 /* SUPLATests.m */,
 				401CA1D91BA067DB00117AF4 /* Supporting Files */,
@@ -2090,6 +2098,7 @@
 				403EB1141FBDF47F00AD6460 /* AddWizardVC.m in Sources */,
 				013D350423350C48006E3B75 /* SAThermostatScheduleCfg.m in Sources */,
 				408034C41BC83D1A007666E7 /* MGSwipeButton.m in Sources */,
+				016ABE16236D8363001BF5FB /* SAKeychain.m in Sources */,
 				01EE9BB022BA4B050029A142 /* SAChannelExtendedValue+CoreDataProperties.m in Sources */,
 				01BDAC7522C518DE00915646 /* SARestApiClientTask.m in Sources */,
 				401CA1BF1BA067DB00117AF4 /* main.m in Sources */,
@@ -2142,6 +2151,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				401CA1DC1BA067DB00117AF4 /* SUPLATests.m in Sources */,
+				016ABE18236DA795001BF5FB /* KeychainTests.m in Sources */,
 				01EFD94C236CA9AE00893489 /* NSDataEncryptionTest.m in Sources */,
 				012F722C22DF3E2300E5F72E /* ChartFilterFieldTests.m in Sources */,
 				0130894523395F4C00F46FCD /* ThermostatScheduleCfgTests.m in Sources */,

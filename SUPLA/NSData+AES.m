@@ -67,6 +67,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 }
 
 - (NSData *)aes128EncryptWithDeviceUniqueId {
+    // Unfortunately, identifierForVendor is different for AppStore and TestFlight
     NSString *pwd = [[[UIDevice currentDevice] identifierForVendor] UUIDString];
     return [self aes128EncryptWithPassword:pwd];
 }
