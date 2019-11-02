@@ -81,22 +81,29 @@ NSString *kSAOAuthTokenRequestResult = @"KSA-N13";
     return _Globals;
 }
 
--(void) encryptData:(NSData *)data andSaveWithPrefKey:(NSString *)pref_key {
-    @synchronized(self) {
-        NSData *encryptedData = [data aes128EncryptWithDeviceUniqueId];
-        NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
-        [ud setValue:(encryptedData != nil ? encryptedData : data) forKey:pref_key];
-        [ud setBool:(encryptedData != nil) forKey:[NSString stringWithFormat:@"%@_encrypted", pref_key]];
-    }
-}
-
 -(BOOL) getRandom:(char*)key size:(int)size forPrefKey:(NSString*)pref_key {
     
     @synchronized(self) {
-        NSData *data = [[NSUserDefaults standardUserDefaults] dataForKey:pref_key];
-                
-        if (data != nil && data.length > 0) {
-            if ([[NSUserDefaults standardUserDefaults] boolForKey:[NSString stringWithFormat:@"%@_encrypted", pref_key]]) {
+        NSData *data = nil;
+        BOOL keychainStored = NO;
+        
+        data = [SAKeychain getObjectWithKey:pref_key];
+       
+        if (data == nil
+            || ![data isKindOfClass:[NSData class]]
+            || data.length != size) {
+            
+            if ([[NSUserDefaults standardUserDefaults]
+                 boolForKey:[NSString stringWithFormat:@"%@_keychain", pref_key]]) {
+                // Something goes wrong
+                return false;
+            }
+            
+            data = [[NSUserDefaults standardUserDefaults] dataForKey:pref_key];
+                    
+            if (data != nil
+                && data.length > 0
+                && [[NSUserDefaults standardUserDefaults] boolForKey:[NSString stringWithFormat:@"%@_encrypted", pref_key]]) {
                 data = [data aes128DecryptWithDeviceUniqueId];
                 
                 // After the device has been restarted but before
@@ -106,11 +113,12 @@ NSString *kSAOAuthTokenRequestResult = @"KSA-N13";
                 if (data == nil || data.length == 0) {
                     return false;
                 }
-            } else {
-                [self encryptData:data andSaveWithPrefKey:pref_key];
             }
+            
+        } else {
+            keychainStored = YES;
         }
-
+        
         if ( data == nil || data.length != size ) {
             NSMutableData* newRandomData = [NSMutableData dataWithCapacity:size];
             for( int i = 0 ; i < size; ++i ) {
@@ -118,12 +126,20 @@ NSString *kSAOAuthTokenRequestResult = @"KSA-N13";
                 [newRandomData appendBytes:(void*)&random length:1];
             }
             
-            [self encryptData:newRandomData andSaveWithPrefKey:pref_key];
+            keychainStored = NO;
             data = newRandomData;
         };
         
         if ( data && [data length] == size ) {
             [data getBytes:key length:size];
+            
+            if (!keychainStored) {
+                [SAKeychain deleteObjectWithKey:pref_key];
+                if ([SAKeychain addObject:data withKey:pref_key]) {
+                    [[NSUserDefaults standardUserDefaults] setBool:YES forKey:[NSString stringWithFormat:@"%@_keychain", pref_key]];
+                }
+            }
+            
             return true;
         } else {
             memset(key, 0, size);
@@ -132,9 +148,6 @@ NSString *kSAOAuthTokenRequestResult = @"KSA-N13";
     
     return false;
 }
-
-// TODO: Store GUID and AuthKey in the iOS keychain (use SAKeychain). Issue 66
-// TODO: Opt out of encryption using identifierForVendor (aes128EncryptWithDeviceUniqueId)
 
 +(BOOL) getClientGUID:(char[SUPLA_GUID_SIZE])guid {
    return [[self instance] getRandom:guid size:SUPLA_GUID_SIZE forPrefKey:@"client_guid"];
