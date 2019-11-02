@@ -583,6 +583,7 @@ void sasuplaclient_on_oauth_token_request_result(void *_suplaclient, void *user_
 }
 
 - (BOOL) isChannelExcluded:(TSC_SuplaChannel_C *)channel {
+    // For partner applications 
     return NO;
 }
 
