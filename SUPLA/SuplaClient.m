@@ -304,8 +304,15 @@ void sasuplaclient_on_oauth_token_request_result(void *_suplaclient, void *user_
     TSuplaClientCfg scc;
     supla_client_cfginit(&scc);
     
-    [SAApp getClientGUID:scc.clientGUID];
-    [SAApp getAuthKey:scc.AuthKey];
+    if (![SAApp getClientGUID:scc.clientGUID]) {
+        NSLog(@"Can't get client GUID!");
+        return NULL;
+    }
+    
+    if (![SAApp getAuthKey:scc.AuthKey]) {
+        NSLog(@"Can't get AuthKey!");
+        return NULL;
+    }
     
     scc.user_data = (__bridge void *)self;
     scc.host = [self getServerHostName];
@@ -382,37 +389,36 @@ void sasuplaclient_on_oauth_token_request_result(void *_suplaclient, void *user_
                 _sclient = [self client_init];
             }
             
-            if ( _sclient != NULL )
-            @try {
-                
-                if ( supla_client_connect(_sclient) == 1 ) {
-                    
-                    while ( [self isCancelled] == NO
-                           && supla_client_iterate(_sclient, 100000) == 1) {
+            if ( _sclient == NULL ) {
+                NSLog(@"_sclient not initialized!");
+                usleep(2000000);
+            } else {
+                @try {
+                    if ( supla_client_connect(_sclient) == 1 ) {
+                        while ( [self isCancelled] == NO
+                               && supla_client_iterate(_sclient, 100000) == 1) {
+                        }
+                        
+                        if ( [self isCancelled] == NO ) {
+                            usleep(5000000);
+                        }
                     }
                     
                     if ( [self isCancelled] == NO ) {
-                        usleep(5000000);
+                        usleep(2000000);
+                    }
+                }
+                @catch (NSException *exception) {
+                    NSLog(@"%@", exception);
+                }
+                @finally {
+                    @synchronized(self) {
+                        supla_client_free(_sclient);
+                        _sclient = NULL;
                     }
                     
                 }
-                
-                if ( [self isCancelled] == NO ) {
-                    usleep(2000000);
-                }
-                
             }
-            @catch (NSException *exception) {
-                NSLog(@"%@", exception);
-            }
-            @finally {
-                @synchronized(self) {
-                    supla_client_free(_sclient);
-                    _sclient = NULL;
-                }
-                
-            }
-            
         }
     }
     

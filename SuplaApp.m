@@ -20,6 +20,7 @@
 #import "SuplaApp.h"
 #import "Database.h"
 #import "NSData+AES.h"
+#import "SAKeychain.h"
 
 static SAApp* _Globals = nil;
 
@@ -89,18 +90,28 @@ NSString *kSAOAuthTokenRequestResult = @"KSA-N13";
     }
 }
 
--(void) getRandom:(char*)key size:(int)size forPrefKey:(NSString*)pref_key {
+-(BOOL) getRandom:(char*)key size:(int)size forPrefKey:(NSString*)pref_key {
     
     @synchronized(self) {
         NSData *data = [[NSUserDefaults standardUserDefaults] dataForKey:pref_key];
                 
-        if ([[NSUserDefaults standardUserDefaults] boolForKey:[NSString stringWithFormat:@"%@_encrypted", pref_key]]) {
-            data = [data aes128DecryptWithDeviceUniqueId];
-        } else {
-            [self encryptData:data andSaveWithPrefKey:pref_key];
+        if (data != nil && data.length > 0) {
+            if ([[NSUserDefaults standardUserDefaults] boolForKey:[NSString stringWithFormat:@"%@_encrypted", pref_key]]) {
+                data = [data aes128DecryptWithDeviceUniqueId];
+                
+                // After the device has been restarted but before
+                // the user has unlocked the device, dectyption result
+                // can be null beacuse of identifierForVendor.
+                
+                if (data == nil || data.length == 0) {
+                    return false;
+                }
+            } else {
+                [self encryptData:data andSaveWithPrefKey:pref_key];
+            }
         }
-        
-        if ( data == nil || [data length] != size ) {
+
+        if ( data == nil || data.length != size ) {
             NSMutableData* newRandomData = [NSMutableData dataWithCapacity:size];
             for( int i = 0 ; i < size; ++i ) {
                 Byte random = arc4random();
@@ -113,20 +124,24 @@ NSString *kSAOAuthTokenRequestResult = @"KSA-N13";
         
         if ( data && [data length] == size ) {
             [data getBytes:key length:size];
+            return true;
         } else {
             memset(key, 0, size);
         }
-        
     }
     
+    return false;
 }
 
-+(void) getClientGUID:(char[SUPLA_GUID_SIZE])guid {
-    [[self instance] getRandom:guid size:SUPLA_GUID_SIZE forPrefKey:@"client_guid"];
+// TODO: Store GUID and AuthKey in the iOS keychain (use SAKeychain). Issue 66
+// TODO: Opt out of encryption using identifierForVendor (aes128EncryptWithDeviceUniqueId)
+
++(BOOL) getClientGUID:(char[SUPLA_GUID_SIZE])guid {
+   return [[self instance] getRandom:guid size:SUPLA_GUID_SIZE forPrefKey:@"client_guid"];
 }
 
-+(void) getAuthKey:(char [SUPLA_AUTHKEY_SIZE])auth_key {
-    [[self instance] getRandom:auth_key size:SUPLA_AUTHKEY_SIZE forPrefKey:@"auth_key"];
++(BOOL) getAuthKey:(char [SUPLA_AUTHKEY_SIZE])auth_key {
+   return [[self instance] getRandom:auth_key size:SUPLA_AUTHKEY_SIZE forPrefKey:@"auth_key"];
 }
 
 -(int) getCfgVersion {

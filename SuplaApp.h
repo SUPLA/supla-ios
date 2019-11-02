@@ -32,8 +32,8 @@
 @interface SAApp : NSObject
 
 +(SAApp*)instance;
-+(void) getClientGUID:(char[SUPLA_GUID_SIZE])guid;
-+(void) getAuthKey:(char[SUPLA_AUTHKEY_SIZE])auth_key;
++(BOOL) getClientGUID:(char[SUPLA_GUID_SIZE])guid;
++(BOOL) getAuthKey:(char[SUPLA_AUTHKEY_SIZE])auth_key;
 +(int) getAccessID;
 +(void) setAccessID:(int)aid;
 +(NSString*) getAccessIDpwd;
