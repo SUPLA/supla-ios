@@ -129,7 +129,7 @@ NSString *kSAOAuthTokenRequestResult = @"KSA-N13";
             
             keychainStored = NO;
             data = newRandomData;
-        };
+        }
         
         if ( data && [data length] == size ) {
             [data getBytes:key length:size];

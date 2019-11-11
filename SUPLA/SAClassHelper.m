@@ -21,7 +21,12 @@
 @implementation NSDictionary (SUPLA)
 
 -(NSString *)urlEncode:(id)obj {
-    return [[NSString stringWithFormat:@"%@", obj] stringByAddingPercentEscapesUsingEncoding: NSUTF8StringEncoding];
+    NSMutableCharacterSet *allowed = [NSMutableCharacterSet
+                                      alphanumericCharacterSet];
+    [allowed addCharactersInString:@"-._*"];
+    
+    return [[NSString stringWithFormat:@"%@", obj]
+            stringByAddingPercentEncodingWithAllowedCharacters: allowed];
 }
 
 -(NSString*) urlEncodedString {
