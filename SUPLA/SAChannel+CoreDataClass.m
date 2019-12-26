@@ -146,8 +146,9 @@
 
 - (NSString *) unit {
     if ( self.func == SUPLA_CHANNELFNC_ELECTRICITY_METER
-        || self.func == SUPLA_CHANNELFNC_WATER_METER
-        || self.func == SUPLA_CHANNELFNC_GAS_METER ) {
+        || self.func == SUPLA_CHANNELFNC_IC_ELECTRICITY_METER
+        || self.func == SUPLA_CHANNELFNC_IC_WATER_METER
+        || self.func == SUPLA_CHANNELFNC_IC_GAS_METER ) {
         
         NSString *result = nil;
         SAImpulseCounterExtendedValue *icev = nil;
@@ -159,7 +160,8 @@
             }
         }
         
-        if ( self.func == SUPLA_CHANNELFNC_ELECTRICITY_METER ) {
+        if ( self.func == SUPLA_CHANNELFNC_ELECTRICITY_METER
+             || self.func == SUPLA_CHANNELFNC_IC_ELECTRICITY_METER) {
             return @"kWh";
         } else {
             return @"m\u00B3";
@@ -192,13 +194,14 @@
 - (NSAttributedString*) attrStringValueWithIndex:(int)idx font:(nullable UIFont*)font {
   
    if ( self.func == SUPLA_CHANNELFNC_ELECTRICITY_METER
-                || self.func == SUPLA_CHANNELFNC_WATER_METER
-                || self.func == SUPLA_CHANNELFNC_GAS_METER ) {
+        || self.func == SUPLA_CHANNELFNC_IC_ELECTRICITY_METER
+        || self.func == SUPLA_CHANNELFNC_IC_WATER_METER
+        || self.func == SUPLA_CHANNELFNC_IC_GAS_METER ) {
         
         if ( [self isOnline] ) {
             
             double value = 0.0;
-            
+            // TODO: Remove channel type checking in future versions. Check function instead of type. Issue #82
             if ( self.type == SUPLA_CHANNELTYPE_ELECTRICITY_METER ) {
                 value = self.totalForwardActiveEnergy;
             } else {

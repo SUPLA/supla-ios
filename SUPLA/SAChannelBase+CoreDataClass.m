@@ -188,10 +188,11 @@
                 case SUPLA_CHANNELFNC_OPENINGSENSOR_WINDOW:
                     return NSLocalizedString(@"Window opening sensor", nil);
                 case SUPLA_CHANNELFNC_ELECTRICITY_METER:
+                case SUPLA_CHANNELFNC_IC_ELECTRICITY_METER:
                     return NSLocalizedString(@"Electricity Meter", nil);
-                case SUPLA_CHANNELFNC_GAS_METER:
+                case SUPLA_CHANNELFNC_IC_GAS_METER:
                     return NSLocalizedString(@"Gas Meter", nil);
-                case SUPLA_CHANNELFNC_WATER_METER:
+                case SUPLA_CHANNELFNC_IC_WATER_METER:
                     return NSLocalizedString(@"Water Meter", nil);
                 case SUPLA_CHANNELFNC_THERMOSTAT_HEATPOL_HOMEPLUS:
                     return NSLocalizedString(@"Home+ Heater", nil);
@@ -460,12 +461,13 @@
             return [UIImage imageNamed:[self imgIsActive] ? @"mail" : @"nomail"];
             
         case SUPLA_CHANNELFNC_ELECTRICITY_METER:
+        case SUPLA_CHANNELFNC_IC_ELECTRICITY_METER:
             return [UIImage imageNamed:@"electricitymeter"];
             
-        case SUPLA_CHANNELFNC_GAS_METER:
+        case SUPLA_CHANNELFNC_IC_GAS_METER:
             return [UIImage imageNamed:@"gasmeter"];
             
-        case SUPLA_CHANNELFNC_WATER_METER:
+        case SUPLA_CHANNELFNC_IC_WATER_METER:
             return [UIImage imageNamed:@"watermeter"];
         case SUPLA_CHANNELFNC_THERMOSTAT_HEATPOL_HOMEPLUS:
             n2 = @"thermostat_hp_homeplus";

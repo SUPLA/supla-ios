@@ -310,8 +310,9 @@ extern "C" {
 #define SUPLA_CHANNELFNC_WEATHER_STATION 290              // ver. >= 8
 #define SUPLA_CHANNELFNC_STAIRCASETIMER 300               // ver. >= 8
 #define SUPLA_CHANNELFNC_ELECTRICITY_METER 310            // ver. >= 10
-#define SUPLA_CHANNELFNC_GAS_METER 320                    // ver. >= 10
-#define SUPLA_CHANNELFNC_WATER_METER 330                  // ver. >= 10
+#define SUPLA_CHANNELFNC_IC_ELECTRICITY_METER 315         // ver. >= 11
+#define SUPLA_CHANNELFNC_IC_GAS_METER 320                 // ver. >= 10
+#define SUPLA_CHANNELFNC_IC_WATER_METER 330               // ver. >= 10
 #define SUPLA_CHANNELFNC_THERMOSTAT 400                   // ver. >= 11
 #define SUPLA_CHANNELFNC_THERMOSTAT_HEATPOL_HOMEPLUS 410  // ver. >= 11
 
