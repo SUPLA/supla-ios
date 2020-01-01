@@ -346,8 +346,9 @@
                 identifier = @"DistanceCell";
                 break;
             case SUPLA_CHANNELFNC_ELECTRICITY_METER:
-            case SUPLA_CHANNELFNC_GAS_METER:
-            case SUPLA_CHANNELFNC_WATER_METER:
+            case SUPLA_CHANNELFNC_IC_ELECTRICITY_METER:
+            case SUPLA_CHANNELFNC_IC_GAS_METER:
+            case SUPLA_CHANNELFNC_IC_WATER_METER:
                 identifier = @"IncrementalMeterCell";
                 break;
             case SUPLA_CHANNELFNC_THERMOSTAT_HEATPOL_HOMEPLUS:
@@ -487,7 +488,7 @@
         
         if ( [_cell.channelBase isKindOfClass:SAChannel.class]
              && (((SAChannel*)_cell.channelBase).type == SUPLA_CHANNELTYPE_ELECTRICITY_METER)) {
-            
+            // TODO: Remove channel type checking in future versions. Check function instead of type. Issue #82
             if ( _electricityMeterDetailView == nil ) {
                 
                 _electricityMeterDetailView = [[[NSBundle mainBundle] loadNibNamed:@"ElectricityMeterDetailView" owner:self options:nil] objectAtIndex:0];
@@ -497,7 +498,7 @@
             result = _electricityMeterDetailView;
         } else if ( [_cell.channelBase isKindOfClass:SAChannel.class]
              && (((SAChannel*)_cell.channelBase).type == SUPLA_CHANNELTYPE_IMPULSE_COUNTER)) {
-            
+            // TODO: Remove channel type checking in future versions. Check function instead of type. Issue #82
             if ( _impulseCounterDetailView == nil ) {
                 
                 _impulseCounterDetailView = [[[NSBundle mainBundle] loadNibNamed:@"ImpulseCounterDetailView" owner:self options:nil] objectAtIndex:0];

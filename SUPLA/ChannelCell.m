@@ -128,8 +128,9 @@
         case SUPLA_CHANNELFNC_CONTROLLINGTHEGATEWAYLOCK:
         case SUPLA_CHANNELFNC_CONTROLLINGTHEROLLERSHUTTER:
         case SUPLA_CHANNELFNC_ELECTRICITY_METER:
-        case SUPLA_CHANNELFNC_GAS_METER:
-        case SUPLA_CHANNELFNC_WATER_METER:
+        case SUPLA_CHANNELFNC_IC_ELECTRICITY_METER:
+        case SUPLA_CHANNELFNC_IC_GAS_METER:
+        case SUPLA_CHANNELFNC_IC_WATER_METER:
         case SUPLA_CHANNELFNC_RGBLIGHTING:
         case SUPLA_CHANNELFNC_DIMMER:
         case SUPLA_CHANNELFNC_DIMMERANDRGBLIGHTING:
@@ -181,8 +182,9 @@
     } else if ( channelBase.func == SUPLA_CHANNELFNC_DISTANCESENSOR  ) {
         [self.distance setText:[[channelBase attrStringValue] string]];
     } else if ( channelBase.func == SUPLA_CHANNELFNC_ELECTRICITY_METER
-                || channelBase.func == SUPLA_CHANNELFNC_WATER_METER
-                || channelBase.func == SUPLA_CHANNELFNC_GAS_METER ) {
+                || channelBase.func == SUPLA_CHANNELFNC_IC_ELECTRICITY_METER
+                || channelBase.func == SUPLA_CHANNELFNC_IC_WATER_METER
+                || channelBase.func == SUPLA_CHANNELFNC_IC_GAS_METER ) {
         
         [self.measuredValue setText:[[channelBase attrStringValue] string]];
                 
