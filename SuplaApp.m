@@ -253,7 +253,7 @@ NSString *kSAOAuthTokenRequestResult = @"KSA-N13";
 }
 
 +(void) setAccessIDpwd:(NSString *)pwd {
-    
+    pwd = [pwd stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
     @synchronized(self) {
         [[NSUserDefaults standardUserDefaults] setValue:pwd forKey:@"access_id_pwd"];
     }
@@ -277,7 +277,7 @@ NSString *kSAOAuthTokenRequestResult = @"KSA-N13";
 }
 
 -(void) setServerHostName:(NSString *)hostname {
-    
+    hostname = [hostname stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
     @synchronized(self) {
         [[NSUserDefaults standardUserDefaults] setValue:hostname forKey:@"server_host"];
         _current_server = hostname;
@@ -309,7 +309,7 @@ NSString *kSAOAuthTokenRequestResult = @"KSA-N13";
 }
 
 -(void) setEmailAddress:(NSString *)email {
-    
+    email = [email stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
     @synchronized(self) {
         [[NSUserDefaults standardUserDefaults] setValue:email forKey:@"email_address"];
         _current_email = email;
