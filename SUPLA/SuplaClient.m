@@ -270,12 +270,9 @@ void sasuplaclient_on_oauth_token_request_result(void *_suplaclient, void *user_
     
     NSString *host = [SAApp getServerHostName];
     if ( [host isEqualToString:@""] == YES && [SAApp getAdvancedConfig] == NO && ![[SAApp getEmailAddress] isEqualToString:@""] ) {
-        
-        NSString *email = [SAApp getEmailAddress];
-        email = [email stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-        
+                
         NSMutableURLRequest *request =
-        [NSMutableURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"https://autodiscover.supla.org/users/%@", email]] cachePolicy:NSURLRequestReloadIgnoringLocalAndRemoteCacheData timeoutInterval:5];
+        [NSMutableURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"https://autodiscover.supla.org/users/%@", [SAApp getEmailAddress]]] cachePolicy:NSURLRequestReloadIgnoringLocalAndRemoteCacheData timeoutInterval:5];
         
         [request setHTTPMethod: @"GET"];
         
@@ -298,7 +295,6 @@ void sasuplaclient_on_oauth_token_request_result(void *_suplaclient, void *user_
         }
     }
     
-    host = [host stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
     return (char*)[host UTF8String];
 
 }
