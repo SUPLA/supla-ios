@@ -295,6 +295,7 @@ void sasuplaclient_on_oauth_token_request_result(void *_suplaclient, void *user_
         }
     }
     
+    host = [host stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
     return (char*)[host UTF8String];
 
 }
