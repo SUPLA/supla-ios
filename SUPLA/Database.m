@@ -1308,7 +1308,7 @@
 -(NSArray *) iconsToDownload {
     NSMutableArray *i = [[NSMutableArray alloc] init];
     [self userIconsIdsWithEntity:@"SAUserIcon" channelBase:NO idField:@"remote_id" exclude:nil destination:i];
-    
+   
     NSMutableArray *result = [[NSMutableArray alloc] init];
     [self userIconsIdsWithEntity:@"SAChannel" channelBase:NO idField:@"usericon_id" exclude:i destination:result];
     [self userIconsIdsWithEntity:@"SAChannelGroup" channelBase:NO idField:@"usericon_id" exclude:i destination:result];
@@ -1329,20 +1329,25 @@
 }
 
 -(void) deleteAllUserIcons {
-    BOOL del = YES;
-    do {
-        del = NO;
-        NSArray *arr = [self fetchByPredicate:nil entityName:@"SAUserIcon" limit:1000];
-        
-        if (arr && arr.count) {
-            del = YES;
-            for(int a=0;a<arr.count;a++) {
-                [self.managedObjectContext deleteObject:[arr objectAtIndex:a]];
-            }
-            [self saveContext];
-        }
-        
-    } while (del);
+    NSArray *arr = [self fetchByPredicate:nil entityName:@"SAUserIcon" limit:0];
+    int a,b;
     
+    if (arr) {
+        for(a=0;a<arr.count;a++) {
+            [self.managedObjectContext deleteObject:[arr objectAtIndex:a]];
+        }
+    }
+    
+    for(b=0;b<2;b++) {
+        arr = [self fetchByPredicate:[NSPredicate predicateWithFormat:@"usericon != nil"] entityName:b == 0 ? @"SAChannel" : @"SAChannelGroup" limit:0];
+        
+        if (arr) {
+            for(a=0;a<arr.count;a++) {
+                ((SAChannelBase*)[arr objectAtIndex:a]).usericon = nil;
+            }
+        }
+    }
+    
+    [self saveContext];
 }
 @end
