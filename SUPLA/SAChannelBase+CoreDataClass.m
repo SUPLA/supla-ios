@@ -582,7 +582,7 @@
         case SUPLA_CHANNELFNC_DISTANCESENSOR:
             result = @"--- m";
             
-            if ( [self isOnline] && self.doubleValue > -1 ) {
+            if ( [self isOnline] && self.doubleValue >= 0 ) {
                 
                 double value = [self doubleValue];
                 
@@ -604,28 +604,28 @@
             }
             break;
         case SUPLA_CHANNELFNC_WINDSENSOR:
-            if ([self isOnline]) {
+            if ([self isOnline] && [self doubleValue] >= 0) {
                result = [NSString stringWithFormat:@"%0.1f m/s", [self doubleValue]];
             } else {
                result = @"--- m/s";
             }
             break;
         case SUPLA_CHANNELFNC_PRESSURESENSOR:
-            if ([self isOnline]) {
+            if ([self isOnline] && [self doubleValue] >= 0) {
                result = [NSString stringWithFormat:@"%i hPa", (int)[self doubleValue]];
             } else {
                result = @"--- hPa";
             }
             break;
         case SUPLA_CHANNELFNC_RAINSENSOR:
-            if ([self isOnline]) {
+            if ([self isOnline] && [self doubleValue] >= 0) {
                 result = [NSString stringWithFormat:@"%0.2f l/m²", [self doubleValue]/1000.00];
             } else {
                 result = @"--- l/m²";
             }
             break;
         case SUPLA_CHANNELFNC_WEIGHTSENSOR:
-            if ([self isOnline]) {
+            if ([self isOnline] && [self doubleValue] >= 0) {
                 double weight = [self doubleValue];
                 if (fabs(weight) >= 2000) {
                     result = [NSString stringWithFormat:@"%0.2f kg", weight/1000.00];
