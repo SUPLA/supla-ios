@@ -92,11 +92,10 @@ extern char sproto_tag[SUPLA_TAG_SIZE];
 
 #define SUPLA_PROTO_VERSION 12
 #define SUPLA_PROTO_VERSION_MIN 1
-#if defined(__AVR__)
-#define SUPLA_MAX_DATA_SIZE 1024
-#define SUPLA_CHANNELGROUP_RELATION_PACK_MAXCOUNT 25
-#elif defined(ESP8266)
-#define SUPLA_MAX_DATA_SIZE 1536
+#ifdef ARDUINO_ARCH_AVR           // Arduino IDE for Arduino HW
+#define SUPLA_MAX_DATA_SIZE 1248  // Registration header + 32 channels x 21 B
+#elif ARDUINO_ARCH_ESP8266        // Arduino IDE for ESP8266
+#define SUPLA_MAX_DATA_SIZE 3264  // Registration header + 128 channels x 21 B
 #else
 #define SUPLA_MAX_DATA_SIZE 10240
 #endif
@@ -194,6 +193,16 @@ extern char sproto_tag[SUPLA_TAG_SIZE];
 #define SUPLA_DS_CALL_DEVICE_CALCFG_RESULT 470               // ver. >= 10
 #define SUPLA_DCS_CALL_GET_USER_LOCALTIME 480                // ver. >= 11
 #define SUPLA_DCS_CALL_GET_USER_LOCALTIME_RESULT 490         // ver. >= 11
+#define SUPLA_CSD_CALL_GET_CHANNEL_STATE 500                 // ver. >= 12
+#define SUPLA_DSC_CALL_CHANNEL_STATE_RESULT 510              // ver. >= 12
+#define SUPLA_CS_CALL_GET_CHANNEL_BASIC_CFG 520              // ver. >= 12
+#define SUPLA_SC_CALL_CHANNEL_BASIC_CFG_RESULT 530           // ver. >= 12
+#define SUPLA_CS_CALL_SET_CHANNEL_FUNCTION 540               // ver. >= 12
+#define SUPLA_SC_CALL_SET_CHANNEL_FUNCTION_RESULT 550        // ver. >= 12
+#define SUPLA_CS_CALL_CLIENTS_RECONNECT_REQUEST 560          // ver. >= 12
+#define SUPLA_SC_CALL_CLIENTS_RECONNECT_REQUEST_RESULT 570   // ver. >= 12
+#define SUPLA_CS_CALL_SET_REGISTRATION_ENABLED 580           // ver. >= 12
+#define SUPLA_SC_CALL_SET_REGISTRATION_ENABLED_RESULT 590    // ver. >= 12
 
 #define SUPLA_RESULT_CALL_NOT_ALLOWED -5
 #define SUPLA_RESULT_DATA_TOO_LARGE -4
@@ -227,6 +236,9 @@ extern char sproto_tag[SUPLA_TAG_SIZE];
 #define SUPLA_RESULTCODE_USER_CONFLICT 21          // ver. >= 7
 #define SUPLA_RESULTCODE_UNAUTHORIZED 22           // ver. >= 10
 #define SUPLA_RESULTCODE_AUTHORIZED 23             // ver. >= 10
+#define SUPLA_RESULTCODE_NOT_ALLOWED 24            // ver. >= 12
+#define SUPLA_RESULTCODE_CHANNELNOTFOUND 25        // ver. >= 12
+#define SUPLA_RESULTCODE_UNKNOWN_ERROR 26          // ver. >= 12
 
 #define SUPLA_OAUTH_RESULTCODE_ERROR 0         // ver. >= 10
 #define SUPLA_OAUTH_RESULTCODE_SUCCESS 1       // ver. >= 10
@@ -388,6 +400,13 @@ extern char sproto_tag[SUPLA_TAG_SIZE];
 #define SUPLA_CHANNEL_FLAG_CAP_ACTION3 0x0200                     // ver. >= 12
 #define SUPLA_CHANNEL_FLAG_CAP_ACTION4 0x0400                     // ver. >= 12
 #define SUPLA_CHANNEL_FLAG_CAP_ACTION5 0x0800                     // ver. >= 12
+#define SUPLA_CHANNEL_FLAG_CHANNELSTATE 0x00010000                // ver. >= 12
+#define SUPLA_CHANNEL_FLAG_PHASE1_UNSUPPORTED 0x00020000          // ver. >= 12
+#define SUPLA_CHANNEL_FLAG_PHASE2_UNSUPPORTED 0x00040000          // ver. >= 12
+#define SUPLA_CHANNEL_FLAG_PHASE3_UNSUPPORTED 0x00080000          // ver. >= 12
+#define SUPLA_CHANNEL_FLAG_RS_AUTOCALIBRATION 0x00100000          // ver. >= 12
+#define SUPLA_CHANNEL_FLAG_RSA_ENCRYPTED_PIN_REQUIRED 0x00200000  // ver. >= 12
+
 #pragma pack(push, 1)
 
 typedef struct {
@@ -878,6 +897,8 @@ typedef struct {
   char SoftVer[SUPLA_SOFTVER_MAXSIZE];
 
   char ServerName[SUPLA_SERVER_NAME_MAXSIZE];
+
+  unsigned _supla_int_t RegistrationFlags;
 } TCS_SuplaRegisterClient_D;  // ver. >= 12
 
 typedef struct {
@@ -1264,21 +1285,97 @@ typedef struct {
 } TSDC_UserLocalTimeResult;
 
 typedef struct {
-  _supla_int_t ChannelID;
+  _supla_int_t SenderID;  // Filled by server
+  union {
+    _supla_int_t ChannelID;       // Server -> Client
+    unsigned char ChannelNumber;  // Device -> Server
+  };
 } TCS_ChannelStateRequest;  // v. >= 12
 
-#define SUPLA_CHANNELSTATE_FIELD_IPV4 0x1;
+typedef struct {
+  _supla_int_t SenderID;
+  union {
+    _supla_int_t ChannelID;       // Server -> Client
+    unsigned char ChannelNumber;  // Device -> Server
+  };
+} TCSD_ChannelStateRequest;  // v. >= 12 Client -> Server -> Device
+
+#define SUPLA_CHANNELSTATE_FIELD_IPV4 0x0001
+#define SUPLA_CHANNELSTATE_FIELD_MAC 0x0002
+#define SUPLA_CHANNELSTATE_FIELD_BATTERYLEVEL 0x0004
+#define SUPLA_CHANNELSTATE_FIELD_BATTERYPOWERED 0x0008
+#define SUPLA_CHANNELSTATE_FIELD_WIFIRSSI 0x0010
+#define SUPLA_CHANNELSTATE_FIELD_WIFISIGNALSTRENGTH 0x0020
+#define SUPLA_CHANNELSTATE_FIELD_BRIDGESIGNALSTRENGTH 0x0040
+#define SUPLA_CHANNELSTATE_FIELD_UPTIME 0x0080
+#define SUPLA_CHANNELSTATE_FIELD_CONNECTIONUPTIME 0x0100
 
 typedef struct {
+  _supla_int_t ReceiverID;
+  union {
+    _supla_int_t ChannelID;       // Server -> Client
+    unsigned char ChannelNumber;  // Device -> Server
+  };
   _supla_int_t Fields;
   unsigned _supla_int_t IPv4;
-  unsigned char Mac[6];
-  unsigned char BateryLevel;
-  unsigned char WiFiSignalStrength;
-  unsigned char BridgeSignalStrenth;
+  unsigned char MAC[6];
+  unsigned char BatteryLevel;    // 0 - 100%
+  unsigned char BatteryPowered;  // true(1)/false(0)
+  char WiFiRSSI;
+  unsigned char WiFiSignalStrength;        // 0 - 100%
+  unsigned char BridgeSignalStrength;      // 0 - 100%
   unsigned _supla_int_t Uptime;            // sec.
   unsigned _supla_int_t ConnectionUptime;  // sec.
-} TSC_ChannelState;                        // v. >= 12
+} TDSC_ChannelState;  // v. >= 12 Device -> Server -> Client
+
+typedef struct {
+  _supla_int_t ChannelID;
+} TCS_ChannelBasicCfgRequest;
+
+typedef struct {
+  char DeviceName[SUPLA_DEVICE_NAME_MAXSIZE];  // UTF8
+  char DeviceSoftVer[SUPLA_SOFTVER_MAXSIZE];
+  _supla_int_t DeviceID;
+  _supla_int_t DeviceFlags;
+  _supla_int16_t ManufacturerID;
+  _supla_int16_t ProductID;
+
+  _supla_int_t ID;
+  unsigned char Number;
+  _supla_int_t Type;
+  _supla_int_t Func;
+  _supla_int_t FuncList;
+  unsigned _supla_int_t ChannelFlags;
+
+  unsigned _supla_int_t
+      CaptionSize;  // including the terminating null byte ('\0')
+  char Caption[SUPLA_CHANNEL_CAPTION_MAXSIZE];  // Last variable in struct!
+} TSC_ChannelBasicCfg;
+
+typedef struct {
+  _supla_int_t ChannelID;
+  _supla_int_t Func;
+} TCS_SetChannelFunction;
+
+typedef struct {
+  _supla_int_t ChannelID;
+  unsigned char ResultCode;
+} TSC_SetChannelFunctionResult;
+
+typedef struct {
+  unsigned char ResultCode;
+} TSC_ClientsReconnectRequestResult;
+
+typedef struct {
+  // Disabled: 0
+  // Ignore: <0
+  _supla_int_t IODeviceRegistrationTimeSec;
+  _supla_int_t ClientRegistrationTimeSec;
+} TCS_SetRegistrationEnabled;
+
+typedef struct {
+  unsigned char ResultCode;
+} TSC_SetRegistrationEnabledResult;
 
 #pragma pack(pop)
 
