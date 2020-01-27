@@ -53,6 +53,8 @@
         case SUPLA_CHANNELFNC_DIMMERANDRGBLIGHTING:
         case SUPLA_CHANNELFNC_STAIRCASETIMER:
         case SUPLA_CHANNELFNC_THERMOSTAT_HEATPOL_HOMEPLUS:
+        case SUPLA_CHANNELFNC_VALVE_OPENCLOSE:
+        case SUPLA_CHANNELFNC_VALVE_PERCENTAGE:
             break;
         default:
             return;
@@ -80,7 +82,11 @@
         case SUPLA_CHANNELFNC_POWERSWITCH:
         case SUPLA_CHANNELFNC_LIGHTSWITCH:
         case SUPLA_CHANNELFNC_STAIRCASETIMER:
+        case SUPLA_CHANNELFNC_VALVE_OPENCLOSE:
             [BufferTotalValue addObject:[NSNumber numberWithBool: value.hiValue]];
+            break;
+        case SUPLA_CHANNELFNC_VALVE_PERCENTAGE:
+            [BufferTotalValue addObject:[NSNumber numberWithInt: value.percentValue]];
             break;
         case SUPLA_CHANNELFNC_CONTROLLINGTHEROLLERSHUTTER: {
             NSArray *obj = [NSArray arrayWithObjects:[NSNumber numberWithInt: value.percentValue],
@@ -165,13 +171,19 @@
             case SUPLA_CHANNELFNC_POWERSWITCH:
             case SUPLA_CHANNELFNC_LIGHTSWITCH:
             case SUPLA_CHANNELFNC_STAIRCASETIMER:
+            case SUPLA_CHANNELFNC_VALVE_OPENCLOSE:
                 if ( [[v objectAtIndex:a] isKindOfClass:[NSNumber class]]
                     && [[v objectAtIndex:a] boolValue]) {
                     sum++;
                 }
                 count++;
                 break;
-                
+            case SUPLA_CHANNELFNC_VALVE_PERCENTAGE:
+                if ( [[v objectAtIndex:a] isKindOfClass:[NSNumber class]]
+                    && [[v objectAtIndex:a] intValue] >= 100) {
+                    sum++;
+                }
+                break;
             case SUPLA_CHANNELFNC_DIMMER:
                 if ([self getIntFromObject:[v objectAtIndex:a] atArrIndex:2] > 0 ) {
                     sum++;

@@ -10,6 +10,10 @@
 		012023C2234E54ED00E131B7 /* ImpulseCounterDetailView.m in Sources */ = {isa = PBXBuildFile; fileRef = 012023C1234E54ED00E131B7 /* ImpulseCounterDetailView.m */; };
 		012119152368C3B2004C1993 /* collapsed@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 012119142368C3B2004C1993 /* collapsed@3x.png */; };
 		0122613922F396440013E6A2 /* SAThermostatCalendar.m in Sources */ = {isa = PBXBuildFile; fileRef = 0122613822F396440013E6A2 /* SAThermostatCalendar.m */; };
+		012E341423DF5FB800F17D39 /* valve-closed@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 012E341023DF5FB800F17D39 /* valve-closed@2x.png */; };
+		012E341523DF5FB800F17D39 /* valve-open@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 012E341123DF5FB800F17D39 /* valve-open@3x.png */; };
+		012E341623DF5FB800F17D39 /* valve-closed@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 012E341223DF5FB800F17D39 /* valve-closed@3x.png */; };
+		012E341723DF5FB800F17D39 /* valve-open@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 012E341323DF5FB800F17D39 /* valve-open@2x.png */; };
 		012F722C22DF3E2300E5F72E /* ChartFilterFieldTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 012F722822DF3CF000E5F72E /* ChartFilterFieldTests.m */; };
 		012F722E22DFA0BE00E5F72E /* SABarChartDataSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 012F722D22DFA0BE00E5F72E /* SABarChartDataSet.swift */; };
 		012FCBD323217DE000AC6FF6 /* ThermostatCalendarTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 012FCBD223217DE000AC6FF6 /* ThermostatCalendarTests.m */; };
@@ -372,6 +376,10 @@
 		012119142368C3B2004C1993 /* collapsed@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "collapsed@3x.png"; path = "Resources/Assets/Img/collapsed@3x.png"; sourceTree = "<group>"; };
 		0122613722F396440013E6A2 /* SAThermostatCalendar.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SAThermostatCalendar.h; sourceTree = "<group>"; };
 		0122613822F396440013E6A2 /* SAThermostatCalendar.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SAThermostatCalendar.m; sourceTree = "<group>"; };
+		012E341023DF5FB800F17D39 /* valve-closed@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "valve-closed@2x.png"; path = "Resources/Assets/Img/valve-closed@2x.png"; sourceTree = "<group>"; };
+		012E341123DF5FB800F17D39 /* valve-open@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "valve-open@3x.png"; path = "Resources/Assets/Img/valve-open@3x.png"; sourceTree = "<group>"; };
+		012E341223DF5FB800F17D39 /* valve-closed@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "valve-closed@3x.png"; path = "Resources/Assets/Img/valve-closed@3x.png"; sourceTree = "<group>"; };
+		012E341323DF5FB800F17D39 /* valve-open@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "valve-open@2x.png"; path = "Resources/Assets/Img/valve-open@2x.png"; sourceTree = "<group>"; };
 		012F722822DF3CF000E5F72E /* ChartFilterFieldTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChartFilterFieldTests.m; sourceTree = "<group>"; };
 		012F722D22DFA0BE00E5F72E /* SABarChartDataSet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SABarChartDataSet.swift; sourceTree = "<group>"; };
 		012FCBD223217DE000AC6FF6 /* ThermostatCalendarTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ThermostatCalendarTests.m; sourceTree = "<group>"; };
@@ -1233,6 +1241,10 @@
 		405AC4011BC15878004F7311 /* Img */ = {
 			isa = PBXGroup;
 			children = (
+				012E341023DF5FB800F17D39 /* valve-closed@2x.png */,
+				012E341223DF5FB800F17D39 /* valve-closed@3x.png */,
+				012E341323DF5FB800F17D39 /* valve-open@2x.png */,
+				012E341123DF5FB800F17D39 /* valve-open@3x.png */,
 				012119142368C3B2004C1993 /* collapsed@3x.png */,
 				017A3CA523635C22004AD1FC /* weight@2x.png */,
 				017A3CA623635C22004AD1FC /* weight@3x.png */,
@@ -1830,6 +1842,7 @@
 				40CF96C61BC7D4E70030EFFF /* rollershutter-closed@2x.png in Resources */,
 				40B397CF1BCE7F3200BE7D5A /* Launch Screen.storyboard in Resources */,
 				40B9ED601FACD14000403B1A /* fan-off@3x.png in Resources */,
+				012E341523DF5FB800F17D39 /* valve-open@3x.png in Resources */,
 				4091AF3E1FC8405200EFF357 /* btnnextr@2x.png in Resources */,
 				40DE1A2A1BCCFF8A004CF43B /* feedback@3x.png in Resources */,
 				01F910FE22EF954400BFF91D /* thermostat_hp_homeplus2-on@2x.png in Resources */,
@@ -1846,6 +1859,7 @@
 				01F910FF22EF954400BFF91D /* thermostat_hp_homeplus3-off@3x.png in Resources */,
 				40477B6020C6F62A00E995E6 /* groupson@2x.png in Resources */,
 				01D2C38D22C3B0A700BF1A10 /* graphon.png in Resources */,
+				012E341623DF5FB800F17D39 /* valve-closed@3x.png in Resources */,
 				4091654C1F3CBAF200F49193 /* rs_up.png in Resources */,
 				40CF96B71BC7D4E70030EFFF /* gateway-closed@3x.png in Resources */,
 				40DE1A401BCD6F06004CF43B /* Localizable.strings in Resources */,
@@ -1903,6 +1917,7 @@
 				40477B5F20C6F62A00E995E6 /* groupsoff@2x.png in Resources */,
 				4091AF441FC856C200EFF357 /* wifi@2x.png in Resources */,
 				406778291BCBBC84008DD37F /* ThermometerCell.xib in Resources */,
+				012E341723DF5FB800F17D39 /* valve-open@2x.png in Resources */,
 				40CEB66420CA95DF009FA2EE /* unknown_channel@3x.png in Resources */,
 				017A3CB323635DF7004AD1FC /* pressure@2x.png in Resources */,
 				4014ADFD1FE01ECD00297A9E /* help@2x.png in Resources */,
@@ -1940,6 +1955,7 @@
 				40CE7C641DCBBCE400BBACE4 /* MeasurementCell.xib in Resources */,
 				01F9110E22EF964900BFF91D /* thermostat_hp_homeplus1-on@2x.png in Resources */,
 				40CF96BC1BC7D4E70030EFFF /* light-on@2x.png in Resources */,
+				012E341423DF5FB800F17D39 /* valve-closed@2x.png in Resources */,
 				4052DA0A1DC515AE000B8C45 /* dimmer-on@3x.png in Resources */,
 				40CF96AD1BC7D4E70030EFFF /* door-open@3x.png in Resources */,
 				01C8EBCD23422AC50072AB8C /* HomePlusDetailViewGroupCell.xib in Resources */,

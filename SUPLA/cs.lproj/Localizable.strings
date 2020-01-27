@@ -134,8 +134,10 @@
 "ON" = "ZAPNUTÝ";
 "OFF" = "VYPNUTÝ";
 "h" = "h";
-
 "Wind sensor" = "Rychlost větru";
 "Weight sensor" = "Hmotnost";
 "Pressure sensor" = "Snímač tlaku";
 "Rain sensor" = "Měření úhrnu srážek";
+
+"Close" = "Zavřít";
+"Valve" = "Ventil";

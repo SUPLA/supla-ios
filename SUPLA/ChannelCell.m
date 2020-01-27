@@ -143,6 +143,7 @@
         case SUPLA_CHANNELFNC_POWERSWITCH:
         case SUPLA_CHANNELFNC_LIGHTSWITCH:
         case SUPLA_CHANNELFNC_STAIRCASETIMER:
+        case SUPLA_CHANNELFNC_VALVE_OPENCLOSE:
             self.left_OnlineStatus.hidden = NO;
             self.right_OnlineStatus.hidden = NO;
             break;
@@ -212,6 +213,10 @@
                 case SUPLA_CHANNELFNC_STAIRCASETIMER:
                     br = [MGSwipeButton buttonWithTitle:NSLocalizedString(@"On", nil) icon:nil backgroundColor:[UIColor blackColor]];
                     bl = [MGSwipeButton buttonWithTitle:NSLocalizedString(@"Off", nil) icon:nil backgroundColor:[UIColor blackColor]];
+                    break;
+                case SUPLA_CHANNELFNC_VALVE_OPENCLOSE:
+                    br = [MGSwipeButton buttonWithTitle:NSLocalizedString(@"Open", nil) icon:nil backgroundColor:[UIColor blackColor]];
+                    bl = [MGSwipeButton buttonWithTitle:NSLocalizedString(@"Close", nil) icon:nil backgroundColor:[UIColor blackColor]];
                     break;
             }
             

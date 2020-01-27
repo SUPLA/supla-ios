@@ -196,6 +196,9 @@
                     return NSLocalizedString(@"Water Meter", nil);
                 case SUPLA_CHANNELFNC_THERMOSTAT_HEATPOL_HOMEPLUS:
                     return NSLocalizedString(@"Home+ Heater", nil);
+                case SUPLA_CHANNELFNC_VALVE_OPENCLOSE:
+                case SUPLA_CHANNELFNC_VALVE_PERCENTAGE:
+                    return NSLocalizedString(@"Valve", nil);
         }
         
     }
@@ -280,6 +283,7 @@
             case SUPLA_CHANNELFNC_STAIRCASETIMER:
             case SUPLA_CHANNELFNC_NOLIQUIDSENSOR:
             case SUPLA_CHANNELFNC_THERMOSTAT_HEATPOL_HOMEPLUS:
+            case SUPLA_CHANNELFNC_VALVE_OPENCLOSE:
                 return [self hiValue];
 
             case SUPLA_CHANNELFNC_DIMMER:
@@ -487,6 +491,10 @@
             return [UIImage imageNamed:@"weight"];
         case SUPLA_CHANNELFNC_RAINSENSOR:
             return [UIImage imageNamed:@"rain"];
+        case SUPLA_CHANNELFNC_VALVE_OPENCLOSE:
+        case SUPLA_CHANNELFNC_VALVE_PERCENTAGE:
+            n1 = @"valve";
+            break;
     }
     
     if ( n1 ) {

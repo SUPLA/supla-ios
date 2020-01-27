@@ -134,8 +134,10 @@
 "ON" = "WŁĄCZONY";
 "OFF" = "WYŁĄCZONY";
 "h" = "godz.";
-
 "Wind sensor" = "Prędkość wiatru";
 "Weight sensor" = "Waga";
 "Pressure sensor" = "Czujnik ciśnienia";
 "Rain sensor" = "Pomiar opadów";
+
+"Close" = "Zamknij";
+"Valve" = "Zawór";
