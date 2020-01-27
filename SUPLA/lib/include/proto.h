@@ -92,9 +92,9 @@ extern char sproto_tag[SUPLA_TAG_SIZE];
 
 #define SUPLA_PROTO_VERSION 12
 #define SUPLA_PROTO_VERSION_MIN 1
-#ifdef ARDUINO_ARCH_AVR           // Arduino IDE for Arduino HW
-#define SUPLA_MAX_DATA_SIZE 1248  // Registration header + 32 channels x 21 B
-#elif ARDUINO_ARCH_ESP8266        // Arduino IDE for ESP8266
+#ifdef ARDUINO_ARCH_AVR              // Arduino IDE for Arduino HW
+#define SUPLA_MAX_DATA_SIZE 1248     // Registration header + 32 channels x 21 B
+#elif defined(ARDUINO_ARCH_ESP8266)  // Arduino IDE for ESP8266
 #define SUPLA_MAX_DATA_SIZE 3264  // Registration header + 128 channels x 21 B
 #else
 #define SUPLA_MAX_DATA_SIZE 10240
@@ -297,7 +297,8 @@ extern char sproto_tag[SUPLA_TAG_SIZE];
 #define SUPLA_CHANNELTYPE_THERMOSTAT 6000                   // ver. >= 11
 #define SUPLA_CHANNELTYPE_THERMOSTAT_HEATPOL_HOMEPLUS 6010  // ver. >= 11
 
-#define SUPLA_CHANNELTYPE_VALVE 7000                        // ver. >= 12
+#define SUPLA_CHANNELTYPE_VALVE_OPENCLOSE 7000              // ver. >= 12
+#define SUPLA_CHANNELTYPE_VALVE_PERCENTAGE 7010             // ver. >= 12
 #define SUPLA_CHANNELTYPE_BRIDGE 8000                       // ver. >= 12
 #define SUPLA_CHANNELTYPE_GENERAL_PURPOSE_MEASUREMENT 9000  // ver. >= 12
 #define SUPLA_CHANNELTYPE_ENGINE 10000                      // ver. >= 12
@@ -367,6 +368,7 @@ extern char sproto_tag[SUPLA_TAG_SIZE];
 #define SUPLA_EVENT_POWERONOFF 60
 #define SUPLA_EVENT_LIGHTONOFF 70
 #define SUPLA_EVENT_STAIRCASETIMERONOFF 80  // ver. >= 9
+#define SUPLA_EVENT_VALVEOPENCLOSE 90       // ver. >= 12
 
 #define SUPLA_URL_PROTO_HTTP 0x01
 #define SUPLA_URL_PROTO_HTTPS 0x02
@@ -387,6 +389,7 @@ extern char sproto_tag[SUPLA_TAG_SIZE];
 #define SUPLA_MFR_DOYLETRATT 7
 #define SUPLA_MFR_HEATPOL 8
 #define SUPLA_MFR_FAKRO 9
+#define SUPLA_MFR_PEVEKO 10
 
 #define SUPLA_CHANNEL_FLAG_ZWAVE_BRIDGE 0x0001                    // ver. >= 12
 #define SUPLA_CHANNEL_FLAG_IR_BRIDGE 0x0002                       // ver. >= 12
@@ -472,6 +475,7 @@ typedef struct {
 #define EV_TYPE_ELECTRICITY_METER_MEASUREMENT_V1 10
 #define EV_TYPE_IMPULSE_COUNTER_DETAILS_V1 20
 #define EV_TYPE_THERMOSTAT_DETAILS_V1 30
+#define EV_TYPE_CHANNEL_STATE 40
 
 #define CALCFG_TYPE_THERMOSTAT_DETAILS_V1 10
 
