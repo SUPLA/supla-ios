@@ -163,6 +163,8 @@
                     return NSLocalizedString(@"Thermometer", nil);
                 case SUPLA_CHANNELFNC_HUMIDITYANDTEMPERATURE:
                     return NSLocalizedString(@"Temperature and humidity", nil);
+                case SUPLA_CHANNELFNC_HUMIDITY:
+                    return NSLocalizedString(@"Humidity", nil);
                 case SUPLA_CHANNELFNC_NOLIQUIDSENSOR:
                     return NSLocalizedString(@"No liquid sensor", nil);
                 case SUPLA_CHANNELFNC_RGBLIGHTING:
@@ -444,6 +446,8 @@
         case SUPLA_CHANNELFNC_THERMOMETER:
         case SUPLA_CHANNELFNC_HUMIDITYANDTEMPERATURE:
             return [UIImage imageNamed:idx == 0 ? @"thermometer" : @"humidity"];
+        case SUPLA_CHANNELFNC_HUMIDITY:
+            return [UIImage imageNamed:@"humidity"];
         case SUPLA_CHANNELFNC_NOLIQUIDSENSOR:
             return [UIImage imageNamed:[self imgIsActive] ? @"liquid" : @"noliquid"];
         case SUPLA_CHANNELFNC_DIMMER:
@@ -578,6 +582,9 @@
     switch (self.func) {
         case SUPLA_CHANNELFNC_THERMOMETER:
             result = [self isOnline] && self.temperatureValue > -273 ? [NSString stringWithFormat:@"%0.1f°", self.temperatureValue] : @"----°";
+            break;
+        case SUPLA_CHANNELFNC_HUMIDITY:
+            result = [self isOnline] && self.humidityValue > -1 ? [NSString stringWithFormat:@"%0.1f", self.humidityValue] : @"----";
             break;
         case SUPLA_CHANNELFNC_HUMIDITYANDTEMPERATURE:
             if (idx == 1) {

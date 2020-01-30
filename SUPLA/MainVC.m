@@ -340,6 +340,7 @@
             case SUPLA_CHANNELFNC_WEIGHTSENSOR:
             case SUPLA_CHANNELFNC_PRESSURESENSOR:
             case SUPLA_CHANNELFNC_RAINSENSOR:
+            case SUPLA_CHANNELFNC_HUMIDITY:
                 identifier = @"MeasurementCell";
                 break;
             case SUPLA_CHANNELFNC_DISTANCESENSOR:

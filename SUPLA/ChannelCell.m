@@ -178,7 +178,8 @@
                  || channelBase.func == SUPLA_CHANNELFNC_WINDSENSOR
                  || channelBase.func == SUPLA_CHANNELFNC_WEIGHTSENSOR
                  || channelBase.func == SUPLA_CHANNELFNC_PRESSURESENSOR
-                 || channelBase.func == SUPLA_CHANNELFNC_RAINSENSOR ) {
+                 || channelBase.func == SUPLA_CHANNELFNC_RAINSENSOR
+                 || channelBase.func == SUPLA_CHANNELFNC_HUMIDITY ) {
         [self.measuredValue setText:[[channelBase attrStringValue] string]];
     } else if ( channelBase.func == SUPLA_CHANNELFNC_DISTANCESENSOR  ) {
         [self.distance setText:[[channelBase attrStringValue] string]];
