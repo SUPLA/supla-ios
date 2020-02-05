@@ -42,9 +42,9 @@ struct _supla_timeval {
 #define _supla_int_t long
 #define _supla_int64_t long long
 
-#elif defined(ESP8266)
+#elif defined(ESP8266) || defined(ESP32)
 
-#ifdef ARDUINO_ARCH_ESP8266
+#if defined(ARDUINO_ARCH_ESP8266) || defined(ARDUINO_ARCH_ESP32)
 #define SPROTO_WITHOUT_OUT_BUFFER
 #endif /*ARDUINO_ARCH_ESP8266*/
 
@@ -92,10 +92,13 @@ extern char sproto_tag[SUPLA_TAG_SIZE];
 
 #define SUPLA_PROTO_VERSION 12
 #define SUPLA_PROTO_VERSION_MIN 1
-#ifdef ARDUINO_ARCH_AVR              // Arduino IDE for Arduino HW
-#define SUPLA_MAX_DATA_SIZE 1248     // Registration header + 32 channels x 21 B
-#elif defined(ARDUINO_ARCH_ESP8266)  // Arduino IDE for ESP8266
+#if defined(ARDUINO_ARCH_AVR)     // Arduino IDE for Arduino HW
+#define SUPLA_MAX_DATA_SIZE 1248  // Registration header + 32 channels x 21 B
+#elif defined(ARDUINO_ARCH_ESP8266) || \
+    defined(ARDUINO_ARCH_ESP32)   // Arduino IDE for ESP8266
 #define SUPLA_MAX_DATA_SIZE 3264  // Registration header + 128 channels x 21 B
+#elif defined(ESP8266)
+#define SUPLA_MAX_DATA_SIZE 1536
 #else
 #define SUPLA_MAX_DATA_SIZE 10240
 #endif
@@ -1313,6 +1316,7 @@ typedef struct {
 #define SUPLA_CHANNELSTATE_FIELD_BRIDGESIGNALSTRENGTH 0x0040
 #define SUPLA_CHANNELSTATE_FIELD_UPTIME 0x0080
 #define SUPLA_CHANNELSTATE_FIELD_CONNECTIONUPTIME 0x0100
+#define SUPLA_CHANNELSTATE_FIELD_BATTERY_HEALTH 0x0200
 
 typedef struct {
   _supla_int_t ReceiverID;
@@ -1330,7 +1334,13 @@ typedef struct {
   unsigned char BridgeSignalStrength;      // 0 - 100%
   unsigned _supla_int_t Uptime;            // sec.
   unsigned _supla_int_t ConnectionUptime;  // sec.
+  unsigned char BatteryHealth;
 } TDSC_ChannelState;  // v. >= 12 Device -> Server -> Client
+
+typedef struct {
+  _supla_int_t defaultIconField;  // SUPLA_CHANNELSTATE_FIELD_*
+  TDSC_ChannelState State;
+} TChannelState_ExtendedValue;  // v. >= 12
 
 typedef struct {
   _supla_int_t ChannelID;
@@ -1348,9 +1358,11 @@ typedef struct {
   unsigned char Number;
   _supla_int_t Type;
   _supla_int_t Func;
-  _supla_int_t FuncList;
+  union {
+    _supla_int_t FuncList;
+    _supla_int_t Param;  // v. >= 12
+  };
   unsigned _supla_int_t ChannelFlags;
-
   unsigned _supla_int_t
       CaptionSize;  // including the terminating null byte ('\0')
   char Caption[SUPLA_CHANNEL_CAPTION_MAXSIZE];  // Last variable in struct!
@@ -1380,6 +1392,18 @@ typedef struct {
 typedef struct {
   unsigned char ResultCode;
 } TSC_SetRegistrationEnabledResult;
+
+#define SUPLA_VALVE_FLAG_FLOODING 0x1
+#define SUPLA_VALVE_FLAG_MANUALLY_CLOSED 0x2
+
+typedef struct {
+  union {
+    unsigned char closed;
+    unsigned char closed_percent;
+  };
+
+  unsigned char flags;
+} TValve_Value;
 
 #pragma pack(pop)
 
