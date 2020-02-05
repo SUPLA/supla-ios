@@ -221,6 +221,10 @@
     return 0;
 }
 
+- (BOOL) isClosed {
+    return FALSE;
+}
+
 - (int) hiSubValue {
     return 0;
 }
@@ -261,6 +265,14 @@
     return 0;
 }
 
+- (BOOL) isManuallyClosed {
+    return false;
+}
+
+- (BOOL) flooding {
+    return false;
+}
+
 - (int) imgIsActive {
     
     if ( [self isOnline] ) {
@@ -285,7 +297,6 @@
             case SUPLA_CHANNELFNC_STAIRCASETIMER:
             case SUPLA_CHANNELFNC_NOLIQUIDSENSOR:
             case SUPLA_CHANNELFNC_THERMOSTAT_HEATPOL_HOMEPLUS:
-            case SUPLA_CHANNELFNC_VALVE_OPENCLOSE:
                 return [self hiValue];
 
             case SUPLA_CHANNELFNC_DIMMER:
@@ -304,6 +315,12 @@
                 }
                 return result;
             }
+            case SUPLA_CHANNELFNC_VALVE_OPENCLOSE:
+                if (self.isClosed) {
+                    return self.flooding || self.isManuallyClosed ? 2 : 1;
+                } else {
+                    return 0;
+                }
         }
     }
     
@@ -497,6 +514,9 @@
             return [UIImage imageNamed:@"rain"];
         case SUPLA_CHANNELFNC_VALVE_OPENCLOSE:
         case SUPLA_CHANNELFNC_VALVE_PERCENTAGE:
+            if ([self imgIsActive] == 2) {
+                return [UIImage imageNamed:@"valve-warning"];
+            }
             n1 = @"valve";
             break;
     }

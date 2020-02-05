@@ -37,6 +37,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (int) hiValue;
 - (int) hiSubValue;
 - (int) intValue;
+- (BOOL) isClosed;
 - (double) doubleValue;
 - (double) getTemperatureForFunction:(int)func;
 - (double) humidityValue;
@@ -48,6 +49,8 @@ NS_ASSUME_NONNULL_BEGIN
 - (double) impulseCounterCalculatedValue;
 - (double) presetTemperature;
 - (double) measuredTemperature;
+-(BOOL) isManuallyClosed;
+-(BOOL) flooding;
 
 @end
 

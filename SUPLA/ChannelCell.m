@@ -22,6 +22,7 @@
 #import "MGSwipeButton.h"
 #import "SAChannel+CoreDataClass.h"
 #import "SAChannelGroup+CoreDataClass.h"
+#import "SAChannelStateExtendedValue.h"
 #import "SuplaApp.h"
 #include "proto.h"
 
@@ -97,6 +98,7 @@
    
     _channelBase = channelBase;
     BOOL isGroup = [channelBase isKindOfClass:[SAChannelGroup class]];
+    self.channelStateIcon.hidden = YES;
     
     if ( isGroup ) {
         self.cint_LeftStatusWidth.constant = 6;
@@ -112,10 +114,39 @@
         self.right_ActiveStatus.hidden = YES;
         self.right_OnlineStatus.shapeType = stDot;
         self.left_OnlineStatus.shapeType = stDot;
+        
+        if (channelBase.isOnline
+            && [channelBase isKindOfClass:[SAChannel class]]) {
+            SAChannel *channel = (SAChannel*)channelBase;
+            if (channel.ev && channel.ev.type == EV_TYPE_CHANNEL_STATE) {
+                SAChannelStateExtendedValue *channelState = channel.ev.channelState;
+                    
+                if (channelState
+                    && channelState.state.Fields & channelState.defaultIconField) {
+                        
+                    switch (channelState.defaultIconField) {
+                        case SUPLA_CHANNELSTATE_FIELD_BATTERYPOWERED:
+                            if (channelState.state.BatteryPowered) {
+                                self.channelStateIcon.hidden = NO;
+                                self.channelStateIcon.image = [UIImage imageNamed:@"battery"];
+                            }
+                            break;
+                    }
+                }
+            }
+            
+            // Only if self.channelStateIcon.hidden !!
+            if (self.channelStateIcon.hidden
+                && channel.flags & SUPLA_CHANNEL_FLAG_CHANNELSTATE) {
+                // TODO: Show state icon/button
+            }
+        }
     }
     
     self.right_OnlineStatus.percent = [channelBase onlinePercent];
     self.left_OnlineStatus.percent = self.right_OnlineStatus.percent;
+    
+
 
     [self.caption setText:[channelBase getChannelCaption]];
     [self.image1 setImage:[channelBase getIconWithIndex:0]];

@@ -93,6 +93,10 @@
     return self.value == nil ? [super hiValue] : [self.value hiValue];
 }
 
+- (int) isClosed {
+    return self.value == nil ? [super isClosed] : [self.value isClosed];
+}
+
 - (int) hiSubValue {
     return self.value == nil ? [super hiSubValue] : [self.value hiSubValue];
 }
@@ -131,6 +135,14 @@
 
 - (UIColor *) colorValue {
     return self.value == nil ? [super colorValue] : [self.value colorValue];
+}
+
+- (bool) isManuallyClosed {
+    return self.value == nil ? [super isManuallyClosed] : [self.value isManuallyClosed];
+}
+
+- (bool) flooding{
+    return self.value == nil ? [super flooding] : [self.value flooding];
 }
 
 - (int) imgIsActive {

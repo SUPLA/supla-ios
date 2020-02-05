@@ -42,9 +42,12 @@ NS_ASSUME_NONNULL_BEGIN
 - (BOOL) isOnline;
 - (int) onlinePercent;
 - (int) hiValue;
+- (BOOL) isClosed;
 - (int) hiSubValue;
 - (UIImage*) getIcon;
 - (UIImage*) getIconWithIndex:(short)idx;
+- (BOOL) isManuallyClosed;
+- (BOOL) flooding;
 
 - (double) temperatureValue;
 - (double) humidityValue;
