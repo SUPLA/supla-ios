@@ -278,15 +278,54 @@
 }
 
 - (void)vibrate {
-
     AudioServicesPlayAlertSound(kSystemSoundID_Vibrate);
+}
 
+- (void)showValveAlertDialog {
+    
+    
+    UIAlertController * alert = [UIAlertController
+                                 alertControllerWithTitle:@"SUPLA"
+                                 message:NSLocalizedString(@"The valve has been closed in manual mode. Before you open it, make sure it has not been closed due to flooding. To turn off the warning, open the valve manually. Are you sure you want to open it from the application ?!", nil)
+                                 preferredStyle:UIAlertControllerStyleAlert];
+    
+    UIAlertAction* yesBtn = [UIAlertAction
+                                actionWithTitle:NSLocalizedString(@"Yes", nil)
+                                style:UIAlertActionStyleDefault
+                                handler:^(UIAlertAction * action) {
+            [self vibrate];
+            [[SAApp SuplaClient] cg:self.channelBase.remote_id Open:1 group:false];
+        
+    }];
+    
+    UIAlertAction* noBtn = [UIAlertAction
+                            actionWithTitle:NSLocalizedString(@"No", nil)
+                            style:UIAlertActionStyleDefault
+                            handler:^(UIAlertAction * action) {
+    }];
+    
+    
+    [alert setTitle: NSLocalizedString(@"Warning", nil)];
+    [alert addAction:noBtn];
+    [alert addAction:yesBtn];
+    
+    UIViewController *vc = [[[[UIApplication sharedApplication] delegate] window] rootViewController];
+    [vc presentViewController:alert animated:YES completion:nil];
 }
 
 - (IBAction)rightTouchDown:(id)sender {
     [sender setBackgroundColor: [UIColor btnTouched]];
     
+      if ((_channelBase.func == SUPLA_CHANNELFNC_VALVE_OPENCLOSE
+          || _channelBase.func == SUPLA_CHANNELFNC_VALVE_PERCENTAGE)
+          && (_channelBase.isManuallyClosed || _channelBase.flooding)) {
+          [self hideSwipeAnimated:YES];
+          [self showValveAlertDialog];
+          return;
+      }
+    
     [self vibrate];
+    
     [[SAApp SuplaClient] cg:self.channelBase.remote_id Open:1 group:[self.channelBase isKindOfClass:[SAChannelGroup class]]];
     [self hideSwipeAnimated:YES];
 }
