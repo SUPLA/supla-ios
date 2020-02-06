@@ -315,12 +315,14 @@
                 }
                 return result;
             }
-            case SUPLA_CHANNELFNC_VALVE_OPENCLOSE:
-                if (self.isClosed) {
-                    return self.flooding || self.isManuallyClosed ? 2 : 1;
+            case SUPLA_CHANNELFNC_VALVE_OPENCLOSE: {
+                bool warning = self.flooding || self.isManuallyClosed;
+                if ( self.isClosed ) {
+                    return warning ? 2 : 1;
                 } else {
-                    return 0;
+                    return warning ? -1 : 0;
                 }
+            }
         }
     }
     
@@ -514,11 +516,21 @@
             return [UIImage imageNamed:@"rain"];
         case SUPLA_CHANNELFNC_VALVE_OPENCLOSE:
         case SUPLA_CHANNELFNC_VALVE_PERCENTAGE:
-            if ([self imgIsActive] == 2) {
-                return [UIImage imageNamed:@"valve-warning"];
+            switch([self imgIsActive]) {
+                case -1:
+                    n1 = @"valve-open-warning";
+                    break;
+                case 1:
+                    n1 = @"valve-closed";
+                    break;
+                case 2:
+                    n1 = @"valve-closed-warning";
+                    break;
+                default:
+                    n1 = @"valve-open";
+                    break;
             }
-            n1 = @"valve";
-            break;
+            return [UIImage imageNamed:n1];
     }
     
     if ( n1 ) {

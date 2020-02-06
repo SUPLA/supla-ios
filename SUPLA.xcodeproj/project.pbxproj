@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		01128C9623EC6BC200F4851C /* valve-open-warning@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 01128C9423EC6BC100F4851C /* valve-open-warning@3x.png */; };
+		01128C9723EC6BC200F4851C /* valve-open-warning@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 01128C9523EC6BC200F4851C /* valve-open-warning@2x.png */; };
 		012023C2234E54ED00E131B7 /* ImpulseCounterDetailView.m in Sources */ = {isa = PBXBuildFile; fileRef = 012023C1234E54ED00E131B7 /* ImpulseCounterDetailView.m */; };
 		012119152368C3B2004C1993 /* collapsed@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 012119142368C3B2004C1993 /* collapsed@3x.png */; };
 		0122613922F396440013E6A2 /* SAThermostatCalendar.m in Sources */ = {isa = PBXBuildFile; fileRef = 0122613822F396440013E6A2 /* SAThermostatCalendar.m */; };
@@ -28,8 +30,8 @@
 		013D73A522DCAB4400E3515A /* SAIncrementalMeterChartMarkerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 013D73A422DCAB4400E3515A /* SAIncrementalMeterChartMarkerView.swift */; };
 		013D73A722DCAEF400E3515A /* SAIncrementalMeterChartMarkerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 013D73A622DCAEF400E3515A /* SAIncrementalMeterChartMarkerView.xib */; };
 		013D73B022DD105400E3515A /* SAChartFilterField.m in Sources */ = {isa = PBXBuildFile; fileRef = 013D73AF22DD105400E3515A /* SAChartFilterField.m */; };
-		013F384B23EA0C080061D553 /* valve-warning@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 013F384923EA0C080061D553 /* valve-warning@2x.png */; };
-		013F384C23EA0C080061D553 /* valve-warning@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 013F384A23EA0C080061D553 /* valve-warning@3x.png */; };
+		013F384B23EA0C080061D553 /* valve-closed-warning@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 013F384923EA0C080061D553 /* valve-closed-warning@2x.png */; };
+		013F384C23EA0C080061D553 /* valve-closed-warning@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 013F384A23EA0C080061D553 /* valve-closed-warning@3x.png */; };
 		013F7EC123EB33E30061A497 /* SAChannelStateExtendedValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 013F7EC023EB33E30061A497 /* SAChannelStateExtendedValue.m */; };
 		013F7EC423EB4B500061A497 /* battery@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 013F7EC223EB4B500061A497 /* battery@3x.png */; };
 		013F7EC523EB4B500061A497 /* battery@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 013F7EC323EB4B500061A497 /* battery@2x.png */; };
@@ -375,6 +377,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		01128C9423EC6BC100F4851C /* valve-open-warning@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "valve-open-warning@3x.png"; path = "Resources/Assets/Img/valve-open-warning@3x.png"; sourceTree = "<group>"; };
+		01128C9523EC6BC200F4851C /* valve-open-warning@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "valve-open-warning@2x.png"; path = "Resources/Assets/Img/valve-open-warning@2x.png"; sourceTree = "<group>"; };
 		012023C0234E54ED00E131B7 /* ImpulseCounterDetailView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ImpulseCounterDetailView.h; sourceTree = "<group>"; };
 		012023C1234E54ED00E131B7 /* ImpulseCounterDetailView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ImpulseCounterDetailView.m; sourceTree = "<group>"; };
 		012119132368BDB0004C1993 /* SUPLA 5.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "SUPLA 5.xcdatamodel"; sourceTree = "<group>"; };
@@ -407,8 +411,8 @@
 		013D73A622DCAEF400E3515A /* SAIncrementalMeterChartMarkerView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SAIncrementalMeterChartMarkerView.xib; sourceTree = "<group>"; };
 		013D73AE22DD105400E3515A /* SAChartFilterField.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SAChartFilterField.h; sourceTree = "<group>"; };
 		013D73AF22DD105400E3515A /* SAChartFilterField.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SAChartFilterField.m; sourceTree = "<group>"; };
-		013F384923EA0C080061D553 /* valve-warning@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "valve-warning@2x.png"; path = "Resources/Assets/Img/valve-warning@2x.png"; sourceTree = "<group>"; };
-		013F384A23EA0C080061D553 /* valve-warning@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "valve-warning@3x.png"; path = "Resources/Assets/Img/valve-warning@3x.png"; sourceTree = "<group>"; };
+		013F384923EA0C080061D553 /* valve-closed-warning@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "valve-closed-warning@2x.png"; path = "Resources/Assets/Img/valve-closed-warning@2x.png"; sourceTree = "<group>"; };
+		013F384A23EA0C080061D553 /* valve-closed-warning@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "valve-closed-warning@3x.png"; path = "Resources/Assets/Img/valve-closed-warning@3x.png"; sourceTree = "<group>"; };
 		013F7EBF23EB33E30061A497 /* SAChannelStateExtendedValue.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SAChannelStateExtendedValue.h; sourceTree = "<group>"; };
 		013F7EC023EB33E30061A497 /* SAChannelStateExtendedValue.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SAChannelStateExtendedValue.m; sourceTree = "<group>"; };
 		013F7EC223EB4B500061A497 /* battery@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "battery@3x.png"; path = "Resources/Assets/Img/battery@3x.png"; sourceTree = "<group>"; };
@@ -1254,12 +1258,14 @@
 		405AC4011BC15878004F7311 /* Img */ = {
 			isa = PBXGroup;
 			children = (
-				013F384923EA0C080061D553 /* valve-warning@2x.png */,
-				013F384A23EA0C080061D553 /* valve-warning@3x.png */,
+				013F384923EA0C080061D553 /* valve-closed-warning@2x.png */,
+				013F384A23EA0C080061D553 /* valve-closed-warning@3x.png */,
 				012E341023DF5FB800F17D39 /* valve-closed@2x.png */,
 				013F7EC323EB4B500061A497 /* battery@2x.png */,
 				013F7EC223EB4B500061A497 /* battery@3x.png */,
 				012E341223DF5FB800F17D39 /* valve-closed@3x.png */,
+				01128C9523EC6BC200F4851C /* valve-open-warning@2x.png */,
+				01128C9423EC6BC100F4851C /* valve-open-warning@3x.png */,
 				012E341323DF5FB800F17D39 /* valve-open@2x.png */,
 				012E341123DF5FB800F17D39 /* valve-open@3x.png */,
 				012119142368C3B2004C1993 /* collapsed@3x.png */,
@@ -1783,8 +1789,9 @@
 				40CF96BD1BC7D4E70030EFFF /* light-on@3x.png in Resources */,
 				40DE1A381BCD5E9B004CF43B /* AboutVC.xib in Resources */,
 				40B9ED821FACE15700403B1A /* window-closed@3x.png in Resources */,
-				013F384B23EA0C080061D553 /* valve-warning@2x.png in Resources */,
+				013F384B23EA0C080061D553 /* valve-closed-warning@2x.png in Resources */,
 				01F9110122EF954400BFF91D /* thermostat_hp_homeplus2-off@3x.png in Resources */,
+				01128C9623EC6BC200F4851C /* valve-open-warning@3x.png in Resources */,
 				4052DA051DC515AE000B8C45 /* dimmerrgb-onoff@2x.png in Resources */,
 				40B9ED451FACCE8700403B1A /* tv-off@3x.png in Resources */,
 				40477B3E20C6C57700E995E6 /* staircasetimer-off@2x.png in Resources */,
@@ -1807,6 +1814,7 @@
 				40CF96C01BC7D4E70030EFFF /* noliquid@2x.png in Resources */,
 				4091AF461FC86D7B00EFF357 /* look@2x.png in Resources */,
 				013F7EC423EB4B500061A497 /* battery@3x.png in Resources */,
+				01128C9723EC6BC200F4851C /* valve-open-warning@2x.png in Resources */,
 				407D4AE91BC6C5C7009A5505 /* app_icon87x87@3x.png in Resources */,
 				01D4293722AAA83E0050C1A2 /* watermeter@2x.png in Resources */,
 				40CF96B61BC7D4E70030EFFF /* gateway-closed@2x.png in Resources */,
@@ -1977,7 +1985,7 @@
 				40CF96BC1BC7D4E70030EFFF /* light-on@2x.png in Resources */,
 				012E341423DF5FB800F17D39 /* valve-closed@2x.png in Resources */,
 				4052DA0A1DC515AE000B8C45 /* dimmer-on@3x.png in Resources */,
-				013F384C23EA0C080061D553 /* valve-warning@3x.png in Resources */,
+				013F384C23EA0C080061D553 /* valve-closed-warning@3x.png in Resources */,
 				40CF96AD1BC7D4E70030EFFF /* door-open@3x.png in Resources */,
 				01C8EBCD23422AC50072AB8C /* HomePlusDetailViewGroupCell.xib in Resources */,
 				40CF96D91BC81A470030EFFF /* error@3x.png in Resources */,
