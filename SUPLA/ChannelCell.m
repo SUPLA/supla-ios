@@ -318,7 +318,8 @@
     
       if ((_channelBase.func == SUPLA_CHANNELFNC_VALVE_OPENCLOSE
           || _channelBase.func == SUPLA_CHANNELFNC_VALVE_PERCENTAGE)
-          && (_channelBase.isManuallyClosed || _channelBase.flooding)) {
+          && (_channelBase.isManuallyClosed || _channelBase.flooding)
+          && _channelBase.isClosed) {
           [self hideSwipeAnimated:YES];
           [self showValveAlertDialog];
           return;
