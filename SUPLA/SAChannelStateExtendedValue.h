@@ -22,7 +22,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface SAChannelStateExtendedValue : SAExtendedValue
 -(TDSC_ChannelState)state;
--(int)defaultIconField;
 @end
 
 @interface SAChannelExtendedValue (SAChannelStateExtendedValue)

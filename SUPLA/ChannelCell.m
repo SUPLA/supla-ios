@@ -118,13 +118,13 @@
         if (channelBase.isOnline
             && [channelBase isKindOfClass:[SAChannel class]]) {
             SAChannel *channel = (SAChannel*)channelBase;
-            if (channel.ev && channel.ev.type == EV_TYPE_CHANNEL_STATE) {
+            if (channel.ev && channel.ev.type == EV_TYPE_CHANNEL_STATE_V1) {
                 SAChannelStateExtendedValue *channelState = channel.ev.channelState;
                     
                 if (channelState
-                    && channelState.state.Fields & channelState.defaultIconField) {
+                    && channelState.state.Fields & channelState.state.defaultIconField) {
                         
-                    switch (channelState.defaultIconField) {
+                    switch (channelState.state.defaultIconField) {
                         case SUPLA_CHANNELSTATE_FIELD_BATTERYPOWERED:
                             if (channelState.state.BatteryPowered) {
                                 self.channelStateIcon.hidden = NO;

@@ -32,7 +32,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 -(BOOL)getChannelStateExtendedValue:(TChannelState_ExtendedValue*)csev {
     if (csev != NULL
-        && self.valueType == EV_TYPE_CHANNEL_STATE) {
+        && self.valueType == EV_TYPE_CHANNEL_STATE_V1) {
         memset(csev, 0, sizeof(TChannelState_ExtendedValue));
         NSData *data = self.dataValue;
         if (data && data.length == sizeof(TChannelState_ExtendedValue)) {
@@ -44,10 +44,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 }
 
 -(TDSC_ChannelState)state {
-    return _csev.State;
-}
--(int)defaultIconField {
-    return _csev.defaultIconField;
+    return _csev;
 }
 
 @end
