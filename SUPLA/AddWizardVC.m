@@ -246,9 +246,7 @@
     [fields setObject:self.Server forKey:@"svr"];
     [fields setObject:self.Email forKey:@"eml"];
     
-    if ( [fields objectForKey:@"upd"] != nil
-         && ([result.name isEqualToString: @"NICE Wi-Fi SCREEN"]
-             || [result.name isEqualToString: @"ZAMEL SRW-01"] )) {
+    if ( [fields objectForKey:@"upd"] != nil ) {
         [fields setObject:@"1" forKey:@"upd"];
     }
     
