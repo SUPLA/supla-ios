@@ -22,6 +22,7 @@
 #import "MGSwipeButton.h"
 #import "SAChannel+CoreDataClass.h"
 #import "SAChannelGroup+CoreDataClass.h"
+#import "SAChannelStateExtendedValue.h"
 #import "SuplaApp.h"
 #include "proto.h"
 
@@ -97,6 +98,7 @@
    
     _channelBase = channelBase;
     BOOL isGroup = [channelBase isKindOfClass:[SAChannelGroup class]];
+    self.channelStateIcon.hidden = YES;
     
     if ( isGroup ) {
         self.cint_LeftStatusWidth.constant = 6;
@@ -112,10 +114,39 @@
         self.right_ActiveStatus.hidden = YES;
         self.right_OnlineStatus.shapeType = stDot;
         self.left_OnlineStatus.shapeType = stDot;
+        
+        if (channelBase.isOnline
+            && [channelBase isKindOfClass:[SAChannel class]]) {
+            SAChannel *channel = (SAChannel*)channelBase;
+            if (channel.ev && channel.ev.type == EV_TYPE_CHANNEL_STATE_V1) {
+                SAChannelStateExtendedValue *channelState = channel.ev.channelState;
+                    
+                if (channelState
+                    && channelState.state.Fields & channelState.state.defaultIconField) {
+                        
+                    switch (channelState.state.defaultIconField) {
+                        case SUPLA_CHANNELSTATE_FIELD_BATTERYPOWERED:
+                            if (channelState.state.BatteryPowered) {
+                                self.channelStateIcon.hidden = NO;
+                                self.channelStateIcon.image = [UIImage imageNamed:@"battery"];
+                            }
+                            break;
+                    }
+                }
+            }
+            
+            // Only if self.channelStateIcon.hidden !!
+            if (self.channelStateIcon.hidden
+                && channel.flags & SUPLA_CHANNEL_FLAG_CHANNELSTATE) {
+                // TODO: Show state icon/button
+            }
+        }
     }
     
     self.right_OnlineStatus.percent = [channelBase onlinePercent];
     self.left_OnlineStatus.percent = self.right_OnlineStatus.percent;
+    
+
 
     [self.caption setText:[channelBase getChannelCaption]];
     [self.image1 setImage:[channelBase getIconWithIndex:0]];
@@ -143,6 +174,7 @@
         case SUPLA_CHANNELFNC_POWERSWITCH:
         case SUPLA_CHANNELFNC_LIGHTSWITCH:
         case SUPLA_CHANNELFNC_STAIRCASETIMER:
+        case SUPLA_CHANNELFNC_VALVE_OPENCLOSE:
             self.left_OnlineStatus.hidden = NO;
             self.right_OnlineStatus.hidden = NO;
             break;
@@ -177,7 +209,8 @@
                  || channelBase.func == SUPLA_CHANNELFNC_WINDSENSOR
                  || channelBase.func == SUPLA_CHANNELFNC_WEIGHTSENSOR
                  || channelBase.func == SUPLA_CHANNELFNC_PRESSURESENSOR
-                 || channelBase.func == SUPLA_CHANNELFNC_RAINSENSOR ) {
+                 || channelBase.func == SUPLA_CHANNELFNC_RAINSENSOR
+                 || channelBase.func == SUPLA_CHANNELFNC_HUMIDITY ) {
         [self.measuredValue setText:[[channelBase attrStringValue] string]];
     } else if ( channelBase.func == SUPLA_CHANNELFNC_DISTANCESENSOR  ) {
         [self.distance setText:[[channelBase attrStringValue] string]];
@@ -213,6 +246,10 @@
                     br = [MGSwipeButton buttonWithTitle:NSLocalizedString(@"On", nil) icon:nil backgroundColor:[UIColor blackColor]];
                     bl = [MGSwipeButton buttonWithTitle:NSLocalizedString(@"Off", nil) icon:nil backgroundColor:[UIColor blackColor]];
                     break;
+                case SUPLA_CHANNELFNC_VALVE_OPENCLOSE:
+                    br = [MGSwipeButton buttonWithTitle:NSLocalizedString(@"Open", nil) icon:nil backgroundColor:[UIColor blackColor]];
+                    bl = [MGSwipeButton buttonWithTitle:NSLocalizedString(@"Close", nil) icon:nil backgroundColor:[UIColor blackColor]];
+                    break;
             }
             
             if ( br ) {
@@ -241,15 +278,55 @@
 }
 
 - (void)vibrate {
-
     AudioServicesPlayAlertSound(kSystemSoundID_Vibrate);
+}
 
+- (void)showValveAlertDialog {
+    
+    
+    UIAlertController * alert = [UIAlertController
+                                 alertControllerWithTitle:@"SUPLA"
+                                 message:NSLocalizedString(@"The valve has been closed in manual mode. Before you open it, make sure it has not been closed due to flooding. To turn off the warning, open the valve manually. Are you sure you want to open it from the application ?!", nil)
+                                 preferredStyle:UIAlertControllerStyleAlert];
+    
+    UIAlertAction* yesBtn = [UIAlertAction
+                                actionWithTitle:NSLocalizedString(@"Yes", nil)
+                                style:UIAlertActionStyleDefault
+                                handler:^(UIAlertAction * action) {
+            [self vibrate];
+            [[SAApp SuplaClient] cg:self.channelBase.remote_id Open:1 group:false];
+        
+    }];
+    
+    UIAlertAction* noBtn = [UIAlertAction
+                            actionWithTitle:NSLocalizedString(@"No", nil)
+                            style:UIAlertActionStyleDefault
+                            handler:^(UIAlertAction * action) {
+    }];
+    
+    
+    [alert setTitle: NSLocalizedString(@"Warning", nil)];
+    [alert addAction:noBtn];
+    [alert addAction:yesBtn];
+    
+    UIViewController *vc = [[[[UIApplication sharedApplication] delegate] window] rootViewController];
+    [vc presentViewController:alert animated:YES completion:nil];
 }
 
 - (IBAction)rightTouchDown:(id)sender {
     [sender setBackgroundColor: [UIColor btnTouched]];
     
+      if ((_channelBase.func == SUPLA_CHANNELFNC_VALVE_OPENCLOSE
+          || _channelBase.func == SUPLA_CHANNELFNC_VALVE_PERCENTAGE)
+          && (_channelBase.isManuallyClosed || _channelBase.flooding)
+          && _channelBase.isClosed) {
+          [self hideSwipeAnimated:YES];
+          [self showValveAlertDialog];
+          return;
+      }
+    
     [self vibrate];
+    
     [[SAApp SuplaClient] cg:self.channelBase.remote_id Open:1 group:[self.channelBase isKindOfClass:[SAChannelGroup class]]];
     [self hideSwipeAnimated:YES];
 }

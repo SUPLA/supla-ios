@@ -83,6 +83,10 @@
     return 0;
 }
 
+- (BOOL) isClosed {
+    return [self hiValue] > 0;
+}
+
 - (int) hiSubValue {
     
     if ( self.sub_value != nil ) {
@@ -228,6 +232,24 @@
     }
     
     return -273;
+}
+
+-(char) secondByte {
+    if ( self.value != nil ) {
+        char v[2] = {0, 0};
+        [self.dataValue getBytes:v length:sizeof(v)];
+        return v[1];
+    }
+    
+    return 0;
+}
+
+-(BOOL) isManuallyClosed {
+    return ([self secondByte] & SUPLA_VALVE_FLAG_MANUALLY_CLOSED) > 0;
+}
+
+-(BOOL) flooding {
+    return ([self secondByte] & SUPLA_VALVE_FLAG_FLOODING) > 0;
 }
 
 @end

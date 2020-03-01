@@ -317,6 +317,11 @@ void sasuplaclient_on_oauth_token_request_result(void *_suplaclient, void *user_
     scc.user_data = (__bridge void *)self;
     scc.host = [self getServerHostName];
     
+    if (scc.host == NULL
+        || strnlen(scc.host, SUPLA_SERVER_NAME_MAXSIZE) == 0) {
+        [self onConnError:SUPLA_RESULTCODE_HOSTNOTFOUND];
+    }
+    
     if ( [SAApp getAdvancedConfig] ) {
         scc.AccessID = [SAApp getAccessID];
         snprintf(scc.AccessIDpwd, SUPLA_ACCESSID_PWD_MAXSIZE, "%s", [[SAApp getAccessIDpwd] UTF8String]);

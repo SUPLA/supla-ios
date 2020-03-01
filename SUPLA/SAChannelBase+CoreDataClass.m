@@ -163,6 +163,8 @@
                     return NSLocalizedString(@"Thermometer", nil);
                 case SUPLA_CHANNELFNC_HUMIDITYANDTEMPERATURE:
                     return NSLocalizedString(@"Temperature and humidity", nil);
+                case SUPLA_CHANNELFNC_HUMIDITY:
+                    return NSLocalizedString(@"Humidity", nil);
                 case SUPLA_CHANNELFNC_NOLIQUIDSENSOR:
                     return NSLocalizedString(@"No liquid sensor", nil);
                 case SUPLA_CHANNELFNC_RGBLIGHTING:
@@ -196,6 +198,9 @@
                     return NSLocalizedString(@"Water Meter", nil);
                 case SUPLA_CHANNELFNC_THERMOSTAT_HEATPOL_HOMEPLUS:
                     return NSLocalizedString(@"Home+ Heater", nil);
+                case SUPLA_CHANNELFNC_VALVE_OPENCLOSE:
+                case SUPLA_CHANNELFNC_VALVE_PERCENTAGE:
+                    return NSLocalizedString(@"Valve", nil);
         }
         
     }
@@ -214,6 +219,10 @@
 
 - (int) hiValue {
     return 0;
+}
+
+- (BOOL) isClosed {
+    return FALSE;
 }
 
 - (int) hiSubValue {
@@ -254,6 +263,14 @@
 
 - (double) impulseCounterCalculatedValue {
     return 0;
+}
+
+- (BOOL) isManuallyClosed {
+    return false;
+}
+
+- (BOOL) flooding {
+    return false;
 }
 
 - (int) imgIsActive {
@@ -297,6 +314,14 @@
                     result |= 0x2;
                 }
                 return result;
+            }
+            case SUPLA_CHANNELFNC_VALVE_OPENCLOSE: {
+                bool warning = self.flooding || self.isManuallyClosed;
+                if ( self.isClosed ) {
+                    return warning ? 2 : 1;
+                } else {
+                    return warning ? -1 : 0;
+                }
             }
         }
     }
@@ -440,6 +465,8 @@
         case SUPLA_CHANNELFNC_THERMOMETER:
         case SUPLA_CHANNELFNC_HUMIDITYANDTEMPERATURE:
             return [UIImage imageNamed:idx == 0 ? @"thermometer" : @"humidity"];
+        case SUPLA_CHANNELFNC_HUMIDITY:
+            return [UIImage imageNamed:@"humidity"];
         case SUPLA_CHANNELFNC_NOLIQUIDSENSOR:
             return [UIImage imageNamed:[self imgIsActive] ? @"liquid" : @"noliquid"];
         case SUPLA_CHANNELFNC_DIMMER:
@@ -487,6 +514,23 @@
             return [UIImage imageNamed:@"weight"];
         case SUPLA_CHANNELFNC_RAINSENSOR:
             return [UIImage imageNamed:@"rain"];
+        case SUPLA_CHANNELFNC_VALVE_OPENCLOSE:
+        case SUPLA_CHANNELFNC_VALVE_PERCENTAGE:
+            switch([self imgIsActive]) {
+                case -1:
+                    n1 = @"valve-open-warning";
+                    break;
+                case 1:
+                    n1 = @"valve-closed";
+                    break;
+                case 2:
+                    n1 = @"valve-closed-warning";
+                    break;
+                default:
+                    n1 = @"valve-open";
+                    break;
+            }
+            return [UIImage imageNamed:n1];
     }
     
     if ( n1 ) {
@@ -571,6 +615,9 @@
         case SUPLA_CHANNELFNC_THERMOMETER:
             result = [self isOnline] && self.temperatureValue > -273 ? [NSString stringWithFormat:@"%0.1f°", self.temperatureValue] : @"----°";
             break;
+        case SUPLA_CHANNELFNC_HUMIDITY:
+            result = [self isOnline] && self.humidityValue > -1 ? [NSString stringWithFormat:@"%0.1f", self.humidityValue] : @"----";
+            break;
         case SUPLA_CHANNELFNC_HUMIDITYANDTEMPERATURE:
             if (idx == 1) {
                 result = [self isOnline] && self.humidityValue > -1 ? [NSString stringWithFormat:@"%0.1f", self.humidityValue] : @"----";
@@ -582,7 +629,7 @@
         case SUPLA_CHANNELFNC_DISTANCESENSOR:
             result = @"--- m";
             
-            if ( [self isOnline] && self.doubleValue > -1 ) {
+            if ( [self isOnline] && self.doubleValue >= 0 ) {
                 
                 double value = [self doubleValue];
                 
@@ -604,28 +651,28 @@
             }
             break;
         case SUPLA_CHANNELFNC_WINDSENSOR:
-            if ([self isOnline]) {
+            if ([self isOnline] && [self doubleValue] >= 0) {
                result = [NSString stringWithFormat:@"%0.1f m/s", [self doubleValue]];
             } else {
                result = @"--- m/s";
             }
             break;
         case SUPLA_CHANNELFNC_PRESSURESENSOR:
-            if ([self isOnline]) {
+            if ([self isOnline] && [self doubleValue] >= 0) {
                result = [NSString stringWithFormat:@"%i hPa", (int)[self doubleValue]];
             } else {
                result = @"--- hPa";
             }
             break;
         case SUPLA_CHANNELFNC_RAINSENSOR:
-            if ([self isOnline]) {
+            if ([self isOnline] && [self doubleValue] >= 0) {
                 result = [NSString stringWithFormat:@"%0.2f l/m²", [self doubleValue]/1000.00];
             } else {
                 result = @"--- l/m²";
             }
             break;
         case SUPLA_CHANNELFNC_WEIGHTSENSOR:
-            if ([self isOnline]) {
+            if ([self isOnline] && [self doubleValue] >= 0) {
                 double weight = [self doubleValue];
                 if (fabs(weight) >= 2000) {
                     result = [NSString stringWithFormat:@"%0.2f kg", weight/1000.00];

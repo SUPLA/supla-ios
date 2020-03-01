@@ -117,6 +117,10 @@
         changed = YES;
     }
     
+    if (changed) {
+        [SAApp.DB deleteAllUserIcons];
+    }
+    
     if ( changed || [SAApp SuplaClientConnected] == NO ) {
         [SAApp setPreferedProtocolVersion:SUPLA_PROTO_VERSION];
         [[SAApp SuplaClient] reconnect];
