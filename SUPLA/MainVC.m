@@ -350,6 +350,7 @@
             case SUPLA_CHANNELFNC_IC_ELECTRICITY_METER:
             case SUPLA_CHANNELFNC_IC_GAS_METER:
             case SUPLA_CHANNELFNC_IC_WATER_METER:
+            case SUPLA_CHANNELFNC_IC_HEAT_METER:
                 identifier = @"IncrementalMeterCell";
                 break;
             case SUPLA_CHANNELFNC_THERMOSTAT_HEATPOL_HOMEPLUS:

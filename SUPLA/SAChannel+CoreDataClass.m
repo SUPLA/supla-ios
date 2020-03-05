@@ -160,7 +160,8 @@
     if ( self.func == SUPLA_CHANNELFNC_ELECTRICITY_METER
         || self.func == SUPLA_CHANNELFNC_IC_ELECTRICITY_METER
         || self.func == SUPLA_CHANNELFNC_IC_WATER_METER
-        || self.func == SUPLA_CHANNELFNC_IC_GAS_METER ) {
+        || self.func == SUPLA_CHANNELFNC_IC_GAS_METER
+        || self.func == SUPLA_CHANNELFNC_IC_HEAT_METER) {
         
         NSString *result = nil;
         SAImpulseCounterExtendedValue *icev = nil;
@@ -208,7 +209,8 @@
    if ( self.func == SUPLA_CHANNELFNC_ELECTRICITY_METER
         || self.func == SUPLA_CHANNELFNC_IC_ELECTRICITY_METER
         || self.func == SUPLA_CHANNELFNC_IC_WATER_METER
-        || self.func == SUPLA_CHANNELFNC_IC_GAS_METER ) {
+        || self.func == SUPLA_CHANNELFNC_IC_GAS_METER
+        || self.func == SUPLA_CHANNELFNC_IC_HEAT_METER) {
         
         if ( [self isOnline] ) {
             

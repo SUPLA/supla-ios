@@ -196,6 +196,8 @@
                     return NSLocalizedString(@"Gas Meter", nil);
                 case SUPLA_CHANNELFNC_IC_WATER_METER:
                     return NSLocalizedString(@"Water Meter", nil);
+                case SUPLA_CHANNELFNC_IC_HEAT_METER:
+                    return NSLocalizedString(@"Heat Meter", nil);
                 case SUPLA_CHANNELFNC_THERMOSTAT_HEATPOL_HOMEPLUS:
                     return NSLocalizedString(@"Home+ Heater", nil);
                 case SUPLA_CHANNELFNC_VALVE_OPENCLOSE:
@@ -496,6 +498,10 @@
             
         case SUPLA_CHANNELFNC_IC_WATER_METER:
             return [UIImage imageNamed:@"watermeter"];
+        
+        case SUPLA_CHANNELFNC_IC_HEAT_METER:
+            return [UIImage imageNamed:@"heatmeter"];
+            
         case SUPLA_CHANNELFNC_THERMOSTAT_HEATPOL_HOMEPLUS:
             n2 = @"thermostat_hp_homeplus";
             if (self.alticon > 0 && self.alticon <= 3) {
