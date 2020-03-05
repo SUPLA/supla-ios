@@ -59,6 +59,8 @@
 		017A3CB223635DF7004AD1FC /* wind@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 017A3CAC23635DF6004AD1FC /* wind@3x.png */; };
 		017A3CB323635DF7004AD1FC /* pressure@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 017A3CAD23635DF7004AD1FC /* pressure@2x.png */; };
 		017A3CB423635DF7004AD1FC /* pressure@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 017A3CAE23635DF7004AD1FC /* pressure@3x.png */; };
+		018574262411234B00CEDF16 /* heatmeter@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 018574242411234B00CEDF16 /* heatmeter@2x.png */; };
+		018574272411234B00CEDF16 /* heatmeter@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 018574252411234B00CEDF16 /* heatmeter@3x.png */; };
 		018CFD2023281A5900888CB7 /* SAElectricityMeterExtendedValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 018CFD1F23281A5900888CB7 /* SAElectricityMeterExtendedValue.m */; };
 		018CFD2323281ADB00888CB7 /* SAThermostatExtendedValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 018CFD2223281ADB00888CB7 /* SAThermostatExtendedValue.m */; };
 		018CFD2623281AF900888CB7 /* SAThermostatHPExtendedValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 018CFD2523281AF900888CB7 /* SAThermostatHPExtendedValue.m */; };
@@ -462,6 +464,8 @@
 		017A3CAC23635DF6004AD1FC /* wind@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "wind@3x.png"; path = "Resources/Assets/Img/wind@3x.png"; sourceTree = "<group>"; };
 		017A3CAD23635DF7004AD1FC /* pressure@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "pressure@2x.png"; path = "Resources/Assets/Img/pressure@2x.png"; sourceTree = "<group>"; };
 		017A3CAE23635DF7004AD1FC /* pressure@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "pressure@3x.png"; path = "Resources/Assets/Img/pressure@3x.png"; sourceTree = "<group>"; };
+		018574242411234B00CEDF16 /* heatmeter@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "heatmeter@2x.png"; path = "Resources/Assets/Img/heatmeter@2x.png"; sourceTree = "<group>"; };
+		018574252411234B00CEDF16 /* heatmeter@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "heatmeter@3x.png"; path = "Resources/Assets/Img/heatmeter@3x.png"; sourceTree = "<group>"; };
 		018CFD1E23281A5900888CB7 /* SAElectricityMeterExtendedValue.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SAElectricityMeterExtendedValue.h; sourceTree = "<group>"; };
 		018CFD1F23281A5900888CB7 /* SAElectricityMeterExtendedValue.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SAElectricityMeterExtendedValue.m; sourceTree = "<group>"; };
 		018CFD2123281ADB00888CB7 /* SAThermostatExtendedValue.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SAThermostatExtendedValue.h; sourceTree = "<group>"; };
@@ -1258,6 +1262,8 @@
 		405AC4011BC15878004F7311 /* Img */ = {
 			isa = PBXGroup;
 			children = (
+				018574242411234B00CEDF16 /* heatmeter@2x.png */,
+				018574252411234B00CEDF16 /* heatmeter@3x.png */,
 				013F384923EA0C080061D553 /* valve-closed-warning@2x.png */,
 				013F384A23EA0C080061D553 /* valve-closed-warning@3x.png */,
 				012E341023DF5FB800F17D39 /* valve-closed@2x.png */,
@@ -1916,6 +1922,7 @@
 				406C92D41BCD8518007BA87A /* btnOK@2x.png in Resources */,
 				401CA1CD1BA067DB00117AF4 /* Images.xcassets in Resources */,
 				40CF96CA1BC7D4E70030EFFF /* thermometer@2x.png in Resources */,
+				018574272411234B00CEDF16 /* heatmeter@3x.png in Resources */,
 				01D2C38E22C3B0A700BF1A10 /* graphoff.png in Resources */,
 				01F9110622EF954400BFF91D /* thermostat_hp_homeplus3-on@2x.png in Resources */,
 				4052DA091DC515AE000B8C45 /* dimmer-off@2x.png in Resources */,
@@ -1968,6 +1975,7 @@
 				40477B3D20C6C57700E995E6 /* staircasetimer-off@3x.png in Resources */,
 				405C49A01FCAFFD400C15602 /* wizard_error@2x.png in Resources */,
 				407D31941FD1A7070062FB80 /* AddWizardVC.xib in Resources */,
+				018574262411234B00CEDF16 /* heatmeter@2x.png in Resources */,
 				4052DA021DC515AE000B8C45 /* dimmerrgb-offon@3x.png in Resources */,
 				40CF96AE1BC7D4E70030EFFF /* garagedoor-closed@2x.png in Resources */,
 				017A3CAF23635DF7004AD1FC /* rain@2x.png in Resources */,
@@ -2573,7 +2581,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 44;
+				CURRENT_PROJECT_VERSION = 45;
 				DEFINES_MODULE = YES;
 				HEADER_SEARCH_PATHS = "$(SDKROOT)/usr/include/libxml2";
 				INFOPLIST_FILE = SUPLA/Info.plist;
@@ -2583,7 +2591,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/SUPLA/lib",
 				);
-				MARKETING_VERSION = 2.3.6;
+				MARKETING_VERSION = 2.3.7;
 				PRODUCT_BUNDLE_IDENTIFIER = com.acsoftware.ios.supla;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "SUPLA/SUPLA-Bridging-Header.h";
@@ -2600,7 +2608,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 44;
+				CURRENT_PROJECT_VERSION = 45;
 				DEFINES_MODULE = YES;
 				HEADER_SEARCH_PATHS = "$(SDKROOT)/usr/include/libxml2";
 				INFOPLIST_FILE = SUPLA/Info.plist;
@@ -2610,7 +2618,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/SUPLA/lib",
 				);
-				MARKETING_VERSION = 2.3.6;
+				MARKETING_VERSION = 2.3.7;
 				PRODUCT_BUNDLE_IDENTIFIER = com.acsoftware.ios.supla;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "SUPLA/SUPLA-Bridging-Header.h";
