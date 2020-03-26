@@ -23,6 +23,18 @@
     [super assignJSONObject:object];
 
     self.temperature = [self temperatureForKey:@"temperature" withObject:object];
-    self.humidity = [self temperatureForKey:@"humidity" withObject:object];
+    self.humidity = [self humidityForKey:@"humidity" withObject:object];
+}
+
+
+-(NSDecimalNumber*)humidityForKey:(NSString*)key withObject:(NSDictionary*)object {
+   NSString *str = [object valueForKey:key];
+    if (str != nil && ![str isKindOfClass:[NSNull class]]) {
+        double humidity = [str doubleValue];
+        if (humidity > -1) {
+            return [[NSDecimalNumber alloc] initWithDouble:humidity];
+        }
+    }
+    return nil;
 }
 @end
