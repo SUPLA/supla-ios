@@ -25,6 +25,16 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy) UIColor *valueColor;
 @property (nonatomic, copy) UIColor *insideBtnColor;
 @property (nonatomic) CGFloat borderLineWidth;
+@property (nonatomic) double maxRange;
+@property (nonatomic) double minRange;
+@property (nonatomic) double numerOfTurns;
+@property (nonatomic) double minimum;
+@property (nonatomic) double maximum;
+@property (nonatomic) double leftEdge;
+@property (nonatomic) double rightEdge;
+@property (nonatomic) double boostLevel;
+@property (nonatomic) BOOL boostHidden;
+
 @end
 
 NS_ASSUME_NONNULL_END
