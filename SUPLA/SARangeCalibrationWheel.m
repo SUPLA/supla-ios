@@ -15,7 +15,9 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 #import "SARangeCalibrationWheel.h"
 
-#define DEGREES_TO_RADIANS(degrees)((M_PI * degrees)/180)
+#define DEGREES_TO_RADIANS(degrees)((M_PI * degrees)/180.0)
+#define RADIANS_TO_DEGREES(angrad)(angrad * 180.0 / M_PI)
+
 #define TOUCHED_NONE 0
 #define TOUCHED_LEFT 1
 #define TOUCHED_RIGHT 2
@@ -38,6 +40,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     BOOL _boostHidden;
     BOOL initialized;
     Byte touched;
+    double lastTouchedDegree;
     CGFloat wheelRadius;
     CGFloat wheelWidth;
     CGFloat halfBtnSize;
@@ -63,6 +66,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     
     touched = TOUCHED_NONE;
     _borderLineWidth = 1.5;
+
     initialized = YES;
 }
 
@@ -173,7 +177,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 }
 
 -(double) minRange {
-    return _maxRange;
+    return _minRange;
 }
 
 -(void) setMinRange:(double)minRange {
@@ -201,10 +205,11 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 }
 
 -(void)setMinimum:(double)minimum needsDisplay:(BOOL)needsDisplay {
+  
     if (minimum+self.minRange > self.maximum) {
         minimum = self.maximum - self.minRange;
     }
-
+  NSLog(@"min=%f,%f,%f", minimum, self.maximum,self.minRange);
     if (minimum < self.leftEdge) {
         minimum = self.leftEdge;
     }
@@ -214,6 +219,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     }
 
     _minimum = minimum;
+    
     if (needsDisplay) {
         [self setNeedsDisplay];
     }
@@ -327,7 +333,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     halfBtnSize = btnSize / 2;
     CGFloat x = wheelRadius - self.borderLineWidth;
     CGPoint result = CGPointMake(cosf(rad)*wheelRadius, sinf(rad)*wheelRadius);
-    
+        
     if (hidden) {
         return result;
     }
@@ -417,11 +423,123 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
                                    btnRightCenter.x -btnLeftCenter.x - distanceToEdge * 2,
                                    halfBtnSize * 2);
     
-    CGFloat vleft = valueFrame.origin.x + (valueFrame.size.width * self.minimum *100.00/self.maxRange/100.00);
-    CGFloat vwidth = valueFrame.size.width * self.maximum *100.00/self.maxRange/100.00;
+    [self.valueColor setFill];
     
-    UIBezierPath *path = [UIBezierPath bezierPathWithRoundedRect:valueFrame cornerRadius:3];
+    float vmin = (valueFrame.size.width * self.minimum *100.00/self.maxRange/100.00);
+    
+    r.origin.x = valueFrame.origin.x + vmin;
+    r.origin.y = valueFrame.origin.y;
+    r.size.height = valueFrame.size.height;
+    r.size.width = valueFrame.size.width * self.maximum *100.00/self.maxRange/100.00 - vmin;
+    
+    UIBezierPath *path = [UIBezierPath bezierPathWithRoundedRect:r cornerRadius:3];
+    [path fill];
+    
+    path = [UIBezierPath bezierPathWithRoundedRect:valueFrame cornerRadius:3];
     [path stroke];
+
 }
+
+-(BOOL) isBtnTouchedWithCenterPointAt:(CGPoint)btnCenter touchPoint:(CGPoint)touchPoint {
+    btnCenter.x += self.bounds.size.width / 2;
+    btnCenter.y += self.bounds.size.height / 2;
+    
+    float touchRadius = sqrtf(pow(touchPoint.x - btnCenter.x, 2) + pow(touchPoint.y -btnCenter.y, 2));
+    return touchRadius <= halfBtnSize*1.1;
+}
+
+-(void) onRangeChangedMin {
+    
+}
+
+-(void) onRangeChangedMax {
+    
+}
+
+-(void) onBoostChanged {
+    
+}
+
+-(UIView *) hitTest:(CGPoint)point withEvent:(UIEvent *)event
+{
+    Byte _touched = TOUCHED_NONE;
+    
+    if (self.boostHidden && [self isBtnTouchedWithCenterPointAt:btnLeftCenter touchPoint:point]) {
+        _touched = TOUCHED_LEFT;
+        btnRad = DEGREES_TO_RADIANS(180);
+        [self onRangeChangedMin];
+    } else if ([self isBtnTouchedWithCenterPointAt:btnRightCenter touchPoint:point]) {
+        _touched = TOUCHED_RIGHT;
+        btnRad = 0;
+        if (self.boostHidden) {
+          [self onRangeChangedMax];
+        } else {
+          [self onBoostChanged];
+        }
+    }
+    
+    if (touched != _touched) {
+        lastTouchedDegree = RADIANS_TO_DEGREES([self touchPointToRadian:point]);
+        touched = _touched;
+        [self setNeedsDisplay];
+    }
+
+    return touched == TOUCHED_NONE ? nil : self;
+}
+
+-(double) touchPointToRadian:(CGPoint)touchPoint {
+    return atan2(touchPoint.y-self.bounds.size.height/2,
+            touchPoint.x-self.bounds.size.width/2);
+}
+
+- (void)touchesMoved:(NSSet<UITouch *> *)touches withEvent:(nullable UIEvent *)event {
+    [super touchesMoved:touches withEvent:event];
+    
+    UITouch *touch = [touches anyObject];
+    
+    if (touch == nil || touched == TOUCHED_NONE) {
+        return;
+    }
+    
+    CGPoint touchLocation = [touch locationInView:touch.view];
+
+    btnRad = [self touchPointToRadian:touchLocation];
+    double touchedDegree = RADIANS_TO_DEGREES(btnRad);
+    
+    double diff = touchedDegree-lastTouchedDegree;
+    if (fabs(diff) > 100) {
+        diff = 360 - fabs(lastTouchedDegree) - fabs(touchedDegree);
+        if (touchedDegree > 0) {
+            diff*=-1;
+        }
+    }
+  
+    if (fabs(diff) <= 20) {
+        diff = (diff*100.0/360.0)*self.maxRange/100/self.numerOfTurns;
+        if (touched==TOUCHED_LEFT) {
+            [self setMinimum:self.minimum+diff needsDisplay:NO];
+            [self onRangeChangedMin];
+        } else {
+            if (_boostHidden) {
+                [self setMaximum:self.maximum+diff needsDisplay:NO];
+                [self onRangeChangedMax];
+            } else {
+                self.boostLevel += diff;
+                [self onBoostChanged];
+            }
+        }
+    }
+
+    lastTouchedDegree = touchedDegree;
+    [self setNeedsDisplay];
+}
+
+- (void)touchesEnded:(NSSet<UITouch *> *)touches withEvent:(nullable UIEvent *)event {
+    [super touchesEnded:touches withEvent:event];
+    touched = TOUCHED_NONE;
+    btnRad = 0;
+    [self setNeedsDisplay];
+}
+
 
 @end
