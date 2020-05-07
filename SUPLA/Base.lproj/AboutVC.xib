@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
-    <device id="retina4_7" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -15,7 +13,7 @@
         <array key="OpenSans-Regular.ttf">
             <string>OpenSans</string>
         </array>
-        <array key="Quicksand-Light.ttf">
+        <array key="Quicksand-Regular.ttf">
             <string>Quicksand-Regular</string>
         </array>
     </customFonts>
@@ -33,7 +31,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" image="logo-supla.png" translatesAutoresizingMaskIntoConstraints="NO" id="sf1-4W-BGy">
-                    <rect key="frame" x="123" y="50" width="130" height="130"/>
+                    <rect key="frame" x="122.5" y="50" width="130" height="130"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="130" id="6SP-uN-iXK"/>
                         <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="130" id="7TE-vw-vwU"/>
@@ -41,12 +39,12 @@
                         <constraint firstAttribute="width" constant="130" id="qMi-Fw-LNs"/>
                     </constraints>
                 </imageView>
-                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="dSv-O4-amY">
+                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" editable="NO" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="dSv-O4-amY">
                     <rect key="frame" x="5" y="267" width="365" height="282"/>
                     <constraints>
                         <constraint firstAttribute="height" relation="greaterThanOrEqual" id="Dsr-Bx-2Vk"/>
                     </constraints>
-                    <mutableString key="text">This program is free software; you can redistribute it and/or
+                    <string key="text">This program is free software; you can redistribute it and/or
  modify it under the terms of the GNU General Public License
  as published by the Free Software Foundation; either version 2
  of the License, or (at your option) any later version.
@@ -58,7 +56,7 @@
  
  You should have received a copy of the GNU General Public License
  along with this program; if not, write to the Free Software
- Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA</mutableString>
+ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA</string>
                     <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="10"/>
                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                 </textView>
@@ -145,6 +143,6 @@
     </objects>
     <resources>
         <image name="btnOK.png" width="65" height="65"/>
-        <image name="logo-supla.png" width="177" height="177"/>
+        <image name="logo-supla.png" width="177.5" height="177.5"/>
     </resources>
 </document>
