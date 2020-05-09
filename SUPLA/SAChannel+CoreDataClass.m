@@ -233,4 +233,12 @@
     return [super attrStringValueWithIndex:idx font:font];
 }
 
+- (int) warningLevel {
+    switch (self.func) {
+        case SUPLA_CHANNELFNC_VALVE_OPENCLOSE:
+        case SUPLA_CHANNELFNC_VALVE_PERCENTAGE:
+            return self.isManuallyClosed || self.flooding ? 2 : 0;
+    }
+    return 0;
+}
 @end

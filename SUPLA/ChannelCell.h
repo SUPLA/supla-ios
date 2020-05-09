@@ -53,6 +53,7 @@
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *cint_RightStatusWidth;
 @property (weak, nonatomic) IBOutlet UILabel *measuredValue;
 @property (weak, nonatomic) IBOutlet UIImageView *channelStateIcon;
+@property (weak, nonatomic) IBOutlet UIImageView *channelWarningIcon;
 
 
 @end

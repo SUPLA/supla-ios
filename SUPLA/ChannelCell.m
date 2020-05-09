@@ -99,6 +99,7 @@
     _channelBase = channelBase;
     BOOL isGroup = [channelBase isKindOfClass:[SAChannelGroup class]];
     self.channelStateIcon.hidden = YES;
+    self.channelWarningIcon.hidden = YES;
     
     if ( isGroup ) {
         self.cint_LeftStatusWidth.constant = 6;
@@ -133,6 +134,21 @@
                             break;
                     }
                 }
+            }
+            
+            UIImage *warningImage = nil;
+            switch (channel.warningLevel) {
+                case 1:
+                    warningImage = [UIImage imageNamed:@"channel_warning_level1"];
+                    break;
+                case 2:
+                    warningImage = [UIImage imageNamed:@"channel_warning_level2"];
+                    break;
+            }
+            
+            if (warningImage) {
+                self.channelWarningIcon.hidden = NO;
+                self.channelWarningIcon.image = warningImage;
             }
             
             // Only if self.channelStateIcon.hidden !!
