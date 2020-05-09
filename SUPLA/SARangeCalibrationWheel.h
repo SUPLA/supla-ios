@@ -17,6 +17,14 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 NS_ASSUME_NONNULL_BEGIN
 
+@protocol SARangeCalibrationWheelDelegate <NSObject>
+
+@required
+-(void) cbPickerDataChanged;
+-(void) cbPickerMoveEnded;
+
+@end
+
 @interface SARangeCalibrationWheel : UIView
 
 @property (nonatomic, copy) UIColor *wheelColor;
