@@ -269,7 +269,7 @@ void sasuplaclient_on_oauth_token_request_result(void *_suplaclient, void *user_
 - (char*) getServerHostName {
     
     NSString *host = [SAApp getServerHostName];
-    if ( [host isEqualToString:@""] == YES && [SAApp getAdvancedConfig] == NO && ![[SAApp getEmailAddress] isEqualToString:@""] ) {
+    if ( [host isEqualToString:@""] == YES && [SAApp isAdvancedConfig] == NO && ![[SAApp getEmailAddress] isEqualToString:@""] ) {
                 
         NSMutableURLRequest *request =
         [NSMutableURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"https://autodiscover.supla.org/users/%@", [SAApp getEmailAddress]]] cachePolicy:NSURLRequestReloadIgnoringLocalAndRemoteCacheData timeoutInterval:5];
@@ -322,7 +322,7 @@ void sasuplaclient_on_oauth_token_request_result(void *_suplaclient, void *user_
         [self onConnError:SUPLA_RESULTCODE_HOSTNOTFOUND];
     }
     
-    if ( [SAApp getAdvancedConfig] ) {
+    if ( [SAApp isAdvancedConfig] ) {
         scc.AccessID = [SAApp getAccessID];
         snprintf(scc.AccessIDpwd, SUPLA_ACCESSID_PWD_MAXSIZE, "%s", [[SAApp getAccessIDpwd] UTF8String]);
         
@@ -445,7 +445,7 @@ void sasuplaclient_on_oauth_token_request_result(void *_suplaclient, void *user_
     
     _regTryCounter = 0;
     
-    if ( ([SAApp getAdvancedConfig] || ve.remoteVersion >= 7)
+    if ( ([SAApp isAdvancedConfig] || ve.remoteVersion >= 7)
         && ve.remoteVersion >= 5
         && ve.version > ve.remoteVersion
         && [SAApp getPreferedProtocolVersion] != ve.remoteVersion ) {

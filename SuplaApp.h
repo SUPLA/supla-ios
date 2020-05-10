@@ -40,12 +40,13 @@
 +(void) setAccessIDpwd:(NSString *)pwd;
 +(NSString*) getServerHostName;
 +(NSString*) getEmailAddress;
-+(BOOL) getAdvancedConfig;
++(BOOL) isAdvancedConfig;
 +(void) setServerHostName:(NSString *)hostname;
 +(void) setEmailAddress:(NSString *)email;
 +(void) setAdvancedConfig:(BOOL)adv_cfg;
 +(void) abstractMethodException:(NSString *)methodName;
 +(NSURL *)applicationDocumentsDirectory;
++(BOOL) configIsSet;
 
 +(void)initClientDelayed:(double)time;
 +(SASuplaClient *) SuplaClient;

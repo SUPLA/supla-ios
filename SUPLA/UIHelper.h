@@ -95,6 +95,7 @@
 
 -(BOOL)addWizardIsVisible;
 -(BOOL)createAccountVCisVisible;
+-(BOOL)settingsVCisVisible;
 
 @property (nullable, nonatomic, strong) UIViewController *rootViewController;
 

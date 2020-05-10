@@ -179,7 +179,7 @@ NSString *kSAOAuthTokenRequestResult = @"KSA-N13";
     
 }
 
--(BOOL) getAdvancedConfig {
+-(BOOL) isAdvancedConfig {
     
     BOOL result = NO;
     
@@ -190,9 +190,9 @@ NSString *kSAOAuthTokenRequestResult = @"KSA-N13";
     return result;
 }
 
-+(BOOL) getAdvancedConfig {
++(BOOL) isAdvancedConfig {
     
-    return [[self instance] getAdvancedConfig];
+    return [[self instance] isAdvancedConfig];
 }
 
 -(void) setAdvancedConfig:(BOOL)adv_cfg {
@@ -351,6 +351,14 @@ NSString *kSAOAuthTokenRequestResult = @"KSA-N13";
 
 + (NSURL *)applicationDocumentsDirectory {
     return [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
+}
+
++(BOOL) configIsSet {
+    if ( [SAApp isAdvancedConfig] ) {
+        return ![[SAApp getServerHostName] isEqual:@""] && [SAApp getAccessID] != 0 && ![[SAApp getAccessIDpwd] isEqual:@""];
+    }
+    
+    return ![[SAApp getEmailAddress] isEqual:@""];
 }
 
 -(void)onInitTimer:(NSTimer *)timer {
@@ -601,7 +609,7 @@ NSString *kSAOAuthTokenRequestResult = @"KSA-N13";
 }
 
 -(BOOL)canChangeView {
-    return [self.UI addWizardIsVisible] != YES && [self.UI createAccountVCisVisible] != YES;
+    return [self.UI addWizardIsVisible] != YES && [self.UI createAccountVCisVisible] != YES && ![self.UI settingsVCisVisible];
     
 }
 -(void)onVersionError:(SAVersionError*)ve {

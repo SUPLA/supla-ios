@@ -57,7 +57,7 @@
 -(void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     
-    if ( [SAApp getAdvancedConfig] ) {
+    if ( [SAApp isAdvancedConfig] ) {
         self.view = self.vAdvanced;
     } else {
         self.view = self.vBasic;
@@ -112,7 +112,7 @@
         changed = YES;
     }
     
-    if ( [SAApp getAdvancedConfig] != (self.view == self.vAdvanced) ) {
+    if ( [SAApp isAdvancedConfig] != (self.view == self.vAdvanced) ) {
         [SAApp setAdvancedConfig:self.view == self.vAdvanced];
         changed = YES;
     }
