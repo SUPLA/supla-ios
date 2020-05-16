@@ -26,11 +26,12 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     UIColor *_wheelColor;
     UIColor *_borderColor;
     UIColor *_btnColor;
-    UIColor *_valueColor;
+    UIColor *_rangeColor;
     UIColor *_insideBtnColor;
+    UIColor *_boostLineColor;
     CGFloat _borderLineWidth;
-    double _maxRange;
-    double _minRange;
+    double _maximumValue;
+    double _minimumRange;
     double _numerOfTurns;
     double _minimum;
     double _maximum;
@@ -49,18 +50,20 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     CGPoint btnLeftCenter;
 }
 
+@synthesize delegate;
+
 -(void)wheelInit {
     if ( initialized ) {
      return;
     }
    
-    _maxRange = 1000;
-    _minRange = _maxRange * 0.1;
+    _maximumValue = 1000;
+    _minimumRange = _maximumValue * 0.1;
     _numerOfTurns = 5;
     _minimum = 0;
-    _maximum = _maxRange;
+    _maximum = _maximumValue;
     _leftEdge = 0;
-    _rightEdge = _maxRange;
+    _rightEdge = _maximumValue;
     _boostLevel = 0;
     _boostHidden = YES;
     
@@ -136,16 +139,16 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     return _btnColor;
 }
 
-- (void)setValueColor:(UIColor *)valueColor {
-    _valueColor = valueColor == nil ? nil : [valueColor copy];
+- (void)setRangeColor:(UIColor *)rangeColor {
+    _rangeColor = rangeColor == nil ? nil : [rangeColor copy];
     [self setNeedsDisplay];
 }
 
-- (UIColor*)valueColor {
-    if (_valueColor == nil) {
-        _valueColor = [UIColor colorWithRed: 1.00 green: 0.90 blue: 0.09 alpha: 1.00];
+- (UIColor*)rangeColor {
+    if (_rangeColor == nil) {
+        _rangeColor = [UIColor colorWithRed: 1.00 green: 0.90 blue: 0.09 alpha: 1.00];
     }
-    return _valueColor;
+    return _rangeColor;
 }
 
 - (void)setInsideBtnColor:(UIColor *)insideBtnColor {
@@ -160,36 +163,91 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     return _insideBtnColor;
 }
 
--(double) maxRange {
-    return _maxRange;
-}
-
--(void) setMaxRange:(double)maxRange {
-    if (_leftEdge > maxRange) {
-        maxRange = _leftEdge;
-    }
-
-    if (_rightEdge > maxRange) {
-        maxRange = _rightEdge;
-    }
-    _maxRange = maxRange;
+- (void)setBoostLineColor:(UIColor *)boostLineColor {
+    _boostLineColor = boostLineColor == nil ? nil : [boostLineColor copy];
     [self setNeedsDisplay];
 }
 
--(double) minRange {
-    return _minRange;
+-(UIColor*)boostLineColor {
+    if (_boostLineColor == nil) {
+        _boostLineColor = [UIColor redColor];
+    }
+
+    return _boostLineColor;
 }
 
--(void) setMinRange:(double)minRange {
-    if (minRange < 0) {
-        minRange = 0;
-    }
-    if (minRange > self.maxRange) {
-        minRange = self.maxRange;
+-(CGFloat)borderLineWidth {
+    return _borderLineWidth;
+}
+
+-(void)setBorderLineWidth:(CGFloat)borderLineWidth {
+    if (borderLineWidth < 0.1) {
+        borderLineWidth = 0.1;
     }
     
-    _minRange = minRange;
+    _borderLineWidth = borderLineWidth;
+}
+
+-(double) maximumValue {
+    return _maximumValue;
+}
+
+-(void) setMaximumValue:(double)maximumValue {
+    
+    if (maximumValue < self.minimumRange) {
+        maximumValue = self.minimumRange;
+    }
+    
+    _maximumValue = maximumValue;
+    
+    if (_rightEdge > maximumValue) {
+        self.rightEdge = maximumValue;
+    }
+    
     [self setNeedsDisplay];
+}
+
+-(double) minimumRange {
+    return _minimumRange;
+}
+
+-(void) setMinimumRange:(double)minimumRange {
+    if (minimumRange < 0) {
+        minimumRange = 0;
+    }
+    if (minimumRange > self.maximumValue) {
+        minimumRange = self.maximumValue;
+    }
+    
+    _minimumRange = minimumRange;
+    
+    if (_minimumRange > self.rightEdge-self.leftEdge) {
+        double diff = (_minimumRange - (self.rightEdge-self.leftEdge)) / 2;
+        if (diff > self.leftEdge) {
+            self.leftEdge = 0;
+            self.rightEdge = _minimumRange;
+        } else if (diff + self.rightEdge > self.maximumValue) {
+            self.rightEdge = self.maximumValue;
+            self.leftEdge = self.rightEdge - _minimumRange;
+        } else {
+            self.leftEdge -= diff;
+            self.rightEdge += diff;
+        }
+    }
+    
+    if (_minimumRange > self.maximum - self.minimum) {
+        double diff = (_minimumRange - (self.maximum-self.minimum)) / 2;
+        if (self.minimum-diff < self.leftEdge) {
+            self.minimum = self.leftEdge;
+            self.maximum = self.minimum + _minimumRange;
+        } else if (self.maximum + diff > self.rightEdge) {
+            self.maximum = self.rightEdge;
+            self.minimum = self.maximum - _minimumRange;
+        } else {
+            self.minimum -= diff;
+            self.maximum += diff;
+        }
+    }
 }
 
 -(double)numerOfTurns {
@@ -197,6 +255,9 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 }
 
 -(void) setNumerOfTurns:(double)numerOfTurns {
+    if (numerOfTurns < 1) {
+        numerOfTurns = 1;
+    }
     _numerOfTurns = numerOfTurns;
 }
 
@@ -206,19 +267,19 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 -(void)setMinimum:(double)minimum needsDisplay:(BOOL)needsDisplay {
   
-    if (minimum+self.minRange > self.maximum) {
-        minimum = self.maximum - self.minRange;
-    }
-  NSLog(@"min=%f,%f,%f", minimum, self.maximum,self.minRange);
     if (minimum < self.leftEdge) {
         minimum = self.leftEdge;
     }
+    
+    if (minimum+self.minimumRange > self.maximum) {
+        minimum = self.maximum - self.minimumRange;
+    }
+    
+    _minimum = minimum;
 
     if (minimum > self.boostLevel) {
         _boostLevel = minimum;
     }
-
-    _minimum = minimum;
     
     if (needsDisplay) {
         [self setNeedsDisplay];
@@ -234,26 +295,28 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 }
 
 -(void)setMaximum:(double)maximum needsDisplay:(BOOL)needsDisplay {
-    if (self.minimum+self.minRange > maximum) {
-        maximum = self.minimum+self.minRange;
-    }
-
+    
     if (maximum > self.rightEdge) {
         maximum = self.rightEdge;
     }
+    
+    if (self.minimum+self.minimumRange > maximum) {
+        maximum = self.minimum+self.minimumRange;
+    }
+    
+    _maximum = maximum;
 
     if (maximum < self.boostLevel) {
         _boostLevel = maximum;
     }
 
-    _maximum = maximum;
     if (needsDisplay) {
         [self setNeedsDisplay];
     }
 }
 
 -(void)setMaximum:(double)maximum {
-    [self setMinimum:maximum needsDisplay:YES];
+    [self setMaximum:maximum needsDisplay:YES];
 }
 
 -(double)leftEdge {
@@ -264,18 +327,17 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     if (leftEdge < 0) {
         leftEdge = 0;
     }
-
-    if (leftEdge > self.rightEdge) {
-        leftEdge = self.rightEdge;
-    }
-
-    if (leftEdge > self.maxRange) {
-        leftEdge = self.maxRange;
-    }
-
+    
     _leftEdge = leftEdge;
-    self.minimum = self.minimum;
-    self.maximum = self.maximum;
+
+    if (leftEdge+self.minimumRange > self.rightEdge) {
+        self.rightEdge = leftEdge + self.minimumRange;
+    }
+    
+    double max = self.maximum;
+    [self setMaximum:self.maximumValue needsDisplay:NO];
+    [self setMinimum:self.minimum needsDisplay:NO];
+    self.maximum = max;
 }
 
 -(double)rightEdge {
@@ -283,21 +345,24 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 }
 
 -(void)setRightEdge:(double)rightEdge {
-    if (rightEdge < 0) {
-        rightEdge = 0;
+    if (rightEdge < self.minimumRange) {
+        rightEdge = self.minimumRange;
     }
-
-    if (self.leftEdge > rightEdge) {
-        rightEdge = self.leftEdge;
-    }
-
-    if (self.rightEdge > self.maxRange) {
-        rightEdge = self.maxRange;
-    }
+    
+    if (self.rightEdge > self.maximumValue) {
+         rightEdge = self.maximumValue;
+     }
 
     _rightEdge = rightEdge;
-    self.minimum = self.minimum;
-    self.maximum = self.maximum;
+    
+    if (self.leftEdge+self.minimumRange > rightEdge) {
+        self.leftEdge = _rightEdge - self.minimumRange;
+    }
+
+    double min = self.minimum;
+    [self setMinimum:0 needsDisplay:NO];
+    [self setMaximum:self.maximum needsDisplay:NO];
+    self.minimum = min;
 }
 
 -(double)boostLevel {
@@ -314,6 +379,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     }
 
     _boostLevel = boostLevel;
+    
     if (!self.boostHidden) {
         [self setNeedsDisplay];
     }
@@ -423,14 +489,14 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
                                    btnRightCenter.x -btnLeftCenter.x - distanceToEdge * 2,
                                    halfBtnSize * 2);
     
-    [self.valueColor setFill];
+    [self.rangeColor setFill];
     
-    float vmin = (valueFrame.size.width * self.minimum *100.00/self.maxRange/100.00);
+    CGFloat vmin = (valueFrame.size.width * self.minimum / self.maximumValue);
     
     r.origin.x = valueFrame.origin.x + vmin;
     r.origin.y = valueFrame.origin.y;
     r.size.height = valueFrame.size.height;
-    r.size.width = valueFrame.size.width * self.maximum *100.00/self.maxRange/100.00 - vmin;
+    r.size.width = valueFrame.size.width * self.maximum / self.maximumValue - vmin;
     
     UIBezierPath *path = [UIBezierPath bezierPathWithRoundedRect:r cornerRadius:3];
     [path fill];
@@ -438,6 +504,23 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     path = [UIBezierPath bezierPathWithRoundedRect:valueFrame cornerRadius:3];
     [path stroke];
 
+    if (!self.boostHidden) {
+        CGFloat vleft = valueFrame.origin.x + valueFrame.size.width * self.boostLevel/self.maximumValue;
+        
+        if (self.boostLevel >= (self.maximum-self.minimum) / 2) {
+            vleft-=self.borderLineWidth;
+        } else {
+            vleft+=self.borderLineWidth;
+        }
+        
+        [self.boostLineColor setStroke];
+        
+
+        CGContextSetLineWidth(ctx, self.borderLineWidth);
+        CGContextMoveToPoint(ctx, vleft, valueFrame.origin.y);
+        CGContextAddLineToPoint(ctx, vleft, valueFrame.origin.y+valueFrame.size.height);
+        CGContextStrokePath(ctx);
+    }
 }
 
 -(BOOL) isBtnTouchedWithCenterPointAt:(CGPoint)btnCenter touchPoint:(CGPoint)touchPoint {
@@ -448,16 +531,16 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     return touchRadius <= halfBtnSize*1.1;
 }
 
--(void) onRangeChangedMin {
-    
-}
-
--(void) onRangeChangedMax {
-    
+-(void) onRangeChanged {
+    if (self.delegate != nil) {
+        [self.delegate calibrationWheelRangeChanged:self];
+    }
 }
 
 -(void) onBoostChanged {
-    
+  if (self.delegate != nil) {
+        [self.delegate calibrationWheelBoostChanged:self];
+    }
 }
 
 -(UIView *) hitTest:(CGPoint)point withEvent:(UIEvent *)event
@@ -467,12 +550,12 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     if (self.boostHidden && [self isBtnTouchedWithCenterPointAt:btnLeftCenter touchPoint:point]) {
         _touched = TOUCHED_LEFT;
         btnRad = DEGREES_TO_RADIANS(180);
-        [self onRangeChangedMin];
+        [self onRangeChanged];
     } else if ([self isBtnTouchedWithCenterPointAt:btnRightCenter touchPoint:point]) {
         _touched = TOUCHED_RIGHT;
         btnRad = 0;
         if (self.boostHidden) {
-          [self onRangeChangedMax];
+          [self onRangeChanged];
         } else {
           [self onBoostChanged];
         }
@@ -515,14 +598,14 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     }
   
     if (fabs(diff) <= 20) {
-        diff = (diff*100.0/360.0)*self.maxRange/100/self.numerOfTurns;
+        diff = (diff*100.0/360.0)*self.maximumValue/100/self.numerOfTurns;
         if (touched==TOUCHED_LEFT) {
             [self setMinimum:self.minimum+diff needsDisplay:NO];
-            [self onRangeChangedMin];
+            [self onRangeChanged];
         } else {
             if (_boostHidden) {
                 [self setMaximum:self.maximum+diff needsDisplay:NO];
-                [self onRangeChangedMax];
+                [self onRangeChanged];
             } else {
                 self.boostLevel += diff;
                 [self onBoostChanged];
@@ -541,5 +624,12 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     [self setNeedsDisplay];
 }
 
+-(void) setMinimum:(double)minimum andMaximum:(double)maximum {
+    [self setMinimum:0 needsDisplay:NO];
+    [self setMaximum:self.maximumValue needsDisplay:NO];
+    
+    [self setMinimum:minimum needsDisplay:NO];
+    [self setMaximum:maximum];
+}
 
 @end
