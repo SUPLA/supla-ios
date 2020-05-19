@@ -379,6 +379,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0117290024746D8100DAF1D0 /* pl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pl; path = pl.lproj/ElectricityMeterDetailView.strings; sourceTree = "<group>"; };
+		01172903247473E200DAF1D0 /* SUPLA 6.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "SUPLA 6.xcdatamodel"; sourceTree = "<group>"; };
 		012023C0234E54ED00E131B7 /* ImpulseCounterDetailView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ImpulseCounterDetailView.h; sourceTree = "<group>"; };
 		012023C1234E54ED00E131B7 /* ImpulseCounterDetailView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ImpulseCounterDetailView.m; sourceTree = "<group>"; };
 		012119132368BDB0004C1993 /* SUPLA 5.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "SUPLA 5.xcdatamodel"; sourceTree = "<group>"; };
@@ -667,7 +669,6 @@
 		01F9110C22EF964900BFF91D /* thermostat_hp_homeplus1-on@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "thermostat_hp_homeplus1-on@2x.png"; path = "Resources/Assets/Img/thermostat_hp_homeplus1-on@2x.png"; sourceTree = "<group>"; };
 		01F9110D22EF964900BFF91D /* thermostat_hp_homeplus1-on@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "thermostat_hp_homeplus1-on@3x.png"; path = "Resources/Assets/Img/thermostat_hp_homeplus1-on@3x.png"; sourceTree = "<group>"; };
 		01F9111022EF989100BFF91D /* HomePlusCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomePlusCell.xib; sourceTree = "<group>"; };
-		01FB5D7F22CF98D200E9EA08 /* pl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pl; path = pl.lproj/ElectricityMeterDetailView.strings; sourceTree = "<group>"; };
 		4004DE8B1DC4E270009C34E3 /* SAColorBrightnessPicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SAColorBrightnessPicker.h; sourceTree = "<group>"; };
 		4004DE8C1DC4E270009C34E3 /* SAColorBrightnessPicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SAColorBrightnessPicker.m; sourceTree = "<group>"; };
 		4006E9081DC62D0A00C4456D /* DetailView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailView.h; sourceTree = "<group>"; };
@@ -2316,7 +2317,6 @@
 			isa = PBXVariantGroup;
 			children = (
 				01D0617222C296850043C947 /* Base */,
-				01FB5D7F22CF98D200E9EA08 /* pl */,
 				01C8EBF523422FC80072AB8C /* cs */,
 				01C8EBF72342312D0072AB8C /* fr */,
 				01C8EBF9234232D10072AB8C /* de */,
@@ -2330,6 +2330,7 @@
 				01BF82D42347569400C9EE9F /* nb */,
 				01BF82DD2347569F00C9EE9F /* el */,
 				01BF82E6234756B500C9EE9F /* nl */,
+				0117290024746D8100DAF1D0 /* pl */,
 			);
 			name = ElectricityMeterDetailView.xib;
 			sourceTree = "<group>";
@@ -2583,6 +2584,11 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 47;
 				DEFINES_MODULE = YES;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					USE_DEPRECATED_EMEV_V1,
+					"COCOAPODS=1",
+				);
 				HEADER_SEARCH_PATHS = "$(SDKROOT)/usr/include/libxml2";
 				INFOPLIST_FILE = SUPLA/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
@@ -2610,6 +2616,11 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 47;
 				DEFINES_MODULE = YES;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"COCOAPODS=1",
+					USE_DEPRECATED_EMEV_V1,
+				);
 				HEADER_SEARCH_PATHS = "$(SDKROOT)/usr/include/libxml2";
 				INFOPLIST_FILE = SUPLA/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
@@ -2702,13 +2713,14 @@
 		407004251BB5706500F6187F /* SUPLA.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				01172903247473E200DAF1D0 /* SUPLA 6.xcdatamodel */,
 				012119132368BDB0004C1993 /* SUPLA 5.xcdatamodel */,
 				01CFF6D12365BCCD00C827FB /* SUPLA 4.xcdatamodel */,
 				01B216CF22AECB2F004E0596 /* SUPLA 3.xcdatamodel */,
 				40BBA34620AC52EA0054CD20 /* SUPLA 2.xcdatamodel */,
 				407004261BB5706500F6187F /* SUPLA.xcdatamodel */,
 			);
-			currentVersion = 012119132368BDB0004C1993 /* SUPLA 5.xcdatamodel */;
+			currentVersion = 01172903247473E200DAF1D0 /* SUPLA 6.xcdatamodel */;
 			path = SUPLA.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

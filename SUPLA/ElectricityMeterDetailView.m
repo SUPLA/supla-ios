@@ -133,6 +133,18 @@
     [self.lReverseReactiveEnergyValue setText:[NSString stringWithFormat:@"%0.5f kvarh", energy]];
 }
 
+- (void)setForwardActiveEnergyBalance:(double)energy visible:(BOOL)visible {
+    [self setLabel:self.lForwardActiveEnergyBalance Visible:visible withConstraint:self.cForwardActiveEnergyBalanceTop];
+    [self setLabel:self.lForwardActiveEnergyValueBalance Visible:visible withConstraint:self.cForwardActiveEnergyValueBalanceTop];
+    [self.lForwardActiveEnergyValueBalance setText:[NSString stringWithFormat:@"%0.5f kWh", energy]];
+}
+
+- (void)setReverseActiveEnergyBalance:(double)energy visible:(BOOL)visible {
+    [self setLabel:self.lReverseActiveEnergyBalance Visible:visible withConstraint:self.cReverseActiveEnergyBalanceTop];
+    [self setLabel:self.lReverseActiveEnergyValueBalance Visible:visible withConstraint:self.cReverseActiveEnergyValueBalanceTop];
+    [self.lReverseActiveEnergyValueBalance setText:[NSString stringWithFormat:@"%0.5f kWh", energy]];
+}
+
 - (NSString*)totalActiveEnergyStringForValue:(double)value {
     int precision = 5;
     if (value >= 1000) {
@@ -263,14 +275,26 @@
     [self setVoltage:voltage visible:MVAL(EM_VAR_VOLTAGE) && selectedPhase > 0];
     [self setCurrent:current visible:(MVAL(EM_VAR_CURRENT) || MVAL(EM_VAR_CURRENT_OVER_65A)) && selectedPhase > 0 over65A:currentOver65A];
     [self setActivePower:powerActive visible:MVAL(EM_VAR_POWER_ACTIVE)];
-    [self setReactivePower:powerReactive visible:MVAL(EM_VAR_POWER_REACTIVE)];
+    [self setReactivePower:powerReactive visible: MVAL(EM_VAR_POWER_REACTIVE)];
     [self setApparentPower:powerApparent visible:MVAL(EM_VAR_POWER_APPARENT)];
     [self setPowerFactor:powerFactor visible:MVAL(EM_VAR_POWER_FACTOR) && selectedPhase > 0];
     [self setPhaseAngle:phaseAngle visible:MVAL(EM_VAR_PHASE_ANGLE) && selectedPhase > 0];
     [self setForwardActiveEnergy:totalFAE visible:MVAL(EM_VAR_FORWARD_ACTIVE_ENERGY)];
     [self setReverseActiveEnergy:totalRAE visible:MVAL(EM_VAR_REVERSE_ACTIVE_ENERGY)];
     [self setForwardReactiveEnergy:totalFRE visible:MVAL(EM_VAR_FORWARD_REACTIVE_ENERGY)];
-    [self setReverseReactiveEnergy:totalRRE visible:MVAL(EM_VAR_REVERSE_REACTIVE_ENERGY)];
+    [self setReverseReactiveEnergy:totalRRE visible: MVAL(EM_VAR_REVERSE_REACTIVE_ENERGY)];
+    
+    if (selectedPhase == 0 && (MVAL(EM_VAR_FORWARD_ACTIVE_ENERGY_BALANCED) || MVAL(EM_VAR_REVERSE_ACTIVE_ENERGY_BALANCED))) {
+        [self setForwardActiveEnergyBalance:emev.totalForwardActiveEnergyBalanced visible:MVAL(EM_VAR_FORWARD_ACTIVE_ENERGY_BALANCED)];
+        [self setReverseActiveEnergyBalance:emev.totalReverseActiveEnergyBalanced visible:MVAL(EM_VAR_REVERSE_ACTIVE_ENERGY_BALANCED)];
+        self.vLabelsBalance.hidden = NO;
+        self.vValuesBalance.hidden = NO;
+        self.lPhaseToPhase.hidden = NO;
+    } else {
+        self.vLabelsBalance.hidden = YES;
+        self.vValuesBalance.hidden = YES;
+        self.lPhaseToPhase.hidden = YES;
+    }
     
     [self.lCaption setText:[self.channelBase getChannelCaption]];
     [self.ivImage setImage:[self.channelBase getIcon]];
