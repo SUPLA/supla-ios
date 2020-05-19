@@ -116,8 +116,8 @@
 /* Class = "UILabel"; text = "Reverse active Energy"; ObjectID = "ERC-iT-07T"; */
 "ERC-iT-07T.text" = "Energia czynna zwrócona";
 
-/* Class = "UILabel"; text = "Phase-to-phase balance"; ObjectID = "FPJ-3b-cCR"; */
-"FPJ-3b-cCR.text" = "Bilans międzyfazowy";
+/* Class = "UILabel"; text = "Vector phase-to-phase balancing"; ObjectID = "FPJ-3b-cCR"; */
+"FPJ-3b-cCR.text" = "Bilans międzyfazowy wektorowy";
 
 /* Class = "UILabel"; text = "Forward active Energy"; ObjectID = "GfA-ig-rf2"; */
 "GfA-ig-rf2.text" = "Energia czynna pobrana";
