@@ -46,7 +46,7 @@
 }
 
 - (void)testDefaultChartType {
-    XCTAssertEqual(Bar_Minutely, _filterField.chartType);
+    XCTAssertEqual(Bar_Minutes, _filterField.chartType);
 }
 
 - (void)testDefaultDateRange {
@@ -54,17 +54,17 @@
 }
 
 - (void)testSettingChartType {
-    _filterField.chartType = Bar_Daily;
-    XCTAssertEqual(Bar_Daily, _filterField.chartType);
+    _filterField.chartType = Bar_Days;
+    XCTAssertEqual(Bar_Days, _filterField.chartType);
     
     _filterField.chartType = ChartTypeMax;
     XCTAssertEqual(ChartTypeMax, _filterField.chartType);
     
-    _filterField.chartType = Bar_Yearly;
-    XCTAssertEqual(Bar_Yearly, _filterField.chartType);
+    _filterField.chartType = Bar_Years;
+    XCTAssertEqual(Bar_Years, _filterField.chartType);
     
     _filterField.chartType = ChartTypeMax+1;
-    XCTAssertEqual(Bar_Yearly, _filterField.chartType);
+    XCTAssertEqual(Bar_Years, _filterField.chartType);
 }
 
 - (void)testSettingDateRange {
@@ -91,28 +91,28 @@
     XCTAssertEqual(NO, [_filterField excludeElements:nil]);
     XCTAssertEqual(ChartTypeMax+1, _filterField.count);
     
-    NSArray *elements = @[[NSNumber numberWithInt:Bar_Daily], [NSNumber numberWithInt:Bar_Yearly]];
+    NSArray *elements = @[[NSNumber numberWithInt:Bar_Days], [NSNumber numberWithInt:Bar_Years]];
     XCTAssertEqual(YES, [_filterField excludeElements:elements]);
     XCTAssertEqual(NO, [_filterField excludeElements:elements]);
     
     XCTAssertEqual(ChartTypeMax-1, _filterField.count);
     
-    _filterField.chartType = Bar_Hourly;
-    XCTAssertEqual(Bar_Hourly, _filterField.chartType);
+    _filterField.chartType = Bar_Hours;
+    XCTAssertEqual(Bar_Hours, _filterField.chartType);
     
-    _filterField.chartType = Bar_Yearly;
-    XCTAssertEqual(Bar_Hourly, _filterField.chartType);
+    _filterField.chartType = Bar_Years;
+    XCTAssertEqual(Bar_Hours, _filterField.chartType);
     
-    _filterField.chartType = Bar_Daily;
-    XCTAssertEqual(Bar_Hourly, _filterField.chartType);
+    _filterField.chartType = Bar_Days;
+    XCTAssertEqual(Bar_Hours, _filterField.chartType);
     
     _filterField.filterType = TypeFilter;
     
-    _filterField.chartType = Bar_Yearly;
-    XCTAssertEqual(Bar_Yearly, _filterField.chartType);
+    _filterField.chartType = Bar_Years;
+    XCTAssertEqual(Bar_Years, _filterField.chartType);
     
-    _filterField.chartType = Bar_Daily;
-    XCTAssertEqual(Bar_Daily, _filterField.chartType);
+    _filterField.chartType = Bar_Days;
+    XCTAssertEqual(Bar_Days, _filterField.chartType);
 }
 
 - (void)testExcludeAll {
@@ -149,7 +149,7 @@
     _filterField.chartType = Bar_Comparsion_DayDay;
     XCTAssertEqual(Last7days, slave.dateRange);
     
-    _filterField.chartType = Bar_Yearly;
+    _filterField.chartType = Bar_Years;
     XCTAssertEqual(AllAvailableHistory, slave.dateRange);
 }
 
