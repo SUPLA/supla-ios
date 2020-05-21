@@ -99,6 +99,8 @@
 		01D4293A22AAAA450050C1A2 /* IncrementalMeterCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 01D4293922AAAA450050C1A2 /* IncrementalMeterCell.xib */; };
 		01D5E0C822DB7FAF00FBE1DC /* SAChartMarkerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01D5E0C722DB7FAF00FBE1DC /* SAChartMarkerView.swift */; };
 		01D5E0CA22DB8F0A00FBE1DC /* SAChartMarkerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 01D5E0C922DB8F0A00FBE1DC /* SAChartMarkerView.xib */; };
+		01DD2F0C247718C40025DFF9 /* SARangeCalibrationWheelTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 01DD2F0B247718C40025DFF9 /* SARangeCalibrationWheelTests.m */; };
+		01DD2F0F247719000025DFF9 /* SARangeCalibrationWheel.m in Sources */ = {isa = PBXBuildFile; fileRef = 01DD2F0D247718FF0025DFF9 /* SARangeCalibrationWheel.m */; };
 		01E517C322C6AC1E000FE77A /* SADownloadIncrementalMeasurements.m in Sources */ = {isa = PBXBuildFile; fileRef = 01E517C222C6AC1E000FE77A /* SADownloadIncrementalMeasurements.m */; };
 		01E517C622C6AD7D000FE77A /* SADownloadMeasurements.m in Sources */ = {isa = PBXBuildFile; fileRef = 01E517C522C6AD7D000FE77A /* SADownloadMeasurements.m */; };
 		01EE9BB022BA4B050029A142 /* SAChannelExtendedValue+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 01EE9BAF22BA4B050029A142 /* SAChannelExtendedValue+CoreDataProperties.m */; };
@@ -617,6 +619,9 @@
 		01D5E0C622DB7FAE00FBE1DC /* SUPLA-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SUPLA-Bridging-Header.h"; sourceTree = "<group>"; };
 		01D5E0C722DB7FAF00FBE1DC /* SAChartMarkerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SAChartMarkerView.swift; sourceTree = "<group>"; };
 		01D5E0C922DB8F0A00FBE1DC /* SAChartMarkerView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SAChartMarkerView.xib; sourceTree = "<group>"; };
+		01DD2F0B247718C40025DFF9 /* SARangeCalibrationWheelTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SARangeCalibrationWheelTests.m; sourceTree = "<group>"; };
+		01DD2F0D247718FF0025DFF9 /* SARangeCalibrationWheel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SARangeCalibrationWheel.m; sourceTree = "<group>"; };
+		01DD2F0E247718FF0025DFF9 /* SARangeCalibrationWheel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SARangeCalibrationWheel.h; sourceTree = "<group>"; };
 		01E517C122C6AC1E000FE77A /* SADownloadIncrementalMeasurements.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SADownloadIncrementalMeasurements.h; sourceTree = "<group>"; };
 		01E517C222C6AC1E000FE77A /* SADownloadIncrementalMeasurements.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SADownloadIncrementalMeasurements.m; sourceTree = "<group>"; };
 		01E517C422C6AD7D000FE77A /* SADownloadMeasurements.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SADownloadMeasurements.h; sourceTree = "<group>"; };
@@ -1212,6 +1217,7 @@
 		401CA1D81BA067DB00117AF4 /* SUPLATests */ = {
 			isa = PBXGroup;
 			children = (
+				01DD2F0B247718C40025DFF9 /* SARangeCalibrationWheelTests.m */,
 				01EFD94B236CA9AE00893489 /* NSDataEncryptionTest.m */,
 				016ABE17236DA795001BF5FB /* KeychainTests.m */,
 				012F722822DF3CF000E5F72E /* ChartFilterFieldTests.m */,
@@ -1589,6 +1595,8 @@
 		40A675851BA1BEBF004A51C4 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				01DD2F0E247718FF0025DFF9 /* SARangeCalibrationWheel.h */,
+				01DD2F0D247718FF0025DFF9 /* SARangeCalibrationWheel.m */,
 				012119122368B597004C1993 /* xib */,
 				40C9E4FB1F2B841400753796 /* SAColorListPicker.h */,
 				40C9E4FC1F2B841400753796 /* SAColorListPicker.m */,
@@ -2178,6 +2186,7 @@
 				4006E90A1DC62D0A00C4456D /* DetailView.m in Sources */,
 				01BDAC7822C5200600915646 /* SAOAuthToken.m in Sources */,
 				40C7BA5220C007A300ACEE42 /* SAChannelValue+CoreDataClass.m in Sources */,
+				01DD2F0F247719000025DFF9 /* SARangeCalibrationWheel.m in Sources */,
 				01E517C322C6AC1E000FE77A /* SADownloadIncrementalMeasurements.m in Sources */,
 				013D1C6022CE757F000C0784 /* SAIncrementalMeterChartHelper.m in Sources */,
 				40C9E4FD1F2B841400753796 /* SAColorListPicker.m in Sources */,
@@ -2205,6 +2214,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				01DD2F0C247718C40025DFF9 /* SARangeCalibrationWheelTests.m in Sources */,
 				401CA1DC1BA067DB00117AF4 /* SUPLATests.m in Sources */,
 				016ABE18236DA795001BF5FB /* KeychainTests.m in Sources */,
 				01EFD94C236CA9AE00893489 /* NSDataEncryptionTest.m in Sources */,

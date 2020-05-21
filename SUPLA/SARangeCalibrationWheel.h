@@ -34,6 +34,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, nullable, copy) UIColor *rangeColor;
 @property (nonatomic, nullable, copy) UIColor *insideBtnColor;
 @property (nonatomic, nullable, copy) UIColor *boostLineColor;
+@property (nonatomic) float boostLineHeightFactor;
 @property (nonatomic) CGFloat borderLineWidth;
 @property (nonatomic) double maximumValue;
 @property (nonatomic) double minimumRange;
