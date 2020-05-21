@@ -36,7 +36,7 @@
 -(id)init {
     if (self = [super init]) {
         _minTimestamp = 0;
-        chartType = Bar_Monthly;
+        chartType = Bar_Months;
     }
     return self;
 }
@@ -76,24 +76,61 @@
     }
 }
 
+-(BOOL)isBalanceChartType {
+    switch (chartType) {
+        case Bar_AritmeticBalance_Minutes:
+        case Bar_AritmeticBalance_Hours:
+        case Bar_AritmeticBalance_Days:
+        case Bar_AritmeticBalance_Months:
+        case Bar_AritmeticBalance_Years:
+        case Bar_VectorBalance_Minutes:
+        case Bar_VectorBalance_Hours:
+        case Bar_VectorBalance_Days:
+        case Bar_VectorBalance_Months:
+        case Bar_VectorBalance_Years:
+            return YES;
+        default:
+            return NO;
+    }
+}
+
+-(BOOL)isVectorBalanceChartType {
+    switch (chartType) {
+        case Bar_VectorBalance_Minutes:
+        case Bar_VectorBalance_Hours:
+        case Bar_VectorBalance_Days:
+        case Bar_VectorBalance_Months:
+        case Bar_VectorBalance_Years:
+            return YES;
+        default:
+            return NO;
+    }
+}
+
 -(NSDateFormatter *) dateFormatterForCurrentChartType {
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     
     switch(chartType) {
-        case Bar_Hourly:
+        case Bar_Hours:
         case Bar_Comparsion_HourHour:
+        case Bar_AritmeticBalance_Hours:
+        case Bar_VectorBalance_Hours:
             [dateFormatter setDateFormat:@"YYYY-MM-dd HH"];
             break;
-        case Bar_Daily:
+        case Bar_Days:
         case Bar_Comparsion_DayDay:
+        case Bar_AritmeticBalance_Days:
+        case Bar_VectorBalance_Days:
             [dateFormatter setDateFormat:@"YYYY-MM-dd"];
             break;
-        case Bar_Monthly:
+        case Bar_Months:
         case Bar_Comparsion_MonthMonth:
+        case Bar_AritmeticBalance_Months:
             [dateFormatter setDateFormat:@"YYYY LLLL"];
             break;
-        case Bar_Yearly:
+        case Bar_Years:
         case Bar_Comparsion_YearYear:
+        case Bar_VectorBalance_Months:
             [dateFormatter setDateFormat:@"YYYY"];
             break;
         case Pie_HourRank:
@@ -116,21 +153,31 @@
 
 - (GroupingDepth) getGroupungDepthForCurrentChartType {
     switch(chartType) {
-        case Bar_Minutely:
+        case Bar_Minutes:
         case Bar_Comparsion_MinMin:
-            return gdMinutely;
-        case Bar_Hourly:
+        case Bar_AritmeticBalance_Minutes:
+        case Bar_VectorBalance_Minutes:
+            return gdMinutes;
+        case Bar_Hours:
         case Bar_Comparsion_HourHour:
-            return gdHourly;
-        case Bar_Daily:
+        case Bar_AritmeticBalance_Hours:
+        case Bar_VectorBalance_Hours:
+            return gdHours;
+        case Bar_Days:
         case Bar_Comparsion_DayDay:
-            return gdDaily;
-        case Bar_Monthly:
+        case Bar_AritmeticBalance_Days:
+        case Bar_VectorBalance_Days:
+            return gdDays;
+        case Bar_Months:
         case Bar_Comparsion_MonthMonth:
-            return gdMonthly;
-        case Bar_Yearly:
+        case Bar_AritmeticBalance_Months:
+        case Bar_VectorBalance_Months:
+            return gdMonths;
+        case Bar_Years:
         case Bar_Comparsion_YearYear:
-            return gdYearly;
+        case Bar_AritmeticBalance_Years:
+        case Bar_VectorBalance_Years:
+            return gdYears;
         default:
             return gdNone;
     }
@@ -395,15 +442,15 @@
 
 - (NSString *)stringRepresentationOfChartType:(ChartType)ct {
     switch(ct) {
-        case Bar_Minutely:
+        case Bar_Minutes:
             return NSLocalizedString(@"Minutes", nil);
-        case Bar_Hourly:
+        case Bar_Hours:
             return NSLocalizedString(@"Hours", nil);
-        case Bar_Daily:
+        case Bar_Days:
             return NSLocalizedString(@"Days", nil);
-        case Bar_Monthly:
+        case Bar_Months:
             return NSLocalizedString(@"Months", nil);
-        case Bar_Yearly:
+        case Bar_Years:
             return NSLocalizedString(@"Years", nil);
         case Bar_Comparsion_MinMin:
             return NSLocalizedString(@"Minute to minute comparison", nil);
@@ -423,6 +470,26 @@
             return  NSLocalizedString(@"Ranking of months", nil);
         case Pie_PhaseRank:
             return NSLocalizedString(@"Consumption according to phases", nil);
+        case Bar_AritmeticBalance_Minutes:
+            return NSLocalizedString(@"Arithmetic balance - Minutes", nil);
+        case Bar_AritmeticBalance_Hours:
+            return NSLocalizedString(@"Arithmetic balance - Hours", nil);
+        case Bar_AritmeticBalance_Days:
+            return NSLocalizedString(@"Arithmetic balance - Days", nil);
+        case Bar_AritmeticBalance_Months:
+            return NSLocalizedString(@"Arithmetic balance - Months", nil);
+        case Bar_AritmeticBalance_Years:
+            return NSLocalizedString(@"Arithmetic balance - Years", nil);
+        case Bar_VectorBalance_Minutes:
+            return NSLocalizedString(@"Vector balance - Minutes", nil);
+        case Bar_VectorBalance_Hours:
+            return NSLocalizedString(@"Vector balance - Hours", nil);
+        case Bar_VectorBalance_Days:
+            return NSLocalizedString(@"Vector balance - Days", nil);
+        case Bar_VectorBalance_Months:
+            return NSLocalizedString(@"Vector balance - Months", nil);
+        case Bar_VectorBalance_Years:
+            return NSLocalizedString(@"Vector balance - Years", nil);
     }
     
     return @"";

@@ -23,11 +23,11 @@
 NS_ASSUME_NONNULL_BEGIN
 
 typedef NS_ENUM(NSUInteger, ChartType) {
-    Bar_Minutely,
-    Bar_Hourly,
-    Bar_Daily,
-    Bar_Monthly,
-    Bar_Yearly,
+    Bar_Minutes,
+    Bar_Hours,
+    Bar_Days,
+    Bar_Months,
+    Bar_Years,
     Bar_Comparsion_MinMin,
     Bar_Comparsion_HourHour,
     Bar_Comparsion_DayDay,
@@ -36,10 +36,20 @@ typedef NS_ENUM(NSUInteger, ChartType) {
     Pie_HourRank,
     Pie_WeekdayRank,
     Pie_MonthRank,
-    Pie_PhaseRank
+    Pie_PhaseRank,
+    Bar_AritmeticBalance_Minutes,
+    Bar_AritmeticBalance_Hours,
+    Bar_AritmeticBalance_Days,
+    Bar_AritmeticBalance_Months,
+    Bar_AritmeticBalance_Years,
+    Bar_VectorBalance_Minutes,
+    Bar_VectorBalance_Hours,
+    Bar_VectorBalance_Days,
+    Bar_VectorBalance_Months,
+    Bar_VectorBalance_Years
 };
 
-#define ChartTypeMax Pie_PhaseRank
+#define ChartTypeMax Bar_VectorBalance_Years
 @class SABarChartDataSet;
 @interface SAChartHelper : NSObject <IChartAxisValueFormatter>
 
@@ -54,6 +64,8 @@ typedef NS_ENUM(NSUInteger, ChartType) {
 - (void) prepareBarDataSet:(SABarChartDataSet*)barDataSet;
 -(BOOL)isPieChartType;
 -(BOOL)isComparsionChartType;
+-(BOOL)isBalanceChartType;
+-(BOOL)isVectorBalanceChartType;
 - (void) moveToEnd;
 - (void) load;
 - (void) animate;

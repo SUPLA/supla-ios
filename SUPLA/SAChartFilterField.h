@@ -47,6 +47,8 @@ typedef NS_ENUM(NSUInteger, DateRange) {
 
 - (void)leaveOneElement:(int)el;
 - (BOOL)excludeElements:(nullable NSArray*)el;
+- (BOOL)excludeAllFrom:(int)el;
+- (void)resetList;
 - (NSUInteger)count;
 + (NSString *)stringRepresentationOfDateRange:(DateRange)dateRange;
 - (void)goToToFirst;

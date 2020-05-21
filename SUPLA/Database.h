@@ -27,11 +27,11 @@
 
 typedef NS_ENUM(NSUInteger, GroupingDepth) {
     gdNone,
-    gdMinutely,
-    gdHourly,
-    gdDaily,
-    gdMonthly,
-    gdYearly
+    gdMinutes,
+    gdHours,
+    gdDays,
+    gdMonths,
+    gdYears
 };
 
 typedef NS_ENUM(NSUInteger, GroupBy) {

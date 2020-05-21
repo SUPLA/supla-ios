@@ -31,6 +31,7 @@
     NSTimer *_taskTimer;
     SADownloadElectricityMeasurements *_task;
     SAElectricityChartHelper *_chartHelper;
+    BOOL _balanceAvailable;
 }
 
 -(void)detailViewInit {
@@ -284,7 +285,10 @@
     [self setForwardReactiveEnergy:totalFRE visible:MVAL(EM_VAR_FORWARD_REACTIVE_ENERGY)];
     [self setReverseReactiveEnergy:totalRRE visible: MVAL(EM_VAR_REVERSE_REACTIVE_ENERGY)];
     
-    if (selectedPhase == 0 && (MVAL(EM_VAR_FORWARD_ACTIVE_ENERGY_BALANCED) || MVAL(EM_VAR_REVERSE_ACTIVE_ENERGY_BALANCED))) {
+    _balanceAvailable = (MVAL(EM_VAR_FORWARD_ACTIVE_ENERGY_BALANCED)
+                         || MVAL(EM_VAR_REVERSE_ACTIVE_ENERGY_BALANCED));
+    
+    if (selectedPhase == 0 && _balanceAvailable) {
         [self setForwardActiveEnergyBalance:emev.totalForwardActiveEnergyBalanced visible:MVAL(EM_VAR_FORWARD_ACTIVE_ENERGY_BALANCED)];
         [self setReverseActiveEnergyBalance:emev.totalReverseActiveEnergyBalanced visible:MVAL(EM_VAR_REVERSE_ACTIVE_ENERGY_BALANCED)];
         self.vLabelsBalance.hidden = NO;
@@ -353,6 +357,10 @@
         self.vCharts.hidden = YES;
         [self.btnChart setImage:[UIImage imageNamed:@"graphoff.png"]];
     } else {
+        [self.tfChartTypeFilter resetList];
+        if (!_balanceAvailable) {
+           [self.tfChartTypeFilter excludeAllFrom:Bar_VectorBalance_Minutes];
+        }
         self.vPhases.hidden = YES;
         self.vCharts.hidden = NO;
         [self.btnChart setImage:[UIImage imageNamed:@"graphon.png"]];
@@ -362,7 +370,7 @@
 - (void)setProductionDataSource:(BOOL)production {
     _chartHelper.productionDataSource = production;
     [_tfChartTypeFilter resignFirstResponder];
-    _tfChartTypeFilter.chartType = Bar_Minutely;
+    _tfChartTypeFilter.chartType = Bar_Minutes;
     
     if (production) {
         [self.btnDirection setImage:[UIImage imageNamed:@"production.png"]];
@@ -395,6 +403,7 @@
 }
 
 -(void)onDetailShow {
+    _balanceAvailable = false;
     [super onDetailShow];
     [self setProductionDataSource:NO];
     [self setChartsHidden:YES];

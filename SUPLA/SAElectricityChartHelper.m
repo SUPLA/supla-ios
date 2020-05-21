@@ -39,7 +39,14 @@
     
     NSArray *fields;
     
-    if ( productionDataSource ) {
+    if ( self.isBalanceChartType ) {
+        if (self.isVectorBalanceChartType) {
+            fields = @[@"fae_balanced", @"rae_balanced"];
+        } else {
+           fields = @[@"phase1_rae",@"phase2_rae",@"phase3_rae", @"phase1_fae",@"phase2_fae",@"phase3_fae"];
+        }
+        
+    } else if ( productionDataSource ) {
         fields = @[@"phase1_rae",@"phase2_rae",@"phase3_rae"];
     } else {
         fields = @[@"phase1_fae",@"phase2_fae",@"phase3_fae"];
@@ -55,15 +62,35 @@
     
     NSArray *values;
             
-    if (productionDataSource) {
-       values = @[[self doubleValueForKey:@"phase1_rae" item:item],
-                [self doubleValueForKey:@"phase2_rae" item:item],
-                [self doubleValueForKey:@"phase3_rae" item:item]];
+    if (self.isBalanceChartType) {
+        if (self.isVectorBalanceChartType) {
+            double cons = [[self doubleValueForKey:@"fae_balanced" item:item] doubleValue];
+            double prod = [[self doubleValueForKey:@"rae_balanced" item:item] doubleValue];
+            values = @[[NSNumber numberWithDouble:cons-prod]];
+        } else {
+            double cons1 = [[self doubleValueForKey:@"phase1_fae" item:item] doubleValue];
+            double cons2 = [[self doubleValueForKey:@"phase2_fae" item:item] doubleValue];
+            double cons3 = [[self doubleValueForKey:@"phase3_fae" item:item] doubleValue];
+            
+            double prod1 = [[self doubleValueForKey:@"phase1_rae" item:item] doubleValue];
+            double prod2 = [[self doubleValueForKey:@"phase2_rae" item:item] doubleValue];
+            double prod3 = [[self doubleValueForKey:@"phase3_rae" item:item] doubleValue];
+            
+            values = @[[NSNumber numberWithDouble:(cons1+cons2+cons3)-(prod1+prod2+prod3)]];
+        }
+
     } else {
-        values = @[[self doubleValueForKey:@"phase1_fae" item:item],
-            [self doubleValueForKey:@"phase2_fae" item:item],
-            [self doubleValueForKey:@"phase3_fae" item:item]];
+        if (productionDataSource) {
+           values = @[[self doubleValueForKey:@"phase1_rae" item:item],
+                    [self doubleValueForKey:@"phase2_rae" item:item],
+                    [self doubleValueForKey:@"phase3_rae" item:item]];
+        } else {
+            values = @[[self doubleValueForKey:@"phase1_fae" item:item],
+                [self doubleValueForKey:@"phase2_fae" item:item],
+                [self doubleValueForKey:@"phase3_fae" item:item]];
+        }
     }
+
 
     [entries addObject:[[BarChartDataEntry alloc] initWithX:idx yValues:values]];
 }
@@ -124,7 +151,14 @@
 - (void) prepareBarDataSet:(SABarChartDataSet*)barDataSet {
     [super prepareBarDataSet:barDataSet];
    
-    if ([self isComparsionChartType] && productionDataSource) {
+    if (self.isBalanceChartType) {
+        barDataSet.colorDependsOnTheValue = YES;
+         [barDataSet resetColors];
+         barDataSet.colors = @[[UIColor chartValuePositiveColor],
+                               [UIColor chartValueNegativeColor]];
+    }
+    
+    if ((self.isComparsionChartType && productionDataSource)) {
         barDataSet.colors = @[[UIColor chartValueNegativeColor],
                               [UIColor chartValuePositiveColor]];
     }

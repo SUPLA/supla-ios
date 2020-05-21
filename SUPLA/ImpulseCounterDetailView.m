@@ -38,7 +38,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 - (void)initChartFilters {
     self.tfChartTypeFilter.chartHelper = self.chartHelper;
     self.tfChartTypeFilter.dateRangeFilterField = self.ftDateRangeFilter;
-        [self.tfChartTypeFilter excludeElements:@[[NSNumber numberWithInt:Pie_PhaseRank]]];
+    [self.tfChartTypeFilter excludeAllFrom: Pie_PhaseRank];
     self.tfChartTypeFilter.ff_delegate = self;
     self.ftDateRangeFilter.ff_delegate = self;
 }
