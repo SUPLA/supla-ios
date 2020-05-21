@@ -18,8 +18,11 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 #import "SAElectricityMeterExtendedValue.h"
 
+_supla_int_t srpc_evtool_emev_v1to2(TElectricityMeter_ExtendedValue *v1,
+                       TElectricityMeter_ExtendedValue_V2 *v2);
+
 @implementation SAElectricityMeterExtendedValue {
-    TElectricityMeter_ExtendedValue _emev;
+    TElectricityMeter_ExtendedValue_V2 _emev;
 }
 
 -(id)initWithExtendedValue:(SAChannelExtendedValue *)ev {
@@ -30,12 +33,24 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     return nil;
 }
 
-- (BOOL) getElectricityMeterExtendedValue:(TElectricityMeter_ExtendedValue*)emev {
-    if (emev != NULL
-        && self.valueType == EV_TYPE_ELECTRICITY_METER_MEASUREMENT_V1) {
-        memset(emev, 0, sizeof(TElectricityMeter_ExtendedValue));
+- (BOOL) getElectricityMeterExtendedValue:(TElectricityMeter_ExtendedValue_V2*)emev {
+    if (emev == NULL) {
+        return NO;
+    }
+    
+    if (self.valueType == EV_TYPE_ELECTRICITY_METER_MEASUREMENT_V1) {
+        TElectricityMeter_ExtendedValue emev_v1;
+        memset(&emev_v1, 0, sizeof(TElectricityMeter_ExtendedValue));
         NSData *data = self.dataValue;
         if (data && data.length <= sizeof(TElectricityMeter_ExtendedValue)) {
+            [data getBytes:&emev_v1 length:data.length];
+            
+            return srpc_evtool_emev_v1to2(&emev_v1, emev) > 0;
+        }
+    } else if (self.valueType == EV_TYPE_ELECTRICITY_METER_MEASUREMENT_V2) {
+        memset(emev, 0, sizeof(TElectricityMeter_ExtendedValue_V2));
+        NSData *data = self.dataValue;
+        if (data && data.length <= sizeof(TElectricityMeter_ExtendedValue_V2)) {
             [data getBytes:emev length:data.length];
             return YES;
         }
@@ -131,6 +146,14 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         result+=[self totalReverseActiveEnergyForPhase:p];
     }
     return result;
+}
+
+- (double) totalForwardActiveEnergyBalanced {
+    return _emev.total_forward_active_energy_balanced * 0.00001;
+}
+
+- (double) totalReverseActiveEnergyBalanced {
+    return _emev.total_reverse_active_energy_balanced * 0.00001;
 }
 
 - (double) totalCost {

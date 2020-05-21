@@ -98,6 +98,19 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet SAPreloader *lPreloader;
 @property (weak, nonatomic) IBOutlet SAChartFilterField *tfChartTypeFilter;
 @property (weak, nonatomic) IBOutlet SAChartFilterField *ftDateRangeFilter;
+@property (weak, nonatomic) IBOutlet UILabel *lForwardActiveEnergyBalance;
+@property (weak, nonatomic) IBOutlet UILabel *lReverseActiveEnergyBalance;
+@property (weak, nonatomic) IBOutlet UILabel *lForwardActiveEnergyValueBalance;
+@property (weak, nonatomic) IBOutlet UILabel *lReverseActiveEnergyValueBalance;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *cForwardActiveEnergyBalanceTop;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *cReverseActiveEnergyBalanceTop;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *cForwardActiveEnergyValueBalanceTop;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *cReverseActiveEnergyValueBalanceTop;
+@property (weak, nonatomic) IBOutlet UILabel *lPhaseToPhase;
+@property (weak, nonatomic) IBOutlet UIView *vLabelsBalance;
+@property (weak, nonatomic) IBOutlet UIView *vValuesBalance;
+
+
 
 @end
 

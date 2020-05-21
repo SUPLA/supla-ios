@@ -147,3 +147,13 @@
 "No" = "Nie";
 
 "Heat meter" = "Licznik ciepła";
+"Arithmetic balance - Minutes" = "Bilans arytmetyczny - Minuty";
+"Arithmetic balance - Hours" = "Bilans arytmetyczny - Godziny";
+"Arithmetic balance - Days" = "Bilans arytmetyczny - Dni";
+"Arithmetic balance - Months" = "Bilans arytmetyczny - Miesiące";
+"Arithmetic balance - Years" = "Bilans arytmetyczny - Lata";
+"Vector balance - Minutes" = "Bilans wektorowy - Minuty";
+"Vector balance - Hours" = "Bilans wektorowy - Godziny";
+"Vector balance - Days" = "Bilans wektorowy - Dni";
+"Vector balance - Months" = "Bilans wektorowy - Miesiące";
+"Vector balance - Years" = "Bilans wektorowy - Lata";

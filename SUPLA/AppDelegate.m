@@ -28,14 +28,14 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
     
-    
-    [SAApp SuplaClient];
-    
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     [self.window makeKeyAndVisible];
 
     [[SAApp UI] showStarterVC];
-    
+    // Start SuplaClient only after the status window is displayed.
+    // Otherwise - with empty settings, the user will see the message "Host not found"
+    // instead of the settings window.
+    [SAApp SuplaClient];
     
     return YES;
 }
@@ -63,7 +63,7 @@
 - (void)applicationDidBecomeActive:(UIApplication *)application {
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
 
-    if ( [SAApp.UI addWizardIsVisible] == NO ) {
+    if ( ![SAApp.UI addWizardIsVisible] && ![SAApp.UI settingsVCisVisible] ) {
         [SAApp SuplaClient];
     }
     

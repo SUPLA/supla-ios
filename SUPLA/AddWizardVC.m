@@ -347,7 +347,7 @@
     [self.btnCancel setAttributedTitle:NSLocalizedString(@"Cancel", NULL)];
     [self.btnSystemSettings setTitle:NSLocalizedString(@"Go to the system settings", NULL)];
     
-    if ( [SAApp getAdvancedConfig] == YES ) {
+    if ( [SAApp isAdvancedConfig] == YES ) {
         [self showError:NSLocalizedString(@"Add Wizard is only available when server connection has been set based on the email address entered in the settings.", NULL)];
         return;
     } else {

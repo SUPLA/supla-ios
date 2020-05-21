@@ -168,13 +168,19 @@
                 _dateRangeFilterField.filterType = DateRangeFilter;
                 
                 switch(_chartType) {
-                    case Bar_Minutely:
-                    case Bar_Hourly:
+                    case Bar_Minutes:
+                    case Bar_Hours:
                     case Bar_Comparsion_MinMin:
                     case Bar_Comparsion_HourHour:
+                    case Bar_AritmeticBalance_Minutes:
+                    case Bar_VectorBalance_Minutes:
+                    case Bar_AritmeticBalance_Hours:
+                    case Bar_VectorBalance_Hours:
                         break;
-                    case Bar_Daily:
+                    case Bar_Days:
                     case Bar_Comparsion_DayDay:
+                    case Bar_AritmeticBalance_Days:
+                    case Bar_VectorBalance_Days:
                         [_dateRangeFilterField excludeElements:@[[NSNumber numberWithInt:Last24hours]]];
                         break;
                     default:
@@ -232,11 +238,13 @@
     _items = items;
 }
 
+-(void)resetList {
+    [self assignItemsArrayWithMaximumValue:_filterType == TypeFilter ? ChartTypeMax : DateRangeMax];
+}
+
 -(void)setFilterType:(ChartFilterFieldType)filterType {
-    
-    [self assignItemsArrayWithMaximumValue:filterType == TypeFilter ? ChartTypeMax : DateRangeMax];
-    
     _filterType = filterType;
+    [self resetList];
     self.dateRange = self.dateRange;
     self.chartType = self.chartType;
 }
@@ -296,6 +304,29 @@
     }
         
         
+    if (excluded) {
+        _items = mitems;
+        [self goToToFirst];
+    }
+    
+    return excluded;
+}
+
+- (BOOL)excludeAllFrom:(int)el {
+    
+    BOOL excluded = NO;
+    NSMutableArray *mitems = [NSMutableArray arrayWithArray:_items];
+    
+    for(int b=0;b<mitems.count;b++) {
+        if ([[mitems objectAtIndex:b] intValue] >= el) {
+            if (mitems.count > 1) {
+                [mitems removeObjectAtIndex:b];
+                excluded = YES;
+                b--;
+            }
+        }
+    }
+    
     if (excluded) {
         _items = mitems;
         [self goToToFirst];

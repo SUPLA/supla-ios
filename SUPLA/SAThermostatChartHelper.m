@@ -25,7 +25,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 -(id)init {
     if (self = [super init]) {
-        self.chartType = Bar_Minutely;
+        self.chartType = Bar_Minutes;
     }
     return self;
 }

@@ -62,7 +62,7 @@
         return _persistentStoreCoordinator;
     }
     
-    int DBv = 8;
+    int DBv = 9;
     
     [self removeIfExists:@"SUPLA_DB.sqlite"];
     
@@ -958,15 +958,15 @@
     
     if (gd != gdNone) {
         switch (gd) {
-            case gdMinutely:
+            case gdMinutes:
                 [self addGroupByProperty:gbMinute toMutableArray:propertiesToGroupBy entity:entity];
-            case gdHourly:
+            case gdHours:
                 [self addGroupByProperty:gbHour toMutableArray:propertiesToGroupBy entity:entity];
-            case gdDaily:
+            case gdDays:
                 [self addGroupByProperty:gbDay toMutableArray:propertiesToGroupBy entity:entity];
-            case gdMonthly:
+            case gdMonths:
                 [self addGroupByProperty:gbMonth toMutableArray:propertiesToGroupBy entity:entity];
-            case gdYearly:
+            case gdYears:
                 [self addGroupByProperty:gbYear toMutableArray:propertiesToGroupBy entity:entity];
                 break;
             default:

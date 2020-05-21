@@ -268,7 +268,7 @@
 -(void)showStarterVC {
     
     [[self StatusVC] setStatusConnectingProgress:0];
-    self.rootViewController = [[SAApp getServerHostName] isEqualToString:@""] ? [self SettingsVC] :[self StatusVC];
+    self.rootViewController = [SAApp configIsSet] ? [self StatusVC] : [self SettingsVC];
     
 }
 
@@ -393,5 +393,9 @@
     return _CreateAccountVC != nil && self.NavController.currentViewController == _CreateAccountVC;
 }
 
+-(BOOL)settingsVCisVisible {
+    return _SettingsVC != nil
+    && (self.NavController.currentViewController == _SettingsVC || self.rootViewController == _SettingsVC);
+}
 
 @end

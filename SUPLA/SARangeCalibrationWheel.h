@@ -17,24 +17,26 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 NS_ASSUME_NONNULL_BEGIN
 
+@class SARangeCalibrationWheel;
 @protocol SARangeCalibrationWheelDelegate <NSObject>
 
 @required
--(void) cbPickerDataChanged;
--(void) cbPickerMoveEnded;
+-(void) calibrationWheelRangeChanged:(SARangeCalibrationWheel *)wheel;
+-(void) calibrationWheelBoostChanged:(SARangeCalibrationWheel *)wheel;
 
 @end
 
 @interface SARangeCalibrationWheel : UIView
 
-@property (nonatomic, copy) UIColor *wheelColor;
-@property (nonatomic, copy) UIColor *borderColor;
-@property (nonatomic, copy) UIColor *btnColor;
-@property (nonatomic, copy) UIColor *valueColor;
-@property (nonatomic, copy) UIColor *insideBtnColor;
+@property (nonatomic, nullable, copy) UIColor *wheelColor;
+@property (nonatomic, nullable, copy) UIColor *borderColor;
+@property (nonatomic, nullable, copy) UIColor *btnColor;
+@property (nonatomic, nullable, copy) UIColor *rangeColor;
+@property (nonatomic, nullable, copy) UIColor *insideBtnColor;
+@property (nonatomic, nullable, copy) UIColor *boostLineColor;
 @property (nonatomic) CGFloat borderLineWidth;
-@property (nonatomic) double maxRange;
-@property (nonatomic) double minRange;
+@property (nonatomic) double maximumValue;
+@property (nonatomic) double minimumRange;
 @property (nonatomic) double numerOfTurns;
 @property (nonatomic) double minimum;
 @property (nonatomic) double maximum;
@@ -42,6 +44,9 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic) double rightEdge;
 @property (nonatomic) double boostLevel;
 @property (nonatomic) BOOL boostHidden;
+@property(weak, nonatomic) id<SARangeCalibrationWheelDelegate> delegate;
+
+-(void) setMinimum:(double)minimum andMaximum:(double)maximum;
 
 @end
 

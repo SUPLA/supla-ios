@@ -39,6 +39,10 @@
     self.phase1_rre = [self doubleForKey:@"phase1_rre" withObject:object];
     self.phase2_rre = [self doubleForKey:@"phase2_rre" withObject:object];
     self.phase3_rre = [self doubleForKey:@"phase3_rre" withObject:object];
+    self.fae_balanced = [self doubleForKey:@"fae_balanced" withObject:object];
+    self.rae_balanced = [self doubleForKey:@"rae_balanced" withObject:object];
+    
+    NSLog(@"fae=%f rae=%f", self.fae_balanced, self.rae_balanced);
 }
 
 - (void) assignMeasurementItem:(SAMeasurementItem*)source {
@@ -57,6 +61,8 @@
         self.phase1_rre = src.phase1_rre;
         self.phase2_rre = src.phase2_rre;
         self.phase3_rre = src.phase3_rre;
+        self.fae_balanced = src.fae_balanced;
+        self.rae_balanced = src.rae_balanced;
     }
     
 }
@@ -76,6 +82,8 @@
         self.phase1_rre = self.phase1_rre - src.phase1_rre;
         self.phase2_rre = self.phase2_rre - src.phase2_rre;
         self.phase3_rre = self.phase3_rre - src.phase3_rre;
+        self.fae_balanced = self.fae_balanced - src.fae_balanced;
+        self.rae_balanced = self.rae_balanced - src.rae_balanced;
         
         self.calculated = YES;
     }
@@ -95,6 +103,8 @@
     self.phase1_rre = self.phase1_rre / n;
     self.phase2_rre = self.phase2_rre / n;
     self.phase3_rre = self.phase3_rre / n;
+    self.fae_balanced = self.fae_balanced / n;
+    self.rae_balanced = self.rae_balanced / n;
     
     self.divided = YES;
 }

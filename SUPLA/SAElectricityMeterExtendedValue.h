@@ -37,6 +37,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (double) totalForwardActiveEnergy;
 - (double) totalReverseActiveEnergy;
+- (double) totalForwardActiveEnergyBalanced;
+- (double) totalReverseActiveEnergyBalanced;
 - (unsigned int) measuredValues;
 - (BOOL) currentIsOver65A;
 @end
