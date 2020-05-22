@@ -242,21 +242,17 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
             self.leftEdge = self.rightEdge - _minimumRange;
         } else {
             self.leftEdge -= diff;
-            self.rightEdge += diff;
         }
     }
     
     if (_minimumRange > self.maximum - self.minimum) {
         double diff = (_minimumRange - (self.maximum-self.minimum)) / 2;
         if (self.minimum-diff < self.leftEdge) {
-            self.minimum = self.leftEdge;
-            self.maximum = self.minimum + _minimumRange;
+            [self setMinimum:self.leftEdge andMaximum:self.minimum + _minimumRange];
         } else if (self.maximum + diff > self.rightEdge) {
-            self.maximum = self.rightEdge;
-            self.minimum = self.maximum - _minimumRange;
+            [self setMinimum:self.maximum - _minimumRange andMaximum:self.rightEdge];
         } else {
-            self.minimum -= diff;
-            self.maximum += diff;
+            [self setMinimum:self.minimum-diff andMaximum:self.maximum+diff];
         }
     }
 }

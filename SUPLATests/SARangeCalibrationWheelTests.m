@@ -122,6 +122,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     calibrationWheel.leftEdge = 500;
     calibrationWheel.rightEdge = 600;
     
+    XCTAssertEqual(calibrationWheel.minimumRange, 0);
     XCTAssertEqual(calibrationWheel.leftEdge, 500);
     XCTAssertEqual(calibrationWheel.rightEdge, 600);
     XCTAssertEqual(calibrationWheel.minimum, 500);
@@ -129,10 +130,12 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     
     calibrationWheel.minimumRange = 200;
     
-    XCTAssertNotEqual(calibrationWheel.leftEdge, 500);
-    XCTAssertNotEqual(calibrationWheel.rightEdge, 600);
-    XCTAssertNotEqual(calibrationWheel.minimum, 500);
-    XCTAssertNotEqual(calibrationWheel.maximum, 600);
+    XCTAssertEqual(calibrationWheel.minimumRange, 200);
+    
+    XCTAssertEqual(calibrationWheel.leftEdge, 450);
+    XCTAssertEqual(calibrationWheel.rightEdge, 650);
+    XCTAssertEqual(calibrationWheel.minimum, 450);
+    XCTAssertEqual(calibrationWheel.maximum, 650);
 
     XCTAssertGreaterThanOrEqual(calibrationWheel.rightEdge-calibrationWheel.leftEdge, calibrationWheel.minimumRange);
     XCTAssertLessThan(calibrationWheel.rightEdge-calibrationWheel.leftEdge, calibrationWheel.maximumValue);
@@ -159,13 +162,13 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     XCTAssertEqual(calibrationWheel.maximum, 500);
     
     calibrationWheel.minimumRange = 200;
+
+    XCTAssertEqual(calibrationWheel.minimum, 400);
+     XCTAssertEqual(calibrationWheel.maximum, 600);
     
     XCTAssertEqual(calibrationWheel.leftEdge, 100);
     XCTAssertEqual(calibrationWheel.rightEdge, 900);
-    
-    XCTAssertNotEqual(calibrationWheel.minimum, 500);
-    XCTAssertNotEqual(calibrationWheel.maximum, 500);
-    
+
     XCTAssertGreaterThanOrEqual(calibrationWheel.maximum-calibrationWheel.minimum, calibrationWheel.minimumRange);
     XCTAssertLessThan(calibrationWheel.maximum-calibrationWheel.minimum, calibrationWheel.maximumValue);
 }
