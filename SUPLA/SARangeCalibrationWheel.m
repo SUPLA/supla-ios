@@ -273,13 +273,12 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 }
 
 -(void)setMinimum:(double)minimum needsDisplay:(BOOL)needsDisplay {
-  
-    if (minimum < self.leftEdge) {
-        minimum = self.leftEdge;
-    }
-    
     if (minimum+self.minimumRange > self.maximum) {
         minimum = self.maximum - self.minimumRange;
+    }
+    
+    if (minimum < self.leftEdge) {
+        minimum = self.leftEdge;
     }
     
     _minimum = minimum;
@@ -302,13 +301,13 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 }
 
 -(void)setMaximum:(double)maximum needsDisplay:(BOOL)needsDisplay {
+        
+    if (self.minimum+self.minimumRange > maximum) {
+        maximum = self.minimum+self.minimumRange;
+    }
     
     if (maximum > self.rightEdge) {
         maximum = self.rightEdge;
-    }
-    
-    if (self.minimum+self.minimumRange > maximum) {
-        maximum = self.minimum+self.minimumRange;
     }
     
     _maximum = maximum;
