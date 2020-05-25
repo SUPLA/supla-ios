@@ -164,7 +164,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     calibrationWheel.minimumRange = 200;
 
     XCTAssertEqual(calibrationWheel.minimum, 400);
-     XCTAssertEqual(calibrationWheel.maximum, 600);
+    XCTAssertEqual(calibrationWheel.maximum, 600);
     
     XCTAssertEqual(calibrationWheel.leftEdge, 100);
     XCTAssertEqual(calibrationWheel.rightEdge, 900);
