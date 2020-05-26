@@ -121,12 +121,14 @@
         [SAApp.DB deleteAllUserIcons];
     }
     
+    // Show main vc before reconnect
+    [[SAApp UI] showMainVC];
+    
     if ( changed || [SAApp SuplaClientConnected] == NO ) {
+        [SAApp.instance onConnecting];
         [SAApp setPreferedProtocolVersion:SUPLA_PROTO_VERSION];
         [[SAApp SuplaClient] reconnect];
     }
-    
-    [[SAApp UI] hideVC];
     
 }
 
