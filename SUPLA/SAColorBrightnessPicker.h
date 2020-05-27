@@ -18,19 +18,20 @@
 
 #import <UIKit/UIKit.h>
 
+@class SAColorBrightnessPicker;
 @protocol SAColorBrightnessPickerDelegate <NSObject>
 
 @required
--(void) cbPickerDataChanged;
--(void) cbPickerMoveEnded;
+-(void) cbPickerDataChanged:(SAColorBrightnessPicker*)picker;
+-(void) cbPickerMoveEnded:(SAColorBrightnessPicker*)picker;
 
 @end
 
 @interface SAColorBrightnessPicker : UIView
 
-@property(nonatomic, assign) BOOL colorBrightnessWheelVisible;
-@property(nonatomic, assign) BOOL bwBrightnessWheelVisible;
-
+@property(nonatomic, assign) BOOL colorWheelVisible;
+@property(nonatomic, assign) BOOL circleInsteadArrow;
+@property(nonatomic, assign) BOOL colorfulBrightnessWheel;
 @property(weak, nonatomic) IBOutlet UIColor *color;
 @property(nonatomic, assign) float brightness;
 @property(nonatomic, readonly) BOOL moving;

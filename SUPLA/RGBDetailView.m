@@ -90,16 +90,7 @@
 
 - (void)showValues {
     
-    if ( self.cbPicker.bwBrightnessWheelVisible == YES ) {
-        
-        if ( !isGroup && (int)self.cbPicker.brightness != (int)_brightness ) {
-            self.cbPicker.brightness = (int)_brightness;
-        }
-        
-        self.cbPicker.brightnessMarkers = _brightnessMarkers;
-    }
-    
-    if ( self.cbPicker.colorBrightnessWheelVisible == YES ) {
+    if ( self.cbPicker.colorWheelVisible == YES ) {
         
         if (!isGroup) {
             if ((int)self.cbPicker.brightness != (int)_colorBrightness ) {
@@ -111,7 +102,16 @@
 
         self.cbPicker.brightnessMarkers = _colorBrightnessMarkers;
         self.cbPicker.colorMarkers = _colorMarkers;
+        
+    } else {
+        if ( !isGroup && (int)self.cbPicker.brightness != (int)_brightness ) {
+            self.cbPicker.brightness = (int)_brightness;
+        }
+        
+        self.cbPicker.brightnessMarkers = _brightnessMarkers;
     }
+    
+
     
     self.stateBtn.selected = self.cbPicker.brightness > 0;
     
@@ -133,10 +133,10 @@
     int colorBrightness = _colorBrightness;
     UIColor *color = _color;
     
-    if ( self.cbPicker.colorBrightnessWheelVisible ) {
+    if ( self.cbPicker.colorWheelVisible ) {
         colorBrightness = self.cbPicker.brightness;
         color = self.cbPicker.color;
-    } else if ( self.cbPicker.bwBrightnessWheelVisible ) {
+    } else {
         brightness = self.cbPicker.brightness;
     }
     
@@ -208,23 +208,16 @@
 }
 
 - (void)updateFooterView {
-    if ( self.cbPicker.colorBrightnessWheelVisible ) {
+    if ( self.cbPicker.colorWheelVisible ) {
         self.clPicker.hidden = NO;
     } else {
         self.clPicker.hidden = YES;
     }
 }
 
-- (void)setBWBrightnessWhellVisible:(BOOL)visible {
+- (void)setColorWheelVisible:(BOOL)visible {
     
-    self.cbPicker.bwBrightnessWheelVisible = visible;
-    [self updateFooterView];
-    
-}
-
-- (void)setColorBrightnessWheelVisible:(BOOL)visible {
-    
-    self.cbPicker.colorBrightnessWheelVisible = visible;
+    self.cbPicker.colorWheelVisible = visible;
     [self updateFooterView];
 }
 
@@ -285,17 +278,10 @@
 
 
 - (IBAction)segChanged:(id)sender {
-    
     if ( self.segControl.hidden == NO ) {
-        
-        if ( self.segControl.selectedSegmentIndex ) {
-            [self setBWBrightnessWhellVisible:YES];
-        } else {
-            [self setColorBrightnessWheelVisible:YES];
-        }
+        [self setColorWheelVisible:self.segControl.selectedSegmentIndex == 0];
         [self showValues];
     }
-
 }
 
 -(void)setChannelBase:(SAChannelBase *)channelBase {
@@ -317,8 +303,7 @@
             self.onlineStatus.hidden = YES;
         }
         
-        [self setBWBrightnessWhellVisible:NO];
-        [self setColorBrightnessWheelVisible:NO];
+        [self setColorWheelVisible:NO];
 
         self.headerView.hidden = YES;
         self.cintPickerTop.constant = self.cintHeaderHeight.constant * -1;
@@ -332,13 +317,13 @@
 
             switch(channelBase.func) {
                 case SUPLA_CHANNELFNC_DIMMER:
-                    [self setBWBrightnessWhellVisible:YES];
+                    [self setColorWheelVisible:NO];
                     break;
                 case SUPLA_CHANNELFNC_RGBLIGHTING:
-                    [self setColorBrightnessWheelVisible:YES];
+                    [self setColorWheelVisible:YES];
                     break;
                 case SUPLA_CHANNELFNC_DIMMERANDRGBLIGHTING:
-                    [self setColorBrightnessWheelVisible:YES];
+                    [self setColorWheelVisible:YES];
                     
                     self.segControl.selectedSegmentIndex = 0;
                     self.headerView.hidden = NO;
@@ -363,7 +348,7 @@
         return;
 
     self.cbPicker.brightness = self.cbPicker.brightness > 0 ? 0 : 100;
-    if (self.cbPicker.colorBrightnessWheelVisible) {
+    if (self.cbPicker.colorWheelVisible) {
         _colorBrightness = self.cbPicker.brightness;
     } else {
         _brightness = self.cbPicker.brightness;
@@ -384,7 +369,7 @@
 
 -(void)itemTouchedWithColor:(UIColor*)color andPercent:(float)percent {
     
-    if ( self.cbPicker.colorBrightnessWheelVisible == NO
+    if ( self.cbPicker.colorWheelVisible == NO
         || self.channelBase == nil
         || color == nil
         || [color isEqual: [UIColor clearColor]]) return;

@@ -30,6 +30,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     UIColor *_insideBtnColor;
     UIColor *_boostLineColor;
     CGFloat _borderLineWidth;
+    CGFloat _boostLineHeightFactor;
     double _maximumValue;
     double _minimumRange;
     double _numerOfTurns;
@@ -65,7 +66,14 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     _leftEdge = 0;
     _rightEdge = _maximumValue;
     _boostLevel = 0;
+    _boostLineHeightFactor = 1.8;
     _boostHidden = YES;
+    _wheelColor = [UIColor colorWithRed: 0.69 green: 0.67 blue: 0.67 alpha: 1.00];
+    _borderColor = [UIColor colorWithRed: 0.34 green: 0.34 blue: 0.34 alpha: 1.00];
+    _btnColor = [UIColor colorWithRed: 0.34 green: 0.34 blue: 0.34 alpha: 1.00];
+    _rangeColor = [UIColor colorWithRed: 1.00 green: 0.90 blue: 0.09 alpha: 1.00];
+    _boostLineColor = [UIColor colorWithRed: 0.07 green: 0.65 blue: 0.12 alpha: 1.00];
+    _insideBtnColor = [UIColor whiteColor];
     
     touched = TOUCHED_NONE;
     _borderLineWidth = 1.5;
@@ -104,76 +112,79 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 }
 
 - (void)setWheelColor:(UIColor *)wheelColor {
-    _wheelColor = wheelColor == nil ? nil : [wheelColor copy];
-    [self setNeedsDisplay];
+    if (wheelColor != nil) {
+        _wheelColor = [wheelColor copy];
+        [self setNeedsDisplay];
+    }
 }
 
 - (UIColor*)wheelColor {
-    if (_wheelColor == nil) {
-        _wheelColor = [UIColor colorWithRed: 0.78 green: 0.84 blue: 0.94 alpha: 1.00];
-    }
     return _wheelColor;
 }
 
 - (void)setBorderColor:(UIColor *)borderColor {
-    _borderColor = borderColor == nil ? nil : [borderColor copy];
-    [self setNeedsDisplay];
+    if (borderColor!=nil) {
+        _borderColor = [borderColor copy];
+        [self setNeedsDisplay];
+    }
 }
 
 - (UIColor*)borderColor {
-    if (_borderColor == nil) {
-        _borderColor = [UIColor colorWithRed: 0.27 green: 0.52 blue: 0.91 alpha: 1.00];
-    }
     return _borderColor;
 }
 
 - (void)setBtnColor:(UIColor *)btnColor {
-    _btnColor = btnColor == nil ? nil : [btnColor copy];
-    [self setNeedsDisplay];
+    if (btnColor!=nil) {
+        _btnColor = [btnColor copy];
+        [self setNeedsDisplay];
+    }
 }
 
 - (UIColor*)btnColor {
-    if (_btnColor == nil) {
-        _btnColor = [UIColor colorWithRed: 0.27 green: 0.52 blue: 0.91 alpha: 1.00];
-    }
     return _btnColor;
 }
 
 - (void)setRangeColor:(UIColor *)rangeColor {
-    _rangeColor = rangeColor == nil ? nil : [rangeColor copy];
-    [self setNeedsDisplay];
+    if (rangeColor!=nil) {
+        _rangeColor = [rangeColor copy];
+        [self setNeedsDisplay];
+    }
 }
 
 - (UIColor*)rangeColor {
-    if (_rangeColor == nil) {
-        _rangeColor = [UIColor colorWithRed: 1.00 green: 0.90 blue: 0.09 alpha: 1.00];
-    }
     return _rangeColor;
 }
 
 - (void)setInsideBtnColor:(UIColor *)insideBtnColor {
-    _insideBtnColor = insideBtnColor == nil ? nil : [insideBtnColor copy];
-    [self setNeedsDisplay];
+    if (insideBtnColor!=nil) {
+        _insideBtnColor = [insideBtnColor copy];
+        [self setNeedsDisplay];
+    }
 }
 
 - (UIColor*)insideBtnColor {
-    if (_insideBtnColor == nil) {
-        _insideBtnColor = [UIColor whiteColor];
-    }
     return _insideBtnColor;
 }
 
 - (void)setBoostLineColor:(UIColor *)boostLineColor {
-    _boostLineColor = boostLineColor == nil ? nil : [boostLineColor copy];
-    [self setNeedsDisplay];
+    if (boostLineColor!=nil) {
+        _boostLineColor = [boostLineColor copy];
+        [self setNeedsDisplay];
+    }
 }
 
 -(UIColor*)boostLineColor {
-    if (_boostLineColor == nil) {
-        _boostLineColor = [UIColor redColor];
-    }
-
     return _boostLineColor;
+}
+
+-(float)boostLineHeightFactor {
+    return _boostLineHeightFactor;
+}
+
+-(void)setBoostLineHeightFactor:(float)boostLineHeightFactor {
+    if (boostLineHeightFactor > 0 && boostLineHeightFactor <= 2) {
+       _boostLineHeightFactor = boostLineHeightFactor;
+    }
 }
 
 -(CGFloat)borderLineWidth {
@@ -231,21 +242,17 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
             self.leftEdge = self.rightEdge - _minimumRange;
         } else {
             self.leftEdge -= diff;
-            self.rightEdge += diff;
         }
     }
     
     if (_minimumRange > self.maximum - self.minimum) {
         double diff = (_minimumRange - (self.maximum-self.minimum)) / 2;
         if (self.minimum-diff < self.leftEdge) {
-            self.minimum = self.leftEdge;
-            self.maximum = self.minimum + _minimumRange;
+            [self setMinimum:self.leftEdge andMaximum:self.minimum + _minimumRange];
         } else if (self.maximum + diff > self.rightEdge) {
-            self.maximum = self.rightEdge;
-            self.minimum = self.maximum - _minimumRange;
+            [self setMinimum:self.maximum - _minimumRange andMaximum:self.rightEdge];
         } else {
-            self.minimum -= diff;
-            self.maximum += diff;
+            [self setMinimum:self.minimum-diff andMaximum:self.maximum+diff];
         }
     }
 }
@@ -266,13 +273,12 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 }
 
 -(void)setMinimum:(double)minimum needsDisplay:(BOOL)needsDisplay {
-  
-    if (minimum < self.leftEdge) {
-        minimum = self.leftEdge;
-    }
-    
     if (minimum+self.minimumRange > self.maximum) {
         minimum = self.maximum - self.minimumRange;
+    }
+    
+    if (minimum < self.leftEdge) {
+        minimum = self.leftEdge;
     }
     
     _minimum = minimum;
@@ -295,13 +301,13 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 }
 
 -(void)setMaximum:(double)maximum needsDisplay:(BOOL)needsDisplay {
+        
+    if (self.minimum+self.minimumRange > maximum) {
+        maximum = self.minimum+self.minimumRange;
+    }
     
     if (maximum > self.rightEdge) {
         maximum = self.rightEdge;
-    }
-    
-    if (self.minimum+self.minimumRange > maximum) {
-        maximum = self.minimum+self.minimumRange;
     }
     
     _maximum = maximum;
@@ -328,6 +334,10 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         leftEdge = 0;
     }
     
+    if (leftEdge > self.maximumValue-self.minimumRange) {
+        leftEdge = self.maximumValue-self.minimumRange;
+    }
+    
     _leftEdge = leftEdge;
 
     if (leftEdge+self.minimumRange > self.rightEdge) {
@@ -349,7 +359,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         rightEdge = self.minimumRange;
     }
     
-    if (self.rightEdge > self.maximumValue) {
+    if (rightEdge > self.maximumValue) {
          rightEdge = self.maximumValue;
      }
 
@@ -514,11 +524,13 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         }
         
         [self.boostLineColor setStroke];
-        
+
+        CGFloat boostLineHeight = valueFrame.size.height * _boostLineHeightFactor;
+        CGFloat m = (boostLineHeight-valueFrame.size.height) / 2;
 
         CGContextSetLineWidth(ctx, self.borderLineWidth);
-        CGContextMoveToPoint(ctx, vleft, valueFrame.origin.y);
-        CGContextAddLineToPoint(ctx, vleft, valueFrame.origin.y+valueFrame.size.height);
+        CGContextMoveToPoint(ctx, vleft, valueFrame.origin.y - m);
+        CGContextAddLineToPoint(ctx, vleft, valueFrame.origin.y+valueFrame.size.height+m);
         CGContextStrokePath(ctx);
     }
 }

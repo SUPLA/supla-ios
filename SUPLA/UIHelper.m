@@ -228,11 +228,14 @@
 }
 
 -(void)showMainVC {
-    
-    [[self MainVC] detailHide];
-    
-    [self.NavController showViewController:[self MainVC]];
-    [self fadeToViewController:[self NavController]];
+    if ( [SAApp SuplaClientConnected] ) {
+        [[self MainVC] detailHide];
+        
+        [self.NavController showViewController:[self MainVC]];
+        [self fadeToViewController:[self NavController]];
+    } else {
+        [self showStatusVC];
+    }
 }
 
 -(SAStatusVC*) StatusVC {
@@ -320,16 +323,6 @@
     
     [self.NavController showViewController:[self CreateAccountVC]];
     [self fadeToViewController:[self NavController]];
-    
-}
-
--(void)hideVC {
-    
-    if ( [SAApp SuplaClientConnected] ) {
-        [self showMainVC];
-    } else {
-        [self showStatusVC];
-    }
     
 }
 

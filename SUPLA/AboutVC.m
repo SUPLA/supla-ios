@@ -53,6 +53,6 @@
 }
 
 - (IBAction)btnTouch:(id)sender {
-    [[SAApp UI] hideVC];
+    [[SAApp UI] showMainVC];
 }
 @end

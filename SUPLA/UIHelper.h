@@ -63,7 +63,7 @@
 
 -(void)fadeToViewController:(nullable UIViewController*)vc;
 
--(void)hideVC;
+-(void)showMainVC;
 
 -(nonnull SASettingsVC *) SettingsVC;
 -(void)showSettings;
