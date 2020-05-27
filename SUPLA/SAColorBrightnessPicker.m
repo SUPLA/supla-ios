@@ -33,6 +33,7 @@
     BOOL _colorWheelVisible;
     BOOL _circleInsteadArrow;
     BOOL _colorfulBrightnessWheel;
+    BOOL _sliderVisible;
     
     CGPoint _arrowTop;
     CGPoint _inversedArrowTop;
@@ -43,12 +44,13 @@
     float _brightness;
     float _colorAngle;
     
-    float lastPanAngle;
+    float lastPanPosition;
     char activeArrow;
     
-    CGPoint _colorIndCentralPoint;
-    CGPoint _brightnessIndCentralPoint;
-    float _indRadius;
+    CGPoint _colorPointerCentralPoint;
+    CGPoint _brightnessPointerCentralPoint;
+    float _pointerRadius;
+    float _sliderPointerRange;
     
     UIPanGestureRecognizer *_gr;
 }
@@ -73,6 +75,8 @@
     
     _colorWheelVisible = YES;
     _colorfulBrightnessWheel = YES;
+    _circleInsteadArrow = YES;
+    _colorfulBrightnessWheel = NO;
     _brightness = 0;
     _color = [UIColor colorWithRed:0 green:255 blue:0 alpha:1];
     
@@ -121,7 +125,9 @@
 }
 
 -(void)setColorWheelVisible:(BOOL)colorWheelVisible {
-    
+    if (colorWheelVisible) {
+        self.sliderVisible = NO;
+    }
     _colorWheelVisible = colorWheelVisible;
     [self setNeedsDisplay];
 }
@@ -146,6 +152,18 @@
 
 -(BOOL)colorfulBrightnessWheel {
     return _colorfulBrightnessWheel;
+}
+
+-(void)setSliderVisible:(BOOL)sliderVisible {
+    if (sliderVisible) {
+        self.colorWheelVisible = NO;
+    }
+    _sliderVisible = sliderVisible;
+    [self setNeedsDisplay];
+}
+
+-(BOOL)sliderVisible {
+    return _sliderVisible;
 }
 
 -(UIColor*)color {
@@ -252,7 +270,7 @@
     }
 }
 
-- (void)drawMarkers:(NSArray*)markers withRadius:(int)radius markerSize:(float)markerSize brightness:(BOOL)brightness ctx:(CGContextRef)ctx {
+- (void)drawWheelMarkers:(NSArray*)markers withRadius:(int)radius markerSize:(float)markerSize brightness:(BOOL)brightness ctx:(CGContextRef)ctx {
     
     CGRect rect;
     float angle;
@@ -363,16 +381,7 @@
     
 }
 
--(CGPoint)drawCircleWithAngle:(float)angle positionRadius:(int)positionRadius circleRadius:(int)circleRadius color:(UIColor *)color borderColor:(UIColor*)borderColor ctx:(CGContextRef)ctx {
-    
-    angle = DEGREES_TO_RADIANS(angle);
-    
-    CGRect rect;
-    rect.origin.x = cosf(angle) * positionRadius - circleRadius;
-    rect.origin.y = sinf(angle) * positionRadius - circleRadius;
-    rect.size.height = circleRadius * 2;
-    rect.size.width = rect.size.height;
-    
+-(CGPoint)drawCirclePointerInRect:(CGRect)rect color:(UIColor *)color borderColor:(UIColor*)borderColor ctx:(CGContextRef)ctx {
     CGContextAddEllipseInRect(ctx, rect);
     CGContextSetFillColorWithColor(ctx, color.CGColor);
     CGContextFillPath(ctx);
@@ -386,7 +395,20 @@
     CGContextSetStrokeColorWithColor(ctx, borderColor.CGColor);
     CGContextStrokePath(ctx);
     
-    return CGPointMake(rect.origin.x + circleRadius, rect.origin.y + circleRadius);
+    return CGPointMake(rect.origin.x + rect.size.width/2, rect.origin.y + rect.size.height/2);
+}
+
+-(CGPoint)drawCirclePointerWithAngle:(float)angle positionRadius:(int)positionRadius circleRadius:(int)circleRadius color:(UIColor *)color borderColor:(UIColor*)borderColor ctx:(CGContextRef)ctx {
+    
+    angle = DEGREES_TO_RADIANS(angle);
+    
+    CGRect rect;
+    rect.origin.x = cosf(angle) * positionRadius - circleRadius;
+    rect.origin.y = sinf(angle) * positionRadius - circleRadius;
+    rect.size.height = circleRadius * 2;
+    rect.size.width = rect.size.height;
+    
+    return [self drawCirclePointerInRect:rect color:color borderColor:borderColor ctx:ctx];
 }
 
 -(CGPoint)drawArrowWithAngle:(float)angle wheelRadius:(int)wheel_radius wheelWidth:(int)wheel_width inverse:(BOOL)inverse color:(UIColor *)color borderColor:(UIColor*)borderColor {
@@ -457,29 +479,29 @@
                        sinf(angle) * (wheel_radius+wheel_width+offset+_arrowHeight/2* (inverse ? -1 : 1)));
 }
 
--(CGPoint)drawIndicatorWithAngle:(float)angle wheelRadius:(int)wheel_radius wheelWidth:(int)wheel_width inverse:(BOOL)inverse color:(UIColor *)color borderColor:(UIColor*)borderColor ctx:(CGContextRef)ctx {
+-(CGPoint)drawPointerWithAngle:(float)angle wheelRadius:(int)wheel_radius wheelWidth:(int)wheel_width inverse:(BOOL)inverse color:(UIColor *)color borderColor:(UIColor*)borderColor ctx:(CGContextRef)ctx {
     
     angle = [self addAngle:270 toAngle:angle];
     
     if (_circleInsteadArrow) {
-        return [self drawCircleWithAngle:angle positionRadius:wheel_radius+wheel_width/2 circleRadius:wheel_width/2 color:color borderColor:borderColor ctx:ctx];
+        return [self drawCirclePointerWithAngle:angle positionRadius:wheel_radius+wheel_width/2 circleRadius:wheel_width/2 color:color borderColor:borderColor ctx:ctx];
     }
     
     return [self drawArrowWithAngle:angle wheelRadius:wheel_radius wheelWidth:wheel_width inverse:inverse color:color borderColor:borderColor];
 }
 
--(void)drawRect:(CGRect)rect {
-    [super drawRect:rect];
-    
-    CGContextRef ctx = UIGraphicsGetCurrentContext();
-    CGContextSetShouldAntialias(ctx, YES);
-    
+-(void)trimBrightnessColorAngle:(float*)angle {
+    if (*angle < 4) {
+        *angle = 4;
+    } else if (*angle > 250) {
+        *angle = 250;
+    }
+}
+
+-(void)drawWheelWithCtx:(CGContextRef)ctx {
     float wheelWidth;
-    
-    CGRect r = self.bounds;
-    CGContextTranslateCTM(ctx, r.size.width/2, r.size.height/2);
-    
-    float radius = r.size.width > r.size.height ? r.size.height : r.size.width;
+    float radius = self.bounds.size.width > self.bounds.size.height
+    ? self.bounds.size.height : self.bounds.size.width;
     
     if (_circleInsteadArrow) {
         wheelWidth = radius / (_colorWheelVisible ? 3.50 : 7.0);
@@ -488,26 +510,22 @@
         wheelWidth = radius / 10.00;
         [self setArrowHeight:wheelWidth * 0.9];
     }
-
+    
     radius /= 2;
     radius -= wheelWidth;
     radius -= _arrowHeight;
     
     float brightness_angle = _brightness*3.6;
-    float color_brightness_angle = brightness_angle;
+    float brightness_color_angle = brightness_angle;
     
     if (_circleInsteadArrow
         && (!_colorfulBrightnessWheel || !_colorWheelVisible)) {
-        if (color_brightness_angle < 4) {
-            color_brightness_angle = 4;
-        } else if (color_brightness_angle > 250) {
-            color_brightness_angle = 250;
-        }
+        [self trimBrightnessColorAngle:&brightness_color_angle];
     }
     
-    UIColor *brightness_ind_color = [self calculateColorForAngle:color_brightness_angle baseColor:_colorWheelVisible
-                                     && _colorfulBrightnessWheel ? _color: [UIColor blackColor]];
-    UIColor *ind_border_color = _circleInsteadArrow ? [UIColor whiteColor] : [UIColor blackColor];
+    UIColor *brightness_pointer_color = [self calculateColorForAngle:brightness_color_angle baseColor:_colorWheelVisible
+                                         && _colorfulBrightnessWheel ? _color: [UIColor blackColor]];
+    UIColor *pointer_border_color = _circleInsteadArrow ? [UIColor whiteColor] : [UIColor blackColor];
     UIColor *brightness_base_color = _colorfulBrightnessWheel && _colorWheelVisible ? _color : [UIColor blackColor];
     
     if ( _colorWheelVisible ) {
@@ -517,22 +535,76 @@
     float markerSize = wheelWidth/(_circleInsteadArrow ? 5 : 3);
     
     [self drawWheelWithRadius:radius wheelWidth:wheelWidth baseColor:brightness_base_color];
-    _brightnessIndCentralPoint = [self drawIndicatorWithAngle:brightness_angle wheelRadius:radius
-                     wheelWidth:wheelWidth inverse:_colorWheelVisible color:brightness_ind_color
-                     borderColor:ind_border_color ctx:ctx];
-    [self drawMarkers:self.brightnessMarkers withRadius:radius+wheelWidth/2 markerSize:markerSize brightness:YES ctx:ctx];
+    _brightnessPointerCentralPoint = [self drawPointerWithAngle:brightness_angle wheelRadius:radius
+                                                     wheelWidth:wheelWidth inverse:_colorWheelVisible color:brightness_pointer_color
+                                                    borderColor:pointer_border_color ctx:ctx];
+    [self drawWheelMarkers:self.brightnessMarkers withRadius:radius+wheelWidth/2 markerSize:markerSize brightness:YES ctx:ctx];
     
     if ( _colorWheelVisible ) {
         radius+=wheelWidth;
         
         [self drawWheelWithRadius:radius wheelWidth:wheelWidth baseColor:nil];
-        _colorIndCentralPoint = [self drawIndicatorWithAngle:_colorAngle wheelRadius:radius
-                          wheelWidth:wheelWidth inverse:NO color:_color borderColor:ind_border_color ctx:ctx];
-        [self drawMarkers:self.colorMarkers withRadius:radius+wheelWidth/2
+        _colorPointerCentralPoint = [self drawPointerWithAngle:_colorAngle wheelRadius:radius
+                                                    wheelWidth:wheelWidth inverse:NO color:_color borderColor:pointer_border_color ctx:ctx];
+        [self drawWheelMarkers:self.colorMarkers withRadius:radius+wheelWidth/2
                markerSize:markerSize brightness:NO ctx:ctx];
     }
     
-    _indRadius = (_circleInsteadArrow ? wheelWidth : _arrowHeight) / 2;
+    _pointerRadius = (_circleInsteadArrow ? wheelWidth : _arrowHeight) / 2;
+}
+
+-(void)drawSliderWithCtx:(CGContextRef)ctx {
+    
+    CGFloat width = self.bounds.size.width;
+    width /= 7.0;
+    
+    CGFloat height = self.bounds.size.height - width/2;
+    CGRect rect = CGRectMake(width/-2.0, height /-2.0, width, height);
+    UIBezierPath *path = [UIBezierPath bezierPathWithRoundedRect:rect cornerRadius:45];
+    [path addClip];
+    
+    CGContextSetLineWidth(ctx, 2);
+    UIColor *color;
+    
+    for(int a=0;a<height;a++) {
+        color = [self calculateColorForAngle:360-(360.0*a/height) baseColor:[UIColor blackColor]];
+        [color setStroke];
+        
+        CGContextMoveToPoint(ctx, rect.origin.x, rect.origin.y+a);
+        CGContextAddLineToPoint(ctx, rect.origin.x+rect.size.width, rect.origin.y+a);
+        CGContextClosePath(ctx);
+        CGContextStrokePath(ctx);
+    }
+    
+    _sliderPointerRange = rect.size.height - rect.size.width;
+    float yoffset = _sliderPointerRange - _sliderPointerRange * _brightness / 100;
+    rect.origin.y += yoffset;
+    rect.size.height = rect.size.width;
+    
+    float angle = 360-(360.0*yoffset/_sliderPointerRange);
+    [self trimBrightnessColorAngle:&angle];
+    color = [self calculateColorForAngle:angle baseColor:[UIColor blackColor]];
+    
+    _brightnessPointerCentralPoint = [self drawCirclePointerInRect:rect
+                                                             color:color
+                                                       borderColor:[UIColor whiteColor] ctx:ctx];
+    _pointerRadius = rect.size.width;
+}
+
+-(void)drawRect:(CGRect)rect {
+    [super drawRect:rect];
+    
+    CGContextRef ctx = UIGraphicsGetCurrentContext();
+    CGContextSetShouldAntialias(ctx, YES);
+    
+    CGContextTranslateCTM(ctx, self.bounds.size.width/2, self.bounds.size.height/2);
+    
+    if (_sliderVisible) {
+        [self drawSliderWithCtx:ctx];
+    } else {
+        [self drawWheelWithCtx:ctx];
+    }
+    
 }
 
 -(float)angleForPoint:(CGPoint)point {
@@ -551,9 +623,8 @@
     
 }
 
-- (BOOL)touchOverIndicator:(CGPoint)touch_point centralPoint:(CGPoint)central_point {
-    NSLog(@"%f,%f,%f,%f,%f", central_point.x, touch_point.x, central_point.y, touch_point.y, sqrtf(pow(central_point.x - touch_point.x , 2) + pow(central_point.y - touch_point.y , 2)));
-    return sqrtf(pow(central_point.x - touch_point.x , 2) + pow(central_point.y - touch_point.y , 2)) <= _indRadius;
+- (BOOL)touchOverPointer:(CGPoint)touch_point centralPoint:(CGPoint)central_point {
+    return sqrtf(pow(central_point.x - touch_point.x , 2) + pow(central_point.y - touch_point.y , 2)) <= _pointerRadius;
 }
 
 -(UIView *) hitTest:(CGPoint)point withEvent:(UIEvent *)event
@@ -565,28 +636,52 @@
     activeArrow = ACTIVE_ARROW_NONE;
     _moving = NO;
     
+    NSLog(@"%f,%f",_brightnessPointerCentralPoint.x, transPoint.x);
+     
     if ( _colorWheelVisible ) {
-        if ( [self touchOverIndicator:transPoint centralPoint:_colorIndCentralPoint] ) {
+        if ( [self touchOverPointer:transPoint centralPoint:_colorPointerCentralPoint] ) {
             activeArrow = ACTIVE_ARROW_COLOR;
-        } else if ( [self touchOverIndicator:transPoint centralPoint:_brightnessIndCentralPoint] ) {
+        } else if ( [self touchOverPointer:transPoint centralPoint:_brightnessPointerCentralPoint] ) {
             activeArrow = ACTIVE_ARROW_BRIGHTNESS;
         }
         
-    } else  if ( [self touchOverIndicator:transPoint centralPoint:_brightnessIndCentralPoint] ) {
+    } else  if ( [self touchOverPointer:transPoint centralPoint:_brightnessPointerCentralPoint] ) {
         activeArrow = ACTIVE_ARROW_BRIGHTNESS;
     }
     
     if ( activeArrow != ACTIVE_ARROW_NONE ) {
         
-        lastPanAngle = [self angleForPoint:point];
+        if (_sliderVisible) {
+            lastPanPosition = point.y;
+        } else {
+            lastPanPosition = [self angleForPoint:point];
+        }
         
         _moving = YES;
         return self;
     }
-
+    
     return nil;
 }
 
+- (void)addBrightnessOffset:(float)offset {
+    float brightness = _brightness;
+    
+    brightness += offset;
+    
+    if ( brightness > 100 )
+        brightness = 100;
+    
+    if ( brightness < 0 )
+        brightness = 0;
+    
+    if ( brightness != _brightness ) {
+        _brightness = brightness;
+        
+        if ( delegate != nil )
+            [delegate cbPickerDataChanged: self];
+    }
+}
 
 - (void)handlePan:(UIPanGestureRecognizer *)gr {
     
@@ -600,9 +695,23 @@
         return;
     }
     
-    if ( activeArrow != ACTIVE_ARROW_NONE ) {
+    if (activeArrow == ACTIVE_ARROW_NONE) {
+        return;
+    }
+    
+    CGPoint touch_point = [gr locationInView:self];
+    
+    if (_sliderVisible) {
         
-        CGPoint touch_point = [gr locationInView:self];
+        if ( activeArrow != ACTIVE_ARROW_BRIGHTNESS ) {
+            return;
+        }
+        
+        [self addBrightnessOffset:(lastPanPosition-touch_point.y) * 100 / _sliderPointerRange];
+        
+        lastPanPosition = touch_point.y;
+        
+    } else {
         
         CGRect r = self.bounds;
         
@@ -616,14 +725,14 @@
         
         float angle_offset;
         
-        if ( angle < 100 && lastPanAngle > 300 ) {
-            angle_offset = (angle + 360 - lastPanAngle) * -1;
+        if ( angle < 100 && lastPanPosition > 300 ) {
+            angle_offset = (angle + 360 - lastPanPosition) * -1;
             
-        } else if ( angle > 300 && lastPanAngle < 100 ) {
-            angle_offset = lastPanAngle + 360 - angle;
+        } else if ( angle > 300 && lastPanPosition < 100 ) {
+            angle_offset = lastPanPosition + 360 - angle;
             
         } else {
-            angle_offset = lastPanAngle-angle;
+            angle_offset = lastPanPosition-angle;
         }
         
         
@@ -644,31 +753,13 @@
             }
             
         } else if ( activeArrow == ACTIVE_ARROW_BRIGHTNESS ) {
-            
-            float brightness = _brightness;
-            
-            angle_offset = angle_offset * 100 / 360;
-            brightness += angle_offset;
-            
-            if ( brightness > 100 )
-                brightness = 100;
-            
-            if ( brightness < 0 )
-                brightness = 0;
-            
-            if ( brightness != _brightness ) {
-                _brightness = brightness;
-                
-                if ( delegate != nil )
-                    [delegate cbPickerDataChanged: self];
-            }
-            
+            [self addBrightnessOffset: angle_offset * 100 / 360];
         }
         
-        [self setNeedsDisplay];
-        lastPanAngle = angle;
-        
+        lastPanPosition = angle;
     }
+    
+    [self setNeedsDisplay];
 }
 
 @end
