@@ -607,7 +607,7 @@ void sasuplaclient_on_oauth_token_request_result(void *_suplaclient, void *user_
     TSC_SuplaChannelValue value;
     value.EOL = channel->EOL;
     value.Id = channel->Id;
-    value.online = true;//channel->online;
+    value.online = channel->online;
     memcpy(&value.value, &channel->value, sizeof(TSuplaChannelValue));
     
     if ( [self.DB updateChannelValue:&value] ) {
