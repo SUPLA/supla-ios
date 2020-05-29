@@ -358,12 +358,12 @@
     [self sendNewValuesWithTurnOnOff:YES];
 }
 
--(void) cbPickerDataChanged {
+-(void) cbPickerDataChanged:(SAColorBrightnessPicker*)picker {
     [self sendNewValues];
     self.stateBtn.selected = self.cbPicker.brightness > 0;
 }
 
--(void) cbPickerMoveEnded {
+-(void) cbPickerMoveEnded:(SAColorBrightnessPicker*)picker {
     _moveEndTime = [NSDate date];
 }
 

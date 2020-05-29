@@ -32,6 +32,7 @@
 @property(nonatomic, assign) BOOL colorWheelVisible;
 @property(nonatomic, assign) BOOL circleInsteadArrow;
 @property(nonatomic, assign) BOOL colorfulBrightnessWheel;
+@property(nonatomic, assign) BOOL sliderVisible;
 @property(weak, nonatomic) IBOutlet UIColor *color;
 @property(nonatomic, assign) float brightness;
 @property(nonatomic, readonly) BOOL moving;

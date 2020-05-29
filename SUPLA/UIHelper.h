@@ -69,7 +69,6 @@
 -(void)showSettings;
 
 -(nonnull SAMainVC *) MainVC;
--(void)showMainVC;
 
 -(nonnull SAStatusVC*) StatusVC;
 -(void)showStatusVC;
