@@ -76,7 +76,7 @@
     _colorWheelVisible = YES;
     _colorfulBrightnessWheel = YES;
     _circleInsteadArrow = NO;
-    _colorfulBrightnessWheel = NO;
+    _colorfulBrightnessWheel = YES;
     _brightness = 0;
     _color = [UIColor colorWithRed:0 green:255 blue:0 alpha:1];
     
