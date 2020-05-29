@@ -43,7 +43,7 @@
         if (self.isVectorBalanceChartType) {
             fields = @[@"fae_balanced", @"rae_balanced"];
         } else {
-           fields = @[@"phase1_rae",@"phase2_rae",@"phase3_rae", @"phase1_fae",@"phase2_fae",@"phase3_fae"];
+            fields = @[@"phase1_rae",@"phase2_rae",@"phase3_rae", @"phase1_fae",@"phase2_fae",@"phase3_fae"];
         }
         
     } else if ( productionDataSource ) {
@@ -51,7 +51,7 @@
     } else {
         fields = @[@"phase1_fae",@"phase2_fae",@"phase3_fae"];
     }
-        
+    
     return [SAApp.DB getElectricityMeasurementsForChannelId:self.channelId dateFrom:dateFrom dateTo:dateTo groupBy:[self getGroupByForCurrentChartType] groupingDepth:[self getGroupungDepthForCurrentChartType] fields:fields];
 }
 
@@ -61,12 +61,16 @@
     }
     
     NSArray *values;
-            
+    
     if (self.isBalanceChartType) {
+        
+        double cons = 0;
+        double prod = 0;
+        
         if (self.isVectorBalanceChartType) {
-            double cons = [[self doubleValueForKey:@"fae_balanced" item:item] doubleValue];
-            double prod = [[self doubleValueForKey:@"rae_balanced" item:item] doubleValue];
-            values = @[[NSNumber numberWithDouble:cons-prod]];
+            cons = [[self doubleValueForKey:@"fae_balanced" item:item] doubleValue];
+            prod = [[self doubleValueForKey:@"rae_balanced" item:item] doubleValue];
+
         } else {
             double cons1 = [[self doubleValueForKey:@"phase1_fae" item:item] doubleValue];
             double cons2 = [[self doubleValueForKey:@"phase2_fae" item:item] doubleValue];
@@ -76,35 +80,57 @@
             double prod2 = [[self doubleValueForKey:@"phase2_rae" item:item] doubleValue];
             double prod3 = [[self doubleValueForKey:@"phase3_rae" item:item] doubleValue];
             
-            values = @[[NSNumber numberWithDouble:(cons1+cons2+cons3)-(prod1+prod2+prod3)]];
-        }
+            cons = cons1 + cons2 + cons3;
+            prod = prod1 + prod2 + prod3;
 
+        }
+        
+        double cons_diff = prod > cons ? cons : prod;
+        double prod_diff = cons > prod ? prod : cons;
+        
+        values = @[[NSNumber numberWithDouble:prod_diff * -1],
+        [NSNumber numberWithDouble:(prod - prod_diff) * -1],
+        [NSNumber numberWithDouble:cons - cons_diff],
+        [NSNumber numberWithDouble:cons_diff]];
+        
     } else {
         if (productionDataSource) {
-           values = @[[self doubleValueForKey:@"phase1_rae" item:item],
-                    [self doubleValueForKey:@"phase2_rae" item:item],
-                    [self doubleValueForKey:@"phase3_rae" item:item]];
+            values = @[[self doubleValueForKey:@"phase1_rae" item:item],
+                       [self doubleValueForKey:@"phase2_rae" item:item],
+                       [self doubleValueForKey:@"phase3_rae" item:item]];
         } else {
             values = @[[self doubleValueForKey:@"phase1_fae" item:item],
-                [self doubleValueForKey:@"phase2_fae" item:item],
-                [self doubleValueForKey:@"phase3_fae" item:item]];
+                       [self doubleValueForKey:@"phase2_fae" item:item],
+                       [self doubleValueForKey:@"phase3_fae" item:item]];
         }
     }
-
-
+    
+    
     [entries addObject:[[BarChartDataEntry alloc] initWithX:idx yValues:values]];
 }
 
 - (SABarChartDataSet *) newBarDataSetWithEntries:(NSArray *)entries {
     SABarChartDataSet *result = [super newBarDataSetWithEntries:entries];
     if (result) {
-        result.stackLabels = @[NSLocalizedString(@"Phase 1", nil),
-                               NSLocalizedString(@"Phase 2", nil),
-                               NSLocalizedString(@"Phase 3", nil)];
         [result resetColors];
-        result.colors = @[[UIColor phase1Color],
-                          [UIColor phase2Color],
-                          [UIColor phase3Color]];
+        
+        if (self.isBalanceChartType) {
+            result.stackLabels = @[@"",@"",@""];
+            
+            result.colors = @[[UIColor grayColor],
+                              [UIColor chartValueNegativeColor],
+                              [UIColor chartValuePositiveColor],
+                              [UIColor grayColor]];
+        } else {
+            result.stackLabels = @[NSLocalizedString(@"Phase 1", nil),
+                                   NSLocalizedString(@"Phase 2", nil),
+                                   NSLocalizedString(@"Phase 3", nil)];
+            
+            result.colors = @[[UIColor phase1Color],
+                              [UIColor phase2Color],
+                              [UIColor phase3Color]];
+        }
+        
     }
     return result;
 }
@@ -137,26 +163,20 @@
         
         [entries addObject:[[PieChartDataEntry alloc] initWithValue:sum label:[dateFormat stringFromDate:date]]];
     }
-
+    
 }
 
 - (NSString *)stringRepresentationOfChartType:(ChartType)ct {
     if (productionDataSource && ct == Pie_PhaseRank) {
         return NSLocalizedString(@"Production according to phases", nil);
     }
-
+    
     return [super stringRepresentationOfChartType:ct];
 }
 
 - (void) prepareBarDataSet:(SABarChartDataSet*)barDataSet {
     [super prepareBarDataSet:barDataSet];
-   
-    if (self.isBalanceChartType) {
-        barDataSet.colorDependsOnTheValue = YES;
-         [barDataSet resetColors];
-         barDataSet.colors = @[[UIColor chartValuePositiveColor],
-                               [UIColor chartValueNegativeColor]];
-    }
+    
     
     if ((self.isComparsionChartType && productionDataSource)) {
         barDataSet.colors = @[[UIColor chartValueNegativeColor],
