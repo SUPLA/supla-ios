@@ -287,7 +287,7 @@
     
     _balanceAvailable = (MVAL(EM_VAR_FORWARD_ACTIVE_ENERGY_BALANCED)
                          || MVAL(EM_VAR_REVERSE_ACTIVE_ENERGY_BALANCED));
-    _balanceAvailable = true;
+    
     if (selectedPhase == 0 && _balanceAvailable) {
         [self setForwardActiveEnergyBalance:emev.totalForwardActiveEnergyBalanced visible:MVAL(EM_VAR_FORWARD_ACTIVE_ENERGY_BALANCED)];
         [self setReverseActiveEnergyBalance:emev.totalReverseActiveEnergyBalanced visible:MVAL(EM_VAR_REVERSE_ACTIVE_ENERGY_BALANCED)];
@@ -403,7 +403,7 @@
 }
 
 -(void)onDetailShow {
-    _balanceAvailable = true;
+    _balanceAvailable = false;
     [super onDetailShow];
     [self setProductionDataSource:NO];
     [self setChartsHidden:YES];
