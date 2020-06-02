@@ -24,6 +24,7 @@
 @required
 -(void) cbPickerDataChanged:(SAColorBrightnessPicker*)picker;
 -(void) cbPickerMoveEnded:(SAColorBrightnessPicker*)picker;
+-(void) cbPickerPowerButtonValueChanged:(SAColorBrightnessPicker*)picker;
 
 @end
 
@@ -33,7 +34,10 @@
 @property(nonatomic, assign) BOOL circleInsteadArrow;
 @property(nonatomic, assign) BOOL colorfulBrightnessWheel;
 @property(nonatomic, assign) BOOL sliderVisible;
-@property(weak, nonatomic) IBOutlet UIColor *color;
+@property(nonatomic, assign) BOOL powerButtonVisible;
+@property(nonatomic, assign) BOOL powerButtonEnabled;
+@property(nonatomic, assign) BOOL powerButtonOn;
+@property(nonatomic, copy) UIColor *color;
 @property(nonatomic, assign) float brightness;
 @property(nonatomic, readonly) BOOL moving;
 @property(nonatomic, copy) NSArray *brightnessMarkers;
