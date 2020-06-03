@@ -560,7 +560,7 @@
     }
 }
 
--(void)drawPowerButtonWithCtx:(CGContextRef)ctx wheelRadius:(float)wheelRadius {
+-(CGFloat)drawPowerButtonWithCtx:(CGContextRef)ctx wheelRadius:(float)wheelRadius {
     CGFloat radius = wheelRadius * 0.3;
     UIBezierPath *path = [UIBezierPath bezierPathWithArcCenter:CGPointMake(0, 0)
                                                         radius:radius
@@ -576,6 +576,7 @@
     [path addLineToPoint:CGPointMake(0, radius * -1 + radius * 0.6)];
     [path stroke];
     
+    return radius;
 }
 
 -(void)drawWheelWithCtx:(CGContextRef)ctx {
@@ -615,8 +616,7 @@
     float markerSize = wheelWidth/(_circleInsteadArrow ? 5 : 3);
     
     if (_powerButtonVisible) {
-        _powerBtnRadius = _circleInsteadArrow ? radius : radius * 0.8;
-        [self drawPowerButtonWithCtx: ctx wheelRadius:_powerBtnRadius];
+          _powerBtnRadius = [self drawPowerButtonWithCtx: ctx wheelRadius:_circleInsteadArrow ? radius : radius * 0.8];
     }
     
     [self drawWheelWithRadius:radius wheelWidth:wheelWidth baseColor:brightness_base_color];
