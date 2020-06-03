@@ -82,6 +82,7 @@
     // #404040
     _powerButtonColorOff = [UIColor colorWithRed: 0.25 green: 0.25 blue: 0.25 alpha: 1.00];
     _brightness = 0;
+    // #00FF00
     _color = [UIColor colorWithRed:0 green:255 blue:0 alpha:1];
     
     initialized = YES;
@@ -198,6 +199,11 @@
 }
 
 -(void)setBrightness:(float)brightness {
+    if (brightness < 0) {
+        brightness = 0;
+    } else if (brightness > 100) {
+        brightness = 100;
+    }
     
     _brightness = brightness;
     [self setNeedsDisplay];
