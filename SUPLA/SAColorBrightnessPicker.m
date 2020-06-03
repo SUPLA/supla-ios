@@ -375,8 +375,8 @@
             continue;
         }
         
-        markerRect.origin.y = rect.origin.y
-        + (rect.size.height - markerRect.size.height) * [obj floatValue] / 100.0;
+        markerRect.origin.y = rect.origin.y + rect.size.width/2 - size /2
+        + (rect.size.height - rect.size.width) * [obj floatValue] / 100.0;
         
         [self drawMarkerInRect:markerRect ctx:ctx];
     }
