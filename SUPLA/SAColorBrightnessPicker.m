@@ -80,7 +80,7 @@
     // #f7f0dc
     _powerButtonColorOn = [UIColor colorWithRed: 0.97 green: 0.94 blue: 0.86 alpha: 1.00];
     // #404040
-    _powerButtonColorOff = [UIColor colorWithRed: 0.25 green: 0.25 blue: 0.25 alpha: 1.00];;
+    _powerButtonColorOff = [UIColor colorWithRed: 0.25 green: 0.25 blue: 0.25 alpha: 1.00];
     _brightness = 0;
     _color = [UIColor colorWithRed:0 green:255 blue:0 alpha:1];
     
@@ -129,9 +129,6 @@
 }
 
 -(void)setColorWheelVisible:(BOOL)colorWheelVisible {
-    if (colorWheelVisible) {
-        self.sliderVisible = NO;
-    }
     _colorWheelVisible = colorWheelVisible;
     [self setNeedsDisplay];
 }
@@ -159,9 +156,6 @@
 }
 
 -(void)setSliderVisible:(BOOL)sliderVisible {
-    if (sliderVisible) {
-        self.colorWheelVisible = NO;
-    }
     _sliderVisible = sliderVisible;
     [self setNeedsDisplay];
 }
@@ -252,6 +246,26 @@
 
 -(BOOL)powerButtonOn {
     return _powerButtonOn;
+}
+
+-(UIColor*)powerButtonColorOn {
+    return _powerButtonColorOn;
+}
+
+-(void)setPowerButtonColorOn:(UIColor *)powerButtonColorOn {
+    if (powerButtonColorOn != nil) {
+        _powerButtonColorOn = [powerButtonColorOn copy];
+    }
+}
+
+-(UIColor*)powerButtonColorOff {
+    return _powerButtonColorOff;
+}
+
+-(void)setPowerButtonColorOff:(UIColor *)powerButtonColorOff {
+    if (powerButtonColorOff != nil) {
+        _powerButtonColorOff = [powerButtonColorOff copy];
+    }
 }
 
 -(float)addAngle:(float)angle toAngle:(float)source {
