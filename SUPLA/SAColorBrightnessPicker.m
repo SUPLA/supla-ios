@@ -472,12 +472,12 @@
     CGContextAddEllipseInRect(ctx, rect);
     CGContextSetFillColorWithColor(ctx, color.CGColor);
     CGContextFillPath(ctx);
-    
-    CGContextSetLineWidth(ctx, 2);
-    rect.origin.x += 2;
-    rect.origin.y += 2;
-    rect.size.height -= 4;
-    rect.size.width -= 4;
+    CGFloat lw = rect.size.width * 0.05;
+    CGContextSetLineWidth(ctx, lw);
+    rect.origin.x += lw;
+    rect.origin.y += lw;
+    rect.size.height -= lw*2;
+    rect.size.width -= lw*2;
     CGContextAddEllipseInRect(ctx, rect);
     CGContextSetStrokeColorWithColor(ctx, borderColor.CGColor);
     CGContextStrokePath(ctx);
