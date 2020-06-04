@@ -701,7 +701,7 @@
     _brightnessPointerCentralPoint = [self drawCirclePointerInRect:pointerRect
                                                              color:color
                                                        borderColor:[UIColor whiteColor] ctx:ctx];
-    _pointerRadius = rect.size.width;
+    _pointerRadius = pointerRect.size.width / 2;
     [self drawSliderMarkersInRect:rect markerSize:rect.size.width/5 ctx:ctx];
 }
 
