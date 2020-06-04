@@ -71,7 +71,7 @@
     
     if ( initialized )
         return;
-        
+    
     _colorWheelVisible = YES;
     _colorfulBrightnessWheel = YES;
     _circleInsteadArrow = NO;
@@ -349,11 +349,12 @@
     for(int a=0;a<markers.count;a++) {
         angle = 0;
         obj = [markers objectAtIndex:a];
-        if (![obj isKindOfClass:[NSNumber class]]) {
-            continue;
-        }
         
         if (brightness) {
+            
+            if (![obj isKindOfClass:[NSNumber class]]) {
+                continue;
+            }
             
             float b = [obj floatValue];
             
@@ -366,6 +367,10 @@
             angle = b*3.6;
             
         } else {
+            if (![obj isKindOfClass:[UIColor class]]) {
+                continue;
+            }
+            
             angle = [self colorToAngle:obj];
         }
         
@@ -636,7 +641,7 @@
     float markerSize = wheelWidth/(_circleInsteadArrow ? 5 : 3);
     
     if (_powerButtonVisible) {
-          _powerBtnRadius = [self drawPowerButtonWithCtx: ctx wheelRadius:_circleInsteadArrow ? radius : radius * 0.8];
+        _powerBtnRadius = [self drawPowerButtonWithCtx: ctx wheelRadius:_circleInsteadArrow ? radius : radius * 0.8];
     }
     
     [self drawWheelWithRadius:radius wheelWidth:wheelWidth baseColor:brightness_base_color];
