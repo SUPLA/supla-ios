@@ -32,12 +32,12 @@
     picker = nil;
 }
 
-- (void)testColorWheelVisibleProperty {
-    XCTAssertTrue(picker.colorWheelVisible);
-    picker.colorWheelVisible = NO;
-    XCTAssertFalse(picker.colorWheelVisible);
-    picker.colorWheelVisible = YES;
-    XCTAssertTrue(picker.colorWheelVisible);
+- (void)testColorWheelHiddenProperty {
+    XCTAssertFalse(picker.colorWheelHidden);
+    picker.colorWheelHidden = YES;
+    XCTAssertTrue(picker.colorWheelHidden);
+    picker.colorWheelHidden = NO;
+    XCTAssertFalse(picker.colorWheelHidden);
 }
 
 - (void)testCircleInsteadArrowProperty {
@@ -56,20 +56,20 @@
     XCTAssertTrue(picker.colorfulBrightnessWheel);
 }
 
-- (void)testSliderVisibleProperty {
-    XCTAssertFalse(picker.sliderVisible);
-    picker.sliderVisible = YES;
-    XCTAssertTrue(picker.sliderVisible);
-    picker.sliderVisible = NO;
-    XCTAssertFalse(picker.sliderVisible);
+- (void)testSliderHiddenProperty {
+    XCTAssertTrue(picker.sliderHidden);
+    picker.sliderHidden = NO;
+    XCTAssertFalse(picker.sliderHidden);
+    picker.sliderHidden = YES;
+    XCTAssertTrue(picker.sliderHidden);
 }
 
-- (void)testPowerButtonVisibleProperty {
-    XCTAssertFalse(picker.powerButtonVisible);
-    picker.powerButtonVisible = YES;
-    XCTAssertTrue(picker.powerButtonVisible);
-    picker.powerButtonVisible = NO;
-    XCTAssertFalse(picker.powerButtonVisible);
+- (void)testPowerButtonHiddenProperty {
+    XCTAssertTrue(picker.powerButtonHidden);
+    picker.powerButtonHidden = NO;
+    XCTAssertFalse(picker.powerButtonHidden);
+    picker.powerButtonHidden = YES;
+    XCTAssertTrue(picker.powerButtonHidden);
 }
 
 - (void)testPowerButtonEnabledProperty {

@@ -41,7 +41,6 @@
     
     NSDate *_moveEndTime;
     NSDate *_remoteUpdateTime;
-
     
 }
 
@@ -82,7 +81,7 @@
         self.onlineStatus.offlineColor = [UIColor offLine];
         self.onlineStatus.borderColor = [UIColor statusBorder];
     }
-
+    
     
     [super detailViewInit];
     
@@ -90,7 +89,7 @@
 
 - (void)showValues {
     
-    if ( self.cbPicker.colorWheelVisible == YES ) {
+    if ( self.cbPicker.colorWheelHidden == NO ) {
         
         if (!isGroup) {
             if ((int)self.cbPicker.brightness != (int)_colorBrightness ) {
@@ -99,7 +98,7 @@
             
             self.cbPicker.color = _color;
         }
-
+        
         self.cbPicker.brightnessMarkers = _colorBrightnessMarkers;
         self.cbPicker.colorMarkers = _colorMarkers;
         
@@ -111,7 +110,7 @@
         self.cbPicker.brightnessMarkers = _brightnessMarkers;
     }
     
-
+    
     
     self.stateBtn.selected = self.cbPicker.brightness > 0;
     
@@ -133,7 +132,7 @@
     int colorBrightness = _colorBrightness;
     UIColor *color = _color;
     
-    if ( self.cbPicker.colorWheelVisible ) {
+    if ( self.cbPicker.colorWheelHidden == NO ) {
         colorBrightness = self.cbPicker.brightness;
         color = self.cbPicker.color;
     } else {
@@ -150,9 +149,9 @@
     } else {
         
         if ( time < MIN_REMOTE_UPDATE_PERIOD )
-           time = MIN_REMOTE_UPDATE_PERIOD-time+0.001;
+            time = MIN_REMOTE_UPDATE_PERIOD-time+0.001;
         else
-           time = 0.001;
+            time = 0.001;
         
         delayTimer1 = [NSTimer scheduledTimerWithTimeInterval:time target:self selector:@selector(timer1FireMethod:) userInfo:nil repeats:NO];
     }
@@ -170,7 +169,7 @@
         delayTimer2 = nil;
         return;
     }
-
+    
     if ( self.cbPicker.moving == YES )
         return;
     
@@ -184,12 +183,12 @@
             time = MIN_UPDATE_DELAY-time+0.001;
         else
             time = 0.001;
-    
+        
         
         delayTimer2 = [NSTimer scheduledTimerWithTimeInterval:time target:self selector:@selector(timer2FireMethod:) userInfo:nil repeats:NO];
         
     }
-
+    
     
 }
 
@@ -208,16 +207,11 @@
 }
 
 - (void)updateFooterView {
-    if ( self.cbPicker.colorWheelVisible ) {
-        self.clPicker.hidden = NO;
-    } else {
-        self.clPicker.hidden = YES;
-    }
+    self.clPicker.hidden = self.cbPicker.colorWheelHidden;
 }
 
-- (void)setColorWheelVisible:(BOOL)visible {
-    
-    self.cbPicker.colorWheelVisible = visible;
+- (void)setColorWheelHidden:(BOOL)hidden {
+    self.cbPicker.colorWheelHidden = hidden;
     [self updateFooterView];
 }
 
@@ -238,7 +232,7 @@
                 
                 if (isGroup) {
                     SAChannelGroup *cgroup = (SAChannelGroup*)self.channelBase;
-
+                    
                     _colorMarkers = cgroup.colors;
                     _colorBrightnessMarkers = cgroup.colorBrightness;
                     _brightnessMarkers = cgroup.brightness;
@@ -253,18 +247,18 @@
                     
                     [self showValuesWithDelay];
                 }
-            
+                
                 break;
         };
         
-
+        
         
     }
     
     for(int a=1;a<self.clPicker.count;a++) {
         
         SAColorListItem *item = [[SAApp DB] getColorListItemForRemoteId:self.channelBase.remote_id andIndex:a forGroup:NO];
-       
+        
         if ( item == nil ) {
             [self.clPicker itemAtIndex:a setColor:[UIColor clearColor]];
             [self.clPicker itemAtIndex:a setPercent:0];
@@ -279,7 +273,7 @@
 
 - (IBAction)segChanged:(id)sender {
     if ( self.segControl.hidden == NO ) {
-        [self setColorWheelVisible:self.segControl.selectedSegmentIndex == 0];
+        [self setColorWheelHidden:self.segControl.selectedSegmentIndex != 0];
         [self showValues];
     }
 }
@@ -287,12 +281,12 @@
 -(void)setChannelBase:(SAChannelBase *)channelBase {
     
     if ( self.channelBase == nil
-         || ( channelBase != nil
-             && (self.channelBase.remote_id  != channelBase.remote_id
-                 || ![channelBase isKindOfClass:[self.channelBase class]]) ) ) {
+        || ( channelBase != nil
+            && (self.channelBase.remote_id  != channelBase.remote_id
+                || ![channelBase isKindOfClass:[self.channelBase class]]) ) ) {
         
         isGroup = channelBase != nil && [channelBase isKindOfClass:[SAChannelGroup class]];
-
+        
         if (isGroup) {
             self.stateBtn.hidden = YES;
             self.stateLabel.hidden = YES;
@@ -303,8 +297,8 @@
             self.onlineStatus.hidden = YES;
         }
         
-        [self setColorWheelVisible:NO];
-
+        [self setColorWheelHidden:YES];
+        
         self.headerView.hidden = YES;
         self.cintPickerTop.constant = self.cintHeaderHeight.constant * -1;
         
@@ -314,16 +308,16 @@
         _colorMarkers = nil;
         
         if ( channelBase != nil ) {
-
+            
             switch(channelBase.func) {
                 case SUPLA_CHANNELFNC_DIMMER:
-                    [self setColorWheelVisible:NO];
+                    [self setColorWheelHidden:YES];
                     break;
                 case SUPLA_CHANNELFNC_RGBLIGHTING:
-                    [self setColorWheelVisible:YES];
+                    [self setColorWheelHidden:NO];
                     break;
                 case SUPLA_CHANNELFNC_DIMMERANDRGBLIGHTING:
-                    [self setColorWheelVisible:YES];
+                    [self setColorWheelHidden:NO];
                     
                     self.segControl.selectedSegmentIndex = 0;
                     self.headerView.hidden = NO;
@@ -334,7 +328,7 @@
         }
         
     }
-
+    
     [super setChannelBase:channelBase];
     
     if ( channelBase != nil && channelBase.isOnline == NO ) {
@@ -346,14 +340,15 @@
     
     if ( self.channelBase == nil || self.channelBase.isOnline == NO )
         return;
-
+    
     self.cbPicker.brightness = self.cbPicker.brightness > 0 ? 0 : 100;
-    if (self.cbPicker.colorWheelVisible) {
-        _colorBrightness = self.cbPicker.brightness;
-    } else {
+    if (self.cbPicker.colorWheelHidden) {
         _brightness = self.cbPicker.brightness;
+        
+    } else {
+        _colorBrightness = self.cbPicker.brightness;
     };
-
+    
     [self showValues];
     [self sendNewValuesWithTurnOnOff:YES];
 }
@@ -367,16 +362,20 @@
     _moveEndTime = [NSDate date];
 }
 
+-(void) cbPickerPowerButtonValueChanged:(SAColorBrightnessPicker*)picker {
+    
+}
+
 -(void)itemTouchedWithColor:(UIColor*)color andPercent:(float)percent {
     
-    if ( self.cbPicker.colorWheelVisible == NO
+    if ( self.cbPicker.colorWheelHidden == YES
         || self.channelBase == nil
         || color == nil
         || [color isEqual: [UIColor clearColor]]) return;
     
     _colorBrightness = percent;
     _color = color;
-
+    
     if (isGroup) {
         self.cbPicker.color = _color;
         self.cbPicker.brightness = _colorBrightness;
@@ -384,7 +383,7 @@
     
     [self showValues];
     [self sendNewValues];
-
+    
 }
 
 -(void)itemEditAtIndex:(int)index {

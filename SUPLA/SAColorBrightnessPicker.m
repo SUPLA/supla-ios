@@ -31,10 +31,10 @@
     NSArray *_colorMarkers;
     NSArray *_brightnessMarkers;
     BOOL _moving;
-    BOOL _colorWheelVisible;
+    BOOL _colorWheelHidden;
     BOOL _circleInsteadArrow;
     BOOL _colorfulBrightnessWheel;
-    BOOL _sliderVisible;
+    BOOL _sliderHidden;
     
     CGPoint _arrowTop;
     CGPoint _inversedArrowTop;
@@ -54,7 +54,7 @@
     float _sliderPointerRange;
     
     float _powerBtnRadius;
-    BOOL _powerButtonVisible;
+    BOOL _powerButtonHidden;
     BOOL _powerButtonEnabled;
     BOOL _powerButtonOn;
     UIColor *_powerButtonColorOn;
@@ -72,11 +72,13 @@
     if ( initialized )
         return;
     
-    _colorWheelVisible = YES;
+    _sliderHidden = YES;
+    _colorWheelHidden = NO;
     _colorfulBrightnessWheel = YES;
     _circleInsteadArrow = NO;
     _colorfulBrightnessWheel = YES;
     _powerButtonEnabled = YES;
+    _powerButtonHidden = YES;
     // #f7f0dc
     _powerButtonColorOn = [UIColor colorWithRed: 0.97 green: 0.94 blue: 0.86 alpha: 1.00];
     // #404040
@@ -129,13 +131,13 @@
     [self setNeedsDisplay];
 }
 
--(void)setColorWheelVisible:(BOOL)colorWheelVisible {
-    _colorWheelVisible = colorWheelVisible;
+-(void)setColorWheelHidden:(BOOL)colorWheelHidden {
+    _colorWheelHidden = colorWheelHidden;
     [self setNeedsDisplay];
 }
 
--(BOOL)colorWheelVisible {
-    return _colorWheelVisible;
+-(BOOL)colorWheelHidden {
+    return _colorWheelHidden;
 }
 
 -(void)setCircleInsteadArrow:(BOOL)circleInsteadArrow {
@@ -156,13 +158,13 @@
     return _colorfulBrightnessWheel;
 }
 
--(void)setSliderVisible:(BOOL)sliderVisible {
-    _sliderVisible = sliderVisible;
+-(void)setSliderHidden:(BOOL)sliderHidden {
+    _sliderHidden = sliderHidden;
     [self setNeedsDisplay];
 }
 
--(BOOL)sliderVisible {
-    return _sliderVisible;
+-(BOOL)sliderHidden {
+    return _sliderHidden;
 }
 
 -(UIColor*)color {
@@ -188,7 +190,7 @@
         _color = [color copy];
         _colorAngle = [self colorToAngle:color];
         
-        if ( self.colorWheelVisible ) {
+        if ( !self.colorWheelHidden ) {
             [self setNeedsDisplay];
         }
     }
@@ -228,13 +230,13 @@
     [self setNeedsDisplay];
 }
 
--(void)setPowerButtonVisible:(BOOL)powerButtonVisible {
-    _powerButtonVisible = powerButtonVisible;
+-(void)setPowerButtonHidden:(BOOL)powerButtonHidden {
+    _powerButtonHidden = powerButtonHidden;
     [self setNeedsDisplay];
 }
 
--(BOOL)powerButtonVisible {
-    return _powerButtonVisible;
+-(BOOL)powerButtonHidden {
+    return _powerButtonHidden;
 }
 
 -(void)setPowerButtonEnabled:(BOOL)powerButtonEnabled {
@@ -610,7 +612,7 @@
     ? self.bounds.size.height : self.bounds.size.width;
     
     if (_circleInsteadArrow) {
-        wheelWidth = radius / (_colorWheelVisible ? 3.50 : 7.0);
+        wheelWidth = radius / (_colorWheelHidden ? 7.0: 3.50);
         [self setArrowHeight: 0.00];
     } else {
         wheelWidth = radius / 10.00;
@@ -625,32 +627,32 @@
     float brightness_color_angle = brightness_angle;
     
     if (_circleInsteadArrow
-        && (!_colorfulBrightnessWheel || !_colorWheelVisible)) {
+        && (!_colorfulBrightnessWheel || _colorWheelHidden)) {
         [self trimBrightnessColorAngle:&brightness_color_angle];
     }
     
-    UIColor *brightness_pointer_color = [self calculateColorForAngle:brightness_color_angle baseColor:_colorWheelVisible
+    UIColor *brightness_pointer_color = [self calculateColorForAngle:brightness_color_angle baseColor:!_colorWheelHidden
                                          && _colorfulBrightnessWheel ? _color: [UIColor blackColor]];
     UIColor *pointer_border_color = _circleInsteadArrow ? [UIColor whiteColor] : [UIColor blackColor];
-    UIColor *brightness_base_color = _colorfulBrightnessWheel && _colorWheelVisible ? _color : [UIColor blackColor];
+    UIColor *brightness_base_color = _colorfulBrightnessWheel && !_colorWheelHidden ? _color : [UIColor blackColor];
     
-    if ( _colorWheelVisible ) {
+    if ( !_colorWheelHidden ) {
         wheelWidth /= 2;
     }
     
     float markerSize = wheelWidth/(_circleInsteadArrow ? 5 : 3);
     
-    if (_powerButtonVisible) {
+    if (!_powerButtonHidden) {
         _powerBtnRadius = [self drawPowerButtonWithCtx: ctx wheelRadius:_circleInsteadArrow ? radius : radius * 0.8];
     }
     
     [self drawWheelWithRadius:radius wheelWidth:wheelWidth baseColor:brightness_base_color];
     _brightnessPointerCentralPoint = [self drawPointerWithAngle:brightness_angle wheelRadius:radius
-                                                     wheelWidth:wheelWidth inverse:_colorWheelVisible color:brightness_pointer_color
+                                                     wheelWidth:wheelWidth inverse:!_colorWheelHidden color:brightness_pointer_color
                                                     borderColor:pointer_border_color ctx:ctx];
     [self drawWheelMarkers:self.brightnessMarkers withRadius:radius+wheelWidth/2 markerSize:markerSize brightness:YES ctx:ctx];
     
-    if ( _colorWheelVisible ) {
+    if ( !_colorWheelHidden ) {
         radius+=wheelWidth;
         
         [self drawWheelWithRadius:radius wheelWidth:wheelWidth baseColor:nil];
@@ -713,10 +715,10 @@
     
     CGContextTranslateCTM(ctx, self.bounds.size.width/2, self.bounds.size.height/2);
     
-    if (_sliderVisible) {
-        [self drawSliderWithCtx:ctx];
-    } else {
+    if (_sliderHidden) {
         [self drawWheelWithCtx:ctx];
+    } else {
+        [self drawSliderWithCtx:ctx];
     }
     
 }
@@ -750,7 +752,7 @@
     activeTouchPoint = ACTIVE_TOUCHPOINT_NONE;
     _moving = NO;
     
-    if ( _colorWheelVisible ) {
+    if ( !_colorWheelHidden ) {
         if ( [self touchOverCircle:transPoint centralPoint:_colorPointerCentralPoint radius:_pointerRadius] ) {
             activeTouchPoint = ACTIVE_TOUCHPOINT_COLOR_POINTER;
         } else if ( [self touchOverCircle:transPoint centralPoint:_brightnessPointerCentralPoint radius:_pointerRadius] ) {
@@ -763,15 +765,15 @@
     
     if ( activeTouchPoint != ACTIVE_TOUCHPOINT_NONE ) {
         
-        if (_sliderVisible) {
-            lastPanPosition = point.y;
-        } else {
+        if (_sliderHidden) {
             lastPanPosition = [self angleForPoint:point];
+        } else {
+            lastPanPosition = point.y;
         }
         
         _moving = YES;
         return self;
-    } else if ( _powerButtonVisible
+    } else if ( !_powerButtonHidden
                && _powerButtonEnabled
                && [self touchOverCircle:transPoint centralPoint:CGPointMake(0, 0) radius:_powerBtnRadius]  ) {
         
@@ -837,7 +839,7 @@
     
     CGPoint touch_point = [touch locationInView:touch.view];
     
-    if (_sliderVisible) {
+    if (!_sliderHidden) {
         
         if ( activeTouchPoint != ACTIVE_TOUCHPOINT_BRIGHTNESS_POINTER ) {
             return;

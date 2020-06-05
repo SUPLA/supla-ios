@@ -30,11 +30,11 @@
 
 @interface SAColorBrightnessPicker : UIView
 
-@property(nonatomic, assign) BOOL colorWheelVisible;
+@property(nonatomic, assign) BOOL colorWheelHidden;
 @property(nonatomic, assign) BOOL circleInsteadArrow;
 @property(nonatomic, assign) BOOL colorfulBrightnessWheel;
-@property(nonatomic, assign) BOOL sliderVisible;
-@property(nonatomic, assign) BOOL powerButtonVisible;
+@property(nonatomic, assign) BOOL sliderHidden;
+@property(nonatomic, assign) BOOL powerButtonHidden;
 @property(nonatomic, assign) BOOL powerButtonEnabled;
 @property(nonatomic, assign) BOOL powerButtonOn;
 @property(nonatomic, copy) UIColor *powerButtonColorOn;
