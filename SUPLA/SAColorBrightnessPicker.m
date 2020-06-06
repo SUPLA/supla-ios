@@ -752,7 +752,7 @@
     activeTouchPoint = ACTIVE_TOUCHPOINT_NONE;
     _moving = NO;
     
-    if ( !_colorWheelHidden ) {
+    if ( _sliderHidden && !_colorWheelHidden ) {
         if ( [self touchOverCircle:transPoint centralPoint:_colorPointerCentralPoint radius:_pointerRadius] ) {
             activeTouchPoint = ACTIVE_TOUCHPOINT_COLOR_POINTER;
         } else if ( [self touchOverCircle:transPoint centralPoint:_brightnessPointerCentralPoint radius:_pointerRadius] ) {
