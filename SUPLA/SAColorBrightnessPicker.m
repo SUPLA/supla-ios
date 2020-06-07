@@ -75,7 +75,7 @@
     _sliderHidden = YES;
     _colorWheelHidden = NO;
     _colorfulBrightnessWheel = YES;
-    _circleInsteadArrow = NO;
+    _circleInsteadArrow = YES;
     _colorfulBrightnessWheel = YES;
     _powerButtonEnabled = YES;
     _powerButtonHidden = YES;

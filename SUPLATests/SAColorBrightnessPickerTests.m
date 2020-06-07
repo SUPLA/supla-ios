@@ -41,11 +41,11 @@
 }
 
 - (void)testCircleInsteadArrowProperty {
-    XCTAssertFalse(picker.circleInsteadArrow);
-    picker.circleInsteadArrow = YES;
     XCTAssertTrue(picker.circleInsteadArrow);
     picker.circleInsteadArrow = NO;
     XCTAssertFalse(picker.circleInsteadArrow);
+    picker.circleInsteadArrow = YES;
+    XCTAssertTrue(picker.circleInsteadArrow);
 }
 
 - (void)testColorfulBrightnessWheelProperty {
