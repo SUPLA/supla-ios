@@ -65,11 +65,11 @@
 }
 
 - (void)testPowerButtonHiddenProperty {
-    XCTAssertTrue(picker.powerButtonHidden);
-    picker.powerButtonHidden = NO;
     XCTAssertFalse(picker.powerButtonHidden);
     picker.powerButtonHidden = YES;
     XCTAssertTrue(picker.powerButtonHidden);
+    picker.powerButtonHidden = NO;
+    XCTAssertFalse(picker.powerButtonHidden);
 }
 
 - (void)testPowerButtonEnabledProperty {

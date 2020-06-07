@@ -73,12 +73,10 @@
         return;
     
     _sliderHidden = YES;
-    _colorWheelHidden = NO;
     _colorfulBrightnessWheel = YES;
     _circleInsteadArrow = YES;
     _colorfulBrightnessWheel = YES;
     _powerButtonEnabled = YES;
-    _powerButtonHidden = YES;
     // #f7f0dc
     _powerButtonColorOn = [UIColor colorWithRed: 0.97 green: 0.94 blue: 0.86 alpha: 1.00];
     // #404040
