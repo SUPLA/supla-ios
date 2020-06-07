@@ -624,8 +624,14 @@
     float brightness_angle = _brightness*3.6;
     float brightness_color_angle = brightness_angle;
     
+    CGFloat red,green,blue,alpha;
+    [_color getRed:&red green:&green blue:&blue alpha:&alpha];
+    
     if (_circleInsteadArrow
-        && (!_colorfulBrightnessWheel || _colorWheelHidden)) {
+        && (!_colorfulBrightnessWheel
+            || _colorWheelHidden
+            || (!_colorWheelHidden
+                && red == 1 && green == 1 && blue == 1))) {
         [self trimBrightnessColorAngle:&brightness_color_angle];
     }
     
