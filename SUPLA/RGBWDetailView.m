@@ -16,7 +16,7 @@
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 
-#import "RGBDetailView.h"
+#import "RGBWDetailView.h"
 #import "UIHelper.h"
 #import "SAChannel+CoreDataClass.h"
 #import "SAColorListItem+CoreDataClass.h"
@@ -27,7 +27,7 @@
 #define MIN_REMOTE_UPDATE_PERIOD 0.25
 #define MIN_UPDATE_DELAY 0.5
 
-@implementation SARGBDetailView {
+@implementation SARGBWDetailView {
     int _brightness;
     int _colorBrightness;
     BOOL isGroup;
@@ -68,7 +68,7 @@
         [self.clPicker addItem];
         self.clPicker.delegate = self;
         
-        self.backgroundColor = [UIColor rgbDetailBackground];
+        self.backgroundColor = [UIColor rgbwDetailBackground];
         
         UIFont *font = [UIFont fontWithName:@"OpenSans-Bold" size:10];
         

@@ -22,7 +22,7 @@
 #import "SuplaApp.h"
 #import "Database.h"
 #import "SAChannel+CoreDataClass.h"
-#import "RGBDetailView.h"
+#import "RGBWDetailView.h"
 #import "RSDetailView.h"
 #import "ElectricityMeterDetailView.h"
 #import "ImpulseCounterDetailView.h"
@@ -78,14 +78,14 @@
     
     _tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapGesture:)];
     [self.notificationView addGestureRecognizer:_tapRecognizer];
-
+    
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-
+        
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(onDataChanged) name:kSADataChangedNotification object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(onEvent:) name:kSAEventNotification object:nil];
         
@@ -119,7 +119,7 @@
     if ( event == nil || event.Owner ) return;
     
     SAChannel *channel = [[SAApp DB] fetchChannelById:event.ChannelID];
-   
+    
     if ( channel == nil ) return;
     
     UIImage *img = [channel getIcon];
@@ -164,7 +164,7 @@
     }
     
     [self showNotificationMessage:msg withImage:img];
-
+    
 }
 
 #pragma mark Notification Support
@@ -209,10 +209,10 @@
     [self showNotificationView:YES];
     
     _nTimer = [NSTimer scheduledTimerWithTimeInterval:5.0
-                                     target:self
-                                   selector:@selector(onTimer:)
-                                   userInfo:nil
-                                    repeats:NO];
+                                               target:self
+                                             selector:@selector(onTimer:)
+                                             userInfo:nil
+                                              repeats:NO];
 }
 
 -(void)onTimer:(NSTimer *)timer {
@@ -269,7 +269,7 @@
         }
         return _gFrc;
     }
-
+    
     
     return nil;
 }
@@ -305,7 +305,7 @@
 }
 
 - (void)sectionCellTouch:(SASectionCell*)section {
- 
+    
     _SALocation *location = [self locationByName:section.label.text];
     if (location) {
         short bit = [self bitFlagCollapse];
@@ -364,7 +364,7 @@
     if (cell != nil) {
         cell.channelBase = channel_base;
     }
-  
+    
     return cell;
 }
 
@@ -443,7 +443,7 @@
     UIPanGestureRecognizer *_panRecognizer;
     
     SAChannelCell *cell;
-    SARGBDetailView *_rgbDetailView;
+    SARGBWDetailView *_rgbwDetailView;
     SARSDetailView *_rsDetailView; // Roller Shutter detail view
     SAElectricityMeterDetailView *_electricityMeterDetailView;
     SAImpulseCounterDetailView *_impulseCounterDetailView;
@@ -459,17 +459,17 @@
 
 -(void)initMainView {
     
-   cell = nil;
+    cell = nil;
     
-   _rgbDetailView = nil;
+    _rgbwDetailView = nil;
     _electricityMeterDetailView = nil;
     _impulseCounterDetailView = nil;
     _homePlusDetailView = nil;
     _tempHumidityDetailView = nil;
     _temperatureDetailView = nil;
     _detailView = nil;
-   _animating = NO;
-   _panRecognizer = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(handlePan:)];
+    _animating = NO;
+    _panRecognizer = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(handlePan:)];
     [self addGestureRecognizer:_panRecognizer];
 }
 
@@ -489,7 +489,7 @@
     if ( _cell.channelBase.isOnline && self.superview != nil) {
         
         if ( [_cell.channelBase isKindOfClass:SAChannel.class]
-             && (((SAChannel*)_cell.channelBase).type == SUPLA_CHANNELTYPE_ELECTRICITY_METER)) {
+            && (((SAChannel*)_cell.channelBase).type == SUPLA_CHANNELTYPE_ELECTRICITY_METER)) {
             // TODO: Remove channel type checking in future versions. Check function instead of type. Issue #82
             if ( _electricityMeterDetailView == nil ) {
                 
@@ -499,7 +499,7 @@
             
             result = _electricityMeterDetailView;
         } else if ( [_cell.channelBase isKindOfClass:SAChannel.class]
-             && (((SAChannel*)_cell.channelBase).type == SUPLA_CHANNELTYPE_IMPULSE_COUNTER)) {
+                   && (((SAChannel*)_cell.channelBase).type == SUPLA_CHANNELTYPE_IMPULSE_COUNTER)) {
             // TODO: Remove channel type checking in future versions. Check function instead of type. Issue #82
             if ( _impulseCounterDetailView == nil ) {
                 
@@ -514,14 +514,14 @@
                 case SUPLA_CHANNELFNC_RGBLIGHTING:
                 case SUPLA_CHANNELFNC_DIMMERANDRGBLIGHTING:
                     
-                    if ( _rgbDetailView == nil ) {
+                    if ( _rgbwDetailView == nil ) {
                         
-                        _rgbDetailView = [[[NSBundle mainBundle] loadNibNamed:@"RGBDetail" owner:self options:nil] objectAtIndex:0];
-                        [_rgbDetailView detailViewInit];
+                        _rgbwDetailView = [[[NSBundle mainBundle] loadNibNamed:@"RGBWDetail" owner:self options:nil] objectAtIndex:0];
+                        [_rgbwDetailView detailViewInit];
                         
                     }
                     
-                    result = _rgbDetailView;
+                    result = _rgbwDetailView;
                     break;
                     
                 case SUPLA_CHANNELFNC_CONTROLLINGTHEROLLERSHUTTER:
@@ -575,7 +575,7 @@
     }
     
     if ( result != nil ) {
-    
+        
         SAChannelBase *channelBase = cell == nil ? nil : cell.channelBase;
         
         if ( result.main_view != self ) {
@@ -586,7 +586,7 @@
             result.channelBase  = channelBase;
         }
     }
-
+    
     return result;
 }
 
@@ -630,7 +630,7 @@
 }
 
 - (void)detailShow:(BOOL)show animated:(BOOL)animated {
- 
+    
     [UIView commitAnimations];
     _animating = NO;
     
@@ -648,37 +648,37 @@
         
         [UIView animateWithDuration:0.2
                          animations:^{
-                             
-                             float multiplier = 1;
-                             
-                             if ( show ) {
-                                 multiplier = -1;
-                             }
-                             
-                             [self setCenter:CGPointMake((self.frame.size.width/2) * multiplier, self.center.y)];
-                             [_detailView setFrame:[self getDetailFrame]];
-                        
-
-                         }
+            
+            float multiplier = 1;
+            
+            if ( show ) {
+                multiplier = -1;
+            }
+            
+            [self setCenter:CGPointMake((self.frame.size.width/2) * multiplier, self.center.y)];
+            [_detailView setFrame:[self getDetailFrame]];
+            
+            
+        }
                          completion:^(BOOL finished){
-                             
-                             if ( show == NO ) {
-                                
-                                 if ( _detailView ) {
-                                     [_detailView removeFromSuperview];
-                                     _detailView = nil;
-                                 }
-                                 
-                                 if ( cell ) {
-                                     cell.contentView.backgroundColor = [UIColor cellBackground];
-                                     cell = nil;
-                                 }
-                                 
-                             }
-                             
-                             
-                             _animating = NO;
-                         }];
+            
+            if ( show == NO ) {
+                
+                if ( _detailView ) {
+                    [_detailView removeFromSuperview];
+                    _detailView = nil;
+                }
+                
+                if ( cell ) {
+                    cell.contentView.backgroundColor = [UIColor cellBackground];
+                    cell = nil;
+                }
+                
+            }
+            
+            
+            _animating = NO;
+        }];
         
     } else {
         
@@ -699,7 +699,7 @@
         }
         
     }
-
+    
 }
 
 - (void)handlePan:(UIPanGestureRecognizer *)gr {
@@ -712,7 +712,7 @@
     CGPoint touch_point = [gr locationInView:tableView];
     
     if ( gr.state == UIGestureRecognizerStateEnded
-         && _detailView != nil ) {
+        && _detailView != nil ) {
         
         [self detailShow:self.frame.origin.x*-1 > self.frame.size.width/3.5 ? YES : NO animated:YES];
         
@@ -732,7 +732,7 @@
             cell = nil;
             
         } else {
-        
+            
             SADetailView *detailView = detailView = [self getDetailViewForCell:cell];
             
             if ( detailView == nil ) {
@@ -740,7 +740,7 @@
                 cell = nil;
                 
             } else {
-            
+                
                 cell.contentView.backgroundColor = detailView.backgroundColor;
                 
                 float offset = touch_point.x-last_touched_x;
@@ -755,14 +755,14 @@
                 
                 [self moveCenter:offset];
                 touch_point.x -= offset;
- 
+                
             }
             
-
+            
         }
     }
     
-
+    
     last_touched_x = touch_point.x;
     
 }
@@ -784,7 +784,7 @@
 
 - (void)handleTap:(UITapGestureRecognizer *)gr {
     if ( _animating )
-           return;
+        return;
     
     UITableView *tableView = self.cTableView.hidden ? self.gTableView : self.cTableView;
     CGPoint touch_point = [gr locationInView:tableView];

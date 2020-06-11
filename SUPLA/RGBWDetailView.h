@@ -21,7 +21,7 @@
 #import "SAColorListPicker.h"
 #import "SAUIChannelStatus.h"
 
-@interface SARGBDetailView : SADetailView <SAColorBrightnessPickerDelegate, SAColorListPickerDelegate>
+@interface SARGBWDetailView : SADetailView <SAColorBrightnessPickerDelegate, SAColorListPickerDelegate>
 @property (weak, nonatomic) IBOutlet SAColorBrightnessPicker *cbPicker;
 @property (weak, nonatomic) IBOutlet SAColorListPicker *clPicker;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *segControl;

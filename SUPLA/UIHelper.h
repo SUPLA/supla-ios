@@ -39,7 +39,7 @@
 +(nonnull UIColor*)colorPickerDefault;
 +(nonnull UIColor*)statusYellow;
 +(nonnull UIColor*)cellBackground;
-+(nonnull UIColor*)rgbDetailBackground;
++(nonnull UIColor*)rgbwDetailBackground;
 +(nonnull UIColor*)rsDetailBackground;
 +(nonnull UIColor*)statusBorder;
 +(nonnull UIColor*)rsMarkerColor;

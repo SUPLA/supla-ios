@@ -70,7 +70,7 @@
     return [UIColor colorWithRed:0.98 green:0.98 blue:0.98 alpha:1.0];
 }
 
-+(UIColor*)rgbDetailBackground {
++(UIColor*)rgbwDetailBackground {
     return [UIColor colorWithRed:1.00 green:0.91 blue:0.02 alpha:1.0];
 }
 
@@ -123,7 +123,7 @@
 }
 
 +(nonnull UIColor*)hpBtnUnknown {
-   return [UIColor colorWithRed:0.90 green:0.74 blue:0.49 alpha:1.0];
+    return [UIColor colorWithRed:0.90 green:0.74 blue:0.49 alpha:1.0];
 }
 
 +(nonnull UIColor*)chartTemperatureFillColor {
