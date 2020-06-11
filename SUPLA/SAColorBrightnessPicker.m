@@ -59,6 +59,8 @@
     BOOL _powerButtonOn;
     UIColor *_powerButtonColorOn;
     UIColor *_powerButtonColorOff;
+    UIPanGestureRecognizer *_panGr;
+    UITapGestureRecognizer *_tapGr;
 }
 
 @synthesize delegate;
@@ -84,6 +86,15 @@
     _brightness = 0;
     // #00FF00
     _color = [UIColor colorWithRed:0 green:255 blue:0 alpha:1];
+    
+    _panGr = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(handlePan:)];
+    _tapGr = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTap:)];
+    
+    [_panGr setMinimumNumberOfTouches:1];
+    [_panGr setMaximumNumberOfTouches:1];
+    
+    [self addGestureRecognizer:_panGr];
+    [self addGestureRecognizer:_tapGr];
     
     initialized = YES;
 }
@@ -749,6 +760,10 @@
 
 -(UIView *) hitTest:(CGPoint)point withEvent:(UIEvent *)event
 {
+    if (self.hidden) {
+        return nil;
+    }
+    
     CGPoint transPoint = point;
     transPoint.x -= self.bounds.size.width / 2;
     transPoint.y -= self.bounds.size.height / 2;
@@ -808,40 +823,41 @@
     }
 }
 
-- (void)touchesEnded:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
-    [super touchesEnded:touches withEvent:event];
-    
-    _moving = NO;
-    
-    if (delegate == nil) {
-        return;
-    }
-    
-    if (activeTouchPoint == ACTIVE_TOUCHPOINT_POWER_BUTTON) {
-        self.powerButtonOn = !self.powerButtonOn;
+- (void)handleTap:(UITapGestureRecognizer *)gr {
+    if ( gr.state == UIGestureRecognizerStateEnded) {
+        _moving = NO;
         
-        if ([delegate respondsToSelector:@selector(cbPickerPowerButtonValueChanged:)] )
-            [delegate cbPickerPowerButtonValueChanged: self];
-    } else {
-        if ([delegate respondsToSelector:@selector(cbPickerMoveEnded:)] )
-            [delegate cbPickerMoveEnded: self];
+        if (activeTouchPoint == ACTIVE_TOUCHPOINT_POWER_BUTTON) {
+            self.powerButtonOn = !self.powerButtonOn;
+            if (delegate != nil
+                && [delegate respondsToSelector:@selector(cbPickerPowerButtonValueChanged:)]) {
+                [delegate cbPickerPowerButtonValueChanged: self];
+            }
+            [self setNeedsDisplay];
+        }
+        
+        activeTouchPoint = ACTIVE_TOUCHPOINT_NONE;
     }
 }
 
-- (void)touchesMoved:(NSSet<UITouch *> *)touches withEvent:(nullable UIEvent *)event {
-    [super touchesMoved:touches withEvent:event];
+- (void)handlePan:(UIPanGestureRecognizer *)gr {
     
     if (activeTouchPoint == ACTIVE_TOUCHPOINT_NONE) {
         return;
     }
     
-    UITouch *touch = [touches anyObject];
-    
-    if (touch == nil ) {
+    if ( gr.state == UIGestureRecognizerStateEnded) {
+        _moving = NO;
+        activeTouchPoint = ACTIVE_TOUCHPOINT_NONE;
+        
+        if (delegate != nil
+            && [delegate respondsToSelector:@selector(cbPickerMoveEnded:)] ) {
+            [delegate cbPickerMoveEnded: self];
+        }
         return;
     }
     
-    CGPoint touch_point = [touch locationInView:touch.view];
+    CGPoint touch_point = [gr locationInView:self];
     
     if (!_sliderHidden) {
         
