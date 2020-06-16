@@ -89,7 +89,7 @@
 }
 
 - (void)testPowerButtonColorOnProperty {
-    XCTAssertEqualObjects(picker.powerButtonColorOn, [UIColor colorWithRed: 0.97 green: 0.94 blue: 0.86 alpha: 1.00]);
+    XCTAssertEqualObjects(picker.powerButtonColorOn, [UIColor whiteColor]);
     picker.powerButtonColorOn = nil;
     XCTAssertNotNil(picker.powerButtonColorOn);
     picker.powerButtonColorOn = [UIColor yellowColor];

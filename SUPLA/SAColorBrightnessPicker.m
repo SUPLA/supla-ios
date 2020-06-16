@@ -80,7 +80,7 @@
     _colorfulBrightnessWheel = YES;
     _powerButtonEnabled = YES;
     // #f7f0dc
-    _powerButtonColorOn = [UIColor colorWithRed: 0.97 green: 0.94 blue: 0.86 alpha: 1.00];
+    _powerButtonColorOn = [UIColor whiteColor];
     // #404040
     _powerButtonColorOff = [UIColor colorWithRed: 0.25 green: 0.25 blue: 0.25 alpha: 1.00];
     _brightness = 0;

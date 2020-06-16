@@ -1,27 +1,12 @@
 
-/* Class = "UILabel"; text = "Brightness"; ObjectID = "0n4-jT-OaW"; */
-"0n4-jT-OaW.text" = "Luminosité";
+/* Class = "UIButton"; normalTitle = "DIMMER"; ObjectID = "CmH-xi-e3y"; */
+"CmH-xi-e3y.normalTitle" = "VARIATEUR DE LUMINOSITÉ";
 
-/* Class = "UILabel"; text = "#FFFFFF"; ObjectID = "Nve-4k-NQJ"; */
-"Nve-4k-NQJ.text" = "#FFFFFF";
+/* Class = "UIButton"; normalTitle = "RGB"; ObjectID = "ZfE-Sn-N5Y"; */
+"ZfE-Sn-N5Y.normalTitle" = "RGB";
 
-/* Class = "UILabel"; text = "0%"; ObjectID = "b90-9H-m9f"; */
-"b90-9H-m9f.text" = "0%";
+/* Class = "UIButton"; normalTitle = "WHEEL"; ObjectID = "wKr-No-fLI"; */
+"wKr-No-fLI.normalTitle" = "WHEEL";
 
-/* Class = "UILabel"; text = "Caption"; ObjectID = "fC2-Fn-Tzr"; */
-"fC2-Fn-Tzr.text" = "Caption";
-
-/* Class = "UISegmentedControl"; gkt-nD-iBa.segmentTitles[0] = "RGB"; ObjectID = "gkt-nD-iBa"; */
-"gkt-nD-iBa.segmentTitles[0]" = "RGB";
-
-/* Class = "UISegmentedControl"; gkt-nD-iBa.segmentTitles[1] = "DIMMER"; ObjectID = "gkt-nD-iBa"; */
-"gkt-nD-iBa.segmentTitles[1]" = "VARIATEUR DE LUMINOSITÉ";
-
-/* Class = "UILabel"; text = "Color"; ObjectID = "jv5-BN-Zki"; */
-"jv5-BN-Zki.text" = "Couleur";
-
-/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "nha-HR-X8h"; */
-"nha-HR-X8h.normalTitle" = "Button";
-
-/* Class = "UILabel"; text = "State"; ObjectID = "tbH-fp-FSn"; */
-"tbH-fp-FSn.text" = "Status";
+/* Class = "UIButton"; normalTitle = "SLIDER"; ObjectID = "yOa-IT-DZF"; */
+"yOa-IT-DZF.normalTitle" = "SLIDER";

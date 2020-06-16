@@ -40,6 +40,8 @@
 +(nonnull UIColor*)statusYellow;
 +(nonnull UIColor*)cellBackground;
 +(nonnull UIColor*)rgbwDetailBackground;
++(nonnull UIColor*)rgbwSelectedTabColor;
++(nonnull UIColor*)rgbwNormalTabColor;
 +(nonnull UIColor*)rsDetailBackground;
 +(nonnull UIColor*)statusBorder;
 +(nonnull UIColor*)rsMarkerColor;

@@ -71,7 +71,15 @@
 }
 
 +(UIColor*)rgbwDetailBackground {
-    return [UIColor colorWithRed:1.00 green:0.91 blue:0.02 alpha:1.0];
+    return [UIColor colorWithRed: 0.93 green: 0.93 blue: 0.93 alpha: 1.00];
+}
+
++(UIColor*)rgbwSelectedTabColor {
+    return [UIColor colorWithRed: 0.07 green: 0.65 blue: 0.12 alpha: 1.00];
+}
+
++(UIColor*)rgbwNormalTabColor {
+    return [UIColor whiteColor];
 }
 
 +(UIColor*)rsDetailBackground {

@@ -24,18 +24,24 @@
 @interface SARGBWDetailView : SADetailView <SAColorBrightnessPickerDelegate, SAColorListPickerDelegate>
 @property (weak, nonatomic) IBOutlet SAColorBrightnessPicker *cbPicker;
 @property (weak, nonatomic) IBOutlet SAColorListPicker *clPicker;
-@property (weak, nonatomic) IBOutlet UISegmentedControl *segControl;
-@property (weak, nonatomic) IBOutlet UIView *headerView;
-- (IBAction)segChanged:(id)sender;
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *cintPickerTop;
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *cintHeaderHeight;
-@property (weak, nonatomic) IBOutlet UILabel *labelCaption;
-@property (weak, nonatomic) IBOutlet UIButton *stateBtn;
-@property (weak, nonatomic) IBOutlet UILabel *stateLabel;
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *cintFooterHeight;
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *cintFooterTop;
 @property (weak, nonatomic) IBOutlet SAUIChannelStatus *onlineStatus;
-
-- (IBAction)stateBtnTouch:(id)sender;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *cbPickerTopMargin;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *cbPickerBottomMargin;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *clPickerBottomMargin;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *vTabsWheelSliderBottomMargin;
+@property (weak, nonatomic) IBOutlet UIView *vExtraButtons;
+@property (weak, nonatomic) IBOutlet UIButton *btnPowerOnOff;
+@property (weak, nonatomic) IBOutlet UIButton *btnSettings;
+@property (weak, nonatomic) IBOutlet UIButton *btnInfo;
+@property (weak, nonatomic) IBOutlet UIView *vTabsRgbDimmer;
+@property (weak, nonatomic) IBOutlet UIView *vTabsWheelSlider;
+- (IBAction)onRgbTabTouch:(id)sender;
+- (IBAction)onDimmerTabTouch:(id)sender;
+- (IBAction)onPickerTypeTabTouch:(id)sender;
+@property (weak, nonatomic) IBOutlet UIButton *tabRGB;
+@property (weak, nonatomic) IBOutlet UIButton *tabDimmer;
+@property (weak, nonatomic) IBOutlet UIButton *tabWheel;
+@property (weak, nonatomic) IBOutlet UIButton *tabSlider;
+- (IBAction)onPowerBtnTouch:(id)sender;
 
 @end

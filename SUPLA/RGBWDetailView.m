@@ -22,14 +22,15 @@
 #import "SAColorListItem+CoreDataClass.h"
 #import "Database.h"
 #import "SuplaApp.h"
-
+#import "SAClassHelper.h"
 
 #define MIN_REMOTE_UPDATE_PERIOD 0.25
-#define MIN_UPDATE_DELAY 0.5
+#define MIN_UPDATE_DELAY 3
 
 @implementation SARGBWDetailView {
     int _brightness;
     int _colorBrightness;
+    BOOL _varilight;
     BOOL isGroup;
     UIColor *_color;
     NSArray *_colorMarkers;
@@ -41,7 +42,6 @@
     
     NSDate *_moveEndTime;
     NSDate *_remoteUpdateTime;
-    
 }
 
 -(void)detailViewInit {
@@ -70,16 +70,10 @@
         
         self.backgroundColor = [UIColor rgbwDetailBackground];
         
-        UIFont *font = [UIFont fontWithName:@"OpenSans-Bold" size:10];
-        
-        NSDictionary *attributes = [NSDictionary dictionaryWithObject:font
-                                                               forKey:NSFontAttributeName];
-        
-        [self.segControl setTitleTextAttributes:attributes forState:UIControlStateNormal];
-        
         self.onlineStatus.onlineColor = [UIColor onLine];
         self.onlineStatus.offlineColor = [UIColor offLine];
         self.onlineStatus.borderColor = [UIColor statusBorder];
+    
     }
     
     
@@ -88,7 +82,7 @@
 }
 
 - (void)showValues {
-    
+    NSLog(@"2 %@", [NSDate now]);
     if ( self.cbPicker.colorWheelHidden == NO ) {
         
         if (!isGroup) {
@@ -109,11 +103,6 @@
         
         self.cbPicker.brightnessMarkers = _brightnessMarkers;
     }
-    
-    
-    
-    self.stateBtn.selected = self.cbPicker.brightness > 0;
-    
 }
 
 - (void)sendNewValuesWithTurnOnOff:(BOOL)turnOnOff {
@@ -178,7 +167,7 @@
     if ( time >= MIN_UPDATE_DELAY ) {
         [self showValues];
     } else {
-        
+        NSLog(@"aaa");
         if ( time < MIN_UPDATE_DELAY )
             time = MIN_UPDATE_DELAY-time+0.001;
         else
@@ -206,23 +195,88 @@
     [self showValuesWithDelay];
 }
 
-- (void)updateFooterView {
-    self.clPicker.hidden = self.cbPicker.colorWheelHidden;
+-(void)setRgbDimmerTabsHidden:(BOOL)hidden {
+    self.vTabsRgbDimmer.hidden = hidden;
+    self.cbPickerTopMargin.constant = hidden ? -31 : 15;
 }
 
-- (void)setColorWheelHidden:(BOOL)hidden {
-    self.cbPicker.colorWheelHidden = hidden;
-    [self updateFooterView];
+-(void)setClPickerHidden:(BOOL)hidden {
+    self.clPicker.hidden = hidden;
+    self.clPickerBottomMargin.constant = hidden ? -31 : 35;
 }
 
+-(void)setWheelSliderTabsHidden:(BOOL)hidden {
+    self.vTabsWheelSlider.hidden = hidden;
+    self.vTabsWheelSliderBottomMargin.constant = hidden ? -31 : 35;
+}
+
+-(void)setExtraButtonsHidden:(BOOL)hidden {
+    self.vExtraButtons.hidden = hidden;
+    self.cbPickerBottomMargin.constant = hidden ? -60 : 5;
+}
+
+-(void)showDimmer {
+    [self setClPickerHidden:YES];
+    self.cbPicker.colorWheelHidden = YES;
+    
+    if (SAApp.isBrightnessPickerTypeSet) {
+        [self onPickerTypeTabTouch:SAApp.isBrightnessPickerTypeSlider ? self.tabSlider : self.tabWheel];
+    } else {
+        [self onPickerTypeTabTouch:_varilight ? self.tabSlider : self.tabWheel];
+    }
+    
+    [self setExtraButtonsHidden:!_varilight];
+    [self setWheelSliderTabsHidden:NO];
+    self.tabRGB.selected = NO;
+    self.tabRGB.backgroundColor = [UIColor rgbwNormalTabColor];
+    self.tabDimmer.selected = YES;
+    self.tabDimmer.backgroundColor = [UIColor rgbwSelectedTabColor];
+}
+
+-(void)showRGB {
+    [self setClPickerHidden:NO];
+    [self setWheelSliderTabsHidden:YES];
+    self.cbPicker.colorWheelHidden = NO;
+    self.cbPicker.sliderHidden = YES;
+    [self setExtraButtonsHidden: YES];
+    self.btnPowerOnOff.hidden = YES;
+    self.tabRGB.selected = YES;
+    self.tabRGB.backgroundColor = [UIColor rgbwSelectedTabColor];
+    self.tabDimmer.selected = NO;
+    self.tabDimmer.backgroundColor = [UIColor rgbwNormalTabColor];
+}
 
 -(void)updateView {
     
+    NSLog(@"1 %@", [NSDate now]);
+    
     [super updateView];
     
+    if (isGroup) {
+          self.onlineStatus.hidden = NO;
+      } else {
+          self.onlineStatus.hidden = YES;
+      }
+                
     if ( self.channelBase != nil ) {
         
-        [self.labelCaption setText:[self.channelBase getChannelCaption]];
+        switch(self.channelBase.func) {
+            case SUPLA_CHANNELFNC_DIMMER:
+                self.cbPicker.colorWheelHidden = YES;
+                [self setRgbDimmerTabsHidden:YES];
+                [self showDimmer];
+                break;
+            case SUPLA_CHANNELFNC_RGBLIGHTING:
+                self.cbPicker.colorWheelHidden = NO;
+                 [self setRgbDimmerTabsHidden:YES];
+                [self showRGB];
+                break;
+            case SUPLA_CHANNELFNC_DIMMERANDRGBLIGHTING:
+                self.cbPicker.colorWheelHidden = NO;
+                 [self setRgbDimmerTabsHidden:NO];
+                [self showRGB];
+                break;
+        };
         
         switch(self.channelBase.func) {
                 
@@ -251,7 +305,7 @@
                 break;
         };
         
-        
+        [self pickerToUI];
         
     }
     
@@ -270,92 +324,41 @@
     }
 }
 
-
-- (IBAction)segChanged:(id)sender {
-    if ( self.segControl.hidden == NO ) {
-        [self setColorWheelHidden:self.segControl.selectedSegmentIndex != 0];
-        [self showValues];
-    }
-}
-
 -(void)setChannelBase:(SAChannelBase *)channelBase {
+    isGroup = channelBase != nil && [channelBase isKindOfClass:[SAChannelGroup class]];
     
     if ( self.channelBase == nil
-        || ( channelBase != nil
-            && (self.channelBase.remote_id  != channelBase.remote_id
-                || ![channelBase isKindOfClass:[self.channelBase class]]) ) ) {
-        
-        isGroup = channelBase != nil && [channelBase isKindOfClass:[SAChannelGroup class]];
-        
-        if (isGroup) {
-            self.stateBtn.hidden = YES;
-            self.stateLabel.hidden = YES;
-            self.onlineStatus.hidden = NO;
-        } else {
-            self.stateBtn.hidden = NO;
-            self.stateLabel.hidden = NO;
-            self.onlineStatus.hidden = YES;
-        }
-        
-        [self setColorWheelHidden:YES];
-        
-        self.headerView.hidden = YES;
-        self.cintPickerTop.constant = self.cintHeaderHeight.constant * -1;
+    || ( channelBase != nil
+        && (self.channelBase.remote_id  != channelBase.remote_id
+            || ![channelBase isKindOfClass:[self.channelBase class]]) ) ) {
         
         _moveEndTime = [NSDate dateWithTimeIntervalSince1970:0];
         _brightnessMarkers = nil;
         _colorBrightnessMarkers = nil;
         _colorMarkers = nil;
+        _varilight = false;
         
-        if ( channelBase != nil ) {
-            
-            switch(channelBase.func) {
-                case SUPLA_CHANNELFNC_DIMMER:
-                    [self setColorWheelHidden:YES];
-                    break;
-                case SUPLA_CHANNELFNC_RGBLIGHTING:
-                    [self setColorWheelHidden:NO];
-                    break;
-                case SUPLA_CHANNELFNC_DIMMERANDRGBLIGHTING:
-                    [self setColorWheelHidden:NO];
-                    
-                    self.segControl.selectedSegmentIndex = 0;
-                    self.headerView.hidden = NO;
-                    self.cintPickerTop.constant = 0;
-                    
-                    break;
-            };
+        if (channelBase != nil
+            && [channelBase isKindOfClass:[SAChannel class]]
+            && ((SAChannel*)channelBase).manufacturer_id == SUPLA_MFR_DOYLETRATT
+            && ((SAChannel*)channelBase).product_id == 1) {
+            _varilight = YES;
         }
-        
     }
-    
-    [super setChannelBase:channelBase];
-    
-    if ( channelBase != nil && channelBase.isOnline == NO ) {
-        [self.main_view detailShow:NO animated:NO];
-    }
-}
 
-- (IBAction)stateBtnTouch:(id)sender {
-    
-    if ( self.channelBase == nil || self.channelBase.isOnline == NO )
-        return;
-    
-    self.cbPicker.brightness = self.cbPicker.brightness > 0 ? 0 : 100;
-    if (self.cbPicker.colorWheelHidden) {
-        _brightness = self.cbPicker.brightness;
         
-    } else {
-        _colorBrightness = self.cbPicker.brightness;
-    };
-    
-    [self showValues];
-    [self sendNewValuesWithTurnOnOff:YES];
+    if ( channelBase != nil
+        && channelBase.isOnline == NO ) {
+        [self.main_view detailShow:NO animated:NO];
+        return;
+    }
+
+    [super setChannelBase:channelBase];
 }
 
 -(void) cbPickerDataChanged:(SAColorBrightnessPicker*)picker {
     [self sendNewValues];
-    self.stateBtn.selected = self.cbPicker.brightness > 0;
+    [self pickerToUI];
 }
 
 -(void) cbPickerMoveEnded:(SAColorBrightnessPicker*)picker {
@@ -363,7 +366,9 @@
 }
 
 -(void) cbPickerPowerButtonValueChanged:(SAColorBrightnessPicker*)picker {
-    
+    self.cbPicker.brightness = picker.powerButtonOn ? 100 : 0;
+    [self pickerToUI];
+    [self sendNewValuesWithTurnOnOff:YES];
 }
 
 -(void)itemTouchedWithColor:(UIColor*)color andPercent:(float)percent {
@@ -401,6 +406,47 @@
         
         [[SAApp DB] updateColorListItem:item];
     }
+}
+
+- (IBAction)onPickerTypeTabTouch:(id)sender {
+    
+    self.cbPicker.sliderHidden = sender != self.tabSlider;
+    [SAApp setBrightnessPickerTypeToSlider:!self.cbPicker.sliderHidden];
+    
+    if (self.cbPicker.sliderHidden) {
+        self.tabWheel.selected = YES;
+        self.tabWheel.backgroundColor = [UIColor rgbwSelectedTabColor];
+        self.tabSlider.selected = NO;
+        self.tabSlider.backgroundColor = [UIColor rgbwNormalTabColor];
+    } else {
+        self.tabWheel.selected = NO;
+        self.tabWheel.backgroundColor = [UIColor rgbwNormalTabColor];
+        self.tabSlider.selected = YES;
+        self.tabSlider.backgroundColor = [UIColor rgbwSelectedTabColor];
+    }
+    
+    self.btnPowerOnOff.hidden = self.cbPicker.sliderHidden;
+}
+
+- (IBAction)onDimmerTabTouch:(id)sender {
+    [self showDimmer];
+}
+
+- (IBAction)onRgbTabTouch:(id)sender {
+     [self showRGB];
+}
+
+- (void)pickerToUI {
+    [self setPowerButtonOn:self.cbPicker.brightness > 0];
+}
+
+- (void)setPowerButtonOn:(BOOL)on {
+    [self.btnPowerOnOff setImage:[UIImage imageNamed:on ? @"rgbwpoweron.png" : @"rgbwpoweroff.png"] forState:UIControlStateNormal];
+    self.cbPicker.powerButtonOn = on;
+}
+- (IBAction)onPowerBtnTouch:(id)sender {
+    self.cbPicker.powerButtonOn = !self.cbPicker.powerButtonOn;
+    [self cbPickerPowerButtonValueChanged:self.cbPicker];
 }
 
 @end

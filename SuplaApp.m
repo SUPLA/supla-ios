@@ -345,6 +345,32 @@ NSString *kSAOAuthTokenRequestResult = @"KSA-N13";
     }
 }
 
+-(void) setBrightnessPickerTypeToSlider:(BOOL)slider {
+    @synchronized(self) {
+       [[NSUserDefaults standardUserDefaults] setBool:slider forKey:@"pref_brightness_picker_type_slider"];
+    }
+}
+
+-(BOOL) isBrightnessPickerTypeSet {
+    BOOL result = 0;
+    
+    @synchronized(self) {
+       result = [[NSUserDefaults standardUserDefaults] objectForKey:@"pref_brightness_picker_type_slider"] != nil;
+    }
+    
+    return result;
+}
+
+-(BOOL) isBrightnessPickerTypeSlider {
+    BOOL result = 0;
+    
+    @synchronized(self) {
+       result = [[NSUserDefaults standardUserDefaults] boolForKey:@"pref_brightness_picker_type_slider"];
+    }
+    
+    return result;
+}
+
 +(void) setPreferedProtocolVersion:(int)version {
     [[self instance] setPreferedProtocolVersion: version];
 }
@@ -359,6 +385,18 @@ NSString *kSAOAuthTokenRequestResult = @"KSA-N13";
     }
     
     return ![[SAApp getEmailAddress] isEqual:@""];
+}
+
++(void) setBrightnessPickerTypeToSlider:(BOOL)slider {
+    [[self instance] setBrightnessPickerTypeToSlider:slider];
+}
+
++(BOOL) isBrightnessPickerTypeSet {
+    return [[self instance] isBrightnessPickerTypeSet];
+}
+
++(BOOL) isBrightnessPickerTypeSlider {
+   return [[self instance] isBrightnessPickerTypeSlider];
 }
 
 -(void)onInitTimer:(NSTimer *)timer {

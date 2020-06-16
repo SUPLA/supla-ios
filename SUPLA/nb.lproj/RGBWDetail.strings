@@ -1,12 +1,12 @@
 
-/* Class = "UILabel"; text = "Caption"; ObjectID = "fC2-Fn-Tzr"; */
-"fC2-Fn-Tzr.text" = "Bildetekst";
+/* Class = "UIButton"; normalTitle = "DIMMER"; ObjectID = "CmH-xi-e3y"; */
+"CmH-xi-e3y.normalTitle" = "DIMMER";
 
-/* Class = "UISegmentedControl"; gkt-nD-iBa.segmentTitles[0] = "RGB"; ObjectID = "gkt-nD-iBa"; */
-"gkt-nD-iBa.segmentTitles[0]" = "RGB";
+/* Class = "UIButton"; normalTitle = "RGB"; ObjectID = "ZfE-Sn-N5Y"; */
+"ZfE-Sn-N5Y.normalTitle" = "RGB";
 
-/* Class = "UISegmentedControl"; gkt-nD-iBa.segmentTitles[1] = "DIMMER"; ObjectID = "gkt-nD-iBa"; */
-"gkt-nD-iBa.segmentTitles[1]" = "DIMMER";
+/* Class = "UIButton"; normalTitle = "WHEEL"; ObjectID = "wKr-No-fLI"; */
+"wKr-No-fLI.normalTitle" = "WHEEL";
 
-/* Class = "UILabel"; text = "State"; ObjectID = "tbH-fp-FSn"; */
-"tbH-fp-FSn.text" = "Tilstand";
+/* Class = "UIButton"; normalTitle = "SLIDER"; ObjectID = "yOa-IT-DZF"; */
+"yOa-IT-DZF.normalTitle" = "SLIDER";

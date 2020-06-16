@@ -47,6 +47,9 @@
 +(void) abstractMethodException:(NSString *)methodName;
 +(NSURL *)applicationDocumentsDirectory;
 +(BOOL) configIsSet;
++(void) setBrightnessPickerTypeToSlider:(BOOL)slider;
++(BOOL) isBrightnessPickerTypeSet;
++(BOOL) isBrightnessPickerTypeSlider;
 
 +(void)initClientDelayed:(double)time;
 +(SASuplaClient *) SuplaClient;
