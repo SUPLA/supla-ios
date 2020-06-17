@@ -174,6 +174,9 @@
                                 <constraint firstAttribute="height" constant="50" id="eeJ-te-WWj"/>
                             </constraints>
                             <state key="normal" image="rgbwinfo.png"/>
+                            <connections>
+                                <action selector="rgbInfoTouch:" destination="iN0-l3-epB" eventType="touchDown" id="jtI-Qw-fMq"/>
+                            </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="903-YP-lmB">
                             <rect key="frame" x="240" y="10" width="50" height="50"/>
@@ -245,6 +248,12 @@
                 <outlet property="vTabsWheelSliderBottomMargin" destination="vml-3n-9ML" id="doV-kL-9oo"/>
             </connections>
             <point key="canvasLocation" x="-800.625" y="-113.75"/>
+        </view>
+        <view contentMode="scaleToFill" id="FzW-UN-VI5">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+            <point key="canvasLocation" x="-12" y="-114"/>
         </view>
     </objects>
     <resources>

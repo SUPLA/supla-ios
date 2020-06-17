@@ -63,7 +63,7 @@
 - (void)viewDidLoad {
     
     [super viewDidLoad];
-    
+
     _cell_nib = [UINib nibWithNibName:@"ChannelCell" bundle:nil];
     _temp_nib = [UINib nibWithNibName:@"ThermometerCell" bundle:nil];
     _temphumidity_nib = [UINib nibWithNibName:@"TempHumidityCell" bundle:nil];
@@ -794,6 +794,8 @@
     if ([section isKindOfClass:[SASectionCell class]]) {
         
     }
+
+
 }
 
 @end

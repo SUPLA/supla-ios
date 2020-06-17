@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		010C8780249A4D55002FE526 /* SAInfoVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 010C877E249A4D55002FE526 /* SAInfoVC.m */; };
+		010C8783249A6471002FE526 /* infoclose@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 010C8782249A6471002FE526 /* infoclose@2x.png */; };
+		010C8786249A6A92002FE526 /* SADialog.m in Sources */ = {isa = PBXBuildFile; fileRef = 010C8785249A6A92002FE526 /* SADialog.m */; };
+		010C8787249AA1E1002FE526 /* SAInfoVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 010C8789249AA1E1002FE526 /* SAInfoVC.xib */; };
 		012023C2234E54ED00E131B7 /* ImpulseCounterDetailView.m in Sources */ = {isa = PBXBuildFile; fileRef = 012023C1234E54ED00E131B7 /* ImpulseCounterDetailView.m */; };
 		012119152368C3B2004C1993 /* collapsed@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 012119142368C3B2004C1993 /* collapsed@3x.png */; };
 		0122613922F396440013E6A2 /* SAThermostatCalendar.m in Sources */ = {isa = PBXBuildFile; fileRef = 0122613822F396440013E6A2 /* SAThermostatCalendar.m */; };
@@ -386,6 +390,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		010C877D249A4D55002FE526 /* SAInfoVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SAInfoVC.h; sourceTree = "<group>"; };
+		010C877E249A4D55002FE526 /* SAInfoVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SAInfoVC.m; sourceTree = "<group>"; };
+		010C8782249A6471002FE526 /* infoclose@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "infoclose@2x.png"; path = "Resources/Assets/Img/infoclose@2x.png"; sourceTree = "<group>"; };
+		010C8784249A6A92002FE526 /* SADialog.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SADialog.h; sourceTree = "<group>"; };
+		010C8785249A6A92002FE526 /* SADialog.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SADialog.m; sourceTree = "<group>"; };
+		010C8788249AA1E1002FE526 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/SAInfoVC.xib; sourceTree = "<group>"; };
+		010C878C249AA1F0002FE526 /* pl */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = pl; path = pl.lproj/SAInfoVC.xib; sourceTree = "<group>"; };
 		0117290024746D8100DAF1D0 /* pl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pl; path = pl.lproj/ElectricityMeterDetailView.strings; sourceTree = "<group>"; };
 		01172903247473E200DAF1D0 /* SUPLA 6.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "SUPLA 6.xcdatamodel"; sourceTree = "<group>"; };
 		012023C0234E54ED00E131B7 /* ImpulseCounterDetailView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ImpulseCounterDetailView.h; sourceTree = "<group>"; };
@@ -1077,6 +1088,7 @@
 				408034E41BC84A89007666E7 /* NavigationController.xib */,
 				01D4293922AAAA450050C1A2 /* IncrementalMeterCell.xib */,
 				406778281BCBBC83008DD37F /* ThermometerCell.xib */,
+				010C8789249AA1E1002FE526 /* SAInfoVC.xib */,
 			);
 			name = xib;
 			sourceTree = "<group>";
@@ -1280,6 +1292,7 @@
 		405AC4011BC15878004F7311 /* Img */ = {
 			isa = PBXGroup;
 			children = (
+				010C8782249A6471002FE526 /* infoclose@2x.png */,
 				012BD7292499183700E64F25 /* rgbwsettings@3x.png */,
 				012BD7232499173600E64F25 /* rgbwinfo@3x.png */,
 				012BD7222499173500E64F25 /* rgbwpoweroff@3x.png */,
@@ -1610,6 +1623,8 @@
 		40A675851BA1BEBF004A51C4 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				010C877D249A4D55002FE526 /* SAInfoVC.h */,
+				010C877E249A4D55002FE526 /* SAInfoVC.m */,
 				01DD2F0E247718FF0025DFF9 /* SARangeCalibrationWheel.h */,
 				01DD2F0D247718FF0025DFF9 /* SARangeCalibrationWheel.m */,
 				012119122368B597004C1993 /* xib */,
@@ -1667,6 +1682,8 @@
 				0122613822F396440013E6A2 /* SAThermostatCalendar.m */,
 				019D22EE233CC2D000F17135 /* SAPreloader.h */,
 				019D22EF233CC2D000F17135 /* SAPreloader.m */,
+				010C8784249A6A92002FE526 /* SADialog.h */,
+				010C8785249A6A92002FE526 /* SADialog.m */,
 			);
 			name = UI;
 			sourceTree = "<group>";
@@ -1962,6 +1979,7 @@
 				01F9110322EF954400BFF91D /* thermostat_hp_homeplus-on@2x.png in Resources */,
 				40477B5220C6CF2600E995E6 /* gatealt1-closed-50percent@2x.png in Resources */,
 				40477B4C20C6C5FE00E995E6 /* staircasetimer_1-on@2x.png in Resources */,
+				010C8783249A6471002FE526 /* infoclose@2x.png in Resources */,
 				407D4AF91BC6C7DE009A5505 /* app_icon114x114@2x.png in Resources */,
 				4052DA001DC515AE000B8C45 /* dimmerrgb-offoff@3x.png in Resources */,
 				01F9110B22EF954400BFF91D /* thermostat_hp_homeplus2-on@3x.png in Resources */,
@@ -1971,6 +1989,7 @@
 				40766C2B1FC9BC7A009E00BE /* generalsettings@2x.png in Resources */,
 				40CF96C41BC7D4E70030EFFF /* power-on@2x.png in Resources */,
 				017554FF22F1DDA300EB58B7 /* hp_plus@3x.png in Resources */,
+				010C8787249AA1E1002FE526 /* SAInfoVC.xib in Resources */,
 				40CE7C691DCBBD5700BBACE4 /* distance@3x.png in Resources */,
 				40B9ED651FACD34C00403B1A /* xmastree-on@3x.png in Resources */,
 				40B9ED571FACD0A100403B1A /* pc-on@2x.png in Resources */,
@@ -2122,6 +2141,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				01F8857222E5E79100D18373 /* SAImpulseCounterMeasurementItem+CoreDataClass.m in Sources */,
+				010C8786249A6A92002FE526 /* SADialog.m in Sources */,
 				40C7BA6C20C045A800ACEE42 /* SAChannelGroup+CoreDataClass.m in Sources */,
 				40C7BA5420C008DB00ACEE42 /* SAChannelGroupRelation+CoreDataClass.m in Sources */,
 				40C7BA8820C0492500ACEE42 /* SAChannelBase+CoreDataProperties.m in Sources */,
@@ -2174,6 +2194,7 @@
 				401CA1C81BA067DB00117AF4 /* MainVC.m in Sources */,
 				012F722E22DFA0BE00E5F72E /* SABarChartDataSet.swift in Sources */,
 				408034C51BC83D1A007666E7 /* MGSwipeTableCell.m in Sources */,
+				010C8780249A4D55002FE526 /* SAInfoVC.m in Sources */,
 				01F8857522E6167100D18373 /* SADownloadUserIcons.m in Sources */,
 				018E67CF22C8CA0A00FF1427 /* SADownloadElectricityMeasurements.m in Sources */,
 				403EB1141FBDF47F00AD6460 /* AddWizardVC.m in Sources */,
@@ -2255,6 +2276,15 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		010C8789249AA1E1002FE526 /* SAInfoVC.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				010C8788249AA1E1002FE526 /* Base */,
+				010C878C249AA1F0002FE526 /* pl */,
+			);
+			name = SAInfoVC.xib;
+			sourceTree = "<group>";
+		};
 		017A3C8823633A70004AD1FC /* TempHumidityDetailView.xib */ = {
 			isa = PBXVariantGroup;
 			children = (

@@ -23,6 +23,7 @@
 #import "Database.h"
 #import "SuplaApp.h"
 #import "SAClassHelper.h"
+#import "SAInfoVC.h"
 
 #define MIN_REMOTE_UPDATE_PERIOD 0.25
 #define MIN_UPDATE_DELAY 3
@@ -440,6 +441,12 @@
     [self.btnPowerOnOff setImage:[UIImage imageNamed:on ? @"rgbwpoweron.png" : @"rgbwpoweroff.png"] forState:UIControlStateNormal];
     self.cbPicker.powerButtonOn = on;
 }
+- (IBAction)rgbInfoTouch:(id)sender {
+    if (_varilight) {
+        [SAInfoVC showInformationWindowWithMessage:INFO_MESSAGE_VARILIGHT];
+    }
+}
+
 - (IBAction)onPowerBtnTouch:(id)sender {
     self.cbPicker.powerButtonOn = !self.cbPicker.powerButtonOn;
     [self cbPickerPowerButtonValueChanged:self.cbPicker];
