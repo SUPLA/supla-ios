@@ -82,7 +82,6 @@
 }
 
 - (void)showValues {
-    NSLog(@"2 %@", [NSDate now]);
     if ( self.cbPicker.colorWheelHidden == NO ) {
         
         if (!isGroup) {
@@ -128,12 +127,12 @@
         brightness = self.cbPicker.brightness;
     }
     
-    if ( time >= MIN_REMOTE_UPDATE_PERIOD
+    if ( (turnOnOff || time >= MIN_REMOTE_UPDATE_PERIOD)
         && [client cg:self.channelBase.remote_id setRGB:color
       colorBrightness:colorBrightness brightness:brightness group:isGroup turnOnOff:turnOnOff] ) {
-        
+
         _remoteUpdateTime = [NSDate date];
-        _moveEndTime = [NSDate dateWithTimeIntervalSinceNow:2];
+        [self showValuesWithDelay:MIN_UPDATE_DELAY];
         
     } else {
         
@@ -151,34 +150,38 @@
     [self sendNewValuesWithTurnOnOff:NO];
 }
 
-- (void)showValuesWithDelay {
+- (void)showValuesWithDelay:(double)time {
     
     if ( delayTimer2 != nil ) {
         [delayTimer2 invalidate];
         delayTimer2 = nil;
-        return;
     }
     
     if ( self.cbPicker.moving == YES )
         return;
     
-    double time = [_moveEndTime timeIntervalSinceNow] * -1;
-    
-    if ( time >= MIN_UPDATE_DELAY ) {
+    double timeDiffSec = [_moveEndTime timeIntervalSinceNow] * -1;
+        
+    if ( time == 0 && timeDiffSec >= MIN_UPDATE_DELAY ) {
         [self showValues];
     } else {
-        NSLog(@"aaa");
-        if ( time < MIN_UPDATE_DELAY )
-            time = MIN_UPDATE_DELAY-time+0.001;
-        else
-            time = 0.001;
         
-        
+        if (time == 0) {
+            time = timeDiffSec;
+            
+            if ( time < MIN_UPDATE_DELAY )
+                time = MIN_UPDATE_DELAY-time+0.001;
+            else
+                time = 0.001;
+        }
+
         delayTimer2 = [NSTimer scheduledTimerWithTimeInterval:time target:self selector:@selector(timer2FireMethod:) userInfo:nil repeats:NO];
         
     }
-    
-    
+}
+
+- (void)showValuesWithDelay {
+    [self showValuesWithDelay: 0];
 }
 
 - (void)timer1FireMethod:(NSTimer *)timer {
@@ -186,12 +189,6 @@
 }
 
 - (void)timer2FireMethod:(NSTimer *)timer {
-    
-    if ( delayTimer2 != nil ) {
-        [delayTimer2 invalidate];
-        delayTimer2 = nil;
-    }
-    
     [self showValuesWithDelay];
 }
 
@@ -247,8 +244,6 @@
 }
 
 -(void)updateView {
-    
-    NSLog(@"1 %@", [NSDate now]);
     
     [super updateView];
     
@@ -363,6 +358,7 @@
 
 -(void) cbPickerMoveEnded:(SAColorBrightnessPicker*)picker {
     _moveEndTime = [NSDate date];
+    [self showValuesWithDelay];
 }
 
 -(void) cbPickerPowerButtonValueChanged:(SAColorBrightnessPicker*)picker {
