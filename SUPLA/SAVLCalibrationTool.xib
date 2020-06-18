@@ -287,14 +287,21 @@
                 <outlet property="btnInfo" destination="uhx-4u-dOp" id="x2d-wN-3Tw"/>
                 <outlet property="btnOK" destination="Rli-l8-NMj" id="GpQ-LI-wIi"/>
                 <outlet property="btnRestore" destination="m1G-sH-B4U" id="SPJ-v5-kEG"/>
+                <outlet property="tabBoost" destination="tMB-hx-Fnq" id="Ien-qO-O5d"/>
+                <outlet property="tabBoostNo" destination="0Qk-BM-JC5" id="VmM-26-7xW"/>
+                <outlet property="tabBoostYes" destination="b2V-rw-W6a" id="4mV-CA-Qis"/>
+                <outlet property="tabMode1" destination="rvo-jc-7PF" id="L6p-H9-tgV"/>
+                <outlet property="tabMode2" destination="Mhd-rn-O8m" id="1W9-68-rfU"/>
+                <outlet property="tabMode3" destination="5NZ-KI-0CD" id="qcX-vd-RIz"/>
+                <outlet property="tabOpRange" destination="WeS-eH-Y2T" id="bTy-Zv-jeu"/>
             </connections>
             <point key="canvasLocation" x="138.75" y="105"/>
         </view>
     </objects>
     <resources>
         <image name="btnOK.png" width="65" height="65"/>
-        <image name="vlinfo@3.png" width="100" height="100"/>
-        <image name="vlrestore@3.png" width="100" height="100"/>
+        <image name="vlinfo@3.png" width="200" height="200"/>
+        <image name="vlrestore@3.png" width="200" height="200"/>
         <image name="vprosmart@3.png" width="400" height="300"/>
     </resources>
 </document>

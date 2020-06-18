@@ -19,10 +19,24 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     SADetailView *_detailView;
 }
 
+-(void)setRoundedTopCorners:(UIButton*)btn {
+    UIBezierPath *maskPath = [UIBezierPath bezierPathWithRoundedRect:btn.bounds
+                                                     byRoundingCorners:UIRectCornerTopLeft | UIRectCornerTopRight
+                                                           cornerRadii:CGSizeMake(5.0, 5.0)];
+
+    CAShapeLayer *maskLayer = [CAShapeLayer layer];
+    maskLayer.frame = btn.bounds;
+    maskLayer.path = maskPath.CGPath;
+    btn.layer.mask = maskLayer;
+}
+
 -(void)startConfiguration:(SADetailView*)detailView {
     if (detailView == nil) {
         return;
     }
+    
+    [self setRoundedTopCorners:self.tabOpRange];
+    [self setRoundedTopCorners:self.tabBoost];
     
     [self removeFromSuperview];
     self.translatesAutoresizingMaskIntoConstraints = YES;

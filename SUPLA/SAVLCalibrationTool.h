@@ -22,8 +22,13 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UIButton *btnInfo;
 @property (weak, nonatomic) IBOutlet UIButton *btnRestore;
 @property (weak, nonatomic) IBOutlet UIButton *btnOK;
-@property (weak, nonatomic) IBOutlet UIButton *tabMode2;
 @property (weak, nonatomic) IBOutlet UIButton *tabMode1;
+@property (weak, nonatomic) IBOutlet UIButton *tabMode2;
+@property (weak, nonatomic) IBOutlet UIButton *tabMode3;
+@property (weak, nonatomic) IBOutlet UIButton *tabBoostYes;
+@property (weak, nonatomic) IBOutlet UIButton *tabBoostNo;
+@property (weak, nonatomic) IBOutlet UIButton *tabOpRange;
+@property (weak, nonatomic) IBOutlet UIButton *tabBoost;
 -(void)startConfiguration:(SADetailView*)detailView;
 -(void)dismiss;
 +(SAVLCalibrationTool*)newInstance;
