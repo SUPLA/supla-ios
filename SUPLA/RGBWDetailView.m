@@ -24,6 +24,7 @@
 #import "SuplaApp.h"
 #import "SAClassHelper.h"
 #import "SAInfoVC.h"
+#import "SAVLCalibrationTool.h"
 
 #define MIN_REMOTE_UPDATE_PERIOD 0.25
 #define MIN_UPDATE_DELAY 3
@@ -441,10 +442,12 @@
     [self.btnPowerOnOff setImage:[UIImage imageNamed:on ? @"rgbwpoweron.png" : @"rgbwpoweroff.png"] forState:UIControlStateNormal];
     self.cbPicker.powerButtonOn = on;
 }
+- (IBAction)onSettingsTouch:(id)sender {
+    [[SAVLCalibrationTool newInstance] startConfiguration:self];
+}
+
 - (IBAction)rgbInfoTouch:(id)sender {
-    if (_varilight) {
-        [SAInfoVC showInformationWindowWithMessage:INFO_MESSAGE_VARILIGHT];
-    }
+    [SAInfoVC showInformationWindowWithMessage:INFO_MESSAGE_VARILIGHT];
 }
 
 - (IBAction)onPowerBtnTouch:(id)sender {

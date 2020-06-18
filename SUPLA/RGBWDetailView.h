@@ -44,5 +44,6 @@
 @property (weak, nonatomic) IBOutlet UIButton *tabSlider;
 - (IBAction)onPowerBtnTouch:(id)sender;
 - (IBAction)rgbInfoTouch:(id)sender;
+- (IBAction)onSettingsTouch:(id)sender;
 
 @end

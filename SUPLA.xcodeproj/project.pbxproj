@@ -108,6 +108,13 @@
 		01D4293A22AAAA450050C1A2 /* IncrementalMeterCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 01D4293922AAAA450050C1A2 /* IncrementalMeterCell.xib */; };
 		01D5E0C822DB7FAF00FBE1DC /* SAChartMarkerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01D5E0C722DB7FAF00FBE1DC /* SAChartMarkerView.swift */; };
 		01D5E0CA22DB8F0A00FBE1DC /* SAChartMarkerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 01D5E0C922DB8F0A00FBE1DC /* SAChartMarkerView.xib */; };
+		01D6A0F2249BD2F7006B3757 /* SASuperuserAuthorizationDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = 01D6A0F0249BD2F7006B3757 /* SASuperuserAuthorizationDialog.m */; };
+		01D6A0F3249BD2F7006B3757 /* SASuperuserAuthorizationDialog.xib in Resources */ = {isa = PBXBuildFile; fileRef = 01D6A0F1249BD2F7006B3757 /* SASuperuserAuthorizationDialog.xib */; };
+		01D6A0FF249BEC67006B3757 /* SAVLCalibrationTool.xib in Resources */ = {isa = PBXBuildFile; fileRef = 01D6A0FE249BEC67006B3757 /* SAVLCalibrationTool.xib */; };
+		01D6A102249BEC8C006B3757 /* SAVLCalibrationTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 01D6A101249BEC8C006B3757 /* SAVLCalibrationTool.m */; };
+		01D6A104249C0DC8006B3757 /* vprosmart@3.png in Resources */ = {isa = PBXBuildFile; fileRef = 01D6A103249C0DC8006B3757 /* vprosmart@3.png */; };
+		01D6A106249C0EAC006B3757 /* vlinfo@3.png in Resources */ = {isa = PBXBuildFile; fileRef = 01D6A105249C0EAC006B3757 /* vlinfo@3.png */; };
+		01D6A109249C0F40006B3757 /* vlrestore@3.png in Resources */ = {isa = PBXBuildFile; fileRef = 01D6A107249C0F40006B3757 /* vlrestore@3.png */; };
 		01DD2F0C247718C40025DFF9 /* SARangeCalibrationWheelTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 01DD2F0B247718C40025DFF9 /* SARangeCalibrationWheelTests.m */; };
 		01DD2F0F247719000025DFF9 /* SARangeCalibrationWheel.m in Sources */ = {isa = PBXBuildFile; fileRef = 01DD2F0D247718FF0025DFF9 /* SARangeCalibrationWheel.m */; };
 		01E517C322C6AC1E000FE77A /* SADownloadIncrementalMeasurements.m in Sources */ = {isa = PBXBuildFile; fileRef = 01E517C222C6AC1E000FE77A /* SADownloadIncrementalMeasurements.m */; };
@@ -649,6 +656,15 @@
 		01D5E0C622DB7FAE00FBE1DC /* SUPLA-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SUPLA-Bridging-Header.h"; sourceTree = "<group>"; };
 		01D5E0C722DB7FAF00FBE1DC /* SAChartMarkerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SAChartMarkerView.swift; sourceTree = "<group>"; };
 		01D5E0C922DB8F0A00FBE1DC /* SAChartMarkerView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SAChartMarkerView.xib; sourceTree = "<group>"; };
+		01D6A0EF249BD2F7006B3757 /* SASuperuserAuthorizationDialog.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SASuperuserAuthorizationDialog.h; sourceTree = "<group>"; };
+		01D6A0F0249BD2F7006B3757 /* SASuperuserAuthorizationDialog.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SASuperuserAuthorizationDialog.m; sourceTree = "<group>"; };
+		01D6A0F1249BD2F7006B3757 /* SASuperuserAuthorizationDialog.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SASuperuserAuthorizationDialog.xib; sourceTree = "<group>"; };
+		01D6A0FE249BEC67006B3757 /* SAVLCalibrationTool.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SAVLCalibrationTool.xib; sourceTree = "<group>"; };
+		01D6A100249BEC8C006B3757 /* SAVLCalibrationTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SAVLCalibrationTool.h; sourceTree = "<group>"; };
+		01D6A101249BEC8C006B3757 /* SAVLCalibrationTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SAVLCalibrationTool.m; sourceTree = "<group>"; };
+		01D6A103249C0DC8006B3757 /* vprosmart@3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "vprosmart@3.png"; path = "Resources/Assets/Img/vprosmart@3.png"; sourceTree = "<group>"; };
+		01D6A105249C0EAC006B3757 /* vlinfo@3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "vlinfo@3.png"; path = "Resources/Assets/Img/vlinfo@3.png"; sourceTree = "<group>"; };
+		01D6A107249C0F40006B3757 /* vlrestore@3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "vlrestore@3.png"; path = "Resources/Assets/Img/vlrestore@3.png"; sourceTree = "<group>"; };
 		01DD2F0B247718C40025DFF9 /* SARangeCalibrationWheelTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SARangeCalibrationWheelTests.m; sourceTree = "<group>"; };
 		01DD2F0D247718FF0025DFF9 /* SARangeCalibrationWheel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SARangeCalibrationWheel.m; sourceTree = "<group>"; };
 		01DD2F0E247718FF0025DFF9 /* SARangeCalibrationWheel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SARangeCalibrationWheel.h; sourceTree = "<group>"; };
@@ -1065,6 +1081,7 @@
 		012119122368B597004C1993 /* xib */ = {
 			isa = PBXGroup;
 			children = (
+				01D6A0F1249BD2F7006B3757 /* SASuperuserAuthorizationDialog.xib */,
 				01C8EBCF23422AC50072AB8C /* HomePlusDetailViewGroupCell.xib */,
 				40CE7C6D1DCBBF6D00BBACE4 /* DistanceCell.xib */,
 				017A3C8823633A70004AD1FC /* TempHumidityDetailView.xib */,
@@ -1089,6 +1106,7 @@
 				01D4293922AAAA450050C1A2 /* IncrementalMeterCell.xib */,
 				406778281BCBBC83008DD37F /* ThermometerCell.xib */,
 				010C8789249AA1E1002FE526 /* SAInfoVC.xib */,
+				01D6A0FE249BEC67006B3757 /* SAVLCalibrationTool.xib */,
 			);
 			name = xib;
 			sourceTree = "<group>";
@@ -1292,6 +1310,8 @@
 		405AC4011BC15878004F7311 /* Img */ = {
 			isa = PBXGroup;
 			children = (
+				01D6A105249C0EAC006B3757 /* vlinfo@3.png */,
+				01D6A103249C0DC8006B3757 /* vprosmart@3.png */,
 				010C8782249A6471002FE526 /* infoclose@2x.png */,
 				012BD7292499183700E64F25 /* rgbwsettings@3x.png */,
 				012BD7232499173600E64F25 /* rgbwinfo@3x.png */,
@@ -1367,6 +1387,7 @@
 				4014ADFB1FE01EC700297A9E /* help@2x.png */,
 				4014ADFC1FE01EC800297A9E /* help@3x.png */,
 				407D31A51FD1B75E0062FB80 /* logo-white@2x.png */,
+				01D6A107249C0F40006B3757 /* vlrestore@3.png */,
 				407D31A61FD1B75E0062FB80 /* logo-white@3x.png */,
 				407D31921FD17C4B0062FB80 /* wifigeneral@2x.png */,
 				405C499E1FCAFFD100C15602 /* wizard_error@2x.png */,
@@ -1684,6 +1705,10 @@
 				019D22EF233CC2D000F17135 /* SAPreloader.m */,
 				010C8784249A6A92002FE526 /* SADialog.h */,
 				010C8785249A6A92002FE526 /* SADialog.m */,
+				01D6A0EF249BD2F7006B3757 /* SASuperuserAuthorizationDialog.h */,
+				01D6A0F0249BD2F7006B3757 /* SASuperuserAuthorizationDialog.m */,
+				01D6A100249BEC8C006B3757 /* SAVLCalibrationTool.h */,
+				01D6A101249BEC8C006B3757 /* SAVLCalibrationTool.m */,
 			);
 			name = UI;
 			sourceTree = "<group>";
@@ -1841,6 +1866,7 @@
 				01F9110122EF954400BFF91D /* thermostat_hp_homeplus2-off@3x.png in Resources */,
 				4052DA051DC515AE000B8C45 /* dimmerrgb-onoff@2x.png in Resources */,
 				40B9ED451FACCE8700403B1A /* tv-off@3x.png in Resources */,
+				01D6A0F3249BD2F7006B3757 /* SASuperuserAuthorizationDialog.xib in Resources */,
 				40477B3E20C6C57700E995E6 /* staircasetimer-off@2x.png in Resources */,
 				40B9ED841FACE15700403B1A /* gatealt1-open@3x.png in Resources */,
 				40CE7C6C1DCBBD5700BBACE4 /* depth@3x.png in Resources */,
@@ -1921,6 +1947,7 @@
 				012E341523DF5FB800F17D39 /* valve-open@3x.png in Resources */,
 				4091AF3E1FC8405200EFF357 /* btnnextr@2x.png in Resources */,
 				40DE1A2A1BCCFF8A004CF43B /* feedback@3x.png in Resources */,
+				01D6A104249C0DC8006B3757 /* vprosmart@3.png in Resources */,
 				012BD7272499173600E64F25 /* rgbwinfo@3x.png in Resources */,
 				01F910FE22EF954400BFF91D /* thermostat_hp_homeplus2-on@2x.png in Resources */,
 				405AC41B1BC15898004F7311 /* app_icon@3x.png in Resources */,
@@ -1994,6 +2021,7 @@
 				40B9ED651FACD34C00403B1A /* xmastree-on@3x.png in Resources */,
 				40B9ED571FACD0A100403B1A /* pc-on@2x.png in Resources */,
 				4091AF4A1FC88BFB00EFF357 /* greendot@2x.png in Resources */,
+				01D6A0FF249BEC67006B3757 /* SAVLCalibrationTool.xib in Resources */,
 				4052DA041DC515AE000B8C45 /* dimmerrgb-onoff@3x.png in Resources */,
 				40477B5F20C6F62A00E995E6 /* groupsoff@2x.png in Resources */,
 				4091AF441FC856C200EFF357 /* wifi@2x.png in Resources */,
@@ -2016,6 +2044,7 @@
 				019F4CAC2354DC3300286139 /* ImpulseCounterDetailView.xib in Resources */,
 				40B9ED7D1FACE15700403B1A /* mail@2x.png in Resources */,
 				40B9ED551FACD0A100403B1A /* pc-off@2x.png in Resources */,
+				01D6A106249C0EAC006B3757 /* vlinfo@3.png in Resources */,
 				408034E61BC84A89007666E7 /* NavigationController.xib in Resources */,
 				40CF96B11BC7D4E70030EFFF /* garagedoor-open@3x.png in Resources */,
 				40B9ED801FACE15700403B1A /* window-open@3x.png in Resources */,
@@ -2050,6 +2079,7 @@
 				40B9ED471FACCE8700403B1A /* tv-off@2x.png in Resources */,
 				4091654B1F3CBAF200F49193 /* rs_stop.png in Resources */,
 				40B9ED4D1FACCF8100403B1A /* radio-on@2x.png in Resources */,
+				01D6A109249C0F40006B3757 /* vlrestore@3.png in Resources */,
 				40B9ED6E1FACD94300403B1A /* barier-closed@3x.png in Resources */,
 				013D73A722DCAEF400E3515A /* SAIncrementalMeterChartMarkerView.xib in Resources */,
 				4067782D1BCBC647008DD37F /* menu@3x.png in Resources */,
@@ -2145,6 +2175,7 @@
 				40C7BA6C20C045A800ACEE42 /* SAChannelGroup+CoreDataClass.m in Sources */,
 				40C7BA5420C008DB00ACEE42 /* SAChannelGroupRelation+CoreDataClass.m in Sources */,
 				40C7BA8820C0492500ACEE42 /* SAChannelBase+CoreDataProperties.m in Sources */,
+				01D6A102249BEC8C006B3757 /* SAVLCalibrationTool.m in Sources */,
 				404749BE20BC608B005DA345 /* _SALocation+CoreDataClass.m in Sources */,
 				018CFD2923281F0C00888CB7 /* SAExtendedValue.m in Sources */,
 				404749BD20BC6070005DA345 /* SAChannel+CoreDataClass.m in Sources */,
@@ -2224,6 +2255,7 @@
 				01392B3D235CE68D003A2BAD /* SATemperatureChartHelper.m in Sources */,
 				401CA1F21BA0A28A00117AF4 /* SuplaClient.m in Sources */,
 				4006E90A1DC62D0A00C4456D /* DetailView.m in Sources */,
+				01D6A0F2249BD2F7006B3757 /* SASuperuserAuthorizationDialog.m in Sources */,
 				01BDAC7822C5200600915646 /* SAOAuthToken.m in Sources */,
 				40C7BA5220C007A300ACEE42 /* SAChannelValue+CoreDataClass.m in Sources */,
 				01DD2F0F247719000025DFF9 /* SARangeCalibrationWheel.m in Sources */,

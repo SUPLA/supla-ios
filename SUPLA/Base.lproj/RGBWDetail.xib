@@ -185,6 +185,9 @@
                                 <constraint firstAttribute="height" constant="50" id="hoo-An-74X"/>
                             </constraints>
                             <state key="normal" image="rgbwsettings.png"/>
+                            <connections>
+                                <action selector="onSettingsTouch:" destination="iN0-l3-epB" eventType="touchDown" id="eAs-op-n2l"/>
+                            </connections>
                         </button>
                     </subviews>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
