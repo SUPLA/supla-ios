@@ -76,9 +76,7 @@
 
 + (BOOL)viewControllerIsPresented:(UIViewController*)vc {
     UIViewController *rootVC = UIApplication.sharedApplication.delegate.window.rootViewController;
-    return vc != nil
-    && rootVC.presentingViewController != nil
-    && rootVC.presentingViewController.presentingViewController == vc;
+    return vc != nil && rootVC != nil && rootVC.presentedViewController == vc;
 }
 
 + (void)showModal:(SADialog*)dialogVC {

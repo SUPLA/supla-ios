@@ -79,6 +79,7 @@
 -(void)onTerminated:(SASuplaClient*)sender;
 -(void)onOAuthTokenRequestResult:(SAOAuthToken *)token;
 -(void)onSuperuserAuthorizationResult:(SASuperuserAuthorizationResult *)result;
+-(void)onCalCfgResult:(SACalCfgResult *)result;
 
 -(SAOAuthToken*) registerRestApiClientTask:(SARestApiClientTask *)client;
 -(void) unregisterRestApiClientTask:(SARestApiClientTask *)task;
@@ -98,3 +99,4 @@ extern NSString *kSAChannelValueChangedNotification;
 extern NSString *kSARegistrationEnabledNotification;
 extern NSString *kSAOAuthTokenRequestResult;
 extern NSString *kSASuperuserAuthorizationResult;
+extern NSString *kSACalCfgResult;

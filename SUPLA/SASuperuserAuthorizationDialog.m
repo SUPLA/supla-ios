@@ -29,7 +29,7 @@ static SASuperuserAuthorizationDialog *_superuserAuthorizationDialogGlobalRef;
 @end
 
 @implementation SASuperuserAuthorizationDialog {
-    __weak id<SASuperuserAuthorizationDialogDelegate>_delegate;
+    id<SASuperuserAuthorizationDialogDelegate>_delegate;
     NSTimer *_timeoutTimer;
 }
 
@@ -62,9 +62,17 @@ static SASuperuserAuthorizationDialog *_superuserAuthorizationDialogGlobalRef;
     [super close];
 }
 
--(void)onSuperuserAuthorizationResult:(NSNotification *)notification {
+-(void)showError:(NSString*)err {
     [self timeoutTimerInvalidate];
-    
+    _lErrorMessage.text = err;
+    _lErrorMessage.hidden = NO;
+    _edEmail.enabled = YES;
+    _edPassword.enabled = YES;
+    _btnOK.hidden = NO;
+    [_actIndictor stopAnimating];
+}
+
+-(void)onSuperuserAuthorizationResult:(NSNotification *)notification {
     if (notification.userInfo != nil) {
         id r = [notification.userInfo objectForKey:@"result"];
         if (r != nil && [r isKindOfClass:[SASuperuserAuthorizationResult class]]) {
@@ -74,24 +82,21 @@ static SASuperuserAuthorizationDialog *_superuserAuthorizationDialogGlobalRef;
                 if (_delegate != nil && [SADialog viewControllerIsPresented:self]) {
                     [_delegate superuserAuthorizationSuccess];
                 }
-            } else {
+            }
+            
+            if (!result.success) {
                 switch (result.code) {
                     case SUPLA_RESULTCODE_UNAUTHORIZED:
-                        _lErrorMessage.text = NSLocalizedString(@"Bad credentials", nil);
+                        [self showError:NSLocalizedString(@"Bad credentials", nil)];
                         break;
                     case SUPLA_RESULTCODE_TEMPORARILY_UNAVAILABLE:
-                        _lErrorMessage.text = NSLocalizedString(@"Service temporarily unavailable", nil);
+                        [self showError:NSLocalizedString(@"Service temporarily unavailable", nil)];
                         break;
                     default:
-                        _lErrorMessage.text = NSLocalizedString(@"Unknown error", nil);
+                        [self showError:NSLocalizedString(@"Unknown error", nil)];
                         break;
                 }
                 
-                _lErrorMessage.hidden = NO;
-                _edEmail.enabled = YES;
-                _edPassword.enabled = YES;
-                _btnOK.hidden = NO;
-                [_actIndictor stopAnimating];
             }
         }
     }
@@ -131,12 +136,7 @@ static SASuperuserAuthorizationDialog *_superuserAuthorizationDialogGlobalRef;
 }
 
 -(void)onTimeout:(id)sender {
-    _edEmail.enabled = YES;
-    _edPassword.enabled = YES;
-    _btnOK.hidden = NO;
-    [_actIndictor stopAnimating];
-    _lErrorMessage.hidden = NO;
-    _lErrorMessage.text = NSLocalizedString(@"Time exceeded. Try again.", nil);
+    [self showError:NSLocalizedString(@"Time exceeded. Try again.", nil)];
 }
 
 - (IBAction)btnOkTouch:(id)sender {
@@ -149,13 +149,13 @@ static SASuperuserAuthorizationDialog *_superuserAuthorizationDialogGlobalRef;
     
     [self timeoutTimerInvalidate];
     
-    _timeoutTimer = [NSTimer scheduledTimerWithTimeInterval:6
+    _timeoutTimer = [NSTimer scheduledTimerWithTimeInterval:10
                                                      target:self
                                                    selector:@selector(onTimeout:)
                                                    userInfo:nil
                                                     repeats:NO];
     
     
-     [SAApp.SuplaClient superuserAuthorizationRequestWithEmail:_edEmail.text andPassword:_edPassword.text];
+    [SAApp.SuplaClient superuserAuthorizationRequestWithEmail:_edEmail.text andPassword:_edPassword.text];
 }
 @end

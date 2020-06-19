@@ -70,10 +70,22 @@
 
 @interface SASuperuserAuthorizationResult : NSObject
 
-@property (nonatomic, assign)BOOL success;
-@property (nonatomic, assign)int code;
+@property (nonatomic, readonly)BOOL success;
+@property (nonatomic, readonly)int code;
 
+- (id)initWithResult:(BOOL)success andCode:(int)code;
 + (SASuperuserAuthorizationResult*) superuserAuthorizationResult:(BOOL)success withCode:(int)code;
+@end
+
+@interface SACalCfgResult : NSObject
+
+@property (nonatomic, readonly)int channelID;
+@property (nonatomic, readonly)int command;
+@property (nonatomic, readonly)int result;
+@property (nonatomic, readonly)NSData* data;
+
+- (id)initWithResult:(TSC_DeviceCalCfgResult *)result;
++ (SACalCfgResult*) resultWithResult:(TSC_DeviceCalCfgResult *)result;
 @end
 
 @interface SASuplaClient : NSThread
@@ -96,7 +108,8 @@
 - (void) onEvent:(SAEvent *)event;
 - (void) onRegistrationEnabled:(SARegistrationEnabled*)reg_enabled;
 - (void) onOAuthTokenRequestResult:(SAOAuthToken *)token;
-- (void) onSuperuserAuthorizationResult:(BOOL)success code:(int)code;
+- (void) onSuperuserAuthorizationResult:(SASuperuserAuthorizationResult*)result;
+- (void) onCalCfgResult:(SACalCfgResult*)result;
 
 - (void) reconnect;
 - (BOOL) isConnected;

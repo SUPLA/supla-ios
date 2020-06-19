@@ -15,10 +15,12 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 #import <UIKit/UIKit.h>
 #import "DetailView.h"
+#import "SARangeCalibrationWheel.h"
+#import "SASuperuserAuthorizationDialog.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface SAVLCalibrationTool : UIView
+@interface SAVLCalibrationTool : UIView <SASuperuserAuthorizationDialogDelegate>
 @property (weak, nonatomic) IBOutlet UIButton *btnInfo;
 @property (weak, nonatomic) IBOutlet UIButton *btnRestore;
 @property (weak, nonatomic) IBOutlet UIButton *btnOK;
@@ -29,6 +31,18 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UIButton *tabBoostNo;
 @property (weak, nonatomic) IBOutlet UIButton *tabOpRange;
 @property (weak, nonatomic) IBOutlet UIButton *tabBoost;
+@property (weak, nonatomic) IBOutlet SARangeCalibrationWheel *rangeCalibrationWheel;
+- (IBAction)btnInfoTouch:(id)sender;
+- (IBAction)btnRestoreTouch:(id)sender;
+- (IBAction)btnOKTouch:(id)sender;
+- (IBAction)tabMode1Touch:(id)sender;
+- (IBAction)tabMode2Touch:(id)sender;
+- (IBAction)tabMode3Touch:(id)sender;
+- (IBAction)tabBoostYesTouch:(id)sender;
+- (IBAction)tabBoostNoTouch:(id)sender;
+- (IBAction)tabOpRange:(id)sender;
+- (IBAction)tabBoost:(id)sender;
+
 -(void)startConfiguration:(SADetailView*)detailView;
 -(void)dismiss;
 +(SAVLCalibrationTool*)newInstance;
