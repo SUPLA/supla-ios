@@ -21,6 +21,8 @@ NS_ASSUME_NONNULL_BEGIN
 - (IBAction)closeButtonTouch:(id)sender;
 - (void)close;
 + (void)showModal:(SADialog*)dialogVC;
++ (BOOL)viewControllerIsPresented:(UIViewController*)vc;
+@property (nonatomic, assign)BOOL cancelByTouchOutside;
 @end
 
 NS_ASSUME_NONNULL_END

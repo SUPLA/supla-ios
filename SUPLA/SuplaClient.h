@@ -68,6 +68,14 @@
 + (SARegistrationEnabled*) ClientTimestamp:(unsigned int) client_timestamp IODeviceTimestamp:(unsigned int) iodevice_timestamp;
 @end
 
+@interface SASuperuserAuthorizationResult : NSObject
+
+@property (nonatomic, assign)BOOL success;
+@property (nonatomic, assign)int code;
+
++ (SASuperuserAuthorizationResult*) superuserAuthorizationResult:(BOOL)success withCode:(int)code;
+@end
+
 @interface SASuplaClient : NSThread
 
 - (id)init;
@@ -88,6 +96,7 @@
 - (void) onEvent:(SAEvent *)event;
 - (void) onRegistrationEnabled:(SARegistrationEnabled*)reg_enabled;
 - (void) onOAuthTokenRequestResult:(SAOAuthToken *)token;
+- (void) onSuperuserAuthorizationResult:(BOOL)success code:(int)code;
 
 - (void) reconnect;
 - (BOOL) isConnected;
@@ -107,4 +116,5 @@
 - (void) getRegistrationEnabled;
 - (int) getProtocolVersion;
 - (BOOL) OAuthTokenRequest;
+- (void) superuserAuthorizationRequestWithEmail:(NSString*)email andPassword:(NSString*)password;
 @end

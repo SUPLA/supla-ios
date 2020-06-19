@@ -37,6 +37,7 @@ NSString *kSAConnErrorNotification = @"kSA-N10";
 NSString *kSAChannelValueChangedNotification = @"KSA-N11";
 NSString *kSARegistrationEnabledNotification = @"KSA-N12";
 NSString *kSAOAuthTokenRequestResult = @"KSA-N13";
+NSString *kSASuperuserAuthorizationResult = @"KSA-N14";
 
 @implementation SAApp {
     
@@ -690,6 +691,10 @@ NSString *kSAOAuthTokenRequestResult = @"KSA-N13";
     }
     
     [[NSNotificationCenter defaultCenter] postNotificationName:kSAOAuthTokenRequestResult object:self userInfo:[[NSDictionary alloc] initWithObjects:@[token] forKeys:@[@"token"]]];
+}
+
+-(void)onSuperuserAuthorizationResult:(SASuperuserAuthorizationResult *)result {
+     [[NSNotificationCenter defaultCenter] postNotificationName:kSASuperuserAuthorizationResult object:self userInfo:[[NSDictionary alloc] initWithObjects:@[result] forKeys:@[@"result"]]];
 }
 
 -(SAOAuthToken*) registerRestApiClientTask:(SARestApiClientTask *)task {

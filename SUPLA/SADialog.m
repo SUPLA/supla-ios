@@ -1,17 +1,17 @@
 /*
-Copyright (C) AC SOFTWARE SP. Z O.O.
-This program is free software; you can redistribute it and/or
-modify it under the terms of the GNU General Public License
-as published by the Free Software Foundation; either version 2
-of the License, or (at your option) any later version.
-This program is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-GNU General Public License for more details.
-You should have received a copy of the GNU General Public License
-along with this program; if not, write to the Free Software
-Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
-*/
+ Copyright (C) AC SOFTWARE SP. Z O.O.
+ This program is free software; you can redistribute it and/or
+ modify it under the terms of the GNU General Public License
+ as published by the Free Software Foundation; either version 2
+ of the License, or (at your option) any later version.
+ This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ GNU General Public License for more details.
+ You should have received a copy of the GNU General Public License
+ along with this program; if not, write to the Free Software
+ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
+ */
 
 #import "SADialog.h"
 
@@ -23,10 +23,15 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     UITapGestureRecognizer *_tapGr;
 }
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    _tapGr = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(closeButtonTouch:)];
-    [self.view addGestureRecognizer:_tapGr];
+@synthesize cancelByTouchOutside;
+
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
+    if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
+        self.cancelByTouchOutside = YES;
+        _tapGr = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(closeButtonTouch:)];
+        [self.view addGestureRecognizer:_tapGr];
+    }
+    return self;
 }
 
 -(void)viewWillAppear:(BOOL)animated {
@@ -45,24 +50,35 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 - (IBAction)closeButtonTouch:(id)sender {
     
     if ([sender isKindOfClass:[UITapGestureRecognizer class]]) {
+        if (self.cancelByTouchOutside == NO) {
+            return;
+        }
+        
         UITapGestureRecognizer *gr = (UITapGestureRecognizer *)sender;
-    
+        
         UIView *v = self.view.subviews.firstObject;
         if ([v hitTest:[gr locationInView:v] withEvent:nil] != v) {
-         return;
+            return;
         }
     }
     
     [UIView animateWithDuration:0.2 animations:^{
         self.view.alpha = 0;
     } completion:^(BOOL finished){
-         [self dismissViewControllerAnimated:NO completion:nil];
+        [self dismissViewControllerAnimated:NO completion:nil];
     }];
     
 }
 
 - (void)close {
     [self closeButtonTouch:self];
+}
+
++ (BOOL)viewControllerIsPresented:(UIViewController*)vc {
+    UIViewController *rootVC = UIApplication.sharedApplication.delegate.window.rootViewController;
+    return vc != nil
+    && rootVC.presentingViewController != nil
+    && rootVC.presentingViewController.presentingViewController == vc;
 }
 
 + (void)showModal:(SADialog*)dialogVC {

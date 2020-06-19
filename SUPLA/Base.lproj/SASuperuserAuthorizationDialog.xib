@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina3_5" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="OpenSans-Bold.ttf">
+            <string>OpenSans-Bold</string>
+        </array>
+        <array key="OpenSans-Regular.ttf">
+            <string>OpenSans</string>
+        </array>
+        <array key="Quicksand-Regular.ttf">
+            <string>Quicksand-Regular</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SASuperuserAuthorizationDialog">
+            <connections>
+                <outlet property="actIndictor" destination="Lw1-Vk-sTq" id="pe4-eh-a6s"/>
+                <outlet property="btnOK" destination="h9i-6L-lC5" id="OVv-Yi-CMU"/>
+                <outlet property="edEmail" destination="jfU-PJ-nMC" id="DV5-nH-BPb"/>
+                <outlet property="edPassword" destination="ScD-2l-pdi" id="hYx-tg-qmb"/>
+                <outlet property="lErrorMessage" destination="btP-Nc-v0w" id="erP-Gq-nJZ"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="en1-uT-NeO">
+                    <rect key="frame" x="10" y="75" width="300" height="330"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Enter superuser credentials" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lEm-PA-nmW">
+                            <rect key="frame" x="15" y="20" width="270" height="55"/>
+                            <fontDescription key="fontDescription" name="Quicksand-Regular" family="Quicksand" pointSize="22"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="E-MAIL ADDRESS" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MOE-IP-Z4M">
+                            <rect key="frame" x="15" y="142" width="270" height="14"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="14" id="zVh-RO-oeY"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" name="OpenSans-Bold" family="Open Sans" pointSize="10"/>
+                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="PASSWORD" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sOL-lE-RQR">
+                            <rect key="frame" x="15" y="202" width="270" height="14"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="14" id="F5N-yw-Akl"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" name="OpenSans-Bold" family="Open Sans" pointSize="10"/>
+                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="jfU-PJ-nMC">
+                            <rect key="frame" x="15" y="110" width="270" height="30"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="30" id="V5C-oH-0p8"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="14"/>
+                            <textInputTraits key="textInputTraits" textContentType="email"/>
+                        </textField>
+                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ScD-2l-pdi">
+                            <rect key="frame" x="15" y="170" width="270" height="30"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="30" id="uRJ-Zm-4sk"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="14"/>
+                            <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                        </textField>
+                        <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Bad credentials" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" minimumFontSize="5" translatesAutoresizingMaskIntoConstraints="NO" id="btP-Nc-v0w">
+                            <rect key="frame" x="15" y="80" width="270" height="14"/>
+                            <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="10"/>
+                            <color key="textColor" red="1" green="0.024649368904869462" blue="0.055923047577645768" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cdk-TD-22T">
+                            <rect key="frame" x="15" y="246" width="130" height="40"/>
+                            <color key="backgroundColor" red="0.81953251360000001" green="0.83142000439999997" blue="0.85087817909999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="40" id="Bka-XB-4xt"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="17"/>
+                            <state key="normal" title="CANCEL">
+                                <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </state>
+                            <connections>
+                                <action selector="closeButtonTouch:" destination="-1" eventType="touchDown" id="Muc-Bo-KMA"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="h9i-6L-lC5">
+                            <rect key="frame" x="155" y="246" width="130" height="40"/>
+                            <color key="backgroundColor" red="0.81953251360000001" green="0.83142000439999997" blue="0.85087817909999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="40" id="Bes-Qz-QGE"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="17"/>
+                            <state key="normal" title="OK">
+                                <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </state>
+                            <connections>
+                                <action selector="btnOkTouch:" destination="-1" eventType="touchDown" id="5rU-RI-6g3"/>
+                            </connections>
+                        </button>
+                        <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="Lw1-Vk-sTq">
+                            <rect key="frame" x="201.5" y="247.5" width="37" height="37"/>
+                        </activityIndicatorView>
+                    </subviews>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                    <constraints>
+                        <constraint firstAttribute="trailing" secondItem="jfU-PJ-nMC" secondAttribute="trailing" constant="15" id="2LO-Id-HfG"/>
+                        <constraint firstItem="MOE-IP-Z4M" firstAttribute="top" secondItem="jfU-PJ-nMC" secondAttribute="bottom" constant="2" id="7rF-Dj-Fyr"/>
+                        <constraint firstItem="btP-Nc-v0w" firstAttribute="leading" secondItem="en1-uT-NeO" secondAttribute="leading" constant="15" id="8Wf-sJ-rsy"/>
+                        <constraint firstAttribute="trailing" secondItem="h9i-6L-lC5" secondAttribute="trailing" constant="15" id="9tg-2Z-3Vu"/>
+                        <constraint firstItem="h9i-6L-lC5" firstAttribute="width" secondItem="cdk-TD-22T" secondAttribute="width" id="Cw1-kq-k5Q"/>
+                        <constraint firstAttribute="trailing" secondItem="lEm-PA-nmW" secondAttribute="trailing" constant="15" id="JJT-jd-KPN"/>
+                        <constraint firstItem="MOE-IP-Z4M" firstAttribute="leading" secondItem="en1-uT-NeO" secondAttribute="leading" constant="15" id="Jco-eg-kgK"/>
+                        <constraint firstItem="lEm-PA-nmW" firstAttribute="leading" secondItem="en1-uT-NeO" secondAttribute="leading" constant="15" id="K3w-6a-sd7"/>
+                        <constraint firstAttribute="trailing" secondItem="sOL-lE-RQR" secondAttribute="trailing" constant="15" id="KjV-Lh-1Mc"/>
+                        <constraint firstItem="jfU-PJ-nMC" firstAttribute="leading" secondItem="en1-uT-NeO" secondAttribute="leading" constant="15" id="Llx-EG-p5w"/>
+                        <constraint firstAttribute="trailing" secondItem="ScD-2l-pdi" secondAttribute="trailing" constant="15" id="N8g-0V-Ei3"/>
+                        <constraint firstItem="h9i-6L-lC5" firstAttribute="top" secondItem="sOL-lE-RQR" secondAttribute="bottom" constant="30" id="NvR-UL-4T7"/>
+                        <constraint firstAttribute="height" constant="330" id="TEh-dS-YyM"/>
+                        <constraint firstAttribute="trailing" secondItem="btP-Nc-v0w" secondAttribute="trailing" constant="15" id="TNe-y7-96K"/>
+                        <constraint firstItem="h9i-6L-lC5" firstAttribute="leading" secondItem="cdk-TD-22T" secondAttribute="trailing" constant="10" id="WPN-AN-tms"/>
+                        <constraint firstAttribute="width" constant="300" id="Wnh-bc-t9h"/>
+                        <constraint firstItem="btP-Nc-v0w" firstAttribute="top" secondItem="lEm-PA-nmW" secondAttribute="bottom" constant="5" id="YVU-pj-tSe"/>
+                        <constraint firstItem="lEm-PA-nmW" firstAttribute="top" secondItem="en1-uT-NeO" secondAttribute="top" constant="20" id="cc4-o9-vwC"/>
+                        <constraint firstItem="ScD-2l-pdi" firstAttribute="top" secondItem="jfU-PJ-nMC" secondAttribute="bottom" constant="30" id="eqt-Im-NMB"/>
+                        <constraint firstItem="sOL-lE-RQR" firstAttribute="leading" secondItem="en1-uT-NeO" secondAttribute="leading" constant="15" id="gHU-86-dDN"/>
+                        <constraint firstItem="cdk-TD-22T" firstAttribute="top" secondItem="sOL-lE-RQR" secondAttribute="bottom" constant="30" id="oiv-hf-FRI"/>
+                        <constraint firstItem="Lw1-Vk-sTq" firstAttribute="centerX" secondItem="h9i-6L-lC5" secondAttribute="centerX" id="qPx-yT-ddc"/>
+                        <constraint firstAttribute="trailing" secondItem="MOE-IP-Z4M" secondAttribute="trailing" constant="15" id="t7C-Lu-9Ki"/>
+                        <constraint firstItem="Lw1-Vk-sTq" firstAttribute="centerY" secondItem="h9i-6L-lC5" secondAttribute="centerY" id="tGw-ND-eBL"/>
+                        <constraint firstItem="jfU-PJ-nMC" firstAttribute="top" secondItem="btP-Nc-v0w" secondAttribute="bottom" constant="16" id="uPn-va-b1T"/>
+                        <constraint firstItem="sOL-lE-RQR" firstAttribute="top" secondItem="ScD-2l-pdi" secondAttribute="bottom" constant="2" id="xAF-H3-sTm"/>
+                        <constraint firstItem="ScD-2l-pdi" firstAttribute="leading" secondItem="en1-uT-NeO" secondAttribute="leading" constant="15" id="xzG-lv-y4x"/>
+                        <constraint firstItem="cdk-TD-22T" firstAttribute="leading" secondItem="en1-uT-NeO" secondAttribute="leading" constant="15" id="ymg-3L-wno"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="en1-uT-NeO" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="Prj-mH-vV3"/>
+                <constraint firstItem="en1-uT-NeO" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="uDd-jr-bCg"/>
+            </constraints>
+            <point key="canvasLocation" x="138.75" y="105"/>
+        </view>
+    </objects>
+</document>

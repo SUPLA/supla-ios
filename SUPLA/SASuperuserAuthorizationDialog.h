@@ -17,7 +17,16 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 NS_ASSUME_NONNULL_BEGIN
 
+@protocol SASuperuserAuthorizationDialogDelegate <NSObject>
+
+@required
+-(void) superuserAuthorizationSuccess;
+@end
+
 @interface SASuperuserAuthorizationDialog : SADialog
+
+-(void)authorizeWithDelegate:(id<SASuperuserAuthorizationDialogDelegate>)delegate;
++(SASuperuserAuthorizationDialog*)globalInstance;
 
 @end
 

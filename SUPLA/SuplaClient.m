@@ -137,6 +137,13 @@ void sasuplaclient_on_oauth_token_request_result(void *_suplaclient, void *user_
     }
 }
 
+void sasuplaclient_on_superuser_authorization_result(void *_suplaclient, void *user_data, char authorized, _supla_int_t code) {
+    SASuplaClient *sc = (__bridge SASuplaClient*)user_data;
+    if ( sc != nil ) {
+        [sc onSuperuserAuthorizationResult:authorized code:code];
+    }
+}
+
 // ------------------------------------------------------------------------------------------------------
 // ------------------------------------------------------------------------------------------------------
 // ------------------------------------------------------------------------------------------------------
@@ -234,6 +241,19 @@ void sasuplaclient_on_oauth_token_request_result(void *_suplaclient, void *user_
 
 @end
 
+
+@implementation SASuperuserAuthorizationResult
+@synthesize success;
+@synthesize code;
+
++ (SASuperuserAuthorizationResult*) superuserAuthorizationResult:(BOOL)success withCode:(int)code {
+    SASuperuserAuthorizationResult *result = [[SASuperuserAuthorizationResult alloc] init];
+    result.success = success;
+    result.code = code;
+    return result;
+}
+
+@end
 
 // ------------------------------------------------------------------------------------------------------
 
@@ -353,6 +373,7 @@ void sasuplaclient_on_oauth_token_request_result(void *_suplaclient, void *user_
     scc.cb_on_event = sasuplaclient_on_event;
     scc.cb_on_registration_enabled = sasuplaclient_on_registration_enabled;
     scc.cb_on_oauth_token_request_result = sasuplaclient_on_oauth_token_request_result;
+    scc.cb_on_superuser_authorization_result = sasuplaclient_on_superuser_authorization_result;
     
     scc.protocol_version = [SAApp getPreferedProtocolVersion];
     
@@ -721,6 +742,15 @@ void sasuplaclient_on_oauth_token_request_result(void *_suplaclient, void *user_
     [self performSelectorOnMainThread:@selector(_onOAuthTokenRequestResult:) withObject:token waitUntilDone:NO];
 }
 
+- (void) _onSuperuserAuthorizationResult:(SASuperuserAuthorizationResult*)result {
+    [[SAApp instance] onSuperuserAuthorizationResult:result];
+}
+
+- (void) onSuperuserAuthorizationResult:(BOOL)success code:(int)code {
+    SASuperuserAuthorizationResult *result = [SASuperuserAuthorizationResult superuserAuthorizationResult:success withCode:code];
+    [self performSelectorOnMainThread:@selector(_onSuperuserAuthorizationResult:) withObject:result waitUntilDone:NO];
+}
+
 - (void) reconnect {
     @synchronized(self) {
         if ( _sclient ) {
@@ -913,5 +943,12 @@ void sasuplaclient_on_oauth_token_request_result(void *_suplaclient, void *user_
     return result;
 }
 
+- (void) superuserAuthorizationRequestWithEmail:(NSString*)email andPassword:(NSString*)password {
+    @synchronized(self) {
+        if ( _sclient ) {
+            supla_client_superuser_authorization_request(_sclient, [email UTF8String], [password UTF8String]);
+        }
+    }
+}
 
 @end
