@@ -633,15 +633,7 @@
     
     [UIView commitAnimations];
     _animating = NO;
-    
-    if (_detailView) {
-        if (show) {
-            [_detailView onDetailShow];
-        } else {
-            [_detailView onDetailHide];
-        }
-    }
-    
+        
     if ( animated ) {
         
         _animating = YES;
@@ -666,6 +658,7 @@
                 
                 if ( _detailView ) {
                     [_detailView removeFromSuperview];
+                    [_detailView onDetailHide];
                     _detailView = nil;
                 }
                 
@@ -674,6 +667,8 @@
                     cell = nil;
                 }
                 
+            } else if (_detailView) {
+                [_detailView onDetailShow];
             }
             
             
@@ -688,6 +683,7 @@
             
             if ( _detailView ) {
                 [_detailView removeFromSuperview];
+                [_detailView onDetailHide];
                 _detailView = nil;
             }
             
@@ -696,6 +692,8 @@
                 cell = nil;
             }
             
+        } else if (_detailView) {
+            [_detailView onDetailShow];
         }
         
     }

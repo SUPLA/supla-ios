@@ -90,8 +90,9 @@
 -(void)showStarterVC;
 
 -(void)showMenuBtn:(BOOL)show;
--(void)showMenuBtn:(BOOL)show withSettingsIcon:(BOOL)settingsIcon;
-
+-(void)showMenubarSettingsBtn;
+-(void)showMenubarBackBtn;
+-(void)setMenubarDetailTitle:(nonnull NSString *)title;
 -(void)showGroupBtn:(BOOL)show;
 
 -(BOOL)addWizardIsVisible;

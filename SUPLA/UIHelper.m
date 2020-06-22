@@ -182,23 +182,33 @@
 }
 
 -(void)showMenuBtn:(BOOL)show {
-    [self showMenuBtn:show withSettingsIcon:false];
+    if (_NavController) {
+        [_NavController showMenuBtn:show];
+    }
 }
 
 -(void)showGroupBtn:(BOOL)show {
     if (_NavController) {
-        _NavController.btnGroups.hidden = !show;
+        [_NavController showGroupBtn:show];
     }
 }
 
--(void)showMenuBtn:(BOOL)show withSettingsIcon:(BOOL)settingsIcon {
-    
+-(void)showMenubarSettingsBtn {
     if (_NavController) {
-        _NavController.btnMenu.hidden = !show;
-        _NavController.btnMenu.tag = settingsIcon ? 1 : 0;
-        [_NavController.btnMenu setImage:[UIImage imageNamed:settingsIcon ? @"settings.png" : @"menu.png"]];
+        [_NavController showMenubarSettingsBtn];
     }
-    
+}
+
+-(void)showMenubarBackBtn {
+    if (_NavController) {
+        [_NavController showMenubarBackBtn];
+    }
+}
+
+-(void)setMenubarDetailTitle:(NSString *)title {
+    if (_NavController) {
+        [_NavController setMenubarDetailTitle:title];
+    }
 }
 
 -(SASettingsVC *) SettingsVC {

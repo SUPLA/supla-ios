@@ -80,8 +80,15 @@
 }
 
 -(void)updateView {}
--(void)onDetailShow {};
--(void)onDetailHide {};
+
+-(void)onDetailShow {
+    [SAApp.UI setMenubarDetailTitle:_channelBase ? [_channelBase getChannelCaption] : @""];
+    [SAApp.UI showMenubarBackBtn];
+};
+
+-(void)onDetailHide {
+    
+};
 
 -(void)setChannelBase:(SAChannelBase *)channelBase {
     

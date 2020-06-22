@@ -22,6 +22,8 @@
 @interface SANavigationController : UIViewController <MFMailComposeViewControllerDelegate>
 
 @property (weak, nonatomic) IBOutlet UIView *menuBar;
+@property (weak, nonatomic) IBOutlet UILabel *vTitle;
+@property (weak, nonatomic) IBOutlet UILabel *vDetailTitle;
 -(void)showViewController:(UIViewController *)vc;
 -(UIViewController *)currentViewController;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *menuBarHeight;
@@ -33,6 +35,13 @@
 - (IBAction)addDeviceTouch:(id)sender;
 - (IBAction)donateTouch:(id)sender;
 - (IBAction)groupsTouch:(id)sender;
+
+-(void)showMenuBtn:(BOOL)show;
+-(void)showMenubarSettingsBtn;
+-(void)showMenubarBackBtn;
+-(void)setMenubarDetailTitle:(nonnull NSString *)title;
+-(void)showGroupBtn:(BOOL)show;
+
 @property (weak, nonatomic) IBOutlet UIButton *btnSettings;
 @property (weak, nonatomic) IBOutlet UIButton *btnAbout;
 @property (weak, nonatomic) IBOutlet UIButton *btnHelp;
