@@ -554,9 +554,9 @@
     return touchRadius <= halfBtnSize*1.1;
 }
 
--(void) onRangeChanged {
+-(void) onRangeChanged:(BOOL)min {
     if (self.delegate != nil) {
-        [self.delegate calibrationWheelRangeChanged:self];
+        [self.delegate calibrationWheelRangeChanged:self minimum:min];
     }
 }
 
@@ -577,12 +577,12 @@
     if (self.boostHidden && [self isBtnTouchedWithCenterPointAt:btnLeftCenter touchPoint:point]) {
         _touched = TOUCHED_LEFT;
         btnRad = DEGREES_TO_RADIANS(180);
-        [self onRangeChanged];
+        [self onRangeChanged:YES];
     } else if ([self isBtnTouchedWithCenterPointAt:btnRightCenter touchPoint:point]) {
         _touched = TOUCHED_RIGHT;
         btnRad = 0;
         if (self.boostHidden) {
-            [self onRangeChanged];
+            [self onRangeChanged:NO];
         } else {
             [self onBoostChanged];
         }
@@ -629,11 +629,11 @@
         diff = (diff*100.0/360.0)*self.maximumValue/100/self.numerOfTurns;
         if (touched==TOUCHED_LEFT) {
             [self setMinimum:self.minimum+diff needsDisplay:NO];
-            [self onRangeChanged];
+            [self onRangeChanged:YES];
         } else {
             if (_boostHidden) {
                 [self setMaximum:self.maximum+diff needsDisplay:NO];
-                [self onRangeChanged];
+                [self onRangeChanged:NO];
             } else {
                 self.boostLevel += diff;
                 [self onBoostChanged];

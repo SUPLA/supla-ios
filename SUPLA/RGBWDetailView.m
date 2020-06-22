@@ -44,6 +44,7 @@
     
     NSDate *_moveEndTime;
     NSDate *_remoteUpdateTime;
+    SAVLCalibrationTool *_vlCalibrationTool;
 }
 
 -(void)detailViewInit {
@@ -75,7 +76,7 @@
         self.onlineStatus.onlineColor = [UIColor onLine];
         self.onlineStatus.offlineColor = [UIColor offLine];
         self.onlineStatus.borderColor = [UIColor statusBorder];
-    
+        
     }
     
     
@@ -132,7 +133,7 @@
     if ( (turnOnOff || time >= MIN_REMOTE_UPDATE_PERIOD)
         && [client cg:self.channelBase.remote_id setRGB:color
       colorBrightness:colorBrightness brightness:brightness group:isGroup turnOnOff:turnOnOff] ) {
-
+        
         _remoteUpdateTime = [NSDate date];
         [self showValuesWithDelay:MIN_UPDATE_DELAY];
         
@@ -163,7 +164,7 @@
         return;
     
     double timeDiffSec = [_moveEndTime timeIntervalSinceNow] * -1;
-        
+    
     if ( time == 0 && timeDiffSec >= MIN_UPDATE_DELAY ) {
         [self showValues];
     } else {
@@ -176,7 +177,7 @@
             else
                 time = 0.001;
         }
-
+        
         delayTimer2 = [NSTimer scheduledTimerWithTimeInterval:time target:self selector:@selector(timer2FireMethod:) userInfo:nil repeats:NO];
         
     }
@@ -249,12 +250,16 @@
     
     [super updateView];
     
+    if (_vlCalibrationTool != nil) {
+        [_vlCalibrationTool dismiss];
+    }
+    
     if (isGroup) {
-          self.onlineStatus.hidden = NO;
-      } else {
-          self.onlineStatus.hidden = YES;
-      }
-                
+        self.onlineStatus.hidden = NO;
+    } else {
+        self.onlineStatus.hidden = YES;
+    }
+    
     if ( self.channelBase != nil ) {
         
         switch(self.channelBase.func) {
@@ -265,12 +270,12 @@
                 break;
             case SUPLA_CHANNELFNC_RGBLIGHTING:
                 self.cbPicker.colorWheelHidden = NO;
-                 [self setRgbDimmerTabsHidden:YES];
+                [self setRgbDimmerTabsHidden:YES];
                 [self showRGB];
                 break;
             case SUPLA_CHANNELFNC_DIMMERANDRGBLIGHTING:
                 self.cbPicker.colorWheelHidden = NO;
-                 [self setRgbDimmerTabsHidden:NO];
+                [self setRgbDimmerTabsHidden:NO];
                 [self showRGB];
                 break;
         };
@@ -325,9 +330,9 @@
     isGroup = channelBase != nil && [channelBase isKindOfClass:[SAChannelGroup class]];
     
     if ( self.channelBase == nil
-    || ( channelBase != nil
-        && (self.channelBase.remote_id  != channelBase.remote_id
-            || ![channelBase isKindOfClass:[self.channelBase class]]) ) ) {
+        || ( channelBase != nil
+            && (self.channelBase.remote_id  != channelBase.remote_id
+                || ![channelBase isKindOfClass:[self.channelBase class]]) ) ) {
         
         _moveEndTime = [NSDate dateWithTimeIntervalSince1970:0];
         _brightnessMarkers = nil;
@@ -342,14 +347,14 @@
             _varilight = YES;
         }
     }
-
-        
+    
+    
     if ( channelBase != nil
         && channelBase.isOnline == NO ) {
         [self.main_view detailShow:NO animated:NO];
         return;
     }
-
+    
     [super setChannelBase:channelBase];
 }
 
@@ -431,7 +436,7 @@
 }
 
 - (IBAction)onRgbTabTouch:(id)sender {
-     [self showRGB];
+    [self showRGB];
 }
 
 - (void)pickerToUI {
@@ -443,7 +448,11 @@
     self.cbPicker.powerButtonOn = on;
 }
 - (IBAction)onSettingsTouch:(id)sender {
-    [[SAVLCalibrationTool newInstance] startConfiguration:self];
+    if (_vlCalibrationTool == nil) {
+        _vlCalibrationTool = [SAVLCalibrationTool newInstance];
+    }
+    
+    [_vlCalibrationTool startConfiguration:self];
 }
 
 - (IBAction)rgbInfoTouch:(id)sender {

@@ -20,6 +20,7 @@
 static SASuperuserAuthorizationDialog *_superuserAuthorizationDialogGlobalRef;
 
 @interface SASuperuserAuthorizationDialog ()
+@property (weak, nonatomic) IBOutlet UIView *vMain;
 @property (weak, nonatomic) IBOutlet UILabel *lErrorMessage;
 @property (weak, nonatomic) IBOutlet UITextField *edEmail;
 @property (weak, nonatomic) IBOutlet UITextField *edPassword;
@@ -49,6 +50,16 @@ static SASuperuserAuthorizationDialog *_superuserAuthorizationDialogGlobalRef;
     [[NSNotificationCenter defaultCenter]
      addObserver:self selector:@selector(onSuperuserAuthorizationResult:)
      name:kSASuperuserAuthorizationResult object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(keyboardDidShow:)
+                                                 name:UIKeyboardDidShowNotification
+                                               object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(keyboardDidHide:)
+                                                 name:UIKeyboardDidHideNotification
+                                               object:nil];
 }
 
 -(void)viewDidDisappear:(BOOL)animated {
@@ -158,4 +169,21 @@ static SASuperuserAuthorizationDialog *_superuserAuthorizationDialogGlobalRef;
     
     [SAApp.SuplaClient superuserAuthorizationRequestWithEmail:_edEmail.text andPassword:_edPassword.text];
 }
+
+- (void)keyboardDidShow:(NSNotification*)notification {
+    NSDictionary* info = [notification userInfo];
+    CGSize keyboardSize = [[info objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue].size;
+    CGRect edPasswordRect = [self.edPassword convertRect:self.edPassword.frame toView:self.view];
+    
+    [UIView animateWithDuration:0.2 animations:^{
+        self.vMain.transform = CGAffineTransformMakeTranslation(0, self.view.frame.size.height - keyboardSize.height - edPasswordRect.origin.y);
+    }];
+}
+
+- (void)keyboardDidHide:(NSNotification*)notification {
+    [UIView animateWithDuration:0.2 animations:^{
+        self.vMain.transform = CGAffineTransformIdentity;
+    }];
+}
+
 @end

@@ -20,16 +20,16 @@
 
 #pragma pack(push, 1)
 typedef struct {
-  unsigned short edge_minimum;       // 0 - 1000 (default 0)
-  unsigned short edge_maximum;       // 0 - 1000 (default 1000)
-  unsigned short operating_minimum;  // 0 - 1000 >= edge_minimum
-  unsigned short operating_maximum;  // 0 - 1000 <= operating_maximum
-  unsigned char mode;                // 0: AUTO, 1, 2, 3
-  unsigned char boost;               // 0: AUTO, 1: YES, 2: NO
-  unsigned short boost_level;        // 0 – 1000
-  unsigned char child_lock;          // 0: NO, 1: YES
-  unsigned char mode_mask;           // VL_MASK_MODE_DISABLED*
-  unsigned char boost_mask;          // VL_MASK_BOOST_DIABLED*
+    unsigned short edge_minimum;       // 0 - 1000 (default 0)
+    unsigned short edge_maximum;       // 0 - 1000 (default 1000)
+    unsigned short operating_minimum;  // 0 - 1000 >= edge_minimum
+    unsigned short operating_maximum;  // 0 - 1000 <= operating_maximum
+    unsigned char mode;                // 0: AUTO, 1, 2, 3
+    unsigned char boost;               // 0: AUTO, 1: YES, 2: NO
+    unsigned short boost_level;        // 0 – 1000
+    unsigned char child_lock;          // 0: NO, 1: YES
+    unsigned char mode_mask;           // VL_MASK_MODE_DISABLED*
+    unsigned char boost_mask;          // VL_MASK_BOOST_DIABLED*
 } vl_configuration_t;
 #pragma pack(pop)
 
@@ -66,15 +66,30 @@ typedef struct {
 #define VL_MSG_SET_BOOST_LEVEL 0x5C
 #define VL_MSG_SET_CHILD_LOCK 0x18
 
-
-//#define UI_REFRESH_LOCK_TIME 2000;
-//#define MIN_SEND_DELAY_TIME 500;
-//#define DISPLAY_DELAY_TIME 1000;
+#define MIN_SEND_DELAY_TIME 0.5
+#define DISPLAY_DELAY_TIME 1.0
 
 @implementation SAVLCalibrationTool {
     SADetailView *_detailView;
     BOOL _configStarted;
     vl_configuration_t _vlconfig;
+    NSTimer *_delayTimer1;
+    NSTimer *_delayTimer2;
+    NSDate *_lastCalCfgTime;
+}
+
+-(void) delayTimer1Invalidate {
+    if ( _delayTimer1 != nil ) {
+        [_delayTimer1 invalidate];
+        _delayTimer1 = nil;
+    }
+}
+
+-(void) delayTimer2Invalidate {
+    if ( _delayTimer2 != nil ) {
+        [_delayTimer2 invalidate];
+        _delayTimer2 = nil;
+    }
 }
 
 -(void)setRoundedTopCorners:(UIButton*)btn {
@@ -93,33 +108,85 @@ typedef struct {
         return;
     }
     
+    _lastCalCfgTime = [NSDate dateWithTimeIntervalSince1970:0];
+    
     memset(&_vlconfig, 0, sizeof(vl_configuration_t));
-
+    
     _vlconfig.mode = MODE_UNKNOWN;
     _vlconfig.mode_mask = 0xFF;
     _vlconfig.boost = MODE_UNKNOWN;
     _vlconfig.boost_mask = 0xFF;
     
     _configStarted = NO;
-    [self modeToUI];
-    [self boostToUI];
+    [self cfgToUIWithDelay:NO];
     
     [self removeFromSuperview];
     self.translatesAutoresizingMaskIntoConstraints = YES;
     self.frame = CGRectMake(0, 0, detailView.frame.size.width, detailView.frame.size.height);
     _detailView = detailView;
-  
-  //  Incorrect frame width
-  //  [self setRoundedTopCorners:self.tabOpRange];
-  //  [self setRoundedTopCorners:self.tabBoost];
     
+    //  Incorrect frame width
+    //  [self setRoundedTopCorners:self.tabOpRange];
+    //  [self setRoundedTopCorners:self.tabBoost];
+    
+    self.rangeCalibrationWheel.delegate = self;
     [SASuperuserAuthorizationDialog.globalInstance authorizeWithDelegate:self];
 }
 
-- (void) deviceCalCfgCommand:(int)command {
+- (void) deviceCalCfgCommand:(int)command charValue:(char*)charValue shortValue:(short*)shortValue {
     if (_detailView && _detailView.channelBase) {
-        [SAApp.SuplaClient deviceCalCfgCommand:command cg:_detailView.channelBase.remote_id group:NO];
+        _lastCalCfgTime = [NSDate date];
+        if (charValue) {
+            [SAApp.SuplaClient deviceCalCfgCommand:command cg:_detailView.channelBase.remote_id group:NO charValue:*charValue];
+        } else if (shortValue) {
+            [SAApp.SuplaClient deviceCalCfgCommand:command cg:_detailView.channelBase.remote_id group:NO shortValue:*shortValue];
+        } else {
+            [SAApp.SuplaClient deviceCalCfgCommand:command cg:_detailView.channelBase.remote_id group:NO];
+        }
     }
+}
+
+- (void) deviceCalCfgCommand:(int)command charValue:(char)charValue {
+    [self deviceCalCfgCommand:command charValue:&charValue shortValue:NULL];
+}
+
+- (void) deviceCalCfgCommand:(int)command shortValue:(short)shortValue {
+    [self deviceCalCfgCommand:command charValue:NULL shortValue:&shortValue];
+}
+
+- (void) deviceCalCfgCommandWithDelay:(int)command {
+    [self delayTimer1Invalidate];
+    
+    double time = [_lastCalCfgTime timeIntervalSinceNow] * -1;
+    
+    if (time > MIN_SEND_DELAY_TIME) {
+        switch (command) {
+            case VL_MSG_SET_MINIMUM:
+                [self deviceCalCfgCommand:command shortValue:self.rangeCalibrationWheel.minimum];
+                break;
+            case VL_MSG_SET_MAXIMUM:
+                [self deviceCalCfgCommand:command shortValue:self.rangeCalibrationWheel.maximum];
+                break;
+            case VL_MSG_SET_BOOST_LEVEL:
+                [self deviceCalCfgCommand:command shortValue:self.rangeCalibrationWheel.boostLevel];
+                break;
+            default:
+                [self deviceCalCfgCommand:command charValue:NULL shortValue:NULL];
+                break;
+        }
+    } else {
+        if ( time < MIN_SEND_DELAY_TIME ) {
+            time = MIN_SEND_DELAY_TIME-time+0.001;
+        } else {
+            time = 0.001;
+        }
+        
+        _delayTimer1 = [NSTimer scheduledTimerWithTimeInterval:time target:self selector:@selector(timer1FireMethod:) userInfo:[NSNumber numberWithInt:command] repeats:NO];
+    }
+}
+
+- (void)timer1FireMethod:(NSTimer *)timer {
+    [self deviceCalCfgCommandWithDelay:[timer.userInfo intValue]];
 }
 
 -(void)onCalCfgResult:(NSNotification *)notification {
@@ -145,6 +212,7 @@ typedef struct {
                     case VL_MSG_CONFIGURATION_REPORT:
                         if (result.data.length == sizeof(vl_configuration_t)) {
                             [result.data getBytes:&_vlconfig length:result.data.length];
+                            [self cfgToUIWithDelay:YES];
                         }
                         break;
                         
@@ -158,12 +226,12 @@ typedef struct {
 
 -(void) superuserAuthorizationSuccess {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
-
+    
     [[NSNotificationCenter defaultCenter]
      addObserver:self selector:@selector(onCalCfgResult:)
      name:kSACalCfgResult object:nil];
     
-    [self deviceCalCfgCommand:VL_MSG_CONFIGURATION_MODE];
+    [self deviceCalCfgCommand:VL_MSG_CONFIGURATION_MODE charValue:NULL shortValue:NULL];
 }
 
 - (void)modeToUI {
@@ -216,51 +284,105 @@ typedef struct {
     
     if (self.tabBoost.hidden) {
         self.rangeCalibrationWheel.boostHidden = YES;
-        [self tabOpRange:self.tabOpRange];
+        [self tabOpRangeTouch:self.tabOpRange];
     }
 }
 
-- (IBAction)tabBoost:(id)sender {
+- (void)cfgToUIWithDelay:(BOOL)delay {
+    [self delayTimer2Invalidate];
+    
+    double time = [_lastCalCfgTime timeIntervalSinceNow] * -1;
+    
+    if (!delay || time > DISPLAY_DELAY_TIME) {
+        [self boostToUI];
+        [self modeToUI];
+        self.rangeCalibrationWheel.rightEdge = _vlconfig.edge_maximum;
+        self.rangeCalibrationWheel.leftEdge = _vlconfig.edge_minimum;
+        [self.rangeCalibrationWheel setMinimum:_vlconfig.operating_minimum andMaximum:_vlconfig.operating_maximum];
+        self.rangeCalibrationWheel.boostLevel = _vlconfig.boost_level;
+    } else {
+        if ( time < DISPLAY_DELAY_TIME ) {
+            time = DISPLAY_DELAY_TIME-time+0.001;
+        } else {
+            time = 0.001;
+        }
+        
+        _delayTimer2 = [NSTimer scheduledTimerWithTimeInterval:time target:self selector:@selector(timer2FireMethod:) userInfo:nil repeats:NO];
+    }
+}
+
+- (void)timer2FireMethod:(NSTimer *)timer {
+    [self cfgToUIWithDelay:YES];
+}
+
+- (IBAction)tabBoostTouch:(id)sender {
     self.tabBoost.backgroundColor = [UIColor whiteColor];
     self.tabOpRange.backgroundColor = [UIColor clearColor];
     self.rangeCalibrationWheel.boostHidden = NO;
 }
 
-- (IBAction)tabOpRange:(id)sender {
+- (IBAction)tabOpRangeTouch:(id)sender {
     self.tabBoost.backgroundColor = [UIColor clearColor];
     self.tabOpRange.backgroundColor = [UIColor whiteColor];
     self.rangeCalibrationWheel.boostHidden = YES;
 }
 
-- (IBAction)tabBoostNoTouch:(id)sender {
-    _vlconfig.boost = BOOST_NO;
+- (IBAction)tabBoostYesNoTouch:(id)sender {
+    _vlconfig.boost = sender == self.tabBoostYes ? BOOST_YES : BOOST_NO;
     [self boostToUI];
+    [self deviceCalCfgCommand:VL_MSG_SET_BOOST charValue:_vlconfig.boost];
+    
+    if (sender == self.tabBoostYes) {
+        [self calibrationWheelBoostChanged:self.rangeCalibrationWheel];
+    }
 }
 
-- (IBAction)tabBoostYesTouch:(id)sender {
-    _vlconfig.boost = BOOST_YES;
-    [self boostToUI];
-}
-
-- (IBAction)tabMode3Touch:(id)sender {
-    _vlconfig.mode = MODE_3;
+- (IBAction)tabMode123Touch:(id)sender {
+    if (sender == self.tabMode1) {
+        _vlconfig.mode = MODE_1;
+    } else if (sender == self.tabMode2) {
+        _vlconfig.mode = MODE_2;
+    } else if (sender == self.tabMode3) {
+        _vlconfig.mode = MODE_3;
+    }
+    
     [self modeToUI];
+    [self deviceCalCfgCommand:VL_MSG_SET_MODE charValue:_vlconfig.mode];
 }
 
-- (IBAction)tabMode2Touch:(id)sender {
-    _vlconfig.mode = MODE_2;
-    [self modeToUI];
-}
-
-- (IBAction)tabMode1Touch:(id)sender {
-    _vlconfig.mode = MODE_1;
-    [self modeToUI];
-}
 
 - (IBAction)btnOKTouch:(id)sender {
+    _configStarted = false;
+    [self deviceCalCfgCommand:VL_MSG_CONFIG_COMPLETE charValue:1];
+    [self dismiss];
 }
 
 - (IBAction)btnRestoreTouch:(id)sender {
+    UIAlertController * alert = [UIAlertController
+                                 alertControllerWithTitle:@"SUPLA"
+                                 message:NSLocalizedString(@"Are you sure you want to restore the default settings?", nil)
+                                 preferredStyle:UIAlertControllerStyleAlert];
+    
+    UIAlertAction* yesBtn = [UIAlertAction
+                             actionWithTitle:NSLocalizedString(@"Yes", nil)
+                             style:UIAlertActionStyleDefault
+                             handler:^(UIAlertAction * action) {
+        [self deviceCalCfgCommand:VL_MSG_RESTORE_DEFAULTS charValue:NULL shortValue:NULL];
+    }];
+    
+    UIAlertAction* noBtn = [UIAlertAction
+                            actionWithTitle:NSLocalizedString(@"No", nil)
+                            style:UIAlertActionStyleDefault
+                            handler:^(UIAlertAction * action) {
+    }];
+    
+    
+    [alert setTitle: NSLocalizedString(@"Default settings", nil)];
+    [alert addAction:noBtn];
+    [alert addAction:yesBtn];
+    
+    UIViewController *vc = [[[[UIApplication sharedApplication] delegate] window] rootViewController];
+    [vc presentViewController:alert animated:YES completion:nil];
 }
 
 - (IBAction)btnInfoTouch:(id)sender {
@@ -275,6 +397,14 @@ typedef struct {
 
 +(SAVLCalibrationTool*)newInstance {
     return [[[NSBundle mainBundle] loadNibNamed:@"SAVLCalibrationTool" owner:nil options:nil] objectAtIndex:0];
+}
+
+-(void) calibrationWheelRangeChanged:(SARangeCalibrationWheel *)wheel minimum:(BOOL)min {
+    [self deviceCalCfgCommandWithDelay:min ? VL_MSG_SET_MINIMUM : VL_MSG_SET_MAXIMUM];
+}
+
+-(void) calibrationWheelBoostChanged:(SARangeCalibrationWheel *)wheel {
+    [self deviceCalCfgCommandWithDelay:VL_MSG_SET_BOOST_LEVEL];
 }
 
 @end

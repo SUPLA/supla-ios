@@ -21,7 +21,7 @@ NS_ASSUME_NONNULL_BEGIN
 @protocol SARangeCalibrationWheelDelegate <NSObject>
 
 @required
--(void) calibrationWheelRangeChanged:(SARangeCalibrationWheel *)wheel;
+-(void) calibrationWheelRangeChanged:(SARangeCalibrationWheel *)wheel minimum:(BOOL)min;
 -(void) calibrationWheelBoostChanged:(SARangeCalibrationWheel *)wheel;
 
 @end

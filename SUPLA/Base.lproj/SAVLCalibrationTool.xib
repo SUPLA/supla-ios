@@ -42,7 +42,7 @@
                                 </userDefinedRuntimeAttribute>
                             </userDefinedRuntimeAttributes>
                             <connections>
-                                <action selector="tabMode1Touch:" destination="iN0-l3-epB" eventType="touchDown" id="wXK-BH-3qD"/>
+                                <action selector="tabMode123Touch:" destination="iN0-l3-epB" eventType="touchDown" id="wXK-BH-3qD"/>
                             </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mhd-rn-O8m" userLabel="tabMode2">
@@ -66,7 +66,7 @@
                                 </userDefinedRuntimeAttribute>
                             </userDefinedRuntimeAttributes>
                             <connections>
-                                <action selector="tabMode2Touch:" destination="iN0-l3-epB" eventType="touchDown" id="9sJ-hX-UJS"/>
+                                <action selector="tabMode123Touch:" destination="iN0-l3-epB" eventType="touchDown" id="uf4-aZ-t3L"/>
                             </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5NZ-KI-0CD" userLabel="tabMode3">
@@ -90,7 +90,7 @@
                                 </userDefinedRuntimeAttribute>
                             </userDefinedRuntimeAttributes>
                             <connections>
-                                <action selector="tabMode3Touch:" destination="iN0-l3-epB" eventType="touchDown" id="Hgy-mD-DVc"/>
+                                <action selector="tabMode123Touch:" destination="iN0-l3-epB" eventType="touchDown" id="YQb-8H-6hQ"/>
                             </connections>
                         </button>
                     </subviews>
@@ -142,7 +142,7 @@
                                 </userDefinedRuntimeAttribute>
                             </userDefinedRuntimeAttributes>
                             <connections>
-                                <action selector="tabBoostYesTouch:" destination="iN0-l3-epB" eventType="touchDown" id="4lD-sr-Rhi"/>
+                                <action selector="tabBoostYesNoTouch:" destination="iN0-l3-epB" eventType="touchDown" id="4lD-sr-Rhi"/>
                             </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0Qk-BM-JC5" userLabel="tabNo">
@@ -166,7 +166,7 @@
                                 </userDefinedRuntimeAttribute>
                             </userDefinedRuntimeAttributes>
                             <connections>
-                                <action selector="tabBoostNoTouch:" destination="iN0-l3-epB" eventType="touchDown" id="9hD-De-VkZ"/>
+                                <action selector="tabBoostYesNoTouch:" destination="iN0-l3-epB" eventType="touchDown" id="upf-OS-Zt8"/>
                             </connections>
                         </button>
                     </subviews>
@@ -258,7 +258,7 @@
                                 <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </state>
                             <connections>
-                                <action selector="tabOpRange:" destination="iN0-l3-epB" eventType="touchDown" id="KAr-hh-yDh"/>
+                                <action selector="tabOpRangeTouch:" destination="iN0-l3-epB" eventType="touchDown" id="KAr-hh-yDh"/>
                             </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tMB-hx-Fnq" userLabel="tabBoost">
@@ -274,7 +274,7 @@
                                 <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </state>
                             <connections>
-                                <action selector="tabBoost:" destination="iN0-l3-epB" eventType="touchDown" id="nHj-KL-n5l"/>
+                                <action selector="tabBoostTouch:" destination="iN0-l3-epB" eventType="touchDown" id="nHj-KL-n5l"/>
                             </connections>
                         </button>
                     </subviews>
