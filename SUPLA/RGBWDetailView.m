@@ -107,7 +107,7 @@
         self.cbPicker.brightnessMarkers = _brightnessMarkers;
     }
     
-    [self pickerToUI];
+    [self pickerToExtraButton];
 }
 
 - (void)sendNewValuesWithTurnOnOff:(BOOL)turnOnOff {
@@ -235,7 +235,7 @@
     self.tabDimmer.selected = YES;
     self.tabDimmer.backgroundColor = [UIColor rgbwSelectedTabColor];
     self.cbPicker.brightness = _brightness;
-    [self pickerToUI];
+    [self pickerToExtraButton];
 }
 
 -(void)showRGB {
@@ -250,7 +250,6 @@
     self.tabDimmer.selected = NO;
     self.tabDimmer.backgroundColor = [UIColor rgbwNormalTabColor];
     self.cbPicker.brightness = _colorBrightness;
-    [self pickerToUI];
 }
 
 -(void)updateView {
@@ -364,7 +363,7 @@
 
 -(void) cbPickerDataChanged:(SAColorBrightnessPicker*)picker {
     [self sendNewValues];
-    [self pickerToUI];
+    [self pickerToExtraButton];
 }
 
 -(void) cbPickerMoveEnded:(SAColorBrightnessPicker*)picker {
@@ -374,7 +373,7 @@
 
 -(void) cbPickerPowerButtonValueChanged:(SAColorBrightnessPicker*)picker {
     self.cbPicker.brightness = picker.powerButtonOn ? 100 : 0;
-    [self pickerToUI];
+    [self pickerToExtraButton];
     [self sendNewValuesWithTurnOnOff:YES];
 }
 
@@ -443,7 +442,7 @@
     [self showRGB];
 }
 
-- (void)pickerToUI {
+- (void)pickerToExtraButton {
     [self setPowerButtonOn:self.cbPicker.brightness > 0];
 }
 
