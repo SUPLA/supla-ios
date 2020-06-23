@@ -28,6 +28,7 @@
 
 #define MIN_REMOTE_UPDATE_PERIOD 0.25
 #define MIN_UPDATE_DELAY 3
+#define DELAY_AUTO 0
 
 @implementation SARGBWDetailView {
     int _brightness;
@@ -184,7 +185,7 @@
 }
 
 - (void)showValuesWithDelay {
-    [self showValuesWithDelay: 0];
+    [self showValuesWithDelay: DELAY_AUTO];
 }
 
 - (void)timer1FireMethod:(NSTimer *)timer {
@@ -231,6 +232,7 @@
     self.tabRGB.backgroundColor = [UIColor rgbwNormalTabColor];
     self.tabDimmer.selected = YES;
     self.tabDimmer.backgroundColor = [UIColor rgbwSelectedTabColor];
+    self.cbPicker.brightness = _brightness;
 }
 
 -(void)showRGB {
@@ -244,6 +246,7 @@
     self.tabRGB.backgroundColor = [UIColor rgbwSelectedTabColor];
     self.tabDimmer.selected = NO;
     self.tabDimmer.backgroundColor = [UIColor rgbwNormalTabColor];
+    self.cbPicker.brightness = _colorBrightness;
 }
 
 -(void)updateView {
@@ -261,25 +264,7 @@
     }
     
     if ( self.channelBase != nil ) {
-        
-        switch(self.channelBase.func) {
-            case SUPLA_CHANNELFNC_DIMMER:
-                self.cbPicker.colorWheelHidden = YES;
-                [self setRgbDimmerTabsHidden:YES];
-                [self showDimmer];
-                break;
-            case SUPLA_CHANNELFNC_RGBLIGHTING:
-                self.cbPicker.colorWheelHidden = NO;
-                [self setRgbDimmerTabsHidden:YES];
-                [self showRGB];
-                break;
-            case SUPLA_CHANNELFNC_DIMMERANDRGBLIGHTING:
-                self.cbPicker.colorWheelHidden = NO;
-                [self setRgbDimmerTabsHidden:NO];
-                [self showRGB];
-                break;
-        };
-        
+
         switch(self.channelBase.func) {
                 
             case SUPLA_CHANNELFNC_DIMMER:
@@ -346,6 +331,24 @@
             && ((SAChannel*)channelBase).product_id == 1) {
             _varilight = YES;
         }
+        
+        switch(self.channelBase.func) {
+            case SUPLA_CHANNELFNC_DIMMER:
+                self.cbPicker.colorWheelHidden = YES;
+                [self setRgbDimmerTabsHidden:YES];
+                [self showDimmer];
+                break;
+            case SUPLA_CHANNELFNC_RGBLIGHTING:
+                self.cbPicker.colorWheelHidden = NO;
+                [self setRgbDimmerTabsHidden:YES];
+                [self showRGB];
+                break;
+            case SUPLA_CHANNELFNC_DIMMERANDRGBLIGHTING:
+                self.cbPicker.colorWheelHidden = NO;
+                [self setRgbDimmerTabsHidden:NO];
+                [self showRGB];
+                break;
+        };
     }
     
     
