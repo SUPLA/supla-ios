@@ -106,6 +106,8 @@
         
         self.cbPicker.brightnessMarkers = _brightnessMarkers;
     }
+    
+    [self pickerToUI];
 }
 
 - (void)sendNewValuesWithTurnOnOff:(BOOL)turnOnOff {
@@ -233,6 +235,7 @@
     self.tabDimmer.selected = YES;
     self.tabDimmer.backgroundColor = [UIColor rgbwSelectedTabColor];
     self.cbPicker.brightness = _brightness;
+    [self pickerToUI];
 }
 
 -(void)showRGB {
@@ -247,6 +250,7 @@
     self.tabDimmer.selected = NO;
     self.tabDimmer.backgroundColor = [UIColor rgbwNormalTabColor];
     self.cbPicker.brightness = _colorBrightness;
+    [self pickerToUI];
 }
 
 -(void)updateView {
@@ -291,9 +295,6 @@
                 
                 break;
         };
-        
-        [self pickerToUI];
-        
     }
     
     for(int a=1;a<self.clPicker.count;a++) {
@@ -332,7 +333,7 @@
             _varilight = YES;
         }
         
-        switch(self.channelBase.func) {
+        switch(channelBase.func) {
             case SUPLA_CHANNELFNC_DIMMER:
                 self.cbPicker.colorWheelHidden = YES;
                 [self setRgbDimmerTabsHidden:YES];
