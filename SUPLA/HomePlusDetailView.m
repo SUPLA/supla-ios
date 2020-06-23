@@ -287,7 +287,7 @@ typedef enum {
     [self updateView];
 }
 
--(void)onDetailShow {
+-(void)detailWillShow {
     _frc = nil;
     [self showMainView];
     [self showErrorMessage:nil];
@@ -314,7 +314,7 @@ typedef enum {
     _refreshTimer1 = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(onRefreshTimer:) userInfo:nil repeats:NO];
 };
 
--(void)onDetailHide {
+-(void)detailWillHide {
     [self showMainView];
     
     if (_task) {
@@ -419,7 +419,6 @@ typedef enum {
     _presetTempMin = self.channelBase.presetTemperatureMin;
     _presetTempMax = self.channelBase.presetTemperatureMax;
     
-    [self.lCaption setText:[self.channelBase getChannelCaption]];
     [self.lTemperature setAttributedText:[self.channelBase attrStringValueWithIndex:0 font:self.lTemperature.font]];
         
     SAThermostatHPExtendedValue *thev = nil;

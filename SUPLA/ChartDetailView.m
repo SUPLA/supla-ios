@@ -54,8 +54,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     [super detailViewInit];
 }
 
--(void)onDetailShow {
-    [super onDetailShow];
+-(void)detailWillShow {
+    [super detailWillShow];
     
     [SAApp.instance cancelAllRestApiClientTasks];
     
@@ -70,8 +70,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     [self loadChartWithAnimation:YES moveToEnd:YES];
 }
 
--(void)onDetailHide {
-    [super onDetailHide];
+-(void)detailWillHide {
+    [super detailWillHide];
     
     if (_taskTimer) {
         [_taskTimer invalidate];
@@ -166,7 +166,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 - (void)updateView {
     [super updateView];
     [self.ivImage setImage:[self.channelBase getIcon]];
-    [self.lCaption setText:[self.channelBase getChannelCaption]];
 }
 
 @end

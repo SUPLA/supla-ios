@@ -100,3 +100,4 @@ extern NSString *kSARegistrationEnabledNotification;
 extern NSString *kSAOAuthTokenRequestResult;
 extern NSString *kSASuperuserAuthorizationResult;
 extern NSString *kSACalCfgResult;
+extern NSString *kSAMenubarBackButtonPressed;

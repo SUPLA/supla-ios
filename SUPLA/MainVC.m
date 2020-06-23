@@ -85,7 +85,7 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(onMenubarBackButtonPressed) name:kSAMenubarBackButtonPressed object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(onDataChanged) name:kSADataChangedNotification object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(onEvent:) name:kSAEventNotification object:nil];
         
@@ -108,6 +108,10 @@
     
     [self.cTableView reloadData];
     [self.gTableView reloadData];
+}
+
+-(void)onMenubarBackButtonPressed {
+    [(SAMainView*)self.view onMenubarBackButtonPressed];
 }
 
 - (void)onEvent:(NSNotification *)notification {
@@ -633,11 +637,17 @@
     
     [UIView commitAnimations];
     _animating = NO;
+    
+    if (_detailView) {
+        if (show) {
+            [_detailView detailWillShow];
+        } else {
+            [_detailView detailWillHide];
+        }
+    }
         
     if ( animated ) {
-        
-        _animating = YES;
-        
+                
         [UIView animateWithDuration:0.2
                          animations:^{
             
@@ -648,7 +658,7 @@
             }
             
             [self setCenter:CGPointMake((self.frame.size.width/2) * multiplier, self.center.y)];
-            [_detailView setFrame:[self getDetailFrame]];
+            [self->_detailView setFrame:[self getDetailFrame]];
             
             
         }
@@ -656,23 +666,23 @@
             
             if ( show == NO ) {
                 
-                if ( _detailView ) {
-                    [_detailView removeFromSuperview];
-                    [_detailView onDetailHide];
-                    _detailView = nil;
+                if ( self->_detailView ) {
+                    [self->_detailView removeFromSuperview];
+                    [self->_detailView detailDidHide];
+                    self->_detailView = nil;
                 }
                 
-                if ( cell ) {
-                    cell.contentView.backgroundColor = [UIColor cellBackground];
-                    cell = nil;
+                if ( self->cell ) {
+                    self->cell.contentView.backgroundColor = [UIColor cellBackground];
+                    self->cell = nil;
                 }
                 
-            } else if (_detailView) {
-                [_detailView onDetailShow];
+            } else if (self->_detailView) {
+                [self->_detailView detailDidShow];
             }
             
             
-            _animating = NO;
+            self->_animating = NO;
         }];
         
     } else {
@@ -683,7 +693,7 @@
             
             if ( _detailView ) {
                 [_detailView removeFromSuperview];
-                [_detailView onDetailHide];
+                [_detailView detailDidHide];
                 _detailView = nil;
             }
             
@@ -693,11 +703,19 @@
             }
             
         } else if (_detailView) {
-            [_detailView onDetailShow];
+            [_detailView detailDidShow];
         }
         
     }
     
+}
+
+- (void)onMenubarBackButtonPressed {
+    if (_detailView
+        && _detailView.superview
+        && [_detailView onMenubarBackButtonPressed]) {
+        [self detailShow:NO animated:YES];
+    }
 }
 
 - (void)handlePan:(UIPanGestureRecognizer *)gr {

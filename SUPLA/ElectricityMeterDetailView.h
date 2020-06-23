@@ -80,7 +80,6 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *cReverseReactiveEnergyTop;
 @property (weak, nonatomic) IBOutlet UILabel *lReverseReactiveEnergyValue;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *cReverseReactiveEnergyValueTop;
-@property (weak, nonatomic) IBOutlet UILabel *lCaption;
 @property (weak, nonatomic) IBOutlet UIButton *btnPhase1;
 @property (weak, nonatomic) IBOutlet UIButton *btnPhase2;
 @property (weak, nonatomic) IBOutlet UIButton *btnPhase3;

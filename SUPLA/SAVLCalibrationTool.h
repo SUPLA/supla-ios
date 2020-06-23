@@ -42,6 +42,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 -(void)startConfiguration:(SADetailView*)detailView;
 -(void)dismiss;
+-(BOOL)onMenubarBackButtonPressed;
 +(SAVLCalibrationTool*)newInstance;
 @end
 

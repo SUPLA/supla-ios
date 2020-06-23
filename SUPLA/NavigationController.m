@@ -154,6 +154,9 @@
     if ( self.btnMenu.tag == TAG_BTN_SETTINGS ) {
         [[SAApp UI] showSettings];
         return;
+    } else if ( self.btnMenu.tag == TAG_BTN_BACK ) {
+        [[NSNotificationCenter defaultCenter] postNotificationName:kSAMenubarBackButtonPressed object:self userInfo:nil];
+        return;
     }
     
     if ( self.menuItems.hidden ) {
@@ -251,7 +254,7 @@
 }
 
 -(void)showMenubarBackBtn {
-    [self showMenuButton:YES withImage:[UIImage imageNamed:@"settings.png"] tag:TAG_BTN_BACK hideDetailTitle:NO];
+    [self showMenuButton:YES withImage:[UIImage imageNamed:@"backbtn.png"] tag:TAG_BTN_BACK hideDetailTitle:NO];
 }
 
 -(void)setMenubarDetailTitle:(NSString *)title {

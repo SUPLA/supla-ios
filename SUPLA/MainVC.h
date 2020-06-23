@@ -45,6 +45,7 @@
 @property (weak, nonatomic) IBOutlet UITableView *gTableView;
 @property (weak, nonatomic, readonly) SADetailView *detailView;
 
+- (void)onMenubarBackButtonPressed;
 - (void)detailShow:(BOOL)show animated:(BOOL)animated;
 - (void)moveCenter:(float)x_offset;
 

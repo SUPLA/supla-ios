@@ -101,6 +101,7 @@
 		01D0617122C296850043C947 /* ElectricityMeterDetailView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 01D0617322C296850043C947 /* ElectricityMeterDetailView.xib */; };
 		01D2C38D22C3B0A700BF1A10 /* graphon.png in Resources */ = {isa = PBXBuildFile; fileRef = 01D2C38B22C3B0A700BF1A10 /* graphon.png */; };
 		01D2C38E22C3B0A700BF1A10 /* graphoff.png in Resources */ = {isa = PBXBuildFile; fileRef = 01D2C38C22C3B0A700BF1A10 /* graphoff.png */; };
+		01D3FF6724A20E26000EBE77 /* backbtn@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 01D3FF6624A20E26000EBE77 /* backbtn@3x.png */; };
 		01D4293322AAA83E0050C1A2 /* electricitymeter@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 01D4292D22AAA83D0050C1A2 /* electricitymeter@3x.png */; };
 		01D4293422AAA83E0050C1A2 /* watermeter@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 01D4292E22AAA83D0050C1A2 /* watermeter@3x.png */; };
 		01D4293522AAA83E0050C1A2 /* gasmeter@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 01D4292F22AAA83D0050C1A2 /* gasmeter@2x.png */; };
@@ -650,6 +651,7 @@
 		01D0617222C296850043C947 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/ElectricityMeterDetailView.xib; sourceTree = "<group>"; };
 		01D2C38B22C3B0A700BF1A10 /* graphon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = graphon.png; path = Resources/Assets/Img/graphon.png; sourceTree = "<group>"; };
 		01D2C38C22C3B0A700BF1A10 /* graphoff.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = graphoff.png; path = Resources/Assets/Img/graphoff.png; sourceTree = "<group>"; };
+		01D3FF6624A20E26000EBE77 /* backbtn@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "backbtn@3x.png"; path = "Resources/Assets/Img/backbtn@3x.png"; sourceTree = "<group>"; };
 		01D4292D22AAA83D0050C1A2 /* electricitymeter@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "electricitymeter@3x.png"; path = "Resources/Assets/Img/electricitymeter@3x.png"; sourceTree = "<group>"; };
 		01D4292E22AAA83D0050C1A2 /* watermeter@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "watermeter@3x.png"; path = "Resources/Assets/Img/watermeter@3x.png"; sourceTree = "<group>"; };
 		01D4292F22AAA83D0050C1A2 /* gasmeter@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "gasmeter@2x.png"; path = "Resources/Assets/Img/gasmeter@2x.png"; sourceTree = "<group>"; };
@@ -1312,6 +1314,7 @@
 		405AC4011BC15878004F7311 /* Img */ = {
 			isa = PBXGroup;
 			children = (
+				01D3FF6624A20E26000EBE77 /* backbtn@3x.png */,
 				01D6A105249C0EAC006B3757 /* vlinfo@3.png */,
 				01D6A103249C0DC8006B3757 /* vprosmart@3.png */,
 				010C8782249A6471002FE526 /* infoclose@2x.png */,
@@ -2048,6 +2051,7 @@
 				40B9ED551FACD0A100403B1A /* pc-off@2x.png in Resources */,
 				01D6A106249C0EAC006B3757 /* vlinfo@3.png in Resources */,
 				408034E61BC84A89007666E7 /* NavigationController.xib in Resources */,
+				01D3FF6724A20E26000EBE77 /* backbtn@3x.png in Resources */,
 				40CF96B11BC7D4E70030EFFF /* garagedoor-open@3x.png in Resources */,
 				40B9ED801FACE15700403B1A /* window-open@3x.png in Resources */,
 				40477B3D20C6C57700E995E6 /* staircasetimer-off@3x.png in Resources */,

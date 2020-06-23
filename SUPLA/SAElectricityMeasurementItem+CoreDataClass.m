@@ -42,7 +42,7 @@
     self.fae_balanced = [self doubleForKey:@"fae_balanced" withObject:object];
     self.rae_balanced = [self doubleForKey:@"rae_balanced" withObject:object];
     
-    NSLog(@"fae=%f rae=%f", self.fae_balanced, self.rae_balanced);
+    //NSLog(@"fae=%f rae=%f", self.fae_balanced, self.rae_balanced);
 }
 
 - (void) assignMeasurementItem:(SAMeasurementItem*)source {

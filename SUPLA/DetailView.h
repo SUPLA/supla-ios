@@ -24,8 +24,11 @@
 
 -(void)detailViewInit;
 -(void)updateView;
--(void)onDetailShow;
--(void)onDetailHide;
+-(void)detailWillShow;
+-(void)detailWillHide;
+-(void)detailDidShow;
+-(void)detailDidHide;
+-(BOOL)onMenubarBackButtonPressed;
 
 @property (weak, nonatomic) SAChannelBase  *channelBase;
 @property (weak, nonatomic) SAMainView *main_view;

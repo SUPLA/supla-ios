@@ -39,6 +39,7 @@ NSString *kSARegistrationEnabledNotification = @"KSA-N12";
 NSString *kSAOAuthTokenRequestResult = @"KSA-N13";
 NSString *kSASuperuserAuthorizationResult = @"KSA-N14";
 NSString *kSACalCfgResult = @"KSA-N15";
+NSString *kSAMenubarBackButtonPressed = @"KSA-N16";
 
 @implementation SAApp {
     

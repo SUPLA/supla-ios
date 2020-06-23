@@ -464,4 +464,11 @@
     [self cbPickerPowerButtonValueChanged:self.cbPicker];
 }
 
+-(BOOL)onMenubarBackButtonPressed {
+    if (_vlCalibrationTool && _vlCalibrationTool.superview) {
+        return [_vlCalibrationTool onMenubarBackButtonPressed];
+    }
+    return YES;
+}
+
 @end

@@ -1,17 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
         <array key="OpenSans-Regular.ttf">
             <string>OpenSans</string>
-        </array>
-        <array key="Quicksand-Regular.ttf">
-            <string>Quicksand-Regular</string>
         </array>
     </customFonts>
     <objects>
@@ -22,10 +19,10 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7N4-8Z-Qys" userLabel="vContent">
-                    <rect key="frame" x="10" y="130" width="394" height="706"/>
+                    <rect key="frame" x="10" y="130" width="394" height="751"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KJO-jy-HZm" userLabel="vOptions">
-                            <rect key="frame" x="0.0" y="656" width="394" height="50"/>
+                            <rect key="frame" x="0.0" y="701" width="394" height="50"/>
                             <subviews>
                                 <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9vs-Po-KOi">
                                     <rect key="frame" x="10" y="9.5" width="51" height="31"/>
@@ -66,7 +63,7 @@
                             </constraints>
                         </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Viq-ki-oJb" userLabel="vCharts">
-                            <rect key="frame" x="0.0" y="0.0" width="394" height="656"/>
+                            <rect key="frame" x="0.0" y="0.0" width="394" height="701"/>
                             <subviews>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Zgr-lZ-ARK" userLabel="vFilters">
                                     <rect key="frame" x="0.0" y="0.0" width="394" height="32"/>
@@ -91,10 +88,10 @@
                                     </constraints>
                                 </view>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gjc-cN-kLg" userLabel="vChartContainer">
-                                    <rect key="frame" x="0.0" y="37" width="394" height="619"/>
+                                    <rect key="frame" x="0.0" y="37" width="394" height="664"/>
                                     <subviews>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8Ol-0h-IA4" customClass="CombinedChartView" customModule="Charts">
-                                            <rect key="frame" x="0.0" y="0.0" width="394" height="619"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="394" height="664"/>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </view>
                                     </subviews>
@@ -128,37 +125,6 @@
                         <constraint firstItem="Viq-ki-oJb" firstAttribute="leading" secondItem="7N4-8Z-Qys" secondAttribute="leading" id="pw5-Uk-SCS"/>
                         <constraint firstItem="Viq-ki-oJb" firstAttribute="top" secondItem="7N4-8Z-Qys" secondAttribute="top" id="sZf-9t-Ad6"/>
                         <constraint firstAttribute="bottom" secondItem="KJO-jy-HZm" secondAttribute="bottom" id="whb-ll-ZV2"/>
-                    </constraints>
-                </view>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8E1-lV-kYB" userLabel="vFooter">
-                    <rect key="frame" x="10" y="841" width="394" height="40"/>
-                    <subviews>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Caption" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wSk-vi-yhX">
-                            <rect key="frame" x="0.0" y="0.0" width="394" height="30"/>
-                            <constraints>
-                                <constraint firstAttribute="height" constant="30" id="wNv-kS-q6K"/>
-                            </constraints>
-                            <fontDescription key="fontDescription" name="Quicksand-Regular" family="Quicksand" pointSize="22"/>
-                            <nil key="textColor"/>
-                            <nil key="highlightedColor"/>
-                        </label>
-                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="j8M-lN-2p0" userLabel="vLine2">
-                            <rect key="frame" x="0.0" y="35" width="394" height="1"/>
-                            <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                            <constraints>
-                                <constraint firstAttribute="height" constant="1" id="BMP-iG-594"/>
-                            </constraints>
-                        </view>
-                    </subviews>
-                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                    <constraints>
-                        <constraint firstItem="j8M-lN-2p0" firstAttribute="top" secondItem="wSk-vi-yhX" secondAttribute="bottom" constant="5" id="2LY-Ni-g5j"/>
-                        <constraint firstAttribute="trailing" secondItem="wSk-vi-yhX" secondAttribute="trailing" id="CMD-qi-Mvh"/>
-                        <constraint firstItem="wSk-vi-yhX" firstAttribute="top" secondItem="8E1-lV-kYB" secondAttribute="top" id="Eck-7B-Nuw"/>
-                        <constraint firstAttribute="height" constant="40" id="apc-L4-fPg"/>
-                        <constraint firstAttribute="trailing" secondItem="j8M-lN-2p0" secondAttribute="trailing" id="m4p-Tg-Mei"/>
-                        <constraint firstItem="wSk-vi-yhX" firstAttribute="leading" secondItem="8E1-lV-kYB" secondAttribute="leading" id="mzB-PS-19x"/>
-                        <constraint firstItem="j8M-lN-2p0" firstAttribute="leading" secondItem="8E1-lV-kYB" secondAttribute="leading" id="tNa-30-6eM"/>
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fA0-ST-8VF" userLabel="vHeader">
@@ -256,13 +222,10 @@
                 <constraint firstItem="7N4-8Z-Qys" firstAttribute="leading" secondItem="noP-Sv-wiB" secondAttribute="leading" constant="10" id="1Sc-1d-cLC"/>
                 <constraint firstItem="fA0-ST-8VF" firstAttribute="leading" secondItem="noP-Sv-wiB" secondAttribute="leading" constant="10" id="9vj-wb-dAi"/>
                 <constraint firstItem="7N4-8Z-Qys" firstAttribute="top" secondItem="fA0-ST-8VF" secondAttribute="bottom" constant="5" id="MwG-cd-d5L"/>
-                <constraint firstItem="8E1-lV-kYB" firstAttribute="leading" secondItem="noP-Sv-wiB" secondAttribute="leading" constant="10" id="TP8-Hi-70m"/>
-                <constraint firstAttribute="bottom" secondItem="8E1-lV-kYB" secondAttribute="bottom" constant="15" id="bTW-SV-WrA"/>
+                <constraint firstAttribute="bottom" secondItem="7N4-8Z-Qys" secondAttribute="bottom" constant="15" id="Nwc-rc-wCd"/>
                 <constraint firstAttribute="trailing" secondItem="7N4-8Z-Qys" secondAttribute="trailing" constant="10" id="llI-uf-z7b"/>
                 <constraint firstItem="fA0-ST-8VF" firstAttribute="top" secondItem="noP-Sv-wiB" secondAttribute="top" constant="10" id="m2W-CF-sbR"/>
-                <constraint firstItem="8E1-lV-kYB" firstAttribute="top" secondItem="7N4-8Z-Qys" secondAttribute="bottom" constant="5" id="mpb-eB-dpB"/>
                 <constraint firstAttribute="trailing" secondItem="fA0-ST-8VF" secondAttribute="trailing" constant="10" id="snt-bu-fEa"/>
-                <constraint firstAttribute="trailing" secondItem="8E1-lV-kYB" secondAttribute="trailing" constant="10" id="tXA-O1-DOV"/>
             </constraints>
             <nil key="simulatedTopBarMetrics"/>
             <nil key="simulatedBottomBarMetrics"/>
@@ -271,7 +234,6 @@
                 <outlet property="ftDateRangeFilter" destination="kgv-fs-w8P" id="YPM-61-lE7"/>
                 <outlet property="ivHumidityImage" destination="Xtg-6O-JcQ" id="CsD-hS-MBF"/>
                 <outlet property="ivImage" destination="Dzh-y9-CnX" id="7Tg-sk-Edh"/>
-                <outlet property="lCaption" destination="wSk-vi-yhX" id="QMw-yW-z12"/>
                 <outlet property="lHumidity" destination="MSW-a7-MF2" id="WkC-ap-cLP"/>
                 <outlet property="lPreloader" destination="0Ut-ce-7ai" id="ILj-MS-AWh"/>
                 <outlet property="lTemperature" destination="qAx-Ae-Wgn" id="IIT-Uy-dk2"/>

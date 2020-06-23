@@ -407,4 +407,9 @@ typedef struct {
     [self deviceCalCfgCommandWithDelay:VL_MSG_SET_BOOST_LEVEL];
 }
 
+-(BOOL) onMenubarBackButtonPressed {
+    [self dismiss];
+    return NO;
+}
+
 @end

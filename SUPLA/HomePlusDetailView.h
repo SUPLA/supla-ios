@@ -61,7 +61,6 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet SAPreloader *lPreloader;
 - (IBAction)calendarButtonTouched:(id)sender;
 - (IBAction)settingsButtonTouched:(id)sender;
-@property (weak, nonatomic) IBOutlet UILabel *lCaption;
 @property (weak, nonatomic) IBOutlet CombinedChartView *combinedChart;
 @property (weak, nonatomic) IBOutlet UITableView *tvChannels;
 @property (weak, nonatomic) IBOutlet UIView *vCharts;
