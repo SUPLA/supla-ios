@@ -36,11 +36,11 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     [self.lHumidity setText:[[self.channelBase attrStringValueWithIndex:1 font:nil] string]];
 }
 
--(void)onDetailShow {
+-(void)detailWillShow {
     self.swTemperature.on = YES;
     self.swHumidity.on= YES;
     
-    [super onDetailShow];
+    [super detailWillShow];
 }
 
 - (void)applyChartFilter {

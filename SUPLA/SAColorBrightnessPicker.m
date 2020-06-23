@@ -19,9 +19,10 @@
 
 #define DEGREES_TO_RADIANS(degrees)((M_PI * degrees)/180)
 
-#define ACTIVE_ARROW_NONE         0
-#define ACTIVE_ARROW_COLOR        1
-#define ACTIVE_ARROW_BRIGHTNESS   2
+#define ACTIVE_TOUCHPOINT_NONE 0
+#define ACTIVE_TOUCHPOINT_COLOR_POINTER 1
+#define ACTIVE_TOUCHPOINT_BRIGHTNESS_POINTER 2
+#define ACTIVE_TOUCHPOINT_POWER_BUTTON 3
 
 @implementation SAColorBrightnessPicker {
     
@@ -30,10 +31,10 @@
     NSArray *_colorMarkers;
     NSArray *_brightnessMarkers;
     BOOL _moving;
-    BOOL _colorWheelVisible;
+    BOOL _colorWheelHidden;
     BOOL _circleInsteadArrow;
     BOOL _colorfulBrightnessWheel;
-    BOOL _sliderVisible;
+    BOOL _sliderHidden;
     
     CGPoint _arrowTop;
     CGPoint _inversedArrowTop;
@@ -45,14 +46,21 @@
     float _colorAngle;
     
     float lastPanPosition;
-    char activeArrow;
+    char activeTouchPoint;
     
     CGPoint _colorPointerCentralPoint;
     CGPoint _brightnessPointerCentralPoint;
     float _pointerRadius;
     float _sliderPointerRange;
     
-    UIPanGestureRecognizer *_gr;
+    float _powerBtnRadius;
+    BOOL _powerButtonHidden;
+    BOOL _powerButtonEnabled;
+    BOOL _powerButtonOn;
+    UIColor *_powerButtonColorOn;
+    UIColor *_powerButtonColorOff;
+    UIPanGestureRecognizer *_panGr;
+    UITapGestureRecognizer *_tapGr;
 }
 
 @synthesize delegate;
@@ -66,19 +74,27 @@
     if ( initialized )
         return;
     
-    _gr = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(handlePan:)];
-    
-    [_gr setMinimumNumberOfTouches:1];
-    [_gr setMaximumNumberOfTouches:1];
-    
-    [self addGestureRecognizer:_gr];
-    
-    _colorWheelVisible = YES;
+    _sliderHidden = YES;
     _colorfulBrightnessWheel = YES;
-    _circleInsteadArrow = NO;
+    _circleInsteadArrow = YES;
     _colorfulBrightnessWheel = YES;
+    _powerButtonEnabled = YES;
+    // #f7f0dc
+    _powerButtonColorOn = [UIColor whiteColor];
+    // #404040
+    _powerButtonColorOff = [UIColor colorWithRed: 0.25 green: 0.25 blue: 0.25 alpha: 1.00];
     _brightness = 0;
+    // #00FF00
     _color = [UIColor colorWithRed:0 green:255 blue:0 alpha:1];
+    
+    _panGr = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(handlePan:)];
+    _tapGr = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTap:)];
+    
+    [_panGr setMinimumNumberOfTouches:1];
+    [_panGr setMaximumNumberOfTouches:1];
+    
+    [self addGestureRecognizer:_panGr];
+    [self addGestureRecognizer:_tapGr];
     
     initialized = YES;
 }
@@ -124,16 +140,13 @@
     [self setNeedsDisplay];
 }
 
--(void)setColorWheelVisible:(BOOL)colorWheelVisible {
-    if (colorWheelVisible) {
-        self.sliderVisible = NO;
-    }
-    _colorWheelVisible = colorWheelVisible;
+-(void)setColorWheelHidden:(BOOL)colorWheelHidden {
+    _colorWheelHidden = colorWheelHidden;
     [self setNeedsDisplay];
 }
 
--(BOOL)colorWheelVisible {
-    return _colorWheelVisible;
+-(BOOL)colorWheelHidden {
+    return _colorWheelHidden;
 }
 
 -(void)setCircleInsteadArrow:(BOOL)circleInsteadArrow {
@@ -154,16 +167,13 @@
     return _colorfulBrightnessWheel;
 }
 
--(void)setSliderVisible:(BOOL)sliderVisible {
-    if (sliderVisible) {
-        self.colorWheelVisible = NO;
-    }
-    _sliderVisible = sliderVisible;
+-(void)setSliderHidden:(BOOL)sliderHidden {
+    _sliderHidden = sliderHidden;
     [self setNeedsDisplay];
 }
 
--(BOOL)sliderVisible {
-    return _sliderVisible;
+-(BOOL)sliderHidden {
+    return _sliderHidden;
 }
 
 -(UIColor*)color {
@@ -185,11 +195,13 @@
 
 -(void)setColor:(UIColor *)color {
     
-    _color = color;
-    _colorAngle = [self colorToAngle:color];
-    
-    if ( self.colorWheelVisible ) {
-        [self setNeedsDisplay];
+    if (color != nil) {
+        _color = [color copy];
+        _colorAngle = [self colorToAngle:color];
+        
+        if ( !self.colorWheelHidden ) {
+            [self setNeedsDisplay];
+        }
     }
 }
 
@@ -198,6 +210,11 @@
 }
 
 -(void)setBrightness:(float)brightness {
+    if (brightness < 0) {
+        brightness = 0;
+    } else if (brightness > 100) {
+        brightness = 100;
+    }
     
     _brightness = brightness;
     [self setNeedsDisplay];
@@ -220,6 +237,52 @@
 -(void)setBrightnessMarkers:(NSArray *)brightnessMarkers {
     _brightnessMarkers = brightnessMarkers;
     [self setNeedsDisplay];
+}
+
+-(void)setPowerButtonHidden:(BOOL)powerButtonHidden {
+    _powerButtonHidden = powerButtonHidden;
+    [self setNeedsDisplay];
+}
+
+-(BOOL)powerButtonHidden {
+    return _powerButtonHidden;
+}
+
+-(void)setPowerButtonEnabled:(BOOL)powerButtonEnabled {
+    _powerButtonEnabled = powerButtonEnabled;
+}
+
+-(BOOL)powerButtonEnabled {
+    return _powerButtonEnabled;
+}
+
+-(void)setPowerButtonOn:(BOOL)powerButtonOn {
+    _powerButtonOn = powerButtonOn;
+    [self setNeedsDisplay];
+}
+
+-(BOOL)powerButtonOn {
+    return _powerButtonOn;
+}
+
+-(UIColor*)powerButtonColorOn {
+    return _powerButtonColorOn;
+}
+
+-(void)setPowerButtonColorOn:(UIColor *)powerButtonColorOn {
+    if (powerButtonColorOn != nil) {
+        _powerButtonColorOn = [powerButtonColorOn copy];
+    }
+}
+
+-(UIColor*)powerButtonColorOff {
+    return _powerButtonColorOff;
+}
+
+-(void)setPowerButtonColorOff:(UIColor *)powerButtonColorOff {
+    if (powerButtonColorOff != nil) {
+        _powerButtonColorOff = [powerButtonColorOff copy];
+    }
 }
 
 -(float)addAngle:(float)angle toAngle:(float)source {
@@ -270,15 +333,29 @@
     }
 }
 
-- (void)drawWheelMarkers:(NSArray*)markers withRadius:(int)radius markerSize:(float)markerSize brightness:(BOOL)brightness ctx:(CGContextRef)ctx {
+- (void)drawMarkerInRect:(CGRect)rect ctx:(CGContextRef)ctx {
+    CGContextAddEllipseInRect(ctx, rect);
+    CGContextSetFillColorWithColor(ctx, [UIColor whiteColor].CGColor);
+    CGContextFillPath(ctx);
     
-    CGRect rect;
-    float angle;
-    id obj;
+    CGContextSetLineWidth(ctx, rect.size.height/8);
+    CGContextAddEllipseInRect(ctx, rect);
+    CGContextSetStrokeColorWithColor(ctx, [UIColor blackColor].CGColor);
+    CGContextStrokePath(ctx);
+}
+
+- (void)drawWheelMarkers:(NSArray*)markers withRadius:(int)radius markerSize:(float)markerSize brightness:(BOOL)brightness ctx:(CGContextRef)ctx {
     
     if (markers==nil) {
         return;
     }
+    
+    CGRect rect;
+    rect.size.height = markerSize;
+    rect.size.width = rect.size.height;
+    
+    float angle;
+    id obj;
     
     for(int a=0;a<markers.count;a++) {
         angle = 0;
@@ -286,19 +363,25 @@
         
         if (brightness) {
             
-            if ([obj isKindOfClass:[NSNumber class]]) {
-                float b = [obj intValue];
-                
-                if (b < 0.5) {
-                    b = 0.5;
-                } else if (b > 99.5) {
-                    b = 99.5;
-                }
-                
-                angle = b*3.6;
+            if (![obj isKindOfClass:[NSNumber class]]) {
+                continue;
             }
             
-        } else if ([obj isKindOfClass:[UIColor class]]) {
+            float b = [obj floatValue];
+            
+            if (b < 0.5) {
+                b = 0.5;
+            } else if (b > 99.5) {
+                b = 99.5;
+            }
+            
+            angle = b*3.6;
+            
+        } else {
+            if (![obj isKindOfClass:[UIColor class]]) {
+                continue;
+            }
+            
             angle = [self colorToAngle:obj];
         }
         
@@ -306,17 +389,32 @@
         
         rect.origin.x = cosf(angle) * radius - markerSize/2;
         rect.origin.y = sinf(angle) * radius - markerSize/2;
-        rect.size.height = markerSize;
-        rect.size.width = rect.size.height;
         
-        CGContextAddEllipseInRect(ctx, rect);
-        CGContextSetFillColorWithColor(ctx, [UIColor whiteColor].CGColor);
-        CGContextFillPath(ctx);
+        [self drawMarkerInRect:rect ctx:ctx];
+    }
+}
+
+- (void)drawSliderMarkersInRect:(CGRect)rect markerSize:(CGFloat)size ctx:(CGContextRef)ctx {
+    if (self.brightnessMarkers == nil) {
+        return;
+    }
+    
+    id obj;
+    CGRect markerRect;
+    markerRect.origin.x = rect.origin.x + rect.size.width/2 - size / 2;
+    markerRect.size.height = size;
+    markerRect.size.width = size;
+    
+    for(int a=0;a<self.brightnessMarkers.count;a++) {
+        obj = [self.brightnessMarkers objectAtIndex:a];
+        if (![obj isKindOfClass:[NSNumber class]]) {
+            continue;
+        }
         
-        CGContextSetLineWidth(ctx, markerSize/8);
-        CGContextAddEllipseInRect(ctx, rect);
-        CGContextSetStrokeColorWithColor(ctx, [UIColor blackColor].CGColor);
-        CGContextStrokePath(ctx);
+        markerRect.origin.y = rect.origin.y + rect.size.width/2 - size /2
+        + (rect.size.height - rect.size.width) * [obj floatValue] / 100.0;
+        
+        [self drawMarkerInRect:markerRect ctx:ctx];
     }
 }
 
@@ -385,12 +483,12 @@
     CGContextAddEllipseInRect(ctx, rect);
     CGContextSetFillColorWithColor(ctx, color.CGColor);
     CGContextFillPath(ctx);
-    
-    CGContextSetLineWidth(ctx, 2);
-    rect.origin.x += 2;
-    rect.origin.y += 2;
-    rect.size.height -= 4;
-    rect.size.width -= 4;
+    CGFloat lw = rect.size.width * 0.05;
+    CGContextSetLineWidth(ctx, lw);
+    rect.origin.x += lw;
+    rect.origin.y += lw;
+    rect.size.height -= lw*2;
+    rect.size.width -= lw*2;
     CGContextAddEllipseInRect(ctx, rect);
     CGContextSetStrokeColorWithColor(ctx, borderColor.CGColor);
     CGContextStrokePath(ctx);
@@ -411,7 +509,7 @@
     return [self drawCirclePointerInRect:rect color:color borderColor:borderColor ctx:ctx];
 }
 
--(CGPoint)drawArrowWithAngle:(float)angle wheelRadius:(int)wheel_radius wheelWidth:(int)wheel_width inverse:(BOOL)inverse color:(UIColor *)color borderColor:(UIColor*)borderColor {
+-(CGPoint)drawArrowWithAngle:(float)angle wheelRadius:(float)wheel_radius wheelWidth:(int)wheel_width inverse:(BOOL)inverse color:(UIColor *)color borderColor:(UIColor*)borderColor {
     
     [borderColor setStroke];
     [color setFill];
@@ -479,7 +577,7 @@
                        sinf(angle) * (wheel_radius+wheel_width+offset+_arrowHeight/2* (inverse ? -1 : 1)));
 }
 
--(CGPoint)drawPointerWithAngle:(float)angle wheelRadius:(int)wheel_radius wheelWidth:(int)wheel_width inverse:(BOOL)inverse color:(UIColor *)color borderColor:(UIColor*)borderColor ctx:(CGContextRef)ctx {
+-(CGPoint)drawPointerWithAngle:(float)angle wheelRadius:(float)wheel_radius wheelWidth:(int)wheel_width inverse:(BOOL)inverse color:(UIColor *)color borderColor:(UIColor*)borderColor ctx:(CGContextRef)ctx {
     
     angle = [self addAngle:270 toAngle:angle];
     
@@ -498,13 +596,32 @@
     }
 }
 
+-(CGFloat)drawPowerButtonWithCtx:(CGContextRef)ctx wheelRadius:(float)wheelRadius {
+    CGFloat radius = wheelRadius * 0.3;
+    UIBezierPath *path = [UIBezierPath bezierPathWithArcCenter:CGPointMake(0, 0)
+                                                        radius:radius
+                                                    startAngle:DEGREES_TO_RADIANS(-60)
+                                                      endAngle:DEGREES_TO_RADIANS(240)
+                                                     clockwise:YES];
+    
+    
+    _powerButtonOn ? [_powerButtonColorOn setStroke] : [_powerButtonColorOff setStroke];
+    [path setLineWidth:radius * 0.2];
+    [path setLineCapStyle:kCGLineCapRound];
+    [path moveToPoint:CGPointMake(0, radius * -1 - radius * 0.15)];
+    [path addLineToPoint:CGPointMake(0, radius * -1 + radius * 0.6)];
+    [path stroke];
+    
+    return radius;
+}
+
 -(void)drawWheelWithCtx:(CGContextRef)ctx {
     float wheelWidth;
     float radius = self.bounds.size.width > self.bounds.size.height
     ? self.bounds.size.height : self.bounds.size.width;
     
     if (_circleInsteadArrow) {
-        wheelWidth = radius / (_colorWheelVisible ? 3.50 : 7.0);
+        wheelWidth = radius / (_colorWheelHidden ? 7.0: 3.50);
         [self setArrowHeight: 0.00];
     } else {
         wheelWidth = radius / 10.00;
@@ -518,39 +635,51 @@
     float brightness_angle = _brightness*3.6;
     float brightness_color_angle = brightness_angle;
     
+    CGFloat red,green,blue,alpha;
+    [_color getRed:&red green:&green blue:&blue alpha:&alpha];
+    
     if (_circleInsteadArrow
-        && (!_colorfulBrightnessWheel || !_colorWheelVisible)) {
+        && (!_colorfulBrightnessWheel
+            || _colorWheelHidden
+            || (!_colorWheelHidden
+                && red == 1 && green == 1 && blue == 1))) {
         [self trimBrightnessColorAngle:&brightness_color_angle];
     }
     
-    UIColor *brightness_pointer_color = [self calculateColorForAngle:brightness_color_angle baseColor:_colorWheelVisible
+    UIColor *brightness_pointer_color = [self calculateColorForAngle:brightness_color_angle baseColor:!_colorWheelHidden
                                          && _colorfulBrightnessWheel ? _color: [UIColor blackColor]];
     UIColor *pointer_border_color = _circleInsteadArrow ? [UIColor whiteColor] : [UIColor blackColor];
-    UIColor *brightness_base_color = _colorfulBrightnessWheel && _colorWheelVisible ? _color : [UIColor blackColor];
+    UIColor *brightness_base_color = _colorfulBrightnessWheel && !_colorWheelHidden ? _color : [UIColor blackColor];
     
-    if ( _colorWheelVisible ) {
+    if ( !_colorWheelHidden ) {
         wheelWidth /= 2;
     }
     
     float markerSize = wheelWidth/(_circleInsteadArrow ? 5 : 3);
     
+    if (!_powerButtonHidden) {
+        _powerBtnRadius = [self drawPowerButtonWithCtx: ctx wheelRadius:_circleInsteadArrow ? radius : radius * 0.8];
+    }
+    
     [self drawWheelWithRadius:radius wheelWidth:wheelWidth baseColor:brightness_base_color];
     _brightnessPointerCentralPoint = [self drawPointerWithAngle:brightness_angle wheelRadius:radius
-                                                     wheelWidth:wheelWidth inverse:_colorWheelVisible color:brightness_pointer_color
+                                                     wheelWidth:wheelWidth inverse:!_colorWheelHidden color:brightness_pointer_color
                                                     borderColor:pointer_border_color ctx:ctx];
     [self drawWheelMarkers:self.brightnessMarkers withRadius:radius+wheelWidth/2 markerSize:markerSize brightness:YES ctx:ctx];
     
-    if ( _colorWheelVisible ) {
+    if ( !_colorWheelHidden ) {
         radius+=wheelWidth;
         
         [self drawWheelWithRadius:radius wheelWidth:wheelWidth baseColor:nil];
         _colorPointerCentralPoint = [self drawPointerWithAngle:_colorAngle wheelRadius:radius
                                                     wheelWidth:wheelWidth inverse:NO color:_color borderColor:pointer_border_color ctx:ctx];
         [self drawWheelMarkers:self.colorMarkers withRadius:radius+wheelWidth/2
-               markerSize:markerSize brightness:NO ctx:ctx];
+                    markerSize:markerSize brightness:NO ctx:ctx];
+        
     }
     
     _pointerRadius = (_circleInsteadArrow ? wheelWidth : _arrowHeight) / 2;
+    
 }
 
 -(void)drawSliderWithCtx:(CGContextRef)ctx {
@@ -578,17 +707,19 @@
     
     _sliderPointerRange = rect.size.height - rect.size.width;
     float yoffset = _sliderPointerRange - _sliderPointerRange * _brightness / 100;
-    rect.origin.y += yoffset;
-    rect.size.height = rect.size.width;
+    CGRect pointerRect = rect;
+    pointerRect.origin.y += yoffset;
+    pointerRect.size.height = pointerRect.size.width;
     
     float angle = 360-(360.0*yoffset/_sliderPointerRange);
     [self trimBrightnessColorAngle:&angle];
     color = [self calculateColorForAngle:angle baseColor:[UIColor blackColor]];
     
-    _brightnessPointerCentralPoint = [self drawCirclePointerInRect:rect
+    _brightnessPointerCentralPoint = [self drawCirclePointerInRect:pointerRect
                                                              color:color
                                                        borderColor:[UIColor whiteColor] ctx:ctx];
-    _pointerRadius = rect.size.width;
+    _pointerRadius = pointerRect.size.width / 2;
+    [self drawSliderMarkersInRect:rect markerSize:rect.size.width/5 ctx:ctx];
 }
 
 -(void)drawRect:(CGRect)rect {
@@ -599,10 +730,10 @@
     
     CGContextTranslateCTM(ctx, self.bounds.size.width/2, self.bounds.size.height/2);
     
-    if (_sliderVisible) {
-        [self drawSliderWithCtx:ctx];
-    } else {
+    if (_sliderHidden) {
         [self drawWheelWithCtx:ctx];
+    } else {
+        [self drawSliderWithCtx:ctx];
     }
     
 }
@@ -623,41 +754,49 @@
     
 }
 
-- (BOOL)touchOverPointer:(CGPoint)touch_point centralPoint:(CGPoint)central_point {
-    return sqrtf(pow(central_point.x - touch_point.x , 2) + pow(central_point.y - touch_point.y , 2)) <= _pointerRadius;
+- (BOOL)touchOverCircle:(CGPoint)touch_point centralPoint:(CGPoint)central_point radius:(CGFloat)radius {
+    return sqrtf(pow(central_point.x - touch_point.x , 2) + pow(central_point.y - touch_point.y , 2)) <= radius;
 }
 
 -(UIView *) hitTest:(CGPoint)point withEvent:(UIEvent *)event
 {
+    if (self.hidden) {
+        return nil;
+    }
+    
     CGPoint transPoint = point;
     transPoint.x -= self.bounds.size.width / 2;
     transPoint.y -= self.bounds.size.height / 2;
     
-    activeArrow = ACTIVE_ARROW_NONE;
+    activeTouchPoint = ACTIVE_TOUCHPOINT_NONE;
     _moving = NO;
     
-    NSLog(@"%f,%f",_brightnessPointerCentralPoint.x, transPoint.x);
-     
-    if ( _colorWheelVisible ) {
-        if ( [self touchOverPointer:transPoint centralPoint:_colorPointerCentralPoint] ) {
-            activeArrow = ACTIVE_ARROW_COLOR;
-        } else if ( [self touchOverPointer:transPoint centralPoint:_brightnessPointerCentralPoint] ) {
-            activeArrow = ACTIVE_ARROW_BRIGHTNESS;
+    if ( _sliderHidden && !_colorWheelHidden ) {
+        if ( [self touchOverCircle:transPoint centralPoint:_colorPointerCentralPoint radius:_pointerRadius] ) {
+            activeTouchPoint = ACTIVE_TOUCHPOINT_COLOR_POINTER;
+        } else if ( [self touchOverCircle:transPoint centralPoint:_brightnessPointerCentralPoint radius:_pointerRadius] ) {
+            activeTouchPoint = ACTIVE_TOUCHPOINT_BRIGHTNESS_POINTER;
         }
         
-    } else  if ( [self touchOverPointer:transPoint centralPoint:_brightnessPointerCentralPoint] ) {
-        activeArrow = ACTIVE_ARROW_BRIGHTNESS;
-    }
+    } else  if ( [self touchOverCircle:transPoint centralPoint:_brightnessPointerCentralPoint radius:_pointerRadius] ) {
+        activeTouchPoint = ACTIVE_TOUCHPOINT_BRIGHTNESS_POINTER;
+    };
     
-    if ( activeArrow != ACTIVE_ARROW_NONE ) {
+    if ( activeTouchPoint != ACTIVE_TOUCHPOINT_NONE ) {
         
-        if (_sliderVisible) {
-            lastPanPosition = point.y;
-        } else {
+        if (_sliderHidden) {
             lastPanPosition = [self angleForPoint:point];
+        } else {
+            lastPanPosition = point.y;
         }
         
         _moving = YES;
+        return self;
+    } else if ( !_powerButtonHidden
+               && _powerButtonEnabled
+               && [self touchOverCircle:transPoint centralPoint:CGPointMake(0, 0) radius:_powerBtnRadius]  ) {
+        
+        activeTouchPoint = ACTIVE_TOUCHPOINT_POWER_BUTTON;
         return self;
     }
     
@@ -678,32 +817,51 @@
     if ( brightness != _brightness ) {
         _brightness = brightness;
         
-        if ( delegate != nil )
+        if ( delegate != nil
+            && [delegate respondsToSelector:@selector(cbPickerDataChanged:)] )
             [delegate cbPickerDataChanged: self];
+    }
+}
+
+- (void)handleTap:(UITapGestureRecognizer *)gr {
+    if ( gr.state == UIGestureRecognizerStateEnded) {
+        _moving = NO;
+        
+        if (activeTouchPoint == ACTIVE_TOUCHPOINT_POWER_BUTTON) {
+            self.powerButtonOn = !self.powerButtonOn;
+            if (delegate != nil
+                && [delegate respondsToSelector:@selector(cbPickerPowerButtonValueChanged:)]) {
+                [delegate cbPickerPowerButtonValueChanged: self];
+            }
+            [self setNeedsDisplay];
+        }
+        
+        activeTouchPoint = ACTIVE_TOUCHPOINT_NONE;
     }
 }
 
 - (void)handlePan:(UIPanGestureRecognizer *)gr {
     
-    if ( gr.state == UIGestureRecognizerStateEnded) {
-        
-        _moving = NO;
-        
-        if ( delegate != nil )
-            [delegate cbPickerMoveEnded: self];
-        
+    if (activeTouchPoint == ACTIVE_TOUCHPOINT_NONE) {
         return;
     }
     
-    if (activeArrow == ACTIVE_ARROW_NONE) {
+    if ( gr.state == UIGestureRecognizerStateEnded) {
+        _moving = NO;
+        activeTouchPoint = ACTIVE_TOUCHPOINT_NONE;
+        
+        if (delegate != nil
+            && [delegate respondsToSelector:@selector(cbPickerMoveEnded:)] ) {
+            [delegate cbPickerMoveEnded: self];
+        }
         return;
     }
     
     CGPoint touch_point = [gr locationInView:self];
     
-    if (_sliderVisible) {
+    if (!_sliderHidden) {
         
-        if ( activeArrow != ACTIVE_ARROW_BRIGHTNESS ) {
+        if ( activeTouchPoint != ACTIVE_TOUCHPOINT_BRIGHTNESS_POINTER ) {
             return;
         }
         
@@ -711,7 +869,7 @@
         
         lastPanPosition = touch_point.y;
         
-    } else {
+    } else if ( activeTouchPoint != ACTIVE_TOUCHPOINT_POWER_BUTTON ) {
         
         CGRect r = self.bounds;
         
@@ -738,7 +896,7 @@
         
         angle_offset*=-1;
         
-        if ( activeArrow == ACTIVE_ARROW_COLOR ) {
+        if ( activeTouchPoint == ACTIVE_TOUCHPOINT_COLOR_POINTER ) {
             
             UIColor *color;
             
@@ -748,11 +906,12 @@
             if ( [color isEqual:_color] == NO ) {
                 _color = color;
                 
-                if ( delegate != nil )
+                if ( delegate != nil
+                    && [delegate respondsToSelector:@selector(cbPickerDataChanged:)] )
                     [delegate cbPickerDataChanged: self];
             }
             
-        } else if ( activeArrow == ACTIVE_ARROW_BRIGHTNESS ) {
+        } else if ( activeTouchPoint == ACTIVE_TOUCHPOINT_BRIGHTNESS_POINTER ) {
             [self addBrightnessOffset: angle_offset * 100 / 360];
         }
         

@@ -137,6 +137,22 @@ void sasuplaclient_on_oauth_token_request_result(void *_suplaclient, void *user_
     }
 }
 
+void sasuplaclient_on_superuser_authorization_result(void *_suplaclient, void *user_data, char authorized, _supla_int_t code) {
+    SASuplaClient *sc = (__bridge SASuplaClient*)user_data;
+    if ( sc != nil ) {
+        SASuperuserAuthorizationResult *result = [SASuperuserAuthorizationResult superuserAuthorizationResult:authorized > 0 withCode:code];
+        [sc onSuperuserAuthorizationResult:result];
+    }
+}
+
+void sasuplaclient_on_calcfg_result(void *_suplaclient, void *user_data, TSC_DeviceCalCfgResult *result) {
+   
+    SASuplaClient *sc = (__bridge SASuplaClient*)user_data;
+    if ( sc != nil && result != NULL) {
+        [sc onCalCfgResult:[SACalCfgResult resultWithResult:result]];
+    }
+}
+
 // ------------------------------------------------------------------------------------------------------
 // ------------------------------------------------------------------------------------------------------
 // ------------------------------------------------------------------------------------------------------
@@ -234,6 +250,50 @@ void sasuplaclient_on_oauth_token_request_result(void *_suplaclient, void *user_
 
 @end
 
+
+@implementation SASuperuserAuthorizationResult
+@synthesize success = _success;
+@synthesize code = _code;
+
+- (id)initWithResult:(BOOL)success andCode:(int)code {
+    if ([self init]) {
+        _success = success;
+        _code = code;
+    }
+    return self;
+}
+
++ (SASuperuserAuthorizationResult*) superuserAuthorizationResult:(BOOL)success withCode:(int)code {
+    return [[SASuperuserAuthorizationResult alloc] initWithResult:success andCode:code];
+}
+
+@end
+
+@implementation SACalCfgResult
+@synthesize channelID = _channelID;
+@synthesize command = _command;
+@synthesize result = _result;
+@synthesize data = _data;
+
+- (id)initWithResult:(TSC_DeviceCalCfgResult *)result {
+    if ([self init]) {
+        _channelID = result->ChannelID;
+        _command = result->Command;
+        _result = result->Result;
+        _data = nil;
+        if (result->DataSize > 0) {
+            _data = [NSData dataWithBytes:result->Data
+                                   length:result->DataSize > sizeof(result->Data) ? sizeof(result->Data) : result->DataSize];
+        }
+    }
+    return self;
+}
+
++ (SACalCfgResult*) resultWithResult:(TSC_DeviceCalCfgResult *)result {
+    return [[SACalCfgResult alloc] initWithResult:result];
+}
+
+@end
 
 // ------------------------------------------------------------------------------------------------------
 
@@ -353,6 +413,8 @@ void sasuplaclient_on_oauth_token_request_result(void *_suplaclient, void *user_
     scc.cb_on_event = sasuplaclient_on_event;
     scc.cb_on_registration_enabled = sasuplaclient_on_registration_enabled;
     scc.cb_on_oauth_token_request_result = sasuplaclient_on_oauth_token_request_result;
+    scc.cb_on_superuser_authorization_result = sasuplaclient_on_superuser_authorization_result;
+    scc.cb_on_device_calcfg_result = sasuplaclient_on_calcfg_result;
     
     scc.protocol_version = [SAApp getPreferedProtocolVersion];
     
@@ -721,6 +783,22 @@ void sasuplaclient_on_oauth_token_request_result(void *_suplaclient, void *user_
     [self performSelectorOnMainThread:@selector(_onOAuthTokenRequestResult:) withObject:token waitUntilDone:NO];
 }
 
+- (void) _onSuperuserAuthorizationResult:(SASuperuserAuthorizationResult*)result {
+    [[SAApp instance] onSuperuserAuthorizationResult:result];
+}
+
+- (void) onSuperuserAuthorizationResult:(SASuperuserAuthorizationResult *)result {
+    [self performSelectorOnMainThread:@selector(_onSuperuserAuthorizationResult:) withObject:result waitUntilDone:NO];
+}
+
+- (void) _onCalCfgResult:(SACalCfgResult*)result  {
+    [[SAApp instance] onCalCfgResult:result];
+}
+
+- (void) onCalCfgResult:(SACalCfgResult*)result {
+      [self performSelectorOnMainThread:@selector(_onCalCfgResult:) withObject:result waitUntilDone:NO];
+}
+
 - (void) reconnect {
     @synchronized(self) {
         if ( _sclient ) {
@@ -913,5 +991,12 @@ void sasuplaclient_on_oauth_token_request_result(void *_suplaclient, void *user_
     return result;
 }
 
+- (void) superuserAuthorizationRequestWithEmail:(NSString*)email andPassword:(NSString*)password {
+    @synchronized(self) {
+        if ( _sclient ) {
+            supla_client_superuser_authorization_request(_sclient, [email UTF8String], [password UTF8String]);
+        }
+    }
+}
 
 @end

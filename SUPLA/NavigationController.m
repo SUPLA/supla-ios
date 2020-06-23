@@ -21,6 +21,13 @@
 #import "SuplaApp.h"
 #import "SAClassHelper.h"
 
+#define TAG_BTN_MENU 0
+#define TAG_BTN_SETTINGS 1
+#define TAG_BTN_BACK 2
+
+#define TAG_NOTSELECTED 0
+#define TAG_SELECTED 1
+
 @interface SANavigationController ()
 @end
 
@@ -144,8 +151,11 @@
 
 - (IBAction)menuTouched:(id)sender {
     
-    if ( self.btnMenu.tag == 1 ) {
+    if ( self.btnMenu.tag == TAG_BTN_SETTINGS ) {
         [[SAApp UI] showSettings];
+        return;
+    } else if ( self.btnMenu.tag == TAG_BTN_BACK ) {
+        [[NSNotificationCenter defaultCenter] postNotificationName:kSAMenubarBackButtonPressed object:self userInfo:nil];
         return;
     }
     
@@ -209,16 +219,47 @@
     
     SAMainVC *MainVC = [[SAApp UI] MainVC];
     
-    if ( self.btnGroups.tag == 1 ) {
+    if ( self.btnGroups.tag == TAG_SELECTED ) {
         [self.btnGroups setImage:[UIImage imageNamed:@"groupsoff.png"]];
-        self.btnGroups.tag = 0;
+        self.btnGroups.tag =  TAG_NOTSELECTED;
         [MainVC groupTableHidden: YES];
     } else {
         [self.btnGroups setImage:[UIImage imageNamed:@"groupson.png"]];
-        self.btnGroups.tag = 1;
+        self.btnGroups.tag = TAG_SELECTED;
         [MainVC groupTableHidden: NO];
     }
 
 }
 
+-(void)showMenuButton:(BOOL)show withImage:(UIImage *)image tag:(int)tag hideDetailTitle:(BOOL)hideDetailTitle {
+    self.btnMenu.hidden = !show;
+    self.btnMenu.tag = tag;
+    [self.btnMenu setImage:image];
+    if (show && hideDetailTitle) {
+        self.vTitle.hidden = NO;
+        self.vDetailTitle.hidden = YES;
+    }
+}
+
+-(void)showMenuBtn:(BOOL)show {
+    [self showMenuButton:show withImage:[UIImage imageNamed:@"menu.png"] tag:TAG_BTN_MENU hideDetailTitle:YES];
+}
+
+-(void)showGroupBtn:(BOOL)show {
+    self.btnGroups.hidden = !show;
+}
+
+-(void)showMenubarSettingsBtn {
+    [self showMenuButton:YES withImage:[UIImage imageNamed:@"settings.png"] tag:TAG_BTN_SETTINGS hideDetailTitle:YES];
+}
+
+-(void)showMenubarBackBtn {
+    [self showMenuButton:YES withImage:[UIImage imageNamed:@"backbtn.png"] tag:TAG_BTN_BACK hideDetailTitle:NO];
+}
+
+-(void)setMenubarDetailTitle:(NSString *)title {
+    self.vTitle.hidden = YES;
+    self.vDetailTitle.hidden = NO;
+    self.vDetailTitle.text = title;
+}
 @end

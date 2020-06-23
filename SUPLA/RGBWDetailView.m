@@ -16,20 +16,24 @@
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 
-#import "RGBDetailView.h"
+#import "RGBWDetailView.h"
 #import "UIHelper.h"
 #import "SAChannel+CoreDataClass.h"
 #import "SAColorListItem+CoreDataClass.h"
 #import "Database.h"
 #import "SuplaApp.h"
-
+#import "SAClassHelper.h"
+#import "SAInfoVC.h"
+#import "SAVLCalibrationTool.h"
 
 #define MIN_REMOTE_UPDATE_PERIOD 0.25
-#define MIN_UPDATE_DELAY 0.5
+#define MIN_UPDATE_DELAY 3
+#define DELAY_AUTO 0
 
-@implementation SARGBDetailView {
+@implementation SARGBWDetailView {
     int _brightness;
     int _colorBrightness;
+    BOOL _varilight;
     BOOL isGroup;
     UIColor *_color;
     NSArray *_colorMarkers;
@@ -41,8 +45,7 @@
     
     NSDate *_moveEndTime;
     NSDate *_remoteUpdateTime;
-
-    
+    SAVLCalibrationTool *_vlCalibrationTool;
 }
 
 -(void)detailViewInit {
@@ -69,28 +72,21 @@
         [self.clPicker addItem];
         self.clPicker.delegate = self;
         
-        self.backgroundColor = [UIColor rgbDetailBackground];
-        
-        UIFont *font = [UIFont fontWithName:@"OpenSans-Bold" size:10];
-        
-        NSDictionary *attributes = [NSDictionary dictionaryWithObject:font
-                                                               forKey:NSFontAttributeName];
-        
-        [self.segControl setTitleTextAttributes:attributes forState:UIControlStateNormal];
+        self.backgroundColor = [UIColor rgbwDetailBackground];
         
         self.onlineStatus.onlineColor = [UIColor onLine];
         self.onlineStatus.offlineColor = [UIColor offLine];
         self.onlineStatus.borderColor = [UIColor statusBorder];
+        
     }
-
+    
     
     [super detailViewInit];
     
 }
 
 - (void)showValues {
-    
-    if ( self.cbPicker.colorWheelVisible == YES ) {
+    if ( self.cbPicker.colorWheelHidden == NO ) {
         
         if (!isGroup) {
             if ((int)self.cbPicker.brightness != (int)_colorBrightness ) {
@@ -99,7 +95,7 @@
             
             self.cbPicker.color = _color;
         }
-
+        
         self.cbPicker.brightnessMarkers = _colorBrightnessMarkers;
         self.cbPicker.colorMarkers = _colorMarkers;
         
@@ -111,10 +107,7 @@
         self.cbPicker.brightnessMarkers = _brightnessMarkers;
     }
     
-
-    
-    self.stateBtn.selected = self.cbPicker.brightness > 0;
-    
+    [self pickerToExtraButton];
 }
 
 - (void)sendNewValuesWithTurnOnOff:(BOOL)turnOnOff {
@@ -133,26 +126,26 @@
     int colorBrightness = _colorBrightness;
     UIColor *color = _color;
     
-    if ( self.cbPicker.colorWheelVisible ) {
+    if ( self.cbPicker.colorWheelHidden == NO ) {
         colorBrightness = self.cbPicker.brightness;
         color = self.cbPicker.color;
     } else {
         brightness = self.cbPicker.brightness;
     }
     
-    if ( time >= MIN_REMOTE_UPDATE_PERIOD
+    if ( (turnOnOff || time >= MIN_REMOTE_UPDATE_PERIOD)
         && [client cg:self.channelBase.remote_id setRGB:color
       colorBrightness:colorBrightness brightness:brightness group:isGroup turnOnOff:turnOnOff] ) {
         
         _remoteUpdateTime = [NSDate date];
-        _moveEndTime = [NSDate dateWithTimeIntervalSinceNow:2];
+        [self showValuesWithDelay:MIN_UPDATE_DELAY];
         
     } else {
         
         if ( time < MIN_REMOTE_UPDATE_PERIOD )
-           time = MIN_REMOTE_UPDATE_PERIOD-time+0.001;
+            time = MIN_REMOTE_UPDATE_PERIOD-time+0.001;
         else
-           time = 0.001;
+            time = 0.001;
         
         delayTimer1 = [NSTimer scheduledTimerWithTimeInterval:time target:self selector:@selector(timer1FireMethod:) userInfo:nil repeats:NO];
     }
@@ -163,34 +156,38 @@
     [self sendNewValuesWithTurnOnOff:NO];
 }
 
-- (void)showValuesWithDelay {
+- (void)showValuesWithDelay:(double)time {
     
     if ( delayTimer2 != nil ) {
         [delayTimer2 invalidate];
         delayTimer2 = nil;
-        return;
     }
-
+    
     if ( self.cbPicker.moving == YES )
         return;
     
-    double time = [_moveEndTime timeIntervalSinceNow] * -1;
+    double timeDiffSec = [_moveEndTime timeIntervalSinceNow] * -1;
     
-    if ( time >= MIN_UPDATE_DELAY ) {
+    if ( time == 0 && timeDiffSec >= MIN_UPDATE_DELAY ) {
         [self showValues];
     } else {
         
-        if ( time < MIN_UPDATE_DELAY )
-            time = MIN_UPDATE_DELAY-time+0.001;
-        else
-            time = 0.001;
-    
+        if (time == 0) {
+            time = timeDiffSec;
+            
+            if ( time < MIN_UPDATE_DELAY )
+                time = MIN_UPDATE_DELAY-time+0.001;
+            else
+                time = 0.001;
+        }
         
         delayTimer2 = [NSTimer scheduledTimerWithTimeInterval:time target:self selector:@selector(timer2FireMethod:) userInfo:nil repeats:NO];
         
     }
+}
 
-    
+- (void)showValuesWithDelay {
+    [self showValuesWithDelay: DELAY_AUTO];
 }
 
 - (void)timer1FireMethod:(NSTimer *)timer {
@@ -198,38 +195,79 @@
 }
 
 - (void)timer2FireMethod:(NSTimer *)timer {
-    
-    if ( delayTimer2 != nil ) {
-        [delayTimer2 invalidate];
-        delayTimer2 = nil;
-    }
-    
     [self showValuesWithDelay];
 }
 
-- (void)updateFooterView {
-    if ( self.cbPicker.colorWheelVisible ) {
-        self.clPicker.hidden = NO;
-    } else {
-        self.clPicker.hidden = YES;
-    }
+-(void)setRgbDimmerTabsHidden:(BOOL)hidden {
+    self.vTabsRgbDimmer.hidden = hidden;
+    self.cbPickerTopMargin.constant = hidden ? -31 : 15;
 }
 
-- (void)setColorWheelVisible:(BOOL)visible {
+-(void)setClPickerHidden:(BOOL)hidden {
+    self.clPicker.hidden = hidden;
+    self.clPickerBottomMargin.constant = hidden ? -31 : 35;
+}
+
+-(void)setWheelSliderTabsHidden:(BOOL)hidden {
+    self.vTabsWheelSlider.hidden = hidden;
+    self.vTabsWheelSliderBottomMargin.constant = hidden ? -31 : 35;
+}
+
+-(void)setExtraButtonsHidden:(BOOL)hidden {
+    self.vExtraButtons.hidden = hidden;
+    self.cbPickerBottomMargin.constant = hidden ? -60 : 5;
+}
+
+-(void)showDimmer {
+    [self setClPickerHidden:YES];
+    self.cbPicker.colorWheelHidden = YES;
     
-    self.cbPicker.colorWheelVisible = visible;
-    [self updateFooterView];
+    if (SAApp.isBrightnessPickerTypeSet) {
+        [self onPickerTypeTabTouch:SAApp.isBrightnessPickerTypeSlider ? self.tabSlider : self.tabWheel];
+    } else {
+        [self onPickerTypeTabTouch:_varilight ? self.tabSlider : self.tabWheel];
+    }
+    
+    [self setExtraButtonsHidden:!_varilight];
+    [self setWheelSliderTabsHidden:NO];
+    self.tabRGB.selected = NO;
+    self.tabRGB.backgroundColor = [UIColor rgbwNormalTabColor];
+    self.tabDimmer.selected = YES;
+    self.tabDimmer.backgroundColor = [UIColor rgbwSelectedTabColor];
+    self.cbPicker.brightness = _brightness;
+    [self pickerToExtraButton];
 }
 
+-(void)showRGB {
+    [self setClPickerHidden:NO];
+    [self setWheelSliderTabsHidden:YES];
+    self.cbPicker.colorWheelHidden = NO;
+    self.cbPicker.sliderHidden = YES;
+    [self setExtraButtonsHidden: YES];
+    self.btnPowerOnOff.hidden = YES;
+    self.tabRGB.selected = YES;
+    self.tabRGB.backgroundColor = [UIColor rgbwSelectedTabColor];
+    self.tabDimmer.selected = NO;
+    self.tabDimmer.backgroundColor = [UIColor rgbwNormalTabColor];
+    self.cbPicker.brightness = _colorBrightness;
+}
 
 -(void)updateView {
     
     [super updateView];
     
+    if (_vlCalibrationTool != nil) {
+        [_vlCalibrationTool dismiss];
+    }
+    
+    if (isGroup) {
+        self.onlineStatus.hidden = NO;
+    } else {
+        self.onlineStatus.hidden = YES;
+    }
+    
     if ( self.channelBase != nil ) {
-        
-        [self.labelCaption setText:[self.channelBase getChannelCaption]];
-        
+
         switch(self.channelBase.func) {
                 
             case SUPLA_CHANNELFNC_DIMMER:
@@ -238,7 +276,7 @@
                 
                 if (isGroup) {
                     SAChannelGroup *cgroup = (SAChannelGroup*)self.channelBase;
-
+                    
                     _colorMarkers = cgroup.colors;
                     _colorBrightnessMarkers = cgroup.colorBrightness;
                     _brightnessMarkers = cgroup.brightness;
@@ -253,18 +291,15 @@
                     
                     [self showValuesWithDelay];
                 }
-            
+                
                 break;
         };
-        
-
-        
     }
     
     for(int a=1;a<self.clPicker.count;a++) {
         
         SAColorListItem *item = [[SAApp DB] getColorListItemForRemoteId:self.channelBase.remote_id andIndex:a forGroup:NO];
-       
+        
         if ( item == nil ) {
             [self.clPicker itemAtIndex:a setColor:[UIColor clearColor]];
             [self.clPicker itemAtIndex:a setPercent:0];
@@ -276,107 +311,82 @@
     }
 }
 
-
-- (IBAction)segChanged:(id)sender {
-    if ( self.segControl.hidden == NO ) {
-        [self setColorWheelVisible:self.segControl.selectedSegmentIndex == 0];
-        [self showValues];
-    }
-}
-
 -(void)setChannelBase:(SAChannelBase *)channelBase {
+    isGroup = channelBase != nil && [channelBase isKindOfClass:[SAChannelGroup class]];
     
     if ( self.channelBase == nil
-         || ( channelBase != nil
-             && (self.channelBase.remote_id  != channelBase.remote_id
-                 || ![channelBase isKindOfClass:[self.channelBase class]]) ) ) {
-        
-        isGroup = channelBase != nil && [channelBase isKindOfClass:[SAChannelGroup class]];
-
-        if (isGroup) {
-            self.stateBtn.hidden = YES;
-            self.stateLabel.hidden = YES;
-            self.onlineStatus.hidden = NO;
-        } else {
-            self.stateBtn.hidden = NO;
-            self.stateLabel.hidden = NO;
-            self.onlineStatus.hidden = YES;
-        }
-        
-        [self setColorWheelVisible:NO];
-
-        self.headerView.hidden = YES;
-        self.cintPickerTop.constant = self.cintHeaderHeight.constant * -1;
+        || ( channelBase != nil
+            && (self.channelBase.remote_id  != channelBase.remote_id
+                || ![channelBase isKindOfClass:[self.channelBase class]]) ) ) {
         
         _moveEndTime = [NSDate dateWithTimeIntervalSince1970:0];
         _brightnessMarkers = nil;
         _colorBrightnessMarkers = nil;
         _colorMarkers = nil;
+        _varilight = false;
         
-        if ( channelBase != nil ) {
-
-            switch(channelBase.func) {
-                case SUPLA_CHANNELFNC_DIMMER:
-                    [self setColorWheelVisible:NO];
-                    break;
-                case SUPLA_CHANNELFNC_RGBLIGHTING:
-                    [self setColorWheelVisible:YES];
-                    break;
-                case SUPLA_CHANNELFNC_DIMMERANDRGBLIGHTING:
-                    [self setColorWheelVisible:YES];
-                    
-                    self.segControl.selectedSegmentIndex = 0;
-                    self.headerView.hidden = NO;
-                    self.cintPickerTop.constant = 0;
-                    
-                    break;
-            };
+        if (channelBase != nil
+            && [channelBase isKindOfClass:[SAChannel class]]
+            && ((SAChannel*)channelBase).manufacturer_id == SUPLA_MFR_DOYLETRATT
+            && ((SAChannel*)channelBase).product_id == 1) {
+            _varilight = YES;
         }
         
+        switch(channelBase.func) {
+            case SUPLA_CHANNELFNC_DIMMER:
+                self.cbPicker.colorWheelHidden = YES;
+                [self setRgbDimmerTabsHidden:YES];
+                [self showDimmer];
+                break;
+            case SUPLA_CHANNELFNC_RGBLIGHTING:
+                self.cbPicker.colorWheelHidden = NO;
+                [self setRgbDimmerTabsHidden:YES];
+                [self showRGB];
+                break;
+            case SUPLA_CHANNELFNC_DIMMERANDRGBLIGHTING:
+                self.cbPicker.colorWheelHidden = NO;
+                [self setRgbDimmerTabsHidden:NO];
+                [self showRGB];
+                break;
+        };
     }
-
-    [super setChannelBase:channelBase];
     
-    if ( channelBase != nil && channelBase.isOnline == NO ) {
+    
+    if ( channelBase != nil
+        && channelBase.isOnline == NO ) {
         [self.main_view detailShow:NO animated:NO];
-    }
-}
-
-- (IBAction)stateBtnTouch:(id)sender {
-    
-    if ( self.channelBase == nil || self.channelBase.isOnline == NO )
         return;
-
-    self.cbPicker.brightness = self.cbPicker.brightness > 0 ? 0 : 100;
-    if (self.cbPicker.colorWheelVisible) {
-        _colorBrightness = self.cbPicker.brightness;
-    } else {
-        _brightness = self.cbPicker.brightness;
-    };
-
-    [self showValues];
-    [self sendNewValuesWithTurnOnOff:YES];
+    }
+    
+    [super setChannelBase:channelBase];
 }
 
 -(void) cbPickerDataChanged:(SAColorBrightnessPicker*)picker {
     [self sendNewValues];
-    self.stateBtn.selected = self.cbPicker.brightness > 0;
+    [self pickerToExtraButton];
 }
 
 -(void) cbPickerMoveEnded:(SAColorBrightnessPicker*)picker {
     _moveEndTime = [NSDate date];
+    [self showValuesWithDelay];
+}
+
+-(void) cbPickerPowerButtonValueChanged:(SAColorBrightnessPicker*)picker {
+    self.cbPicker.brightness = picker.powerButtonOn ? 100 : 0;
+    [self pickerToExtraButton];
+    [self sendNewValuesWithTurnOnOff:YES];
 }
 
 -(void)itemTouchedWithColor:(UIColor*)color andPercent:(float)percent {
     
-    if ( self.cbPicker.colorWheelVisible == NO
+    if ( self.cbPicker.colorWheelHidden == YES
         || self.channelBase == nil
         || color == nil
         || [color isEqual: [UIColor clearColor]]) return;
     
     _colorBrightness = percent;
     _color = color;
-
+    
     if (isGroup) {
         self.cbPicker.color = _color;
         self.cbPicker.brightness = _colorBrightness;
@@ -384,7 +394,7 @@
     
     [self showValues];
     [self sendNewValues];
-
+    
 }
 
 -(void)itemEditAtIndex:(int)index {
@@ -402,6 +412,66 @@
         
         [[SAApp DB] updateColorListItem:item];
     }
+}
+
+- (IBAction)onPickerTypeTabTouch:(id)sender {
+    
+    self.cbPicker.sliderHidden = sender != self.tabSlider;
+    [SAApp setBrightnessPickerTypeToSlider:!self.cbPicker.sliderHidden];
+    
+    if (self.cbPicker.sliderHidden) {
+        self.tabWheel.selected = YES;
+        self.tabWheel.backgroundColor = [UIColor rgbwSelectedTabColor];
+        self.tabSlider.selected = NO;
+        self.tabSlider.backgroundColor = [UIColor rgbwNormalTabColor];
+    } else {
+        self.tabWheel.selected = NO;
+        self.tabWheel.backgroundColor = [UIColor rgbwNormalTabColor];
+        self.tabSlider.selected = YES;
+        self.tabSlider.backgroundColor = [UIColor rgbwSelectedTabColor];
+    }
+    
+    self.btnPowerOnOff.hidden = self.cbPicker.sliderHidden;
+}
+
+- (IBAction)onDimmerTabTouch:(id)sender {
+    [self showDimmer];
+}
+
+- (IBAction)onRgbTabTouch:(id)sender {
+    [self showRGB];
+}
+
+- (void)pickerToExtraButton {
+    [self setPowerButtonOn:self.cbPicker.brightness > 0];
+}
+
+- (void)setPowerButtonOn:(BOOL)on {
+    [self.btnPowerOnOff setImage:[UIImage imageNamed:on ? @"rgbwpoweron.png" : @"rgbwpoweroff.png"] forState:UIControlStateNormal];
+    self.cbPicker.powerButtonOn = on;
+}
+- (IBAction)onSettingsTouch:(id)sender {
+    if (_vlCalibrationTool == nil) {
+        _vlCalibrationTool = [SAVLCalibrationTool newInstance];
+    }
+    
+    [_vlCalibrationTool startConfiguration:self];
+}
+
+- (IBAction)rgbInfoTouch:(id)sender {
+    [SAInfoVC showInformationWindowWithMessage:INFO_MESSAGE_VARILIGHT];
+}
+
+- (IBAction)onPowerBtnTouch:(id)sender {
+    self.cbPicker.powerButtonOn = !self.cbPicker.powerButtonOn;
+    [self cbPickerPowerButtonValueChanged:self.cbPicker];
+}
+
+-(BOOL)onMenubarBackButtonPressed {
+    if (_vlCalibrationTool && _vlCalibrationTool.superview) {
+        return [_vlCalibrationTool onMenubarBackButtonPressed];
+    }
+    return YES;
 }
 
 @end

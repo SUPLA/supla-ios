@@ -47,6 +47,9 @@
 +(void) abstractMethodException:(NSString *)methodName;
 +(NSURL *)applicationDocumentsDirectory;
 +(BOOL) configIsSet;
++(void) setBrightnessPickerTypeToSlider:(BOOL)slider;
++(BOOL) isBrightnessPickerTypeSet;
++(BOOL) isBrightnessPickerTypeSlider;
 
 +(void)initClientDelayed:(double)time;
 +(SASuplaClient *) SuplaClient;
@@ -75,6 +78,8 @@
 -(void)onRegistrationEnabled:(SARegistrationEnabled*)reg_enabled;
 -(void)onTerminated:(SASuplaClient*)sender;
 -(void)onOAuthTokenRequestResult:(SAOAuthToken *)token;
+-(void)onSuperuserAuthorizationResult:(SASuperuserAuthorizationResult *)result;
+-(void)onCalCfgResult:(SACalCfgResult *)result;
 
 -(SAOAuthToken*) registerRestApiClientTask:(SARestApiClientTask *)client;
 -(void) unregisterRestApiClientTask:(SARestApiClientTask *)task;
@@ -93,3 +98,6 @@ extern NSString *kSAEventNotification;
 extern NSString *kSAChannelValueChangedNotification;
 extern NSString *kSARegistrationEnabledNotification;
 extern NSString *kSAOAuthTokenRequestResult;
+extern NSString *kSASuperuserAuthorizationResult;
+extern NSString *kSACalCfgResult;
+extern NSString *kSAMenubarBackButtonPressed;

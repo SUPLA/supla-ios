@@ -300,7 +300,6 @@
         self.lPhaseToPhase.hidden = YES;
     }
     
-    [self.lCaption setText:[self.channelBase getChannelCaption]];
     [self.ivImage setImage:[self.channelBase getIcon]];
     
     switch (selectedPhase) {
@@ -402,9 +401,9 @@
     }
 }
 
--(void)onDetailShow {
+-(void)detailWillShow {
     _balanceAvailable = false;
-    [super onDetailShow];
+    [super detailWillShow];
     [self setProductionDataSource:NO];
     [self setChartsHidden:YES];
     self.lPreloader.hidden = YES;
@@ -421,8 +420,8 @@
     [self runDownloadTask];
 }
 
--(void)onDetailHide {
-    [super onDetailHide];
+-(void)detailWillHide {
+    [super detailWillHide];
     
     [_tfChartTypeFilter resignFirstResponder];
     

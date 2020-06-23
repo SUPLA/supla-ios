@@ -28,7 +28,6 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)loadChartWithAnimation:(BOOL)animation moveToEnd:(BOOL)moveToEnd;
 - (void)loadChartWithAnimation:(BOOL)animation;
 @property (weak, nonatomic) IBOutlet UIImageView *ivImage;
-@property (weak, nonatomic) IBOutlet UILabel *lCaption;
 @property (weak, nonatomic) IBOutlet SAPreloader *lPreloader;
 @property (weak, nonatomic) IBOutlet SAChartFilterField *ftDateRangeFilter;
 @property (weak, nonatomic) IBOutlet CombinedChartView *combinedChart;

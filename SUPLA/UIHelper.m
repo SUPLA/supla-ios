@@ -70,8 +70,16 @@
     return [UIColor colorWithRed:0.98 green:0.98 blue:0.98 alpha:1.0];
 }
 
-+(UIColor*)rgbDetailBackground {
-    return [UIColor colorWithRed:1.00 green:0.91 blue:0.02 alpha:1.0];
++(UIColor*)rgbwDetailBackground {
+    return [UIColor colorWithRed: 0.93 green: 0.93 blue: 0.93 alpha: 1.00];
+}
+
++(UIColor*)rgbwSelectedTabColor {
+    return [UIColor colorWithRed: 0.07 green: 0.65 blue: 0.12 alpha: 1.00];
+}
+
++(UIColor*)rgbwNormalTabColor {
+    return [UIColor whiteColor];
 }
 
 +(UIColor*)rsDetailBackground {
@@ -123,7 +131,7 @@
 }
 
 +(nonnull UIColor*)hpBtnUnknown {
-   return [UIColor colorWithRed:0.90 green:0.74 blue:0.49 alpha:1.0];
+    return [UIColor colorWithRed:0.90 green:0.74 blue:0.49 alpha:1.0];
 }
 
 +(nonnull UIColor*)chartTemperatureFillColor {
@@ -174,23 +182,33 @@
 }
 
 -(void)showMenuBtn:(BOOL)show {
-    [self showMenuBtn:show withSettingsIcon:false];
+    if (_NavController) {
+        [_NavController showMenuBtn:show];
+    }
 }
 
 -(void)showGroupBtn:(BOOL)show {
     if (_NavController) {
-        _NavController.btnGroups.hidden = !show;
+        [_NavController showGroupBtn:show];
     }
 }
 
--(void)showMenuBtn:(BOOL)show withSettingsIcon:(BOOL)settingsIcon {
-    
+-(void)showMenubarSettingsBtn {
     if (_NavController) {
-        _NavController.btnMenu.hidden = !show;
-        _NavController.btnMenu.tag = settingsIcon ? 1 : 0;
-        [_NavController.btnMenu setImage:[UIImage imageNamed:settingsIcon ? @"settings.png" : @"menu.png"]];
+        [_NavController showMenubarSettingsBtn];
     }
-    
+}
+
+-(void)showMenubarBackBtn {
+    if (_NavController) {
+        [_NavController showMenubarBackBtn];
+    }
+}
+
+-(void)setMenubarDetailTitle:(NSString *)title {
+    if (_NavController) {
+        [_NavController setMenubarDetailTitle:title];
+    }
 }
 
 -(SASettingsVC *) SettingsVC {

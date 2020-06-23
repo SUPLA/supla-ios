@@ -80,8 +80,21 @@
 }
 
 -(void)updateView {}
--(void)onDetailShow {};
--(void)onDetailHide {};
+
+-(void)detailWillShow {}
+
+-(void)detailWillHide {}
+
+-(void)detailDidShow {
+    [SAApp.UI setMenubarDetailTitle:_channelBase ? [_channelBase getChannelCaption] : @""];
+    [SAApp.UI showMenubarBackBtn];
+};
+
+-(void)detailDidHide {};
+
+-(BOOL)onMenubarBackButtonPressed {
+    return YES;
+}
 
 -(void)setChannelBase:(SAChannelBase *)channelBase {
     
@@ -126,9 +139,7 @@
 }
 
 - (void) dealloc {
-    
     [[NSNotificationCenter defaultCenter] removeObserver:self];
-    
 }
 
 @end

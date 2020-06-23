@@ -1,17 +1,17 @@
 /*
-Copyright (C) AC SOFTWARE SP. Z O.O.
-This program is free software; you can redistribute it and/or
-modify it under the terms of the GNU General Public License
-as published by the Free Software Foundation; either version 2
-of the License, or (at your option) any later version.
-This program is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-GNU General Public License for more details.
-You should have received a copy of the GNU General Public License
-along with this program; if not, write to the Free Software
-Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
-*/
+ Copyright (C) AC SOFTWARE SP. Z O.O.
+ This program is free software; you can redistribute it and/or
+ modify it under the terms of the GNU General Public License
+ as published by the Free Software Foundation; either version 2
+ of the License, or (at your option) any later version.
+ This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ GNU General Public License for more details.
+ You should have received a copy of the GNU General Public License
+ along with this program; if not, write to the Free Software
+ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
+ */
 
 #import "SARangeCalibrationWheel.h"
 
@@ -49,15 +49,17 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     CGFloat btnRad;
     CGPoint btnRightCenter;
     CGPoint btnLeftCenter;
+    UIPanGestureRecognizer *_panGr;
+    UITapGestureRecognizer *_tapGr;
 }
 
 @synthesize delegate;
 
 -(void)wheelInit {
     if ( initialized ) {
-     return;
+        return;
     }
-   
+    
     _maximumValue = 1000;
     _minimumRange = _maximumValue * 0.1;
     _numerOfTurns = 5;
@@ -77,7 +79,16 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     
     touched = TOUCHED_NONE;
     _borderLineWidth = 1.5;
-
+    
+    _panGr = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(handlePan:)];
+    _tapGr = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTap:)];
+    
+    [_panGr setMinimumNumberOfTouches:1];
+    [_panGr setMaximumNumberOfTouches:1];
+    
+    [self addGestureRecognizer:_panGr];
+    [self addGestureRecognizer:_tapGr];
+    
     initialized = YES;
 }
 
@@ -107,7 +118,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     if ( self != nil ) {
         [self wheelInit];
     }
-
+    
     return self;
 }
 
@@ -183,7 +194,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 -(void)setBoostLineHeightFactor:(float)boostLineHeightFactor {
     if (boostLineHeightFactor > 0 && boostLineHeightFactor <= 2) {
-       _boostLineHeightFactor = boostLineHeightFactor;
+        _boostLineHeightFactor = boostLineHeightFactor;
     }
 }
 
@@ -282,7 +293,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     }
     
     _minimum = minimum;
-
+    
     if (minimum > self.boostLevel) {
         _boostLevel = minimum;
     }
@@ -301,7 +312,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 }
 
 -(void)setMaximum:(double)maximum needsDisplay:(BOOL)needsDisplay {
-        
+    
     if (self.minimum+self.minimumRange > maximum) {
         maximum = self.minimum+self.minimumRange;
     }
@@ -311,11 +322,11 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     }
     
     _maximum = maximum;
-
+    
     if (maximum < self.boostLevel) {
         _boostLevel = maximum;
     }
-
+    
     if (needsDisplay) {
         [self setNeedsDisplay];
     }
@@ -339,7 +350,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     }
     
     _leftEdge = leftEdge;
-
+    
     if (leftEdge+self.minimumRange > self.rightEdge) {
         self.rightEdge = leftEdge + self.minimumRange;
     }
@@ -360,15 +371,15 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     }
     
     if (rightEdge > self.maximumValue) {
-         rightEdge = self.maximumValue;
-     }
-
+        rightEdge = self.maximumValue;
+    }
+    
     _rightEdge = rightEdge;
     
     if (self.leftEdge+self.minimumRange > rightEdge) {
         self.leftEdge = _rightEdge - self.minimumRange;
     }
-
+    
     double min = self.minimum;
     [self setMinimum:0 needsDisplay:NO];
     [self setMaximum:self.maximum needsDisplay:NO];
@@ -383,11 +394,11 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     if (boostLevel < self.minimum) {
         boostLevel = self.minimum;
     }
-
+    
     if (boostLevel > self.maximum) {
         boostLevel = self.maximum;
     }
-
+    
     _boostLevel = boostLevel;
     
     if (!self.boostHidden) {
@@ -409,14 +420,14 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     halfBtnSize = btnSize / 2;
     CGFloat x = wheelRadius - self.borderLineWidth;
     CGPoint result = CGPointMake(cosf(rad)*wheelRadius, sinf(rad)*wheelRadius);
-        
+    
     if (hidden) {
         return result;
     }
     
     CGRect rect = CGRectMake(x-halfBtnSize, halfBtnSize * -1, halfBtnSize*2, halfBtnSize*2);
     UIBezierPath *path = [UIBezierPath bezierPathWithRoundedRect:rect cornerRadius:3];
-
+    
     [path applyTransform:CGAffineTransformMakeRotation(rad)];
     
     [self.btnColor setFill];
@@ -444,9 +455,9 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
                                      rect.size.width,
                                      lineWidth);
         
-         path = [UIBezierPath bezierPathWithRoundedRect:lineRect cornerRadius:3];
-         [path applyTransform:CGAffineTransformMakeRotation(rad)];
-         [path fill];
+        path = [UIBezierPath bezierPathWithRoundedRect:lineRect cornerRadius:3];
+        [path applyTransform:CGAffineTransformMakeRotation(rad)];
+        [path fill];
     }
     
     return result;
@@ -454,13 +465,13 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 -(void)drawRect:(CGRect)rect {
     [super drawRect:rect];
-   
+    
     CGContextRef ctx = UIGraphicsGetCurrentContext();
     CGContextSetShouldAntialias(ctx, YES);
     CGContextTranslateCTM(ctx, rect.size.width / 2, rect.size.height / 2);
     
     wheelRadius = (rect.size.width > rect.size.height
-                  ? rect.size.height : rect.size.width) / 2;
+                   ? rect.size.height : rect.size.width) / 2;
     
     wheelRadius *= 0.8;
     wheelWidth = wheelRadius * 0.25;
@@ -471,7 +482,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     r.origin.y = wheelRadius * -1;
     r.size.height = wheelRadius * 2;
     r.size.width = wheelRadius * 2;
-   
+    
     CGContextSetLineWidth(ctx, wheelWidth);
     CGContextSetStrokeColorWithColor(ctx, self.borderColor.CGColor);
     CGContextAddEllipseInRect(ctx, r);
@@ -487,12 +498,12 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         btnLeftCenter = [self drawButtonWithCtx:ctx radius:DEGREES_TO_RADIANS(180) hidden:!_boostHidden];
     } else {
         if (touched == TOUCHED_RIGHT) {
-             [self drawButtonWithCtx:ctx radius:btnRad hidden:NO];
+            [self drawButtonWithCtx:ctx radius:btnRad hidden:NO];
         } else if (touched == TOUCHED_LEFT) {
-             [self drawButtonWithCtx:ctx radius:btnRad hidden:!_boostHidden];
+            [self drawButtonWithCtx:ctx radius:btnRad hidden:!_boostHidden];
         }
     }
-   
+    
     CGFloat distanceToEdge = halfBtnSize + self.borderLineWidth * 2;
     CGRect valueFrame = CGRectMake(btnLeftCenter.x+distanceToEdge,
                                    btnLeftCenter.y-halfBtnSize,
@@ -513,7 +524,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     
     path = [UIBezierPath bezierPathWithRoundedRect:valueFrame cornerRadius:3];
     [path stroke];
-
+    
     if (!self.boostHidden) {
         CGFloat vleft = valueFrame.origin.x + valueFrame.size.width * self.boostLevel/self.maximumValue;
         
@@ -524,10 +535,10 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         }
         
         [self.boostLineColor setStroke];
-
+        
         CGFloat boostLineHeight = valueFrame.size.height * _boostLineHeightFactor;
         CGFloat m = (boostLineHeight-valueFrame.size.height) / 2;
-
+        
         CGContextSetLineWidth(ctx, self.borderLineWidth);
         CGContextMoveToPoint(ctx, vleft, valueFrame.origin.y - m);
         CGContextAddLineToPoint(ctx, vleft, valueFrame.origin.y+valueFrame.size.height+m);
@@ -543,33 +554,37 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     return touchRadius <= halfBtnSize*1.1;
 }
 
--(void) onRangeChanged {
+-(void) onRangeChanged:(BOOL)min {
     if (self.delegate != nil) {
-        [self.delegate calibrationWheelRangeChanged:self];
+        [self.delegate calibrationWheelRangeChanged:self minimum:min];
     }
 }
 
 -(void) onBoostChanged {
-  if (self.delegate != nil) {
+    if (self.delegate != nil) {
         [self.delegate calibrationWheelBoostChanged:self];
     }
 }
 
 -(UIView *) hitTest:(CGPoint)point withEvent:(UIEvent *)event
 {
+    if (self.hidden) {
+        return nil;
+    }
+    
     Byte _touched = TOUCHED_NONE;
     
     if (self.boostHidden && [self isBtnTouchedWithCenterPointAt:btnLeftCenter touchPoint:point]) {
         _touched = TOUCHED_LEFT;
         btnRad = DEGREES_TO_RADIANS(180);
-        [self onRangeChanged];
+        [self onRangeChanged:YES];
     } else if ([self isBtnTouchedWithCenterPointAt:btnRightCenter touchPoint:point]) {
         _touched = TOUCHED_RIGHT;
         btnRad = 0;
         if (self.boostHidden) {
-          [self onRangeChanged];
+            [self onRangeChanged:NO];
         } else {
-          [self onBoostChanged];
+            [self onBoostChanged];
         }
     }
     
@@ -578,26 +593,27 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         touched = _touched;
         [self setNeedsDisplay];
     }
-
+    
     return touched == TOUCHED_NONE ? nil : self;
 }
 
 -(double) touchPointToRadian:(CGPoint)touchPoint {
     return atan2(touchPoint.y-self.bounds.size.height/2,
-            touchPoint.x-self.bounds.size.width/2);
+                 touchPoint.x-self.bounds.size.width/2);
 }
 
-- (void)touchesMoved:(NSSet<UITouch *> *)touches withEvent:(nullable UIEvent *)event {
-    [super touchesMoved:touches withEvent:event];
-    
-    UITouch *touch = [touches anyObject];
-    
-    if (touch == nil || touched == TOUCHED_NONE) {
+- (void)handlePan:(UIGestureRecognizer *)gr {
+    if ( gr.state == UIGestureRecognizerStateEnded) {
+        [self handleTap:gr];
         return;
     }
     
-    CGPoint touchLocation = [touch locationInView:touch.view];
-
+    if (touched == TOUCHED_NONE) {
+        return;
+    }
+    
+    CGPoint touchLocation = [gr locationInView:self];
+    
     btnRad = [self touchPointToRadian:touchLocation];
     double touchedDegree = RADIANS_TO_DEGREES(btnRad);
     
@@ -608,32 +624,34 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
             diff*=-1;
         }
     }
-  
+    
     if (fabs(diff) <= 20) {
         diff = (diff*100.0/360.0)*self.maximumValue/100/self.numerOfTurns;
         if (touched==TOUCHED_LEFT) {
             [self setMinimum:self.minimum+diff needsDisplay:NO];
-            [self onRangeChanged];
+            [self onRangeChanged:YES];
         } else {
             if (_boostHidden) {
                 [self setMaximum:self.maximum+diff needsDisplay:NO];
-                [self onRangeChanged];
+                [self onRangeChanged:NO];
             } else {
                 self.boostLevel += diff;
                 [self onBoostChanged];
             }
         }
     }
-
+    
     lastTouchedDegree = touchedDegree;
     [self setNeedsDisplay];
 }
 
-- (void)touchesEnded:(NSSet<UITouch *> *)touches withEvent:(nullable UIEvent *)event {
-    [super touchesEnded:touches withEvent:event];
-    touched = TOUCHED_NONE;
-    btnRad = 0;
-    [self setNeedsDisplay];
+- (void)handleTap:(UIGestureRecognizer *)gr {
+    if ( gr.state == UIGestureRecognizerStateEnded) {
+        touched = TOUCHED_NONE;
+        btnRad = 0;
+        [self setNeedsDisplay];
+        return;
+    }
 }
 
 -(void) setMinimum:(double)minimum andMaximum:(double)maximum {

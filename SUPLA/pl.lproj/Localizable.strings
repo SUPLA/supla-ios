@@ -157,3 +157,7 @@
 "Vector balance - Days" = "Bilans wektorowy - Dni";
 "Vector balance - Months" = "Bilans wektorowy - Miesiące";
 "Vector balance - Years" = "Bilans wektorowy - Lata";
+
+"Time exceeded. Try again." = "Przekroczono czas. Spróbuj ponownie.";
+"Are you sure you want to restore the default settings?" = "Czy na pewno chcesz przywrócić ustawienia domyślne ?";
+"Default settings" = "Ustawienia domyślne";

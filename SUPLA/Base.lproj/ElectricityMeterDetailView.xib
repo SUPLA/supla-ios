@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina5_5" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
@@ -13,9 +13,6 @@
         <array key="OpenSans-Regular.ttf">
             <string>OpenSans</string>
         </array>
-        <array key="Quicksand-Regular.ttf">
-            <string>Quicksand-Regular</string>
-        </array>
     </customFonts>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
@@ -25,10 +22,10 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wXI-rX-Ghy" userLabel="vContent">
-                    <rect key="frame" x="10" y="159" width="394" height="517"/>
+                    <rect key="frame" x="10" y="159" width="394" height="562"/>
                     <subviews>
                         <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WP8-xn-lei" userLabel="vCharts">
-                            <rect key="frame" x="0.0" y="0.0" width="394" height="517"/>
+                            <rect key="frame" x="0.0" y="0.0" width="394" height="562"/>
                             <subviews>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NAr-uo-LMR" userLabel="vFilters">
                                     <rect key="frame" x="0.0" y="0.0" width="394" height="62"/>
@@ -66,14 +63,14 @@
                                     </constraints>
                                 </view>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="irI-Gs-GJs" userLabel="vChartContainer">
-                                    <rect key="frame" x="0.0" y="67" width="394" height="450"/>
+                                    <rect key="frame" x="0.0" y="67" width="394" height="495"/>
                                     <subviews>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Q7j-4f-xav" customClass="PieChartView" customModule="Charts">
-                                            <rect key="frame" x="0.0" y="0.0" width="394" height="450"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="394" height="495"/>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </view>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Dpv-OP-VGS" customClass="CombinedChartView" customModule="Charts">
-                                            <rect key="frame" x="0.0" y="0.0" width="394" height="450"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="394" height="495"/>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </view>
                                     </subviews>
@@ -102,7 +99,7 @@
                             </constraints>
                         </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KE1-vg-Yeo" userLabel="vPhases">
-                            <rect key="frame" x="0.0" y="0.0" width="394" height="517"/>
+                            <rect key="frame" x="0.0" y="0.0" width="394" height="562"/>
                             <subviews>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MEJ-sn-3qn">
                                     <rect key="frame" x="0.0" y="0.0" width="94.666666666666671" height="30"/>
@@ -421,7 +418,7 @@
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5kh-QG-euh" userLabel="vLabelsBalance">
-                                    <rect key="frame" x="0.0" y="303.33333333333331" width="170" height="213.66666666666669"/>
+                                    <rect key="frame" x="0.0" y="303.33333333333326" width="170" height="258.66666666666674"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Forward active Energy" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GfA-ig-rf2" userLabel="Forward active Energy Balance">
                                             <rect key="frame" x="0.0" y="0.0" width="170" height="19.666666666666668"/>
@@ -448,7 +445,7 @@
                                     </constraints>
                                 </view>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="J2Z-bb-peO" userLabel="vValuesBalance">
-                                    <rect key="frame" x="170" y="303.33333333333331" width="224" height="213.66666666666669"/>
+                                    <rect key="frame" x="170" y="303.33333333333326" width="224" height="258.66666666666674"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="115 kWh" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="7" translatesAutoresizingMaskIntoConstraints="NO" id="Oln-S4-T0d">
                                             <rect key="frame" x="0.0" y="0.0" width="224" height="19.666666666666668"/>
@@ -522,37 +519,6 @@
                         <constraint firstItem="WP8-xn-lei" firstAttribute="top" secondItem="wXI-rX-Ghy" secondAttribute="top" id="OwR-t0-zFT"/>
                         <constraint firstItem="WP8-xn-lei" firstAttribute="leading" secondItem="wXI-rX-Ghy" secondAttribute="leading" id="koB-gd-TsR"/>
                         <constraint firstAttribute="trailing" secondItem="KE1-vg-Yeo" secondAttribute="trailing" id="naH-Hg-hFk"/>
-                    </constraints>
-                </view>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Xur-xZ-dhe" userLabel="vFooter">
-                    <rect key="frame" x="10" y="681" width="394" height="40"/>
-                    <subviews>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Caption" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="quy-hA-zMO">
-                            <rect key="frame" x="0.0" y="0.0" width="394" height="30"/>
-                            <constraints>
-                                <constraint firstAttribute="height" constant="30" id="rPe-qM-u3m"/>
-                            </constraints>
-                            <fontDescription key="fontDescription" name="Quicksand-Regular" family="Quicksand" pointSize="22"/>
-                            <nil key="textColor"/>
-                            <nil key="highlightedColor"/>
-                        </label>
-                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8TA-bU-XcS" userLabel="vLine2">
-                            <rect key="frame" x="0.0" y="35" width="394" height="1"/>
-                            <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                            <constraints>
-                                <constraint firstAttribute="height" constant="1" id="vxa-0H-Pai"/>
-                            </constraints>
-                        </view>
-                    </subviews>
-                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                    <constraints>
-                        <constraint firstItem="quy-hA-zMO" firstAttribute="top" secondItem="Xur-xZ-dhe" secondAttribute="top" id="7qV-co-hB2"/>
-                        <constraint firstItem="8TA-bU-XcS" firstAttribute="leading" secondItem="Xur-xZ-dhe" secondAttribute="leading" id="Nsm-kY-0ME"/>
-                        <constraint firstItem="8TA-bU-XcS" firstAttribute="top" secondItem="quy-hA-zMO" secondAttribute="bottom" constant="5" id="Wbt-J8-H5P"/>
-                        <constraint firstItem="quy-hA-zMO" firstAttribute="leading" secondItem="Xur-xZ-dhe" secondAttribute="leading" id="XVn-ub-sQx"/>
-                        <constraint firstAttribute="height" constant="40" id="iDi-qK-fuh"/>
-                        <constraint firstAttribute="trailing" secondItem="8TA-bU-XcS" secondAttribute="trailing" id="tGs-5N-iDs"/>
-                        <constraint firstAttribute="trailing" secondItem="quy-hA-zMO" secondAttribute="trailing" id="y0H-dK-NuM"/>
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oi3-aO-pwy" userLabel="vHeader">
@@ -709,13 +675,10 @@
             <constraints>
                 <constraint firstItem="wXI-rX-Ghy" firstAttribute="leading" secondItem="Xvv-Xf-gNW" secondAttribute="leading" constant="10" id="4nS-CX-0Zk"/>
                 <constraint firstAttribute="trailing" secondItem="wXI-rX-Ghy" secondAttribute="trailing" constant="10" id="Egy-91-4TJ"/>
-                <constraint firstItem="Xur-xZ-dhe" firstAttribute="leading" secondItem="Xvv-Xf-gNW" secondAttribute="leading" constant="10" id="Ffv-Tj-mxR"/>
                 <constraint firstAttribute="trailing" secondItem="oi3-aO-pwy" secondAttribute="trailing" constant="10" id="TVk-aE-tDG"/>
-                <constraint firstAttribute="trailing" secondItem="Xur-xZ-dhe" secondAttribute="trailing" constant="10" id="cAZ-Yr-B2g"/>
-                <constraint firstAttribute="bottom" secondItem="Xur-xZ-dhe" secondAttribute="bottom" constant="15" id="dbD-Yi-u3i"/>
                 <constraint firstItem="oi3-aO-pwy" firstAttribute="leading" secondItem="Xvv-Xf-gNW" secondAttribute="leading" constant="10" id="j1c-Tz-iST"/>
                 <constraint firstItem="oi3-aO-pwy" firstAttribute="top" secondItem="Xvv-Xf-gNW" secondAttribute="top" constant="20" id="lkb-u3-L0f"/>
-                <constraint firstItem="Xur-xZ-dhe" firstAttribute="top" secondItem="wXI-rX-Ghy" secondAttribute="bottom" constant="5" id="suF-6q-Vr3"/>
+                <constraint firstAttribute="bottom" secondItem="wXI-rX-Ghy" secondAttribute="bottom" constant="15" id="mgw-Ro-1eB"/>
                 <constraint firstItem="wXI-rX-Ghy" firstAttribute="top" secondItem="oi3-aO-pwy" secondAttribute="bottom" constant="5" id="wQ0-HY-5oQ"/>
             </constraints>
             <nil key="simulatedTopBarMetrics"/>
@@ -762,7 +725,6 @@
                 <outlet property="lActivePowerValue" destination="pzM-3T-vDD" id="77t-Hs-3Kt"/>
                 <outlet property="lApparentPower" destination="el3-yj-vIH" id="O8s-eZ-CqM"/>
                 <outlet property="lApparentPowerValue" destination="SGV-Qi-w6c" id="jry-6y-I3a"/>
-                <outlet property="lCaption" destination="quy-hA-zMO" id="azi-IH-ZQl"/>
                 <outlet property="lConsumptionProduction" destination="psK-hZ-nQF" id="WjQ-m2-pv8"/>
                 <outlet property="lConsumptionProductionValue" destination="zf2-II-RLR" id="gbk-H2-i46"/>
                 <outlet property="lCurrent" destination="g8r-4G-jnQ" id="fGS-qJ-koN"/>

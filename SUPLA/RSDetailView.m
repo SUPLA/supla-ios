@@ -111,8 +111,6 @@
             }
         }
         
-        [self.labelCaption setText:[self.channelBase getChannelCaption]];
-        
     }
     
 }
@@ -166,6 +164,5 @@
     [self dataToView];
     [self open:percent+10];
 }
-
 
 @end

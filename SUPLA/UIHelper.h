@@ -39,7 +39,9 @@
 +(nonnull UIColor*)colorPickerDefault;
 +(nonnull UIColor*)statusYellow;
 +(nonnull UIColor*)cellBackground;
-+(nonnull UIColor*)rgbDetailBackground;
++(nonnull UIColor*)rgbwDetailBackground;
++(nonnull UIColor*)rgbwSelectedTabColor;
++(nonnull UIColor*)rgbwNormalTabColor;
 +(nonnull UIColor*)rsDetailBackground;
 +(nonnull UIColor*)statusBorder;
 +(nonnull UIColor*)rsMarkerColor;
@@ -88,8 +90,9 @@
 -(void)showStarterVC;
 
 -(void)showMenuBtn:(BOOL)show;
--(void)showMenuBtn:(BOOL)show withSettingsIcon:(BOOL)settingsIcon;
-
+-(void)showMenubarSettingsBtn;
+-(void)showMenubarBackBtn;
+-(void)setMenubarDetailTitle:(nonnull NSString *)title;
 -(void)showGroupBtn:(BOOL)show;
 
 -(BOOL)addWizardIsVisible;

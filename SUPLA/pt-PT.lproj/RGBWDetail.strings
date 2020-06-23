@@ -1,0 +1,12 @@
+
+/* Class = "UIButton"; normalTitle = "DIMMER"; ObjectID = "CmH-xi-e3y"; */
+"CmH-xi-e3y.normalTitle" = "CONTROLADOR DE LUZ";
+
+/* Class = "UIButton"; normalTitle = "RGB"; ObjectID = "ZfE-Sn-N5Y"; */
+"ZfE-Sn-N5Y.normalTitle" = "RGB";
+
+/* Class = "UIButton"; normalTitle = "WHEEL"; ObjectID = "wKr-No-fLI"; */
+"wKr-No-fLI.normalTitle" = "WHEEL";
+
+/* Class = "UIButton"; normalTitle = "SLIDER"; ObjectID = "yOa-IT-DZF"; */
+"yOa-IT-DZF.normalTitle" = "SLIDER";

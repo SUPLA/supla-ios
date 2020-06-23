@@ -32,7 +32,7 @@
 
 -(void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    [[SAApp UI] showMenuBtn:YES withSettingsIcon:YES];
+    [[SAApp UI] showMenubarSettingsBtn];
     
     self.webView.hidden = YES;
     self.activityIndicator.hidden = NO;

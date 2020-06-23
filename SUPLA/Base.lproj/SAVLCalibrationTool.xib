@@ -1,0 +1,353 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina3_5" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="OpenSans-Bold.ttf">
+            <string>OpenSans-Bold</string>
+        </array>
+        <array key="OpenSans-Regular.ttf">
+            <string>OpenSans</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iN0-l3-epB" customClass="SAVLCalibrationTool">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nN6-QF-5He" userLabel="vTabsMode">
+                    <rect key="frame" x="15" y="119" width="290" height="35"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" selected="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rvo-jc-7PF" userLabel="tabMode1">
+                            <rect key="frame" x="2" y="2" width="94" height="31"/>
+                            <color key="backgroundColor" red="0.00028004610790000002" green="0.67520374059999999" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                            <fontDescription key="fontDescription" name="OpenSans-Bold" family="Open Sans" pointSize="10"/>
+                            <state key="normal" title="MODE 1">
+                                <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </state>
+                            <state key="disabled">
+                                <color key="titleColor" red="0.78356995558375631" green="0.78356995558375631" blue="0.78356995558375631" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </state>
+                            <state key="selected">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </state>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                    <integer key="value" value="5"/>
+                                </userDefinedRuntimeAttribute>
+                            </userDefinedRuntimeAttributes>
+                            <connections>
+                                <action selector="tabMode123Touch:" destination="iN0-l3-epB" eventType="touchDown" id="wXK-BH-3qD"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mhd-rn-O8m" userLabel="tabMode2">
+                            <rect key="frame" x="98" y="2" width="94" height="31"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="31" id="8SQ-th-O4H"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" name="OpenSans-Bold" family="Open Sans" pointSize="10"/>
+                            <state key="normal" title="MODE 2">
+                                <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </state>
+                            <state key="disabled">
+                                <color key="titleColor" red="0.78356995558375631" green="0.78356995558375631" blue="0.78356995558375631" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </state>
+                            <state key="selected">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </state>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                    <integer key="value" value="5"/>
+                                </userDefinedRuntimeAttribute>
+                            </userDefinedRuntimeAttributes>
+                            <connections>
+                                <action selector="tabMode123Touch:" destination="iN0-l3-epB" eventType="touchDown" id="uf4-aZ-t3L"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5NZ-KI-0CD" userLabel="tabMode3">
+                            <rect key="frame" x="194" y="2" width="94" height="31"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="31" id="Ghm-vx-DVa"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" name="OpenSans-Bold" family="Open Sans" pointSize="10"/>
+                            <state key="normal" title="MODE 3">
+                                <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </state>
+                            <state key="disabled">
+                                <color key="titleColor" red="0.78356995558375631" green="0.78356995558375631" blue="0.78356995558375631" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </state>
+                            <state key="selected">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </state>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                    <integer key="value" value="5"/>
+                                </userDefinedRuntimeAttribute>
+                            </userDefinedRuntimeAttributes>
+                            <connections>
+                                <action selector="tabMode123Touch:" destination="iN0-l3-epB" eventType="touchDown" id="YQb-8H-6hQ"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstItem="5NZ-KI-0CD" firstAttribute="top" secondItem="nN6-QF-5He" secondAttribute="top" constant="2" id="2T3-jN-M1X"/>
+                        <constraint firstItem="5NZ-KI-0CD" firstAttribute="width" secondItem="rvo-jc-7PF" secondAttribute="width" id="75Z-P2-diO"/>
+                        <constraint firstItem="Mhd-rn-O8m" firstAttribute="width" secondItem="rvo-jc-7PF" secondAttribute="width" id="7y8-5a-A4P"/>
+                        <constraint firstAttribute="bottom" secondItem="5NZ-KI-0CD" secondAttribute="bottom" constant="2" id="A89-ny-M9w"/>
+                        <constraint firstItem="Mhd-rn-O8m" firstAttribute="leading" secondItem="rvo-jc-7PF" secondAttribute="trailing" constant="2" id="Ey0-KD-nCZ"/>
+                        <constraint firstItem="5NZ-KI-0CD" firstAttribute="leading" secondItem="Mhd-rn-O8m" secondAttribute="trailing" constant="2" id="HZm-bC-Xdy"/>
+                        <constraint firstAttribute="bottom" secondItem="rvo-jc-7PF" secondAttribute="bottom" constant="2" id="RWn-xv-7Aj"/>
+                        <constraint firstItem="rvo-jc-7PF" firstAttribute="leading" secondItem="nN6-QF-5He" secondAttribute="leading" constant="2" id="Sag-q3-lHu"/>
+                        <constraint firstItem="rvo-jc-7PF" firstAttribute="top" secondItem="nN6-QF-5He" secondAttribute="top" constant="2" id="ugK-5J-ZWs"/>
+                        <constraint firstAttribute="trailing" secondItem="5NZ-KI-0CD" secondAttribute="trailing" constant="2" id="ujC-SU-mCe"/>
+                        <constraint firstItem="Mhd-rn-O8m" firstAttribute="top" secondItem="nN6-QF-5He" secondAttribute="top" constant="2" id="xmv-6P-KHX"/>
+                        <constraint firstItem="5NZ-KI-0CD" firstAttribute="width" secondItem="rvo-jc-7PF" secondAttribute="width" id="xvo-vJ-2tu"/>
+                        <constraint firstAttribute="bottom" secondItem="Mhd-rn-O8m" secondAttribute="bottom" constant="2" id="yha-vd-GfD"/>
+                        <constraint firstItem="Mhd-rn-O8m" firstAttribute="width" secondItem="rvo-jc-7PF" secondAttribute="width" id="zxo-OX-Brs"/>
+                    </constraints>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                            <integer key="value" value="8"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                </view>
+                <view contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yCM-1x-jYm" userLabel="vTabsBoost">
+                    <rect key="frame" x="15" y="196" width="290" height="35"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" selected="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="b2V-rw-W6a" userLabel="tabYes">
+                            <rect key="frame" x="2" y="2" width="142" height="31"/>
+                            <color key="backgroundColor" red="0.00028004610790000002" green="0.67520374059999999" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="31" id="uih-A3-7rF"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" name="OpenSans-Bold" family="Open Sans" pointSize="10"/>
+                            <state key="normal" title="YES">
+                                <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </state>
+                            <state key="disabled">
+                                <color key="titleColor" red="0.78356995558375631" green="0.78356995558375631" blue="0.78356995558375631" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </state>
+                            <state key="selected">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </state>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                    <integer key="value" value="5"/>
+                                </userDefinedRuntimeAttribute>
+                            </userDefinedRuntimeAttributes>
+                            <connections>
+                                <action selector="tabBoostYesNoTouch:" destination="iN0-l3-epB" eventType="touchDown" id="4lD-sr-Rhi"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0Qk-BM-JC5" userLabel="tabNo">
+                            <rect key="frame" x="146" y="2" width="142" height="31"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="31" id="PdD-j8-x1Z"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" name="OpenSans-Bold" family="Open Sans" pointSize="10"/>
+                            <state key="normal" title="NO">
+                                <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </state>
+                            <state key="disabled">
+                                <color key="titleColor" red="0.78356995558375631" green="0.78356995558375631" blue="0.78356995558375631" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </state>
+                            <state key="selected">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </state>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                    <integer key="value" value="5"/>
+                                </userDefinedRuntimeAttribute>
+                            </userDefinedRuntimeAttributes>
+                            <connections>
+                                <action selector="tabBoostYesNoTouch:" destination="iN0-l3-epB" eventType="touchDown" id="upf-OS-Zt8"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstItem="0Qk-BM-JC5" firstAttribute="leading" secondItem="b2V-rw-W6a" secondAttribute="trailing" constant="2" id="1YW-KS-NxI"/>
+                        <constraint firstAttribute="height" constant="35" id="4cu-NQ-mj6"/>
+                        <constraint firstItem="0Qk-BM-JC5" firstAttribute="centerY" secondItem="yCM-1x-jYm" secondAttribute="centerY" id="5Ur-bR-XH6"/>
+                        <constraint firstItem="0Qk-BM-JC5" firstAttribute="width" secondItem="b2V-rw-W6a" secondAttribute="width" id="AdL-NX-Qbg"/>
+                        <constraint firstAttribute="trailing" secondItem="0Qk-BM-JC5" secondAttribute="trailing" constant="2" id="EJD-bp-2nL"/>
+                        <constraint firstItem="b2V-rw-W6a" firstAttribute="centerY" secondItem="yCM-1x-jYm" secondAttribute="centerY" id="T0Q-1u-DRX"/>
+                        <constraint firstItem="b2V-rw-W6a" firstAttribute="leading" secondItem="yCM-1x-jYm" secondAttribute="leading" constant="2" id="f6O-Dx-nj1"/>
+                    </constraints>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                            <integer key="value" value="8"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                </view>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="vprosmart@3.png" translatesAutoresizingMaskIntoConstraints="NO" id="zCh-VR-YXW">
+                    <rect key="frame" x="15" y="15" width="70" height="54"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="70" id="dcP-BI-13S"/>
+                        <constraint firstAttribute="height" constant="54" id="dyC-ct-Bxe"/>
+                    </constraints>
+                </imageView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uhx-4u-dOp">
+                    <rect key="frame" x="120" y="17" width="50" height="50"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="50" id="WZ4-3Z-NmX"/>
+                        <constraint firstAttribute="height" constant="50" id="qyQ-rh-fKR"/>
+                    </constraints>
+                    <state key="normal" image="vlinfo@3.png"/>
+                    <connections>
+                        <action selector="btnInfoTouch:" destination="iN0-l3-epB" eventType="touchDown" id="R5R-Ya-bjC"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="m1G-sH-B4U">
+                    <rect key="frame" x="180" y="17" width="50" height="50"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="50" id="jQy-SA-8xh"/>
+                        <constraint firstAttribute="width" constant="50" id="rf9-RG-nF9"/>
+                    </constraints>
+                    <state key="normal" image="vlrestore@3.png"/>
+                    <connections>
+                        <action selector="btnRestoreTouch:" destination="iN0-l3-epB" eventType="touchDown" id="zq5-Ct-fO7"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Rli-l8-NMj">
+                    <rect key="frame" x="240" y="17" width="50" height="50"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="50" id="GMe-zN-BFV"/>
+                        <constraint firstAttribute="width" constant="50" id="fWD-qW-Mlx"/>
+                    </constraints>
+                    <state key="normal" image="btnOK.png"/>
+                    <connections>
+                        <action selector="btnOKTouch:" destination="iN0-l3-epB" eventType="touchDown" id="sa0-HG-vxA"/>
+                    </connections>
+                </button>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Dimming mode" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PYA-89-fe5">
+                    <rect key="frame" x="15" y="99" width="94" height="18"/>
+                    <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="13"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Boost" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9CN-AY-yB1">
+                    <rect key="frame" x="15" y="174" width="35" height="20"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="20" id="ag3-Ob-8Sj"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="13"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <view contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cWC-eR-CQL" userLabel="vTabsOpRange">
+                    <rect key="frame" x="15" y="251" width="290" height="35"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" selected="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WeS-eH-Y2T" userLabel="tabOpRange">
+                            <rect key="frame" x="0.0" y="0.0" width="145" height="35"/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="35" id="OS2-xW-3by"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" name="OpenSans-Bold" family="Open Sans" pointSize="10"/>
+                            <state key="normal" title="OPERATING RANGE">
+                                <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </state>
+                            <state key="selected">
+                                <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </state>
+                            <connections>
+                                <action selector="tabOpRangeTouch:" destination="iN0-l3-epB" eventType="touchDown" id="KAr-hh-yDh"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tMB-hx-Fnq" userLabel="tabBoost">
+                            <rect key="frame" x="145" y="0.0" width="145" height="35"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="35" id="yYp-eZ-91w"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" name="OpenSans-Bold" family="Open Sans" pointSize="10"/>
+                            <state key="normal" title="BOOST">
+                                <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </state>
+                            <state key="selected">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </state>
+                            <connections>
+                                <action selector="tabBoostTouch:" destination="iN0-l3-epB" eventType="touchDown" id="nHj-KL-n5l"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstItem="WeS-eH-Y2T" firstAttribute="centerY" secondItem="cWC-eR-CQL" secondAttribute="centerY" id="0dL-iX-VC3"/>
+                        <constraint firstAttribute="height" constant="35" id="Eny-0m-IBT"/>
+                        <constraint firstAttribute="bottom" secondItem="WeS-eH-Y2T" secondAttribute="bottom" id="JpS-wv-Av1"/>
+                        <constraint firstAttribute="bottom" secondItem="tMB-hx-Fnq" secondAttribute="bottom" id="OZD-5u-WVp"/>
+                        <constraint firstItem="WeS-eH-Y2T" firstAttribute="leading" secondItem="cWC-eR-CQL" secondAttribute="leading" id="Ukx-9Y-GRS"/>
+                        <constraint firstItem="tMB-hx-Fnq" firstAttribute="leading" secondItem="WeS-eH-Y2T" secondAttribute="trailing" id="nPu-8p-tPq"/>
+                        <constraint firstAttribute="trailing" secondItem="tMB-hx-Fnq" secondAttribute="trailing" id="nQM-mU-soh"/>
+                        <constraint firstItem="tMB-hx-Fnq" firstAttribute="width" secondItem="WeS-eH-Y2T" secondAttribute="width" id="wdm-ne-7hK"/>
+                    </constraints>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                            <integer key="value" value="8"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oFN-cJ-xUT" customClass="SARangeCalibrationWheel">
+                    <rect key="frame" x="15" y="286" width="290" height="174"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                </view>
+            </subviews>
+            <color key="backgroundColor" red="0.92933040860000005" green="0.92946392300000003" blue="0.92930120230000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="yCM-1x-jYm" firstAttribute="top" secondItem="9CN-AY-yB1" secondAttribute="bottom" constant="2" id="1Kv-bH-u0U"/>
+                <constraint firstItem="uhx-4u-dOp" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="17" id="1fI-8Z-Tkh"/>
+                <constraint firstItem="zCh-VR-YXW" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="15" id="217-27-xaq"/>
+                <constraint firstAttribute="bottom" secondItem="oFN-cJ-xUT" secondAttribute="bottom" constant="20" id="2SE-KY-bEG"/>
+                <constraint firstItem="nN6-QF-5He" firstAttribute="top" secondItem="PYA-89-fe5" secondAttribute="bottom" constant="2" id="3Xe-Ef-iOJ"/>
+                <constraint firstItem="oFN-cJ-xUT" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="15" id="5Rj-zT-HBO"/>
+                <constraint firstItem="m1G-sH-B4U" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="17" id="7gK-pd-YNP"/>
+                <constraint firstAttribute="trailing" secondItem="yCM-1x-jYm" secondAttribute="trailing" constant="15" id="8FT-Bo-eNq"/>
+                <constraint firstItem="Rli-l8-NMj" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="17" id="A4V-79-hbw"/>
+                <constraint firstAttribute="trailing" secondItem="nN6-QF-5He" secondAttribute="trailing" constant="15" id="GQR-6m-BIF"/>
+                <constraint firstItem="Rli-l8-NMj" firstAttribute="leading" secondItem="m1G-sH-B4U" secondAttribute="trailing" constant="10" id="JpI-mN-QH0"/>
+                <constraint firstItem="9CN-AY-yB1" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="15" id="PiK-KG-PPL"/>
+                <constraint firstItem="yCM-1x-jYm" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="15" id="S4d-0E-Krd"/>
+                <constraint firstItem="m1G-sH-B4U" firstAttribute="leading" secondItem="uhx-4u-dOp" secondAttribute="trailing" constant="10" id="XgK-WG-DAR"/>
+                <constraint firstAttribute="trailing" secondItem="cWC-eR-CQL" secondAttribute="trailing" constant="15" id="ZBp-lT-lys"/>
+                <constraint firstItem="9CN-AY-yB1" firstAttribute="top" secondItem="nN6-QF-5He" secondAttribute="bottom" constant="20" id="bSw-08-LGx"/>
+                <constraint firstItem="cWC-eR-CQL" firstAttribute="top" secondItem="yCM-1x-jYm" secondAttribute="bottom" constant="20" id="fic-ta-tru"/>
+                <constraint firstItem="PYA-89-fe5" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="15" id="hEs-X2-30J"/>
+                <constraint firstItem="nN6-QF-5He" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="15" id="hjg-rO-rh3"/>
+                <constraint firstItem="oFN-cJ-xUT" firstAttribute="top" secondItem="cWC-eR-CQL" secondAttribute="bottom" id="k3P-h0-Gex"/>
+                <constraint firstItem="cWC-eR-CQL" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="15" id="mGH-3g-pLy"/>
+                <constraint firstItem="zCh-VR-YXW" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="15" id="oYS-0o-Vnw"/>
+                <constraint firstAttribute="trailing" secondItem="Rli-l8-NMj" secondAttribute="trailing" constant="30" id="vbx-yN-HSl"/>
+                <constraint firstItem="PYA-89-fe5" firstAttribute="top" secondItem="zCh-VR-YXW" secondAttribute="bottom" constant="30" id="wQR-Eh-m3o"/>
+                <constraint firstAttribute="trailing" secondItem="oFN-cJ-xUT" secondAttribute="trailing" constant="15" id="zMs-6w-kY2"/>
+            </constraints>
+            <connections>
+                <outlet property="btnInfo" destination="uhx-4u-dOp" id="x2d-wN-3Tw"/>
+                <outlet property="btnOK" destination="Rli-l8-NMj" id="GpQ-LI-wIi"/>
+                <outlet property="btnRestore" destination="m1G-sH-B4U" id="SPJ-v5-kEG"/>
+                <outlet property="rangeCalibrationWheel" destination="oFN-cJ-xUT" id="jTq-N9-NwR"/>
+                <outlet property="tabBoost" destination="tMB-hx-Fnq" id="Ien-qO-O5d"/>
+                <outlet property="tabBoostNo" destination="0Qk-BM-JC5" id="VmM-26-7xW"/>
+                <outlet property="tabBoostYes" destination="b2V-rw-W6a" id="4mV-CA-Qis"/>
+                <outlet property="tabMode1" destination="rvo-jc-7PF" id="L6p-H9-tgV"/>
+                <outlet property="tabMode2" destination="Mhd-rn-O8m" id="1W9-68-rfU"/>
+                <outlet property="tabMode3" destination="5NZ-KI-0CD" id="qcX-vd-RIz"/>
+                <outlet property="tabOpRange" destination="WeS-eH-Y2T" id="bTy-Zv-jeu"/>
+            </connections>
+            <point key="canvasLocation" x="138.75" y="105"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="btnOK.png" width="65" height="65"/>
+        <image name="vlinfo@3.png" width="200" height="200"/>
+        <image name="vlrestore@3.png" width="200" height="200"/>
+        <image name="vprosmart@3.png" width="400" height="300"/>
+    </resources>
+</document>
