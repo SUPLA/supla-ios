@@ -76,7 +76,7 @@
 "Cancel" = "Ακύρωση";
 "Go to the system settings" = "Μετάβαση στις ρυθμίσεις συστήματος";
 "I/O Device registration is currently off. To continue go to „My SUPLA” at %@ and enable the Device Add Button." = "Η εγγραφή συσκευών εισόδου/εξόδου είναι αυτή τη στιγμή απενεργοποιημένη. Για να συνεχίσετε, μεταβείτε στην ιστοσελίδα %@ και στην καρτέλα \"Η SUPLA μου\" ενεργοποιήστε την προσθήκη συσκευών.";
-"Add Wizard is only available when server connection has been set based on the email address entered in the settings." = "Ο οδηγός προσθήκης είναι διαθέσιμος μόνο όταν έχει δημιουργηθεί μια σύνδεση με το διακομιστή με βάση τη διεύθυνση ηλεκτρονικού ταχυδρομείου που είχε εισαχθεί στις ρυθμίσεις!";
+"Add Wizard is only available when server connection has been set based on the email address entered in the settings. (Disable advanced options in the settings)" = "Ο οδηγός προσθήκης είναι διαθέσιμος μόνο όταν έχει δημιουργηθεί μια σύνδεση με το διακομιστή με βάση τη διεύθυνση ηλεκτρονικού ταχυδρομείου που είχε εισαχθεί στις ρυθμίσεις!";
 "The connected Server does not support this function!" = "Ο διακομιστής στον οποίο συνδέεστε δεν υποστηρίζει αυτή τη λειτουργία!";
 "Device Configuration Completion timeout!" = "Υπέρβαση χρόνου αναμονής για την ολοκλήρωση διαμόρφωσης της συσκευής!";
 "Incorrect input parameters!" = "Μη έγκυρες παράμετροι εισόδου!";

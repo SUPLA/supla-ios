@@ -348,7 +348,7 @@
     [self.btnSystemSettings setTitle:NSLocalizedString(@"Go to the system settings", NULL)];
     
     if ( [SAApp isAdvancedConfig] == YES ) {
-        [self showError:NSLocalizedString(@"Add Wizard is only available when server connection has been set based on the email address entered in the settings.", NULL)];
+        [self showError:NSLocalizedString(@"Add Wizard is only available when server connection has been set based on the email address entered in the settings. (Disable advanced options in the settings)", NULL)];
         return;
     } else {
         int version = [[SAApp SuplaClient] getProtocolVersion];

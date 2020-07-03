@@ -71,7 +71,7 @@
 "Cancel" = "Annullieren";
 "Go to the system settings" = "Gehe Sie zu den Systemeinstellungen rüber";
 "I/O Device registration is currently off. To continue go to „My SUPLA” at %@ and enable the Device Add Button." = "Die Registrierung der Ein-/Ausgabegeräte ist momentan deaktiviert. Um fortzusetzen, kommen Sie zur Website %@ und im Bereich Meine SUPLA aktivieren Sie die Funktion Geräte hinzufügen.";
-"Add Wizard is only available when server connection has been set based on the email address entered in the settings." = "Der Assistent zum Hinzufügen steht nur dann zur Verfügung, wenn Kontakt mit dem Server aufgrund der E-Mail-Adresse besteht!";
+"Add Wizard is only available when server connection has been set based on the email address entered in the settings. (Disable advanced options in the settings)" = "Der Assistent zum Hinzufügen steht nur dann zur Verfügung, wenn Kontakt mit dem Server aufgrund der E-Mail-Adresse besteht!";
 "The connected Server does not support this function!" = "Der Server, mit dem eine Verbindung herstellen wurde, unterstützt diese Funktion nicht!";
 "Device Configuration Completion timeout!" = "Für den Abschluss der Konfiguration des Gerätes wurde das Zeitlimit überschritten!";
 "Incorrect input parameters!" = "Falsche Eingabeparameter!";
