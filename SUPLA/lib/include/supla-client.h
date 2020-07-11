@@ -182,7 +182,7 @@ typedef struct {
 extern "C" {
 #endif
 void supla_client_cfginit(TSuplaClientCfg *sclient_cfg);
-
+void supla_client_set_str(char *str, unsigned int *size, unsigned int max);
 void *supla_client_init(TSuplaClientCfg *sclient_cfg);
 void supla_client_free(void *_scd);
 int supla_client_get_id(void *_suplaclient);
@@ -236,6 +236,10 @@ char supla_client_zwave_get_node_list(void *_suplaclient, int deviceID);
 char supla_client_zwave_get_assigned_node_id(void *_suplaclient, int channelID);
 char supla_client_zwave_assign_node_id(void *_suplaclient, int channelID,
                                        unsigned char nodeID);
+char supla_client_set_lightsource_lifespan(void *_suplaclient, int channelID,
+                                           unsigned char resetCounter,
+                                           unsigned char setTime,
+                                           unsigned short lightSourceLifespan);
 
 #ifdef __cplusplus
 }
