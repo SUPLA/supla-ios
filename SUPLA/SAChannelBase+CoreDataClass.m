@@ -446,6 +446,9 @@
                 case 1:
                     n2 = @"xmastree";
                     break;
+                case 2:
+                    n2 = @"uv";
+                    break;
                 default:
                     n2 = @"light";
             }

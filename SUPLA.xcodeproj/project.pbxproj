@@ -74,6 +74,10 @@
 		018CFD2323281ADB00888CB7 /* SAThermostatExtendedValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 018CFD2223281ADB00888CB7 /* SAThermostatExtendedValue.m */; };
 		018CFD2623281AF900888CB7 /* SAThermostatHPExtendedValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 018CFD2523281AF900888CB7 /* SAThermostatHPExtendedValue.m */; };
 		018CFD2923281F0C00888CB7 /* SAExtendedValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 018CFD2823281F0C00888CB7 /* SAExtendedValue.m */; };
+		018D2E5124BF258B00773D2F /* uv-on@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 018D2E4D24BF258A00773D2F /* uv-on@2x.png */; };
+		018D2E5224BF258B00773D2F /* uv-off@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 018D2E4E24BF258B00773D2F /* uv-off@3x.png */; };
+		018D2E5324BF258B00773D2F /* uv-on@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 018D2E4F24BF258B00773D2F /* uv-on@3x.png */; };
+		018D2E5424BF258B00773D2F /* uv-off@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 018D2E5024BF258B00773D2F /* uv-off@2x.png */; };
 		018E67CF22C8CA0A00FF1427 /* SADownloadElectricityMeasurements.m in Sources */ = {isa = PBXBuildFile; fileRef = 018E67CE22C8CA0A00FF1427 /* SADownloadElectricityMeasurements.m */; };
 		01902A25235A17E9005ED935 /* TemperatureDetailView.m in Sources */ = {isa = PBXBuildFile; fileRef = 01902A24235A17E9005ED935 /* TemperatureDetailView.m */; };
 		01902A28235A180F005ED935 /* TempHumidityDetailView.m in Sources */ = {isa = PBXBuildFile; fileRef = 01902A27235A180F005ED935 /* TempHumidityDetailView.m */; };
@@ -522,6 +526,10 @@
 		018CFD2523281AF900888CB7 /* SAThermostatHPExtendedValue.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SAThermostatHPExtendedValue.m; sourceTree = "<group>"; };
 		018CFD2723281F0C00888CB7 /* SAExtendedValue.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SAExtendedValue.h; sourceTree = "<group>"; };
 		018CFD2823281F0C00888CB7 /* SAExtendedValue.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SAExtendedValue.m; sourceTree = "<group>"; };
+		018D2E4D24BF258A00773D2F /* uv-on@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "uv-on@2x.png"; path = "Resources/Assets/Img/uv-on@2x.png"; sourceTree = "<group>"; };
+		018D2E4E24BF258B00773D2F /* uv-off@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "uv-off@3x.png"; path = "Resources/Assets/Img/uv-off@3x.png"; sourceTree = "<group>"; };
+		018D2E4F24BF258B00773D2F /* uv-on@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "uv-on@3x.png"; path = "Resources/Assets/Img/uv-on@3x.png"; sourceTree = "<group>"; };
+		018D2E5024BF258B00773D2F /* uv-off@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "uv-off@2x.png"; path = "Resources/Assets/Img/uv-off@2x.png"; sourceTree = "<group>"; };
 		018E67CD22C8CA0A00FF1427 /* SADownloadElectricityMeasurements.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SADownloadElectricityMeasurements.h; sourceTree = "<group>"; };
 		018E67CE22C8CA0A00FF1427 /* SADownloadElectricityMeasurements.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SADownloadElectricityMeasurements.m; sourceTree = "<group>"; };
 		01902A23235A17E9005ED935 /* TemperatureDetailView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TemperatureDetailView.h; sourceTree = "<group>"; };
@@ -1314,6 +1322,10 @@
 		405AC4011BC15878004F7311 /* Img */ = {
 			isa = PBXGroup;
 			children = (
+				018D2E5024BF258B00773D2F /* uv-off@2x.png */,
+				018D2E4E24BF258B00773D2F /* uv-off@3x.png */,
+				018D2E4D24BF258A00773D2F /* uv-on@2x.png */,
+				018D2E4F24BF258B00773D2F /* uv-on@3x.png */,
 				01D3FF6624A20E26000EBE77 /* backbtn@3x.png */,
 				01D6A105249C0EAC006B3757 /* vlinfo@3.png */,
 				01D6A103249C0DC8006B3757 /* vprosmart@3.png */,
@@ -1936,6 +1948,7 @@
 				407D4AF11BC6C6A4009A5505 /* app_icon180x180@3x.png in Resources */,
 				40B9ED831FACE15700403B1A /* mail@3x.png in Resources */,
 				40DE1A291BCCFF8A004CF43B /* feedback@2x.png in Resources */,
+				018D2E5324BF258B00773D2F /* uv-on@3x.png in Resources */,
 				40B9ED671FACD34C00403B1A /* xmastree-off@3x.png in Resources */,
 				40B9ED581FACD0A100403B1A /* pc-off@3x.png in Resources */,
 				40CF96C81BC7D4E70030EFFF /* rollershutter-open@2x.png in Resources */,
@@ -1989,6 +2002,7 @@
 				4052DA031DC515AE000B8C45 /* dimmerrgb-offon@2x.png in Resources */,
 				40CF96C31BC7D4E70030EFFF /* power-off@3x.png in Resources */,
 				4091AF481FC88A8B00EFF357 /* plug@2x.png in Resources */,
+				018D2E5224BF258B00773D2F /* uv-off@3x.png in Resources */,
 				40477B4220C6C57700E995E6 /* staircasetimer-on@3x.png in Resources */,
 				40CF96C11BC7D4E70030EFFF /* noliquid@3x.png in Resources */,
 				40B9ED4E1FACCF8100403B1A /* radio-on@3x.png in Resources */,
@@ -2025,6 +2039,7 @@
 				40CE7C691DCBBD5700BBACE4 /* distance@3x.png in Resources */,
 				40B9ED651FACD34C00403B1A /* xmastree-on@3x.png in Resources */,
 				40B9ED571FACD0A100403B1A /* pc-on@2x.png in Resources */,
+				018D2E5124BF258B00773D2F /* uv-on@2x.png in Resources */,
 				4091AF4A1FC88BFB00EFF357 /* greendot@2x.png in Resources */,
 				011E736824A1367B004D99EE /* SAVLCalibrationTool.xib in Resources */,
 				4052DA041DC515AE000B8C45 /* dimmerrgb-onoff@3x.png in Resources */,
@@ -2054,6 +2069,7 @@
 				01D3FF6724A20E26000EBE77 /* backbtn@3x.png in Resources */,
 				40CF96B11BC7D4E70030EFFF /* garagedoor-open@3x.png in Resources */,
 				40B9ED801FACE15700403B1A /* window-open@3x.png in Resources */,
+				018D2E5424BF258B00773D2F /* uv-off@2x.png in Resources */,
 				40477B3D20C6C57700E995E6 /* staircasetimer-off@3x.png in Resources */,
 				405C49A01FCAFFD400C15602 /* wizard_error@2x.png in Resources */,
 				407D31941FD1A7070062FB80 /* AddWizardVC.xib in Resources */,
