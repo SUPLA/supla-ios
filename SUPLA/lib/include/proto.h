@@ -408,12 +408,12 @@ extern char sproto_tag[SUPLA_TAG_SIZE];
 #define SUPLA_MFR_FAKRO 9
 #define SUPLA_MFR_PEVEKO 10
 #define SUPLA_MFR_WEKTA 11
-#define SUPLA_MFR_LUXINO 12
+#define SUPLA_MFR_STA_SYSTEM 12
 
 #define SUPLA_CHANNEL_FLAG_ZWAVE_BRIDGE 0x0001                    // ver. >= 12
 #define SUPLA_CHANNEL_FLAG_IR_BRIDGE 0x0002                       // ver. >= 12
 #define SUPLA_CHANNEL_FLAG_RF_BRIDGE 0x0004                       // ver. >= 12
-#define SUPLA_CHANNEL_FLAG_DETAILED_STATUS 0x0008                 // ver. >= 12
+// Free bit for future use: 0x0008
 #define SUPLA_CHANNEL_FLAG_CHART_TYPE_BAR 0x0010                  // ver. >= 12
 #define SUPLA_CHANNEL_FLAG_CHART_DS_TYPE_DIFFERENTAL 0x0020       // ver. >= 12
 #define SUPLA_CHANNEL_FLAG_CHART_INTERPOLATE_MEASUREMENTS 0x0040  // ver. >= 12
@@ -422,7 +422,7 @@ extern char sproto_tag[SUPLA_TAG_SIZE];
 #define SUPLA_CHANNEL_FLAG_CAP_ACTION3 0x0200                     // ver. >= 12
 #define SUPLA_CHANNEL_FLAG_CAP_ACTION4 0x0400                     // ver. >= 12
 #define SUPLA_CHANNEL_FLAG_CAP_ACTION5 0x0800                     // ver. >= 12
-// Four free bists 0x1000, 0x2000, 0x4000, 0x8000
+// Free bits for future use: 0x1000, 0x2000, 0x4000, 0x8000
 #define SUPLA_CHANNEL_FLAG_CHANNELSTATE 0x00010000                 // ver. >= 12
 #define SUPLA_CHANNEL_FLAG_PHASE1_UNSUPPORTED 0x00020000           // ver. >= 12
 #define SUPLA_CHANNEL_FLAG_PHASE2_UNSUPPORTED 0x00040000           // ver. >= 12
@@ -1419,18 +1419,10 @@ typedef struct {
 } TSDC_UserLocalTimeResult;
 
 typedef struct {
-  _supla_int_t SenderID;  // Filled by server
-  union {
-    _supla_int_t ChannelID;       // Server -> Client
-    unsigned char ChannelNumber;  // Device -> Server
-  };
-} TCS_ChannelStateRequest;  // v. >= 12
-
-typedef struct {
   _supla_int_t SenderID;
   union {
-    _supla_int_t ChannelID;       // Server -> Client
-    unsigned char ChannelNumber;  // Device -> Server
+    _supla_int_t ChannelID;       // Client -> Server
+    unsigned char ChannelNumber;  // Server -> Device
   };
 } TCSD_ChannelStateRequest;  // v. >= 12 Client -> Server -> Device
 
@@ -1447,6 +1439,7 @@ typedef struct {
 #define SUPLA_CHANNELSTATE_FIELD_BRIDGENODEONLINE 0x0400
 #define SUPLA_CHANNELSTATE_FIELD_LASTCONNECTIONRESETCAUSE 0x0800
 #define SUPLA_CHANNELSTATE_FIELD_LIGHTSOURCELIFESPAN 0x1000
+#define SUPLA_CHANNELSTATE_FIELD_LIGHTSOURCEOPERATINGTIME 0x2000
 
 #define SUPLA_LASTCONNECTIONRESETCAUSE_UNKNOWN 0
 #define SUPLA_LASTCONNECTIONRESETCAUSE_ACTIVITY_TIMEOUT 1
@@ -1475,10 +1468,13 @@ typedef struct {
   unsigned char BatteryHealth;
   unsigned char LastConnectionResetCause;  // SUPLA_LASTCONNECTIONRESETCAUSE_*
   unsigned short LightSourceLifespan;      // 0 - 65535 hours
-  short
-      LightSourceLifespanLeft;  // -327,67 - 100.00% LightSourceLifespan * 0.01
-  char EmptySpace[4];           // Empty space for future use
-} TDSC_ChannelState;            // v. >= 12 Device -> Server -> Client
+  union {
+    short LightSourceLifespanLeft;  // -327,67 - 100.00% LightSourceLifespan *
+                                    // 0.01
+    _supla_int_t LightSourceOperatingTime;  // -3932100sec. - 3932100sec.
+  };
+  char EmptySpace[2];  // Empty space for future use
+} TDSC_ChannelState;   // v. >= 12 Device -> Server -> Client
 
 #define TChannelState_ExtendedValue TDSC_ChannelState
 
