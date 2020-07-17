@@ -233,12 +233,83 @@
     return [super attrStringValueWithIndex:idx font:font];
 }
 
+- (SAChannelStateExtendedValue *)channelState {
+    return self.ev != nil ? self.ev.channelState : nil;
+}
+
+- (NSNumber *) lightSourceLifespanLeft {
+    SAChannelStateExtendedValue *channelState = self.channelState;
+    if (channelState != nil
+        && channelState.lightSourceLifespan != nil
+        && channelState.lightSourceLifespan.intValue > 0) {
+
+        if (channelState.lightSourceLifespanLeft != nil) {
+               return channelState.lightSourceLifespanLeft;
+           } else if (channelState.lightSourceOperatingTimePercentLeft != nil) {
+               return channelState.lightSourceOperatingTimePercentLeft;
+           }
+        
+    }
+    return nil;
+}
+
 - (int) warningLevel {
     switch (self.func) {
         case SUPLA_CHANNELFNC_VALVE_OPENCLOSE:
         case SUPLA_CHANNELFNC_VALVE_PERCENTAGE:
             return self.isManuallyClosed || self.flooding ? 2 : 0;
+        case SUPLA_CHANNELFNC_LIGHTSWITCH: {
+            NSNumber *lightSourceLifespanLeft = self.lightSourceLifespanLeft;
+            if (lightSourceLifespanLeft != nil) {
+                if (lightSourceLifespanLeft.floatValue <= 5) {
+                    return 2;
+                } else if (lightSourceLifespanLeft.floatValue <= 20) {
+                    return 1;
+                }
+            }
+            break;
+        }
+
     }
     return 0;
+}
+
+- (UIImage *) warningIcon {
+    switch (self.warningLevel) {
+        case 1:
+            return [UIImage imageNamed:@"channel_warning_level1"];
+        case 2:
+            return [UIImage imageNamed:@"channel_warning_level2"];
+    }
+    return nil;
+}
+
+- (UIImage *) stateIcon {
+    if (self.isOnline
+        || (self.type == SUPLA_CHANNELTYPE_BRIDGE
+            && self.flags & SUPLA_CHANNEL_FLAG_CHANNELSTATE
+            && self.flags & SUPLA_CHANNEL_FLAG_OFFLINE_DURING_REGISTRATION)) {
+        
+        SAChannelStateExtendedValue *channelState = self.ev != nil ? self.ev.channelState : nil;
+        
+        if (self.flags & SUPLA_CHANNEL_FLAG_CHANNELSTATE
+            || channelState != nil) {
+                
+            if (channelState && channelState.state.defaultIconField != 0) {
+                switch (channelState.state.defaultIconField) {
+                    case SUPLA_CHANNELSTATE_FIELD_BATTERYPOWERED:
+                        if (channelState.state.BatteryPowered) {
+                            return [UIImage imageNamed:@"battery"];
+                        }
+                        break;
+                }
+            }
+            
+            return [UIImage imageNamed:@"channelstateinfo"];
+        }
+        
+    }
+    
+    return nil;
 }
 @end

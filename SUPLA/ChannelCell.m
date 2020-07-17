@@ -116,46 +116,20 @@
         self.right_OnlineStatus.shapeType = stDot;
         self.left_OnlineStatus.shapeType = stDot;
         
-        if (channelBase.isOnline
-            && [channelBase isKindOfClass:[SAChannel class]]) {
+        if ([channelBase isKindOfClass:[SAChannel class]]) {
             SAChannel *channel = (SAChannel*)channelBase;
-            if (channel.ev && channel.ev.type == EV_TYPE_CHANNEL_STATE_V1) {
-                SAChannelStateExtendedValue *channelState = channel.ev.channelState;
-                    
-                if (channelState
-                    && channelState.state.Fields & channelState.state.defaultIconField) {
-                        
-                    switch (channelState.state.defaultIconField) {
-                        case SUPLA_CHANNELSTATE_FIELD_BATTERYPOWERED:
-                            if (channelState.state.BatteryPowered) {
-                                self.channelStateIcon.hidden = NO;
-                                self.channelStateIcon.image = [UIImage imageNamed:@"battery"];
-                            }
-                            break;
-                    }
-                }
+            UIImage *stateIcon = channel.stateIcon;
+            if (stateIcon) {
+                self.channelStateIcon.hidden = NO;
+                self.channelStateIcon.image = stateIcon;
             }
             
-            UIImage *warningImage = nil;
-            switch (channel.warningLevel) {
-                case 1:
-                    warningImage = [UIImage imageNamed:@"channel_warning_level1"];
-                    break;
-                case 2:
-                    warningImage = [UIImage imageNamed:@"channel_warning_level2"];
-                    break;
-            }
-            
-            if (warningImage) {
+            UIImage *warningIcon = channel.warningIcon;
+            if (warningIcon != nil) {
                 self.channelWarningIcon.hidden = NO;
-                self.channelWarningIcon.image = warningImage;
+                self.channelWarningIcon.image = warningIcon;
             }
             
-            // Only if self.channelStateIcon.hidden !!
-            if (self.channelStateIcon.hidden
-                && channel.flags & SUPLA_CHANNEL_FLAG_CHANNELSTATE) {
-                // TODO: Show state icon/button
-            }
         }
     }
     
