@@ -64,6 +64,8 @@
 		017A3CB223635DF7004AD1FC /* wind@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 017A3CAC23635DF6004AD1FC /* wind@3x.png */; };
 		017A3CB323635DF7004AD1FC /* pressure@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 017A3CAD23635DF7004AD1FC /* pressure@2x.png */; };
 		017A3CB423635DF7004AD1FC /* pressure@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 017A3CAE23635DF7004AD1FC /* pressure@3x.png */; };
+		0180440A24C2001A005E53EB /* channelstateinfo@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0180440924C2001A005E53EB /* channelstateinfo@3x.png */; };
+		0180440C24C254CF005E53EB /* SAChannelStatePopup.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0180440B24C254CF005E53EB /* SAChannelStatePopup.xib */; };
 		0182FCA62464691D00270CDC /* channel_warning_level2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0182FCA22464691C00270CDC /* channel_warning_level2@2x.png */; };
 		0182FCA72464691D00270CDC /* channel_warning_level2@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0182FCA32464691C00270CDC /* channel_warning_level2@3x.png */; };
 		0182FCA82464691D00270CDC /* channel_warning_level1@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0182FCA42464691D00270CDC /* channel_warning_level1@3x.png */; };
@@ -512,6 +514,8 @@
 		017A3CAC23635DF6004AD1FC /* wind@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "wind@3x.png"; path = "Resources/Assets/Img/wind@3x.png"; sourceTree = "<group>"; };
 		017A3CAD23635DF7004AD1FC /* pressure@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "pressure@2x.png"; path = "Resources/Assets/Img/pressure@2x.png"; sourceTree = "<group>"; };
 		017A3CAE23635DF7004AD1FC /* pressure@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "pressure@3x.png"; path = "Resources/Assets/Img/pressure@3x.png"; sourceTree = "<group>"; };
+		0180440924C2001A005E53EB /* channelstateinfo@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "channelstateinfo@3x.png"; path = "Resources/Assets/Img/channelstateinfo@3x.png"; sourceTree = "<group>"; };
+		0180440B24C254CF005E53EB /* SAChannelStatePopup.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SAChannelStatePopup.xib; sourceTree = "<group>"; };
 		0182FCA22464691C00270CDC /* channel_warning_level2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "channel_warning_level2@2x.png"; path = "Resources/Assets/Img/channel_warning_level2@2x.png"; sourceTree = "<group>"; };
 		0182FCA32464691C00270CDC /* channel_warning_level2@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "channel_warning_level2@3x.png"; path = "Resources/Assets/Img/channel_warning_level2@3x.png"; sourceTree = "<group>"; };
 		0182FCA42464691D00270CDC /* channel_warning_level1@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "channel_warning_level1@3x.png"; path = "Resources/Assets/Img/channel_warning_level1@3x.png"; sourceTree = "<group>"; };
@@ -1093,6 +1097,7 @@
 		012119122368B597004C1993 /* xib */ = {
 			isa = PBXGroup;
 			children = (
+				0180440B24C254CF005E53EB /* SAChannelStatePopup.xib */,
 				01943EC0249D1C8800DA2B8F /* SASuperuserAuthorizationDialog.xib */,
 				01C8EBCF23422AC50072AB8C /* HomePlusDetailViewGroupCell.xib */,
 				40CE7C6D1DCBBF6D00BBACE4 /* DistanceCell.xib */,
@@ -1322,6 +1327,7 @@
 		405AC4011BC15878004F7311 /* Img */ = {
 			isa = PBXGroup;
 			children = (
+				0180440924C2001A005E53EB /* channelstateinfo@3x.png */,
 				018D2E5024BF258B00773D2F /* uv-off@2x.png */,
 				018D2E4E24BF258B00773D2F /* uv-off@3x.png */,
 				018D2E4D24BF258A00773D2F /* uv-on@2x.png */,
@@ -1938,6 +1944,7 @@
 				40B9ED561FACD0A100403B1A /* pc-on@3x.png in Resources */,
 				40CF96B91BC7D4E70030EFFF /* gateway-open@3x.png in Resources */,
 				4067782C1BCBC647008DD37F /* menu@2x.png in Resources */,
+				0180440A24C2001A005E53EB /* channelstateinfo@3x.png in Resources */,
 				40DE1A2C1BCCFF8A004CF43B /* info@3x.png in Resources */,
 				40CF96B01BC7D4E70030EFFF /* garagedoor-open@2x.png in Resources */,
 				4052DA071DC515AE000B8C45 /* dimmerrgb-onon@2x.png in Resources */,
@@ -1946,6 +1953,7 @@
 				40B9ED7E1FACE15700403B1A /* nomail@3x.png in Resources */,
 				407D31A81FD1B75F0062FB80 /* logo-white@3x.png in Resources */,
 				407D4AF11BC6C6A4009A5505 /* app_icon180x180@3x.png in Resources */,
+				0180440C24C254CF005E53EB /* SAChannelStatePopup.xib in Resources */,
 				40B9ED831FACE15700403B1A /* mail@3x.png in Resources */,
 				40DE1A291BCCFF8A004CF43B /* feedback@2x.png in Resources */,
 				018D2E5324BF258B00773D2F /* uv-on@3x.png in Resources */,

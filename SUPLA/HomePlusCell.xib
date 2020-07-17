@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -20,20 +22,20 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Home+ Heater" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3Jq-KF-Od9">
-                        <rect key="frame" x="25" y="76.5" width="330" height="14"/>
+                        <rect key="frame" x="30" y="76.5" width="320" height="16.5"/>
                         <fontDescription key="fontDescription" name="OpenSans-Bold" family="Open Sans" pointSize="12"/>
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xjz-Yd-8SH" userLabel="bottomLine">
-                        <rect key="frame" x="5" y="99" width="370" height="1"/>
+                        <rect key="frame" x="10" y="99" width="360" height="1"/>
                         <color key="backgroundColor" red="0.66666666669999997" green="0.66666666669999997" blue="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="1" id="cGu-ML-tEc"/>
                         </constraints>
                     </view>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0d0-zV-fRA" userLabel="onlineRight" customClass="SAUIChannelStatus">
-                        <rect key="frame" x="345" y="41.5" width="10" height="20"/>
+                        <rect key="frame" x="340" y="41.5" width="10" height="20"/>
                         <color key="backgroundColor" red="0.070588235289999995" green="0.65490196079999996" blue="0.1176470588" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="20" id="2gn-9A-SsD"/>
@@ -66,7 +68,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aOx-uI-Ya8" userLabel="activeRight" customClass="SAUIChannelStatus">
-                        <rect key="frame" x="339" y="41.5" width="6" height="20"/>
+                        <rect key="frame" x="334" y="41.5" width="6" height="20"/>
                         <color key="backgroundColor" red="0.070588235289999995" green="0.65490196079999996" blue="0.1176470588" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="6" id="5TW-mJ-7Sk"/>
@@ -74,6 +76,13 @@
                             <constraint firstAttribute="height" constant="20" id="PGg-vm-CSV"/>
                         </constraints>
                     </view>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="channelstateinfo.png" translatesAutoresizingMaskIntoConstraints="NO" id="p2d-3t-v6e">
+                        <rect key="frame" x="20" y="36.5" width="30" height="30"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="30" id="DMQ-bf-QAr"/>
+                            <constraint firstAttribute="width" constant="30" id="hII-dU-wNP"/>
+                        </constraints>
+                    </imageView>
                 </subviews>
                 <color key="backgroundColor" red="0.97647058819999999" green="0.98039215690000003" blue="0.98431372549999996" alpha="1" colorSpace="calibratedRGB"/>
                 <constraints>
@@ -88,13 +97,16 @@
                     <constraint firstItem="6oE-p1-nIz" firstAttribute="centerX" secondItem="Z8a-om-NNe" secondAttribute="centerX" constant="-70" id="d3V-M3-UHB"/>
                     <constraint firstItem="aOx-uI-Ya8" firstAttribute="centerY" secondItem="Z8a-om-NNe" secondAttribute="centerY" id="db2-4A-ebE"/>
                     <constraint firstItem="xjz-Yd-8SH" firstAttribute="leading" secondItem="Z8a-om-NNe" secondAttribute="leadingMargin" constant="-10" id="isN-8h-hkg"/>
+                    <constraint firstItem="p2d-3t-v6e" firstAttribute="centerY" secondItem="Z8a-om-NNe" secondAttribute="centerY" id="oUi-lG-D5v"/>
                     <constraint firstItem="3Jq-KF-Od9" firstAttribute="leading" secondItem="Z8a-om-NNe" secondAttribute="leadingMargin" constant="10" id="rai-tt-D6u"/>
+                    <constraint firstItem="p2d-3t-v6e" firstAttribute="leading" secondItem="Z8a-om-NNe" secondAttribute="leading" constant="20" id="uae-j3-WUl"/>
                     <constraint firstItem="0M9-cd-0XF" firstAttribute="leading" secondItem="6oE-p1-nIz" secondAttribute="trailing" id="ujd-mx-eiE"/>
                     <constraint firstAttribute="bottomMargin" secondItem="xjz-Yd-8SH" secondAttribute="bottom" constant="-8" id="ukL-K1-Zht"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
                 <outlet property="caption" destination="3Jq-KF-Od9" id="G7u-5D-gAK"/>
+                <outlet property="channelStateIcon" destination="p2d-3t-v6e" id="tjZ-cV-DC2"/>
                 <outlet property="cint_RightStatusWidth" destination="ly3-qF-Dpx" id="0Ar-ka-oBG"/>
                 <outlet property="image1" destination="6oE-p1-nIz" id="bgK-Yk-8Fi"/>
                 <outlet property="right_ActiveStatus" destination="aOx-uI-Ya8" id="twX-H3-HJs"/>
@@ -105,6 +117,7 @@
         </tableViewCell>
     </objects>
     <resources>
+        <image name="channelstateinfo.png" width="107.25" height="107.25"/>
         <image name="thermostat_hp_homeplus-off.png" width="72" height="72"/>
     </resources>
 </document>

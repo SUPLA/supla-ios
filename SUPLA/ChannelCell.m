@@ -52,6 +52,7 @@
 @implementation SAChannelCell {
     BOOL _initialized;
     SAChannelBase *_channelBase;
+    UITapGestureRecognizer *tapGr;
 }
 
 - (void)initialize {
@@ -67,6 +68,13 @@
     
     [self.left_OnlineStatus assignColors:self.right_OnlineStatus];
     [self.right_ActiveStatus assignColors:self.right_OnlineStatus];
+
+    if (self.channelStateIcon) {
+        self.channelStateIcon.userInteractionEnabled = YES;
+        tapGr = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(stateIconTapped:)];
+        [self.channelStateIcon addGestureRecognizer:tapGr];
+    }
+    
 }
 
 - (void)awakeFromNib {
@@ -333,6 +341,12 @@
 
 - (IBAction)rlTouchCancel:(id)sender {
     [sender setBackgroundColor: [UIColor onLine] withDelay:0.2];
+}
+
+- (void)stateIconTapped:(UITapGestureRecognizer *)tapRecognizer {
+    if (self.channelStateIcon == nil || self.channelStateIcon.hidden) {
+        return;
+    }
 }
 
 @end
