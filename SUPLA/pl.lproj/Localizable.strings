@@ -161,3 +161,15 @@
 "Time exceeded. Try again." = "Przekroczono czas. Spróbuj ponownie.";
 "Are you sure you want to restore the default settings?" = "Czy na pewno chcesz przywrócić ustawienia domyślne ?";
 "Default settings" = "Ustawienia domyślne";
+
+"Battery level" = "Poziom baterii";
+"Battery powered" = "Zasilanie bateryjne";
+"Wifi signal strength" = "Siła sygnału WiFi";
+"Bridge node - online" = "Węzeł mostu - online";
+"Bridge node - signal strength" = "Węzeł mostu - siła sygnału";
+"Uptime" - "Czas pracy";
+"Connection uptime" = "Czas połączenia";
+"Battery health" = "Żywotność baterii";
+"Connection reset cause" = "Powód restartu połaczenia";
+"Light source lifespan" = "Żywotność źródła światła";
+"Light source lifespan" = "Czas pracy źródła światła";
