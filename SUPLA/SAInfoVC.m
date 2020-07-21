@@ -16,21 +16,36 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #import "SAInfoVC.h"
 
 @interface SAInfoVC ()
-
 @end
 
-@implementation SAInfoVC
+@implementation SAInfoVC {
+    UIView *_rootView;
+}
+
+- (UIView*)rootView {
+    return _rootView;
+}
+
+- (void)setRootView:(UIView*)view {
+    if (_rootView) {
+        [_rootView removeFromSuperview];
+    }
+    _rootView = view;
+    if (_rootView) {
+        [self.view addSubview:_rootView];
+    }
+}
 
 +(void)showInformationWindowWithMessage:(int)msg {
     
     SAInfoVC *vc = [[SAInfoVC alloc] initWithNibName:@"SAInfoVC" bundle:nil];
     switch (msg) {
         case INFO_MESSAGE_VARILIGHT:
-            [vc.view addSubview:vc.vVarilight];
+            [vc setRootView:vc.vVarilight];
             break;
         
         case INFO_MESSAGE_VARILIGHT_CONFIG:
-            [vc.view addSubview:vc.vVarilightConfig];
+            [vc setRootView:vc.vVarilightConfig];
             break;
         default:
             vc.view = nil;

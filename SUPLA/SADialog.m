@@ -16,7 +16,7 @@
 #import "SADialog.h"
 
 @interface SADialog ()
-
+- (IBAction)closeButtonTouch:(id)sender;
 @end
 
 @implementation SADialog {
@@ -41,10 +41,16 @@
 
 -(void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
+    
     [UIView animateWithDuration:0.2 animations:^{
         self.view.alpha = 1;
         self.view.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.6];
     } completion:nil];
+     
+}
+
+- (UIView*)rootView {
+    return self.view;
 }
 
 - (IBAction)closeButtonTouch:(id)sender {
@@ -56,9 +62,8 @@
         
         UITapGestureRecognizer *gr = (UITapGestureRecognizer *)sender;
         
-        UIView *v = self.view.subviews.firstObject;
-        if ([v hitTest:[gr locationInView:v] withEvent:nil] != v) {
-            return;
+        if ([self.rootView hitTest:[gr locationInView:self.rootView] withEvent:nil] != self.rootView) {
+          return;
         }
     }
     
