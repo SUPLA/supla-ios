@@ -17,7 +17,7 @@
 #import "SuplaClient.h"
 #import "SuplaApp.h"
 
-static SASuperuserAuthorizationDialog *_superuserAuthorizationDialogGlobalRef;
+static SASuperuserAuthorizationDialog *_superuserAuthorizationDialogGlobalRef = nil;
 
 @interface SASuperuserAuthorizationDialog ()
 @property (weak, nonatomic) IBOutlet UIView *vMain;
