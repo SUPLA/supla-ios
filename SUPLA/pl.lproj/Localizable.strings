@@ -167,7 +167,7 @@
 "Wifi signal strength" = "Siła sygnału WiFi";
 "Bridge node - online" = "Węzeł mostu - online";
 "Bridge node - signal strength" = "Węzeł mostu - siła sygnału";
-"Uptime" - "Czas pracy";
+"Uptime" = "Czas pracy";
 "Connection uptime" = "Czas połączenia";
 "Battery health" = "Żywotność baterii";
 "Connection reset cause" = "Powód restartu połaczenia";
