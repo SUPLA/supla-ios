@@ -15,6 +15,9 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 #import "SAChannelStatePopup.h"
 #import "SAChannelStateExtendedValue.h"
+#import "UIHelper.h"
+
+#define MAX_HEIGHT 420
 
 @interface SAChannelStatePopup ()
 @property (weak, nonatomic) IBOutlet UIButton *btnClose;
@@ -48,11 +51,33 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 @property (weak, nonatomic) IBOutlet UILabel *lLightsourceOperatingTimeTitle;
 @property (weak, nonatomic) IBOutlet UILabel *lLightsourceOperatingTime;
 @property (weak, nonatomic) IBOutlet UIView *vList;
+@property (weak, nonatomic) IBOutlet UIView *vMain;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *vListHeight;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *actIndHeight;
+@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *actInd;
+@property (weak, nonatomic) IBOutlet UIButton *btnReset;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *btnResetHeight;
 
 @end
 
-@implementation SAChannelStatePopup
+static SAChannelStatePopup *_channelStatePopupGlobalRef = nil;
 
+@implementation SAChannelStatePopup {
+    SAChannel *_channel;
+    CGFloat _btnResetOriginalHeight;
+    CGFloat _actIndOriginalHeight;
+}
+
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
+
+    if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
+        _btnResetOriginalHeight = self.btnResetHeight.constant;
+        _actIndOriginalHeight = self.actIndHeight.constant;
+        return self;
+    }
+    
+    return nil;
+}
 
 -(void)updateListWithChannelState:(SAChannelStateExtendedValue*)state {
  
@@ -76,8 +101,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     } else {
         [self.lMACTitle setText:@""];
         [self.lMAC setText:@""];
-        self.lMACTitle.hidden = NO;
-        self.lMAC.hidden = NO;
+        self.lMACTitle.hidden = YES;
+        self.lMAC.hidden = YES;
     }
     
     if (state && state.batteryLevel != nil) {
@@ -88,8 +113,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     } else {
         [self.lBatteryLevelTitle setText:@""];
         [self.lBatteryLevel setText:@""];
-        self.lBatteryLevelTitle.hidden = NO;
-        self.lBatteryLevel.hidden = NO;
+        self.lBatteryLevelTitle.hidden = YES;
+        self.lBatteryLevel.hidden = YES;
     }
 
     if (state && state.isBatteryPowered != nil) {
@@ -100,20 +125,20 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     } else {
         [self.lBatteryPoweredTitle setText:@""];
         [self.lBatteryPowered setText:@""];
-        self.lBatteryPoweredTitle.hidden = NO;
-        self.lBatteryPowered.hidden = NO;
+        self.lBatteryPoweredTitle.hidden = YES;
+        self.lBatteryPowered.hidden = YES;
     }
 
     if (state && state.wiFiRSSI != nil) {
         [self.lWifiRSSITitle setText:NSLocalizedString(@"Wifi RSSI", nil)];
         [self.lWifiRSSI setText:state.wiFiRSSIString];
-        self.lWifiRSSITitle.hidden = NO;
-        self.lWifiRSSI.hidden = NO;
+        self.lWifiRSSITitle.hidden = YES;
+        self.lWifiRSSI.hidden = YES;
     } else {
         [self.lWifiRSSITitle setText:@""];
         [self.lWifiRSSI setText:@""];
-        self.lWifiRSSITitle.hidden = NO;
-        self.lWifiRSSI.hidden = NO;
+        self.lWifiRSSITitle.hidden = YES;
+        self.lWifiRSSI.hidden = YES;
     }
 
     if (state && state.wiFiSignalStrength != nil) {
@@ -124,8 +149,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     } else {
         [self.lWifiSignalStrengthTitle setText:@""];
         [self.lWifiSignalStrength setText:@""];
-        self.lWifiSignalStrengthTitle.hidden = NO;
-        self.lWifiSignalStrength.hidden = NO;
+        self.lWifiSignalStrengthTitle.hidden = YES;
+        self.lWifiSignalStrength.hidden = YES;
     }
     
     if (state && state.isBridgeNodeOnline != nil) {
@@ -136,8 +161,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     } else {
         [self.lBridgeNodeOnlineTitle setText:@""];
         [self.lBridgeNodeOnline setText:@""];
-        self.lBridgeNodeOnlineTitle.hidden = NO;
-        self.lBridgeNodeOnline.hidden = NO;
+        self.lBridgeNodeOnlineTitle.hidden = YES;
+        self.lBridgeNodeOnline.hidden = YES;
     }
     
     if (state && state.bridgeNodeSignalStrength != nil) {
@@ -148,8 +173,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     } else {
         [self.lBridgeNodeSignalStrengthTitle setText:@""];
         [self.lBridgeNodeSignalStrength setText:@""];
-        self.lBridgeNodeSignalStrengthTitle.hidden = NO;
-        self.lBridgeNodeSignalStrength.hidden = NO;
+        self.lBridgeNodeSignalStrengthTitle.hidden = YES;
+        self.lBridgeNodeSignalStrength.hidden = YES;
     }
 
     if (state && state.uptime != nil) {
@@ -160,8 +185,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     } else {
         [self.lUptimeTitle setText:@""];
         [self.lUptime setText:@""];
-        self.lUptimeTitle.hidden = NO;
-        self.lUptime.hidden = NO;
+        self.lUptimeTitle.hidden = YES;
+        self.lUptime.hidden = YES;
     }
     
     if (state && state.connectionUptime != nil) {
@@ -172,8 +197,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     } else {
         [self.lConnectionUptimeTitle setText:@""];
         [self.lConnectionUptime setText:@""];
-        self.lConnectionUptimeTitle.hidden = NO;
-        self.lConnectionUptime.hidden = NO;
+        self.lConnectionUptimeTitle.hidden = YES;
+        self.lConnectionUptime.hidden = YES;
     }
 
     if (state && state.batteryHealth != nil) {
@@ -184,8 +209,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     } else {
         [self.lBatteryHealthTitle setText:@""];
         [self.lBatteryHealth setText:@""];
-        self.lBatteryHealthTitle.hidden = NO;
-        self.lBatteryHealth.hidden = NO;
+        self.lBatteryHealthTitle.hidden = YES;
+        self.lBatteryHealth.hidden = YES;
     }
 
     if (state && state.lastConnectionResetCause != nil) {
@@ -196,11 +221,13 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     } else {
         [self.lConnectionResetCauseTitle setText:@""];
         [self.lConnectionResetCause setText:@""];
-        self.lConnectionResetCauseTitle.hidden = NO;
-        self.lConnectionResetCause.hidden = NO;
+        self.lConnectionResetCauseTitle.hidden = YES;
+        self.lConnectionResetCause.hidden = YES;
     }
     
-    if (state && state.lightSourceLifespan != nil) {
+    BOOL lightSwitchFunc = _channel && _channel.func & SUPLA_CHANNELFNC_LIGHTSWITCH;
+    
+    if (lightSwitchFunc && state && state.lightSourceLifespan != nil) {
         [self.lLightsourceLifespanTitle setText:NSLocalizedString(@"Light source lifespan", nil)];
         [self.lLightsourceLifespan setText:state.lightSourceLifespanString];
         self.lLightsourceLifespanTitle.hidden = NO;
@@ -208,11 +235,11 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     } else {
         [self.lLightsourceLifespanTitle setText:@""];
         [self.lLightsourceLifespan setText:@""];
-        self.lLightsourceLifespanTitle.hidden = NO;
-        self.lLightsourceLifespan.hidden = NO;
+        self.lLightsourceLifespanTitle.hidden = YES;
+        self.lLightsourceLifespan.hidden = YES;
     }
     
-    if (state && state.lightSourceOperatingTime != nil) {
+    if (lightSwitchFunc && state && state.lightSourceOperatingTime != nil) {
         [self.lLightsourceOperatingTimeTitle setText:NSLocalizedString(@"Light source operating time", nil)];
         [self.lLightsourceOperatingTime setText:state.lightSourceOperatingTimeString];
         self.lLightsourceOperatingTimeTitle.hidden = NO;
@@ -220,11 +247,48 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     } else {
         [self.lLightsourceOperatingTimeTitle setText:@""];
         [self.lLightsourceOperatingTime setText:@""];
-        self.lLightsourceOperatingTimeTitle.hidden = NO;
-        self.lLightsourceOperatingTime.hidden = NO;
+        self.lLightsourceOperatingTimeTitle.hidden = YES;
+        self.lLightsourceOperatingTime.hidden = YES;
+    }
+    
+    self.btnReset.hidden = !(lightSwitchFunc && _channel.flags & SUPLA_CHANNEL_FLAG_LIGHTSOURCELIFESPAN_SETTABLE);
+    
+    [self calculateHeights];
+}
+
++(SAChannelStatePopup*)globalInstance {
+    if (_channelStatePopupGlobalRef == nil) {
+        _channelStatePopupGlobalRef = [[SAChannelStatePopup alloc] initWithNibName:@"SAChannelStatePopup" bundle:nil];
+    }
+    
+    return _channelStatePopupGlobalRef;
+}
+
+-(void)show:(SAChannel*)channel {
+    _channel = channel;
+    [SADialog showModal:self];
+    [self updateListWithChannelState:nil];
+  
+}
+
+-(void)calculateHeights {
+    float h = 0;
+    
+    for (UIView *v in self.vList.subviews) {
+        if (!v.hidden && [v isKindOfClass:[UILabel class]]) {
+            h = MAX(v.frame.origin.y + v.frame.size.height, h);
+        }
     }
 
-    [self.vList sizeToFit];
+    self.vListHeight.constant = h;
+    self.actIndHeight.constant = self.actInd.animating ? _actIndOriginalHeight : 0;
+    self.btnResetHeight.constant = !self.btnReset.hidden ? _btnResetOriginalHeight : 0;
 }
+
+-(void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    [self calculateHeights];
+}
+
 
 @end

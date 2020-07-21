@@ -14,12 +14,14 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 */
 
 #import "SADialog.h"
+#import "SAChannel+CoreDataClass.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface SAChannelStatePopup : SADialog
 
-
++(SAChannelStatePopup*)globalInstance;
+-(void)show:(SAChannel*)channel;
 @end
 
 NS_ASSUME_NONNULL_END

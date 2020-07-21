@@ -23,6 +23,7 @@
 #import "SAChannel+CoreDataClass.h"
 #import "SAChannelGroup+CoreDataClass.h"
 #import "SAChannelStateExtendedValue.h"
+#import "SAChannelStatePopup.h"
 #import "SuplaApp.h"
 #include "proto.h"
 
@@ -344,9 +345,14 @@
 }
 
 - (void)stateIconTapped:(UITapGestureRecognizer *)tapRecognizer {
-    if (self.channelStateIcon == nil || self.channelStateIcon.hidden) {
+    if (self.channelBase == nil
+        || ![self.channelBase isKindOfClass:[SAChannel class]]
+        || self.channelStateIcon == nil
+        || self.channelStateIcon.hidden) {
         return;
     }
+
+   [SAChannelStatePopup.globalInstance show:(SAChannel*)self.channelBase];
 }
 
 @end
