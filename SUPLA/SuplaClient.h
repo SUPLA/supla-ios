@@ -133,4 +133,6 @@
 - (BOOL) OAuthTokenRequest;
 - (void) superuserAuthorizationRequestWithEmail:(NSString*)email andPassword:(NSString*)password;
 - (void) channelStateRequestWithChannelId:(int)channelId;
+- (void) setLightsourceLifespanWithChannelId:(int)channelId resetCounter:(BOOL)reset setTime:(BOOL)setTime lifespan:(unsigned short)lifespan;
+
 @end

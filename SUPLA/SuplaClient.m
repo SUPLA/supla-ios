@@ -1023,4 +1023,14 @@ void sasuplaclient_on_device_channel_state(void *_suplaclient, void *user_data, 
     }
 }
 
+- (void) setLightsourceLifespanWithChannelId:(int)channelId resetCounter:(BOOL)reset setTime:(BOOL)setTime lifespan:(unsigned short)lifespan {
+    @synchronized(self) {
+        if ( _sclient ) {
+            supla_client_set_lightsource_lifespan(_sclient, channelId, reset ? 1 : 0, setTime ? 1 : 0, lifespan);
+        }
+    }
+}
+
+
+
 @end
