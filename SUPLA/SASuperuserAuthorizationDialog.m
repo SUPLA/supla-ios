@@ -68,9 +68,10 @@ static SASuperuserAuthorizationDialog *_superuserAuthorizationDialogGlobalRef = 
     _delegate = nil;
 }
 
-- (void)close {
+-(void)closeWithAnimation:(BOOL)animation completion:(void (^ __nullable)(void))completion {
     [self timeoutTimerInvalidate];
-    [super close];
+    [super closeWithAnimation:animation completion:completion];
+    
 }
 
 -(void)showError:(NSString*)err {
