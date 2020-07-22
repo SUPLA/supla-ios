@@ -18,6 +18,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #import "UIHelper.h"
 #import "SuplaApp.h"
 #import "SASuperuserAuthorizationDialog.h"
+#import "SALightsourceLifespanSettingsDialog.h"
 
 #define REFRESH_INTERVAL_SEC 6
 
@@ -146,7 +147,6 @@ static SAChannelStatePopup *_channelStatePopupGlobalRef = nil;
 -(void)viewDidDisappear:(BOOL)animated {
     [super viewDidDisappear:animated];
     [self cancelRefreshTimer];
-    _channel = nil;
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
@@ -478,6 +478,9 @@ static SAChannelStatePopup *_channelStatePopupGlobalRef = nil;
 
 -(void) superuserAuthorizationSuccess {
     [SASuperuserAuthorizationDialog.globalInstance closeWithAnimation:YES completion:^(){
+        if (self->_channel && self->_lastState) {
+            [SALightsourceLifespanSettingsDialog.globalInstance show:self->_channel.remote_id title:self->_lTitle.text lifesourceLifespan:[self->_lastState.lightSourceLifespan intValue]];
+        }
     }];
 }
 
