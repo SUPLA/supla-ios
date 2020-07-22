@@ -281,6 +281,7 @@
         case 2:
             return [UIImage imageNamed:@"channel_warning_level2"];
     }
+     
     return nil;
 }
 

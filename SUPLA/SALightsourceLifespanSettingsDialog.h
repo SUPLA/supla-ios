@@ -18,7 +18,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 NS_ASSUME_NONNULL_BEGIN
 
 @interface SALightsourceLifespanSettingsDialog : SADialog
-
+-(void)show:(int)remoteId title:(NSString *)title lifesourceLifespan:(int)lifespan;
++(SALightsourceLifespanSettingsDialog*)globalInstance;
 @end
 
 NS_ASSUME_NONNULL_END
