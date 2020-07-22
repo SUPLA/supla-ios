@@ -124,6 +124,7 @@ static SASuperuserAuthorizationDialog *_superuserAuthorizationDialogGlobalRef = 
 
 -(void)authorizeWithDelegate:(id<SASuperuserAuthorizationDialogDelegate>)delegate {
     _delegate = delegate;
+    [self timeoutTimerInvalidate];
     _lErrorMessage.text = @"";
     _lErrorMessage.hidden = YES;
     _edEmail.text = [SAApp getEmailAddress];
