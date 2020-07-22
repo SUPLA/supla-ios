@@ -53,9 +53,16 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
             if ((self.valueType == EV_TYPE_CHANNEL_STATE_V1
                   && data.length == sizeof(TChannelState_ExtendedValue))
                      || (self.valueType == EV_TYPE_CHANNEL_AND_TIMER_STATE_V1
-                     && data.length == sizeof(TChannelAndTimerState_ExtendedValue))) {
-                      [data getBytes:csev length:data.length];
-                      return YES;
+                     && data.length >= sizeof(TChannelAndTimerState_ExtendedValue) -
+                         SUPLA_SENDER_NAME_MAXSIZE
+                     && data.length <= sizeof(TChannelAndTimerState_ExtendedValue))) {
+        
+                TChannelAndTimerState_ExtendedValue ev;
+                memset(&ev, 0, sizeof(TChannelAndTimerState_ExtendedValue));
+                [data getBytes:&ev length:data.length];
+                memcpy(csev, &ev.Channel, sizeof(TChannelState_ExtendedValue));
+                
+                return YES;
               }
         }
     }
