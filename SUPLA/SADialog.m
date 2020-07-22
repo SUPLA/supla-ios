@@ -53,6 +53,26 @@
     return self.view;
 }
 
+-(void)closeWithAnimation:(BOOL)animation completion:(void (^ __nullable)(void))completion {
+    if (animation) {
+        [UIView animateWithDuration:0.2 animations:^{
+            self.view.alpha = 0;
+        } completion:^(BOOL finished){
+            [self dismissViewControllerAnimated:NO completion:^() {
+                if (completion) {
+                    completion();
+                }
+            }];
+        }];
+    } else {
+        [self dismissViewControllerAnimated:NO completion:^() {
+            if (completion) {
+                completion();
+            }
+        }];
+    }
+}
+
 - (IBAction)closeButtonTouch:(id)sender {
     
     if ([sender isKindOfClass:[UITapGestureRecognizer class]]) {
@@ -67,16 +87,12 @@
         }
     }
     
-    [UIView animateWithDuration:0.2 animations:^{
-        self.view.alpha = 0;
-    } completion:^(BOOL finished){
-        [self dismissViewControllerAnimated:NO completion:nil];
-    }];
+    [self closeWithAnimation:YES completion:nil];
     
 }
 
 - (void)close {
-    [self closeButtonTouch:self];
+    [self closeWithAnimation:YES completion:nil];
 }
 
 + (BOOL)viewControllerIsPresented:(UIViewController*)vc {

@@ -53,6 +53,8 @@ NS_ASSUME_NONNULL_BEGIN
 -(NSNumber *)lightSourceOperatingTimePercent;
 -(NSNumber *)lightSourceOperatingTimePercentLeft;
 -(NSString *)lightSourceOperatingTimeString;
+
+-(id)initWithChannelState:(TDSC_ChannelState *)state;
 @end
 
 @interface SAChannelExtendedValue (SAChannelStateExtendedValue)

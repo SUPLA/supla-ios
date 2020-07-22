@@ -14,6 +14,32 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SAChannelStatePopup">
             <connections>
+                <outlet property="BatteryHealthBottomMargin" destination="gze-s1-zHJ" id="wFJ-CM-r31"/>
+                <outlet property="BatteryHealthTitleBottomMargin" destination="7Z9-lr-UsE" id="f4u-2E-feg"/>
+                <outlet property="BatteryLevelBottomMargin" destination="iLn-Hr-ECR" id="Fg2-QY-Vyy"/>
+                <outlet property="BatteryLevelTitleBottomMargin" destination="Vx3-oE-xdg" id="y8h-FQ-Fiv"/>
+                <outlet property="BatteryPoweredBottomMargin" destination="if1-6u-a2e" id="ebE-RT-vsk"/>
+                <outlet property="BatteryPoweredTitleBottomMargin" destination="RrG-QC-hvN" id="pNy-2V-Ix9"/>
+                <outlet property="BridgeNodeOnlineBottomMargin" destination="j7z-gi-uhT" id="Jod-jX-1Ff"/>
+                <outlet property="BridgeNodeOnlineTitleBottomMargin" destination="LMI-sk-1bK" id="pcm-aW-VP7"/>
+                <outlet property="BridgeNodeSignalStrengthBottomMargin" destination="405-EX-3JA" id="YU3-96-tcb"/>
+                <outlet property="BridgeNodeSignalStrengthTitleBottomMargin" destination="fBr-C1-hht" id="z7u-8q-Q4Z"/>
+                <outlet property="ConnectionResetCauseBottomMargin" destination="ZQ5-M8-ZOt" id="R6N-1j-el1"/>
+                <outlet property="ConnectionResetCauseTitleBottomMargin" destination="efV-nv-7dv" id="s8N-yR-0Sm"/>
+                <outlet property="ConnectionUptimeBottomMargin" destination="X3n-CS-rGg" id="sfs-hO-mxq"/>
+                <outlet property="ConnectionUptimeTitleBottomMargin" destination="CM8-dq-jJc" id="hSM-2e-PwS"/>
+                <outlet property="IPBottomMargin" destination="Snn-3p-Rkn" id="rQ6-IO-3F6"/>
+                <outlet property="IPTitleBottomMargin" destination="GR6-5R-uy0" id="9I2-Wt-KbI"/>
+                <outlet property="LightsourceLifespanBottomMargin" destination="qVv-lu-qUd" id="UzT-ed-iQU"/>
+                <outlet property="LightsourceLifespanTitleBottomMargin" destination="8Bf-iJ-DBn" id="8Ob-Qt-dYi"/>
+                <outlet property="MACBottomMargin" destination="saW-SQ-2C3" id="paN-S6-bY2"/>
+                <outlet property="MACTitleBottomMargin" destination="nD3-CL-5ZI" id="fUW-rv-KD0"/>
+                <outlet property="UptimeBottomMargin" destination="Zvs-mr-f4l" id="GMF-UM-bAK"/>
+                <outlet property="UptimeTitleBottomMargin" destination="Ynp-EO-Ojb" id="lD9-FU-g6i"/>
+                <outlet property="WiFiRSSIBottomMargin" destination="l2e-Y3-t4c" id="w0d-bz-FOv"/>
+                <outlet property="WiFiRSSITitleBottomMargin" destination="b9K-to-Ixe" id="KLl-oE-bYc"/>
+                <outlet property="WiFiSignalStrengthBottomMargin" destination="FnH-t9-PSG" id="3pA-fm-9dl"/>
+                <outlet property="WiFiSignalStrengthTitleBottomMargin" destination="rTo-jg-Ayo" id="rGt-ZG-hxy"/>
                 <outlet property="actInd" destination="sxC-cC-wuB" id="1Mw-fZ-loj"/>
                 <outlet property="actIndHeight" destination="jej-jc-i9F" id="dKW-4V-V1Q"/>
                 <outlet property="btnClose" destination="Ikt-5B-y4w" id="xxJ-4v-S0R"/>
@@ -49,7 +75,6 @@
                 <outlet property="lWifiSignalStrength" destination="n4s-vb-vMo" id="KTr-Bw-kUg"/>
                 <outlet property="lWifiSignalStrengthTitle" destination="PyM-0x-nVQ" id="Gby-Dq-fXq"/>
                 <outlet property="vList" destination="4pG-xS-C0O" id="UeS-95-url"/>
-                <outlet property="vListHeight" destination="OcP-ha-zhm" id="ZDK-po-mBw"/>
                 <outlet property="vMain" destination="MSE-Z0-myj" id="QIm-4I-7ZW"/>
                 <outlet property="view" destination="FJf-pj-N2l" id="NrG-Dc-WVU"/>
             </connections>
@@ -60,13 +85,13 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MSE-Z0-myj" userLabel="vMain">
-                    <rect key="frame" x="47" y="143.5" width="320" height="609"/>
+                    <rect key="frame" x="47" y="200" width="320" height="496"/>
                     <subviews>
                         <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="sxC-cC-wuB">
-                            <rect key="frame" x="10" y="399" width="300" height="200"/>
-                            <color key="backgroundColor" systemColor="systemGreenColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <rect key="frame" x="10" y="386" width="300" height="100"/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
-                                <constraint firstAttribute="height" constant="200" id="jej-jc-i9F"/>
+                                <constraint firstAttribute="height" constant="100" id="jej-jc-i9F"/>
                             </constraints>
                         </activityIndicatorView>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Me9-EN-H6T" userLabel="Header">
@@ -115,11 +140,11 @@
                             </constraints>
                         </view>
                         <view contentMode="scaleToFill" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="4pG-xS-C0O" userLabel="vList">
-                            <rect key="frame" x="10" y="80" width="300" height="270"/>
+                            <rect key="frame" x="10" y="80" width="300" height="257"/>
                             <subviews>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Tcc-Vm-EMY">
-                                    <rect key="frame" x="149.5" y="0.0" width="1" height="270"/>
-                                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                    <rect key="frame" x="149.5" y="0.0" width="1" height="257"/>
+                                    <color key="backgroundColor" red="0.70581632849999998" green="0.7176883221" blue="0.72932332749999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="1" id="00a-Op-Sjb"/>
                                     </constraints>
@@ -209,7 +234,7 @@
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Bridge node - signal strength" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="R3c-qo-epV">
-                                    <rect key="frame" x="0.0" y="116" width="149.5" height="29"/>
+                                    <rect key="frame" x="0.0" y="114" width="149.5" height="29"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
@@ -221,7 +246,7 @@
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Uptime" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CO7-Rt-6ay">
-                                    <rect key="frame" x="0.0" y="147" width="149.5" height="14.5"/>
+                                    <rect key="frame" x="0.0" y="145" width="149.5" height="14.5"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
@@ -233,7 +258,7 @@
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Connection uptime" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SUJ-oZ-bkw">
-                                    <rect key="frame" x="0.0" y="163.5" width="149.5" height="15"/>
+                                    <rect key="frame" x="0.0" y="161.5" width="149.5" height="15"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
@@ -245,7 +270,7 @@
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Battery health" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9pv-yg-pjl">
-                                    <rect key="frame" x="0.0" y="180.5" width="149.5" height="14.5"/>
+                                    <rect key="frame" x="0.0" y="178.5" width="149.5" height="14.5"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
@@ -257,7 +282,7 @@
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Connection reset cause" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DH6-qO-NP3">
-                                    <rect key="frame" x="0.0" y="197" width="149.5" height="14.5"/>
+                                    <rect key="frame" x="0.0" y="195" width="149.5" height="14.5"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
@@ -269,7 +294,7 @@
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Light source lifespan" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="abj-qe-6VG">
-                                    <rect key="frame" x="0.0" y="213.5" width="149.5" height="14.5"/>
+                                    <rect key="frame" x="0.0" y="211.5" width="149.5" height="14.5"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
@@ -281,7 +306,7 @@
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Light source operating time" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jqk-Y6-1xg">
-                                    <rect key="frame" x="0.0" y="230" width="149.5" height="29"/>
+                                    <rect key="frame" x="0.0" y="228" width="149.5" height="29"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
@@ -293,7 +318,7 @@
                                     <nil key="highlightedColor"/>
                                 </label>
                             </subviews>
-                            <color key="backgroundColor" systemColor="systemGray3Color" red="0.78039215689999997" green="0.78039215689999997" blue="0.80000000000000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
                                 <constraint firstItem="tAr-PP-3Jq" firstAttribute="leading" secondItem="Tcc-Vm-EMY" secondAttribute="trailing" constant="5" id="0d4-H1-2Yz"/>
                                 <constraint firstItem="n4s-vb-vMo" firstAttribute="leading" secondItem="Tcc-Vm-EMY" secondAttribute="trailing" constant="5" id="1FM-Ck-UIy"/>
@@ -329,12 +354,12 @@
                                 <constraint firstAttribute="trailing" secondItem="Fwg-Tl-a5A" secondAttribute="trailing" id="G66-Wx-Bie"/>
                                 <constraint firstItem="sMe-NB-7Sq" firstAttribute="top" secondItem="2ya-lr-cdw" secondAttribute="bottom" constant="2" id="GR6-5R-uy0"/>
                                 <constraint firstAttribute="trailing" secondItem="SWY-42-Dzn" secondAttribute="trailing" id="KOX-HG-RqM"/>
-                                <constraint firstItem="R3c-qo-epV" firstAttribute="top" secondItem="snK-cp-q8w" secondAttribute="bottom" constant="2" id="LMI-sk-1bK"/>
+                                <constraint firstItem="R3c-qo-epV" firstAttribute="top" secondItem="snK-cp-q8w" secondAttribute="bottom" id="LMI-sk-1bK"/>
                                 <constraint firstAttribute="trailing" secondItem="n4s-vb-vMo" secondAttribute="trailing" id="LcW-w3-7sW"/>
                                 <constraint firstItem="KiP-gD-iNw" firstAttribute="height" secondItem="cIv-gc-nmb" secondAttribute="height" id="MzM-Ml-qHc"/>
                                 <constraint firstItem="SWY-42-Dzn" firstAttribute="leading" secondItem="2ya-lr-cdw" secondAttribute="trailing" id="NGq-1h-ph1"/>
+                                <constraint firstAttribute="bottom" secondItem="Jqk-Y6-1xg" secondAttribute="bottom" id="O6g-sc-mZB"/>
                                 <constraint firstItem="OhK-tk-aJM" firstAttribute="height" secondItem="Jqk-Y6-1xg" secondAttribute="height" id="OAn-AG-sYg"/>
-                                <constraint firstAttribute="height" constant="270" id="OcP-ha-zhm"/>
                                 <constraint firstItem="D8E-nz-amA" firstAttribute="height" secondItem="z2P-dv-dpq" secondAttribute="height" id="QK0-jm-aRa"/>
                                 <constraint firstItem="Tcc-Vm-EMY" firstAttribute="centerX" secondItem="4pG-xS-C0O" secondAttribute="centerX" id="QVf-Bw-42n"/>
                                 <constraint firstItem="Tcc-Vm-EMY" firstAttribute="leading" secondItem="z2P-dv-dpq" secondAttribute="trailing" id="QbM-O2-RbV"/>
@@ -401,12 +426,18 @@
                             </constraints>
                         </view>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3u0-n3-rOm">
-                            <rect key="frame" x="10" y="358" width="300" height="33"/>
-                            <color key="backgroundColor" red="0.37643486259999998" green="0.37649342419999998" blue="0.37642204759999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <rect key="frame" x="10" y="345" width="300" height="33"/>
+                            <color key="backgroundColor" red="0.83914071320000005" green="0.84318488840000005" blue="0.84303629400000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="33" id="01V-v3-8me"/>
                             </constraints>
-                            <state key="normal" title="Button"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                            <state key="normal" title="CHANGE THE LIGHT SOURCE LIFESPAN SETTINGS">
+                                <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </state>
+                            <connections>
+                                <action selector="resetBtnTouchDown:" destination="-1" eventType="touchDown" id="3Qy-3T-XAe"/>
+                            </connections>
                         </button>
                     </subviews>
                     <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
@@ -418,7 +449,6 @@
                         <constraint firstAttribute="trailing" secondItem="Me9-EN-H6T" secondAttribute="trailing" id="AYn-Bq-YGy"/>
                         <constraint firstAttribute="width" constant="320" id="BZm-lV-gxo"/>
                         <constraint firstItem="4pG-xS-C0O" firstAttribute="leading" secondItem="MSE-Z0-myj" secondAttribute="leading" constant="10" id="Pcr-hb-fIr"/>
-                        <constraint firstAttribute="height" relation="greaterThanOrEqual" id="W1Y-Tm-Jna"/>
                         <constraint firstItem="Me9-EN-H6T" firstAttribute="leading" secondItem="MSE-Z0-myj" secondAttribute="leading" id="bJf-lv-FXH"/>
                         <constraint firstAttribute="trailing" secondItem="4pG-xS-C0O" secondAttribute="trailing" constant="10" id="eWn-R9-k0R"/>
                         <constraint firstAttribute="bottom" secondItem="sxC-cC-wuB" secondAttribute="bottom" constant="10" id="kCI-54-OUq"/>
@@ -434,7 +464,7 @@
                 <constraint firstItem="MSE-Z0-myj" firstAttribute="centerX" secondItem="FJf-pj-N2l" secondAttribute="centerX" id="CBz-9q-fwW"/>
                 <constraint firstItem="MSE-Z0-myj" firstAttribute="centerY" secondItem="FJf-pj-N2l" secondAttribute="centerY" id="hUB-In-fwr"/>
             </constraints>
-            <point key="canvasLocation" x="-175.36231884057972" y="22.098214285714285"/>
+            <point key="canvasLocation" x="52" y="28"/>
         </view>
     </objects>
     <resources>

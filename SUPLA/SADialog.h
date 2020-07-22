@@ -19,6 +19,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface SADialog : UIViewController
 - (void)close;
+- (void)closeWithAnimation:(BOOL)animation completion:(void (^ __nullable)(void))completion;
 + (void)showModal:(SADialog*)dialogVC;
 + (BOOL)viewControllerIsPresented:(UIViewController*)vc;
 @property (nonatomic, assign)BOOL cancelByTouchOutside;

@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina3_5" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Quicksand-Regular.ttf">
+            <string>Quicksand-Regular</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SALightsourceLifespanSettingsDialog"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="a3m-ko-vz5" userLabel="LifespanSettings">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aOC-MG-F4z" userLabel="vMain">
+                    <rect key="frame" x="0.0" y="30" width="320" height="420"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Mza-4e-bVb" userLabel="Header">
+                            <rect key="frame" x="0.0" y="0.0" width="320" height="70"/>
+                            <subviews>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uGP-mI-Psm">
+                                    <rect key="frame" x="260" y="10" width="50" height="50"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="50" id="0RQ-OJ-yVD"/>
+                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="50" id="9vr-T7-1Oc"/>
+                                        <constraint firstAttribute="height" constant="50" id="giV-Qe-22O"/>
+                                        <constraint firstAttribute="width" constant="50" id="jmK-Ve-AOT"/>
+                                    </constraints>
+                                    <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="18"/>
+                                    <state key="normal" image="infoclose.png"/>
+                                </button>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sk2-G8-GWa">
+                                    <rect key="frame" x="0.0" y="69" width="320" height="1"/>
+                                    <color key="backgroundColor" red="0.70581632849999998" green="0.7176883221" blue="0.72932332749999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="1" id="8k8-MW-GQO"/>
+                                        <constraint firstAttribute="height" constant="1" id="E7F-eH-8FS"/>
+                                    </constraints>
+                                </view>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Settings" textAlignment="natural" lineBreakMode="middleTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hKG-BE-jQV">
+                                    <rect key="frame" x="10" y="17.5" width="242" height="35"/>
+                                    <fontDescription key="fontDescription" name="Quicksand-Regular" family="Quicksand" pointSize="28"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                            </subviews>
+                            <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                            <constraints>
+                                <constraint firstItem="hKG-BE-jQV" firstAttribute="leading" secondItem="Mza-4e-bVb" secondAttribute="leading" constant="10" id="5nJ-EJ-wse"/>
+                                <constraint firstItem="uGP-mI-Psm" firstAttribute="centerY" secondItem="Mza-4e-bVb" secondAttribute="centerY" id="72V-6b-dGD"/>
+                                <constraint firstItem="hKG-BE-jQV" firstAttribute="centerY" secondItem="Mza-4e-bVb" secondAttribute="centerY" id="DGg-cd-Q5g"/>
+                                <constraint firstAttribute="bottom" secondItem="sk2-G8-GWa" secondAttribute="bottom" id="DmB-oj-8oZ"/>
+                                <constraint firstAttribute="height" constant="70" id="FQb-9e-F7d"/>
+                                <constraint firstAttribute="trailing" secondItem="sk2-G8-GWa" secondAttribute="trailing" id="Jn8-EZ-xdL"/>
+                                <constraint firstAttribute="trailing" secondItem="uGP-mI-Psm" secondAttribute="trailing" constant="10" id="LDK-BX-OA8"/>
+                                <constraint firstItem="uGP-mI-Psm" firstAttribute="leading" secondItem="hKG-BE-jQV" secondAttribute="trailing" constant="8" id="MXV-uL-Zex"/>
+                                <constraint firstItem="sk2-G8-GWa" firstAttribute="leading" secondItem="Mza-4e-bVb" secondAttribute="leading" id="UyE-p3-cs4"/>
+                            </constraints>
+                        </view>
+                    </subviews>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                    <constraints>
+                        <constraint firstAttribute="trailing" secondItem="Mza-4e-bVb" secondAttribute="trailing" id="3SH-79-LCM"/>
+                        <constraint firstAttribute="width" constant="320" id="5j2-jF-wTc"/>
+                        <constraint firstAttribute="height" constant="420" id="78s-0n-kKg"/>
+                        <constraint firstItem="Mza-4e-bVb" firstAttribute="top" secondItem="aOC-MG-F4z" secondAttribute="top" id="HUg-Pg-NXv"/>
+                        <constraint firstItem="Mza-4e-bVb" firstAttribute="leading" secondItem="aOC-MG-F4z" secondAttribute="leading" id="UCH-R9-JQh"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="aOC-MG-F4z" firstAttribute="centerY" secondItem="a3m-ko-vz5" secondAttribute="centerY" id="dQQ-w8-fSa"/>
+                <constraint firstItem="aOC-MG-F4z" firstAttribute="centerX" secondItem="a3m-ko-vz5" secondAttribute="centerX" id="y3k-ae-DSM"/>
+            </constraints>
+            <point key="canvasLocation" x="52" y="28"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="infoclose.png" width="50" height="50"/>
+    </resources>
+</document>

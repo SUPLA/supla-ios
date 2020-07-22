@@ -20,7 +20,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface SAVLCalibrationTool : UIView <SASuperuserAuthorizationDialogDelegate>
+@interface SAVLCalibrationTool : UIView <SARangeCalibrationWheelDelegate, SASuperuserAuthorizationDialogDelegate>
 @property (weak, nonatomic) IBOutlet UIButton *btnInfo;
 @property (weak, nonatomic) IBOutlet UIButton *btnRestore;
 @property (weak, nonatomic) IBOutlet UIButton *btnOK;

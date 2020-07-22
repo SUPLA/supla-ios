@@ -30,6 +30,18 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     return nil;
 }
 
+-(id)initWithChannelState:(TDSC_ChannelState *)state {
+    if ([super init]) {
+        if (state) {
+            memcpy(&_csev, state, sizeof(TDSC_ChannelState));
+        } else {
+            memset(&_csev, 0, sizeof(TChannelState_ExtendedValue));
+        }
+        return self;
+    }
+    return nil;
+}
+
 -(BOOL)getChannelStateExtendedValue:(TChannelState_ExtendedValue*)csev {
     if (csev != NULL) {
         memset(csev, 0, sizeof(TChannelState_ExtendedValue));
