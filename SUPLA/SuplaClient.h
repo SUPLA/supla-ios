@@ -19,6 +19,7 @@
 #import <Foundation/Foundation.h>
 #import "SARestApiClientTask.h"
 #import "SAThermostatScheduleCfg.h"
+#import "SAChannelStateExtendedValue.h"
 #include "proto.h"
 
 @interface SAVersionError : NSObject
@@ -110,6 +111,7 @@
 - (void) onOAuthTokenRequestResult:(SAOAuthToken *)token;
 - (void) onSuperuserAuthorizationResult:(SASuperuserAuthorizationResult*)result;
 - (void) onCalCfgResult:(SACalCfgResult*)result;
+- (void) onChannelState:(SAChannelStateExtendedValue*)state;
 
 - (void) reconnect;
 - (BOOL) isConnected;
@@ -130,4 +132,7 @@
 - (int) getProtocolVersion;
 - (BOOL) OAuthTokenRequest;
 - (void) superuserAuthorizationRequestWithEmail:(NSString*)email andPassword:(NSString*)password;
+- (void) channelStateRequestWithChannelId:(int)channelId;
+- (void) setLightsourceLifespanWithChannelId:(int)channelId resetCounter:(BOOL)reset setTime:(BOOL)setTime lifespan:(unsigned short)lifespan;
+
 @end

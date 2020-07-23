@@ -21,6 +21,7 @@
 #import "UIHelper.h"
 #import "SuplaClient.h"
 #include "proto.h"
+#include "SAChannelStateExtendedValue.h"
 
 #define ABSTRACT_METHOD_EXCEPTION [SAApp abstractMethodException:NSStringFromSelector(_cmd)]
 
@@ -80,6 +81,7 @@
 -(void)onOAuthTokenRequestResult:(SAOAuthToken *)token;
 -(void)onSuperuserAuthorizationResult:(SASuperuserAuthorizationResult *)result;
 -(void)onCalCfgResult:(SACalCfgResult *)result;
+-(void)onChannelState:(SAChannelStateExtendedValue*)state;
 
 -(SAOAuthToken*) registerRestApiClientTask:(SARestApiClientTask *)client;
 -(void) unregisterRestApiClientTask:(SARestApiClientTask *)task;
@@ -101,3 +103,4 @@ extern NSString *kSAOAuthTokenRequestResult;
 extern NSString *kSASuperuserAuthorizationResult;
 extern NSString *kSACalCfgResult;
 extern NSString *kSAMenubarBackButtonPressed;
+extern NSString *kSAOnChannelState;

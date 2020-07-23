@@ -16,7 +16,7 @@
 #import "SADialog.h"
 
 @interface SADialog ()
-
+- (IBAction)closeButtonTouch:(id)sender;
 @end
 
 @implementation SADialog {
@@ -41,10 +41,36 @@
 
 -(void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
+    
     [UIView animateWithDuration:0.2 animations:^{
         self.view.alpha = 1;
         self.view.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.6];
     } completion:nil];
+     
+}
+
+- (UIView*)rootView {
+    return self.view;
+}
+
+-(void)closeWithAnimation:(BOOL)animation completion:(void (^ __nullable)(void))completion {
+    if (animation) {
+        [UIView animateWithDuration:0.2 animations:^{
+            self.view.alpha = 0;
+        } completion:^(BOOL finished){
+            [self dismissViewControllerAnimated:NO completion:^() {
+                if (completion) {
+                    completion();
+                }
+            }];
+        }];
+    } else {
+        [self dismissViewControllerAnimated:NO completion:^() {
+            if (completion) {
+                completion();
+            }
+        }];
+    }
 }
 
 - (IBAction)closeButtonTouch:(id)sender {
@@ -56,22 +82,17 @@
         
         UITapGestureRecognizer *gr = (UITapGestureRecognizer *)sender;
         
-        UIView *v = self.view.subviews.firstObject;
-        if ([v hitTest:[gr locationInView:v] withEvent:nil] != v) {
-            return;
+        if ([self.rootView hitTest:[gr locationInView:self.rootView] withEvent:nil] != self.rootView) {
+          return;
         }
     }
     
-    [UIView animateWithDuration:0.2 animations:^{
-        self.view.alpha = 0;
-    } completion:^(BOOL finished){
-        [self dismissViewControllerAnimated:NO completion:nil];
-    }];
+    [self closeWithAnimation:YES completion:nil];
     
 }
 
 - (void)close {
-    [self closeButtonTouch:self];
+    [self closeWithAnimation:YES completion:nil];
 }
 
 + (BOOL)viewControllerIsPresented:(UIViewController*)vc {

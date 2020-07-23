@@ -153,6 +153,13 @@ void sasuplaclient_on_calcfg_result(void *_suplaclient, void *user_data, TSC_Dev
     }
 }
 
+void sasuplaclient_on_device_channel_state(void *_suplaclient, void *user_data, TDSC_ChannelState *state) {
+    SASuplaClient *sc = (__bridge SASuplaClient*)user_data;
+    if ( sc != nil && state != NULL) {
+        [sc onChannelState: [[SAChannelStateExtendedValue alloc] initWithChannelState:state]];
+    }
+}
+
 // ------------------------------------------------------------------------------------------------------
 // ------------------------------------------------------------------------------------------------------
 // ------------------------------------------------------------------------------------------------------
@@ -415,6 +422,7 @@ void sasuplaclient_on_calcfg_result(void *_suplaclient, void *user_data, TSC_Dev
     scc.cb_on_oauth_token_request_result = sasuplaclient_on_oauth_token_request_result;
     scc.cb_on_superuser_authorization_result = sasuplaclient_on_superuser_authorization_result;
     scc.cb_on_device_calcfg_result = sasuplaclient_on_calcfg_result;
+    scc.cb_on_device_channel_state = sasuplaclient_on_device_channel_state;
     
     scc.protocol_version = [SAApp getPreferedProtocolVersion];
     
@@ -799,6 +807,14 @@ void sasuplaclient_on_calcfg_result(void *_suplaclient, void *user_data, TSC_Dev
       [self performSelectorOnMainThread:@selector(_onCalCfgResult:) withObject:result waitUntilDone:NO];
 }
 
+- (void) _onChannelState:(SAChannelStateExtendedValue*)state  {
+    [[SAApp instance] onChannelState:state];
+}
+
+- (void) onChannelState:(SAChannelStateExtendedValue*)state {
+        [self performSelectorOnMainThread:@selector(_onChannelState:) withObject:state waitUntilDone:NO];
+}
+
 - (void) reconnect {
     @synchronized(self) {
         if ( _sclient ) {
@@ -998,5 +1014,23 @@ void sasuplaclient_on_calcfg_result(void *_suplaclient, void *user_data, TSC_Dev
         }
     }
 }
+
+- (void) channelStateRequestWithChannelId:(int)channelId {
+    @synchronized(self) {
+        if ( _sclient ) {
+            supla_client_get_channel_state(_sclient, channelId);
+        }
+    }
+}
+
+- (void) setLightsourceLifespanWithChannelId:(int)channelId resetCounter:(BOOL)reset setTime:(BOOL)setTime lifespan:(unsigned short)lifespan {
+    @synchronized(self) {
+        if ( _sclient ) {
+            supla_client_set_lightsource_lifespan(_sclient, channelId, reset ? 1 : 0, setTime ? 1 : 0, lifespan);
+        }
+    }
+}
+
+
 
 @end

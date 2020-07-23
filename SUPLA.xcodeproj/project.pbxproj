@@ -11,9 +11,11 @@
 		010C8783249A6471002FE526 /* infoclose@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 010C8782249A6471002FE526 /* infoclose@2x.png */; };
 		010C8786249A6A92002FE526 /* SADialog.m in Sources */ = {isa = PBXBuildFile; fileRef = 010C8785249A6A92002FE526 /* SADialog.m */; };
 		010C8787249AA1E1002FE526 /* SAInfoVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 010C8789249AA1E1002FE526 /* SAInfoVC.xib */; };
+		01199C8324C34AC50062454B /* SAChannelStatePopup.m in Sources */ = {isa = PBXBuildFile; fileRef = 01199C8224C34AC50062454B /* SAChannelStatePopup.m */; };
 		011E736824A1367B004D99EE /* SAVLCalibrationTool.xib in Resources */ = {isa = PBXBuildFile; fileRef = 011E736A24A1367B004D99EE /* SAVLCalibrationTool.xib */; };
 		012023C2234E54ED00E131B7 /* ImpulseCounterDetailView.m in Sources */ = {isa = PBXBuildFile; fileRef = 012023C1234E54ED00E131B7 /* ImpulseCounterDetailView.m */; };
 		012119152368C3B2004C1993 /* collapsed@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 012119142368C3B2004C1993 /* collapsed@3x.png */; };
+		01215A7324C8AECC00429947 /* SALightsourceLifespanSettingsDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = 01215A7124C8AECC00429947 /* SALightsourceLifespanSettingsDialog.m */; };
 		0122613922F396440013E6A2 /* SAThermostatCalendar.m in Sources */ = {isa = PBXBuildFile; fileRef = 0122613822F396440013E6A2 /* SAThermostatCalendar.m */; };
 		012BD7262499173600E64F25 /* rgbwpoweroff@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 012BD7222499173500E64F25 /* rgbwpoweroff@3x.png */; };
 		012BD7272499173600E64F25 /* rgbwinfo@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 012BD7232499173600E64F25 /* rgbwinfo@3x.png */; };
@@ -23,6 +25,7 @@
 		012E341523DF5FB800F17D39 /* valve-open@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 012E341123DF5FB800F17D39 /* valve-open@3x.png */; };
 		012E341623DF5FB800F17D39 /* valve-closed@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 012E341223DF5FB800F17D39 /* valve-closed@3x.png */; };
 		012E341723DF5FB800F17D39 /* valve-open@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 012E341323DF5FB800F17D39 /* valve-open@2x.png */; };
+		012E81D924C9A31B008E0690 /* SALightsourceLifespanSettingsDialog.xib in Resources */ = {isa = PBXBuildFile; fileRef = 012E81DB24C9A31B008E0690 /* SALightsourceLifespanSettingsDialog.xib */; };
 		012F722C22DF3E2300E5F72E /* ChartFilterFieldTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 012F722822DF3CF000E5F72E /* ChartFilterFieldTests.m */; };
 		012F722E22DFA0BE00E5F72E /* SABarChartDataSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 012F722D22DFA0BE00E5F72E /* SABarChartDataSet.swift */; };
 		012FCBD323217DE000AC6FF6 /* ThermostatCalendarTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 012FCBD223217DE000AC6FF6 /* ThermostatCalendarTests.m */; };
@@ -64,6 +67,8 @@
 		017A3CB223635DF7004AD1FC /* wind@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 017A3CAC23635DF6004AD1FC /* wind@3x.png */; };
 		017A3CB323635DF7004AD1FC /* pressure@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 017A3CAD23635DF7004AD1FC /* pressure@2x.png */; };
 		017A3CB423635DF7004AD1FC /* pressure@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 017A3CAE23635DF7004AD1FC /* pressure@3x.png */; };
+		0180440A24C2001A005E53EB /* channelstateinfo@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0180440924C2001A005E53EB /* channelstateinfo@3x.png */; };
+		0180440C24C254CF005E53EB /* SAChannelStatePopup.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0180440B24C254CF005E53EB /* SAChannelStatePopup.xib */; };
 		0182FCA62464691D00270CDC /* channel_warning_level2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0182FCA22464691C00270CDC /* channel_warning_level2@2x.png */; };
 		0182FCA72464691D00270CDC /* channel_warning_level2@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0182FCA32464691C00270CDC /* channel_warning_level2@3x.png */; };
 		0182FCA82464691D00270CDC /* channel_warning_level1@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0182FCA42464691D00270CDC /* channel_warning_level1@3x.png */; };
@@ -74,6 +79,10 @@
 		018CFD2323281ADB00888CB7 /* SAThermostatExtendedValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 018CFD2223281ADB00888CB7 /* SAThermostatExtendedValue.m */; };
 		018CFD2623281AF900888CB7 /* SAThermostatHPExtendedValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 018CFD2523281AF900888CB7 /* SAThermostatHPExtendedValue.m */; };
 		018CFD2923281F0C00888CB7 /* SAExtendedValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 018CFD2823281F0C00888CB7 /* SAExtendedValue.m */; };
+		018D2E5124BF258B00773D2F /* uv-on@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 018D2E4D24BF258A00773D2F /* uv-on@2x.png */; };
+		018D2E5224BF258B00773D2F /* uv-off@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 018D2E4E24BF258B00773D2F /* uv-off@3x.png */; };
+		018D2E5324BF258B00773D2F /* uv-on@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 018D2E4F24BF258B00773D2F /* uv-on@3x.png */; };
+		018D2E5424BF258B00773D2F /* uv-off@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 018D2E5024BF258B00773D2F /* uv-off@2x.png */; };
 		018E67CF22C8CA0A00FF1427 /* SADownloadElectricityMeasurements.m in Sources */ = {isa = PBXBuildFile; fileRef = 018E67CE22C8CA0A00FF1427 /* SADownloadElectricityMeasurements.m */; };
 		01902A25235A17E9005ED935 /* TemperatureDetailView.m in Sources */ = {isa = PBXBuildFile; fileRef = 01902A24235A17E9005ED935 /* TemperatureDetailView.m */; };
 		01902A28235A180F005ED935 /* TempHumidityDetailView.m in Sources */ = {isa = PBXBuildFile; fileRef = 01902A27235A180F005ED935 /* TempHumidityDetailView.m */; };
@@ -407,12 +416,16 @@
 		010C878C249AA1F0002FE526 /* pl */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = pl; path = pl.lproj/SAInfoVC.xib; sourceTree = "<group>"; };
 		0117290024746D8100DAF1D0 /* pl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pl; path = pl.lproj/ElectricityMeterDetailView.strings; sourceTree = "<group>"; };
 		01172903247473E200DAF1D0 /* SUPLA 6.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "SUPLA 6.xcdatamodel"; sourceTree = "<group>"; };
+		01199C8124C34AC50062454B /* SAChannelStatePopup.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SAChannelStatePopup.h; sourceTree = "<group>"; };
+		01199C8224C34AC50062454B /* SAChannelStatePopup.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SAChannelStatePopup.m; sourceTree = "<group>"; };
 		011E736924A1367B004D99EE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/SAVLCalibrationTool.xib; sourceTree = "<group>"; };
 		011E736C24A1367E004D99EE /* pl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pl; path = pl.lproj/SAVLCalibrationTool.strings; sourceTree = "<group>"; };
 		012023C0234E54ED00E131B7 /* ImpulseCounterDetailView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ImpulseCounterDetailView.h; sourceTree = "<group>"; };
 		012023C1234E54ED00E131B7 /* ImpulseCounterDetailView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ImpulseCounterDetailView.m; sourceTree = "<group>"; };
 		012119132368BDB0004C1993 /* SUPLA 5.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "SUPLA 5.xcdatamodel"; sourceTree = "<group>"; };
 		012119142368C3B2004C1993 /* collapsed@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "collapsed@3x.png"; path = "Resources/Assets/Img/collapsed@3x.png"; sourceTree = "<group>"; };
+		01215A7024C8AECC00429947 /* SALightsourceLifespanSettingsDialog.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SALightsourceLifespanSettingsDialog.h; sourceTree = "<group>"; };
+		01215A7124C8AECC00429947 /* SALightsourceLifespanSettingsDialog.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SALightsourceLifespanSettingsDialog.m; sourceTree = "<group>"; };
 		0122613722F396440013E6A2 /* SAThermostatCalendar.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SAThermostatCalendar.h; sourceTree = "<group>"; };
 		0122613822F396440013E6A2 /* SAThermostatCalendar.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SAThermostatCalendar.m; sourceTree = "<group>"; };
 		012BD7222499173500E64F25 /* rgbwpoweroff@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "rgbwpoweroff@3x.png"; path = "Resources/Assets/Img/rgbwpoweroff@3x.png"; sourceTree = "<group>"; };
@@ -423,6 +436,8 @@
 		012E341123DF5FB800F17D39 /* valve-open@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "valve-open@3x.png"; path = "Resources/Assets/Img/valve-open@3x.png"; sourceTree = "<group>"; };
 		012E341223DF5FB800F17D39 /* valve-closed@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "valve-closed@3x.png"; path = "Resources/Assets/Img/valve-closed@3x.png"; sourceTree = "<group>"; };
 		012E341323DF5FB800F17D39 /* valve-open@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "valve-open@2x.png"; path = "Resources/Assets/Img/valve-open@2x.png"; sourceTree = "<group>"; };
+		012E81DA24C9A31B008E0690 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/SALightsourceLifespanSettingsDialog.xib; sourceTree = "<group>"; };
+		012E81DD24C9A320008E0690 /* pl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pl; path = pl.lproj/SALightsourceLifespanSettingsDialog.strings; sourceTree = "<group>"; };
 		012F722822DF3CF000E5F72E /* ChartFilterFieldTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChartFilterFieldTests.m; sourceTree = "<group>"; };
 		012F722D22DFA0BE00E5F72E /* SABarChartDataSet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SABarChartDataSet.swift; sourceTree = "<group>"; };
 		012FCBD223217DE000AC6FF6 /* ThermostatCalendarTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ThermostatCalendarTests.m; sourceTree = "<group>"; };
@@ -508,6 +523,8 @@
 		017A3CAC23635DF6004AD1FC /* wind@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "wind@3x.png"; path = "Resources/Assets/Img/wind@3x.png"; sourceTree = "<group>"; };
 		017A3CAD23635DF7004AD1FC /* pressure@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "pressure@2x.png"; path = "Resources/Assets/Img/pressure@2x.png"; sourceTree = "<group>"; };
 		017A3CAE23635DF7004AD1FC /* pressure@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "pressure@3x.png"; path = "Resources/Assets/Img/pressure@3x.png"; sourceTree = "<group>"; };
+		0180440924C2001A005E53EB /* channelstateinfo@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "channelstateinfo@3x.png"; path = "Resources/Assets/Img/channelstateinfo@3x.png"; sourceTree = "<group>"; };
+		0180440B24C254CF005E53EB /* SAChannelStatePopup.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SAChannelStatePopup.xib; sourceTree = "<group>"; };
 		0182FCA22464691C00270CDC /* channel_warning_level2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "channel_warning_level2@2x.png"; path = "Resources/Assets/Img/channel_warning_level2@2x.png"; sourceTree = "<group>"; };
 		0182FCA32464691C00270CDC /* channel_warning_level2@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "channel_warning_level2@3x.png"; path = "Resources/Assets/Img/channel_warning_level2@3x.png"; sourceTree = "<group>"; };
 		0182FCA42464691D00270CDC /* channel_warning_level1@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "channel_warning_level1@3x.png"; path = "Resources/Assets/Img/channel_warning_level1@3x.png"; sourceTree = "<group>"; };
@@ -522,6 +539,10 @@
 		018CFD2523281AF900888CB7 /* SAThermostatHPExtendedValue.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SAThermostatHPExtendedValue.m; sourceTree = "<group>"; };
 		018CFD2723281F0C00888CB7 /* SAExtendedValue.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SAExtendedValue.h; sourceTree = "<group>"; };
 		018CFD2823281F0C00888CB7 /* SAExtendedValue.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SAExtendedValue.m; sourceTree = "<group>"; };
+		018D2E4D24BF258A00773D2F /* uv-on@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "uv-on@2x.png"; path = "Resources/Assets/Img/uv-on@2x.png"; sourceTree = "<group>"; };
+		018D2E4E24BF258B00773D2F /* uv-off@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "uv-off@3x.png"; path = "Resources/Assets/Img/uv-off@3x.png"; sourceTree = "<group>"; };
+		018D2E4F24BF258B00773D2F /* uv-on@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "uv-on@3x.png"; path = "Resources/Assets/Img/uv-on@3x.png"; sourceTree = "<group>"; };
+		018D2E5024BF258B00773D2F /* uv-off@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "uv-off@2x.png"; path = "Resources/Assets/Img/uv-off@2x.png"; sourceTree = "<group>"; };
 		018E67CD22C8CA0A00FF1427 /* SADownloadElectricityMeasurements.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SADownloadElectricityMeasurements.h; sourceTree = "<group>"; };
 		018E67CE22C8CA0A00FF1427 /* SADownloadElectricityMeasurements.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SADownloadElectricityMeasurements.m; sourceTree = "<group>"; };
 		01902A23235A17E9005ED935 /* TemperatureDetailView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TemperatureDetailView.h; sourceTree = "<group>"; };
@@ -1085,6 +1106,8 @@
 		012119122368B597004C1993 /* xib */ = {
 			isa = PBXGroup;
 			children = (
+				012E81DB24C9A31B008E0690 /* SALightsourceLifespanSettingsDialog.xib */,
+				0180440B24C254CF005E53EB /* SAChannelStatePopup.xib */,
 				01943EC0249D1C8800DA2B8F /* SASuperuserAuthorizationDialog.xib */,
 				01C8EBCF23422AC50072AB8C /* HomePlusDetailViewGroupCell.xib */,
 				40CE7C6D1DCBBF6D00BBACE4 /* DistanceCell.xib */,
@@ -1314,6 +1337,11 @@
 		405AC4011BC15878004F7311 /* Img */ = {
 			isa = PBXGroup;
 			children = (
+				0180440924C2001A005E53EB /* channelstateinfo@3x.png */,
+				018D2E5024BF258B00773D2F /* uv-off@2x.png */,
+				018D2E4E24BF258B00773D2F /* uv-off@3x.png */,
+				018D2E4D24BF258A00773D2F /* uv-on@2x.png */,
+				018D2E4F24BF258B00773D2F /* uv-on@3x.png */,
 				01D3FF6624A20E26000EBE77 /* backbtn@3x.png */,
 				01D6A105249C0EAC006B3757 /* vlinfo@3.png */,
 				01D6A103249C0DC8006B3757 /* vprosmart@3.png */,
@@ -1714,6 +1742,10 @@
 				01D6A0F0249BD2F7006B3757 /* SASuperuserAuthorizationDialog.m */,
 				01D6A100249BEC8C006B3757 /* SAVLCalibrationTool.h */,
 				01D6A101249BEC8C006B3757 /* SAVLCalibrationTool.m */,
+				01199C8124C34AC50062454B /* SAChannelStatePopup.h */,
+				01199C8224C34AC50062454B /* SAChannelStatePopup.m */,
+				01215A7024C8AECC00429947 /* SALightsourceLifespanSettingsDialog.h */,
+				01215A7124C8AECC00429947 /* SALightsourceLifespanSettingsDialog.m */,
 			);
 			name = UI;
 			sourceTree = "<group>";
@@ -1926,6 +1958,7 @@
 				40B9ED561FACD0A100403B1A /* pc-on@3x.png in Resources */,
 				40CF96B91BC7D4E70030EFFF /* gateway-open@3x.png in Resources */,
 				4067782C1BCBC647008DD37F /* menu@2x.png in Resources */,
+				0180440A24C2001A005E53EB /* channelstateinfo@3x.png in Resources */,
 				40DE1A2C1BCCFF8A004CF43B /* info@3x.png in Resources */,
 				40CF96B01BC7D4E70030EFFF /* garagedoor-open@2x.png in Resources */,
 				4052DA071DC515AE000B8C45 /* dimmerrgb-onon@2x.png in Resources */,
@@ -1934,8 +1967,10 @@
 				40B9ED7E1FACE15700403B1A /* nomail@3x.png in Resources */,
 				407D31A81FD1B75F0062FB80 /* logo-white@3x.png in Resources */,
 				407D4AF11BC6C6A4009A5505 /* app_icon180x180@3x.png in Resources */,
+				0180440C24C254CF005E53EB /* SAChannelStatePopup.xib in Resources */,
 				40B9ED831FACE15700403B1A /* mail@3x.png in Resources */,
 				40DE1A291BCCFF8A004CF43B /* feedback@2x.png in Resources */,
+				018D2E5324BF258B00773D2F /* uv-on@3x.png in Resources */,
 				40B9ED671FACD34C00403B1A /* xmastree-off@3x.png in Resources */,
 				40B9ED581FACD0A100403B1A /* pc-off@3x.png in Resources */,
 				40CF96C81BC7D4E70030EFFF /* rollershutter-open@2x.png in Resources */,
@@ -1946,6 +1981,7 @@
 				40477B4A20C6C5FE00E995E6 /* staircasetimer_1-on@3x.png in Resources */,
 				4052DA0F1DC515AE000B8C45 /* rgb-on@2x.png in Resources */,
 				0182FCA72464691D00270CDC /* channel_warning_level2@3x.png in Resources */,
+				012E81D924C9A31B008E0690 /* SALightsourceLifespanSettingsDialog.xib in Resources */,
 				40CF96C61BC7D4E70030EFFF /* rollershutter-closed@2x.png in Resources */,
 				40B397CF1BCE7F3200BE7D5A /* Launch Screen.storyboard in Resources */,
 				40B9ED601FACD14000403B1A /* fan-off@3x.png in Resources */,
@@ -1989,6 +2025,7 @@
 				4052DA031DC515AE000B8C45 /* dimmerrgb-offon@2x.png in Resources */,
 				40CF96C31BC7D4E70030EFFF /* power-off@3x.png in Resources */,
 				4091AF481FC88A8B00EFF357 /* plug@2x.png in Resources */,
+				018D2E5224BF258B00773D2F /* uv-off@3x.png in Resources */,
 				40477B4220C6C57700E995E6 /* staircasetimer-on@3x.png in Resources */,
 				40CF96C11BC7D4E70030EFFF /* noliquid@3x.png in Resources */,
 				40B9ED4E1FACCF8100403B1A /* radio-on@3x.png in Resources */,
@@ -2025,6 +2062,7 @@
 				40CE7C691DCBBD5700BBACE4 /* distance@3x.png in Resources */,
 				40B9ED651FACD34C00403B1A /* xmastree-on@3x.png in Resources */,
 				40B9ED571FACD0A100403B1A /* pc-on@2x.png in Resources */,
+				018D2E5124BF258B00773D2F /* uv-on@2x.png in Resources */,
 				4091AF4A1FC88BFB00EFF357 /* greendot@2x.png in Resources */,
 				011E736824A1367B004D99EE /* SAVLCalibrationTool.xib in Resources */,
 				4052DA041DC515AE000B8C45 /* dimmerrgb-onoff@3x.png in Resources */,
@@ -2054,6 +2092,7 @@
 				01D3FF6724A20E26000EBE77 /* backbtn@3x.png in Resources */,
 				40CF96B11BC7D4E70030EFFF /* garagedoor-open@3x.png in Resources */,
 				40B9ED801FACE15700403B1A /* window-open@3x.png in Resources */,
+				018D2E5424BF258B00773D2F /* uv-off@2x.png in Resources */,
 				40477B3D20C6C57700E995E6 /* staircasetimer-off@3x.png in Resources */,
 				405C49A01FCAFFD400C15602 /* wizard_error@2x.png in Resources */,
 				407D31941FD1A7070062FB80 /* AddWizardVC.xib in Resources */,
@@ -2200,6 +2239,7 @@
 				40CF96DE1BC820E60030EFFF /* UIHelper.m in Sources */,
 				01F8856E22E5E79100D18373 /* SAImpulseCounterMeasurementItem+CoreDataProperties.m in Sources */,
 				01C1718F22C7F3A2005983E1 /* SAIncrementalMeasurementItem+CoreDataClass.m in Sources */,
+				01199C8324C34AC50062454B /* SAChannelStatePopup.m in Sources */,
 				0172677D234FAF78000F1CFB /* SADownloadImpulseCounterMeasurements.m in Sources */,
 				01392B37235C91C1003A2BAD /* SADownloadTemperatureMeasurements.m in Sources */,
 				01C1719A22C7F55B005983E1 /* SAMeasurementItem+CoreDataProperties.m in Sources */,
@@ -2227,6 +2267,7 @@
 				406778551BCBF9F4008DD37F /* SectionCell.m in Sources */,
 				40B9ED3A1FAC79FC00403B1A /* SUPLA.xcdatamodeld in Sources */,
 				40B610CC20C7E263002B762A /* SAUIChannelStatus.m in Sources */,
+				01215A7324C8AECC00429947 /* SALightsourceLifespanSettingsDialog.m in Sources */,
 				4077ACE320A21BB100BD2216 /* CreateAccountVC.m in Sources */,
 				401CA1C81BA067DB00117AF4 /* MainVC.m in Sources */,
 				012F722E22DFA0BE00E5F72E /* SABarChartDataSet.swift in Sources */,
@@ -2330,6 +2371,15 @@
 				011E736C24A1367E004D99EE /* pl */,
 			);
 			name = SAVLCalibrationTool.xib;
+			sourceTree = "<group>";
+		};
+		012E81DB24C9A31B008E0690 /* SALightsourceLifespanSettingsDialog.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				012E81DA24C9A31B008E0690 /* Base */,
+				012E81DD24C9A320008E0690 /* pl */,
+			);
+			name = SALightsourceLifespanSettingsDialog.xib;
 			sourceTree = "<group>";
 		};
 		017A3C8823633A70004AD1FC /* TempHumidityDetailView.xib */ = {
@@ -2698,7 +2748,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 52;
+				CURRENT_PROJECT_VERSION = 53;
 				DEFINES_MODULE = YES;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"$(inherited)",
@@ -2713,7 +2763,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/SUPLA/lib",
 				);
-				MARKETING_VERSION = 2.3.13;
+				MARKETING_VERSION = 2.3.14;
 				PRODUCT_BUNDLE_IDENTIFIER = com.acsoftware.ios.supla;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "SUPLA/SUPLA-Bridging-Header.h";
@@ -2730,7 +2780,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 52;
+				CURRENT_PROJECT_VERSION = 53;
 				DEFINES_MODULE = YES;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"$(inherited)",
@@ -2745,7 +2795,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/SUPLA/lib",
 				);
-				MARKETING_VERSION = 2.3.13;
+				MARKETING_VERSION = 2.3.14;
 				PRODUCT_BUNDLE_IDENTIFIER = com.acsoftware.ios.supla;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "SUPLA/SUPLA-Bridging-Header.h";

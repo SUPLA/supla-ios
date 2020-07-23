@@ -17,7 +17,7 @@
 #import "SuplaClient.h"
 #import "SuplaApp.h"
 
-static SASuperuserAuthorizationDialog *_superuserAuthorizationDialogGlobalRef;
+static SASuperuserAuthorizationDialog *_superuserAuthorizationDialogGlobalRef = nil;
 
 @interface SASuperuserAuthorizationDialog ()
 @property (weak, nonatomic) IBOutlet UIView *vMain;
@@ -68,9 +68,10 @@ static SASuperuserAuthorizationDialog *_superuserAuthorizationDialogGlobalRef;
     _delegate = nil;
 }
 
-- (void)close {
+-(void)closeWithAnimation:(BOOL)animation completion:(void (^ __nullable)(void))completion {
     [self timeoutTimerInvalidate];
-    [super close];
+    [super closeWithAnimation:animation completion:completion];
+    
 }
 
 -(void)showError:(NSString*)err {
@@ -124,6 +125,7 @@ static SASuperuserAuthorizationDialog *_superuserAuthorizationDialogGlobalRef;
 
 -(void)authorizeWithDelegate:(id<SASuperuserAuthorizationDialogDelegate>)delegate {
     _delegate = delegate;
+    [self timeoutTimerInvalidate];
     _lErrorMessage.text = @"";
     _lErrorMessage.hidden = YES;
     _edEmail.text = [SAApp getEmailAddress];

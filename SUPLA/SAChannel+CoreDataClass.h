@@ -21,6 +21,7 @@
 #import "SAChannelValue+CoreDataClass.h"
 #import "SAChannelBase+CoreDataProperties.h"
 #import "SAChannelExtendedValue+CoreDataProperties.h"
+#import "SAChannelStateExtendedValue.h"
 #include "proto.h"
 
 @class NSObject, _SALocation;
@@ -36,7 +37,12 @@ NS_ASSUME_NONNULL_BEGIN
 - (BOOL) setProductId:(int)productId;
 - (BOOL) setChannelType:(int)type;
 - (double) totalForwardActiveEnergy;
+- (NSNumber *) lightSourceLifespanLeft;
 - (int) warningLevel;
+- (UIImage *) stateIcon;
+- (UIImage *) warningIcon;
+- (NSString *) warningMessage;
+- (SAChannelStateExtendedValue *)channelState;
 @end
 
 NS_ASSUME_NONNULL_END

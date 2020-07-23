@@ -76,7 +76,7 @@
 "Cancel" = "Zrušit";
 "Go to the system settings" = "Přejděte do nastavení systému ";
 "I/O Device registration is currently off. To continue go to „My SUPLA” at %@ and enable the Device Add Button." = "Registrace I / O zařízení je momentálně zakázána. Chcete-li pokračovat, přejděte na stránku %@ a na kartě Moje SUPLA povolte přidávání zařízení.";
-"Add Wizard is only available when server connection has been set based on the email address entered in the settings." = "Průvodce přidáním je k dispozici pouze v případě, že bylo na základě e-mailové adresy zadané v nastavení vytvořeno připojení k serveru!";
+"Add Wizard is only available when server connection has been set based on the email address entered in the settings. (Disable advanced options in the settings)" = "Průvodce přidáním je k dispozici pouze v případě, že bylo na základě e-mailové adresy zadané v nastavení vytvořeno připojení k serveru!";
 "The connected Server does not support this function!" = "Server, ke kterému jste se připojili, nepodporuje tuto funkci!";
 "Device Configuration Completion timeout!" = "Doba čekání na dokončení konfigurace zařízení byla překročena!";
 "Incorrect input parameters!" = "Chybné vstupní parametry!";
@@ -142,6 +142,7 @@
 "Close" = "Zavřít";
 "Valve" = "Ventil";
 "The valve has been closed in manual mode. Before you open it, make sure it has not been closed due to flooding. To turn off the warning, open the valve manually. Are you sure you want to open it from the application ?!" = "POZOR! Ventil byl uzavřen dálkovým ovladačem (klíčenkou nebo záplavovým čidlem). Než ventil znovu otevřete, ujistěte se, že nebyl uzavřen kvůli úniku vody. Pokud je záplavové čidlo ve vodě, NEvyšle ventilu  opakovaně signál pro uzavření. Chcete-li varování vypnout, otevřte ventil pomocí ovládacího tlačítka na ventilu.Opravdu chcete ventil otevřít pomocí aplikace?!";
+"The valve has been closed in manual mode. Before you open it, make sure it has not been closed due to flooding. To turn off the warning, open the valve manually." = "POZOR! Ventil byl uzavřen dálkovým ovladačem (klíčenkou nebo záplavovým čidlem). Než ventil znovu otevřete, ujistěte se, že nebyl uzavřen kvůli úniku vody. Pokud je záplavové čidlo ve vodě, NEvyšle ventilu  opakovaně signál pro uzavření. Chcete-li varování vypnout, otevřte ventil pomocí ovládacího tlačítka na ventilu.";
 "Warning" = "Upozornění";
 "Yes" = "Ano";
 "No" = "Ne";

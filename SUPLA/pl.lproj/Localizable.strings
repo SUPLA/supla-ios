@@ -76,7 +76,7 @@
 "Cancel" = "Anuluj";
 "Go to the system settings" = "Przejdź do ustawień systemowych";
 "I/O Device registration is currently off. To continue go to „My SUPLA” at %@ and enable the Device Add Button." = "Rejestracja urządzeń we/wy jest obecnie wyłączona. Aby kontynuować przejdź na stronę %@ i w zakładce „Moja SUPLA” włącz dodawanie urządzeń.";
-"Add Wizard is only available when server connection has been set based on the email address entered in the settings." = "Kreator dodawania jest dostępny tylko gdy nawiązano połączenie z serwerem na podstawie wprowadzonego w ustawieniach adresu email!";
+"Add Wizard is only available when server connection has been set based on the email address entered in the settings. (Disable advanced options in the settings)" = "Kreator dodawania jest dostępny tylko gdy nawiązano połączenie z serwerem na podstawie wprowadzonego w ustawieniach adresu email! (Wyłącz opcje zaawansowane w ustawieniach)";
 "The connected Server does not support this function!" = "Serwer z którym nawiązano połączenie nie obsługuje tej funkcji!";
 "Device Configuration Completion timeout!" = "Przekroczono czas oczekiwania na zakończenie konfiguracji urządzenia!";
 "Incorrect input parameters!" = "Błędne parametry wejściowe!";
@@ -142,6 +142,7 @@
 "Close" = "Zamknij";
 "Valve" = "Zawór";
 "The valve has been closed in manual mode. Before you open it, make sure it has not been closed due to flooding. To turn off the warning, open the valve manually. Are you sure you want to open it from the application ?!" = "Zawór został zamknięty w trybie manualnym. Zanim go otworzysz upewnij się, że nie został zamknięty z powodu zalania. Aby wyłączyć ostrzeżenie otwórz zawór manualnie. Czy na pewno chcesz otworzyć zawór z aplikacji?!";
+"The valve has been closed in manual mode. Before you open it, make sure it has not been closed due to flooding. To turn off the warning, open the valve manually." = "Zawór został zamknięty w trybie manualnym. Zanim go otworzysz upewnij się, że nie został zamknięty z powodu zalania. Aby wyłączyć ostrzeżenie otwórz zawór manualnie.";
 "Warning" = "Ostrzeżenie";
 "Yes" = "Tak";
 "No" = "Nie";
@@ -161,3 +162,19 @@
 "Time exceeded. Try again." = "Przekroczono czas. Spróbuj ponownie.";
 "Are you sure you want to restore the default settings?" = "Czy na pewno chcesz przywrócić ustawienia domyślne ?";
 "Default settings" = "Ustawienia domyślne";
+
+"Battery level" = "Poziom baterii";
+"Battery powered" = "Zasilanie bateryjne";
+"Wifi signal strength" = "Siła sygnału WiFi";
+"Bridge node - online" = "Węzeł mostu - online";
+"Bridge node - signal strength" = "Węzeł mostu - siła sygnału";
+"Uptime" = "Czas pracy";
+"Connection uptime" = "Czas połączenia";
+"Battery health" = "Żywotność baterii";
+"Connection reset cause" = "Powód restartu połaczenia";
+"Light source lifespan" = "Żywotność źródła światła";
+"Light source operating time" = "Czas pracy źródła światła";
+"CHANGE THE LIGHT SOURCE LIFESPAN SETTINGS" = "ZMIEŃ USTAWIENIA ŻYWOTNOŚCI ŹRÓDŁA ŚWIATŁA";
+"The lifespan of the uv radiator is %.02f%%. Schedule its replacement." = "Żywotność promiennika uv wynosi %.02f%%. Zaplanuj jego wymianę.";
+"The lifespan of the uv radiator is %.02f%%. Replace the radiator." = "Żywotność promiennika uv wynosi %.02f%%. Wymień promiennik.";
+"The lifespan of the light source is %.02f%%." = "Żywotność źródła światła wynosi %.02f%%.";
