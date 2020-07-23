@@ -41,6 +41,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (int) warningLevel;
 - (UIImage *) stateIcon;
 - (UIImage *) warningIcon;
+- (NSString *) warningMessage;
 - (SAChannelStateExtendedValue *)channelState;
 @end
 

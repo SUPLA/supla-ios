@@ -16,7 +16,6 @@
 		012023C2234E54ED00E131B7 /* ImpulseCounterDetailView.m in Sources */ = {isa = PBXBuildFile; fileRef = 012023C1234E54ED00E131B7 /* ImpulseCounterDetailView.m */; };
 		012119152368C3B2004C1993 /* collapsed@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 012119142368C3B2004C1993 /* collapsed@3x.png */; };
 		01215A7324C8AECC00429947 /* SALightsourceLifespanSettingsDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = 01215A7124C8AECC00429947 /* SALightsourceLifespanSettingsDialog.m */; };
-		01215A7424C8AECC00429947 /* SALightsourceLifespanSettingsDialog.xib in Resources */ = {isa = PBXBuildFile; fileRef = 01215A7224C8AECC00429947 /* SALightsourceLifespanSettingsDialog.xib */; };
 		0122613922F396440013E6A2 /* SAThermostatCalendar.m in Sources */ = {isa = PBXBuildFile; fileRef = 0122613822F396440013E6A2 /* SAThermostatCalendar.m */; };
 		012BD7262499173600E64F25 /* rgbwpoweroff@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 012BD7222499173500E64F25 /* rgbwpoweroff@3x.png */; };
 		012BD7272499173600E64F25 /* rgbwinfo@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 012BD7232499173600E64F25 /* rgbwinfo@3x.png */; };
@@ -26,6 +25,7 @@
 		012E341523DF5FB800F17D39 /* valve-open@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 012E341123DF5FB800F17D39 /* valve-open@3x.png */; };
 		012E341623DF5FB800F17D39 /* valve-closed@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 012E341223DF5FB800F17D39 /* valve-closed@3x.png */; };
 		012E341723DF5FB800F17D39 /* valve-open@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 012E341323DF5FB800F17D39 /* valve-open@2x.png */; };
+		012E81D924C9A31B008E0690 /* SALightsourceLifespanSettingsDialog.xib in Resources */ = {isa = PBXBuildFile; fileRef = 012E81DB24C9A31B008E0690 /* SALightsourceLifespanSettingsDialog.xib */; };
 		012F722C22DF3E2300E5F72E /* ChartFilterFieldTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 012F722822DF3CF000E5F72E /* ChartFilterFieldTests.m */; };
 		012F722E22DFA0BE00E5F72E /* SABarChartDataSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 012F722D22DFA0BE00E5F72E /* SABarChartDataSet.swift */; };
 		012FCBD323217DE000AC6FF6 /* ThermostatCalendarTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 012FCBD223217DE000AC6FF6 /* ThermostatCalendarTests.m */; };
@@ -426,7 +426,6 @@
 		012119142368C3B2004C1993 /* collapsed@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "collapsed@3x.png"; path = "Resources/Assets/Img/collapsed@3x.png"; sourceTree = "<group>"; };
 		01215A7024C8AECC00429947 /* SALightsourceLifespanSettingsDialog.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SALightsourceLifespanSettingsDialog.h; sourceTree = "<group>"; };
 		01215A7124C8AECC00429947 /* SALightsourceLifespanSettingsDialog.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SALightsourceLifespanSettingsDialog.m; sourceTree = "<group>"; };
-		01215A7224C8AECC00429947 /* SALightsourceLifespanSettingsDialog.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SALightsourceLifespanSettingsDialog.xib; sourceTree = "<group>"; };
 		0122613722F396440013E6A2 /* SAThermostatCalendar.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SAThermostatCalendar.h; sourceTree = "<group>"; };
 		0122613822F396440013E6A2 /* SAThermostatCalendar.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SAThermostatCalendar.m; sourceTree = "<group>"; };
 		012BD7222499173500E64F25 /* rgbwpoweroff@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "rgbwpoweroff@3x.png"; path = "Resources/Assets/Img/rgbwpoweroff@3x.png"; sourceTree = "<group>"; };
@@ -437,6 +436,8 @@
 		012E341123DF5FB800F17D39 /* valve-open@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "valve-open@3x.png"; path = "Resources/Assets/Img/valve-open@3x.png"; sourceTree = "<group>"; };
 		012E341223DF5FB800F17D39 /* valve-closed@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "valve-closed@3x.png"; path = "Resources/Assets/Img/valve-closed@3x.png"; sourceTree = "<group>"; };
 		012E341323DF5FB800F17D39 /* valve-open@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "valve-open@2x.png"; path = "Resources/Assets/Img/valve-open@2x.png"; sourceTree = "<group>"; };
+		012E81DA24C9A31B008E0690 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/SALightsourceLifespanSettingsDialog.xib; sourceTree = "<group>"; };
+		012E81DD24C9A320008E0690 /* pl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pl; path = pl.lproj/SALightsourceLifespanSettingsDialog.strings; sourceTree = "<group>"; };
 		012F722822DF3CF000E5F72E /* ChartFilterFieldTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChartFilterFieldTests.m; sourceTree = "<group>"; };
 		012F722D22DFA0BE00E5F72E /* SABarChartDataSet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SABarChartDataSet.swift; sourceTree = "<group>"; };
 		012FCBD223217DE000AC6FF6 /* ThermostatCalendarTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ThermostatCalendarTests.m; sourceTree = "<group>"; };
@@ -1105,7 +1106,7 @@
 		012119122368B597004C1993 /* xib */ = {
 			isa = PBXGroup;
 			children = (
-				01215A7224C8AECC00429947 /* SALightsourceLifespanSettingsDialog.xib */,
+				012E81DB24C9A31B008E0690 /* SALightsourceLifespanSettingsDialog.xib */,
 				0180440B24C254CF005E53EB /* SAChannelStatePopup.xib */,
 				01943EC0249D1C8800DA2B8F /* SASuperuserAuthorizationDialog.xib */,
 				01C8EBCF23422AC50072AB8C /* HomePlusDetailViewGroupCell.xib */,
@@ -1980,7 +1981,7 @@
 				40477B4A20C6C5FE00E995E6 /* staircasetimer_1-on@3x.png in Resources */,
 				4052DA0F1DC515AE000B8C45 /* rgb-on@2x.png in Resources */,
 				0182FCA72464691D00270CDC /* channel_warning_level2@3x.png in Resources */,
-				01215A7424C8AECC00429947 /* SALightsourceLifespanSettingsDialog.xib in Resources */,
+				012E81D924C9A31B008E0690 /* SALightsourceLifespanSettingsDialog.xib in Resources */,
 				40CF96C61BC7D4E70030EFFF /* rollershutter-closed@2x.png in Resources */,
 				40B397CF1BCE7F3200BE7D5A /* Launch Screen.storyboard in Resources */,
 				40B9ED601FACD14000403B1A /* fan-off@3x.png in Resources */,
@@ -2370,6 +2371,15 @@
 				011E736C24A1367E004D99EE /* pl */,
 			);
 			name = SAVLCalibrationTool.xib;
+			sourceTree = "<group>";
+		};
+		012E81DB24C9A31B008E0690 /* SALightsourceLifespanSettingsDialog.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				012E81DA24C9A31B008E0690 /* Base */,
+				012E81DD24C9A320008E0690 /* pl */,
+			);
+			name = SALightsourceLifespanSettingsDialog.xib;
 			sourceTree = "<group>";
 		};
 		017A3C8823633A70004AD1FC /* TempHumidityDetailView.xib */ = {

@@ -53,7 +53,8 @@
 @implementation SAChannelCell {
     BOOL _initialized;
     SAChannelBase *_channelBase;
-    UITapGestureRecognizer *tapGr;
+    UITapGestureRecognizer *tapGr1;
+    UITapGestureRecognizer *tapGr2;
 }
 
 - (void)initialize {
@@ -72,8 +73,14 @@
 
     if (self.channelStateIcon) {
         self.channelStateIcon.userInteractionEnabled = YES;
-        tapGr = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(stateIconTapped:)];
-        [self.channelStateIcon addGestureRecognizer:tapGr];
+        tapGr1 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(stateIconTapped:)];
+        [self.channelStateIcon addGestureRecognizer:tapGr1];
+    }
+    
+    if (self.channelWarningIcon) {
+        self.channelWarningIcon.userInteractionEnabled = YES;
+        tapGr2 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(warningIconTapped:)];
+        [self.channelWarningIcon addGestureRecognizer:tapGr2];
     }
     
 }
@@ -353,6 +360,38 @@
     }
 
    [SAChannelStatePopup.globalInstance show:(SAChannel*)self.channelBase];
+}
+
+- (void)warningIconTapped:(UITapGestureRecognizer *)tapRecognizer {
+    if (self.channelBase == nil
+        || ![self.channelBase isKindOfClass:[SAChannel class]]
+        || self.channelWarningIcon == nil
+        || self.channelWarningIcon.hidden) {
+        return;
+    }
+
+    NSString *warningMessage = ((SAChannel*)self.channelBase).warningMessage;
+    
+    if (warningMessage == nil) {
+        return;
+    }
+    
+    UIAlertController * alert = [UIAlertController
+                                   alertControllerWithTitle:@"SUPLA"
+                                   message:warningMessage
+                                   preferredStyle:UIAlertControllerStyleAlert];
+      
+      UIAlertAction* btnOK = [UIAlertAction
+                              actionWithTitle:NSLocalizedString(@"OK", nil)
+                              style:UIAlertActionStyleDefault
+                              handler:nil];
+      
+      
+      [alert setTitle: NSLocalizedString(@"Warning", nil)];
+      [alert addAction:btnOK];
+      
+      UIViewController *vc = [[[[UIApplication sharedApplication] delegate] window] rootViewController];
+      [vc presentViewController:alert animated:YES completion:nil];
 }
 
 @end

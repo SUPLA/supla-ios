@@ -253,18 +253,41 @@
     return nil;
 }
 
-- (int) warningLevel {
+- (int) warningLevelWithMessage:(NSString **)msg {
     switch (self.func) {
         case SUPLA_CHANNELFNC_VALVE_OPENCLOSE:
         case SUPLA_CHANNELFNC_VALVE_PERCENTAGE:
-            return self.isManuallyClosed || self.flooding ? 2 : 0;
+            if (self.isManuallyClosed || self.flooding) {
+                if (msg) {
+                    *msg = NSLocalizedString(@"The valve has been closed in manual mode. Before you open it, make sure it has not been closed due to flooding. To turn off the warning, open the valve manually.", nil);
+                }
+                return 2;
+            }
+            return 0;
         case SUPLA_CHANNELFNC_LIGHTSWITCH: {
             NSNumber *lightSourceLifespanLeft = self.lightSourceLifespanLeft;
             if (lightSourceLifespanLeft != nil) {
-                if (lightSourceLifespanLeft.floatValue <= 5) {
-                    return 2;
-                } else if (lightSourceLifespanLeft.floatValue <= 20) {
-                    return 1;
+                if (lightSourceLifespanLeft.floatValue <= 20) {
+                    if (msg) {
+                        if (self.alticon == 2) {
+                            if (lightSourceLifespanLeft.floatValue <= 5) {
+                                *msg = [NSString stringWithFormat:
+                                                NSLocalizedString(@"The lifespan of the uv radiator is %.02f%%. Replace the radiator.", nil),
+                                                lightSourceLifespanLeft.floatValue];
+                            } else {
+                                *msg = [NSString stringWithFormat:
+                                               NSLocalizedString(@"The lifespan of the uv radiator is %.02f%%. Schedule its replacement.", nil),
+                                               lightSourceLifespanLeft.floatValue];
+                            }
+                        } else {
+                            *msg = [NSString stringWithFormat:
+                                           NSLocalizedString(@"The lifespan of the light source is %.02f%%.", nil),
+                                           lightSourceLifespanLeft.floatValue];
+                        }
+                        
+                    }
+                    
+                    return lightSourceLifespanLeft.floatValue <= 5 ? 2 : 1;
                 }
             }
             break;
@@ -272,6 +295,10 @@
 
     }
     return 0;
+}
+
+- (int) warningLevel {
+    return [self warningLevelWithMessage:nil];
 }
 
 - (UIImage *) warningIcon {
@@ -283,6 +310,12 @@
     }
      
     return nil;
+}
+
+- (NSString *) warningMessage {
+    NSString *result = nil;
+    [self warningLevelWithMessage:&result];
+    return result;
 }
 
 - (UIImage *) stateIcon {
