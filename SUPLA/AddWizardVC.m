@@ -20,7 +20,7 @@
 #import "SuplaApp.h"
 #import "SAClassHelper.h"
 #import "TFHpple.h"
-
+#import "SASuperuserAuthorizationDialog.h"
 #import <NetworkExtension/NetworkExtension.h>
 
 #define RESULT_PARAM_ERROR   -3
@@ -32,8 +32,10 @@
 #define STEP_NONE                              0
 #define STEP_CHECK_REGISTRATION_ENABLED_TRY1   1
 #define STEP_CHECK_REGISTRATION_ENABLED_TRY2   2
-#define STEP_CONFIGURE                         3
-#define STEP_DONE                              4
+#define STEP_SUPERUSER_AUTHORIZATION           3
+#define STEP_ENABLING_REGISTRATION             4
+#define STEP_CONFIGURE                         5
+#define STEP_DONE                              6
 
 #define PAGE_STEP_1  1
 #define PAGE_STEP_2  2
@@ -281,6 +283,11 @@
 
 @end
 
+
+
+@interface SAAddWizardVC () <SASuperuserAuthorizationDialogDelegate>
+@end
+
 @implementation SAAddWizardVC {
     NSTimer *_preloaderTimer;
     NSTimer *_watchDogTimer;
@@ -313,6 +320,9 @@
         case STEP_CHECK_REGISTRATION_ENABLED_TRY1:
         case STEP_CHECK_REGISTRATION_ENABLED_TRY2:
             timeout = 3;
+            break;
+        case STEP_ENABLING_REGISTRATION:
+            timeout = 5;
             break;
         case STEP_CONFIGURE:
             timeout = 50;
@@ -360,7 +370,16 @@
     
     [self showPage:PAGE_STEP_1];
     
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(onRegistrationEnabled:) name:kSARegistrationEnabledNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(onRegistrationEnabled:)
+                                             name:kSARegistrationEnabledNotification
+                                             object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(onSetRegistrationEnabledResult:)
+                                             name:kSAOnSetRegistrationEnableResult
+                                             object:nil];
+    
 
     _watchDogTimer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(watchDogTimerFireMethod:) userInfo:nil repeats:YES];
     
@@ -455,7 +474,9 @@
         case STEP_CHECK_REGISTRATION_ENABLED_TRY2:
             [self showError:NSLocalizedString(@"Device registration availability information timeout!", NULL)];
             break;
-        
+        case STEP_ENABLING_REGISTRATION:
+            [self showError:NSLocalizedString(@"Timeout for enabling registration has expired!", NULL)];
+            break;
         case STEP_CONFIGURE:
             [self showError:NSLocalizedString(@"Device Configuration Completion timeout!", NULL)];
             break;
@@ -635,13 +656,35 @@
             if ( [reg_enabled isIODeviceRegistrationEnabled] ) {
                 [self showPage:PAGE_STEP_3];
             } else {
-                [self showError:[NSString stringWithFormat:NSLocalizedString(@"I/O Device registration is currently off. To continue go to „My SUPLA” at %@ and enable the Device Add Button.", NULL), self.cloudHostName]];
+                [self setStep:STEP_SUPERUSER_AUTHORIZATION];
+                [SASuperuserAuthorizationDialog.globalInstance authorizeWithDelegate:self];
             }
             
         };
     }
     
 };
+
+- (void)onSetRegistrationEnabledResult:(NSNotification *)notification {
+    if ( notification.userInfo != nil )  {
+        NSNumber *code = (NSNumber *)[notification.userInfo objectForKey:@"code"];
+        if (code && [code intValue] == SUPLA_RESULTCODE_TRUE) {
+            [self showPage:PAGE_STEP_3];
+        }
+    }
+}
+
+-(void) superuserAuthorizationSuccess {
+    [SASuperuserAuthorizationDialog.globalInstance close];
+    [self setStep:STEP_ENABLING_REGISTRATION];
+    [[SAApp SuplaClient] setIODeviceRegistrationEnabledForTime:3600 clientRegistrationEnabledForTime:-1];
+}
+
+-(void) superuserAuthorizationCanceled {
+    [self preloaderVisible:NO];
+    [self btnNextEnabled:YES];
+    [self.btnNext2 setAttributedTitle:NSLocalizedString(@"Next", NULL)];
+}
 
 - (IBAction)nextTouchch:(id)sender {
 

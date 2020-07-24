@@ -178,3 +178,4 @@
 "The lifespan of the uv radiator is %.02f%%. Schedule its replacement." = "Żywotność promiennika uv wynosi %.02f%%. Zaplanuj jego wymianę.";
 "The lifespan of the uv radiator is %.02f%%. Replace the radiator." = "Żywotność promiennika uv wynosi %.02f%%. Wymień promiennik.";
 "The lifespan of the light source is %.02f%%." = "Żywotność źródła światła wynosi %.02f%%.";
+"Timeout for enabling registration has expired!" = "Upłynął czas oczekiwania na włączenie rejestracji!";

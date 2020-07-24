@@ -41,6 +41,7 @@ NSString *kSASuperuserAuthorizationResult = @"KSA-N14";
 NSString *kSACalCfgResult = @"KSA-N15";
 NSString *kSAMenubarBackButtonPressed = @"KSA-N16";
 NSString *kSAOnChannelState = @"KSA-N17";
+NSString *kSAOnSetRegistrationEnableResult = @"KSA-N18";
 
 @implementation SAApp {
     
@@ -672,6 +673,10 @@ NSString *kSAOnChannelState = @"KSA-N17";
 
 -(void)onRegistrationEnabled:(SARegistrationEnabled*)reg_enabled {
     [[NSNotificationCenter defaultCenter] postNotificationName:kSARegistrationEnabledNotification object:self userInfo:[[NSDictionary alloc] initWithObjects:@[reg_enabled] forKeys:@[@"reg_enabled"]]];
+}
+
+- (void)onSetRegistrationEnabledResultCode:(NSNumber *)code {
+       [[NSNotificationCenter defaultCenter] postNotificationName:kSAOnSetRegistrationEnableResult object:self userInfo:[[NSDictionary alloc] initWithObjects:@[code] forKeys:@[@"code"]]];
 }
 
 -(void)onDataChanged {
