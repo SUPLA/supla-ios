@@ -32,6 +32,7 @@ static SASuperuserAuthorizationDialog *_superuserAuthorizationDialogGlobalRef = 
 @implementation SASuperuserAuthorizationDialog {
     id<SASuperuserAuthorizationDialogDelegate>_delegate;
     NSTimer *_timeoutTimer;
+    BOOL _success;
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
@@ -60,6 +61,15 @@ static SASuperuserAuthorizationDialog *_superuserAuthorizationDialogGlobalRef = 
                                              selector:@selector(keyboardDidHide:)
                                                  name:UIKeyboardDidHideNotification
                                                object:nil];
+}
+
+-(void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    if (!_success
+        && _delegate
+        && [_delegate respondsToSelector:@selector(superuserAuthorizationCanceled)] ) {
+        [_delegate superuserAuthorizationCanceled];
+    }
 }
 
 -(void)viewDidDisappear:(BOOL)animated {
@@ -91,6 +101,7 @@ static SASuperuserAuthorizationDialog *_superuserAuthorizationDialogGlobalRef = 
             SASuperuserAuthorizationResult *result = (SASuperuserAuthorizationResult*)r;
             
             if (result.success) {
+                _success = YES;
                 if (_delegate != nil && [SADialog viewControllerIsPresented:self]) {
                     [_delegate superuserAuthorizationSuccess];
                 }
@@ -125,6 +136,7 @@ static SASuperuserAuthorizationDialog *_superuserAuthorizationDialogGlobalRef = 
 
 -(void)authorizeWithDelegate:(id<SASuperuserAuthorizationDialogDelegate>)delegate {
     _delegate = delegate;
+    _success = NO;
     [self timeoutTimerInvalidate];
     _lErrorMessage.text = @"";
     _lErrorMessage.hidden = YES;

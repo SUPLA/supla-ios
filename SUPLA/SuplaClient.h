@@ -108,6 +108,7 @@
 - (void) channelGroupRelationUpdate:(TSC_SuplaChannelGroupRelation *)cgroup_relation;
 - (void) onEvent:(SAEvent *)event;
 - (void) onRegistrationEnabled:(SARegistrationEnabled*)reg_enabled;
+- (void) onSetRegistrationEnabledResultCode:(int)code;
 - (void) onOAuthTokenRequestResult:(SAOAuthToken *)token;
 - (void) onSuperuserAuthorizationResult:(SASuperuserAuthorizationResult*)result;
 - (void) onCalCfgResult:(SACalCfgResult*)result;
@@ -134,5 +135,5 @@
 - (void) superuserAuthorizationRequestWithEmail:(NSString*)email andPassword:(NSString*)password;
 - (void) channelStateRequestWithChannelId:(int)channelId;
 - (void) setLightsourceLifespanWithChannelId:(int)channelId resetCounter:(BOOL)reset setTime:(BOOL)setTime lifespan:(unsigned short)lifespan;
-
+- (void) setIODeviceRegistrationEnabledForTime:(int)iodevice_sec clientRegistrationEnabledForTime:(int)client_sec;
 @end

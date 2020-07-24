@@ -69,6 +69,12 @@ void sasuplaclient_on_registered(void *_suplaclient, void *user_data, TSC_SuplaR
     
 }
 
+void sasuplaclient_on_set_registration_enabled_result(void *_suplaclient, void *user_data, TSC_SetRegistrationEnabledResult *result) {
+    SASuplaClient *sc = (__bridge SASuplaClient*)user_data;
+    if ( sc != nil )
+        [sc onSetRegistrationEnabledResultCode:result ? result->ResultCode : 0];
+}
+
 void sasuplaclient_on_register_error(void *_suplaclient, void *user_data, int code) {
     
     SASuplaClient *sc = (__bridge SASuplaClient*)user_data;
@@ -423,6 +429,7 @@ void sasuplaclient_on_device_channel_state(void *_suplaclient, void *user_data, 
     scc.cb_on_superuser_authorization_result = sasuplaclient_on_superuser_authorization_result;
     scc.cb_on_device_calcfg_result = sasuplaclient_on_calcfg_result;
     scc.cb_on_device_channel_state = sasuplaclient_on_device_channel_state;
+    scc.cb_on_set_registration_enabled_result = sasuplaclient_on_set_registration_enabled_result;
     
     scc.protocol_version = [SAApp getPreferedProtocolVersion];
     
@@ -783,6 +790,14 @@ void sasuplaclient_on_device_channel_state(void *_suplaclient, void *user_data, 
     [self performSelectorOnMainThread:@selector(_onRegistrationEnabled:) withObject:reg_enabled waitUntilDone:NO];
 }
 
+- (void) _onSetRegistrationEnabledResultCode:(NSNumber *)code {
+       [[SAApp instance] onSetRegistrationEnabledResultCode:code];
+}
+
+- (void) onSetRegistrationEnabledResultCode:(int)code {
+    [self performSelectorOnMainThread:@selector(_onSetRegistrationEnabledResultCode:) withObject:[NSNumber numberWithInt:code] waitUntilDone:NO];
+}
+
 - (void) _onOAuthTokenRequestResult:(SAOAuthToken *)token {
     [[SAApp instance] onOAuthTokenRequestResult:token];
 }
@@ -1031,6 +1046,12 @@ void sasuplaclient_on_device_channel_state(void *_suplaclient, void *user_data, 
     }
 }
 
-
+- (void) setIODeviceRegistrationEnabledForTime:(int)iodevice_sec clientRegistrationEnabledForTime:(int)client_sec {
+    @synchronized(self) {
+        if ( _sclient ) {
+            supla_client_set_registration_enabled(_sclient, iodevice_sec, client_sec);
+        }
+    }
+}
 
 @end

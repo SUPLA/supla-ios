@@ -21,6 +21,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @required
 -(void) superuserAuthorizationSuccess;
+@optional
+-(void) superuserAuthorizationCanceled;
 @end
 
 @interface SASuperuserAuthorizationDialog : SADialog

@@ -77,6 +77,7 @@
 -(void)onVersionError:(SAVersionError*)ve;
 -(void)onEvent:(SAEvent*)event;
 -(void)onRegistrationEnabled:(SARegistrationEnabled*)reg_enabled;
+-(void)onSetRegistrationEnabledResultCode:(NSNumber *)code;
 -(void)onTerminated:(SASuplaClient*)sender;
 -(void)onOAuthTokenRequestResult:(SAOAuthToken *)token;
 -(void)onSuperuserAuthorizationResult:(SASuperuserAuthorizationResult *)result;
@@ -104,3 +105,4 @@ extern NSString *kSASuperuserAuthorizationResult;
 extern NSString *kSACalCfgResult;
 extern NSString *kSAMenubarBackButtonPressed;
 extern NSString *kSAOnChannelState;
+extern NSString *kSAOnSetRegistrationEnableResult;
