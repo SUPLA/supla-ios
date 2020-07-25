@@ -20,6 +20,7 @@
 static SASuperuserAuthorizationDialog *_superuserAuthorizationDialogGlobalRef = nil;
 
 @interface SASuperuserAuthorizationDialog ()
+@property (weak, nonatomic) IBOutlet UILabel *tvInfo;
 @property (weak, nonatomic) IBOutlet UIView *vMain;
 @property (weak, nonatomic) IBOutlet UILabel *lErrorMessage;
 @property (weak, nonatomic) IBOutlet UITextField *edEmail;
@@ -44,6 +45,16 @@ static SASuperuserAuthorizationDialog *_superuserAuthorizationDialogGlobalRef = 
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+}
+
+-(void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    
+    self.tvInfo.text = NSLocalizedString(
+                    [[SAApp getServerHostName] containsString:@"supla.org"] ?
+                    @"Enter your cloud.supla.org login credentials."
+                    : @"Enter superuser credentials", nil);
+    
 }
 
 -(void)viewDidAppear:(BOOL)animated {

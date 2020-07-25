@@ -25,6 +25,7 @@
                 <outlet property="edEmail" destination="jfU-PJ-nMC" id="DV5-nH-BPb"/>
                 <outlet property="edPassword" destination="ScD-2l-pdi" id="hYx-tg-qmb"/>
                 <outlet property="lErrorMessage" destination="btP-Nc-v0w" id="erP-Gq-nJZ"/>
+                <outlet property="tvInfo" destination="lEm-PA-nmW" id="M9R-LD-hKu"/>
                 <outlet property="vMain" destination="en1-uT-NeO" id="y4f-rP-jdy"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
