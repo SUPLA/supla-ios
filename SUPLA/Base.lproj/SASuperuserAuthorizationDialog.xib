@@ -63,7 +63,7 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="jfU-PJ-nMC">
-                            <rect key="frame" x="15" y="110" width="270" height="30"/>
+                            <rect key="frame" x="15" y="110" width="235" height="30"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="30" id="V5C-oH-0p8"/>
                             </constraints>
@@ -71,7 +71,7 @@
                             <textInputTraits key="textInputTraits" textContentType="email"/>
                         </textField>
                         <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ScD-2l-pdi">
-                            <rect key="frame" x="15" y="170" width="270" height="30"/>
+                            <rect key="frame" x="15" y="170" width="235" height="30"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="30" id="uRJ-Zm-4sk"/>
                             </constraints>
@@ -115,22 +115,40 @@
                         <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="Lw1-Vk-sTq">
                             <rect key="frame" x="201.5" y="247.5" width="37" height="37"/>
                         </activityIndicatorView>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZsO-O8-NCF">
+                            <rect key="frame" x="255" y="170" width="30" height="30"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="30" id="6Il-v0-5Ab"/>
+                                <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="30" id="SFj-vl-gNg"/>
+                                <constraint firstAttribute="height" constant="30" id="ful-Fr-IN3"/>
+                                <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="30" id="t2v-dE-TSL"/>
+                            </constraints>
+                            <state key="normal" backgroundImage="lookblack.png"/>
+                            <connections>
+                                <action selector="btnPasswordViewTouchCancel:" destination="-1" eventType="touchUpInside" id="76x-ib-O9L"/>
+                                <action selector="btnPasswordViewTouchCancel:" destination="-1" eventType="touchCancel" id="e8N-tG-6Wr"/>
+                                <action selector="btnPasswordViewTouchCancel:" destination="-1" eventType="touchUpOutside" id="oxd-g3-VlS"/>
+                                <action selector="btnPasswordViewtouchDown:" destination="-1" eventType="touchDown" id="Exw-yd-cgV"/>
+                            </connections>
+                        </button>
                     </subviews>
                     <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                     <constraints>
-                        <constraint firstAttribute="trailing" secondItem="jfU-PJ-nMC" secondAttribute="trailing" constant="15" id="2LO-Id-HfG"/>
+                        <constraint firstAttribute="trailing" secondItem="jfU-PJ-nMC" secondAttribute="trailing" constant="50" id="2LO-Id-HfG"/>
                         <constraint firstItem="MOE-IP-Z4M" firstAttribute="top" secondItem="jfU-PJ-nMC" secondAttribute="bottom" constant="2" id="7rF-Dj-Fyr"/>
                         <constraint firstItem="btP-Nc-v0w" firstAttribute="leading" secondItem="en1-uT-NeO" secondAttribute="leading" constant="15" id="8Wf-sJ-rsy"/>
                         <constraint firstAttribute="trailing" secondItem="h9i-6L-lC5" secondAttribute="trailing" constant="15" id="9tg-2Z-3Vu"/>
                         <constraint firstItem="h9i-6L-lC5" firstAttribute="width" secondItem="cdk-TD-22T" secondAttribute="width" id="Cw1-kq-k5Q"/>
+                        <constraint firstItem="sOL-lE-RQR" firstAttribute="top" secondItem="ZsO-O8-NCF" secondAttribute="bottom" constant="2" id="EtZ-NN-xJU"/>
                         <constraint firstAttribute="trailing" secondItem="lEm-PA-nmW" secondAttribute="trailing" constant="15" id="JJT-jd-KPN"/>
                         <constraint firstItem="MOE-IP-Z4M" firstAttribute="leading" secondItem="en1-uT-NeO" secondAttribute="leading" constant="15" id="Jco-eg-kgK"/>
                         <constraint firstItem="lEm-PA-nmW" firstAttribute="leading" secondItem="en1-uT-NeO" secondAttribute="leading" constant="15" id="K3w-6a-sd7"/>
                         <constraint firstAttribute="trailing" secondItem="sOL-lE-RQR" secondAttribute="trailing" constant="15" id="KjV-Lh-1Mc"/>
                         <constraint firstItem="jfU-PJ-nMC" firstAttribute="leading" secondItem="en1-uT-NeO" secondAttribute="leading" constant="15" id="Llx-EG-p5w"/>
-                        <constraint firstAttribute="trailing" secondItem="ScD-2l-pdi" secondAttribute="trailing" constant="15" id="N8g-0V-Ei3"/>
+                        <constraint firstAttribute="trailing" secondItem="ScD-2l-pdi" secondAttribute="trailing" constant="50" id="N8g-0V-Ei3"/>
                         <constraint firstItem="h9i-6L-lC5" firstAttribute="top" secondItem="sOL-lE-RQR" secondAttribute="bottom" constant="30" id="NvR-UL-4T7"/>
                         <constraint firstAttribute="trailing" secondItem="btP-Nc-v0w" secondAttribute="trailing" constant="15" id="TNe-y7-96K"/>
+                        <constraint firstAttribute="trailing" secondItem="ZsO-O8-NCF" secondAttribute="trailing" constant="15" id="Us4-iD-yYM"/>
                         <constraint firstItem="h9i-6L-lC5" firstAttribute="leading" secondItem="cdk-TD-22T" secondAttribute="trailing" constant="10" id="WPN-AN-tms"/>
                         <constraint firstAttribute="width" constant="300" id="Wnh-bc-t9h"/>
                         <constraint firstItem="btP-Nc-v0w" firstAttribute="top" secondItem="lEm-PA-nmW" secondAttribute="bottom" constant="5" id="YVU-pj-tSe"/>
@@ -157,4 +175,7 @@
             <point key="canvasLocation" x="138.75" y="105"/>
         </view>
     </objects>
+    <resources>
+        <image name="lookblack.png" width="242.5" height="242"/>
+    </resources>
 </document>

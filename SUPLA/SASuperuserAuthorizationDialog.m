@@ -28,6 +28,9 @@ static SASuperuserAuthorizationDialog *_superuserAuthorizationDialogGlobalRef = 
 @property (weak, nonatomic) IBOutlet UIButton *btnOK;
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *actIndictor;
 - (IBAction)btnOkTouch:(id)sender;
+- (IBAction)btnPasswordViewTouchCancel:(id)sender;
+- (IBAction)btnPasswordViewtouchDown:(id)sender;
+
 @end
 
 @implementation SASuperuserAuthorizationDialog {
@@ -173,6 +176,14 @@ static SASuperuserAuthorizationDialog *_superuserAuthorizationDialogGlobalRef = 
 
 -(void)onTimeout:(id)sender {
     [self showError:NSLocalizedString(@"Time exceeded. Try again.", nil)];
+}
+
+- (IBAction)btnPasswordViewtouchDown:(id)sender {
+     self.edPassword.secureTextEntry = NO;
+}
+
+- (IBAction)btnPasswordViewTouchCancel:(id)sender {
+     self.edPassword.secureTextEntry = YES;
 }
 
 - (IBAction)btnOkTouch:(id)sender {
