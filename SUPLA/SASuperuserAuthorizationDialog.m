@@ -20,6 +20,7 @@
 static SASuperuserAuthorizationDialog *_superuserAuthorizationDialogGlobalRef = nil;
 
 @interface SASuperuserAuthorizationDialog ()
+@property (weak, nonatomic) IBOutlet UILabel *tvInfo;
 @property (weak, nonatomic) IBOutlet UIView *vMain;
 @property (weak, nonatomic) IBOutlet UILabel *lErrorMessage;
 @property (weak, nonatomic) IBOutlet UITextField *edEmail;
@@ -27,6 +28,9 @@ static SASuperuserAuthorizationDialog *_superuserAuthorizationDialogGlobalRef = 
 @property (weak, nonatomic) IBOutlet UIButton *btnOK;
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *actIndictor;
 - (IBAction)btnOkTouch:(id)sender;
+- (IBAction)btnPasswordViewTouchCancel:(id)sender;
+- (IBAction)btnPasswordViewtouchDown:(id)sender;
+
 @end
 
 @implementation SASuperuserAuthorizationDialog {
@@ -44,6 +48,16 @@ static SASuperuserAuthorizationDialog *_superuserAuthorizationDialogGlobalRef = 
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+}
+
+-(void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    
+    self.tvInfo.text = NSLocalizedString(
+                    [[SAApp getServerHostName] containsString:@"supla.org"] ?
+                    @"Enter your cloud.supla.org login credentials."
+                    : @"Enter superuser credentials", nil);
+    
 }
 
 -(void)viewDidAppear:(BOOL)animated {
@@ -162,6 +176,14 @@ static SASuperuserAuthorizationDialog *_superuserAuthorizationDialogGlobalRef = 
 
 -(void)onTimeout:(id)sender {
     [self showError:NSLocalizedString(@"Time exceeded. Try again.", nil)];
+}
+
+- (IBAction)btnPasswordViewtouchDown:(id)sender {
+     self.edPassword.secureTextEntry = NO;
+}
+
+- (IBAction)btnPasswordViewTouchCancel:(id)sender {
+     self.edPassword.secureTextEntry = YES;
 }
 
 - (IBAction)btnOkTouch:(id)sender {

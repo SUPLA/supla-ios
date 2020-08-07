@@ -56,6 +56,7 @@
 		017554FC22F1D2BE00EB58B7 /* settings2@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 017554FA22F1D2BE00EB58B7 /* settings2@3x.png */; };
 		017554FF22F1DDA300EB58B7 /* hp_plus@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 017554FD22F1DDA300EB58B7 /* hp_plus@3x.png */; };
 		0175550022F1DDA300EB58B7 /* hp_minus@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 017554FE22F1DDA300EB58B7 /* hp_minus@3x.png */; };
+		01793C5524D76EBB00CD2533 /* lookblack@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 01793C5424D76EBB00CD2533 /* lookblack@2x.png */; };
 		017A3C8223631302004AD1FC /* SATempHumidityChartHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 017A3C8123631302004AD1FC /* SATempHumidityChartHelper.m */; };
 		017A3C8523631796004AD1FC /* SADownloadTempHumidityMeasurements.m in Sources */ = {isa = PBXBuildFile; fileRef = 017A3C8423631796004AD1FC /* SADownloadTempHumidityMeasurements.m */; };
 		017A3C8623633A70004AD1FC /* TempHumidityDetailView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 017A3C8823633A70004AD1FC /* TempHumidityDetailView.xib */; };
@@ -482,6 +483,7 @@
 		017554FA22F1D2BE00EB58B7 /* settings2@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "settings2@3x.png"; path = "Resources/Assets/Img/settings2@3x.png"; sourceTree = "<group>"; };
 		017554FD22F1DDA300EB58B7 /* hp_plus@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "hp_plus@3x.png"; path = "Resources/Assets/Img/hp_plus@3x.png"; sourceTree = "<group>"; };
 		017554FE22F1DDA300EB58B7 /* hp_minus@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "hp_minus@3x.png"; path = "Resources/Assets/Img/hp_minus@3x.png"; sourceTree = "<group>"; };
+		01793C5424D76EBB00CD2533 /* lookblack@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "lookblack@2x.png"; path = "Resources/Assets/Img/lookblack@2x.png"; sourceTree = "<group>"; };
 		017A08A52499699600DCF5BD /* cs */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = cs; path = cs.lproj/RGBWDetail.strings; sourceTree = "<group>"; };
 		017A08A72499699800DCF5BD /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = nl.lproj/RGBWDetail.strings; sourceTree = "<group>"; };
 		017A08A92499699900DCF5BD /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/RGBWDetail.strings; sourceTree = "<group>"; };
@@ -1337,6 +1339,7 @@
 		405AC4011BC15878004F7311 /* Img */ = {
 			isa = PBXGroup;
 			children = (
+				01793C5424D76EBB00CD2533 /* lookblack@2x.png */,
 				0180440924C2001A005E53EB /* channelstateinfo@3x.png */,
 				018D2E5024BF258B00773D2F /* uv-off@2x.png */,
 				018D2E4E24BF258B00773D2F /* uv-off@3x.png */,
@@ -1951,6 +1954,7 @@
 				4052DA0B1DC515AE000B8C45 /* dimmer-on@2x.png in Resources */,
 				4052DA011DC515AE000B8C45 /* dimmerrgb-offoff@2x.png in Resources */,
 				40477B5420C6CF2600E995E6 /* gatealt1-closed-50percent@3x.png in Resources */,
+				01793C5524D76EBB00CD2533 /* lookblack@2x.png in Resources */,
 				40CE7C6A1DCBBD5700BBACE4 /* distance@2x.png in Resources */,
 				407D4AF81BC6C7DE009A5505 /* app_icon57x57.png in Resources */,
 				40BE3E621BCA7AEF00153680 /* ChannelCell.xib in Resources */,
@@ -2748,7 +2752,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 54;
+				CURRENT_PROJECT_VERSION = 55;
 				DEFINES_MODULE = YES;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"$(inherited)",
@@ -2763,7 +2767,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/SUPLA/lib",
 				);
-				MARKETING_VERSION = 2.3.15;
+				MARKETING_VERSION = 2.3.16;
 				PRODUCT_BUNDLE_IDENTIFIER = com.acsoftware.ios.supla;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "SUPLA/SUPLA-Bridging-Header.h";
@@ -2780,7 +2784,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 54;
+				CURRENT_PROJECT_VERSION = 55;
 				DEFINES_MODULE = YES;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"$(inherited)",
@@ -2795,7 +2799,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/SUPLA/lib",
 				);
-				MARKETING_VERSION = 2.3.15;
+				MARKETING_VERSION = 2.3.16;
 				PRODUCT_BUNDLE_IDENTIFIER = com.acsoftware.ios.supla;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "SUPLA/SUPLA-Bridging-Header.h";
