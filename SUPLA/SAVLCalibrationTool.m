@@ -334,6 +334,7 @@ typedef struct {
     
     if (sender == self.tabBoostYes) {
         [self calibrationWheelBoostChanged:self.rangeCalibrationWheel];
+        [self tabBoostTouch:self.tabBoost];
     }
 }
 
