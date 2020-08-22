@@ -181,3 +181,6 @@
 "Timeout for enabling registration has expired!" = "Upłynął czas oczekiwania na włączenie rejestracji!";
 "Enter your cloud.supla.org login credentials." = "Wprowadź Twoje dane logowania do cloud.supla.org.";
 "Enter superuser credentials" = "Wprowadź poświadczenia głównego użytkownika";
+"Dimmer settings" = "Ustawienia ściemniacza";
+"Do you want to quit without saving?" = "Czy na pewno chcesz wyjść bez zapisu?";
+"Do you want to save the settings?" = "Czy chcesz zapisać ustawienia?";
