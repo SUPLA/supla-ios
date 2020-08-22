@@ -110,6 +110,7 @@
 - (void) onRegistrationEnabled:(SARegistrationEnabled*)reg_enabled;
 - (void) onSetRegistrationEnabledResultCode:(int)code;
 - (void) onOAuthTokenRequestResult:(SAOAuthToken *)token;
+- (void) getSuperuserAuthorizationResult;
 - (void) onSuperuserAuthorizationResult:(SASuperuserAuthorizationResult*)result;
 - (void) onCalCfgResult:(SACalCfgResult*)result;
 - (void) onChannelState:(SAChannelStateExtendedValue*)state;
