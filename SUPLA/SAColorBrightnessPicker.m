@@ -872,7 +872,8 @@
         _brightness = brightness;
         [self setNeedsDisplay];
         
-        if ( delegate != nil
+        if ( raiseEvent
+            && delegate != nil
             && [delegate respondsToSelector:@selector(cbPickerDataChanged:)] )
             [delegate cbPickerDataChanged: self];
     }
