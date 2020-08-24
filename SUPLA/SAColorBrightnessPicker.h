@@ -42,6 +42,7 @@
 @property(nonatomic, copy) UIColor *powerButtonColorOff;
 @property(nonatomic, copy) UIColor *color;
 @property(nonatomic, assign) float brightness;
+@property(nonatomic, assign) float minBrightness;
 @property(nonatomic, readonly) BOOL moving;
 @property(nonatomic, copy) NSArray *brightnessMarkers;
 @property(nonatomic, copy) NSArray *colorMarkers;

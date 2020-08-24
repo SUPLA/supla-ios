@@ -44,6 +44,7 @@
     
     UIColor *_color;
     float _brightness;
+    float _minBrightness;
     float _colorAngle;
     
     float lastPanPosition;
@@ -817,7 +818,13 @@
             } else if ([self touchOverBrightnessWheel:transPoint]) {
                activeTouchPoint = ACTIVE_TOUCHPOINT_BRIGHTNESS_POINTER;
                 angle = [self addAngle:-90 toAngle:angle];
-               [self setBrightness:angle * 100 / 360 raiseEvent:YES];
+                
+                float brightness = angle * 100 / 360;
+                if (brightness < _minBrightness) {
+                    brightness = _minBrightness;
+                }
+                
+               [self setBrightness:brightness raiseEvent:YES];
             }
         } else if ([self touchOverSlider: transPoint]) {
             activeTouchPoint = ACTIVE_TOUCHPOINT_BRIGHTNESS_POINTER;
@@ -825,7 +832,12 @@
                              - (_sliderRect.size.height-_sliderPointerRange)/2)
                              * 100 / _sliderPointerRange;
             
-            [self setBrightness:100-percent raiseEvent:YES];
+            float brightness = 100-percent;
+               if (brightness < _minBrightness) {
+                   brightness = _minBrightness;
+               }
+            
+            [self setBrightness:brightness raiseEvent:YES];
         }
     } else {
         if ( !_colorWheelHidden
@@ -872,7 +884,8 @@
         _brightness = brightness;
         [self setNeedsDisplay];
         
-        if ( delegate != nil
+        if ( raiseEvent
+            && delegate != nil
             && [delegate respondsToSelector:@selector(cbPickerDataChanged:)] )
             [delegate cbPickerDataChanged: self];
     }
@@ -883,8 +896,26 @@
     [self setBrightness:brightness raiseEvent:NO];
 }
 
+-(void)setMinBrightness:(float)minBrightness {
+    if (minBrightness > 100) {
+        minBrightness = 100;
+    } else if (minBrightness < 0) {
+        minBrightness = 0;
+    }
+    
+    _minBrightness = minBrightness;
+}
+
+-(float)minBrightness {
+    return _minBrightness;
+}
+
 - (void)addBrightnessOffset:(float)offset {
-    [self setBrightness:_brightness+offset raiseEvent:YES];
+    float brightness = _brightness+offset;
+    if (brightness < _minBrightness) {
+        brightness = _minBrightness;
+    }
+    [self setBrightness:brightness raiseEvent:YES];
 }
 
 - (void)handleTap:(UITapGestureRecognizer *)gr {

@@ -124,6 +124,18 @@
     XCTAssertEqual(picker.brightness, 100);
 }
 
+- (void)testMinBrightnessProperty {
+    XCTAssertEqual(picker.minBrightness, 0.0);
+    picker.minBrightness = 55.54;
+    XCTAssertEqualWithAccuracy(picker.minBrightness, 55.54, 0.001);
+    picker.minBrightness = -1;
+    XCTAssertEqual(picker.minBrightness, 0.0);
+    picker.minBrightness = 80.88;
+    XCTAssertEqualWithAccuracy(picker.minBrightness, 80.88, 0.001);
+    picker.minBrightness = 110;
+    XCTAssertEqual(picker.minBrightness, 100);
+}
+
 - (void)testMovingProperty {
     XCTAssertFalse(picker.moving);
 }
