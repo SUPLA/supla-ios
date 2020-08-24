@@ -818,7 +818,13 @@
             } else if ([self touchOverBrightnessWheel:transPoint]) {
                activeTouchPoint = ACTIVE_TOUCHPOINT_BRIGHTNESS_POINTER;
                 angle = [self addAngle:-90 toAngle:angle];
-               [self setBrightness:angle * 100 / 360 raiseEvent:YES];
+                
+                float brightness = angle * 100 / 360;
+                if (brightness < _minBrightness) {
+                    brightness = _minBrightness;
+                }
+                
+               [self setBrightness:brightness raiseEvent:YES];
             }
         } else if ([self touchOverSlider: transPoint]) {
             activeTouchPoint = ACTIVE_TOUCHPOINT_BRIGHTNESS_POINTER;
@@ -826,7 +832,12 @@
                              - (_sliderRect.size.height-_sliderPointerRange)/2)
                              * 100 / _sliderPointerRange;
             
-            [self setBrightness:100-percent raiseEvent:YES];
+            float brightness = 100-percent;
+               if (brightness < _minBrightness) {
+                   brightness = _minBrightness;
+               }
+            
+            [self setBrightness:brightness raiseEvent:YES];
         }
     } else {
         if ( !_colorWheelHidden
