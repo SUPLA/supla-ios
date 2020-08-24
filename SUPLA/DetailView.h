@@ -30,6 +30,8 @@
 -(void)detailDidHide;
 -(BOOL)onMenubarBackButtonPressed;
 
+- (void)handlePan:(UIPanGestureRecognizer *)gr;
+
 @property (weak, nonatomic) SAChannelBase  *channelBase;
 @property (weak, nonatomic) SAMainView *main_view;
 @property (nonatomic) BOOL initialized;

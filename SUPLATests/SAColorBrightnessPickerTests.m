@@ -155,4 +155,11 @@
     XCTAssertNil(picker.colorMarkers);
 }
 
+- (void)testJumpToThePointOfTouchEnabledProperty {
+    XCTAssertTrue(picker.jumpToThePointOfTouchEnabled);
+    picker.jumpToThePointOfTouchEnabled = NO;
+    XCTAssertFalse(picker.jumpToThePointOfTouchEnabled);
+    picker.jumpToThePointOfTouchEnabled = YES;
+    XCTAssertTrue(picker.jumpToThePointOfTouchEnabled);
+}
 @end

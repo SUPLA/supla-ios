@@ -37,6 +37,7 @@
 @property(nonatomic, assign) BOOL powerButtonHidden;
 @property(nonatomic, assign) BOOL powerButtonEnabled;
 @property(nonatomic, assign) BOOL powerButtonOn;
+@property(nonatomic, assign) BOOL jumpToThePointOfTouchEnabled;
 @property(nonatomic, copy) UIColor *powerButtonColorOn;
 @property(nonatomic, copy) UIColor *powerButtonColorOff;
 @property(nonatomic, copy) UIColor *color;

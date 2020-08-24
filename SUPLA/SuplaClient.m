@@ -1030,6 +1030,14 @@ void sasuplaclient_on_device_channel_state(void *_suplaclient, void *user_data, 
     }
 }
 
+- (void) getSuperuserAuthorizationResult {
+    @synchronized(self) {
+        if ( _sclient ) {
+            supla_client_get_superuser_authorization_result(_sclient);
+        }
+    }
+}
+
 - (void) channelStateRequestWithChannelId:(int)channelId {
     @synchronized(self) {
         if ( _sclient ) {

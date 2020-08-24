@@ -474,4 +474,10 @@
     return YES;
 }
 
+- (void)handlePan:(UIPanGestureRecognizer *)gr {
+    if (_vlCalibrationTool == nil || _vlCalibrationTool.superview == nil) {
+        [super handlePan:gr];
+    }
+}
+
 @end

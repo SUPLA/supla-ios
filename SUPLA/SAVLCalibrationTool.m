@@ -334,6 +334,7 @@ typedef struct {
     
     if (sender == self.tabBoostYes) {
         [self calibrationWheelBoostChanged:self.rangeCalibrationWheel];
+        [self tabBoostTouch:self.tabBoost];
     }
 }
 
@@ -352,14 +353,48 @@ typedef struct {
 
 
 - (IBAction)btnOKTouch:(id)sender {
-    _configStarted = false;
-    [self deviceCalCfgCommand:VL_MSG_CONFIG_COMPLETE charValue:1];
-    [self dismiss];
+    
+    UIAlertController * alert = [UIAlertController
+                                 alertControllerWithTitle:NSLocalizedString(@"Dimmer settings", nil)
+                                 message:NSLocalizedString(@"Do you want to save the settings?", nil)
+                                 preferredStyle:UIAlertControllerStyleAlert];
+    
+    UIAlertAction* yesBtn = [UIAlertAction
+                             actionWithTitle:NSLocalizedString(@"Yes", nil)
+                             style:UIAlertActionStyleDefault
+                             handler:^(UIAlertAction * action) {
+        self->_configStarted = false;
+        [self deviceCalCfgCommand:VL_MSG_CONFIG_COMPLETE charValue:1];
+        [self dismiss];
+    }];
+    
+    UIAlertAction* noBtn = [UIAlertAction
+                            actionWithTitle:NSLocalizedString(@"No", nil)
+                            style:UIAlertActionStyleDefault
+                            handler:^(UIAlertAction * action) {
+        self->_configStarted = false;
+        [self dismiss];
+    }];
+    
+    UIAlertAction* cancelBtn = [UIAlertAction
+                            actionWithTitle:NSLocalizedString(@"Cancel", nil)
+                            style:UIAlertActionStyleDefault
+                            handler:^(UIAlertAction * action) {
+
+    }];
+    
+    [alert addAction:yesBtn];
+    [alert addAction:noBtn];
+    [alert addAction:cancelBtn];
+    
+    UIViewController *vc = [[[[UIApplication sharedApplication] delegate] window] rootViewController];
+    [vc presentViewController:alert animated:YES completion:nil];
+    
 }
 
 - (IBAction)btnRestoreTouch:(id)sender {
     UIAlertController * alert = [UIAlertController
-                                 alertControllerWithTitle:@"SUPLA"
+                                 alertControllerWithTitle:NSLocalizedString(@"Dimmer settings", nil)
                                  message:NSLocalizedString(@"Are you sure you want to restore the default settings?", nil)
                                  preferredStyle:UIAlertControllerStyleAlert];
     
@@ -376,8 +411,7 @@ typedef struct {
                             handler:^(UIAlertAction * action) {
     }];
     
-    
-    [alert setTitle: NSLocalizedString(@"Default settings", nil)];
+
     [alert addAction:noBtn];
     [alert addAction:yesBtn];
     
@@ -408,7 +442,33 @@ typedef struct {
 }
 
 -(BOOL) onMenubarBackButtonPressed {
-    [self dismiss];
+    
+    UIAlertController * alert = [UIAlertController
+                                 alertControllerWithTitle:NSLocalizedString(@"Dimmer settings", nil)
+                                 message:NSLocalizedString(@"Do you want to quit without saving?", nil)
+                                 preferredStyle:UIAlertControllerStyleAlert];
+    
+    UIAlertAction* yesBtn = [UIAlertAction
+                             actionWithTitle:NSLocalizedString(@"Yes", nil)
+                             style:UIAlertActionStyleDefault
+                             handler:^(UIAlertAction * action) {
+        _configStarted = false;
+        [self dismiss];
+    }];
+    
+    UIAlertAction* noBtn = [UIAlertAction
+                            actionWithTitle:NSLocalizedString(@"No", nil)
+                            style:UIAlertActionStyleDefault
+                            handler:^(UIAlertAction * action) {
+    }];
+    
+    
+    [alert addAction:noBtn];
+    [alert addAction:yesBtn];
+    
+    UIViewController *vc = [[[[UIApplication sharedApplication] delegate] window] rootViewController];
+    [vc presentViewController:alert animated:YES completion:nil];
+    
     return NO;
 }
 
