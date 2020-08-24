@@ -44,6 +44,7 @@
     
     UIColor *_color;
     float _brightness;
+    float _minBrightness;
     float _colorAngle;
     
     float lastPanPosition;
@@ -884,8 +885,26 @@
     [self setBrightness:brightness raiseEvent:NO];
 }
 
+-(void)setMinBrightness:(float)minBrightness {
+    if (minBrightness > 100) {
+        minBrightness = 100;
+    } else if (minBrightness < 0) {
+        minBrightness = 0;
+    }
+    
+    _minBrightness = minBrightness;
+}
+
+-(float)minBrightness {
+    return _minBrightness;
+}
+
 - (void)addBrightnessOffset:(float)offset {
-    [self setBrightness:_brightness+offset raiseEvent:YES];
+    float brightness = _brightness+offset;
+    if (brightness < _minBrightness) {
+        brightness = _minBrightness;
+    }
+    [self setBrightness:brightness raiseEvent:YES];
 }
 
 - (void)handleTap:(UITapGestureRecognizer *)gr {

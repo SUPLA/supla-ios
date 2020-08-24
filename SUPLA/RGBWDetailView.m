@@ -228,6 +228,8 @@
         [self onPickerTypeTabTouch:_varilight ? self.tabSlider : self.tabWheel];
     }
     
+    self.cbPicker.minBrightness = _varilight ? 1.0 : 0.0;
+    
     [self setExtraButtonsHidden:!_varilight];
     [self setWheelSliderTabsHidden:NO];
     self.tabRGB.selected = NO;
