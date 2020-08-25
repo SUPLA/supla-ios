@@ -17,6 +17,7 @@
 #import "SAInfoVC.h"
 #import "UIHelper.h"
 #import "SuplaApp.h"
+#import "SAPreloaderPopup.h"
 
 #pragma pack(push, 1)
 typedef struct {
@@ -71,11 +72,14 @@ typedef struct {
 
 @implementation SAVLCalibrationTool {
     SADetailView *_detailView;
-    BOOL _configStarted;
+    NSDate *_configStartedAtTime;
     vl_configuration_t _vlconfig;
     NSTimer *_delayTimer1;
     NSTimer *_delayTimer2;
+    NSTimer *_startConfigurationRetryTimer;
     NSDate *_lastCalCfgTime;
+    SAPreloaderPopup *_preloaderPopup;
+    BOOL _restoringDefaults;
 }
 
 -(void) delayTimer1Invalidate {
@@ -117,7 +121,7 @@ typedef struct {
     _vlconfig.boost = MODE_UNKNOWN;
     _vlconfig.boost_mask = 0xFF;
     
-    _configStarted = NO;
+    _configStartedAtTime = nil;
     [self cfgToUIWithDelay:NO];
     
     [self removeFromSuperview];
@@ -189,6 +193,36 @@ typedef struct {
     [self deviceCalCfgCommandWithDelay:[timer.userInfo intValue]];
 }
 
+- (void)startConfigurationRetryTimerFireMethod:(NSTimer *)timer {
+    if (_startConfigurationRetryTimer != nil) {
+      [self superuserAuthorizationSuccess];
+    }
+}
+
+-(void)startConfigurationAgainWithRetry {
+    [self stopConfigurationRetryTimer];
+    
+    _startConfigurationRetryTimer = [NSTimer scheduledTimerWithTimeInterval:5
+                                                                   target:self
+                                                                   selector:@selector(startConfigurationRetryTimerFireMethod:)
+                                                                   userInfo:nil
+                                                                    repeats:YES];
+}
+
+-(void)closePreloaderPopup {
+    if (_preloaderPopup) {
+        [_preloaderPopup close];
+        _preloaderPopup = nil;
+    }
+}
+
+-(void)stopConfigurationRetryTimer {
+    if (_startConfigurationRetryTimer) {
+        [_startConfigurationRetryTimer invalidate];
+        _startConfigurationRetryTimer = nil;
+    }
+}
+
 -(void)onCalCfgResult:(NSNotification *)notification {
     if (_detailView == nil) {
         [[NSNotificationCenter defaultCenter] removeObserver:self];
@@ -202,11 +236,18 @@ typedef struct {
             if (result.channelID == _detailView.channelBase.remote_id) {
                 switch (result.command) {
                     case VL_MSG_CONFIGURATION_ACK:
-                        if (result.result == SUPLA_RESULTCODE_TRUE) {
-                            [SASuperuserAuthorizationDialog.globalInstance close];
+                        if (result.result == SUPLA_RESULTCODE_TRUE && !_restoringDefaults) {
+                            [SASuperuserAuthorizationDialog.globalInstance closeWithAnimation:NO completion:nil];
                             [_detailView addSubview:self];
                             [_detailView bringSubviewToFront:self];
-                            _configStarted = YES;
+                            _configStartedAtTime = [NSDate date];
+        
+                            [self closePreloaderPopup];
+                            [self stopConfigurationRetryTimer];
+                
+                        } else if (_restoringDefaults) {
+                            _restoringDefaults = NO;
+                            [self startConfigurationAgainWithRetry];
                         }
                         break;
                     case VL_MSG_CONFIGURATION_REPORT:
@@ -338,6 +379,12 @@ typedef struct {
     }
 }
 
+- (void)showProgressWithText:(NSString *)text {
+    _preloaderPopup = SAPreloaderPopup.globalInstance;
+    [_preloaderPopup setText:text];
+    [_preloaderPopup show];
+}
+
 - (IBAction)tabMode123Touch:(id)sender {
     if (sender == self.tabMode1) {
         _vlconfig.mode = MODE_1;
@@ -349,6 +396,9 @@ typedef struct {
     
     [self modeToUI];
     [self deviceCalCfgCommand:VL_MSG_SET_MODE charValue:_vlconfig.mode];
+    
+    [self showProgressWithText:NSLocalizedString(@"Mode change in progress", nil)];
+    [self startConfigurationAgainWithRetry];
 }
 
 
@@ -363,7 +413,7 @@ typedef struct {
                              actionWithTitle:NSLocalizedString(@"Yes", nil)
                              style:UIAlertActionStyleDefault
                              handler:^(UIAlertAction * action) {
-        self->_configStarted = false;
+        self->_configStartedAtTime = nil;
         [self deviceCalCfgCommand:VL_MSG_CONFIG_COMPLETE charValue:1];
         [self dismiss];
     }];
@@ -372,7 +422,6 @@ typedef struct {
                             actionWithTitle:NSLocalizedString(@"No", nil)
                             style:UIAlertActionStyleDefault
                             handler:^(UIAlertAction * action) {
-        self->_configStarted = false;
         [self dismiss];
     }];
     
@@ -402,6 +451,10 @@ typedef struct {
                              actionWithTitle:NSLocalizedString(@"Yes", nil)
                              style:UIAlertActionStyleDefault
                              handler:^(UIAlertAction * action) {
+        [self showProgressWithText:NSLocalizedString(@"Restoring default settings", nil)];
+      
+        self->_restoringDefaults = YES;
+        [self startConfigurationAgainWithRetry];
         [self deviceCalCfgCommand:VL_MSG_RESTORE_DEFAULTS charValue:NULL shortValue:NULL];
     }];
     
@@ -424,6 +477,14 @@ typedef struct {
 }
 
 -(void)dismiss {
+    [self stopConfigurationRetryTimer];
+    [self closePreloaderPopup];
+    
+    if (_configStartedAtTime) {
+        _configStartedAtTime = nil;
+        [self deviceCalCfgCommand:VL_MSG_CONFIG_COMPLETE charValue:0];
+    }
+    
     [self removeFromSuperview];
     [[NSNotificationCenter defaultCenter] removeObserver:self];
     _detailView = nil;
@@ -452,7 +513,6 @@ typedef struct {
                              actionWithTitle:NSLocalizedString(@"Yes", nil)
                              style:UIAlertActionStyleDefault
                              handler:^(UIAlertAction * action) {
-        _configStarted = false;
         [self dismiss];
     }];
     
@@ -470,6 +530,12 @@ typedef struct {
     [vc presentViewController:alert animated:YES completion:nil];
     
     return NO;
+}
+
+-(BOOL)exitLocked {
+    return _preloaderPopup != nil ||
+    (_configStartedAtTime != nil
+     && [[NSDate date] timeIntervalSince1970] - [_configStartedAtTime timeIntervalSince1970] <= 15);
 }
 
 @end
