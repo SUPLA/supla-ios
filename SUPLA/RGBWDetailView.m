@@ -354,9 +354,9 @@
         };
     }
     
-    
     if ( channelBase != nil
-        && channelBase.isOnline == NO ) {
+        && channelBase.isOnline == NO
+        && (_vlCalibrationTool == nil || !_vlCalibrationTool.exitLocked)) {
         [self.main_view detailShow:NO animated:NO];
         return;
     }

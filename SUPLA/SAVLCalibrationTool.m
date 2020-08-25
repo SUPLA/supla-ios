@@ -138,7 +138,9 @@ typedef struct {
 }
 
 - (void) deviceCalCfgCommand:(int)command charValue:(char*)charValue shortValue:(short*)shortValue {
-    if (_detailView && _detailView.channelBase) {
+    if (_detailView
+        && _detailView.channelBase
+        && _detailView.channelBase.isOnline) {
         _lastCalCfgTime = [NSDate date];
         if (charValue) {
             [SAApp.SuplaClient deviceCalCfgCommand:command cg:_detailView.channelBase.remote_id group:NO charValue:*charValue];
