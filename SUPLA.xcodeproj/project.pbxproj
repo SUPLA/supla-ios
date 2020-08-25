@@ -43,6 +43,8 @@
 		013F7EC123EB33E30061A497 /* SAChannelStateExtendedValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 013F7EC023EB33E30061A497 /* SAChannelStateExtendedValue.m */; };
 		013F7EC423EB4B500061A497 /* battery@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 013F7EC223EB4B500061A497 /* battery@3x.png */; };
 		013F7EC523EB4B500061A497 /* battery@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 013F7EC323EB4B500061A497 /* battery@2x.png */; };
+		01511CFA24F50B470081A1EC /* SAPreloaderPopup.m in Sources */ = {isa = PBXBuildFile; fileRef = 01511CF824F50B470081A1EC /* SAPreloaderPopup.m */; };
+		01511CFB24F50B470081A1EC /* SAPreloaderPopup.xib in Resources */ = {isa = PBXBuildFile; fileRef = 01511CF924F50B470081A1EC /* SAPreloaderPopup.xib */; };
 		01567446232FCFD700397393 /* SAIncrementalMeterExtendedValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 01567445232FCFD700397393 /* SAIncrementalMeterExtendedValue.m */; };
 		01567449232FD0A100397393 /* SAImpulseCounterExtendedValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 01567448232FD0A100397393 /* SAImpulseCounterExtendedValue.m */; };
 		016ABE16236D8363001BF5FB /* SAKeychain.m in Sources */ = {isa = PBXBuildFile; fileRef = 016ABE15236D8363001BF5FB /* SAKeychain.m */; };
@@ -465,6 +467,9 @@
 		013F7EC023EB33E30061A497 /* SAChannelStateExtendedValue.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SAChannelStateExtendedValue.m; sourceTree = "<group>"; };
 		013F7EC223EB4B500061A497 /* battery@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "battery@3x.png"; path = "Resources/Assets/Img/battery@3x.png"; sourceTree = "<group>"; };
 		013F7EC323EB4B500061A497 /* battery@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "battery@2x.png"; path = "Resources/Assets/Img/battery@2x.png"; sourceTree = "<group>"; };
+		01511CF724F50B470081A1EC /* SAPreloaderPopup.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SAPreloaderPopup.h; sourceTree = "<group>"; };
+		01511CF824F50B470081A1EC /* SAPreloaderPopup.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SAPreloaderPopup.m; sourceTree = "<group>"; };
+		01511CF924F50B470081A1EC /* SAPreloaderPopup.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SAPreloaderPopup.xib; sourceTree = "<group>"; };
 		01567444232FCFD700397393 /* SAIncrementalMeterExtendedValue.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SAIncrementalMeterExtendedValue.h; sourceTree = "<group>"; };
 		01567445232FCFD700397393 /* SAIncrementalMeterExtendedValue.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SAIncrementalMeterExtendedValue.m; sourceTree = "<group>"; };
 		01567447232FD0A100397393 /* SAImpulseCounterExtendedValue.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SAImpulseCounterExtendedValue.h; sourceTree = "<group>"; };
@@ -1108,6 +1113,7 @@
 		012119122368B597004C1993 /* xib */ = {
 			isa = PBXGroup;
 			children = (
+				01511CF924F50B470081A1EC /* SAPreloaderPopup.xib */,
 				012E81DB24C9A31B008E0690 /* SALightsourceLifespanSettingsDialog.xib */,
 				0180440B24C254CF005E53EB /* SAChannelStatePopup.xib */,
 				01943EC0249D1C8800DA2B8F /* SASuperuserAuthorizationDialog.xib */,
@@ -1749,6 +1755,8 @@
 				01199C8224C34AC50062454B /* SAChannelStatePopup.m */,
 				01215A7024C8AECC00429947 /* SALightsourceLifespanSettingsDialog.h */,
 				01215A7124C8AECC00429947 /* SALightsourceLifespanSettingsDialog.m */,
+				01511CF724F50B470081A1EC /* SAPreloaderPopup.h */,
+				01511CF824F50B470081A1EC /* SAPreloaderPopup.m */,
 			);
 			name = UI;
 			sourceTree = "<group>";
@@ -1938,6 +1946,7 @@
 				01D4293622AAA83E0050C1A2 /* gasmeter@3x.png in Resources */,
 				4052DA0C1DC515AE000B8C45 /* rgb-off@3x.png in Resources */,
 				407D4AE71BC6C57E009A5505 /* app_icon58x58@2x.png in Resources */,
+				01511CFB24F50B470081A1EC /* SAPreloaderPopup.xib in Resources */,
 				40B9ED461FACCE8700403B1A /* tv-on@2x.png in Resources */,
 				40B9ED5F1FACD14000403B1A /* fan-off@2x.png in Resources */,
 				40CF96DA1BC81A470030EFFF /* warning@2x.png in Resources */,
@@ -2247,6 +2256,7 @@
 				0172677D234FAF78000F1CFB /* SADownloadImpulseCounterMeasurements.m in Sources */,
 				01392B37235C91C1003A2BAD /* SADownloadTemperatureMeasurements.m in Sources */,
 				01C1719A22C7F55B005983E1 /* SAMeasurementItem+CoreDataProperties.m in Sources */,
+				01511CFA24F50B470081A1EC /* SAPreloaderPopup.m in Sources */,
 				01902A25235A17E9005ED935 /* TemperatureDetailView.m in Sources */,
 				01EE9BBB22BA50D90029A142 /* SAChannelValueBase+CoreDataClass.m in Sources */,
 				40F7301120C19BA600167C2D /* SAColorListItem+CoreDataProperties.m in Sources */,

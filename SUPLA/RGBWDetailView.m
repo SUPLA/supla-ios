@@ -258,8 +258,9 @@
     
     [super updateView];
     
-    if (_vlCalibrationTool != nil) {
+    if (_vlCalibrationTool != nil && !_vlCalibrationTool.exitLocked) {
         [_vlCalibrationTool dismiss];
+        _vlCalibrationTool = nil;
     }
     
     if (isGroup) {
@@ -482,4 +483,12 @@
     }
 }
 
+-(void)detailWillHide {
+    [super detailWillHide];
+    
+    if (_vlCalibrationTool != nil) {
+        [_vlCalibrationTool dismiss];
+        _vlCalibrationTool = nil;
+    }
+}
 @end
