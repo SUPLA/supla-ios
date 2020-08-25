@@ -379,7 +379,7 @@ typedef struct {
     }
 }
 
-- (void)showProgressWithText:(NSString *)text {
+- (void)showPreloaderWithText:(NSString *)text {
     _preloaderPopup = SAPreloaderPopup.globalInstance;
     [_preloaderPopup setText:text];
     [_preloaderPopup show];
@@ -397,7 +397,7 @@ typedef struct {
     [self modeToUI];
     [self deviceCalCfgCommand:VL_MSG_SET_MODE charValue:_vlconfig.mode];
     
-    [self showProgressWithText:NSLocalizedString(@"Mode change in progress", nil)];
+    [self showPreloaderWithText:NSLocalizedString(@"Mode change in progress", nil)];
     [self startConfigurationAgainWithRetry];
 }
 
@@ -451,7 +451,7 @@ typedef struct {
                              actionWithTitle:NSLocalizedString(@"Yes", nil)
                              style:UIAlertActionStyleDefault
                              handler:^(UIAlertAction * action) {
-        [self showProgressWithText:NSLocalizedString(@"Restoring default settings", nil)];
+        [self showPreloaderWithText:NSLocalizedString(@"Restoring default settings", nil)];
       
         self->_restoringDefaults = YES;
         [self startConfigurationAgainWithRetry];
