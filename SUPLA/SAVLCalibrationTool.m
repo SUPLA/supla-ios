@@ -534,7 +534,7 @@ typedef struct {
     return NO;
 }
 
--(BOOL)exitLocked {
+-(BOOL)isExitLocked {
     return _preloaderPopup != nil ||
     (_configStartedAtTime != nil
      && [[NSDate date] timeIntervalSince1970] - [_configStartedAtTime timeIntervalSince1970] <= 15);

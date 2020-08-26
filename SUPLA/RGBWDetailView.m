@@ -258,7 +258,7 @@
     
     [super updateView];
     
-    if (_vlCalibrationTool != nil && !_vlCalibrationTool.exitLocked) {
+    if (_vlCalibrationTool != nil && !_vlCalibrationTool.isExitLocked) {
         [_vlCalibrationTool dismiss];
         _vlCalibrationTool = nil;
     }
@@ -356,7 +356,7 @@
     
     if ( channelBase != nil
         && channelBase.isOnline == NO
-        && (_vlCalibrationTool == nil || !_vlCalibrationTool.exitLocked)) {
+        && (_vlCalibrationTool == nil || !_vlCalibrationTool.isExitLocked)) {
         [self.main_view detailShow:NO animated:NO];
         return;
     }
