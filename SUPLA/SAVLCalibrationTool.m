@@ -80,6 +80,7 @@ typedef struct {
     NSDate *_lastCalCfgTime;
     SAPreloaderPopup *_preloaderPopup;
     BOOL _restoringDefaults;
+    BOOL _sueruserAuthoriztionStarted;
 }
 
 -(void) delayTimer1Invalidate {
@@ -134,6 +135,7 @@ typedef struct {
     //  [self setRoundedTopCorners:self.tabBoost];
     
     self.rangeCalibrationWheel.delegate = self;
+    _sueruserAuthoriztionStarted = YES;
     [SASuperuserAuthorizationDialog.globalInstance authorizeWithDelegate:self];
 }
 
@@ -274,7 +276,12 @@ typedef struct {
      addObserver:self selector:@selector(onCalCfgResult:)
      name:kSACalCfgResult object:nil];
     
+    _sueruserAuthoriztionStarted = NO;
     [self deviceCalCfgCommand:VL_MSG_CONFIGURATION_MODE charValue:NULL shortValue:NULL];
+}
+
+-(void) superuserAuthorizationCanceled {
+    _sueruserAuthoriztionStarted = NO;
 }
 
 - (void)modeToUI {
@@ -489,6 +496,7 @@ typedef struct {
     
     [self removeFromSuperview];
     [[NSNotificationCenter defaultCenter] removeObserver:self];
+
     _detailView = nil;
 }
 
@@ -535,8 +543,9 @@ typedef struct {
 }
 
 -(BOOL)isExitLocked {
-    return _preloaderPopup != nil ||
-    (_configStartedAtTime != nil
+    return _preloaderPopup != nil
+    || (_sueruserAuthoriztionStarted && [SASuperuserAuthorizationDialog.globalInstance isVisible])
+    || (_configStartedAtTime != nil
      && [[NSDate date] timeIntervalSince1970] - [_configStartedAtTime timeIntervalSince1970] <= 15);
 }
 
