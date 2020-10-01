@@ -126,6 +126,8 @@
 "Home+ Heater" = "Aquecedor Home+";
 "Comfort" = "Conforto";
 "ECO" = "ECO";
+"Higher" = "Conforto";
+"Lower" = "ECO";
 "No water" = "Falta de água";
 "Burnt heater" = "Aquecedor estourado";
 "Water temperature sensor error" = "Erro do sensor da temperatura de água";

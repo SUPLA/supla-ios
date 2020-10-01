@@ -243,4 +243,8 @@ static SASuperuserAuthorizationDialog *_superuserAuthorizationDialogGlobalRef = 
     }];
 }
 
+- (BOOL)isVisible {
+    return [SADialog viewControllerIsPresented:self];
+}
+
 @end

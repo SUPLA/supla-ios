@@ -186,10 +186,10 @@
         }
         
         error = nil;
-        result.jsonObject = [NSJSONSerialization
+        result.jsonObject = data ? [NSJSONSerialization
                          JSONObjectWithData:data
                          options:NSJSONReadingAllowFragments
-                         error:&error];
+                         error:&error] : nil;
         
         if (error) {
             result.jsonObject = nil;

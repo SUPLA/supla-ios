@@ -125,6 +125,8 @@
 "Home+ Heater" = "Topení Home+";
 "Comfort" = "Ideální teplota";
 "ECO" = "ECO";
+"Higher" = "Ideální teplota";
+"Lower" = "ECO";
 "No water" = "Chybí voda";
 "Burnt heater" = "Spálené topení";
 "Water temperature sensor error" = "Chyba snímače teploty vody";

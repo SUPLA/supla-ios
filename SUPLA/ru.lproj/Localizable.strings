@@ -125,6 +125,8 @@
 "Home+ Heater" = "Дом + обогреватель";
 "Comfort" = "Комфортная";
 "ECO" = "ЭКО";
+"Higher" = "Комфортная";
+"Lower" = "ЭКО";
 "No water" = "Нет Воды";
 "Burnt heater" = "Сгоревший нагреватель";
 "Water temperature sensor error" = "Ошибка датчика температуры воды";

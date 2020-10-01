@@ -23,7 +23,7 @@
 "On" = "Activar";
 "Off" = "Desactivar";
 "opened the gateway" = "ha abierto el portillo";
-"opened / closed the gate" = "oha abierto / ha cerrado la puerta";
+"opened / closed the gate" = "ha abierto / ha cerrado la puerta";
 "opened / closed the gate doors" = "ha abierto / ha cerrado la puerta de garaje";
 "opened the door" = "ha abierto la puerta";
 "opened / closed roller shutter" = "ha abierto / ha cerrado la persiana";
@@ -58,26 +58,26 @@
 "Dimmer" = "Atenuador";
 "Distance sensor" = "Sensor de distancia";
 "Depth sensor" = "Sensor de profundidad";
-"If you enjoy using this app, please take a moment to rate it. Thanks for your support!" = "Si te gusta esta aplicación, dedica un rato a evaluarla. ¡Gracias por tu apoyo!";
+"If you enjoy using this app, please take a moment to rate it. Thanks for your support!" = "Si te gusta esta aplicación, por favor dedica un momento a evaluarla. ¡Gracias por tu apoyo!";
 "Rate Now" = "Evalúa ahora";
 "Later" = "Más tarde";
 "No thanks" = "No, gracias";
 "Mail sensor" = "Sensor de correo";
-"Window opening sensor" = "Dectector de apertura de ventanas";
+"Window opening sensor" = "Sensor de apertura de ventanas";
 "Add I/O device" = "Añadir dispositivo";
 "Donate" = "Donar";
-"Device registration availability information timeout!" = "¡Se ha superado el tiempo de espera a la información sobre la disponibilidad de registro de dispositivos!";
+"Device registration availability information timeout!" = "¡Se ha superado el tiempo de espera para la información sobre la disponibilidad de registro de dispositivos!";
 "Next" = "Siguiente";
 "Start" = "Start";
 "Cancel" = "Cancelar";
 "Go to the system settings" = "Proceda a los ajustes del sistema";
-"I/O Device registration is currently off. To continue go to „My SUPLA” at %@ and enable the Device Add Button." = "El registro de dispositivos de entrada/salida está actualmente deshabilitado. Para continuar ve a la página %@ y en la pestaña Mi SUPLA activa la adición de dispositivos.";
-"Add Wizard is only available when server connection has been set based on the email address entered in the settings. (Disable advanced options in the settings)" = "¡El creador de adición está disponible solo cuando se ha establecido una conexión con el servidor conforme a la dirección de correo electrónico introducida en los ajustes!";
-"The connected Server does not support this function!" = "¡El servidor al que te has conectado no es compatible con esta característica!";
-"Device Configuration Completion timeout!" = "¡Se ha superado el tiempo de espera a la finalización de la configuración del dispositivo!";
+"I/O Device registration is currently off. To continue go to „My SUPLA” at %@ and enable the Device Add Button." = "El registro de dispositivos de entrada/salida está actualmente deshabilitado. Para continuar vaya a la página %@ y en la pestaña Mi SUPLA active la registro de dispositivos.";
+"Add Wizard is only available when server connection has been set based on the email address entered in the settings. (Disable advanced options in the settings)" = "¡El asistente está disponible solo cuando se ha establecido la conexión con el servidor mediante la dirección de correo electrónico en los ajustes (Desmarque la casilla ajustes avanzadas en ajustes)!";
+"The connected Server does not support this function!" = "¡El servidor al que ha conectado no es compatible con esta característica!";
+"Device Configuration Completion timeout!" = "¡Se ha superado el tiempo de espera para completar la configuración del dispositivo!";
 "Incorrect input parameters!" = "¡Parámetros de entrada erróneos!";
-"The connected device is not compatible with this Wizard!" = "¡El dispositivo con el que se ha establecido la conexión no es compatible con este creador!";
-"Configuration Failed!" = "¡Configuración no finalizada con éxito!";
+"The connected device is not compatible with this Wizard!" = "¡El dispositivo con el que se ha establecido la conexión no es compatible con este asistente!";
+"Configuration Failed!" = "¡Configuración no completada con éxito!";
 "Connection with the device cannot be set! Make sure, if the Wi-fi connection has been set for the I/O device." = "¡No se puede establecer una conexión con el dispositivo!";
 "[Calibration]" = "[Calibración]";
 "Help" = "Ayuda";
@@ -85,10 +85,10 @@
 "https://cloud.supla.org/register" = "https://cloud.supla.org/register?lang=es";
 
 "Create an account" = "Crear cuenta";
-"Device is disabled" = "El dispositivo está apagado";
+"Device is disabled" = "El dispositivo está deshabilitado";
 "Access Identifier is disabled" = "El identificador de acceso está deshabilitado";
-"Client Registration is off. Please go to \"Smartphone\" at %@ to activate it." = "El registro está actualmente desactivado. Para activarlo, ve a la pestaña \"Smartphones\" en la página %@";
-"This client does not have access identifier assigned. Please go to \"Smartphone\" at %@ and get a valid identifier." = "Este dispositivo no tiene un identificador de acceso asignado. Ve a la página %@ y asigna el identificador adecuado en la pestaña \"Smartphones\"";
+"Client Registration is off. Please go to \"Smartphone\" at %@ to activate it." = "El registro está actualmente desactivado. Para activarlo, vaya a la pestaña \"Smartphones\" en la página %@";
+"This client does not have access identifier assigned. Please go to \"Smartphone\" at %@ and get a valid identifier." = "Este dispositivo no tiene un identificador de acceso asignado. Vaya a la página %@ y asigne el identificador adecuado en la pestaña \"Smartphones\".";
 
 "Retrieving data from the server..." = "Descargando datos del servidor ...";
 "No chart data available." = "No hay datos para el gráfico.";
@@ -105,16 +105,16 @@
 "Days" = "Días";
 "Months" = "Meses";
 "Years" = "Años";
-"Minute to minute comparison" = "Comparación minuto con minuto";
-"Hour to hour comparison" = "Comparación hora con hora";
-"Day to day comparison" = "Comparación día con día";
-"Month to month comparison" = "Comparación mes con mes";
-"Year to year comparison" = "Comparación año con año";
+"Minute to minute comparison" = "Comparación minuto a minuto";
+"Hour to hour comparison" = "Comparación hora a hora";
+"Day to day comparison" = "Comparación día a día";
+"Month to month comparison" = "Comparación mes a mes";
+"Year to year comparison" = "Comparación año a año";
 "Ranking of hours" = "Ranking de horas";
 "Ranking of weekdays" = "Ranking de días de la semana";
 "Ranking of months" = "Ranking de meses";
-"Consumption according to phases" = "Consumo según fases";
-"Production according to phases" = "Producción según fases";
+"Consumption according to phases" = "Consumo por fases";
+"Production according to phases" = "Producción por fases";
 "Last 24 hours" = "Últimas 24 horas";
 "Last 7 days" = "Últimos 7 días";
 "Last 30 days" = "Últimos 30 días";
@@ -126,6 +126,8 @@
 "Home+ Heater" = "Calentador Home+";
 "Comfort" = "Confort";
 "ECO" = "ECO";
+"Higher" = "Comfort";
+"Lower" = "ECO";
 "No water" = "No hay agua";
 "Burnt heater" = "Calentador quemado";
 "Water temperature sensor error" = "Error del sensor de temperatura del agua";
@@ -137,8 +139,9 @@
 "h" = "h";
 
 "Wind sensor" = "Velocidad del viento";
-"Weight sensor" = "Peso";
+"Weight sensor" = "Sensor de Peso";
 "Pressure sensor" = "Sensor de presión";
 "Rain sensor" = "Sensor de precipitaciones";
 
 "Heat meter" = "Medidor de calor";
+

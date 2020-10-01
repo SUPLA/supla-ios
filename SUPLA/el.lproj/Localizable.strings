@@ -125,6 +125,8 @@
 "Home+ Heater" = "Θερμαντήρας Home+";
 "Comfort" = "Κομφόρ";
 "ECO" = "ECO";
+"Higher" = "Κομφόρ";
+"Lower" = "ECO";
 "No water" = "Έλλειψη νερού";
 "Burnt heater" = "Καμμένος θερμαντήρας";
 "Water temperature sensor error" = "Σφάλμα αισθητήρα θερμοκρασίας νερού";

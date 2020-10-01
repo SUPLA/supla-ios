@@ -125,6 +125,8 @@
 "Home+ Heater" = "Heizelement Home+";
 "Comfort" = "Komfort";
 "ECO" = "ECO";
+"Higher" = "Komfort";
+"Lower" = "ECO";
 "No water" = "Wassermangel";
 "Burnt heater" = "Heizgerät verbrannt";
 "Water temperature sensor error" = "Fehler des Wassertemperatursensors";

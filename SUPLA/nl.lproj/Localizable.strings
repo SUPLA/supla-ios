@@ -125,6 +125,8 @@
 "Home+ Heater" = "Verwarming Home +";
 "Comfort" = "Comfort";
 "ECO" = "ECO";
+"Higher" = "Comfort";
+"Lower" = "ECO";
 "No water" = "Waterdeprivatie";
 "Burnt heater" = "Verbrande verwarming";
 "Water temperature sensor error" = "Fout watertemperatuursensor";

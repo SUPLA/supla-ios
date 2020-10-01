@@ -80,6 +80,7 @@ typedef struct {
     NSDate *_lastCalCfgTime;
     SAPreloaderPopup *_preloaderPopup;
     BOOL _restoringDefaults;
+    BOOL _sueruserAuthoriztionStarted;
 }
 
 -(void) delayTimer1Invalidate {
@@ -134,11 +135,14 @@ typedef struct {
     //  [self setRoundedTopCorners:self.tabBoost];
     
     self.rangeCalibrationWheel.delegate = self;
+    _sueruserAuthoriztionStarted = YES;
     [SASuperuserAuthorizationDialog.globalInstance authorizeWithDelegate:self];
 }
 
 - (void) deviceCalCfgCommand:(int)command charValue:(char*)charValue shortValue:(short*)shortValue {
-    if (_detailView && _detailView.channelBase) {
+    if (_detailView
+        && _detailView.channelBase
+        && _detailView.channelBase.isOnline) {
         _lastCalCfgTime = [NSDate date];
         if (charValue) {
             [SAApp.SuplaClient deviceCalCfgCommand:command cg:_detailView.channelBase.remote_id group:NO charValue:*charValue];
@@ -272,7 +276,12 @@ typedef struct {
      addObserver:self selector:@selector(onCalCfgResult:)
      name:kSACalCfgResult object:nil];
     
+    _sueruserAuthoriztionStarted = NO;
     [self deviceCalCfgCommand:VL_MSG_CONFIGURATION_MODE charValue:NULL shortValue:NULL];
+}
+
+-(void) superuserAuthorizationCanceled {
+    _sueruserAuthoriztionStarted = NO;
 }
 
 - (void)modeToUI {
@@ -379,7 +388,7 @@ typedef struct {
     }
 }
 
-- (void)showProgressWithText:(NSString *)text {
+- (void)showPreloaderWithText:(NSString *)text {
     _preloaderPopup = SAPreloaderPopup.globalInstance;
     [_preloaderPopup setText:text];
     [_preloaderPopup show];
@@ -397,7 +406,7 @@ typedef struct {
     [self modeToUI];
     [self deviceCalCfgCommand:VL_MSG_SET_MODE charValue:_vlconfig.mode];
     
-    [self showProgressWithText:NSLocalizedString(@"Mode change in progress", nil)];
+    [self showPreloaderWithText:NSLocalizedString(@"Mode change in progress", nil)];
     [self startConfigurationAgainWithRetry];
 }
 
@@ -451,7 +460,7 @@ typedef struct {
                              actionWithTitle:NSLocalizedString(@"Yes", nil)
                              style:UIAlertActionStyleDefault
                              handler:^(UIAlertAction * action) {
-        [self showProgressWithText:NSLocalizedString(@"Restoring default settings", nil)];
+        [self showPreloaderWithText:NSLocalizedString(@"Restoring default settings", nil)];
       
         self->_restoringDefaults = YES;
         [self startConfigurationAgainWithRetry];
@@ -487,6 +496,7 @@ typedef struct {
     
     [self removeFromSuperview];
     [[NSNotificationCenter defaultCenter] removeObserver:self];
+
     _detailView = nil;
 }
 
@@ -532,9 +542,10 @@ typedef struct {
     return NO;
 }
 
--(BOOL)exitLocked {
-    return _preloaderPopup != nil ||
-    (_configStartedAtTime != nil
+-(BOOL)isExitLocked {
+    return _preloaderPopup != nil
+    || (_sueruserAuthoriztionStarted && [SASuperuserAuthorizationDialog.globalInstance isVisible])
+    || (_configStartedAtTime != nil
      && [[NSDate date] timeIntervalSince1970] - [_configStartedAtTime timeIntervalSince1970] <= 15);
 }
 

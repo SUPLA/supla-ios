@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina3_5" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17125"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -77,8 +78,8 @@
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ECO temperature in AUTO mode" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sCn-Z8-huV">
-                            <rect key="frame" x="0.0" y="272" width="227" height="20.5"/>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Lower temperature in AUTO mode" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sCn-Z8-huV">
+                            <rect key="frame" x="0.0" y="272" width="240.5" height="20.5"/>
                             <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="15"/>
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
@@ -159,8 +160,8 @@
                                 <constraint firstItem="BLb-Y2-T8U" firstAttribute="centerY" secondItem="acF-NT-6KJ" secondAttribute="centerY" id="vYP-WW-y6r"/>
                             </constraints>
                         </view>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Comfort temperature in AUTO mode" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oUh-5I-hqg">
-                            <rect key="frame" x="0.0" y="206.5" width="256" height="20.5"/>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Higher temperature in AUTO mode" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oUh-5I-hqg">
+                            <rect key="frame" x="0.0" y="206.5" width="244.5" height="20.5"/>
                             <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="15"/>
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
@@ -334,7 +335,7 @@
                     <subviews>
                         <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="owG-Uh-WRT" userLabel="tvChannels">
                             <rect key="frame" x="0.0" y="225" width="300" height="175"/>
-                            <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             <color key="separatorColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                         </tableView>
@@ -363,7 +364,7 @@
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4zK-5f-UFA" userLabel="vBtnsLeft">
                                     <rect key="frame" x="0.0" y="0.0" width="240" height="165"/>
                                     <subviews>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mxn-xd-sgq">
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mxn-xd-sgq">
                                             <rect key="frame" x="0.0" y="0.0" width="240" height="50"/>
                                             <color key="backgroundColor" red="0.86959415674209595" green="0.3223193883895874" blue="0.3136848509311676" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                             <constraints>
@@ -382,7 +383,7 @@
                                                 <action selector="onOffTouched:" destination="c9e-qf-AMF" eventType="touchDown" id="HW9-If-5Ci"/>
                                             </connections>
                                         </button>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RXJ-hp-AST">
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RXJ-hp-AST">
                                             <rect key="frame" x="0.0" y="55" width="117.5" height="50"/>
                                             <color key="backgroundColor" red="0.86959415669999995" green="0.32231938840000002" blue="0.31368485089999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="18"/>
@@ -398,7 +399,7 @@
                                                 <action selector="onOffTouched:" destination="c9e-qf-AMF" eventType="touchDown" id="pyy-Y6-O3p"/>
                                             </connections>
                                         </button>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aTC-ED-ndf">
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aTC-ED-ndf">
                                             <rect key="frame" x="122.5" y="55" width="117.5" height="50"/>
                                             <color key="backgroundColor" red="0.86959415669999995" green="0.32231938840000002" blue="0.31368485089999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="18"/>
@@ -414,7 +415,7 @@
                                                 <action selector="onOffTouched:" destination="c9e-qf-AMF" eventType="touchDown" id="DhW-Ab-W2o"/>
                                             </connections>
                                         </button>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="u97-J1-5hH">
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="u97-J1-5hH">
                                             <rect key="frame" x="0.0" y="110" width="117.5" height="50"/>
                                             <color key="backgroundColor" red="0.86959415669999995" green="0.32231938840000002" blue="0.31368485089999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="18"/>
@@ -430,7 +431,7 @@
                                                 <action selector="onOffTouched:" destination="c9e-qf-AMF" eventType="touchDown" id="ZhW-fU-iF4"/>
                                             </connections>
                                         </button>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pbd-am-y6L">
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pbd-am-y6L">
                                             <rect key="frame" x="122.5" y="110" width="117.5" height="50"/>
                                             <color key="backgroundColor" red="0.86959415669999995" green="0.32231938840000002" blue="0.31368485089999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="18"/>
@@ -533,7 +534,7 @@
                                 </label>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UEe-GH-Oyl" customClass="CombinedChartView" customModule="Charts">
                                     <rect key="frame" x="0.0" y="10" width="300" height="163"/>
-                                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 </view>
                             </subviews>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -650,5 +651,8 @@
         <image name="hp_minus.png" width="61.439998626708984" height="61.439998626708984"/>
         <image name="hp_plus.png" width="85.333335876464844" height="85.333335876464844"/>
         <image name="settings2.png" width="85.333335876464844" height="85.333335876464844"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
     </resources>
 </document>

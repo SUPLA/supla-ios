@@ -15,7 +15,7 @@
 "Igv-nx-eY7.text" = "Introduzca el nombre y la contraseña de su red WiFi (individual o empresarial) que posibilitará al dispositivo establecer la conexión con el servidor.";
 
 /* Class = "UILabel"; text = "Device configuration completed successfully :)"; ObjectID = "JYg-Vc-pZn"; */
-"JYg-Vc-pZn.text" = "Configuración del dispositivo finalizada con éxito :)";
+"JYg-Vc-pZn.text" = "Configuración del dispositivo completada con éxito :)";
 
 /* Class = "UILabel"; text = "Go to the iOS system settings and manually connect to the WiFi network beginning with SUPLA, ZAMEL or NICE. \n\nFor example: „SUPLA-A220A63612B1”. This is a temporary network of the i/o device enabling configuration. \n\nWhen the connection has been set, go back to the application and  continue adding  procedure by pressing the START button.  "; ObjectID = "LmT-sv-XIj"; */
 "LmT-sv-XIj.text" = "Proceda a los ajustes del sistema iOS y conéctese manualmente a la red WiFi cuyo nombre empieza con SUPLA o ZAMEL o NICE o HEATPOL.\n\nPor ejemplo: „SUPLA-A220A63612B1”. Es una red temporal del dispositivo, que sirve únicamente para efectuar la configuración.\n\nDespués de conectarse a la red, vuelva a la aplicación y continue el procedimiento de adición pulsando el botón Start.";
@@ -24,7 +24,7 @@
 "OMR-DU-yyQ.text" = "Recordar la contraseña";
 
 /* Class = "UILabel"; text = "Power up your executive device. Configuration mode should be the default mode for the device, confirmed by a status diode flashing as"; ObjectID = "QQN-Ba-rnP"; */
-"QQN-Ba-rnP.text" = "Conecta tu dispositivo de entrada/salida a la alimentación. El dispositivo debería funcionar por defecto en el modo de configuración, señalizándolo mediante el parpadeo del diodo de estado de la siguiente forma";
+"QQN-Ba-rnP.text" = "Conecte su dispositivo de entrada/salida a la alimentación. El dispositivo debería funcionar por defecto en el modo de configuración, señalizándolo mediante el parpadeo del diodo de estado de la siguiente forma";
 
 /* Class = "UILabel"; text = "Firmware"; ObjectID = "ctG-cj-mpZ"; */
 "ctG-cj-mpZ.text" = "Firmware";
@@ -39,7 +39,7 @@
 "t0Z-OG-dra.placeholder" = "Nombre de la red WiFi";
 
 /* Class = "UILabel"; text = "Welcome to the Device Add Wizard which will in an easy and simple way help you to add new device to the system."; ObjectID = "vbb-Xd-lIx"; */
-"vbb-Xd-lIx.text" = "Bienvenido al creador de adición de dispositivos, que te ayudará a añadir nuevos dispositivos al sistema de forma sencilla y rápida.";
+"vbb-Xd-lIx.text" = "Bienvenido al asistente de adición de dispositivos, que le ayudará a añadir nuevos dispositivos al sistema de forma sencilla y rápida.";
 
 /* Class = "UILabel"; text = "If the device when switched on does not work in the configuration mode, press and hold CONFIG button for at least 5 seconds.\n\nPress Next to continue.\n"; ObjectID = "y0X-IV-sH5"; */
 "y0X-IV-sH5.text" = "Si tras conectar la alimentación el dispositivo no funciona en el modo de configuración, mantén presionada la tecla CONFIG durante al menos 5 segundos.\n\nPara continuar presiona Siguiente.\n";

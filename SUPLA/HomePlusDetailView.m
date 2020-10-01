@@ -210,12 +210,12 @@ typedef enum {
 
 -(void)updateCalendarECOLabelWithCfgItem:(SAHomePlusCfgItem *)item {
     [self.vCalendar setProgram0Label:
-     [NSString stringWithFormat:@"%@ %i\u00B0", NSLocalizedString(@"ECO", nil), item.value]];
+     [NSString stringWithFormat:@"%@ %i\u00B0", NSLocalizedString(@"Lower", nil), item.value]];
 }
 
 -(void)updateCalendarComfortLabelWithCfgItem:(SAHomePlusCfgItem *)item {
     [self.vCalendar setProgram1Label:
-     [NSString stringWithFormat:@"%@ %i\u00B0", NSLocalizedString(@"Comfort", nil), item.value]];
+     [NSString stringWithFormat:@"%@ %i\u00B0", NSLocalizedString(@"Higher", nil), item.value]];
 }
 
 -(void)setCfgValue:(short)value cfgId:(short)cfgId {
