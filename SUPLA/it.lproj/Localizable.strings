@@ -126,6 +126,8 @@
 "Home+ Heater" = "Riscaldatore Home+";
 "Comfort" = "Comfort";
 "ECO" = "ECO";
+"Higher" = "Comfort";
+"Lower" = "ECO";
 "No water" = "Mancanza d’acqua";
 "Burnt heater" = "Resistenza bruciata";
 "Water temperature sensor error" = "Errore del sensore di temperatura dell’acqua";

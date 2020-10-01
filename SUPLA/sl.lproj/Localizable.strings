@@ -125,6 +125,8 @@
 "Home+ Heater" = "Gralec Home+";
 "Comfort" = "Udobje";
 "ECO" = "ECO";
+"Higher" = "Udobje";
+"Lower" = "ECO";
 "No water" = "Brez vode";
 "Burnt heater" = "Izgoreli grelec";
 "Water temperature sensor error" = "Napaka senzorja temperature vode";

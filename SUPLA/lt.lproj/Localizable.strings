@@ -127,6 +127,8 @@
 "Home+ Heater" = "Šildytuvas Home+";
 "Comfort" = "Comfort";
 "ECO" = "ECO";
+"Higher" = "Comfort";
+"Lower" = "ECO";
 "No water" = "Nėra Vandens";
 "Burnt heater" = "Šildytuvas perdegęs";
 "Water temperature sensor error" = "Vandens temperatūros jutiklio klaida";

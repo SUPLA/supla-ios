@@ -125,6 +125,8 @@
 "Home+ Heater" = "Grzałka Home+";
 "Comfort" = "Komfort";
 "ECO" = "ECO";
+"Higher" = "Komfort";
+"Lower" = "ECO";
 "No water" = "Brak wody";
 "Burnt heater" = "Spalona grzałka";
 "Water temperature sensor error" = "Błąd czujnika temperatury wody";

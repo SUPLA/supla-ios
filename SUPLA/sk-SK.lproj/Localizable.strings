@@ -125,6 +125,8 @@
 "Home+ Heater" = "Špirála Home+";
 "Comfort" = "Komfortná";
 "ECO" = "ECO";
+"Higher" = "Komfortná";
+"Lower" = "ECO";
 "No water" = "Žiadna voda";
 "Burnt heater" = "Zhorená špirála";
 "Water temperature sensor error" = "Chyba snímača teploty vody";
