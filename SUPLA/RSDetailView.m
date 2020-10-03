@@ -64,7 +64,7 @@
             self.onlineStatus.percent = cgroup.onlinePercent;
             self.rsView.percent = 0;
             
-            NSMutableArray *positions = cgroup.rsPositions;
+            NSMutableArray *positions = cgroup.positions;
             for(int a=0;a<positions.count;a++) {
                 int p = [[positions objectAtIndex:a] intValue];
                 if (p < 0) {
