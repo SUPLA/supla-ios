@@ -29,7 +29,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (BOOL) diffWithBuffer;
 - (void) assignBuffer;
 - (int) activePercent;
-- (NSMutableArray*) rsPositions;
+- (NSMutableArray*) positions;
 - (NSMutableArray*) colors;
 - (NSMutableArray*) colorBrightness;
 - (NSMutableArray*) brightness;

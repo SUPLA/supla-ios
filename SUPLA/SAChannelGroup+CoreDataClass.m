@@ -46,6 +46,7 @@
         case SUPLA_CHANNELFNC_CONTROLLINGTHEGATE:
         case SUPLA_CHANNELFNC_CONTROLLINGTHEGARAGEDOOR:
         case SUPLA_CHANNELFNC_CONTROLLINGTHEROLLERSHUTTER:
+        case SUPLA_CHANNELFNC_CONTROLLINGTHEROOFWINDOW:
         case SUPLA_CHANNELFNC_POWERSWITCH:
         case SUPLA_CHANNELFNC_LIGHTSWITCH:
         case SUPLA_CHANNELFNC_DIMMER:
@@ -88,7 +89,8 @@
         case SUPLA_CHANNELFNC_VALVE_PERCENTAGE:
             [BufferTotalValue addObject:[NSNumber numberWithInt: value.percentValue]];
             break;
-        case SUPLA_CHANNELFNC_CONTROLLINGTHEROLLERSHUTTER: {
+        case SUPLA_CHANNELFNC_CONTROLLINGTHEROLLERSHUTTER
+        case SUPLA_CHANNELFNC_CONTROLLINGTHEROOFWINDOW: {
             NSArray *obj = [NSArray arrayWithObjects:[NSNumber numberWithInt: value.percentValue],
                             [NSNumber numberWithBool: value.hiSubValue & 0x1], nil];
             [BufferTotalValue addObject:obj];
@@ -213,6 +215,7 @@
                 }
                 break;
             case SUPLA_CHANNELFNC_CONTROLLINGTHEROLLERSHUTTER:
+            case SUPLA_CHANNELFNC_CONTROLLINGTHEROOFWINDOW:
                 if ([self getIntFromObject:[v objectAtIndex:a] atArrIndex:0] >= 100     // percent
                     || [self getIntFromObject:[v objectAtIndex:a] atArrIndex:1] > 0) {  // sensor
                     sum++;
@@ -252,10 +255,11 @@
     return self.activePercent >= 100;
 }
 
-- (NSMutableArray*) rsPositions {
+- (NSMutableArray*) positions {
     NSMutableArray *result = [[NSMutableArray alloc] init];
     
-    if (self.func == SUPLA_CHANNELFNC_CONTROLLINGTHEROLLERSHUTTER
+    if ((self.func == SUPLA_CHANNELFNC_CONTROLLINGTHEROLLERSHUTTER
+         || self.func == SUPLA_CHANNELFNC_CONTROLLINGTHEROOFWINDOW)
         && self.total_value != nil) {
         NSArray *ar = (NSArray*)self.total_value;
         for(int a=0;a<ar.count;a++) {

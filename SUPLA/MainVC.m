@@ -148,6 +148,9 @@
         case SUPLA_EVENT_CONTROLLINGTHEROLLERSHUTTER:
             msg = NSLocalizedString(@"opened / closed roller shutter", nil);
             break;
+        case SUPLA_EVENT_CONTROLLINGTHEROOFWINDOW:
+            msg = NSLocalizedString(@"opened / closed the roof window", nil);
+            break;
         case SUPLA_EVENT_POWERONOFF:
             msg = NSLocalizedString(@"turned the power ON/OFF", nil);
             break;
@@ -529,6 +532,7 @@
                     break;
                     
                 case SUPLA_CHANNELFNC_CONTROLLINGTHEROLLERSHUTTER:
+                case SUPLA_CHANNELFNC_CONTROLLINGTHEROOFWINDOW:
                     
                     if ( _rsDetailView == nil ) {
                         
