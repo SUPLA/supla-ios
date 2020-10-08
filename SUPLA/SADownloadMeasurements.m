@@ -79,7 +79,7 @@
                 if ( (item = [items objectAtIndex:a])
                     && [item isKindOfClass:[NSDictionary class]]
                     && (str_ts = [item valueForKey:@"date_timestamp"])
-                    && min == [str_ts longLongValue]) {
+                    && llabs(min-[str_ts longLongValue]) < 1800) {
     
                     found = YES;
                     break;

@@ -151,8 +151,12 @@
                     return NSLocalizedString(@"Door", nil);
                 case SUPLA_CHANNELFNC_OPENINGSENSOR_ROLLERSHUTTER:
                     return NSLocalizedString(@"Roller shutter opening sensor", nil);
+            case SUPLA_CHANNELFNC_OPENINGSENSOR_ROOFWINDOW:
+                return NSLocalizedString(@"Roof window opening sensor", nil);
                 case SUPLA_CHANNELFNC_CONTROLLINGTHEROLLERSHUTTER:
                     return NSLocalizedString(@"Roller shutter", nil);
+            case SUPLA_CHANNELFNC_CONTROLLINGTHEROOFWINDOW:
+                return NSLocalizedString(@"Roof window", nil);
                 case SUPLA_CHANNELFNC_POWERSWITCH:
                     return NSLocalizedString(@"Power switch", nil);
                 case SUPLA_CHANNELFNC_LIGHTSWITCH:
@@ -285,6 +289,7 @@
             case SUPLA_CHANNELFNC_CONTROLLINGTHEGARAGEDOOR:
             case SUPLA_CHANNELFNC_CONTROLLINGTHEDOORLOCK:
             case SUPLA_CHANNELFNC_CONTROLLINGTHEROLLERSHUTTER:
+            case SUPLA_CHANNELFNC_CONTROLLINGTHEROOFWINDOW:
                 return [self hiSubValue];
                 
             case SUPLA_CHANNELFNC_OPENINGSENSOR_GATEWAY:
@@ -292,6 +297,7 @@
             case SUPLA_CHANNELFNC_OPENINGSENSOR_GARAGEDOOR:
             case SUPLA_CHANNELFNC_OPENINGSENSOR_DOOR:
             case SUPLA_CHANNELFNC_OPENINGSENSOR_ROLLERSHUTTER:
+            case SUPLA_CHANNELFNC_OPENINGSENSOR_ROOFWINDOW:
             case SUPLA_CHANNELFNC_MAILSENSOR:
             case SUPLA_CHANNELFNC_OPENINGSENSOR_WINDOW:
             case SUPLA_CHANNELFNC_POWERSWITCH:
@@ -422,6 +428,10 @@
         case SUPLA_CHANNELFNC_OPENINGSENSOR_ROLLERSHUTTER:
         case SUPLA_CHANNELFNC_CONTROLLINGTHEROLLERSHUTTER:
             n1 = @"rollershutter";
+            break;
+        case SUPLA_CHANNELFNC_OPENINGSENSOR_ROOFWINDOW:
+        case SUPLA_CHANNELFNC_CONTROLLINGTHEROOFWINDOW:
+            n1 = @"roofwindow";
             break;
         case SUPLA_CHANNELFNC_POWERSWITCH:
             switch(self.alticon) {

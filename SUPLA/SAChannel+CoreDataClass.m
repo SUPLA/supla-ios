@@ -148,7 +148,8 @@
 - (int) imgIsActive {
     
     if ( [self isOnline]
-        && self.func == SUPLA_CHANNELFNC_CONTROLLINGTHEROLLERSHUTTER
+        && (self.func == SUPLA_CHANNELFNC_CONTROLLINGTHEROLLERSHUTTER
+            || self.func == SUPLA_CHANNELFNC_CONTROLLINGTHEROOFWINDOW)
         && self.percentValue >= 100) {
         return 1;
     }
