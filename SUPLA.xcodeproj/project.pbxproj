@@ -96,6 +96,8 @@
 		019D22F0233CC2D000F17135 /* SAPreloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 019D22EF233CC2D000F17135 /* SAPreloader.m */; };
 		019F4CAC2354DC3300286139 /* ImpulseCounterDetailView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 019F4CAE2354DC3300286139 /* ImpulseCounterDetailView.xib */; };
 		019F4CCD23577C3700286139 /* SAImpulseCounterChartHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 019F4CCC23577C3700286139 /* SAImpulseCounterChartHelper.m */; };
+		01A66A7525364AA400C00A1A /* SARoofWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 01A66A7425364AA400C00A1A /* SARoofWindowController.m */; };
+		01A66A7925364ABA00C00A1A /* SARoofWindowControllerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 01A66A7825364ABA00C00A1A /* SARoofWindowControllerTests.m */; };
 		01AC1AD62487C35E00F734DF /* SAColorBrightnessPickerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 01AC1AD52487C35E00F734DF /* SAColorBrightnessPickerTests.m */; };
 		01BDAC7522C518DE00915646 /* SARestApiClientTask.m in Sources */ = {isa = PBXBuildFile; fileRef = 01BDAC7422C518DE00915646 /* SARestApiClientTask.m */; };
 		01BDAC7822C5200600915646 /* SAOAuthToken.m in Sources */ = {isa = PBXBuildFile; fileRef = 01BDAC7722C5200600915646 /* SAOAuthToken.m */; };
@@ -582,6 +584,9 @@
 		019F4CCA2354DC4900286139 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/ImpulseCounterDetailView.strings; sourceTree = "<group>"; };
 		019F4CCB23577C3700286139 /* SAImpulseCounterChartHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SAImpulseCounterChartHelper.h; sourceTree = "<group>"; };
 		019F4CCC23577C3700286139 /* SAImpulseCounterChartHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SAImpulseCounterChartHelper.m; sourceTree = "<group>"; };
+		01A66A7325364AA400C00A1A /* SARoofWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SARoofWindowController.h; sourceTree = "<group>"; };
+		01A66A7425364AA400C00A1A /* SARoofWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SARoofWindowController.m; sourceTree = "<group>"; };
+		01A66A7825364ABA00C00A1A /* SARoofWindowControllerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SARoofWindowControllerTests.m; sourceTree = "<group>"; };
 		01AC1AD52487C35E00F734DF /* SAColorBrightnessPickerTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SAColorBrightnessPickerTests.m; sourceTree = "<group>"; };
 		01B216CF22AECB2F004E0596 /* SUPLA 3.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "SUPLA 3.xcdatamodel"; sourceTree = "<group>"; };
 		01BDAC7322C518DE00915646 /* SARestApiClientTask.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SARestApiClientTask.h; sourceTree = "<group>"; };
@@ -1292,6 +1297,7 @@
 		401CA1D81BA067DB00117AF4 /* SUPLATests */ = {
 			isa = PBXGroup;
 			children = (
+				01A66A7825364ABA00C00A1A /* SARoofWindowControllerTests.m */,
 				01DD2F0B247718C40025DFF9 /* SARangeCalibrationWheelTests.m */,
 				01EFD94B236CA9AE00893489 /* NSDataEncryptionTest.m */,
 				016ABE17236DA795001BF5FB /* KeychainTests.m */,
@@ -1686,6 +1692,8 @@
 		40A675851BA1BEBF004A51C4 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				01A66A7325364AA400C00A1A /* SARoofWindowController.h */,
+				01A66A7425364AA400C00A1A /* SARoofWindowController.m */,
 				010C877D249A4D55002FE526 /* SAInfoVC.h */,
 				010C877E249A4D55002FE526 /* SAInfoVC.m */,
 				01DD2F0E247718FF0025DFF9 /* SARangeCalibrationWheel.h */,
@@ -2257,6 +2265,7 @@
 				01392B37235C91C1003A2BAD /* SADownloadTemperatureMeasurements.m in Sources */,
 				01C1719A22C7F55B005983E1 /* SAMeasurementItem+CoreDataProperties.m in Sources */,
 				01511CFA24F50B470081A1EC /* SAPreloaderPopup.m in Sources */,
+				01A66A7525364AA400C00A1A /* SARoofWindowController.m in Sources */,
 				01902A25235A17E9005ED935 /* TemperatureDetailView.m in Sources */,
 				01EE9BBB22BA50D90029A142 /* SAChannelValueBase+CoreDataClass.m in Sources */,
 				40F7301120C19BA600167C2D /* SAColorListItem+CoreDataProperties.m in Sources */,
@@ -2355,6 +2364,7 @@
 				0130894523395F4C00F46FCD /* ThermostatScheduleCfgTests.m in Sources */,
 				01AC1AD62487C35E00F734DF /* SAColorBrightnessPickerTests.m in Sources */,
 				012FCBD323217DE000AC6FF6 /* ThermostatCalendarTests.m in Sources */,
+				01A66A7925364ABA00C00A1A /* SARoofWindowControllerTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
