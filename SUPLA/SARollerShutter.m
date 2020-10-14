@@ -279,7 +279,7 @@
     float percent = moving ? virtPercent : _percent;
     CGContextSetLineWidth(context, 0.5);
     
-    if (self.percent == 0 && self.markers != nil && self.markers.count > 0) {
+    if (!moving && self.percent == 0 && self.markers != nil && self.markers.count > 0) {
         
         float markerHalfHeight = _spaceing + _frameLineWidth / 2;
         float markerArrowWidth = _spaceing * 2;
