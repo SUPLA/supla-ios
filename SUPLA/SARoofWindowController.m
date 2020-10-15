@@ -19,7 +19,7 @@
 #define WINDOW_ROTATION_Y 330
 #define WINDOW_HEIGHT_RATIO 1.0
 #define WINDOW_WIDTH_RATIO 0.69
-#define LINE_WIDTH 0.8
+#define LINE_WIDTH 1.5
 
 #import "SARoofWindowController.h"
 
