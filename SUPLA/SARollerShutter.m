@@ -20,9 +20,14 @@
     BOOL initialized;
     BOOL moving;
     NSArray *_markers;
-    UIColor *_windowColor;
+    UIColor *_windowFrameColor;
+    UIColor *_windowFrameLineColor;
     UIColor *_sunColor;
+    UIColor *_glassColor;
     UIColor *_markerColor;
+    UIColor *_rollerShutterBackgroundColor;
+    UIColor *_rollerShutterColor;
+    UIColor *_rollerShutterLineColor;
     CGFloat _frameLineWidth;
     CGFloat _spaceing;
     CGFloat _louverSpaceing;
@@ -41,12 +46,18 @@
         return;
     
     _markers = nil;
-    _windowColor = [UIColor blackColor];
-    _sunColor = _windowColor;
+    _windowFrameColor = [UIColor whiteColor];
+    _windowFrameLineColor = [UIColor blackColor];
+    _markerColor = [UIColor redColor];
+    _sunColor = [UIColor whiteColor];
+    _glassColor = [UIColor colorWithRed: 0.75 green: 0.85 blue: 0.95 alpha: 1.00];
+    _rollerShutterBackgroundColor = [UIColor colorWithRed: 0.93 green: 0.93 blue: 0.93 alpha: 1.00];
+    _rollerShutterColor = [UIColor whiteColor];
+    _rollerShutterLineColor = [UIColor blackColor];
     _frameLineWidth = 2;
     _spaceing = 3;
     _louverCount = 10;
-    _louverSpaceing = _spaceing;
+    _louverSpaceing = 1.5;
     _percent = 0;
     virtPercent = 0;
     
@@ -103,16 +114,26 @@
     }
 }
 
--(UIColor*)windowColor {
-    return _windowColor;
+-(UIColor*)windowFrameColor {
+    return _windowFrameColor;
 }
 
--(void)setWindowColor:(UIColor *)windowColor {
-    _windowColor = windowColor == nil ? [UIColor blackColor] : windowColor;
-    
-    if ( initialized )
+-(void)setWindowFrameColor:(UIColor *)windowFrameColor {
+    if (windowFrameColor != nil) {
+        _windowFrameColor = windowFrameColor;
         [self setNeedsDisplay];
-    
+    }
+}
+
+-(UIColor*)windowFrameLineColor {
+    return _windowFrameLineColor;
+}
+
+-(void)setWindowFrameLineColor:(UIColor *)windowFrameLineColor {
+    if (windowFrameLineColor != nil) {
+        _windowFrameLineColor = windowFrameLineColor;
+        [self setNeedsDisplay];
+    }
 }
 
 -(UIColor*)sunColor {
@@ -120,24 +141,65 @@
 }
 
 -(void)setSunColor:(UIColor *)sunColor {
-    _sunColor = sunColor == nil ? self.windowColor : sunColor;
-    
-    if ( initialized )
+    if (sunColor != nil) {
+        _sunColor = sunColor;
         [self setNeedsDisplay];
+    }
 }
 
 -(void)setMarkerColor:(UIColor *)markerColor {
-    _markerColor = markerColor;
-  
-    if ( initialized )
+    if (markerColor != nil) {
+        _markerColor = markerColor;
         [self setNeedsDisplay];
+    }
 }
 
 -(UIColor*)markerColor {
-    if (_markerColor == nil) {
-        return [UIColor redColor];
-    }
     return _markerColor;
+}
+
+-(void)setGlassColor:(UIColor *)glassColor {
+    if (glassColor != nil) {
+        _glassColor = glassColor;
+        [self setNeedsDisplay];
+    }
+}
+
+-(UIColor*)glassColor {
+    return _glassColor;
+}
+
+-(void)setRollerShutterBackgroundColor:(UIColor *)rollerShutterBackgroundColor {
+    if (rollerShutterBackgroundColor != nil) {
+        _rollerShutterBackgroundColor = rollerShutterBackgroundColor;
+        [self setNeedsDisplay];
+    }
+}
+
+-(UIColor*)rollerShutterBackgroundColor {
+    return _rollerShutterBackgroundColor;
+}
+
+-(void)setRollerShutterColor:(UIColor *)rollerShutterColor {
+    if (rollerShutterColor != nil) {
+        _rollerShutterColor = rollerShutterColor;
+        [self setNeedsDisplay];
+    }
+}
+
+-(UIColor*)rollerShutterColor {
+    return _rollerShutterColor;
+}
+
+-(void)setRollerShutterLineColor:(UIColor *)rollerShutterLineColor {
+    if (rollerShutterLineColor != nil) {
+        _rollerShutterLineColor = rollerShutterLineColor;
+        [self setNeedsDisplay];
+    }
+}
+
+-(UIColor*)rollerShutterLineColor {
+    return _rollerShutterLineColor;
 }
 
 -(void)setBackgroundColor:(UIColor *)backgroundColor {
@@ -205,7 +267,8 @@
     CGContextRef context = UIGraphicsGetCurrentContext();
     CGContextSetShouldAntialias(context, YES);
     
-    [_windowColor setStroke];
+    [_windowFrameLineColor setStroke];
+    [_windowFrameColor setFill];
     
     CGFloat lrMargin = _frameLineWidth * 0.5;
     
@@ -216,8 +279,8 @@
 
     UIBezierPath *path =[UIBezierPath bezierPathWithRoundedRect:CGRectMake(x, y, width, height) cornerRadius:1];
     path.lineWidth = _frameLineWidth;
+    [path fill];
     [path stroke];
-    
     
     x = lrMargin + _frameLineWidth * 1.5 + _spaceing;
     y = _frameLineWidth * 1.5 + _spaceing;
@@ -227,20 +290,26 @@
     width=width/2 - _frameLineWidth / 2;
     height=height/2 - _frameLineWidth / 2;
  
+    [_glassColor setFill];
+    
     path = [UIBezierPath bezierPathWithRect:CGRectMake(x, y, width, height)];
     path.lineWidth = _frameLineWidth;
+    [path fill];
     [path stroke];
     
     path = [UIBezierPath bezierPathWithRect:CGRectMake(x+width+_frameLineWidth+_spaceing, y, width, height)];
     path.lineWidth = _frameLineWidth;
+    [path fill];
     [path stroke];
     
     path = [UIBezierPath bezierPathWithRect:CGRectMake(x, y+height+_frameLineWidth+_spaceing, width, height)];
     path.lineWidth = _frameLineWidth;
+    [path fill];
     [path stroke];
     
     path = [UIBezierPath bezierPathWithRect:CGRectMake(x+width+_frameLineWidth+_spaceing, y+height+_frameLineWidth+_spaceing, width, height)];
     path.lineWidth = _frameLineWidth;
+    [path fill];
     [path stroke];
     
     x += width+_frameLineWidth*1.5+_spaceing;
@@ -318,34 +387,31 @@
     
     height = self.bounds.size.height*percent/100;
     path = [UIBezierPath bezierPathWithRect:CGRectMake(0, 0, self.bounds.size.width, height)];
-    [self.backgroundColor setFill];
+    [_rollerShutterBackgroundColor setFill];
     [path fill];
-    
-    
+
     CGFloat LouverHeight = (self.bounds.size.height - _louverSpaceing * (_louverCount-1)) / _louverCount - _frameLineWidth;
     
     height-=_frameLineWidth/2;
     width = self.bounds.size.width - _frameLineWidth;
     x = _frameLineWidth/2;
     
-    UIColor *color = moving ? [_windowColor colorWithAlphaComponent:0.5] : _windowColor;
-    [color setStroke];
+    [_rollerShutterLineColor setStroke];
+    [_rollerShutterColor setFill];
 
     for(a=0;a<_louverCount;a++) {
         path = [UIBezierPath bezierPathWithRect:CGRectMake(x, height-LouverHeight, width, LouverHeight)];
         path.lineWidth = _frameLineWidth;
+        [path fill];
         [path stroke];
         
         height=height-LouverHeight-_louverSpaceing-_frameLineWidth;
     }
     
-    CGContextSetStrokeColorWithColor(context, color.CGColor);
+    CGContextSetStrokeColorWithColor(context, _rollerShutterLineColor.CGColor);
     CGContextMoveToPoint(context, 0, 0.25);
     CGContextAddLineToPoint(context, self.bounds.size.width, 0.25);
     CGContextStrokePath(context);
-    
-
-    
 }
 
 - (void)handlePan:(UIPanGestureRecognizer *)gr {
