@@ -30,9 +30,13 @@
     
     if ( self.initialized == NO ) {
         self.backgroundColor = [UIColor rsDetailBackground];
-        self.rsView.markerColor = [UIColor rsMarkerColor];
-        self.rsView.gestureEnabled = YES;
-        self.rsView.delegate = self;
+        self.rollerShutter.markerColor = [UIColor rsMarkerColor];
+        self.rollerShutter.gestureEnabled = YES;
+        self.rollerShutter.delegate = self;
+        self.rollerShutter.hidden = NO;
+        
+        self.roofWindow.delegate = self;
+        self.roofWindow.hidden = NO;
         
         self.onlineStatus.onlineColor = [UIColor onLine];
         self.onlineStatus.offlineColor = [UIColor offLine];
@@ -44,8 +48,10 @@
 
 - (void)timer1FireMethod:(NSTimer *)timer {
     int percent = [timer.userInfo intValue];
-    self.rsView.percent = percent;
-    self.rsView.markers = nil;
+    self.rollerShutter.percent = percent;
+    self.rollerShutter.markers = nil;
+    self.roofWindow.closingPercentage = percent;
+    self.roofWindow.markers = nil;
     [self.labelPercent setText:[NSString stringWithFormat:@"%i%%", percent]];
     [timer invalidate];
 }
@@ -53,16 +59,25 @@
 -(void)dataToView {
     
     self.onlineStatus.hidden = YES;
+    self.rollerShutter.hidden = YES;
+    self.roofWindow.hidden = YES;
     
     if ( self.channelBase != nil ) {
         
         int percent = -1;
         
+        if (self.channelBase.func == SUPLA_CHANNELFNC_CONTROLLINGTHEROOFWINDOW) {
+            self.roofWindow.hidden = NO;
+        } else {
+            self.rollerShutter.hidden = NO;
+        }
+        
         if ([self.channelBase isKindOfClass: [SAChannelGroup class]]) {
             SAChannelGroup *cgroup = (SAChannelGroup*)self.channelBase;
             self.onlineStatus.hidden = NO;
             self.onlineStatus.percent = cgroup.onlinePercent;
-            self.rsView.percent = 0;
+            self.rollerShutter.percent = 0;
+            self.roofWindow.closingPercentage = 0;
             
             NSMutableArray *positions = cgroup.positions;
             for(int a=0;a<positions.count;a++) {
@@ -83,15 +98,18 @@
             }
             
             if (percent >= 0) {
-                self.rsView.markers = positions;
+                self.rollerShutter.markers = positions;
+                self.roofWindow.markers = positions;
                  [self.labelPercent setText:NSLocalizedString(@"---", NULL)];
                 delayTimer1 = [NSTimer scheduledTimerWithTimeInterval:2 target:self selector:@selector(timer1FireMethod:) userInfo:[NSNumber numberWithInt:percent] repeats:NO];
             } else if (percent == -1) {
                 // All of RS wait for calibration
-                self.rsView.markers = nil;
+                self.rollerShutter.markers = nil;
+                self.roofWindow.markers = nil;
                  [self.labelPercent setText:NSLocalizedString(@"[Calibration]", NULL)];
             } else {
-                 self.rsView.markers = positions;
+                self.rollerShutter.markers = positions;
+                self.roofWindow.markers = positions;
                 [self.labelPercent setText:NSLocalizedString(@"---", NULL)];
             }
             
@@ -102,7 +120,8 @@
                 percent = 100;
             }
             
-            self.rsView.percent = percent;
+            self.rollerShutter.percent = percent;
+            self.roofWindow.closingPercentage = percent;
             
             if ( percent < 0 ) {
                 [self.labelPercent setText:NSLocalizedString(@"[Calibration]", NULL)];
@@ -165,4 +184,12 @@
     [self open:percent+10];
 }
 
+- (void)roofWindowClosingPercentageChanged:(id)roofWindowController percent:(float)percent {
+    [self dataToView];
+    [self open:percent+10];
+}
+
+- (void)roofWindowClosingPercentageChangeing:(id)roofWindowController percent:(float)percent {
+    [self.labelPercent setText:[NSString stringWithFormat:@"%i%%", (int)percent]];
+}
 @end

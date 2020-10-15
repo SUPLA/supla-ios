@@ -20,19 +20,19 @@ NS_ASSUME_NONNULL_BEGIN
 @protocol SARoofWindowControllerDelegate <NSObject>
 
 @required
--(void) roofWindowOpeningPercentageChangeing:(id)roofWindowController percent:(float)percent;
--(void) roofWindowOpeningPercentageChanged:(id)roofWindowController percent:(float)percent;
+-(void) roofWindowClosingPercentageChangeing:(id)roofWindowController percent:(float)percent;
+-(void) roofWindowClosingPercentageChanged:(id)roofWindowController percent:(float)percent;
 
 @end
 
 @interface SARoofWindowController : UIView
 
-@property (nonatomic) float openingPercentage;
+@property (nonatomic) float closingPercentage;
 @property (nonatomic, nullable, copy) UIColor *lineColor;
 @property (nonatomic, nullable, copy) UIColor *frameColor;
 @property (nonatomic, nullable, copy) UIColor *glassColor;
 @property (nonatomic, nullable, copy) UIColor *markerColor;
-@property(nonatomic, copy) NSArray *markers;
+@property(nonatomic, nullable, copy) NSArray *markers;
 
 @property(weak, nonatomic) id<SARoofWindowControllerDelegate> delegate;
 @end

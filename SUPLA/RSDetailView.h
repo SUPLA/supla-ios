@@ -18,16 +18,18 @@
 
 #import "DetailView.h"
 #import "SARollerShutter.h"
+#import "SARoofWindowController.h"
 #import "SAUIChannelStatus.h"
 
-@interface SARSDetailView : SADetailView <SARollerShutterDelegate>
+@interface SARSDetailView : SADetailView <SARollerShutterDelegate, SARoofWindowControllerDelegate>
 - (IBAction)upTouch:(id)sender;
 - (IBAction)downTouch:(id)sender;
 - (IBAction)stopTouch:(id)sender;
 - (IBAction)openTouch:(id)sender;
 - (IBAction)closeTouch:(id)sender;
 @property (weak, nonatomic) IBOutlet UILabel *labelPercent;
-@property (weak, nonatomic) IBOutlet SARollerShutter *rsView;
+@property (weak, nonatomic) IBOutlet SARollerShutter *rollerShutter;
+@property (weak, nonatomic) IBOutlet SARoofWindowController *roofWindow;
 @property (weak, nonatomic) IBOutlet SAUIChannelStatus *onlineStatus;
 
 

@@ -64,13 +64,13 @@
 }
 
 - (void)testOpeningPercentageProperty {
-    XCTAssertEqual(roofWindowController.openingPercentage, 0);
-    roofWindowController.openingPercentage = 55.55f;
-    XCTAssertEqualWithAccuracy(roofWindowController.openingPercentage, 55.55, 0.001);
-    roofWindowController.openingPercentage = -1;
-    XCTAssertEqual(roofWindowController.openingPercentage, 0);
-    roofWindowController.openingPercentage = 110;
-    XCTAssertEqual(roofWindowController.openingPercentage, 100);
+    XCTAssertEqual(roofWindowController.closingPercentage, 0);
+    roofWindowController.closingPercentage = 55.55f;
+    XCTAssertEqualWithAccuracy(roofWindowController.closingPercentage, 55.55, 0.001);
+    roofWindowController.closingPercentage = -1;
+    XCTAssertEqual(roofWindowController.closingPercentage, 0);
+    roofWindowController.closingPercentage = 110;
+    XCTAssertEqual(roofWindowController.closingPercentage, 100);
 }
 
 - (void)testMarkerProperty {
