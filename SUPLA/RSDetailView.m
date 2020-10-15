@@ -120,7 +120,9 @@
                 percent = 100;
             }
             
+            self.rollerShutter.markers = nil;
             self.rollerShutter.percent = percent;
+            self.roofWindow.markers = nil;
             self.roofWindow.closingPercentage = percent;
             
             if ( percent < 0 ) {
