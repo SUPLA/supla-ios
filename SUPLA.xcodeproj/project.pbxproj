@@ -33,6 +33,10 @@
 		01392B37235C91C1003A2BAD /* SADownloadTemperatureMeasurements.m in Sources */ = {isa = PBXBuildFile; fileRef = 01392B36235C91C1003A2BAD /* SADownloadTemperatureMeasurements.m */; };
 		01392B3A235CA8B1003A2BAD /* ChartDetailView.m in Sources */ = {isa = PBXBuildFile; fileRef = 01392B39235CA8B1003A2BAD /* ChartDetailView.m */; };
 		01392B3D235CE68D003A2BAD /* SATemperatureChartHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 01392B3C235CE68D003A2BAD /* SATemperatureChartHelper.m */; };
+		013A1BFB2538BAA0000583A2 /* roofwindow-open@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 013A1BF72538BAA0000583A2 /* roofwindow-open@3x.png */; };
+		013A1BFC2538BAA0000583A2 /* roofwindow-closed@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 013A1BF82538BAA0000583A2 /* roofwindow-closed@3x.png */; };
+		013A1BFD2538BAA0000583A2 /* roofwindow-open@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 013A1BF92538BAA0000583A2 /* roofwindow-open@2x.png */; };
+		013A1BFE2538BAA0000583A2 /* roofwindow-closed@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 013A1BFA2538BAA0000583A2 /* roofwindow-closed@2x.png */; };
 		013D1C5D22CE47D5000C0784 /* SAChartHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 013D1C5C22CE47D5000C0784 /* SAChartHelper.m */; };
 		013D1C6022CE757F000C0784 /* SAIncrementalMeterChartHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 013D1C5F22CE757F000C0784 /* SAIncrementalMeterChartHelper.m */; };
 		013D1C6322CE75A3000C0784 /* SAElectricityChartHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 013D1C6222CE75A3000C0784 /* SAElectricityChartHelper.m */; };
@@ -96,6 +100,8 @@
 		019D22F0233CC2D000F17135 /* SAPreloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 019D22EF233CC2D000F17135 /* SAPreloader.m */; };
 		019F4CAC2354DC3300286139 /* ImpulseCounterDetailView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 019F4CAE2354DC3300286139 /* ImpulseCounterDetailView.xib */; };
 		019F4CCD23577C3700286139 /* SAImpulseCounterChartHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 019F4CCC23577C3700286139 /* SAImpulseCounterChartHelper.m */; };
+		01A66A7525364AA400C00A1A /* SARoofWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 01A66A7425364AA400C00A1A /* SARoofWindowController.m */; };
+		01A66A7925364ABA00C00A1A /* SARoofWindowControllerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 01A66A7825364ABA00C00A1A /* SARoofWindowControllerTests.m */; };
 		01AC1AD62487C35E00F734DF /* SAColorBrightnessPickerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 01AC1AD52487C35E00F734DF /* SAColorBrightnessPickerTests.m */; };
 		01BDAC7522C518DE00915646 /* SARestApiClientTask.m in Sources */ = {isa = PBXBuildFile; fileRef = 01BDAC7422C518DE00915646 /* SARestApiClientTask.m */; };
 		01BDAC7822C5200600915646 /* SAOAuthToken.m in Sources */ = {isa = PBXBuildFile; fileRef = 01BDAC7722C5200600915646 /* SAOAuthToken.m */; };
@@ -451,6 +457,10 @@
 		01392B39235CA8B1003A2BAD /* ChartDetailView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChartDetailView.m; sourceTree = "<group>"; };
 		01392B3B235CE68D003A2BAD /* SATemperatureChartHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SATemperatureChartHelper.h; sourceTree = "<group>"; };
 		01392B3C235CE68D003A2BAD /* SATemperatureChartHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SATemperatureChartHelper.m; sourceTree = "<group>"; };
+		013A1BF72538BAA0000583A2 /* roofwindow-open@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "roofwindow-open@3x.png"; path = "Resources/Assets/Img/roofwindow-open@3x.png"; sourceTree = "<group>"; };
+		013A1BF82538BAA0000583A2 /* roofwindow-closed@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "roofwindow-closed@3x.png"; path = "Resources/Assets/Img/roofwindow-closed@3x.png"; sourceTree = "<group>"; };
+		013A1BF92538BAA0000583A2 /* roofwindow-open@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "roofwindow-open@2x.png"; path = "Resources/Assets/Img/roofwindow-open@2x.png"; sourceTree = "<group>"; };
+		013A1BFA2538BAA0000583A2 /* roofwindow-closed@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "roofwindow-closed@2x.png"; path = "Resources/Assets/Img/roofwindow-closed@2x.png"; sourceTree = "<group>"; };
 		013D1C5B22CE47D5000C0784 /* SAChartHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SAChartHelper.h; sourceTree = "<group>"; };
 		013D1C5C22CE47D5000C0784 /* SAChartHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SAChartHelper.m; sourceTree = "<group>"; };
 		013D1C5E22CE757F000C0784 /* SAIncrementalMeterChartHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SAIncrementalMeterChartHelper.h; sourceTree = "<group>"; };
@@ -582,6 +592,9 @@
 		019F4CCA2354DC4900286139 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/ImpulseCounterDetailView.strings; sourceTree = "<group>"; };
 		019F4CCB23577C3700286139 /* SAImpulseCounterChartHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SAImpulseCounterChartHelper.h; sourceTree = "<group>"; };
 		019F4CCC23577C3700286139 /* SAImpulseCounterChartHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SAImpulseCounterChartHelper.m; sourceTree = "<group>"; };
+		01A66A7325364AA400C00A1A /* SARoofWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SARoofWindowController.h; sourceTree = "<group>"; };
+		01A66A7425364AA400C00A1A /* SARoofWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SARoofWindowController.m; sourceTree = "<group>"; };
+		01A66A7825364ABA00C00A1A /* SARoofWindowControllerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SARoofWindowControllerTests.m; sourceTree = "<group>"; };
 		01AC1AD52487C35E00F734DF /* SAColorBrightnessPickerTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SAColorBrightnessPickerTests.m; sourceTree = "<group>"; };
 		01B216CF22AECB2F004E0596 /* SUPLA 3.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "SUPLA 3.xcdatamodel"; sourceTree = "<group>"; };
 		01BDAC7322C518DE00915646 /* SARestApiClientTask.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SARestApiClientTask.h; sourceTree = "<group>"; };
@@ -1292,6 +1305,7 @@
 		401CA1D81BA067DB00117AF4 /* SUPLATests */ = {
 			isa = PBXGroup;
 			children = (
+				01A66A7825364ABA00C00A1A /* SARoofWindowControllerTests.m */,
 				01DD2F0B247718C40025DFF9 /* SARangeCalibrationWheelTests.m */,
 				01EFD94B236CA9AE00893489 /* NSDataEncryptionTest.m */,
 				016ABE17236DA795001BF5FB /* KeychainTests.m */,
@@ -1345,6 +1359,10 @@
 		405AC4011BC15878004F7311 /* Img */ = {
 			isa = PBXGroup;
 			children = (
+				013A1BFA2538BAA0000583A2 /* roofwindow-closed@2x.png */,
+				013A1BF82538BAA0000583A2 /* roofwindow-closed@3x.png */,
+				013A1BF92538BAA0000583A2 /* roofwindow-open@2x.png */,
+				013A1BF72538BAA0000583A2 /* roofwindow-open@3x.png */,
 				01793C5424D76EBB00CD2533 /* lookblack@2x.png */,
 				0180440924C2001A005E53EB /* channelstateinfo@3x.png */,
 				018D2E5024BF258B00773D2F /* uv-off@2x.png */,
@@ -1686,6 +1704,8 @@
 		40A675851BA1BEBF004A51C4 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				01A66A7325364AA400C00A1A /* SARoofWindowController.h */,
+				01A66A7425364AA400C00A1A /* SARoofWindowController.m */,
 				010C877D249A4D55002FE526 /* SAInfoVC.h */,
 				010C877E249A4D55002FE526 /* SAInfoVC.m */,
 				01DD2F0E247718FF0025DFF9 /* SARangeCalibrationWheel.h */,
@@ -1885,6 +1905,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				013F7EC523EB4B500061A497 /* battery@2x.png in Resources */,
+				013A1BFD2538BAA0000583A2 /* roofwindow-open@2x.png in Resources */,
 				40CF96C51BC7D4E70030EFFF /* power-on@3x.png in Resources */,
 				40844D7F1FB0DDB000432AA0 /* SettingsVC.xib in Resources */,
 				017554F822F1CDB900EB58B7 /* heatpollogo@3x.png in Resources */,
@@ -1981,6 +2002,7 @@
 				407D31A81FD1B75F0062FB80 /* logo-white@3x.png in Resources */,
 				407D4AF11BC6C6A4009A5505 /* app_icon180x180@3x.png in Resources */,
 				0180440C24C254CF005E53EB /* SAChannelStatePopup.xib in Resources */,
+				013A1BFE2538BAA0000583A2 /* roofwindow-closed@2x.png in Resources */,
 				40B9ED831FACE15700403B1A /* mail@3x.png in Resources */,
 				40DE1A291BCCFF8A004CF43B /* feedback@2x.png in Resources */,
 				018D2E5324BF258B00773D2F /* uv-on@3x.png in Resources */,
@@ -2015,6 +2037,7 @@
 				40477B5320C6CF2600E995E6 /* gate-closed-50percent@3x.png in Resources */,
 				40CF96B81BC7D4E70030EFFF /* gateway-open@2x.png in Resources */,
 				01F910FF22EF954400BFF91D /* thermostat_hp_homeplus3-off@3x.png in Resources */,
+				013A1BFC2538BAA0000583A2 /* roofwindow-closed@3x.png in Resources */,
 				40477B6020C6F62A00E995E6 /* groupson@2x.png in Resources */,
 				01D2C38D22C3B0A700BF1A10 /* graphon.png in Resources */,
 				012E341623DF5FB800F17D39 /* valve-closed@3x.png in Resources */,
@@ -2113,6 +2136,7 @@
 				4052DA021DC515AE000B8C45 /* dimmerrgb-offon@3x.png in Resources */,
 				40CF96AE1BC7D4E70030EFFF /* garagedoor-closed@2x.png in Resources */,
 				017A3CAF23635DF7004AD1FC /* rain@2x.png in Resources */,
+				013A1BFB2538BAA0000583A2 /* roofwindow-open@3x.png in Resources */,
 				407D31A71FD1B75F0062FB80 /* logo-white@2x.png in Resources */,
 				40CF96DB1BC81A470030EFFF /* warning@3x.png in Resources */,
 				4091AF3F1FC8405200EFF357 /* btnnextl@2x.png in Resources */,
@@ -2257,6 +2281,7 @@
 				01392B37235C91C1003A2BAD /* SADownloadTemperatureMeasurements.m in Sources */,
 				01C1719A22C7F55B005983E1 /* SAMeasurementItem+CoreDataProperties.m in Sources */,
 				01511CFA24F50B470081A1EC /* SAPreloaderPopup.m in Sources */,
+				01A66A7525364AA400C00A1A /* SARoofWindowController.m in Sources */,
 				01902A25235A17E9005ED935 /* TemperatureDetailView.m in Sources */,
 				01EE9BBB22BA50D90029A142 /* SAChannelValueBase+CoreDataClass.m in Sources */,
 				40F7301120C19BA600167C2D /* SAColorListItem+CoreDataProperties.m in Sources */,
@@ -2355,6 +2380,7 @@
 				0130894523395F4C00F46FCD /* ThermostatScheduleCfgTests.m in Sources */,
 				01AC1AD62487C35E00F734DF /* SAColorBrightnessPickerTests.m in Sources */,
 				012FCBD323217DE000AC6FF6 /* ThermostatCalendarTests.m in Sources */,
+				01A66A7925364ABA00C00A1A /* SARoofWindowControllerTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2762,7 +2788,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 63;
+				CURRENT_PROJECT_VERSION = 64;
 				DEFINES_MODULE = YES;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"$(inherited)",
@@ -2777,7 +2803,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/SUPLA/lib",
 				);
-				MARKETING_VERSION = 2.3.22;
+				MARKETING_VERSION = 2.3.23;
 				PRODUCT_BUNDLE_IDENTIFIER = com.acsoftware.ios.supla;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "SUPLA/SUPLA-Bridging-Header.h";
@@ -2794,7 +2820,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 63;
+				CURRENT_PROJECT_VERSION = 64;
 				DEFINES_MODULE = YES;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"$(inherited)",
@@ -2809,7 +2835,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/SUPLA/lib",
 				);
-				MARKETING_VERSION = 2.3.22;
+				MARKETING_VERSION = 2.3.23;
 				PRODUCT_BUNDLE_IDENTIFIER = com.acsoftware.ios.supla;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "SUPLA/SUPLA-Bridging-Header.h";

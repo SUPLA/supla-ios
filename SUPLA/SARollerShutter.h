@@ -29,9 +29,14 @@
 @interface SARollerShutter : UIView
 
 
-@property(copy, nonatomic) UIColor *windowColor;
+@property(copy, nonatomic) UIColor *windowFrameColor;
+@property(copy, nonatomic) UIColor *windowFrameLineColor;
 @property(copy, nonatomic) UIColor *sunColor;
 @property(copy, nonatomic) UIColor *markerColor;
+@property(copy, nonatomic) UIColor *glassColor;
+@property(copy, nonatomic) UIColor *rollerShutterBackgroundColor;
+@property(copy, nonatomic) UIColor *rollerShutterColor;
+@property(copy, nonatomic) UIColor *rollerShutterLineColor;
 @property(nonatomic, assign) CGFloat frameLineWidth;
 @property(nonatomic, assign) CGFloat spaceing;
 @property(nonatomic, assign) CGFloat louverSpaceing;
