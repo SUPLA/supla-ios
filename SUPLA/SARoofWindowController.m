@@ -17,7 +17,7 @@
 #define MAXIMUM_OPENING_ANGLE 40
 #define WINDOW_ROTATION_X 30
 #define WINDOW_ROTATION_Y 330
-#define WINDOW_HEIGHT_RATIO 1.0
+#define WINDOW_HEIGHT_MULTIPLIER 1.0
 #define WINDOW_WIDTH_RATIO 0.69
 #define LINE_WIDTH 1.5
 
@@ -304,11 +304,13 @@
     CGContextTranslateCTM(ctx, self.bounds.size.width/2, self.bounds.size.height/2);
     CGContextSetLineWidth(ctx, LINE_WIDTH);
 
-    CGFloat windowHeight = self.bounds.size.height * WINDOW_HEIGHT_RATIO;
+    CGFloat windowHeight = self.bounds.size.height * WINDOW_HEIGHT_MULTIPLIER;
     CGFloat windowWidth = windowHeight * WINDOW_WIDTH_RATIO;
-    if (windowWidth > self.bounds.size.width) {
-        windowWidth = self.bounds.size.width;
+    if (windowWidth > self.bounds.size.width * 0.70) {
+        windowWidth = self.bounds.size.width * 0.70;
+        windowHeight = windowWidth / WINDOW_WIDTH_RATIO;
     }
+    
     CGFloat outerFramePostWidth = windowWidth * 0.1f;
     CGFloat outerFrameBarWidth = outerFramePostWidth * 0.8f;
     
@@ -375,7 +377,7 @@
             
             if ( fabs(touch_point.x-lastX) < fabs(delta)  ) {
                 
-                float p = fabs(delta) * 100.00 / (self.bounds.size.height * WINDOW_HEIGHT_RATIO / 2);
+                float p = fabs(delta) * 100.00 / (self.bounds.size.height * WINDOW_HEIGHT_MULTIPLIER / 2);
                 
                 _closingPercentageWhileMoving += p * (delta > 0 ? 1 : -1);
                 
