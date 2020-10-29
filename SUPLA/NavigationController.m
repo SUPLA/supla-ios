@@ -20,6 +20,7 @@
 #import "NavigationController.h"
 #import "SuplaApp.h"
 #import "SAClassHelper.h"
+#import "SAMenuItems.h"
 
 #define TAG_BTN_MENU 0
 #define TAG_BTN_SETTINGS 1
@@ -28,24 +29,31 @@
 #define TAG_NOTSELECTED 0
 #define TAG_SELECTED 1
 
-@interface SANavigationController ()
+@interface SANavigationController () <SAMenuItemsDelegate>
+@property (weak, nonatomic) IBOutlet UIView *menuBar;
+@property (weak, nonatomic) IBOutlet UILabel *vTitle;
+@property (weak, nonatomic) IBOutlet UILabel *vDetailTitle;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *menuBarHeight;
+@property (weak, nonatomic) IBOutlet UIButton *btnMenu;
+@property (weak, nonatomic) IBOutlet UIButton *btnGroups;
 @end
 
 @implementation SANavigationController {
     UIViewController *_vc;
+    SAMenuItems *_menuItems;
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.menuItems.hidden = YES;
-    
-    [self.btnSettings setTitle:NSLocalizedString(@"Settings", nil)];
-    [self.btnAddDevice setTitle:NSLocalizedString(@"Add I/O device", nil)];
-    [self.btnAbout setTitle:NSLocalizedString(@"About", nil)];
-    //[self.btnDonate setTitle:NSLocalizedString(@"Donate", nil)];
-    [self.btnHelp setTitle:NSLocalizedString(@"Help", nil)];
-   
+    _menuItems = [[SAMenuItems alloc] init];
+    _menuItems.hidden = YES;
+    _menuItems.delegate = self;
+    _menuItems.menuBarHeight = self.menuBarHeight;
+    [self.view addSubview:_menuItems];
+    self.menuBar.layer.zPosition = 2;
+    _menuItems.layer.zPosition = 1;
+       
 }
 
 - (UIStatusBarStyle)preferredStatusBarStyle
@@ -120,29 +128,11 @@
 }
 
 - (void) showMenu:(BOOL)show withAction:(void (^)(void))action {
-    
-    self.menuBar.layer.zPosition = 2;
-    self.menuItems.layer.zPosition = 1;
-    self.menuItemsTop.constant = show ? self.menuItems.frame.size.height * -1 : 0;
-    self.menuItems.hidden = NO;
-    
-    [self.view layoutIfNeeded];
-    
-    self.menuItemsTop.constant = show ? 0 : self.menuItems.frame.size.height * -1;
-    
-    [UIView animateWithDuration:0.25 animations:^{
-        [self.view layoutIfNeeded];
-    } completion:^(BOOL finished) {
-        if ( show ) {
-            [self.view bringSubviewToFront:self.menuItems];
-        } else {
-            self.menuItems.hidden = YES;
-        }
-        
-        if ( action != nil )
-            action();
-    }];
-    
+    if (show) {
+        _menuItems.buttonsAvailable
+        = SAApp.DB.zwaveBridgeChannelAvailable ? SAMenuItemIdAll : SAMenuItemIdAll ^ SAMenuItemIdZWave;
+    }
+    [_menuItems slideDown:show withAction:action];
 }
 
 - (void)hideMenuWithAction:(void (^)(void))action {
@@ -159,25 +149,11 @@
         return;
     }
     
-    if ( self.menuItems.hidden ) {
+    if ( _menuItems.hidden ) {
         [self showMenu:YES withAction:nil];
     } else {
         [self showMenu:NO withAction:nil];
     }
-}
-
-- (IBAction)settingsTouch:(id)sender {
-    
-    [self hideMenuWithAction:nil];
-    [[SAApp UI] showSettings];
-
-}
-
-- (IBAction)aboutTouch:(id)sender {
-    
-    [self hideMenuWithAction:nil];
-    [[SAApp UI] showAbout];
-    
 }
 
 - (void)mailComposeController:(MFMailComposeViewController*)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError*)error
@@ -185,35 +161,9 @@
     [self dismissViewControllerAnimated:YES completion: nil];
 }
 
-- (IBAction)helpTouch:(id)sender {
-    
-    [self hideMenuWithAction:nil];
-    [[UIApplication sharedApplication] openURL:[NSURL URLWithString: @"https://forum.supla.org"]];
-    
-}
-
-- (IBAction)wwwTouch:(id)sender {
-    
-    [self hideMenuWithAction:nil];
-    [[UIApplication sharedApplication] openURL:[NSURL URLWithString: @"https://www.supla.org"]];
-        
-}
-
-- (IBAction)addDeviceTouch:(id)sender {
-    [self hideMenuWithAction:nil];
-    [[SAApp UI] showAddWizard];
-}
-
-- (IBAction)donateTouch:(id)sender {
-    
-    [self hideMenuWithAction:nil];
-    [[UIApplication sharedApplication] openURL:[NSURL URLWithString: NSLocalizedString(@"https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=L4N7RSWME6LG2", NULL)]];
-    
-}
-
 - (IBAction)groupsTouch:(id)sender {
     
-    if ( !self.menuItems.hidden ) {
+    if ( !_menuItems.hidden ) {
         [self showMenu:NO withAction:nil];
     }
     
@@ -262,4 +212,34 @@
     self.vDetailTitle.hidden = NO;
     self.vDetailTitle.text = title;
 }
+
+-(void)menuItemTouched:(SAMenuItemIds)btnId {
+    [self hideMenuWithAction:nil];
+    
+    switch (btnId) {
+        case SAMenuItemIdSettings:
+            [[SAApp UI] showSettings];
+            break;
+        case SAMenuItemIdAddDevice:
+            [[SAApp UI] showAddWizard];
+            break;
+        case SAMenuItemIdZWave:
+            break;
+        case SAMenuItemIdAbout:
+            [[SAApp UI] showAbout];
+            break;
+        case SAMenuItemIdDonate:
+            [[UIApplication sharedApplication] openURL:[NSURL URLWithString: NSLocalizedString(@"https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=L4N7RSWME6LG2", NULL)]];
+            break;
+        case SAMenuItemIdHelp:
+            [[UIApplication sharedApplication] openURL:[NSURL URLWithString: @"https://forum.supla.org"]];
+            break;
+        case SAMenuItemIdHomepage:
+            [[UIApplication sharedApplication] openURL:[NSURL URLWithString: _menuItems.homepageUrl]];
+            break;
+        default:
+            break;
+    }
+}
+
 @end
