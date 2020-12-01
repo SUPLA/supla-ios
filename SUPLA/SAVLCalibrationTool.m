@@ -19,6 +19,10 @@
 #import "SuplaApp.h"
 #import "SAPreloaderPopup.h"
 
+#define LED_ON_WHEN_CONNECTED 0
+#define LED_OFF_WHEN_CONNECTED 1
+#define LED_ALWAYS_OFF 2
+
 #pragma pack(push, 1)
 typedef struct {
     unsigned short edge_minimum;       // 0 - 1000 (default 0)
@@ -32,6 +36,13 @@ typedef struct {
     unsigned char mode_mask;           // VL_MASK_MODE_DISABLED*
     unsigned char boost_mask;          // VL_MASK_BOOST_DIABLED*
 } vl_configuration_t;
+
+typedef struct {
+    vl_configuration_t vl_main_config;
+    unsigned char cfg_version;
+    unsigned char led;
+} vl_supla_configuration_t;
+
 #pragma pack(pop)
 
 #define VL_MASK_MODE_AUTO_DISABLED 0x1
@@ -66,6 +77,7 @@ typedef struct {
 #define VL_MSG_SET_BOOST 0x5B
 #define VL_MSG_SET_BOOST_LEVEL 0x5C
 #define VL_MSG_SET_CHILD_LOCK 0x18
+#define VL_CALCFG_MSG_SET_LED_CONFIG 0x01FF
 
 #define MIN_SEND_DELAY_TIME 0.5
 #define DISPLAY_DELAY_TIME 1.0
@@ -73,7 +85,7 @@ typedef struct {
 @implementation SAVLCalibrationTool {
     SADetailView *_detailView;
     NSDate *_configStartedAtTime;
-    vl_configuration_t _vlconfig;
+    vl_supla_configuration_t _config;
     NSTimer *_delayTimer1;
     NSTimer *_delayTimer2;
     NSTimer *_startConfigurationRetryTimer;
@@ -81,6 +93,7 @@ typedef struct {
     SAPreloaderPopup *_preloaderPopup;
     BOOL _restoringDefaults;
     BOOL _sueruserAuthoriztionStarted;
+    BOOL _grInitialized;
 }
 
 -(void) delayTimer1Invalidate {
@@ -108,19 +121,38 @@ typedef struct {
     btn.layer.mask = maskLayer;
 }
 
+-(void)initGestureRecognizerForView:(UIView *)view action:(SEL)action {
+    UITapGestureRecognizer *tapgr = [[UITapGestureRecognizer alloc] initWithTarget:self action:action];
+    tapgr.delegate = self;
+    [view addGestureRecognizer:tapgr];
+}
+
 -(void)startConfiguration:(SADetailView*)detailView {
     if (detailView == nil) {
         return;
     }
     
+    if (!_grInitialized) {
+        [self initGestureRecognizerForView:self.tabBgLedOn action:@selector(ledOnTapped:)];
+        [self initGestureRecognizerForView:self.tabLedOn action:@selector(ledOnTapped:)];
+        
+        [self initGestureRecognizerForView:self.tabBgLedOff action:@selector(ledOffTapped:)];
+        [self initGestureRecognizerForView:self.tabLedOff action:@selector(ledOffTapped:)];
+        
+        [self initGestureRecognizerForView:self.tabBgLedAlwaysOff action:@selector(ledAlwaysOffTapped:)];
+        [self initGestureRecognizerForView:self.tabLedAlwaysOff action:@selector(ledAlwaysOffTapped:)];
+        
+        _grInitialized = YES;
+    }
+    
     _lastCalCfgTime = [NSDate dateWithTimeIntervalSince1970:0];
     
-    memset(&_vlconfig, 0, sizeof(vl_configuration_t));
+    memset(&_config, 0, sizeof(vl_supla_configuration_t));
     
-    _vlconfig.mode = MODE_UNKNOWN;
-    _vlconfig.mode_mask = 0xFF;
-    _vlconfig.boost = MODE_UNKNOWN;
-    _vlconfig.boost_mask = 0xFF;
+    _config.vl_main_config.mode = MODE_UNKNOWN;
+    _config.vl_main_config.mode_mask = 0xFF;
+    _config.vl_main_config.boost = MODE_UNKNOWN;
+    _config.vl_main_config.boost_mask = 0xFF;
     
     _configStartedAtTime = nil;
     [self cfgToUIWithDelay:NO];
@@ -256,9 +288,11 @@ typedef struct {
                         break;
                     case VL_MSG_CONFIGURATION_REPORT:
                         if (result.data.length == sizeof(vl_configuration_t)) {
-                            [result.data getBytes:&_vlconfig length:result.data.length];
-                            [self cfgToUIWithDelay:YES];
+                            [result.data getBytes:&_config.vl_main_config length:result.data.length];
+                        } else if (result.data.length == sizeof(vl_supla_configuration_t)) {
+                            [result.data getBytes:&_config length:result.data.length];
                         }
+                        [self cfgToUIWithDelay:YES];
                         break;
                         
                     default:
@@ -287,15 +321,15 @@ typedef struct {
 - (void)modeToUI {
     self.tabMode1.backgroundColor = [UIColor whiteColor];
     self.tabMode1.selected = NO;
-    self.tabMode1.enabled = (_vlconfig.mode_mask & VL_MASK_MODE_1_DISABLED) == 0;
+    self.tabMode1.enabled = (_config.vl_main_config.mode_mask & VL_MASK_MODE_1_DISABLED) == 0;
     self.tabMode2.backgroundColor = [UIColor whiteColor];
     self.tabMode2.selected = NO;
-    self.tabMode2.enabled = (_vlconfig.mode_mask & VL_MASK_MODE_2_DISABLED) == 0;
+    self.tabMode2.enabled = (_config.vl_main_config.mode_mask & VL_MASK_MODE_2_DISABLED) == 0;
     self.tabMode3.backgroundColor = [UIColor whiteColor];
     self.tabMode3.selected = NO;
-    self.tabMode3.enabled = (_vlconfig.mode_mask & VL_MASK_MODE_3_DISABLED) == 0;
+    self.tabMode3.enabled = (_config.vl_main_config.mode_mask & VL_MASK_MODE_3_DISABLED) == 0;
     
-    switch(_vlconfig.mode) {
+    switch(_config.vl_main_config.mode) {
         case MODE_1:
             self.tabMode1.backgroundColor = [UIColor rgbwSelectedTabColor];
             self.tabMode1.selected = YES;
@@ -314,13 +348,13 @@ typedef struct {
 - (void)boostToUI {
     self.tabBoostYes.backgroundColor = [UIColor whiteColor];
     self.tabBoostYes.selected = NO;
-    self.tabBoostYes.enabled = (_vlconfig.boost_mask & VL_MASK_BOOST_YES_DISABLED) == 0;
+    self.tabBoostYes.enabled = (_config.vl_main_config.boost_mask & VL_MASK_BOOST_YES_DISABLED) == 0;
     self.tabBoostNo.backgroundColor = [UIColor whiteColor];
     self.tabBoostNo.selected = NO;
-    self.tabBoostNo.enabled = (_vlconfig.boost_mask & VL_MASK_BOOST_NO_DISABLED) == 0;
+    self.tabBoostNo.enabled = (_config.vl_main_config.boost_mask & VL_MASK_BOOST_NO_DISABLED) == 0;
     self.tabBoost.hidden = YES;
     
-    switch(_vlconfig.boost) {
+    switch(_config.vl_main_config.boost) {
         case BOOST_YES:
             self.tabBoostYes.backgroundColor = [UIColor rgbwSelectedTabColor];
             self.tabBoostYes.selected = YES;
@@ -338,6 +372,45 @@ typedef struct {
     }
 }
 
+-(BOOL)isLedConfigAvailable {
+    return _config.cfg_version >= 2;
+}
+
+- (void)setLedTabApparance:(UIImageView *)iv bgView:(UIView *)bgView selected:(BOOL)selected imgNamed:(NSString*)imgName {
+    if (selected && ![self isLedConfigAvailable]) {
+        selected = NO;
+    }
+    
+    if (selected) {
+        [bgView setBackgroundColor: [UIColor vlCfgButtonColor]];
+        [iv setImage:[UIImage imageNamed:[NSString stringWithFormat:@"%@white", imgName]]];
+    } else {
+        [bgView setBackgroundColor: [UIColor clearColor]];
+        [iv setImage:[UIImage imageNamed:imgName]];
+    }
+}
+
+- (void)ledConfigToUI:(unsigned char)ledCfg {
+    [self setLedTabApparance:self.tabLedOn
+                  bgView:self.tabBgLedOn
+                  selected:ledCfg == LED_ON_WHEN_CONNECTED
+                  imgNamed:@"ledon"];
+
+    [self setLedTabApparance:self.tabLedOff
+                  bgView:self.tabBgLedOff
+                  selected:ledCfg == LED_OFF_WHEN_CONNECTED
+                  imgNamed:@"ledoff"];
+
+    [self setLedTabApparance:self.tabLedAlwaysOff
+                  bgView:self.tabBgLedAlwaysOff
+                  selected:ledCfg == LED_ALWAYS_OFF
+                  imgNamed:@"ledalwaysoff"];
+}
+
+- (void)ledConfigToUI {
+    [self ledConfigToUI:_config.led];
+}
+
 - (void)cfgToUIWithDelay:(BOOL)delay {
     [self delayTimer2Invalidate];
     
@@ -346,10 +419,11 @@ typedef struct {
     if (!delay || time > DISPLAY_DELAY_TIME) {
         [self boostToUI];
         [self modeToUI];
-        self.rangeCalibrationWheel.rightEdge = _vlconfig.edge_maximum;
-        self.rangeCalibrationWheel.leftEdge = _vlconfig.edge_minimum;
-        [self.rangeCalibrationWheel setMinimum:_vlconfig.operating_minimum andMaximum:_vlconfig.operating_maximum];
-        self.rangeCalibrationWheel.boostLevel = _vlconfig.boost_level;
+        [self ledConfigToUI];
+        self.rangeCalibrationWheel.rightEdge = _config.vl_main_config.edge_maximum;
+        self.rangeCalibrationWheel.leftEdge = _config.vl_main_config.edge_minimum;
+        [self.rangeCalibrationWheel setMinimum:_config.vl_main_config.operating_minimum andMaximum:_config.vl_main_config.operating_maximum];
+        self.rangeCalibrationWheel.boostLevel = _config.vl_main_config.boost_level;
     } else {
         if ( time < DISPLAY_DELAY_TIME ) {
             time = DISPLAY_DELAY_TIME-time+0.001;
@@ -378,9 +452,9 @@ typedef struct {
 }
 
 - (IBAction)tabBoostYesNoTouch:(id)sender {
-    _vlconfig.boost = sender == self.tabBoostYes ? BOOST_YES : BOOST_NO;
+    _config.vl_main_config.boost = sender == self.tabBoostYes ? BOOST_YES : BOOST_NO;
     [self boostToUI];
-    [self deviceCalCfgCommand:VL_MSG_SET_BOOST charValue:_vlconfig.boost];
+    [self deviceCalCfgCommand:VL_MSG_SET_BOOST charValue:_config.vl_main_config.boost];
     
     if (sender == self.tabBoostYes) {
         [self calibrationWheelBoostChanged:self.rangeCalibrationWheel];
@@ -396,15 +470,15 @@ typedef struct {
 
 - (IBAction)tabMode123Touch:(id)sender {
     if (sender == self.tabMode1) {
-        _vlconfig.mode = MODE_1;
+        _config.vl_main_config.mode = MODE_1;
     } else if (sender == self.tabMode2) {
-        _vlconfig.mode = MODE_2;
+        _config.vl_main_config.mode = MODE_2;
     } else if (sender == self.tabMode3) {
-        _vlconfig.mode = MODE_3;
+        _config.vl_main_config.mode = MODE_3;
     }
     
     [self modeToUI];
-    [self deviceCalCfgCommand:VL_MSG_SET_MODE charValue:_vlconfig.mode];
+    [self deviceCalCfgCommand:VL_MSG_SET_MODE charValue:_config.vl_main_config.mode];
     
     [self showPreloaderWithText:NSLocalizedString(@"Mode change in progress", nil)];
     [self startConfigurationAgainWithRetry];
@@ -547,6 +621,25 @@ typedef struct {
     || (_sueruserAuthoriztionStarted && [SASuperuserAuthorizationDialog.globalInstance isVisible])
     || (_configStartedAtTime != nil
      && [[NSDate date] timeIntervalSince1970] - [_configStartedAtTime timeIntervalSince1970] <= 15);
+}
+
+- (void)setLedCfg:(char)cfg {
+    if ([self isLedConfigAvailable]) {
+        [self ledConfigToUI:cfg];
+        [self deviceCalCfgCommand:VL_CALCFG_MSG_SET_LED_CONFIG charValue:&cfg shortValue:NULL];
+    }
+}
+
+- (void)ledOnTapped:(UITapGestureRecognizer *)tapRecognizer {
+    [self setLedCfg:LED_ON_WHEN_CONNECTED];
+}
+
+- (void)ledOffTapped:(UITapGestureRecognizer *)tapRecognizer {
+    [self setLedCfg:LED_OFF_WHEN_CONNECTED];
+}
+
+- (void)ledAlwaysOffTapped:(UITapGestureRecognizer *)tapRecognizer {
+    [self setLedCfg:LED_ALWAYS_OFF];
 }
 
 @end

@@ -157,6 +157,10 @@
 +(nonnull UIColor*)mainMenuColor {
     return [UIColor colorWithRed: 0.07 green: 0.65 blue: 0.12 alpha: 1.00];
 }
+
++(nonnull UIColor*)vlCfgButtonColor {
+    return [UIColor colorWithRed: 0.07 green: 0.65 blue: 0.12 alpha: 1.00];
+}
 @end
 
 @implementation SAUIHelper {
