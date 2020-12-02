@@ -21,19 +21,9 @@
 
 @interface SANavigationController : UIViewController <MFMailComposeViewControllerDelegate>
 
-@property (weak, nonatomic) IBOutlet UIView *menuBar;
-@property (weak, nonatomic) IBOutlet UILabel *vTitle;
-@property (weak, nonatomic) IBOutlet UILabel *vDetailTitle;
 -(void)showViewController:(UIViewController *)vc;
 -(UIViewController *)currentViewController;
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *menuBarHeight;
 - (IBAction)menuTouched:(id)sender;
-- (IBAction)settingsTouch:(id)sender;
-- (IBAction)aboutTouch:(id)sender;
-- (IBAction)helpTouch:(id)sender;
-- (IBAction)wwwTouch:(id)sender;
-- (IBAction)addDeviceTouch:(id)sender;
-- (IBAction)donateTouch:(id)sender;
 - (IBAction)groupsTouch:(id)sender;
 
 -(void)showMenuBtn:(BOOL)show;
@@ -41,16 +31,6 @@
 -(void)showMenubarBackBtn;
 -(void)setMenubarDetailTitle:(nonnull NSString *)title;
 -(void)showGroupBtn:(BOOL)show;
-
-@property (weak, nonatomic) IBOutlet UIButton *btnSettings;
-@property (weak, nonatomic) IBOutlet UIButton *btnAbout;
-@property (weak, nonatomic) IBOutlet UIButton *btnHelp;
-@property (weak, nonatomic) IBOutlet UIView *menuItems;
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *menuItemsTop;
-@property (weak, nonatomic) IBOutlet UIButton *btnMenu;
-@property (weak, nonatomic) IBOutlet UIButton *btnAddDevice;
-@property (weak, nonatomic) IBOutlet UIButton *btnDonate;
-@property (weak, nonatomic) IBOutlet UIButton *btnGroups;
 
 
 @end

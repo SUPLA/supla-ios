@@ -1350,4 +1350,8 @@
     
     [self saveContext];
 }
+
+-(BOOL) zwaveBridgeChannelAvailable {
+    return NO;
+}
 @end

@@ -59,6 +59,9 @@
 +(nonnull UIColor*)chartTemperatureLineColor;
 +(nonnull UIColor*)chartHumidityColor;
 +(nonnull UIColor*)chartIncrementalValueColor;
++(nonnull UIColor*)menuSeparatorColor;
++(nonnull UIColor*)mainMenuColor;
++(nonnull UIColor*)vlCfgButtonColor;
 @end
 
 @interface SAUIHelper : NSObject

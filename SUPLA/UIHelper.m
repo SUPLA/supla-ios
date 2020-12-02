@@ -149,6 +149,18 @@
 +(nonnull UIColor*)chartIncrementalValueColor {
     return [UIColor colorWithRed:0.00 green:0.63 blue:0.99 alpha:1.0];
 }
+
++(nonnull UIColor*)menuSeparatorColor {
+    return [UIColor colorWithRed: 0.98 green: 0.98 blue: 0.99 alpha: 0.4];
+}
+
++(nonnull UIColor*)mainMenuColor {
+    return [UIColor colorWithRed: 0.07 green: 0.65 blue: 0.12 alpha: 1.00];
+}
+
++(nonnull UIColor*)vlCfgButtonColor {
+    return [UIColor colorWithRed: 0.07 green: 0.65 blue: 0.12 alpha: 1.00];
+}
 @end
 
 @implementation SAUIHelper {

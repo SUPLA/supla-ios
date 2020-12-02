@@ -20,7 +20,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface SAVLCalibrationTool : UIView <SARangeCalibrationWheelDelegate, SASuperuserAuthorizationDialogDelegate>
+@interface SAVLCalibrationTool : UIView <UIGestureRecognizerDelegate, SARangeCalibrationWheelDelegate, SASuperuserAuthorizationDialogDelegate>
 @property (weak, nonatomic) IBOutlet UIButton *btnInfo;
 @property (weak, nonatomic) IBOutlet UIButton *btnRestore;
 @property (weak, nonatomic) IBOutlet UIButton *btnOK;
@@ -32,6 +32,13 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UIButton *tabOpRange;
 @property (weak, nonatomic) IBOutlet UIButton *tabBoost;
 @property (weak, nonatomic) IBOutlet SARangeCalibrationWheel *rangeCalibrationWheel;
+@property (weak, nonatomic) IBOutlet UIView *tabBgLedOn;
+@property (weak, nonatomic) IBOutlet UIImageView *tabLedOn;
+@property (weak, nonatomic) IBOutlet UIView *tabBgLedOff;
+@property (weak, nonatomic) IBOutlet UIImageView *tabLedOff;
+@property (weak, nonatomic) IBOutlet UIView *tabBgLedAlwaysOff;
+@property (weak, nonatomic) IBOutlet UIImageView *tabLedAlwaysOff;
+
 - (IBAction)btnInfoTouch:(id)sender;
 - (IBAction)btnRestoreTouch:(id)sender;
 - (IBAction)btnOKTouch:(id)sender;
