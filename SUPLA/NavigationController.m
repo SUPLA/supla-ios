@@ -232,7 +232,7 @@
             [[UIApplication sharedApplication] openURL:[NSURL URLWithString: NSLocalizedString(@"https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=L4N7RSWME6LG2", NULL)]];
             break;
         case SAMenuItemIdHelp:
-            [[UIApplication sharedApplication] openURL:[NSURL URLWithString: @"https://forum.supla.org"]];
+            [[UIApplication sharedApplication] openURL:[NSURL URLWithString: NSLocalizedString(@"https://en-forum.supla.org", NULL)]];
             break;
         case SAMenuItemIdHomepage:
             [[UIApplication sharedApplication] openURL:[NSURL URLWithString: _menuItems.homepageUrl]];
