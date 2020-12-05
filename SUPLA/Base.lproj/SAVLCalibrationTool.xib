@@ -297,17 +297,17 @@
                     </userDefinedRuntimeAttributes>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oFN-cJ-xUT" customClass="SARangeCalibrationWheel">
-                    <rect key="frame" x="15" y="261" width="290" height="144"/>
+                    <rect key="frame" x="15" y="261" width="290" height="129"/>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                 </view>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Status LED" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nOa-zt-iSl">
-                    <rect key="frame" x="15" y="415" width="65" height="18"/>
+                    <rect key="frame" x="15" y="400" width="65" height="18"/>
                     <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="13"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="233-mb-2Sc" userLabel="vTabsLedConfig">
-                    <rect key="frame" x="15" y="435" width="290" height="35"/>
+                    <rect key="frame" x="15" y="420" width="290" height="35"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ECQ-sm-7i0">
                             <rect key="frame" x="2" y="2" width="94" height="31"/>
@@ -393,6 +393,12 @@
                         </userDefinedRuntimeAttribute>
                     </userDefinedRuntimeAttributes>
                 </view>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="J3t-GC-jog">
+                    <rect key="frame" x="305" y="457" width="0.0" height="0.0"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <nil key="highlightedColor"/>
+                </label>
             </subviews>
             <color key="backgroundColor" red="0.92933040860000005" green="0.92946392300000003" blue="0.92930120230000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <gestureRecognizers/>
@@ -403,9 +409,10 @@
                 <constraint firstItem="nN6-QF-5He" firstAttribute="top" secondItem="PYA-89-fe5" secondAttribute="bottom" constant="2" id="3Xe-Ef-iOJ"/>
                 <constraint firstItem="oFN-cJ-xUT" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="15" id="5Rj-zT-HBO"/>
                 <constraint firstItem="m1G-sH-B4U" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="17" id="7gK-pd-YNP"/>
+                <constraint firstItem="J3t-GC-jog" firstAttribute="top" secondItem="233-mb-2Sc" secondAttribute="bottom" constant="2" id="7hY-oB-r7g"/>
                 <constraint firstAttribute="trailing" secondItem="yCM-1x-jYm" secondAttribute="trailing" constant="15" id="8FT-Bo-eNq"/>
                 <constraint firstItem="Rli-l8-NMj" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="17" id="A4V-79-hbw"/>
-                <constraint firstAttribute="bottom" secondItem="233-mb-2Sc" secondAttribute="bottom" constant="10" id="AAg-6Z-5Fn"/>
+                <constraint firstAttribute="bottom" secondItem="233-mb-2Sc" secondAttribute="bottom" constant="25" id="AAg-6Z-5Fn"/>
                 <constraint firstAttribute="trailing" secondItem="nN6-QF-5He" secondAttribute="trailing" constant="15" id="GQR-6m-BIF"/>
                 <constraint firstAttribute="trailing" secondItem="233-mb-2Sc" secondAttribute="trailing" constant="15" id="JmN-As-9MW"/>
                 <constraint firstItem="Rli-l8-NMj" firstAttribute="leading" secondItem="m1G-sH-B4U" secondAttribute="trailing" constant="10" id="JpI-mN-QH0"/>
@@ -426,12 +433,14 @@
                 <constraint firstItem="233-mb-2Sc" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="15" id="ufs-bG-UUk"/>
                 <constraint firstAttribute="trailing" secondItem="Rli-l8-NMj" secondAttribute="trailing" constant="30" id="vbx-yN-HSl"/>
                 <constraint firstItem="PYA-89-fe5" firstAttribute="top" secondItem="zCh-VR-YXW" secondAttribute="bottom" constant="20" id="wQR-Eh-m3o"/>
+                <constraint firstAttribute="trailing" secondItem="J3t-GC-jog" secondAttribute="trailing" constant="15" id="xer-Dr-Ioi"/>
                 <constraint firstAttribute="trailing" secondItem="oFN-cJ-xUT" secondAttribute="trailing" constant="15" id="zMs-6w-kY2"/>
             </constraints>
             <connections>
                 <outlet property="btnInfo" destination="uhx-4u-dOp" id="x2d-wN-3Tw"/>
                 <outlet property="btnOK" destination="Rli-l8-NMj" id="GpQ-LI-wIi"/>
                 <outlet property="btnRestore" destination="m1G-sH-B4U" id="SPJ-v5-kEG"/>
+                <outlet property="lPicFirmwareVersion" destination="J3t-GC-jog" id="vIb-o9-OcC"/>
                 <outlet property="rangeCalibrationWheel" destination="oFN-cJ-xUT" id="jTq-N9-NwR"/>
                 <outlet property="tabBgLedAlwaysOff" destination="JUl-3S-kXy" id="r5y-N7-YDa"/>
                 <outlet property="tabBgLedOff" destination="U3N-nO-5uO" id="vxI-Tp-baR"/>

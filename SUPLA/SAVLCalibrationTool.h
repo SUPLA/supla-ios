@@ -38,6 +38,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UIImageView *tabLedOff;
 @property (weak, nonatomic) IBOutlet UIView *tabBgLedAlwaysOff;
 @property (weak, nonatomic) IBOutlet UIImageView *tabLedAlwaysOff;
+@property (weak, nonatomic) IBOutlet UILabel *lPicFirmwareVersion;
 
 - (IBAction)btnInfoTouch:(id)sender;
 - (IBAction)btnRestoreTouch:(id)sender;

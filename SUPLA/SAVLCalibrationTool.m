@@ -23,6 +23,8 @@
 #define LED_OFF_WHEN_CONNECTED 1
 #define LED_ALWAYS_OFF 2
 
+#define PIC_HEX_VER_MAX_SIZE 20
+
 #pragma pack(push, 1)
 typedef struct {
     unsigned short edge_minimum;       // 0 - 1000 (default 0)
@@ -41,6 +43,7 @@ typedef struct {
     vl_configuration_t vl_main_config;
     unsigned char cfg_version;
     unsigned char led;
+    char pic_hex_ver[PIC_HEX_VER_MAX_SIZE];
 } vl_supla_configuration_t;
 
 #pragma pack(pop)
@@ -424,6 +427,9 @@ typedef struct {
         self.rangeCalibrationWheel.leftEdge = _config.vl_main_config.edge_minimum;
         [self.rangeCalibrationWheel setMinimum:_config.vl_main_config.operating_minimum andMaximum:_config.vl_main_config.operating_maximum];
         self.rangeCalibrationWheel.boostLevel = _config.vl_main_config.boost_level;
+        
+        self.lPicFirmwareVersion.text = [NSString stringWithCString:_config.pic_hex_ver encoding:NSASCIIStringEncoding];
+        
     } else {
         if ( time < DISPLAY_DELAY_TIME ) {
             time = DISPLAY_DELAY_TIME-time+0.001;
