@@ -75,5 +75,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *lLastState;
 @property (weak, nonatomic) IBOutlet UIButton *btnSystemSettings;
 @property (weak, nonatomic) IBOutlet UIButton *btnCancel;
+@property (weak, nonatomic) IBOutlet UILabel *lStep3Text2;
 
 @end

@@ -520,6 +520,10 @@
     }
 }
 
+-(BOOL)automaticWiFiConnection {
+    return [[[UIDevice currentDevice] systemVersion] floatValue] >= 11.0;
+}
+
 -(void)showPage:(int)page {
     
     [self setStep:STEP_NONE];
@@ -536,12 +540,25 @@
             break;
         case PAGE_STEP_3:
         {
+            if ([self automaticWiFiConnection]) {
+                [self.btnNext2 setAttributedTitle:NSLocalizedString(@"Start", NULL)];
+            }
+            
             _blinkTimer = [NSTimer scheduledTimerWithTimeInterval:0.1 target:self selector:@selector(blinkTimerFireMethod:) userInfo:nil repeats:YES];
+            
+            NSString *txt1 = NSLocalizedString(@"If the device when switched on does not work in the configuration mode, press and hold CONFIG button for at least 5 seconds.\n\n%@\n", NULL);
+            
+            NSString *txt2 = NSLocalizedString([self automaticWiFiConnection]
+                                               ? @"Press START to start configuration." :
+                                               @"Press Next to continue." ,NULL);
+
+            self.lStep3Text2.text = [NSString stringWithFormat:txt1, txt2];
             
             [self showPageView:self.vStep3];
         }
             break;
         case PAGE_STEP_4:
+            [self.btnNext2 setAttributedTitle:NSLocalizedString(@"Start", NULL)];
             [self showPageView:self.vStep4];
             break;
         case PAGE_ERROR:
@@ -724,7 +741,6 @@
             break;
         case PAGE_STEP_3:
             [self showPage:PAGE_STEP_4];
-            [self.btnNext2 setAttributedTitle:NSLocalizedString(@"Start", NULL)];
             break;
         case PAGE_STEP_4:
         {

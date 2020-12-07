@@ -33,6 +33,7 @@
                 <outlet property="lLastState" destination="6o8-Z9-BJq" id="zYL-P0-ATT"/>
                 <outlet property="lMAC" destination="Y1H-Co-hfj" id="kMa-4q-TeF"/>
                 <outlet property="lName" destination="npR-oM-kAU" id="JNM-dj-kLE"/>
+                <outlet property="lStep3Text2" destination="y0X-IV-sH5" id="1q9-hd-5x9"/>
                 <outlet property="txtErrorMEssage" destination="J9f-5g-EoU" id="cqE-3L-fPX"/>
                 <outlet property="vDone" destination="O29-9p-F9i" id="6P8-NS-uif"/>
                 <outlet property="vDot" destination="zDx-px-3a2" id="Yeo-zj-TsF"/>
