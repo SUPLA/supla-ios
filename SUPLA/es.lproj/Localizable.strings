@@ -146,3 +146,6 @@
 
 "Heat meter" = "Medidor de calor";
 
+"If the device when switched on does not work in the configuration mode, press and hold CONFIG button for at least 5 seconds.\n\n%@\n" = "Si tras conectar la alimentación el dispositivo no funciona en el modo de configuración, mantén presionada la tecla CONFIG durante al menos 5 segundos.\n\n%@\n";
+"Press Next to continue." = "Para continuar presiona Siguiente.";
+"Press START to start configuration." = "Presiona la tecla START para iniciar la configuración.";

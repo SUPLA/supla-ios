@@ -143,3 +143,7 @@
 "Rain sensor" = "Niederschlagsmessung";
 
 "Heat meter" = "Wärmezähler";
+
+"If the device when switched on does not work in the configuration mode, press and hold CONFIG button for at least 5 seconds.\n\n%@\n" = "Wenn das Gerät nach dem Einschalten im Konfigurationsmodus nicht funktioniert, halten Sie die Taste CONFIG für mindestens 5 Sekunden gedrückt.\n\n%@\n";
+"Press Next to continue." = "Um fortzusetzen, drücken Sie Weiter.";
+"Press START to start configuration." = "Drücken Sie die Taste START, um die Konfiguration zu beginnen.";

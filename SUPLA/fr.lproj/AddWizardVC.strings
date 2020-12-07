@@ -41,5 +41,3 @@
 /* Class = "UILabel"; text = "Welcome to the Device Add Wizard which will in an easy and simple way help you to add new device to the system."; ObjectID = "vbb-Xd-lIx"; */
 "vbb-Xd-lIx.text" = "WBienvenue dans l'assistant d'ajout des dispositifs qui vous aidera d'une manière simple et rapide à ajouter un nouveau dispositif au système.";
 
-/* Class = "UILabel"; text = "If the device when switched on does not work in the configuration mode, press and hold CONFIG button for at least 5 seconds.\n\nPress Next to continue.\n"; ObjectID = "y0X-IV-sH5"; */
-"y0X-IV-sH5.text" = "Si le dispositif est allumé mais ne fonctionne pas en mode de configuration, maintenez la touche CONFIG pendant au moins 5 secondes.\n\nPour continuer, appuyez sur Continuer.\n";

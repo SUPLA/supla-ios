@@ -45,4 +45,4 @@
 "vbb-Xd-lIx.text" = "Καλώς ορίσατε στον οδηγό προσθήκης συσκευής, ο οποίος θα σας βοηθήσει να προσθέσετε μια νέα συσκευή στο σύστημα με γρήγορο και εύκολο τρόπο.";
 
 /* Class = "UILabel"; text = "If the device when switched on does not work in the configuration mode, press and hold CONFIG button for at least 5 seconds.\n\nPress Next to continue.\n"; ObjectID = "y0X-IV-sH5"; */
-"y0X-IV-sH5.text" = "Όταν η συσκευή κατόπιν  ενεργοποίησης δεν εκτελεί τη λειτουργία διαμόρφωσης, κρατήστε πατημένο το κουμπί CONFIG για τουλάχιστον 5 δευτερόλεπτα.\n\nΓια να συνεχίσετε, πατήστε Επόμενο.\n";
+"y0X-IV-sH5.text" = ;

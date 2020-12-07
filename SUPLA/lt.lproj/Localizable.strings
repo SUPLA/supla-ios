@@ -145,3 +145,7 @@
 "Rain sensor" = "Kritulių matavimas";
 
 "Heat meter" = "Šilumos skaitiklis";
+
+"If the device when switched on does not work in the configuration mode, press and hold CONFIG button for at least 5 seconds.\n\n%@\n" = "Jei įrenginys įjungus maitinimą neveikia konfigūracijos režimu, palaikykite paspaustą mygtuką CONFIG bent 5 sekundes.\n\n%@\n";
+"Press Next to continue." = "Spustelėkite Pirmyn, jei norite tęsti";
+"Press START to start configuration." = "Paspauskite mygtuką START, kad pradėti konfigūravimą.";

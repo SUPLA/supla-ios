@@ -151,3 +151,7 @@
 "No" = "Ne";
 
 "Heat meter" = "Měřič tepla";
+
+"If the device when switched on does not work in the configuration mode, press and hold CONFIG button for at least 5 seconds.\n\n%@\n" = "Pokud zařízení nepracuje v konfiguračním režimu po zapnutí, držte stisknuté tlačítko CONFIG minimálně po dobu 5 sekund.\n\n%@\n";
+"Press Next to continue." = "Chcete-li pokračovat, stiskněte tlačítko Další.";
+"Press START to start configuration." = "Stisknutím tlačítka START spustíte konfiguraci.";

@@ -143,3 +143,7 @@
 "Rain sensor" = "Μέτρηση βροχοπτώσεων";
 
 "Heat meter" = "Μετρητής θερμότητας";
+
+"If the device when switched on does not work in the configuration mode, press and hold CONFIG button for at least 5 seconds.\n\n%@\n" = "Όταν η συσκευή κατόπιν  ενεργοποίησης δεν εκτελεί τη λειτουργία διαμόρφωσης, κρατήστε πατημένο το κουμπί CONFIG για τουλάχιστον 5 δευτερόλεπτα.\n\n%@\n";
+"Press Next to continue." = "Για να συνεχίσετε, πατήστε Επόμενο.";
+"Press START to start configuration." = "Πατήστε το κουμπί START για να ξεκινήσει η διαμόρφωση.";

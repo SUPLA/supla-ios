@@ -143,3 +143,7 @@
 "Rain sensor" = "Merjenje padavin";
 
 "Heat meter" = "Merilnik toplote";
+
+"If the device when switched on does not work in the configuration mode, press and hold CONFIG button for at least 5 seconds.\n\n%@\n" = "Če naprava po vklopu napajanja ne deluje v konfiguracijskem načinu, držite gumb CONFIG najmanj 5 sekund.\n\n%@\n";
+"Press Next to continue." = "Če želite nadaljevati, pritisnite Naprej.";
+"Press START to start configuration." = "Pritisnite tipko START da začnete konfiguracijo.";

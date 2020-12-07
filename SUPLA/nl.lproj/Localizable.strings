@@ -143,3 +143,7 @@
 "Rain sensor" = "Neerslag meting";
 
 "Heat meter" = "Warmtemeter";
+
+"If the device when switched on does not work in the configuration mode, press and hold CONFIG button for at least 5 seconds.\n\n%@\n" = "Als het apparaat niet werkt in de configuratiemodus na het inschakelen van de stroom, houdt u de knop CONFIG minimaal 5 seconden ingedrukt.\n\n%@\n";
+"Press Next to continue." = "Druk op Volgende om door te gaan.";
+"Press START to start configuration." = "Druk op de knop START om de configuratie te starten.";
