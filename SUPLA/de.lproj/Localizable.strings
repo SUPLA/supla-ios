@@ -143,3 +143,9 @@
 "Rain sensor" = "Niederschlagsmessung";
 
 "Heat meter" = "Wärmezähler";
+
+"If the device when switched on does not work in the configuration mode, press and hold CONFIG button for at least 5 seconds.\n\n%@\n" = "Wenn das Gerät nach dem Einschalten im Konfigurationsmodus nicht funktioniert, halten Sie die Taste CONFIG für mindestens 5 Sekunden gedrückt.\n\n%@\n";
+"Press Next to continue." = "Um fortzusetzen, drücken Sie Weiter.";
+"Press START to start configuration." = "Drücken Sie die Taste START, um die Konfiguration zu beginnen.";
+"I/O Device connection setting timeout!" = "Für die Herstellung der Verbindung mit dem Betätigungsgerät wurde das Zeitlimit überschritten!";
+"No devices has been found! Check, if the device you want to configure is working in the configuration mode and try again." = "Die Suche nach irgendwelchen Geräten war erfolglos! Stellen Sie sicher, dass das Gerät, dass Sie konfigurieren lassen möchten im Konfigurationsmodus funktioniert und versuchen Sie erneut.";

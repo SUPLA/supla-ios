@@ -143,3 +143,9 @@
 "Rain sensor" = "Μέτρηση βροχοπτώσεων";
 
 "Heat meter" = "Μετρητής θερμότητας";
+
+"If the device when switched on does not work in the configuration mode, press and hold CONFIG button for at least 5 seconds.\n\n%@\n" = "Όταν η συσκευή κατόπιν  ενεργοποίησης δεν εκτελεί τη λειτουργία διαμόρφωσης, κρατήστε πατημένο το κουμπί CONFIG για τουλάχιστον 5 δευτερόλεπτα.\n\n%@\n";
+"Press Next to continue." = "Για να συνεχίσετε, πατήστε Επόμενο.";
+"Press START to start configuration." = "Πατήστε το κουμπί START για να ξεκινήσει η διαμόρφωση.";
+"I/O Device connection setting timeout!" = "Υπέρβαση χρόνου αναμονής για τη σύνδεση με την εκτελεστική συσκευή!";
+"No devices has been found! Check, if the device you want to configure is working in the configuration mode and try again." = "Δεν βρέθηκε καμία συσκευή! Βεβαιωθείτε ότι η συσκευή την οποία θέλετε να ρυθμίσετε βρίσκετε στη λειτουργία διαμόρφωσης και στη συνέχεια προσπαθήστε ξανά.";

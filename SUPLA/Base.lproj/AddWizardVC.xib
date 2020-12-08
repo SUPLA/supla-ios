@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
-    <device id="retina5_5" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina5_5" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -15,7 +13,7 @@
         <array key="OpenSans-Regular.ttf">
             <string>OpenSans</string>
         </array>
-        <array key="Quicksand-Light.ttf">
+        <array key="Quicksand-Regular.ttf">
             <string>Quicksand-Regular</string>
         </array>
     </customFonts>
@@ -35,6 +33,7 @@
                 <outlet property="lLastState" destination="6o8-Z9-BJq" id="zYL-P0-ATT"/>
                 <outlet property="lMAC" destination="Y1H-Co-hfj" id="kMa-4q-TeF"/>
                 <outlet property="lName" destination="npR-oM-kAU" id="JNM-dj-kLE"/>
+                <outlet property="lStep3Text2" destination="y0X-IV-sH5" id="1q9-hd-5x9"/>
                 <outlet property="txtErrorMEssage" destination="J9f-5g-EoU" id="cqE-3L-fPX"/>
                 <outlet property="vDone" destination="O29-9p-F9i" id="6P8-NS-uif"/>
                 <outlet property="vDot" destination="zDx-px-3a2" id="Yeo-zj-TsF"/>
@@ -77,7 +76,7 @@
                                 <action selector="nextTouchch:" destination="-1" eventType="touchDown" id="woi-aD-J8R"/>
                             </connections>
                         </button>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kEz-V1-szv">
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kEz-V1-szv">
                             <rect key="frame" x="354" y="5" width="40" height="40"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="40" id="dZQ-BU-BdR"/>
@@ -91,7 +90,7 @@
                                 <action selector="nextTouchch:" destination="-1" eventType="touchDown" id="FUC-yc-vba"/>
                             </connections>
                         </button>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TGR-gA-tNb">
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TGR-gA-tNb">
                             <rect key="frame" x="277" y="5" width="17" height="40"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="17" id="22W-h1-ki5"/>
@@ -127,7 +126,7 @@
                                 <action selector="cancelTouch:" destination="-1" eventType="touchDown" id="I3K-Ks-aMV"/>
                             </connections>
                         </button>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GSa-IG-6k4">
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GSa-IG-6k4">
                             <rect key="frame" x="20" y="5" width="17" height="40"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="17" id="NIG-uL-8GF"/>
@@ -141,7 +140,7 @@
                                 <action selector="cancelTouch:" destination="-1" eventType="touchDown" id="Az7-k4-edN"/>
                             </connections>
                         </button>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="f7p-Nq-9ed">
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="f7p-Nq-9ed">
                             <rect key="frame" x="112" y="5" width="17" height="40"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="40" id="cJV-f9-Pqs"/>
@@ -202,7 +201,7 @@
                     </constraints>
                 </imageView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Welcome to the Device Add Wizard which will in an easy and simple way help you to add new device to the system." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="7" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="vbb-Xd-lIx">
-                    <rect key="frame" x="15" y="338" width="384" height="65"/>
+                    <rect key="frame" x="15" y="338" width="384" height="67.666666666666686"/>
                     <constraints>
                         <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="40" id="WbV-QM-MV7"/>
                     </constraints>
@@ -211,7 +210,7 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Press Next to continue." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3bd-Xm-Rok">
-                    <rect key="frame" x="15" y="418" width="384" height="30"/>
+                    <rect key="frame" x="15" y="420.66666666666669" width="384" height="30"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="30" id="lWL-YF-H8X"/>
                     </constraints>
@@ -262,7 +261,7 @@
                             <rect key="frame" x="0.0" y="0.0" width="51" height="31"/>
                         </switch>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Remember password" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OMR-DU-yyQ">
-                            <rect key="frame" x="58.999999999999986" y="0.0" width="167.66666666666663" height="30"/>
+                            <rect key="frame" x="59" y="0.0" width="158" height="30"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="30" id="HcX-y6-VLg"/>
                             </constraints>
@@ -270,7 +269,7 @@
                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="B77-0C-S2N">
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="B77-0C-S2N">
                             <rect key="frame" x="324" y="0.0" width="30" height="30"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="30" id="9e0-Br-laz"/>
@@ -304,14 +303,12 @@
                             <constraints>
                                 <constraint firstAttribute="height" constant="30" id="vIs-M6-77l"/>
                             </constraints>
-                            <nil key="textColor"/>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                             <textInputTraits key="textInputTraits"/>
                         </textField>
                         <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="mNF-Uh-cv0">
-                            <rect key="frame" x="0.0" y="35" width="354" height="30"/>
+                            <rect key="frame" x="0.0" y="35" width="354" height="34"/>
                             <color key="backgroundColor" red="0.99607843139999996" green="0.90588235289999997" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                            <nil key="textColor"/>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                             <textInputTraits key="textInputTraits" secureTextEntry="YES" textContentType="password"/>
                         </textField>

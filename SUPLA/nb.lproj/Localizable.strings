@@ -143,3 +143,9 @@
 "Rain sensor" = "Nedbørsmåling";
 
 "Heat meter" = "Varmemåler";
+
+"If the device when switched on does not work in the configuration mode, press and hold CONFIG button for at least 5 seconds.\n\n%@\n" = "Hvis enheten etter å ha blitt satt til lading ikke jobber i konfigurasjonsmodus hold inne knappen CONFIG i 5 sekunder.\n\n%@\n";
+"Press Next to continue." = "For å fortsette trykk på Videre.";
+"Press START to start configuration." = "Trykk på knappen START for å starte konfigurasjonen.";
+"I/O Device connection setting timeout!" = "Ventetiden for etablering av kobling med aktuator er overskredet!";
+"No devices has been found! Check, if the device you want to configure is working in the configuration mode and try again." = "Ingen enheter ble funnet! Sjekk om enheten du ønsker å konfigurere er satt i konfigurasjonsmodus, og prøv på nytt.";

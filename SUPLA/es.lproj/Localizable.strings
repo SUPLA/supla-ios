@@ -146,3 +146,8 @@
 
 "Heat meter" = "Medidor de calor";
 
+"If the device when switched on does not work in the configuration mode, press and hold CONFIG button for at least 5 seconds.\n\n%@\n" = "Si tras conectar la alimentación el dispositivo no funciona en el modo de configuración, mantén presionada la tecla CONFIG durante al menos 5 segundos.\n\n%@\n";
+"Press Next to continue." = "Para continuar presiona Siguiente.";
+"Press START to start configuration." = "Presiona la tecla START para iniciar la configuración.";
+"I/O Device connection setting timeout!" = "¡Se ha superado el tiempo de espera para establecer la conexión con el dispositivo de entrada/salida!";
+"No devices has been found! Check, if the device you want to configure is working in the configuration mode and try again." = "¡No se ha encontrado ningún dispositivo! Comprueba que el dispositivo que quiere configurar esta en el modo de configuración y a continuación inténtelo de nuevo.";

@@ -47,6 +47,7 @@
 		013F7EC123EB33E30061A497 /* SAChannelStateExtendedValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 013F7EC023EB33E30061A497 /* SAChannelStateExtendedValue.m */; };
 		013F7EC423EB4B500061A497 /* battery@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 013F7EC223EB4B500061A497 /* battery@3x.png */; };
 		013F7EC523EB4B500061A497 /* battery@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 013F7EC323EB4B500061A497 /* battery@2x.png */; };
+		01433DF8257F8FE20093C5DB /* SAWifiAutoConnect.m in Sources */ = {isa = PBXBuildFile; fileRef = 01433DF7257F8FE20093C5DB /* SAWifiAutoConnect.m */; };
 		01511CFA24F50B470081A1EC /* SAPreloaderPopup.m in Sources */ = {isa = PBXBuildFile; fileRef = 01511CF824F50B470081A1EC /* SAPreloaderPopup.m */; };
 		01511CFB24F50B470081A1EC /* SAPreloaderPopup.xib in Resources */ = {isa = PBXBuildFile; fileRef = 01511CF924F50B470081A1EC /* SAPreloaderPopup.xib */; };
 		01567446232FCFD700397393 /* SAIncrementalMeterExtendedValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 01567445232FCFD700397393 /* SAIncrementalMeterExtendedValue.m */; };
@@ -57,6 +58,7 @@
 		0158396D2576A82A005E615D /* ledon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 015839672576A82A005E615D /* ledon@3x.png */; };
 		0158396E2576A82A005E615D /* ledonwhite@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 015839682576A82A005E615D /* ledonwhite@3x.png */; };
 		0158396F2576A82A005E615D /* ledalwaysoff@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 015839692576A82A005E615D /* ledalwaysoff@3x.png */; };
+		0163D0CD257EE483006C73CB /* NetworkExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0163D0CC257EE483006C73CB /* NetworkExtension.framework */; };
 		01642A882549C3EF00E87C46 /* SAMenuItems.m in Sources */ = {isa = PBXBuildFile; fileRef = 01642A872549C3EF00E87C46 /* SAMenuItems.m */; };
 		016ABE16236D8363001BF5FB /* SAKeychain.m in Sources */ = {isa = PBXBuildFile; fileRef = 016ABE15236D8363001BF5FB /* SAKeychain.m */; };
 		016ABE18236DA795001BF5FB /* KeychainTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 016ABE17236DA795001BF5FB /* KeychainTests.m */; };
@@ -483,6 +485,8 @@
 		013F7EC023EB33E30061A497 /* SAChannelStateExtendedValue.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SAChannelStateExtendedValue.m; sourceTree = "<group>"; };
 		013F7EC223EB4B500061A497 /* battery@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "battery@3x.png"; path = "Resources/Assets/Img/battery@3x.png"; sourceTree = "<group>"; };
 		013F7EC323EB4B500061A497 /* battery@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "battery@2x.png"; path = "Resources/Assets/Img/battery@2x.png"; sourceTree = "<group>"; };
+		01433DF6257F8FE20093C5DB /* SAWifiAutoConnect.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SAWifiAutoConnect.h; sourceTree = "<group>"; };
+		01433DF7257F8FE20093C5DB /* SAWifiAutoConnect.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SAWifiAutoConnect.m; sourceTree = "<group>"; };
 		01511CF724F50B470081A1EC /* SAPreloaderPopup.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SAPreloaderPopup.h; sourceTree = "<group>"; };
 		01511CF824F50B470081A1EC /* SAPreloaderPopup.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SAPreloaderPopup.m; sourceTree = "<group>"; };
 		01511CF924F50B470081A1EC /* SAPreloaderPopup.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SAPreloaderPopup.xib; sourceTree = "<group>"; };
@@ -498,6 +502,8 @@
 		015839692576A82A005E615D /* ledalwaysoff@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "ledalwaysoff@3x.png"; path = "Resources/Assets/Img/ledalwaysoff@3x.png"; sourceTree = "<group>"; };
 		015839742576AA40005E615D /* pl */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = pl; path = pl.lproj/SAInfoVC.xib; sourceTree = "<group>"; };
 		015839792576F866005E615D /* pl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pl; path = pl.lproj/SAVLCalibrationTool.strings; sourceTree = "<group>"; };
+		0163D0CB257EE483006C73CB /* SUPLA.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SUPLA.entitlements; sourceTree = "<group>"; };
+		0163D0CC257EE483006C73CB /* NetworkExtension.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NetworkExtension.framework; path = System/Library/Frameworks/NetworkExtension.framework; sourceTree = SDKROOT; };
 		01642A862549C3EF00E87C46 /* SAMenuItems.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SAMenuItems.h; sourceTree = "<group>"; };
 		01642A872549C3EF00E87C46 /* SAMenuItems.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SAMenuItems.m; sourceTree = "<group>"; };
 		016ABE14236D8363001BF5FB /* SAKeychain.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SAKeychain.h; sourceTree = "<group>"; };
@@ -1124,6 +1130,7 @@
 				40B397D81BCEA25700BE7D5A /* CFNetwork.framework in Frameworks */,
 				401CA1ED1BA069CF00117AF4 /* libssl.a in Frameworks */,
 				401CA1EB1BA069BE00117AF4 /* libcrypto.a in Frameworks */,
+				0163D0CD257EE483006C73CB /* NetworkExtension.framework in Frameworks */,
 				401CA1E91BA0699F00117AF4 /* libsupla-client.a in Frameworks */,
 				462253FD963449A978BBDDE8 /* Pods_SUPLA.framework in Frameworks */,
 			);
@@ -1280,6 +1287,7 @@
 		401CA1BB1BA067DB00117AF4 /* SUPLA */ = {
 			isa = PBXGroup;
 			children = (
+				0163D0CB257EE483006C73CB /* SUPLA.entitlements */,
 				018CFD1D23281A0F00888CB7 /* ExtendedValue */,
 				013D1C5A22CE4751000C0784 /* charts */,
 				01BDAC7222C5132B00915646 /* restapi */,
@@ -1306,6 +1314,8 @@
 				013D350323350C48006E3B75 /* SAThermostatScheduleCfg.m */,
 				016ABE14236D8363001BF5FB /* SAKeychain.h */,
 				016ABE15236D8363001BF5FB /* SAKeychain.m */,
+				01433DF6257F8FE20093C5DB /* SAWifiAutoConnect.h */,
+				01433DF7257F8FE20093C5DB /* SAWifiAutoConnect.m */,
 			);
 			path = SUPLA;
 			sourceTree = "<group>";
@@ -1717,6 +1727,7 @@
 		407ECDC01DAFBB9600F01C7E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				0163D0CC257EE483006C73CB /* NetworkExtension.framework */,
 				40E8BE8B1FC06B2000FB2FE6 /* libxml2.tbd */,
 				407ECDC11DAFBB9600F01C7E /* AudioToolbox.framework */,
 				596D36089B2CE979388A06FF /* Pods_SUPLA.framework */,
@@ -2313,6 +2324,7 @@
 				0172677D234FAF78000F1CFB /* SADownloadImpulseCounterMeasurements.m in Sources */,
 				01392B37235C91C1003A2BAD /* SADownloadTemperatureMeasurements.m in Sources */,
 				01C1719A22C7F55B005983E1 /* SAMeasurementItem+CoreDataProperties.m in Sources */,
+				01433DF8257F8FE20093C5DB /* SAWifiAutoConnect.m in Sources */,
 				01511CFA24F50B470081A1EC /* SAPreloaderPopup.m in Sources */,
 				01A66A7525364AA400C00A1A /* SARoofWindowController.m in Sources */,
 				01902A25235A17E9005ED935 /* TemperatureDetailView.m in Sources */,
@@ -2821,8 +2833,9 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = SUPLA/SUPLA.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 67;
+				CURRENT_PROJECT_VERSION = 68;
 				DEFINES_MODULE = YES;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"$(inherited)",
@@ -2837,7 +2850,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/SUPLA/lib",
 				);
-				MARKETING_VERSION = 2.3.26;
+				MARKETING_VERSION = 2.3.27;
 				PRODUCT_BUNDLE_IDENTIFIER = com.acsoftware.ios.supla;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "SUPLA/SUPLA-Bridging-Header.h";
@@ -2853,8 +2866,9 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = SUPLA/SUPLA.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 67;
+				CURRENT_PROJECT_VERSION = 68;
 				DEFINES_MODULE = YES;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"$(inherited)",
@@ -2869,7 +2883,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/SUPLA/lib",
 				);
-				MARKETING_VERSION = 2.3.26;
+				MARKETING_VERSION = 2.3.27;
 				PRODUCT_BUNDLE_IDENTIFIER = com.acsoftware.ios.supla;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "SUPLA/SUPLA-Bridging-Header.h";

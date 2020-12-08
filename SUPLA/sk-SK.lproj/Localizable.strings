@@ -143,3 +143,9 @@
 "Rain sensor" = "Meranie zrážok";
 
 "Heat meter" = "Merač tepla";
+
+"If the device when switched on does not work in the configuration mode, press and hold CONFIG button for at least 5 seconds.\n\n%@\n" = "Ak zariadenie po pripojení k el. napätiu nie je spustené v konfiguračnom režime, stlačte a na aspoň 5 sekúnd podržte tlačidlo CONFIG.\n\n%@\n";
+"Press Next to continue." = "Pokračujte stlačením Ďalej.";
+"Press START to start configuration." = "Stlačte tlačidlo ŠTART a začnite konfiguráciu.";
+"I/O Device connection setting timeout!" = "Bola prekročená lehota čakania na nadviazanie spojenia s vykonávacím zariadením!";
+"No devices has been found! Check, if the device you want to configure is working in the configuration mode and try again." = "Nenašli sa žiadne zariadenia! Skontrolujte, či zariadenie, ktoré chcete konfigurovať, pracuje v konfiguračnom režime, a potom to skúste znova.";

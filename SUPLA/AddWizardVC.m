@@ -21,7 +21,7 @@
 #import "SAClassHelper.h"
 #import "TFHpple.h"
 #import "SASuperuserAuthorizationDialog.h"
-#import <NetworkExtension/NetworkExtension.h>
+#import "SAWifiAutoConnect.h"
 
 #define RESULT_PARAM_ERROR   -3
 #define RESULT_COMPAT_ERROR  -2
@@ -34,8 +34,9 @@
 #define STEP_CHECK_REGISTRATION_ENABLED_TRY2   2
 #define STEP_SUPERUSER_AUTHORIZATION           3
 #define STEP_ENABLING_REGISTRATION             4
-#define STEP_CONFIGURE                         5
-#define STEP_DONE                              6
+#define STEP_WIFI_AUTO_CONNECT                 5
+#define STEP_CONFIGURE                         6
+#define STEP_DONE                              7
 
 #define PAGE_STEP_1  1
 #define PAGE_STEP_2  2
@@ -297,6 +298,7 @@
     NSDate *_stepTime;
     int _step;
     int _pageId;
+    SAWifiAutoConnect *_wifiAutoConnect;
 }
 
 -(NSOperationQueue *)OpQueue {
@@ -323,6 +325,9 @@
             break;
         case STEP_ENABLING_REGISTRATION:
             timeout = 5;
+            break;
+        case STEP_WIFI_AUTO_CONNECT:
+            timeout = 60;
             break;
         case STEP_CONFIGURE:
             timeout = 50;
@@ -434,6 +439,8 @@
         [_blinkTimer invalidate];
         _blinkTimer = nil;
     }
+    
+    [SAWifiAutoConnect cleanup];
 }
 
 -(void) loadPrefs {
@@ -441,7 +448,7 @@
     NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
     
     [self.edSSID setText:[prefs stringForKey:@"wizard_ssid"]];
-
+    
     if ( [prefs boolForKey:@"wizard_pwd_save"] ) {
         [self.cbSavePassword setOn:YES];
         [self.edPassword setText:[prefs stringForKey:@"wizard_pwd"]];
@@ -476,6 +483,9 @@
             break;
         case STEP_ENABLING_REGISTRATION:
             [self showError:NSLocalizedString(@"Timeout for enabling registration has expired!", NULL)];
+            break;
+        case STEP_WIFI_AUTO_CONNECT:
+            [self showError:NSLocalizedString(@"I/O Device connection setting timeout!", NULL)];
             break;
         case STEP_CONFIGURE:
             [self showError:NSLocalizedString(@"Device Configuration Completion timeout!", NULL)];
@@ -536,12 +546,25 @@
             break;
         case PAGE_STEP_3:
         {
+            if ([SAWifiAutoConnect isAvailable]) {
+                [self.btnNext2 setAttributedTitle:NSLocalizedString(@"Start", NULL)];
+            }
+            
             _blinkTimer = [NSTimer scheduledTimerWithTimeInterval:0.1 target:self selector:@selector(blinkTimerFireMethod:) userInfo:nil repeats:YES];
+            
+            NSString *txt1 = NSLocalizedString(@"If the device when switched on does not work in the configuration mode, press and hold CONFIG button for at least 5 seconds.\n\n%@\n", NULL);
+            
+            NSString *txt2 = NSLocalizedString([SAWifiAutoConnect isAvailable]
+                                               ? @"Press START to start configuration." :
+                                               @"Press Next to continue." ,NULL);
+
+            self.lStep3Text2.text = [NSString stringWithFormat:txt1, txt2];
             
             [self showPageView:self.vStep3];
         }
             break;
         case PAGE_STEP_4:
+            [self.btnNext2 setAttributedTitle:NSLocalizedString(@"Start", NULL)];
             [self showPageView:self.vStep4];
             break;
         case PAGE_ERROR:
@@ -567,6 +590,8 @@
 }
 
 -(void)configResult:(SAConfigResult*)result {
+    
+    [SAWifiAutoConnect cleanup];
     
     switch(result.resultCode) {
         case RESULT_PARAM_ERROR:
@@ -686,6 +711,40 @@
     [self.btnNext2 setAttributedTitle:NSLocalizedString(@"Next", NULL)];
 }
 
+-(void) connectToWiFi {
+    [self setStep:STEP_WIFI_AUTO_CONNECT];
+    
+    if (_wifiAutoConnect == nil) {
+        _wifiAutoConnect = [[SAWifiAutoConnect alloc] init];
+    }
+    
+    [_wifiAutoConnect tryConnectWithCompletionHandler:^(BOOL success) {
+        if (self->_step == STEP_WIFI_AUTO_CONNECT && self->_pageId == PAGE_STEP_3) {
+            if (success) {
+                [self startConfiguration];
+            } else {
+                [self->_OpQueue cancelAllOperations];
+                [self showError:NSLocalizedString(@"No devices has been found! Check, if the device you want to configure is working in the configuration mode and try again.", NULL)];
+            }
+        }
+    }];
+}
+
+-(void) startConfiguration {
+    [self setStep:STEP_CONFIGURE];
+    
+    [self.OpQueue cancelAllOperations];
+    SASetConfigOperation *setConfigOp = [[SASetConfigOperation alloc] init];
+    setConfigOp.SSID = [self.edSSID.text
+                        stringByTrimmingCharactersInSet:
+                        [NSCharacterSet whitespaceAndNewlineCharacterSet]];
+    setConfigOp.PWD = self.edPassword.text;
+    setConfigOp.Server = [SAApp getServerHostName];
+    setConfigOp.Email = [SAApp getEmailAddress];
+    setConfigOp.delegate = self;
+    [self.OpQueue addOperation:setConfigOp];
+}
+
 - (IBAction)nextTouchch:(id)sender {
 
     [self preloaderVisible:YES];
@@ -723,22 +782,14 @@
 
             break;
         case PAGE_STEP_3:
-            [self showPage:PAGE_STEP_4];
-            [self.btnNext2 setAttributedTitle:NSLocalizedString(@"Start", NULL)];
+            if ([SAWifiAutoConnect isAvailable]) {
+                [self connectToWiFi];
+            } else {
+                [self showPage:PAGE_STEP_4];
+            }
             break;
         case PAGE_STEP_4:
-        {
-            [self setStep:STEP_CONFIGURE];
-            
-            [self.OpQueue cancelAllOperations];
-            SASetConfigOperation *setConfigOp = [[SASetConfigOperation alloc] init];
-            setConfigOp.SSID = self.edSSID.text;
-            setConfigOp.PWD = self.edPassword.text;
-            setConfigOp.Server = [SAApp getServerHostName];
-            setConfigOp.Email = [SAApp getEmailAddress];
-            setConfigOp.delegate = self;
-            [self.OpQueue addOperation:setConfigOp];
-        }
+            [self startConfiguration];
             break;
         case PAGE_DONE:
         case PAGE_ERROR:
