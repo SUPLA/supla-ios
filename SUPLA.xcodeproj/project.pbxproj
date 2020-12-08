@@ -47,6 +47,7 @@
 		013F7EC123EB33E30061A497 /* SAChannelStateExtendedValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 013F7EC023EB33E30061A497 /* SAChannelStateExtendedValue.m */; };
 		013F7EC423EB4B500061A497 /* battery@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 013F7EC223EB4B500061A497 /* battery@3x.png */; };
 		013F7EC523EB4B500061A497 /* battery@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 013F7EC323EB4B500061A497 /* battery@2x.png */; };
+		01433DF8257F8FE20093C5DB /* SAWifiAutoConnect.m in Sources */ = {isa = PBXBuildFile; fileRef = 01433DF7257F8FE20093C5DB /* SAWifiAutoConnect.m */; };
 		01511CFA24F50B470081A1EC /* SAPreloaderPopup.m in Sources */ = {isa = PBXBuildFile; fileRef = 01511CF824F50B470081A1EC /* SAPreloaderPopup.m */; };
 		01511CFB24F50B470081A1EC /* SAPreloaderPopup.xib in Resources */ = {isa = PBXBuildFile; fileRef = 01511CF924F50B470081A1EC /* SAPreloaderPopup.xib */; };
 		01567446232FCFD700397393 /* SAIncrementalMeterExtendedValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 01567445232FCFD700397393 /* SAIncrementalMeterExtendedValue.m */; };
@@ -484,6 +485,8 @@
 		013F7EC023EB33E30061A497 /* SAChannelStateExtendedValue.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SAChannelStateExtendedValue.m; sourceTree = "<group>"; };
 		013F7EC223EB4B500061A497 /* battery@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "battery@3x.png"; path = "Resources/Assets/Img/battery@3x.png"; sourceTree = "<group>"; };
 		013F7EC323EB4B500061A497 /* battery@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "battery@2x.png"; path = "Resources/Assets/Img/battery@2x.png"; sourceTree = "<group>"; };
+		01433DF6257F8FE20093C5DB /* SAWifiAutoConnect.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SAWifiAutoConnect.h; sourceTree = "<group>"; };
+		01433DF7257F8FE20093C5DB /* SAWifiAutoConnect.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SAWifiAutoConnect.m; sourceTree = "<group>"; };
 		01511CF724F50B470081A1EC /* SAPreloaderPopup.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SAPreloaderPopup.h; sourceTree = "<group>"; };
 		01511CF824F50B470081A1EC /* SAPreloaderPopup.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SAPreloaderPopup.m; sourceTree = "<group>"; };
 		01511CF924F50B470081A1EC /* SAPreloaderPopup.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SAPreloaderPopup.xib; sourceTree = "<group>"; };
@@ -1311,6 +1314,8 @@
 				013D350323350C48006E3B75 /* SAThermostatScheduleCfg.m */,
 				016ABE14236D8363001BF5FB /* SAKeychain.h */,
 				016ABE15236D8363001BF5FB /* SAKeychain.m */,
+				01433DF6257F8FE20093C5DB /* SAWifiAutoConnect.h */,
+				01433DF7257F8FE20093C5DB /* SAWifiAutoConnect.m */,
 			);
 			path = SUPLA;
 			sourceTree = "<group>";
@@ -2319,6 +2324,7 @@
 				0172677D234FAF78000F1CFB /* SADownloadImpulseCounterMeasurements.m in Sources */,
 				01392B37235C91C1003A2BAD /* SADownloadTemperatureMeasurements.m in Sources */,
 				01C1719A22C7F55B005983E1 /* SAMeasurementItem+CoreDataProperties.m in Sources */,
+				01433DF8257F8FE20093C5DB /* SAWifiAutoConnect.m in Sources */,
 				01511CFA24F50B470081A1EC /* SAPreloaderPopup.m in Sources */,
 				01A66A7525364AA400C00A1A /* SARoofWindowController.m in Sources */,
 				01902A25235A17E9005ED935 /* TemperatureDetailView.m in Sources */,

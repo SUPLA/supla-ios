@@ -148,3 +148,5 @@
 "If the device when switched on does not work in the configuration mode, press and hold CONFIG button for at least 5 seconds.\n\n%@\n" = "Se um dispositivo não trabalha no modo de configuração depois de o ligar à rede elétrica, mantenha o botão carregado CONFIG por 5 segundos ao mínimo..\n\n%@\n";
 "Press Next to continue." = "Para continuar carregue em Continuar.";
 "Press START to start configuration." = "Carregue no botão START para iniciar uma configuração.";
+"I/O Device connection setting timeout!" = "O tempo-limite de conexão a um atuador foi excedido!";
+"No devices has been found! Check, if the device you want to configure is working in the configuration mode and try again." = "Nenhum dispositivo foi encontardo! Certifique-se que um dispositivo que quer configurar trabalha no modo de configuração e tente novamente.";

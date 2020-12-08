@@ -147,3 +147,5 @@
 "If the device when switched on does not work in the configuration mode, press and hold CONFIG button for at least 5 seconds.\n\n%@\n" = "Als het apparaat niet werkt in de configuratiemodus na het inschakelen van de stroom, houdt u de knop CONFIG minimaal 5 seconden ingedrukt.\n\n%@\n";
 "Press Next to continue." = "Druk op Volgende om door te gaan.";
 "Press START to start configuration." = "Druk op de knop START om de configuratie te starten.";
+"I/O Device connection setting timeout!" = "Wachttijd voor het tot stand brengen van een verbinding met het uitvoerende apparaat is overschreden!";
+"No devices has been found! Check, if the device you want to configure is working in the configuration mode and try again." = "Geen apparaten gevonden! Zorg ervoor dat het apparaat dat u wilt configureren zich in de configuratiemodus bevindt en probeer het opnieuw.";

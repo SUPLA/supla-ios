@@ -148,3 +148,5 @@
 "If the device when switched on does not work in the configuration mode, press and hold CONFIG button for at least 5 seconds.\n\n%@\n" = "Si le dispositif est allumé mais ne fonctionne pas en mode de configuration, maintenez la touche CONFIG pendant au moins 5 secondes.\n\n%@\n";
 "Press Next to continue." = "Pour continuer, appuyez sur Continuer.";
 "Press START to start configuration." = "Appuyez sur DÉMARRER pour commencer la configuration.";
+"I/O Device connection setting timeout!" = "Il tempo di attesa per lo stabilimento della connessione con il dispositivo di input/output è stato superato!";
+"No devices has been found! Check, if the device you want to configure is working in the configuration mode and try again." = "Aucun dispositif n'a été trouvé ! Assurez-vous que le dispositif que vous souhaitez configurer fonctionne en mode de configuration, puis essayez à nouveau.";

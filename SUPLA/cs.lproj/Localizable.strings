@@ -155,3 +155,5 @@
 "If the device when switched on does not work in the configuration mode, press and hold CONFIG button for at least 5 seconds.\n\n%@\n" = "Pokud zařízení nepracuje v konfiguračním režimu po zapnutí, držte stisknuté tlačítko CONFIG minimálně po dobu 5 sekund.\n\n%@\n";
 "Press Next to continue." = "Chcete-li pokračovat, stiskněte tlačítko Další.";
 "Press START to start configuration." = "Stisknutím tlačítka START spustíte konfiguraci.";
+"I/O Device connection setting timeout!" = "Doba čekání na spojení s vykonávajícím zařízením byla překročena!";
+"No devices has been found! Check, if the device you want to configure is working in the configuration mode and try again." = "Nebyly nalezeny žádné přístroje! Ujistěte se, že zařízení, které chcete konfigurovat, je v konfiguračním režimu a zkuste to znovu.";
