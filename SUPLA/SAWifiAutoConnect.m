@@ -21,7 +21,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #import <NetworkExtension/NetworkExtension.h>
 #import <SystemConfiguration/CaptiveNetwork.h>
 
-#define TRY_COUNT 2
+#define TRY_COUNT 3
 
 @implementation SAWifiAutoConnect {
     NSMutableArray *_prefixes;
@@ -30,7 +30,10 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 }
 
 +(BOOL)isAvailable {
-    return @available(iOS 13.0, *);
+    if (@available(iOS 13.0, *)) {
+        return YES;
+    }
+    return NO;
 }
 
 -(void)prefixesInit {

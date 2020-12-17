@@ -579,6 +579,11 @@
 
 }
 
+- (void)showErrorWithAttributedString:(NSAttributedString *)message {
+    [self.txtErrorMEssage setAttributedText:message];
+    [self showPage:PAGE_ERROR];
+}
+
 - (void)showError:(NSString *)message {
     self.txtErrorMEssage.text = message;
     [self showPage:PAGE_ERROR];
@@ -724,7 +729,21 @@
                 [self startConfiguration];
             } else {
                 [self->_OpQueue cancelAllOperations];
-                [self showPage:PAGE_STEP_4];
+                
+                NSString *msg1 = NSLocalizedString(@"No devices has been found! Check, if the device you want to configure is working in the configuration mode and try again.", NULL);
+                
+                NSString *msg2 = NSLocalizedString(@"Make sure that the application has permissions to discover and connect to devices in the local network. This means that the \"iOS->Settings->SUPLA->Local network\" permission must be turned on for the wizard to work properly.", NULL);
+     
+                if (@available(iOS 14.0, *)) {
+                    NSMutableAttributedString *msg = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"%@\n\n%@", msg1, msg2]];
+                    
+                    NSRange range = NSMakeRange(msg1.length+2, msg2.length);
+                    
+                    [msg addAttribute:NSForegroundColorAttributeName value:[UIColor yellowColor] range:range];
+                    [self showErrorWithAttributedString: msg];
+                } else {
+                    [self showError:msg1];
+                }
             }
         }
     }];
