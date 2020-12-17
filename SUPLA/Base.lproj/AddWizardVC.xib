@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina5_5" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -490,11 +490,8 @@ When the connection has been set, go back to the application and  continue addin
                         <constraint firstAttribute="height" relation="lessThanOrEqual" constant="140" id="FpF-oc-wHG"/>
                     </constraints>
                 </imageView>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="7" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="J9f-5g-EoU">
-                    <rect key="frame" x="15" y="358" width="384" height="40"/>
-                    <constraints>
-                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="40" id="Yuw-zp-1nd"/>
-                    </constraints>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="15" baselineAdjustment="alignBaselines" minimumFontSize="10" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="J9f-5g-EoU">
+                    <rect key="frame" x="15" y="358" width="384" height="0.0"/>
                     <fontDescription key="fontDescription" name="Quicksand-Regular" family="Quicksand" pointSize="22"/>
                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
@@ -502,12 +499,12 @@ When the connection has been set, go back to the application and  continue addin
             </subviews>
             <color key="backgroundColor" red="0.074509803920000006" green="0.65490196079999996" blue="0.1176470588" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="J9f-5g-EoU" secondAttribute="bottom" constant="10" id="1Bl-79-Uha"/>
+                <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="J9f-5g-EoU" secondAttribute="bottom" constant="20" id="1Bl-79-Uha"/>
                 <constraint firstAttribute="trailing" secondItem="J9f-5g-EoU" secondAttribute="trailing" constant="15" id="TSm-EN-BzN"/>
                 <constraint firstItem="d6Q-IP-jA4" firstAttribute="top" relation="greaterThanOrEqual" secondItem="uTS-MU-A22" secondAttribute="top" constant="20" id="YL9-Hw-tRR"/>
                 <constraint firstItem="d6Q-IP-jA4" firstAttribute="centerX" secondItem="uTS-MU-A22" secondAttribute="centerX" id="avE-gV-aAT"/>
                 <constraint firstItem="J9f-5g-EoU" firstAttribute="leading" secondItem="uTS-MU-A22" secondAttribute="leading" constant="15" id="kSz-Cu-NUZ"/>
-                <constraint firstItem="d6Q-IP-jA4" firstAttribute="centerY" secondItem="uTS-MU-A22" secondAttribute="centerY" priority="750" constant="-140" id="li5-tN-XTz"/>
+                <constraint firstItem="d6Q-IP-jA4" firstAttribute="centerY" secondItem="uTS-MU-A22" secondAttribute="centerY" priority="748" constant="-140" id="li5-tN-XTz"/>
                 <constraint firstItem="J9f-5g-EoU" firstAttribute="top" secondItem="d6Q-IP-jA4" secondAttribute="bottom" constant="60" id="yJk-wd-MTs"/>
             </constraints>
             <point key="canvasLocation" x="1937" y="55"/>
