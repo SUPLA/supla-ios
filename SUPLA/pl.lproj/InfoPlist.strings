@@ -14,4 +14,4 @@
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 
-"This application will be able to find and configure SUPLA-compatible IoT devices." = "Ta aplikacja będzie mogła znajdować i konfigurować urządzenia IoT zgodne z SUPLĄ.";
+"NSLocalNetworkUsageDescription" = "Ta aplikacja będzie mogła znajdować i konfigurować urządzenia IoT zgodne z SUPLĄ.";
