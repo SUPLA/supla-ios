@@ -29,11 +29,13 @@
                 <outlet property="cbSavePassword" destination="ydn-id-f0M" id="FCE-mZ-XOw"/>
                 <outlet property="edPassword" destination="mNF-Uh-cv0" id="Jk3-Mm-rN2"/>
                 <outlet property="edSSID" destination="t0Z-OG-dra" id="IEy-uC-C7X"/>
+                <outlet property="lAutoMode" destination="v4z-H5-9Z6" id="ejL-jb-nNW"/>
                 <outlet property="lFirmware" destination="vF3-m6-NRt" id="44k-pe-SLE"/>
                 <outlet property="lLastState" destination="6o8-Z9-BJq" id="zYL-P0-ATT"/>
                 <outlet property="lMAC" destination="Y1H-Co-hfj" id="kMa-4q-TeF"/>
                 <outlet property="lName" destination="npR-oM-kAU" id="JNM-dj-kLE"/>
                 <outlet property="lStep3Text2" destination="y0X-IV-sH5" id="1q9-hd-5x9"/>
+                <outlet property="swAutoMode" destination="zqZ-uB-2KH" id="c2e-98-cUF"/>
                 <outlet property="txtErrorMEssage" destination="J9f-5g-EoU" id="cqE-3L-fPX"/>
                 <outlet property="vDone" destination="O29-9p-F9i" id="6P8-NS-uif"/>
                 <outlet property="vDot" destination="zDx-px-3a2" id="Yeo-zj-TsF"/>
@@ -411,14 +413,33 @@ Press Next to continue.
                         <constraint firstAttribute="trailing" secondItem="QQN-Ba-rnP" secondAttribute="trailing" constant="5" id="uYt-88-28G"/>
                     </constraints>
                 </view>
+                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zqZ-uB-2KH">
+                    <rect key="frame" x="5" y="642" width="51" height="31"/>
+                    <connections>
+                        <action selector="swAutoModeChanged:" destination="-1" eventType="valueChanged" id="LVG-nw-x5e"/>
+                    </connections>
+                </switch>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Auto mode" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v4z-H5-9Z6">
+                    <rect key="frame" x="69" y="642.66666666666663" width="81.333333333333314" height="30"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="30" id="g4m-JB-LDX"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="Quicksand-Regular" family="Quicksand" pointSize="16"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <nil key="highlightedColor"/>
+                </label>
             </subviews>
             <color key="backgroundColor" red="0.074509803920000006" green="0.65490196079999996" blue="0.1176470588" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="Ej4-ru-hOy" firstAttribute="leading" secondItem="x6e-cq-S7L" secondAttribute="leading" constant="5" id="37q-c9-7pb"/>
                 <constraint firstItem="ulw-KV-Mde" firstAttribute="centerY" secondItem="x6e-cq-S7L" secondAttribute="centerY" priority="750" constant="-140" id="5o3-2T-L3X"/>
                 <constraint firstItem="ulw-KV-Mde" firstAttribute="top" relation="greaterThanOrEqual" secondItem="x6e-cq-S7L" secondAttribute="top" constant="5" id="CfO-US-CYn"/>
+                <constraint firstItem="zqZ-uB-2KH" firstAttribute="top" secondItem="Ej4-ru-hOy" secondAttribute="bottom" constant="5" id="HwY-sI-nvK"/>
                 <constraint firstItem="ulw-KV-Mde" firstAttribute="centerX" secondItem="x6e-cq-S7L" secondAttribute="centerX" id="IPx-ad-UzV"/>
+                <constraint firstItem="v4z-H5-9Z6" firstAttribute="centerY" secondItem="zqZ-uB-2KH" secondAttribute="centerY" id="Knw-oW-TRJ"/>
+                <constraint firstItem="v4z-H5-9Z6" firstAttribute="leading" secondItem="zqZ-uB-2KH" secondAttribute="trailing" constant="15" id="NfC-41-y5a"/>
                 <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="Ej4-ru-hOy" secondAttribute="bottom" constant="15" id="bTS-75-IwD"/>
+                <constraint firstItem="zqZ-uB-2KH" firstAttribute="leading" secondItem="x6e-cq-S7L" secondAttribute="leading" constant="5" id="c69-ho-wXH"/>
                 <constraint firstAttribute="trailing" secondItem="Ej4-ru-hOy" secondAttribute="trailing" constant="5" id="fWZ-kP-XUQ"/>
                 <constraint firstItem="Ej4-ru-hOy" firstAttribute="top" secondItem="ulw-KV-Mde" secondAttribute="bottom" constant="10" id="irP-Cb-7MS"/>
             </constraints>

@@ -21,6 +21,7 @@
 @interface SAConfigResult : NSObject
 
 @property(nonatomic) int resultCode;
+@property(copy, nonatomic) NSString *extendedResultError;
 
 @property (copy, nonatomic) NSString *name;
 @property (copy, nonatomic) NSString *state;
@@ -76,5 +77,8 @@
 @property (weak, nonatomic) IBOutlet UIButton *btnSystemSettings;
 @property (weak, nonatomic) IBOutlet UIButton *btnCancel;
 @property (weak, nonatomic) IBOutlet UILabel *lStep3Text2;
+@property (weak, nonatomic) IBOutlet UISwitch *swAutoMode;
+@property (weak, nonatomic) IBOutlet UILabel *lAutoMode;
+- (IBAction)swAutoModeChanged:(id)sender;
 
 @end

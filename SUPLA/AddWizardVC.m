@@ -48,6 +48,7 @@
 @implementation SAConfigResult
 
 @synthesize resultCode;
+@synthesize extendedResultError;
 
 @synthesize name;
 @synthesize state;
@@ -148,6 +149,9 @@
     
     if ( requestError != nil || response == nil ) {
         result.resultCode = RESULT_CONN_ERROR;
+        if (requestError != nil) {
+            result.extendedResultError = [NSString stringWithFormat:@"%ld - %@", (long)requestError.code, requestError.localizedDescription];
+        }
         [self onOperationDone:result];
         return;
     }
@@ -546,20 +550,20 @@
             break;
         case PAGE_STEP_3:
         {
-            if ([SAWifiAutoConnect isAvailable]) {
-                [self.btnNext2 setAttributedTitle:NSLocalizedString(@"Start", NULL)];
-            }
-            
             _blinkTimer = [NSTimer scheduledTimerWithTimeInterval:0.1 target:self selector:@selector(blinkTimerFireMethod:) userInfo:nil repeats:YES];
             
-            NSString *txt1 = NSLocalizedString(@"If the device when switched on does not work in the configuration mode, press and hold CONFIG button for at least 5 seconds.\n\n%@\n", NULL);
+            if ([SAWifiAutoConnect isAvailable]) {
+                self.swAutoMode.on = YES;
+                self.swAutoMode.hidden = NO;
+                self.lAutoMode.hidden = NO;
+            } else {
+                self.swAutoMode.on = NO;
+                self.swAutoMode.hidden = YES;
+                self.lAutoMode.hidden = YES;
+            }
             
-            NSString *txt2 = NSLocalizedString([SAWifiAutoConnect isAvailable]
-                                               ? @"Press START to start configuration." :
-                                               @"Press Next to continue." ,NULL);
-
-            self.lStep3Text2.text = [NSString stringWithFormat:txt1, txt2];
-            
+            [self swAutoModeChanged:self.swAutoMode];
+                        
             [self showPageView:self.vStep3];
         }
             break;
@@ -606,7 +610,11 @@
             [self showError:NSLocalizedString(@"The connected device is not compatible with this Wizard!", NULL)];
             break;
         case RESULT_CONN_ERROR: {
-            NSString *msg = NSLocalizedString(@"Connection with the device cannot be set! Make sure, if the Wi-fi connection has been set for the I/O device.", NULL);
+            NSString *errInfo = @"";
+            if (result.extendedResultError != nil && result.extendedResultError.length) {
+                errInfo = [NSString stringWithFormat:@"\n[%@]", result.extendedResultError];
+            }
+            NSString *msg = [NSString stringWithFormat:@"%@%@", NSLocalizedString(@"Connection with the device cannot be set!", NULL), errInfo];
             
             if (@available(iOS 14.0, *)) {
                 [self showErrorWithAttributedString:[self messageExtendedWithNotificationOfPermissions:msg]];
@@ -800,7 +808,7 @@
 
             break;
         case PAGE_STEP_3:
-            if ([SAWifiAutoConnect isAvailable]) {
+            if (self.swAutoMode.on) {
                 [self connectToWiFi];
             } else {
                 [self showPage:PAGE_STEP_4];
@@ -848,5 +856,16 @@
     } else {
         NSLog(@"Unable to open settings app.");
     }
+}
+- (IBAction)swAutoModeChanged:(id)sender {
+
+    NSString *txt1 = NSLocalizedString(@"If the device when switched on does not work in the configuration mode, press and hold CONFIG button for at least 5 seconds.\n\n%@\n", NULL);
+    
+    NSString *txt2 = NSLocalizedString(self.swAutoMode.on
+                                                   ? @"Press START to start configuration." :
+                                                   @"Press Next to continue." ,NULL);
+
+    [self.btnNext2 setAttributedTitle:NSLocalizedString(self.swAutoMode.on ? @"Start" : @"Next", NULL)];
+    self.lStep3Text2.text = [NSString stringWithFormat:txt1, txt2];
 }
 @end

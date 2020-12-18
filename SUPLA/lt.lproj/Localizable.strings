@@ -84,7 +84,7 @@
 "Incorrect input parameters!" = "Klaidingi įvesties parametrai!";
 "The connected device is not compatible with this Wizard!" = "Įrenginys, su kuriuo užmegztas ryšys nėra suderinamas su šiuo vedliu!";
 "Configuration Failed!" = "Nepavyko sėkmingai baigti konfigūravimo!";
-"Connection with the device cannot be set! Make sure, if the Wi-fi connection has been set for the I/O device." = "Negalima užmegzti ryšio su įrenginiu! Įsitikinkite, kad vykdomasis įrenginys užmezgė ryšį su WiFi tinklu.";
+"Connection with the device cannot be set!" = "Negalima užmegzti ryšio su įrenginiu!";
 "[Calibration]" = "[Kalibravimas]";
 "Help" = "Pagalba";
 "https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=L4N7RSWME6LG2" = "https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=QYN932S5UQG8N";

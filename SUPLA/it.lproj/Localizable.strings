@@ -78,7 +78,7 @@
 "Incorrect input parameters!" = "Parametri di input non validi!";
 "The connected device is not compatible with this Wizard!" = "Il dispositivo con il quale è stata stabilita la connessione non è compatibile con questa procedura guidata!";
 "Configuration Failed!" = "Configurazione fallita!";
-"Connection with the device cannot be set! Make sure, if the Wi-fi connection has been set for the I/O device." = "Impossibile stabilire una connessione con il dispositivo!";
+"Connection with the device cannot be set!" = "Impossibile stabilire una connessione con il dispositivo!";
 "[Calibration]" = "[Calibrazione]";
 "Help" = "Aiuto";
 "Staircase timer" = "Temporizzatore luce scale";

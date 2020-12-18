@@ -82,7 +82,7 @@
 "Incorrect input parameters!" = "wizard_result_param_error!";
 "The connected device is not compatible with this Wizard!" = "Enheten som er koblet til er ikke kompatibel med denne assistenten!";
 "Configuration Failed!" = "Konfigurasjon mislykket!";
-"Connection with the device cannot be set! Make sure, if the Wi-fi connection has been set for the I/O device." = "Kunne ikke koble til enheten! Sjekk om din enhet inngang-utgang er tilkoblet WiFi-nettverk.";
+"Connection with the device cannot be set!" = "Kunne ikke koble til enheten!";
 "[Calibration]" = "[Kalibrering]";
 "Help" = "Hjelp";
 "https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=L4N7RSWME6LG2" = "https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=QYN932S5UQG8N";

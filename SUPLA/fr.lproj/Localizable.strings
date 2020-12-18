@@ -78,7 +78,7 @@
 "Incorrect input parameters!" = "Paramètres d'entrée erronés!";
 "The connected device is not compatible with this Wizard!" = "Le dispositif connecté n'est pas compatible avec cet assistant!";
 "Configuration Failed!" = "Échec de la configuration!";
-"Connection with the device cannot be set! Make sure, if the Wi-fi connection has been set for the I/O device." = "Impossible de se connecter au dispositif!";
+"Connection with the device cannot be set!" = "Impossible de se connecter au dispositif!";
 "[Calibration]" = "[Calibration]";
 "Help" = "Aide";
 "Staircase timer" = "Minuterie d'escalier";

@@ -77,7 +77,7 @@
 "Incorrect input parameters!" = "Неверные входные параметры!";
 "The connected device is not compatible with this Wizard!" = "Устройство, с которым установлено соединение, не совместимо с данным мастером!";
 "Configuration Failed!" = "Конфигурация завершена с ошибкой!";
-"Connection with the device cannot be set! Make sure, if the Wi-fi connection has been set for the I/O device." = "Не удается установить соединение с устройством!";
+"Connection with the device cannot be set!" = "Не удается установить соединение с устройством!";
 "[Calibration]" = "[калибровка]";
 "Help" = "Помощь";
 "Staircase timer" = "Лестничный автомат";

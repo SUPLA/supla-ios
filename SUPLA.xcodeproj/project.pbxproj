@@ -595,6 +595,7 @@
 		019170A3233D67E900820BDB /* SAThermostatChartHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SAThermostatChartHelper.m; sourceTree = "<group>"; };
 		01943EBF249D1C8800DA2B8F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/SASuperuserAuthorizationDialog.xib; sourceTree = "<group>"; };
 		01943EC2249D1C8D00DA2B8F /* pl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pl; path = pl.lproj/SASuperuserAuthorizationDialog.strings; sourceTree = "<group>"; };
+		0196E81D258CD2480016E8DC /* pl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pl; path = pl.lproj/AddWizardVC.strings; sourceTree = "<group>"; };
 		01996AC0254B6B380034C6F1 /* z_wave_btn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "z_wave_btn@2x.png"; path = "Resources/Assets/Img/z_wave_btn@2x.png"; sourceTree = "<group>"; };
 		019D22EE233CC2D000F17135 /* SAPreloader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SAPreloader.h; sourceTree = "<group>"; };
 		019D22EF233CC2D000F17135 /* SAPreloader.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SAPreloader.m; sourceTree = "<group>"; };
@@ -878,7 +879,6 @@
 		4077ACE220A21BB100BD2216 /* CreateAccountVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CreateAccountVC.xib; sourceTree = "<group>"; };
 		407D31921FD17C4B0062FB80 /* wifigeneral@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "wifigeneral@2x.png"; path = "Resources/Assets/Img/wifigeneral@2x.png"; sourceTree = "<group>"; };
 		407D31951FD1A7070062FB80 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/AddWizardVC.xib; sourceTree = "<group>"; };
-		407D31981FD1A70B0062FB80 /* pl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pl; path = pl.lproj/AddWizardVC.strings; sourceTree = "<group>"; };
 		407D319A1FD1A70D0062FB80 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/AddWizardVC.strings; sourceTree = "<group>"; };
 		407D319C1FD1A70F0062FB80 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/AddWizardVC.strings; sourceTree = "<group>"; };
 		407D319E1FD1A7110062FB80 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/AddWizardVC.strings; sourceTree = "<group>"; };
@@ -2591,7 +2591,6 @@
 			isa = PBXVariantGroup;
 			children = (
 				407D31951FD1A7070062FB80 /* Base */,
-				407D31981FD1A70B0062FB80 /* pl */,
 				407D319A1FD1A70D0062FB80 /* de */,
 				407D319C1FD1A70F0062FB80 /* ru */,
 				407D319E1FD1A7110062FB80 /* it */,
@@ -2605,6 +2604,7 @@
 				01BF82D72347569400C9EE9F /* nb */,
 				01BF82E0234756A000C9EE9F /* el */,
 				01BF82E9234756B600C9EE9F /* nl */,
+				0196E81D258CD2480016E8DC /* pl */,
 			);
 			name = AddWizardVC.xib;
 			sourceTree = "<group>";
