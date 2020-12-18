@@ -639,7 +639,8 @@
             NSString *errInfo = @"";
             if (result.extendedResultCode == NSURLErrorNotConnectedToInternet && _1stAttempt) {
                 _1stAttempt = NO;
-                [self startConfigurationWithDelay:10];
+                [NSThread sleepForTimeInterval:1];
+                [self connectToWiFi];
                 return;
             } else if (result.extendedResultError != nil && result.extendedResultError.length) {
                 errInfo = [NSString stringWithFormat:@"\n[%@]", result.extendedResultError];
