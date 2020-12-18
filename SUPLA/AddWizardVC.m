@@ -49,6 +49,7 @@
 
 @synthesize resultCode;
 @synthesize extendedResultError;
+@synthesize extendedResultCode;
 
 @synthesize name;
 @synthesize state;
@@ -60,6 +61,7 @@
 
 @implementation SASetConfigOperation {
     int _result;
+    int _delay;
 }
 
 @synthesize SSID;
@@ -67,6 +69,22 @@
 @synthesize Server;
 @synthesize Email;
 @synthesize delegate;
+
+- (id)init {
+    if (self = [super init]) {
+        _delay = 0;
+    }
+    
+    return self;
+}
+
+- (id)initWithDelay:(int)delay {
+    if (self = [super init]) {
+        _delay = delay;
+    }
+    
+    return self;
+}
 
 - (BOOL)postDataWithFields:(NSDictionary *)fields {
     
@@ -102,6 +120,10 @@
 
 - (void)main
 {
+    if (_delay) {
+        [NSThread sleepForTimeInterval:_delay];
+    }
+    
     SAConfigResult *result = [[SAConfigResult alloc] init];
     
     if ( self.SSID == nil
@@ -121,7 +143,7 @@
     NSData *response = nil;
     NSError *requestError = nil;
 
-    int retryCount = 10;
+    int retryCount = 5;
     
     do {
     
@@ -152,6 +174,7 @@
         result.resultCode = RESULT_CONN_ERROR;
         if (requestError != nil) {
             result.extendedResultError = [NSString stringWithFormat:@"%ld - %@", (long)requestError.code, requestError.localizedDescription];
+            result.extendedResultCode = requestError.code;
         }
         [self onOperationDone:result];
         return;
@@ -304,6 +327,7 @@
     int _step;
     int _pageId;
     SAWifiAutoConnect *_wifiAutoConnect;
+    BOOL _1stAttempt;
 }
 
 -(NSOperationQueue *)OpQueue {
@@ -551,6 +575,7 @@
             break;
         case PAGE_STEP_3:
         {
+            _1stAttempt = YES;
             _blinkTimer = [NSTimer scheduledTimerWithTimeInterval:0.1 target:self selector:@selector(blinkTimerFireMethod:) userInfo:nil repeats:YES];
             
             if ([SAWifiAutoConnect isAvailable]) {
@@ -612,7 +637,10 @@
             break;
         case RESULT_CONN_ERROR: {
             NSString *errInfo = @"";
-            if (result.extendedResultError != nil && result.extendedResultError.length) {
+            if (result.extendedResultCode == NSURLErrorNotConnectedToInternet && _1stAttempt) {
+                _1stAttempt = NO;
+                [self startConfigurationWithDelay:10];
+            } else if (result.extendedResultError != nil && result.extendedResultError.length) {
                 errInfo = [NSString stringWithFormat:@"\n[%@]", result.extendedResultError];
             }
             NSString *msg = [NSString stringWithFormat:@"%@%@", NSLocalizedString(@"Connection with the device cannot be set!", NULL), errInfo];
@@ -757,11 +785,11 @@
     }];
 }
 
--(void) startConfiguration {
+-(void) startConfigurationWithDelay:(int)delaySec {
     [self setStep:STEP_CONFIGURE];
     
     [self.OpQueue cancelAllOperations];
-    SASetConfigOperation *setConfigOp = [[SASetConfigOperation alloc] init];
+    SASetConfigOperation *setConfigOp = [[SASetConfigOperation alloc] initWithDelay:delaySec];
     setConfigOp.SSID = [self.edSSID.text
                         stringByTrimmingCharactersInSet:
                         [NSCharacterSet whitespaceAndNewlineCharacterSet]];
@@ -770,6 +798,10 @@
     setConfigOp.Email = [SAApp getEmailAddress];
     setConfigOp.delegate = self;
     [self.OpQueue addOperation:setConfigOp];
+}
+
+-(void) startConfiguration {
+    [self startConfigurationWithDelay:0];
 }
 
 - (IBAction)nextTouchch:(id)sender {
