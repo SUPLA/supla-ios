@@ -55,5 +55,7 @@
 	<string>Light</string>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<true/>
+	<key>NSLocalNetworkUsageDescription</key>
+	<string>This application will be able to find and configure SUPLA-compatible IoT devices.</string>
 </dict>
 </plist>
