@@ -106,6 +106,7 @@
 		019170A1233D4D5A00820BDB /* SADownloadThermostatMeasurements.m in Sources */ = {isa = PBXBuildFile; fileRef = 019170A0233D4D5A00820BDB /* SADownloadThermostatMeasurements.m */; };
 		019170A4233D67E900820BDB /* SAThermostatChartHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 019170A3233D67E900820BDB /* SAThermostatChartHelper.m */; };
 		01943EBE249D1C8800DA2B8F /* SASuperuserAuthorizationDialog.xib in Resources */ = {isa = PBXBuildFile; fileRef = 01943EC0249D1C8800DA2B8F /* SASuperuserAuthorizationDialog.xib */; };
+		0196E82A258CEEEC0016E8DC /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0196E82C258CEEEC0016E8DC /* InfoPlist.strings */; };
 		01996AC1254B6B390034C6F1 /* z_wave_btn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 01996AC0254B6B380034C6F1 /* z_wave_btn@2x.png */; };
 		019D22F0233CC2D000F17135 /* SAPreloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 019D22EF233CC2D000F17135 /* SAPreloader.m */; };
 		019F4CAC2354DC3300286139 /* ImpulseCounterDetailView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 019F4CAE2354DC3300286139 /* ImpulseCounterDetailView.xib */; };
@@ -596,6 +597,7 @@
 		01943EBF249D1C8800DA2B8F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/SASuperuserAuthorizationDialog.xib; sourceTree = "<group>"; };
 		01943EC2249D1C8D00DA2B8F /* pl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pl; path = pl.lproj/SASuperuserAuthorizationDialog.strings; sourceTree = "<group>"; };
 		0196E81D258CD2480016E8DC /* pl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pl; path = pl.lproj/AddWizardVC.strings; sourceTree = "<group>"; };
+		0196E82B258CEEEC0016E8DC /* pl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pl; path = pl.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		01996AC0254B6B380034C6F1 /* z_wave_btn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "z_wave_btn@2x.png"; path = "Resources/Assets/Img/z_wave_btn@2x.png"; sourceTree = "<group>"; };
 		019D22EE233CC2D000F17135 /* SAPreloader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SAPreloader.h; sourceTree = "<group>"; };
 		019D22EF233CC2D000F17135 /* SAPreloader.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SAPreloader.m; sourceTree = "<group>"; };
@@ -1720,6 +1722,7 @@
 			children = (
 				4031AD011BBC2A4900CF9D8B /* Assets */,
 				40DE1A421BCD6F06004CF43B /* Localizable.strings */,
+				0196E82C258CEEEC0016E8DC /* InfoPlist.strings */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -1964,6 +1967,7 @@
 				40B9ED481FACCE8700403B1A /* tv-on@3x.png in Resources */,
 				40B9ED501FACCF8100403B1A /* radio-off@3x.png in Resources */,
 				407D4AED1BC6C64D009A5505 /* app_icon120x120@3x.png in Resources */,
+				0196E82A258CEEEC0016E8DC /* InfoPlist.strings in Resources */,
 				40A87DDF1FADDFF900918B54 /* donate@2x.png in Resources */,
 				40CF96C21BC7D4E70030EFFF /* power-off@2x.png in Resources */,
 				40CF96BD1BC7D4E70030EFFF /* light-on@3x.png in Resources */,
@@ -2497,6 +2501,14 @@
 				01943EC2249D1C8D00DA2B8F /* pl */,
 			);
 			name = SASuperuserAuthorizationDialog.xib;
+			sourceTree = "<group>";
+		};
+		0196E82C258CEEEC0016E8DC /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				0196E82B258CEEEC0016E8DC /* pl */,
+			);
+			name = InfoPlist.strings;
 			sourceTree = "<group>";
 		};
 		019F4CAE2354DC3300286139 /* ImpulseCounterDetailView.xib */ = {
