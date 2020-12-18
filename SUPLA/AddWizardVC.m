@@ -121,7 +121,7 @@
     NSData *response = nil;
     NSError *requestError = nil;
 
-    int retryCount = 5;
+    int retryCount = 10;
     
     do {
     
@@ -137,6 +137,7 @@
         if ( requestError == nil && response != nil ) {
             break;
         } else {
+            
             retryCount--;
             sleep(1);
         }
@@ -331,10 +332,10 @@
             timeout = 5;
             break;
         case STEP_WIFI_AUTO_CONNECT:
-            timeout = 60;
+            timeout = 90;
             break;
         case STEP_CONFIGURE:
-            timeout = 50;
+            timeout = 90;
             break;
     }
     
