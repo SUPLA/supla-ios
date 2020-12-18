@@ -605,8 +605,15 @@
         case RESULT_COMPAT_ERROR:
             [self showError:NSLocalizedString(@"The connected device is not compatible with this Wizard!", NULL)];
             break;
-        case RESULT_CONN_ERROR:
-            [self showError:NSLocalizedString(@"Connection with the device cannot be set! Make sure, if the Wi-fi connection has been set for the I/O device.", NULL)];
+        case RESULT_CONN_ERROR: {
+            NSString *msg = NSLocalizedString(@"Connection with the device cannot be set! Make sure, if the Wi-fi connection has been set for the I/O device.", NULL);
+            
+            if (@available(iOS 14.0, *)) {
+                [self showErrorWithAttributedString:[self messageExtendedWithNotificationOfPermissions:msg]];
+            } else {
+                [self showError:msg];
+            }
+        }
             break;
         case RESULT_FAILED:
             [self showError:NSLocalizedString(@"Configuration Failed!", NULL)];
@@ -716,6 +723,12 @@
     [self.btnNext2 setAttributedTitle:NSLocalizedString(@"Next", NULL)];
 }
 
+-(NSAttributedString*)messageExtendedWithNotificationOfPermissions:(NSString *)msg {
+    NSString *msg2 = NSLocalizedString(@"Make sure that the application has permissions to discover and connect to devices in the local network. This means that the \"iOS->Settings->SUPLA->Local network\" permission must be turned on for the wizard to work properly.", NULL);
+    
+    return [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"%@\n\n%@", msg, msg2]];
+}
+
 -(void) connectToWiFi {
     [self setStep:STEP_WIFI_AUTO_CONNECT];
     
@@ -729,21 +742,7 @@
                 [self startConfiguration];
             } else {
                 [self->_OpQueue cancelAllOperations];
-                
-                NSString *msg1 = NSLocalizedString(@"No devices has been found! Check, if the device you want to configure is working in the configuration mode and try again.", NULL);
-                
-                NSString *msg2 = NSLocalizedString(@"Make sure that the application has permissions to discover and connect to devices in the local network. This means that the \"iOS->Settings->SUPLA->Local network\" permission must be turned on for the wizard to work properly.", NULL);
-     
-                if (@available(iOS 14.0, *)) {
-                    NSMutableAttributedString *msg = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"%@\n\n%@", msg1, msg2]];
-                    
-                    NSRange range = NSMakeRange(msg1.length+2, msg2.length);
-                    
-                    [msg addAttribute:NSForegroundColorAttributeName value:[UIColor yellowColor] range:range];
-                    [self showErrorWithAttributedString: msg];
-                } else {
-                    [self showError:msg1];
-                }
+                [self showError:NSLocalizedString(@"No devices has been found! Check, if the device you want to configure is working in the configuration mode and try again.", NULL)];
             }
         }
     }];
