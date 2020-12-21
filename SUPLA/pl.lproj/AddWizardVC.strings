@@ -44,3 +44,5 @@
 /* Class = "UILabel"; text = "Welcome to the Device Add Wizard which will in an easy and simple way help you to add new device to the system."; ObjectID = "vbb-Xd-lIx"; */
 "vbb-Xd-lIx.text" = "Witaj w kreatorze dodawania urządzeń, który pomoże Ci w prosty i szybki sposób dodać nowe urządzenie do systemu.";
 
+/* Class = "UILabel"; text = "Auto mode"; ObjectID = "v4z-H5-9Z6"; */
+"v4z-H5-9Z6.text" = "Tryb automatyczny";

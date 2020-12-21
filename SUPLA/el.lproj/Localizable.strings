@@ -82,7 +82,7 @@
 "Incorrect input parameters!" = "Μη έγκυρες παράμετροι εισόδου!";
 "The connected device is not compatible with this Wizard!" = "Η συσκευή με την οποία συνδεθήκατε δεν είναι συμβατή με αυτόν τον οδηγό!";
 "Configuration Failed!" = "Η διαμόρφωση απέτυχε!";
-"Connection with the device cannot be set! Make sure, if the Wi-fi connection has been set for the I/O device." = "Δεν είναι δυνατή η σύνδεση με τη συσκευή! Βεβαιωθείτε ότι έχει πραγματοποιηθεί η σύνδεση της εκτελεστικής συσκευής στο δίκτυο WiFi.";
+"Connection with the device cannot be set!" = "Δεν είναι δυνατή η σύνδεση με τη συσκευή!";
 "[Calibration]" = "[Βαθμονόμηση]";
 "Help" = "Βοήθεια";
 "https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=L4N7RSWME6LG2" = "https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=QYN932S5UQG8N";

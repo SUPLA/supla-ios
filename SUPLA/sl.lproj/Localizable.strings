@@ -82,7 +82,7 @@
 "Incorrect input parameters!" = "Napačni vhodni parametri!";
 "The connected device is not compatible with this Wizard!" = "Naprava, na katero ste se povezali, ni združljiva s tem čarovnikom!";
 "Configuration Failed!" = "Konfiguracija ni bila uspešna!";
-"Connection with the device cannot be set! Make sure, if the Wi-fi connection has been set for the I/O device." = "Nie można nawiązać połączenia z urządzeniem! Upewnij się, że połączenie z siecią WiFi urządzenia wykonawczego zostało nawiązane.";
+"Connection with the device cannot be set!" = "Povezave z napravo ni mogoče nastaviti!";
 "[Calibration]" = "[Kalibracija]";
 "Help" = "Pomoč";
 "https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=L4N7RSWME6LG2" = "https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=QYN932S5UQG8N";

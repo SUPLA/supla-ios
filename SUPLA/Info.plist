@@ -24,6 +24,8 @@
 	<string>$(CURRENT_PROJECT_VERSION)</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>NSLocalNetworkUsageDescription</key>
+	<string>This application will be able to find and configure SUPLA-compatible IoT devices.</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>Quicksand-Regular.ttf</string>

@@ -82,7 +82,8 @@
 "Incorrect input parameters!" = "Błędne parametry wejściowe!";
 "The connected device is not compatible with this Wizard!" = "Urządzenie z którym nawiązano połączenie nie jest kompatybilne z tym kreatorem!";
 "Configuration Failed!" = "Konfiguracja zakończona niepowodzeniem!";
-"Connection with the device cannot be set! Make sure, if the Wi-fi connection has been set for the I/O device." = "Nie można nawiązać połączenia z urządzeniem! Upewnij się, że połączenie z siecią WiFi urządzenia wykonawczego zostało nawiązane.";
+"Connection with the device cannot be set!" = "Nie można nawiązać połączenia z urządzeniem!";
+"Make sure, if the Wi-fi connection has been set for the I/O device." = "Upewnij się, że połączenie z siecią WiFi urządzenia wykonawczego zostało nawiązane.";
 "[Calibration]" = "[Kalibracja]";
 "Help" = "Pomoc";
 "https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=L4N7RSWME6LG2" = "https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=QYN932S5UQG8N";
