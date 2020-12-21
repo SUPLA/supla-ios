@@ -579,7 +579,7 @@
             _blinkTimer = [NSTimer scheduledTimerWithTimeInterval:0.1 target:self selector:@selector(blinkTimerFireMethod:) userInfo:nil repeats:YES];
             
             if ([SAWifiAutoConnect isAvailable]) {
-                self.swAutoMode.on = YES;
+                self.swAutoMode.on = NO;
                 self.swAutoMode.hidden = NO;
                 self.lAutoMode.hidden = NO;
             } else {
