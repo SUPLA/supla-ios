@@ -22,7 +22,7 @@
 
 @property(nonatomic) int resultCode;
 @property(copy, nonatomic) NSString *extendedResultError;
-@property(nonatomic) int extendedResultCode;
+@property(nonatomic) long extendedResultCode;
 
 @property (copy, nonatomic) NSString *name;
 @property (copy, nonatomic) NSString *state;

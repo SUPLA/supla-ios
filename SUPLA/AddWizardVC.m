@@ -174,7 +174,7 @@
         result.resultCode = RESULT_CONN_ERROR;
         if (requestError != nil) {
             result.extendedResultError = [NSString stringWithFormat:@"%ld - %@", (long)requestError.code, requestError.localizedDescription];
-            result.extendedResultCode = requestError.code;
+            result.extendedResultCode = (long)requestError.code;
         }
         [self onOperationDone:result];
         return;
