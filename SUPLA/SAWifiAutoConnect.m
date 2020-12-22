@@ -59,6 +59,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
             [_prefixes removeObject:prefix];
 
             NEHotspotConfiguration *cfg = [[NEHotspotConfiguration alloc] initWithSSIDPrefix:prefix];
+            cfg.joinOnce = NO;
             
             [NEHotspotConfigurationManager.sharedManager applyConfiguration:cfg completionHandler:^(NSError* error) {
                 if (error) {
