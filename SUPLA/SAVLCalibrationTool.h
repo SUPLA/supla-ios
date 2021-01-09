@@ -14,16 +14,11 @@
  */
 
 #import <UIKit/UIKit.h>
-#import "DetailView.h"
-#import "SARangeCalibrationWheel.h"
-#import "SASuperuserAuthorizationDialog.h"
+#import "SADimmerCalibrationTool.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface SAVLCalibrationTool : UIView <UIGestureRecognizerDelegate, SARangeCalibrationWheelDelegate, SASuperuserAuthorizationDialogDelegate>
-@property (weak, nonatomic) IBOutlet UIButton *btnInfo;
-@property (weak, nonatomic) IBOutlet UIButton *btnRestore;
-@property (weak, nonatomic) IBOutlet UIButton *btnOK;
+@interface SAVLCalibrationTool : SADimmerCalibrationTool <SARangeCalibrationWheelDelegate>
 @property (weak, nonatomic) IBOutlet UIButton *tabMode1;
 @property (weak, nonatomic) IBOutlet UIButton *tabMode2;
 @property (weak, nonatomic) IBOutlet UIButton *tabMode3;
@@ -32,27 +27,12 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UIButton *tabOpRange;
 @property (weak, nonatomic) IBOutlet UIButton *tabBoost;
 @property (weak, nonatomic) IBOutlet SARangeCalibrationWheel *rangeCalibrationWheel;
-@property (weak, nonatomic) IBOutlet UIView *tabBgLedOn;
-@property (weak, nonatomic) IBOutlet UIImageView *tabLedOn;
-@property (weak, nonatomic) IBOutlet UIView *tabBgLedOff;
-@property (weak, nonatomic) IBOutlet UIImageView *tabLedOff;
-@property (weak, nonatomic) IBOutlet UIView *tabBgLedAlwaysOff;
-@property (weak, nonatomic) IBOutlet UIImageView *tabLedAlwaysOff;
 @property (weak, nonatomic) IBOutlet UILabel *lPicFirmwareVersion;
 
-- (IBAction)btnInfoTouch:(id)sender;
-- (IBAction)btnRestoreTouch:(id)sender;
-- (IBAction)btnOKTouch:(id)sender;
 - (IBAction)tabMode123Touch:(id)sender;
 - (IBAction)tabBoostYesNoTouch:(id)sender;
 - (IBAction)tabOpRangeTouch:(id)sender;
 - (IBAction)tabBoostTouch:(id)sender;
-
--(void)startConfiguration:(SADetailView*)detailView;
--(void)dismiss;
--(BOOL)isExitLocked;
--(BOOL)onMenubarBackButtonPressed;
-+(SAVLCalibrationTool*)newInstance;
 @end
 
 NS_ASSUME_NONNULL_END

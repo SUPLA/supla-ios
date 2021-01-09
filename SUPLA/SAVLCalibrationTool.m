@@ -16,12 +16,7 @@
 #import "SAVLCalibrationTool.h"
 #import "SAInfoVC.h"
 #import "UIHelper.h"
-#import "SuplaApp.h"
-#import "SAPreloaderPopup.h"
-
-#define LED_ON_WHEN_CONNECTED 0
-#define LED_OFF_WHEN_CONNECTED 1
-#define LED_ALWAYS_OFF 2
+#import "SuplaClient.h"
 
 #define PIC_HEX_VER_MAX_SIZE 20
 
@@ -82,35 +77,10 @@ typedef struct {
 #define VL_MSG_SET_CHILD_LOCK 0x18
 #define VL_CALCFG_MSG_SET_LED_CONFIG 0x01FF
 
-#define MIN_SEND_DELAY_TIME 0.5
-#define DISPLAY_DELAY_TIME 1.0
-
-@implementation SAVLCalibrationTool {
-    SADetailView *_detailView;
-    NSDate *_configStartedAtTime;
+@implementation SAVLCalibrationTool {    
     vl_supla_configuration_t _config;
-    NSTimer *_delayTimer1;
-    NSTimer *_delayTimer2;
     NSTimer *_startConfigurationRetryTimer;
-    NSDate *_lastCalCfgTime;
-    SAPreloaderPopup *_preloaderPopup;
     BOOL _restoringDefaults;
-    BOOL _sueruserAuthoriztionStarted;
-    BOOL _grInitialized;
-}
-
--(void) delayTimer1Invalidate {
-    if ( _delayTimer1 != nil ) {
-        [_delayTimer1 invalidate];
-        _delayTimer1 = nil;
-    }
-}
-
--(void) delayTimer2Invalidate {
-    if ( _delayTimer2 != nil ) {
-        [_delayTimer2 invalidate];
-        _delayTimer2 = nil;
-    }
 }
 
 -(void)setRoundedTopCorners:(UIButton*)btn {
@@ -122,114 +92,6 @@ typedef struct {
     maskLayer.frame = btn.bounds;
     maskLayer.path = maskPath.CGPath;
     btn.layer.mask = maskLayer;
-}
-
--(void)initGestureRecognizerForView:(UIView *)view action:(SEL)action {
-    UITapGestureRecognizer *tapgr = [[UITapGestureRecognizer alloc] initWithTarget:self action:action];
-    tapgr.delegate = self;
-    [view addGestureRecognizer:tapgr];
-}
-
--(void)startConfiguration:(SADetailView*)detailView {
-    if (detailView == nil) {
-        return;
-    }
-    
-    if (!_grInitialized) {
-        [self initGestureRecognizerForView:self.tabBgLedOn action:@selector(ledOnTapped:)];
-        [self initGestureRecognizerForView:self.tabLedOn action:@selector(ledOnTapped:)];
-        
-        [self initGestureRecognizerForView:self.tabBgLedOff action:@selector(ledOffTapped:)];
-        [self initGestureRecognizerForView:self.tabLedOff action:@selector(ledOffTapped:)];
-        
-        [self initGestureRecognizerForView:self.tabBgLedAlwaysOff action:@selector(ledAlwaysOffTapped:)];
-        [self initGestureRecognizerForView:self.tabLedAlwaysOff action:@selector(ledAlwaysOffTapped:)];
-        
-        _grInitialized = YES;
-    }
-    
-    _lastCalCfgTime = [NSDate dateWithTimeIntervalSince1970:0];
-    
-    memset(&_config, 0, sizeof(vl_supla_configuration_t));
-    
-    _config.vl_main_config.mode = MODE_UNKNOWN;
-    _config.vl_main_config.mode_mask = 0xFF;
-    _config.vl_main_config.boost = MODE_UNKNOWN;
-    _config.vl_main_config.boost_mask = 0xFF;
-    
-    _configStartedAtTime = nil;
-    [self cfgToUIWithDelay:NO];
-    
-    [self removeFromSuperview];
-    self.translatesAutoresizingMaskIntoConstraints = YES;
-    self.frame = CGRectMake(0, 0, detailView.frame.size.width, detailView.frame.size.height);
-    _detailView = detailView;
-    
-    //  Incorrect frame width
-    //  [self setRoundedTopCorners:self.tabOpRange];
-    //  [self setRoundedTopCorners:self.tabBoost];
-    
-    self.rangeCalibrationWheel.delegate = self;
-    _sueruserAuthoriztionStarted = YES;
-    [SASuperuserAuthorizationDialog.globalInstance authorizeWithDelegate:self];
-}
-
-- (void) deviceCalCfgCommand:(int)command charValue:(char*)charValue shortValue:(short*)shortValue {
-    if (_detailView
-        && _detailView.channelBase
-        && _detailView.channelBase.isOnline) {
-        _lastCalCfgTime = [NSDate date];
-        if (charValue) {
-            [SAApp.SuplaClient deviceCalCfgCommand:command cg:_detailView.channelBase.remote_id group:NO charValue:*charValue];
-        } else if (shortValue) {
-            [SAApp.SuplaClient deviceCalCfgCommand:command cg:_detailView.channelBase.remote_id group:NO shortValue:*shortValue];
-        } else {
-            [SAApp.SuplaClient deviceCalCfgCommand:command cg:_detailView.channelBase.remote_id group:NO];
-        }
-    }
-}
-
-- (void) deviceCalCfgCommand:(int)command charValue:(char)charValue {
-    [self deviceCalCfgCommand:command charValue:&charValue shortValue:NULL];
-}
-
-- (void) deviceCalCfgCommand:(int)command shortValue:(short)shortValue {
-    [self deviceCalCfgCommand:command charValue:NULL shortValue:&shortValue];
-}
-
-- (void) deviceCalCfgCommandWithDelay:(int)command {
-    [self delayTimer1Invalidate];
-    
-    double time = [_lastCalCfgTime timeIntervalSinceNow] * -1;
-    
-    if (time > MIN_SEND_DELAY_TIME) {
-        switch (command) {
-            case VL_MSG_SET_MINIMUM:
-                [self deviceCalCfgCommand:command shortValue:self.rangeCalibrationWheel.minimum];
-                break;
-            case VL_MSG_SET_MAXIMUM:
-                [self deviceCalCfgCommand:command shortValue:self.rangeCalibrationWheel.maximum];
-                break;
-            case VL_MSG_SET_BOOST_LEVEL:
-                [self deviceCalCfgCommand:command shortValue:self.rangeCalibrationWheel.boostLevel];
-                break;
-            default:
-                [self deviceCalCfgCommand:command charValue:NULL shortValue:NULL];
-                break;
-        }
-    } else {
-        if ( time < MIN_SEND_DELAY_TIME ) {
-            time = MIN_SEND_DELAY_TIME-time+0.001;
-        } else {
-            time = 0.001;
-        }
-        
-        _delayTimer1 = [NSTimer scheduledTimerWithTimeInterval:time target:self selector:@selector(timer1FireMethod:) userInfo:[NSNumber numberWithInt:command] repeats:NO];
-    }
-}
-
-- (void)timer1FireMethod:(NSTimer *)timer {
-    [self deviceCalCfgCommandWithDelay:[timer.userInfo intValue]];
 }
 
 - (void)startConfigurationRetryTimerFireMethod:(NSTimer *)timer {
@@ -248,77 +110,11 @@ typedef struct {
                                                                     repeats:YES];
 }
 
--(void)closePreloaderPopup {
-    if (_preloaderPopup) {
-        [_preloaderPopup close];
-        _preloaderPopup = nil;
-    }
-}
-
 -(void)stopConfigurationRetryTimer {
     if (_startConfigurationRetryTimer) {
         [_startConfigurationRetryTimer invalidate];
         _startConfigurationRetryTimer = nil;
     }
-}
-
--(void)onCalCfgResult:(NSNotification *)notification {
-    if (_detailView == nil) {
-        [[NSNotificationCenter defaultCenter] removeObserver:self];
-        return;
-    }
-    
-    if (notification.userInfo != nil) {
-        id r = [notification.userInfo objectForKey:@"result"];
-        if ([r isKindOfClass:[SACalCfgResult class]]) {
-            SACalCfgResult *result = (SACalCfgResult*)r;
-            if (result.channelID == _detailView.channelBase.remote_id) {
-                switch (result.command) {
-                    case VL_MSG_CONFIGURATION_ACK:
-                        if (result.result == SUPLA_RESULTCODE_TRUE && !_restoringDefaults) {
-                            [SASuperuserAuthorizationDialog.globalInstance closeWithAnimation:NO completion:nil];
-                            [_detailView addSubview:self];
-                            [_detailView bringSubviewToFront:self];
-                            _configStartedAtTime = [NSDate date];
-        
-                            [self closePreloaderPopup];
-                            [self stopConfigurationRetryTimer];
-                
-                        } else if (_restoringDefaults) {
-                            _restoringDefaults = NO;
-                            [self startConfigurationAgainWithRetry];
-                        }
-                        break;
-                    case VL_MSG_CONFIGURATION_REPORT:
-                        if (result.data.length == sizeof(vl_configuration_t)) {
-                            [result.data getBytes:&_config.vl_main_config length:result.data.length];
-                        } else if (result.data.length == sizeof(vl_supla_configuration_t)) {
-                            [result.data getBytes:&_config length:result.data.length];
-                        }
-                        [self cfgToUIWithDelay:YES];
-                        break;
-                        
-                    default:
-                        break;
-                }
-            }
-        }
-    }
-}
-
--(void) superuserAuthorizationSuccess {
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
-    
-    [[NSNotificationCenter defaultCenter]
-     addObserver:self selector:@selector(onCalCfgResult:)
-     name:kSACalCfgResult object:nil];
-    
-    _sueruserAuthoriztionStarted = NO;
-    [self deviceCalCfgCommand:VL_MSG_CONFIGURATION_MODE charValue:NULL shortValue:NULL];
-}
-
--(void) superuserAuthorizationCanceled {
-    _sueruserAuthoriztionStarted = NO;
 }
 
 - (void)modeToUI {
@@ -375,76 +171,6 @@ typedef struct {
     }
 }
 
--(BOOL)isLedConfigAvailable {
-    return _config.cfg_version >= 2;
-}
-
-- (void)setLedTabApparance:(UIImageView *)iv bgView:(UIView *)bgView selected:(BOOL)selected imgNamed:(NSString*)imgName {
-    if (selected && ![self isLedConfigAvailable]) {
-        selected = NO;
-    }
-    
-    if (selected) {
-        [bgView setBackgroundColor: [UIColor vlCfgButtonColor]];
-        [iv setImage:[UIImage imageNamed:[NSString stringWithFormat:@"%@white", imgName]]];
-    } else {
-        [bgView setBackgroundColor: [UIColor clearColor]];
-        [iv setImage:[UIImage imageNamed:imgName]];
-    }
-}
-
-- (void)ledConfigToUI:(unsigned char)ledCfg {
-    [self setLedTabApparance:self.tabLedOn
-                  bgView:self.tabBgLedOn
-                  selected:ledCfg == LED_ON_WHEN_CONNECTED
-                  imgNamed:@"ledon"];
-
-    [self setLedTabApparance:self.tabLedOff
-                  bgView:self.tabBgLedOff
-                  selected:ledCfg == LED_OFF_WHEN_CONNECTED
-                  imgNamed:@"ledoff"];
-
-    [self setLedTabApparance:self.tabLedAlwaysOff
-                  bgView:self.tabBgLedAlwaysOff
-                  selected:ledCfg == LED_ALWAYS_OFF
-                  imgNamed:@"ledalwaysoff"];
-}
-
-- (void)ledConfigToUI {
-    [self ledConfigToUI:_config.led];
-}
-
-- (void)cfgToUIWithDelay:(BOOL)delay {
-    [self delayTimer2Invalidate];
-    
-    double time = [_lastCalCfgTime timeIntervalSinceNow] * -1;
-    
-    if (!delay || time > DISPLAY_DELAY_TIME) {
-        [self boostToUI];
-        [self modeToUI];
-        [self ledConfigToUI];
-        self.rangeCalibrationWheel.rightEdge = _config.vl_main_config.edge_maximum;
-        self.rangeCalibrationWheel.leftEdge = _config.vl_main_config.edge_minimum;
-        [self.rangeCalibrationWheel setMinimum:_config.vl_main_config.operating_minimum andMaximum:_config.vl_main_config.operating_maximum];
-        self.rangeCalibrationWheel.boostLevel = _config.vl_main_config.boost_level;
-        
-        self.lPicFirmwareVersion.text = [NSString stringWithCString:_config.pic_hex_ver encoding:NSASCIIStringEncoding];
-        
-    } else {
-        if ( time < DISPLAY_DELAY_TIME ) {
-            time = DISPLAY_DELAY_TIME-time+0.001;
-        } else {
-            time = 0.001;
-        }
-        
-        _delayTimer2 = [NSTimer scheduledTimerWithTimeInterval:time target:self selector:@selector(timer2FireMethod:) userInfo:nil repeats:NO];
-    }
-}
-
-- (void)timer2FireMethod:(NSTimer *)timer {
-    [self cfgToUIWithDelay:YES];
-}
-
 - (IBAction)tabBoostTouch:(id)sender {
     self.tabBoost.backgroundColor = [UIColor whiteColor];
     self.tabOpRange.backgroundColor = [UIColor clearColor];
@@ -468,12 +194,6 @@ typedef struct {
     }
 }
 
-- (void)showPreloaderWithText:(NSString *)text {
-    _preloaderPopup = SAPreloaderPopup.globalInstance;
-    [_preloaderPopup setText:text];
-    [_preloaderPopup show];
-}
-
 - (IBAction)tabMode123Touch:(id)sender {
     if (sender == self.tabMode1) {
         _config.vl_main_config.mode = MODE_1;
@@ -490,97 +210,7 @@ typedef struct {
     [self startConfigurationAgainWithRetry];
 }
 
-
-- (IBAction)btnOKTouch:(id)sender {
-    
-    UIAlertController * alert = [UIAlertController
-                                 alertControllerWithTitle:NSLocalizedString(@"Dimmer settings", nil)
-                                 message:NSLocalizedString(@"Do you want to save the settings?", nil)
-                                 preferredStyle:UIAlertControllerStyleAlert];
-    
-    UIAlertAction* yesBtn = [UIAlertAction
-                             actionWithTitle:NSLocalizedString(@"Yes", nil)
-                             style:UIAlertActionStyleDefault
-                             handler:^(UIAlertAction * action) {
-        self->_configStartedAtTime = nil;
-        [self deviceCalCfgCommand:VL_MSG_CONFIG_COMPLETE charValue:1];
-        [self dismiss];
-    }];
-    
-    UIAlertAction* noBtn = [UIAlertAction
-                            actionWithTitle:NSLocalizedString(@"No", nil)
-                            style:UIAlertActionStyleDefault
-                            handler:^(UIAlertAction * action) {
-        [self dismiss];
-    }];
-    
-    UIAlertAction* cancelBtn = [UIAlertAction
-                            actionWithTitle:NSLocalizedString(@"Cancel", nil)
-                            style:UIAlertActionStyleDefault
-                            handler:^(UIAlertAction * action) {
-
-    }];
-    
-    [alert addAction:yesBtn];
-    [alert addAction:noBtn];
-    [alert addAction:cancelBtn];
-    
-    UIViewController *vc = [[[[UIApplication sharedApplication] delegate] window] rootViewController];
-    [vc presentViewController:alert animated:YES completion:nil];
-    
-}
-
-- (IBAction)btnRestoreTouch:(id)sender {
-    UIAlertController * alert = [UIAlertController
-                                 alertControllerWithTitle:NSLocalizedString(@"Dimmer settings", nil)
-                                 message:NSLocalizedString(@"Are you sure you want to restore the default settings?", nil)
-                                 preferredStyle:UIAlertControllerStyleAlert];
-    
-    UIAlertAction* yesBtn = [UIAlertAction
-                             actionWithTitle:NSLocalizedString(@"Yes", nil)
-                             style:UIAlertActionStyleDefault
-                             handler:^(UIAlertAction * action) {
-        [self showPreloaderWithText:NSLocalizedString(@"Restoring default settings", nil)];
-      
-        self->_restoringDefaults = YES;
-        [self startConfigurationAgainWithRetry];
-        [self deviceCalCfgCommand:VL_MSG_RESTORE_DEFAULTS charValue:NULL shortValue:NULL];
-    }];
-    
-    UIAlertAction* noBtn = [UIAlertAction
-                            actionWithTitle:NSLocalizedString(@"No", nil)
-                            style:UIAlertActionStyleDefault
-                            handler:^(UIAlertAction * action) {
-    }];
-    
-
-    [alert addAction:noBtn];
-    [alert addAction:yesBtn];
-    
-    UIViewController *vc = [[[[UIApplication sharedApplication] delegate] window] rootViewController];
-    [vc presentViewController:alert animated:YES completion:nil];
-}
-
-- (IBAction)btnInfoTouch:(id)sender {
-    [SAInfoVC showInformationWindowWithMessage:INFO_MESSAGE_VARILIGHT_CONFIG];
-}
-
--(void)dismiss {
-    [self stopConfigurationRetryTimer];
-    [self closePreloaderPopup];
-    
-    if (_configStartedAtTime) {
-        _configStartedAtTime = nil;
-        [self deviceCalCfgCommand:VL_MSG_CONFIG_COMPLETE charValue:0];
-    }
-    
-    [self removeFromSuperview];
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
-
-    _detailView = nil;
-}
-
-+(SAVLCalibrationTool*)newInstance {
++(SADimmerCalibrationTool*)newInstance {
     return [[[NSBundle mainBundle] loadNibNamed:@"SAVLCalibrationTool" owner:nil options:nil] objectAtIndex:0];
 }
 
@@ -592,60 +222,108 @@ typedef struct {
     [self deviceCalCfgCommandWithDelay:VL_MSG_SET_BOOST_LEVEL];
 }
 
--(BOOL) onMenubarBackButtonPressed {
-    
-    UIAlertController * alert = [UIAlertController
-                                 alertControllerWithTitle:NSLocalizedString(@"Dimmer settings", nil)
-                                 message:NSLocalizedString(@"Do you want to quit without saving?", nil)
-                                 preferredStyle:UIAlertControllerStyleAlert];
-    
-    UIAlertAction* yesBtn = [UIAlertAction
-                             actionWithTitle:NSLocalizedString(@"Yes", nil)
-                             style:UIAlertActionStyleDefault
-                             handler:^(UIAlertAction * action) {
-        [self dismiss];
-    }];
-    
-    UIAlertAction* noBtn = [UIAlertAction
-                            actionWithTitle:NSLocalizedString(@"No", nil)
-                            style:UIAlertActionStyleDefault
-                            handler:^(UIAlertAction * action) {
-    }];
-    
-    
-    [alert addAction:noBtn];
-    [alert addAction:yesBtn];
-    
-    UIViewController *vc = [[[[UIApplication sharedApplication] delegate] window] rootViewController];
-    [vc presentViewController:alert animated:YES completion:nil];
-    
-    return NO;
-}
-
--(BOOL)isExitLocked {
-    return _preloaderPopup != nil
-    || (_sueruserAuthoriztionStarted && [SASuperuserAuthorizationDialog.globalInstance isVisible])
-    || (_configStartedAtTime != nil
-     && [[NSDate date] timeIntervalSince1970] - [_configStartedAtTime timeIntervalSince1970] <= 15);
-}
-
-- (void)setLedCfg:(char)cfg {
-    if ([self isLedConfigAvailable]) {
-        [self ledConfigToUI:cfg];
-        [self deviceCalCfgCommand:VL_CALCFG_MSG_SET_LED_CONFIG charValue:&cfg shortValue:NULL];
+-(void)deviceCalCfgCommand:(int)command {
+    switch (command) {
+        case VL_MSG_SET_MINIMUM:
+            [self deviceCalCfgCommand:command shortValue:self.rangeCalibrationWheel.minimum];
+            break;
+        case VL_MSG_SET_MAXIMUM:
+            [self deviceCalCfgCommand:command shortValue:self.rangeCalibrationWheel.maximum];
+            break;
+        case VL_MSG_SET_BOOST_LEVEL:
+            [self deviceCalCfgCommand:command shortValue:self.rangeCalibrationWheel.boostLevel];
+            break;
+        default:
+            [super deviceCalCfgCommand:command];
+            break;
     }
 }
 
-- (void)ledOnTapped:(UITapGestureRecognizer *)tapRecognizer {
-    [self setLedCfg:LED_ON_WHEN_CONNECTED];
+-(void)onCalCfgResult:(SACalCfgResult *)result {
+    switch (result.command) {
+        case VL_MSG_CONFIGURATION_ACK:
+            if (result.result == SUPLA_RESULTCODE_TRUE && !_restoringDefaults) {
+                [self setConfigurationStarted];
+                [self stopConfigurationRetryTimer];
+            } else if (_restoringDefaults) {
+                _restoringDefaults = NO;
+                [self startConfigurationAgainWithRetry];
+            }
+            break;
+        case VL_MSG_CONFIGURATION_REPORT:
+            if (result.data.length == sizeof(vl_configuration_t)) {
+                [result.data getBytes:&_config.vl_main_config length:result.data.length];
+            } else if (result.data.length == sizeof(vl_supla_configuration_t)) {
+                [result.data getBytes:&_config length:result.data.length];
+            }
+            [self cfgToUIWithDelay:YES];
+            break;
+            
+        default:
+            break;
+    }
 }
 
-- (void)ledOffTapped:(UITapGestureRecognizer *)tapRecognizer {
-    [self setLedCfg:LED_OFF_WHEN_CONNECTED];
+-(void)beforeConfigurationStart {
+    memset(&_config, 0, sizeof(vl_supla_configuration_t));
+    
+    _config.vl_main_config.mode = MODE_UNKNOWN;
+    _config.vl_main_config.mode_mask = 0xFF;
+    _config.vl_main_config.boost = MODE_UNKNOWN;
+    _config.vl_main_config.boost_mask = 0xFF;
+    
+    self.rangeCalibrationWheel.delegate = self;
 }
 
-- (void)ledAlwaysOffTapped:(UITapGestureRecognizer *)tapRecognizer {
-    [self setLedCfg:LED_ALWAYS_OFF];
+-(void)onDismiss {
+    [self stopConfigurationRetryTimer];
+    
+    if (self.isConfigurationStarted) {
+        [self deviceCalCfgCommand:VL_MSG_CONFIG_COMPLETE charValue:0];
+    }
+}
+
+- (void)setLedCfg:(char)cfg {
+    [self deviceCalCfgCommand:VL_CALCFG_MSG_SET_LED_CONFIG charValue:&cfg shortValue:NULL];
+}
+
+- (char)getLedCfg {
+    return _config.led;
+}
+
+-(void)saveChanges {
+    [self deviceCalCfgCommand:VL_MSG_CONFIG_COMPLETE charValue:1];
+}
+
+- (void)cfgToUI {
+    [self boostToUI];
+    [self modeToUI];
+    self.rangeCalibrationWheel.rightEdge = _config.vl_main_config.edge_maximum;
+    self.rangeCalibrationWheel.leftEdge = _config.vl_main_config.edge_minimum;
+    [self.rangeCalibrationWheel setMinimum:_config.vl_main_config.operating_minimum andMaximum:_config.vl_main_config.operating_maximum];
+    self.rangeCalibrationWheel.boostLevel = _config.vl_main_config.boost_level;
+    
+    self.lPicFirmwareVersion.text = [NSString stringWithCString:_config.pic_hex_ver encoding:NSASCIIStringEncoding];
+}
+
+- (void)showInformationDialog {
+    [SAInfoVC showInformationWindowWithMessage:INFO_MESSAGE_VARILIGHT_CONFIG];
+}
+
+-(BOOL)isLedConfigAvailable {
+    return _config.cfg_version >= 2;
+}
+
+- (void)onSuperuserAuthorizationSuccess {
+    [self deviceCalCfgCommand:VL_MSG_CONFIGURATION_MODE charValue:NULL shortValue:NULL];
+}
+
+- (void)doRestore {
+    [self showPreloaderWithText:NSLocalizedString(@"Restoring default settings", nil)];
+  
+    self->_restoringDefaults = YES;
+    [self startConfigurationAgainWithRetry];
+    [self deviceCalCfgCommand:VL_MSG_RESTORE_DEFAULTS charValue:NULL shortValue:NULL];
 }
 
 @end
