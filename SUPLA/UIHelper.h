@@ -62,6 +62,7 @@
 +(nonnull UIColor*)menuSeparatorColor;
 +(nonnull UIColor*)mainMenuColor;
 +(nonnull UIColor*)vlCfgButtonColor;
++(nonnull UIColor*)diwInputOptionSelected;
 @end
 
 @interface SAUIHelper : NSObject

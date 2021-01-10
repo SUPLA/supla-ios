@@ -16,6 +16,9 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #import "SAInfoVC.h"
 
 @interface SAInfoVC ()
+@property (strong, nonatomic) IBOutlet UIView *vDimmer;
+@property (strong, nonatomic) IBOutlet UIView *vVarilightConfig;
+@property (strong, nonatomic) IBOutlet UIView *vDiwConfig;
 @end
 
 @implementation SAInfoVC {
@@ -40,12 +43,16 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     
     SAInfoVC *vc = [[SAInfoVC alloc] initWithNibName:@"SAInfoVC" bundle:nil];
     switch (msg) {
-        case INFO_MESSAGE_VARILIGHT:
-            [vc setRootView:vc.vVarilight];
+        case INFO_MESSAGE_DIMMER:
+            [vc setRootView:vc.vDimmer];
             break;
         
         case INFO_MESSAGE_VARILIGHT_CONFIG:
             [vc setRootView:vc.vVarilightConfig];
+            break;
+            
+        case INFO_MESSAGE_DIW_CONFIG:
+            [vc setRootView:vc.vDiwConfig];
             break;
         default:
             vc.view = nil;

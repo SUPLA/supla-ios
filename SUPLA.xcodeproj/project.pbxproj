@@ -48,6 +48,15 @@
 		013F7EC423EB4B500061A497 /* battery@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 013F7EC223EB4B500061A497 /* battery@3x.png */; };
 		013F7EC523EB4B500061A497 /* battery@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 013F7EC323EB4B500061A497 /* battery@2x.png */; };
 		01433DF8257F8FE20093C5DB /* SAWifiAutoConnect.m in Sources */ = {isa = PBXBuildFile; fileRef = 01433DF7257F8FE20093C5DB /* SAWifiAutoConnect.m */; };
+		0148932A25AA03EE00B9974E /* btnOK_disabled@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0148932825AA03EE00B9974E /* btnOK_disabled@2x.png */; };
+		0148932B25AA03EE00B9974E /* btnOK_disabled@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0148932925AA03EE00B9974E /* btnOK_disabled@3x.png */; };
+		0148933425AA12DB00B9974E /* SADiwCalibrationTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 0148933325AA12DB00B9974E /* SADiwCalibrationTool.m */; };
+		0148933825AA163F00B9974E /* zamel_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 0148933725AA163F00B9974E /* zamel_logo.png */; };
+		0148933F25AA19DA00B9974E /* infinity@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0148933B25AA19DA00B9974E /* infinity@3x.png */; };
+		0148934025AA19DA00B9974E /* p100white@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0148933C25AA19DA00B9974E /* p100white@3x.png */; };
+		0148934125AA19DA00B9974E /* infinitywhite@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0148933D25AA19DA00B9974E /* infinitywhite@3x.png */; };
+		0148934225AA19DA00B9974E /* p100@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0148933E25AA19DA00B9974E /* p100@3x.png */; };
+		0148934525AA5D2000B9974E /* SADiwCalibrationTool.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0148934725AA5D2000B9974E /* SADiwCalibrationTool.xib */; };
 		01511CFA24F50B470081A1EC /* SAPreloaderPopup.m in Sources */ = {isa = PBXBuildFile; fileRef = 01511CF824F50B470081A1EC /* SAPreloaderPopup.m */; };
 		01511CFB24F50B470081A1EC /* SAPreloaderPopup.xib in Resources */ = {isa = PBXBuildFile; fileRef = 01511CF924F50B470081A1EC /* SAPreloaderPopup.xib */; };
 		01567446232FCFD700397393 /* SAIncrementalMeterExtendedValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 01567445232FCFD700397393 /* SAIncrementalMeterExtendedValue.m */; };
@@ -147,6 +156,7 @@
 		01D6A109249C0F40006B3757 /* vlrestore@3.png in Resources */ = {isa = PBXBuildFile; fileRef = 01D6A107249C0F40006B3757 /* vlrestore@3.png */; };
 		01DD2F0C247718C40025DFF9 /* SARangeCalibrationWheelTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 01DD2F0B247718C40025DFF9 /* SARangeCalibrationWheelTests.m */; };
 		01DD2F0F247719000025DFF9 /* SARangeCalibrationWheel.m in Sources */ = {isa = PBXBuildFile; fileRef = 01DD2F0D247718FF0025DFF9 /* SARangeCalibrationWheel.m */; };
+		01E3966E25A78B8B00A0DB18 /* SADimmerCalibrationTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 01E3966D25A78B8B00A0DB18 /* SADimmerCalibrationTool.m */; };
 		01E517C322C6AC1E000FE77A /* SADownloadIncrementalMeasurements.m in Sources */ = {isa = PBXBuildFile; fileRef = 01E517C222C6AC1E000FE77A /* SADownloadIncrementalMeasurements.m */; };
 		01E517C622C6AD7D000FE77A /* SADownloadMeasurements.m in Sources */ = {isa = PBXBuildFile; fileRef = 01E517C522C6AD7D000FE77A /* SADownloadMeasurements.m */; };
 		01EE9BB022BA4B050029A142 /* SAChannelExtendedValue+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 01EE9BAF22BA4B050029A142 /* SAChannelExtendedValue+CoreDataProperties.m */; };
@@ -488,6 +498,17 @@
 		013F7EC323EB4B500061A497 /* battery@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "battery@2x.png"; path = "Resources/Assets/Img/battery@2x.png"; sourceTree = "<group>"; };
 		01433DF6257F8FE20093C5DB /* SAWifiAutoConnect.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SAWifiAutoConnect.h; sourceTree = "<group>"; };
 		01433DF7257F8FE20093C5DB /* SAWifiAutoConnect.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SAWifiAutoConnect.m; sourceTree = "<group>"; };
+		0148932825AA03EE00B9974E /* btnOK_disabled@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "btnOK_disabled@2x.png"; path = "Resources/Assets/Img/btnOK_disabled@2x.png"; sourceTree = "<group>"; };
+		0148932925AA03EE00B9974E /* btnOK_disabled@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "btnOK_disabled@3x.png"; path = "Resources/Assets/Img/btnOK_disabled@3x.png"; sourceTree = "<group>"; };
+		0148933225AA12DB00B9974E /* SADiwCalibrationTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SADiwCalibrationTool.h; sourceTree = "<group>"; };
+		0148933325AA12DB00B9974E /* SADiwCalibrationTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SADiwCalibrationTool.m; sourceTree = "<group>"; };
+		0148933725AA163F00B9974E /* zamel_logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = zamel_logo.png; path = Resources/Assets/Img/zamel_logo.png; sourceTree = "<group>"; };
+		0148933B25AA19DA00B9974E /* infinity@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "infinity@3x.png"; path = "Resources/Assets/Img/infinity@3x.png"; sourceTree = "<group>"; };
+		0148933C25AA19DA00B9974E /* p100white@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "p100white@3x.png"; path = "Resources/Assets/Img/p100white@3x.png"; sourceTree = "<group>"; };
+		0148933D25AA19DA00B9974E /* infinitywhite@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "infinitywhite@3x.png"; path = "Resources/Assets/Img/infinitywhite@3x.png"; sourceTree = "<group>"; };
+		0148933E25AA19DA00B9974E /* p100@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "p100@3x.png"; path = "Resources/Assets/Img/p100@3x.png"; sourceTree = "<group>"; };
+		0148934625AA5D2000B9974E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/SADiwCalibrationTool.xib; sourceTree = "<group>"; };
+		0148934B25AA5D2200B9974E /* pl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pl; path = pl.lproj/SADiwCalibrationTool.strings; sourceTree = "<group>"; };
 		01511CF724F50B470081A1EC /* SAPreloaderPopup.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SAPreloaderPopup.h; sourceTree = "<group>"; };
 		01511CF824F50B470081A1EC /* SAPreloaderPopup.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SAPreloaderPopup.m; sourceTree = "<group>"; };
 		01511CF924F50B470081A1EC /* SAPreloaderPopup.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SAPreloaderPopup.xib; sourceTree = "<group>"; };
@@ -739,6 +760,8 @@
 		01DD2F0B247718C40025DFF9 /* SARangeCalibrationWheelTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SARangeCalibrationWheelTests.m; sourceTree = "<group>"; };
 		01DD2F0D247718FF0025DFF9 /* SARangeCalibrationWheel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SARangeCalibrationWheel.m; sourceTree = "<group>"; };
 		01DD2F0E247718FF0025DFF9 /* SARangeCalibrationWheel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SARangeCalibrationWheel.h; sourceTree = "<group>"; };
+		01E3966C25A78B8B00A0DB18 /* SADimmerCalibrationTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SADimmerCalibrationTool.h; sourceTree = "<group>"; };
+		01E3966D25A78B8B00A0DB18 /* SADimmerCalibrationTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SADimmerCalibrationTool.m; sourceTree = "<group>"; };
 		01E517C122C6AC1E000FE77A /* SADownloadIncrementalMeasurements.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SADownloadIncrementalMeasurements.h; sourceTree = "<group>"; };
 		01E517C222C6AC1E000FE77A /* SADownloadIncrementalMeasurements.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SADownloadIncrementalMeasurements.m; sourceTree = "<group>"; };
 		01E517C422C6AD7D000FE77A /* SADownloadMeasurements.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SADownloadMeasurements.h; sourceTree = "<group>"; };
@@ -1181,6 +1204,7 @@
 				406778281BCBBC83008DD37F /* ThermometerCell.xib */,
 				010C8789249AA1E1002FE526 /* SAInfoVC.xib */,
 				011E736A24A1367B004D99EE /* SAVLCalibrationTool.xib */,
+				0148934725AA5D2000B9974E /* SADiwCalibrationTool.xib */,
 			);
 			name = xib;
 			sourceTree = "<group>";
@@ -1388,6 +1412,13 @@
 		405AC4011BC15878004F7311 /* Img */ = {
 			isa = PBXGroup;
 			children = (
+				0148933B25AA19DA00B9974E /* infinity@3x.png */,
+				0148933D25AA19DA00B9974E /* infinitywhite@3x.png */,
+				0148933E25AA19DA00B9974E /* p100@3x.png */,
+				0148933C25AA19DA00B9974E /* p100white@3x.png */,
+				0148933725AA163F00B9974E /* zamel_logo.png */,
+				0148932825AA03EE00B9974E /* btnOK_disabled@2x.png */,
+				0148932925AA03EE00B9974E /* btnOK_disabled@3x.png */,
 				015839692576A82A005E615D /* ledalwaysoff@3x.png */,
 				015839642576A82A005E615D /* ledalwaysoffwhite@3x.png */,
 				015839662576A82A005E615D /* ledoff@3x.png */,
@@ -1808,6 +1839,8 @@
 				01D6A0EF249BD2F7006B3757 /* SASuperuserAuthorizationDialog.h */,
 				01D6A0F0249BD2F7006B3757 /* SASuperuserAuthorizationDialog.m */,
 				01D6A100249BEC8C006B3757 /* SAVLCalibrationTool.h */,
+				01E3966C25A78B8B00A0DB18 /* SADimmerCalibrationTool.h */,
+				01E3966D25A78B8B00A0DB18 /* SADimmerCalibrationTool.m */,
 				01D6A101249BEC8C006B3757 /* SAVLCalibrationTool.m */,
 				01199C8124C34AC50062454B /* SAChannelStatePopup.h */,
 				01199C8224C34AC50062454B /* SAChannelStatePopup.m */,
@@ -1817,6 +1850,8 @@
 				01511CF824F50B470081A1EC /* SAPreloaderPopup.m */,
 				01642A862549C3EF00E87C46 /* SAMenuItems.h */,
 				01642A872549C3EF00E87C46 /* SAMenuItems.m */,
+				0148933225AA12DB00B9974E /* SADiwCalibrationTool.h */,
+				0148933325AA12DB00B9974E /* SADiwCalibrationTool.m */,
 			);
 			name = UI;
 			sourceTree = "<group>";
@@ -1991,6 +2026,7 @@
 				01D5E0CA22DB8F0A00FBE1DC /* SAChartMarkerView.xib in Resources */,
 				405AC41A1BC15898004F7311 /* app_icon@2x.png in Resources */,
 				40CF96BA1BC7D4E70030EFFF /* light-off@2x.png in Resources */,
+				0148934125AA19DA00B9974E /* infinitywhite@3x.png in Resources */,
 				40B9ED6D1FACD94300403B1A /* barier-open@3x.png in Resources */,
 				407D4B001BC6E491009A5505 /* StatusVC.xib in Resources */,
 				406778561BCBF9F4008DD37F /* SectionCell.xib in Resources */,
@@ -1999,6 +2035,7 @@
 				013F7EC423EB4B500061A497 /* battery@3x.png in Resources */,
 				407D4AE91BC6C5C7009A5505 /* app_icon87x87@3x.png in Resources */,
 				0182FCA62464691D00270CDC /* channel_warning_level2@2x.png in Resources */,
+				0148933F25AA19DA00B9974E /* infinity@3x.png in Resources */,
 				01D4293722AAA83E0050C1A2 /* watermeter@2x.png in Resources */,
 				40CF96B61BC7D4E70030EFFF /* gateway-closed@2x.png in Resources */,
 				40CF96BE1BC7D4E70030EFFF /* liquid@2x.png in Resources */,
@@ -2060,6 +2097,7 @@
 				0182FCA72464691D00270CDC /* channel_warning_level2@3x.png in Resources */,
 				012E81D924C9A31B008E0690 /* SALightsourceLifespanSettingsDialog.xib in Resources */,
 				40CF96C61BC7D4E70030EFFF /* rollershutter-closed@2x.png in Resources */,
+				0148934525AA5D2000B9974E /* SADiwCalibrationTool.xib in Resources */,
 				40B397CF1BCE7F3200BE7D5A /* Launch Screen.storyboard in Resources */,
 				40B9ED601FACD14000403B1A /* fan-off@3x.png in Resources */,
 				0158396A2576A82A005E615D /* ledalwaysoffwhite@3x.png in Resources */,
@@ -2105,6 +2143,7 @@
 				4052DA031DC515AE000B8C45 /* dimmerrgb-offon@2x.png in Resources */,
 				40CF96C31BC7D4E70030EFFF /* power-off@3x.png in Resources */,
 				4091AF481FC88A8B00EFF357 /* plug@2x.png in Resources */,
+				0148933825AA163F00B9974E /* zamel_logo.png in Resources */,
 				018D2E5224BF258B00773D2F /* uv-off@3x.png in Resources */,
 				40477B4220C6C57700E995E6 /* staircasetimer-on@3x.png in Resources */,
 				40CF96C11BC7D4E70030EFFF /* noliquid@3x.png in Resources */,
@@ -2124,6 +2163,8 @@
 				4052DA061DC515AE000B8C45 /* dimmerrgb-onon@3x.png in Resources */,
 				407D4AEC1BC6C64D009A5505 /* app_icon80x80@2x.png in Resources */,
 				40477B4B20C6C5FE00E995E6 /* staircasetimer_1-off@3x.png in Resources */,
+				0148932B25AA03EE00B9974E /* btnOK_disabled@3x.png in Resources */,
+				0148934025AA19DA00B9974E /* p100white@3x.png in Resources */,
 				40CF96AF1BC7D4E70030EFFF /* garagedoor-closed@3x.png in Resources */,
 				40B397DE1BCED5EB00BE7D5A /* Quicksand-Light.ttf in Resources */,
 				01F9110322EF954400BFF91D /* thermostat_hp_homeplus-on@2x.png in Resources */,
@@ -2140,6 +2181,7 @@
 				40CF96C41BC7D4E70030EFFF /* power-on@2x.png in Resources */,
 				017554FF22F1DDA300EB58B7 /* hp_plus@3x.png in Resources */,
 				010C8787249AA1E1002FE526 /* SAInfoVC.xib in Resources */,
+				0148932A25AA03EE00B9974E /* btnOK_disabled@2x.png in Resources */,
 				40CE7C691DCBBD5700BBACE4 /* distance@3x.png in Resources */,
 				40B9ED651FACD34C00403B1A /* xmastree-on@3x.png in Resources */,
 				40B9ED571FACD0A100403B1A /* pc-on@2x.png in Resources */,
@@ -2193,6 +2235,7 @@
 				40766C2D1FC9C36D009E00BE /* iossettings.png in Resources */,
 				017554FB22F1D2BE00EB58B7 /* clock@3x.png in Resources */,
 				40DB208D1DC9049400FAFAB0 /* RGBWDetail.xib in Resources */,
+				0148934225AA19DA00B9974E /* p100@3x.png in Resources */,
 				40CE7C641DCBBCE400BBACE4 /* MeasurementCell.xib in Resources */,
 				01F9110E22EF964900BFF91D /* thermostat_hp_homeplus1-on@2x.png in Resources */,
 				40CF96BC1BC7D4E70030EFFF /* light-on@2x.png in Resources */,
@@ -2317,6 +2360,7 @@
 				40DE1A361BCD1B55004CF43B /* AboutVC.m in Sources */,
 				4017E12C1BB9CE2900570AC8 /* ChannelCell.m in Sources */,
 				01EFD94A236CA94400893489 /* NSData+AES.m in Sources */,
+				0148933425AA12DB00B9974E /* SADiwCalibrationTool.m in Sources */,
 				01C1719222C7F3A2005983E1 /* SAElectricityMeasurementItem+CoreDataProperties.m in Sources */,
 				40AB8BDE1DCB32EB0030F3DE /* SARateApp.m in Sources */,
 				01C1719122C7F3A2005983E1 /* SAElectricityMeasurementItem+CoreDataClass.m in Sources */,
@@ -2348,6 +2392,7 @@
 				401CA1C21BA067DB00117AF4 /* AppDelegate.m in Sources */,
 				013D1C5D22CE47D5000C0784 /* SAChartHelper.m in Sources */,
 				019F4CCD23577C3700286139 /* SAImpulseCounterChartHelper.m in Sources */,
+				01E3966E25A78B8B00A0DB18 /* SADimmerCalibrationTool.m in Sources */,
 				01392B3A235CA8B1003A2BAD /* ChartDetailView.m in Sources */,
 				01567446232FCFD700397393 /* SAIncrementalMeterExtendedValue.m in Sources */,
 				017554F622F1A62500EB58B7 /* HomePlusDetailView.m in Sources */,
@@ -2470,6 +2515,15 @@
 				012E81DD24C9A320008E0690 /* pl */,
 			);
 			name = SALightsourceLifespanSettingsDialog.xib;
+			sourceTree = "<group>";
+		};
+		0148934725AA5D2000B9974E /* SADiwCalibrationTool.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				0148934625AA5D2000B9974E /* Base */,
+				0148934B25AA5D2200B9974E /* pl */,
+			);
+			name = SADiwCalibrationTool.xib;
 			sourceTree = "<group>";
 		};
 		017A3C8823633A70004AD1FC /* TempHumidityDetailView.xib */ = {
@@ -2847,7 +2901,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = SUPLA/SUPLA.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 79;
+				CURRENT_PROJECT_VERSION = 81;
 				DEFINES_MODULE = YES;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"$(inherited)",
@@ -2862,7 +2916,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/SUPLA/lib",
 				);
-				MARKETING_VERSION = 2.3.31;
+				MARKETING_VERSION = 2.3.33;
 				PRODUCT_BUNDLE_IDENTIFIER = com.acsoftware.ios.supla;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "SUPLA/SUPLA-Bridging-Header.h";
@@ -2880,7 +2934,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = SUPLA/SUPLA.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 79;
+				CURRENT_PROJECT_VERSION = 81;
 				DEFINES_MODULE = YES;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"$(inherited)",
@@ -2895,7 +2949,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/SUPLA/lib",
 				);
-				MARKETING_VERSION = 2.3.31;
+				MARKETING_VERSION = 2.3.33;
 				PRODUCT_BUNDLE_IDENTIFIER = com.acsoftware.ios.supla;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "SUPLA/SUPLA-Bridging-Header.h";

@@ -13,20 +13,18 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 */
 
-#import <UIKit/UIKit.h>
-#import "SADialog.h"
+#import "SADimmerCalibrationTool.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-#define INFO_MESSAGE_DIMMER 1
-#define INFO_MESSAGE_VARILIGHT_CONFIG 2
-#define INFO_MESSAGE_DIW_CONFIG 3
-
-@interface SAInfoVC : SADialog
-- (IBAction)varlilightUrlButtonTouch:(id)sender;
-
-+(void)showInformationWindowWithMessage:(int)msg;
-
+@interface SADiwCalibrationTool : SADimmerCalibrationTool <SARangeCalibrationWheelDelegate>
+@property (weak, nonatomic) IBOutlet UILabel *lSTMFirmwareVersion;
+@property (weak, nonatomic) IBOutlet SARangeCalibrationWheel *rangeCalibrationWheel;
+@property (weak, nonatomic) IBOutlet UIView *imgBgOption;
+@property (weak, nonatomic) IBOutlet UIImageView *imgOption;
+@property (weak, nonatomic) IBOutlet UIButton *btnMonostable;
+@property (weak, nonatomic) IBOutlet UIButton *btnBistable;
+- (IBAction)inputModeTouch:(id)sender;
 
 @end
 

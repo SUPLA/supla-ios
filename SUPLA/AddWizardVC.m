@@ -32,11 +32,12 @@
 #define STEP_NONE                              0
 #define STEP_CHECK_REGISTRATION_ENABLED_TRY1   1
 #define STEP_CHECK_REGISTRATION_ENABLED_TRY2   2
-#define STEP_SUPERUSER_AUTHORIZATION           3
-#define STEP_ENABLING_REGISTRATION             4
-#define STEP_WIFI_AUTO_CONNECT                 5
-#define STEP_CONFIGURE                         6
-#define STEP_DONE                              7
+#define STEP_CHECK_REGISTRATION_ENABLED_TRY3   3
+#define STEP_SUPERUSER_AUTHORIZATION           4
+#define STEP_ENABLING_REGISTRATION             5
+#define STEP_WIFI_AUTO_CONNECT                 6
+#define STEP_CONFIGURE                         7
+#define STEP_DONE                              8
 
 #define PAGE_STEP_1  1
 #define PAGE_STEP_2  2
@@ -350,7 +351,9 @@
     switch(_step) {
         case STEP_CHECK_REGISTRATION_ENABLED_TRY1:
         case STEP_CHECK_REGISTRATION_ENABLED_TRY2:
-            timeout = 3;
+        case STEP_CHECK_REGISTRATION_ENABLED_TRY3:
+            // The connection may be restarting
+            timeout = 5;
             break;
         case STEP_ENABLING_REGISTRATION:
             timeout = 5;
@@ -508,6 +511,10 @@
             [[SAApp SuplaClient] getRegistrationEnabled];
             break;
         case STEP_CHECK_REGISTRATION_ENABLED_TRY2:
+            [self setStep:STEP_CHECK_REGISTRATION_ENABLED_TRY3];
+            [[SAApp SuplaClient] getRegistrationEnabled];
+            break;
+        case STEP_CHECK_REGISTRATION_ENABLED_TRY3:
             [self showError:NSLocalizedString(@"Device registration availability information timeout!", NULL)];
             break;
         case STEP_ENABLING_REGISTRATION:
@@ -833,6 +840,7 @@
             if ( goNext ) {
                 [self savePrefs];
                 [self setStep:STEP_CHECK_REGISTRATION_ENABLED_TRY1];
+                
                 [[SAApp SuplaClient] getRegistrationEnabled];
             } else {
                 [self preloaderVisible:NO];
@@ -865,7 +873,9 @@
     [self.OpQueue cancelAllOperations];
     [self savePrefs];
     [[SAApp UI] showMainVC];
-    [[SAApp SuplaClient] reconnect];
+    //if (_pageId == PAGE_DONE) {
+        [[SAApp SuplaClient] reconnect];
+    //}
 }
 
 

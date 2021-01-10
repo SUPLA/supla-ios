@@ -25,15 +25,19 @@
 #import "SAClassHelper.h"
 #import "SAInfoVC.h"
 #import "SAVLCalibrationTool.h"
+#import "SADiwCalibrationTool.h"
 
 #define MIN_REMOTE_UPDATE_PERIOD 0.25
 #define MIN_UPDATE_DELAY 3
 #define DELAY_AUTO 0
 
+#define ZAM_PRODID_DIW_01 2000
+
 @implementation SARGBWDetailView {
     int _brightness;
     int _colorBrightness;
     BOOL _varilight;
+    BOOL _zamel_diw_01;
     BOOL isGroup;
     UIColor *_color;
     NSArray *_colorMarkers;
@@ -45,7 +49,7 @@
     
     NSDate *_moveEndTime;
     NSDate *_remoteUpdateTime;
-    SAVLCalibrationTool *_vlCalibrationTool;
+    SADimmerCalibrationTool *_dimmerCalibrationTool;
 }
 
 -(void)detailViewInit {
@@ -228,9 +232,7 @@
         [self onPickerTypeTabTouch:_varilight ? self.tabSlider : self.tabWheel];
     }
     
-    self.cbPicker.minBrightness = _varilight ? 1.0 : 0.0;
-    
-    [self setExtraButtonsHidden:!_varilight];
+    [self setExtraButtonsHidden:!_varilight && !_zamel_diw_01];
     [self setWheelSliderTabsHidden:NO];
     self.tabRGB.selected = NO;
     self.tabRGB.backgroundColor = [UIColor rgbwNormalTabColor];
@@ -258,9 +260,9 @@
     
     [super updateView];
     
-    if (_vlCalibrationTool != nil && !_vlCalibrationTool.isExitLocked) {
-        [_vlCalibrationTool dismiss];
-        _vlCalibrationTool = nil;
+    if (_dimmerCalibrationTool != nil && !_dimmerCalibrationTool.isExitLocked) {
+        [_dimmerCalibrationTool dismiss];
+        _dimmerCalibrationTool = nil;
     }
     
     if (isGroup) {
@@ -327,14 +329,23 @@
         _colorBrightnessMarkers = nil;
         _colorMarkers = nil;
         _varilight = false;
+        _zamel_diw_01 = false;
+        self.cbPicker.minBrightness = 0.0;
         
         if (channelBase != nil
-            && [channelBase isKindOfClass:[SAChannel class]]
-            && ((SAChannel*)channelBase).manufacturer_id == SUPLA_MFR_DOYLETRATT
-            && ((SAChannel*)channelBase).product_id == 1) {
-            _varilight = YES;
+            && [channelBase isKindOfClass:[SAChannel class]] ) {
+            if (((SAChannel*)channelBase).manufacturer_id == SUPLA_MFR_DOYLETRATT
+                && ((SAChannel*)channelBase).product_id == 1) {
+                _varilight = YES;
+                self.cbPicker.minBrightness = 1.0;
+            } else if (((SAChannel*)channelBase).manufacturer_id == SUPLA_MFR_ZAMEL) {
+                self.cbPicker.minBrightness = 1.0;
+                if (((SAChannel*)channelBase).product_id == ZAM_PRODID_DIW_01) {
+                    _zamel_diw_01 = YES;
+                }
+            }
         }
-        
+
         switch(channelBase.func) {
             case SUPLA_CHANNELFNC_DIMMER:
                 self.cbPicker.colorWheelHidden = YES;
@@ -356,7 +367,7 @@
     
     if ( channelBase != nil
         && channelBase.isOnline == NO
-        && (_vlCalibrationTool == nil || !_vlCalibrationTool.isExitLocked)) {
+        && (_dimmerCalibrationTool == nil || !_dimmerCalibrationTool.isExitLocked)) {
         [self.main_view detailShow:NO animated:NO];
         return;
     }
@@ -454,15 +465,21 @@
     self.cbPicker.powerButtonOn = on;
 }
 - (IBAction)onSettingsTouch:(id)sender {
-    if (_vlCalibrationTool == nil) {
-        _vlCalibrationTool = [SAVLCalibrationTool newInstance];
+    if (_dimmerCalibrationTool == nil) {
+        if (_varilight) {
+            _dimmerCalibrationTool = [SAVLCalibrationTool newInstance];
+        } else if (_zamel_diw_01) {
+            _dimmerCalibrationTool = [SADiwCalibrationTool newInstance];
+        }
     }
-    
-    [_vlCalibrationTool startConfiguration:self];
+
+    if (_dimmerCalibrationTool != nil) {
+        [_dimmerCalibrationTool startConfiguration:self];
+    }
 }
 
 - (IBAction)rgbInfoTouch:(id)sender {
-    [SAInfoVC showInformationWindowWithMessage:INFO_MESSAGE_VARILIGHT];
+    [SAInfoVC showInformationWindowWithMessage:INFO_MESSAGE_DIMMER];
 }
 
 - (IBAction)onPowerBtnTouch:(id)sender {
@@ -471,14 +488,14 @@
 }
 
 -(BOOL)onMenubarBackButtonPressed {
-    if (_vlCalibrationTool && _vlCalibrationTool.superview) {
-        return [_vlCalibrationTool onMenubarBackButtonPressed];
+    if (_dimmerCalibrationTool && _dimmerCalibrationTool.superview) {
+        return [_dimmerCalibrationTool onMenubarBackButtonPressed];
     }
     return YES;
 }
 
 - (void)handlePan:(UIPanGestureRecognizer *)gr {
-    if (_vlCalibrationTool == nil || _vlCalibrationTool.superview == nil) {
+    if (_dimmerCalibrationTool == nil || _dimmerCalibrationTool.superview == nil) {
         [super handlePan:gr];
     }
 }
@@ -486,9 +503,9 @@
 -(void)detailWillHide {
     [super detailWillHide];
     
-    if (_vlCalibrationTool != nil) {
-        [_vlCalibrationTool dismiss];
-        _vlCalibrationTool = nil;
+    if (_dimmerCalibrationTool != nil) {
+        [_dimmerCalibrationTool dismiss];
+        _dimmerCalibrationTool = nil;
     }
 }
 @end

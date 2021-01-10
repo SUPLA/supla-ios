@@ -78,6 +78,10 @@
     return [UIColor colorWithRed: 0.07 green: 0.65 blue: 0.12 alpha: 1.00];
 }
 
++(UIColor*)diwInputOptionSelected {
+    return [UIColor colorWithRed: 1.00 green: 0.60 blue: 0.00 alpha: 1.00];
+}
+
 +(UIColor*)rgbwNormalTabColor {
     return [UIColor whiteColor];
 }
