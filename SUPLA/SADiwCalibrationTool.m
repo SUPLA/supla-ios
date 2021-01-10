@@ -112,6 +112,9 @@ typedef struct {
     memset(&_config, 0, sizeof(_diw_configuration_t));
     self.rangeCalibrationWheel.delegate = self;
     self.rangeCalibrationWheel.maximumValue = 500;
+    
+    [self initGestureRecognizerForView:self.imgOption action:@selector(inputOptionTapped:)];
+    [self initGestureRecognizerForView:self.imgBgOption action:@selector(inputOptionTapped:)];
 }
 
 - (void)onDismiss {
@@ -145,6 +148,31 @@ typedef struct {
     return [[[NSBundle mainBundle] loadNibNamed:@"SADiwCalibrationTool" owner:nil options:nil] objectAtIndex:0];
 }
 
+- (void)inputOptionToUI {
+    switch(_config.input_mode) {
+        case INPUT_MODE_BISTABLE:
+            if (_config.input_bi_mode == BISTABLE_MODE_100P) {
+                self.imgOption.image = [UIImage imageNamed:@"p100white"];
+                self.imgBgOption.backgroundColor = [UIColor diwInputOptionSelected];
+            } else {
+                self.imgOption.image = [UIImage imageNamed:@"p100"];
+                self.imgBgOption.backgroundColor = [UIColor whiteColor];
+            }
+   
+            break;
+        case INPUT_MODE_MONOSTABLE:
+            if (_config.input_behavior == BEHAVIOR_LOOP) {
+                self.imgOption.image = [UIImage imageNamed:@"infinitywhite"];
+                self.imgBgOption.backgroundColor = [UIColor diwInputOptionSelected];
+            } else {
+                self.imgOption.image = [UIImage imageNamed:@"infinity"];
+                self.imgBgOption.backgroundColor = [UIColor whiteColor];
+            }
+
+            break;
+    }
+}
+
 - (void)inputModeToUI {
     self.btnMonostable.backgroundColor = [UIColor whiteColor];
     self.btnMonostable.selected = NO;
@@ -156,16 +184,50 @@ typedef struct {
         case INPUT_MODE_BISTABLE:
             self.btnBistable.backgroundColor = [UIColor rgbwSelectedTabColor];
             self.btnBistable.selected = YES;
-            //self.imgOption.image = [UIImage imageNamed:@""];
             break;
         case INPUT_MODE_MONOSTABLE:
             self.btnMonostable.backgroundColor = [UIColor rgbwSelectedTabColor];
             self.btnMonostable.selected = YES;
             break;
     }
+    
+    [self inputOptionToUI];
 }
 
 - (IBAction)inputModeTouch:(id)sender {
+    if (sender == self.btnBistable) {
+        _config.input_mode = INPUT_MODE_BISTABLE;
+    } else if (sender == self.btnMonostable) {
+        _config.input_mode = INPUT_MODE_MONOSTABLE;
+    } else {
+        return;
+    }
+    
+    [self inputModeToUI];
+    [self deviceCalCfgCommand:DIW_CMD_SET_INPUT_MODE charValue:_config.input_mode];
+}
+
+- (void)inputOptionTapped:(UITapGestureRecognizer *)tapRecognizer {
+    switch(_config.input_mode) {
+        case INPUT_MODE_BISTABLE:
+            _config.input_bi_mode =
+            _config.input_bi_mode == BISTABLE_MODE_100P
+            ? BISTABLE_MODE_RESTORE : BISTABLE_MODE_100P;
+            
+            [self deviceCalCfgCommand:DIW_CMD_SET_INPUT_BI_MODE charValue:_config.input_bi_mode];
+            break;
+        case INPUT_MODE_MONOSTABLE:
+            _config.input_behavior =
+            _config.input_behavior == BEHAVIOR_LOOP
+            ? BEHAVIOR_NORMAL : BEHAVIOR_LOOP;
+            
+            [self deviceCalCfgCommand:DIW_CMD_SET_INPUT_BEHAVIOR charValue:_config.input_behavior];
+            break;
+        default:
+            return;
+    }
+    
+    [self inputOptionToUI];
 }
 
 @end

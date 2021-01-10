@@ -31,6 +31,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UIView *tabBgLedAlwaysOff;
 @property (weak, nonatomic) IBOutlet UIImageView *tabLedAlwaysOff;
 
+- (void)initGestureRecognizerForView:(UIView *)view action:(SEL)action;
 - (IBAction)btnInfoTouch:(id)sender;
 - (IBAction)btnRestoreTouch:(id)sender;
 - (IBAction)btnOKTouch:(id)sender;
