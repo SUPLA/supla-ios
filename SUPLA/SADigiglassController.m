@@ -13,13 +13,17 @@
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 
-
 #import "SADigiglassController.h"
+#include <math.h>
 
 #define BTN_PICTOGRAM_MAX_WIDTH 50
+#define SECTION_BUTTON_MAX_SIZE 50
 
 @implementation SADigiglassController {
     BOOL initialized;
+    BOOL _horizontal;
+    int _sectionCount;
+    int _transparentSections;
     CGFloat _lineWidth;
     UIColor *_barColor;
     UIColor *_lineColor;
@@ -29,16 +33,21 @@
     UIColor *_btnDotColor;
 }
 
+@synthesize delegate;
+
 -(void)dcInit {
     if ( initialized )
         return;
+    _horizontal = NO;
     _lineWidth = 2;
+    _sectionCount = 7;
     _barColor = [UIColor whiteColor];
     _lineColor = [UIColor blackColor];
     _glassColor = [UIColor colorWithRed: 0.74 green: 0.85 blue: 0.95 alpha: 1.00];
     _dotColor = [UIColor blackColor];
     _btnBackgroundColor = [UIColor whiteColor];
     _btnDotColor = [UIColor blackColor];
+    
     initialized = YES;
 }
 
@@ -72,6 +81,39 @@
     return self;
 }
 
+-(void)setHorizontal:(BOOL)horizontal {
+    _horizontal = horizontal;
+    [self setNeedsDisplay];
+}
+
+-(BOOL)horizontal {
+    return _horizontal;
+}
+
+-(void)setSectionCount:(int)sectionCount {
+    if (sectionCount < 1) {
+        sectionCount = 1;
+    } else if (sectionCount > 7) {
+        sectionCount = 7;
+    }
+    _sectionCount = sectionCount;
+    _transparentSections &= (int)(pow(2, _sectionCount) - 1);
+    [self setNeedsDisplay];
+}
+
+-(int)sectionCount {
+    return _sectionCount;
+}
+
+-(void)setTransparentSections:(int)transparentSections {
+    _transparentSections = transparentSections & (int) (pow(2, _sectionCount) - 1);
+    [self setNeedsDisplay];
+}
+
+-(int)transparentSections {
+    return _transparentSections;
+}
+
 -(void)setLineWidth:(CGFloat)lineWidth {
     if (lineWidth < 0.1) {
         lineWidth = 0.1;
@@ -80,6 +122,7 @@
     }
     
     _lineWidth = lineWidth;
+    [self setNeedsDisplay];
 }
 
 -(CGFloat)lineWidth {
@@ -189,6 +232,51 @@
     }
 }
 
+-(CGRect)rectForSectionNumber:(int)number {
+    CGFloat barHeight = [self barHeight];
+    CGFloat height = self.bounds.size.height;
+    CGFloat width = self.bounds.size.width;
+
+    float sectionSize = (_horizontal ? width : (height - 2 * barHeight))
+            / _sectionCount;
+    if (_horizontal) {
+        return CGRectMake(sectionSize * number,
+                          barHeight,
+                          sectionSize + 1,
+                          height - barHeight * 2);
+    } else {
+        return CGRectMake(_lineWidth,
+                          barHeight + sectionSize * number,
+                          width - _lineWidth * 2,
+                          sectionSize + 1);
+    }
+}
+
+-(CGRect)btnRectInSectionRect:(CGRect)sectionRect {
+    CGFloat width = sectionRect.size.width;
+    if (sectionRect.size.height < width) {
+        width = sectionRect.size.height;
+    }
+
+    width*=0.6;
+
+    if (width > SECTION_BUTTON_MAX_SIZE) {
+        width = SECTION_BUTTON_MAX_SIZE;
+    }
+    if (_horizontal) {
+        return CGRectMake(sectionRect.origin.x+sectionRect.size.width/2-width/2,
+                          sectionRect.origin.y + sectionRect.size.height - width - sectionRect.size.height * 0.05,
+                          width, width);
+    } else {
+        
+        return CGRectMake(sectionRect.origin.x+sectionRect.size.width - width - sectionRect.size.width * 0.05,
+                          sectionRect.origin.y+sectionRect.size.height/2-width/2,
+                          width,
+                          width);
+    }
+
+}
+
 -(void)drawButton:(CGContextRef)ctx inRect:(CGRect)rect lines:(BOOL)lines {
     CGFloat radius = rect.size.width;
     if (rect.size.height < radius) {
@@ -286,6 +374,20 @@
     }
 }
 
+-(BOOL)isSectionTransparent:(int)number {
+    return (_transparentSections & (1 << number)) > 0;
+}
+
+- (void)setAllTransparent {
+    _transparentSections = (int) (pow(2, _sectionCount) - 1);
+    [self setNeedsDisplay];
+}
+
+- (void)setAllOpaque {
+    _transparentSections = 0;
+    [self setNeedsDisplay];
+}
+
 -(void)drawRect:(CGRect)rect {
     [super drawRect:rect];
     
@@ -302,7 +404,22 @@
                 self.bounds.size.width - _lineWidth*2,
                 self.bounds.size.height - barHeight)];
     
-    [self drawButton:ctx inRect:CGRectMake(100, 100, 200, 200) lines:NO];
+    
+    for(int a=0;a<_sectionCount;a++) {
+        CGRect rect = [self rectForSectionNumber:a];
+
+        BOOL transparent = [self isSectionTransparent:a];
+
+        if (transparent) {
+            [_glassColor setFill];
+            UIBezierPath *path = [UIBezierPath bezierPathWithRect: rect];
+            
+            [path fill];
+        }
+
+        rect = [self btnRectInSectionRect:rect];
+        [self drawButton:ctx inRect:rect lines:transparent];
+    }
     
     [_barColor setFill];
     UIBezierPath *path = [UIBezierPath bezierPathWithRect:
@@ -338,6 +455,29 @@
                                      self.bounds.size.height-barHeight*2)];
     [path setLineWidth:_lineWidth];
     [path stroke];
+}
+
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    [super touchesBegan:touches withEvent:event];
+    
+    UITouch *touch = [touches anyObject];
+    CGPoint point = [touch locationInView:self];
+    
+    for(int a=0;a<_sectionCount;a++) {
+        CGRect rect = [self rectForSectionNumber:a];
+          if (CGRectContainsPoint(rect, point)) {
+              int transparentSections = _transparentSections;
+              transparentSections ^= 1<<a;
+              [self setTransparentSections:transparentSections];
+              
+              if ( delegate != nil )
+                  [delegate digiglassSectionTouched:self
+                                      sectionNumber:a
+                                      isTransparent:[self isSectionTransparent:a]];
+              break;
+          }
+      }
 }
 
 @end

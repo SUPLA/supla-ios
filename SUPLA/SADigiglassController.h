@@ -17,6 +17,13 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+@protocol SADigiglassControllerDelegate <NSObject>
+
+@required
+-(void) digiglassSectionTouched:(id)digiglassController sectionNumber:(int)number isTransparent:(BOOL)transparent;
+
+@end
+
 @interface SADigiglassController : UIView
 
 @property (nonatomic, nullable, copy) UIColor *barColor;
@@ -26,7 +33,15 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, nullable, copy) UIColor *btnBackgroundColor;
 @property (nonatomic, nullable, copy) UIColor *btnDotColor;
 @property (nonatomic) CGFloat lineWidth;
+@property (nonatomic) int sectionCount;
+@property (nonatomic) int transparentSections;
+@property (nonatomic) BOOL horizontal;
 
+- (void)setAllTransparent;
+- (void)setAllOpaque;
+- (BOOL)isSectionTransparent:(int)number;
+
+@property(weak, nonatomic) id<SADigiglassControllerDelegate> delegate;
 @end
 
 NS_ASSUME_NONNULL_END
