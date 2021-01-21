@@ -176,6 +176,8 @@
         case SUPLA_CHANNELFNC_THERMOSTAT_HEATPOL_HOMEPLUS:
         case SUPLA_CHANNELFNC_THERMOMETER:
         case SUPLA_CHANNELFNC_HUMIDITYANDTEMPERATURE:
+        case SUPLA_CHANNELFNC_DIGIGLASS_HORIZONTAL:
+        case SUPLA_CHANNELFNC_DIGIGLASS_VERTICAL:
             self.left_OnlineStatus.hidden = YES;
             self.right_OnlineStatus.hidden = NO;
             break;

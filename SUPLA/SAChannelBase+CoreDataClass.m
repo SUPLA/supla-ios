@@ -207,6 +207,9 @@
                 case SUPLA_CHANNELFNC_VALVE_OPENCLOSE:
                 case SUPLA_CHANNELFNC_VALVE_PERCENTAGE:
                     return NSLocalizedString(@"Valve", nil);
+                case SUPLA_CHANNELFNC_DIGIGLASS_VERTICAL:
+                case SUPLA_CHANNELFNC_DIGIGLASS_HORIZONTAL:
+                    return NSLocalizedString(@"Digiglass", nil);
         }
         
     }
@@ -279,6 +282,10 @@
     return false;
 }
 
+- (SADigiglassValue *) digiglassValue {
+    return [[SADigiglassValue alloc] init];
+}
+
 - (int) imgIsActive {
     
     if ( [self isOnline] ) {
@@ -326,6 +333,9 @@
             case SUPLA_CHANNELFNC_VALVE_OPENCLOSE: {
                 return self.isClosed ? 1 : 0;
             }
+            case SUPLA_CHANNELFNC_DIGIGLASS_HORIZONTAL:
+            case SUPLA_CHANNELFNC_DIGIGLASS_VERTICAL:
+                return [self.digiglassValue isAnySectionTransparent] ? 1 : 0;
         }
     }
     
@@ -392,6 +402,7 @@
     
     NSString *n1 = nil;
     NSString *n2 = nil;
+    NSString *t1 = nil;
     
     switch(self.func) {
         case SUPLA_CHANNELFNC_OPENINGSENSOR_GATEWAY:
@@ -532,6 +543,25 @@
         case SUPLA_CHANNELFNC_VALVE_PERCENTAGE:
             n1 = @"valve";
             break;
+        case SUPLA_CHANNELFNC_DIGIGLASS_VERTICAL:
+            switch(self.alticon) {
+                case 1:
+                    t1 = @"digiglass1";
+                    break;
+                default:
+                    t1 = @"digiglass";
+            }
+            break;
+        case SUPLA_CHANNELFNC_DIGIGLASS_HORIZONTAL:
+            switch(self.alticon) {
+                case 1:
+                    t1 = [self imgIsActive] ? @"digiglassh1" : @"digiglass1";
+                    break;
+                default:
+                    t1 = [self imgIsActive] ? @"digiglassh" : @"digiglass";
+            }
+            break;
+            
     }
     
     if ( n1 ) {
@@ -542,6 +572,9 @@
         return [UIImage imageNamed:[NSString stringWithFormat:@"%@-%@", n2, [self imgIsActive] ? @"on" : @"off"]];
     }
     
+    if ( t1 ) {
+        return [UIImage imageNamed:[NSString stringWithFormat:@"%@%@", t1, [self imgIsActive] ? @"-transparent" : @""]];
+    }
     
     return [UIImage imageNamed:[NSString stringWithFormat:@"unknown_channel"]];
 }

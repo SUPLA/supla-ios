@@ -137,4 +137,5 @@
 - (void) channelStateRequestWithChannelId:(int)channelId;
 - (void) setLightsourceLifespanWithChannelId:(int)channelId resetCounter:(BOOL)reset setTime:(BOOL)setTime lifespan:(unsigned short)lifespan;
 - (void) setIODeviceRegistrationEnabledForTime:(int)iodevice_sec clientRegistrationEnabledForTime:(int)client_sec;
+- (void) setDgfTransparencyMask:(short)mask activeBits:(short)active_bits channelId:(int)channelId;
 @end

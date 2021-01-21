@@ -20,6 +20,7 @@
 #import <CoreData/CoreData.h>
 #import <UIKit/UIKit.h>
 #import "SAUserIcon+CoreDataClass.h"
+#include "SADigiglassValue.h"
 
 @class _SALocation;
 
@@ -48,6 +49,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (UIImage*) getIconWithIndex:(short)idx;
 - (BOOL) isManuallyClosed;
 - (BOOL) flooding;
+- (SADigiglassValue*) digiglassValue;
 
 - (double) temperatureValue;
 - (double) humidityValue;

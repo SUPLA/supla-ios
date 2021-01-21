@@ -29,6 +29,7 @@
 #import "HomePlusDetailView.h"
 #import "TemperatureDetailView.h"
 #import "TempHumidityDetailView.h"
+#import "SADigiglassDetailView.h"
 #import "SARateApp.h"
 #import "_SALocation+CoreDataClass.h"
 
@@ -457,6 +458,7 @@
     SATemperatureDetailView *_temperatureDetailView;
     SATempHumidityDetailView *_tempHumidityDetailView;
     SAHomePlusDetailView *_homePlusDetailView;
+    SADigiglassDetailView *_digiglassDetailView;
     
     SADetailView *_detailView;
     
@@ -576,6 +578,17 @@
                     }
                     
                     result = _tempHumidityDetailView;
+                    break;
+                case SUPLA_CHANNELFNC_DIGIGLASS_HORIZONTAL:
+                case SUPLA_CHANNELFNC_DIGIGLASS_VERTICAL:
+                    if ( _digiglassDetailView == nil ) {
+                        
+                        _digiglassDetailView  = [[[NSBundle mainBundle] loadNibNamed:@"DigiglassDetailView" owner:self options:nil] objectAtIndex:0];
+                        [_digiglassDetailView   detailViewInit];
+                        
+                    }
+                    
+                    result = _digiglassDetailView;
                     break;
             };
         }
