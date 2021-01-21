@@ -122,6 +122,8 @@
 		019F4CCD23577C3700286139 /* SAImpulseCounterChartHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 019F4CCC23577C3700286139 /* SAImpulseCounterChartHelper.m */; };
 		01A66A7525364AA400C00A1A /* SARoofWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 01A66A7425364AA400C00A1A /* SARoofWindowController.m */; };
 		01A66A7925364ABA00C00A1A /* SARoofWindowControllerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 01A66A7825364ABA00C00A1A /* SARoofWindowControllerTests.m */; };
+		01AB61E925B8E08E00DBEF74 /* SADigiglassController.m in Sources */ = {isa = PBXBuildFile; fileRef = 01AB61E825B8E08E00DBEF74 /* SADigiglassController.m */; };
+		01AB61ED25B8E0B400DBEF74 /* SADigiglassControllerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 01AB61EC25B8E0B400DBEF74 /* SADigiglassControllerTests.m */; };
 		01AC1AD62487C35E00F734DF /* SAColorBrightnessPickerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 01AC1AD52487C35E00F734DF /* SAColorBrightnessPickerTests.m */; };
 		01BDAC7522C518DE00915646 /* SARestApiClientTask.m in Sources */ = {isa = PBXBuildFile; fileRef = 01BDAC7422C518DE00915646 /* SARestApiClientTask.m */; };
 		01BDAC7822C5200600915646 /* SAOAuthToken.m in Sources */ = {isa = PBXBuildFile; fileRef = 01BDAC7722C5200600915646 /* SAOAuthToken.m */; };
@@ -135,6 +137,24 @@
 		01C792FA22B7FB610020A900 /* SAChannelExtendedValue+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 01C792E822B7FB600020A900 /* SAChannelExtendedValue+CoreDataClass.m */; };
 		01C8EBCD23422AC50072AB8C /* HomePlusDetailViewGroupCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 01C8EBCF23422AC50072AB8C /* HomePlusDetailViewGroupCell.xib */; };
 		01C8EBFA234232EC0072AB8C /* HomePlusDetailView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 01C8EBFC234232EC0072AB8C /* HomePlusDetailView.xib */; };
+		01CEABFA25B9920A009C3BFD /* SADigiglassDetailView.m in Sources */ = {isa = PBXBuildFile; fileRef = 01CEABF925B9920A009C3BFD /* SADigiglassDetailView.m */; };
+		01CEABFE25B9925E009C3BFD /* DigiglassDetailView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 01CEABFD25B9925E009C3BFD /* DigiglassDetailView.xib */; };
+		01CEAC0D25B99A58009C3BFD /* digiglass@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 01CEAC0125B99A57009C3BFD /* digiglass@3x.png */; };
+		01CEAC0E25B99A58009C3BFD /* digiglass-transparent@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 01CEAC0225B99A57009C3BFD /* digiglass-transparent@2x.png */; };
+		01CEAC0F25B99A58009C3BFD /* digiglass1@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 01CEAC0325B99A57009C3BFD /* digiglass1@3x.png */; };
+		01CEAC1025B99A58009C3BFD /* digiglassh-transparent@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 01CEAC0425B99A57009C3BFD /* digiglassh-transparent@3x.png */; };
+		01CEAC1125B99A58009C3BFD /* digiglass@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 01CEAC0525B99A57009C3BFD /* digiglass@2x.png */; };
+		01CEAC1225B99A58009C3BFD /* digiglassh1-transparent@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 01CEAC0625B99A57009C3BFD /* digiglassh1-transparent@3x.png */; };
+		01CEAC1325B99A58009C3BFD /* digiglassh1-transparent@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 01CEAC0725B99A57009C3BFD /* digiglassh1-transparent@2x.png */; };
+		01CEAC1425B99A58009C3BFD /* digiglass1-transparent@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 01CEAC0825B99A57009C3BFD /* digiglass1-transparent@3x.png */; };
+		01CEAC1525B99A58009C3BFD /* digiglassh-transparent@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 01CEAC0925B99A57009C3BFD /* digiglassh-transparent@2x.png */; };
+		01CEAC1625B99A58009C3BFD /* digiglass1-transparent@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 01CEAC0A25B99A57009C3BFD /* digiglass1-transparent@2x.png */; };
+		01CEAC1725B99A58009C3BFD /* digiglass1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 01CEAC0B25B99A58009C3BFD /* digiglass1@2x.png */; };
+		01CEAC1825B99A58009C3BFD /* digiglass-transparent@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 01CEAC0C25B99A58009C3BFD /* digiglass-transparent@3x.png */; };
+		01CEAC1E25B99DAC009C3BFD /* SADigiglassValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 01CEAC1D25B99DAC009C3BFD /* SADigiglassValue.m */; };
+		01CEAC2525B9AA71009C3BFD /* dgftransparent@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 01CEAC2325B9AA71009C3BFD /* dgftransparent@3x.png */; };
+		01CEAC2625B9AA71009C3BFD /* dgfopaque@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 01CEAC2425B9AA71009C3BFD /* dgfopaque@3x.png */; };
+		01CEAC2A25B9BAE2009C3BFD /* SADigiglassValueTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 01CEAC2925B9BAE2009C3BFD /* SADigiglassValueTests.m */; };
 		01D0616E22C294D90043C947 /* ElectricityMeterDetailView.m in Sources */ = {isa = PBXBuildFile; fileRef = 01D0616D22C294D90043C947 /* ElectricityMeterDetailView.m */; };
 		01D0617122C296850043C947 /* ElectricityMeterDetailView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 01D0617322C296850043C947 /* ElectricityMeterDetailView.xib */; };
 		01D2C38D22C3B0A700BF1A10 /* graphon.png in Resources */ = {isa = PBXBuildFile; fileRef = 01D2C38B22C3B0A700BF1A10 /* graphon.png */; };
@@ -642,6 +662,9 @@
 		01A66A7325364AA400C00A1A /* SARoofWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SARoofWindowController.h; sourceTree = "<group>"; };
 		01A66A7425364AA400C00A1A /* SARoofWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SARoofWindowController.m; sourceTree = "<group>"; };
 		01A66A7825364ABA00C00A1A /* SARoofWindowControllerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SARoofWindowControllerTests.m; sourceTree = "<group>"; };
+		01AB61E725B8E08E00DBEF74 /* SADigiglassController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SADigiglassController.h; sourceTree = "<group>"; };
+		01AB61E825B8E08E00DBEF74 /* SADigiglassController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SADigiglassController.m; sourceTree = "<group>"; };
+		01AB61EC25B8E0B400DBEF74 /* SADigiglassControllerTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SADigiglassControllerTests.m; sourceTree = "<group>"; };
 		01AC1AD52487C35E00F734DF /* SAColorBrightnessPickerTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SAColorBrightnessPickerTests.m; sourceTree = "<group>"; };
 		01B216CF22AECB2F004E0596 /* SUPLA 3.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "SUPLA 3.xcdatamodel"; sourceTree = "<group>"; };
 		01BDAC7322C518DE00915646 /* SARestApiClientTask.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SARestApiClientTask.h; sourceTree = "<group>"; };
@@ -733,6 +756,26 @@
 		01C8EC14234243BE0072AB8C /* pt-PT */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-PT"; path = "pt-PT.lproj/HomePlusDetailView.strings"; sourceTree = "<group>"; };
 		01C8EC162342441B0072AB8C /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/HomePlusDetailView.strings; sourceTree = "<group>"; };
 		01C8EC182342449A0072AB8C /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/HomePlusDetailView.strings; sourceTree = "<group>"; };
+		01CEABF825B9920A009C3BFD /* SADigiglassDetailView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SADigiglassDetailView.h; sourceTree = "<group>"; };
+		01CEABF925B9920A009C3BFD /* SADigiglassDetailView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SADigiglassDetailView.m; sourceTree = "<group>"; };
+		01CEABFD25B9925E009C3BFD /* DigiglassDetailView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DigiglassDetailView.xib; sourceTree = "<group>"; };
+		01CEAC0125B99A57009C3BFD /* digiglass@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "digiglass@3x.png"; path = "Resources/Assets/Img/digiglass@3x.png"; sourceTree = "<group>"; };
+		01CEAC0225B99A57009C3BFD /* digiglass-transparent@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "digiglass-transparent@2x.png"; path = "Resources/Assets/Img/digiglass-transparent@2x.png"; sourceTree = "<group>"; };
+		01CEAC0325B99A57009C3BFD /* digiglass1@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "digiglass1@3x.png"; path = "Resources/Assets/Img/digiglass1@3x.png"; sourceTree = "<group>"; };
+		01CEAC0425B99A57009C3BFD /* digiglassh-transparent@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "digiglassh-transparent@3x.png"; path = "Resources/Assets/Img/digiglassh-transparent@3x.png"; sourceTree = "<group>"; };
+		01CEAC0525B99A57009C3BFD /* digiglass@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "digiglass@2x.png"; path = "Resources/Assets/Img/digiglass@2x.png"; sourceTree = "<group>"; };
+		01CEAC0625B99A57009C3BFD /* digiglassh1-transparent@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "digiglassh1-transparent@3x.png"; path = "Resources/Assets/Img/digiglassh1-transparent@3x.png"; sourceTree = "<group>"; };
+		01CEAC0725B99A57009C3BFD /* digiglassh1-transparent@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "digiglassh1-transparent@2x.png"; path = "Resources/Assets/Img/digiglassh1-transparent@2x.png"; sourceTree = "<group>"; };
+		01CEAC0825B99A57009C3BFD /* digiglass1-transparent@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "digiglass1-transparent@3x.png"; path = "Resources/Assets/Img/digiglass1-transparent@3x.png"; sourceTree = "<group>"; };
+		01CEAC0925B99A57009C3BFD /* digiglassh-transparent@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "digiglassh-transparent@2x.png"; path = "Resources/Assets/Img/digiglassh-transparent@2x.png"; sourceTree = "<group>"; };
+		01CEAC0A25B99A57009C3BFD /* digiglass1-transparent@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "digiglass1-transparent@2x.png"; path = "Resources/Assets/Img/digiglass1-transparent@2x.png"; sourceTree = "<group>"; };
+		01CEAC0B25B99A58009C3BFD /* digiglass1@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "digiglass1@2x.png"; path = "Resources/Assets/Img/digiglass1@2x.png"; sourceTree = "<group>"; };
+		01CEAC0C25B99A58009C3BFD /* digiglass-transparent@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "digiglass-transparent@3x.png"; path = "Resources/Assets/Img/digiglass-transparent@3x.png"; sourceTree = "<group>"; };
+		01CEAC1C25B99DAC009C3BFD /* SADigiglassValue.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SADigiglassValue.h; sourceTree = "<group>"; };
+		01CEAC1D25B99DAC009C3BFD /* SADigiglassValue.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SADigiglassValue.m; sourceTree = "<group>"; };
+		01CEAC2325B9AA71009C3BFD /* dgftransparent@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "dgftransparent@3x.png"; path = "Resources/Assets/Img/dgftransparent@3x.png"; sourceTree = "<group>"; };
+		01CEAC2425B9AA71009C3BFD /* dgfopaque@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "dgfopaque@3x.png"; path = "Resources/Assets/Img/dgfopaque@3x.png"; sourceTree = "<group>"; };
+		01CEAC2925B9BAE2009C3BFD /* SADigiglassValueTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SADigiglassValueTests.m; sourceTree = "<group>"; };
 		01CFF6D12365BCCD00C827FB /* SUPLA 4.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "SUPLA 4.xcdatamodel"; sourceTree = "<group>"; };
 		01D0616C22C294D90043C947 /* ElectricityMeterDetailView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ElectricityMeterDetailView.h; sourceTree = "<group>"; };
 		01D0616D22C294D90043C947 /* ElectricityMeterDetailView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ElectricityMeterDetailView.m; sourceTree = "<group>"; };
@@ -1205,6 +1248,7 @@
 				010C8789249AA1E1002FE526 /* SAInfoVC.xib */,
 				011E736A24A1367B004D99EE /* SAVLCalibrationTool.xib */,
 				0148934725AA5D2000B9974E /* SADiwCalibrationTool.xib */,
+				01CEABFD25B9925E009C3BFD /* DigiglassDetailView.xib */,
 			);
 			name = xib;
 			sourceTree = "<group>";
@@ -1286,6 +1330,15 @@
 			name = restapi;
 			sourceTree = "<group>";
 		};
+		01CEAC1B25B99D47009C3BFD /* Value */ = {
+			isa = PBXGroup;
+			children = (
+				01CEAC1C25B99DAC009C3BFD /* SADigiglassValue.h */,
+				01CEAC1D25B99DAC009C3BFD /* SADigiglassValue.m */,
+			);
+			name = Value;
+			sourceTree = "<group>";
+		};
 		401CA1B01BA067DB00117AF4 = {
 			isa = PBXGroup;
 			children = (
@@ -1313,6 +1366,7 @@
 		401CA1BB1BA067DB00117AF4 /* SUPLA */ = {
 			isa = PBXGroup;
 			children = (
+				01CEAC1B25B99D47009C3BFD /* Value */,
 				0163D0CB257EE483006C73CB /* SUPLA.entitlements */,
 				018CFD1D23281A0F00888CB7 /* ExtendedValue */,
 				013D1C5A22CE4751000C0784 /* charts */,
@@ -1368,6 +1422,8 @@
 				012FCBD223217DE000AC6FF6 /* ThermostatCalendarTests.m */,
 				0130894423395F4C00F46FCD /* ThermostatScheduleCfgTests.m */,
 				01AC1AD52487C35E00F734DF /* SAColorBrightnessPickerTests.m */,
+				01AB61EC25B8E0B400DBEF74 /* SADigiglassControllerTests.m */,
+				01CEAC2925B9BAE2009C3BFD /* SADigiglassValueTests.m */,
 			);
 			path = SUPLATests;
 			sourceTree = "<group>";
@@ -1412,6 +1468,20 @@
 		405AC4011BC15878004F7311 /* Img */ = {
 			isa = PBXGroup;
 			children = (
+				01CEAC2425B9AA71009C3BFD /* dgfopaque@3x.png */,
+				01CEAC2325B9AA71009C3BFD /* dgftransparent@3x.png */,
+				01CEAC0225B99A57009C3BFD /* digiglass-transparent@2x.png */,
+				01CEAC0C25B99A58009C3BFD /* digiglass-transparent@3x.png */,
+				01CEAC0525B99A57009C3BFD /* digiglass@2x.png */,
+				01CEAC0125B99A57009C3BFD /* digiglass@3x.png */,
+				01CEAC0A25B99A57009C3BFD /* digiglass1-transparent@2x.png */,
+				01CEAC0825B99A57009C3BFD /* digiglass1-transparent@3x.png */,
+				01CEAC0B25B99A58009C3BFD /* digiglass1@2x.png */,
+				01CEAC0325B99A57009C3BFD /* digiglass1@3x.png */,
+				01CEAC0925B99A57009C3BFD /* digiglassh-transparent@2x.png */,
+				01CEAC0425B99A57009C3BFD /* digiglassh-transparent@3x.png */,
+				01CEAC0725B99A57009C3BFD /* digiglassh1-transparent@2x.png */,
+				01CEAC0625B99A57009C3BFD /* digiglassh1-transparent@3x.png */,
 				0148933B25AA19DA00B9974E /* infinity@3x.png */,
 				0148933D25AA19DA00B9974E /* infinitywhite@3x.png */,
 				0148933E25AA19DA00B9974E /* p100@3x.png */,
@@ -1773,6 +1843,8 @@
 		40A675851BA1BEBF004A51C4 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				01AB61E725B8E08E00DBEF74 /* SADigiglassController.h */,
+				01AB61E825B8E08E00DBEF74 /* SADigiglassController.m */,
 				01A66A7325364AA400C00A1A /* SARoofWindowController.h */,
 				01A66A7425364AA400C00A1A /* SARoofWindowController.m */,
 				010C877D249A4D55002FE526 /* SAInfoVC.h */,
@@ -1820,6 +1892,8 @@
 				403150FA1DC769430075D2D2 /* RGBWDetailView.m */,
 				409934B41F30EF9C003110C5 /* RSDetailView.h */,
 				409934B51F30EF9C003110C5 /* RSDetailView.m */,
+				01CEABF825B9920A009C3BFD /* SADigiglassDetailView.h */,
+				01CEABF925B9920A009C3BFD /* SADigiglassDetailView.m */,
 				403EB1111FBDF47F00AD6460 /* AddWizardVC.h */,
 				403EB1121FBDF47F00AD6460 /* AddWizardVC.m */,
 				4077ACE020A21BB100BD2216 /* CreateAccountVC.h */,
@@ -2007,6 +2081,7 @@
 				40CF96C21BC7D4E70030EFFF /* power-off@2x.png in Resources */,
 				40CF96BD1BC7D4E70030EFFF /* light-on@3x.png in Resources */,
 				40DE1A381BCD5E9B004CF43B /* AboutVC.xib in Resources */,
+				01CEAC1325B99A58009C3BFD /* digiglassh1-transparent@2x.png in Resources */,
 				40B9ED821FACE15700403B1A /* window-closed@3x.png in Resources */,
 				01F9110122EF954400BFF91D /* thermostat_hp_homeplus2-off@3x.png in Resources */,
 				4052DA051DC515AE000B8C45 /* dimmerrgb-onoff@2x.png in Resources */,
@@ -2047,11 +2122,15 @@
 				407D4AE71BC6C57E009A5505 /* app_icon58x58@2x.png in Resources */,
 				01511CFB24F50B470081A1EC /* SAPreloaderPopup.xib in Resources */,
 				40B9ED461FACCE8700403B1A /* tv-on@2x.png in Resources */,
+				01CEAC1125B99A58009C3BFD /* digiglass@2x.png in Resources */,
 				40B9ED5F1FACD14000403B1A /* fan-off@2x.png in Resources */,
 				40CF96DA1BC81A470030EFFF /* warning@2x.png in Resources */,
 				01F9110222EF954400BFF91D /* thermostat_hp_homeplus-off@2x.png in Resources */,
+				01CEAC0F25B99A58009C3BFD /* digiglass1@3x.png in Resources */,
 				01F9110822EF954400BFF91D /* thermostat_hp_homeplus1-off@3x.png in Resources */,
 				0158396F2576A82A005E615D /* ledalwaysoff@3x.png in Resources */,
+				01CEAC1825B99A58009C3BFD /* digiglass-transparent@3x.png in Resources */,
+				01CEAC2625B9AA71009C3BFD /* dgfopaque@3x.png in Resources */,
 				40CF96D81BC81A470030EFFF /* error@2x.png in Resources */,
 				40B9ED4F1FACCF8100403B1A /* radio-off@2x.png in Resources */,
 				40CE7C6E1DCBBF6D00BBACE4 /* DistanceCell.xib in Resources */,
@@ -2087,9 +2166,11 @@
 				018D2E5324BF258B00773D2F /* uv-on@3x.png in Resources */,
 				40B9ED671FACD34C00403B1A /* xmastree-off@3x.png in Resources */,
 				40B9ED581FACD0A100403B1A /* pc-off@3x.png in Resources */,
+				01CEABFE25B9925E009C3BFD /* DigiglassDetailView.xib in Resources */,
 				40CF96C81BC7D4E70030EFFF /* rollershutter-open@2x.png in Resources */,
 				4077ACE420A21BB100BD2216 /* CreateAccountVC.xib in Resources */,
 				405AC4321BC158E8004F7311 /* OpenSans-Regular.ttf in Resources */,
+				01CEAC1025B99A58009C3BFD /* digiglassh-transparent@3x.png in Resources */,
 				40B9ED701FACD94300403B1A /* barier-open@2x.png in Resources */,
 				40CF96AC1BC7D4E70030EFFF /* door-open@2x.png in Resources */,
 				40477B4A20C6C5FE00E995E6 /* staircasetimer_1-on@3x.png in Resources */,
@@ -2098,6 +2179,7 @@
 				012E81D924C9A31B008E0690 /* SALightsourceLifespanSettingsDialog.xib in Resources */,
 				40CF96C61BC7D4E70030EFFF /* rollershutter-closed@2x.png in Resources */,
 				0148934525AA5D2000B9974E /* SADiwCalibrationTool.xib in Resources */,
+				01CEAC1225B99A58009C3BFD /* digiglassh1-transparent@3x.png in Resources */,
 				40B397CF1BCE7F3200BE7D5A /* Launch Screen.storyboard in Resources */,
 				40B9ED601FACD14000403B1A /* fan-off@3x.png in Resources */,
 				0158396A2576A82A005E615D /* ledalwaysoffwhite@3x.png in Resources */,
@@ -2109,6 +2191,7 @@
 				01F910FE22EF954400BFF91D /* thermostat_hp_homeplus2-on@2x.png in Resources */,
 				405AC41B1BC15898004F7311 /* app_icon@3x.png in Resources */,
 				01902A2A235A1840005ED935 /* TemperatureDetailView.xib in Resources */,
+				01CEAC1725B99A58009C3BFD /* digiglass1@2x.png in Resources */,
 				40477B5120C6CF2600E995E6 /* gate-closed-50percent@2x.png in Resources */,
 				401CA1EF1BA0923600117AF4 /* MainVC.xib in Resources */,
 				40CF96BB1BC7D4E70030EFFF /* light-off@3x.png in Resources */,
@@ -2135,6 +2218,7 @@
 				40DE1A2B1BCCFF8A004CF43B /* info@2x.png in Resources */,
 				4091654F1F3CBAF200F49193 /* rs_open.png in Resources */,
 				40B9ED681FACD34C00403B1A /* xmastree-off@2x.png in Resources */,
+				01CEAC0D25B99A58009C3BFD /* digiglass@3x.png in Resources */,
 				407D4AFB1BC6D6AA009A5505 /* btnOK@3x.png in Resources */,
 				0158396B2576A82A005E615D /* ledoffwhite@3x.png in Resources */,
 				01F9110022EF954400BFF91D /* thermostat_hp_homeplus1-off@2x.png in Resources */,
@@ -2147,6 +2231,7 @@
 				018D2E5224BF258B00773D2F /* uv-off@3x.png in Resources */,
 				40477B4220C6C57700E995E6 /* staircasetimer-on@3x.png in Resources */,
 				40CF96C11BC7D4E70030EFFF /* noliquid@3x.png in Resources */,
+				01CEAC1625B99A58009C3BFD /* digiglass1-transparent@2x.png in Resources */,
 				40B9ED4E1FACCF8100403B1A /* radio-on@3x.png in Resources */,
 				017A3CA723635C22004AD1FC /* weight@2x.png in Resources */,
 				016EE77423074DDC00FD301C /* production@3x.png in Resources */,
@@ -2160,6 +2245,7 @@
 				01F9110622EF954400BFF91D /* thermostat_hp_homeplus3-on@2x.png in Resources */,
 				4052DA091DC515AE000B8C45 /* dimmer-off@2x.png in Resources */,
 				017554FC22F1D2BE00EB58B7 /* settings2@3x.png in Resources */,
+				01CEAC1425B99A58009C3BFD /* digiglass1-transparent@3x.png in Resources */,
 				4052DA061DC515AE000B8C45 /* dimmerrgb-onon@3x.png in Resources */,
 				407D4AEC1BC6C64D009A5505 /* app_icon80x80@2x.png in Resources */,
 				40477B4B20C6C5FE00E995E6 /* staircasetimer_1-off@3x.png in Resources */,
@@ -2182,10 +2268,13 @@
 				017554FF22F1DDA300EB58B7 /* hp_plus@3x.png in Resources */,
 				010C8787249AA1E1002FE526 /* SAInfoVC.xib in Resources */,
 				0148932A25AA03EE00B9974E /* btnOK_disabled@2x.png in Resources */,
+				01CEAC2525B9AA71009C3BFD /* dgftransparent@3x.png in Resources */,
 				40CE7C691DCBBD5700BBACE4 /* distance@3x.png in Resources */,
 				40B9ED651FACD34C00403B1A /* xmastree-on@3x.png in Resources */,
+				01CEAC0E25B99A58009C3BFD /* digiglass-transparent@2x.png in Resources */,
 				40B9ED571FACD0A100403B1A /* pc-on@2x.png in Resources */,
 				018D2E5124BF258B00773D2F /* uv-on@2x.png in Resources */,
+				01CEAC1525B99A58009C3BFD /* digiglassh-transparent@2x.png in Resources */,
 				4091AF4A1FC88BFB00EFF357 /* greendot@2x.png in Resources */,
 				011E736824A1367B004D99EE /* SAVLCalibrationTool.xib in Resources */,
 				0158396C2576A82A005E615D /* ledoff@3x.png in Resources */,
@@ -2384,9 +2473,11 @@
 				01D0616E22C294D90043C947 /* ElectricityMeterDetailView.m in Sources */,
 				01F8856C22E5E79100D18373 /* SAUserIcon+CoreDataClass.m in Sources */,
 				013D73B022DD105400E3515A /* SAChartFilterField.m in Sources */,
+				01AB61E925B8E08E00DBEF74 /* SADigiglassController.m in Sources */,
 				40C7BA7920C047CF00ACEE42 /* SAChannelGroup+CoreDataProperties.m in Sources */,
 				40D69DEE1BB574FE00937769 /* Database.m in Sources */,
 				01BE3C87233EAFEC00201B47 /* HomePlusDetailViewGroupCell.m in Sources */,
+				01CEAC1E25B99DAC009C3BFD /* SADigiglassValue.m in Sources */,
 				408034E51BC84A89007666E7 /* NavigationController.m in Sources */,
 				4004DE8D1DC4E270009C34E3 /* SAColorBrightnessPicker.m in Sources */,
 				401CA1C21BA067DB00117AF4 /* AppDelegate.m in Sources */,
@@ -2456,6 +2547,7 @@
 				403150FB1DC769430075D2D2 /* RGBWDetailView.m in Sources */,
 				01F8856A22E5E79100D18373 /* SATempHumidityMeasurementItem+CoreDataProperties.m in Sources */,
 				40E8BE881FC06A5600FB2FE6 /* TFHpple.m in Sources */,
+				01CEABFA25B9920A009C3BFD /* SADigiglassDetailView.m in Sources */,
 				013F7EC123EB33E30061A497 /* SAChannelStateExtendedValue.m in Sources */,
 				019170A4233D67E900820BDB /* SAThermostatChartHelper.m in Sources */,
 				40C7BA5320C007A300ACEE42 /* SAChannelValue+CoreDataProperties.m in Sources */,
@@ -2470,8 +2562,10 @@
 				01DD2F0C247718C40025DFF9 /* SARangeCalibrationWheelTests.m in Sources */,
 				401CA1DC1BA067DB00117AF4 /* SUPLATests.m in Sources */,
 				016ABE18236DA795001BF5FB /* KeychainTests.m in Sources */,
+				01CEAC2A25B9BAE2009C3BFD /* SADigiglassValueTests.m in Sources */,
 				01EFD94C236CA9AE00893489 /* NSDataEncryptionTest.m in Sources */,
 				012F722C22DF3E2300E5F72E /* ChartFilterFieldTests.m in Sources */,
+				01AB61ED25B8E0B400DBEF74 /* SADigiglassControllerTests.m in Sources */,
 				0130894523395F4C00F46FCD /* ThermostatScheduleCfgTests.m in Sources */,
 				01AC1AD62487C35E00F734DF /* SAColorBrightnessPickerTests.m in Sources */,
 				012FCBD323217DE000AC6FF6 /* ThermostatCalendarTests.m in Sources */,
@@ -2901,7 +2995,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = SUPLA/SUPLA.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 81;
+				CURRENT_PROJECT_VERSION = 82;
 				DEFINES_MODULE = YES;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"$(inherited)",
@@ -2916,7 +3010,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/SUPLA/lib",
 				);
-				MARKETING_VERSION = 2.3.33;
+				MARKETING_VERSION = 2.3.34;
 				PRODUCT_BUNDLE_IDENTIFIER = com.acsoftware.ios.supla;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "SUPLA/SUPLA-Bridging-Header.h";
@@ -2934,7 +3028,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = SUPLA/SUPLA.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 81;
+				CURRENT_PROJECT_VERSION = 82;
 				DEFINES_MODULE = YES;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"$(inherited)",
@@ -2949,7 +3043,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/SUPLA/lib",
 				);
-				MARKETING_VERSION = 2.3.33;
+				MARKETING_VERSION = 2.3.34;
 				PRODUCT_BUNDLE_IDENTIFIER = com.acsoftware.ios.supla;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "SUPLA/SUPLA-Bridging-Header.h";

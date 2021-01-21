@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina3_5" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="SADigiglassDetailView">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="o3c-AW-IdR" customClass="SADigiglassController">
+                    <rect key="frame" x="16" y="16" width="288" height="262"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                </view>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Yin-UM-fR6">
+                    <rect key="frame" x="16" y="338" width="82" height="82"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="82" id="Yb6-Yl-4Il"/>
+                        <constraint firstAttribute="width" constant="82" id="aeQ-bj-5eH"/>
+                    </constraints>
+                    <state key="normal" image="dgftransparent.png"/>
+                    <connections>
+                        <action selector="btnTransparentTouched:" destination="iN0-l3-epB" eventType="touchDown" id="dNt-cq-yAJ"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zw2-oq-0Wn">
+                    <rect key="frame" x="222" y="338" width="82" height="82"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="82" id="WMn-3G-T5C"/>
+                        <constraint firstAttribute="height" constant="82" id="g1j-6G-L1Z"/>
+                    </constraints>
+                    <state key="normal" image="dgfopaque.png"/>
+                    <connections>
+                        <action selector="btnOpaqueTouched:" destination="iN0-l3-epB" eventType="touchDown" id="xNb-gx-xxZ"/>
+                    </connections>
+                </button>
+            </subviews>
+            <color key="backgroundColor" red="0.92933040860000005" green="0.92946392300000003" blue="0.92930120230000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="o3c-AW-IdR" secondAttribute="trailing" constant="16" id="2z5-ab-buz"/>
+                <constraint firstItem="Yin-UM-fR6" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="16" id="481-Vd-6rg"/>
+                <constraint firstAttribute="bottom" secondItem="Yin-UM-fR6" secondAttribute="bottom" constant="60" id="63R-iC-j4q"/>
+                <constraint firstItem="Yin-UM-fR6" firstAttribute="top" secondItem="o3c-AW-IdR" secondAttribute="bottom" constant="60" id="GMz-te-deh"/>
+                <constraint firstAttribute="trailing" secondItem="Zw2-oq-0Wn" secondAttribute="trailing" constant="16" id="JAz-t5-UlJ"/>
+                <constraint firstItem="o3c-AW-IdR" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="16" id="aIG-94-xZ0"/>
+                <constraint firstItem="Zw2-oq-0Wn" firstAttribute="top" secondItem="o3c-AW-IdR" secondAttribute="bottom" constant="60" id="fuq-2x-z3V"/>
+                <constraint firstItem="o3c-AW-IdR" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="16" id="kJ3-xK-Nt6"/>
+                <constraint firstAttribute="bottom" secondItem="Zw2-oq-0Wn" secondAttribute="bottom" constant="60" id="tYS-b0-eMv"/>
+            </constraints>
+            <connections>
+                <outlet property="controller" destination="o3c-AW-IdR" id="XC4-hI-6Xm"/>
+            </connections>
+            <point key="canvasLocation" x="127.5" y="67.5"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="dgfopaque.png" width="73" height="73"/>
+        <image name="dgftransparent.png" width="73" height="73"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

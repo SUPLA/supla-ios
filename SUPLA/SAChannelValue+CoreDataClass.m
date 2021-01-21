@@ -252,4 +252,8 @@
     return ([self secondByte] & SUPLA_VALVE_FLAG_FLOODING) > 0;
 }
 
+-(SADigiglassValue *) digiglassValue {
+    return [[SADigiglassValue alloc] initWithData:self.dataValue];
+}
+
 @end

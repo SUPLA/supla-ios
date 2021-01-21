@@ -21,6 +21,8 @@
 #import "SAChannelValueBase+CoreDataProperties.h"
 #import <UIKit/UIKit.h>
 #import "proto.h"
+#import "SADigiglassValue.h"
+
 @class NSObject;
 
 NS_ASSUME_NONNULL_BEGIN
@@ -51,7 +53,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (double) measuredTemperature;
 -(BOOL) isManuallyClosed;
 -(BOOL) flooding;
-
+-(SADigiglassValue*) digiglassValue;
 @end
 
 NS_ASSUME_NONNULL_END

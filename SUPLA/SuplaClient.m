@@ -1062,4 +1062,12 @@ void sasuplaclient_on_device_channel_state(void *_suplaclient, void *user_data, 
     }
 }
 
+- (void) setDgfTransparencyMask:(short)mask activeBits:(short)active_bits channelId:(int)channelId {
+    @synchronized(self) {
+        if ( _sclient ) {
+            supla_client_set_dgf_transparency(_sclient, channelId, mask, active_bits);
+        }
+    }
+}
+
 @end

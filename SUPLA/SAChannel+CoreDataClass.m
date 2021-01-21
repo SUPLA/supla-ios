@@ -145,6 +145,10 @@
     return self.value == nil ? [super flooding] : [self.value flooding];
 }
 
+- (SADigiglassValue *) digiglassValue {
+    return self.value == nil ? [super digiglassValue] : [self.value digiglassValue];
+}
+
 - (int) imgIsActive {
     
     if ( [self isOnline]
@@ -293,6 +297,27 @@
             }
             break;
         }
+        case SUPLA_CHANNELFNC_DIGIGLASS_VERTICAL:
+        case SUPLA_CHANNELFNC_DIGIGLASS_HORIZONTAL: {
+            SADigiglassValue *value = self.digiglassValue;
+            if ([value isPlannedRegenerationInProgress]) {
+                if (msg) {
+                    *msg = NSLocalizedString(@"Planned regeneration is in progress.", nil);
+                }
+                return 1;
+            } else if ([value regenerationAfter20hInProgress]) {
+                if (msg) {
+                    *msg = NSLocalizedString(@"Regeneration initiated after 20 hours of operation is in progress.", nil);
+                }
+                return 1;
+            } else if ([value isTooLongOperationPresent]) {
+                if (msg) {
+                    *msg = NSLocalizedString(@"The glass sections are exposed for more than 20 hours, which may adversely affect their life. It is recommended to cover all sections for a minimum of 4 hours in order to regenerate them.", nil);
+                }
+                return 2;
+            }
+        }
+            break;
 
     }
     return 0;
