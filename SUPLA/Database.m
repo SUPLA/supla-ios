@@ -1352,6 +1352,11 @@
 }
 
 -(BOOL) zwaveBridgeChannelAvailable {
-    return NO;
+    NSArray *r = [self fetchByPredicate:
+                  [NSPredicate predicateWithFormat:@"visible > 0 AND type = %i AND (flags & %i) > 0",
+                   SUPLA_CHANNELTYPE_BRIDGE,
+                   SUPLA_CHANNEL_FLAG_ZWAVE_BRIDGE] entityName:@"SAChannel" limit:1];
+    
+    return r && r.count == 1;
 }
 @end

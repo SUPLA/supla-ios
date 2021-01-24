@@ -261,6 +261,11 @@
     return _MainVC;
 }
 
+-(void)showViewController:(UIViewController*)vc {
+    [self.NavController showViewController:vc];
+    [self fadeToViewController:self.NavController];
+}
+
 -(void)showMainVC {
     if ( [SAApp SuplaClientConnected] ) {
         [[self MainVC] detailHide];

@@ -21,6 +21,7 @@
 #import "SuplaApp.h"
 #import "SAClassHelper.h"
 #import "SAMenuItems.h"
+#import "SAZWaveConfigurationWizardVC.h"
 
 #define TAG_BTN_MENU 0
 #define TAG_BTN_SETTINGS 1
@@ -224,6 +225,7 @@
             [[SAApp UI] showAddWizard];
             break;
         case SAMenuItemIdZWave:
+            [SAZWaveConfigurationWizardVC.globalInstance show];
             break;
         case SAMenuItemIdAbout:
             [[SAApp UI] showAbout];

@@ -18,10 +18,10 @@
 
 #import "AddWizardVC.h"
 #import "SuplaApp.h"
-#import "SAClassHelper.h"
 #import "TFHpple.h"
 #import "SASuperuserAuthorizationDialog.h"
 #import "SAWifiAutoConnect.h"
+#import "SAClassHelper.h"
 
 #define RESULT_PARAM_ERROR   -3
 #define RESULT_COMPAT_ERROR  -2
@@ -319,10 +319,8 @@
 @end
 
 @implementation SAAddWizardVC {
-    NSTimer *_preloaderTimer;
     NSTimer *_watchDogTimer;
     NSTimer *_blinkTimer;
-    int _preloaderPos;
     NSOperationQueue *_OpQueue;
     NSDate *_stepTime;
     int _step;
@@ -378,7 +376,6 @@
 
 -(void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    [[SAApp UI] showMenuBtn:NO];
     
     [self cleanUp];
     [self loadPrefs];
@@ -432,10 +429,9 @@
 }
 
 -(void)viewDidDisappear:(BOOL)animated  {
-    [self.OpQueue cancelAllOperations];
-    [self preloaderVisible:NO];
     [super viewDidDisappear:animated];
     
+    [self.OpQueue cancelAllOperations];
     [[NSNotificationCenter defaultCenter]  removeObserver:self];
     [self savePrefs];
 }
@@ -540,25 +536,6 @@
     _step = step;
 }
 
--(void)btnNextEnabled:(BOOL)enabled {
-    self.btnNext1.enabled = enabled;
-    self.btnNext2.enabled = enabled;
-    self.btnNext3.enabled = enabled;
-}
-
--(void)showPageView:(UIView*) pageView {
-    
-    for(UIView *subview in self.vPageContent.subviews) {
-        [subview removeFromSuperview];
-    }
-    
-    pageView.autoresizingMask = (UIViewAutoresizingFlexibleWidth |
-                                 UIViewAutoresizingFlexibleHeight);
-    pageView.frame =  self.vPageContent.frame;
-    
-    [self.vPageContent addSubview:    pageView];
-}
-
 - (void)blinkTimerFireMethod:(NSTimer *)timer {
     
     if ( _pageId == PAGE_STEP_3 ) {
@@ -567,7 +544,6 @@
 }
 
 -(void)showPage:(int)page {
-    
     [self setStep:STEP_NONE];
     [self btnNextEnabled:YES];
     [self preloaderVisible:NO];
@@ -677,54 +653,6 @@
     
 }
 
-- (void)preloaderTimerFireMethod:(NSTimer *)timer {
-    
-    if ( _preloaderPos == -1 ) {
-        return;
-    }
-    
-    NSString *str = @"";
-    
-    for(int a=0;a<10;a++) {
-        str = [NSString stringWithFormat:@"%@%@", str, _preloaderPos == a ? @"|" : @"."];
-    }
-    
-    _preloaderPos++;
-    if ( _preloaderPos > 9 ) {
-        _preloaderPos = 0;
-    }
-    
-    [self.btnNext2 setAttributedTitle:str];
-    
-}
-
--(void)preloaderVisible:(BOOL)visible {
-    
-    if ( _preloaderTimer ) {
-        _preloaderPos = -1;
-        [_preloaderTimer invalidate];
-        _preloaderTimer = nil;
-    }
-    
-    if ( visible ) {
-        
-        _preloaderPos = 0;
-        
-        _btnNext3_width.constant = 17;
-        [self.btnNext3 setBackgroundImage:[UIImage imageNamed:@"btnnextr2.png"]];
-        
-         _preloaderTimer = [NSTimer scheduledTimerWithTimeInterval:0.1 target:self selector:@selector(preloaderTimerFireMethod:) userInfo:nil repeats:YES];
-        
-    } else {
-        
-        _btnNext3_width.constant = 40;
-        [self.btnNext3 setBackgroundImage:[UIImage imageNamed:@"btnnextr.png"]];
-        [self.btnNext2 setAttributedTitle:NSLocalizedString(@"Next", NULL)];
-        
-    }
-    
-}
-
 -(NSString*)cloudHostName {
    return [[[SAApp getServerHostName] lowercaseString] containsString:@"supla.org"] ? @"cloud.supla.org" : [SAApp getServerHostName];
 }
@@ -813,7 +741,8 @@
     [self startConfigurationWithDelay:0];
 }
 
-- (IBAction)nextTouchch:(id)sender {
+- (IBAction)nextTouch:(nullable id)sender {
+    [super nextTouch:sender];
 
     [self preloaderVisible:YES];
     [self btnNextEnabled:NO];
@@ -868,14 +797,14 @@
     
 }
 
-- (IBAction)cancelTouch:(id)sender {
+- (IBAction)cancelTouch:(nullable id)sender {
+    [super cancelTouch:sender];
+    
     [self cleanUp];
     [self.OpQueue cancelAllOperations];
     [self savePrefs];
     [[SAApp UI] showMainVC];
-    //if (_pageId == PAGE_DONE) {
-        [[SAApp SuplaClient] reconnect];
-    //}
+    [[SAApp SuplaClient] reconnect];
 }
 
 

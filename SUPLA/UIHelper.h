@@ -67,6 +67,7 @@
 
 @interface SAUIHelper : NSObject
 
+-(void)showViewController:(nonnull UIViewController*)vc;
 -(void)fadeToViewController:(nullable UIViewController*)vc;
 
 -(void)showMainVC;

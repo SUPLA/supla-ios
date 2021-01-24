@@ -75,7 +75,7 @@
                                 </attributedString>
                             </state>
                             <connections>
-                                <action selector="nextTouchch:" destination="-1" eventType="touchDown" id="woi-aD-J8R"/>
+                                <action selector="nextTouch:" destination="-1" eventType="touchDown" id="woi-aD-J8R"/>
                             </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kEz-V1-szv">
@@ -89,7 +89,7 @@
                             <state key="selected" backgroundImage="btnnextr.png"/>
                             <state key="highlighted" backgroundImage="btnnextr.png"/>
                             <connections>
-                                <action selector="nextTouchch:" destination="-1" eventType="touchDown" id="FUC-yc-vba"/>
+                                <action selector="nextTouch:" destination="-1" eventType="touchDown" id="FUC-yc-vba"/>
                             </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TGR-gA-tNb">
@@ -103,7 +103,7 @@
                             <state key="selected" backgroundImage="btnnextl.png"/>
                             <state key="highlighted" backgroundImage="btnnextl.png"/>
                             <connections>
-                                <action selector="nextTouchch:" destination="-1" eventType="touchDown" id="nPU-ie-unn"/>
+                                <action selector="nextTouch:" destination="-1" eventType="touchDown" id="nPU-ie-unn"/>
                             </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yFh-DW-X27">
@@ -500,7 +500,7 @@ When the connection has been set, go back to the application and  continue addin
                 <constraint firstItem="TIr-Vk-7vg" firstAttribute="centerX" secondItem="Ua2-ym-wmd" secondAttribute="centerX" id="rE0-Q3-gc9"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <point key="canvasLocation" x="1452.5" y="51.5"/>
+            <point key="canvasLocation" x="1887" y="68"/>
         </view>
         <view contentMode="scaleToFill" id="uTS-MU-A22" userLabel="vError">
             <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
@@ -530,7 +530,7 @@ When the connection has been set, go back to the application and  continue addin
                 <constraint firstItem="d6Q-IP-jA4" firstAttribute="centerY" secondItem="uTS-MU-A22" secondAttribute="centerY" priority="748" constant="-140" id="li5-tN-XTz"/>
                 <constraint firstItem="J9f-5g-EoU" firstAttribute="top" secondItem="d6Q-IP-jA4" secondAttribute="bottom" constant="60" id="yJk-wd-MTs"/>
             </constraints>
-            <point key="canvasLocation" x="1937" y="55"/>
+            <point key="canvasLocation" x="2724" y="14"/>
         </view>
         <view contentMode="scaleToFill" id="O29-9p-F9i" userLabel="vDone">
             <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>

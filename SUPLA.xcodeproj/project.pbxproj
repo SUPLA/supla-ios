@@ -17,6 +17,8 @@
 		012119152368C3B2004C1993 /* collapsed@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 012119142368C3B2004C1993 /* collapsed@3x.png */; };
 		01215A7324C8AECC00429947 /* SALightsourceLifespanSettingsDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = 01215A7124C8AECC00429947 /* SALightsourceLifespanSettingsDialog.m */; };
 		0122613922F396440013E6A2 /* SAThermostatCalendar.m in Sources */ = {isa = PBXBuildFile; fileRef = 0122613822F396440013E6A2 /* SAThermostatCalendar.m */; };
+		0126B84125BDFF2F0027D88A /* SAZWaveConfigurationWizardVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0126B83F25BDFF2F0027D88A /* SAZWaveConfigurationWizardVC.m */; };
+		0126B84225BDFF2F0027D88A /* SAZWaveConfigurationWizardVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0126B84025BDFF2F0027D88A /* SAZWaveConfigurationWizardVC.xib */; };
 		012BD7262499173600E64F25 /* rgbwpoweroff@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 012BD7222499173500E64F25 /* rgbwpoweroff@3x.png */; };
 		012BD7272499173600E64F25 /* rgbwinfo@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 012BD7232499173600E64F25 /* rgbwinfo@3x.png */; };
 		012BD7282499173600E64F25 /* rgbwpoweron@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 012BD7242499173600E64F25 /* rgbwpoweron@3x.png */; };
@@ -125,6 +127,7 @@
 		01AB61E925B8E08E00DBEF74 /* SADigiglassController.m in Sources */ = {isa = PBXBuildFile; fileRef = 01AB61E825B8E08E00DBEF74 /* SADigiglassController.m */; };
 		01AB61ED25B8E0B400DBEF74 /* SADigiglassControllerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 01AB61EC25B8E0B400DBEF74 /* SADigiglassControllerTests.m */; };
 		01AC1AD62487C35E00F734DF /* SAColorBrightnessPickerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 01AC1AD52487C35E00F734DF /* SAColorBrightnessPickerTests.m */; };
+		01B57DEC25BDA48F001F0DBC /* SAWizardVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 01B57DEB25BDA48F001F0DBC /* SAWizardVC.m */; };
 		01BDAC7522C518DE00915646 /* SARestApiClientTask.m in Sources */ = {isa = PBXBuildFile; fileRef = 01BDAC7422C518DE00915646 /* SARestApiClientTask.m */; };
 		01BDAC7822C5200600915646 /* SAOAuthToken.m in Sources */ = {isa = PBXBuildFile; fileRef = 01BDAC7722C5200600915646 /* SAOAuthToken.m */; };
 		01BE3C87233EAFEC00201B47 /* HomePlusDetailViewGroupCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 01BE3C86233EAFEC00201B47 /* HomePlusDetailViewGroupCell.m */; };
@@ -476,6 +479,9 @@
 		01215A7124C8AECC00429947 /* SALightsourceLifespanSettingsDialog.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SALightsourceLifespanSettingsDialog.m; sourceTree = "<group>"; };
 		0122613722F396440013E6A2 /* SAThermostatCalendar.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SAThermostatCalendar.h; sourceTree = "<group>"; };
 		0122613822F396440013E6A2 /* SAThermostatCalendar.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SAThermostatCalendar.m; sourceTree = "<group>"; };
+		0126B83E25BDFF2F0027D88A /* SAZWaveConfigurationWizardVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SAZWaveConfigurationWizardVC.h; sourceTree = "<group>"; };
+		0126B83F25BDFF2F0027D88A /* SAZWaveConfigurationWizardVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SAZWaveConfigurationWizardVC.m; sourceTree = "<group>"; };
+		0126B84025BDFF2F0027D88A /* SAZWaveConfigurationWizardVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SAZWaveConfigurationWizardVC.xib; sourceTree = "<group>"; };
 		012BD7222499173500E64F25 /* rgbwpoweroff@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "rgbwpoweroff@3x.png"; path = "Resources/Assets/Img/rgbwpoweroff@3x.png"; sourceTree = "<group>"; };
 		012BD7232499173600E64F25 /* rgbwinfo@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "rgbwinfo@3x.png"; path = "Resources/Assets/Img/rgbwinfo@3x.png"; sourceTree = "<group>"; };
 		012BD7242499173600E64F25 /* rgbwpoweron@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "rgbwpoweron@3x.png"; path = "Resources/Assets/Img/rgbwpoweron@3x.png"; sourceTree = "<group>"; };
@@ -667,6 +673,8 @@
 		01AB61EC25B8E0B400DBEF74 /* SADigiglassControllerTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SADigiglassControllerTests.m; sourceTree = "<group>"; };
 		01AC1AD52487C35E00F734DF /* SAColorBrightnessPickerTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SAColorBrightnessPickerTests.m; sourceTree = "<group>"; };
 		01B216CF22AECB2F004E0596 /* SUPLA 3.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "SUPLA 3.xcdatamodel"; sourceTree = "<group>"; };
+		01B57DEA25BDA48F001F0DBC /* SAWizardVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SAWizardVC.h; sourceTree = "<group>"; };
+		01B57DEB25BDA48F001F0DBC /* SAWizardVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SAWizardVC.m; sourceTree = "<group>"; };
 		01BDAC7322C518DE00915646 /* SARestApiClientTask.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SARestApiClientTask.h; sourceTree = "<group>"; };
 		01BDAC7422C518DE00915646 /* SARestApiClientTask.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SARestApiClientTask.m; sourceTree = "<group>"; };
 		01BDAC7622C5200600915646 /* SAOAuthToken.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SAOAuthToken.h; sourceTree = "<group>"; };
@@ -1218,6 +1226,7 @@
 		012119122368B597004C1993 /* xib */ = {
 			isa = PBXGroup;
 			children = (
+				0126B84025BDFF2F0027D88A /* SAZWaveConfigurationWizardVC.xib */,
 				01511CF924F50B470081A1EC /* SAPreloaderPopup.xib */,
 				012E81DB24C9A31B008E0690 /* SALightsourceLifespanSettingsDialog.xib */,
 				0180440B24C254CF005E53EB /* SAChannelStatePopup.xib */,
@@ -1895,6 +1904,10 @@
 				01CEABF825B9920A009C3BFD /* SADigiglassDetailView.h */,
 				01CEABF925B9920A009C3BFD /* SADigiglassDetailView.m */,
 				403EB1111FBDF47F00AD6460 /* AddWizardVC.h */,
+				01B57DEA25BDA48F001F0DBC /* SAWizardVC.h */,
+				01B57DEB25BDA48F001F0DBC /* SAWizardVC.m */,
+				0126B83E25BDFF2F0027D88A /* SAZWaveConfigurationWizardVC.h */,
+				0126B83F25BDFF2F0027D88A /* SAZWaveConfigurationWizardVC.m */,
 				403EB1121FBDF47F00AD6460 /* AddWizardVC.m */,
 				4077ACE020A21BB100BD2216 /* CreateAccountVC.h */,
 				4077ACE120A21BB100BD2216 /* CreateAccountVC.m */,
@@ -2137,6 +2150,7 @@
 				0175550022F1DDA300EB58B7 /* hp_minus@3x.png in Resources */,
 				01F9110F22EF964900BFF91D /* thermostat_hp_homeplus1-on@3x.png in Resources */,
 				01F9110922EF954400BFF91D /* thermostat_hp_homeplus3-on@3x.png in Resources */,
+				0126B84225BDFF2F0027D88A /* SAZWaveConfigurationWizardVC.xib in Resources */,
 				40B9ED5D1FACD14000403B1A /* fan-on@2x.png in Resources */,
 				40CF96B41BC7D4E70030EFFF /* gate-open@2x.png in Resources */,
 				4052DA0B1DC515AE000B8C45 /* dimmer-on@2x.png in Resources */,
@@ -2456,6 +2470,7 @@
 				40C7BA7720C047CF00ACEE42 /* SAChannel+CoreDataProperties.m in Sources */,
 				40CF96DE1BC820E60030EFFF /* UIHelper.m in Sources */,
 				01F8856E22E5E79100D18373 /* SAImpulseCounterMeasurementItem+CoreDataProperties.m in Sources */,
+				0126B84125BDFF2F0027D88A /* SAZWaveConfigurationWizardVC.m in Sources */,
 				01C1718F22C7F3A2005983E1 /* SAIncrementalMeasurementItem+CoreDataClass.m in Sources */,
 				01199C8324C34AC50062454B /* SAChannelStatePopup.m in Sources */,
 				0172677D234FAF78000F1CFB /* SADownloadImpulseCounterMeasurements.m in Sources */,
@@ -2473,6 +2488,7 @@
 				01D0616E22C294D90043C947 /* ElectricityMeterDetailView.m in Sources */,
 				01F8856C22E5E79100D18373 /* SAUserIcon+CoreDataClass.m in Sources */,
 				013D73B022DD105400E3515A /* SAChartFilterField.m in Sources */,
+				01B57DEC25BDA48F001F0DBC /* SAWizardVC.m in Sources */,
 				01AB61E925B8E08E00DBEF74 /* SADigiglassController.m in Sources */,
 				40C7BA7920C047CF00ACEE42 /* SAChannelGroup+CoreDataProperties.m in Sources */,
 				40D69DEE1BB574FE00937769 /* Database.m in Sources */,
