@@ -102,6 +102,7 @@
 		0182FCA92464691D00270CDC /* channel_warning_level1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0182FCA52464691D00270CDC /* channel_warning_level1@2x.png */; };
 		018574262411234B00CEDF16 /* heatmeter@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 018574242411234B00CEDF16 /* heatmeter@2x.png */; };
 		018574272411234B00CEDF16 /* heatmeter@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 018574252411234B00CEDF16 /* heatmeter@3x.png */; };
+		0186054725BF48C500C1332A /* z_wave@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0186054625BF48C500C1332A /* z_wave@3x.png */; };
 		018CFD2023281A5900888CB7 /* SAElectricityMeterExtendedValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 018CFD1F23281A5900888CB7 /* SAElectricityMeterExtendedValue.m */; };
 		018CFD2323281ADB00888CB7 /* SAThermostatExtendedValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 018CFD2223281ADB00888CB7 /* SAThermostatExtendedValue.m */; };
 		018CFD2623281AF900888CB7 /* SAThermostatHPExtendedValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 018CFD2523281AF900888CB7 /* SAThermostatHPExtendedValue.m */; };
@@ -618,6 +619,7 @@
 		0182FCA52464691D00270CDC /* channel_warning_level1@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "channel_warning_level1@2x.png"; path = "Resources/Assets/Img/channel_warning_level1@2x.png"; sourceTree = "<group>"; };
 		018574242411234B00CEDF16 /* heatmeter@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "heatmeter@2x.png"; path = "Resources/Assets/Img/heatmeter@2x.png"; sourceTree = "<group>"; };
 		018574252411234B00CEDF16 /* heatmeter@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "heatmeter@3x.png"; path = "Resources/Assets/Img/heatmeter@3x.png"; sourceTree = "<group>"; };
+		0186054625BF48C500C1332A /* z_wave@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "z_wave@3x.png"; path = "Resources/Assets/Img/z_wave@3x.png"; sourceTree = "<group>"; };
 		018CFD1E23281A5900888CB7 /* SAElectricityMeterExtendedValue.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SAElectricityMeterExtendedValue.h; sourceTree = "<group>"; };
 		018CFD1F23281A5900888CB7 /* SAElectricityMeterExtendedValue.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SAElectricityMeterExtendedValue.m; sourceTree = "<group>"; };
 		018CFD2123281ADB00888CB7 /* SAThermostatExtendedValue.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SAThermostatExtendedValue.h; sourceTree = "<group>"; };
@@ -1477,6 +1479,7 @@
 		405AC4011BC15878004F7311 /* Img */ = {
 			isa = PBXGroup;
 			children = (
+				0186054625BF48C500C1332A /* z_wave@3x.png */,
 				01CEAC2425B9AA71009C3BFD /* dgfopaque@3x.png */,
 				01CEAC2325B9AA71009C3BFD /* dgftransparent@3x.png */,
 				01CEAC0225B99A57009C3BFD /* digiglass-transparent@2x.png */,
@@ -2142,6 +2145,7 @@
 				01CEAC0F25B99A58009C3BFD /* digiglass1@3x.png in Resources */,
 				01F9110822EF954400BFF91D /* thermostat_hp_homeplus1-off@3x.png in Resources */,
 				0158396F2576A82A005E615D /* ledalwaysoff@3x.png in Resources */,
+				0186054725BF48C500C1332A /* z_wave@3x.png in Resources */,
 				01CEAC1825B99A58009C3BFD /* digiglass-transparent@3x.png in Resources */,
 				01CEAC2625B9AA71009C3BFD /* dgfopaque@3x.png in Resources */,
 				40CF96D81BC81A470030EFFF /* error@2x.png in Resources */,

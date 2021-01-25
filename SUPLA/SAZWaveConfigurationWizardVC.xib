@@ -1,11 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
-    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <device id="retina3_5" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="OpenSans-Regular.ttf">
+            <string>OpenSans</string>
+        </array>
+        <array key="Quicksand-Regular.ttf">
+            <string>Quicksand-Regular</string>
+        </array>
+    </customFonts>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SAZWaveConfigurationWizardVC">
             <connections>
@@ -20,14 +28,14 @@
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="CW8-nO-nfe" userLabel="MainView">
-            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+            <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Q9O-G8-Bs6">
-                    <rect key="frame" x="0.0" y="816" width="414" height="80"/>
+                    <rect key="frame" x="0.0" y="400" width="320" height="80"/>
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Azp-eb-3M7">
-                            <rect key="frame" x="294" y="5" width="60" height="40"/>
+                            <rect key="frame" x="200" y="5" width="60" height="40"/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="40" id="p8F-Gg-B5Q"/>
@@ -49,7 +57,7 @@
                             </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rhE-dh-0nI">
-                            <rect key="frame" x="354" y="5" width="40" height="40"/>
+                            <rect key="frame" x="260" y="5" width="40" height="40"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="40" id="I8w-Se-xvY"/>
                                 <constraint firstAttribute="width" constant="40" id="J4T-k6-D0C"/>
@@ -63,7 +71,7 @@
                             </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WXz-xQ-dRF">
-                            <rect key="frame" x="277" y="5" width="17" height="40"/>
+                            <rect key="frame" x="183" y="5" width="17" height="40"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="17" id="utz-NT-8ml"/>
                                 <constraint firstAttribute="height" constant="40" id="vqQ-rH-m2v"/>
@@ -145,7 +153,7 @@
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rBR-By-Axn">
-                    <rect key="frame" x="0.0" y="0.0" width="414" height="816"/>
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="400"/>
                     <color key="backgroundColor" red="0.074509803920000006" green="0.65490196079999996" blue="0.1176470588" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                 </view>
             </subviews>
@@ -161,10 +169,62 @@
             </constraints>
             <point key="canvasLocation" x="-458" y="49"/>
         </view>
+        <view contentMode="scaleToFill" id="2cU-pa-qd7" userLabel="Welcome">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fuT-LN-d5P">
+                    <rect key="frame" x="20" y="25.5" width="280" height="369"/>
+                    <subviews>
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="z_wave.png" translatesAutoresizingMaskIntoConstraints="NO" id="RUX-ah-dRw">
+                            <rect key="frame" x="40" y="0.0" width="200" height="122"/>
+                            <constraints>
+                                <constraint firstAttribute="width" secondItem="RUX-ah-dRw" secondAttribute="height" multiplier="200:122" id="7Z9-Ld-awx"/>
+                            </constraints>
+                        </imageView>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Z-Wave wizard" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TtI-D6-hIQ">
+                            <rect key="frame" x="0.0" y="172" width="280" height="44"/>
+                            <fontDescription key="fontDescription" name="Quicksand-Regular" family="Quicksand" pointSize="35"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="8" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nNP-Gd-gOi">
+                            <rect key="frame" x="10" y="246" width="260" height="123"/>
+                            <string key="text">Welcome to the z-wave bridge configuration wizard. It will allow you to connect your z-wave devices to Supla. Tap "Next" to continue.</string>
+                            <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="18"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstItem="RUX-ah-dRw" firstAttribute="top" secondItem="fuT-LN-d5P" secondAttribute="top" id="E7C-Jd-wug"/>
+                        <constraint firstItem="RUX-ah-dRw" firstAttribute="leading" secondItem="fuT-LN-d5P" secondAttribute="leading" constant="40" id="G8n-cY-Jnc"/>
+                        <constraint firstAttribute="trailing" secondItem="nNP-Gd-gOi" secondAttribute="trailing" constant="10" id="ICt-fT-qCE"/>
+                        <constraint firstAttribute="trailing" secondItem="RUX-ah-dRw" secondAttribute="trailing" constant="40" id="Oe4-Dv-z0N"/>
+                        <constraint firstItem="TtI-D6-hIQ" firstAttribute="top" secondItem="RUX-ah-dRw" secondAttribute="bottom" constant="50" id="ReH-EP-BEW"/>
+                        <constraint firstAttribute="bottom" secondItem="nNP-Gd-gOi" secondAttribute="bottom" id="boZ-Wj-NT8"/>
+                        <constraint firstItem="TtI-D6-hIQ" firstAttribute="centerX" secondItem="fuT-LN-d5P" secondAttribute="centerX" id="c0C-tt-bQm"/>
+                        <constraint firstAttribute="trailing" secondItem="TtI-D6-hIQ" secondAttribute="trailing" id="eYT-pg-5od"/>
+                        <constraint firstItem="nNP-Gd-gOi" firstAttribute="leading" secondItem="fuT-LN-d5P" secondAttribute="leading" constant="10" id="lvc-F8-clK"/>
+                        <constraint firstItem="TtI-D6-hIQ" firstAttribute="leading" secondItem="fuT-LN-d5P" secondAttribute="leading" id="p8s-xy-Fm9"/>
+                        <constraint firstItem="nNP-Gd-gOi" firstAttribute="top" secondItem="TtI-D6-hIQ" secondAttribute="bottom" constant="30" id="zjY-Xa-vRI"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" red="0.073665045200000001" green="0.65493297579999998" blue="0.1176083907" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="fuT-LN-d5P" firstAttribute="leading" secondItem="2cU-pa-qd7" secondAttribute="leading" constant="20" id="6DA-Wg-kdf"/>
+                <constraint firstItem="fuT-LN-d5P" firstAttribute="centerY" secondItem="2cU-pa-qd7" secondAttribute="centerY" constant="-30" id="ECW-cA-q6P"/>
+                <constraint firstAttribute="trailing" secondItem="fuT-LN-d5P" secondAttribute="trailing" constant="20" id="WVA-h0-EDk"/>
+            </constraints>
+            <point key="canvasLocation" x="384.375" y="47.5"/>
+        </view>
     </objects>
     <resources>
         <image name="btnnextl.png" width="25.5" height="61"/>
         <image name="btnnextr.png" width="61.5" height="61"/>
         <image name="btnnextr2.png" width="25.5" height="61"/>
+        <image name="z_wave.png" width="384" height="220.5"/>
     </resources>
 </document>
