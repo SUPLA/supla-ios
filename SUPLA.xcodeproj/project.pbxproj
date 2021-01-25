@@ -103,6 +103,11 @@
 		018574262411234B00CEDF16 /* heatmeter@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 018574242411234B00CEDF16 /* heatmeter@2x.png */; };
 		018574272411234B00CEDF16 /* heatmeter@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 018574252411234B00CEDF16 /* heatmeter@3x.png */; };
 		0186054725BF48C500C1332A /* z_wave@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0186054625BF48C500C1332A /* z_wave@3x.png */; };
+		0186054B25BF673800C1332A /* time@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0186054A25BF673700C1332A /* time@3x.png */; };
+		0186055125BF74E100C1332A /* zwave_reset@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0186054E25BF74E100C1332A /* zwave_reset@3x.png */; };
+		0186055225BF74E100C1332A /* zwave_add@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0186054F25BF74E100C1332A /* zwave_add@3x.png */; };
+		0186055325BF74E100C1332A /* zwave_remove@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0186055025BF74E100C1332A /* zwave_remove@3x.png */; };
+		0186055725BF80AC00C1332A /* wakeup@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0186055625BF80AC00C1332A /* wakeup@3x.png */; };
 		018CFD2023281A5900888CB7 /* SAElectricityMeterExtendedValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 018CFD1F23281A5900888CB7 /* SAElectricityMeterExtendedValue.m */; };
 		018CFD2323281ADB00888CB7 /* SAThermostatExtendedValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 018CFD2223281ADB00888CB7 /* SAThermostatExtendedValue.m */; };
 		018CFD2623281AF900888CB7 /* SAThermostatHPExtendedValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 018CFD2523281AF900888CB7 /* SAThermostatHPExtendedValue.m */; };
@@ -620,6 +625,11 @@
 		018574242411234B00CEDF16 /* heatmeter@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "heatmeter@2x.png"; path = "Resources/Assets/Img/heatmeter@2x.png"; sourceTree = "<group>"; };
 		018574252411234B00CEDF16 /* heatmeter@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "heatmeter@3x.png"; path = "Resources/Assets/Img/heatmeter@3x.png"; sourceTree = "<group>"; };
 		0186054625BF48C500C1332A /* z_wave@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "z_wave@3x.png"; path = "Resources/Assets/Img/z_wave@3x.png"; sourceTree = "<group>"; };
+		0186054A25BF673700C1332A /* time@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "time@3x.png"; path = "Resources/Assets/Img/time@3x.png"; sourceTree = "<group>"; };
+		0186054E25BF74E100C1332A /* zwave_reset@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "zwave_reset@3x.png"; path = "Resources/Assets/Img/zwave_reset@3x.png"; sourceTree = "<group>"; };
+		0186054F25BF74E100C1332A /* zwave_add@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "zwave_add@3x.png"; path = "Resources/Assets/Img/zwave_add@3x.png"; sourceTree = "<group>"; };
+		0186055025BF74E100C1332A /* zwave_remove@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "zwave_remove@3x.png"; path = "Resources/Assets/Img/zwave_remove@3x.png"; sourceTree = "<group>"; };
+		0186055625BF80AC00C1332A /* wakeup@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "wakeup@3x.png"; path = "Resources/Assets/Img/wakeup@3x.png"; sourceTree = "<group>"; };
 		018CFD1E23281A5900888CB7 /* SAElectricityMeterExtendedValue.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SAElectricityMeterExtendedValue.h; sourceTree = "<group>"; };
 		018CFD1F23281A5900888CB7 /* SAElectricityMeterExtendedValue.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SAElectricityMeterExtendedValue.m; sourceTree = "<group>"; };
 		018CFD2123281ADB00888CB7 /* SAThermostatExtendedValue.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SAThermostatExtendedValue.h; sourceTree = "<group>"; };
@@ -1479,6 +1489,11 @@
 		405AC4011BC15878004F7311 /* Img */ = {
 			isa = PBXGroup;
 			children = (
+				0186055625BF80AC00C1332A /* wakeup@3x.png */,
+				0186054F25BF74E100C1332A /* zwave_add@3x.png */,
+				0186055025BF74E100C1332A /* zwave_remove@3x.png */,
+				0186054E25BF74E100C1332A /* zwave_reset@3x.png */,
+				0186054A25BF673700C1332A /* time@3x.png */,
 				0186054625BF48C500C1332A /* z_wave@3x.png */,
 				01CEAC2425B9AA71009C3BFD /* dgfopaque@3x.png */,
 				01CEAC2325B9AA71009C3BFD /* dgftransparent@3x.png */,
@@ -2088,6 +2103,7 @@
 				4091654D1F3CBAF200F49193 /* rs_down.png in Resources */,
 				01F9110422EF954400BFF91D /* thermostat_hp_homeplus2-off@2x.png in Resources */,
 				40CF96BF1BC7D4E70030EFFF /* liquid@3x.png in Resources */,
+				0186055325BF74E100C1332A /* zwave_remove@3x.png in Resources */,
 				01D0617122C296850043C947 /* ElectricityMeterDetailView.xib in Resources */,
 				40B9ED481FACCE8700403B1A /* tv-on@3x.png in Resources */,
 				40B9ED501FACCF8100403B1A /* radio-off@3x.png in Resources */,
@@ -2098,9 +2114,11 @@
 				40CF96BD1BC7D4E70030EFFF /* light-on@3x.png in Resources */,
 				40DE1A381BCD5E9B004CF43B /* AboutVC.xib in Resources */,
 				01CEAC1325B99A58009C3BFD /* digiglassh1-transparent@2x.png in Resources */,
+				0186055225BF74E100C1332A /* zwave_add@3x.png in Resources */,
 				40B9ED821FACE15700403B1A /* window-closed@3x.png in Resources */,
 				01F9110122EF954400BFF91D /* thermostat_hp_homeplus2-off@3x.png in Resources */,
 				4052DA051DC515AE000B8C45 /* dimmerrgb-onoff@2x.png in Resources */,
+				0186054B25BF673800C1332A /* time@3x.png in Resources */,
 				40B9ED451FACCE8700403B1A /* tv-off@3x.png in Resources */,
 				01943EBE249D1C8800DA2B8F /* SASuperuserAuthorizationDialog.xib in Resources */,
 				40477B3E20C6C57700E995E6 /* staircasetimer-off@2x.png in Resources */,
@@ -2182,9 +2200,11 @@
 				40B9ED831FACE15700403B1A /* mail@3x.png in Resources */,
 				40DE1A291BCCFF8A004CF43B /* feedback@2x.png in Resources */,
 				018D2E5324BF258B00773D2F /* uv-on@3x.png in Resources */,
+				0186055125BF74E100C1332A /* zwave_reset@3x.png in Resources */,
 				40B9ED671FACD34C00403B1A /* xmastree-off@3x.png in Resources */,
 				40B9ED581FACD0A100403B1A /* pc-off@3x.png in Resources */,
 				01CEABFE25B9925E009C3BFD /* DigiglassDetailView.xib in Resources */,
+				0186055725BF80AC00C1332A /* wakeup@3x.png in Resources */,
 				40CF96C81BC7D4E70030EFFF /* rollershutter-open@2x.png in Resources */,
 				4077ACE420A21BB100BD2216 /* CreateAccountVC.xib in Resources */,
 				405AC4321BC158E8004F7311 /* OpenSans-Regular.ttf in Resources */,
