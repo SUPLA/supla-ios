@@ -543,7 +543,7 @@
         case SUPLA_CHANNELFNC_VALVE_PERCENTAGE:
             n1 = @"valve";
             break;
-        case SUPLA_CHANNELFNC_DIGIGLASS_VERTICAL:
+        case SUPLA_CHANNELFNC_DIGIGLASS_HORIZONTAL:
             switch(self.alticon) {
                 case 1:
                     t1 = @"digiglass1";
@@ -552,13 +552,13 @@
                     t1 = @"digiglass";
             }
             break;
-        case SUPLA_CHANNELFNC_DIGIGLASS_HORIZONTAL:
+        case SUPLA_CHANNELFNC_DIGIGLASS_VERTICAL:
             switch(self.alticon) {
                 case 1:
-                    t1 = [self imgIsActive] ? @"digiglassh1" : @"digiglass1";
+                    t1 = [self imgIsActive] ? @"digiglassv1" : @"digiglass1";
                     break;
                 default:
-                    t1 = [self imgIsActive] ? @"digiglassh" : @"digiglass";
+                    t1 = [self imgIsActive] ? @"digiglassv" : @"digiglass";
             }
             break;
             

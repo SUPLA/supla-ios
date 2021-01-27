@@ -142,12 +142,12 @@
 		01CEAC0D25B99A58009C3BFD /* digiglass@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 01CEAC0125B99A57009C3BFD /* digiglass@3x.png */; };
 		01CEAC0E25B99A58009C3BFD /* digiglass-transparent@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 01CEAC0225B99A57009C3BFD /* digiglass-transparent@2x.png */; };
 		01CEAC0F25B99A58009C3BFD /* digiglass1@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 01CEAC0325B99A57009C3BFD /* digiglass1@3x.png */; };
-		01CEAC1025B99A58009C3BFD /* digiglassh-transparent@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 01CEAC0425B99A57009C3BFD /* digiglassh-transparent@3x.png */; };
+		01CEAC1025B99A58009C3BFD /* digiglassv-transparent@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 01CEAC0425B99A57009C3BFD /* digiglassv-transparent@3x.png */; };
 		01CEAC1125B99A58009C3BFD /* digiglass@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 01CEAC0525B99A57009C3BFD /* digiglass@2x.png */; };
-		01CEAC1225B99A58009C3BFD /* digiglassh1-transparent@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 01CEAC0625B99A57009C3BFD /* digiglassh1-transparent@3x.png */; };
-		01CEAC1325B99A58009C3BFD /* digiglassh1-transparent@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 01CEAC0725B99A57009C3BFD /* digiglassh1-transparent@2x.png */; };
+		01CEAC1225B99A58009C3BFD /* digiglassv1-transparent@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 01CEAC0625B99A57009C3BFD /* digiglassv1-transparent@3x.png */; };
+		01CEAC1325B99A58009C3BFD /* digiglassv1-transparent@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 01CEAC0725B99A57009C3BFD /* digiglassv1-transparent@2x.png */; };
 		01CEAC1425B99A58009C3BFD /* digiglass1-transparent@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 01CEAC0825B99A57009C3BFD /* digiglass1-transparent@3x.png */; };
-		01CEAC1525B99A58009C3BFD /* digiglassh-transparent@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 01CEAC0925B99A57009C3BFD /* digiglassh-transparent@2x.png */; };
+		01CEAC1525B99A58009C3BFD /* digiglassv-transparent@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 01CEAC0925B99A57009C3BFD /* digiglassv-transparent@2x.png */; };
 		01CEAC1625B99A58009C3BFD /* digiglass1-transparent@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 01CEAC0A25B99A57009C3BFD /* digiglass1-transparent@2x.png */; };
 		01CEAC1725B99A58009C3BFD /* digiglass1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 01CEAC0B25B99A58009C3BFD /* digiglass1@2x.png */; };
 		01CEAC1825B99A58009C3BFD /* digiglass-transparent@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 01CEAC0C25B99A58009C3BFD /* digiglass-transparent@3x.png */; };
@@ -762,12 +762,12 @@
 		01CEAC0125B99A57009C3BFD /* digiglass@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "digiglass@3x.png"; path = "Resources/Assets/Img/digiglass@3x.png"; sourceTree = "<group>"; };
 		01CEAC0225B99A57009C3BFD /* digiglass-transparent@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "digiglass-transparent@2x.png"; path = "Resources/Assets/Img/digiglass-transparent@2x.png"; sourceTree = "<group>"; };
 		01CEAC0325B99A57009C3BFD /* digiglass1@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "digiglass1@3x.png"; path = "Resources/Assets/Img/digiglass1@3x.png"; sourceTree = "<group>"; };
-		01CEAC0425B99A57009C3BFD /* digiglassh-transparent@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "digiglassh-transparent@3x.png"; path = "Resources/Assets/Img/digiglassh-transparent@3x.png"; sourceTree = "<group>"; };
+		01CEAC0425B99A57009C3BFD /* digiglassv-transparent@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "digiglassv-transparent@3x.png"; path = "Resources/Assets/Img/digiglassv-transparent@3x.png"; sourceTree = "<group>"; };
 		01CEAC0525B99A57009C3BFD /* digiglass@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "digiglass@2x.png"; path = "Resources/Assets/Img/digiglass@2x.png"; sourceTree = "<group>"; };
-		01CEAC0625B99A57009C3BFD /* digiglassh1-transparent@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "digiglassh1-transparent@3x.png"; path = "Resources/Assets/Img/digiglassh1-transparent@3x.png"; sourceTree = "<group>"; };
-		01CEAC0725B99A57009C3BFD /* digiglassh1-transparent@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "digiglassh1-transparent@2x.png"; path = "Resources/Assets/Img/digiglassh1-transparent@2x.png"; sourceTree = "<group>"; };
+		01CEAC0625B99A57009C3BFD /* digiglassv1-transparent@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "digiglassv1-transparent@3x.png"; path = "Resources/Assets/Img/digiglassv1-transparent@3x.png"; sourceTree = "<group>"; };
+		01CEAC0725B99A57009C3BFD /* digiglassv1-transparent@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "digiglassv1-transparent@2x.png"; path = "Resources/Assets/Img/digiglassv1-transparent@2x.png"; sourceTree = "<group>"; };
 		01CEAC0825B99A57009C3BFD /* digiglass1-transparent@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "digiglass1-transparent@3x.png"; path = "Resources/Assets/Img/digiglass1-transparent@3x.png"; sourceTree = "<group>"; };
-		01CEAC0925B99A57009C3BFD /* digiglassh-transparent@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "digiglassh-transparent@2x.png"; path = "Resources/Assets/Img/digiglassh-transparent@2x.png"; sourceTree = "<group>"; };
+		01CEAC0925B99A57009C3BFD /* digiglassv-transparent@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "digiglassv-transparent@2x.png"; path = "Resources/Assets/Img/digiglassv-transparent@2x.png"; sourceTree = "<group>"; };
 		01CEAC0A25B99A57009C3BFD /* digiglass1-transparent@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "digiglass1-transparent@2x.png"; path = "Resources/Assets/Img/digiglass1-transparent@2x.png"; sourceTree = "<group>"; };
 		01CEAC0B25B99A58009C3BFD /* digiglass1@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "digiglass1@2x.png"; path = "Resources/Assets/Img/digiglass1@2x.png"; sourceTree = "<group>"; };
 		01CEAC0C25B99A58009C3BFD /* digiglass-transparent@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "digiglass-transparent@3x.png"; path = "Resources/Assets/Img/digiglass-transparent@3x.png"; sourceTree = "<group>"; };
@@ -1478,10 +1478,10 @@
 				01CEAC0825B99A57009C3BFD /* digiglass1-transparent@3x.png */,
 				01CEAC0B25B99A58009C3BFD /* digiglass1@2x.png */,
 				01CEAC0325B99A57009C3BFD /* digiglass1@3x.png */,
-				01CEAC0925B99A57009C3BFD /* digiglassh-transparent@2x.png */,
-				01CEAC0425B99A57009C3BFD /* digiglassh-transparent@3x.png */,
-				01CEAC0725B99A57009C3BFD /* digiglassh1-transparent@2x.png */,
-				01CEAC0625B99A57009C3BFD /* digiglassh1-transparent@3x.png */,
+				01CEAC0925B99A57009C3BFD /* digiglassv-transparent@2x.png */,
+				01CEAC0425B99A57009C3BFD /* digiglassv-transparent@3x.png */,
+				01CEAC0725B99A57009C3BFD /* digiglassv1-transparent@2x.png */,
+				01CEAC0625B99A57009C3BFD /* digiglassv1-transparent@3x.png */,
 				0148933B25AA19DA00B9974E /* infinity@3x.png */,
 				0148933D25AA19DA00B9974E /* infinitywhite@3x.png */,
 				0148933E25AA19DA00B9974E /* p100@3x.png */,
@@ -2081,7 +2081,7 @@
 				40CF96C21BC7D4E70030EFFF /* power-off@2x.png in Resources */,
 				40CF96BD1BC7D4E70030EFFF /* light-on@3x.png in Resources */,
 				40DE1A381BCD5E9B004CF43B /* AboutVC.xib in Resources */,
-				01CEAC1325B99A58009C3BFD /* digiglassh1-transparent@2x.png in Resources */,
+				01CEAC1325B99A58009C3BFD /* digiglassv1-transparent@2x.png in Resources */,
 				40B9ED821FACE15700403B1A /* window-closed@3x.png in Resources */,
 				01F9110122EF954400BFF91D /* thermostat_hp_homeplus2-off@3x.png in Resources */,
 				4052DA051DC515AE000B8C45 /* dimmerrgb-onoff@2x.png in Resources */,
@@ -2170,7 +2170,7 @@
 				40CF96C81BC7D4E70030EFFF /* rollershutter-open@2x.png in Resources */,
 				4077ACE420A21BB100BD2216 /* CreateAccountVC.xib in Resources */,
 				405AC4321BC158E8004F7311 /* OpenSans-Regular.ttf in Resources */,
-				01CEAC1025B99A58009C3BFD /* digiglassh-transparent@3x.png in Resources */,
+				01CEAC1025B99A58009C3BFD /* digiglassv-transparent@3x.png in Resources */,
 				40B9ED701FACD94300403B1A /* barier-open@2x.png in Resources */,
 				40CF96AC1BC7D4E70030EFFF /* door-open@2x.png in Resources */,
 				40477B4A20C6C5FE00E995E6 /* staircasetimer_1-on@3x.png in Resources */,
@@ -2179,7 +2179,7 @@
 				012E81D924C9A31B008E0690 /* SALightsourceLifespanSettingsDialog.xib in Resources */,
 				40CF96C61BC7D4E70030EFFF /* rollershutter-closed@2x.png in Resources */,
 				0148934525AA5D2000B9974E /* SADiwCalibrationTool.xib in Resources */,
-				01CEAC1225B99A58009C3BFD /* digiglassh1-transparent@3x.png in Resources */,
+				01CEAC1225B99A58009C3BFD /* digiglassv1-transparent@3x.png in Resources */,
 				40B397CF1BCE7F3200BE7D5A /* Launch Screen.storyboard in Resources */,
 				40B9ED601FACD14000403B1A /* fan-off@3x.png in Resources */,
 				0158396A2576A82A005E615D /* ledalwaysoffwhite@3x.png in Resources */,
@@ -2274,7 +2274,7 @@
 				01CEAC0E25B99A58009C3BFD /* digiglass-transparent@2x.png in Resources */,
 				40B9ED571FACD0A100403B1A /* pc-on@2x.png in Resources */,
 				018D2E5124BF258B00773D2F /* uv-on@2x.png in Resources */,
-				01CEAC1525B99A58009C3BFD /* digiglassh-transparent@2x.png in Resources */,
+				01CEAC1525B99A58009C3BFD /* digiglassv-transparent@2x.png in Resources */,
 				4091AF4A1FC88BFB00EFF357 /* greendot@2x.png in Resources */,
 				011E736824A1367B004D99EE /* SAVLCalibrationTool.xib in Resources */,
 				0158396C2576A82A005E615D /* ledoff@3x.png in Resources */,

@@ -35,7 +35,7 @@
 }
 
 -(void)updateView:(NSTimer *)timer {
-    self.controller.horizontal = self.channelBase.func == SUPLA_CHANNELFNC_DIGIGLASS_HORIZONTAL;
+    self.controller.vertical = self.channelBase.func == SUPLA_CHANNELFNC_DIGIGLASS_VERTICAL;
     SADigiglassValue *value = self.channelBase.digiglassValue;
     self.controller.sectionCount = value.sectionCount;
     self.controller.transparentSections = value.mask;
