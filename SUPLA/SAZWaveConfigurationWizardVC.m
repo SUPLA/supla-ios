@@ -22,6 +22,13 @@
 static SAZWaveConfigurationWizardVC *_zwaveConfigurationWizardGlobalRef = nil;
 
 @interface SAZWaveConfigurationWizardVC ()
+@property (strong, nonatomic) IBOutlet UIView *welcomePage;
+@property (strong, nonatomic) IBOutlet UIView *errorPage;
+@property (strong, nonatomic) IBOutlet UIView *channelSelectionPage;
+@property (strong, nonatomic) IBOutlet UIView *channelDetailsPage;
+@property (strong, nonatomic) IBOutlet UIView *itTakeAWhilePage;
+@property (strong, nonatomic) IBOutlet UIView *settingsPage;
+@property (strong, nonatomic) IBOutlet UIView *successInfoPage;
 
 @end
 
@@ -31,6 +38,11 @@ static SAZWaveConfigurationWizardVC *_zwaveConfigurationWizardGlobalRef = nil;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+}
+
+-(void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [self showPageView:self.welcomePage];
 }
 
 -(IBAction)cancelTouch:(id)sender {

@@ -23,8 +23,15 @@
                 <outlet property="btnNext2" destination="Azp-eb-3M7" id="Dbh-wh-VXB"/>
                 <outlet property="btnNext3" destination="rhE-dh-0nI" id="kp7-Uv-NLg"/>
                 <outlet property="btnNext3_width" destination="J4T-k6-D0C" id="Uqi-84-aqu"/>
+                <outlet property="channelDetailsPage" destination="Spn-8Q-4Px" id="HOS-Qc-HdO"/>
+                <outlet property="channelSelectionPage" destination="ydc-hf-0Ix" id="ve7-7c-Pq8"/>
+                <outlet property="errorPage" destination="rEs-AX-DWu" id="mew-gi-TEf"/>
+                <outlet property="itTakeAWhilePage" destination="4BU-4j-Xo1" id="Lzd-iM-1UP"/>
+                <outlet property="settingsPage" destination="WES-2i-Jt6" id="Kbv-Ks-wZ3"/>
+                <outlet property="successInfoPage" destination="Vtw-LY-8e7" id="JCT-e2-sNA"/>
                 <outlet property="vPageContent" destination="rBR-By-Axn" id="rne-Rj-aMF"/>
                 <outlet property="view" destination="CW8-nO-nfe" id="B5W-dr-v75"/>
+                <outlet property="welcomePage" destination="2cU-pa-qd7" id="L1e-7e-UmS"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -602,7 +609,7 @@
             </constraints>
             <point key="canvasLocation" x="2988" y="46"/>
         </view>
-        <view contentMode="scaleToFill" id="WES-2i-Jt6" userLabel="Channel details">
+        <view contentMode="scaleToFill" id="WES-2i-Jt6" userLabel="Settings">
             <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
