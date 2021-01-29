@@ -80,11 +80,11 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 }
 
 - (void)testHorizontalProperty {
-    XCTAssertFalse(controller.horizontal);
-    controller.horizontal = YES;
-    XCTAssertTrue(controller.horizontal);
-    controller.horizontal = NO;
-    XCTAssertFalse(controller.horizontal);
+    XCTAssertFalse(controller.vertical);
+    controller.vertical = YES;
+    XCTAssertTrue(controller.vertical);
+    controller.vertical = NO;
+    XCTAssertFalse(controller.vertical);
 }
 
 - (void)testLineWidthProperty {

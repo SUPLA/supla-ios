@@ -81,12 +81,12 @@
     return self;
 }
 
--(void)setHorizontal:(BOOL)horizontal {
+-(void)setVertical:(BOOL)horizontal {
     _horizontal = horizontal;
     [self setNeedsDisplay];
 }
 
--(BOOL)horizontal {
+-(BOOL)vertical {
     return _horizontal;
 }
 
