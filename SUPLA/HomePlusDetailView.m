@@ -426,7 +426,7 @@ typedef enum {
         || (thev = ((SAChannel*)self.channelBase).ev.thermostatHP) == nil) {
         return;
     }
-
+    
     [self setBtnApperance:[thev isThermostatOn] ? kON : kOFF button:self.btnOnOff];
     [self setBtnApperance:[thev isNormalOn] ? kON : kOFF button:self.btnNormal];
     [self setBtnApperance:[thev isEcoRecuctionApplied] ? kON : kOFF button:self.btnEco];
@@ -438,7 +438,7 @@ typedef enum {
     [self setCfgValue:thev.ecoReductionTemperature cfgId:CFGID_ECO_REDUCTION];
     [self setCfgValue:thev.comfortTemp cfgId:CFGID_TEMP_COMFORT];
     [self setCfgValue:thev.ecoTemp cfgId:CFGID_TEMP_ECO];
-    
+        
     [self showErrorMessage:thev.errorMessage];
     
     if (!_vCalendar.isTouched) {
@@ -664,6 +664,12 @@ typedef enum {
         default:
             break;
     }
+    
+    if (btn == self.btnOnOff) {
+        NSString *onOffTitle = NSLocalizedString(apperance == kON ? @"ON" : @"OFF", NULL);
+        [btn setTitle:onOffTitle forState:UIControlStateNormal];
+    }
+    
     return apperance;
 }
 
