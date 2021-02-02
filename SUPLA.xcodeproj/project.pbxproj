@@ -168,6 +168,7 @@
 		01D0617122C296850043C947 /* ElectricityMeterDetailView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 01D0617322C296850043C947 /* ElectricityMeterDetailView.xib */; };
 		01D2C38D22C3B0A700BF1A10 /* graphon.png in Resources */ = {isa = PBXBuildFile; fileRef = 01D2C38B22C3B0A700BF1A10 /* graphon.png */; };
 		01D2C38E22C3B0A700BF1A10 /* graphoff.png in Resources */ = {isa = PBXBuildFile; fileRef = 01D2C38C22C3B0A700BF1A10 /* graphoff.png */; };
+		01D32F3225C999CF00793A72 /* btnbackl@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 01D32F3125C999CF00793A72 /* btnbackl@2x.png */; };
 		01D3FF6724A20E26000EBE77 /* backbtn@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 01D3FF6624A20E26000EBE77 /* backbtn@3x.png */; };
 		01D4293322AAA83E0050C1A2 /* electricitymeter@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 01D4292D22AAA83D0050C1A2 /* electricitymeter@3x.png */; };
 		01D4293422AAA83E0050C1A2 /* watermeter@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 01D4292E22AAA83D0050C1A2 /* watermeter@3x.png */; };
@@ -802,6 +803,7 @@
 		01D0617222C296850043C947 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/ElectricityMeterDetailView.xib; sourceTree = "<group>"; };
 		01D2C38B22C3B0A700BF1A10 /* graphon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = graphon.png; path = Resources/Assets/Img/graphon.png; sourceTree = "<group>"; };
 		01D2C38C22C3B0A700BF1A10 /* graphoff.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = graphoff.png; path = Resources/Assets/Img/graphoff.png; sourceTree = "<group>"; };
+		01D32F3125C999CF00793A72 /* btnbackl@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "btnbackl@2x.png"; path = "Resources/Assets/Img/btnbackl@2x.png"; sourceTree = "<group>"; };
 		01D3FF6624A20E26000EBE77 /* backbtn@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "backbtn@3x.png"; path = "Resources/Assets/Img/backbtn@3x.png"; sourceTree = "<group>"; };
 		01D4292D22AAA83D0050C1A2 /* electricitymeter@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "electricitymeter@3x.png"; path = "Resources/Assets/Img/electricitymeter@3x.png"; sourceTree = "<group>"; };
 		01D4292E22AAA83D0050C1A2 /* watermeter@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "watermeter@3x.png"; path = "Resources/Assets/Img/watermeter@3x.png"; sourceTree = "<group>"; };
@@ -1624,6 +1626,7 @@
 				4091AF431FC856C100EFF357 /* wifi@2x.png */,
 				4091AF411FC84ADF00EFF357 /* rocket@2x.png */,
 				4091AF3C1FC8405200EFF357 /* btnnextl@2x.png */,
+				01D32F3125C999CF00793A72 /* btnbackl@2x.png */,
 				4091AF3B1FC8405100EFF357 /* btnnextr@2x.png */,
 				4091AF3D1FC8405200EFF357 /* btnnextr2@2x.png */,
 				40D397AC1FAF547B00BF477D /* retry@3x.png */,
@@ -2274,6 +2277,7 @@
 				017A3CA723635C22004AD1FC /* weight@2x.png in Resources */,
 				016EE77423074DDC00FD301C /* production@3x.png in Resources */,
 				406C92D41BCD8518007BA87A /* btnOK@2x.png in Resources */,
+				01D32F3225C999CF00793A72 /* btnbackl@2x.png in Resources */,
 				401CA1CD1BA067DB00117AF4 /* Images.xcassets in Resources */,
 				40CF96CA1BC7D4E70030EFFF /* thermometer@2x.png in Resources */,
 				012BD7282499173600E64F25 /* rgbwpoweron@3x.png in Resources */,

@@ -388,7 +388,7 @@
     self.edPassword.layer.borderWidth = 2;
     self.edPassword.layer.borderColor = self.edPassword.backgroundColor.CGColor;
     
-    [self.btnCancel setAttributedTitle:NSLocalizedString(@"Cancel", NULL)];
+    [self.btnCancel2 setAttributedTitle:NSLocalizedString(@"Cancel", NULL)];
     [self.btnSystemSettings setTitle:NSLocalizedString(@"Go to the system settings", NULL)];
     
     if ( [SAApp isAdvancedConfig] == YES ) {
@@ -551,10 +551,10 @@
     
     switch(page) {
         case PAGE_STEP_1:
-            [self showPageView:self.vStep1];
+            self.page = self.vStep1;
             break;
         case PAGE_STEP_2:
-            [self showPageView:self.vStep2];
+            self.page = self.vStep2;
             break;
         case PAGE_STEP_3:
         {
@@ -573,18 +573,18 @@
             
             [self swAutoModeChanged:self.swAutoMode];
                         
-            [self showPageView:self.vStep3];
+            self.page = self.vStep3;
         }
             break;
         case PAGE_STEP_4:
             [self.btnNext2 setAttributedTitle:NSLocalizedString(@"Start", NULL)];
-            [self showPageView:self.vStep4];
+            self.page = self.vStep4;
             break;
         case PAGE_ERROR:
-            [self showPageView:self.vError];
+            self.page = self.vError;
             break;
         case PAGE_DONE:
-            [self showPageView:self.vDone];
+            self.page = self.vDone;
             break;
     }
     
@@ -791,14 +791,14 @@
             break;
         case PAGE_DONE:
         case PAGE_ERROR:
-            [self cancelTouch:nil];
+            [self cancelOrBackTouch:nil];
             break;
     }
     
 }
 
-- (IBAction)cancelTouch:(nullable id)sender {
-    [super cancelTouch:sender];
+- (IBAction)cancelOrBackTouch:(nullable id)sender {
+    [super cancelOrBackTouch:sender];
     
     [self cleanUp];
     [self.OpQueue cancelAllOperations];

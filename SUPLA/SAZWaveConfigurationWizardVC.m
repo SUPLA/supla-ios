@@ -42,11 +42,7 @@ static SAZWaveConfigurationWizardVC *_zwaveConfigurationWizardGlobalRef = nil;
 
 -(void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    [self showPageView:self.welcomePage];
-}
-
--(IBAction)cancelTouch:(id)sender {
-    [SAApp.UI showMainVC];
+    self.page = self.welcomePage;
 }
 
 -(void) superuserAuthorizationSuccess {
@@ -65,6 +61,29 @@ static SAZWaveConfigurationWizardVC *_zwaveConfigurationWizardGlobalRef = nil;
     }
     
     return _zwaveConfigurationWizardGlobalRef;
+}
+
+- (void)setPage:(UIView *)page {
+    [super setPage:page];
+    self.backButtonInsteadOfCancel = page != self.welcomePage;
+}
+
+- (IBAction)nextTouch:(nullable id)sender {
+    [super nextTouch:sender];
+    
+    if (self.page == self.welcomePage) {
+        self.page = self.channelSelectionPage;
+    }
+}
+
+- (IBAction)cancelOrBackTouch:(id)sender {
+    [super cancelOrBackTouch:sender];
+    
+    if (self.page == self.welcomePage) {
+        [[SAApp UI] showMainVC];
+    } else if (self.page == self.channelSelectionPage) {
+        self.page = self.welcomePage;
+    }
 }
 
 @end

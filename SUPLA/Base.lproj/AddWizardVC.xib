@@ -20,7 +20,10 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SAAddWizardVC">
             <connections>
-                <outlet property="btnCancel" destination="yFh-DW-X27" id="Zhf-4B-dEZ"/>
+                <outlet property="btnCancel1" destination="f7p-Nq-9ed" id="dgj-SD-f9E"/>
+                <outlet property="btnCancel2" destination="yFh-DW-X27" id="ptS-CD-ubc"/>
+                <outlet property="btnCancel3" destination="GSa-IG-6k4" id="gtq-zg-74C"/>
+                <outlet property="btnCancel3_width" destination="NIG-uL-8GF" id="K7Q-Uv-qsh"/>
                 <outlet property="btnNext1" destination="TGR-gA-tNb" id="ASk-aX-u0X"/>
                 <outlet property="btnNext2" destination="fGm-C1-0WE" id="5MR-Br-tyr"/>
                 <outlet property="btnNext3" destination="kEz-V1-szv" id="lT1-1s-oJf"/>
@@ -125,7 +128,7 @@
                                 </attributedString>
                             </state>
                             <connections>
-                                <action selector="cancelTouch:" destination="-1" eventType="touchDown" id="I3K-Ks-aMV"/>
+                                <action selector="cancelOrBackTouch:" destination="-1" eventType="touchDown" id="EIu-Th-u7H"/>
                             </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GSa-IG-6k4">

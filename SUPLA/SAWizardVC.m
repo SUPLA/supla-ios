@@ -27,22 +27,31 @@
 @implementation SAWizardVC {
     NSTimer *_preloaderTimer;
     int _preloaderPos;
+    BOOL _backButtonInsteadOfCancel;
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
 }
 
-- (void)showPageView:(UIView*)pageView {
+- (void)setPage:(UIView *)page {
     for(UIView *subview in self.vPageContent.subviews) {
         [subview removeFromSuperview];
     }
     
-    pageView.autoresizingMask = (UIViewAutoresizingFlexibleWidth |
+    page.autoresizingMask = (UIViewAutoresizingFlexibleWidth |
                                  UIViewAutoresizingFlexibleHeight);
-    pageView.frame =  self.vPageContent.frame;
+    page.frame =  self.vPageContent.frame;
     
-    [self.vPageContent addSubview: pageView];
+    [self.vPageContent addSubview: page];
+}
+
+- (UIView*)page {
+    if (self.vPageContent.subviews.count) {
+        return self.vPageContent.subviews.firstObject;
+    }
+    
+    return nil;
 }
 
 -(void)viewWillAppear:(BOOL)animated {
@@ -59,6 +68,12 @@
     self.btnNext1.enabled = enabled;
     self.btnNext2.enabled = enabled;
     self.btnNext3.enabled = enabled;
+}
+
+- (void)btnCancelOrBackEnabled:(BOOL)enabled {
+    self.btnCancel1.enabled = enabled;
+    self.btnCancel2.enabled = enabled;
+    self.btnCancel3.enabled = enabled;
 }
 
 - (void)preloaderTimerFireMethod:(NSTimer *)timer {
@@ -109,9 +124,26 @@
     
 }
 
+-(void)setBackButtonInsteadOfCancel:(BOOL)backButtonInsteadOfCancel {
+    _backButtonInsteadOfCancel = backButtonInsteadOfCancel;
+    if (_backButtonInsteadOfCancel) {
+        _btnCancel3_width.constant = 40;
+        [self.btnCancel3 setBackgroundImage:[UIImage imageNamed:@"btnbackl.png"]];
+        [self.btnCancel2 setAttributedTitle:NSLocalizedString(@"Back", nil)];
+    } else {
+        _btnCancel3_width.constant = 17;
+        [self.btnCancel3 setBackgroundImage:[UIImage imageNamed:@"btnnextl.png"]];
+        [self.btnCancel2 setAttributedTitle:NSLocalizedString(@"Cancel", nil)];
+    }
+}
+
+-(BOOL)backButtonInsteadOfCancel {
+    return _backButtonInsteadOfCancel;
+}
+
 - (IBAction)nextTouch:(nullable id)sender {}
 
-- (IBAction)cancelTouch:(nullable id)sender {}
+- (IBAction)cancelOrBackTouch:(nullable id)sender {}
 
 
 @end

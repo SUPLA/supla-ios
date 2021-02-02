@@ -18,7 +18,10 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SAZWaveConfigurationWizardVC">
             <connections>
-                <outlet property="btnCancel" destination="mIH-qd-TLZ" id="Jy9-qz-gyl"/>
+                <outlet property="btnCancel1" destination="p8Q-By-5B4" id="bPs-15-RC3"/>
+                <outlet property="btnCancel2" destination="mIH-qd-TLZ" id="x5a-iU-4LA"/>
+                <outlet property="btnCancel3" destination="oS3-tn-HId" id="Xnk-kx-DGp"/>
+                <outlet property="btnCancel3_width" destination="sSK-q3-CDv" id="wKf-uw-4ON"/>
                 <outlet property="btnNext1" destination="WXz-xQ-dRF" id="vsu-fR-hrl"/>
                 <outlet property="btnNext2" destination="Azp-eb-3M7" id="Dbh-wh-VXB"/>
                 <outlet property="btnNext3" destination="rhE-dh-0nI" id="kp7-Uv-NLg"/>
@@ -111,7 +114,7 @@
                                 </attributedString>
                             </state>
                             <connections>
-                                <action selector="cancelTouch:" destination="-1" eventType="touchDown" id="5z1-WP-cls"/>
+                                <action selector="cancelOrBackTouch:" destination="-1" eventType="touchDown" id="joK-cc-vhg"/>
                             </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oS3-tn-HId">
