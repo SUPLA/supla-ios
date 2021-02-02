@@ -1351,12 +1351,20 @@
     [self saveContext];
 }
 
--(BOOL) zwaveBridgeChannelAvailable {
-    NSArray *r = [self fetchByPredicate:
+-(NSArray*) zwaveBridgeChannelsWithLimit:(int)limit {
+    return [self fetchByPredicate:
                   [NSPredicate predicateWithFormat:@"visible > 0 AND type = %i AND (flags & %i) > 0",
                    SUPLA_CHANNELTYPE_BRIDGE,
-                   SUPLA_CHANNEL_FLAG_ZWAVE_BRIDGE] entityName:@"SAChannel" limit:1];
-    
+                   SUPLA_CHANNEL_FLAG_ZWAVE_BRIDGE] entityName:@"SAChannel" limit:limit];
+}
+
+-(BOOL) zwaveBridgeChannelAvailable {
+    NSArray *r = [self zwaveBridgeChannelsWithLimit:1];
     return r && r.count == 1;
 }
+
+-(NSArray*) zwaveBridgeChannels {
+    return [self zwaveBridgeChannelsWithLimit:0];
+}
+
 @end
