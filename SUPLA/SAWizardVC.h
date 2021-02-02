@@ -21,26 +21,17 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface SAWizardVC : UIViewController
-@property (weak, nonatomic) IBOutlet UIButton *btnCancel3;
-@property (weak, nonatomic) IBOutlet UIButton *btnCancel2;
-@property (weak, nonatomic) IBOutlet UIButton *btnCancel1;
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *btnCancel3_width;
-
-@property (weak, nonatomic) IBOutlet UIButton *btnNext3;
-@property (weak, nonatomic) IBOutlet UIButton *btnNext2;
-@property (weak, nonatomic) IBOutlet UIButton *btnNext1;
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *btnNext3_width;
-
 @property (weak, nonatomic) IBOutlet UIView *vPageContent;
 @property (nonatomic) BOOL backButtonInsteadOfCancel;
 @property (weak, nonatomic) UIView *page;
+@property (weak, nonatomic) NSString *btnNextTitle;
+@property (nonatomic) BOOL btnNextEnabled;
+@property (nonatomic) BOOL btnCancelOrBackEnabled;
+@property (nonatomic) BOOL preloaderVisible;
 
 - (IBAction)nextTouch:(nullable id)sender;
 - (IBAction)cancelOrBackTouch:(nullable id)sender;
-- (void)backTouch:(nullable id)sender;
-- (void)preloaderVisible:(BOOL)visible;
-- (void)btnNextEnabled:(BOOL)enabled;
-- (void)btnCancelOrBackEnabled:(BOOL)enabled;
+
 
 @end
 

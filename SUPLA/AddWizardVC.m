@@ -380,6 +380,7 @@
     [self cleanUp];
     [self loadPrefs];
     
+    self.backButtonInsteadOfCancel = NO;
     self.edSSID.layer.cornerRadius = 5.0;
     self.edSSID.layer.borderWidth = 2;
     self.edSSID.layer.borderColor = [UIColor whiteColor].CGColor;
@@ -388,7 +389,6 @@
     self.edPassword.layer.borderWidth = 2;
     self.edPassword.layer.borderColor = self.edPassword.backgroundColor.CGColor;
     
-    [self.btnCancel2 setAttributedTitle:NSLocalizedString(@"Cancel", NULL)];
     [self.btnSystemSettings setTitle:NSLocalizedString(@"Go to the system settings", NULL)];
     
     if ( [SAApp isAdvancedConfig] == YES ) {
@@ -545,9 +545,9 @@
 
 -(void)showPage:(int)page {
     [self setStep:STEP_NONE];
-    [self btnNextEnabled:YES];
-    [self preloaderVisible:NO];
-    [self.btnNext2 setAttributedTitle:NSLocalizedString(@"Next", NULL)];
+    self.btnNextEnabled = YES;
+    self.preloaderVisible = NO;
+    self.btnNextTitle = NSLocalizedString(@"Next", NULL);
     
     switch(page) {
         case PAGE_STEP_1:
@@ -577,7 +577,7 @@
         }
             break;
         case PAGE_STEP_4:
-            [self.btnNext2 setAttributedTitle:NSLocalizedString(@"Start", NULL)];
+            self.btnNextTitle = NSLocalizedString(@"Start", NULL);
             self.page = self.vStep4;
             break;
         case PAGE_ERROR:
@@ -692,9 +692,9 @@
 }
 
 -(void) superuserAuthorizationCanceled {
-    [self preloaderVisible:NO];
-    [self btnNextEnabled:YES];
-    [self.btnNext2 setAttributedTitle:NSLocalizedString(@"Next", NULL)];
+    self.preloaderVisible = NO;
+    self.btnNextEnabled = YES;
+    self.btnNextTitle = NSLocalizedString(@"Next", NULL);
 }
 
 -(NSAttributedString*)messageExtendedWithNotificationOfPermissions:(NSString *)msg {
@@ -744,8 +744,8 @@
 - (IBAction)nextTouch:(nullable id)sender {
     [super nextTouch:sender];
 
-    [self preloaderVisible:YES];
-    [self btnNextEnabled:NO];
+    self.preloaderVisible = YES;
+    self.btnNextEnabled = NO;
     
     switch(_pageId) {
         case PAGE_STEP_1:
@@ -772,8 +772,8 @@
                 
                 [[SAApp SuplaClient] getRegistrationEnabled];
             } else {
-                [self preloaderVisible:NO];
-                [self btnNextEnabled:YES];
+                self.preloaderVisible = NO;
+                self.btnNextEnabled = YES;
             }
             
         }
@@ -839,7 +839,7 @@
                                                    ? @"Press START to start configuration." :
                                                    @"Press Next to continue." ,NULL);
 
-    [self.btnNext2 setAttributedTitle:NSLocalizedString(self.swAutoMode.on ? @"Start" : @"Next", NULL)];
+    self.btnNextTitle = NSLocalizedString(self.swAutoMode.on ? @"Start" : @"Next", NULL);
     self.lStep3Text2.text = [NSString stringWithFormat:txt1, txt2];
 }
 @end

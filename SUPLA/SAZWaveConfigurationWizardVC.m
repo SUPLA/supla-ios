@@ -18,6 +18,7 @@
 
 #import "SAZWaveConfigurationWizardVC.h"
 #import "SuplaApp.h"
+#import "SAChannel+CoreDataClass.h"
 
 static SAZWaveConfigurationWizardVC *_zwaveConfigurationWizardGlobalRef = nil;
 
@@ -33,11 +34,16 @@ static SAZWaveConfigurationWizardVC *_zwaveConfigurationWizardGlobalRef = nil;
 @end
 
 @implementation SAZWaveConfigurationWizardVC {
-    
+    NSMutableArray *_deviceList;
+    NSMutableArray *_channelList;
+    NSMutableArray *_channelBasicCfgToFetch;
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    _deviceList = [[NSMutableArray alloc] init];
+    _channelList = [[NSMutableArray alloc] init];
+    _channelBasicCfgToFetch = [[NSMutableArray alloc] init];
 }
 
 -(void)viewWillAppear:(BOOL)animated {
@@ -63,9 +69,41 @@ static SAZWaveConfigurationWizardVC *_zwaveConfigurationWizardGlobalRef = nil;
     return _zwaveConfigurationWizardGlobalRef;
 }
 
+- (void)fetchChannelBasicCfg:(int)chanelId {
+    
+}
+
+- (void)loadChannelList {
+    self.btnNextEnabled = NO;
+    self.btnCancelOrBackEnabled = NO;
+    
+    [_deviceList removeAllObjects];
+    _channelList = [[NSMutableArray alloc] initWithArray:[SAApp.DB zwaveBridgeChannels]];
+    
+    for(id channel in _channelList) {
+        BOOL exists = false;
+        for(id fc in _channelBasicCfgToFetch) {
+            if (((SAChannel*)fc).device_id == ((SAChannel*)channel).device_id) {
+                exists = true;
+                break;
+            }
+        }
+        
+        if (!exists) {
+            [_channelBasicCfgToFetch addObject:channel];
+        }
+    }
+    
+    [self fetchChannelBasicCfg:0];
+}
+
 - (void)setPage:(UIView *)page {
     [super setPage:page];
     self.backButtonInsteadOfCancel = page != self.welcomePage;
+    
+    if (page == self.channelSelectionPage) {
+        [self loadChannelList];
+    }
 }
 
 - (IBAction)nextTouch:(nullable id)sender {

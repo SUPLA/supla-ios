@@ -21,7 +21,15 @@
 #import "SuplaApp.h"
 
 @interface SAWizardVC ()
+@property (weak, nonatomic) IBOutlet UIButton *btnCancel3;
+@property (weak, nonatomic) IBOutlet UIButton *btnCancel2;
+@property (weak, nonatomic) IBOutlet UIButton *btnCancel1;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *btnCancel3_width;
 
+@property (weak, nonatomic) IBOutlet UIButton *btnNext3;
+@property (weak, nonatomic) IBOutlet UIButton *btnNext2;
+@property (weak, nonatomic) IBOutlet UIButton *btnNext1;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *btnNext3_width;
 @end
 
 @implementation SAWizardVC {
@@ -61,19 +69,35 @@
 
 -(void)viewDidDisappear:(BOOL)animated  {
     [super viewDidDisappear:animated];
-    [self preloaderVisible:NO];
+    self.preloaderVisible = NO;
 }
 
--(void)btnNextEnabled:(BOOL)enabled {
-    self.btnNext1.enabled = enabled;
-    self.btnNext2.enabled = enabled;
-    self.btnNext3.enabled = enabled;
+-(void)setBtnNextEnabled:(BOOL)btnNextEnabled {
+    self.btnNext1.enabled = btnNextEnabled;
+    self.btnNext2.enabled = btnNextEnabled;
+    self.btnNext3.enabled = btnNextEnabled;
 }
 
-- (void)btnCancelOrBackEnabled:(BOOL)enabled {
-    self.btnCancel1.enabled = enabled;
-    self.btnCancel2.enabled = enabled;
-    self.btnCancel3.enabled = enabled;
+-(void)setBtnNextTitle:(NSString *)btnNextTitle {
+    [self.btnNext2 setAttributedTitle:btnNextTitle];
+}
+
+-(NSString*)btnNextTitle {
+    return [[self.btnNext2 currentAttributedTitle] string];
+}
+ 
+-(BOOL)btnNextEnabled {
+    return self.btnNext1.enabled;
+}
+
+-(void)setBtnCancelOrBackEnabled:(BOOL)btnCancelOrBackEnabled {
+    self.btnCancel1.enabled = btnCancelOrBackEnabled;
+    self.btnCancel2.enabled = btnCancelOrBackEnabled;
+    self.btnCancel3.enabled = btnCancelOrBackEnabled;
+}
+
+-(BOOL)btnCancelOrBackEnabled {
+    return self.btnCancel1.enabled;
 }
 
 - (void)preloaderTimerFireMethod:(NSTimer *)timer {
@@ -97,15 +121,14 @@
     
 }
 
--(void)preloaderVisible:(BOOL)visible {
-    
+-(void)setPreloaderVisible:(BOOL)preloaderVisible {
     if ( _preloaderTimer ) {
         _preloaderPos = -1;
         [_preloaderTimer invalidate];
         _preloaderTimer = nil;
     }
     
-    if ( visible ) {
+    if ( preloaderVisible ) {
         
         _preloaderPos = 0;
         
@@ -121,7 +144,10 @@
         [self.btnNext2 setAttributedTitle:NSLocalizedString(@"Next", NULL)];
         
     }
-    
+}
+
+-(BOOL)preloaderVisible {
+    return _preloaderTimer != nil;
 }
 
 -(void)setBackButtonInsteadOfCancel:(BOOL)backButtonInsteadOfCancel {
