@@ -202,3 +202,4 @@
 "Planned regeneration is in progress." = "Trwa zaplanowana regeneracja.";
 "Regeneration initiated after 20 hours of operation is in progress." = "Trwa regeneracja zainicjowana po 20h pracy.";
 "Back" = "Wstecz";
+"The z-wave bridge is not responding. Check if the bridge is connected to the server." = "Most z-wave nie odpowiada. Sprawdź czy most jest połączony z serwerem.";

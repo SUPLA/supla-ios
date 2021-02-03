@@ -20,6 +20,9 @@
 #import "SuplaApp.h"
 #import "SAChannel+CoreDataClass.h"
 
+#define ERROR_TYPE_TIMEOUT 1
+#define ERROR_TYPE_DISCONNECTED 2
+
 static SAZWaveConfigurationWizardVC *_zwaveConfigurationWizardGlobalRef = nil;
 
 @interface SAZWaveConfigurationWizardVC ()
@@ -34,6 +37,8 @@ static SAZWaveConfigurationWizardVC *_zwaveConfigurationWizardGlobalRef = nil;
 @end
 
 @implementation SAZWaveConfigurationWizardVC {
+    NSTimer *_anyCalCfgResultWatchdogTimer;
+    NSTimer *_watchdogTimer;
     NSMutableArray *_deviceList;
     NSMutableArray *_channelList;
     NSMutableArray *_channelBasicCfgToFetch;
@@ -67,6 +72,66 @@ static SAZWaveConfigurationWizardVC *_zwaveConfigurationWizardGlobalRef = nil;
     }
     
     return _zwaveConfigurationWizardGlobalRef;
+}
+
+- (void)showError:(int)type withMessage:(NSString *)message {
+    
+}
+
+- (void)anyCalCfgResultWatchdogDeactivate {
+    if (_anyCalCfgResultWatchdogTimer) {
+        [_anyCalCfgResultWatchdogTimer invalidate];
+        _anyCalCfgResultWatchdogTimer = nil;
+    }
+}
+
+- (void) watchdogDeactivate {
+    [self anyCalCfgResultWatchdogDeactivate];
+    
+    if (_watchdogTimer) {
+        [_watchdogTimer invalidate];
+        _watchdogTimer = nil;
+    }
+}
+
+- (BOOL)isWatchdogActive {
+    return _watchdogTimer != nil;
+}
+
+-(void)onAnyCalCfgResultTimeout:(NSTimer*)timer {
+    [self showError:ERROR_TYPE_DISCONNECTED withMessage:
+     NSLocalizedString(@"The z-wave bridge is not responding. Check if the bridge is connected to the server.", nil)];
+}
+
+-(void)onWatchdogTimeout:(NSTimer*)timer {
+    [self showError:ERROR_TYPE_TIMEOUT withMessage: timer.userInfo];
+}
+
+- (void)watchdogActivateWithTime:(NSTimeInterval)time timeoutMessage:(NSString *)message calCfg:(BOOL)calCfg {
+    [self watchdogDeactivate];
+    
+    if (time < 5) {
+        [NSException raise:NSInternalInconsistencyException
+                    format:@"Watchdog - The minimum timeout value is 5 seconds"];
+    }
+    
+    self.btnNextEnabled = NO;
+    self.btnCancelOrBackEnabled = NO;
+    
+    if (calCfg) {
+        _anyCalCfgResultWatchdogTimer =
+        [NSTimer scheduledTimerWithTimeInterval:time > 10 ? 10 : time-1
+                                                target:self
+                                                selector:@selector(onAnyCalCfgResultTimeout:)
+                                                userInfo:nil
+                                                repeats:NO];
+    }
+    
+    _watchdogTimer = [NSTimer scheduledTimerWithTimeInterval:time
+                                               target:self
+                                             selector:@selector(onWatchdogTimeout:)
+                                             userInfo:message
+                                              repeats:NO];
 }
 
 - (void)fetchChannelBasicCfg:(int)chanelId {
