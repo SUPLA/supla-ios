@@ -30,7 +30,7 @@
 @class SAStatusVC;
 @class SAMainVC;
 @class SACreateAccountVC;
-@interface SAApp : NSObject
+@interface SAApp : NSObject <SASuplaClientDelegate>
 
 +(SAApp*)instance;
 +(BOOL) getClientGUID:(char[SUPLA_GUID_SIZE])guid;
@@ -65,25 +65,6 @@
 +(void) setPreferedProtocolVersion:(int)version;
 +(int) getPreferedProtocolVersion;
 
--(void)onDataChanged;
--(void)onChannelValueChanged:(NSNumber*)ChannelId isGroup:(NSNumber*)group;
--(void)onConnecting;
--(void)onConnError:(NSNumber*)code;
--(void)onRegistered:(SARegResult*)result;
--(void)onRegistering;
--(void)onRegisterError:(NSNumber*)code;
--(void)onDisconnected;
--(void)onConnected;
--(void)onVersionError:(SAVersionError*)ve;
--(void)onEvent:(SAEvent*)event;
--(void)onRegistrationEnabled:(SARegistrationEnabled*)reg_enabled;
--(void)onSetRegistrationEnabledResultCode:(NSNumber *)code;
--(void)onTerminated:(SASuplaClient*)sender;
--(void)onOAuthTokenRequestResult:(SAOAuthToken *)token;
--(void)onSuperuserAuthorizationResult:(SASuperuserAuthorizationResult *)result;
--(void)onCalCfgResult:(SACalCfgResult *)result;
--(void)onChannelState:(SAChannelStateExtendedValue*)state;
-
 -(SAOAuthToken*) registerRestApiClientTask:(SARestApiClientTask *)client;
 -(void) unregisterRestApiClientTask:(SARestApiClientTask *)task;
 -(void) cancelAllRestApiClientTasks;
@@ -98,6 +79,7 @@ extern NSString *kSADisconnectedNotification;
 extern NSString *kSAConnectedNotification;
 extern NSString *kSAVersionErrorNotification;
 extern NSString *kSAEventNotification;
+extern NSString *kSAConnErrorNotification;
 extern NSString *kSAChannelValueChangedNotification;
 extern NSString *kSARegistrationEnabledNotification;
 extern NSString *kSAOAuthTokenRequestResult;

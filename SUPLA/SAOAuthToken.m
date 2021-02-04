@@ -63,6 +63,16 @@
     return [[SAOAuthToken alloc] initWithToken:sourceToken];
 }
 
++(SAOAuthToken *)notificationToToken:(NSNotification *)notification {
+    if (notification != nil && notification.userInfo != nil) {
+        id r = [notification.userInfo objectForKey:@"token"];
+        if (r != nil && [r isKindOfClass:[SAOAuthToken class]]) {
+            return r;
+        }
+    }
+    return nil;
+}
+
 - (BOOL)isAlive {
     return [birthday timeIntervalSince1970] + expiresIn - [[NSDate date] timeIntervalSince1970] >= 20;
 }

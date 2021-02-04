@@ -181,6 +181,8 @@ void sasuplaclient_on_device_channel_state(void *_suplaclient, void *user_data, 
     SADatabase *_DB;
 }
 
+@synthesize delegate;
+
 - (id)init {
     self = [super init];
     _sclient = NULL;
@@ -367,13 +369,15 @@ void sasuplaclient_on_device_channel_state(void *_suplaclient, void *user_data, 
 }
 
 - (void) _onTerminated {
-    [[SAApp instance] onTerminated:self];
+    if (self.delegate) {
+        [self.delegate onSuplaClientTerminated:self];
+    }
 }
 
 
 
 - (void) _onVersionError:(SAVersionError*)ve {
-    [[SAApp instance] onVersionError:ve];
+    [[NSNotificationCenter defaultCenter] postNotificationName:kSAVersionErrorNotification object:self userInfo:[[NSDictionary alloc] initWithObjects:@[ve] forKeys:@[@"version_error"]]];
 }
 
 - (void) onVersionError:(SAVersionError*)ve {
@@ -396,7 +400,7 @@ void sasuplaclient_on_device_channel_state(void *_suplaclient, void *user_data, 
 }
 
 - (void) _onConnected {
-    [[SAApp instance] onConnected];
+    [[NSNotificationCenter defaultCenter] postNotificationName:kSAConnectedNotification object:self userInfo:nil];
 }
 
 - (void) onConnected {
@@ -404,7 +408,7 @@ void sasuplaclient_on_device_channel_state(void *_suplaclient, void *user_data, 
 }
 
 - (void) _onConnError:(NSNumber*)code {
-    [[SAApp instance] onConnError:code];
+    [[NSNotificationCenter defaultCenter] postNotificationName:kSAConnErrorNotification object:self userInfo:[[NSDictionary alloc] initWithObjects:@[code] forKeys:@[@"code"]]];
 }
 
 - (void) onConnError:(int)code {
@@ -412,7 +416,7 @@ void sasuplaclient_on_device_channel_state(void *_suplaclient, void *user_data, 
 }
 
 - (void) _onDisconnected {
-    [[SAApp instance] onDisconnected];
+    [[NSNotificationCenter defaultCenter] postNotificationName:kSADisconnectedNotification object:self userInfo:nil];
 }
 
 - (void) onDisconnected {
@@ -425,7 +429,7 @@ void sasuplaclient_on_device_channel_state(void *_suplaclient, void *user_data, 
 }
 
 - (void) _onRegistering {
-    [[SAApp instance] onRegistering];
+    [[NSNotificationCenter defaultCenter] postNotificationName:kSARegisteringNotification object:self userInfo:nil];
 }
 
 - (void) onRegistering {
@@ -434,7 +438,7 @@ void sasuplaclient_on_device_channel_state(void *_suplaclient, void *user_data, 
 }
 
 - (void) _onRegisterError:(NSNumber*)code {
-    [[SAApp instance] onRegisterError:code];
+    [[NSNotificationCenter defaultCenter] postNotificationName:kSARegisterErrorNotification object:self userInfo:[[NSDictionary alloc] initWithObjects:@[code] forKeys:@[@"code"]]];
 }
 
 - (void) onRegisterError:(int)code {
@@ -443,7 +447,7 @@ void sasuplaclient_on_device_channel_state(void *_suplaclient, void *user_data, 
 }
 
 - (void) _onRegistered:(SARegResult*)result {
-    [[SAApp instance] onRegistered: result];
+    [[NSNotificationCenter defaultCenter] postNotificationName:kSARegisteredNotification object:self userInfo:[[NSDictionary alloc] initWithObjects:@[result] forKeys:@[@"result"]]];
 }
 
 - (void) onRegistered:(SARegResult*)result {
@@ -474,7 +478,7 @@ void sasuplaclient_on_device_channel_state(void *_suplaclient, void *user_data, 
 }
 
 - (void) _onConnecting {
-    [[SAApp instance] onConnecting];
+    [[NSNotificationCenter defaultCenter] postNotificationName:kSAConnectingNotification object:self userInfo:nil];
 }
 
 - (void) onConnecting {
@@ -482,15 +486,15 @@ void sasuplaclient_on_device_channel_state(void *_suplaclient, void *user_data, 
 }
 
 - (void) _onDataChanged {
-    [[SAApp instance] onDataChanged];
+    [[NSNotificationCenter defaultCenter] postNotificationName:kSADataChangedNotification object:self userInfo:nil];
 }
 
 - (void) onDataChanged {
     [self performSelectorOnMainThread:@selector(_onDataChanged) withObject:nil waitUntilDone:NO];
 }
 
-- (void) _onChannelValueChanged:(NSArray*)arr {
-    [[SAApp instance] onChannelValueChanged:[arr objectAtIndex:0] isGroup:[arr objectAtIndex:1]];
+- (void) _onChannelValueChanged:(NSArray*)arr { 
+    [[NSNotificationCenter defaultCenter] postNotificationName:kSAChannelValueChangedNotification object:self userInfo:[[NSDictionary alloc] initWithObjects:@[[arr objectAtIndex:0], [arr objectAtIndex:1]] forKeys:@[@"remoteId", @"isGroup"]]];
 }
 
 - (void) onChannelValueChanged:(int)Id isGroup:(BOOL)group {
@@ -631,7 +635,7 @@ void sasuplaclient_on_device_channel_state(void *_suplaclient, void *user_data, 
 }
 
 - (void) _onEvent:(SAEvent *)event {
-    [[SAApp instance] onEvent:event];
+    [[NSNotificationCenter defaultCenter] postNotificationName:kSAEventNotification object:self userInfo:[[NSDictionary alloc] initWithObjects:@[event] forKeys:@[@"event"]]];
 }
 
 - (void) onEvent:(SAEvent *)event {
@@ -641,7 +645,7 @@ void sasuplaclient_on_device_channel_state(void *_suplaclient, void *user_data, 
 }
 
 - (void) _onRegistrationEnabled:(SARegistrationEnabled *)reg_enabled {
-    [[SAApp instance] onRegistrationEnabled:reg_enabled];
+    [[NSNotificationCenter defaultCenter] postNotificationName:kSARegistrationEnabledNotification object:self userInfo:[[NSDictionary alloc] initWithObjects:@[reg_enabled] forKeys:@[@"reg_enabled"]]];
 }
 
 - (void) onRegistrationEnabled:(SARegistrationEnabled *)reg_enabled {
@@ -649,7 +653,7 @@ void sasuplaclient_on_device_channel_state(void *_suplaclient, void *user_data, 
 }
 
 - (void) _onSetRegistrationEnabledResultCode:(NSNumber *)code {
-       [[SAApp instance] onSetRegistrationEnabledResultCode:code];
+    [[NSNotificationCenter defaultCenter] postNotificationName:kSAOnSetRegistrationEnableResult object:self userInfo:[[NSDictionary alloc] initWithObjects:@[code] forKeys:@[@"code"]]];
 }
 
 - (void) onSetRegistrationEnabledResultCode:(int)code {
@@ -657,7 +661,7 @@ void sasuplaclient_on_device_channel_state(void *_suplaclient, void *user_data, 
 }
 
 - (void) _onOAuthTokenRequestResult:(SAOAuthToken *)token {
-    [[SAApp instance] onOAuthTokenRequestResult:token];
+    [[NSNotificationCenter defaultCenter] postNotificationName:kSAOAuthTokenRequestResult object:self userInfo:[[NSDictionary alloc] initWithObjects:@[token] forKeys:@[@"token"]]];
 }
 
 - (void) onOAuthTokenRequestResult:(SAOAuthToken *)token {
@@ -665,7 +669,7 @@ void sasuplaclient_on_device_channel_state(void *_suplaclient, void *user_data, 
 }
 
 - (void) _onSuperuserAuthorizationResult:(SASuperuserAuthorizationResult*)result {
-    [[SAApp instance] onSuperuserAuthorizationResult:result];
+    [[NSNotificationCenter defaultCenter] postNotificationName:kSASuperuserAuthorizationResult object:self userInfo:[[NSDictionary alloc] initWithObjects:@[result] forKeys:@[@"result"]]];
 }
 
 - (void) onSuperuserAuthorizationResult:(SASuperuserAuthorizationResult *)result {
@@ -673,7 +677,7 @@ void sasuplaclient_on_device_channel_state(void *_suplaclient, void *user_data, 
 }
 
 - (void) _onCalCfgResult:(SACalCfgResult*)result  {
-    [[SAApp instance] onCalCfgResult:result];
+    [[NSNotificationCenter defaultCenter] postNotificationName:kSACalCfgResult object:self userInfo:[[NSDictionary alloc] initWithObjects:@[result] forKeys:@[@"result"]]];
 }
 
 - (void) onCalCfgResult:(SACalCfgResult*)result {
@@ -681,7 +685,7 @@ void sasuplaclient_on_device_channel_state(void *_suplaclient, void *user_data, 
 }
 
 - (void) _onChannelState:(SAChannelStateExtendedValue*)state  {
-    [[SAApp instance] onChannelState:state];
+    [[NSNotificationCenter defaultCenter] postNotificationName:kSAOnChannelState object:self userInfo:[[NSDictionary alloc] initWithObjects:@[state] forKeys:@[@"state"]]];
 }
 
 - (void) onChannelState:(SAChannelStateExtendedValue*)state {

@@ -33,4 +33,8 @@
 - (void)setImage:(UIImage *_Nullable)image;
 @end
 
+@interface NSNumber (SUPLA)
++(NSNumber *_Nullable)notificationToNumber:(NSNotification*_Nullable)notification;
+@end
+
 #endif /* SAClassHelper_h */

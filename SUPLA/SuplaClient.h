@@ -39,6 +39,13 @@
 @end
  */
 
+@class SASuplaClient;
+@protocol SASuplaClientDelegate <NSObject>
+
+@required
+-(void) onSuplaClientTerminated: (SASuplaClient*)client;
+@end
+
 @interface SASuplaClient : NSThread
 
 - (id)init;
@@ -88,4 +95,6 @@
 - (void) setLightsourceLifespanWithChannelId:(int)channelId resetCounter:(BOOL)reset setTime:(BOOL)setTime lifespan:(unsigned short)lifespan;
 - (void) setIODeviceRegistrationEnabledForTime:(int)iodevice_sec clientRegistrationEnabledForTime:(int)client_sec;
 - (void) setDgfTransparencyMask:(short)mask activeBits:(short)active_bits channelId:(int)channelId;
+
+@property (nonatomic, weak) id<SASuplaClientDelegate> delegate;
 @end
