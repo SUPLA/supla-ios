@@ -17,27 +17,8 @@
  */
 
 #import <Foundation/Foundation.h>
-#import "SARestApiClientTask.h"
 #import "SAThermostatScheduleCfg.h"
-#import "SAChannelStateExtendedValue.h"
-#import "SAVersionError.h"
-#import "SARegResult.h"
-#import "SAEvent.h"
-#import "SARegistrationEnabled.h"
-#import "SASuperuserAuthorizationResult.h"
-#import "SACalCfgResult.h"
 #include "proto.h"
-
-/*
-@interface SAChannelBasicCfg : NSObject
-@property (nonatomic, readonly) NSString *deviceName;
-@property (nonatomic, readonly) NSString *deviceSoftVer;
-@property (nonatomic, readonly)int deviceId;
-
-- (id)initWithResult:(TSC_DeviceCalCfgResult *)result;
-+ (SACalCfgResult*) resultWithResult:(TSC_DeviceCalCfgResult *)result;
-@end
- */
 
 @class SASuplaClient;
 @protocol SASuplaClientDelegate <NSObject>
@@ -47,30 +28,7 @@
 @end
 
 @interface SASuplaClient : NSThread
-
 - (id)init;
-
-- (void) onVersionError:(SAVersionError*)ve;
-- (void) onConnected;
-- (void) onConnError:(int)code;
-- (void) onDisconnected;
-- (void) onRegistering;
-- (void) onRegistered:(SARegResult *)result;
-- (void) onRegisterError:(int)code;
-- (void) locationUpdate:(TSC_SuplaLocation *)location;
-- (void) channelUpdate:(TSC_SuplaChannel_C *)channel;
-- (void) channelValueUpdate:(TSC_SuplaChannelValue *)channel_value;
-- (void) channelExtendedValueUpdate:(TSC_SuplaChannelExtendedValue *)channel_extendedvalue;
-- (void) channelGroupUpdate:(TSC_SuplaChannelGroup_B *)cgroup;
-- (void) channelGroupRelationUpdate:(TSC_SuplaChannelGroupRelation *)cgroup_relation;
-- (void) onEvent:(SAEvent *)event;
-- (void) onRegistrationEnabled:(SARegistrationEnabled*)reg_enabled;
-- (void) onSetRegistrationEnabledResultCode:(int)code;
-- (void) onOAuthTokenRequestResult:(SAOAuthToken *)token;
-- (void) getSuperuserAuthorizationResult;
-- (void) onSuperuserAuthorizationResult:(SASuperuserAuthorizationResult*)result;
-- (void) onCalCfgResult:(SACalCfgResult*)result;
-- (void) onChannelState:(SAChannelStateExtendedValue*)state;
 
 - (void) reconnect;
 - (BOOL) isConnected;
@@ -95,6 +53,7 @@
 - (void) setLightsourceLifespanWithChannelId:(int)channelId resetCounter:(BOOL)reset setTime:(BOOL)setTime lifespan:(unsigned short)lifespan;
 - (void) setIODeviceRegistrationEnabledForTime:(int)iodevice_sec clientRegistrationEnabledForTime:(int)client_sec;
 - (void) setDgfTransparencyMask:(short)mask activeBits:(short)active_bits channelId:(int)channelId;
+- (void) getSuperuserAuthorizationResult;
 
 @property (nonatomic, weak) id<SASuplaClientDelegate> delegate;
 @end

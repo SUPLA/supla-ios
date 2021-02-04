@@ -16,6 +16,7 @@
 #import "SADimmerCalibrationTool.h"
 #import "SuplaApp.h"
 #import "SAPreloaderPopup.h"
+#import "SACalCfgResult.h"
 
 #define LED_ON_WHEN_CONNECTED 0
 #define LED_OFF_WHEN_CONNECTED 1

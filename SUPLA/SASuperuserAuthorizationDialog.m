@@ -16,6 +16,7 @@
 #import "SASuperuserAuthorizationDialog.h"
 #import "SuplaClient.h"
 #import "SuplaApp.h"
+#import "SASuperuserAuthorizationResult.h"
 
 static SASuperuserAuthorizationDialog *_superuserAuthorizationDialogGlobalRef = nil;
 

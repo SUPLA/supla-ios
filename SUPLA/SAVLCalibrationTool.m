@@ -17,6 +17,7 @@
 #import "SAInfoVC.h"
 #import "UIHelper.h"
 #import "SuplaClient.h"
+#import "SACalCfgResult.h"
 
 #define PIC_HEX_VER_MAX_SIZE 20
 

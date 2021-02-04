@@ -88,3 +88,4 @@ extern NSString *kSACalCfgResult;
 extern NSString *kSAMenubarBackButtonPressed;
 extern NSString *kSAOnChannelState;
 extern NSString *kSAOnSetRegistrationEnableResult;
+extern NSString *kSAOnChannelBasicCfg;

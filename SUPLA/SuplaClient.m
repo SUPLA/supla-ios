@@ -17,11 +17,43 @@
  */
 
 #import <UIKit/UIKit.h>
+#import "SARestApiClientTask.h"
+#import "SAChannelStateExtendedValue.h"
+#import "SAVersionError.h"
+#import "SARegResult.h"
+#import "SAEvent.h"
+#import "SARegistrationEnabled.h"
+#import "SASuperuserAuthorizationResult.h"
+#import "SACalCfgResult.h"
 #import "SuplaClient.h"
 #import "SuplaApp.h"
 #import "Database.h"
 
 #include "supla-client.h"
+
+@interface SASuplaClient ()
+- (void) onVersionError:(SAVersionError*)ve;
+- (void) onConnected;
+- (void) onConnError:(int)code;
+- (void) onDisconnected;
+- (void) onRegistering;
+- (void) onRegistered:(SARegResult *)result;
+- (void) onRegisterError:(int)code;
+- (void) locationUpdate:(TSC_SuplaLocation *)location;
+- (void) channelUpdate:(TSC_SuplaChannel_C *)channel;
+- (void) channelValueUpdate:(TSC_SuplaChannelValue *)channel_value;
+- (void) channelExtendedValueUpdate:(TSC_SuplaChannelExtendedValue *)channel_extendedvalue;
+- (void) channelGroupUpdate:(TSC_SuplaChannelGroup_B *)cgroup;
+- (void) channelGroupRelationUpdate:(TSC_SuplaChannelGroupRelation *)cgroup_relation;
+- (void) onEvent:(SAEvent *)event;
+- (void) onRegistrationEnabled:(SARegistrationEnabled*)reg_enabled;
+- (void) onSetRegistrationEnabledResultCode:(int)code;
+- (void) onOAuthTokenRequestResult:(SAOAuthToken *)token;
+- (void) onSuperuserAuthorizationResult:(SASuperuserAuthorizationResult*)result;
+- (void) onCalCfgResult:(SACalCfgResult*)result;
+- (void) onChannelState:(SAChannelStateExtendedValue*)state;
+- (void) onChannelBasicCfg:(SAChannel*)state;
+@end
 
 void sasuplaclient_on_versionerror(void *_suplaclient, void *user_data, int version, int remote_version_min, int remote_version) {
     
@@ -168,17 +200,14 @@ void sasuplaclient_on_device_channel_state(void *_suplaclient, void *user_data, 
 
 // ------------------------------------------------------------------------------------------------------
 
-@interface SASuplaClient () {
+@implementation SASuplaClient {
+    SADatabase *_DB;
+    
     void *_sclient;
     int _client_id;
     BOOL _connected;
     int _regTryCounter;
     int _tokenRequestTime;
-}
-@end
-
-@implementation SASuplaClient {
-    SADatabase *_DB;
 }
 
 @synthesize delegate;

@@ -32,6 +32,7 @@
 #import "SADigiglassDetailView.h"
 #import "SARateApp.h"
 #import "_SALocation+CoreDataClass.h"
+#import "SAEvent.h"
 
 @implementation SAMainVC {
     NSFetchedResultsController *_cFrc;

@@ -22,6 +22,7 @@
 #import "SASuperuserAuthorizationDialog.h"
 #import "SAWifiAutoConnect.h"
 #import "SAClassHelper.h"
+#import "SARegistrationEnabled.h"
 
 #define RESULT_PARAM_ERROR   -3
 #define RESULT_COMPAT_ERROR  -2
