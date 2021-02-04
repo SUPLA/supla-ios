@@ -22,6 +22,7 @@
 
 #define ERROR_TYPE_TIMEOUT 1
 #define ERROR_TYPE_DISCONNECTED 2
+#define ERROR_TYPE_OTHER 3
 
 static SAZWaveConfigurationWizardVC *_zwaveConfigurationWizardGlobalRef = nil;
 
@@ -33,6 +34,8 @@ static SAZWaveConfigurationWizardVC *_zwaveConfigurationWizardGlobalRef = nil;
 @property (strong, nonatomic) IBOutlet UIView *itTakeAWhilePage;
 @property (strong, nonatomic) IBOutlet UIView *settingsPage;
 @property (strong, nonatomic) IBOutlet UIView *successInfoPage;
+@property (weak, nonatomic) IBOutlet UIImageView *errorIcon;
+@property (weak, nonatomic) IBOutlet UILabel *errorMessage;
 
 @end
 
@@ -54,6 +57,16 @@ static SAZWaveConfigurationWizardVC *_zwaveConfigurationWizardGlobalRef = nil;
 -(void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     self.page = self.welcomePage;
+    /*
+    [[NSNotificationCenter defaultCenter]
+     addObserver:self selector:@selector(onSuperuserAuthorizationResult:)
+     name:kSASuperuserAuthorizationResult object:nil];
+     */
+}
+
+-(void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 -(void) superuserAuthorizationSuccess {
@@ -74,8 +87,40 @@ static SAZWaveConfigurationWizardVC *_zwaveConfigurationWizardGlobalRef = nil;
     return _zwaveConfigurationWizardGlobalRef;
 }
 
-- (void)showError:(int)type withMessage:(NSString *)message {
+- (void)hideInfoMessage {
     
+}
+
+- (NSString*)btnNextTitleForThePage:(UIView*)page {
+    if (page == self.errorPage) {
+        return NSLocalizedString(@"Exit", nil);
+    } else if (page == self.successInfoPage) {
+        return NSLocalizedString(@"OK", nil);
+    }
+    
+    return NSLocalizedString(@"Next", nil);
+}
+
+- (void)showError:(int)type withMessage:(NSString *)message {
+    [self watchdogDeactivate];
+    [self.errorMessage setText:message];
+    [self setPreloaderVisible:NO];
+    self.btnNextTitle = [self btnNextTitleForThePage:self.page];
+    [self hideInfoMessage];
+    UIImage *img = nil;
+    switch(type) {
+        case ERROR_TYPE_DISCONNECTED:
+            img = [UIImage imageNamed:@"bridge_disconnected"];
+            break;
+        case ERROR_TYPE_TIMEOUT:
+            img = [UIImage imageNamed:@"zwave_timeout"];
+            break;
+        default:
+            img = [UIImage imageNamed:@"wizard_error"];
+            break;
+    }
+    [self.errorIcon setImage:img];
+    self.page = self.errorPage;
 }
 
 - (void)anyCalCfgResultWatchdogDeactivate {
@@ -116,7 +161,6 @@ static SAZWaveConfigurationWizardVC *_zwaveConfigurationWizardGlobalRef = nil;
     }
     
     self.btnNextEnabled = NO;
-    self.btnCancelOrBackEnabled = NO;
     
     if (calCfg) {
         _anyCalCfgResultWatchdogTimer =
@@ -140,7 +184,6 @@ static SAZWaveConfigurationWizardVC *_zwaveConfigurationWizardGlobalRef = nil;
 
 - (void)loadChannelList {
     self.btnNextEnabled = NO;
-    self.btnCancelOrBackEnabled = NO;
     
     [_deviceList removeAllObjects];
     _channelList = [[NSMutableArray alloc] initWithArray:[SAApp.DB zwaveBridgeChannels]];

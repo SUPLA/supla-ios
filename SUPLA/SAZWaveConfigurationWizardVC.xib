@@ -28,6 +28,8 @@
                 <outlet property="btnNext3_width" destination="J4T-k6-D0C" id="Uqi-84-aqu"/>
                 <outlet property="channelDetailsPage" destination="Spn-8Q-4Px" id="HOS-Qc-HdO"/>
                 <outlet property="channelSelectionPage" destination="ydc-hf-0Ix" id="ve7-7c-Pq8"/>
+                <outlet property="errorIcon" destination="UnQ-Iy-Kbn" id="Lhf-MI-vht"/>
+                <outlet property="errorMessage" destination="OTk-BD-soD" id="bMj-i8-gwU"/>
                 <outlet property="errorPage" destination="rEs-AX-DWu" id="mew-gi-TEf"/>
                 <outlet property="itTakeAWhilePage" destination="4BU-4j-Xo1" id="Lzd-iM-1UP"/>
                 <outlet property="settingsPage" destination="WES-2i-Jt6" id="Kbv-Ks-wZ3"/>

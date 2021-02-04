@@ -20,74 +20,24 @@
 #import "SARestApiClientTask.h"
 #import "SAThermostatScheduleCfg.h"
 #import "SAChannelStateExtendedValue.h"
+#import "SAVersionError.h"
+#import "SARegResult.h"
+#import "SAEvent.h"
+#import "SARegistrationEnabled.h"
+#import "SASuperuserAuthorizationResult.h"
+#import "SACalCfgResult.h"
 #include "proto.h"
 
-@interface SAVersionError : NSObject
-
-@property (nonatomic)int version;
-@property (nonatomic)int remoteMinVersion;
-@property (nonatomic)int remoteVersion;
-
-+ (SAVersionError*) VersionError:(int) version remoteMinVersion:(int) remote_version_min remoteVersion:(int) remote_version;
-
-@end
-
-@interface SARegResult : NSObject
-
-@property (nonatomic)int ClientID;
-@property (nonatomic)int LocationCount;
-@property (nonatomic)int ChannelCount;
-@property (nonatomic)int ChannelGroupCount;
-@property (nonatomic)int Flags;
-@property (nonatomic)int Version;
-
-+ (SARegResult*) RegResultClientID:(int) clientID locationCount:(int) location_count channelCount:(int) channel_count channelGroupCount:(int) cgroup_count flags:(int) flags version:(int)version;
-
-@end
-
-@interface SAEvent : NSObject
-
-@property (nonatomic)BOOL Owner;
-@property (nonatomic)int Event;
-@property (nonatomic)int ChannelID;
-@property (nonatomic)int DurationMS;
-@property (nonatomic)int SenderID;
-@property (nonatomic, copy)NSString *SenderName;
-
-+ (SAEvent*) Event:(int) event ChannelID:(int) channel_id DurationMS:(int) duration_ms SenderID:(int) sender_id SenderName:(NSString*)sender_name;
-
-@end
-
-@interface SARegistrationEnabled : NSObject
-
-@property (nonatomic)NSDate* ClientRegistrationExpirationDate;
-@property (nonatomic)NSDate* IODeviceRegistrationExpirationDate;
-
--(BOOL)isClientRegistrationEnabled;
--(BOOL)isIODeviceRegistrationEnabled;
-
-+ (SARegistrationEnabled*) ClientTimestamp:(unsigned int) client_timestamp IODeviceTimestamp:(unsigned int) iodevice_timestamp;
-@end
-
-@interface SASuperuserAuthorizationResult : NSObject
-
-@property (nonatomic, readonly)BOOL success;
-@property (nonatomic, readonly)int code;
-
-- (id)initWithResult:(BOOL)success andCode:(int)code;
-+ (SASuperuserAuthorizationResult*) superuserAuthorizationResult:(BOOL)success withCode:(int)code;
-@end
-
-@interface SACalCfgResult : NSObject
-
-@property (nonatomic, readonly)int channelID;
-@property (nonatomic, readonly)int command;
-@property (nonatomic, readonly)int result;
-@property (nonatomic, readonly)NSData* data;
+/*
+@interface SAChannelBasicCfg : NSObject
+@property (nonatomic, readonly) NSString *deviceName;
+@property (nonatomic, readonly) NSString *deviceSoftVer;
+@property (nonatomic, readonly)int deviceId;
 
 - (id)initWithResult:(TSC_DeviceCalCfgResult *)result;
 + (SACalCfgResult*) resultWithResult:(TSC_DeviceCalCfgResult *)result;
 @end
+ */
 
 @interface SASuplaClient : NSThread
 
