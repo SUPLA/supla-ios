@@ -659,21 +659,19 @@
 
 - (void)onRegistrationEnabled:(NSNotification *)notification {
     
-    if ( notification.userInfo != nil )  {
-        SARegistrationEnabled *reg_enabled = (SARegistrationEnabled *)[notification.userInfo objectForKey:@"reg_enabled"];
-        
-        if ( reg_enabled != nil ) {
-            
-            if ( [reg_enabled isIODeviceRegistrationEnabled] ) {
-                [self showPage:PAGE_STEP_3];
-            } else {
-                [self setStep:STEP_SUPERUSER_AUTHORIZATION];
-                [SASuperuserAuthorizationDialog.globalInstance authorizeWithDelegate:self];
-            }
-            
-        };
-    }
+    SARegistrationEnabled *reg_enabled =
+    [SARegistrationEnabled notificationToRegistrationEnabled:notification];
     
+    if ( reg_enabled != nil ) {
+        
+        if ( [reg_enabled isIODeviceRegistrationEnabled] ) {
+            [self showPage:PAGE_STEP_3];
+        } else {
+            [self setStep:STEP_SUPERUSER_AUTHORIZATION];
+            [SASuperuserAuthorizationDialog.globalInstance authorizeWithDelegate:self];
+        }
+        
+    };
 };
 
 - (void)onSetRegistrationEnabledResult:(NSNotification *)notification {

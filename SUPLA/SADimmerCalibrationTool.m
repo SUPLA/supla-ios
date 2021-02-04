@@ -47,14 +47,10 @@
         return;
     }
     
-    if (notification.userInfo != nil) {
-        id r = [notification.userInfo objectForKey:@"result"];
-        if ([r isKindOfClass:[SACalCfgResult class]]) {
-            SACalCfgResult *result = (SACalCfgResult*)r;
-            if (result.channelID == _detailView.channelBase.remote_id) {
-                [self onCalCfgResult:result];
-            }
-        }
+    SACalCfgResult *result = [SACalCfgResult notificationToDeviceCalCfgResult:notification];
+    
+    if (result && result.channelID == _detailView.channelBase.remote_id) {
+        [self onCalCfgResult:result];
     }
 }
 

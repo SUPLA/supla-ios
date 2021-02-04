@@ -30,6 +30,7 @@ NS_ASSUME_NONNULL_BEGIN
 -(BOOL)isIODeviceRegistrationEnabled;
 
 + (SARegistrationEnabled*) ClientTimestamp:(unsigned int) client_timestamp IODeviceTimestamp:(unsigned int) iodevice_timestamp;
++ (SARegistrationEnabled *)notificationToRegistrationEnabled:(NSNotification *)notification;
 @end
 
 NS_ASSUME_NONNULL_END

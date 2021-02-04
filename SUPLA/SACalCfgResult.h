@@ -30,6 +30,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (id)initWithResult:(TSC_DeviceCalCfgResult *)result;
 + (SACalCfgResult*) resultWithResult:(TSC_DeviceCalCfgResult *)result;
++ (SACalCfgResult *)notificationToDeviceCalCfgResult:(NSNotification *)notification;
 @end
 
 NS_ASSUME_NONNULL_END

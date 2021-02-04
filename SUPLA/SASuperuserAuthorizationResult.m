@@ -34,4 +34,13 @@
     return [[SASuperuserAuthorizationResult alloc] initWithResult:success andCode:code];
 }
 
++ (SASuperuserAuthorizationResult *)notificationToAuthorizationResult:(NSNotification *)notification {
+    if (notification != nil && notification.userInfo != nil) {
+        id r = [notification.userInfo objectForKey:@"result"];
+        if (r != nil && [r isKindOfClass:[SASuperuserAuthorizationResult class]]) {
+            return r;
+        }
+    }
+    return nil;
+}
 @end

@@ -28,6 +28,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (id)initWithResult:(BOOL)success andCode:(int)code;
 + (SASuperuserAuthorizationResult*) superuserAuthorizationResult:(BOOL)success withCode:(int)code;
++ (SASuperuserAuthorizationResult *)notificationToAuthorizationResult:(NSNotification *)notification;
 @end
 
 NS_ASSUME_NONNULL_END

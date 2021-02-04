@@ -42,4 +42,14 @@
     return [[SACalCfgResult alloc] initWithResult:result];
 }
 
++ (SACalCfgResult *)notificationToDeviceCalCfgResult:(NSNotification *)notification {
+    if (notification != nil && notification.userInfo != nil) {
+        id r = [notification.userInfo objectForKey:@"result"];
+        if (r != nil && [r isKindOfClass:[SACalCfgResult class]]) {
+            return r;
+        }
+    }
+    return nil;
+}
+
 @end

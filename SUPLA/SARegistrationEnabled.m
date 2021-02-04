@@ -31,6 +31,16 @@
     return r;
 }
 
++ (SARegistrationEnabled *)notificationToRegistrationEnabled:(NSNotification *)notification {
+    if (notification != nil && notification.userInfo != nil) {
+        id r = [notification.userInfo objectForKey:@"reg_enabled"];
+        if (r != nil && [r isKindOfClass:[SARegistrationEnabled class]]) {
+            return r;
+        }
+    }
+    return nil;
+}
+
 -(BOOL)isClientRegistrationEnabled {
    
     return ClientRegistrationExpirationDate != nil && [ClientRegistrationExpirationDate timeIntervalSince1970] >  [[NSDate date] timeIntervalSince1970];

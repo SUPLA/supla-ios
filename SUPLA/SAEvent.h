@@ -30,8 +30,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic)int SenderID;
 @property (nonatomic, copy)NSString *SenderName;
 
-+ (SAEvent*) Event:(int) event ChannelID:(int) channel_id DurationMS:(int) duration_ms SenderID:(int) sender_id SenderName:(NSString*)sender_name;
-
++(SAEvent*)Event:(int) event ChannelID:(int) channel_id DurationMS:(int) duration_ms SenderID:(int) sender_id SenderName:(NSString*)sender_name;
++(SAEvent *)notificationToEvent:(NSNotification *)notification;
 @end
 
 NS_ASSUME_NONNULL_END

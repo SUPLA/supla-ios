@@ -119,7 +119,7 @@
     
     if ( notification.userInfo == nil ) return;
     
-    SAEvent *event = (SAEvent *)[notification.userInfo objectForKey:@"event"];
+    SAEvent *event = [SAEvent notificationToEvent:notification];
     
     if ( event == nil || event.Owner ) return;
     

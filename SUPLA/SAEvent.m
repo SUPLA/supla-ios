@@ -27,7 +27,7 @@
 @synthesize SenderID;
 @synthesize SenderName;
 
-+ (SAEvent*) Event:(int) event ChannelID:(int) channel_id DurationMS:(int) duration_ms SenderID:(int) sender_id SenderName:(NSString*)sender_name {
++(SAEvent*)Event:(int) event ChannelID:(int) channel_id DurationMS:(int) duration_ms SenderID:(int) sender_id SenderName:(NSString*)sender_name {
     SAEvent *e = [[SAEvent alloc] init];
     
     e.Event = event;
@@ -37,6 +37,16 @@
     e.SenderName = sender_name;
     
     return e;
+}
+
++(SAEvent *)notificationToEvent:(NSNotification *)notification {
+    if (notification != nil && notification.userInfo != nil) {
+        id r = [notification.userInfo objectForKey:@"event"];
+        if (r != nil && [r isKindOfClass:[SAEvent class]]) {
+            return r;
+        }
+    }
+    return nil;
 }
 
 @end
