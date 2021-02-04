@@ -54,6 +54,7 @@
 - (void) setIODeviceRegistrationEnabledForTime:(int)iodevice_sec clientRegistrationEnabledForTime:(int)client_sec;
 - (void) setDgfTransparencyMask:(short)mask activeBits:(short)active_bits channelId:(int)channelId;
 - (void) getSuperuserAuthorizationResult;
+- (void) getChannelBasicCfg:(int)channelId;
 
 @property (nonatomic, weak) id<SASuplaClientDelegate> delegate;
 @end

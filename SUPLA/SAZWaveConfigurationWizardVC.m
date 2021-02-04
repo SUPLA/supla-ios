@@ -19,10 +19,22 @@
 #import "SAZWaveConfigurationWizardVC.h"
 #import "SuplaApp.h"
 #import "SAChannel+CoreDataClass.h"
+#import "SAChannelBasicCfg.h"
 
 #define ERROR_TYPE_TIMEOUT 1
 #define ERROR_TYPE_DISCONNECTED 2
 #define ERROR_TYPE_OTHER 3
+
+#define RESET_TIMEOUT_SEC 15
+#define ADD_NODE_BUTTON_PRESS_TIMEOUT_SEC 35
+#define ADD_NODE_TIMEOUT_SEC 30
+#define REMOVE_NODE_TIMEOUT_SEC 45
+#define GET_ASSIGNED_NODE_ID_TIMEOUT_SEC 5
+#define GET_BASIC_CFG_TIMEOUT_SEC 5
+#define SET_CHANNEL_FUNCTION_TIMEOUT_SEC 5
+#define SET_CHANNEL_CAPTION_TIMEOUT_SEC 5
+#define ASSIGN_NODE_ID_TIMEOUT_SEC 15
+#define GET_NODE_LIST_TIMEOUT_SEC 250
 
 static SAZWaveConfigurationWizardVC *_zwaveConfigurationWizardGlobalRef = nil;
 
@@ -44,6 +56,7 @@ static SAZWaveConfigurationWizardVC *_zwaveConfigurationWizardGlobalRef = nil;
     NSTimer *_watchdogTimer;
     NSMutableArray *_deviceList;
     NSMutableArray *_channelList;
+    NSMutableArray *_channelBasicCfgList;
     NSMutableArray *_channelBasicCfgToFetch;
 }
 
@@ -52,16 +65,21 @@ static SAZWaveConfigurationWizardVC *_zwaveConfigurationWizardGlobalRef = nil;
     _deviceList = [[NSMutableArray alloc] init];
     _channelList = [[NSMutableArray alloc] init];
     _channelBasicCfgToFetch = [[NSMutableArray alloc] init];
+    _channelBasicCfgList = [[NSMutableArray alloc] init];
 }
 
 -(void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     self.page = self.welcomePage;
-    /*
+    
     [[NSNotificationCenter defaultCenter]
-     addObserver:self selector:@selector(onSuperuserAuthorizationResult:)
-     name:kSASuperuserAuthorizationResult object:nil];
-     */
+     addObserver:self selector:@selector(onCalCfgResult:)
+     name:kSACalCfgResult object:nil];
+
+    [[NSNotificationCenter defaultCenter]
+     addObserver:self selector:@selector(onChannelBasicCfg:)
+     name:kSAOnChannelBasicCfg object:nil];
+
 }
 
 -(void)viewWillDisappear:(BOOL)animated {
@@ -87,6 +105,35 @@ static SAZWaveConfigurationWizardVC *_zwaveConfigurationWizardGlobalRef = nil;
     return _zwaveConfigurationWizardGlobalRef;
 }
 
+-(void)onCalCfgResult:(NSNotification *)notification {
+   // SACalCfgResult *result = [SACalCfgResult notificationToDeviceCalCfgResult:notification];
+}
+
+-(void)onChannelBasicCfg:(NSNotification *)notification {
+    SAChannelBasicCfg *basicCfg = [SAChannelBasicCfg notificationToChannelBasicCfg:notification];
+    
+    for(SAChannelBasicCfg *cfg in _channelBasicCfgList) {
+        if (cfg.channelId == basicCfg.channelId) {
+            [_channelBasicCfgList removeObject:cfg];
+            break;
+        }
+    }
+    
+    [_channelBasicCfgList addObject:basicCfg];
+    
+    if (_channelBasicCfgToFetch.count) {
+        [self fetchChannelBasicCfg:0];
+    } else {
+        [self watchdogDeactivate];
+        self.btnNextEnabled = YES;
+        if (self.page == self.channelDetailsPage) {
+            
+        } else if (self.page == self.channelSelectionPage) {
+            
+        }
+    }
+}
+
 - (void)hideInfoMessage {
     
 }
@@ -103,7 +150,7 @@ static SAZWaveConfigurationWizardVC *_zwaveConfigurationWizardGlobalRef = nil;
 
 - (void)showError:(int)type withMessage:(NSString *)message {
     [self watchdogDeactivate];
-    [self.errorMessage setText:message];
+    [self.errorMessage setText: NSLocalizedString(message, nil)];
     [self setPreloaderVisible:NO];
     self.btnNextTitle = [self btnNextTitleForThePage:self.page];
     [self hideInfoMessage];
@@ -144,8 +191,7 @@ static SAZWaveConfigurationWizardVC *_zwaveConfigurationWizardGlobalRef = nil;
 }
 
 -(void)onAnyCalCfgResultTimeout:(NSTimer*)timer {
-    [self showError:ERROR_TYPE_DISCONNECTED withMessage:
-     NSLocalizedString(@"The z-wave bridge is not responding. Check if the bridge is connected to the server.", nil)];
+    [self showError:ERROR_TYPE_DISCONNECTED withMessage:@"The z-wave bridge is not responding. Check if the bridge is connected to the server."];
 }
 
 -(void)onWatchdogTimeout:(NSTimer*)timer {
@@ -178,8 +224,20 @@ static SAZWaveConfigurationWizardVC *_zwaveConfigurationWizardGlobalRef = nil;
                                               repeats:NO];
 }
 
-- (void)fetchChannelBasicCfg:(int)chanelId {
+- (void)fetchChannelBasicCfg:(int)channelId {
+    if (channelId == 0
+        && _channelBasicCfgToFetch.count) {
+        channelId = ((SAChannel*)[_channelBasicCfgToFetch objectAtIndex:0]).remote_id;
+        [_channelBasicCfgToFetch removeObjectAtIndex:0];
+    }
     
+    if (channelId == 0) {
+        return;
+    }
+    
+    [self watchdogActivateWithTime:GET_BASIC_CFG_TIMEOUT_SEC timeoutMessage:@"The waiting time for basic channel configuration data has expired." calCfg:NO];
+    
+    [SAApp.SuplaClient getChannelBasicCfg:channelId];
 }
 
 - (void)loadChannelList {

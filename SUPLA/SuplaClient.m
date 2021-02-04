@@ -28,6 +28,7 @@
 #import "SuplaClient.h"
 #import "SuplaApp.h"
 #import "Database.h"
+#import "SAChannelBasicCfg.h"
 
 #include "supla-client.h"
 
@@ -52,7 +53,7 @@
 - (void) onSuperuserAuthorizationResult:(SASuperuserAuthorizationResult*)result;
 - (void) onCalCfgResult:(SACalCfgResult*)result;
 - (void) onChannelState:(SAChannelStateExtendedValue*)state;
-- (void) onChannelBasicCfg:(SAChannel*)state;
+- (void) onChannelBasicCfg:(SAChannelBasicCfg*)cfg;
 @end
 
 void sasuplaclient_on_versionerror(void *_suplaclient, void *user_data, int version, int remote_version_min, int remote_version) {
@@ -198,6 +199,15 @@ void sasuplaclient_on_device_channel_state(void *_suplaclient, void *user_data, 
     }
 }
 
+void sasuplaclient_on_channel_basic_cfg(void *_suplaclient,
+                                         void *user_data,
+                                         TSC_ChannelBasicCfg *cfg) {
+    SASuplaClient *sc = (__bridge SASuplaClient*)user_data;
+    if ( sc != nil && cfg != NULL) {
+        [sc onChannelBasicCfg:[[SAChannelBasicCfg alloc] initWithCfg:cfg]];
+    }
+}
+
 // ------------------------------------------------------------------------------------------------------
 
 @implementation SASuplaClient {
@@ -319,6 +329,7 @@ void sasuplaclient_on_device_channel_state(void *_suplaclient, void *user_data, 
     scc.cb_on_device_calcfg_result = sasuplaclient_on_calcfg_result;
     scc.cb_on_device_channel_state = sasuplaclient_on_device_channel_state;
     scc.cb_on_set_registration_enabled_result = sasuplaclient_on_set_registration_enabled_result;
+    scc.cb_on_channel_basic_cfg = sasuplaclient_on_channel_basic_cfg;
     
     scc.protocol_version = [SAApp getPreferedProtocolVersion];
     
@@ -718,7 +729,15 @@ void sasuplaclient_on_device_channel_state(void *_suplaclient, void *user_data, 
 }
 
 - (void) onChannelState:(SAChannelStateExtendedValue*)state {
-        [self performSelectorOnMainThread:@selector(_onChannelState:) withObject:state waitUntilDone:NO];
+    [self performSelectorOnMainThread:@selector(_onChannelState:) withObject:state waitUntilDone:NO];
+}
+
+- (void) _onChannelBasicCfg:(SAChannelBasicCfg*)cfg {
+    [[NSNotificationCenter defaultCenter] postNotificationName:kSAOnChannelBasicCfg object:self userInfo:[[NSDictionary alloc] initWithObjects:@[cfg] forKeys:@[@"cfg"]]];
+}
+
+- (void) onChannelBasicCfg:(SAChannelBasicCfg*)cfg {
+    [self performSelectorOnMainThread:@selector(_onChannelBasicCfg:) withObject:cfg waitUntilDone:NO];
 }
 
 - (void) reconnect {
@@ -957,6 +976,14 @@ void sasuplaclient_on_device_channel_state(void *_suplaclient, void *user_data, 
     @synchronized(self) {
         if ( _sclient ) {
             supla_client_set_dgf_transparency(_sclient, channelId, mask, active_bits);
+        }
+    }
+}
+
+- (void) getChannelBasicCfg:(int)channelId {
+    @synchronized(self) {
+        if ( _sclient ) {
+            supla_client_get_channel_basic_cfg(_sclient, channelId);
         }
     }
 }
