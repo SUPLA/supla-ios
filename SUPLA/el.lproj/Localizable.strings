@@ -55,7 +55,7 @@
 "Client Registration is off. Please go to \"Smartphone\" at %@ to activate it." = "Η εγγραφή είναι αυτή τη στιγμή απενεργοποιημένη. Για να την ενεργοποιήσετε, μεταβείτε στην καρτέλα \"Smartphones\" στη σελίδα %@";
 "This client does not have access identifier assigned. Please go to \"Smartphone\" at %@ and get a valid identifier." = "Αυτή η συσκευή δεν έχει παραχωρημένο αναγνωριστικό πρόσβασης. Μεταβείτε στη σελίδα %@  στην καρτέλα \"Smartphones\" και παραχωρήστε το κατάλληλο αναγνωριστικό.";
 "Incompatible server version" = "Μη συμβατή έκδοση διακομιστή";
-"Host not found. Make sure the account with the entered email address has been created." = "Η διεύθυνση του διακομιστή δεν βρέθηκε";
+"Host not found. Make sure you are connected to the internet and that an account with the entered email address has been created." = "Η διεύθυνση του διακομιστή δεν βρέθηκε";
 "RGB Lighting" = "Φωτισμός RGB";
 "Dimmer and RGB lighting" = "Ρεοστάτης και φωτισμός RGB";
 "Dimmer" = "Ρεοστάτης";

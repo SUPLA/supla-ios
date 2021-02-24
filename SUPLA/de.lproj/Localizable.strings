@@ -51,7 +51,7 @@
 "Bad credentials" = "Schlechte Referenzen";
 "Client limit exceeded" = "Klient-Grenze überschritten";
 "Incompatible server version" = "Nicht kompatible Server-Version";
-"Host not found. Make sure the account with the entered email address has been created." = "Host nicht gefunden";
+"Host not found. Make sure you are connected to the internet and that an account with the entered email address has been created." = "Host nicht gefunden";
 "RGB Lighting" = "RGB- Beleuchtungskontroller";
 "Dimmer and RGB lighting" = "Helligkeitsregler und RGB-Beleuchtungskontroller";
 "Dimmer" = "Helligkeitsregler";

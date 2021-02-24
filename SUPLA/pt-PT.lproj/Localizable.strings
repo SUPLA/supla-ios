@@ -52,7 +52,7 @@
 "Bad credentials" = "Dados de identificação errados";
 "Client limit exceeded" = "Excedeu o limite de aplicações de clientes";
 "Incompatible server version" = "Versão do servidor incompátivel";
-"Host not found. Make sure the account with the entered email address has been created." = "O endereço do servidor não foi encontrado";
+"Host not found. Make sure you are connected to the internet and that an account with the entered email address has been created." = "O endereço do servidor não foi encontrado";
 "RGB Lighting" = "Iluminação RGB";
 "Dimmer and RGB lighting" = "Controlador de luz e iluminação RGB";
 "Dimmer" = "Controlador de luz";

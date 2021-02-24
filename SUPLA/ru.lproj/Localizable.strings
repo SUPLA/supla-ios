@@ -55,7 +55,7 @@
 "Bad credentials" = "Неправильные логин/пароль";
 "Client limit exceeded" = "Ограничение количества пользователей";
 "Incompatible server version" = "Несовместимая версия сервера";
-"Host not found. Make sure the account with the entered email address has been created." = "Хост не найден";
+"Host not found. Make sure you are connected to the internet and that an account with the entered email address has been created." = "Хост не найден";
 "RGB Lighting" = "Контроллер освещения RGB";
 "Dimmer and RGB lighting" = "Диммер и контроллер освещения RGB";
 "Dimmer" = "Диммер";

@@ -57,7 +57,7 @@
 "Client Registration is off. Please go to \"Smartphone\" at %@ to activate it." = "Šiuo metu registracija išjungta. Norėdami ją įjungti eikite prie žymės Išmanieji telefonai puslapyje %@";
 "This client does not have access identifier assigned. Please go to \"Smartphone\" at %@ and get a valid identifier." = "Šis įrenginys neturi priskirto prieigos identifikatoriaus. Eikite į puslapį %@ ir žymėje Išmanieji telefonai priskirkite tinkamą identifikatorių.";
 "Incompatible server version" = "Nesuderinama serverio versija";
-"Host not found. Make sure the account with the entered email address has been created." = "Serverio adresas nerastas";
+"Host not found. Make sure you are connected to the internet and that an account with the entered email address has been created." = "Serverio adresas nerastas";
 "RGB Lighting" = "RGB apšvietimas";
 "Dimmer and RGB lighting" = "Šviesos srauto reguliatorius ir RGB apšvietimas";
 "Dimmer" = "Dimmer";
