@@ -55,7 +55,7 @@
 "Client Registration is off. Please go to \"Smartphone\" at %@ to activate it." = "Registracija je trenutno izklopljena. Če jo želite omogočiti, pojdite na zavihek \"Pametni telefoni\" na strani %@";
 "This client does not have access identifier assigned. Please go to \"Smartphone\" at %@ and get a valid identifier." = "Ta naprava nima dodeljenega identifikatorja dostopa. Pojdite na stran %@ in na zavihku \"Pametni telefoni\" dodelite ustrezen identifikator.";
 "Incompatible server version" = "Nezdružljiva različica strežnika";
-"Host not found" = "Naslova strežnika ni mogoče najti";
+"Host not found. Make sure the account with the entered email address has been created." = "Naslova strežnika ni mogoče najti";
 "RGB Lighting" = "RGB osvetlitev";
 "Dimmer and RGB lighting" = "Zatemnilnik in RGB osvetlitev";
 "Dimmer" = "Zatemnilnik";

@@ -570,7 +570,7 @@ NSString *kSAOnSetRegistrationEnableResult = @"KSA-N18";
     if ( [code intValue] == SUPLA_RESULTCODE_HOSTNOTFOUND ) {
         
         [self SuplaClientTerminate];
-        [self.UI showStatusError:NSLocalizedString(@"Host not found", nil)];
+        [self.UI showStatusError:NSLocalizedString(@"Host not found. Make sure the account with the entered email address has been created.", nil)];
     }
     
     

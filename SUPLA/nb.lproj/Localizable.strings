@@ -55,7 +55,7 @@
 "Client Registration is off. Please go to \"Smartphone\" at %@ to activate it." = "Registering er for tiden ikke på. For å skru den på gå til fanen \"Smarttelefoner\" på nettsiden %@";
 "This client does not have access identifier assigned. Please go to \"Smartphone\" at %@ and get a valid identifier." = "Denne enheten har ikke tilknyttet tilgang identifikator. Gå til nettsiden %@ tilpass riktig identifikator i fanen \"Smarttelefoner\".";
 "Incompatible server version" = "Inkompatibel serverversjon";
-"Host not found" = "Serveradresse ikke funnet";
+"Host not found. Make sure the account with the entered email address has been created." = "Serveradresse ikke funnet";
 "RGB Lighting" = "RGB belysning";
 "Dimmer and RGB lighting" = "Dimmer og RGB belysning";
 "Dimmer" = "Dimmer";

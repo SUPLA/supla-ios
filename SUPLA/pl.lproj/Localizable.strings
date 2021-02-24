@@ -55,7 +55,7 @@
 "Client Registration is off. Please go to \"Smartphone\" at %@ to activate it." = "Rejestracja jest obecnie wyłączona. Aby ją włączyć przejdź do zakładki \"Smartfony\" na stronie %@";
 "This client does not have access identifier assigned. Please go to \"Smartphone\" at %@ and get a valid identifier." = "To urządzenie nie ma przypisanego identyfikatora dostępu. Przejdź na stronę %@ i w zakładce \"Smartfony\" przypisz odpowiedni identyfikator.";
 "Incompatible server version" = "Niekompatybilna wersja serwera";
-"Host not found" = "Adres serwera nie został znaleziony";
+"Host not found. Make sure the account with the entered email address has been created." = "Adres serwera nie został znaleziony. Upewnij się, że konto o wprowadzonym adresie email zostało utworzone.";
 "RGB Lighting" = "Oświetlenie RGB";
 "Dimmer and RGB lighting" = "Ściemniacz i oświetlenie RGB";
 "Dimmer" = "Ściemniacz";

@@ -55,7 +55,7 @@
 "Client Registration is off. Please go to \"Smartphone\" at %@ to activate it." = "Registratie is momenteel uitgeschakeld. Om dit in te schakelen, gaat u naar het tabblad \"Smartphones\" op pagina %@";
 "This client does not have access identifier assigned. Please go to \"Smartphone\" at %@ and get a valid identifier." = "Aan dit apparaat is geen toegangs-ID toegewezen. Ga naar de pagina %@ en wijs de juiste ID toe op het tabblad \"Smartphones\".";
 "Incompatible server version" = "Incompatibele serverversie";
-"Host not found" = "Serveeradres werd niet gevonden";
+"Host not found. Make sure the account with the entered email address has been created." = "Serveeradres werd niet gevonden";
 "RGB Lighting" = "RGB-verlichting";
 "Dimmer and RGB lighting" = "Dimmer en RGB-verlichting";
 "Dimmer" = "Dimmer";
