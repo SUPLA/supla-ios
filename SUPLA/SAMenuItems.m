@@ -103,7 +103,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
                                     MENUITEM_HEIGHT)];
     btn.tag = btnId;
     btn.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
-    [btn setTitle:NSLocalizedString(text, nil) forState:UIControlStateNormal];
+    [btn setTitle:[NSLocalizedString(text, nil) uppercaseString] forState:UIControlStateNormal];
     btn.titleLabel.font = [UIFont fontWithName:@"OpenSans" size: MENUITEM_TEXT_SIZE];
     [btn addTarget:self action:@selector(onButtonTouch:) forControlEvents:UIControlEventTouchDown];
     [self addSubview:btn];
