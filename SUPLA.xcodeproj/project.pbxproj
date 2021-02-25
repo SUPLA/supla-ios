@@ -37,6 +37,7 @@
 		013A1BFC2538BAA0000583A2 /* roofwindow-closed@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 013A1BF82538BAA0000583A2 /* roofwindow-closed@3x.png */; };
 		013A1BFD2538BAA0000583A2 /* roofwindow-open@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 013A1BF92538BAA0000583A2 /* roofwindow-open@2x.png */; };
 		013A1BFE2538BAA0000583A2 /* roofwindow-closed@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 013A1BFA2538BAA0000583A2 /* roofwindow-closed@2x.png */; };
+		013AB91825E85CFB00C55E33 /* menu_cloud@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 013AB91725E85CFA00C55E33 /* menu_cloud@2x.png */; };
 		013D1C5D22CE47D5000C0784 /* SAChartHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 013D1C5C22CE47D5000C0784 /* SAChartHelper.m */; };
 		013D1C6022CE757F000C0784 /* SAIncrementalMeterChartHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 013D1C5F22CE757F000C0784 /* SAIncrementalMeterChartHelper.m */; };
 		013D1C6322CE75A3000C0784 /* SAElectricityChartHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 013D1C6222CE75A3000C0784 /* SAElectricityChartHelper.m */; };
@@ -500,6 +501,7 @@
 		013A1BF82538BAA0000583A2 /* roofwindow-closed@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "roofwindow-closed@3x.png"; path = "Resources/Assets/Img/roofwindow-closed@3x.png"; sourceTree = "<group>"; };
 		013A1BF92538BAA0000583A2 /* roofwindow-open@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "roofwindow-open@2x.png"; path = "Resources/Assets/Img/roofwindow-open@2x.png"; sourceTree = "<group>"; };
 		013A1BFA2538BAA0000583A2 /* roofwindow-closed@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "roofwindow-closed@2x.png"; path = "Resources/Assets/Img/roofwindow-closed@2x.png"; sourceTree = "<group>"; };
+		013AB91725E85CFA00C55E33 /* menu_cloud@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "menu_cloud@2x.png"; path = "Resources/Assets/Img/menu_cloud@2x.png"; sourceTree = "<group>"; };
 		013D1C5B22CE47D5000C0784 /* SAChartHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SAChartHelper.h; sourceTree = "<group>"; };
 		013D1C5C22CE47D5000C0784 /* SAChartHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SAChartHelper.m; sourceTree = "<group>"; };
 		013D1C5E22CE757F000C0784 /* SAIncrementalMeterChartHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SAIncrementalMeterChartHelper.h; sourceTree = "<group>"; };
@@ -1468,6 +1470,7 @@
 		405AC4011BC15878004F7311 /* Img */ = {
 			isa = PBXGroup;
 			children = (
+				013AB91725E85CFA00C55E33 /* menu_cloud@2x.png */,
 				01CEAC2425B9AA71009C3BFD /* dgfopaque@3x.png */,
 				01CEAC2325B9AA71009C3BFD /* dgftransparent@3x.png */,
 				01CEAC0225B99A57009C3BFD /* digiglass-transparent@2x.png */,
@@ -2100,6 +2103,7 @@
 				405AC4191BC15898004F7311 /* app_icon-1024.png in Resources */,
 				01D5E0CA22DB8F0A00FBE1DC /* SAChartMarkerView.xib in Resources */,
 				405AC41A1BC15898004F7311 /* app_icon@2x.png in Resources */,
+				013AB91825E85CFB00C55E33 /* menu_cloud@2x.png in Resources */,
 				40CF96BA1BC7D4E70030EFFF /* light-off@2x.png in Resources */,
 				0148934125AA19DA00B9974E /* infinitywhite@3x.png in Resources */,
 				40B9ED6D1FACD94300403B1A /* barier-open@3x.png in Resources */,

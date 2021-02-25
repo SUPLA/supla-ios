@@ -125,6 +125,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     // Apple Play Policy
     // [self addBtnWithId:SAMenuItemIdDonate imageNamed:@"donate" text:@"Donate"];
     [self addBtnWithId:SAMenuItemIdHelp imageNamed:@"help" text:@"Help"];
+    [self addBtnWithId:SAMenuItemIdCloud imageNamed:@"menu_cloud" text:@"Supla Cloud"];
   
     CGFloat top = _btnCount * (MENUITEM_HEIGHT+SEPARATOR_HEIGHT);
     CGFloat height = top;
