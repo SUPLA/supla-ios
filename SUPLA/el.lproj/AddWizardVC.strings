@@ -11,7 +11,7 @@
 /* Class = "UILabel"; text = "Last state"; ObjectID = "HRH-kq-mbQ"; */
 "HRH-kq-mbQ.text" = "Προηγούμενη κατάσταση";
 
-/* Class = "UILabel"; text = "Enter Wi-Fi Network name and password to use with this I/O Device"; ObjectID = "Igv-nx-eY7"; */
+/* Class = "UILabel"; text = "Enter Wi-Fi Network name and password to use with new I/O Device"; ObjectID = "Igv-nx-eY7"; */
 "Igv-nx-eY7.text" = "Πληκτρολογήστε το όνομα και τον κωδικό πρόσβασης του οικιακού ή επιχειρηματικού σας δικτύου WiFi μέσω του οποίου η εκτελεστική συσκευή θα μπορεί να συνδεθεί με τον διακομιστή.";
 
 /* Class = "UILabel"; text = "The settings have been transferred to the I/O device."; ObjectID = "JYg-Vc-pZn"; */
