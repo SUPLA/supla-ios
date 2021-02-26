@@ -53,7 +53,7 @@
 "Device disabled. Please log in to \"Supla Cloud\" and enable this device in “Smartphone” section of the website." = "Η συσκευή είναι απενεργοποιημένη";
 "Access Identifier is disabled" = "Το αναγνωριστικό πρόσβασης είναι απενεργοποιημένο";
 "New client registration disabled. Please log in to \"Supla Cloud\" and enable \"New client registration\" in \"Smartphone\" section of the website." = "Η εγγραφή είναι αυτή τη στιγμή απενεργοποιημένη. Για να την ενεργοποιήσετε, μεταβείτε στην καρτέλα \"Smartphones\" στη σελίδα \"Supla Cloud\"";
-"This client does not have access identifier assigned. Please go to \"Smartphone\" at %@ and get a valid identifier." = "Αυτή η συσκευή δεν έχει παραχωρημένο αναγνωριστικό πρόσβασης. Μεταβείτε στη σελίδα %@  στην καρτέλα \"Smartphones\" και παραχωρήστε το κατάλληλο αναγνωριστικό.";
+"Client activation required. Please log in to \"Supla Cloud\" and assign an “Access ID” for this device in “Smartphone” section of the website." = "Αυτή η συσκευή δεν έχει παραχωρημένο αναγνωριστικό πρόσβασης. Μεταβείτε στη σελίδα \"Supla Cloud\" στην καρτέλα \"Smartphones\" και παραχωρήστε το κατάλληλο αναγνωριστικό.";
 "Incompatible server version" = "Μη συμβατή έκδοση διακομιστή";
 "Host not found. Make sure you are connected to the internet and that an account with the entered email address has been created." = "Η διεύθυνση του διακομιστή δεν βρέθηκε";
 "RGB Lighting" = "Φωτισμός RGB";

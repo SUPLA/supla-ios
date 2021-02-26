@@ -53,7 +53,7 @@
 "Device disabled. Please log in to \"Supla Cloud\" and enable this device in “Smartphone” section of the website." = "Urządzenie jest wyłączone. Zaloguj się do \"Supla Cloud\" i włącz ten smrtfon w zakładce \"Smartfony\".";
 "Access Identifier is disabled" = "Identyfikator dostępu jest wyłączony";
 "New client registration disabled. Please log in to \"Supla Cloud\" and enable \"New client registration\" in \"Smartphone\" section of the website." = "Rejestracja jest obecnie wyłączona. Zaloguj się do \"Supla Cloud\" i przełącz rejestrację klientów na AKTYWNĄ w zakładce \"Smartfony\".";
-"This client does not have access identifier assigned. Please go to \"Smartphone\" at %@ and get a valid identifier." = "To urządzenie nie ma przypisanego identyfikatora dostępu. Przejdź na stronę %@ i w zakładce \"Smartfony\" przypisz odpowiedni identyfikator.";
+"Client activation required. Please log in to \"Supla Cloud\" and assign an “Access ID” for this device in “Smartphone” section of the website." = "To urządzenie nie ma przypisanego identyfikatora dostępu. Przejdź na stronę \"Supla Cloud\" i w zakładce \"Smartfony\" przypisz odpowiedni identyfikator.";
 "Incompatible server version" = "Niekompatybilna wersja serwera";
 "Host not found. Make sure you are connected to the internet and that an account with the entered email address has been created." = "Adres serwera nie został znaleziony. Upewnij się, że posiadasz połączenie z internetem oraz, że konto o wprowadzonym adresie email zostało utworzone.";
 "RGB Lighting" = "Oświetlenie RGB";

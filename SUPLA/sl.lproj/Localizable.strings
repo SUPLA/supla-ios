@@ -53,7 +53,7 @@
 "Device disabled. Please log in to \"Supla Cloud\" and enable this device in “Smartphone” section of the website." = "Naprava je izklopljena";
 "Access Identifier is disabled" = "Identifikator dostopa je izklopljen";
 "New client registration disabled. Please log in to \"Supla Cloud\" and enable \"New client registration\" in \"Smartphone\" section of the website." = "Registracija je trenutno izklopljena. Če jo želite omogočiti, pojdite na zavihek \"Pametni telefoni\" na strani \"Supla Cloud\"";
-"This client does not have access identifier assigned. Please go to \"Smartphone\" at %@ and get a valid identifier." = "Ta naprava nima dodeljenega identifikatorja dostopa. Pojdite na stran %@ in na zavihku \"Pametni telefoni\" dodelite ustrezen identifikator.";
+"Client activation required. Please log in to \"Supla Cloud\" and assign an “Access ID” for this device in “Smartphone” section of the website." = "Ta naprava nima dodeljenega identifikatorja dostopa. Pojdite na stran \"Supla Cloud\" in na zavihku \"Pametni telefoni\" dodelite ustrezen identifikator.";
 "Incompatible server version" = "Nezdružljiva različica strežnika";
 "Host not found. Make sure you are connected to the internet and that an account with the entered email address has been created." = "Naslova strežnika ni mogoče najti";
 "RGB Lighting" = "RGB osvetlitev";

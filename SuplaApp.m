@@ -640,7 +640,7 @@ NSString *kSAOnSetRegistrationEnableResult = @"KSA-N18";
             msg = NSLocalizedString(@"New client registration disabled. Please log in to \"Supla Cloud\" and enable \"New client registration\" in \"Smartphone\" section of the website.", nil);
             break;
         case SUPLA_RESULTCODE_ACCESSID_NOT_ASSIGNED:
-            msg = [NSString stringWithFormat:NSLocalizedString(@"This client does not have access identifier assigned. Please go to \"Smartphone\" at %@ and get a valid identifier.", nil), [self getMsgHostName]];
+            msg = NSLocalizedString(@"Client activation required. Please log in to \"Supla Cloud\" and assign an “Access ID” for this device in “Smartphone” section of the website.", nil);
             break;
             
     }

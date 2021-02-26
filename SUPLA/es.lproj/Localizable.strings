@@ -89,7 +89,7 @@
 "Device disabled. Please log in to \"Supla Cloud\" and enable this device in “Smartphone” section of the website." = "El dispositivo está deshabilitado";
 "Access Identifier is disabled" = "El identificador de acceso está deshabilitado";
 "New client registration disabled. Please log in to \"Supla Cloud\" and enable \"New client registration\" in \"Smartphone\" section of the website." = "El registro está actualmente desactivado. Para activarlo, vaya a la pestaña \"Smartphones\" en la página \"Supla Cloud\"";
-"This client does not have access identifier assigned. Please go to \"Smartphone\" at %@ and get a valid identifier." = "Este dispositivo no tiene un identificador de acceso asignado. Vaya a la página %@ y asigne el identificador adecuado en la pestaña \"Smartphones\".";
+"Client activation required. Please log in to \"Supla Cloud\" and assign an “Access ID” for this device in “Smartphone” section of the website." = "Este dispositivo no tiene un identificador de acceso asignado. Vaya a la página \"Supla Cloud\" y asigne el identificador adecuado en la pestaña \"Smartphones\".";
 
 "Retrieving data from the server..." = "Descargando datos del servidor ...";
 "No chart data available." = "No hay datos para el gráfico.";

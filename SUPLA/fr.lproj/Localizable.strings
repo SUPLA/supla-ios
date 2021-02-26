@@ -88,7 +88,7 @@
 "Device disabled. Please log in to \"Supla Cloud\" and enable this device in “Smartphone” section of the website." = "Le dispositif est éteint";
 "Access Identifier is disabled" = "L'identifiant d'accès est désactivé";
 "New client registration disabled. Please log in to \"Supla Cloud\" and enable \"New client registration\" in \"Smartphone\" section of the website." = "L'inscription est actuellement désactivée. Pour l'activer, allez vers l'onglet \"Smartphones\" à la page \"Supla Cloud\"";
-"This client does not have access identifier assigned. Please go to \"Smartphone\" at %@ and get a valid identifier." = "Ce dispositif n'a pas d'identifiant d'accès attribué. Allez à la page %@ et dans l'onglet \"Smartphones\"  attribuez l'identifiant approprié.";
+"Client activation required. Please log in to \"Supla Cloud\" and assign an “Access ID” for this device in “Smartphone” section of the website." = "Ce dispositif n'a pas d'identifiant d'accès attribué. Allez à la page \"Supla Cloud\" et dans l'onglet \"Smartphones\"  attribuez l'identifiant approprié.";
 
 "Retrieving data from the server..." = "Téléchargement des données du serveur...";
 "No chart data available." = "Manquent les données pour pour le graphique.";

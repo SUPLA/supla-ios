@@ -55,7 +55,7 @@
 "Device disabled. Please log in to \"Supla Cloud\" and enable this device in “Smartphone” section of the website." = "Įrenginys išjungtas";
 "Access Identifier is disabled" = "rieigos identifikatorius išjungtas";
 "New client registration disabled. Please log in to \"Supla Cloud\" and enable \"New client registration\" in \"Smartphone\" section of the website." = "Šiuo metu registracija išjungta. Norėdami ją įjungti eikite prie žymės Išmanieji telefonai puslapyje \"Supla Cloud\"";
-"This client does not have access identifier assigned. Please go to \"Smartphone\" at %@ and get a valid identifier." = "Šis įrenginys neturi priskirto prieigos identifikatoriaus. Eikite į puslapį %@ ir žymėje Išmanieji telefonai priskirkite tinkamą identifikatorių.";
+"Client activation required. Please log in to \"Supla Cloud\" and assign an “Access ID” for this device in “Smartphone” section of the website." = "Šis įrenginys neturi priskirto prieigos identifikatoriaus. Eikite į puslapį \"Supla Cloud\" ir žymėje Išmanieji telefonai priskirkite tinkamą identifikatorių.";
 "Incompatible server version" = "Nesuderinama serverio versija";
 "Host not found. Make sure you are connected to the internet and that an account with the entered email address has been created." = "Serverio adresas nerastas";
 "RGB Lighting" = "RGB apšvietimas";
