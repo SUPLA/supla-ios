@@ -150,4 +150,4 @@
 "Press Next to continue." = "Spustelėkite Pirmyn, jei norite tęsti";
 "Press START to start configuration." = "Paspauskite mygtuką START, kad pradėti konfigūravimą.";
 "I/O Device connection setting timeout!" = "Viršytas ryšio užmezgimo su vykdomuoju įrenginiu laukimo laikas!";
-"No devices has been found! Check, if the device you want to configure is working in the configuration mode and try again." = "Nerasta jokių įrenginių! Įsitikinkite, kad įrenginys, kurį norite konfigūruoti veikia konfigūracijos režime, o tada pabandykite dar kartą.";
+"No I/O Devices found! Please check if your I/O Device is ON and in configuration mode." = "Nerasta jokių įrenginių! Įsitikinkite, kad įrenginys, kurį norite konfigūruoti veikia konfigūracijos režime, o tada pabandykite dar kartą.";

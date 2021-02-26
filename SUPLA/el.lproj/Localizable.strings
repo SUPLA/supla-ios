@@ -148,4 +148,4 @@
 "Press Next to continue." = "Για να συνεχίσετε, πατήστε Επόμενο.";
 "Press START to start configuration." = "Πατήστε το κουμπί START για να ξεκινήσει η διαμόρφωση.";
 "I/O Device connection setting timeout!" = "Υπέρβαση χρόνου αναμονής για τη σύνδεση με την εκτελεστική συσκευή!";
-"No devices has been found! Check, if the device you want to configure is working in the configuration mode and try again." = "Δεν βρέθηκε καμία συσκευή! Βεβαιωθείτε ότι η συσκευή την οποία θέλετε να ρυθμίσετε βρίσκετε στη λειτουργία διαμόρφωσης και στη συνέχεια προσπαθήστε ξανά.";
+"No I/O Devices found! Please check if your I/O Device is ON and in configuration mode." = "Δεν βρέθηκε καμία συσκευή! Βεβαιωθείτε ότι η συσκευή την οποία θέλετε να ρυθμίσετε βρίσκετε στη λειτουργία διαμόρφωσης και στη συνέχεια προσπαθήστε ξανά.";

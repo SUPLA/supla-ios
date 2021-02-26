@@ -148,4 +148,4 @@
 "Press Next to continue." = "Um fortzusetzen, drücken Sie Weiter.";
 "Press START to start configuration." = "Drücken Sie die Taste START, um die Konfiguration zu beginnen.";
 "I/O Device connection setting timeout!" = "Für die Herstellung der Verbindung mit dem Betätigungsgerät wurde das Zeitlimit überschritten!";
-"No devices has been found! Check, if the device you want to configure is working in the configuration mode and try again." = "Die Suche nach irgendwelchen Geräten war erfolglos! Stellen Sie sicher, dass das Gerät, dass Sie konfigurieren lassen möchten im Konfigurationsmodus funktioniert und versuchen Sie erneut.";
+"No I/O Devices found! Please check if your I/O Device is ON and in configuration mode." = "Die Suche nach irgendwelchen Geräten war erfolglos! Stellen Sie sicher, dass das Gerät, dass Sie konfigurieren lassen möchten im Konfigurationsmodus funktioniert und versuchen Sie erneut.";

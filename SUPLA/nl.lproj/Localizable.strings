@@ -148,4 +148,4 @@
 "Press Next to continue." = "Druk op Volgende om door te gaan.";
 "Press START to start configuration." = "Druk op de knop START om de configuratie te starten.";
 "I/O Device connection setting timeout!" = "Wachttijd voor het tot stand brengen van een verbinding met het uitvoerende apparaat is overschreden!";
-"No devices has been found! Check, if the device you want to configure is working in the configuration mode and try again." = "Geen apparaten gevonden! Zorg ervoor dat het apparaat dat u wilt configureren zich in de configuratiemodus bevindt en probeer het opnieuw.";
+"No I/O Devices found! Please check if your I/O Device is ON and in configuration mode." = "Geen apparaten gevonden! Zorg ervoor dat het apparaat dat u wilt configureren zich in de configuratiemodus bevindt en probeer het opnieuw.";

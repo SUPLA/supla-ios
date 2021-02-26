@@ -156,4 +156,4 @@
 "Press Next to continue." = "Chcete-li pokračovat, stiskněte tlačítko Další.";
 "Press START to start configuration." = "Stisknutím tlačítka START spustíte konfiguraci.";
 "I/O Device connection setting timeout!" = "Doba čekání na spojení s vykonávajícím zařízením byla překročena!";
-"No devices has been found! Check, if the device you want to configure is working in the configuration mode and try again." = "Nebyly nalezeny žádné přístroje! Ujistěte se, že zařízení, které chcete konfigurovat, je v konfiguračním režimu a zkuste to znovu.";
+"No I/O Devices found! Please check if your I/O Device is ON and in configuration mode." = "Nebyly nalezeny žádné přístroje! Ujistěte se, že zařízení, které chcete konfigurovat, je v konfiguračním režimu a zkuste to znovu.";

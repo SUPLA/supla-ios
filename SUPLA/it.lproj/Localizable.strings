@@ -149,4 +149,4 @@
 "Press Next to continue." = "Per continuare clicca Avanti.";
 "Press START to start configuration." = "Premii il tasto START per iniziare la configurazione.";
 "I/O Device connection setting timeout!" = "Il tempo di attesa per lo stabilimento della connessione con il dispositivo di input/output è stato superato!";
-"No devices has been found! Check, if the device you want to configure is working in the configuration mode and try again." = "Nessun dispositivo trovato! Assicurati che il dispositivo che vuoi configurare, lavora in modalità di configurazione e poi riprova.";
+"No I/O Devices found! Please check if your I/O Device is ON and in configuration mode." = "Nessun dispositivo trovato! Assicurati che il dispositivo che vuoi configurare, lavora in modalità di configurazione e poi riprova.";

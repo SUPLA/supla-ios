@@ -788,7 +788,7 @@
                 [self startConfiguration];
             } else {
                 [self->_OpQueue cancelAllOperations];
-                [self showError:NSLocalizedString(@"No devices has been found! Check, if the device you want to configure is working in the configuration mode and try again.", NULL)];
+                [self showError:NSLocalizedString(@"No I/O Devices found! Please check if your I/O Device is ON and in configuration mode.", NULL)];
             }
         }
     }];

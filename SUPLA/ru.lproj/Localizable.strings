@@ -149,4 +149,4 @@
 "Press Next to continue." = "Для продолжения нажмите Далее.";
 "Press START to start configuration." = "Нажмите кнопку START, чтобы начать конфигурацию.";
 "I/O Device connection setting timeout!" = "Превышено время ожидания соединения с устройством ввода-вывода!";
-"No devices has been found! Check, if the device you want to configure is working in the configuration mode and try again." = "Не найдено никаких устройств! Убедитесь, что устройство, которое вы хотите настроить, работает в режиме конфигурации, а затем попробуйте снова.";
+"No I/O Devices found! Please check if your I/O Device is ON and in configuration mode." = "Не найдено никаких устройств! Убедитесь, что устройство, которое вы хотите настроить, работает в режиме конфигурации, а затем попробуйте снова.";

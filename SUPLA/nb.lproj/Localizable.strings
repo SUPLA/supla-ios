@@ -148,4 +148,4 @@
 "Press Next to continue." = "For å fortsette trykk på Videre.";
 "Press START to start configuration." = "Trykk på knappen START for å starte konfigurasjonen.";
 "I/O Device connection setting timeout!" = "Ventetiden for etablering av kobling med aktuator er overskredet!";
-"No devices has been found! Check, if the device you want to configure is working in the configuration mode and try again." = "Ingen enheter ble funnet! Sjekk om enheten du ønsker å konfigurere er satt i konfigurasjonsmodus, og prøv på nytt.";
+"No I/O Devices found! Please check if your I/O Device is ON and in configuration mode." = "Ingen enheter ble funnet! Sjekk om enheten du ønsker å konfigurere er satt i konfigurasjonsmodus, og prøv på nytt.";

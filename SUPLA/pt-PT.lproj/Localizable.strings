@@ -149,4 +149,4 @@
 "Press Next to continue." = "Para continuar carregue em Continuar.";
 "Press START to start configuration." = "Carregue no botão START para iniciar uma configuração.";
 "I/O Device connection setting timeout!" = "O tempo-limite de conexão a um atuador foi excedido!";
-"No devices has been found! Check, if the device you want to configure is working in the configuration mode and try again." = "Nenhum dispositivo foi encontardo! Certifique-se que um dispositivo que quer configurar trabalha no modo de configuração e tente novamente.";
+"No I/O Devices found! Please check if your I/O Device is ON and in configuration mode." = "Nenhum dispositivo foi encontardo! Certifique-se que um dispositivo que quer configurar trabalha no modo de configuração e tente novamente.";
