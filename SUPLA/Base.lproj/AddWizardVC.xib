@@ -247,8 +247,8 @@
                         <constraint firstAttribute="height" relation="lessThanOrEqual" constant="140" id="fQL-ui-Vup"/>
                     </constraints>
                 </imageView>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Enter User Name and Password of your domestic or business WiFi network used to have the i/o device connected to server." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="7" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="Igv-nx-eY7">
-                    <rect key="frame" x="15" y="210" width="290" height="90"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Enter Wi-Fi Network name and password to use with this I/O Device" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="7" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="Igv-nx-eY7">
+                    <rect key="frame" x="15" y="210" width="290" height="80"/>
                     <constraints>
                         <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="80" id="70s-QL-5si"/>
                     </constraints>
@@ -257,7 +257,7 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7Bs-NP-71g">
-                    <rect key="frame" x="30" y="395" width="260" height="35"/>
+                    <rect key="frame" x="30" y="385" width="260" height="35"/>
                     <subviews>
                         <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ydn-id-f0M">
                             <rect key="frame" x="0.0" y="0.0" width="51" height="31"/>
@@ -295,7 +295,7 @@
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="z7z-ZO-PdB">
-                    <rect key="frame" x="30" y="315" width="260" height="80"/>
+                    <rect key="frame" x="30" y="305" width="260" height="80"/>
                     <subviews>
                         <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="WiFi Network name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="t0Z-OG-dra">
                             <rect key="frame" x="0.0" y="0.0" width="260" height="30"/>
@@ -346,7 +346,7 @@
                 <constraint firstItem="viQ-Mh-NPQ" firstAttribute="top" relation="greaterThanOrEqual" secondItem="S8z-fu-dma" secondAttribute="top" constant="5" id="mGr-IM-Bhi"/>
                 <constraint firstItem="7Bs-NP-71g" firstAttribute="leading" secondItem="S8z-fu-dma" secondAttribute="leading" constant="30" id="pmO-fg-d2G"/>
             </constraints>
-            <point key="canvasLocation" x="459" y="49"/>
+            <point key="canvasLocation" x="825" y="49"/>
         </view>
         <view contentMode="scaleToFill" id="x6e-cq-S7L" userLabel="vStep3">
             <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
