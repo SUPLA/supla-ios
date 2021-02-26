@@ -52,7 +52,7 @@
 "Service temporarily unavailable" = "Paslauga laikinai nepasiekiama";
 "Bad credentials" = "Klaidingas autentifikavimas";
 "Client limit exceeded" = "Viršutinė klientų programų riba viršyta";
-"Device is disabled" = "Įrenginys išjungtas";
+"Device disabled. Please log in to \"Supla Cloud\" and enable this device in “Smartphone” section of the website." = "Įrenginys išjungtas";
 "Access Identifier is disabled" = "rieigos identifikatorius išjungtas";
 "Client Registration is off. Please go to \"Smartphone\" at %@ to activate it." = "Šiuo metu registracija išjungta. Norėdami ją įjungti eikite prie žymės Išmanieji telefonai puslapyje %@";
 "This client does not have access identifier assigned. Please go to \"Smartphone\" at %@ and get a valid identifier." = "Šis įrenginys neturi priskirto prieigos identifikatoriaus. Eikite į puslapį %@ ir žymėje Išmanieji telefonai priskirkite tinkamą identifikatorių.";

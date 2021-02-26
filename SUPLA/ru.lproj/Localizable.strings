@@ -85,7 +85,7 @@
 "https://en-forum.supla.org" = "https://ru-forum.supla.org";
 
 "Create an account" = "Создать учетку";
-"Device is disabled" = "Устройство выключено";
+"Device disabled. Please log in to \"Supla Cloud\" and enable this device in “Smartphone” section of the website." = "Устройство выключено";
 "Access Identifier is disabled" = "Ключ доступа отключен";
 "Client Registration is off. Please go to \"Smartphone\" at %@ to activate it." = "Регистрация в настоящее время отключена. Для ее включения перейдите на вкладку Смартфоны на странице %@";
 "This client does not have access identifier assigned. Please go to \"Smartphone\" at %@ and get a valid identifier." = "Это устройство не имеет назначенного ключа доступа. Перейдите на страницу %@ и  на вкладке Смартфоны назначьте соответствующий ключ.";

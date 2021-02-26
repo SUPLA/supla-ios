@@ -50,7 +50,7 @@
 "Service temporarily unavailable" = "Tjenesten er midlertidig utilgjengelig";
 "Bad credentials" = "Feil bekreftelser";
 "Client limit exceeded" = "Grensen på antall kundeapplikasjoner er overskredet";
-"Device is disabled" = "Enheten er skrudd av";
+"Device disabled. Please log in to \"Supla Cloud\" and enable this device in “Smartphone” section of the website." = "Enheten er skrudd av";
 "Access Identifier is disabled" = "Tilgang identifikator er av";
 "Client Registration is off. Please go to \"Smartphone\" at %@ to activate it." = "Registering er for tiden ikke på. For å skru den på gå til fanen \"Smarttelefoner\" på nettsiden %@";
 "This client does not have access identifier assigned. Please go to \"Smartphone\" at %@ and get a valid identifier." = "Denne enheten har ikke tilknyttet tilgang identifikator. Gå til nettsiden %@ tilpass riktig identifikator i fanen \"Smarttelefoner\".";

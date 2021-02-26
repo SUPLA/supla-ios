@@ -50,7 +50,7 @@
 "Service temporarily unavailable" = "Služba je dočasne nedostupná";
 "Bad credentials" = "Nesprávne autentifikačné údaje";
 "Client limit exceeded" = "Prekročený limit klientskych aplikácií";
-"Device is disabled" = "Zariadenie je vypnuté";
+"Device disabled. Please log in to \"Supla Cloud\" and enable this device in “Smartphone” section of the website." = "Zariadenie je vypnuté";
 "Access Identifier is disabled" = "Identifikátor prístupu je vypnutý";
 "Client Registration is off. Please go to \"Smartphone\" at %@ to activate it." = "Registrácia je momentálne vypnutá. Ak ju chcete zapnúť, prejdite do záložky \"Smartfóny\" na  stránke %@";
 "This client does not have access identifier assigned. Please go to \"Smartphone\" at %@ and get a valid identifier." = "Toto zariadenie nemá priradený identifikátor prístupu. Prejdite na stránku %@ a v záložke \"Smartfóny\" priraďte príslušný identifikátor.";

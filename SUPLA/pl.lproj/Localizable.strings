@@ -50,7 +50,7 @@
 "Service temporarily unavailable" = "Usługa tymczasowo niedostępna";
 "Bad credentials" = "Błędne poświadczenia";
 "Client limit exceeded" = "Przekroczony limit aplikacji klienckich";
-"Device is disabled" = "Urządzenie jest wyłączone";
+"Device disabled. Please log in to \"Supla Cloud\" and enable this device in “Smartphone” section of the website." = "Urządzenie jest wyłączone. Zaloguj się do \"Supla Cloud\" i włącz ten smrtfon w zakładce \"Smartfony\".";
 "Access Identifier is disabled" = "Identyfikator dostępu jest wyłączony";
 "Client Registration is off. Please go to \"Smartphone\" at %@ to activate it." = "Rejestracja jest obecnie wyłączona. Aby ją włączyć przejdź do zakładki \"Smartfony\" na stronie %@";
 "This client does not have access identifier assigned. Please go to \"Smartphone\" at %@ and get a valid identifier." = "To urządzenie nie ma przypisanego identyfikatora dostępu. Przejdź na stronę %@ i w zakładce \"Smartfony\" przypisz odpowiedni identyfikator.";

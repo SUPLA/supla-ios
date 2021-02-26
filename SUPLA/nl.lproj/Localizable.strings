@@ -50,7 +50,7 @@
 "Service temporarily unavailable" = "Service tijdelijk niet beschikbaar";
 "Bad credentials" = "Onjuiste inloggegevens";
 "Client limit exceeded" = "Limiet clienttoepassing overschreden";
-"Device is disabled" = "Het apparaat is uitgeschakeld";
+"Device disabled. Please log in to \"Supla Cloud\" and enable this device in “Smartphone” section of the website." = "Het apparaat is uitgeschakeld";
 "Access Identifier is disabled" = "Toegangs-ID is uitgeschakeld";
 "Client Registration is off. Please go to \"Smartphone\" at %@ to activate it." = "Registratie is momenteel uitgeschakeld. Om dit in te schakelen, gaat u naar het tabblad \"Smartphones\" op pagina %@";
 "This client does not have access identifier assigned. Please go to \"Smartphone\" at %@ and get a valid identifier." = "Aan dit apparaat is geen toegangs-ID toegewezen. Ga naar de pagina %@ en wijs de juiste ID toe op het tabblad \"Smartphones\".";

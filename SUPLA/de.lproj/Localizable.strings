@@ -84,7 +84,7 @@
 "https://cloud.supla.org/register" = "https://cloud.supla.org/register?lang=de";
 "https://en-forum.supla.org" = "https://de-forum.supla.org";
 "Create an account" = "Konto erstellen";
-"Device is disabled" = "Gerät ist deaktiviert";
+"Device disabled. Please log in to \"Supla Cloud\" and enable this device in “Smartphone” section of the website." = "Gerät ist deaktiviert";
 "Access Identifier is disabled" = "Die Zugriffskennung ist deaktiviert";
 "Client Registration is off. Please go to \"Smartphone\" at %@ to activate it." = "Die Client-Registrierung ist deaktiviert. Bitte gehen Sie zu \"Smartphones\" auf %@, um es zu aktivieren.";
 "This client does not have access identifier assigned. Please go to \"Smartphone\" at %@ and get a valid identifier." = "Diesem Client wurde keine Zugriffskennung zugewiesen. Bitte gehen Sie zu \"Smartphones\" auf %@ und holen Sie sich eine gültige ID.";

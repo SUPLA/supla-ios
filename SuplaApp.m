@@ -631,7 +631,7 @@ NSString *kSAOnSetRegistrationEnableResult = @"KSA-N18";
             msg = NSLocalizedString(@"Client limit exceeded", nil);
             break;
         case SUPLA_RESULTCODE_CLIENT_DISABLED:
-            msg = NSLocalizedString(@"Device is disabled", nil);
+            msg = NSLocalizedString(@"Device disabled. Please log in to \"Supla Cloud\" and enable this device in “Smartphone” section of the website.", nil);
             break;
         case SUPLA_RESULTCODE_ACCESSID_DISABLED:
             msg = NSLocalizedString(@"Access Identifier is disabled", nil);
