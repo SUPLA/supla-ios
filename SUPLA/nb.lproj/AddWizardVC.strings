@@ -41,7 +41,7 @@
 /* Class = "UITextField"; placeholder = "WiFi Network name"; ObjectID = "t0Z-OG-dra"; */
 "t0Z-OG-dra.placeholder" = "WiFi-nettverksnavn";
 
-/* Class = "UILabel"; text = "Welcome to the Device Add Wizard which will in an easy and simple way help you to add new device to the system."; ObjectID = "vbb-Xd-lIx"; */
+/* Class = "UILabel"; text = "Welcome to Add I/O Device Wizard which will help you to add a new device to your system in a few simple steps."; ObjectID = "vbb-Xd-lIx"; */
 "vbb-Xd-lIx.text" = "Velkommen til assistenten for å legge til enheter som vil hjelpe deg å legge til enheter til systemet på en enkel og rask måte.";
 
 /* Class = "UILabel"; text = "If the device when switched on does not work in the configuration mode, press and hold CONFIG button for at least 5 seconds.\n\nPress Next to continue.\n"; ObjectID = "y0X-IV-sH5"; */

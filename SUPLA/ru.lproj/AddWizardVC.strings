@@ -39,5 +39,5 @@
 /* Class = "UITextField"; placeholder = "WiFi Network name"; ObjectID = "t0Z-OG-dra"; */
 "t0Z-OG-dra.placeholder" = "Название сети Wi-Fi";
 
-/* Class = "UILabel"; text = "Welcome to the Device Add Wizard which will in an easy and simple way help you to add new device to the system."; ObjectID = "vbb-Xd-lIx"; */
+/* Class = "UILabel"; text = "Welcome to Add I/O Device Wizard which will help you to add a new device to your system in a few simple steps."; ObjectID = "vbb-Xd-lIx"; */
 "vbb-Xd-lIx.text" = "Добро пожаловать в мастер добавления устройств, который поможет вам легко и быстро добавить новое устройство в систему.";
