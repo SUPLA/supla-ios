@@ -56,7 +56,7 @@ static SASuperuserAuthorizationDialog *_superuserAuthorizationDialogGlobalRef = 
     
     self.tvInfo.text = NSLocalizedString(
                     [[SAApp getServerHostName] containsString:@"supla.org"] ?
-                    @"Enter your cloud.supla.org login credentials."
+                    @"Please enter your Supla Cloud login details."
                     : @"Enter superuser credentials", nil);
     
 }

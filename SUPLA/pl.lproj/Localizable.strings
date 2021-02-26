@@ -182,7 +182,7 @@
 "The lifespan of the uv radiator is %.02f%%. Replace the radiator." = "Żywotność promiennika uv wynosi %.02f%%. Wymień promiennik.";
 "The lifespan of the light source is %.02f%%." = "Żywotność źródła światła wynosi %.02f%%.";
 "Timeout for enabling registration has expired!" = "Upłynął czas oczekiwania na włączenie rejestracji!";
-"Enter your cloud.supla.org login credentials." = "Wprowadź Twoje dane logowania do cloud.supla.org.";
+"Please enter your Supla Cloud login details." = "Wprowadź Twoje dane logowania do Supla Cloud.";
 "Enter superuser credentials" = "Wprowadź poświadczenia głównego użytkownika";
 "Dimmer settings" = "Ustawienia ściemniacza";
 "Do you want to quit without saving?" = "Czy na pewno chcesz wyjść bez zapisu?";
