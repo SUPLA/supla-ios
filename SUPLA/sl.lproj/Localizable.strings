@@ -52,7 +52,7 @@
 "Client limit exceeded" = "Omejitev odjemalskih aplikacij je presežena";
 "Device disabled. Please log in to \"Supla Cloud\" and enable this device in “Smartphone” section of the website." = "Naprava je izklopljena";
 "Access Identifier is disabled" = "Identifikator dostopa je izklopljen";
-"Client Registration is off. Please go to \"Smartphone\" at %@ to activate it." = "Registracija je trenutno izklopljena. Če jo želite omogočiti, pojdite na zavihek \"Pametni telefoni\" na strani %@";
+"New client registration disabled. Please log in to \"Supla Cloud\" and enable \"New client registration\" in \"Smartphone\" section of the website." = "Registracija je trenutno izklopljena. Če jo želite omogočiti, pojdite na zavihek \"Pametni telefoni\" na strani \"Supla Cloud\"";
 "This client does not have access identifier assigned. Please go to \"Smartphone\" at %@ and get a valid identifier." = "Ta naprava nima dodeljenega identifikatorja dostopa. Pojdite na stran %@ in na zavihku \"Pametni telefoni\" dodelite ustrezen identifikator.";
 "Incompatible server version" = "Nezdružljiva različica strežnika";
 "Host not found. Make sure you are connected to the internet and that an account with the entered email address has been created." = "Naslova strežnika ni mogoče najti";

@@ -52,7 +52,7 @@
 "Client limit exceeded" = "Prekročený limit klientskych aplikácií";
 "Device disabled. Please log in to \"Supla Cloud\" and enable this device in “Smartphone” section of the website." = "Zariadenie je vypnuté";
 "Access Identifier is disabled" = "Identifikátor prístupu je vypnutý";
-"Client Registration is off. Please go to \"Smartphone\" at %@ to activate it." = "Registrácia je momentálne vypnutá. Ak ju chcete zapnúť, prejdite do záložky \"Smartfóny\" na  stránke %@";
+"New client registration disabled. Please log in to \"Supla Cloud\" and enable \"New client registration\" in \"Smartphone\" section of the website." = "Registrácia je momentálne vypnutá. Ak ju chcete zapnúť, prejdite do záložky \"Smartfóny\" na  stránke \"Supla Cloud\"";
 "This client does not have access identifier assigned. Please go to \"Smartphone\" at %@ and get a valid identifier." = "Toto zariadenie nemá priradený identifikátor prístupu. Prejdite na stránku %@ a v záložke \"Smartfóny\" priraďte príslušný identifikátor.";
 "Incompatible server version" = "Nekompatibilná verzia servera";
 "Host not found. Make sure you are connected to the internet and that an account with the entered email address has been created." = "Adresa servera nebola nájdená";

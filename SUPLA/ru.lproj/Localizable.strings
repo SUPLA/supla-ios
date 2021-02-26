@@ -87,7 +87,7 @@
 "Create an account" = "Создать учетку";
 "Device disabled. Please log in to \"Supla Cloud\" and enable this device in “Smartphone” section of the website." = "Устройство выключено";
 "Access Identifier is disabled" = "Ключ доступа отключен";
-"Client Registration is off. Please go to \"Smartphone\" at %@ to activate it." = "Регистрация в настоящее время отключена. Для ее включения перейдите на вкладку Смартфоны на странице %@";
+"New client registration disabled. Please log in to \"Supla Cloud\" and enable \"New client registration\" in \"Smartphone\" section of the website." = "Регистрация в настоящее время отключена. Для ее включения перейдите на вкладку Смартфоны на странице \"Supla Cloud\"";
 "This client does not have access identifier assigned. Please go to \"Smartphone\" at %@ and get a valid identifier." = "Это устройство не имеет назначенного ключа доступа. Перейдите на страницу %@ и  на вкладке Смартфоны назначьте соответствующий ключ.";
 
 "Retrieving data from the server..." = "Загрузка данных с сервера ...";
