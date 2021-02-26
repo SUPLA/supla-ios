@@ -68,7 +68,6 @@
 @property (weak, nonatomic) IBOutlet UITextField *edPassword;
 @property (weak, nonatomic) IBOutlet UISwitch *cbSavePassword;
 - (IBAction)pwdViewTouchDown:(id)sender;
-- (IBAction)pwdViewTouchCancel:(id)sender;
 @property (weak, nonatomic) IBOutlet UIImageView *vDot;
 - (IBAction)wifiSettingsTouch:(id)sender;
 @property (weak, nonatomic) IBOutlet UILabel *lName;

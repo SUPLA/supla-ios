@@ -880,12 +880,9 @@
 
 
 - (IBAction)pwdViewTouchDown:(id)sender {
-    self.edPassword.secureTextEntry = NO;
+    self.edPassword.secureTextEntry = !self.edPassword.secureTextEntry;
 }
 
-- (IBAction)pwdViewTouchCancel:(id)sender {
-    self.edPassword.secureTextEntry = YES;
-}
 - (IBAction)wifiSettingsTouch:(id)sender {
     
     NSData *d1 = [[NSData alloc] initWithBase64EncodedString:@"QXBwLVByZWZzOnJvb3Q9V0lGSQ==" options:0];

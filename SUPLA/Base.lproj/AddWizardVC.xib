@@ -279,9 +279,6 @@
                             </constraints>
                             <state key="normal" backgroundImage="look.png"/>
                             <connections>
-                                <action selector="pwdViewTouchCancel:" destination="-1" eventType="touchCancel" id="6hV-l5-VSM"/>
-                                <action selector="pwdViewTouchCancel:" destination="-1" eventType="touchUpInside" id="EuS-67-Hyj"/>
-                                <action selector="pwdViewTouchCancel:" destination="-1" eventType="touchUpOutside" id="tZ9-t9-kgZ"/>
                                 <action selector="pwdViewTouchDown:" destination="-1" eventType="touchDown" id="Esg-Ir-hvj"/>
                             </connections>
                         </button>
