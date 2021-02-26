@@ -901,7 +901,7 @@
 }
 - (IBAction)swAutoModeChanged:(id)sender {
 
-    NSString *txt1 = NSLocalizedString(@"If the device when switched on does not work in the configuration mode, press and hold CONFIG button for at least 5 seconds.\n\n%@\n", NULL);
+    NSString *txt1 = NSLocalizedString(@"*Configuration mode is enabled by default on brand new products. It can also be enabled manually by pressing and holding CONFIG button or dimmer knob for around 5s.\n\n%@\n", NULL);
     
     NSString *txt2 = NSLocalizedString(self.swAutoMode.on
                                                    ? @"Press START to start configuration." :

@@ -144,7 +144,7 @@
 
 "Heat meter" = "Merilnik toplote";
 
-"If the device when switched on does not work in the configuration mode, press and hold CONFIG button for at least 5 seconds.\n\n%@\n" = "Če naprava po vklopu napajanja ne deluje v konfiguracijskem načinu, držite gumb CONFIG najmanj 5 sekund.\n\n%@\n";
+"*Configuration mode is enabled by default on brand new products. It can also be enabled manually by pressing and holding CONFIG button or dimmer knob for around 5s.\n\n%@\n" = "Če naprava po vklopu napajanja ne deluje v konfiguracijskem načinu, držite gumb CONFIG najmanj 5 sekund.\n\n%@\n";
 "Press Next to continue." = "Če želite nadaljevati, pritisnite Naprej.";
 "Press START to start configuration." = "Pritisnite tipko START da začnete konfiguracijo.";
 "I/O Device connection setting timeout!" = "Čakalna doba za vzpostavitev povezave z izvršilno napravo je prekoračena!";

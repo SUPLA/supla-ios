@@ -23,7 +23,7 @@
 /* Class = "UILabel"; text = "Remember password"; ObjectID = "OMR-DU-yyQ"; */
 "OMR-DU-yyQ.text" = "Zapamiętaj hasło";
 
-/* Class = "UILabel"; text = "Power up your executive device. Configuration mode should be the default mode for the device, confirmed by a status diode flashing as"; ObjectID = "QQN-Ba-rnP"; */
+/* Class = "UILabel"; text = "Power up your I/O Device and make sure it is configuration mode - the status LED should be flashing rapidly"; ObjectID = "QQN-Ba-rnP"; */
 "QQN-Ba-rnP.text" = "Podłącz Twoje urządzenie wykonawcze do zasilania. Urządzenie powinno domyślnie pracować w trybie konfiguracji, sygnalizując to miganiem diody statusu w następujący sposób";
 
 /* Class = "UIButton"; normalTitle = "Go to the system settings"; ObjectID = "a01-dG-nhT"; */

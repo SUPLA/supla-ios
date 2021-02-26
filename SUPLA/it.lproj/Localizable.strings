@@ -145,7 +145,7 @@
 
 "Heat meter" = "Contatore di calore";
 
-"If the device when switched on does not work in the configuration mode, press and hold CONFIG button for at least 5 seconds.\n\n%@\n" = "Se dopo aver acceso l’alimentazione il dispositivo non lavora in modalità di configurazione, tieni premuto il tasto CONFIG per almeno 5 secondi..\n\n%@\n";
+"*Configuration mode is enabled by default on brand new products. It can also be enabled manually by pressing and holding CONFIG button or dimmer knob for around 5s.\n\n%@\n" = "Se dopo aver acceso l’alimentazione il dispositivo non lavora in modalità di configurazione, tieni premuto il tasto CONFIG per almeno 5 secondi..\n\n%@\n";
 "Press Next to continue." = "Per continuare clicca Avanti.";
 "Press START to start configuration." = "Premii il tasto START per iniziare la configurazione.";
 "I/O Device connection setting timeout!" = "Il tempo di attesa per lo stabilimento della connessione con il dispositivo di input/output è stato superato!";

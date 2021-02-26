@@ -23,7 +23,7 @@
 /* Class = "UILabel"; text = "Remember password"; ObjectID = "OMR-DU-yyQ"; */
 "OMR-DU-yyQ.text" = "Απομνημόνευση κωδικού πρόσβασης";
 
-/* Class = "UILabel"; text = "Power up your executive device. Configuration mode should be the default mode for the device, confirmed by a status diode flashing as"; ObjectID = "QQN-Ba-rnP"; */
+/* Class = "UILabel"; text = "Power up your I/O Device and make sure it is configuration mode - the status LED should be flashing rapidly"; ObjectID = "QQN-Ba-rnP"; */
 "QQN-Ba-rnP.text" = "Συνδέστε την εκτελεστική συσκευή σας με την παροχή ρεύματος. Η συσκευή έχει ως την προεπιλογή τη λειτουργία διαμόρφωσης και μας ειδοποιεί σχετικά με το να αναβοσβήνει ένα LED λαμπάκι της κατάστασης ως εξής";
 
 /* Class = "UIButton"; normalTitle = "Go to the system settings"; ObjectID = "a01-dG-nhT"; */
@@ -44,5 +44,5 @@
 /* Class = "UILabel"; text = "Welcome to Add I/O Device Wizard which will help you to add a new device to your system in a few simple steps."; ObjectID = "vbb-Xd-lIx"; */
 "vbb-Xd-lIx.text" = "Καλώς ορίσατε στον οδηγό προσθήκης συσκευής, ο οποίος θα σας βοηθήσει να προσθέσετε μια νέα συσκευή στο σύστημα με γρήγορο και εύκολο τρόπο.";
 
-/* Class = "UILabel"; text = "If the device when switched on does not work in the configuration mode, press and hold CONFIG button for at least 5 seconds.\n\nPress Next to continue.\n"; ObjectID = "y0X-IV-sH5"; */
+/* Class = "UILabel"; text = "*Configuration mode is enabled by default on brand new products. It can also be enabled manually by pressing and holding CONFIG button or dimmer knob for around 5s.\n\nPress Next to continue.\n"; ObjectID = "y0X-IV-sH5"; */
 "y0X-IV-sH5.text" = ;

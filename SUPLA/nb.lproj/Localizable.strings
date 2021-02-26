@@ -144,7 +144,7 @@
 
 "Heat meter" = "Varmemåler";
 
-"If the device when switched on does not work in the configuration mode, press and hold CONFIG button for at least 5 seconds.\n\n%@\n" = "Hvis enheten etter å ha blitt satt til lading ikke jobber i konfigurasjonsmodus hold inne knappen CONFIG i 5 sekunder.\n\n%@\n";
+"*Configuration mode is enabled by default on brand new products. It can also be enabled manually by pressing and holding CONFIG button or dimmer knob for around 5s.\n\n%@\n" = "Hvis enheten etter å ha blitt satt til lading ikke jobber i konfigurasjonsmodus hold inne knappen CONFIG i 5 sekunder.\n\n%@\n";
 "Press Next to continue." = "For å fortsette trykk på Videre.";
 "Press START to start configuration." = "Trykk på knappen START for å starte konfigurasjonen.";
 "I/O Device connection setting timeout!" = "Ventetiden for etablering av kobling med aktuator er overskredet!";

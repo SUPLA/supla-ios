@@ -234,7 +234,7 @@
                 <constraint firstItem="BIm-R9-3vC" firstAttribute="top" relation="greaterThanOrEqual" secondItem="7B1-OE-46N" secondAttribute="top" constant="20" id="v3j-73-oER"/>
                 <constraint firstItem="vbb-Xd-lIx" firstAttribute="leading" secondItem="7B1-OE-46N" secondAttribute="leading" constant="15" id="zsJ-y5-wbq"/>
             </constraints>
-            <point key="canvasLocation" x="-19" y="49"/>
+            <point key="canvasLocation" x="146" y="44"/>
         </view>
         <view contentMode="scaleToFill" id="S8z-fu-dma" userLabel="vStep2">
             <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
@@ -346,7 +346,7 @@
                 <constraint firstItem="viQ-Mh-NPQ" firstAttribute="top" relation="greaterThanOrEqual" secondItem="S8z-fu-dma" secondAttribute="top" constant="5" id="mGr-IM-Bhi"/>
                 <constraint firstItem="7Bs-NP-71g" firstAttribute="leading" secondItem="S8z-fu-dma" secondAttribute="leading" constant="30" id="pmO-fg-d2G"/>
             </constraints>
-            <point key="canvasLocation" x="825" y="49"/>
+            <point key="canvasLocation" x="806" y="33"/>
         </view>
         <view contentMode="scaleToFill" id="x6e-cq-S7L" userLabel="vStep3">
             <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
@@ -376,7 +376,7 @@
                             <constraints>
                                 <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="10" id="psE-QE-yS4"/>
                             </constraints>
-                            <string key="text">If the device when switched on does not work in the configuration mode, press and hold CONFIG button for at least 5 seconds.
+                            <string key="text">*Configuration mode is enabled by default on brand new products. It can also be enabled manually by pressing and holding CONFIG button or dimmer knob for around 5s.
 
 Press Next to continue.
 </string>
@@ -384,12 +384,11 @@ Press Next to continue.
                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="7" baselineAdjustment="alignBaselines" minimumFontSize="8" translatesAutoresizingMaskIntoConstraints="NO" id="QQN-Ba-rnP">
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Power up your I/O Device and make sure it is configuration mode - the status LED should be flashing rapidly" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="7" baselineAdjustment="alignBaselines" minimumFontSize="8" translatesAutoresizingMaskIntoConstraints="NO" id="QQN-Ba-rnP">
                             <rect key="frame" x="5" y="0.0" width="300" height="79.5"/>
                             <constraints>
                                 <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="10" id="sr1-z1-Lpe"/>
                             </constraints>
-                            <string key="text">Power up your executive device. Configuration mode should be the default mode for the device, confirmed by a status diode flashing as</string>
                             <fontDescription key="fontDescription" name="Quicksand-Regular" family="Quicksand" pointSize="18"/>
                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <nil key="highlightedColor"/>
@@ -416,8 +415,8 @@ Press Next to continue.
                         <action selector="swAutoModeChanged:" destination="-1" eventType="valueChanged" id="LVG-nw-x5e"/>
                     </connections>
                 </switch>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Auto mode" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v4z-H5-9Z6">
-                    <rect key="frame" x="69" y="414.5" width="81.5" height="30"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Assisted configuration" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v4z-H5-9Z6">
+                    <rect key="frame" x="69" y="414.5" width="163" height="30"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="30" id="g4m-JB-LDX"/>
                     </constraints>
@@ -442,7 +441,7 @@ Press Next to continue.
                 <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="v4z-H5-9Z6" secondAttribute="trailing" constant="20" symbolic="YES" id="hhy-ds-e0P"/>
                 <constraint firstItem="Ej4-ru-hOy" firstAttribute="top" secondItem="ulw-KV-Mde" secondAttribute="bottom" constant="10" id="irP-Cb-7MS"/>
             </constraints>
-            <point key="canvasLocation" x="997" y="49"/>
+            <point key="canvasLocation" x="1551" y="33"/>
         </view>
         <view contentMode="scaleToFill" id="Ua2-ym-wmd" userLabel="vStep4">
             <rect key="frame" x="0.0" y="0.0" width="375" height="661"/>
