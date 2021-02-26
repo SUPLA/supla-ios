@@ -133,7 +133,7 @@ static SASuperuserAuthorizationDialog *_superuserAuthorizationDialogGlobalRef = 
             } else {
                 switch (result.code) {
                     case SUPLA_RESULTCODE_UNAUTHORIZED:
-                        [self showError:NSLocalizedString(@"Bad credentials", nil)];
+                        [self showError:NSLocalizedString(@"Incorrect Email Address or Password", nil)];
                         break;
                     case SUPLA_RESULTCODE_TEMPORARILY_UNAVAILABLE:
                         [self showError:NSLocalizedString(@"Service temporarily unavailable", nil)];
