@@ -14,7 +14,7 @@
 /* Class = "UILabel"; text = "Enter User Name and Password of your domestic or business WiFi network used to have the i/o device connected to server."; ObjectID = "Igv-nx-eY7"; */
 "Igv-nx-eY7.text" = "Introduza o nome e a senha da sua rede WiFi doméstica ou empresarial através da qual o dispositivo poderá estabelecer uma conexão com o servidor.";
 
-/* Class = "UILabel"; text = "Device configuration completed successfully :)"; ObjectID = "JYg-Vc-pZn"; */
+/* Class = "UILabel"; text = "The settings have been transferred to the I/O device."; ObjectID = "JYg-Vc-pZn"; */
 "JYg-Vc-pZn.text" = "O dispositivo foi configurado com sucesso :)";
 
 /* Class = "UILabel"; text = "Go to the iOS system settings and manually connect to the WiFi network beginning with SUPLA, ZAMEL or NICE. \n\nFor example: „SUPLA-A220A63612B1”. This is a temporary network of the i/o device enabling configuration. \n\nWhen the connection has been set, go back to the application and  continue adding  procedure by pressing the START button.  "; ObjectID = "LmT-sv-XIj"; */

@@ -540,8 +540,8 @@ When the connection has been set, go back to the application and  continue addin
                         <constraint firstAttribute="height" relation="lessThanOrEqual" constant="140" id="nOF-xB-Ezk"/>
                     </constraints>
                 </imageView>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Device configuration completed successfully :)" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="7" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="JYg-Vc-pZn">
-                    <rect key="frame" x="15" y="210" width="290" height="80"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="The settings have been transferred to the I/O device." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="7" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="JYg-Vc-pZn">
+                    <rect key="frame" x="15" y="210" width="290" height="82.5"/>
                     <constraints>
                         <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="80" id="J2u-ra-mAR"/>
                     </constraints>
@@ -550,7 +550,7 @@ When the connection has been set, go back to the application and  continue addin
                     <nil key="highlightedColor"/>
                 </label>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="E58-RD-4NN">
-                    <rect key="frame" x="20" y="320" width="280" height="130"/>
+                    <rect key="frame" x="20" y="322.5" width="280" height="130"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Device parameters" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Da-uK-N1d">
                             <rect key="frame" x="10" y="8" width="260" height="21"/>
