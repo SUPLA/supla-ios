@@ -636,6 +636,7 @@ When the connection has been set, go back to the application and  continue addin
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="6" translatesAutoresizingMaskIntoConstraints="NO" id="6o8-Z9-BJq">
                             <rect key="frame" x="135" y="102" width="135" height="18"/>
+                            <color key="backgroundColor" red="0.99993437529999996" green="0.90984565019999997" blue="0.0080077247689999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="18" id="AU7-iE-a7P"/>
                                 <constraint firstAttribute="height" relation="lessThanOrEqual" constant="18" id="K5Z-0Q-SWK"/>
