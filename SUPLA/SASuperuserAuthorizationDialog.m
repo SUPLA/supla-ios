@@ -28,7 +28,6 @@ static SASuperuserAuthorizationDialog *_superuserAuthorizationDialogGlobalRef = 
 @property (weak, nonatomic) IBOutlet UIButton *btnOK;
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *actIndictor;
 - (IBAction)btnOkTouch:(id)sender;
-- (IBAction)btnPasswordViewTouchCancel:(id)sender;
 - (IBAction)btnPasswordViewtouchDown:(id)sender;
 
 @end
@@ -196,11 +195,7 @@ static SASuperuserAuthorizationDialog *_superuserAuthorizationDialogGlobalRef = 
 }
 
 - (IBAction)btnPasswordViewtouchDown:(id)sender {
-     self.edPassword.secureTextEntry = NO;
-}
-
-- (IBAction)btnPasswordViewTouchCancel:(id)sender {
-     self.edPassword.secureTextEntry = YES;
+     self.edPassword.secureTextEntry = !self.edPassword.secureTextEntry;
 }
 
 - (IBAction)btnOkTouch:(id)sender {
