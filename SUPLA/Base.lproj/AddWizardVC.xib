@@ -444,11 +444,11 @@ Press Next to continue.
             <point key="canvasLocation" x="1551" y="33"/>
         </view>
         <view contentMode="scaleToFill" id="Ua2-ym-wmd" userLabel="vStep4">
-            <rect key="frame" x="0.0" y="0.0" width="375" height="661"/>
+            <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="a01-dG-nhT" userLabel="btnWifiSettings">
-                    <rect key="frame" x="72.5" y="594" width="230" height="40"/>
+                    <rect key="frame" x="45" y="413" width="230" height="40"/>
                     <color key="backgroundColor" red="1" green="0.99626988172531128" blue="0.98774594068527222" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="40" id="H47-lj-7FX"/>
@@ -464,17 +464,17 @@ Press Next to continue.
                     </connections>
                 </button>
                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="generalsettings.png" translatesAutoresizingMaskIntoConstraints="NO" id="TIr-Vk-7vg">
-                    <rect key="frame" x="37.5" y="90.5" width="300" height="140"/>
+                    <rect key="frame" x="10" y="5" width="300" height="140"/>
                     <constraints>
                         <constraint firstAttribute="height" relation="lessThanOrEqual" constant="140" id="36e-Ix-q3z"/>
                         <constraint firstAttribute="width" constant="300" id="XTi-4Q-xdr"/>
                     </constraints>
                 </imageView>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="20" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="LmT-sv-XIj">
-                    <rect key="frame" x="5" y="240.5" width="365" height="333.5"/>
-                    <string key="text">Go to the iOS system settings and manually connect to the WiFi network beginning with SUPLA, ZAMEL or NICE or HEATPOL. 
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="20" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="LmT-sv-XIj">
+                    <rect key="frame" x="5" y="155" width="310" height="238"/>
+                    <string key="text">Please use the System Settings shortcut below to select your I/O Device Wi-Fi for configuration such as SUPLA-A220A63612B1*. After connection is established, go back to the Supla application and press Start.
 
-For example: „SUPLA-A220A63612B1”. This is a temporary network of the i/o device enabling configuration. 
+*Configuration Wi-Fi name usually contains manufacturer name e.g. SUPLA, ZAMEL, NICE, HEATPOL etc. 
 
 When the connection has been set, go back to the application and  continue adding  procedure by pressing the START button.  </string>
                     <fontDescription key="fontDescription" name="Quicksand-Regular" family="Quicksand" pointSize="20"/>
@@ -495,8 +495,7 @@ When the connection has been set, go back to the application and  continue addin
                 <constraint firstAttribute="trailing" secondItem="LmT-sv-XIj" secondAttribute="trailing" constant="5" id="ifZ-8w-Sj6"/>
                 <constraint firstItem="TIr-Vk-7vg" firstAttribute="centerX" secondItem="Ua2-ym-wmd" secondAttribute="centerX" id="rE0-Q3-gc9"/>
             </constraints>
-            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <point key="canvasLocation" x="1452.5" y="51.5"/>
+            <point key="canvasLocation" x="856" y="824"/>
         </view>
         <view contentMode="scaleToFill" id="uTS-MU-A22" userLabel="vError">
             <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>

@@ -17,7 +17,7 @@
 /* Class = "UILabel"; text = "The settings have been transferred to the I/O device."; ObjectID = "JYg-Vc-pZn"; */
 "JYg-Vc-pZn.text" = "Konfigurace zařízení byla úspěšně dokončena :)";
 
-/* Class = "UILabel"; text = "Go to the iOS system settings and manually connect to the WiFi network beginning with SUPLA, ZAMEL or NICE. \n\nFor example: „SUPLA-A220A63612B1”. This is a temporary network of the i/o device enabling configuration. \n\nWhen the connection has been set, go back to the application and  continue adding  procedure by pressing the START button.  "; ObjectID = "LmT-sv-XIj"; */
+/* Class = "UILabel"; text = "Please use the System Settings shortcut below to select your I/O Device Wi-Fi for configuration such as SUPLA-A220A63612B1*. After connection is established, go back to the Supla application and press Start.\n\n*Configuration Wi-Fi name usually contains manufacturer name e.g. SUPLA, ZAMEL, NICE, HEATPOL etc. \n\nWhen the connection has been set, go back to the application and  continue adding  procedure by pressing the START button.  "; ObjectID = "LmT-sv-XIj"; */
 "LmT-sv-XIj.text" = "Přejděte do nastavení systému iOS a ručně připojte k síti WiFi začínající názvem SUPLA nebo ZAMEL nebo NICE nebo HEATPOL. \n\nNapříklad „SUPLA-A220A63612B1”. Jedná se o dočasnou síť pro konfiguraci vykonávajícího zařízení. \n\nPo připojení k této síti se vraťte do této aplikace a pokračujte v přidávání procedury stisknutím tlačítka Start";
 
 /* Class = "UILabel"; text = "Remember password"; ObjectID = "OMR-DU-yyQ"; */
