@@ -148,8 +148,8 @@ static SASuperuserAuthorizationDialog *_superuserAuthorizationDialogGlobalRef = 
 
 -(void)authorizeWithDelegate:(id<SASuperuserAuthorizationDialogDelegate>)delegate {
     if ([SAApp.SuplaClient isSuperuserAuthorized]) {
-        if (_delegate != nil) {
-            [_delegate superuserAuthorizationSuccess];
+        if (delegate != nil) {
+            [delegate superuserAuthorizationSuccess];
         }
         return;
     }
