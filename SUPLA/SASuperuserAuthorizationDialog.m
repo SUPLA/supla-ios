@@ -110,14 +110,29 @@ static SASuperuserAuthorizationDialog *_superuserAuthorizationDialogGlobalRef = 
 
 -(void)onSuperuserAuthorizationResult:(NSNotification *)notification {
     
-    SASuperuserAuthorizationResult *result =
-    [SASuperuserAuthorizationResult notificationToAuthorizationResult:notification];
-    
-    if (result != nil) {
-        if (result.success) {
-            _success = YES;
-            if (_delegate != nil && [SADialog viewControllerIsPresented:self]) {
-                [_delegate superuserAuthorizationSuccess];
+    if (notification.userInfo != nil) {
+        id r = [notification.userInfo objectForKey:@"result"];
+        if (r != nil && [r isKindOfClass:[SASuperuserAuthorizationResult class]]) {
+            SASuperuserAuthorizationResult *result = (SASuperuserAuthorizationResult*)r;
+            
+            if (result.success) {
+                _success = YES;
+                if (_delegate != nil && [SADialog viewControllerIsPresented:self]) {
+                    [_delegate superuserAuthorizationSuccess];
+                }
+            } else {
+                switch (result.code) {
+                    case SUPLA_RESULTCODE_UNAUTHORIZED:
+                        [self showError:NSLocalizedString(@"Incorrect Email Address or Password", nil)];
+                        break;
+                    case SUPLA_RESULTCODE_TEMPORARILY_UNAVAILABLE:
+                        [self showError:NSLocalizedString(@"Service temporarily unavailable", nil)];
+                        break;
+                    default:
+                        [self showError:NSLocalizedString(@"Unknown error", nil)];
+                        break;
+                }
+                
             }
         }
     }
