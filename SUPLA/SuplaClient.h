@@ -112,6 +112,7 @@
 - (void) onOAuthTokenRequestResult:(SAOAuthToken *)token;
 - (void) getSuperuserAuthorizationResult;
 - (void) onSuperuserAuthorizationResult:(SASuperuserAuthorizationResult*)result;
+- (BOOL) isSuperuserAuthorized;
 - (void) onCalCfgResult:(SACalCfgResult*)result;
 - (void) onChannelState:(SAChannelStateExtendedValue*)state;
 

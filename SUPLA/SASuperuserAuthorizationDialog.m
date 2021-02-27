@@ -36,7 +36,6 @@ static SASuperuserAuthorizationDialog *_superuserAuthorizationDialogGlobalRef = 
     id<SASuperuserAuthorizationDialogDelegate>_delegate;
     NSTimer *_timeoutTimer;
     BOOL _success;
-    BOOL _preVerification;
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
@@ -75,11 +74,6 @@ static SASuperuserAuthorizationDialog *_superuserAuthorizationDialogGlobalRef = 
                                              selector:@selector(keyboardDidHide:)
                                                  name:UIKeyboardDidHideNotification
                                                object:nil];
-    
-    
-    _preVerification = YES;
-    self.edPassword.text = @"*****";
-    [self btnOkTouch:self.btnOK];
 }
 
 -(void)viewWillDisappear:(BOOL)animated {
@@ -125,10 +119,6 @@ static SASuperuserAuthorizationDialog *_superuserAuthorizationDialogGlobalRef = 
                 if (_delegate != nil && [SADialog viewControllerIsPresented:self]) {
                     [_delegate superuserAuthorizationSuccess];
                 }
-            } else if (_preVerification) {
-                self.edPassword.text = @"";
-                _preVerification = NO;
-                [self showError:@""];
             } else {
                 switch (result.code) {
                     case SUPLA_RESULTCODE_UNAUTHORIZED:
@@ -157,9 +147,15 @@ static SASuperuserAuthorizationDialog *_superuserAuthorizationDialogGlobalRef = 
 }
 
 -(void)authorizeWithDelegate:(id<SASuperuserAuthorizationDialogDelegate>)delegate {
+    if ([SAApp.SuplaClient isSuperuserAuthorized]) {
+        if (_delegate != nil) {
+            [_delegate superuserAuthorizationSuccess];
+        }
+        return;
+    }
+    
     _delegate = delegate;
     _success = NO;
-    _preVerification = NO;
     [self timeoutTimerInvalidate];
     _lErrorMessage.text = @"";
     _lErrorMessage.hidden = YES;
@@ -184,14 +180,7 @@ static SASuperuserAuthorizationDialog *_superuserAuthorizationDialogGlobalRef = 
 }
 
 -(void)onTimeout:(id)sender {
-   
-    if (_preVerification) {
-        _preVerification = NO;
-        self.edPassword.text = @"";
-         [self showError:@""];
-    } else {
-        [self showError:NSLocalizedString(@"Time exceeded. Try again.", nil)];
-    }
+    [self showError:NSLocalizedString(@"Time exceeded. Try again.", nil)];
 }
 
 - (IBAction)btnPasswordViewtouchDown:(id)sender {
@@ -214,12 +203,8 @@ static SASuperuserAuthorizationDialog *_superuserAuthorizationDialogGlobalRef = 
                                                    userInfo:nil
                                                     repeats:NO];
     
-    if (_preVerification) {
-      [SAApp.SuplaClient getSuperuserAuthorizationResult];
-    } else {
-      [SAApp.SuplaClient superuserAuthorizationRequestWithEmail:_edEmail.text andPassword:_edPassword.text];
-    }
-    
+
+    [SAApp.SuplaClient superuserAuthorizationRequestWithEmail:_edEmail.text andPassword:_edPassword.text];
 }
 
 - (void)keyboardDidShow:(NSNotification*)notification {
