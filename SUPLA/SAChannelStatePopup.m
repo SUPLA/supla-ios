@@ -25,6 +25,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 @interface SAChannelStatePopup () <SASuperuserAuthorizationDialogDelegate>
 @property (weak, nonatomic) IBOutlet UIButton *btnClose;
 @property (weak, nonatomic) IBOutlet UILabel *lTitle;
+@property (weak, nonatomic) IBOutlet UILabel *lChannelIdTitle;
+@property (weak, nonatomic) IBOutlet UILabel *lChannelId;
 @property (weak, nonatomic) IBOutlet UILabel *lIPTitle;
 @property (weak, nonatomic) IBOutlet UILabel *lIP;
 @property (weak, nonatomic) IBOutlet UILabel *lMACTitle;
@@ -154,6 +156,19 @@ static SAChannelStatePopup *_channelStatePopupGlobalRef = nil;
 
     BOOL stopAnimating = NO;
     _lastState = state;
+    
+    if (state && state.channelId != nil) {
+        [self.lChannelIdTitle setText:NSLocalizedString(@"Channel Id", nil)];
+        [self.lChannelId setText:state.channelIdString];
+        self.lChannelIdTitle.hidden = NO;
+        self.lChannelId.hidden = NO;
+        stopAnimating = YES;
+    } else {
+        [self.lChannelIdTitle setText:@""];
+        [self.lChannelId setText:@""];
+        self.lChannelIdTitle.hidden = YES;
+        self.lChannelId.hidden = YES;
+    }
     
     if (state && state.ipv4 != nil) {
         [self.lIPTitle setText:NSLocalizedString(@"IP", nil)];

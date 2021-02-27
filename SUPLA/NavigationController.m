@@ -239,6 +239,9 @@
         case SAMenuItemIdHomepage:
             [[UIApplication sharedApplication] openURL:[NSURL URLWithString: _menuItems.homepageUrl]];
             break;
+        case SAMenuItemIdCloud:
+            [[UIApplication sharedApplication] openURL:[NSURL URLWithString: @"https://cloud.supla.org"]];
+            break;
         default:
             break;
     }

@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina3_5" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -78,13 +79,13 @@
                             <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="14"/>
                             <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                         </textField>
-                        <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Bad credentials" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" minimumFontSize="5" translatesAutoresizingMaskIntoConstraints="NO" id="btP-Nc-v0w">
+                        <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Incorrect Email Address or Password" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" minimumFontSize="5" translatesAutoresizingMaskIntoConstraints="NO" id="btP-Nc-v0w">
                             <rect key="frame" x="15" y="80" width="270" height="14"/>
                             <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="10"/>
                             <color key="textColor" red="1" green="0.024649368904869462" blue="0.055923047577645768" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cdk-TD-22T">
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cdk-TD-22T">
                             <rect key="frame" x="15" y="246" width="130" height="40"/>
                             <color key="backgroundColor" red="0.81953251360000001" green="0.83142000439999997" blue="0.85087817909999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <constraints>
@@ -98,7 +99,7 @@
                                 <action selector="closeButtonTouch:" destination="-1" eventType="touchDown" id="Muc-Bo-KMA"/>
                             </connections>
                         </button>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="h9i-6L-lC5">
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="h9i-6L-lC5">
                             <rect key="frame" x="155" y="246" width="130" height="40"/>
                             <color key="backgroundColor" red="0.81953251360000001" green="0.83142000439999997" blue="0.85087817909999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <constraints>
@@ -115,7 +116,7 @@
                         <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="Lw1-Vk-sTq">
                             <rect key="frame" x="210" y="256" width="20" height="20"/>
                         </activityIndicatorView>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZsO-O8-NCF">
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZsO-O8-NCF">
                             <rect key="frame" x="255" y="170" width="30" height="30"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="30" id="6Il-v0-5Ab"/>
@@ -125,14 +126,11 @@
                             </constraints>
                             <state key="normal" backgroundImage="lookblack.png"/>
                             <connections>
-                                <action selector="btnPasswordViewTouchCancel:" destination="-1" eventType="touchUpInside" id="76x-ib-O9L"/>
-                                <action selector="btnPasswordViewTouchCancel:" destination="-1" eventType="touchCancel" id="e8N-tG-6Wr"/>
-                                <action selector="btnPasswordViewTouchCancel:" destination="-1" eventType="touchUpOutside" id="oxd-g3-VlS"/>
                                 <action selector="btnPasswordViewtouchDown:" destination="-1" eventType="touchDown" id="Exw-yd-cgV"/>
                             </connections>
                         </button>
                     </subviews>
-                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     <constraints>
                         <constraint firstAttribute="trailing" secondItem="jfU-PJ-nMC" secondAttribute="trailing" constant="50" id="2LO-Id-HfG"/>
                         <constraint firstItem="MOE-IP-Z4M" firstAttribute="top" secondItem="jfU-PJ-nMC" secondAttribute="bottom" constant="2" id="7rF-Dj-Fyr"/>
@@ -177,5 +175,8 @@
     </objects>
     <resources>
         <image name="lookblack.png" width="242.5" height="242"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
     </resources>
 </document>

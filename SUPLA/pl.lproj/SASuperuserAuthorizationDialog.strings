@@ -2,7 +2,7 @@
 /* Class = "UILabel"; text = "E-MAIL ADDRESS"; ObjectID = "MOE-IP-Z4M"; */
 "MOE-IP-Z4M.text" = "ADRES E-MAIL";
 
-/* Class = "UILabel"; text = "Bad credentials"; ObjectID = "btP-Nc-v0w"; */
+/* Class = "UILabel"; text = "Incorrect Email Address or Password"; ObjectID = "btP-Nc-v0w"; */
 "btP-Nc-v0w.text" = "Błędne poświadczenia";
 
 /* Class = "UIButton"; normalTitle = "CANCEL"; ObjectID = "cdk-TD-22T"; */

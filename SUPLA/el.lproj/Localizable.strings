@@ -50,12 +50,12 @@
 "Service temporarily unavailable" = "Υπηρεσία προσωρινά μη διαθέσιμη";
 "Bad credentials" = "Λανθασμένα διαπιστευτήρια";
 "Client limit exceeded" = "Υπέρβαση ορίου των εφαρμογών πελάτη";
-"Device is disabled" = "Η συσκευή είναι απενεργοποιημένη";
+"Device disabled. Please log in to \"Supla Cloud\" and enable this device in “Smartphone” section of the website." = "Η συσκευή είναι απενεργοποιημένη";
 "Access Identifier is disabled" = "Το αναγνωριστικό πρόσβασης είναι απενεργοποιημένο";
-"Client Registration is off. Please go to \"Smartphone\" at %@ to activate it." = "Η εγγραφή είναι αυτή τη στιγμή απενεργοποιημένη. Για να την ενεργοποιήσετε, μεταβείτε στην καρτέλα \"Smartphones\" στη σελίδα %@";
-"This client does not have access identifier assigned. Please go to \"Smartphone\" at %@ and get a valid identifier." = "Αυτή η συσκευή δεν έχει παραχωρημένο αναγνωριστικό πρόσβασης. Μεταβείτε στη σελίδα %@  στην καρτέλα \"Smartphones\" και παραχωρήστε το κατάλληλο αναγνωριστικό.";
+"New client registration disabled. Please log in to \"Supla Cloud\" and enable \"New client registration\" in \"Smartphone\" section of the website." = "Η εγγραφή είναι αυτή τη στιγμή απενεργοποιημένη. Για να την ενεργοποιήσετε, μεταβείτε στην καρτέλα \"Smartphones\" στη σελίδα \"Supla Cloud\"";
+"Client activation required. Please log in to \"Supla Cloud\" and assign an “Access ID” for this device in “Smartphone” section of the website." = "Αυτή η συσκευή δεν έχει παραχωρημένο αναγνωριστικό πρόσβασης. Μεταβείτε στη σελίδα \"Supla Cloud\" στην καρτέλα \"Smartphones\" και παραχωρήστε το κατάλληλο αναγνωριστικό.";
 "Incompatible server version" = "Μη συμβατή έκδοση διακομιστή";
-"Host not found" = "Η διεύθυνση του διακομιστή δεν βρέθηκε";
+"Host not found. Make sure you are connected to the internet and that an account with the entered email address has been created." = "Η διεύθυνση του διακομιστή δεν βρέθηκε";
 "RGB Lighting" = "Φωτισμός RGB";
 "Dimmer and RGB lighting" = "Ρεοστάτης και φωτισμός RGB";
 "Dimmer" = "Ρεοστάτης";
@@ -144,8 +144,8 @@
 
 "Heat meter" = "Μετρητής θερμότητας";
 
-"If the device when switched on does not work in the configuration mode, press and hold CONFIG button for at least 5 seconds.\n\n%@\n" = "Όταν η συσκευή κατόπιν  ενεργοποίησης δεν εκτελεί τη λειτουργία διαμόρφωσης, κρατήστε πατημένο το κουμπί CONFIG για τουλάχιστον 5 δευτερόλεπτα.\n\n%@\n";
+"*Configuration mode is enabled by default on brand new products. It can also be enabled manually by pressing and holding CONFIG button or dimmer knob for around 5s.\n\n%@\n" = "Όταν η συσκευή κατόπιν  ενεργοποίησης δεν εκτελεί τη λειτουργία διαμόρφωσης, κρατήστε πατημένο το κουμπί CONFIG για τουλάχιστον 5 δευτερόλεπτα.\n\n%@\n";
 "Press Next to continue." = "Για να συνεχίσετε, πατήστε Επόμενο.";
 "Press START to start configuration." = "Πατήστε το κουμπί START για να ξεκινήσει η διαμόρφωση.";
 "I/O Device connection setting timeout!" = "Υπέρβαση χρόνου αναμονής για τη σύνδεση με την εκτελεστική συσκευή!";
-"No devices has been found! Check, if the device you want to configure is working in the configuration mode and try again." = "Δεν βρέθηκε καμία συσκευή! Βεβαιωθείτε ότι η συσκευή την οποία θέλετε να ρυθμίσετε βρίσκετε στη λειτουργία διαμόρφωσης και στη συνέχεια προσπαθήστε ξανά.";
+"No I/O Devices found! Please check if your I/O Device is ON and in configuration mode." = "Δεν βρέθηκε καμία συσκευή! Βεβαιωθείτε ότι η συσκευή την οποία θέλετε να ρυθμίσετε βρίσκετε στη λειτουργία διαμόρφωσης και στη συνέχεια προσπαθήστε ξανά.";

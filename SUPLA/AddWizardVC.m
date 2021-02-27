@@ -715,7 +715,7 @@
                 [self startConfiguration];
             } else {
                 [self->_OpQueue cancelAllOperations];
-                [self showError:NSLocalizedString(@"No devices has been found! Check, if the device you want to configure is working in the configuration mode and try again.", NULL)];
+                [self showError:NSLocalizedString(@"No I/O Devices found! Please check if your I/O Device is ON and in configuration mode.", NULL)];
             }
         }
     }];
@@ -808,12 +808,9 @@
 
 
 - (IBAction)pwdViewTouchDown:(id)sender {
-    self.edPassword.secureTextEntry = NO;
+    self.edPassword.secureTextEntry = !self.edPassword.secureTextEntry;
 }
 
-- (IBAction)pwdViewTouchCancel:(id)sender {
-    self.edPassword.secureTextEntry = YES;
-}
 - (IBAction)wifiSettingsTouch:(id)sender {
     
     NSData *d1 = [[NSData alloc] initWithBase64EncodedString:@"QXBwLVByZWZzOnJvb3Q9V0lGSQ==" options:0];
@@ -832,7 +829,7 @@
 }
 - (IBAction)swAutoModeChanged:(id)sender {
 
-    NSString *txt1 = NSLocalizedString(@"If the device when switched on does not work in the configuration mode, press and hold CONFIG button for at least 5 seconds.\n\n%@\n", NULL);
+    NSString *txt1 = NSLocalizedString(@"*Configuration mode is enabled by default on brand new products. It can also be enabled manually by pressing and holding CONFIG button or dimmer knob for around 5s.\n\n%@\n", NULL);
     
     NSString *txt2 = NSLocalizedString(self.swAutoMode.on
                                                    ? @"Press START to start configuration." :

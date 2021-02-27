@@ -50,12 +50,12 @@
 "Service temporarily unavailable" = "Služba je dočasne nedostupná";
 "Bad credentials" = "Nesprávne autentifikačné údaje";
 "Client limit exceeded" = "Prekročený limit klientskych aplikácií";
-"Device is disabled" = "Zariadenie je vypnuté";
+"Device disabled. Please log in to \"Supla Cloud\" and enable this device in “Smartphone” section of the website." = "Zariadenie je vypnuté";
 "Access Identifier is disabled" = "Identifikátor prístupu je vypnutý";
-"Client Registration is off. Please go to \"Smartphone\" at %@ to activate it." = "Registrácia je momentálne vypnutá. Ak ju chcete zapnúť, prejdite do záložky \"Smartfóny\" na  stránke %@";
-"This client does not have access identifier assigned. Please go to \"Smartphone\" at %@ and get a valid identifier." = "Toto zariadenie nemá priradený identifikátor prístupu. Prejdite na stránku %@ a v záložke \"Smartfóny\" priraďte príslušný identifikátor.";
+"New client registration disabled. Please log in to \"Supla Cloud\" and enable \"New client registration\" in \"Smartphone\" section of the website." = "Registrácia je momentálne vypnutá. Ak ju chcete zapnúť, prejdite do záložky \"Smartfóny\" na  stránke \"Supla Cloud\"";
+"Client activation required. Please log in to \"Supla Cloud\" and assign an “Access ID” for this device in “Smartphone” section of the website." = "Toto zariadenie nemá priradený identifikátor prístupu. Prejdite na stránku \"Supla Cloud\" a v záložke \"Smartfóny\" priraďte príslušný identifikátor.";
 "Incompatible server version" = "Nekompatibilná verzia servera";
-"Host not found" = "Adresa servera nebola nájdená";
+"Host not found. Make sure you are connected to the internet and that an account with the entered email address has been created." = "Adresa servera nebola nájdená";
 "RGB Lighting" = "RGB osvetlenie";
 "Dimmer and RGB lighting" = "Stmievač a RGB osvetlenie";
 "Dimmer" = "Stmievač";
@@ -144,8 +144,8 @@
 
 "Heat meter" = "Merač tepla";
 
-"If the device when switched on does not work in the configuration mode, press and hold CONFIG button for at least 5 seconds.\n\n%@\n" = "Ak zariadenie po pripojení k el. napätiu nie je spustené v konfiguračnom režime, stlačte a na aspoň 5 sekúnd podržte tlačidlo CONFIG.\n\n%@\n";
+"*Configuration mode is enabled by default on brand new products. It can also be enabled manually by pressing and holding CONFIG button or dimmer knob for around 5s.\n\n%@\n" = "Ak zariadenie po pripojení k el. napätiu nie je spustené v konfiguračnom režime, stlačte a na aspoň 5 sekúnd podržte tlačidlo CONFIG.\n\n%@\n";
 "Press Next to continue." = "Pokračujte stlačením Ďalej.";
 "Press START to start configuration." = "Stlačte tlačidlo ŠTART a začnite konfiguráciu.";
 "I/O Device connection setting timeout!" = "Bola prekročená lehota čakania na nadviazanie spojenia s vykonávacím zariadením!";
-"No devices has been found! Check, if the device you want to configure is working in the configuration mode and try again." = "Nenašli sa žiadne zariadenia! Skontrolujte, či zariadenie, ktoré chcete konfigurovať, pracuje v konfiguračnom režime, a potom to skúste znova.";
+"No I/O Devices found! Please check if your I/O Device is ON and in configuration mode." = "Nenašli sa žiadne zariadenia! Skontrolujte, či zariadenie, ktoré chcete konfigurovať, pracuje v konfiguračnom režime, a potom to skúste znova.";

@@ -51,7 +51,7 @@
 "Bad credentials" = "Informations d'identification invalides";
 "Client limit exceeded" = "Vous avez dépassé la limite des applications client-side";
 "Incompatible server version" = "Incompatibilité de la version du serveur";
-"Host not found" = "Nous n'avons pas pu trouver cette adresse du serveur";
+"Host not found. Make sure you are connected to the internet and that an account with the entered email address has been created." = "Nous n'avons pas pu trouver cette adresse du serveur";
 "RGB Lighting" = "Éclairage RGB";
 "Dimmer and RGB lighting" = "Variateur de luminosité et éclairage RGB";
 "Dimmer" = "Variateur de luminosité";
@@ -85,10 +85,10 @@
 "https://cloud.supla.org/register" = "https://cloud.supla.org/register?lang=fr";
 
 "Create an account" = "Créer un compte";
-"Device is disabled" = "Le dispositif est éteint";
+"Device disabled. Please log in to \"Supla Cloud\" and enable this device in “Smartphone” section of the website." = "Le dispositif est éteint";
 "Access Identifier is disabled" = "L'identifiant d'accès est désactivé";
-"Client Registration is off. Please go to \"Smartphone\" at %@ to activate it." = "L'inscription est actuellement désactivée. Pour l'activer, allez vers l'onglet \"Smartphones\" à la page %@";
-"This client does not have access identifier assigned. Please go to \"Smartphone\" at %@ and get a valid identifier." = "Ce dispositif n'a pas d'identifiant d'accès attribué. Allez à la page %@ et dans l'onglet \"Smartphones\"  attribuez l'identifiant approprié.";
+"New client registration disabled. Please log in to \"Supla Cloud\" and enable \"New client registration\" in \"Smartphone\" section of the website." = "L'inscription est actuellement désactivée. Pour l'activer, allez vers l'onglet \"Smartphones\" à la page \"Supla Cloud\"";
+"Client activation required. Please log in to \"Supla Cloud\" and assign an “Access ID” for this device in “Smartphone” section of the website." = "Ce dispositif n'a pas d'identifiant d'accès attribué. Allez à la page \"Supla Cloud\" et dans l'onglet \"Smartphones\"  attribuez l'identifiant approprié.";
 
 "Retrieving data from the server..." = "Téléchargement des données du serveur...";
 "No chart data available." = "Manquent les données pour pour le graphique.";
@@ -145,8 +145,8 @@
 
 "Heat meter" = "Compteur de chaleur";
 
-"If the device when switched on does not work in the configuration mode, press and hold CONFIG button for at least 5 seconds.\n\n%@\n" = "Si le dispositif est allumé mais ne fonctionne pas en mode de configuration, maintenez la touche CONFIG pendant au moins 5 secondes.\n\n%@\n";
+"*Configuration mode is enabled by default on brand new products. It can also be enabled manually by pressing and holding CONFIG button or dimmer knob for around 5s.\n\n%@\n" = "Si le dispositif est allumé mais ne fonctionne pas en mode de configuration, maintenez la touche CONFIG pendant au moins 5 secondes.\n\n%@\n";
 "Press Next to continue." = "Pour continuer, appuyez sur Continuer.";
 "Press START to start configuration." = "Appuyez sur DÉMARRER pour commencer la configuration.";
 "I/O Device connection setting timeout!" = "Il tempo di attesa per lo stabilimento della connessione con il dispositivo di input/output è stato superato!";
-"No devices has been found! Check, if the device you want to configure is working in the configuration mode and try again." = "Aucun dispositif n'a été trouvé ! Assurez-vous que le dispositif que vous souhaitez configurer fonctionne en mode de configuration, puis essayez à nouveau.";
+"No I/O Devices found! Please check if your I/O Device is ON and in configuration mode." = "Aucun dispositif n'a été trouvé ! Assurez-vous que le dispositif que vous souhaitez configurer fonctionne en mode de configuration, puis essayez à nouveau.";

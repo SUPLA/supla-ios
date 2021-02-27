@@ -50,7 +50,7 @@
     [self.button setTitleColor:self.view.backgroundColor forState:UIControlStateNormal];
     self.btnRetry.hidden = NO;
     self.cintButtonCenter.constant = -20;
-    
+    self.btnCloud.hidden = NO;
 }
 
 -(void)GreenTheme {
@@ -64,6 +64,7 @@
     [self.button setTitleColor:self.view.backgroundColor forState:UIControlStateNormal];
     self.btnRetry.hidden = YES;
     self.cintButtonCenter.constant = 0;
+    self.btnCloud.hidden = YES;
     
     [self setNeedsStatusBarAppearanceUpdate];
 }
@@ -72,6 +73,10 @@
     [self GreenTheme];
     [self.progress setProgress:value];
     [self.label setText:NSLocalizedString(@"Connecting...", NULL)];
+}
+
+- (IBAction)btnCloudTouch:(id)sender {
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString: NSLocalizedString(@"https://cloud.supla.org", NULL)]];
 }
 
 -(void)setStatusError:(NSString*)message {

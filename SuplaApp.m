@@ -615,7 +615,7 @@ NSString *kSAOnChannelBasicCfg = @"KSA-N19";
     if ( code && [code intValue] == SUPLA_RESULTCODE_HOSTNOTFOUND ) {
         
         [self SuplaClientTerminate];
-        [self.UI showStatusError:NSLocalizedString(@"Host not found", nil)];
+        [self.UI showStatusError:NSLocalizedString(@"Host not found. Make sure you are connected to the internet and that an account with the entered email address has been created.", nil)];
     }
 }
 
@@ -660,16 +660,16 @@ NSString *kSAOnChannelBasicCfg = @"KSA-N19";
             msg = NSLocalizedString(@"Client limit exceeded", nil);
             break;
         case SUPLA_RESULTCODE_CLIENT_DISABLED:
-            msg = NSLocalizedString(@"Device is disabled", nil);
+            msg = NSLocalizedString(@"Device disabled. Please log in to \"Supla Cloud\" and enable this device in “Smartphone” section of the website.", nil);
             break;
         case SUPLA_RESULTCODE_ACCESSID_DISABLED:
             msg = NSLocalizedString(@"Access Identifier is disabled", nil);
             break;
         case SUPLA_RESULTCODE_REGISTRATION_DISABLED:
-            msg = [NSString stringWithFormat:NSLocalizedString(@"Client Registration is off. Please go to \"Smartphone\" at %@ to activate it.", nil), [self getMsgHostName]];
+            msg = NSLocalizedString(@"New client registration disabled. Please log in to \"Supla Cloud\" and enable \"New client registration\" in \"Smartphone\" section of the website.", nil);
             break;
         case SUPLA_RESULTCODE_ACCESSID_NOT_ASSIGNED:
-            msg = [NSString stringWithFormat:NSLocalizedString(@"This client does not have access identifier assigned. Please go to \"Smartphone\" at %@ and get a valid identifier.", nil), [self getMsgHostName]];
+            msg = NSLocalizedString(@"Client activation required. Please log in to \"Supla Cloud\" and assign an “Access ID” for this device in “Smartphone” section of the website.", nil);
             break;
             
     }

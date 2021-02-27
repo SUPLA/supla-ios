@@ -218,6 +218,7 @@ void sasuplaclient_on_channel_basic_cfg(void *_suplaclient,
     BOOL _connected;
     int _regTryCounter;
     int _tokenRequestTime;
+    BOOL _superuserAuthorized;
 }
 
 @synthesize delegate;
@@ -344,6 +345,10 @@ void sasuplaclient_on_channel_basic_cfg(void *_suplaclient,
     while(![self isCancelled]) {
         @autoreleasepool {
            
+            @synchronized(self) {
+                _superuserAuthorized = NO;
+            }
+            
             [self onConnecting];
             BOOL DataChanged = NO;
             
@@ -713,6 +718,12 @@ void sasuplaclient_on_channel_basic_cfg(void *_suplaclient,
 }
 
 - (void) onSuperuserAuthorizationResult:(SASuperuserAuthorizationResult *)result {
+    @synchronized(self) {
+        _superuserAuthorized = result
+        && result.success
+        && result.code == SUPLA_RESULTCODE_AUTHORIZED;
+    }
+   
     [self performSelectorOnMainThread:@selector(_onSuperuserAuthorizationResult:) withObject:result waitUntilDone:NO];
 }
 
@@ -946,6 +957,15 @@ void sasuplaclient_on_channel_basic_cfg(void *_suplaclient,
             supla_client_get_superuser_authorization_result(_sclient);
         }
     }
+}
+
+- (BOOL) isSuperuserAuthorized {
+    BOOL result = NO;
+    @synchronized(self) {
+        result = _superuserAuthorized;
+    }
+    
+    return result;
 }
 
 - (void) channelStateRequestWithChannelId:(int)channelId {
