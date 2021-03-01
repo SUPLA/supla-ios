@@ -317,6 +317,7 @@ void sasuplaclient_on_device_channel_state(void *_suplaclient, void *user_data, 
     int _regTryCounter;
     int _tokenRequestTime;
     BOOL _superuserAuthorized;
+    NSString *_oneTimePassword;
 }
 @end
 
@@ -324,12 +325,47 @@ void sasuplaclient_on_device_channel_state(void *_suplaclient, void *user_data, 
     SADatabase *_DB;
 }
 
-- (id)init {
-    self = [super init];
-    _sclient = NULL;
-    _regTryCounter = 0;
-    
+- (id)initWithOneTimePassword:(NSString*)oneTimePassword {
+    assert(_sclient == NULL);
+    if (self = [super init]) {
+        _oneTimePassword = oneTimePassword;
+    }
     return self;
+}
+
++(NSString *)codeToString:(NSNumber*)code authDialog:(BOOL)authDialog {
+    NSString *str = [NSString stringWithFormat:@"%@ (%@)", NSLocalizedString(@"Unknown error", nil), code];
+    
+    switch([code intValue]) {
+        case SUPLA_RESULTCODE_TEMPORARILY_UNAVAILABLE:
+            str = NSLocalizedString(@"Service temporarily unavailable", nil);
+            break;
+        case SUPLA_RESULTCODE_BAD_CREDENTIALS:
+            str = NSLocalizedString(authDialog ? @"Incorrect Email Address or Password" : @"Bad credentials", nil);
+            break;
+        case SUPLA_RESULTCODE_CLIENT_LIMITEXCEEDED:
+            str = NSLocalizedString(@"Client limit exceeded", nil);
+            break;
+        case SUPLA_RESULTCODE_CLIENT_DISABLED:
+            str = NSLocalizedString(@"Device disabled. Please log in to \"Supla Cloud\" and enable this device in “Smartphone” section of the website.", nil);
+            break;
+        case SUPLA_RESULTCODE_ACCESSID_DISABLED:
+            str = NSLocalizedString(@"Access Identifier is disabled", nil);
+            break;
+        case SUPLA_RESULTCODE_REGISTRATION_DISABLED:
+            str = NSLocalizedString(@"New client registration disabled. Please log in to \"Supla Cloud\" and enable \"New client registration\" in \"Smartphone\" section of the website.", nil);
+            break;
+        case SUPLA_RESULTCODE_ACCESSID_NOT_ASSIGNED:
+            str = NSLocalizedString(@"Client activation required. Please log in to \"Supla Cloud\" and assign an “Access ID” for this device in “Smartphone” section of the website.", nil);
+            break;
+            
+    }
+    
+    return str;
+}
+
++(NSString *)codeToString:(NSNumber*)code {
+    return [SASuplaClient codeToString:code authDialog:NO];
 }
 
 -(SADatabase*)DB {
@@ -405,8 +441,13 @@ void sasuplaclient_on_device_channel_state(void *_suplaclient, void *user_data, 
         }
         
     } else {
-       snprintf(scc.Email, SUPLA_EMAIL_MAXSIZE, "%s", [[SAApp getEmailAddress] UTF8String]);
+        snprintf(scc.Email, SUPLA_EMAIL_MAXSIZE, "%s", [[SAApp getEmailAddress] UTF8String]);
+        if (_oneTimePassword && _oneTimePassword.length) {
+            snprintf(scc.Password, SUPLA_PASSWORD_MAXSIZE, "%s", [_oneTimePassword UTF8String]);
+        }
     }
+    
+    _oneTimePassword = nil;
 
     snprintf(scc.Name, SUPLA_CLIENT_NAME_MAXSIZE, "%s", [[[UIDevice currentDevice] name] UTF8String]);
     snprintf(scc.SoftVer, SUPLA_SOFTVER_MAXSIZE, "iOS%s/%s", [[[UIDevice currentDevice] systemVersion] UTF8String], [[[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleShortVersionString"] UTF8String]);

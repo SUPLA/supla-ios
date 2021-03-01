@@ -29,6 +29,7 @@ static SASuperuserAuthorizationDialog *_superuserAuthorizationDialogGlobalRef = 
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *actIndictor;
 - (IBAction)btnOkTouch:(id)sender;
 - (IBAction)btnPasswordViewtouchDown:(id)sender;
+- (IBAction)onPasswordChange:(id)sender;
 
 @end
 
@@ -64,6 +65,14 @@ static SASuperuserAuthorizationDialog *_superuserAuthorizationDialogGlobalRef = 
     [[NSNotificationCenter defaultCenter]
      addObserver:self selector:@selector(onSuperuserAuthorizationResult:)
      name:kSASuperuserAuthorizationResult object:nil];
+    
+    [[NSNotificationCenter defaultCenter]
+     addObserver:self selector:@selector(onRegistered:)
+     name:kSARegisteredNotification object:nil];
+    
+    [[NSNotificationCenter defaultCenter]
+     addObserver:self selector:@selector(onRegistrationError:)
+     name:kSARegisterErrorNotification object:nil];
     
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(keyboardDidShow:)
@@ -135,8 +144,19 @@ static SASuperuserAuthorizationDialog *_superuserAuthorizationDialogGlobalRef = 
             }
         }
     }
-    
-    
+}
+
+-(void)onRegistrationError:(NSNotification *)notification {
+    if (notification.userInfo != nil) {
+        id code = [notification.userInfo objectForKey:@"code"];
+        if (code != nil && [code isKindOfClass:[NSNumber class]]) {
+            [self showError:[SASuplaClient codeToString:code authDialog:YES]];
+        }
+    }
+}
+
+-(void)onRegistered:(NSNotification *)notification {
+    [self closeWithAnimation:YES completion:nil];
 }
 
 -(void)timeoutTimerInvalidate {
@@ -147,11 +167,13 @@ static SASuperuserAuthorizationDialog *_superuserAuthorizationDialogGlobalRef = 
 }
 
 -(void)authorizeWithDelegate:(id<SASuperuserAuthorizationDialogDelegate>)delegate {
-    if ([SAApp.SuplaClient isSuperuserAuthorized]) {
-        if (delegate != nil) {
-            [delegate superuserAuthorizationSuccess];
+    if ([SAApp isClientRegistered]) {
+        if ([SAApp.SuplaClient isSuperuserAuthorized]) {
+            if (delegate != nil) {
+                [delegate superuserAuthorizationSuccess];
+            }
+            return;
         }
-        return;
     }
     
     _delegate = delegate;
@@ -160,10 +182,11 @@ static SASuperuserAuthorizationDialog *_superuserAuthorizationDialogGlobalRef = 
     _lErrorMessage.text = @"";
     _lErrorMessage.hidden = YES;
     _edEmail.text = [SAApp getEmailAddress];
-    _edEmail.enabled = YES;
+    _edEmail.enabled = [SAApp isClientRegistered];
     _edPassword.text = @"";
     _edPassword.enabled = YES;
     _btnOK.hidden = NO;
+    _btnOK.enabled = NO;
     [_actIndictor stopAnimating];
     
     [SADialog showModal:self];
@@ -181,6 +204,10 @@ static SASuperuserAuthorizationDialog *_superuserAuthorizationDialogGlobalRef = 
 
 -(void)onTimeout:(id)sender {
     [self showError:NSLocalizedString(@"Time exceeded. Try again.", nil)];
+}
+
+- (IBAction)onPasswordChange:(id)sender {
+    self.btnOK.enabled = self.edPassword.text.length > 0;
 }
 
 - (IBAction)btnPasswordViewtouchDown:(id)sender {
@@ -204,7 +231,12 @@ static SASuperuserAuthorizationDialog *_superuserAuthorizationDialogGlobalRef = 
                                                     repeats:NO];
     
 
-    [SAApp.SuplaClient superuserAuthorizationRequestWithEmail:_edEmail.text andPassword:_edPassword.text];
+    if ([SAApp isClientRegistered]) {
+        [SAApp.SuplaClient superuserAuthorizationRequestWithEmail:_edEmail.text andPassword:_edPassword.text];
+    } else {
+        [SAApp SuplaClientWithOneTimePassword:self.edPassword.text];
+    }
+    
 }
 
 - (void)keyboardDidShow:(NSNotification*)notification {
