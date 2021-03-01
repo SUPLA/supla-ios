@@ -665,11 +665,10 @@ NSString *kSAOnChannelBasicCfg = @"KSA-N19";
     }
     
     [self SuplaClientTerminate];
-
+    
+    NSNumber *code = [NSNumber notificationToNumber:notification];
     [self.UI showStatusError:[SASuplaClient codeToString:code]];
-    
-    [[NSNotificationCenter defaultCenter] postNotificationName:kSARegisterErrorNotification object:self userInfo:[[NSDictionary alloc] initWithObjects:@[code] forKeys:@[@"code"]]];
-    
+        
     int cint = [code intValue];
     if ((cint == SUPLA_RESULTCODE_REGISTRATION_DISABLED
         || cint == SUPLA_RESULTCODE_ACCESSID_NOT_ASSIGNED)
