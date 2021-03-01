@@ -28,7 +28,9 @@
 @end
 
 @interface SASuplaClient : NSThread
-- (id)init;
+- (id)initWithOneTimePassword:(NSString*)oneTimePassword;
++ (NSString *)codeToString:(NSNumber*)code;
++ (NSString *)codeToString:(NSNumber*)code authDialog:(BOOL)authDialog;
 
 - (void) reconnect;
 - (BOOL) isConnected;

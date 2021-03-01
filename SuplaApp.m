@@ -21,6 +21,7 @@
 #import "Database.h"
 #import "NSData+AES.h"
 #import "SAKeychain.h"
+#import "SASuperuserAuthorizationDialog.h"
 #import "SAClassHelper.h"
 
 static SAApp* _Globals = nil;
@@ -444,7 +445,7 @@ NSString *kSAOnChannelBasicCfg = @"KSA-N19";
 }
 
 -(void)onInitTimer:(NSTimer *)timer {
-    [self SuplaClient];
+    [self SuplaClientWithOneTimePassword:nil];
 }
 
 
@@ -468,15 +469,15 @@ NSString *kSAOnChannelBasicCfg = @"KSA-N19";
     [[self instance] initClientDelayed:time];
 }
 
--(SASuplaClient*) SuplaClient {
+-(SASuplaClient*) SuplaClientWithOneTimePassword:(NSString *)password {
     
     SASuplaClient *result = nil;
     
     @synchronized(self) {
         
-        if ( _SuplaClient == nil ) {
+        if ( _SuplaClient == nil) {
             
-            _SuplaClient = [[SASuplaClient alloc] init];
+            _SuplaClient = [[SASuplaClient alloc] initWithOneTimePassword:password];
             _SuplaClient.delegate = self;
             [_SuplaClient start];
         }
@@ -488,8 +489,29 @@ NSString *kSAOnChannelBasicCfg = @"KSA-N19";
     
 }
 
+-(BOOL) isClientRegistered {
+    BOOL result = nil;
+    
+    @synchronized(self) {
+        if ( _SuplaClient != nil) {
+            result = [_SuplaClient isRegistered];
+        }
+    }
+    
+    return result;
+    
+}
+
 +(SASuplaClient*) SuplaClient {
-    return [[self instance] SuplaClient];
+    return [[self instance] SuplaClientWithOneTimePassword:nil];
+}
+
++(SASuplaClient *) SuplaClientWithOneTimePassword:(NSString*)password {
+    return [[self instance] SuplaClientWithOneTimePassword:password];
+}
+
++(BOOL) isClientRegistered {
+    return [[self instance] isClientRegistered];
 }
 
 -(BOOL) SuplaClientTerminate {
@@ -643,38 +665,19 @@ NSString *kSAOnChannelBasicCfg = @"KSA-N19";
     }
     
     [self SuplaClientTerminate];
-    
-    NSNumber *code = [NSNumber notificationToNumber:notification];
-    int cv = code ? [code intValue] : 0;
-    
-    NSString *msg = [NSString stringWithFormat:@"%@ (%i)", NSLocalizedString(@"Unknown error", nil), cv];
 
-    switch(cv) {
-        case SUPLA_RESULTCODE_TEMPORARILY_UNAVAILABLE:
-            msg = NSLocalizedString(@"Service temporarily unavailable", nil);
-            break;
-        case SUPLA_RESULTCODE_BAD_CREDENTIALS:
-            msg = NSLocalizedString(@"Bad credentials", nil);
-            break;
-        case SUPLA_RESULTCODE_CLIENT_LIMITEXCEEDED:
-            msg = NSLocalizedString(@"Client limit exceeded", nil);
-            break;
-        case SUPLA_RESULTCODE_CLIENT_DISABLED:
-            msg = NSLocalizedString(@"Device disabled. Please log in to \"Supla Cloud\" and enable this device in “Smartphone” section of the website.", nil);
-            break;
-        case SUPLA_RESULTCODE_ACCESSID_DISABLED:
-            msg = NSLocalizedString(@"Access Identifier is disabled", nil);
-            break;
-        case SUPLA_RESULTCODE_REGISTRATION_DISABLED:
-            msg = NSLocalizedString(@"New client registration disabled. Please log in to \"Supla Cloud\" and enable \"New client registration\" in \"Smartphone\" section of the website.", nil);
-            break;
-        case SUPLA_RESULTCODE_ACCESSID_NOT_ASSIGNED:
-            msg = NSLocalizedString(@"Client activation required. Please log in to \"Supla Cloud\" and assign an “Access ID” for this device in “Smartphone” section of the website.", nil);
-            break;
-            
+    [self.UI showStatusError:[SASuplaClient codeToString:code]];
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:kSARegisterErrorNotification object:self userInfo:[[NSDictionary alloc] initWithObjects:@[code] forKeys:@[@"code"]]];
+    
+    int cint = [code intValue];
+    if ((cint == SUPLA_RESULTCODE_REGISTRATION_DISABLED
+        || cint == SUPLA_RESULTCODE_ACCESSID_NOT_ASSIGNED)
+        && ![self isAdvancedConfig]
+        && ![SASuperuserAuthorizationDialog.globalInstance isVisible]) {
+        [SASuperuserAuthorizationDialog.globalInstance authorizeWithDelegate:nil];
     }
     
-    [self.UI showStatusError:msg];
 }
 
 -(void)onVersionError:(NSNotification *)notification {

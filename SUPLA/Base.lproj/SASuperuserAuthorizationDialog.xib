@@ -78,6 +78,10 @@
                             </constraints>
                             <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="14"/>
                             <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                            <connections>
+                                <action selector="onPasswordChange:" destination="-1" eventType="valueChanged" id="ScG-1y-5Ev"/>
+                                <action selector="onPasswordChange:" destination="-1" eventType="editingChanged" id="tro-bN-XrQ"/>
+                            </connections>
                         </textField>
                         <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Incorrect Email Address or Password" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" minimumFontSize="5" translatesAutoresizingMaskIntoConstraints="NO" id="btP-Nc-v0w">
                             <rect key="frame" x="15" y="80" width="270" height="14"/>
@@ -108,6 +112,9 @@
                             <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="17"/>
                             <state key="normal" title="OK">
                                 <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </state>
+                            <state key="disabled">
+                                <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </state>
                             <connections>
                                 <action selector="btnOkTouch:" destination="-1" eventType="touchDown" id="5rU-RI-6g3"/>
