@@ -20,6 +20,7 @@
 
 @implementation SASectionCell {
     UITapGestureRecognizer *_tap;
+    UILongPressGestureRecognizer *_longPressGr;
 }
 
 - (void)initialize {
@@ -27,29 +28,30 @@
         _tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapped:)];
         _tap.delegate = self;
         [self addGestureRecognizer:_tap];
+        
+        _longPressGr = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(onLongPress:)];
+        _longPressGr.allowableMovement = 5;
+
+        _longPressGr.minimumPressDuration = 0.8;
+        self.label.userInteractionEnabled = YES;
+        [self.label addGestureRecognizer:_longPressGr];
     }
 }
 
-- (id)initWithCoder:(NSCoder *)coder
-{
-    self = [super initWithCoder:coder];
-    if (self) {
-        [self initialize];
-    }
-    return self;
-}
-
-- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(nullable NSString *)reuseIdentifier {
-    self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
-    if (self) {
-       [self initialize];
-    }
-    return self;
+- (void)awakeFromNib {
+    [super awakeFromNib];
+    [self initialize];
 }
 
 - (void)tapped:(UITapGestureRecognizer *)gr {
     if (self.delegate) {
         [self.delegate sectionCellTouch:self];
+    }
+}
+
+- (void)onLongPress:(UILongPressGestureRecognizer *)longPressGR {
+    if (longPressGR.state == UIGestureRecognizerStateBegan) {
+        NSLog(@"LPRESS");
     }
 }
 @end

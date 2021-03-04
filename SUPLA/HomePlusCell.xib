@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -22,7 +22,10 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Home+ Heater" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3Jq-KF-Od9">
-                        <rect key="frame" x="30" y="76.5" width="320" height="16.5"/>
+                        <rect key="frame" x="30" y="71.5" width="320" height="22"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="22" id="JCs-C6-flk"/>
+                        </constraints>
                         <fontDescription key="fontDescription" name="OpenSans-Bold" family="Open Sans" pointSize="12"/>
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
@@ -87,7 +90,7 @@
                 <color key="backgroundColor" red="0.97647058819999999" green="0.98039215690000003" blue="0.98431372549999996" alpha="1" colorSpace="calibratedRGB"/>
                 <constraints>
                     <constraint firstAttribute="trailingMargin" secondItem="0d0-zV-fRA" secondAttribute="trailing" constant="10" id="3Yb-gy-Ci1"/>
-                    <constraint firstItem="3Jq-KF-Od9" firstAttribute="top" secondItem="6oE-p1-nIz" secondAttribute="bottom" constant="10" id="9ci-DC-wdw"/>
+                    <constraint firstItem="3Jq-KF-Od9" firstAttribute="top" secondItem="6oE-p1-nIz" secondAttribute="bottom" constant="5" id="9ci-DC-wdw"/>
                     <constraint firstAttribute="trailingMargin" secondItem="3Jq-KF-Od9" secondAttribute="trailing" constant="10" id="AJK-wC-8BK"/>
                     <constraint firstItem="6oE-p1-nIz" firstAttribute="centerY" secondItem="Z8a-om-NNe" secondAttribute="centerY" constant="-10" id="CN1-by-KQ8"/>
                     <constraint firstItem="0d0-zV-fRA" firstAttribute="centerY" secondItem="Z8a-om-NNe" secondAttribute="centerY" id="Xta-Jm-Wsy"/>

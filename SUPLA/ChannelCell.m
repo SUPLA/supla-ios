@@ -55,6 +55,7 @@
     SAChannelBase *_channelBase;
     UITapGestureRecognizer *tapGr1;
     UITapGestureRecognizer *tapGr2;
+    UILongPressGestureRecognizer *longPressGr;
 }
 
 - (void)initialize {
@@ -83,6 +84,11 @@
         [self.channelWarningIcon addGestureRecognizer:tapGr2];
     }
     
+    longPressGr = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(onLongPress:)];
+    longPressGr.allowableMovement = 5;
+    longPressGr.minimumPressDuration = 0.8;
+    self.caption.userInteractionEnabled = YES;
+    [self.caption addGestureRecognizer:longPressGr];
 }
 
 - (void)awakeFromNib {
@@ -398,4 +404,9 @@
       [vc presentViewController:alert animated:YES completion:nil];
 }
 
+- (void)onLongPress:(UILongPressGestureRecognizer *)longPressGR {
+    if (longPressGR.state == UIGestureRecognizerStateBegan) {
+   
+    }
+}
 @end
