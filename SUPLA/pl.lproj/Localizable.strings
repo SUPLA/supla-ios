@@ -203,3 +203,6 @@
 "Regeneration initiated after 20 hours of operation is in progress." = "Trwa regeneracja zainicjowana po 20h pracy.";
 "Incorrect Email Address or Password" = "Błędny adres email lub hasło";
 "Channel Id" = "Id kanału";
+"Channel name" = "Nazwa kanału";
+"Location name" = "Nazwa lokalizacji";
+"Default" = "Domyślne";

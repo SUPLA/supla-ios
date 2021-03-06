@@ -24,6 +24,7 @@
 #import "SAChannelGroup+CoreDataClass.h"
 #import "SAChannelStateExtendedValue.h"
 #import "SAChannelStatePopup.h"
+#import "SAChannelCaptionEditor.h"
 #import "SuplaApp.h"
 #include "proto.h"
 
@@ -405,8 +406,8 @@
 }
 
 - (void)onLongPress:(UILongPressGestureRecognizer *)longPressGR {
-    if (longPressGR.state == UIGestureRecognizerStateBegan) {
-   
+    if (self.channelBase != nil && longPressGR.state == UIGestureRecognizerStateBegan) {
+        [[SAChannelCaptionEditor globalInstance] editCaptionWithRecordId:self.channelBase.remote_id];
     }
 }
 @end

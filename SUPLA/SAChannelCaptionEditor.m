@@ -14,6 +14,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 */
 
 #import "SAChannelCaptionEditor.h"
+#import "SuplaApp.h"
+#import "SAChannel+CoreDataClass.h"
 
 @interface SAChannelCaptionEditor ()
 
@@ -31,5 +33,22 @@ SAChannelCaptionEditor *_channelCaptionEditorGlobalRef = nil;
     }
     
     return _channelCaptionEditorGlobalRef;
+}
+
+- (NSString*) getPlaceholder {
+    return NSLocalizedString(@"Default", nil);
+}
+
+- (NSString*) getTitle {
+    return NSLocalizedString(@"Channel name", nil);
+}
+
+- (NSString*) getCaption {
+    SAChannel *channel = [[SAApp DB] fetchChannelById:self.recordId];
+    return channel && channel.caption ? channel.caption : @"";
+}
+
+- (void) applyChanges {
+
 }
 @end

@@ -17,11 +17,14 @@
  */
 
 #import "SectionCell.h"
+#import "SALocationCaptionEditor.h"
 
 @implementation SASectionCell {
     UITapGestureRecognizer *_tap;
     UILongPressGestureRecognizer *_longPressGr;
 }
+
+@synthesize locationId;
 
 - (void)initialize {
     if (_tap == nil) {
@@ -50,8 +53,8 @@
 }
 
 - (void)onLongPress:(UILongPressGestureRecognizer *)longPressGR {
-    if (longPressGR.state == UIGestureRecognizerStateBegan) {
-        NSLog(@"LPRESS");
+    if (self.locationId && longPressGR.state == UIGestureRecognizerStateBegan) {
+        [[SALocationCaptionEditor globalInstance] editCaptionWithRecordId:self.locationId];
     }
 }
 @end

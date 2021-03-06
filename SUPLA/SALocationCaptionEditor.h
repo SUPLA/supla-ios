@@ -18,7 +18,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 NS_ASSUME_NONNULL_BEGIN
 
 @interface SALocationCaptionEditor : SACaptionEditor
-
++(SALocationCaptionEditor*)globalInstance;
 @end
 
 NS_ASSUME_NONNULL_END

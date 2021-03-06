@@ -14,20 +14,119 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 */
 
 #import "SACaptionEditor.h"
+#import "SuplaApp.h"
 
 @interface SACaptionEditor ()
-
+@property (weak, nonatomic) IBOutlet UIView *vMain;
+@property (weak, nonatomic) IBOutlet UITextField *edCaption;
+@property (weak, nonatomic) IBOutlet UILabel *lCaption;
+@property (weak, nonatomic) IBOutlet UIButton *btnCancel;
+@property (weak, nonatomic) IBOutlet UIButton *btnOK;
+- (IBAction)btnOKTouch:(id)sender;
+- (IBAction)onCaptionChanged:(id)sender;
 @end
 
-@implementation SACaptionEditor
+@implementation SACaptionEditor {
+    NSString *_originalCaption;
+    int _recordId;
+}
+
+- (id) init {
+    return [self initWithNibName:@"SACaptionEditor" bundle:nil];
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
 
 }
 
+-(void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(keyboardDidShow:)
+                                                 name:UIKeyboardDidShowNotification
+                                               object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(keyboardDidHide:)
+                                                 name:UIKeyboardDidHideNotification
+                                               object:nil];
+}
+
+-(int)recordId {
+    return _recordId;
+}
+
+-(void)editCaptionWithRecordId:(int)recordId {
+    _recordId = recordId;
+    
+    _originalCaption = [self getCaption];
+    self.edCaption.placeholder = [self getPlaceholder];
+    self.edCaption.text = _originalCaption;
+    self.lCaption.text = [self getTitle];
+    [self onCaptionChanged:self.edCaption];
+    
+    [SADialog showModal:self];
+}
+
+- (IBAction)onCaptionChanged:(id)sender {
+    self.btnOK.enabled = self.edCaption.text.length >= [self minCaptionLen]
+     && self.edCaption.text.length <= [self maxCaptionLen];
+}
+
+- (IBAction)btnOKTouch:(id)sender {
+    if ((_originalCaption == nil  && self.edCaption.text != nil)
+         || (_originalCaption != nil  && self.edCaption.text == nil)
+         || (_originalCaption != nil  && self.edCaption.text != nil
+             && ![_originalCaption isEqual:self.edCaption.text] )) {
+        [self applyChanges];
+        [[NSNotificationCenter defaultCenter] postNotificationName:kSADataChangedNotification object:self userInfo:nil];
+        [self close];
+    }
+}
+
+- (void)keyboardDidShow:(NSNotification*)notification {
+    NSDictionary* info = [notification userInfo];
+    CGSize keyboardSize = [[info objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue].size;
+    CGRect edCaptionRect = [self.edCaption convertRect:self.edCaption.frame toView:self.view];
+    
+    [UIView animateWithDuration:0.2 animations:^{
+        self.vMain.transform = CGAffineTransformMakeTranslation(0, self.view.frame.size.height - keyboardSize.height - edCaptionRect.origin.y);
+    }];
+}
+
+- (void)keyboardDidHide:(NSNotification*)notification {
+    [UIView animateWithDuration:0.2 animations:^{
+        self.vMain.transform = CGAffineTransformIdentity;
+    }];
+}
 
 
+- (int)minCaptionLen {
+    return 0;
+}
 
+- (int)maxCaptionLen {
+    return 100;
+}
+
+- (NSString*) getPlaceholder {
+    return @"";
+}
+
+- (NSString*) getTitle {
+    ABSTRACT_METHOD_EXCEPTION;
+    return nil;
+}
+
+- (NSString*) getCaption {
+    ABSTRACT_METHOD_EXCEPTION;
+    return nil;
+}
+
+- (void) applyChanges {
+    ABSTRACT_METHOD_EXCEPTION;
+}
 
 @end

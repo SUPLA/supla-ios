@@ -383,6 +383,7 @@
         NSString *name = [[[[self frcForTableView:tableView] sections] objectAtIndex:section] name];
         _SALocation *location = [self locationByName:name];
         cell.ivCollapsed.hidden = location == nil || (location.collapsed & [self bitFlagCollapse]) == 0;
+        cell.locationId = [location.location_id intValue];
         [cell.label setText:name];
         cell.delegate = self;
     }

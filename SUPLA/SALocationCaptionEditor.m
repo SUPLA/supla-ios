@@ -14,6 +14,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 */
 
 #import "SALocationCaptionEditor.h"
+#import "_SALocation+CoreDataClass.h"
+#import "SuplaApp.h"
 
 SALocationCaptionEditor *_locationCaptionEditorGlobalRef = nil;
 
@@ -32,4 +34,16 @@ SALocationCaptionEditor *_locationCaptionEditorGlobalRef = nil;
     return _locationCaptionEditorGlobalRef;
 }
 
+- (NSString*) getTitle {
+    return NSLocalizedString(@"Location name", nil);
+}
+
+- (NSString*) getCaption {
+    _SALocation *location = [[SAApp DB] fetchLocationById:self.recordId];
+    return location && location.caption ? location.caption : @"";
+}
+
+- (void) applyChanges {
+
+}
 @end

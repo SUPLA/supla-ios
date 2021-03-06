@@ -19,6 +19,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface SACaptionEditor : SADialog
 
+-(void)editCaptionWithRecordId:(int)recordId;
+@property (readonly)int recordId;
 @end
 
 NS_ASSUME_NONNULL_END
