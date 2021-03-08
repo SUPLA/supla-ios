@@ -125,6 +125,9 @@ typedef NS_ENUM(NSUInteger, GroupBy) {
 -(SAUserIcon*) fetchUserIconById:(int)remote_id createNewObject:(BOOL)create;
 -(void) deleteAllUserIcons;
 -(BOOL) zwaveBridgeChannelAvailable;
+
+-(void)swapThePositionOfChannel:(SAChannelBase*)src withTheChannel:(SAChannelBase*)dst;
+
 @end
 
 

@@ -53,6 +53,7 @@
 
 @implementation SAChannelCell {
     BOOL _initialized;
+    BOOL _captionTouched;
     SAChannelBase *_channelBase;
     UITapGestureRecognizer *tapGr1;
     UITapGestureRecognizer *tapGr2;
@@ -73,6 +74,7 @@
     [self.left_OnlineStatus assignColors:self.right_OnlineStatus];
     [self.right_ActiveStatus assignColors:self.right_OnlineStatus];
 
+    
     if (self.channelStateIcon) {
         self.channelStateIcon.userInteractionEnabled = YES;
         tapGr1 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(stateIconTapped:)];
@@ -410,4 +412,16 @@
         [[SAChannelCaptionEditor globalInstance] editCaptionWithRecordId:self.channelBase.remote_id];
     }
 }
+
+- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
+    [super touchesBegan:touches withEvent:event];
+
+    UITouch *touch = [touches anyObject];
+    _captionTouched = touch != nil && touch.view == self.caption;
+}
+
+- (BOOL)captionTouched {
+    return _captionTouched;
+}
+
 @end

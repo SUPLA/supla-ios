@@ -80,6 +80,59 @@
     _tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapGesture:)];
     [self.notificationView addGestureRecognizer:_tapRecognizer];
     
+    if (@available(iOS 11.0, *)) {
+        self.cTableView.clearsContextBeforeDrawing = YES;
+        self.cTableView.dragInteractionEnabled = YES;
+        self.cTableView.dragDelegate = self;
+        self.cTableView.dropDelegate = self;
+    }
+
+}
+
+- (NSArray<UIDragItem *> *)tableView:(UITableView *)tableView itemsForBeginningDragSession:(id<UIDragSession>)session atIndexPath:(NSIndexPath *)indexPath  API_AVAILABLE(ios(11.0)){
+    
+    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+
+    if ( cell != nil
+        && [cell isKindOfClass:[SAChannelCell class]]
+        && !((SAChannelCell*)cell).captionTouched) {
+        NSItemProvider *itemProvicer = [[NSItemProvider alloc] init];
+        UIDragItem *dragItem = [[UIDragItem alloc] initWithItemProvider:itemProvicer];
+        dragItem.localObject = cell;
+        return @[dragItem];
+    }
+
+    return @[];
+}
+
+- (void)tableView:(UITableView *)tableView performDropWithCoordinator:(id<UITableViewDropCoordinator>)coordinator  API_AVAILABLE(ios(11.0)){
+
+    SAChannelCell *dstCell = [tableView cellForRowAtIndexPath:coordinator.destinationIndexPath];
+    SAChannelCell *srcCell = (SAChannelCell *)coordinator.items.firstObject.dragItem.localObject;
+
+    [SAApp.DB swapThePositionOfChannel:srcCell.channelBase withTheChannel:dstCell.channelBase];
+}
+
+- (UITableViewDropProposal *)tableView:(UITableView *)tableView dropSessionDidUpdate:(id<UIDropSession>)session withDestinationIndexPath:(nullable NSIndexPath *)destinationIndexPath  API_AVAILABLE(ios(11.0)){
+    
+    UIDropOperation dropOperation = UIDropOperationForbidden;
+    
+    if (session.items.count == 1
+        && [session.items.firstObject.localObject isKindOfClass:[SAChannelCell class]]) {
+        SAChannelCell *srcCell = (SAChannelCell *)session.items.firstObject.localObject;
+        if (srcCell.channelBase && srcCell.channelBase.location) {
+            SAChannelCell *dstCell = [tableView cellForRowAtIndexPath:destinationIndexPath];
+            if ([dstCell isKindOfClass:[SAChannelCell class]]
+                && dstCell.channelBase
+                && dstCell.channelBase.location
+                && dstCell.channelBase.location == srcCell.channelBase.location) {
+                dropOperation = UIDropOperationMove;
+            }
+        }
+    }
+    
+    return [[UITableViewDropProposal alloc] initWithDropOperation:dropOperation intent:UITableViewDropIntentInsertAtDestinationIndexPath];
+
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil

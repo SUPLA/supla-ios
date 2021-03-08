@@ -1354,4 +1354,17 @@
 -(BOOL) zwaveBridgeChannelAvailable {
     return NO;
 }
+
+-(void)swapThePositionOfChannel:(SAChannelBase*)src withTheChannel:(SAChannelBase*)dst {
+    if (src == nil
+        || dst == nil
+        || src.location == nil
+        || src.location != dst.location) {
+        return;
+    }
+
+    
+
+}
+
 @end
