@@ -48,7 +48,13 @@ SAChannelCaptionEditor *_channelCaptionEditorGlobalRef = nil;
     return channel && channel.caption ? channel.caption : @"";
 }
 
-- (void) applyChanges {
-
+- (void) applyChanges:(NSString*)caption {
+    SAChannel *channel = [[SAApp DB] fetchChannelById:self.recordId];
+    if (channel) {
+        channel.caption = caption;
+        [[SAApp DB] saveContext];
+        
+        [SAApp.SuplaClient setChannelCaption:self.recordId caption:caption];
+    }
 }
 @end

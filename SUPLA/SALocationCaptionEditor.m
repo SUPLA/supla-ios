@@ -43,7 +43,13 @@ SALocationCaptionEditor *_locationCaptionEditorGlobalRef = nil;
     return location && location.caption ? location.caption : @"";
 }
 
-- (void) applyChanges {
-
+- (void) applyChanges:(NSString*)caption {
+    _SALocation *location = [[SAApp DB] fetchLocationById:self.recordId];
+    if (location) {
+        location.caption = caption;
+        [[SAApp DB] saveContext];
+        
+        [SAApp.SuplaClient setLocationCaption:self.recordId caption:caption];
+    }
 }
 @end

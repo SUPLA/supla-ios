@@ -60,14 +60,19 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 -(void)editCaptionWithRecordId:(int)recordId {
     _recordId = recordId;
-    
-    _originalCaption = [self getCaption];
-    self.edCaption.placeholder = [self getPlaceholder];
-    self.edCaption.text = _originalCaption;
-    self.lCaption.text = [self getTitle];
-    [self onCaptionChanged:self.edCaption];
-    
-    [SADialog showModal:self];
+    [SASuperuserAuthorizationDialog.globalInstance authorizeWithDelegate:self];
+}
+
+-(void) superuserAuthorizationSuccess {
+    [SASuperuserAuthorizationDialog.globalInstance closeWithAnimation:YES completion:^(){
+        self->_originalCaption = [self getCaption];
+        self.edCaption.placeholder = [self getPlaceholder];
+        self.edCaption.text = self->_originalCaption;
+        self.lCaption.text = [self getTitle];
+        [self onCaptionChanged:self.edCaption];
+        
+        [SADialog showModal:self];
+    }];
 }
 
 - (IBAction)onCaptionChanged:(id)sender {
@@ -80,7 +85,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
          || (_originalCaption != nil  && self.edCaption.text == nil)
          || (_originalCaption != nil  && self.edCaption.text != nil
              && ![_originalCaption isEqual:self.edCaption.text] )) {
-        [self applyChanges];
+        [self applyChanges:self.edCaption.text];
         [[NSNotificationCenter defaultCenter] postNotificationName:kSADataChangedNotification object:self userInfo:nil];
         [self close];
     }
@@ -125,7 +130,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     return nil;
 }
 
-- (void) applyChanges {
+- (void) applyChanges:(NSString*)caption {
     ABSTRACT_METHOD_EXCEPTION;
 }
 
