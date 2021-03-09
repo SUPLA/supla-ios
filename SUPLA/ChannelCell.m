@@ -24,6 +24,7 @@
 #import "SAChannelGroup+CoreDataClass.h"
 #import "SAChannelStateExtendedValue.h"
 #import "SAChannelStatePopup.h"
+#import "SAChannelCaptionEditor.h"
 #import "SuplaApp.h"
 #include "proto.h"
 
@@ -52,10 +53,14 @@
 
 @implementation SAChannelCell {
     BOOL _initialized;
+    BOOL _captionTouched;
     SAChannelBase *_channelBase;
     UITapGestureRecognizer *tapGr1;
     UITapGestureRecognizer *tapGr2;
+    UILongPressGestureRecognizer *longPressGr;
 }
+
+@synthesize captionEditable;
 
 - (void)initialize {
     if (_initialized) return;
@@ -71,6 +76,7 @@
     [self.left_OnlineStatus assignColors:self.right_OnlineStatus];
     [self.right_ActiveStatus assignColors:self.right_OnlineStatus];
 
+    
     if (self.channelStateIcon) {
         self.channelStateIcon.userInteractionEnabled = YES;
         tapGr1 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(stateIconTapped:)];
@@ -83,6 +89,11 @@
         [self.channelWarningIcon addGestureRecognizer:tapGr2];
     }
     
+    longPressGr = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(onLongPress:)];
+    longPressGr.allowableMovement = 5;
+    longPressGr.minimumPressDuration = 0.8;
+    self.caption.userInteractionEnabled = YES;
+    [self.caption addGestureRecognizer:longPressGr];
 }
 
 - (void)awakeFromNib {
@@ -396,6 +407,23 @@
       
       UIViewController *vc = [[[[UIApplication sharedApplication] delegate] window] rootViewController];
       [vc presentViewController:alert animated:YES completion:nil];
+}
+
+- (void)onLongPress:(UILongPressGestureRecognizer *)longPressGR {
+    if (self.captionEditable && self.channelBase != nil && longPressGR.state == UIGestureRecognizerStateBegan) {
+        [[SAChannelCaptionEditor globalInstance] editCaptionWithRecordId:self.channelBase.remote_id];
+    }
+}
+
+- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
+    [super touchesBegan:touches withEvent:event];
+
+    UITouch *touch = [touches anyObject];
+    _captionTouched = self.captionEditable && touch != nil && touch.view == self.caption;
+}
+
+- (BOOL)captionTouched {
+    return _captionTouched;
 }
 
 @end

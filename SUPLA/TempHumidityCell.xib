@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -25,13 +25,16 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Temperature and humidity" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5YC-RH-PM5">
-                        <rect key="frame" x="25" y="76.5" width="330" height="16.5"/>
+                        <rect key="frame" x="26" y="71.5" width="328" height="22"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="22" id="Yd6-wd-Rxw"/>
+                        </constraints>
                         <fontDescription key="fontDescription" name="OpenSans-Bold" family="Open Sans" pointSize="12"/>
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dBx-Oa-uvc" userLabel="bottomLine">
-                        <rect key="frame" x="5" y="99" width="370" height="1"/>
+                        <rect key="frame" x="6" y="99" width="368" height="1"/>
                         <color key="backgroundColor" red="0.66666666666666663" green="0.66666666666666663" blue="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="1" id="wiO-uk-gao"/>
@@ -70,7 +73,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FuF-jE-JMA" userLabel="onlineRight" customClass="SAUIChannelStatus">
-                        <rect key="frame" x="345" y="41.5" width="10" height="20"/>
+                        <rect key="frame" x="344" y="41.5" width="10" height="20"/>
                         <color key="backgroundColor" red="0.070588235289999995" green="0.65490196079999996" blue="0.1176470588" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="10" id="ONq-xT-x2l"/>
@@ -78,7 +81,7 @@
                         </constraints>
                     </view>
                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="channelstateinfo.png" translatesAutoresizingMaskIntoConstraints="NO" id="dQB-Sb-fjG">
-                        <rect key="frame" x="15" y="36.5" width="30" height="30"/>
+                        <rect key="frame" x="16" y="36.5" width="30" height="30"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="30" id="XQg-DB-s4x"/>
                             <constraint firstAttribute="height" constant="30" id="t6A-i3-Tcy"/>
@@ -104,7 +107,7 @@
                     <constraint firstItem="5YC-RH-PM5" firstAttribute="leading" secondItem="mtw-YI-uHv" secondAttribute="leadingMargin" constant="10" id="NBF-N5-QBf"/>
                     <constraint firstAttribute="bottomMargin" secondItem="dBx-Oa-uvc" secondAttribute="bottom" constant="-8" id="PLP-l1-YFN"/>
                     <constraint firstAttribute="trailingMargin" secondItem="5YC-RH-PM5" secondAttribute="trailing" constant="10" id="Ypc-Ku-Xxh"/>
-                    <constraint firstItem="5YC-RH-PM5" firstAttribute="top" secondItem="gra-eg-NfA" secondAttribute="bottom" constant="10" id="Zbu-ex-TMy"/>
+                    <constraint firstItem="5YC-RH-PM5" firstAttribute="top" secondItem="gra-eg-NfA" secondAttribute="bottom" constant="5" id="Zbu-ex-TMy"/>
                     <constraint firstItem="NRR-0X-1Zb" firstAttribute="leading" secondItem="gra-eg-NfA" secondAttribute="trailing" id="ejM-E0-vMa"/>
                     <constraint firstAttribute="trailingMargin" secondItem="FuF-jE-JMA" secondAttribute="trailing" constant="10" id="h4P-YP-nfl"/>
                     <constraint firstItem="pue-s1-1cy" firstAttribute="centerX" secondItem="mtw-YI-uHv" secondAttribute="centerX" constant="29" id="pUg-0r-BLb"/>

@@ -27,5 +27,7 @@
 @interface SASectionCell : UITableViewCell
 @property (weak, nonatomic) IBOutlet UIImageView *ivCollapsed;
 @property (weak, nonatomic) IBOutlet UILabel *label;
+@property (nonatomic) int locationId;
+@property (nonatomic) BOOL captionEditable;
 @property (nonatomic, weak, nullable) id <SASectionCellDelegate> delegate;
 @end

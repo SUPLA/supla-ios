@@ -54,6 +54,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *measuredValue;
 @property (weak, nonatomic) IBOutlet UIImageView *channelStateIcon;
 @property (weak, nonatomic) IBOutlet UIImageView *channelWarningIcon;
-
+@property (nonatomic) BOOL captionTouched;
+@property (nonatomic) BOOL captionEditable;
 
 @end

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -25,7 +25,10 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Thermometer" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6kK-vn-eyZ">
-                        <rect key="frame" x="30" y="76.5" width="320" height="16.5"/>
+                        <rect key="frame" x="30" y="71.5" width="320" height="22.5"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="22.5" id="uXu-T7-arQ"/>
+                        </constraints>
                         <fontDescription key="fontDescription" name="OpenSans-Bold" family="Open Sans" pointSize="12"/>
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
@@ -85,7 +88,7 @@
                     <constraint firstItem="eE4-A3-beA" firstAttribute="centerY" secondItem="nq7-4s-Sa4" secondAttribute="centerY" constant="-10" id="AUz-e3-HVd"/>
                     <constraint firstAttribute="trailingMargin" secondItem="6kK-vn-eyZ" secondAttribute="trailing" constant="10" id="ByU-Mi-LgB"/>
                     <constraint firstItem="qHg-Sn-alH" firstAttribute="centerY" secondItem="nq7-4s-Sa4" secondAttribute="centerY" id="Q3q-2W-9ku"/>
-                    <constraint firstItem="6kK-vn-eyZ" firstAttribute="top" secondItem="6qf-O5-kUK" secondAttribute="bottom" constant="10" id="RS7-t4-WbQ"/>
+                    <constraint firstItem="6kK-vn-eyZ" firstAttribute="top" secondItem="6qf-O5-kUK" secondAttribute="bottom" constant="5" id="RS7-t4-WbQ"/>
                     <constraint firstItem="6qf-O5-kUK" firstAttribute="centerY" secondItem="nq7-4s-Sa4" secondAttribute="centerY" constant="-10" id="VXp-vt-Imc"/>
                     <constraint firstItem="eE4-A3-beA" firstAttribute="leading" secondItem="6qf-O5-kUK" secondAttribute="trailing" id="oc0-Vk-hdN"/>
                     <constraint firstItem="UPv-WM-Z5M" firstAttribute="centerY" secondItem="nq7-4s-Sa4" secondAttribute="centerY" id="rhH-g6-1XR"/>

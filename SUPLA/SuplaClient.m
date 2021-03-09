@@ -1049,4 +1049,20 @@ void sasuplaclient_on_channel_basic_cfg(void *_suplaclient,
     }
 }
 
+- (void) setChannelCaption:(int)channelId caption:(NSString*)caption {
+    @synchronized(self) {
+        if ( _sclient ) {
+            supla_client_set_channel_caption(_sclient, channelId, [caption UTF8String]);
+        }
+    }
+}
+
+- (void) setLocationCaption:(int)locationId caption:(NSString*)caption {
+    @synchronized(self) {
+        if ( _sclient ) {
+            supla_client_set_location_caption(_sclient, locationId, [caption UTF8String]);
+        }
+    }
+}
+
 @end

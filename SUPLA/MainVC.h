@@ -22,7 +22,7 @@
 
 @class SADetailView;
 
-@interface SAMainVC : UIViewController <UITableViewDataSource, UITableViewDelegate, SARestApiClientTaskDelegate, SASectionCellDelegate>
+@interface SAMainVC : UIViewController <UITableViewDataSource, UITableViewDelegate, SARestApiClientTaskDelegate, SASectionCellDelegate, UITableViewDragDelegate, UITableViewDropDelegate>
 
 
 - (IBAction)settingsTouched:(id)sender;

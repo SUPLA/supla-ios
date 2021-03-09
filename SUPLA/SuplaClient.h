@@ -58,6 +58,8 @@
 - (void) getSuperuserAuthorizationResult;
 - (BOOL) isSuperuserAuthorized;
 - (void) getChannelBasicCfg:(int)channelId;
+- (void) setChannelCaption:(int)channelId caption:(NSString*)caption;
+- (void) setLocationCaption:(int)locationId caption:(NSString*)caption;
 
 @property (nonatomic, weak) id<SASuplaClientDelegate> delegate;
 @end

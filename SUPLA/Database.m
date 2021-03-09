@@ -62,7 +62,7 @@
         return _persistentStoreCoordinator;
     }
     
-    int DBv = 9;
+    int DBv = 10;
     
     [self removeIfExists:@"SUPLA_DB.sqlite"];
     
@@ -498,20 +498,26 @@
     return save;
 }
 
--(NSFetchedResultsController*) getChannelBaseFrcForEntityName:(NSString*)entity {
-    
+-(NSFetchRequest*) getChannelBaseFetchRequestForEntityName:(NSString*)entity locationId:(int)locationId {
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
     
-    fetchRequest.predicate = [NSPredicate predicateWithFormat:@"func > 0 AND visible > 0"];
+    fetchRequest.predicate = [NSPredicate predicateWithFormat:@"func > 0 AND visible > 0 AND (%i = 0 OR location.location_id = %i)", locationId, locationId];
     [fetchRequest setEntity:[NSEntityDescription entityForName:entity inManagedObjectContext: self.managedObjectContext]];
     
     NSArray *sortDescriptors = [[NSArray alloc] initWithObjects:[[NSSortDescriptor alloc] initWithKey:@"location.caption" ascending:YES],
+                                [[NSSortDescriptor alloc] initWithKey:@"position" ascending:YES],
                                 [[NSSortDescriptor alloc] initWithKey:@"func" ascending:NO],
                                 [[NSSortDescriptor alloc] initWithKey:@"caption" ascending:NO],
                                 nil];
     
     [fetchRequest setSortDescriptors:sortDescriptors];
     
+    return fetchRequest;
+}
+
+-(NSFetchedResultsController*) getChannelBaseFrcForEntityName:(NSString*)entity {
+    NSFetchRequest *fetchRequest = [self getChannelBaseFetchRequestForEntityName:entity locationId:0];
+
     NSFetchedResultsController *frc = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:self.managedObjectContext sectionNameKeyPath:@"location.caption" cacheName:nil];
     
     NSError *error;
@@ -1365,6 +1371,14 @@
 
 -(NSArray*) zwaveBridgeChannels {
     return [self zwaveBridgeChannelsWithLimit:0];
+}
+
+-(void) moveChannel:(SAChannelBase*)src toPositionOfChannel:(SAChannelBase*)dst {
+    [self moveChannel:src toPositionOfChannel:dst entityName:@"SAChannel"];
+}
+
+-(void) moveChannelGroup:(SAChannelBase*)src toPositionOfChannelGroup:(SAChannelBase*)dst {
+    [self moveChannel:src toPositionOfChannel:dst entityName:@"SAChannelGroup"];
 }
 
 @end
