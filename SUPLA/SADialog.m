@@ -37,6 +37,16 @@
 -(void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     self.view.alpha = 0;
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(keyboardDidShow:)
+                                                 name:UIKeyboardDidShowNotification
+                                               object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(keyboardDidHide:)
+                                                 name:UIKeyboardDidHideNotification
+                                               object:nil];
 }
 
 -(void)viewDidAppear:(BOOL)animated {
@@ -114,6 +124,30 @@
         [rootVC presentViewController:dialogVC animated:NO completion:nil];
     } else {
         [rootVC presentModalViewController:dialogVC animated:NO];
+    }
+}
+
+- (void)keyboardDidShow:(NSNotification*)notification {
+    if (self.vMain == nil) {
+        return;
+    }
+    
+    NSDictionary* info = [notification userInfo];
+    CGSize keyboardSize = [[info objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue].size;
+    
+    if (self.vMain.frame.origin.y+self.vMain.frame.size.height > self.view.frame.size.height - keyboardSize.height) {
+        
+        [UIView animateWithDuration:0.2 animations:^{
+            self.vMain.transform = CGAffineTransformMakeTranslation(0, self.view.frame.size.height - keyboardSize.height - (self.vMain.frame.origin.y+self.vMain.frame.size.height+50) );
+        }];
+    }
+}
+
+- (void)keyboardDidHide:(NSNotification*)notification {
+    if (self.vMain != nil) {
+        [UIView animateWithDuration:0.2 animations:^{
+            self.vMain.transform = CGAffineTransformIdentity;
+        }];
     }
 }
 

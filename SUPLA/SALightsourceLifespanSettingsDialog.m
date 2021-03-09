@@ -20,7 +20,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 @property (weak, nonatomic) IBOutlet UILabel *lTitle;
 @property (weak, nonatomic) IBOutlet UISwitch *resetCheckBox;
 @property (weak, nonatomic) IBOutlet UITextField *tfLifespan;
-@property (weak, nonatomic) IBOutlet UIView *vMain;
 
 @end
 
@@ -40,25 +39,6 @@ static SALightsourceLifespanSettingsDialog *_lifespanSettingsDialogGlobalRef = n
     [SADialog showModal:self];
 }
 
--(void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(keyboardDidShow:)
-                                                 name:UIKeyboardDidShowNotification
-                                               object:nil];
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(keyboardDidHide:)
-                                                 name:UIKeyboardDidHideNotification
-                                               object:nil];
-}
-
--(void)viewWillDisappear:(BOOL)animated {
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
-    [super viewWillDisappear:animated];
-}
-
 +(SALightsourceLifespanSettingsDialog*)globalInstance {
     if (_lifespanSettingsDialogGlobalRef == nil) {
         _lifespanSettingsDialogGlobalRef =
@@ -67,22 +47,6 @@ static SALightsourceLifespanSettingsDialog *_lifespanSettingsDialogGlobalRef = n
     }
     
     return _lifespanSettingsDialogGlobalRef;
-}
-
-- (void)keyboardDidShow:(NSNotification*)notification {
-    NSDictionary* info = [notification userInfo];
-    CGSize keyboardSize = [[info objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue].size;
-    CGRect tfLifespanRect = [self.tfLifespan convertRect:self.tfLifespan.frame toView:self.view];
-    
-    [UIView animateWithDuration:0.2 animations:^{
-        self.vMain.transform = CGAffineTransformMakeTranslation(0, self.view.frame.size.height - keyboardSize.height - tfLifespanRect.origin.y);
-    }];
-}
-
-- (void)keyboardDidHide:(NSNotification*)notification {
-    [UIView animateWithDuration:0.2 animations:^{
-        self.vMain.transform = CGAffineTransformIdentity;
-    }];
 }
 
 - (IBAction)okTouched:(id)sender {

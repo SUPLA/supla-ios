@@ -23,6 +23,7 @@ NS_ASSUME_NONNULL_BEGIN
 + (void)showModal:(SADialog*)dialogVC;
 + (BOOL)viewControllerIsPresented:(UIViewController*)vc;
 @property (nonatomic, assign)BOOL cancelByTouchOutside;
+@property (weak, nonatomic) IBOutlet UIView *vMain;
 @end
 
 NS_ASSUME_NONNULL_END

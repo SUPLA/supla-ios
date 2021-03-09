@@ -17,7 +17,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #import "SuplaApp.h"
 
 @interface SACaptionEditor ()
-@property (weak, nonatomic) IBOutlet UIView *vMain;
 @property (weak, nonatomic) IBOutlet UITextField *edCaption;
 @property (weak, nonatomic) IBOutlet UILabel *lCaption;
 @property (weak, nonatomic) IBOutlet UIButton *btnCancel;
@@ -38,20 +37,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-}
-
--(void)viewDidAppear:(BOOL)animated {
-    [super viewDidAppear:animated];
-
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(keyboardDidShow:)
-                                                 name:UIKeyboardDidShowNotification
-                                               object:nil];
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(keyboardDidHide:)
-                                                 name:UIKeyboardDidHideNotification
-                                               object:nil];
 }
 
 -(int)recordId {
@@ -90,23 +75,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         [self close];
     }
 }
-
-- (void)keyboardDidShow:(NSNotification*)notification {
-    NSDictionary* info = [notification userInfo];
-    CGSize keyboardSize = [[info objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue].size;
-    CGRect edCaptionRect = [self.edCaption convertRect:self.edCaption.frame toView:self.view];
-    
-    [UIView animateWithDuration:0.2 animations:^{
-        self.vMain.transform = CGAffineTransformMakeTranslation(0, self.view.frame.size.height - keyboardSize.height - edCaptionRect.origin.y);
-    }];
-}
-
-- (void)keyboardDidHide:(NSNotification*)notification {
-    [UIView animateWithDuration:0.2 animations:^{
-        self.vMain.transform = CGAffineTransformIdentity;
-    }];
-}
-
 
 - (int)minCaptionLen {
     return 0;

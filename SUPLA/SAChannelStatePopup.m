@@ -56,7 +56,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 @property (weak, nonatomic) IBOutlet UILabel *lLightsourceOperatingTimeTitle;
 @property (weak, nonatomic) IBOutlet UILabel *lLightsourceOperatingTime;
 @property (weak, nonatomic) IBOutlet UIView *vList;
-@property (weak, nonatomic) IBOutlet UIView *vMain;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *actIndHeight;
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *actInd;
 @property (weak, nonatomic) IBOutlet UIButton *btnReset;
