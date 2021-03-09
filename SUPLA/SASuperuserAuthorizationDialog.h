@@ -27,7 +27,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface SASuperuserAuthorizationDialog : SADialog
 
--(void)authorizeWithDelegate:(id<SASuperuserAuthorizationDialogDelegate>)delegate;
+-(void)authorizeWithDelegate:(_Nullable id<SASuperuserAuthorizationDialogDelegate>)delegate;
 - (BOOL)isVisible;
 +(SASuperuserAuthorizationDialog*)globalInstance;
 

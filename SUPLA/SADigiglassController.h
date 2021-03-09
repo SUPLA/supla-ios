@@ -35,7 +35,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic) CGFloat lineWidth;
 @property (nonatomic) int sectionCount;
 @property (nonatomic) int transparentSections;
-@property (nonatomic) BOOL horizontal;
+@property (nonatomic) BOOL vertical;
 
 - (void)setAllTransparent;
 - (void)setAllOpaque;

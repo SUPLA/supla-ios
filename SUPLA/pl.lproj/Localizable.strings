@@ -50,12 +50,12 @@
 "Service temporarily unavailable" = "Usługa tymczasowo niedostępna";
 "Bad credentials" = "Błędne poświadczenia";
 "Client limit exceeded" = "Przekroczony limit aplikacji klienckich";
-"Device is disabled" = "Urządzenie jest wyłączone";
+"Device disabled. Please log in to \"Supla Cloud\" and enable this device in “Smartphone” section of the website." = "Urządzenie jest wyłączone. Zaloguj się do \"Supla Cloud\" i włącz ten smrtfon w zakładce \"Smartfony\".";
 "Access Identifier is disabled" = "Identyfikator dostępu jest wyłączony";
-"Client Registration is off. Please go to \"Smartphone\" at %@ to activate it." = "Rejestracja jest obecnie wyłączona. Aby ją włączyć przejdź do zakładki \"Smartfony\" na stronie %@";
-"This client does not have access identifier assigned. Please go to \"Smartphone\" at %@ and get a valid identifier." = "To urządzenie nie ma przypisanego identyfikatora dostępu. Przejdź na stronę %@ i w zakładce \"Smartfony\" przypisz odpowiedni identyfikator.";
+"New client registration disabled. Please log in to \"Supla Cloud\" and enable \"New client registration\" in \"Smartphone\" section of the website." = "Rejestracja jest obecnie wyłączona. Zaloguj się do \"Supla Cloud\" i przełącz rejestrację klientów na AKTYWNĄ w zakładce \"Smartfony\".";
+"Client activation required. Please log in to \"Supla Cloud\" and assign an “Access ID” for this device in “Smartphone” section of the website." = "To urządzenie nie ma przypisanego identyfikatora dostępu. Przejdź na stronę \"Supla Cloud\" i w zakładce \"Smartfony\" przypisz odpowiedni identyfikator.";
 "Incompatible server version" = "Niekompatybilna wersja serwera";
-"Host not found" = "Adres serwera nie został znaleziony";
+"Host not found. Make sure you are connected to the internet and that an account with the entered email address has been created." = "Adres serwera nie został znaleziony. Upewnij się, że posiadasz połączenie z internetem oraz, że konto o wprowadzonym adresie email zostało utworzone.";
 "RGB Lighting" = "Oświetlenie RGB";
 "Dimmer and RGB lighting" = "Ściemniacz i oświetlenie RGB";
 "Dimmer" = "Ściemniacz";
@@ -182,7 +182,7 @@
 "The lifespan of the uv radiator is %.02f%%. Replace the radiator." = "Żywotność promiennika uv wynosi %.02f%%. Wymień promiennik.";
 "The lifespan of the light source is %.02f%%." = "Żywotność źródła światła wynosi %.02f%%.";
 "Timeout for enabling registration has expired!" = "Upłynął czas oczekiwania na włączenie rejestracji!";
-"Enter your cloud.supla.org login credentials." = "Wprowadź Twoje dane logowania do cloud.supla.org.";
+"Please enter your Supla Cloud login details." = "Wprowadź Twoje dane logowania do Supla Cloud.";
 "Enter superuser credentials" = "Wprowadź poświadczenia głównego użytkownika";
 "Dimmer settings" = "Ustawienia ściemniacza";
 "Do you want to quit without saving?" = "Czy na pewno chcesz wyjść bez zapisu?";
@@ -191,13 +191,18 @@
 "Mode change in progress" = "Trwa zmiana trybu";
 "Roof window" = "Okno dachowe";
 
-"If the device when switched on does not work in the configuration mode, press and hold CONFIG button for at least 5 seconds.\n\n%@\n" = "Jeżeli urządzenie po włączeniu zasilania nie pracuje w trybie konfiguracji, przytrzymaj wciśnięty przycisk CONFIG przez minimum 5 sekund.
+"*Configuration mode is enabled by default on brand new products. It can also be enabled manually by pressing and holding CONFIG button or dimmer knob for around 5s.\n\n%@\n" = "Jeżeli urządzenie po włączeniu zasilania nie pracuje w trybie konfiguracji, przytrzymaj wciśnięty przycisk CONFIG przez minimum 5 sekund.
 \n\n%@\n";
 "Press Next to continue." = "Naciśnij Dalej aby kontynuować.";
 "Press START to start configuration." = "Naciśnij przycisk START aby rozpocząć konfigurację.";
 "I/O Device connection setting timeout!" = "Przekroczono czas oczekiwania na nawiązanie połączenia z urządzeniem wykonawczym!";
-"No devices has been found! Check, if the device you want to configure is working in the configuration mode and try again." = "Nie znaleziono żadnych urządzeń! Upewnij się, że urządzenie, które chcesz skonfigurować pracuje w trybie konfiguracji, a następnie spróbuj ponownie.";
+"No I/O Devices found! Please check if your I/O Device is ON and in configuration mode." = "Nie znaleziono żadnych urządzeń! Upewnij się, że urządzenie, które chcesz skonfigurować pracuje w trybie konfiguracji, a następnie spróbuj ponownie.";
 "Make sure that the application has permissions to discover and connect to devices in the local network. This means that the \"iOS->Settings->SUPLA->Local network\" permission must be turned on for the wizard to work properly." = "Upewnij się, że aplikacja ma uprawnienia do odnajdywania urządzeń w sieci lokalnej i łączenia się z nimi. Oznacza to, że uprawnienie \"iOS->Ustawienia->SUPLA->Sieć lokalna\" musi być włączone aby kreator działał poprawnie. ";
 "The glass sections are exposed for more than 20 hours, which may adversely affect their life. It is recommended to cover all sections for a minimum of 4 hours in order to regenerate them." = "Sekcje szyby są odsłonięte dłużej niż 20 godzin co może negatywnie wpłynąć na ich żywotność. Zalecane jest zasłonięcie wszystkich sekcji na minimum 4 godziny w celu ich regeneracji.";
 "Planned regeneration is in progress." = "Trwa zaplanowana regeneracja.";
 "Regeneration initiated after 20 hours of operation is in progress." = "Trwa regeneracja zainicjowana po 20h pracy.";
+"Incorrect Email Address or Password" = "Błędny adres email lub hasło";
+"Channel Id" = "Id kanału";
+"Channel name" = "Nazwa kanału";
+"Location name" = "Nazwa lokalizacji";
+"Default" = "Domyślne";

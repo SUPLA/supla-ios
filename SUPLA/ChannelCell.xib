@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -22,7 +22,10 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Brama garażowa" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CZP-9z-72p">
-                        <rect key="frame" x="30" y="76.5" width="320" height="16.5"/>
+                        <rect key="frame" x="30" y="71.5" width="320" height="22"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="22" id="sla-7c-lp6"/>
+                        </constraints>
                         <fontDescription key="fontDescription" name="OpenSans-Bold" family="Open Sans" pointSize="12"/>
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
@@ -98,7 +101,7 @@
                     <constraint firstItem="mwc-4O-K3V" firstAttribute="leading" secondItem="oDG-Oh-yeF" secondAttribute="leadingMargin" constant="11" id="Wct-aD-J9X"/>
                     <constraint firstItem="CZP-9z-72p" firstAttribute="leading" secondItem="oDG-Oh-yeF" secondAttribute="leadingMargin" constant="10" id="WdL-hj-xmT"/>
                     <constraint firstAttribute="trailingMargin" secondItem="CZP-9z-72p" secondAttribute="trailing" constant="10" id="bdY-6d-AdK"/>
-                    <constraint firstItem="CZP-9z-72p" firstAttribute="top" secondItem="VDN-tt-KUq" secondAttribute="bottom" constant="10" id="cOe-XY-8FK"/>
+                    <constraint firstItem="CZP-9z-72p" firstAttribute="top" secondItem="VDN-tt-KUq" secondAttribute="bottom" constant="5" id="cOe-XY-8FK"/>
                     <constraint firstItem="4Xr-cm-fdh" firstAttribute="centerY" secondItem="oDG-Oh-yeF" secondAttribute="centerY" id="ebd-ht-UoB"/>
                     <constraint firstItem="VDN-tt-KUq" firstAttribute="centerY" secondItem="oDG-Oh-yeF" secondAttribute="centerY" constant="-10" id="lix-yi-6iL"/>
                     <constraint firstItem="8O3-5x-52I" firstAttribute="leading" secondItem="hr3-yJ-aHV" secondAttribute="trailing" constant="20" id="ocW-Ty-uoL"/>

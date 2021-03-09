@@ -50,6 +50,7 @@ typedef NS_ENUM(NSUInteger, GroupBy) {
 @class SAColorListItem;
 @class SAChannelGroup;
 @class SAUserIcon;
+@class SAChannelBase;
 @interface SADatabase :NSObject
 
 @property (readonly, strong, nonatomic) NSManagedObjectContext *managedObjectContext;
@@ -125,6 +126,10 @@ typedef NS_ENUM(NSUInteger, GroupBy) {
 -(SAUserIcon*) fetchUserIconById:(int)remote_id createNewObject:(BOOL)create;
 -(void) deleteAllUserIcons;
 -(BOOL) zwaveBridgeChannelAvailable;
+
+-(void) moveChannel:(SAChannelBase*)src toPositionOfChannel:(SAChannelBase*)dst;
+-(void) moveChannelGroup:(SAChannelBase*)src toPositionOfChannelGroup:(SAChannelBase*)dst;
+
 @end
 
 

@@ -11,19 +11,19 @@
 /* Class = "UILabel"; text = "Last state"; ObjectID = "HRH-kq-mbQ"; */
 "HRH-kq-mbQ.text" = "Vorige status";
 
-/* Class = "UILabel"; text = "Enter User Name and Password of your domestic or business WiFi network used to have the i/o device connected to server."; ObjectID = "Igv-nx-eY7"; */
+/* Class = "UILabel"; text = "Enter Wi-Fi Network name and password to use with new I/O Device"; ObjectID = "Igv-nx-eY7"; */
 "Igv-nx-eY7.text" = "Voer de naam en het wachtwoord in van uw thuis- of bedrijfs WiFi-netwerk waarmee het uitvoerende apparaat verbinding kan maken met de server.";
 
-/* Class = "UILabel"; text = "Device configuration completed successfully :)"; ObjectID = "JYg-Vc-pZn"; */
+/* Class = "UILabel"; text = "The settings have been transferred to the I/O device."; ObjectID = "JYg-Vc-pZn"; */
 "JYg-Vc-pZn.text" = "De apparaatconfiguratie is geslaagd :)";
 
-/* Class = "UILabel"; text = "Go to the iOS system settings and manually connect to the WiFi network beginning with SUPLA, ZAMEL or NICE. \n\nFor example: „SUPLA-A220A63612B1”. This is a temporary network of the i/o device enabling configuration. \n\nWhen the connection has been set, go back to the application and  continue adding  procedure by pressing the START button.  "; ObjectID = "LmT-sv-XIj"; */
+/* Class = "UILabel"; text = "Please use the System Settings shortcut below to select your I/O Device Wi-Fi for configuration such as SUPLA-A220A63612B1*. After connection is established, go back to the Supla application and press Start.\n\n*Configuration Wi-Fi name usually contains manufacturer name e.g. SUPLA, ZAMEL, NICE, HEATPOL etc. \n\nWhen the connection has been set, go back to the application and  continue adding  procedure by pressing the START button.  "; ObjectID = "LmT-sv-XIj"; */
 "LmT-sv-XIj.text" = "Ga naar de iOS-systeeminstellingen en maak handmatig verbinding met het WiFi-netwerk, te beginnen met de naam SUPLA of ZAMEL of NICE of HEATPOL.\n\nBijvoorbeeld, \"SUPLA-A220A63612B1\". Het is een tijdelijk netwerk van het uitvoerende apparaat dat wordt gebruikt voor de configuratie.\n\nNadat u verbinding heeft gemaakt met dit netwerk, keert u terug naar deze toepassing en gaat u verder met het toevoegen door op de Start-knop te klikken.";
 
 /* Class = "UILabel"; text = "Remember password"; ObjectID = "OMR-DU-yyQ"; */
 "OMR-DU-yyQ.text" = "Wachtwoord onthouden";
 
-/* Class = "UILabel"; text = "Power up your executive device. Configuration mode should be the default mode for the device, confirmed by a status diode flashing as"; ObjectID = "QQN-Ba-rnP"; */
+/* Class = "UILabel"; text = "Power up your I/O Device and make sure it is configuration mode - the status LED should be flashing rapidly"; ObjectID = "QQN-Ba-rnP"; */
 "QQN-Ba-rnP.text" = "Sluit uw uitvoerende apparaat aan op stroom. Het apparaat zou standaard in de configuratiemodus moeten werken, signalering door de status-LED als volgt te knipperen";
 
 /* Class = "UIButton"; normalTitle = "Go to the system settings"; ObjectID = "a01-dG-nhT"; */
@@ -41,8 +41,8 @@
 /* Class = "UITextField"; placeholder = "WiFi Network name"; ObjectID = "t0Z-OG-dra"; */
 "t0Z-OG-dra.placeholder" = "De naam van het WiFi-netwerk";
 
-/* Class = "UILabel"; text = "Welcome to the Device Add Wizard which will in an easy and simple way help you to add new device to the system."; ObjectID = "vbb-Xd-lIx"; */
+/* Class = "UILabel"; text = "Welcome to Add I/O Device Wizard which will help you to add a new device to your system in a few simple steps."; ObjectID = "vbb-Xd-lIx"; */
 "vbb-Xd-lIx.text" = "Welkom bij de wizard voor het toevoegen van apparaten, waarmee u op een snelle en eenvoudige manier een nieuw apparaat aan het systeem kunt toevoegen.";
 
-/* Class = "UILabel"; text = "If the device when switched on does not work in the configuration mode, press and hold CONFIG button for at least 5 seconds.\n\nPress Next to continue.\n"; ObjectID = "y0X-IV-sH5"; */
+/* Class = "UILabel"; text = "*Configuration mode is enabled by default on brand new products. It can also be enabled manually by pressing and holding CONFIG button or dimmer knob for around 5s.\n\nPress Next to continue.\n"; ObjectID = "y0X-IV-sH5"; */
 "y0X-IV-sH5.text" = ;

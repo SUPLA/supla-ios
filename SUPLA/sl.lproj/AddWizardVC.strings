@@ -11,19 +11,19 @@
 /* Class = "UILabel"; text = "Last state"; ObjectID = "HRH-kq-mbQ"; */
 "HRH-kq-mbQ.text" = "Prejšnji status";
 
-/* Class = "UILabel"; text = "Enter User Name and Password of your domestic or business WiFi network used to have the i/o device connected to server."; ObjectID = "Igv-nx-eY7"; */
+/* Class = "UILabel"; text = "Enter Wi-Fi Network name and password to use with new I/O Device"; ObjectID = "Igv-nx-eY7"; */
 "Igv-nx-eY7.text" = "Vnesite ime in geslo vašega domačega ali poslovnega omrežja WiFi, prek katerega bo izvršilna naprava lahko vzpostavila povezavo s strežnikom.";
 
-/* Class = "UILabel"; text = "Device configuration completed successfully :)"; ObjectID = "JYg-Vc-pZn"; */
+/* Class = "UILabel"; text = "The settings have been transferred to the I/O device."; ObjectID = "JYg-Vc-pZn"; */
 "JYg-Vc-pZn.text" = "Konfiguracija naprave je bila uspešna :)";
 
-/* Class = "UILabel"; text = "Go to the iOS system settings and manually connect to the WiFi network beginning with SUPLA, ZAMEL or NICE. \n\nFor example: „SUPLA-A220A63612B1”. This is a temporary network of the i/o device enabling configuration. \n\nWhen the connection has been set, go back to the application and  continue adding  procedure by pressing the START button.  "; ObjectID = "LmT-sv-XIj"; */
+/* Class = "UILabel"; text = "Please use the System Settings shortcut below to select your I/O Device Wi-Fi for configuration such as SUPLA-A220A63612B1*. After connection is established, go back to the Supla application and press Start.\n\n*Configuration Wi-Fi name usually contains manufacturer name e.g. SUPLA, ZAMEL, NICE, HEATPOL etc. \n\nWhen the connection has been set, go back to the application and  continue adding  procedure by pressing the START button.  "; ObjectID = "LmT-sv-XIj"; */
 "LmT-sv-XIj.text" = "Pojdite na sistemske nastavitve za iOS in se ročno povežite z omrežjem WiFi, ki se začne z imenom SUPLA ali ZAMEL ali NICE ali HEATPOL.\n\nNa primer \"SUPLA-A220A63612B1\". To je začasno izvršilno omrežje naprave, ki se ga uporablja za konfiguracijo.\n\nKo se povežete s tem omrežjem, se vrnite v to aplikacijo in nadaljujte postopek dodajanja s pritiskom na gumb Start";
 
 /* Class = "UILabel"; text = "Remember password"; ObjectID = "OMR-DU-yyQ"; */
 "OMR-DU-yyQ.text" = "Shranite geslo";
 
-/* Class = "UILabel"; text = "Power up your executive device. Configuration mode should be the default mode for the device, confirmed by a status diode flashing as"; ObjectID = "QQN-Ba-rnP"; */
+/* Class = "UILabel"; text = "Power up your I/O Device and make sure it is configuration mode - the status LED should be flashing rapidly"; ObjectID = "QQN-Ba-rnP"; */
 "QQN-Ba-rnP.text" = "Priključite svojo izvršno napravo na napajanje. Naprava naj bi privzeto delovala v konfiguracijskem načinu in to signalizirala z utripanjem LED diode na naslednji način";
 
 /* Class = "UIButton"; normalTitle = "Go to the system settings"; ObjectID = "a01-dG-nhT"; */
@@ -41,5 +41,5 @@
 /* Class = "UITextField"; placeholder = "WiFi Network name"; ObjectID = "t0Z-OG-dra"; */
 "t0Z-OG-dra.placeholder" = "Ime omrežja WiFi";
 
-/* Class = "UILabel"; text = "Welcome to the Device Add Wizard which will in an easy and simple way help you to add new device to the system."; ObjectID = "vbb-Xd-lIx"; */
+/* Class = "UILabel"; text = "Welcome to Add I/O Device Wizard which will help you to add a new device to your system in a few simple steps."; ObjectID = "vbb-Xd-lIx"; */
 "vbb-Xd-lIx.text" = "Dobrodošli v čarovniku za dodajanje naprav, ki vam bo pomagal hitro in enostavno dodati novo napravo v sistem.";

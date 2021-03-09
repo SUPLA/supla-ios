@@ -22,6 +22,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface SAChannelStateExtendedValue : SAExtendedValue
 -(TDSC_ChannelState)state;
+-(NSNumber *)channelId;
+-(NSString *)channelIdString;
 -(NSNumber *)ipv4;
 -(NSString *)ipv4String;
 -(NSData *)macAddress;

@@ -37,6 +37,7 @@
 		013A1BFC2538BAA0000583A2 /* roofwindow-closed@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 013A1BF82538BAA0000583A2 /* roofwindow-closed@3x.png */; };
 		013A1BFD2538BAA0000583A2 /* roofwindow-open@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 013A1BF92538BAA0000583A2 /* roofwindow-open@2x.png */; };
 		013A1BFE2538BAA0000583A2 /* roofwindow-closed@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 013A1BFA2538BAA0000583A2 /* roofwindow-closed@2x.png */; };
+		013AB91825E85CFB00C55E33 /* menu_cloud@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 013AB91725E85CFA00C55E33 /* menu_cloud@2x.png */; };
 		013D1C5D22CE47D5000C0784 /* SAChartHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 013D1C5C22CE47D5000C0784 /* SAChartHelper.m */; };
 		013D1C6022CE757F000C0784 /* SAIncrementalMeterChartHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 013D1C5F22CE757F000C0784 /* SAIncrementalMeterChartHelper.m */; };
 		013D1C6322CE75A3000C0784 /* SAElectricityChartHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 013D1C6222CE75A3000C0784 /* SAElectricityChartHelper.m */; };
@@ -118,6 +119,10 @@
 		0196E82A258CEEEC0016E8DC /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0196E82C258CEEEC0016E8DC /* InfoPlist.strings */; };
 		01996AC1254B6B390034C6F1 /* z_wave_btn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 01996AC0254B6B380034C6F1 /* z_wave_btn@2x.png */; };
 		019D22F0233CC2D000F17135 /* SAPreloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 019D22EF233CC2D000F17135 /* SAPreloader.m */; };
+		019D9E2C25F271CF00881C99 /* SACaptionEditor.m in Sources */ = {isa = PBXBuildFile; fileRef = 019D9E2A25F271CF00881C99 /* SACaptionEditor.m */; };
+		019D9E2D25F271CF00881C99 /* SACaptionEditor.xib in Resources */ = {isa = PBXBuildFile; fileRef = 019D9E2B25F271CF00881C99 /* SACaptionEditor.xib */; };
+		019D9E3225F27A4500881C99 /* SALocationCaptionEditor.m in Sources */ = {isa = PBXBuildFile; fileRef = 019D9E3125F27A4500881C99 /* SALocationCaptionEditor.m */; };
+		019D9E3725F27BC300881C99 /* SAChannelCaptionEditor.m in Sources */ = {isa = PBXBuildFile; fileRef = 019D9E3625F27BC300881C99 /* SAChannelCaptionEditor.m */; };
 		019F4CAC2354DC3300286139 /* ImpulseCounterDetailView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 019F4CAE2354DC3300286139 /* ImpulseCounterDetailView.xib */; };
 		019F4CCD23577C3700286139 /* SAImpulseCounterChartHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 019F4CCC23577C3700286139 /* SAImpulseCounterChartHelper.m */; };
 		01A66A7525364AA400C00A1A /* SARoofWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 01A66A7425364AA400C00A1A /* SARoofWindowController.m */; };
@@ -142,12 +147,12 @@
 		01CEAC0D25B99A58009C3BFD /* digiglass@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 01CEAC0125B99A57009C3BFD /* digiglass@3x.png */; };
 		01CEAC0E25B99A58009C3BFD /* digiglass-transparent@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 01CEAC0225B99A57009C3BFD /* digiglass-transparent@2x.png */; };
 		01CEAC0F25B99A58009C3BFD /* digiglass1@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 01CEAC0325B99A57009C3BFD /* digiglass1@3x.png */; };
-		01CEAC1025B99A58009C3BFD /* digiglassh-transparent@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 01CEAC0425B99A57009C3BFD /* digiglassh-transparent@3x.png */; };
+		01CEAC1025B99A58009C3BFD /* digiglassv-transparent@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 01CEAC0425B99A57009C3BFD /* digiglassv-transparent@3x.png */; };
 		01CEAC1125B99A58009C3BFD /* digiglass@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 01CEAC0525B99A57009C3BFD /* digiglass@2x.png */; };
-		01CEAC1225B99A58009C3BFD /* digiglassh1-transparent@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 01CEAC0625B99A57009C3BFD /* digiglassh1-transparent@3x.png */; };
-		01CEAC1325B99A58009C3BFD /* digiglassh1-transparent@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 01CEAC0725B99A57009C3BFD /* digiglassh1-transparent@2x.png */; };
+		01CEAC1225B99A58009C3BFD /* digiglassv1-transparent@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 01CEAC0625B99A57009C3BFD /* digiglassv1-transparent@3x.png */; };
+		01CEAC1325B99A58009C3BFD /* digiglassv1-transparent@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 01CEAC0725B99A57009C3BFD /* digiglassv1-transparent@2x.png */; };
 		01CEAC1425B99A58009C3BFD /* digiglass1-transparent@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 01CEAC0825B99A57009C3BFD /* digiglass1-transparent@3x.png */; };
-		01CEAC1525B99A58009C3BFD /* digiglassh-transparent@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 01CEAC0925B99A57009C3BFD /* digiglassh-transparent@2x.png */; };
+		01CEAC1525B99A58009C3BFD /* digiglassv-transparent@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 01CEAC0925B99A57009C3BFD /* digiglassv-transparent@2x.png */; };
 		01CEAC1625B99A58009C3BFD /* digiglass1-transparent@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 01CEAC0A25B99A57009C3BFD /* digiglass1-transparent@2x.png */; };
 		01CEAC1725B99A58009C3BFD /* digiglass1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 01CEAC0B25B99A58009C3BFD /* digiglass1@2x.png */; };
 		01CEAC1825B99A58009C3BFD /* digiglass-transparent@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 01CEAC0C25B99A58009C3BFD /* digiglass-transparent@3x.png */; };
@@ -500,6 +505,8 @@
 		013A1BF82538BAA0000583A2 /* roofwindow-closed@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "roofwindow-closed@3x.png"; path = "Resources/Assets/Img/roofwindow-closed@3x.png"; sourceTree = "<group>"; };
 		013A1BF92538BAA0000583A2 /* roofwindow-open@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "roofwindow-open@2x.png"; path = "Resources/Assets/Img/roofwindow-open@2x.png"; sourceTree = "<group>"; };
 		013A1BFA2538BAA0000583A2 /* roofwindow-closed@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "roofwindow-closed@2x.png"; path = "Resources/Assets/Img/roofwindow-closed@2x.png"; sourceTree = "<group>"; };
+		013AB91725E85CFA00C55E33 /* menu_cloud@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "menu_cloud@2x.png"; path = "Resources/Assets/Img/menu_cloud@2x.png"; sourceTree = "<group>"; };
+		013C8C6725F79265009519B6 /* SUPLA 7.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "SUPLA 7.xcdatamodel"; sourceTree = "<group>"; };
 		013D1C5B22CE47D5000C0784 /* SAChartHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SAChartHelper.h; sourceTree = "<group>"; };
 		013D1C5C22CE47D5000C0784 /* SAChartHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SAChartHelper.m; sourceTree = "<group>"; };
 		013D1C5E22CE757F000C0784 /* SAIncrementalMeterChartHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SAIncrementalMeterChartHelper.h; sourceTree = "<group>"; };
@@ -642,6 +649,13 @@
 		01996AC0254B6B380034C6F1 /* z_wave_btn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "z_wave_btn@2x.png"; path = "Resources/Assets/Img/z_wave_btn@2x.png"; sourceTree = "<group>"; };
 		019D22EE233CC2D000F17135 /* SAPreloader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SAPreloader.h; sourceTree = "<group>"; };
 		019D22EF233CC2D000F17135 /* SAPreloader.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SAPreloader.m; sourceTree = "<group>"; };
+		019D9E2925F271CF00881C99 /* SACaptionEditor.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SACaptionEditor.h; sourceTree = "<group>"; };
+		019D9E2A25F271CF00881C99 /* SACaptionEditor.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SACaptionEditor.m; sourceTree = "<group>"; };
+		019D9E2B25F271CF00881C99 /* SACaptionEditor.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SACaptionEditor.xib; sourceTree = "<group>"; };
+		019D9E3025F27A4500881C99 /* SALocationCaptionEditor.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SALocationCaptionEditor.h; sourceTree = "<group>"; };
+		019D9E3125F27A4500881C99 /* SALocationCaptionEditor.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SALocationCaptionEditor.m; sourceTree = "<group>"; };
+		019D9E3525F27BC300881C99 /* SAChannelCaptionEditor.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SAChannelCaptionEditor.h; sourceTree = "<group>"; };
+		019D9E3625F27BC300881C99 /* SAChannelCaptionEditor.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SAChannelCaptionEditor.m; sourceTree = "<group>"; };
 		019F4CAD2354DC3300286139 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/ImpulseCounterDetailView.xib; sourceTree = "<group>"; };
 		019F4CB02354DC3B00286139 /* cs */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = cs; path = cs.lproj/ImpulseCounterDetailView.strings; sourceTree = "<group>"; };
 		019F4CB22354DC3C00286139 /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = nl.lproj/ImpulseCounterDetailView.strings; sourceTree = "<group>"; };
@@ -762,12 +776,12 @@
 		01CEAC0125B99A57009C3BFD /* digiglass@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "digiglass@3x.png"; path = "Resources/Assets/Img/digiglass@3x.png"; sourceTree = "<group>"; };
 		01CEAC0225B99A57009C3BFD /* digiglass-transparent@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "digiglass-transparent@2x.png"; path = "Resources/Assets/Img/digiglass-transparent@2x.png"; sourceTree = "<group>"; };
 		01CEAC0325B99A57009C3BFD /* digiglass1@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "digiglass1@3x.png"; path = "Resources/Assets/Img/digiglass1@3x.png"; sourceTree = "<group>"; };
-		01CEAC0425B99A57009C3BFD /* digiglassh-transparent@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "digiglassh-transparent@3x.png"; path = "Resources/Assets/Img/digiglassh-transparent@3x.png"; sourceTree = "<group>"; };
+		01CEAC0425B99A57009C3BFD /* digiglassv-transparent@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "digiglassv-transparent@3x.png"; path = "Resources/Assets/Img/digiglassv-transparent@3x.png"; sourceTree = "<group>"; };
 		01CEAC0525B99A57009C3BFD /* digiglass@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "digiglass@2x.png"; path = "Resources/Assets/Img/digiglass@2x.png"; sourceTree = "<group>"; };
-		01CEAC0625B99A57009C3BFD /* digiglassh1-transparent@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "digiglassh1-transparent@3x.png"; path = "Resources/Assets/Img/digiglassh1-transparent@3x.png"; sourceTree = "<group>"; };
-		01CEAC0725B99A57009C3BFD /* digiglassh1-transparent@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "digiglassh1-transparent@2x.png"; path = "Resources/Assets/Img/digiglassh1-transparent@2x.png"; sourceTree = "<group>"; };
+		01CEAC0625B99A57009C3BFD /* digiglassv1-transparent@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "digiglassv1-transparent@3x.png"; path = "Resources/Assets/Img/digiglassv1-transparent@3x.png"; sourceTree = "<group>"; };
+		01CEAC0725B99A57009C3BFD /* digiglassv1-transparent@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "digiglassv1-transparent@2x.png"; path = "Resources/Assets/Img/digiglassv1-transparent@2x.png"; sourceTree = "<group>"; };
 		01CEAC0825B99A57009C3BFD /* digiglass1-transparent@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "digiglass1-transparent@3x.png"; path = "Resources/Assets/Img/digiglass1-transparent@3x.png"; sourceTree = "<group>"; };
-		01CEAC0925B99A57009C3BFD /* digiglassh-transparent@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "digiglassh-transparent@2x.png"; path = "Resources/Assets/Img/digiglassh-transparent@2x.png"; sourceTree = "<group>"; };
+		01CEAC0925B99A57009C3BFD /* digiglassv-transparent@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "digiglassv-transparent@2x.png"; path = "Resources/Assets/Img/digiglassv-transparent@2x.png"; sourceTree = "<group>"; };
 		01CEAC0A25B99A57009C3BFD /* digiglass1-transparent@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "digiglass1-transparent@2x.png"; path = "Resources/Assets/Img/digiglass1-transparent@2x.png"; sourceTree = "<group>"; };
 		01CEAC0B25B99A58009C3BFD /* digiglass1@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "digiglass1@2x.png"; path = "Resources/Assets/Img/digiglass1@2x.png"; sourceTree = "<group>"; };
 		01CEAC0C25B99A58009C3BFD /* digiglass-transparent@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "digiglass-transparent@3x.png"; path = "Resources/Assets/Img/digiglass-transparent@3x.png"; sourceTree = "<group>"; };
@@ -1218,6 +1232,7 @@
 		012119122368B597004C1993 /* xib */ = {
 			isa = PBXGroup;
 			children = (
+				019D9E2B25F271CF00881C99 /* SACaptionEditor.xib */,
 				01511CF924F50B470081A1EC /* SAPreloaderPopup.xib */,
 				012E81DB24C9A31B008E0690 /* SALightsourceLifespanSettingsDialog.xib */,
 				0180440B24C254CF005E53EB /* SAChannelStatePopup.xib */,
@@ -1468,6 +1483,7 @@
 		405AC4011BC15878004F7311 /* Img */ = {
 			isa = PBXGroup;
 			children = (
+				013AB91725E85CFA00C55E33 /* menu_cloud@2x.png */,
 				01CEAC2425B9AA71009C3BFD /* dgfopaque@3x.png */,
 				01CEAC2325B9AA71009C3BFD /* dgftransparent@3x.png */,
 				01CEAC0225B99A57009C3BFD /* digiglass-transparent@2x.png */,
@@ -1478,10 +1494,10 @@
 				01CEAC0825B99A57009C3BFD /* digiglass1-transparent@3x.png */,
 				01CEAC0B25B99A58009C3BFD /* digiglass1@2x.png */,
 				01CEAC0325B99A57009C3BFD /* digiglass1@3x.png */,
-				01CEAC0925B99A57009C3BFD /* digiglassh-transparent@2x.png */,
-				01CEAC0425B99A57009C3BFD /* digiglassh-transparent@3x.png */,
-				01CEAC0725B99A57009C3BFD /* digiglassh1-transparent@2x.png */,
-				01CEAC0625B99A57009C3BFD /* digiglassh1-transparent@3x.png */,
+				01CEAC0925B99A57009C3BFD /* digiglassv-transparent@2x.png */,
+				01CEAC0425B99A57009C3BFD /* digiglassv-transparent@3x.png */,
+				01CEAC0725B99A57009C3BFD /* digiglassv1-transparent@2x.png */,
+				01CEAC0625B99A57009C3BFD /* digiglassv1-transparent@3x.png */,
 				0148933B25AA19DA00B9974E /* infinity@3x.png */,
 				0148933D25AA19DA00B9974E /* infinitywhite@3x.png */,
 				0148933E25AA19DA00B9974E /* p100@3x.png */,
@@ -1926,6 +1942,12 @@
 				01642A872549C3EF00E87C46 /* SAMenuItems.m */,
 				0148933225AA12DB00B9974E /* SADiwCalibrationTool.h */,
 				0148933325AA12DB00B9974E /* SADiwCalibrationTool.m */,
+				019D9E2925F271CF00881C99 /* SACaptionEditor.h */,
+				019D9E2A25F271CF00881C99 /* SACaptionEditor.m */,
+				019D9E3025F27A4500881C99 /* SALocationCaptionEditor.h */,
+				019D9E3525F27BC300881C99 /* SAChannelCaptionEditor.h */,
+				019D9E3625F27BC300881C99 /* SAChannelCaptionEditor.m */,
+				019D9E3125F27A4500881C99 /* SALocationCaptionEditor.m */,
 			);
 			name = UI;
 			sourceTree = "<group>";
@@ -2068,6 +2090,7 @@
 				405C49A11FCAFFD400C15602 /* wizard_ok@2x.png in Resources */,
 				017A3C8623633A70004AD1FC /* TempHumidityDetailView.xib in Resources */,
 				01F9110522EF954400BFF91D /* thermostat_hp_homeplus-off@3x.png in Resources */,
+				019D9E2D25F271CF00881C99 /* SACaptionEditor.xib in Resources */,
 				40CF96B21BC7D4E70030EFFF /* gate-closed@2x.png in Resources */,
 				4091654D1F3CBAF200F49193 /* rs_down.png in Resources */,
 				01F9110422EF954400BFF91D /* thermostat_hp_homeplus2-off@2x.png in Resources */,
@@ -2081,7 +2104,7 @@
 				40CF96C21BC7D4E70030EFFF /* power-off@2x.png in Resources */,
 				40CF96BD1BC7D4E70030EFFF /* light-on@3x.png in Resources */,
 				40DE1A381BCD5E9B004CF43B /* AboutVC.xib in Resources */,
-				01CEAC1325B99A58009C3BFD /* digiglassh1-transparent@2x.png in Resources */,
+				01CEAC1325B99A58009C3BFD /* digiglassv1-transparent@2x.png in Resources */,
 				40B9ED821FACE15700403B1A /* window-closed@3x.png in Resources */,
 				01F9110122EF954400BFF91D /* thermostat_hp_homeplus2-off@3x.png in Resources */,
 				4052DA051DC515AE000B8C45 /* dimmerrgb-onoff@2x.png in Resources */,
@@ -2100,6 +2123,7 @@
 				405AC4191BC15898004F7311 /* app_icon-1024.png in Resources */,
 				01D5E0CA22DB8F0A00FBE1DC /* SAChartMarkerView.xib in Resources */,
 				405AC41A1BC15898004F7311 /* app_icon@2x.png in Resources */,
+				013AB91825E85CFB00C55E33 /* menu_cloud@2x.png in Resources */,
 				40CF96BA1BC7D4E70030EFFF /* light-off@2x.png in Resources */,
 				0148934125AA19DA00B9974E /* infinitywhite@3x.png in Resources */,
 				40B9ED6D1FACD94300403B1A /* barier-open@3x.png in Resources */,
@@ -2170,7 +2194,7 @@
 				40CF96C81BC7D4E70030EFFF /* rollershutter-open@2x.png in Resources */,
 				4077ACE420A21BB100BD2216 /* CreateAccountVC.xib in Resources */,
 				405AC4321BC158E8004F7311 /* OpenSans-Regular.ttf in Resources */,
-				01CEAC1025B99A58009C3BFD /* digiglassh-transparent@3x.png in Resources */,
+				01CEAC1025B99A58009C3BFD /* digiglassv-transparent@3x.png in Resources */,
 				40B9ED701FACD94300403B1A /* barier-open@2x.png in Resources */,
 				40CF96AC1BC7D4E70030EFFF /* door-open@2x.png in Resources */,
 				40477B4A20C6C5FE00E995E6 /* staircasetimer_1-on@3x.png in Resources */,
@@ -2179,7 +2203,7 @@
 				012E81D924C9A31B008E0690 /* SALightsourceLifespanSettingsDialog.xib in Resources */,
 				40CF96C61BC7D4E70030EFFF /* rollershutter-closed@2x.png in Resources */,
 				0148934525AA5D2000B9974E /* SADiwCalibrationTool.xib in Resources */,
-				01CEAC1225B99A58009C3BFD /* digiglassh1-transparent@3x.png in Resources */,
+				01CEAC1225B99A58009C3BFD /* digiglassv1-transparent@3x.png in Resources */,
 				40B397CF1BCE7F3200BE7D5A /* Launch Screen.storyboard in Resources */,
 				40B9ED601FACD14000403B1A /* fan-off@3x.png in Resources */,
 				0158396A2576A82A005E615D /* ledalwaysoffwhite@3x.png in Resources */,
@@ -2274,7 +2298,7 @@
 				01CEAC0E25B99A58009C3BFD /* digiglass-transparent@2x.png in Resources */,
 				40B9ED571FACD0A100403B1A /* pc-on@2x.png in Resources */,
 				018D2E5124BF258B00773D2F /* uv-on@2x.png in Resources */,
-				01CEAC1525B99A58009C3BFD /* digiglassh-transparent@2x.png in Resources */,
+				01CEAC1525B99A58009C3BFD /* digiglassv-transparent@2x.png in Resources */,
 				4091AF4A1FC88BFB00EFF357 /* greendot@2x.png in Resources */,
 				011E736824A1367B004D99EE /* SAVLCalibrationTool.xib in Resources */,
 				0158396C2576A82A005E615D /* ledoff@3x.png in Resources */,
@@ -2435,6 +2459,7 @@
 				01F8857222E5E79100D18373 /* SAImpulseCounterMeasurementItem+CoreDataClass.m in Sources */,
 				010C8786249A6A92002FE526 /* SADialog.m in Sources */,
 				40C7BA6C20C045A800ACEE42 /* SAChannelGroup+CoreDataClass.m in Sources */,
+				019D9E3725F27BC300881C99 /* SAChannelCaptionEditor.m in Sources */,
 				40C7BA5420C008DB00ACEE42 /* SAChannelGroupRelation+CoreDataClass.m in Sources */,
 				40C7BA8820C0492500ACEE42 /* SAChannelBase+CoreDataProperties.m in Sources */,
 				01D6A102249BEC8C006B3757 /* SAVLCalibrationTool.m in Sources */,
@@ -2480,6 +2505,7 @@
 				01CEAC1E25B99DAC009C3BFD /* SADigiglassValue.m in Sources */,
 				408034E51BC84A89007666E7 /* NavigationController.m in Sources */,
 				4004DE8D1DC4E270009C34E3 /* SAColorBrightnessPicker.m in Sources */,
+				019D9E2C25F271CF00881C99 /* SACaptionEditor.m in Sources */,
 				401CA1C21BA067DB00117AF4 /* AppDelegate.m in Sources */,
 				013D1C5D22CE47D5000C0784 /* SAChartHelper.m in Sources */,
 				019F4CCD23577C3700286139 /* SAImpulseCounterChartHelper.m in Sources */,
@@ -2491,6 +2517,7 @@
 				013D1C6322CE75A3000C0784 /* SAElectricityChartHelper.m in Sources */,
 				406778551BCBF9F4008DD37F /* SectionCell.m in Sources */,
 				40B9ED3A1FAC79FC00403B1A /* SUPLA.xcdatamodeld in Sources */,
+				019D9E3225F27A4500881C99 /* SALocationCaptionEditor.m in Sources */,
 				40B610CC20C7E263002B762A /* SAUIChannelStatus.m in Sources */,
 				01215A7324C8AECC00429947 /* SALightsourceLifespanSettingsDialog.m in Sources */,
 				4077ACE320A21BB100BD2216 /* CreateAccountVC.m in Sources */,
@@ -2995,7 +3022,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = SUPLA/SUPLA.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 82;
+				CURRENT_PROJECT_VERSION = 83;
 				DEFINES_MODULE = YES;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"$(inherited)",
@@ -3010,7 +3037,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/SUPLA/lib",
 				);
-				MARKETING_VERSION = 2.3.34;
+				MARKETING_VERSION = 2.3.35;
 				PRODUCT_BUNDLE_IDENTIFIER = com.acsoftware.ios.supla;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "SUPLA/SUPLA-Bridging-Header.h";
@@ -3028,7 +3055,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = SUPLA/SUPLA.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 82;
+				CURRENT_PROJECT_VERSION = 83;
 				DEFINES_MODULE = YES;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"$(inherited)",
@@ -3043,7 +3070,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/SUPLA/lib",
 				);
-				MARKETING_VERSION = 2.3.34;
+				MARKETING_VERSION = 2.3.35;
 				PRODUCT_BUNDLE_IDENTIFIER = com.acsoftware.ios.supla;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "SUPLA/SUPLA-Bridging-Header.h";
@@ -3127,6 +3154,7 @@
 		407004251BB5706500F6187F /* SUPLA.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				013C8C6725F79265009519B6 /* SUPLA 7.xcdatamodel */,
 				01172903247473E200DAF1D0 /* SUPLA 6.xcdatamodel */,
 				012119132368BDB0004C1993 /* SUPLA 5.xcdatamodel */,
 				01CFF6D12365BCCD00C827FB /* SUPLA 4.xcdatamodel */,
@@ -3134,7 +3162,7 @@
 				40BBA34620AC52EA0054CD20 /* SUPLA 2.xcdatamodel */,
 				407004261BB5706500F6187F /* SUPLA.xcdatamodel */,
 			);
-			currentVersion = 01172903247473E200DAF1D0 /* SUPLA 6.xcdatamodel */;
+			currentVersion = 013C8C6725F79265009519B6 /* SUPLA 7.xcdatamodel */;
 			path = SUPLA.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

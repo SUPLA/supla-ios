@@ -54,6 +54,8 @@
 
 +(void)initClientDelayed:(double)time;
 +(SASuplaClient *) SuplaClient;
++(SASuplaClient *) SuplaClientWithOneTimePassword:(NSString*)password;
++(BOOL) isClientRegistered;
 +(SADatabase *) DB;
 +(SAUIHelper *)UI;
 

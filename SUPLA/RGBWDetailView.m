@@ -32,12 +32,14 @@
 #define DELAY_AUTO 0
 
 #define ZAM_PRODID_DIW_01 2000
+#define COM_PRODID_WDIM100 2000
 
 @implementation SARGBWDetailView {
     int _brightness;
     int _colorBrightness;
     BOOL _varilight;
     BOOL _zamel_diw_01;
+    BOOL _comelit_wdim100;
     BOOL isGroup;
     UIColor *_color;
     NSArray *_colorMarkers;
@@ -232,7 +234,7 @@
         [self onPickerTypeTabTouch:_varilight ? self.tabSlider : self.tabWheel];
     }
     
-    [self setExtraButtonsHidden:!_varilight && !_zamel_diw_01];
+    [self setExtraButtonsHidden:!_varilight && !_zamel_diw_01 && !_comelit_wdim100];
     [self setWheelSliderTabsHidden:NO];
     self.tabRGB.selected = NO;
     self.tabRGB.backgroundColor = [UIColor rgbwNormalTabColor];
@@ -330,6 +332,7 @@
         _colorMarkers = nil;
         _varilight = false;
         _zamel_diw_01 = false;
+        _comelit_wdim100 = false;
         self.cbPicker.minBrightness = 0.0;
         
         if (channelBase != nil
@@ -342,6 +345,11 @@
                 self.cbPicker.minBrightness = 1.0;
                 if (((SAChannel*)channelBase).product_id == ZAM_PRODID_DIW_01) {
                     _zamel_diw_01 = YES;
+                }
+            } else if (((SAChannel*)channelBase).manufacturer_id == SUPLA_MFR_COMELIT) {
+                self.cbPicker.minBrightness = 1.0;
+                if (((SAChannel*)channelBase).product_id == COM_PRODID_WDIM100) {
+                    _comelit_wdim100 = YES;
                 }
             }
         }
@@ -468,7 +476,7 @@
     if (_dimmerCalibrationTool == nil) {
         if (_varilight) {
             _dimmerCalibrationTool = [SAVLCalibrationTool newInstance];
-        } else if (_zamel_diw_01) {
+        } else if (_zamel_diw_01 || _comelit_wdim100) {
             _dimmerCalibrationTool = [SADiwCalibrationTool newInstance];
         }
     }

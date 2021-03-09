@@ -130,6 +130,18 @@ typedef struct {
 - (void)cfgToUI {
     [self.rangeCalibrationWheel setMinimum:_config.min andMaximum:_config.max];
     [self inputModeToUI];
+    if (_config.stm_version_major
+        || _config.stm_version_minor
+        || _config.stm_version_build
+        || _config.stm_version_revision) {
+        self.lSTMFirmwareVersion.text = [NSString stringWithFormat:@"%i.%i.%i.%i",
+                                    _config.stm_version_major,
+                                    _config.stm_version_minor,
+                                    _config.stm_version_build,
+                                    _config.stm_version_revision];
+    } else {
+        self.lSTMFirmwareVersion.text = @"";
+    }
 }
 
 - (void)showInformationDialog {

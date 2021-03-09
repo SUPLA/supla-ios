@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -25,9 +25,9 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Distance" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dxU-XW-HyC">
-                        <rect key="frame" x="10" y="71.5" width="360" height="16.5"/>
+                        <rect key="frame" x="10" y="72" width="360" height="22"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="16.5" id="GWm-e0-3qZ"/>
+                            <constraint firstAttribute="height" constant="22" id="GWm-e0-3qZ"/>
                         </constraints>
                         <fontDescription key="fontDescription" name="OpenSans-Bold" family="Open Sans" pointSize="12"/>
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -41,14 +41,14 @@
                         </constraints>
                     </view>
                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="distance.png" translatesAutoresizingMaskIntoConstraints="NO" id="rRR-pT-wyW">
-                        <rect key="frame" x="100" y="41.5" width="180" height="30"/>
+                        <rect key="frame" x="100" y="42" width="180" height="30"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="180" id="Vhj-kf-kd6"/>
                             <constraint firstAttribute="height" constant="30" id="dz6-qs-T4X"/>
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="15 cm" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VE7-P5-rn1">
-                        <rect key="frame" x="130" y="21.5" width="120" height="20"/>
+                        <rect key="frame" x="130" y="22" width="120" height="20"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="120" id="TEQ-QT-0rS"/>
                             <constraint firstAttribute="height" constant="20" id="wcA-i3-OkP"/>
@@ -73,7 +73,7 @@
                     <constraint firstAttribute="trailing" secondItem="Dzo-zV-GaU" secondAttribute="trailing" constant="10" id="Q3z-yl-6yV"/>
                     <constraint firstItem="rRR-pT-wyW" firstAttribute="centerX" secondItem="eGS-IB-2q0" secondAttribute="centerX" id="YYo-vL-eqp"/>
                     <constraint firstItem="dxU-XW-HyC" firstAttribute="leading" secondItem="eGS-IB-2q0" secondAttribute="leading" constant="10" id="Zbq-x8-Oap"/>
-                    <constraint firstItem="Dzo-zV-GaU" firstAttribute="top" secondItem="dxU-XW-HyC" secondAttribute="bottom" constant="6" id="kbB-rP-hBb"/>
+                    <constraint firstItem="Dzo-zV-GaU" firstAttribute="top" secondItem="dxU-XW-HyC" secondAttribute="bottom" id="kbB-rP-hBb"/>
                     <constraint firstItem="ZRc-DJ-9On" firstAttribute="leading" secondItem="eGS-IB-2q0" secondAttribute="leading" constant="20" id="nuj-qZ-9vO"/>
                     <constraint firstItem="Dzo-zV-GaU" firstAttribute="leading" secondItem="eGS-IB-2q0" secondAttribute="leading" constant="10" id="qIz-Qe-3cE"/>
                     <constraint firstItem="rRR-pT-wyW" firstAttribute="top" secondItem="VE7-P5-rn1" secondAttribute="bottom" id="sKj-6p-5T9"/>

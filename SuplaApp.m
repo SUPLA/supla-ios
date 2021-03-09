@@ -21,6 +21,7 @@
 #import "Database.h"
 #import "NSData+AES.h"
 #import "SAKeychain.h"
+#import "SASuperuserAuthorizationDialog.h"
 
 static SAApp* _Globals = nil;
 
@@ -405,7 +406,7 @@ NSString *kSAOnSetRegistrationEnableResult = @"KSA-N18";
 }
 
 -(void)onInitTimer:(NSTimer *)timer {
-    [self SuplaClient];
+    [self SuplaClientWithOneTimePassword:nil];
 }
 
 
@@ -429,15 +430,15 @@ NSString *kSAOnSetRegistrationEnableResult = @"KSA-N18";
     [[self instance] initClientDelayed:time];
 }
 
--(SASuplaClient*) SuplaClient {
+-(SASuplaClient*) SuplaClientWithOneTimePassword:(NSString *)password {
     
     SASuplaClient *result = nil;
     
     @synchronized(self) {
         
-        if ( _SuplaClient == nil ) {
+        if ( _SuplaClient == nil) {
             
-            _SuplaClient = [[SASuplaClient alloc] init];
+            _SuplaClient = [[SASuplaClient alloc] initWithOneTimePassword:password];
             [_SuplaClient start];
         }
         
@@ -448,8 +449,29 @@ NSString *kSAOnSetRegistrationEnableResult = @"KSA-N18";
     
 }
 
+-(BOOL) isClientRegistered {
+    BOOL result = nil;
+    
+    @synchronized(self) {
+        if ( _SuplaClient != nil) {
+            result = [_SuplaClient isRegistered];
+        }
+    }
+    
+    return result;
+    
+}
+
 +(SASuplaClient*) SuplaClient {
-    return [[self instance] SuplaClient];
+    return [[self instance] SuplaClientWithOneTimePassword:nil];
+}
+
++(SASuplaClient *) SuplaClientWithOneTimePassword:(NSString*)password {
+    return [[self instance] SuplaClientWithOneTimePassword:password];
+}
+
++(BOOL) isClientRegistered {
+    return [[self instance] isClientRegistered];
 }
 
 -(BOOL) SuplaClientTerminate {
@@ -467,7 +489,6 @@ NSString *kSAOnSetRegistrationEnableResult = @"KSA-N18";
 }
 
 -(void)onTerminated:(SASuplaClient*)sender {
-    
     @synchronized(self) {
         if ( _SuplaClient == sender ) {
             _SuplaClient = nil;
@@ -570,7 +591,7 @@ NSString *kSAOnSetRegistrationEnableResult = @"KSA-N18";
     if ( [code intValue] == SUPLA_RESULTCODE_HOSTNOTFOUND ) {
         
         [self SuplaClientTerminate];
-        [self.UI showStatusError:NSLocalizedString(@"Host not found", nil)];
+        [self.UI showStatusError:NSLocalizedString(@"Host not found. Make sure you are connected to the internet and that an account with the entered email address has been created.", nil)];
     }
     
     
@@ -617,37 +638,18 @@ NSString *kSAOnSetRegistrationEnableResult = @"KSA-N18";
     }
     
     [self SuplaClientTerminate];
-    
-    NSString *msg = [NSString stringWithFormat:@"%@ (%@)", NSLocalizedString(@"Unknown error", nil), code];
-    
-    switch([code intValue]) {
-        case SUPLA_RESULTCODE_TEMPORARILY_UNAVAILABLE:
-            msg = NSLocalizedString(@"Service temporarily unavailable", nil);
-            break;
-        case SUPLA_RESULTCODE_BAD_CREDENTIALS:
-            msg = NSLocalizedString(@"Bad credentials", nil);
-            break;
-        case SUPLA_RESULTCODE_CLIENT_LIMITEXCEEDED:
-            msg = NSLocalizedString(@"Client limit exceeded", nil);
-            break;
-        case SUPLA_RESULTCODE_CLIENT_DISABLED:
-            msg = NSLocalizedString(@"Device is disabled", nil);
-            break;
-        case SUPLA_RESULTCODE_ACCESSID_DISABLED:
-            msg = NSLocalizedString(@"Access Identifier is disabled", nil);
-            break;
-        case SUPLA_RESULTCODE_REGISTRATION_DISABLED:
-            msg = [NSString stringWithFormat:NSLocalizedString(@"Client Registration is off. Please go to \"Smartphone\" at %@ to activate it.", nil), [self getMsgHostName]];
-            break;
-        case SUPLA_RESULTCODE_ACCESSID_NOT_ASSIGNED:
-            msg = [NSString stringWithFormat:NSLocalizedString(@"This client does not have access identifier assigned. Please go to \"Smartphone\" at %@ and get a valid identifier.", nil), [self getMsgHostName]];
-            break;
-            
-    }
-    
-    [self.UI showStatusError:msg];
+
+    [self.UI showStatusError:[SASuplaClient codeToString:code]];
     
     [[NSNotificationCenter defaultCenter] postNotificationName:kSARegisterErrorNotification object:self userInfo:[[NSDictionary alloc] initWithObjects:@[code] forKeys:@[@"code"]]];
+    
+    int cint = [code intValue];
+    if ((cint == SUPLA_RESULTCODE_REGISTRATION_DISABLED
+        || cint == SUPLA_RESULTCODE_ACCESSID_NOT_ASSIGNED)
+        && ![self isAdvancedConfig]
+        && ![SASuperuserAuthorizationDialog.globalInstance isVisible]) {
+        [SASuperuserAuthorizationDialog.globalInstance authorizeWithDelegate:nil];
+    }
     
 }
 

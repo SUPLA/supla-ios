@@ -62,7 +62,7 @@
         return _persistentStoreCoordinator;
     }
     
-    int DBv = 9;
+    int DBv = 10;
     
     [self removeIfExists:@"SUPLA_DB.sqlite"];
     
@@ -498,20 +498,26 @@
     return save;
 }
 
--(NSFetchedResultsController*) getChannelBaseFrcForEntityName:(NSString*)entity {
-    
+-(NSFetchRequest*) getChannelBaseFetchRequestForEntityName:(NSString*)entity locationId:(int)locationId {
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
     
-    fetchRequest.predicate = [NSPredicate predicateWithFormat:@"func > 0 AND visible > 0"];
+    fetchRequest.predicate = [NSPredicate predicateWithFormat:@"func > 0 AND visible > 0 AND (%i = 0 OR location.location_id = %i)", locationId, locationId];
     [fetchRequest setEntity:[NSEntityDescription entityForName:entity inManagedObjectContext: self.managedObjectContext]];
     
     NSArray *sortDescriptors = [[NSArray alloc] initWithObjects:[[NSSortDescriptor alloc] initWithKey:@"location.caption" ascending:YES],
+                                [[NSSortDescriptor alloc] initWithKey:@"position" ascending:YES],
                                 [[NSSortDescriptor alloc] initWithKey:@"func" ascending:NO],
                                 [[NSSortDescriptor alloc] initWithKey:@"caption" ascending:NO],
                                 nil];
     
     [fetchRequest setSortDescriptors:sortDescriptors];
     
+    return fetchRequest;
+}
+
+-(NSFetchedResultsController*) getChannelBaseFrcForEntityName:(NSString*)entity {
+    NSFetchRequest *fetchRequest = [self getChannelBaseFetchRequestForEntityName:entity locationId:0];
+
     NSFetchedResultsController *frc = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:self.managedObjectContext sectionNameKeyPath:@"location.caption" cacheName:nil];
     
     NSError *error;
@@ -1354,4 +1360,58 @@
 -(BOOL) zwaveBridgeChannelAvailable {
     return NO;
 }
+
+-(void)moveChannel:(SAChannelBase*)src toPositionOfChannel:(SAChannelBase*)dst entityName:(NSString*)entityName {
+    if (src == nil
+        || dst == nil
+        || src.location == nil
+        || src.location != dst.location) {
+        return;
+    }
+
+    
+    NSFetchRequest* fetchRequest =
+    [self getChannelBaseFetchRequestForEntityName:entityName
+                                       locationId:[src.location.location_id intValue]];
+
+    NSError *error = nil;
+    NSArray *r = [self.managedObjectContext executeFetchRequest:fetchRequest error:&error];
+    
+    if ( error != nil || r.count < 2 ) {
+        return;
+    }
+    
+    NSMutableArray *m = [NSMutableArray arrayWithArray:r];
+    r = nil;
+    
+    NSUInteger srcIdx = [m indexOfObject:src];
+    
+    if (srcIdx == NSNotFound) {
+        return;
+    }
+    
+    NSUInteger dstIdx = [m indexOfObject:dst];
+    
+    if (dstIdx == NSNotFound) {
+        return;
+    }
+    
+    [m removeObjectAtIndex:srcIdx];
+    [m insertObject:src atIndex:dstIdx];
+    
+    for(int a=0;a<m.count;a++) {
+        ((SAChannelBase*)[m objectAtIndex:a]).position = a;
+    }
+    
+    [self saveContext];
+}
+
+-(void) moveChannel:(SAChannelBase*)src toPositionOfChannel:(SAChannelBase*)dst {
+    [self moveChannel:src toPositionOfChannel:dst entityName:@"SAChannel"];
+}
+
+-(void) moveChannelGroup:(SAChannelBase*)src toPositionOfChannelGroup:(SAChannelBase*)dst {
+    [self moveChannel:src toPositionOfChannel:dst entityName:@"SAChannelGroup"];
+}
+
 @end

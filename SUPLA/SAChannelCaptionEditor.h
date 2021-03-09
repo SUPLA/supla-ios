@@ -13,17 +13,12 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 */
 
-#import <UIKit/UIKit.h>
+#import "SACaptionEditor.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface SADialog : UIViewController
-- (void)close;
-- (void)closeWithAnimation:(BOOL)animation completion:(void (^ __nullable)(void))completion;
-+ (void)showModal:(SADialog*)dialogVC;
-+ (BOOL)viewControllerIsPresented:(UIViewController*)vc;
-@property (nonatomic, assign)BOOL cancelByTouchOutside;
-@property (weak, nonatomic) IBOutlet UIView *vMain;
+@interface SAChannelCaptionEditor : SACaptionEditor
++(SAChannelCaptionEditor*)globalInstance;
 @end
 
 NS_ASSUME_NONNULL_END

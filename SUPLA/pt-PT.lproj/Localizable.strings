@@ -52,7 +52,7 @@
 "Bad credentials" = "Dados de identificação errados";
 "Client limit exceeded" = "Excedeu o limite de aplicações de clientes";
 "Incompatible server version" = "Versão do servidor incompátivel";
-"Host not found" = "O endereço do servidor não foi encontrado";
+"Host not found. Make sure you are connected to the internet and that an account with the entered email address has been created." = "O endereço do servidor não foi encontrado";
 "RGB Lighting" = "Iluminação RGB";
 "Dimmer and RGB lighting" = "Controlador de luz e iluminação RGB";
 "Dimmer" = "Controlador de luz";
@@ -85,10 +85,10 @@
 "https://cloud.supla.org/register" = "https://cloud.supla.org/register?lang=pt";
 
 "Create an account" = "Crie uma conta";
-"Device is disabled" = "O dispositivo está desligado";
+"Device disabled. Please log in to \"Supla Cloud\" and enable this device in “Smartphone” section of the website." = "O dispositivo está desligado";
 "Access Identifier is disabled" = "O ID de acesso está desativado";
-"Client Registration is off. Please go to \"Smartphone\" at %@ to activate it." = "Atualmente o registro está desativado. Para activá-lo, vá para a guia \"Smartphones\" na página %@";
-"This client does not have access identifier assigned. Please go to \"Smartphone\" at %@ and get a valid identifier." = "Este dispositivo não possui um ID de acesso atribuído. Vá para a página %@ e atribua o ID apropriado na guia \"Smartphones\".";
+"New client registration disabled. Please log in to \"Supla Cloud\" and enable \"New client registration\" in \"Smartphone\" section of the website." = "Atualmente o registro está desativado. Para activá-lo, vá para a guia \"Smartphones\" na página \"Supla Cloud\"";
+"Client activation required. Please log in to \"Supla Cloud\" and assign an “Access ID” for this device in “Smartphone” section of the website." = "Este dispositivo não possui um ID de acesso atribuído. Vá para a página \"Supla Cloud\" e atribua o ID apropriado na guia \"Smartphones\".";
 
 "Retrieving data from the server..." = "Baixando dados do servidor ...";
 "No chart data available." = "Nenhum dado para o gráfico.";
@@ -145,8 +145,8 @@
 
 "Heat meter" = "Medidor de calor";
 
-"If the device when switched on does not work in the configuration mode, press and hold CONFIG button for at least 5 seconds.\n\n%@\n" = "Se um dispositivo não trabalha no modo de configuração depois de o ligar à rede elétrica, mantenha o botão carregado CONFIG por 5 segundos ao mínimo..\n\n%@\n";
+"*Configuration mode is enabled by default on brand new products. It can also be enabled manually by pressing and holding CONFIG button or dimmer knob for around 5s.\n\n%@\n" = "Se um dispositivo não trabalha no modo de configuração depois de o ligar à rede elétrica, mantenha o botão carregado CONFIG por 5 segundos ao mínimo..\n\n%@\n";
 "Press Next to continue." = "Para continuar carregue em Continuar.";
 "Press START to start configuration." = "Carregue no botão START para iniciar uma configuração.";
 "I/O Device connection setting timeout!" = "O tempo-limite de conexão a um atuador foi excedido!";
-"No devices has been found! Check, if the device you want to configure is working in the configuration mode and try again." = "Nenhum dispositivo foi encontardo! Certifique-se que um dispositivo que quer configurar trabalha no modo de configuração e tente novamente.";
+"No I/O Devices found! Please check if your I/O Device is ON and in configuration mode." = "Nenhum dispositivo foi encontardo! Certifique-se que um dispositivo que quer configurar trabalha no modo de configuração e tente novamente.";

@@ -91,7 +91,9 @@
 
 @interface SASuplaClient : NSThread
 
-- (id)init;
+- (id)initWithOneTimePassword:(NSString*)oneTimePassword;
++ (NSString *)codeToString:(NSNumber*)code;
++ (NSString *)codeToString:(NSNumber*)code authDialog:(BOOL)authDialog;
 
 - (void) onVersionError:(SAVersionError*)ve;
 - (void) onConnected;
@@ -112,6 +114,7 @@
 - (void) onOAuthTokenRequestResult:(SAOAuthToken *)token;
 - (void) getSuperuserAuthorizationResult;
 - (void) onSuperuserAuthorizationResult:(SASuperuserAuthorizationResult*)result;
+- (BOOL) isSuperuserAuthorized;
 - (void) onCalCfgResult:(SACalCfgResult*)result;
 - (void) onChannelState:(SAChannelStateExtendedValue*)state;
 
@@ -138,4 +141,6 @@
 - (void) setLightsourceLifespanWithChannelId:(int)channelId resetCounter:(BOOL)reset setTime:(BOOL)setTime lifespan:(unsigned short)lifespan;
 - (void) setIODeviceRegistrationEnabledForTime:(int)iodevice_sec clientRegistrationEnabledForTime:(int)client_sec;
 - (void) setDgfTransparencyMask:(short)mask activeBits:(short)active_bits channelId:(int)channelId;
+- (void) setChannelCaption:(int)channelId caption:(NSString*)caption;
+- (void) setLocationCaption:(int)locationId caption:(NSString*)caption;
 @end

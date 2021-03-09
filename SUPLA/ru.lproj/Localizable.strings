@@ -55,7 +55,7 @@
 "Bad credentials" = "Неправильные логин/пароль";
 "Client limit exceeded" = "Ограничение количества пользователей";
 "Incompatible server version" = "Несовместимая версия сервера";
-"Host not found" = "Хост не найден";
+"Host not found. Make sure you are connected to the internet and that an account with the entered email address has been created." = "Хост не найден";
 "RGB Lighting" = "Контроллер освещения RGB";
 "Dimmer and RGB lighting" = "Диммер и контроллер освещения RGB";
 "Dimmer" = "Диммер";
@@ -85,10 +85,10 @@
 "https://en-forum.supla.org" = "https://ru-forum.supla.org";
 
 "Create an account" = "Создать учетку";
-"Device is disabled" = "Устройство выключено";
+"Device disabled. Please log in to \"Supla Cloud\" and enable this device in “Smartphone” section of the website." = "Устройство выключено";
 "Access Identifier is disabled" = "Ключ доступа отключен";
-"Client Registration is off. Please go to \"Smartphone\" at %@ to activate it." = "Регистрация в настоящее время отключена. Для ее включения перейдите на вкладку Смартфоны на странице %@";
-"This client does not have access identifier assigned. Please go to \"Smartphone\" at %@ and get a valid identifier." = "Это устройство не имеет назначенного ключа доступа. Перейдите на страницу %@ и  на вкладке Смартфоны назначьте соответствующий ключ.";
+"New client registration disabled. Please log in to \"Supla Cloud\" and enable \"New client registration\" in \"Smartphone\" section of the website." = "Регистрация в настоящее время отключена. Для ее включения перейдите на вкладку Смартфоны на странице \"Supla Cloud\"";
+"Client activation required. Please log in to \"Supla Cloud\" and assign an “Access ID” for this device in “Smartphone” section of the website." = "Это устройство не имеет назначенного ключа доступа. Перейдите на страницу \"Supla Cloud\" и  на вкладке Смартфоны назначьте соответствующий ключ.";
 
 "Retrieving data from the server..." = "Загрузка данных с сервера ...";
 "No chart data available." = "Нет данных для графика.";
@@ -145,8 +145,8 @@
 
 "Heat meter" = "Теплосчетчик";
 
-"If the device when switched on does not work in the configuration mode, press and hold CONFIG button for at least 5 seconds.\n\n%@\n" = "Если устройство после подключения питания не работает в режиме конфигурации, удерживайте нажатой кнопку CONFIG в течение минимум 5 секунд.\n\n%@\n";
+"*Configuration mode is enabled by default on brand new products. It can also be enabled manually by pressing and holding CONFIG button or dimmer knob for around 5s.\n\n%@\n" = "Если устройство после подключения питания не работает в режиме конфигурации, удерживайте нажатой кнопку CONFIG в течение минимум 5 секунд.\n\n%@\n";
 "Press Next to continue." = "Для продолжения нажмите Далее.";
 "Press START to start configuration." = "Нажмите кнопку START, чтобы начать конфигурацию.";
 "I/O Device connection setting timeout!" = "Превышено время ожидания соединения с устройством ввода-вывода!";
-"No devices has been found! Check, if the device you want to configure is working in the configuration mode and try again." = "Не найдено никаких устройств! Убедитесь, что устройство, которое вы хотите настроить, работает в режиме конфигурации, а затем попробуйте снова.";
+"No I/O Devices found! Please check if your I/O Device is ON and in configuration mode." = "Не найдено никаких устройств! Убедитесь, что устройство, которое вы хотите настроить, работает в режиме конфигурации, а затем попробуйте снова.";

@@ -25,7 +25,8 @@ typedef NS_OPTIONS(NSUInteger, SAMenuItemIds) {
     SAMenuItemIdAbout  = 1 << 3,
     SAMenuItemIdDonate  = 1 << 4,
     SAMenuItemIdHelp  = 1 << 5,
-    SAMenuItemIdHomepage  = 1 << 6,
+    SAMenuItemIdCloud  = 1 << 6,
+    SAMenuItemIdHomepage  = 1 << 7,
     SAMenuItemIdAll = 0xFFFF
 };
 

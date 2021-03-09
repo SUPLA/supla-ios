@@ -50,12 +50,12 @@
 "Service temporarily unavailable" = "Storitev trenutno ni na voljo";
 "Bad credentials" = "Napačne poverilnice";
 "Client limit exceeded" = "Omejitev odjemalskih aplikacij je presežena";
-"Device is disabled" = "Naprava je izklopljena";
+"Device disabled. Please log in to \"Supla Cloud\" and enable this device in “Smartphone” section of the website." = "Naprava je izklopljena";
 "Access Identifier is disabled" = "Identifikator dostopa je izklopljen";
-"Client Registration is off. Please go to \"Smartphone\" at %@ to activate it." = "Registracija je trenutno izklopljena. Če jo želite omogočiti, pojdite na zavihek \"Pametni telefoni\" na strani %@";
-"This client does not have access identifier assigned. Please go to \"Smartphone\" at %@ and get a valid identifier." = "Ta naprava nima dodeljenega identifikatorja dostopa. Pojdite na stran %@ in na zavihku \"Pametni telefoni\" dodelite ustrezen identifikator.";
+"New client registration disabled. Please log in to \"Supla Cloud\" and enable \"New client registration\" in \"Smartphone\" section of the website." = "Registracija je trenutno izklopljena. Če jo želite omogočiti, pojdite na zavihek \"Pametni telefoni\" na strani \"Supla Cloud\"";
+"Client activation required. Please log in to \"Supla Cloud\" and assign an “Access ID” for this device in “Smartphone” section of the website." = "Ta naprava nima dodeljenega identifikatorja dostopa. Pojdite na stran \"Supla Cloud\" in na zavihku \"Pametni telefoni\" dodelite ustrezen identifikator.";
 "Incompatible server version" = "Nezdružljiva različica strežnika";
-"Host not found" = "Naslova strežnika ni mogoče najti";
+"Host not found. Make sure you are connected to the internet and that an account with the entered email address has been created." = "Naslova strežnika ni mogoče najti";
 "RGB Lighting" = "RGB osvetlitev";
 "Dimmer and RGB lighting" = "Zatemnilnik in RGB osvetlitev";
 "Dimmer" = "Zatemnilnik";
@@ -144,8 +144,8 @@
 
 "Heat meter" = "Merilnik toplote";
 
-"If the device when switched on does not work in the configuration mode, press and hold CONFIG button for at least 5 seconds.\n\n%@\n" = "Če naprava po vklopu napajanja ne deluje v konfiguracijskem načinu, držite gumb CONFIG najmanj 5 sekund.\n\n%@\n";
+"*Configuration mode is enabled by default on brand new products. It can also be enabled manually by pressing and holding CONFIG button or dimmer knob for around 5s.\n\n%@\n" = "Če naprava po vklopu napajanja ne deluje v konfiguracijskem načinu, držite gumb CONFIG najmanj 5 sekund.\n\n%@\n";
 "Press Next to continue." = "Če želite nadaljevati, pritisnite Naprej.";
 "Press START to start configuration." = "Pritisnite tipko START da začnete konfiguracijo.";
 "I/O Device connection setting timeout!" = "Čakalna doba za vzpostavitev povezave z izvršilno napravo je prekoračena!";
-"No devices has been found! Check, if the device you want to configure is working in the configuration mode and try again." = "Ni najdenih naprav! Prepričajte se, da je naprava, ki jo želite konfigurirati, v konfiguracijskem načinu in poskusite znova.";
+"No I/O Devices found! Please check if your I/O Device is ON and in configuration mode." = "Ni najdenih naprav! Prepričajte se, da je naprava, ki jo želite konfigurirati, v konfiguracijskem načinu in poskusite znova.";
