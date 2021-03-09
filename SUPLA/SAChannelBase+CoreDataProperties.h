@@ -33,6 +33,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic) int32_t remote_id;
 @property (nonatomic) int32_t usericon_id;
 @property (nonatomic) int16_t visible;
+@property (nonatomic) int32_t position;
 @property (nullable, nonatomic, retain) _SALocation *location;
 @property (nullable, nonatomic, retain) SAUserIcon *usericon;
 

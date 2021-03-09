@@ -60,6 +60,8 @@
     UILongPressGestureRecognizer *longPressGr;
 }
 
+@synthesize captionEditable;
+
 - (void)initialize {
     if (_initialized) return;
     _initialized = YES;
@@ -408,7 +410,7 @@
 }
 
 - (void)onLongPress:(UILongPressGestureRecognizer *)longPressGR {
-    if (self.channelBase != nil && longPressGR.state == UIGestureRecognizerStateBegan) {
+    if (self.captionEditable && self.channelBase != nil && longPressGR.state == UIGestureRecognizerStateBegan) {
         [[SAChannelCaptionEditor globalInstance] editCaptionWithRecordId:self.channelBase.remote_id];
     }
 }
@@ -417,7 +419,7 @@
     [super touchesBegan:touches withEvent:event];
 
     UITouch *touch = [touches anyObject];
-    _captionTouched = touch != nil && touch.view == self.caption;
+    _captionTouched = self.captionEditable && touch != nil && touch.view == self.caption;
 }
 
 - (BOOL)captionTouched {

@@ -25,6 +25,7 @@
 }
 
 @synthesize locationId;
+@synthesize captionEditable;
 
 - (void)initialize {
     if (_tap == nil) {
@@ -53,7 +54,7 @@
 }
 
 - (void)onLongPress:(UILongPressGestureRecognizer *)longPressGR {
-    if (self.locationId && longPressGR.state == UIGestureRecognizerStateBegan) {
+    if (self.captionEditable && self.locationId && longPressGR.state == UIGestureRecognizerStateBegan) {
         [[SALocationCaptionEditor globalInstance] editCaptionWithRecordId:self.locationId];
     }
 }

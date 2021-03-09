@@ -85,6 +85,11 @@
         self.cTableView.dragInteractionEnabled = YES;
         self.cTableView.dragDelegate = self;
         self.cTableView.dropDelegate = self;
+        
+        self.gTableView.clearsContextBeforeDrawing = YES;
+        self.gTableView.dragInteractionEnabled = YES;
+        self.gTableView.dragDelegate = self;
+        self.gTableView.dropDelegate = self;
     }
 
 }
@@ -110,7 +115,15 @@
     SAChannelCell *dstCell = [tableView cellForRowAtIndexPath:coordinator.destinationIndexPath];
     SAChannelCell *srcCell = (SAChannelCell *)coordinator.items.firstObject.dragItem.localObject;
 
-    [SAApp.DB swapThePositionOfChannel:srcCell.channelBase withTheChannel:dstCell.channelBase];
+    if (tableView == self.cTableView) {
+        [SAApp.DB  moveChannel:srcCell.channelBase toPositionOfChannel:dstCell.channelBase];
+        _cFrc = nil;
+    } else if (tableView == self.gTableView) {
+        [SAApp.DB  moveChannelGroup:srcCell.channelBase toPositionOfChannelGroup:dstCell.channelBase];
+        _gFrc = nil;
+    }
+    
+    [tableView reloadData];
 }
 
 - (UITableViewDropProposal *)tableView:(UITableView *)tableView dropSessionDidUpdate:(id<UIDropSession>)session withDestinationIndexPath:(nullable NSIndexPath *)destinationIndexPath  API_AVAILABLE(ios(11.0)){
@@ -424,6 +437,7 @@
     
     if (cell != nil) {
         cell.channelBase = channel_base;
+        cell.captionEditable = tableView == self.cTableView;
     }
     
     return cell;
@@ -437,6 +451,7 @@
         _SALocation *location = [self locationByName:name];
         cell.ivCollapsed.hidden = location == nil || (location.collapsed & [self bitFlagCollapse]) == 0;
         cell.locationId = [location.location_id intValue];
+        cell.captionEditable = tableView == self.cTableView;
         [cell.label setText:name];
         cell.delegate = self;
     }

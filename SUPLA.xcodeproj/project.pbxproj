@@ -506,6 +506,7 @@
 		013A1BF92538BAA0000583A2 /* roofwindow-open@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "roofwindow-open@2x.png"; path = "Resources/Assets/Img/roofwindow-open@2x.png"; sourceTree = "<group>"; };
 		013A1BFA2538BAA0000583A2 /* roofwindow-closed@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "roofwindow-closed@2x.png"; path = "Resources/Assets/Img/roofwindow-closed@2x.png"; sourceTree = "<group>"; };
 		013AB91725E85CFA00C55E33 /* menu_cloud@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "menu_cloud@2x.png"; path = "Resources/Assets/Img/menu_cloud@2x.png"; sourceTree = "<group>"; };
+		013C8C6725F79265009519B6 /* SUPLA 7.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "SUPLA 7.xcdatamodel"; sourceTree = "<group>"; };
 		013D1C5B22CE47D5000C0784 /* SAChartHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SAChartHelper.h; sourceTree = "<group>"; };
 		013D1C5C22CE47D5000C0784 /* SAChartHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SAChartHelper.m; sourceTree = "<group>"; };
 		013D1C5E22CE757F000C0784 /* SAIncrementalMeterChartHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SAIncrementalMeterChartHelper.h; sourceTree = "<group>"; };
@@ -3153,6 +3154,7 @@
 		407004251BB5706500F6187F /* SUPLA.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				013C8C6725F79265009519B6 /* SUPLA 7.xcdatamodel */,
 				01172903247473E200DAF1D0 /* SUPLA 6.xcdatamodel */,
 				012119132368BDB0004C1993 /* SUPLA 5.xcdatamodel */,
 				01CFF6D12365BCCD00C827FB /* SUPLA 4.xcdatamodel */,
@@ -3160,7 +3162,7 @@
 				40BBA34620AC52EA0054CD20 /* SUPLA 2.xcdatamodel */,
 				407004261BB5706500F6187F /* SUPLA.xcdatamodel */,
 			);
-			currentVersion = 01172903247473E200DAF1D0 /* SUPLA 6.xcdatamodel */;
+			currentVersion = 013C8C6725F79265009519B6 /* SUPLA 7.xcdatamodel */;
 			path = SUPLA.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
