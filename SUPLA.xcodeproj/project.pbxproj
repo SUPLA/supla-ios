@@ -27,7 +27,6 @@
 		01215A7324C8AECC00429947 /* SALightsourceLifespanSettingsDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = 01215A7124C8AECC00429947 /* SALightsourceLifespanSettingsDialog.m */; };
 		0122613922F396440013E6A2 /* SAThermostatCalendar.m in Sources */ = {isa = PBXBuildFile; fileRef = 0122613822F396440013E6A2 /* SAThermostatCalendar.m */; };
 		0126B84125BDFF2F0027D88A /* SAZWaveConfigurationWizardVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0126B83F25BDFF2F0027D88A /* SAZWaveConfigurationWizardVC.m */; };
-		0126B84225BDFF2F0027D88A /* SAZWaveConfigurationWizardVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0126B84025BDFF2F0027D88A /* SAZWaveConfigurationWizardVC.xib */; };
 		012BD7262499173600E64F25 /* rgbwpoweroff@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 012BD7222499173500E64F25 /* rgbwpoweroff@3x.png */; };
 		012BD7272499173600E64F25 /* rgbwinfo@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 012BD7232499173600E64F25 /* rgbwinfo@3x.png */; };
 		012BD7282499173600E64F25 /* rgbwpoweron@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 012BD7242499173600E64F25 /* rgbwpoweron@3x.png */; };
@@ -137,11 +136,12 @@
 		01996AC1254B6B390034C6F1 /* z_wave_btn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 01996AC0254B6B380034C6F1 /* z_wave_btn@2x.png */; };
 		019D22F0233CC2D000F17135 /* SAPreloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 019D22EF233CC2D000F17135 /* SAPreloader.m */; };
 		019D9E2C25F271CF00881C99 /* SACaptionEditor.m in Sources */ = {isa = PBXBuildFile; fileRef = 019D9E2A25F271CF00881C99 /* SACaptionEditor.m */; };
-		019D9E2D25F271CF00881C99 /* SACaptionEditor.xib in Resources */ = {isa = PBXBuildFile; fileRef = 019D9E2B25F271CF00881C99 /* SACaptionEditor.xib */; };
 		019D9E3225F27A4500881C99 /* SALocationCaptionEditor.m in Sources */ = {isa = PBXBuildFile; fileRef = 019D9E3125F27A4500881C99 /* SALocationCaptionEditor.m */; };
 		019D9E3725F27BC300881C99 /* SAChannelCaptionEditor.m in Sources */ = {isa = PBXBuildFile; fileRef = 019D9E3625F27BC300881C99 /* SAChannelCaptionEditor.m */; };
 		019F4CAC2354DC3300286139 /* ImpulseCounterDetailView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 019F4CAE2354DC3300286139 /* ImpulseCounterDetailView.xib */; };
 		019F4CCD23577C3700286139 /* SAImpulseCounterChartHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 019F4CCC23577C3700286139 /* SAImpulseCounterChartHelper.m */; };
+		019F848425F7C0F800A18C3B /* SACaptionEditor.xib in Resources */ = {isa = PBXBuildFile; fileRef = 019F848225F7C0F800A18C3B /* SACaptionEditor.xib */; };
+		019F848525F7C0F800A18C3B /* SAZWaveConfigurationWizardVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 019F848325F7C0F800A18C3B /* SAZWaveConfigurationWizardVC.xib */; };
 		01A66A7525364AA400C00A1A /* SARoofWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 01A66A7425364AA400C00A1A /* SARoofWindowController.m */; };
 		01A66A7925364ABA00C00A1A /* SARoofWindowControllerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 01A66A7825364ABA00C00A1A /* SARoofWindowControllerTests.m */; };
 		01AB61E925B8E08E00DBEF74 /* SADigiglassController.m in Sources */ = {isa = PBXBuildFile; fileRef = 01AB61E825B8E08E00DBEF74 /* SADigiglassController.m */; };
@@ -518,7 +518,6 @@
 		0122613822F396440013E6A2 /* SAThermostatCalendar.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SAThermostatCalendar.m; sourceTree = "<group>"; };
 		0126B83E25BDFF2F0027D88A /* SAZWaveConfigurationWizardVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SAZWaveConfigurationWizardVC.h; sourceTree = "<group>"; };
 		0126B83F25BDFF2F0027D88A /* SAZWaveConfigurationWizardVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SAZWaveConfigurationWizardVC.m; sourceTree = "<group>"; };
-		0126B84025BDFF2F0027D88A /* SAZWaveConfigurationWizardVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SAZWaveConfigurationWizardVC.xib; sourceTree = "<group>"; };
 		012BD7222499173500E64F25 /* rgbwpoweroff@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "rgbwpoweroff@3x.png"; path = "Resources/Assets/Img/rgbwpoweroff@3x.png"; sourceTree = "<group>"; };
 		012BD7232499173600E64F25 /* rgbwinfo@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "rgbwinfo@3x.png"; path = "Resources/Assets/Img/rgbwinfo@3x.png"; sourceTree = "<group>"; };
 		012BD7242499173600E64F25 /* rgbwpoweron@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "rgbwpoweron@3x.png"; path = "Resources/Assets/Img/rgbwpoweron@3x.png"; sourceTree = "<group>"; };
@@ -695,7 +694,6 @@
 		019D22EF233CC2D000F17135 /* SAPreloader.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SAPreloader.m; sourceTree = "<group>"; };
 		019D9E2925F271CF00881C99 /* SACaptionEditor.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SACaptionEditor.h; sourceTree = "<group>"; };
 		019D9E2A25F271CF00881C99 /* SACaptionEditor.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SACaptionEditor.m; sourceTree = "<group>"; };
-		019D9E2B25F271CF00881C99 /* SACaptionEditor.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SACaptionEditor.xib; sourceTree = "<group>"; };
 		019D9E3025F27A4500881C99 /* SALocationCaptionEditor.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SALocationCaptionEditor.h; sourceTree = "<group>"; };
 		019D9E3125F27A4500881C99 /* SALocationCaptionEditor.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SALocationCaptionEditor.m; sourceTree = "<group>"; };
 		019D9E3525F27BC300881C99 /* SAChannelCaptionEditor.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SAChannelCaptionEditor.h; sourceTree = "<group>"; };
@@ -717,6 +715,8 @@
 		019F4CCA2354DC4900286139 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/ImpulseCounterDetailView.strings; sourceTree = "<group>"; };
 		019F4CCB23577C3700286139 /* SAImpulseCounterChartHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SAImpulseCounterChartHelper.h; sourceTree = "<group>"; };
 		019F4CCC23577C3700286139 /* SAImpulseCounterChartHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SAImpulseCounterChartHelper.m; sourceTree = "<group>"; };
+		019F848225F7C0F800A18C3B /* SACaptionEditor.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SACaptionEditor.xib; sourceTree = "<group>"; };
+		019F848325F7C0F800A18C3B /* SAZWaveConfigurationWizardVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SAZWaveConfigurationWizardVC.xib; sourceTree = "<group>"; };
 		01A66A7325364AA400C00A1A /* SARoofWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SARoofWindowController.h; sourceTree = "<group>"; };
 		01A66A7425364AA400C00A1A /* SARoofWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SARoofWindowController.m; sourceTree = "<group>"; };
 		01A66A7825364ABA00C00A1A /* SARoofWindowControllerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SARoofWindowControllerTests.m; sourceTree = "<group>"; };
@@ -1279,7 +1279,8 @@
 		012119122368B597004C1993 /* xib */ = {
 			isa = PBXGroup;
 			children = (
-(??)
+				019F848225F7C0F800A18C3B /* SACaptionEditor.xib */,
+				019F848325F7C0F800A18C3B /* SAZWaveConfigurationWizardVC.xib */,
 				01511CF924F50B470081A1EC /* SAPreloaderPopup.xib */,
 				012E81DB24C9A31B008E0690 /* SALightsourceLifespanSettingsDialog.xib */,
 				0180440B24C254CF005E53EB /* SAChannelStatePopup.xib */,
@@ -2165,7 +2166,6 @@
 				405C49A11FCAFFD400C15602 /* wizard_ok@2x.png in Resources */,
 				017A3C8623633A70004AD1FC /* TempHumidityDetailView.xib in Resources */,
 				01F9110522EF954400BFF91D /* thermostat_hp_homeplus-off@3x.png in Resources */,
-				019D9E2D25F271CF00881C99 /* SACaptionEditor.xib in Resources */,
 				40CF96B21BC7D4E70030EFFF /* gate-closed@2x.png in Resources */,
 				4091654D1F3CBAF200F49193 /* rs_down.png in Resources */,
 				01F9110422EF954400BFF91D /* thermostat_hp_homeplus2-off@2x.png in Resources */,
@@ -2236,11 +2236,11 @@
 				01CEAC2625B9AA71009C3BFD /* dgfopaque@3x.png in Resources */,
 				40CF96D81BC81A470030EFFF /* error@2x.png in Resources */,
 				40B9ED4F1FACCF8100403B1A /* radio-off@2x.png in Resources */,
+				019F848525F7C0F800A18C3B /* SAZWaveConfigurationWizardVC.xib in Resources */,
 				40CE7C6E1DCBBF6D00BBACE4 /* DistanceCell.xib in Resources */,
 				0175550022F1DDA300EB58B7 /* hp_minus@3x.png in Resources */,
 				01F9110F22EF964900BFF91D /* thermostat_hp_homeplus1-on@3x.png in Resources */,
 				01F9110922EF954400BFF91D /* thermostat_hp_homeplus3-on@3x.png in Resources */,
-				0126B84225BDFF2F0027D88A /* SAZWaveConfigurationWizardVC.xib in Resources */,
 				40B9ED5D1FACD14000403B1A /* fan-on@2x.png in Resources */,
 				40CF96B41BC7D4E70030EFFF /* gate-open@2x.png in Resources */,
 				4052DA0B1DC515AE000B8C45 /* dimmer-on@2x.png in Resources */,
@@ -2296,6 +2296,7 @@
 				01D6A104249C0DC8006B3757 /* vprosmart@3.png in Resources */,
 				012BD7272499173600E64F25 /* rgbwinfo@3x.png in Resources */,
 				01F910FE22EF954400BFF91D /* thermostat_hp_homeplus2-on@2x.png in Resources */,
+				019F848425F7C0F800A18C3B /* SACaptionEditor.xib in Resources */,
 				405AC41B1BC15898004F7311 /* app_icon@3x.png in Resources */,
 				01902A2A235A1840005ED935 /* TemperatureDetailView.xib in Resources */,
 				01CEAC1725B99A58009C3BFD /* digiglass1@2x.png in Resources */,

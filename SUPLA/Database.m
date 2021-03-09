@@ -1373,6 +1373,51 @@
     return [self zwaveBridgeChannelsWithLimit:0];
 }
 
+-(void)moveChannel:(SAChannelBase*)src toPositionOfChannel:(SAChannelBase*)dst entityName:(NSString*)entityName {
+    if (src == nil
+        || dst == nil
+        || src.location == nil
+        || src.location != dst.location) {
+        return;
+    }
+
+    
+    NSFetchRequest* fetchRequest =
+    [self getChannelBaseFetchRequestForEntityName:entityName
+                                       locationId:[src.location.location_id intValue]];
+
+    NSError *error = nil;
+    NSArray *r = [self.managedObjectContext executeFetchRequest:fetchRequest error:&error];
+    
+    if ( error != nil || r.count < 2 ) {
+        return;
+    }
+    
+    NSMutableArray *m = [NSMutableArray arrayWithArray:r];
+    r = nil;
+    
+    NSUInteger srcIdx = [m indexOfObject:src];
+    
+    if (srcIdx == NSNotFound) {
+        return;
+    }
+    
+    NSUInteger dstIdx = [m indexOfObject:dst];
+    
+    if (dstIdx == NSNotFound) {
+        return;
+    }
+    
+    [m removeObjectAtIndex:srcIdx];
+    [m insertObject:src atIndex:dstIdx];
+    
+    for(int a=0;a<m.count;a++) {
+        ((SAChannelBase*)[m objectAtIndex:a]).position = a;
+    }
+    
+    [self saveContext];
+}
+
 -(void) moveChannel:(SAChannelBase*)src toPositionOfChannel:(SAChannelBase*)dst {
     [self moveChannel:src toPositionOfChannel:dst entityName:@"SAChannel"];
 }
