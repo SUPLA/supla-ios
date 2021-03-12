@@ -72,6 +72,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *lStep3Text2;
 @property (weak, nonatomic) IBOutlet UISwitch *swAutoMode;
 @property (weak, nonatomic) IBOutlet UILabel *lAutoMode;
+@property (weak, nonatomic) IBOutlet UILabel *lAutoModeWarning;
 - (IBAction)swAutoModeChanged:(id)sender;
 
 @end

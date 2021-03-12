@@ -837,5 +837,6 @@
 
     self.btnNextTitle = NSLocalizedString(self.swAutoMode.on ? @"Start" : @"Next", NULL);
     self.lStep3Text2.text = [NSString stringWithFormat:txt1, txt2];
+    self.lAutoModeWarning.hidden = !self.swAutoMode.on;
 }
 @end
