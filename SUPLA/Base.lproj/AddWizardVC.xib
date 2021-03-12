@@ -419,8 +419,8 @@ Press Next to continue.
                         <action selector="swAutoModeChanged:" destination="-1" eventType="valueChanged" id="LVG-nw-x5e"/>
                     </connections>
                 </switch>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Assisted configuration" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v4z-H5-9Z6">
-                    <rect key="frame" x="69" y="386.5" width="163" height="30"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Assisted Configuration" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v4z-H5-9Z6">
+                    <rect key="frame" x="69" y="386.5" width="165" height="30"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="30" id="g4m-JB-LDX"/>
                     </constraints>
