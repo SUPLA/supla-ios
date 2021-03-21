@@ -108,6 +108,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UILabel *lPhaseToPhase;
 @property (weak, nonatomic) IBOutlet UIView *vLabelsBalance;
 @property (weak, nonatomic) IBOutlet UIView *vValuesBalance;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *cIntLabelsTop;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *cIntValuesTop;
 
 
 

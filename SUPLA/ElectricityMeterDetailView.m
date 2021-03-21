@@ -272,6 +272,7 @@
         }
     }
     
+    self.btnDirection.hidden = !MVAL(EM_VAR_REVERSE_ACTIVE_ENERGY);
     [self setFrequency:freq visible:MVAL(EM_VAR_FREQ)];
     [self setVoltage:voltage visible:MVAL(EM_VAR_VOLTAGE) && selectedPhase > 0];
     [self setCurrent:current visible:(MVAL(EM_VAR_CURRENT) || MVAL(EM_VAR_CURRENT_OVER_65A)) && selectedPhase > 0 over65A:currentOver65A];
@@ -348,10 +349,34 @@
     }
 }
 
+- (void)showPhaseButtons {
+    bool hidden = NO;
+    
+    if (self.channelBase == NULL
+    || ((self.channelBase.flags & SUPLA_CHANNEL_FLAG_PHASE2_UNSUPPORTED)
+        && (self.channelBase.flags & SUPLA_CHANNEL_FLAG_PHASE3_UNSUPPORTED))) {
+        hidden = YES;
+    }
+    
+    self.btnPhase1.hidden = hidden;
+    self.btnPhase2.hidden = hidden;
+    self.btnPhase3.hidden = hidden;
+    self.btnPhaseSum.hidden = hidden;
+    
+    if (hidden) {
+        self.cIntLabelsTop.constant = -20;
+        self.cIntValuesTop.constant = -20;
+    } else {
+        self.cIntLabelsTop.constant = 10;
+        self.cIntValuesTop.constant = 10;
+    }
+}
+
 - (void)setChartsHidden:(BOOL)hidden {
     [_tfChartTypeFilter resignFirstResponder];
     
     if (hidden) {
+        [self showPhaseButtons];
         self.vPhases.hidden = NO;
         self.vCharts.hidden = YES;
         [self.btnChart setImage:[UIImage imageNamed:@"graphoff.png"]];
@@ -403,6 +428,7 @@
 
 -(void)detailWillShow {
     _balanceAvailable = false;
+    self.btnDirection.hidden = YES;
     [super detailWillShow];
     [self setProductionDataSource:NO];
     [self setChartsHidden:YES];

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina5_5" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -101,7 +101,7 @@
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KE1-vg-Yeo" userLabel="vPhases">
                             <rect key="frame" x="0.0" y="0.0" width="394" height="562"/>
                             <subviews>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MEJ-sn-3qn">
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MEJ-sn-3qn">
                                     <rect key="frame" x="0.0" y="0.0" width="94.666666666666671" height="30"/>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <constraints>
@@ -122,7 +122,7 @@
                                         <action selector="phaseBtnTouch:" destination="Xvv-Xf-gNW" eventType="touchDown" id="Ylr-Qb-4XV"/>
                                     </connections>
                                 </button>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="keR-AG-qQO">
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="keR-AG-qQO">
                                     <rect key="frame" x="99.666666666666686" y="0.0" width="95" height="30"/>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="14"/>
@@ -140,7 +140,7 @@
                                         <action selector="phaseBtnTouch:" destination="Xvv-Xf-gNW" eventType="touchDown" id="khy-nd-VB2"/>
                                     </connections>
                                 </button>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VyG-Y8-JRf">
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VyG-Y8-JRf">
                                     <rect key="frame" x="199.66666666666666" y="0.0" width="94.666666666666657" height="30"/>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="14"/>
@@ -158,7 +158,7 @@
                                         <action selector="phaseBtnTouch:" destination="Xvv-Xf-gNW" eventType="touchDown" id="gSZ-zs-yAd"/>
                                     </connections>
                                 </button>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CZD-Xw-vbM" userLabel="Btn Phase Sum">
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CZD-Xw-vbM" userLabel="Btn Phase Sum">
                                     <rect key="frame" x="299.33333333333331" y="0.0" width="94.666666666666686" height="30"/>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="14"/>
@@ -704,6 +704,8 @@
                 <outlet property="cForwardReactiveEnergyValueTop" destination="tFa-26-MwY" id="Z2c-Im-dfo"/>
                 <outlet property="cFrequencyTop" destination="uWv-qW-WkP" id="J6T-QK-JOI"/>
                 <outlet property="cFrequencyValueTop" destination="9U7-aS-jfz" id="f1C-hS-ocK"/>
+                <outlet property="cIntLabelsTop" destination="gem-5Z-gsf" id="1Yz-9g-MCV"/>
+                <outlet property="cIntValuesTop" destination="bS2-DI-H3e" id="lBR-Zw-PUB"/>
                 <outlet property="cPhaseAngleTop" destination="RdJ-rH-43d" id="jjw-YU-Xf3"/>
                 <outlet property="cPhaseAngleValueTop" destination="o81-Tj-UGX" id="9RJ-ac-hUR"/>
                 <outlet property="cPowerFactorTop" destination="1EH-I9-hYS" id="mbX-ya-qIT"/>
