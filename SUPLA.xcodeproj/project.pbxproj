@@ -80,6 +80,8 @@
 		0158396F2576A82A005E615D /* ledalwaysoff@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 015839692576A82A005E615D /* ledalwaysoff@3x.png */; };
 		0163D0CD257EE483006C73CB /* NetworkExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0163D0CC257EE483006C73CB /* NetworkExtension.framework */; };
 		01642A882549C3EF00E87C46 /* SAMenuItems.m in Sources */ = {isa = PBXBuildFile; fileRef = 01642A872549C3EF00E87C46 /* SAMenuItems.m */; };
+		0167C442260CD80700732220 /* garagedoor-closed-50percent@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0167C440260CD80700732220 /* garagedoor-closed-50percent@2x.png */; };
+		0167C443260CD80700732220 /* garagedoor-closed-50percent@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0167C441260CD80700732220 /* garagedoor-closed-50percent@3x.png */; };
 		016ABE16236D8363001BF5FB /* SAKeychain.m in Sources */ = {isa = PBXBuildFile; fileRef = 016ABE15236D8363001BF5FB /* SAKeychain.m */; };
 		016ABE18236DA795001BF5FB /* KeychainTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 016ABE17236DA795001BF5FB /* KeychainTests.m */; };
 		016EE77423074DDC00FD301C /* production@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 016EE77223074DDC00FD301C /* production@3x.png */; };
@@ -592,6 +594,8 @@
 		0163D0CC257EE483006C73CB /* NetworkExtension.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NetworkExtension.framework; path = System/Library/Frameworks/NetworkExtension.framework; sourceTree = SDKROOT; };
 		01642A862549C3EF00E87C46 /* SAMenuItems.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SAMenuItems.h; sourceTree = "<group>"; };
 		01642A872549C3EF00E87C46 /* SAMenuItems.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SAMenuItems.m; sourceTree = "<group>"; };
+		0167C440260CD80700732220 /* garagedoor-closed-50percent@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "garagedoor-closed-50percent@2x.png"; path = "Resources/Assets/Img/garagedoor-closed-50percent@2x.png"; sourceTree = "<group>"; };
+		0167C441260CD80700732220 /* garagedoor-closed-50percent@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "garagedoor-closed-50percent@3x.png"; path = "Resources/Assets/Img/garagedoor-closed-50percent@3x.png"; sourceTree = "<group>"; };
 		016ABE14236D8363001BF5FB /* SAKeychain.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SAKeychain.h; sourceTree = "<group>"; };
 		016ABE15236D8363001BF5FB /* SAKeychain.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SAKeychain.m; sourceTree = "<group>"; };
 		016ABE17236DA795001BF5FB /* KeychainTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KeychainTests.m; sourceTree = "<group>"; };
@@ -1545,6 +1549,8 @@
 		405AC4011BC15878004F7311 /* Img */ = {
 			isa = PBXGroup;
 			children = (
+				0167C440260CD80700732220 /* garagedoor-closed-50percent@2x.png */,
+				0167C441260CD80700732220 /* garagedoor-closed-50percent@3x.png */,
 				011021AD25CC337500621D41 /* bridge_disconnected@3x.png */,
 				011021AE25CC337500621D41 /* zwave_timeout@3x.png */,
 				0186055625BF80AC00C1332A /* wakeup@3x.png */,
@@ -2171,6 +2177,7 @@
 				01F9110422EF954400BFF91D /* thermostat_hp_homeplus2-off@2x.png in Resources */,
 				40CF96BF1BC7D4E70030EFFF /* liquid@3x.png in Resources */,
 				0186055325BF74E100C1332A /* zwave_remove@3x.png in Resources */,
+				0167C443260CD80700732220 /* garagedoor-closed-50percent@3x.png in Resources */,
 				01D0617122C296850043C947 /* ElectricityMeterDetailView.xib in Resources */,
 				40B9ED481FACCE8700403B1A /* tv-on@3x.png in Resources */,
 				40B9ED501FACCF8100403B1A /* radio-off@3x.png in Resources */,
@@ -2370,6 +2377,7 @@
 				4052DA001DC515AE000B8C45 /* dimmerrgb-offoff@3x.png in Resources */,
 				01F9110B22EF954400BFF91D /* thermostat_hp_homeplus2-on@3x.png in Resources */,
 				40CF96D31BC8034E0030EFFF /* logo-supla@3x.png in Resources */,
+				0167C442260CD80700732220 /* garagedoor-closed-50percent@2x.png in Resources */,
 				40CF96CB1BC7D4E70030EFFF /* thermometer@3x.png in Resources */,
 				40CF96B31BC7D4E70030EFFF /* gate-closed@3x.png in Resources */,
 				40766C2B1FC9BC7A009E00BE /* generalsettings@2x.png in Resources */,

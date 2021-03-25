@@ -359,6 +359,7 @@
             case SUPLA_CHANNELFNC_THERMOMETER:
             data = self.usericon.uimage1;
             break;
+            case SUPLA_CHANNELFNC_CONTROLLINGTHEGARAGEDOOR:
             case SUPLA_CHANNELFNC_CONTROLLINGTHEGATE:
                 if (([self imgIsActive] & 0x1) > 0) {
                     data = self.usericon.uimage2;
@@ -404,13 +405,14 @@
     NSString *n2 = nil;
     NSString *t1 = nil;
     
+    BOOL _50percent = ([self imgIsActive] & 0x2) == 0x2 && ([self imgIsActive] & 0x1) == 0;
+    
     switch(self.func) {
         case SUPLA_CHANNELFNC_OPENINGSENSOR_GATEWAY:
         case SUPLA_CHANNELFNC_CONTROLLINGTHEGATEWAYLOCK:
             n1 = @"gateway";
             break;
         case SUPLA_CHANNELFNC_CONTROLLINGTHEGATE: {
-            BOOL _50percent = ([self imgIsActive] & 0x2) == 0x2 && ([self imgIsActive] & 0x1) == 0;
             if (_50percent && self.alticon != 2) {
                 return [UIImage imageNamed:self.alticon == 1 ? @"gatealt1-closed-50percent" : @"gate-closed-50percent"];
             }
@@ -430,6 +432,9 @@
             break;
         case SUPLA_CHANNELFNC_OPENINGSENSOR_GARAGEDOOR:
         case SUPLA_CHANNELFNC_CONTROLLINGTHEGARAGEDOOR:
+            if (_50percent) {
+                return [UIImage imageNamed:@"garagedoor-closed-50percent"];
+            }
             n1 = @"garagedoor";
             break;
         case SUPLA_CHANNELFNC_OPENINGSENSOR_DOOR:
