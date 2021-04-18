@@ -62,7 +62,7 @@
         return _persistentStoreCoordinator;
     }
     
-    int DBv = 10;
+    int DBv = 11;
     
     [self removeIfExists:@"SUPLA_DB.sqlite"];
     
@@ -422,7 +422,7 @@
     return save;
 }
 
--(BOOL) updateChannelValue:(TSC_SuplaChannelValue *)channel_value {
+-(BOOL) updateChannelValue:(TSC_SuplaChannelValue_B *)channel_value {
  
     BOOL save = NO;
 

@@ -24,8 +24,7 @@
     [super initWithChannelId:channelId];
     self.sub_value = [[NSData alloc] init];
     
-    TSuplaChannelValue v;
-    memset(&v, 0, sizeof(TSuplaChannelValue));
+    TSuplaChannelValue_B v = {};
     [self setValueWithChannelValue:&v];
 }
 
@@ -48,7 +47,7 @@
     return self.sub_value && ((NSData*)self.sub_value).length == SUPLA_CHANNELVALUE_SIZE ? (NSData*)self.sub_value : nil;
 }
 
-- (BOOL) setValueWithChannelValue:(TSuplaChannelValue*)value {
+- (BOOL) setValueWithChannelValue:(TSuplaChannelValue_B*)value {
     
     BOOL result = NO;
     
@@ -62,6 +61,11 @@
     
     if ( self.sub_value == nil || ![sv isEqualToData:[self dataSubValue]] ) {
         self.sub_value = sv;
+        result = YES;
+    }
+    
+    if (self.sub_value_type != value->sub_value_type) {
+        self.sub_value_type = value->sub_value_type;
         result = YES;
     }
     

@@ -31,7 +31,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void) initWithChannelId:(int)channelId;
 - (BOOL) setOnlineState:(char)online;
-- (BOOL) setValueWithChannelValue:(TSuplaChannelValue*)value;
+- (BOOL) setValueWithChannelValue:(TSuplaChannelValue_B*)value;
 - (NSData *) dataValue;
 - (NSData *) dataSubValue;
 

@@ -629,11 +629,11 @@ void sasuplaclient_on_channel_basic_cfg(void *_suplaclient,
         DataChanged = YES;
     }
     
-    TSC_SuplaChannelValue value;
+    TSC_SuplaChannelValue_B value;
     value.EOL = channel->EOL;
     value.Id = channel->Id;
     value.online = channel->online;
-    memcpy(&value.value, &channel->value, sizeof(TSuplaChannelValue));
+    memcpy(&value.value, &channel->value, sizeof(TSuplaChannelValue_B));
     
     if ( [self.DB updateChannelValue:&value] ) {
         DataChanged = YES;

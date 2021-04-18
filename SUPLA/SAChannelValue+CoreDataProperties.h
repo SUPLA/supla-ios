@@ -27,6 +27,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic) BOOL online;
 @property (nullable, nonatomic, retain) NSObject *sub_value;
+@property (nonatomic) int16_t sub_value_type;
 
 @end
 
