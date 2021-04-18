@@ -17,6 +17,7 @@
  */
 
 #import <UIKit/UIKit.h>
+#import "SAAbstractPickerField.h"
 #import "SAChartHelper.h"
 NS_ASSUME_NONNULL_BEGIN
 
@@ -43,7 +44,7 @@ typedef NS_ENUM(NSUInteger, DateRange) {
 
 @end
 
-@interface SAChartFilterField : UITextField <UITextFieldDelegate, UIGestureRecognizerDelegate, UIPickerViewDataSource, UIPickerViewDelegate>
+@interface SAChartFilterField : SAAbstractPickerField
 
 - (void)leaveOneElement:(int)el;
 - (BOOL)excludeElements:(nullable NSArray*)el;

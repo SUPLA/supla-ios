@@ -50,7 +50,7 @@
 +(nonnull UIColor*)phase3Color;
 +(nonnull UIColor*)chartValuePositiveColor;
 +(nonnull UIColor*)chartValueNegativeColor;
-+(nonnull UIColor*)chartFilterPickerViewColor;
++(nonnull UIColor*)pickerViewColor;
 +(nonnull UIColor*)chartRoomTemperature;
 +(nonnull UIColor*)hpBtnOn;
 +(nonnull UIColor*)hpBtnOff;

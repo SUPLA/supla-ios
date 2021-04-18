@@ -118,7 +118,7 @@
     return [UIColor colorWithRed:0.18 green:0.80 blue:0.44 alpha:1.0];
 }
 
-+(nonnull UIColor*)chartFilterPickerViewColor {
++(nonnull UIColor*)pickerViewColor {
     return [UIColor colorWithRed:0.96 green:0.96 blue:0.96 alpha:1.0];
 }
 

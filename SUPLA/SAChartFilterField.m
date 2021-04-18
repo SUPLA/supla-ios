@@ -23,128 +23,65 @@
 @implementation SAChartFilterField {
     ChartType _chartType;
     DateRange _dateRange;
-    UIPickerView *_pickerView;
     SAChartFilterField *_dateRangeFilterField;
     ChartFilterFieldType _filterType;
     NSArray *_items;
-    BOOL _initialized;
 }
 
 @synthesize ff_delegate;
 @synthesize chartHelper;
 
--(void) _init {
-    if (!_initialized) {
-        _initialized = YES;
-  
-        self.delegate = self;
-        
-        _pickerView = [[UIPickerView alloc] init];
-        _pickerView.showsSelectionIndicator = YES;
-        _pickerView.delegate = self;
-        _pickerView.backgroundColor = [UIColor chartFilterPickerViewColor];
-        self.inputView = _pickerView;
-   
-        UITapGestureRecognizer *tapgr = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapped:)];
-        tapgr.delegate = self;
-        [self addGestureRecognizer:tapgr];
-        
-        tapgr = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(pickerViewTapped:)];
-        tapgr.delegate = self;
-        [_pickerView addGestureRecognizer:tapgr];
-        
-        self.filterType = TypeFilter;
-        
-    }
+-(void) __init {
+    self.filterType = TypeFilter;
 }
 
 - (id)init {
     if (self = [super init]) {
-        [self _init];
+        [self __init];
     }
     return self;
 }
 
 - (id)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
-        [self _init];
+        [self __init];
     }
     return self;
 }
 - (id)initWithCoder:(NSCoder *)aDecoder {
     if (self = [super initWithCoder:aDecoder]) {
-        [self _init];
+        [self __init];
     }
     return self;
 }
 
-- (BOOL)canPerformAction:(SEL)action withSender:(id)sender
-{
-    return NO;
+- (NSInteger)numberOfRows {
+    return _items != nil ? _items.count : 0;
 }
 
-- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
-    return textField != self;
-}
-
--(void)textFieldDidBeginEditing:(UITextField *)textField {
-    NSInteger i = [self findIndexForValue:_filterType == TypeFilter ? self.chartType : self.dateRange];
-    if (i > -1) {
-        [_pickerView reloadComponent:0];
-        [_pickerView selectRow:i inComponent:0 animated:NO];
-    }
-}
-
--(BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer{
-    
-    return YES;
-}
-
-- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch
-{
-    if ([self isEditing]) {
-        return YES;
-    } else {
-        return NO;
-    }
-}
-
-- (void)pickerViewTapped:(UITapGestureRecognizer *)tapRecognizer {
-    int i = [[_items objectAtIndex:[_pickerView selectedRowInComponent:0]] intValue];
+- (void)pickerTappedAtIndex:(NSInteger)index {
+    int i = [[_items objectAtIndex:index] intValue];
     
     if (_filterType == TypeFilter) {
         self.chartType = i;
     } else {
         self.dateRange = i;
     }
-    
-    [self resignFirstResponder];
-    
-    if (self.ff_delegate!=nil) {
-        [ff_delegate onFilterChanged:self];
-    }
 }
 
-- (void)tapped:(UITapGestureRecognizer *)tapRecognizer {
-    if ([self isEditing]) {
-        [self resignFirstResponder];
-    }
-}
 
-- (NSInteger)numberOfComponentsInPickerView:(nonnull UIPickerView *)pickerView {
-    return 1;
-}
-
-- (NSInteger)pickerView:(nonnull UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component {
-    return _items != nil ? _items.count : 0;
-}
-
-- (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component {
+- (NSString *)pickerViewTitleForRow:(NSInteger)row {
     NSNumber *idx = [_items objectAtIndex:row];
     if (_filterType == TypeFilter) {
         return chartHelper == nil ? @"" : [chartHelper stringRepresentationOfChartType:[idx intValue]];
     }
     return [SAChartFilterField stringRepresentationOfDateRange:[idx intValue]];
+}
+
+-(void)afterResignFirstResponder {
+    if (self.ff_delegate!=nil) {
+        [ff_delegate onFilterChanged:self];
+    }
 }
 
 - (NSInteger)findIndexForValue:(NSUInteger)value {
@@ -155,6 +92,10 @@
     }
     
     return -1;
+}
+
+- (NSInteger)selectedRowIndex {
+    return [self findIndexForValue:_filterType == TypeFilter ? (NSInteger)self.chartType : (NSInteger)self.dateRange];
 }
 
 - (void)setChartType:(ChartType)chartType {

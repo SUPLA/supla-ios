@@ -78,6 +78,7 @@
 		0158396D2576A82A005E615D /* ledon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 015839672576A82A005E615D /* ledon@3x.png */; };
 		0158396E2576A82A005E615D /* ledonwhite@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 015839682576A82A005E615D /* ledonwhite@3x.png */; };
 		0158396F2576A82A005E615D /* ledalwaysoff@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 015839692576A82A005E615D /* ledalwaysoff@3x.png */; };
+		016157B6261CAAFA006AA0E8 /* SAPickerField.m in Sources */ = {isa = PBXBuildFile; fileRef = 016157B5261CAAFA006AA0E8 /* SAPickerField.m */; };
 		0163D0CD257EE483006C73CB /* NetworkExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0163D0CC257EE483006C73CB /* NetworkExtension.framework */; };
 		01642A882549C3EF00E87C46 /* SAMenuItems.m in Sources */ = {isa = PBXBuildFile; fileRef = 01642A872549C3EF00E87C46 /* SAMenuItems.m */; };
 		0167C442260CD80700732220 /* garagedoor-closed-50percent@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0167C440260CD80700732220 /* garagedoor-closed-50percent@2x.png */; };
@@ -140,6 +141,7 @@
 		019D9E2C25F271CF00881C99 /* SACaptionEditor.m in Sources */ = {isa = PBXBuildFile; fileRef = 019D9E2A25F271CF00881C99 /* SACaptionEditor.m */; };
 		019D9E3225F27A4500881C99 /* SALocationCaptionEditor.m in Sources */ = {isa = PBXBuildFile; fileRef = 019D9E3125F27A4500881C99 /* SALocationCaptionEditor.m */; };
 		019D9E3725F27BC300881C99 /* SAChannelCaptionEditor.m in Sources */ = {isa = PBXBuildFile; fileRef = 019D9E3625F27BC300881C99 /* SAChannelCaptionEditor.m */; };
+		019F4AAF2614B75800065420 /* SAAbstractPickerField.m in Sources */ = {isa = PBXBuildFile; fileRef = 019F4AAE2614B75800065420 /* SAAbstractPickerField.m */; };
 		019F4CAC2354DC3300286139 /* ImpulseCounterDetailView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 019F4CAE2354DC3300286139 /* ImpulseCounterDetailView.xib */; };
 		019F4CCD23577C3700286139 /* SAImpulseCounterChartHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 019F4CCC23577C3700286139 /* SAImpulseCounterChartHelper.m */; };
 		019F848425F7C0F800A18C3B /* SACaptionEditor.xib in Resources */ = {isa = PBXBuildFile; fileRef = 019F848225F7C0F800A18C3B /* SACaptionEditor.xib */; };
@@ -562,6 +564,7 @@
 		013F7EC023EB33E30061A497 /* SAChannelStateExtendedValue.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SAChannelStateExtendedValue.m; sourceTree = "<group>"; };
 		013F7EC223EB4B500061A497 /* battery@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "battery@3x.png"; path = "Resources/Assets/Img/battery@3x.png"; sourceTree = "<group>"; };
 		013F7EC323EB4B500061A497 /* battery@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "battery@2x.png"; path = "Resources/Assets/Img/battery@2x.png"; sourceTree = "<group>"; };
+		013FB109262CA21300A0E71D /* SUPLA 8.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "SUPLA 8.xcdatamodel"; sourceTree = "<group>"; };
 		01433DF6257F8FE20093C5DB /* SAWifiAutoConnect.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SAWifiAutoConnect.h; sourceTree = "<group>"; };
 		01433DF7257F8FE20093C5DB /* SAWifiAutoConnect.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SAWifiAutoConnect.m; sourceTree = "<group>"; };
 		0148932825AA03EE00B9974E /* btnOK_disabled@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "btnOK_disabled@2x.png"; path = "Resources/Assets/Img/btnOK_disabled@2x.png"; sourceTree = "<group>"; };
@@ -590,6 +593,8 @@
 		015839692576A82A005E615D /* ledalwaysoff@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "ledalwaysoff@3x.png"; path = "Resources/Assets/Img/ledalwaysoff@3x.png"; sourceTree = "<group>"; };
 		015839742576AA40005E615D /* pl */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = pl; path = pl.lproj/SAInfoVC.xib; sourceTree = "<group>"; };
 		015839792576F866005E615D /* pl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pl; path = pl.lproj/SAVLCalibrationTool.strings; sourceTree = "<group>"; };
+		016157B4261CAAFA006AA0E8 /* SAPickerField.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SAPickerField.h; sourceTree = "<group>"; };
+		016157B5261CAAFA006AA0E8 /* SAPickerField.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SAPickerField.m; sourceTree = "<group>"; };
 		0163D0CB257EE483006C73CB /* SUPLA.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SUPLA.entitlements; sourceTree = "<group>"; };
 		0163D0CC257EE483006C73CB /* NetworkExtension.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NetworkExtension.framework; path = System/Library/Frameworks/NetworkExtension.framework; sourceTree = SDKROOT; };
 		01642A862549C3EF00E87C46 /* SAMenuItems.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SAMenuItems.h; sourceTree = "<group>"; };
@@ -702,6 +707,8 @@
 		019D9E3125F27A4500881C99 /* SALocationCaptionEditor.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SALocationCaptionEditor.m; sourceTree = "<group>"; };
 		019D9E3525F27BC300881C99 /* SAChannelCaptionEditor.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SAChannelCaptionEditor.h; sourceTree = "<group>"; };
 		019D9E3625F27BC300881C99 /* SAChannelCaptionEditor.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SAChannelCaptionEditor.m; sourceTree = "<group>"; };
+		019F4AAD2614B75800065420 /* SAAbstractPickerField.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SAAbstractPickerField.h; sourceTree = "<group>"; };
+		019F4AAE2614B75800065420 /* SAAbstractPickerField.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SAAbstractPickerField.m; sourceTree = "<group>"; };
 		019F4CAD2354DC3300286139 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/ImpulseCounterDetailView.xib; sourceTree = "<group>"; };
 		019F4CB02354DC3B00286139 /* cs */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = cs; path = cs.lproj/ImpulseCounterDetailView.strings; sourceTree = "<group>"; };
 		019F4CB22354DC3C00286139 /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = nl.lproj/ImpulseCounterDetailView.strings; sourceTree = "<group>"; };
@@ -1936,6 +1943,10 @@
 		40A675851BA1BEBF004A51C4 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				019F4AAD2614B75800065420 /* SAAbstractPickerField.h */,
+				016157B4261CAAFA006AA0E8 /* SAPickerField.h */,
+				016157B5261CAAFA006AA0E8 /* SAPickerField.m */,
+				019F4AAE2614B75800065420 /* SAAbstractPickerField.m */,
 				01AB61E725B8E08E00DBEF74 /* SADigiglassController.h */,
 				01AB61E825B8E08E00DBEF74 /* SADigiglassController.m */,
 				01A66A7325364AA400C00A1A /* SARoofWindowController.h */,
@@ -2567,6 +2578,7 @@
 				40DE1A361BCD1B55004CF43B /* AboutVC.m in Sources */,
 				4017E12C1BB9CE2900570AC8 /* ChannelCell.m in Sources */,
 				011021C425CC39AC00621D41 /* SARegistrationEnabled.m in Sources */,
+				019F4AAF2614B75800065420 /* SAAbstractPickerField.m in Sources */,
 				01EFD94A236CA94400893489 /* NSData+AES.m in Sources */,
 				0148933425AA12DB00B9974E /* SADiwCalibrationTool.m in Sources */,
 				01C1719222C7F3A2005983E1 /* SAElectricityMeasurementItem+CoreDataProperties.m in Sources */,
@@ -2660,6 +2672,7 @@
 				01BDAC7822C5200600915646 /* SAOAuthToken.m in Sources */,
 				40C7BA5220C007A300ACEE42 /* SAChannelValue+CoreDataClass.m in Sources */,
 				01DD2F0F247719000025DFF9 /* SARangeCalibrationWheel.m in Sources */,
+				016157B6261CAAFA006AA0E8 /* SAPickerField.m in Sources */,
 				01E517C322C6AC1E000FE77A /* SADownloadIncrementalMeasurements.m in Sources */,
 				013D1C6022CE757F000C0784 /* SAIncrementalMeterChartHelper.m in Sources */,
 				40C9E4FD1F2B841400753796 /* SAColorListPicker.m in Sources */,
@@ -3256,6 +3269,7 @@
 		407004251BB5706500F6187F /* SUPLA.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				013FB109262CA21300A0E71D /* SUPLA 8.xcdatamodel */,
 				013C8C6725F79265009519B6 /* SUPLA 7.xcdatamodel */,
 				01172903247473E200DAF1D0 /* SUPLA 6.xcdatamodel */,
 				012119132368BDB0004C1993 /* SUPLA 5.xcdatamodel */,
@@ -3264,7 +3278,7 @@
 				40BBA34620AC52EA0054CD20 /* SUPLA 2.xcdatamodel */,
 				407004261BB5706500F6187F /* SUPLA.xcdatamodel */,
 			);
-			currentVersion = 013C8C6725F79265009519B6 /* SUPLA 7.xcdatamodel */;
+			currentVersion = 013FB109262CA21300A0E71D /* SUPLA 8.xcdatamodel */;
 			path = SUPLA.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

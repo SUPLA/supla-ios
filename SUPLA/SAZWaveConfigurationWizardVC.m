@@ -126,6 +126,8 @@ static SAZWaveConfigurationWizardVC *_zwaveConfigurationWizardGlobalRef = nil;
     } else {
         [self watchdogDeactivate];
         self.btnNextEnabled = YES;
+        self.preloaderVisible = NO;
+        
         if (self.page == self.channelDetailsPage) {
             
         } else if (self.page == self.channelSelectionPage) {
@@ -265,6 +267,7 @@ static SAZWaveConfigurationWizardVC *_zwaveConfigurationWizardGlobalRef = nil;
 
 - (void)setPage:(UIView *)page {
     [super setPage:page];
+    
     self.backButtonInsteadOfCancel = page != self.welcomePage;
     
     if (page == self.channelSelectionPage) {
@@ -276,6 +279,8 @@ static SAZWaveConfigurationWizardVC *_zwaveConfigurationWizardGlobalRef = nil;
     [super nextTouch:sender];
     
     if (self.page == self.welcomePage) {
+        self.btnNextEnabled = NO;
+        self.preloaderVisible = YES;
         self.page = self.channelSelectionPage;
     }
 }
