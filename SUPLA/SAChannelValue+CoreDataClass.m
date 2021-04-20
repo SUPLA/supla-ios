@@ -116,9 +116,19 @@
 - (double) totalForwardActiveEnergy {
 
     if ( self.value != nil && self.dataValue.length >= sizeof(TElectricityMeter_Value)) {
-        TElectricityMeter_Value ev;
-        memset(&ev, 0, sizeof(TElectricityMeter_Value));
+        TElectricityMeter_Value ev = {};
         [self.dataValue getBytes:&ev length:sizeof(TElectricityMeter_Value)];
+        return ev.total_forward_active_energy * 0.01;
+    }
+    
+    return 0.0;
+}
+
+- (double) totalForwardActiveEnergyFromSubValue {
+
+    if ( self.value != nil && self.dataSubValue.length >= sizeof(TElectricityMeter_Value)) {
+        TElectricityMeter_Value ev = {};
+        [self.dataSubValue getBytes:&ev length:sizeof(TElectricityMeter_Value)];
         return ev.total_forward_active_energy * 0.01;
     }
     
@@ -127,9 +137,18 @@
 
 - (double) impulseCounterCalculatedValue {
     if ( self.value != nil && self.dataValue.length >= sizeof(TSC_ImpulseCounter_Value)) {
-        TSC_ImpulseCounter_Value icv;
-        memset(&icv, 0, sizeof(TSC_ImpulseCounter_Value));
+        TSC_ImpulseCounter_Value icv = {};
         [self.dataValue getBytes:&icv length:sizeof(TSC_ImpulseCounter_Value)];
+        return icv.calculated_value * 0.001;
+    }
+    
+    return 0.0;
+}
+
+- (double) impulseCounterCalculatedValueFromSubValue {
+    if ( self.value != nil && self.dataSubValue.length >= sizeof(TSC_ImpulseCounter_Value)) {
+        TSC_ImpulseCounter_Value icv = {};
+        [self.dataSubValue getBytes:&icv length:sizeof(TSC_ImpulseCounter_Value)];
         return icv.calculated_value * 0.001;
     }
     

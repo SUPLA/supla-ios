@@ -48,7 +48,9 @@ NS_ASSUME_NONNULL_BEGIN
 - (int) colorBrightnessValue;
 - (UIColor *) colorValue;
 - (double) totalForwardActiveEnergy;
+- (double) totalForwardActiveEnergyFromSubValue;
 - (double) impulseCounterCalculatedValue;
+- (double) impulseCounterCalculatedValueFromSubValue;
 - (double) presetTemperature;
 - (double) measuredTemperature;
 -(BOOL) isManuallyClosed;

@@ -403,7 +403,19 @@
     NSString *identifier = @"ChannelCell";
     
     if ( channel_base ) {
+        
+        SAChannel *channel = [channel_base isKindOfClass:[SAChannel class]] ? (SAChannel*)channel_base : nil;
+        
         switch(channel_base.func) {
+            case SUPLA_CHANNELFNC_POWERSWITCH:
+            case SUPLA_CHANNELFNC_LIGHTSWITCH:
+                if (channel
+                    && channel.value
+                    && (channel.value.sub_value_type == SUBV_TYPE_IC_MEASUREMENTS
+                        || channel.value.sub_value_type == SUBV_TYPE_ELECTRICITY_MEASUREMENTS)) {
+                    identifier = @"IncrementalMeterCell";
+                }
+                break;
             case SUPLA_CHANNELFNC_THERMOMETER:
                 identifier = @"ThermometerCell";
                 break;
@@ -565,10 +577,12 @@
     
     SADetailView *result = nil;
     
+    SAChannel *channel = [_cell.channelBase isKindOfClass:[SAChannel class]] ? (SAChannel*)_cell.channelBase : nil;
+    
     if ( _cell.channelBase.isOnline && self.superview != nil) {
         
-        if ( [_cell.channelBase isKindOfClass:SAChannel.class]
-            && (((SAChannel*)_cell.channelBase).type == SUPLA_CHANNELTYPE_ELECTRICITY_METER)) {
+        if (channel && (channel.type == SUPLA_CHANNELTYPE_ELECTRICITY_METER
+            || (channel.value && channel.value.sub_value_type == SUBV_TYPE_ELECTRICITY_MEASUREMENTS))) {
             // TODO: Remove channel type checking in future versions. Check function instead of type. Issue #82
             if ( _electricityMeterDetailView == nil ) {
                 
@@ -577,8 +591,8 @@
             }
             
             result = _electricityMeterDetailView;
-        } else if ( [_cell.channelBase isKindOfClass:SAChannel.class]
-                   && (((SAChannel*)_cell.channelBase).type == SUPLA_CHANNELTYPE_IMPULSE_COUNTER)) {
+        } else if (channel && (channel.type == SUPLA_CHANNELTYPE_IMPULSE_COUNTER
+            || (channel.value && channel.value.sub_value_type == SUBV_TYPE_IC_MEASUREMENTS))) {
             // TODO: Remove channel type checking in future versions. Check function instead of type. Issue #82
             if ( _impulseCounterDetailView == nil ) {
                 
@@ -818,6 +832,10 @@
         && _detailView != nil ) {
         
         [self detailShow:self.frame.origin.x*-1 > self.frame.size.width/3.5 ? YES : NO animated:YES];
+        
+        if (cell != nil && [cell isKindOfClass:[MGSwipeTableCell class]]) {
+            [(MGSwipeTableCell*)cell hideSwipeAnimated:YES];
+        }
         
         return;
     }

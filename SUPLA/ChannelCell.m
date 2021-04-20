@@ -54,6 +54,7 @@
 @implementation SAChannelCell {
     BOOL _initialized;
     BOOL _captionTouched;
+    BOOL _measurementSubChannel;
     SAChannelBase *_channelBase;
     UITapGestureRecognizer *tapGr1;
     UITapGestureRecognizer *tapGr2;
@@ -125,6 +126,12 @@
    
     _channelBase = channelBase;
     BOOL isGroup = [channelBase isKindOfClass:[SAChannelGroup class]];
+    SAChannel *channel = [channelBase isKindOfClass:[SAChannel class]] ? (SAChannel*)channelBase : nil;
+    
+    _measurementSubChannel = channel && channel.value
+    && (channel.value.sub_value_type == SUBV_TYPE_IC_MEASUREMENTS
+        || channel.value.sub_value_type == SUBV_TYPE_ELECTRICITY_MEASUREMENTS);
+    
     self.channelStateIcon.hidden = YES;
     self.channelWarningIcon.hidden = YES;
     
@@ -144,7 +151,6 @@
         self.left_OnlineStatus.shapeType = stDot;
         
         if ([channelBase isKindOfClass:[SAChannel class]]) {
-            SAChannel *channel = (SAChannel*)channelBase;
             UIImage *stateIcon = channel.stateIcon;
             if (stateIcon) {
                 self.channelStateIcon.hidden = NO;
@@ -162,8 +168,6 @@
     
     self.right_OnlineStatus.percent = [channelBase onlinePercent];
     self.left_OnlineStatus.percent = self.right_OnlineStatus.percent;
-    
-
 
     [self.caption setText:[channelBase getChannelCaption]];
     [self.image1 setImage:[channelBase getIconWithIndex:0]];
@@ -240,7 +244,7 @@
                 || channelBase.func == SUPLA_CHANNELFNC_IC_ELECTRICITY_METER
                 || channelBase.func == SUPLA_CHANNELFNC_IC_WATER_METER
                 || channelBase.func == SUPLA_CHANNELFNC_IC_GAS_METER
-                || channelBase.func == SUPLA_CHANNELFNC_IC_HEAT_METER) {
+                || channelBase.func == SUPLA_CHANNELFNC_IC_HEAT_METER ) {
         
         [self.measuredValue setText:[[channelBase attrStringValue] string]];
                 
@@ -268,6 +272,11 @@
                 case SUPLA_CHANNELFNC_STAIRCASETIMER:
                     br = [MGSwipeButton buttonWithTitle:NSLocalizedString(@"On", nil) icon:nil backgroundColor:[UIColor blackColor]];
                     bl = [MGSwipeButton buttonWithTitle:NSLocalizedString(@"Off", nil) icon:nil backgroundColor:[UIColor blackColor]];
+                    
+                    if (_measurementSubChannel) {
+                        [self.measuredValue setText:[[channelBase attrStringValue] string]];
+                    }
+                    
                     break;
                 case SUPLA_CHANNELFNC_VALVE_OPENCLOSE:
                     br = [MGSwipeButton buttonWithTitle:NSLocalizedString(@"Open", nil) icon:nil backgroundColor:[UIColor blackColor]];
@@ -424,6 +433,23 @@
 
 - (BOOL)captionTouched {
     return _captionTouched;
+}
+
+- (BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer {
+    if ([super gestureRecognizerShouldBegin:gestureRecognizer]) {
+        if (_measurementSubChannel
+            && self.swipeState == MGSwipeStateSwipingRightToLeft
+            && [gestureRecognizer isKindOfClass: [UIPanGestureRecognizer class]]) {
+            
+            CGPoint translation = [(UIPanGestureRecognizer*)gestureRecognizer translationInView:self];
+            if (translation.x < 0) {
+                return NO;
+            }
+        }
+        return YES;
+    }
+    
+    return NO;
 }
 
 @end

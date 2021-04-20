@@ -37,6 +37,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (BOOL) setProductId:(int)productId;
 - (BOOL) setChannelType:(int)type;
 - (double) totalForwardActiveEnergy;
+- (double) totalForwardActiveEnergyFromSubValue;
 - (NSNumber *) lightSourceLifespanLeft;
 - (int) warningLevel;
 - (UIImage *) stateIcon;

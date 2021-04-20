@@ -117,8 +117,16 @@
     return self.value == nil ? [super totalForwardActiveEnergy] : [self.value totalForwardActiveEnergy];
 }
 
+- (double) totalForwardActiveEnergyFromSubValue {
+    return self.value == nil ? 0.0 : [self.value totalForwardActiveEnergyFromSubValue];
+}
+
 - (double) impulseCounterCalculatedValue {
     return self.value == nil ? [super impulseCounterCalculatedValue] : [self.value impulseCounterCalculatedValue];
+}
+
+- (double) impulseCounterCalculatedValueFromSubValue {
+    return self.value == nil ? 0.0 : [self.value impulseCounterCalculatedValueFromSubValue];
 }
 
 - (int) percentValue {
@@ -162,28 +170,20 @@
 }
 
 - (NSString *) unit {
+    
+    NSString *result = nil;
+    SAImpulseCounterExtendedValue *icev = nil;
+    if ( self.ev != nil
+         && (icev = self.ev.impulseCounter) != nil) {
+        result = icev.unit;
+        if (result != nil) {
+            return result;
+        }
+    }
+    
     if ( self.func == SUPLA_CHANNELFNC_ELECTRICITY_METER
-        || self.func == SUPLA_CHANNELFNC_IC_ELECTRICITY_METER
-        || self.func == SUPLA_CHANNELFNC_IC_WATER_METER
-        || self.func == SUPLA_CHANNELFNC_IC_GAS_METER
-        || self.func == SUPLA_CHANNELFNC_IC_HEAT_METER) {
-        
-        NSString *result = nil;
-        SAImpulseCounterExtendedValue *icev = nil;
-        if ( self.ev != nil
-             && (icev = self.ev.impulseCounter) != nil) {
-            result = icev.unit;
-            if (result != nil) {
-                return result;
-            }
-        }
-        
-        if ( self.func == SUPLA_CHANNELFNC_ELECTRICITY_METER
-             || self.func == SUPLA_CHANNELFNC_IC_ELECTRICITY_METER) {
-            return @"kWh";
-        } else {
-            return @"m\u00B3";
-        }
+         || self.func == SUPLA_CHANNELFNC_IC_ELECTRICITY_METER) {
+        return @"kWh";
     }
     
     return super.unit;
@@ -211,6 +211,16 @@
 
 - (NSAttributedString*) attrStringValueWithIndex:(int)idx font:(nullable UIFont*)font {
   
+    if (self.value) {
+        if (self.value.sub_value_type == SUBV_TYPE_IC_MEASUREMENTS) {
+            return [[NSMutableAttributedString alloc] initWithString:
+                    [NSString stringWithFormat:@"%0.2f %@", self.impulseCounterCalculatedValueFromSubValue, self.unit]];
+        } else if (self.value.sub_value_type == SUBV_TYPE_ELECTRICITY_MEASUREMENTS) {
+            return [[NSMutableAttributedString alloc] initWithString:
+                    [NSString stringWithFormat:@"%0.2f kWh", self.totalForwardActiveEnergyFromSubValue]];
+        }
+    }
+    
    if ( self.func == SUPLA_CHANNELFNC_ELECTRICITY_METER
         || self.func == SUPLA_CHANNELFNC_IC_ELECTRICITY_METER
         || self.func == SUPLA_CHANNELFNC_IC_WATER_METER
