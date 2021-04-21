@@ -21,6 +21,7 @@
 #import "SuplaApp.h"
 #import "SAElectricityChartHelper.h"
 #import "SAElectricityMeterExtendedValue.h"
+#import <AudioToolbox/AudioToolbox.h>
 
 // iPhone <=5 fix.
 // Integer number as boolean method parameter does not work good in iPhone <5
@@ -45,6 +46,10 @@
         _tfChartTypeFilter.dateRangeFilterField = _ftDateRangeFilter;
         _tfChartTypeFilter.ff_delegate = self;
         _ftDateRangeFilter.ff_delegate = self;
+        
+        UITapGestureRecognizer *tapgr = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapped:)];
+        tapgr.delegate = self;
+        [self.ivImage addGestureRecognizer:tapgr];
     }
     
     [super detailViewInit];
@@ -504,6 +509,26 @@
 
 -(void) onFilterChanged: (SAChartFilterField*)filterField {
     [self loadChartWithAnimation:YES];
+}
+
+- (BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer {
+    if (self.ivImage.gestureRecognizers.firstObject == gestureRecognizer
+        && self.channelBase
+        && [self.channelBase isKindOfClass:[SAChannel class]]) {
+        
+        SAChannel *channel = (SAChannel*)self.channelBase;
+        if (channel.value
+            && (channel.value.sub_value_type == SUBV_TYPE_ELECTRICITY_MEASUREMENTS)) {
+            return YES;
+        }
+    }
+    
+    return NO;
+}
+
+- (void)tapped:(UIGestureRecognizer *)gestureRecognizer {
+    [[SAApp SuplaClient] cg:self.channelBase.remote_id Open:!self.channelBase.hiValue group:NO];
+    AudioServicesPlayAlertSound(kSystemSoundID_Vibrate);
 }
 
 @end

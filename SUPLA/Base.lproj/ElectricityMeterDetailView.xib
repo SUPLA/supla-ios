@@ -524,8 +524,8 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oi3-aO-pwy" userLabel="vHeader">
                     <rect key="frame" x="10" y="20" width="394" height="134"/>
                     <subviews>
-                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="electricitymeter.png" translatesAutoresizingMaskIntoConstraints="NO" id="INI-Px-fdb">
-                            <rect key="frame" x="10" y="17" width="100" height="100"/>
+                        <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="electricitymeter.png" translatesAutoresizingMaskIntoConstraints="NO" id="INI-Px-fdb">
+                            <rect key="frame" x="10" y="7" width="100" height="100"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="100" id="1pg-tg-5GW"/>
                                 <constraint firstAttribute="width" constant="100" id="lCS-fF-kI6"/>
@@ -666,7 +666,7 @@
                         <constraint firstAttribute="trailing" secondItem="qPI-tZ-xfE" secondAttribute="trailing" id="JYX-Qg-ALk"/>
                         <constraint firstAttribute="trailing" secondItem="QGd-zO-vjg" secondAttribute="trailing" id="YHn-fc-lNx"/>
                         <constraint firstItem="qPI-tZ-xfE" firstAttribute="centerY" secondItem="oi3-aO-pwy" secondAttribute="centerY" id="YPB-2v-TTM"/>
-                        <constraint firstItem="INI-Px-fdb" firstAttribute="centerY" secondItem="oi3-aO-pwy" secondAttribute="centerY" id="imb-Ca-jBZ"/>
+                        <constraint firstItem="INI-Px-fdb" firstAttribute="centerY" secondItem="oi3-aO-pwy" secondAttribute="centerY" constant="-10" id="imb-Ca-jBZ"/>
                         <constraint firstAttribute="height" constant="134" id="yyW-V1-FbO"/>
                     </constraints>
                 </view>
