@@ -734,6 +734,17 @@
     return [super hitTest:point withEvent:event];
 }
 
+- (void)detailDidHide {
+    UITableView *tableView = self.cTableView.hidden ? self.gTableView : self.cTableView;
+    
+    for(UITableViewCell *cell in tableView.visibleCells) {
+        if ([cell isKindOfClass:[MGSwipeTableCell class]]
+            && ((MGSwipeTableCell*)cell).swipeState != MGSwipeStateNone) {
+            [(MGSwipeTableCell*)cell hideSwipeAnimated:YES];
+        }
+    }
+}
+
 - (void)detailShow:(BOOL)show animated:(BOOL)animated {
     
     [UIView commitAnimations];
@@ -767,6 +778,8 @@
             
             if ( show == NO ) {
                 
+                [self detailDidHide];
+                
                 if ( self->_detailView ) {
                     [self->_detailView removeFromSuperview];
                     [self->_detailView detailDidHide];
@@ -791,6 +804,8 @@
         if ( show == NO ) {
             
             [self setCenter:CGPointMake(self.frame.size.width/2, self.center.y)];
+            
+            [self detailDidHide];
             
             if ( _detailView ) {
                 [_detailView removeFromSuperview];
@@ -830,13 +845,7 @@
     
     if ( gr.state == UIGestureRecognizerStateEnded
         && _detailView != nil ) {
-        
         [self detailShow:self.frame.origin.x*-1 > self.frame.size.width/3.5 ? YES : NO animated:YES];
-        
-        if (cell != nil && [cell isKindOfClass:[MGSwipeTableCell class]]) {
-            [(MGSwipeTableCell*)cell hideSwipeAnimated:YES];
-        }
-        
         return;
     }
     

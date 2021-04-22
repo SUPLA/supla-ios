@@ -526,10 +526,14 @@
                     <subviews>
                         <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="electricitymeter.png" translatesAutoresizingMaskIntoConstraints="NO" id="INI-Px-fdb">
                             <rect key="frame" x="10" y="7" width="100" height="100"/>
+                            <gestureRecognizers/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="100" id="1pg-tg-5GW"/>
                                 <constraint firstAttribute="width" constant="100" id="lCS-fF-kI6"/>
                             </constraints>
+                            <connections>
+                                <outletCollection property="gestureRecognizers" destination="yM6-qh-nDU" appends="YES" id="jXu-CF-dna"/>
+                            </connections>
                         </imageView>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qPI-tZ-xfE">
                             <rect key="frame" x="130" y="-8" width="264" height="150"/>
@@ -769,6 +773,12 @@
             </connections>
             <point key="canvasLocation" x="-792.75362318840587" y="-269.02173913043481"/>
         </view>
+        <tapGestureRecognizer id="yM6-qh-nDU">
+            <connections>
+                <action selector="imgTapped:" destination="Xvv-Xf-gNW" id="Pfv-Ig-mRZ"/>
+                <outlet property="delegate" destination="-1" id="sqQ-T2-lTi"/>
+            </connections>
+        </tapGestureRecognizer>
     </objects>
     <resources>
         <image name="consumption.png" width="102.40000152587891" height="102.40000152587891"/>

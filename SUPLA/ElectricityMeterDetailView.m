@@ -46,10 +46,6 @@
         _tfChartTypeFilter.dateRangeFilterField = _ftDateRangeFilter;
         _tfChartTypeFilter.ff_delegate = self;
         _ftDateRangeFilter.ff_delegate = self;
-        
-        UITapGestureRecognizer *tapgr = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapped:)];
-        tapgr.delegate = self;
-        [self.ivImage addGestureRecognizer:tapgr];
     }
     
     [super detailViewInit];
@@ -512,23 +508,15 @@
 }
 
 - (BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer {
-    if (self.ivImage.gestureRecognizers.firstObject == gestureRecognizer
-        && self.channelBase
-        && [self.channelBase isKindOfClass:[SAChannel class]]) {
-        
-        SAChannel *channel = (SAChannel*)self.channelBase;
-        if (channel.value
-            && (channel.value.sub_value_type == SUBV_TYPE_ELECTRICITY_MEASUREMENTS)) {
-            return YES;
-        }
-    }
-    
-    return NO;
+    return self.ivImage.gestureRecognizers.firstObject == gestureRecognizer
+        && (self.channelBase.func == SUPLA_CHANNELFNC_LIGHTSWITCH
+        || self.channelBase.func == SUPLA_CHANNELFNC_POWERSWITCH);
 }
 
-- (void)tapped:(UIGestureRecognizer *)gestureRecognizer {
+- (IBAction)imgTapped:(id)sender {
     [[SAApp SuplaClient] cg:self.channelBase.remote_id Open:!self.channelBase.hiValue group:NO];
     AudioServicesPlayAlertSound(kSystemSoundID_Vibrate);
 }
+
 
 @end
