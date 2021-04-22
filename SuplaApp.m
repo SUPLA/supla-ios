@@ -22,6 +22,7 @@
 #import "NSData+AES.h"
 #import "SAKeychain.h"
 #import "SASuperuserAuthorizationDialog.h"
+#import "SAClassHelper.h"
 
 static SAApp* _Globals = nil;
 
@@ -43,6 +44,7 @@ NSString *kSACalCfgResult = @"KSA-N15";
 NSString *kSAMenubarBackButtonPressed = @"KSA-N16";
 NSString *kSAOnChannelState = @"KSA-N17";
 NSString *kSAOnSetRegistrationEnableResult = @"KSA-N18";
+NSString *kSAOnChannelBasicCfg = @"KSA-N19";
 
 @implementation SAApp {
     
@@ -73,6 +75,43 @@ NSString *kSAOnSetRegistrationEnableResult = @"KSA-N18";
         };
 
         _RestApiClientTasks = [[NSMutableArray alloc] init];
+        
+        [[NSNotificationCenter defaultCenter]
+         addObserver:self selector:@selector(onDisconnected)
+         name:kSADisconnectedNotification object:nil];
+        
+        [[NSNotificationCenter defaultCenter]
+         addObserver:self selector:@selector(onConnecting)
+         name:kSAConnectingNotification object:nil];
+        
+        [[NSNotificationCenter defaultCenter]
+         addObserver:self selector:@selector(onConnected)
+         name:kSAConnectedNotification object:nil];
+        
+        [[NSNotificationCenter defaultCenter]
+         addObserver:self selector:@selector(onConnError:)
+         name:kSAConnErrorNotification object:nil];
+        
+        [[NSNotificationCenter defaultCenter]
+         addObserver:self selector:@selector(onRegistering)
+         name:kSARegisteringNotification object:nil];
+        
+        [[NSNotificationCenter defaultCenter]
+         addObserver:self selector:@selector(onRegistered:)
+         name:kSARegisteredNotification object:nil];
+        
+        [[NSNotificationCenter defaultCenter]
+         addObserver:self selector:@selector(onRegisterError:)
+         name:kSARegisterErrorNotification object:nil];
+        
+        [[NSNotificationCenter defaultCenter]
+         addObserver:self selector:@selector(onVersionError:)
+         name:kSAVersionErrorNotification object:nil];
+        
+        [[NSNotificationCenter defaultCenter]
+         addObserver:self selector:@selector(onOAuthTokenRequestResult:)
+         name:kSAOAuthTokenRequestResult object:nil];
+    
     }
     return self;
 }
@@ -439,6 +478,7 @@ NSString *kSAOnSetRegistrationEnableResult = @"KSA-N18";
         if ( _SuplaClient == nil) {
             
             _SuplaClient = [[SASuplaClient alloc] initWithOneTimePassword:password];
+            _SuplaClient.delegate = self;
             [_SuplaClient start];
         }
         
@@ -488,13 +528,12 @@ NSString *kSAOnSetRegistrationEnableResult = @"KSA-N18";
     return result;
 }
 
--(void)onTerminated:(SASuplaClient*)sender {
+-(void)onSuplaClientTerminated:(SASuplaClient*)client {
     @synchronized(self) {
-        if ( _SuplaClient == sender ) {
+        if ( _SuplaClient == client ) {
             _SuplaClient = nil;
         }
     }
-    
 }
 
 +(void) SuplaClientTerminate {
@@ -546,82 +585,6 @@ NSString *kSAOnSetRegistrationEnableResult = @"KSA-N18";
     return [[self instance] DB];
 }
 
-
--(void)onDisconnected {
-    
-    if ( ![self canChangeView] ) {
-        return;
-    }
-    
-    [self.UI.StatusVC.progress setProgress:0];
-    [[NSNotificationCenter defaultCenter] postNotificationName:kSADisconnectedNotification object:self userInfo:nil];
-}
-
--(void)onConnecting {
-    
-    if ( ![self canChangeView] ) {
-        return;
-    }
-    
-    if ( self.UI.rootViewController == self.UI.SettingsVC ) {
-         [self.UI.StatusVC.progress setProgress:0.25];
-    } else {
-         [self.UI showStatusConnectingProgress:0.25];
-    }
-    
-    [[NSNotificationCenter defaultCenter] postNotificationName:kSAConnectingNotification object:self userInfo:nil];
-}
-
--(void)onConnected {
-    
-    if ( ![self canChangeView] ) {
-        return;
-    }
-    
-    [self.UI showStatusConnectingProgress:0.5];
-    [[NSNotificationCenter defaultCenter] postNotificationName:kSAConnectedNotification object:self userInfo:nil];
-}
-
--(void)onConnError:(NSNumber*)code {
-    
-    if ( ![self canChangeView] ) {
-        return;
-    }
-    
-    if ( [code intValue] == SUPLA_RESULTCODE_HOSTNOTFOUND ) {
-        
-        [self SuplaClientTerminate];
-        [self.UI showStatusError:NSLocalizedString(@"Host not found. Make sure you are connected to the internet and that an account with the entered email address has been created.", nil)];
-    }
-    
-    
-    [[NSNotificationCenter defaultCenter] postNotificationName:kSAConnErrorNotification object:self userInfo:[[NSDictionary alloc] initWithObjects:@[code] forKeys:@[@"code"]]];
-    
-    
-}
-
--(void)onRegistering {
-    
-    if ( ![self canChangeView] ) {
-        return;
-    }
-    
-    [self.UI showStatusConnectingProgress:0.75];
-    [[NSNotificationCenter defaultCenter] postNotificationName:kSARegisteringNotification object:self userInfo:nil];
-}
-
--(void)onRegistered:(SARegResult*)result {
-    
-    if ( ![self canChangeView] ) {
-        return;
-    }
-    
-    [self.UI showStatusConnectingProgress:1];
-    [self.UI showMainVC];
-    [[NSNotificationCenter defaultCenter] postNotificationName:kSARegisteredNotification object:self userInfo:[[NSDictionary alloc] initWithObjects:@[result] forKeys:@[@"result"]]];
-}
-
-
 -(NSString*)getMsgHostName {
     NSString *hostname = [SAApp getServerHostName];
     if ( [[hostname lowercaseString] containsString:@"supla.org"] ) {
@@ -631,18 +594,81 @@ NSString *kSAOnSetRegistrationEnableResult = @"KSA-N18";
     }
 }
 
--(void)onRegisterError:(NSNumber*)code {
+-(BOOL)canChangeView {
+    return [self.UI addWizardIsVisible] != YES && [self.UI createAccountVCisVisible] != YES && ![self.UI settingsVCisVisible];
+    
+}
+
+-(void)onDisconnected {
+    if ( ![self canChangeView] ) {
+        return;
+    }
+    
+    [self.UI.StatusVC.progress setProgress:0];
+}
+
+-(void)onConnecting {
+    if ( ![self canChangeView] ) {
+        return;
+    }
+    
+    if ( self.UI.rootViewController == self.UI.SettingsVC ) {
+         [self.UI.StatusVC.progress setProgress:0.25];
+    } else {
+         [self.UI showStatusConnectingProgress:0.25];
+    }
+}
+
+-(void)onConnected {
+    if ( ![self canChangeView] ) {
+        return;
+    }
+    
+    [self.UI showStatusConnectingProgress:0.5];
+}
+
+-(void)onConnError:(NSNotification *)notification {
+    if ( ![self canChangeView] ) {
+        return;
+    }
+    
+    NSNumber *code = [NSNumber notificationToNumber:notification];
+    
+    if ( code && [code intValue] == SUPLA_RESULTCODE_HOSTNOTFOUND ) {
+        
+        [self SuplaClientTerminate];
+        [self.UI showStatusError:NSLocalizedString(@"Host not found. Make sure you are connected to the internet and that an account with the entered email address has been created.", nil)];
+    }
+}
+
+-(void)onRegistering {
+    if ( ![self canChangeView] ) {
+        return;
+    }
+    
+    [self.UI showStatusConnectingProgress:0.75];
+}
+
+-(void)onRegistered:(NSNotification *)notification {
+    if ( ![self canChangeView] ) {
+        return;
+    }
+    
+    [self.UI showStatusConnectingProgress:1];
+    [self.UI showMainVC];
+}
+
+-(void)onRegisterError:(NSNotification *)notification {
     
     if ( ![self canChangeView] ) {
         return;
     }
     
     [self SuplaClientTerminate];
-
+    
+    NSNumber *code = [NSNumber notificationToNumber:notification];
     [self.UI showStatusError:[SASuplaClient codeToString:code]];
-    
-    [[NSNotificationCenter defaultCenter] postNotificationName:kSARegisterErrorNotification object:self userInfo:[[NSDictionary alloc] initWithObjects:@[code] forKeys:@[@"code"]]];
-    
+        
     int cint = [code intValue];
     if ((cint == SUPLA_RESULTCODE_REGISTRATION_DISABLED
         || cint == SUPLA_RESULTCODE_ACCESSID_NOT_ASSIGNED)
@@ -653,43 +679,19 @@ NSString *kSAOnSetRegistrationEnableResult = @"KSA-N18";
     
 }
 
--(BOOL)canChangeView {
-    return [self.UI addWizardIsVisible] != YES && [self.UI createAccountVCisVisible] != YES && ![self.UI settingsVCisVisible];
-    
-}
--(void)onVersionError:(SAVersionError*)ve {
+-(void)onVersionError:(NSNotification *)notification {
     
     if ( ![self canChangeView] ) {
         return;
     }
     
     [self SuplaClientTerminate];
-    [[NSNotificationCenter defaultCenter] postNotificationName:kSAVersionErrorNotification object:self userInfo:[[NSDictionary alloc] initWithObjects:@[ve] forKeys:@[@"version_error"]]];
     
     [self.UI showStatusError:NSLocalizedString(@"Incompatible server version", nil)];
 }
 
--(void)onEvent:(SAEvent*)event {
-     [[NSNotificationCenter defaultCenter] postNotificationName:kSAEventNotification object:self userInfo:[[NSDictionary alloc] initWithObjects:@[event] forKeys:@[@"event"]]];
-}
-
--(void)onRegistrationEnabled:(SARegistrationEnabled*)reg_enabled {
-    [[NSNotificationCenter defaultCenter] postNotificationName:kSARegistrationEnabledNotification object:self userInfo:[[NSDictionary alloc] initWithObjects:@[reg_enabled] forKeys:@[@"reg_enabled"]]];
-}
-
-- (void)onSetRegistrationEnabledResultCode:(NSNumber *)code {
-       [[NSNotificationCenter defaultCenter] postNotificationName:kSAOnSetRegistrationEnableResult object:self userInfo:[[NSDictionary alloc] initWithObjects:@[code] forKeys:@[@"code"]]];
-}
-
--(void)onDataChanged {
-    [[NSNotificationCenter defaultCenter] postNotificationName:kSADataChangedNotification object:self userInfo:nil];
-}
-
--(void)onChannelValueChanged:(NSNumber*)ChannelId isGroup:(NSNumber*)group {
-    [[NSNotificationCenter defaultCenter] postNotificationName:kSAChannelValueChangedNotification object:self userInfo:[[NSDictionary alloc] initWithObjects:@[ChannelId, group] forKeys:@[@"remoteId", @"isGroup"]]];
-}
-
--(void)onOAuthTokenRequestResult:(SAOAuthToken *)token {
+-(void)onOAuthTokenRequestResult:(NSNotification *)notification {
+    SAOAuthToken *token = [SAOAuthToken notificationToToken:notification];
     
     @synchronized (self) {
         NSEnumerator *e = [_RestApiClientTasks objectEnumerator];
@@ -699,20 +701,6 @@ NSString *kSAOnSetRegistrationEnableResult = @"KSA-N18";
             cli.token = token;
         }
     }
-    
-    [[NSNotificationCenter defaultCenter] postNotificationName:kSAOAuthTokenRequestResult object:self userInfo:[[NSDictionary alloc] initWithObjects:@[token] forKeys:@[@"token"]]];
-}
-
--(void)onSuperuserAuthorizationResult:(SASuperuserAuthorizationResult *)result {
-     [[NSNotificationCenter defaultCenter] postNotificationName:kSASuperuserAuthorizationResult object:self userInfo:[[NSDictionary alloc] initWithObjects:@[result] forKeys:@[@"result"]]];
-}
-
--(void)onCalCfgResult:(SACalCfgResult *)result {
-     [[NSNotificationCenter defaultCenter] postNotificationName:kSACalCfgResult object:self userInfo:[[NSDictionary alloc] initWithObjects:@[result] forKeys:@[@"result"]]];
-}
-
--(void)onChannelState:(SAChannelStateExtendedValue*)state {
-    [[NSNotificationCenter defaultCenter] postNotificationName:kSAOnChannelState object:self userInfo:[[NSDictionary alloc] initWithObjects:@[state] forKeys:@[@"state"]]];
 }
 
 -(SAOAuthToken*) registerRestApiClientTask:(SARestApiClientTask *)task {

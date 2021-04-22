@@ -203,6 +203,10 @@
 "Regeneration initiated after 20 hours of operation is in progress." = "Trwa regeneracja zainicjowana po 20h pracy.";
 "Incorrect Email Address or Password" = "Błędny adres email lub hasło";
 "Channel Id" = "Id kanału";
+"Back" = "Wstecz";
+"The z-wave bridge is not responding. Check if the bridge is connected to the server." = "Most z-wave nie odpowiada. Sprawdź czy most jest połączony z serwerem.";
+"Exit" = "Wyjście";
+"The waiting time for basic channel configuration data has expired." = "Upłynął czas oczekiwania na dane podstawowej konfiguracji kanału";
 "Channel name" = "Nazwa kanału";
 "Location name" = "Nazwa lokalizacji";
 "Default" = "Domyślne";

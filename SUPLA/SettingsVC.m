@@ -125,7 +125,7 @@
     [[SAApp UI] showMainVC];
     
     if ( changed || [SAApp SuplaClientConnected] == NO ) {
-        [SAApp.instance onConnecting];
+        [[NSNotificationCenter defaultCenter] postNotificationName:kSAConnectingNotification object:self userInfo:nil];
         [SAApp setPreferedProtocolVersion:SUPLA_PROTO_VERSION];
         [[SAApp SuplaClient] reconnect];
     }

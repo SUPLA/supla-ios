@@ -85,3 +85,16 @@
 }
 
 @end
+
+@implementation NSNumber (SUPLA)
++(NSNumber *)notificationToNumber:(NSNotification*_Nullable)notification {
+    if (notification != nil && notification.userInfo != nil) {
+        id r = [notification.userInfo objectForKey:@"code"];
+        if (r != nil && [r isKindOfClass:[NSNumber class]]) {
+            return r;
+        }
+    }
+    
+    return nil;
+}
+@end

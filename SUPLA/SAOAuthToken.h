@@ -26,7 +26,7 @@ NS_ASSUME_NONNULL_BEGIN
 -(id)initWithToken:(SAOAuthToken *)token;
 +(SAOAuthToken *)tokenWithRequestResult:(TSC_OAuthTokenRequestResult *)result;
 +(SAOAuthToken *)tokenWithToken:(SAOAuthToken *)sourceToken;
-
++(SAOAuthToken *)notificationToToken:(NSNotification *)notification;
 @property (nonatomic, readonly) unsigned short resultCode;
 @property (nonatomic, readonly) NSString *tokenString;
 @property (nonatomic, readonly) unsigned int expiresIn;

@@ -21,6 +21,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #import "SAImpulseCounterChartHelper.h"
 #import "SADownloadImpulseCounterMeasurements.h"
 #import "SuplaApp.h"
+#import <AudioToolbox/AudioToolbox.h>
 
 @implementation SAImpulseCounterDetailView
 
@@ -99,5 +100,16 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     if (animation) {
         [chartHelper animate];
     }
+}
+
+- (BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer {
+    return self.ivImage.gestureRecognizers.firstObject == gestureRecognizer
+        && (self.channelBase.func == SUPLA_CHANNELFNC_LIGHTSWITCH
+        || self.channelBase.func == SUPLA_CHANNELFNC_POWERSWITCH);
+}
+
+- (IBAction)imgTapped:(id)sender {
+    [[SAApp SuplaClient] cg:self.channelBase.remote_id Open:!self.channelBase.hiValue group:NO];
+    AudioServicesPlayAlertSound(kSystemSoundID_Vibrate);
 }
 @end

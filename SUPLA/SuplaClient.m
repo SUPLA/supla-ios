@@ -17,11 +17,44 @@
  */
 
 #import <UIKit/UIKit.h>
+#import "SARestApiClientTask.h"
+#import "SAChannelStateExtendedValue.h"
+#import "SAVersionError.h"
+#import "SARegResult.h"
+#import "SAEvent.h"
+#import "SARegistrationEnabled.h"
+#import "SASuperuserAuthorizationResult.h"
+#import "SACalCfgResult.h"
 #import "SuplaClient.h"
 #import "SuplaApp.h"
 #import "Database.h"
+#import "SAChannelBasicCfg.h"
 
 #include "supla-client.h"
+
+@interface SASuplaClient ()
+- (void) onVersionError:(SAVersionError*)ve;
+- (void) onConnected;
+- (void) onConnError:(int)code;
+- (void) onDisconnected;
+- (void) onRegistering;
+- (void) onRegistered:(SARegResult *)result;
+- (void) onRegisterError:(int)code;
+- (void) locationUpdate:(TSC_SuplaLocation *)location;
+- (void) channelUpdate:(TSC_SuplaChannel_C *)channel;
+- (void) channelValueUpdate:(TSC_SuplaChannelValue *)channel_value;
+- (void) channelExtendedValueUpdate:(TSC_SuplaChannelExtendedValue *)channel_extendedvalue;
+- (void) channelGroupUpdate:(TSC_SuplaChannelGroup_B *)cgroup;
+- (void) channelGroupRelationUpdate:(TSC_SuplaChannelGroupRelation *)cgroup_relation;
+- (void) onEvent:(SAEvent *)event;
+- (void) onRegistrationEnabled:(SARegistrationEnabled*)reg_enabled;
+- (void) onSetRegistrationEnabledResultCode:(int)code;
+- (void) onOAuthTokenRequestResult:(SAOAuthToken *)token;
+- (void) onSuperuserAuthorizationResult:(SASuperuserAuthorizationResult*)result;
+- (void) onCalCfgResult:(SACalCfgResult*)result;
+- (void) onChannelState:(SAChannelStateExtendedValue*)state;
+- (void) onChannelBasicCfg:(SAChannelBasicCfg*)cfg;
+@end
 
 void sasuplaclient_on_versionerror(void *_suplaclient, void *user_data, int version, int remote_version_min, int remote_version) {
     
@@ -166,151 +199,20 @@ void sasuplaclient_on_device_channel_state(void *_suplaclient, void *user_data, 
     }
 }
 
-// ------------------------------------------------------------------------------------------------------
-// ------------------------------------------------------------------------------------------------------
-// ------------------------------------------------------------------------------------------------------
-
-@implementation SAVersionError
-
-@synthesize version;
-@synthesize remoteMinVersion;
-@synthesize remoteVersion;
-
-+ (SAVersionError*) VersionError:(int) version remoteMinVersion:(int) remote_version_min remoteVersion:(int) remote_version {
-    SAVersionError *ve = [[SAVersionError alloc] init];
-    ve.version = version;
-    ve.remoteMinVersion = remote_version_min;
-    ve.remoteVersion = remote_version;
-    
-    return ve;
-}
-
-@end
-
-// ------------------------------------------------------------------------------------------------------
-
-@implementation SARegResult
-
-@synthesize ClientID;
-@synthesize LocationCount;
-@synthesize ChannelCount;
-@synthesize ChannelGroupCount;
-@synthesize Flags;
-@synthesize Version;
-
-+ (SARegResult*) RegResultClientID:(int) clientID locationCount:(int) location_count channelCount:(int) channel_count channelGroupCount:(int) cgroup_count flags:(int) flags version:(int)version {
-    SARegResult *rr = [[SARegResult alloc] init];
-    
-    rr.ClientID = clientID;
-    rr.LocationCount = location_count;
-    rr.ChannelCount = channel_count;
-    rr.ChannelGroupCount = cgroup_count;
-    rr.Flags = flags;
-    rr.Version = version;
-    
-    return rr;
-}
-
-@end
-
-// ------------------------------------------------------------------------------------------------------
-
-@implementation SAEvent
-
-@synthesize Owner;
-@synthesize Event;
-@synthesize ChannelID;
-@synthesize DurationMS;
-@synthesize SenderID;
-@synthesize SenderName;
-
-+ (SAEvent*) Event:(int) event ChannelID:(int) channel_id DurationMS:(int) duration_ms SenderID:(int) sender_id SenderName:(NSString*)sender_name {
-    SAEvent *e = [[SAEvent alloc] init];
-    
-    e.Event = event;
-    e.ChannelID = channel_id;
-    e.DurationMS = duration_ms;
-    e.SenderID = sender_id;
-    e.SenderName = sender_name;
-    
-    return e;
-}
-
-@end
-
-
-@implementation SARegistrationEnabled
-@synthesize ClientRegistrationExpirationDate;
-@synthesize IODeviceRegistrationExpirationDate;
-
-+ (SARegistrationEnabled*) ClientTimestamp:(unsigned int) client_timestamp IODeviceTimestamp:(unsigned int) iodevice_timestamp {
-    SARegistrationEnabled *r = [[SARegistrationEnabled alloc] init];
-
-    r.ClientRegistrationExpirationDate = client_timestamp == 0 ? nil : [NSDate dateWithTimeIntervalSince1970:client_timestamp];
-    r.IODeviceRegistrationExpirationDate = iodevice_timestamp == 0 ? nil : [NSDate dateWithTimeIntervalSince1970:iodevice_timestamp];
-    
-    return r;
-}
-
--(BOOL)isClientRegistrationEnabled {
-   
-    return ClientRegistrationExpirationDate != nil && [ClientRegistrationExpirationDate timeIntervalSince1970] >  [[NSDate date] timeIntervalSince1970];
-}
-
--(BOOL)isIODeviceRegistrationEnabled {
-    return IODeviceRegistrationExpirationDate != nil && [IODeviceRegistrationExpirationDate timeIntervalSince1970] >  [[NSDate date] timeIntervalSince1970];
-}
-
-@end
-
-
-@implementation SASuperuserAuthorizationResult
-@synthesize success = _success;
-@synthesize code = _code;
-
-- (id)initWithResult:(BOOL)success andCode:(int)code {
-    if ([self init]) {
-        _success = success;
-        _code = code;
+void sasuplaclient_on_channel_basic_cfg(void *_suplaclient,
+                                         void *user_data,
+                                         TSC_ChannelBasicCfg *cfg) {
+    SASuplaClient *sc = (__bridge SASuplaClient*)user_data;
+    if ( sc != nil && cfg != NULL) {
+        [sc onChannelBasicCfg:[[SAChannelBasicCfg alloc] initWithCfg:cfg]];
     }
-    return self;
 }
-
-+ (SASuperuserAuthorizationResult*) superuserAuthorizationResult:(BOOL)success withCode:(int)code {
-    return [[SASuperuserAuthorizationResult alloc] initWithResult:success andCode:code];
-}
-
-@end
-
-@implementation SACalCfgResult
-@synthesize channelID = _channelID;
-@synthesize command = _command;
-@synthesize result = _result;
-@synthesize data = _data;
-
-- (id)initWithResult:(TSC_DeviceCalCfgResult *)result {
-    if ([self init]) {
-        _channelID = result->ChannelID;
-        _command = result->Command;
-        _result = result->Result;
-        _data = nil;
-        if (result->DataSize > 0) {
-            _data = [NSData dataWithBytes:result->Data
-                                   length:result->DataSize > sizeof(result->Data) ? sizeof(result->Data) : result->DataSize];
-        }
-    }
-    return self;
-}
-
-+ (SACalCfgResult*) resultWithResult:(TSC_DeviceCalCfgResult *)result {
-    return [[SACalCfgResult alloc] initWithResult:result];
-}
-
-@end
 
 // ------------------------------------------------------------------------------------------------------
 
-@interface SASuplaClient () {
+@implementation SASuplaClient {
+    SADatabase *_DB;
+    
     void *_sclient;
     int _client_id;
     BOOL _connected;
@@ -319,11 +221,8 @@ void sasuplaclient_on_device_channel_state(void *_suplaclient, void *user_data, 
     BOOL _superuserAuthorized;
     NSString *_oneTimePassword;
 }
-@end
 
-@implementation SASuplaClient {
-    SADatabase *_DB;
-}
+@synthesize delegate;
 
 - (id)initWithOneTimePassword:(NSString*)oneTimePassword {
     assert(_sclient == NULL);
@@ -472,6 +371,7 @@ void sasuplaclient_on_device_channel_state(void *_suplaclient, void *user_data, 
     scc.cb_on_device_calcfg_result = sasuplaclient_on_calcfg_result;
     scc.cb_on_device_channel_state = sasuplaclient_on_device_channel_state;
     scc.cb_on_set_registration_enabled_result = sasuplaclient_on_set_registration_enabled_result;
+    scc.cb_on_channel_basic_cfg = sasuplaclient_on_channel_basic_cfg;
     
     scc.protocol_version = [SAApp getPreferedProtocolVersion];
     
@@ -555,13 +455,15 @@ void sasuplaclient_on_device_channel_state(void *_suplaclient, void *user_data, 
 }
 
 - (void) _onTerminated {
-    [[SAApp instance] onTerminated:self];
+    if (self.delegate) {
+        [self.delegate onSuplaClientTerminated:self];
+    }
 }
 
 
 
 - (void) _onVersionError:(SAVersionError*)ve {
-    [[SAApp instance] onVersionError:ve];
+    [[NSNotificationCenter defaultCenter] postNotificationName:kSAVersionErrorNotification object:self userInfo:[[NSDictionary alloc] initWithObjects:@[ve] forKeys:@[@"version_error"]]];
 }
 
 - (void) onVersionError:(SAVersionError*)ve {
@@ -584,7 +486,7 @@ void sasuplaclient_on_device_channel_state(void *_suplaclient, void *user_data, 
 }
 
 - (void) _onConnected {
-    [[SAApp instance] onConnected];
+    [[NSNotificationCenter defaultCenter] postNotificationName:kSAConnectedNotification object:self userInfo:nil];
 }
 
 - (void) onConnected {
@@ -592,7 +494,7 @@ void sasuplaclient_on_device_channel_state(void *_suplaclient, void *user_data, 
 }
 
 - (void) _onConnError:(NSNumber*)code {
-    [[SAApp instance] onConnError:code];
+    [[NSNotificationCenter defaultCenter] postNotificationName:kSAConnErrorNotification object:self userInfo:[[NSDictionary alloc] initWithObjects:@[code] forKeys:@[@"code"]]];
 }
 
 - (void) onConnError:(int)code {
@@ -600,7 +502,7 @@ void sasuplaclient_on_device_channel_state(void *_suplaclient, void *user_data, 
 }
 
 - (void) _onDisconnected {
-    [[SAApp instance] onDisconnected];
+    [[NSNotificationCenter defaultCenter] postNotificationName:kSADisconnectedNotification object:self userInfo:nil];
 }
 
 - (void) onDisconnected {
@@ -613,7 +515,7 @@ void sasuplaclient_on_device_channel_state(void *_suplaclient, void *user_data, 
 }
 
 - (void) _onRegistering {
-    [[SAApp instance] onRegistering];
+    [[NSNotificationCenter defaultCenter] postNotificationName:kSARegisteringNotification object:self userInfo:nil];
 }
 
 - (void) onRegistering {
@@ -622,7 +524,7 @@ void sasuplaclient_on_device_channel_state(void *_suplaclient, void *user_data, 
 }
 
 - (void) _onRegisterError:(NSNumber*)code {
-    [[SAApp instance] onRegisterError:code];
+    [[NSNotificationCenter defaultCenter] postNotificationName:kSARegisterErrorNotification object:self userInfo:[[NSDictionary alloc] initWithObjects:@[code] forKeys:@[@"code"]]];
 }
 
 - (void) onRegisterError:(int)code {
@@ -631,7 +533,7 @@ void sasuplaclient_on_device_channel_state(void *_suplaclient, void *user_data, 
 }
 
 - (void) _onRegistered:(SARegResult*)result {
-    [[SAApp instance] onRegistered: result];
+    [[NSNotificationCenter defaultCenter] postNotificationName:kSARegisteredNotification object:self userInfo:[[NSDictionary alloc] initWithObjects:@[result] forKeys:@[@"result"]]];
 }
 
 - (void) onRegistered:(SARegResult*)result {
@@ -662,7 +564,7 @@ void sasuplaclient_on_device_channel_state(void *_suplaclient, void *user_data, 
 }
 
 - (void) _onConnecting {
-    [[SAApp instance] onConnecting];
+    [[NSNotificationCenter defaultCenter] postNotificationName:kSAConnectingNotification object:self userInfo:nil];
 }
 
 - (void) onConnecting {
@@ -670,15 +572,15 @@ void sasuplaclient_on_device_channel_state(void *_suplaclient, void *user_data, 
 }
 
 - (void) _onDataChanged {
-    [[SAApp instance] onDataChanged];
+    [[NSNotificationCenter defaultCenter] postNotificationName:kSADataChangedNotification object:self userInfo:nil];
 }
 
 - (void) onDataChanged {
     [self performSelectorOnMainThread:@selector(_onDataChanged) withObject:nil waitUntilDone:NO];
 }
 
-- (void) _onChannelValueChanged:(NSArray*)arr {
-    [[SAApp instance] onChannelValueChanged:[arr objectAtIndex:0] isGroup:[arr objectAtIndex:1]];
+- (void) _onChannelValueChanged:(NSArray*)arr { 
+    [[NSNotificationCenter defaultCenter] postNotificationName:kSAChannelValueChangedNotification object:self userInfo:[[NSDictionary alloc] initWithObjects:@[[arr objectAtIndex:0], [arr objectAtIndex:1]] forKeys:@[@"remoteId", @"isGroup"]]];
 }
 
 - (void) onChannelValueChanged:(int)Id isGroup:(BOOL)group {
@@ -727,11 +629,11 @@ void sasuplaclient_on_device_channel_state(void *_suplaclient, void *user_data, 
         DataChanged = YES;
     }
     
-    TSC_SuplaChannelValue value;
+    TSC_SuplaChannelValue_B value;
     value.EOL = channel->EOL;
     value.Id = channel->Id;
     value.online = channel->online;
-    memcpy(&value.value, &channel->value, sizeof(TSuplaChannelValue));
+    memcpy(&value.value, &channel->value, sizeof(TSuplaChannelValue_B));
     
     if ( [self.DB updateChannelValue:&value] ) {
         DataChanged = YES;
@@ -819,7 +721,7 @@ void sasuplaclient_on_device_channel_state(void *_suplaclient, void *user_data, 
 }
 
 - (void) _onEvent:(SAEvent *)event {
-    [[SAApp instance] onEvent:event];
+    [[NSNotificationCenter defaultCenter] postNotificationName:kSAEventNotification object:self userInfo:[[NSDictionary alloc] initWithObjects:@[event] forKeys:@[@"event"]]];
 }
 
 - (void) onEvent:(SAEvent *)event {
@@ -829,7 +731,7 @@ void sasuplaclient_on_device_channel_state(void *_suplaclient, void *user_data, 
 }
 
 - (void) _onRegistrationEnabled:(SARegistrationEnabled *)reg_enabled {
-    [[SAApp instance] onRegistrationEnabled:reg_enabled];
+    [[NSNotificationCenter defaultCenter] postNotificationName:kSARegistrationEnabledNotification object:self userInfo:[[NSDictionary alloc] initWithObjects:@[reg_enabled] forKeys:@[@"reg_enabled"]]];
 }
 
 - (void) onRegistrationEnabled:(SARegistrationEnabled *)reg_enabled {
@@ -837,7 +739,7 @@ void sasuplaclient_on_device_channel_state(void *_suplaclient, void *user_data, 
 }
 
 - (void) _onSetRegistrationEnabledResultCode:(NSNumber *)code {
-       [[SAApp instance] onSetRegistrationEnabledResultCode:code];
+    [[NSNotificationCenter defaultCenter] postNotificationName:kSAOnSetRegistrationEnableResult object:self userInfo:[[NSDictionary alloc] initWithObjects:@[code] forKeys:@[@"code"]]];
 }
 
 - (void) onSetRegistrationEnabledResultCode:(int)code {
@@ -845,7 +747,7 @@ void sasuplaclient_on_device_channel_state(void *_suplaclient, void *user_data, 
 }
 
 - (void) _onOAuthTokenRequestResult:(SAOAuthToken *)token {
-    [[SAApp instance] onOAuthTokenRequestResult:token];
+    [[NSNotificationCenter defaultCenter] postNotificationName:kSAOAuthTokenRequestResult object:self userInfo:[[NSDictionary alloc] initWithObjects:@[token] forKeys:@[@"token"]]];
 }
 
 - (void) onOAuthTokenRequestResult:(SAOAuthToken *)token {
@@ -853,7 +755,7 @@ void sasuplaclient_on_device_channel_state(void *_suplaclient, void *user_data, 
 }
 
 - (void) _onSuperuserAuthorizationResult:(SASuperuserAuthorizationResult*)result {
-    [[SAApp instance] onSuperuserAuthorizationResult:result];
+    [[NSNotificationCenter defaultCenter] postNotificationName:kSASuperuserAuthorizationResult object:self userInfo:[[NSDictionary alloc] initWithObjects:@[result] forKeys:@[@"result"]]];
 }
 
 - (void) onSuperuserAuthorizationResult:(SASuperuserAuthorizationResult *)result {
@@ -867,7 +769,7 @@ void sasuplaclient_on_device_channel_state(void *_suplaclient, void *user_data, 
 }
 
 - (void) _onCalCfgResult:(SACalCfgResult*)result  {
-    [[SAApp instance] onCalCfgResult:result];
+    [[NSNotificationCenter defaultCenter] postNotificationName:kSACalCfgResult object:self userInfo:[[NSDictionary alloc] initWithObjects:@[result] forKeys:@[@"result"]]];
 }
 
 - (void) onCalCfgResult:(SACalCfgResult*)result {
@@ -875,11 +777,19 @@ void sasuplaclient_on_device_channel_state(void *_suplaclient, void *user_data, 
 }
 
 - (void) _onChannelState:(SAChannelStateExtendedValue*)state  {
-    [[SAApp instance] onChannelState:state];
+    [[NSNotificationCenter defaultCenter] postNotificationName:kSAOnChannelState object:self userInfo:[[NSDictionary alloc] initWithObjects:@[state] forKeys:@[@"state"]]];
 }
 
 - (void) onChannelState:(SAChannelStateExtendedValue*)state {
-        [self performSelectorOnMainThread:@selector(_onChannelState:) withObject:state waitUntilDone:NO];
+    [self performSelectorOnMainThread:@selector(_onChannelState:) withObject:state waitUntilDone:NO];
+}
+
+- (void) _onChannelBasicCfg:(SAChannelBasicCfg*)cfg {
+    [[NSNotificationCenter defaultCenter] postNotificationName:kSAOnChannelBasicCfg object:self userInfo:[[NSDictionary alloc] initWithObjects:@[cfg] forKeys:@[@"cfg"]]];
+}
+
+- (void) onChannelBasicCfg:(SAChannelBasicCfg*)cfg {
+    [self performSelectorOnMainThread:@selector(_onChannelBasicCfg:) withObject:cfg waitUntilDone:NO];
 }
 
 - (void) reconnect {
@@ -1127,6 +1037,14 @@ void sasuplaclient_on_device_channel_state(void *_suplaclient, void *user_data, 
     @synchronized(self) {
         if ( _sclient ) {
             supla_client_set_dgf_transparency(_sclient, channelId, mask, active_bits);
+        }
+    }
+}
+
+- (void) getChannelBasicCfg:(int)channelId {
+    @synchronized(self) {
+        if ( _sclient ) {
+            supla_client_get_channel_basic_cfg(_sclient, channelId);
         }
     }
 }

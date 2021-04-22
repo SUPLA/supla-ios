@@ -62,7 +62,7 @@
         return _persistentStoreCoordinator;
     }
     
-    int DBv = 10;
+    int DBv = 11;
     
     [self removeIfExists:@"SUPLA_DB.sqlite"];
     
@@ -422,7 +422,7 @@
     return save;
 }
 
--(BOOL) updateChannelValue:(TSC_SuplaChannelValue *)channel_value {
+-(BOOL) updateChannelValue:(TSC_SuplaChannelValue_B *)channel_value {
  
     BOOL save = NO;
 
@@ -1357,8 +1357,20 @@
     [self saveContext];
 }
 
+-(NSArray*) zwaveBridgeChannelsWithLimit:(int)limit {
+    return [self fetchByPredicate:
+                  [NSPredicate predicateWithFormat:@"visible > 0 AND type = %i AND (flags & %i) > 0",
+                   SUPLA_CHANNELTYPE_BRIDGE,
+                   SUPLA_CHANNEL_FLAG_ZWAVE_BRIDGE] entityName:@"SAChannel" limit:limit];
+}
+
 -(BOOL) zwaveBridgeChannelAvailable {
-    return NO;
+    NSArray *r = [self zwaveBridgeChannelsWithLimit:1];
+    return r && r.count == 1;
+}
+
+-(NSArray*) zwaveBridgeChannels {
+    return [self zwaveBridgeChannelsWithLimit:0];
 }
 
 -(void)moveChannel:(SAChannelBase*)src toPositionOfChannel:(SAChannelBase*)dst entityName:(NSString*)entityName {

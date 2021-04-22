@@ -20,7 +20,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #import "SASuperuserAuthorizationDialog.h"
 #import "SALightsourceLifespanSettingsDialog.h"
 
-#define REFRESH_INTERVAL_SEC 6
+#define REFRESH_INTERVAL_SEC 4
 
 @interface SAChannelStatePopup () <SASuperuserAuthorizationDialogDelegate>
 @property (weak, nonatomic) IBOutlet UIButton *btnClose;

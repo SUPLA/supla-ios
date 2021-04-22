@@ -24,7 +24,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface SAElectricityMeterDetailView : SADetailView <SARestApiClientTaskDelegate, SAChartFilterFieldDelegate>
+@interface SAElectricityMeterDetailView : SADetailView <SARestApiClientTaskDelegate, SAChartFilterFieldDelegate, UIGestureRecognizerDelegate>
 @property (weak, nonatomic) IBOutlet UIImageView *ivImage;
 @property (weak, nonatomic) IBOutlet UILabel *lConsumptionProduction;
 @property (weak, nonatomic) IBOutlet UILabel *lTotalActiveEnergy;
@@ -108,6 +108,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UILabel *lPhaseToPhase;
 @property (weak, nonatomic) IBOutlet UIView *vLabelsBalance;
 @property (weak, nonatomic) IBOutlet UIView *vValuesBalance;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *cIntLabelsTop;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *cIntValuesTop;
 
 
 

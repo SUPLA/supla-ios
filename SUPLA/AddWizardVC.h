@@ -17,6 +17,7 @@
  */
 
 #import <UIKit/UIKit.h>
+#import "SAWizardVC.h"
 
 @interface SAConfigResult : NSObject
 
@@ -49,20 +50,13 @@
 @property(weak, nonatomic) id<SASetConfOpDelegate> delegate;
 @end
 
-@interface SAAddWizardVC : UIViewController <SASetConfOpDelegate>
-- (IBAction)nextTouchch:(id)sender;
-- (IBAction)cancelTouch:(id)sender;
-@property (weak, nonatomic) IBOutlet UIView *vPageContent;
+@interface SAAddWizardVC : SAWizardVC <SASetConfOpDelegate>
 @property (strong, nonatomic) IBOutlet UIView *vStep1;
 @property (strong, nonatomic) IBOutlet UIView *vStep2;
 @property (strong, nonatomic) IBOutlet UIView *vStep3;
 @property (strong, nonatomic) IBOutlet UIView *vStep4;
 @property (strong, nonatomic) IBOutlet UIView *vError;
 @property (strong, nonatomic) IBOutlet UIView *vDone;
-@property (weak, nonatomic) IBOutlet UIButton *btnNext3;
-@property (weak, nonatomic) IBOutlet UIButton *btnNext2;
-@property (weak, nonatomic) IBOutlet UIButton *btnNext1;
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *btnNext3_width;
 @property (weak, nonatomic) IBOutlet UILabel *txtErrorMEssage;
 @property (weak, nonatomic) IBOutlet UITextField *edSSID;
 @property (weak, nonatomic) IBOutlet UITextField *edPassword;
@@ -75,10 +69,10 @@
 @property (weak, nonatomic) IBOutlet UILabel *lMAC;
 @property (weak, nonatomic) IBOutlet UILabel *lLastState;
 @property (weak, nonatomic) IBOutlet UIButton *btnSystemSettings;
-@property (weak, nonatomic) IBOutlet UIButton *btnCancel;
 @property (weak, nonatomic) IBOutlet UILabel *lStep3Text2;
 @property (weak, nonatomic) IBOutlet UISwitch *swAutoMode;
 @property (weak, nonatomic) IBOutlet UILabel *lAutoMode;
+@property (weak, nonatomic) IBOutlet UILabel *lAutoModeWarning;
 - (IBAction)swAutoModeChanged:(id)sender;
 
 @end

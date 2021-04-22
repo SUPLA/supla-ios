@@ -24,8 +24,7 @@
     [super initWithChannelId:channelId];
     self.sub_value = [[NSData alloc] init];
     
-    TSuplaChannelValue v;
-    memset(&v, 0, sizeof(TSuplaChannelValue));
+    TSuplaChannelValue_B v = {};
     [self setValueWithChannelValue:&v];
 }
 
@@ -48,7 +47,7 @@
     return self.sub_value && ((NSData*)self.sub_value).length == SUPLA_CHANNELVALUE_SIZE ? (NSData*)self.sub_value : nil;
 }
 
-- (BOOL) setValueWithChannelValue:(TSuplaChannelValue*)value {
+- (BOOL) setValueWithChannelValue:(TSuplaChannelValue_B*)value {
     
     BOOL result = NO;
     
@@ -62,6 +61,11 @@
     
     if ( self.sub_value == nil || ![sv isEqualToData:[self dataSubValue]] ) {
         self.sub_value = sv;
+        result = YES;
+    }
+    
+    if (self.sub_value_type != value->sub_value_type) {
+        self.sub_value_type = value->sub_value_type;
         result = YES;
     }
     
@@ -112,9 +116,19 @@
 - (double) totalForwardActiveEnergy {
 
     if ( self.value != nil && self.dataValue.length >= sizeof(TElectricityMeter_Value)) {
-        TElectricityMeter_Value ev;
-        memset(&ev, 0, sizeof(TElectricityMeter_Value));
+        TElectricityMeter_Value ev = {};
         [self.dataValue getBytes:&ev length:sizeof(TElectricityMeter_Value)];
+        return ev.total_forward_active_energy * 0.01;
+    }
+    
+    return 0.0;
+}
+
+- (double) totalForwardActiveEnergyFromSubValue {
+
+    if ( self.value != nil && self.dataSubValue.length >= sizeof(TElectricityMeter_Value)) {
+        TElectricityMeter_Value ev = {};
+        [self.dataSubValue getBytes:&ev length:sizeof(TElectricityMeter_Value)];
         return ev.total_forward_active_energy * 0.01;
     }
     
@@ -123,9 +137,18 @@
 
 - (double) impulseCounterCalculatedValue {
     if ( self.value != nil && self.dataValue.length >= sizeof(TSC_ImpulseCounter_Value)) {
-        TSC_ImpulseCounter_Value icv;
-        memset(&icv, 0, sizeof(TSC_ImpulseCounter_Value));
+        TSC_ImpulseCounter_Value icv = {};
         [self.dataValue getBytes:&icv length:sizeof(TSC_ImpulseCounter_Value)];
+        return icv.calculated_value * 0.001;
+    }
+    
+    return 0.0;
+}
+
+- (double) impulseCounterCalculatedValueFromSubValue {
+    if ( self.value != nil && self.dataSubValue.length >= sizeof(TSC_ImpulseCounter_Value)) {
+        TSC_ImpulseCounter_Value icv = {};
+        [self.dataSubValue getBytes:&icv length:sizeof(TSC_ImpulseCounter_Value)];
         return icv.calculated_value * 0.001;
     }
     

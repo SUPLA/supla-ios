@@ -16,6 +16,8 @@
 #import "SASuperuserAuthorizationDialog.h"
 #import "SuplaClient.h"
 #import "SuplaApp.h"
+#import "SAClassHelper.h"
+#import "SASuperuserAuthorizationResult.h"
 
 static SASuperuserAuthorizationDialog *_superuserAuthorizationDialogGlobalRef = nil;
 
@@ -146,12 +148,7 @@ static SASuperuserAuthorizationDialog *_superuserAuthorizationDialogGlobalRef = 
 }
 
 -(void)onRegistrationError:(NSNotification *)notification {
-    if (notification.userInfo != nil) {
-        id code = [notification.userInfo objectForKey:@"code"];
-        if (code != nil && [code isKindOfClass:[NSNumber class]]) {
-            [self showError:[SASuplaClient codeToString:code authDialog:YES]];
-        }
-    }
+    [self showError:[SASuplaClient codeToString:[NSNumber notificationToNumber:notification] authDialog:YES]];
 }
 
 -(void)onRegistered:(NSNotification *)notification {

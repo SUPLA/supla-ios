@@ -18,10 +18,11 @@
 
 #import "AddWizardVC.h"
 #import "SuplaApp.h"
-#import "SAClassHelper.h"
 #import "TFHpple.h"
 #import "SASuperuserAuthorizationDialog.h"
 #import "SAWifiAutoConnect.h"
+#import "SAClassHelper.h"
+#import "SARegistrationEnabled.h"
 
 #define RESULT_PARAM_ERROR   -3
 #define RESULT_COMPAT_ERROR  -2
@@ -319,10 +320,8 @@
 @end
 
 @implementation SAAddWizardVC {
-    NSTimer *_preloaderTimer;
     NSTimer *_watchDogTimer;
     NSTimer *_blinkTimer;
-    int _preloaderPos;
     NSOperationQueue *_OpQueue;
     NSDate *_stepTime;
     int _step;
@@ -378,11 +377,11 @@
 
 -(void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    [[SAApp UI] showMenuBtn:NO];
     
     [self cleanUp];
     [self loadPrefs];
     
+    self.backButtonInsteadOfCancel = NO;
     self.edSSID.layer.cornerRadius = 5.0;
     self.edSSID.layer.borderWidth = 2;
     self.edSSID.layer.borderColor = [UIColor whiteColor].CGColor;
@@ -391,7 +390,6 @@
     self.edPassword.layer.borderWidth = 2;
     self.edPassword.layer.borderColor = self.edPassword.backgroundColor.CGColor;
     
-    [self.btnCancel setAttributedTitle:NSLocalizedString(@"Cancel", NULL)];
     [self.btnSystemSettings setTitle:NSLocalizedString(@"Go to the system settings", NULL)];
     
     if ( [SAApp isAdvancedConfig] == YES ) {
@@ -432,10 +430,9 @@
 }
 
 -(void)viewDidDisappear:(BOOL)animated  {
-    [self.OpQueue cancelAllOperations];
-    [self preloaderVisible:NO];
     [super viewDidDisappear:animated];
     
+    [self.OpQueue cancelAllOperations];
     [[NSNotificationCenter defaultCenter]  removeObserver:self];
     [self savePrefs];
 }
@@ -540,25 +537,6 @@
     _step = step;
 }
 
--(void)btnNextEnabled:(BOOL)enabled {
-    self.btnNext1.enabled = enabled;
-    self.btnNext2.enabled = enabled;
-    self.btnNext3.enabled = enabled;
-}
-
--(void)showPageView:(UIView*) pageView {
-    
-    for(UIView *subview in self.vPageContent.subviews) {
-        [subview removeFromSuperview];
-    }
-    
-    pageView.autoresizingMask = (UIViewAutoresizingFlexibleWidth |
-                                 UIViewAutoresizingFlexibleHeight);
-    pageView.frame =  self.vPageContent.frame;
-    
-    [self.vPageContent addSubview:    pageView];
-}
-
 - (void)blinkTimerFireMethod:(NSTimer *)timer {
     
     if ( _pageId == PAGE_STEP_3 ) {
@@ -567,18 +545,17 @@
 }
 
 -(void)showPage:(int)page {
-    
     [self setStep:STEP_NONE];
-    [self btnNextEnabled:YES];
-    [self preloaderVisible:NO];
-    [self.btnNext2 setAttributedTitle:NSLocalizedString(@"Next", NULL)];
+    self.btnNextEnabled = YES;
+    self.preloaderVisible = NO;
+    self.btnNextTitle = NSLocalizedString(@"Next", NULL);
     
     switch(page) {
         case PAGE_STEP_1:
-            [self showPageView:self.vStep1];
+            self.page = self.vStep1;
             break;
         case PAGE_STEP_2:
-            [self showPageView:self.vStep2];
+            self.page = self.vStep2;
             break;
         case PAGE_STEP_3:
         {
@@ -597,18 +574,18 @@
             
             [self swAutoModeChanged:self.swAutoMode];
                         
-            [self showPageView:self.vStep3];
+            self.page = self.vStep3;
         }
             break;
         case PAGE_STEP_4:
-            [self.btnNext2 setAttributedTitle:NSLocalizedString(@"Start", NULL)];
-            [self showPageView:self.vStep4];
+            self.btnNextTitle = NSLocalizedString(@"Start", NULL);
+            self.page = self.vStep4;
             break;
         case PAGE_ERROR:
-            [self showPageView:self.vError];
+            self.page = self.vError;
             break;
         case PAGE_DONE:
-            [self showPageView:self.vDone];
+            self.page = self.vDone;
             break;
     }
     
@@ -677,75 +654,25 @@
     
 }
 
-- (void)preloaderTimerFireMethod:(NSTimer *)timer {
-    
-    if ( _preloaderPos == -1 ) {
-        return;
-    }
-    
-    NSString *str = @"";
-    
-    for(int a=0;a<10;a++) {
-        str = [NSString stringWithFormat:@"%@%@", str, _preloaderPos == a ? @"|" : @"."];
-    }
-    
-    _preloaderPos++;
-    if ( _preloaderPos > 9 ) {
-        _preloaderPos = 0;
-    }
-    
-    [self.btnNext2 setAttributedTitle:str];
-    
-}
-
--(void)preloaderVisible:(BOOL)visible {
-    
-    if ( _preloaderTimer ) {
-        _preloaderPos = -1;
-        [_preloaderTimer invalidate];
-        _preloaderTimer = nil;
-    }
-    
-    if ( visible ) {
-        
-        _preloaderPos = 0;
-        
-        _btnNext3_width.constant = 17;
-        [self.btnNext3 setBackgroundImage:[UIImage imageNamed:@"btnnextr2.png"]];
-        
-         _preloaderTimer = [NSTimer scheduledTimerWithTimeInterval:0.1 target:self selector:@selector(preloaderTimerFireMethod:) userInfo:nil repeats:YES];
-        
-    } else {
-        
-        _btnNext3_width.constant = 40;
-        [self.btnNext3 setBackgroundImage:[UIImage imageNamed:@"btnnextr.png"]];
-        [self.btnNext2 setAttributedTitle:NSLocalizedString(@"Next", NULL)];
-        
-    }
-    
-}
-
 -(NSString*)cloudHostName {
    return [[[SAApp getServerHostName] lowercaseString] containsString:@"supla.org"] ? @"cloud.supla.org" : [SAApp getServerHostName];
 }
 
 - (void)onRegistrationEnabled:(NSNotification *)notification {
     
-    if ( notification.userInfo != nil )  {
-        SARegistrationEnabled *reg_enabled = (SARegistrationEnabled *)[notification.userInfo objectForKey:@"reg_enabled"];
-        
-        if ( reg_enabled != nil ) {
-            
-            if ( [reg_enabled isIODeviceRegistrationEnabled] ) {
-                [self showPage:PAGE_STEP_3];
-            } else {
-                [self setStep:STEP_SUPERUSER_AUTHORIZATION];
-                [SASuperuserAuthorizationDialog.globalInstance authorizeWithDelegate:self];
-            }
-            
-        };
-    }
+    SARegistrationEnabled *reg_enabled =
+    [SARegistrationEnabled notificationToRegistrationEnabled:notification];
     
+    if ( reg_enabled != nil ) {
+        
+        if ( [reg_enabled isIODeviceRegistrationEnabled] ) {
+            [self showPage:PAGE_STEP_3];
+        } else {
+            [self setStep:STEP_SUPERUSER_AUTHORIZATION];
+            [SASuperuserAuthorizationDialog.globalInstance authorizeWithDelegate:self];
+        }
+        
+    };
 };
 
 - (void)onSetRegistrationEnabledResult:(NSNotification *)notification {
@@ -764,9 +691,9 @@
 }
 
 -(void) superuserAuthorizationCanceled {
-    [self preloaderVisible:NO];
-    [self btnNextEnabled:YES];
-    [self.btnNext2 setAttributedTitle:NSLocalizedString(@"Next", NULL)];
+    self.preloaderVisible = NO;
+    self.btnNextEnabled = YES;
+    self.btnNextTitle = NSLocalizedString(@"Next", NULL);
 }
 
 -(NSAttributedString*)messageExtendedWithNotificationOfPermissions:(NSString *)msg {
@@ -813,10 +740,11 @@
     [self startConfigurationWithDelay:0];
 }
 
-- (IBAction)nextTouchch:(id)sender {
+- (IBAction)nextTouch:(nullable id)sender {
+    [super nextTouch:sender];
 
-    [self preloaderVisible:YES];
-    [self btnNextEnabled:NO];
+    self.preloaderVisible = YES;
+    self.btnNextEnabled = NO;
     
     switch(_pageId) {
         case PAGE_STEP_1:
@@ -843,8 +771,8 @@
                 
                 [[SAApp SuplaClient] getRegistrationEnabled];
             } else {
-                [self preloaderVisible:NO];
-                [self btnNextEnabled:YES];
+                self.preloaderVisible = NO;
+                self.btnNextEnabled = YES;
             }
             
         }
@@ -862,20 +790,20 @@
             break;
         case PAGE_DONE:
         case PAGE_ERROR:
-            [self cancelTouch:nil];
+            [self cancelOrBackTouch:nil];
             break;
     }
     
 }
 
-- (IBAction)cancelTouch:(id)sender {
+- (IBAction)cancelOrBackTouch:(nullable id)sender {
+    [super cancelOrBackTouch:sender];
+    
     [self cleanUp];
     [self.OpQueue cancelAllOperations];
     [self savePrefs];
     [[SAApp UI] showMainVC];
-    //if (_pageId == PAGE_DONE) {
-        [[SAApp SuplaClient] reconnect];
-    //}
+    [[SAApp SuplaClient] reconnect];
 }
 
 
@@ -907,7 +835,8 @@
                                                    ? @"Press START to start configuration." :
                                                    @"Press Next to continue." ,NULL);
 
-    [self.btnNext2 setAttributedTitle:NSLocalizedString(self.swAutoMode.on ? @"Start" : @"Next", NULL)];
+    self.btnNextTitle = NSLocalizedString(self.swAutoMode.on ? @"Start" : @"Next", NULL);
     self.lStep3Text2.text = [NSString stringWithFormat:txt1, txt2];
+    self.lAutoModeWarning.hidden = !self.swAutoMode.on;
 }
 @end

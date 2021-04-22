@@ -26,5 +26,6 @@
 
 @dynamic online;
 @dynamic sub_value;
+@dynamic sub_value_type;
 
 @end
