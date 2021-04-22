@@ -41,7 +41,7 @@
 - (void) onRegistered:(SARegResult *)result;
 - (void) onRegisterError:(int)code;
 - (void) locationUpdate:(TSC_SuplaLocation *)location;
-- (void) channelUpdate:(TSC_SuplaChannel_C *)channel;
+- (void) channelUpdate:(TSC_SuplaChannel_D *)channel;
 - (void) channelValueUpdate:(TSC_SuplaChannelValue *)channel_value;
 - (void) channelExtendedValueUpdate:(TSC_SuplaChannelExtendedValue *)channel_extendedvalue;
 - (void) channelGroupUpdate:(TSC_SuplaChannelGroup_B *)cgroup;
@@ -122,7 +122,7 @@ void sasuplaclient_location_update(void *_suplaclient, void *user_data, TSC_Supl
         [sc locationUpdate:location];
 }
 
-void sasuplaclient_channel_update(void *_suplaclient, void *user_data, TSC_SuplaChannel_C *channel) {
+void sasuplaclient_channel_update(void *_suplaclient, void *user_data, TSC_SuplaChannel_D *channel) {
     SASuplaClient *sc = (__bridge SASuplaClient*)user_data;
     if ( sc != nil )
         [sc channelUpdate: channel];
@@ -612,17 +612,17 @@ void sasuplaclient_on_channel_basic_cfg(void *_suplaclient,
     
 }
 
-- (BOOL) isChannelExcluded:(TSC_SuplaChannel_C *)channel {
+- (BOOL) isChannelExcluded:(TSC_SuplaChannel_D *)channel {
     // For partner applications 
     return NO;
 }
 
-- (void) channelUpdate:(TSC_SuplaChannel_C *)channel {
+- (void) channelUpdate:(TSC_SuplaChannel_D *)channel {
     
     BOOL DataChanged = NO;
     BOOL ChannelValueChanged = NO;
     
-    //NSLog(@"ChannelID: %i, caption: %@", channel->Id, [NSString stringWithUTF8String:channel->Caption]);
+    NSLog(@"ChannelID: %i, caption: %@", channel->Id, [NSString stringWithUTF8String:channel->Caption]);
     
     if ( ![self isChannelExcluded:channel]
          && [self.DB updateChannel:channel] ) {

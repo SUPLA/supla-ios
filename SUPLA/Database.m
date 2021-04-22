@@ -340,7 +340,7 @@
     return Value;
 }
 
--(BOOL) updateChannel:(TSC_SuplaChannel_C *)channel {
+-(BOOL) updateChannel:(TSC_SuplaChannel_D *)channel {
     
     BOOL save = NO;
     
@@ -1365,6 +1365,7 @@
 }
 
 -(BOOL) zwaveBridgeChannelAvailable {
+    return NO;
     NSArray *r = [self zwaveBridgeChannelsWithLimit:1];
     return r && r.count == 1;
 }
