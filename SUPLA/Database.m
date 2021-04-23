@@ -62,7 +62,7 @@
         return _persistentStoreCoordinator;
     }
     
-    int DBv = 11;
+    int DBv = 12;
     
     [self removeIfExists:@"SUPLA_DB.sqlite"];
     
@@ -1279,7 +1279,7 @@
     || [self updateChannelUserIconsWithEntityName:@"SAChannelGroup"];
 }
 
--(void) userIconsIdsWithEntity:(NSString*)en channelBase:(BOOL)cb idField:(NSString *)field exclude:(NSArray*)ex destination:(NSMutableArray *)dest {
+-(void) userIconsIdsWithEntity:(NSString*)en channelBase:(BOOL)cb idField:(NSString *)field exclude:(NSArray*)ex result:(NSMutableArray *)result {
     
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
     
@@ -1304,8 +1304,8 @@
         for(int a=0;a<r.count;a++) {
             id obj = [[r objectAtIndex:a] valueForKey:field];
             if ((ex == nil || NSNotFound == [ex indexOfObject:obj])
-                && NSNotFound == [dest indexOfObject:obj]) {
-                [dest addObject:obj];
+                && NSNotFound == [result indexOfObject:obj]) {
+                [result addObject:obj];
             }
         }
     }
@@ -1313,11 +1313,11 @@
 
 -(NSArray *) iconsToDownload {
     NSMutableArray *i = [[NSMutableArray alloc] init];
-    [self userIconsIdsWithEntity:@"SAUserIcon" channelBase:NO idField:@"remote_id" exclude:nil destination:i];
+    [self userIconsIdsWithEntity:@"SAUserIcon" channelBase:NO idField:@"remote_id" exclude:nil result:i];
    
     NSMutableArray *result = [[NSMutableArray alloc] init];
-    [self userIconsIdsWithEntity:@"SAChannel" channelBase:NO idField:@"usericon_id" exclude:i destination:result];
-    [self userIconsIdsWithEntity:@"SAChannelGroup" channelBase:NO idField:@"usericon_id" exclude:i destination:result];
+    [self userIconsIdsWithEntity:@"SAChannel" channelBase:YES idField:@"usericon_id" exclude:i result:result];
+    [self userIconsIdsWithEntity:@"SAChannelGroup" channelBase:YES idField:@"usericon_id" exclude:i result:result];
     
     return result;
 }
@@ -1325,7 +1325,7 @@
 -(SAUserIcon*) fetchUserIconById:(int)remote_id createNewObject:(BOOL)create {
     SAUserIcon *i = [self fetchItemByPredicate:[NSPredicate predicateWithFormat:@"remote_id = %i", remote_id] entityName:@"SAUserIcon"];
     
-    if (i == nil) {
+    if (i == nil && create) {
         i = [[SAUserIcon alloc] initWithEntity:[NSEntityDescription entityForName:@"SAUserIcon" inManagedObjectContext:self.managedObjectContext] insertIntoManagedObjectContext:self.managedObjectContext];
         i.remote_id = remote_id;
         [self.managedObjectContext insertObject:i];
@@ -1335,15 +1335,10 @@
 }
 
 -(void) deleteAllUserIcons {
-    NSArray *arr = [self fetchByPredicate:nil entityName:@"SAUserIcon" limit:0];
+ 
+    NSArray *arr;
+    
     int a,b;
-    
-    if (arr) {
-        for(a=0;a<arr.count;a++) {
-            [self.managedObjectContext deleteObject:[arr objectAtIndex:a]];
-        }
-    }
-    
     for(b=0;b<2;b++) {
         arr = [self fetchByPredicate:[NSPredicate predicateWithFormat:@"usericon != nil"] entityName:b == 0 ? @"SAChannel" : @"SAChannelGroup" limit:0];
         
@@ -1351,6 +1346,14 @@
             for(a=0;a<arr.count;a++) {
                 ((SAChannelBase*)[arr objectAtIndex:a]).usericon = nil;
             }
+        }
+    }
+    
+    arr = [self fetchByPredicate:nil entityName:@"SAUserIcon" limit:0];
+    if (arr) {
+        for(a=0;a<arr.count;a++) {
+            NSLog(@"Icon delete %@", [arr objectAtIndex:a]);
+            [self.managedObjectContext deleteObject:[arr objectAtIndex:a]];
         }
     }
     
@@ -1425,6 +1428,10 @@
 
 -(void) moveChannelGroup:(SAChannelBase*)src toPositionOfChannelGroup:(SAChannelBase*)dst {
     [self moveChannel:src toPositionOfChannel:dst entityName:@"SAChannelGroup"];
+}
+
+- (void)deleteObject:(NSManagedObject *)object {
+    [self.managedObjectContext deleteObject:object];
 }
 
 @end

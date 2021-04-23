@@ -130,7 +130,7 @@ typedef NS_ENUM(NSUInteger, GroupBy) {
 
 -(void) moveChannel:(SAChannelBase*)src toPositionOfChannel:(SAChannelBase*)dst;
 -(void) moveChannelGroup:(SAChannelBase*)src toPositionOfChannelGroup:(SAChannelBase*)dst;
-
+- (void)deleteObject:(NSManagedObject *)object;
 @end
 
 

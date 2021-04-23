@@ -21,7 +21,7 @@
 #import "SAUserIcon+CoreDataClass.h"
 
 #define PACKAGE_SIZE 4
-#define START_DELAY 2.5
+#define START_DELAY 5
 
 @implementation SADownloadUserIcons {
     BOOL _channelsUpdated;
@@ -79,6 +79,13 @@
                             userIcon.uimage3 = [self imageAtIndex:2 data:images];
                             userIcon.uimage4 = [self imageAtIndex:3 data:images];
                             
+                            if (userIcon.uimage1 == nil
+                                && userIcon.uimage2 == nil
+                                && userIcon.uimage3 == nil
+                                && userIcon.uimage4 == nil) {
+                                [self.DB deleteObject:userIcon];
+                            }
+
                             [self.DB saveContext];
                         }
                     }
