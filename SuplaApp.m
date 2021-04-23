@@ -717,6 +717,16 @@ NSString *kSAOnChannelBasicCfg = @"KSA-N19";
     return result;
 }
 
+- (void) revokeOAuthToken {
+    @synchronized (self) {
+        _OAuthToken = nil;
+    }
+}
+
++ (void) revokeOAuthToken {
+    [[self instance] revokeOAuthToken];
+}
+
 - (void) unregisterRestApiClientTask:(SARestApiClientTask *)task {
     @synchronized (self) {
         [_RestApiClientTasks removeObject:task];

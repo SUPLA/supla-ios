@@ -63,6 +63,7 @@
 +(void) SuplaClientTerminate;
 +(void) SuplaClientWaitForTerminate;
 +(BOOL) SuplaClientConnected;
++(void) revokeOAuthToken;
 
 +(void) setPreferedProtocolVersion:(int)version;
 +(int) getPreferedProtocolVersion;
