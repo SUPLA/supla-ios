@@ -118,6 +118,7 @@
     }
     
     if (changed) {
+        [SAApp revokeOAuthToken];
         [SAApp.DB deleteAllUserIcons];
     }
     
