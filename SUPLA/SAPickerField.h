@@ -20,8 +20,13 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+@class SAPickerField;
 @protocol SAPickerFieldDelegate <NSObject>
 @required
+- (NSInteger)numberOfRowsInPickerField:(SAPickerField *)pickerField;
+- (NSInteger)selectedRowIndexInPickerField:(SAPickerField *)pickerField;
+- (void)pickerField:(SAPickerField *)pickerField tappedAtIndex:(NSInteger)index;
+- (NSString *)pickerField:(SAPickerField *)pickerField titleForRow:(NSInteger)row;
 @end
 
 @interface SAPickerField : SAAbstractPickerField
