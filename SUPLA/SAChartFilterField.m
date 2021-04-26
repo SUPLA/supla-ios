@@ -59,8 +59,8 @@
     return _items != nil ? _items.count : 0;
 }
 
-- (void)pickerTappedAtIndex:(NSInteger)index {
-    int i = [[_items objectAtIndex:index] intValue];
+- (void)pickerTappedAtRow:(NSInteger)row {
+    int i = [[_items objectAtIndex:row] intValue];
     
     if (_filterType == TypeFilter) {
         self.chartType = i;

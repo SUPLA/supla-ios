@@ -25,12 +25,13 @@ NS_ASSUME_NONNULL_BEGIN
 @required
 - (NSInteger)numberOfRowsInPickerField:(SAPickerField *)pickerField;
 - (NSInteger)selectedRowIndexInPickerField:(SAPickerField *)pickerField;
-- (void)pickerField:(SAPickerField *)pickerField tappedAtIndex:(NSInteger)index;
+- (void)pickerField:(SAPickerField *)pickerField tappedAtRow:(NSInteger)row;
 - (NSString *)pickerField:(SAPickerField *)pickerField titleForRow:(NSInteger)row;
 @end
 
 @interface SAPickerField : SAAbstractPickerField
 @property(nullable, nonatomic, weak)   id<SAPickerFieldDelegate> pf_delegate;
+-(void)update;
 @end
 
 NS_ASSUME_NONNULL_END

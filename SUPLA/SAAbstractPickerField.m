@@ -37,7 +37,7 @@
     return 0;
 }
 
-- (void)pickerTappedAtIndex:(NSInteger)index {
+- (void)pickerTappedAtRow:(NSInteger)index {
     ABSTRACT_METHOD_EXCEPTION;
 }
 
@@ -127,7 +127,7 @@
 }
 
 - (void)pickerViewTapped:(UITapGestureRecognizer *)tapRecognizer {
-    [self pickerTappedAtIndex:[_pickerView selectedRowInComponent:0]];
+    [self pickerTappedAtRow:[_pickerView selectedRowInComponent:0]];
     [self resignFirstResponder];
     [self afterResignFirstResponder];
 }
