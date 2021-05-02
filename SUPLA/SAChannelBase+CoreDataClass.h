@@ -37,7 +37,8 @@ NS_ASSUME_NONNULL_BEGIN
 - (BOOL) setLocationId:(int)locationId;
 - (BOOL) setRemoteId:(int)remoteId;
 - (BOOL) setUserIconId:(int)userIconId;
-- (NSString *)getChannelCaption;
++ (NSString *)getNonEmptyCaptionOfChannel:(SAChannelBase*)channel customFunc:(NSNumber*)func;
+- (NSString *)getNonEmptyCaption;
 
 - (int) imgIsActive;
 - (BOOL) isOnline;

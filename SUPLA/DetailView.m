@@ -86,7 +86,7 @@
 -(void)detailWillHide {}
 
 -(void)detailDidShow {
-    [SAApp.UI setMenubarDetailTitle:_channelBase ? [_channelBase getChannelCaption] : @""];
+    [SAApp.UI setMenubarDetailTitle:_channelBase ? [_channelBase getNonEmptyCaption] : @""];
     [SAApp.UI showMenubarBackBtn];
 };
 

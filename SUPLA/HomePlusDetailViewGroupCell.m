@@ -74,10 +74,10 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
             [self setAutoOn:[thev isAutoOn]];
             [self setTurboOn:[thev isTurboOn]];
             
-            [self.lCaption setText:[NSString stringWithFormat:@"%@ | %@", [channelBase getChannelCaption], [[channelBase attrStringValue] string]]];
+            [self.lCaption setText:[NSString stringWithFormat:@"%@ | %@", [channelBase getNonEmptyCaption], [[channelBase attrStringValue] string]]];
             
         } else {
-            [self.lCaption setText:[channelBase getChannelCaption]];
+            [self.lCaption setText:[channelBase getNonEmptyCaption]];
         }
     }
 }

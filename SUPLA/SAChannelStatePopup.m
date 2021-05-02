@@ -453,7 +453,7 @@ static SAChannelStatePopup *_channelStatePopupGlobalRef = nil;
     _channel = channel;
     
     if (_channel) {
-        [self.lTitle setText:[_channel getChannelCaption]];
+        [self.lTitle setText:[_channel getNonEmptyCaption]];
         if ((_channel.flags & SUPLA_CHANNEL_FLAG_CHANNELSTATE) == 0)  {
             _lastState = channel.channelState;
         }

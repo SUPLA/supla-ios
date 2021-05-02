@@ -128,11 +128,11 @@
     return NO;
 }
 
-- (NSString *)getChannelCaption {
++ (NSString *)getNonEmptyCaptionOfChannel:(SAChannelBase*)channel customFunc:(NSNumber*)func {
     
-    if ( [self.caption isEqualToString:@""] ) {
-        
-        switch(self.func) {
+    if ( channel.caption == nil || [channel.caption isEqualToString:@""] ) {
+        int _func = func ? [func intValue] : channel.func;
+        switch(_func) {
                 case SUPLA_CHANNELFNC_OPENINGSENSOR_GATEWAY:
                     return NSLocalizedString(@"Gateway opening sensor", nil);
                 case SUPLA_CHANNELFNC_CONTROLLINGTHEGATEWAYLOCK:
@@ -214,8 +214,11 @@
         
     }
     
-    return self.caption;
-    
+    return channel.caption;
+}
+
+- (NSString *)getNonEmptyCaption {
+    return [SAChannelBase getNonEmptyCaptionOfChannel:self customFunc:nil];
 }
 
 - (BOOL) isOnline {
