@@ -404,7 +404,7 @@
 }
 
 -(BOOL)isConfigurationStarted {
-    return _configStartedAtTime;
+    return _configStartedAtTime != nil;
 }
 
 - (void)_setLedCfg:(char)cfg {
