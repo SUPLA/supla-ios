@@ -32,6 +32,8 @@
                 <outlet property="errorMessage" destination="OTk-BD-soD" id="bMj-i8-gwU"/>
                 <outlet property="errorPage" destination="rEs-AX-DWu" id="mew-gi-TEf"/>
                 <outlet property="itTakeAWhilePage" destination="4BU-4j-Xo1" id="Lzd-iM-1UP"/>
+                <outlet property="pfBridge" destination="pxT-d5-KaX" id="BZQ-Xc-6eM"/>
+                <outlet property="pfChannel" destination="VBf-9j-a2E" id="Ra9-BH-dCR"/>
                 <outlet property="settingsPage" destination="WES-2i-Jt6" id="Kbv-Ks-wZ3"/>
                 <outlet property="successInfoPage" destination="Vtw-LY-8e7" id="JCT-e2-sNA"/>
                 <outlet property="vPageContent" destination="rBR-By-Axn" id="rne-Rj-aMF"/>
@@ -130,7 +132,7 @@
                             <state key="selected" backgroundImage="btnnextl.png"/>
                             <state key="highlighted" backgroundImage="btnnextl.png"/>
                             <connections>
-                                <action selector="cancelTouch:" destination="-1" eventType="touchDown" id="1Kz-a7-5Xm"/>
+                                <action selector="cancelOrBackTouch:" destination="-1" eventType="touchDown" id="yFt-6k-rqU"/>
                             </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="p8Q-By-5B4">
@@ -144,7 +146,7 @@
                             <state key="selected" backgroundImage="btnnextr2.png"/>
                             <state key="highlighted" backgroundImage="btnnextr2.png"/>
                             <connections>
-                                <action selector="cancelTouch:" destination="-1" eventType="touchDown" id="mZz-dI-Swb"/>
+                                <action selector="cancelOrBackTouch:" destination="-1" eventType="touchDown" id="Tfr-sR-xrF"/>
                             </connections>
                         </button>
                     </subviews>

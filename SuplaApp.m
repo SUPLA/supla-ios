@@ -490,7 +490,7 @@ NSString *kSAOnChannelBasicCfg = @"KSA-N19";
 }
 
 -(BOOL) isClientRegistered {
-    BOOL result = nil;
+    BOOL result = NO;
     
     @synchronized(self) {
         if ( _SuplaClient != nil) {

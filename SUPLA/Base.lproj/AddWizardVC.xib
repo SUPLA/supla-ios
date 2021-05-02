@@ -143,7 +143,7 @@
                             <state key="selected" backgroundImage="btnnextl.png"/>
                             <state key="highlighted" backgroundImage="btnnextl.png"/>
                             <connections>
-                                <action selector="cancelTouch:" destination="-1" eventType="touchDown" id="Az7-k4-edN"/>
+                                <action selector="cancelOrBackTouch:" destination="-1" eventType="touchDown" id="utM-oN-s0f"/>
                             </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="f7p-Nq-9ed">
@@ -157,7 +157,7 @@
                             <state key="selected" backgroundImage="btnnextr2.png"/>
                             <state key="highlighted" backgroundImage="btnnextr2.png"/>
                             <connections>
-                                <action selector="cancelTouch:" destination="-1" eventType="touchDown" id="M2v-Ll-aMA"/>
+                                <action selector="cancelOrBackTouch:" destination="-1" eventType="touchDown" id="FKf-Eo-Y3f"/>
                             </connections>
                         </button>
                     </subviews>

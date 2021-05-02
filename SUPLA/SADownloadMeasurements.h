@@ -22,7 +22,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface SADownloadMeasurements : SARestApiClientTask
 
-@property (readonly) long afterTimestamp;
+@property (readonly) long long afterTimestamp;
 @end
 
 NS_ASSUME_NONNULL_END

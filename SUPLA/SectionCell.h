@@ -21,7 +21,7 @@
 @class SASectionCell;
 @protocol SASectionCellDelegate
 @optional
-- (void)sectionCellTouch:(SASectionCell*)section;
+- (void)sectionCellTouch:(SASectionCell*_Nonnull)section;
 @end
 
 @interface SASectionCell : UITableViewCell

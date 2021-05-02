@@ -18,7 +18,54 @@
 
 #import "SAPickerField.h"
 
-@implementation SAPickerField
-@synthesize pf_delegate;
+@implementation SAPickerField {
+    id<SAPickerFieldDelegate> _pf_delegate;
+}
+
+- (NSInteger)numberOfRows {
+    if (_pf_delegate) {
+        return [_pf_delegate numberOfRowsInPickerField:self];
+    }
+    return 0;
+}
+
+- (NSInteger)selectedRowIndex {
+    if (_pf_delegate) {
+        return [_pf_delegate selectedRowIndexInPickerField:self];
+    }
+    return -1;
+}
+
+- (void)pickerTappedAtRow:(NSInteger)row {
+    NSString *result = nil;
+    
+    if (_pf_delegate) {
+        [_pf_delegate pickerField:self tappedAtRow:row];
+        result = [_pf_delegate pickerField:self titleForRow:row];
+    }
+    
+    [self setText:result];
+}
+
+- (NSString *)pickerViewTitleForRow:(NSInteger)row {
+    if (_pf_delegate) {
+        return [_pf_delegate pickerField:self titleForRow:row];
+    }
+    
+    return nil;
+}
+
+-(id<SAPickerFieldDelegate>)pf_delegate {
+    return _pf_delegate;
+}
+
+-(void)setPf_delegate:(id<SAPickerFieldDelegate>)pf_delegate {
+    _pf_delegate = pf_delegate;
+    [self update];
+}
+
+-(void)update {
+    [self setText:[_pf_delegate pickerField:self titleForRow:[self selectedRowIndex]]];
+}
 
 @end

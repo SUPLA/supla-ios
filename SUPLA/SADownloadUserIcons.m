@@ -21,7 +21,7 @@
 #import "SAUserIcon+CoreDataClass.h"
 
 #define PACKAGE_SIZE 4
-#define START_DELAY 5
+#define START_DELAY 2.5
 
 @implementation SADownloadUserIcons {
     BOOL _channelsUpdated;

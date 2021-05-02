@@ -20,7 +20,8 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface SAAbstractPickerField : UITextField 
+@interface SAAbstractPickerField : UITextField
+
 @end
 
 NS_ASSUME_NONNULL_END
