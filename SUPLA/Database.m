@@ -62,7 +62,7 @@
         return _persistentStoreCoordinator;
     }
     
-    int DBv = 13;
+    int DBv = 12;
     
     [self removeIfExists:@"SUPLA_DB.sqlite"];
     
