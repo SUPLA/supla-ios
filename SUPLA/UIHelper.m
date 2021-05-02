@@ -408,10 +408,10 @@
         if (snapShot )
             [snapShot removeFromSuperview];
         
-        _fading = NO;
+        self->_fading = NO;
         
-        if ( _nextWaiting ) {
-            [self fadeToViewController:_nextWaiting];
+        if ( self->_nextWaiting ) {
+            [self fadeToViewController:self->_nextWaiting];
         }
     }];
     
