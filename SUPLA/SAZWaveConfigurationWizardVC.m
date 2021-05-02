@@ -20,6 +20,7 @@
 #import "SuplaApp.h"
 #import "SAChannel+CoreDataClass.h"
 #import "SAChannelBasicCfg.h"
+#import "SAPickerField.h"
 
 #define ERROR_TYPE_TIMEOUT 1
 #define ERROR_TYPE_DISCONNECTED 2
@@ -38,7 +39,7 @@
 
 static SAZWaveConfigurationWizardVC *_zwaveConfigurationWizardGlobalRef = nil;
 
-@interface SAZWaveConfigurationWizardVC ()
+@interface SAZWaveConfigurationWizardVC () <SAPickerFieldDelegate>
 @property (strong, nonatomic) IBOutlet UIView *welcomePage;
 @property (strong, nonatomic) IBOutlet UIView *errorPage;
 @property (strong, nonatomic) IBOutlet UIView *channelSelectionPage;
@@ -48,6 +49,8 @@ static SAZWaveConfigurationWizardVC *_zwaveConfigurationWizardGlobalRef = nil;
 @property (strong, nonatomic) IBOutlet UIView *successInfoPage;
 @property (weak, nonatomic) IBOutlet UIImageView *errorIcon;
 @property (weak, nonatomic) IBOutlet UILabel *errorMessage;
+@property (weak, nonatomic) IBOutlet SAPickerField *pfBridge;
+@property (weak, nonatomic) IBOutlet SAPickerField *pfChannel;
 
 @end
 
@@ -55,17 +58,22 @@ static SAZWaveConfigurationWizardVC *_zwaveConfigurationWizardGlobalRef = nil;
     NSTimer *_anyCalCfgResultWatchdogTimer;
     NSTimer *_watchdogTimer;
     NSMutableArray *_deviceList;
+    NSMutableArray *_deviceChannelList;
     NSMutableArray *_channelList;
     NSMutableArray *_channelBasicCfgList;
     NSMutableArray *_channelBasicCfgToFetch;
+    SAChannel *_selectedChannel;
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     _deviceList = [[NSMutableArray alloc] init];
     _channelList = [[NSMutableArray alloc] init];
+    _deviceChannelList = [[NSMutableArray alloc] init];
     _channelBasicCfgToFetch = [[NSMutableArray alloc] init];
     _channelBasicCfgList = [[NSMutableArray alloc] init];
+    self.pfBridge.pf_delegate = self;
+    self.pfChannel.pf_delegate = self;
 }
 
 -(void)viewWillAppear:(BOOL)animated {
@@ -130,8 +138,15 @@ static SAZWaveConfigurationWizardVC *_zwaveConfigurationWizardGlobalRef = nil;
         
         if (self.page == self.channelDetailsPage) {
             
-        } else if (self.page == self.channelSelectionPage) {
-            
+        } else if (self.page == self.channelSelectionPage
+                   && _deviceList.count == 0) {
+            for(SAChannel *channel in _channelList) {
+                NSNumber *dev_id = [NSNumber numberWithInt:channel.device_id];
+                if (![_deviceList containsObject:dev_id]) {
+                    [_deviceList addObject:dev_id];
+                }
+            }
+            [self.pfBridge update];
         }
     }
 }
@@ -293,6 +308,67 @@ static SAZWaveConfigurationWizardVC *_zwaveConfigurationWizardGlobalRef = nil;
     } else if (self.page == self.channelSelectionPage) {
         self.page = self.welcomePage;
     }
+}
+
+- (NSInteger)numberOfRowsInPickerField:(SAPickerField *)pickerField {
+    if (pickerField == self.pfBridge) {
+        return _deviceList.count;
+    } else if (pickerField == self.pfChannel) {
+        return _deviceChannelList.count;
+    }
+    return 0;
+}
+
+- (NSInteger)selectedRowIndexInPickerField:(SAPickerField *)pickerField {
+    return -1;
+}
+
+- (void)pickerField:(SAPickerField *)pickerField tappedAtRow:(NSInteger)index {
+    if (pickerField == self.pfBridge) {
+        [_deviceChannelList removeAllObjects];
+        int devId = [[_deviceList objectAtIndex:index] intValue];
+        for(SAChannel *channel in _channelList) {
+            if (channel.device_id == devId) {
+                [_deviceChannelList addObject:channel];
+            }
+        }
+        
+        _selectedChannel = [_deviceChannelList firstObject];
+        [self.pfChannel update];
+    }
+}
+
+- (NSString *)channelNameOfChannel:(SAChannel *)channel customFunc:(NSNumber*)func {
+    return [NSString stringWithFormat:@"#%i %@",
+            channel.remote_id,
+            [SAChannelBase getNonEmptyCaptionOfChannel:channel customFunc:func]];
+}
+
+- (NSString *)pickerField:(SAPickerField *)pickerField titleForRow:(NSInteger)row {
+    if (row < 0) {
+        return nil;
+    }
+    
+    NSString *result = nil;
+    
+    if (pickerField == self.pfBridge) {
+        if (row < _deviceList.count) {
+            NSNumber *devId = [_deviceList objectAtIndex:row];
+            result = [NSString stringWithFormat:@"#%@", devId];
+            for(SAChannelBasicCfg *basicCfg in _channelBasicCfgList) {
+                if (basicCfg.deviceId == [devId intValue]) {
+                    result = [NSString stringWithFormat:@"%@ %@", result, basicCfg.deviceName];
+                    break;
+                }
+            }
+        }
+    } else if (pickerField == self.pfChannel) {
+        if (row < _deviceChannelList.count) {
+            return [self channelNameOfChannel:[_deviceChannelList objectAtIndex:row] customFunc:nil];
+        }
+    }
+
+    return result;
 }
 
 @end
