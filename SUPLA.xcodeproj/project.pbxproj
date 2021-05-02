@@ -507,6 +507,7 @@
 		011021CD25CC3A6F00621D41 /* SACalCfgResult.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SACalCfgResult.m; sourceTree = "<group>"; };
 		011021D125CC4DE700621D41 /* SAChannelBasicCfg.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SAChannelBasicCfg.h; sourceTree = "<group>"; };
 		011021D225CC4DE700621D41 /* SAChannelBasicCfg.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SAChannelBasicCfg.m; sourceTree = "<group>"; };
+		0111E907263F1F2B00302356 /* SUPLA 10.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "SUPLA 10.xcdatamodel"; sourceTree = "<group>"; };
 		0117290024746D8100DAF1D0 /* pl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pl; path = pl.lproj/ElectricityMeterDetailView.strings; sourceTree = "<group>"; };
 		01172903247473E200DAF1D0 /* SUPLA 6.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "SUPLA 6.xcdatamodel"; sourceTree = "<group>"; };
 		01199C8124C34AC50062454B /* SAChannelStatePopup.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SAChannelStatePopup.h; sourceTree = "<group>"; };
@@ -3270,6 +3271,7 @@
 		407004251BB5706500F6187F /* SUPLA.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				0111E907263F1F2B00302356 /* SUPLA 10.xcdatamodel */,
 				01EE21EB263301E4006EC2B8 /* SUPLA 9.xcdatamodel */,
 				013FB109262CA21300A0E71D /* SUPLA 8.xcdatamodel */,
 				013C8C6725F79265009519B6 /* SUPLA 7.xcdatamodel */,
@@ -3280,7 +3282,7 @@
 				40BBA34620AC52EA0054CD20 /* SUPLA 2.xcdatamodel */,
 				407004261BB5706500F6187F /* SUPLA.xcdatamodel */,
 			);
-			currentVersion = 01EE21EB263301E4006EC2B8 /* SUPLA 9.xcdatamodel */;
+			currentVersion = 0111E907263F1F2B00302356 /* SUPLA 10.xcdatamodel */;
 			path = SUPLA.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
