@@ -20,6 +20,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #import "SuplaApp.h"
 #import "UIHelper.h"
 #import "SUPLA-Swift.h"
+#import "UIColor+SUPLA.h"
 
 @implementation SATemperatureChartHelper
 -(id)init {

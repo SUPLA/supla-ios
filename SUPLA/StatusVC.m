@@ -18,6 +18,7 @@
 
 #import "StatusVC.h"
 #import "SuplaApp.h"
+#import "UIColor+SUPLA.h"
 
 @interface SAStatusVC ()
 

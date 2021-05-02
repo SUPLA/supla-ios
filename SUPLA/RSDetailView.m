@@ -21,6 +21,7 @@
 #import "UIHelper.h"
 #import "SuplaApp.h"
 #import "SAChannelGroup+CoreDataClass.h"
+#import "UIColor+SUPLA.h"
 
 @implementation SARSDetailView {
     NSTimer *delayTimer1;

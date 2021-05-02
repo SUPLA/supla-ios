@@ -18,6 +18,7 @@
 #import "UIHelper.h"
 #import "SuplaClient.h"
 #import "SACalCfgResult.h"
+#import "UIColor+SUPLA.h"
 
 #define PIC_HEX_VER_MAX_SIZE 20
 

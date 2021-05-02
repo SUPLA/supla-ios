@@ -33,6 +33,7 @@
 #import "SARateApp.h"
 #import "_SALocation+CoreDataClass.h"
 #import "SAEvent.h"
+#import "UIColor+SUPLA.h"
 
 @implementation SAMainVC {
     NSFetchedResultsController *_cFrc;

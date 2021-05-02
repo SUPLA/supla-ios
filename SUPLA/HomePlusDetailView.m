@@ -24,6 +24,7 @@
 #import "SAThermostatChartHelper.h"
 #import "HomePlusDetailViewGroupCell.h"
 #import "SAChannelGroup+CoreDataClass.h"
+#import "UIColor+SUPLA.h"
 
 #define CFGID_TURBO_TIME 1
 #define CFGID_WATER_MAX 2

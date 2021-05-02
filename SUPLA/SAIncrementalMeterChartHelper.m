@@ -19,6 +19,7 @@
 #import "SAIncrementalMeterChartHelper.h"
 #import "SuplaApp.h"
 #import "SUPLA-Swift.h"
+#import "UIColor+SUPLA.h"
 
 @implementation SAIncrementalMeterChartHelper {
     NSMutableArray *_xAxisStrings;
