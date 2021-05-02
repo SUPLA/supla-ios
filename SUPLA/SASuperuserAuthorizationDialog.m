@@ -74,16 +74,6 @@ static SASuperuserAuthorizationDialog *_superuserAuthorizationDialogGlobalRef = 
     [[NSNotificationCenter defaultCenter]
      addObserver:self selector:@selector(onRegistrationError:)
      name:kSARegisterErrorNotification object:nil];
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(keyboardDidShow:)
-                                                 name:UIKeyboardDidShowNotification
-                                               object:nil];
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(keyboardDidHide:)
-                                                 name:UIKeyboardDidHideNotification
-                                               object:nil];
 }
 
 -(void)viewWillDisappear:(BOOL)animated {
@@ -97,7 +87,6 @@ static SASuperuserAuthorizationDialog *_superuserAuthorizationDialogGlobalRef = 
 
 -(void)viewDidDisappear:(BOOL)animated {
     [super viewDidDisappear:animated];
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
     _delegate = nil;
 }
 
