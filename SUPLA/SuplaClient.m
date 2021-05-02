@@ -42,7 +42,7 @@
 - (void) onRegisterError:(int)code;
 - (void) locationUpdate:(TSC_SuplaLocation *)location;
 - (void) channelUpdate:(TSC_SuplaChannel_D *)channel;
-- (void) channelValueUpdate:(TSC_SuplaChannelValue *)channel_value;
+- (void) channelValueUpdate:(TSC_SuplaChannelValue_B *)channel_value;
 - (void) channelExtendedValueUpdate:(TSC_SuplaChannelExtendedValue *)channel_extendedvalue;
 - (void) channelGroupUpdate:(TSC_SuplaChannelGroup_B *)cgroup;
 - (void) channelGroupRelationUpdate:(TSC_SuplaChannelGroupRelation *)cgroup_relation;
@@ -128,7 +128,7 @@ void sasuplaclient_channel_update(void *_suplaclient, void *user_data, TSC_Supla
         [sc channelUpdate: channel];
 }
 
-void sasuplaclient_channel_value_update(void *_suplaclient, void *user_data, TSC_SuplaChannelValue *channel_value) {
+void sasuplaclient_channel_value_update(void *_suplaclient, void *user_data, TSC_SuplaChannelValue_B *channel_value) {
     SASuplaClient *sc = (__bridge SASuplaClient*)user_data;
     if ( sc != nil )
         [sc channelValueUpdate:channel_value];
@@ -655,7 +655,7 @@ void sasuplaclient_on_channel_basic_cfg(void *_suplaclient,
     
 }
 
-- (void) channelValueUpdate:(TSC_SuplaChannelValue *)channel_value {
+- (void) channelValueUpdate:(TSC_SuplaChannelValue_B *)channel_value {
     if ( [self.DB updateChannelValue:channel_value] ) {
         [self onChannelValueChanged: channel_value->Id isGroup:NO];
         [self onDataChanged];

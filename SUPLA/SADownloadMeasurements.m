@@ -101,7 +101,7 @@
     double percent = 0.0;
     
     do {
-        result = [self apiRequestForEndpoint:[NSString stringWithFormat:@"channels/%i/measurement-logs?order=ASC&limit=%i&afterTimestamp=%li", self.channelId, [self itemsPerRequest], _afterTimestamp]];
+        result = [self apiRequestForEndpoint:[NSString stringWithFormat:@"channels/%i/measurement-logs?order=ASC&limit=%i&afterTimestamp=%lli", self.channelId, [self itemsPerRequest], _afterTimestamp]];
         
         if (result == nil
             || result.responseCode != 200
@@ -124,7 +124,7 @@
             }
             
             NSDictionary *item = [items objectAtIndex:a];
-            long timestamp = 0;
+            long long timestamp = 0;
             
             if (item == nil
                 || ![item isKindOfClass:[NSDictionary class]]
