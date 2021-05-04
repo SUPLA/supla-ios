@@ -51,6 +51,13 @@ static SAZWaveConfigurationWizardVC *_zwaveConfigurationWizardGlobalRef = nil;
 @property (weak, nonatomic) IBOutlet UILabel *errorMessage;
 @property (weak, nonatomic) IBOutlet SAPickerField *pfBridge;
 @property (weak, nonatomic) IBOutlet SAPickerField *pfChannel;
+@property (weak, nonatomic) IBOutlet UILabel *lDeviceName;
+@property (weak, nonatomic) IBOutlet UILabel *lSoftwareVersion;
+@property (weak, nonatomic) IBOutlet UILabel *lDeviceId;
+@property (weak, nonatomic) IBOutlet UILabel *lChannelId;
+@property (weak, nonatomic) IBOutlet UILabel *lChannelNumber;
+@property (weak, nonatomic) IBOutlet SAPickerField *pfFunction;
+@property (weak, nonatomic) IBOutlet UITextField *tfCaption;
 
 @end
 
@@ -58,10 +65,13 @@ static SAZWaveConfigurationWizardVC *_zwaveConfigurationWizardGlobalRef = nil;
     NSTimer *_anyCalCfgResultWatchdogTimer;
     NSTimer *_watchdogTimer;
     NSMutableArray *_deviceList;
+    NSMutableArray *_devicesToRestart;
     NSMutableArray *_deviceChannelList;
     NSMutableArray *_channelList;
     NSMutableArray *_channelBasicCfgList;
     NSMutableArray *_channelBasicCfgToFetch;
+    
+    NSNumber *_selectedDeviceId;
     SAChannel *_selectedChannel;
 }
 
@@ -137,7 +147,7 @@ static SAZWaveConfigurationWizardVC *_zwaveConfigurationWizardGlobalRef = nil;
         self.preloaderVisible = NO;
         
         if (self.page == self.channelDetailsPage) {
-            
+            [self updateChannelDetailsPageWithBasicCfg:basicCfg];
         } else if (self.page == self.channelSelectionPage
                    && _deviceList.count == 0) {
             for(SAChannel *channel in _channelList) {
@@ -146,7 +156,12 @@ static SAZWaveConfigurationWizardVC *_zwaveConfigurationWizardGlobalRef = nil;
                     [_deviceList addObject:dev_id];
                 }
             }
+            _selectedDeviceId = nil;
+            if (_deviceList.count) {
+                _selectedDeviceId = [_deviceList firstObject];
+            }
             [self.pfBridge update];
+            [self pickerField:self.pfBridge tappedAtRow:[self selectedRowIndexInPickerField:self.pfBridge]];
         }
     }
 }
@@ -287,7 +302,32 @@ static SAZWaveConfigurationWizardVC *_zwaveConfigurationWizardGlobalRef = nil;
     
     if (page == self.channelSelectionPage) {
         [self loadChannelList];
+    } else if (page == self.channelDetailsPage) {
+        [self updateChannelDetailsPageWithBasicCfg:nil];
     }
+}
+
+- (void)updateChannelDetailsPageWithBasicCfg:(SAChannelBasicCfg*)basicCfg {
+    if (_selectedChannel == nil) {
+        return;
+    }
+    
+    if (basicCfg == nil) {
+        [self fetchChannelBasicCfg:_selectedChannel.remote_id];
+        return;
+    }
+    
+    NSNumber *devId = [NSNumber numberWithInt:_selectedChannel.device_id];
+    
+    if (![_devicesToRestart containsObject:devId]) {
+        [_devicesToRestart addObject:devId];
+    }
+    
+    [self.lDeviceName setText: basicCfg.deviceName];
+    [self.lSoftwareVersion setText:basicCfg.deviceSoftVer];
+    [self.lChannelNumber setText:[NSString stringWithFormat:@"%i", basicCfg.channelNumber]];
+    [self.lChannelId setText:[NSString stringWithFormat:@"%i", basicCfg.channelId]];
+    [self.lDeviceId setText:[NSString stringWithFormat:@"%i", basicCfg.deviceId]];
 }
 
 - (IBAction)nextTouch:(nullable id)sender {
@@ -297,6 +337,8 @@ static SAZWaveConfigurationWizardVC *_zwaveConfigurationWizardGlobalRef = nil;
         self.btnNextEnabled = NO;
         self.preloaderVisible = YES;
         self.page = self.channelSelectionPage;
+    } else if (self.page == self.channelSelectionPage) {
+        self.page = self.channelDetailsPage;
     }
 }
 
@@ -320,13 +362,34 @@ static SAZWaveConfigurationWizardVC *_zwaveConfigurationWizardGlobalRef = nil;
 }
 
 - (NSInteger)selectedRowIndexInPickerField:(SAPickerField *)pickerField {
+    int n=0;
+    if (pickerField == self.pfBridge) {
+        if (_selectedDeviceId) {
+            for(NSNumber *devId in _deviceList) {
+                if ([devId isEqual:_selectedDeviceId]) {
+                    return n;
+                }
+                n++;
+            }
+        }
+    } else if (pickerField == self.pfChannel) {
+        if (_selectedChannel) {
+            for(SAChannel *channel in _deviceChannelList) {
+                if (channel.remote_id == _selectedChannel.remote_id) {
+                    return n;
+                }
+                n++;
+            }
+        }
+    }
     return -1;
 }
 
 - (void)pickerField:(SAPickerField *)pickerField tappedAtRow:(NSInteger)index {
     if (pickerField == self.pfBridge) {
         [_deviceChannelList removeAllObjects];
-        int devId = [[_deviceList objectAtIndex:index] intValue];
+        _selectedDeviceId = [_deviceList objectAtIndex:index];
+        int devId = [_selectedDeviceId intValue];
         for(SAChannel *channel in _channelList) {
             if (channel.device_id == devId) {
                 [_deviceChannelList addObject:channel];
