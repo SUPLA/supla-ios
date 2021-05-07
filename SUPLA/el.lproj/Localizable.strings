@@ -149,3 +149,6 @@
 "Press START to start configuration." = "Πατήστε το κουμπί START για να ξεκινήσει η διαμόρφωση.";
 "I/O Device connection setting timeout!" = "Υπέρβαση χρόνου αναμονής για τη σύνδεση με την εκτελεστική συσκευή!";
 "No I/O Devices found! Please check if your I/O Device is ON and in configuration mode." = "Δεν βρέθηκε καμία συσκευή! Βεβαιωθείτε ότι η συσκευή την οποία θέλετε να ρυθμίσετε βρίσκετε στη λειτουργία διαμόρφωσης και στη συνέχεια προσπαθήστε ξανά.";
+"No function" = "Δεν υπάρχει λειτουργία";
+"Gateway lock operation" = "Άνοιγμα της αυλόπορτας";
+"Gate operation" = "Άνοιγμα/κλείσιμο της πύλης εισόδου";

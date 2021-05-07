@@ -150,3 +150,6 @@
 "Press START to start configuration." = "Premii il tasto START per iniziare la configurazione.";
 "I/O Device connection setting timeout!" = "Il tempo di attesa per lo stabilimento della connessione con il dispositivo di input/output è stato superato!";
 "No I/O Devices found! Please check if your I/O Device is ON and in configuration mode." = "Nessun dispositivo trovato! Assicurati che il dispositivo che vuoi configurare, lavora in modalità di configurazione e poi riprova.";
+"No function" = "Nessuna funzione";
+"Gateway lock operation" = "Apertura del cancello";
+"Gate operation" = "Apertura/chiusura del cancello d’ingresso";

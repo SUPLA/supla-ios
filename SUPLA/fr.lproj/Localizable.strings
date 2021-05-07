@@ -150,3 +150,6 @@
 "Press START to start configuration." = "Appuyez sur DÉMARRER pour commencer la configuration.";
 "I/O Device connection setting timeout!" = "Il tempo di attesa per lo stabilimento della connessione con il dispositivo di input/output è stato superato!";
 "No I/O Devices found! Please check if your I/O Device is ON and in configuration mode." = "Aucun dispositif n'a été trouvé ! Assurez-vous que le dispositif que vous souhaitez configurer fonctionne en mode de configuration, puis essayez à nouveau.";
+"No function" = "Aucune fonction";
+"Gateway lock operation" = "Ouverture de portillon";
+"Gate operation" = "Ouverture/fermeture de portail";

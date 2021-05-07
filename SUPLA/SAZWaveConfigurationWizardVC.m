@@ -70,6 +70,7 @@ static SAZWaveConfigurationWizardVC *_zwaveConfigurationWizardGlobalRef = nil;
     NSMutableArray *_channelList;
     NSMutableArray *_channelBasicCfgList;
     NSMutableArray *_channelBasicCfgToFetch;
+    NSMutableArray *_functionList;
     
     NSNumber *_selectedDeviceId;
     SAChannel *_selectedChannel;
@@ -143,6 +144,7 @@ static SAZWaveConfigurationWizardVC *_zwaveConfigurationWizardGlobalRef = nil;
         [self fetchChannelBasicCfg:0];
     } else {
         [self watchdogDeactivate];
+        self.btnCancelOrBackEnabled = YES;
         self.btnNextEnabled = YES;
         self.preloaderVisible = NO;
         
@@ -312,10 +314,15 @@ static SAZWaveConfigurationWizardVC *_zwaveConfigurationWizardGlobalRef = nil;
         return;
     }
     
+    [_functionList removeAllObjects];
+    
     if (basicCfg == nil) {
         [self fetchChannelBasicCfg:_selectedChannel.remote_id];
         return;
     }
+    
+    self.btnCancelOrBackEnabled = YES;
+    self.btnNextEnabled = YES;
     
     NSNumber *devId = [NSNumber numberWithInt:_selectedChannel.device_id];
     
@@ -328,13 +335,24 @@ static SAZWaveConfigurationWizardVC *_zwaveConfigurationWizardGlobalRef = nil;
     [self.lChannelNumber setText:[NSString stringWithFormat:@"%i", basicCfg.channelNumber]];
     [self.lChannelId setText:[NSString stringWithFormat:@"%i", basicCfg.channelId]];
     [self.lDeviceId setText:[NSString stringWithFormat:@"%i", basicCfg.deviceId]];
+    
+    for (int a = 0; a < 32; a++) {
+        int func = [SAChannelBase functionBitToFunctionNumber:basicCfg.channelFunc & (1 << a)];
+        if (func > 0) {
+            [_functionList addObject:[NSNumber numberWithInt:func]];
+        }
+    }
+    
+    [self.pfFunction update];
 }
 
 - (IBAction)nextTouch:(nullable id)sender {
     [super nextTouch:sender];
     
+    self.btnNextEnabled = NO;
+    self.btnCancelOrBackEnabled = NO;
+    
     if (self.page == self.welcomePage) {
-        self.btnNextEnabled = NO;
         self.preloaderVisible = YES;
         self.page = self.channelSelectionPage;
     } else if (self.page == self.channelSelectionPage) {

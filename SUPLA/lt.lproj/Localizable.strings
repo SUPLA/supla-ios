@@ -151,3 +151,6 @@
 "Press START to start configuration." = "Paspauskite mygtuką START, kad pradėti konfigūravimą.";
 "I/O Device connection setting timeout!" = "Viršytas ryšio užmezgimo su vykdomuoju įrenginiu laukimo laikas!";
 "No I/O Devices found! Please check if your I/O Device is ON and in configuration mode." = "Nerasta jokių įrenginių! Įsitikinkite, kad įrenginys, kurį norite konfigūruoti veikia konfigūracijos režime, o tada pabandykite dar kartą.";
+"No function" = "Funkcijų nėra";
+"Gateway lock operation" = "Durelių atidarymas";
+"Gate operation" = "Įvažiavimo vartų atidarymas/uždarymas";

@@ -150,3 +150,6 @@
 "Press START to start configuration." = "Carregue no botão START para iniciar uma configuração.";
 "I/O Device connection setting timeout!" = "O tempo-limite de conexão a um atuador foi excedido!";
 "No I/O Devices found! Please check if your I/O Device is ON and in configuration mode." = "Nenhum dispositivo foi encontardo! Certifique-se que um dispositivo que quer configurar trabalha no modo de configuração e tente novamente.";
+"No function" = "Falta de funções";
+"Gateway lock operation" = "Abrir um portão";
+"Gate operation" = "Abrir/fechar um portão de entrada";

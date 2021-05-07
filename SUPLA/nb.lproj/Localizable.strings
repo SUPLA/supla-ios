@@ -149,3 +149,6 @@
 "Press START to start configuration." = "Trykk på knappen START for å starte konfigurasjonen.";
 "I/O Device connection setting timeout!" = "Ventetiden for etablering av kobling med aktuator er overskredet!";
 "No I/O Devices found! Please check if your I/O Device is ON and in configuration mode." = "Ingen enheter ble funnet! Sjekk om enheten du ønsker å konfigurere er satt i konfigurasjonsmodus, og prøv på nytt.";
+"No function" = "Manglende funksjoner";
+"Gateway lock operation" = "Åpne/steng hageporten";
+"Gate operation" = "Åpne/steng hageporten";

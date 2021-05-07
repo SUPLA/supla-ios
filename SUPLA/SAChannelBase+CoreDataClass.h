@@ -37,6 +37,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (BOOL) setLocationId:(int)locationId;
 - (BOOL) setRemoteId:(int)remoteId;
 - (BOOL) setUserIconId:(int)userIconId;
++ (int) functionBitToFunctionNumber:(int)bit;
 + (NSString *)getNonEmptyCaptionOfChannel:(SAChannelBase*)channel customFunc:(NSNumber*)func;
 - (NSString *)getNonEmptyCaption;
 

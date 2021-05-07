@@ -149,3 +149,6 @@
 "Press START to start configuration." = "Pritisnite tipko START da začnete konfiguracijo.";
 "I/O Device connection setting timeout!" = "Čakalna doba za vzpostavitev povezave z izvršilno napravo je prekoračena!";
 "No I/O Devices found! Please check if your I/O Device is ON and in configuration mode." = "Ni najdenih naprav! Prepričajte se, da je naprava, ki jo želite konfigurirati, v konfiguracijskem načinu in poskusite znova.";
+"No function" = "Brez funkcije";
+"Gateway lock operation" = "Odpiranje vratc";
+"Gate operation" = "Odpiranje/zapiranje vhodnih vrat";

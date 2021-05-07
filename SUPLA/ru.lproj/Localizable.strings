@@ -150,3 +150,6 @@
 "Press START to start configuration." = "Нажмите кнопку START, чтобы начать конфигурацию.";
 "I/O Device connection setting timeout!" = "Превышено время ожидания соединения с устройством ввода-вывода!";
 "No I/O Devices found! Please check if your I/O Device is ON and in configuration mode." = "Не найдено никаких устройств! Убедитесь, что устройство, которое вы хотите настроить, работает в режиме конфигурации, а затем попробуйте снова.";
+"No function" = "Не назначено";
+"Gateway lock operation" = "Открытие калитки";
+"Gate operation" = "Открытие/закрытие ворот";

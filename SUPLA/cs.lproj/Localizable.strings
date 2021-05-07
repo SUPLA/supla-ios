@@ -157,3 +157,6 @@
 "Press START to start configuration." = "Stisknutím tlačítka START spustíte konfiguraci.";
 "I/O Device connection setting timeout!" = "Doba čekání na spojení s vykonávajícím zařízením byla překročena!";
 "No I/O Devices found! Please check if your I/O Device is ON and in configuration mode." = "Nebyly nalezeny žádné přístroje! Ujistěte se, že zařízení, které chcete konfigurovat, je v konfiguračním režimu a zkuste to znovu.";
+"No function" = "Bez funkce";
+"Gateway lock operation" = "Otevření branky";
+"Gate operation" = "Otevření / zavření vstupní brány";

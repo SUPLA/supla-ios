@@ -149,3 +149,6 @@
 "Press START to start configuration." = "Druk op de knop START om de configuratie te starten.";
 "I/O Device connection setting timeout!" = "Wachttijd voor het tot stand brengen van een verbinding met het uitvoerende apparaat is overschreden!";
 "No I/O Devices found! Please check if your I/O Device is ON and in configuration mode." = "Geen apparaten gevonden! Zorg ervoor dat het apparaat dat u wilt configureren zich in de configuratiemodus bevindt en probeer het opnieuw.";
+"No function" = "Geen functie beschikbaar";
+"Gateway lock operation" = "Het openen van het poortje";
+"Gate operation" = "Opritpoort openen / sluiten";
