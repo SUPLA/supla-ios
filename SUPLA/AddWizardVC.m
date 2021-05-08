@@ -20,7 +20,7 @@
 #import "SuplaApp.h"
 #import "TFHpple.h"
 #import "SASuperuserAuthorizationDialog.h"
-#import "SAWifiAutoConnect.h"
+#import "SAWifi.h"
 #import "SAClassHelper.h"
 #import "SARegistrationEnabled.h"
 
@@ -326,7 +326,7 @@
     NSDate *_stepTime;
     int _step;
     int _pageId;
-    SAWifiAutoConnect *_wifiAutoConnect;
+    SAWifi *_wifiAutoConnect;
     BOOL _1stAttempt;
 }
 
@@ -469,7 +469,7 @@
         _blinkTimer = nil;
     }
     
-    [SAWifiAutoConnect cleanup];
+    [SAWifi cleanup];
 }
 
 -(void) loadPrefs {
@@ -562,7 +562,7 @@
             _1stAttempt = YES;
             _blinkTimer = [NSTimer scheduledTimerWithTimeInterval:0.1 target:self selector:@selector(blinkTimerFireMethod:) userInfo:nil repeats:YES];
             
-            if ([SAWifiAutoConnect isAvailable]) {
+            if ([SAWifi autoConnectIsAvailable]) {
                 self.swAutoMode.on = NO;
                 self.swAutoMode.hidden = NO;
                 self.lAutoMode.hidden = NO;
@@ -610,7 +610,7 @@
 
 -(void)configResult:(SAConfigResult*)result {
     
-    [SAWifiAutoConnect cleanup];
+    [SAWifi cleanup];
     
     switch(result.resultCode) {
         case RESULT_PARAM_ERROR:
@@ -706,7 +706,7 @@
     [self setStep:STEP_WIFI_AUTO_CONNECT];
     
     if (_wifiAutoConnect == nil) {
-        _wifiAutoConnect = [[SAWifiAutoConnect alloc] init];
+        _wifiAutoConnect = [[SAWifi alloc] init];
     }
     
     [_wifiAutoConnect tryConnectWithCompletionHandler:^(BOOL success) {
@@ -754,7 +754,7 @@
         case PAGE_STEP_2:
         {
             BOOL goNext = YES;
-            
+
             if ( [self.edSSID.text isEqualToString:@""] ) {
                 self.edSSID.layer.borderColor = [UIColor redColor].CGColor;
                 goNext = NO;
