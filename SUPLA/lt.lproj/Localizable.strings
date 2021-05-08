@@ -154,3 +154,15 @@
 "No function" = "Funkcijų nėra";
 "Gateway lock operation" = "Durelių atidarymas";
 "Gate operation" = "Įvažiavimo vartų atidarymas/uždarymas";
+"Garage door operation" = "Garažo vartų atidarymas/uždarymas";
+"Humidity sensor" = "Drėgmės jutiklis";
+"Temperature and humidity sensor" = "Temperatūros ir drėgmės jutiklis";
+"Door lock operation" = "";
+"Roller shutter operation" = "";
+"Roof window operation" = "";
+"Roof window opening sensor" = "";
+"On/Off switch" = "";
+"Light switch" = "";
+"Weather Station" = "";
+"Thermostat" = "";
+"Valve" = "";

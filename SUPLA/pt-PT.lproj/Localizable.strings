@@ -153,3 +153,15 @@
 "No function" = "Falta de funções";
 "Gateway lock operation" = "Abrir um portão";
 "Gate operation" = "Abrir/fechar um portão de entrada";
+"Garage door operation" = "OAbrir/fechar um portão de garagem";
+"Humidity sensor" = "Sensor de humidade";
+"Temperature and humidity sensor" = "Sensor da temperatura e humidade";
+"Door lock operation" = "";
+"Roller shutter operation" = "";
+"Roof window operation" = "";
+"Roof window opening sensor" = "";
+"On/Off switch" = "";
+"Light switch" = "";
+"Weather Station" = "";
+"Thermostat" = "";
+"Valve" = "";

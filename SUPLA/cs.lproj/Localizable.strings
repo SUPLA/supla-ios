@@ -160,3 +160,14 @@
 "No function" = "Bez funkce";
 "Gateway lock operation" = "Otevření branky";
 "Gate operation" = "Otevření / zavření vstupní brány";
+"Garage door operation" = "Otevření / zavření dveří garáže";
+"Humidity sensor" = "Snímač vlhkosti";
+"Temperature and humidity sensor" = "Snímač teploty a vlhkosti";
+"Door lock operation" = "";
+"Roller shutter operation" = "";
+"Roof window operation" = "";
+"Roof window opening sensor" = "";
+"On/Off switch" = "";
+"Light switch" = "";
+"Weather Station" = "";
+"Thermostat" = "";

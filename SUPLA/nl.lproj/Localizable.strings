@@ -152,3 +152,15 @@
 "No function" = "Geen functie beschikbaar";
 "Gateway lock operation" = "Het openen van het poortje";
 "Gate operation" = "Opritpoort openen / sluiten";
+"Garage door operation" = "Garagedeur openen / sluiten";
+"Humidity sensor" = "Vochtigheidssensor";
+"Temperature and humidity sensor" = "Temperatuur- en vochtigheidssensor";
+"Door lock operation" = "";
+"Roller shutter operation" = "";
+"Roof window operation" = "";
+"Roof window opening sensor" = "";
+"On/Off switch" = "";
+"Light switch" = "";
+"Weather Station" = "";
+"Thermostat" = "";
+"Valve" = "";

@@ -152,3 +152,15 @@
 "No function" = "Δεν υπάρχει λειτουργία";
 "Gateway lock operation" = "Άνοιγμα της αυλόπορτας";
 "Gate operation" = "Άνοιγμα/κλείσιμο της πύλης εισόδου";
+"Garage door operation" = "Άνοιγμα/κλείσιμο της γκαραζόπορτας";
+"Humidity sensor" = "Αισθητήρας υγρασίας";
+"Temperature and humidity sensor" = "Αισθητήρας θερμοκρασίας και υγρασίας";
+"Door lock operation" = "";
+"Roller shutter operation" = "";
+"Roof window operation" = "";
+"Roof window opening sensor" = "";
+"On/Off switch" = "";
+"Light switch" = "";
+"Weather Station" = "";
+"Thermostat" = "";
+"Valve" = "";

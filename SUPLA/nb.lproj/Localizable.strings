@@ -152,3 +152,15 @@
 "No function" = "Manglende funksjoner";
 "Gateway lock operation" = "Åpne/steng hageporten";
 "Gate operation" = "Åpne/steng hageporten";
+"Garage door operation" = "Åpne/steng garasjeporten";
+"Humidity sensor" = "Fuktighetssensor";
+"Temperature and humidity sensor" = "Temperatur- og fuktighetssensor";
+"Door lock operation" = "";
+"Roller shutter operation" = "";
+"Roof window operation" = "";
+"Roof window opening sensor" = "";
+"On/Off switch" = "";
+"Light switch" = "";
+"Weather Station" = "";
+"Thermostat" = "";
+"Valve" = "";

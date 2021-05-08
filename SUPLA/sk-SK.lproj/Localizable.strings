@@ -152,3 +152,15 @@
 "No function" = "Žiadna funkcia";
 "Gateway lock operation" = "Otváranie bráničky";
 "Gate operation" = "Otváranie/zatváranie vjazdovej brány";
+"Garage door operation" = "Otváranie/zatváranie garážovej brány";
+"Humidity sensor" = "Snímač vlhkosti";
+"Temperature and humidity sensor" = "Snímač teploty a vlhkosti";
+"Door lock operation" = "";
+"Roller shutter operation" = "";
+"Roof window operation" = "";
+"Roof window opening sensor" = "";
+"On/Off switch" = "";
+"Light switch" = "";
+"Weather Station" = "";
+"Thermostat" = "";
+"Valve" = "";
