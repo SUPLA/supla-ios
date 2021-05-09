@@ -156,7 +156,7 @@
 "Garage door operation" = "Открытие/закрытие гаражных ворот";
 "Humidity sensor" = "Датчик влажности";
 "Temperature and humidity sensor" = "Датчик температуры и влажности";
-"Door lock operation" = "";
+"Door lock operation" = "Открытие двери";
 "Roller shutter operation" = "";
 "Roof window operation" = "";
 "Roof window opening sensor" = "";

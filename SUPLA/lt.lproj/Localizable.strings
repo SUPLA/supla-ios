@@ -157,7 +157,7 @@
 "Garage door operation" = "Garažo vartų atidarymas/uždarymas";
 "Humidity sensor" = "Drėgmės jutiklis";
 "Temperature and humidity sensor" = "Temperatūros ir drėgmės jutiklis";
-"Door lock operation" = "";
+"Door lock operation" = "Durų atidarymas";
 "Roller shutter operation" = "";
 "Roof window operation" = "";
 "Roof window opening sensor" = "";

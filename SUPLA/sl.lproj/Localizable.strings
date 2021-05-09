@@ -155,7 +155,7 @@
 "Garage door operation" = "Odpiranje/zapiranje garažnih vrat";
 "Humidity sensor" = "Senzor vlažnosti";
 "Temperature and humidity sensor" = "Senzor temperature in vlažnosti";
-"Door lock operation" = "";
+"Door lock operation" = "Odpiranje vrat";
 "Roller shutter operation" = "";
 "Roof window operation" = "";
 "Roof window opening sensor" = "";

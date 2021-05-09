@@ -155,7 +155,7 @@
 "Garage door operation" = "Åpne/steng garasjeporten";
 "Humidity sensor" = "Fuktighetssensor";
 "Temperature and humidity sensor" = "Temperatur- og fuktighetssensor";
-"Door lock operation" = "";
+"Door lock operation" = "Døråpning";
 "Roller shutter operation" = "";
 "Roof window operation" = "";
 "Roof window opening sensor" = "";

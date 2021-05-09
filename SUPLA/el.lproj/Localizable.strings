@@ -155,7 +155,7 @@
 "Garage door operation" = "Άνοιγμα/κλείσιμο της γκαραζόπορτας";
 "Humidity sensor" = "Αισθητήρας υγρασίας";
 "Temperature and humidity sensor" = "Αισθητήρας θερμοκρασίας και υγρασίας";
-"Door lock operation" = "";
+"Door lock operation" = "Άνοιγμα της πόρτας";
 "Roller shutter operation" = "";
 "Roof window operation" = "";
 "Roof window opening sensor" = "";

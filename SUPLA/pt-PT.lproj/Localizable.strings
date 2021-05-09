@@ -156,7 +156,7 @@
 "Garage door operation" = "OAbrir/fechar um portão de garagem";
 "Humidity sensor" = "Sensor de humidade";
 "Temperature and humidity sensor" = "Sensor da temperatura e humidade";
-"Door lock operation" = "";
+"Door lock operation" = "Abrir uma porta";
 "Roller shutter operation" = "";
 "Roof window operation" = "";
 "Roof window opening sensor" = "";

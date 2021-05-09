@@ -155,7 +155,7 @@
 "Garage door operation" = "Otváranie/zatváranie garážovej brány";
 "Humidity sensor" = "Snímač vlhkosti";
 "Temperature and humidity sensor" = "Snímač teploty a vlhkosti";
-"Door lock operation" = "";
+"Door lock operation" = "Otváranie dverí";
 "Roller shutter operation" = "";
 "Roof window operation" = "";
 "Roof window opening sensor" = "";
