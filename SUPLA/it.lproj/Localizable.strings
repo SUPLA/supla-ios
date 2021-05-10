@@ -157,11 +157,9 @@
 "Humidity sensor" = "Sensore di umidità";
 "Temperature and humidity sensor" = "Sensore di temperatura e umidità";
 "Door lock operation" = "Apertura della porta";
-"Roller shutter operation" = "";
-"Roof window operation" = "";
-"Roof window opening sensor" = "";
-"On/Off switch" = "";
-"Light switch" = "";
-"Weather Station" = "";
-"Thermostat" = "";
-"Valve" = "";
+"Roller shutter operation" = "Apertura e chiusura di avvolgibili";
+"On/Off switch" = "Sensore di alimentazione";
+"Light switch" = "Interruttore di luce";
+"Weather Station" = "Stazione meteo";
+"Thermostat" = "Termostato";
+"Valve" = "Valvola";

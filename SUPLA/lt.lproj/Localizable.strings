@@ -158,11 +158,9 @@
 "Humidity sensor" = "Drėgmės jutiklis";
 "Temperature and humidity sensor" = "Temperatūros ir drėgmės jutiklis";
 "Door lock operation" = "Durų atidarymas";
-"Roller shutter operation" = "";
-"Roof window operation" = "";
-"Roof window opening sensor" = "";
-"On/Off switch" = "";
-"Light switch" = "";
-"Weather Station" = "";
-"Thermostat" = "";
-"Valve" = "";
+"Roller shutter operation" = "Žaliuzių atidengimas ir uždengimas";
+"On/Off switch" = "Maitinimo jungiklis";
+"Light switch" = "Šviesos jungiklis";
+"Weather Station" = "Meteorologijos stotis";
+"Thermostat" = "Termostatas";
+"Valve" = "Vožtuvas";

@@ -156,11 +156,9 @@
 "Humidity sensor" = "Senzor vlažnosti";
 "Temperature and humidity sensor" = "Senzor temperature in vlažnosti";
 "Door lock operation" = "Odpiranje vrat";
-"Roller shutter operation" = "";
-"Roof window operation" = "";
-"Roof window opening sensor" = "";
-"On/Off switch" = "";
-"Light switch" = "";
-"Weather Station" = "";
-"Thermostat" = "";
-"Valve" = "";
+"Roller shutter operation" = "Odpiranje in zapiranje rolet";
+"On/Off switch" = "Stikalo za vklop";
+"Light switch" = "Stikalo luči";
+"Weather Station" = "Vremenska postaja";
+"Thermostat" = "Termostat";
+"Valve" = "Ventil";

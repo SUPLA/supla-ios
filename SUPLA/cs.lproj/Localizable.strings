@@ -164,10 +164,8 @@
 "Humidity sensor" = "Snímač vlhkosti";
 "Temperature and humidity sensor" = "Snímač teploty a vlhkosti";
 "Door lock operation" = "Otevření dveří";
-"Roller shutter operation" = "";
-"Roof window operation" = "";
-"Roof window opening sensor" = "";
-"On/Off switch" = "";
-"Light switch" = "";
-"Weather Station" = "";
-"Thermostat" = "";
+"Roller shutter operation" = "Otevírání a zavírání rolet";
+"On/Off switch" = "Síťový spínač";
+"Light switch" = "Spínač osvětlení";
+"Weather Station" = "Meteorologická stanice";
+"Thermostat" = "Termostat";

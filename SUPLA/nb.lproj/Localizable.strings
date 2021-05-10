@@ -156,11 +156,9 @@
 "Humidity sensor" = "Fuktighetssensor";
 "Temperature and humidity sensor" = "Temperatur- og fuktighetssensor";
 "Door lock operation" = "Døråpning";
-"Roller shutter operation" = "";
-"Roof window operation" = "";
-"Roof window opening sensor" = "";
-"On/Off switch" = "";
-"Light switch" = "";
-"Weather Station" = "";
-"Thermostat" = "";
-"Valve" = "";
+"Roller shutter operation" = "Åpning og stenging av rullegardiner";
+"On/Off switch" = "Strømbryter";
+"Light switch" = "Lysbryter";
+"Weather Station" = "Værstasjon";
+"Thermostat" = "Termostat";
+"Valve" = "Ventil";

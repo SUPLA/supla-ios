@@ -156,11 +156,9 @@
 "Humidity sensor" = "Αισθητήρας υγρασίας";
 "Temperature and humidity sensor" = "Αισθητήρας θερμοκρασίας και υγρασίας";
 "Door lock operation" = "Άνοιγμα της πόρτας";
-"Roller shutter operation" = "";
-"Roof window operation" = "";
-"Roof window opening sensor" = "";
-"On/Off switch" = "";
-"Light switch" = "";
-"Weather Station" = "";
-"Thermostat" = "";
-"Valve" = "";
+"Roller shutter operation" = "Άνοιγμα και κλείσιμο περσίδων";
+"On/Off switch" = "Διακόπτης παροχής ρεύματος";
+"Light switch" = "Διακόπτης φωτισμού";
+"Weather Station" = "Μετεωρολογικός σταθμός";
+"Thermostat" = "Θερμοστάτης";
+"Valve" = "Βαλβίδα";

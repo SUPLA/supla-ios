@@ -157,11 +157,9 @@
 "Humidity sensor" = "Датчик влажности";
 "Temperature and humidity sensor" = "Датчик температуры и влажности";
 "Door lock operation" = "Открытие двери";
-"Roller shutter operation" = "";
-"Roof window operation" = "";
-"Roof window opening sensor" = "";
-"On/Off switch" = "";
-"Light switch" = "";
-"Weather Station" = "";
-"Thermostat" = "";
-"Valve" = "";
+"Roller shutter operation" = "Управление роллетами";
+"On/Off switch" = "Выключатель";
+"Light switch" = "Управление светом";
+"Weather Station" = "Метеостанция";
+"Thermostat" = "Термостат";
+"Valve" = "Клапан";

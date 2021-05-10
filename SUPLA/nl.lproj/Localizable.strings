@@ -156,11 +156,9 @@
 "Humidity sensor" = "Vochtigheidssensor";
 "Temperature and humidity sensor" = "Temperatuur- en vochtigheidssensor";
 "Door lock operation" = "Deuropener";
-"Roller shutter operation" = "";
-"Roof window operation" = "";
-"Roof window opening sensor" = "";
-"On/Off switch" = "";
-"Light switch" = "";
-"Weather Station" = "";
-"Thermostat" = "";
-"Valve" = "";
+"Roller shutter operation" = "Rolluik openen en sluiten";
+"On/Off switch" = "Aan / uit schakelaar";
+"Light switch" = "Lichtschakelaar";
+"Weather Station" = "Weerstation";
+"Thermostat" = "Thermostaat";
+"Valve" = "Klep";

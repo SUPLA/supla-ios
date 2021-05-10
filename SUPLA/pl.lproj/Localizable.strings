@@ -217,10 +217,10 @@
 "Humidity sensor" = "Czujnik wilgotności";
 "Temperature and humidity sensor" = "Czujnik temperatury i wilgotności";
 "Door lock operation" = "Otwieranie drzwi";
-"Roller shutter operation" = "";
-"Roof window operation" = "";
-"Roof window opening sensor" = "";
-"On/Off switch" = "";
-"Light switch" = "";
-"Weather Station" = "";
-"Thermostat" = "";
+"Roller shutter operation" = "Otwieranie i zamykanie rolet";
+"Roof window operation" = "Otwieranie i zamykanie okna dachowego";
+"Roof window opening sensor" = "Czujnik otwarcia okna dachowego";
+"On/Off switch" = "Włącznik zasilania";
+"Light switch" = "Włącznik światła";
+"Weather Station" = "Stacja pogodowa";
+"Thermostat" = "Termostat";
