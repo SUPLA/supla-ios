@@ -29,6 +29,7 @@
 #import "SuplaApp.h"
 #import "Database.h"
 #import "SAChannelBasicCfg.h"
+#import "SAChannelCaptionSetResult.h"
 
 #include "supla-client.h"
 
@@ -54,6 +55,7 @@
 - (void) onCalCfgResult:(SACalCfgResult*)result;
 - (void) onChannelState:(SAChannelStateExtendedValue*)state;
 - (void) onChannelBasicCfg:(SAChannelBasicCfg*)cfg;
+- (void) onChannelCaptionSetResult:(SAChannelCaptionSetResult*)result;
 @end
 
 void sasuplaclient_on_versionerror(void *_suplaclient, void *user_data, int version, int remote_version_min, int remote_version) {
@@ -205,6 +207,15 @@ void sasuplaclient_on_channel_basic_cfg(void *_suplaclient,
     SASuplaClient *sc = (__bridge SASuplaClient*)user_data;
     if ( sc != nil && cfg != NULL) {
         [sc onChannelBasicCfg:[[SAChannelBasicCfg alloc] initWithCfg:cfg]];
+    }
+}
+
+void sasuplaclient_on_channel_caption_set_result(void *_suplaclient,
+                                         void *user_data,
+                                         TSC_SetCaptionResult *result) {
+    SASuplaClient *sc = (__bridge SASuplaClient*)user_data;
+    if ( sc != nil && result != NULL) {
+        [sc onChannelCaptionSetResult:[[SAChannelCaptionSetResult alloc] initWithResult:result]];
     }
 }
 
@@ -372,6 +383,7 @@ void sasuplaclient_on_channel_basic_cfg(void *_suplaclient,
     scc.cb_on_device_channel_state = sasuplaclient_on_device_channel_state;
     scc.cb_on_set_registration_enabled_result = sasuplaclient_on_set_registration_enabled_result;
     scc.cb_on_channel_basic_cfg = sasuplaclient_on_channel_basic_cfg;
+    scc.cb_on_channel_caption_set_result = sasuplaclient_on_channel_caption_set_result;
     
     scc.protocol_version = [SAApp getPreferedProtocolVersion];
     
@@ -790,6 +802,14 @@ void sasuplaclient_on_channel_basic_cfg(void *_suplaclient,
 
 - (void) onChannelBasicCfg:(SAChannelBasicCfg*)cfg {
     [self performSelectorOnMainThread:@selector(_onChannelBasicCfg:) withObject:cfg waitUntilDone:NO];
+}
+
+- (void) _onChannelCaptionSetResult:(SAChannelCaptionSetResult*)result {
+    [[NSNotificationCenter defaultCenter] postNotificationName:kSAOnChannelCaptionSetResult object:self userInfo:[[NSDictionary alloc] initWithObjects:@[result] forKeys:@[@"result"]]];
+}
+
+- (void) onChannelCaptionSetResult:(SAChannelCaptionSetResult*)result {
+    [self performSelectorOnMainThread:@selector(_onChannelCaptionSetResult:) withObject:result waitUntilDone:NO];
 }
 
 - (void) reconnect {

@@ -169,3 +169,5 @@
 "Light switch" = "Spínač osvětlení";
 "Weather Station" = "Meteorologická stanice";
 "Thermostat" = "Termostat";
+"The waiting time for changing the channel caption has expired." = "Vypršel časový limit při čekání na změnu podpisu kanálu.";
+"The channel caption change failed. Code %i" = "Podpis kanálu se nepodařilo změnit. Kód %i";

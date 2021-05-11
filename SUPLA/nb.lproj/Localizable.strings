@@ -162,3 +162,5 @@
 "Weather Station" = "Værstasjon";
 "Thermostat" = "Termostat";
 "Valve" = "Ventil";
+"The waiting time for changing the channel caption has expired." = "Ventetiden for endringen av kanalens signatur er utløpt.";
+"The channel caption change failed. Code %i" = "Kunne ikke endre kanalens signatur. Kode %i";

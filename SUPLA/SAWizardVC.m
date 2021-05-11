@@ -33,6 +33,7 @@
 @end
 
 @implementation SAWizardVC {
+    UIView *_previousPage;
     NSTimer *_preloaderTimer;
     int _preloaderPos;
     BOOL _backButtonInsteadOfCancel;
@@ -43,6 +44,8 @@
 }
 
 - (void)setPage:(UIView *)page {
+    _previousPage = self.page;
+    
     for(UIView *subview in self.vPageContent.subviews) {
         [subview removeFromSuperview];
     }
@@ -60,6 +63,10 @@
     }
     
     return nil;
+}
+
+- (UIView*)previousPage {
+    return _previousPage;
 }
 
 -(void)viewWillAppear:(BOOL)animated {

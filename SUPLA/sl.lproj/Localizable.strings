@@ -162,3 +162,5 @@
 "Weather Station" = "Vremenska postaja";
 "Thermostat" = "Termostat";
 "Valve" = "Ventil";
+"The waiting time for changing the channel caption has expired." = "Potekel je čas čakanja na spremembo podpisa kanala.";
+"The channel caption change failed. Code %i" = "Podpisa kanala ni bilo mogoče spremeniti. Koda %i";

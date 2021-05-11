@@ -163,3 +163,5 @@
 "Weather Station" = "Stazione meteo";
 "Thermostat" = "Termostato";
 "Valve" = "Valvola";
+"The waiting time for changing the channel caption has expired." = "Il tempo di attesa per il cambio di nome del canale è scaduto.";
+"The channel caption change failed. Code %i" = "Cambio di nome del canale non riuscito. Codice %i";

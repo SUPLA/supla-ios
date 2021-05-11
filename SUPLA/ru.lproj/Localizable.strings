@@ -163,3 +163,5 @@
 "Weather Station" = "Метеостанция";
 "Thermostat" = "Термостат";
 "Valve" = "Клапан";
+"The waiting time for changing the channel caption has expired." = "Время ожидания изменения подписи канала истекло.";
+"The channel caption change failed. Code %i" = "Изменение подписи канала не удалось. Код %i";

@@ -162,3 +162,5 @@
 "Weather Station" = "Μετεωρολογικός σταθμός";
 "Thermostat" = "Θερμοστάτης";
 "Valve" = "Βαλβίδα";
+"The waiting time for changing the channel caption has expired." = "Υπέρβαση χρόνου αναμονής για αλλαγή της υπογραφής καναλιού.";
+"The channel caption change failed. Code %i" = "Αποτυχία αλλαγής υπογραφής καναλιού. Κωδικός %i";

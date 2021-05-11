@@ -164,3 +164,5 @@
 "Weather Station" = "Meteorologijos stotis";
 "Thermostat" = "Termostatas";
 "Valve" = "Vožtuvas";
+"The waiting time for changing the channel caption has expired." = "Baigėsi kanalo parašo keitimo laukimo laikas.";
+"The channel caption change failed. Code %i" = "Kanalo parašo pakeitimas nepavyko. Kodas %i";

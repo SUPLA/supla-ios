@@ -224,3 +224,5 @@
 "Light switch" = "Włącznik światła";
 "Weather Station" = "Stacja pogodowa";
 "Thermostat" = "Termostat";
+"The waiting time for changing the channel caption has expired." = "Upłynął czas oczekiwania na zmianę podpisu kanału.";
+"The channel caption change failed. Code %i" = "Zmiana podpisu kanału zakończona niepowodzeniem. Kod %i";

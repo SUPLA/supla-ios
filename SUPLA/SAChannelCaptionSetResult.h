@@ -16,24 +16,19 @@
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 
-#import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
+#import "proto.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface SAWizardVC : UIViewController
-@property (weak, nonatomic) IBOutlet UIView *vPageContent;
-@property (nonatomic) BOOL backButtonInsteadOfCancel;
-@property (weak, nonatomic) UIView *page;
-@property (weak, nonatomic, readonly) UIView *previousPage;
-@property (weak, nonatomic) NSString *btnNextTitle;
-@property (nonatomic) BOOL btnNextEnabled;
-@property (nonatomic) BOOL btnCancelOrBackEnabled;
-@property (nonatomic) BOOL preloaderVisible;
+@interface SAChannelCaptionSetResult : NSObject
+@property (nonatomic, readonly)int remoteId;
+@property (nonatomic, readonly)int resultCode;
+@property (nonatomic, readonly)NSString *caption;
 
-- (IBAction)nextTouch:(nullable id)sender;
-- (IBAction)cancelOrBackTouch:(nullable id)sender;
-
-
+- (id)initWithResult:(TSC_SetCaptionResult *)result;
++ (SAChannelCaptionSetResult*) resultWithResult:(TSC_SetCaptionResult *)result;
++ (SAChannelCaptionSetResult *)notificationToCaptionSetResult:(NSNotification *)notification;
 @end
 
 NS_ASSUME_NONNULL_END

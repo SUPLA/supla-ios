@@ -20,6 +20,7 @@
 #import "SuplaApp.h"
 #import "SAChannel+CoreDataClass.h"
 #import "SAChannelBasicCfg.h"
+#import "SAChannelCaptionSetResult.h"
 #import "SAPickerField.h"
 
 #define ERROR_TYPE_TIMEOUT 1
@@ -74,6 +75,7 @@ static SAZWaveConfigurationWizardVC *_zwaveConfigurationWizardGlobalRef = nil;
     
     NSNumber *_selectedDeviceId;
     SAChannel *_selectedChannel;
+    int _selectedFunc;
 }
 
 - (void)viewDidLoad {
@@ -83,8 +85,11 @@ static SAZWaveConfigurationWizardVC *_zwaveConfigurationWizardGlobalRef = nil;
     _deviceChannelList = [[NSMutableArray alloc] init];
     _channelBasicCfgToFetch = [[NSMutableArray alloc] init];
     _channelBasicCfgList = [[NSMutableArray alloc] init];
+    _functionList = [[NSMutableArray alloc] init];
+
     self.pfBridge.pf_delegate = self;
     self.pfChannel.pf_delegate = self;
+    self.pfFunction.pf_delegate = self;
 }
 
 -(void)viewWillAppear:(BOOL)animated {
@@ -99,6 +104,9 @@ static SAZWaveConfigurationWizardVC *_zwaveConfigurationWizardGlobalRef = nil;
      addObserver:self selector:@selector(onChannelBasicCfg:)
      name:kSAOnChannelBasicCfg object:nil];
 
+    [[NSNotificationCenter defaultCenter]
+     addObserver:self selector:@selector(onChannelCaptionSetResult:)
+     name:kSAOnChannelCaptionSetResult object:nil];
 }
 
 -(void)viewWillDisappear:(BOOL)animated {
@@ -162,9 +170,27 @@ static SAZWaveConfigurationWizardVC *_zwaveConfigurationWizardGlobalRef = nil;
             if (_deviceList.count) {
                 _selectedDeviceId = [_deviceList firstObject];
             }
-            [self.pfBridge update];
+            
             [self pickerField:self.pfBridge tappedAtRow:[self selectedRowIndexInPickerField:self.pfBridge]];
+            [self.pfBridge update];
         }
+    }
+}
+
+-(void)onChannelCaptionSetResult:(NSNotification *)notification {
+    [self watchdogDeactivate];
+    
+    SAChannelCaptionSetResult *result = [SAChannelCaptionSetResult notificationToCaptionSetResult:notification];
+    if (result) {
+        if (result.resultCode == SUPLA_RESULTCODE_TRUE) {
+            
+        } else {
+            NSString *errMsg = [NSString stringWithFormat:
+                                NSLocalizedString(@"The channel caption change failed. Code %i", nil),
+                                result.resultCode];
+            [self showError:ERROR_TYPE_OTHER withMessage: errMsg];
+        }
+
     }
 }
 
@@ -241,6 +267,7 @@ static SAZWaveConfigurationWizardVC *_zwaveConfigurationWizardGlobalRef = nil;
     }
     
     self.btnNextEnabled = NO;
+    self.btnCancelOrBackEnabled = NO;
     
     if (calCfg) {
         _anyCalCfgResultWatchdogTimer =
@@ -302,7 +329,18 @@ static SAZWaveConfigurationWizardVC *_zwaveConfigurationWizardGlobalRef = nil;
     
     self.backButtonInsteadOfCancel = page != self.welcomePage;
     
-    if (page == self.channelSelectionPage) {
+    if (page == self.errorPage) {
+        self.btnNextTitle = NSLocalizedString(@"Exit", nil) ;
+    } else if (page == self.successInfoPage) {
+        self.btnNextTitle = NSLocalizedString(@"OK", nil) ;
+    } else {
+        self.btnNextTitle = NSLocalizedString(@"Next", nil) ;
+    }
+    
+    if (page == self.errorPage) {
+        self.btnNextEnabled = YES;
+        self.btnCancelOrBackEnabled = YES;
+    } else if (page == self.channelSelectionPage) {
         [self loadChannelList];
     } else if (page == self.channelDetailsPage) {
         [self updateChannelDetailsPageWithBasicCfg:nil];
@@ -315,12 +353,17 @@ static SAZWaveConfigurationWizardVC *_zwaveConfigurationWizardGlobalRef = nil;
     }
     
     [_functionList removeAllObjects];
+    [_functionList addObject:[NSNumber numberWithInt:0]];
     
     if (basicCfg == nil) {
+        self.tfCaption.enabled = NO;
+        self.pfFunction.enabled = NO;
         [self fetchChannelBasicCfg:_selectedChannel.remote_id];
         return;
     }
     
+    self.tfCaption.enabled = YES;
+    self.pfFunction.enabled = YES;
     self.btnCancelOrBackEnabled = YES;
     self.btnNextEnabled = YES;
     
@@ -335,38 +378,81 @@ static SAZWaveConfigurationWizardVC *_zwaveConfigurationWizardGlobalRef = nil;
     [self.lChannelNumber setText:[NSString stringWithFormat:@"%i", basicCfg.channelNumber]];
     [self.lChannelId setText:[NSString stringWithFormat:@"%i", basicCfg.channelId]];
     [self.lDeviceId setText:[NSString stringWithFormat:@"%i", basicCfg.deviceId]];
+    [self.tfCaption setText:basicCfg.channelCaption];
     
     for (int a = 0; a < 32; a++) {
-        int func = [SAChannelBase functionBitToFunctionNumber:basicCfg.channelFunc & (1 << a)];
+        int func = [SAChannelBase functionBitToFunctionNumber:basicCfg.channelFuncList & (1 << a)];
         if (func > 0) {
             [_functionList addObject:[NSNumber numberWithInt:func]];
         }
     }
     
+    _selectedFunc = basicCfg.channelFunc;
     [self.pfFunction update];
+}
+
+-(SAChannelBasicCfg*)selectedChannelBasicCfg {
+    if (_selectedChannel) {
+        for(SAChannelBasicCfg *cfg in _channelBasicCfgList) {
+            if (cfg.channelId == _selectedChannel.remote_id) {
+                return cfg;
+            }
+        }
+    }
+    
+    return nil;
+}
+
+- (void)applyChannelCaptionChange {
+    SAChannelBasicCfg *cfg = [self selectedChannelBasicCfg];
+    if (cfg == nil) {
+        return;
+    }
+    
+    self.preloaderVisible = YES;
+    
+    if ([self.tfCaption.text isEqual:cfg.channelCaption]) {
+        NSLog(@"EQUAL");
+    } else {
+        [self watchdogActivateWithTime:SET_CHANNEL_CAPTION_TIMEOUT_SEC
+                        timeoutMessage:@"The waiting time for changing the channel function has expired."
+                                calCfg:NO];
+        
+        [SAApp.SuplaClient setChannelCaption:_selectedChannel.remote_id caption:self.tfCaption.text];
+    }
+    
 }
 
 - (IBAction)nextTouch:(nullable id)sender {
     [super nextTouch:sender];
     
-    self.btnNextEnabled = NO;
-    self.btnCancelOrBackEnabled = NO;
-    
-    if (self.page == self.welcomePage) {
+    if (self.page == self.errorPage) {
+        [[SAApp UI] showMainVC];
+    } else if (self.page == self.welcomePage) {
         self.preloaderVisible = YES;
         self.page = self.channelSelectionPage;
     } else if (self.page == self.channelSelectionPage) {
         self.page = self.channelDetailsPage;
+    } else if (self.page == self.channelDetailsPage) {
+        [self applyChannelCaptionChange];
     }
 }
 
 - (IBAction)cancelOrBackTouch:(id)sender {
     [super cancelOrBackTouch:sender];
     
-    if (self.page == self.welcomePage) {
+    if (self.page == self.errorPage) {
+        if (self.previousPage) {
+            self.page = self.previousPage;
+        } else {
+            [[SAApp UI] showMainVC];
+        }
+    } else if (self.page == self.welcomePage) {
         [[SAApp UI] showMainVC];
     } else if (self.page == self.channelSelectionPage) {
         self.page = self.welcomePage;
+    } else if (self.page == self.channelDetailsPage) {
+        self.page = self.channelSelectionPage;
     }
 }
 
@@ -375,25 +461,37 @@ static SAZWaveConfigurationWizardVC *_zwaveConfigurationWizardGlobalRef = nil;
         return _deviceList.count;
     } else if (pickerField == self.pfChannel) {
         return _deviceChannelList.count;
+    } else if (pickerField == self.pfFunction) {
+        return _functionList.count;
     }
     return 0;
 }
 
 - (NSInteger)selectedRowIndexInPickerField:(SAPickerField *)pickerField {
+    
+
     int n=0;
     if (pickerField == self.pfBridge) {
-        if (_selectedDeviceId) {
-            for(NSNumber *devId in _deviceList) {
-                if ([devId isEqual:_selectedDeviceId]) {
+        for(NSNumber *devId in _deviceList) {
+            if ([devId isEqual:_selectedDeviceId]) {
+                return n;
+            }
+            n++;
+        }
+    } else if (pickerField == self.pfChannel) {
+        if (_selectedChannel != nil) {
+            for(SAChannel *channel in _deviceChannelList) {
+                if (channel.remote_id == _selectedChannel.remote_id) {
                     return n;
                 }
                 n++;
             }
         }
-    } else if (pickerField == self.pfChannel) {
-        if (_selectedChannel) {
-            for(SAChannel *channel in _deviceChannelList) {
-                if (channel.remote_id == _selectedChannel.remote_id) {
+
+    } else if (pickerField == self.pfFunction) {
+        if (_selectedChannel != nil) {
+            for(NSNumber *func in _functionList) {
+                if ([func intValue] == _selectedFunc) {
                     return n;
                 }
                 n++;
@@ -406,16 +504,34 @@ static SAZWaveConfigurationWizardVC *_zwaveConfigurationWizardGlobalRef = nil;
 - (void)pickerField:(SAPickerField *)pickerField tappedAtRow:(NSInteger)index {
     if (pickerField == self.pfBridge) {
         [_deviceChannelList removeAllObjects];
-        _selectedDeviceId = [_deviceList objectAtIndex:index];
-        int devId = [_selectedDeviceId intValue];
-        for(SAChannel *channel in _channelList) {
-            if (channel.device_id == devId) {
-                [_deviceChannelList addObject:channel];
+        if (index >= 0 && index < _deviceList.count) {
+            _selectedDeviceId = [_deviceList objectAtIndex:index];
+            int devId = [_selectedDeviceId intValue];
+            for(SAChannel *channel in _channelList) {
+                if (channel.device_id == devId) {
+                    [_deviceChannelList addObject:channel];
+                }
             }
         }
         
-        _selectedChannel = [_deviceChannelList firstObject];
-        [self.pfChannel update];
+        if (_selectedChannel == nil
+            || _selectedChannel.device_id != _selectedDeviceId.intValue) {
+            [self pickerField:self.pfChannel tappedAtRow:_deviceChannelList.count ? 0 : -1];
+            [self.pfChannel update];
+        }
+    } else if (pickerField == self.pfChannel) {
+        _selectedChannel = nil;
+        
+        if (index >= 0 && index < _deviceChannelList.count) {
+            _selectedChannel = [_deviceChannelList objectAtIndex:index];
+            _selectedFunc = _selectedChannel.func;
+        }
+        
+        [self.pfFunction update];
+    } else if (pickerField == self.pfFunction) {
+        if (index >= 0 && index < _functionList.count) {
+            _selectedFunc = [[_functionList objectAtIndex:index] intValue];
+        }
     }
 }
 
@@ -446,6 +562,10 @@ static SAZWaveConfigurationWizardVC *_zwaveConfigurationWizardGlobalRef = nil;
     } else if (pickerField == self.pfChannel) {
         if (row < _deviceChannelList.count) {
             return [self channelNameOfChannel:[_deviceChannelList objectAtIndex:row] customFunc:nil];
+        }
+    } else if (pickerField == self.pfFunction) {
+        if (row < _functionList.count) {
+            return [SAChannelBase getFunctionName:[[_functionList objectAtIndex:row] intValue]];
         }
     }
 

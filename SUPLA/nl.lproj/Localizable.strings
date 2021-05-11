@@ -162,3 +162,5 @@
 "Weather Station" = "Weerstation";
 "Thermostat" = "Thermostaat";
 "Valve" = "Klep";
+"The waiting time for changing the channel caption has expired." = "De wachttijd voor de verandering van de kanaalhandtekening is verstreken.";
+"The channel caption change failed. Code %i" = "Kan kanaalhandtekening niet wijzigen. Code %i";

@@ -45,6 +45,7 @@ NSString *kSAMenubarBackButtonPressed = @"KSA-N16";
 NSString *kSAOnChannelState = @"KSA-N17";
 NSString *kSAOnSetRegistrationEnableResult = @"KSA-N18";
 NSString *kSAOnChannelBasicCfg = @"KSA-N19";
+NSString *kSAOnChannelCaptionSetResult = @"KSA-N20";
 
 @implementation SAApp {
     
