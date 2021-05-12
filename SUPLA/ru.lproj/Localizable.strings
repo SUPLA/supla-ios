@@ -165,3 +165,8 @@
 "Valve" = "Клапан";
 "The waiting time for changing the channel caption has expired." = "Время ожидания изменения подписи канала истекло.";
 "The channel caption change failed. Code %i" = "Изменение подписи канала не удалось. Код %i";
+"You cannot change the function of a channel that belongs to a group." = "Нельзя изменить функцию канала, который входит в группу.";
+"You cannot change the function of a channel that has a schedule." = "Нельзя изменить функцию канала, который имеет расписание.";
+"You cannot change the function of a channel that is associated with a scene." = "Нельзя изменить функцию канала, который связан со сценой.";
+"The channel function change failed. Code %i" = "Изменение функции канала не удалось. Код %i";
+"The waiting time for changing the channel function has expired." = "Время ожидания изменения функции канала истекло.";

@@ -164,3 +164,8 @@
 "Valve" = "Βαλβίδα";
 "The waiting time for changing the channel caption has expired." = "Υπέρβαση χρόνου αναμονής για αλλαγή της υπογραφής καναλιού.";
 "The channel caption change failed. Code %i" = "Αποτυχία αλλαγής υπογραφής καναλιού. Κωδικός %i";
+"You cannot change the function of a channel that belongs to a group." = "Δεν μπορείτε να αλλάξετε τις λειτουργίες ενός καναλιού που ανήκει σε μια ομάδα.";
+"You cannot change the function of a channel that has a schedule." = "Δεν μπορείτε να αλλάξετε τη λειτουργία ενός καναλιού που έχει χρονοδιάγραμμα.";
+"You cannot change the function of a channel that is associated with a scene." = "Δεν μπορείτε να αλλάξετε τη λειτουργία ενός καναλιού που σχετίζεται με μια σκηνή.";
+"The channel function change failed. Code %i" = "Αποτυχία αλλαγής λειτουργίας καναλιού. Κωδικός %i";
+"The waiting time for changing the channel function has expired." = "Υπέρβαση χρόνου αναμονής για αλλαγή της λειτουργίας καναλιού.";

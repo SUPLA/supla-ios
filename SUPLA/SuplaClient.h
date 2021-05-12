@@ -60,6 +60,7 @@
 - (void) getChannelBasicCfg:(int)channelId;
 - (void) setChannelCaption:(int)channelId caption:(NSString*)caption;
 - (void) setLocationCaption:(int)locationId caption:(NSString*)caption;
+- (void) setFunction:(int)function forChannelId:(int)channelId;
 
 @property (nonatomic, weak) id<SASuplaClientDelegate> delegate;
 @end

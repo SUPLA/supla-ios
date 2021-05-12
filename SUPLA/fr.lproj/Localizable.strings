@@ -165,3 +165,8 @@
 "Valve" = "Valve";
 "The waiting time for changing the channel caption has expired." = "Le temps d\'attente pour la modification de la signature de la chaîne a expiré.";
 "The channel caption change failed. Code %i" = "Échec de la modification de la signature de la chaîne. Code %i";
+"You cannot change the function of a channel that belongs to a group." = "Vous ne pouvez pas modifier les fonctions d’une chaîne qui fait partie d\'un groupe.";
+"You cannot change the function of a channel that has a schedule." = "Vous ne pouvez pas changer la fonction d\'une chaîne qui a un calendrier.";
+"You cannot change the function of a channel that is associated with a scene." = "Vous ne pouvez pas changer la fonction d\'une chaîne associée à une scène.";
+"The channel function change failed. Code %i" = "Impossible de changer la fonction de la chaîne. Code %i";
+"The waiting time for changing the channel function has expired." = "Le temps d\'attente pour changer la fonction de la chaîne a expiré.";

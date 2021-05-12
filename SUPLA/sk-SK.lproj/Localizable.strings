@@ -164,3 +164,8 @@
 "Valve" = "Ventil";
 "The waiting time for changing the channel caption has expired." = "Bola prekročená lehota čakania na zmenu podpisu kanálu.";
 "The channel caption change failed. Code %i" = "Zmena podpisu kanálu neúspešná. Kód %i";
+"You cannot change the function of a channel that belongs to a group." = "Nedá sa zmeniť funkcia kanálu, ktorý patrí ku skupine.";
+"You cannot change the function of a channel that has a schedule." = "Nedá sa zmeniť funkcia kanálu, ktorý má harmonogram.";
+"You cannot change the function of a channel that is associated with a scene." = "Nedá sa zmeniť funkcia kanálu, ktorý je spojený so scénou.";
+"The channel function change failed. Code %i" = "Zmena funkcie kanálu neúspešná. Kód %i";
+"The waiting time for changing the channel function has expired." = "Bola prekročená lehota čakania na zmenu funkcie.";

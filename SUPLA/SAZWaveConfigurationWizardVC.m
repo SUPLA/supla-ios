@@ -21,6 +21,7 @@
 #import "SAChannel+CoreDataClass.h"
 #import "SAChannelBasicCfg.h"
 #import "SAChannelCaptionSetResult.h"
+#import "SAChannelFunctionSetResult.h"
 #import "SAPickerField.h"
 
 #define ERROR_TYPE_TIMEOUT 1
@@ -46,7 +47,7 @@ static SAZWaveConfigurationWizardVC *_zwaveConfigurationWizardGlobalRef = nil;
 @property (strong, nonatomic) IBOutlet UIView *channelSelectionPage;
 @property (strong, nonatomic) IBOutlet UIView *channelDetailsPage;
 @property (strong, nonatomic) IBOutlet UIView *itTakeAWhilePage;
-@property (strong, nonatomic) IBOutlet UIView *settingsPage;
+@property (strong, nonatomic) IBOutlet UIView *zwaveSettingsPage;
 @property (strong, nonatomic) IBOutlet UIView *successInfoPage;
 @property (weak, nonatomic) IBOutlet UIImageView *errorIcon;
 @property (weak, nonatomic) IBOutlet UILabel *errorMessage;
@@ -72,6 +73,7 @@ static SAZWaveConfigurationWizardVC *_zwaveConfigurationWizardGlobalRef = nil;
     NSMutableArray *_channelBasicCfgList;
     NSMutableArray *_channelBasicCfgToFetch;
     NSMutableArray *_functionList;
+    NSMutableArray *_nodeList;
     
     NSNumber *_selectedDeviceId;
     SAChannel *_selectedChannel;
@@ -86,7 +88,8 @@ static SAZWaveConfigurationWizardVC *_zwaveConfigurationWizardGlobalRef = nil;
     _channelBasicCfgToFetch = [[NSMutableArray alloc] init];
     _channelBasicCfgList = [[NSMutableArray alloc] init];
     _functionList = [[NSMutableArray alloc] init];
-
+    _nodeList = [[NSMutableArray alloc] init];
+    
     self.pfBridge.pf_delegate = self;
     self.pfChannel.pf_delegate = self;
     self.pfFunction.pf_delegate = self;
@@ -107,6 +110,10 @@ static SAZWaveConfigurationWizardVC *_zwaveConfigurationWizardGlobalRef = nil;
     [[NSNotificationCenter defaultCenter]
      addObserver:self selector:@selector(onChannelCaptionSetResult:)
      name:kSAOnChannelCaptionSetResult object:nil];
+    
+    [[NSNotificationCenter defaultCenter]
+     addObserver:self selector:@selector(onChannelFunctionSetResult:)
+     name:kSAOnChannelFunctionSetResult object:nil];
 }
 
 -(void)viewWillDisappear:(BOOL)animated {
@@ -177,13 +184,84 @@ static SAZWaveConfigurationWizardVC *_zwaveConfigurationWizardGlobalRef = nil;
     }
 }
 
+-(void)_onChannelFunctionSetResult:(SAChannelFunctionSetResult *)result {
+    [self watchdogDeactivate];
+    
+    if (result == nil || result.resultCode != SUPLA_RESULTCODE_TRUE) {
+        int code = result ? result.resultCode : -1;
+        NSString *errStr = nil;
+        
+        switch (code) {
+            case SUPLA_RESULTCODE_DENY_CHANNEL_BELONG_TO_GROUP:
+                errStr = @"You cannot change the function of a channel that belongs to a group.";
+                break;
+            case SUPLA_RESULTCODE_DENY_CHANNEL_HAS_SCHEDULE:
+                errStr = @"You cannot change the function of a channel that has a schedule.";
+                break;
+            case SUPLA_RESULTCODE_DENY_CHANNEL_IS_ASSOCIETED_WITH_SCENE:
+                errStr = @"You cannot change the function of a channel that is associated with a scene.";
+                break;
+        }
+        
+        if (errStr == nil) {
+            errStr = [NSString stringWithFormat:NSLocalizedString(@"The channel function change failed. Code %i", nil), code];
+        }
+        
+        [self showError:ERROR_TYPE_OTHER withMessage:errStr];
+        return;
+    }
+    
+    if (result.function == 0) {
+        [[SAApp UI] showMainVC];
+    } else {
+        [self fetchChannelBasicCfg:result.remoteId];
+        
+        if (_nodeList.count == 0) {
+            self.page = self.itTakeAWhilePage;
+        } else {
+            self.page = self.zwaveSettingsPage;
+        }
+    }
+}
+
+-(void)onChannelFunctionSetResult:(NSNotification *)notification {
+    [self watchdogDeactivate];
+    [self _onChannelFunctionSetResult:[SAChannelFunctionSetResult notificationToCaptionSetResult:notification]];
+}
+
+- (void)applyChannelFunctionChange {
+    
+    SAChannelBasicCfg *cfg = [self selectedChannelBasicCfg];
+    if (cfg == nil) {
+        return;
+    }
+    
+    self.btnNextEnabled = NO;
+    self.btnCancelOrBackEnabled = NO;
+    self.preloaderVisible = YES;
+    
+    if (_selectedFunc == cfg.channelFunc) {
+        SAChannelFunctionSetResult *result =
+        [[SAChannelFunctionSetResult alloc] initWithRemoteId:cfg.channelId
+         resultCode:SUPLA_RESULTCODE_TRUE function:cfg.channelFunc];
+        
+        [self _onChannelFunctionSetResult:result];
+    } else {
+        [self watchdogActivateWithTime:SET_CHANNEL_FUNCTION_TIMEOUT_SEC
+                        timeoutMessage:@"The waiting time for changing the channel function has expired."
+                                calCfg:NO];
+        
+       [SAApp.SuplaClient setFunction:_selectedFunc forChannelId:_selectedChannel.remote_id];
+    }
+}
+
 -(void)onChannelCaptionSetResult:(NSNotification *)notification {
     [self watchdogDeactivate];
     
     SAChannelCaptionSetResult *result = [SAChannelCaptionSetResult notificationToCaptionSetResult:notification];
     if (result) {
         if (result.resultCode == SUPLA_RESULTCODE_TRUE) {
-            
+            [self applyChannelFunctionChange];
         } else {
             NSString *errMsg = [NSString stringWithFormat:
                                 NSLocalizedString(@"The channel caption change failed. Code %i", nil),
@@ -193,6 +271,30 @@ static SAZWaveConfigurationWizardVC *_zwaveConfigurationWizardGlobalRef = nil;
 
     }
 }
+
+
+- (void)applyChannelCaptionChange {
+    SAChannelBasicCfg *cfg = [self selectedChannelBasicCfg];
+    if (cfg == nil) {
+        return;
+    }
+    
+    self.btnNextEnabled = NO;
+    self.btnCancelOrBackEnabled = NO;
+    self.preloaderVisible = YES;
+    
+    if ([self.tfCaption.text isEqual:cfg.channelCaption]) {
+        [self applyChannelFunctionChange];
+    } else {
+        [self watchdogActivateWithTime:SET_CHANNEL_CAPTION_TIMEOUT_SEC
+                        timeoutMessage:@"The waiting time for changing the channel function has expired."
+                                calCfg:NO];
+        
+        [SAApp.SuplaClient setChannelCaption:_selectedChannel.remote_id caption:self.tfCaption.text];
+    }
+    
+}
+
 
 - (void)hideInfoMessage {
     
@@ -327,6 +429,8 @@ static SAZWaveConfigurationWizardVC *_zwaveConfigurationWizardGlobalRef = nil;
 - (void)setPage:(UIView *)page {
     [super setPage:page];
     
+    self.btnNextEnabled = YES;
+    self.btnCancelOrBackEnabled = YES;
     self.backButtonInsteadOfCancel = page != self.welcomePage;
     
     if (page == self.errorPage) {
@@ -337,10 +441,7 @@ static SAZWaveConfigurationWizardVC *_zwaveConfigurationWizardGlobalRef = nil;
         self.btnNextTitle = NSLocalizedString(@"Next", nil) ;
     }
     
-    if (page == self.errorPage) {
-        self.btnNextEnabled = YES;
-        self.btnCancelOrBackEnabled = YES;
-    } else if (page == self.channelSelectionPage) {
+    if (page == self.channelSelectionPage) {
         [self loadChannelList];
     } else if (page == self.channelDetailsPage) {
         [self updateChannelDetailsPageWithBasicCfg:nil];
@@ -403,26 +504,6 @@ static SAZWaveConfigurationWizardVC *_zwaveConfigurationWizardGlobalRef = nil;
     return nil;
 }
 
-- (void)applyChannelCaptionChange {
-    SAChannelBasicCfg *cfg = [self selectedChannelBasicCfg];
-    if (cfg == nil) {
-        return;
-    }
-    
-    self.preloaderVisible = YES;
-    
-    if ([self.tfCaption.text isEqual:cfg.channelCaption]) {
-        NSLog(@"EQUAL");
-    } else {
-        [self watchdogActivateWithTime:SET_CHANNEL_CAPTION_TIMEOUT_SEC
-                        timeoutMessage:@"The waiting time for changing the channel function has expired."
-                                calCfg:NO];
-        
-        [SAApp.SuplaClient setChannelCaption:_selectedChannel.remote_id caption:self.tfCaption.text];
-    }
-    
-}
-
 - (IBAction)nextTouch:(nullable id)sender {
     [super nextTouch:sender];
     
@@ -435,6 +516,8 @@ static SAZWaveConfigurationWizardVC *_zwaveConfigurationWizardGlobalRef = nil;
         self.page = self.channelDetailsPage;
     } else if (self.page == self.channelDetailsPage) {
         [self applyChannelCaptionChange];
+    } else if (self.page == self.itTakeAWhilePage) {
+        self.page = self.zwaveSettingsPage;
     }
 }
 
@@ -453,6 +536,9 @@ static SAZWaveConfigurationWizardVC *_zwaveConfigurationWizardGlobalRef = nil;
         self.page = self.welcomePage;
     } else if (self.page == self.channelDetailsPage) {
         self.page = self.channelSelectionPage;
+    } else if (self.page == self.itTakeAWhilePage
+               || self.page == self.zwaveSettingsPage) {
+        self.page = self.channelDetailsPage;
     }
 }
 

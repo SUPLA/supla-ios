@@ -226,3 +226,8 @@
 "Thermostat" = "Termostat";
 "The waiting time for changing the channel caption has expired." = "Upłynął czas oczekiwania na zmianę podpisu kanału.";
 "The channel caption change failed. Code %i" = "Zmiana podpisu kanału zakończona niepowodzeniem. Kod %i";
+"You cannot change the function of a channel that belongs to a group." = "Nie można zmienić funkcji kanału, który należy do grupy.";
+"You cannot change the function of a channel that has a schedule." = "Nie można zmienić funkcji kanału, który posiada harmonogram.";
+"You cannot change the function of a channel that is associated with a scene." = "Nie można zmienić funkcji kanału, który jest powiązany ze sceną.";
+"The channel function change failed. Code %i" = "Zmiana funkcji kanału zakończona niepowodzeniem. Kod %i";
+"The waiting time for changing the channel function has expired." = "Upłynął czas oczekiwania na zmianę funkcji kanału.";

@@ -164,3 +164,8 @@
 "Valve" = "Klep";
 "The waiting time for changing the channel caption has expired." = "De wachttijd voor de verandering van de kanaalhandtekening is verstreken.";
 "The channel caption change failed. Code %i" = "Kan kanaalhandtekening niet wijzigen. Code %i";
+"You cannot change the function of a channel that belongs to a group." = "U kunt de functie van een kanaal dat bij een groep hoort niet veranderen.";
+"You cannot change the function of a channel that has a schedule." = "U kunt de functie van een kanaal met een schema niet wijzigen.";
+"You cannot change the function of a channel that is associated with a scene." = "U kunt de functie van het kanaal dat gerelateerd is aan de scène niet wijzigen.";
+"The channel function change failed. Code %i" = "Verandering van kanaalfunctie is mislukt. Code %i";
+"The waiting time for changing the channel function has expired." = "De wachttijd voor het wijzigen van de kanaalfunctie is verstreken.";

@@ -164,3 +164,8 @@
 "Valve" = "Ventil";
 "The waiting time for changing the channel caption has expired." = "Ventetiden for endringen av kanalens signatur er utløpt.";
 "The channel caption change failed. Code %i" = "Kunne ikke endre kanalens signatur. Kode %i";
+"You cannot change the function of a channel that belongs to a group." = "Du kan ikke endre funksjonen til en kanal som tilhører en gruppe.";
+"You cannot change the function of a channel that has a schedule." = "Du kan ikke endre funksjonen til en kanal som har en tidsplan.";
+"You cannot change the function of a channel that is associated with a scene." = "Du kan ikke endre funksjonen til en kanal som er tilknyttet en scene.";
+"The channel function change failed. Code %i" = "Kunne ikke endre kanalens funksjon. Kode %i";
+"The waiting time for changing the channel function has expired." = "Ventetiden for endringen av kanalens funksjon er utløpt.";

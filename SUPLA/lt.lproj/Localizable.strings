@@ -166,3 +166,8 @@
 "Valve" = "Vožtuvas";
 "The waiting time for changing the channel caption has expired." = "Baigėsi kanalo parašo keitimo laukimo laikas.";
 "The channel caption change failed. Code %i" = "Kanalo parašo pakeitimas nepavyko. Kodas %i";
+"You cannot change the function of a channel that belongs to a group." = "Negalima pakeisti kanalo, kuris priklauso grupei, funkcijų.";
+"You cannot change the function of a channel that has a schedule." = "Negalima pakeisti kanalo, kuris turi tvarkaraštį, funkcijų.";
+"You cannot change the function of a channel that is associated with a scene." = "Negalima pakeisti kanalo, kuris susietas su scena, funkcijų.";
+"The channel function change failed. Code %i" = "Kanalo funkcijos pakeitimas nepavyko. Kodas %i";
+"The waiting time for changing the channel function has expired." = "Baigėsi kanalo funkcijų keitimo laukimo laikas.";
