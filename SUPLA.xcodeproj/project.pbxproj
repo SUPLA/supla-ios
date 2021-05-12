@@ -21,6 +21,9 @@
 		011021CE25CC3A6F00621D41 /* SACalCfgResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 011021CD25CC3A6F00621D41 /* SACalCfgResult.m */; };
 		011021D325CC4DE700621D41 /* SAChannelBasicCfg.m in Sources */ = {isa = PBXBuildFile; fileRef = 011021D225CC4DE700621D41 /* SAChannelBasicCfg.m */; };
 		0111E924263F374800302356 /* UIColor+SUPLA.m in Sources */ = {isa = PBXBuildFile; fileRef = 0111E923263F374800302356 /* UIColor+SUPLA.m */; };
+		01147CE4264BE317002B2E1C /* SAChannelFunctionSetResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 01147CE3264BE317002B2E1C /* SAChannelFunctionSetResult.m */; };
+		01147CE9264C09D8002B2E1C /* powerstation@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 01147CE7264C09D7002B2E1C /* powerstation@3x.png */; };
+		01147CEA264C09D8002B2E1C /* powerstation@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 01147CE8264C09D8002B2E1C /* powerstation@2x.png */; };
 		01199C8324C34AC50062454B /* SAChannelStatePopup.m in Sources */ = {isa = PBXBuildFile; fileRef = 01199C8224C34AC50062454B /* SAChannelStatePopup.m */; };
 		011E736824A1367B004D99EE /* SAVLCalibrationTool.xib in Resources */ = {isa = PBXBuildFile; fileRef = 011E736A24A1367B004D99EE /* SAVLCalibrationTool.xib */; };
 		012023C2234E54ED00E131B7 /* ImpulseCounterDetailView.m in Sources */ = {isa = PBXBuildFile; fileRef = 012023C1234E54ED00E131B7 /* ImpulseCounterDetailView.m */; };
@@ -147,6 +150,7 @@
 		019F4CCD23577C3700286139 /* SAImpulseCounterChartHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 019F4CCC23577C3700286139 /* SAImpulseCounterChartHelper.m */; };
 		019F848425F7C0F800A18C3B /* SACaptionEditor.xib in Resources */ = {isa = PBXBuildFile; fileRef = 019F848225F7C0F800A18C3B /* SACaptionEditor.xib */; };
 		019F848525F7C0F800A18C3B /* SAZWaveConfigurationWizardVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 019F848325F7C0F800A18C3B /* SAZWaveConfigurationWizardVC.xib */; };
+		01A195E2264B264A006D2A20 /* SAChannelCaptionSetResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 01A195E1264B264A006D2A20 /* SAChannelCaptionSetResult.m */; };
 		01A66A7525364AA400C00A1A /* SARoofWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 01A66A7425364AA400C00A1A /* SARoofWindowController.m */; };
 		01A66A7925364ABA00C00A1A /* SARoofWindowControllerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 01A66A7825364ABA00C00A1A /* SARoofWindowControllerTests.m */; };
 		01AB61E925B8E08E00DBEF74 /* SADigiglassController.m in Sources */ = {isa = PBXBuildFile; fileRef = 01AB61E825B8E08E00DBEF74 /* SADigiglassController.m */; };
@@ -205,6 +209,7 @@
 		01D6A109249C0F40006B3757 /* vlrestore@3.png in Resources */ = {isa = PBXBuildFile; fileRef = 01D6A107249C0F40006B3757 /* vlrestore@3.png */; };
 		01DD2F0C247718C40025DFF9 /* SARangeCalibrationWheelTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 01DD2F0B247718C40025DFF9 /* SARangeCalibrationWheelTests.m */; };
 		01DD2F0F247719000025DFF9 /* SARangeCalibrationWheel.m in Sources */ = {isa = PBXBuildFile; fileRef = 01DD2F0D247718FF0025DFF9 /* SARangeCalibrationWheel.m */; };
+		01E2B0822649E158003694EC /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 01E2B0812649E158003694EC /* SystemConfiguration.framework */; };
 		01E3966E25A78B8B00A0DB18 /* SADimmerCalibrationTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 01E3966D25A78B8B00A0DB18 /* SADimmerCalibrationTool.m */; };
 		01E517C322C6AC1E000FE77A /* SADownloadIncrementalMeasurements.m in Sources */ = {isa = PBXBuildFile; fileRef = 01E517C222C6AC1E000FE77A /* SADownloadIncrementalMeasurements.m */; };
 		01E517C622C6AD7D000FE77A /* SADownloadMeasurements.m in Sources */ = {isa = PBXBuildFile; fileRef = 01E517C522C6AD7D000FE77A /* SADownloadMeasurements.m */; };
@@ -510,6 +515,10 @@
 		011021D225CC4DE700621D41 /* SAChannelBasicCfg.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SAChannelBasicCfg.m; sourceTree = "<group>"; };
 		0111E922263F374800302356 /* UIColor+SUPLA.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIColor+SUPLA.h"; sourceTree = "<group>"; };
 		0111E923263F374800302356 /* UIColor+SUPLA.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIColor+SUPLA.m"; sourceTree = "<group>"; };
+		01147CE2264BE317002B2E1C /* SAChannelFunctionSetResult.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SAChannelFunctionSetResult.h; sourceTree = "<group>"; };
+		01147CE3264BE317002B2E1C /* SAChannelFunctionSetResult.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SAChannelFunctionSetResult.m; sourceTree = "<group>"; };
+		01147CE7264C09D7002B2E1C /* powerstation@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "powerstation@3x.png"; path = "Resources/Assets/Img/powerstation@3x.png"; sourceTree = "<group>"; };
+		01147CE8264C09D8002B2E1C /* powerstation@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "powerstation@2x.png"; path = "Resources/Assets/Img/powerstation@2x.png"; sourceTree = "<group>"; };
 		0117290024746D8100DAF1D0 /* pl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pl; path = pl.lproj/ElectricityMeterDetailView.strings; sourceTree = "<group>"; };
 		01172903247473E200DAF1D0 /* SUPLA 6.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "SUPLA 6.xcdatamodel"; sourceTree = "<group>"; };
 		01199C8124C34AC50062454B /* SAChannelStatePopup.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SAChannelStatePopup.h; sourceTree = "<group>"; };
@@ -731,6 +740,8 @@
 		019F4CCC23577C3700286139 /* SAImpulseCounterChartHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SAImpulseCounterChartHelper.m; sourceTree = "<group>"; };
 		019F848225F7C0F800A18C3B /* SACaptionEditor.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SACaptionEditor.xib; sourceTree = "<group>"; };
 		019F848325F7C0F800A18C3B /* SAZWaveConfigurationWizardVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SAZWaveConfigurationWizardVC.xib; sourceTree = "<group>"; };
+		01A195E0264B264A006D2A20 /* SAChannelCaptionSetResult.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SAChannelCaptionSetResult.h; sourceTree = "<group>"; };
+		01A195E1264B264A006D2A20 /* SAChannelCaptionSetResult.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SAChannelCaptionSetResult.m; sourceTree = "<group>"; };
 		01A66A7325364AA400C00A1A /* SARoofWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SARoofWindowController.h; sourceTree = "<group>"; };
 		01A66A7425364AA400C00A1A /* SARoofWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SARoofWindowController.m; sourceTree = "<group>"; };
 		01A66A7825364ABA00C00A1A /* SARoofWindowControllerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SARoofWindowControllerTests.m; sourceTree = "<group>"; };
@@ -878,6 +889,7 @@
 		01DD2F0B247718C40025DFF9 /* SARangeCalibrationWheelTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SARangeCalibrationWheelTests.m; sourceTree = "<group>"; };
 		01DD2F0D247718FF0025DFF9 /* SARangeCalibrationWheel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SARangeCalibrationWheel.m; sourceTree = "<group>"; };
 		01DD2F0E247718FF0025DFF9 /* SARangeCalibrationWheel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SARangeCalibrationWheel.h; sourceTree = "<group>"; };
+		01E2B0812649E158003694EC /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		01E3966C25A78B8B00A0DB18 /* SADimmerCalibrationTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SADimmerCalibrationTool.h; sourceTree = "<group>"; };
 		01E3966D25A78B8B00A0DB18 /* SADimmerCalibrationTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SADimmerCalibrationTool.m; sourceTree = "<group>"; };
 		01E517C122C6AC1E000FE77A /* SADownloadIncrementalMeasurements.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SADownloadIncrementalMeasurements.h; sourceTree = "<group>"; };
@@ -1270,6 +1282,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				40E8BE8D1FC06B4200FB2FE6 /* libxml2.tbd in Frameworks */,
+				01E2B0822649E158003694EC /* SystemConfiguration.framework in Frameworks */,
 				407ECDC21DAFBB9600F01C7E /* AudioToolbox.framework in Frameworks */,
 				40B397D81BCEA25700BE7D5A /* CFNetwork.framework in Frameworks */,
 				401CA1ED1BA069CF00117AF4 /* libssl.a in Frameworks */,
@@ -1520,6 +1533,10 @@
 				401CA1F01BA0A28A00117AF4 /* SuplaClient.h */,
 				011021C725CC39FB00621D41 /* SASuperuserAuthorizationResult.h */,
 				011021CC25CC3A6F00621D41 /* SACalCfgResult.h */,
+				01A195E0264B264A006D2A20 /* SAChannelCaptionSetResult.h */,
+				01A195E1264B264A006D2A20 /* SAChannelCaptionSetResult.m */,
+				01147CE2264BE317002B2E1C /* SAChannelFunctionSetResult.h */,
+				01147CE3264BE317002B2E1C /* SAChannelFunctionSetResult.m */,
 				011021CD25CC3A6F00621D41 /* SACalCfgResult.m */,
 				011021C825CC39FB00621D41 /* SASuperuserAuthorizationResult.m */,
 				011021C225CC39AC00621D41 /* SARegistrationEnabled.h */,
@@ -1562,6 +1579,8 @@
 		405AC4011BC15878004F7311 /* Img */ = {
 			isa = PBXGroup;
 			children = (
+				01147CE8264C09D8002B2E1C /* powerstation@2x.png */,
+				01147CE7264C09D7002B2E1C /* powerstation@3x.png */,
 				0167C440260CD80700732220 /* garagedoor-closed-50percent@2x.png */,
 				0167C441260CD80700732220 /* garagedoor-closed-50percent@3x.png */,
 				011021AD25CC337500621D41 /* bridge_disconnected@3x.png */,
@@ -1937,6 +1956,7 @@
 		407ECDC01DAFBB9600F01C7E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				01E2B0812649E158003694EC /* SystemConfiguration.framework */,
 				0163D0CC257EE483006C73CB /* NetworkExtension.framework */,
 				40E8BE8B1FC06B2000FB2FE6 /* libxml2.tbd */,
 				407ECDC11DAFBB9600F01C7E /* AudioToolbox.framework */,
@@ -2181,6 +2201,7 @@
 				4052DA0D1DC515AE000B8C45 /* rgb-off@2x.png in Resources */,
 				40CE7C6B1DCBBD5700BBACE4 /* depth@2x.png in Resources */,
 				40DE1A2D1BCCFF8A004CF43B /* settings@2x.png in Resources */,
+				01147CE9264C09D8002B2E1C /* powerstation@3x.png in Resources */,
 				012119152368C3B2004C1993 /* collapsed@3x.png in Resources */,
 				012BD7262499173600E64F25 /* rgbwpoweroff@3x.png in Resources */,
 				0182FCA92464691D00270CDC /* channel_warning_level1@2x.png in Resources */,
@@ -2445,6 +2466,7 @@
 				405C49A01FCAFFD400C15602 /* wizard_error@2x.png in Resources */,
 				407D31941FD1A7070062FB80 /* AddWizardVC.xib in Resources */,
 				018574262411234B00CEDF16 /* heatmeter@2x.png in Resources */,
+				01147CEA264C09D8002B2E1C /* powerstation@2x.png in Resources */,
 				4052DA021DC515AE000B8C45 /* dimmerrgb-offon@3x.png in Resources */,
 				40CF96AE1BC7D4E70030EFFF /* garagedoor-closed@2x.png in Resources */,
 				017A3CAF23635DF7004AD1FC /* rain@2x.png in Resources */,
@@ -2578,6 +2600,7 @@
 				404749BD20BC6070005DA345 /* SAChannel+CoreDataClass.m in Sources */,
 				404749BC20BC6058005DA345 /* SAColorListItem+CoreDataClass.m in Sources */,
 				40E8BE891FC06A5600FB2FE6 /* TFHppleElement.m in Sources */,
+				01A195E2264B264A006D2A20 /* SAChannelCaptionSetResult.m in Sources */,
 				01C1719922C7F55B005983E1 /* SAMeasurementItem+CoreDataClass.m in Sources */,
 				019170A1233D4D5A00820BDB /* SADownloadThermostatMeasurements.m in Sources */,
 				019D22F0233CC2D000F17135 /* SAPreloader.m in Sources */,
@@ -2628,6 +2651,7 @@
 				01E3966E25A78B8B00A0DB18 /* SADimmerCalibrationTool.m in Sources */,
 				01392B3A235CA8B1003A2BAD /* ChartDetailView.m in Sources */,
 				01567446232FCFD700397393 /* SAIncrementalMeterExtendedValue.m in Sources */,
+				01147CE4264BE317002B2E1C /* SAChannelFunctionSetResult.m in Sources */,
 				017554F622F1A62500EB58B7 /* HomePlusDetailView.m in Sources */,
 				40A675831BA1BE8E004A51C4 /* SettingsVC.m in Sources */,
 				013D1C6322CE75A3000C0784 /* SAElectricityChartHelper.m in Sources */,

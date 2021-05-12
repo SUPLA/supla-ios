@@ -648,6 +648,10 @@
             
         case SUPLA_CHANNELFNC_ELECTRICITY_METER:
         case SUPLA_CHANNELFNC_IC_ELECTRICITY_METER:
+            switch(self.alticon) {
+                case 1:
+                    return [UIImage imageNamed:@"powerstation"];
+            }
             return [UIImage imageNamed:@"electricitymeter"];
             
         case SUPLA_CHANNELFNC_IC_GAS_METER:
