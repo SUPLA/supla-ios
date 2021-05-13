@@ -23,6 +23,8 @@
 #import "SAChannelCaptionSetResult.h"
 #import "SAChannelFunctionSetResult.h"
 #import "SAPickerField.h"
+#import "SACalCfgResult.h"
+#import "SAZWaveAssignedNodeIdResult.h"
 
 #define ERROR_TYPE_TIMEOUT 1
 #define ERROR_TYPE_DISCONNECTED 2
@@ -38,6 +40,8 @@
 #define SET_CHANNEL_CAPTION_TIMEOUT_SEC 5
 #define ASSIGN_NODE_ID_TIMEOUT_SEC 15
 #define GET_NODE_LIST_TIMEOUT_SEC 250
+
+#define PRELOADER_DOT_COUNT 8
 
 static SAZWaveConfigurationWizardVC *_zwaveConfigurationWizardGlobalRef = nil;
 
@@ -60,12 +64,22 @@ static SAZWaveConfigurationWizardVC *_zwaveConfigurationWizardGlobalRef = nil;
 @property (weak, nonatomic) IBOutlet UILabel *lChannelNumber;
 @property (weak, nonatomic) IBOutlet SAPickerField *pfFunction;
 @property (weak, nonatomic) IBOutlet UITextField *tfCaption;
+@property (weak, nonatomic) IBOutlet UILabel *lSelectedChannel;
+@property (weak, nonatomic) IBOutlet SAPickerField *pfNodeList;
+@property (weak, nonatomic) IBOutlet UILabel *lInfo;
+@property (weak, nonatomic) IBOutlet UIButton *btnlAdd;
+@property (weak, nonatomic) IBOutlet UIButton *btnrAdd;
+@property (weak, nonatomic) IBOutlet UIButton *btnlDelete;
+@property (weak, nonatomic) IBOutlet UIButton *btnrDelete;
+@property (weak, nonatomic) IBOutlet UIButton *btnlReset;
+@property (weak, nonatomic) IBOutlet UIButton *btnrReset;
 
 @end
 
 @implementation SAZWaveConfigurationWizardVC {
     NSTimer *_anyCalCfgResultWatchdogTimer;
     NSTimer *_watchdogTimer;
+    NSTimer *_waitMessagePreloaderTimer;
     NSMutableArray *_deviceList;
     NSMutableArray *_devicesToRestart;
     NSMutableArray *_deviceChannelList;
@@ -78,6 +92,8 @@ static SAZWaveConfigurationWizardVC *_zwaveConfigurationWizardGlobalRef = nil;
     NSNumber *_selectedDeviceId;
     SAChannel *_selectedChannel;
     int _selectedFunc;
+    int _progress;
+    int _preloaderVisibleDotCount;
 }
 
 - (void)viewDidLoad {
@@ -114,6 +130,11 @@ static SAZWaveConfigurationWizardVC *_zwaveConfigurationWizardGlobalRef = nil;
     [[NSNotificationCenter defaultCenter]
      addObserver:self selector:@selector(onChannelFunctionSetResult:)
      name:kSAOnChannelFunctionSetResult object:nil];
+
+    [[NSNotificationCenter defaultCenter]
+     addObserver:self selector:@selector(onZWaveAssignedNodeIdResult:)
+     name:kSAOnZWaveAssignedNodeIdResult object:nil];
+    
 }
 
 -(void)viewWillDisappear:(BOOL)animated {
@@ -140,7 +161,25 @@ static SAZWaveConfigurationWizardVC *_zwaveConfigurationWizardGlobalRef = nil;
 }
 
 -(void)onCalCfgResult:(NSNotification *)notification {
-   // SACalCfgResult *result = [SACalCfgResult notificationToDeviceCalCfgResult:notification];
+    SACalCfgResult *result = [SACalCfgResult notificationToDeviceCalCfgResult:notification];
+    if (result == nil) {
+        return;
+    }
+    
+    if (result.command != SUPLA_CALCFG_CMD_DEBUG_STRING) {
+        NSLog(@"onCalCfg: %i,%i,%i,%lu",
+              result.channelID,
+              result.command,
+              result.result,
+              (unsigned long)(result.data ? result.data.length : 0));
+    }
+    
+    if (_selectedChannel) {
+        SAChannel *channel = [SAApp.DB fetchChannelById:result.channelID];
+        if (channel && channel.device_id == _selectedChannel.device_id) {
+            [self anyCalCfgResultWatchdogDeactivate];
+        }
+    }
 }
 
 -(void)onChannelBasicCfg:(NSNotification *)notification {
@@ -229,6 +268,55 @@ static SAZWaveConfigurationWizardVC *_zwaveConfigurationWizardGlobalRef = nil;
     [self _onChannelFunctionSetResult:[SAChannelFunctionSetResult notificationToCaptionSetResult:notification]];
 }
 
+-(BOOL)timeoutResultNotDisplayedWithCode:(int) resultCode {
+    if (resultCode == SUPLA_CALCFG_RESULT_TIMEOUT
+        && _watchdogTimer
+        && _watchdogTimer.userInfo) {
+        [self showError:ERROR_TYPE_TIMEOUT withMessage:_watchdogTimer.userInfo];
+        return NO;
+    }
+    return YES;
+}
+
+-(void)showUnexpectedResponseWithResultCode:(int) resultCode {
+    
+    NSString *method;
+    @try {
+        NSString *sourceString = [[NSThread callStackSymbols] objectAtIndex:1];
+        NSCharacterSet *separatorSet = [NSCharacterSet characterSetWithCharactersInString:@" -[]+?.,"];
+        NSMutableArray *array = [NSMutableArray
+                                 arrayWithArray:[sourceString
+                                                 componentsSeparatedByCharactersInSet:separatorSet]];
+        [array removeObject:@""];
+        method = [array objectAtIndex:4];
+    } @catch ( NSException *e ) {
+        method = @"???";
+    }
+
+    NSString *errMsg = [NSString stringWithFormat:
+                        NSLocalizedString(@"Device response not as expected. Method: \"%@\" Code: %i", nil),
+                        method, resultCode];
+    [self showError:ERROR_TYPE_OTHER withMessage:errMsg];
+
+}
+
+-(void)onZWaveAssignedNodeIdResult:(NSNotification *)notification {
+    SAZWaveAssignedNodeIdResult *result = [SAZWaveAssignedNodeIdResult notificationToAssignedNodeIdResult:notification];
+    if (result == nil
+        || result.resultCode == SUPLA_CALCFG_RESULT_IN_PROGRESS) {
+        return;
+    }
+        
+    if (result.resultCode != SUPLA_CALCFG_RESULT_TRUE) {
+        if ([self timeoutResultNotDisplayedWithCode:result.resultCode]) {
+            [self showUnexpectedResponseWithResultCode:result.resultCode];
+        }
+        return;
+    }
+    
+    [self watchdogDeactivate];
+}
+
 - (void)applyChannelFunctionChange {
     
     SAChannelBasicCfg *cfg = [self selectedChannelBasicCfg];
@@ -292,11 +380,6 @@ static SAZWaveConfigurationWizardVC *_zwaveConfigurationWizardGlobalRef = nil;
         
         [SAApp.SuplaClient setChannelCaption:_selectedChannel.remote_id caption:self.tfCaption.text];
     }
-    
-}
-
-
-- (void)hideInfoMessage {
     
 }
 
@@ -387,6 +470,63 @@ static SAZWaveConfigurationWizardVC *_zwaveConfigurationWizardGlobalRef = nil;
                                               repeats:NO];
 }
 
+- (void)hideInfoMessage {
+    if (_waitMessagePreloaderTimer) {
+        [_waitMessagePreloaderTimer invalidate];
+        _waitMessagePreloaderTimer = nil;
+    }
+    
+    self.lInfo.hidden = YES;
+}
+
+- (void)showInfoMessage:(NSString *)msg {
+    [self.lInfo setText:NSLocalizedString(msg, nil)];
+    self.lInfo.hidden = NO;
+}
+
+- (void)onWaitMessagePreloaderTimer:(NSTimer*)timer {
+    NSString *msg = [timer.userInfo objectAtIndex:0];
+    NSNumber *progress = [timer.userInfo objectAtIndex:1];
+    
+    if ([progress boolValue]) {
+        msg = [NSString stringWithFormat:@"%@ %i%% ", msg, _progress];
+    }
+    
+    for(int a=0;a<PRELOADER_DOT_COUNT;a++) {
+        msg = [NSString stringWithFormat:@"%@.", msg];
+    }
+    
+    NSMutableAttributedString *attrTxt = [[NSMutableAttributedString alloc]
+                                          initWithString:msg];
+    
+    int pos = (int)msg.length - (PRELOADER_DOT_COUNT - _preloaderVisibleDotCount);
+    [attrTxt addAttribute:NSForegroundColorAttributeName
+                 value:self.lInfo.backgroundColor
+                 range:NSMakeRange(pos, msg.length-pos)];
+    
+    _preloaderVisibleDotCount++;
+    if (_preloaderVisibleDotCount > PRELOADER_DOT_COUNT) {
+        _preloaderVisibleDotCount = 0;
+    }
+    
+    [self.lInfo setAttributedText:attrTxt];
+    
+}
+
+- (void)showWaitMessage:(NSString*)msg withTimeout:(int)timeout
+         timeoutMessage:(NSString *)timeoutMessage showProgress:(BOOL)progress {
+    [self hideInfoMessage];
+    [self showInfoMessage:msg];
+    
+    _waitMessagePreloaderTimer = [NSTimer scheduledTimerWithTimeInterval:0.2
+                                            target:self
+                                            selector:@selector(onWaitMessagePreloaderTimer:)
+                                            userInfo:@[msg, [NSNumber numberWithBool:progress]]
+                                            repeats:YES];
+    
+    [self watchdogActivateWithTime:timeout timeoutMessage:timeoutMessage calCfg:YES];
+}
+
 - (void)fetchChannelBasicCfg:(int)channelId {
     if (channelId == 0
         && _channelBasicCfgToFetch.count) {
@@ -426,6 +566,19 @@ static SAZWaveConfigurationWizardVC *_zwaveConfigurationWizardGlobalRef = nil;
     [self fetchChannelBasicCfg:0];
 }
 
+- (void)zwaveNodeListRequest {
+    if (_selectedChannel == nil) {
+        return;
+    }
+    
+    [self showWaitMessage: @"Searching the z-wave network to build a list of devices."
+          withTimeout: GET_ASSIGNED_NODE_ID_TIMEOUT_SEC
+          timeoutMessage:@"The waiting time for the ID of the assigned z-wave device has expired."
+          showProgress:YES];
+    
+    [SAApp.SuplaClient zwaveGetAssignedNodeIdForChannelId:_selectedChannel.remote_id];
+}
+
 - (void)setPage:(UIView *)page {
     [super setPage:page];
     
@@ -445,6 +598,8 @@ static SAZWaveConfigurationWizardVC *_zwaveConfigurationWizardGlobalRef = nil;
         [self loadChannelList];
     } else if (page == self.channelDetailsPage) {
         [self updateChannelDetailsPageWithBasicCfg:nil];
+    } else if (page == self.zwaveSettingsPage) {
+        [self zwaveNodeListRequest];
     }
 }
 
@@ -656,6 +811,15 @@ static SAZWaveConfigurationWizardVC *_zwaveConfigurationWizardGlobalRef = nil;
     }
 
     return result;
+}
+
+- (IBAction)btnAddTouch:(id)sender {
+}
+
+- (IBAction)btnDeleteTouch:(id)sender {
+}
+
+- (IBAction)btnResetTouch:(id)sender {
 }
 
 @end

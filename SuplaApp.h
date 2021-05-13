@@ -94,3 +94,4 @@ extern NSString *kSAOnSetRegistrationEnableResult;
 extern NSString *kSAOnChannelBasicCfg;
 extern NSString *kSAOnChannelCaptionSetResult;
 extern NSString *kSAOnChannelFunctionSetResult;
+extern NSString *kSAOnZWaveAssignedNodeIdResult;

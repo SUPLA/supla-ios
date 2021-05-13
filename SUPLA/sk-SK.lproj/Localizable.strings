@@ -169,3 +169,7 @@
 "You cannot change the function of a channel that is associated with a scene." = "Nedá sa zmeniť funkcia kanálu, ktorý je spojený so scénou.";
 "The channel function change failed. Code %i" = "Zmena funkcie kanálu neúspešná. Kód %i";
 "The waiting time for changing the channel function has expired." = "Bola prekročená lehota čakania na zmenu funkcie.";
+"The z-wave bridge is not responding. Check if the bridge is connected to the server." = "Most z-wave neodpovedá. Skontroluj, či je most spojený so serverom.";
+"Searching the z-wave network to build a list of devices." = "Prehľadávanie siete z-wave s cieľom zostavenia zoznamu zariadení.";
+"The waiting time for the ID of the assigned z-wave device has expired." = "Bola prekročená lehota čakania na identifikátor priradeného zariadenia z-wave.";
+"Device response not as expected. Method: \"%@\" Code: %i" = "Odpoveď zariadenia iná ako očakávaná. Metóda: \"%@\" Kód: %i";

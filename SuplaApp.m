@@ -47,6 +47,7 @@ NSString *kSAOnSetRegistrationEnableResult = @"KSA-N18";
 NSString *kSAOnChannelBasicCfg = @"KSA-N19";
 NSString *kSAOnChannelCaptionSetResult = @"KSA-N20";
 NSString *kSAOnChannelFunctionSetResult = @"KSA-N21";
+NSString *kSAOnZWaveAssignedNodeIdResult = @"KSA-N22";
 
 @implementation SAApp {
     

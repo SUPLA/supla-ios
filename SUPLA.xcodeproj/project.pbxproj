@@ -139,6 +139,7 @@
 		019170A1233D4D5A00820BDB /* SADownloadThermostatMeasurements.m in Sources */ = {isa = PBXBuildFile; fileRef = 019170A0233D4D5A00820BDB /* SADownloadThermostatMeasurements.m */; };
 		019170A4233D67E900820BDB /* SAThermostatChartHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 019170A3233D67E900820BDB /* SAThermostatChartHelper.m */; };
 		01943EBE249D1C8800DA2B8F /* SASuperuserAuthorizationDialog.xib in Resources */ = {isa = PBXBuildFile; fileRef = 01943EC0249D1C8800DA2B8F /* SASuperuserAuthorizationDialog.xib */; };
+		0194D80A264DC8580094A857 /* SAZWaveAssignedNodeIdResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 0194D809264DC8580094A857 /* SAZWaveAssignedNodeIdResult.m */; };
 		0196E82A258CEEEC0016E8DC /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0196E82C258CEEEC0016E8DC /* InfoPlist.strings */; };
 		01996AC1254B6B390034C6F1 /* z_wave_btn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 01996AC0254B6B380034C6F1 /* z_wave_btn@2x.png */; };
 		019D22F0233CC2D000F17135 /* SAPreloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 019D22EF233CC2D000F17135 /* SAPreloader.m */; };
@@ -708,6 +709,8 @@
 		019170A3233D67E900820BDB /* SAThermostatChartHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SAThermostatChartHelper.m; sourceTree = "<group>"; };
 		01943EBF249D1C8800DA2B8F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/SASuperuserAuthorizationDialog.xib; sourceTree = "<group>"; };
 		01943EC2249D1C8D00DA2B8F /* pl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pl; path = pl.lproj/SASuperuserAuthorizationDialog.strings; sourceTree = "<group>"; };
+		0194D808264DC8580094A857 /* SAZWaveAssignedNodeIdResult.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SAZWaveAssignedNodeIdResult.h; sourceTree = "<group>"; };
+		0194D809264DC8580094A857 /* SAZWaveAssignedNodeIdResult.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SAZWaveAssignedNodeIdResult.m; sourceTree = "<group>"; };
 		0196E81D258CD2480016E8DC /* pl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pl; path = pl.lproj/AddWizardVC.strings; sourceTree = "<group>"; };
 		0196E82B258CEEEC0016E8DC /* pl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pl; path = pl.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		01996AC0254B6B380034C6F1 /* z_wave_btn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "z_wave_btn@2x.png"; path = "Resources/Assets/Img/z_wave_btn@2x.png"; sourceTree = "<group>"; };
@@ -1536,6 +1539,8 @@
 				01A195E0264B264A006D2A20 /* SAChannelCaptionSetResult.h */,
 				01A195E1264B264A006D2A20 /* SAChannelCaptionSetResult.m */,
 				01147CE2264BE317002B2E1C /* SAChannelFunctionSetResult.h */,
+				0194D808264DC8580094A857 /* SAZWaveAssignedNodeIdResult.h */,
+				0194D809264DC8580094A857 /* SAZWaveAssignedNodeIdResult.m */,
 				01147CE3264BE317002B2E1C /* SAChannelFunctionSetResult.m */,
 				011021CD25CC3A6F00621D41 /* SACalCfgResult.m */,
 				011021C825CC39FB00621D41 /* SASuperuserAuthorizationResult.m */,
@@ -2623,6 +2628,7 @@
 				0172677D234FAF78000F1CFB /* SADownloadImpulseCounterMeasurements.m in Sources */,
 				01392B37235C91C1003A2BAD /* SADownloadTemperatureMeasurements.m in Sources */,
 				01C1719A22C7F55B005983E1 /* SAMeasurementItem+CoreDataProperties.m in Sources */,
+				0194D80A264DC8580094A857 /* SAZWaveAssignedNodeIdResult.m in Sources */,
 				01433DF8257F8FE20093C5DB /* SAWifi.m in Sources */,
 				01511CFA24F50B470081A1EC /* SAPreloaderPopup.m in Sources */,
 				01A66A7525364AA400C00A1A /* SARoofWindowController.m in Sources */,

@@ -169,3 +169,7 @@
 "You cannot change the function of a channel that is associated with a scene." = "U kunt de functie van het kanaal dat gerelateerd is aan de scène niet wijzigen.";
 "The channel function change failed. Code %i" = "Verandering van kanaalfunctie is mislukt. Code %i";
 "The waiting time for changing the channel function has expired." = "De wachttijd voor het wijzigen van de kanaalfunctie is verstreken.";
+"The z-wave bridge is not responding. Check if the bridge is connected to the server." = "Z-wave brug reageert niet. Controleer of de brug met de server is verbonden.";
+"Searching the z-wave network to build a list of devices." = "Z-wave netwerk zoeken om een apparaatlijst op te bouwen.";
+"The waiting time for the ID of the assigned z-wave device has expired." = "De wachttijd voor de identificatie van het toegewezen Z-wave apparaat is verstreken.";
+"Device response not as expected. Method: \"%@\" Code: %i" = "De reactie van het apparaat is niet zoals verwacht. Methode: \"%@\" Code: %i";

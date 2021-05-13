@@ -170,3 +170,7 @@
 "You cannot change the function of a channel that is associated with a scene." = "Não é possível alterar a função de um canal associado a uma cena.";
 "The channel function change failed. Code %i" = "Falha ao alterar a função do canal. Código %i";
 "The waiting time for changing the channel function has expired." = "O tempo de espera para alterar a função do canal expirou.";
+"The z-wave bridge is not responding. Check if the bridge is connected to the server." = "A ponte z-wave não responde. Verifique se a ponte está conectada ao servidor.";
+"Searching the z-wave network to build a list of devices." = "Pesquisando redes z-wave para construir uma lista de dispositivos.";
+"The waiting time for the ID of the assigned z-wave device has expired." = "O tempo limite de espera pelo ID do dispositivo z-wave atribuído expirou.";
+"Device response not as expected. Method: \"%@\" Code: %i" = "A resposta do dispositivo não foi a esperada. Método: \"%@\" Código: %i";
