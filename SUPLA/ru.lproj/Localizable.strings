@@ -174,3 +174,4 @@
 "Searching the z-wave network to build a list of devices." = "Поиск по сети z-wave для создания списка устройств.";
 "The waiting time for the ID of the assigned z-wave device has expired." = "Время ожидания идентификатора назначенного устройства z-wave истекло.";
 "Device response not as expected. Method: \"%@\" Code: %i" = "Ответ устройства не соответствует ожидаемому. Метод: \"%@\" Код: %i";
+"The waiting time for the list of z-wave devices has expired." = "Время ожидания списка устройств z-wave истекло.";

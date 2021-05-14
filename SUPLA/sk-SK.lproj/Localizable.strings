@@ -173,3 +173,4 @@
 "Searching the z-wave network to build a list of devices." = "Prehľadávanie siete z-wave s cieľom zostavenia zoznamu zariadení.";
 "The waiting time for the ID of the assigned z-wave device has expired." = "Bola prekročená lehota čakania na identifikátor priradeného zariadenia z-wave.";
 "Device response not as expected. Method: \"%@\" Code: %i" = "Odpoveď zariadenia iná ako očakávaná. Metóda: \"%@\" Kód: %i";
+"The waiting time for the list of z-wave devices has expired." = "Bola prekročená lehota čakania na zoznam zariadení z-wave.";

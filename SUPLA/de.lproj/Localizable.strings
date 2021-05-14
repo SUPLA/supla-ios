@@ -175,3 +175,4 @@
 "Searching the z-wave network to build a list of devices." = "Das Z-Wave-Netzwerk wird durchgesucht, um eine Geräteliste zu erstellen.";
 "The waiting time for the ID of the assigned z-wave device has expired." = "Die Wartezeit auf die dem Z-Wave-Gerät zugewiesene ID wurde überschritten.";
 "Device response not as expected. Method: \"%@\" Code: %i" = "Geräteantwort nicht wie erwartet. Methode: \"%@\" Code: %i";
+"The waiting time for the list of z-wave devices has expired." = "Die Wartezeit auf Liste der Z-Wave-Geräte wurde überschritten.";

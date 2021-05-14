@@ -173,3 +173,4 @@
 "Searching the z-wave network to build a list of devices." = "Skanner z-wave nettverket for å lage en enhetsliste.";
 "The waiting time for the ID of the assigned z-wave device has expired." = "Ventetiden for identifikatoren til den tilknyttede z-wave enheten er utløpt.";
 "Device response not as expected. Method: \"%@\" Code: %i" = "Enhetsrespons er ikke som forventet. Metode: \"%@\" Kode: %i";
+"The waiting time for the list of z-wave devices has expired." = "Ventetiden for listen av z-wave enheter er utløpt.";
