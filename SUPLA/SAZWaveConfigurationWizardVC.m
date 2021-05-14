@@ -94,6 +94,7 @@ static SAZWaveConfigurationWizardVC *_zwaveConfigurationWizardGlobalRef = nil;
     int _selectedFunc;
     int _progress;
     int _preloaderVisibleDotCount;
+    unsigned char _assignedNodeId;
 }
 
 - (void)viewDidLoad {
@@ -315,6 +316,17 @@ static SAZWaveConfigurationWizardVC *_zwaveConfigurationWizardGlobalRef = nil;
     }
     
     [self watchdogDeactivate];
+    
+    _assignedNodeId = result.nodeId;
+    
+    if (_nodeList.count == 0) {
+        [self watchdogActivateWithTime:GET_NODE_LIST_TIMEOUT_SEC
+                        timeoutMessage:@"The waiting time for the list of z-wave devices has expired."
+                        calCfg:YES];
+        [SAApp.SuplaClient zwaveGetNodeListForDeviceId:_selectedChannel.device_id];
+    } else {
+        
+    }
 }
 
 - (void)applyChannelFunctionChange {

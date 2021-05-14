@@ -32,6 +32,7 @@
 #import "SAChannelCaptionSetResult.h"
 #import "SAChannelFunctionSetResult.h"
 #import "SAZWaveAssignedNodeIdResult.h"
+#import "SAZWaveNodeListResult.h"
 
 #include "supla-client.h"
 
@@ -60,6 +61,7 @@
 - (void) onChannelCaptionSetResult:(SAChannelCaptionSetResult*)result;
 - (void) onChannelFunctionSetResult:(SAChannelFunctionSetResult*)result;
 - (void) onZwaveGetAssignedNodeIdResult:(SAZWaveAssignedNodeIdResult*)result;
+- (void) onZwaveGetNodeListResult:(SAZWaveNodeListResult*)result;
 @end
 
 void sasuplaclient_on_versionerror(void *_suplaclient, void *user_data, int version, int remote_version_min, int remote_version) {
@@ -242,6 +244,19 @@ void sasuplaclient_on_zwave_get_assigned_node_id_result(void *_suplaclient,
                                             initWithResultCode:result andNodeId:node_id]];
     }
 }
+
+void sasuplaclient_on_zwave_get_node_list_result(void *_suplaclient,
+                                                 void *user_data,
+                                                 _supla_int_t result,
+                                            TCalCfg_ZWave_Node *node) {
+    SASuplaClient *sc = (__bridge SASuplaClient*)user_data;
+    if ( sc != nil ) {
+        [sc onZwaveGetNodeListResult:[SAZWaveNodeListResult
+                                      resultWithResultCode:result
+                                      andZWaveNode:node]];
+    }
+    
+}
 // ------------------------------------------------------------------------------------------------------
 
 @implementation SASuplaClient {
@@ -409,6 +424,7 @@ void sasuplaclient_on_zwave_get_assigned_node_id_result(void *_suplaclient,
     scc.cb_on_channel_caption_set_result = sasuplaclient_on_channel_caption_set_result;
     scc.cb_on_channel_function_set_result = sasuplaclient_on_channel_function_set_result;
     scc.cb_on_zwave_get_assigned_node_id_result = sasuplaclient_on_zwave_get_assigned_node_id_result;
+    scc.cb_on_zwave_get_node_list_result = sasuplaclient_on_zwave_get_node_list_result;
     
     scc.protocol_version = [SAApp getPreferedProtocolVersion];
     
@@ -853,6 +869,15 @@ void sasuplaclient_on_zwave_get_assigned_node_id_result(void *_suplaclient,
     [self performSelectorOnMainThread:@selector(_onZwaveGetAssignedNodeIdResult:) withObject:result waitUntilDone:NO];
 }
 
+
+- (void) _onZwaveGetNodeListResult:(SAZWaveNodeListResult*)result {
+    [[NSNotificationCenter defaultCenter] postNotificationName:kSAOnZWaveNodeListResult object:self userInfo:[[NSDictionary alloc] initWithObjects:@[result] forKeys:@[@"result"]]];
+}
+
+- (void) onZwaveGetNodeListResult:(SAZWaveNodeListResult*)result {
+    [self performSelectorOnMainThread:@selector(_onZwaveGetNodeListResult:) withObject:result waitUntilDone:NO];
+}
+
 - (void) reconnect {
     @synchronized(self) {
         if ( _sclient ) {
@@ -1138,6 +1163,14 @@ void sasuplaclient_on_zwave_get_assigned_node_id_result(void *_suplaclient,
     @synchronized(self) {
         if ( _sclient ) {
             supla_client_zwave_get_assigned_node_id(_sclient, channelId);
+        }
+    }
+}
+
+- (void) zwaveGetNodeListForDeviceId:(int)deviceId  {
+    @synchronized(self) {
+        if ( _sclient ) {
+            supla_client_zwave_get_node_list(_sclient, deviceId);
         }
     }
 }

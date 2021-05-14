@@ -247,6 +247,8 @@
 		01F9110E22EF964900BFF91D /* thermostat_hp_homeplus1-on@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 01F9110C22EF964900BFF91D /* thermostat_hp_homeplus1-on@2x.png */; };
 		01F9110F22EF964900BFF91D /* thermostat_hp_homeplus1-on@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 01F9110D22EF964900BFF91D /* thermostat_hp_homeplus1-on@3x.png */; };
 		01F9111122EF989100BFF91D /* HomePlusCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 01F9111022EF989100BFF91D /* HomePlusCell.xib */; };
+		01FCDA78264F28C4002D776F /* SAZWaveNodeListResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 01FCDA77264F28C4002D776F /* SAZWaveNodeListResult.m */; };
+		01FCDA7D264F2BC3002D776F /* SAZWaveNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 01FCDA7C264F2BC3002D776F /* SAZWaveNode.m */; };
 		4004DE8D1DC4E270009C34E3 /* SAColorBrightnessPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 4004DE8C1DC4E270009C34E3 /* SAColorBrightnessPicker.m */; };
 		4006E90A1DC62D0A00C4456D /* DetailView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4006E9091DC62D0A00C4456D /* DetailView.m */; };
 		4014ADFD1FE01ECD00297A9E /* help@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4014ADFB1FE01EC700297A9E /* help@2x.png */; };
@@ -948,6 +950,10 @@
 		01F9110C22EF964900BFF91D /* thermostat_hp_homeplus1-on@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "thermostat_hp_homeplus1-on@2x.png"; path = "Resources/Assets/Img/thermostat_hp_homeplus1-on@2x.png"; sourceTree = "<group>"; };
 		01F9110D22EF964900BFF91D /* thermostat_hp_homeplus1-on@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "thermostat_hp_homeplus1-on@3x.png"; path = "Resources/Assets/Img/thermostat_hp_homeplus1-on@3x.png"; sourceTree = "<group>"; };
 		01F9111022EF989100BFF91D /* HomePlusCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomePlusCell.xib; sourceTree = "<group>"; };
+		01FCDA76264F28C4002D776F /* SAZWaveNodeListResult.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SAZWaveNodeListResult.h; sourceTree = "<group>"; };
+		01FCDA77264F28C4002D776F /* SAZWaveNodeListResult.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SAZWaveNodeListResult.m; sourceTree = "<group>"; };
+		01FCDA7B264F2BC3002D776F /* SAZWaveNode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SAZWaveNode.h; sourceTree = "<group>"; };
+		01FCDA7C264F2BC3002D776F /* SAZWaveNode.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SAZWaveNode.m; sourceTree = "<group>"; };
 		4004DE8B1DC4E270009C34E3 /* SAColorBrightnessPicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SAColorBrightnessPicker.h; sourceTree = "<group>"; };
 		4004DE8C1DC4E270009C34E3 /* SAColorBrightnessPicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SAColorBrightnessPicker.m; sourceTree = "<group>"; };
 		4006E9081DC62D0A00C4456D /* DetailView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailView.h; sourceTree = "<group>"; };
@@ -1536,6 +1542,10 @@
 				401CA1F01BA0A28A00117AF4 /* SuplaClient.h */,
 				011021C725CC39FB00621D41 /* SASuperuserAuthorizationResult.h */,
 				011021CC25CC3A6F00621D41 /* SACalCfgResult.h */,
+				01FCDA76264F28C4002D776F /* SAZWaveNodeListResult.h */,
+				01FCDA7B264F2BC3002D776F /* SAZWaveNode.h */,
+				01FCDA7C264F2BC3002D776F /* SAZWaveNode.m */,
+				01FCDA77264F28C4002D776F /* SAZWaveNodeListResult.m */,
 				01A195E0264B264A006D2A20 /* SAChannelCaptionSetResult.h */,
 				01A195E1264B264A006D2A20 /* SAChannelCaptionSetResult.m */,
 				01147CE2264BE317002B2E1C /* SAChannelFunctionSetResult.h */,
@@ -2636,6 +2646,7 @@
 				01EE9BBB22BA50D90029A142 /* SAChannelValueBase+CoreDataClass.m in Sources */,
 				40F7301120C19BA600167C2D /* SAColorListItem+CoreDataProperties.m in Sources */,
 				01642A882549C3EF00E87C46 /* SAMenuItems.m in Sources */,
+				01FCDA7D264F2BC3002D776F /* SAZWaveNode.m in Sources */,
 				012023C2234E54ED00E131B7 /* ImpulseCounterDetailView.m in Sources */,
 				01F8856D22E5E79100D18373 /* SAUserIcon+CoreDataProperties.m in Sources */,
 				01D0616E22C294D90043C947 /* ElectricityMeterDetailView.m in Sources */,
@@ -2694,6 +2705,7 @@
 				01C792FA22B7FB610020A900 /* SAChannelExtendedValue+CoreDataClass.m in Sources */,
 				01902A28235A180F005ED935 /* TempHumidityDetailView.m in Sources */,
 				0122613922F396440013E6A2 /* SAThermostatCalendar.m in Sources */,
+				01FCDA78264F28C4002D776F /* SAZWaveNodeListResult.m in Sources */,
 				01F8856F22E5E79100D18373 /* SAThermostatMeasurementItem+CoreDataClass.m in Sources */,
 				011021CE25CC3A6F00621D41 /* SACalCfgResult.m in Sources */,
 				011021BF25CC394500621D41 /* SARegResult.m in Sources */,
