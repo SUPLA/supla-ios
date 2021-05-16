@@ -25,6 +25,7 @@
 #import "SAPickerField.h"
 #import "SACalCfgResult.h"
 #import "SAZWaveAssignedNodeIdResult.h"
+#import "SAZWaveNodeListResult.h"
 
 #define ERROR_TYPE_TIMEOUT 1
 #define ERROR_TYPE_DISCONNECTED 2
@@ -91,6 +92,7 @@ static SAZWaveConfigurationWizardVC *_zwaveConfigurationWizardGlobalRef = nil;
     
     NSNumber *_selectedDeviceId;
     SAChannel *_selectedChannel;
+    SAZWaveNode *_selectedNode;
     int _selectedFunc;
     int _progress;
     int _preloaderVisibleDotCount;
@@ -110,6 +112,7 @@ static SAZWaveConfigurationWizardVC *_zwaveConfigurationWizardGlobalRef = nil;
     self.pfBridge.pf_delegate = self;
     self.pfChannel.pf_delegate = self;
     self.pfFunction.pf_delegate = self;
+    self.pfNodeList.pf_delegate = self;
 }
 
 -(void)viewWillAppear:(BOOL)animated {
@@ -135,6 +138,10 @@ static SAZWaveConfigurationWizardVC *_zwaveConfigurationWizardGlobalRef = nil;
     [[NSNotificationCenter defaultCenter]
      addObserver:self selector:@selector(onZWaveAssignedNodeIdResult:)
      name:kSAOnZWaveAssignedNodeIdResult object:nil];
+    
+    [[NSNotificationCenter defaultCenter]
+     addObserver:self selector:@selector(onZWaveNodeListResult:)
+     name:kSAOnZWaveNodeListResult object:nil];
     
 }
 
@@ -326,6 +333,55 @@ static SAZWaveConfigurationWizardVC *_zwaveConfigurationWizardGlobalRef = nil;
         [SAApp.SuplaClient zwaveGetNodeListForDeviceId:_selectedChannel.device_id];
     } else {
         
+    }
+}
+
+-(BOOL)nodeIdNotExists:(unsigned char)nodeId {
+    for(SAZWaveNode *node in _nodeList) {
+        if (node.nodeId == nodeId) {
+            return NO;
+        }
+    }
+    return YES;
+}
+
+-(void)onZWaveNodeListResult:(NSNotification *)notification {
+    SAZWaveNodeListResult *result = [SAZWaveNodeListResult notificationToCaptionSetResult:notification];
+    if (result == nil
+        || result.resultCode == SUPLA_CALCFG_RESULT_IN_PROGRESS) {
+        return;
+    }
+    
+    if (result.resultCode != SUPLA_CALCFG_RESULT_TRUE) {
+        if ([self timeoutResultNotDisplayedWithCode:result.resultCode]) {
+            [self showUnexpectedResponseWithResultCode:result.resultCode];
+        }
+        return;
+    }
+    
+    if (result.node && [self nodeIdNotExists:result.node.nodeId]) {
+        [_nodeList addObject:result.node];
+    }
+    
+    if (result.node == nil) {
+        if (_assignedNodeId > 0 && [self nodeIdNotExists:_assignedNodeId]) {
+            SAZWaveNode *node =
+              [[SAZWaveNode alloc] initWithId: _assignedNodeId
+                                  channelId:_selectedChannel ? _selectedChannel.remote_id : 0
+                                  name:NSLocalizedString(@"Offline ?", nil)];
+            [_nodeList addObject:node];
+        }
+        
+        [self watchdogDeactivate];
+        [self hideInfoMessage];
+        [self.pfNodeList update];
+        
+        self.btnNextEnabled = YES;
+        self.btnCancelOrBackEnabled = YES;
+        
+        if (self.page == self.itTakeAWhilePage) {
+            self.page = self.zwaveSettingsPage;
+        }
     }
 }
 
@@ -716,13 +772,13 @@ static SAZWaveConfigurationWizardVC *_zwaveConfigurationWizardGlobalRef = nil;
         return _deviceChannelList.count;
     } else if (pickerField == self.pfFunction) {
         return _functionList.count;
+    } else if (pickerField == self.pfNodeList) {
+        return _nodeList.count;
     }
     return 0;
 }
 
 - (NSInteger)selectedRowIndexInPickerField:(SAPickerField *)pickerField {
-    
-
     int n=0;
     if (pickerField == self.pfBridge) {
         for(NSNumber *devId in _deviceList) {
@@ -750,6 +806,14 @@ static SAZWaveConfigurationWizardVC *_zwaveConfigurationWizardGlobalRef = nil;
                 n++;
             }
         }
+    } else if (pickerField == self.pfNodeList) {
+        for(SAZWaveNode *node in _nodeList) {
+            if ((_selectedNode != nil && _selectedNode.nodeId == node.nodeId)
+                || (_selectedNode == nil && node.nodeId == _assignedNodeId)) {
+                return n;
+            }
+            n++;
+        }
     }
     return -1;
 }
@@ -773,17 +837,29 @@ static SAZWaveConfigurationWizardVC *_zwaveConfigurationWizardGlobalRef = nil;
             [self.pfChannel update];
         }
     } else if (pickerField == self.pfChannel) {
+        int oldDeviceId = _selectedChannel ? _selectedChannel.device_id : 0;
+ 
         _selectedChannel = nil;
         
         if (index >= 0 && index < _deviceChannelList.count) {
             _selectedChannel = [_deviceChannelList objectAtIndex:index];
             _selectedFunc = _selectedChannel.func;
         }
+
+        if (_selectedChannel == nil
+            || _selectedChannel.device_id != oldDeviceId) {
+            [_nodeList removeAllObjects];
+            _selectedNode = nil;
+        }
         
         [self.pfFunction update];
     } else if (pickerField == self.pfFunction) {
         if (index >= 0 && index < _functionList.count) {
             _selectedFunc = [[_functionList objectAtIndex:index] intValue];
+        }
+    } else if (pickerField == self.pfNodeList) {
+        if (index >= 0 && index < _nodeList.count) {
+            _selectedNode = [_nodeList objectAtIndex:index];
         }
     }
 }
@@ -819,6 +895,19 @@ static SAZWaveConfigurationWizardVC *_zwaveConfigurationWizardGlobalRef = nil;
     } else if (pickerField == self.pfFunction) {
         if (row < _functionList.count) {
             return [SAChannelBase getFunctionName:[[_functionList objectAtIndex:row] intValue]];
+        }
+    } else if (pickerField == self.pfNodeList) {
+        if (row < _nodeList.count) {
+            SAZWaveNode *node = [_nodeList objectAtIndex:row];
+            result = [NSString stringWithFormat:@"#%i %@", node.nodeId, node.name];
+            if (node.channelId
+                && _selectedChannel
+                && _selectedChannel.remote_id == node.channelId) {
+                result = [NSString stringWithFormat:@"%@ (%@ #%i)",
+                          result,
+                          NSLocalizedString(@"Assigned to:", nil),
+                          node.channelId];
+            }
         }
     }
 

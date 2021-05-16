@@ -25,7 +25,7 @@
 - (id)initWithResultCode:(int)result andZWaveNode:(TCalCfg_ZWave_Node *)node {
     if ([self init]) {
         _resultCode = result;
-        _node = [SAZWaveNode nodeWithNode:node];
+        _node = node ? [SAZWaveNode nodeWithNode:node] : nil;
     }
     return self;
 }

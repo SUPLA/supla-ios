@@ -176,3 +176,4 @@
 "The waiting time for the ID of the assigned z-wave device has expired." = "Baigėsi priskirto z-wave įrenginio  identifikatoriaus laukimo laikas.";
 "Device response not as expected. Method: \"%@\" Code: %i" = "Įrenginio atsakymas neatitinka tikėtino atsakymo. Metodas: \"%@\" Kodas: %i";
 "The waiting time for the list of z-wave devices has expired." = "Baigėsi z-wave įrenginių sąrašo laukimo laikas.";
+"Assigned to:" = "Priskirta:";

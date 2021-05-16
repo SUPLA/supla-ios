@@ -181,3 +181,4 @@
 "The waiting time for the ID of the assigned z-wave device has expired." = "Vypršel časový limit při čekání na identifikátor připsaného zařízení z-wave.";
 "Device response not as expected. Method: \"%@\" Code: %i" = "Odezva zařízení se neshoduje s předpokladem. Metoda: \"%@\" Kód: %i";
 "The waiting time for the list of z-wave devices has expired." = "Vypršel časový limit při čekání na seznam zařízení z-wave.";
+"Assigned to:" = "Přiřazeno k:";

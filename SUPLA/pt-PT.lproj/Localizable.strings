@@ -175,3 +175,4 @@
 "The waiting time for the ID of the assigned z-wave device has expired." = "O tempo limite de espera pelo ID do dispositivo z-wave atribuído expirou.";
 "Device response not as expected. Method: \"%@\" Code: %i" = "A resposta do dispositivo não foi a esperada. Método: \"%@\" Código: %i";
 "The waiting time for the list of z-wave devices has expired." = "O tempo limite de espera pela lista de dispositivos z-wave expirou.";
+"Assigned to:" = "Atribuído a:";

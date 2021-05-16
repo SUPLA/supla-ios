@@ -174,3 +174,4 @@
 "The waiting time for the ID of the assigned z-wave device has expired." = "Potekel je čas čakanja na identifikator pripisane z-wave naprave.";
 "Device response not as expected. Method: \"%@\" Code: %i" = "Odziv naprave ni skladen s pričakovanji. Metoda: \"%@\" Koda: %i";
 "The waiting time for the list of z-wave devices has expired." = "Potekel je čas čakanja na seznam z-wave naprav.";
+"Assigned to:" = "Dodeljeno:";

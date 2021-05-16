@@ -174,3 +174,4 @@
 "The waiting time for the ID of the assigned z-wave device has expired." = "Υπέρβαση χρόνου αναμονής για το αναγνωριστικό της καθορισμένης συσκευής  του κύματος Ζ.";
 "Device response not as expected. Method: \"%@\" Code: %i" = "Η απόκριση της συσκευής δεν είναι όπως αναμενόταν. Μέθοδος: \"%@\" Κωδικός: %i";
 "The waiting time for the list of z-wave devices has expired." = "Υπέρβαση χρόνου αναμονής για τη λίστα συσκευών του κύματος Ζ.";
+"Assigned to:" = "Έχει καταχωρηθεί:";

@@ -40,6 +40,15 @@
     return self;
 }
 
+- (id)initWithId:(unsigned char)nodeId channelId:(int)channelId name:(NSString*)name {
+    if ([self init]) {
+        _nodeId = nodeId;
+        _channelId = channelId;
+        _name = name ? name : @"";
+    }
+    return self;
+}
+
 + (SAZWaveNode*) nodeWithNode:(TCalCfg_ZWave_Node *)node {
     return [[SAZWaveNode alloc] initWithNode:node];
 }
