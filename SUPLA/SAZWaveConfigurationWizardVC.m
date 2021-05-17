@@ -901,8 +901,7 @@ static SAZWaveConfigurationWizardVC *_zwaveConfigurationWizardGlobalRef = nil;
             SAZWaveNode *node = [_nodeList objectAtIndex:row];
             result = [NSString stringWithFormat:@"#%i %@", node.nodeId, node.name];
             if (node.channelId
-                && _selectedChannel
-                && _selectedChannel.remote_id == node.channelId) {
+                && _selectedChannel.remote_id != node.channelId) {
                 result = [NSString stringWithFormat:@"%@ (%@ #%i)",
                           result,
                           NSLocalizedString(@"Assigned to:", nil),
