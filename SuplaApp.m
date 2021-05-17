@@ -49,6 +49,7 @@ NSString *kSAOnChannelCaptionSetResult = @"KSA-N20";
 NSString *kSAOnChannelFunctionSetResult = @"KSA-N21";
 NSString *kSAOnZWaveAssignedNodeIdResult = @"KSA-N22";
 NSString *kSAOnZWaveNodeListResult = @"KSA-N23";
+NSString *kSAOnCalCfgProgressReport = @"KSA-N24";
 
 @implementation SAApp {
     

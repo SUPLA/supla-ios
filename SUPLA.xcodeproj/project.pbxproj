@@ -63,6 +63,7 @@
 		013F7EC423EB4B500061A497 /* battery@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 013F7EC223EB4B500061A497 /* battery@3x.png */; };
 		013F7EC523EB4B500061A497 /* battery@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 013F7EC323EB4B500061A497 /* battery@2x.png */; };
 		01433DF8257F8FE20093C5DB /* SAWifi.m in Sources */ = {isa = PBXBuildFile; fileRef = 01433DF7257F8FE20093C5DB /* SAWifi.m */; };
+		01478826265317B000CC8A01 /* SACalCfgProgressReport.m in Sources */ = {isa = PBXBuildFile; fileRef = 01478825265317B000CC8A01 /* SACalCfgProgressReport.m */; };
 		0148932A25AA03EE00B9974E /* btnOK_disabled@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0148932825AA03EE00B9974E /* btnOK_disabled@2x.png */; };
 		0148932B25AA03EE00B9974E /* btnOK_disabled@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0148932925AA03EE00B9974E /* btnOK_disabled@3x.png */; };
 		0148933425AA12DB00B9974E /* SADiwCalibrationTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 0148933325AA12DB00B9974E /* SADiwCalibrationTool.m */; };
@@ -582,6 +583,8 @@
 		013FB109262CA21300A0E71D /* SUPLA 8.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "SUPLA 8.xcdatamodel"; sourceTree = "<group>"; };
 		01433DF6257F8FE20093C5DB /* SAWifi.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SAWifi.h; sourceTree = "<group>"; };
 		01433DF7257F8FE20093C5DB /* SAWifi.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SAWifi.m; sourceTree = "<group>"; };
+		01478824265317B000CC8A01 /* SACalCfgProgressReport.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SACalCfgProgressReport.h; sourceTree = "<group>"; };
+		01478825265317B000CC8A01 /* SACalCfgProgressReport.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SACalCfgProgressReport.m; sourceTree = "<group>"; };
 		0148932825AA03EE00B9974E /* btnOK_disabled@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "btnOK_disabled@2x.png"; path = "Resources/Assets/Img/btnOK_disabled@2x.png"; sourceTree = "<group>"; };
 		0148932925AA03EE00B9974E /* btnOK_disabled@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "btnOK_disabled@3x.png"; path = "Resources/Assets/Img/btnOK_disabled@3x.png"; sourceTree = "<group>"; };
 		0148933225AA12DB00B9974E /* SADiwCalibrationTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SADiwCalibrationTool.h; sourceTree = "<group>"; };
@@ -1546,6 +1549,8 @@
 				01FCDA7B264F2BC3002D776F /* SAZWaveNode.h */,
 				01FCDA7C264F2BC3002D776F /* SAZWaveNode.m */,
 				01FCDA77264F28C4002D776F /* SAZWaveNodeListResult.m */,
+				01478824265317B000CC8A01 /* SACalCfgProgressReport.h */,
+				01478825265317B000CC8A01 /* SACalCfgProgressReport.m */,
 				01A195E0264B264A006D2A20 /* SAChannelCaptionSetResult.h */,
 				01A195E1264B264A006D2A20 /* SAChannelCaptionSetResult.m */,
 				01147CE2264BE317002B2E1C /* SAChannelFunctionSetResult.h */,
@@ -2737,6 +2742,7 @@
 				01E517C622C6AD7D000FE77A /* SADownloadMeasurements.m in Sources */,
 				403150FB1DC769430075D2D2 /* RGBWDetailView.m in Sources */,
 				01F8856A22E5E79100D18373 /* SATempHumidityMeasurementItem+CoreDataProperties.m in Sources */,
+				01478826265317B000CC8A01 /* SACalCfgProgressReport.m in Sources */,
 				40E8BE881FC06A5600FB2FE6 /* TFHpple.m in Sources */,
 				01CEABFA25B9920A009C3BFD /* SADigiglassDetailView.m in Sources */,
 				013F7EC123EB33E30061A497 /* SAChannelStateExtendedValue.m in Sources */,

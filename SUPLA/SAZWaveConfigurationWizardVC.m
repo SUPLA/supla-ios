@@ -26,6 +26,7 @@
 #import "SACalCfgResult.h"
 #import "SAZWaveAssignedNodeIdResult.h"
 #import "SAZWaveNodeListResult.h"
+#import "SACalCfgProgressReport.h"
 
 #define ERROR_TYPE_TIMEOUT 1
 #define ERROR_TYPE_DISCONNECTED 2
@@ -143,6 +144,10 @@ static SAZWaveConfigurationWizardVC *_zwaveConfigurationWizardGlobalRef = nil;
      addObserver:self selector:@selector(onZWaveNodeListResult:)
      name:kSAOnZWaveNodeListResult object:nil];
     
+    [[NSNotificationCenter defaultCenter]
+     addObserver:self selector:@selector(onCalCfgProgressReport:)
+     name:kSAOnCalCfgProgressReport object:nil];
+    
 }
 
 -(void)viewWillDisappear:(BOOL)animated {
@@ -187,6 +192,19 @@ static SAZWaveConfigurationWizardVC *_zwaveConfigurationWizardGlobalRef = nil;
         if (channel && channel.device_id == _selectedChannel.device_id) {
             [self anyCalCfgResultWatchdogDeactivate];
         }
+    }
+}
+
+-(void)onCalCfgProgressReport:(NSNotification *)notification {
+    SACalCfgProgressReport *report = [SACalCfgProgressReport notificationToProgressReport:notification];
+    if (report == nil) {
+        return;
+    }
+    
+    if (_selectedChannel
+        && report.command == SUPLA_CALCFG_CMD_ZWAVE_GET_NODE_LIST
+        && self.page == self.zwaveSettingsPage) {
+        _progress = report.progress;
     }
 }
 
@@ -638,6 +656,8 @@ static SAZWaveConfigurationWizardVC *_zwaveConfigurationWizardGlobalRef = nil;
     if (_selectedChannel == nil) {
         return;
     }
+    
+    _progress = 0;
     
     [self showWaitMessage: @"Searching the z-wave network to build a list of devices."
           withTimeout: GET_ASSIGNED_NODE_ID_TIMEOUT_SEC

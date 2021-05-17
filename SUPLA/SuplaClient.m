@@ -33,6 +33,7 @@
 #import "SAChannelFunctionSetResult.h"
 #import "SAZWaveAssignedNodeIdResult.h"
 #import "SAZWaveNodeListResult.h"
+#import "SACalCfgProgressReport.h"
 
 #include "supla-client.h"
 
@@ -62,6 +63,7 @@
 - (void) onChannelFunctionSetResult:(SAChannelFunctionSetResult*)result;
 - (void) onZwaveGetAssignedNodeIdResult:(SAZWaveAssignedNodeIdResult*)result;
 - (void) onZwaveGetNodeListResult:(SAZWaveNodeListResult*)result;
+- (void) onCalCfgProgressReport:(SACalCfgProgressReport*)report;
 @end
 
 void sasuplaclient_on_versionerror(void *_suplaclient, void *user_data, int version, int remote_version_min, int remote_version) {
@@ -255,8 +257,19 @@ void sasuplaclient_on_zwave_get_node_list_result(void *_suplaclient,
                                       resultWithResultCode:result
                                       andZWaveNode:node]];
     }
-    
 }
+
+void sasuplaclient_on_device_calcfg_progress_report(void *_suplaclient,
+                                                 void *user_data, int ChannelID,
+                                                 TCalCfg_ProgressReport *progress_report) {
+    SASuplaClient *sc = (__bridge SASuplaClient*)user_data;
+    if ( sc != nil ) {
+        [sc onCalCfgProgressReport:[SACalCfgProgressReport
+                                    reportWithReport:progress_report
+                                    channelId:ChannelID]];
+    }
+}
+
 // ------------------------------------------------------------------------------------------------------
 
 @implementation SASuplaClient {
@@ -425,6 +438,7 @@ void sasuplaclient_on_zwave_get_node_list_result(void *_suplaclient,
     scc.cb_on_channel_function_set_result = sasuplaclient_on_channel_function_set_result;
     scc.cb_on_zwave_get_assigned_node_id_result = sasuplaclient_on_zwave_get_assigned_node_id_result;
     scc.cb_on_zwave_get_node_list_result = sasuplaclient_on_zwave_get_node_list_result;
+    scc.cb_on_device_calcfg_progress_report = sasuplaclient_on_device_calcfg_progress_report;
     
     scc.protocol_version = [SAApp getPreferedProtocolVersion];
     
@@ -876,6 +890,14 @@ void sasuplaclient_on_zwave_get_node_list_result(void *_suplaclient,
 
 - (void) onZwaveGetNodeListResult:(SAZWaveNodeListResult*)result {
     [self performSelectorOnMainThread:@selector(_onZwaveGetNodeListResult:) withObject:result waitUntilDone:NO];
+}
+
+- (void) _onCalCfgProgressReport:(SACalCfgProgressReport*)report {
+    [[NSNotificationCenter defaultCenter] postNotificationName:kSAOnCalCfgProgressReport object:self userInfo:[[NSDictionary alloc] initWithObjects:@[report] forKeys:@[@"report"]]];
+}
+
+- (void) onCalCfgProgressReport:(SACalCfgProgressReport*)report {
+    [self performSelectorOnMainThread:@selector(_onCalCfgProgressReport:) withObject:report waitUntilDone:NO];
 }
 
 - (void) reconnect {
