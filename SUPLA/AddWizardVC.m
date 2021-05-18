@@ -283,6 +283,11 @@
         [fields setObject:@"1" forKey:@"upd"];
     }
     
+    if ( [fields objectForKey:@"pro"] != nil ) {
+        // Set protocol to "Supla"
+        [fields setObject:@"0" forKey:@"pro"];
+    }
+    
     do {
         
         sleep(2);
