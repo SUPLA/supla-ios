@@ -185,3 +185,4 @@
 "Waiting for the device to be added to the z-wave network." = "In attesa di aggiungere il dispositivo alla rete z-wave.";
 "The waiting time for adding the device to the z-wave network has expired." = "Il tempo di attesa per aggiungere il dispositivo alla rete z-wave è scaduto.";
 "The waiting time to remove the device has expired." = "Il tempo di attesa per la rimozione del dispositivo è scaduto.";
+"The waiting time for the z-wave device assignment to the channel has elapsed." = "Il tempo di attesa per assegnare il dispositivo z-wave al canale è scaduto.";

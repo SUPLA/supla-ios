@@ -184,3 +184,4 @@
 "Waiting for the device to be added to the z-wave network." = "Čakanje na dodajanje naprave v omrežje z-wave.";
 "The waiting time for adding the device to the z-wave network has expired." = "Potekel je čas čakanja na dodajanje naprave v omrežje z-wave.";
 "The waiting time to remove the device has expired." = "Potekel je čas čakanja na odstranitev naprave.";
+"The waiting time for the z-wave device assignment to the channel has elapsed." = "Potekel je čas čakanja na dodajanje z-wave naprave na kanal.";

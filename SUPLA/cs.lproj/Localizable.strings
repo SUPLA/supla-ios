@@ -191,3 +191,4 @@
 "Waiting for the device to be added to the z-wave network." = "Čeká se na přidání zařízení k síti z-wave.";
 "The waiting time for adding the device to the z-wave network has expired." = "Vypršel časový limit při čekání na přidání zařízení k síti z-wave.";
 "The waiting time to remove the device has expired." = "Vypršel časový limit při čekání na odstranění zařízení.";
+"The waiting time for the z-wave device assignment to the channel has elapsed." = "Vypršel časový limit při čekání na uložení zařízení z-wave do kanálu.";

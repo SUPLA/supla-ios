@@ -185,3 +185,4 @@
 "Waiting for the device to be added to the z-wave network." = "Ожидание добавления устройства в сеть z-wave.";
 "The waiting time for adding the device to the z-wave network has expired." = "Время ожидания добавления устройства в сеть z-wave истекло.";
 "The waiting time to remove the device has expired." = "Время ожидания удаления устройства истекло.";
+"The waiting time for the z-wave device assignment to the channel has elapsed." = "Время ожидания назначения устройства z-wave каналу истекло.";
