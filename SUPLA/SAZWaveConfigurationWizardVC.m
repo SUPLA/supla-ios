@@ -281,7 +281,7 @@ static SAZWaveConfigurationWizardVC *_zwaveConfigurationWizardGlobalRef = nil;
     }
     
     if (result.function == 0) {
-        [[SAApp UI] showMainVC];
+        [self showMainVC];
     } else {
         [self fetchChannelBasicCfg:result.remoteId];
         
@@ -777,11 +777,27 @@ static SAZWaveConfigurationWizardVC *_zwaveConfigurationWizardGlobalRef = nil;
     return nil;
 }
 
+- (void)showMainVC {
+    if (_selectedChannel) {
+        [SAApp.SuplaClient deviceCalCfgCancelAllCommandsWithDeviceId:_selectedChannel.device_id];
+    }
+    
+    [self watchdogDeactivate];
+    [self cfgModeNotificationTimerDeactivate];
+    
+    for(NSNumber *deviceId in _devicesToRestart) {
+        [SAApp.SuplaClient reconnectDeviceWithId: [deviceId intValue]];
+    }
+    
+    self.preloaderVisible = NO;
+    [[SAApp UI] showMainVC];
+}
+
 - (IBAction)nextTouch:(nullable id)sender {
     [super nextTouch:sender];
     
     if (self.page == self.errorPage) {
-        [[SAApp UI] showMainVC];
+        [self showMainVC];
     } else if (self.page == self.welcomePage) {
         self.preloaderVisible = YES;
         self.page = self.channelSelectionPage;
@@ -801,10 +817,10 @@ static SAZWaveConfigurationWizardVC *_zwaveConfigurationWizardGlobalRef = nil;
         if (self.previousPage) {
             self.page = self.previousPage;
         } else {
-            [[SAApp UI] showMainVC];
+            [self showMainVC];
         }
     } else if (self.page == self.welcomePage) {
-        [[SAApp UI] showMainVC];
+        [self showMainVC];
     } else if (self.page == self.channelSelectionPage) {
         self.page = self.welcomePage;
     } else if (self.page == self.channelDetailsPage) {

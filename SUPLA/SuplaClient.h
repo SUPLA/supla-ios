@@ -64,6 +64,8 @@
 - (void) zwaveGetAssignedNodeIdForChannelId:(int)channelId;
 - (void) zwaveGetNodeListForDeviceId:(int)deviceId;
 - (void) zwaveCfgModeIsStillActiveForDeviceId:(int)deviceId;
+- (void) deviceCalCfgCancelAllCommandsWithDeviceId:(int)deviceId;
+- (void) reconnectDeviceWithId:(int)deviceId;
 
 @property (nonatomic, weak) id<SASuplaClientDelegate> delegate;
 @end

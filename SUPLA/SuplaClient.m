@@ -1205,4 +1205,20 @@ void sasuplaclient_on_device_calcfg_progress_report(void *_suplaclient,
     }
 }
 
+- (void) deviceCalCfgCancelAllCommandsWithDeviceId:(int)deviceId {
+    @synchronized(self) {
+        if ( _sclient ) {
+            supla_client_device_calcfg_cancel_all_commands(_sclient, deviceId);
+        }
+    }
+}
+
+- (void) reconnectDeviceWithId:(int)deviceId {
+    @synchronized(self) {
+        if ( _sclient ) {
+            supla_client_reconnect_device(_sclient, deviceId);
+        }
+    }
+}
+
 @end
