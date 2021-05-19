@@ -67,6 +67,7 @@
 - (void) deviceCalCfgCancelAllCommandsWithDeviceId:(int)deviceId;
 - (void) reconnectDeviceWithId:(int)deviceId;
 - (void) zwaveResetAndClearSettingsWithDeviceId:(int)deviceId;
+- (void) zwaveAddNodeToDeviceWithId:(int)deviceId;
 
 @property (nonatomic, weak) id<SASuplaClientDelegate> delegate;
 @end

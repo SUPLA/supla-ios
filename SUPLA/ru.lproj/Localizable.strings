@@ -180,3 +180,7 @@
 "The waiting time for the z-wave network reset has expired." = "Время ожидания сброса сети z-wave истекло.";
 "Are you sure you want to reset the settings and z-wave network?" = "Вы уверены, что хотите сбросить настройки и сеть z-wave?";
 "This function is not available when the bridge is in slave mode." = "Эта функция недоступна, когда мост работает в подчиненном режиме.";
+"Waiting for button press on the z-wave device." = "Ожидание нажатия кнопки на устройстве z-wave.";
+"The waiting time for pressing the button has elapsed." = "Время ожидания нажатия кнопки истекло.";
+"Waiting for the device to be added to the z-wave network." = "Ожидание добавления устройства в сеть z-wave.";
+"The waiting time for adding the device to the z-wave network has expired." = "Время ожидания добавления устройства в сеть z-wave истекло.";

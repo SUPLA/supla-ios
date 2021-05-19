@@ -51,6 +51,7 @@ NSString *kSAOnZWaveAssignedNodeIdResult = @"KSA-N22";
 NSString *kSAOnZWaveNodeListResult = @"KSA-N23";
 NSString *kSAOnCalCfgProgressReport = @"KSA-N24";
 NSString *kSAOnZWaveResetAndClearResult = @"KSA-N25";
+NSString *kSAOnZWaveAddNodeResult = @"KSA-N26";
 
 @implementation SAApp {
     

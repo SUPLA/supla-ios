@@ -186,3 +186,7 @@
 "The waiting time for the z-wave network reset has expired." = "Vypršel časový limit při čekání na restart sítě z-wave.";
 "Are you sure you want to reset the settings and z-wave network?" = "Chcete opravdu restartovat nastavení a celou síť z-wave?";
 "This function is not available when the bridge is in slave mode." = "Pokud je můstek ve vedlejším režimu, tak tato funkce není dostupná.";
+"Waiting for button press on the z-wave device." = "Čeká se na stisknutí tlačítka zařízení z-wave.";
+"The waiting time for pressing the button has elapsed." = "Vypršel časový limit při čekání na stisknutí tlačítka.";
+"Waiting for the device to be added to the z-wave network." = "Čeká se na přidání zařízení k síti z-wave.";
+"The waiting time for adding the device to the z-wave network has expired." = "Vypršel časový limit při čekání na přidání zařízení k síti z-wave.";

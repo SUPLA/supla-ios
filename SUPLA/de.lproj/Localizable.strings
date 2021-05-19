@@ -181,3 +181,7 @@
 "The waiting time for the z-wave network reset has expired." = "Die Wartezeit auf das Zurücksetzen des Z-Wave-netzwerk wurde überschritten.";
 "Are you sure you want to reset the settings and z-wave network?" = "Sind Sie sicher, dass Sie die Einstellungen und das Z-Wave-Netzwerk zurücksetzen möchten?";
 "This function is not available when the bridge is in slave mode." = "Diese Funktion ist nicht verfügbar, wenn die Brücke in einem untergeordneten Modus betrieben wird.";
+"Waiting for button press on the z-wave device." = "Es wird auf das Drücken der Schaltfläche auf einem Z-Wave-Gerät gewartet.";
+"The waiting time for pressing the button has elapsed." = "Die Wartezeit auf Drücken der Schaltfläche wurde überschritten.";
+"Waiting for the device to be added to the z-wave network." = "Es wird auf das Hinzufügen des Geräts zum Z-Wave-Netzwerk gewartet.";
+"The waiting time for adding the device to the z-wave network has expired." = "Die Wartezeit auf das Hinzufügen des Geräts zum Z-Wave-Netzwerk wurde überschritten.";

@@ -179,4 +179,8 @@
 "Waiting for confirmation of resetting the z-wave network together with clearing the settings." = "En attente de confirmation de la réinitialisation du réseau z-wave et de la suppression des paramètres.";
 "The waiting time for the z-wave network reset has expired." = "Le temps d\'attente pour la réinitialisation du réseau z-wave a expiré.";
 "Are you sure you want to reset the settings and z-wave network?" = "Voulez-vous vraiment réinitialiser les paramètres et le réseau z-wave?";
-"This function is not available when the bridge is in slave mode." = "Cette fonction n'est pas disponible lorsque le pont est en mode subalterne.";
+"This function is not available when the bridge is in slave mode." = "Cette fonction n\'est pas disponible lorsque le pont est en mode subalterne.";
+"Waiting for button press on the z-wave device." = "En attente de la pression sur un bouton de l\'appareil z-wave.";
+"The waiting time for pressing the button has elapsed." = "Le temps d\'attente pour la pression d\'un bouton a expiré.";
+"Waiting for the device to be added to the z-wave network." = "En attente d\'ajout de l\'appareil au réseau z-wave.";
+"The waiting time for adding the device to the z-wave network has expired." = "Le temps d\'attente pour l\'ajout de l\'appareil au réseau z-wave a expiré.";

@@ -25,7 +25,7 @@
 #import "SAPickerField.h"
 #import "SACalCfgResult.h"
 #import "SAZWaveAssignedNodeIdResult.h"
-#import "SAZWaveNodeListResult.h"
+#import "SAZWaveNodeResult.h"
 #import "SACalCfgProgressReport.h"
 #import "NSNumber+SUPLA.h"
 
@@ -156,6 +156,10 @@ static SAZWaveConfigurationWizardVC *_zwaveConfigurationWizardGlobalRef = nil;
     [[NSNotificationCenter defaultCenter]
      addObserver:self selector:@selector(onZWaveResetAndClearResult:)
      name:kSAOnZWaveResetAndClearResult object:nil];
+    
+    [[NSNotificationCenter defaultCenter]
+     addObserver:self selector:@selector(onZWaveAddNodeResult:)
+     name:kSAOnZWaveAddNodeResult object:nil];
     
     [self cfgModeNotificationTimerActivaate];
 }
@@ -404,7 +408,7 @@ static SAZWaveConfigurationWizardVC *_zwaveConfigurationWizardGlobalRef = nil;
 }
 
 -(void)onZWaveNodeListResult:(NSNotification *)notification {
-    SAZWaveNodeListResult *result = [SAZWaveNodeListResult notificationToCaptionSetResult:notification];
+    SAZWaveNodeResult *result = [SAZWaveNodeResult notificationToNodeResult:notification];
     if (result == nil
         || result.resultCode == SUPLA_CALCFG_RESULT_IN_PROGRESS) {
         return;
@@ -439,6 +443,37 @@ static SAZWaveConfigurationWizardVC *_zwaveConfigurationWizardGlobalRef = nil;
         if (self.page == self.itTakeAWhilePage) {
             self.page = self.zwaveSettingsPage;
         }
+    }
+}
+
+-(void)onZWaveAddNodeResult:(NSNotification *)notification {
+    SAZWaveNodeResult *result = [SAZWaveNodeResult notificationToNodeResult:notification];
+    if (result == nil
+        || result.resultCode == SUPLA_CALCFG_RESULT_IN_PROGRESS
+        || [self isSlaveModeError:result.resultCode]) {
+        return;
+    }
+    
+    self.btnNextEnabled = YES;
+    
+    if (result.resultCode == SUPLA_CALCFG_RESULT_NODE_FOUND) {
+        [self showWaitMessage:@"Waiting for the device to be added to the z-wave network."
+              withTimeout:ADD_NODE_TIMEOUT_SEC
+              timeoutMessage:@"The waiting time for adding the device to the z-wave network has expired."
+              showProgress:NO];
+        
+    } else if (result.resultCode == SUPLA_CALCFG_RESULT_DONE) {
+        
+        [self watchdogDeactivate];
+        [self hideInfoMessage];
+        if (result.node && [self nodeIdNotExists:result.node.nodeId]) {
+            [_nodeList addObject:result.node];
+            _selectedNode = result.node;
+            [self.pfNodeList update];
+        }
+        
+    } else if ([self timeoutResultNotDisplayedWithCode:result.resultCode]) {
+        [self showUnexpectedResponseWithResultCode:result.resultCode];
     }
 }
 
@@ -895,7 +930,7 @@ static SAZWaveConfigurationWizardVC *_zwaveConfigurationWizardGlobalRef = nil;
     } else if (pickerField == self.pfFunction) {
         return _functionList.count;
     } else if (pickerField == self.pfNodeList) {
-        return _nodeList.count;
+        return _nodeList.count+1;
     }
     return 0;
 }
@@ -932,7 +967,7 @@ static SAZWaveConfigurationWizardVC *_zwaveConfigurationWizardGlobalRef = nil;
         for(SAZWaveNode *node in _nodeList) {
             if ((_selectedNode != nil && _selectedNode.nodeId == node.nodeId)
                 || (_selectedNode == nil && node.nodeId == _assignedNodeId)) {
-                return n;
+                return n+1;
             }
             n++;
         }
@@ -980,8 +1015,10 @@ static SAZWaveConfigurationWizardVC *_zwaveConfigurationWizardGlobalRef = nil;
             _selectedFunc = [[_functionList objectAtIndex:index] intValue];
         }
     } else if (pickerField == self.pfNodeList) {
-        if (index >= 0 && index < _nodeList.count) {
-            _selectedNode = [_nodeList objectAtIndex:index];
+        if (index > 0 && index <= _nodeList.count) {
+            _selectedNode = [_nodeList objectAtIndex:index-1];
+        } else {
+            _selectedNode = nil;
         }
     }
 }
@@ -1019,7 +1056,13 @@ static SAZWaveConfigurationWizardVC *_zwaveConfigurationWizardGlobalRef = nil;
             return [SAChannelBase getFunctionName:[[_functionList objectAtIndex:row] intValue]];
         }
     } else if (pickerField == self.pfNodeList) {
-        if (row < _nodeList.count) {
+        if (row == 0) {
+            result = @"";
+        }
+        
+        row--;
+        
+        if (result == nil && row >= 0 && row < _nodeList.count) {
             SAZWaveNode *node = [_nodeList objectAtIndex:row];
             result = [NSString stringWithFormat:@"#%i %@", node.nodeId, node.name];
             if (node.channelId
@@ -1036,6 +1079,15 @@ static SAZWaveConfigurationWizardVC *_zwaveConfigurationWizardGlobalRef = nil;
 }
 
 - (IBAction)btnAddTouch:(id)sender {
+    if (_watchdogTimer || _selectedChannel == nil) {
+        return;
+    }
+    
+    [self showWaitMessage:@"Waiting for button press on the z-wave device."
+              withTimeout:ADD_NODE_BUTTON_PRESS_TIMEOUT_SEC
+           timeoutMessage:@"The waiting time for pressing the button has elapsed." showProgress:NO];
+    
+    [SAApp.SuplaClient zwaveAddNodeToDeviceWithId:_selectedChannel.device_id];
 }
 
 - (IBAction)btnDeleteTouch:(id)sender {

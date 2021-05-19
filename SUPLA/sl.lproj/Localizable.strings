@@ -179,3 +179,7 @@
 "The waiting time for the z-wave network reset has expired." = "Potekel je čas čakanja na ponastavitev z-wave mreže.";
 "Are you sure you want to reset the settings and z-wave network?" = "Ali ste prepričani, da želite ponastaviti nastavitve in omrežje z-wave?";
 "This function is not available when the bridge is in slave mode." = "Ta funkcija ni na voljo, ko je most v pomožnem načinu.";
+"Waiting for button press on the z-wave device." = "Čakanje na pritisk gumba na z-wave napravi.";
+"The waiting time for pressing the button has elapsed." = "Potekel je čas čakanja na pristisk gumba.";
+"Waiting for the device to be added to the z-wave network." = "Čakanje na dodajanje naprave v omrežje z-wave.";
+"The waiting time for adding the device to the z-wave network has expired." = "Potekel je čas čakanja na dodajanje naprave v omrežje z-wave.";

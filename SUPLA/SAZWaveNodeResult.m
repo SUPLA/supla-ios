@@ -16,9 +16,9 @@
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 
-#import "SAZWaveNodeListResult.h"
+#import "SAZWaveNodeResult.h"
 
-@implementation SAZWaveNodeListResult
+@implementation SAZWaveNodeResult
 @synthesize resultCode = _resultCode;
 @synthesize node = _node;
 
@@ -30,14 +30,14 @@
     return self;
 }
 
-+ (SAZWaveNodeListResult*) resultWithResultCode:(int)result andZWaveNode:(TCalCfg_ZWave_Node *)node {
-    return [[SAZWaveNodeListResult alloc] initWithResultCode:result andZWaveNode:node];
++ (SAZWaveNodeResult*) resultWithResultCode:(int)result andZWaveNode:(TCalCfg_ZWave_Node *)node {
+    return [[SAZWaveNodeResult alloc] initWithResultCode:result andZWaveNode:node];
 }
 
-+ (SAZWaveNodeListResult *)notificationToCaptionSetResult:(NSNotification *)notification {
++ (SAZWaveNodeResult *)notificationToNodeResult:(NSNotification *)notification {
     if (notification != nil && notification.userInfo != nil) {
         id r = [notification.userInfo objectForKey:@"result"];
-        if (r != nil && [r isKindOfClass:[SAZWaveNodeListResult class]]) {
+        if (r != nil && [r isKindOfClass:[SAZWaveNodeResult class]]) {
             return r;
         }
     }

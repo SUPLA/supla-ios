@@ -179,3 +179,7 @@
 "The waiting time for the z-wave network reset has expired." = "Υπέρβαση χρόνου αναμονής για την επαναφορά του δικτύου κύματος Ζ.";
 "Are you sure you want to reset the settings and z-wave network?" = "Είστε βέβαιοι ότι θέλετε να επαναφέρετε τις ρυθμίσεις και το δίκτυο του κύματος Ζ;";
 "This function is not available when the bridge is in slave mode." = "Αυτή η λειτουργία δεν είναι διαθέσιμη όταν η γέφυρα είναι σε υποδεέστερη λειτουργία.";
+"Waiting for button press on the z-wave device." = "Περιμένοντας για το πάτημα του κουμπιού στη συσκευή του κύματος Ζ.";
+"The waiting time for pressing the button has elapsed." = "Υπέρβαση χρόνου αναμονής για το πάτημα του κουμπιού.";
+"Waiting for the device to be added to the z-wave network." = "Αναμονή για προσθήκη της συσκευής στο δίκτυο του κύματος Ζ.";
+"The waiting time for adding the device to the z-wave network has expired." = "Υπέρβαση χρόνου αναμονής για την προσθήκη της συσκευής στο δίκτυο του κύματος Ζ.";

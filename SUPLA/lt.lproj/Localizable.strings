@@ -181,3 +181,7 @@
 "The waiting time for the z-wave network reset has expired." = "Baigėsi z-wave tinklo atstatymo laukimo laikas.";
 "Are you sure you want to reset the settings and z-wave network?" = "Ar tikrai norite atstatyti nustatymus ir z-wave tinklą?";
 "This function is not available when the bridge is in slave mode." = "Kai tiltas veikia antraeiliame režime ši funkcija neprieinama.";
+"Waiting for button press on the z-wave device." = "Laukiama, kol bus paspaustas mygtukas z-wave įrenginyje.";
+"The waiting time for pressing the button has elapsed." = "Baigėsi mygtuko paspaudimo laukimo laikas.";
+"Waiting for the device to be added to the z-wave network." = "Laukiama, kol įrenginys bus pridėtas prie z-wave tinklo.";
+"The waiting time for adding the device to the z-wave network has expired." = "Baigėsi įrenginio pridėjimo prie z-wave tinklo laukimo laikas.";

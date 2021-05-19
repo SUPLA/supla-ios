@@ -179,3 +179,7 @@
 "The waiting time for the z-wave network reset has expired." = "Ventetiden for tilbakestilling av z-wave nettverket er utløpt.";
 "Are you sure you want to reset the settings and z-wave network?" = "Er du sikker på at du vil tilbakestille innstillinger og z-wave nettverket?";
 "This function is not available when the bridge is in slave mode." = "Denne funksjonen er ikke tilgjengelig når broen er i slave-modus.";
+"Waiting for button press on the z-wave device." = "Venter på et knappetrykk på en z-wave enhet.";
+"The waiting time for pressing the button has elapsed." = "Ventetiden for knappetrykket er utløpt.";
+"Waiting for the device to be added to the z-wave network." = "Venter på tillegging av enheten til z-wave nettverket.";
+"The waiting time for adding the device to the z-wave network has expired." = "Ventetiden for tillegging av enheten til z-wave nettverket er utløpt.";

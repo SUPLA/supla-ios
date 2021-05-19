@@ -98,3 +98,4 @@ extern NSString *kSAOnZWaveAssignedNodeIdResult;
 extern NSString *kSAOnZWaveNodeListResult;
 extern NSString *kSAOnCalCfgProgressReport;
 extern NSString *kSAOnZWaveResetAndClearResult;
+extern NSString *kSAOnZWaveAddNodeResult;
