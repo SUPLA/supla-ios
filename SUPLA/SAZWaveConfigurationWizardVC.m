@@ -96,7 +96,7 @@ static SAZWaveConfigurationWizardVC *_zwaveConfigurationWizardGlobalRef = nil;
     
     NSNumber *_selectedDeviceId;
     SAChannel *_selectedChannel;
-    SAZWaveNode *_selectedNode;
+    SAZWaveNode *_tappedNode;
     int _selectedFunc;
     int _progress;
     int _preloaderVisibleDotCount;
@@ -472,7 +472,7 @@ static SAZWaveConfigurationWizardVC *_zwaveConfigurationWizardGlobalRef = nil;
         [self hideInfoMessage];
         if (result.node && [self nodeIdNotExists:result.node.nodeId]) {
             [_nodeList addObject:result.node];
-            _selectedNode = result.node;
+            _tappedNode = result.node;
             [self.pfNodeList update];
         }
         
@@ -503,8 +503,8 @@ static SAZWaveConfigurationWizardVC *_zwaveConfigurationWizardGlobalRef = nil;
     if (result.nodeId > 0) {
         for(SAZWaveNode *node in _nodeList) {
             if (node.nodeId == result.nodeId) {
-                if (node == _selectedNode) {
-                    _selectedNode = nil;
+                if (node == _tappedNode) {
+                    _tappedNode = nil;
                 }
                 [_nodeList removeObject:node];
                 break;
@@ -937,6 +937,14 @@ static SAZWaveConfigurationWizardVC *_zwaveConfigurationWizardGlobalRef = nil;
         [self applyChannelCaptionChange];
     } else if (self.page == self.itTakeAWhilePage) {
         self.page = self.zwaveSettingsPage;
+    } else if (self.page == self.zwaveSettingsPage) {
+        if (_tappedNode == nil
+            || _tappedNode.channelId == 0
+            || _tappedNode.channelId == _selectedChannel.remote_id) {
+            [self assignNodeId];
+        } else {
+            [self showTheNodeIdAssignmentConfirmationDialog];
+        }
     }
 }
 
@@ -1004,8 +1012,8 @@ static SAZWaveConfigurationWizardVC *_zwaveConfigurationWizardGlobalRef = nil;
         }
     } else if (pickerField == self.pfNodeList) {
         for(SAZWaveNode *node in _nodeList) {
-            if ((_selectedNode != nil && _selectedNode.nodeId == node.nodeId)
-                || (_selectedNode == nil && node.nodeId == _assignedNodeId)) {
+            if ((_tappedNode != nil && _tappedNode.nodeId == node.nodeId)
+                || (_tappedNode == nil && node.nodeId == _assignedNodeId)) {
                 return n+1;
             }
             n++;
@@ -1045,7 +1053,7 @@ static SAZWaveConfigurationWizardVC *_zwaveConfigurationWizardGlobalRef = nil;
         if (_selectedChannel == nil
             || _selectedChannel.device_id != oldDeviceId) {
             [_nodeList removeAllObjects];
-            _selectedNode = nil;
+            _tappedNode = nil;
         }
         
         [self.pfFunction update];
@@ -1055,9 +1063,9 @@ static SAZWaveConfigurationWizardVC *_zwaveConfigurationWizardGlobalRef = nil;
         }
     } else if (pickerField == self.pfNodeList) {
         if (index > 0 && index <= _nodeList.count) {
-            _selectedNode = [_nodeList objectAtIndex:index-1];
+            _tappedNode = [_nodeList objectAtIndex:index-1];
         } else {
-            _selectedNode = nil;
+            _tappedNode = nil;
         }
     }
 }
@@ -1115,6 +1123,38 @@ static SAZWaveConfigurationWizardVC *_zwaveConfigurationWizardGlobalRef = nil;
     }
 
     return result;
+}
+
+-(unsigned char)selectedNodeId {
+    NSInteger idx = [self selectedRowIndexInPickerField:self.pfNodeList];
+    if (idx > 0) {
+        idx--;
+        if (idx < _nodeList.count) {
+            SAZWaveNode *node = [_nodeList objectAtIndex:idx];
+            return node.nodeId;
+        }
+    }
+    
+    return 0;
+}
+
+-(void)assignNodeId {
+    [self hideInfoMessage];
+    [self watchdogActivateWithTime:ASSIGN_NODE_ID_TIMEOUT_SEC
+                    timeoutMessage:@"The waiting time for the z-wave device assignment to the channel has elapsed."
+                    calCfg:YES];
+    self.preloaderVisible = YES;
+    
+    unsigned char selectedNodeId = [self selectedNodeId];
+    if (selectedNodeId != _assignedNodeId) {
+        
+    } else {
+        
+    }
+}
+
+-(void)showTheNodeIdAssignmentConfirmationDialog {
+    
 }
 
 - (IBAction)btnAddTouch:(id)sender {
@@ -1177,7 +1217,7 @@ static SAZWaveConfigurationWizardVC *_zwaveConfigurationWizardGlobalRef = nil;
     }
     
     [_nodeList removeAllObjects];
-    _selectedNode = nil;
+    _tappedNode = nil;
     [self.pfNodeList update];
     
     [self zwaveNodeListRequest];
