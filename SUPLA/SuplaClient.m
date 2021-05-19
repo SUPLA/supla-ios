@@ -1197,4 +1197,12 @@ void sasuplaclient_on_device_calcfg_progress_report(void *_suplaclient,
     }
 }
 
+- (void) zwaveCfgModeIsStillActiveForDeviceId:(int)deviceId {
+    @synchronized(self) {
+        if ( _sclient ) {
+            supla_client_zwave_config_mode_active(_sclient, deviceId);
+        }
+    }
+}
+
 @end

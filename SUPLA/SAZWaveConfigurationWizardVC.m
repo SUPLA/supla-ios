@@ -82,6 +82,7 @@ static SAZWaveConfigurationWizardVC *_zwaveConfigurationWizardGlobalRef = nil;
     NSTimer *_anyCalCfgResultWatchdogTimer;
     NSTimer *_watchdogTimer;
     NSTimer *_waitMessagePreloaderTimer;
+    NSTimer *_cfgModeNotoficationTimer;
     NSMutableArray *_deviceList;
     NSMutableArray *_devicesToRestart;
     NSMutableArray *_deviceChannelList;
@@ -148,12 +149,15 @@ static SAZWaveConfigurationWizardVC *_zwaveConfigurationWizardGlobalRef = nil;
      addObserver:self selector:@selector(onCalCfgProgressReport:)
      name:kSAOnCalCfgProgressReport object:nil];
     
+    [self cfgModeNotificationTimerActivaate];
 }
 
 -(void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
+    [self cfgModeNotificationTimerDeactivate];
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
+
 
 -(void) superuserAuthorizationSuccess {
     [SASuperuserAuthorizationDialog.globalInstance close];
@@ -501,6 +505,30 @@ static SAZWaveConfigurationWizardVC *_zwaveConfigurationWizardGlobalRef = nil;
     self.page = self.errorPage;
 }
 
+- (void)cfgModeNotificationTimerDeactivate {
+    if (_cfgModeNotoficationTimer) {
+        [_cfgModeNotoficationTimer invalidate];
+        _cfgModeNotoficationTimer = nil;
+    }
+}
+
+- (void)onCfgModeNotificationTimer:(NSTimer*)timer {
+    if (self.page != self.channelSelectionPage
+        && _selectedChannel) {
+        [SAApp.SuplaClient zwaveCfgModeIsStillActiveForDeviceId:_selectedChannel.device_id];
+    }
+}
+
+- (void)cfgModeNotificationTimerActivaate {
+    [self cfgModeNotificationTimerDeactivate];
+    
+    _cfgModeNotoficationTimer = [NSTimer scheduledTimerWithTimeInterval:5
+                                            target:self
+                                            selector:@selector(onCfgModeNotificationTimer:)
+                                            userInfo:nil
+                                            repeats:YES];
+}
+
 - (void)anyCalCfgResultWatchdogDeactivate {
     if (_anyCalCfgResultWatchdogTimer) {
         [_anyCalCfgResultWatchdogTimer invalidate];
@@ -624,7 +652,9 @@ static SAZWaveConfigurationWizardVC *_zwaveConfigurationWizardGlobalRef = nil;
         return;
     }
     
-    [self watchdogActivateWithTime:GET_BASIC_CFG_TIMEOUT_SEC timeoutMessage:@"The waiting time for basic channel configuration data has expired." calCfg:NO];
+    [self watchdogActivateWithTime:GET_BASIC_CFG_TIMEOUT_SEC
+                    timeoutMessage:@"The waiting time for basic channel configuration data has expired."
+                    calCfg:NO];
     
     [SAApp.SuplaClient getChannelBasicCfg:channelId];
 }

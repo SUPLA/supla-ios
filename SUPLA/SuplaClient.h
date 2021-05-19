@@ -63,6 +63,7 @@
 - (void) setFunction:(int)function forChannelId:(int)channelId;
 - (void) zwaveGetAssignedNodeIdForChannelId:(int)channelId;
 - (void) zwaveGetNodeListForDeviceId:(int)deviceId;
+- (void) zwaveCfgModeIsStillActiveForDeviceId:(int)deviceId;
 
 @property (nonatomic, weak) id<SASuplaClientDelegate> delegate;
 @end
