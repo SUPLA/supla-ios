@@ -137,7 +137,7 @@ static SASuperuserAuthorizationDialog *_superuserAuthorizationDialogGlobalRef = 
 }
 
 -(void)onRegistrationError:(NSNotification *)notification {
-    [self showError:[SASuplaClient codeToString:[NSNumber notificationToNumber:notification] authDialog:YES]];
+    [self showError:[SASuplaClient codeToString:[NSNumber codeNotificationToNumber:notification] authDialog:YES]];
 }
 
 -(void)onRegistered:(NSNotification *)notification {

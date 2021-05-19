@@ -83,6 +83,7 @@
 		0158396D2576A82A005E615D /* ledon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 015839672576A82A005E615D /* ledon@3x.png */; };
 		0158396E2576A82A005E615D /* ledonwhite@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 015839682576A82A005E615D /* ledonwhite@3x.png */; };
 		0158396F2576A82A005E615D /* ledalwaysoff@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 015839692576A82A005E615D /* ledalwaysoff@3x.png */; };
+		015A9837265587E800B6E6C6 /* refresh@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 015A9836265587E800B6E6C6 /* refresh@3x.png */; };
 		016157B6261CAAFA006AA0E8 /* SAPickerField.m in Sources */ = {isa = PBXBuildFile; fileRef = 016157B5261CAAFA006AA0E8 /* SAPickerField.m */; };
 		0163D0CD257EE483006C73CB /* NetworkExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0163D0CC257EE483006C73CB /* NetworkExtension.framework */; };
 		01642A882549C3EF00E87C46 /* SAMenuItems.m in Sources */ = {isa = PBXBuildFile; fileRef = 01642A872549C3EF00E87C46 /* SAMenuItems.m */; };
@@ -611,6 +612,7 @@
 		015839692576A82A005E615D /* ledalwaysoff@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "ledalwaysoff@3x.png"; path = "Resources/Assets/Img/ledalwaysoff@3x.png"; sourceTree = "<group>"; };
 		015839742576AA40005E615D /* pl */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = pl; path = pl.lproj/SAInfoVC.xib; sourceTree = "<group>"; };
 		015839792576F866005E615D /* pl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pl; path = pl.lproj/SAVLCalibrationTool.strings; sourceTree = "<group>"; };
+		015A9836265587E800B6E6C6 /* refresh@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "refresh@3x.png"; path = "Resources/Assets/Img/refresh@3x.png"; sourceTree = "<group>"; };
 		016157B4261CAAFA006AA0E8 /* SAPickerField.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SAPickerField.h; sourceTree = "<group>"; };
 		016157B5261CAAFA006AA0E8 /* SAPickerField.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SAPickerField.m; sourceTree = "<group>"; };
 		0163D0CB257EE483006C73CB /* SUPLA.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SUPLA.entitlements; sourceTree = "<group>"; };
@@ -1599,6 +1601,7 @@
 		405AC4011BC15878004F7311 /* Img */ = {
 			isa = PBXGroup;
 			children = (
+				015A9836265587E800B6E6C6 /* refresh@3x.png */,
 				01147CE8264C09D8002B2E1C /* powerstation@2x.png */,
 				01147CE7264C09D7002B2E1C /* powerstation@3x.png */,
 				0167C440260CD80700732220 /* garagedoor-closed-50percent@2x.png */,
@@ -2258,6 +2261,7 @@
 				40CE7C6C1DCBBD5700BBACE4 /* depth@3x.png in Resources */,
 				40B9ED5E1FACD14000403B1A /* fan-on@3x.png in Resources */,
 				407D4AF31BC6C6CB009A5505 /* app_icon120x120@2x.png in Resources */,
+				015A9837265587E800B6E6C6 /* refresh@3x.png in Resources */,
 				4091AF421FC84AE000EFF357 /* rocket@2x.png in Resources */,
 				016EE77523074DDC00FD301C /* consumption@3x.png in Resources */,
 				4091654E1F3CBAF200F49193 /* rs_close.png in Resources */,

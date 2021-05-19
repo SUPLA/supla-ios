@@ -175,3 +175,7 @@
 "Device response not as expected. Method: \"%@\" Code: %i" = "Enhetsrespons er ikke som forventet. Metode: \"%@\" Kode: %i";
 "The waiting time for the list of z-wave devices has expired." = "Ventetiden for listen av z-wave enheter er utløpt.";
 "Assigned to:" = "Tilknyttet til:";
+"Waiting for confirmation of resetting the z-wave network together with clearing the settings." = "Venter på bekreftelse på tilbakestilling av z-wave nettverket sammen med tilbakestilling av innstillingene.";
+"The waiting time for the z-wave network reset has expired." = "Ventetiden for tilbakestilling av z-wave nettverket er utløpt.";
+"Are you sure you want to reset the settings and z-wave network?" = "Er du sikker på at du vil tilbakestille innstillinger og z-wave nettverket?";
+"This function is not available when the bridge is in slave mode." = "Denne funksjonen er ikke tilgjengelig når broen er i slave-modus.";

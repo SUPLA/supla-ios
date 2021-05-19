@@ -27,6 +27,7 @@
 #import "SAZWaveAssignedNodeIdResult.h"
 #import "SAZWaveNodeListResult.h"
 #import "SACalCfgProgressReport.h"
+#import "SAClassHelper.h"
 
 #define ERROR_TYPE_TIMEOUT 1
 #define ERROR_TYPE_DISCONNECTED 2
@@ -75,6 +76,7 @@ static SAZWaveConfigurationWizardVC *_zwaveConfigurationWizardGlobalRef = nil;
 @property (weak, nonatomic) IBOutlet UIButton *btnrDelete;
 @property (weak, nonatomic) IBOutlet UIButton *btnlReset;
 @property (weak, nonatomic) IBOutlet UIButton *btnrReset;
+@property (weak, nonatomic) IBOutlet UIButton *btnRefresh;
 
 @end
 
@@ -121,15 +123,6 @@ static SAZWaveConfigurationWizardVC *_zwaveConfigurationWizardGlobalRef = nil;
 -(void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
-    [_deviceList removeAllObjects];
-    [_devicesToRestart removeAllObjects];
-    [_channelList removeAllObjects];
-    [_deviceChannelList removeAllObjects];
-    [_channelBasicCfgToFetch removeAllObjects];
-    [_channelBasicCfgList removeAllObjects];
-    [_functionList removeAllObjects];
-    [_nodeList removeAllObjects];
-
     self.page = self.welcomePage;
     
     [[NSNotificationCenter defaultCenter]
@@ -159,6 +152,10 @@ static SAZWaveConfigurationWizardVC *_zwaveConfigurationWizardGlobalRef = nil;
     [[NSNotificationCenter defaultCenter]
      addObserver:self selector:@selector(onCalCfgProgressReport:)
      name:kSAOnCalCfgProgressReport object:nil];
+    
+    [[NSNotificationCenter defaultCenter]
+     addObserver:self selector:@selector(onZWaveResetAndClearResult:)
+     name:kSAOnZWaveResetAndClearResult object:nil];
     
     [self cfgModeNotificationTimerActivaate];
 }
@@ -223,6 +220,34 @@ static SAZWaveConfigurationWizardVC *_zwaveConfigurationWizardGlobalRef = nil;
     }
 }
 
+-(BOOL)isSlaveModeError:(int)code {
+    if (code == SUPLA_CALCFG_RESULT_NOT_SUPPORTED_IN_SLAVE_MODE) {
+        [self showError:ERROR_TYPE_OTHER
+            withMessage:@"This function is not available when the bridge is in slave mode."];
+        return YES;
+    }
+    return NO;
+}
+
+-(void)onZWaveResetAndClearResult:(NSNotification *)notification {
+    NSNumber *result = [NSNumber resultNotificationToNumber:notification];
+    if (result == nil
+        || [result intValue] == SUPLA_CALCFG_RESULT_IN_PROGRESS
+        || [self isSlaveModeError:[result intValue]]) {
+        return;
+    }
+
+    if ([result intValue] != SUPLA_CALCFG_RESULT_TRUE) {
+        if ([self timeoutResultNotDisplayedWithCode:[result intValue]]) {
+            [self showUnexpectedResponseWithResultCode:[result intValue]];
+        }
+        return;
+    }
+
+    [self zwaveNodeListRequest];
+    self.btnNextEnabled = YES;
+}
+
 -(void)onChannelBasicCfg:(NSNotification *)notification {
     SAChannelBasicCfg *basicCfg = [SAChannelBasicCfg notificationToChannelBasicCfg:notification];
     
@@ -239,7 +264,7 @@ static SAZWaveConfigurationWizardVC *_zwaveConfigurationWizardGlobalRef = nil;
         [self fetchChannelBasicCfg:0];
     } else {
         [self watchdogDeactivate];
-        self.btnCancelOrBackEnabled = YES;
+        
         self.btnNextEnabled = YES;
         self.preloaderVisible = NO;
         
@@ -410,7 +435,6 @@ static SAZWaveConfigurationWizardVC *_zwaveConfigurationWizardGlobalRef = nil;
         [self.pfNodeList update];
         
         self.btnNextEnabled = YES;
-        self.btnCancelOrBackEnabled = YES;
         
         if (self.page == self.itTakeAWhilePage) {
             self.page = self.zwaveSettingsPage;
@@ -426,7 +450,6 @@ static SAZWaveConfigurationWizardVC *_zwaveConfigurationWizardGlobalRef = nil;
     }
     
     self.btnNextEnabled = NO;
-    self.btnCancelOrBackEnabled = NO;
     self.preloaderVisible = YES;
     
     if (_selectedFunc == cfg.channelFunc) {
@@ -469,7 +492,6 @@ static SAZWaveConfigurationWizardVC *_zwaveConfigurationWizardGlobalRef = nil;
     }
     
     self.btnNextEnabled = NO;
-    self.btnCancelOrBackEnabled = NO;
     self.preloaderVisible = YES;
     
     if ([self.tfCaption.text isEqual:cfg.channelCaption]) {
@@ -577,7 +599,6 @@ static SAZWaveConfigurationWizardVC *_zwaveConfigurationWizardGlobalRef = nil;
     }
     
     self.btnNextEnabled = NO;
-    self.btnCancelOrBackEnabled = NO;
     
     if (calCfg) {
         _anyCalCfgResultWatchdogTimer =
@@ -697,13 +718,15 @@ static SAZWaveConfigurationWizardVC *_zwaveConfigurationWizardGlobalRef = nil;
     if (_selectedChannel == nil) {
         return;
     }
-    
+        
     _progress = 0;
     
-    [self showWaitMessage: @"Searching the z-wave network to build a list of devices."
-          withTimeout: GET_ASSIGNED_NODE_ID_TIMEOUT_SEC
-          timeoutMessage:@"The waiting time for the ID of the assigned z-wave device has expired."
-          showProgress:YES];
+    if (_nodeList.count == 0) {
+        [self showWaitMessage: @"Searching the z-wave network to build a list of devices."
+              withTimeout: GET_ASSIGNED_NODE_ID_TIMEOUT_SEC
+              timeoutMessage:@"The waiting time for the ID of the assigned z-wave device has expired."
+              showProgress:YES];
+    }
     
     [SAApp.SuplaClient zwaveGetAssignedNodeIdForChannelId:_selectedChannel.remote_id];
 }
@@ -711,8 +734,8 @@ static SAZWaveConfigurationWizardVC *_zwaveConfigurationWizardGlobalRef = nil;
 - (void)setPage:(UIView *)page {
     [super setPage:page];
     
+    [self cancelAllCommands];
     self.btnNextEnabled = YES;
-    self.btnCancelOrBackEnabled = YES;
     self.backButtonInsteadOfCancel = page != self.welcomePage;
     
     if (page == self.errorPage) {
@@ -728,6 +751,11 @@ static SAZWaveConfigurationWizardVC *_zwaveConfigurationWizardGlobalRef = nil;
     } else if (page == self.channelDetailsPage) {
         [self updateChannelDetailsPageWithBasicCfg:nil];
     } else if (page == self.zwaveSettingsPage) {
+        
+        self.lSelectedChannel.text = [self channelNameOfChannel:_selectedChannel customFunc:nil];
+        
+        [self.pfNodeList update];
+        [self hideInfoMessage];
         [self zwaveNodeListRequest];
     }
 }
@@ -749,7 +777,6 @@ static SAZWaveConfigurationWizardVC *_zwaveConfigurationWizardGlobalRef = nil;
     
     self.tfCaption.enabled = YES;
     self.pfFunction.enabled = YES;
-    self.btnCancelOrBackEnabled = YES;
     self.btnNextEnabled = YES;
     
     NSNumber *devId = [NSNumber numberWithInt:_selectedChannel.device_id];
@@ -788,11 +815,27 @@ static SAZWaveConfigurationWizardVC *_zwaveConfigurationWizardGlobalRef = nil;
     return nil;
 }
 
-- (void)showMainVC {
+- (void)zwaveResetAndClear {
+    if (_selectedChannel == nil) {
+        return;
+    }
+    
+    [self showWaitMessage:@"Waiting for confirmation of resetting the z-wave network together with clearing the settings."
+          withTimeout:RESET_TIMEOUT_SEC
+          timeoutMessage:@"The waiting time for the z-wave network reset has expired."
+          showProgress:NO];
+    
+    [SAApp.SuplaClient zwaveResetAndClearSettingsWithDeviceId:_selectedChannel.device_id];
+}
+
+- (void)cancelAllCommands {
     if (_selectedChannel) {
         [SAApp.SuplaClient deviceCalCfgCancelAllCommandsWithDeviceId:_selectedChannel.device_id];
     }
-    
+}
+
+- (void)showMainVC {
+    [self cancelAllCommands];
     [self watchdogDeactivate];
     [self cfgModeNotificationTimerDeactivate];
     
@@ -999,6 +1042,45 @@ static SAZWaveConfigurationWizardVC *_zwaveConfigurationWizardGlobalRef = nil;
 }
 
 - (IBAction)btnResetTouch:(id)sender {
+    if (_watchdogTimer) {
+        return;
+    }
+    
+    UIAlertController * alert = [UIAlertController
+                                 alertControllerWithTitle:@"SUPLA"
+                                 message:NSLocalizedString(@"Are you sure you want to reset the settings and z-wave network?", nil)
+                                 preferredStyle:UIAlertControllerStyleAlert];
+    
+    UIAlertAction* yesBtn = [UIAlertAction
+                                actionWithTitle:NSLocalizedString(@"Yes", nil)
+                                style:UIAlertActionStyleDefault
+                                handler:^(UIAlertAction * action) {
+        [self zwaveResetAndClear];
+    }];
+    
+    UIAlertAction* noBtn = [UIAlertAction
+                            actionWithTitle:NSLocalizedString(@"No", nil)
+                            style:UIAlertActionStyleDefault
+                            handler:^(UIAlertAction * action) {
+    }];
+    
+    [alert addAction:noBtn];
+    [alert addAction:yesBtn];
+    
+    UIViewController *vc = [[[[UIApplication sharedApplication] delegate] window] rootViewController];
+    [vc presentViewController:alert animated:YES completion:nil];
+}
+
+- (IBAction)refreshTouch:(id)sender {
+    if (_watchdogTimer) {
+        return;
+    }
+    
+    [_nodeList removeAllObjects];
+    _selectedNode = nil;
+    [self.pfNodeList update];
+    
+    [self zwaveNodeListRequest];
 }
 
 @end

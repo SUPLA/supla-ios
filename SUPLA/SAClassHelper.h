@@ -34,7 +34,8 @@
 @end
 
 @interface NSNumber (SUPLA)
-+(NSNumber *_Nullable)notificationToNumber:(NSNotification*_Nullable)notification;
++(NSNumber *_Nullable)codeNotificationToNumber:(NSNotification*_Nullable)notification;
++(NSNumber *_Nullable)resultNotificationToNumber:(NSNotification*_Nullable)notification;
 @end
 
 #endif /* SAClassHelper_h */

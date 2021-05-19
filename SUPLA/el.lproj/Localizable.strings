@@ -175,3 +175,7 @@
 "Device response not as expected. Method: \"%@\" Code: %i" = "Η απόκριση της συσκευής δεν είναι όπως αναμενόταν. Μέθοδος: \"%@\" Κωδικός: %i";
 "The waiting time for the list of z-wave devices has expired." = "Υπέρβαση χρόνου αναμονής για τη λίστα συσκευών του κύματος Ζ.";
 "Assigned to:" = "Έχει καταχωρηθεί:";
+"Waiting for confirmation of resetting the z-wave network together with clearing the settings." = "Αναμονή για επιβεβαίωση της επαναφοράς του δικτύου του κύματος Ζ μαζί με τη διαγραφή των ρυθμίσεων.";
+"The waiting time for the z-wave network reset has expired." = "Υπέρβαση χρόνου αναμονής για την επαναφορά του δικτύου κύματος Ζ.";
+"Are you sure you want to reset the settings and z-wave network?" = "Είστε βέβαιοι ότι θέλετε να επαναφέρετε τις ρυθμίσεις και το δίκτυο του κύματος Ζ;";
+"This function is not available when the bridge is in slave mode." = "Αυτή η λειτουργία δεν είναι διαθέσιμη όταν η γέφυρα είναι σε υποδεέστερη λειτουργία.";

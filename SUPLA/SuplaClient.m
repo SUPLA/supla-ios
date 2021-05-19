@@ -64,6 +64,7 @@
 - (void) onZwaveGetAssignedNodeIdResult:(SAZWaveAssignedNodeIdResult*)result;
 - (void) onZwaveGetNodeListResult:(SAZWaveNodeListResult*)result;
 - (void) onCalCfgProgressReport:(SACalCfgProgressReport*)report;
+- (void) onZWaveResetAndClearResult:(NSNumber *)result;
 @end
 
 void sasuplaclient_on_versionerror(void *_suplaclient, void *user_data, int version, int remote_version_min, int remote_version) {
@@ -270,6 +271,15 @@ void sasuplaclient_on_device_calcfg_progress_report(void *_suplaclient,
     }
 }
 
+void sasuplaclient_on_zwave_reset_and_clear_result(void *_suplaclient,
+                                                   void *user_data,
+                                                   _supla_int_t result) {
+    SASuplaClient *sc = (__bridge SASuplaClient*)user_data;
+    if ( sc != nil ) {
+        [sc onZWaveResetAndClearResult:[NSNumber numberWithInt:result]];
+    }
+}
+
 // ------------------------------------------------------------------------------------------------------
 
 @implementation SASuplaClient {
@@ -439,6 +449,7 @@ void sasuplaclient_on_device_calcfg_progress_report(void *_suplaclient,
     scc.cb_on_zwave_get_assigned_node_id_result = sasuplaclient_on_zwave_get_assigned_node_id_result;
     scc.cb_on_zwave_get_node_list_result = sasuplaclient_on_zwave_get_node_list_result;
     scc.cb_on_device_calcfg_progress_report = sasuplaclient_on_device_calcfg_progress_report;
+    scc.cb_on_zwave_reset_and_clear_result = sasuplaclient_on_zwave_reset_and_clear_result;
     
     scc.protocol_version = [SAApp getPreferedProtocolVersion];
     
@@ -900,6 +911,14 @@ void sasuplaclient_on_device_calcfg_progress_report(void *_suplaclient,
     [self performSelectorOnMainThread:@selector(_onCalCfgProgressReport:) withObject:report waitUntilDone:NO];
 }
 
+- (void) _onZWaveResetAndClearResult:(NSNumber*)result {
+    [[NSNotificationCenter defaultCenter] postNotificationName:kSAOnZWaveResetAndClearResult object:self userInfo:[[NSDictionary alloc] initWithObjects:@[result] forKeys:@[@"result"]]];
+}
+
+- (void) onZWaveResetAndClearResult:(SACalCfgProgressReport*)report {
+    [self performSelectorOnMainThread:@selector(_onZWaveResetAndClearResult:) withObject:report waitUntilDone:NO];
+}
+
 - (void) reconnect {
     @synchronized(self) {
         if ( _sclient ) {
@@ -1217,6 +1236,14 @@ void sasuplaclient_on_device_calcfg_progress_report(void *_suplaclient,
     @synchronized(self) {
         if ( _sclient ) {
             supla_client_reconnect_device(_sclient, deviceId);
+        }
+    }
+}
+
+- (void) zwaveResetAndClearSettingsWithDeviceId:(int)deviceId {
+    @synchronized(self) {
+        if ( _sclient ) {
+            supla_client_zwave_reset_and_clear(_sclient, deviceId);
         }
     }
 }

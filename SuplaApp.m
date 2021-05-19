@@ -50,6 +50,7 @@ NSString *kSAOnChannelFunctionSetResult = @"KSA-N21";
 NSString *kSAOnZWaveAssignedNodeIdResult = @"KSA-N22";
 NSString *kSAOnZWaveNodeListResult = @"KSA-N23";
 NSString *kSAOnCalCfgProgressReport = @"KSA-N24";
+NSString *kSAOnZWaveResetAndClearResult = @"KSA-N25";
 
 @implementation SAApp {
     
@@ -637,7 +638,7 @@ NSString *kSAOnCalCfgProgressReport = @"KSA-N24";
         return;
     }
     
-    NSNumber *code = [NSNumber notificationToNumber:notification];
+    NSNumber *code = [NSNumber codeNotificationToNumber:notification];
     
     if ( code && [code intValue] == SUPLA_RESULTCODE_HOSTNOTFOUND ) {
         
@@ -671,7 +672,7 @@ NSString *kSAOnCalCfgProgressReport = @"KSA-N24";
     
     [self SuplaClientTerminate];
     
-    NSNumber *code = [NSNumber notificationToNumber:notification];
+    NSNumber *code = [NSNumber codeNotificationToNumber:notification];
     [self.UI showStatusError:[SASuplaClient codeToString:code]];
         
     int cint = [code intValue];

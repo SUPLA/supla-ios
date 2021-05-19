@@ -176,3 +176,7 @@
 "Device response not as expected. Method: \"%@\" Code: %i" = "Ответ устройства не соответствует ожидаемому. Метод: \"%@\" Код: %i";
 "The waiting time for the list of z-wave devices has expired." = "Время ожидания списка устройств z-wave истекло.";
 "Assigned to:" = "Назначено для:";
+"Waiting for confirmation of resetting the z-wave network together with clearing the settings." = "Ожидание подтверждения сброса сети z-wave с удалением настроек.";
+"The waiting time for the z-wave network reset has expired." = "Время ожидания сброса сети z-wave истекло.";
+"Are you sure you want to reset the settings and z-wave network?" = "Вы уверены, что хотите сбросить настройки и сеть z-wave?";
+"This function is not available when the bridge is in slave mode." = "Эта функция недоступна, когда мост работает в подчиненном режиме.";

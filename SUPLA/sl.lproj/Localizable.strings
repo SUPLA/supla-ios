@@ -175,3 +175,7 @@
 "Device response not as expected. Method: \"%@\" Code: %i" = "Odziv naprave ni skladen s pričakovanji. Metoda: \"%@\" Koda: %i";
 "The waiting time for the list of z-wave devices has expired." = "Potekel je čas čakanja na seznam z-wave naprav.";
 "Assigned to:" = "Dodeljeno:";
+"Waiting for confirmation of resetting the z-wave network together with clearing the settings." = "Čakanje na potrditev ponastavitve z-wave omrežja skupaj z brisanjem nastavitev.";
+"The waiting time for the z-wave network reset has expired." = "Potekel je čas čakanja na ponastavitev z-wave mreže.";
+"Are you sure you want to reset the settings and z-wave network?" = "Ali ste prepričani, da želite ponastaviti nastavitve in omrežje z-wave?";
+"This function is not available when the bridge is in slave mode." = "Ta funkcija ni na voljo, ko je most v pomožnem načinu.";
