@@ -17,8 +17,8 @@
  */
 
 #import "SAWizardVC.h"
-#import "SAClassHelper.h"
 #import "SuplaApp.h"
+#import "UIButton+SUPLA.h"
 
 @interface SAWizardVC ()
 @property (weak, nonatomic) IBOutlet UIButton *btnCancel3;

@@ -16,26 +16,12 @@
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 
-#ifndef SAClassHelper_h
-#define SAClassHelper_h
-
 #import <Foundation/Foundation.h>
-#import <UIKit/UIKit.h>
 
-@interface NSDictionary (SUPLA)
--(NSString*_Nullable) urlEncodedString;
-@end
-
-@interface UIButton (SUPLA)
-- (void)setTitle:(nullable NSString *)title;
-- (void)setAttributedTitle:(nullable NSString *)title;
-- (void)setBackgroundImage:(UIImage *_Nullable)image;
-- (void)setImage:(UIImage *_Nullable)image;
-@end
-
+NS_ASSUME_NONNULL_BEGIN
 @interface NSNumber (SUPLA)
 +(NSNumber *_Nullable)codeNotificationToNumber:(NSNotification*_Nullable)notification;
 +(NSNumber *_Nullable)resultNotificationToNumber:(NSNotification*_Nullable)notification;
 @end
 
-#endif /* SAClassHelper_h */
+NS_ASSUME_NONNULL_END

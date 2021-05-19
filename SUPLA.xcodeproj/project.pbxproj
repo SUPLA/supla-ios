@@ -84,6 +84,9 @@
 		0158396E2576A82A005E615D /* ledonwhite@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 015839682576A82A005E615D /* ledonwhite@3x.png */; };
 		0158396F2576A82A005E615D /* ledalwaysoff@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 015839692576A82A005E615D /* ledalwaysoff@3x.png */; };
 		015A9837265587E800B6E6C6 /* refresh@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 015A9836265587E800B6E6C6 /* refresh@3x.png */; };
+		015A983C265594B300B6E6C6 /* NSNumber+SUPLA.m in Sources */ = {isa = PBXBuildFile; fileRef = 015A983B265594B300B6E6C6 /* NSNumber+SUPLA.m */; };
+		015A98412655958500B6E6C6 /* NSDictionary+SUPLA.m in Sources */ = {isa = PBXBuildFile; fileRef = 015A98402655958500B6E6C6 /* NSDictionary+SUPLA.m */; };
+		015A9846265595E300B6E6C6 /* UIButton+SUPLA.m in Sources */ = {isa = PBXBuildFile; fileRef = 015A9845265595E300B6E6C6 /* UIButton+SUPLA.m */; };
 		016157B6261CAAFA006AA0E8 /* SAPickerField.m in Sources */ = {isa = PBXBuildFile; fileRef = 016157B5261CAAFA006AA0E8 /* SAPickerField.m */; };
 		0163D0CD257EE483006C73CB /* NetworkExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0163D0CC257EE483006C73CB /* NetworkExtension.framework */; };
 		01642A882549C3EF00E87C46 /* SAMenuItems.m in Sources */ = {isa = PBXBuildFile; fileRef = 01642A872549C3EF00E87C46 /* SAMenuItems.m */; };
@@ -288,7 +291,6 @@
 		40477B5420C6CF2600E995E6 /* gatealt1-closed-50percent@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 40477B5020C6CF2600E995E6 /* gatealt1-closed-50percent@3x.png */; };
 		40477B5F20C6F62A00E995E6 /* groupsoff@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 40477B5D20C6F62900E995E6 /* groupsoff@2x.png */; };
 		40477B6020C6F62A00E995E6 /* groupson@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 40477B5E20C6F62900E995E6 /* groupson@2x.png */; };
-		404E48F71FC75D0B001F6266 /* SAClassHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 404E48F51FC75D0B001F6266 /* SAClassHelper.m */; };
 		4052DA001DC515AE000B8C45 /* dimmerrgb-offoff@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4052D9F01DC515AE000B8C45 /* dimmerrgb-offoff@3x.png */; };
 		4052DA011DC515AE000B8C45 /* dimmerrgb-offoff@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4052D9F11DC515AE000B8C45 /* dimmerrgb-offoff@2x.png */; };
 		4052DA021DC515AE000B8C45 /* dimmerrgb-offon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4052D9F21DC515AE000B8C45 /* dimmerrgb-offon@3x.png */; };
@@ -613,6 +615,12 @@
 		015839742576AA40005E615D /* pl */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = pl; path = pl.lproj/SAInfoVC.xib; sourceTree = "<group>"; };
 		015839792576F866005E615D /* pl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pl; path = pl.lproj/SAVLCalibrationTool.strings; sourceTree = "<group>"; };
 		015A9836265587E800B6E6C6 /* refresh@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "refresh@3x.png"; path = "Resources/Assets/Img/refresh@3x.png"; sourceTree = "<group>"; };
+		015A983A265594B300B6E6C6 /* NSNumber+SUPLA.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSNumber+SUPLA.h"; sourceTree = "<group>"; };
+		015A983B265594B300B6E6C6 /* NSNumber+SUPLA.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSNumber+SUPLA.m"; sourceTree = "<group>"; };
+		015A983F2655958500B6E6C6 /* NSDictionary+SUPLA.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+SUPLA.h"; sourceTree = "<group>"; };
+		015A98402655958500B6E6C6 /* NSDictionary+SUPLA.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+SUPLA.m"; sourceTree = "<group>"; };
+		015A9844265595E300B6E6C6 /* UIButton+SUPLA.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIButton+SUPLA.h"; sourceTree = "<group>"; };
+		015A9845265595E300B6E6C6 /* UIButton+SUPLA.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIButton+SUPLA.m"; sourceTree = "<group>"; };
 		016157B4261CAAFA006AA0E8 /* SAPickerField.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SAPickerField.h; sourceTree = "<group>"; };
 		016157B5261CAAFA006AA0E8 /* SAPickerField.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SAPickerField.m; sourceTree = "<group>"; };
 		0163D0CB257EE483006C73CB /* SUPLA.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SUPLA.entitlements; sourceTree = "<group>"; };
@@ -1007,8 +1015,6 @@
 		40477B5020C6CF2600E995E6 /* gatealt1-closed-50percent@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "gatealt1-closed-50percent@3x.png"; path = "Resources/Assets/Img/gatealt1-closed-50percent@3x.png"; sourceTree = "<group>"; };
 		40477B5D20C6F62900E995E6 /* groupsoff@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "groupsoff@2x.png"; path = "Resources/Assets/Img/groupsoff@2x.png"; sourceTree = "<group>"; };
 		40477B5E20C6F62900E995E6 /* groupson@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "groupson@2x.png"; path = "Resources/Assets/Img/groupson@2x.png"; sourceTree = "<group>"; };
-		404E48F51FC75D0B001F6266 /* SAClassHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SAClassHelper.m; sourceTree = "<group>"; };
-		404E48F61FC75D0B001F6266 /* SAClassHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SAClassHelper.h; sourceTree = "<group>"; };
 		4052D9F01DC515AE000B8C45 /* dimmerrgb-offoff@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "dimmerrgb-offoff@3x.png"; path = "Resources/Assets/Img/dimmerrgb-offoff@3x.png"; sourceTree = "<group>"; };
 		4052D9F11DC515AE000B8C45 /* dimmerrgb-offoff@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "dimmerrgb-offoff@2x.png"; path = "Resources/Assets/Img/dimmerrgb-offoff@2x.png"; sourceTree = "<group>"; };
 		4052D9F21DC515AE000B8C45 /* dimmerrgb-offon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "dimmerrgb-offon@3x.png"; path = "Resources/Assets/Img/dimmerrgb-offon@3x.png"; sourceTree = "<group>"; };
@@ -1490,9 +1496,13 @@
 				40AB8BDC1DCB32EB0030F3DE /* SARateApp.h */,
 				0111E922263F374800302356 /* UIColor+SUPLA.h */,
 				0111E923263F374800302356 /* UIColor+SUPLA.m */,
+				015A9844265595E300B6E6C6 /* UIButton+SUPLA.h */,
+				015A9845265595E300B6E6C6 /* UIButton+SUPLA.m */,
 				40AB8BDD1DCB32EB0030F3DE /* SARateApp.m */,
-				404E48F51FC75D0B001F6266 /* SAClassHelper.m */,
-				404E48F61FC75D0B001F6266 /* SAClassHelper.h */,
+				015A983F2655958500B6E6C6 /* NSDictionary+SUPLA.h */,
+				015A98402655958500B6E6C6 /* NSDictionary+SUPLA.m */,
+				015A983A265594B300B6E6C6 /* NSNumber+SUPLA.h */,
+				015A983B265594B300B6E6C6 /* NSNumber+SUPLA.m */,
 				013D350223350C48006E3B75 /* SAThermostatScheduleCfg.h */,
 				013D350323350C48006E3B75 /* SAThermostatScheduleCfg.m */,
 				016ABE14236D8363001BF5FB /* SAKeychain.h */,
@@ -2673,10 +2683,12 @@
 				019D9E2C25F271CF00881C99 /* SACaptionEditor.m in Sources */,
 				401CA1C21BA067DB00117AF4 /* AppDelegate.m in Sources */,
 				013D1C5D22CE47D5000C0784 /* SAChartHelper.m in Sources */,
+				015A98412655958500B6E6C6 /* NSDictionary+SUPLA.m in Sources */,
 				019F4CCD23577C3700286139 /* SAImpulseCounterChartHelper.m in Sources */,
 				01E3966E25A78B8B00A0DB18 /* SADimmerCalibrationTool.m in Sources */,
 				01392B3A235CA8B1003A2BAD /* ChartDetailView.m in Sources */,
 				01567446232FCFD700397393 /* SAIncrementalMeterExtendedValue.m in Sources */,
+				015A983C265594B300B6E6C6 /* NSNumber+SUPLA.m in Sources */,
 				01147CE4264BE317002B2E1C /* SAChannelFunctionSetResult.m in Sources */,
 				017554F622F1A62500EB58B7 /* HomePlusDetailView.m in Sources */,
 				40A675831BA1BE8E004A51C4 /* SettingsVC.m in Sources */,
@@ -2702,7 +2714,6 @@
 				01BDAC7522C518DE00915646 /* SARestApiClientTask.m in Sources */,
 				401CA1BF1BA067DB00117AF4 /* main.m in Sources */,
 				018CFD2623281AF900888CB7 /* SAThermostatHPExtendedValue.m in Sources */,
-				404E48F71FC75D0B001F6266 /* SAClassHelper.m in Sources */,
 				01F8857122E5E79100D18373 /* SATemperatureMeasurementItem+CoreDataClass.m in Sources */,
 				018CFD2323281ADB00888CB7 /* SAThermostatExtendedValue.m in Sources */,
 				40BBA35D20AC6E220054CD20 /* SAChannelGroupRelation+CoreDataProperties.m in Sources */,
@@ -2727,6 +2738,7 @@
 				4006E90A1DC62D0A00C4456D /* DetailView.m in Sources */,
 				01D6A0F2249BD2F7006B3757 /* SASuperuserAuthorizationDialog.m in Sources */,
 				01BDAC7822C5200600915646 /* SAOAuthToken.m in Sources */,
+				015A9846265595E300B6E6C6 /* UIButton+SUPLA.m in Sources */,
 				40C7BA5220C007A300ACEE42 /* SAChannelValue+CoreDataClass.m in Sources */,
 				01DD2F0F247719000025DFF9 /* SARangeCalibrationWheel.m in Sources */,
 				016157B6261CAAFA006AA0E8 /* SAPickerField.m in Sources */,

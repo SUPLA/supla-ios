@@ -21,8 +21,9 @@
 #import "TFHpple.h"
 #import "SASuperuserAuthorizationDialog.h"
 #import "SAWifi.h"
-#import "SAClassHelper.h"
 #import "SARegistrationEnabled.h"
+#import "NSDictionary+SUPLA.h"
+#import "UIButton+SUPLA.h"
 
 #define RESULT_PARAM_ERROR   -3
 #define RESULT_COMPAT_ERROR  -2

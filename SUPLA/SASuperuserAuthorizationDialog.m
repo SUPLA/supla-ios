@@ -16,8 +16,8 @@
 #import "SASuperuserAuthorizationDialog.h"
 #import "SuplaClient.h"
 #import "SuplaApp.h"
-#import "SAClassHelper.h"
 #import "SASuperuserAuthorizationResult.h"
+#import "NSNumber+SUPLA.h"
 
 static SASuperuserAuthorizationDialog *_superuserAuthorizationDialogGlobalRef = nil;
 

@@ -19,7 +19,6 @@
 
 #import "UIHelper.h"
 #import "SuplaApp.h"
-#import "SAClassHelper.h"
 #import "NavigationController.h"
 #import <QuartzCore/QuartzCore.h>
 

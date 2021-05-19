@@ -27,7 +27,7 @@
 #import "SAZWaveAssignedNodeIdResult.h"
 #import "SAZWaveNodeListResult.h"
 #import "SACalCfgProgressReport.h"
-#import "SAClassHelper.h"
+#import "NSNumber+SUPLA.h"
 
 #define ERROR_TYPE_TIMEOUT 1
 #define ERROR_TYPE_DISCONNECTED 2

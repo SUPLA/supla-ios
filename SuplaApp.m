@@ -22,7 +22,7 @@
 #import "NSData+AES.h"
 #import "SAKeychain.h"
 #import "SASuperuserAuthorizationDialog.h"
-#import "SAClassHelper.h"
+#import "NSNumber+SUPLA.h"
 
 static SAApp* _Globals = nil;
 

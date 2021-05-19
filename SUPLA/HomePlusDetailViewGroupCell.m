@@ -19,9 +19,9 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #import "HomePlusDetailViewGroupCell.h"
 #import "SAThermostatHPExtendedValue.h"
 #import "SAChannel+CoreDataClass.h"
-#import "SAClassHelper.h"
 #import "UIHelper.h"
 #import "UIColor+SUPLA.h"
+#import "UIButton+SUPLA.h"
 
 @implementation HomePlusDetailViewGroupCell {
     SAChannelBase *_channelBase;

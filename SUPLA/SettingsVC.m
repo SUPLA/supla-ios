@@ -18,7 +18,7 @@
 
 #import "SettingsVC.h"
 #import "SuplaApp.h"
-#import "SAClassHelper.h"
+#import "UIButton+SUPLA.h"
 
 @interface SASettingsVC ()
 

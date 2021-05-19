@@ -22,7 +22,6 @@
 #import "SAColorListItem+CoreDataClass.h"
 #import "Database.h"
 #import "SuplaApp.h"
-#import "SAClassHelper.h"
 #import "SAInfoVC.h"
 #import "SAVLCalibrationTool.h"
 #import "SADiwCalibrationTool.h"
