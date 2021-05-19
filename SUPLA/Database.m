@@ -1368,7 +1368,6 @@
 }
 
 -(BOOL) zwaveBridgeChannelAvailable {
-    return NO;
     NSArray *r = [self zwaveBridgeChannelsWithLimit:1];
     return r && r.count == 1;
 }
