@@ -104,10 +104,11 @@ static SAZWaveConfigurationWizardVC *_zwaveConfigurationWizardGlobalRef = nil;
 - (void)viewDidLoad {
     [super viewDidLoad];
     _deviceList = [[NSMutableArray alloc] init];
-    _channelList = [[NSMutableArray alloc] init];
+    _devicesToRestart = [[NSMutableArray alloc] init];
     _deviceChannelList = [[NSMutableArray alloc] init];
-    _channelBasicCfgToFetch = [[NSMutableArray alloc] init];
+    _channelList = [[NSMutableArray alloc] init];
     _channelBasicCfgList = [[NSMutableArray alloc] init];
+    _channelBasicCfgToFetch = [[NSMutableArray alloc] init];
     _functionList = [[NSMutableArray alloc] init];
     _nodeList = [[NSMutableArray alloc] init];
     
@@ -119,6 +120,16 @@ static SAZWaveConfigurationWizardVC *_zwaveConfigurationWizardGlobalRef = nil;
 
 -(void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+    
+    [_deviceList removeAllObjects];
+    [_devicesToRestart removeAllObjects];
+    [_channelList removeAllObjects];
+    [_deviceChannelList removeAllObjects];
+    [_channelBasicCfgToFetch removeAllObjects];
+    [_channelBasicCfgList removeAllObjects];
+    [_functionList removeAllObjects];
+    [_nodeList removeAllObjects];
+
     self.page = self.welcomePage;
     
     [[NSNotificationCenter defaultCenter]
@@ -788,6 +799,8 @@ static SAZWaveConfigurationWizardVC *_zwaveConfigurationWizardGlobalRef = nil;
     for(NSNumber *deviceId in _devicesToRestart) {
         [SAApp.SuplaClient reconnectDeviceWithId: [deviceId intValue]];
     }
+    
+    [_devicesToRestart removeAllObjects];
     
     self.preloaderVisible = NO;
     [[SAApp UI] showMainVC];
