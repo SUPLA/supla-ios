@@ -183,3 +183,4 @@
 "The waiting time for pressing the button has elapsed." = "Υπέρβαση χρόνου αναμονής για το πάτημα του κουμπιού.";
 "Waiting for the device to be added to the z-wave network." = "Αναμονή για προσθήκη της συσκευής στο δίκτυο του κύματος Ζ.";
 "The waiting time for adding the device to the z-wave network has expired." = "Υπέρβαση χρόνου αναμονής για την προσθήκη της συσκευής στο δίκτυο του κύματος Ζ.";
+"The waiting time to remove the device has expired." = "Υπέρβαση χρόνου αναμονής για την κατάργηση συσκευής.";

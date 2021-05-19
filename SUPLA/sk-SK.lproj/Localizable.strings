@@ -183,3 +183,4 @@
 "The waiting time for pressing the button has elapsed." = "Bola prekročená lehota čakania na stlačenie tlačidla.";
 "Waiting for the device to be added to the z-wave network." = "Čakanie na pridanie zariadenia do siete z-wave.";
 "The waiting time for adding the device to the z-wave network has expired." = "Bola prekročená lehota čakania na pridanie zariadenia do siete z-wave.";
+"The waiting time to remove the device has expired." = "Bola prekročená lehota čakania na odstránenie zariadenia.";

@@ -20,13 +20,13 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface SAZWaveAssignedNodeIdResult : NSObject
+@interface SAZWaveNodeIdResult : NSObject
 @property (nonatomic, readonly)unsigned char nodeId;
 @property (nonatomic, readonly)int resultCode;
 
 - (id)initWithResultCode:(int)resultCode andNodeId:(unsigned char)nodeId;
-+ (SAZWaveAssignedNodeIdResult*) resultWithResultCode:(int)resultCode andNodeId:(unsigned char)nodeId;
-+ (SAZWaveAssignedNodeIdResult *)notificationToAssignedNodeIdResult:(NSNotification *)notification;
++ (SAZWaveNodeIdResult*) resultWithResultCode:(int)resultCode andNodeId:(unsigned char)nodeId;
++ (SAZWaveNodeIdResult *)notificationToNodeIdResult:(NSNotification *)notification;
 @end
 
 NS_ASSUME_NONNULL_END

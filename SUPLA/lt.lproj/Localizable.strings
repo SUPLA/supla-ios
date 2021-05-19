@@ -185,3 +185,4 @@
 "The waiting time for pressing the button has elapsed." = "Baigėsi mygtuko paspaudimo laukimo laikas.";
 "Waiting for the device to be added to the z-wave network." = "Laukiama, kol įrenginys bus pridėtas prie z-wave tinklo.";
 "The waiting time for adding the device to the z-wave network has expired." = "Baigėsi įrenginio pridėjimo prie z-wave tinklo laukimo laikas.";
+"The waiting time to remove the device has expired." = "Baigėsi įrenginio pašalimo laukimo laikas.";

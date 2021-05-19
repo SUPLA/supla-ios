@@ -183,3 +183,4 @@
 "The waiting time for pressing the button has elapsed." = "De wachttijd voor het indrukken van de knop is verstreken.";
 "Waiting for the device to be added to the z-wave network." = "Wachten om het apparaat aan het Z-wave-netwerk toe te voegen.";
 "The waiting time for adding the device to the z-wave network has expired." = "De wachttijd voor het toevoegen van het apparaat aan het Z-wave netwerk is verstreken.";
+"The waiting time to remove the device has expired." = "De wachttijd voor het verwijderen van het apparaat is verstreken.";

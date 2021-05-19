@@ -184,3 +184,4 @@
 "The waiting time for pressing the button has elapsed." = "Время ожидания нажатия кнопки истекло.";
 "Waiting for the device to be added to the z-wave network." = "Ожидание добавления устройства в сеть z-wave.";
 "The waiting time for adding the device to the z-wave network has expired." = "Время ожидания добавления устройства в сеть z-wave истекло.";
+"The waiting time to remove the device has expired." = "Время ожидания удаления устройства истекло.";

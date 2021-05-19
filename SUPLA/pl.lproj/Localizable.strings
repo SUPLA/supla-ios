@@ -244,3 +244,4 @@
 "The waiting time for pressing the button has elapsed." = "Upłynął czas oczekiwania na naciśnięcie przycisku.";
 "Waiting for the device to be added to the z-wave network." = "Oczekiwanie na dodanie urządzenia do sieci z-wave.";
 "The waiting time for adding the device to the z-wave network has expired." = "Upłynął czas oczekiwania na dodanie urządzenia do sieci z-wave.";
+"The waiting time to remove the device has expired." = "Upłynął czas oczekiwania na usunięcie urządzenia.";

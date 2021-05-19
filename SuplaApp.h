@@ -99,3 +99,4 @@ extern NSString *kSAOnZWaveNodeListResult;
 extern NSString *kSAOnCalCfgProgressReport;
 extern NSString *kSAOnZWaveResetAndClearResult;
 extern NSString *kSAOnZWaveAddNodeResult;
+extern NSString *kSAOnZWaveRemoveNodeResult;

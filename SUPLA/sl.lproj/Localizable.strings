@@ -183,3 +183,4 @@
 "The waiting time for pressing the button has elapsed." = "Potekel je čas čakanja na pristisk gumba.";
 "Waiting for the device to be added to the z-wave network." = "Čakanje na dodajanje naprave v omrežje z-wave.";
 "The waiting time for adding the device to the z-wave network has expired." = "Potekel je čas čakanja na dodajanje naprave v omrežje z-wave.";
+"The waiting time to remove the device has expired." = "Potekel je čas čakanja na odstranitev naprave.";

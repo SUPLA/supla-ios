@@ -31,7 +31,7 @@
 #import "SAChannelBasicCfg.h"
 #import "SAChannelCaptionSetResult.h"
 #import "SAChannelFunctionSetResult.h"
-#import "SAZWaveAssignedNodeIdResult.h"
+#import "SAZWaveNodeIdResult.h"
 #import "SAZWaveNodeResult.h"
 #import "SACalCfgProgressReport.h"
 
@@ -61,11 +61,12 @@
 - (void) onChannelBasicCfg:(SAChannelBasicCfg*)cfg;
 - (void) onChannelCaptionSetResult:(SAChannelCaptionSetResult*)result;
 - (void) onChannelFunctionSetResult:(SAChannelFunctionSetResult*)result;
-- (void) onZwaveGetAssignedNodeIdResult:(SAZWaveAssignedNodeIdResult*)result;
+- (void) onZwaveGetAssignedNodeIdResult:(SAZWaveNodeIdResult*)result;
 - (void) onZwaveGetNodeListResult:(SAZWaveNodeResult*)result;
 - (void) onCalCfgProgressReport:(SACalCfgProgressReport*)report;
 - (void) onZWaveResetAndClearResult:(NSNumber *)result;
 - (void) onZwaveAddNodeResult:(SAZWaveNodeResult*)result;
+- (void) onZwaveRemoveNodeResult:(SAZWaveNodeIdResult*)result;
 @end
 
 void sasuplaclient_on_versionerror(void *_suplaclient, void *user_data, int version, int remote_version_min, int remote_version) {
@@ -244,7 +245,7 @@ void sasuplaclient_on_zwave_get_assigned_node_id_result(void *_suplaclient,
                                                         unsigned char node_id) {
     SASuplaClient *sc = (__bridge SASuplaClient*)user_data;
     if ( sc != nil ) {
-        [sc onZwaveGetAssignedNodeIdResult:[[SAZWaveAssignedNodeIdResult alloc]
+        [sc onZwaveGetAssignedNodeIdResult:[[SAZWaveNodeIdResult alloc]
                                             initWithResultCode:result andNodeId:node_id]];
     }
 }
@@ -290,6 +291,17 @@ void sasuplaclient_on_zwave_add_node_result(void *_suplaclient,
        [sc onZwaveAddNodeResult:[SAZWaveNodeResult
                                      resultWithResultCode:result
                                      andZWaveNode:node]];
+    }
+}
+
+void sasuplaclient_on_zwave_remove_node_result(void *_suplaclient,
+                                               void *user_data,
+                                               _supla_int_t result,
+                                               unsigned char node_id) {
+    SASuplaClient *sc = (__bridge SASuplaClient*)user_data;
+    if ( sc != nil ) {
+    [sc onZwaveRemoveNodeResult:[[SAZWaveNodeIdResult alloc]
+                                       initWithResultCode:result andNodeId:node_id]];
     }
 }
 
@@ -464,6 +476,7 @@ void sasuplaclient_on_zwave_add_node_result(void *_suplaclient,
     scc.cb_on_device_calcfg_progress_report = sasuplaclient_on_device_calcfg_progress_report;
     scc.cb_on_zwave_reset_and_clear_result = sasuplaclient_on_zwave_reset_and_clear_result;
     scc.cb_on_zwave_add_node_result = sasuplaclient_on_zwave_add_node_result;
+    scc.cb_on_zwave_remove_node_result = sasuplaclient_on_zwave_remove_node_result;
     
     scc.protocol_version = [SAApp getPreferedProtocolVersion];
     
@@ -900,11 +913,11 @@ void sasuplaclient_on_zwave_add_node_result(void *_suplaclient,
     [self performSelectorOnMainThread:@selector(_onChannelFunctionSetResult:) withObject:result waitUntilDone:NO];
 }
 
-- (void) _onZwaveGetAssignedNodeIdResult:(SAZWaveAssignedNodeIdResult*)result {
+- (void) _onZwaveGetAssignedNodeIdResult:(SAZWaveNodeIdResult*)result {
     [[NSNotificationCenter defaultCenter] postNotificationName:kSAOnZWaveAssignedNodeIdResult object:self userInfo:[[NSDictionary alloc] initWithObjects:@[result] forKeys:@[@"result"]]];
 }
 
-- (void) onZwaveGetAssignedNodeIdResult:(SAZWaveAssignedNodeIdResult*)result {
+- (void) onZwaveGetAssignedNodeIdResult:(SAZWaveNodeIdResult*)result {
     [self performSelectorOnMainThread:@selector(_onZwaveGetAssignedNodeIdResult:) withObject:result waitUntilDone:NO];
 }
 
@@ -941,6 +954,13 @@ void sasuplaclient_on_zwave_add_node_result(void *_suplaclient,
     [self performSelectorOnMainThread:@selector(_onZwaveAddNodeResult:) withObject:result waitUntilDone:NO];
 }
 
+- (void) _onZwaveRemoveNodeResult:(SAZWaveNodeIdResult*)result {
+    [[NSNotificationCenter defaultCenter] postNotificationName:kSAOnZWaveRemoveNodeResult object:self userInfo:[[NSDictionary alloc] initWithObjects:@[result] forKeys:@[@"result"]]];
+}
+
+- (void) onZwaveRemoveNodeResult:(SAZWaveNodeIdResult*)result {
+    [self performSelectorOnMainThread:@selector(_onZwaveRemoveNodeResult:) withObject:result waitUntilDone:NO];
+}
 
 - (void) reconnect {
     @synchronized(self) {
@@ -1279,4 +1299,11 @@ void sasuplaclient_on_zwave_add_node_result(void *_suplaclient,
     }
 }
 
+- (void) zwaveRemoveNodeFromTheDeviceWithId:(int)deviceId {
+    @synchronized(self) {
+        if ( _sclient ) {
+            supla_client_zwave_remove_node(_sclient, deviceId);
+        }
+    }
+}
 @end

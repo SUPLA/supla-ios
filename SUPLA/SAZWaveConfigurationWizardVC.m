@@ -24,7 +24,7 @@
 #import "SAChannelFunctionSetResult.h"
 #import "SAPickerField.h"
 #import "SACalCfgResult.h"
-#import "SAZWaveAssignedNodeIdResult.h"
+#import "SAZWaveNodeIdResult.h"
 #import "SAZWaveNodeResult.h"
 #import "SACalCfgProgressReport.h"
 #import "NSNumber+SUPLA.h"
@@ -160,6 +160,10 @@ static SAZWaveConfigurationWizardVC *_zwaveConfigurationWizardGlobalRef = nil;
     [[NSNotificationCenter defaultCenter]
      addObserver:self selector:@selector(onZWaveAddNodeResult:)
      name:kSAOnZWaveAddNodeResult object:nil];
+    
+    [[NSNotificationCenter defaultCenter]
+     addObserver:self selector:@selector(onZWaveRemoveNodeResult:)
+     name:kSAOnZWaveRemoveNodeResult object:nil];
     
     [self cfgModeNotificationTimerActivaate];
 }
@@ -371,7 +375,7 @@ static SAZWaveConfigurationWizardVC *_zwaveConfigurationWizardGlobalRef = nil;
 }
 
 -(void)onZWaveAssignedNodeIdResult:(NSNotification *)notification {
-    SAZWaveAssignedNodeIdResult *result = [SAZWaveAssignedNodeIdResult notificationToAssignedNodeIdResult:notification];
+    SAZWaveNodeIdResult *result = [SAZWaveNodeIdResult notificationToNodeIdResult:notification];
     if (result == nil
         || result.resultCode == SUPLA_CALCFG_RESULT_IN_PROGRESS) {
         return;
@@ -475,6 +479,40 @@ static SAZWaveConfigurationWizardVC *_zwaveConfigurationWizardGlobalRef = nil;
     } else if ([self timeoutResultNotDisplayedWithCode:result.resultCode]) {
         [self showUnexpectedResponseWithResultCode:result.resultCode];
     }
+}
+
+-(void)onZWaveRemoveNodeResult:(NSNotification *)notification {
+    SAZWaveNodeIdResult *result = [SAZWaveNodeIdResult notificationToNodeIdResult:notification];
+    if (result == nil
+        || result.resultCode == SUPLA_CALCFG_RESULT_IN_PROGRESS
+        || [self isSlaveModeError:result.resultCode] ) {
+        return;
+    }
+    
+    if (result.resultCode != SUPLA_CALCFG_RESULT_TRUE) {
+        if ([self timeoutResultNotDisplayedWithCode:result.resultCode]) {
+            [self showUnexpectedResponseWithResultCode:result.resultCode];
+        }
+        return;
+    }
+    
+    self.btnNextEnabled = YES;
+    [self watchdogDeactivate];
+    [self hideInfoMessage];
+    
+    if (result.nodeId > 0) {
+        for(SAZWaveNode *node in _nodeList) {
+            if (node.nodeId == result.nodeId) {
+                if (node == _selectedNode) {
+                    _selectedNode = nil;
+                }
+                [_nodeList removeObject:node];
+                break;
+            }
+        }
+    }
+    
+    [self.pfNodeList update];
 }
 
 - (void)applyChannelFunctionChange {
@@ -666,7 +704,7 @@ static SAZWaveConfigurationWizardVC *_zwaveConfigurationWizardGlobalRef = nil;
 }
 
 - (void)onWaitMessagePreloaderTimer:(NSTimer*)timer {
-    NSString *msg = [timer.userInfo objectAtIndex:0];
+    NSString *msg = NSLocalizedString([timer.userInfo objectAtIndex:0], nil);
     NSNumber *progress = [timer.userInfo objectAtIndex:1];
     
     if ([progress boolValue]) {
@@ -706,6 +744,7 @@ static SAZWaveConfigurationWizardVC *_zwaveConfigurationWizardGlobalRef = nil;
                                             repeats:YES];
     
     [self watchdogActivateWithTime:timeout timeoutMessage:timeoutMessage calCfg:YES];
+    [self onWaitMessagePreloaderTimer:_waitMessagePreloaderTimer];
 }
 
 - (void)fetchChannelBasicCfg:(int)channelId {
@@ -1091,6 +1130,15 @@ static SAZWaveConfigurationWizardVC *_zwaveConfigurationWizardGlobalRef = nil;
 }
 
 - (IBAction)btnDeleteTouch:(id)sender {
+    if (_watchdogTimer || _selectedChannel == nil) {
+        return;
+    }
+    
+    [self showWaitMessage:@"Waiting for button press on the z-wave device."
+              withTimeout:REMOVE_NODE_TIMEOUT_SEC
+           timeoutMessage:@"The waiting time to remove the device has expired." showProgress:NO];
+    
+    [SAApp.SuplaClient zwaveRemoveNodeFromTheDeviceWithId:_selectedChannel.device_id];
 }
 
 - (IBAction)btnResetTouch:(id)sender {

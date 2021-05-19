@@ -185,3 +185,4 @@
 "The waiting time for pressing the button has elapsed." = "Die Wartezeit auf Drücken der Schaltfläche wurde überschritten.";
 "Waiting for the device to be added to the z-wave network." = "Es wird auf das Hinzufügen des Geräts zum Z-Wave-Netzwerk gewartet.";
 "The waiting time for adding the device to the z-wave network has expired." = "Die Wartezeit auf das Hinzufügen des Geräts zum Z-Wave-Netzwerk wurde überschritten.";
+"The waiting time to remove the device has expired." = "Die Wartezeit auf Löschen des Geräts wurde überschritten.";
