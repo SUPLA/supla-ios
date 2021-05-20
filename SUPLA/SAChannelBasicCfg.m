@@ -45,6 +45,7 @@
         _channelId = cfg->ID;
         _channelNumber = cfg->Number;
         _channelType = cfg->Type;
+        _channelFunc = cfg->Func;
         _channelFuncList = cfg->FuncList;
         _channelFlags = cfg->ChannelFlags;
         _channelCaption = [NSString stringWithUTF8String:cfg->Caption];

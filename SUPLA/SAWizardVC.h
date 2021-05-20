@@ -24,6 +24,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UIView *vPageContent;
 @property (nonatomic) BOOL backButtonInsteadOfCancel;
 @property (weak, nonatomic) UIView *page;
+@property (weak, nonatomic, readonly) UIView *previousPage;
 @property (weak, nonatomic) NSString *btnNextTitle;
 @property (nonatomic) BOOL btnNextEnabled;
 @property (nonatomic) BOOL btnCancelOrBackEnabled;

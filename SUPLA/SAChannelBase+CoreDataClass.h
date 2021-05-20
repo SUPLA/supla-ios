@@ -20,7 +20,7 @@
 #import <CoreData/CoreData.h>
 #import <UIKit/UIKit.h>
 #import "SAUserIcon+CoreDataClass.h"
-#include "SADigiglassValue.h"
+#import "SADigiglassValue.h"
 
 @class _SALocation;
 
@@ -37,7 +37,10 @@ NS_ASSUME_NONNULL_BEGIN
 - (BOOL) setLocationId:(int)locationId;
 - (BOOL) setRemoteId:(int)remoteId;
 - (BOOL) setUserIconId:(int)userIconId;
-- (NSString *)getChannelCaption;
++ (int) functionBitToFunctionNumber:(int)bit;
++ (NSString *)getFunctionName:(int)func;
++ (NSString *)getNonEmptyCaptionOfChannel:(SAChannelBase*)channel customFunc:(NSNumber*)func;
+- (NSString *)getNonEmptyCaption;
 
 - (int) imgIsActive;
 - (BOOL) isOnline;

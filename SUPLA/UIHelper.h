@@ -31,40 +31,6 @@
 
 @end
 
-@interface UIColor (SUPLA)
-
-+(nonnull UIColor*)btnTouched;
-+(nonnull UIColor*)onLine;
-+(nonnull UIColor*)offLine;
-+(nonnull UIColor*)colorPickerDefault;
-+(nonnull UIColor*)statusYellow;
-+(nonnull UIColor*)cellBackground;
-+(nonnull UIColor*)rgbwDetailBackground;
-+(nonnull UIColor*)rgbwSelectedTabColor;
-+(nonnull UIColor*)rgbwNormalTabColor;
-+(nonnull UIColor*)rsDetailBackground;
-+(nonnull UIColor*)statusBorder;
-+(nonnull UIColor*)rsMarkerColor;
-+(nonnull UIColor*)phase1Color;
-+(nonnull UIColor*)phase2Color;
-+(nonnull UIColor*)phase3Color;
-+(nonnull UIColor*)chartValuePositiveColor;
-+(nonnull UIColor*)chartValueNegativeColor;
-+(nonnull UIColor*)pickerViewColor;
-+(nonnull UIColor*)chartRoomTemperature;
-+(nonnull UIColor*)hpBtnOn;
-+(nonnull UIColor*)hpBtnOff;
-+(nonnull UIColor*)hpBtnUnknown;
-+(nonnull UIColor*)chartTemperatureFillColor;
-+(nonnull UIColor*)chartTemperatureLineColor;
-+(nonnull UIColor*)chartHumidityColor;
-+(nonnull UIColor*)chartIncrementalValueColor;
-+(nonnull UIColor*)menuSeparatorColor;
-+(nonnull UIColor*)mainMenuColor;
-+(nonnull UIColor*)vlCfgButtonColor;
-+(nonnull UIColor*)diwInputOptionSelected;
-@end
-
 @interface SAUIHelper : NSObject
 
 -(void)showViewController:(nonnull UIViewController*)vc;

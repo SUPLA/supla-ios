@@ -1,0 +1,84 @@
+
+/* Class = "UILabel"; text = "Below are the details of the selected channel. Please specify its purpose by selecting the appropriate function."; ObjectID = "107-YY-mJ9"; */
+"107-YY-mJ9.text" = "Ακολουθούν οι λεπτομέρειες του επιλεγμένου καναλιού. Ορίστε τον σκοπό του επιλέγοντας την κατάλληλη λειτουργία.";
+
+/* Class = "UILabel"; text = "Device"; ObjectID = "56E-9V-mlp"; */
+"56E-9V-mlp.text" = "Συσκευή";
+
+/* Class = "UIButton"; normalTitle = "DELETE DEVICE"; ObjectID = "6df-IH-8y9"; */
+"6df-IH-8y9.normalTitle" = "ΚΑΤΆΡΓΗΣΗ ΣΥΣΚΕΥΉΣ";
+
+/* Class = "UIButton"; normalTitle = "ADD DEVICE"; ObjectID = "BTs-3M-6Pr"; */
+"BTs-3M-6Pr.normalTitle" = "ΠΡΌΣΘΕΣΗ ΣΥΣΚΕΥΉΣ";
+
+/* Class = "UILabel"; text = "Function"; ObjectID = "CrA-tu-0Ln"; */
+"CrA-tu-0Ln.text" = "Λειτουργία";
+
+/* Class = "UILabel"; text = "It will take a while"; ObjectID = "F61-xF-s7k"; */
+"F61-xF-s7k.text" = "Θα πάρει λίγο χρόνο";
+
+/* Class = "UILabel"; text = "Channel id"; ObjectID = "FAh-Cm-D3c"; */
+"FAh-Cm-D3c.text" = "Αναγνωριστικό καναλιού";
+
+/* Class = "UILabel"; text = "Device id"; ObjectID = "HEE-CO-WJl"; */
+"HEE-CO-WJl.text" = "Αναγνωριστικό συσκευής";
+
+/* Class = "UILabel"; text = "Channel number"; ObjectID = "INT-0e-b9R"; */
+"INT-0e-b9R.text" = "Αριθμός καναλιού";
+
+/* Class = "UILabel"; text = "Press back to return to the previous step or \"Exit\" to finish."; ObjectID = "OTk-BD-soD"; */
+"OTk-BD-soD.text" = "Πιέστε το κουμπί επιστροφής για να επιστρέψετε στο προηγούμενο βήμα ή «Έξοδος» για να ολοκληρώσετε.";
+
+/* Class = "UILabel"; text = "You can also change the wake-up settings by pressing the icon below."; ObjectID = "Os0-or-7MN"; */
+"Os0-or-7MN.text" = "Μπορείτε επίσης να αλλάξετε τις ρυθμίσεις αφύπνισης πατώντας το παρακάτω εικονίδιο.";
+
+/* Class = "UILabel"; text = "Z-Wave wizard"; ObjectID = "TtI-D6-hIQ"; */
+"TtI-D6-hIQ.text" = "Οδηγός κύματος Ζ";
+
+/* Class = "UILabel"; text = "Caption"; ObjectID = "VR4-Zp-AZ8"; */
+"VR4-Zp-AZ8.text" = "Υπογραφή";
+
+/* Class = "UILabel"; text = "Z-Wave device"; ObjectID = "Ymn-D1-eWm"; */
+"Ymn-D1-eWm.text" = "Συσκευή του κύματος Z";
+
+/* Class = "UILabel"; text = "Z-wave network"; ObjectID = "a7s-5S-iHt"; */
+"a7s-5S-iHt.text" = "Δίκτυο του κύματος Z";
+
+/* Class = "UIButton"; normalTitle = "RESET NETWORK AND SETTINGS"; ObjectID = "amT-2P-EgB"; */
+"amT-2P-EgB.normalTitle" = "ΕΠΑΝΑΦΟΡΆ ΔΙΚΤΎΟΥ ΚΑΙ ΡΥΘΜΊΣΕΙΣ";
+
+/* Class = "UILabel"; text = "Done! Now you can finish the configuration process by pressing \"OK\" or you can press back to configure the next channel or change existing settings."; ObjectID = "cGP-Ha-UqZ"; */
+"cGP-Ha-UqZ.text" = "Έτοιμο! Τώρα μπορείτε να ολοκληρώσετε τη διαδικασία διαμόρφωσης πατώντας το κουμπί «ok» ή μπορείτε να πατήσετε το κουμπί επιστροφής για να διαμορφώσετε ένα άλλο κανάλι ή να αλλάξετε τις τρέχουσες ρυθμίσεις.";
+
+/* Class = "UILabel"; text = "Device name"; ObjectID = "egA-F9-6fa"; */
+"egA-F9-6fa.text" = "Όνομα της συσκευής";
+
+/* Class = "UILabel"; text = "Software version"; ObjectID = "hcP-PE-jBL"; */
+"hcP-PE-jBL.text" = "Έκδοση λογισμικού";
+
+/* Class = "UILabel"; text = "Function"; ObjectID = "kWy-QX-AJU"; */
+"kWy-QX-AJU.text" = "Λειτουργία";
+
+/* Class = "UILabel"; text = "Select the z-wave device that will be associated with the Supla channel."; ObjectID = "kc9-9O-Tmh"; */
+"kc9-9O-Tmh.text" = "Επιλέξτε τη συσκευή του κύματος Z που θα συνδεθεί με το κανάλι στην πλευρά της Supli.";
+
+/* Class = "UILabel"; text = "Select the z-wave bridge and then the channel you want to configure."; ObjectID = "kif-QE-f8n"; */
+"kif-QE-f8n.text" = "Επιλέξτε τη γέφυρα κύματος Ζ και μετά το κανάλι που θέλετε να διαμορφώσετε.";
+
+/* Class = "UILabel"; text = "Before continuing, make sure that all your z-wave devices are online. Pressing \"Next\" will search your z-wave network, which may take from a few seconds to several minutes."; ObjectID = "l1n-Id-vnO"; */
+"l1n-Id-vnO.text" = "Βεβαιωθείτε ότι όλες οι συσκευές του κύματος Ζ είναι συνδεδεμένες πριν συνεχίσετε. Πατώντας «Επόμενο» θα σαρώσετε το δίκτυο του κύματος Ζ που μπορεί να διαρκέσει από λίγα δευτερόλεπτα έως λίγα λεπτά.";
+
+/* Class = "UILabel"; text = "Welcome to the z-wave bridge configuration wizard. It will allow you to connect your z-wave devices to Supla. Tap \"Next\" to continue."; ObjectID = "nNP-Gd-gOi"; */
+"nNP-Gd-gOi.text" = "Καλώς ορίσατε στον οδηγό ρύθμισης γέφυρας κύματος Ζ. Θα σας επιτρέψει να συνδέσετε τις συσκευές του κύματος Ζ με τη Supla. Κάντε κλικ στο «Επόμενο» για να συνεχίσετε.";
+
+/* Class = "UILabel"; text = "Channel"; ObjectID = "sNr-Xz-EUe"; */
+"sNr-Xz-EUe.text" = "Κανάλι";
+
+/* Class = "UILabel"; text = "Channel"; ObjectID = "sY5-XC-gcM"; */
+"sY5-XC-gcM.text" = "Κανάλι";
+
+/* Class = "UILabel"; text = "Bridge"; ObjectID = "ul5-ub-qWP"; */
+"ul5-ub-qWP.text" = "Γέφυρα";
+
+/* Class = "UILabel"; text = "Channel"; ObjectID = "z0I-kO-IcX"; */
+"z0I-kO-IcX.text" = "Κανάλι";

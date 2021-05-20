@@ -16,20 +16,20 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 */
 
-#import "SAWifiAutoConnect.h"
+#import "SAWifi.h"
 #import <UIKit/UIKit.h>
 #import <NetworkExtension/NetworkExtension.h>
 #import <SystemConfiguration/CaptiveNetwork.h>
 
 #define TRY_COUNT 3
 
-@implementation SAWifiAutoConnect {
+@implementation SAWifi {
     NSMutableArray *_prefixes;
     short _tryCount;
     SAWifiAutoConnectCompletionHandler _completionHandler;
 }
 
-+(BOOL)isAvailable {
++(BOOL)autoConnectIsAvailable {
     if (@available(iOS 13.0, *)) {
         return YES;
     }
@@ -71,7 +71,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
                 }
             }];
         } else {
-            [SAWifiAutoConnect cleanup];
+            [SAWifi cleanup];
             [self onResultWithSuccess:NO];
         }
     }
@@ -79,7 +79,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 -(void)tryConnectWithCompletionHandler:(void (^)(BOOL success))completionHandler {
     [self prefixesInit];
-    [SAWifiAutoConnect cleanup];
+    [SAWifi cleanup];
     _tryCount = TRY_COUNT;
     _completionHandler = completionHandler;
     
@@ -95,5 +95,4 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         }];
     }
 }
-
 @end

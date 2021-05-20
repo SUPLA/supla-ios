@@ -19,9 +19,9 @@
 
 #import "NavigationController.h"
 #import "SuplaApp.h"
-#import "SAClassHelper.h"
 #import "SAMenuItems.h"
 #import "SAZWaveConfigurationWizardVC.h"
+#import "UIButton+SUPLA.h"
 
 #define TAG_BTN_MENU 0
 #define TAG_BTN_SETTINGS 1

@@ -17,11 +17,11 @@
  */
 
 #import "ElectricityMeterDetailView.h"
-#import "SAClassHelper.h"
 #import "SuplaApp.h"
 #import "SAElectricityChartHelper.h"
 #import "SAElectricityMeterExtendedValue.h"
 #import <AudioToolbox/AudioToolbox.h>
+#import "UIButton+SUPLA.h"
 
 // iPhone <=5 fix.
 // Integer number as boolean method parameter does not work good in iPhone <5

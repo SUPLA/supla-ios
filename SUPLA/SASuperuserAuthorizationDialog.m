@@ -16,8 +16,8 @@
 #import "SASuperuserAuthorizationDialog.h"
 #import "SuplaClient.h"
 #import "SuplaApp.h"
-#import "SAClassHelper.h"
 #import "SASuperuserAuthorizationResult.h"
+#import "NSNumber+SUPLA.h"
 
 static SASuperuserAuthorizationDialog *_superuserAuthorizationDialogGlobalRef = nil;
 
@@ -74,16 +74,6 @@ static SASuperuserAuthorizationDialog *_superuserAuthorizationDialogGlobalRef = 
     [[NSNotificationCenter defaultCenter]
      addObserver:self selector:@selector(onRegistrationError:)
      name:kSARegisterErrorNotification object:nil];
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(keyboardDidShow:)
-                                                 name:UIKeyboardDidShowNotification
-                                               object:nil];
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(keyboardDidHide:)
-                                                 name:UIKeyboardDidHideNotification
-                                               object:nil];
 }
 
 -(void)viewWillDisappear:(BOOL)animated {
@@ -97,7 +87,6 @@ static SASuperuserAuthorizationDialog *_superuserAuthorizationDialogGlobalRef = 
 
 -(void)viewDidDisappear:(BOOL)animated {
     [super viewDidDisappear:animated];
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
     _delegate = nil;
 }
 
@@ -148,7 +137,7 @@ static SASuperuserAuthorizationDialog *_superuserAuthorizationDialogGlobalRef = 
 }
 
 -(void)onRegistrationError:(NSNotification *)notification {
-    [self showError:[SASuplaClient codeToString:[NSNumber notificationToNumber:notification] authDialog:YES]];
+    [self showError:[SASuplaClient codeToString:[NSNumber codeNotificationToNumber:notification] authDialog:YES]];
 }
 
 -(void)onRegistered:(NSNotification *)notification {

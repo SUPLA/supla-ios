@@ -18,6 +18,7 @@
 
 #import "SAChannelGroup+CoreDataClass.h"
 #import "SAChannelValue+CoreDataClass.h"
+#import "UIColor+SUPLA.h"
 #include "proto.h"
 
 @implementation SAChannelGroup {
@@ -99,7 +100,7 @@
         case SUPLA_CHANNELFNC_DIMMER:
         case SUPLA_CHANNELFNC_RGBLIGHTING:
         case SUPLA_CHANNELFNC_DIMMERANDRGBLIGHTING: {
-            NSArray *obj = [NSArray arrayWithObjects:value.colorValue,
+            NSArray *obj = [NSArray arrayWithObjects:[UIColor transformToDictionary:value.colorValue],
                             [NSNumber numberWithInt: value.colorBrightnessValue],
                             [NSNumber numberWithInt: value.brightnessValue], nil];
             [BufferTotalValue addObject:obj];
@@ -290,8 +291,9 @@
                 obj1 = [ar objectAtIndex:a];
                 if ([obj1 isKindOfClass:[NSArray class]]) {
                     obj2 = [((NSArray*)obj1) objectAtIndex:0];
-                    if ([obj2 isKindOfClass:[UIColor class]]) {
-                       [result addObject:obj2];
+                    UIColor *color = [UIColor transformToColor:obj2];
+                    if (color) {
+                        [result addObject:color];
                     }
                 }
             }

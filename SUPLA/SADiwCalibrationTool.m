@@ -18,6 +18,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #import "SAInfoVC.h"
 #import "UIHelper.h"
 #import "SACalCfgResult.h"
+#import "UIColor+SUPLA.h"
 
 #define DIW_CMD_ENTER_CFG_MODE 0x1
 #define DIW_CMD_CONFIGURATION_REPORT 0x2

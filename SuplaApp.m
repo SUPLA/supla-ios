@@ -22,7 +22,7 @@
 #import "NSData+AES.h"
 #import "SAKeychain.h"
 #import "SASuperuserAuthorizationDialog.h"
-#import "SAClassHelper.h"
+#import "NSNumber+SUPLA.h"
 
 static SAApp* _Globals = nil;
 
@@ -45,6 +45,17 @@ NSString *kSAMenubarBackButtonPressed = @"KSA-N16";
 NSString *kSAOnChannelState = @"KSA-N17";
 NSString *kSAOnSetRegistrationEnableResult = @"KSA-N18";
 NSString *kSAOnChannelBasicCfg = @"KSA-N19";
+NSString *kSAOnChannelCaptionSetResult = @"KSA-N20";
+NSString *kSAOnChannelFunctionSetResult = @"KSA-N21";
+NSString *kSAOnZWaveAssignedNodeIdResult = @"KSA-N22";
+NSString *kSAOnZWaveNodeListResult = @"KSA-N23";
+NSString *kSAOnCalCfgProgressReport = @"KSA-N24";
+NSString *kSAOnZWaveResetAndClearResult = @"KSA-N25";
+NSString *kSAOnZWaveAddNodeResult = @"KSA-N26";
+NSString *kSAOnZWaveRemoveNodeResult = @"KSA-N27";
+NSString *kSAOnZWaveAssignNodeIdResult = @"KSA-N28";
+NSString *kSAOnZWaveWakeupSettingsReport = @"KSA-N29";
+NSString *kSAOnZWaveSetWakeUpTimeResult = @"KSA-N30";
 
 @implementation SAApp {
     
@@ -632,7 +643,7 @@ NSString *kSAOnChannelBasicCfg = @"KSA-N19";
         return;
     }
     
-    NSNumber *code = [NSNumber notificationToNumber:notification];
+    NSNumber *code = [NSNumber codeNotificationToNumber:notification];
     
     if ( code && [code intValue] == SUPLA_RESULTCODE_HOSTNOTFOUND ) {
         
@@ -666,7 +677,7 @@ NSString *kSAOnChannelBasicCfg = @"KSA-N19";
     
     [self SuplaClientTerminate];
     
-    NSNumber *code = [NSNumber notificationToNumber:notification];
+    NSNumber *code = [NSNumber codeNotificationToNumber:notification];
     [self.UI showStatusError:[SASuplaClient codeToString:code]];
         
     int cint = [code intValue];

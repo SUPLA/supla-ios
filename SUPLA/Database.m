@@ -62,7 +62,7 @@
         return _persistentStoreCoordinator;
     }
     
-    int DBv = 12;
+    int DBv = 13;
     
     [self removeIfExists:@"SUPLA_DB.sqlite"];
     
@@ -1368,7 +1368,6 @@
 }
 
 -(BOOL) zwaveBridgeChannelAvailable {
-    return NO;
     NSArray *r = [self zwaveBridgeChannelsWithLimit:1];
     return r && r.count == 1;
 }

@@ -16,33 +16,7 @@
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 
-#include "SAClassHelper.h"
-
-@implementation NSDictionary (SUPLA)
-
--(NSString *)urlEncode:(id)obj {
-    NSMutableCharacterSet *allowed = [NSMutableCharacterSet
-                                      alphanumericCharacterSet];
-    [allowed addCharactersInString:@"-._*"];
-    
-    return [[NSString stringWithFormat:@"%@", obj]
-            stringByAddingPercentEncodingWithAllowedCharacters: allowed];
-}
-
--(NSString*) urlEncodedString {
-    
-    NSMutableArray *fields = [NSMutableArray array];
-    
-    for (id key in self) {
-        id value = [self objectForKey: key];
-        NSString *field = [NSString stringWithFormat: @"%@=%@", [self urlEncode:key], [self urlEncode:value]];
-        [fields addObject: field];
-    }
-    return [fields componentsJoinedByString: @"&"];
-}
-
-
-@end
+#import "UIButton+SUPLA.h"
 
 @implementation UIButton (SUPLA)
 
@@ -83,18 +57,5 @@
     [self setImage:image forState:UIControlStateHighlighted];
     
 }
-
 @end
 
-@implementation NSNumber (SUPLA)
-+(NSNumber *)notificationToNumber:(NSNotification*_Nullable)notification {
-    if (notification != nil && notification.userInfo != nil) {
-        id r = [notification.userInfo objectForKey:@"code"];
-        if (r != nil && [r isKindOfClass:[NSNumber class]]) {
-            return r;
-        }
-    }
-    
-    return nil;
-}
-@end

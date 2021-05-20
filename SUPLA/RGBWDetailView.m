@@ -22,10 +22,10 @@
 #import "SAColorListItem+CoreDataClass.h"
 #import "Database.h"
 #import "SuplaApp.h"
-#import "SAClassHelper.h"
 #import "SAInfoVC.h"
 #import "SAVLCalibrationTool.h"
 #import "SADiwCalibrationTool.h"
+#import "UIColor+SUPLA.h"
 
 #define MIN_REMOTE_UPDATE_PERIOD 0.25
 #define MIN_UPDATE_DELAY 3
@@ -312,7 +312,7 @@
             [self.clPicker itemAtIndex:a setPercent:0];
         } else {
             
-            [self.clPicker itemAtIndex:a setColor:item.color == nil ? [UIColor clearColor] : (UIColor*)item.color];
+            [self.clPicker itemAtIndex:a setColor:item.color == nil ? [UIColor clearColor] : [UIColor transformToColor:item.color]];
             [self.clPicker itemAtIndex:a setPercent:[item.brightness floatValue]];
         }
     }
@@ -430,7 +430,7 @@
     
     if ( item != nil ) {
         item.brightness = [NSNumber numberWithFloat:self.cbPicker.brightness];
-        item.color = self.cbPicker.color;
+        item.color = [UIColor transformToDictionary:self.cbPicker.color];
         
         [[SAApp DB] updateColorListItem:item];
     }

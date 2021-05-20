@@ -20,6 +20,7 @@
 #import "SuplaApp.h"
 #import "UIHelper.h"
 #import "SUPLA-Swift.h"
+#import "UIColor+SUPLA.h"
 
 @implementation SAElectricityChartHelper
 

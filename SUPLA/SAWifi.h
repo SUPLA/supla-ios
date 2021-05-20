@@ -22,12 +22,11 @@ NS_ASSUME_NONNULL_BEGIN
 
 typedef void(^SAWifiAutoConnectCompletionHandler)(BOOL success);
 
-@interface SAWifiAutoConnect : NSObject
+@interface SAWifi : NSObject
 
-+(BOOL)isAvailable;
++(BOOL)autoConnectIsAvailable;
 -(void)tryConnectWithCompletionHandler:(SAWifiAutoConnectCompletionHandler) completionHandler;
 +(void)cleanup;
-
 @end
 
 NS_ASSUME_NONNULL_END

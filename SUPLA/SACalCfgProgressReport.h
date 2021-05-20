@@ -16,25 +16,19 @@
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 
-#ifndef SAClassHelper_h
-#define SAClassHelper_h
-
 #import <Foundation/Foundation.h>
-#import <UIKit/UIKit.h>
+#import "proto.h"
 
-@interface NSDictionary (SUPLA)
--(NSString*_Nullable) urlEncodedString;
+NS_ASSUME_NONNULL_BEGIN
+
+@interface SACalCfgProgressReport : NSObject
+@property (nonatomic, readonly)int channelId;
+@property (nonatomic, readonly)int command;
+@property (nonatomic, readonly)unsigned char progress;
+
+- (id)initWithReport:(TCalCfg_ProgressReport *)report channelId:(int)channelId;
++ (SACalCfgProgressReport*) reportWithReport:(TCalCfg_ProgressReport *)report channelId:(int)channelId;
++ (SACalCfgProgressReport *)notificationToProgressReport:(NSNotification *)notification;
 @end
 
-@interface UIButton (SUPLA)
-- (void)setTitle:(nullable NSString *)title;
-- (void)setAttributedTitle:(nullable NSString *)title;
-- (void)setBackgroundImage:(UIImage *_Nullable)image;
-- (void)setImage:(UIImage *_Nullable)image;
-@end
-
-@interface NSNumber (SUPLA)
-+(NSNumber *_Nullable)notificationToNumber:(NSNotification*_Nullable)notification;
-@end
-
-#endif /* SAClassHelper_h */
+NS_ASSUME_NONNULL_END

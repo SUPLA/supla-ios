@@ -18,7 +18,7 @@
 
 #import <Foundation/Foundation.h>
 #import "SAThermostatScheduleCfg.h"
-#include "proto.h"
+#import "proto.h"
 
 @class SASuplaClient;
 @protocol SASuplaClientDelegate <NSObject>
@@ -60,6 +60,17 @@
 - (void) getChannelBasicCfg:(int)channelId;
 - (void) setChannelCaption:(int)channelId caption:(NSString*)caption;
 - (void) setLocationCaption:(int)locationId caption:(NSString*)caption;
-
+- (void) setFunction:(int)function forChannelId:(int)channelId;
+- (void) zwaveGetAssignedNodeIdForChannelId:(int)channelId;
+- (void) zwaveGetNodeListForDeviceId:(int)deviceId;
+- (void) zwaveCfgModeIsStillActiveForDeviceId:(int)deviceId;
+- (void) deviceCalCfgCancelAllCommandsWithDeviceId:(int)deviceId;
+- (void) reconnectDeviceWithId:(int)deviceId;
+- (void) zwaveResetAndClearSettingsWithDeviceId:(int)deviceId;
+- (void) zwaveAddNodeToDeviceWithId:(int)deviceId;
+- (void) zwaveRemoveNodeFromTheDeviceWithId:(int)deviceId;
+- (void) zwaveAssignChannelId:(int)channelId toNodeId:(unsigned char)nodeId;
+- (void) zwaveGetWakeUpSettingsForChannelId:(int)channelId;
+- (void) zwaveSetWakeUpTime:(int)time forChannelId:(int)channelId;
 @property (nonatomic, weak) id<SASuplaClientDelegate> delegate;
 @end

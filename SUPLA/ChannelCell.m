@@ -26,7 +26,8 @@
 #import "SAChannelStatePopup.h"
 #import "SAChannelCaptionEditor.h"
 #import "SuplaApp.h"
-#include "proto.h"
+#import "proto.h"
+#import "UIColor+SUPLA.h"
 
 #define CLEFT_MARGIN     5
 #define CRIGHT_MARGIN    5
@@ -169,7 +170,7 @@
     self.right_OnlineStatus.percent = [channelBase onlinePercent];
     self.left_OnlineStatus.percent = self.right_OnlineStatus.percent;
 
-    [self.caption setText:[channelBase getChannelCaption]];
+    [self.caption setText:[channelBase getNonEmptyCaption]];
     [self.image1 setImage:[channelBase getIconWithIndex:0]];
     [self.image2 setImage:[channelBase getIconWithIndex:1]];
     

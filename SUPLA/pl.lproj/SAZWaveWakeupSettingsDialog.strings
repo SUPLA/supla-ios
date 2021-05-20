@@ -1,0 +1,36 @@
+
+/* Class = "UITextField"; text = "0"; ObjectID = "3gf-E3-9LJ"; */
+"3gf-E3-9LJ.text" = "0";
+
+/* Class = "UIButton"; normalTitle = "CANCEL"; ObjectID = "AYL-R2-HHB"; */
+"AYL-R2-HHB.normalTitle" = "ANULUJ";
+
+/* Class = "UILabel"; text = ":"; ObjectID = "CO6-bW-F1n"; */
+"CO6-bW-F1n.text" = ":";
+
+/* Class = "UILabel"; text = ":"; ObjectID = "Ccu-yi-oed"; */
+"Ccu-yi-oed.text" = ":";
+
+/* Class = "UILabel"; text = "Minutes"; ObjectID = "LPn-nh-txR"; */
+"LPn-nh-txR.text" = "Minuty";
+
+/* Class = "UILabel"; text = "Hours"; ObjectID = "RZJ-2z-fec"; */
+"RZJ-2z-fec.text" = "Godziny";
+
+/* Class = "UIButton"; normalTitle = "OK"; ObjectID = "S43-Ly-5oI"; */
+"S43-Ly-5oI.normalTitle" = "OK";
+
+/* Class = "UILabel"; text = "Seconds"; ObjectID = "Y2W-R3-PSK"; */
+"Y2W-R3-PSK.text" = "Sekundy";
+
+/* Class = "UILabel"; text = "Wake up frequency"; ObjectID = "pcl-li-7Wf"; */
+"pcl-li-7Wf.text" = "Częstotliwość wybudzania";
+
+/* Class = "UITextField"; text = "0"; ObjectID = "qjE-PP-oiE"; */
+"qjE-PP-oiE.text" = "0";
+
+/* Class = "UILabel"; text = "*) The entered settings will be applied the next time the node wakes up."; ObjectID = "uDV-Fn-571"; */
+"uDV-Fn-571.text" = ">*) Wprowadzone ustawienia zostaną zastosowane przy najbliższym wybudzeniu węzła.";
+
+/* Class = "UITextField"; text = "0"; ObjectID = "xFG-vx-aSc"; */
+"xFG-vx-aSc.text" = "0";

@@ -20,8 +20,8 @@
 #import <UIKit/UIKit.h>
 #import "UIHelper.h"
 #import "SuplaClient.h"
-#include "proto.h"
-#include "SAChannelStateExtendedValue.h"
+#import "proto.h"
+#import "SAChannelStateExtendedValue.h"
 
 #define ABSTRACT_METHOD_EXCEPTION [SAApp abstractMethodException:NSStringFromSelector(_cmd)]
 
@@ -92,3 +92,14 @@ extern NSString *kSAMenubarBackButtonPressed;
 extern NSString *kSAOnChannelState;
 extern NSString *kSAOnSetRegistrationEnableResult;
 extern NSString *kSAOnChannelBasicCfg;
+extern NSString *kSAOnChannelCaptionSetResult;
+extern NSString *kSAOnChannelFunctionSetResult;
+extern NSString *kSAOnZWaveAssignedNodeIdResult;
+extern NSString *kSAOnZWaveNodeListResult;
+extern NSString *kSAOnCalCfgProgressReport;
+extern NSString *kSAOnZWaveResetAndClearResult;
+extern NSString *kSAOnZWaveAddNodeResult;
+extern NSString *kSAOnZWaveRemoveNodeResult;
+extern NSString *kSAOnZWaveAssignNodeIdResult;
+extern NSString *kSAOnZWaveWakeupSettingsReport;
+extern NSString *kSAOnZWaveSetWakeUpTimeResult;
