@@ -22,9 +22,11 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface SAZWaveNode : NSObject
-- (id)initWithNode:(TCalCfg_ZWave_Node *)node;
+- (id)initWithNode:(TCalCfg_ZWave_Node * _Nullable)node;
 - (id)initWithId:(unsigned char)nodeId channelId:(int)channelId name:(NSString*)name;
+- (void)setChannelId:(int)channelId;
 + (SAZWaveNode*) nodeWithNode:(TCalCfg_ZWave_Node *)node;
++ (SAZWaveNode*) emptyNode;
 
 @property (nonatomic, readonly)unsigned char nodeId;
 @property (nonatomic, readonly)unsigned char flags;

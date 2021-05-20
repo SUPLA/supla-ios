@@ -25,7 +25,7 @@ NS_ASSUME_NONNULL_BEGIN
 @required
 - (NSInteger)numberOfRowsInPickerField:(SAPickerField *)pickerField;
 - (NSInteger)selectedRowIndexInPickerField:(SAPickerField *)pickerField;
-- (void)pickerField:(SAPickerField *)pickerField tappedAtRow:(NSInteger)row;
+- (void)pickerField:(SAPickerField *)pickerField tappedAtRow:(NSInteger*)row;
 - (NSString *)pickerField:(SAPickerField *)pickerField titleForRow:(NSInteger)row;
 @end
 

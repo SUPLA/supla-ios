@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0107146E2656A634009C119F /* SAZWaveWakeupSettingsDialog.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0107146D2656A634009C119F /* SAZWaveWakeupSettingsDialog.xib */; };
+		010714732656A6FB009C119F /* SAZWaveWakeupSettingsDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = 010714722656A6FB009C119F /* SAZWaveWakeupSettingsDialog.m */; };
+		010714782656C605009C119F /* SAZWaveWakeupSettingsReport.m in Sources */ = {isa = PBXBuildFile; fileRef = 010714772656C605009C119F /* SAZWaveWakeupSettingsReport.m */; };
 		010C8780249A4D55002FE526 /* SAInfoVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 010C877E249A4D55002FE526 /* SAInfoVC.m */; };
 		010C8783249A6471002FE526 /* infoclose@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 010C8782249A6471002FE526 /* infoclose@2x.png */; };
 		010C8786249A6A92002FE526 /* SADialog.m in Sources */ = {isa = PBXBuildFile; fileRef = 010C8785249A6A92002FE526 /* SADialog.m */; };
@@ -498,6 +501,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0107146D2656A634009C119F /* SAZWaveWakeupSettingsDialog.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SAZWaveWakeupSettingsDialog.xib; sourceTree = "<group>"; };
+		010714712656A6FB009C119F /* SAZWaveWakeupSettingsDialog.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SAZWaveWakeupSettingsDialog.h; sourceTree = "<group>"; };
+		010714722656A6FB009C119F /* SAZWaveWakeupSettingsDialog.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SAZWaveWakeupSettingsDialog.m; sourceTree = "<group>"; };
+		010714762656C605009C119F /* SAZWaveWakeupSettingsReport.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SAZWaveWakeupSettingsReport.h; sourceTree = "<group>"; };
+		010714772656C605009C119F /* SAZWaveWakeupSettingsReport.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SAZWaveWakeupSettingsReport.m; sourceTree = "<group>"; };
 		010C877D249A4D55002FE526 /* SAInfoVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SAInfoVC.h; sourceTree = "<group>"; };
 		010C877E249A4D55002FE526 /* SAInfoVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SAInfoVC.m; sourceTree = "<group>"; };
 		010C8782249A6471002FE526 /* infoclose@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "infoclose@2x.png"; path = "Resources/Assets/Img/infoclose@2x.png"; sourceTree = "<group>"; };
@@ -1333,6 +1341,7 @@
 				012E81DB24C9A31B008E0690 /* SALightsourceLifespanSettingsDialog.xib */,
 				0180440B24C254CF005E53EB /* SAChannelStatePopup.xib */,
 				01943EC0249D1C8800DA2B8F /* SASuperuserAuthorizationDialog.xib */,
+				0107146D2656A634009C119F /* SAZWaveWakeupSettingsDialog.xib */,
 				01C8EBCF23422AC50072AB8C /* HomePlusDetailViewGroupCell.xib */,
 				40CE7C6D1DCBBF6D00BBACE4 /* DistanceCell.xib */,
 				017A3C8823633A70004AD1FC /* TempHumidityDetailView.xib */,
@@ -1565,6 +1574,8 @@
 				01478825265317B000CC8A01 /* SACalCfgProgressReport.m */,
 				01A195E0264B264A006D2A20 /* SAChannelCaptionSetResult.h */,
 				01A195E1264B264A006D2A20 /* SAChannelCaptionSetResult.m */,
+				010714762656C605009C119F /* SAZWaveWakeupSettingsReport.h */,
+				010714772656C605009C119F /* SAZWaveWakeupSettingsReport.m */,
 				01147CE2264BE317002B2E1C /* SAChannelFunctionSetResult.h */,
 				0194D808264DC8580094A857 /* SAZWaveNodeIdResult.h */,
 				0194D809264DC8580094A857 /* SAZWaveNodeIdResult.m */,
@@ -2078,6 +2089,8 @@
 				010C8784249A6A92002FE526 /* SADialog.h */,
 				010C8785249A6A92002FE526 /* SADialog.m */,
 				01D6A0EF249BD2F7006B3757 /* SASuperuserAuthorizationDialog.h */,
+				010714712656A6FB009C119F /* SAZWaveWakeupSettingsDialog.h */,
+				010714722656A6FB009C119F /* SAZWaveWakeupSettingsDialog.m */,
 				01D6A0F0249BD2F7006B3757 /* SASuperuserAuthorizationDialog.m */,
 				01D6A100249BEC8C006B3757 /* SAVLCalibrationTool.h */,
 				01E3966C25A78B8B00A0DB18 /* SADimmerCalibrationTool.h */,
@@ -2228,6 +2241,7 @@
 			files = (
 				013F7EC523EB4B500061A497 /* battery@2x.png in Resources */,
 				013A1BFD2538BAA0000583A2 /* roofwindow-open@2x.png in Resources */,
+				0107146E2656A634009C119F /* SAZWaveWakeupSettingsDialog.xib in Resources */,
 				40CF96C51BC7D4E70030EFFF /* power-on@3x.png in Resources */,
 				40844D7F1FB0DDB000432AA0 /* SettingsVC.xib in Resources */,
 				017554F822F1CDB900EB58B7 /* heatpollogo@3x.png in Resources */,
@@ -2626,6 +2640,7 @@
 				010C8786249A6A92002FE526 /* SADialog.m in Sources */,
 				40C7BA6C20C045A800ACEE42 /* SAChannelGroup+CoreDataClass.m in Sources */,
 				019D9E3725F27BC300881C99 /* SAChannelCaptionEditor.m in Sources */,
+				010714782656C605009C119F /* SAZWaveWakeupSettingsReport.m in Sources */,
 				40C7BA5420C008DB00ACEE42 /* SAChannelGroupRelation+CoreDataClass.m in Sources */,
 				40C7BA8820C0492500ACEE42 /* SAChannelBase+CoreDataProperties.m in Sources */,
 				01D6A102249BEC8C006B3757 /* SAVLCalibrationTool.m in Sources */,
@@ -2725,6 +2740,7 @@
 				01C792FA22B7FB610020A900 /* SAChannelExtendedValue+CoreDataClass.m in Sources */,
 				01902A28235A180F005ED935 /* TempHumidityDetailView.m in Sources */,
 				0122613922F396440013E6A2 /* SAThermostatCalendar.m in Sources */,
+				010714732656A6FB009C119F /* SAZWaveWakeupSettingsDialog.m in Sources */,
 				01FCDA78264F28C4002D776F /* SAZWaveNodeResult.m in Sources */,
 				01F8856F22E5E79100D18373 /* SAThermostatMeasurementItem+CoreDataClass.m in Sources */,
 				011021CE25CC3A6F00621D41 /* SACalCfgResult.m in Sources */,

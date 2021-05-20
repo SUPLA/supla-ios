@@ -187,3 +187,6 @@
 "The waiting time for adding the device to the z-wave network has expired." = "Die Wartezeit auf das Hinzufügen des Geräts zum Z-Wave-Netzwerk wurde überschritten.";
 "The waiting time to remove the device has expired." = "Die Wartezeit auf Löschen des Geräts wurde überschritten.";
 "The waiting time for the z-wave device assignment to the channel has elapsed." = "Die Wartezeit auf das Zuweisen des Z-Wave-Geräts dem Kanal wurde überschritten.";
+"The selected z-wave device is already associated with another channel. Are you sure you want to move this device to this channel?" = "Das ausgewählte Z-Wave-Gerät ist bereits einem anderen Kanal zugewiesen. Sind Sie sicher, dass Sie dieses Gerät auf diesen Kanal übertragen möchten?";
+"Timeout waiting for z-wave bridge response." = "Die Wartezeit auf das Reagieren der Z-Wave-Brücke wurde überschritten.";
+"Unexpected bridge response. Code: %i" = "Unerwartete Brückenreaktion. Code: %i";

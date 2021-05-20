@@ -185,3 +185,6 @@
 "The waiting time for adding the device to the z-wave network has expired." = "Υπέρβαση χρόνου αναμονής για την προσθήκη της συσκευής στο δίκτυο του κύματος Ζ.";
 "The waiting time to remove the device has expired." = "Υπέρβαση χρόνου αναμονής για την κατάργηση συσκευής.";
 "The waiting time for the z-wave device assignment to the channel has elapsed." = "Υπέρβαση χρόνου αναμονής για την καταχώρηση συσκευής του κύματος Ζ στο κανάλι.";
+"The selected z-wave device is already associated with another channel. Are you sure you want to move this device to this channel?" = "Η επιλεγμένη συσκευή του κύματος Ζ σχετίζεται ήδη με άλλο κανάλι. Είστε βέβαιοι ότι θέλετε να μετακινήσετε αυτήν τη συσκευή σε αυτό το κανάλι;";
+"Timeout waiting for z-wave bridge response." = "Υπέρβαση χρόνου αναμονής για απόκριση γέφυρας του κύματος Ζ.";
+"Unexpected bridge response. Code: %i" = "Μη αναμενόμενη απόκριση γέφυρας. Κωδικός: %i";

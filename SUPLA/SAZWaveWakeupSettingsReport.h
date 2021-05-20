@@ -16,25 +16,22 @@
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 
-#import "NSNumber+SUPLA.h"
+#import <Foundation/Foundation.h>
+#import "proto.h"
 
-@implementation NSNumber (SUPLA)
-+(NSNumber *)notificationToNumber:(NSNotification*_Nullable)notification key:(NSString*)key {
-    if (notification != nil && notification.userInfo != nil) {
-        id r = [notification.userInfo objectForKey:key];
-        if (r != nil && [r isKindOfClass:[NSNumber class]]) {
-            return r;
-        }
-    }
-    
-    return nil;
-}
-    
-+(NSNumber *)codeNotificationToNumber:(NSNotification*_Nullable)notification {
-    return [NSNumber notificationToNumber:notification key:@"code"];
-}
+NS_ASSUME_NONNULL_BEGIN
 
-+(NSNumber *)resultNotificationToNumber:(NSNotification*_Nullable)notification {
-    return [NSNumber notificationToNumber:notification key:@"result"];
-}
+@interface SAZWaveWakeupSettingsReport : NSObject
+@property (nonatomic, readonly)int resultCode;
+@property (nonatomic, readonly)int minimumSec;
+@property (nonatomic, readonly)int maximumSec;
+@property (nonatomic, readonly)int valueSec;
+@property (nonatomic, readonly)int intervalStepSec;
+
+- (id)initWithResultCode:(int)code andReport:(TCalCfg_ZWave_WakeupSettingsReport*)report;
+- (void)setValueSec:(int)valueSec;
++ (SAZWaveWakeupSettingsReport*) reportWithResultCode:(int)code andReport:(TCalCfg_ZWave_WakeupSettingsReport*)report;
++ (SAZWaveWakeupSettingsReport *)notificationToProgressReport:(NSNotification *)notification;
 @end
+
+NS_ASSUME_NONNULL_END

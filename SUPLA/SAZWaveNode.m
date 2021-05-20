@@ -25,7 +25,7 @@
 @synthesize screenType = _screenType;
 @synthesize name = _name;
 
-- (id)initWithNode:(TCalCfg_ZWave_Node *)node {
+- (id)initWithNode:(TCalCfg_ZWave_Node * _Nullable)node {
     if ([self init]) {
         if (node) {
             _nodeId = node->Id;
@@ -49,7 +49,15 @@
     return self;
 }
 
+- (void)setChannelId:(int)channelId {
+    _channelId = channelId;
+}
+
 + (SAZWaveNode*) nodeWithNode:(TCalCfg_ZWave_Node *)node {
     return [[SAZWaveNode alloc] initWithNode:node];
+}
+
++ (SAZWaveNode*) emptyNode {
+    return [[SAZWaveNode alloc] initWithNode:NULL];
 }
 @end

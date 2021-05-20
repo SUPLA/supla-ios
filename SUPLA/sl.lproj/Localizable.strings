@@ -185,3 +185,6 @@
 "The waiting time for adding the device to the z-wave network has expired." = "Potekel je čas čakanja na dodajanje naprave v omrežje z-wave.";
 "The waiting time to remove the device has expired." = "Potekel je čas čakanja na odstranitev naprave.";
 "The waiting time for the z-wave device assignment to the channel has elapsed." = "Potekel je čas čakanja na dodajanje z-wave naprave na kanal.";
+"The selected z-wave device is already associated with another channel. Are you sure you want to move this device to this channel?" = "Izbrana z-wave naprava je že povezana z drugim kanalom. Ali ste prepričani, da želite premakniti to napravo v ta kanal?";
+"Timeout waiting for z-wave bridge response." = "Potekel je čas čakanja na odgovor mosta z-wave.";
+"Unexpected bridge response. Code: %i" = "Nepričakovan odziv mosta. Koda: %i";

@@ -100,3 +100,6 @@ extern NSString *kSAOnCalCfgProgressReport;
 extern NSString *kSAOnZWaveResetAndClearResult;
 extern NSString *kSAOnZWaveAddNodeResult;
 extern NSString *kSAOnZWaveRemoveNodeResult;
+extern NSString *kSAOnZWaveAssignNodeIdResult;
+extern NSString *kSAOnZWaveWakeupSettingsReport;
+extern NSString *kSAOnZWaveSetWakeUpTimeResult;

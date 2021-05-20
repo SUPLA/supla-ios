@@ -185,3 +185,6 @@
 "The waiting time for adding the device to the z-wave network has expired." = "Ventetiden for tillegging av enheten til z-wave nettverket er utløpt.";
 "The waiting time to remove the device has expired." = "Ventetiden for fjerning av enheten er utløpt.";
 "The waiting time for the z-wave device assignment to the channel has elapsed." = "Ventetiden for tilknytting av z-wave enheten til kanalen er utløpt.";
+"The selected z-wave device is already associated with another channel. Are you sure you want to move this device to this channel?" = "Den valgte z-wave enheten er allerede tilknyttet en annen kanal. Er du sikker på at du vil overføre enheten til denne kanalen?";
+"Timeout waiting for z-wave bridge response." = "Ventetiden for respons fra z-wave broen er utløpt.";
+"Unexpected bridge response. Code: %i" = "Respons fra broen er ikke som forventet. Kode: %i";

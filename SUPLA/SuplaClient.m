@@ -34,6 +34,7 @@
 #import "SAZWaveNodeIdResult.h"
 #import "SAZWaveNodeResult.h"
 #import "SACalCfgProgressReport.h"
+#import "SAZWaveWakeupSettingsReport.h"
 
 #include "supla-client.h"
 
@@ -67,6 +68,9 @@
 - (void) onZWaveResetAndClearResult:(NSNumber *)result;
 - (void) onZwaveAddNodeResult:(SAZWaveNodeResult*)result;
 - (void) onZwaveRemoveNodeResult:(SAZWaveNodeIdResult*)result;
+- (void) onZwaveOnAssignNodeIdResult:(SAZWaveNodeIdResult*)result;
+- (void) onZwaveWakeupSettingsReport:(SAZWaveWakeupSettingsReport*)report;
+- (void) onZWaveSetWakeUpTimeResult:(NSNumber *)result;
 @end
 
 void sasuplaclient_on_versionerror(void *_suplaclient, void *user_data, int version, int remote_version_min, int remote_version) {
@@ -305,6 +309,36 @@ void sasuplaclient_on_zwave_remove_node_result(void *_suplaclient,
     }
 }
 
+void sasuplaclient_on_zwave_assign_node_id_result(void *_suplaclient,
+                                                  void *user_data,
+                                                  _supla_int_t result,
+                                                  unsigned char node_id) {
+    SASuplaClient *sc = (__bridge SASuplaClient*)user_data;
+    if ( sc != nil ) {
+    [sc onZwaveOnAssignNodeIdResult:[[SAZWaveNodeIdResult alloc]
+                                       initWithResultCode:result andNodeId:node_id]];
+    }
+}
+
+void sasuplaclient_on_zwave_wake_up_settings_report(void *_suplaclient,
+                                                    void *user_data, _supla_int_t result,
+                                                    TCalCfg_ZWave_WakeupSettingsReport *report) {
+    SASuplaClient *sc = (__bridge SASuplaClient*)user_data;
+    if ( sc != nil ) {
+    [sc onZwaveWakeupSettingsReport:[[SAZWaveWakeupSettingsReport alloc]
+                                       initWithResultCode:result andReport:report]];
+    }
+}
+
+void sasuplaclient_on_zwave_set_wake_up_time_result(void *_suplaclient,
+                                                    void *user_data,
+                                                    _supla_int_t result) {
+     SASuplaClient *sc = (__bridge SASuplaClient*)user_data;
+     if ( sc != nil ) {
+         [sc onZWaveSetWakeUpTimeResult:[NSNumber numberWithInt:result]];
+     }
+ }
+
 // ------------------------------------------------------------------------------------------------------
 
 @implementation SASuplaClient {
@@ -477,6 +511,9 @@ void sasuplaclient_on_zwave_remove_node_result(void *_suplaclient,
     scc.cb_on_zwave_reset_and_clear_result = sasuplaclient_on_zwave_reset_and_clear_result;
     scc.cb_on_zwave_add_node_result = sasuplaclient_on_zwave_add_node_result;
     scc.cb_on_zwave_remove_node_result = sasuplaclient_on_zwave_remove_node_result;
+    scc.cb_on_zwave_assign_node_id_result = sasuplaclient_on_zwave_assign_node_id_result;
+    scc.cb_on_zwave_wake_up_settings_report = sasuplaclient_on_zwave_wake_up_settings_report;
+    scc.cb_on_zwave_set_wake_up_time_result = sasuplaclient_on_zwave_set_wake_up_time_result;
     
     scc.protocol_version = [SAApp getPreferedProtocolVersion];
     
@@ -942,8 +979,8 @@ void sasuplaclient_on_zwave_remove_node_result(void *_suplaclient,
     [[NSNotificationCenter defaultCenter] postNotificationName:kSAOnZWaveResetAndClearResult object:self userInfo:[[NSDictionary alloc] initWithObjects:@[result] forKeys:@[@"result"]]];
 }
 
-- (void) onZWaveResetAndClearResult:(SACalCfgProgressReport*)report {
-    [self performSelectorOnMainThread:@selector(_onZWaveResetAndClearResult:) withObject:report waitUntilDone:NO];
+- (void) onZWaveResetAndClearResult:(NSNumber*)result {
+    [self performSelectorOnMainThread:@selector(_onZWaveResetAndClearResult:) withObject:result waitUntilDone:NO];
 }
 
 - (void) _onZwaveAddNodeResult:(SAZWaveNodeResult*)result {
@@ -960,6 +997,30 @@ void sasuplaclient_on_zwave_remove_node_result(void *_suplaclient,
 
 - (void) onZwaveRemoveNodeResult:(SAZWaveNodeIdResult*)result {
     [self performSelectorOnMainThread:@selector(_onZwaveRemoveNodeResult:) withObject:result waitUntilDone:NO];
+}
+
+- (void) _onZwaveOnAssignNodeIdResult:(SAZWaveNodeIdResult*)result {
+    [[NSNotificationCenter defaultCenter] postNotificationName:kSAOnZWaveAssignNodeIdResult object:self userInfo:[[NSDictionary alloc] initWithObjects:@[result] forKeys:@[@"result"]]];
+}
+
+- (void) onZwaveOnAssignNodeIdResult:(SAZWaveNodeIdResult*)result {
+    [self performSelectorOnMainThread:@selector(_onZwaveOnAssignNodeIdResult:) withObject:result waitUntilDone:NO];
+}
+
+- (void) _onZwaveWakeupSettingsReport:(SAZWaveWakeupSettingsReport*)report {
+    [[NSNotificationCenter defaultCenter] postNotificationName:kSAOnZWaveWakeupSettingsReport object:self userInfo:[[NSDictionary alloc] initWithObjects:@[report] forKeys:@[@"report"]]];
+}
+
+- (void) onZwaveWakeupSettingsReport:(SAZWaveWakeupSettingsReport*)report {
+    [self performSelectorOnMainThread:@selector(_onZwaveWakeupSettingsReport:) withObject:report waitUntilDone:NO];
+}
+
+- (void) _onZWaveSetWakeUpTimeResult:(NSNumber*)result {
+    [[NSNotificationCenter defaultCenter] postNotificationName:kSAOnZWaveSetWakeUpTimeResult object:self userInfo:[[NSDictionary alloc] initWithObjects:@[result] forKeys:@[@"result"]]];
+}
+
+- (void) onZWaveSetWakeUpTimeResult:(NSNumber*)result {
+    [self performSelectorOnMainThread:@selector(_onZWaveSetWakeUpTimeResult:) withObject:result waitUntilDone:NO];
 }
 
 - (void) reconnect {
@@ -1306,4 +1367,29 @@ void sasuplaclient_on_zwave_remove_node_result(void *_suplaclient,
         }
     }
 }
+
+- (void) zwaveAssignChannelId:(int)channelId toNodeId:(unsigned char)nodeId {
+    @synchronized(self) {
+        if ( _sclient ) {
+            supla_client_zwave_assign_node_id(_sclient, channelId, nodeId);
+        }
+    }
+}
+
+- (void) zwaveGetWakeUpSettingsForChannelId:(int)channelId {
+    @synchronized(self) {
+        if ( _sclient ) {
+            supla_client_zwave_get_wake_up_settings(_sclient, channelId);
+        }
+    }
+}
+
+- (void) zwaveSetWakeUpTime:(int)time forChannelId:(int)channelId {
+    @synchronized(self) {
+        if ( _sclient ) {
+            supla_client_zwave_set_wake_up_time(_sclient, channelId, time);
+        }
+    }
+}
+
 @end

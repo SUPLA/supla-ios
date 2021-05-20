@@ -37,6 +37,7 @@
     NSTimer *_preloaderTimer;
     int _preloaderPos;
     BOOL _backButtonInsteadOfCancel;
+    NSString *_btnNextTitle;
 }
 
 - (void)viewDidLoad {
@@ -86,11 +87,12 @@
 }
 
 -(void)setBtnNextTitle:(NSString *)btnNextTitle {
-    [self.btnNext2 setAttributedTitle:btnNextTitle];
+    _btnNextTitle = btnNextTitle;
+    [self.btnNext2 setAttributedTitle:_btnNextTitle];
 }
 
 -(NSString*)btnNextTitle {
-    return [[self.btnNext2 currentAttributedTitle] string];
+    return _btnNextTitle;
 }
  
 -(BOOL)btnNextEnabled {
@@ -148,7 +150,7 @@
         
         _btnNext3_width.constant = 40;
         [self.btnNext3 setBackgroundImage:[UIImage imageNamed:@"btnnextr.png"]];
-        [self.btnNext2 setAttributedTitle:NSLocalizedString(@"Next", NULL)];
+        [self.btnNext2 setAttributedTitle:_btnNextTitle];
         
     }
 }

@@ -40,7 +40,7 @@
     NSString *result = nil;
     
     if (_pf_delegate) {
-        [_pf_delegate pickerField:self tappedAtRow:row];
+        [_pf_delegate pickerField:self tappedAtRow:&row];
         result = [_pf_delegate pickerField:self titleForRow:row];
     }
     

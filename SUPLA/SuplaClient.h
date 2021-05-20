@@ -69,6 +69,8 @@
 - (void) zwaveResetAndClearSettingsWithDeviceId:(int)deviceId;
 - (void) zwaveAddNodeToDeviceWithId:(int)deviceId;
 - (void) zwaveRemoveNodeFromTheDeviceWithId:(int)deviceId;
-
+- (void) zwaveAssignChannelId:(int)channelId toNodeId:(unsigned char)nodeId;
+- (void) zwaveGetWakeUpSettingsForChannelId:(int)channelId;
+- (void) zwaveSetWakeUpTime:(int)time forChannelId:(int)channelId;
 @property (nonatomic, weak) id<SASuplaClientDelegate> delegate;
 @end
