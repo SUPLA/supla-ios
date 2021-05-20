@@ -7,9 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0107146E2656A634009C119F /* SAZWaveWakeupSettingsDialog.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0107146D2656A634009C119F /* SAZWaveWakeupSettingsDialog.xib */; };
 		010714732656A6FB009C119F /* SAZWaveWakeupSettingsDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = 010714722656A6FB009C119F /* SAZWaveWakeupSettingsDialog.m */; };
 		010714782656C605009C119F /* SAZWaveWakeupSettingsReport.m in Sources */ = {isa = PBXBuildFile; fileRef = 010714772656C605009C119F /* SAZWaveWakeupSettingsReport.m */; };
+		010714802656EC43009C119F /* SAZWaveWakeupSettingsDialog.xib in Resources */ = {isa = PBXBuildFile; fileRef = 010714822656EC43009C119F /* SAZWaveWakeupSettingsDialog.xib */; };
 		010C8780249A4D55002FE526 /* SAInfoVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 010C877E249A4D55002FE526 /* SAInfoVC.m */; };
 		010C8783249A6471002FE526 /* infoclose@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 010C8782249A6471002FE526 /* infoclose@2x.png */; };
 		010C8786249A6A92002FE526 /* SADialog.m in Sources */ = {isa = PBXBuildFile; fileRef = 010C8785249A6A92002FE526 /* SADialog.m */; };
@@ -501,11 +501,25 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		0107146D2656A634009C119F /* SAZWaveWakeupSettingsDialog.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SAZWaveWakeupSettingsDialog.xib; sourceTree = "<group>"; };
 		010714712656A6FB009C119F /* SAZWaveWakeupSettingsDialog.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SAZWaveWakeupSettingsDialog.h; sourceTree = "<group>"; };
 		010714722656A6FB009C119F /* SAZWaveWakeupSettingsDialog.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SAZWaveWakeupSettingsDialog.m; sourceTree = "<group>"; };
 		010714762656C605009C119F /* SAZWaveWakeupSettingsReport.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SAZWaveWakeupSettingsReport.h; sourceTree = "<group>"; };
 		010714772656C605009C119F /* SAZWaveWakeupSettingsReport.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SAZWaveWakeupSettingsReport.m; sourceTree = "<group>"; };
+		010714812656EC43009C119F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/SAZWaveWakeupSettingsDialog.xib; sourceTree = "<group>"; };
+		010714862656EC56009C119F /* cs */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = cs; path = cs.lproj/SAZWaveWakeupSettingsDialog.strings; sourceTree = "<group>"; };
+		010714882656EC58009C119F /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = nl.lproj/SAZWaveWakeupSettingsDialog.strings; sourceTree = "<group>"; };
+		0107148A2656EC5A009C119F /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/SAZWaveWakeupSettingsDialog.strings; sourceTree = "<group>"; };
+		0107148C2656EC5A009C119F /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/SAZWaveWakeupSettingsDialog.strings; sourceTree = "<group>"; };
+		0107148E2656EC5B009C119F /* el */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = el; path = el.lproj/SAZWaveWakeupSettingsDialog.strings; sourceTree = "<group>"; };
+		010714902656EC5C009C119F /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/SAZWaveWakeupSettingsDialog.strings; sourceTree = "<group>"; };
+		010714922656EC5D009C119F /* lt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = lt; path = lt.lproj/SAZWaveWakeupSettingsDialog.strings; sourceTree = "<group>"; };
+		010714942656EC5E009C119F /* nb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nb; path = nb.lproj/SAZWaveWakeupSettingsDialog.strings; sourceTree = "<group>"; };
+		010714962656EC5E009C119F /* pl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pl; path = pl.lproj/SAZWaveWakeupSettingsDialog.strings; sourceTree = "<group>"; };
+		010714982656EC5F009C119F /* pt-PT */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-PT"; path = "pt-PT.lproj/SAZWaveWakeupSettingsDialog.strings"; sourceTree = "<group>"; };
+		0107149A2656EC60009C119F /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/SAZWaveWakeupSettingsDialog.strings; sourceTree = "<group>"; };
+		0107149C2656EC60009C119F /* sk-SK */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "sk-SK"; path = "sk-SK.lproj/SAZWaveWakeupSettingsDialog.strings"; sourceTree = "<group>"; };
+		0107149E2656EC61009C119F /* sl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sl; path = sl.lproj/SAZWaveWakeupSettingsDialog.strings; sourceTree = "<group>"; };
+		010714A02656EC62009C119F /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/SAZWaveWakeupSettingsDialog.strings; sourceTree = "<group>"; };
 		010C877D249A4D55002FE526 /* SAInfoVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SAInfoVC.h; sourceTree = "<group>"; };
 		010C877E249A4D55002FE526 /* SAInfoVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SAInfoVC.m; sourceTree = "<group>"; };
 		010C8782249A6471002FE526 /* infoclose@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "infoclose@2x.png"; path = "Resources/Assets/Img/infoclose@2x.png"; sourceTree = "<group>"; };
@@ -1341,7 +1355,7 @@
 				012E81DB24C9A31B008E0690 /* SALightsourceLifespanSettingsDialog.xib */,
 				0180440B24C254CF005E53EB /* SAChannelStatePopup.xib */,
 				01943EC0249D1C8800DA2B8F /* SASuperuserAuthorizationDialog.xib */,
-				0107146D2656A634009C119F /* SAZWaveWakeupSettingsDialog.xib */,
+				010714822656EC43009C119F /* SAZWaveWakeupSettingsDialog.xib */,
 				01C8EBCF23422AC50072AB8C /* HomePlusDetailViewGroupCell.xib */,
 				40CE7C6D1DCBBF6D00BBACE4 /* DistanceCell.xib */,
 				017A3C8823633A70004AD1FC /* TempHumidityDetailView.xib */,
@@ -2241,7 +2255,7 @@
 			files = (
 				013F7EC523EB4B500061A497 /* battery@2x.png in Resources */,
 				013A1BFD2538BAA0000583A2 /* roofwindow-open@2x.png in Resources */,
-				0107146E2656A634009C119F /* SAZWaveWakeupSettingsDialog.xib in Resources */,
+				010714802656EC43009C119F /* SAZWaveWakeupSettingsDialog.xib in Resources */,
 				40CF96C51BC7D4E70030EFFF /* power-on@3x.png in Resources */,
 				40844D7F1FB0DDB000432AA0 /* SettingsVC.xib in Resources */,
 				017554F822F1CDB900EB58B7 /* heatpollogo@3x.png in Resources */,
@@ -2813,6 +2827,28 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		010714822656EC43009C119F /* SAZWaveWakeupSettingsDialog.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				010714812656EC43009C119F /* Base */,
+				010714862656EC56009C119F /* cs */,
+				010714882656EC58009C119F /* nl */,
+				0107148A2656EC5A009C119F /* fr */,
+				0107148C2656EC5A009C119F /* de */,
+				0107148E2656EC5B009C119F /* el */,
+				010714902656EC5C009C119F /* it */,
+				010714922656EC5D009C119F /* lt */,
+				010714942656EC5E009C119F /* nb */,
+				010714962656EC5E009C119F /* pl */,
+				010714982656EC5F009C119F /* pt-PT */,
+				0107149A2656EC60009C119F /* ru */,
+				0107149C2656EC60009C119F /* sk-SK */,
+				0107149E2656EC61009C119F /* sl */,
+				010714A02656EC62009C119F /* es */,
+			);
+			name = SAZWaveWakeupSettingsDialog.xib;
+			sourceTree = "<group>";
+		};
 		010C8789249AA1E1002FE526 /* SAInfoVC.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
