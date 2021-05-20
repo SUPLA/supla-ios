@@ -190,3 +190,4 @@
 "The selected z-wave device is already associated with another channel. Are you sure you want to move this device to this channel?" = "El dispositivo elejido z-wave ya está asociado con otro canal. ¿Está seguro de mover el dispositivo a este canal?";
 "Timeout waiting for z-wave bridge response." = "¡Se ha superado el tiempo de espera a una respuesta del puente z-wave!";
 "Unexpected bridge response. Code: %i" = "Respuesta de puente inesperada. Código: %i";
+"Z-Wave bridge" = "Puente z-wave";

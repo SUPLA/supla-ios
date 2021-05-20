@@ -190,3 +190,4 @@
 "The selected z-wave device is already associated with another channel. Are you sure you want to move this device to this channel?" = "Pasirinktas z-wave įrenginys jau susietas su kitu kanalu. Ar tikrai norite perkelti šį įrenginį prie šio kanalo?";
 "Timeout waiting for z-wave bridge response." = "Baigėsi z-wave tilto atsakymo laukimo laikas.";
 "Unexpected bridge response. Code: %i" = "Netikėtas tilto atsakymas. Kodas: %i";
+"Z-Wave bridge" = "Z-wave tiltas";

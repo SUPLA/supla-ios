@@ -1,0 +1,84 @@
+
+/* Class = "UILabel"; text = "Below are the details of the selected channel. Please specify its purpose by selecting the appropriate function."; ObjectID = "107-YY-mJ9"; */
+"107-YY-mJ9.text" = "Hieronder staan de details van het geselecteerde kanaal. Bepaal het doel door de juiste functie te selecteren.";
+
+/* Class = "UILabel"; text = "Device"; ObjectID = "56E-9V-mlp"; */
+"56E-9V-mlp.text" = "Apparaat";
+
+/* Class = "UIButton"; normalTitle = "DELETE DEVICE"; ObjectID = "6df-IH-8y9"; */
+"6df-IH-8y9.normalTitle" = "HET APPARAAT VERWIJDEREN";
+
+/* Class = "UIButton"; normalTitle = "ADD DEVICE"; ObjectID = "BTs-3M-6Pr"; */
+"BTs-3M-6Pr.normalTitle" = "VOEG APPARAAT TOE";
+
+/* Class = "UILabel"; text = "Function"; ObjectID = "CrA-tu-0Ln"; */
+"CrA-tu-0Ln.text" = "Functie";
+
+/* Class = "UILabel"; text = "It will take a while"; ObjectID = "F61-xF-s7k"; */
+"F61-xF-s7k.text" = "Het zal een tijdje duren.";
+
+/* Class = "UILabel"; text = "Channel id"; ObjectID = "FAh-Cm-D3c"; */
+"FAh-Cm-D3c.text" = "Kanaal ID";
+
+/* Class = "UILabel"; text = "Device id"; ObjectID = "HEE-CO-WJl"; */
+"HEE-CO-WJl.text" = "Apparaat ID";
+
+/* Class = "UILabel"; text = "Channel number"; ObjectID = "INT-0e-b9R"; */
+"INT-0e-b9R.text" = "Kanaalnummer";
+
+/* Class = "UILabel"; text = "Press back to return to the previous step or \"Exit\" to finish."; ObjectID = "OTk-BD-soD"; */
+"OTk-BD-soD.text" = "Druk op 'Terug' om naar de vorige stap terug te keren of op \"Afsluiten\" om te eindigen.";
+
+/* Class = "UILabel"; text = "You can also change the wake-up settings by pressing the icon below."; ObjectID = "Os0-or-7MN"; */
+"Os0-or-7MN.text" = "U kunt de wekinstellingen ook wijzigen door op het onderstaande pictogram te drukken.";
+
+/* Class = "UILabel"; text = "Z-Wave wizard"; ObjectID = "TtI-D6-hIQ"; */
+"TtI-D6-hIQ.text" = "Z-wave wizard";
+
+/* Class = "UILabel"; text = "Caption"; ObjectID = "VR4-Zp-AZ8"; */
+"VR4-Zp-AZ8.text" = "Handtekening";
+
+/* Class = "UILabel"; text = "Z-Wave device"; ObjectID = "Ymn-D1-eWm"; */
+"Ymn-D1-eWm.text" = "Z-wave apparaat";
+
+/* Class = "UILabel"; text = "Z-wave network"; ObjectID = "a7s-5S-iHt"; */
+"a7s-5S-iHt.text" = "Z-wave netwerk";
+
+/* Class = "UIButton"; normalTitle = "RESET NETWORK AND SETTINGS"; ObjectID = "amT-2P-EgB"; */
+"amT-2P-EgB.normalTitle" = "RESET NETWERK EN INSTELLINGEN";
+
+/* Class = "UILabel"; text = "Done! Now you can finish the configuration process by pressing \"OK\" or you can press back to configure the next channel or change existing settings."; ObjectID = "cGP-Ha-UqZ"; */
+"cGP-Ha-UqZ.text" = "Klaar! Nu kunt u het configuratieproces afronden door op de \"OK\"-knop te drukken of u kunt op \"Terug\" drukken om een ander kanaal te configureren of uw vorige instellingen te wijzigen.";
+
+/* Class = "UILabel"; text = "Device name"; ObjectID = "egA-F9-6fa"; */
+"egA-F9-6fa.text" = "Naam van het apparaat";
+
+/* Class = "UILabel"; text = "Software version"; ObjectID = "hcP-PE-jBL"; */
+"hcP-PE-jBL.text" = "Software versie";
+
+/* Class = "UILabel"; text = "Function"; ObjectID = "kWy-QX-AJU"; */
+"kWy-QX-AJU.text" = "Functie";
+
+/* Class = "UILabel"; text = "Select the z-wave device that will be associated with the Supla channel."; ObjectID = "kc9-9O-Tmh"; */
+"kc9-9O-Tmh.text" = "Selecteer het Z-wave apparaat dat aan het kanaal van Supli wordt verbonden.";
+
+/* Class = "UILabel"; text = "Select the z-wave bridge and then the channel you want to configure."; ObjectID = "kif-QE-f8n"; */
+"kif-QE-f8n.text" = "Selecteer de Z-wave brug en vervolgens het kanaal dat u wilt configureren.";
+
+/* Class = "UILabel"; text = "Before continuing, make sure that all your z-wave devices are online. Pressing \"Next\" will search your z-wave network, which may take from a few seconds to several minutes."; ObjectID = "l1n-Id-vnO"; */
+"l1n-Id-vnO.text" = "Zorg ervoor dat al uw Z-Wave-apparaten online zijn voordat u doorgaat. Als u op \"Volgende\" drukt, wordt uw Z-wave netwerk gescand, wat een paar seconden tot enkele minuten kan duren.";
+
+/* Class = "UILabel"; text = "Welcome to the z-wave bridge configuration wizard. It will allow you to connect your z-wave devices to Supla. Tap \"Next\" to continue."; ObjectID = "nNP-Gd-gOi"; */
+"nNP-Gd-gOi.text" = "Welkom bij de installatiewizard van de Z-wave brug. Hiermee kunt u uw Z-wave apparaten met Supla verbinden. Klik op \"Volgende\" om door te gaan.";
+
+/* Class = "UILabel"; text = "Channel"; ObjectID = "sNr-Xz-EUe"; */
+"sNr-Xz-EUe.text" = "Kanaal";
+
+/* Class = "UILabel"; text = "Channel"; ObjectID = "sY5-XC-gcM"; */
+"sY5-XC-gcM.text" = "Kanaal";
+
+/* Class = "UILabel"; text = "Bridge"; ObjectID = "ul5-ub-qWP"; */
+"ul5-ub-qWP.text" = "Brug";
+
+/* Class = "UILabel"; text = "Channel"; ObjectID = "z0I-kO-IcX"; */
+"z0I-kO-IcX.text" = "Kanaal";

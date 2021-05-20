@@ -195,3 +195,4 @@
 "The selected z-wave device is already associated with another channel. Are you sure you want to move this device to this channel?" = "Vybrané zařízení z-wave je už připojeno k jinému kanálu. Chcete opravdu přenést vybrané zařízení k jinému kanálu?";
 "Timeout waiting for z-wave bridge response." = "Vypršel časový limit při čekání na odpověď můstku z-wave.";
 "Unexpected bridge response. Code: %i" = "Neočekávaná odpověď můstku. Kód: %i";
+"Z-Wave bridge" = "Z-wave můstek";
