@@ -17,7 +17,7 @@
  */
 
 #import "SAChannelBase+CoreDataClass.h"
-#include "proto.h"
+#import "proto.h"
 
 @implementation SAChannelBase
 

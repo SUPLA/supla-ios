@@ -18,7 +18,7 @@
 
 #import <Foundation/Foundation.h>
 #import "SAThermostatScheduleCfg.h"
-#include "proto.h"
+#import "proto.h"
 
 @class SASuplaClient;
 @protocol SASuplaClientDelegate <NSObject>

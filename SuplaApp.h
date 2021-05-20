@@ -20,8 +20,8 @@
 #import <UIKit/UIKit.h>
 #import "UIHelper.h"
 #import "SuplaClient.h"
-#include "proto.h"
-#include "SAChannelStateExtendedValue.h"
+#import "proto.h"
+#import "SAChannelStateExtendedValue.h"
 
 #define ABSTRACT_METHOD_EXCEPTION [SAApp abstractMethodException:NSStringFromSelector(_cmd)]
 

@@ -35,8 +35,7 @@
 #import "SAZWaveNodeResult.h"
 #import "SACalCfgProgressReport.h"
 #import "SAZWaveWakeupSettingsReport.h"
-
-#include "supla-client.h"
+#import "supla-client.h"
 
 @interface SASuplaClient ()
 - (void) onVersionError:(SAVersionError*)ve;

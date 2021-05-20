@@ -20,7 +20,7 @@
 #import <CoreData/CoreData.h>
 #import <UIKit/UIKit.h>
 #import "SAUserIcon+CoreDataClass.h"
-#include "SADigiglassValue.h"
+#import "SADigiglassValue.h"
 
 @class _SALocation;
 

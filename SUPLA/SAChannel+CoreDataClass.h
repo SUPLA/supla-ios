@@ -22,7 +22,7 @@
 #import "SAChannelBase+CoreDataProperties.h"
 #import "SAChannelExtendedValue+CoreDataProperties.h"
 #import "SAChannelStateExtendedValue.h"
-#include "proto.h"
+#import "proto.h"
 
 @class NSObject, _SALocation;
 

@@ -26,7 +26,7 @@
 #import "SAChannelStatePopup.h"
 #import "SAChannelCaptionEditor.h"
 #import "SuplaApp.h"
-#include "proto.h"
+#import "proto.h"
 #import "UIColor+SUPLA.h"
 
 #define CLEFT_MARGIN     5

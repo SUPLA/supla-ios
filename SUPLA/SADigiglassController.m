@@ -14,7 +14,7 @@
  */
 
 #import "SADigiglassController.h"
-#include <math.h>
+#import <math.h>
 
 #define BTN_PICTOGRAM_MAX_WIDTH 50
 #define SECTION_BUTTON_MAX_SIZE 50
