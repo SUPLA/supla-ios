@@ -57,27 +57,5 @@
     [self setImage:image forState:UIControlStateHighlighted];
     
 }
-
-@end
-
-@implementation NSNumber (SUPLA)
-+(NSNumber *)notificationToNumber:(NSNotification*_Nullable)notification key:(NSString*)key {
-    if (notification != nil && notification.userInfo != nil) {
-        id r = [notification.userInfo objectForKey:key];
-        if (r != nil && [r isKindOfClass:[NSNumber class]]) {
-            return r;
-        }
-    }
-    
-    return nil;
-}
-    
-+(NSNumber *)codeNotificationToNumber:(NSNotification*_Nullable)notification {
-    return [NSNumber notificationToNumber:notification key:@"code"];
-}
-
-+(NSNumber *)resultNotificationToNumber:(NSNotification*_Nullable)notification {
-    return [NSNumber notificationToNumber:notification key:@"result"];
-}
 @end
 
