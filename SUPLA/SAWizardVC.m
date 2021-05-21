@@ -88,11 +88,11 @@
 
 -(void)setBtnNextTitle:(NSString *)btnNextTitle {
     _btnNextTitle = btnNextTitle;
-    [self.btnNext2 setAttributedTitle:_btnNextTitle];
+    [self.btnNext2 setAttributedTitle:self.btnNextTitle];
 }
 
 -(NSString*)btnNextTitle {
-    return _btnNextTitle;
+    return _btnNextTitle && _btnNextTitle.length ? _btnNextTitle : NSLocalizedString(@"Next", nil);
 }
  
 -(BOOL)btnNextEnabled {
@@ -150,7 +150,7 @@
         
         _btnNext3_width.constant = 40;
         [self.btnNext3 setBackgroundImage:[UIImage imageNamed:@"btnnextr.png"]];
-        [self.btnNext2 setAttributedTitle:_btnNextTitle];
+        [self.btnNext2 setAttributedTitle:self.btnNextTitle];
         
     }
 }
