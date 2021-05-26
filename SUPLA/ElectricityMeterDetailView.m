@@ -63,88 +63,103 @@
     }
 }
 
+- (NSString*)doubleToString:(double)dbl withUnit:(NSString *)unit {
+    NSNumberFormatter *formatter = [[NSNumberFormatter alloc]init];
+    [formatter setNumberStyle:NSNumberFormatterDecimalStyle];
+    [formatter setUsesGroupingSeparator:NO];
+    [formatter setMaximumFractionDigits:20];
+    [formatter setMinimumFractionDigits:0];
+    NSString *sdbl = [formatter stringFromNumber:[NSNumber numberWithDouble:dbl]];
+
+    if (unit == nil) {
+        return sdbl;
+    }
+    return [NSString stringWithFormat:@"%@ %@", sdbl, unit];
+}
+
 - (void)setFrequency:(double)freq visible:(BOOL)visible {
     [self setLabel:self.lFrequency Visible:visible withConstraint:self.cFrequencyTop];
     [self setLabel:self.lFrequencyValue Visible:visible withConstraint:self.cFrequencyValueTop];
-    [self.lFrequencyValue setText:[NSString stringWithFormat:@"%0.2f Hz", freq]];
+    
+    [self.lFrequencyValue setText:[self doubleToString:freq withUnit:@"Hz"]];
 }
 
 - (void)setVoltage:(double)voltage visible:(BOOL)visible {
     [self setLabel:self.lVoltage Visible:visible withConstraint:self.cVoltageTop];
     [self setLabel:self.lVoltageValue Visible:visible withConstraint:self.cVoltageValueTop];
-    [self.lVoltageValue setText:[NSString stringWithFormat:@"%0.2f V", voltage]];
+    [self.lVoltageValue setText:[self doubleToString:voltage withUnit:@"V"]];
 }
 
 - (void)setCurrent:(double)current visible:(BOOL)visible over65A:(BOOL)over65A {
     [self setLabel:self.lCurrent Visible:visible withConstraint:self.cCurrentTop];
     [self setLabel:self.lCurrentValue Visible:visible withConstraint:self.cCurrentValueTop];
-    [self.lCurrentValue setText:[NSString stringWithFormat:@"%0.*f A", over65A ? 2 : 3, current]];
+    [self.lCurrentValue setText:[self doubleToString:current withUnit:@"A"]];
 }
 
 - (void)setActivePower:(double)power visible:(BOOL)visible {
     [self setLabel:self.lActivePower Visible:visible withConstraint:self.cActivePowerTop];
     [self setLabel:self.lActivePowerValue Visible:visible withConstraint:self.cActivePowerValueTop];
-    [self.lActivePowerValue setText:[NSString stringWithFormat:@"%0.5f W", power]];
+    [self.lActivePowerValue setText:[self doubleToString:power withUnit:@"W"]];
 }
 
 - (void)setReactivePower:(double)power visible:(BOOL)visible {
     [self setLabel:self.lReactivePower Visible:visible withConstraint:self.cReactivePowerTop];
     [self setLabel:self.lReactivePowerValue Visible:visible withConstraint:self.cReactivePowerValueTop];
-    [self.lReactivePowerValue setText:[NSString stringWithFormat:@"%0.5f var", power]];
+    [self.lReactivePowerValue setText:[self doubleToString:power withUnit:@"var"]];
 }
 
 - (void)setApparentPower:(double)power visible:(BOOL)visible {
     [self setLabel:self.lApparentPower Visible:visible withConstraint:self.cApparentPowerTop];
     [self setLabel:self.lApparentPowerValue Visible:visible withConstraint:self.cApparentPowerValueTop];
-    [self.lApparentPowerValue setText:[NSString stringWithFormat:@"%0.5f VA", power]];
+    [self.lApparentPowerValue setText:[self doubleToString:power withUnit:@"VA"]];
 }
 
 - (void)setPowerFactor:(double)factor visible:(BOOL)visible {
     [self setLabel:self.lPowerFactor Visible:visible withConstraint:self.cPowerFactorTop];
     [self setLabel:self.lPowerFactorValue Visible:visible withConstraint:self.cPowerFactorValueTop];
-    [self.lPowerFactorValue setText:[NSString stringWithFormat:@"%0.3f", factor]];
+    [self.lPowerFactorValue setText:[self doubleToString:factor withUnit:nil]];
 }
 
 - (void)setPhaseAngle:(double)angle visible:(BOOL)visible {
     [self setLabel:self.lPhaseAngle Visible:visible withConstraint:self.cPhaseAngleTop];
     [self setLabel:self.lPhaseAngleValue Visible:visible withConstraint:self.cPhaseAngleValueTop];
-    [self.lPhaseAngleValue setText:[NSString stringWithFormat:@"%0.2f\u00B0", angle]];
+    [self.lPhaseAngleValue setText:[self doubleToString:angle withUnit:@"\u00B0"]];
 }
 
 - (void)setForwardActiveEnergy:(double)energy visible:(BOOL)visible {
     [self setLabel:self.lForwardActiveEnergy Visible:visible withConstraint:self.cForwardActiveEnergyTop];
     [self setLabel:self.lForwardActiveEnergyValue Visible:visible withConstraint:self.cForwardActiveEnergyValueTop];
-    [self.lForwardActiveEnergyValue setText:[NSString stringWithFormat:@"%0.5f kWh", energy]];
+    [self.lForwardActiveEnergyValue setText:[self doubleToString:energy withUnit:@"kWh"]];
 }
 
 - (void)setReverseActiveEnergy:(double)energy visible:(BOOL)visible {
     [self setLabel:self.lReverseActiveEnergy Visible:visible withConstraint:self.cReverseActiveEnergyTop];
     [self setLabel:self.lReverseActiveEnergyValue Visible:visible withConstraint:self.cReverseActiveEnergyValueTop];
-    [self.lReverseActiveEnergyValue setText:[NSString stringWithFormat:@"%0.5f kWh", energy]];
+    [self.lReverseActiveEnergyValue setText:[self doubleToString:energy withUnit:@"kWh"]];
 }
 
 - (void)setForwardReactiveEnergy:(double)energy visible:(BOOL)visible {
     [self setLabel:self.lForwardReactiveEnergy Visible:visible withConstraint:self.cForwardReactiveEnergyTop];
     [self setLabel:self.lForwardReactiveEnergyValue Visible:visible withConstraint:self.cForwardReactiveEnergyValueTop];
-    [self.lForwardReactiveEnergyValue setText:[NSString stringWithFormat:@"%0.5f kvarh", energy]];
+    [self.lForwardReactiveEnergyValue setText:[self doubleToString:energy withUnit:@"kvarh"]];
 }
 
 - (void)setReverseReactiveEnergy:(double)energy visible:(BOOL)visible {
     [self setLabel:self.lReverseReactiveEnergy Visible:visible withConstraint:self.cReverseReactiveEnergyTop];
     [self setLabel:self.lReverseReactiveEnergyValue Visible:visible withConstraint:self.cReverseReactiveEnergyValueTop];
-    [self.lReverseReactiveEnergyValue setText:[NSString stringWithFormat:@"%0.5f kvarh", energy]];
+    [self.lReverseReactiveEnergyValue setText:[self doubleToString:energy withUnit:@"kvarh"]];
 }
 
 - (void)setForwardActiveEnergyBalance:(double)energy visible:(BOOL)visible {
     [self setLabel:self.lForwardActiveEnergyBalance Visible:visible withConstraint:self.cForwardActiveEnergyBalanceTop];
     [self setLabel:self.lForwardActiveEnergyValueBalance Visible:visible withConstraint:self.cForwardActiveEnergyValueBalanceTop];
-    [self.lForwardActiveEnergyValueBalance setText:[NSString stringWithFormat:@"%0.5f kWh", energy]];
+    [self.lForwardActiveEnergyValueBalance setText:[self doubleToString:energy withUnit:@"kWh"]];
 }
 
 - (void)setReverseActiveEnergyBalance:(double)energy visible:(BOOL)visible {
     [self setLabel:self.lReverseActiveEnergyBalance Visible:visible withConstraint:self.cReverseActiveEnergyBalanceTop];
     [self setLabel:self.lReverseActiveEnergyValueBalance Visible:visible withConstraint:self.cReverseActiveEnergyValueBalanceTop];
-    [self.lReverseActiveEnergyValueBalance setText:[NSString stringWithFormat:@"%0.5f kWh", energy]];
+    [self.lReverseActiveEnergyValueBalance setText:[self doubleToString:energy withUnit:@"kWh"]];
 }
 
 - (NSString*)totalActiveEnergyStringForValue:(double)value {
