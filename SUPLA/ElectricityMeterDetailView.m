@@ -68,7 +68,7 @@
     [formatter setNumberStyle:NSNumberFormatterDecimalStyle];
     [formatter setUsesGroupingSeparator:NO];
     [formatter setMaximumFractionDigits:20];
-    [formatter setMinimumFractionDigits:0];
+    [formatter setMinimumFractionDigits:2];
     NSString *sdbl = [formatter stringFromNumber:[NSNumber numberWithDouble:dbl]];
 
     if (unit == nil) {
