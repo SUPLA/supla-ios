@@ -190,3 +190,7 @@
 "Timeout waiting for z-wave bridge response." = "Il tempo di attesa per la risposta del ponte z-wave è scaduto.";
 "Unexpected bridge response. Code: %i" = "Risposta del ponte inaspettata. Codice: %i";
 "Z-Wave bridge" = "Ponte z-wave";
+"Incorrect Email Address or Password" = "Indirizzo Mail o Password errato";
+"Channel name" = "Nome Canale";
+"Location name" = "Nome Ambiente";
+"Default" = "Default";

@@ -669,6 +669,9 @@
 		016ABE14236D8363001BF5FB /* SAKeychain.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SAKeychain.h; sourceTree = "<group>"; };
 		016ABE15236D8363001BF5FB /* SAKeychain.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SAKeychain.m; sourceTree = "<group>"; };
 		016ABE17236DA795001BF5FB /* KeychainTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KeychainTests.m; sourceTree = "<group>"; };
+		016D001C266EB11500E02C1F /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/SADiwCalibrationTool.strings; sourceTree = "<group>"; };
+		016D001E266EB12500E02C1F /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/SAVLCalibrationTool.strings; sourceTree = "<group>"; };
+		016D0021266EB30E00E02C1F /* it */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = it; path = it.lproj/SAInfoVC.xib; sourceTree = "<group>"; };
 		016EE77223074DDC00FD301C /* production@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "production@3x.png"; path = "Resources/Assets/Img/production@3x.png"; sourceTree = "<group>"; };
 		016EE77323074DDC00FD301C /* consumption@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "consumption@3x.png"; path = "Resources/Assets/Img/consumption@3x.png"; sourceTree = "<group>"; };
 		0172677B234FAF78000F1CFB /* SADownloadImpulseCounterMeasurements.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SADownloadImpulseCounterMeasurements.h; sourceTree = "<group>"; };
@@ -2890,6 +2893,7 @@
 			children = (
 				010C8788249AA1E1002FE526 /* Base */,
 				015839742576AA40005E615D /* pl */,
+				016D0021266EB30E00E02C1F /* it */,
 			);
 			name = SAInfoVC.xib;
 			sourceTree = "<group>";
@@ -2899,6 +2903,7 @@
 			children = (
 				011E736924A1367B004D99EE /* Base */,
 				015839792576F866005E615D /* pl */,
+				016D001E266EB12500E02C1F /* it */,
 			);
 			name = SAVLCalibrationTool.xib;
 			sourceTree = "<group>";
@@ -2917,6 +2922,7 @@
 			children = (
 				0148934625AA5D2000B9974E /* Base */,
 				0148934B25AA5D2200B9974E /* pl */,
+				016D001C266EB11500E02C1F /* it */,
 			);
 			name = SADiwCalibrationTool.xib;
 			sourceTree = "<group>";
