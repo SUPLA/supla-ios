@@ -48,7 +48,6 @@
 "Door opening sensor" = "Durų atidarymo jutiklis";
 "Roller shutter opening sensor" = "Žaliuzių atidengimo jutiklis";
 "Connecting..." = "Jungimasis...";
-"Unknown error" = "";
 "Service temporarily unavailable" = "Paslauga laikinai nepasiekiama";
 "Bad credentials" = "Klaidingas autentifikavimas";
 "Client limit exceeded" = "Viršutinė klientų programų riba viršyta";
