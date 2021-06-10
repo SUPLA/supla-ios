@@ -194,3 +194,10 @@
 "Channel name" = "Nome Canale";
 "Location name" = "Nome Ambiente";
 "Default" = "Default";
+"Roof window opening sensor" = "Sensore apertura Lucernario";
+"Roof window" = "Lucernario";
+"Roof window operation" = "Funzionamento Lucernario";
+"opened / closed the roof window" = "apri / chiudi lucernario";
+"The glass sections are exposed for more than 20 hours, which may adversely affect their life. It is recommended to cover all sections for a minimum of 4 hours in order to regenerate them." = "Le sezioni di vetro sono esposte per più di 20 ore, questo può influire negativamente sulla loro durata. Si consiglia di coprire tutte le sezioni per un minimo di 4 ore per rigenerarle.";
+"Planned regeneration is in progress." = "Rigenerazione pianificata in corso.";
+"Regeneration initiated after 20 hours of operation is in progress." = "Rigenerazione avviata dopo 20 ore di funzionamento in corso.";
