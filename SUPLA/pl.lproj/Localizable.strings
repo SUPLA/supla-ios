@@ -250,3 +250,4 @@
 "Timeout waiting for z-wave bridge response." = "Upłynął czas oczekiwania na odpowiedź mostu z-wave.";
 "Unexpected bridge response. Code: %i" = "Nieoczekiwana odpowiedź mostu. Kod: %i";
 "Z-Wave bridge" = "Most z-wave";
+"opened / closed the roof window" = "otworzył / zamknął okno dachowe";
