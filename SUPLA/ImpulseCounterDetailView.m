@@ -109,7 +109,10 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 }
 
 - (IBAction)imgTapped:(id)sender {
-    [[SAApp SuplaClient] cg:self.channelBase.remote_id Open:!self.channelBase.hiValue group:NO];
-    AudioServicesPlayAlertSound(kSystemSoundID_Vibrate);
+    [SAApp.SuplaClient turnOn:!self.channelBase.hiValue
+                      remoteId:self.channelBase.remote_id
+                      group:NO
+                      channelFunc:self.channelBase.func
+                      vibrate:YES];
 }
 @end

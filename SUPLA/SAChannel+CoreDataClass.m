@@ -157,6 +157,10 @@
     return self.value == nil ? [super digiglassValue] : [self.value digiglassValue];
 }
 
+- (BOOL) overcurrentRelayOff{
+    return self.value == nil ? [super overcurrentRelayOff] : [self.value overcurrentRelayOff];
+}
+
 - (int) imgIsActive {
     
     if ( [self isOnline]
@@ -269,6 +273,18 @@
 }
 
 - (int) warningLevelWithMessage:(NSString **)msg {
+    switch (self.func) {
+        case SUPLA_CHANNELFNC_LIGHTSWITCH:
+        case SUPLA_CHANNELFNC_POWERSWITCH:
+            if (self.overcurrentRelayOff) {
+                if (msg) {
+                    *msg = NSLocalizedString(@"The power was turned off after the set threshold of the allowable current was exceeded.", nil);
+                }
+                return 2;
+            }
+            break;
+    }
+    
     switch (self.func) {
         case SUPLA_CHANNELFNC_VALVE_OPENCLOSE:
         case SUPLA_CHANNELFNC_VALVE_PERCENTAGE:

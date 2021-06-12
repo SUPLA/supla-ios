@@ -56,6 +56,7 @@ NS_ASSUME_NONNULL_BEGIN
 -(BOOL) isManuallyClosed;
 -(BOOL) flooding;
 -(SADigiglassValue*) digiglassValue;
+-(BOOL) overcurrentRelayOff;
 @end
 
 NS_ASSUME_NONNULL_END

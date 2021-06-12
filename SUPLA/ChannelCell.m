@@ -349,6 +349,13 @@
 - (IBAction)rightTouchDown:(id)sender {
     [sender setBackgroundColor: [UIColor btnTouched]];
     
+    BOOL group = [self.channelBase isKindOfClass:[SAChannelGroup class]];
+    
+    if ([SAApp.SuplaClient turnOn:YES remoteId:_channelBase.remote_id group:group channelFunc:_channelBase.func vibrate:YES]) {
+        [self hideSwipeAnimated:YES];
+        return;
+    }
+    
       if ((_channelBase.func == SUPLA_CHANNELFNC_VALVE_OPENCLOSE
           || _channelBase.func == SUPLA_CHANNELFNC_VALVE_PERCENTAGE)
           && (_channelBase.isManuallyClosed || _channelBase.flooding)
@@ -360,7 +367,7 @@
     
     [self vibrate];
     
-    [[SAApp SuplaClient] cg:self.channelBase.remote_id Open:1 group:[self.channelBase isKindOfClass:[SAChannelGroup class]]];
+    [[SAApp SuplaClient] cg:self.channelBase.remote_id Open:1 group:group];
     [self hideSwipeAnimated:YES];
 }
 

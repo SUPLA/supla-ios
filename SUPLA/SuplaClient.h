@@ -72,5 +72,7 @@
 - (void) zwaveAssignChannelId:(int)channelId toNodeId:(unsigned char)nodeId;
 - (void) zwaveGetWakeUpSettingsForChannelId:(int)channelId;
 - (void) zwaveSetWakeUpTime:(int)time forChannelId:(int)channelId;
+- (BOOL) turnOn:(BOOL)on remoteId:(int)remoteId group:(BOOL)group channelFunc:(int)channelFunc vibrate:(BOOL)vibrate;
+
 @property (nonatomic, weak) id<SASuplaClientDelegate> delegate;
 @end

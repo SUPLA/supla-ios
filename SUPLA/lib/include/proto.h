@@ -1411,6 +1411,8 @@ typedef struct {
 #define DIGIGLASS_PLANNED_REGENERATION_IN_PROGRESS 0x2
 #define DIGIGLASS_REGENERATION_AFTER_20H_IN_PROGRESS 0x4
 
+#define SUPLA_RELAY_FLAG_OVERCURRENT_RELAY_OFF 0x1
+
 typedef struct {
   unsigned char flags;
   unsigned char sectionCount;  // 1 - 16 Filled by server

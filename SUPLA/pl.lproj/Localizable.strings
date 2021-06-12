@@ -251,3 +251,4 @@
 "Unexpected bridge response. Code: %i" = "Nieoczekiwana odpowiedź mostu. Kod: %i";
 "Z-Wave bridge" = "Most z-wave";
 "opened / closed the roof window" = "otworzył / zamknął okno dachowe";
+"The power was turned off after the set threshold of the allowable current was exceeded." = "Zasilanie zostało wyłączone po przekroczeniu ustawionego progu dopuszczalnego natężenia prądu.";
