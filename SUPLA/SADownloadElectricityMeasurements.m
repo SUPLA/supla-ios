@@ -32,10 +32,6 @@
     return [self.DB newElectricityMeasurementItemWithManagedObjectContext:moc];
 }
 
--(SAIncrementalMeasurementItem *) getUncalculatedIncrementalMeasurementItemOlderThanDate:(NSDate*)date {
-    return [self.DB fetchOlderThanDate:date uncalculatedElectricityMeasurementItemWithChannel:self.channelId];
-}
-
 - (void)deleteAllMeasurements {
     [self.DB deleteAllElectricityMeasurementsForChannelId:self.channelId];
 }
@@ -43,9 +39,4 @@
 - (NSUInteger)getLocalTotalCount {
     return [self.DB getElectricityMeasurementItemCountWithoutComplementForChannelId:self.channelId];
 }
-
-- (void) deleteUncalculatedIncrementalMeasurementsWithChannelID:(int)channelId {
-    [self.DB deleteUncalculatedElectricityMeasurementsForChannelId:self.channelId];
-};
-
 @end

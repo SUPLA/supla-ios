@@ -25,7 +25,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (NSFetchRequest<SAIncrementalMeasurementItem *> *)fetchRequest;
 
-@property (nonatomic) BOOL calculated;
 @property (nonatomic) BOOL complement;
 @property (nonatomic) BOOL divided;
 

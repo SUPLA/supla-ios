@@ -419,6 +419,10 @@
     return [[SADigiglassValue alloc] init];
 }
 
+- (BOOL) overcurrentRelayOff {
+    return false;
+}
+
 - (int) imgIsActive {
     
     if ( [self isOnline] ) {

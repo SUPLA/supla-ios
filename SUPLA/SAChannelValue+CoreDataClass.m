@@ -275,6 +275,10 @@
     return ([self secondByte] & SUPLA_VALVE_FLAG_FLOODING) > 0;
 }
 
+-(BOOL) overcurrentRelayOff {
+    return ([self secondByte] & SUPLA_RELAY_FLAG_OVERCURRENT_RELAY_OFF) > 0;
+}
+
 -(SADigiglassValue *) digiglassValue {
     return [[SADigiglassValue alloc] initWithData:self.dataValue];
 }

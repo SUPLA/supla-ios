@@ -17,6 +17,7 @@
  */
 
 #import <UIKit/UIKit.h>
+#import <AudioToolbox/AudioToolbox.h>
 #import "SARestApiClientTask.h"
 #import "SAChannelStateExtendedValue.h"
 #import "SAVersionError.h"
@@ -35,6 +36,7 @@
 #import "SAZWaveNodeResult.h"
 #import "SACalCfgProgressReport.h"
 #import "SAZWaveWakeupSettingsReport.h"
+#import "SAChannel+CoreDataClass.h"
 #import "supla-client.h"
 
 @interface SASuplaClient ()
@@ -1389,6 +1391,66 @@ void sasuplaclient_on_zwave_set_wake_up_time_result(void *_suplaclient,
             supla_client_zwave_set_wake_up_time(_sclient, channelId, time);
         }
     }
+}
+
+- (BOOL) turnOn:(BOOL)on remoteId:(int)remoteId group:(BOOL)group channelFunc:(int)channelFunc vibrate:(BOOL)vibrate {
+    if ((channelFunc != SUPLA_CHANNELFNC_POWERSWITCH
+         && channelFunc != SUPLA_CHANNELFNC_LIGHTSWITCH)) {
+        return false;
+    }
+    
+
+    if (on) {
+        SADatabase *DB = [SADatabase alloc];
+        if (DB == nil || [DB init] == nil) {
+            return false;
+        }
+        
+        SAChannel *channel = [DB fetchChannelById:remoteId];
+        if (channel == nil) {
+            return false;
+        }
+        
+        if (![channel hiValue] && [channel overcurrentRelayOff]) {
+            UIAlertController * alert = [UIAlertController
+                                         alertControllerWithTitle:@"SUPLA"
+                                         message:NSLocalizedString(@"The power was turned off after exceeding the set threshold of the allowable current. Are you sure you want to power on?", nil)
+                                         preferredStyle:UIAlertControllerStyleAlert];
+            
+            UIAlertAction* yesBtn = [UIAlertAction
+                                        actionWithTitle:NSLocalizedString(@"Yes", nil)
+                                        style:UIAlertActionStyleDefault
+                                        handler:^(UIAlertAction * action) {
+                if (vibrate) {
+                    AudioServicesPlayAlertSound(kSystemSoundID_Vibrate);
+                }
+                [self cg:remoteId Open:1 group:group];
+            }];
+            
+            UIAlertAction* noBtn = [UIAlertAction
+                                    actionWithTitle:NSLocalizedString(@"No", nil)
+                                    style:UIAlertActionStyleDefault
+                                    handler:^(UIAlertAction * action) {
+            }];
+            
+            
+            [alert setTitle: NSLocalizedString(@"Warning", nil)];
+            [alert addAction:noBtn];
+            [alert addAction:yesBtn];
+            
+            UIViewController *vc = [[[[UIApplication sharedApplication] delegate] window] rootViewController];
+            [vc presentViewController:alert animated:YES completion:nil];
+            
+            return true;
+        }
+    }
+    
+    if (vibrate) {
+        AudioServicesPlayAlertSound(kSystemSoundID_Vibrate);
+    }
+    
+    [self cg:remoteId Open:on ? 1 : 0 group:group];
+    return true;
 }
 
 @end

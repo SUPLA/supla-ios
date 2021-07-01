@@ -651,6 +651,7 @@
 		015839692576A82A005E615D /* ledalwaysoff@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "ledalwaysoff@3x.png"; path = "Resources/Assets/Img/ledalwaysoff@3x.png"; sourceTree = "<group>"; };
 		015839742576AA40005E615D /* pl */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = pl; path = pl.lproj/SAInfoVC.xib; sourceTree = "<group>"; };
 		015839792576F866005E615D /* pl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pl; path = pl.lproj/SAVLCalibrationTool.strings; sourceTree = "<group>"; };
+		015988AB268E617600FABBD0 /* SUPLA 10.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "SUPLA 10.xcdatamodel"; sourceTree = "<group>"; };
 		015A9836265587E800B6E6C6 /* refresh@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "refresh@3x.png"; path = "Resources/Assets/Img/refresh@3x.png"; sourceTree = "<group>"; };
 		015A983A265594B300B6E6C6 /* NSNumber+SUPLA.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSNumber+SUPLA.h"; sourceTree = "<group>"; };
 		015A983B265594B300B6E6C6 /* NSNumber+SUPLA.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSNumber+SUPLA.m"; sourceTree = "<group>"; };
@@ -669,6 +670,9 @@
 		016ABE14236D8363001BF5FB /* SAKeychain.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SAKeychain.h; sourceTree = "<group>"; };
 		016ABE15236D8363001BF5FB /* SAKeychain.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SAKeychain.m; sourceTree = "<group>"; };
 		016ABE17236DA795001BF5FB /* KeychainTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KeychainTests.m; sourceTree = "<group>"; };
+		016D001C266EB11500E02C1F /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/SADiwCalibrationTool.strings; sourceTree = "<group>"; };
+		016D001E266EB12500E02C1F /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/SAVLCalibrationTool.strings; sourceTree = "<group>"; };
+		016D0021266EB30E00E02C1F /* it */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = it; path = it.lproj/SAInfoVC.xib; sourceTree = "<group>"; };
 		016EE77223074DDC00FD301C /* production@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "production@3x.png"; path = "Resources/Assets/Img/production@3x.png"; sourceTree = "<group>"; };
 		016EE77323074DDC00FD301C /* consumption@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "consumption@3x.png"; path = "Resources/Assets/Img/consumption@3x.png"; sourceTree = "<group>"; };
 		0172677B234FAF78000F1CFB /* SADownloadImpulseCounterMeasurements.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SADownloadImpulseCounterMeasurements.h; sourceTree = "<group>"; };
@@ -2890,6 +2894,7 @@
 			children = (
 				010C8788249AA1E1002FE526 /* Base */,
 				015839742576AA40005E615D /* pl */,
+				016D0021266EB30E00E02C1F /* it */,
 			);
 			name = SAInfoVC.xib;
 			sourceTree = "<group>";
@@ -2899,6 +2904,7 @@
 			children = (
 				011E736924A1367B004D99EE /* Base */,
 				015839792576F866005E615D /* pl */,
+				016D001E266EB12500E02C1F /* it */,
 			);
 			name = SAVLCalibrationTool.xib;
 			sourceTree = "<group>";
@@ -2917,6 +2923,7 @@
 			children = (
 				0148934625AA5D2000B9974E /* Base */,
 				0148934B25AA5D2200B9974E /* pl */,
+				016D001C266EB11500E02C1F /* it */,
 			);
 			name = SADiwCalibrationTool.xib;
 			sourceTree = "<group>";
@@ -3296,7 +3303,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = SUPLA/SUPLA.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 92;
+				CURRENT_PROJECT_VERSION = 93;
 				DEFINES_MODULE = YES;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"$(inherited)",
@@ -3311,7 +3318,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/SUPLA/lib",
 				);
-				MARKETING_VERSION = 2.3.41;
+				MARKETING_VERSION = 2.3.42;
 				PRODUCT_BUNDLE_IDENTIFIER = com.acsoftware.ios.supla;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "SUPLA/SUPLA-Bridging-Header.h";
@@ -3329,7 +3336,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = SUPLA/SUPLA.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 92;
+				CURRENT_PROJECT_VERSION = 93;
 				DEFINES_MODULE = YES;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"$(inherited)",
@@ -3344,7 +3351,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/SUPLA/lib",
 				);
-				MARKETING_VERSION = 2.3.41;
+				MARKETING_VERSION = 2.3.42;
 				PRODUCT_BUNDLE_IDENTIFIER = com.acsoftware.ios.supla;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "SUPLA/SUPLA-Bridging-Header.h";
@@ -3428,6 +3435,7 @@
 		407004251BB5706500F6187F /* SUPLA.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				015988AB268E617600FABBD0 /* SUPLA 10.xcdatamodel */,
 				01EE21EB263301E4006EC2B8 /* SUPLA 9.xcdatamodel */,
 				013FB109262CA21300A0E71D /* SUPLA 8.xcdatamodel */,
 				013C8C6725F79265009519B6 /* SUPLA 7.xcdatamodel */,
@@ -3438,7 +3446,7 @@
 				40BBA34620AC52EA0054CD20 /* SUPLA 2.xcdatamodel */,
 				407004261BB5706500F6187F /* SUPLA.xcdatamodel */,
 			);
-			currentVersion = 01EE21EB263301E4006EC2B8 /* SUPLA 9.xcdatamodel */;
+			currentVersion = 015988AB268E617600FABBD0 /* SUPLA 10.xcdatamodel */;
 			path = SUPLA.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

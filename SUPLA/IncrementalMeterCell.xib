@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -82,6 +82,13 @@
                             <constraint firstAttribute="width" constant="10" id="PFN-in-5AR"/>
                         </constraints>
                     </view>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="channel_warning_level1.png" translatesAutoresizingMaskIntoConstraints="NO" id="Wav-Kb-AAg">
+                        <rect key="frame" x="285" y="36.5" width="30" height="30"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="30" id="jbj-6g-9OK"/>
+                            <constraint firstAttribute="width" constant="30" id="oZ9-E0-Epy"/>
+                        </constraints>
+                    </imageView>
                 </subviews>
                 <color key="backgroundColor" red="0.97647058819999999" green="0.98039215690000003" blue="0.98431372549999996" alpha="1" colorSpace="calibratedRGB"/>
                 <constraints>
@@ -94,10 +101,12 @@
                     <constraint firstAttribute="trailingMargin" secondItem="C5z-HN-1vC" secondAttribute="trailing" constant="10" id="OpW-cJ-sgU"/>
                     <constraint firstItem="y66-SI-rXq" firstAttribute="trailing" secondItem="k1r-Vp-z4T" secondAttribute="trailingMargin" constant="10" id="Pp4-SV-3Yp"/>
                     <constraint firstAttribute="trailingMargin" secondItem="E2X-NK-oTg" secondAttribute="trailing" constant="10" id="Wgf-Wm-ks1"/>
+                    <constraint firstItem="Wav-Kb-AAg" firstAttribute="centerY" secondItem="k1r-Vp-z4T" secondAttribute="centerY" id="Yal-RF-AKW"/>
                     <constraint firstItem="E2X-NK-oTg" firstAttribute="centerY" secondItem="k1r-Vp-z4T" secondAttribute="centerY" id="dgI-j2-nSV"/>
                     <constraint firstItem="jqp-Ie-Ob9" firstAttribute="centerY" secondItem="k1r-Vp-z4T" secondAttribute="centerY" constant="-10" id="dtT-ap-law"/>
                     <constraint firstItem="C5z-HN-1vC" firstAttribute="top" secondItem="jqp-Ie-Ob9" secondAttribute="bottom" constant="5" id="ewe-7a-UAo"/>
                     <constraint firstItem="mPI-lf-fIE" firstAttribute="centerY" secondItem="k1r-Vp-z4T" secondAttribute="centerY" constant="-10" id="jfG-ab-lgN"/>
+                    <constraint firstItem="E2X-NK-oTg" firstAttribute="leading" secondItem="Wav-Kb-AAg" secondAttribute="trailing" constant="25" id="kI9-Q7-gNc"/>
                     <constraint firstItem="3Wu-a5-aQL" firstAttribute="centerY" secondItem="k1r-Vp-z4T" secondAttribute="centerY" id="kmp-lS-CDE"/>
                     <constraint firstItem="YC7-Ml-y7x" firstAttribute="centerY" secondItem="k1r-Vp-z4T" secondAttribute="centerY" id="nuS-4c-DSr"/>
                     <constraint firstAttribute="bottomMargin" secondItem="y66-SI-rXq" secondAttribute="bottom" constant="-8" id="rgt-Bg-rKE"/>
@@ -106,6 +115,7 @@
             <connections>
                 <outlet property="caption" destination="C5z-HN-1vC" id="rou-w4-BPe"/>
                 <outlet property="channelStateIcon" destination="YC7-Ml-y7x" id="Eg4-DK-YGY"/>
+                <outlet property="channelWarningIcon" destination="Wav-Kb-AAg" id="ljo-yd-DF6"/>
                 <outlet property="cint_RightStatusWidth" destination="6Hx-oJ-GW4" id="4tl-2l-r3n"/>
                 <outlet property="image1" destination="jqp-Ie-Ob9" id="Wgg-mJ-Boj"/>
                 <outlet property="left_OnlineStatus" destination="3Wu-a5-aQL" id="BhX-yO-fqw"/>
@@ -116,6 +126,7 @@
         </tableViewCell>
     </objects>
     <resources>
+        <image name="channel_warning_level1.png" width="61.5" height="52"/>
         <image name="channelstateinfo.png" width="107.25" height="107.25"/>
         <image name="electricitymeter.png" width="92" height="83.199996948242188"/>
     </resources>

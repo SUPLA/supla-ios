@@ -62,7 +62,7 @@
         return _persistentStoreCoordinator;
     }
     
-    int DBv = 13;
+    int DBv = 14;
     
     [self removeIfExists:@"SUPLA_DB.sqlite"];
     
@@ -852,11 +852,6 @@
     return nil;
 }
 
--(SAIncrementalMeasurementItem*) fetchOlderThanDate:(NSDate*)date uncalculatedIncrementalMeasurementItemWithChannel:(int)channel_id entityName:(NSString*)en {
-    
-    return [self fetchItemByPredicate:[NSPredicate predicateWithFormat:@"channel_id = %i AND calculated = NO AND date < %@", channel_id, date] entityName:en];
-};
-
 -(long) getTimestampOfMeasurementItemWithChannelId:(int)channel_id minimum:(BOOL)min entityName:(NSString*)en {
     SAIncrementalMeasurementItem *item = [self fetchItemByPredicate:[NSPredicate predicateWithFormat:@"channel_id = %i", channel_id] entityName: en sortDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"date" ascending:min]]];
     
@@ -879,16 +874,6 @@
         
     } while (del);
     
-}
-
--(void) deleteUncalculatedIncrementalMeasurementsForChannelId:(int)channel_id entityName:(NSString *)en {
-    NSArray *arr = [self fetchByPredicate:[NSPredicate predicateWithFormat:@"channel_id = %i AND calculated = NO", channel_id] entityName:en limit:0];
-    
-    if (arr) {
-        for(int a=0;a<arr.count;a++) {
-            [self.managedObjectContext deleteObject:[arr objectAtIndex:a]];
-        }
-    }
 }
 
 -(NSUInteger) getIncrementalMeasurementItemCountWithoutComplementForChannelId:(int)channel_id entityName:(NSString *)en {
@@ -984,7 +969,7 @@
 
     fetchRequest.propertiesToGroupBy = propertiesToGroupBy.count ? propertiesToGroupBy : nil;
     
-    fetchRequest.predicate = [NSPredicate predicateWithFormat:@"channel_id = %i AND calculated = YES AND (%@ = nil OR date >= %@) AND (%@ = nil OR date <= %@)", channel_id, dateFrom, dateFrom, dateTo, dateTo];
+    fetchRequest.predicate = [NSPredicate predicateWithFormat:@"channel_id = %i AND (%@ = nil OR date >= %@) AND (%@ = nil OR date <= %@)", channel_id, dateFrom, dateFrom, dateTo, dateTo];
     
     fetchRequest.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"date" ascending:YES]];
     
@@ -1010,20 +995,12 @@
     return item;
 }
 
--(SAElectricityMeasurementItem*) fetchOlderThanDate:(NSDate*)date uncalculatedElectricityMeasurementItemWithChannel:(int)channel_id {
-    return (SAElectricityMeasurementItem*) [self fetchOlderThanDate:date uncalculatedIncrementalMeasurementItemWithChannel:channel_id entityName:@"SAElectricityMeasurementItem"];
-}
-
 -(long) getTimestampOfElectricityMeasurementItemWithChannelId:(int)channel_id minimum:(BOOL)min {
     return [self getTimestampOfMeasurementItemWithChannelId:channel_id minimum:min entityName:@"SAElectricityMeasurementItem"];
 }
 
 -(void) deleteAllElectricityMeasurementsForChannelId:(int)channel_id {
     [self deleteAllMeasurementsForChannelId:channel_id entityName:@"SAElectricityMeasurementItem"];
-}
-
--(void) deleteUncalculatedElectricityMeasurementsForChannelId:(int)channel_id {
-    [self deleteUncalculatedIncrementalMeasurementsForChannelId:channel_id entityName:@"SAElectricityMeasurementItem"];
 }
 
 -(NSUInteger) getElectricityMeasurementItemCountWithoutComplementForChannelId:(int)channel_id {
@@ -1053,7 +1030,7 @@
     
 
     NSDate *date = [self lastSecondInMonthWithOffset: offset];
-    NSPredicate *predicte = [NSPredicate predicateWithFormat:@"channel_id = %i AND calculated = YES AND date <= %@", channel_id, date];
+    NSPredicate *predicte = [NSPredicate predicateWithFormat:@"channel_id = %i AND date <= %@", channel_id, date];
     NSDictionary *sum = [self sumValesOfEntitiesWithProperties:props predicate:predicte entityName:@"SAElectricityMeasurementItem"];
     
     if (sum && sum.count == 3) {
@@ -1084,20 +1061,12 @@
     return [self getTimestampOfMeasurementItemWithChannelId:channel_id minimum:min entityName:@"SAImpulseCounterMeasurementItem"];
 }
 
--(SAImpulseCounterMeasurementItem*) fetchOlderThanDate:(NSDate*)date uncalculatedImpulseCounterMeasurementItemWithChannel:(int)channel_id {
-    return (SAImpulseCounterMeasurementItem*) [self fetchOlderThanDate:date uncalculatedIncrementalMeasurementItemWithChannel:channel_id entityName:@"SAImpulseCounterMeasurementItem"];
-}
-
 -(void) deleteAllImpulseCounterMeasurementsForChannelId:(int)channel_id {
     [self deleteAllMeasurementsForChannelId:channel_id entityName:@"SAImpulseCounterMeasurementItem"];
 }
 
 -(NSUInteger) getImpulseCounterMeasurementItemCountWithoutComplementForChannelId:(int)channel_id {
     return [self getIncrementalMeasurementItemCountWithoutComplementForChannelId:channel_id entityName:@"SAImpulseCounterMeasurementItem"];
-}
-
--(void) deleteUncalculatedImpulseCounterMeasurementsForChannelId:(int)channel_id {
-    [self deleteUncalculatedIncrementalMeasurementsForChannelId:channel_id entityName:@"SAImpulseCounterMeasurementItem"];
 }
 
 -(BOOL) impulseCounterMeasurementsStartsWithTheCurrentMonthForChannelId:(int)channel_id {
@@ -1117,7 +1086,7 @@
     [props addObject:ed];
 
     NSDate *date = [self lastSecondInMonthWithOffset: offset];
-    NSPredicate *predicte = [NSPredicate predicateWithFormat:@"channel_id = %i AND calculated = YES AND date <= %@", channel_id, date];
+    NSPredicate *predicte = [NSPredicate predicateWithFormat:@"channel_id = %i AND date <= %@", channel_id, date];
     NSDictionary *sum = [self sumValesOfEntitiesWithProperties:props predicate:predicte entityName:@"SAImpulseCounterMeasurementItem"];
     
     if (sum && sum.count == 1) {

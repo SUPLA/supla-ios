@@ -53,6 +53,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (BOOL) isManuallyClosed;
 - (BOOL) flooding;
 - (SADigiglassValue*) digiglassValue;
+- (BOOL) overcurrentRelayOff;
 
 - (double) temperatureValue;
 - (double) humidityValue;
