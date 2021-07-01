@@ -31,10 +31,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     return [self.DB newImpulseCounterMeasurementItemWithManagedObjectContext:moc];
 }
 
--(SAIncrementalMeasurementItem *) getUncalculatedIncrementalMeasurementItemOlderThanDate:(NSDate*)date {
-    return [self.DB fetchOlderThanDate:date uncalculatedImpulseCounterMeasurementItemWithChannel:self.channelId];
-}
-
 - (void)deleteAllMeasurements {
     [self.DB deleteAllImpulseCounterMeasurementsForChannelId:self.channelId];
 }
@@ -42,9 +38,5 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 - (NSUInteger)getLocalTotalCount {
     return [self.DB getImpulseCounterMeasurementItemCountWithoutComplementForChannelId:self.channelId];
 }
-
-- (void) deleteUncalculatedIncrementalMeasurementsWithChannelID:(int)channelId {
-    [self.DB deleteUncalculatedImpulseCounterMeasurementsForChannelId:self.channelId];
-};
 
 @end

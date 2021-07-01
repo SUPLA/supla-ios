@@ -20,6 +20,8 @@
 #import "SuplaApp.h"
 
 @implementation SAIncrementalMeasurementItem
+@synthesize calculated;
+
 - (void) calculateWithSource:(SAMeasurementItem*)source {
     ABSTRACT_METHOD_EXCEPTION;
 }

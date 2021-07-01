@@ -27,9 +27,14 @@
     ABSTRACT_METHOD_EXCEPTION;
     return 0;
 }
+
 - (long)getMaxTimesatamp {
     ABSTRACT_METHOD_EXCEPTION;
     return 0;
+}
+
+- (long)getMaxTimestampInitialOffset {
+    return 1;
 }
 
 - (NSUInteger)getLocalTotalCount {
@@ -94,7 +99,10 @@
         }
     }
     
-    _afterTimestamp = [self getMaxTimesatamp]+1;
+    _afterTimestamp = [self getMaxTimesatamp] + [self getMaxTimestampInitialOffset];
+    if (_afterTimestamp <= 0) {
+        _afterTimestamp = 1;
+    }
     
     //NSLog(@"Max: %ld", _afterTimestamp);
     NSUInteger localTotalCount = [self getLocalTotalCount];

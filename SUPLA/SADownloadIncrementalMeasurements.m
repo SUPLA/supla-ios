@@ -23,7 +23,6 @@
 @implementation SADownloadIncrementalMeasurements {
     SAIncrementalMeasurementItem *older_item;
     SAIncrementalMeasurementItem *younger_item;
-    BOOL createdWithMOC;
 }
 
 -(SAIncrementalMeasurementItem *) newObjectWithManagedObjectContext:(BOOL)moc {
@@ -31,19 +30,13 @@
     return nil;
 };
 
--(SAIncrementalMeasurementItem *) getUncalculatedIncrementalMeasurementItemOlderThanDate:(NSDate*)date {
-    ABSTRACT_METHOD_EXCEPTION;
-    return nil;
+- (long)getMaxTimestampInitialOffset {
+    return -2;
 }
-
-- (void) deleteUncalculatedIncrementalMeasurementsWithChannelID:(int)channelId {
-    ABSTRACT_METHOD_EXCEPTION;
-};
 
 - (void)createMeasurementItemEntity:(SAIncrementalMeasurementItem *)item {
     SAIncrementalMeasurementItem *mi = [self newObjectWithManagedObjectContext:YES];
     [mi assignMeasurementItem:item];
-    createdWithMOC = YES;
 }
 
 - (void)createMeasurementItemEntity:(NSDictionary *)item withDate:(NSDate *)date {
@@ -55,14 +48,7 @@
     
     [younger_item assignJSONObject:item];
     younger_item.channel_id = self.channelId;
-    
-    if (older_item == nil) {
-        older_item = [self getUncalculatedIncrementalMeasurementItemOlderThanDate:younger_item.date];
-        if (older_item != nil) {
-            [self deleteUncalculatedIncrementalMeasurementsWithChannelID:self.channelId];
-        }
-    }
-    
+        
     bool correctDateOrder = older_item == nil
     || [younger_item.date timeIntervalSince1970] > [older_item.date timeIntervalSince1970];
     
@@ -85,9 +71,7 @@
             }
             
             for(int a=0;a<n;a++) {
-                if (a<n-1) {
-                    calculatedItem.complement = YES;
-                }
+                calculatedItem.complement = a<n-1;
                 [self createMeasurementItemEntity:calculatedItem];
                 calculatedItem.date = [NSDate dateWithTimeIntervalSince1970:[calculatedItem.date timeIntervalSince1970]-600];
             }
@@ -104,20 +88,13 @@
 };
 
 - (void)onFirstItem {
-    createdWithMOC = NO;
-    older_item = nil;
 };
 
 - (void)onLastItem {
-    if (createdWithMOC && older_item) {
-        [self createMeasurementItemEntity:older_item];
-        older_item = nil;
-    }
 };
 
 
 - (void)onFinish  {
-
 };
 
 @end
