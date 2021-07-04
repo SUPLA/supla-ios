@@ -160,6 +160,8 @@
 		019F4CCD23577C3700286139 /* SAImpulseCounterChartHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 019F4CCC23577C3700286139 /* SAImpulseCounterChartHelper.m */; };
 		019F848425F7C0F800A18C3B /* SACaptionEditor.xib in Resources */ = {isa = PBXBuildFile; fileRef = 019F848225F7C0F800A18C3B /* SACaptionEditor.xib */; };
 		01A195E2264B264A006D2A20 /* SAChannelCaptionSetResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 01A195E1264B264A006D2A20 /* SAChannelCaptionSetResult.m */; };
+		01A4D4F4269210E300F3DCD1 /* SAFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 01A4D4F3269210E300F3DCD1 /* SAFormatter.m */; };
+		01A4D4F8269211EA00F3DCD1 /* SAFormatterTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 01A4D4F7269211EA00F3DCD1 /* SAFormatterTests.m */; };
 		01A66A7525364AA400C00A1A /* SARoofWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 01A66A7425364AA400C00A1A /* SARoofWindowController.m */; };
 		01A66A7925364ABA00C00A1A /* SARoofWindowControllerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 01A66A7825364ABA00C00A1A /* SARoofWindowControllerTests.m */; };
 		01AB61E925B8E08E00DBEF74 /* SADigiglassController.m in Sources */ = {isa = PBXBuildFile; fileRef = 01AB61E825B8E08E00DBEF74 /* SADigiglassController.m */; };
@@ -800,6 +802,9 @@
 		019F848225F7C0F800A18C3B /* SACaptionEditor.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SACaptionEditor.xib; sourceTree = "<group>"; };
 		01A195E0264B264A006D2A20 /* SAChannelCaptionSetResult.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SAChannelCaptionSetResult.h; sourceTree = "<group>"; };
 		01A195E1264B264A006D2A20 /* SAChannelCaptionSetResult.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SAChannelCaptionSetResult.m; sourceTree = "<group>"; };
+		01A4D4F2269210E300F3DCD1 /* SAFormatter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SAFormatter.h; sourceTree = "<group>"; };
+		01A4D4F3269210E300F3DCD1 /* SAFormatter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SAFormatter.m; sourceTree = "<group>"; };
+		01A4D4F7269211EA00F3DCD1 /* SAFormatterTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SAFormatterTests.m; sourceTree = "<group>"; };
 		01A66A7325364AA400C00A1A /* SARoofWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SARoofWindowController.h; sourceTree = "<group>"; };
 		01A66A7425364AA400C00A1A /* SARoofWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SARoofWindowController.m; sourceTree = "<group>"; };
 		01A66A7825364ABA00C00A1A /* SARoofWindowControllerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SARoofWindowControllerTests.m; sourceTree = "<group>"; };
@@ -1541,6 +1546,8 @@
 				015A9845265595E300B6E6C6 /* UIButton+SUPLA.m */,
 				40AB8BDD1DCB32EB0030F3DE /* SARateApp.m */,
 				015A983F2655958500B6E6C6 /* NSDictionary+SUPLA.h */,
+				01A4D4F2269210E300F3DCD1 /* SAFormatter.h */,
+				01A4D4F3269210E300F3DCD1 /* SAFormatter.m */,
 				015A98402655958500B6E6C6 /* NSDictionary+SUPLA.m */,
 				015A983A265594B300B6E6C6 /* NSNumber+SUPLA.h */,
 				015A983B265594B300B6E6C6 /* NSNumber+SUPLA.m */,
@@ -1569,6 +1576,7 @@
 				01A66A7825364ABA00C00A1A /* SARoofWindowControllerTests.m */,
 				01DD2F0B247718C40025DFF9 /* SARangeCalibrationWheelTests.m */,
 				01EFD94B236CA9AE00893489 /* NSDataEncryptionTest.m */,
+				01A4D4F7269211EA00F3DCD1 /* SAFormatterTests.m */,
 				016ABE17236DA795001BF5FB /* KeychainTests.m */,
 				012F722822DF3CF000E5F72E /* ChartFilterFieldTests.m */,
 				401CA1DB1BA067DB00117AF4 /* SUPLATests.m */,
@@ -2704,6 +2712,7 @@
 				0172677D234FAF78000F1CFB /* SADownloadImpulseCounterMeasurements.m in Sources */,
 				01392B37235C91C1003A2BAD /* SADownloadTemperatureMeasurements.m in Sources */,
 				01C1719A22C7F55B005983E1 /* SAMeasurementItem+CoreDataProperties.m in Sources */,
+				01A4D4F4269210E300F3DCD1 /* SAFormatter.m in Sources */,
 				0194D80A264DC8580094A857 /* SAZWaveNodeIdResult.m in Sources */,
 				01433DF8257F8FE20093C5DB /* SAWifi.m in Sources */,
 				01511CFA24F50B470081A1EC /* SAPreloaderPopup.m in Sources */,
@@ -2820,6 +2829,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				01A4D4F8269211EA00F3DCD1 /* SAFormatterTests.m in Sources */,
 				01DD2F0C247718C40025DFF9 /* SARangeCalibrationWheelTests.m in Sources */,
 				401CA1DC1BA067DB00117AF4 /* SUPLATests.m in Sources */,
 				016ABE18236DA795001BF5FB /* KeychainTests.m in Sources */,
@@ -3303,7 +3313,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = SUPLA/SUPLA.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 93;
+				CURRENT_PROJECT_VERSION = 94;
 				DEFINES_MODULE = YES;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"$(inherited)",
@@ -3318,7 +3328,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/SUPLA/lib",
 				);
-				MARKETING_VERSION = 2.3.42;
+				MARKETING_VERSION = 2.3.43;
 				PRODUCT_BUNDLE_IDENTIFIER = com.acsoftware.ios.supla;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "SUPLA/SUPLA-Bridging-Header.h";
@@ -3336,7 +3346,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = SUPLA/SUPLA.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 93;
+				CURRENT_PROJECT_VERSION = 94;
 				DEFINES_MODULE = YES;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"$(inherited)",
@@ -3351,7 +3361,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/SUPLA/lib",
 				);
-				MARKETING_VERSION = 2.3.42;
+				MARKETING_VERSION = 2.3.43;
 				PRODUCT_BUNDLE_IDENTIFIER = com.acsoftware.ios.supla;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "SUPLA/SUPLA-Bridging-Header.h";
