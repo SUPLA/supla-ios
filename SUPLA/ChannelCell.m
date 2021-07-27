@@ -135,6 +135,8 @@
     
     self.channelStateIcon.hidden = YES;
     self.channelWarningIcon.hidden = YES;
+    self.rightButtons = @[];
+    self.leftButtons = @[];
     
     if ( isGroup ) {
         self.cint_LeftStatusWidth.constant = 6;
