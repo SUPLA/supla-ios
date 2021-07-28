@@ -371,6 +371,7 @@
     if (hidden) {
         self.cIntLabelsTop.constant = -20;
         self.cIntValuesTop.constant = -20;
+        selectedPhase = 1;
     } else {
         self.cIntLabelsTop.constant = 10;
         self.cIntValuesTop.constant = 10;
