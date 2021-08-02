@@ -27,6 +27,7 @@ typedef void(^SAWifiAutoConnectCompletionHandler)(BOOL success);
 +(BOOL)autoConnectIsAvailable;
 -(void)tryConnectWithCompletionHandler:(SAWifiAutoConnectCompletionHandler) completionHandler;
 +(void)cleanup;
++(NSString*)currentSSID;
 @end
 
 NS_ASSUME_NONNULL_END
