@@ -22,6 +22,7 @@
 #import "SuplaApp.h"
 #import "SAChannelGroup+CoreDataClass.h"
 #import "UIColor+SUPLA.h"
+#import "SuplaClient.h"
 
 @implementation SARSDetailView {
     NSTimer *delayTimer1;
@@ -62,6 +63,7 @@
     self.onlineStatus.hidden = YES;
     self.rollerShutter.hidden = YES;
     self.roofWindow.hidden = YES;
+    self.btnRecalibrate.hidden = YES;
     
     if ( self.channelBase != nil ) {
         
@@ -131,6 +133,10 @@
             } else {
                 [self.labelPercent setText:[NSString stringWithFormat:@"%i%%", (int)percent]];
             }
+            
+            if (self.channelBase.flags & SUPLA_CHANNEL_FLAG_CALCFG_RECALIBRATE) {
+                self.btnRecalibrate.hidden = NO;
+            }
         }
         
     }
@@ -194,5 +200,39 @@
 
 - (void)roofWindowClosingPercentageChangeing:(id)roofWindowController percent:(float)percent {
     [self.labelPercent setText:[NSString stringWithFormat:@"%i%%", (int)percent]];
+}
+- (IBAction)recalibrateTouch:(id)sender {
+    [SASuperuserAuthorizationDialog.globalInstance authorizeWithDelegate:self];
+}
+
+-(void) superuserAuthorizationSuccess {
+    [SASuperuserAuthorizationDialog.globalInstance closeWithAnimation:YES completion:^(){
+        UIAlertController * alert = [UIAlertController
+                                     alertControllerWithTitle:@"SUPLA"
+                                     message:NSLocalizedString(@"Are you sure you want to start calibration?", nil)
+                                     preferredStyle:UIAlertControllerStyleAlert];
+        
+        UIAlertAction* yesBtn = [UIAlertAction
+                                    actionWithTitle:NSLocalizedString(@"Yes", nil)
+                                    style:UIAlertActionStyleDefault
+                                    handler:^(UIAlertAction * action) {
+        
+            [[SAApp SuplaClient] deviceCalCfgCommand:SUPLA_CALCFG_CMD_RECALIBRATE
+                                                  cg:self.channelBase.remote_id group:YES];
+            
+        }];
+        
+        UIAlertAction* noBtn = [UIAlertAction
+                                actionWithTitle:NSLocalizedString(@"No", nil)
+                                style:UIAlertActionStyleDefault
+                                handler:^(UIAlertAction * action) {
+        }];
+        
+        [alert addAction:noBtn];
+        [alert addAction:yesBtn];
+        
+        UIViewController *vc = [[[[UIApplication sharedApplication] delegate] window] rootViewController];
+        [vc presentViewController:alert animated:YES completion:nil];
+    }];
 }
 @end

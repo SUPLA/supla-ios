@@ -259,6 +259,7 @@
 		01F9111122EF989100BFF91D /* HomePlusCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 01F9111022EF989100BFF91D /* HomePlusCell.xib */; };
 		01FCDA78264F28C4002D776F /* SAZWaveNodeResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 01FCDA77264F28C4002D776F /* SAZWaveNodeResult.m */; };
 		01FCDA7D264F2BC3002D776F /* SAZWaveNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 01FCDA7C264F2BC3002D776F /* SAZWaveNode.m */; };
+		01FE611326BFF45400CEE7A5 /* recalibrate@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 01FE611226BFF45400CEE7A5 /* recalibrate@2x.png */; };
 		4004DE8D1DC4E270009C34E3 /* SAColorBrightnessPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 4004DE8C1DC4E270009C34E3 /* SAColorBrightnessPicker.m */; };
 		4006E90A1DC62D0A00C4456D /* DetailView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4006E9091DC62D0A00C4456D /* DetailView.m */; };
 		4014ADFD1FE01ECD00297A9E /* help@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4014ADFB1FE01EC700297A9E /* help@2x.png */; };
@@ -1012,6 +1013,7 @@
 		01FCDA77264F28C4002D776F /* SAZWaveNodeResult.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SAZWaveNodeResult.m; sourceTree = "<group>"; };
 		01FCDA7B264F2BC3002D776F /* SAZWaveNode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SAZWaveNode.h; sourceTree = "<group>"; };
 		01FCDA7C264F2BC3002D776F /* SAZWaveNode.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SAZWaveNode.m; sourceTree = "<group>"; };
+		01FE611226BFF45400CEE7A5 /* recalibrate@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "recalibrate@2x.png"; path = "Resources/Assets/Img/recalibrate@2x.png"; sourceTree = "<group>"; };
 		4004DE8B1DC4E270009C34E3 /* SAColorBrightnessPicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SAColorBrightnessPicker.h; sourceTree = "<group>"; };
 		4004DE8C1DC4E270009C34E3 /* SAColorBrightnessPicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SAColorBrightnessPicker.m; sourceTree = "<group>"; };
 		4006E9081DC62D0A00C4456D /* DetailView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailView.h; sourceTree = "<group>"; };
@@ -1662,6 +1664,7 @@
 		405AC4011BC15878004F7311 /* Img */ = {
 			isa = PBXGroup;
 			children = (
+				01FE611226BFF45400CEE7A5 /* recalibrate@2x.png */,
 				015A9836265587E800B6E6C6 /* refresh@3x.png */,
 				01147CE8264C09D8002B2E1C /* powerstation@2x.png */,
 				01147CE7264C09D7002B2E1C /* powerstation@3x.png */,
@@ -2472,6 +2475,7 @@
 				018D2E5224BF258B00773D2F /* uv-off@3x.png in Resources */,
 				40477B4220C6C57700E995E6 /* staircasetimer-on@3x.png in Resources */,
 				40CF96C11BC7D4E70030EFFF /* noliquid@3x.png in Resources */,
+				01FE611326BFF45400CEE7A5 /* recalibrate@2x.png in Resources */,
 				01CEAC1625B99A58009C3BFD /* digiglass1-transparent@2x.png in Resources */,
 				40B9ED4E1FACCF8100403B1A /* radio-on@3x.png in Resources */,
 				017A3CA723635C22004AD1FC /* weight@2x.png in Resources */,
