@@ -553,7 +553,7 @@ When the connection has been set, go back to the application and  continue addin
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="20" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="LiC-TH-iZO">
                             <rect key="frame" x="0.0" y="437.5" width="290" height="42.5"/>
-                            <string key="text">If your new I/O device fails to appear in the Supla app please run “Add I/O Device” wizard again and refer to the “Previous State” information on this page for troubleshooting. “SSID Not Found” is displayed when the chosen 2.4Ghz network is ether not in range or its name was incorrect.</string>
+                            <string key="text">If your new I/O device fails to appear in the Supla app please run “Add I/O Device” wizard again and refer to the “Previous State” information on this page for troubleshooting. “SSID Not Found” is displayed when the chosen 2.4 GHz network is ether not in range or its name was incorrect.</string>
                             <fontDescription key="fontDescription" name="Quicksand-Regular" family="Quicksand" pointSize="20"/>
                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <nil key="highlightedColor"/>
