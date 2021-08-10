@@ -218,7 +218,7 @@
                                     handler:^(UIAlertAction * action) {
         
             [[SAApp SuplaClient] deviceCalCfgCommand:SUPLA_CALCFG_CMD_RECALIBRATE
-                                                  cg:self.channelBase.remote_id group:YES];
+                                                  cg:self.channelBase.remote_id group:NO];
             
         }];
         
