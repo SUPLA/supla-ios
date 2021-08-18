@@ -515,7 +515,8 @@
 - (BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer {
     return self.ivImage.gestureRecognizers.firstObject == gestureRecognizer
         && (self.channelBase.func == SUPLA_CHANNELFNC_LIGHTSWITCH
-        || self.channelBase.func == SUPLA_CHANNELFNC_POWERSWITCH);
+        || self.channelBase.func == SUPLA_CHANNELFNC_POWERSWITCH
+        || self.channelBase.func == SUPLA_CHANNELFNC_STAIRCASETIMER);
 }
 
 - (IBAction)imgTapped:(id)sender {

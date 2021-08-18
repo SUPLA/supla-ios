@@ -105,7 +105,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 - (BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer {
     return self.ivImage.gestureRecognizers.firstObject == gestureRecognizer
         && (self.channelBase.func == SUPLA_CHANNELFNC_LIGHTSWITCH
-        || self.channelBase.func == SUPLA_CHANNELFNC_POWERSWITCH);
+        || self.channelBase.func == SUPLA_CHANNELFNC_POWERSWITCH
+        || self.channelBase.func == SUPLA_CHANNELFNC_STAIRCASETIMER);
 }
 
 - (IBAction)imgTapped:(id)sender {
