@@ -161,12 +161,28 @@
     return self.value == nil ? [super overcurrentRelayOff] : [self.value overcurrentRelayOff];
 }
 
+- (TRollerShutterValue) rollerShutterValue {
+    return self.value == nil ? [super rollerShutterValue] : [self.value rollerShutterValue];
+}
+
+- (BOOL) calibrationFailed{
+    return self.value == nil ? [super calibrationFailed] : [self.value calibrationFailed];
+}
+
+- (BOOL) calibrationLost{
+    return self.value == nil ? [super calibrationLost] : [self.value calibrationLost];
+}
+
+- (BOOL) motorProblem{
+    return self.value == nil ? [super motorProblem] : [self.value motorProblem];
+}
+
 - (int) imgIsActive {
     
     if ( [self isOnline]
         && (self.func == SUPLA_CHANNELFNC_CONTROLLINGTHEROLLERSHUTTER
             || self.func == SUPLA_CHANNELFNC_CONTROLLINGTHEROOFWINDOW)
-        && self.percentValue >= 100) {
+        && self.rollerShutterValue.position >= 100) {
         return 1;
     }
     
@@ -274,9 +290,28 @@
 
 - (int) warningLevelWithMessage:(NSString **)msg {
     switch (self.func) {
+        case SUPLA_CHANNELFNC_CONTROLLINGTHEROLLERSHUTTER:
+        case SUPLA_CHANNELFNC_CONTROLLINGTHEROOFWINDOW:
+            if (self.calibrationLost) {
+                if (msg) {
+                    *msg = NSLocalizedString(@"Calibration lost.", nil);
+                }
+                return 1;
+            } else if (self.calibrationFailed) {
+                if (msg) {
+                    *msg = NSLocalizedString(@"Calibration failed.", nil);
+                }
+                return 1;
+            } else if (self.motorProblem) {
+                if (msg) {
+                    *msg = NSLocalizedString(@"Motor problem / Unexpected stop.", nil);
+                }
+                return 2;
+            }
+            break;
+            
         case SUPLA_CHANNELFNC_LIGHTSWITCH:
         case SUPLA_CHANNELFNC_POWERSWITCH:
-        case SUPLA_CHANNELFNC_STAIRCASETIMER:
             if (self.overcurrentRelayOff) {
                 if (msg) {
                     *msg = NSLocalizedString(@"The power was turned off after the set threshold of the allowable current was exceeded.", nil);

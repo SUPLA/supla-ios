@@ -117,7 +117,7 @@
             }
             
         } else {
-            percent = self.channelBase.percentValue;
+            percent = self.channelBase.rollerShutterValue.position;
             
             if ( percent < 100 && [self.channelBase hiSubValue] > 0 ) {
                 percent = 100;
