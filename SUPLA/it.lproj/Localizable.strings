@@ -202,3 +202,6 @@
 "Planned regeneration is in progress." = "Rigenerazione pianificata in corso.";
 "Regeneration initiated after 20 hours of operation is in progress." = "Rigenerazione avviata dopo 20 ore di funzionamento in corso.";
 "Are you sure you want to start calibration?" = "Confermi di voler avviare la calibrazione?";
+"Calibration lost." = "Calibrazione fallita.";
+"Calibration failed." = "Calibrazione persa.";
+"Motor problem / Unexpected stop." = "Problema al motore / Arresto inaspettato.";
