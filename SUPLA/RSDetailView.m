@@ -64,6 +64,7 @@
     self.rollerShutter.hidden = YES;
     self.roofWindow.hidden = YES;
     self.btnRecalibrate.hidden = YES;
+    self.warningIcon.channel = self.channelBase;
     
     if ( self.channelBase != nil ) {
         

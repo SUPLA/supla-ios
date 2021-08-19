@@ -22,6 +22,7 @@
 #import "SAChannelBase+CoreDataClass.h"
 #import "SAUIChannelStatus.h"
 #import "UIHelper.h"
+#import "SAWarningIcon.h"
 
 @interface MGSwipeTableCell (SUPLA)
 
@@ -53,7 +54,7 @@
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *cint_RightStatusWidth;
 @property (weak, nonatomic) IBOutlet UILabel *measuredValue;
 @property (weak, nonatomic) IBOutlet UIImageView *channelStateIcon;
-@property (weak, nonatomic) IBOutlet UIImageView *channelWarningIcon;
+@property (weak, nonatomic) IBOutlet SAWarningIcon *channelWarningIcon;
 @property (nonatomic) BOOL captionTouched;
 @property (nonatomic) BOOL captionEditable;
 

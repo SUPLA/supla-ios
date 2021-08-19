@@ -21,6 +21,7 @@
 #import "SARoofWindowController.h"
 #import "SAUIChannelStatus.h"
 #import "SASuperuserAuthorizationDialog.h"
+#import "SAWarningIcon.h"
 
 @interface SARSDetailView : SADetailView <SARollerShutterDelegate, SARoofWindowControllerDelegate, SASuperuserAuthorizationDialogDelegate>
 - (IBAction)upTouch:(id)sender;
@@ -34,6 +35,7 @@
 @property (weak, nonatomic) IBOutlet SARoofWindowController *roofWindow;
 @property (weak, nonatomic) IBOutlet SAUIChannelStatus *onlineStatus;
 - (IBAction)recalibrateTouch:(id)sender;
+@property (weak, nonatomic) IBOutlet SAWarningIcon *warningIcon;
 
 
 @end

@@ -49,6 +49,13 @@
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1e6-12-e07" userLabel="btnView">
                             <rect key="frame" x="0.0" y="519.66666666666663" width="414" height="318.33333333333337"/>
                             <subviews>
+                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="channel_warning_level1.png" translatesAutoresizingMaskIntoConstraints="NO" id="5bt-9F-HBy" userLabel="warningIcon" customClass="SAWarningIcon">
+                                    <rect key="frame" x="192" y="0.0" width="30" height="30"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="30" id="hTH-FS-ECs"/>
+                                        <constraint firstAttribute="height" constant="30" id="os5-mJ-5U7"/>
+                                    </constraints>
+                                </imageView>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jkg-DD-mbQ" userLabel="btnUp">
                                     <rect key="frame" x="32.999999999999993" y="66.666666666666742" width="99.333333333333314" height="92.333333333333314"/>
                                     <constraints>
@@ -109,11 +116,13 @@
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             <constraints>
                                 <constraint firstItem="jkg-DD-mbQ" firstAttribute="centerX" secondItem="1e6-12-e07" secondAttribute="centerX" multiplier="0.4" id="660-s8-w5o"/>
+                                <constraint firstItem="5bt-9F-HBy" firstAttribute="top" secondItem="1e6-12-e07" secondAttribute="top" id="HZH-pG-O3B"/>
                                 <constraint firstItem="jkg-DD-mbQ" firstAttribute="width" secondItem="kby-sR-6lx" secondAttribute="width" id="IIa-6z-PWF"/>
                                 <constraint firstItem="kby-sR-6lx" firstAttribute="width" secondItem="1e6-12-e07" secondAttribute="width" multiplier="0.24" id="M7l-aM-Bgu"/>
                                 <constraint firstItem="kby-sR-6lx" firstAttribute="centerY" secondItem="1e6-12-e07" secondAttribute="centerY" id="MQn-v6-xn3"/>
                                 <constraint firstItem="6mM-kC-TSK" firstAttribute="width" secondItem="kby-sR-6lx" secondAttribute="width" id="VHz-sO-ObO"/>
                                 <constraint firstItem="nBD-bh-qD5" firstAttribute="width" secondItem="6mM-kC-TSK" secondAttribute="width" id="WLm-Hh-s4a"/>
+                                <constraint firstItem="5bt-9F-HBy" firstAttribute="centerX" secondItem="1e6-12-e07" secondAttribute="centerX" id="XJh-4J-wXm"/>
                                 <constraint firstItem="nBD-bh-qD5" firstAttribute="top" secondItem="6mM-kC-TSK" secondAttribute="bottom" id="bUk-fE-Qen"/>
                                 <constraint firstItem="Ufv-ba-ZWD" firstAttribute="leading" secondItem="jkg-DD-mbQ" secondAttribute="leading" id="bii-sl-Yy4"/>
                                 <constraint firstItem="kby-sR-6lx" firstAttribute="centerX" secondItem="1e6-12-e07" secondAttribute="centerX" id="f12-a0-TnP"/>
@@ -212,11 +221,13 @@
                 <outlet property="onlineStatus" destination="scG-jp-LU1" id="UAd-uX-aTN"/>
                 <outlet property="rollerShutter" destination="ezP-Eq-c4L" id="K8K-up-1Jh"/>
                 <outlet property="roofWindow" destination="mct-lp-i2P" id="TI3-nb-pGU"/>
+                <outlet property="warningIcon" destination="5bt-9F-HBy" id="2sy-NP-kdm"/>
             </connections>
             <point key="canvasLocation" x="-24.800000000000001" y="-273.91304347826087"/>
         </view>
     </objects>
     <resources>
+        <image name="channel_warning_level1.png" width="61.333332061767578" height="52"/>
         <image name="recalibrate.png" width="204.80000305175781" height="204.80000305175781"/>
         <image name="rs_close.png" width="240" height="224"/>
         <image name="rs_down.png" width="240" height="224"/>

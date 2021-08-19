@@ -54,6 +54,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     
     NSString *empty = @"----";
     
+    self.warningIcon.channel = self.channelBase;
+    
     [self.lMeterValue setText:empty];
     [self.lCurrentConsumption setText:empty];
     [self.lCurrentCost setText:empty];

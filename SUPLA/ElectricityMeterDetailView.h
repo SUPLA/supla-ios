@@ -20,6 +20,7 @@
 #import "SADownloadElectricityMeasurements.h"
 #import "SAChartFilterField.h"
 #import "SAPreloader.h"
+#import "SAWarningIcon.h"
 @import Charts;
 
 NS_ASSUME_NONNULL_BEGIN
@@ -110,6 +111,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UIView *vValuesBalance;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *cIntLabelsTop;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *cIntValuesTop;
+@property (weak, nonatomic) IBOutlet SAWarningIcon *warningIcon;
 
 
 

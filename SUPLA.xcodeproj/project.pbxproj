@@ -159,6 +159,7 @@
 		019F4CAC2354DC3300286139 /* ImpulseCounterDetailView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 019F4CAE2354DC3300286139 /* ImpulseCounterDetailView.xib */; };
 		019F4CCD23577C3700286139 /* SAImpulseCounterChartHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 019F4CCC23577C3700286139 /* SAImpulseCounterChartHelper.m */; };
 		019F848425F7C0F800A18C3B /* SACaptionEditor.xib in Resources */ = {isa = PBXBuildFile; fileRef = 019F848225F7C0F800A18C3B /* SACaptionEditor.xib */; };
+		01A0BD0A26CEFBC200C4A5F2 /* SAWarningIcon.m in Sources */ = {isa = PBXBuildFile; fileRef = 01A0BD0926CEFBC200C4A5F2 /* SAWarningIcon.m */; };
 		01A195E2264B264A006D2A20 /* SAChannelCaptionSetResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 01A195E1264B264A006D2A20 /* SAChannelCaptionSetResult.m */; };
 		01A4D4F4269210E300F3DCD1 /* SAFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 01A4D4F3269210E300F3DCD1 /* SAFormatter.m */; };
 		01A4D4F8269211EA00F3DCD1 /* SAFormatterTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 01A4D4F7269211EA00F3DCD1 /* SAFormatterTests.m */; };
@@ -801,6 +802,8 @@
 		019F4CCB23577C3700286139 /* SAImpulseCounterChartHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SAImpulseCounterChartHelper.h; sourceTree = "<group>"; };
 		019F4CCC23577C3700286139 /* SAImpulseCounterChartHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SAImpulseCounterChartHelper.m; sourceTree = "<group>"; };
 		019F848225F7C0F800A18C3B /* SACaptionEditor.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SACaptionEditor.xib; sourceTree = "<group>"; };
+		01A0BD0826CEFBC200C4A5F2 /* SAWarningIcon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SAWarningIcon.h; sourceTree = "<group>"; };
+		01A0BD0926CEFBC200C4A5F2 /* SAWarningIcon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SAWarningIcon.m; sourceTree = "<group>"; };
 		01A195E0264B264A006D2A20 /* SAChannelCaptionSetResult.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SAChannelCaptionSetResult.h; sourceTree = "<group>"; };
 		01A195E1264B264A006D2A20 /* SAChannelCaptionSetResult.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SAChannelCaptionSetResult.m; sourceTree = "<group>"; };
 		01A4D4F2269210E300F3DCD1 /* SAFormatter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SAFormatter.h; sourceTree = "<group>"; };
@@ -2056,6 +2059,8 @@
 		40A675851BA1BEBF004A51C4 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				01A0BD0826CEFBC200C4A5F2 /* SAWarningIcon.h */,
+				01A0BD0926CEFBC200C4A5F2 /* SAWarningIcon.m */,
 				019F4AAD2614B75800065420 /* SAAbstractPickerField.h */,
 				016157B4261CAAFA006AA0E8 /* SAPickerField.h */,
 				016157B5261CAAFA006AA0E8 /* SAPickerField.m */,
@@ -2760,6 +2765,7 @@
 				01215A7324C8AECC00429947 /* SALightsourceLifespanSettingsDialog.m in Sources */,
 				4077ACE320A21BB100BD2216 /* CreateAccountVC.m in Sources */,
 				401CA1C81BA067DB00117AF4 /* MainVC.m in Sources */,
+				01A0BD0A26CEFBC200C4A5F2 /* SAWarningIcon.m in Sources */,
 				012F722E22DFA0BE00E5F72E /* SABarChartDataSet.swift in Sources */,
 				408034C51BC83D1A007666E7 /* MGSwipeTableCell.m in Sources */,
 				010C8780249A4D55002FE526 /* SAInfoVC.m in Sources */,
