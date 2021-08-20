@@ -112,10 +112,17 @@
                                         <action selector="closeTouch:" destination="iN0-l3-epB" eventType="touchDown" id="4Mp-f0-P7s"/>
                                     </connections>
                                 </button>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1.25s" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bJC-3t-ima">
+                                    <rect key="frame" x="9.0000000000000018" y="304" width="29.666666666666671" height="14.333333333333314"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                    <color key="textColor" red="0.37643486259999998" green="0.37649342419999998" blue="0.37642204759999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
                             </subviews>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             <constraints>
                                 <constraint firstItem="jkg-DD-mbQ" firstAttribute="centerX" secondItem="1e6-12-e07" secondAttribute="centerX" multiplier="0.4" id="660-s8-w5o"/>
+                                <constraint firstAttribute="bottom" secondItem="bJC-3t-ima" secondAttribute="bottom" id="GkT-pg-Wks"/>
                                 <constraint firstItem="5bt-9F-HBy" firstAttribute="top" secondItem="1e6-12-e07" secondAttribute="top" id="HZH-pG-O3B"/>
                                 <constraint firstItem="jkg-DD-mbQ" firstAttribute="width" secondItem="kby-sR-6lx" secondAttribute="width" id="IIa-6z-PWF"/>
                                 <constraint firstItem="kby-sR-6lx" firstAttribute="width" secondItem="1e6-12-e07" secondAttribute="width" multiplier="0.24" id="M7l-aM-Bgu"/>
@@ -127,6 +134,7 @@
                                 <constraint firstItem="Ufv-ba-ZWD" firstAttribute="leading" secondItem="jkg-DD-mbQ" secondAttribute="leading" id="bii-sl-Yy4"/>
                                 <constraint firstItem="kby-sR-6lx" firstAttribute="centerX" secondItem="1e6-12-e07" secondAttribute="centerX" id="f12-a0-TnP"/>
                                 <constraint firstItem="6mM-kC-TSK" firstAttribute="bottom" secondItem="kby-sR-6lx" secondAttribute="centerY" id="gBk-Py-ztl"/>
+                                <constraint firstItem="bJC-3t-ima" firstAttribute="leading" secondItem="1e6-12-e07" secondAttribute="leading" constant="9" id="gpM-nq-cYp"/>
                                 <constraint firstItem="nBD-bh-qD5" firstAttribute="trailing" secondItem="6mM-kC-TSK" secondAttribute="trailing" id="nfd-2I-2Bt"/>
                                 <constraint firstItem="Ufv-ba-ZWD" firstAttribute="top" secondItem="jkg-DD-mbQ" secondAttribute="bottom" id="qhU-qw-Mh7"/>
                                 <constraint firstItem="Ufv-ba-ZWD" firstAttribute="width" secondItem="jkg-DD-mbQ" secondAttribute="width" id="tJv-Oj-mS8"/>
@@ -217,6 +225,7 @@
             </constraints>
             <connections>
                 <outlet property="btnRecalibrate" destination="oam-2V-2Vm" id="Zg5-rB-fTT"/>
+                <outlet property="labelBtnPressTime" destination="bJC-3t-ima" id="aaY-vJ-7Eb"/>
                 <outlet property="labelPercent" destination="jRJ-6Q-E7a" id="vVv-ro-9sa"/>
                 <outlet property="onlineStatus" destination="scG-jp-LU1" id="UAd-uX-aTN"/>
                 <outlet property="rollerShutter" destination="ezP-Eq-c4L" id="K8K-up-1Jh"/>

@@ -36,6 +36,7 @@
 @property (weak, nonatomic) IBOutlet SAUIChannelStatus *onlineStatus;
 - (IBAction)recalibrateTouch:(id)sender;
 @property (weak, nonatomic) IBOutlet SAWarningIcon *warningIcon;
+@property (weak, nonatomic) IBOutlet UILabel *labelBtnPressTime;
 
 
 @end

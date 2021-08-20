@@ -26,6 +26,7 @@
 
 @implementation SARSDetailView {
     NSTimer *delayTimer1;
+    NSDate *btnTouchedAt;
 }
 
 -(void)detailViewInit {
@@ -58,6 +59,11 @@
     [timer invalidate];
 }
 
+-(void)detailWillShow {
+    [super detailWillShow];
+    self.labelBtnPressTime.text = @"";
+}
+
 -(void)dataToView {
     
     self.onlineStatus.hidden = YES;
@@ -65,6 +71,7 @@
     self.roofWindow.hidden = YES;
     self.btnRecalibrate.hidden = YES;
     self.warningIcon.channel = self.channelBase;
+    self.labelBtnPressTime.hidden = YES;
     
     if ( self.channelBase != nil ) {
         
@@ -131,6 +138,7 @@
             
             if ( percent < 0 ) {
                 [self.labelPercent setText:NSLocalizedString(@"[Calibration]", NULL)];
+                self.labelBtnPressTime.hidden = NO;
             } else {
                 [self.labelPercent setText:[NSString stringWithFormat:@"%i%%", (int)percent]];
             }
@@ -166,22 +174,33 @@
 }
 
 - (IBAction)upTouch:(id)sender {
+    btnTouchedAt = [NSDate date];
     [self open:2];
 }
 
 - (IBAction)downTouch:(id)sender {
+    btnTouchedAt = [NSDate date];
     [self open:1];
 }
 
 - (IBAction)stopTouch:(id)sender {
+    if (btnTouchedAt) {
+        NSTimeInterval diff = [[NSDate date] timeIntervalSinceDate:btnTouchedAt];
+        self.labelBtnPressTime.text = [NSString stringWithFormat:@"%0.2fs", diff];
+    } else {
+        self.labelBtnPressTime.text = @"";
+    }
+    btnTouchedAt = nil;
     [self open:0];
 }
 
 - (IBAction)openTouch:(id)sender {
+    btnTouchedAt = nil;
     [self open:10];
 }
 
 - (IBAction)closeTouch:(id)sender {
+    btnTouchedAt = nil;
     [self open:110];
 }
 
