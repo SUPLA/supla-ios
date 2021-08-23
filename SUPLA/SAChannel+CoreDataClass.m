@@ -312,6 +312,7 @@
             
         case SUPLA_CHANNELFNC_LIGHTSWITCH:
         case SUPLA_CHANNELFNC_POWERSWITCH:
+        case SUPLA_CHANNELFNC_STAIRCASETIMER:
             if (self.overcurrentRelayOff) {
                 if (msg) {
                     *msg = NSLocalizedString(@"The power was turned off after the set threshold of the allowable current was exceeded.", nil);
