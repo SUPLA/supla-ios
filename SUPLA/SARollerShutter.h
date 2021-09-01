@@ -42,6 +42,7 @@
 @property(nonatomic, assign) CGFloat louverSpaceing;
 @property(nonatomic, assign) short louverCount;
 @property(nonatomic, assign) float percent;
+@property(nonatomic, assign) float bottomPosition;
 @property(nonatomic, assign) BOOL gestureEnabled;
 @property(nonatomic, copy) NSArray *markers;
 

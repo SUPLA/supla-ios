@@ -34,6 +34,7 @@
     short _louverCount;
     float _percent;
     float virtPercent;
+    float _bottomPosition;
     UIPanGestureRecognizer *_gr;
     CGFloat moveX, moveY;
 }
@@ -228,6 +229,20 @@
         [self setNeedsDisplay];
 }
 
+-(float)bottomPosition {
+    return _bottomPosition;
+}
+
+-(void)setBottomPosition:(float)bottomPosition {
+    if (bottomPosition < 0) {
+        bottomPosition = 0;
+    } else if (bottomPosition > 100) {
+        bottomPosition = 100;
+    }
+    
+    _bottomPosition = bottomPosition;
+    [self setNeedsDisplay];
+}
 
 -(BOOL)gestureEnabled {
     return _gr != nil;
@@ -385,7 +400,18 @@
     else if ( percent < 0 )
         percent = 0;
     
-    height = self.bounds.size.height*percent/100;
+    height = self.bounds.size.height;
+    
+    NSLog(@"Position: %f", _bottomPosition);
+    
+    if (_bottomPosition > 0) {
+        if (percent <= _bottomPosition) {
+            height *= (percent * 100 / _bottomPosition) / 100;
+        }
+    } else {
+        height *= percent / 100;
+    }
+    
     path = [UIBezierPath bezierPathWithRect:CGRectMake(0, 0, self.bounds.size.width, height)];
     [_rollerShutterBackgroundColor setFill];
     [path fill];
@@ -398,14 +424,37 @@
     
     [_rollerShutterLineColor setStroke];
     [_rollerShutterColor setFill];
+    
+    short louverCount = _louverCount;
+    
+    if (_bottomPosition > 0 && percent > _bottomPosition) {
+      louverCount = (int)(self.bounds.size.height / LouverHeight)+1;
+    }
 
-    for(a=0;a<_louverCount;a++) {
+    for(a=0;a<louverCount;a++) {
+        if (height < 0)
+            break;
+
+        float louverSpaceing = _louverSpaceing;
+
+        if (_bottomPosition > 0 && percent > _bottomPosition) {
+            float n = (louverCount-1)-((100-percent)/((100-_bottomPosition) / (louverCount-1)));
+
+            if (n-a > 0) {
+                n = 1 - (n-a);
+                louverSpaceing = _louverSpaceing * n;
+                if (louverSpaceing < 0) {
+                    louverSpaceing = 0;
+                }
+            }
+        }
+        
         path = [UIBezierPath bezierPathWithRect:CGRectMake(x, height-LouverHeight, width, LouverHeight)];
         path.lineWidth = _frameLineWidth;
         [path fill];
         [path stroke];
         
-        height=height-LouverHeight-_louverSpaceing-_frameLineWidth;
+        height=height-LouverHeight-louverSpaceing-_frameLineWidth;
     }
     
     CGContextSetStrokeColorWithColor(context, _rollerShutterLineColor.CGColor);

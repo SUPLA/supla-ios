@@ -89,6 +89,7 @@
             self.onlineStatus.percent = cgroup.onlinePercent;
             self.rollerShutter.percent = 0;
             self.roofWindow.closingPercentage = 0;
+            self.rollerShutter.bottomPosition = 0;
             
             NSMutableArray *positions = cgroup.positions;
             for(int a=0;a<positions.count;a++) {
@@ -125,7 +126,8 @@
             }
             
         } else {
-            percent = self.channelBase.rollerShutterValue.position;
+            TRollerShutterValue rsValue = self.channelBase.rollerShutterValue;
+            percent = rsValue.position;
             
             if ( percent < 100 && [self.channelBase hiSubValue] > 0 ) {
                 percent = 100;
@@ -133,6 +135,7 @@
             
             self.rollerShutter.markers = nil;
             self.rollerShutter.percent = percent;
+            self.rollerShutter.bottomPosition = rsValue.bottom_position;
             self.roofWindow.markers = nil;
             self.roofWindow.closingPercentage = percent;
             
