@@ -54,6 +54,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     
     NSString *empty = @"----";
     
+    self.warningIcon.channel = self.channelBase;
+    
     [self.lMeterValue setText:empty];
     [self.lCurrentConsumption setText:empty];
     [self.lCurrentCost setText:empty];
@@ -105,7 +107,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 - (BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer {
     return self.ivImage.gestureRecognizers.firstObject == gestureRecognizer
         && (self.channelBase.func == SUPLA_CHANNELFNC_LIGHTSWITCH
-        || self.channelBase.func == SUPLA_CHANNELFNC_POWERSWITCH);
+        || self.channelBase.func == SUPLA_CHANNELFNC_POWERSWITCH
+        || self.channelBase.func == SUPLA_CHANNELFNC_STAIRCASETIMER);
 }
 
 - (IBAction)imgTapped:(id)sender {

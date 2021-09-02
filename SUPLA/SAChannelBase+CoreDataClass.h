@@ -21,6 +21,7 @@
 #import <UIKit/UIKit.h>
 #import "SAUserIcon+CoreDataClass.h"
 #import "SADigiglassValue.h"
+#import "proto.h"
 
 @class _SALocation;
 
@@ -54,11 +55,15 @@ NS_ASSUME_NONNULL_BEGIN
 - (BOOL) flooding;
 - (SADigiglassValue*) digiglassValue;
 - (BOOL) overcurrentRelayOff;
+- (BOOL) calibrationFailed;
+- (BOOL) calibrationLost;
+- (BOOL) motorProblem;
 
 - (double) temperatureValue;
 - (double) humidityValue;
 - (double) doubleValue;
 - (int) percentValue;
+- (TRollerShutterValue) rollerShutterValue;
 - (int) brightnessValue;
 - (int) colorBrightnessValue;
 - (UIColor *) colorValue;

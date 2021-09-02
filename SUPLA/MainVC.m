@@ -410,6 +410,7 @@
         switch(channel_base.func) {
             case SUPLA_CHANNELFNC_POWERSWITCH:
             case SUPLA_CHANNELFNC_LIGHTSWITCH:
+            case SUPLA_CHANNELFNC_STAIRCASETIMER:
                 if (channel
                     && channel.value
                     && (channel.value.sub_value_type == SUBV_TYPE_IC_MEASUREMENTS

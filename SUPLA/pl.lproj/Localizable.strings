@@ -252,3 +252,7 @@
 "Z-Wave bridge" = "Most z-wave";
 "opened / closed the roof window" = "otworzył / zamknął okno dachowe";
 "The power was turned off after the set threshold of the allowable current was exceeded." = "Zasilanie zostało wyłączone po przekroczeniu ustawionego progu dopuszczalnego natężenia prądu.";
+"Are you sure you want to start calibration?" = "Czy na pewno chcesz rozpocząć kalibrację ?";
+"Calibration lost." = "Kalibracja nie powiodła się.";
+"Calibration failed." = "Kalibracja została utracona.";
+"Motor problem / Unexpected stop." = "Problem z silnikiem / Nieoczekiwane zatrzymanie.";

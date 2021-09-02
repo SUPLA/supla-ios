@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19150" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina5_5" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19134"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -660,6 +660,13 @@
                                 <constraint firstAttribute="height" constant="1" id="Efr-JS-TwI"/>
                             </constraints>
                         </view>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="channel_warning_level1.png" translatesAutoresizingMaskIntoConstraints="NO" id="dff-aP-MEr" userLabel="warningIcon" customClass="SAWarningIcon">
+                            <rect key="frame" x="360" y="0.0" width="30" height="30"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="30" id="HDl-X8-kzO"/>
+                                <constraint firstAttribute="height" constant="30" id="HcK-J5-gE5"/>
+                            </constraints>
+                        </imageView>
                     </subviews>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
@@ -667,9 +674,11 @@
                         <constraint firstAttribute="bottom" secondItem="QGd-zO-vjg" secondAttribute="bottom" id="8D1-bb-2K8"/>
                         <constraint firstItem="qPI-tZ-xfE" firstAttribute="leading" secondItem="INI-Px-fdb" secondAttribute="trailing" constant="20" id="CQW-lr-VAx"/>
                         <constraint firstItem="INI-Px-fdb" firstAttribute="leading" secondItem="oi3-aO-pwy" secondAttribute="leading" constant="10" id="DDc-6W-SA6"/>
+                        <constraint firstItem="dff-aP-MEr" firstAttribute="top" secondItem="oi3-aO-pwy" secondAttribute="top" id="F6H-tp-9LZ"/>
                         <constraint firstAttribute="trailing" secondItem="qPI-tZ-xfE" secondAttribute="trailing" id="JYX-Qg-ALk"/>
                         <constraint firstAttribute="trailing" secondItem="QGd-zO-vjg" secondAttribute="trailing" id="YHn-fc-lNx"/>
                         <constraint firstItem="qPI-tZ-xfE" firstAttribute="centerY" secondItem="oi3-aO-pwy" secondAttribute="centerY" id="YPB-2v-TTM"/>
+                        <constraint firstAttribute="trailing" secondItem="dff-aP-MEr" secondAttribute="trailing" constant="4" id="eD1-2A-v0r"/>
                         <constraint firstItem="INI-Px-fdb" firstAttribute="centerY" secondItem="oi3-aO-pwy" secondAttribute="centerY" constant="-10" id="imb-Ca-jBZ"/>
                         <constraint firstAttribute="height" constant="134" id="yyW-V1-FbO"/>
                     </constraints>
@@ -770,6 +779,7 @@
                 <outlet property="vLabelsBalance" destination="5kh-QG-euh" id="Dvl-Ce-OlZ"/>
                 <outlet property="vPhases" destination="KE1-vg-Yeo" id="ges-vY-7bQ"/>
                 <outlet property="vValuesBalance" destination="J2Z-bb-peO" id="qjE-Ow-rar"/>
+                <outlet property="warningIcon" destination="dff-aP-MEr" id="Ze3-0z-9dL"/>
             </connections>
             <point key="canvasLocation" x="-792.75362318840587" y="-269.02173913043481"/>
         </view>
@@ -781,6 +791,7 @@
         </tapGestureRecognizer>
     </objects>
     <resources>
+        <image name="channel_warning_level1.png" width="61.333332061767578" height="52"/>
         <image name="consumption.png" width="102.40000152587891" height="102.40000152587891"/>
         <image name="electricitymeter.png" width="138.39999389648438" height="124.80000305175781"/>
         <image name="graphoff.png" width="128" height="128"/>

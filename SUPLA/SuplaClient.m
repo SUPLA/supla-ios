@@ -1395,7 +1395,8 @@ void sasuplaclient_on_zwave_set_wake_up_time_result(void *_suplaclient,
 
 - (BOOL) turnOn:(BOOL)on remoteId:(int)remoteId group:(BOOL)group channelFunc:(int)channelFunc vibrate:(BOOL)vibrate {
     if ((channelFunc != SUPLA_CHANNELFNC_POWERSWITCH
-         && channelFunc != SUPLA_CHANNELFNC_LIGHTSWITCH)) {
+         && channelFunc != SUPLA_CHANNELFNC_LIGHTSWITCH
+         && channelFunc != SUPLA_CHANNELFNC_STAIRCASETIMER)) {
         return false;
     }
     

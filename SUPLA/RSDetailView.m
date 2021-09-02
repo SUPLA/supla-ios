@@ -22,9 +22,11 @@
 #import "SuplaApp.h"
 #import "SAChannelGroup+CoreDataClass.h"
 #import "UIColor+SUPLA.h"
+#import "SuplaClient.h"
 
 @implementation SARSDetailView {
     NSTimer *delayTimer1;
+    NSDate *btnTouchedAt;
 }
 
 -(void)detailViewInit {
@@ -57,11 +59,19 @@
     [timer invalidate];
 }
 
+-(void)detailWillShow {
+    [super detailWillShow];
+    self.labelBtnPressTime.text = @"";
+}
+
 -(void)dataToView {
     
     self.onlineStatus.hidden = YES;
     self.rollerShutter.hidden = YES;
     self.roofWindow.hidden = YES;
+    self.btnRecalibrate.hidden = YES;
+    self.warningIcon.channel = self.channelBase;
+    self.labelBtnPressTime.hidden = YES;
     
     if ( self.channelBase != nil ) {
         
@@ -79,6 +89,7 @@
             self.onlineStatus.percent = cgroup.onlinePercent;
             self.rollerShutter.percent = 0;
             self.roofWindow.closingPercentage = 0;
+            self.rollerShutter.bottomPosition = 0;
             
             NSMutableArray *positions = cgroup.positions;
             for(int a=0;a<positions.count;a++) {
@@ -115,7 +126,8 @@
             }
             
         } else {
-            percent = self.channelBase.percentValue;
+            TRollerShutterValue rsValue = self.channelBase.rollerShutterValue;
+            percent = rsValue.position;
             
             if ( percent < 100 && [self.channelBase hiSubValue] > 0 ) {
                 percent = 100;
@@ -123,13 +135,19 @@
             
             self.rollerShutter.markers = nil;
             self.rollerShutter.percent = percent;
+            self.rollerShutter.bottomPosition = rsValue.bottom_position;
             self.roofWindow.markers = nil;
             self.roofWindow.closingPercentage = percent;
             
             if ( percent < 0 ) {
                 [self.labelPercent setText:NSLocalizedString(@"[Calibration]", NULL)];
+                self.labelBtnPressTime.hidden = NO;
             } else {
                 [self.labelPercent setText:[NSString stringWithFormat:@"%i%%", (int)percent]];
+            }
+            
+            if (self.channelBase.flags & SUPLA_CHANNEL_FLAG_CALCFG_RECALIBRATE) {
+                self.btnRecalibrate.hidden = NO;
             }
         }
         
@@ -159,22 +177,33 @@
 }
 
 - (IBAction)upTouch:(id)sender {
+    btnTouchedAt = [NSDate date];
     [self open:2];
 }
 
 - (IBAction)downTouch:(id)sender {
+    btnTouchedAt = [NSDate date];
     [self open:1];
 }
 
 - (IBAction)stopTouch:(id)sender {
+    if (btnTouchedAt) {
+        NSTimeInterval diff = [[NSDate date] timeIntervalSinceDate:btnTouchedAt];
+        self.labelBtnPressTime.text = [NSString stringWithFormat:@"%0.2fs", diff];
+    } else {
+        self.labelBtnPressTime.text = @"";
+    }
+    btnTouchedAt = nil;
     [self open:0];
 }
 
 - (IBAction)openTouch:(id)sender {
+    btnTouchedAt = nil;
     [self open:10];
 }
 
 - (IBAction)closeTouch:(id)sender {
+    btnTouchedAt = nil;
     [self open:110];
 }
 
@@ -194,5 +223,39 @@
 
 - (void)roofWindowClosingPercentageChangeing:(id)roofWindowController percent:(float)percent {
     [self.labelPercent setText:[NSString stringWithFormat:@"%i%%", (int)percent]];
+}
+- (IBAction)recalibrateTouch:(id)sender {
+    [SASuperuserAuthorizationDialog.globalInstance authorizeWithDelegate:self];
+}
+
+-(void) superuserAuthorizationSuccess {
+    [SASuperuserAuthorizationDialog.globalInstance closeWithAnimation:YES completion:^(){
+        UIAlertController * alert = [UIAlertController
+                                     alertControllerWithTitle:@"SUPLA"
+                                     message:NSLocalizedString(@"Are you sure you want to start calibration?", nil)
+                                     preferredStyle:UIAlertControllerStyleAlert];
+        
+        UIAlertAction* yesBtn = [UIAlertAction
+                                    actionWithTitle:NSLocalizedString(@"Yes", nil)
+                                    style:UIAlertActionStyleDefault
+                                    handler:^(UIAlertAction * action) {
+        
+            [[SAApp SuplaClient] deviceCalCfgCommand:SUPLA_CALCFG_CMD_RECALIBRATE
+                                                  cg:self.channelBase.remote_id group:NO];
+            
+        }];
+        
+        UIAlertAction* noBtn = [UIAlertAction
+                                actionWithTitle:NSLocalizedString(@"No", nil)
+                                style:UIAlertActionStyleDefault
+                                handler:^(UIAlertAction * action) {
+        }];
+        
+        [alert addAction:noBtn];
+        [alert addAction:yesBtn];
+        
+        UIViewController *vc = [[[[UIApplication sharedApplication] delegate] window] rootViewController];
+        [vc presentViewController:alert animated:YES completion:nil];
+    }];
 }
 @end

@@ -92,7 +92,7 @@
             break;
         case SUPLA_CHANNELFNC_CONTROLLINGTHEROLLERSHUTTER:
         case SUPLA_CHANNELFNC_CONTROLLINGTHEROOFWINDOW: {
-            NSArray *obj = [NSArray arrayWithObjects:[NSNumber numberWithInt: value.percentValue],
+            NSArray *obj = [NSArray arrayWithObjects:[NSNumber numberWithInt: value.rollerShutterValue.position],
                             [NSNumber numberWithBool: value.hiSubValue & 0x1], nil];
             [BufferTotalValue addObject:obj];
         }

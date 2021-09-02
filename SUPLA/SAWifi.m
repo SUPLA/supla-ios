@@ -95,4 +95,33 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         }];
     }
 }
+
++(NSString*)currentSSID {
+    /*
+    if (@available(iOS 14.0, *)) {
+        [NEHotspotNetwork fetchCurrentWithCompletionHandler:^(NEHotspotNetwork * _Nullable currentNetwork) {
+           NSString  *strSSID = [currentNetwork BSSID];
+            NSLog(@"SSID 1 %@", strSSID);
+        }];
+    } else {
+
+        NSArray *ifs = (__bridge_transfer NSArray *)CNCopySupportedInterfaces();
+        
+        NSDictionary *info;
+        
+        for (NSString *ifnam in ifs) {
+            
+            info = (__bridge_transfer NSDictionary *)CNCopyCurrentNetworkInfo((__bridge CFStringRef)ifnam);
+            
+            if (info && [info count]) {
+                
+                NSString  *strSSID = [info objectForKey:@"SSID"];
+                NSLog(@"SSID 2 %@", strSSID);
+                break;
+            }
+        }
+    }
+    */
+    return nil;
+}
 @end

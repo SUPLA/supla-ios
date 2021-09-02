@@ -20,17 +20,23 @@
 #import "SARollerShutter.h"
 #import "SARoofWindowController.h"
 #import "SAUIChannelStatus.h"
+#import "SASuperuserAuthorizationDialog.h"
+#import "SAWarningIcon.h"
 
-@interface SARSDetailView : SADetailView <SARollerShutterDelegate, SARoofWindowControllerDelegate>
+@interface SARSDetailView : SADetailView <SARollerShutterDelegate, SARoofWindowControllerDelegate, SASuperuserAuthorizationDialogDelegate>
 - (IBAction)upTouch:(id)sender;
 - (IBAction)downTouch:(id)sender;
 - (IBAction)stopTouch:(id)sender;
 - (IBAction)openTouch:(id)sender;
 - (IBAction)closeTouch:(id)sender;
+@property (weak, nonatomic) IBOutlet UIButton *btnRecalibrate;
 @property (weak, nonatomic) IBOutlet UILabel *labelPercent;
 @property (weak, nonatomic) IBOutlet SARollerShutter *rollerShutter;
 @property (weak, nonatomic) IBOutlet SARoofWindowController *roofWindow;
 @property (weak, nonatomic) IBOutlet SAUIChannelStatus *onlineStatus;
+- (IBAction)recalibrateTouch:(id)sender;
+@property (weak, nonatomic) IBOutlet SAWarningIcon *warningIcon;
+@property (weak, nonatomic) IBOutlet UILabel *labelBtnPressTime;
 
 
 @end

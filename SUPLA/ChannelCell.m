@@ -84,13 +84,7 @@
         tapGr1 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(stateIconTapped:)];
         [self.channelStateIcon addGestureRecognizer:tapGr1];
     }
-    
-    if (self.channelWarningIcon) {
-        self.channelWarningIcon.userInteractionEnabled = YES;
-        tapGr2 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(warningIconTapped:)];
-        [self.channelWarningIcon addGestureRecognizer:tapGr2];
-    }
-    
+        
     longPressGr = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(onLongPress:)];
     longPressGr.allowableMovement = 5;
     longPressGr.minimumPressDuration = 0.8;
@@ -134,9 +128,12 @@
         || channel.value.sub_value_type == SUBV_TYPE_ELECTRICITY_MEASUREMENTS);
     
     self.channelStateIcon.hidden = YES;
-    self.channelWarningIcon.hidden = YES;
     self.rightButtons = @[];
     self.leftButtons = @[];
+    
+    if (self.channelWarningIcon) {
+        self.channelWarningIcon.channel = channelBase;
+    }
     
     if ( isGroup ) {
         self.cint_LeftStatusWidth.constant = 6;
@@ -159,13 +156,6 @@
                 self.channelStateIcon.hidden = NO;
                 self.channelStateIcon.image = stateIcon;
             }
-            
-            UIImage *warningIcon = channel.warningIcon;
-            if (warningIcon != nil) {
-                self.channelWarningIcon.hidden = NO;
-                self.channelWarningIcon.image = warningIcon;
-            }
-            
         }
     }
     
@@ -394,38 +384,6 @@
     }
 
    [SAChannelStatePopup.globalInstance show:(SAChannel*)self.channelBase];
-}
-
-- (void)warningIconTapped:(UITapGestureRecognizer *)tapRecognizer {
-    if (self.channelBase == nil
-        || ![self.channelBase isKindOfClass:[SAChannel class]]
-        || self.channelWarningIcon == nil
-        || self.channelWarningIcon.hidden) {
-        return;
-    }
-
-    NSString *warningMessage = ((SAChannel*)self.channelBase).warningMessage;
-    
-    if (warningMessage == nil) {
-        return;
-    }
-    
-    UIAlertController * alert = [UIAlertController
-                                   alertControllerWithTitle:@"SUPLA"
-                                   message:warningMessage
-                                   preferredStyle:UIAlertControllerStyleAlert];
-      
-      UIAlertAction* btnOK = [UIAlertAction
-                              actionWithTitle:NSLocalizedString(@"OK", nil)
-                              style:UIAlertActionStyleDefault
-                              handler:nil];
-      
-      
-      [alert setTitle: NSLocalizedString(@"Warning", nil)];
-      [alert addAction:btnOK];
-      
-      UIViewController *vc = [[[[UIApplication sharedApplication] delegate] window] rootViewController];
-      [vc presentViewController:alert animated:YES completion:nil];
 }
 
 - (void)onLongPress:(UILongPressGestureRecognizer *)longPressGR {

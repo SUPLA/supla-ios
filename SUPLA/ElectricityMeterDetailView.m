@@ -164,6 +164,7 @@
 
 - (void)updateView {
     
+    self.warningIcon.channel = self.channelBase;
     unsigned int measured_values = 0;
     SAElectricityMeterExtendedValue *emev = nil;
     
@@ -329,6 +330,7 @@
     if (_chartHelper) {
         _chartHelper.channelId = channelBase ? channelBase.remote_id : 0;
     }
+    
     [super setChannelBase:channelBase];
 }
 
@@ -515,7 +517,8 @@
 - (BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer {
     return self.ivImage.gestureRecognizers.firstObject == gestureRecognizer
         && (self.channelBase.func == SUPLA_CHANNELFNC_LIGHTSWITCH
-        || self.channelBase.func == SUPLA_CHANNELFNC_POWERSWITCH);
+        || self.channelBase.func == SUPLA_CHANNELFNC_POWERSWITCH
+        || self.channelBase.func == SUPLA_CHANNELFNC_STAIRCASETIMER);
 }
 
 - (IBAction)imgTapped:(id)sender {

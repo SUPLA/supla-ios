@@ -383,8 +383,10 @@
     return 0;
 }
 
-- (int) percentValue {
-    return -1;
+- (TRollerShutterValue) rollerShutterValue {
+    TRollerShutterValue result = {};
+    result.position = -1;
+    return result;
 }
 
 - (int) brightnessValue {
@@ -420,6 +422,18 @@
 }
 
 - (BOOL) overcurrentRelayOff {
+    return false;
+}
+
+- (BOOL) calibrationFailed{
+    return false;
+}
+
+- (BOOL) calibrationLost{
+    return false;
+}
+
+- (BOOL) motorProblem{
     return false;
 }
 
