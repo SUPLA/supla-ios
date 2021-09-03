@@ -50,6 +50,7 @@
     UITapGestureRecognizer *_tapRecognizer;
     SADownloadUserIcons *_task;
     NSArray *_locations;
+    CGFloat _standardChannelHeight;
 }
 
 - (void)registerNibForTableView:(UITableView*)tv {
@@ -93,7 +94,6 @@
         self.gTableView.dragDelegate = self;
         self.gTableView.dropDelegate = self;
     }
-
 }
 
 - (NSArray<UIDragItem *> *)tableView:(UITableView *)tableView itemsForBeginningDragSession:(id<UIDragSession>)session atIndexPath:(NSIndexPath *)indexPath  API_AVAILABLE(ios(11.0)){
@@ -177,6 +177,12 @@
     
     [self.cTableView reloadData];
     [self.gTableView reloadData];
+
+    if(_standardChannelHeight == 0) {
+        _standardChannelHeight = [self computeChannelHeight];
+        if(_standardChannelHeight > 0)
+            [self.view setNeedsUpdateConstraints];
+    }
 }
 
 -(void)onMenubarBackButtonPressed {
@@ -524,6 +530,26 @@
         _task = nil;
     }
 }
+
+#pragma mark Support for customizable channel height
+/**
+   Calculate the "default" channel row height
+*/
+- (CGFloat)computeChannelHeight {
+    NSIndexPath *ip = [NSIndexPath indexPathForRow: 0
+                                         inSection: 0];
+    UITableViewCell *cell = [self.cTableView
+                                cellForRowAtIndexPath: ip];
+    return cell.bounds.size.height;
+                                     
+}
+
+- (void)updateViewConstraints {
+    [super updateViewConstraints];
+    CGFloat multiplier = 0.6;
+    self.cTableView.rowHeight = multiplier * _standardChannelHeight;
+}
+
 
 @end
 
