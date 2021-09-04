@@ -179,11 +179,7 @@
     [self.cTableView reloadData];
     [self.gTableView reloadData];
 
-    if(_standardChannelHeight == 0) {
-        _standardChannelHeight = [self computeChannelHeight];
-        if(_standardChannelHeight > 0)
-            [self.view setNeedsUpdateConstraints];
-    }
+	[self adjustChannelHeight: YES];
 }
 
 -(void)onMenubarBackButtonPressed {
@@ -545,8 +541,19 @@
                                      
 }
 
+- (void)adjustChannelHeight: (BOOL)needsUpdateConstraints {
+
+    if(_standardChannelHeight == 0) {
+        _standardChannelHeight = [self computeChannelHeight];
+        if(_standardChannelHeight > 0 && needsUpdateConstraints)
+            [self.view setNeedsUpdateConstraints];
+    }
+
+}	
+
 - (void)updateViewConstraints {
     [super updateViewConstraints];
+	[self adjustChannelHeight: NO];
     if(_standardChannelHeight > 0) {
         CGFloat multiplier = [Config new].channelHeightFactor;
         self.cTableView.rowHeight = multiplier * _standardChannelHeight;
