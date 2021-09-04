@@ -28,6 +28,7 @@
 #import "SuplaApp.h"
 #import "proto.h"
 #import "UIColor+SUPLA.h"
+#import "SUPLA-Swift.h"
 
 #define CLEFT_MARGIN     5
 #define CRIGHT_MARGIN    5
@@ -428,7 +429,7 @@
 
 
 - (CGFloat)iconScaleFactor {
-    CGFloat channelScale = [SAApp channelHeightFactor];
+    CGFloat channelScale = [Config new].channelHeightFactor;
     return MIN(1.0, channelScale);
 }
 @end

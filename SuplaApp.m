@@ -758,14 +758,4 @@ NSString *kSAOnZWaveSetWakeUpTimeResult = @"KSA-N30";
     [NSException raise:NSInternalInconsistencyException
                 format:@"You must override %@ in a subclass", methodName];
 }
-
-
-/**
- @return channel height scale factor (i.e. 0.6, 1.0, 1.5)
- */
-// TODO: this is temporary and needs to be placed in different place.
-+ (CGFloat)channelHeightFactor {
-    return 0.6;
-}
-
 @end

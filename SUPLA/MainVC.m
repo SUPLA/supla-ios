@@ -34,6 +34,7 @@
 #import "_SALocation+CoreDataClass.h"
 #import "SAEvent.h"
 #import "UIColor+SUPLA.h"
+#import "SUPLA-Swift.h"
 
 @implementation SAMainVC {
     NSFetchedResultsController *_cFrc;
@@ -546,8 +547,10 @@
 
 - (void)updateViewConstraints {
     [super updateViewConstraints];
-    CGFloat multiplier = [SAApp channelHeightFactor];
-    self.cTableView.rowHeight = multiplier * _standardChannelHeight;
+    if(_standardChannelHeight > 0) {
+        CGFloat multiplier = [Config new].channelHeightFactor;
+        self.cTableView.rowHeight = multiplier * _standardChannelHeight;
+    }
 }
 
 

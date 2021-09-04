@@ -71,7 +71,6 @@
 -(SAOAuthToken*) registerRestApiClientTask:(SARestApiClientTask *)client;
 -(void) unregisterRestApiClientTask:(SARestApiClientTask *)task;
 -(void) cancelAllRestApiClientTasks;
-+ (CGFloat)channelHeightFactor;
 @end
 
 extern NSString *kSADataChangedNotification;
