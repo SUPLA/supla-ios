@@ -55,6 +55,10 @@
 @property (weak, nonatomic) IBOutlet UILabel *measuredValue;
 @property (weak, nonatomic) IBOutlet UIImageView *channelStateIcon;
 @property (weak, nonatomic) IBOutlet SAWarningIcon *channelWarningIcon;
+/**
+ Collection of layout constraints which should be subject to scaling with respect to Channel Height adjustment.
+ */
+@property (strong, nonatomic) IBOutletCollection(NSLayoutConstraint) NSArray<NSLayoutConstraint *> *channelIconScalableConstraints;
 @property (nonatomic) BOOL captionTouched;
 @property (nonatomic) BOOL captionEditable;
 

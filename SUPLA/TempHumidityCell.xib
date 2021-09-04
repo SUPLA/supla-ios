@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -130,6 +130,10 @@
                 <outlet property="image2" destination="pue-s1-1cy" id="P2i-HW-Vcx"/>
                 <outlet property="right_OnlineStatus" destination="FuF-jE-JMA" id="WfA-1f-tas"/>
                 <outlet property="temp" destination="NRR-0X-1Zb" id="wwg-Jx-uuO"/>
+                <outletCollection property="channelIconScalableConstraints" destination="8R4-ai-lER" id="5Ov-i7-Aqq"/>
+                <outletCollection property="channelIconScalableConstraints" destination="r8x-Sn-gf8" id="0kH-jL-OTg"/>
+                <outletCollection property="channelIconScalableConstraints" destination="WeJ-Ji-JPF" id="WIp-OL-DtM"/>
+                <outletCollection property="channelIconScalableConstraints" destination="up8-Ib-kLF" id="2DF-co-V5S"/>
             </connections>
             <point key="canvasLocation" x="-397" y="-108"/>
         </tableViewCell>

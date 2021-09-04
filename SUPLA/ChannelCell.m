@@ -90,7 +90,13 @@
     longPressGr.minimumPressDuration = 0.8;
     self.caption.userInteractionEnabled = YES;
     [self.caption addGestureRecognizer:longPressGr];
+    
+    CGFloat scaleFactor = [self iconScaleFactor];
+    for(NSLayoutConstraint *constraint in self.channelIconScalableConstraints) {
+        constraint.constant *= scaleFactor;
+    }
 }
+
 
 - (void)awakeFromNib {
     [super awakeFromNib];
@@ -420,4 +426,9 @@
     return NO;
 }
 
+
+- (CGFloat)iconScaleFactor {
+    CGFloat channelScale = [SAApp channelHeightFactor];
+    return MIN(1.0, channelScale);
+}
 @end

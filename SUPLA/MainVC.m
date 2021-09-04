@@ -546,7 +546,7 @@
 
 - (void)updateViewConstraints {
     [super updateViewConstraints];
-    CGFloat multiplier = 0.6;
+    CGFloat multiplier = [SAApp channelHeightFactor];
     self.cTableView.rowHeight = multiplier * _standardChannelHeight;
 }
 
