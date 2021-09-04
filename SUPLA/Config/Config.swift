@@ -21,7 +21,10 @@ import Foundation
 class Config: NSObject {
     
     private let kChannelHeight = "supla_config_channel_height"
+    private let kTemperatureUnit = "supla_config_temp_unit"
 
+    // read-only accessors for "legacy" Objective-C code
+    
     /**
      returns channel height scale factor (i.e. 0.6, 1.0, 1.5)
      */
@@ -30,17 +33,24 @@ class Config: NSObject {
         return Float(channelHeight.rawValue) / 100.0
     }
     
+    
+    // "full" accessors for swift code
     var channelHeight: ChannelHeight {
         get {
-            if let v = ChannelHeight(rawValue: UserDefaults.standard.integer(forKey: kChannelHeight)) {
-                return v
-            } else {
-                return .height100
-            }
+            ChannelHeight(rawValue: UserDefaults.standard.integer(forKey: kChannelHeight)) ?? .height100
         }
         
         set {
             UserDefaults.standard.set(newValue.rawValue, forKey: kChannelHeight)
+        }
+    }
+    var temperatureUnit: TemperatureUnit {
+        get {
+            return TemperatureUnit(rawValue: UserDefaults.standard.string(forKey: kTemperatureUnit) ?? "") ?? .celsius
+        }
+        
+        set {
+            UserDefaults.standard.set(newValue.rawValue, forKey: kTemperatureUnit)
         }
     }
 }
@@ -49,4 +59,16 @@ enum ChannelHeight: Int {
     case height60 = 60
     case height100 = 100
     case height150 = 150
+}
+enum TemperatureUnit: String {
+    case celsius
+    case fahrenheit
+}
+extension TemperatureUnit {
+    var symbol: String {
+        switch self {
+        case .celsius: return "°C"
+        case .fahrenheit: return "°F"
+        }
+    }
 }
