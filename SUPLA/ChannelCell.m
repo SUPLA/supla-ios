@@ -351,7 +351,7 @@
     BOOL group = [self.channelBase isKindOfClass:[SAChannelGroup class]];
     
     if ([SAApp.SuplaClient turnOn:YES remoteId:_channelBase.remote_id group:group channelFunc:_channelBase.func vibrate:YES]) {
-        [self hideSwipeAnimated:YES];
+        [self hideSwipeMaybe];
         return;
     }
     
@@ -359,7 +359,7 @@
           || _channelBase.func == SUPLA_CHANNELFNC_VALVE_PERCENTAGE)
           && (_channelBase.isManuallyClosed || _channelBase.flooding)
           && _channelBase.isClosed) {
-          [self hideSwipeAnimated:YES];
+          [self hideSwipeMaybe];
           [self showValveAlertDialog];
           return;
       }
@@ -367,7 +367,7 @@
     [self vibrate];
     
     [[SAApp SuplaClient] cg:self.channelBase.remote_id Open:1 group:group];
-    [self hideSwipeAnimated:YES];
+    [self hideSwipeMaybe];
 }
 
 - (IBAction)leftTouchDown:(id)sender {
@@ -375,11 +375,15 @@
     
     [self vibrate];
     [[SAApp SuplaClient] cg:self.channelBase.remote_id Open:0 group:[self.channelBase isKindOfClass:[SAChannelGroup class]]];
-    [self hideSwipeAnimated:YES];
+    [self hideSwipeMaybe];
 }
 
 - (IBAction)rlTouchCancel:(id)sender {
     [sender setBackgroundColor: [UIColor onLine] withDelay:0.2];
+}
+
+- (void)hideSwipeMaybe {
+    if([[Config alloc] init].autohideButtons) [self hideSwipeAnimated:YES];
 }
 
 - (void)stateIconTapped:(UITapGestureRecognizer *)tapRecognizer {

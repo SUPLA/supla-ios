@@ -22,6 +22,7 @@ class Config: NSObject {
     
     private let kChannelHeight = "supla_config_channel_height"
     private let kTemperatureUnit = "supla_config_temp_unit"
+    private let kButtonKeepVisible = "supla_config_buttons_keep_visible"
 
     // read-only accessors for "legacy" Objective-C code
     
@@ -31,6 +32,29 @@ class Config: NSObject {
     @objc
     var channelHeightFactor: Float {
         return Float(channelHeight.rawValue) / 100.0
+    }
+    
+    /**
+        returns temperature presenter object matching current user settings
+     */
+    @objc
+    var currentTemperaturePresenter: TemperaturePresenter {
+        return TemperaturePresenter(temperatureUnit: temperatureUnit,
+                                    locale: .autoupdatingCurrent)
+    }
+    
+    /**
+        boolean flag indicating if channel buttons should be automatically hidden after usage
+     */
+    @objc
+    var autohideButtons: Bool {
+        get {
+            return !UserDefaults.standard.bool(forKey: kButtonKeepVisible)
+        }
+        
+        set {
+            UserDefaults.standard.set(!newValue, forKey: kButtonKeepVisible)
+        }
     }
     
     
