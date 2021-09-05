@@ -491,6 +491,8 @@
 		40F7301120C19BA600167C2D /* SAColorListItem+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 40F7301020C19BA600167C2D /* SAColorListItem+CoreDataProperties.m */; };
 		40F951451FD0654900698587 /* RSDetail.xib in Resources */ = {isa = PBXBuildFile; fileRef = 40F951471FD0654900698587 /* RSDetail.xib */; };
 		462253FD963449A978BBDDE8 /* Pods_SUPLA.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 596D36089B2CE979388A06FF /* Pods_SUPLA.framework */; };
+		AEBCD8FC26E4D247001904F3 /* TemperaturePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEBCD8FB26E4D247001904F3 /* TemperaturePresenter.swift */; };
+		AEBCD8FE26E4D52C001904F3 /* TemperatureUnitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEBCD8FD26E4D52C001904F3 /* TemperatureUnitTests.swift */; };
 		AEFBC24F26E37CD800414C19 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEFBC24E26E37CD800414C19 /* Config.swift */; };
 		AEFBC25226E39EFC00414C19 /* ConfigTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEFBC25126E39EFC00414C19 /* ConfigTests.swift */; };
 		B2DA9E0A10D8023EEDA25970 /* Pods_SUPLATests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 76FF65EADE7763EB8D61BC35 /* Pods_SUPLATests.framework */; };
@@ -1343,6 +1345,8 @@
 		596D36089B2CE979388A06FF /* Pods_SUPLA.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SUPLA.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5CB83473B6995044CF8448E7 /* Pods-SUPLATests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SUPLATests.release.xcconfig"; path = "Target Support Files/Pods-SUPLATests/Pods-SUPLATests.release.xcconfig"; sourceTree = "<group>"; };
 		76FF65EADE7763EB8D61BC35 /* Pods_SUPLATests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SUPLATests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		AEBCD8FB26E4D247001904F3 /* TemperaturePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemperaturePresenter.swift; sourceTree = "<group>"; };
+		AEBCD8FD26E4D52C001904F3 /* TemperatureUnitTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemperatureUnitTests.swift; sourceTree = "<group>"; };
 		AEFBC24E26E37CD800414C19 /* Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
 		AEFBC25026E39EFC00414C19 /* SUPLATests-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SUPLATests-Bridging-Header.h"; sourceTree = "<group>"; };
 		AEFBC25126E39EFC00414C19 /* ConfigTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigTests.swift; sourceTree = "<group>"; };
@@ -1531,6 +1535,7 @@
 		401CA1BB1BA067DB00117AF4 /* SUPLA */ = {
 			isa = PBXGroup;
 			children = (
+				AEBCD8FA26E4D212001904F3 /* DataPresenters */,
 				AEFBC24D26E37CA300414C19 /* Config */,
 				01CEAC1B25B99D47009C3BFD /* Value */,
 				0163D0CB257EE483006C73CB /* SUPLA.entitlements */,
@@ -1599,6 +1604,7 @@
 				01CEAC2925B9BAE2009C3BFD /* SADigiglassValueTests.m */,
 				AEFBC25126E39EFC00414C19 /* ConfigTests.swift */,
 				AEFBC25026E39EFC00414C19 /* SUPLATests-Bridging-Header.h */,
+				AEBCD8FD26E4D52C001904F3 /* TemperatureUnitTests.swift */,
 			);
 			path = SUPLATests;
 			sourceTree = "<group>";
@@ -2194,6 +2200,14 @@
 				5CB83473B6995044CF8448E7 /* Pods-SUPLATests.release.xcconfig */,
 			);
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		AEBCD8FA26E4D212001904F3 /* DataPresenters */ = {
+			isa = PBXGroup;
+			children = (
+				AEBCD8FB26E4D247001904F3 /* TemperaturePresenter.swift */,
+			);
+			path = DataPresenters;
 			sourceTree = "<group>";
 		};
 		AEFBC24D26E37CA300414C19 /* Config */ = {
@@ -2849,6 +2863,7 @@
 				013F7EC123EB33E30061A497 /* SAChannelStateExtendedValue.m in Sources */,
 				019170A4233D67E900820BDB /* SAThermostatChartHelper.m in Sources */,
 				40C7BA5320C007A300ACEE42 /* SAChannelValue+CoreDataProperties.m in Sources */,
+				AEBCD8FC26E4D247001904F3 /* TemperaturePresenter.swift in Sources */,
 				407D4AFF1BC6E491009A5505 /* StatusVC.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2861,6 +2876,7 @@
 				01DD2F0C247718C40025DFF9 /* SARangeCalibrationWheelTests.m in Sources */,
 				401CA1DC1BA067DB00117AF4 /* SUPLATests.m in Sources */,
 				016ABE18236DA795001BF5FB /* KeychainTests.m in Sources */,
+				AEBCD8FE26E4D52C001904F3 /* TemperatureUnitTests.swift in Sources */,
 				AEFBC25226E39EFC00414C19 /* ConfigTests.swift in Sources */,
 				01CEAC2A25B9BAE2009C3BFD /* SADigiglassValueTests.m in Sources */,
 				01EFD94C236CA9AE00893489 /* NSDataEncryptionTest.m in Sources */,
@@ -3277,7 +3293,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -3325,7 +3341,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
@@ -3414,6 +3430,7 @@
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = SUPLATests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.acsoftware.ios.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -3436,6 +3453,7 @@
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = SUPLATests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.acsoftware.ios.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";

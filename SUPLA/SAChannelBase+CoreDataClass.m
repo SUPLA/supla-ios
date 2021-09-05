@@ -18,6 +18,7 @@
 
 #import "SAChannelBase+CoreDataClass.h"
 #import "proto.h"
+#import "SUPLA-Swift.h"
 
 @implementation SAChannelBase
 
@@ -804,10 +805,12 @@
 
 - (NSAttributedString*) attrStringValueWithIndex:(int)idx font:(nullable UIFont*)font {
     NSString *result = @"";
+    Config *cfg = [[Config alloc] init];
+    TemperaturePresenter *pres = cfg.currentTemperaturePresenter;
     
     switch (self.func) {
         case SUPLA_CHANNELFNC_THERMOMETER:
-            result = [self isOnline] && self.temperatureValue > -273 ? [NSString stringWithFormat:@"%0.1f°", self.temperatureValue] : @"----°";
+            result = [self isOnline] && self.temperatureValue > -273 ? [pres stringRepresentation: self.temperatureValue] : @"----°";
             break;
         case SUPLA_CHANNELFNC_HUMIDITY:
             result = [self isOnline] && self.humidityValue > -1 ? [NSString stringWithFormat:@"%0.1f", self.humidityValue] : @"----";
