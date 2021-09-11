@@ -773,21 +773,25 @@
 }
 
 - (NSAttributedString*) thermostatAttrStringWithMeasuredTempMin:(double)mmin measuredTempMax:(double)mmax presetTempMin:(double)pmin presetTempMax:(double)pmax font:(nullable UIFont*)font {
-    NSString *measured = @"---\u00B0";
-    NSString *preset = @"/---\u00B0";
+	TemperaturePresenter *pres = [self temperaturePresenter];
+	NSString *unit = pres.unitString;
+    NSString *measured = [@"---" stringByAppendingString: unit];
+    NSString *preset = [@"/---" stringByAppendingString: unit];
         
     if (self.isOnline) {
         if (mmin > -273) {
-            measured = [NSString stringWithFormat:@"%0.2f\u00B0", mmin];
+            measured = [pres stringRepresentation: mmin];
             if (mmax > -273) {
-               measured = [NSString stringWithFormat:@"%@ - %0.2f\u00B0", measured, mmax];
+               measured = [NSString stringWithFormat:@"%@ - %@", measured,
+									[pres stringRepresentation: mmax]];
             }
         }
         
         if (pmin > -273) {
-            preset = [NSString stringWithFormat:@"/%0.2f\u00B0", pmin];
+            preset = [pres stringRepresentation: pmin];
             if (pmax > -273) {
-               preset = [NSString stringWithFormat:@"%@ - %0.2f\u00B0", preset, pmax];
+               preset = [NSString stringWithFormat:@"%@ - %@", preset,
+								  [pres stringRepresentation: pmax]];
             }
         }
     }
@@ -805,8 +809,7 @@
 
 - (NSAttributedString*) attrStringValueWithIndex:(int)idx font:(nullable UIFont*)font {
     NSString *result = @"";
-    Config *cfg = [[Config alloc] init];
-    TemperaturePresenter *pres = cfg.currentTemperaturePresenter;
+    TemperaturePresenter *pres = [self temperaturePresenter];
     
     switch (self.func) {
         case SUPLA_CHANNELFNC_THERMOMETER:
@@ -891,5 +894,9 @@
 
 - (NSAttributedString*) attrStringValue {
     return [self attrStringValueWithIndex:0 font:nil];
+}
+
+- (TemperaturePresenter*)temperaturePresenter {
+	return [Config new].currentTemperaturePresenter;
 }
 @end

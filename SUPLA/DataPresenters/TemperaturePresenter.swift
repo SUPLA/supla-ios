@@ -50,4 +50,7 @@ class TemperaturePresenter: NSObject {
         return (_formatter.string(from: converted) ?? "") + " " +
             _unit.symbol
     }
+
+    @objc
+    var unitString: String { return _unit.symbol }
 }
