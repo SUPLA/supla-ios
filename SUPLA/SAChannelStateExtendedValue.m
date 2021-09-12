@@ -265,22 +265,14 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 -(NSString *)lastConnectionResetCauseString {
     if (_csev.Fields & SUPLA_CHANNELSTATE_FIELD_LASTCONNECTIONRESETCAUSE) {
-        switch (_csev.LastConnectionResetCause) {
-            case SUPLA_LASTCONNECTIONRESETCAUSE_UNKNOWN:
-                return NSLocalizedString(@"0: unknown",
-                                         @"string description of unknown channel reset reason");
-            case SUPLA_LASTCONNECTIONRESETCAUSE_ACTIVITY_TIMEOUT:
-                return NSLocalizedString(@"1: server timeout",
-                                         @"string description of channel reset due to activity timeout");
-            case SUPLA_LASTCONNECTIONRESETCAUSE_WIFI_CONNECTION_LOST:
-                return NSLocalizedString(@"2: Wi-Fi connection lost",
-                                         @"string description of channel reset due to WIFI connection lost");
-            case SUPLA_LASTCONNECTIONRESETCAUSE_SERVER_CONNECTION_LOST:
-                return NSLocalizedString(@"3: server connection reset",
-                                         @"string description of channel reset due to TCP reset");
-
-            default:
-               return [NSString stringWithFormat:@"%i", _csev.LastConnectionResetCause];
+        NSArray<NSString*>* key_table = @[@"0: unknown", @"1: server timeout",
+                                          @"2: Wi-Fi connection lost",
+                                          @"3: server connection reset"];
+        if (_csev.LastConnectionResetCause >= 0 &&
+            _csev.LastConnectionResetCause < key_table.count) {
+            return NSLocalizedString(key_table[_csev.LastConnectionResetCause], nil);
+        } else {
+            return [NSString stringWithFormat:@"%i", _csev.LastConnectionResetCause];
         }
     }
     return nil;
