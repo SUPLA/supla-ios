@@ -256,3 +256,7 @@
 "Calibration lost." = "Kalibracja nie powiodła się.";
 "Calibration failed." = "Kalibracja została utracona.";
 "Motor problem / Unexpected stop." = "Problem z silnikiem / Nieoczekiwane zatrzymanie.";
+"0: unknown" = "0: nieznany";
+"1: server timeout" = "1: brak odpowiedzi serwera";
+"2: Wi-Fi connection lost" = "2: utrata połączenia Wi-Fi";
+"3: server connection reset" = "3: reset połączenia z serwerem";
