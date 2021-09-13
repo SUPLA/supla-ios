@@ -504,11 +504,15 @@
     fetchRequest.predicate = [NSPredicate predicateWithFormat:@"func > 0 AND visible > 0 AND (%i = 0 OR location.location_id = %i)", locationId, locationId];
     [fetchRequest setEntity:[NSEntityDescription entityForName:entity inManagedObjectContext: self.managedObjectContext]];
     
-    NSArray *sortDescriptors = [[NSArray alloc] initWithObjects:[[NSSortDescriptor alloc] initWithKey:@"location.caption" ascending:YES],
+    SEL localeAwareCompare = @selector(localizedCaseInsensitiveCompare:);
+    NSArray *sortDescriptors = @[
+        [[NSSortDescriptor alloc] initWithKey:@"location.caption" ascending:YES
+                                     selector: localeAwareCompare],
                                 [[NSSortDescriptor alloc] initWithKey:@"position" ascending:YES],
                                 [[NSSortDescriptor alloc] initWithKey:@"func" ascending:NO],
-                                [[NSSortDescriptor alloc] initWithKey:@"caption" ascending:NO],
-                                nil];
+                                [[NSSortDescriptor alloc] initWithKey:@"caption" ascending:NO
+                                                             selector: localeAwareCompare]
+                                ];
     
     [fetchRequest setSortDescriptors:sortDescriptors];
     
@@ -1403,3 +1407,4 @@
 }
 
 @end
+
