@@ -59,6 +59,7 @@
 @synthesize version;
 @synthesize guid;
 @synthesize mac;
+@synthesize needsCloudConfig;
 
 @end
 
@@ -184,6 +185,7 @@
     }
     
     {
+        // TODO: support needsCloudConfig property!
         NSString *html = [[NSString alloc] initWithData:response encoding:NSUTF8StringEncoding];
         NSError  *error = nil;
         NSString *pattern = @"\\<h1\\>(.*)\\<\\/h1\\>\\<span\\>LAST\\ STATE:\\ (.*)\\<br\\>Firmware:\\ (.*)\\<br\\>GUID:\\ (.*)\\<br\\>MAC:\\ (.*)\\<\\/span\\>";
@@ -654,9 +656,28 @@
             self.lMAC.text = result.mac;
             self.lLastState.text = result.state;
             
+            if(result.needsCloudConfig) {
+                NSMutableAttributedString *str = [[NSMutableAttributedString alloc]
+                                           initWithString: NSLocalizedString(@"add_device_done_alt", nil)];
+                NSDictionary *attrs = @{
+                    NSLinkAttributeName: [NSURL URLWithString: @"https://cloud.supla.org"]
+                };
+                NSAttributedString *linkAttrStr = [[NSAttributedString alloc]
+                                                   initWithString: NSLocalizedString(@"cloud_name", nil)
+                                                   attributes: attrs];
+                [str replaceCharactersInRange:[str.string rangeOfString:@"%0$@"]
+                         withAttributedString:linkAttrStr];
+                [self.txtDoneTapGr setEnabled: YES];
+                self.txtDoneMessage.attributedText = str;
+            }
+            
             [self showPage:PAGE_DONE];
             break;
     }
+    
+}
+
+- (IBAction)onDoneScreenCloudLinkTap: (UITapGestureRecognizer *)gr {
     
 }
 

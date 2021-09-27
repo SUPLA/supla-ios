@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19150" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina3_5" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19134"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -40,6 +40,7 @@
                 <outlet property="lName" destination="npR-oM-kAU" id="JNM-dj-kLE"/>
                 <outlet property="lStep3Text2" destination="y0X-IV-sH5" id="1q9-hd-5x9"/>
                 <outlet property="swAutoMode" destination="zqZ-uB-2KH" id="c2e-98-cUF"/>
+                <outlet property="txtDoneMessage" destination="LiC-TH-iZO" id="gtb-hA-DC9"/>
                 <outlet property="txtErrorMEssage" destination="J9f-5g-EoU" id="cqE-3L-fPX"/>
                 <outlet property="vDone" destination="O29-9p-F9i" id="6P8-NS-uif"/>
                 <outlet property="vDot" destination="zDx-px-3a2" id="Yeo-zj-TsF"/>
@@ -553,10 +554,14 @@ When the connection has been set, go back to the application and  continue addin
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="20" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="LiC-TH-iZO">
                             <rect key="frame" x="0.0" y="437.5" width="290" height="42.5"/>
+                            <gestureRecognizers/>
                             <string key="text">If your new I/O device fails to appear in the Supla app please run “Add I/O Device” wizard again and refer to the “Previous State” information on this page for troubleshooting. “SSID Not Found” is displayed when the chosen 2.4 GHz network is ether not in range or its name was incorrect.</string>
                             <fontDescription key="fontDescription" name="Quicksand-Regular" family="Quicksand" pointSize="20"/>
                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <nil key="highlightedColor"/>
+                            <connections>
+                                <outletCollection property="gestureRecognizers" destination="kuP-jV-mbc" appends="YES" id="85Y-h8-Po0"/>
+                            </connections>
                         </label>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="E58-RD-4NN">
                             <rect key="frame" x="0.0" y="302.5" width="290" height="130"/>
@@ -737,6 +742,11 @@ When the connection has been set, go back to the application and  continue addin
             </constraints>
             <point key="canvasLocation" x="2385.507246376812" y="53.571428571428569"/>
         </view>
+        <tapGestureRecognizer enabled="NO" id="kuP-jV-mbc">
+            <connections>
+                <action selector="onDoneScreenCloudLinkTap:" destination="-1" id="5AV-hU-ALN"/>
+            </connections>
+        </tapGestureRecognizer>
     </objects>
     <resources>
         <image name="btnnextl.png" width="25.5" height="61"/>

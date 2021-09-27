@@ -30,7 +30,7 @@
 @property (copy, nonatomic) NSString *version;
 @property (copy, nonatomic) NSString *guid;
 @property (copy, nonatomic) NSString *mac;
-
+@property (assign, nonatomic) BOOL needsCloudConfig;
 @end
 
 
@@ -57,6 +57,8 @@
 @property (strong, nonatomic) IBOutlet UIView *vStep4;
 @property (strong, nonatomic) IBOutlet UIView *vError;
 @property (strong, nonatomic) IBOutlet UIView *vDone;
+@property (weak, nonatomic) IBOutlet UILabel *txtDoneMessage;
+@property (weak, nonatomic) IBOutlet UIGestureRecognizer *txtDoneTapGr;
 @property (weak, nonatomic) IBOutlet UILabel *txtErrorMEssage;
 @property (weak, nonatomic) IBOutlet UITextField *edSSID;
 @property (weak, nonatomic) IBOutlet UITextField *edPassword;
