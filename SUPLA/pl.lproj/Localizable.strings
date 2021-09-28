@@ -260,3 +260,7 @@
 "1: server timeout" = "1: brak odpowiedzi serwera";
 "2: Wi-Fi connection lost" = "2: utrata połączenia Wi-Fi";
 "3: server connection reset" = "3: reset połączenia z serwerem";
+"Device setup" = "Konfiguracja urządzenia";
+"This device does not have any channels visible in the application. To finish configuration go to cloud.supla.org" = "To urządzenie nie ma żadnych kanałów widocznych w aplikacji. Aby dokończyć konfigurację przejdź do cloud.supla.org";
+"I understand" = "Rozumiem";
+"Go to CLOUD" = "Przejdź do CLOUD";

@@ -15,7 +15,3 @@
  */
 
 "Reveal" = "Open";
-
-"add_device_done_alt" = "To continue configuring this device please go to %0$@";
-/* Name displayed for hyperlinks linking to supla cloud */
-"cloud_name" = "SUPLA Cloud";

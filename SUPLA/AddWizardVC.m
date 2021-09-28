@@ -152,8 +152,8 @@
     do {
     
         NSMutableURLRequest *request =
-        [NSMutableURLRequest requestWithURL:[NSURL URLWithString:@"http://192.168.4.1"] cachePolicy:NSURLRequestReloadIgnoringLocalAndRemoteCacheData timeoutInterval:5];
-        
+	  [NSMutableURLRequest requestWithURL:[NSURL URLWithString:@"http://192.168.4.1"] cachePolicy:NSURLRequestReloadIgnoringLocalAndRemoteCacheData timeoutInterval:5];
+
         [request setHTTPMethod: @"GET"];
         
         NSURLResponse *urlResponse = nil;
@@ -185,7 +185,6 @@
     }
     
     {
-        // TODO: support needsCloudConfig property!
         NSString *html = [[NSString alloc] initWithData:response encoding:NSUTF8StringEncoding];
         NSError  *error = nil;
         NSString *pattern = @"\\<h1\\>(.*)\\<\\/h1\\>\\<span\\>LAST\\ STATE:\\ (.*)\\<br\\>Firmware:\\ (.*)\\<br\\>GUID:\\ (.*)\\<br\\>MAC:\\ (.*)\\<\\/span\\>";
@@ -226,6 +225,11 @@
                 
                 if ( name != nil  ) {
                     [fields setObject:value == nil ? @"" : value forKey:name];
+                }
+                
+                if ( [name isEqualToString: @"no_visible_channels"] &&
+                    [value isEqualToString: @"1"] ) {
+                    result.needsCloudConfig = YES;
                 }
             }
             
@@ -274,7 +278,7 @@
     if ( [self isCancelled] ) {
         return;
     }
-    
+
     retryCount = 3;
     
     [fields setObject:self.SSID forKey:@"sid"];
@@ -657,24 +661,37 @@
             self.lLastState.text = result.state;
             
             if(result.needsCloudConfig) {
-                NSMutableAttributedString *str = [[NSMutableAttributedString alloc]
-                                           initWithString: NSLocalizedString(@"add_device_done_alt", nil)];
-                NSDictionary *attrs = @{
-                    NSLinkAttributeName: [NSURL URLWithString: @"https://cloud.supla.org"]
-                };
-                NSAttributedString *linkAttrStr = [[NSAttributedString alloc]
-                                                   initWithString: NSLocalizedString(@"cloud_name", nil)
-                                                   attributes: attrs];
-                [str replaceCharactersInRange:[str.string rangeOfString:@"%0$@"]
-                         withAttributedString:linkAttrStr];
-                [self.txtDoneTapGr setEnabled: YES];
-                self.txtDoneMessage.attributedText = str;
+                [self showCloudFollowupPopup];
             }
             
             [self showPage:PAGE_DONE];
             break;
     }
     
+}
+
+- (void)showCloudFollowupPopup {
+    UIAlertController *ctrl = [UIAlertController
+                               alertControllerWithTitle: NSLocalizedString(@"Device setup", nil) message: NSLocalizedString(@"This device does not have any channels visible in the application. To finish configuration go to cloud.supla.org", nil)
+                               preferredStyle: UIAlertControllerStyleAlert];
+    [ctrl addAction:
+     [UIAlertAction actionWithTitle: @"I understand"
+                              style: UIAlertActionStyleCancel
+                            handler:^(UIAlertAction * _Nonnull action) {
+        [self dismissViewControllerAnimated:YES completion:nil];
+    }]];
+    [ctrl addAction:
+     [UIAlertAction actionWithTitle: @"Go to CLOUD"
+                              style: UIAlertActionStyleDefault
+                            handler:^(UIAlertAction * _Nonnull action) {
+        [self dismissViewControllerAnimated:YES completion: ^{
+            [[UIApplication sharedApplication] openURL:
+             [NSURL URLWithString:@"https://cloud.supla.org"]];
+        }];
+    }]];
+
+    [self presentViewController:ctrl animated:YES completion:nil];
+     
 }
 
 - (IBAction)onDoneScreenCloudLinkTap: (UITapGestureRecognizer *)gr {
