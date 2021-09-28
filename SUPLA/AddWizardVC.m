@@ -672,16 +672,17 @@
 
 - (void)showCloudFollowupPopup {
     UIAlertController *ctrl = [UIAlertController
-                               alertControllerWithTitle: NSLocalizedString(@"Device setup", nil) message: NSLocalizedString(@"This device does not have any channels visible in the application. To finish configuration go to cloud.supla.org", nil)
+                               alertControllerWithTitle: NSLocalizedString(@"Device setup", nil)
+                               message: NSLocalizedString(@"This device does not have any channels visible in the application. To finish configuration go to cloud.supla.org", nil)
                                preferredStyle: UIAlertControllerStyleAlert];
     [ctrl addAction:
-     [UIAlertAction actionWithTitle: @"I understand"
+     [UIAlertAction actionWithTitle: NSLocalizedString(@"I understand", nil)
                               style: UIAlertActionStyleCancel
                             handler:^(UIAlertAction * _Nonnull action) {
         [self dismissViewControllerAnimated:YES completion:nil];
     }]];
     [ctrl addAction:
-     [UIAlertAction actionWithTitle: @"Go to CLOUD"
+     [UIAlertAction actionWithTitle: NSLocalizedString(@"Go to CLOUD", nil)
                               style: UIAlertActionStyleDefault
                             handler:^(UIAlertAction * _Nonnull action) {
         [self dismissViewControllerAnimated:YES completion: ^{
