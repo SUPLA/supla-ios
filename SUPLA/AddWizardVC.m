@@ -59,6 +59,7 @@
 @synthesize version;
 @synthesize guid;
 @synthesize mac;
+@synthesize needsCloudConfig;
 
 @end
 
@@ -151,8 +152,8 @@
     do {
     
         NSMutableURLRequest *request =
-        [NSMutableURLRequest requestWithURL:[NSURL URLWithString:@"http://192.168.4.1"] cachePolicy:NSURLRequestReloadIgnoringLocalAndRemoteCacheData timeoutInterval:5];
-        
+	  [NSMutableURLRequest requestWithURL:[NSURL URLWithString:@"http://192.168.4.1"] cachePolicy:NSURLRequestReloadIgnoringLocalAndRemoteCacheData timeoutInterval:5];
+
         [request setHTTPMethod: @"GET"];
         
         NSURLResponse *urlResponse = nil;
@@ -225,6 +226,11 @@
                 if ( name != nil  ) {
                     [fields setObject:value == nil ? @"" : value forKey:name];
                 }
+                
+                if ( [name isEqualToString: @"no_visible_channels"] &&
+                    [value isEqualToString: @"1"] ) {
+                    result.needsCloudConfig = YES;
+                }
             }
             
         }
@@ -272,7 +278,7 @@
     if ( [self isCancelled] ) {
         return;
     }
-    
+
     retryCount = 3;
     
     [fields setObject:self.SSID forKey:@"sid"];
@@ -654,9 +660,42 @@
             self.lMAC.text = result.mac;
             self.lLastState.text = result.state;
             
+            if(result.needsCloudConfig) {
+                [self showCloudFollowupPopup];
+            }
+            
             [self showPage:PAGE_DONE];
             break;
     }
+    
+}
+
+- (void)showCloudFollowupPopup {
+    UIAlertController *ctrl = [UIAlertController
+                               alertControllerWithTitle: NSLocalizedString(@"Device setup", nil)
+                               message: NSLocalizedString(@"This device does not have any channels visible in the application. To finish configuration go to cloud.supla.org", nil)
+                               preferredStyle: UIAlertControllerStyleAlert];
+    [ctrl addAction:
+     [UIAlertAction actionWithTitle: NSLocalizedString(@"I understand", nil)
+                              style: UIAlertActionStyleCancel
+                            handler:^(UIAlertAction * _Nonnull action) {
+        [self dismissViewControllerAnimated:YES completion:nil];
+    }]];
+    [ctrl addAction:
+     [UIAlertAction actionWithTitle: NSLocalizedString(@"Go to CLOUD", nil)
+                              style: UIAlertActionStyleDefault
+                            handler:^(UIAlertAction * _Nonnull action) {
+        [self dismissViewControllerAnimated:YES completion: ^{
+            [[UIApplication sharedApplication] openURL:
+             [NSURL URLWithString:@"https://cloud.supla.org"]];
+        }];
+    }]];
+
+    [self presentViewController:ctrl animated:YES completion:nil];
+     
+}
+
+- (IBAction)onDoneScreenCloudLinkTap: (UITapGestureRecognizer *)gr {
     
 }
 
