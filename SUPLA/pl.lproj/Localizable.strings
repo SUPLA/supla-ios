@@ -264,3 +264,4 @@
 "This device does not have any channels visible in the application. To finish configuration go to cloud.supla.org" = "To urządzenie nie ma żadnych kanałów widocznych w aplikacji. Aby dokończyć konfigurację przejdź do cloud.supla.org";
 "I understand" = "Rozumiem";
 "Go to CLOUD" = "Przejdź do CLOUD";
+"The function of the channel associated with the action trigger cannot be changed." = "Nie można zmienić funkcji kanału powiązanego z wyzwalaczem akcji.";
