@@ -22,9 +22,13 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 }
 
 -(void)setChannel:(SAChannelBase *)channel {
-    _channel = channel;
+
     if (channel && [channel isKindOfClass:[SAChannel class]]) {
+        _channel = channel;
         self.image = ((SAChannel*) channel).warningIcon;
+    } else {
+        _channel = nil;
+        self.image = nil;
     }
     
     if (self.image) {
