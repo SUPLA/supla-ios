@@ -353,7 +353,7 @@
 		408034C51BC83D1A007666E7 /* MGSwipeTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 408034C31BC83D1A007666E7 /* MGSwipeTableCell.m */; };
 		408034E51BC84A89007666E7 /* NavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 408034E31BC84A89007666E7 /* NavigationController.m */; };
 		408034E61BC84A89007666E7 /* NavigationController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 408034E41BC84A89007666E7 /* NavigationController.xib */; };
-		40844D7F1FB0DDB000432AA0 /* SettingsVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 40844D811FB0DDB000432AA0 /* SettingsVC.xib */; };
+		40844D7F1FB0DDB000432AA0 /* AuthVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 40844D811FB0DDB000432AA0 /* AuthVC.xib */; };
 		4091654B1F3CBAF200F49193 /* rs_stop.png in Resources */ = {isa = PBXBuildFile; fileRef = 409165461F3CBAF200F49193 /* rs_stop.png */; };
 		4091654C1F3CBAF200F49193 /* rs_up.png in Resources */ = {isa = PBXBuildFile; fileRef = 409165471F3CBAF200F49193 /* rs_up.png */; };
 		4091654D1F3CBAF200F49193 /* rs_down.png in Resources */ = {isa = PBXBuildFile; fileRef = 409165481F3CBAF200F49193 /* rs_down.png */; };
@@ -491,8 +491,12 @@
 		40F7301120C19BA600167C2D /* SAColorListItem+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 40F7301020C19BA600167C2D /* SAColorListItem+CoreDataProperties.m */; };
 		40F951451FD0654900698587 /* RSDetail.xib in Resources */ = {isa = PBXBuildFile; fileRef = 40F951471FD0654900698587 /* RSDetail.xib */; };
 		462253FD963449A978BBDDE8 /* Pods_SUPLA.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 596D36089B2CE979388A06FF /* Pods_SUPLA.framework */; };
+		AE5A60E6270E2A7A00F2B780 /* AuthVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE5A60E5270E2A7A00F2B780 /* AuthVC.swift */; };
 		AEBCD8FC26E4D247001904F3 /* TemperaturePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEBCD8FB26E4D247001904F3 /* TemperaturePresenter.swift */; };
 		AEBCD8FE26E4D52C001904F3 /* TemperatureUnitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEBCD8FD26E4D52C001904F3 /* TemperatureUnitTests.swift */; };
+		AECB1BE5270EB56F001A9714 /* AuthVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = AECB1BE4270EB56F001A9714 /* AuthVM.swift */; };
+		AED6395E270CA3A800E5105B /* RoundedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = AED6395D270CA3A800E5105B /* RoundedButton.swift */; };
+		AED63961270CA46C00E5105B /* UIColor+Supla.swift in Sources */ = {isa = PBXBuildFile; fileRef = AED63960270CA46C00E5105B /* UIColor+Supla.swift */; };
 		AEFBC24F26E37CD800414C19 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEFBC24E26E37CD800414C19 /* Config.swift */; };
 		AEFBC25226E39EFC00414C19 /* ConfigTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEFBC25126E39EFC00414C19 /* ConfigTests.swift */; };
 		B2DA9E0A10D8023EEDA25970 /* Pods_SUPLATests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 76FF65EADE7763EB8D61BC35 /* Pods_SUPLATests.framework */; };
@@ -829,7 +833,7 @@
 		01BDAC7722C5200600915646 /* SAOAuthToken.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SAOAuthToken.m; sourceTree = "<group>"; };
 		01BE3C85233EAFEC00201B47 /* HomePlusDetailViewGroupCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HomePlusDetailViewGroupCell.h; sourceTree = "<group>"; };
 		01BE3C86233EAFEC00201B47 /* HomePlusDetailViewGroupCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HomePlusDetailViewGroupCell.m; sourceTree = "<group>"; };
-		01BF82BF2347558D00C9EE9F /* sk-SK */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "sk-SK"; path = "sk-SK.lproj/SettingsVC.strings"; sourceTree = "<group>"; };
+		01BF82BF2347558D00C9EE9F /* sk-SK */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "sk-SK"; path = "sk-SK.lproj/AuthVC.strings"; sourceTree = "<group>"; };
 		01BF82C02347558D00C9EE9F /* sk-SK */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "sk-SK"; path = "sk-SK.lproj/AboutVC.strings"; sourceTree = "<group>"; };
 		01BF82C22347558D00C9EE9F /* sk-SK */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "sk-SK"; path = "sk-SK.lproj/ElectricityMeterDetailView.strings"; sourceTree = "<group>"; };
 		01BF82C32347558D00C9EE9F /* sk-SK */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "sk-SK"; path = "sk-SK.lproj/HomePlusDetailView.strings"; sourceTree = "<group>"; };
@@ -837,7 +841,7 @@
 		01BF82C52347558D00C9EE9F /* sk-SK */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "sk-SK"; path = "sk-SK.lproj/AddWizardVC.strings"; sourceTree = "<group>"; };
 		01BF82C62347558D00C9EE9F /* sk-SK */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "sk-SK"; path = "sk-SK.lproj/HomePlusDetailViewGroupCell.strings"; sourceTree = "<group>"; };
 		01BF82C72347558D00C9EE9F /* sk-SK */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "sk-SK"; path = "sk-SK.lproj/Localizable.strings"; sourceTree = "<group>"; };
-		01BF82C82347567700C9EE9F /* sl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sl; path = sl.lproj/SettingsVC.strings; sourceTree = "<group>"; };
+		01BF82C82347567700C9EE9F /* sl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sl; path = sl.lproj/AuthVC.strings; sourceTree = "<group>"; };
 		01BF82C92347567700C9EE9F /* sl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sl; path = sl.lproj/AboutVC.strings; sourceTree = "<group>"; };
 		01BF82CB2347567700C9EE9F /* sl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sl; path = sl.lproj/ElectricityMeterDetailView.strings; sourceTree = "<group>"; };
 		01BF82CC2347567800C9EE9F /* sl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sl; path = sl.lproj/HomePlusDetailView.strings; sourceTree = "<group>"; };
@@ -845,7 +849,7 @@
 		01BF82CE2347567800C9EE9F /* sl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sl; path = sl.lproj/AddWizardVC.strings; sourceTree = "<group>"; };
 		01BF82CF2347567800C9EE9F /* sl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sl; path = sl.lproj/HomePlusDetailViewGroupCell.strings; sourceTree = "<group>"; };
 		01BF82D02347567800C9EE9F /* sl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sl; path = sl.lproj/Localizable.strings; sourceTree = "<group>"; };
-		01BF82D12347569400C9EE9F /* nb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nb; path = nb.lproj/SettingsVC.strings; sourceTree = "<group>"; };
+		01BF82D12347569400C9EE9F /* nb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nb; path = nb.lproj/AuthVC.strings; sourceTree = "<group>"; };
 		01BF82D22347569400C9EE9F /* nb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nb; path = nb.lproj/AboutVC.strings; sourceTree = "<group>"; };
 		01BF82D42347569400C9EE9F /* nb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nb; path = nb.lproj/ElectricityMeterDetailView.strings; sourceTree = "<group>"; };
 		01BF82D52347569400C9EE9F /* nb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nb; path = nb.lproj/HomePlusDetailView.strings; sourceTree = "<group>"; };
@@ -853,7 +857,7 @@
 		01BF82D72347569400C9EE9F /* nb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nb; path = nb.lproj/AddWizardVC.strings; sourceTree = "<group>"; };
 		01BF82D82347569500C9EE9F /* nb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nb; path = nb.lproj/HomePlusDetailViewGroupCell.strings; sourceTree = "<group>"; };
 		01BF82D92347569500C9EE9F /* nb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nb; path = nb.lproj/Localizable.strings; sourceTree = "<group>"; };
-		01BF82DA2347569F00C9EE9F /* el */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = el; path = el.lproj/SettingsVC.strings; sourceTree = "<group>"; };
+		01BF82DA2347569F00C9EE9F /* el */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = el; path = el.lproj/AuthVC.strings; sourceTree = "<group>"; };
 		01BF82DB2347569F00C9EE9F /* el */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = el; path = el.lproj/AboutVC.strings; sourceTree = "<group>"; };
 		01BF82DD2347569F00C9EE9F /* el */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = el; path = el.lproj/ElectricityMeterDetailView.strings; sourceTree = "<group>"; };
 		01BF82DE2347569F00C9EE9F /* el */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = el; path = el.lproj/HomePlusDetailView.strings; sourceTree = "<group>"; };
@@ -861,7 +865,7 @@
 		01BF82E0234756A000C9EE9F /* el */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = el; path = el.lproj/AddWizardVC.strings; sourceTree = "<group>"; };
 		01BF82E1234756A000C9EE9F /* el */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = el; path = el.lproj/HomePlusDetailViewGroupCell.strings; sourceTree = "<group>"; };
 		01BF82E2234756A000C9EE9F /* el */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = el; path = el.lproj/Localizable.strings; sourceTree = "<group>"; };
-		01BF82E3234756B500C9EE9F /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = nl.lproj/SettingsVC.strings; sourceTree = "<group>"; };
+		01BF82E3234756B500C9EE9F /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = nl.lproj/AuthVC.strings; sourceTree = "<group>"; };
 		01BF82E4234756B500C9EE9F /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = nl.lproj/AboutVC.strings; sourceTree = "<group>"; };
 		01BF82E6234756B500C9EE9F /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = nl.lproj/ElectricityMeterDetailView.strings; sourceTree = "<group>"; };
 		01BF82E7234756B500C9EE9F /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = nl.lproj/HomePlusDetailView.strings; sourceTree = "<group>"; };
@@ -1138,14 +1142,14 @@
 		408034E21BC84A89007666E7 /* NavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NavigationController.h; sourceTree = "<group>"; };
 		408034E31BC84A89007666E7 /* NavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NavigationController.m; sourceTree = "<group>"; };
 		408034E41BC84A89007666E7 /* NavigationController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NavigationController.xib; sourceTree = "<group>"; };
-		40844D831FB0DDB500432AA0 /* pl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pl; path = pl.lproj/SettingsVC.strings; sourceTree = "<group>"; };
-		40844D841FB0DDC400432AA0 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/SettingsVC.strings; sourceTree = "<group>"; };
-		40844D851FB0DDC600432AA0 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/SettingsVC.strings; sourceTree = "<group>"; };
-		40844D861FB0DDC800432AA0 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/SettingsVC.strings; sourceTree = "<group>"; };
-		40844D871FB0DDCA00432AA0 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/SettingsVC.strings; sourceTree = "<group>"; };
-		40844D881FB0DDCC00432AA0 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/SettingsVC.strings; sourceTree = "<group>"; };
-		40844D891FB0DDCF00432AA0 /* pt-PT */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-PT"; path = "pt-PT.lproj/SettingsVC.strings"; sourceTree = "<group>"; };
-		40844D8A1FB0DF3B00432AA0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/SettingsVC.xib; sourceTree = "<group>"; };
+		40844D831FB0DDB500432AA0 /* pl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pl; path = pl.lproj/AuthVC.strings; sourceTree = "<group>"; };
+		40844D841FB0DDC400432AA0 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/AuthVC.strings; sourceTree = "<group>"; };
+		40844D851FB0DDC600432AA0 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/AuthVC.strings; sourceTree = "<group>"; };
+		40844D861FB0DDC800432AA0 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/AuthVC.strings; sourceTree = "<group>"; };
+		40844D871FB0DDCA00432AA0 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/AuthVC.strings; sourceTree = "<group>"; };
+		40844D881FB0DDCC00432AA0 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/AuthVC.strings; sourceTree = "<group>"; };
+		40844D891FB0DDCF00432AA0 /* pt-PT */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-PT"; path = "pt-PT.lproj/AuthVC.strings"; sourceTree = "<group>"; };
+		40844D8A1FB0DF3B00432AA0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/AuthVC.xib; sourceTree = "<group>"; };
 		409165331F3C7B5700F49193 /* pl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pl; path = pl.lproj/AboutVC.strings; sourceTree = "<group>"; };
 		409165341F3C7B6300F49193 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/AboutVC.strings; sourceTree = "<group>"; };
 		409165351F3C7B6D00F49193 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/AboutVC.strings; sourceTree = "<group>"; };
@@ -1182,7 +1186,7 @@
 		40A87DDE1FADDFF800918B54 /* add_device@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "add_device@2x.png"; path = "Resources/Assets/Img/add_device@2x.png"; sourceTree = "<group>"; };
 		40AB8BDC1DCB32EB0030F3DE /* SARateApp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SARateApp.h; sourceTree = "<group>"; };
 		40AB8BDD1DCB32EB0030F3DE /* SARateApp.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SARateApp.m; sourceTree = "<group>"; };
-		40AC4F332094B23C004DB7CD /* lt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = lt; path = lt.lproj/SettingsVC.strings; sourceTree = "<group>"; };
+		40AC4F332094B23C004DB7CD /* lt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = lt; path = lt.lproj/AuthVC.strings; sourceTree = "<group>"; };
 		40AC4F342094B23C004DB7CD /* lt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = lt; path = lt.lproj/AboutVC.strings; sourceTree = "<group>"; };
 		40AC4F362094B23D004DB7CD /* lt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = lt; path = lt.lproj/RSDetail.strings; sourceTree = "<group>"; };
 		40AC4F372094B23D004DB7CD /* lt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = lt; path = lt.lproj/AddWizardVC.strings; sourceTree = "<group>"; };
@@ -1299,7 +1303,7 @@
 		40CF96D71BC81A470030EFFF /* warning@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "warning@3x.png"; path = "Resources/Assets/Img/warning@3x.png"; sourceTree = "<group>"; };
 		40CF96DC1BC820E60030EFFF /* UIHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIHelper.h; sourceTree = "<group>"; };
 		40CF96DD1BC820E60030EFFF /* UIHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIHelper.m; sourceTree = "<group>"; };
-		40D2B413207B857600608312 /* cs */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = cs; path = cs.lproj/SettingsVC.strings; sourceTree = "<group>"; };
+		40D2B413207B857600608312 /* cs */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = cs; path = cs.lproj/AuthVC.strings; sourceTree = "<group>"; };
 		40D2B414207B857600608312 /* cs */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = cs; path = cs.lproj/AboutVC.strings; sourceTree = "<group>"; };
 		40D2B416207B857700608312 /* cs */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = cs; path = cs.lproj/RSDetail.strings; sourceTree = "<group>"; };
 		40D2B417207B857700608312 /* cs */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = cs; path = cs.lproj/AddWizardVC.strings; sourceTree = "<group>"; };
@@ -1345,8 +1349,12 @@
 		596D36089B2CE979388A06FF /* Pods_SUPLA.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SUPLA.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5CB83473B6995044CF8448E7 /* Pods-SUPLATests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SUPLATests.release.xcconfig"; path = "Target Support Files/Pods-SUPLATests/Pods-SUPLATests.release.xcconfig"; sourceTree = "<group>"; };
 		76FF65EADE7763EB8D61BC35 /* Pods_SUPLATests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SUPLATests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		AE5A60E5270E2A7A00F2B780 /* AuthVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthVC.swift; sourceTree = "<group>"; };
 		AEBCD8FB26E4D247001904F3 /* TemperaturePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemperaturePresenter.swift; sourceTree = "<group>"; };
 		AEBCD8FD26E4D52C001904F3 /* TemperatureUnitTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemperatureUnitTests.swift; sourceTree = "<group>"; };
+		AECB1BE4270EB56F001A9714 /* AuthVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthVM.swift; sourceTree = "<group>"; };
+		AED6395D270CA3A800E5105B /* RoundedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedButton.swift; sourceTree = "<group>"; };
+		AED63960270CA46C00E5105B /* UIColor+Supla.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Supla.swift"; sourceTree = "<group>"; };
 		AEFBC24E26E37CD800414C19 /* Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
 		AEFBC25026E39EFC00414C19 /* SUPLATests-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SUPLATests-Bridging-Header.h"; sourceTree = "<group>"; };
 		AEFBC25126E39EFC00414C19 /* ConfigTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigTests.swift; sourceTree = "<group>"; };
@@ -1411,7 +1419,7 @@
 				407D31961FD1A7070062FB80 /* AddWizardVC.xib */,
 				4077ACE220A21BB100BD2216 /* CreateAccountVC.xib */,
 				01F9111022EF989100BFF91D /* HomePlusCell.xib */,
-				40844D811FB0DDB000432AA0 /* SettingsVC.xib */,
+				40844D811FB0DDB000432AA0 /* AuthVC.xib */,
 				401CA1EE1BA0923600117AF4 /* MainVC.xib */,
 				408034E41BC84A89007666E7 /* NavigationController.xib */,
 				01D4293922AAAA450050C1A2 /* IncrementalMeterCell.xib */,
@@ -1431,7 +1439,6 @@
 				013D73AF22DD105400E3515A /* SAChartFilterField.m */,
 				013D73A622DCAEF400E3515A /* SAIncrementalMeterChartMarkerView.xib */,
 				01D5E0C922DB8F0A00FBE1DC /* SAChartMarkerView.xib */,
-				01D5E0C622DB7FAE00FBE1DC /* SUPLA-Bridging-Header.h */,
 				013D1C5B22CE47D5000C0784 /* SAChartHelper.h */,
 				013D1C5C22CE47D5000C0784 /* SAChartHelper.m */,
 				013D1C5E22CE757F000C0784 /* SAIncrementalMeterChartHelper.h */,
@@ -1535,6 +1542,7 @@
 		401CA1BB1BA067DB00117AF4 /* SUPLA */ = {
 			isa = PBXGroup;
 			children = (
+				01D5E0C622DB7FAE00FBE1DC /* SUPLA-Bridging-Header.h */,
 				AEBCD8FA26E4D212001904F3 /* DataPresenters */,
 				AEFBC24D26E37CA300414C19 /* Config */,
 				01CEAC1B25B99D47009C3BFD /* Value */,
@@ -2073,6 +2081,9 @@
 		40A675851BA1BEBF004A51C4 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				AE5A60E4270E2A4100F2B780 /* Cfg */,
+				AED6395F270CA45000E5105B /* Extensions */,
+				AED6395C270CA37A00E5105B /* Controls */,
 				40DE1A331BCD1B55004CF43B /* AboutVC.h */,
 				40DE1A341BCD1B55004CF43B /* AboutVC.m */,
 				403EB1111FBDF47F00AD6460 /* AddWizardVC.h */,
@@ -2202,12 +2213,37 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		AE5A60E4270E2A4100F2B780 /* Cfg */ = {
+			isa = PBXGroup;
+			children = (
+				AE5A60E5270E2A7A00F2B780 /* AuthVC.swift */,
+				AECB1BE4270EB56F001A9714 /* AuthVM.swift */,
+			);
+			path = Cfg;
+			sourceTree = "<group>";
+		};
 		AEBCD8FA26E4D212001904F3 /* DataPresenters */ = {
 			isa = PBXGroup;
 			children = (
 				AEBCD8FB26E4D247001904F3 /* TemperaturePresenter.swift */,
 			);
 			path = DataPresenters;
+			sourceTree = "<group>";
+		};
+		AED6395C270CA37A00E5105B /* Controls */ = {
+			isa = PBXGroup;
+			children = (
+				AED6395D270CA3A800E5105B /* RoundedButton.swift */,
+			);
+			path = Controls;
+			sourceTree = "<group>";
+		};
+		AED6395F270CA45000E5105B /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				AED63960270CA46C00E5105B /* UIColor+Supla.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 		AEFBC24D26E37CA300414C19 /* Config */ = {
@@ -2322,7 +2358,7 @@
 				013A1BFD2538BAA0000583A2 /* roofwindow-open@2x.png in Resources */,
 				010714802656EC43009C119F /* SAZWaveWakeupSettingsDialog.xib in Resources */,
 				40CF96C51BC7D4E70030EFFF /* power-on@3x.png in Resources */,
-				40844D7F1FB0DDB000432AA0 /* SettingsVC.xib in Resources */,
+				40844D7F1FB0DDB000432AA0 /* AuthVC.xib in Resources */,
 				017554F822F1CDB900EB58B7 /* heatpollogo@3x.png in Resources */,
 				4052DA0D1DC515AE000B8C45 /* rgb-off@2x.png in Resources */,
 				40CE7C6B1DCBBD5700BBACE4 /* depth@2x.png in Resources */,
@@ -2677,10 +2713,18 @@
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-SUPLA/Pods-SUPLA-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Charts/Charts.framework",
+				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
+				"${BUILT_PRODUCTS_DIR}/RxRelay/RxRelay.framework",
+				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/RxSwiftExt/RxSwiftExt.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Charts.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxRelay.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwiftExt.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -2729,6 +2773,7 @@
 				404749BD20BC6070005DA345 /* SAChannel+CoreDataClass.m in Sources */,
 				404749BC20BC6058005DA345 /* SAColorListItem+CoreDataClass.m in Sources */,
 				40E8BE891FC06A5600FB2FE6 /* TFHppleElement.m in Sources */,
+				AED63961270CA46C00E5105B /* UIColor+Supla.swift in Sources */,
 				01A195E2264B264A006D2A20 /* SAChannelCaptionSetResult.m in Sources */,
 				01C1719922C7F55B005983E1 /* SAMeasurementItem+CoreDataClass.m in Sources */,
 				019170A1233D4D5A00820BDB /* SADownloadThermostatMeasurements.m in Sources */,
@@ -2741,6 +2786,7 @@
 				0148933425AA12DB00B9974E /* SADiwCalibrationTool.m in Sources */,
 				01C1719222C7F3A2005983E1 /* SAElectricityMeasurementItem+CoreDataProperties.m in Sources */,
 				40AB8BDE1DCB32EB0030F3DE /* SARateApp.m in Sources */,
+				AE5A60E6270E2A7A00F2B780 /* AuthVC.swift in Sources */,
 				01C1719122C7F3A2005983E1 /* SAElectricityMeasurementItem+CoreDataClass.m in Sources */,
 				40C7BA7720C047CF00ACEE42 /* SAChannel+CoreDataProperties.m in Sources */,
 				40CF96DE1BC820E60030EFFF /* UIHelper.m in Sources */,
@@ -2822,6 +2868,7 @@
 				01EE9BBC22BA50D90029A142 /* SAChannelValueBase+CoreDataProperties.m in Sources */,
 				01C792FA22B7FB610020A900 /* SAChannelExtendedValue+CoreDataClass.m in Sources */,
 				01902A28235A180F005ED935 /* TempHumidityDetailView.m in Sources */,
+				AECB1BE5270EB56F001A9714 /* AuthVM.swift in Sources */,
 				0122613922F396440013E6A2 /* SAThermostatCalendar.m in Sources */,
 				010714732656A6FB009C119F /* SAZWaveWakeupSettingsDialog.m in Sources */,
 				01FCDA78264F28C4002D776F /* SAZWaveNodeResult.m in Sources */,
@@ -2837,6 +2884,7 @@
 				4006E90A1DC62D0A00C4456D /* DetailView.m in Sources */,
 				01D6A0F2249BD2F7006B3757 /* SASuperuserAuthorizationDialog.m in Sources */,
 				01BDAC7822C5200600915646 /* SAOAuthToken.m in Sources */,
+				AED6395E270CA3A800E5105B /* RoundedButton.swift in Sources */,
 				015A9846265595E300B6E6C6 /* UIButton+SUPLA.m in Sources */,
 				40C7BA5220C007A300ACEE42 /* SAChannelValue+CoreDataClass.m in Sources */,
 				01DD2F0F247719000025DFF9 /* SARangeCalibrationWheel.m in Sources */,
@@ -3132,7 +3180,7 @@
 			name = AddWizardVC.xib;
 			sourceTree = "<group>";
 		};
-		40844D811FB0DDB000432AA0 /* SettingsVC.xib */ = {
+		40844D811FB0DDB000432AA0 /* AuthVC.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
 				40844D831FB0DDB500432AA0 /* pl */,
@@ -3151,7 +3199,7 @@
 				01BF82DA2347569F00C9EE9F /* el */,
 				01BF82E3234756B500C9EE9F /* nl */,
 			);
-			name = SettingsVC.xib;
+			name = AuthVC.xib;
 			sourceTree = "<group>";
 		};
 		40DB208F1DC9049400FAFAB0 /* RGBWDetail.xib */ = {

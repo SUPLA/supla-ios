@@ -20,6 +20,7 @@
 #import "UIHelper.h"
 #import "SuplaApp.h"
 #import "NavigationController.h"
+#import "SUPLA-Swift.h"
 #import <QuartzCore/QuartzCore.h>
 
 @implementation UIView (SUPLA)
@@ -103,10 +104,10 @@
     }
 }
 
--(SASettingsVC *) SettingsVC {
+-(UIViewController *) SettingsVC {
     
     if ( _SettingsVC == nil ) {
-        _SettingsVC = [[SASettingsVC alloc] initWithNibName:@"SettingsVC" bundle:nil];
+        _SettingsVC = [[AuthVC alloc] initWithNibName:@"AuthVC" bundle:nil];
     }
     
     return _SettingsVC;
