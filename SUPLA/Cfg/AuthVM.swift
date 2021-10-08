@@ -48,7 +48,8 @@ class AuthVM {
     init(basicEmail: Observable<String?>,
          toggleAdvancedState: Observable<Bool>,
          advancedModeAuthType: Observable<AuthType>,
-         createAccountRequest: Observable<Void>) {
+         createAccountRequest: Observable<Void>,
+         autoServerSelected: Observable<Bool>) {
         toggleAdvancedState.subscribe { [weak self] _ in
             guard let ss = self else { return }
             ss._advancedMode.accept(!ss._advancedMode.value)
@@ -62,6 +63,9 @@ class AuthVM {
             self?._initiateSignup.on(.next(()))
         }).disposed(by: disposeBag)
         
+        autoServerSelected.subscribe { [weak self] in
+            print("selected \($0)")
+        }.disposed(by: disposeBag)
     }
     
     

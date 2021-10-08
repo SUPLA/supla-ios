@@ -16,13 +16,32 @@
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 
+
 import UIKit
 
-extension UIColor {
-    static var suplaGreen = UIColor(red: 0, green: 209.0/255.0, blue: 81.0/255.0,
-                                    alpha: 1)
-    static var ctrlBorder = UIColor(red: 118.0/255.0, green: 120.0/255.0,
-                                    blue: 128.0/255.0, alpha: 0.12)
-    static var viewBackground = UIColor(red: 0.898, green: 0.898, blue: 0.898,
-                                        alpha: 1)
+class CheckBox: UIButton {
+
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        setUp()
+    }
+    
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+        setUp()
+    }
+
+    private func setUp() {
+        backgroundColor = .white
+        layer.cornerRadius = 9
+        layer.borderColor = UIColor.ctrlBorder.cgColor
+        layer.borderWidth = 1
+        addTarget(self, action: #selector(onTap), for: .touchUpInside)
+        setImage(UIImage(named: "check"), for: .selected)
+    }
+    
+    @objc private func onTap() {
+        self.isSelected = !self.isSelected
+    }
 }

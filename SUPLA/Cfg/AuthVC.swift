@@ -40,7 +40,7 @@ class AuthVC: UIViewController {
     @IBOutlet private var adAccessID: UITextField!
     @IBOutlet private var adAccessPwd: UITextField!
     @IBOutlet private var adServerAddrAccessId: UITextField!
-    @IBOutlet private var adServerAuto: UIButton! // TODO: replace with control
+    @IBOutlet private var adServerAuto: CheckBox!
     @IBOutlet private var adFormHostView: UIView!
     @IBOutlet private var adFormEmailAuth: UIView!
     @IBOutlet private var adFormAccessIdAuth: UIView!
@@ -52,6 +52,9 @@ class AuthVC: UIViewController {
     }
     
     private func configureUI() {
+        [vBasic, vAdvanced, adFormHostView, adFormEmailAuth, adFormAccessIdAuth].forEach {
+            $0.backgroundColor = .viewBackground
+        }
         bsCreateAccountButton.setAttributedTitle(NSLocalizedString("Create an account", comment: ""))
         [adFormEmailAuth, adFormAccessIdAuth].forEach {
             $0?.translatesAutoresizingMaskIntoConstraints = false
@@ -67,7 +70,10 @@ class AuthVC: UIViewController {
                                           advancedModeToggle.rx.isOn.asObservable()).merge().asObservable(),
                     advancedModeAuthType: adAuthType.rx.selectedSegmentIndex.asObservable().map({ AuthVM.AuthType(rawValue: $0)!
                     }),
-                        createAccountRequest: bsCreateAccountButton.rx.tap.asObservable())
+                        createAccountRequest: bsCreateAccountButton.rx.tap.asObservable(),
+                        autoServerSelected: adServerAuto.rx.tap.asObservable().map({
+                            self.adServerAuto.isSelected
+                        }))
         vM.isAdvancedMode.bind(to: self.advancedModeToggle.rx.isOn,
                                self.basicModeToggle.rx.isOn)
             .disposed(by: disposeBag)

@@ -284,7 +284,7 @@
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uAg-Rg-Kyk">
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uAg-Rg-Kyk" customClass="CheckBox" customModule="SUPLA" customModuleProvider="target">
                     <rect key="frame" x="260" y="122" width="34" height="34"/>
                     <constraints>
                         <constraint firstAttribute="width" secondItem="uAg-Rg-Kyk" secondAttribute="height" id="5ql-Bh-Flt"/>
