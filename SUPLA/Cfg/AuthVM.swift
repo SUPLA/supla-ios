@@ -28,6 +28,10 @@ class AuthVM {
     }
     private let _advancedMode = BehaviorRelay(value: false)
     
+    var serverAddress: Observable<String?> {
+        return Observable.just(nil)
+    }
+    
     enum AuthType: Int {
         case email = 0
         case accessId = 1
