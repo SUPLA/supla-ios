@@ -50,6 +50,7 @@
     SASettingsVC * _SettingsVC;
     SAMainVC * _MainVC;
     SAStatusVC *_StatusVC;
+    AuthVC *_AuthVC;
     SAAboutVC *_AboutVC;
     SAAddWizardVC *_AddWizardVC;
     SACreateAccountVC *_CreateAccountVC;
@@ -105,28 +106,37 @@
 }
 
 -(UIViewController *) SettingsVC {
+    // FIXME: needs implementation
+    abort();
+    return nil;
+}
     
-    if ( _SettingsVC == nil ) {
-        _SettingsVC = [[AuthVC alloc] initWithNibName:@"AuthVC" bundle:nil];
+- (AuthVC *)AuthVC {
+    if ( _AuthVC == nil ) {
+        _AuthVC = [[AuthVC alloc] initWithNibName:@"AuthVC" bundle:nil];
     }
     
-    return _SettingsVC;
+    return _AuthVC;
 }
 
--(void)showSettings {
+-(void)showAuthVC {
     
     if ( [SAApp SuplaClientConnected] ) {
         
-        [self.NavController showViewController:[self SettingsVC]];
+        [self.NavController showViewController:[self AuthVC]];
         [self fadeToViewController:[self NavController]];
         
     } else {
         
         [self.NavController showViewController:nil];
-        [self fadeToViewController:[self SettingsVC]];
+        [self fadeToViewController:[self AuthVC]];
         
     }
     
+}
+
+-(void)showSettings {
+    // TODO: needs implementation
 }
 
 

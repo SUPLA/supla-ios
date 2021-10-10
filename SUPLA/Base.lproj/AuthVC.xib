@@ -24,6 +24,7 @@
                 <outlet property="adAccessID" destination="qK6-Tp-xIc" id="lce-j4-rlF"/>
                 <outlet property="adAccessPwd" destination="NZC-vd-0jU" id="Wnp-m7-bZs"/>
                 <outlet property="adAuthType" destination="7Sb-Yz-hv3" id="M2T-8x-xyp"/>
+                <outlet property="adConfirmButton" destination="DlK-1Z-imw" id="Wja-3Z-sUN"/>
                 <outlet property="adEmailAddr" destination="qeB-mT-UXV" id="WPN-yp-hEP"/>
                 <outlet property="adFormAccessIdAuth" destination="6LZ-hf-ytq" id="Z5H-we-s4o"/>
                 <outlet property="adFormEmailAuth" destination="PVE-Oc-Cs0" id="x9M-vg-EG3"/>
@@ -33,6 +34,7 @@
                 <outlet property="adServerAuto" destination="uAg-Rg-Kyk" id="gnm-Pe-jp4"/>
                 <outlet property="advancedModeToggle" destination="dW2-kK-JW9" id="x0q-4F-9eQ"/>
                 <outlet property="basicModeToggle" destination="0sl-a5-i6b" id="Wds-ek-AWZ"/>
+                <outlet property="bsConfirmButton" destination="idq-5S-KHO" id="kAK-Qv-Riq"/>
                 <outlet property="bsCreateAccountButton" destination="Tvh-sc-OjJ" id="UBv-tl-L2m"/>
                 <outlet property="bsEmailAddr" destination="kkM-HY-JhI" id="dCU-38-eFA"/>
                 <outlet property="vAdvanced" destination="5jV-eP-x03" id="dSa-88-rf8"/>

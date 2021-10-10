@@ -88,7 +88,7 @@
 
 
 - (IBAction)btnTouch:(id)sender {
-    [[SAApp UI] showSettings];
+    [[SAApp UI] showAuthVC];
 }
 
 - (IBAction)btnRetryTouch:(id)sender {

@@ -31,6 +31,9 @@
 
 @end
 
+@class AuthVC;
+
+
 @interface SAUIHelper : NSObject
 
 -(void)showViewController:(nonnull UIViewController*)vc;
@@ -45,6 +48,9 @@
 
 -(nonnull SAStatusVC*) StatusVC;
 -(void)showStatusVC;
+
+-(nonnull AuthVC*)AuthVC;
+-(void)showAuthVC;
 
 -(nonnull SAAboutVC*)AboutVC;
 -(void)showAbout;

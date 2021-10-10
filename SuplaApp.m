@@ -623,7 +623,7 @@ NSString *kSAOnZWaveSetWakeUpTimeResult = @"KSA-N30";
         return;
     }
     
-    if ( self.UI.rootViewController == self.UI.SettingsVC ) {
+    if ( self.UI.rootViewController == self.UI.AuthVC ) {
          [self.UI.StatusVC.progress setProgress:0.25];
     } else {
          [self.UI showStatusConnectingProgress:0.25];

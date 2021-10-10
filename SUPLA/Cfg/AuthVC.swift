@@ -31,8 +31,10 @@ class AuthVC: UIViewController {
     @IBOutlet private var basicModeToggle: UISwitch!
     @IBOutlet private var bsEmailAddr: UITextField!
     @IBOutlet private var bsCreateAccountButton: UIButton!
+    @IBOutlet private var bsConfirmButton: UIButton!
 
     @IBOutlet private var vAdvanced: UIView!
+    @IBOutlet private var adConfirmButton: UIButton!
     @IBOutlet private var advancedModeToggle: UISwitch!
     @IBOutlet private var adAuthType: UISegmentedControl!
     @IBOutlet private var adEmailAddr: UITextField!
@@ -65,17 +67,33 @@ class AuthVC: UIViewController {
     private var vM: AuthVM!
     
     private func bindVM() {
-        vM = AuthVM(basicEmail: bsEmailAddr.rx.text.asObservable(),
-                    toggleAdvancedState: Observable.of(basicModeToggle.rx.isOn.asObservable(),
-                                          advancedModeToggle.rx.isOn.asObservable()).merge().asObservable(),
-                    advancedModeAuthType: adAuthType.rx.selectedSegmentIndex.asObservable().map({ AuthVM.AuthType(rawValue: $0)!
-                    }),
-                        createAccountRequest: bsCreateAccountButton.rx.tap.asObservable(),
-                        autoServerSelected: adServerAuto.rx.tap.asObservable().map({
-                            self.adServerAuto.isSelected
-                        }))
+        /* Initialize view model and bind its inputs to the UI components */
+        let bindings = AuthVM.Bindings(basicEmail: bsEmailAddr.rx.text.asObservable(),
+                                       advancedEmail: adEmailAddr.rx.text.asObservable(),
+                                       accessID: adAccessID.rx.text.asObservable().map { Int($0 ?? "0") }.asObservable(),
+                                       accessIDpwd: adAccessPwd.rx.text.asObservable(),
+                                       serverAddress: Observable.of(adServerAddrEmail.rx.text.asObservable(),
+                                                                    adServerAddrAccessId.rx.text.asObservable()).merge().asObservable(),
+                                       toggleAdvancedState: Observable.of(basicModeToggle.rx.isOn.asObservable(),
+                                                                          advancedModeToggle.rx.isOn.asObservable()).merge().asObservable(),
+                                       advancedModeAuthType: adAuthType.rx.selectedSegmentIndex.asObservable().map({ AuthVM.AuthType(rawValue: $0)!
+                                       }),
+                                       createAccountRequest: bsCreateAccountButton.rx.tap.asObservable(),
+                                       autoServerSelected: adServerAuto.rx.tap.asObservable().map({
+                                        self.adServerAuto.isSelected
+                                    }),
+                                       formSubmitRequest: Observable.of(bsConfirmButton.rx.tap.asObservable(),
+                                                                        adConfirmButton.rx.tap.asObservable()).merge().asObservable())
+        vM = AuthVM(bindings: bindings, authConfigProvider: UserDefaultsAuthCfgProvider())
+        
+        /* Bind view model outputs to UI components */
         vM.isAdvancedMode.bind(to: self.advancedModeToggle.rx.isOn,
                                self.basicModeToggle.rx.isOn)
+            .disposed(by: disposeBag)
+        vM.serverAddress.bind(to: self.adServerAddrEmail.rx.text,
+                              self.adServerAddrAccessId.rx.text)
+            .disposed(by: disposeBag)
+        vM.emailAddress.bind(to: self.bsEmailAddr.rx.text, self.adEmailAddr.rx.text)
             .disposed(by: disposeBag)
         
         vM.isAdvancedMode.subscribe { [weak self] (isAdvanced: Bool) in
@@ -94,6 +112,24 @@ class AuthVC: UIViewController {
         vM.advancedModeAuthType.subscribe(onNext: { [weak self] at in
             self?.setAdvancedAuthMode(at)
         }).disposed(by: disposeBag)
+        
+        vM.isServerAutoDetect.subscribe { [weak self] autoDetect in
+            self?.adServerAddrEmail.isEnabled = autoDetect.element == false
+        }.disposed(by: disposeBag)
+        
+        vM.formSaved.subscribe { [weak self] needsReauth in
+            if needsReauth.element == true {
+                SAApp.revokeOAuthToken()
+                SAApp.db().deleteAllUserIcons()
+            }
+            SAApp.ui().showMainVC()
+            if needsReauth.element == true || !SAApp.suplaClientConnected() {
+                NotificationCenter.default.post(name: .saConnecting,
+                                                object: self, userInfo: nil)
+                SAApp.setPreferedProtocolVersion(SUPLA_PROTO_VERSION)
+                SAApp.suplaClient().reconnect()
+            }
+        }.disposed(by: disposeBag)
     }
     
     private func setAdvancedAuthMode(_ at: AuthVM.AuthType) {
@@ -114,5 +150,9 @@ class AuthVC: UIViewController {
         viewToAdd.bottomAnchor.constraint(equalTo: adFormHostView.bottomAnchor).isActive = true
         viewToAdd.leftAnchor.constraint(equalTo: adFormHostView.leftAnchor).isActive = true
         viewToAdd.rightAnchor.constraint(equalTo: adFormHostView.rightAnchor).isActive = true
+    }
+    
+    deinit {
+        print("auth vc destroyed")
     }
 }
