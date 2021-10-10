@@ -151,8 +151,4 @@ class AuthVC: UIViewController {
         viewToAdd.leftAnchor.constraint(equalTo: adFormHostView.leftAnchor).isActive = true
         viewToAdd.rightAnchor.constraint(equalTo: adFormHostView.rightAnchor).isActive = true
     }
-    
-    deinit {
-        print("auth vc destroyed")
-    }
 }
