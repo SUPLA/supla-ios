@@ -325,6 +325,9 @@ static SAZWaveConfigurationWizardVC *_zwaveConfigurationWizardGlobalRef = nil;
             case SUPLA_RESULTCODE_DENY_CHANNEL_IS_ASSOCIETED_WITH_SCENE:
                 errStr = @"You cannot change the function of a channel that is associated with a scene.";
                 break;
+            case SUPLA_RESULTCODE_DENY_CHANNEL_IS_ASSOCIETED_WITH_ACTION_TRIGGER:
+                errStr = @"The function of the channel associated with the action trigger cannot be changed.";
+                break;
         }
         
         if (errStr == nil) {
