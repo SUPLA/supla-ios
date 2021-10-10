@@ -107,13 +107,6 @@ class AuthVM {
             AuthCfg(usesEmailAuth: true, isAdvancedConfig: false)
         _authCfg = cfg
         _loadedCfg = cfg
-
-        _advancedMode.accept(cfg.isAdvancedConfig)
-        _serverAutoDetect.accept((cfg.serverHostName ?? "").isEmpty)
-        _serverAddress.accept(cfg.serverHostName)
-        _emailAddress.accept(cfg.emailAddress)
-        _accessID.accept(cfg.accessID)
-        _accessIDpwd.accept(cfg.accessPassword)
         
 
         b.toggleAdvancedState.subscribe { [weak self] _ in
@@ -157,6 +150,15 @@ class AuthVM {
         _accessIDpwd.subscribe { [weak self] ap in
             self?._authCfg.accessPassword = ap.element!
         }.disposed(by: disposeBag)
+
+
+        _advancedMode.accept(cfg.isAdvancedConfig)
+        _serverAutoDetect.accept((cfg.serverHostName ?? "").isEmpty)
+        _emailAddress.accept(cfg.emailAddress)
+        _serverAddress.accept(cfg.serverHostName)
+        _accessID.accept(cfg.accessID)
+        _accessIDpwd.accept(cfg.accessPassword)
+
     }
     
     
