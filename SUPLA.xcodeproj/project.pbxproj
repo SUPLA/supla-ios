@@ -369,7 +369,6 @@
 		4091AF4A1FC88BFB00EFF357 /* greendot@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4091AF491FC88BFA00EFF357 /* greendot@2x.png */; };
 		409934B61F30EF9C003110C5 /* RSDetailView.m in Sources */ = {isa = PBXBuildFile; fileRef = 409934B51F30EF9C003110C5 /* RSDetailView.m */; };
 		40A6757F1BA1A5B6004A51C4 /* SuplaApp.m in Sources */ = {isa = PBXBuildFile; fileRef = 40A6757E1BA1A5B6004A51C4 /* SuplaApp.m */; };
-		40A675831BA1BE8E004A51C4 /* SettingsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 40A675811BA1BE8E004A51C4 /* SettingsVC.m */; };
 		40A87DDF1FADDFF900918B54 /* donate@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 40A87DDD1FADDFF800918B54 /* donate@2x.png */; };
 		40A87DE01FADDFF900918B54 /* add_device@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 40A87DDE1FADDFF800918B54 /* add_device@2x.png */; };
 		40AB8BDE1DCB32EB0030F3DE /* SARateApp.m in Sources */ = {isa = PBXBuildFile; fileRef = 40AB8BDD1DCB32EB0030F3DE /* SARateApp.m */; };
@@ -501,6 +500,10 @@
 		AECB1BED2711CC71001A9714 /* UserDefaultsAuthCfgProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = AECB1BEC2711CC71001A9714 /* UserDefaultsAuthCfgProvider.swift */; };
 		AED6395E270CA3A800E5105B /* RoundedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = AED6395D270CA3A800E5105B /* RoundedButton.swift */; };
 		AED63961270CA46C00E5105B /* UIColor+Supla.swift in Sources */ = {isa = PBXBuildFile; fileRef = AED63960270CA46C00E5105B /* UIColor+Supla.swift */; };
+		AEF79D8B2712FE1800D7554B /* CfgVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF79D8A2712FE1800D7554B /* CfgVM.swift */; };
+		AEF79D8D2712FF8D00D7554B /* CfgVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF79D8C2712FF8D00D7554B /* CfgVC.swift */; };
+		AEF79D912713088100D7554B /* Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF79D902713088100D7554B /* Strings.swift */; };
+		AEF79D9327130A5400D7554B /* CfgCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF79D9227130A5400D7554B /* CfgCell.swift */; };
 		AEFBC24F26E37CD800414C19 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEFBC24E26E37CD800414C19 /* Config.swift */; };
 		AEFBC25226E39EFC00414C19 /* ConfigTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEFBC25126E39EFC00414C19 /* ConfigTests.swift */; };
 		B2DA9E0A10D8023EEDA25970 /* Pods_SUPLATests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 76FF65EADE7763EB8D61BC35 /* Pods_SUPLATests.framework */; };
@@ -1184,8 +1187,6 @@
 		409934B51F30EF9C003110C5 /* RSDetailView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSDetailView.m; sourceTree = "<group>"; };
 		40A6757D1BA1A5B6004A51C4 /* SuplaApp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SuplaApp.h; path = ../SuplaApp.h; sourceTree = "<group>"; };
 		40A6757E1BA1A5B6004A51C4 /* SuplaApp.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SuplaApp.m; path = ../SuplaApp.m; sourceTree = "<group>"; };
-		40A675801BA1BE8E004A51C4 /* SettingsVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsVC.h; sourceTree = "<group>"; };
-		40A675811BA1BE8E004A51C4 /* SettingsVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsVC.m; sourceTree = "<group>"; };
 		40A87DDD1FADDFF800918B54 /* donate@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "donate@2x.png"; path = "Resources/Assets/Img/donate@2x.png"; sourceTree = "<group>"; };
 		40A87DDE1FADDFF800918B54 /* add_device@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "add_device@2x.png"; path = "Resources/Assets/Img/add_device@2x.png"; sourceTree = "<group>"; };
 		40AB8BDC1DCB32EB0030F3DE /* SARateApp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SARateApp.h; sourceTree = "<group>"; };
@@ -1363,6 +1364,10 @@
 		AECB1BEC2711CC71001A9714 /* UserDefaultsAuthCfgProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsAuthCfgProvider.swift; sourceTree = "<group>"; };
 		AED6395D270CA3A800E5105B /* RoundedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedButton.swift; sourceTree = "<group>"; };
 		AED63960270CA46C00E5105B /* UIColor+Supla.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Supla.swift"; sourceTree = "<group>"; };
+		AEF79D8A2712FE1800D7554B /* CfgVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CfgVM.swift; sourceTree = "<group>"; };
+		AEF79D8C2712FF8D00D7554B /* CfgVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CfgVC.swift; sourceTree = "<group>"; };
+		AEF79D902713088100D7554B /* Strings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Strings.swift; sourceTree = "<group>"; };
+		AEF79D9227130A5400D7554B /* CfgCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CfgCell.swift; sourceTree = "<group>"; };
 		AEFBC24E26E37CD800414C19 /* Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
 		AEFBC25026E39EFC00414C19 /* SUPLATests-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SUPLATests-Bridging-Header.h"; sourceTree = "<group>"; };
 		AEFBC25126E39EFC00414C19 /* ConfigTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigTests.swift; sourceTree = "<group>"; };
@@ -2070,6 +2075,7 @@
 				4031AD011BBC2A4900CF9D8B /* Assets */,
 				40DE1A421BCD6F06004CF43B /* Localizable.strings */,
 				0196E82C258CEEEC0016E8DC /* InfoPlist.strings */,
+				AEF79D902713088100D7554B /* Strings.swift */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -2183,8 +2189,6 @@
 				010714722656A6FB009C119F /* SAZWaveWakeupSettingsDialog.m */,
 				406778521BCBF9F4008DD37F /* SectionCell.h */,
 				406778531BCBF9F4008DD37F /* SectionCell.m */,
-				40A675801BA1BE8E004A51C4 /* SettingsVC.h */,
-				40A675811BA1BE8E004A51C4 /* SettingsVC.m */,
 				407D4AFC1BC6E491009A5505 /* StatusVC.h */,
 				407D4AFD1BC6E491009A5505 /* StatusVC.m */,
 				01902A23235A17E9005ED935 /* TemperatureDetailView.h */,
@@ -2229,6 +2233,9 @@
 				AECB1BE4270EB56F001A9714 /* AuthVM.swift */,
 				AECB1BEA2711CB67001A9714 /* AuthCfg.swift */,
 				AECB1BEC2711CC71001A9714 /* UserDefaultsAuthCfgProvider.swift */,
+				AEF79D8A2712FE1800D7554B /* CfgVM.swift */,
+				AEF79D8C2712FF8D00D7554B /* CfgVC.swift */,
+				AEF79D9227130A5400D7554B /* CfgCell.swift */,
 			);
 			path = Cfg;
 			sourceTree = "<group>";
@@ -2826,6 +2833,7 @@
 				01F8856C22E5E79100D18373 /* SAUserIcon+CoreDataClass.m in Sources */,
 				013D73B022DD105400E3515A /* SAChartFilterField.m in Sources */,
 				01B57DEC25BDA48F001F0DBC /* SAWizardVC.m in Sources */,
+				AEF79D912713088100D7554B /* Strings.swift in Sources */,
 				01AB61E925B8E08E00DBEF74 /* SADigiglassController.m in Sources */,
 				40C7BA7920C047CF00ACEE42 /* SAChannelGroup+CoreDataProperties.m in Sources */,
 				011021BA25CC38FA00621D41 /* SAEvent.m in Sources */,
@@ -2846,19 +2854,20 @@
 				AEFBC24F26E37CD800414C19 /* Config.swift in Sources */,
 				01147CE4264BE317002B2E1C /* SAChannelFunctionSetResult.m in Sources */,
 				017554F622F1A62500EB58B7 /* HomePlusDetailView.m in Sources */,
-				40A675831BA1BE8E004A51C4 /* SettingsVC.m in Sources */,
 				013D1C6322CE75A3000C0784 /* SAElectricityChartHelper.m in Sources */,
 				406778551BCBF9F4008DD37F /* SectionCell.m in Sources */,
 				40B9ED3A1FAC79FC00403B1A /* SUPLA.xcdatamodeld in Sources */,
 				019D9E3225F27A4500881C99 /* SALocationCaptionEditor.m in Sources */,
 				40B610CC20C7E263002B762A /* SAUIChannelStatus.m in Sources */,
 				AECB1BE727109EA3001A9714 /* CheckBox.swift in Sources */,
+				AEF79D8D2712FF8D00D7554B /* CfgVC.swift in Sources */,
 				01215A7324C8AECC00429947 /* SALightsourceLifespanSettingsDialog.m in Sources */,
 				4077ACE320A21BB100BD2216 /* CreateAccountVC.m in Sources */,
 				401CA1C81BA067DB00117AF4 /* MainVC.m in Sources */,
 				01A0BD0A26CEFBC200C4A5F2 /* SAWarningIcon.m in Sources */,
 				012F722E22DFA0BE00E5F72E /* SABarChartDataSet.swift in Sources */,
 				408034C51BC83D1A007666E7 /* MGSwipeTableCell.m in Sources */,
+				AEF79D8B2712FE1800D7554B /* CfgVM.swift in Sources */,
 				010C8780249A4D55002FE526 /* SAInfoVC.m in Sources */,
 				01F8857522E6167100D18373 /* SADownloadUserIcons.m in Sources */,
 				018E67CF22C8CA0A00FF1427 /* SADownloadElectricityMeasurements.m in Sources */,
@@ -2903,6 +2912,7 @@
 				01DD2F0F247719000025DFF9 /* SARangeCalibrationWheel.m in Sources */,
 				016157B6261CAAFA006AA0E8 /* SAPickerField.m in Sources */,
 				01E517C322C6AC1E000FE77A /* SADownloadIncrementalMeasurements.m in Sources */,
+				AEF79D9327130A5400D7554B /* CfgCell.swift in Sources */,
 				013D1C6022CE757F000C0784 /* SAIncrementalMeterChartHelper.m in Sources */,
 				AECB1BED2711CC71001A9714 /* UserDefaultsAuthCfgProvider.swift in Sources */,
 				40C9E4FD1F2B841400753796 /* SAColorListPicker.m in Sources */,

@@ -79,12 +79,12 @@ class Config: NSObject {
     }
 }
 
-enum ChannelHeight: Int {
+enum ChannelHeight: Int, CaseIterable {
     case height60 = 60
     case height100 = 100
     case height150 = 150
 }
-enum TemperatureUnit: String {
+enum TemperatureUnit: String, CaseIterable {
     case celsius
     case fahrenheit
 }

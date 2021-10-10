@@ -18,7 +18,6 @@
 
 
 #import <UIKit/UIKit.h>
-#import "SettingsVC.h"
 #import "MainVC.h"
 #import "StatusVC.h"
 #import "AboutVC.h"
@@ -31,7 +30,7 @@
 
 @end
 
-@class AuthVC;
+@class AuthVC, CfgVC;
 
 
 @interface SAUIHelper : NSObject
@@ -40,8 +39,9 @@
 -(void)fadeToViewController:(nullable UIViewController*)vc;
 
 -(void)showMainVC;
+-(void)invalidateMainVC;
 
--(nonnull SASettingsVC *) SettingsVC;
+-(nonnull CfgVC *) SettingsVC;
 -(void)showSettings;
 
 -(nonnull SAMainVC *) MainVC;

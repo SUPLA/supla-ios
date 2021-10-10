@@ -47,7 +47,7 @@
 @implementation SAUIHelper {
     
     SANavigationController *_NavController;
-    SASettingsVC * _SettingsVC;
+    CfgVC * _CfgVC;
     SAMainVC * _MainVC;
     SAStatusVC *_StatusVC;
     AuthVC *_AuthVC;
@@ -106,9 +106,10 @@
 }
 
 -(UIViewController *) SettingsVC {
-    // FIXME: needs implementation
-    abort();
-    return nil;
+    if(_CfgVC == nil) {
+        _CfgVC = [CfgVC new];
+    }
+    return _CfgVC;
 }
     
 - (AuthVC *)AuthVC {
@@ -136,7 +137,7 @@
 }
 
 -(void)showSettings {
-    // TODO: needs implementation
+    [self showViewController:[self SettingsVC]];
 }
 
 
@@ -146,6 +147,10 @@
     }
     
     return _MainVC;
+}
+
+- (void)invalidateMainVC {
+    _MainVC = nil;
 }
 
 -(void)showViewController:(UIViewController*)vc {
@@ -313,8 +318,8 @@
 }
 
 -(BOOL)settingsVCisVisible {
-    return _SettingsVC != nil
-    && (self.NavController.currentViewController == _SettingsVC || self.rootViewController == _SettingsVC);
+    return _AuthVC != nil
+    && (self.NavController.currentViewController == _AuthVC || self.rootViewController == _AuthVC);
 }
 
 @end

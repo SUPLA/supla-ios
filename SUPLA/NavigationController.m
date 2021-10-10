@@ -220,6 +220,10 @@
     switch (btnId) {
         case SAMenuItemIdSettings:
             [[SAApp UI] showSettings];
+            [self showMenubarBackBtn];
+            break;
+        case SAMenuItemIdProfile:
+            [[SAApp UI] showAuthVC];
             break;
         case SAMenuItemIdAddDevice:
             [[SAApp UI] showAddWizard];

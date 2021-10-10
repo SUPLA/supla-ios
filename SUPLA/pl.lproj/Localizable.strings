@@ -260,3 +260,8 @@
 "1: server timeout" = "1: brak odpowiedzi serwera";
 "2: Wi-Fi connection lost" = "2: utrata połączenia Wi-Fi";
 "3: server connection reset" = "3: reset połączenia z serwerem";
+"Your account" = "Twoje konto";
+"App Settings" = "Ustawienia";
+"Channel height" = "Wysokość kanału";
+"Temperature unit" = "Jednostka temperatury";
+"Auto-hide buttons" = "Automatyczne ukrywanie przycisków";
