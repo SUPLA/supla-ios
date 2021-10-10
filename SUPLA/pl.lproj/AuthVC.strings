@@ -18,13 +18,13 @@
 "LpD-C2-bdO.text" = "IDENTYFIKATOR DOSTĘPU";
 
 /* Class = "UILabel"; text = "ACCESS IDENTIFIER"; ObjectID = "MM3-Y1-eQ3"; */
-"MM3-Y1-eQ3.text" = "IDENTYFIKATOR DOSTĘPU";
+"Dok-NO-J2F.text" = "IDENTYFIKATOR DOSTĘPU";
 
 /* Class = "UILabel"; text = "SERVER ADDRESS"; ObjectID = "P35-bB-efP"; */
-"P35-bB-efP.text" = "ADRES SERWERA";
+"b9q-7p-zBF.text" = "ADRES SERWERA";
 
 /* Class = "UILabel"; text = "Password"; ObjectID = "P4g-uM-DVf"; */
-"P4g-uM-DVf.text" = "HASŁO";
+"nzi-0M-3EJ.text" = "HASŁO";
 
 /* Class = "UILabel"; text = "ACCESS IDENTIFIER"; ObjectID = "PHo-MD-YLQ"; */
 "PHo-MD-YLQ.text" = "IDENTYFIKATOR DOSTĘPU";
@@ -36,4 +36,9 @@
 "my9-Mc-v9S.text" = "Ustawienia";
 
 "idq-5S-KHO.normalTitle" = "Zatwierdź";
+"DlK-1Z-imw.normalTitle" = "Zatwierdź";
 "ceV-to-fYG.text" = "Nie masz jeszcze konta w Supla Cloud?";
+"7Sb-Yz-hv3.segmentTitles[0]" = "Uwierzytelnienie e-mail";
+"7Sb-Yz-hv3.segmentTitles[1]" = "Identyfikator dostępu";
+"6iK-xP-Y9c.text" = "ADRES E-MAIL";
+"Qxw-Mq-ReH.text" = "ADRES SERWERA";
