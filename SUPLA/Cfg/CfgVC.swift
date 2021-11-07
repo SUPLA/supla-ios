@@ -53,8 +53,9 @@ class CfgVC: UIViewController {
         tv.delegate = self
         
         let segmentWidth = CGFloat(60) // source: figma design
-        let channels = ChannelHeight.allCases
-        let ch = UISegmentedControl(items: channels.map { "\($0.rawValue)%" })
+        let channels = [ "channel_height_small", "channel_height_normal",
+                         "channel_height_big" ]
+        let ch = UISegmentedControl(items: channels.map { UIImage(named: $0)! })
         channels.enumerated().forEach { (i, _) in
             ch.setWidth(segmentWidth, forSegmentAt: i)
         }
