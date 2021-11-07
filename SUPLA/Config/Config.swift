@@ -23,6 +23,7 @@ class Config: NSObject {
     private let kChannelHeight = "supla_config_channel_height"
     private let kTemperatureUnit = "supla_config_temp_unit"
     private let kButtonKeepVisible = "supla_config_buttons_keep_visible"
+    private let kShowChannelInfo = "supla_config_show_channel_info"
 
     // read-only accessors for "legacy" Objective-C code
     
@@ -57,6 +58,17 @@ class Config: NSObject {
         }
     }
     
+    @objc
+    var showChannelInfo: Bool {
+        get {
+            return UserDefaults.standard.bool(forKey: kShowChannelInfo)
+        }
+        
+        set {
+            UserDefaults.standard.set(newValue, forKey: kShowChannelInfo)
+        }
+    }
+    
     
     // "full" accessors for swift code
     var channelHeight: ChannelHeight {
@@ -76,6 +88,11 @@ class Config: NSObject {
         set {
             UserDefaults.standard.set(newValue.rawValue, forKey: kTemperatureUnit)
         }
+    }
+    
+    override init() {
+        super.init()
+        UserDefaults.standard.register(defaults: [kShowChannelInfo: true])
     }
 }
 

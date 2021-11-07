@@ -28,11 +28,13 @@ class CfgVC: UIViewController {
         case channelHeight
         case temperatureUnit
         case buttonAutoHide
+        case showChannelInfo
     }
     
     private var channelHeightControl: UISegmentedControl!
     private var buttonAutoHideControl: UISwitch!
     private var temperatureUnitControl: UISegmentedControl!
+    private var showChannelInfoControl: UISwitch!
     
     private let disposeBag = DisposeBag()
     private let dismissCmd = PublishSubject<Void>()
@@ -68,10 +70,13 @@ class CfgVC: UIViewController {
         }
         
         buttonAutoHideControl = UISwitch()
+        
+        showChannelInfoControl = UISwitch()
 
         let inputs = CfgVM.Inputs(channelHeight: channelHeightControl.rx.selectedSegmentIndex.map({ ChannelHeight.allCases[max(0,$0)] }).asObservable(),
                                   temperatureUnit: temperatureUnitControl.rx.selectedSegmentIndex.map({ TemperatureUnit.allCases[max(0,$0)]}).asObservable(),
                                   autoHideButtons: buttonAutoHideControl.rx.isOn.asObservable(),
+                                  showChannelInfo: showChannelInfoControl.rx.isOn.asObservable(),
                                   onDismiss: dismissCmd.asObservable())
 
         vM = CfgVM(inputs: inputs, configModel: Config())
@@ -79,6 +84,7 @@ class CfgVC: UIViewController {
         vM.temperatureUnit.map({ tu in TemperatureUnit.allCases.enumerated().first(where: { $0.element == tu})!.offset})
             .bind(to: temperatureUnitControl.rx.selectedSegmentIndex).disposed(by: disposeBag)
         vM.autoHideButtons.bind(to: buttonAutoHideControl.rx.isOn).disposed(by: disposeBag)
+        vM.showChannelInfo.bind(to: showChannelInfoControl.rx.isOn).disposed(by: disposeBag)
         
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(onBackButtonPressed(_:)),
@@ -108,6 +114,9 @@ class CfgVC: UIViewController {
         case .temperatureUnit:
             label = Strings.Cfg.temperatureUnit
             actionView = temperatureUnitControl
+        case .showChannelInfo:
+            label = Strings.Cfg.showChannelInfo
+            actionView = showChannelInfoControl
         }
         
         cell.titleLabel.text = label

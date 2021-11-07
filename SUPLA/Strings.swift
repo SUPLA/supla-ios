@@ -25,5 +25,6 @@ struct Strings {
         static let channelHeight = NSLocalizedString("Channel height", comment: "label for channel height setting")
         static let temperatureUnit = NSLocalizedString("Temperature unit", comment: "label for temperature unit setting")
         static let buttonAutoHide  = NSLocalizedString("Auto-hide buttons", comment: "label for button auto-hide setting")
+        static let showChannelInfo = NSLocalizedString("Show ⓘ button", comment: "label for show channel info setting")
     }
 }
