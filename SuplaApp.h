@@ -30,6 +30,8 @@
 @class SAStatusVC;
 @class SAMainVC;
 @class SACreateAccountVC;
+@protocol ProfileManager;
+
 @interface SAApp : NSObject <SASuplaClientDelegate>
 
 +(SAApp*)instance;
@@ -58,6 +60,7 @@
 +(BOOL) isClientRegistered;
 +(SADatabase *) DB;
 +(SAUIHelper *)UI;
++(id<ProfileManager>)profileManager;
 
 
 +(void) SuplaClientTerminate;

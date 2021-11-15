@@ -38,47 +38,47 @@ class AuthVMTests: XCTestCase {
     private let _autoServerSelected = BehaviorRelay(value: false)
     private let _formSubmitRequest = BehaviorRelay<Void>(value: ())
     
-    class MockCfgProvider: AuthCfgProvider {
-        func loadCurrentAuthCfg() -> AuthCfg? { return nil }
-        func storeCurrentAuthCfg(_ ac: AuthCfg) {}
-    }
-
-    override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
-        let bindings = AuthVM.Bindings(basicEmail: _basicEmail.asObservable(),
-                                       advancedEmail: _advancedEmail.asObservable(),
-                                       accessID: _accessID.asObservable(),
-                                       accessIDpwd: _accessIDpwd.asObservable(),
-                                       serverAddress: _serverAddr.asObservable(),
-                                       toggleAdvancedState: _advancedMode.asObservable(),
-                                       advancedModeAuthType: _advancedModeAuthType.asObservable(),
-                                       createAccountRequest: _createAccountRequest.asObservable(),
-                                       autoServerSelected: _autoServerSelected.asObservable(),
-                                       formSubmitRequest: _formSubmitRequest.asObservable())
-        sut = AuthVM(bindings: bindings, authConfigProvider: MockCfgProvider())
-    }
-
-    override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-    }
-
-    func testAutoServerEnabled() throws {
-        let bag = DisposeBag()
-        XCTAssertNotNil(sut.serverAddress.single())
-        _advancedMode.accept(true)
-        _advancedModeAuthType.accept(.email)
-        let expectServerAddressNotEmpty = expectation(description: "Server address is set to non-empty value")
-        sut.serverAddress.subscribe(onNext: { addr in
-            if addr == "test.server.net" { expectServerAddressNotEmpty.fulfill() }
-        }).disposed(by: bag)
-        _serverAddr.accept("test.server.net")
-        wait(for: [expectServerAddressNotEmpty],timeout: 0.1)
-        
-        _autoServerSelected.accept(true)
-        let expectServerAddressEmpty = expectation(description: "server address is empty after auto server detection is enabled")
-        sut.serverAddress.subscribe(onNext: { addr in
-            if addr == nil || addr!.isEmpty { expectServerAddressEmpty.fulfill() }
-        }).disposed(by: bag)
-        wait(for: [expectServerAddressEmpty], timeout: 0.1)
-    }
+//    class MockCfgProvider: AuthCfgProvider {
+//        func loadCurrentAuthCfg() -> AuthCfg? { return nil }
+//        func storeCurrentAuthCfg(_ ac: AuthCfg) {}
+//    }
+//
+//    override func setUpWithError() throws {
+//        // Put setup code here. This method is called before the invocation of each test method in the class.
+//        let bindings = AuthVM.Bindings(basicEmail: _basicEmail.asObservable(),
+//                                       advancedEmail: _advancedEmail.asObservable(),
+//                                       accessID: _accessID.asObservable(),
+//                                       accessIDpwd: _accessIDpwd.asObservable(),
+//                                       serverAddress: _serverAddr.asObservable(),
+//                                       toggleAdvancedState: _advancedMode.asObservable(),
+//                                       advancedModeAuthType: _advancedModeAuthType.asObservable(),
+//                                       createAccountRequest: _createAccountRequest.asObservable(),
+//                                       autoServerSelected: _autoServerSelected.asObservable(),
+//                                       formSubmitRequest: _formSubmitRequest.asObservable())
+//        sut = AuthVM(bindings: bindings, authConfigProvider: MockCfgProvider())
+//    }
+//
+//    override func tearDownWithError() throws {
+//        // Put teardown code here. This method is called after the invocation of each test method in the class.
+//    }
+//
+//    func testAutoServerEnabled() throws {
+//        let bag = DisposeBag()
+//        XCTAssertNotNil(sut.serverAddress.single())
+//        _advancedMode.accept(true)
+//        _advancedModeAuthType.accept(.email)
+//        let expectServerAddressNotEmpty = expectation(description: "Server address is set to non-empty value")
+//        sut.serverAddress.subscribe(onNext: { addr in
+//            if addr == "test.server.net" { expectServerAddressNotEmpty.fulfill() }
+//        }).disposed(by: bag)
+//        _serverAddr.accept("test.server.net")
+//        wait(for: [expectServerAddressNotEmpty],timeout: 0.1)
+//        
+//        _autoServerSelected.accept(true)
+//        let expectServerAddressEmpty = expectation(description: "server address is empty after auto server detection is enabled")
+//        sut.serverAddress.subscribe(onNext: { addr in
+//            if addr == nil || addr!.isEmpty { expectServerAddressEmpty.fulfill() }
+//        }).disposed(by: bag)
+//        wait(for: [expectServerAddressEmpty], timeout: 0.1)
+//    }
 }

@@ -29,84 +29,85 @@ class AuthVM {
         case accessId = 1
     }
  
-    // Input bindings
-    struct Bindings {
+    // MARK: Input bindings
+    struct Inputs {
         let basicEmail: Observable<String?>
         let advancedEmail: Observable<String?>
         let accessID: Observable<Int?>
         let accessIDpwd: Observable<String?>
-        let serverAddress: Observable<String?>
+        let serverAddressForEmail: Observable<String?>
+        let serverAddressForAccessID: Observable<String?>
         let toggleAdvancedState: Observable<Bool>
         let advancedModeAuthType: Observable<AuthType>
         let createAccountRequest: Observable<Void>
         let autoServerSelected: Observable<Bool>
         let formSubmitRequest: Observable<Void>
     }
+    
+    // MARK: Output bindings
     var isAdvancedMode: Observable<Bool> {
         return _advancedMode.asObservable()
     }
-    private let _advancedMode = BehaviorRelay<Bool>(value: false)
-    
     var isServerAutoDetect: Observable<Bool> {
         return _serverAutoDetect.asObservable()
     }
-    private let _serverAutoDetect = BehaviorRelay<Bool>(value: true)
-    
     var emailAddress: Observable<String?> {
         return _emailAddress.asObservable()
     }
-    private let _emailAddress = BehaviorRelay<String?>(value: nil)
-    
     var accessID: Observable<Int?> {
         return _accessID.asObservable()
     }
-    private let _accessID = BehaviorRelay<Int?>(value: nil)
-    
     var accessIDpwd: Observable<String?> {
         return _accessIDpwd.asObservable()
     }
-    private let _accessIDpwd = BehaviorRelay<String?>(value: nil)
-    
-    var serverAddress: Observable<String?> {
-        return _serverAddress.asObservable()
+    var serverAddressForEmail: Observable<String?> {
+        return _serverAddressForEmail.asObservable()
     }
-    private let _serverAddress = BehaviorRelay<String?>(value: nil)
-
-    private var _authCfg: AuthCfg
-    private var _loadedCfg: AuthCfg
-    
+    var serverAddressForAccessID: Observable<String?> {
+        return _serverAddressForAccessID.asObservable()
+    }
     var advancedModeAuthType: Observable<AuthType> {
         return _advancedModeAuthType.asObservable()
     }
-    private let _advancedModeAuthType = BehaviorRelay<AuthType>(value: .email)
-
     var initiateSignup: Observable<Void> {
         return _initiateSignup.asObservable()
     }
-    private let _initiateSignup = PublishSubject<Void>()
-    
+
     var formSaved: Observable<Bool> { return _formSaved.asObservable() }
+
+    // MARK: Internal state
+    private let _advancedMode = BehaviorRelay<Bool>(value: false)
+    private let _serverAutoDetect = BehaviorRelay<Bool>(value: true)
+    private let _emailAddress = BehaviorRelay<String?>(value: "")
+    private let _accessID = BehaviorRelay<Int?>(value: 0)
+    private let _accessIDpwd = BehaviorRelay<String?>(value: "")
+    private let _serverAddressForEmail = BehaviorRelay<String?>(value: "")
+    private let _serverAddressForAccessID = BehaviorRelay<String?>(value: "")
+
+    private var _authCfg: AuthInfo
+    private var _loadedCfg: AuthInfo
+    
+    private let _advancedModeAuthType = BehaviorRelay<AuthType>(value: .email)
+    private let _initiateSignup = PublishSubject<Void>()
     private let _formSaved = PublishSubject<Bool>()
-    
+
     private let disposeBag = DisposeBag()
+    private let _profileManager: ProfileManager
     
-    private let _configProvider: AuthCfgProvider
-    
-    init(bindings b: Bindings, authConfigProvider: AuthCfgProvider) {
-        _configProvider = authConfigProvider
+    init(bindings b: Inputs, profileManager: ProfileManager) {
+        _profileManager = profileManager
         
         b.autoServerSelected.bind(to: _serverAutoDetect).disposed(by: disposeBag)
-        b.serverAddress.bind(to: _serverAddress).disposed(by: disposeBag)
+        b.serverAddressForEmail.bind(to: _serverAddressForEmail).disposed(by: disposeBag)
+        b.serverAddressForAccessID.bind(to: _serverAddressForAccessID).disposed(by: disposeBag)
         b.basicEmail.bind(to: _emailAddress).disposed(by: disposeBag)
         b.advancedEmail.bind(to: _emailAddress).disposed(by: disposeBag)
         b.accessID.bind(to: _accessID).disposed(by: disposeBag)
         b.accessIDpwd.bind(to: _accessIDpwd).disposed(by: disposeBag)
 
-
-        let cfg = authConfigProvider.loadCurrentAuthCfg() ??
-            AuthCfg(usesEmailAuth: true, isAdvancedConfig: false)
-        _authCfg = cfg
-        _loadedCfg = cfg
+        let profile = profileManager.getCurrentProfile()
+        _authCfg = profile.authInfo!
+        _loadedCfg = _authCfg.clone()
         
 
         b.toggleAdvancedState.subscribe { [weak self] _ in
@@ -128,52 +129,53 @@ class AuthVM {
         
         _serverAutoDetect.subscribe { [weak self] in
             if $0.element == true {
-                self?._serverAddress.accept(nil)
+                self?._serverAddressForEmail.accept("")
             }
         }.disposed(by: disposeBag)
         
         _emailAddress.subscribe { [weak self] v in
-            self?._serverAddress.accept(nil)
-            self?._accessID.accept(nil)
-            self?._accessIDpwd.accept(nil)
-            self?._authCfg.emailAddress = v.element!
+            self?._serverAddressForEmail.accept("")
         }.disposed(by: disposeBag)
         
-        _serverAddress.subscribe { [weak self] sa in
-            self?._authCfg.serverHostName = sa.element!
+        _serverAddressForEmail.subscribe { [weak self] sa in
+            self?._authCfg.serverForEmail = sa.element! ?? ""
+        }.disposed(by: disposeBag)
+        
+        _serverAddressForAccessID.subscribe { [weak self] sa in
+            self?._authCfg.serverForAccessID = sa.element! ?? ""
         }.disposed(by: disposeBag)
         
         _accessID.subscribe { [weak self] ai in
-            self?._authCfg.accessID = ai.element!
+            self?._authCfg.accessID = ai.element! ?? 0
         }.disposed(by: disposeBag)
         
         _accessIDpwd.subscribe { [weak self] ap in
-            self?._authCfg.accessPassword = ap.element!
+            self?._authCfg.accessIDpwd = ap.element! ?? ""
         }.disposed(by: disposeBag)
 
 
-        _advancedMode.accept(cfg.isAdvancedConfig)
-        _serverAutoDetect.accept((cfg.serverHostName ?? "").isEmpty)
-        _emailAddress.accept(cfg.emailAddress)
-        _serverAddress.accept(cfg.serverHostName)
-        _accessID.accept(cfg.accessID)
-        _accessIDpwd.accept(cfg.accessPassword)
-
+        _advancedMode.accept(profile.advancedSetup)
+        _serverAutoDetect.accept(_authCfg.serverAutoDetect)
+        _emailAddress.accept(_authCfg.emailAddress)
+        _serverAddressForEmail.accept(_authCfg.serverForEmail)
+        _serverAddressForAccessID.accept(_authCfg.serverForAccessID)
+        _accessID.accept(_authCfg.accessID)
+        _accessIDpwd.accept(_authCfg.accessIDpwd)
     }
     
     
     private func onFormSubmit() {
         let needsReauth = self.needsReauth
-        _configProvider.storeCurrentAuthCfg(_authCfg)
+        let profile = _profileManager.getCurrentProfile()
+        profile.advancedSetup = _advancedMode.value
+        profile.authInfo = _authCfg
+        _profileManager.updateCurrentProfile(profile)
         _loadedCfg = _authCfg
+        _authCfg = _loadedCfg.clone()
         _formSaved.on(.next(needsReauth))
     }
     
     private var needsReauth: Bool {
-        return !(_loadedCfg.usesEmailAuth == _authCfg.usesEmailAuth &&
-                 (_loadedCfg.accessID ?? 0) == (_authCfg.accessID ?? 0) &&
-                 (_loadedCfg.accessPassword ?? "") == (_authCfg.accessPassword ?? "") &&
-                 (_loadedCfg.emailAddress ?? "") == (_authCfg.emailAddress ?? "") &&
-                 (_loadedCfg.serverHostName ?? "") == (_authCfg.serverHostName ?? ""))
+        return _loadedCfg != _authCfg
     }
 }

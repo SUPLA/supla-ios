@@ -6,3 +6,5 @@
 #import "SAIncrementalMeterChartHelper.h"
 #import "UIButton+SUPLA.h"
 #import "SuplaApp.h"
+#import "AuthProfileItem+CoreDataClass.h"
+

@@ -68,30 +68,47 @@ class AuthVC: UIViewController {
     
     private func bindVM() {
         /* Initialize view model and bind its inputs to the UI components */
-        let bindings = AuthVM.Bindings(basicEmail: bsEmailAddr.rx.text.asObservable(),
-                                       advancedEmail: adEmailAddr.rx.text.asObservable(),
-                                       accessID: adAccessID.rx.text.asObservable().map { Int($0 ?? "0") }.asObservable(),
-                                       accessIDpwd: adAccessPwd.rx.text.asObservable(),
-                                       serverAddress: Observable.of(adServerAddrEmail.rx.text.asObservable(),
-                                                                    adServerAddrAccessId.rx.text.asObservable()).merge().asObservable(),
-                                       toggleAdvancedState: Observable.of(basicModeToggle.rx.isOn.asObservable(),
-                                                                          advancedModeToggle.rx.isOn.asObservable()).merge().asObservable(),
-                                       advancedModeAuthType: adAuthType.rx.selectedSegmentIndex.asObservable().map({ AuthVM.AuthType(rawValue: $0)!
-                                       }),
-                                       createAccountRequest: bsCreateAccountButton.rx.tap.asObservable(),
-                                       autoServerSelected: adServerAuto.rx.tap.asObservable().map({
-                                        self.adServerAuto.isSelected
-                                    }),
-                                       formSubmitRequest: Observable.of(bsConfirmButton.rx.tap.asObservable(),
-                                                                        adConfirmButton.rx.tap.asObservable()).merge().asObservable())
-        vM = AuthVM(bindings: bindings, authConfigProvider: UserDefaultsAuthCfgProvider())
+        let bindings = AuthVM.Inputs(basicEmail: bsEmailAddr.rx.text.asObservable(),
+                                     advancedEmail: adEmailAddr.rx.text.asObservable(),
+                                     accessID: adAccessID.rx.text.asObservable().map { Int($0 ?? "0") }.asObservable(),
+                                     accessIDpwd: adAccessPwd.rx.text.asObservable(),
+                                     serverAddressForEmail: adServerAddrEmail.rx.text.asObservable(),
+                                     serverAddressForAccessID: adServerAddrAccessId.rx.text.asObservable(),
+                                     toggleAdvancedState: Observable.of(basicModeToggle.rx.isOn.asObservable(),
+                                                    advancedModeToggle.rx.isOn.asObservable()).merge().asObservable(),
+                                     advancedModeAuthType: adAuthType.rx.selectedSegmentIndex.asObservable().map({ AuthVM.AuthType(rawValue: $0)!}).asObservable(),
+        createAccountRequest: bsCreateAccountButton.rx.tap.asObservable(),
+        autoServerSelected: adServerAuto.rx.tap.asObservable().map({
+                                                    self.adServerAuto.isSelected
+                                                }), formSubmitRequest: Observable.of(bsConfirmButton.rx.tap.asObservable(),
+                                                                                                                                                        adConfirmButton.rx.tap.asObservable()).merge().asObservable())
+        
+//        AuthVM.Bindings(basicEmail: bsEmailAddr.rx.text.asObservable(),
+//                                       advancedEmail: adEmailAddr.rx.text.asObservable(),
+//                                       accessID: adAccessID.rx.text.asObservable().map { Int($0 ?? "0") }.asObservable(),
+//                                       accessIDpwd: adAccessPwd.rx.text.asObservable(),
+//                                       serverAddress: Observable.of(adServerAddrEmail.rx.text.asObservable(),
+//                                                                    adServerAddrAccessId.rx.text.asObservable()).merge().asObservable(),
+//                                       toggleAdvancedState: Observable.of(basicModeToggle.rx.isOn.asObservable(),
+//                                                                          advancedModeToggle.rx.isOn.asObservable()).merge().asObservable(),
+//                                       advancedModeAuthType: adAuthType.rx.selectedSegmentIndex.asObservable().map({ AuthVM.AuthType(rawValue: $0)!
+//                                       }),
+//                                       createAccountRequest: bsCreateAccountButton.rx.tap.asObservable(),
+//                                       autoServerSelected: adServerAuto.rx.tap.asObservable().map({
+//                                        self.adServerAuto.isSelected
+//                                    }),
+//                                       formSubmitRequest: Observable.of(bsConfirmButton.rx.tap.asObservable(),
+//                                                                        adConfirmButton.rx.tap.asObservable()).merge().asObservable())
+        vM = AuthVM(bindings: bindings,
+                    profileManager: SAApp.profileManager())
         
         /* Bind view model outputs to UI components */
         vM.isAdvancedMode.bind(to: self.advancedModeToggle.rx.isOn,
                                self.basicModeToggle.rx.isOn)
             .disposed(by: disposeBag)
-        vM.serverAddress.bind(to: self.adServerAddrEmail.rx.text,
-                              self.adServerAddrAccessId.rx.text)
+        vM.serverAddressForEmail.bind(to: self.adServerAddrEmail.rx.text)
+            .disposed(by: disposeBag)
+        vM.serverAddressForAccessID.bind(to: self.adServerAddrAccessId.rx.text)
             .disposed(by: disposeBag)
         vM.emailAddress.bind(to: self.bsEmailAddr.rx.text, self.adEmailAddr.rx.text)
             .disposed(by: disposeBag)
