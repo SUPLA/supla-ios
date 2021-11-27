@@ -18,27 +18,38 @@
 
 
 import XCTest
+import CoreData
+@testable import SUPLA
 
 class ProfileManagerTests: XCTestCase {
 
+    private var profileManager: ProfileManager!
+    private var coordinator: NSPersistentStoreCoordinator!
+    private var ctx: NSManagedObjectContext {
+        let rv = NSManagedObjectContext()
+        rv.persistentStoreCoordinator = coordinator
+        return rv
+    }
+    
+
     override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+        let modelURL = Bundle.main.url(forResource: "SUPLA",
+                                       withExtension: "momd")!
+        let mom = NSManagedObjectModel(contentsOf: modelURL)!
+        coordinator = NSPersistentStoreCoordinator(managedObjectModel: mom)
+        try! coordinator.addPersistentStore(ofType: NSInMemoryStoreType,
+                                            configurationName: nil,
+                                            at: nil,
+                                            options: nil)
+        profileManager = MultiAccountProfileManager(context: ctx)
     }
 
     override func tearDownWithError() throws {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
 
-    func testExample() throws {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
+    func testCreatesDefaultProfile() throws {
+        let profile = profileManager.getCurrentProfile()
+        XCTAssertTrue(profile.isActive)
     }
-
-    func testPerformanceExample() throws {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
-        }
-    }
-
 }
