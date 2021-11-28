@@ -32,15 +32,40 @@ extension MultiAccountProfileManager: ProfileManager {
 
     func getCurrentProfile() -> AuthProfileItem {
         let req = AuthProfileItem.fetchRequest()
-        return try! _ctx.fetch(req).first(where: {$0.isActive})!
+        if let profile = try! _ctx.fetch(req).first(where: {$0.isActive}) {
+            return profile
+        } else {
+            // Need to create initial profile
+            let profile = NSEntityDescription.insertNewObject(forEntityName: "AuthProfileItem",
+                                                              into: _ctx) as! AuthProfileItem
+            profile.name = ""
+            profile.isActive = true
+            profile.advancedSetup = false
+            profile.authInfo = AuthInfo(emailAuth: true,
+                                        serverAutoDetect: true,
+                                        emailAddress: "",
+                                        serverForEmail: "",
+                                        serverForAccessID: "",
+                                        accessID: 0,
+                                        accessIDpwd: "")
+            try! _ctx.save()
+            return profile
+        }
     }
     
     func updateCurrentProfile(_ profile: AuthProfileItem) {
-        fatalError("unimplemented")
+        if profile.managedObjectContext == _ctx {
+            if profile.hasChanges {
+                try! _ctx.save()
+            }
+        } else {
+            _ctx.insert(profile)
+            try! _ctx.save()
+        }
     }
     
     func getCurrentAuthInfo() -> AuthInfo {
-        return getCurrentProfile().authInfo as! AuthInfo
+        return getCurrentProfile().authInfo!
     }
     
     func updateCurrentAuthInfo(_ info: AuthInfo) {

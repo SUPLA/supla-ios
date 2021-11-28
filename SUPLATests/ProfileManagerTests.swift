@@ -52,4 +52,16 @@ class ProfileManagerTests: XCTestCase {
         let profile = profileManager.getCurrentProfile()
         XCTAssertTrue(profile.isActive)
     }
+    
+    func testProfileUpdatesAuthInfo() throws {
+        let authInfo = profileManager.getCurrentAuthInfo()
+        let newInfo = AuthInfo(emailAuth: false, serverAutoDetect: false,
+                               emailAddress: "", serverForEmail: "",
+                               serverForAccessID: "127.0.0.1",
+                               accessID: 6666, accessIDpwd: "testing")
+        XCTAssertNotEqual(newInfo, authInfo)
+        profileManager.updateCurrentAuthInfo(newInfo)
+        let profile = profileManager.getCurrentProfile()
+        XCTAssertEqual(newInfo, profile.authInfo)
+    }
 }

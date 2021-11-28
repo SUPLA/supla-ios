@@ -492,7 +492,7 @@
 		462253FD963449A978BBDDE8 /* Pods_SUPLA.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 596D36089B2CE979388A06FF /* Pods_SUPLA.framework */; };
 		AE5A60E6270E2A7A00F2B780 /* AuthVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE5A60E5270E2A7A00F2B780 /* AuthVC.swift */; };
 		AEA1E96327422B0F005C34CB /* ProfileManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEA1E96227422B0F005C34CB /* ProfileManagerTests.swift */; };
-		AEA1E96427422BBE005C34CB /* SUPLA.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 407004251BB5706500F6187F /* SUPLA.xcdatamodeld */; };
+		AEAAF2F82752937D0030CBA8 /* SUPLA.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 407004251BB5706500F6187F /* SUPLA.xcdatamodeld */; };
 		AEBCD8FC26E4D247001904F3 /* TemperaturePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEBCD8FB26E4D247001904F3 /* TemperaturePresenter.swift */; };
 		AEBCD8FE26E4D52C001904F3 /* TemperatureUnitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEBCD8FD26E4D52C001904F3 /* TemperatureUnitTests.swift */; };
 		AECB1BE5270EB56F001A9714 /* AuthVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = AECB1BE4270EB56F001A9714 /* AuthVM.swift */; };
@@ -2968,7 +2968,7 @@
 				AEA1E96327422B0F005C34CB /* ProfileManagerTests.swift in Sources */,
 				016ABE18236DA795001BF5FB /* KeychainTests.m in Sources */,
 				AEBCD8FE26E4D52C001904F3 /* TemperatureUnitTests.swift in Sources */,
-				AEA1E96427422BBE005C34CB /* SUPLA.xcdatamodeld in Sources */,
+				AEAAF2F82752937D0030CBA8 /* SUPLA.xcdatamodeld in Sources */,
 				AEFBC25226E39EFC00414C19 /* ConfigTests.swift in Sources */,
 				01CEAC2A25B9BAE2009C3BFD /* SADigiglassValueTests.m in Sources */,
 				01EFD94C236CA9AE00893489 /* NSDataEncryptionTest.m in Sources */,
