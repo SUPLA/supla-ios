@@ -28,6 +28,7 @@ class AuthInfo: NSObject, NSCoding {
     var serverForAccessID: String = ""
     var accessID: Int = 0
     var accessIDpwd: String = ""
+    var preferredProtocolVersion: Int = 0
 
     
     private let kEmailAuth = "emailAuth"
@@ -37,15 +38,18 @@ class AuthInfo: NSObject, NSCoding {
     private let kServerForAccessID = "serverForAccessID"
     private let kAccessID = "accessID"
     private let kAccessIDpwd = "accessIDpwd"
+    private let kPreferredProtocolVersion = "preferredProtocolVersion"
     
     init(emailAuth: Bool, serverAutoDetect: Bool,
          emailAddress: String, serverForEmail: String,
          serverForAccessID: String, accessID: Int,
-         accessIDpwd: String) {
+         accessIDpwd: String,
+         preferredProtocolVersion: Int = 0) {
         self.emailAuth = emailAuth; self.serverAutoDetect = serverAutoDetect
         self.emailAddress = emailAddress; self.serverForEmail = serverForEmail
         self.serverForAccessID = serverForAccessID; self.accessID = accessID
         self.accessIDpwd = accessIDpwd
+        self.preferredProtocolVersion = preferredProtocolVersion
 
         super.init()
     }
@@ -58,6 +62,7 @@ class AuthInfo: NSObject, NSCoding {
         serverForAccessID = coder.decodeObject(forKey: kServerForAccessID) as? String ?? ""
         accessID = coder.decodeInteger(forKey: kAccessID)
         accessIDpwd = coder.decodeObject(forKey: kAccessIDpwd) as? String ?? ""
+        preferredProtocolVersion = coder.decodeInteger(forKey: kPreferredProtocolVersion)
     }
     func encode(with coder: NSCoder) {
         coder.encode(emailAuth, forKey: kEmailAuth)
@@ -67,6 +72,7 @@ class AuthInfo: NSObject, NSCoding {
         coder.encode(serverForAccessID, forKey: kServerForAccessID)
         coder.encode(accessID, forKey: kAccessID)
         coder.encode(accessIDpwd, forKey: kAccessIDpwd)
+        coder.encode(preferredProtocolVersion, forKey: kPreferredProtocolVersion)
     }
     
     func clone() -> AuthInfo {
@@ -92,9 +98,7 @@ extension AuthInfo: NSCopying {
                         emailAddress: emailAddress,
                         serverForEmail: serverForEmail,
                         serverForAccessID: serverForAccessID,
-                        accessID: accessID, accessIDpwd: accessIDpwd)
+                        accessID: accessID, accessIDpwd: accessIDpwd,
+                        preferredProtocolVersion:  preferredProtocolVersion)
     }
-    
-    
 }
-

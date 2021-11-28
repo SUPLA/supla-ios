@@ -495,6 +495,7 @@
 		AEAAF2F82752937D0030CBA8 /* SUPLA.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 407004251BB5706500F6187F /* SUPLA.xcdatamodeld */; };
 		AEBCD8FC26E4D247001904F3 /* TemperaturePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEBCD8FB26E4D247001904F3 /* TemperaturePresenter.swift */; };
 		AEBCD8FE26E4D52C001904F3 /* TemperatureUnitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEBCD8FD26E4D52C001904F3 /* TemperatureUnitTests.swift */; };
+		AEC6B6BA2753C06800A04204 /* ProfileMigrator.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEC6B6B92753C06800A04204 /* ProfileMigrator.swift */; };
 		AECB1BE5270EB56F001A9714 /* AuthVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = AECB1BE4270EB56F001A9714 /* AuthVM.swift */; };
 		AECB1BE727109EA3001A9714 /* CheckBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = AECB1BE627109EA3001A9714 /* CheckBox.swift */; };
 		AECB1BE92710A785001A9714 /* AuthVMTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AECB1BE82710A785001A9714 /* AuthVMTests.swift */; };
@@ -1361,6 +1362,7 @@
 		AEA1E96227422B0F005C34CB /* ProfileManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileManagerTests.swift; sourceTree = "<group>"; };
 		AEBCD8FB26E4D247001904F3 /* TemperaturePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemperaturePresenter.swift; sourceTree = "<group>"; };
 		AEBCD8FD26E4D52C001904F3 /* TemperatureUnitTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemperatureUnitTests.swift; sourceTree = "<group>"; };
+		AEC6B6B92753C06800A04204 /* ProfileMigrator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileMigrator.swift; sourceTree = "<group>"; };
 		AECB1BE4270EB56F001A9714 /* AuthVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthVM.swift; sourceTree = "<group>"; };
 		AECB1BE627109EA3001A9714 /* CheckBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckBox.swift; sourceTree = "<group>"; };
 		AECB1BE82710A785001A9714 /* AuthVMTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthVMTests.swift; sourceTree = "<group>"; };
@@ -2277,6 +2279,7 @@
 				AECB1BEA2711CB67001A9714 /* AuthInfo.swift */,
 				AEED1FD02737F3BE00DE6289 /* ProfileManager.swift */,
 				AEED1FD32737F71C00DE6289 /* MultiAccountProfileManager.swift */,
+				AEC6B6B92753C06800A04204 /* ProfileMigrator.swift */,
 			);
 			path = profile;
 			sourceTree = "<group>";
@@ -2830,6 +2833,7 @@
 				01C1718F22C7F3A2005983E1 /* SAIncrementalMeasurementItem+CoreDataClass.m in Sources */,
 				01199C8324C34AC50062454B /* SAChannelStatePopup.m in Sources */,
 				011021B525CC386D00621D41 /* SAVersionError.m in Sources */,
+				AEC6B6BA2753C06800A04204 /* ProfileMigrator.swift in Sources */,
 				0172677D234FAF78000F1CFB /* SADownloadImpulseCounterMeasurements.m in Sources */,
 				01392B37235C91C1003A2BAD /* SADownloadTemperatureMeasurements.m in Sources */,
 				01C1719A22C7F55B005983E1 /* SAMeasurementItem+CoreDataProperties.m in Sources */,

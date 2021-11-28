@@ -54,6 +54,7 @@ extension MultiAccountProfileManager: ProfileManager {
     }
     
     func updateCurrentProfile(_ profile: AuthProfileItem) {
+        // TODO: Delete user icons probably here
         if profile.managedObjectContext == _ctx {
             if profile.hasChanges {
                 try! _ctx.save()
