@@ -37,16 +37,6 @@
 +(SAApp*)instance;
 +(BOOL) getClientGUID:(char[SUPLA_GUID_SIZE])guid;
 +(BOOL) getAuthKey:(char[SUPLA_AUTHKEY_SIZE])auth_key;
-//+(int) getAccessID;
-//+(void) setAccessID:(int)aid;
-//+(NSString*) getAccessIDpwd;
-//+(void) setAccessIDpwd:(NSString *)pwd;
-//+(NSString*) getServerHostName;
-//+(NSString*) getEmailAddress;
-//+(BOOL) isAdvancedConfig;
-//+(void) setServerHostName:(NSString *)hostname;
-//+(void) setEmailAddress:(NSString *)email;
-//+(void) setAdvancedConfig:(BOOL)adv_cfg;
 +(void) abstractMethodException:(NSString *)methodName;
 +(NSURL *)applicationDocumentsDirectory;
 +(BOOL) configIsSet;
@@ -67,9 +57,6 @@
 +(void) SuplaClientWaitForTerminate;
 +(BOOL) SuplaClientConnected;
 +(void) revokeOAuthToken;
-
-//+(void) setPreferedProtocolVersion:(int)version;
-//+(int) getPreferedProtocolVersion;
 
 -(SAOAuthToken*) registerRestApiClientTask:(SARestApiClientTask *)client;
 -(void) unregisterRestApiClientTask:(SARestApiClientTask *)task;
