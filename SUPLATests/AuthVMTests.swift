@@ -21,6 +21,7 @@
 import XCTest
 import RxSwift
 import RxCocoa
+import CoreData
 
 @testable import SUPLA
 
@@ -31,54 +32,155 @@ class AuthVMTests: XCTestCase {
     private let _advancedEmail = BehaviorRelay<String?>(value: "")
     private let _accessID = BehaviorRelay<Int?>(value: nil)
     private let _accessIDpwd = BehaviorRelay<String?>(value: "")
-    private let _serverAddr = BehaviorRelay<String?>(value: nil)
+    private let _serverAddrEmail = BehaviorRelay<String?>(value: nil)
+    private let _serverAddrAccessID = BehaviorRelay<String?>(value: nil)
     private let _advancedMode = BehaviorRelay(value: true)
     private let _advancedModeAuthType = BehaviorRelay(value: AuthVM.AuthType.email)
     private let _createAccountRequest = BehaviorRelay<Void>(value: ())
     private let _autoServerSelected = BehaviorRelay(value: false)
     private let _formSubmitRequest = BehaviorRelay<Void>(value: ())
-    
-//    class MockCfgProvider: AuthCfgProvider {
-//        func loadCurrentAuthCfg() -> AuthCfg? { return nil }
-//        func storeCurrentAuthCfg(_ ac: AuthCfg) {}
-//    }
+
+    /*
+    class MockProfileManager: ProfileManager {
+        private var mockProfile = AuthProfileItem()
+        func getCurrentProfile() -> AuthProfileItem {
+            return mockProfile
+        }
+        func updateCurrentProfile(_ profile: AuthProfileItem) {
+            mockProfile = profile
+        }
+
+        func getCurrentAuthInfo() -> AuthInfo {
+            mockProfile.authInfo!
+        }
+
+        func updateCurrentAuthInfo(_ info: AuthInfo) {
+            mockProfile.authInfo! = info
+        }
+    }*/
+
+    private var profileManager: ProfileManager!
+    private var coordinator: NSPersistentStoreCoordinator!
+    private var ctx: NSManagedObjectContext {
+        let rv = NSManagedObjectContext()
+        rv.persistentStoreCoordinator = coordinator
+        return rv
+    }
 
     override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
-        let bindings = AuthVM.Bindings(basicEmail: _basicEmail.asObservable(),
-                                       advancedEmail: _advancedEmail.asObservable(),
-                                       accessID: _accessID.asObservable(),
-                                       accessIDpwd: _accessIDpwd.asObservable(),
-                                       serverAddress: _serverAddr.asObservable(),
-                                       toggleAdvancedState: _advancedMode.asObservable(),
-                                       advancedModeAuthType: _advancedModeAuthType.asObservable(),
-                                       createAccountRequest: _createAccountRequest.asObservable(),
-                                       autoServerSelected: _autoServerSelected.asObservable(),
-                                       formSubmitRequest: _formSubmitRequest.asObservable())
-        sut = AuthVM(bindings: bindings, authConfigProvider: MockCfgProvider())
+        let modelURL = Bundle.main.url(forResource: "SUPLA",
+                                       withExtension: "momd")!
+        let mom = NSManagedObjectModel(contentsOf: modelURL)!
+        coordinator = NSPersistentStoreCoordinator(managedObjectModel: mom)
+        try! coordinator.addPersistentStore(ofType: NSInMemoryStoreType,
+                                            configurationName: nil,
+                                            at: nil,
+                                            options: nil)
+        profileManager = MultiAccountProfileManager(context: ctx)
+
+        let bindings = AuthVM.Inputs(basicEmail: _basicEmail.asObservable(),
+                                     advancedEmail: _advancedEmail.asObservable(),
+                                     accessID: _accessID.asObservable(),
+                                     accessIDpwd: _accessIDpwd.asObservable(),
+                                     serverAddressForEmail: _serverAddrEmail.asObservable(),
+                                     serverAddressForAccessID: _serverAddrAccessID.asObservable(),
+                                     toggleAdvancedState: _advancedMode.asObservable(),
+                                     advancedModeAuthType: _advancedModeAuthType.asObservable(),
+                                     createAccountRequest: _createAccountRequest.asObservable(),
+                                     autoServerSelected: _autoServerSelected.asObservable(),
+                                     formSubmitRequest: _formSubmitRequest.asObservable())
+        sut = AuthVM(bindings: bindings, profileManager: profileManager)
     }
 
-    override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
+    func testAutoServerEnabled() throws {
+        let bag = DisposeBag()
+        XCTAssertNotNil(sut.serverAddressForEmail.single())
+        _advancedMode.accept(true)
+        _advancedModeAuthType.accept(.email)
+        let expectServerAddressNotEmpty = expectation(description: "Server address is set to non-empty value")
+        sut.serverAddressForEmail.subscribe(onNext: { addr in
+            if addr == "test.server.net" { expectServerAddressNotEmpty.fulfill() }
+        }).disposed(by: bag)
+        _serverAddrEmail.accept("test.server.net")
+        wait(for: [expectServerAddressNotEmpty],timeout: 0.1)
+        
+        _autoServerSelected.accept(true)
+        let expectServerAddressEmpty = expectation(description: "server address is empty after auto server detection is enabled")
+        sut.serverAddressForEmail.subscribe(onNext: { addr in
+            if addr == nil || addr!.isEmpty { expectServerAddressEmpty.fulfill() }
+        }).disposed(by: bag)
+        wait(for: [expectServerAddressEmpty], timeout: 0.1)
     }
 
-//    func testAutoServerEnabled() throws {
-//        let bag = DisposeBag()
-//        XCTAssertNotNil(sut.serverAddress.single())
-//        _advancedMode.accept(true)
-//        _advancedModeAuthType.accept(.email)
-//        let expectServerAddressNotEmpty = expectation(description: "Server address is set to non-empty value")
-//        sut.serverAddress.subscribe(onNext: { addr in
-//            if addr == "test.server.net" { expectServerAddressNotEmpty.fulfill() }
-//        }).disposed(by: bag)
-//        _serverAddr.accept("test.server.net")
-//        wait(for: [expectServerAddressNotEmpty],timeout: 0.1)
-//        
-//        _autoServerSelected.accept(true)
-//        let expectServerAddressEmpty = expectation(description: "server address is empty after auto server detection is enabled")
-//        sut.serverAddress.subscribe(onNext: { addr in
-//            if addr == nil || addr!.isEmpty { expectServerAddressEmpty.fulfill() }
-//        }).disposed(by: bag)
-//        wait(for: [expectServerAddressEmpty], timeout: 0.1)
-//    }
+    func testDisablingAutoServerPrefillsServerAddress() throws {
+        var email: String?
+        var isAuto: Bool?
+        var serverAddr: String?
+        
+        let bag = DisposeBag()
+
+        sut.emailAddress.subscribe { email = $0 }.disposed(by: bag)
+        sut.isServerAutoDetect.subscribe { isAuto = $0 }.disposed(by: bag)
+        sut.serverAddressForEmail.subscribe { serverAddr = $0 }.disposed(by: bag)
+
+        _basicEmail.accept("testing@tst.net")
+
+        
+        XCTAssertTrue(isAuto!)
+        XCTAssertEqual("testing@tst.net", email)
+        XCTAssertTrue(serverAddr!.isEmpty)
+
+        _autoServerSelected.accept(false)
+
+        XCTAssertFalse(isAuto!)
+        XCTAssertEqual("testing@tst.net", email)
+        XCTAssertEqual("tst.net", serverAddr)
+    }
+
+    func testDisablingAutoServerDoesNotPrefillServerIfEmailEmpty() throws {
+        var email: String?
+        var isAuto: Bool?
+        var serverAddr: String?
+        
+        let bag = DisposeBag()
+
+        sut.emailAddress.subscribe { email = $0 }.disposed(by: bag)
+        sut.isServerAutoDetect.subscribe { isAuto = $0 }.disposed(by: bag)
+        sut.serverAddressForEmail.subscribe { serverAddr = $0 }.disposed(by: bag)
+
+        _basicEmail.accept("testing@tst.net")
+
+        
+        XCTAssertTrue(isAuto!)
+        XCTAssertTrue(email!.isEmpty)
+        XCTAssertTrue(serverAddr!.isEmpty)
+
+        _autoServerSelected.accept(false)
+
+        XCTAssertFalse(isAuto!)
+        XCTAssertTrue(email!.isEmpty)
+        XCTAssertTrue(serverAddr!.isEmpty)
+        
+    }
+
+    func testSeparateServerAddressForAccessID() {
+        var serverForEmail: String = ""
+        var serverForAccessID: String = ""
+
+        let bag = DisposeBag()
+
+        sut.serverAddressForEmail.subscribe {
+            serverForEmail = $0!
+        }.disposed(by: bag)
+        sut.serverAddressForAccessID.subscribe {
+            serverForAccessID = $0!
+        }.disposed(by: bag)
+
+        _serverAddrEmail.accept("email.server.com")
+        _serverAddrAccessID.accept("aid.server.com")
+
+        XCTAssertEqual(serverForEmail, "email.server.com")
+        XCTAssertEqual(serverForAccessID, "aid.server.com")
+        
+    }
 }
