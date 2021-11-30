@@ -21,14 +21,14 @@ import Foundation
 
 @objc
 class AuthInfo: NSObject, NSCoding {
-    var emailAuth: Bool = true
-    var serverAutoDetect: Bool = true
-    var emailAddress: String = ""
-    var serverForEmail: String = ""
-    var serverForAccessID: String = ""
-    var accessID: Int = 0
-    var accessIDpwd: String = ""
-    var preferredProtocolVersion: Int = 0
+    @objc var emailAuth: Bool = true
+    @objc var serverAutoDetect: Bool = true
+    @objc var emailAddress: String = ""
+    @objc var serverForEmail: String = ""
+    @objc var serverForAccessID: String = ""
+    @objc var accessID: Int = 0
+    @objc var accessIDpwd: String = ""
+    @objc var preferredProtocolVersion: Int = 0
 
     
     private let kEmailAuth = "emailAuth"
@@ -89,6 +89,20 @@ class AuthInfo: NSObject, NSCoding {
                  emailAddress == o.emailAddress
 
     }
+    
+    @objc var serverForCurrentAuthMethod: String {
+        if(emailAuth) { return serverForEmail } else { return serverForAccessID }
+    }
+    
+    @objc var isAuthDataComplete: Bool {
+        if(emailAuth) {
+            return !emailAddress.isEmpty &&
+            (serverAutoDetect || !serverForCurrentAuthMethod.isEmpty)
+        } else {
+            return !serverForCurrentAuthMethod.isEmpty &&
+            accessID > 0 && !accessIDpwd.isEmpty
+        }
+    }
 }
 
 extension AuthInfo: NSCopying {
@@ -100,5 +114,30 @@ extension AuthInfo: NSCopying {
                         serverForAccessID: serverForAccessID,
                         accessID: accessID, accessIDpwd: accessIDpwd,
                         preferredProtocolVersion:  preferredProtocolVersion)
+    }
+}
+
+@objc
+class AuthInfoValueTransformer: ValueTransformer {
+    override func transformedValue(_ value: Any?) -> Any? {
+        guard let value = value as? Data else { return nil }
+
+        do {
+            let decoder: NSKeyedUnarchiver
+            if #available(iOS 11.0, *) {
+                decoder = try NSKeyedUnarchiver(forReadingFrom: value)
+            } else {
+                decoder = NSKeyedUnarchiver(forReadingWith: value)
+            }
+            return decoder.decodeObject(forKey: NSKeyedArchiveRootObjectKey)
+            
+        } catch {
+            return nil
+        }
+    }
+    
+    override func reverseTransformedValue(_ value: Any?) -> Any? {
+        guard let value = value as? AuthInfo else { return nil }
+        return NSKeyedArchiver.archivedData(withRootObject: value)
     }
 }

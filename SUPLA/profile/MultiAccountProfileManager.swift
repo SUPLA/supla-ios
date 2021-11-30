@@ -22,6 +22,7 @@ import CoreData
 class MultiAccountProfileManager: NSObject {
     private let _ctx: NSManagedObjectContext
     
+    @objc
     init(context: NSManagedObjectContext) {
         _ctx = context
         super.init()
@@ -74,6 +75,4 @@ extension MultiAccountProfileManager: ProfileManager {
         profile.authInfo = info
         updateCurrentProfile(profile)
     }
-    
-    
 }

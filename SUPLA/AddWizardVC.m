@@ -24,6 +24,7 @@
 #import "SARegistrationEnabled.h"
 #import "NSDictionary+SUPLA.h"
 #import "UIButton+SUPLA.h"
+#import "SUPLA-Swift.h"
 
 #define RESULT_PARAM_ERROR   -3
 #define RESULT_COMPAT_ERROR  -2
@@ -404,7 +405,8 @@
     
     [self.btnSystemSettings setTitle:NSLocalizedString(@"Go to the system settings", NULL)];
     
-    if ( [SAApp isAdvancedConfig] == YES ) {
+    if ( ![SAApp.profileManager getCurrentAuthInfo].emailAuth ) {
+        // TODO: Replace text
         [self showError:NSLocalizedString(@"Add Wizard is only available when server connection has been set based on the email address entered in the settings. (Disable advanced options in the settings)", NULL)];
         return;
     } else {
@@ -700,7 +702,8 @@
 }
 
 -(NSString*)cloudHostName {
-   return [[[SAApp getServerHostName] lowercaseString] containsString:@"supla.org"] ? @"cloud.supla.org" : [SAApp getServerHostName];
+    NSString *server = [SAApp.profileManager getCurrentAuthInfo].serverForCurrentAuthMethod;
+   return [[server lowercaseString] containsString:@"supla.org"] ? @"cloud.supla.org" : server;
 }
 
 - (void)onRegistrationEnabled:(NSNotification *)notification {
@@ -775,8 +778,11 @@
                         stringByTrimmingCharactersInSet:
                         [NSCharacterSet whitespaceAndNewlineCharacterSet]];
     setConfigOp.PWD = self.edPassword.text;
-    setConfigOp.Server = [SAApp getServerHostName];
-    setConfigOp.Email = [SAApp getEmailAddress];
+    
+    AuthInfo *ai = [SAApp.profileManager getCurrentAuthInfo];
+    
+    setConfigOp.Server = ai.serverForEmail;
+    setConfigOp.Email = ai.emailAddress;
     setConfigOp.delegate = self;
     [self.OpQueue addOperation:setConfigOp];
 }

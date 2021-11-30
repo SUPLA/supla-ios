@@ -143,7 +143,10 @@ class AuthVC: UIViewController {
             if needsReauth.element == true || !SAApp.suplaClientConnected() {
                 NotificationCenter.default.post(name: .saConnecting,
                                                 object: self, userInfo: nil)
-                SAApp.setPreferedProtocolVersion(SUPLA_PROTO_VERSION)
+                let pm = SAApp.profileManager()
+                let ai = pm.getCurrentAuthInfo()
+                ai.preferredProtocolVersion = Int(SUPLA_PROTO_VERSION)
+                pm.updateCurrentAuthInfo(ai)
                 SAApp.suplaClient().reconnect()
             }
         }.disposed(by: disposeBag)

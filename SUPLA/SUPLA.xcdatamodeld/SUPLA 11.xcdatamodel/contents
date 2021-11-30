@@ -2,7 +2,7 @@
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="19461" systemVersion="21A559" minimumToolsVersion="Automatic" sourceLanguage="Objective-C" userDefinedModelVersionIdentifier="">
     <entity name="AuthProfileItem" representedClassName="AuthProfileItem" syncable="YES" codeGenerationType="class">
         <attribute name="advancedSetup" attributeType="Boolean" usesScalarValueType="YES"/>
-        <attribute name="authInfo" attributeType="Transformable" valueTransformerName="NSKeyedUnarchiveFromData" customClassName="AuthInfo"/>
+        <attribute name="authInfo" attributeType="Transformable" valueTransformerName="AuthInfoValueTransformer" customClassName="AuthInfo"/>
         <attribute name="isActive" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="name" attributeType="String" defaultValueString=""/>
     </entity>
@@ -132,7 +132,7 @@
         <attribute name="uimage4" optional="YES" attributeType="Transformable" valueTransformerName="NSSecureUnarchiveFromData"/>
     </entity>
     <elements>
-        <element name="AuthProfileItem" positionX="-603" positionY="117" width="128" height="89"/>
+        <element name="AuthProfileItem" positionX="-603" positionY="117" width="128" height="14"/>
         <element name="SAChannel" positionX="-20.5078125" positionY="10.7734375" width="128" height="150"/>
         <element name="SAChannelBase" positionX="-540" positionY="72" width="128" height="208"/>
         <element name="SAChannelExtendedValue" positionX="-154.34375" positionY="196.6171875" width="128" height="58"/>
