@@ -40,25 +40,6 @@ class AuthVMTests: XCTestCase {
     private let _autoServerSelected = BehaviorRelay(value: false)
     private let _formSubmitRequest = BehaviorRelay<Void>(value: ())
 
-    /*
-    class MockProfileManager: ProfileManager {
-        private var mockProfile = AuthProfileItem()
-        func getCurrentProfile() -> AuthProfileItem {
-            return mockProfile
-        }
-        func updateCurrentProfile(_ profile: AuthProfileItem) {
-            mockProfile = profile
-        }
-
-        func getCurrentAuthInfo() -> AuthInfo {
-            mockProfile.authInfo!
-        }
-
-        func updateCurrentAuthInfo(_ info: AuthInfo) {
-            mockProfile.authInfo! = info
-        }
-    }*/
-
     private var profileManager: ProfileManager!
     private var coordinator: NSPersistentStoreCoordinator!
     private var ctx: NSManagedObjectContext {
@@ -181,6 +162,26 @@ class AuthVMTests: XCTestCase {
 
         XCTAssertEqual(serverForEmail, "email.server.com")
         XCTAssertEqual(serverForAccessID, "aid.server.com")
-        
+    }
+
+    func testConfirmUpdatesSettingsWithNewValues() {
+        let oldProfile = profileManager.getCurrentProfile()
+        _advancedMode.accept(true)
+        _advancedModeAuthType.accept(AuthVM.AuthType.accessId)
+        _accessID.accept(345)
+        _accessIDpwd.accept("topsecret")
+        _serverAddrAccessID.accept("s1.testing.net")
+
+      _formSubmitRequest.accept({}())
+
+        let newProfile = profileManager.getCurrentProfile()
+        XCTAssertNotEqual(oldProfile, newProfile)
+
+        XCTAssertTrue(newProfile.advancedSetup)
+        XCTAssertFalse(newProfile.authInfo!.emailAuth)
+        XCTAssertEqual(345, newProfile.authInfo!.accessID)
+        XCTAssertEqual("topsecret", newProfile.authInfo!.accessIDpwd)
+        XCTAssertEqual("s1.testing.net",
+                       newProfile.authInfo!.serverForAccessID)
     }
 }
