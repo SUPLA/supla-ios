@@ -34,11 +34,11 @@ class AuthVMTests: XCTestCase {
     private let _accessIDpwd = BehaviorRelay<String?>(value: "")
     private let _serverAddrEmail = BehaviorRelay<String?>(value: nil)
     private let _serverAddrAccessID = BehaviorRelay<String?>(value: nil)
-    private let _advancedMode = BehaviorRelay(value: true)
+    private let _advancedMode = BehaviorRelay(value: false)
     private let _advancedModeAuthType = BehaviorRelay(value: AuthVM.AuthType.email)
-    private let _createAccountRequest = BehaviorRelay<Void>(value: ())
+    private let _createAccountRequest = PublishRelay<Void>()
     private let _autoServerSelected = BehaviorRelay(value: false)
-    private let _formSubmitRequest = BehaviorRelay<Void>(value: ())
+    private let _formSubmitRequest = PublishRelay<Void>()
 
     private var profileManager: ProfileManager!
     private var coordinator: NSPersistentStoreCoordinator!
@@ -71,6 +71,18 @@ class AuthVMTests: XCTestCase {
                                      autoServerSelected: _autoServerSelected.asObservable(),
                                      formSubmitRequest: _formSubmitRequest.asObservable())
         sut = AuthVM(bindings: bindings, profileManager: profileManager)
+    }
+    
+    override func tearDownWithError() throws {
+        _basicEmail.accept("")
+        _advancedEmail.accept("")
+        _accessID.accept(nil)
+        _accessIDpwd.accept("")
+        _serverAddrEmail.accept(nil)
+        _serverAddrAccessID.accept(nil)
+        _advancedMode.accept(false)
+        _advancedModeAuthType.accept(.email)
+        _autoServerSelected.accept(false)
     }
 
     func testAutoServerEnabled() throws {
@@ -165,23 +177,25 @@ class AuthVMTests: XCTestCase {
     }
 
     func testConfirmUpdatesSettingsWithNewValues() {
-        let oldProfile = profileManager.getCurrentProfile()
+        XCTAssertEqual(false, profileManager.getCurrentProfile().advancedSetup)
+
+        let oldAuthInfo = profileManager.getCurrentProfile().authInfo!.clone()
         _advancedMode.accept(true)
         _advancedModeAuthType.accept(AuthVM.AuthType.accessId)
         _accessID.accept(345)
         _accessIDpwd.accept("topsecret")
         _serverAddrAccessID.accept("s1.testing.net")
 
-      _formSubmitRequest.accept({}())
+        _formSubmitRequest.accept({}())
 
-        let newProfile = profileManager.getCurrentProfile()
-        XCTAssertNotEqual(oldProfile, newProfile)
+        let newAuthInfo = profileManager.getCurrentProfile().authInfo
+        XCTAssertNotEqual(oldAuthInfo, newAuthInfo)
 
-        XCTAssertTrue(newProfile.advancedSetup)
-        XCTAssertFalse(newProfile.authInfo!.emailAuth)
-        XCTAssertEqual(345, newProfile.authInfo!.accessID)
-        XCTAssertEqual("topsecret", newProfile.authInfo!.accessIDpwd)
+        XCTAssertTrue(profileManager.getCurrentProfile().advancedSetup)
+        XCTAssertFalse(newAuthInfo!.emailAuth)
+        XCTAssertEqual(345, newAuthInfo!.accessID)
+        XCTAssertEqual("topsecret", newAuthInfo!.accessIDpwd)
         XCTAssertEqual("s1.testing.net",
-                       newProfile.authInfo!.serverForAccessID)
+                       newAuthInfo!.serverForAccessID)
     }
 }

@@ -152,7 +152,11 @@ class AuthVM {
         _accessIDpwd.subscribe { [weak self] ap in
             self?._authCfg.accessIDpwd = ap.element! ?? ""
         }.disposed(by: disposeBag)
-
+        
+        _advancedModeAuthType.subscribe { [weak self] at in
+            self?._authCfg.emailAuth = at.element == .email
+        }.disposed(by: disposeBag)
+        
 
         _advancedMode.accept(profile.advancedSetup)
         _serverAutoDetect.accept(_authCfg.serverAutoDetect)

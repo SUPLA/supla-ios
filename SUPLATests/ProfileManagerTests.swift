@@ -64,4 +64,30 @@ class ProfileManagerTests: XCTestCase {
         let profile = profileManager.getCurrentProfile()
         XCTAssertEqual(newInfo, profile.authInfo)
     }
+    
+    
+    func testAuthInfoPassesEqualityTest() throws {
+        let a1 = AuthInfo(emailAuth: true, serverAutoDetect: true,
+                          emailAddress: "test1@test.net",
+                          serverForEmail: "hacker1", serverForAccessID: "",
+                          accessID: 0, accessIDpwd: "")
+        let a2 = AuthInfo(emailAuth: true, serverAutoDetect: true,
+                          emailAddress: "test1@test.net",
+                          serverForEmail: "hacker1", serverForAccessID: "",
+                          accessID: 0, accessIDpwd: "")
+        XCTAssertEqual(a1, a2)
+    }
+    
+    func testAuthInfoPassesInequalityTest() throws {
+        let a1 = AuthInfo(emailAuth: true, serverAutoDetect: true,
+                          emailAddress: "test1@test.net",
+                          serverForEmail: "hacker1", serverForAccessID: "",
+                          accessID: 0, accessIDpwd: "")
+        let a2 = AuthInfo(emailAuth: true, serverAutoDetect: false,
+                          emailAddress: "test1@test.net",
+                          serverForEmail: "hacker1", serverForAccessID: "",
+                          accessID: 0, accessIDpwd: "")
+        XCTAssertNotEqual(a1, a2)
+
+    }
 }
