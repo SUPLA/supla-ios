@@ -52,6 +52,7 @@
     SADownloadUserIcons *_task;
     NSArray *_locations;
     CGFloat _standardChannelHeight;
+    NSDate *_lastUpdateTime;
 }
 
 - (void)registerNibForTableView:(UITableView*)tv {
@@ -172,10 +173,14 @@
 
 
 -(void)onDataChanged {
+    NSDate *current = [NSDate date];
+    if(_lastUpdateTime && [current timeIntervalSinceDate:_lastUpdateTime] < 0.5) {
+        return;
+    }
+    _lastUpdateTime = current;
     _cFrc = nil;
     _gFrc = nil;
     _locations = nil;
-    
     [self.cTableView reloadData];
     [self.gTableView reloadData];
 
