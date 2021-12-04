@@ -83,22 +83,6 @@ class AuthVC: UIViewController {
                                                 }), formSubmitRequest: Observable.of(bsConfirmButton.rx.tap.asObservable(),
                                                                                                                                                         adConfirmButton.rx.tap.asObservable()).merge().asObservable())
         
-//        AuthVM.Bindings(basicEmail: bsEmailAddr.rx.text.asObservable(),
-//                                       advancedEmail: adEmailAddr.rx.text.asObservable(),
-//                                       accessID: adAccessID.rx.text.asObservable().map { Int($0 ?? "0") }.asObservable(),
-//                                       accessIDpwd: adAccessPwd.rx.text.asObservable(),
-//                                       serverAddress: Observable.of(adServerAddrEmail.rx.text.asObservable(),
-//                                                                    adServerAddrAccessId.rx.text.asObservable()).merge().asObservable(),
-//                                       toggleAdvancedState: Observable.of(basicModeToggle.rx.isOn.asObservable(),
-//                                                                          advancedModeToggle.rx.isOn.asObservable()).merge().asObservable(),
-//                                       advancedModeAuthType: adAuthType.rx.selectedSegmentIndex.asObservable().map({ AuthVM.AuthType(rawValue: $0)!
-//                                       }),
-//                                       createAccountRequest: bsCreateAccountButton.rx.tap.asObservable(),
-//                                       autoServerSelected: adServerAuto.rx.tap.asObservable().map({
-//                                        self.adServerAuto.isSelected
-//                                    }),
-//                                       formSubmitRequest: Observable.of(bsConfirmButton.rx.tap.asObservable(),
-//                                                                        adConfirmButton.rx.tap.asObservable()).merge().asObservable())
         vM = AuthVM(bindings: bindings,
                     profileManager: SAApp.profileManager())
         
@@ -111,6 +95,8 @@ class AuthVC: UIViewController {
         vM.serverAddressForAccessID.bind(to: self.adServerAddrAccessId.rx.text)
             .disposed(by: disposeBag)
         vM.emailAddress.bind(to: self.bsEmailAddr.rx.text, self.adEmailAddr.rx.text)
+            .disposed(by: disposeBag)
+        vM.isServerAutoDetect.bind(to: self.adServerAuto.rx.isSelected)
             .disposed(by: disposeBag)
         
         vM.isAdvancedMode.subscribe { [weak self] (isAdvanced: Bool) in

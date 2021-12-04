@@ -109,6 +109,12 @@ class AuthVM {
         _authCfg = profile.authInfo!
         _loadedCfg = _authCfg.clone()
         
+        _serverAutoDetect.accept(_authCfg.serverAutoDetect)
+        _serverAddressForEmail.accept(_authCfg.serverForEmail)
+        _serverAddressForAccessID.accept(_authCfg.serverForAccessID)
+        _emailAddress.accept(_authCfg.emailAddress)
+        _accessID.accept(_authCfg.accessID)
+        _accessIDpwd.accept(_authCfg.accessIDpwd)
 
         b.toggleAdvancedState.subscribe { [weak self] _ in
             guard let ss = self else { return }
