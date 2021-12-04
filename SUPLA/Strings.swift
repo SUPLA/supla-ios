@@ -26,5 +26,8 @@ struct Strings {
         static let temperatureUnit = NSLocalizedString("Temperature unit", comment: "label for temperature unit setting")
         static let buttonAutoHide  = NSLocalizedString("Auto-hide buttons", comment: "label for button auto-hide setting")
         static let showChannelInfo = NSLocalizedString("Show ⓘ button", comment: "label for show channel info setting")
+        
+        static let basicModeNotAvailableTitle = NSLocalizedString("Setting not available", comment: "alert box title when basic authentication mode is not available")
+        static let basicModeNotAvailableMessage = NSLocalizedString("Before turning advanced mode off you need to switch to email authentication and enable automatic server detection.", comment: "alert box message when basic authentication mode is not available")
     }
 }

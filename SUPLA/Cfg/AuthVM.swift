@@ -72,6 +72,10 @@ class AuthVM {
     var initiateSignup: Observable<Void> {
         return _initiateSignup.asObservable()
     }
+    
+    var basicModeUnavailable: Observable<Void> {
+        return _basicModeUnavailable.asObservable()
+    }
 
     var formSaved: Observable<Bool> { return _formSaved.asObservable() }
 
@@ -90,6 +94,7 @@ class AuthVM {
     private let _advancedModeAuthType = BehaviorRelay<AuthType>(value: .email)
     private let _initiateSignup = PublishSubject<Void>()
     private let _formSaved = PublishSubject<Bool>()
+    private let _basicModeUnavailable = PublishSubject<Void>()
 
     private let disposeBag = DisposeBag()
     private let _profileManager: ProfileManager
@@ -118,7 +123,15 @@ class AuthVM {
 
         b.toggleAdvancedState.subscribe { [weak self] _ in
             guard let ss = self else { return }
-            ss._advancedMode.accept(!ss._advancedMode.value)
+            if ss._advancedMode.value && (!ss._authCfg.emailAuth ||
+                !ss._authCfg.serverAutoDetect) {
+                /* User needs to switch to email auth with auto-detected
+                   server, before he can go back to basic mode. */
+                ss._basicModeUnavailable.onNext(())
+                ss._advancedMode.accept(ss._advancedMode.value)
+            } else {
+                ss._advancedMode.accept(!ss._advancedMode.value)
+            }
         }.disposed(by: disposeBag)
 
         b.advancedModeAuthType.subscribe { [weak self]  in

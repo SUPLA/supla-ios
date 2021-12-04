@@ -198,4 +198,110 @@ class AuthVMTests: XCTestCase {
         XCTAssertEqual("s1.testing.net",
                        newAuthInfo!.serverForAccessID)
     }
+    
+    func testReturningToBasicModeRequiresEmailAuto1() {
+        let disposeBag = DisposeBag()
+        
+        var isAdvanced: Bool = false
+        var alertTriggered: Bool = false
+        
+        // Initial conditions
+        _advancedMode.accept(true)
+        _advancedModeAuthType.accept(.accessId)
+        _autoServerSelected.accept(false)
+        
+        // Capture values for assertions
+        sut.isAdvancedMode.subscribe { isAdvanced = $0 }.disposed(by: disposeBag)
+        sut.basicModeUnavailable.subscribe(onNext: { alertTriggered = true })
+            .disposed(by: disposeBag)
+        
+        // Attempt to switch to basic mode
+        _advancedMode.accept(false)
+        
+        // ... should not succeed
+        XCTAssertTrue(isAdvanced)
+        XCTAssertTrue(alertTriggered)
+    }
+    
+    func testReturningToBasicModeRequiresEmailAuto2() {
+        let disposeBag = DisposeBag()
+        
+        var isAdvanced: Bool = false
+        var alertTriggered: Bool = false
+        
+        // Initial conditions
+        _advancedMode.accept(true)
+        _advancedModeAuthType.accept(.accessId)
+        _autoServerSelected.accept(false)
+        
+        // Capture values for assertions
+        sut.isAdvancedMode.subscribe { isAdvanced = $0 }.disposed(by: disposeBag)
+        sut.basicModeUnavailable.subscribe(onNext: { alertTriggered = true })
+            .disposed(by: disposeBag)
+        
+        // Partial fulfill preconditions for entering basic mode
+        _advancedModeAuthType.accept(.email)
+
+        // Attempt to switch to basic mode
+        _advancedMode.accept(false)
+        
+        // ... should not succeed
+        XCTAssertTrue(isAdvanced)
+        XCTAssertTrue(alertTriggered)
+    }
+    
+    func testReturningToBasicModeRequiresEmailAuto3() {
+        let disposeBag = DisposeBag()
+        
+        var isAdvanced: Bool = false
+        var alertTriggered: Bool = false
+        
+        // Initial conditions
+        _advancedMode.accept(true)
+        _advancedModeAuthType.accept(.accessId)
+        _autoServerSelected.accept(false)
+        
+        // Capture values for assertions
+        sut.isAdvancedMode.subscribe { isAdvanced = $0 }.disposed(by: disposeBag)
+        sut.basicModeUnavailable.subscribe(onNext: { alertTriggered = true })
+            .disposed(by: disposeBag)
+        
+        // Partial fulfill preconditions for entering basic mode
+        _autoServerSelected.accept(true)
+
+        // Attempt to switch to basic mode
+        _advancedMode.accept(false)
+        
+        // ... should not succeed
+        XCTAssertTrue(isAdvanced)
+        XCTAssertTrue(alertTriggered)
+    }
+
+    func testReturningToBasicModeRequiresEmailAuto4() {
+        let disposeBag = DisposeBag()
+        
+        var isAdvanced: Bool = false
+        var alertTriggered: Bool = false
+        
+        // Initial conditions
+        _advancedMode.accept(true)
+        _advancedModeAuthType.accept(.accessId)
+        _autoServerSelected.accept(false)
+        
+        // Capture values for assertions
+        sut.isAdvancedMode.subscribe { isAdvanced = $0 }.disposed(by: disposeBag)
+        sut.basicModeUnavailable.subscribe(onNext: { alertTriggered = true })
+            .disposed(by: disposeBag)
+        
+        // Fulfill preconditions for entering basic mode
+        _advancedModeAuthType.accept(.email)
+        _autoServerSelected.accept(true)
+        
+        // Attempt to switch to basic mode
+        _advancedMode.accept(false)
+        
+        // ... should not succeed
+        XCTAssertFalse(isAdvanced)
+        XCTAssertFalse(alertTriggered)
+    }
 }

@@ -136,6 +136,10 @@ class AuthVC: UIViewController {
                 SAApp.suplaClient().reconnect()
             }
         }.disposed(by: disposeBag)
+        
+        vM.basicModeUnavailable.subscribe(onNext: { [weak self] in
+            self?.displayBasicModeUnavailableAlert()
+        }).disposed(by: disposeBag)
     }
     
     private func setAdvancedAuthMode(_ at: AuthVM.AuthType) {
@@ -156,5 +160,14 @@ class AuthVC: UIViewController {
         viewToAdd.bottomAnchor.constraint(equalTo: adFormHostView.bottomAnchor).isActive = true
         viewToAdd.leftAnchor.constraint(equalTo: adFormHostView.leftAnchor).isActive = true
         viewToAdd.rightAnchor.constraint(equalTo: adFormHostView.rightAnchor).isActive = true
+    }
+    
+    private func displayBasicModeUnavailableAlert() {
+        let alert = UIAlertController(title: Strings.Cfg.basicModeNotAvailableTitle,
+                                      message: Strings.Cfg.basicModeNotAvailableMessage,
+                                      preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK",
+                                      style: .default))
+        present(alert, animated: true)
     }
 }
