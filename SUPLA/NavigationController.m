@@ -80,6 +80,10 @@
     
 }
 
+- (void)viewDidLayoutSubviews {
+    [super viewDidLayoutSubviews];
+    [self updateFrame];
+}
 
 -(void)showViewController:(UIViewController *)vc {
     
