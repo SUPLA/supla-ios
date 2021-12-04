@@ -37,7 +37,7 @@ class AuthVMTests: XCTestCase {
     private let _advancedMode = BehaviorRelay(value: false)
     private let _advancedModeAuthType = BehaviorRelay(value: AuthVM.AuthType.email)
     private let _createAccountRequest = PublishRelay<Void>()
-    private let _autoServerSelected = BehaviorRelay(value: false)
+    private let _autoServerSelected = BehaviorRelay(value: true)
     private let _formSubmitRequest = PublishRelay<Void>()
 
     private var profileManager: ProfileManager!
@@ -142,7 +142,7 @@ class AuthVMTests: XCTestCase {
         sut.serverAddressForEmail.subscribe { serverAddr = $0 }.disposed(by: bag)
 
         _basicEmail.accept("testing@tst.net")
-
+        _advancedEmail.accept("")
         
         XCTAssertTrue(isAuto!)
         XCTAssertTrue(email!.isEmpty)

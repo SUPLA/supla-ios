@@ -128,8 +128,17 @@ class AuthVM {
         }).disposed(by: disposeBag)
         
         _serverAutoDetect.subscribe { [weak self] in
-            if $0.element == true {
+            guard let autoDetect = $0.element else { return }
+            self?._authCfg.serverAutoDetect = autoDetect
+            if autoDetect {
                 self?._serverAddressForEmail.accept("")
+            } else {
+                if let email = self?._emailAddress.value,
+                   let atidx = email.lastIndex(of: "@"),
+                   email.endIndex > email.index(after: atidx) {
+                    let domain = email[email.index(after: atidx)...]
+                    self?._serverAddressForEmail.accept(String(domain))
+                }
             }
         }.disposed(by: disposeBag)
         
