@@ -91,6 +91,12 @@
     
 }
 
+- (void)layoutSubviews {
+    [super layoutSubviews];
+    
+    [_cbPicker setNeedsDisplay];
+}
+
 - (void)showValues {
     if ( self.cbPicker.colorWheelHidden == NO ) {
         
