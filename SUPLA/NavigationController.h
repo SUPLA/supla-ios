@@ -18,8 +18,9 @@
 
 #import <UIKit/UIKit.h>
 #import <MessageUI/MessageUI.h>
+#import "BaseViewController.h"
 
-@interface SANavigationController : UIViewController <MFMailComposeViewControllerDelegate>
+@interface SANavigationController : BaseViewController <MFMailComposeViewControllerDelegate>
 
 -(void)showViewController:(UIViewController *)vc;
 -(UIViewController *)currentViewController;

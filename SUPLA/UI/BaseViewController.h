@@ -16,24 +16,12 @@
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 
+
 #import <UIKit/UIKit.h>
-#import "BaseViewController.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface SAWizardVC : BaseViewController
-@property (weak, nonatomic) IBOutlet UIView *vPageContent;
-@property (nonatomic) BOOL backButtonInsteadOfCancel;
-@property (weak, nonatomic) UIView *page;
-@property (weak, nonatomic, readonly) UIView *previousPage;
-@property (weak, nonatomic) NSString *btnNextTitle;
-@property (nonatomic) BOOL btnNextEnabled;
-@property (nonatomic) BOOL btnCancelOrBackEnabled;
-@property (nonatomic) BOOL preloaderVisible;
-
-- (IBAction)nextTouch:(nullable id)sender;
-- (IBAction)cancelOrBackTouch:(nullable id)sender;
-
+@interface BaseViewController : UIViewController
 
 @end
 

@@ -19,10 +19,11 @@
 #import <UIKit/UIKit.h>
 #import "SADownloadUserIcons.h"
 #import "SectionCell.h"
+#import "BaseViewController.h"
 
 @class SADetailView;
 
-@interface SAMainVC : UIViewController <UITableViewDataSource, UITableViewDelegate, SARestApiClientTaskDelegate, SASectionCellDelegate, UITableViewDragDelegate, UITableViewDropDelegate>
+@interface SAMainVC : BaseViewController <UITableViewDataSource, UITableViewDelegate, SARestApiClientTaskDelegate, SASectionCellDelegate, UITableViewDragDelegate, UITableViewDropDelegate>
 
 
 - (IBAction)settingsTouched:(id)sender;

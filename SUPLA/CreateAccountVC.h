@@ -17,8 +17,9 @@
  */
 
 #import <UIKit/UIKit.h>
+#import "BaseViewController.h"
 
-@interface SACreateAccountVC : UIViewController <UIWebViewDelegate>
+@interface SACreateAccountVC : BaseViewController <UIWebViewDelegate>
 @property (weak, nonatomic) IBOutlet UIWebView *webView;
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicator;
 
