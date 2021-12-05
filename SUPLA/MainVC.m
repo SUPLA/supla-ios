@@ -53,6 +53,7 @@
     NSArray *_locations;
     CGFloat _standardChannelHeight;
     NSDate *_lastUpdateTime;
+    NSTimer *_updateTimer;
 }
 
 - (void)registerNibForTableView:(UITableView*)tv {
@@ -171,10 +172,18 @@
     // Dispose of any resources that can be recreated.
 }
 
+-(void)onDeferredUpdate: (NSTimer *)timer {
+    [self onDataChanged];
+}
 
 -(void)onDataChanged {
     NSDate *current = [NSDate date];
+    [_updateTimer invalidate];
     if(_lastUpdateTime && [current timeIntervalSinceDate:_lastUpdateTime] < 0.5) {
+        _updateTimer = [NSTimer scheduledTimerWithTimeInterval:0.5
+                                                        target:self
+                                                      selector:@selector(onDeferredUpdate:)
+                                                      userInfo:nil repeats:NO];
         return;
     }
     _lastUpdateTime = current;
