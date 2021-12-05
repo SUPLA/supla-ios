@@ -612,6 +612,7 @@ again:
 }
 
 -(BOOL) setAllOfChannelVisible:(int)visible whereVisibilityIs:(int)wvi {
+    // FIXME: dispatch to queue?
     return [self setAllItemsVisible:visible whereVisibilityIs:wvi entityName:@"SAChannel"];
 }
 

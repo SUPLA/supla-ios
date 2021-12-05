@@ -73,6 +73,10 @@ class AuthVM {
         return _initiateSignup.asObservable()
     }
     
+    let signupPromptVisible = Observable<Bool>.deferred {
+        return Observable<Bool>.of(!SAApp.suplaClientConnected())
+    }
+    
     var basicModeUnavailable: Observable<Void> {
         return _basicModeUnavailable.asObservable()
     }

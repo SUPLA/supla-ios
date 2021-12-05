@@ -164,6 +164,7 @@
         
         [self.NavController showViewController:[self MainVC]];
         [self fadeToViewController:[self NavController]];
+        [self showMenuBtn:YES];
     } else {
         [self showStatusVC];
     }

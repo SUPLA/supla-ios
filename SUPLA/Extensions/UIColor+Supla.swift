@@ -25,4 +25,10 @@ extension UIColor {
                                     blue: 128.0/255.0, alpha: 0.12)
     static var viewBackground = UIColor(red: 0.898, green: 0.898, blue: 0.898,
                                         alpha: 1)
+    static let switcherBackground = UIColor(red: 118.0/255.0, green: 120.0/255.0,
+                                            blue: 128.0/255.0, alpha: 0.12)
+    static let alertRed = UIColor(red: 235.0/255.0, green: 58.0/255.0,
+                                  blue: 40.0/255.0, alpha: 1)
+
+
 }

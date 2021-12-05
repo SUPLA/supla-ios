@@ -845,7 +845,6 @@
 		01BDAC7722C5200600915646 /* SAOAuthToken.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SAOAuthToken.m; sourceTree = "<group>"; };
 		01BE3C85233EAFEC00201B47 /* HomePlusDetailViewGroupCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HomePlusDetailViewGroupCell.h; sourceTree = "<group>"; };
 		01BE3C86233EAFEC00201B47 /* HomePlusDetailViewGroupCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HomePlusDetailViewGroupCell.m; sourceTree = "<group>"; };
-		01BF82BF2347558D00C9EE9F /* sk-SK */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "sk-SK"; path = "sk-SK.lproj/AuthVC.strings"; sourceTree = "<group>"; };
 		01BF82C02347558D00C9EE9F /* sk-SK */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "sk-SK"; path = "sk-SK.lproj/AboutVC.strings"; sourceTree = "<group>"; };
 		01BF82C22347558D00C9EE9F /* sk-SK */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "sk-SK"; path = "sk-SK.lproj/ElectricityMeterDetailView.strings"; sourceTree = "<group>"; };
 		01BF82C32347558D00C9EE9F /* sk-SK */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "sk-SK"; path = "sk-SK.lproj/HomePlusDetailView.strings"; sourceTree = "<group>"; };
@@ -853,7 +852,6 @@
 		01BF82C52347558D00C9EE9F /* sk-SK */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "sk-SK"; path = "sk-SK.lproj/AddWizardVC.strings"; sourceTree = "<group>"; };
 		01BF82C62347558D00C9EE9F /* sk-SK */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "sk-SK"; path = "sk-SK.lproj/HomePlusDetailViewGroupCell.strings"; sourceTree = "<group>"; };
 		01BF82C72347558D00C9EE9F /* sk-SK */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "sk-SK"; path = "sk-SK.lproj/Localizable.strings"; sourceTree = "<group>"; };
-		01BF82C82347567700C9EE9F /* sl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sl; path = sl.lproj/AuthVC.strings; sourceTree = "<group>"; };
 		01BF82C92347567700C9EE9F /* sl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sl; path = sl.lproj/AboutVC.strings; sourceTree = "<group>"; };
 		01BF82CB2347567700C9EE9F /* sl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sl; path = sl.lproj/ElectricityMeterDetailView.strings; sourceTree = "<group>"; };
 		01BF82CC2347567800C9EE9F /* sl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sl; path = sl.lproj/HomePlusDetailView.strings; sourceTree = "<group>"; };
@@ -861,7 +859,6 @@
 		01BF82CE2347567800C9EE9F /* sl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sl; path = sl.lproj/AddWizardVC.strings; sourceTree = "<group>"; };
 		01BF82CF2347567800C9EE9F /* sl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sl; path = sl.lproj/HomePlusDetailViewGroupCell.strings; sourceTree = "<group>"; };
 		01BF82D02347567800C9EE9F /* sl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sl; path = sl.lproj/Localizable.strings; sourceTree = "<group>"; };
-		01BF82D12347569400C9EE9F /* nb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nb; path = nb.lproj/AuthVC.strings; sourceTree = "<group>"; };
 		01BF82D22347569400C9EE9F /* nb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nb; path = nb.lproj/AboutVC.strings; sourceTree = "<group>"; };
 		01BF82D42347569400C9EE9F /* nb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nb; path = nb.lproj/ElectricityMeterDetailView.strings; sourceTree = "<group>"; };
 		01BF82D52347569400C9EE9F /* nb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nb; path = nb.lproj/HomePlusDetailView.strings; sourceTree = "<group>"; };
@@ -869,7 +866,6 @@
 		01BF82D72347569400C9EE9F /* nb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nb; path = nb.lproj/AddWizardVC.strings; sourceTree = "<group>"; };
 		01BF82D82347569500C9EE9F /* nb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nb; path = nb.lproj/HomePlusDetailViewGroupCell.strings; sourceTree = "<group>"; };
 		01BF82D92347569500C9EE9F /* nb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nb; path = nb.lproj/Localizable.strings; sourceTree = "<group>"; };
-		01BF82DA2347569F00C9EE9F /* el */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = el; path = el.lproj/AuthVC.strings; sourceTree = "<group>"; };
 		01BF82DB2347569F00C9EE9F /* el */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = el; path = el.lproj/AboutVC.strings; sourceTree = "<group>"; };
 		01BF82DD2347569F00C9EE9F /* el */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = el; path = el.lproj/ElectricityMeterDetailView.strings; sourceTree = "<group>"; };
 		01BF82DE2347569F00C9EE9F /* el */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = el; path = el.lproj/HomePlusDetailView.strings; sourceTree = "<group>"; };
@@ -877,7 +873,6 @@
 		01BF82E0234756A000C9EE9F /* el */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = el; path = el.lproj/AddWizardVC.strings; sourceTree = "<group>"; };
 		01BF82E1234756A000C9EE9F /* el */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = el; path = el.lproj/HomePlusDetailViewGroupCell.strings; sourceTree = "<group>"; };
 		01BF82E2234756A000C9EE9F /* el */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = el; path = el.lproj/Localizable.strings; sourceTree = "<group>"; };
-		01BF82E3234756B500C9EE9F /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = nl.lproj/AuthVC.strings; sourceTree = "<group>"; };
 		01BF82E4234756B500C9EE9F /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = nl.lproj/AboutVC.strings; sourceTree = "<group>"; };
 		01BF82E6234756B500C9EE9F /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = nl.lproj/ElectricityMeterDetailView.strings; sourceTree = "<group>"; };
 		01BF82E7234756B500C9EE9F /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = nl.lproj/HomePlusDetailView.strings; sourceTree = "<group>"; };
@@ -1153,13 +1148,6 @@
 		408034E21BC84A89007666E7 /* NavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NavigationController.h; sourceTree = "<group>"; };
 		408034E31BC84A89007666E7 /* NavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NavigationController.m; sourceTree = "<group>"; };
 		408034E41BC84A89007666E7 /* NavigationController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NavigationController.xib; sourceTree = "<group>"; };
-		40844D831FB0DDB500432AA0 /* pl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pl; path = pl.lproj/AuthVC.strings; sourceTree = "<group>"; };
-		40844D841FB0DDC400432AA0 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/AuthVC.strings; sourceTree = "<group>"; };
-		40844D851FB0DDC600432AA0 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/AuthVC.strings; sourceTree = "<group>"; };
-		40844D861FB0DDC800432AA0 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/AuthVC.strings; sourceTree = "<group>"; };
-		40844D871FB0DDCA00432AA0 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/AuthVC.strings; sourceTree = "<group>"; };
-		40844D881FB0DDCC00432AA0 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/AuthVC.strings; sourceTree = "<group>"; };
-		40844D891FB0DDCF00432AA0 /* pt-PT */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-PT"; path = "pt-PT.lproj/AuthVC.strings"; sourceTree = "<group>"; };
 		40844D8A1FB0DF3B00432AA0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/AuthVC.xib; sourceTree = "<group>"; };
 		409165331F3C7B5700F49193 /* pl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pl; path = pl.lproj/AboutVC.strings; sourceTree = "<group>"; };
 		409165341F3C7B6300F49193 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/AboutVC.strings; sourceTree = "<group>"; };
@@ -1195,7 +1183,6 @@
 		40A87DDE1FADDFF800918B54 /* add_device@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "add_device@2x.png"; path = "Resources/Assets/Img/add_device@2x.png"; sourceTree = "<group>"; };
 		40AB8BDC1DCB32EB0030F3DE /* SARateApp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SARateApp.h; sourceTree = "<group>"; };
 		40AB8BDD1DCB32EB0030F3DE /* SARateApp.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SARateApp.m; sourceTree = "<group>"; };
-		40AC4F332094B23C004DB7CD /* lt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = lt; path = lt.lproj/AuthVC.strings; sourceTree = "<group>"; };
 		40AC4F342094B23C004DB7CD /* lt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = lt; path = lt.lproj/AboutVC.strings; sourceTree = "<group>"; };
 		40AC4F362094B23D004DB7CD /* lt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = lt; path = lt.lproj/RSDetail.strings; sourceTree = "<group>"; };
 		40AC4F372094B23D004DB7CD /* lt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = lt; path = lt.lproj/AddWizardVC.strings; sourceTree = "<group>"; };
@@ -1312,7 +1299,6 @@
 		40CF96D71BC81A470030EFFF /* warning@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "warning@3x.png"; path = "Resources/Assets/Img/warning@3x.png"; sourceTree = "<group>"; };
 		40CF96DC1BC820E60030EFFF /* UIHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIHelper.h; sourceTree = "<group>"; };
 		40CF96DD1BC820E60030EFFF /* UIHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIHelper.m; sourceTree = "<group>"; };
-		40D2B413207B857600608312 /* cs */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = cs; path = cs.lproj/AuthVC.strings; sourceTree = "<group>"; };
 		40D2B414207B857600608312 /* cs */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = cs; path = cs.lproj/AboutVC.strings; sourceTree = "<group>"; };
 		40D2B416207B857700608312 /* cs */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = cs; path = cs.lproj/RSDetail.strings; sourceTree = "<group>"; };
 		40D2B417207B857700608312 /* cs */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = cs; path = cs.lproj/AddWizardVC.strings; sourceTree = "<group>"; };
@@ -2756,6 +2742,7 @@
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-SUPLA/Pods-SUPLA-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Charts/Charts.framework",
+				"${BUILT_PRODUCTS_DIR}/PaddingLabel/PaddingLabel.framework",
 				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
 				"${BUILT_PRODUCTS_DIR}/RxRelay/RxRelay.framework",
 				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
@@ -2764,6 +2751,7 @@
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Charts.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PaddingLabel.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxRelay.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
@@ -3238,21 +3226,7 @@
 		40844D811FB0DDB000432AA0 /* AuthVC.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
-				40844D831FB0DDB500432AA0 /* pl */,
-				40844D841FB0DDC400432AA0 /* de */,
-				40844D851FB0DDC600432AA0 /* ru */,
-				40844D861FB0DDC800432AA0 /* it */,
-				40844D871FB0DDCA00432AA0 /* fr */,
-				40844D881FB0DDCC00432AA0 /* es */,
-				40844D891FB0DDCF00432AA0 /* pt-PT */,
 				40844D8A1FB0DF3B00432AA0 /* Base */,
-				40D2B413207B857600608312 /* cs */,
-				40AC4F332094B23C004DB7CD /* lt */,
-				01BF82BF2347558D00C9EE9F /* sk-SK */,
-				01BF82C82347567700C9EE9F /* sl */,
-				01BF82D12347569400C9EE9F /* nb */,
-				01BF82DA2347569F00C9EE9F /* el */,
-				01BF82E3234756B500C9EE9F /* nl */,
 			);
 			name = AuthVC.xib;
 			sourceTree = "<group>";
