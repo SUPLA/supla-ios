@@ -280,3 +280,4 @@
 "In Access ID authentication mode you won't be able to use automatic Add device wizard. However you will still be able to add it by manual Add device procedure." = "Kreator automatycznego dodawania urządzeń nie jest dostępny w trybie uwierzytelniania identyfikatorem dostępu. Urządzenia mogą być wówczas dodawane ręcznie.";
 "Don't have an account in Supla Cloud yet?" = "Nie masz jeszcze konta w Supla Cloud?";
 "Create" = "Utwórz konto";
+"Location order" = "Kolejność lokalizacji";

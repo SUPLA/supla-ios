@@ -29,12 +29,24 @@ class CfgVC: UIViewController {
         case temperatureUnit
         case buttonAutoHide
         case showChannelInfo
+        case locationOrdering
+        
+        static var allCases: [Settings] {
+            var rv: [Settings] = [.channelHeight, .temperatureUnit,
+                                  .buttonAutoHide, .showChannelInfo]
+            if #available(iOS 11.0, *) {
+                rv.append(.locationOrdering)
+            }
+            return rv
+        }
     }
     
     private var channelHeightControl: UISegmentedControl!
-    private var buttonAutoHideControl: UISwitch!
     private var temperatureUnitControl: UISegmentedControl!
-    private var showChannelInfoControl: UISwitch!
+
+    private let buttonAutoHideControl = UISwitch()
+    private let showChannelInfoControl = UISwitch()
+    private let chevronRightControl = UIImageView(image: UIImage(named: "ChevronRight"))
     
     private let disposeBag = DisposeBag()
     private let dismissCmd = PublishSubject<Void>()
@@ -69,9 +81,8 @@ class CfgVC: UIViewController {
             temperatureUnitControl.setWidth(segmentWidth, forSegmentAt: i)
         }
         
-        buttonAutoHideControl = UISwitch()
+        chevronRightControl.tintColor = .suplaGreen
         
-        showChannelInfoControl = UISwitch()
 
         let inputs = CfgVM.Inputs(channelHeight: channelHeightControl.rx.selectedSegmentIndex.map({ ChannelHeight.allCases[max(0,$0)] }).asObservable(),
                                   temperatureUnit: temperatureUnitControl.rx.selectedSegmentIndex.map({ TemperatureUnit.allCases[max(0,$0)]}).asObservable(),
@@ -117,6 +128,9 @@ class CfgVC: UIViewController {
         case .showChannelInfo:
             label = Strings.Cfg.showChannelInfo
             actionView = showChannelInfoControl
+        case .locationOrdering:
+            label = Strings.Cfg.locationOrdering
+            actionView = chevronRightControl
         }
         
         cell.titleLabel.text = label

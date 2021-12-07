@@ -40,5 +40,6 @@ struct Strings {
         
         static let createAccountPrompt = NSLocalizedString("Don't have an account in Supla Cloud yet?", comment: "")
         static let createAccountButton = NSLocalizedString("Create", comment: "")
+        static let locationOrdering = NSLocalizedString("Location order", comment: "settings menu label for location order")
     }
 }
