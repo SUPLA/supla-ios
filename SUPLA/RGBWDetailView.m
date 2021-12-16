@@ -17,7 +17,7 @@
  */
 
 #import "RGBWDetailView.h"
-#import "UIHelper.h"
+
 #import "SAChannel+CoreDataClass.h"
 #import "SAColorListItem+CoreDataClass.h"
 #import "Database.h"

@@ -16,14 +16,8 @@
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 
+import UIKit
 
-#import <UIKit/UIKit.h>
-@protocol NavigationCoordinator, NavigationCoordinatorAware;
-NS_ASSUME_NONNULL_BEGIN
-
-@interface BaseViewController : UIViewController<NavigationCoordinatorAware>
-@property (weak,nonatomic) id<NavigationCoordinator> navigationCoordinator;
-@property (readonly,nonatomic) UIView *statusBarBackgroundView;
-- (BOOL)adjustsStatusBarBackground;
-@end
-NS_ASSUME_NONNULL_END
+extension UIFont {
+    static let suplaTitleBarFont = UIFont(name: "Quicksand-Regular", size: 27)!
+}

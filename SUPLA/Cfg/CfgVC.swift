@@ -20,9 +20,9 @@ import UIKit
 import RxSwift
 import RxSwiftExt
 
-class CfgVC: UIViewController {
+class CfgVC: BaseViewController {
     
-    private var vM: CfgVM!
+    private(set) var vM: CfgVM!
     
     private enum Settings: Int, CaseIterable {
         case channelHeight
@@ -50,7 +50,13 @@ class CfgVC: UIViewController {
     
     private let disposeBag = DisposeBag()
     private let dismissCmd = PublishSubject<Void>()
+    let openLocalizationOrderingCmd = PublishSubject<Void>()
     
+    convenience init() {
+        self.init(nibName: nil, bundle: nil)
+        self.title = Strings.Cfg.appConfigTitle
+    }
+        
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -105,8 +111,9 @@ class CfgVC: UIViewController {
     
     @objc private func onBackButtonPressed(_ n: Notification) {
         dismissCmd.on(.next(()))
-        SAApp.ui().invalidateMainVC()
-        SAApp.ui().showMainVC()
+        // FIXME: needs new solution
+//        SAApp.ui().invalidateMainVC()
+//        SAApp.ui().showMainVC()
     }
     
     private func cellForSetting(_ setting: Settings) -> UITableViewCell {
@@ -163,5 +170,8 @@ extension CfgVC: UITableViewDataSource {
 extension CfgVC: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+        if let row = Settings(rawValue: indexPath.row), row == .locationOrdering {
+            openLocalizationOrderingCmd.on(.next(()))
+        }
     }
 }

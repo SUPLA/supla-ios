@@ -17,10 +17,11 @@
  */
 
 #import <UIKit/UIKit.h>
+#import "SUPLA-Swift.h"
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
-
+@property (strong, nonatomic) id<NavigationCoordinator> navigation;
 @end
 

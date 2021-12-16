@@ -14,6 +14,7 @@
  */
 
 #import "SADialog.h"
+#import "SUPLA-Swift.h"
 
 @interface SADialog ()
 - (IBAction)closeButtonTouch:(id)sender;
@@ -116,7 +117,7 @@
 }
 
 + (void)showModal:(SADialog*)dialogVC {
-    UIViewController *rootVC = UIApplication.sharedApplication.delegate.window.rootViewController;
+    UIViewController *rootVC = [SAApp currentNavigationCoordinator].viewController;
     dialogVC.modalPresentationStyle = UIModalPresentationOverCurrentContext;
     
     if (@available(iOS 13.0, *)) {

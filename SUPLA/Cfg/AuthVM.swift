@@ -118,13 +118,6 @@ class AuthVM {
         _authCfg = profile.authInfo!
         _loadedCfg = _authCfg.clone()
         
-        _serverAutoDetect.accept(_authCfg.serverAutoDetect)
-        _serverAddressForEmail.accept(_authCfg.serverForEmail)
-        _serverAddressForAccessID.accept(_authCfg.serverForAccessID)
-        _emailAddress.accept(_authCfg.emailAddress)
-        _accessID.accept(_authCfg.accessID)
-        _accessIDpwd.accept(_authCfg.accessIDpwd)
-
         b.toggleAdvancedState.subscribe { [weak self] _ in
             guard let ss = self else { return }
             if ss._advancedMode.value && (!ss._authCfg.emailAuth ||
@@ -149,18 +142,21 @@ class AuthVM {
         b.formSubmitRequest.subscribe(onNext: { [weak self] in
             self?.onFormSubmit()
         }).disposed(by: disposeBag)
+  
         
         _serverAutoDetect.subscribe { [weak self] in
-            guard let autoDetect = $0.element else { return }
-            self?._authCfg.serverAutoDetect = autoDetect
-            if autoDetect {
-                self?._serverAddressForEmail.accept("")
-            } else {
-                if let email = self?._emailAddress.value,
-                   let atidx = email.lastIndex(of: "@"),
-                   email.endIndex > email.index(after: atidx) {
-                    let domain = email[email.index(after: atidx)...]
-                    self?._serverAddressForEmail.accept(String(domain))
+            guard let autoDetect = $0.element, let ss = self else { return }
+            if ss._authCfg.serverAutoDetect != autoDetect {
+                ss._authCfg.serverAutoDetect = autoDetect
+                if autoDetect {
+                    ss._serverAddressForEmail.accept("")
+                } else {
+                    if let email = ss._emailAddress.value,
+                       let atidx = email.lastIndex(of: "@"),
+                       email.endIndex > email.index(after: atidx) {
+                        let domain = email[email.index(after: atidx)...]
+                        ss._serverAddressForEmail.accept(String(domain))
+                    }
                 }
             }
         }.disposed(by: disposeBag)
@@ -190,15 +186,16 @@ class AuthVM {
             self?._authCfg.emailAuth = at.element == .email
         }.disposed(by: disposeBag)
         
-
         _advancedMode.accept(profile.advancedSetup)
-        _serverAutoDetect.accept(_authCfg.serverAutoDetect)
-        _emailAddress.accept(_authCfg.emailAddress)
-        _serverAddressForEmail.accept(_authCfg.serverForEmail)
-        _serverAddressForAccessID.accept(_authCfg.serverForAccessID)
-        _accessID.accept(_authCfg.accessID)
-        _accessIDpwd.accept(_authCfg.accessIDpwd)
+        _serverAutoDetect.accept(_loadedCfg.serverAutoDetect)
+        _emailAddress.accept(_loadedCfg.emailAddress)
+        _serverAddressForEmail.accept(_loadedCfg.serverForEmail)
+        _serverAddressForAccessID.accept(_loadedCfg.serverForAccessID)
+        _accessID.accept(_loadedCfg.accessID)
+        _accessIDpwd.accept(_loadedCfg.accessIDpwd)
+
     }
+
     
     
     private func onFormSubmit() {

@@ -351,7 +351,6 @@
 		407ECDC21DAFBB9600F01C7E /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 407ECDC11DAFBB9600F01C7E /* AudioToolbox.framework */; };
 		408034C41BC83D1A007666E7 /* MGSwipeButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 408034C11BC83D1A007666E7 /* MGSwipeButton.m */; };
 		408034C51BC83D1A007666E7 /* MGSwipeTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 408034C31BC83D1A007666E7 /* MGSwipeTableCell.m */; };
-		408034E51BC84A89007666E7 /* NavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 408034E31BC84A89007666E7 /* NavigationController.m */; };
 		408034E61BC84A89007666E7 /* NavigationController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 408034E41BC84A89007666E7 /* NavigationController.xib */; };
 		40844D7F1FB0DDB000432AA0 /* AuthVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 40844D811FB0DDB000432AA0 /* AuthVC.xib */; };
 		4091654B1F3CBAF200F49193 /* rs_stop.png in Resources */ = {isa = PBXBuildFile; fileRef = 409165461F3CBAF200F49193 /* rs_stop.png */; };
@@ -470,7 +469,6 @@
 		40CF96D91BC81A470030EFFF /* error@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 40CF96D51BC81A470030EFFF /* error@3x.png */; };
 		40CF96DA1BC81A470030EFFF /* warning@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 40CF96D61BC81A470030EFFF /* warning@2x.png */; };
 		40CF96DB1BC81A470030EFFF /* warning@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 40CF96D71BC81A470030EFFF /* warning@3x.png */; };
-		40CF96DE1BC820E60030EFFF /* UIHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 40CF96DD1BC820E60030EFFF /* UIHelper.m */; };
 		40D397AD1FAF547B00BF477D /* retry@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 40D397AC1FAF547B00BF477D /* retry@3x.png */; };
 		40D69DEE1BB574FE00937769 /* Database.m in Sources */ = {isa = PBXBuildFile; fileRef = 40D69DED1BB574FE00937769 /* Database.m */; };
 		40DA56901DCA1908008F05DE /* _SALocation+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 40DA568A1DCA1908008F05DE /* _SALocation+CoreDataProperties.m */; };
@@ -490,8 +488,18 @@
 		40F7301120C19BA600167C2D /* SAColorListItem+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 40F7301020C19BA600167C2D /* SAColorListItem+CoreDataProperties.m */; };
 		40F951451FD0654900698587 /* RSDetail.xib in Resources */ = {isa = PBXBuildFile; fileRef = 40F951471FD0654900698587 /* RSDetail.xib */; };
 		462253FD963449A978BBDDE8 /* Pods_SUPLA.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 596D36089B2CE979388A06FF /* Pods_SUPLA.framework */; };
+		AE3DECE22761DB32005923E4 /* AuthCfgNavigationCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE3DECE02761DB32005923E4 /* AuthCfgNavigationCoordinator.swift */; };
+		AE3DECE32761DB32005923E4 /* PresentationNavigationCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE3DECE12761DB32005923E4 /* PresentationNavigationCoordinator.swift */; };
+		AE5332E227648E770050E690 /* SuplaNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE5332E127648E770050E690 /* SuplaNavigationController.swift */; };
+		AE5332E427648F610050E690 /* UIFont+Supla.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE5332E327648F610050E690 /* UIFont+Supla.swift */; };
+		AE5332E62764A7E30050E690 /* SuplaMenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE5332E52764A7E30050E690 /* SuplaMenuController.swift */; };
+		AE53535427691EFC0077BFFB /* CfgNavigationCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE53535327691EFC0077BFFB /* CfgNavigationCoordinator.swift */; };
+		AE535356276927690077BFFB /* LocationOrderingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE535355276927690077BFFB /* LocationOrderingVC.swift */; };
 		AE5A60E6270E2A7A00F2B780 /* AuthVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE5A60E5270E2A7A00F2B780 /* AuthVC.swift */; };
 		AE7CAAFD275BF87D0024095F /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AE7CAAFC275BF87D0024095F /* BaseViewController.m */; };
+		AE929A87275FD5D500B75715 /* MainNavigationCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE929A86275FD5D500B75715 /* MainNavigationCoordinator.swift */; };
+		AE929A89276145C400B75715 /* FlowActionHandlers.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE929A88276145C400B75715 /* FlowActionHandlers.swift */; };
+		AE929A8B2761487700B75715 /* NavigationCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE929A8A2761487700B75715 /* NavigationCoordinator.swift */; };
 		AEA1E96327422B0F005C34CB /* ProfileManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEA1E96227422B0F005C34CB /* ProfileManagerTests.swift */; };
 		AEAAF2F82752937D0030CBA8 /* SUPLA.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 407004251BB5706500F6187F /* SUPLA.xcdatamodeld */; };
 		AEBCD8FC26E4D247001904F3 /* TemperaturePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEBCD8FB26E4D247001904F3 /* TemperaturePresenter.swift */; };
@@ -1145,8 +1153,6 @@
 		408034C11BC83D1A007666E7 /* MGSwipeButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MGSwipeButton.m; path = ThirdPartyComponents/MGSwipe/MGSwipeButton.m; sourceTree = "<group>"; };
 		408034C21BC83D1A007666E7 /* MGSwipeTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MGSwipeTableCell.h; path = ThirdPartyComponents/MGSwipe/MGSwipeTableCell.h; sourceTree = "<group>"; };
 		408034C31BC83D1A007666E7 /* MGSwipeTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MGSwipeTableCell.m; path = ThirdPartyComponents/MGSwipe/MGSwipeTableCell.m; sourceTree = "<group>"; };
-		408034E21BC84A89007666E7 /* NavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NavigationController.h; sourceTree = "<group>"; };
-		408034E31BC84A89007666E7 /* NavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NavigationController.m; sourceTree = "<group>"; };
 		408034E41BC84A89007666E7 /* NavigationController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NavigationController.xib; sourceTree = "<group>"; };
 		40844D8A1FB0DF3B00432AA0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/AuthVC.xib; sourceTree = "<group>"; };
 		409165331F3C7B5700F49193 /* pl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pl; path = pl.lproj/AboutVC.strings; sourceTree = "<group>"; };
@@ -1297,8 +1303,6 @@
 		40CF96D51BC81A470030EFFF /* error@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "error@3x.png"; path = "Resources/Assets/Img/error@3x.png"; sourceTree = "<group>"; };
 		40CF96D61BC81A470030EFFF /* warning@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "warning@2x.png"; path = "Resources/Assets/Img/warning@2x.png"; sourceTree = "<group>"; };
 		40CF96D71BC81A470030EFFF /* warning@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "warning@3x.png"; path = "Resources/Assets/Img/warning@3x.png"; sourceTree = "<group>"; };
-		40CF96DC1BC820E60030EFFF /* UIHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIHelper.h; sourceTree = "<group>"; };
-		40CF96DD1BC820E60030EFFF /* UIHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIHelper.m; sourceTree = "<group>"; };
 		40D2B414207B857600608312 /* cs */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = cs; path = cs.lproj/AboutVC.strings; sourceTree = "<group>"; };
 		40D2B416207B857700608312 /* cs */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = cs; path = cs.lproj/RSDetail.strings; sourceTree = "<group>"; };
 		40D2B417207B857700608312 /* cs */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = cs; path = cs.lproj/AddWizardVC.strings; sourceTree = "<group>"; };
@@ -1344,9 +1348,19 @@
 		596D36089B2CE979388A06FF /* Pods_SUPLA.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SUPLA.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5CB83473B6995044CF8448E7 /* Pods-SUPLATests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SUPLATests.release.xcconfig"; path = "Target Support Files/Pods-SUPLATests/Pods-SUPLATests.release.xcconfig"; sourceTree = "<group>"; };
 		76FF65EADE7763EB8D61BC35 /* Pods_SUPLATests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SUPLATests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		AE3DECE02761DB32005923E4 /* AuthCfgNavigationCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthCfgNavigationCoordinator.swift; sourceTree = "<group>"; };
+		AE3DECE12761DB32005923E4 /* PresentationNavigationCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PresentationNavigationCoordinator.swift; sourceTree = "<group>"; };
+		AE5332E127648E770050E690 /* SuplaNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuplaNavigationController.swift; sourceTree = "<group>"; };
+		AE5332E327648F610050E690 /* UIFont+Supla.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+Supla.swift"; sourceTree = "<group>"; };
+		AE5332E52764A7E30050E690 /* SuplaMenuController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuplaMenuController.swift; sourceTree = "<group>"; };
+		AE53535327691EFC0077BFFB /* CfgNavigationCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CfgNavigationCoordinator.swift; sourceTree = "<group>"; };
+		AE535355276927690077BFFB /* LocationOrderingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationOrderingVC.swift; sourceTree = "<group>"; };
 		AE5A60E5270E2A7A00F2B780 /* AuthVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthVC.swift; sourceTree = "<group>"; };
 		AE7CAAFB275BF87D0024095F /* BaseViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = BaseViewController.h; path = UI/BaseViewController.h; sourceTree = "<group>"; };
 		AE7CAAFC275BF87D0024095F /* BaseViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = BaseViewController.m; path = UI/BaseViewController.m; sourceTree = "<group>"; };
+		AE929A86275FD5D500B75715 /* MainNavigationCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainNavigationCoordinator.swift; sourceTree = "<group>"; };
+		AE929A88276145C400B75715 /* FlowActionHandlers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlowActionHandlers.swift; sourceTree = "<group>"; };
+		AE929A8A2761487700B75715 /* NavigationCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationCoordinator.swift; sourceTree = "<group>"; };
 		AEA1E96127422AA9005C34CB /* SAThermostatMeasurementItem+CoreDataProperties.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SAThermostatMeasurementItem+CoreDataProperties.h"; sourceTree = "<group>"; };
 		AEA1E96227422B0F005C34CB /* ProfileManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileManagerTests.swift; sourceTree = "<group>"; };
 		AEBCD8FB26E4D247001904F3 /* TemperaturePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemperaturePresenter.swift; sourceTree = "<group>"; };
@@ -2095,6 +2109,7 @@
 		40A675851BA1BEBF004A51C4 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				AE929A85275FD53A00B75715 /* Navigation */,
 				AE5A60E4270E2A4100F2B780 /* Cfg */,
 				AED6395F270CA45000E5105B /* Extensions */,
 				AED6395C270CA37A00E5105B /* Controls */,
@@ -2122,8 +2137,6 @@
 				401CA1C61BA067DB00117AF4 /* MainVC.h */,
 				401CA1C71BA067DB00117AF4 /* MainVC.m */,
 				4031ACFA1BBC0FFB00CF9D8B /* MGSwipe */,
-				408034E21BC84A89007666E7 /* NavigationController.h */,
-				408034E31BC84A89007666E7 /* NavigationController.m */,
 				403150F91DC769430075D2D2 /* RGBWDetailView.h */,
 				403150FA1DC769430075D2D2 /* RGBWDetailView.m */,
 				409934B41F30EF9C003110C5 /* RSDetailView.h */,
@@ -2194,8 +2207,6 @@
 				01902A24235A17E9005ED935 /* TemperatureDetailView.m */,
 				01902A26235A180F005ED935 /* TempHumidityDetailView.h */,
 				01902A27235A180F005ED935 /* TempHumidityDetailView.m */,
-				40CF96DC1BC820E60030EFFF /* UIHelper.h */,
-				40CF96DD1BC820E60030EFFF /* UIHelper.m */,
 				012119122368B597004C1993 /* xib */,
 				AE7CAAFB275BF87D0024095F /* BaseViewController.h */,
 				AE7CAAFC275BF87D0024095F /* BaseViewController.m */,
@@ -2235,8 +2246,24 @@
 				AEF79D8A2712FE1800D7554B /* CfgVM.swift */,
 				AEF79D8C2712FF8D00D7554B /* CfgVC.swift */,
 				AEF79D9227130A5400D7554B /* CfgCell.swift */,
+				AE535355276927690077BFFB /* LocationOrderingVC.swift */,
 			);
 			path = Cfg;
+			sourceTree = "<group>";
+		};
+		AE929A85275FD53A00B75715 /* Navigation */ = {
+			isa = PBXGroup;
+			children = (
+				AE3DECE02761DB32005923E4 /* AuthCfgNavigationCoordinator.swift */,
+				AE3DECE12761DB32005923E4 /* PresentationNavigationCoordinator.swift */,
+				AE929A86275FD5D500B75715 /* MainNavigationCoordinator.swift */,
+				AE929A8A2761487700B75715 /* NavigationCoordinator.swift */,
+				AE929A88276145C400B75715 /* FlowActionHandlers.swift */,
+				AE5332E127648E770050E690 /* SuplaNavigationController.swift */,
+				AE5332E52764A7E30050E690 /* SuplaMenuController.swift */,
+				AE53535327691EFC0077BFFB /* CfgNavigationCoordinator.swift */,
+			);
+			path = Navigation;
 			sourceTree = "<group>";
 		};
 		AEBCD8FA26E4D212001904F3 /* DataPresenters */ = {
@@ -2260,6 +2287,7 @@
 			isa = PBXGroup;
 			children = (
 				AED63960270CA46C00E5105B /* UIColor+Supla.swift */,
+				AE5332E327648F610050E690 /* UIFont+Supla.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -2794,7 +2822,9 @@
 				01F8857222E5E79100D18373 /* SAImpulseCounterMeasurementItem+CoreDataClass.m in Sources */,
 				010C8786249A6A92002FE526 /* SADialog.m in Sources */,
 				40C7BA6C20C045A800ACEE42 /* SAChannelGroup+CoreDataClass.m in Sources */,
+				AE3DECE22761DB32005923E4 /* AuthCfgNavigationCoordinator.swift in Sources */,
 				019D9E3725F27BC300881C99 /* SAChannelCaptionEditor.m in Sources */,
+				AE53535427691EFC0077BFFB /* CfgNavigationCoordinator.swift in Sources */,
 				010714782656C605009C119F /* SAZWaveWakeupSettingsReport.m in Sources */,
 				40C7BA5420C008DB00ACEE42 /* SAChannelGroupRelation+CoreDataClass.m in Sources */,
 				40C7BA8820C0492500ACEE42 /* SAChannelBase+CoreDataProperties.m in Sources */,
@@ -2807,6 +2837,7 @@
 				AED63961270CA46C00E5105B /* UIColor+Supla.swift in Sources */,
 				01A195E2264B264A006D2A20 /* SAChannelCaptionSetResult.m in Sources */,
 				01C1719922C7F55B005983E1 /* SAMeasurementItem+CoreDataClass.m in Sources */,
+				AE929A87275FD5D500B75715 /* MainNavigationCoordinator.swift in Sources */,
 				019170A1233D4D5A00820BDB /* SADownloadThermostatMeasurements.m in Sources */,
 				019D22F0233CC2D000F17135 /* SAPreloader.m in Sources */,
 				40DE1A361BCD1B55004CF43B /* AboutVC.m in Sources */,
@@ -2820,7 +2851,6 @@
 				AE5A60E6270E2A7A00F2B780 /* AuthVC.swift in Sources */,
 				01C1719122C7F3A2005983E1 /* SAElectricityMeasurementItem+CoreDataClass.m in Sources */,
 				40C7BA7720C047CF00ACEE42 /* SAChannel+CoreDataProperties.m in Sources */,
-				40CF96DE1BC820E60030EFFF /* UIHelper.m in Sources */,
 				01F8856E22E5E79100D18373 /* SAImpulseCounterMeasurementItem+CoreDataProperties.m in Sources */,
 				0126B84125BDFF2F0027D88A /* SAZWaveConfigurationWizardVC.m in Sources */,
 				01C1718F22C7F3A2005983E1 /* SAIncrementalMeasurementItem+CoreDataClass.m in Sources */,
@@ -2833,6 +2863,7 @@
 				01A4D4F4269210E300F3DCD1 /* SAFormatter.m in Sources */,
 				0194D80A264DC8580094A857 /* SAZWaveNodeIdResult.m in Sources */,
 				01433DF8257F8FE20093C5DB /* SAWifi.m in Sources */,
+				AE5332E427648F610050E690 /* UIFont+Supla.swift in Sources */,
 				01511CFA24F50B470081A1EC /* SAPreloaderPopup.m in Sources */,
 				01A66A7525364AA400C00A1A /* SARoofWindowController.m in Sources */,
 				01902A25235A17E9005ED935 /* TemperatureDetailView.m in Sources */,
@@ -2853,7 +2884,6 @@
 				40D69DEE1BB574FE00937769 /* Database.m in Sources */,
 				01BE3C87233EAFEC00201B47 /* HomePlusDetailViewGroupCell.m in Sources */,
 				01CEAC1E25B99DAC009C3BFD /* SADigiglassValue.m in Sources */,
-				408034E51BC84A89007666E7 /* NavigationController.m in Sources */,
 				AEED1FD42737F71C00DE6289 /* MultiAccountProfileManager.swift in Sources */,
 				4004DE8D1DC4E270009C34E3 /* SAColorBrightnessPicker.m in Sources */,
 				019D9E2C25F271CF00881C99 /* SACaptionEditor.m in Sources */,
@@ -2864,6 +2894,7 @@
 				01E3966E25A78B8B00A0DB18 /* SADimmerCalibrationTool.m in Sources */,
 				01392B3A235CA8B1003A2BAD /* ChartDetailView.m in Sources */,
 				01567446232FCFD700397393 /* SAIncrementalMeterExtendedValue.m in Sources */,
+				AE5332E227648E770050E690 /* SuplaNavigationController.swift in Sources */,
 				015A983C265594B300B6E6C6 /* NSNumber+SUPLA.m in Sources */,
 				AEFBC24F26E37CD800414C19 /* Config.swift in Sources */,
 				01147CE4264BE317002B2E1C /* SAChannelFunctionSetResult.m in Sources */,
@@ -2874,6 +2905,7 @@
 				019D9E3225F27A4500881C99 /* SALocationCaptionEditor.m in Sources */,
 				40B610CC20C7E263002B762A /* SAUIChannelStatus.m in Sources */,
 				AECB1BE727109EA3001A9714 /* CheckBox.swift in Sources */,
+				AE535356276927690077BFFB /* LocationOrderingVC.swift in Sources */,
 				AEF79D8D2712FF8D00D7554B /* CfgVC.swift in Sources */,
 				01215A7324C8AECC00429947 /* SALightsourceLifespanSettingsDialog.m in Sources */,
 				4077ACE320A21BB100BD2216 /* CreateAccountVC.m in Sources */,
@@ -2881,6 +2913,7 @@
 				01A0BD0A26CEFBC200C4A5F2 /* SAWarningIcon.m in Sources */,
 				012F722E22DFA0BE00E5F72E /* SABarChartDataSet.swift in Sources */,
 				408034C51BC83D1A007666E7 /* MGSwipeTableCell.m in Sources */,
+				AE929A89276145C400B75715 /* FlowActionHandlers.swift in Sources */,
 				AEF79D8B2712FE1800D7554B /* CfgVM.swift in Sources */,
 				010C8780249A4D55002FE526 /* SAInfoVC.m in Sources */,
 				01F8857522E6167100D18373 /* SADownloadUserIcons.m in Sources */,
@@ -2892,6 +2925,7 @@
 				016ABE16236D8363001BF5FB /* SAKeychain.m in Sources */,
 				01EE9BB022BA4B050029A142 /* SAChannelExtendedValue+CoreDataProperties.m in Sources */,
 				011021C925CC39FB00621D41 /* SASuperuserAuthorizationResult.m in Sources */,
+				AE929A8B2761487700B75715 /* NavigationCoordinator.swift in Sources */,
 				01BDAC7522C518DE00915646 /* SARestApiClientTask.m in Sources */,
 				401CA1BF1BA067DB00117AF4 /* main.m in Sources */,
 				018CFD2623281AF900888CB7 /* SAThermostatHPExtendedValue.m in Sources */,
@@ -2905,6 +2939,7 @@
 				01EE9BBC22BA50D90029A142 /* SAChannelValueBase+CoreDataProperties.m in Sources */,
 				01C792FA22B7FB610020A900 /* SAChannelExtendedValue+CoreDataClass.m in Sources */,
 				01902A28235A180F005ED935 /* TempHumidityDetailView.m in Sources */,
+				AE5332E62764A7E30050E690 /* SuplaMenuController.swift in Sources */,
 				AECB1BE5270EB56F001A9714 /* AuthVM.swift in Sources */,
 				0122613922F396440013E6A2 /* SAThermostatCalendar.m in Sources */,
 				010714732656A6FB009C119F /* SAZWaveWakeupSettingsDialog.m in Sources */,
@@ -2921,6 +2956,7 @@
 				AE7CAAFD275BF87D0024095F /* BaseViewController.m in Sources */,
 				4006E90A1DC62D0A00C4456D /* DetailView.m in Sources */,
 				01D6A0F2249BD2F7006B3757 /* SASuperuserAuthorizationDialog.m in Sources */,
+				AE3DECE32761DB32005923E4 /* PresentationNavigationCoordinator.swift in Sources */,
 				01BDAC7822C5200600915646 /* SAOAuthToken.m in Sources */,
 				AED6395E270CA3A800E5105B /* RoundedButton.swift in Sources */,
 				015A9846265595E300B6E6C6 /* UIButton+SUPLA.m in Sources */,

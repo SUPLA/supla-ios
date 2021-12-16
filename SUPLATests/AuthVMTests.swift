@@ -27,7 +27,20 @@ import CoreData
 
 class AuthVMTests: XCTestCase {
     
-    private var sut: AuthVM!
+    private lazy var sut: AuthVM! = {
+        let bindings = AuthVM.Inputs(basicEmail: _basicEmail.asObservable(),
+                                     advancedEmail: _advancedEmail.asObservable(),
+                                     accessID: _accessID.asObservable(),
+                                     accessIDpwd: _accessIDpwd.asObservable(),
+                                     serverAddressForEmail: _serverAddrEmail.asObservable(),
+                                     serverAddressForAccessID: _serverAddrAccessID.asObservable(),
+                                     toggleAdvancedState: _advancedMode.asObservable(),
+                                     advancedModeAuthType: _advancedModeAuthType.asObservable(),
+                                     createAccountRequest: _createAccountRequest.asObservable(),
+                                     autoServerSelected: _autoServerSelected.asObservable(),
+                                     formSubmitRequest: _formSubmitRequest.asObservable())
+        return AuthVM(bindings: bindings, profileManager: profileManager)
+    }()
     private let _basicEmail = BehaviorRelay<String?>(value: "")
     private let _advancedEmail = BehaviorRelay<String?>(value: "")
     private let _accessID = BehaviorRelay<Int?>(value: nil)
@@ -59,26 +72,14 @@ class AuthVMTests: XCTestCase {
                                             options: nil)
         profileManager = MultiAccountProfileManager(context: ctx)
 
-        let bindings = AuthVM.Inputs(basicEmail: _basicEmail.asObservable(),
-                                     advancedEmail: _advancedEmail.asObservable(),
-                                     accessID: _accessID.asObservable(),
-                                     accessIDpwd: _accessIDpwd.asObservable(),
-                                     serverAddressForEmail: _serverAddrEmail.asObservable(),
-                                     serverAddressForAccessID: _serverAddrAccessID.asObservable(),
-                                     toggleAdvancedState: _advancedMode.asObservable(),
-                                     advancedModeAuthType: _advancedModeAuthType.asObservable(),
-                                     createAccountRequest: _createAccountRequest.asObservable(),
-                                     autoServerSelected: _autoServerSelected.asObservable(),
-                                     formSubmitRequest: _formSubmitRequest.asObservable())
-        sut = AuthVM(bindings: bindings, profileManager: profileManager)
     }
     
     override func tearDownWithError() throws {
-        _basicEmail.accept("")
+        _basicEmail.accept("my@email.com")
         _advancedEmail.accept("")
         _accessID.accept(nil)
         _accessIDpwd.accept("")
-        _serverAddrEmail.accept(nil)
+        _serverAddrEmail.accept("server.email.com")
         _serverAddrAccessID.accept(nil)
         _advancedMode.accept(false)
         _advancedModeAuthType.accept(.email)
@@ -96,13 +97,26 @@ class AuthVMTests: XCTestCase {
         }).disposed(by: bag)
         _serverAddrEmail.accept("test.server.net")
         wait(for: [expectServerAddressNotEmpty],timeout: 0.1)
-        
+        _autoServerSelected.accept(false)
         _autoServerSelected.accept(true)
         let expectServerAddressEmpty = expectation(description: "server address is empty after auto server detection is enabled")
         sut.serverAddressForEmail.subscribe(onNext: { addr in
             if addr == nil || addr!.isEmpty { expectServerAddressEmpty.fulfill() }
         }).disposed(by: bag)
         wait(for: [expectServerAddressEmpty], timeout: 0.1)
+    }
+    
+    func testNoChangeOnAutoServerMaintainsServerAddress() throws {
+        let ai = profileManager.getCurrentAuthInfo()
+        ai.serverForEmail = "a.test.net"
+        profileManager.updateCurrentAuthInfo(ai)
+        let addr = profileManager.getCurrentAuthInfo().serverForEmail
+        XCTAssertFalse(addr.isEmpty)
+        _ = sut
+        _formSubmitRequest.accept(())
+
+        let addr2 = profileManager.getCurrentAuthInfo().serverForEmail
+        XCTAssertEqual(addr, addr2)
     }
 
     func testDisablingAutoServerPrefillsServerAddress() throws {
@@ -180,12 +194,12 @@ class AuthVMTests: XCTestCase {
         XCTAssertEqual(false, profileManager.getCurrentProfile().advancedSetup)
 
         let oldAuthInfo = profileManager.getCurrentProfile().authInfo!.clone()
+        _ = sut
         _advancedMode.accept(true)
         _advancedModeAuthType.accept(AuthVM.AuthType.accessId)
         _accessID.accept(345)
         _accessIDpwd.accept("topsecret")
         _serverAddrAccessID.accept("s1.testing.net")
-
         _formSubmitRequest.accept({}())
 
         let newAuthInfo = profileManager.getCurrentProfile().authInfo
@@ -201,15 +215,16 @@ class AuthVMTests: XCTestCase {
     
     func testReturningToBasicModeRequiresEmailAuto1() {
         let disposeBag = DisposeBag()
-        
+        _ = sut
+
         var isAdvanced: Bool = false
         var alertTriggered: Bool = false
-        
+
         // Initial conditions
         _advancedMode.accept(true)
         _advancedModeAuthType.accept(.accessId)
         _autoServerSelected.accept(false)
-        
+
         // Capture values for assertions
         sut.isAdvancedMode.subscribe { isAdvanced = $0 }.disposed(by: disposeBag)
         sut.basicModeUnavailable.subscribe(onNext: { alertTriggered = true })
@@ -225,7 +240,8 @@ class AuthVMTests: XCTestCase {
     
     func testReturningToBasicModeRequiresEmailAuto2() {
         let disposeBag = DisposeBag()
-        
+        _ = sut
+
         var isAdvanced: Bool = false
         var alertTriggered: Bool = false
         
@@ -252,7 +268,8 @@ class AuthVMTests: XCTestCase {
     
     func testReturningToBasicModeRequiresEmailAuto3() {
         let disposeBag = DisposeBag()
-        
+        _ = sut
+
         var isAdvanced: Bool = false
         var alertTriggered: Bool = false
         
@@ -279,7 +296,8 @@ class AuthVMTests: XCTestCase {
 
     func testReturningToBasicModeRequiresEmailAuto4() {
         let disposeBag = DisposeBag()
-        
+        _ = sut
+
         var isAdvanced: Bool = false
         var alertTriggered: Bool = false
         
@@ -303,5 +321,13 @@ class AuthVMTests: XCTestCase {
         // ... should not succeed
         XCTAssertFalse(isAdvanced)
         XCTAssertFalse(alertTriggered)
+    }
+    
+    func testSubmitWithNoChangesDoesNotRequireReauth() {
+        let disposeBag = DisposeBag()
+        sut.formSaved.subscribe {
+            XCTAssertFalse($0)
+        }.disposed(by: disposeBag)
+        _formSubmitRequest.accept(())
     }
 }

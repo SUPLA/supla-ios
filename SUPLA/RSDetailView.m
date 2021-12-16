@@ -18,7 +18,7 @@
 
 #import "RSDetailView.h"
 #import "DetailView.h"
-#import "UIHelper.h"
+
 #import "SuplaApp.h"
 #import "SAChannelGroup+CoreDataClass.h"
 #import "UIColor+SUPLA.h"

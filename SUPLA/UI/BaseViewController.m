@@ -18,18 +18,44 @@
 
 
 #import "BaseViewController.h"
+#import "SUPLA-Swift.h"
 
 @interface BaseViewController ()
 
 @end
 
-@implementation BaseViewController
+@implementation BaseViewController {
+    UIView *statusBarBg;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    
-    // Do any additional setup after loading the view.
+    if([self adjustsStatusBarBackground]) {
+        CGRect sbFrame;
+        sbFrame = [[UIApplication sharedApplication] statusBarFrame];
+        statusBarBg = [[UIView alloc]
+                           initWithFrame: CGRectMake(0, 0, sbFrame.size.width,
+                                                     sbFrame.size.height)];
+        statusBarBg.backgroundColor = [UIColor suplaGreenBackground];
+        statusBarBg.translatesAutoresizingMaskIntoConstraints = YES;
+        [self.view addSubview: statusBarBg];
+    }
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear: animated];
+    if(statusBarBg) {
+        [self.view bringSubviewToFront: statusBarBg];
+    }
+}
+
+- (BOOL)adjustsStatusBarBackground {
+    return YES;
+}
+
+- (UIView*)statusBarBackgroundView {
+    return statusBarBg;
 }
 
 - (UIInterfaceOrientationMask)supportedInterfaceOrientations {
@@ -40,14 +66,5 @@
             UIInterfaceOrientationMaskPortraitUpsideDown;
     }
 }
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

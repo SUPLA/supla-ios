@@ -72,7 +72,6 @@
 
 -(void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    [[SAApp UI] showMenuBtn:NO];
 }
 
 -(void)viewDidDisappear:(BOOL)animated  {

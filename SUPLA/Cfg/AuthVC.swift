@@ -37,6 +37,7 @@ class AuthVC: BaseViewController {
     @IBOutlet private var confirmButton: UIButton!
 
     @IBOutlet private var vBasic: UIView!
+    @IBOutlet private var bsYourAccount: UILabel!
     @IBOutlet private var bsEmailAddr: UITextField!
     @IBOutlet private var bsEmailAddrLabel: UILabel!
 
@@ -60,13 +61,20 @@ class AuthVC: BaseViewController {
     @IBOutlet private var adAccessIdWizardWarning: UILabel!
     
     @IBOutlet private var bottomOffset: NSLayoutConstraint!
+    @IBOutlet private var topOffset: NSLayoutConstraint!
     
     private let disposeBag = DisposeBag()
-    private var vM: AuthVM!
+    private(set) var vM: AuthVM!
     
     private let bottomMargin: CGFloat = 58
     
     private weak var currentTextField: UITextField?
+    private weak var activeContentView: UIView?
+
+    convenience init(navigationCoordinator: NavigationCoordinator) {
+        self.init(nibName: "AuthVC", bundle: nil)
+        self.navigationCoordinator = navigationCoordinator
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -89,6 +97,10 @@ class AuthVC: BaseViewController {
         super.viewDidLayoutSubviews()
         addGradientToScrollView()
     }
+
+    override func adjustsStatusBarBackground() -> Bool {
+        return SAApp.configIsSet() && SAApp.isClientRegistered()
+    }
     
     private func configureUI() {
         [view, vBasic, vAdvanced, adFormHostView, adFormEmailAuth,
@@ -101,6 +113,8 @@ class AuthVC: BaseViewController {
         modeToggleLabel.text = Strings.Cfg.advancedSettings
         createAccountPrompt.text = Strings.Cfg.createAccountPrompt
         createAccountButton.setTitle(Strings.Cfg.createAccountButton)
+        
+        bsYourAccount.text = Strings.Cfg.yourAccountLabel
         bsEmailAddrLabel.text = Strings.Cfg.emailLabel
         adEmailAddrLabel.text = Strings.Cfg.emailLabel
         adServerAddrEmailLabel.text = Strings.Cfg.serverLabel
@@ -121,6 +135,10 @@ class AuthVC: BaseViewController {
         }
         
         bottomOffset.constant = bottomMargin
+        if let navbar = navigationController?.navigationBar, !navbar.isHidden {
+            let fr = navbar.frame
+            topOffset.constant += fr.origin.x + fr.size.height
+        }
         
         if #available(iOS 11.0, *) {
             controlStack.setCustomSpacing(24, after: confirmButton)
@@ -166,10 +184,6 @@ class AuthVC: BaseViewController {
             }
         }.disposed(by: disposeBag)
         
-        vM.initiateSignup.subscribe(onNext: {
-            SAApp.ui().showCreateAccountVC()
-        }).disposed(by: disposeBag)
-
         vM.advancedModeAuthType.subscribe(onNext: { [weak self] at in
             self?.setAdvancedAuthMode(at)
         }).disposed(by: disposeBag)
@@ -183,7 +197,7 @@ class AuthVC: BaseViewController {
                 SAApp.revokeOAuthToken()
                 SAApp.db().deleteAllUserIcons()
             }
-            SAApp.ui().showMainVC()
+            (self?.navigationCoordinator as? AuthConfigActionHandler)?.didFinish(shouldReauthenticate: needsReauth.element!)
             if needsReauth.element == true || !SAApp.suplaClientConnected() {
                 NotificationCenter.default.post(name: .saConnecting,
                                                 object: self, userInfo: nil)
@@ -193,7 +207,6 @@ class AuthVC: BaseViewController {
                 pm.updateCurrentAuthInfo(ai)
                 SAApp.suplaClient().reconnect()
             }
-            self?.view = nil // A pathetic workaround before we implement vc lifecycle properly
         }.disposed(by: disposeBag)
         
         vM.basicModeUnavailable.subscribe(onNext: { [weak self] in
@@ -203,13 +216,13 @@ class AuthVC: BaseViewController {
         vM.signupPromptVisible.subscribe(onNext: {
             self.createAccountPrompt.isHidden = !$0
             self.createAccountButton.isHidden = !$0
-            if !$0 { SAApp.ui().showMenubarBackBtn() }
         }).disposed(by: disposeBag)
     }
     
     private func setContentView(_ v: UIView) {
-        containerView.subviews.first?.removeFromSuperview()
+        activeContentView?.removeFromSuperview()
         containerView.addSubview(v)
+        activeContentView = v
         v.translatesAutoresizingMaskIntoConstraints = false
         v.topAnchor.constraint(equalTo: containerView.topAnchor).isActive = true
         v.leftAnchor.constraint(equalTo: containerView.leftAnchor).isActive = true
@@ -261,8 +274,7 @@ class AuthVC: BaseViewController {
     }
     
     @objc private func onBackButtonPressed(_ n: Notification) {
-        SAApp.ui().showMainVC()
-        self.view = nil
+        navigationCoordinator?.finish()
     }
 
     @objc private func onKeyboardVisibilityChange(_ notification: Notification) {

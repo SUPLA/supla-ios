@@ -40,6 +40,7 @@
                 <outlet property="bottomOffset" destination="Ctz-qR-yLF" id="HgH-tf-1gY"/>
                 <outlet property="bsEmailAddr" destination="kkM-HY-JhI" id="dCU-38-eFA"/>
                 <outlet property="bsEmailAddrLabel" destination="cZS-4u-QMr" id="vOH-yO-uat"/>
+                <outlet property="bsYourAccount" destination="6Ji-Wu-NuM" id="c7E-VG-wI5"/>
                 <outlet property="confirmButton" destination="LE2-dM-R7U" id="gkT-qR-EUn"/>
                 <outlet property="containerView" destination="9eC-kc-MKK" id="vSe-An-eAg"/>
                 <outlet property="controlStack" destination="APj-NV-55D" id="wlF-Ul-J6f"/>
@@ -47,6 +48,7 @@
                 <outlet property="createAccountPrompt" destination="Qva-Ft-tLE" id="B0j-yL-0w4"/>
                 <outlet property="modeToggle" destination="CLE-eZ-RoC" id="jgC-uD-eBl"/>
                 <outlet property="modeToggleLabel" destination="9LH-es-n4B" id="gaz-NP-6dX"/>
+                <outlet property="topOffset" destination="aBo-Aw-th6" id="zQd-Aw-o6x"/>
                 <outlet property="vAdvanced" destination="5jV-eP-x03" id="dSa-88-rf8"/>
                 <outlet property="vBasic" destination="quC-af-tvs" id="6VX-nD-h0r"/>
                 <outlet property="view" destination="nf1-7v-zx3" id="uQ9-l7-dc8"/>
@@ -411,6 +413,11 @@
             <point key="canvasLocation" x="-1516.875" y="71.875"/>
         </view>
     </objects>
+    <designables>
+        <designable name="QQn-2A-hx6">
+            <size key="intrinsicContentSize" width="49.5" height="24.5"/>
+        </designable>
+    </designables>
     <resources>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

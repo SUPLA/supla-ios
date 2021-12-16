@@ -24,6 +24,7 @@
 #import "SASuperuserAuthorizationDialog.h"
 #import "NSNumber+SUPLA.h"
 #import "SUPLA-Swift.h"
+#import "AppDelegate.h"
 #import "AuthProfileItem+CoreDataClass.h"
 
 static SAApp* _Globals = nil;
@@ -68,7 +69,6 @@ NSString *kSAOnZWaveSetWakeUpTimeResult = @"KSA-N30";
     
     SASuplaClient* _SuplaClient;
     SADatabase *_DB;
-    SAUIHelper *_UI;
     NSMutableArray *_RestApiClientTasks;
     SAOAuthToken *_OAuthToken;
 }
@@ -130,6 +130,20 @@ NSString *kSAOnZWaveSetWakeUpTimeResult = @"KSA-N30";
      }
     
     return _Globals;
+}
+
++(id<NavigationCoordinator>)currentNavigationCoordinator {
+    return [[((AppDelegate *)[UIApplication sharedApplication].delegate) navigation]
+            currentCoordinator];
+}
+
++(MainNavigationCoordinator*)mainNavigationCoordinator {
+    id coordinator = [((AppDelegate *)[UIApplication sharedApplication].delegate) navigation];
+    if([coordinator isKindOfClass:[MainNavigationCoordinator class]]) {
+        return (MainNavigationCoordinator*)coordinator;
+    } else {
+        return nil;
+    }
 }
 
 -(BOOL) getRandom:(char*)key size:(int)size forPrefKey:(NSString*)pref_key {
@@ -385,20 +399,6 @@ NSString *kSAOnZWaveSetWakeUpTimeResult = @"KSA-N30";
     return _DB;
 }
 
--(SAUIHelper *)UI {
-    
-    if ( _UI == nil ) {
-        _UI = [[SAUIHelper alloc] init];
-    }
-    
-    return _UI;
-}
-
-+(SAUIHelper *)UI {
-    return [[self instance] UI];
-}
-
-
 +(SADatabase*)DB {
     return [[self instance] DB];
 }
@@ -414,7 +414,14 @@ NSString *kSAOnZWaveSetWakeUpTimeResult = @"KSA-N30";
 }
 
 -(BOOL)canChangeView {
-    return [self.UI addWizardIsVisible] != YES && [self.UI createAccountVCisVisible] != YES && ![self.UI settingsVCisVisible];
+    NSObject<NavigationCoordinator> *nav = [SAApp currentNavigationCoordinator];
+    if(nav == [SAApp mainNavigationCoordinator] ||
+       ([nav isKindOfClass: [PresentationNavigationCoordinator class]] &&
+        [nav.viewController isKindOfClass: [SAStatusVC class]]))
+        return YES;
+    else
+        return NO;
+//    return [self.UI addWizardIsVisible] != YES && [self.UI createAccountVCisVisible] != YES && ![self.UI settingsVCisVisible];
     
 }
 
@@ -423,27 +430,21 @@ NSString *kSAOnZWaveSetWakeUpTimeResult = @"KSA-N30";
         return;
     }
     
-    [self.UI.StatusVC.progress setProgress:0];
+    [[SAApp mainNavigationCoordinator] showStatusViewWithProgress: @0];
 }
 
 -(void)onConnecting {
     if ( ![self canChangeView] ) {
         return;
     }
-    
-    if ( self.UI.rootViewController == self.UI.AuthVC ) {
-         [self.UI.StatusVC.progress setProgress:0.25];
-    } else {
-         [self.UI showStatusConnectingProgress:0.25];
-    }
+    [[SAApp mainNavigationCoordinator] showStatusViewWithProgress:@0.25];
 }
 
 -(void)onConnected {
     if ( ![self canChangeView] ) {
         return;
     }
-    
-    [self.UI showStatusConnectingProgress:0.5];
+    [[SAApp mainNavigationCoordinator] showStatusViewWithProgress:@0.5];
 }
 
 -(void)onConnError:(NSNotification *)notification {
@@ -456,7 +457,7 @@ NSString *kSAOnZWaveSetWakeUpTimeResult = @"KSA-N30";
     if ( code && [code intValue] == SUPLA_RESULTCODE_HOSTNOTFOUND ) {
         
         [self SuplaClientTerminate];
-        [self.UI showStatusError:NSLocalizedString(@"Host not found. Make sure you are connected to the internet and that an account with the entered email address has been created.", nil)];
+        [[SAApp mainNavigationCoordinator] showStatusViewWithError:NSLocalizedString(@"Host not found. Make sure you are connected to the internet and that an account with the entered email address has been created.", nil)];
     }
 }
 
@@ -465,7 +466,7 @@ NSString *kSAOnZWaveSetWakeUpTimeResult = @"KSA-N30";
         return;
     }
     
-    [self.UI showStatusConnectingProgress:0.75];
+    [[SAApp mainNavigationCoordinator] showStatusViewWithProgress:@0.75];
 }
 
 -(void)onRegistered:(NSNotification *)notification {
@@ -473,8 +474,7 @@ NSString *kSAOnZWaveSetWakeUpTimeResult = @"KSA-N30";
         return;
     }
     
-    [self.UI showStatusConnectingProgress:1];
-    [self.UI showMainVC];
+    [[SAApp mainNavigationCoordinator] showStatusViewWithProgress:@1];
 }
 
 -(void)onRegisterError:(NSNotification *)notification {
@@ -486,7 +486,7 @@ NSString *kSAOnZWaveSetWakeUpTimeResult = @"KSA-N30";
     [self SuplaClientTerminate];
     
     NSNumber *code = [NSNumber codeNotificationToNumber:notification];
-    [self.UI showStatusError:[SASuplaClient codeToString:code]];
+    [[SAApp mainNavigationCoordinator] showStatusViewWithError:[SASuplaClient codeToString:code]];
         
     int cint = [code intValue];
     AuthProfileItem *profile = [SAApp.profileManager getCurrentProfile];
@@ -507,7 +507,7 @@ NSString *kSAOnZWaveSetWakeUpTimeResult = @"KSA-N30";
     
     [self SuplaClientTerminate];
     
-    [self.UI showStatusError:NSLocalizedString(@"Incompatible server version", nil)];
+    [[SAApp mainNavigationCoordinator] showStatusViewWithError:NSLocalizedString(@"Incompatible server version", nil)];
 }
 
 -(void)onOAuthTokenRequestResult:(NSNotification *)notification {

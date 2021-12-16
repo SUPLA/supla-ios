@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19455" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19454"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -123,9 +123,9 @@
             <color key="backgroundColor" red="0.98039215686274506" green="0.98431372549019602" blue="0.9882352941176471" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="CKD-wx-laR" firstAttribute="top" secondItem="zJt-Ww-LVZ" secondAttribute="bottom" id="0tI-Pc-MTH"/>
-                <constraint firstItem="sf1-4W-BGy" firstAttribute="top" relation="lessThanOrEqual" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="50" id="20N-Nm-mkS"/>
+                <constraint firstItem="sf1-4W-BGy" firstAttribute="top" relation="lessThanOrEqual" secondItem="i5M-Pr-FkT" secondAttribute="topMargin" constant="50" id="20N-Nm-mkS"/>
                 <constraint firstItem="JDP-Er-9pS" firstAttribute="top" secondItem="7HF-gX-C5a" secondAttribute="bottom" constant="16" id="6GU-dE-JWf"/>
-                <constraint firstItem="sf1-4W-BGy" firstAttribute="top" relation="greaterThanOrEqual" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="10" id="838-wT-bjZ"/>
+                <constraint firstItem="sf1-4W-BGy" firstAttribute="top" relation="greaterThanOrEqual" secondItem="i5M-Pr-FkT" secondAttribute="topMargin" constant="10" id="838-wT-bjZ"/>
                 <constraint firstItem="CKD-wx-laR" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="9Uc-MU-SE7"/>
                 <constraint firstItem="JDP-Er-9pS" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="Jfc-ph-MRS"/>
                 <constraint firstItem="7HF-gX-C5a" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="Wiy-ym-DL7"/>

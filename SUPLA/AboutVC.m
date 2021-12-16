@@ -29,7 +29,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self.version setText:[NSString stringWithFormat:@"%@ %@", NSLocalizedString(@"version", nil), [[NSBundle mainBundle] objectForInfoDictionaryKey: @"CFBundleShortVersionString"]]];
-    
+    self.title = @"supla";
 }
 
 -(void)viewDidAppear:(BOOL)animated {
@@ -53,6 +53,6 @@
 }
 
 - (IBAction)btnTouch:(id)sender {
-    [[SAApp UI] showMainVC];
+    [self.navigationController popViewControllerAnimated:YES];
 }
 @end

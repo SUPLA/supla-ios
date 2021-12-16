@@ -8,6 +8,7 @@ target 'SUPLA' do
   pod 'RxSwift'
   pod 'RxSwiftExt'
   pod 'RxCocoa'
+  pod 'PaddingLabel', '1.2'
 
   target 'SUPLATests' do
     inherit! :search_paths

@@ -853,7 +853,7 @@
     [self cleanUp];
     [self.OpQueue cancelAllOperations];
     [self savePrefs];
-    [[SAApp UI] showMainVC];
+    [[SAApp currentNavigationCoordinator] finish];
     [[SAApp SuplaClient] reconnect];
 }
 

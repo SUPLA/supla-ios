@@ -17,13 +17,8 @@
  */
 
 
-#import <UIKit/UIKit.h>
-@protocol NavigationCoordinator, NavigationCoordinatorAware;
-NS_ASSUME_NONNULL_BEGIN
+import Foundation
 
-@interface BaseViewController : UIViewController<NavigationCoordinatorAware>
-@property (weak,nonatomic) id<NavigationCoordinator> navigationCoordinator;
-@property (readonly,nonatomic) UIView *statusBarBackgroundView;
-- (BOOL)adjustsStatusBarBackground;
-@end
-NS_ASSUME_NONNULL_END
+protocol AuthConfigActionHandler {
+    func didFinish(shouldReauthenticate: Bool)
+}

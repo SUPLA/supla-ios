@@ -97,6 +97,8 @@
         self.gTableView.dragDelegate = self;
         self.gTableView.dropDelegate = self;
     }
+    
+    [self configureNavigationBar];
 }
 
 - (NSArray<UIDragItem *> *)tableView:(UITableView *)tableView itemsForBeginningDragSession:(id<UIDragSession>)session atIndexPath:(NSIndexPath *)indexPath  API_AVAILABLE(ios(11.0)){
@@ -502,12 +504,6 @@
     [self onDataChanged];
 }
 
-- (IBAction)settingsTouched:(id)sender {
-    
-    [[SAApp UI ] showSettings];
-    
-}
-
 - (void) viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [[[SARateApp alloc] init] showDialogWithDelay: 1];
@@ -574,7 +570,32 @@
     }
 }
 
+#pragma mark Support for navigation bar
+- (void)configureNavigationBar {
+    self.title = NSLocalizedString(@"supla", @"Title bar text");
+    if (@available(iOS 11.0, *)) {
+        self.navigationItem.backButtonDisplayMode = UINavigationItemBackButtonDisplayModeMinimal;
+    }
+    self.navigationItem.leftBarButtonItem =
+        [[UIBarButtonItem alloc] initWithImage: [UIImage imageNamed: @"menu"]
+                                         style: UIBarButtonItemStylePlain
+                                        target: self
+                                        action: @selector(onMenuToggle:)];
 
+    self.navigationItem.rightBarButtonItem =
+        [[UIBarButtonItem alloc] initWithImage: [UIImage imageNamed: @"groupsoff"]
+                                         style: UIBarButtonItemStylePlain
+                                        target: self
+                                        action: @selector(onGroupsToggle:)];
+}
+
+- (void)onMenuToggle: sender {
+    [[SAApp mainNavigationCoordinator] toggleMenuBar];
+}
+
+- (void)onGroupsToggle: sender {
+    // FIXME: implementation is missing
+}
 @end
 
 //------------------------------------------------------------------------------------------
@@ -954,10 +975,7 @@
     
     if ( _detailView != nil ) {
         [_detailView setFrame:[self getDetailFrame]];
-    }
-    
-    [[SAApp UI] showMenuBtn:self.frame.origin.x == 0];
-    [[SAApp UI] showGroupBtn:self.frame.origin.x == 0];
+    }    
 }
 
 -(void)moveCenter:(float)x_offset {

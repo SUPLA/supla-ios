@@ -21,7 +21,7 @@
 #import "MGSwipeButton.h"
 #import "SAChannelBase+CoreDataClass.h"
 #import "SAUIChannelStatus.h"
-#import "UIHelper.h"
+
 #import "SAWarningIcon.h"
 
 @interface MGSwipeTableCell (SUPLA)

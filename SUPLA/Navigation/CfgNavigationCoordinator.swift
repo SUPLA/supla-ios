@@ -16,22 +16,28 @@
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 
-#import <UIKit/UIKit.h>
-#import <MessageUI/MessageUI.h>
-#import "BaseViewController.h"
+import UIKit
+import RxSwift
 
-@interface SANavigationController : BaseViewController <MFMailComposeViewControllerDelegate>
-
--(void)showViewController:(UIViewController *)vc;
--(UIViewController *)currentViewController;
-- (IBAction)menuTouched:(id)sender;
-- (IBAction)groupsTouch:(id)sender;
-
--(void)showMenuBtn:(BOOL)show;
--(void)showMenubarSettingsBtn;
--(void)showMenubarBackBtn;
--(void)setMenubarDetailTitle:(nonnull NSString *)title;
--(void)showGroupBtn:(BOOL)show;
-
-
-@end
+class CfgNavigationCoordinator: BaseNavigationCoordinator {
+    override var viewController: UIViewController {
+        _viewController
+    }
+    
+    private let _viewController = CfgVC()
+    private let disposeBag = DisposeBag()
+    
+    override init() {
+        super.init()
+    }
+    
+    override func start(from parent: NavigationCoordinator?) {
+        super.start(from: parent)
+        _viewController.openLocalizationOrderingCmd.subscribe { _ in
+            if let nc = self.parentCoordinator?.viewController as?
+                UINavigationController {
+                nc.pushViewController(LocationOrderingVC(), animated: true)
+            }
+        }.disposed(by: disposeBag)
+    }
+}

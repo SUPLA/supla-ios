@@ -27,6 +27,7 @@ struct Strings {
         static let buttonAutoHide  = NSLocalizedString("Auto-hide buttons", comment: "label for button auto-hide setting")
         static let showChannelInfo = NSLocalizedString("Show ⓘ button", comment: "label for show channel info setting")
         
+        static let yourAccountLabel = NSLocalizedString("Your account", comment: "account configuration settings screen")
         static let basicModeNotAvailableTitle = NSLocalizedString("Setting not available", comment: "alert box title when basic authentication mode is not available")
         static let basicModeNotAvailableMessage = NSLocalizedString("Before turning advanced mode off you need to switch to email authentication and enable automatic server detection.", comment: "alert box message when basic authentication mode is not available")
         static let advancedSettings = NSLocalizedString("Advanced settings", comment: "Label for advanced settings toggle on authentication screen")
