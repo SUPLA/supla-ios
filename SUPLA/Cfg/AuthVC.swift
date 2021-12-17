@@ -64,12 +64,18 @@ class AuthVC: BaseViewController {
     @IBOutlet private var topOffset: NSLayoutConstraint!
     
     private let disposeBag = DisposeBag()
-    private(set) var vM: AuthVM!
+    private var vM: AuthVM!
     
     private let bottomMargin: CGFloat = 58
     
     private weak var currentTextField: UITextField?
     private weak var activeContentView: UIView?
+    
+    var viewModel: AuthVM {
+        loadViewIfNeeded()
+        assert(vM != nil)
+        return vM
+    }
 
     convenience init(navigationCoordinator: NavigationCoordinator) {
         self.init(nibName: "AuthVC", bundle: nil)

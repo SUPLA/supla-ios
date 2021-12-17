@@ -39,7 +39,7 @@ class AuthCfgNavigationCoordinator: BaseNavigationCoordinator {
     
     override func start(from parent: NavigationCoordinator?) {
         super.start(from: parent)
-        _viewController.vM.initiateSignup.subscribe {
+        _viewController.viewModel.initiateSignup.subscribe { _ in
             let cavc = SACreateAccountVC(nibName: "CreateAccountVC", bundle: nil)
             self.startFlow(coordinator: PresentationNavigationCoordinator(viewController: cavc))
         }.disposed(by: _disposeBag)
