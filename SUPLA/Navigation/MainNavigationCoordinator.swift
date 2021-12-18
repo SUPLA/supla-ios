@@ -29,7 +29,7 @@ class MainNavigationCoordinator: BaseNavigationCoordinator {
     
     private let disposeBag = DisposeBag()
     
-    private let navigationController: UINavigationController
+    private let navigationController: SuplaNavigationController
     
     private var mainVC: SAMainVC
 
@@ -43,6 +43,13 @@ class MainNavigationCoordinator: BaseNavigationCoordinator {
         NotificationCenter.default.addObserver(self, selector: #selector(onRegistered(_:)),
                                                name: .saRegistered,
                                                object: nil)
+        navigationController.onViewControllerWillPop.subscribe { vc in
+            if self.currentCoordinator.viewController == vc.element && !self.currentCoordinator.isFinishing {
+                // top controller of child flow is being popped off the stack
+                // so the flow should finish now.
+                self.didFinish(coordinator: self.currentCoordinator)
+            }
+        }.disposed(by: disposeBag)
     }
     
     deinit {
@@ -94,8 +101,13 @@ class MainNavigationCoordinator: BaseNavigationCoordinator {
             }
         } else {
             updateNavBar()
-            navigationController.popViewController(animated: child.wantsAnimatedTransitions)
+            if navigationController.topViewController == child.viewController {
+                _ = navigationController.popViewController(animated: child.wantsAnimatedTransitions)
+            }
             super.didFinish(coordinator: child)
+            if child is CfgNavigationCoordinator {
+                mainVC.reloadTables();
+            }
             self.resumeFlowIfNeeded()
         }
     }

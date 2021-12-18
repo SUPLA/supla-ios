@@ -49,14 +49,19 @@ class CfgVC: BaseViewController {
     private let chevronRightControl = UIImageView(image: UIImage(named: "ChevronRight"))
     
     private let disposeBag = DisposeBag()
-    private let dismissCmd = PublishSubject<Void>()
+    private let dismissCmd: Observable<Void>
     let openLocalizationOrderingCmd = PublishSubject<Void>()
     
-    convenience init() {
-        self.init(nibName: nil, bundle: nil)
+    init(dismissCmd: Observable<Void>) {
+        self.dismissCmd = dismissCmd
+        super.init(nibName: nil, bundle: nil)
         self.title = Strings.Cfg.appConfigTitle
     }
-        
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -94,7 +99,7 @@ class CfgVC: BaseViewController {
                                   temperatureUnit: temperatureUnitControl.rx.selectedSegmentIndex.map({ TemperatureUnit.allCases[max(0,$0)]}).asObservable(),
                                   autoHideButtons: buttonAutoHideControl.rx.isOn.asObservable(),
                                   showChannelInfo: showChannelInfoControl.rx.isOn.asObservable(),
-                                  onDismiss: dismissCmd.asObservable())
+                                  onDismiss: dismissCmd)
 
         vM = CfgVM(inputs: inputs, configModel: Config())
         vM.channelHeight.map({ ch in ChannelHeight.allCases.enumerated().first(where: { $0.element == ch })!.offset}).bind(to: channelHeightControl.rx.selectedSegmentIndex).disposed(by: disposeBag)
@@ -102,18 +107,6 @@ class CfgVC: BaseViewController {
             .bind(to: temperatureUnitControl.rx.selectedSegmentIndex).disposed(by: disposeBag)
         vM.autoHideButtons.bind(to: buttonAutoHideControl.rx.isOn).disposed(by: disposeBag)
         vM.showChannelInfo.bind(to: showChannelInfoControl.rx.isOn).disposed(by: disposeBag)
-        
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(onBackButtonPressed(_:)),
-                                               name: Notification.Name(kSAMenubarBackButtonPressed),
-                                               object: nil)
-    }
-    
-    @objc private func onBackButtonPressed(_ n: Notification) {
-        dismissCmd.on(.next(()))
-        // FIXME: needs new solution
-//        SAApp.ui().invalidateMainVC()
-//        SAApp.ui().showMainVC()
     }
     
     private func cellForSetting(_ setting: Settings) -> UITableViewCell {

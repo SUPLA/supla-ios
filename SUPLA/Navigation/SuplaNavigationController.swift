@@ -18,24 +18,31 @@
 
 
 import UIKit
-
+import RxSwift
 
 class SuplaNavigationController: UINavigationController {
+    
+    let onViewControllerWillPop: Observable<UIViewController>
+    let _onViewControllerWillPop = PublishSubject<UIViewController>()
+    
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
     }
     
     override init(rootViewController: UIViewController) {
+        onViewControllerWillPop = _onViewControllerWillPop.asObservable()
         super.init(rootViewController: rootViewController)
         configure()
     }
     
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
+        onViewControllerWillPop = _onViewControllerWillPop.asObservable()
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
         configure()
     }
     
     required init?(coder aDecoder: NSCoder) {
+        onViewControllerWillPop = _onViewControllerWillPop.asObservable()
         super.init(coder: aDecoder)
         configure()
     }
@@ -50,4 +57,14 @@ class SuplaNavigationController: UINavigationController {
         extendedLayoutIncludesOpaqueBars = false
         navigationBar.barTintColor = .suplaGreenBackground
     }
+    
+    override func popViewController(animated: Bool) -> UIViewController? {
+        if let vc = super.popViewController(animated: true) {
+            _onViewControllerWillPop.onNext(vc)
+            return vc
+        } else {
+            return nil
+        }
+    }
 }
+

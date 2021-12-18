@@ -24,10 +24,13 @@ class CfgNavigationCoordinator: BaseNavigationCoordinator {
         _viewController
     }
     
-    private let _viewController = CfgVC()
     private let disposeBag = DisposeBag()
-    
+    private let dismissCmd = PublishSubject<Void>()
+
+    private let _viewController: CfgVC
+
     override init() {
+        _viewController = CfgVC(dismissCmd: dismissCmd)
         super.init()
     }
     
@@ -39,5 +42,9 @@ class CfgNavigationCoordinator: BaseNavigationCoordinator {
                 nc.pushViewController(LocationOrderingVC(), animated: true)
             }
         }.disposed(by: disposeBag)
+    }
+    
+    override func parentDidTakeFlowOver(_ parent: NavigationCoordinator) {
+        dismissCmd.onNext(())
     }
 }

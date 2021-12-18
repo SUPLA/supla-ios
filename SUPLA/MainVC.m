@@ -173,13 +173,6 @@
     return self;
 }
 
-
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
 -(void)onDeferredUpdate: (NSTimer *)timer {
     [self onDataChanged];
 }
@@ -558,15 +551,15 @@
     UITableViewCell *cell = [self.cTableView
                                 cellForRowAtIndexPath: ip];
     return cell.bounds.size.height;
-                                     
 }
 
 - (void)adjustChannelHeight: (BOOL)needsUpdateConstraints {
 
     if(_standardChannelHeight == 0) {
         _standardChannelHeight = [self computeChannelHeight];
-        if(_standardChannelHeight > 0 && needsUpdateConstraints)
-            [self.view setNeedsUpdateConstraints];
+    }
+    if(_standardChannelHeight > 0 && needsUpdateConstraints) {
+        [self.view setNeedsUpdateConstraints];
     }
 
 }	
@@ -577,9 +570,18 @@
     if(_standardChannelHeight > 0) {
         CGFloat multiplier = [Config new].channelHeightFactor;
         self.cTableView.rowHeight = multiplier * _standardChannelHeight;
+        self.gTableView.rowHeight = multiplier * _standardChannelHeight;
+        [self.cTableView setNeedsLayout];
+        [self.cTableView reloadData];
+        [self.gTableView setNeedsLayout];
+        [self.gTableView reloadData];
     }
 }
 
+
+- (void)reloadTables {
+    [self adjustChannelHeight:YES];
+}
 #pragma mark Support for navigation bar
 - (UIImage *)imageForGroupState {
 	if([self isGroupTableHidden]) {

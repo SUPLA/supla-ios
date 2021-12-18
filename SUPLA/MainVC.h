@@ -37,6 +37,7 @@
 
 - (void)detailHide;
 - (void)groupTableHidden:(BOOL)hidden;
+- (void)reloadTables;
 @end
 
 

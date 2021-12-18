@@ -49,6 +49,9 @@ protocol NavigationCoordinator {
 
     /// Finish child flow
     func finish()
+    
+    /// Indicates that the coordinator is finishing
+    var isFinishing: Bool { get }
 }
 
 @objc
@@ -60,6 +63,8 @@ protocol NavigationCoordinatorAware {
 class BaseNavigationCoordinator: NSObject {
     private(set) weak var parentCoordinator: NavigationCoordinator?
     private var children = [NavigationCoordinator]()
+    
+    private(set) var isFinishing: Bool = false
 }
 
 extension BaseNavigationCoordinator: NavigationCoordinator {
@@ -91,6 +96,7 @@ extension BaseNavigationCoordinator: NavigationCoordinator {
     }
 
     func finish() {
+        isFinishing = true
         parentCoordinator?.didFinish(coordinator: self)
     }
 
