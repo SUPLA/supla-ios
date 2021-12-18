@@ -84,6 +84,8 @@ class AuthVC: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        title = Strings.NavBar.titleSupla
         [Self.keyboardWillShowNotification, Self.keyboardWillHideNotification].forEach {
             NotificationCenter.default.addObserver(self,
                                                    selector: #selector(onKeyboardVisibilityChange(_:)),

@@ -41,8 +41,19 @@ class AuthCfgNavigationCoordinator: BaseNavigationCoordinator {
         super.start(from: parent)
         _viewController.viewModel.initiateSignup.subscribe { _ in
             let cavc = SACreateAccountVC(nibName: "CreateAccountVC", bundle: nil)
-            self.startFlow(coordinator: PresentationNavigationCoordinator(viewController: cavc))
+            self._viewController.navigationController?.pushViewController(cavc, animated: true)
         }.disposed(by: _disposeBag)
+    }
+    
+    @objc private func onDismissSubview(_ sender: AnyObject) {
+        _viewController.navigationController?.popToViewController(_viewController,
+                                                                  animated: true)
+    }
+    
+    override func startFlow(coordinator child: NavigationCoordinator) {
+        _viewController.present(child.viewController, animated: true) {
+            super.startFlow(coordinator: child)
+        }
     }
 }
 extension AuthCfgNavigationCoordinator: AuthConfigActionHandler {

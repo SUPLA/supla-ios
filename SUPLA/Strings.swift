@@ -20,6 +20,9 @@
 import Foundation
 
 struct Strings {
+    struct NavBar {
+        static let titleSupla = NSLocalizedString("supla", comment: "generic title, app name")
+    }
     struct Cfg {
         static let appConfigTitle = NSLocalizedString("App Settings", comment: "title headline for settings view")
         static let channelHeight = NSLocalizedString("Channel height", comment: "label for channel height setting")
