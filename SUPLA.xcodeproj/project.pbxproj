@@ -502,6 +502,7 @@
 		AE929A8B2761487700B75715 /* NavigationCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE929A8A2761487700B75715 /* NavigationCoordinator.swift */; };
 		AEA1E96327422B0F005C34CB /* ProfileManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEA1E96227422B0F005C34CB /* ProfileManagerTests.swift */; };
 		AEAAF2F82752937D0030CBA8 /* SUPLA.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 407004251BB5706500F6187F /* SUPLA.xcdatamodeld */; };
+		AEB195DE276E5A040091D314 /* FadeTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEB195DD276E5A040091D314 /* FadeTransition.swift */; };
 		AEBCD8FC26E4D247001904F3 /* TemperaturePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEBCD8FB26E4D247001904F3 /* TemperaturePresenter.swift */; };
 		AEBCD8FE26E4D52C001904F3 /* TemperatureUnitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEBCD8FD26E4D52C001904F3 /* TemperatureUnitTests.swift */; };
 		AEC6B6BA2753C06800A04204 /* ProfileMigrator.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEC6B6B92753C06800A04204 /* ProfileMigrator.swift */; };
@@ -1363,6 +1364,7 @@
 		AE929A8A2761487700B75715 /* NavigationCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationCoordinator.swift; sourceTree = "<group>"; };
 		AEA1E96127422AA9005C34CB /* SAThermostatMeasurementItem+CoreDataProperties.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SAThermostatMeasurementItem+CoreDataProperties.h"; sourceTree = "<group>"; };
 		AEA1E96227422B0F005C34CB /* ProfileManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileManagerTests.swift; sourceTree = "<group>"; };
+		AEB195DD276E5A040091D314 /* FadeTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FadeTransition.swift; sourceTree = "<group>"; };
 		AEBCD8FB26E4D247001904F3 /* TemperaturePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemperaturePresenter.swift; sourceTree = "<group>"; };
 		AEBCD8FD26E4D52C001904F3 /* TemperatureUnitTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemperatureUnitTests.swift; sourceTree = "<group>"; };
 		AEC6B6B92753C06800A04204 /* ProfileMigrator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileMigrator.swift; sourceTree = "<group>"; };
@@ -2109,6 +2111,7 @@
 		40A675851BA1BEBF004A51C4 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				AEB195DC276E59B60091D314 /* Transitions */,
 				AE929A85275FD53A00B75715 /* Navigation */,
 				AE5A60E4270E2A4100F2B780 /* Cfg */,
 				AED6395F270CA45000E5105B /* Extensions */,
@@ -2264,6 +2267,14 @@
 				AE53535327691EFC0077BFFB /* CfgNavigationCoordinator.swift */,
 			);
 			path = Navigation;
+			sourceTree = "<group>";
+		};
+		AEB195DC276E59B60091D314 /* Transitions */ = {
+			isa = PBXGroup;
+			children = (
+				AEB195DD276E5A040091D314 /* FadeTransition.swift */,
+			);
+			path = Transitions;
 			sourceTree = "<group>";
 		};
 		AEBCD8FA26E4D212001904F3 /* DataPresenters */ = {
@@ -2982,6 +2993,7 @@
 				403150FB1DC769430075D2D2 /* RGBWDetailView.m in Sources */,
 				01F8856A22E5E79100D18373 /* SATempHumidityMeasurementItem+CoreDataProperties.m in Sources */,
 				01478826265317B000CC8A01 /* SACalCfgProgressReport.m in Sources */,
+				AEB195DE276E5A040091D314 /* FadeTransition.swift in Sources */,
 				40E8BE881FC06A5600FB2FE6 /* TFHpple.m in Sources */,
 				01CEABFA25B9920A009C3BFD /* SADigiglassDetailView.m in Sources */,
 				013F7EC123EB33E30061A497 /* SAChannelStateExtendedValue.m in Sources */,

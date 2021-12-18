@@ -41,6 +41,7 @@ class AuthCfgNavigationCoordinator: BaseNavigationCoordinator {
         super.start(from: parent)
         _viewController.viewModel.initiateSignup.subscribe { _ in
             let cavc = SACreateAccountVC(nibName: "CreateAccountVC", bundle: nil)
+            cavc.navigationCoordinator = self
             self._viewController.navigationController?.pushViewController(cavc, animated: true)
         }.disposed(by: _disposeBag)
     }
@@ -62,6 +63,18 @@ extension AuthCfgNavigationCoordinator: AuthConfigActionHandler {
         if shouldReauthenticate || !SAApp.isClientRegistered(),
             let main = parentCoordinator as? MainNavigationCoordinator {
             main.showStatusView(progress: 0)
+        }
+    }
+}
+
+extension AuthCfgNavigationCoordinator: NavigationAnimationSupport {
+    func animationControllerFor(operation: UINavigationController.Operation, from fromVC: UIViewController, to toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        if toVC is SACreateAccountVC {
+            return FadeTransition(isPresenting: true)
+        } else if fromVC is SACreateAccountVC {
+            return FadeTransition(isPresenting: false)
+        } else {
+            return nil
         }
     }
 }

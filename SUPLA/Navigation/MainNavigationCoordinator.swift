@@ -50,6 +50,7 @@ class MainNavigationCoordinator: BaseNavigationCoordinator {
                 self.didFinish(coordinator: self.currentCoordinator)
             }
         }.disposed(by: disposeBag)
+        navigationController.delegate = self
     }
     
     deinit {
@@ -214,4 +215,22 @@ class MainNavigationCoordinator: BaseNavigationCoordinator {
     }
 }
 
+protocol NavigationAnimationSupport {
+    func animationControllerFor(operation: UINavigationController.Operation,
+                                from fromVC: UIViewController,
+                                to toVC: UIViewController) -> UIViewControllerAnimatedTransitioning?
+}
+
+extension MainNavigationCoordinator: UINavigationControllerDelegate {
+    func navigationController(_ navigationController: UINavigationController, animationControllerFor operation: UINavigationController.Operation, from fromVC: UIViewController, to toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        
+        if let baseCtrl = fromVC as? BaseViewController,
+           let coord = baseCtrl.navigationCoordinator as? NavigationAnimationSupport {
+            return coord.animationControllerFor(operation: operation, from: fromVC,
+                                                to: toVC)
+        }
+        
+        return nil
+    }
+}
 
