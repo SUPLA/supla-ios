@@ -54,6 +54,9 @@
     CGFloat _standardChannelHeight;
     NSDate *_lastUpdateTime;
     NSTimer *_updateTimer;
+
+	UIImage *_groupsOff;
+	UIImage *_groupsOn;
 }
 
 - (void)registerNibForTableView:(UITableView*)tv {
@@ -97,6 +100,9 @@
         self.gTableView.dragDelegate = self;
         self.gTableView.dropDelegate = self;
     }
+
+	_groupsOff = [UIImage imageNamed: @"groupsoff"];
+	_groupsOn = [UIImage imageNamed: @"groupson"];
     
     [self configureNavigationBar];
 }
@@ -504,6 +510,10 @@
     [self onDataChanged];
 }
 
+- (BOOL)isGroupTableHidden {
+	return self.gTableView.hidden;
+}
+
 - (void) viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [[[SARateApp alloc] init] showDialogWithDelay: 1];
@@ -571,6 +581,14 @@
 }
 
 #pragma mark Support for navigation bar
+- (UIImage *)imageForGroupState {
+	if([self isGroupTableHidden]) {
+		return _groupsOff;
+	} else {
+		return _groupsOn;
+	}
+}
+
 - (void)configureNavigationBar {
     self.title = NSLocalizedString(@"supla", @"Title bar text");
     if (@available(iOS 11.0, *)) {
@@ -583,7 +601,7 @@
                                         action: @selector(onMenuToggle:)];
 
     self.navigationItem.rightBarButtonItem =
-        [[UIBarButtonItem alloc] initWithImage: [UIImage imageNamed: @"groupsoff"]
+        [[UIBarButtonItem alloc] initWithImage: [self imageForGroupState]
                                          style: UIBarButtonItemStylePlain
                                         target: self
                                         action: @selector(onGroupsToggle:)];
@@ -594,7 +612,8 @@
 }
 
 - (void)onGroupsToggle: sender {
-    // FIXME: implementation is missing
+    [self groupTableHidden: ![self isGroupTableHidden]];
+	self.navigationItem.rightBarButtonItem.image = [self imageForGroupState];
 }
 @end
 
