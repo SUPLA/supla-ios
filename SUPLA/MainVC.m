@@ -52,11 +52,14 @@
     SADownloadUserIcons *_task;
     NSArray *_locations;
     CGFloat _standardChannelHeight;
+    CGFloat _heightScaleFactor;
     NSDate *_lastUpdateTime;
     NSTimer *_updateTimer;
 
 	UIImage *_groupsOff;
 	UIImage *_groupsOn;
+    
+    NSMutableDictionary<NSString *, NSNumber *> *_cellConstraintValues;
 }
 
 - (void)registerNibForTableView:(UITableView*)tv {
@@ -73,6 +76,9 @@
 - (void)viewDidLoad {
     
     [super viewDidLoad];
+
+    _heightScaleFactor = [Config new].channelHeightFactor;
+    _cellConstraintValues = [NSMutableDictionary new];
 
     _cell_nib = [UINib nibWithNibName:@"ChannelCell" bundle:nil];
     _temp_nib = [UINib nibWithNibName:@"ThermometerCell" bundle:nil];
@@ -469,11 +475,42 @@
     cell =  [tableView dequeueReusableCellWithIdentifier: identifier];
     
     if (cell != nil) {
+        CGFloat scaleFactor = _heightScaleFactor;
         cell.channelBase = channel_base;
         cell.captionEditable = tableView == self.cTableView;
+        for(NSLayoutConstraint *cstr in cell.channelIconScalableConstraints) {
+            CGFloat val;
+            if(_cellConstraintValues[cstr.identifier]) {
+                val = [_cellConstraintValues[cstr.identifier] floatValue];
+            } else {
+                val = cstr.constant;
+                _cellConstraintValues[cstr.identifier] = [NSNumber numberWithFloat:val];
+            }
+            if([cstr.firstItem isKindOfClass: [UILabel class]]) {
+                if(scaleFactor < 1.0)
+                    scaleFactor = 1.0;
+                [self adjustFontSize: cstr.firstItem forScale: scaleFactor
+                          identifier: cstr.identifier];
+            }
+            cstr.constant = val * scaleFactor;
+        }
     }
     
     return cell;
+}
+
+- (void)adjustFontSize: (UILabel *)itm forScale: (CGFloat)scale
+            identifier: (NSString *)identifier {
+    NSString *key = [identifier stringByAppendingString:@"FontSize"];
+    CGFloat origSize;
+    if(_cellConstraintValues[key]) {
+        origSize = [_cellConstraintValues[key] floatValue];
+    } else {
+        origSize = itm.font.pointSize;
+        _cellConstraintValues[key] = [NSNumber numberWithFloat: origSize];
+    }
+    
+    itm.font = [itm.font fontWithSize: origSize * scale];
 }
 
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
@@ -568,7 +605,7 @@
     [super updateViewConstraints];
 	[self adjustChannelHeight: NO];
     if(_standardChannelHeight > 0) {
-        CGFloat multiplier = [Config new].channelHeightFactor;
+        CGFloat multiplier = _heightScaleFactor;
         self.cTableView.rowHeight = multiplier * _standardChannelHeight;
         self.gTableView.rowHeight = multiplier * _standardChannelHeight;
         [self.cTableView setNeedsLayout];
@@ -580,6 +617,7 @@
 
 
 - (void)reloadTables {
+    _heightScaleFactor = [Config new].channelHeightFactor;
     [self adjustChannelHeight:YES];
 }
 #pragma mark Support for navigation bar
