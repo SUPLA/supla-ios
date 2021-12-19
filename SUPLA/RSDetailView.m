@@ -23,10 +23,12 @@
 #import "SAChannelGroup+CoreDataClass.h"
 #import "UIColor+SUPLA.h"
 #import "SuplaClient.h"
+#import "SUPLA-Swift.h"
 
 @implementation SARSDetailView {
     NSTimer *delayTimer1;
     NSDate *btnTouchedAt;
+	BOOL showsOpeningPercent;
 }
 
 -(void)detailViewInit {
@@ -44,6 +46,13 @@
         self.onlineStatus.onlineColor = [UIColor onLine];
         self.onlineStatus.offlineColor = [UIColor offLine];
         self.onlineStatus.borderColor = [UIColor statusBorder];
+
+		showsOpeningPercent = [Config new].showOpeningPercent;
+		if(showsOpeningPercent) {
+			self.labelPercentCaption.text = NSLocalizedString(@"Percent of opening", nil);
+		} else {
+			self.labelPercentCaption.text = NSLocalizedString(@"Percent of closing", nil);
+		}
     }
     
     [super detailViewInit];
@@ -55,6 +64,7 @@
     self.rollerShutter.markers = nil;
     self.roofWindow.closingPercentage = percent;
     self.roofWindow.markers = nil;
+	if(showsOpeningPercent) percent = 100 - percent;
     [self.labelPercent setText:[NSString stringWithFormat:@"%i%%", percent]];
     [timer invalidate];
 }

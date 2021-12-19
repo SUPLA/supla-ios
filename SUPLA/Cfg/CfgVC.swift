@@ -29,11 +29,13 @@ class CfgVC: BaseViewController {
         case temperatureUnit
         case buttonAutoHide
         case showChannelInfo
+        case showOpeningPercent
         case locationOrdering
-        
+
         static var allCases: [Settings] {
             var rv: [Settings] = [.channelHeight, .temperatureUnit,
-                                  .buttonAutoHide, .showChannelInfo]
+                                  .buttonAutoHide, .showChannelInfo,
+                                  .showOpeningPercent]
             if #available(iOS 11.0, *) {
                 rv.append(.locationOrdering)
             }
@@ -46,6 +48,7 @@ class CfgVC: BaseViewController {
 
     private let buttonAutoHideControl = UISwitch()
     private let showChannelInfoControl = UISwitch()
+    private let showOpeningPercentControl = UISwitch()
     private let chevronRightControl = UIImageView(image: UIImage(named: "ChevronRight"))
     
     private let disposeBag = DisposeBag()
@@ -99,6 +102,7 @@ class CfgVC: BaseViewController {
                                   temperatureUnit: temperatureUnitControl.rx.selectedSegmentIndex.map({ TemperatureUnit.allCases[max(0,$0)]}).asObservable(),
                                   autoHideButtons: buttonAutoHideControl.rx.isOn.asObservable(),
                                   showChannelInfo: showChannelInfoControl.rx.isOn.asObservable(),
+                                  showOpeningPercent: showOpeningPercentControl.rx.isOn.asObservable(),
                                   onDismiss: dismissCmd)
 
         vM = CfgVM(inputs: inputs, configModel: Config())
@@ -107,6 +111,7 @@ class CfgVC: BaseViewController {
             .bind(to: temperatureUnitControl.rx.selectedSegmentIndex).disposed(by: disposeBag)
         vM.autoHideButtons.bind(to: buttonAutoHideControl.rx.isOn).disposed(by: disposeBag)
         vM.showChannelInfo.bind(to: showChannelInfoControl.rx.isOn).disposed(by: disposeBag)
+        vM.showOpeningPercent.bind(to: showOpeningPercentControl.rx.isOn).disposed(by: disposeBag)
     }
     
     private func cellForSetting(_ setting: Settings) -> UITableViewCell {
@@ -128,6 +133,9 @@ class CfgVC: BaseViewController {
         case .showChannelInfo:
             label = Strings.Cfg.showChannelInfo
             actionView = showChannelInfoControl
+        case .showOpeningPercent:
+            label = Strings.Cfg.showOpeningPercent
+            actionView = showOpeningPercentControl
         case .locationOrdering:
             label = Strings.Cfg.locationOrdering
             actionView = chevronRightControl

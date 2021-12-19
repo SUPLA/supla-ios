@@ -28,6 +28,7 @@ class CfgVM {
         var temperatureUnit: Observable<TemperatureUnit>
         var autoHideButtons: Observable<Bool>
         var showChannelInfo: Observable<Bool>
+        var showOpeningPercent: Observable<Bool>
         var onDismiss: Observable<Void>
     }
     
@@ -35,11 +36,13 @@ class CfgVM {
     var temperatureUnit: Observable<TemperatureUnit> { return _temperatureUnit.asObservable() }
     var autoHideButtons: Observable<Bool> { return _autoHideButtons.asObservable() }
     var showChannelInfo: Observable<Bool> { return _showChannelInfo.asObservable() }
+    var showOpeningPercent: Observable<Bool> { return _showOpeningPercent.asObservable() }
     
     private let _channelHeight = BehaviorRelay<ChannelHeight>(value: .height100)
     private let _temperatureUnit = BehaviorRelay<TemperatureUnit>(value: .celsius)
     private let _autoHideButtons = BehaviorRelay<Bool>(value: true)
     private let _showChannelInfo = BehaviorRelay<Bool>(value: true)
+    private let _showOpeningPercent = BehaviorRelay<Bool>(value: false)
     
     private let disposeBag = DisposeBag()
     private let model: Config
@@ -55,11 +58,13 @@ class CfgVM {
         inputs.autoHideButtons.bind(to: _autoHideButtons).disposed(by: disposeBag)
         inputs.temperatureUnit.bind(to: _temperatureUnit).disposed(by: disposeBag)
         inputs.showChannelInfo.bind(to: _showChannelInfo).disposed(by: disposeBag)
+        inputs.showOpeningPercent.bind(to: _showOpeningPercent).disposed(by: disposeBag)
         
         _channelHeight.accept(model.channelHeight)
         _temperatureUnit.accept(model.temperatureUnit)
         _autoHideButtons.accept(model.autohideButtons)
         _showChannelInfo.accept(model.showChannelInfo)
+        _showOpeningPercent.accept(model.showOpeningPercent)
     }
     
     private func commitSettings() {
@@ -67,5 +72,6 @@ class CfgVM {
         model.temperatureUnit = _temperatureUnit.value
         model.autohideButtons = _autoHideButtons.value
         model.showChannelInfo = _showChannelInfo.value
+        model.showOpeningPercent = _showOpeningPercent.value
     }
 }

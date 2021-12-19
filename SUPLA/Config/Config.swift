@@ -24,6 +24,7 @@ class Config: NSObject {
     private let kTemperatureUnit = "supla_config_temp_unit"
     private let kButtonKeepVisible = "supla_config_buttons_keep_visible"
     private let kShowChannelInfo = "supla_config_show_channel_info"
+    private let kShowOpeningPercent = "supla_config_show_opening_percent"
 
     // read-only accessors for "legacy" Objective-C code
     
@@ -68,7 +69,17 @@ class Config: NSObject {
             UserDefaults.standard.set(newValue, forKey: kShowChannelInfo)
         }
     }
-    
+
+    @objc
+    var showOpeningPercent: Bool {
+        get {
+            return UserDefaults.standard.bool(forKey: kShowOpeningPercent)
+        }
+
+        set {
+            UserDefaults.standard.set(newValue, forKey: kShowOpeningPercent)
+        }
+    }
     
     // "full" accessors for swift code
     var channelHeight: ChannelHeight {
