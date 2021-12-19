@@ -25,12 +25,13 @@ class CfgNavigationCoordinator: BaseNavigationCoordinator {
     }
     
     private let disposeBag = DisposeBag()
-    private let dismissCmd = PublishSubject<Void>()
+    private let cfgDismissCmd = PublishSubject<Void>()
+    private let locOrderingDismissCmd = PublishSubject<Void>()
 
     private let _viewController: CfgVC
 
     override init() {
-        _viewController = CfgVC(dismissCmd: dismissCmd)
+        _viewController = CfgVC(dismissCmd: cfgDismissCmd)
         super.init()
     }
     
@@ -38,13 +39,24 @@ class CfgNavigationCoordinator: BaseNavigationCoordinator {
         super.start(from: parent)
         _viewController.openLocalizationOrderingCmd.subscribe { _ in
             if let nc = self.parentCoordinator?.viewController as?
-                UINavigationController {
-                nc.pushViewController(LocationOrderingVC(), animated: true)
+                 UINavigationController {
+                let vm = LocationOrderingVM(managedObjectContext: SAApp.db().managedObjectContext)
+                let locVC = LocationOrderingVC()
+                locVC.navigationCoordinator = self
+                locVC.bind(viewModel: vm)
+                vm.bind(inputs: LocationOrderingVM.Inputs(commitChangesTrigger: self.locOrderingDismissCmd))
+                nc.pushViewController(locVC, animated: true)
             }
         }.disposed(by: disposeBag)
     }
+
+    override func viewControllerDidDismiss(_ vc: UIViewController) {
+        if vc is LocationOrderingVC {
+            locOrderingDismissCmd.onNext(())
+        }
+    }
     
     override func parentDidTakeFlowOver(_ parent: NavigationCoordinator) {
-        dismissCmd.onNext(())
+        cfgDismissCmd.onNext(())
     }
 }

@@ -48,6 +48,9 @@ class MainNavigationCoordinator: BaseNavigationCoordinator {
                 // top controller of child flow is being popped off the stack
                 // so the flow should finish now.
                 self.didFinish(coordinator: self.currentCoordinator)
+            } else if let controller = vc.element as? BaseViewController,
+                      let hisCoord = controller.navigationCoordinator {
+                hisCoord.viewControllerDidDismiss(controller)
             }
         }.disposed(by: disposeBag)
         navigationController.delegate = self

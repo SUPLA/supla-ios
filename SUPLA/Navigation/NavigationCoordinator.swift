@@ -47,6 +47,9 @@ protocol NavigationCoordinator {
     ///  Called on child after it's finished (so we have new current coordinator)
     func parentDidTakeFlowOver(_ parent: NavigationCoordinator)
 
+    /// Notify a coordinator that controller spawned by it has been dismissed
+    func viewControllerDidDismiss(_ viewController: UIViewController)
+
     /// Finish child flow
     func finish()
     
@@ -92,6 +95,10 @@ extension BaseNavigationCoordinator: NavigationCoordinator {
     }
     
     func parentDidTakeFlowOver(_ parent: NavigationCoordinator) {
+        // intentionally left empty
+    }
+
+    func viewControllerDidDismiss(_ viewController: UIViewController) {
         // intentionally left empty
     }
 

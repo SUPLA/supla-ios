@@ -14,3 +14,5 @@
 #import "AuthProfileItem+CoreDataClass.h"
 #import "SAMenuItems.h"
 #import "SAZWaveConfigurationWizardVC.h"
+#import "_SALocation+CoreDataClass.h"
+#import "SAChannelBase+CoreDataClass.h"
