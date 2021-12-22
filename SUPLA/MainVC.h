@@ -34,6 +34,7 @@
 @property (weak, nonatomic) IBOutlet UIView *notificationView;
 @property (weak, nonatomic) IBOutlet UIImageView *notificationImage;
 @property (weak, nonatomic) IBOutlet UILabel *notificationLabel;
+@property (readonly,nonatomic) id<UIViewControllerInteractiveTransitioning> interactionController;
 
 - (void)detailHide;
 - (void)groupTableHidden:(BOOL)hidden;
@@ -42,10 +43,11 @@
 
 
 @interface SAMainView : UIView 
-
+@property (weak, nonatomic) SAMainVC *viewController;
 @property (weak, nonatomic) IBOutlet UITableView *cTableView;
 @property (weak, nonatomic) IBOutlet UITableView *gTableView;
 @property (weak, nonatomic, readonly) SADetailView *detailView;
+@property (readonly,nonatomic) id<UIViewControllerInteractiveTransitioning> panController;
 
 - (void)onMenubarBackButtonPressed;
 - (void)detailShow:(BOOL)show animated:(BOOL)animated;

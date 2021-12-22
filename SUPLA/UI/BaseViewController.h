@@ -25,5 +25,6 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak,nonatomic) id<NavigationCoordinator> navigationCoordinator;
 @property (readonly,nonatomic) UIView *statusBarBackgroundView;
 - (BOOL)adjustsStatusBarBackground;
+- (void)addChildView: (UIView *)v;
 @end
 NS_ASSUME_NONNULL_END

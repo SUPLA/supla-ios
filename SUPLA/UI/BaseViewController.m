@@ -67,4 +67,13 @@
     }
 }
 
+
+- (void)addChildView:(UIView *)v {
+    [self.view addSubview: v];
+    CGRect navBarFrame = self.navigationController.navigationBar.frame;
+    CGRect destFrame = CGRectMake(0, CGRectGetMaxY(navBarFrame),
+                                  self.view.frame.size.width,
+                                  self.view.frame.size.height - CGRectGetMaxY(navBarFrame));
+    v.frame = destFrame;
+}
 @end

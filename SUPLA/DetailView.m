@@ -43,9 +43,9 @@
         return;
     
     self.channelBase = nil;
-    
-    _panRecognizer = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(handlePan:)];
-    [self addGestureRecognizer:_panRecognizer];
+//
+//    _panRecognizer = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(handlePan:)];
+//    [self addGestureRecognizer:_panRecognizer];
     
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(onChannelValueChanged:) name:kSAChannelValueChangedNotification object:nil];
@@ -85,13 +85,9 @@
 
 -(void)detailWillHide {}
 
--(void)detailDidShow {
-    // FIXME: Detail title setting
-//    [SAApp.UI setMenubarDetailTitle:_channelBase ? [_channelBase getNonEmptyCaption] : @""];
-//    [SAApp.UI showMenubarBackBtn];
-};
+-(void)detailDidShow {}
 
--(void)detailDidHide {};
+-(void)detailDidHide {}
 
 -(BOOL)onMenubarBackButtonPressed {
     return YES;

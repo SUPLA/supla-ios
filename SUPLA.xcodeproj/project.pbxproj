@@ -496,6 +496,7 @@
 		AE53535427691EFC0077BFFB /* CfgNavigationCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE53535327691EFC0077BFFB /* CfgNavigationCoordinator.swift */; };
 		AE535356276927690077BFFB /* LocationOrderingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE535355276927690077BFFB /* LocationOrderingVC.swift */; };
 		AE5A60E6270E2A7A00F2B780 /* AuthVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE5A60E5270E2A7A00F2B780 /* AuthVC.swift */; };
+		AE68E73227739D8500E55DB7 /* SwipeTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE68E73127739D8500E55DB7 /* SwipeTransition.swift */; };
 		AE7CAAFD275BF87D0024095F /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AE7CAAFC275BF87D0024095F /* BaseViewController.m */; };
 		AE929A87275FD5D500B75715 /* MainNavigationCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE929A86275FD5D500B75715 /* MainNavigationCoordinator.swift */; };
 		AE929A89276145C400B75715 /* FlowActionHandlers.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE929A88276145C400B75715 /* FlowActionHandlers.swift */; };
@@ -515,6 +516,7 @@
 		AEED1FD12737F3BE00DE6289 /* ProfileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEED1FD02737F3BE00DE6289 /* ProfileManager.swift */; };
 		AEED1FD42737F71C00DE6289 /* MultiAccountProfileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEED1FD32737F71C00DE6289 /* MultiAccountProfileManager.swift */; };
 		AEED87DF276F1FCE005D76CF /* LocationOrderingVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEED87DE276F1FCE005D76CF /* LocationOrderingVM.swift */; };
+		AEF1F9BA27726D56008E441A /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF1F9B927726D56008E441A /* DetailViewController.swift */; };
 		AEF79D8B2712FE1800D7554B /* CfgVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF79D8A2712FE1800D7554B /* CfgVM.swift */; };
 		AEF79D8D2712FF8D00D7554B /* CfgVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF79D8C2712FF8D00D7554B /* CfgVC.swift */; };
 		AEF79D912713088100D7554B /* Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF79D902713088100D7554B /* Strings.swift */; };
@@ -1358,6 +1360,7 @@
 		AE53535327691EFC0077BFFB /* CfgNavigationCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CfgNavigationCoordinator.swift; sourceTree = "<group>"; };
 		AE535355276927690077BFFB /* LocationOrderingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationOrderingVC.swift; sourceTree = "<group>"; };
 		AE5A60E5270E2A7A00F2B780 /* AuthVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthVC.swift; sourceTree = "<group>"; };
+		AE68E73127739D8500E55DB7 /* SwipeTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeTransition.swift; sourceTree = "<group>"; };
 		AE7CAAFB275BF87D0024095F /* BaseViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = BaseViewController.h; path = UI/BaseViewController.h; sourceTree = "<group>"; };
 		AE7CAAFC275BF87D0024095F /* BaseViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = BaseViewController.m; path = UI/BaseViewController.m; sourceTree = "<group>"; };
 		AE929A86275FD5D500B75715 /* MainNavigationCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainNavigationCoordinator.swift; sourceTree = "<group>"; };
@@ -1379,6 +1382,7 @@
 		AEED1FD22737F55C00DE6289 /* SUPLA 11.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "SUPLA 11.xcdatamodel"; sourceTree = "<group>"; };
 		AEED1FD32737F71C00DE6289 /* MultiAccountProfileManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultiAccountProfileManager.swift; sourceTree = "<group>"; };
 		AEED87DE276F1FCE005D76CF /* LocationOrderingVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationOrderingVM.swift; sourceTree = "<group>"; };
+		AEF1F9B927726D56008E441A /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		AEF79D8A2712FE1800D7554B /* CfgVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CfgVM.swift; sourceTree = "<group>"; };
 		AEF79D8C2712FF8D00D7554B /* CfgVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CfgVC.swift; sourceTree = "<group>"; };
 		AEF79D902713088100D7554B /* Strings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Strings.swift; sourceTree = "<group>"; };
@@ -2215,6 +2219,7 @@
 				012119122368B597004C1993 /* xib */,
 				AE7CAAFB275BF87D0024095F /* BaseViewController.h */,
 				AE7CAAFC275BF87D0024095F /* BaseViewController.m */,
+				AEF1F9B927726D56008E441A /* DetailViewController.swift */,
 			);
 			name = UI;
 			sourceTree = "<group>";
@@ -2276,6 +2281,7 @@
 			isa = PBXGroup;
 			children = (
 				AEB195DD276E5A040091D314 /* FadeTransition.swift */,
+				AE68E73127739D8500E55DB7 /* SwipeTransition.swift */,
 			);
 			path = Transitions;
 			sourceTree = "<group>";
@@ -2912,6 +2918,7 @@
 				015A983C265594B300B6E6C6 /* NSNumber+SUPLA.m in Sources */,
 				AEFBC24F26E37CD800414C19 /* Config.swift in Sources */,
 				01147CE4264BE317002B2E1C /* SAChannelFunctionSetResult.m in Sources */,
+				AE68E73227739D8500E55DB7 /* SwipeTransition.swift in Sources */,
 				017554F622F1A62500EB58B7 /* HomePlusDetailView.m in Sources */,
 				013D1C6322CE75A3000C0784 /* SAElectricityChartHelper.m in Sources */,
 				406778551BCBF9F4008DD37F /* SectionCell.m in Sources */,
@@ -2926,6 +2933,7 @@
 				4077ACE320A21BB100BD2216 /* CreateAccountVC.m in Sources */,
 				401CA1C81BA067DB00117AF4 /* MainVC.m in Sources */,
 				01A0BD0A26CEFBC200C4A5F2 /* SAWarningIcon.m in Sources */,
+				AEF1F9BA27726D56008E441A /* DetailViewController.swift in Sources */,
 				012F722E22DFA0BE00E5F72E /* SABarChartDataSet.swift in Sources */,
 				408034C51BC83D1A007666E7 /* MGSwipeTableCell.m in Sources */,
 				AE929A89276145C400B75715 /* FlowActionHandlers.swift in Sources */,

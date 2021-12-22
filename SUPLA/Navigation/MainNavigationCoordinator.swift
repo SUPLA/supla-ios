@@ -40,6 +40,7 @@ class MainNavigationCoordinator: BaseNavigationCoordinator {
         mainVC = SAMainVC(nibName: "MainVC", bundle: nil)
         navigationController = SuplaNavigationController(rootViewController: mainVC)
         super.init()
+        mainVC.navigationCoordinator = self
         NotificationCenter.default.addObserver(self, selector: #selector(onRegistered(_:)),
                                                name: .saRegistered,
                                                object: nil)
@@ -218,6 +219,25 @@ class MainNavigationCoordinator: BaseNavigationCoordinator {
     }
 }
 
+extension MainNavigationCoordinator: NavigationAnimationSupport {
+    func animationControllerFor(operation: UINavigationController.Operation,
+                                from fromVC: UIViewController,
+                                to toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        if let fromVC = fromVC as? SAMainVC, toVC is DetailViewController {
+            let animator = SwipeTransitionAnimator(direction: .slideIn)
+            animator.interactionController = fromVC.interactionController
+            return animator
+        } else if let fromVC = fromVC as? DetailViewController, toVC is SAMainVC {
+            let animator = SwipeTransitionAnimator(direction: .slideOut)
+            animator.interactionController = fromVC.interactionController
+            return animator
+        }
+        return nil
+    }
+    
+    
+}
+
 protocol NavigationAnimationSupport {
     func animationControllerFor(operation: UINavigationController.Operation,
                                 from fromVC: UIViewController,
@@ -234,6 +254,15 @@ extension MainNavigationCoordinator: UINavigationControllerDelegate {
         }
         
         return nil
+    }
+    
+    func navigationController(_ navigationController: UINavigationController,
+                              interactionControllerFor animationController: UIViewControllerAnimatedTransitioning) -> UIViewControllerInteractiveTransitioning? {
+        if let animationController = animationController as? SwipeTransitionAnimator {
+            return animationController.interactionController
+        } else {
+            return nil
+        }
     }
 }
 

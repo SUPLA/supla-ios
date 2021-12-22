@@ -16,3 +16,4 @@
 #import "SAZWaveConfigurationWizardVC.h"
 #import "_SALocation+CoreDataClass.h"
 #import "SAChannelBase+CoreDataClass.h"
+#import "DetailView.h"

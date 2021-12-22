@@ -65,7 +65,7 @@
     self.roofWindow.closingPercentage = percent;
     self.roofWindow.markers = nil;
 	if(showsOpeningPercent) percent = 100 - percent;
-    [self.labelPercent setText:[NSString stringWithFormat:@"%i%%", percent]];
+    [self.labelPercent setText:[NSString stringWithFormat:@"%i%%", [self mapped: percent]]];
     [timer invalidate];
 }
 
@@ -153,7 +153,7 @@
                 [self.labelPercent setText:NSLocalizedString(@"[Calibration]", NULL)];
                 self.labelBtnPressTime.hidden = NO;
             } else {
-                [self.labelPercent setText:[NSString stringWithFormat:@"%i%%", (int)percent]];
+                [self.labelPercent setText:[NSString stringWithFormat:@"%i%%", [self mapped: percent]]];
             }
             
             if (self.channelBase.flags & SUPLA_CHANNEL_FLAG_CALCFG_RECALIBRATE) {
@@ -218,7 +218,7 @@
 }
 
 -(void) rsChangeing:(id)rs withPercent:(float)percent {
-    [self.labelPercent setText:[NSString stringWithFormat:@"%i%%", (int)percent]];
+    [self.labelPercent setText:[NSString stringWithFormat:@"%i%%", (int)[self mapped: percent]]];
 }
 
 -(void) rsChanged:(id)rs withPercent:(float)percent {
@@ -232,7 +232,7 @@
 }
 
 - (void)roofWindowClosingPercentageChangeing:(id)roofWindowController percent:(float)percent {
-    [self.labelPercent setText:[NSString stringWithFormat:@"%i%%", (int)percent]];
+    [self.labelPercent setText:[NSString stringWithFormat:@"%i%%", [self  mapped:percent]]];
 }
 - (IBAction)recalibrateTouch:(id)sender {
     [SASuperuserAuthorizationDialog.globalInstance authorizeWithDelegate:self];
@@ -267,5 +267,9 @@
         UIViewController *vc = [[[[UIApplication sharedApplication] delegate] window] rootViewController];
         [vc presentViewController:alert animated:YES completion:nil];
     }];
+}
+
+- (int)mapped: (int)percent {
+    return showsOpeningPercent?(100-percent):percent;
 }
 @end
