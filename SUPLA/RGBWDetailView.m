@@ -382,7 +382,7 @@
     if ( channelBase != nil
         && channelBase.isOnline == NO
         && (_dimmerCalibrationTool == nil || !_dimmerCalibrationTool.isExitLocked)) {
-        [self.main_view detailShow:NO animated:NO];
+        [self.viewController.navigationController popViewControllerAnimated:NO];
         return;
     }
     

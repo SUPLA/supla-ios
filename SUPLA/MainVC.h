@@ -49,8 +49,7 @@
 @property (weak, nonatomic, readonly) SADetailView *detailView;
 @property (readonly,nonatomic) id<UIViewControllerInteractiveTransitioning> panController;
 
-- (void)onMenubarBackButtonPressed;
-- (void)detailShow:(BOOL)show animated:(BOOL)animated;
+- (void)detailDidHide;
 - (void)moveCenter:(float)x_offset;
 
 @end

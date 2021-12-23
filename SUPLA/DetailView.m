@@ -26,9 +26,6 @@
     
     BOOL _initialized;
     SAChannelBase *_channelBase;
-    UIPanGestureRecognizer *_panRecognizer;
-    float last_touched_x;
-    
 }
 
 @synthesize main_view;
@@ -42,11 +39,7 @@
     if ( _initialized )
         return;
     
-    self.channelBase = nil;
-//
-//    _panRecognizer = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(handlePan:)];
-//    [self addGestureRecognizer:_panRecognizer];
-    
+    self.channelBase = nil;    
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(onChannelValueChanged:) name:kSAChannelValueChangedNotification object:nil];
     
@@ -89,10 +82,6 @@
 
 -(void)detailDidHide {}
 
--(BOOL)onMenubarBackButtonPressed {
-    return YES;
-}
-
 -(void)setChannelBase:(SAChannelBase *)channelBase {
     
     _channelBase = channelBase;
@@ -102,37 +91,7 @@
 -(void)removeFromSuperview {
     self.channelBase = nil;
     self.main_view = nil;
-}
-
--(UIView*)hitTest:(CGPoint)point withEvent:(UIEvent *)event {
-    
-    last_touched_x = point.x;
-    return [super hitTest:point withEvent:event];
-}
-
-- (void)handlePan:(UIPanGestureRecognizer *)gr {
-    
-    if ( self.main_view == nil || self.main_view.detailView != self )
-        return;
-    
-    if ( gr.state == UIGestureRecognizerStateEnded) {
-        
-        [self.main_view detailShow:self.frame.origin.x > self.frame.size.width/3.5 ? NO : YES animated:YES];
-        return;
-    }
-    
-    CGPoint touch_point = [gr locationInView:self];
-    
-    float offset = touch_point.x-last_touched_x;
-    
-    if ( self.frame.origin.x+offset < 0 )
-        offset -= self.frame.origin.x+offset;
-    
-    [self.main_view moveCenter:offset];
-
-    
-    last_touched_x = touch_point.x - offset;
-    
+	[super removeFromSuperview];
 }
 
 - (void) dealloc {

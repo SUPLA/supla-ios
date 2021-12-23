@@ -205,10 +205,6 @@
 	[self adjustChannelHeight: YES];
 }
 
--(void)onMenubarBackButtonPressed {
-    [(SAMainView*)self.view onMenubarBackButtonPressed];
-}
-
 - (void)onEvent:(NSNotification *)notification {
     
     if ( notification.userInfo == nil ) return;
@@ -321,7 +317,7 @@
     _nTimer = nil;
     [self closeNotificationView];
     
-};
+}
 
 
 -(IBAction) tapGesture:(UITapGestureRecognizer*)recognizer
@@ -329,10 +325,13 @@
     if ( recognizer.view == self.notificationView ) {
         [self closeNotificationView];
     }
-};
+}
 
 - (void)detailHide {
-    [(SAMainView*)self.view detailShow:NO animated:NO];
+	if([self.navigationController.topViewController
+		   isKindOfClass: [DetailViewController class]]) {
+		[self.navigationController popViewControllerAnimated: NO];
+    }
 }
 
 #pragma mark Locations
@@ -550,6 +549,9 @@
     [super viewWillAppear:animated];
     [[[SARateApp alloc] init] showDialogWithDelay: 1];
     [self runDownloadTask];
+    if([self.navigationController.topViewController isKindOfClass: [DetailViewController class]]) {
+        [(SAMainView*)self.view detailDidHide];
+    }
 }
 
 -(void)runDownloadTask {
@@ -686,11 +688,6 @@
     [self addGestureRecognizer:_panRecognizer];
 }
 
-
-- (CGRect)getDetailFrame {
-    return CGRectMake(self.frame.origin.x+self.frame.size.width, self.frame.origin.y, self.frame.size.width, self.frame.size.height);
-}
-
 - (SADetailView*)getDetailViewForCell:(SAChannelCell*)_cell {
     
     SADetailView *result = nil;
@@ -804,86 +801,6 @@
     }
 }
 
-- (void)detailShow:(BOOL)show animated:(BOOL)animated {
-    
-    [UIView commitAnimations];
-    _animating = NO;
-    
-    if (_detailView) {
-        if (show) {
-            [_detailView detailWillShow];
-        } else {
-            [_detailView detailWillHide];
-        }
-    }
-        
-    if ( animated ) {
-                
-        [UIView animateWithDuration:0.2
-                         animations:^{
-            
-            float multiplier = 1;
-            
-            if ( show ) {
-                multiplier = -1;
-            }
-            
-            [self setCenter:CGPointMake((self.frame.size.width/2) * multiplier, self.center.y)];
-            [self->_detailView setFrame:[self getDetailFrame]];
-            
-            
-        }
-                         completion:^(BOOL finished){
-            
-            if ( show == NO ) {
-                
-                [self detailDidHide];
-                
-                if ( self->_detailView ) {
-                    [self->_detailView removeFromSuperview];
-                    [self->_detailView detailDidHide];
-                    self->_detailView = nil;
-                }
-                
-                if ( self->cell ) {
-                    self->cell.contentView.backgroundColor = [UIColor cellBackground];
-                    self->cell = nil;
-                }
-                
-            } else if (self->_detailView) {
-                [self->_detailView detailDidShow];
-            }
-            
-            
-            self->_animating = NO;
-        }];
-        
-    } else {
-        
-        if ( show == NO ) {
-            
-            [self setCenter:CGPointMake(self.frame.size.width/2, self.center.y)];
-            
-            [self detailDidHide];
-            
-            if ( _detailView ) {
-                [_detailView removeFromSuperview];
-                [_detailView detailDidHide];
-                _detailView = nil;
-            }
-            
-            if ( cell ) {
-                cell.contentView.backgroundColor = [UIColor cellBackground];
-                cell = nil;
-            }
-            
-        } else if (_detailView) {
-            [_detailView detailDidShow];
-        }
-        
-    }
-    
-}
 
 - (void)handlePan: (UIPanGestureRecognizer *)gr {
     if(gr.state == UIGestureRecognizerStateBegan) {
@@ -900,7 +817,8 @@
                     detailVC.navigationCoordinator = self.viewController.navigationCoordinator;
                     _panTransition = [[UIPercentDrivenInteractiveTransition alloc]
                                       init];
-                    [self.viewController.navigationController pushViewController:detailVC animated:YES];
+                    [self.viewController.navigationController pushViewController:detailVC
+																		animated:YES];
                     
                 }
             }
@@ -921,18 +839,6 @@
 
 - (id<UIViewControllerInteractiveTransitioning>)panController {
     return _panTransition;
-}
-
--(void)setCenter:(CGPoint)center {
-    [super setCenter: center];
-    
-    if ( _detailView != nil ) {
-        [_detailView setFrame:[self getDetailFrame]];
-    }    
-}
-
--(void)moveCenter:(float)x_offset {
-    [self setCenter:CGPointMake(self.center.x+x_offset, self.center.y)];
 }
 
 - (void)handleTap:(UITapGestureRecognizer *)gr {

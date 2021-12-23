@@ -174,7 +174,7 @@
     [super setChannelBase:channelBase];
     
     if ( channelBase != nil && channelBase.isOnline == NO ) {
-        [self.main_view detailShow:NO animated:NO];
+        [self.viewController.navigationController popViewControllerAnimated:NO];
     }
 };
 

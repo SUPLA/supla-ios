@@ -36,6 +36,7 @@ class DetailViewController: BaseViewController {
         
         _panGR.addTarget(self, action: #selector(onPan(_:)))
         _detailView.addGestureRecognizer(_panGR)
+        _detailView.viewController = self
     }
     
     required init?(coder: NSCoder) {
