@@ -48,7 +48,7 @@ class CfgVC: BaseViewController {
 
     private let buttonAutoHideControl = UISwitch()
     private let showChannelInfoControl = UISwitch()
-    private let showOpeningPercentControl = UISwitch()
+    private var showOpeningPercentControl: UISegmentedControl!
     private let chevronRightControl = UIImageView(image: UIImage(named: "ChevronRight"))
     
     private let disposeBag = DisposeBag()
@@ -95,6 +95,9 @@ class CfgVC: BaseViewController {
             temperatureUnitControl.setWidth(segmentWidth, forSegmentAt: i)
         }
         
+        showOpeningPercentControl = UISegmentedControl(items: [ Strings.Cfg.showOpeningModeOpening,
+                                                                Strings.Cfg.showOpeningModeClosing ])
+        
         chevronRightControl.tintColor = .suplaGreen
         
 
@@ -102,7 +105,7 @@ class CfgVC: BaseViewController {
                                   temperatureUnit: temperatureUnitControl.rx.selectedSegmentIndex.map({ TemperatureUnit.allCases[max(0,$0)]}).asObservable(),
                                   autoHideButtons: buttonAutoHideControl.rx.isOn.asObservable(),
                                   showChannelInfo: showChannelInfoControl.rx.isOn.asObservable(),
-                                  showOpeningPercent: showOpeningPercentControl.rx.isOn.asObservable(),
+                                  showOpeningPercent: showOpeningPercentControl.rx.selectedSegmentIndex.map({ $0 == 0 }).asObservable(),
                                   onDismiss: dismissCmd)
 
         vM = CfgVM(inputs: inputs, configModel: Config())
@@ -111,7 +114,8 @@ class CfgVC: BaseViewController {
             .bind(to: temperatureUnitControl.rx.selectedSegmentIndex).disposed(by: disposeBag)
         vM.autoHideButtons.bind(to: buttonAutoHideControl.rx.isOn).disposed(by: disposeBag)
         vM.showChannelInfo.bind(to: showChannelInfoControl.rx.isOn).disposed(by: disposeBag)
-        vM.showOpeningPercent.bind(to: showOpeningPercentControl.rx.isOn).disposed(by: disposeBag)
+        vM.showOpeningPercent.map({ isOn in isOn ? 0 : 1})
+            .bind(to: showOpeningPercentControl.rx.selectedSegmentIndex).disposed(by: disposeBag)
     }
     
     private func cellForSetting(_ setting: Settings) -> UITableViewCell {
@@ -134,7 +138,7 @@ class CfgVC: BaseViewController {
             label = Strings.Cfg.showChannelInfo
             actionView = showChannelInfoControl
         case .showOpeningPercent:
-            label = Strings.Cfg.showOpeningPercent
+            label = Strings.Cfg.showOpeningMode
             actionView = showOpeningPercentControl
         case .locationOrdering:
             label = Strings.Cfg.locationOrdering

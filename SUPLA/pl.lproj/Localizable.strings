@@ -281,6 +281,8 @@
 "Don't have an account in Supla Cloud yet?" = "Nie masz jeszcze konta w Supla Cloud?";
 "Create" = "Utwórz konto";
 "Location order" = "Kolejność lokalizacji";
-"Show opening %" = "Pokazuj % otwarcia";
+"Roller shutter %" = "Rolety %";
+"Opening" = "Otwarcia";
+"Closing" = "Zamknięcia";
 "Percent of opening" = "Procent otwarcia";
 "Percent of closing" = "Procent zamknięcia";
