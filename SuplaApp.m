@@ -492,7 +492,8 @@ NSString *kSAOnZWaveSetWakeUpTimeResult = @"KSA-N30";
     AuthProfileItem *profile = [SAApp.profileManager getCurrentProfile];
     if ((cint == SUPLA_RESULTCODE_REGISTRATION_DISABLED
         || cint == SUPLA_RESULTCODE_ACCESSID_NOT_ASSIGNED)
-        && !profile.advancedSetup
+        && profile.authInfo.isAuthDataComplete
+        && profile.authInfo.emailAuth
         && ![SASuperuserAuthorizationDialog.globalInstance isVisible]) {
         [SASuperuserAuthorizationDialog.globalInstance authorizeWithDelegate:nil];
     }
