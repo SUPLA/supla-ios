@@ -61,7 +61,10 @@ class SuplaMenuController: UIViewController, NavigationCoordinatorAware {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        self._menuItems.slideDown(true) {}
+        let v = navBarSnapshotView()
+        self._menuItems.slideDown(true) {
+            v.removeFromSuperview()
+        }
     }
     
     @objc private func onMenuDismiss(_ gr: UIGestureRecognizer) {
@@ -73,6 +76,37 @@ class SuplaMenuController: UIViewController, NavigationCoordinatorAware {
     private func performDeferredAction(_ action: @escaping ()->Void) {
         _deferredMenuAction = action
         navigationCoordinator?.finish()
+    }
+    
+    // Insert a static snapshot for navbar/status bar area, as a
+    // coverup for menu slide up/down animation.
+    private func navBarSnapshotView() -> UIView {
+        var navFrame = findNavigationControlelr()!.navigationBar.frame
+        navFrame.size.height = navFrame.maxY
+        navFrame.origin.y = 0
+        UIGraphicsBeginImageContext(navFrame.size)
+        let ctx = UIGraphicsGetCurrentContext()!
+        currentWindow().layer.render(in: ctx)
+        let img = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        
+        let v = UIImageView(image: img)
+        view.addSubview(v)
+        return v
+    }
+    
+    private func findNavigationControlelr() -> UINavigationController? {
+        return (presentingViewController as? UINavigationController) ??
+            presentingViewController?.navigationController
+    }
+    
+    private func currentWindow() -> UIWindow {
+        var cv = view
+        repeat {
+            if let wnd = cv as? UIWindow { return wnd }
+            cv = cv?.superview
+        } while(cv != nil)
+        fatalError("currentWindow() called when not attached to window")
     }
 }
 
@@ -114,7 +148,11 @@ extension SuplaMenuController: SAMenuItemsDelegate {
 
 extension SuplaMenuController: PresentationCoordinatorPeer {
     func willFinish(_ continuation: @escaping () -> Void) {
-        _menuItems.slideDown(false, withAction: continuation)
+        let v = navBarSnapshotView()
+        _menuItems.slideDown(false) {
+            v.removeFromSuperview()
+            continuation()
+        }
     }
     
     func didFinish() {
