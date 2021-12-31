@@ -44,6 +44,10 @@
     [super viewDidLoad];
 }
 
+- (BOOL)hidesNavigationBar {
+    return YES;
+}
+
 - (void)setPage:(UIView *)page {
     _previousPage = self.page;
     

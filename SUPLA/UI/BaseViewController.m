@@ -48,10 +48,17 @@
     if(statusBarBg) {
         [self.view bringSubviewToFront: statusBarBg];
     }
+    
+    [self.navigationController setNavigationBarHidden: [self hidesNavigationBar]
+                                             animated: animated];
 }
 
 - (BOOL)adjustsStatusBarBackground {
     return YES;
+}
+
+- (BOOL)hidesNavigationBar {
+    return NO;
 }
 
 - (UIView*)statusBarBackgroundView {
