@@ -108,6 +108,11 @@
         self.gTableView.dragDelegate = self;
         self.gTableView.dropDelegate = self;
     }
+    
+    if (@available(iOS 15.0, *)) {
+        self.cTableView.sectionHeaderTopPadding = 0;
+        self.gTableView.sectionHeaderTopPadding = 0;
+    }
 
 	_groupsOff = [UIImage imageNamed: @"groupsoff"];
 	_groupsOn = [UIImage imageNamed: @"groupson"];
