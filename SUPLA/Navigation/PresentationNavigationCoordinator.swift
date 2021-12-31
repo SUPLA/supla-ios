@@ -24,6 +24,12 @@ import UIKit
 @objc
 class PresentationNavigationCoordinator: BaseNavigationCoordinator {
     
+    var shouldAnimatePresentation = true
+    
+    override var wantsAnimatedTransitions: Bool {
+        return shouldAnimatePresentation
+    }
+    
     override var viewController: UIViewController { return _viewController }
     
     private let _viewController: UIViewController

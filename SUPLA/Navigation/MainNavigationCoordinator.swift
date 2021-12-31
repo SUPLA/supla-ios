@@ -198,7 +198,9 @@ class MainNavigationCoordinator: BaseNavigationCoordinator {
             show = true
         }
         if show {
-            startFlow(coordinator: PresentationNavigationCoordinator(viewController: SuplaMenuController()))
+            let coord = PresentationNavigationCoordinator(viewController: SuplaMenuController())
+            coord.shouldAnimatePresentation = false
+            startFlow(coordinator: coord)
         }
     }
     
