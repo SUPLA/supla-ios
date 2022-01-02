@@ -33,13 +33,9 @@ class CfgVC: BaseViewController {
         case locationOrdering
 
         static var allCases: [Settings] {
-            var rv: [Settings] = [.channelHeight, .temperatureUnit,
-                                  .buttonAutoHide, .showChannelInfo,
-                                  .showOpeningPercent]
-            if #available(iOS 11.0, *) {
-                rv.append(.locationOrdering)
-            }
-            return rv
+            return [.channelHeight, .temperatureUnit,
+                    .buttonAutoHide, .showChannelInfo,
+                    .showOpeningPercent, .locationOrdering]
         }
     }
     

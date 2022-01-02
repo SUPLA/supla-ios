@@ -17,3 +17,4 @@
 #import "_SALocation+CoreDataClass.h"
 #import "SAChannelBase+CoreDataClass.h"
 #import "DetailView.h"
+#import "SAMoveTableView.h"

@@ -488,6 +488,7 @@
 		40F7301120C19BA600167C2D /* SAColorListItem+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 40F7301020C19BA600167C2D /* SAColorListItem+CoreDataProperties.m */; };
 		40F951451FD0654900698587 /* RSDetail.xib in Resources */ = {isa = PBXBuildFile; fileRef = 40F951471FD0654900698587 /* RSDetail.xib */; };
 		462253FD963449A978BBDDE8 /* Pods_SUPLA.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 596D36089B2CE979388A06FF /* Pods_SUPLA.framework */; };
+		AE348E66277F348700F363A3 /* SAMoveTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = AE348E65277F348700F363A3 /* SAMoveTableView.m */; };
 		AE3DECE22761DB32005923E4 /* AuthCfgNavigationCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE3DECE02761DB32005923E4 /* AuthCfgNavigationCoordinator.swift */; };
 		AE3DECE32761DB32005923E4 /* PresentationNavigationCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE3DECE12761DB32005923E4 /* PresentationNavigationCoordinator.swift */; };
 		AE5332E227648E770050E690 /* SuplaNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE5332E127648E770050E690 /* SuplaNavigationController.swift */; };
@@ -1352,6 +1353,8 @@
 		596D36089B2CE979388A06FF /* Pods_SUPLA.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SUPLA.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5CB83473B6995044CF8448E7 /* Pods-SUPLATests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SUPLATests.release.xcconfig"; path = "Target Support Files/Pods-SUPLATests/Pods-SUPLATests.release.xcconfig"; sourceTree = "<group>"; };
 		76FF65EADE7763EB8D61BC35 /* Pods_SUPLATests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SUPLATests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		AE348E64277F348700F363A3 /* SAMoveTableView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SAMoveTableView.h; sourceTree = "<group>"; };
+		AE348E65277F348700F363A3 /* SAMoveTableView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SAMoveTableView.m; sourceTree = "<group>"; };
 		AE3DECE02761DB32005923E4 /* AuthCfgNavigationCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthCfgNavigationCoordinator.swift; sourceTree = "<group>"; };
 		AE3DECE12761DB32005923E4 /* PresentationNavigationCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PresentationNavigationCoordinator.swift; sourceTree = "<group>"; };
 		AE5332E127648E770050E690 /* SuplaNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuplaNavigationController.swift; sourceTree = "<group>"; };
@@ -2299,6 +2302,8 @@
 			children = (
 				AED6395D270CA3A800E5105B /* RoundedButton.swift */,
 				AECB1BE627109EA3001A9714 /* CheckBox.swift */,
+				AE348E64277F348700F363A3 /* SAMoveTableView.h */,
+				AE348E65277F348700F363A3 /* SAMoveTableView.m */,
 			);
 			path = Controls;
 			sourceTree = "<group>";
@@ -2790,6 +2795,7 @@
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-SUPLA/Pods-SUPLA-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Charts/Charts.framework",
+				"${BUILT_PRODUCTS_DIR}/FMMoveTableView/FMMoveTableView.framework",
 				"${BUILT_PRODUCTS_DIR}/PaddingLabel/PaddingLabel.framework",
 				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
 				"${BUILT_PRODUCTS_DIR}/RxRelay/RxRelay.framework",
@@ -2799,6 +2805,7 @@
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Charts.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FMMoveTableView.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PaddingLabel.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxRelay.framework",
@@ -2886,6 +2893,7 @@
 				AE5332E427648F610050E690 /* UIFont+Supla.swift in Sources */,
 				01511CFA24F50B470081A1EC /* SAPreloaderPopup.m in Sources */,
 				01A66A7525364AA400C00A1A /* SARoofWindowController.m in Sources */,
+				AE348E66277F348700F363A3 /* SAMoveTableView.m in Sources */,
 				01902A25235A17E9005ED935 /* TemperatureDetailView.m in Sources */,
 				01EE9BBB22BA50D90029A142 /* SAChannelValueBase+CoreDataClass.m in Sources */,
 				40F7301120C19BA600167C2D /* SAColorListItem+CoreDataProperties.m in Sources */,
