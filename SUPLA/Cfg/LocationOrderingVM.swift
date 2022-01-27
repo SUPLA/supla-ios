@@ -63,7 +63,7 @@ class LocationOrderingVM {
     private func saveNewOrder() {
         var pos = Int16(0)
         for elt in self.locations.value {
-            elt.sortOrder = pos
+            elt.sortOrder = NSNumber(value: pos)
             pos += 1
         }
         if _ctx.hasChanges { try! _ctx.save() }

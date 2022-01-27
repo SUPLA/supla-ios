@@ -534,12 +534,13 @@ again:
     
     SEL localeAwareCompare = @selector(localizedCaseInsensitiveCompare:);
     NSArray *sortDescriptors = @[
-        [[NSSortDescriptor alloc] initWithKey:@"location.caption" ascending:YES
-                                     selector: localeAwareCompare],
+								 [[NSSortDescriptor alloc] initWithKey:@"location.sortOrder" ascending:YES],
+								 [[NSSortDescriptor alloc] initWithKey:@"location.caption" ascending:YES
+															  selector: localeAwareCompare],
                                 [[NSSortDescriptor alloc] initWithKey:@"position" ascending:YES],
                                 [[NSSortDescriptor alloc] initWithKey:@"func" ascending:NO],
                                 [[NSSortDescriptor alloc] initWithKey:@"caption" ascending:NO
-                                                             selector: localeAwareCompare]
+								selector: localeAwareCompare]
                                 ];
     
     [fetchRequest setSortDescriptors:sortDescriptors];
@@ -550,11 +551,9 @@ again:
 -(NSFetchedResultsController*) getChannelBaseFrcForEntityName:(NSString*)entity {
     NSFetchRequest *fetchRequest = [self getChannelBaseFetchRequestForEntityName:entity locationId:0];
 
-    NSFetchedResultsController *frc = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:self.managedObjectContext sectionNameKeyPath:@"location.caption" cacheName:nil];
-    
+    NSFetchedResultsController *frc = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:self.managedObjectContext sectionNameKeyPath:@"location.sortOrderCaption" cacheName:nil];
     NSError *error;
     [frc performFetch:&error];
-    
     if ( error ) {
         NSLog(@"%@", error);
     }

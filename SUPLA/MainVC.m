@@ -386,10 +386,6 @@
     
 }
 
-- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
-    return  [[[[self frcForTableView:tableView] sections] objectAtIndex:section] name];
-}
-
 - (short)bitFlagCollapse {
     return self.cTableView.hidden == NO ? 0x1 : 0x2;
 }
@@ -523,7 +519,9 @@
 {
     SASectionCell *cell = [tableView dequeueReusableCellWithIdentifier:@"SectionCell"];
     if ( cell ) {
-        NSString *name = [[[[self frcForTableView:tableView] sections] objectAtIndex:section] name];
+        NSString *rawTitle = [[[[self frcForTableView:tableView] sections] objectAtIndex:section] name];
+        NSRange r = [rawTitle rangeOfString:@":"];
+        NSString *name = [rawTitle substringFromIndex: r.location + 1];
         _SALocation *location = [self locationByName:name];
         cell.ivCollapsed.hidden = location == nil || (location.collapsed & [self bitFlagCollapse]) == 0;
         cell.locationId = [location.location_id intValue];
@@ -626,6 +624,8 @@
 
 
 - (void)reloadTables {
+    _cFrc = nil;
+    _gFrc = nil;
     _heightScaleFactor = [Config new].channelHeightFactor;
     [self adjustChannelHeight:YES];
 }

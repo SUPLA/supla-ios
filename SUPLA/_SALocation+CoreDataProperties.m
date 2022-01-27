@@ -30,4 +30,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 @dynamic collapsed;
 @dynamic sortOrder;
 
+- (NSString *)sortOrderCaption {
+    return [NSString stringWithFormat: @"%@:%@", self.sortOrder, self.caption];
+}
+
 @end
