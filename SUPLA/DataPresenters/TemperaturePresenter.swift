@@ -46,8 +46,8 @@ class TemperaturePresenter: NSObject {
     
     @objc
     func stringRepresentation(_ value: Float) -> String {
-        let converted = NSNumber(value: converted(value))
-        return (_formatter.string(from: converted) ?? "") + " " +
+        let cnv = NSNumber(value: converted(value))
+        return (_formatter.string(from: cnv) ?? "") + " " +
             _unit.symbol
     }
 
