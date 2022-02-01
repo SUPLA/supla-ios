@@ -23,6 +23,9 @@
 #import "SAKeychain.h"
 #import "SASuperuserAuthorizationDialog.h"
 #import "NSNumber+SUPLA.h"
+#import "SUPLA-Swift.h"
+#import "AppDelegate.h"
+#import "AuthProfileItem+CoreDataClass.h"
 
 static SAApp* _Globals = nil;
 
@@ -66,7 +69,6 @@ NSString *kSAOnZWaveSetWakeUpTimeResult = @"KSA-N30";
     
     SASuplaClient* _SuplaClient;
     SADatabase *_DB;
-    SAUIHelper *_UI;
     NSMutableArray *_RestApiClientTasks;
     SAOAuthToken *_OAuthToken;
 }
@@ -78,13 +80,6 @@ NSString *kSAOnZWaveSetWakeUpTimeResult = @"KSA-N30";
         _current_access_id = 0;
         _current_server = nil;
         
-        if ( [self getCfgVersion] == 0 ) {
-          
-            BOOL advCfg = [[self getServerHostName] isEqualToString:@""] == NO && [self getAccessID] != 0 && [[SAApp getAccessIDpwd] isEqualToString:@""] == NO;
-            [self setAdvancedConfig: advCfg];
-            [self setCfgVersion:2];
-        };
-
         _RestApiClientTasks = [[NSMutableArray alloc] init];
         
         [[NSNotificationCenter defaultCenter]
@@ -135,6 +130,20 @@ NSString *kSAOnZWaveSetWakeUpTimeResult = @"KSA-N30";
      }
     
     return _Globals;
+}
+
++(id<NavigationCoordinator>)currentNavigationCoordinator {
+    return [[((AppDelegate *)[UIApplication sharedApplication].delegate) navigation]
+            currentCoordinator];
+}
+
++(MainNavigationCoordinator*)mainNavigationCoordinator {
+    id coordinator = [((AppDelegate *)[UIApplication sharedApplication].delegate) navigation];
+    if([coordinator isKindOfClass:[MainNavigationCoordinator class]]) {
+        return (MainNavigationCoordinator*)coordinator;
+    } else {
+        return nil;
+    }
 }
 
 -(BOOL) getRandom:(char*)key size:(int)size forPrefKey:(NSString*)pref_key {
@@ -214,191 +223,9 @@ NSString *kSAOnZWaveSetWakeUpTimeResult = @"KSA-N30";
    return [[self instance] getRandom:auth_key size:SUPLA_AUTHKEY_SIZE forPrefKey:@"auth_key"];
 }
 
--(int) getCfgVersion {
-    
-    
-    @synchronized(self) {
-        if ( _cfg_ver == 0 ) {
-            _cfg_ver = (int)[[NSUserDefaults standardUserDefaults] integerForKey:@"cfg_version"];
-        }
-    }
-    
-    return _cfg_ver;
-}
-
--(void) setCfgVersion:(int)cfg_ver {
-    
-    @synchronized(self) {
-        _cfg_ver = cfg_ver;
-        [[NSUserDefaults standardUserDefaults] setInteger:cfg_ver forKey:@"cfg_version"];
-    }
-    
-}
-
--(BOOL) isAdvancedConfig {
-    
-    BOOL result = NO;
-    
-    @synchronized(self) {
-        result = [[NSUserDefaults standardUserDefaults] boolForKey:@"advanced_config"];
-    }
-    
-    return result;
-}
-
-+(BOOL) isAdvancedConfig {
-    
-    return [[self instance] isAdvancedConfig];
-}
-
--(void) setAdvancedConfig:(BOOL)adv_cfg {
-    
-    @synchronized(self) {
-        [[NSUserDefaults standardUserDefaults] setBool:adv_cfg forKey:@"advanced_config"];
-    }
-    
-}
-
-+(void) setAdvancedConfig:(BOOL)adv_cfg {
-    
-    [[self instance] setAdvancedConfig:adv_cfg];
-    
-}
-
-
--(int) getAccessID {
-    
-    
-    @synchronized(self) {
-        if ( _current_access_id == 0 ) {
-            _current_access_id = (int)[[NSUserDefaults standardUserDefaults] integerForKey:@"access_id"];
-        }
-    }
-    
-    return _current_access_id;
-}
-
-+(int) getAccessID {
-    
-    return [[self instance] getAccessID];
-}
-
--(void) setAccessID:(int)aid {
-    
-    @synchronized(self) {
-        _current_access_id = aid;
-        [[NSUserDefaults standardUserDefaults] setInteger:aid forKey:@"access_id"];
-    }
-    
-}
-
-+(void) setAccessID:(int)aid {
-    
-    [[self instance] setAccessID:aid];
-    
-}
-
-+(NSString*) getAccessIDpwd {
-    NSString *result = nil;
-    
-    @synchronized(self) {
-        result = [[NSUserDefaults standardUserDefaults] stringForKey:@"access_id_pwd"];
-    }
-    
-    return result == nil ? [[NSString alloc] init] : result;
-}
-
-+(void) setAccessIDpwd:(NSString *)pwd {
-    pwd = [pwd stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-    @synchronized(self) {
-        [[NSUserDefaults standardUserDefaults] setValue:pwd forKey:@"access_id_pwd"];
-    }
-    
-}
-
--(NSString*) getServerHostName {
-    
-    @synchronized(self) {
-        if ( _current_server == nil ) {
-            _current_server = [[NSUserDefaults standardUserDefaults] stringForKey:@"server_host"];
-        }
-    }
-    
-    return _current_server == nil ? [[NSString alloc] init] : _current_server;
-}
-
-+(NSString*) getServerHostName {
-    
-    return [[self instance] getServerHostName];
-}
-
--(void) setServerHostName:(NSString *)hostname {
-    hostname = [hostname stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-    @synchronized(self) {
-        [[NSUserDefaults standardUserDefaults] setValue:hostname forKey:@"server_host"];
-        _current_server = hostname;
-    }
-    
-}
-
-+(void) setServerHostName:(NSString *)hostname {
-    
-    [[self instance] setServerHostName:hostname];
-    
-}
-
-
--(NSString*) getEmailAddress {
-    
-    @synchronized(self) {
-        if ( _current_email == nil ) {
-            _current_email = [[NSUserDefaults standardUserDefaults] stringForKey:@"email_address"];
-        }
-    }
-    
-    return _current_email == nil ? [[NSString alloc] init] : _current_email;
-}
-
-+(NSString*) getEmailAddress {
-    
-    return [[self instance] getEmailAddress];
-}
-
--(void) setEmailAddress:(NSString *)email {
-    email = [email stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-    @synchronized(self) {
-        [[NSUserDefaults standardUserDefaults] setValue:email forKey:@"email_address"];
-        _current_email = email;
-    }
-    
-}
-
-+(void) setEmailAddress:(NSString *)email {
-    
-    [[self instance] setEmailAddress:email];
-    
-}
-
--(int)getPreferedProtocolVersion {
-    
-    int result = 0;
-    
-    @synchronized(self) {
-       result = (int)[[NSUserDefaults standardUserDefaults] integerForKey:@"pref_proto_version"];
-    }
-    
-    return result == 0 ? SUPLA_PROTO_VERSION : result;
-}
-
-+(int) getPreferedProtocolVersion {
-   return [[self instance] getPreferedProtocolVersion];
-}
-
--(void)setPreferedProtocolVersion:(int)version {
-        
-    @synchronized(self) {
-        [[NSUserDefaults standardUserDefaults] setInteger:version forKey:@"pref_proto_version"];
-    }
++ (id<ProfileManager>)profileManager {
+    return [[MultiAccountProfileManager alloc] initWithContext: [[self instance] DB]
+            .managedObjectContext];
 }
 
 -(void) setBrightnessPickerTypeToSlider:(BOOL)slider {
@@ -427,20 +254,14 @@ NSString *kSAOnZWaveSetWakeUpTimeResult = @"KSA-N30";
     return result;
 }
 
-+(void) setPreferedProtocolVersion:(int)version {
-    [[self instance] setPreferedProtocolVersion: version];
-}
 
 + (NSURL *)applicationDocumentsDirectory {
     return [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
 }
 
 +(BOOL) configIsSet {
-    if ( [SAApp isAdvancedConfig] ) {
-        return ![[SAApp getServerHostName] isEqual:@""] && [SAApp getAccessID] != 0 && ![[SAApp getAccessIDpwd] isEqual:@""];
-    }
-    
-    return ![[SAApp getEmailAddress] isEqual:@""];
+    return [SAApp.profileManager getCurrentAuthInfo]
+        .isAuthDataComplete;
 }
 
 +(void) setBrightnessPickerTypeToSlider:(BOOL)slider {
@@ -578,26 +399,13 @@ NSString *kSAOnZWaveSetWakeUpTimeResult = @"KSA-N30";
     return _DB;
 }
 
--(SAUIHelper *)UI {
-    
-    if ( _UI == nil ) {
-        _UI = [[SAUIHelper alloc] init];
-    }
-    
-    return _UI;
-}
-
-+(SAUIHelper *)UI {
-    return [[self instance] UI];
-}
-
-
 +(SADatabase*)DB {
     return [[self instance] DB];
 }
 
 -(NSString*)getMsgHostName {
-    NSString *hostname = [SAApp getServerHostName];
+    NSString *hostname = [SAApp.profileManager getCurrentAuthInfo]
+        .serverForCurrentAuthMethod;
     if ( [[hostname lowercaseString] containsString:@"supla.org"] ) {
         return @"cloud.supla.org";
     } else {
@@ -606,7 +414,14 @@ NSString *kSAOnZWaveSetWakeUpTimeResult = @"KSA-N30";
 }
 
 -(BOOL)canChangeView {
-    return [self.UI addWizardIsVisible] != YES && [self.UI createAccountVCisVisible] != YES && ![self.UI settingsVCisVisible];
+    NSObject<NavigationCoordinator> *nav = [SAApp currentNavigationCoordinator];
+    if(nav == [SAApp mainNavigationCoordinator] ||
+       ([nav isKindOfClass: [PresentationNavigationCoordinator class]] &&
+        [nav.viewController isKindOfClass: [SAStatusVC class]]))
+        return YES;
+    else
+        return NO;
+//    return [self.UI addWizardIsVisible] != YES && [self.UI createAccountVCisVisible] != YES && ![self.UI settingsVCisVisible];
     
 }
 
@@ -615,27 +430,21 @@ NSString *kSAOnZWaveSetWakeUpTimeResult = @"KSA-N30";
         return;
     }
     
-    [self.UI.StatusVC.progress setProgress:0];
+    [[SAApp mainNavigationCoordinator] showStatusViewWithProgress: @0];
 }
 
 -(void)onConnecting {
     if ( ![self canChangeView] ) {
         return;
     }
-    
-    if ( self.UI.rootViewController == self.UI.SettingsVC ) {
-         [self.UI.StatusVC.progress setProgress:0.25];
-    } else {
-         [self.UI showStatusConnectingProgress:0.25];
-    }
+    [[SAApp mainNavigationCoordinator] showStatusViewWithProgress:@0.25];
 }
 
 -(void)onConnected {
     if ( ![self canChangeView] ) {
         return;
     }
-    
-    [self.UI showStatusConnectingProgress:0.5];
+    [[SAApp mainNavigationCoordinator] showStatusViewWithProgress:@0.5];
 }
 
 -(void)onConnError:(NSNotification *)notification {
@@ -648,7 +457,7 @@ NSString *kSAOnZWaveSetWakeUpTimeResult = @"KSA-N30";
     if ( code && [code intValue] == SUPLA_RESULTCODE_HOSTNOTFOUND ) {
         
         [self SuplaClientTerminate];
-        [self.UI showStatusError:NSLocalizedString(@"Host not found. Make sure you are connected to the internet and that an account with the entered email address has been created.", nil)];
+        [[SAApp mainNavigationCoordinator] showStatusViewWithError:NSLocalizedString(@"Host not found. Make sure you are connected to the internet and that an account with the entered email address has been created.", nil)];
     }
 }
 
@@ -657,7 +466,7 @@ NSString *kSAOnZWaveSetWakeUpTimeResult = @"KSA-N30";
         return;
     }
     
-    [self.UI showStatusConnectingProgress:0.75];
+    [[SAApp mainNavigationCoordinator] showStatusViewWithProgress:@0.75];
 }
 
 -(void)onRegistered:(NSNotification *)notification {
@@ -665,8 +474,7 @@ NSString *kSAOnZWaveSetWakeUpTimeResult = @"KSA-N30";
         return;
     }
     
-    [self.UI showStatusConnectingProgress:1];
-    [self.UI showMainVC];
+    [[SAApp mainNavigationCoordinator] showStatusViewWithProgress:@1];
 }
 
 -(void)onRegisterError:(NSNotification *)notification {
@@ -678,12 +486,14 @@ NSString *kSAOnZWaveSetWakeUpTimeResult = @"KSA-N30";
     [self SuplaClientTerminate];
     
     NSNumber *code = [NSNumber codeNotificationToNumber:notification];
-    [self.UI showStatusError:[SASuplaClient codeToString:code]];
+    [[SAApp mainNavigationCoordinator] showStatusViewWithError:[SASuplaClient codeToString:code]];
         
     int cint = [code intValue];
+    AuthProfileItem *profile = [SAApp.profileManager getCurrentProfile];
     if ((cint == SUPLA_RESULTCODE_REGISTRATION_DISABLED
         || cint == SUPLA_RESULTCODE_ACCESSID_NOT_ASSIGNED)
-        && ![self isAdvancedConfig]
+        && profile.authInfo.isAuthDataComplete
+        && profile.authInfo.emailAuth
         && ![SASuperuserAuthorizationDialog.globalInstance isVisible]) {
         [SASuperuserAuthorizationDialog.globalInstance authorizeWithDelegate:nil];
     }
@@ -698,7 +508,7 @@ NSString *kSAOnZWaveSetWakeUpTimeResult = @"KSA-N30";
     
     [self SuplaClientTerminate];
     
-    [self.UI showStatusError:NSLocalizedString(@"Incompatible server version", nil)];
+    [[SAApp mainNavigationCoordinator] showStatusViewWithError:NSLocalizedString(@"Incompatible server version", nil)];
 }
 
 -(void)onOAuthTokenRequestResult:(NSNotification *)notification {
@@ -758,5 +568,4 @@ NSString *kSAOnZWaveSetWakeUpTimeResult = @"KSA-N30";
     [NSException raise:NSInternalInconsistencyException
                 format:@"You must override %@ in a subclass", methodName];
 }
-
 @end

@@ -29,7 +29,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nullable, nonatomic, copy) NSNumber *location_id;
 @property (nullable, nonatomic, copy) NSNumber *visible;
 @property (nonatomic) int16_t collapsed;
-
+@property (nullable, nonatomic, copy) NSNumber *sortOrder;
 @end
 
 NS_ASSUME_NONNULL_END

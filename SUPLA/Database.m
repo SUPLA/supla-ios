@@ -25,6 +25,7 @@
 #import "SAChannelGroupRelation+CoreDataClass.h"
 #import "SAColorListItem+CoreDataClass.h"
 #import "SAUserIcon+CoreDataClass.h"
+#import "SUPLA-Swift.h"
 
 @implementation SADatabase {
     NSManagedObjectModel *_managedObjectModel;
@@ -63,6 +64,7 @@
     }
     
     int DBv = 14;
+    BOOL shouldMigrateProfile = NO;
     
     [self removeIfExists:@"SUPLA_DB.sqlite"];
     
@@ -71,14 +73,27 @@
     }
     
     NSError *error = nil;
+    NSDictionary *opts = nil;
     NSURL *storeURL = [[SAApp applicationDocumentsDirectory] URLByAppendingPathComponent:[NSString stringWithFormat:@"SUPLA_DB%i.sqlite", DBv]];
     
     // Create the coordinator and store
-    
+again:
     _persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:[self managedObjectModel]];
     NSString *failureReason = @"There was an error creating or loading the application's saved data.";
     
-    if (![_persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:storeURL options:nil error:&error]) {
+    if (![_persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType
+                                                   configuration:nil URL:storeURL
+                                                         options:opts error:&error]) {
+        /* If we are facing a store incompatibility issue, try to migrate the
+           store automatically */
+        if([error.domain isEqualToString: NSCocoaErrorDomain] &&
+           error.code == NSPersistentStoreIncompatibleVersionHashError &&
+           opts == nil) {
+            opts = @{ NSMigratePersistentStoresAutomaticallyOption: @YES,
+                      NSInferMappingModelAutomaticallyOption: @YES };
+            shouldMigrateProfile = YES;
+            goto again;
+        }
         // Report any error we got.
         NSMutableDictionary *dict = [NSMutableDictionary dictionary];
         dict[NSLocalizedDescriptionKey] = @"Failed to initialize the application's saved data";
@@ -89,6 +104,19 @@
         // abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
         NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
         abort();
+    }
+    
+    if(shouldMigrateProfile) {
+        ProfileMigrator *migrator = [[ProfileMigrator alloc] init];
+        NSError *err = nil;
+        NSManagedObjectContext *migrationCtx =
+        [[NSManagedObjectContext alloc] initWithConcurrencyType:NSPrivateQueueConcurrencyType];
+        [migrationCtx setPersistentStoreCoordinator:_persistentStoreCoordinator];
+        if(![migrator migrateProfileFromUserDefaults: migrationCtx
+                                               error: &err]) {
+            NSLog(@"exception during data migration attempt: %@", err);
+            abort();
+        }
     }
     
     return _persistentStoreCoordinator;
@@ -506,12 +534,13 @@
     
     SEL localeAwareCompare = @selector(localizedCaseInsensitiveCompare:);
     NSArray *sortDescriptors = @[
-        [[NSSortDescriptor alloc] initWithKey:@"location.caption" ascending:YES
-                                     selector: localeAwareCompare],
+								 [[NSSortDescriptor alloc] initWithKey:@"location.sortOrder" ascending:YES],
+								 [[NSSortDescriptor alloc] initWithKey:@"location.caption" ascending:YES
+															  selector: localeAwareCompare],
                                 [[NSSortDescriptor alloc] initWithKey:@"position" ascending:YES],
                                 [[NSSortDescriptor alloc] initWithKey:@"func" ascending:NO],
                                 [[NSSortDescriptor alloc] initWithKey:@"caption" ascending:NO
-                                                             selector: localeAwareCompare]
+								selector: localeAwareCompare]
                                 ];
     
     [fetchRequest setSortDescriptors:sortDescriptors];
@@ -522,11 +551,9 @@
 -(NSFetchedResultsController*) getChannelBaseFrcForEntityName:(NSString*)entity {
     NSFetchRequest *fetchRequest = [self getChannelBaseFetchRequestForEntityName:entity locationId:0];
 
-    NSFetchedResultsController *frc = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:self.managedObjectContext sectionNameKeyPath:@"location.caption" cacheName:nil];
-    
+    NSFetchedResultsController *frc = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:self.managedObjectContext sectionNameKeyPath:@"location.sortOrderCaption" cacheName:nil];
     NSError *error;
     [frc performFetch:&error];
-    
     if ( error ) {
         NSLog(@"%@", error);
     }
@@ -584,6 +611,7 @@
 }
 
 -(BOOL) setAllOfChannelVisible:(int)visible whereVisibilityIs:(int)wvi {
+    // FIXME: dispatch to queue?
     return [self setAllItemsVisible:visible whereVisibilityIs:wvi entityName:@"SAChannel"];
 }
 

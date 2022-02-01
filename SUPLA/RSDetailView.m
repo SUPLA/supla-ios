@@ -18,15 +18,17 @@
 
 #import "RSDetailView.h"
 #import "DetailView.h"
-#import "UIHelper.h"
+
 #import "SuplaApp.h"
 #import "SAChannelGroup+CoreDataClass.h"
 #import "UIColor+SUPLA.h"
 #import "SuplaClient.h"
+#import "SUPLA-Swift.h"
 
 @implementation SARSDetailView {
     NSTimer *delayTimer1;
     NSDate *btnTouchedAt;
+	BOOL showsOpeningPercent;
 }
 
 -(void)detailViewInit {
@@ -44,6 +46,13 @@
         self.onlineStatus.onlineColor = [UIColor onLine];
         self.onlineStatus.offlineColor = [UIColor offLine];
         self.onlineStatus.borderColor = [UIColor statusBorder];
+
+		showsOpeningPercent = [Config new].showOpeningPercent;
+		if(showsOpeningPercent) {
+			self.labelPercentCaption.text = NSLocalizedString(@"Percent of opening", nil);
+		} else {
+			self.labelPercentCaption.text = NSLocalizedString(@"Percent of closing", nil);
+		}
     }
     
     [super detailViewInit];
@@ -55,7 +64,8 @@
     self.rollerShutter.markers = nil;
     self.roofWindow.closingPercentage = percent;
     self.roofWindow.markers = nil;
-    [self.labelPercent setText:[NSString stringWithFormat:@"%i%%", percent]];
+	if(showsOpeningPercent) percent = 100 - percent;
+    [self.labelPercent setText:[NSString stringWithFormat:@"%i%%", [self mapped: percent]]];
     [timer invalidate];
 }
 
@@ -143,7 +153,7 @@
                 [self.labelPercent setText:NSLocalizedString(@"[Calibration]", NULL)];
                 self.labelBtnPressTime.hidden = NO;
             } else {
-                [self.labelPercent setText:[NSString stringWithFormat:@"%i%%", (int)percent]];
+                [self.labelPercent setText:[NSString stringWithFormat:@"%i%%", [self mapped: percent]]];
             }
             
             if (self.channelBase.flags & SUPLA_CHANNEL_FLAG_CALCFG_RECALIBRATE) {
@@ -164,7 +174,7 @@
     [super setChannelBase:channelBase];
     
     if ( channelBase != nil && channelBase.isOnline == NO ) {
-        [self.main_view detailShow:NO animated:NO];
+        [self.viewController.navigationController popViewControllerAnimated:NO];
     }
 };
 
@@ -208,7 +218,7 @@
 }
 
 -(void) rsChangeing:(id)rs withPercent:(float)percent {
-    [self.labelPercent setText:[NSString stringWithFormat:@"%i%%", (int)percent]];
+    [self.labelPercent setText:[NSString stringWithFormat:@"%i%%", (int)[self mapped: percent]]];
 }
 
 -(void) rsChanged:(id)rs withPercent:(float)percent {
@@ -222,7 +232,7 @@
 }
 
 - (void)roofWindowClosingPercentageChangeing:(id)roofWindowController percent:(float)percent {
-    [self.labelPercent setText:[NSString stringWithFormat:@"%i%%", (int)percent]];
+    [self.labelPercent setText:[NSString stringWithFormat:@"%i%%", [self  mapped:percent]]];
 }
 - (IBAction)recalibrateTouch:(id)sender {
     [SASuperuserAuthorizationDialog.globalInstance authorizeWithDelegate:self];
@@ -257,5 +267,9 @@
         UIViewController *vc = [[[[UIApplication sharedApplication] delegate] window] rootViewController];
         [vc presentViewController:alert animated:YES completion:nil];
     }];
+}
+
+- (int)mapped: (int)percent {
+    return showsOpeningPercent?(100-percent):percent;
 }
 @end

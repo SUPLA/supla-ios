@@ -37,6 +37,6 @@
 - (IBAction)recalibrateTouch:(id)sender;
 @property (weak, nonatomic) IBOutlet SAWarningIcon *warningIcon;
 @property (weak, nonatomic) IBOutlet UILabel *labelBtnPressTime;
-
+@property (weak, nonatomic) IBOutlet UILabel *labelPercentCaption;
 
 @end

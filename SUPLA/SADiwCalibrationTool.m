@@ -16,7 +16,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #import "SADiwCalibrationTool.h"
 #import "SuplaClient.h"
 #import "SAInfoVC.h"
-#import "UIHelper.h"
+
 #import "SACalCfgResult.h"
 #import "UIColor+SUPLA.h"
 

@@ -44,6 +44,10 @@
     [super viewDidLoad];
 }
 
+- (BOOL)hidesNavigationBar {
+    return YES;
+}
+
 - (void)setPage:(UIView *)page {
     _previousPage = self.page;
     
@@ -72,7 +76,6 @@
 
 -(void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    [[SAApp UI] showMenuBtn:NO];
 }
 
 -(void)viewDidDisappear:(BOOL)animated  {

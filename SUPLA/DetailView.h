@@ -34,6 +34,7 @@
 
 @property (weak, nonatomic) SAChannelBase  *channelBase;
 @property (weak, nonatomic) SAMainView *main_view;
+@property (weak, nonatomic) UIViewController *viewController;
 @property (nonatomic) BOOL initialized;
 @end
 

@@ -19,6 +19,7 @@
 #import "StatusVC.h"
 #import "SuplaApp.h"
 #import "UIColor+SUPLA.h"
+#import "SUPLA-Swift.h"
 
 @interface SAStatusVC ()
 
@@ -26,6 +27,15 @@
 
 
 @implementation SAStatusVC
+
+- (instancetype)initWithNibName:(NSString *)nibNameOrNil
+                         bundle:(NSBundle *)nibBundleOrNil {
+    if(self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
+        self.modalPresentationStyle = UIModalPresentationFullScreen;
+        self.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+    }
+    return self;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -43,7 +53,9 @@
 }
 
 -(void)YellowTheme {
-    [self.view setBackgroundColor:[UIColor statusYellow]];
+    UIColor *yellowColor = [UIColor statusYellow];
+    [self.view setBackgroundColor: yellowColor];
+    [self.statusBarBackgroundView setBackgroundColor: yellowColor];
     [self.progress setHidden:YES];
     [self.image setImage:nil];
     [self.label setTextColor:[UIColor blackColor]];
@@ -55,8 +67,9 @@
 }
 
 -(void)GreenTheme {
-    
-    [self.view setBackgroundColor:[UIColor colorWithRed:0.071 green:0.655 blue:0.118 alpha:1.000]];
+    UIColor *greenColor = [UIColor colorWithRed:0.071 green:0.655 blue:0.118 alpha:1.000];
+    [self.view setBackgroundColor:greenColor];
+    [self.statusBarBackgroundView setBackgroundColor:greenColor];
     [self.progress setHidden:NO];
     
     [self.image setImage:[UIImage imageNamed:@"logo-white"]];
@@ -88,7 +101,7 @@
 
 
 - (IBAction)btnTouch:(id)sender {
-    [[SAApp UI] showSettings];
+    [[SAApp mainNavigationCoordinator] showAuthViewWithImmediate:YES];
 }
 
 - (IBAction)btnRetryTouch:(id)sender {

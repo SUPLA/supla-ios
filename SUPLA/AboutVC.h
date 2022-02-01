@@ -17,8 +17,9 @@
  */
 
 #import <UIKit/UIKit.h>
+#import "BaseViewController.h"
 
-@interface SAAboutVC : UIViewController
+@interface SAAboutVC : BaseViewController
 @property (weak, nonatomic) IBOutlet UILabel *version;
 - (IBAction)wwwTouch:(id)sender;
 - (IBAction)btnTouch:(id)sender;

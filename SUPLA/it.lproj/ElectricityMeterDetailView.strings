@@ -124,3 +124,6 @@
 
 /* Class = "UILabel"; text = "01,0001 kWh"; ObjectID = "zf2-II-RLR"; */
 "zf2-II-RLR.text" = "01,0001 kWh";
+"ERC-iT-07T.text" = "Energia attiva restituita";
+"FPJ-3b-cCR.text" = "Bilanciamento vettoriale fase-fase";
+"GfA-ig-rf2.text" = "Energia attiva prelevata";

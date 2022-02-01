@@ -17,8 +17,9 @@
  */
 
 #import <UIKit/UIKit.h>
+#import "BaseViewController.h"
 
-@interface SAStatusVC : UIViewController
+@interface SAStatusVC : BaseViewController
 @property (weak, nonatomic) IBOutlet UIImageView *image;
 @property (weak, nonatomic) IBOutlet UILabel *label;
 @property (weak, nonatomic) IBOutlet UIButton *btnCloud;

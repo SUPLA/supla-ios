@@ -28,6 +28,7 @@
 #import "SuplaApp.h"
 #import "proto.h"
 #import "UIColor+SUPLA.h"
+#import "SUPLA-Swift.h"
 
 #define CLEFT_MARGIN     5
 #define CRIGHT_MARGIN    5
@@ -90,7 +91,13 @@
     longPressGr.minimumPressDuration = 0.8;
     self.caption.userInteractionEnabled = YES;
     [self.caption addGestureRecognizer:longPressGr];
+    
+    CGFloat scaleFactor = [self iconScaleFactor];
+    for(NSLayoutConstraint *constraint in self.channelIconScalableConstraints) {
+        constraint.constant *= scaleFactor;
+    }
 }
+
 
 - (void)awakeFromNib {
     [super awakeFromNib];
@@ -150,7 +157,8 @@
         self.right_OnlineStatus.shapeType = stDot;
         self.left_OnlineStatus.shapeType = stDot;
         
-        if ([channelBase isKindOfClass:[SAChannel class]]) {
+        if ([channelBase isKindOfClass:[SAChannel class]] &&
+            [Config new].showChannelInfo) {
             UIImage *stateIcon = channel.stateIcon;
             if (stateIcon) {
                 self.channelStateIcon.hidden = NO;
@@ -344,7 +352,7 @@
     BOOL group = [self.channelBase isKindOfClass:[SAChannelGroup class]];
     
     if ([SAApp.SuplaClient turnOn:YES remoteId:_channelBase.remote_id group:group channelFunc:_channelBase.func vibrate:YES]) {
-        [self hideSwipeAnimated:YES];
+        [self hideSwipeMaybe];
         return;
     }
     
@@ -352,7 +360,7 @@
           || _channelBase.func == SUPLA_CHANNELFNC_VALVE_PERCENTAGE)
           && (_channelBase.isManuallyClosed || _channelBase.flooding)
           && _channelBase.isClosed) {
-          [self hideSwipeAnimated:YES];
+          [self hideSwipeMaybe];
           [self showValveAlertDialog];
           return;
       }
@@ -360,7 +368,7 @@
     [self vibrate];
     
     [[SAApp SuplaClient] cg:self.channelBase.remote_id Open:1 group:group];
-    [self hideSwipeAnimated:YES];
+    [self hideSwipeMaybe];
 }
 
 - (IBAction)leftTouchDown:(id)sender {
@@ -368,11 +376,15 @@
     
     [self vibrate];
     [[SAApp SuplaClient] cg:self.channelBase.remote_id Open:0 group:[self.channelBase isKindOfClass:[SAChannelGroup class]]];
-    [self hideSwipeAnimated:YES];
+    [self hideSwipeMaybe];
 }
 
 - (IBAction)rlTouchCancel:(id)sender {
     [sender setBackgroundColor: [UIColor onLine] withDelay:0.2];
+}
+
+- (void)hideSwipeMaybe {
+    if([[Config alloc] init].autohideButtons) [self hideSwipeAnimated:YES];
 }
 
 - (void)stateIconTapped:(UITapGestureRecognizer *)tapRecognizer {
@@ -420,4 +432,9 @@
     return NO;
 }
 
+
+- (CGFloat)iconScaleFactor {
+    CGFloat channelScale = [Config new].channelHeightFactor;
+    return MIN(1.0, channelScale);
+}
 @end

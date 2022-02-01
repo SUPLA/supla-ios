@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -27,7 +27,7 @@
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Temperature and humidity" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5YC-RH-PM5">
                         <rect key="frame" x="26" y="71.5" width="328" height="22"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="22" id="Yd6-wd-Rxw"/>
+                            <constraint firstAttribute="height" constant="22" identifier="tempHumidityCaptionHeight" id="Yd6-wd-Rxw"/>
                         </constraints>
                         <fontDescription key="fontDescription" name="OpenSans-Bold" family="Open Sans" pointSize="12"/>
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -43,21 +43,21 @@
                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="thermometer.png" translatesAutoresizingMaskIntoConstraints="NO" id="gra-eg-NfA">
                         <rect key="frame" x="45" y="16.5" width="50" height="50"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="50" id="WeJ-Ji-JPF"/>
-                            <constraint firstAttribute="height" constant="50" id="up8-Ib-kLF"/>
+                            <constraint firstAttribute="width" constant="50" identifier="tempHumidity1Width" id="WeJ-Ji-JPF"/>
+                            <constraint firstAttribute="height" constant="50" identifier="tempHumidity1Height" id="up8-Ib-kLF"/>
                         </constraints>
                     </imageView>
                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="humidity.png" translatesAutoresizingMaskIntoConstraints="NO" id="pue-s1-1cy">
                         <rect key="frame" x="194" y="16.5" width="50" height="50"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="50" id="8R4-ai-lER"/>
-                            <constraint firstAttribute="width" constant="50" id="r8x-Sn-gf8"/>
+                            <constraint firstAttribute="height" constant="50" identifier="tempHumidity2Height" id="8R4-ai-lER"/>
+                            <constraint firstAttribute="width" constant="50" identifier="tempHumidity2Width" id="r8x-Sn-gf8"/>
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="22.0°" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="15" translatesAutoresizingMaskIntoConstraints="NO" id="NRR-0X-1Zb">
                         <rect key="frame" x="95" y="16.5" width="70" height="50"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="50" id="OmO-qR-u9U"/>
+                            <constraint firstAttribute="height" constant="50" identifier="tempTextHeight" id="OmO-qR-u9U"/>
                         </constraints>
                         <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="29"/>
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -66,7 +66,7 @@
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="36.4" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="15" translatesAutoresizingMaskIntoConstraints="NO" id="lPY-xq-yar">
                         <rect key="frame" x="249" y="16.5" width="57.5" height="50"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="50" id="z1Q-iF-xlY"/>
+                            <constraint firstAttribute="height" constant="50" identifier="humidityTextHeight" id="z1Q-iF-xlY"/>
                         </constraints>
                         <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="29"/>
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -130,6 +130,13 @@
                 <outlet property="image2" destination="pue-s1-1cy" id="P2i-HW-Vcx"/>
                 <outlet property="right_OnlineStatus" destination="FuF-jE-JMA" id="WfA-1f-tas"/>
                 <outlet property="temp" destination="NRR-0X-1Zb" id="wwg-Jx-uuO"/>
+                <outletCollection property="channelIconScalableConstraints" destination="8R4-ai-lER" id="5Ov-i7-Aqq"/>
+                <outletCollection property="channelIconScalableConstraints" destination="r8x-Sn-gf8" id="0kH-jL-OTg"/>
+                <outletCollection property="channelIconScalableConstraints" destination="WeJ-Ji-JPF" id="WIp-OL-DtM"/>
+                <outletCollection property="channelIconScalableConstraints" destination="up8-Ib-kLF" id="2DF-co-V5S"/>
+                <outletCollection property="channelIconScalableConstraints" destination="Yd6-wd-Rxw" id="DRR-29-6j3"/>
+                <outletCollection property="channelIconScalableConstraints" destination="OmO-qR-u9U" id="TjV-uQ-e67"/>
+                <outletCollection property="channelIconScalableConstraints" destination="z1Q-iF-xlY" id="Zo4-fg-WFZ"/>
             </connections>
             <point key="canvasLocation" x="-397" y="-108"/>
         </tableViewCell>

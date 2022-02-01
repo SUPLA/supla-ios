@@ -15,7 +15,7 @@
 
 #import "SAVLCalibrationTool.h"
 #import "SAInfoVC.h"
-#import "UIHelper.h"
+
 #import "SuplaClient.h"
 #import "SACalCfgResult.h"
 #import "UIColor+SUPLA.h"

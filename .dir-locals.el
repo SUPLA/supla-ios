@@ -1,0 +1,5 @@
+((objc-mode . ((c-basic-offset . 4)
+               (tab-width . 4)))
+ (swift-mode . ((c-basic-offset . 4)
+                (swift-mode:basic-offset . 4)
+                (tab-width . 4))))

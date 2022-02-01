@@ -18,33 +18,31 @@
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
-#import "UIHelper.h"
+#import "SAOAuthToken.h"
+#import "SARestApiClientTask.h"
 #import "SuplaClient.h"
 #import "proto.h"
 #import "SAChannelStateExtendedValue.h"
 
 #define ABSTRACT_METHOD_EXCEPTION [SAApp abstractMethodException:NSStringFromSelector(_cmd)]
-
+ 
 @class SADatabase;
 @class SASettingsVC;
 @class SAStatusVC;
 @class SAMainVC;
 @class SACreateAccountVC;
+@class MainNavigationCoordinator;
+@protocol ProfileManager;
+@protocol NavigationCoordinator;
+
+NS_ASSUME_NONNULL_BEGIN
 @interface SAApp : NSObject <SASuplaClientDelegate>
 
 +(SAApp*)instance;
++(nullable id<NavigationCoordinator>)currentNavigationCoordinator;
++(nullable MainNavigationCoordinator*)mainNavigationCoordinator;
 +(BOOL) getClientGUID:(char[SUPLA_GUID_SIZE])guid;
 +(BOOL) getAuthKey:(char[SUPLA_AUTHKEY_SIZE])auth_key;
-+(int) getAccessID;
-+(void) setAccessID:(int)aid;
-+(NSString*) getAccessIDpwd;
-+(void) setAccessIDpwd:(NSString *)pwd;
-+(NSString*) getServerHostName;
-+(NSString*) getEmailAddress;
-+(BOOL) isAdvancedConfig;
-+(void) setServerHostName:(NSString *)hostname;
-+(void) setEmailAddress:(NSString *)email;
-+(void) setAdvancedConfig:(BOOL)adv_cfg;
 +(void) abstractMethodException:(NSString *)methodName;
 +(NSURL *)applicationDocumentsDirectory;
 +(BOOL) configIsSet;
@@ -57,16 +55,13 @@
 +(SASuplaClient *) SuplaClientWithOneTimePassword:(NSString*)password;
 +(BOOL) isClientRegistered;
 +(SADatabase *) DB;
-+(SAUIHelper *)UI;
++(nonnull id<ProfileManager>)profileManager;
 
 
 +(void) SuplaClientTerminate;
 +(void) SuplaClientWaitForTerminate;
 +(BOOL) SuplaClientConnected;
 +(void) revokeOAuthToken;
-
-+(void) setPreferedProtocolVersion:(int)version;
-+(int) getPreferedProtocolVersion;
 
 -(SAOAuthToken*) registerRestApiClientTask:(SARestApiClientTask *)client;
 -(void) unregisterRestApiClientTask:(SARestApiClientTask *)task;
@@ -103,3 +98,4 @@ extern NSString *kSAOnZWaveRemoveNodeResult;
 extern NSString *kSAOnZWaveAssignNodeIdResult;
 extern NSString *kSAOnZWaveWakeupSettingsReport;
 extern NSString *kSAOnZWaveSetWakeUpTimeResult;
+NS_ASSUME_NONNULL_END

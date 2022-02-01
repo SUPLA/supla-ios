@@ -18,6 +18,8 @@
 
 #import "AppDelegate.h"
 #import "SuplaApp.h"
+#import "SUPLA-Swift.h"
+
 @interface AppDelegate ()
 
 @end
@@ -28,10 +30,12 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
     
+    self.navigation = [[MainNavigationCoordinator alloc] init];
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    [self.window makeKeyAndVisible];
+    [self.navigation attachTo: self.window];
+	[self.navigation startFrom:nil];
 
-    [[SAApp UI] showStarterVC];
+  //  [[SAApp UI] showStarterVC];
     // Start SuplaClient only after the status window is displayed.
     // Otherwise - with empty settings, the user will see the message "Host not found"
     // instead of the settings window.
@@ -49,7 +53,7 @@
     // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
     // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
     
-    if ( [SAApp.UI addWizardIsVisible] == NO ) {
+    if ( ![SAApp.currentNavigationCoordinator.viewController isKindOfClass: [SAAddWizardVC class]] ) {
         [SAApp SuplaClientWaitForTerminate];
     }
     
@@ -62,8 +66,10 @@
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
-
-    if ( ![SAApp.UI addWizardIsVisible] && ![SAApp.UI settingsVCisVisible] ) {
+    id vc = [SAApp currentNavigationCoordinator].viewController;
+    if ( ![vc isKindOfClass: [SAAddWizardVC class]] &&
+        ![vc isKindOfClass: [CfgVC class]] ) {
+        // TODO: such checks should be solved in a generic way by coordintators
         [SAApp SuplaClient];
     }
     

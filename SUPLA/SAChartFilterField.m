@@ -18,7 +18,7 @@
 
 #import "SAChartFilterField.h"
 #import "SAChartHelper.h"
-#import "UIHelper.h"
+
 
 @implementation SAChartFilterField {
     ChartType _chartType;
