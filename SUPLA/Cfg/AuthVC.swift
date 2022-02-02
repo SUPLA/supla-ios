@@ -110,6 +110,10 @@ class AuthVC: BaseViewController {
         return SAApp.configIsSet() && SAApp.isClientRegistered()
     }
     
+    override func hidesNavigationBar() -> Bool {
+        return !adjustsStatusBarBackground()
+    }
+    
     private func configureUI() {
         [view, vBasic, vAdvanced, adFormHostView, adFormEmailAuth,
          adFormAccessIdAuth].forEach {
