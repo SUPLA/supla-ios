@@ -133,7 +133,7 @@ again:
     if (!coordinator) {
         return nil;
     }
-    _managedObjectContext = [[NSManagedObjectContext alloc] init];
+    _managedObjectContext = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSMainQueueConcurrencyType];
     [_managedObjectContext setPersistentStoreCoordinator:coordinator];
     [_managedObjectContext setMergePolicy:NSMergeByPropertyStoreTrumpMergePolicy];
     return _managedObjectContext;
@@ -183,8 +183,11 @@ again:
     }
     
     [fetchRequest setEntity:[NSEntityDescription entityForName:en inManagedObjectContext: self.managedObjectContext]];
-    NSError *error = nil;
-    NSArray *r = [self.managedObjectContext executeFetchRequest:fetchRequest error:&error];
+    __block NSError *error = nil;
+    __block NSArray *r;
+    [self.managedObjectContext performBlockAndWait: ^{
+        r = [self.managedObjectContext executeFetchRequest:fetchRequest error:&error];
+    }];
     
     if ( error == nil && r.count > 0 ) {
         return r;
@@ -218,8 +221,12 @@ again:
     [fetchRequest setEntity:[NSEntityDescription entityForName:en inManagedObjectContext: self.managedObjectContext]];
     [fetchRequest setIncludesSubentities:NO];
     
-    NSError *fetchError = nil;
-    NSUInteger count = [self.managedObjectContext countForFetchRequest:fetchRequest error:&fetchError];
+    __block NSError *fetchError = nil;
+    __block NSUInteger count;
+    
+    [self.managedObjectContext performBlockAndWait:^{
+        count = [self.managedObjectContext countForFetchRequest:fetchRequest error:&fetchError];;
+    }];
     
     if(count == NSNotFound || fetchError != nil ) {
         count = 0;
@@ -611,8 +618,11 @@ again:
 }
 
 -(BOOL) setAllOfChannelVisible:(int)visible whereVisibilityIs:(int)wvi {
-    // FIXME: dispatch to queue?
-    return [self setAllItemsVisible:visible whereVisibilityIs:wvi entityName:@"SAChannel"];
+    __block BOOL rv;
+    [self.managedObjectContext performBlockAndWait:^{
+        rv = [self setAllItemsVisible:visible whereVisibilityIs:wvi entityName:@"SAChannel"];
+    }];
+    return rv;
 }
 
 -(NSUInteger) getChannelCount {

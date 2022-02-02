@@ -47,7 +47,7 @@ class ProfileMigrator: NSObject {
         
         let pm = MultiAccountProfileManager(context: ctx)
         
-        ctx.perform {
+        ctx.performAndWait {
             let profile = pm.getCurrentProfile()
             profile.advancedSetup = isAdvanced
             profile.authInfo = AuthInfo(emailAuth: !isAdvanced,
