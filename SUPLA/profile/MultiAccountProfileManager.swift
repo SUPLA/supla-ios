@@ -27,11 +27,8 @@ class MultiAccountProfileManager: NSObject {
         _ctx = context
         super.init()
     }
-}
-
-extension MultiAccountProfileManager: ProfileManager {
-
-    func getCurrentProfile() -> AuthProfileItem {
+    
+    private func getCurrentProfileReal() -> AuthProfileItem {
         let req = AuthProfileItem.fetchRequest()
         if let profile = try! _ctx.fetch(req).first(where: {$0.isActive}) {
             return profile
@@ -52,6 +49,17 @@ extension MultiAccountProfileManager: ProfileManager {
             try! _ctx.save()
             return profile
         }
+    }
+}
+
+extension MultiAccountProfileManager: ProfileManager {
+
+    func getCurrentProfile() -> AuthProfileItem {
+        var rv: AuthProfileItem!
+        _ctx.performAndWait {
+            rv = self.getCurrentProfileReal()
+        }
+        return rv
     }
     
     func updateCurrentProfile(_ profile: AuthProfileItem) {

@@ -110,10 +110,14 @@ class AuthVC: BaseViewController {
         return SAApp.configIsSet() && SAApp.isClientRegistered()
     }
     
+    override func hidesNavigationBar() -> Bool {
+        return !adjustsStatusBarBackground()
+    }
+    
     private func configureUI() {
-        [view, vBasic, vAdvanced, adFormHostView, adFormEmailAuth,
+        [vBasic, vAdvanced, adFormHostView, adFormEmailAuth,
          adFormAccessIdAuth].forEach {
-            $0.backgroundColor = .viewBackground
+            $0.backgroundColor = self.view.backgroundColor
         }
         modeToggle.tintColor = .switcherBackground
         

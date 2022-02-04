@@ -117,26 +117,14 @@ extension AuthInfo: NSCopying {
     }
 }
 
-@objc
+@objc(AuthInfoValueTransformer)
 class AuthInfoValueTransformer: ValueTransformer {
-    override func transformedValue(_ value: Any?) -> Any? {
+    override func reverseTransformedValue(_ value: Any?) -> Any? {
         guard let value = value as? Data else { return nil }
-
-        do {
-            let decoder: NSKeyedUnarchiver
-            if #available(iOS 11.0, *) {
-                decoder = try NSKeyedUnarchiver(forReadingFrom: value)
-            } else {
-                decoder = NSKeyedUnarchiver(forReadingWith: value)
-            }
-            return decoder.decodeObject(forKey: NSKeyedArchiveRootObjectKey)
-            
-        } catch {
-            return nil
-        }
+        return NSKeyedUnarchiver.unarchiveObject(with: value)
     }
     
-    override func reverseTransformedValue(_ value: Any?) -> Any? {
+    override func transformedValue(_ value: Any?) -> Any? {
         guard let value = value as? AuthInfo else { return nil }
         return NSKeyedArchiver.archivedData(withRootObject: value)
     }

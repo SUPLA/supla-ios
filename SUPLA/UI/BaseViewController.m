@@ -34,12 +34,14 @@
     if([self adjustsStatusBarBackground]) {
         CGRect sbFrame;
         sbFrame = [[UIApplication sharedApplication] statusBarFrame];
-        statusBarBg = [[UIView alloc]
-                           initWithFrame: CGRectMake(0, 0, sbFrame.size.width,
-                                                     sbFrame.size.height)];
+        statusBarBg = [[UIView alloc] initWithFrame: CGRectZero];
         statusBarBg.backgroundColor = [UIColor suplaGreenBackground];
-        statusBarBg.translatesAutoresizingMaskIntoConstraints = YES;
+        statusBarBg.translatesAutoresizingMaskIntoConstraints = NO;
         [self.view addSubview: statusBarBg];
+        [statusBarBg.topAnchor constraintEqualToAnchor: self.view.topAnchor].active = YES;
+        [statusBarBg.leftAnchor constraintEqualToAnchor: self.view.leftAnchor].active = YES;
+        [statusBarBg.rightAnchor constraintEqualToAnchor: self.view.rightAnchor].active = YES;
+        [statusBarBg.heightAnchor constraintEqualToConstant:sbFrame.size.height].active = YES;
     }
 }
 
