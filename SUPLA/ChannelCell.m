@@ -158,7 +158,7 @@
         self.left_OnlineStatus.shapeType = stDot;
         
         if ([channelBase isKindOfClass:[SAChannel class]] &&
-            [Config new].showChannelInfo) {
+            [Config new].showChannelInfo && [channel isOnline]) {
             UIImage *stateIcon = channel.stateIcon;
             if (stateIcon) {
                 self.channelStateIcon.hidden = NO;
