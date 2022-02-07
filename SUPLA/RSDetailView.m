@@ -136,7 +136,7 @@
             }
             
         } else {
-            TRollerShutterValue rsValue = self.channelBase.rollerShutterValue;
+            TDSC_RollerShutterValue rsValue = self.channelBase.rollerShutterValue;
             percent = rsValue.position;
             
             if ( percent < 100 && [self.channelBase hiSubValue] > 0 ) {

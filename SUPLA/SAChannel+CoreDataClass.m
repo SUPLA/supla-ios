@@ -161,7 +161,7 @@
     return self.value == nil ? [super overcurrentRelayOff] : [self.value overcurrentRelayOff];
 }
 
-- (TRollerShutterValue) rollerShutterValue {
+- (TDSC_RollerShutterValue) rollerShutterValue {
     return self.value == nil ? [super rollerShutterValue] : [self.value rollerShutterValue];
 }
 

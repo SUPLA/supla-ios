@@ -63,7 +63,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (double) humidityValue;
 - (double) doubleValue;
 - (int) percentValue;
-- (TRollerShutterValue) rollerShutterValue;
+- (TDSC_RollerShutterValue) rollerShutterValue;
 - (int) brightnessValue;
 - (int) colorBrightnessValue;
 - (UIColor *) colorValue;

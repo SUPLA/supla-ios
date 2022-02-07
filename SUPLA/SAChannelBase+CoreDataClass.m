@@ -384,8 +384,8 @@
     return 0;
 }
 
-- (TRollerShutterValue) rollerShutterValue {
-    TRollerShutterValue result = {};
+- (TDSC_RollerShutterValue) rollerShutterValue {
+    TDSC_RollerShutterValue result = {};
     result.position = -1;
     return result;
 }
