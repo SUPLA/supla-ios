@@ -17,6 +17,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 */
 
 #import "SAElectricityMeterExtendedValue.h"
+#import "supla-client.h"
 
 _supla_int_t srpc_evtool_emev_v1to2(TElectricityMeter_ExtendedValue *v1,
                        TElectricityMeter_ExtendedValue_V2 *v2);
@@ -38,24 +39,21 @@ _supla_int_t srpc_evtool_emev_v1to2(TElectricityMeter_ExtendedValue *v1,
         return NO;
     }
     
-    if (self.valueType == EV_TYPE_ELECTRICITY_METER_MEASUREMENT_V1) {
-        TElectricityMeter_ExtendedValue emev_v1;
-        memset(&emev_v1, 0, sizeof(TElectricityMeter_ExtendedValue));
-        NSData *data = self.dataValue;
-        if (data && data.length <= sizeof(TElectricityMeter_ExtendedValue)) {
-            [data getBytes:&emev_v1 length:data.length];
-            
-            return srpc_evtool_emev_v1to2(&emev_v1, emev) > 0;
+    __block BOOL result = NO;
+    
+    [self forEach:^BOOL(TSuplaChannelExtendedValue * _Nonnull ev) {
+        TElectricityMeter_ExtendedValue emev_v1 = {};
+        
+        if (srpc_evtool_v2_extended2emextended(ev, emev)) {
+            result = YES;
+        } else if (srpc_evtool_v1_extended2emextended(ev, &emev_v1)) {
+            result = srpc_evtool_emev_v1to2(&emev_v1, emev);
         }
-    } else if (self.valueType == EV_TYPE_ELECTRICITY_METER_MEASUREMENT_V2) {
-        memset(emev, 0, sizeof(TElectricityMeter_ExtendedValue_V2));
-        NSData *data = self.dataValue;
-        if (data && data.length <= sizeof(TElectricityMeter_ExtendedValue_V2)) {
-            [data getBytes:emev length:data.length];
-            return YES;
-        }
-    }
-    return NO;
+    
+        return !result;
+    }];
+
+    return result;
 }
 
 - (NSString *) currency {

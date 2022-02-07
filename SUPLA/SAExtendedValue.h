@@ -17,6 +17,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 */
 
 #import "SAChannelExtendedValue+CoreDataClass.h"
+#import "proto.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -24,6 +25,7 @@ NS_ASSUME_NONNULL_BEGIN
 -(id)initWithExtendedValue:(SAChannelExtendedValue *)ev;
 - (NSData *) dataValue;
 - (int) valueType;
+- (void) forEach: (BOOL (^)(TSuplaChannelExtendedValue *ev))method;
 @property (weak, nonatomic) SAChannelExtendedValue *ev;
 
 @end

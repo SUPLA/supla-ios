@@ -43,31 +43,32 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 }
 
 -(BOOL)getChannelStateExtendedValue:(TChannelState_ExtendedValue*)csev {
-    if (csev != NULL) {
-        memset(csev, 0, sizeof(TChannelState_ExtendedValue));
-        
-        if (self.valueType == EV_TYPE_CHANNEL_STATE_V1
-            || self.valueType == EV_TYPE_CHANNEL_AND_TIMER_STATE_V1) {
-            NSData *data = self.dataValue;
-            
-            if ((self.valueType == EV_TYPE_CHANNEL_STATE_V1
-                  && data.length == sizeof(TChannelState_ExtendedValue))
-                     || (self.valueType == EV_TYPE_CHANNEL_AND_TIMER_STATE_V1
-                     && data.length >= sizeof(TChannelAndTimerState_ExtendedValue) -
-                         SUPLA_SENDER_NAME_MAXSIZE
-                     && data.length <= sizeof(TChannelAndTimerState_ExtendedValue))) {
-        
-                TChannelAndTimerState_ExtendedValue ev;
-                memset(&ev, 0, sizeof(TChannelAndTimerState_ExtendedValue));
-                [data getBytes:&ev length:data.length];
-                memcpy(csev, &ev.Channel, sizeof(TChannelState_ExtendedValue));
-                
-                return YES;
-              }
-        }
+    if (csev == NULL) {
+        return false;
     }
     
-    return NO;
+    memset(csev, 0, sizeof(TChannelState_ExtendedValue));
+    
+    __block BOOL result = NO;
+    
+    [self forEach:^BOOL(TSuplaChannelExtendedValue * _Nonnull ev) {
+        if (ev->type == EV_TYPE_CHANNEL_STATE_V1
+              && ev->size == sizeof(TChannelState_ExtendedValue)) {
+            memcpy(csev, ev->value, sizeof(TChannelState_ExtendedValue));
+            result = YES;
+        } else if (self.valueType == EV_TYPE_CHANNEL_AND_TIMER_STATE_V1
+                   && ev->size >= sizeof(TChannelAndTimerState_ExtendedValue) -
+                       SUPLA_SENDER_NAME_MAXSIZE
+                   && ev->size <= sizeof(TChannelAndTimerState_ExtendedValue)) {
+            TChannelAndTimerState_ExtendedValue *state = (TChannelAndTimerState_ExtendedValue*)ev->value;
+            memcpy(csev, &state->Channel, sizeof(TChannelState_ExtendedValue));
+            result = YES;
+        }
+        
+        return !result;
+    }];
+
+    return result;
 }
 
 -(TDSC_ChannelState)state {
