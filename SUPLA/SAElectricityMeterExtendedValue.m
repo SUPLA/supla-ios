@@ -42,14 +42,9 @@ _supla_int_t srpc_evtool_emev_v1to2(TElectricityMeter_ExtendedValue *v1,
     __block BOOL result = NO;
     
     [self forEach:^BOOL(TSuplaChannelExtendedValue * _Nonnull ev) {
-        TElectricityMeter_ExtendedValue emev_v1 = {};
-        
         if (srpc_evtool_v2_extended2emextended(ev, emev)) {
             result = YES;
-        } else if (srpc_evtool_v1_extended2emextended(ev, &emev_v1)) {
-            result = srpc_evtool_emev_v1to2(&emev_v1, emev);
         }
-    
         return !result;
     }];
 
