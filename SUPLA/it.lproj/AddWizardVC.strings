@@ -42,7 +42,7 @@
 "vbb-Xd-lIx.text" = "Benvenuto nella procedura guidata Aggiungi un dispositivo che Ti aiuterà in modo semplice e veloce ad aggiungere un nuovo dispositivo al sistema.";
 
 /* Class = "UILabel"; text = "If your new I/O device fails to appear in the Supla app please run “Add I/O Device” wizard again and refer to the “Previous State” information on this page for troubleshooting. “SSID Not Found” is displayed when the chosen 2.4GHz network is ether not in range or its name was incorrect."; ObjectID = "LiC-TH-iZO"; */
-"LiC-TH-iZO.text" = "Se il tuo nuovo dispositivo I/O non viene visualizzato nell'app Comelit WiFree, esegui nuovamente la procedura guidata \"Aggiungi dispositivo I/O\" e fai riferimento alle informazioni sullo \"Stato precedente\" in questa pagina per la risoluzione dei problemi. Viene visualizzato \"SSID non trovato\" quando la rete WiFi scelta non è disponibile o il suo nome non è corretto";
+"LiC-TH-iZO.text" = "Se il tuo nuovo dispositivo I/O non viene visualizzato nell'app Supla, esegui nuovamente la procedura guidata \"Aggiungi dispositivo I/O\" e fai riferimento alle informazioni sullo \"Stato precedente\" in questa pagina per la risoluzione dei problemi. Viene visualizzato \"SSID Not Found\" quando la rete WiFi scelta non è disponibile o il suo nome non è corretto";
 "a01-dG-nhT.normalTitle" = "Vai alle impostazioni di sistema";
 "DT8-Dx-8R4.text" = "Se la configurazione assistita non riesce, disattivarla e fare clic su Avvia per configurare manualmente il nuovo dispositivo I/O.";
 "v4z-H5-9Z6.text" = "Modalità Auto";
