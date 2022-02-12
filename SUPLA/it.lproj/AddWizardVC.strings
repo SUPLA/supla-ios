@@ -9,7 +9,7 @@
 "CZ4-G4-iFJ.text" = "MAC";
 
 /* Class = "UILabel"; text = "Last state"; ObjectID = "HRH-kq-mbQ"; */
-"HRH-kq-mbQ.text" = "Status precedente";
+"HRH-kq-mbQ.text" = "Stato precedente";
 
 /* Class = "UILabel"; text = "Enter Wi-Fi Network name and password to use with new I/O Device"; ObjectID = "Igv-nx-eY7"; */
 "Igv-nx-eY7.text" = "Inserisci il nome e la password della Tua rete ad area domestica oppure aziendale con la quale l’attuatore potrà collegarsi con il server.";
@@ -18,7 +18,7 @@
 "JYg-Vc-pZn.text" = "Configurazione del dispositivo terminata con successo :)";
 
 /* Class = "UILabel"; text = "Please use the System Settings shortcut below to select your I/O Device Wi-Fi for configuration such as SUPLA-A220A63612B1*. After connection is established, go back to the Supla application and press Start.\n\n*Configuration Wi-Fi name usually contains manufacturer name e.g. SUPLA, ZAMEL, NICE, HEATPOL etc. \n\nWhen the connection has been set, go back to the application and  continue adding  procedure by pressing the START button.  "; ObjectID = "LmT-sv-XIj"; */
-"LmT-sv-XIj.text" = "Vai alle impostazioni del sistema iOS e connetti alla rete WiFi manualmente, quella che inizia dal nome SUPLA oppure ZAMEL oppure NICE oppure HEATPOL.\n\nPer esempio „SUPLA-A220A63612B1”. È la rete temporanea dell’attuatore che serve alla configurazione.\n\nDopo il collegamento alla rete, torna all’applicazione e continua la procedura di addizione attraverso il click del pulsante Start.";
+"LmT-sv-XIj.text" = "Vai alle impostazioni del sistema iOS e connettiti manualmente alla rete locale del dispositivo, quella che inizia con COMELIT.\n\nPer esempio «COMELIT-WREL205-7BAD». È la rete temporanea del modulo che serve alla configurazione.\n\nDopo il collegamento alla rete, torna all’applicazione e continua la procedura di addizione attraverso il click del pulsante Start.";
 
 /* Class = "UILabel"; text = "Remember password"; ObjectID = "OMR-DU-yyQ"; */
 "OMR-DU-yyQ.text" = "Ricorda la password";
