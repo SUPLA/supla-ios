@@ -109,8 +109,7 @@ again:
     if(shouldMigrateProfile) {
         ProfileMigrator *migrator = [[ProfileMigrator alloc] init];
         NSError *err = nil;
-        NSManagedObjectContext *migrationCtx =
-        [[NSManagedObjectContext alloc] initWithConcurrencyType:NSPrivateQueueConcurrencyType];
+        NSManagedObjectContext *migrationCtx = [[NSManagedObjectContext alloc] init];
         [migrationCtx setPersistentStoreCoordinator:_persistentStoreCoordinator];
         if(![migrator migrateProfileFromUserDefaults: migrationCtx
                                                error: &err]) {
