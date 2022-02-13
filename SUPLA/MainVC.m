@@ -36,6 +36,11 @@
 #import "UIColor+SUPLA.h"
 #import "SUPLA-Swift.h"
 
+@interface SAMainVC() <MGSwipeTableCellDelegate>
+@property (nonatomic) BOOL reloadsEnabled;
+@property (nonatomic) BOOL sloppyReloadsEnabled;
+@end
+
 @implementation SAMainVC {
     NSFetchedResultsController *_cFrc;
     NSFetchedResultsController *_gFrc;
@@ -76,6 +81,8 @@
 - (void)viewDidLoad {
     
     [super viewDidLoad];
+	
+	self.reloadsEnabled = self.sloppyReloadsEnabled = YES;
     
     ((SAMainView*)self.view).viewController = self;
 
@@ -204,10 +211,13 @@
     _cFrc = nil;
     _gFrc = nil;
     _locations = nil;
-    [self.cTableView reloadData];
-    [self.gTableView reloadData];
-
-	[self adjustChannelHeight: YES];
+	if(self.reloadsEnabled) {
+		[self.cTableView reloadData];
+		[self.gTableView reloadData];
+		
+		[self adjustChannelHeight: YES];
+		self.reloadsEnabled = self.sloppyReloadsEnabled;
+	}
 }
 
 - (void)onEvent:(NSNotification *)notification {
@@ -475,8 +485,9 @@
     }
     
     cell =  [tableView dequeueReusableCellWithIdentifier: identifier];
+    cell.delegate = self;
     
-    if (cell != nil) {
+    if (cell != nil && ![channel_base.objectID isEqual: cell.channelBase.objectID]) {
         CGFloat scaleFactor = _heightScaleFactor;
         cell.channelBase = channel_base;
         cell.captionEditable = tableView == self.cTableView;
@@ -668,6 +679,24 @@
 
 - (id<UIViewControllerInteractiveTransitioning>)interactionController {
     return ((SAMainView*)self.view).panController;
+}
+
+
+#pragma mark MGSwipeTableCellDelegate
+- (void)swipeTableCell: (MGSwipeTableCell*)cell
+   didChangeSwipeState: (MGSwipeState)state
+       gestureIsActive: (BOOL)gestureIsActive {
+	self.reloadsEnabled = self.sloppyReloadsEnabled =
+		!(gestureIsActive || state != MGSwipeStateNone);
+}
+
+- (BOOL)swipeTableCell: (MGSwipeTableCell*)cell
+   tappedButtonAtIndex: (NSInteger)idx
+			 direction: (MGSwipeDirection)dir
+		 fromExpansion: (BOOL)fromExpansion {
+	self.sloppyReloadsEnabled = self.reloadsEnabled;
+	self.reloadsEnabled = YES;
+	return NO;
 }
 @end
 
