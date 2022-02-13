@@ -68,12 +68,8 @@
 }
 
 - (UIInterfaceOrientationMask)supportedInterfaceOrientations {
-    if([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
-        return UIInterfaceOrientationMaskAll;
-    } else {
-        return UIInterfaceOrientationMaskPortrait |
+    return UIInterfaceOrientationMaskPortrait |
             UIInterfaceOrientationMaskPortraitUpsideDown;
-    }
 }
 
 
