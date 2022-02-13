@@ -15,11 +15,10 @@
  along with this program; if not, write to the Free Software
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
-
+@import MGSwipeTableCell;
 #import <QuartzCore/QuartzCore.h>
 #import <AudioToolbox/AudioToolbox.h>
 #import "ChannelCell.h"
-#import "MGSwipeButton.h"
 #import "SAChannel+CoreDataClass.h"
 #import "SAChannelGroup+CoreDataClass.h"
 #import "SAChannelStateExtendedValue.h"
@@ -107,7 +106,9 @@
 - (void) setFrame:(CGRect)frame
 {
     [super setFrame:frame];
-    self.channelBase = _channelBase;
+    dispatch_async(dispatch_get_main_queue(), ^{
+        self.channelBase = self->_channelBase;
+    });
 }
 
 -(SAChannelBase*)channelBase {
@@ -125,7 +126,6 @@
 
 -(void)setChannelBase:(SAChannelBase *)channelBase {
     //TODO: Add support for WINDSENSOR, PRESSURESENSOR, RAINSENSOR, WEIGHTSENSOR
-   
     _channelBase = channelBase;
     BOOL isGroup = [channelBase isKindOfClass:[SAChannelGroup class]];
     SAChannel *channel = [channelBase isKindOfClass:[SAChannel class]] ? (SAChannel*)channelBase : nil;
