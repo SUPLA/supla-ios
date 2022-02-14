@@ -80,6 +80,8 @@ NSString *kSAOnZWaveSetWakeUpTimeResult = @"KSA-N30";
         _current_access_id = 0;
         _current_server = nil;
         
+        signal(SIGPIPE, SIG_IGN);
+        
         _RestApiClientTasks = [[NSMutableArray alloc] init];
         
         [[NSNotificationCenter defaultCenter]
