@@ -113,7 +113,7 @@ void sasuplaclient_on_registering(void *_suplaclient, void *user_data) {
     
 }
 
-void sasuplaclient_on_registered(void *_suplaclient, void *user_data, TSC_SuplaRegisterClientResult_B *result) {
+void sasuplaclient_on_registered(void *_suplaclient, void *user_data, TSC_SuplaRegisterClientResult_C *result) {
     
     SASuplaClient *sc = (__bridge SASuplaClient*)user_data;
     if ( sc != nil )
