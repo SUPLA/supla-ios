@@ -348,7 +348,8 @@
 
 - (IBAction)rightTouchDown:(id)sender {
     [sender setBackgroundColor: [UIColor btnTouched]];
-    
+    [sender setBackgroundColor: [UIColor onLine] withDelay:0.2];
+
     BOOL group = [self.channelBase isKindOfClass:[SAChannelGroup class]];
     
     if ([SAApp.SuplaClient turnOn:YES remoteId:_channelBase.remote_id group:group channelFunc:_channelBase.func vibrate:YES]) {
@@ -373,7 +374,8 @@
 
 - (IBAction)leftTouchDown:(id)sender {
     [sender setBackgroundColor: [UIColor btnTouched]];
-    
+    [sender setBackgroundColor: [UIColor onLine] withDelay:0.2];
+
     [self vibrate];
     [[SAApp SuplaClient] cg:self.channelBase.remote_id Open:0 group:[self.channelBase isKindOfClass:[SAChannelGroup class]]];
     [self hideSwipeMaybe];
