@@ -39,6 +39,7 @@
 @interface SAMainVC() <MGSwipeTableCellDelegate>
 @property (nonatomic) BOOL reloadsEnabled;
 @property (nonatomic) BOOL sloppyReloadsEnabled;
+@property (nonatomic) BOOL showingDetails;
 @end
 
 @implementation SAMainVC {
@@ -86,6 +87,7 @@
 	
 	self.reloadsEnabled = self.sloppyReloadsEnabled = YES;
     _needsDataRefresh = NO;
+    self.showingDetails = NO;
     
     ((SAMainView*)self.view).viewController = self;
 
@@ -569,8 +571,9 @@
     [super viewWillAppear:animated];
     [[[SARateApp alloc] init] showDialogWithDelay: 1];
     [self runDownloadTask];
-    if([self.navigationController.topViewController isKindOfClass: [DetailViewController class]]) {
+    if(self.showingDetails) {
         [(SAMainView*)self.view detailDidHide];
+        self.showingDetails = NO;
     }
 }
 
@@ -863,6 +866,7 @@
                                       init];
                     [self.viewController.navigationController pushViewController:detailVC
 																		animated:YES];
+                    self.viewController.showingDetails = YES;
                     
                 }
             }
