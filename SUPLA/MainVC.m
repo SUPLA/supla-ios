@@ -39,6 +39,7 @@
 @interface SAMainVC() <MGSwipeTableCellDelegate>
 @property (nonatomic) BOOL reloadsEnabled;
 @property (nonatomic) BOOL sloppyReloadsEnabled;
+@property (nonatomic) BOOL showingDetails;
 @end
 
 @implementation SAMainVC {
@@ -65,6 +66,8 @@
 	UIImage *_groupsOn;
     
     NSMutableDictionary<NSString *, NSNumber *> *_cellConstraintValues;
+    
+    BOOL _needsDataRefresh;
 }
 
 - (void)registerNibForTableView:(UITableView*)tv {
@@ -83,6 +86,8 @@
     [super viewDidLoad];
 	
 	self.reloadsEnabled = self.sloppyReloadsEnabled = YES;
+    _needsDataRefresh = NO;
+    self.showingDetails = NO;
     
     ((SAMainView*)self.view).viewController = self;
 
@@ -217,7 +222,10 @@
 		
 		[self adjustChannelHeight: YES];
 		self.reloadsEnabled = self.sloppyReloadsEnabled;
-	}
+        _needsDataRefresh = NO;
+    } else {
+        _needsDataRefresh = YES;
+    }
 }
 
 - (void)onEvent:(NSNotification *)notification {
@@ -484,7 +492,8 @@
         }
     }
     
-    cell =  [tableView dequeueReusableCellWithIdentifier: identifier];
+    cell =  [tableView dequeueReusableCellWithIdentifier: identifier
+                                            forIndexPath: indexPath];
     cell.delegate = self;
     
     if (cell != nil && ![channel_base.objectID isEqual: cell.channelBase.objectID]) {
@@ -563,8 +572,9 @@
     [super viewWillAppear:animated];
     [[[SARateApp alloc] init] showDialogWithDelay: 1];
     [self runDownloadTask];
-    if([self.navigationController.topViewController isKindOfClass: [DetailViewController class]]) {
+    if(self.showingDetails) {
         [(SAMainView*)self.view detailDidHide];
+        self.showingDetails = NO;
     }
 }
 
@@ -686,16 +696,34 @@
 - (void)swipeTableCell: (MGSwipeTableCell*)cell
    didChangeSwipeState: (MGSwipeState)state
        gestureIsActive: (BOOL)gestureIsActive {
-	self.reloadsEnabled = self.sloppyReloadsEnabled =
-		!(gestureIsActive || state != MGSwipeStateNone);
+    if(gestureIsActive || state != MGSwipeStateNone) {
+        // Disable reloads immediately
+        self.reloadsEnabled = self.sloppyReloadsEnabled = NO;
+    } else if(state == MGSwipeStateNone) {
+        if(!self.reloadsEnabled) {
+            // Reenable reloads and refresh data after settle time to let
+            // swipe buttons animation finish
+            dispatch_time_t delay = dispatch_time(DISPATCH_TIME_NOW, 200 * NSEC_PER_MSEC);
+            dispatch_after(delay, dispatch_get_main_queue(), ^{
+                self.reloadsEnabled = self.sloppyReloadsEnabled = YES;
+                if(self->_needsDataRefresh) {
+                    [self onDataChanged];
+                }
+            });
+        }
+    }
 }
 
 - (BOOL)swipeTableCell: (MGSwipeTableCell*)cell
    tappedButtonAtIndex: (NSInteger)idx
 			 direction: (MGSwipeDirection)dir
 		 fromExpansion: (BOOL)fromExpansion {
-	self.sloppyReloadsEnabled = self.reloadsEnabled;
-	self.reloadsEnabled = YES;
+    if(![Config new].autohideButtons) {
+        // Temporarily allow reloads to reflect possible state update due to
+        // button press.
+        self.sloppyReloadsEnabled = self.reloadsEnabled;
+        self.reloadsEnabled = YES;
+    }
 	return NO;
 }
 @end
@@ -853,6 +881,7 @@
                                       init];
                     [self.viewController.navigationController pushViewController:detailVC
 																		animated:YES];
+                    self.viewController.showingDetails = YES;
                     
                 }
             }
