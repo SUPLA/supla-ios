@@ -65,6 +65,8 @@
 	UIImage *_groupsOn;
     
     NSMutableDictionary<NSString *, NSNumber *> *_cellConstraintValues;
+    
+    BOOL _needsDataRefresh;
 }
 
 - (void)registerNibForTableView:(UITableView*)tv {
@@ -83,6 +85,7 @@
     [super viewDidLoad];
 	
 	self.reloadsEnabled = self.sloppyReloadsEnabled = YES;
+    _needsDataRefresh = NO;
     
     ((SAMainView*)self.view).viewController = self;
 
@@ -217,7 +220,10 @@
 		
 		[self adjustChannelHeight: YES];
 		self.reloadsEnabled = self.sloppyReloadsEnabled;
-	}
+        _needsDataRefresh = NO;
+    } else {
+        _needsDataRefresh = YES;
+    }
 }
 
 - (void)onEvent:(NSNotification *)notification {
@@ -688,6 +694,10 @@
        gestureIsActive: (BOOL)gestureIsActive {
 	self.reloadsEnabled = self.sloppyReloadsEnabled =
 		!(gestureIsActive || state != MGSwipeStateNone);
+    
+    if(state == MGSwipeStateNone && _needsDataRefresh) {
+        [self onDataChanged];
+    }
 }
 
 - (BOOL)swipeTableCell: (MGSwipeTableCell*)cell
