@@ -492,7 +492,8 @@
         }
     }
     
-    cell =  [tableView dequeueReusableCellWithIdentifier: identifier];
+    cell =  [tableView dequeueReusableCellWithIdentifier: identifier
+                                            forIndexPath: indexPath];
     cell.delegate = self;
     
     if (cell != nil && ![channel_base.objectID isEqual: cell.channelBase.objectID]) {
@@ -695,11 +696,21 @@
 - (void)swipeTableCell: (MGSwipeTableCell*)cell
    didChangeSwipeState: (MGSwipeState)state
        gestureIsActive: (BOOL)gestureIsActive {
-	self.reloadsEnabled = self.sloppyReloadsEnabled =
-		!(gestureIsActive || state != MGSwipeStateNone);
-    
-    if(state == MGSwipeStateNone && _needsDataRefresh) {
-        [self onDataChanged];
+    if(gestureIsActive || state != MGSwipeStateNone) {
+        // Disable reloads immediately
+        self.reloadsEnabled = self.sloppyReloadsEnabled = NO;
+    } else if(state == MGSwipeStateNone) {
+        if(!self.reloadsEnabled) {
+            // Reenable reloads and refresh data after settle time to let
+            // swipe buttons animation finish
+            dispatch_time_t delay = dispatch_time(DISPATCH_TIME_NOW, 200 * NSEC_PER_MSEC);
+            dispatch_after(delay, dispatch_get_main_queue(), ^{
+                self.reloadsEnabled = self.sloppyReloadsEnabled = YES;
+                if(self->_needsDataRefresh) {
+                    [self onDataChanged];
+                }
+            });
+        }
     }
 }
 
@@ -707,8 +718,12 @@
    tappedButtonAtIndex: (NSInteger)idx
 			 direction: (MGSwipeDirection)dir
 		 fromExpansion: (BOOL)fromExpansion {
-	self.sloppyReloadsEnabled = self.reloadsEnabled;
-	self.reloadsEnabled = YES;
+    if(![Config new].autohideButtons) {
+        // Temporarily allow reloads to reflect possible state update due to
+        // button press.
+        self.sloppyReloadsEnabled = self.reloadsEnabled;
+        self.reloadsEnabled = YES;
+    }
 	return NO;
 }
 @end
