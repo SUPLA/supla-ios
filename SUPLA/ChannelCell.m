@@ -106,9 +106,7 @@
 - (void) setFrame:(CGRect)frame
 {
     [super setFrame:frame];
-    dispatch_async(dispatch_get_main_queue(), ^{
-        self.channelBase = self->_channelBase;
-    });
+    self.channelBase = _channelBase;
 }
 
 -(SAChannelBase*)channelBase {

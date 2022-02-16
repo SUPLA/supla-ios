@@ -36,9 +36,7 @@
 #import "UIColor+SUPLA.h"
 #import "SUPLA-Swift.h"
 
-@interface SAMainVC() <MGSwipeTableCellDelegate>
-@property (nonatomic) BOOL reloadsEnabled;
-@property (nonatomic) BOOL sloppyReloadsEnabled;
+@interface SAMainVC()
 @property (nonatomic) BOOL showingDetails;
 @end
 
@@ -67,7 +65,7 @@
     
     NSMutableDictionary<NSString *, NSNumber *> *_cellConstraintValues;
     
-    BOOL _needsDataRefresh;
+    CGFloat _oldRowHeight;
 }
 
 - (void)registerNibForTableView:(UITableView*)tv {
@@ -85,8 +83,7 @@
     
     [super viewDidLoad];
 	
-	self.reloadsEnabled = self.sloppyReloadsEnabled = YES;
-    _needsDataRefresh = NO;
+    _oldRowHeight = 0;
     self.showingDetails = NO;
     
     ((SAMainView*)self.view).viewController = self;
@@ -205,6 +202,7 @@
 -(void)onDataChanged {
     NSDate *current = [NSDate date];
     [_updateTimer invalidate];
+
     if(_lastUpdateTime && [current timeIntervalSinceDate:_lastUpdateTime] < 0.5) {
         _updateTimer = [NSTimer scheduledTimerWithTimeInterval:0.5
                                                         target:self
@@ -216,16 +214,10 @@
     _cFrc = nil;
     _gFrc = nil;
     _locations = nil;
-	if(self.reloadsEnabled) {
-		[self.cTableView reloadData];
-		[self.gTableView reloadData];
-		
-		[self adjustChannelHeight: YES];
-		self.reloadsEnabled = self.sloppyReloadsEnabled;
-        _needsDataRefresh = NO;
-    } else {
-        _needsDataRefresh = YES;
-    }
+    [self.cTableView reloadData];
+    [self.gTableView reloadData];
+    
+    [self adjustChannelHeight: YES];
 }
 
 - (void)onEvent:(NSNotification *)notification {
@@ -692,40 +684,6 @@
 }
 
 
-#pragma mark MGSwipeTableCellDelegate
-- (void)swipeTableCell: (MGSwipeTableCell*)cell
-   didChangeSwipeState: (MGSwipeState)state
-       gestureIsActive: (BOOL)gestureIsActive {
-    if(gestureIsActive || state != MGSwipeStateNone) {
-        // Disable reloads immediately
-        self.reloadsEnabled = self.sloppyReloadsEnabled = NO;
-    } else if(state == MGSwipeStateNone) {
-        if(!self.reloadsEnabled) {
-            // Reenable reloads and refresh data after settle time to let
-            // swipe buttons animation finish
-            dispatch_time_t delay = dispatch_time(DISPATCH_TIME_NOW, 200 * NSEC_PER_MSEC);
-            dispatch_after(delay, dispatch_get_main_queue(), ^{
-                self.reloadsEnabled = self.sloppyReloadsEnabled = YES;
-                if(self->_needsDataRefresh) {
-                    [self onDataChanged];
-                }
-            });
-        }
-    }
-}
-
-- (BOOL)swipeTableCell: (MGSwipeTableCell*)cell
-   tappedButtonAtIndex: (NSInteger)idx
-			 direction: (MGSwipeDirection)dir
-		 fromExpansion: (BOOL)fromExpansion {
-    if(![Config new].autohideButtons) {
-        // Temporarily allow reloads to reflect possible state update due to
-        // button press.
-        self.sloppyReloadsEnabled = self.reloadsEnabled;
-        self.reloadsEnabled = YES;
-    }
-	return NO;
-}
 @end
 
 //------------------------------------------------------------------------------------------
