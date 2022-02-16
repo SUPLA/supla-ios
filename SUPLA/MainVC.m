@@ -682,8 +682,6 @@
 - (id<UIViewControllerInteractiveTransitioning>)interactionController {
     return ((SAMainView*)self.view).panController;
 }
-
-
 @end
 
 //------------------------------------------------------------------------------------------

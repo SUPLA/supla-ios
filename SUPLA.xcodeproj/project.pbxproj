@@ -349,6 +349,8 @@
 		407D4AFF1BC6E491009A5505 /* StatusVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 407D4AFD1BC6E491009A5505 /* StatusVC.m */; };
 		407D4B001BC6E491009A5505 /* StatusVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 407D4AFE1BC6E491009A5505 /* StatusVC.xib */; };
 		407ECDC21DAFBB9600F01C7E /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 407ECDC11DAFBB9600F01C7E /* AudioToolbox.framework */; };
+		408034C41BC83D1A007666E7 /* MGSwipeButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 408034C11BC83D1A007666E7 /* MGSwipeButton.m */; };
+		408034C51BC83D1A007666E7 /* MGSwipeTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 408034C31BC83D1A007666E7 /* MGSwipeTableCell.m */; };
 		408034E61BC84A89007666E7 /* NavigationController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 408034E41BC84A89007666E7 /* NavigationController.xib */; };
 		40844D7F1FB0DDB000432AA0 /* AuthVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 40844D811FB0DDB000432AA0 /* AuthVC.xib */; };
 		4091654B1F3CBAF200F49193 /* rs_stop.png in Resources */ = {isa = PBXBuildFile; fileRef = 409165461F3CBAF200F49193 /* rs_stop.png */; };
@@ -1152,6 +1154,10 @@
 		407D4AFD1BC6E491009A5505 /* StatusVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StatusVC.m; sourceTree = "<group>"; };
 		407D4AFE1BC6E491009A5505 /* StatusVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StatusVC.xib; sourceTree = "<group>"; };
 		407ECDC11DAFBB9600F01C7E /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		408034C01BC83D1A007666E7 /* MGSwipeButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MGSwipeButton.h; path = ThirdPartyComponents/MGSwipe/MGSwipeButton.h; sourceTree = "<group>"; };
+		408034C11BC83D1A007666E7 /* MGSwipeButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MGSwipeButton.m; path = ThirdPartyComponents/MGSwipe/MGSwipeButton.m; sourceTree = "<group>"; };
+		408034C21BC83D1A007666E7 /* MGSwipeTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MGSwipeTableCell.h; path = ThirdPartyComponents/MGSwipe/MGSwipeTableCell.h; sourceTree = "<group>"; };
+		408034C31BC83D1A007666E7 /* MGSwipeTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MGSwipeTableCell.m; path = ThirdPartyComponents/MGSwipe/MGSwipeTableCell.m; sourceTree = "<group>"; };
 		408034E41BC84A89007666E7 /* NavigationController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NavigationController.xib; sourceTree = "<group>"; };
 		40844D8A1FB0DF3B00432AA0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/AuthVC.xib; sourceTree = "<group>"; };
 		409165331F3C7B5700F49193 /* pl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pl; path = pl.lproj/AboutVC.strings; sourceTree = "<group>"; };
@@ -1698,6 +1704,17 @@
 			name = "supla-client-lib";
 			sourceTree = "<group>";
 		};
+		4031ACFA1BBC0FFB00CF9D8B /* MGSwipe */ = {
+			isa = PBXGroup;
+			children = (
+				408034C01BC83D1A007666E7 /* MGSwipeButton.h */,
+				408034C11BC83D1A007666E7 /* MGSwipeButton.m */,
+				408034C21BC83D1A007666E7 /* MGSwipeTableCell.h */,
+				408034C31BC83D1A007666E7 /* MGSwipeTableCell.m */,
+			);
+			name = MGSwipe;
+			sourceTree = "<group>";
+		};
 		4031AD011BBC2A4900CF9D8B /* Assets */ = {
 			isa = PBXGroup;
 			children = (
@@ -2131,6 +2148,7 @@
 				40B397CE1BCE7F3200BE7D5A /* Launch Screen.storyboard */,
 				401CA1C61BA067DB00117AF4 /* MainVC.h */,
 				401CA1C71BA067DB00117AF4 /* MainVC.m */,
+				4031ACFA1BBC0FFB00CF9D8B /* MGSwipe */,
 				403150F91DC769430075D2D2 /* RGBWDetailView.h */,
 				403150FA1DC769430075D2D2 /* RGBWDetailView.m */,
 				409934B41F30EF9C003110C5 /* RSDetailView.h */,
@@ -2778,7 +2796,6 @@
 				"${PODS_ROOT}/Target Support Files/Pods-SUPLA/Pods-SUPLA-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Charts/Charts.framework",
 				"${BUILT_PRODUCTS_DIR}/FMMoveTableView/FMMoveTableView.framework",
-				"${BUILT_PRODUCTS_DIR}/MGSwipeTableCell/MGSwipeTableCell.framework",
 				"${BUILT_PRODUCTS_DIR}/PaddingLabel/PaddingLabel.framework",
 				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
 				"${BUILT_PRODUCTS_DIR}/RxRelay/RxRelay.framework",
@@ -2789,7 +2806,6 @@
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Charts.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FMMoveTableView.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MGSwipeTableCell.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PaddingLabel.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxRelay.framework",
@@ -2927,6 +2943,7 @@
 				01A0BD0A26CEFBC200C4A5F2 /* SAWarningIcon.m in Sources */,
 				AEF1F9BA27726D56008E441A /* DetailViewController.swift in Sources */,
 				012F722E22DFA0BE00E5F72E /* SABarChartDataSet.swift in Sources */,
+				408034C51BC83D1A007666E7 /* MGSwipeTableCell.m in Sources */,
 				AE929A89276145C400B75715 /* FlowActionHandlers.swift in Sources */,
 				AEF79D8B2712FE1800D7554B /* CfgVM.swift in Sources */,
 				010C8780249A4D55002FE526 /* SAInfoVC.m in Sources */,
@@ -2935,6 +2952,7 @@
 				018E67CF22C8CA0A00FF1427 /* SADownloadElectricityMeasurements.m in Sources */,
 				403EB1141FBDF47F00AD6460 /* AddWizardVC.m in Sources */,
 				013D350423350C48006E3B75 /* SAThermostatScheduleCfg.m in Sources */,
+				408034C41BC83D1A007666E7 /* MGSwipeButton.m in Sources */,
 				016ABE16236D8363001BF5FB /* SAKeychain.m in Sources */,
 				01EE9BB022BA4B050029A142 /* SAChannelExtendedValue+CoreDataProperties.m in Sources */,
 				011021C925CC39FB00621D41 /* SASuperuserAuthorizationResult.m in Sources */,

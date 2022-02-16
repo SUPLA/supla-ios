@@ -17,7 +17,8 @@
  */
 
 #import <UIKit/UIKit.h>
-@import MGSwipeTableCell;
+#import "MGSwipeTableCell.h"
+#import "MGSwipeButton.h"
 #import "SAChannelBase+CoreDataClass.h"
 #import "SAUIChannelStatus.h"
 
