@@ -36,7 +36,7 @@
 #import "UIColor+SUPLA.h"
 #import "SUPLA-Swift.h"
 
-@interface SAMainVC()
+@interface SAMainVC() <MGSwipeTableCellDelegate>
 @property (nonatomic) BOOL showingDetails;
 @end
 
@@ -64,8 +64,8 @@
 	UIImage *_groupsOn;
     
     NSMutableDictionary<NSString *, NSNumber *> *_cellConstraintValues;
-    
-    CGFloat _oldRowHeight;
+    NSMutableDictionary<NSIndexPath *, NSNumber *> *_swipeStates;
+    BOOL _shouldUpdateRowHeight;
 }
 
 - (void)registerNibForTableView:(UITableView*)tv {
@@ -82,8 +82,13 @@
 - (void)viewDidLoad {
     
     [super viewDidLoad];
-	
-    _oldRowHeight = 0;
+    
+    [[NSNotificationCenter defaultCenter]
+     addObserver: self selector:@selector(didChangeRowHeight:)
+     name: @"ChannelHeightDidChange" object:nil];
+
+    _swipeStates = [[NSMutableDictionary alloc] init];
+    _shouldUpdateRowHeight = YES;
     self.showingDetails = NO;
     
     ((SAMainView*)self.view).viewController = self;
@@ -127,6 +132,11 @@
 	_groupsOn = [UIImage imageNamed: @"groupson"];
     
     [self configureNavigationBar];
+}
+
+- (void)didChangeRowHeight: notification {
+    _shouldUpdateRowHeight = YES;
+    [self adjustChannelHeight: YES];
 }
 
 - (NSArray<UIDragItem *> *)tableView:(UITableView *)tableView itemsForBeginningDragSession:(id<UIDragSession>)session atIndexPath:(NSIndexPath *)indexPath  API_AVAILABLE(ios(11.0)){
@@ -211,13 +221,17 @@
         return;
     }
     _lastUpdateTime = current;
+
+    
     _cFrc = nil;
     _gFrc = nil;
     _locations = nil;
+
     [self.cTableView reloadData];
     [self.gTableView reloadData];
-    
-    [self adjustChannelHeight: YES];
+
+    if(_shouldUpdateRowHeight)
+        [self adjustChannelHeight: YES];
 }
 
 - (void)onEvent:(NSNotification *)notification {
@@ -432,6 +446,27 @@
     }
 }
 
+- (void)resetCellButtonStates: (SAChannelCell *)cell {
+    NSNumber *stateObject = _swipeStates[cell.currentIndexPath];
+    enum MGSwipeState state = MGSwipeStateNone;
+    
+    if(stateObject) state = [stateObject integerValue];
+
+    switch(state) {
+    case MGSwipeStateSwipingLeftToRight:
+        [cell showSwipe: MGSwipeDirectionLeftToRight animated: NO];
+        break;
+    case MGSwipeStateSwipingRightToLeft:
+        [cell showSwipe: MGSwipeDirectionRightToLeft animated: NO];
+        break;
+    case MGSwipeStateNone:
+    default:
+        [cell hideSwipeAnimated: NO];
+        break;
+      
+    }
+}
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     SAChannelBase *channel_base = [[self frcForTableView:tableView] objectAtIndexPath:indexPath];
@@ -486,27 +521,29 @@
     
     cell =  [tableView dequeueReusableCellWithIdentifier: identifier
                                             forIndexPath: indexPath];
-    cell.delegate = self;
     
-    if (cell != nil && ![channel_base.objectID isEqual: cell.channelBase.objectID]) {
-        CGFloat scaleFactor = _heightScaleFactor;
-        cell.channelBase = channel_base;
-        cell.captionEditable = tableView == self.cTableView;
-        for(NSLayoutConstraint *cstr in cell.channelIconScalableConstraints) {
-            CGFloat val;
-            if(_cellConstraintValues[cstr.identifier]) {
-                val = [_cellConstraintValues[cstr.identifier] floatValue];
-            } else {
-                val = cstr.constant;
-                _cellConstraintValues[cstr.identifier] = [NSNumber numberWithFloat:val];
-            }
-            if([cstr.firstItem isKindOfClass: [UILabel class]]) {
-                if(scaleFactor < 1.0)
-                    scaleFactor = 1.0;
-                [self adjustFontSize: cstr.firstItem forScale: scaleFactor
-                          identifier: cstr.identifier];
-            }
-            cstr.constant = val * scaleFactor;
+    CGFloat scaleFactor = _heightScaleFactor;
+    cell.currentIndexPath = indexPath;
+    [self resetCellButtonStates: cell];
+    cell.channelBase = channel_base;
+    cell.captionEditable = tableView == self.cTableView;
+    for(NSLayoutConstraint *cstr in cell.channelIconScalableConstraints) {
+        CGFloat val, sf = scaleFactor;
+        if(_cellConstraintValues[cstr.identifier]) {
+            val = [_cellConstraintValues[cstr.identifier] floatValue];
+        } else {
+            val = cstr.constant;
+            _cellConstraintValues[cstr.identifier] = [NSNumber numberWithFloat:val];
+        }
+        if([cstr.firstItem isKindOfClass: [UILabel class]]) {
+            if(sf < 1.0)
+                sf = 1.0;
+            [self adjustFontSize: cstr.firstItem forScale: sf
+                      identifier: cstr.identifier];
+        }
+        cstr.constant = val * sf;
+        if([cstr.firstItem isKindOfClass: [UIImageView class]]) {
+            [cstr.firstItem setNeedsDisplay];
         }
     }
     
@@ -615,8 +652,11 @@
     if(_standardChannelHeight == 0) {
         _standardChannelHeight = [self computeChannelHeight];
     }
-    if(_standardChannelHeight > 0 && needsUpdateConstraints) {
-        [self.view setNeedsUpdateConstraints];
+    if(_standardChannelHeight > 0 && _shouldUpdateRowHeight) {
+        _shouldUpdateRowHeight = NO;
+        if(needsUpdateConstraints) {
+            [self.view setNeedsUpdateConstraints];
+        }
     }
 
 }	
@@ -681,6 +721,16 @@
 
 - (id<UIViewControllerInteractiveTransitioning>)interactionController {
     return ((SAMainView*)self.view).panController;
+}
+
+
+#pragma mark MGSwipeTableCellDelegate
+
+- (void)swipeTableCell: (MGSwipeTableCell *)cell didChangeSwipeState: (MGSwipeState)state
+       gestureIsActive: (BOOL)gestureIsActive {
+    if([cell isKindOfClass: [SAChannelCell class]]) {
+        _swipeStates[((SAChannelCell *)cell).currentIndexPath] = [NSNumber numberWithInt: state];
+    }
 }
 @end
 

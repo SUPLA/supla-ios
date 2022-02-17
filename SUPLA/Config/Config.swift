@@ -19,6 +19,8 @@
 import Foundation
 
 class Config: NSObject {
+
+    let ChannelHeightDidChangeNotification = Notification.Name("ChannelHeightDidChange")
     
     private let kChannelHeight = "supla_config_channel_height"
     private let kTemperatureUnit = "supla_config_temp_unit"
@@ -88,7 +90,12 @@ class Config: NSObject {
         }
         
         set {
+            let change = channelHeight != newValue
             UserDefaults.standard.set(newValue.rawValue, forKey: kChannelHeight)
+            if change {
+                NotificationCenter.default.post(name: ChannelHeightDidChangeNotification,
+                                                object: self, userInfo: nil)
+            }
         }
     }
     var temperatureUnit: TemperatureUnit {
