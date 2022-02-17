@@ -37,8 +37,6 @@
 #import "SUPLA-Swift.h"
 
 @interface SAMainVC() <MGSwipeTableCellDelegate>
-@property (nonatomic) BOOL reloadsEnabled;
-@property (nonatomic) BOOL sloppyReloadsEnabled;
 @property (nonatomic) BOOL showingDetails;
 @end
 
@@ -66,8 +64,8 @@
 	UIImage *_groupsOn;
     
     NSMutableDictionary<NSString *, NSNumber *> *_cellConstraintValues;
-    
-    BOOL _needsDataRefresh;
+    NSMutableDictionary<NSIndexPath *, NSNumber *> *_swipeStates;
+    BOOL _shouldUpdateRowHeight;
 }
 
 - (void)registerNibForTableView:(UITableView*)tv {
@@ -84,9 +82,13 @@
 - (void)viewDidLoad {
     
     [super viewDidLoad];
-	
-	self.reloadsEnabled = self.sloppyReloadsEnabled = YES;
-    _needsDataRefresh = NO;
+    
+    [[NSNotificationCenter defaultCenter]
+     addObserver: self selector:@selector(didChangeRowHeight:)
+     name: @"ChannelHeightDidChange" object:nil];
+
+    _swipeStates = [[NSMutableDictionary alloc] init];
+    _shouldUpdateRowHeight = YES;
     self.showingDetails = NO;
     
     ((SAMainView*)self.view).viewController = self;
@@ -130,6 +132,11 @@
 	_groupsOn = [UIImage imageNamed: @"groupson"];
     
     [self configureNavigationBar];
+}
+
+- (void)didChangeRowHeight: notification {
+    _shouldUpdateRowHeight = YES;
+    [self adjustChannelHeight: YES];
 }
 
 - (NSArray<UIDragItem *> *)tableView:(UITableView *)tableView itemsForBeginningDragSession:(id<UIDragSession>)session atIndexPath:(NSIndexPath *)indexPath  API_AVAILABLE(ios(11.0)){
@@ -205,6 +212,7 @@
 -(void)onDataChanged {
     NSDate *current = [NSDate date];
     [_updateTimer invalidate];
+
     if(_lastUpdateTime && [current timeIntervalSinceDate:_lastUpdateTime] < 0.5) {
         _updateTimer = [NSTimer scheduledTimerWithTimeInterval:0.5
                                                         target:self
@@ -213,19 +221,17 @@
         return;
     }
     _lastUpdateTime = current;
+
+    
     _cFrc = nil;
     _gFrc = nil;
     _locations = nil;
-	if(self.reloadsEnabled) {
-		[self.cTableView reloadData];
-		[self.gTableView reloadData];
-		
-		[self adjustChannelHeight: YES];
-		self.reloadsEnabled = self.sloppyReloadsEnabled;
-        _needsDataRefresh = NO;
-    } else {
-        _needsDataRefresh = YES;
-    }
+
+    [self.cTableView reloadData];
+    [self.gTableView reloadData];
+
+    if(_shouldUpdateRowHeight)
+        [self adjustChannelHeight: YES];
 }
 
 - (void)onEvent:(NSNotification *)notification {
@@ -440,6 +446,27 @@
     }
 }
 
+- (void)resetCellButtonStates: (SAChannelCell *)cell {
+    NSNumber *stateObject = _swipeStates[cell.currentIndexPath];
+    enum MGSwipeState state = MGSwipeStateNone;
+    
+    if(stateObject) state = [stateObject integerValue];
+
+    switch(state) {
+    case MGSwipeStateSwipingLeftToRight:
+        [cell showSwipe: MGSwipeDirectionLeftToRight animated: NO];
+        break;
+    case MGSwipeStateSwipingRightToLeft:
+        [cell showSwipe: MGSwipeDirectionRightToLeft animated: NO];
+        break;
+    case MGSwipeStateNone:
+    default:
+        [cell hideSwipeAnimated: NO];
+        break;
+      
+    }
+}
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     SAChannelBase *channel_base = [[self frcForTableView:tableView] objectAtIndexPath:indexPath];
@@ -494,27 +521,29 @@
     
     cell =  [tableView dequeueReusableCellWithIdentifier: identifier
                                             forIndexPath: indexPath];
-    cell.delegate = self;
     
-    if (cell != nil && ![channel_base.objectID isEqual: cell.channelBase.objectID]) {
-        CGFloat scaleFactor = _heightScaleFactor;
-        cell.channelBase = channel_base;
-        cell.captionEditable = tableView == self.cTableView;
-        for(NSLayoutConstraint *cstr in cell.channelIconScalableConstraints) {
-            CGFloat val;
-            if(_cellConstraintValues[cstr.identifier]) {
-                val = [_cellConstraintValues[cstr.identifier] floatValue];
-            } else {
-                val = cstr.constant;
-                _cellConstraintValues[cstr.identifier] = [NSNumber numberWithFloat:val];
-            }
-            if([cstr.firstItem isKindOfClass: [UILabel class]]) {
-                if(scaleFactor < 1.0)
-                    scaleFactor = 1.0;
-                [self adjustFontSize: cstr.firstItem forScale: scaleFactor
-                          identifier: cstr.identifier];
-            }
-            cstr.constant = val * scaleFactor;
+    CGFloat scaleFactor = _heightScaleFactor;
+    cell.currentIndexPath = indexPath;
+    [self resetCellButtonStates: cell];
+    cell.channelBase = channel_base;
+    cell.captionEditable = tableView == self.cTableView;
+    for(NSLayoutConstraint *cstr in cell.channelIconScalableConstraints) {
+        CGFloat val, sf = scaleFactor;
+        if(_cellConstraintValues[cstr.identifier]) {
+            val = [_cellConstraintValues[cstr.identifier] floatValue];
+        } else {
+            val = cstr.constant;
+            _cellConstraintValues[cstr.identifier] = [NSNumber numberWithFloat:val];
+        }
+        if([cstr.firstItem isKindOfClass: [UILabel class]]) {
+            if(sf < 1.0)
+                sf = 1.0;
+            [self adjustFontSize: cstr.firstItem forScale: sf
+                      identifier: cstr.identifier];
+        }
+        cstr.constant = val * sf;
+        if([cstr.firstItem isKindOfClass: [UIImageView class]]) {
+            [cstr.firstItem setNeedsDisplay];
         }
     }
     
@@ -623,8 +652,11 @@
     if(_standardChannelHeight == 0) {
         _standardChannelHeight = [self computeChannelHeight];
     }
-    if(_standardChannelHeight > 0 && needsUpdateConstraints) {
-        [self.view setNeedsUpdateConstraints];
+    if(_standardChannelHeight > 0 && _shouldUpdateRowHeight) {
+        _shouldUpdateRowHeight = NO;
+        if(needsUpdateConstraints) {
+            [self.view setNeedsUpdateConstraints];
+        }
     }
 
 }	
@@ -693,38 +725,12 @@
 
 
 #pragma mark MGSwipeTableCellDelegate
-- (void)swipeTableCell: (MGSwipeTableCell*)cell
-   didChangeSwipeState: (MGSwipeState)state
-       gestureIsActive: (BOOL)gestureIsActive {
-    if(gestureIsActive || state != MGSwipeStateNone) {
-        // Disable reloads immediately
-        self.reloadsEnabled = self.sloppyReloadsEnabled = NO;
-    } else if(state == MGSwipeStateNone) {
-        if(!self.reloadsEnabled) {
-            // Reenable reloads and refresh data after settle time to let
-            // swipe buttons animation finish
-            dispatch_time_t delay = dispatch_time(DISPATCH_TIME_NOW, 200 * NSEC_PER_MSEC);
-            dispatch_after(delay, dispatch_get_main_queue(), ^{
-                self.reloadsEnabled = self.sloppyReloadsEnabled = YES;
-                if(self->_needsDataRefresh) {
-                    [self onDataChanged];
-                }
-            });
-        }
-    }
-}
 
-- (BOOL)swipeTableCell: (MGSwipeTableCell*)cell
-   tappedButtonAtIndex: (NSInteger)idx
-			 direction: (MGSwipeDirection)dir
-		 fromExpansion: (BOOL)fromExpansion {
-    if(![Config new].autohideButtons) {
-        // Temporarily allow reloads to reflect possible state update due to
-        // button press.
-        self.sloppyReloadsEnabled = self.reloadsEnabled;
-        self.reloadsEnabled = YES;
+- (void)swipeTableCell: (MGSwipeTableCell *)cell didChangeSwipeState: (MGSwipeState)state
+       gestureIsActive: (BOOL)gestureIsActive {
+    if([cell isKindOfClass: [SAChannelCell class]]) {
+        _swipeStates[((SAChannelCell *)cell).currentIndexPath] = [NSNumber numberWithInt: state];
     }
-	return NO;
 }
 @end
 

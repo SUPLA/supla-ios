@@ -10,7 +10,6 @@ target 'SUPLA' do
   pod 'RxCocoa'
   pod 'PaddingLabel', '1.2'
   pod 'FMMoveTableView', '~> 1.1'
-  pod 'MGSwipeTableCell'
 
   target 'SUPLATests' do
     inherit! :search_paths
