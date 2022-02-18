@@ -521,7 +521,7 @@
     
     cell =  [tableView dequeueReusableCellWithIdentifier: identifier
                                             forIndexPath: indexPath];
-    
+    cell.delegate = self;
     CGFloat scaleFactor = _heightScaleFactor;
     cell.currentIndexPath = indexPath;
     [self resetCellButtonStates: cell];
