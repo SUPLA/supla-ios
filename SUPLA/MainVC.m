@@ -34,11 +34,6 @@
 #import "_SALocation+CoreDataClass.h"
 #import "SAEvent.h"
 #import "UIColor+SUPLA.h"
-#import "SUPLA-Swift.h"
-
-@interface SAMainVC() <MGSwipeTableCellDelegate>
-@property (nonatomic) BOOL showingDetails;
-@end
 
 @implementation SAMainVC {
     NSFetchedResultsController *_cFrc;
@@ -55,17 +50,6 @@
     UITapGestureRecognizer *_tapRecognizer;
     SADownloadUserIcons *_task;
     NSArray *_locations;
-    CGFloat _standardChannelHeight;
-    CGFloat _heightScaleFactor;
-    NSDate *_lastUpdateTime;
-    NSTimer *_updateTimer;
-
-	UIImage *_groupsOff;
-	UIImage *_groupsOn;
-    
-    NSMutableDictionary<NSString *, NSNumber *> *_cellConstraintValues;
-    NSMutableDictionary<NSIndexPath *, NSNumber *> *_swipeStates;
-    BOOL _shouldUpdateRowHeight;
 }
 
 - (void)registerNibForTableView:(UITableView*)tv {
@@ -82,19 +66,6 @@
 - (void)viewDidLoad {
     
     [super viewDidLoad];
-    
-    [[NSNotificationCenter defaultCenter]
-     addObserver: self selector:@selector(didChangeRowHeight:)
-     name: @"ChannelHeightDidChange" object:nil];
-
-    _swipeStates = [[NSMutableDictionary alloc] init];
-    _shouldUpdateRowHeight = YES;
-    self.showingDetails = NO;
-    
-    ((SAMainView*)self.view).viewController = self;
-
-    _heightScaleFactor = [Config new].channelHeightFactor;
-    _cellConstraintValues = [NSMutableDictionary new];
 
     _cell_nib = [UINib nibWithNibName:@"ChannelCell" bundle:nil];
     _temp_nib = [UINib nibWithNibName:@"ThermometerCell" bundle:nil];
@@ -122,21 +93,7 @@
         self.gTableView.dragDelegate = self;
         self.gTableView.dropDelegate = self;
     }
-    
-    if (@available(iOS 15.0, *)) {
-        self.cTableView.sectionHeaderTopPadding = 0;
-        self.gTableView.sectionHeaderTopPadding = 0;
-    }
 
-	_groupsOff = [UIImage imageNamed: @"groupsoff"];
-	_groupsOn = [UIImage imageNamed: @"groupson"];
-    
-    [self configureNavigationBar];
-}
-
-- (void)didChangeRowHeight: notification {
-    _shouldUpdateRowHeight = YES;
-    [self adjustChannelHeight: YES];
 }
 
 - (NSArray<UIDragItem *> *)tableView:(UITableView *)tableView itemsForBeginningDragSession:(id<UIDragSession>)session atIndexPath:(NSIndexPath *)indexPath  API_AVAILABLE(ios(11.0)){
@@ -205,33 +162,25 @@
     return self;
 }
 
--(void)onDeferredUpdate: (NSTimer *)timer {
-    [self onDataChanged];
+
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
 }
 
+
 -(void)onDataChanged {
-    NSDate *current = [NSDate date];
-    [_updateTimer invalidate];
-
-    if(_lastUpdateTime && [current timeIntervalSinceDate:_lastUpdateTime] < 0.5) {
-        _updateTimer = [NSTimer scheduledTimerWithTimeInterval:0.5
-                                                        target:self
-                                                      selector:@selector(onDeferredUpdate:)
-                                                      userInfo:nil repeats:NO];
-        return;
-    }
-    _lastUpdateTime = current;
-
-    
     _cFrc = nil;
     _gFrc = nil;
     _locations = nil;
-
+    
     [self.cTableView reloadData];
     [self.gTableView reloadData];
+}
 
-    if(_shouldUpdateRowHeight)
-        [self adjustChannelHeight: YES];
+-(void)onMenubarBackButtonPressed {
+    [(SAMainView*)self.view onMenubarBackButtonPressed];
 }
 
 - (void)onEvent:(NSNotification *)notification {
@@ -346,7 +295,7 @@
     _nTimer = nil;
     [self closeNotificationView];
     
-}
+};
 
 
 -(IBAction) tapGesture:(UITapGestureRecognizer*)recognizer
@@ -354,13 +303,10 @@
     if ( recognizer.view == self.notificationView ) {
         [self closeNotificationView];
     }
-}
+};
 
 - (void)detailHide {
-	if([self.navigationController.topViewController
-		   isKindOfClass: [DetailViewController class]]) {
-		[self.navigationController popViewControllerAnimated: NO];
-    }
+    [(SAMainView*)self.view detailShow:NO animated:NO];
 }
 
 #pragma mark Locations
@@ -410,6 +356,10 @@
     
 }
 
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
+    return  [[[[self frcForTableView:tableView] sections] objectAtIndex:section] name];
+}
+
 - (short)bitFlagCollapse {
     return self.cTableView.hidden == NO ? 0x1 : 0x2;
 }
@@ -443,27 +393,6 @@
         
         [SAApp.DB saveContext];
         [self onDataChanged];
-    }
-}
-
-- (void)resetCellButtonStates: (SAChannelCell *)cell {
-    NSNumber *stateObject = _swipeStates[cell.currentIndexPath];
-    enum MGSwipeState state = MGSwipeStateNone;
-    
-    if(stateObject) state = [stateObject integerValue];
-
-    switch(state) {
-    case MGSwipeStateSwipingLeftToRight:
-        [cell showSwipe: MGSwipeDirectionLeftToRight animated: NO];
-        break;
-    case MGSwipeStateSwipingRightToLeft:
-        [cell showSwipe: MGSwipeDirectionRightToLeft animated: NO];
-        break;
-    case MGSwipeStateNone:
-    default:
-        [cell hideSwipeAnimated: NO];
-        break;
-      
     }
 }
 
@@ -519,58 +448,21 @@
         }
     }
     
-    cell =  [tableView dequeueReusableCellWithIdentifier: identifier
-                                            forIndexPath: indexPath];
-    cell.delegate = self;
-    CGFloat scaleFactor = _heightScaleFactor;
-    cell.currentIndexPath = indexPath;
-    [self resetCellButtonStates: cell];
-    cell.channelBase = channel_base;
-    cell.captionEditable = tableView == self.cTableView;
-    for(NSLayoutConstraint *cstr in cell.channelIconScalableConstraints) {
-        CGFloat val, sf = scaleFactor;
-        if(_cellConstraintValues[cstr.identifier]) {
-            val = [_cellConstraintValues[cstr.identifier] floatValue];
-        } else {
-            val = cstr.constant;
-            _cellConstraintValues[cstr.identifier] = [NSNumber numberWithFloat:val];
-        }
-        if([cstr.firstItem isKindOfClass: [UILabel class]]) {
-            if(sf < 1.0)
-                sf = 1.0;
-            [self adjustFontSize: cstr.firstItem forScale: sf
-                      identifier: cstr.identifier];
-        }
-        cstr.constant = val * sf;
-        if([cstr.firstItem isKindOfClass: [UIImageView class]]) {
-            [cstr.firstItem setNeedsDisplay];
-        }
+    cell =  [tableView dequeueReusableCellWithIdentifier: identifier];
+    
+    if (cell != nil) {
+        cell.channelBase = channel_base;
+        cell.captionEditable = tableView == self.cTableView;
     }
     
     return cell;
-}
-
-- (void)adjustFontSize: (UILabel *)itm forScale: (CGFloat)scale
-            identifier: (NSString *)identifier {
-    NSString *key = [identifier stringByAppendingString:@"FontSize"];
-    CGFloat origSize;
-    if(_cellConstraintValues[key]) {
-        origSize = [_cellConstraintValues[key] floatValue];
-    } else {
-        origSize = itm.font.pointSize;
-        _cellConstraintValues[key] = [NSNumber numberWithFloat: origSize];
-    }
-    
-    itm.font = [itm.font fontWithSize: origSize * scale];
 }
 
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
     SASectionCell *cell = [tableView dequeueReusableCellWithIdentifier:@"SectionCell"];
     if ( cell ) {
-        NSString *rawTitle = [[[[self frcForTableView:tableView] sections] objectAtIndex:section] name];
-        NSRange r = [rawTitle rangeOfString:@":"];
-        NSString *name = [rawTitle substringFromIndex: r.location + 1];
+        NSString *name = [[[[self frcForTableView:tableView] sections] objectAtIndex:section] name];
         _SALocation *location = [self locationByName:name];
         cell.ivCollapsed.hidden = location == nil || (location.collapsed & [self bitFlagCollapse]) == 0;
         cell.locationId = [location.location_id intValue];
@@ -593,18 +485,16 @@
     [self onDataChanged];
 }
 
-- (BOOL)isGroupTableHidden {
-	return self.gTableView.hidden;
+- (IBAction)settingsTouched:(id)sender {
+    
+    [[SAApp UI ] showSettings];
+    
 }
 
 - (void) viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [[[SARateApp alloc] init] showDialogWithDelay: 1];
     [self runDownloadTask];
-    if(self.showingDetails) {
-        [(SAMainView*)self.view detailDidHide];
-        self.showingDetails = NO;
-    }
 }
 
 -(void)runDownloadTask {
@@ -635,103 +525,6 @@
     }
 }
 
-#pragma mark Support for customizable channel height
-/**
-   Calculate the "default" channel row height
-*/
-- (CGFloat)computeChannelHeight {
-    NSIndexPath *ip = [NSIndexPath indexPathForRow: 0
-                                         inSection: 0];
-    UITableViewCell *cell = [self.cTableView
-                                cellForRowAtIndexPath: ip];
-    return cell.bounds.size.height;
-}
-
-- (void)adjustChannelHeight: (BOOL)needsUpdateConstraints {
-
-    if(_standardChannelHeight == 0) {
-        _standardChannelHeight = [self computeChannelHeight];
-    }
-    if(_standardChannelHeight > 0 && _shouldUpdateRowHeight) {
-        _shouldUpdateRowHeight = NO;
-        if(needsUpdateConstraints) {
-            [self.view setNeedsUpdateConstraints];
-        }
-    }
-
-}	
-
-- (void)updateViewConstraints {
-    [super updateViewConstraints];
-	[self adjustChannelHeight: NO];
-    if(_standardChannelHeight > 0) {
-        CGFloat multiplier = _heightScaleFactor;
-        self.cTableView.rowHeight = multiplier * _standardChannelHeight;
-        self.gTableView.rowHeight = multiplier * _standardChannelHeight;
-        [self.cTableView setNeedsLayout];
-        [self.cTableView reloadData];
-        [self.gTableView setNeedsLayout];
-        [self.gTableView reloadData];
-    }
-}
-
-
-- (void)reloadTables {
-    _cFrc = nil;
-    _gFrc = nil;
-    _heightScaleFactor = [Config new].channelHeightFactor;
-    [self adjustChannelHeight:YES];
-}
-#pragma mark Support for navigation bar
-- (UIImage *)imageForGroupState {
-	if([self isGroupTableHidden]) {
-		return _groupsOff;
-	} else {
-		return _groupsOn;
-	}
-}
-
-- (void)configureNavigationBar {
-    self.title = NSLocalizedString(@"supla", @"Title bar text");
-    if (@available(iOS 14.0, *)) {
-        self.navigationItem.backButtonDisplayMode = UINavigationItemBackButtonDisplayModeMinimal;
-    }
-    self.navigationItem.leftBarButtonItem =
-        [[UIBarButtonItem alloc] initWithImage: [UIImage imageNamed: @"menu"]
-                                         style: UIBarButtonItemStylePlain
-                                        target: self
-                                        action: @selector(onMenuToggle:)];
-
-    self.navigationItem.rightBarButtonItem =
-        [[UIBarButtonItem alloc] initWithImage: [self imageForGroupState]
-                                         style: UIBarButtonItemStylePlain
-                                        target: self
-                                        action: @selector(onGroupsToggle:)];
-}
-
-- (void)onMenuToggle: sender {
-    [[SAApp mainNavigationCoordinator] toggleMenuBar];
-}
-
-- (void)onGroupsToggle: sender {
-    [self groupTableHidden: ![self isGroupTableHidden]];
-	self.navigationItem.rightBarButtonItem.image = [self imageForGroupState];
-}
-
-
-- (id<UIViewControllerInteractiveTransitioning>)interactionController {
-    return ((SAMainView*)self.view).panController;
-}
-
-
-#pragma mark MGSwipeTableCellDelegate
-
-- (void)swipeTableCell: (MGSwipeTableCell *)cell didChangeSwipeState: (MGSwipeState)state
-       gestureIsActive: (BOOL)gestureIsActive {
-    if([cell isKindOfClass: [SAChannelCell class]]) {
-        _swipeStates[((SAChannelCell *)cell).currentIndexPath] = [NSNumber numberWithInt: state];
-    }
-}
 @end
 
 //------------------------------------------------------------------------------------------
@@ -740,9 +533,18 @@
 
 @implementation SAMainView {
     UIPanGestureRecognizer *_panRecognizer;
-    UIPercentDrivenInteractiveTransition *_panTransition;
     
     SAChannelCell *cell;
+    SARGBWDetailView *_rgbwDetailView;
+    SARSDetailView *_rsDetailView; // Roller Shutter detail view
+    SAElectricityMeterDetailView *_electricityMeterDetailView;
+    SAImpulseCounterDetailView *_impulseCounterDetailView;
+    SATemperatureDetailView *_temperatureDetailView;
+    SATempHumidityDetailView *_tempHumidityDetailView;
+    SAHomePlusDetailView *_homePlusDetailView;
+    SADigiglassDetailView *_digiglassDetailView;
+    
+    SADetailView *_detailView;
     
     float last_touched_x;
     BOOL _animating;
@@ -752,8 +554,25 @@
     
     cell = nil;
     
+    _rgbwDetailView = nil;
+    _electricityMeterDetailView = nil;
+    _impulseCounterDetailView = nil;
+    _homePlusDetailView = nil;
+    _tempHumidityDetailView = nil;
+    _temperatureDetailView = nil;
+    _detailView = nil;
+    _animating = NO;
     _panRecognizer = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(handlePan:)];
     [self addGestureRecognizer:_panRecognizer];
+}
+
+-(SADetailView*)detailView {
+    return _detailView;
+}
+
+- (CGRect)getDetailFrame {
+    
+    return CGRectMake(self.frame.origin.x+self.frame.size.width, self.frame.origin.y, self.frame.size.width, self.frame.size.height);
 }
 
 - (SADetailView*)getDetailViewForCell:(SAChannelCell*)_cell {
@@ -767,36 +586,95 @@
         if (channel && (channel.type == SUPLA_CHANNELTYPE_ELECTRICITY_METER
             || (channel.value && channel.value.sub_value_type == SUBV_TYPE_ELECTRICITY_MEASUREMENTS))) {
             // TODO: Remove channel type checking in future versions. Check function instead of type. Issue #82
-            result = [[[NSBundle mainBundle] loadNibNamed:@"ElectricityMeterDetailView" owner:self options:nil] objectAtIndex:0];
+            if ( _electricityMeterDetailView == nil ) {
+                
+                _electricityMeterDetailView = [[[NSBundle mainBundle] loadNibNamed:@"ElectricityMeterDetailView" owner:self options:nil] objectAtIndex:0];
+                [_electricityMeterDetailView detailViewInit];
+            }
+            
+            result = _electricityMeterDetailView;
         } else if (channel && (channel.type == SUPLA_CHANNELTYPE_IMPULSE_COUNTER
             || (channel.value && channel.value.sub_value_type == SUBV_TYPE_IC_MEASUREMENTS))) {
             // TODO: Remove channel type checking in future versions. Check function instead of type. Issue #82
-            result = [[[NSBundle mainBundle] loadNibNamed:@"ImpulseCounterDetailView" owner:self options:nil] objectAtIndex:0];
+            if ( _impulseCounterDetailView == nil ) {
+                
+                _impulseCounterDetailView = [[[NSBundle mainBundle] loadNibNamed:@"ImpulseCounterDetailView" owner:self options:nil] objectAtIndex:0];
+                [_impulseCounterDetailView detailViewInit];
+            }
+            
+            result = _impulseCounterDetailView;
         } else {
             switch(_cell.channelBase.func) {
                 case SUPLA_CHANNELFNC_DIMMER:
                 case SUPLA_CHANNELFNC_RGBLIGHTING:
                 case SUPLA_CHANNELFNC_DIMMERANDRGBLIGHTING:
-                    result = [[[NSBundle mainBundle] loadNibNamed:@"RGBWDetail" owner:self options:nil] objectAtIndex:0];
+                    
+                    if ( _rgbwDetailView == nil ) {
+                        
+                        _rgbwDetailView = [[[NSBundle mainBundle] loadNibNamed:@"RGBWDetail" owner:self options:nil] objectAtIndex:0];
+                        [_rgbwDetailView detailViewInit];
+                        
+                    }
+                    
+                    result = _rgbwDetailView;
                     break;
                     
                 case SUPLA_CHANNELFNC_CONTROLLINGTHEROLLERSHUTTER:
                 case SUPLA_CHANNELFNC_CONTROLLINGTHEROOFWINDOW:
-                    result = [[[NSBundle mainBundle] loadNibNamed:@"RSDetail" owner:self options:nil] objectAtIndex:0];
+                    
+                    if ( _rsDetailView == nil ) {
+                        
+                        _rsDetailView = [[[NSBundle mainBundle] loadNibNamed:@"RSDetail" owner:self options:nil] objectAtIndex:0];
+                        [_rsDetailView detailViewInit];
+                        
+                    }
+                    
+                    result = _rsDetailView;
                     break;
                     
                 case SUPLA_CHANNELFNC_THERMOSTAT_HEATPOL_HOMEPLUS:
-                    result = [[[NSBundle mainBundle] loadNibNamed:@"HomePlusDetailView" owner:self options:nil] objectAtIndex:0];
+                    
+                    if ( _homePlusDetailView == nil ) {
+                        
+                        _homePlusDetailView = [[[NSBundle mainBundle] loadNibNamed:@"HomePlusDetailView" owner:self options:nil] objectAtIndex:0];
+                        [_homePlusDetailView detailViewInit];
+                        
+                    }
+                    
+                    result = _homePlusDetailView;
                     break;
                 case SUPLA_CHANNELFNC_THERMOMETER:
-                    result = [[[NSBundle mainBundle] loadNibNamed:@"TemperatureDetailView" owner:self options:nil] objectAtIndex:0];
+                    
+                    if ( _temperatureDetailView == nil ) {
+                        
+                        _temperatureDetailView = [[[NSBundle mainBundle] loadNibNamed:@"TemperatureDetailView" owner:self options:nil] objectAtIndex:0];
+                        [_temperatureDetailView  detailViewInit];
+                        
+                    }
+                    
+                    result = _temperatureDetailView;
                     break;
                 case SUPLA_CHANNELFNC_HUMIDITYANDTEMPERATURE:
-                    result = [[[NSBundle mainBundle] loadNibNamed:@"TempHumidityDetailView" owner:self options:nil] objectAtIndex:0];
+                    
+                    if ( _tempHumidityDetailView == nil ) {
+                        
+                        _tempHumidityDetailView = [[[NSBundle mainBundle] loadNibNamed:@"TempHumidityDetailView" owner:self options:nil] objectAtIndex:0];
+                        [_tempHumidityDetailView  detailViewInit];
+                        
+                    }
+                    
+                    result = _tempHumidityDetailView;
                     break;
                 case SUPLA_CHANNELFNC_DIGIGLASS_HORIZONTAL:
                 case SUPLA_CHANNELFNC_DIGIGLASS_VERTICAL:
-                    result = [[[NSBundle mainBundle] loadNibNamed:@"DigiglassDetailView" owner:self options:nil] objectAtIndex:0];
+                    if ( _digiglassDetailView == nil ) {
+                        
+                        _digiglassDetailView  = [[[NSBundle mainBundle] loadNibNamed:@"DigiglassDetailView" owner:self options:nil] objectAtIndex:0];
+                        [_digiglassDetailView   detailViewInit];
+                        
+                    }
+                    
+                    result = _digiglassDetailView;
                     break;
             };
         }
@@ -804,8 +682,8 @@
     }
     
     if ( result != nil ) {
-        [result detailViewInit];
-        SAChannelBase *channelBase = _cell == nil ? nil : _cell.channelBase;
+        
+        SAChannelBase *channelBase = cell == nil ? nil : cell.channelBase;
         
         if ( result.main_view != self ) {
             result.main_view = self;
@@ -869,45 +747,171 @@
     }
 }
 
-
-- (void)handlePan: (UIPanGestureRecognizer *)gr {
-    if(gr.state == UIGestureRecognizerStateBegan) {
-        UITableView *tableView = self.cTableView.hidden ? self.gTableView : self.cTableView;
-        CGPoint touch_point = [gr locationInView: tableView];
-        NSIndexPath *path = [tableView indexPathForRowAtPoint:touch_point];
-        if(path) {
-            UITableViewCell *cell = [tableView cellForRowAtIndexPath: path];
-            if([cell isKindOfClass: [SAChannelCell class]]) {
-                SADetailView *detailView = [self getDetailViewForCell:cell];
-                if(detailView) {
-                    BaseViewController *detailVC = [[DetailViewController alloc]
-                                                    initWithDetailView: detailView];
-                    detailVC.navigationCoordinator = self.viewController.navigationCoordinator;
-                    _panTransition = [[UIPercentDrivenInteractiveTransition alloc]
-                                      init];
-                    [self.viewController.navigationController pushViewController:detailVC
-																		animated:YES];
-                    self.viewController.showingDetails = YES;
-                    
-                }
-            }
-        }
-    } else if(gr.state == UIGestureRecognizerStateChanged) {
-        CGPoint translation = [gr translationInView: self];
-        CGFloat d = (translation.x / CGRectGetWidth(self.bounds)) * -1;
-        [_panTransition updateInteractiveTransition:d];
-    } else if(gr.state == UIGestureRecognizerStateEnded) {
-        if(_panTransition.percentComplete > 0.28) {
-            [_panTransition finishInteractiveTransition];
+- (void)detailShow:(BOOL)show animated:(BOOL)animated {
+    
+    [UIView commitAnimations];
+    _animating = NO;
+    
+    if (_detailView) {
+        if (show) {
+            [_detailView detailWillShow];
         } else {
-            [_panTransition cancelInteractiveTransition];
+            [_detailView detailWillHide];
         }
-        _panTransition = nil;
+    }
+        
+    if ( animated ) {
+                
+        [UIView animateWithDuration:0.2
+                         animations:^{
+            
+            float multiplier = 1;
+            
+            if ( show ) {
+                multiplier = -1;
+            }
+            
+            [self setCenter:CGPointMake((self.frame.size.width/2) * multiplier, self.center.y)];
+            [self->_detailView setFrame:[self getDetailFrame]];
+            
+            
+        }
+                         completion:^(BOOL finished){
+            
+            if ( show == NO ) {
+                
+                [self detailDidHide];
+                
+                if ( self->_detailView ) {
+                    [self->_detailView removeFromSuperview];
+                    [self->_detailView detailDidHide];
+                    self->_detailView = nil;
+                }
+                
+                if ( self->cell ) {
+                    self->cell.contentView.backgroundColor = [UIColor cellBackground];
+                    self->cell = nil;
+                }
+                
+            } else if (self->_detailView) {
+                [self->_detailView detailDidShow];
+            }
+            
+            
+            self->_animating = NO;
+        }];
+        
+    } else {
+        
+        if ( show == NO ) {
+            
+            [self setCenter:CGPointMake(self.frame.size.width/2, self.center.y)];
+            
+            [self detailDidHide];
+            
+            if ( _detailView ) {
+                [_detailView removeFromSuperview];
+                [_detailView detailDidHide];
+                _detailView = nil;
+            }
+            
+            if ( cell ) {
+                cell.contentView.backgroundColor = [UIColor cellBackground];
+                cell = nil;
+            }
+            
+        } else if (_detailView) {
+            [_detailView detailDidShow];
+        }
+        
+    }
+    
+}
+
+- (void)onMenubarBackButtonPressed {
+    if (_detailView
+        && _detailView.superview
+        && [_detailView onMenubarBackButtonPressed]) {
+        [self detailShow:NO animated:YES];
     }
 }
 
-- (id<UIViewControllerInteractiveTransitioning>)panController {
-    return _panTransition;
+- (void)handlePan:(UIPanGestureRecognizer *)gr {
+    
+    if ( _animating )
+        return;
+    
+    UITableView *tableView = self.cTableView.hidden ? self.gTableView : self.cTableView;
+    
+    CGPoint touch_point = [gr locationInView:tableView];
+    
+    if ( gr.state == UIGestureRecognizerStateEnded
+        && _detailView != nil ) {
+        [self detailShow:self.frame.origin.x*-1 > self.frame.size.width/3.5 ? YES : NO animated:YES];
+        return;
+    }
+    
+    NSIndexPath *path = [tableView indexPathForRowAtPoint:touch_point];
+    
+    if ( path != nil ) {
+        
+        if ( cell == nil ) {
+            cell = [tableView cellForRowAtIndexPath:path];
+        }
+        
+        if ( cell == nil || [cell isKindOfClass:[SAChannelCell class]] == NO ) {
+            
+            cell = nil;
+            
+        } else {
+            
+            SADetailView *detailView = detailView = [self getDetailViewForCell:cell];
+            
+            if ( detailView == nil ) {
+                
+                cell = nil;
+                
+            } else {
+                
+                cell.contentView.backgroundColor = detailView.backgroundColor;
+                
+                float offset = touch_point.x-last_touched_x;
+                
+                if ( self.frame.origin.x+offset > 0 )
+                    offset -= self.frame.origin.x+offset;
+                
+                if ( _detailView == nil ) {
+                    _detailView = detailView;
+                    [self.superview addSubview:detailView];
+                }
+                
+                [self moveCenter:offset];
+                touch_point.x -= offset;
+                
+            }
+            
+            
+        }
+    }
+    
+    
+    last_touched_x = touch_point.x;
+    
+}
+
+-(void)setCenter:(CGPoint)center {
+    [super setCenter: center];
+    
+    if ( _detailView != nil ) {
+        [_detailView setFrame:[self getDetailFrame]];
+    }
+    
+    [[SAApp UI] showMenuBtn:self.frame.origin.x == 0];
+    [[SAApp UI] showGroupBtn:self.frame.origin.x == 0];
+}
+
+-(void)moveCenter:(float)x_offset {
+    [self setCenter:CGPointMake(self.center.x+x_offset, self.center.y)];
 }
 
 - (void)handleTap:(UITapGestureRecognizer *)gr {
@@ -922,6 +926,8 @@
     if ([section isKindOfClass:[SASectionCell class]]) {
         
     }
+
+
 }
 
 @end
