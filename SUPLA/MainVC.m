@@ -36,7 +36,7 @@
 #import "UIColor+SUPLA.h"
 #import "SUPLA-Swift.h"
 
-@interface SAMainVC() <MGSwipeTableCellDelegate>
+@interface SAMainVC()
 @property (nonatomic) BOOL showingDetails;
 @end
 
@@ -57,15 +57,10 @@
     NSArray *_locations;
     CGFloat _standardChannelHeight;
     CGFloat _heightScaleFactor;
-    NSDate *_lastUpdateTime;
-    NSTimer *_updateTimer;
-
 	UIImage *_groupsOff;
 	UIImage *_groupsOn;
-    
-    NSMutableDictionary<NSString *, NSNumber *> *_cellConstraintValues;
-    NSMutableDictionary<NSIndexPath *, NSNumber *> *_swipeStates;
     BOOL _shouldUpdateRowHeight;
+    NSMutableDictionary<NSString *, NSNumber *> *_cellConstraintValues;
 }
 
 - (void)registerNibForTableView:(UITableView*)tv {
@@ -82,17 +77,13 @@
 - (void)viewDidLoad {
     
     [super viewDidLoad];
-    
-    [[NSNotificationCenter defaultCenter]
-     addObserver: self selector:@selector(didChangeRowHeight:)
-     name: @"ChannelHeightDidChange" object:nil];
 
-    _swipeStates = [[NSMutableDictionary alloc] init];
+    [[NSNotificationCenter defaultCenter]
+        addObserver: self selector:@selector(didChangeRowHeight:)
+               name: @"ChannelHeightDidChange" object:nil];
     _shouldUpdateRowHeight = YES;
     self.showingDetails = NO;
-    
     ((SAMainView*)self.view).viewController = self;
-
     _heightScaleFactor = [Config new].channelHeightFactor;
     _cellConstraintValues = [NSMutableDictionary new];
 
@@ -122,12 +113,12 @@
         self.gTableView.dragDelegate = self;
         self.gTableView.dropDelegate = self;
     }
-    
+
     if (@available(iOS 15.0, *)) {
         self.cTableView.sectionHeaderTopPadding = 0;
         self.gTableView.sectionHeaderTopPadding = 0;
     }
-
+ 
 	_groupsOff = [UIImage imageNamed: @"groupsoff"];
 	_groupsOn = [UIImage imageNamed: @"groupson"];
     
@@ -205,33 +196,20 @@
     return self;
 }
 
--(void)onDeferredUpdate: (NSTimer *)timer {
-    [self onDataChanged];
-}
+
+
 
 -(void)onDataChanged {
-    NSDate *current = [NSDate date];
-    [_updateTimer invalidate];
-
-    if(_lastUpdateTime && [current timeIntervalSinceDate:_lastUpdateTime] < 0.5) {
-        _updateTimer = [NSTimer scheduledTimerWithTimeInterval:0.5
-                                                        target:self
-                                                      selector:@selector(onDeferredUpdate:)
-                                                      userInfo:nil repeats:NO];
-        return;
-    }
-    _lastUpdateTime = current;
-
-    
     _cFrc = nil;
     _gFrc = nil;
     _locations = nil;
-
+    
     [self.cTableView reloadData];
     [self.gTableView reloadData];
 
     if(_shouldUpdateRowHeight)
         [self adjustChannelHeight: YES];
+  
 }
 
 - (void)onEvent:(NSNotification *)notification {
@@ -346,7 +324,7 @@
     _nTimer = nil;
     [self closeNotificationView];
     
-}
+};
 
 
 -(IBAction) tapGesture:(UITapGestureRecognizer*)recognizer
@@ -354,7 +332,7 @@
     if ( recognizer.view == self.notificationView ) {
         [self closeNotificationView];
     }
-}
+};
 
 - (void)detailHide {
 	if([self.navigationController.topViewController
@@ -410,6 +388,10 @@
     
 }
 
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
+    return  [[[[self frcForTableView:tableView] sections] objectAtIndex:section] name];
+}
+
 - (short)bitFlagCollapse {
     return self.cTableView.hidden == NO ? 0x1 : 0x2;
 }
@@ -443,27 +425,6 @@
         
         [SAApp.DB saveContext];
         [self onDataChanged];
-    }
-}
-
-- (void)resetCellButtonStates: (SAChannelCell *)cell {
-    NSNumber *stateObject = _swipeStates[cell.currentIndexPath];
-    enum MGSwipeState state = MGSwipeStateNone;
-    
-    if(stateObject) state = [stateObject integerValue];
-
-    switch(state) {
-    case MGSwipeStateSwipingLeftToRight:
-        [cell showSwipe: MGSwipeDirectionLeftToRight animated: NO];
-        break;
-    case MGSwipeStateSwipingRightToLeft:
-        [cell showSwipe: MGSwipeDirectionRightToLeft animated: NO];
-        break;
-    case MGSwipeStateNone:
-    default:
-        [cell hideSwipeAnimated: NO];
-        break;
-      
     }
 }
 
@@ -521,12 +482,11 @@
     
     cell =  [tableView dequeueReusableCellWithIdentifier: identifier
                                             forIndexPath: indexPath];
-    cell.delegate = self;
-    CGFloat scaleFactor = _heightScaleFactor;
-    cell.currentIndexPath = indexPath;
-    [self resetCellButtonStates: cell];
+    
     cell.channelBase = channel_base;
     cell.captionEditable = tableView == self.cTableView;
+    CGFloat scaleFactor = _heightScaleFactor;
+
     for(NSLayoutConstraint *cstr in cell.channelIconScalableConstraints) {
         CGFloat val, sf = scaleFactor;
         if(_cellConstraintValues[cstr.identifier]) {
@@ -546,7 +506,6 @@
             [cstr.firstItem setNeedsDisplay];
         }
     }
-    
     return cell;
 }
 
@@ -563,6 +522,7 @@
     
     itm.font = [itm.font fontWithSize: origSize * scale];
 }
+
 
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
@@ -586,15 +546,17 @@
     return 50;
 }
 
+
+- (BOOL)isGroupTableHidden {
+   return self.gTableView.hidden;
+ }
+
+ 
 - (void)groupTableHidden:(BOOL)hidden {
     self.cTableView.hidden = !hidden;
     self.gTableView.hidden = hidden;
     
     [self onDataChanged];
-}
-
-- (BOOL)isGroupTableHidden {
-	return self.gTableView.hidden;
 }
 
 - (void) viewWillAppear:(BOOL)animated {
@@ -633,54 +595,6 @@
         _task.delegate = nil;
         _task = nil;
     }
-}
-
-#pragma mark Support for customizable channel height
-/**
-   Calculate the "default" channel row height
-*/
-- (CGFloat)computeChannelHeight {
-    NSIndexPath *ip = [NSIndexPath indexPathForRow: 0
-                                         inSection: 0];
-    UITableViewCell *cell = [self.cTableView
-                                cellForRowAtIndexPath: ip];
-    return cell.bounds.size.height;
-}
-
-- (void)adjustChannelHeight: (BOOL)needsUpdateConstraints {
-
-    if(_standardChannelHeight == 0) {
-        _standardChannelHeight = [self computeChannelHeight];
-    }
-    if(_standardChannelHeight > 0 && _shouldUpdateRowHeight) {
-        _shouldUpdateRowHeight = NO;
-        if(needsUpdateConstraints) {
-            [self.view setNeedsUpdateConstraints];
-        }
-    }
-
-}	
-
-- (void)updateViewConstraints {
-    [super updateViewConstraints];
-	[self adjustChannelHeight: NO];
-    if(_standardChannelHeight > 0) {
-        CGFloat multiplier = _heightScaleFactor;
-        self.cTableView.rowHeight = multiplier * _standardChannelHeight;
-        self.gTableView.rowHeight = multiplier * _standardChannelHeight;
-        [self.cTableView setNeedsLayout];
-        [self.cTableView reloadData];
-        [self.gTableView setNeedsLayout];
-        [self.gTableView reloadData];
-    }
-}
-
-
-- (void)reloadTables {
-    _cFrc = nil;
-    _gFrc = nil;
-    _heightScaleFactor = [Config new].channelHeightFactor;
-    [self adjustChannelHeight:YES];
 }
 #pragma mark Support for navigation bar
 - (UIImage *)imageForGroupState {
@@ -723,14 +637,51 @@
     return ((SAMainView*)self.view).panController;
 }
 
+#pragma mark Support for customizable channel height
+/**
+   Calculate the "default" channel row height
+*/
+- (CGFloat)computeChannelHeight {
+    NSIndexPath *ip = [NSIndexPath indexPathForRow: 0
+                                         inSection: 0];
+    UITableViewCell *cell = [self.cTableView
+                                cellForRowAtIndexPath: ip];
+    return cell.bounds.size.height;
+}
 
-#pragma mark MGSwipeTableCellDelegate
+- (void)adjustChannelHeight: (BOOL)needsUpdateConstraints {
 
-- (void)swipeTableCell: (MGSwipeTableCell *)cell didChangeSwipeState: (MGSwipeState)state
-       gestureIsActive: (BOOL)gestureIsActive {
-    if([cell isKindOfClass: [SAChannelCell class]]) {
-        _swipeStates[((SAChannelCell *)cell).currentIndexPath] = [NSNumber numberWithInt: state];
+    if(_standardChannelHeight == 0) {
+        _standardChannelHeight = [self computeChannelHeight];
     }
+    if(_standardChannelHeight > 0 && _shouldUpdateRowHeight) {
+        _shouldUpdateRowHeight = NO;
+        if(needsUpdateConstraints) {
+            [self.view setNeedsUpdateConstraints];
+        }
+    }
+
+}	
+
+- (void)updateViewConstraints {
+    [super updateViewConstraints];
+	[self adjustChannelHeight: NO];
+    if(_standardChannelHeight > 0) {
+        CGFloat multiplier = _heightScaleFactor;
+        self.cTableView.rowHeight = multiplier * _standardChannelHeight;
+        self.gTableView.rowHeight = multiplier * _standardChannelHeight;
+        [self.cTableView setNeedsLayout];
+        [self.cTableView reloadData];
+        [self.gTableView setNeedsLayout];
+        [self.gTableView reloadData];
+    }
+}
+
+- (void)reloadTables {
+    _cFrc = nil;
+    _gFrc = nil;
+    _heightScaleFactor = [Config new].channelHeightFactor;
+    [self adjustChannelHeight:YES];
 }
 @end
 
@@ -777,15 +728,18 @@
                 case SUPLA_CHANNELFNC_DIMMER:
                 case SUPLA_CHANNELFNC_RGBLIGHTING:
                 case SUPLA_CHANNELFNC_DIMMERANDRGBLIGHTING:
+                    
                     result = [[[NSBundle mainBundle] loadNibNamed:@"RGBWDetail" owner:self options:nil] objectAtIndex:0];
                     break;
                     
                 case SUPLA_CHANNELFNC_CONTROLLINGTHEROLLERSHUTTER:
                 case SUPLA_CHANNELFNC_CONTROLLINGTHEROOFWINDOW:
+                    
                     result = [[[NSBundle mainBundle] loadNibNamed:@"RSDetail" owner:self options:nil] objectAtIndex:0];
                     break;
                     
                 case SUPLA_CHANNELFNC_THERMOSTAT_HEATPOL_HOMEPLUS:
+                    
                     result = [[[NSBundle mainBundle] loadNibNamed:@"HomePlusDetailView" owner:self options:nil] objectAtIndex:0];
                     break;
                 case SUPLA_CHANNELFNC_THERMOMETER:
@@ -796,7 +750,7 @@
                     break;
                 case SUPLA_CHANNELFNC_DIGIGLASS_HORIZONTAL:
                 case SUPLA_CHANNELFNC_DIGIGLASS_VERTICAL:
-                    result = [[[NSBundle mainBundle] loadNibNamed:@"DigiglassDetailView" owner:self options:nil] objectAtIndex:0];
+                    result  = [[[NSBundle mainBundle] loadNibNamed:@"DigiglassDetailView" owner:self options:nil] objectAtIndex:0];
                     break;
             };
         }
@@ -870,7 +824,7 @@
 }
 
 
-- (void)handlePan: (UIPanGestureRecognizer *)gr {
+- (void)handlePan:(UIPanGestureRecognizer *)gr {
     if(gr.state == UIGestureRecognizerStateBegan) {
         UITableView *tableView = self.cTableView.hidden ? self.gTableView : self.cTableView;
         CGPoint touch_point = [gr locationInView: tableView];
@@ -889,9 +843,9 @@
 																		animated:YES];
                     self.viewController.showingDetails = YES;
                     
-                }
-            }
-        }
+                 }
+             }
+         }
     } else if(gr.state == UIGestureRecognizerStateChanged) {
         CGPoint translation = [gr translationInView: self];
         CGFloat d = (translation.x / CGRectGetWidth(self.bounds)) * -1;
@@ -899,15 +853,11 @@
     } else if(gr.state == UIGestureRecognizerStateEnded) {
         if(_panTransition.percentComplete > 0.28) {
             [_panTransition finishInteractiveTransition];
-        } else {
+         } else {
             [_panTransition cancelInteractiveTransition];
-        }
+         }
         _panTransition = nil;
-    }
-}
-
-- (id<UIViewControllerInteractiveTransitioning>)panController {
-    return _panTransition;
+     }
 }
 
 - (void)handleTap:(UITapGestureRecognizer *)gr {
@@ -922,6 +872,11 @@
     if ([section isKindOfClass:[SASectionCell class]]) {
         
     }
+}
+
+
+- (id<UIViewControllerInteractiveTransitioning>)panController {
+    return _panTransition;
 }
 
 @end
