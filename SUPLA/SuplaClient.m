@@ -390,6 +390,9 @@ void sasuplaclient_on_zwave_set_wake_up_time_result(void *_suplaclient,
         case SUPLA_RESULTCODE_ACCESSID_NOT_ASSIGNED:
             str = NSLocalizedString(@"Client activation required. Please log in to \"Supla Cloud\" and assign an “Access ID” for this device in “Smartphone” section of the website.", nil);
             break;
+        case SUPLA_RESULTCODE_ACCESSID_INACTIVE:
+            str = NSLocalizedString(@"Access Identifier inactive.", nil);
+            break;
             
     }
     
