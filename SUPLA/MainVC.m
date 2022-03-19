@@ -40,6 +40,9 @@
 @property (nonatomic) BOOL showingDetails;
 @end
 
+@interface SAMainVC() <MGSwipeTableCellDelegate>
+@end
+
 @implementation SAMainVC {
     NSFetchedResultsController *_cFrc;
     NSFetchedResultsController *_gFrc;
@@ -61,6 +64,9 @@
 	UIImage *_groupsOn;
     BOOL _shouldUpdateRowHeight;
     NSMutableDictionary<NSString *, NSNumber *> *_cellConstraintValues;
+    BOOL _dataRefreshEnabled;
+    BOOL _dataRefreshPending;
+    NSMutableDictionary<NSIndexPath*, NSNumber*> *_savedButtonStates;
 }
 
 - (void)registerNibForTableView:(UITableView*)tv {
@@ -77,6 +83,8 @@
 - (void)viewDidLoad {
     
     [super viewDidLoad];
+    
+    _savedButtonStates = [NSMutableDictionary new];
 
     [[NSNotificationCenter defaultCenter]
         addObserver: self selector:@selector(didChangeRowHeight:)
@@ -200,16 +208,19 @@
 
 
 -(void)onDataChanged {
-    _cFrc = nil;
-    _gFrc = nil;
-    _locations = nil;
-    
-    [self.cTableView reloadData];
-    [self.gTableView reloadData];
+    if(_dataRefreshEnabled) {
+        _cFrc = nil;
+        _gFrc = nil;
+        _locations = nil;
+        [self.cTableView reloadData];
+        [self.gTableView reloadData];
 
-    if(_shouldUpdateRowHeight)
-        [self adjustChannelHeight: YES];
-  
+        if(_shouldUpdateRowHeight)
+            [self adjustChannelHeight: YES];
+        _dataRefreshPending = NO;
+    } else {
+        _dataRefreshPending = YES;
+    }
 }
 
 - (void)onEvent:(NSNotification *)notification {
@@ -428,6 +439,26 @@
     }
 }
 
+- (void)resetCellButtonStates: (SAChannelCell *)cell {
+    NSNumber *stateObject = _savedButtonStates[cell.currentIndexPath];
+    enum MGSwipeState state = MGSwipeStateNone;
+    
+    if(stateObject) state = [stateObject integerValue];
+
+    switch(state) {
+    case MGSwipeStateSwipingLeftToRight:
+        [cell showSwipe: MGSwipeDirectionLeftToRight animated: NO];
+        break;
+    case MGSwipeStateSwipingRightToLeft:
+        [cell showSwipe: MGSwipeDirectionRightToLeft animated: NO];
+        break;
+    case MGSwipeStateNone:
+    default:
+        [cell hideSwipeAnimated: NO];
+        break;
+      
+    }
+}
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     SAChannelBase *channel_base = [[self frcForTableView:tableView] objectAtIndexPath:indexPath];
@@ -482,7 +513,9 @@
     
     cell =  [tableView dequeueReusableCellWithIdentifier: identifier
                                             forIndexPath: indexPath];
-    
+    cell.delegate = self;
+    cell.currentIndexPath = indexPath;
+
     cell.channelBase = channel_base;
     cell.captionEditable = tableView == self.cTableView;
     CGFloat scaleFactor = _heightScaleFactor;
@@ -506,6 +539,8 @@
             [cstr.firstItem setNeedsDisplay];
         }
     }
+    [self resetCellButtonStates:cell];
+    
     return cell;
 }
 
@@ -562,6 +597,8 @@
 - (void) viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [[[SARateApp alloc] init] showDialogWithDelay: 1];
+    _dataRefreshEnabled = YES;
+    _dataRefreshPending = NO;
     [self runDownloadTask];
     if(self.showingDetails) {
         [(SAMainView*)self.view detailDidHide];
@@ -603,6 +640,23 @@
 	} else {
 		return _groupsOn;
 	}
+}
+#pragma mark MGSwipeTableCellDelegate
+
+-(void) swipeTableCell:(MGSwipeTableCell*) cell
+   didChangeSwipeState:(MGSwipeState) state
+       gestureIsActive:(BOOL) gestureIsActive {
+    _dataRefreshEnabled = !gestureIsActive;
+
+    if(!gestureIsActive) {
+        if([cell isKindOfClass: [SAChannelCell class]]) {
+            _savedButtonStates[((SAChannelCell *)cell).currentIndexPath] = [NSNumber numberWithInt: state];
+        }
+    }
+    
+    if(_dataRefreshEnabled && _dataRefreshPending) {
+        [self onDataChanged];
+    }
 }
 
 - (void)configureNavigationBar {
