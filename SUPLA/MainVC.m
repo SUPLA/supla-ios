@@ -648,10 +648,8 @@
        gestureIsActive:(BOOL) gestureIsActive {
     _dataRefreshEnabled = !gestureIsActive;
 
-    if(!gestureIsActive) {
-        if([cell isKindOfClass: [SAChannelCell class]]) {
-            _savedButtonStates[((SAChannelCell *)cell).currentIndexPath] = [NSNumber numberWithInt: state];
-        }
+    if([cell isKindOfClass: [SAChannelCell class]]) {
+        _savedButtonStates[((SAChannelCell *)cell).currentIndexPath] = [NSNumber numberWithInt: state];
     }
     
     if(_dataRefreshEnabled && _dataRefreshPending) {

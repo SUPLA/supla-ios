@@ -35,6 +35,9 @@
 #define CTOP_MARGIN      5
 #define CBOTTOM_MARGIN   5
 
+@interface MGSwipeTableCell (ExposePrivateMethods)
+-(void)panHandler: (UIPanGestureRecognizer *)gesture;
+@end
 
 @implementation MGSwipeTableCell (SUPLA)
 
@@ -437,5 +440,18 @@
 - (CGFloat)iconScaleFactor {
     CGFloat channelScale = [Config new].channelHeightFactor;
     return MIN(1.0, channelScale);
+}
+
+
+-(void)panHandler: (UIPanGestureRecognizer *)gesture {
+    [super panHandler: gesture];
+    
+    if((gesture.state == UIGestureRecognizerStateEnded ||
+       gesture.state == UIGestureRecognizerStateCancelled) &&
+       [self.delegate respondsToSelector: @selector(swipeTableCell:didChangeSwipeState:gestureIsActive:)]) {
+       [self.delegate swipeTableCell: self
+                 didChangeSwipeState: self.swipeState
+                     gestureIsActive: NO];
+    }
 }
 @end
