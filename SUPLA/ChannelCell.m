@@ -133,7 +133,7 @@
     CGFloat offset = 5;
     UIView *bg = [[UIView alloc] init];
     bg.translatesAutoresizingMaskIntoConstraints = NO;
-    bg.backgroundColor = [UIColor yellowColor];
+    bg.backgroundColor = [UIColor whiteColor];
     [btn addSubview: bg];
     [bg.bottomAnchor constraintEqualToAnchor: btn.bottomAnchor].active = YES;
     [bg.leftAnchor constraintEqualToAnchor: btn.leftAnchor].active = YES;
