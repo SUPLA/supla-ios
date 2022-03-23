@@ -403,10 +403,20 @@
 
 - (IBAction)rlTouchCancel:(id)sender {
     [sender setBackgroundColor: [UIColor onLine] withDelay:0.2];
+    [self resetButtonState];
 }
 
 - (void)hideSwipeMaybe {
-    if([[Config alloc] init].autohideButtons) [self hideSwipeAnimated:YES];
+    if([[Config alloc] init].autohideButtons) {
+        [self hideSwipeAnimated:YES];
+        [self resetButtonState];
+    }
+}
+
+- (void)resetButtonState {
+    if([self.delegate respondsToSelector: @selector(swipeTableCell:didChangeSwipeState:gestureIsActive:)]) {
+        [self.delegate swipeTableCell:self didChangeSwipeState:MGSwipeStateNone gestureIsActive:NO];
+    }
 }
 
 - (void)stateIconTapped:(UITapGestureRecognizer *)tapRecognizer {
