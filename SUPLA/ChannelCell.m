@@ -35,6 +35,9 @@
 #define CTOP_MARGIN      5
 #define CBOTTOM_MARGIN   5
 
+@interface MGSwipeTableCell (ExposePrivateMethods)
+-(void)panHandler: (UIPanGestureRecognizer *)gesture;
+@end
 
 @implementation MGSwipeTableCell (SUPLA)
 
@@ -121,6 +124,23 @@
     [btn addTarget:self action:@selector(rlTouchCancel:) forControlEvents:UIControlEventTouchUpInside];
     [btn addTarget:self action:@selector(rlTouchCancel:) forControlEvents:UIControlEventTouchUpOutside];
     
+}
+
+- (MGSwipeButton *)makeButtonWithTitle: (NSString *)title {
+    MGSwipeButton *btn = [MGSwipeButton buttonWithTitle: title
+                                                   icon: nil
+                                        backgroundColor: [UIColor blackColor]];
+    CGFloat offset = 5;
+    UIView *bg = [[UIView alloc] init];
+    bg.translatesAutoresizingMaskIntoConstraints = NO;
+    bg.backgroundColor = [UIColor whiteColor];
+    [btn addSubview: bg];
+    [bg.bottomAnchor constraintEqualToAnchor: btn.bottomAnchor].active = YES;
+    [bg.leftAnchor constraintEqualToAnchor: btn.leftAnchor].active = YES;
+    [bg.rightAnchor constraintEqualToAnchor: btn.rightAnchor].active = YES;
+    [bg.heightAnchor constraintEqualToConstant: offset].active = YES;
+
+    return btn;
 }
 
 -(void)setChannelBase:(SAChannelBase *)channelBase {
@@ -270,13 +290,14 @@
                 case SUPLA_CHANNELFNC_POWERSWITCH:
                 case SUPLA_CHANNELFNC_LIGHTSWITCH:
                 case SUPLA_CHANNELFNC_STAIRCASETIMER:
-                    br = [MGSwipeButton buttonWithTitle:NSLocalizedString(@"On", nil) icon:nil backgroundColor:[UIColor blackColor]];
-                    bl = [MGSwipeButton buttonWithTitle:NSLocalizedString(@"Off", nil) icon:nil backgroundColor:[UIColor blackColor]];
+                {
+                    br = [self makeButtonWithTitle: NSLocalizedString(@"On", nil)];
+                    bl = [self makeButtonWithTitle: NSLocalizedString(@"Off", nil)];
                     
                     if (_measurementSubChannel) {
                         [self.measuredValue setText:[[channelBase attrStringValue] string]];
                     }
-                    
+                }
                     break;
                 case SUPLA_CHANNELFNC_VALVE_OPENCLOSE:
                     br = [MGSwipeButton buttonWithTitle:NSLocalizedString(@"Open", nil) icon:nil backgroundColor:[UIColor blackColor]];
@@ -437,5 +458,18 @@
 - (CGFloat)iconScaleFactor {
     CGFloat channelScale = [Config new].channelHeightFactor;
     return MIN(1.0, channelScale);
+}
+
+
+-(void)panHandler: (UIPanGestureRecognizer *)gesture {
+    [super panHandler: gesture];
+    
+    if((gesture.state == UIGestureRecognizerStateEnded ||
+       gesture.state == UIGestureRecognizerStateCancelled) &&
+       [self.delegate respondsToSelector: @selector(swipeTableCell:didChangeSwipeState:gestureIsActive:)]) {
+       [self.delegate swipeTableCell: self
+                 didChangeSwipeState: self.swipeState
+                     gestureIsActive: NO];
+    }
 }
 @end
