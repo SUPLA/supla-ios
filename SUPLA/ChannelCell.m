@@ -403,7 +403,8 @@
 
 - (IBAction)rlTouchCancel:(id)sender {
     [sender setBackgroundColor: [UIColor onLine] withDelay:0.2];
-    [self resetButtonState];
+    if([[Config alloc] init].autohideButtons)
+        [self resetButtonState];
 }
 
 - (void)hideSwipeMaybe {
