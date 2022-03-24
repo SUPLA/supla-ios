@@ -40,6 +40,8 @@
 #import "supla-client.h"
 #import "SUPLA-Swift.h"
 
+#define MINIMUM_WAITING_TIME_SEC 2
+
 @interface SASuplaClient ()
 - (void) onVersionError:(SAVersionError*)ve;
 - (void) onConnected;
@@ -353,6 +355,7 @@ void sasuplaclient_on_zwave_set_wake_up_time_result(void *_suplaclient,
     int _tokenRequestTime;
     BOOL _superuserAuthorized;
     NSString *_oneTimePassword;
+    NSDate *_connectingStatusLastTime;
 }
 
 @synthesize delegate;
@@ -542,6 +545,8 @@ void sasuplaclient_on_zwave_set_wake_up_time_result(void *_suplaclient,
                 _superuserAuthorized = NO;
             }
             
+            _connectingStatusLastTime = [NSDate now];
+            
             [self onConnecting];
             BOOL DataChanged = NO;
             
@@ -578,14 +583,13 @@ void sasuplaclient_on_zwave_set_wake_up_time_result(void *_suplaclient,
                         while ( [self isCancelled] == NO
                                && supla_client_iterate(_sclient, 100000) == 1) {
                         }
-                        
-                        if ( [self isCancelled] == NO ) {
-                            usleep(5000000);
-                        }
                     }
                     
                     if ( [self isCancelled] == NO ) {
-                        usleep(2000000);
+                        double timeDiff = [_connectingStatusLastTime timeIntervalSinceNow] * -1;
+                        if ( timeDiff < MINIMUM_WAITING_TIME_SEC) {
+                            usleep((MINIMUM_WAITING_TIME_SEC - timeDiff)   * 1000000);
+                        }
                     }
                 }
                 @catch (NSException *exception) {
