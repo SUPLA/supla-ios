@@ -412,7 +412,9 @@
     NSFetchedResultsController *frc = [self frcForTableView:tableView];
     if ( frc ) {
         id <NSFetchedResultsSectionInfo> sectionInfo = [[frc sections] objectAtIndex:section];
-        _SALocation *location = [self locationByName:sectionInfo.name];
+        NSRange r = [sectionInfo.name rangeOfString:@":"];
+        NSString *name = [sectionInfo.name substringFromIndex: r.location + 1];
+        _SALocation *location = [self locationByName:name];
         if (location != nil
             && (location.collapsed & [self bitFlagCollapse]) > 0) {
             return 0;
