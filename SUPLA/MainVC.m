@@ -67,6 +67,8 @@
     BOOL _dataRefreshEnabled;
     BOOL _dataRefreshPending;
     NSMutableDictionary<NSIndexPath*, NSNumber*> *_savedButtonStates;
+    
+    NSTimer *_endGestureHook;
 }
 
 - (void)registerNibForTableView:(UITableView*)tv {
@@ -652,13 +654,25 @@
 -(void) swipeTableCell:(MGSwipeTableCell*) cell
    didChangeSwipeState:(MGSwipeState) state
        gestureIsActive:(BOOL) gestureIsActive {
-    _dataRefreshEnabled = !gestureIsActive;
+    [_endGestureHook invalidate];
+    if(gestureIsActive) {
+        _endGestureHook = nil;
+        _dataRefreshEnabled = NO;
+    } else {
+        _endGestureHook = [NSTimer scheduledTimerWithTimeInterval: 100
+                                                           target: self
+                                                         selector: @selector(deferredEnableRefresh:) userInfo: nil
+                                                          repeats: NO];
+    }
 
     if([cell isKindOfClass: [SAChannelCell class]] && !gestureIsActive) {
         if(state != MGSwipeStateNone) [_savedButtonStates removeAllObjects];
         _savedButtonStates[((SAChannelCell *)cell).currentIndexPath] = [NSNumber numberWithInt: state];
     }
-    
+}
+
+- (void)deferredEnableRefresh: timer {
+    _dataRefreshEnabled = YES;
     if(_dataRefreshEnabled && _dataRefreshPending) {
         [self onDataChanged];
     }
