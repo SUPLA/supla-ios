@@ -535,6 +535,10 @@
                 sf = 1.0;
             [self adjustFontSize: cstr.firstItem forScale: sf
                       identifier: cstr.identifier];
+        } else if([cstr.firstItem isKindOfClass: [UIImageView class]]) {
+            if(sf > 1.0 && cstr.firstAttribute == NSLayoutAttributeWidth) {
+                sf = 0.6;
+            }
         }
         cstr.constant = val * sf;
         if([cstr.firstItem isKindOfClass: [UIImageView class]]) {

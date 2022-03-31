@@ -22,10 +22,13 @@ class TemperaturePresenter: NSObject {
     
     private let _unit: TemperatureUnit
     private let _formatter: NumberFormatter
+    private let _displayUnit: Bool
     
     
-    init(temperatureUnit: TemperatureUnit, locale: Locale = Locale.current) {
+    init(temperatureUnit: TemperatureUnit, locale: Locale = Locale.current,
+         shouldDisplayUnit: Bool = true) {
         _unit = temperatureUnit
+        _displayUnit = shouldDisplayUnit
         _formatter = NumberFormatter()
         _formatter.decimalSeparator = locale.decimalSeparator
         _formatter.minimumFractionDigits = 1
@@ -47,8 +50,13 @@ class TemperaturePresenter: NSObject {
     @objc
     func stringRepresentation(_ value: Float) -> String {
         let cnv = NSNumber(value: converted(value))
-        return (_formatter.string(from: cnv) ?? "") + " " +
-            _unit.symbol
+        var out = (_formatter.string(from: cnv) ?? "")
+        if _displayUnit {
+            out += " " + _unit.symbol
+        } else {
+            out += " °"
+        }
+        return out
     }
 
     @objc
