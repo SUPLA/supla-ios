@@ -67,6 +67,8 @@
     BOOL _dataRefreshEnabled;
     BOOL _dataRefreshPending;
     NSMutableDictionary<NSIndexPath*, NSNumber*> *_savedButtonStates;
+    
+    NSTimer *_endGestureHook;
 }
 
 - (void)registerNibForTableView:(UITableView*)tv {
@@ -412,7 +414,9 @@
     NSFetchedResultsController *frc = [self frcForTableView:tableView];
     if ( frc ) {
         id <NSFetchedResultsSectionInfo> sectionInfo = [[frc sections] objectAtIndex:section];
-        _SALocation *location = [self locationByName:sectionInfo.name];
+        NSRange r = [sectionInfo.name rangeOfString:@":"];
+        NSString *name = [sectionInfo.name substringFromIndex: r.location + 1];
+        _SALocation *location = [self locationByName:name];
         if (location != nil
             && (location.collapsed & [self bitFlagCollapse]) > 0) {
             return 0;
@@ -533,6 +537,10 @@
                 sf = 1.0;
             [self adjustFontSize: cstr.firstItem forScale: sf
                       identifier: cstr.identifier];
+        } else if([cstr.firstItem isKindOfClass: [UIImageView class]]) {
+            if(sf > 1.0 && cstr.firstAttribute == NSLayoutAttributeWidth) {
+                sf = 0.6;
+            }
         }
         cstr.constant = val * sf;
         if([cstr.firstItem isKindOfClass: [UIImageView class]]) {
@@ -646,13 +654,25 @@
 -(void) swipeTableCell:(MGSwipeTableCell*) cell
    didChangeSwipeState:(MGSwipeState) state
        gestureIsActive:(BOOL) gestureIsActive {
-    _dataRefreshEnabled = !gestureIsActive;
+    [_endGestureHook invalidate];
+    if(gestureIsActive) {
+        _endGestureHook = nil;
+        _dataRefreshEnabled = NO;
+    } else {
+        _endGestureHook = [NSTimer scheduledTimerWithTimeInterval: 100
+                                                           target: self
+                                                         selector: @selector(deferredEnableRefresh:) userInfo: nil
+                                                          repeats: NO];
+    }
 
     if([cell isKindOfClass: [SAChannelCell class]] && !gestureIsActive) {
         if(state != MGSwipeStateNone) [_savedButtonStates removeAllObjects];
         _savedButtonStates[((SAChannelCell *)cell).currentIndexPath] = [NSNumber numberWithInt: state];
     }
-    
+}
+
+- (void)deferredEnableRefresh: timer {
+    _dataRefreshEnabled = YES;
     if(_dataRefreshEnabled && _dataRefreshPending) {
         [self onDataChanged];
     }
