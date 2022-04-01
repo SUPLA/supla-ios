@@ -659,7 +659,7 @@
         _endGestureHook = nil;
         _dataRefreshEnabled = NO;
     } else {
-        _endGestureHook = [NSTimer scheduledTimerWithTimeInterval: 100
+        _endGestureHook = [NSTimer scheduledTimerWithTimeInterval: 0.1
                                                            target: self
                                                          selector: @selector(deferredEnableRefresh:) userInfo: nil
                                                           repeats: NO];
