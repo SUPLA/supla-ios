@@ -374,8 +374,16 @@ NSString *kSAOnZWaveSetWakeUpTimeResult = @"KSA-N30";
 
 +(void) SuplaClientWaitForTerminate {
     
+    NSDate *deadline = [NSDate dateWithTimeIntervalSinceNow: 3];
+    
     while([[self instance] SuplaClientTerminate]) {
-        [[NSRunLoop currentRunLoop] runUntilDate:[NSDate date]];
+        @autoreleasepool {
+            NSDate *cDate = [NSDate date];
+            if([cDate earlierDate: deadline] == deadline)
+                break;
+            else
+                [[NSRunLoop currentRunLoop] runUntilDate: cDate];
+        }
     }
     
 }
