@@ -612,7 +612,6 @@
         self.showingDetails = NO;
     }
     
-    [self didChangeRowHeight:nil];
 }
 
 -(void)runDownloadTask {
