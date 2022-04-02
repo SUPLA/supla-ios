@@ -47,7 +47,7 @@
                             <constraint firstAttribute="width" constant="100" identifier="measurementImageWidth" id="Ivh-WB-vVk"/>
                         </constraints>
                     </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2 m" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="3tW-AA-z1X">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2 m" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3tW-AA-z1X">
                         <rect key="frame" x="170" y="16.5" width="100" height="50"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="50" identifier="measuredValueHeight" id="3Kf-m3-Ums"/>

@@ -526,20 +526,19 @@
 
     for(NSLayoutConstraint *cstr in cell.channelIconScalableConstraints) {
         CGFloat val, sf = scaleFactor;
-        if(_cellConstraintValues[cstr.identifier]) {
-            val = [_cellConstraintValues[cstr.identifier] floatValue];
+        NSString *cstrId = [identifier stringByAppendingString: cstr.identifier];
+        if(_cellConstraintValues[cstrId]) {
+            val = [_cellConstraintValues[cstrId] floatValue];
         } else {
             val = cstr.constant;
-            _cellConstraintValues[cstr.identifier] = [NSNumber numberWithFloat:val];
+            _cellConstraintValues[cstrId] = [NSNumber numberWithFloat:val];
         }
         if([cstr.firstItem isKindOfClass: [UILabel class]]) {
-            if(sf < 1.0)
-                sf = 1.0;
             [self adjustFontSize: cstr.firstItem forScale: sf
-                      identifier: cstr.identifier];
+                      identifier: cstrId];
         } else if([cstr.firstItem isKindOfClass: [UIImageView class]]) {
             if(sf > 1.0 && cstr.firstAttribute == NSLayoutAttributeWidth) {
-                sf = 0.6;
+                sf = 0.5;
             }
         }
         cstr.constant = val * sf;
@@ -555,7 +554,7 @@
 - (void)adjustFontSize: (UILabel *)itm forScale: (CGFloat)scale
             identifier: (NSString *)identifier {
     NSString *key = [identifier stringByAppendingString:@"FontSize"];
-    CGFloat origSize;
+    CGFloat origSize, minSize = 17;
     if(_cellConstraintValues[key]) {
         origSize = [_cellConstraintValues[key] floatValue];
     } else {
@@ -563,7 +562,7 @@
         _cellConstraintValues[key] = [NSNumber numberWithFloat: origSize];
     }
     
-    itm.font = [itm.font fontWithSize: origSize * scale];
+    itm.font = [itm.font fontWithSize: MAX(origSize * scale, minSize)];
 }
 
 
@@ -612,6 +611,8 @@
         [(SAMainView*)self.view detailDidHide];
         self.showingDetails = NO;
     }
+    
+    [self didChangeRowHeight:nil];
 }
 
 -(void)runDownloadTask {
@@ -715,11 +716,7 @@
    Calculate the "default" channel row height
 */
 - (CGFloat)computeChannelHeight {
-    NSIndexPath *ip = [NSIndexPath indexPathForRow: 0
-                                         inSection: 0];
-    UITableViewCell *cell = [self.cTableView
-                                cellForRowAtIndexPath: ip];
-    return cell.bounds.size.height;
+    return 103;
 }
 
 - (void)adjustChannelHeight: (BOOL)needsUpdateConstraints {
