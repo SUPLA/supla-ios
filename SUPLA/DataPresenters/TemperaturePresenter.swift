@@ -54,7 +54,7 @@ class TemperaturePresenter: NSObject {
         if _displayUnit {
             out += " " + _unit.symbol
         } else {
-            out += " °"
+            out += "°"
         }
         return out
     }

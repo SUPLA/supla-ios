@@ -110,8 +110,7 @@
                 <outlet property="temp" destination="eE4-A3-beA" id="n2U-ey-3dR"/>
                 <outletCollection property="channelIconScalableConstraints" destination="0DI-h7-cJu" id="HUy-nu-7tg"/>
                 <outletCollection property="channelIconScalableConstraints" destination="8YG-9b-7A2" id="Bs3-I1-h4z"/>
-                <outletCollection property="channelIconScalableConstraints" destination="uXu-T7-arQ" id="o1P-J5-4C1"/>
-                <outletCollection property="channelIconScalableConstraints" destination="zsy-ee-9pa" id="OZf-o7-4Vo"/>
+                <outletCollection property="channelIconScalableConstraints" destination="zsy-ee-9pa" id="vfI-uF-kvy"/>
             </connections>
             <point key="canvasLocation" x="39" y="-92.5"/>
         </tableViewCell>

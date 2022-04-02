@@ -54,7 +54,7 @@
                             <constraint firstAttribute="width" constant="50" identifier="tempHumidity2Width" id="r8x-Sn-gf8"/>
                         </constraints>
                     </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="22.0°" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="15" translatesAutoresizingMaskIntoConstraints="NO" id="NRR-0X-1Zb">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="22.0°" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NRR-0X-1Zb">
                         <rect key="frame" x="95" y="16.5" width="70" height="50"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="50" identifier="tempTextHeight" id="OmO-qR-u9U"/>
@@ -63,7 +63,7 @@
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="36.4" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="15" translatesAutoresizingMaskIntoConstraints="NO" id="lPY-xq-yar">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="36.4" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lPY-xq-yar">
                         <rect key="frame" x="249" y="16.5" width="57.5" height="50"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="50" identifier="humidityTextHeight" id="z1Q-iF-xlY"/>
@@ -134,7 +134,6 @@
                 <outletCollection property="channelIconScalableConstraints" destination="r8x-Sn-gf8" id="0kH-jL-OTg"/>
                 <outletCollection property="channelIconScalableConstraints" destination="WeJ-Ji-JPF" id="WIp-OL-DtM"/>
                 <outletCollection property="channelIconScalableConstraints" destination="up8-Ib-kLF" id="2DF-co-V5S"/>
-                <outletCollection property="channelIconScalableConstraints" destination="Yd6-wd-Rxw" id="DRR-29-6j3"/>
                 <outletCollection property="channelIconScalableConstraints" destination="OmO-qR-u9U" id="TjV-uQ-e67"/>
                 <outletCollection property="channelIconScalableConstraints" destination="z1Q-iF-xlY" id="Zo4-fg-WFZ"/>
             </connections>

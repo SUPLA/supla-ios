@@ -812,8 +812,12 @@
     TemperaturePresenter *pres = [self temperaturePresenter];
     NSNumberFormatter *nfmt = [[NSNumberFormatter alloc] init],
         *n2fmt = [[NSNumberFormatter alloc] init];
+    nfmt.minimumIntegerDigits = 1;
     nfmt.maximumFractionDigits = 1;
+    nfmt.minimumFractionDigits = 1;
+    n2fmt.minimumIntegerDigits = 1;
     n2fmt.maximumFractionDigits = 2;
+    n2fmt.minimumFractionDigits = 1;
     switch (self.func) {
         case SUPLA_CHANNELFNC_THERMOMETER:
             result = [self isOnline] && self.temperatureValue > -273 ? [pres stringRepresentation: self.temperatureValue] : @"----°";
