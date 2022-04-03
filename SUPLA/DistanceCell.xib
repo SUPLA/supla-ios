@@ -89,7 +89,6 @@
                 <outletCollection property="channelIconScalableConstraints" destination="Vhj-kf-kd6" id="RgT-Qu-SVs"/>
                 <outletCollection property="channelIconScalableConstraints" destination="dz6-qs-T4X" id="wbH-ik-Rzh"/>
                 <outletCollection property="channelIconScalableConstraints" destination="wcA-i3-OkP" id="kUd-bf-kOG"/>
-                <outletCollection property="channelIconScalableConstraints" destination="GWm-e0-3qZ" id="AWe-C3-MFp"/>
                 <outletCollection property="channelIconScalableConstraints" destination="kbB-rP-hBb" id="xI6-vb-OBF"/>
             </connections>
             <point key="canvasLocation" x="39" y="-92.5"/>
