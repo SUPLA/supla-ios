@@ -62,7 +62,7 @@
                             <constraint firstAttribute="height" constant="50" identifier="electriciyMeasuredHeight" id="EZw-wp-U1n"/>
                             <constraint firstAttribute="width" constant="120" id="mkO-wn-0vi"/>
                         </constraints>
-                        <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="29"/>
+                        <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="18"/>
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
                     </label>

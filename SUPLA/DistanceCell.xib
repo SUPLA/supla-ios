@@ -53,7 +53,7 @@
                             <constraint firstAttribute="width" constant="120" id="TEQ-QT-0rS"/>
                             <constraint firstAttribute="height" constant="20" identifier="distanceValueHeight" id="wcA-i3-OkP"/>
                         </constraints>
-                        <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="29"/>
+                        <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="22"/>
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
