@@ -120,7 +120,6 @@
                 <outlet property="right_OnlineStatus" destination="ilZ-Cd-uym" id="N22-Fi-pEQ"/>
                 <outletCollection property="channelIconScalableConstraints" destination="Jaa-6a-oMJ" id="sFX-cJ-pWr"/>
                 <outletCollection property="channelIconScalableConstraints" destination="XDd-eb-8ai" id="WSx-GP-0O4"/>
-                <outletCollection property="channelIconScalableConstraints" destination="sla-7c-lp6" id="hKZ-Bl-cAr"/>
             </connections>
             <point key="canvasLocation" x="169.56521739130437" y="-100.78125"/>
         </tableViewCell>

@@ -60,9 +60,9 @@
                         <rect key="frame" x="175" y="16.5" width="120" height="50"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="50" identifier="electriciyMeasuredHeight" id="EZw-wp-U1n"/>
-                            <constraint firstAttribute="width" constant="120" id="mkO-wn-0vi"/>
+                            <constraint firstAttribute="width" constant="120" identifier="measurementValueWidth" id="mkO-wn-0vi"/>
                         </constraints>
-                        <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="29"/>
+                        <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="18"/>
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
@@ -124,6 +124,7 @@
                 <outletCollection property="channelIconScalableConstraints" destination="K58-bK-zei" id="l6l-rP-6Be"/>
                 <outletCollection property="channelIconScalableConstraints" destination="2ln-8R-upt" id="F8F-qb-Ww0"/>
                 <outletCollection property="channelIconScalableConstraints" destination="EZw-wp-U1n" id="v3b-Io-tuS"/>
+                <outletCollection property="channelIconScalableConstraints" destination="mkO-wn-0vi" id="xK1-ma-2nD"/>
             </connections>
             <point key="canvasLocation" x="336" y="-102"/>
         </tableViewCell>

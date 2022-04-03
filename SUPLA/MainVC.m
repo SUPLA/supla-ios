@@ -562,7 +562,7 @@
         _cellConstraintValues[key] = [NSNumber numberWithFloat: origSize];
     }
     
-    itm.font = [itm.font fontWithSize: MAX(origSize * scale, minSize)];
+    itm.font = [itm.font fontWithSize: MAX(0.8 * origSize * scale, minSize)];
 }
 
 

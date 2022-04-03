@@ -53,7 +53,7 @@
                             <constraint firstAttribute="width" constant="120" id="TEQ-QT-0rS"/>
                             <constraint firstAttribute="height" constant="20" identifier="distanceValueHeight" id="wcA-i3-OkP"/>
                         </constraints>
-                        <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="29"/>
+                        <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="22"/>
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
@@ -89,7 +89,6 @@
                 <outletCollection property="channelIconScalableConstraints" destination="Vhj-kf-kd6" id="RgT-Qu-SVs"/>
                 <outletCollection property="channelIconScalableConstraints" destination="dz6-qs-T4X" id="wbH-ik-Rzh"/>
                 <outletCollection property="channelIconScalableConstraints" destination="wcA-i3-OkP" id="kUd-bf-kOG"/>
-                <outletCollection property="channelIconScalableConstraints" destination="GWm-e0-3qZ" id="AWe-C3-MFp"/>
                 <outletCollection property="channelIconScalableConstraints" destination="kbB-rP-hBb" id="xI6-vb-OBF"/>
             </connections>
             <point key="canvasLocation" x="39" y="-92.5"/>
