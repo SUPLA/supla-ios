@@ -49,23 +49,46 @@
                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="20" id="S8G-Ht-9Ud"/>
                         </constraints>
                     </view>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="electricitymeter.png" translatesAutoresizingMaskIntoConstraints="NO" id="jqp-Ie-Ob9">
-                        <rect key="frame" x="105" y="16.5" width="70" height="50"/>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ocx-Jp-kEb">
+                        <rect key="frame" x="96" y="0.0" width="189" height="71.5"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PJB-iW-sQE">
+                                <rect key="frame" x="-0.5" y="11" width="190" height="50"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00,00 kWh" lineBreakMode="wordWrap" numberOfLines="2" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mPI-lf-fIE" userLabel="MeasurementValue">
+                                        <rect key="frame" x="70" y="0.0" width="87.5" height="50"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="50" identifier="electriciyMeasuredHeight" id="EZw-wp-U1n"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="18"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="electricitymeter.png" translatesAutoresizingMaskIntoConstraints="NO" id="jqp-Ie-Ob9">
+                                        <rect key="frame" x="0.0" y="0.0" width="70" height="50"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="50" identifier="electricityImageHeight" id="2ln-8R-upt"/>
+                                            <constraint firstAttribute="width" constant="70" identifier="electricityImageWidth" id="K58-bK-zei"/>
+                                        </constraints>
+                                    </imageView>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="jqp-Ie-Ob9" firstAttribute="leading" secondItem="PJB-iW-sQE" secondAttribute="leading" id="BUO-Zc-dTZ"/>
+                                    <constraint firstItem="mPI-lf-fIE" firstAttribute="leading" secondItem="jqp-Ie-Ob9" secondAttribute="trailing" id="Nz6-L6-ZyZ"/>
+                                    <constraint firstItem="mPI-lf-fIE" firstAttribute="centerY" secondItem="jqp-Ie-Ob9" secondAttribute="centerY" id="RTr-8e-iQE"/>
+                                    <constraint firstAttribute="trailing" secondItem="mPI-lf-fIE" secondAttribute="trailing" constant="32.5" id="TGC-46-jH3"/>
+                                    <constraint firstAttribute="bottom" secondItem="jqp-Ie-Ob9" secondAttribute="bottom" id="vOe-4h-TkE"/>
+                                    <constraint firstItem="jqp-Ie-Ob9" firstAttribute="top" secondItem="PJB-iW-sQE" secondAttribute="top" id="vlA-NT-nUK"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="50" identifier="electricityImageHeight" id="2ln-8R-upt"/>
-                            <constraint firstAttribute="width" constant="70" identifier="electricityImageWidth" id="K58-bK-zei"/>
+                            <constraint firstItem="PJB-iW-sQE" firstAttribute="centerY" secondItem="Ocx-Jp-kEb" secondAttribute="centerY" id="430-5j-QR3"/>
+                            <constraint firstItem="PJB-iW-sQE" firstAttribute="centerX" secondItem="Ocx-Jp-kEb" secondAttribute="centerX" id="xUF-Ca-vDa"/>
                         </constraints>
-                    </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00,00 kWh" lineBreakMode="wordWrap" numberOfLines="2" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mPI-lf-fIE" userLabel="MeasurementValue">
-                        <rect key="frame" x="175" y="16.5" width="120" height="50"/>
-                        <constraints>
-                            <constraint firstAttribute="height" constant="50" identifier="electriciyMeasuredHeight" id="EZw-wp-U1n"/>
-                            <constraint firstAttribute="width" constant="120" identifier="measurementValueWidth" id="mkO-wn-0vi"/>
-                        </constraints>
-                        <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="18"/>
-                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <nil key="highlightedColor"/>
-                    </label>
+                    </view>
                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="channelstateinfo.png" translatesAutoresizingMaskIntoConstraints="NO" id="YC7-Ml-y7x">
                         <rect key="frame" x="51" y="36.5" width="45" height="30"/>
                         <constraints>
@@ -92,24 +115,24 @@
                 </subviews>
                 <color key="backgroundColor" red="0.97647058819999999" green="0.98039215690000003" blue="0.98431372549999996" alpha="1" colorSpace="calibratedRGB"/>
                 <constraints>
+                    <constraint firstItem="C5z-HN-1vC" firstAttribute="top" secondItem="Ocx-Jp-kEb" secondAttribute="bottom" id="5VJ-In-Xls"/>
                     <constraint firstItem="y66-SI-rXq" firstAttribute="leading" secondItem="k1r-Vp-z4T" secondAttribute="leadingMargin" constant="-10" id="5bw-sG-c8c"/>
+                    <constraint firstItem="Ocx-Jp-kEb" firstAttribute="top" secondItem="k1r-Vp-z4T" secondAttribute="top" id="6lW-rE-iWZ"/>
                     <constraint firstItem="YC7-Ml-y7x" firstAttribute="leading" secondItem="k1r-Vp-z4T" secondAttribute="leading" constant="51" id="7Bt-RR-U67"/>
-                    <constraint firstItem="jqp-Ie-Ob9" firstAttribute="centerX" secondItem="k1r-Vp-z4T" secondAttribute="centerX" constant="-50" id="8DE-n5-qI9"/>
                     <constraint firstItem="3Wu-a5-aQL" firstAttribute="leading" secondItem="k1r-Vp-z4T" secondAttribute="leading" constant="27" id="9U6-qC-5pa"/>
-                    <constraint firstItem="mPI-lf-fIE" firstAttribute="leading" secondItem="jqp-Ie-Ob9" secondAttribute="trailing" id="A9N-65-TFS"/>
                     <constraint firstItem="C5z-HN-1vC" firstAttribute="leading" secondItem="k1r-Vp-z4T" secondAttribute="leadingMargin" constant="10" id="BAQ-OV-5SR"/>
                     <constraint firstAttribute="trailingMargin" secondItem="C5z-HN-1vC" secondAttribute="trailing" constant="10" id="OpW-cJ-sgU"/>
                     <constraint firstItem="y66-SI-rXq" firstAttribute="trailing" secondItem="k1r-Vp-z4T" secondAttribute="trailingMargin" constant="10" id="Pp4-SV-3Yp"/>
                     <constraint firstAttribute="trailingMargin" secondItem="E2X-NK-oTg" secondAttribute="trailing" constant="10" id="Wgf-Wm-ks1"/>
                     <constraint firstItem="Wav-Kb-AAg" firstAttribute="centerY" secondItem="k1r-Vp-z4T" secondAttribute="centerY" id="Yal-RF-AKW"/>
                     <constraint firstItem="E2X-NK-oTg" firstAttribute="centerY" secondItem="k1r-Vp-z4T" secondAttribute="centerY" id="dgI-j2-nSV"/>
-                    <constraint firstItem="jqp-Ie-Ob9" firstAttribute="centerY" secondItem="k1r-Vp-z4T" secondAttribute="centerY" constant="-10" id="dtT-ap-law"/>
-                    <constraint firstItem="C5z-HN-1vC" firstAttribute="top" secondItem="jqp-Ie-Ob9" secondAttribute="bottom" constant="5" id="ewe-7a-UAo"/>
-                    <constraint firstItem="mPI-lf-fIE" firstAttribute="centerY" secondItem="k1r-Vp-z4T" secondAttribute="centerY" constant="-10" id="jfG-ab-lgN"/>
+                    <constraint firstItem="Ocx-Jp-kEb" firstAttribute="leading" secondItem="YC7-Ml-y7x" secondAttribute="trailing" id="fOG-qz-bJB"/>
                     <constraint firstItem="E2X-NK-oTg" firstAttribute="leading" secondItem="Wav-Kb-AAg" secondAttribute="trailing" constant="25" id="kI9-Q7-gNc"/>
                     <constraint firstItem="3Wu-a5-aQL" firstAttribute="centerY" secondItem="k1r-Vp-z4T" secondAttribute="centerY" id="kmp-lS-CDE"/>
                     <constraint firstItem="YC7-Ml-y7x" firstAttribute="centerY" secondItem="k1r-Vp-z4T" secondAttribute="centerY" id="nuS-4c-DSr"/>
+                    <constraint firstAttribute="bottom" secondItem="C5z-HN-1vC" secondAttribute="bottom" constant="9" identifier="captionToBottom" id="qPL-Jb-xyl"/>
                     <constraint firstAttribute="bottomMargin" secondItem="y66-SI-rXq" secondAttribute="bottom" constant="-8" id="rgt-Bg-rKE"/>
+                    <constraint firstItem="Wav-Kb-AAg" firstAttribute="leading" secondItem="Ocx-Jp-kEb" secondAttribute="trailing" id="rqP-Rg-qj4"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
@@ -124,7 +147,7 @@
                 <outletCollection property="channelIconScalableConstraints" destination="K58-bK-zei" id="l6l-rP-6Be"/>
                 <outletCollection property="channelIconScalableConstraints" destination="2ln-8R-upt" id="F8F-qb-Ww0"/>
                 <outletCollection property="channelIconScalableConstraints" destination="EZw-wp-U1n" id="v3b-Io-tuS"/>
-                <outletCollection property="channelIconScalableConstraints" destination="mkO-wn-0vi" id="xK1-ma-2nD"/>
+                <outletCollection property="channelIconScalableConstraints" destination="qPL-Jb-xyl" id="pgt-pA-p0d"/>
             </connections>
             <point key="canvasLocation" x="336" y="-102"/>
         </tableViewCell>
