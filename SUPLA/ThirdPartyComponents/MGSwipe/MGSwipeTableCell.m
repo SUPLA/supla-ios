@@ -647,7 +647,7 @@ static inline CGFloat mgEaseInOutBounce(CGFloat t, CGFloat b, CGFloat c) {
         CGSize prevSize = _swipeView.bounds.size;
         _swipeOverlay.frame = CGRectMake(0, 0, self.bounds.size.width, self.contentView.bounds.size.height);
         if (_swipeView.image &&
-            ![self size: prevSize equalTo: _swipeOverlay.bounds.size tolerance: 0.0001]) {
+            ![self size: prevSize equalTo: _swipeOverlay.bounds.size tolerance: 0.5]) {
             //refresh contentView in situations like layout change, orientation chage, table resize, etc.
             [self refreshContentView];
         }
