@@ -27,7 +27,7 @@
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Electricity meter" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="C5z-HN-1vC">
                         <rect key="frame" x="30" y="71.5" width="320" height="22.5"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="22.5" id="RXV-1G-Kb4"/>
+                            <constraint firstAttribute="height" constant="22.5" identifier="captionHeight" id="RXV-1G-Kb4"/>
                         </constraints>
                         <fontDescription key="fontDescription" name="OpenSans-Bold" family="Open Sans" pointSize="12"/>
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -53,14 +53,14 @@
                         <rect key="frame" x="96" y="0.0" width="189" height="71.5"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PJB-iW-sQE">
-                                <rect key="frame" x="-0.5" y="11" width="190" height="50"/>
+                                <rect key="frame" x="6" y="11" width="177" height="50"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00,00 kWh" lineBreakMode="wordWrap" numberOfLines="2" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mPI-lf-fIE" userLabel="MeasurementValue">
-                                        <rect key="frame" x="70" y="0.0" width="87.5" height="50"/>
+                                        <rect key="frame" x="70" y="0.0" width="107" height="50"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50" identifier="electriciyMeasuredHeight" id="EZw-wp-U1n"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="18"/>
+                                        <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="22"/>
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
@@ -77,7 +77,7 @@
                                     <constraint firstItem="jqp-Ie-Ob9" firstAttribute="leading" secondItem="PJB-iW-sQE" secondAttribute="leading" id="BUO-Zc-dTZ"/>
                                     <constraint firstItem="mPI-lf-fIE" firstAttribute="leading" secondItem="jqp-Ie-Ob9" secondAttribute="trailing" id="Nz6-L6-ZyZ"/>
                                     <constraint firstItem="mPI-lf-fIE" firstAttribute="centerY" secondItem="jqp-Ie-Ob9" secondAttribute="centerY" id="RTr-8e-iQE"/>
-                                    <constraint firstAttribute="trailing" secondItem="mPI-lf-fIE" secondAttribute="trailing" constant="32.5" id="TGC-46-jH3"/>
+                                    <constraint firstAttribute="trailing" secondItem="mPI-lf-fIE" secondAttribute="trailing" id="TGC-46-jH3"/>
                                     <constraint firstAttribute="bottom" secondItem="jqp-Ie-Ob9" secondAttribute="bottom" id="vOe-4h-TkE"/>
                                     <constraint firstItem="jqp-Ie-Ob9" firstAttribute="top" secondItem="PJB-iW-sQE" secondAttribute="top" id="vlA-NT-nUK"/>
                                 </constraints>
@@ -144,10 +144,11 @@
                 <outlet property="left_OnlineStatus" destination="3Wu-a5-aQL" id="BhX-yO-fqw"/>
                 <outlet property="measuredValue" destination="mPI-lf-fIE" id="9RR-Dg-riq"/>
                 <outlet property="right_OnlineStatus" destination="E2X-NK-oTg" id="Wqo-n6-Hzu"/>
-                <outletCollection property="channelIconScalableConstraints" destination="K58-bK-zei" id="l6l-rP-6Be"/>
-                <outletCollection property="channelIconScalableConstraints" destination="2ln-8R-upt" id="F8F-qb-Ww0"/>
                 <outletCollection property="channelIconScalableConstraints" destination="EZw-wp-U1n" id="v3b-Io-tuS"/>
                 <outletCollection property="channelIconScalableConstraints" destination="qPL-Jb-xyl" id="pgt-pA-p0d"/>
+                <outletCollection property="channelIconScalableConstraints" destination="RXV-1G-Kb4" id="nvH-hj-hcf"/>
+                <outletCollection property="channelIconScalableConstraints" destination="K58-bK-zei" id="0QD-r8-0hZ"/>
+                <outletCollection property="channelIconScalableConstraints" destination="2ln-8R-upt" id="k6e-ge-BBs"/>
             </connections>
             <point key="canvasLocation" x="336" y="-102"/>
         </tableViewCell>

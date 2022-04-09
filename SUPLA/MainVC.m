@@ -136,7 +136,9 @@
 }
 
 - (void)didChangeRowHeight: notification {
+    NSLog(@"\n\n\n\n ====== DID CHANGE ROW HEIGHT =======\n\n\n\n");
     _shouldUpdateRowHeight = YES;
+    //    _cellConstraintValues = [NSMutableDictionary new];
     [self adjustChannelHeight: YES];
 }
 
@@ -523,7 +525,6 @@
     cell.channelBase = channel_base;
     cell.captionEditable = tableView == self.cTableView;
     CGFloat scaleFactor = _heightScaleFactor;
-
     for(NSLayoutConstraint *cstr in cell.channelIconScalableConstraints) {
         CGFloat val, sf = scaleFactor;
         NSString *cstrId = [identifier stringByAppendingString: cstr.identifier];
@@ -531,16 +532,24 @@
             val = [_cellConstraintValues[cstrId] floatValue];
         } else {
             val = cstr.constant;
+            if(sf < 0.7) val /= sf; // Correct initial lower scale got from autoresize
             _cellConstraintValues[cstrId] = [NSNumber numberWithFloat:val];
         }
-        if([cstr.firstItem isKindOfClass: [UILabel class]]) {
-            [self adjustFontSize: cstr.firstItem forScale: sf
-                      identifier: cstrId];
-        } else if([cstr.firstItem isKindOfClass: [UIImageView class]]) {
-            if(sf > 1.0 && cstr.firstAttribute == NSLayoutAttributeWidth) {
-                sf = 0.5;
+        if([cstr.firstItem isKindOfClass: [UILabel class]] ||
+           [cstr.secondItem isKindOfClass: [UILabel class]]) {
+            id lbl = [cstr.firstItem isKindOfClass: [UILabel class]]?cstr.firstItem:cstr.secondItem;
+            CGFloat tfs = sf;
+            if(lbl == cell.caption) {
+                if(tfs < 1.0) tfs = 1.0;
             }
+            [self adjustFontSize: lbl forScale: tfs
+                       isCaption: lbl == cell.caption];
         }
+
+        if([cstr.identifier isEqualToString: @"captionToBottom"]) {
+            val = 9;
+        }
+        
         cstr.constant = val * sf;
         if([cstr.firstItem isKindOfClass: [UIImageView class]]) {
             [cstr.firstItem setNeedsDisplay];
@@ -552,17 +561,15 @@
 }
 
 - (void)adjustFontSize: (UILabel *)itm forScale: (CGFloat)scale
-            identifier: (NSString *)identifier {
-    NSString *key = [identifier stringByAppendingString:@"FontSize"];
-    CGFloat origSize, minSize = 17;
-    if(_cellConstraintValues[key]) {
-        origSize = [_cellConstraintValues[key] floatValue];
-    } else {
-        origSize = itm.font.pointSize;
-        _cellConstraintValues[key] = [NSNumber numberWithFloat: origSize];
+             isCaption: (BOOL)isCaption {
+    CGFloat origSize, minSize = 12;
+    if(isCaption)
+        origSize = 12;
+    else {
+        origSize = 22;
+        if(scale < 1.0) scale = 1.0;
     }
-    
-    itm.font = [itm.font fontWithSize: MAX(0.8 * origSize * scale, minSize)];
+    itm.font = [itm.font fontWithSize: MAX(origSize * scale, minSize)];
 }
 
 

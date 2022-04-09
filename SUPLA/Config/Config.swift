@@ -45,7 +45,7 @@ class Config: NSObject {
     var currentTemperaturePresenter: TemperaturePresenter {
         return TemperaturePresenter(temperatureUnit: temperatureUnit,
                                     locale: .autoupdatingCurrent,
-                                    shouldDisplayUnit: channelHeight != .height150)
+                                    shouldDisplayUnit: true)
     }
     
     /**

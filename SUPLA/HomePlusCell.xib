@@ -22,7 +22,7 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Home+ Heater" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3Jq-KF-Od9">
-                        <rect key="frame" x="30" y="71.5" width="320" height="22"/>
+                        <rect key="frame" x="30" y="72" width="320" height="22"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="22" identifier="homePlusCaptionHeight" id="JCs-C6-flk"/>
                         </constraints>
@@ -90,9 +90,9 @@
                 <color key="backgroundColor" red="0.97647058819999999" green="0.98039215690000003" blue="0.98431372549999996" alpha="1" colorSpace="calibratedRGB"/>
                 <constraints>
                     <constraint firstAttribute="trailingMargin" secondItem="0d0-zV-fRA" secondAttribute="trailing" constant="10" id="3Yb-gy-Ci1"/>
-                    <constraint firstItem="3Jq-KF-Od9" firstAttribute="top" secondItem="6oE-p1-nIz" secondAttribute="bottom" constant="5" id="9ci-DC-wdw"/>
                     <constraint firstAttribute="trailingMargin" secondItem="3Jq-KF-Od9" secondAttribute="trailing" constant="10" id="AJK-wC-8BK"/>
                     <constraint firstItem="6oE-p1-nIz" firstAttribute="centerY" secondItem="Z8a-om-NNe" secondAttribute="centerY" constant="-10" id="CN1-by-KQ8"/>
+                    <constraint firstAttribute="bottom" secondItem="3Jq-KF-Od9" secondAttribute="bottom" constant="9" identifier="captionToBottom" id="MKM-oS-fKL"/>
                     <constraint firstItem="0d0-zV-fRA" firstAttribute="centerY" secondItem="Z8a-om-NNe" secondAttribute="centerY" id="Xta-Jm-Wsy"/>
                     <constraint firstItem="0d0-zV-fRA" firstAttribute="leading" secondItem="aOx-uI-Ya8" secondAttribute="trailing" id="Y31-pg-J7n"/>
                     <constraint firstItem="xjz-Yd-8SH" firstAttribute="trailing" secondItem="Z8a-om-NNe" secondAttribute="trailingMargin" constant="10" id="YQD-7E-15T"/>
@@ -118,6 +118,8 @@
                 <outletCollection property="channelIconScalableConstraints" destination="dax-4Y-2w1" id="bcb-gd-Brm"/>
                 <outletCollection property="channelIconScalableConstraints" destination="JCs-C6-flk" id="ToB-fh-8Jz"/>
                 <outletCollection property="channelIconScalableConstraints" destination="RwR-98-Kj3" id="Kal-8I-urp"/>
+                <outletCollection property="channelIconScalableConstraints" destination="MKM-oS-fKL" id="SVN-52-gyZ"/>
+                <outletCollection property="channelIconScalableConstraints" destination="3Jq-KF-Od9" id="uXQ-1U-bns"/>
             </connections>
             <point key="canvasLocation" x="334.78260869565219" y="-102.12053571428571"/>
         </tableViewCell>
