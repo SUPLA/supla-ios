@@ -34,7 +34,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Dzo-zV-GaU" userLabel="bottomLine">
-                        <rect key="frame" x="10" y="94" width="360" height="1"/>
+                        <rect key="frame" x="8" y="98" width="364" height="1"/>
                         <color key="backgroundColor" red="0.66666666669999997" green="0.66666666669999997" blue="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="1" id="ubS-cP-ezU"/>
@@ -68,14 +68,14 @@
                 <color key="backgroundColor" red="0.98039215690000003" green="0.98431372549999996" blue="0.98823529409999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                 <constraints>
                     <constraint firstItem="VE7-P5-rn1" firstAttribute="centerX" secondItem="eGS-IB-2q0" secondAttribute="centerX" id="4Di-N5-uyo"/>
-                    <constraint firstAttribute="bottom" secondItem="Dzo-zV-GaU" secondAttribute="bottom" constant="8" id="6Jy-5x-ll0"/>
+                    <constraint firstAttribute="bottom" secondItem="Dzo-zV-GaU" secondAttribute="bottom" constant="4" id="6Jy-5x-ll0"/>
                     <constraint firstAttribute="trailing" secondItem="dxU-XW-HyC" secondAttribute="trailing" constant="10" id="EBv-zS-LrV"/>
-                    <constraint firstAttribute="trailing" secondItem="Dzo-zV-GaU" secondAttribute="trailing" constant="10" id="Q3z-yl-6yV"/>
+                    <constraint firstAttribute="trailing" secondItem="Dzo-zV-GaU" secondAttribute="trailing" constant="8" id="Q3z-yl-6yV"/>
+                    <constraint firstAttribute="bottom" secondItem="dxU-XW-HyC" secondAttribute="bottom" constant="9" identifier="captionToBottom" id="X3i-cN-3tn"/>
                     <constraint firstItem="rRR-pT-wyW" firstAttribute="centerX" secondItem="eGS-IB-2q0" secondAttribute="centerX" id="YYo-vL-eqp"/>
                     <constraint firstItem="dxU-XW-HyC" firstAttribute="leading" secondItem="eGS-IB-2q0" secondAttribute="leading" constant="10" id="Zbq-x8-Oap"/>
-                    <constraint firstItem="Dzo-zV-GaU" firstAttribute="top" secondItem="dxU-XW-HyC" secondAttribute="bottom" identifier="bottomOffsetToCaption" id="kbB-rP-hBb"/>
                     <constraint firstItem="ZRc-DJ-9On" firstAttribute="leading" secondItem="eGS-IB-2q0" secondAttribute="leading" constant="20" id="nuj-qZ-9vO"/>
-                    <constraint firstItem="Dzo-zV-GaU" firstAttribute="leading" secondItem="eGS-IB-2q0" secondAttribute="leading" constant="10" id="qIz-Qe-3cE"/>
+                    <constraint firstItem="Dzo-zV-GaU" firstAttribute="leading" secondItem="eGS-IB-2q0" secondAttribute="leading" constant="8" id="qIz-Qe-3cE"/>
                     <constraint firstItem="rRR-pT-wyW" firstAttribute="top" secondItem="VE7-P5-rn1" secondAttribute="bottom" id="sKj-6p-5T9"/>
                     <constraint firstItem="ZRc-DJ-9On" firstAttribute="centerY" secondItem="eGS-IB-2q0" secondAttribute="centerY" id="wnO-6R-5WU"/>
                     <constraint firstItem="dxU-XW-HyC" firstAttribute="top" secondItem="rRR-pT-wyW" secondAttribute="bottom" id="xbE-CR-u2b"/>
@@ -89,7 +89,8 @@
                 <outletCollection property="channelIconScalableConstraints" destination="Vhj-kf-kd6" id="RgT-Qu-SVs"/>
                 <outletCollection property="channelIconScalableConstraints" destination="dz6-qs-T4X" id="wbH-ik-Rzh"/>
                 <outletCollection property="channelIconScalableConstraints" destination="wcA-i3-OkP" id="kUd-bf-kOG"/>
-                <outletCollection property="channelIconScalableConstraints" destination="kbB-rP-hBb" id="xI6-vb-OBF"/>
+                <outletCollection property="channelIconScalableConstraints" destination="GWm-e0-3qZ" id="s1k-95-uQf"/>
+                <outletCollection property="channelIconScalableConstraints" destination="X3i-cN-3tn" id="Ute-QY-JRb"/>
             </connections>
             <point key="canvasLocation" x="39" y="-92.5"/>
         </tableViewCell>

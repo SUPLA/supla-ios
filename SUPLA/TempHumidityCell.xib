@@ -25,7 +25,7 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Temperature and humidity" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5YC-RH-PM5">
-                        <rect key="frame" x="26" y="71.5" width="328" height="22"/>
+                        <rect key="frame" x="26" y="72" width="328" height="22"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="22" identifier="tempHumidityCaptionHeight" id="Yd6-wd-Rxw"/>
                         </constraints>
@@ -41,10 +41,10 @@
                         </constraints>
                     </view>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Fur-6F-Ak3">
-                        <rect key="frame" x="46" y="0.0" width="298" height="71.5"/>
+                        <rect key="frame" x="46" y="0.0" width="298" height="72"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VWT-HB-Pic">
-                                <rect key="frame" x="28" y="11" width="242.5" height="50"/>
+                                <rect key="frame" x="43" y="11" width="212.5" height="50"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="thermometer.png" translatesAutoresizingMaskIntoConstraints="NO" id="gra-eg-NfA">
                                         <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
@@ -54,27 +54,27 @@
                                         </constraints>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="22.0°" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NRR-0X-1Zb">
-                                        <rect key="frame" x="50" y="0.0" width="70" height="50"/>
+                                        <rect key="frame" x="50" y="0.0" width="53.5" height="50"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50" identifier="tempTextHeight" id="OmO-qR-u9U"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="29"/>
+                                        <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="22"/>
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="humidity.png" translatesAutoresizingMaskIntoConstraints="NO" id="pue-s1-1cy">
-                                        <rect key="frame" x="130" y="0.0" width="50" height="50"/>
+                                        <rect key="frame" x="113.5" y="0.0" width="50" height="50"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50" identifier="tempHumidity2Height" id="8R4-ai-lER"/>
                                             <constraint firstAttribute="width" constant="50" identifier="tempHumidity2Width" id="r8x-Sn-gf8"/>
                                         </constraints>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="36.4" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lPY-xq-yar">
-                                        <rect key="frame" x="185" y="0.0" width="57.5" height="50"/>
+                                        <rect key="frame" x="168.5" y="0.0" width="44" height="50"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50" identifier="humidityTextHeight" id="z1Q-iF-xlY"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="29"/>
+                                        <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="22"/>
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
@@ -129,7 +129,7 @@
                     <constraint firstItem="dBx-Oa-uvc" firstAttribute="leading" secondItem="mtw-YI-uHv" secondAttribute="leadingMargin" constant="-10" id="4yi-Og-IK7"/>
                     <constraint firstItem="dQB-Sb-fjG" firstAttribute="leading" secondItem="mtw-YI-uHv" secondAttribute="leadingMargin" id="9DG-0k-lxm"/>
                     <constraint firstItem="Fur-6F-Ak3" firstAttribute="top" secondItem="mtw-YI-uHv" secondAttribute="top" id="9Qi-Zs-XRg"/>
-                    <constraint firstAttribute="bottom" secondItem="5YC-RH-PM5" secondAttribute="bottom" constant="9.5" identifier="captionToBottom" id="HPp-n7-0C4"/>
+                    <constraint firstAttribute="bottom" secondItem="5YC-RH-PM5" secondAttribute="bottom" constant="9" identifier="captionToBottom" id="HPp-n7-0C4"/>
                     <constraint firstItem="5YC-RH-PM5" firstAttribute="leading" secondItem="mtw-YI-uHv" secondAttribute="leadingMargin" constant="10" id="NBF-N5-QBf"/>
                     <constraint firstAttribute="bottomMargin" secondItem="dBx-Oa-uvc" secondAttribute="bottom" constant="-8" id="PLP-l1-YFN"/>
                     <constraint firstItem="Fur-6F-Ak3" firstAttribute="leading" secondItem="dQB-Sb-fjG" secondAttribute="trailing" id="Wpq-fa-3l6"/>
@@ -163,6 +163,7 @@
                 <outletCollection property="channelIconScalableConstraints" destination="OmO-qR-u9U" id="TjV-uQ-e67"/>
                 <outletCollection property="channelIconScalableConstraints" destination="HPp-n7-0C4" id="40M-tA-3Bd"/>
                 <outletCollection property="channelIconScalableConstraints" destination="5MP-J9-jym" id="1Vb-dP-FbJ"/>
+                <outletCollection property="channelIconScalableConstraints" destination="Yd6-wd-Rxw" id="gW8-fa-cxX"/>
             </connections>
             <point key="canvasLocation" x="-397" y="-108"/>
         </tableViewCell>
