@@ -112,7 +112,7 @@
 }
 
 + (BOOL)viewControllerIsPresented:(UIViewController*)vc {
-    UIViewController *rootVC = UIApplication.sharedApplication.delegate.window.rootViewController;
+    UIViewController *rootVC = [SAApp currentNavigationCoordinator].viewController;
     return vc != nil && rootVC != nil && rootVC.presentedViewController == vc;
 }
 
