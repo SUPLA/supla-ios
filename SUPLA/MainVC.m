@@ -467,7 +467,8 @@
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    SAChannelBase *channel_base = [[self frcForTableView:tableView] objectAtIndexPath:indexPath];
+    SAChannelBase *channel_base =  [[self frcForTableView:tableView]
+                        objectAtIndexPath:indexPath];
     SAChannelCell *cell = nil;
     
     NSString *identifier = @"ChannelCell";
