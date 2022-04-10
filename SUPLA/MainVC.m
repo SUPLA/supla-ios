@@ -467,17 +467,8 @@
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    SAChannelBase *channel_base = nil;
-    
-    @try {
-        channel_base = [[self frcForTableView:tableView]
+    SAChannelBase *channel_base =  [[self frcForTableView:tableView]
                         objectAtIndexPath:indexPath];
-    } @catch(NSException *e) {
-        NSLog(@"frc exception for %@ at %@: %@", (tableView == _cTableView)?@"CHANNEL":@"GROUP", indexPath, e);
-        _cFrc = nil;
-        _gFrc = nil;
-        return [UITableViewCell new];
-    }
     SAChannelCell *cell = nil;
     
     NSString *identifier = @"ChannelCell";
