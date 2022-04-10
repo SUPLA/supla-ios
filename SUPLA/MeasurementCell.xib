@@ -114,8 +114,8 @@
                 <outletCollection property="channelIconScalableConstraints" destination="8zx-6p-FyV" id="Cu7-BZ-x1q"/>
                 <outletCollection property="channelIconScalableConstraints" destination="3Kf-m3-Ums" id="3kf-Vx-RVo"/>
                 <outletCollection property="channelIconScalableConstraints" destination="Ivh-WB-vVk" id="RMN-Zw-yhb"/>
-                <outletCollection property="gestureRecognizers" destination="LQh-e8-dfo" id="6sJ-JS-d8b"/>
                 <outletCollection property="channelIconScalableConstraints" destination="v1E-7Y-sZ5" id="dbc-cJ-5dz"/>
+                <outletCollection property="channelIconScalableConstraints" destination="LQh-e8-dfo" id="7YL-Gu-1GP"/>
             </connections>
             <point key="canvasLocation" x="37.681159420289859" y="-92.745535714285708"/>
         </tableViewCell>
