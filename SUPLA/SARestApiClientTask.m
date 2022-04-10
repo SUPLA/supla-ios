@@ -127,6 +127,10 @@
         return;
     }
     
+    if (!SAApp.isClientRegistered) {
+        return;
+    }
+    
     [SAApp.SuplaClient OAuthTokenRequest];
     [thread_cnd waitUntilDate:[NSDate dateWithTimeIntervalSinceNow:5]];
 
