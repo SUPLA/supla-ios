@@ -84,9 +84,12 @@
 }
 
 -(void)setStatusConnectingProgress:(float)value {
-    [self GreenTheme];
+    if(value >= 0) {
+        [self GreenTheme];
+        [self.label setText:NSLocalizedString(@"Connecting...", NULL)];
+    } else
+        value = 0;
     [self.progress setProgress:value];
-    [self.label setText:NSLocalizedString(@"Connecting...", NULL)];
 }
 
 - (IBAction)btnCloudTouch:(id)sender {
