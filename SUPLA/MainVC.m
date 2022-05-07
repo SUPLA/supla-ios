@@ -449,7 +449,9 @@
     NSNumber *stateObject = _savedButtonStates[cell.currentIndexPath];
     enum MGSwipeState state = MGSwipeStateNone;
     
-    if(stateObject) state = [stateObject integerValue];
+    if(stateObject) {
+        state = [stateObject integerValue];
+    }
 
     switch(state) {
     case MGSwipeStateSwipingLeftToRight:
@@ -518,12 +520,11 @@
         }
     }
     
-    cell =  [tableView dequeueReusableCellWithIdentifier: identifier
-                                            forIndexPath: indexPath];
-    cell.delegate = self;
+    cell =  [tableView dequeueReusableCellWithIdentifier: identifier forIndexPath: indexPath];
+    cell.delegate = nil;
     cell.currentIndexPath = indexPath;
-
     cell.channelBase = channel_base;
+    cell.delegate = self;
     cell.captionEditable = tableView == self.cTableView;
     CGFloat scaleFactor = _heightScaleFactor;
     for(NSLayoutConstraint *cstr in cell.channelIconScalableConstraints) {
@@ -674,10 +675,26 @@
     }
 
     if([cell isKindOfClass: [SAChannelCell class]] && !gestureIsActive) {
-        if(state != MGSwipeStateNone) [_savedButtonStates removeAllObjects];
-        _savedButtonStates[((SAChannelCell *)cell).currentIndexPath] = [NSNumber numberWithInt: state];
+        SAChannelCell *cc = (SAChannelCell *)cell;
+        if(state != MGSwipeStateNone) {
+            [_savedButtonStates removeAllObjects];
+        }
+        _savedButtonStates[cc.currentIndexPath] = [NSNumber numberWithInt: state];
     }
 }
+
+#ifdef DEBUG
+- (NSString *)describeButtonState: (MGSwipeState)state {
+    switch(state) {
+        case MGSwipeStateNone: return @"none";
+        case MGSwipeStateSwipingLeftToRight: return @"swiping ->";
+        case MGSwipeStateSwipingRightToLeft: return @"swiping <-";
+        case MGSwipeStateExpandingLeftToRight: return @"swiping ->";
+        case MGSwipeStateExpandingRightToLeft: return @"swiping <-";
+    }
+    return @"wtf";
+}
+#endif
 
 - (void)deferredEnableRefresh: timer {
     _dataRefreshEnabled = YES;

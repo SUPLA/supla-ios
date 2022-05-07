@@ -40,12 +40,6 @@
 @end
 
 @implementation MGSwipeTableCell (SUPLA)
-
--(void) prepareForReuse
-{
-    [super prepareForReuse];
-};
-
 @end
 
 @implementation MGSwipeButton (SUPLA)
@@ -67,6 +61,15 @@
 }
 
 @synthesize captionEditable;
+-(void) prepareForReuse {
+    /* Disable delagate when preparation for reuse is happening. Otherwise
+       delegate would receive button hide notifications which is unintended
+       (data source is going to reset button states anyway. */
+    id<MGSwipeTableCellDelegate> savedDelegate = self.delegate;
+    self.delegate = nil;
+    [super prepareForReuse];
+    self.delegate = savedDelegate;
+}
 
 - (void)initialize {
     if (_initialized) return;
@@ -110,7 +113,6 @@
 - (void) setFrame:(CGRect)frame
 {
     [super setFrame:frame];
-    self.channelBase = _channelBase;
 }
 
 -(SAChannelBase*)channelBase {
@@ -271,8 +273,7 @@
     } else if ( channelBase.func == SUPLA_CHANNELFNC_THERMOSTAT_HEATPOL_HOMEPLUS ) {
         [self.temp setAttributedText:[channelBase attrStringValueWithIndex:0 font:self.temp.font]];
     } else {
-        self.rightButtons = nil;
-        self.leftButtons = nil;
+        [self resetButtonState];
                 
         if ( [channelBase isOnline] ) {
             MGSwipeButton *bl = nil;
