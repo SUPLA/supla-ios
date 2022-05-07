@@ -545,7 +545,7 @@ void sasuplaclient_on_zwave_set_wake_up_time_result(void *_suplaclient,
                 _superuserAuthorized = NO;
             }
             
-            _connectingStatusLastTime = [NSDate now];
+            _connectingStatusLastTime = [NSDate new];
             
             [self onConnecting];
             BOOL DataChanged = NO;
