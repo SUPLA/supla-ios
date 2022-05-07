@@ -498,6 +498,7 @@ NSString *kSAOnZWaveSetWakeUpTimeResult = @"KSA-N30";
     NSNumber *code = [NSNumber codeNotificationToNumber:notification];
     [[SAApp mainNavigationCoordinator] showStatusViewWithError:[SASuplaClient codeToString:code]];
     int cint = [code intValue];
+    
     AuthProfileItem *profile = [SAApp.profileManager getCurrentProfile];
     if ((cint == SUPLA_RESULTCODE_REGISTRATION_DISABLED
         || cint == SUPLA_RESULTCODE_ACCESSID_NOT_ASSIGNED)

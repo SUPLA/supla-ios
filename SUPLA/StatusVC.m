@@ -45,6 +45,7 @@
     [self.button setTitle:NSLocalizedString(@"Settings", nil) forState:UIControlStateNormal];
     
     [self setNeedsStatusBarAppearanceUpdate];
+    [self GreenTheme];
 }
 
 - (UIStatusBarStyle)preferredStatusBarStyle
