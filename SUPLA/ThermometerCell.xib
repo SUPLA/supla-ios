@@ -24,7 +24,7 @@
                 <rect key="frame" x="0.0" y="0.0" width="380" height="103"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Thermometer" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6kK-vn-eyZ">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Thermometer" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="6kK-vn-eyZ">
                         <rect key="frame" x="30" y="71.5" width="320" height="22.5"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="22.5" identifier="thermometerCaptionHeight" id="uXu-T7-arQ"/>
