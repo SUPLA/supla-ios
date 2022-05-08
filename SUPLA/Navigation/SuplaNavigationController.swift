@@ -51,15 +51,31 @@ class SuplaNavigationController: UINavigationController {
         view.backgroundColor = .suplaGreenBackground
         navigationBar.tintColor = .white
         navigationBar.backgroundColor = .suplaGreenBackground
-        navigationBar.titleTextAttributes =
-            [.foregroundColor: UIColor.white,
-             .font: UIFont.suplaTitleBarFont]
+        updateNavBarFont()
         extendedLayoutIncludesOpaqueBars = false
         navigationBar.barTintColor = .suplaGreenBackground
     }
     
+    private func updateNavBarFont() {
+        let font: UIFont
+        if self.viewControllers.count > 1 {
+            font = UIFont.suplaSubtitleFont
+        } else {
+            font = UIFont.suplaTitleBarFont
+        }
+        navigationBar.titleTextAttributes =
+            [.foregroundColor: UIColor.white,
+             .font: font]
+    }
+    
+    override func pushViewController(_ viewController: UIViewController, animated: Bool) {
+        super.pushViewController(viewController, animated: true)
+        updateNavBarFont()
+    }
+    
     override func popViewController(animated: Bool) -> UIViewController? {
         if let vc = super.popViewController(animated: true) {
+            updateNavBarFont()
             _onViewControllerWillPop.onNext(vc)
             return vc
         } else {

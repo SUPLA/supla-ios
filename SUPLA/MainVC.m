@@ -135,10 +135,9 @@
     [self configureNavigationBar];
 }
 
+
 - (void)didChangeRowHeight: notification {
-    NSLog(@"\n\n\n\n ====== DID CHANGE ROW HEIGHT =======\n\n\n\n");
     _shouldUpdateRowHeight = YES;
-    //    _cellConstraintValues = [NSMutableDictionary new];
     [self adjustChannelHeight: YES];
 }
 

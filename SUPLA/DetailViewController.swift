@@ -48,6 +48,11 @@ class DetailViewController: BaseViewController {
         addChildView(_detailView)
         
         title = _detailView.channelBase.getNonEmptyCaption()
+        
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(onAppDidEnterBackground(_:)),
+                                               name: UIApplication.didEnterBackgroundNotification,
+                                               object: nil)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -90,5 +95,10 @@ class DetailViewController: BaseViewController {
             _panController = nil
         default: break
         }
+    }
+    
+    @objc private func onAppDidEnterBackground(_ notification: Notification) {
+        // Hide detail view, when application loses foreground context
+        navigationController?.popViewController(animated: false)
     }
 }
