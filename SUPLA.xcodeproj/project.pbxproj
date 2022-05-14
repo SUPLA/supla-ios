@@ -498,6 +498,11 @@
 		AE535356276927690077BFFB /* LocationOrderingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE535355276927690077BFFB /* LocationOrderingVC.swift */; };
 		AE5A60E6270E2A7A00F2B780 /* AuthVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE5A60E5270E2A7A00F2B780 /* AuthVC.swift */; };
 		AE68E73227739D8500E55DB7 /* SwipeTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE68E73127739D8500E55DB7 /* SwipeTransition.swift */; };
+		AE7452892827E37600A3AFAD /* ProfilesVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE7452882827E37600A3AFAD /* ProfilesVM.swift */; };
+		AE74528B2827E38900A3AFAD /* ProfilesVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE74528A2827E38900A3AFAD /* ProfilesVC.swift */; };
+		AE74528D2827E5D400A3AFAD /* ProfileChooser.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE74528C2827E5D400A3AFAD /* ProfileChooser.swift */; };
+		AE74528F2827F09400A3AFAD /* Dimens.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE74528E2827F09400A3AFAD /* Dimens.swift */; };
+		AE7452912827F49100A3AFAD /* ProfilesNavigationCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE7452902827F49100A3AFAD /* ProfilesNavigationCoordinator.swift */; };
 		AE7CAAFD275BF87D0024095F /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AE7CAAFC275BF87D0024095F /* BaseViewController.m */; };
 		AE929A87275FD5D500B75715 /* MainNavigationCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE929A86275FD5D500B75715 /* MainNavigationCoordinator.swift */; };
 		AE929A89276145C400B75715 /* FlowActionHandlers.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE929A88276145C400B75715 /* FlowActionHandlers.swift */; };
@@ -1365,6 +1370,11 @@
 		AE535355276927690077BFFB /* LocationOrderingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationOrderingVC.swift; sourceTree = "<group>"; };
 		AE5A60E5270E2A7A00F2B780 /* AuthVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthVC.swift; sourceTree = "<group>"; };
 		AE68E73127739D8500E55DB7 /* SwipeTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeTransition.swift; sourceTree = "<group>"; };
+		AE7452882827E37600A3AFAD /* ProfilesVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilesVM.swift; sourceTree = "<group>"; };
+		AE74528A2827E38900A3AFAD /* ProfilesVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilesVC.swift; sourceTree = "<group>"; };
+		AE74528C2827E5D400A3AFAD /* ProfileChooser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileChooser.swift; sourceTree = "<group>"; };
+		AE74528E2827F09400A3AFAD /* Dimens.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Dimens.swift; sourceTree = "<group>"; };
+		AE7452902827F49100A3AFAD /* ProfilesNavigationCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfilesNavigationCoordinator.swift; sourceTree = "<group>"; };
 		AE7CAAFB275BF87D0024095F /* BaseViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = BaseViewController.h; path = UI/BaseViewController.h; sourceTree = "<group>"; };
 		AE7CAAFC275BF87D0024095F /* BaseViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = BaseViewController.m; path = UI/BaseViewController.m; sourceTree = "<group>"; };
 		AE929A86275FD5D500B75715 /* MainNavigationCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainNavigationCoordinator.swift; sourceTree = "<group>"; };
@@ -2106,6 +2116,7 @@
 		407E7C331BBEB81B00D8878C /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				AE74528E2827F09400A3AFAD /* Dimens.swift */,
 				4031AD011BBC2A4900CF9D8B /* Assets */,
 				40DE1A421BCD6F06004CF43B /* Localizable.strings */,
 				0196E82C258CEEEC0016E8DC /* InfoPlist.strings */,
@@ -2271,6 +2282,8 @@
 				AEF79D9227130A5400D7554B /* CfgCell.swift */,
 				AE535355276927690077BFFB /* LocationOrderingVC.swift */,
 				AEED87DE276F1FCE005D76CF /* LocationOrderingVM.swift */,
+				AE7452882827E37600A3AFAD /* ProfilesVM.swift */,
+				AE74528A2827E38900A3AFAD /* ProfilesVC.swift */,
 			);
 			path = Cfg;
 			sourceTree = "<group>";
@@ -2278,6 +2291,7 @@
 		AE929A85275FD53A00B75715 /* Navigation */ = {
 			isa = PBXGroup;
 			children = (
+				AE7452902827F49100A3AFAD /* ProfilesNavigationCoordinator.swift */,
 				AE3DECE02761DB32005923E4 /* AuthCfgNavigationCoordinator.swift */,
 				AE3DECE12761DB32005923E4 /* PresentationNavigationCoordinator.swift */,
 				AE929A86275FD5D500B75715 /* MainNavigationCoordinator.swift */,
@@ -2334,6 +2348,7 @@
 				AEED1FD02737F3BE00DE6289 /* ProfileManager.swift */,
 				AEED1FD32737F71C00DE6289 /* MultiAccountProfileManager.swift */,
 				AEC6B6B92753C06800A04204 /* ProfileMigrator.swift */,
+				AE74528C2827E5D400A3AFAD /* ProfileChooser.swift */,
 			);
 			path = profile;
 			sourceTree = "<group>";
@@ -2805,9 +2820,11 @@
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-SUPLA/Pods-SUPLA-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Charts/Charts.framework",
+				"${BUILT_PRODUCTS_DIR}/Differentiator/Differentiator.framework",
 				"${BUILT_PRODUCTS_DIR}/FMMoveTableView/FMMoveTableView.framework",
 				"${BUILT_PRODUCTS_DIR}/PaddingLabel/PaddingLabel.framework",
 				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
+				"${BUILT_PRODUCTS_DIR}/RxDataSources/RxDataSources.framework",
 				"${BUILT_PRODUCTS_DIR}/RxRelay/RxRelay.framework",
 				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/RxSwiftExt/RxSwiftExt.framework",
@@ -2815,9 +2832,11 @@
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Charts.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Differentiator.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FMMoveTableView.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PaddingLabel.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxDataSources.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxRelay.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwiftExt.framework",
@@ -2894,6 +2913,7 @@
 				01199C8324C34AC50062454B /* SAChannelStatePopup.m in Sources */,
 				011021B525CC386D00621D41 /* SAVersionError.m in Sources */,
 				AEC6B6BA2753C06800A04204 /* ProfileMigrator.swift in Sources */,
+				AE7452912827F49100A3AFAD /* ProfilesNavigationCoordinator.swift in Sources */,
 				0172677D234FAF78000F1CFB /* SADownloadImpulseCounterMeasurements.m in Sources */,
 				01392B37235C91C1003A2BAD /* SADownloadTemperatureMeasurements.m in Sources */,
 				01C1719A22C7F55B005983E1 /* SAMeasurementItem+CoreDataProperties.m in Sources */,
@@ -2906,6 +2926,7 @@
 				AE348E66277F348700F363A3 /* SAMoveTableView.m in Sources */,
 				01902A25235A17E9005ED935 /* TemperatureDetailView.m in Sources */,
 				01EE9BBB22BA50D90029A142 /* SAChannelValueBase+CoreDataClass.m in Sources */,
+				AE7452892827E37600A3AFAD /* ProfilesVM.swift in Sources */,
 				40F7301120C19BA600167C2D /* SAColorListItem+CoreDataProperties.m in Sources */,
 				01642A882549C3EF00E87C46 /* SAMenuItems.m in Sources */,
 				01FCDA7D264F2BC3002D776F /* SAZWaveNode.m in Sources */,
@@ -2929,6 +2950,7 @@
 				013D1C5D22CE47D5000C0784 /* SAChartHelper.m in Sources */,
 				015A98412655958500B6E6C6 /* NSDictionary+SUPLA.m in Sources */,
 				019F4CCD23577C3700286139 /* SAImpulseCounterChartHelper.m in Sources */,
+				AE74528B2827E38900A3AFAD /* ProfilesVC.swift in Sources */,
 				01E3966E25A78B8B00A0DB18 /* SADimmerCalibrationTool.m in Sources */,
 				01392B3A235CA8B1003A2BAD /* ChartDetailView.m in Sources */,
 				01567446232FCFD700397393 /* SAIncrementalMeterExtendedValue.m in Sources */,
@@ -3001,6 +3023,7 @@
 				01BDAC7822C5200600915646 /* SAOAuthToken.m in Sources */,
 				AED6395E270CA3A800E5105B /* RoundedButton.swift in Sources */,
 				015A9846265595E300B6E6C6 /* UIButton+SUPLA.m in Sources */,
+				AE74528D2827E5D400A3AFAD /* ProfileChooser.swift in Sources */,
 				40C7BA5220C007A300ACEE42 /* SAChannelValue+CoreDataClass.m in Sources */,
 				01DD2F0F247719000025DFF9 /* SARangeCalibrationWheel.m in Sources */,
 				016157B6261CAAFA006AA0E8 /* SAPickerField.m in Sources */,
@@ -3015,6 +3038,7 @@
 				01F8857022E5E79100D18373 /* SATemperatureMeasurementItem+CoreDataProperties.m in Sources */,
 				AECB1BEB2711CB67001A9714 /* AuthInfo.swift in Sources */,
 				01567449232FD0A100397393 /* SAImpulseCounterExtendedValue.m in Sources */,
+				AE74528F2827F09400A3AFAD /* Dimens.swift in Sources */,
 				0111E924263F374800302356 /* UIColor+SUPLA.m in Sources */,
 				01D5E0C822DB7FAF00FBE1DC /* SAChartMarkerView.swift in Sources */,
 				409934B61F30EF9C003110C5 /* RSDetailView.m in Sources */,

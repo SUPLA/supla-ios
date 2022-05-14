@@ -14,18 +14,14 @@
  You should have received a copy of the GNU General Public License
  along with this program; if not, write to the Free Software
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
- */
+ */ 
 
 import Foundation
 
-@objc
-protocol ProfileManager {
-    func getCurrentProfile() -> AuthProfileItem
-    func updateCurrentProfile(_ profile: AuthProfileItem)
-    
-    func getCurrentAuthInfo() -> AuthInfo
-    
-    func updateCurrentAuthInfo(_ info: AuthInfo)
-    
-    func getAllProfiles() -> [AuthProfileItem]
+struct Dimens {
+    static let screenMargin = CGFloat(24)
+    static let elementOffset = CGFloat(8)
+    struct Form {
+        static let elementSpacing = CGFloat(16)
+    }
 }

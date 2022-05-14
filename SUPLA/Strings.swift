@@ -49,4 +49,14 @@ struct Strings {
         static let showOpeningModeOpening = NSLocalizedString("Opening", comment: "")
         static let showOpeningModeClosing = NSLocalizedString("Closing", comment: "")
     }
+
+    struct Profiles {
+        struct Title {
+            static let singular = NSLocalizedString("Your account", comment: "")
+            static let plural = NSLocalizedString("Your accounts", comment: "")
+            static let short = NSLocalizedString("Accounts", comment: "")
+        }
+
+        static let tapMessage = NSLocalizedString("Tap the account to log in.", comment: "")
+    }
 }

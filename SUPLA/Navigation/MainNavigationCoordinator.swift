@@ -139,6 +139,10 @@ class MainNavigationCoordinator: BaseNavigationCoordinator {
     func showSettingsView() {
         startFlow(coordinator: CfgNavigationCoordinator())
     }
+
+    func showProfilesView() {
+        startFlow(coordinator: ProfilesNavigationCoordinator())
+    }
     
     func showAddWizard() {
         let avc = SAAddWizardVC(nibName: "AddWizardVC", bundle: nil)

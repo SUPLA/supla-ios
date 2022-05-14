@@ -16,16 +16,5 @@
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 
-import Foundation
 
-@objc
-protocol ProfileManager {
-    func getCurrentProfile() -> AuthProfileItem
-    func updateCurrentProfile(_ profile: AuthProfileItem)
-    
-    func getCurrentAuthInfo() -> AuthInfo
-    
-    func updateCurrentAuthInfo(_ info: AuthInfo)
-    
-    func getAllProfiles() -> [AuthProfileItem]
-}
+import Foundation

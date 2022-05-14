@@ -75,4 +75,9 @@ extension MultiAccountProfileManager: ProfileManager {
         profile.authInfo = info
         updateCurrentProfile(profile)
     }
+    
+    func getAllProfiles() -> [AuthProfileItem] {
+        let req = AuthProfileItem.fetchRequest()
+        return try! _ctx.fetch(req)
+    }
 }
