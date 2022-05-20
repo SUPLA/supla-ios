@@ -541,7 +541,8 @@
             id lbl = [cstr.firstItem isKindOfClass: [UILabel class]]?cstr.firstItem:cstr.secondItem;
             CGFloat tfs = sf;
             if(lbl == cell.caption) {
-                if(tfs < 1.0) tfs = 1.0;
+                if(tfs < 1.0) tfs = 0.8;
+                if(sf < 1.0) sf *= 1.2;
             }
             [self adjustFontSize: lbl forScale: tfs
                        isCaption: lbl == cell.caption];
