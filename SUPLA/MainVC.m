@@ -90,7 +90,7 @@
 
     [[NSNotificationCenter defaultCenter]
         addObserver: self selector:@selector(didChangeRowHeight:)
-               name: @"ChannelHeightDidChange" object:nil];
+               name: kChannelHeightDidChange object:nil];
     _shouldUpdateRowHeight = YES;
     self.showingDetails = NO;
     ((SAMainView*)self.view).viewController = self;
