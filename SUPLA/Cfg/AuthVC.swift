@@ -239,6 +239,7 @@ class AuthVC: BaseViewController {
         v.topAnchor.constraint(equalTo: containerView.topAnchor).isActive = true
         v.leftAnchor.constraint(equalTo: containerView.leftAnchor).isActive = true
         v.rightAnchor.constraint(equalTo: containerView.rightAnchor).isActive = true
+        v.bottomAnchor.constraint(equalTo: containerView.bottomAnchor).isActive = true
         v.leftAnchor.constraint(equalTo: controlStack.leftAnchor).isActive = true
         v.rightAnchor.constraint(equalTo: controlStack.rightAnchor).isActive = true
     }
