@@ -162,8 +162,10 @@ class AuthVM {
         }.disposed(by: disposeBag)
         
         _emailAddress.subscribe { [weak self] v in
-            self?._serverAddressForEmail.accept("")
-            self?._authCfg.emailAddress = v.element! ?? ""
+            if v.element != self?._authCfg.emailAddress {
+                self?._serverAddressForEmail.accept("")
+                self?._authCfg.emailAddress = v.element! ?? ""
+            }
         }.disposed(by: disposeBag)
         
         _serverAddressForEmail.subscribe { [weak self] sa in
