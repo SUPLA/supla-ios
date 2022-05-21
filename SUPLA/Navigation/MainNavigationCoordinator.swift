@@ -166,6 +166,7 @@ class MainNavigationCoordinator: BaseNavigationCoordinator {
     }
     
     @objc func showStatusView(progress: NSNumber) {
+        guard !SAApp.isClientRegistered() else { return }
         activeStatusController().setStatusConnectingProgress(progress.floatValue)
     }
 

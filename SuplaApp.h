@@ -98,4 +98,5 @@ extern NSString *kSAOnZWaveRemoveNodeResult;
 extern NSString *kSAOnZWaveAssignNodeIdResult;
 extern NSString *kSAOnZWaveWakeupSettingsReport;
 extern NSString *kSAOnZWaveSetWakeUpTimeResult;
+extern NSString *kChannelHeightDidChange;
 NS_ASSUME_NONNULL_END

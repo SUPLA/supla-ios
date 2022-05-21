@@ -33,6 +33,7 @@ class CfgCell: UITableViewCell {
                 nv.translatesAutoresizingMaskIntoConstraints = false
                 nv.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -hMargin).isActive = true
                 nv.centerYAnchor.constraint(equalTo: contentView.centerYAnchor).isActive = true
+                titleLabel.rightAnchor.constraint(lessThanOrEqualTo: nv.leftAnchor, constant: -8).isActive = true
             }
         }
     }
@@ -41,6 +42,7 @@ class CfgCell: UITableViewCell {
         super.init(style: .default, reuseIdentifier: nil)
         contentView.addSubview(titleLabel)
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
+        titleLabel.numberOfLines = 2
         titleLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: vMargin).isActive = true
         titleLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -vMargin).isActive = true
         titleLabel.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant:hMargin).isActive = true

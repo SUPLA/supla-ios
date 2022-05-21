@@ -90,7 +90,7 @@
 
     [[NSNotificationCenter defaultCenter]
         addObserver: self selector:@selector(didChangeRowHeight:)
-               name: @"ChannelHeightDidChange" object:nil];
+               name: kChannelHeightDidChange object:nil];
     _shouldUpdateRowHeight = YES;
     self.showingDetails = NO;
     ((SAMainView*)self.view).viewController = self;
@@ -535,6 +535,9 @@
             val = cstr.constant;
             if(sf < 0.7) val /= sf; // Correct initial lower scale got from autoresize
             _cellConstraintValues[cstrId] = [NSNumber numberWithFloat:val];
+        }
+        if(sf < 1.0 && [@"distanceValueHeight" isEqualToString: cstr.identifier]) {
+            sf = 1.0;
         }
         if([cstr.firstItem isKindOfClass: [UILabel class]] ||
            [cstr.secondItem isKindOfClass: [UILabel class]]) {

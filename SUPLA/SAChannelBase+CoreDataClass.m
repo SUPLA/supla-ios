@@ -820,7 +820,7 @@
     n2fmt.minimumFractionDigits = 1;
     switch (self.func) {
         case SUPLA_CHANNELFNC_THERMOMETER:
-            result = [self isOnline] && self.temperatureValue > -273 ? [pres stringRepresentation: self.temperatureValue] : @"----°";
+            result = [self isOnline] && self.temperatureValue > -273 ? [pres stringRepresentation: self.temperatureValue] : [@"----" stringByAppendingString: pres.unitString];
             break;
         case SUPLA_CHANNELFNC_HUMIDITY:
             result = [self isOnline] && self.humidityValue > -1 ? [nfmt stringFromNumber: @(self.humidityValue)] : @"----";
@@ -829,7 +829,7 @@
             if (idx == 1) {
                 result = [self isOnline] && self.humidityValue > -1 ? [nfmt stringFromNumber: @(self.humidityValue)] : @"----";
             } else {
-                result = [self isOnline] && self.temperatureValue > -273 ? [pres stringRepresentation:  self.temperatureValue] : @"----°";
+                result = [self isOnline] && self.temperatureValue > -273 ? [pres stringRepresentation:  self.temperatureValue] : [@"----" stringByAppendingString: pres.unitString];
             }
             break;
         case SUPLA_CHANNELFNC_DEPTHSENSOR:

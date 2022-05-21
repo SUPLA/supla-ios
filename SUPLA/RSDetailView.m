@@ -64,7 +64,6 @@
     self.rollerShutter.markers = nil;
     self.roofWindow.closingPercentage = percent;
     self.roofWindow.markers = nil;
-	if(showsOpeningPercent) percent = 100 - percent;
     [self.labelPercent setText:[NSString stringWithFormat:@"%i%%", [self mapped: percent]]];
     [timer invalidate];
 }

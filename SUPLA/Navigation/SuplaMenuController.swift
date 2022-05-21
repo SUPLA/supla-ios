@@ -47,6 +47,7 @@ class SuplaMenuController: UIViewController, NavigationCoordinatorAware {
         _menuItems.delegate = self
         
         _tapGR.addTarget(self, action: #selector(onMenuDismiss(_:)))
+        _tapGR.delegate = self
         view.addGestureRecognizer(_tapGR)
     }
     
@@ -158,5 +159,16 @@ extension SuplaMenuController: PresentationCoordinatorPeer {
     func didFinish() {
         _deferredMenuAction?()
         _deferredMenuAction = nil
+    }
+}
+
+
+extension SuplaMenuController: UIGestureRecognizerDelegate {
+    func gestureRecognizer(_ gr: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {
+        if touch.view == _menuItems {
+            return false
+        } else {
+            return true
+        }
     }
 }
