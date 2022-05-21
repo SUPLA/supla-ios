@@ -19,6 +19,6 @@
 import UIKit
 
 extension UIFont {
-    static let suplaTitleBarFont = UIFont(name: "Quicksand-Regular", size: 27)!
-    static let suplaSubtitleFont = UIFont(name: "Quicksand-Regular", size: 16)!
+    @objc static let suplaTitleBarFont = UIFont(name: "Quicksand-Regular", size: 27)!
+    @objc static let suplaSubtitleFont = UIFont(name: "Quicksand-Regular", size: 16)!
 }
