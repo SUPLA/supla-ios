@@ -10,8 +10,8 @@
         <array key="OpenSans-Bold.ttf">
             <string>OpenSans-Bold</string>
         </array>
-        <array key="OpenSans-Regular.ttf">
-            <string>OpenSans</string>
+        <array key="Quicksand-Regular.ttf">
+            <string>Quicksand-Regular</string>
         </array>
     </customFonts>
     <objects>
@@ -52,7 +52,7 @@
                                             <constraint firstAttribute="height" constant="50" identifier="measuredValueHeight" id="3Kf-m3-Ums"/>
                                             <constraint firstAttribute="width" constant="100" id="KZo-sK-5l6"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="22"/>
+                                        <fontDescription key="fontDescription" name="Quicksand-Regular" family="Quicksand" pointSize="22"/>
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
