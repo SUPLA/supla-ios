@@ -536,6 +536,9 @@
             if(sf < 0.7) val /= sf; // Correct initial lower scale got from autoresize
             _cellConstraintValues[cstrId] = [NSNumber numberWithFloat:val];
         }
+        if(sf < 1.0 && [@"distanceValueHeight" isEqualToString: cstr.identifier]) {
+            sf = 1.0;
+        }
         if([cstr.firstItem isKindOfClass: [UILabel class]] ||
            [cstr.secondItem isKindOfClass: [UILabel class]]) {
             id lbl = [cstr.firstItem isKindOfClass: [UILabel class]]?cstr.firstItem:cstr.secondItem;
