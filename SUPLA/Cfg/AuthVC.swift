@@ -299,15 +299,21 @@ class AuthVC: BaseViewController {
     }
 
     @objc private func onKeyboardVisibilityChange(_ notification: Notification) {
+        var newValue: CGFloat = 0
         if notification.name == Self.keyboardWillShowNotification {
             if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
-                bottomOffset.constant = 12 + keyboardSize.height
+                newValue = 12 + keyboardSize.height
             }
         } else {
-            bottomOffset.constant = bottomMargin
+            newValue = bottomMargin
         }
         let duration = notification.userInfo?[UIResponder.keyboardAnimationDurationUserInfoKey] as? Double ?? 0.3
-        UIView.animate(withDuration: duration, animations: { self.view.layoutIfNeeded() }) { _ in
+        UIView.animate(withDuration: duration, animations: {
+            self.bottomOffset.constant = newValue
+            self.containerView.contentInset = .zero
+            self.view.layoutSubviews()
+            self.view.layoutIfNeeded()
+        }) { _ in
             if let fld = self.currentTextField {
                 let destRect = self.containerView.convert(fld.bounds, from: fld)
                     .insetBy(dx: 0, dy: -self.bottomMargin / 2.0)
