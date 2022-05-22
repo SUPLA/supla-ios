@@ -119,7 +119,15 @@ class AuthVC: BaseViewController {
          adFormAccessIdAuth].forEach {
             $0.backgroundColor = self.view.backgroundColor
         }
+        
+        [ bsEmailAddr, adEmailAddr, adServerAddrEmail, adAccessID, adAccessPwd,
+          adServerAddrAccessId ].forEach { $0.delegate = self }
         modeToggle.tintColor = .switcherBackground
+
+        let gr = UITapGestureRecognizer(target: self,
+                                        action: #selector(didTapBackground(_:)))
+        view.addGestureRecognizer(gr)
+        view.isUserInteractionEnabled = true
         
         createAccountButton.setAttributedTitle(NSLocalizedString("Create an account", comment: ""))
         modeToggleLabel.text = Strings.Cfg.advancedSettings
@@ -304,9 +312,15 @@ class AuthVC: BaseViewController {
                 let destRect = self.containerView.convert(fld.bounds, from: fld)
                     .insetBy(dx: 0, dy: -self.bottomMargin / 2.0)
                 self.containerView.scrollRectToVisible(destRect, animated: true)
-                self.currentTextField = nil
+                if notification.name == Self.keyboardWillHideNotification {
+                    self.currentTextField = nil
+                }
             }
         }
+    }
+    
+    @objc private func didTapBackground(_ gr: UITapGestureRecognizer) {
+        currentTextField?.resignFirstResponder()
     }
 }
 
