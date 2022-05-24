@@ -99,6 +99,8 @@ class AuthVC: BaseViewController {
 
         configureUI()
         bindVM()
+        
+        navigationItem.hidesBackButton = !(SAApp.configIsSet() && SAApp.isClientRegistered())
     }
     
     override func viewDidLayoutSubviews() {
@@ -107,7 +109,7 @@ class AuthVC: BaseViewController {
     }
 
     override func adjustsStatusBarBackground() -> Bool {
-        return SAApp.configIsSet() && SAApp.isClientRegistered()
+        return true
     }
     
     override func hidesNavigationBar() -> Bool {
@@ -311,7 +313,8 @@ class AuthVC: BaseViewController {
         UIView.animate(withDuration: duration, animations: {
             self.bottomOffset.constant = newValue
             self.containerView.contentInset = .zero
-            self.view.layoutSubviews()
+            self.containerView.setNeedsLayout()
+            self.containerView.layoutIfNeeded()
             self.view.layoutIfNeeded()
         }) { _ in
             if let fld = self.currentTextField {
