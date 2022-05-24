@@ -157,10 +157,6 @@ class AuthVC: BaseViewController {
         }
         
         bottomOffset.constant = bottomMargin
-        if let navbar = navigationController?.navigationBar, !navbar.isHidden {
-            let fr = navbar.frame
-            topOffset.constant += fr.origin.x + fr.size.height
-        }
         
         if #available(iOS 11.0, *) {
             controlStack.setCustomSpacing(24, after: confirmButton)
@@ -240,7 +236,14 @@ class AuthVC: BaseViewController {
             self.createAccountButton.isHidden = !$0
         }).disposed(by: disposeBag)
     }
-    
+    override func updateViewConstraints() {
+        super.updateViewConstraints()
+        if let navbar = navigationController?.navigationBar, !navbar.isHidden {
+            let fr = navbar.frame
+            topOffset.constant += fr.origin.x + fr.size.height
+        }
+
+    }
     private func setContentView(_ v: UIView) {
         activeContentView?.removeFromSuperview()
         containerView.addSubview(v)
