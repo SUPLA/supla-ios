@@ -31,6 +31,10 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    if(@available(iOS 14, *)) {
+        self.navigationItem.backButtonDisplayMode = UINavigationItemBackButtonDisplayModeMinimal;
+    }
+    
     if([self adjustsStatusBarBackground]) {
         CGRect sbFrame;
         sbFrame = [[UIApplication sharedApplication] statusBarFrame];
