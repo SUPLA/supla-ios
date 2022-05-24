@@ -99,6 +99,8 @@ class AuthVC: BaseViewController {
 
         configureUI()
         bindVM()
+        
+        navigationItem.hidesBackButton = !(SAApp.configIsSet() && SAApp.isClientRegistered())
     }
     
     override func viewDidLayoutSubviews() {
@@ -107,7 +109,7 @@ class AuthVC: BaseViewController {
     }
 
     override func adjustsStatusBarBackground() -> Bool {
-        return SAApp.configIsSet() && SAApp.isClientRegistered()
+        return true
     }
     
     override func hidesNavigationBar() -> Bool {
