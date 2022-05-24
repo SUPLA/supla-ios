@@ -42,7 +42,7 @@
     
     self.button.layer.cornerRadius = 3;
     self.button.clipsToBounds = YES;
-    [self.button setTitle:NSLocalizedString(@"Settings", nil) forState:UIControlStateNormal];
+    [self.button setTitle:NSLocalizedString(@"Your account", nil) forState:UIControlStateNormal];
     
     [self setNeedsStatusBarAppearanceUpdate];
     [self GreenTheme];
