@@ -195,7 +195,7 @@ class AuthVM {
         _serverAddressForAccessID.accept(_loadedCfg.serverForAccessID)
         _accessID.accept(_loadedCfg.accessID)
         _accessIDpwd.accept(_loadedCfg.accessIDpwd)
-
+        _advancedModeAuthType.accept(_loadedCfg.emailAuth ? .email : .accessId)
     }
 
     
