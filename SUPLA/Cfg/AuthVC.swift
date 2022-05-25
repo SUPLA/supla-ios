@@ -97,10 +97,11 @@ class AuthVC: BaseViewController {
                                                name: Notification.Name(kSAMenubarBackButtonPressed),
                                                object: nil)
 
+        navigationItem.hidesBackButton = !SAApp.configIsSet()
+
         configureUI()
         bindVM()
         
-        navigationItem.hidesBackButton = !(SAApp.configIsSet() && SAApp.isClientRegistered())
     }
     
     override func viewDidLayoutSubviews() {
@@ -209,6 +210,13 @@ class AuthVC: BaseViewController {
         vM.isServerAutoDetect.subscribe { [weak self] autoDetect in
             self?.adServerAddrEmail.isEnabled = autoDetect.element == false
         }.disposed(by: disposeBag)
+
+        vM.accessID.subscribe { [weak self] accessID in
+            guard let accessID = accessID.element! else { return }
+            self?.adAccessID.text = String(accessID)
+        }.disposed(by: disposeBag)
+        
+        vM.accessIDpwd.bind(to: self.adAccessPwd.rx.text).disposed(by: disposeBag)
         
         vM.formSaved.subscribe { [weak self] needsReauth in
             if needsReauth.element == true {
@@ -264,9 +272,11 @@ class AuthVC: BaseViewController {
         case .email:
             viewToAdd = adFormEmailAuth
             viewToRemove = adFormAccessIdAuth
+            adAuthType.selectedSegmentIndex = 0
         case .accessId:
             viewToRemove = adFormEmailAuth
             viewToAdd = adFormAccessIdAuth
+            adAuthType.selectedSegmentIndex = 1
         }
 
         viewToRemove.removeFromSuperview()
@@ -334,10 +344,25 @@ class AuthVC: BaseViewController {
     @objc private func didTapBackground(_ gr: UITapGestureRecognizer) {
         currentTextField?.resignFirstResponder()
     }
+    
+    private func nextInSequence(for fld: UITextField) -> UITextField? {
+        switch fld {
+        case adAccessID: return adAccessPwd
+        case adAccessPwd: return adServerAddrAccessId
+        default: return nil
+        }
+    }
 }
 
 extension AuthVC: UITextFieldDelegate {
     func textFieldDidBeginEditing(_ textField: UITextField) {
         currentTextField = textField
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        if let tf = nextInSequence(for: textField) {
+            tf.becomeFirstResponder()
+        }
+        return true
     }
 }
