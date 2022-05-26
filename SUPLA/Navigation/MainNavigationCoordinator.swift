@@ -100,9 +100,15 @@ class MainNavigationCoordinator: BaseNavigationCoordinator {
     
     override func didFinish(coordinator child: NavigationCoordinator) {
         if child is PresentationNavigationCoordinator {
-            navigationController.dismiss(animated: child.wantsAnimatedTransitions) {
-                super.didFinish(coordinator: child)
+            if child.viewController.presentingViewController == nil {
+                child.viewController.view.removeFromSuperview()
+                child.viewController.removeFromParent()
                 self.resumeFlowIfNeeded()
+            } else {
+                navigationController.dismiss(animated: child.wantsAnimatedTransitions) {
+                    super.didFinish(coordinator: child)
+                    self.resumeFlowIfNeeded()
+                }
             }
         } else {
             updateNavBar()
@@ -166,7 +172,6 @@ class MainNavigationCoordinator: BaseNavigationCoordinator {
     }
     
     @objc func showStatusView(progress: NSNumber) {
-        guard !SAApp.isClientRegistered() else { return }
         activeStatusController().setStatusConnectingProgress(progress.floatValue)
     }
 
