@@ -86,9 +86,12 @@ class MainNavigationCoordinator: BaseNavigationCoordinator {
             pendingFlow = child
             currentCoordinator.finish()
         } else {
-            if child is PresentationNavigationCoordinator {
+            if let child = child as? PresentationNavigationCoordinator {
+                child.isAnimating = true
                 navigationController.present(child.viewController,
-                                             animated: child.wantsAnimatedTransitions)
+                                             animated: child.wantsAnimatedTransitions) {
+                    child.isAnimating = false
+                }
             } else {
                 updateNavBar()
                 navigationController.pushViewController(child.viewController,
@@ -103,6 +106,7 @@ class MainNavigationCoordinator: BaseNavigationCoordinator {
             if child.viewController.presentingViewController == nil {
                 child.viewController.view.removeFromSuperview()
                 child.viewController.removeFromParent()
+                super.didFinish(coordinator: child)
                 self.resumeFlowIfNeeded()
             } else {
                 navigationController.dismiss(animated: child.wantsAnimatedTransitions) {
@@ -115,6 +119,7 @@ class MainNavigationCoordinator: BaseNavigationCoordinator {
             if navigationController.topViewController == child.viewController {
                 _ = navigationController.popViewController(animated: child.wantsAnimatedTransitions)
             }
+            
             super.didFinish(coordinator: child)
             if child is CfgNavigationCoordinator {
                 mainVC.reloadTables();
