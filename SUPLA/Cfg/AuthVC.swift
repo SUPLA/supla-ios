@@ -58,13 +58,25 @@ class AuthVC: BaseViewController {
     @IBOutlet private var adFormEmailAuth: UIView!
     @IBOutlet private var adFormAccessIdAuth: UIView!
     
+    @IBOutlet private var adAccessIdWizardWarning: UILabel!
+    
     @IBOutlet private var bottomOffset: NSLayoutConstraint!
     @IBOutlet private var topOffset: NSLayoutConstraint!
+    
+    @IBOutlet weak var adAccessIdWizardWarningHeight: NSLayoutConstraint!
+    
     
     private let disposeBag = DisposeBag()
     private var vM: AuthVM!
     
+    private let minTopMargin: CGFloat = 35
+    private let minBottomMargin: CGFloat = 15
+    private let topMargin: CGFloat = 65
     private let bottomMargin: CGFloat = 58
+    private let minHeight: CGFloat = 700
+    
+    private let warningMaxHeight: CGFloat = 126
+    private let warningMinHeight: CGFloat = 50
     
     private weak var currentTextField: UITextField?
     private weak var activeContentView: UIView?
@@ -100,6 +112,25 @@ class AuthVC: BaseViewController {
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
+        
+        let warningOrigin = adAccessIdWizardWarning.superview?.convert(adAccessIdWizardWarning.frame.origin, to: nil)
+        let btnOrigin = confirmButton.superview?.convert(confirmButton.frame.origin, to: nil)
+
+        if (warningOrigin == nil || btnOrigin == nil) {
+            adAccessIdWizardWarning.isHidden = true
+        } else {
+            var height =  btnOrigin!.y - warningOrigin!.y - 15
+            if (height > warningMaxHeight) {
+                height = warningMaxHeight
+            }
+            
+            if (height >= warningMinHeight) {
+                adAccessIdWizardWarningHeight.constant = height;
+                adAccessIdWizardWarning.isHidden = false
+            } else {
+                adAccessIdWizardWarning.isHidden = true
+            }
+        }
     }
 
     override func adjustsStatusBarBackground() -> Bool {
@@ -137,18 +168,23 @@ class AuthVC: BaseViewController {
         adAccessIDLabel.text = Strings.Cfg.accessIdLabel
         adAccessPwdLabel.text = Strings.Cfg.passwordLabel
         adServerAddrAccessIdLabel.text = Strings.Cfg.serverLabel
+        adAccessIdWizardWarning.text = Strings.Cfg.wizardWarningText
         adAuthType.setTitle(Strings.Cfg.emailSegment, forSegmentAt: 0)
         adAuthType.setTitle(Strings.Cfg.accessIdSegment, forSegmentAt: 1)
         
+        adAccessIdWizardWarning.textColor = .alertRed
+        adAccessIdWizardWarning.layer.cornerRadius = 9
+        adAccessIdWizardWarning.layer.borderColor = UIColor.alertRed.cgColor
+        adAccessIdWizardWarning.layer.borderWidth = 1
+
         [adFormEmailAuth, adFormAccessIdAuth].forEach {
             $0?.translatesAutoresizingMaskIntoConstraints = false
         }
         
-        bottomOffset.constant = bottomMargin
-        
         if #available(iOS 11.0, *) {
             controlStack.setCustomSpacing(24, after: confirmButton)
         }
+        
     }
 
     private func bindVM() {
@@ -230,15 +266,42 @@ class AuthVC: BaseViewController {
             self.createAccountPrompt.isHidden = !$0
             self.createAccountButton.isHidden = !$0
         }).disposed(by: disposeBag)
+        
     }
+    
     override func updateViewConstraints() {
         super.updateViewConstraints()
+        
+        var _topMargin = topMargin;
+        var _bottomMargin = bottomMargin;
+        
+        var diff = minHeight - view.frame.size.height;
+       
+        if (diff > 0) {
+            
+            if (bottomMargin-diff < minBottomMargin) {
+                diff += diff - (bottomMargin-minBottomMargin)
+                _bottomMargin = minBottomMargin;
+                
+                if (topMargin-diff < minTopMargin) {
+                    _topMargin = minTopMargin;
+                } else {
+                    _topMargin -= diff;
+                }
+            } else {
+                _bottomMargin-=diff;
+            }
+        }
+        
         if let navbar = navigationController?.navigationBar, !navbar.isHidden {
             let fr = navbar.frame
-            topOffset.constant += fr.origin.x + fr.size.height
+            topOffset.constant = _topMargin + fr.origin.x + fr.size.height
         }
-
+        
+        bottomOffset.constant = _bottomMargin
+        
     }
+    
     private func setContentView(_ v: UIView) {
         activeContentView?.removeFromSuperview()
         containerView.addSubview(v)
@@ -263,7 +326,7 @@ class AuthVC: BaseViewController {
             viewToAdd = adFormAccessIdAuth
             adAuthType.selectedSegmentIndex = 1
         }
-
+        
         viewToRemove.removeFromSuperview()
         adFormHostView.addSubview(viewToAdd)
         viewToAdd.translatesAutoresizingMaskIntoConstraints = false

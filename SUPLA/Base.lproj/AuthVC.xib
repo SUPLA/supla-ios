@@ -23,6 +23,8 @@
             <connections>
                 <outlet property="adAccessID" destination="KK8-Ik-aWy" id="AdQ-Pb-pdF"/>
                 <outlet property="adAccessIDLabel" destination="b9q-7p-zBF" id="gzI-Ig-cgk"/>
+                <outlet property="adAccessIdWizardWarning" destination="YqR-3f-Ofb" id="jXN-Kw-JYU"/>
+                <outlet property="adAccessIdWizardWarningHeight" destination="2cu-Xx-uVv" id="gUH-mg-biD"/>
                 <outlet property="adAccessPwd" destination="qK6-Tp-xIc" id="q1n-bV-skh"/>
                 <outlet property="adAccessPwdLabel" destination="Dok-NO-J2F" id="xbc-Mh-grC"/>
                 <outlet property="adAuthType" destination="7Sb-Yz-hv3" id="M2T-8x-xyp"/>
@@ -297,7 +299,7 @@
             <point key="canvasLocation" x="-1516.875" y="-490"/>
         </view>
         <view contentMode="scaleToFill" id="6LZ-hf-ytq" userLabel="Access id auth form">
-            <rect key="frame" x="0.0" y="0.0" width="318" height="367"/>
+            <rect key="frame" x="0.0" y="0.0" width="318" height="372"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="KK8-Ik-aWy">
@@ -351,30 +353,61 @@
                     <color key="textColor" red="0.70588235290000001" green="0.71764705880000002" blue="0.72941176470000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="6" translatesAutoresizingMaskIntoConstraints="NO" id="YqR-3f-Ofb" customClass="PaddingLabel" customModule="PaddingLabel">
+                    <rect key="frame" x="0.0" y="246" width="318" height="126"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="126" id="2cu-Xx-uVv"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="topInset">
+                            <real key="value" value="2"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="number" keyPath="bottomInset">
+                            <real key="value" value="2"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="number" keyPath="leftInset">
+                            <real key="value" value="4"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="number" keyPath="rightInset">
+                            <real key="value" value="4"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                </label>
             </subviews>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
                 <constraint firstItem="KK8-Ik-aWy" firstAttribute="leading" secondItem="6LZ-hf-ytq" secondAttribute="leading" id="18O-rl-Mxv"/>
                 <constraint firstItem="NZC-vd-0jU" firstAttribute="top" secondItem="qK6-Tp-xIc" secondAttribute="bottom" constant="47" id="2M1-8U-BIH"/>
                 <constraint firstItem="qK6-Tp-xIc" firstAttribute="top" secondItem="Dok-NO-J2F" secondAttribute="bottom" constant="4" id="474-nA-g8C"/>
+                <constraint firstAttribute="trailing" secondItem="YqR-3f-Ofb" secondAttribute="trailing" id="49t-ma-mC5"/>
                 <constraint firstItem="qK6-Tp-xIc" firstAttribute="top" secondItem="KK8-Ik-aWy" secondAttribute="bottom" constant="47" id="5Ra-18-d29"/>
                 <constraint firstAttribute="trailing" secondItem="NZC-vd-0jU" secondAttribute="trailing" id="6hy-pG-hE7"/>
                 <constraint firstItem="NZC-vd-0jU" firstAttribute="leading" secondItem="6LZ-hf-ytq" secondAttribute="leading" id="Cx0-Or-8qd"/>
+                <constraint firstItem="YqR-3f-Ofb" firstAttribute="leading" secondItem="6LZ-hf-ytq" secondAttribute="leading" id="FhD-YZ-bm6"/>
                 <constraint firstItem="KK8-Ik-aWy" firstAttribute="top" secondItem="b9q-7p-zBF" secondAttribute="bottom" constant="4" id="LEu-dO-2wh"/>
                 <constraint firstAttribute="trailing" secondItem="KK8-Ik-aWy" secondAttribute="trailing" id="Lht-LW-iMH"/>
                 <constraint firstItem="KK8-Ik-aWy" firstAttribute="top" secondItem="6LZ-hf-ytq" secondAttribute="top" constant="47" id="Ofk-ln-Uy4"/>
                 <constraint firstItem="Dok-NO-J2F" firstAttribute="leading" secondItem="qK6-Tp-xIc" secondAttribute="leading" constant="12" id="PnG-b0-E2q"/>
                 <constraint firstAttribute="trailing" secondItem="qK6-Tp-xIc" secondAttribute="trailing" id="Vxh-ls-mH8"/>
-                <constraint firstAttribute="bottom" secondItem="NZC-vd-0jU" secondAttribute="bottom" id="aZO-qG-b4I"/>
                 <constraint firstItem="b9q-7p-zBF" firstAttribute="leading" secondItem="KK8-Ik-aWy" secondAttribute="leading" constant="12" id="crp-E8-LcX"/>
+                <constraint firstAttribute="bottom" secondItem="YqR-3f-Ofb" secondAttribute="bottom" id="dWC-yh-w0P"/>
                 <constraint firstItem="nzi-0M-3EJ" firstAttribute="leading" secondItem="NZC-vd-0jU" secondAttribute="leading" constant="12" id="gYd-DR-LJ3"/>
                 <constraint firstItem="qK6-Tp-xIc" firstAttribute="leading" secondItem="6LZ-hf-ytq" secondAttribute="leading" id="jiI-WQ-Vbc"/>
                 <constraint firstItem="NZC-vd-0jU" firstAttribute="top" secondItem="nzi-0M-3EJ" secondAttribute="bottom" constant="4" id="kFE-oM-p4o"/>
+                <constraint firstItem="YqR-3f-Ofb" firstAttribute="top" secondItem="NZC-vd-0jU" secondAttribute="bottom" constant="15" id="mOK-2f-Wlj"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <point key="canvasLocation" x="-1516.875" y="71.875"/>
+            <point key="canvasLocation" x="-1297.5" y="246.875"/>
         </view>
     </objects>
+    <designables>
+        <designable name="YqR-3f-Ofb">
+            <size key="intrinsicContentSize" width="49.5" height="24.5"/>
+        </designable>
+    </designables>
     <resources>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
