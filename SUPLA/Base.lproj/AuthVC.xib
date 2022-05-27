@@ -23,7 +23,6 @@
             <connections>
                 <outlet property="adAccessID" destination="KK8-Ik-aWy" id="AdQ-Pb-pdF"/>
                 <outlet property="adAccessIDLabel" destination="b9q-7p-zBF" id="gzI-Ig-cgk"/>
-                <outlet property="adAccessIdWizardWarning" destination="QQn-2A-hx6" id="2Cc-Ne-VZh"/>
                 <outlet property="adAccessPwd" destination="qK6-Tp-xIc" id="q1n-bV-skh"/>
                 <outlet property="adAccessPwdLabel" destination="Dok-NO-J2F" id="xbc-Mh-grC"/>
                 <outlet property="adAuthType" destination="7Sb-Yz-hv3" id="M2T-8x-xyp"/>
@@ -42,7 +41,7 @@
                 <outlet property="bsEmailAddrLabel" destination="cZS-4u-QMr" id="vOH-yO-uat"/>
                 <outlet property="bsYourAccount" destination="6Ji-Wu-NuM" id="c7E-VG-wI5"/>
                 <outlet property="confirmButton" destination="LE2-dM-R7U" id="gkT-qR-EUn"/>
-                <outlet property="containerView" destination="9eC-kc-MKK" id="vSe-An-eAg"/>
+                <outlet property="containerView" destination="pLe-rf-dtD" id="0Oy-vL-FLC"/>
                 <outlet property="controlStack" destination="APj-NV-55D" id="wlF-Ul-J6f"/>
                 <outlet property="createAccountButton" destination="2Up-5L-11x" id="9V0-k8-qMs"/>
                 <outlet property="createAccountPrompt" destination="Qva-Ft-tLE" id="B0j-yL-0w4"/>
@@ -129,26 +128,23 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="7Sb-Yz-hv3">
-                    <rect key="frame" x="0.0" y="24" width="320" height="305"/>
+                    <rect key="frame" x="0.0" y="24" width="320" height="32"/>
                     <segments>
                         <segment title="Email authorization"/>
                         <segment title="Access identifier"/>
                     </segments>
                 </segmentedControl>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="agv-fZ-ApW">
-                    <rect key="frame" x="0.0" y="328" width="320" height="128"/>
+                    <rect key="frame" x="0.0" y="55" width="320" height="425"/>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="128" placeholder="YES" id="13g-uj-O5J"/>
-                    </constraints>
                 </view>
             </subviews>
             <color key="backgroundColor" red="0.98039215690000003" green="0.98431372549999996" blue="0.98823529409999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="agv-fZ-ApW" firstAttribute="top" secondItem="7Sb-Yz-hv3" secondAttribute="bottom" id="2a8-hh-hRJ"/>
                 <constraint firstItem="7Sb-Yz-hv3" firstAttribute="top" secondItem="5jV-eP-x03" secondAttribute="top" constant="24" id="9Pc-HR-1T6"/>
+                <constraint firstAttribute="bottom" secondItem="agv-fZ-ApW" secondAttribute="bottom" placeholder="YES" id="BHl-dv-jbL"/>
                 <constraint firstItem="7Sb-Yz-hv3" firstAttribute="leading" secondItem="5jV-eP-x03" secondAttribute="leading" id="RFM-nS-bxy"/>
-                <constraint firstAttribute="bottom" secondItem="agv-fZ-ApW" secondAttribute="bottom" constant="24" id="lkj-28-cmT"/>
                 <constraint firstAttribute="trailing" secondItem="7Sb-Yz-hv3" secondAttribute="trailing" id="m1I-Xa-Ae1"/>
                 <constraint firstItem="agv-fZ-ApW" firstAttribute="leading" secondItem="5jV-eP-x03" secondAttribute="leading" id="p6O-Mh-DSK"/>
                 <constraint firstAttribute="trailing" secondItem="agv-fZ-ApW" secondAttribute="trailing" id="qDj-LE-3Lq"/>
@@ -173,18 +169,7 @@
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pLe-rf-dtD">
                             <rect key="frame" x="0.0" y="0.0" width="253" height="274"/>
-                            <subviews>
-                                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" showsHorizontalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9eC-kc-MKK">
-                                    <rect key="frame" x="0.0" y="0.0" width="253" height="274"/>
-                                </scrollView>
-                            </subviews>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            <constraints>
-                                <constraint firstItem="9eC-kc-MKK" firstAttribute="leading" secondItem="pLe-rf-dtD" secondAttribute="leading" id="VyT-k8-3LD"/>
-                                <constraint firstAttribute="trailing" secondItem="9eC-kc-MKK" secondAttribute="trailing" id="cEb-AU-zTx"/>
-                                <constraint firstItem="9eC-kc-MKK" firstAttribute="top" secondItem="pLe-rf-dtD" secondAttribute="top" id="mkF-mS-19i"/>
-                                <constraint firstAttribute="bottom" secondItem="9eC-kc-MKK" secondAttribute="bottom" id="yap-gL-Rbz"/>
-                            </constraints>
                         </view>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LE2-dM-R7U" userLabel="Confirm" customClass="RoundedButton" customModule="SUPLA" customModuleProvider="target">
                             <rect key="frame" x="0.0" y="274" width="253" height="44"/>
@@ -366,26 +351,6 @@
                     <color key="textColor" red="0.70588235290000001" green="0.71764705880000002" blue="0.72941176470000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QQn-2A-hx6" customClass="PaddingLabel" customModule="PaddingLabel">
-                    <rect key="frame" x="0.0" y="263" width="318" height="104"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                    <nil key="textColor"/>
-                    <nil key="highlightedColor"/>
-                    <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="number" keyPath="topInset">
-                            <real key="value" value="2"/>
-                        </userDefinedRuntimeAttribute>
-                        <userDefinedRuntimeAttribute type="number" keyPath="bottomInset">
-                            <real key="value" value="2"/>
-                        </userDefinedRuntimeAttribute>
-                        <userDefinedRuntimeAttribute type="number" keyPath="leftInset">
-                            <real key="value" value="4"/>
-                        </userDefinedRuntimeAttribute>
-                        <userDefinedRuntimeAttribute type="number" keyPath="rightInset">
-                            <real key="value" value="4"/>
-                        </userDefinedRuntimeAttribute>
-                    </userDefinedRuntimeAttributes>
-                </label>
             </subviews>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
@@ -394,16 +359,13 @@
                 <constraint firstItem="qK6-Tp-xIc" firstAttribute="top" secondItem="Dok-NO-J2F" secondAttribute="bottom" constant="4" id="474-nA-g8C"/>
                 <constraint firstItem="qK6-Tp-xIc" firstAttribute="top" secondItem="KK8-Ik-aWy" secondAttribute="bottom" constant="47" id="5Ra-18-d29"/>
                 <constraint firstAttribute="trailing" secondItem="NZC-vd-0jU" secondAttribute="trailing" id="6hy-pG-hE7"/>
-                <constraint firstItem="QQn-2A-hx6" firstAttribute="top" secondItem="NZC-vd-0jU" secondAttribute="bottom" constant="32" id="8PK-In-oAh"/>
                 <constraint firstItem="NZC-vd-0jU" firstAttribute="leading" secondItem="6LZ-hf-ytq" secondAttribute="leading" id="Cx0-Or-8qd"/>
-                <constraint firstItem="QQn-2A-hx6" firstAttribute="leading" secondItem="6LZ-hf-ytq" secondAttribute="leading" id="JiA-5z-4Cy"/>
                 <constraint firstItem="KK8-Ik-aWy" firstAttribute="top" secondItem="b9q-7p-zBF" secondAttribute="bottom" constant="4" id="LEu-dO-2wh"/>
                 <constraint firstAttribute="trailing" secondItem="KK8-Ik-aWy" secondAttribute="trailing" id="Lht-LW-iMH"/>
                 <constraint firstItem="KK8-Ik-aWy" firstAttribute="top" secondItem="6LZ-hf-ytq" secondAttribute="top" constant="47" id="Ofk-ln-Uy4"/>
                 <constraint firstItem="Dok-NO-J2F" firstAttribute="leading" secondItem="qK6-Tp-xIc" secondAttribute="leading" constant="12" id="PnG-b0-E2q"/>
-                <constraint firstAttribute="bottom" secondItem="QQn-2A-hx6" secondAttribute="bottom" id="Sk9-ch-9cH"/>
                 <constraint firstAttribute="trailing" secondItem="qK6-Tp-xIc" secondAttribute="trailing" id="Vxh-ls-mH8"/>
-                <constraint firstAttribute="trailing" secondItem="QQn-2A-hx6" secondAttribute="trailing" id="bWf-J2-181"/>
+                <constraint firstAttribute="bottom" secondItem="NZC-vd-0jU" secondAttribute="bottom" id="aZO-qG-b4I"/>
                 <constraint firstItem="b9q-7p-zBF" firstAttribute="leading" secondItem="KK8-Ik-aWy" secondAttribute="leading" constant="12" id="crp-E8-LcX"/>
                 <constraint firstItem="nzi-0M-3EJ" firstAttribute="leading" secondItem="NZC-vd-0jU" secondAttribute="leading" constant="12" id="gYd-DR-LJ3"/>
                 <constraint firstItem="qK6-Tp-xIc" firstAttribute="leading" secondItem="6LZ-hf-ytq" secondAttribute="leading" id="jiI-WQ-Vbc"/>
@@ -413,11 +375,6 @@
             <point key="canvasLocation" x="-1516.875" y="71.875"/>
         </view>
     </objects>
-    <designables>
-        <designable name="QQn-2A-hx6">
-            <size key="intrinsicContentSize" width="49.5" height="24.5"/>
-        </designable>
-    </designables>
     <resources>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
