@@ -97,7 +97,8 @@ class AuthVC: BaseViewController {
                                                name: Notification.Name(kSAMenubarBackButtonPressed),
                                                object: nil)
 
-        navigationItem.hidesBackButton = !SAApp.configIsSet()
+        navigationItem.hidesBackButton = !SAApp.configIsSet() ||
+            !SAApp.isClientRegistered()
 
         configureUI()
         bindVM()
