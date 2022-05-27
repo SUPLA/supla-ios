@@ -108,7 +108,7 @@
                 <constraint firstItem="6Ji-Wu-NuM" firstAttribute="centerX" secondItem="quC-af-tvs" secondAttribute="centerX" id="PvM-R7-ZKT"/>
                 <constraint firstItem="kkM-HY-JhI" firstAttribute="top" secondItem="6Ji-Wu-NuM" secondAttribute="bottom" constant="47" id="Rsq-lm-UoX"/>
                 <constraint firstItem="kkM-HY-JhI" firstAttribute="leading" secondItem="quC-af-tvs" secondAttribute="leading" id="SFl-M8-7lM"/>
-                <constraint firstAttribute="bottom" secondItem="kkM-HY-JhI" secondAttribute="bottom" constant="24" id="pcE-Ip-9oF"/>
+                <constraint firstAttribute="bottom" secondItem="kkM-HY-JhI" secondAttribute="bottom" constant="24" placeholder="YES" id="pcE-Ip-9oF"/>
                 <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="cZS-4u-QMr" secondAttribute="trailing" constant="20" symbolic="YES" id="pwQ-sB-VAA"/>
                 <constraint firstAttribute="trailing" secondItem="kkM-HY-JhI" secondAttribute="trailing" id="rLR-IU-5CL"/>
                 <constraint firstItem="cZS-4u-QMr" firstAttribute="leading" secondItem="quC-af-tvs" secondAttribute="leading" constant="12" id="xjt-bV-URR"/>
@@ -155,10 +155,10 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
-                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="CLE-eZ-RoC">
+                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="CLE-eZ-RoC">
                     <rect key="frame" x="237" y="65" width="51" height="6"/>
                 </switch>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Advanced settings" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9LH-es-n4B">
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" text="Advanced settings" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9LH-es-n4B">
                     <rect key="frame" x="110" y="59.5" width="119" height="17.5"/>
                     <fontDescription key="fontDescription" name="Quicksand-Regular" family="Quicksand" pointSize="14"/>
                     <nil key="textColor"/>
