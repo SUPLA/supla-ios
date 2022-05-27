@@ -31,7 +31,7 @@ class AuthVC: BaseViewController {
     
     @IBOutlet private var modeToggle: UISwitch!
     @IBOutlet private var modeToggleLabel: UILabel!
-    @IBOutlet private var containerView: UIScrollView!
+    @IBOutlet private var containerView: UIView!
     @IBOutlet private var createAccountPrompt: UILabel!
     @IBOutlet private var createAccountButton: UIButton!
     @IBOutlet private var confirmButton: UIButton!
@@ -57,8 +57,6 @@ class AuthVC: BaseViewController {
     @IBOutlet private var adFormHostView: UIView!
     @IBOutlet private var adFormEmailAuth: UIView!
     @IBOutlet private var adFormAccessIdAuth: UIView!
-    
-    @IBOutlet private var adAccessIdWizardWarning: UILabel!
     
     @IBOutlet private var bottomOffset: NSLayoutConstraint!
     @IBOutlet private var topOffset: NSLayoutConstraint!
@@ -86,11 +84,6 @@ class AuthVC: BaseViewController {
         super.viewDidLoad()
         
         title = Strings.NavBar.titleSupla
-        [Self.keyboardWillShowNotification, Self.keyboardWillHideNotification].forEach {
-            NotificationCenter.default.addObserver(self,
-                                                   selector: #selector(onKeyboardVisibilityChange(_:)),
-                                                   name: $0, object: nil)
-        }
         
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(onBackButtonPressed(_:)),
@@ -107,7 +100,6 @@ class AuthVC: BaseViewController {
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        addGradientToScrollView()
     }
 
     override func adjustsStatusBarBackground() -> Bool {
@@ -145,15 +137,9 @@ class AuthVC: BaseViewController {
         adAccessIDLabel.text = Strings.Cfg.accessIdLabel
         adAccessPwdLabel.text = Strings.Cfg.passwordLabel
         adServerAddrAccessIdLabel.text = Strings.Cfg.serverLabel
-        adAccessIdWizardWarning.text = Strings.Cfg.wizardWarningText
         adAuthType.setTitle(Strings.Cfg.emailSegment, forSegmentAt: 0)
         adAuthType.setTitle(Strings.Cfg.accessIdSegment, forSegmentAt: 1)
         
-        adAccessIdWizardWarning.textColor = .alertRed
-        adAccessIdWizardWarning.layer.cornerRadius = 9
-        adAccessIdWizardWarning.layer.borderColor = UIColor.alertRed.cgColor
-        adAccessIdWizardWarning.layer.borderWidth = 1
-
         [adFormEmailAuth, adFormAccessIdAuth].forEach {
             $0?.translatesAutoresizingMaskIntoConstraints = false
         }
@@ -262,8 +248,6 @@ class AuthVC: BaseViewController {
         v.leftAnchor.constraint(equalTo: containerView.leftAnchor).isActive = true
         v.rightAnchor.constraint(equalTo: containerView.rightAnchor).isActive = true
         v.bottomAnchor.constraint(equalTo: containerView.bottomAnchor).isActive = true
-        v.leftAnchor.constraint(equalTo: controlStack.leftAnchor).isActive = true
-        v.rightAnchor.constraint(equalTo: controlStack.rightAnchor).isActive = true
     }
     
     private func setAdvancedAuthMode(_ at: AuthVM.AuthType) {
@@ -289,18 +273,6 @@ class AuthVC: BaseViewController {
         viewToAdd.rightAnchor.constraint(equalTo: adFormHostView.rightAnchor).isActive = true
     }
     
-    private func addGradientToScrollView() {
-        let gradientLayer = CAGradientLayer()
-        let innerColor = UIColor(white: 1.0, alpha: 1.0).cgColor
-        let outerColor = UIColor(white: 1.0, alpha: 0.0).cgColor
-        let svBounds = containerView.bounds
-        gradientLayer.bounds = svBounds
-        gradientLayer.anchorPoint = .zero
-        gradientLayer.colors = [ outerColor, innerColor, innerColor, outerColor ]
-        gradientLayer.locations = [ 0.0, 0.05, 0.95, 1.0 ]
-        containerView.superview?.layer.mask = gradientLayer
-    }
-    
     private func displayBasicModeUnavailableAlert() {
         let alert = UIAlertController(title: Strings.Cfg.basicModeNotAvailableTitle,
                                       message: Strings.Cfg.basicModeNotAvailableMessage,
@@ -312,34 +284,6 @@ class AuthVC: BaseViewController {
     
     @objc private func onBackButtonPressed(_ n: Notification) {
         navigationCoordinator?.finish()
-    }
-
-    @objc private func onKeyboardVisibilityChange(_ notification: Notification) {
-        var newValue: CGFloat = 0
-        if notification.name == Self.keyboardWillShowNotification {
-            if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
-                newValue = 12 + keyboardSize.height
-            }
-        } else {
-            newValue = bottomMargin
-        }
-        let duration = notification.userInfo?[UIResponder.keyboardAnimationDurationUserInfoKey] as? Double ?? 0.3
-        UIView.animate(withDuration: duration, animations: {
-            self.bottomOffset.constant = newValue
-            self.containerView.contentInset = .zero
-            self.containerView.setNeedsLayout()
-            self.containerView.layoutIfNeeded()
-            self.view.layoutIfNeeded()
-        }) { _ in
-            if let fld = self.currentTextField {
-                let destRect = self.containerView.convert(fld.bounds, from: fld)
-                    .insetBy(dx: 0, dy: -self.bottomMargin / 2.0)
-                self.containerView.scrollRectToVisible(destRect, animated: true)
-                if notification.name == Self.keyboardWillHideNotification {
-                    self.currentTextField = nil
-                }
-            }
-        }
     }
     
     @objc private func didTapBackground(_ gr: UITapGestureRecognizer) {
