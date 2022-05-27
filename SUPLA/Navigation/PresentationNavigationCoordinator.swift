@@ -25,6 +25,14 @@ import UIKit
 class PresentationNavigationCoordinator: BaseNavigationCoordinator {
     
     var shouldAnimatePresentation = true
+    var isAnimating = false {
+        didSet {
+            if !isAnimating && shouldFinish {
+                finish()
+            }
+        }
+    }
+    private var shouldFinish = false
     
     override var wantsAnimatedTransitions: Bool {
         return shouldAnimatePresentation
@@ -43,6 +51,10 @@ class PresentationNavigationCoordinator: BaseNavigationCoordinator {
     }
     
     override func finish() {
+        if isAnimating {
+            shouldFinish = true
+            return
+        }
         if let vc = viewController as? PresentationCoordinatorPeer {
             vc.willFinish() {
                 self.parentCoordinator?.didFinish(coordinator: self)
