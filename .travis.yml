@@ -1,0 +1,13 @@
+language: objective-c
+osx_image: xcode12
+xcode_workspace: SUPLA.xcworkspace
+xcode_scheme: SUPLA
+xcode_destination: platform=iOS Simulator,OS=14.0,name=iPhone 11
+
+before_install:
+  - pod install --repo-update
+
+notifications:
+  slack:
+    rooms:
+      - supla:dauFpwhgEGeyy9ERzqOYeJyY#github
