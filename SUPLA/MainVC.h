@@ -19,10 +19,11 @@
 #import <UIKit/UIKit.h>
 #import "SADownloadUserIcons.h"
 #import "SectionCell.h"
+#import "BaseViewController.h"
 
 @class SADetailView;
 
-@interface SAMainVC : UIViewController <UITableViewDataSource, UITableViewDelegate, SARestApiClientTaskDelegate, SASectionCellDelegate, UITableViewDragDelegate, UITableViewDropDelegate>
+@interface SAMainVC : BaseViewController <UITableViewDataSource, UITableViewDelegate, SARestApiClientTaskDelegate, SASectionCellDelegate, UITableViewDragDelegate, UITableViewDropDelegate>
 
 
 - (IBAction)settingsTouched:(id)sender;
@@ -33,20 +34,22 @@
 @property (weak, nonatomic) IBOutlet UIView *notificationView;
 @property (weak, nonatomic) IBOutlet UIImageView *notificationImage;
 @property (weak, nonatomic) IBOutlet UILabel *notificationLabel;
+@property (readonly,nonatomic) id<UIViewControllerInteractiveTransitioning> interactionController;
 
 - (void)detailHide;
 - (void)groupTableHidden:(BOOL)hidden;
+- (void)reloadTables;
 @end
 
 
 @interface SAMainView : UIView 
-
+@property (weak, nonatomic) SAMainVC *viewController;
 @property (weak, nonatomic) IBOutlet UITableView *cTableView;
 @property (weak, nonatomic) IBOutlet UITableView *gTableView;
 @property (weak, nonatomic, readonly) SADetailView *detailView;
+@property (readonly,nonatomic) id<UIViewControllerInteractiveTransitioning> panController;
 
-- (void)onMenubarBackButtonPressed;
-- (void)detailShow:(BOOL)show animated:(BOOL)animated;
+- (void)detailDidHide;
 - (void)moveCenter:(float)x_offset;
 
 @end

@@ -38,6 +38,9 @@
 #import "SAZWaveWakeupSettingsReport.h"
 #import "SAChannel+CoreDataClass.h"
 #import "supla-client.h"
+#import "SUPLA-Swift.h"
+
+#define MINIMUM_WAITING_TIME_SEC 2
 
 @interface SASuplaClient ()
 - (void) onVersionError:(SAVersionError*)ve;
@@ -112,7 +115,7 @@ void sasuplaclient_on_registering(void *_suplaclient, void *user_data) {
     
 }
 
-void sasuplaclient_on_registered(void *_suplaclient, void *user_data, TSC_SuplaRegisterClientResult_B *result) {
+void sasuplaclient_on_registered(void *_suplaclient, void *user_data, TSC_SuplaRegisterClientResult_C *result) {
     
     SASuplaClient *sc = (__bridge SASuplaClient*)user_data;
     if ( sc != nil )
@@ -352,6 +355,7 @@ void sasuplaclient_on_zwave_set_wake_up_time_result(void *_suplaclient,
     int _tokenRequestTime;
     BOOL _superuserAuthorized;
     NSString *_oneTimePassword;
+    NSDate *_connectingStatusLastTime;
 }
 
 @synthesize delegate;
@@ -389,6 +393,9 @@ void sasuplaclient_on_zwave_set_wake_up_time_result(void *_suplaclient,
         case SUPLA_RESULTCODE_ACCESSID_NOT_ASSIGNED:
             str = NSLocalizedString(@"Client activation required. Please log in to \"Supla Cloud\" and assign an “Access ID” for this device in “Smartphone” section of the website.", nil);
             break;
+        case SUPLA_RESULTCODE_ACCESSID_INACTIVE:
+            str = NSLocalizedString(@"Access Identifier inactive.", nil);
+            break;
             
     }
     
@@ -408,12 +415,13 @@ void sasuplaclient_on_zwave_set_wake_up_time_result(void *_suplaclient,
 }
 
 - (char*) getServerHostName {
-    
-    NSString *host = [SAApp getServerHostName];
-    if ( [host isEqualToString:@""] == YES && [SAApp isAdvancedConfig] == NO && ![[SAApp getEmailAddress] isEqualToString:@""] ) {
+    id<ProfileManager> pm = SAApp.profileManager;
+    AuthInfo *ai = [pm getCurrentAuthInfo];
+    NSString *host = ai.serverForCurrentAuthMethod;
+    if ( [host isEqualToString:@""] && ai.emailAuth && ![ai.emailAddress isEqualToString:@""] ) {
                 
         NSMutableURLRequest *request =
-        [NSMutableURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"https://autodiscover.supla.org/users/%@", [SAApp getEmailAddress]]] cachePolicy:NSURLRequestReloadIgnoringLocalAndRemoteCacheData timeoutInterval:5];
+        [NSMutableURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"https://autodiscover.supla.org/users/%@", ai.emailAddress]] cachePolicy:NSURLRequestReloadIgnoringLocalAndRemoteCacheData timeoutInterval:5];
         
         [request setHTTPMethod: @"GET"];
         
@@ -429,7 +437,8 @@ void sasuplaclient_on_zwave_set_wake_up_time_result(void *_suplaclient,
             if ( [jsonObj isKindOfClass:[NSDictionary class]] ) {
                 NSString *str = [jsonObj objectForKey:@"server"];
                 if ( str != nil && [str isKindOfClass:[NSString class]]) {
-                    [SAApp setServerHostName:str];
+                    ai.serverForEmail = str;
+                    [pm updateCurrentAuthInfo:ai];
                     host = str;
                 }
             }
@@ -463,16 +472,19 @@ void sasuplaclient_on_zwave_set_wake_up_time_result(void *_suplaclient,
         [self onConnError:SUPLA_RESULTCODE_HOSTNOTFOUND];
     }
     
-    if ( [SAApp isAdvancedConfig] ) {
-        scc.AccessID = [SAApp getAccessID];
-        snprintf(scc.AccessIDpwd, SUPLA_ACCESSID_PWD_MAXSIZE, "%s", [[SAApp getAccessIDpwd] UTF8String]);
+    id<ProfileManager> pm = [SAApp profileManager];
+    AuthInfo *ai = [pm getCurrentAuthInfo];
+    if ( !ai.emailAuth ) {
+        scc.AccessID = ai.accessID;
+        snprintf(scc.AccessIDpwd, SUPLA_ACCESSID_PWD_MAXSIZE, "%s", [ai.accessIDpwd UTF8String]);
         
         if ( _regTryCounter >= 2 ) {
-            [SAApp setPreferedProtocolVersion:4]; // supla-server v1.0 for Raspberry Compatibility fix
+            ai.preferredProtocolVersion = 4;
+            [pm updateCurrentAuthInfo:ai]; // supla-server v1.0 for Raspberry Compatibility fix
         }
         
     } else {
-        snprintf(scc.Email, SUPLA_EMAIL_MAXSIZE, "%s", [[SAApp getEmailAddress] UTF8String]);
+        snprintf(scc.Email, SUPLA_EMAIL_MAXSIZE, "%s", [ai.emailAddress UTF8String]);
         if (_oneTimePassword && _oneTimePassword.length) {
             snprintf(scc.Password, SUPLA_PASSWORD_MAXSIZE, "%s", [_oneTimePassword UTF8String]);
         }
@@ -516,7 +528,7 @@ void sasuplaclient_on_zwave_set_wake_up_time_result(void *_suplaclient,
     scc.cb_on_zwave_wake_up_settings_report = sasuplaclient_on_zwave_wake_up_settings_report;
     scc.cb_on_zwave_set_wake_up_time_result = sasuplaclient_on_zwave_set_wake_up_time_result;
     
-    scc.protocol_version = [SAApp getPreferedProtocolVersion];
+    scc.protocol_version = ai.preferredProtocolVersion;
     
     return supla_client_init(&scc);
 
@@ -532,6 +544,8 @@ void sasuplaclient_on_zwave_set_wake_up_time_result(void *_suplaclient,
             @synchronized(self) {
                 _superuserAuthorized = NO;
             }
+            
+            _connectingStatusLastTime = [NSDate date];
             
             [self onConnecting];
             BOOL DataChanged = NO;
@@ -569,14 +583,13 @@ void sasuplaclient_on_zwave_set_wake_up_time_result(void *_suplaclient,
                         while ( [self isCancelled] == NO
                                && supla_client_iterate(_sclient, 100000) == 1) {
                         }
-                        
-                        if ( [self isCancelled] == NO ) {
-                            usleep(5000000);
-                        }
                     }
                     
                     if ( [self isCancelled] == NO ) {
-                        usleep(2000000);
+                        double timeDiff = [_connectingStatusLastTime timeIntervalSinceNow] * -1;
+                        if ( timeDiff < MINIMUM_WAITING_TIME_SEC) {
+                            usleep((MINIMUM_WAITING_TIME_SEC - timeDiff)   * 1000000);
+                        }
                     }
                 }
                 @catch (NSException *exception) {
@@ -612,13 +625,15 @@ void sasuplaclient_on_zwave_set_wake_up_time_result(void *_suplaclient,
 - (void) onVersionError:(SAVersionError*)ve {
     
     _regTryCounter = 0;
+    id<ProfileManager> pm = SAApp.profileManager;
+    AuthInfo *ai = [pm getCurrentAuthInfo];
     
-    if ( ([SAApp isAdvancedConfig] || ve.remoteVersion >= 7)
+    if ( (!ai.emailAuth || ve.remoteVersion >= 7)
         && ve.remoteVersion >= 5
         && ve.version > ve.remoteVersion
-        && [SAApp getPreferedProtocolVersion] != ve.remoteVersion ) {
-        
-        [SAApp setPreferedProtocolVersion:ve.remoteVersion];
+        && ai.preferredProtocolVersion != ve.remoteVersion ) {
+        ai.preferredProtocolVersion = ve.remoteVersion;
+        [pm updateCurrentAuthInfo: ai];
         [self reconnect];
         return;
     }
@@ -682,12 +697,14 @@ void sasuplaclient_on_zwave_set_wake_up_time_result(void *_suplaclient,
 - (void) onRegistered:(SARegResult*)result {
 
     _regTryCounter = 0;
+    id<ProfileManager> pm = [SAApp profileManager];
+    AuthInfo *ai = [pm getCurrentAuthInfo];
     
-    if ( [SAApp getPreferedProtocolVersion] < SUPLA_PROTO_VERSION
-         && result.Version > [SAApp getPreferedProtocolVersion]
+    if ( ai.preferredProtocolVersion < SUPLA_PROTO_VERSION
+         && result.Version > ai.preferredProtocolVersion
         && result.Version <= SUPLA_PROTO_VERSION ) {
-        
-        [SAApp setPreferedProtocolVersion:result.Version];
+        ai.preferredProtocolVersion = result.Version;
+        [pm updateCurrentAuthInfo:ai];
         
     };
     

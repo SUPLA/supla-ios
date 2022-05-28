@@ -18,6 +18,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 #import "SAExtendedValue.h"
 #import "SAChannelExtendedValue+CoreDataClass.h"
+#import "supla-client.h"
 
 @implementation SAExtendedValue
 
@@ -37,6 +38,31 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 - (int) valueType {
     return ev ? ev.valueType : 0;
+}
+
+- (void) forEach: (BOOL (^)(TSuplaChannelExtendedValue *ev))method {
+    if (!method) {
+        return;
+    }
+    
+    TSuplaChannelExtendedValue multi_ev = {};
+    
+    NSData *data = self.dataValue;
+    if (data && data.length <= SUPLA_CHANNELEXTENDEDVALUE_SIZE) {
+        [data getBytes:multi_ev.value length:data.length];
+        multi_ev.size = (unsigned int)data.length;
+        multi_ev.type = self.valueType;
+        
+        int index = 0;
+        TSuplaChannelExtendedValue single_ev = {};
+
+        while (srpc_evtool_value_get(&multi_ev, index, &single_ev)) {
+          index++;
+          if (!method(&single_ev)) {
+            break;
+          }
+        }
+    }
 }
 
 @end

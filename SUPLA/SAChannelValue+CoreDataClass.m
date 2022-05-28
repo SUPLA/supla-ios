@@ -267,10 +267,10 @@
     return 0;
 }
     
--(TRollerShutterValue) rollerShutterValue {
-    TRollerShutterValue result = {};
-    if (self.dataValue.length >= sizeof(TRollerShutterValue)) {
-        [self.dataValue getBytes:&result length:sizeof(TRollerShutterValue)];
+-(TDSC_RollerShutterValue) rollerShutterValue {
+    TDSC_RollerShutterValue result = {};
+    if (self.dataValue.length >= sizeof(TDSC_RollerShutterValue)) {
+        [self.dataValue getBytes:&result length:sizeof(TDSC_RollerShutterValue)];
     }
     
     if (result.position < -1 || result.position > 100) {

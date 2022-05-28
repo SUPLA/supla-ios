@@ -161,7 +161,7 @@
     return self.value == nil ? [super overcurrentRelayOff] : [self.value overcurrentRelayOff];
 }
 
-- (TRollerShutterValue) rollerShutterValue {
+- (TDSC_RollerShutterValue) rollerShutterValue {
     return self.value == nil ? [super rollerShutterValue] : [self.value rollerShutterValue];
 }
 
@@ -230,14 +230,18 @@
 }
 
 - (NSAttributedString*) attrStringValueWithIndex:(int)idx font:(nullable UIFont*)font {
-  
+    NSNumberFormatter *n2fmt = [[NSNumberFormatter alloc] init];
+    n2fmt.maximumFractionDigits = 2;
+    n2fmt.minimumIntegerDigits = 1;
+    n2fmt.minimumFractionDigits = 1;
+
     if (self.value) {
         if (self.value.sub_value_type == SUBV_TYPE_IC_MEASUREMENTS) {
             return [[NSMutableAttributedString alloc] initWithString:
-                    [NSString stringWithFormat:@"%0.2f %@", self.impulseCounterCalculatedValueFromSubValue, self.unit]];
+                    [NSString stringWithFormat:@"%@ %@", [n2fmt stringFromNumber: @(self.impulseCounterCalculatedValueFromSubValue)], self.unit]];
         } else if (self.value.sub_value_type == SUBV_TYPE_ELECTRICITY_MEASUREMENTS) {
             return [[NSMutableAttributedString alloc] initWithString:
-                    [NSString stringWithFormat:@"%0.2f kWh", self.totalForwardActiveEnergyFromSubValue]];
+                    [NSString stringWithFormat:@"%@ kWh", [n2fmt stringFromNumber:@(self.totalForwardActiveEnergyFromSubValue)]]];
         }
     }
     
@@ -257,7 +261,7 @@
                 value = self.impulseCounterCalculatedValue;
             }
             
-            return [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"%0.2f %@", value, self.unit]];
+            return [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"%@ %@", [n2fmt stringFromNumber:@(value)], self.unit]];
         
         } else {
             return [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"--- %@", self.unit]];

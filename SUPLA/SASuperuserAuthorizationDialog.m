@@ -18,6 +18,7 @@
 #import "SuplaApp.h"
 #import "SASuperuserAuthorizationResult.h"
 #import "NSNumber+SUPLA.h"
+#import "SUPLA-Swift.h"
 
 static SASuperuserAuthorizationDialog *_superuserAuthorizationDialogGlobalRef = nil;
 
@@ -53,9 +54,10 @@ static SASuperuserAuthorizationDialog *_superuserAuthorizationDialogGlobalRef = 
 
 -(void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    
+    NSString *serverName = [SAApp.profileManager getCurrentAuthInfo]
+        .serverForCurrentAuthMethod;
     self.tvInfo.text = NSLocalizedString(
-                    [[SAApp getServerHostName] containsString:@"supla.org"] ?
+                    [serverName containsString:@"supla.org"] ?
                     @"Please enter your Supla Cloud login details."
                     : @"Enter superuser credentials", nil);
     
@@ -166,7 +168,8 @@ static SASuperuserAuthorizationDialog *_superuserAuthorizationDialogGlobalRef = 
     [self timeoutTimerInvalidate];
     _lErrorMessage.text = @"";
     _lErrorMessage.hidden = YES;
-    _edEmail.text = [SAApp getEmailAddress];
+    _edEmail.text = [SAApp.profileManager getCurrentAuthInfo]
+        .emailAddress;
     _edEmail.enabled = [SAApp isClientRegistered];
     _edPassword.text = @"";
     _edPassword.enabled = YES;

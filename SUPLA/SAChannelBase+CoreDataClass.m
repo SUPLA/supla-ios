@@ -18,6 +18,7 @@
 
 #import "SAChannelBase+CoreDataClass.h"
 #import "proto.h"
+#import "SUPLA-Swift.h"
 
 @implementation SAChannelBase
 
@@ -383,8 +384,8 @@
     return 0;
 }
 
-- (TRollerShutterValue) rollerShutterValue {
-    TRollerShutterValue result = {};
+- (TDSC_RollerShutterValue) rollerShutterValue {
+    TDSC_RollerShutterValue result = {};
     result.position = -1;
     return result;
 }
@@ -772,21 +773,25 @@
 }
 
 - (NSAttributedString*) thermostatAttrStringWithMeasuredTempMin:(double)mmin measuredTempMax:(double)mmax presetTempMin:(double)pmin presetTempMax:(double)pmax font:(nullable UIFont*)font {
-    NSString *measured = @"---\u00B0";
-    NSString *preset = @"/---\u00B0";
+	TemperaturePresenter *pres = [self temperaturePresenter];
+	NSString *unit = pres.unitString;
+    NSString *measured = [@"---" stringByAppendingString: unit];
+    NSString *preset = [@"/---" stringByAppendingString: unit];
         
     if (self.isOnline) {
         if (mmin > -273) {
-            measured = [NSString stringWithFormat:@"%0.2f\u00B0", mmin];
+            measured = [pres stringRepresentation: mmin];
             if (mmax > -273) {
-               measured = [NSString stringWithFormat:@"%@ - %0.2f\u00B0", measured, mmax];
+               measured = [NSString stringWithFormat:@"%@ - %@", measured,
+									[pres stringRepresentation: mmax]];
             }
         }
         
         if (pmin > -273) {
-            preset = [NSString stringWithFormat:@"/%0.2f\u00B0", pmin];
+            preset = [pres stringRepresentation: pmin];
             if (pmax > -273) {
-               preset = [NSString stringWithFormat:@"%@ - %0.2f\u00B0", preset, pmax];
+               preset = [NSString stringWithFormat:@"%@ - %@", preset,
+								  [pres stringRepresentation: pmax]];
             }
         }
     }
@@ -804,19 +809,27 @@
 
 - (NSAttributedString*) attrStringValueWithIndex:(int)idx font:(nullable UIFont*)font {
     NSString *result = @"";
-    
+    TemperaturePresenter *pres = [self temperaturePresenter];
+    NSNumberFormatter *nfmt = [[NSNumberFormatter alloc] init],
+        *n2fmt = [[NSNumberFormatter alloc] init];
+    nfmt.minimumIntegerDigits = 1;
+    nfmt.maximumFractionDigits = 1;
+    nfmt.minimumFractionDigits = 1;
+    n2fmt.minimumIntegerDigits = 1;
+    n2fmt.maximumFractionDigits = 2;
+    n2fmt.minimumFractionDigits = 1;
     switch (self.func) {
         case SUPLA_CHANNELFNC_THERMOMETER:
-            result = [self isOnline] && self.temperatureValue > -273 ? [NSString stringWithFormat:@"%0.1f°", self.temperatureValue] : @"----°";
+            result = [self isOnline] && self.temperatureValue > -273 ? [pres stringRepresentation: self.temperatureValue] : [@"----" stringByAppendingString: pres.unitString];
             break;
         case SUPLA_CHANNELFNC_HUMIDITY:
-            result = [self isOnline] && self.humidityValue > -1 ? [NSString stringWithFormat:@"%0.1f", self.humidityValue] : @"----";
+            result = [self isOnline] && self.humidityValue > -1 ? [nfmt stringFromNumber: @(self.humidityValue)] : @"----";
             break;
         case SUPLA_CHANNELFNC_HUMIDITYANDTEMPERATURE:
             if (idx == 1) {
-                result = [self isOnline] && self.humidityValue > -1 ? [NSString stringWithFormat:@"%0.1f", self.humidityValue] : @"----";
+                result = [self isOnline] && self.humidityValue > -1 ? [nfmt stringFromNumber: @(self.humidityValue)] : @"----";
             } else {
-                result = [self isOnline] && self.temperatureValue > -273 ? [NSString stringWithFormat:@"%0.1f°", self.temperatureValue] : @"----°";
+                result = [self isOnline] && self.temperatureValue > -273 ? [pres stringRepresentation:  self.temperatureValue] : [@"----" stringByAppendingString: pres.unitString];
             }
             break;
         case SUPLA_CHANNELFNC_DEPTHSENSOR:
@@ -828,14 +841,17 @@
                 double value = [self doubleValue];
                 
                 if ( fabs(value) >= 1000 ) {
-                    result = [NSString stringWithFormat:@"%0.2f km", value/1000.00];
+                    result = [NSString stringWithFormat:@"%@ km",
+                              [n2fmt stringFromNumber: @(value/1000.00)]];
                 } else if ( fabs(value) >= 1 ) {
-                    result = [NSString stringWithFormat:@"%0.2f m", value];
+                    result = [NSString stringWithFormat:@"%@ m",
+                              [n2fmt stringFromNumber: @(value)]];
                 } else {
                     value *= 100;
                     
                     if ( fabs(value) >= 1 ) {
-                        result = [NSString stringWithFormat:@"%0.1f cm", value];
+                        result = [NSString stringWithFormat:@"%@ cm",
+                                  [nfmt stringFromNumber: @(value)]];
                     } else {
                         value *= 10;
                         result = [NSString stringWithFormat:@"%i mm", (int)value];
@@ -846,7 +862,8 @@
             break;
         case SUPLA_CHANNELFNC_WINDSENSOR:
             if ([self isOnline] && [self doubleValue] >= 0) {
-               result = [NSString stringWithFormat:@"%0.1f m/s", [self doubleValue]];
+               result = [NSString stringWithFormat:@"%@ m/s",
+                         [nfmt stringFromNumber: @([self doubleValue])]];
             } else {
                result = @"--- m/s";
             }
@@ -860,7 +877,7 @@
             break;
         case SUPLA_CHANNELFNC_RAINSENSOR:
             if ([self isOnline] && [self doubleValue] >= 0) {
-                result = [NSString stringWithFormat:@"%0.2f l/m²", [self doubleValue]/1000.00];
+                result = [NSString stringWithFormat:@"%@ l/m²", [n2fmt stringFromNumber: @([self doubleValue]/1000.00)]];
             } else {
                 result = @"--- l/m²";
             }
@@ -869,7 +886,7 @@
             if ([self isOnline] && [self doubleValue] >= 0) {
                 double weight = [self doubleValue];
                 if (fabs(weight) >= 2000) {
-                    result = [NSString stringWithFormat:@"%0.2f kg", weight/1000.00];
+                    result = [NSString stringWithFormat:@"%@ kg", [n2fmt stringFromNumber:@(weight/1000.00)]];
                 } else {
                     result = [NSString stringWithFormat:@"%i g", (int)weight];
                 }
@@ -888,5 +905,9 @@
 
 - (NSAttributedString*) attrStringValue {
     return [self attrStringValueWithIndex:0 font:nil];
+}
+
+- (TemperaturePresenter*)temperaturePresenter {
+	return [Config new].currentTemperaturePresenter;
 }
 @end

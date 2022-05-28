@@ -24,6 +24,7 @@
 #import "SARegistrationEnabled.h"
 #import "NSDictionary+SUPLA.h"
 #import "UIButton+SUPLA.h"
+#import "SUPLA-Swift.h"
 
 #define RESULT_PARAM_ERROR   -3
 #define RESULT_COMPAT_ERROR  -2
@@ -59,6 +60,7 @@
 @synthesize version;
 @synthesize guid;
 @synthesize mac;
+@synthesize needsCloudConfig;
 
 @end
 
@@ -151,8 +153,8 @@
     do {
     
         NSMutableURLRequest *request =
-        [NSMutableURLRequest requestWithURL:[NSURL URLWithString:@"http://192.168.4.1"] cachePolicy:NSURLRequestReloadIgnoringLocalAndRemoteCacheData timeoutInterval:5];
-        
+	  [NSMutableURLRequest requestWithURL:[NSURL URLWithString:@"http://192.168.4.1"] cachePolicy:NSURLRequestReloadIgnoringLocalAndRemoteCacheData timeoutInterval:5];
+
         [request setHTTPMethod: @"GET"];
         
         NSURLResponse *urlResponse = nil;
@@ -225,6 +227,11 @@
                 if ( name != nil  ) {
                     [fields setObject:value == nil ? @"" : value forKey:name];
                 }
+                
+                if ( [name isEqualToString: @"no_visible_channels"] &&
+                    [value isEqualToString: @"1"] ) {
+                    result.needsCloudConfig = YES;
+                }
             }
             
         }
@@ -272,7 +279,7 @@
     if ( [self isCancelled] ) {
         return;
     }
-    
+
     retryCount = 3;
     
     [fields setObject:self.SSID forKey:@"sid"];
@@ -398,7 +405,8 @@
     
     [self.btnSystemSettings setTitle:NSLocalizedString(@"Go to the system settings", NULL)];
     
-    if ( [SAApp isAdvancedConfig] == YES ) {
+    if ( ![SAApp.profileManager getCurrentAuthInfo].emailAuth ) {
+        // TODO: Replace text
         [self showError:NSLocalizedString(@"Add Wizard is only available when server connection has been set based on the email address entered in the settings. (Disable advanced options in the settings)", NULL)];
         return;
     } else {
@@ -654,14 +662,48 @@
             self.lMAC.text = result.mac;
             self.lLastState.text = result.state;
             
+            if(result.needsCloudConfig) {
+                [self showCloudFollowupPopup];
+            }
+            
             [self showPage:PAGE_DONE];
             break;
     }
     
 }
 
+- (void)showCloudFollowupPopup {
+    UIAlertController *ctrl = [UIAlertController
+                               alertControllerWithTitle: NSLocalizedString(@"Device setup", nil)
+                               message: NSLocalizedString(@"This device does not have any channels visible in the application. To finish configuration go to cloud.supla.org", nil)
+                               preferredStyle: UIAlertControllerStyleAlert];
+    [ctrl addAction:
+     [UIAlertAction actionWithTitle: NSLocalizedString(@"I understand", nil)
+                              style: UIAlertActionStyleCancel
+                            handler:^(UIAlertAction * _Nonnull action) {
+        [self dismissViewControllerAnimated:YES completion:nil];
+    }]];
+    [ctrl addAction:
+     [UIAlertAction actionWithTitle: NSLocalizedString(@"Go to CLOUD", nil)
+                              style: UIAlertActionStyleDefault
+                            handler:^(UIAlertAction * _Nonnull action) {
+        [self dismissViewControllerAnimated:YES completion: ^{
+            [[UIApplication sharedApplication] openURL:
+             [NSURL URLWithString:@"https://cloud.supla.org"]];
+        }];
+    }]];
+
+    [self presentViewController:ctrl animated:YES completion:nil];
+     
+}
+
+- (IBAction)onDoneScreenCloudLinkTap: (UITapGestureRecognizer *)gr {
+    
+}
+
 -(NSString*)cloudHostName {
-   return [[[SAApp getServerHostName] lowercaseString] containsString:@"supla.org"] ? @"cloud.supla.org" : [SAApp getServerHostName];
+    NSString *server = [SAApp.profileManager getCurrentAuthInfo].serverForCurrentAuthMethod;
+   return [[server lowercaseString] containsString:@"supla.org"] ? @"cloud.supla.org" : server;
 }
 
 - (void)onRegistrationEnabled:(NSNotification *)notification {
@@ -736,8 +778,11 @@
                         stringByTrimmingCharactersInSet:
                         [NSCharacterSet whitespaceAndNewlineCharacterSet]];
     setConfigOp.PWD = self.edPassword.text;
-    setConfigOp.Server = [SAApp getServerHostName];
-    setConfigOp.Email = [SAApp getEmailAddress];
+    
+    AuthInfo *ai = [SAApp.profileManager getCurrentAuthInfo];
+    
+    setConfigOp.Server = ai.serverForEmail;
+    setConfigOp.Email = ai.emailAddress;
     setConfigOp.delegate = self;
     [self.OpQueue addOperation:setConfigOp];
 }
@@ -808,7 +853,7 @@
     [self cleanUp];
     [self.OpQueue cancelAllOperations];
     [self savePrefs];
-    [[SAApp UI] showMainVC];
+    [[SAApp currentNavigationCoordinator] finish];
     [[SAApp SuplaClient] reconnect];
 }
 

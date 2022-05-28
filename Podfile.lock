@@ -2,17 +2,50 @@ PODS:
   - Charts (3.4.0):
     - Charts/Core (= 3.4.0)
   - Charts/Core (3.4.0)
+  - FMMoveTableView (1.1.2)
+  - PaddingLabel (1.2)
+  - RxCocoa (5.1.3):
+    - RxRelay (~> 5)
+    - RxSwift (~> 5)
+  - RxRelay (5.1.3):
+    - RxSwift (~> 5)
+  - RxSwift (5.1.3)
+  - RxSwiftExt (5.2.0):
+    - RxSwiftExt/Core (= 5.2.0)
+    - RxSwiftExt/RxCocoa (= 5.2.0)
+  - RxSwiftExt/Core (5.2.0):
+    - RxSwift (~> 5.0)
+  - RxSwiftExt/RxCocoa (5.2.0):
+    - RxCocoa (~> 5.0)
+    - RxSwiftExt/Core
 
 DEPENDENCIES:
   - Charts (= 3.4.0)
+  - FMMoveTableView (~> 1.1)
+  - PaddingLabel (= 1.2)
+  - RxCocoa
+  - RxSwift
+  - RxSwiftExt
 
 SPEC REPOS:
   trunk:
     - Charts
+    - FMMoveTableView
+    - PaddingLabel
+    - RxCocoa
+    - RxRelay
+    - RxSwift
+    - RxSwiftExt
 
 SPEC CHECKSUMS:
   Charts: 74c9f256eaf0460c0c416522d1cf8c634ea6b286
+  FMMoveTableView: 63b46cf806133f5220cf92592dc0e6f7eb07633d
+  PaddingLabel: 21ab5282c780366018b04c30e3920c2f55a2fd14
+  RxCocoa: e2ed092d5432e4296aa818021d27de4090ac0354
+  RxRelay: 5a18c2eb2d68326ebaf0112f80d837ae41b92b97
+  RxSwift: 915abbdfb62214aa89ccd0b194d44fb478019b27
+  RxSwiftExt: 4ca80336f43c28f11a2825cdd2fc61dd6c044697
 
-PODFILE CHECKSUM: ddedf1d911235f6f5e6586ae8cd5a0ad403c23b7
+PODFILE CHECKSUM: 7a35a264a5e5706f90ed92bf5bde95a8d4c3e59a
 
-COCOAPODS: 1.8.4
+COCOAPODS: 1.11.0

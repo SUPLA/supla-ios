@@ -17,10 +17,11 @@
  */
 
 #import <UIKit/UIKit.h>
+#import "BaseViewController.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface SAWizardVC : UIViewController
+@interface SAWizardVC : BaseViewController
 @property (weak, nonatomic) IBOutlet UIView *vPageContent;
 @property (nonatomic) BOOL backButtonInsteadOfCancel;
 @property (weak, nonatomic) UIView *page;

@@ -29,6 +29,7 @@
 #import "SACalCfgProgressReport.h"
 #import "NSNumber+SUPLA.h"
 #import "SAZWaveWakeupSettingsDialog.h"
+#import "SUPLA-Swift.h"
 
 #define ERROR_TYPE_TIMEOUT 1
 #define ERROR_TYPE_DISCONNECTED 2
@@ -108,6 +109,7 @@ static SAZWaveConfigurationWizardVC *_zwaveConfigurationWizardGlobalRef = nil;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.navigationItem.hidesBackButton = YES;
     _deviceList = [[NSMutableArray alloc] init];
     _devicesToRestart = [[NSMutableArray alloc] init];
     _deviceChannelList = [[NSMutableArray alloc] init];
@@ -187,7 +189,8 @@ static SAZWaveConfigurationWizardVC *_zwaveConfigurationWizardGlobalRef = nil;
 
 -(void) superuserAuthorizationSuccess {
     [SASuperuserAuthorizationDialog.globalInstance close];
-    [SAApp.UI showViewController:self];
+    [(UINavigationController*)[SAApp mainNavigationCoordinator].viewController
+     pushViewController: self animated: YES];
 }
 
 -(void)show {
@@ -324,6 +327,9 @@ static SAZWaveConfigurationWizardVC *_zwaveConfigurationWizardGlobalRef = nil;
                 break;
             case SUPLA_RESULTCODE_DENY_CHANNEL_IS_ASSOCIETED_WITH_SCENE:
                 errStr = @"You cannot change the function of a channel that is associated with a scene.";
+                break;
+            case SUPLA_RESULTCODE_DENY_CHANNEL_IS_ASSOCIETED_WITH_ACTION_TRIGGER:
+                errStr = @"The function of the channel associated with the action trigger cannot be changed.";
                 break;
         }
         
@@ -982,7 +988,7 @@ static SAZWaveConfigurationWizardVC *_zwaveConfigurationWizardGlobalRef = nil;
     [_devicesToRestart removeAllObjects];
     
     self.preloaderVisible = NO;
-    [[SAApp UI] showMainVC];
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (IBAction)nextTouch:(nullable id)sender {

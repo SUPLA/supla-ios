@@ -28,20 +28,18 @@
 #import "SuplaApp.h"
 #import "proto.h"
 #import "UIColor+SUPLA.h"
+#import "SUPLA-Swift.h"
 
 #define CLEFT_MARGIN     5
 #define CRIGHT_MARGIN    5
 #define CTOP_MARGIN      5
 #define CBOTTOM_MARGIN   5
 
+@interface MGSwipeTableCell (ExposePrivateMethods)
+-(void)panHandler: (UIPanGestureRecognizer *)gesture;
+@end
 
 @implementation MGSwipeTableCell (SUPLA)
-
--(void) prepareForReuse
-{
-    [super prepareForReuse];
-};
-
 @end
 
 @implementation MGSwipeButton (SUPLA)
@@ -63,6 +61,15 @@
 }
 
 @synthesize captionEditable;
+-(void) prepareForReuse {
+    /* Disable delagate when preparation for reuse is happening. Otherwise
+       delegate would receive button hide notifications which is unintended
+       (data source is going to reset button states anyway. */
+    id<MGSwipeTableCellDelegate> savedDelegate = self.delegate;
+    self.delegate = nil;
+    [super prepareForReuse];
+    self.delegate = savedDelegate;
+}
 
 - (void)initialize {
     if (_initialized) return;
@@ -90,7 +97,13 @@
     longPressGr.minimumPressDuration = 0.8;
     self.caption.userInteractionEnabled = YES;
     [self.caption addGestureRecognizer:longPressGr];
+    
+    CGFloat scaleFactor = [self iconScaleFactor];
+    for(NSLayoutConstraint *constraint in self.channelIconScalableConstraints) {
+        constraint.constant *= scaleFactor;
+    }
 }
+
 
 - (void)awakeFromNib {
     [super awakeFromNib];
@@ -100,7 +113,6 @@
 - (void) setFrame:(CGRect)frame
 {
     [super setFrame:frame];
-    self.channelBase = _channelBase;
 }
 
 -(SAChannelBase*)channelBase {
@@ -116,9 +128,25 @@
     
 }
 
+- (MGSwipeButton *)makeButtonWithTitle: (NSString *)title {
+    MGSwipeButton *btn = [MGSwipeButton buttonWithTitle: title
+                                                   icon: nil
+                                        backgroundColor: [UIColor blackColor]];
+    CGFloat offset = 5;
+    UIView *bg = [[UIView alloc] init];
+    bg.translatesAutoresizingMaskIntoConstraints = NO;
+    bg.backgroundColor = [UIColor whiteColor];
+    [btn addSubview: bg];
+    [bg.bottomAnchor constraintEqualToAnchor: btn.bottomAnchor].active = YES;
+    [bg.leftAnchor constraintEqualToAnchor: btn.leftAnchor].active = YES;
+    [bg.rightAnchor constraintEqualToAnchor: btn.rightAnchor].active = YES;
+    [bg.heightAnchor constraintEqualToConstant: offset].active = YES;
+
+    return btn;
+}
+
 -(void)setChannelBase:(SAChannelBase *)channelBase {
     //TODO: Add support for WINDSENSOR, PRESSURESENSOR, RAINSENSOR, WEIGHTSENSOR
-   
     _channelBase = channelBase;
     BOOL isGroup = [channelBase isKindOfClass:[SAChannelGroup class]];
     SAChannel *channel = [channelBase isKindOfClass:[SAChannel class]] ? (SAChannel*)channelBase : nil;
@@ -150,7 +178,8 @@
         self.right_OnlineStatus.shapeType = stDot;
         self.left_OnlineStatus.shapeType = stDot;
         
-        if ([channelBase isKindOfClass:[SAChannel class]]) {
+        if ([channelBase isKindOfClass:[SAChannel class]] &&
+            [Config new].showChannelInfo && [channel isOnline]) {
             UIImage *stateIcon = channel.stateIcon;
             if (stateIcon) {
                 self.channelStateIcon.hidden = NO;
@@ -244,8 +273,7 @@
     } else if ( channelBase.func == SUPLA_CHANNELFNC_THERMOSTAT_HEATPOL_HOMEPLUS ) {
         [self.temp setAttributedText:[channelBase attrStringValueWithIndex:0 font:self.temp.font]];
     } else {
-        self.rightButtons = nil;
-        self.leftButtons = nil;
+        [self resetButtonState];
                 
         if ( [channelBase isOnline] ) {
             MGSwipeButton *bl = nil;
@@ -263,13 +291,14 @@
                 case SUPLA_CHANNELFNC_POWERSWITCH:
                 case SUPLA_CHANNELFNC_LIGHTSWITCH:
                 case SUPLA_CHANNELFNC_STAIRCASETIMER:
-                    br = [MGSwipeButton buttonWithTitle:NSLocalizedString(@"On", nil) icon:nil backgroundColor:[UIColor blackColor]];
-                    bl = [MGSwipeButton buttonWithTitle:NSLocalizedString(@"Off", nil) icon:nil backgroundColor:[UIColor blackColor]];
+                {
+                    br = [self makeButtonWithTitle: NSLocalizedString(@"On", nil)];
+                    bl = [self makeButtonWithTitle: NSLocalizedString(@"Off", nil)];
                     
                     if (_measurementSubChannel) {
                         [self.measuredValue setText:[[channelBase attrStringValue] string]];
                     }
-                    
+                }
                     break;
                 case SUPLA_CHANNELFNC_VALVE_OPENCLOSE:
                     br = [MGSwipeButton buttonWithTitle:NSLocalizedString(@"Open", nil) icon:nil backgroundColor:[UIColor blackColor]];
@@ -340,11 +369,12 @@
 
 - (IBAction)rightTouchDown:(id)sender {
     [sender setBackgroundColor: [UIColor btnTouched]];
-    
+    [sender setBackgroundColor: [UIColor onLine] withDelay:0.2];
+
     BOOL group = [self.channelBase isKindOfClass:[SAChannelGroup class]];
     
     if ([SAApp.SuplaClient turnOn:YES remoteId:_channelBase.remote_id group:group channelFunc:_channelBase.func vibrate:YES]) {
-        [self hideSwipeAnimated:YES];
+        [self hideSwipeMaybe];
         return;
     }
     
@@ -352,7 +382,7 @@
           || _channelBase.func == SUPLA_CHANNELFNC_VALVE_PERCENTAGE)
           && (_channelBase.isManuallyClosed || _channelBase.flooding)
           && _channelBase.isClosed) {
-          [self hideSwipeAnimated:YES];
+          [self hideSwipeMaybe];
           [self showValveAlertDialog];
           return;
       }
@@ -360,19 +390,35 @@
     [self vibrate];
     
     [[SAApp SuplaClient] cg:self.channelBase.remote_id Open:1 group:group];
-    [self hideSwipeAnimated:YES];
+    [self hideSwipeMaybe];
 }
 
 - (IBAction)leftTouchDown:(id)sender {
     [sender setBackgroundColor: [UIColor btnTouched]];
-    
+    [sender setBackgroundColor: [UIColor onLine] withDelay:0.2];
+
     [self vibrate];
     [[SAApp SuplaClient] cg:self.channelBase.remote_id Open:0 group:[self.channelBase isKindOfClass:[SAChannelGroup class]]];
-    [self hideSwipeAnimated:YES];
+    [self hideSwipeMaybe];
 }
 
 - (IBAction)rlTouchCancel:(id)sender {
     [sender setBackgroundColor: [UIColor onLine] withDelay:0.2];
+    if([[Config alloc] init].autohideButtons)
+        [self resetButtonState];
+}
+
+- (void)hideSwipeMaybe {
+    if([[Config alloc] init].autohideButtons) {
+        [self hideSwipeAnimated:YES];
+        [self resetButtonState];
+    }
+}
+
+- (void)resetButtonState {
+    if([self.delegate respondsToSelector: @selector(swipeTableCell:didChangeSwipeState:gestureIsActive:)]) {
+        [self.delegate swipeTableCell:self didChangeSwipeState:MGSwipeStateNone gestureIsActive:NO];
+    }
 }
 
 - (void)stateIconTapped:(UITapGestureRecognizer *)tapRecognizer {
@@ -420,4 +466,22 @@
     return NO;
 }
 
+
+- (CGFloat)iconScaleFactor {
+    CGFloat channelScale = [Config new].channelHeightFactor;
+    return MIN(1.0, channelScale);
+}
+
+
+-(void)panHandler: (UIPanGestureRecognizer *)gesture {
+    [super panHandler: gesture];
+    
+    if((gesture.state == UIGestureRecognizerStateEnded ||
+       gesture.state == UIGestureRecognizerStateCancelled) &&
+       [self.delegate respondsToSelector: @selector(swipeTableCell:didChangeSwipeState:gestureIsActive:)]) {
+       [self.delegate swipeTableCell: self
+                 didChangeSwipeState: self.swipeState
+                     gestureIsActive: NO];
+    }
+}
 @end

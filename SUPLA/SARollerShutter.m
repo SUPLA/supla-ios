@@ -402,8 +402,6 @@
     
     height = self.bounds.size.height;
     
-    NSLog(@"Position: %f", _bottomPosition);
-    
     if (_bottomPosition > 0) {
         if (percent <= _bottomPosition) {
             height *= (percent * 100 / _bottomPosition) / 100;

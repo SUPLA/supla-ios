@@ -646,11 +646,19 @@ static inline CGFloat mgEaseInOutBounce(CGFloat t, CGFloat b, CGFloat c) {
     if (_swipeOverlay) {
         CGSize prevSize = _swipeView.bounds.size;
         _swipeOverlay.frame = CGRectMake(0, 0, self.bounds.size.width, self.contentView.bounds.size.height);
-        if (_swipeView.image &&  !CGSizeEqualToSize(prevSize, _swipeOverlay.bounds.size)) {
+        if (_swipeView.image &&
+            ![self size: prevSize equalTo: _swipeOverlay.bounds.size tolerance: 0.5]) {
             //refresh contentView in situations like layout change, orientation chage, table resize, etc.
             [self refreshContentView];
         }
     }
+}
+
+- (BOOL)size: (CGSize)s1 equalTo: (CGSize)s2 tolerance: (CGFloat)tolerance {
+    return (s1.width >= s2.width - tolerance) &&
+           (s1.width <= s2.width + tolerance) &&
+           (s1.height >= s2.height - tolerance) &&
+           (s2.height <= s2.height + tolerance);
 }
 
 -(void) fetchButtonsIfNeeded

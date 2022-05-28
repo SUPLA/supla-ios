@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -49,7 +50,7 @@
                                     <nil key="highlightedColor"/>
                                 </label>
                             </subviews>
-                            <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="50" id="7Hn-gR-qZ5"/>
                                 <constraint firstItem="9vs-Po-KOi" firstAttribute="centerY" secondItem="KJO-jy-HZm" secondAttribute="centerY" id="9UX-Gk-Pfz"/>
@@ -130,23 +131,23 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fA0-ST-8VF" userLabel="vHeader">
                     <rect key="frame" x="10" y="10" width="394" height="115"/>
                     <subviews>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="33.0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MSW-a7-MF2">
-                            <rect key="frame" x="234.5" y="39.5" width="63" height="36"/>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" text="33.0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MSW-a7-MF2">
+                            <rect key="frame" x="233.5" y="39.5" width="61.5" height="36"/>
                             <fontDescription key="fontDescription" type="system" pointSize="30"/>
                             <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="humidity.png" translatesAutoresizingMaskIntoConstraints="NO" id="Xtg-6O-JcQ">
-                            <rect key="frame" x="164.5" y="12.5" width="60" height="90"/>
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="250" image="humidity.png" translatesAutoresizingMaskIntoConstraints="NO" id="Xtg-6O-JcQ">
+                            <rect key="frame" x="163.5" y="12.5" width="60" height="90"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="90" id="OoL-kB-tBr"/>
-                                <constraint firstAttribute="width" constant="60" id="z8A-oO-dDP"/>
+                                <constraint firstAttribute="width" priority="750" constant="60" id="z8A-oO-dDP"/>
                             </constraints>
                         </imageView>
-                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="thermometer.png" translatesAutoresizingMaskIntoConstraints="NO" id="Dzh-y9-CnX">
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="250" image="thermometer.png" translatesAutoresizingMaskIntoConstraints="NO" id="Dzh-y9-CnX">
                             <rect key="frame" x="10" y="12.5" width="60" height="90"/>
                             <constraints>
-                                <constraint firstAttribute="width" constant="60" id="5MY-pY-heb"/>
+                                <constraint firstAttribute="width" priority="750" constant="60" id="5MY-pY-heb"/>
                                 <constraint firstAttribute="height" constant="90" id="qnb-qT-bMI"/>
                             </constraints>
                         </imageView>
@@ -157,8 +158,8 @@
                                 <constraint firstAttribute="height" constant="1" id="jtV-n4-ff9"/>
                             </constraints>
                         </view>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="20.0°" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qAx-Ae-Wgn">
-                            <rect key="frame" x="80" y="39.5" width="74.5" height="36"/>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" text="20.0°" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qAx-Ae-Wgn">
+                            <rect key="frame" x="80" y="39.5" width="73.5" height="36"/>
                             <fontDescription key="fontDescription" type="system" pointSize="30"/>
                             <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <nil key="highlightedColor"/>
@@ -205,6 +206,7 @@
                         <constraint firstItem="Bso-S2-h3B" firstAttribute="leading" secondItem="Dzh-y9-CnX" secondAttribute="trailing" constant="20" id="OHf-fI-ccw"/>
                         <constraint firstItem="MSW-a7-MF2" firstAttribute="centerY" secondItem="fA0-ST-8VF" secondAttribute="centerY" id="SIx-RD-O4k"/>
                         <constraint firstItem="Xtg-6O-JcQ" firstAttribute="centerY" secondItem="fA0-ST-8VF" secondAttribute="centerY" id="YZI-Uh-4mY"/>
+                        <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="MSW-a7-MF2" secondAttribute="trailing" id="aGz-E1-THv"/>
                         <constraint firstItem="Bso-S2-h3B" firstAttribute="centerY" secondItem="fA0-ST-8VF" secondAttribute="centerY" id="dFY-gp-UPy"/>
                         <constraint firstItem="qAx-Ae-Wgn" firstAttribute="centerY" secondItem="fA0-ST-8VF" secondAttribute="centerY" id="diM-5N-cU4"/>
                         <constraint firstItem="MSW-a7-MF2" firstAttribute="leading" secondItem="Xtg-6O-JcQ" secondAttribute="trailing" constant="10" id="fNT-tw-G85"/>
@@ -247,5 +249,8 @@
         <image name="graphon.png" width="128" height="128"/>
         <image name="humidity.png" width="33.5" height="45"/>
         <image name="thermometer.png" width="22.5" height="45"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
     </resources>
 </document>

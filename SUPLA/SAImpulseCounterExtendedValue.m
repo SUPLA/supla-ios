@@ -17,6 +17,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 */
 
 #import "SAImpulseCounterExtendedValue.h"
+#import "supla-client.h"
 
 @implementation SAImpulseCounterExtendedValue {
     TSC_ImpulseCounter_ExtendedValue _icev;
@@ -31,15 +32,18 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 }
 
 - (BOOL) getImpulseCounterExtendedValue:(TSC_ImpulseCounter_ExtendedValue*)icev {
-    if (icev != NULL) {
-        memset(icev, 0, sizeof(TSC_ImpulseCounter_ExtendedValue));
-        NSData *data = [super dataValue];
-        if (data && data.length == sizeof(TSC_ImpulseCounter_ExtendedValue)) {
-            [data getBytes:icev length:data.length];
-            return YES;
-        }
+    if (icev == NULL) {
+        return NO;
     }
-    return NO;
+    
+    __block BOOL result = NO;
+    
+    [self forEach:^BOOL(TSuplaChannelExtendedValue * _Nonnull ev) {
+        result = srpc_evtool_v1_extended2icextended(ev, icev);
+        return !result;
+    }];
+
+    return result;
 }
 
 - (NSString *) unit {

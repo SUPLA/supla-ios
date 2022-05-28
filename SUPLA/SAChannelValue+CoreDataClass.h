@@ -44,7 +44,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (double) getTemperatureForFunction:(int)func;
 - (double) humidityValue;
 - (int) percentValue;
-- (TRollerShutterValue) rollerShutterValue;
+- (TDSC_RollerShutterValue) rollerShutterValue;
 - (int) brightnessValue;
 - (int) colorBrightnessValue;
 - (UIColor *) colorValue;

@@ -30,7 +30,7 @@
 @property (copy, nonatomic) NSString *version;
 @property (copy, nonatomic) NSString *guid;
 @property (copy, nonatomic) NSString *mac;
-
+@property (assign, nonatomic) BOOL needsCloudConfig;
 @end
 
 

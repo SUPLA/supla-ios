@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19150" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19134"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -21,10 +21,10 @@
                 <rect key="frame" x="0.0" y="0.0" width="380" height="103"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Brama garażowa" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CZP-9z-72p">
-                        <rect key="frame" x="30" y="71.5" width="320" height="22"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Brama garażowa" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="CZP-9z-72p">
+                        <rect key="frame" x="30" y="72" width="320" height="22"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="22" id="sla-7c-lp6"/>
+                            <constraint firstAttribute="height" constant="22" identifier="captionHeight" id="sla-7c-lp6"/>
                         </constraints>
                         <fontDescription key="fontDescription" name="OpenSans-Bold" family="Open Sans" pointSize="12"/>
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -58,8 +58,8 @@
                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="gate-open.png" translatesAutoresizingMaskIntoConstraints="NO" id="VDN-tt-KUq">
                         <rect key="frame" x="140" y="16.5" width="100" height="50"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="100" id="Jaa-6a-oMJ"/>
-                            <constraint firstAttribute="height" constant="50" id="XDd-eb-8ai"/>
+                            <constraint firstAttribute="width" constant="100" identifier="imageWidth" id="Jaa-6a-oMJ"/>
+                            <constraint firstAttribute="height" constant="50" identifier="imageHeight" id="XDd-eb-8ai"/>
                         </constraints>
                     </imageView>
                     <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8O3-5x-52I" userLabel="activeRight" customClass="SAUIChannelStatus">
@@ -101,8 +101,8 @@
                     <constraint firstItem="mwc-4O-K3V" firstAttribute="leading" secondItem="oDG-Oh-yeF" secondAttribute="leadingMargin" constant="11" id="Wct-aD-J9X"/>
                     <constraint firstItem="CZP-9z-72p" firstAttribute="leading" secondItem="oDG-Oh-yeF" secondAttribute="leadingMargin" constant="10" id="WdL-hj-xmT"/>
                     <constraint firstAttribute="trailingMargin" secondItem="CZP-9z-72p" secondAttribute="trailing" constant="10" id="bdY-6d-AdK"/>
-                    <constraint firstItem="CZP-9z-72p" firstAttribute="top" secondItem="VDN-tt-KUq" secondAttribute="bottom" constant="5" id="cOe-XY-8FK"/>
                     <constraint firstItem="4Xr-cm-fdh" firstAttribute="centerY" secondItem="oDG-Oh-yeF" secondAttribute="centerY" id="ebd-ht-UoB"/>
+                    <constraint firstAttribute="bottom" secondItem="CZP-9z-72p" secondAttribute="bottom" constant="9" identifier="captionToBottom" id="iWU-zK-Qit"/>
                     <constraint firstItem="VDN-tt-KUq" firstAttribute="centerY" secondItem="oDG-Oh-yeF" secondAttribute="centerY" constant="-10" id="lix-yi-6iL"/>
                     <constraint firstItem="8O3-5x-52I" firstAttribute="leading" secondItem="hr3-yJ-aHV" secondAttribute="trailing" constant="20" id="ocW-Ty-uoL"/>
                     <constraint firstItem="VDN-tt-KUq" firstAttribute="centerX" secondItem="oDG-Oh-yeF" secondAttribute="centerX" id="x5q-BV-mzE"/>
@@ -118,6 +118,10 @@
                 <outlet property="left_OnlineStatus" destination="mwc-4O-K3V" id="UU1-4f-2q6"/>
                 <outlet property="right_ActiveStatus" destination="8O3-5x-52I" id="5a3-0x-PN4"/>
                 <outlet property="right_OnlineStatus" destination="ilZ-Cd-uym" id="N22-Fi-pEQ"/>
+                <outletCollection property="channelIconScalableConstraints" destination="Jaa-6a-oMJ" id="sFX-cJ-pWr"/>
+                <outletCollection property="channelIconScalableConstraints" destination="XDd-eb-8ai" id="WSx-GP-0O4"/>
+                <outletCollection property="channelIconScalableConstraints" destination="iWU-zK-Qit" id="aPB-3e-dKz"/>
+                <outletCollection property="channelIconScalableConstraints" destination="sla-7c-lp6" id="T9M-8v-xDe"/>
             </connections>
             <point key="canvasLocation" x="169.56521739130437" y="-100.78125"/>
         </tableViewCell>

@@ -18,14 +18,18 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 #import "SATemperatureChartHelper.h"
 #import "SuplaApp.h"
-#import "UIHelper.h"
+
 #import "SUPLA-Swift.h"
 #import "UIColor+SUPLA.h"
 
-@implementation SATemperatureChartHelper
+@implementation SATemperatureChartHelper {
+    TemperaturePresenter *_presenter;
+}
+
 -(id)init {
     if (self = [super init]) {
         self.chartType = Bar_Minutes;
+        _presenter = [Config new].currentTemperaturePresenter;
     }
     return self;
 }
@@ -43,7 +47,13 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         return;
     }
 
-    [entries addObject:[[ChartDataEntry alloc] initWithX:time y:[[self doubleValueForKey:@"temperature" item:item] doubleValue]]];
+    [entries addObject:[[ChartDataEntry alloc] initWithX:time y:[[self convertedDoubleValueForKey:@"temperature" item:item] doubleValue]]];
+}
+
+- (NSNumber*)convertedDoubleValueForKey: (NSString *)key item: (NSDictionary *)d {
+    return [NSNumber numberWithDouble:
+            [_presenter converted: [self doubleValueForKey:key
+                                                      item:d].floatValue]];
 }
 
 - (NSString *)stringForValue:(double)value axis:(ChartAxisBase *)axis {
