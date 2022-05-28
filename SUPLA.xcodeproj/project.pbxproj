@@ -721,6 +721,7 @@
 		017554FA22F1D2BE00EB58B7 /* settings2@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "settings2@3x.png"; path = "Resources/Assets/Img/settings2@3x.png"; sourceTree = "<group>"; };
 		017554FD22F1DDA300EB58B7 /* hp_plus@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "hp_plus@3x.png"; path = "Resources/Assets/Img/hp_plus@3x.png"; sourceTree = "<group>"; };
 		017554FE22F1DDA300EB58B7 /* hp_minus@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "hp_minus@3x.png"; path = "Resources/Assets/Img/hp_minus@3x.png"; sourceTree = "<group>"; };
+		0178248D28426C8F004313C2 /* ci_post_clone.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = ci_post_clone.sh; sourceTree = "<group>"; };
 		01793C5424D76EBB00CD2533 /* lookblack@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "lookblack@2x.png"; path = "Resources/Assets/Img/lookblack@2x.png"; sourceTree = "<group>"; };
 		017A08A52499699600DCF5BD /* cs */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = cs; path = cs.lproj/RGBWDetail.strings; sourceTree = "<group>"; };
 		017A08A72499699800DCF5BD /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = nl.lproj/RGBWDetail.strings; sourceTree = "<group>"; };
@@ -1495,6 +1496,14 @@
 			name = charts;
 			sourceTree = "<group>";
 		};
+		0178248C28426C57004313C2 /* ci_scripts */ = {
+			isa = PBXGroup;
+			children = (
+				0178248D28426C8F004313C2 /* ci_post_clone.sh */,
+			);
+			path = ci_scripts;
+			sourceTree = "<group>";
+		};
 		018CFD1D23281A0F00888CB7 /* ExtendedValue */ = {
 			isa = PBXGroup;
 			children = (
@@ -1553,6 +1562,7 @@
 		401CA1B01BA067DB00117AF4 = {
 			isa = PBXGroup;
 			children = (
+				0178248C28426C57004313C2 /* ci_scripts */,
 				40B397D71BCEA25700BE7D5A /* CFNetwork.framework */,
 				401CA1EC1BA069CF00117AF4 /* libssl.a */,
 				401CA1EA1BA069BE00117AF4 /* libcrypto.a */,
