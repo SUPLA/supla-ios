@@ -24,6 +24,8 @@ class ProfilesNavigationCoordinator: BaseNavigationCoordinator {
     }
     
     private let _disposeBag = DisposeBag()
+    private let _dismissTrigger = PublishSubject<Void>()
+    private let _editProfile = PublishSubject<Int>()
     
     private lazy var _viewController: ProfilesVC = {
         return ProfilesVC(navigationCoordinator: self)
@@ -31,6 +33,16 @@ class ProfilesNavigationCoordinator: BaseNavigationCoordinator {
     
     override func start(from parent: NavigationCoordinator?) {
         super.start(from: parent)
+
+        let vm = ProfilesVM(profileManager: SAApp.profileManager())
+        _viewController.bind(viewModel: vm)
+
+        vm.dismissTrigger.subscribe { [weak self] _ in
+            print("profiles list wants to dismiss us")
+            self?.finish()
+        }.disposed(by: _disposeBag)
+
+        
 /*
         _viewController.viewModel.initiateSignup.subscribe { _ in
             let cavc = SACreateAccountVC(nibName: "CreateAccountVC", bundle: nil)

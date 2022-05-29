@@ -29,6 +29,8 @@ class ProfilesVM {
         var onEdit: Observable<Int>
         var onAddNew: Observable<Void>
     }
+
+    let dismissTrigger = PublishSubject<Void>()
     
     private let _profileManager: ProfileManager
     private let _disposeBag = DisposeBag()
@@ -47,9 +49,12 @@ class ProfilesVM {
             print("will edit profile: \(id)")
         }.disposed(by: _disposeBag)
 
-        inputs.oActivate.subscribe { id in
+        inputs.onActivate.subscribe { [weak self] id in
+            guard let self = self else { return }
             print("will activate profile: \(id)")
-        }
+            // TODO: activate profile
+            self.dismissTrigger.on(.next(()))
+        }.disposed(by: _disposeBag)
     }
 }
 

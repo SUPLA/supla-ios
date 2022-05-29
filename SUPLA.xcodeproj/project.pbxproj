@@ -488,6 +488,7 @@
 		40F7301120C19BA600167C2D /* SAColorListItem+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 40F7301020C19BA600167C2D /* SAColorListItem+CoreDataProperties.m */; };
 		40F951451FD0654900698587 /* RSDetail.xib in Resources */ = {isa = PBXBuildFile; fileRef = 40F951471FD0654900698587 /* RSDetail.xib */; };
 		462253FD963449A978BBDDE8 /* Pods_SUPLA.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 596D36089B2CE979388A06FF /* Pods_SUPLA.framework */; };
+		6E8756632830E86D00D5A283 /* ProfileItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E8756622830E86B00D5A283 /* ProfileItemCell.swift */; };
 		AE348E66277F348700F363A3 /* SAMoveTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = AE348E65277F348700F363A3 /* SAMoveTableView.m */; };
 		AE3DECE22761DB32005923E4 /* AuthCfgNavigationCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE3DECE02761DB32005923E4 /* AuthCfgNavigationCoordinator.swift */; };
 		AE3DECE32761DB32005923E4 /* PresentationNavigationCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE3DECE12761DB32005923E4 /* PresentationNavigationCoordinator.swift */; };
@@ -1358,6 +1359,7 @@
 		40F951551FD065BB00698587 /* pt-PT */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-PT"; path = "pt-PT.lproj/RSDetail.strings"; sourceTree = "<group>"; };
 		596D36089B2CE979388A06FF /* Pods_SUPLA.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SUPLA.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5CB83473B6995044CF8448E7 /* Pods-SUPLATests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SUPLATests.release.xcconfig"; path = "Target Support Files/Pods-SUPLATests/Pods-SUPLATests.release.xcconfig"; sourceTree = "<group>"; };
+		6E8756622830E86B00D5A283 /* ProfileItemCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileItemCell.swift; sourceTree = "<group>"; };
 		76FF65EADE7763EB8D61BC35 /* Pods_SUPLATests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SUPLATests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AE348E64277F348700F363A3 /* SAMoveTableView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SAMoveTableView.h; sourceTree = "<group>"; };
 		AE348E65277F348700F363A3 /* SAMoveTableView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SAMoveTableView.m; sourceTree = "<group>"; };
@@ -2275,6 +2277,7 @@
 		AE5A60E4270E2A4100F2B780 /* Cfg */ = {
 			isa = PBXGroup;
 			children = (
+				6E8756622830E86B00D5A283 /* ProfileItemCell.swift */,
 				AE5A60E5270E2A7A00F2B780 /* AuthVC.swift */,
 				AECB1BE4270EB56F001A9714 /* AuthVM.swift */,
 				AEF79D8A2712FE1800D7554B /* CfgVM.swift */,
@@ -2892,6 +2895,7 @@
 				40E8BE891FC06A5600FB2FE6 /* TFHppleElement.m in Sources */,
 				AED63961270CA46C00E5105B /* UIColor+Supla.swift in Sources */,
 				01A195E2264B264A006D2A20 /* SAChannelCaptionSetResult.m in Sources */,
+				6E8756632830E86D00D5A283 /* ProfileItemCell.swift in Sources */,
 				01C1719922C7F55B005983E1 /* SAMeasurementItem+CoreDataClass.m in Sources */,
 				AE929A87275FD5D500B75715 /* MainNavigationCoordinator.swift in Sources */,
 				019170A1233D4D5A00820BDB /* SADownloadThermostatMeasurements.m in Sources */,

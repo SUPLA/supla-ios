@@ -21,24 +21,37 @@ import UIKit
 import RxSwift
 import RxCocoa
 import RxDataSources
+
 class ProfilesVC: BaseViewController {
 
     // UI controls
-    private let headline = UILabel()
-    private let tapMessage = UILabel()
-    private let profileList = UITableView()
+    private let _headline = UILabel()
+    private let _tapMessage = UILabel()
+    private let _profileList = UITableView()
 
-    private let disposeBag = DisposeBag()
+    private let _disposeBag = DisposeBag()
 
-    private var vM: ProfilesVM!
+    private var _viewModel: ProfilesVM!
+
+    private let _activateProfile = PublishSubject<Int>()
+    private let _editProfile = PublishSubject<Int>()
+    private let _addNewProfile = PublishSubject<Void>()
+
+    private let _profileCellId = "ProfileCell"
     
     func dataSource() -> RxTableViewSectionedReloadDataSource<ProfilesListModel> {
+        let profileCellId = _profileCellId
         return RxTableViewSectionedReloadDataSource<ProfilesListModel>(
-            configureCell: { dataSource, table, ip, _ in
+            configureCell: { [weak self] dataSource, table, ip, _ in
                 switch dataSource[ip] {
                 case let .profileItem(id, name, isActive):
-                    let cell = table.dequeueReusableCell(withIdentifier: "Cell", for: ip)
-                    cell.textLabel?.text = name
+                    let cell = table.dequeueReusableCell(withIdentifier: profileCellId, for: ip)
+                      as! ProfileItemCell
+                    cell.setProfileItem(dataSource[ip])
+                    cell.editProfileTrigger
+                    .subscribe { _ in
+                                   print("edit item \(id)")
+                    }.disposed(by: cell.disposeBag)
                     return cell
                 case .addNewProfileItem:
                     let cell = table.dequeueReusableCell(withIdentifier: "Cell", for: ip)
@@ -62,64 +75,90 @@ class ProfilesVC: BaseViewController {
         title = Strings.Profiles.Title.short
         view.backgroundColor = .viewBackground
 
-        [ headline, tapMessage, profileList ].forEach {
+        [ _headline, _tapMessage, _profileList ].forEach {
             $0.translatesAutoresizingMaskIntoConstraints = false
             self.view.addSubview($0)
         }
 
         if #available(iOS 11, *) {
-            headline.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor,
-                                          constant: Dimens.screenMargin).isActive = true
+            _headline.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor,
+                                           constant: Dimens.screenMargin).isActive = true
         } else {
-            headline.topAnchor.constraint(equalTo: view.topAnchor, constant: Dimens.screenMargin)
+            _headline.topAnchor.constraint(equalTo: view.topAnchor, constant: Dimens.screenMargin)
               .isActive = true
         }
-        headline.leftAnchor.constraint(equalTo: view.leftAnchor, constant: Dimens.screenMargin)
+        _headline.leftAnchor.constraint(equalTo: view.leftAnchor, constant: Dimens.screenMargin)
           .isActive = true
-        headline.rightAnchor.constraint(equalTo: view.rightAnchor, constant: Dimens.screenMargin)
+        _headline.rightAnchor.constraint(equalTo: view.rightAnchor, constant: Dimens.screenMargin)
           .isActive = true
-        headline.text = Strings.Profiles.Title.plural.uppercased()
-        headline.font = .formLabelFont
-        headline.textColor = .formLabelColor
+        _headline.text = Strings.Profiles.Title.plural.uppercased()
+        _headline.font = .formLabelFont
+        _headline.textColor = .formLabelColor
 
-        tapMessage.topAnchor.constraint(equalTo: headline.bottomAnchor,
-                                        constant: Dimens.elementOffset).isActive = true
-        tapMessage.leftAnchor.constraint(equalTo: view.leftAnchor, constant: Dimens.screenMargin)
+        _tapMessage.topAnchor.constraint(equalTo: _headline.bottomAnchor,
+                                         constant: Dimens.elementOffset).isActive = true
+        _tapMessage.leftAnchor.constraint(equalTo: view.leftAnchor, constant: Dimens.screenMargin)
           .isActive = true
-        tapMessage.rightAnchor.constraint(equalTo: view.rightAnchor, constant: Dimens.screenMargin)
+        _tapMessage.rightAnchor.constraint(equalTo: view.rightAnchor, constant: Dimens.screenMargin)
           .isActive = true
-        tapMessage.text = Strings.Profiles.tapMessage
-        tapMessage.font = .formLabelFont
+        _tapMessage.text = Strings.Profiles.tapMessage
+        _tapMessage.font = .formLabelFont
 
-        profileList.topAnchor.constraint(equalTo: tapMessage.bottomAnchor,
-                                         constant: Dimens.Form.elementSpacing).isActive = true
-        profileList.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
-        profileList.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
+        _profileList.topAnchor.constraint(equalTo: _tapMessage.bottomAnchor,
+                                          constant: Dimens.Form.elementSpacing).isActive = true
+        _profileList.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
+        _profileList.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
 
         if #available(iOS 11, *) {
-            profileList.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
+            _profileList.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
               .isActive = true
         } else {
-            profileList.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+            _profileList.bottomAnchor.constraint(equalTo: view.bottomAnchor)
               .isActive = true
         }
 
-        profileList.register(UITableViewCell.self, forCellReuseIdentifier: "Cell")
+        _profileList.register(UITableViewCell.self, forCellReuseIdentifier: "Cell")
+        _profileList.register(ProfileItemCell.self,
+                              forCellReuseIdentifier: _profileCellId)
 
         let tableData: [ProfilesListModel] = [
             .profileSection(items: [
                 .profileItem(id: 0, name: "one", isActive: false),
-                .profileItem(id: 1, name: "two", isActive: false)]),
+                .profileItem(id: 1, name: "two", isActive: true)]),
             .commandSection(items: [.addNewProfileItem])
         ]
 
+
+        
+
+        let ds = dataSource()
         Observable.just(tableData)
-            .bind(to: profileList.rx.items(dataSource: dataSource()))
-            .disposed(by: disposeBag)
-        profileList.rx.itemSelected.subscribe(onNext: {
+            .bind(to: _profileList.rx.items(dataSource: ds))
+            .disposed(by: _disposeBag)
+        _profileList.rx.itemSelected.subscribe(onNext: {
             [weak self] indexPath in
-            self?.profileList.deselectRow(at: indexPath, animated: true)
-        }).disposed(by: disposeBag)
+            guard let self = self else { return }
+            switch ds[indexPath] {
+                case .profileItem(let id, _, _):
+                    print("tap on profile \(id)")
+                    self._activateProfile.on(.next(id))
+                case .addNewProfileItem:
+                    print("tap on command add new")
+                    self._addNewProfile.on(.next(()))
+            }
+            self._profileList.deselectRow(at: indexPath, animated: true)
+        }).disposed(by: _disposeBag)
+    }
+
+    func bind(viewModel: ProfilesVM) {
+        _viewModel = viewModel
+        let inputs = ProfilesVM.Inputs(
+          onActivate: _activateProfile,
+          onEdit: _editProfile,
+          onAddNew: _addNewProfile
+        )
+
+        _viewModel.bind(inputs: inputs)
     }
 
 }
