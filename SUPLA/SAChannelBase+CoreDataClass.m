@@ -794,9 +794,12 @@
 								  [pres stringRepresentation: pmax]];
             }
         }
+        
+        preset = [@"/" stringByAppendingString: preset];
     }
     
     NSMutableAttributedString *attrTxt = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"%@%@", measured, preset]];
+    
     if (font) {
         [attrTxt addAttribute:NSFontAttributeName
                         value:[UIFont systemFontOfSize:font.pointSize * 0.7]
