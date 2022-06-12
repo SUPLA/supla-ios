@@ -19,6 +19,9 @@ import UIKit
 import RxSwift
 
 class ProfilesNavigationCoordinator: BaseNavigationCoordinator {
+    
+    let allowsBack: Bool
+    
     override var viewController: UIViewController {
         return _viewController
     }
@@ -32,6 +35,11 @@ class ProfilesNavigationCoordinator: BaseNavigationCoordinator {
     }()
     
     private var _profilesViewModel: ProfilesVM?
+    
+    init(allowsBack: Bool = true) {
+        self.allowsBack = allowsBack
+        super.init()
+    }
 
     override func startFlow(coordinator child: NavigationCoordinator) {
         _viewController.navigationController?.pushViewController(child.viewController,
@@ -70,7 +78,6 @@ class ProfilesNavigationCoordinator: BaseNavigationCoordinator {
 
 
     private func openProfileView(_ profileId: ProfileID?) {
-        print("gonna open profile \(profileId)")
         let authnc = AuthCfgNavigationCoordinator(immediate: false,
                                                   profileId: profileId)
         startFlow(coordinator: authnc)

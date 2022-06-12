@@ -140,8 +140,8 @@ class MainNavigationCoordinator: BaseNavigationCoordinator {
         startFlow(coordinator: CfgNavigationCoordinator())
     }
 
-    func showProfilesView() {
-        startFlow(coordinator: ProfilesNavigationCoordinator())
+    @objc func showProfilesView(allowsBack: Bool) {
+        startFlow(coordinator: ProfilesNavigationCoordinator(allowsBack: allowsBack))
     }
     
     func showAddWizard() {

@@ -77,6 +77,8 @@ class ProfilesVC: BaseViewController {
         
         title = Strings.Profiles.Title.short
         view.backgroundColor = .viewBackground
+        
+        navigationItem.hidesBackButton = !((navigationCoordinator as? ProfilesNavigationCoordinator)?.allowsBack ?? false)
 
         [ _headline, _tapMessage, _profileList ].forEach {
             $0.translatesAutoresizingMaskIntoConstraints = false
