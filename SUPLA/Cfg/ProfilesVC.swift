@@ -36,6 +36,7 @@ class ProfilesVC: BaseViewController {
     private let _activateProfile = PublishSubject<NSManagedObjectID>()
     private let _editProfile = PublishSubject<NSManagedObjectID>()
     private let _addNewProfile = PublishSubject<Void>()
+    private let _profilesModel = PublishSubject<[ProfilesListModel]>()
 
     private static let _profileCellId = "ProfileCell"
     private static let _addNewCellId = "AddNewProfileCellId"
@@ -45,7 +46,7 @@ class ProfilesVC: BaseViewController {
         return RxTableViewSectionedReloadDataSource<ProfilesListModel>(
             configureCell: { [weak self] dataSource, table, ip, _ in
                 switch dataSource[ip] {
-                case let .profileItem(id, name, isActive):
+                case let .profileItem(id, _, _):
                     let cell = table.dequeueReusableCell(withIdentifier: ProfilesVC._profileCellId,
                                                          for: ip)
                       as! EditableProfileItemCell
@@ -126,16 +127,8 @@ class ProfilesVC: BaseViewController {
         _profileList.register(EditableProfileItemCell.self,
                               forCellReuseIdentifier: ProfilesVC._profileCellId)
 
-        let tableData: [ProfilesListModel] = [
-            .profileSection(items: _viewModel.profileItems),
-            .commandSection(items: [.addNewProfileItem])
-        ]
-
-
-        
-
         let ds = dataSource()
-        Observable.just(tableData)
+        _profilesModel
             .bind(to: _profileList.rx.items(dataSource: ds))
             .disposed(by: _disposeBag)
         _profileList.rx.itemSelected.subscribe(onNext: {
@@ -151,6 +144,14 @@ class ProfilesVC: BaseViewController {
             }
             self._profileList.deselectRow(at: indexPath, animated: true)
         }).disposed(by: _disposeBag)
+        
+        _profilesModel.on(.next(dataModel(with: _viewModel.profileItems.value)))
+    }
+    
+    private func dataModel(with items: [ProfileListItem]) -> [ProfilesListModel] {
+        return [ .profileSection(items: items),
+                 .commandSection(items: [.addNewProfileItem])
+        ]
     }
 
     func bind(viewModel: ProfilesVM) {
@@ -162,6 +163,13 @@ class ProfilesVC: BaseViewController {
         )
 
         _viewModel.bind(inputs: inputs)
+        
+        _viewModel.profileItems.subscribe { [weak self] ev in
+            guard let self = self else { return }
+            if let lst = ev.element {
+                self._profilesModel.on(.next(self.dataModel(with: lst)))
+            }
+        }.disposed(by: _disposeBag)
     }
 
 }

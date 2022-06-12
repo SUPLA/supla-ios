@@ -177,7 +177,8 @@ class MainNavigationCoordinator: BaseNavigationCoordinator {
     // MARK: -
     
     @objc func showAuthView(immediate: Bool) {
-        startFlow(coordinator: AuthCfgNavigationCoordinator(immediate: immediate))
+        startFlow(coordinator: AuthCfgNavigationCoordinator(immediate: immediate,
+                                                            profileId: SAApp.profileManager().getCurrentProfile().objectID))
     }
     
     @objc func showStatusView(progress: NSNumber) {

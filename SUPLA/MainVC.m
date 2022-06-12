@@ -720,18 +720,18 @@
                                         action: @selector(onMenuToggle:)];
 
     NSMutableArray *itms = [[NSMutableArray alloc] initWithCapacity: 2];
+    if([self hasManyProfiles]) {
+        [itms addObject:
+                  [[UIBarButtonItem alloc] initWithImage: [UIImage imageNamed: @"profile-navbar"]
+                                                   style: UIBarButtonItemStylePlain
+                                                  target: self
+                                                  action: @selector(onProfileSelection:)]];
+    }
     [itms addObject:
         [[UIBarButtonItem alloc] initWithImage: [self imageForGroupState]
                                          style: UIBarButtonItemStylePlain
                                         target: self
                                         action: @selector(onGroupsToggle:)]];
-    if([self hasManyProfiles]) {
-        [itms addObject:
-                  [[UIBarButtonItem alloc] initWithImage: [UIImage imageNamed: @"profile"]
-                                                   style: UIBarButtonItemStylePlain
-                                                  target: self
-                                                  action: @selector(onProfileSelection:)]];
-    }
     self.navigationItem.rightBarButtonItems = itms;
 }
 
@@ -760,7 +760,7 @@
 
 - (void)onGroupsToggle: sender {
     [self groupTableHidden: ![self isGroupTableHidden]];
-	self.navigationItem.rightBarButtonItem.image = [self imageForGroupState];
+	[self.navigationItem.rightBarButtonItems lastObject].image = [self imageForGroupState];
 }
 
 

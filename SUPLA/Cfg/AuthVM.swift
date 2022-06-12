@@ -44,9 +44,11 @@ class AuthVM {
         let createAccountRequest: Observable<Void>
         let autoServerSelected: Observable<Bool>
         let formSubmitRequest: Observable<Void>
+        let accountDeleteRequest: Observable<Void>
     }
 
     let allowsEditingProfileName: Bool
+    let allowsDeletingProfile: Bool
     
     // MARK: Output bindings
     var isAdvancedMode: Observable<Bool> {
@@ -91,6 +93,7 @@ class AuthVM {
     }
 
     var formSaved: Observable<Bool> { return _formSaved.asObservable() }
+    
 
     // MARK: Internal state
     private let _advancedMode = BehaviorRelay<Bool>(value: false)
@@ -105,6 +108,7 @@ class AuthVM {
     private var _authCfg: AuthInfo
     private var _loadedCfg: AuthInfo
     private var _profileId: ProfileID?
+    private let _isActive: Bool
     
     private let _advancedModeAuthType = BehaviorRelay<AuthType>(value: .email)
     private let _initiateSignup = PublishSubject<Void>()
@@ -127,6 +131,8 @@ class AuthVM {
             _authCfg = profile.authInfo!
             profileName = profile.displayName
             profileAdvanced = profile.advancedSetup
+            _isActive = profile.isActive
+            allowsDeletingProfile = !_isActive
         } else {
             _authCfg = AuthInfo(emailAuth: true,
                                 serverAutoDetect: true,
@@ -137,11 +143,13 @@ class AuthVM {
                                 accessIDpwd: "")
             profileName = ""
             profileAdvanced = false
+            _isActive = false
+            allowsDeletingProfile = false
         }
         _loadedCfg = _authCfg.clone()
 
         allowsEditingProfileName = _profileManager.getAllProfiles().count > 1 ||
-          _authCfg.isAuthDataComplete || profileId == nil
+            _authCfg.isAuthDataComplete || profileId == nil
         
         b.autoServerSelected.bind(to: _serverAutoDetect).disposed(by: disposeBag)
         b.serverAddressForEmail.bind(to: _serverAddressForEmail).disposed(by: disposeBag)
@@ -176,6 +184,10 @@ class AuthVM {
         
         b.formSubmitRequest.subscribe(onNext: { [weak self] in
             self?.onFormSubmit()
+        }).disposed(by: disposeBag)
+        
+        b.accountDeleteRequest.subscribe(onNext: { [weak self] in
+            self?.onDeleteAccount()
         }).disposed(by: disposeBag)
   
         
@@ -234,7 +246,11 @@ class AuthVM {
         _advancedModeAuthType.accept(_loadedCfg.emailAuth ? .email : .accessId)
     }
 
-    
+    private func onDeleteAccount() {
+        guard let profileId = _profileId else { return }
+        _profileManager.removeProfile(id: profileId)
+        _formSaved.on(.next(false))
+    }
     
     private func onFormSubmit() {
         let needsReauth = self.needsReauth
@@ -246,6 +262,7 @@ class AuthVM {
             profile = p
         } else {
             profile = _profileManager.makeNewProfile()
+            profile.isActive = false
         }
         
         profile.advancedSetup = _advancedMode.value
@@ -258,6 +275,6 @@ class AuthVM {
     }
     
     private var needsReauth: Bool {
-        return _loadedCfg != _authCfg
+        return _isActive && _loadedCfg != _authCfg
     }
 }

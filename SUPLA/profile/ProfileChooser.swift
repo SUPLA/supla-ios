@@ -44,7 +44,14 @@ class ProfileChooser: NSObject {
 
 extension ProfileChooser: ProfileChooserVCDelegate {
     func profileChooserDidDismiss(selectedProfile id: ProfileID?) {
-        delegate?.profileChooserDidDismiss(profileChanged: false)
+        let changed: Bool
+        
+        if let id = id {
+            changed = _profileManager.activateProfile(id: id, force: false)
+        } else {
+            changed = false
+        }
+        delegate?.profileChooserDidDismiss(profileChanged: changed)
     }
 }
 
@@ -169,7 +176,6 @@ extension ProfileChooserVC: UITableViewDataSource {
 extension ProfileChooserVC: UITableViewDelegate {
     func tableView(_ tv: UITableView, didSelectRowAt ip: IndexPath) {
         tv.deselectRow(at: ip, animated: true)
-        print("selected profile \(ip.row)")
         let profile = profiles[ip.row]
         presentingViewController?.dismiss(animated: true) { 
             self.delegate?.profileChooserDidDismiss(selectedProfile: profile.objectID)

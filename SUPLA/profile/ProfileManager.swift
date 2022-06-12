@@ -31,4 +31,7 @@ protocol ProfileManager {
     func getAllProfiles() -> [AuthProfileItem]
 
     func getProfile(id: ProfileID) -> AuthProfileItem?
+    
+    func activateProfile(id: ProfileID, force: Bool) -> Bool
+    func removeProfile(id: ProfileID)
 }

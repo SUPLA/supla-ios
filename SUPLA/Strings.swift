@@ -63,6 +63,7 @@ struct Strings {
         static let activeIndicator = NSLocalizedString("active", comment: "indicator for active profile")
 
         static let defaultProfileName = NSLocalizedString("Default", comment: "name for default profile")
+        static let delete = NSLocalizedString("Delete account", comment: "button label to delete profile")
     }
 
     struct ProfileChooser {

@@ -30,11 +30,12 @@ class ProfilesVM {
         var onEdit: Observable<ProfileID>
         var onAddNew: Observable<Void>
     }
-
+    
+    let reloadTrigger = PublishSubject<Void>()
     let dismissTrigger = PublishSubject<Void>()
     let openProfileTrigger = PublishSubject<ProfileID?>()
 
-    let profileItems: [ProfileListItem]
+    let profileItems = BehaviorRelay<[ProfileListItem]>(value: [])
     
     private let _profileManager: ProfileManager
     private let _disposeBag = DisposeBag()
@@ -42,10 +43,11 @@ class ProfilesVM {
     init(profileManager: ProfileManager) {
         _profileManager = profileManager
 
-        profileItems = _profileManager.getAllProfiles()
-          .map { ProfileListItem.profileItem(id: $0.objectID,
-                                             name: $0.displayName,
-                                             isActive: $0.isActive) }
+        reloadProfiles()
+        
+        reloadTrigger.subscribe { [weak self]  _ in
+            self?.reloadProfiles()
+        }.disposed(by: _disposeBag)
     }
     
     func bind(inputs: Inputs) {
@@ -62,13 +64,20 @@ class ProfilesVM {
         }.disposed(by: _disposeBag)
 
         inputs.onActivate.subscribe { [weak self] id in
-            guard let self = self else { return }
-            print("will activate profile: \(id)")
-            // TODO: activate profile
-            self.dismissTrigger.on(.next(()))
-        }.disposed(by: _disposeBag)
+            guard let self = self, let id = id.element else { return }
 
-        let profiles = _profileManager.getAllProfiles()
+            if self._profileManager.activateProfile(id: id, force: false) {
+                self.dismissTrigger.on(.next(()))
+            }
+        }.disposed(by: _disposeBag)
+    }
+                        
+    private func reloadProfiles() {
+        profileItems.accept(_profileManager.getAllProfiles()
+            .map { ProfileListItem.profileItem(id: $0.objectID,
+                                               name: $0.displayName,
+                                               isActive: $0.isActive) })
+
     }
 }
 

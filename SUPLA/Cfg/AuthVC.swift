@@ -35,6 +35,7 @@ class AuthVC: BaseViewController {
     @IBOutlet private var createAccountPrompt: UILabel!
     @IBOutlet private var createAccountButton: UIButton!
     @IBOutlet private var confirmButton: UIButton!
+    @IBOutlet private var deleteButton: UIButton!
 
     @IBOutlet private var vBasic: UIView!
     @IBOutlet private var bsYourAccount: UILabel!
@@ -187,6 +188,11 @@ class AuthVC: BaseViewController {
         adAccessIdWizardWarning.layer.cornerRadius = 9
         adAccessIdWizardWarning.layer.borderColor = UIColor.alertRed.cgColor
         adAccessIdWizardWarning.layer.borderWidth = 1
+        
+        deleteButton.setTitle(Strings.Profiles.delete, for: .normal)
+        deleteButton.backgroundColor = .white
+        deleteButton.layer.borderWidth = 1
+        deleteButton.layer.borderColor = UIColor.suplaGreenBackground.cgColor
 
         [adFormEmailAuth, adFormAccessIdAuth].forEach {
             $0?.translatesAutoresizingMaskIntoConstraints = false
@@ -213,7 +219,9 @@ class AuthVC: BaseViewController {
         createAccountRequest: createAccountButton.rx.tap.asObservable(),
         autoServerSelected: adServerAuto.rx.tap.asObservable().map({
                                                     self.adServerAuto.isSelected
-                                                }), formSubmitRequest: confirmButton.rx.tap.asObservable())
+                                                }),
+                                     formSubmitRequest: confirmButton.rx.tap.asObservable(),
+                                     accountDeleteRequest: deleteButton.rx.tap.asObservable())
         
         vM = AuthVM(bindings: bindings,
                     profileManager: SAApp.profileManager(),
@@ -222,6 +230,8 @@ class AuthVC: BaseViewController {
         [bsProfileNameContainer].forEach {
             $0.isHidden = !vM.allowsEditingProfileName
         }
+        
+        deleteButton.isHidden = !vM.allowsDeletingProfile
         
         /* Bind view model outputs to UI components */
         vM.isAdvancedMode.bind(to: self.modeToggle.rx.isOn)

@@ -30,6 +30,8 @@ class ProfilesNavigationCoordinator: BaseNavigationCoordinator {
     private lazy var _viewController: ProfilesVC = {
         return ProfilesVC(navigationCoordinator: self)
     }()
+    
+    private var _profilesViewModel: ProfilesVM?
 
     override func startFlow(coordinator child: NavigationCoordinator) {
         _viewController.navigationController?.pushViewController(child.viewController,
@@ -50,16 +52,14 @@ class ProfilesNavigationCoordinator: BaseNavigationCoordinator {
         vm.openProfileTrigger.subscribe { [weak self] profileId in
             self?.openProfileView(profileId)
         }.disposed(by: _disposeBag)
-
         
-/*
-        _viewController.viewModel.initiateSignup.subscribe { _ in
-            let cavc = SACreateAccountVC(nibName: "CreateAccountVC", bundle: nil)
-            cavc.navigationCoordinator = self
-            self._viewController.navigationController?.pushViewController(cavc, animated: true)
-        }.disposed(by: _disposeBag)
-        
- */
+        _profilesViewModel = vm
+    }
+    
+    override func didFinish(coordinator child: NavigationCoordinator) {
+        _viewController.navigationController?
+            .popToViewController(_viewController, animated: true)
+        _profilesViewModel?.reloadTrigger.on(.next(()))
     }
     
     @objc private func onDismissSubview(_ sender: AnyObject) {
@@ -74,14 +74,6 @@ class ProfilesNavigationCoordinator: BaseNavigationCoordinator {
         let authnc = AuthCfgNavigationCoordinator(immediate: false,
                                                   profileId: profileId)
         startFlow(coordinator: authnc)
-/*
-        vc.viewModel.formSaved.subscribe { [weak self] _ in
-            guard let nc = self?._viewController
-                    .navigationController else { return }
-            nc.popViewController(animated: true)
-        }
- */
-        
     }
 }
 

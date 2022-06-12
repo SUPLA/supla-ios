@@ -88,4 +88,32 @@ extension MultiAccountProfileManager: ProfileManager {
     func getProfile(id: ProfileID) -> AuthProfileItem? {
         return try? _ctx.existingObject(with: id) as? AuthProfileItem
     }
+    
+    
+    func activateProfile(id: ProfileID, force: Bool) -> Bool {
+        guard let profile = getProfile(id: id) else { return false }
+        if profile.isActive && !force { return false }
+        
+        initiateReconnect()
+        getAllProfiles().forEach { $0.isActive = false }
+        profile.isActive = true
+        try! _ctx.save()
+        
+        return true
+    }
+    
+    func removeProfile(id: ProfileID) {
+        if let p = getProfile(id: id) {
+            _ctx.delete(p)
+            try! _ctx.save()
+        }
+    }
+    
+    private func initiateReconnect() {
+        let app = SAApp.instance()
+        let client = SAApp.suplaClient()
+        app.cancelAllRestApiClientTasks()
+        client.reconnect()
+    }
+
 }
