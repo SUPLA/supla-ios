@@ -488,7 +488,10 @@
 		40F7301120C19BA600167C2D /* SAColorListItem+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 40F7301020C19BA600167C2D /* SAColorListItem+CoreDataProperties.m */; };
 		40F951451FD0654900698587 /* RSDetail.xib in Resources */ = {isa = PBXBuildFile; fileRef = 40F951471FD0654900698587 /* RSDetail.xib */; };
 		462253FD963449A978BBDDE8 /* Pods_SUPLA.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 596D36089B2CE979388A06FF /* Pods_SUPLA.framework */; };
+		6E05868128539E4A0044786B /* EditableProfileItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E05868028539E490044786B /* EditableProfileItemCell.swift */; };
+		6E8004D328493463009A917A /* AuthProfileItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E8004D228493463009A917A /* AuthProfileItem.swift */; };
 		6E8756632830E86D00D5A283 /* ProfileItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E8756622830E86B00D5A283 /* ProfileItemCell.swift */; };
+		6E9F28C928436EE900142502 /* AddNewProfileCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E9F28C828436EE800142502 /* AddNewProfileCell.swift */; };
 		AE348E66277F348700F363A3 /* SAMoveTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = AE348E65277F348700F363A3 /* SAMoveTableView.m */; };
 		AE3DECE22761DB32005923E4 /* AuthCfgNavigationCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE3DECE02761DB32005923E4 /* AuthCfgNavigationCoordinator.swift */; };
 		AE3DECE32761DB32005923E4 /* PresentationNavigationCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE3DECE12761DB32005923E4 /* PresentationNavigationCoordinator.swift */; };
@@ -1359,7 +1362,10 @@
 		40F951551FD065BB00698587 /* pt-PT */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-PT"; path = "pt-PT.lproj/RSDetail.strings"; sourceTree = "<group>"; };
 		596D36089B2CE979388A06FF /* Pods_SUPLA.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SUPLA.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5CB83473B6995044CF8448E7 /* Pods-SUPLATests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SUPLATests.release.xcconfig"; path = "Target Support Files/Pods-SUPLATests/Pods-SUPLATests.release.xcconfig"; sourceTree = "<group>"; };
+		6E05868028539E490044786B /* EditableProfileItemCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditableProfileItemCell.swift; sourceTree = "<group>"; };
+		6E8004D228493463009A917A /* AuthProfileItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthProfileItem.swift; sourceTree = "<group>"; };
 		6E8756622830E86B00D5A283 /* ProfileItemCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileItemCell.swift; sourceTree = "<group>"; };
+		6E9F28C828436EE800142502 /* AddNewProfileCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddNewProfileCell.swift; sourceTree = "<group>"; };
 		76FF65EADE7763EB8D61BC35 /* Pods_SUPLATests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SUPLATests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AE348E64277F348700F363A3 /* SAMoveTableView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SAMoveTableView.h; sourceTree = "<group>"; };
 		AE348E65277F348700F363A3 /* SAMoveTableView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SAMoveTableView.m; sourceTree = "<group>"; };
@@ -2277,6 +2283,8 @@
 		AE5A60E4270E2A4100F2B780 /* Cfg */ = {
 			isa = PBXGroup;
 			children = (
+				6E05868028539E490044786B /* EditableProfileItemCell.swift */,
+				6E9F28C828436EE800142502 /* AddNewProfileCell.swift */,
 				6E8756622830E86B00D5A283 /* ProfileItemCell.swift */,
 				AE5A60E5270E2A7A00F2B780 /* AuthVC.swift */,
 				AECB1BE4270EB56F001A9714 /* AuthVM.swift */,
@@ -2352,6 +2360,7 @@
 				AEED1FD32737F71C00DE6289 /* MultiAccountProfileManager.swift */,
 				AEC6B6B92753C06800A04204 /* ProfileMigrator.swift */,
 				AE74528C2827E5D400A3AFAD /* ProfileChooser.swift */,
+				6E8004D228493463009A917A /* AuthProfileItem.swift */,
 			);
 			path = profile;
 			sourceTree = "<group>";
@@ -2991,6 +3000,7 @@
 				408034C41BC83D1A007666E7 /* MGSwipeButton.m in Sources */,
 				016ABE16236D8363001BF5FB /* SAKeychain.m in Sources */,
 				01EE9BB022BA4B050029A142 /* SAChannelExtendedValue+CoreDataProperties.m in Sources */,
+				6E8004D328493463009A917A /* AuthProfileItem.swift in Sources */,
 				011021C925CC39FB00621D41 /* SASuperuserAuthorizationResult.m in Sources */,
 				AE929A8B2761487700B75715 /* NavigationCoordinator.swift in Sources */,
 				01BDAC7522C518DE00915646 /* SARestApiClientTask.m in Sources */,
@@ -3028,8 +3038,10 @@
 				AED6395E270CA3A800E5105B /* RoundedButton.swift in Sources */,
 				015A9846265595E300B6E6C6 /* UIButton+SUPLA.m in Sources */,
 				AE74528D2827E5D400A3AFAD /* ProfileChooser.swift in Sources */,
+				6E9F28C928436EE900142502 /* AddNewProfileCell.swift in Sources */,
 				40C7BA5220C007A300ACEE42 /* SAChannelValue+CoreDataClass.m in Sources */,
 				01DD2F0F247719000025DFF9 /* SARangeCalibrationWheel.m in Sources */,
+				6E05868128539E4A0044786B /* EditableProfileItemCell.swift in Sources */,
 				016157B6261CAAFA006AA0E8 /* SAPickerField.m in Sources */,
 				01E517C322C6AC1E000FE77A /* SADownloadIncrementalMeasurements.m in Sources */,
 				AEF79D9327130A5400D7554B /* CfgCell.swift in Sources */,

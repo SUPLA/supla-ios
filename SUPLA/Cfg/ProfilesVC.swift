@@ -33,29 +33,31 @@ class ProfilesVC: BaseViewController {
 
     private var _viewModel: ProfilesVM!
 
-    private let _activateProfile = PublishSubject<Int>()
-    private let _editProfile = PublishSubject<Int>()
+    private let _activateProfile = PublishSubject<NSManagedObjectID>()
+    private let _editProfile = PublishSubject<NSManagedObjectID>()
     private let _addNewProfile = PublishSubject<Void>()
 
-    private let _profileCellId = "ProfileCell"
+    private static let _profileCellId = "ProfileCell"
+    private static let _addNewCellId = "AddNewProfileCellId"
     
     func dataSource() -> RxTableViewSectionedReloadDataSource<ProfilesListModel> {
-        let profileCellId = _profileCellId
+        
         return RxTableViewSectionedReloadDataSource<ProfilesListModel>(
             configureCell: { [weak self] dataSource, table, ip, _ in
                 switch dataSource[ip] {
                 case let .profileItem(id, name, isActive):
-                    let cell = table.dequeueReusableCell(withIdentifier: profileCellId, for: ip)
-                      as! ProfileItemCell
+                    let cell = table.dequeueReusableCell(withIdentifier: ProfilesVC._profileCellId,
+                                                         for: ip)
+                      as! EditableProfileItemCell
                     cell.setProfileItem(dataSource[ip])
                     cell.editProfileTrigger
-                    .subscribe { _ in
-                                   print("edit item \(id)")
+                    .subscribe { [weak self] _ in
+                        self?._editProfile.on(.next(id))
                     }.disposed(by: cell.disposeBag)
                     return cell
                 case .addNewProfileItem:
-                    let cell = table.dequeueReusableCell(withIdentifier: "Cell", for: ip)
-                    cell.textLabel?.text = "Add new"
+                    let cell = table.dequeueReusableCell(withIdentifier: ProfilesVC._addNewCellId,
+                                                         for: ip)
                     return cell
                 }
                 
@@ -108,6 +110,8 @@ class ProfilesVC: BaseViewController {
                                           constant: Dimens.Form.elementSpacing).isActive = true
         _profileList.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
         _profileList.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
+        _profileList.tableFooterView = UIView(frame: .zero)
+        _profileList.backgroundColor = .clear
 
         if #available(iOS 11, *) {
             _profileList.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
@@ -117,14 +121,13 @@ class ProfilesVC: BaseViewController {
               .isActive = true
         }
 
-        _profileList.register(UITableViewCell.self, forCellReuseIdentifier: "Cell")
-        _profileList.register(ProfileItemCell.self,
-                              forCellReuseIdentifier: _profileCellId)
+        _profileList.register(AddNewProfileCell.self,
+                              forCellReuseIdentifier: ProfilesVC._addNewCellId)
+        _profileList.register(EditableProfileItemCell.self,
+                              forCellReuseIdentifier: ProfilesVC._profileCellId)
 
         let tableData: [ProfilesListModel] = [
-            .profileSection(items: [
-                .profileItem(id: 0, name: "one", isActive: false),
-                .profileItem(id: 1, name: "two", isActive: true)]),
+            .profileSection(items: _viewModel.profileItems),
             .commandSection(items: [.addNewProfileItem])
         ]
 

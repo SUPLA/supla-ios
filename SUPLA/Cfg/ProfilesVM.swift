@@ -21,32 +21,44 @@ import RxCocoa
 import RxSwift
 import RxRelay
 import RxDataSources
+import CoreData
 
 class ProfilesVM {
     
     struct Inputs {
-        var onActivate: Observable<Int>
-        var onEdit: Observable<Int>
+        var onActivate: Observable<ProfileID>
+        var onEdit: Observable<ProfileID>
         var onAddNew: Observable<Void>
     }
 
     let dismissTrigger = PublishSubject<Void>()
+    let openProfileTrigger = PublishSubject<ProfileID?>()
+
+    let profileItems: [ProfileListItem]
     
     private let _profileManager: ProfileManager
     private let _disposeBag = DisposeBag()
     
     init(profileManager: ProfileManager) {
         _profileManager = profileManager
+
+        profileItems = _profileManager.getAllProfiles()
+          .map { ProfileListItem.profileItem(id: $0.objectID,
+                                             name: $0.displayName,
+                                             isActive: $0.isActive) }
     }
     
     func bind(inputs: Inputs) {
-        inputs.onAddNew.subscribe { _ in
-            // TODO: create new profile and open editor
-            print("triggering new item")
+        inputs.onAddNew.subscribe { [weak self] _ in
+            guard let self = self else { return }
+            self.openProfileTrigger.on(.next(nil))
+            
         }.disposed(by: _disposeBag)
 
-        inputs.onEdit.subscribe { id in
-            print("will edit profile: \(id)")
+        inputs.onEdit.subscribe { [weak self] profileID in
+            guard let self = self,
+                  let profileID = profileID.element else { return }
+          self.openProfileTrigger.on(.next(profileID))
         }.disposed(by: _disposeBag)
 
         inputs.onActivate.subscribe { [weak self] id in
@@ -55,12 +67,14 @@ class ProfilesVM {
             // TODO: activate profile
             self.dismissTrigger.on(.next(()))
         }.disposed(by: _disposeBag)
+
+        let profiles = _profileManager.getAllProfiles()
     }
 }
 
 
 enum ProfileListItem {
-    case profileItem(id: Int, name: String, isActive: Bool)
+    case profileItem(id: ProfileID, name: String, isActive: Bool)
     case addNewProfileItem
 }
 

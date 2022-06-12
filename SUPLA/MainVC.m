@@ -40,7 +40,7 @@
 @property (nonatomic) BOOL showingDetails;
 @end
 
-@interface SAMainVC() <MGSwipeTableCellDelegate>
+@interface SAMainVC() <MGSwipeTableCellDelegate,ProfileChooserDelegate>
 @end
 
 @implementation SAMainVC {
@@ -69,6 +69,8 @@
     NSMutableDictionary<NSIndexPath*, NSNumber*> *_savedButtonStates;
     
     NSTimer *_endGestureHook;
+    
+    ProfileChooser *_chooser;
 }
 
 - (void)registerNibForTableView:(UITableView*)tv {
@@ -717,11 +719,39 @@
                                         target: self
                                         action: @selector(onMenuToggle:)];
 
-    self.navigationItem.rightBarButtonItem =
+    NSMutableArray *itms = [[NSMutableArray alloc] initWithCapacity: 2];
+    [itms addObject:
         [[UIBarButtonItem alloc] initWithImage: [self imageForGroupState]
                                          style: UIBarButtonItemStylePlain
                                         target: self
-                                        action: @selector(onGroupsToggle:)];
+                                        action: @selector(onGroupsToggle:)]];
+    if([self hasManyProfiles]) {
+        [itms addObject:
+                  [[UIBarButtonItem alloc] initWithImage: [UIImage imageNamed: @"profile"]
+                                                   style: UIBarButtonItemStylePlain
+                                                  target: self
+                                                  action: @selector(onProfileSelection:)]];
+    }
+    self.navigationItem.rightBarButtonItems = itms;
+}
+
+- (BOOL)hasManyProfiles {
+    return YES; // TODO: replace with actual code
+}
+
+- (void)onProfileSelection: sender {
+    NSLog(@"sb wants to change profile");
+    if(_chooser) return;
+
+    
+    _chooser = [[ProfileChooser alloc]
+                   initWithProfileManager: [SAApp profileManager]];
+    _chooser.delegate = self;
+    [_chooser showFrom: self.navigationController];
+}
+
+- (void)profileChooserDidDismissWithProfileChanged: (BOOL)change {
+    _chooser = nil;
 }
 
 - (void)onMenuToggle: sender {

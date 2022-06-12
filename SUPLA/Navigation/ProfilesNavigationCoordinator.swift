@@ -30,6 +30,12 @@ class ProfilesNavigationCoordinator: BaseNavigationCoordinator {
     private lazy var _viewController: ProfilesVC = {
         return ProfilesVC(navigationCoordinator: self)
     }()
+
+    override func startFlow(coordinator child: NavigationCoordinator) {
+        _viewController.navigationController?.pushViewController(child.viewController,
+                                                                 animated: true)
+        super.startFlow(coordinator: child)
+    }
     
     override func start(from parent: NavigationCoordinator?) {
         super.start(from: parent)
@@ -38,8 +44,11 @@ class ProfilesNavigationCoordinator: BaseNavigationCoordinator {
         _viewController.bind(viewModel: vm)
 
         vm.dismissTrigger.subscribe { [weak self] _ in
-            print("profiles list wants to dismiss us")
             self?.finish()
+        }.disposed(by: _disposeBag)
+
+        vm.openProfileTrigger.subscribe { [weak self] profileId in
+            self?.openProfileView(profileId)
         }.disposed(by: _disposeBag)
 
         
@@ -54,8 +63,25 @@ class ProfilesNavigationCoordinator: BaseNavigationCoordinator {
     }
     
     @objc private func onDismissSubview(_ sender: AnyObject) {
-        _viewController.navigationController?.popToViewController(_viewController,
-                                                                  animated: true)
-    }    
+        _viewController.navigationController?
+          .popToViewController(_viewController,
+                               animated: true)
+    }
+
+
+    private func openProfileView(_ profileId: ProfileID?) {
+        print("gonna open profile \(profileId)")
+        let authnc = AuthCfgNavigationCoordinator(immediate: false,
+                                                  profileId: profileId)
+        startFlow(coordinator: authnc)
+/*
+        vc.viewModel.formSaved.subscribe { [weak self] _ in
+            guard let nc = self?._viewController
+                    .navigationController else { return }
+            nc.popViewController(animated: true)
+        }
+ */
+        
+    }
 }
 

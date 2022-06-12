@@ -31,26 +31,30 @@ class MultiAccountProfileManager: NSObject {
 
 extension MultiAccountProfileManager: ProfileManager {
 
+    func makeNewProfile() -> AuthProfileItem {
+        let profile = NSEntityDescription.insertNewObject(forEntityName: "AuthProfileItem",
+                                                          into: _ctx) as! AuthProfileItem
+        profile.name = ""
+        profile.isActive = true
+        profile.advancedSetup = false
+        profile.authInfo = AuthInfo(emailAuth: true,
+                                    serverAutoDetect: true,
+                                    emailAddress: "",
+                                    serverForEmail: "",
+                                    serverForAccessID: "",
+                                    accessID: 0,
+                                    accessIDpwd: "")
+        try! _ctx.save()
+        return profile
+    }
+
     func getCurrentProfile() -> AuthProfileItem {
         let req = AuthProfileItem.fetchRequest()
         if let profile = try! _ctx.fetch(req).first(where: {$0.isActive}) {
             return profile
         } else {
             // Need to create initial profile
-            let profile = NSEntityDescription.insertNewObject(forEntityName: "AuthProfileItem",
-                                                              into: _ctx) as! AuthProfileItem
-            profile.name = ""
-            profile.isActive = true
-            profile.advancedSetup = false
-            profile.authInfo = AuthInfo(emailAuth: true,
-                                        serverAutoDetect: true,
-                                        emailAddress: "",
-                                        serverForEmail: "",
-                                        serverForAccessID: "",
-                                        accessID: 0,
-                                        accessIDpwd: "")
-            try! _ctx.save()
-            return profile
+            return makeNewProfile()
         }
     }
     
@@ -79,5 +83,9 @@ extension MultiAccountProfileManager: ProfileManager {
     func getAllProfiles() -> [AuthProfileItem] {
         let req = AuthProfileItem.fetchRequest()
         return try! _ctx.fetch(req)
+    }
+
+    func getProfile(id: ProfileID) -> AuthProfileItem? {
+        return try? _ctx.existingObject(with: id) as? AuthProfileItem
     }
 }

@@ -15,20 +15,19 @@
  along with this program; if not, write to the Free Software
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
-
 import Foundation
+import CoreData
 
-@objc
-protocol ProfileManager {
-    func makeNewProfile() -> AuthProfileItem
-    func getCurrentProfile() -> AuthProfileItem
-    func updateCurrentProfile(_ profile: AuthProfileItem)
-    
-    func getCurrentAuthInfo() -> AuthInfo
-    
-    func updateCurrentAuthInfo(_ info: AuthInfo)
-    
-    func getAllProfiles() -> [AuthProfileItem]
+typealias ProfileID = NSManagedObjectID
 
-    func getProfile(id: ProfileID) -> AuthProfileItem?
+extension AuthProfileItem {
+    
+    var displayName: String {
+        let rawName = name ?? ""
+        if rawName.count == 0 {
+            return Strings.Profiles.defaultProfileName
+        } else {
+            return rawName
+        }
+    }
 }

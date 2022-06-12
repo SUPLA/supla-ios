@@ -38,11 +38,17 @@ class AuthVC: BaseViewController {
 
     @IBOutlet private var vBasic: UIView!
     @IBOutlet private var bsYourAccount: UILabel!
+    @IBOutlet private var bsProfileNameContainer: UIView!
+    @IBOutlet private var bsProfileName: UITextField!
+    @IBOutlet private var bsProfileNameLabel: UILabel!
     @IBOutlet private var bsEmailAddr: UITextField!
     @IBOutlet private var bsEmailAddrLabel: UILabel!
 
     @IBOutlet private var vAdvanced: UIView!
     @IBOutlet private var adAuthType: UISegmentedControl!
+    @IBOutlet private var adProfileNameContainer: UIView!
+    @IBOutlet private var adProfileName: UITextField!
+    @IBOutlet private var adProfileNameLabel: UILabel!
     @IBOutlet private var adEmailAddr: UITextField!
     @IBOutlet private var adEmailAddrLabel: UILabel!
     @IBOutlet private var adServerAddrEmail: UITextField!
@@ -80,6 +86,7 @@ class AuthVC: BaseViewController {
     
     private weak var currentTextField: UITextField?
     private weak var activeContentView: UIView?
+    private var profileId: NSManagedObjectID?
     
     var viewModel: AuthVM {
         loadViewIfNeeded()
@@ -87,9 +94,11 @@ class AuthVC: BaseViewController {
         return vM
     }
 
-    convenience init(navigationCoordinator: NavigationCoordinator) {
+    convenience init(navigationCoordinator: NavigationCoordinator,
+                     profileId: NSManagedObjectID?) {
         self.init(nibName: "AuthVC", bundle: nil)
         self.navigationCoordinator = navigationCoordinator
+        self.profileId = profileId
     }
     
     override func viewDidLoad() {
@@ -162,6 +171,8 @@ class AuthVC: BaseViewController {
         createAccountButton.setTitle(Strings.Cfg.createAccountButton)
         
         bsYourAccount.text = Strings.Cfg.yourAccountLabel
+        bsProfileNameLabel.text = Strings.Cfg.profileNameLabel
+        adProfileNameLabel.text = Strings.Cfg.profileNameLabel
         bsEmailAddrLabel.text = Strings.Cfg.emailLabel
         adEmailAddrLabel.text = Strings.Cfg.emailLabel
         adServerAddrEmailLabel.text = Strings.Cfg.serverLabel
@@ -190,7 +201,9 @@ class AuthVC: BaseViewController {
     private func bindVM() {
         /* Initialize view model and bind its inputs to the UI components */
         let bindings = AuthVM.Inputs(basicEmail: bsEmailAddr.rx.text.asObservable(),
+                                     basicName: bsProfileName.rx.text.asObservable(),
                                      advancedEmail: adEmailAddr.rx.text.asObservable(),
+                                     advancedName: adProfileName.rx.text.asObservable(),
                                      accessID: adAccessID.rx.text.asObservable().map { Int($0 ?? "0") }.asObservable(),
                                      accessIDpwd: adAccessPwd.rx.text.asObservable(),
                                      serverAddressForEmail: adServerAddrEmail.rx.text.asObservable(),
@@ -203,7 +216,12 @@ class AuthVC: BaseViewController {
                                                 }), formSubmitRequest: confirmButton.rx.tap.asObservable())
         
         vM = AuthVM(bindings: bindings,
-                    profileManager: SAApp.profileManager())
+                    profileManager: SAApp.profileManager(),
+                    profileId: profileId)
+
+        [bsProfileNameContainer].forEach {
+            $0.isHidden = !vM.allowsEditingProfileName
+        }
         
         /* Bind view model outputs to UI components */
         vM.isAdvancedMode.bind(to: self.modeToggle.rx.isOn)
@@ -214,6 +232,9 @@ class AuthVC: BaseViewController {
             .disposed(by: disposeBag)
         vM.emailAddress.bind(to: self.bsEmailAddr.rx.text, self.adEmailAddr.rx.text)
             .disposed(by: disposeBag)
+        vM.profileName.bind(to: self.bsProfileName.rx.text,
+                            self.adProfileName.rx.text)
+          .disposed(by: disposeBag)
         vM.isServerAutoDetect.bind(to: self.adServerAuto.rx.isSelected)
             .disposed(by: disposeBag)
         

@@ -22,13 +22,8 @@ import RxSwift
 
 class ProfileItemCell: UITableViewCell {
 
-    let editProfileTrigger = PublishSubject<Void>()
-    var disposeBag = DisposeBag()
-    
     private let _userAvatar = UIImageView()
     private let _profileNameLabel = UILabel()
-    private let _activeIndicator = UILabel()
-    private let _editProfileButton = UIButton()
 
     private let _avatarActiveImg = UIImage(named: "ProfileItemActive")
     private let _avatarInactiveImg = UIImage(named: "ProfileItemInactive")
@@ -45,11 +40,6 @@ class ProfileItemCell: UITableViewCell {
         initCell()
     }
 
-    override func prepareForReuse() {
-        disposeBag = DisposeBag()
-        bindControls()
-    }
-
     func setProfileItem(_ item: ProfileListItem) {
         guard case let .profileItem(data) = item else {
             fatalError("this shouldn't happen")
@@ -62,15 +52,18 @@ class ProfileItemCell: UITableViewCell {
         } else {
             _userAvatar.image = _avatarInactiveImg
         }
-
     }
 
     private func initCell() {
-        [ _userAvatar, _profileNameLabel, _activeIndicator,
-          _editProfileButton ].forEach {
+        separatorInset = UIEdgeInsets(top: 0, left: 0,
+                                      bottom: 0, right: 0)
+        
+        [ _userAvatar, _profileNameLabel ].forEach {
             $0.translatesAutoresizingMaskIntoConstraints = false
             self.contentView.addSubview($0)
         }
+
+        _profileNameLabel.font = .formLabelFont
 
         _userAvatar.leftAnchor
           .constraint(equalTo: contentView.leftAnchor,
@@ -91,33 +84,5 @@ class ProfileItemCell: UITableViewCell {
         _profileNameLabel.centerYAnchor
           .constraint(equalTo: _userAvatar.centerYAnchor)
           .isActive = true
-
-        _editProfileButton
-          .setBackgroundImage(UIImage(named: "pencil"),
-                              for: .normal)
-        _editProfileButton.rightAnchor
-          .constraint(equalTo: contentView.rightAnchor,
-                      constant: -Dimens.Form.elementSpacing)
-          .isActive = true
-        _editProfileButton.centerYAnchor
-          .constraint(equalTo: _userAvatar.centerYAnchor)
-          .isActive = true
-
-        _activeIndicator.text = "active"
-        _activeIndicator.rightAnchor
-          .constraint(equalTo: _editProfileButton.leftAnchor,
-                      constant: -Dimens.elementOffset)
-          .isActive = true
-        _activeIndicator.centerYAnchor
-          .constraint(equalTo: contentView.centerYAnchor)
-          .isActive = true
-        
-        bindControls()
-    }
-
-    private func bindControls() {
-        _editProfileButton.rx.tap.bind {
-            self.editProfileTrigger.onNext(())
-        }.disposed(by: disposeBag)
     }
 }
