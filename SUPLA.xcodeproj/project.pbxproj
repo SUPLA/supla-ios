@@ -1400,6 +1400,7 @@
 		AECB1BEA2711CB67001A9714 /* AuthInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthInfo.swift; sourceTree = "<group>"; };
 		AED6395D270CA3A800E5105B /* RoundedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedButton.swift; sourceTree = "<group>"; };
 		AED63960270CA46C00E5105B /* UIColor+Supla.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Supla.swift"; sourceTree = "<group>"; };
+		AEDC40B02857B60500FA8A9B /* SUPLA 12.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "SUPLA 12.xcdatamodel"; sourceTree = "<group>"; };
 		AEED1FD02737F3BE00DE6289 /* ProfileManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileManager.swift; sourceTree = "<group>"; };
 		AEED1FD22737F55C00DE6289 /* SUPLA 11.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "SUPLA 11.xcdatamodel"; sourceTree = "<group>"; };
 		AEED1FD32737F71C00DE6289 /* MultiAccountProfileManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultiAccountProfileManager.swift; sourceTree = "<group>"; };
@@ -3698,6 +3699,7 @@
 		407004251BB5706500F6187F /* SUPLA.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				AEDC40B02857B60500FA8A9B /* SUPLA 12.xcdatamodel */,
 				AEED1FD22737F55C00DE6289 /* SUPLA 11.xcdatamodel */,
 				015988AB268E617600FABBD0 /* SUPLA 10.xcdatamodel */,
 				01EE21EB263301E4006EC2B8 /* SUPLA 9.xcdatamodel */,
@@ -3710,7 +3712,7 @@
 				40BBA34620AC52EA0054CD20 /* SUPLA 2.xcdatamodel */,
 				407004261BB5706500F6187F /* SUPLA.xcdatamodel */,
 			);
-			currentVersion = AEED1FD22737F55C00DE6289 /* SUPLA 11.xcdatamodel */;
+			currentVersion = AEDC40B02857B60500FA8A9B /* SUPLA 12.xcdatamodel */;
 			path = SUPLA.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

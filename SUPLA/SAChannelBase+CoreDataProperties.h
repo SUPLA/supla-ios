@@ -20,6 +20,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 NS_ASSUME_NONNULL_BEGIN
+@class AuthProfileItem;
 
 @interface SAChannelBase (CoreDataProperties)
 
@@ -36,7 +37,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic) int32_t position;
 @property (nullable, nonatomic, retain) _SALocation *location;
 @property (nullable, nonatomic, retain) SAUserIcon *usericon;
-
+@property (nonatomic, retain) AuthProfileItem *profile;
 @end
 
 NS_ASSUME_NONNULL_END

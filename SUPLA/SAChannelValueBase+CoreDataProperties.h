@@ -20,13 +20,14 @@
 
 
 NS_ASSUME_NONNULL_BEGIN
-
+@class AuthProfileItem;
 @interface SAChannelValueBase (CoreDataProperties)
 
 + (NSFetchRequest<SAChannelValueBase *> *)fetchRequest;
 
 @property (nonatomic) int32_t channel_id;
 @property (nullable, nonatomic, retain) NSObject *value;
+@property (nonatomic, retain) AuthProfileItem *profile;
 
 @end
 

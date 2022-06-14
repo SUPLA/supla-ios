@@ -21,7 +21,7 @@
 
 
 NS_ASSUME_NONNULL_BEGIN
-
+@class AuthProfileItem;
 @interface SAMeasurementItem (CoreDataProperties)
 
 + (NSFetchRequest<SAMeasurementItem *> *)fetchRequest;
@@ -35,7 +35,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic) int16_t hour;
 @property (nonatomic) int16_t minute;
 @property (nonatomic) int16_t second;
-
+@property (nonatomic, retain) AuthProfileItem *profile;
 @end
 
 NS_ASSUME_NONNULL_END

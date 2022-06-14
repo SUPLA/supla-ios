@@ -27,6 +27,10 @@
 #import "SAUserIcon+CoreDataClass.h"
 #import "SUPLA-Swift.h"
 
+@interface SADatabase ()
+@property (readonly, nonatomic) AuthProfileItem *currentProfile;
+@end
+
 @implementation SADatabase {
     NSManagedObjectModel *_managedObjectModel;
     NSPersistentStoreCoordinator *_persistentStoreCoordinator;
@@ -63,6 +67,10 @@
         return _persistentStoreCoordinator;
     }
     
+    /*
+     Database version should not be incremented anymore. We now perform in-place
+     data migration.
+     */
     int DBv = 14;
     BOOL shouldMigrateProfile = NO;
     
@@ -114,7 +122,9 @@ again:
         if(![migrator migrateProfileFromUserDefaults: migrationCtx
                                                error: &err]) {
             NSLog(@"exception during data migration attempt: %@", err);
-            abort();
+            shouldMigrateProfile = NO;
+            [self removeIfExists: storeURL.path];
+            goto again;
         }
     }
     
@@ -323,22 +333,23 @@ again:
 #pragma mark Channels
 
 -(SAChannel*) fetchChannelById:(int)channel_id {
-    return [self fetchItemByPredicate:[NSPredicate predicateWithFormat:@"remote_id = %i", channel_id] entityName:@"SAChannel"];
+    return [self fetchItemByPredicate:[NSPredicate predicateWithFormat:@"remote_id = %i AND profile.isActive = true", channel_id] entityName:@"SAChannel"];
 };
 
 -(SAChannelValue*) fetchChannelValueByChannelId:(int)channel_id {
     
-    return [self fetchItemByPredicate:[NSPredicate predicateWithFormat:@"channel_id = %i", channel_id] entityName:@"SAChannelValue"];
+    return [self fetchItemByPredicate:[NSPredicate predicateWithFormat:@"channel_id = %i AND profile.isActive = true", channel_id] entityName:@"SAChannelValue"];
 };
 
 -(SAChannelExtendedValue*) fetchChannelExtendedValueByChannelId:(int)channel_id {
-    return [self fetchItemByPredicate:[NSPredicate predicateWithFormat:@"channel_id = %i", channel_id] entityName:@"SAChannelExtendedValue"];
+    return [self fetchItemByPredicate:[NSPredicate predicateWithFormat:@"channel_id = %i AND profile.isActive = true", channel_id] entityName:@"SAChannelExtendedValue"];
 };
 
 -(SAChannel*) newChannel {
     
     SAChannel *Channel = [[SAChannel alloc] initWithEntity:[NSEntityDescription entityForName:@"SAChannel" inManagedObjectContext:self.managedObjectContext] insertIntoManagedObjectContext:self.managedObjectContext];
     [Channel initWithRemoteId:0];
+    Channel.profile = self.currentProfile;
     [self.managedObjectContext insertObject:Channel];
     
     return Channel;
@@ -1432,5 +1443,10 @@ again:
     [self.managedObjectContext deleteObject:object];
 }
 
+- (AuthProfileItem *)currentProfile {
+    id<ProfileManager> pm = [[MultiAccountProfileManager alloc]
+                             initWithContext: _managedObjectContext];
+    return [pm getCurrentProfile];
+}
 @end
 

@@ -20,7 +20,7 @@
 
 
 NS_ASSUME_NONNULL_BEGIN
-
+@class AuthProfileItem;
 @interface SAUserIcon (CoreDataProperties)
 
 + (NSFetchRequest<SAUserIcon *> *)fetchRequest;
@@ -30,7 +30,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nullable, nonatomic, retain) NSObject *uimage2;
 @property (nullable, nonatomic, retain) NSObject *uimage3;
 @property (nullable, nonatomic, retain) NSObject *uimage4;
-
+@property (nonatomic, retain) AuthProfileItem *profile;
 @end
 
 NS_ASSUME_NONNULL_END
