@@ -14,7 +14,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 */
 
 #import "SAMenuItems.h"
-
+#import "SUPLA-Swift.h"
 #import "UIColor+SUPLA.h"
 
 #define SEPARATOR_HEIGHT 1
@@ -119,8 +119,15 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         
     _btnCount = 0;
 
-    // TODO: plural form
-    [self addBtnWithId:SAMenuItemIdProfile imageNamed:@"profile" text:@"Your account"];
+    id<ProfileManager> pm = [SAApp profileManager];
+    NSString *accountLabel;
+    if([[pm getAllProfiles] count] > 1) {
+        accountLabel = @"Your accounts";
+    } else {
+        accountLabel = @"Your account";
+    }
+    
+    [self addBtnWithId:SAMenuItemIdProfile imageNamed:@"profile" text:accountLabel];
     [self addBtnWithId:SAMenuItemIdSettings imageNamed:@"settings" text:@"Settings"];
     [self addBtnWithId:SAMenuItemIdAddDevice imageNamed:@"add_device" text:@"Add I/O device"];
     [self addBtnWithId:SAMenuItemIdZWave imageNamed:@"z_wave_btn" text:@"Z-Wave bridge"];

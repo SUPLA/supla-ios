@@ -19,3 +19,4 @@
 #import "SAChannelBase+CoreDataClass.h"
 #import "DetailView.h"
 #import "SAMoveTableView.h"
+#import "SAKeychain.h"

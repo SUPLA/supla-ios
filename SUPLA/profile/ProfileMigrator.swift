@@ -64,12 +64,21 @@ class ProfileMigrator: NSObject {
         // profile was already migrated, so we're good now
         try updateRelationships(profile: profile, in: ctx)
 
+      var bytes = [CChar](repeating: 0, count: Int(SUPLA_GUID_SIZE))
+      if SAApp.getClientGUID(&bytes) {
+          profile.clientGUID = Data(bytes.map { UInt8(bitPattern: $0)})
+      }
+
+      bytes = [CChar](repeating: 0, count: Int(SUPLA_AUTHKEY_SIZE))
+      if SAApp.getAuthKey(&bytes) {
+          profile.authKey = Data(bytes.map { UInt8(bitPattern: $0) })
+      }
     }
 
     private func updateRelationships(profile: AuthProfileItem,
                                      in ctx: NSManagedObjectContext) throws {
         let entities = [ "SAChannelBase", "SAChannelValueBase",
-            "SAMeasurementItem", "SAUserIcon", "_SALocation" ]
+            "SAMeasurementItem", "SAUserIcon", "SALocation" ]
         
         for name in entities {
             let fr = NSFetchRequest<NSManagedObject>(entityName: name)

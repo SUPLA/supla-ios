@@ -453,16 +453,13 @@ void sasuplaclient_on_zwave_set_wake_up_time_result(void *_suplaclient,
     
     TSuplaClientCfg scc;
     supla_client_cfginit(&scc);
-    
-    if (![SAApp getClientGUID:scc.clientGUID]) {
-        NSLog(@"Can't get client GUID!");
-        return NULL;
-    }
-    
-    if (![SAApp getAuthKey:scc.AuthKey]) {
-        NSLog(@"Can't get AuthKey!");
-        return NULL;
-    }
+    id<ProfileManager> pm = SAApp.profileManager;
+    AuthProfileItem *profile = [pm getCurrentProfile];
+
+    [profile.clientGUID getBytes: scc.clientGUID
+                          length: SUPLA_GUID_SIZE];
+    [profile.authKey getBytes: scc.AuthKey
+                       length: SUPLA_AUTHKEY_SIZE];
     
     scc.user_data = (__bridge void *)self;
     scc.host = [self getServerHostName];
@@ -472,8 +469,7 @@ void sasuplaclient_on_zwave_set_wake_up_time_result(void *_suplaclient,
         [self onConnError:SUPLA_RESULTCODE_HOSTNOTFOUND];
     }
     
-    id<ProfileManager> pm = [SAApp profileManager];
-    AuthInfo *ai = [pm getCurrentAuthInfo];
+    AuthInfo *ai = profile.authInfo;
     if ( !ai.emailAuth ) {
         scc.AccessID = ai.accessID;
         snprintf(scc.AccessIDpwd, SUPLA_ACCESSID_PWD_MAXSIZE, "%s", [ai.accessIDpwd UTF8String]);
