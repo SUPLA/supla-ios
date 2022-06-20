@@ -31,5 +31,5 @@ extension UIColor {
     static let alertRed = UIColor(red: 235.0/255.0, green: 58.0/255.0,
                                   blue: 40.0/255.0, alpha: 1)
 
-
+    static let formLabelColor = UIColor(red: 0.706, green: 0.718, blue: 0.729, alpha: 1)
 }

@@ -26,37 +26,67 @@ class ProfileMigrator: NSObject {
     
     @objc
     func migrateProfileFromUserDefaults(_ ctx: NSManagedObjectContext) throws {
-        // Obtain current authentication settings
-        let accessID = _defs.integer(forKey: "access_id")
-        let accessIDpwd = _defs.string(forKey: "access_id_pwd") ?? ""
-        let serverHostName = _defs.string(forKey: "server_host") ?? ""
-        let emailAddress = _defs.string(forKey: "email_address") ?? ""
-        let isAdvanced = _defs.bool(forKey: "advanced_config")
-        let prefProtoVersion = _defs.integer(forKey: "pref_proto_version")
-        let serverForEmail: String
-        let serverForAccessID: String
-        
-        if isAdvanced {
-            serverForAccessID = serverHostName
-            serverForEmail = ""
-        } else {
-            serverForAccessID = ""
-            serverForEmail = serverHostName
-        }
-        
-        
         let pm = MultiAccountProfileManager(context: ctx)
         
         let profile = pm.getCurrentProfile()
-        profile.advancedSetup = isAdvanced
-        profile.authInfo = AuthInfo(emailAuth: !isAdvanced,
-                                    serverAutoDetect: !isAdvanced,
-                                    emailAddress: emailAddress,
-                                    serverForEmail: serverForEmail,
-                                    serverForAccessID: serverForAccessID,
-                                    accessID: accessID,
-                                    accessIDpwd: accessIDpwd,
-                                    preferredProtocolVersion: prefProtoVersion)
-        pm.updateCurrentProfile(profile)
+        if profile.authInfo?.isAuthDataComplete == false {
+            // Obtain current authentication settings
+            let accessID = _defs.integer(forKey: "access_id")
+            let accessIDpwd = _defs.string(forKey: "access_id_pwd") ?? ""
+            let serverHostName = _defs.string(forKey: "server_host") ?? ""
+            let emailAddress = _defs.string(forKey: "email_address") ?? ""
+            let isAdvanced = _defs.bool(forKey: "advanced_config")
+            let prefProtoVersion = _defs.integer(forKey: "pref_proto_version")
+            let serverForEmail: String
+            let serverForAccessID: String
+            
+            if isAdvanced {
+                serverForAccessID = serverHostName
+                serverForEmail = ""
+            } else {
+                serverForAccessID = ""
+                serverForEmail = serverHostName
+            }
+            
+            
+            profile.advancedSetup = isAdvanced
+            profile.authInfo = AuthInfo(emailAuth: !isAdvanced,
+                                        serverAutoDetect: !isAdvanced,
+                                        emailAddress: emailAddress,
+                                        serverForEmail: serverForEmail,
+                                        serverForAccessID: serverForAccessID,
+                                        accessID: accessID,
+                                        accessIDpwd: accessIDpwd,
+                                        preferredProtocolVersion: prefProtoVersion)
+            pm.updateCurrentProfile(profile)
+        }
+        
+        // profile was already migrated, so we're good now
+        try updateRelationships(profile: profile, in: ctx)
+
+      var bytes = [CChar](repeating: 0, count: Int(SUPLA_GUID_SIZE))
+      if SAApp.getClientGUID(&bytes) {
+          profile.clientGUID = Data(bytes.map { UInt8(bitPattern: $0)})
+      }
+
+      bytes = [CChar](repeating: 0, count: Int(SUPLA_AUTHKEY_SIZE))
+      if SAApp.getAuthKey(&bytes) {
+          profile.authKey = Data(bytes.map { UInt8(bitPattern: $0) })
+      }
+    }
+
+    private func updateRelationships(profile: AuthProfileItem,
+                                     in ctx: NSManagedObjectContext) throws {
+        let entities = [ "SAChannelBase", "SAChannelValueBase",
+            "SAMeasurementItem", "SAUserIcon", "SALocation" ]
+        
+        for name in entities {
+            let fr = NSFetchRequest<NSManagedObject>(entityName: name)
+            for obj in try ctx.fetch(fr) {
+                obj.setValue(profile, forKey: "profile")
+            }
+        }
+        
+        try ctx.save()
     }
 }

@@ -31,26 +31,30 @@ class MultiAccountProfileManager: NSObject {
 
 extension MultiAccountProfileManager: ProfileManager {
 
+    func makeNewProfile() -> AuthProfileItem {
+        let profile = NSEntityDescription.insertNewObject(forEntityName: "AuthProfileItem",
+                                                          into: _ctx) as! AuthProfileItem
+        profile.name = ""
+        profile.isActive = true
+        profile.advancedSetup = false
+        profile.authInfo = AuthInfo(emailAuth: true,
+                                    serverAutoDetect: true,
+                                    emailAddress: "",
+                                    serverForEmail: "",
+                                    serverForAccessID: "",
+                                    accessID: 0,
+                                    accessIDpwd: "")
+        try! _ctx.save()
+        return profile
+    }
+
     func getCurrentProfile() -> AuthProfileItem {
         let req = AuthProfileItem.fetchRequest()
         if let profile = try! _ctx.fetch(req).first(where: {$0.isActive}) {
             return profile
         } else {
             // Need to create initial profile
-            let profile = NSEntityDescription.insertNewObject(forEntityName: "AuthProfileItem",
-                                                              into: _ctx) as! AuthProfileItem
-            profile.name = ""
-            profile.isActive = true
-            profile.advancedSetup = false
-            profile.authInfo = AuthInfo(emailAuth: true,
-                                        serverAutoDetect: true,
-                                        emailAddress: "",
-                                        serverForEmail: "",
-                                        serverForAccessID: "",
-                                        accessID: 0,
-                                        accessIDpwd: "")
-            try! _ctx.save()
-            return profile
+            return makeNewProfile()
         }
     }
     
@@ -75,4 +79,41 @@ extension MultiAccountProfileManager: ProfileManager {
         profile.authInfo = info
         updateCurrentProfile(profile)
     }
+    
+    func getAllProfiles() -> [AuthProfileItem] {
+        let req = AuthProfileItem.fetchRequest()
+        return try! _ctx.fetch(req)
+    }
+
+    func getProfile(id: ProfileID) -> AuthProfileItem? {
+        return try? _ctx.existingObject(with: id) as? AuthProfileItem
+    }
+    
+    
+    func activateProfile(id: ProfileID, force: Bool) -> Bool {
+        guard let profile = getProfile(id: id) else { return false }
+        if profile.isActive && !force { return false }
+        
+        initiateReconnect()
+        getAllProfiles().forEach { $0.isActive = false }
+        profile.isActive = true
+        try! _ctx.save()
+        
+        return true
+    }
+    
+    func removeProfile(id: ProfileID) {
+        if let p = getProfile(id: id) {
+            _ctx.delete(p)
+            try! _ctx.save()
+        }
+    }
+    
+    private func initiateReconnect() {
+        let app = SAApp.instance()
+        let client = SAApp.suplaClient()
+        app.cancelAllRestApiClientTasks()
+        client.reconnect()
+    }
+
 }

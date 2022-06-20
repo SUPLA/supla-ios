@@ -20,10 +20,18 @@ import Foundation
 
 @objc
 protocol ProfileManager {
+    func makeNewProfile() -> AuthProfileItem
     func getCurrentProfile() -> AuthProfileItem
     func updateCurrentProfile(_ profile: AuthProfileItem)
     
     func getCurrentAuthInfo() -> AuthInfo
     
     func updateCurrentAuthInfo(_ info: AuthInfo)
+    
+    func getAllProfiles() -> [AuthProfileItem]
+
+    func getProfile(id: ProfileID) -> AuthProfileItem?
+    
+    func activateProfile(id: ProfileID, force: Bool) -> Bool
+    func removeProfile(id: ProfileID)
 }

@@ -27,14 +27,17 @@ class AuthCfgNavigationCoordinator: BaseNavigationCoordinator {
     }
     
     private let _immediate: Bool
+    private var _profileId: NSManagedObjectID?
     private let _disposeBag = DisposeBag()
     
     private lazy var _viewController: AuthVC = {
-        return AuthVC(navigationCoordinator: self)
+        return AuthVC(navigationCoordinator: self,
+                      profileId: _profileId)
     }()
     
-    init(immediate: Bool) {
+    init(immediate: Bool, profileId: ProfileID? = nil) {
         _immediate = immediate
+        _profileId = profileId
     }
     
     override func start(from parent: NavigationCoordinator?) {

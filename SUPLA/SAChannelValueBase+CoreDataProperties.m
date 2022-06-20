@@ -26,5 +26,6 @@
 
 @dynamic channel_id;
 @dynamic value;
+@dynamic profile;
 
 @end

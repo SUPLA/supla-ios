@@ -7,6 +7,7 @@ target 'SUPLA' do
   pod 'Charts', '3.4.0'
   pod 'RxSwift'
   pod 'RxSwiftExt'
+  pod 'RxDataSources'
   pod 'RxCocoa'
   pod 'PaddingLabel', '1.2'
   pod 'FMMoveTableView', '~> 1.1'

@@ -139,6 +139,10 @@ class MainNavigationCoordinator: BaseNavigationCoordinator {
     func showSettingsView() {
         startFlow(coordinator: CfgNavigationCoordinator())
     }
+
+    @objc func showProfilesView(allowsBack: Bool) {
+        startFlow(coordinator: ProfilesNavigationCoordinator(allowsBack: allowsBack))
+    }
     
     func showAddWizard() {
         let avc = SAAddWizardVC(nibName: "AddWizardVC", bundle: nil)
@@ -173,7 +177,8 @@ class MainNavigationCoordinator: BaseNavigationCoordinator {
     // MARK: -
     
     @objc func showAuthView(immediate: Bool) {
-        startFlow(coordinator: AuthCfgNavigationCoordinator(immediate: immediate))
+        startFlow(coordinator: AuthCfgNavigationCoordinator(immediate: immediate,
+                                                            profileId: SAApp.profileManager().getCurrentProfile().objectID))
     }
     
     @objc func showStatusView(progress: NSNumber) {

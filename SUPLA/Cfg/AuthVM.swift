@@ -32,7 +32,9 @@ class AuthVM {
     // MARK: Input bindings
     struct Inputs {
         let basicEmail: Observable<String?>
+        let basicName: Observable<String?>
         let advancedEmail: Observable<String?>
+        let advancedName: Observable<String?>
         let accessID: Observable<Int?>
         let accessIDpwd: Observable<String?>
         let serverAddressForEmail: Observable<String?>
@@ -42,7 +44,11 @@ class AuthVM {
         let createAccountRequest: Observable<Void>
         let autoServerSelected: Observable<Bool>
         let formSubmitRequest: Observable<Void>
+        let accountDeleteRequest: Observable<Void>
     }
+
+    let allowsEditingProfileName: Bool
+    let allowsDeletingProfile: Bool
     
     // MARK: Output bindings
     var isAdvancedMode: Observable<Bool> {
@@ -51,6 +57,11 @@ class AuthVM {
     var isServerAutoDetect: Observable<Bool> {
         return _serverAutoDetect.asObservable()
     }
+
+    var profileName: Observable<String?> {
+        return _profileName.asObservable()
+    }
+    
     var emailAddress: Observable<String?> {
         return _emailAddress.asObservable()
     }
@@ -82,11 +93,13 @@ class AuthVM {
     }
 
     var formSaved: Observable<Bool> { return _formSaved.asObservable() }
+    
 
     // MARK: Internal state
     private let _advancedMode = BehaviorRelay<Bool>(value: false)
     private let _serverAutoDetect = BehaviorRelay<Bool>(value: true)
     private let _emailAddress = BehaviorRelay<String?>(value: "")
+    private let _profileName = BehaviorRelay<String?>(value: "")
     private let _accessID = BehaviorRelay<Int?>(value: 0)
     private let _accessIDpwd = BehaviorRelay<String?>(value: "")
     private let _serverAddressForEmail = BehaviorRelay<String?>(value: "")
@@ -94,6 +107,8 @@ class AuthVM {
 
     private var _authCfg: AuthInfo
     private var _loadedCfg: AuthInfo
+    private var _profileId: ProfileID?
+    private let _isActive: Bool
     
     private let _advancedModeAuthType = BehaviorRelay<AuthType>(value: .email)
     private let _initiateSignup = PublishSubject<Void>()
@@ -103,8 +118,38 @@ class AuthVM {
     private let disposeBag = DisposeBag()
     private let _profileManager: ProfileManager
     
-    init(bindings b: Inputs, profileManager: ProfileManager) {
+    init(bindings b: Inputs, profileManager: ProfileManager,
+         profileId: NSManagedObjectID?) {
         _profileManager = profileManager
+        _profileId = profileId
+
+        let profileName: String
+        let profileAdvanced: Bool
+
+        if let profileId = profileId,
+           let profile = profileManager.getProfile(id: profileId) {
+            _authCfg = profile.authInfo!
+            profileName = profile.displayName
+            profileAdvanced = profile.advancedSetup
+            _isActive = profile.isActive
+            allowsDeletingProfile = !_isActive
+        } else {
+            _authCfg = AuthInfo(emailAuth: true,
+                                serverAutoDetect: true,
+                                emailAddress: "",
+                                serverForEmail: "",
+                                serverForAccessID: "",
+                                accessID: 0,
+                                accessIDpwd: "")
+            profileName = ""
+            profileAdvanced = false
+            _isActive = false
+            allowsDeletingProfile = false
+        }
+        _loadedCfg = _authCfg.clone()
+
+        allowsEditingProfileName = _profileManager.getAllProfiles().count > 1 ||
+            _authCfg.isAuthDataComplete || profileId == nil
         
         b.autoServerSelected.bind(to: _serverAutoDetect).disposed(by: disposeBag)
         b.serverAddressForEmail.bind(to: _serverAddressForEmail).disposed(by: disposeBag)
@@ -113,10 +158,8 @@ class AuthVM {
         b.advancedEmail.bind(to: _emailAddress).disposed(by: disposeBag)
         b.accessID.bind(to: _accessID).disposed(by: disposeBag)
         b.accessIDpwd.bind(to: _accessIDpwd).disposed(by: disposeBag)
-
-        let profile = profileManager.getCurrentProfile()
-        _authCfg = profile.authInfo!
-        _loadedCfg = _authCfg.clone()
+        b.basicName.bind(to: _profileName).disposed(by: disposeBag)
+        b.advancedName.bind(to: _profileName).disposed(by: disposeBag)
         
         b.toggleAdvancedState.subscribe { [weak self] _ in
             guard let ss = self else { return }
@@ -141,6 +184,10 @@ class AuthVM {
         
         b.formSubmitRequest.subscribe(onNext: { [weak self] in
             self?.onFormSubmit()
+        }).disposed(by: disposeBag)
+        
+        b.accountDeleteRequest.subscribe(onNext: { [weak self] in
+            self?.onDeleteAccount()
         }).disposed(by: disposeBag)
   
         
@@ -187,8 +234,9 @@ class AuthVM {
         _advancedModeAuthType.subscribe { [weak self] at in
             self?._authCfg.emailAuth = at.element == .email
         }.disposed(by: disposeBag)
-        
-        _advancedMode.accept(profile.advancedSetup)
+
+        _profileName.accept(profileName)
+        _advancedMode.accept(profileAdvanced)
         _serverAutoDetect.accept(_loadedCfg.serverAutoDetect)
         _emailAddress.accept(_loadedCfg.emailAddress)
         _serverAddressForEmail.accept(_loadedCfg.serverForEmail)
@@ -198,13 +246,28 @@ class AuthVM {
         _advancedModeAuthType.accept(_loadedCfg.emailAuth ? .email : .accessId)
     }
 
-    
+    private func onDeleteAccount() {
+        guard let profileId = _profileId else { return }
+        _profileManager.removeProfile(id: profileId)
+        _formSaved.on(.next(false))
+    }
     
     private func onFormSubmit() {
         let needsReauth = self.needsReauth
-        let profile = _profileManager.getCurrentProfile()
+
+        let profile: AuthProfileItem
+        
+        if let profileId = _profileId,
+           let p = _profileManager.getProfile(id: profileId) {
+            profile = p
+        } else {
+            profile = _profileManager.makeNewProfile()
+            profile.isActive = false
+        }
+        
         profile.advancedSetup = _advancedMode.value
         profile.authInfo = _authCfg
+        profile.name = _profileName.value
         _profileManager.updateCurrentProfile(profile)
         _loadedCfg = _authCfg
         _authCfg = _loadedCfg.clone()
@@ -212,6 +275,6 @@ class AuthVM {
     }
     
     private var needsReauth: Bool {
-        return _loadedCfg != _authCfg
+        return _isActive && _loadedCfg != _authCfg
     }
 }
