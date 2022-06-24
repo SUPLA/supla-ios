@@ -76,7 +76,6 @@
 "Cancel" = "Annuleren";
 "Go to the system settings" = "Ga naar systeemvoorkeuren.";
 "I/O Device registration is currently off. To continue go to „My SUPLA” at %@ and enable the Device Add Button." = "I / O-apparaatregistratie is momenteel uitgeschakeld. Ga door naar pagina %@ en schakel op het tabblad \"Mijn SUPLA\" het toevoegen van apparaten in.";
-"Add Wizard is only available when server connection has been set based on the email address entered in the settings. (Disable advanced options in the settings)" = "De wizard Toevoegen is alleen beschikbaar wanneer een verbinding met de server tot stand is gebracht op basis van het e-mailadres dat in de instellingen is ingevoerd!";
 "The connected Server does not support this function!" = "De server waarmee u verbonden bent, ondersteunt deze functie niet!";
 "Device Configuration Completion timeout!" = "Wachttijd voor het voltooien van de apparaatconfiguratie overschreden!";
 "Incorrect input parameters!" = "Ongeldige invoerparameters!";
