@@ -76,7 +76,6 @@
 "Cancel" = "Zrušit";
 "Go to the system settings" = "Přejděte do nastavení systému ";
 "I/O Device registration is currently off. To continue go to „My SUPLA” at %@ and enable the Device Add Button." = "Registrace I / O zařízení je momentálně zakázána. Chcete-li pokračovat, přejděte na stránku %@ a na kartě Moje SUPLA povolte přidávání zařízení.";
-"Add Wizard is only available when server connection has been set based on the email address entered in the settings. (Disable advanced options in the settings)" = "Průvodce přidáním je k dispozici pouze v případě, že bylo na základě e-mailové adresy zadané v nastavení vytvořeno připojení k serveru!";
 "The connected Server does not support this function!" = "Server, ke kterému jste se připojili, nepodporuje tuto funkci!";
 "Device Configuration Completion timeout!" = "Doba čekání na dokončení konfigurace zařízení byla překročena!";
 "Incorrect input parameters!" = "Chybné vstupní parametry!";

@@ -76,7 +76,6 @@
 "Cancel" = "Prekličite";
 "Go to the system settings" = "Pojdi na sistemske nastavitve";
 "I/O Device registration is currently off. To continue go to „My SUPLA” at %@ and enable the Device Add Button." = "Registracija naprav je trenutno izklopljena. Za nadaljevanje pojdite na stran %@ in v zavihku \"Moja SUPLA\" omogočite dodajanje naprav.";
-"Add Wizard is only available when server connection has been set based on the email address entered in the settings. (Disable advanced options in the settings)" = "Čarovnik za dodajanje je na voljo samo, če je vzpostavljena povezava s strežnikom na podlagi e-naslova, vpisanega v nastavitvah!";
 "The connected Server does not support this function!" = "Strežnik, na katerega ste se povezali, ne podpira te funkcije!";
 "Device Configuration Completion timeout!" = "Čakalna doba za dokončanje konfiguracije naprave je prekoračena!";
 "Incorrect input parameters!" = "Napačni vhodni parametri!";
