@@ -468,7 +468,7 @@ NSString *kChannelHeightDidChange = @"ChannelHeightDidChange";
     if ( code && [code intValue] == SUPLA_RESULTCODE_HOSTNOTFOUND ) {
         
         [self SuplaClientTerminate];
-        [[SAApp mainNavigationCoordinator] showStatusViewWithError:NSLocalizedString(@"Host not found. Make sure you are connected to the internet and that an account with the entered email address has been created.", nil)];
+        [[SAApp mainNavigationCoordinator] showStatusViewWithError:NSLocalizedString(@"Host not found. Make sure you are connected to the internet and that an account with the entered email address has been created.", nil) completion: nil];
     }
 }
 
@@ -497,17 +497,19 @@ NSString *kChannelHeightDidChange = @"ChannelHeightDidChange";
     [self SuplaClientTerminate];
     
     NSNumber *code = [NSNumber codeNotificationToNumber:notification];
-    [[SAApp mainNavigationCoordinator] showStatusViewWithError:[SASuplaClient codeToString:code]];
-    int cint = [code intValue];
-    
-    AuthProfileItem *profile = [SAApp.profileManager getCurrentProfile];
-    if ((cint == SUPLA_RESULTCODE_REGISTRATION_DISABLED
-        || cint == SUPLA_RESULTCODE_ACCESSID_NOT_ASSIGNED)
-        && profile.authInfo.isAuthDataComplete
-        && profile.authInfo.emailAuth
-        && ![SASuperuserAuthorizationDialog.globalInstance isVisible]) {
-        [SASuperuserAuthorizationDialog.globalInstance authorizeWithDelegate:nil];
-    }
+    [[SAApp mainNavigationCoordinator] showStatusViewWithError:[SASuplaClient codeToString:code]
+                                                    completion: ^{
+        int cint = [code intValue];
+        
+        AuthProfileItem *profile = [SAApp.profileManager getCurrentProfile];
+        if ((cint == SUPLA_RESULTCODE_REGISTRATION_DISABLED
+            || cint == SUPLA_RESULTCODE_ACCESSID_NOT_ASSIGNED)
+            && profile.authInfo.isAuthDataComplete
+            && profile.authInfo.emailAuth
+            && ![SASuperuserAuthorizationDialog.globalInstance isVisible]) {
+            [SASuperuserAuthorizationDialog.globalInstance authorizeWithDelegate:nil];
+        }
+    }];
     
 }
 
@@ -519,7 +521,8 @@ NSString *kChannelHeightDidChange = @"ChannelHeightDidChange";
     
     [self SuplaClientTerminate];
     
-    [[SAApp mainNavigationCoordinator] showStatusViewWithError:NSLocalizedString(@"Incompatible server version", nil)];
+    [[SAApp mainNavigationCoordinator] showStatusViewWithError: NSLocalizedString(@"Incompatible server version", nil)
+                                                    completion: nil];
 }
 
 -(void)onOAuthTokenRequestResult:(NSNotification *)notification {
