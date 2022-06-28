@@ -61,6 +61,7 @@
 "Dimmer" = "Диммер";
 "Distance sensor" = "датчик расстояния";
 "Depth sensor" = "датчик глубины";
+"If you enjoy using this app, please take a moment to rate it. Thanks for your support!" = "Знаете ли вы, что Supla - это открытый и бесплатный проект, разрабатываемый сообществом? Если вам нравится это приложение, найдите минуту, чтобы его оценить. Спасибо за вашу поддержку!";
 "Mail sensor" = "Сигнализатор наличия почты";
 "Window opening sensor" = "Датчик открытия окна";
 "Add I/O device" = "Добавить устройство";
@@ -71,6 +72,7 @@
 "Cancel" = "Аннулируйте";
 "Go to the system settings" = "Перейти к системным настройкам";
 "I/O Device registration is currently off. To continue go to „My SUPLA” at %@ and enable the Device Add Button." = "Регистрация устройств ввода/вывода в настоящее время отключена. Для продолжения перейдите на сайт %@ и во вкладке ”Моя SUPLA” включите добавление устройств.";
+"Add Wizard is only available when server connection has been set based on the email address entered in the settings. (Disable advanced options in the settings)" = "Мастер добавления доступен только при подключении к серверу на основе введенного адреса электронной почты! (Отключите дополнительные параметры в настройках вашей учетной записи)";
 "The connected Server does not support this function!" = "Сервер, к которому вы подключены, не поддерживает эту функцию!";
 "Device Configuration Completion timeout!" = "Превышено время ожидания завершения конфигурации устройства!";
 "Incorrect input parameters!" = "Неверные входные параметры!";
