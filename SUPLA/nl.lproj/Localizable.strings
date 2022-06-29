@@ -61,7 +61,7 @@
 "Dimmer" = "Dimmer";
 "Distance sensor" = "Afstandssensor";
 "Depth sensor" = "Dieptesensor";
-"If you enjoy using this app, please take a moment to rate it. Thanks for your support!" = "Als je deze applicatie leuk vindt, neem dan even de tijd om het te beoordelen. Bedankt voor uw steun!";
+"If you enjoy using this app, please take a moment to rate it. Thanks for your support!" = "Wist u dat Supla een open en gratis project is, ontwikkeld door de gemeenschap? Als deze app je bevalt, neem dan even de tijd om haar te beoordelen. Dank u voor uw steun!";
 "Rate Now" = "Beoordeel het nu";
 "Later" = "Later";
 "No thanks" = "Nee, dank je";
@@ -76,6 +76,7 @@
 "Cancel" = "Annuleren";
 "Go to the system settings" = "Ga naar systeemvoorkeuren.";
 "I/O Device registration is currently off. To continue go to „My SUPLA” at %@ and enable the Device Add Button." = "I / O-apparaatregistratie is momenteel uitgeschakeld. Ga door naar pagina %@ en schakel op het tabblad \"Mijn SUPLA\" het toevoegen van apparaten in.";
+"Add Wizard is only available when server connection has been set based on the email address entered in the settings. (Disable advanced options in the settings)" = "De Toevoegen-Wizard is alleen beschikbaar als er op basis van het ingevoerde e-mailadres! een verbinding met de server tot stand is gebracht (Schakel geavanceerde opties in uw accountconfiguratie uit)";
 "The connected Server does not support this function!" = "De server waarmee u verbonden bent, ondersteunt deze functie niet!";
 "Device Configuration Completion timeout!" = "Wachttijd voor het voltooien van de apparaatconfiguratie overschreden!";
 "Incorrect input parameters!" = "Ongeldige invoerparameters!";
