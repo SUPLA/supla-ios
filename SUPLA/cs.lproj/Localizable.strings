@@ -61,7 +61,7 @@
 "Dimmer" = "Reostat";
 "Distance sensor" = "Snímač vzdálenosti";
 "Depth sensor" = "Snímač hloubky";
-"If you enjoy using this app, please take a moment to rate it. Thanks for your support!" = "Pokud se vám tato aplikace líbí, chvíli si ji ohodnoťte. Děkujeme za podporu!";
+"If you enjoy using this app, please take a moment to rate it. Thanks for your support!" = "Věděli jste, že Supla je otevřený a bezplatný komunitní projekt? Pokud se vám tato aplikace líbí, ohodnoťte ji prosím. Děkuji za Vaší podporu!";
 "Rate Now" = "Ohodnoťte teď";
 "Later" = "Později";
 "No thanks" = "Ne, děkuji";
@@ -76,6 +76,7 @@
 "Cancel" = "Zrušit";
 "Go to the system settings" = "Přejděte do nastavení systému ";
 "I/O Device registration is currently off. To continue go to „My SUPLA” at %@ and enable the Device Add Button." = "Registrace I / O zařízení je momentálně zakázána. Chcete-li pokračovat, přejděte na stránku %@ a na kartě Moje SUPLA povolte přidávání zařízení.";
+"Add Wizard is only available when server connection has been set based on the email address entered in the settings. (Disable advanced options in the settings)" = "Průvodce přidáním je dostupný pouze v případě, že bylo navázáno připojení k serveru na základě zadané e-mailové adresy! (vypněte možnost pokročilé konfigurace účtu)";
 "The connected Server does not support this function!" = "Server, ke kterému jste se připojili, nepodporuje tuto funkci!";
 "Device Configuration Completion timeout!" = "Doba čekání na dokončení konfigurace zařízení byla překročena!";
 "Incorrect input parameters!" = "Chybné vstupní parametry!";
