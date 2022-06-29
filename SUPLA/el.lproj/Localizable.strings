@@ -61,7 +61,7 @@
 "Dimmer" = "Ρεοστάτης";
 "Distance sensor" = "Αισθητήρας απόστασης";
 "Depth sensor" = "Αισθητήρας βάθους";
-"If you enjoy using this app, please take a moment to rate it. Thanks for your support!" = "Αν σας αρέσει αυτή η εφαρμογή, παρακαλώ αφιερώστε λίγο χρόνο για να την αξιολογήσετε. Σας ευχαριστώ για την υποστήριξή σας!";
+"If you enjoy using this app, please take a moment to rate it. Thanks for your support!" = "Γνωρίζατε ότι το Supla είναι ένα ανοιχτό και δωρεάν πρόγραμμα που αναπτύσσεται από κοινότητα; Αν σας αρέσει αυτή η εφαρμογή, αφιερώστε λίγο χρόνο για να το αξιολογήσετε. Σας ευχαριστούμε για την υποστήριξή σας!";
 "Rate Now" = "Βαθμολογήστε τώρα";
 "Later" = "Αργότερα";
 "No thanks" = "Όχι, ευχαριστώ";
@@ -76,6 +76,7 @@
 "Cancel" = "Ακύρωση";
 "Go to the system settings" = "Μετάβαση στις ρυθμίσεις συστήματος";
 "I/O Device registration is currently off. To continue go to „My SUPLA” at %@ and enable the Device Add Button." = "Η εγγραφή συσκευών εισόδου/εξόδου είναι αυτή τη στιγμή απενεργοποιημένη. Για να συνεχίσετε, μεταβείτε στην ιστοσελίδα %@ και στην καρτέλα \"Η SUPLA μου\" ενεργοποιήστε την προσθήκη συσκευών.";
+"Add Wizard is only available when server connection has been set based on the email address entered in the settings. (Disable advanced options in the settings)" = "Ο Οδηγός εγκατάστασης είναι διαθέσιμος μόνο όταν έχει δημιουργηθεί σύνδεση με τον διακομιστή με βάση τη διεύθυνση e-mail που είχατε εισαγάγει! (Απενεργοποιήστε τις σύνθετες επιλογές στη διαμόρφωση του λογαριασμού σας)";
 "The connected Server does not support this function!" = "Ο διακομιστής στον οποίο συνδέεστε δεν υποστηρίζει αυτή τη λειτουργία!";
 "Device Configuration Completion timeout!" = "Υπέρβαση χρόνου αναμονής για την ολοκλήρωση διαμόρφωσης της συσκευής!";
 "Incorrect input parameters!" = "Μη έγκυρες παράμετροι εισόδου!";
