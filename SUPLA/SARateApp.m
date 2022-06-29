@@ -56,7 +56,7 @@
     
     UIAlertController * alert = [UIAlertController
                                  alertControllerWithTitle:@"SUPLA"
-                                 message:NSLocalizedString(@"If you enjoy using this app, please take a moment to rate it. Thanks for your support!", nil)
+                                 message:NSLocalizedString(@"Did you know that Supla is an open, free project developed by the community? If you like the app, spend a moment on rating it. Thank you for your support!", nil)
                                  preferredStyle:UIAlertControllerStyleAlert];
     
     UIAlertAction* rateBtn = [UIAlertAction
