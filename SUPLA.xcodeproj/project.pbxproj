@@ -492,6 +492,8 @@
 		6E8004D328493463009A917A /* AuthProfileItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E8004D228493463009A917A /* AuthProfileItem.swift */; };
 		6E8756632830E86D00D5A283 /* ProfileItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E8756622830E86B00D5A283 /* ProfileItemCell.swift */; };
 		6E9F28C928436EE900142502 /* AddNewProfileCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E9F28C828436EE800142502 /* AddNewProfileCell.swift */; };
+		6EC4B005286F420500731079 /* SAElectricityMeterChartMarkerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EC4B004286F420500731079 /* SAElectricityMeterChartMarkerView.swift */; };
+		6EC4B0072871777B00731079 /* SAElectricityMeterChartMarkerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6EC4B0062871777A00731079 /* SAElectricityMeterChartMarkerView.xib */; };
 		AE348E66277F348700F363A3 /* SAMoveTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = AE348E65277F348700F363A3 /* SAMoveTableView.m */; };
 		AE3DECE22761DB32005923E4 /* AuthCfgNavigationCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE3DECE02761DB32005923E4 /* AuthCfgNavigationCoordinator.swift */; };
 		AE3DECE32761DB32005923E4 /* PresentationNavigationCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE3DECE12761DB32005923E4 /* PresentationNavigationCoordinator.swift */; };
@@ -1366,6 +1368,8 @@
 		6E8004D228493463009A917A /* AuthProfileItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthProfileItem.swift; sourceTree = "<group>"; };
 		6E8756622830E86B00D5A283 /* ProfileItemCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileItemCell.swift; sourceTree = "<group>"; };
 		6E9F28C828436EE800142502 /* AddNewProfileCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddNewProfileCell.swift; sourceTree = "<group>"; };
+		6EC4B004286F420500731079 /* SAElectricityMeterChartMarkerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SAElectricityMeterChartMarkerView.swift; sourceTree = "<group>"; };
+		6EC4B0062871777A00731079 /* SAElectricityMeterChartMarkerView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SAElectricityMeterChartMarkerView.xib; sourceTree = "<group>"; };
 		76FF65EADE7763EB8D61BC35 /* Pods_SUPLATests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SUPLATests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AE348E64277F348700F363A3 /* SAMoveTableView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SAMoveTableView.h; sourceTree = "<group>"; };
 		AE348E65277F348700F363A3 /* SAMoveTableView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SAMoveTableView.m; sourceTree = "<group>"; };
@@ -1511,6 +1515,8 @@
 				01392B3C235CE68D003A2BAD /* SATemperatureChartHelper.m */,
 				017A3C8023631302004AD1FC /* SATempHumidityChartHelper.h */,
 				017A3C8123631302004AD1FC /* SATempHumidityChartHelper.m */,
+				6EC4B0062871777A00731079 /* SAElectricityMeterChartMarkerView.xib */,
+				6EC4B004286F420500731079 /* SAElectricityMeterChartMarkerView.swift */,
 			);
 			name = charts;
 			sourceTree = "<group>";
@@ -2476,6 +2482,7 @@
 			files = (
 				013F7EC523EB4B500061A497 /* battery@2x.png in Resources */,
 				013A1BFD2538BAA0000583A2 /* roofwindow-open@2x.png in Resources */,
+				6EC4B0072871777B00731079 /* SAElectricityMeterChartMarkerView.xib in Resources */,
 				010714802656EC43009C119F /* SAZWaveWakeupSettingsDialog.xib in Resources */,
 				40CF96C51BC7D4E70030EFFF /* power-on@3x.png in Resources */,
 				40844D7F1FB0DDB000432AA0 /* AuthVC.xib in Resources */,
@@ -2914,6 +2921,7 @@
 				4017E12C1BB9CE2900570AC8 /* ChannelCell.m in Sources */,
 				011021C425CC39AC00621D41 /* SARegistrationEnabled.m in Sources */,
 				019F4AAF2614B75800065420 /* SAAbstractPickerField.m in Sources */,
+				6EC4B005286F420500731079 /* SAElectricityMeterChartMarkerView.swift in Sources */,
 				01EFD94A236CA94400893489 /* NSData+AES.m in Sources */,
 				0148933425AA12DB00B9974E /* SADiwCalibrationTool.m in Sources */,
 				01C1719222C7F3A2005983E1 /* SAElectricityMeasurementItem+CoreDataProperties.m in Sources */,

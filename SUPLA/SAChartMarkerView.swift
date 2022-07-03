@@ -45,32 +45,36 @@ import Charts
         
         return width;
     }
-    
-    private func updatePositions() {
-        var offset = setLabelPosition(label: label1, offset: 0);
-        offset = setLabelPosition(label: label2, offset: offset);
-        offset = setLabelPosition(label: label3, offset: offset);
-        
-        var width = getWidth(label: label1, width: 0);
-        width = getWidth(label: label2, width: width);
-        width = getWidth(label: label3, width: width);
 
-        self.frame.size.width = width;
-        self.frame.size.height = offset;
+    internal var allLabels: [UILabel] {
+        return [label1, label2, label3]
     }
     
-    private func setLabel(label: UILabel, text: String?) {
+    private func updatePositions() {
+        let offset = allLabels.reduce(0) { off, label in
+            self.setLabelPosition(label: label, offset: off)
+        }
+
+        let width = allLabels.reduce(0) { w, label in
+            self.getWidth(label: label, width: w)
+        }
+
+        self.frame.size.width = width
+        self.frame.size.height = offset
+    }
+    
+    internal func setLabel(label: UILabel, text: String?) {
         if (text != nil) {
-            label.text = text;
-            label.isHidden = text!.count == 0;
+            label.text = text
+            label.isHidden = text!.count == 0
         } else {
-            label.text = "";
-            label.isHidden = true;
+            label.text = ""
+            label.isHidden = true
         }
         
-        label.sizeToFit();
+        label.sizeToFit()
   
-        updatePositions();
+        updatePositions()
     }
     
     open func getTime(entry: ChartDataEntry) -> String? {

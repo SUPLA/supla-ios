@@ -20,6 +20,7 @@ import Foundation
 
 @objc public class SAIncrementalMeterChartMarkerView: SAChartMarkerView
 {
+    
     open override func getValue1(entry: ChartDataEntry) -> String {
         if (chartHelper != nil && chartHelper is SAIncrementalMeterChartHelper) {
             

@@ -20,3 +20,4 @@
 #import "DetailView.h"
 #import "SAMoveTableView.h"
 #import "SAKeychain.h"
+#import "SAElectricityChartHelper.h"
