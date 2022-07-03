@@ -69,4 +69,11 @@ struct Strings {
     struct ProfileChooser {
         static let title = NSLocalizedString("Select active account", comment: "title for profile chooser")
     }
+
+    struct Charts {
+        struct Electricity {
+            static let allPhasesTitle = NSLocalizedString("Phase 1+2+3", comment: "")
+            static let selPhaseTitle = NSLocalizedString("Phase %d", comment: "")
+        }
+    }
 }
