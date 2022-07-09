@@ -247,7 +247,8 @@
         
     if (excluded) {
         _items = mitems;
-        [self goToToFirst];
+        if([self selectedRowIndex] >= [_items count])
+            [self goToToFirst];
     }
     
     return excluded;
@@ -270,7 +271,8 @@
     
     if (excluded) {
         _items = mitems;
-        [self goToToFirst];
+        if([self selectedRowIndex] >= [_items count])
+            [self goToToFirst];
     }
     
     return excluded;

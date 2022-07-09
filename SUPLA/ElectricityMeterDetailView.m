@@ -405,8 +405,6 @@
         self.vCharts.hidden = YES;
         [self.btnChart setImage:[UIImage imageNamed:@"graphoff.png"]];
     } else {
-//        [self.tfChartTypeFilter resetList];
-//        [_chartSettings restore];
         if (!_balanceAvailable) {
            [self.tfChartTypeFilter excludeAllFrom:Bar_VectorBalance_Minutes];
         }
@@ -419,7 +417,6 @@
 - (void)setProductionDataSource:(BOOL)production {
     _chartHelper.productionDataSource = production;
     [_tfChartTypeFilter resignFirstResponder];
-    _tfChartTypeFilter.chartType = Bar_Minutes;
     
     if (production) {
         [self.btnDirection setImage:[UIImage imageNamed:@"production.png"]];
