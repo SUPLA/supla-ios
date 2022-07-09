@@ -69,6 +69,8 @@ typedef NS_ENUM(NSUInteger, ChartType) {
 - (void) moveToEnd;
 - (void) load;
 - (void) animate;
+- (void)persistSettings;
+- (void)restoreSettings;
 
 @property (nonatomic, weak) CombinedChartView *combinedChart;
 @property (nonatomic, weak) PieChartView *pieChart;

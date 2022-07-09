@@ -535,4 +535,5 @@
 - (long) minTimestamp {
     return _minTimestamp;
 }
+
 @end

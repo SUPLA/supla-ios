@@ -23,6 +23,7 @@
 #import <AudioToolbox/AudioToolbox.h>
 #import "UIButton+SUPLA.h"
 #import "SAFormatter.h"
+#import "SUPLA-Swift.h"
 
 // iPhone <=5 fix.
 // Integer number as boolean method parameter does not work good in iPhone <5
@@ -35,6 +36,7 @@
     SAElectricityChartHelper *_chartHelper;
     SAFormatter *_formatter;
     BOOL _balanceAvailable;
+    ChartSettings *_chartSettings;
 }
 
 -(void)detailViewInit {
@@ -52,6 +54,7 @@
     }
     
     [super detailViewInit];
+    [self.tfChartTypeFilter resetList];
 }
 
 - (void)setLabel:(UILabel*)label Visible:(BOOL)visible withConstraint:(NSLayoutConstraint*)cns {
@@ -327,6 +330,18 @@
 }
 
 -(void)setChannelBase:(SAChannelBase *)channelBase {
+    if(channelBase) {
+        if(!_chartSettings) {
+            _chartSettings = [[ChartSettings alloc]
+                                 initWithChannelId: channelBase.remote_id
+                                    chartTypeField: self.tfChartTypeFilter
+                                    dateRangeField: self.ftDateRangeFilter];
+            [_chartSettings restore];
+        }
+    } else {
+        [_chartSettings persist];
+    }
+
     if (_chartHelper) {
         _chartHelper.channelId = channelBase ? channelBase.remote_id : 0;
     }
@@ -380,6 +395,7 @@
     }
 }
 
+
 - (void)setChartsHidden:(BOOL)hidden {
     [_tfChartTypeFilter resignFirstResponder];
     
@@ -389,7 +405,8 @@
         self.vCharts.hidden = YES;
         [self.btnChart setImage:[UIImage imageNamed:@"graphoff.png"]];
     } else {
-        [self.tfChartTypeFilter resetList];
+//        [self.tfChartTypeFilter resetList];
+//        [_chartSettings restore];
         if (!_balanceAvailable) {
            [self.tfChartTypeFilter excludeAllFrom:Bar_VectorBalance_Minutes];
         }
@@ -512,6 +529,7 @@
 
 -(void) onFilterChanged: (SAChartFilterField*)filterField {
     [self loadChartWithAnimation:YES];
+    [_chartSettings persist];
 }
 
 - (BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer {
