@@ -573,7 +573,7 @@
     if(isCaption)
         origSize = 12;
     else {
-        origSize = 22;
+        origSize = 20;
         if(scale < 1.0) scale = 1.0;
     }
     itm.font = [itm.font fontWithSize: MAX(origSize * scale, minSize)];
