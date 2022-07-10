@@ -33,6 +33,8 @@ import Charts
                 allTitle, label2, label3]
     }
 
+    private let formatter = SAFormatter()
+
     override func refreshContent(entry: ChartDataEntry,
                                  highlight: Highlight)
     {
@@ -60,8 +62,9 @@ import Charts
             return ""
         }
 
-        return String(format: "%.2f %@", vals[index],
-                      helper.unit)
+        return formatter.double(toString: vals[index],
+                                withUnit: helper.unit,
+                                maxPrecision: 2)
     }
 
     private func getSelValue1(entry: BarChartDataEntry,
@@ -71,7 +74,8 @@ import Charts
             return ""
         }
 
-        return String(format: "%.2f %@", vals[index] * helper.pricePerUnit,
-                      helper.currency!)
+        return formatter.double(toString: vals[index] * helper.pricePerUnit,
+                                withUnit: helper.currency as String?,
+                                maxPrecision: 2)
     }
 }

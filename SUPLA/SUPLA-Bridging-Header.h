@@ -22,3 +22,4 @@
 #import "SAKeychain.h"
 #import "SAElectricityChartHelper.h"
 #import "SAChartFilterField.h"
+#import "SAFormatter.h"
