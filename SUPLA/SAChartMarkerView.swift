@@ -27,6 +27,7 @@ import Charts
     @IBOutlet weak var label3: UILabel!
     
     @objc open weak var chartHelper: SAChartHelper?
+    private let formatter = SAFormatter()
     
     private func setLabelPosition(label: UILabel, offset: CGFloat) -> CGFloat {
         if (label.isHidden) {
@@ -100,7 +101,9 @@ import Charts
            unit = String(chartHelper!.unit);
         }
         
-        return String(format: "%.2f %@", entry.y, unit);
+        return formatter.double(toString: entry.y,
+                                withUnit: unit,
+                                maxPrecision: 2)
     }
     
     open override func refreshContent(entry: ChartDataEntry, highlight: Highlight)

@@ -21,9 +21,17 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #import "SAImpulseCounterChartHelper.h"
 #import "SADownloadImpulseCounterMeasurements.h"
 #import "SuplaApp.h"
+#import "SAFormatter.h"
 #import <AudioToolbox/AudioToolbox.h>
 
-@implementation SAImpulseCounterDetailView
+@implementation SAImpulseCounterDetailView {
+    SAFormatter *_formatter;
+}
+
+- (void)detailViewInit {
+    _formatter = [[SAFormatter alloc] init];
+    [super detailViewInit];
+}
 
 -(SAChartHelper*)newChartHelper {
     SAChartHelper *chartHelper = [[SAImpulseCounterChartHelper alloc] init];
@@ -82,10 +90,18 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
             currentCost = icev.pricePerUnit * currentConsumption;
         }
         
-        [self.lMeterValue setText:[NSString stringWithFormat:@"%0.2f %@", icev.calculatedValue, icev.unit]];
-        [self.lTotalCost setText:[NSString stringWithFormat:@"%0.2f %@", icev.totalCost, icev.currency]];
-        [self.lCurrentConsumption setText:[NSString stringWithFormat:@"%0.2f %@", currentConsumption,  icev.unit]];
-        [self.lCurrentCost setText:[NSString stringWithFormat:@"%0.2f %@", currentCost, icev.currency]];
+        [self.lMeterValue setText:[_formatter doubleToString: icev.calculatedValue
+                                                    withUnit: icev.unit
+                                                maxPrecision: 2]];
+        [self.lTotalCost setText:[_formatter doubleToString: icev.totalCost
+                                                   withUnit: icev.currency
+                                               maxPrecision: 2]];
+        [self.lCurrentConsumption setText:[_formatter doubleToString: currentConsumption
+                                                            withUnit: icev.unit
+                                                        maxPrecision: 2]];
+        [self.lCurrentCost setText:[_formatter doubleToString: currentCost
+                                                     withUnit: icev.currency
+                                                 maxPrecision: 2]];
     
         SAImpulseCounterChartHelper *chartHelper = (SAImpulseCounterChartHelper*)self.chartHelper;
         chartHelper.unit = icev.unit;

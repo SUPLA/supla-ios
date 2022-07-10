@@ -162,7 +162,8 @@
         precision = 2;
     }
     
-    return [NSString stringWithFormat:@"%.*f kWh", precision, value];
+    return [_formatter doubleToString: value withUnit: @"kWh"
+                         maxPrecision: precision];
 }
 
 - (void)updateView {
@@ -262,10 +263,16 @@
         
         
         [self.lTotalActiveEnergyValue setText:[self totalActiveEnergyStringForValue:_chartHelper.productionDataSource ? emev.totalReverseActiveEnergy : emev.totalForwardActiveEnergy]];
-        [self.lConsumptionProductionValue setText:[NSString stringWithFormat:@"%0.2f kWh", _chartHelper.productionDataSource ? currentProduction : currentConsumption]];
+        [self.lConsumptionProductionValue setText:[_formatter doubleToString: _chartHelper.productionDataSource ? currentProduction : currentConsumption
+                                                                    withUnit: @"kWh"
+                                                                maxPrecision: 2]];
         
-        [self.lTotalCost setText:[NSString stringWithFormat:@"%0.2f %@", emev.totalCost, emev.currency]];
-        [self.lCurrentCost setText:[NSString stringWithFormat:@"%0.2f %@", currentCost, emev.currency]];
+        [self.lTotalCost setText:[_formatter doubleToString: emev.totalCost
+                                                   withUnit: emev.currency
+                                               maxPrecision: 2]];
+        [self.lCurrentCost setText:[_formatter doubleToString: currentCost
+                                                     withUnit: emev.currency
+                                                 maxPrecision: 2]];
     
         _chartHelper.pricePerUnit = emev.pricePerUnit;
         _chartHelper.currency = emev.currency;
