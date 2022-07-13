@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="20086" systemVersion="21E258" minimumToolsVersion="Automatic" sourceLanguage="Objective-C" userDefinedModelVersionIdentifier="">
+    <entity name="AuthProfileItem" representedClassName="AuthProfileItem" syncable="YES" codeGenerationType="class">
+        <attribute name="advancedSetup" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="authInfo" attributeType="Transformable" valueTransformerName="AuthInfoValueTransformer" customClassName="AuthInfo"/>
+        <attribute name="isActive" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="name" attributeType="String" defaultValueString=""/>
+    </entity>
+    <entity name="SAChannel" representedClassName="SAChannel" parentEntity="SAChannelBase" syncable="YES">
+        <attribute name="device_id" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="manufacturer_id" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="product_id" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="protocolversion" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="type" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+        <relationship name="ev" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="SAChannelExtendedValue"/>
+        <relationship name="value" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="SAChannelValueBase"/>
+    </entity>
+    <entity name="SAChannelBase" representedClassName="SAChannelBase" isAbstract="YES" syncable="YES">
+        <attribute name="alticon" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="caption" optional="YES" attributeType="String"/>
+        <attribute name="flags" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="func" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="location_id" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="position" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="remote_id" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="usericon_id" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="visible" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <relationship name="location" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="SALocation"/>
+        <relationship name="profile" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="AuthProfileItem"/>
+        <relationship name="usericon" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="SAUserIcon"/>
+    </entity>
+    <entity name="SAChannelExtendedValue" representedClassName="SAChannelExtendedValue" parentEntity="SAChannelValueBase" syncable="YES">
+        <attribute name="type" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+    </entity>
+    <entity name="SAChannelGroup" representedClassName="SAChannelGroup" parentEntity="SAChannelBase" syncable="YES">
+        <attribute name="online" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="total_value" optional="YES" attributeType="Transformable" valueTransformerName="NSSecureUnarchiveFromData"/>
+    </entity>
+    <entity name="SAChannelGroupRelation" representedClassName="SAChannelGroupRelation" syncable="YES">
+        <attribute name="channel_id" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="group_id" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="visible" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <relationship name="group" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="SAChannelGroup"/>
+        <relationship name="value" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="SAChannelValueBase"/>
+    </entity>
+    <entity name="SAChannelValue" representedClassName="SAChannelValue" parentEntity="SAChannelValueBase" syncable="YES">
+        <attribute name="online" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="sub_value" optional="YES" attributeType="Transformable" valueTransformerName="NSSecureUnarchiveFromData"/>
+        <attribute name="sub_value_type" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+    </entity>
+    <entity name="SAChannelValueBase" representedClassName="SAChannelValueBase" isAbstract="YES" syncable="YES">
+        <attribute name="channel_id" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="value" optional="YES" attributeType="Transformable" valueTransformerName="NSSecureUnarchiveFromData"/>
+        <relationship name="profile" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="AuthProfileItem"/>
+    </entity>
+    <entity name="SAColorListItem" representedClassName="SAColorListItem" syncable="YES">
+        <attribute name="brightness" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="NO"/>
+        <attribute name="color" optional="YES" attributeType="Transformable" valueTransformerName="NSSecureUnarchiveFromData"/>
+        <attribute name="group" optional="YES" attributeType="Boolean" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="idx" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="NO"/>
+        <attribute name="remote_id" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+    </entity>
+    <entity name="SAElectricityMeasurementItem" representedClassName="SAElectricityMeasurementItem" parentEntity="SAIncrementalMeasurementItem" syncable="YES">
+        <attribute name="fae_balanced" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="phase1_fae" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="phase1_fre" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="phase1_rae" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="phase1_rre" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="phase2_fae" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="phase2_fre" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="phase2_rae" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="phase2_rre" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="phase3_fae" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="phase3_fre" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="phase3_rae" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="phase3_rre" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="rae_balanced" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+    </entity>
+    <entity name="SAImpulseCounterMeasurementItem" representedClassName="SAImpulseCounterMeasurementItem" parentEntity="SAIncrementalMeasurementItem" syncable="YES">
+        <attribute name="calculated_value" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="counter" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+    </entity>
+    <entity name="SAIncrementalMeasurementItem" representedClassName="SAIncrementalMeasurementItem" isAbstract="YES" parentEntity="SAMeasurementItem" syncable="YES">
+        <attribute name="complement" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
+        <attribute name="divided" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
+        <fetchIndex name="Complement">
+            <fetchIndexElement property="complement" type="Binary" order="ascending"/>
+        </fetchIndex>
+        <fetchIndex name="Divided">
+            <fetchIndexElement property="divided" type="Binary" order="ascending"/>
+        </fetchIndex>
+    </entity>
+    <entity name="SALocation" representedClassName="_SALocation" syncable="YES">
+        <attribute name="caption" optional="YES" attributeType="String"/>
+        <attribute name="collapsed" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="location_id" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="NO"/>
+        <attribute name="sortOrder" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="sortOrderCaption" optional="YES" transient="YES" attributeType="String"/>
+        <attribute name="visible" optional="YES" attributeType="Integer 16" usesScalarValueType="NO"/>
+        <relationship name="profile" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="AuthProfileItem"/>
+    </entity>
+    <entity name="SAMeasurementItem" representedClassName="SAMeasurementItem" isAbstract="YES" syncable="YES">
+        <attribute name="channel_id" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="date" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="day" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="hour" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="minute" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="month" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="second" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="weekday" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="year" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <relationship name="profile" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="AuthProfileItem"/>
+        <fetchIndex name="ChannelId">
+            <fetchIndexElement property="channel_id" type="Binary" order="ascending"/>
+        </fetchIndex>
+        <fetchIndex name="Date">
+            <fetchIndexElement property="date" type="Binary" order="ascending"/>
+        </fetchIndex>
+    </entity>
+    <entity name="SATemperatureMeasurementItem" representedClassName="SATemperatureMeasurementItem" parentEntity="SAMeasurementItem" syncable="YES">
+        <attribute name="temperature" optional="YES" attributeType="Decimal" defaultValueString="0.0"/>
+    </entity>
+    <entity name="SATempHumidityMeasurementItem" representedClassName="SATempHumidityMeasurementItem" parentEntity="SAMeasurementItem" syncable="YES">
+        <attribute name="humidity" optional="YES" attributeType="Decimal" defaultValueString="0.0"/>
+        <attribute name="temperature" optional="YES" attributeType="Decimal" defaultValueString="0.0"/>
+    </entity>
+    <entity name="SAThermostatMeasurementItem" representedClassName="SAThermostatMeasurementItem" parentEntity="SAMeasurementItem" syncable="YES">
+        <attribute name="is_on" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="measured" optional="YES" attributeType="Decimal" defaultValueString="0.0"/>
+        <attribute name="preset" optional="YES" attributeType="Decimal" defaultValueString="0.0"/>
+    </entity>
+    <entity name="SAUserIcon" representedClassName="SAUserIcon" syncable="YES">
+        <attribute name="remote_id" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="uimage1" optional="YES" attributeType="Transformable" valueTransformerName="NSSecureUnarchiveFromData"/>
+        <attribute name="uimage2" optional="YES" attributeType="Transformable" valueTransformerName="NSSecureUnarchiveFromData"/>
+        <attribute name="uimage3" optional="YES" attributeType="Transformable" valueTransformerName="NSSecureUnarchiveFromData"/>
+        <attribute name="uimage4" optional="YES" attributeType="Transformable" valueTransformerName="NSSecureUnarchiveFromData"/>
+        <relationship name="profile" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="AuthProfileItem"/>
+    </entity>
+    <elements>
+        <element name="AuthProfileItem" positionX="-603" positionY="117" width="128" height="89"/>
+        <element name="SAChannel" positionX="-20.5078125" positionY="10.7734375" width="128" height="150"/>
+        <element name="SAChannelBase" positionX="-484.6897583007812" positionY="-836.5016632080078" width="128" height="223"/>
+        <element name="SAChannelExtendedValue" positionX="-154.34375" positionY="196.6171875" width="128" height="58"/>
+        <element name="SAChannelGroup" positionX="-342" positionY="45" width="128" height="73"/>
+        <element name="SAChannelGroupRelation" positionX="-397.23828125" positionY="502.76953125" width="128" height="118"/>
+        <element name="SAChannelValue" positionX="-477" positionY="162" width="128" height="88"/>
+        <element name="SAChannelValueBase" positionX="-388.976806640625" positionY="325.0912475585938" width="128" height="88"/>
+        <element name="SAColorListItem" positionX="-216" positionY="-54" width="128" height="118"/>
+        <element name="SAElectricityMeasurementItem" positionX="-31.56640625" positionY="351.9609375" width="128" height="253"/>
+        <element name="SAImpulseCounterMeasurementItem" positionX="-527.6922607421875" positionY="282.3027801513672" width="128" height="75"/>
+        <element name="SAIncrementalMeasurementItem" positionX="-583.0123901367188" positionY="457.3605346679688" width="128" height="59"/>
+        <element name="SALocation" positionX="-747" positionY="-54" width="128" height="148"/>
+        <element name="SAMeasurementItem" positionX="-815.8125" positionY="271.2578125" width="128" height="193"/>
+        <element name="SATemperatureMeasurementItem" positionX="-633.7745971679688" positionY="214.4305725097656" width="128" height="58"/>
+        <element name="SATempHumidityMeasurementItem" positionX="-785.1148071289062" positionY="109.1131134033203" width="128" height="73"/>
+        <element name="SAThermostatMeasurementItem" positionX="-651.9935302734375" positionY="306.6170959472656" width="128" height="90"/>
+        <element name="SAUserIcon" positionX="-800.8446655273438" positionY="-222.4313354492188" width="128" height="133"/>
+    </elements>
+</model>

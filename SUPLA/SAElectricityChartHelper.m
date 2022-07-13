@@ -22,12 +22,42 @@
 #import "SUPLA-Swift.h"
 #import "UIColor+SUPLA.h"
 
-@implementation SAElectricityChartHelper
+@implementation SAElectricityChartHelper {
+    BOOL singlePhase;
+}
 
 @synthesize totalActiveEnergyPhase1;
 @synthesize totalActiveEnergyPhase2;
 @synthesize totalActiveEnergyPhase3;
 @synthesize productionDataSource;
+
+- (id<IChartMarker>)getMarker {
+    if([self shouldShowManyPhases]) {
+        return [SAElectricityMeterChartMarkerView viewFromXibIn: [NSBundle mainBundle]];
+    } else {
+        return [super getMarker];
+    }
+}
+
+- (BOOL)shouldShowManyPhases {
+    return !([self isBalanceChartType] ||
+             [self isComparsionChartType] ||
+             [self isPieChartType] ||
+             singlePhase);
+}
+
+- (void)load {
+    [super load];
+
+    SAChannel *chn = [SAApp.DB fetchChannelById: self.channelId];
+
+    singlePhase =
+        (chn.flags & SUPLA_CHANNEL_FLAG_PHASE2_UNSUPPORTED) > 0 &&
+        (chn.flags & SUPLA_CHANNEL_FLAG_PHASE3_UNSUPPORTED) > 0;
+
+    self.combinedChart.highlightFullBarEnabled = NO;
+
+}
 
 - (NSArray *)getData {
     NSDate *dateFrom = self.dateFrom;

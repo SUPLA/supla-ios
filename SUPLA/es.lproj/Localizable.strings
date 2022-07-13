@@ -58,7 +58,7 @@
 "Dimmer" = "Atenuador";
 "Distance sensor" = "Sensor de distancia";
 "Depth sensor" = "Sensor de profundidad";
-"If you enjoy using this app, please take a moment to rate it. Thanks for your support!" = "Si te gusta esta aplicación, por favor dedica un momento a evaluarla. ¡Gracias por tu apoyo!";
+"Did you know that Supla is an open, free project developed by the community? If you like the app, spend a moment on rating it. Thank you for your support!" = "¿Sabías que Supla es un proyecto comunitario abierto y gratuito? Si te gusta esta aplicación, toma un momento para calificarla. ¡Gracias por tu apoyo!";
 "Rate Now" = "Evalúa ahora";
 "Later" = "Más tarde";
 "No thanks" = "No, gracias";
@@ -72,7 +72,7 @@
 "Cancel" = "Cancelar";
 "Go to the system settings" = "Proceda a los ajustes del sistema";
 "I/O Device registration is currently off. To continue go to „My SUPLA” at %@ and enable the Device Add Button." = "El registro de dispositivos de entrada/salida está actualmente deshabilitado. Para continuar vaya a la página %@ y en la pestaña Mi SUPLA active la registro de dispositivos.";
-"Add Wizard is only available when server connection has been set based on the email address entered in the settings. (Disable advanced options in the settings)" = "¡El asistente está disponible solo cuando se ha establecido la conexión con el servidor mediante la dirección de correo electrónico en los ajustes (Desmarque la casilla ajustes avanzadas en ajustes)!";
+"Add Wizard is only available when server connection has been set based on the email address entered in the settings. (Disable advanced options in the settings)" = "¡El Asistente para agregar solo está disponible cuando se ha establecido una conexión con el servidor según la dirección de correo electrónico ingresada! (Desactiva las opciones avanzadas en la configuración de tu cuenta)";
 "The connected Server does not support this function!" = "¡El servidor al que ha conectado no es compatible con esta característica!";
 "Device Configuration Completion timeout!" = "¡Se ha superado el tiempo de espera para completar la configuración del dispositivo!";
 "Incorrect input parameters!" = "¡Parámetros de entrada erróneos!";

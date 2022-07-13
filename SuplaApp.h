@@ -41,8 +41,8 @@ NS_ASSUME_NONNULL_BEGIN
 +(SAApp*)instance;
 +(nullable id<NavigationCoordinator>)currentNavigationCoordinator;
 +(nullable MainNavigationCoordinator*)mainNavigationCoordinator;
-+(BOOL) getClientGUID:(char[SUPLA_GUID_SIZE])guid;
-+(BOOL) getAuthKey:(char[SUPLA_AUTHKEY_SIZE])auth_key;
++(BOOL) getClientGUID:(char[SUPLA_GUID_SIZE])guid DEPRECATED_ATTRIBUTE;
++(BOOL) getAuthKey:(char[SUPLA_AUTHKEY_SIZE])auth_key DEPRECATED_ATTRIBUTE;
 +(void) abstractMethodException:(NSString *)methodName;
 +(NSURL *)applicationDocumentsDirectory;
 +(BOOL) configIsSet;

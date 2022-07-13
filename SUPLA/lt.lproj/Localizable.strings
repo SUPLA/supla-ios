@@ -62,7 +62,7 @@
 "Dimmer" = "Dimmer";
 "Distance sensor" = "Atstumo jutiklis";
 "Depth sensor" = "Gilio jutiklis";
-"If you enjoy using this app, please take a moment to rate it. Thanks for your support!" = "Jei Jums patinka ši programa, skirkite minutėle, kad ją įvertintumėte. Ačiū už Jūsų paramą!";
+"Did you know that Supla is an open, free project developed by the community? If you like the app, spend a moment on rating it. Thank you for your support!" = "Ar žinote, kad Supla tai atviras ir nemokamas projektas, kurį vysto bendruomenė? Jei Jums patinka ši programėlė, skirkite šiek tiek laiko ir įvertinkite ją. Ačiū už Jūsų palaikymą!";
 "Rate Now" = "Įvertinti dabar";
 "Later" = "Vėliau";
 "No thanks" = "Ne, ačiū";
@@ -77,7 +77,7 @@
 "Cancel" = "Atšaukti";
 "Go to the system settings" = "Eikite į iOS sistemos nustatymus";
 "I/O Device registration is currently off. To continue go to „My SUPLA” at %@ and enable the Device Add Button." = "Įv/iš įrenginių registracija dabar yra išjungta. Norėdami tęsti eikite į puslapį %%@ ir žymėje „Mano SUPLA” įjunkite įrenginių pridėjimą.";
-"Add Wizard is only available when server connection has been set based on the email address entered in the settings. (Disable advanced options in the settings)" = "Pridėjimų vedlys prieinamas tik kai yra ryšys su serveriu pagal įvestą nustatymuose el. pašto adresą!";
+"Add Wizard is only available when server connection has been set based on the email address entered in the settings. (Disable advanced options in the settings)" = "Pridėjimo vedlys prieinamas tik tada, kai pagal įvestą el. pašto adresą užmegztas ryšys su serveriu! (Savo paskyros konfigūracijoje išjunkite išplėstines parinktis)";
 "The connected Server does not support this function!" = "Serveris, prie kurio prisijungta, nepaliko šios funkcijos!";
 "Device Configuration Completion timeout!" = "Viršytas įrenginio konfigūracijos užbaigimo laukimo laikas!";
 "Incorrect input parameters!" = "Klaidingi įvesties parametrai!";

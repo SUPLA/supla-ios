@@ -61,7 +61,7 @@
 "Dimmer" = "Ściemniacz";
 "Distance sensor" = "Czujnik odległości";
 "Depth sensor" = "Czujnik głębokości";
-"If you enjoy using this app, please take a moment to rate it. Thanks for your support!" = "Czy wiesz, że Supla to otwarty i bezpłatny projekt rozwijany przez społeczność? Jeśli podoba Ci się ta aplikacja to poświęć moment aby ją ocenić. Dziękujemy za Twoje wsparcie!";
+"Did you know that Supla is an open, free project developed by the community? If you like the app, spend a moment on rating it. Thank you for your support!" = "Czy wiesz, że Supla to otwarty i bezpłatny projekt rozwijany przez społeczność? Jeśli podoba Ci się ta aplikacja to poświęć moment aby ją ocenić. Dziękujemy za Twoje wsparcie!";
 "Rate Now" = "Oceń teraz";
 "Later" = "Później";
 "No thanks" = "Nie, dziękuję";
@@ -76,7 +76,7 @@
 "Cancel" = "Anuluj";
 "Go to the system settings" = "Przejdź do ustawień systemowych";
 "I/O Device registration is currently off. To continue go to „My SUPLA” at %@ and enable the Device Add Button." = "Rejestracja urządzeń we/wy jest obecnie wyłączona. Aby kontynuować przejdź na stronę %@ i w zakładce „Moja SUPLA” włącz dodawanie urządzeń.";
-"Add Wizard is only available when server connection has been set based on the email address entered in the settings. (Disable advanced options in the settings)" = "Kreator dodawania jest dostępny tylko gdy nawiązano połączenie z serwerem na podstawie wprowadzonego w ustawieniach adresu email! (Wyłącz opcje zaawansowane w ustawieniach)";
+"Add Wizard is only available when server connection has been set based on the email address entered in the settings. (Disable advanced options in the settings)" = "Kreator dodawania jest dostępny tylko gdy nawiązano połączenie z serwerem na podstawie wprowadzonego adresu email! (Wyłącz opcje zaawansowane w konfiguracji Twojego konta)";
 "The connected Server does not support this function!" = "Serwer z którym nawiązano połączenie nie obsługuje tej funkcji!";
 "Device Configuration Completion timeout!" = "Przekroczono czas oczekiwania na zakończenie konfiguracji urządzenia!";
 "Incorrect input parameters!" = "Błędne parametry wejściowe!";
@@ -287,3 +287,15 @@
 "Percent of opening" = "Procent otwarcia";
 "Percent of closing" = "Procent zamknięcia";
 "Access Identifier inactive." = "Identyfikator dostępu nieaktywny.";
+"Your account" = "Twoje konto";
+"Your accounts" = "Twoje konta";
+"Accounts" = "Konta";
+"NAME" = "NAZWA";
+"Tap the account to log in." = "Dotknij konta, żeby się zalogować";
+"Add new" = "Dodaj nowe";
+"active" = "aktywne";
+"Default" = "Domyślne";
+"Delete account" = "Usuń konto";
+"Select active account" = "Wybierz aktywne konto";
+"Phase 1+2+3" = "Faza 1+2+3";
+"Phase %d" = "Faza %d";

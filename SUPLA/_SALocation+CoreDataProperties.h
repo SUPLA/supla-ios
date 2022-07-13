@@ -21,6 +21,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 NS_ASSUME_NONNULL_BEGIN
 
+@class AuthProfileItem;
 @interface _SALocation (CoreDataProperties)
 
 + (NSFetchRequest<_SALocation *> *)fetchRequest;
@@ -30,6 +31,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nullable, nonatomic, copy) NSNumber *visible;
 @property (nonatomic) int16_t collapsed;
 @property (nullable, nonatomic, copy) NSNumber *sortOrder;
+@property (nonatomic, copy) AuthProfileItem *profile;
 @end
 
 NS_ASSUME_NONNULL_END

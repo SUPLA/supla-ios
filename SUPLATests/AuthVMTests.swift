@@ -26,10 +26,14 @@ import CoreData
 @testable import SUPLA
 
 class AuthVMTests: XCTestCase {
+
+    private var profileId: NSManagedObjectID?
     
     private lazy var sut: AuthVM! = {
         let bindings = AuthVM.Inputs(basicEmail: _basicEmail.asObservable(),
+                                     basicName: _basicName.asObservable(),
                                      advancedEmail: _advancedEmail.asObservable(),
+                                     advancedName: _advancedName.asObservable(),
                                      accessID: _accessID.asObservable(),
                                      accessIDpwd: _accessIDpwd.asObservable(),
                                      serverAddressForEmail: _serverAddrEmail.asObservable(),
@@ -38,11 +42,15 @@ class AuthVMTests: XCTestCase {
                                      advancedModeAuthType: _advancedModeAuthType.asObservable(),
                                      createAccountRequest: _createAccountRequest.asObservable(),
                                      autoServerSelected: _autoServerSelected.asObservable(),
-                                     formSubmitRequest: _formSubmitRequest.asObservable())
-        return AuthVM(bindings: bindings, profileManager: profileManager)
+                                     formSubmitRequest: _formSubmitRequest.asObservable(),
+                                     accountDeleteRequest: _accountDeleteRequest.asObservable())
+        return AuthVM(bindings: bindings, profileManager: profileManager,
+                      profileId: profileId)
     }()
     private let _basicEmail = BehaviorRelay<String?>(value: "")
+    private let _basicName = BehaviorRelay<String?>(value: "")
     private let _advancedEmail = BehaviorRelay<String?>(value: "")
+    private let _advancedName = BehaviorRelay<String?>(value: "")
     private let _accessID = BehaviorRelay<Int?>(value: nil)
     private let _accessIDpwd = BehaviorRelay<String?>(value: "")
     private let _serverAddrEmail = BehaviorRelay<String?>(value: nil)
@@ -52,6 +60,7 @@ class AuthVMTests: XCTestCase {
     private let _createAccountRequest = PublishRelay<Void>()
     private let _autoServerSelected = BehaviorRelay(value: true)
     private let _formSubmitRequest = PublishRelay<Void>()
+    private let _accountDeleteRequest = PublishRelay<Void>()
 
     private var profileManager: ProfileManager!
     private var coordinator: NSPersistentStoreCoordinator!
@@ -84,6 +93,7 @@ class AuthVMTests: XCTestCase {
         _advancedMode.accept(false)
         _advancedModeAuthType.accept(.email)
         _autoServerSelected.accept(false)
+        profileId = nil
     }
 
     func testAutoServerEnabled() throws {
@@ -194,6 +204,7 @@ class AuthVMTests: XCTestCase {
         XCTAssertEqual(false, profileManager.getCurrentProfile().advancedSetup)
 
         let oldAuthInfo = profileManager.getCurrentProfile().authInfo!.clone()
+        profileId = profileManager.getCurrentProfile().objectID
         _ = sut
         _advancedMode.accept(true)
         _advancedModeAuthType.accept(AuthVM.AuthType.accessId)

@@ -103,6 +103,10 @@ class AuthInfo: NSObject, NSCoding {
             accessID > 0 && !accessIDpwd.isEmpty
         }
     }
+    
+    override var debugDescription: String {
+        return "email: \(emailAddress) autoDetect: \(serverAutoDetect) server: \(serverForEmail)"
+    }
 }
 
 extension AuthInfo: NSCopying {

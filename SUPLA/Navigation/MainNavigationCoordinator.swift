@@ -35,6 +35,7 @@ class MainNavigationCoordinator: BaseNavigationCoordinator {
 
     
     private var pendingFlow: NavigationCoordinator?
+    private var pendingCompletion: (()->Void)?
     
     override init() {
         mainVC = SAMainVC(nibName: "MainVC", bundle: nil)
@@ -91,11 +92,13 @@ class MainNavigationCoordinator: BaseNavigationCoordinator {
                 navigationController.present(child.viewController,
                                              animated: child.wantsAnimatedTransitions) {
                     child.isAnimating = false
+                    self.completeFlowTransition()
                 }
             } else {
                 updateNavBar()
                 navigationController.pushViewController(child.viewController,
                                                         animated: child.wantsAnimatedTransitions)
+                completeFlowTransition()
             }
             super.startFlow(coordinator: child)
         }
@@ -139,6 +142,10 @@ class MainNavigationCoordinator: BaseNavigationCoordinator {
     func showSettingsView() {
         startFlow(coordinator: CfgNavigationCoordinator())
     }
+
+    @objc func showProfilesView(allowsBack: Bool) {
+        startFlow(coordinator: ProfilesNavigationCoordinator(allowsBack: allowsBack))
+    }
     
     func showAddWizard() {
         let avc = SAAddWizardVC(nibName: "AddWizardVC", bundle: nil)
@@ -173,14 +180,16 @@ class MainNavigationCoordinator: BaseNavigationCoordinator {
     // MARK: -
     
     @objc func showAuthView(immediate: Bool) {
-        startFlow(coordinator: AuthCfgNavigationCoordinator(immediate: immediate))
+        startFlow(coordinator: AuthCfgNavigationCoordinator(immediate: immediate,
+                                                            profileId: SAApp.profileManager().getCurrentProfile().objectID))
     }
     
     @objc func showStatusView(progress: NSNumber) {
         activeStatusController().setStatusConnectingProgress(progress.floatValue)
     }
 
-    @objc func showStatusView(error: String) {
+    @objc func showStatusView(error: String, completion: (()->Void)? = nil) {
+        pendingCompletion = completion
         activeStatusController().setStatusError(error)
     }
     
@@ -190,6 +199,9 @@ class MainNavigationCoordinator: BaseNavigationCoordinator {
            let statusController = visiblePresentation.viewController as? SAStatusVC {
             // already displaying status view
             vc = statusController
+            if !visiblePresentation.isAnimating {
+                completeFlowTransition()
+            }
         } else {
             // no status display yet, so let's create new controller
             vc = SAStatusVC(nibName: "StatusVC", bundle: nil)
@@ -197,6 +209,11 @@ class MainNavigationCoordinator: BaseNavigationCoordinator {
             startFlow(coordinator: pc)
         }
         return vc
+    }
+    
+    private func completeFlowTransition() {
+        pendingCompletion?()
+        pendingCompletion = nil
     }
     
 

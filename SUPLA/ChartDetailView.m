@@ -20,10 +20,12 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #import "SADownloadMeasurements.h"
 #import "SAChartHelper.h"
 #import "SuplaApp.h"
+#import "SUPLA-Swift.h"
 
 @implementation SAChartDetailView {
     SADownloadMeasurements *_task;
     NSTimer *_taskTimer;
+    ChartSettings *_chartSettings;
 }
 
 @synthesize chartHelper;
@@ -127,12 +129,23 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 }
 
 -(void)setChannelBase:(SAChannelBase *)channelBase {
+    if(channelBase) {
+        if(!_chartSettings) {
+            _chartSettings = [[ChartSettings alloc]
+                                 initWithChannelId: channelBase.remote_id
+                                    chartTypeField: nil
+                                    dateRangeField: self.ftDateRangeFilter];
+            [_chartSettings restore];
+        }
+    } else {
+        [_chartSettings persist];
+    }
+    
     if (self.chartHelper) {
         self.chartHelper.channelId = channelBase ? channelBase.remote_id : 0;
     }
     [super setChannelBase:channelBase];
 }
-
 - (void)applyChartFilter {
     self.chartHelper.chartType = Bar_Minutes;
     self.chartHelper.dateFrom = _ftDateRangeFilter.dateFrom;

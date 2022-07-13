@@ -31,6 +31,7 @@ struct Strings {
         static let showChannelInfo = NSLocalizedString("Show ⓘ button", comment: "label for show channel info setting")
         
         static let yourAccountLabel = NSLocalizedString("Your account", comment: "account configuration settings screen")
+        static let profileNameLabel = NSLocalizedString("NAME", comment: "label for profile name")
         static let basicModeNotAvailableTitle = NSLocalizedString("Setting not available", comment: "alert box title when basic authentication mode is not available")
         static let basicModeNotAvailableMessage = NSLocalizedString("Before turning advanced mode off you need to switch to email authentication and enable automatic server detection.", comment: "alert box message when basic authentication mode is not available")
         static let advancedSettings = NSLocalizedString("Advanced settings", comment: "Label for advanced settings toggle on authentication screen")
@@ -48,5 +49,31 @@ struct Strings {
         static let showOpeningMode = NSLocalizedString("Roller shutter %", comment: "settings label for reporting opening % rather than closing % in detail views")
         static let showOpeningModeOpening = NSLocalizedString("Opening", comment: "")
         static let showOpeningModeClosing = NSLocalizedString("Closing", comment: "")
+    }
+
+    struct Profiles {
+        struct Title {
+            static let singular = NSLocalizedString("Your account", comment: "")
+            static let plural = NSLocalizedString("Your accounts", comment: "")
+            static let short = NSLocalizedString("Accounts", comment: "")
+        }
+
+        static let tapMessage = NSLocalizedString("Tap the account to log in.", comment: "")
+        static let addNew = NSLocalizedString("Add new", comment: "add new profile")
+        static let activeIndicator = NSLocalizedString("active", comment: "indicator for active profile")
+
+        static let defaultProfileName = NSLocalizedString("Default", comment: "name for default profile")
+        static let delete = NSLocalizedString("Delete account", comment: "button label to delete profile")
+    }
+
+    struct ProfileChooser {
+        static let title = NSLocalizedString("Select active account", comment: "title for profile chooser")
+    }
+
+    struct Charts {
+        struct Electricity {
+            static let allPhasesTitle = NSLocalizedString("Phase 1+2+3", comment: "")
+            static let selPhaseTitle = NSLocalizedString("Phase %d", comment: "")
+        }
     }
 }

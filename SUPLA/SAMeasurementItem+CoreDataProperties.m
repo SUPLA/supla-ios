@@ -34,5 +34,5 @@
 @dynamic hour;
 @dynamic minute;
 @dynamic second;
-
+@dynamic profile;
 @end

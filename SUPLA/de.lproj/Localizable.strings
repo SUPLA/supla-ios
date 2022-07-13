@@ -57,7 +57,7 @@
 "Dimmer" = "Helligkeitsregler";
 "Distance sensor" = "Abstandssensor";
 "Depth sensor" = "Tiefensensor";
-"If you enjoy using this app, please take a moment to rate it. Thanks for your support!" = "Wenn Ihnen diese App gefällt, bewerten Sie sie bitte. Vielen Dank dafür!";
+"Did you know that Supla is an open, free project developed by the community? If you like the app, spend a moment on rating it. Thank you for your support!" = "Wusstest Du, dass Supla ein offenes und kostenloses Gemeinschaftsprojekt ist? Wenn Dir diese App gefällt, nimm Dir bitte einen Moment Zeit, um sie zu bewerten. Danke für Deine Unterstützung!";
 "Rate Now" = "Bewerten";
 "Later" = "Später";
 "No thanks" = "Nein danke";
@@ -71,7 +71,7 @@
 "Cancel" = "Annullieren";
 "Go to the system settings" = "Gehe Sie zu den Systemeinstellungen rüber";
 "I/O Device registration is currently off. To continue go to „My SUPLA” at %@ and enable the Device Add Button." = "Die Registrierung der Ein-/Ausgabegeräte ist momentan deaktiviert. Um fortzusetzen, kommen Sie zur Website %@ und im Bereich Meine SUPLA aktivieren Sie die Funktion Geräte hinzufügen.";
-"Add Wizard is only available when server connection has been set based on the email address entered in the settings. (Disable advanced options in the settings)" = "Der Assistent zum Hinzufügen steht nur dann zur Verfügung, wenn Kontakt mit dem Server aufgrund der E-Mail-Adresse besteht!";
+"Add Wizard is only available when server connection has been set based on the email address entered in the settings. (Disable advanced options in the settings)" = "Der Hinzufügen-Assistent ist nur verfügbar, wenn die Verbindung zum Server basierend auf der eingegebenen E-Mail-Adresse hergestellt wurde! (Erweiterte Optionen in Ihrer Kontokonfiguration deaktivieren)";
 "The connected Server does not support this function!" = "Der Server, mit dem eine Verbindung herstellen wurde, unterstützt diese Funktion nicht!";
 "Device Configuration Completion timeout!" = "Für den Abschluss der Konfiguration des Gerätes wurde das Zeitlimit überschritten!";
 "Incorrect input parameters!" = "Falsche Eingabeparameter!";

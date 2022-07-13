@@ -29,5 +29,5 @@
 @dynamic uimage2;
 @dynamic uimage3;
 @dynamic uimage4;
-
+@dynamic profile;
 @end

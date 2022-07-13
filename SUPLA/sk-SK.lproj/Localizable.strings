@@ -61,7 +61,7 @@
 "Dimmer" = "Stmievač";
 "Distance sensor" = "Snímač vzdialenosti";
 "Depth sensor" = "Snímač hĺbky";
-"If you enjoy using this app, please take a moment to rate it. Thanks for your support!" = "Páči sa vám táto aplikácia? Venujte chvíľku a ohodnoťte ju. Ďakujeme za vašu podporu!";
+"Did you know that Supla is an open, free project developed by the community? If you like the app, spend a moment on rating it. Thank you for your support!" = "Viete, že Supla je otvorený a bezplatný projekt, rozvíjaný komunitou? Ak sa Ti táto aplikácia páči, venuj chvíľu jej ohodnoteniu. Ďakujeme za Tvoju podporu!";
 "Rate Now" = "Ohodnotiť teraz";
 "Later" = "Neskôr";
 "No thanks" = "Nie, ďakujem";
@@ -76,7 +76,7 @@
 "Cancel" = "Zrušiť";
 "Go to the system settings" = "Prejdite na nastavenia systému";
 "I/O Device registration is currently off. To continue go to „My SUPLA” at %@ and enable the Device Add Button." = "Registrácia I / O zariadení je momentálne vypnutá. Ak chcete pokračovať, prejdite na stránku %@ a v záložke \"Moja SUPLA\" zapnite pridávanie zariadení.";
-"Add Wizard is only available when server connection has been set based on the email address entered in the settings. (Disable advanced options in the settings)" = "Sprievodca pridaním je k dispozícii iba vtedy, keď bolo nadviazané spojenie so serverom na základe e-mailovej adresy zadanej v nastaveniach!";
+"Add Wizard is only available when server connection has been set based on the email address entered in the settings. (Disable advanced options in the settings)" = "Sprievodca pridávaním je dostupný len po nadviazaní spojenia so serverom na základe zadanej e-mailovej adresy! (Vypnite pokročilé možnosti v nastavení svojho účtu)";
 "The connected Server does not support this function!" = "Server, s ktorým bolo nadviazané spojenie, túto funkciu nepodporuje!";
 "Device Configuration Completion timeout!" = "Bola prekročená lehota čakania na dokončenie konfigurácie zariadenia!";
 "Incorrect input parameters!" = "Nesprávne vstupné parametre!";

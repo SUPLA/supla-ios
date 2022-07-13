@@ -61,7 +61,7 @@
 "Dimmer" = "Dimmer";
 "Distance sensor" = "Avstandssensor";
 "Depth sensor" = "Dybdesensor";
-"If you enjoy using this app, please take a moment to rate it. Thanks for your support!" = "Dersom du liker denne appen ta litt tid til å vurdere den. Takk for ditt støtte!";
+"Did you know that Supla is an open, free project developed by the community? If you like the app, spend a moment on rating it. Thank you for your support!" = "Visste du at Supla er et åpent og gratis samfunnsprosjekt? Hvis du liker denne appen, vennligst ta tiden og vurder den. Takk for støtten din!";
 "Rate Now" = "Vurder nå";
 "Later" = "Senere";
 "No thanks" = "Nei takk";
@@ -76,7 +76,7 @@
 "Cancel" = "Avbryt";
 "Go to the system settings" = "Gå til systeminnstillinger";
 "I/O Device registration is currently off. To continue go to „My SUPLA” at %@ and enable the Device Add Button." = "Registering av enheter inngang/utgang er for tiden skrudd av. For å fortsette, gå til nettsiden %@ og i fanen \"Min SUPLA\" skru på legg til enheter.";
-"Add Wizard is only available when server connection has been set based on the email address entered in the settings. (Disable advanced options in the settings)" = "Assistenten for å legge til er kun tilgjengelig når en tilkobling til serveren har blitt opprettet på bakgrunn av e-post adresse oppført i innstillingene!";
+"Add Wizard is only available when server connection has been set based on the email address entered in the settings. (Disable advanced options in the settings)" = "Veiviseren legg er kun tilgjengelig når tilkobling til serveren er etablert basert på e-postadressen som er angitt! (Deaktiver avanserte innstillinger i kontokonfigurasjonen din).";
 "The connected Server does not support this function!" = "Serveren du er koblet til, støtter ikke denne funksjonen!";
 "Device Configuration Completion timeout!" = "Ventetiden for avslutning av konfigurasjon av enheten er overskredet!";
 "Incorrect input parameters!" = "wizard_result_param_error!";
