@@ -157,6 +157,7 @@
         NSItemProvider *itemProvicer = [[NSItemProvider alloc] init];
         UIDragItem *dragItem = [[UIDragItem alloc] initWithItemProvider:itemProvicer];
         dragItem.localObject = cell;
+        _dataRefreshEnabled = NO;
         return @[dragItem];
     }
 
@@ -175,7 +176,7 @@
         [SAApp.DB  moveChannelGroup:srcCell.channelBase toPositionOfChannelGroup:dstCell.channelBase];
         _gFrc = nil;
     }
-    
+    _dataRefreshEnabled = YES;
     [tableView reloadData];
 }
 
