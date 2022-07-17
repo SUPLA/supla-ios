@@ -69,6 +69,8 @@
     NSMutableDictionary<NSIndexPath*, NSNumber*> *_savedButtonStates;
     
     NSTimer *_endGestureHook;
+    NSDate *_lastReload;
+    NSTimer *_delayedReloadTimer;
     
     ProfileChooser *_chooser;
 }
@@ -87,6 +89,8 @@
 - (void)viewDidLoad {
     
     [super viewDidLoad];
+    
+    _lastReload = [NSDate distantPast];
     
     _savedButtonStates = [NSMutableDictionary new];
 
@@ -211,9 +215,11 @@
 
 
 
+#define DATA_REFRESH_MIN_INTERVAL 0.5
 
 -(void)onDataChanged {
-    if(_dataRefreshEnabled) {
+    if(_dataRefreshEnabled && [_lastReload timeIntervalSinceNow] < -DATA_REFRESH_MIN_INTERVAL) {
+        _lastReload = [NSDate new];
         _cFrc = nil;
         _gFrc = nil;
         _locations = nil;
@@ -225,6 +231,12 @@
         _dataRefreshPending = NO;
     } else {
         _dataRefreshPending = YES;
+        if(_dataRefreshEnabled) {
+            _delayedReloadTimer = [NSTimer scheduledTimerWithTimeInterval:DATA_REFRESH_MIN_INTERVAL
+                                                               target: self
+                                                                 selector:@selector(onDataChanged)
+                                                                 userInfo:nil repeats:NO];
+        }
     }
 }
 
