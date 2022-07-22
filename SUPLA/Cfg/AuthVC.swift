@@ -39,7 +39,9 @@ class AuthVC: BaseViewController {
 
     @IBOutlet private var vBasic: UIView!
     @IBOutlet private var bsYourAccount: UILabel!
-    @IBOutlet private var bsProfileNameContainer: UIView!
+
+    
+    @IBOutlet var profileNameContainer: [UIView]!
     @IBOutlet private var bsProfileName: UITextField!
     @IBOutlet private var bsProfileNameLabel: UILabel!
     @IBOutlet private var bsEmailAddr: UITextField!
@@ -47,7 +49,6 @@ class AuthVC: BaseViewController {
 
     @IBOutlet private var vAdvanced: UIView!
     @IBOutlet private var adAuthType: UISegmentedControl!
-    @IBOutlet private var adProfileNameContainer: UIView!
     @IBOutlet private var adProfileName: UITextField!
     @IBOutlet private var adProfileNameLabel: UILabel!
     @IBOutlet private var adEmailAddr: UITextField!
@@ -139,6 +140,7 @@ class AuthVC: BaseViewController {
                 adAccessIdWizardWarning.isHidden = false
             } else {
                 adAccessIdWizardWarning.isHidden = true
+                adAccessIdWizardWarningHeight.constant = 0;
             }
         }
     }
@@ -227,7 +229,8 @@ class AuthVC: BaseViewController {
                     profileManager: SAApp.profileManager(),
                     profileId: profileId)
 
-        [bsProfileNameContainer].forEach {
+        
+        profileNameContainer.forEach {
             $0.isHidden = !vM.allowsEditingProfileName
         }
         
@@ -360,11 +363,13 @@ class AuthVC: BaseViewController {
         
         viewToRemove.removeFromSuperview()
         adFormHostView.addSubview(viewToAdd)
+        
         viewToAdd.translatesAutoresizingMaskIntoConstraints = false
         viewToAdd.topAnchor.constraint(equalTo: adFormHostView.topAnchor).isActive = true
         viewToAdd.bottomAnchor.constraint(equalTo: adFormHostView.bottomAnchor).isActive = true
         viewToAdd.leftAnchor.constraint(equalTo: adFormHostView.leftAnchor).isActive = true
         viewToAdd.rightAnchor.constraint(equalTo: adFormHostView.rightAnchor).isActive = true
+     
     }
     
     private func displayBasicModeUnavailableAlert() {
