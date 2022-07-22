@@ -176,7 +176,7 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="7Sb-Yz-hv3">
+                <segmentedControl opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="7Sb-Yz-hv3">
                     <rect key="frame" x="0.0" y="24" width="320" height="32"/>
                     <segments>
                         <segment title="Email authorization"/>
@@ -184,7 +184,7 @@
                     </segments>
                 </segmentedControl>
                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="dZT-9R-P1k">
-                    <rect key="frame" x="0.0" y="24" width="320" height="504"/>
+                    <rect key="frame" x="0.0" y="67" width="320" height="461"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sQy-U9-wLs" userLabel="name field">
                             <rect key="frame" x="0.0" y="0.0" width="320" height="56"/>
@@ -220,13 +220,16 @@
                                 <constraint firstAttribute="bottom" secondItem="j2a-lm-YMc" secondAttribute="bottom" constant="4" id="dPq-Fp-fWi"/>
                             </constraints>
                         </view>
-                        <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="agv-fZ-ApW">
-                            <rect key="frame" x="0.0" y="56" width="320" height="320"/>
+                        <view contentMode="scaleToFill" verticalCompressionResistancePriority="250" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="agv-fZ-ApW" userLabel="advanced form host view">
+                            <rect key="frame" x="0.0" y="56" width="320" height="277"/>
                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         </view>
-                        <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="CD3-bI-bDT">
-                            <rect key="frame" x="0.0" y="376" width="320" height="128"/>
+                        <view contentMode="scaleToFill" verticalCompressionResistancePriority="250" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="CD3-bI-bDT" userLabel="padding view">
+                            <rect key="frame" x="0.0" y="333" width="320" height="128"/>
                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            <constraints>
+                                <constraint firstAttribute="height" relation="greaterThanOrEqual" id="Ncv-3t-1WG"/>
+                            </constraints>
                         </view>
                     </subviews>
                     <constraints>
@@ -240,12 +243,12 @@
             <color key="backgroundColor" red="0.98039215690000003" green="0.98431372549999996" blue="0.98823529409999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="7Sb-Yz-hv3" firstAttribute="top" secondItem="5jV-eP-x03" secondAttribute="top" constant="24" id="9Pc-HR-1T6"/>
+                <constraint firstItem="dZT-9R-P1k" firstAttribute="top" secondItem="7Sb-Yz-hv3" secondAttribute="bottom" priority="750" constant="12" id="Ik1-eL-QcX"/>
                 <constraint firstItem="7Sb-Yz-hv3" firstAttribute="leading" secondItem="5jV-eP-x03" secondAttribute="leading" id="RFM-nS-bxy"/>
                 <constraint firstAttribute="bottom" secondItem="dZT-9R-P1k" secondAttribute="bottom" constant="-48" id="jwb-pF-RWy"/>
                 <constraint firstAttribute="trailing" secondItem="7Sb-Yz-hv3" secondAttribute="trailing" id="m1I-Xa-Ae1"/>
                 <constraint firstItem="dZT-9R-P1k" firstAttribute="leading" secondItem="5jV-eP-x03" secondAttribute="leading" id="oP3-cw-JQG"/>
                 <constraint firstAttribute="trailing" secondItem="dZT-9R-P1k" secondAttribute="trailing" id="qt4-aI-dDn"/>
-                <constraint firstItem="dZT-9R-P1k" firstAttribute="top" secondItem="7Sb-Yz-hv3" secondAttribute="top" id="xjK-gx-4LA"/>
             </constraints>
             <point key="canvasLocation" x="-714.375" y="-431.25"/>
         </view>
@@ -462,7 +465,7 @@
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="6" translatesAutoresizingMaskIntoConstraints="NO" id="YqR-3f-Ofb" customClass="PaddingLabel" customModule="PaddingLabel">
                     <rect key="frame" x="0.0" y="246" width="318" height="126"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="126" id="2cu-Xx-uVv"/>
+                        <constraint firstAttribute="height" relation="lessThanOrEqual" priority="750" constant="126" id="2cu-Xx-uVv"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <nil key="textColor"/>
