@@ -216,7 +216,7 @@
 
 
 
-#define DATA_REFRESH_MIN_INTERVAL 0.150
+#define DATA_REFRESH_MIN_INTERVAL 0.250
 
 -(void)onDataChanged {
     if(_dataRefreshEnabled && [_lastReload timeIntervalSinceNow] < -DATA_REFRESH_MIN_INTERVAL) {
