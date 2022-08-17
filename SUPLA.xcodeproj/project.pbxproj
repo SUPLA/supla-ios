@@ -1422,6 +1422,9 @@
 		B89C18EECE6BFD26C7FD75A2 /* Pods-SUPLATests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SUPLATests.debug.xcconfig"; path = "Target Support Files/Pods-SUPLATests/Pods-SUPLATests.debug.xcconfig"; sourceTree = "<group>"; };
 		E44D11C8AE14E2E33F566A79 /* Pods-SUPLA.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SUPLA.debug.xcconfig"; path = "Target Support Files/Pods-SUPLA/Pods-SUPLA.debug.xcconfig"; sourceTree = "<group>"; };
 		F2C5B3CA264E0C52808D2558 /* Pods-SUPLA.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SUPLA.release.xcconfig"; path = "Target Support Files/Pods-SUPLA/Pods-SUPLA.release.xcconfig"; sourceTree = "<group>"; };
+		F40AA58F28AC0E8800DE173D /* pt-PT */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-PT"; path = "pt-PT.lproj/SAVLCalibrationTool.strings"; sourceTree = "<group>"; };
+		F40AA59128AC118700DE173D /* pt-PT */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-PT"; path = "pt-PT.lproj/SADiwCalibrationTool.strings"; sourceTree = "<group>"; };
+		F40AA59228AC16A800DE173D /* pt-PT */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-PT"; path = "pt-PT.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		F49D9BB328A83B4C00AC8995 /* sk-SK */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "sk-SK"; path = "sk-SK.lproj/SALightsourceLifespanSettingsDialog.strings"; sourceTree = "<group>"; };
 		F49D9BB528A8442B00AC8995 /* sk-SK */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "sk-SK"; path = "sk-SK.lproj/SASuperuserAuthorizationDialog.strings"; sourceTree = "<group>"; };
 		F49D9BB728A8589300AC8995 /* sk-SK */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "sk-SK"; path = "sk-SK.lproj/SAVLCalibrationTool.strings"; sourceTree = "<group>"; };
@@ -1432,6 +1435,8 @@
 		F4CD6F8928ABE122006DAAD7 /* el */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = el; path = el.lproj/SADiwCalibrationTool.strings; sourceTree = "<group>"; };
 		F4CD6F8B28ABE31F006DAAD7 /* el */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = el; path = el.lproj/SASuperuserAuthorizationDialog.strings; sourceTree = "<group>"; };
 		F4CD6F8C28ABE477006DAAD7 /* el */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = el; path = el.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		F4CD6F8E28ABFBFB006DAAD7 /* pt-PT */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-PT"; path = "pt-PT.lproj/SALightsourceLifespanSettingsDialog.strings"; sourceTree = "<group>"; };
+		F4CD6F9028ABFD70006DAAD7 /* pt-PT */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-PT"; path = "pt-PT.lproj/SASuperuserAuthorizationDialog.strings"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -3194,6 +3199,7 @@
 				016D001E266EB12500E02C1F /* it */,
 				F49D9BB728A8589300AC8995 /* sk-SK */,
 				F4CD6F8728ABE0C3006DAAD7 /* el */,
+				F40AA58F28AC0E8800DE173D /* pt-PT */,
 			);
 			name = SAVLCalibrationTool.xib;
 			sourceTree = "<group>";
@@ -3205,6 +3211,7 @@
 				012E81DD24C9A320008E0690 /* pl */,
 				F49D9BB328A83B4C00AC8995 /* sk-SK */,
 				F4CD6F8528ABD64F006DAAD7 /* el */,
+				F4CD6F8E28ABFBFB006DAAD7 /* pt-PT */,
 			);
 			name = SALightsourceLifespanSettingsDialog.xib;
 			sourceTree = "<group>";
@@ -3217,6 +3224,7 @@
 				016D001C266EB11500E02C1F /* it */,
 				F49D9BB928A85A6100AC8995 /* sk-SK */,
 				F4CD6F8928ABE122006DAAD7 /* el */,
+				F40AA59128AC118700DE173D /* pt-PT */,
 			);
 			name = SADiwCalibrationTool.xib;
 			sourceTree = "<group>";
@@ -3250,6 +3258,7 @@
 				01943EC2249D1C8D00DA2B8F /* pl */,
 				F49D9BB528A8442B00AC8995 /* sk-SK */,
 				F4CD6F8B28ABE31F006DAAD7 /* el */,
+				F4CD6F9028ABFD70006DAAD7 /* pt-PT */,
 			);
 			name = SASuperuserAuthorizationDialog.xib;
 			sourceTree = "<group>";
@@ -3260,6 +3269,7 @@
 				0196E82B258CEEEC0016E8DC /* pl */,
 				F49D9BBA28A90AEC00AC8995 /* sk-SK */,
 				F4CD6F8C28ABE477006DAAD7 /* el */,
+				F40AA59228AC16A800DE173D /* pt-PT */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
