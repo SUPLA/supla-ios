@@ -1425,6 +1425,11 @@
 		F40AA58F28AC0E8800DE173D /* pt-PT */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-PT"; path = "pt-PT.lproj/SAVLCalibrationTool.strings"; sourceTree = "<group>"; };
 		F40AA59128AC118700DE173D /* pt-PT */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-PT"; path = "pt-PT.lproj/SADiwCalibrationTool.strings"; sourceTree = "<group>"; };
 		F40AA59228AC16A800DE173D /* pt-PT */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-PT"; path = "pt-PT.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		F40AA59428AD171200DE173D /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/SALightsourceLifespanSettingsDialog.strings; sourceTree = "<group>"; };
+		F40AA59628AD220400DE173D /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/SAVLCalibrationTool.strings; sourceTree = "<group>"; };
+		F40AA59828AD223800DE173D /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/SADiwCalibrationTool.strings; sourceTree = "<group>"; };
+		F40AA59A28AD23F300DE173D /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/SASuperuserAuthorizationDialog.strings; sourceTree = "<group>"; };
+		F40AA59B28AD24CE00DE173D /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		F49D9BB328A83B4C00AC8995 /* sk-SK */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "sk-SK"; path = "sk-SK.lproj/SALightsourceLifespanSettingsDialog.strings"; sourceTree = "<group>"; };
 		F49D9BB528A8442B00AC8995 /* sk-SK */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "sk-SK"; path = "sk-SK.lproj/SASuperuserAuthorizationDialog.strings"; sourceTree = "<group>"; };
 		F49D9BB728A8589300AC8995 /* sk-SK */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "sk-SK"; path = "sk-SK.lproj/SAVLCalibrationTool.strings"; sourceTree = "<group>"; };
@@ -3200,6 +3205,7 @@
 				F49D9BB728A8589300AC8995 /* sk-SK */,
 				F4CD6F8728ABE0C3006DAAD7 /* el */,
 				F40AA58F28AC0E8800DE173D /* pt-PT */,
+				F40AA59628AD220400DE173D /* ru */,
 			);
 			name = SAVLCalibrationTool.xib;
 			sourceTree = "<group>";
@@ -3212,6 +3218,7 @@
 				F49D9BB328A83B4C00AC8995 /* sk-SK */,
 				F4CD6F8528ABD64F006DAAD7 /* el */,
 				F4CD6F8E28ABFBFB006DAAD7 /* pt-PT */,
+				F40AA59428AD171200DE173D /* ru */,
 			);
 			name = SALightsourceLifespanSettingsDialog.xib;
 			sourceTree = "<group>";
@@ -3225,6 +3232,7 @@
 				F49D9BB928A85A6100AC8995 /* sk-SK */,
 				F4CD6F8928ABE122006DAAD7 /* el */,
 				F40AA59128AC118700DE173D /* pt-PT */,
+				F40AA59828AD223800DE173D /* ru */,
 			);
 			name = SADiwCalibrationTool.xib;
 			sourceTree = "<group>";
@@ -3259,6 +3267,7 @@
 				F49D9BB528A8442B00AC8995 /* sk-SK */,
 				F4CD6F8B28ABE31F006DAAD7 /* el */,
 				F4CD6F9028ABFD70006DAAD7 /* pt-PT */,
+				F40AA59A28AD23F300DE173D /* ru */,
 			);
 			name = SASuperuserAuthorizationDialog.xib;
 			sourceTree = "<group>";
@@ -3270,6 +3279,7 @@
 				F49D9BBA28A90AEC00AC8995 /* sk-SK */,
 				F4CD6F8C28ABE477006DAAD7 /* el */,
 				F40AA59228AC16A800DE173D /* pt-PT */,
+				F40AA59B28AD24CE00DE173D /* ru */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
