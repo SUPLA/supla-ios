@@ -64,14 +64,7 @@
 	UIImage *_groupsOn;
     BOOL _shouldUpdateRowHeight;
     NSMutableDictionary<NSString *, NSNumber *> *_cellConstraintValues;
-    BOOL _dataRefreshEnabled;
-    BOOL _dataRefreshPending;
-    NSMutableDictionary<NSIndexPath*, NSNumber*> *_savedButtonStates;
-    
-    NSTimer *_endGestureHook;
-    NSDate *_lastReload;
-    NSTimer *_delayedReloadTimer;
-    
+        
     ProfileChooser *_chooser;
 }
 
@@ -89,10 +82,6 @@
 - (void)viewDidLoad {
     
     [super viewDidLoad];
-    
-    _lastReload = [NSDate distantPast];
-    
-    _savedButtonStates = [NSMutableDictionary new];
 
     [[NSNotificationCenter defaultCenter]
         addObserver: self selector:@selector(didChangeRowHeight:)
@@ -157,7 +146,6 @@
         NSItemProvider *itemProvicer = [[NSItemProvider alloc] init];
         UIDragItem *dragItem = [[UIDragItem alloc] initWithItemProvider:itemProvicer];
         dragItem.localObject = cell;
-        _dataRefreshEnabled = NO;
         return @[dragItem];
     }
 
@@ -176,7 +164,6 @@
         [SAApp.DB  moveChannelGroup:srcCell.channelBase toPositionOfChannelGroup:dstCell.channelBase];
         _gFrc = nil;
     }
-    _dataRefreshEnabled = YES;
     [tableView reloadData];
 }
 
@@ -216,29 +203,13 @@
 
 
 
-#define DATA_REFRESH_MIN_INTERVAL 0.250
 
 -(void)onDataChanged {
-    if(_dataRefreshEnabled && [_lastReload timeIntervalSinceNow] < -DATA_REFRESH_MIN_INTERVAL) {
-        _lastReload = [NSDate new];
-        _cFrc = nil;
-        _gFrc = nil;
-        _locations = nil;
-        [self.cTableView reloadData];
-        [self.gTableView reloadData];
-
-        if(_shouldUpdateRowHeight)
-            [self adjustChannelHeight: YES];
-        _dataRefreshPending = NO;
-    } else {
-        _dataRefreshPending = YES;
-        if(_dataRefreshEnabled) {
-            _delayedReloadTimer = [NSTimer scheduledTimerWithTimeInterval:DATA_REFRESH_MIN_INTERVAL
-                                                               target: self
-                                                                 selector:@selector(onDataChanged)
-                                                                 userInfo:nil repeats:NO];
-        }
-    }
+    _cFrc = nil;
+    _gFrc = nil;
+    _locations = nil;
+    [self.cTableView reloadData];
+    [self.gTableView reloadData];
 }
 
 - (void)onEvent:(NSNotification *)notification {
@@ -459,28 +430,6 @@
     }
 }
 
-- (void)resetCellButtonStates: (SAChannelCell *)cell {
-    NSNumber *stateObject = _savedButtonStates[cell.currentIndexPath];
-    enum MGSwipeState state = MGSwipeStateNone;
-    
-    if(stateObject) {
-        state = [stateObject integerValue];
-    }
-
-    switch(state) {
-    case MGSwipeStateSwipingLeftToRight:
-        [cell showSwipe: MGSwipeDirectionLeftToRight animated: NO];
-        break;
-    case MGSwipeStateSwipingRightToLeft:
-        [cell showSwipe: MGSwipeDirectionRightToLeft animated: NO];
-        break;
-    case MGSwipeStateNone:
-    default:
-        [cell hideSwipeAnimated: NO];
-        break;
-      
-    }
-}
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     SAChannelBase *channel_base =  [[self frcForTableView:tableView]
@@ -575,7 +524,6 @@
             [cstr.firstItem setNeedsDisplay];
         }
     }
-    [self resetCellButtonStates:cell];
     
     return cell;
 }
@@ -631,8 +579,6 @@
 - (void) viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [[[SARateApp alloc] init] showDialogWithDelay: 1];
-    _dataRefreshEnabled = YES;
-    _dataRefreshPending = NO;
     [self runDownloadTask];
     if(self.showingDetails) {
         [(SAMainView*)self.view detailDidHide];
@@ -676,51 +622,6 @@
 		return _groupsOn;
 	}
 }
-#pragma mark MGSwipeTableCellDelegate
-
--(void) swipeTableCell:(MGSwipeTableCell*) cell
-   didChangeSwipeState:(MGSwipeState) state
-       gestureIsActive:(BOOL) gestureIsActive {
-    [_endGestureHook invalidate];
-    if(gestureIsActive) {
-        _endGestureHook = nil;
-        _dataRefreshEnabled = NO;
-    } else {
-        _endGestureHook = [NSTimer scheduledTimerWithTimeInterval: 0.1
-                                                           target: self
-                                                         selector: @selector(deferredEnableRefresh:) userInfo: nil
-                                                          repeats: NO];
-    }
-
-    if([cell isKindOfClass: [SAChannelCell class]] && !gestureIsActive) {
-        SAChannelCell *cc = (SAChannelCell *)cell;
-        if(state != MGSwipeStateNone) {
-            [_savedButtonStates removeAllObjects];
-        }
-        _savedButtonStates[cc.currentIndexPath] = [NSNumber numberWithInt: state];
-    }
-}
-
-#ifdef DEBUG
-- (NSString *)describeButtonState: (MGSwipeState)state {
-    switch(state) {
-        case MGSwipeStateNone: return @"none";
-        case MGSwipeStateSwipingLeftToRight: return @"swiping ->";
-        case MGSwipeStateSwipingRightToLeft: return @"swiping <-";
-        case MGSwipeStateExpandingLeftToRight: return @"swiping ->";
-        case MGSwipeStateExpandingRightToLeft: return @"swiping <-";
-    }
-    return @"wtf";
-}
-#endif
-
-- (void)deferredEnableRefresh: timer {
-    _dataRefreshEnabled = YES;
-    if(_dataRefreshEnabled && _dataRefreshPending) {
-        [self onDataChanged];
-    }
-}
-
 - (void)configureNavigationBar {
     self.title = NSLocalizedString(@"supla", @"Title bar text");
     if (@available(iOS 14.0, *)) {
