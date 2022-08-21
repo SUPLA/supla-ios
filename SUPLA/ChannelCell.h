@@ -30,6 +30,11 @@
 
 @end
 
+@class SAChannelCell;
+@protocol SAChannelCellDelegate
+- (void)channelButtonClicked: (SAChannelCell*)cell;
+@end
+
 @interface MGSwipeButton (SUPLA)
 
 -(void) setBackgroundColor:(UIColor *)backgroundColor withDelay:(NSTimeInterval) delay;

@@ -23,4 +23,5 @@ extension UIFont {
     @objc static let suplaSubtitleFont = UIFont(name: "Quicksand-Regular", size: 16)!
 
     static let formLabelFont = UIFont(name: "OpenSans", size: 14)!
+    static let cellCaptionFont = UIFont(name: "OpenSans-Bold", size: 14)!
 }

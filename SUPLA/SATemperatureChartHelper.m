@@ -34,7 +34,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     return self;
 }
 
-- (id<IChartMarker>) getMarker {
+- (id<ChartMarker>) getMarker {
     return [SAChartMarkerView viewFromXibIn:[NSBundle mainBundle]];
 }
 

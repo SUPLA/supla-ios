@@ -51,13 +51,13 @@ typedef NS_ENUM(NSUInteger, ChartType) {
 
 #define ChartTypeMax Bar_VectorBalance_Years
 @class SABarChartDataSet;
-@interface SAChartHelper : NSObject <IChartAxisValueFormatter>
+@interface SAChartHelper : NSObject <ChartAxisValueFormatter>
 
 - (NSNumber *)doubleValueForKey:(NSString *)key item:(NSDictionary *)i;
 - (NSDateFormatter *) dateFormatterForCurrentChartType;
 - (NSString *) stringForValue:(double)value axis:(nullable ChartAxisBase *)axis;
 - (SABarChartDataSet *) newBarDataSetWithEntries:(NSArray *)entries;
-- (id<IChartMarker>) getMarker;
+- (id<ChartMarker>) getMarker;
 - (GroupingDepth) getGroupungDepthForCurrentChartType;
 - (GroupBy) getGroupByForCurrentChartType;
 - (NSString *)stringRepresentationOfChartType:(ChartType)ct;

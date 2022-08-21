@@ -28,7 +28,7 @@
 @synthesize currency;
 @synthesize pricePerUnit;
 
-- (id<IChartMarker>) getMarker {
+- (id<ChartMarker>) getMarker {
     return [SAIncrementalMeterChartMarkerView viewFromXibIn:[NSBundle mainBundle]];
 }
 

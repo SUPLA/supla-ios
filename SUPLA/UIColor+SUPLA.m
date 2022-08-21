@@ -21,6 +21,11 @@
 
 @implementation UIColor (SUPLA)
 
++ (UIColor*)unselectedItem {
+    return [UIColor colorWithRed: 220.0/255.0 green: 221.0/255.0 blue: 222.0/255.0
+                           alpha:1.0];
+}
+
 +(UIColor*)onLine {
     return [UIColor colorWithRed:0.071 green:0.655 blue:0.118 alpha:1.000];
 }
