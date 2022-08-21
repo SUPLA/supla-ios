@@ -40,7 +40,7 @@
 @property (nonatomic) BOOL showingDetails;
 @end
 
-@interface SAMainVC() <MGSwipeTableCellDelegate,ProfileChooserDelegate>
+@interface SAMainVC() <MGSwipeTableCellDelegate,ProfileChooserDelegate, SAChannelCellDelegate>
 @end
 
 @implementation SAMainVC {
@@ -216,7 +216,7 @@
 
 
 
-#define DATA_REFRESH_MIN_INTERVAL 0.150
+#define DATA_REFRESH_MIN_INTERVAL 0.250
 
 -(void)onDataChanged {
     if(_dataRefreshEnabled && [_lastReload timeIntervalSinceNow] < -DATA_REFRESH_MIN_INTERVAL) {
@@ -233,6 +233,7 @@
     } else {
         _dataRefreshPending = YES;
         if(_dataRefreshEnabled) {
+            [_delayedReloadTimer invalidate];
             _delayedReloadTimer = [NSTimer scheduledTimerWithTimeInterval:DATA_REFRESH_MIN_INTERVAL
                                                                target: self
                                                                  selector:@selector(onDataChanged)
@@ -444,7 +445,6 @@
 }
 
 - (void)sectionCellTouch:(SASectionCell*)section {
-    
     _SALocation *location = [self locationByName:section.label.text];
     if (location) {
         short bit = [self bitFlagCollapse];
@@ -455,6 +455,9 @@
         }
         
         [SAApp.DB saveContext];
+        [_delayedReloadTimer invalidate];
+        _delayedReloadTimer = nil;
+        [self deferredEnableRefresh:nil];
         [self onDataChanged];
     }
 }
@@ -713,6 +716,12 @@
     return @"wtf";
 }
 #endif
+
+- (void)channelButtonClicked:(SAChannelCell *)cell {
+    [_delayedReloadTimer invalidate];
+    _delayedReloadTimer = nil;
+    [self deferredEnableRefresh: nil];
+}
 
 - (void)deferredEnableRefresh: timer {
     _dataRefreshEnabled = YES;
