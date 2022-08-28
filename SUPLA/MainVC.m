@@ -40,8 +40,13 @@
 @property (nonatomic) BOOL showingDetails;
 @end
 
-@interface SAMainVC() <MGSwipeTableCellDelegate,ProfileChooserDelegate, SAChannelCellDelegate>
+@interface SAMainVC() <MGSwipeTableCellDelegate,ProfileChooserDelegate,
+                       SAChannelCellDelegate, UITabBarDelegate>
 @end
+
+#define TAB_CHANNELS 0
+#define TAB_GROUPS 1
+#define TAB_SCENES 2
 
 @implementation SAMainVC {
     NSFetchedResultsController *_cFrc;
@@ -60,8 +65,6 @@
     NSArray *_locations;
     CGFloat _standardChannelHeight;
     CGFloat _heightScaleFactor;
-	UIImage *_groupsOff;
-	UIImage *_groupsOn;
     BOOL _shouldUpdateRowHeight;
     NSMutableDictionary<NSString *, NSNumber *> *_cellConstraintValues;
     BOOL _dataRefreshEnabled;
@@ -135,12 +138,10 @@
         self.gTableView.sectionHeaderTopPadding = 0;
     }
  
-	_groupsOff = [UIImage imageNamed: @"groupsoff"];
-	_groupsOn = [UIImage imageNamed: @"groupson"];
-    
     [self configureNavigationBar];
+    [self configureTabBar];
+    [self setActiveTab: TAB_CHANNELS];
 }
-
 
 - (void)didChangeRowHeight: notification {
     _shouldUpdateRowHeight = YES;
@@ -624,13 +625,6 @@
  }
 
  
-- (void)groupTableHidden:(BOOL)hidden {
-    self.cTableView.hidden = !hidden;
-    self.gTableView.hidden = hidden;
-    
-    [self onDataChanged];
-}
-
 - (void) viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [[[SARateApp alloc] init] showDialogWithDelay: 1];
@@ -671,14 +665,7 @@
         _task = nil;
     }
 }
-#pragma mark Support for navigation bar
-- (UIImage *)imageForGroupState {
-	if([self isGroupTableHidden]) {
-		return _groupsOff;
-	} else {
-		return _groupsOn;
-	}
-}
+
 #pragma mark MGSwipeTableCellDelegate
 
 -(void) swipeTableCell:(MGSwipeTableCell*) cell
@@ -749,11 +736,6 @@
                                                   target: self
                                                   action: @selector(onProfileSelection:)]];
     }
-    [itms addObject:
-        [[UIBarButtonItem alloc] initWithImage: [self imageForGroupState]
-                                         style: UIBarButtonItemStylePlain
-                                        target: self
-                                        action: @selector(onGroupsToggle:)]];
     self.navigationItem.rightBarButtonItems = itms;
 }
 
@@ -779,12 +761,6 @@
 - (void)onMenuToggle: sender {
     [[SAApp mainNavigationCoordinator] toggleMenuBar];
 }
-
-- (void)onGroupsToggle: sender {
-    [self groupTableHidden: ![self isGroupTableHidden]];
-	[self.navigationItem.rightBarButtonItems lastObject].image = [self imageForGroupState];
-}
-
 
 - (id<UIViewControllerInteractiveTransitioning>)interactionController {
     return ((SAMainView*)self.view).panController;
@@ -832,6 +808,49 @@
     _heightScaleFactor = [Config new].channelHeightFactor;
     [self adjustChannelHeight:YES];
 }
+
+#pragma mark -
+#pragma mark Tab bar support
+#pragma mark -
+
+
+- (void)configureTabBar {
+    [UITabBar appearance].barTintColor = [UIColor suplaGreenBackground];
+    [UITabBar appearance].tintColor = [UIColor whiteColor];
+    [UITabBar appearance].unselectedItemTintColor = [UIColor unselectedItem];
+    UITabBar *tabBar = [[UITabBar alloc] init];
+    tabBar.translucent = NO;
+    [tabBar setItems: @[
+        [[UITabBarItem alloc] initWithTitle: NSLocalizedString(@"Channels", nil)
+                                      image: [UIImage imageNamed: @"list"]
+                                        tag: TAB_CHANNELS],
+        [[UITabBarItem alloc] initWithTitle: NSLocalizedString(@"Groups", nil)
+                                      image: [UIImage imageNamed: @"groupsoff"]
+                                        tag: TAB_GROUPS],
+        [[UITabBarItem alloc] initWithTitle:NSLocalizedString(@"Scenes", nil)
+                                      image:[UIImage imageNamed: @"coffee"]
+                                        tag: TAB_SCENES]]
+            animated: NO];
+    tabBar.delegate = self;
+    tabBar.translatesAutoresizingMaskIntoConstraints = NO;
+    [self.view addSubview: tabBar];
+    [tabBar.leftAnchor constraintEqualToAnchor: self.view.leftAnchor].active = YES;
+    [tabBar.rightAnchor constraintEqualToAnchor: self.view.rightAnchor].active = YES;
+    [tabBar.bottomAnchor constraintEqualToAnchor: self.view.bottomAnchor].active = YES;
+}
+
+- (void)setActiveTab: (int)tab {
+    self.cTableView.hidden = tab != TAB_CHANNELS;
+    self.gTableView.hidden = tab != TAB_GROUPS;
+    
+    [self onDataChanged];
+}
+#pragma mark UITabBarDelegate
+
+- (void)tabBar:(UITabBar *)tabBar didSelectItem:(UITabBarItem *)item {
+    [self setActiveTab: item.tag];
+}
+
 @end
 
 //------------------------------------------------------------------------------------------
