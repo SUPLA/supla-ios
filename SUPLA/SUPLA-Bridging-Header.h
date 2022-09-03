@@ -23,3 +23,4 @@
 #import "SAElectricityChartHelper.h"
 #import "SAChartFilterField.h"
 #import "SAFormatter.h"
+#import "Scene+CoreDataClass.h"

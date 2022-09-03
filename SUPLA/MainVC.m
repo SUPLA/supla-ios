@@ -76,6 +76,9 @@
     NSTimer *_delayedReloadTimer;
     
     ProfileChooser *_chooser;
+    
+    UITabBar *_tabBar;
+    ScenesVC *_scenesVC;
 }
 
 - (void)registerNibForTableView:(UITableView*)tv {
@@ -121,21 +124,17 @@
     _tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapGesture:)];
     [self.notificationView addGestureRecognizer:_tapRecognizer];
     
-    if (@available(iOS 11.0, *)) {
-        self.cTableView.clearsContextBeforeDrawing = YES;
-        self.cTableView.dragInteractionEnabled = YES;
-        self.cTableView.dragDelegate = self;
-        self.cTableView.dropDelegate = self;
-        
-        self.gTableView.clearsContextBeforeDrawing = YES;
-        self.gTableView.dragInteractionEnabled = YES;
-        self.gTableView.dragDelegate = self;
-        self.gTableView.dropDelegate = self;
-    }
+    for(UITableView *tv in [self allTableViews]){
+        if (@available(iOS 11.0, *)) {
+            tv.clearsContextBeforeDrawing = YES;
+            tv.dragInteractionEnabled = YES;
+            tv.dragDelegate = self;
+            tv.dropDelegate = self;
+        }
 
-    if (@available(iOS 15.0, *)) {
-        self.cTableView.sectionHeaderTopPadding = 0;
-        self.gTableView.sectionHeaderTopPadding = 0;
+        if (@available(iOS 15.0, *)) {
+            tv.sectionHeaderTopPadding = 0;
+        }
     }
  
     [self configureNavigationBar];
@@ -395,6 +394,10 @@
 
 #pragma mark Table Support
 
+- (NSArray<UITableView *> *)allTableViews {
+    return @[_cTableView, _gTableView];
+}
+
 - (NSFetchedResultsController*)frcForTableView:(UITableView*)tableView {
     
     if (tableView == self.cTableView) {
@@ -636,6 +639,14 @@
         self.showingDetails = NO;
     }
     
+    for(UITableView *tv in @[_cTableView, _gTableView]) {
+        tv.contentInset = UIEdgeInsetsMake(0, 0, _tabBar.frame.size.height, 0);
+    }
+}
+
+-(void)setShowingDetails:(BOOL)showingDetails {
+    _showingDetails = showingDetails;
+    _tabBar.hidden = _showingDetails;
 }
 
 -(void)runDownloadTask {
@@ -818,9 +829,9 @@
     [UITabBar appearance].barTintColor = [UIColor suplaGreenBackground];
     [UITabBar appearance].tintColor = [UIColor whiteColor];
     [UITabBar appearance].unselectedItemTintColor = [UIColor unselectedItem];
-    UITabBar *tabBar = [[UITabBar alloc] init];
-    tabBar.translucent = NO;
-    [tabBar setItems: @[
+    _tabBar = [[UITabBar alloc] init];
+    _tabBar.translucent = NO;
+    [_tabBar setItems: @[
         [[UITabBarItem alloc] initWithTitle: NSLocalizedString(@"Channels", nil)
                                       image: [UIImage imageNamed: @"list"]
                                         tag: TAB_CHANNELS],
@@ -831,24 +842,46 @@
                                       image:[UIImage imageNamed: @"coffee"]
                                         tag: TAB_SCENES]]
             animated: NO];
-    tabBar.delegate = self;
-    tabBar.translatesAutoresizingMaskIntoConstraints = NO;
-    [self.view addSubview: tabBar];
-    [tabBar.leftAnchor constraintEqualToAnchor: self.view.leftAnchor].active = YES;
-    [tabBar.rightAnchor constraintEqualToAnchor: self.view.rightAnchor].active = YES;
-    [tabBar.bottomAnchor constraintEqualToAnchor: self.view.bottomAnchor].active = YES;
+    _tabBar.delegate = self;
+    _tabBar.translatesAutoresizingMaskIntoConstraints = NO;
+    [self.view addSubview: _tabBar];
+    [_tabBar.leftAnchor constraintEqualToAnchor: self.view.leftAnchor].active = YES;
+    [_tabBar.rightAnchor constraintEqualToAnchor: self.view.rightAnchor].active = YES;
+    [_tabBar.bottomAnchor constraintEqualToAnchor: self.view.bottomAnchor].active = YES;
 }
 
-- (void)setActiveTab: (int)tab {
+- (void)setActiveTab: (NSInteger)tab {
     self.cTableView.hidden = tab != TAB_CHANNELS;
     self.gTableView.hidden = tab != TAB_GROUPS;
-    
+    if(tab == TAB_SCENES) {
+        [self showScenes];
+    } else {
+        [self hideScenes];
+    }
     [self onDataChanged];
 }
 #pragma mark UITabBarDelegate
 
 - (void)tabBar:(UITabBar *)tabBar didSelectItem:(UITabBarItem *)item {
     [self setActiveTab: item.tag];
+}
+
+#pragma mark Scenes support
+- (void)showScenes {
+    if(_scenesVC) return;
+    _scenesVC = [[ScenesVC alloc] init];
+    [self addChildViewController: _scenesVC];
+    [self.view addSubview: _scenesVC.view];
+    [_scenesVC.view.topAnchor constraintEqualToAnchor: self.navigationController.navigationBar.bottomAnchor].active = YES;
+    [_scenesVC.view.leftAnchor constraintEqualToAnchor: self.view.leftAnchor].active = YES;
+    [_scenesVC.view.rightAnchor constraintEqualToAnchor: self.view.rightAnchor].active = YES;
+    [_scenesVC.view.bottomAnchor constraintEqualToAnchor: _tabBar.topAnchor].active = YES;
+}
+
+- (void)hideScenes {
+    [_scenesVC.view removeFromSuperview];
+    [_scenesVC removeFromParentViewController];
+    _scenesVC = nil;
 }
 
 @end
@@ -1023,6 +1056,7 @@
             [_panTransition finishInteractiveTransition];
          } else {
             [_panTransition cancelInteractiveTransition];
+             self.viewController.showingDetails = NO;
          }
         _panTransition = nil;
      }
