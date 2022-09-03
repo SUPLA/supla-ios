@@ -66,7 +66,7 @@ class ProfilesVM {
         inputs.onActivate.subscribe { [weak self] id in
             guard let self = self, let id = id.element else { return }
 
-            if self._profileManager.activateProfile(id: id, force: false) {
+            if self._profileManager.activateProfile(id: id, force: true) {
                 self.dismissTrigger.on(.next(()))
             }
         }.disposed(by: _disposeBag)
