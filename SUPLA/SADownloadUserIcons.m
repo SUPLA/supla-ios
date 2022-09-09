@@ -97,6 +97,7 @@
     
     @synchronized(self) {
       _channelsUpdated = [self.DB updateChannelUserIcons];
+      _scenesUpdated = [self.DB updateSceneUserIcons];
     }
 }
 

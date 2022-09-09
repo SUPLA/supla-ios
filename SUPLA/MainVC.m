@@ -796,7 +796,6 @@
             [self.view setNeedsUpdateConstraints];
         }
     }
-
 }	
 
 - (void)updateViewConstraints {
@@ -818,6 +817,7 @@
     _gFrc = nil;
     _heightScaleFactor = [Config new].channelHeightFactor;
     [self adjustChannelHeight:YES];
+    _scenesVC.scaleFactor = _heightScaleFactor;
 }
 
 #pragma mark -
@@ -870,12 +870,19 @@
 - (void)showScenes {
     if(_scenesVC) return;
     _scenesVC = [[ScenesVC alloc] init];
+    _scenesVC.scaleFactor = _heightScaleFactor;
     [self addChildViewController: _scenesVC];
     [self.view addSubview: _scenesVC.view];
-    [_scenesVC.view.topAnchor constraintEqualToAnchor: self.navigationController.navigationBar.bottomAnchor].active = YES;
+    [_scenesVC.view.topAnchor constraintEqualToAnchor: self.view.topAnchor
+                                             constant: [UIApplication sharedApplication].statusBarFrame.size.height +
+                                                        self.navigationController.navigationBar.frame.size.height].active = YES;
     [_scenesVC.view.leftAnchor constraintEqualToAnchor: self.view.leftAnchor].active = YES;
     [_scenesVC.view.rightAnchor constraintEqualToAnchor: self.view.rightAnchor].active = YES;
     [_scenesVC.view.bottomAnchor constraintEqualToAnchor: _tabBar.topAnchor].active = YES;
+
+    ScenesVM *svm = [[ScenesVM alloc] initWithDatabase: [SAApp DB]];
+
+    [_scenesVC bindWithViewModel: svm];
 }
 
 - (void)hideScenes {

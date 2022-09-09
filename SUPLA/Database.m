@@ -1328,6 +1328,8 @@ again:
     NSMutableArray *result = [[NSMutableArray alloc] init];
     [self userIconsIdsWithEntity:@"SAChannel" channelBase:YES idField:@"usericon_id" exclude:i result:result];
     [self userIconsIdsWithEntity:@"SAChannelGroup" channelBase:YES idField:@"usericon_id" exclude:i result:result];
+    [self userIconsIdsWithEntity:@"Scene" channelBase:NO idField:@"usericon_id"
+                         exclude:i result:result];
     
     return result;
 }
@@ -1448,5 +1450,74 @@ again:
                              initWithContext: _managedObjectContext];
     return [pm getCurrentProfile];
 }
+
+#pragma mark Scenes
+- (Scene *)fetchSceneById: (int)scene_id {
+    return [self fetchItemByPredicate: [NSPredicate predicateWithFormat: @"sceneId = %i AND "
+                                                    @"profile.isActive = true", scene_id]
+                           entityName: @"Scene"];
+}
+
+- (Scene *)newScene {
+    NSManagedObjectContext *ctx = self.managedObjectContext;
+    Scene *scn = [[Scene alloc] initWithEntity: [NSEntityDescription entityForName: @"Scene"
+                                                            inManagedObjectContext: ctx]
+                                insertIntoManagedObjectContext: ctx];
+    scn.profile = self.currentProfile;
+
+    return scn;
+}
+
+- (BOOL)updateScene: (void*)TODO {
+    /* Fake implementation just to have some data. Entirely to be replaced when
+     scene support in client is implemented. */
+    BOOL save = NO;
+    
+    NSArray *locs = [self fetchVisibleLocations];
+    int sid = 0;
+    for(int i = 0; i < locs.count; i++) {
+        for(int j = 0; j <= i; j++) {
+            Scene *scn = [self fetchSceneById: ++sid];
+            if(!scn) {
+                scn = [self newScene];
+                scn.sceneId = sid;
+                scn.caption = [NSString stringWithFormat: @"Testowa scena %d", sid];
+                scn.location = locs[i];
+                scn.profile = self.currentProfile;
+                save = YES;
+            }
+        }
+    }
+
+
+    return save;
+}
+
+- (NSArray<Scene *> *)fetchScenes {
+    NSFetchRequest *fr = [[NSFetchRequest alloc] initWithEntityName: @"Scene"];
+    fr.predicate = [NSPredicate predicateWithFormat: @"profile == %@"
+                                      argumentArray: @[self.currentProfile]];
+    fr.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey: @"location.sortOrder"
+                                                         ascending: YES],
+                              [NSSortDescriptor sortDescriptorWithKey: @"location.caption"
+                                                            ascending: YES],
+                              [NSSortDescriptor sortDescriptorWithKey: @"sortOrder"
+                                                            ascending: YES],
+                              [NSSortDescriptor sortDescriptorWithKey: @"caption"
+                                                            ascending: YES],
+                              [NSSortDescriptor sortDescriptorWithKey: @"sceneId"
+                                                            ascending: YES]];
+    NSArray<Scene *> *rv;
+    NSError *err = nil;
+    rv = [self.managedObjectContext executeFetchRequest: fr
+                                                  error: &err];
+    if(!rv) NSLog(@"error fetching scenes: %@", err);
+    return rv;
+}
+
+-(BOOL) updateSceneUserIcons {
+    return [self updateChannelUserIconsWithEntityName:@"Scene"];
+}
+
 @end
 

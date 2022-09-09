@@ -527,6 +527,7 @@
 		AECB1BEB2711CB67001A9714 /* AuthInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = AECB1BEA2711CB67001A9714 /* AuthInfo.swift */; };
 		AED6395E270CA3A800E5105B /* RoundedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = AED6395D270CA3A800E5105B /* RoundedButton.swift */; };
 		AED63961270CA46C00E5105B /* UIColor+Supla.swift in Sources */ = {isa = PBXBuildFile; fileRef = AED63960270CA46C00E5105B /* UIColor+Supla.swift */; };
+		AEDFB81628C4C17B009E28F0 /* ScenesVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEDFB81528C4C17B009E28F0 /* ScenesVM.swift */; };
 		AEED1FD12737F3BE00DE6289 /* ProfileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEED1FD02737F3BE00DE6289 /* ProfileManager.swift */; };
 		AEED1FD42737F71C00DE6289 /* MultiAccountProfileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEED1FD32737F71C00DE6289 /* MultiAccountProfileManager.swift */; };
 		AEED87DF276F1FCE005D76CF /* LocationOrderingVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEED87DE276F1FCE005D76CF /* LocationOrderingVM.swift */; };
@@ -1410,6 +1411,7 @@
 		AED6395D270CA3A800E5105B /* RoundedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedButton.swift; sourceTree = "<group>"; };
 		AED63960270CA46C00E5105B /* UIColor+Supla.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Supla.swift"; sourceTree = "<group>"; };
 		AEDC40B02857B60500FA8A9B /* SUPLA 12.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "SUPLA 12.xcdatamodel"; sourceTree = "<group>"; };
+		AEDFB81528C4C17B009E28F0 /* ScenesVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScenesVM.swift; sourceTree = "<group>"; };
 		AEED1FD02737F3BE00DE6289 /* ProfileManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileManager.swift; sourceTree = "<group>"; };
 		AEED1FD22737F55C00DE6289 /* SUPLA 11.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "SUPLA 11.xcdatamodel"; sourceTree = "<group>"; };
 		AEED1FD32737F71C00DE6289 /* MultiAccountProfileManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultiAccountProfileManager.swift; sourceTree = "<group>"; };
@@ -2336,6 +2338,7 @@
 			children = (
 				AEA4B36028BB943D005C4869 /* ScenesVC.swift */,
 				AEF6A5CF28BBD1EC0019684A /* SceneCell.swift */,
+				AEDFB81528C4C17B009E28F0 /* ScenesVM.swift */,
 			);
 			path = Scenes;
 			sourceTree = "<group>";
@@ -3003,6 +3006,7 @@
 				017554F622F1A62500EB58B7 /* HomePlusDetailView.m in Sources */,
 				013D1C6322CE75A3000C0784 /* SAElectricityChartHelper.m in Sources */,
 				406778551BCBF9F4008DD37F /* SectionCell.m in Sources */,
+				AEDFB81628C4C17B009E28F0 /* ScenesVM.swift in Sources */,
 				40B9ED3A1FAC79FC00403B1A /* SUPLA.xcdatamodeld in Sources */,
 				019D9E3225F27A4500881C99 /* SALocationCaptionEditor.m in Sources */,
 				40B610CC20C7E263002B762A /* SAUIChannelStatus.m in Sources */,

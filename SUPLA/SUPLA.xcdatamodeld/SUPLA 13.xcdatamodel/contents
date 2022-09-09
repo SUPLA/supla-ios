@@ -145,9 +145,10 @@
         <attribute name="sceneId" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="sortOrder" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="startedAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="usericon_id" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
         <relationship name="location" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="SALocation"/>
         <relationship name="profile" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="AuthProfileItem"/>
-        <relationship name="userIcon" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="SAUserIcon"/>
+        <relationship name="usericon" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="SAUserIcon"/>
     </entity>
     <elements>
         <element name="AuthProfileItem" positionX="-603" positionY="117" width="128" height="89"/>
@@ -168,6 +169,6 @@
         <element name="SATempHumidityMeasurementItem" positionX="-785.1148071289062" positionY="109.1131134033203" width="128" height="73"/>
         <element name="SAThermostatMeasurementItem" positionX="-651.9935302734375" positionY="306.6170959472656" width="128" height="90"/>
         <element name="SAUserIcon" positionX="-800.8446655273438" positionY="-222.4313354492188" width="128" height="133"/>
-        <element name="Scene" positionX="-612" positionY="-675" width="128" height="179"/>
+        <element name="Scene" positionX="-612" positionY="-675" width="128" height="194"/>
     </elements>
 </model>
