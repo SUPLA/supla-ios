@@ -16,7 +16,9 @@ class SceneCell: UITableViewCell {
             _caption.text = sceneData?.caption ?? ""
             _initiator.text = sceneData?.initiatorName ?? "pankracy"
             //_timer.text
-            if let icon = sceneData?.usericon?.uimage1 as? UIImage {
+            if let iconId = sceneData?.usericon_id, iconId < 20 {
+                _sceneIcon.image = UIImage(named: "scene_\(iconId)")
+            } else if let icon = sceneData?.usericon?.uimage1 as? UIImage {
                 _sceneIcon.image = icon
             }
         }
