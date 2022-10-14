@@ -584,6 +584,7 @@
 		010714E22656F6C3009C119F /* sk-SK */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "sk-SK"; path = "sk-SK.lproj/SAZWaveConfigurationWizardVC.strings"; sourceTree = "<group>"; };
 		010714E42656F6C7009C119F /* sl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sl; path = sl.lproj/SAZWaveConfigurationWizardVC.strings; sourceTree = "<group>"; };
 		010714E62656F6CA009C119F /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/SAZWaveConfigurationWizardVC.strings; sourceTree = "<group>"; };
+		010B8D1128F99FA7008142B8 /* cs */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = cs; path = cs.lproj/SAInfoVC.xib; sourceTree = "<group>"; };
 		010C877D249A4D55002FE526 /* SAInfoVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SAInfoVC.h; sourceTree = "<group>"; };
 		010C877E249A4D55002FE526 /* SAInfoVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SAInfoVC.m; sourceTree = "<group>"; };
 		010C8782249A6471002FE526 /* infoclose@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "infoclose@2x.png"; path = "Resources/Assets/Img/infoclose@2x.png"; sourceTree = "<group>"; };
@@ -3172,6 +3173,7 @@
 				010C8788249AA1E1002FE526 /* Base */,
 				015839742576AA40005E615D /* pl */,
 				016D0021266EB30E00E02C1F /* it */,
+				010B8D1128F99FA7008142B8 /* cs */,
 			);
 			name = SAInfoVC.xib;
 			sourceTree = "<group>";
