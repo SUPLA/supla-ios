@@ -588,6 +588,7 @@
 		010B8D1428F9A684008142B8 /* nl */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = nl; path = nl.lproj/SAInfoVC.xib; sourceTree = "<group>"; };
 		010B8D1728F9B35A008142B8 /* fr */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = fr; path = fr.lproj/SAInfoVC.xib; sourceTree = "<group>"; };
 		010B8D1A28F9BB27008142B8 /* de */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = de; path = de.lproj/SAInfoVC.xib; sourceTree = "<group>"; };
+		010B8D1D28F9BF3A008142B8 /* el */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = el; path = el.lproj/SAInfoVC.xib; sourceTree = "<group>"; };
 		010C877D249A4D55002FE526 /* SAInfoVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SAInfoVC.h; sourceTree = "<group>"; };
 		010C877E249A4D55002FE526 /* SAInfoVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SAInfoVC.m; sourceTree = "<group>"; };
 		010C8782249A6471002FE526 /* infoclose@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "infoclose@2x.png"; path = "Resources/Assets/Img/infoclose@2x.png"; sourceTree = "<group>"; };
@@ -3180,6 +3181,7 @@
 				010B8D1428F9A684008142B8 /* nl */,
 				010B8D1728F9B35A008142B8 /* fr */,
 				010B8D1A28F9BB27008142B8 /* de */,
+				010B8D1D28F9BF3A008142B8 /* el */,
 			);
 			name = SAInfoVC.xib;
 			sourceTree = "<group>";
