@@ -1,0 +1,18 @@
+
+/* Class = "UILabel"; text = "E-MAIL ADDRESS"; ObjectID = "MOE-IP-Z4M"; */
+"MOE-IP-Z4M.text" = "MORADA DE E-MAIL";
+
+/* Class = "UILabel"; text = "Incorrect Email Address or Password"; ObjectID = "btP-Nc-v0w"; */
+"btP-Nc-v0w.text" = "Credenciais incorretas";
+
+/* Class = "UIButton"; normalTitle = "CANCEL"; ObjectID = "cdk-TD-22T"; */
+"cdk-TD-22T.normalTitle" = "CANCELAR";
+
+/* Class = "UIButton"; normalTitle = "OK"; ObjectID = "h9i-6L-lC5"; */
+"h9i-6L-lC5.normalTitle" = "OK";
+
+/* Class = "UILabel"; text = "Enter superuser credentials"; ObjectID = "lEm-PA-nmW"; */
+"lEm-PA-nmW.text" = "Introduzir as credenciais do utilizador principal";
+
+/* Class = "UILabel"; text = "PASSWORD"; ObjectID = "sOL-lE-RQR"; */
+"sOL-lE-RQR.text" = "PALAVRA PASSE";
