@@ -868,6 +868,7 @@
 		01AB61E825B8E08E00DBEF74 /* SADigiglassController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SADigiglassController.m; sourceTree = "<group>"; };
 		01AB61EC25B8E0B400DBEF74 /* SADigiglassControllerTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SADigiglassControllerTests.m; sourceTree = "<group>"; };
 		01AC1AD52487C35E00F734DF /* SAColorBrightnessPickerTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SAColorBrightnessPickerTests.m; sourceTree = "<group>"; };
+		01AF443528FACBE90073FB88 /* nb */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = nb; path = nb.lproj/SAInfoVC.xib; sourceTree = "<group>"; };
 		01B216CF22AECB2F004E0596 /* SUPLA 3.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "SUPLA 3.xcdatamodel"; sourceTree = "<group>"; };
 		01B57DEA25BDA48F001F0DBC /* SAWizardVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SAWizardVC.h; sourceTree = "<group>"; };
 		01B57DEB25BDA48F001F0DBC /* SAWizardVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SAWizardVC.m; sourceTree = "<group>"; };
@@ -3244,6 +3245,7 @@
 				010B8D1A28F9BB27008142B8 /* de */,
 				010B8D1D28F9BF3A008142B8 /* el */,
 				010B8D2028FA0BCE008142B8 /* lt */,
+				01AF443528FACBE90073FB88 /* nb */,
 			);
 			name = SAInfoVC.xib;
 			sourceTree = "<group>";
