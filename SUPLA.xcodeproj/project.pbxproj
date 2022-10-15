@@ -871,6 +871,7 @@
 		01AF443528FACBE90073FB88 /* nb */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = nb; path = nb.lproj/SAInfoVC.xib; sourceTree = "<group>"; };
 		01AF443828FACF210073FB88 /* pt-PT */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = "pt-PT"; path = "pt-PT.lproj/SAInfoVC.xib"; sourceTree = "<group>"; };
 		01AF443B28FB4D200073FB88 /* sk-SK */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = "sk-SK"; path = "sk-SK.lproj/SAInfoVC.xib"; sourceTree = "<group>"; };
+		01AF443E28FB4FC00073FB88 /* sl */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = sl; path = sl.lproj/SAInfoVC.xib; sourceTree = "<group>"; };
 		01B216CF22AECB2F004E0596 /* SUPLA 3.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "SUPLA 3.xcdatamodel"; sourceTree = "<group>"; };
 		01B57DEA25BDA48F001F0DBC /* SAWizardVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SAWizardVC.h; sourceTree = "<group>"; };
 		01B57DEB25BDA48F001F0DBC /* SAWizardVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SAWizardVC.m; sourceTree = "<group>"; };
@@ -3250,6 +3251,7 @@
 				01AF443528FACBE90073FB88 /* nb */,
 				01AF443828FACF210073FB88 /* pt-PT */,
 				01AF443B28FB4D200073FB88 /* sk-SK */,
+				01AF443E28FB4FC00073FB88 /* sl */,
 			);
 			name = SAInfoVC.xib;
 			sourceTree = "<group>";
