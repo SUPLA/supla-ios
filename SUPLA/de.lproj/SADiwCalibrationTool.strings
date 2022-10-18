@@ -3,7 +3,7 @@
 "5I7-oA-HK8.text" = "Zustandsdiode";
 
 /* Class = "UILabel"; text = "Operating range"; ObjectID = "BLx-gK-IQD"; */
-"BLx-gK-IQD.text" = "Operating range";
+"BLx-gK-IQD.text" = "Arbeitsumfang";
 
 /* Class = "UIButton"; normalTitle = "BISTABLE"; ObjectID = "Hbe-vz-NMH"; */
 "Hbe-vz-NMH.normalTitle" = "BISTABIL";
