@@ -26,3 +26,6 @@
 #import "Scene+CoreDataClass.h"
 #import "Database.h"
 #import "SectionCell.h"
+#import "MGSwipeTableCell.h"
+#import "MGSwipeButton.h"
+#import "UIColor+SUPLA.h"
