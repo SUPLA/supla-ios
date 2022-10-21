@@ -12,7 +12,6 @@
  You should have received a copy of the GNU General Public License
  along with this program; if not, write to the Free Software
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
- 
  */
 
 "version" = "versión";
@@ -51,6 +50,10 @@
 "Service temporarily unavailable" = "Servicio temporalmente no disponible";
 "Bad credentials" = "Certificaciones incorrectas";
 "Client limit exceeded" = "Se ha superado el límite de aplicaciones del cliente";
+"Device disabled. Please log in to \"Supla Cloud\" and enable this device in “Smartphone” section of the website." = "El dispositivo está deshabilitado";
+"Access Identifier is disabled" = "El identificador de acceso está deshabilitado";
+"New client registration disabled. Please log in to \"Supla Cloud\" and enable \"New client registration\" in \"Smartphone\" section of the website." = "El registro está actualmente desactivado. Para activarlo, vaya a la pestaña \"Smartphones\" en la página \"Supla Cloud\"";
+"Client activation required. Please log in to \"Supla Cloud\" and assign an “Access ID” for this device in “Smartphone” section of the website." = "Este dispositivo no tiene un identificador de acceso asignado. Vaya a la página \"Supla Cloud\" y asigne el identificador adecuado en la pestaña \"Smartphones\".";
 "Incompatible server version" = "Versión del servidor incompatible";
 "Host not found. Make sure you are connected to the internet and that an account with the entered email address has been created." = "No se ha encontrado la dirección del servidor";
 "RGB Lighting" = "Alumbrado RGB";
@@ -66,6 +69,7 @@
 "Window opening sensor" = "Sensor de apertura de ventanas";
 "Add I/O device" = "Añadir dispositivo";
 "Donate" = "Donar";
+"Create an account" = "Crear cuenta";
 "Device registration availability information timeout!" = "¡Se ha superado el tiempo de espera para la información sobre la disponibilidad de registro de dispositivos!";
 "Next" = "Siguiente";
 "Start" = "Start";
@@ -79,18 +83,13 @@
 "The connected device is not compatible with this Wizard!" = "¡El dispositivo con el que se ha establecido la conexión no es compatible con este asistente!";
 "Configuration Failed!" = "¡Configuración no completada con éxito!";
 "Connection with the device cannot be set!" = "¡No se puede establecer una conexión con el dispositivo!";
+"Make sure, if the Wi-fi connection has been set for the I/O device." = "Asegúrate de que se haya establecido la conexión a la red WiFi del dispositivo ejecutivo.";
 "[Calibration]" = "[Calibración]";
 "Help" = "Ayuda";
+
 "Staircase timer" = "Automático de escalera";
 "https://cloud.supla.org/register" = "https://cloud.supla.org/register?lang=es";
 "https://en-forum.supla.org" = "https://es-forum.supla.org";
-
-"Create an account" = "Crear cuenta";
-"Device disabled. Please log in to \"Supla Cloud\" and enable this device in “Smartphone” section of the website." = "El dispositivo está deshabilitado";
-"Access Identifier is disabled" = "El identificador de acceso está deshabilitado";
-"New client registration disabled. Please log in to \"Supla Cloud\" and enable \"New client registration\" in \"Smartphone\" section of the website." = "El registro está actualmente desactivado. Para activarlo, vaya a la pestaña \"Smartphones\" en la página \"Supla Cloud\"";
-"Client activation required. Please log in to \"Supla Cloud\" and assign an “Access ID” for this device in “Smartphone” section of the website." = "Este dispositivo no tiene un identificador de acceso asignado. Vaya a la página \"Supla Cloud\" y asigne el identificador adecuado en la pestaña \"Smartphones\".";
-
 "Retrieving data from the server..." = "Descargando datos del servidor ...";
 "No chart data available." = "No hay datos para el gráfico.";
 "Electricity Meter" = "Contador de electricidad";
@@ -138,19 +137,78 @@
 "ON" = "ENCENDIDO";
 "OFF" = "APAGADO";
 "h" = "h";
-
 "Wind sensor" = "Velocidad del viento";
 "Weight sensor" = "Sensor de Peso";
 "Pressure sensor" = "Sensor de presión";
 "Rain sensor" = "Sensor de precipitaciones";
 
+"Close" = "Cerrar";
+"Valve" = "Válvula";
+"The valve has been closed in manual mode. Before you open it, make sure it has not been closed due to flooding. To turn off the warning, open the valve manually. Are you sure you want to open it from the application ?!" = "La válvula se cerró en modo manual. Antes de abrirlo, asegúrate de que no se haya cerrado debido a una inundación. Para desactivar la advertencia, abre la válvula manualmente. ¿Estás seguro de que quieres abrir la válvula desde la aplicación?";
+"The valve has been closed in manual mode. Before you open it, make sure it has not been closed due to flooding. To turn off the warning, open the valve manually." = "La válvula se cerró en modo manual. Antes de abrirlo, asegúrate de que no se haya cerrado debido a una inundación. Para desactivar la advertencia, abre la válvula manualmente.";
+"Warning" = "Advertencia";
+"Yes" = "Sí";
+"No" = "No";
+
 "Heat meter" = "Medidor de calor";
+"Arithmetic balance - Minutes" = "Balance aritmético – Minutos";
+"Arithmetic balance - Hours" = "Balance aritmético – Horas";
+"Arithmetic balance - Days" = "Balance aritmético – Días";
+"Arithmetic balance - Months" = "Balance aritmético – Meses";
+"Arithmetic balance - Years" = "Balance aritmético – Años";
+"Vector balance - Minutes" = "Balance vectorial – Minutos";
+"Vector balance - Hours" = "Balance vectorial – Horas";
+"Vector balance - Days" = "Balance vectorial – Días";
+"Vector balance - Months" = "Balance vectorial – Meses";
+"Vector balance - Years" = "Balance vectorial – Años";
+
+"Time exceeded. Try again." = "¡Se ha superado el tiempo! Inténtalo de nuevo.";
+"Are you sure you want to restore the default settings?" = "¿Está seguro de restaurar la cofiguración predeterminada?";
+"Default settings" = "Configuración por defecto";
+
+"Battery level" = "Nivel de batería";
+"Battery powered" = "Alimentación por batería";
+"Wifi signal strength" = "Intensidad de señal WiFi";
+"Bridge node - online" = "Nodo del puente – en línea";
+"Bridge node - signal strength" = "Nodo puente: intensidad de la señal";
+"Uptime" = "Tiempo de trabajo";
+"Connection uptime" = "Tiempo de conección";
+"Battery health" = "Duración de la batería";
+"Connection reset cause" = "Causa del reinicio de la conexión";
+"Light source lifespan" = "Vida útil de la fuente de luz";
+"Light source operating time" = "Tiempo de trabajo de la fuente de luz";
+"CHANGE THE LIGHT SOURCE LIFESPAN SETTINGS" = "CAMBIAR CONFIGURACIÓN DE VIDA ÚTIL DE LA FUENTE DE LUZ";
+"The lifespan of the uv radiator is %.02f%%. Schedule its replacement." = "La vida útil de la lámpara ultravioleta es% .02f %%. Programar su reemplazo.";
+"The lifespan of the uv radiator is %.02f%%. Replace the radiator." = "La vida útil de la lámpara ultravioleta es% .02f %%. Reemplacer el calentador.";
+"The lifespan of the light source is %.02f%%." = "La vida útil de la fuente de luz es% .02f %%.";
+"Timeout for enabling registration has expired!" = "¡Se ha superado el tiempo de espera de inicialización del registro!";
+"Please enter your Supla Cloud login details." = "Ingrese sus datos de inicio de sesión en cloud.supla.org.";
+"Enter superuser credentials" = "Ingrese las credenciales de superusuario";
+"Dimmer settings" = "Ajustes de atenuación";
+"Do you want to quit without saving?" = "¿Está seguro de que quiere salir sin guardar?";
+"Do you want to save the settings?" = "¿Quieres guardar los ajustes?";
+"Restoring default settings" = "Se están restaurando los ajustes predeterminados";
+"Mode change in progress" = "Cambio de modo en curso";
+"Roof window" = "Ventana de techo";
 
 "*Configuration mode is enabled by default on brand new products. It can also be enabled manually by pressing and holding CONFIG button or dimmer knob for around 5s.\n\n%@\n" = "Si tras conectar la alimentación el dispositivo no funciona en el modo de configuración, mantén presionada la tecla CONFIG durante al menos 5 segundos.\n\n%@\n";
 "Press Next to continue." = "Para continuar presiona Siguiente.";
 "Press START to start configuration." = "Presiona la tecla START para iniciar la configuración.";
 "I/O Device connection setting timeout!" = "¡Se ha superado el tiempo de espera para establecer la conexión con el dispositivo de entrada/salida!";
 "No I/O Devices found! Please check if your I/O Device is ON and in configuration mode." = "¡No se ha encontrado ningún dispositivo! Comprueba que el dispositivo que quiere configurar esta en el modo de configuración y a continuación inténtelo de nuevo.";
+"Make sure that the application has permissions to discover and connect to devices in the local network. This means that the \"iOS->Settings->SUPLA->Local network\" permission must be turned on for the wizard to work properly." = "Asegúrate de que la aplicación tenga permisos para descubrir y conectarse a dispositivos en la red local. Esto significa que el permiso \"iOS->Configuración-> SUPLA->Red local\" debe estar habilitado para que el asistente funcione correctamente.";
+"The glass sections are exposed for more than 20 hours, which may adversely affect their life. It is recommended to cover all sections for a minimum of 4 hours in order to regenerate them." = "Las secciones de vidrio están expuestas durante más de 20 horas, lo que puede tener un impacto negativo en su vida útil. Se recomienda cubrir todas las secciones durante un mínimo de 4 horas para regenerarlas.";
+"Planned regeneration is in progress." = "La regeneración planificada está en curso.";
+"Regeneration initiated after 20 hours of operation is in progress." = "La regeneración está en curso, iniciada después de 20 horas de funcionamiento.";
+"Incorrect Email Address or Password" = "Dirección de correo electrónico o contraseña incorrecta";
+"Channel Id" = "ID del Canal";
+"Back" = "Atrás";
+"The z-wave bridge is not responding. Check if the bridge is connected to the server." = "Puente z-wave no responde. Verifice si el puente está conectado con al servidor.";
+"Exit" = "Salir";
+"The waiting time for basic channel configuration data has expired." = "¡Se ha superado el tiempo de espera a los datos de configuración básica del canal!";
+"Channel name" = "Nombre del canal";
+"Location name" = "Nombre del lugar";
+"Default" = "Defecto";
 "No function" = "No hay función";
 "Gateway lock operation" = "Apertura del portillo";
 "Gate operation" = "Apertura/cierre de la puerta de entrada";
@@ -159,11 +217,12 @@
 "Temperature and humidity sensor" = "Sensor de temperatura y humedad";
 "Door lock operation" = "Apertura de la puerta";
 "Roller shutter operation" = "Apertura y cierre de las persianas";
+"Roof window operation" = "Apertura y cierre de la ventana de techo";
+"Roof window opening sensor" = "Sensor de apertura de la ventana de techo";
 "On/Off switch" = "Interruptor de alimentación";
 "Light switch" = "Interruptor de luz";
 "Weather Station" = "Estación meteorológica";
 "Thermostat" = "Termostato";
-"Valve" = "Válvula";
 "The waiting time for changing the channel caption has expired." = "¡Se ha superado el tiempo de espera al cambio de descripción del canal!";
 "The channel caption change failed. Code %i" = "No se ha podido cambiar la descripción del canal. Código %i";
 "You cannot change the function of a channel that belongs to a group." = "No se puede cambiar la función del canal que pertenece al grupo.";
@@ -171,7 +230,6 @@
 "You cannot change the function of a channel that is associated with a scene." = "No se puede cambiar la función del canal que está asociado con la escena.";
 "The channel function change failed. Code %i" = "No se ha podido cambiar la función del canal. Código %i";
 "The waiting time for changing the channel function has expired." = "¡Se ha superado el tiempo de espera al cambio de función del canal!";
-"The z-wave bridge is not responding. Check if the bridge is connected to the server." = "Puente z-wave no responde. Verifice si el puente está conectado con al servidor.";
 "Searching the z-wave network to build a list of devices." = "Búsqueda de red z-wave para crear una lista de dispositivos.";
 "The waiting time for the ID of the assigned z-wave device has expired." = "¡Se ha superado el tiempo de espera al identificador del dispositivo z-wave  asignado!";
 "Device response not as expected. Method: \"%@\" Code: %i" = "La respuesta del dispositivo no es la esperada. Método: \"%@\" Código: %i";
@@ -191,23 +249,47 @@
 "Timeout waiting for z-wave bridge response." = "¡Se ha superado el tiempo de espera a una respuesta del puente z-wave!";
 "Unexpected bridge response. Code: %i" = "Respuesta de puente inesperada. Código: %i";
 "Z-Wave bridge" = "Puente z-wave";
+"opened / closed the roof window" = "abrió / cerró la ventana de techo";
+"The power was turned off after the set threshold of the allowable current was exceeded." = "La alimentación se apagó después de que se excedió el umbral establecido de la corriente permitida.";
+"Are you sure you want to start calibration?" = "¿Está seguro de que desea iniciar la calibración?";
+"Calibration lost." = "La calibración falló.";
+"Calibration failed." = "Calibración perdida.";
+"Motor problem / Unexpected stop." = "Problema de motor / Parada inesperada.";
+"0: unknown" = "0: desconocido";
+"1: server timeout" = "1: sin respuesta del servidor";
+"2: Wi-Fi connection lost" = "2: Conexión WiFi perdida";
+"3: server connection reset" = "3: restablecimiento de la conexión del servidor";
+"Your account" = "Tu cuenta";
 "App Settings" = "Ajustes";
 "Channel height" = "Altura del canal";
 "Temperature unit" = "Unidad de temperatura";
 "Auto-hide buttons" = "Ocultación automática de botones";
+"Device setup" = "Configuración del dispositivo";
+"This device does not have any channels visible in the application. To finish configuration go to cloud.supla.org" = "Este dispositivo no tiene ningún canal visible en la aplicación. Ir a cloud.supla.org para completar la configuración";
+"I understand" = "entiendo";
+"Go to CLOUD" = "Ir a CLOUD";
+"The function of the channel associated with the action trigger cannot be changed." = "La función del canal asociado con el disparador de acción no se puede cambiar.";
 "Show ⓘ button" = "Mostrar botón ⓘ";
-"Your account" = "Tu cuenta";
-"NAME" = "NOMBRE";
 "Advanced settings" = "Avanzado";
 "Access ID" = "Identificación";
+"ACCESS IDENTIFIER" = "IDENTIFICACIÓN DE ACCESO";
+"E-MAIL ADDRESS" = "DIRECCIÓN DE CORREO ELECTRÓNICO";
+"SERVER ADDRESS" = "DIRECCIÓN DEL SERVIDOR";
+"PASSWORD" = "CONTRASEÑA";
 "In Access ID authentication mode you won't be able to use automatic Add device wizard. However you will still be able to add it by manual Add device procedure." = "El asistente para agregar dispositivos automáticamente no está disponible en el modo de autenticación de acceso de ID. Luego, los dispositivos se pueden agregar manualmente.";
 "Don't have an account in Supla Cloud yet?" = "¿Todavía no tienes una cuenta Supla Cloud?";
+"Create" = "Crear cuenta";
 "Location order" = "El orden del lugar";
 "Roller shutter %" = "Persianas enrollables %";
 "Opening" = "Aperturas";
 "Closing" = "Cierres";
+"Percent of opening" = "Porcentaje de apertura";
+"Percent of closing" = "Porcentaje de cierre";
+"Access Identifier inactive." = "Identificación de acceso inactiva.";
+"Your account" = "Tu cuenta";
 "Your accounts" = "Tus cuentas";
 "Accounts" = "Cuentas";
+"NAME" = "NOMBRE";
 "Tap the account to log in." = "Toca la cuenta para iniciar sesión";
 "Add new" = "Agregar nuevo";
 "active" = "activo";
@@ -216,45 +298,3 @@
 "Select active account" = "Seleccionar una cuenta activa";
 "Phase 1+2+3" = "Fase 1 + 2 + 3";
 "Phase %d" = "Fase %d";
-"Channel name" = "Nombre del canal";
-"Access Identifier inactive." = "Identificación de acceso inactiva.";
-"Warning" = "Advertencia";
-"Dimmer settings" = "Ajustes de atenuación";
-"Roof window opening sensor" = "Sensor de apertura de la ventana de techo";
-"Roof window" = "Ventana de techo";
-"Roof window operation" = "Apertura y cierre de la ventana de techo";
-"opened / closed the roof window" = "abrió / cerró la ventana de techo";
-"CHANGE THE LIGHT SOURCE LIFESPAN SETTINGS" = "CAMBIAR CONFIGURACIÓN DE VIDA ÚTIL DE LA FUENTE DE LUZ";
-"Channel Id" = "ID del Canal";
-"Bridge node - signal strength" = "Nodo puente: intensidad de la señal";
-"Connection uptime" = "Tiempo de conección";
-"Device setup" = "Configuración del dispositivo";
-"This device does not have any channels visible in the application. To finish configuration go to cloud.supla.org" = "Este dispositivo no tiene ningún canal visible en la aplicación. Ir a cloud.supla.org para completar la configuración";
-"I understand" = "entiendo";
-"Go to CLOUD" = "Ir a CLOUD";
-"Make sure that the application has permissions to discover and connect to devices in the local network. This means that the \"iOS->Settings->SUPLA->Local network\" permission must be turned on for the wizard to work properly." = "Asegúrate de que la aplicación tenga permisos para descubrir y conectarse a dispositivos en la red local. Esto significa que el permiso \"iOS->Configuración-> SUPLA->Red local\" debe estar habilitado para que el asistente funcione correctamente.";
-"Calibration lost." = "La calibración falló.";
-"Calibration failed." = "Calibración perdida.";
-"Motor problem / Unexpected stop." = "Problema de motor / Parada inesperada.";
-"The power was turned off after the set threshold of the allowable current was exceeded." = "La alimentación se apagó después de que se excedió el umbral establecido de la corriente permitida.";
-"The valve has been closed in manual mode. Before you open it, make sure it has not been closed due to flooding. To turn off the warning, open the valve manually." = "La válvula se cerró en modo manual. Antes de abrirlo, asegúrate de que no se haya cerrado debido a una inundación. Para desactivar la advertencia, abre la válvula manualmente.";
-"The lifespan of the uv radiator is %.02f%%. Replace the radiator." = "La vida útil de la lámpara ultravioleta es% .02f %%. Reemplacer el calentador.";
-"The lifespan of the uv radiator is %.02f%%. Schedule its replacement." = "La vida útil de la lámpara ultravioleta es% .02f %%. Programar su reemplazo.";
-"The lifespan of the light source is %.02f%%." = "La vida útil de la fuente de luz es% .02f %%.";
-"Planned regeneration is in progress." = "La regeneración planificada está en curso.";
-"Regeneration initiated after 20 hours of operation is in progress." = "La regeneración está en curso, iniciada después de 20 horas de funcionamiento.";
-"The glass sections are exposed for more than 20 hours, which may adversely affect their life. It is recommended to cover all sections for a minimum of 4 hours in order to regenerate them." = "Las secciones de vidrio están expuestas durante más de 20 horas, lo que puede tener un impacto negativo en su vida útil. Se recomienda cubrir todas las secciones durante un mínimo de 4 horas para regenerarlas.";
-"Back" = "Atrás";
-"Percent of opening" = "Porcentaje de apertura";
-"Percent of closing" = "Porcentaje de cierre";
-"Are you sure you want to start calibration?" = "¿Está seguro de que desea iniciar la calibración?";
-"Incorrect Email Address or Password" = "Dirección de correo electrónico o contraseña incorrecta";
-"The valve has been closed in manual mode. Before you open it, make sure it has not been closed due to flooding. To turn off the warning, open the valve manually. Are you sure you want to open it from the application ?!" = "La válvula se cerró en modo manual. Antes de abrirlo, asegúrate de que no se haya cerrado debido a una inundación. Para desactivar la advertencia, abre la válvula manualmente. ¿Estás seguro de que quieres abrir la válvula desde la aplicación?";
-"Location name" = "Nombre del lugar";
-"Make sure, if the Wi-fi connection has been set for the I/O device." = "Asegúrate de que se haya establecido la conexión a la red WiFi del dispositivo ejecutivo.";
-"Default settings" = "Configuración por defecto";
-"0: unknown" = "0: desconocido";
-"1: server timeout" = "1: sin respuesta del servidor";
-"2: Wi-Fi connection lost" = "2: Conexión WiFi perdida";
-"3: server connection reset" = "3: restablecimiento de la conexión del servidor";
-"The function of the channel associated with the action trigger cannot be changed." = "La función del canal asociado con el disparador de acción no se puede cambiar.";

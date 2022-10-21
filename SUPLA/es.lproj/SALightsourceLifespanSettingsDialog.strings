@@ -1,6 +1,6 @@
 
 /* Class = "UILabel"; text = "Light source lifespan (hours)"; ObjectID = "XfF-Xe-aOn"; */
-"XfF-Xe-aOn.text" = "Light source lifespan (hours)";
+"XfF-Xe-aOn.text" = "Durción de la luz (horas)";
 
 /* Class = "UIButton"; normalTitle = "OK"; ObjectID = "XmM-Te-dni"; */
 "XmM-Te-dni.normalTitle" = "OK";
@@ -12,4 +12,4 @@
 "hKG-BE-jQV.text" = "Ajustes";
 
 /* Class = "UILabel"; text = "Reset the light source usage counter"; ObjectID = "ykW-dh-QDo"; */
-"ykW-dh-QDo.text" = "Reset the light source usage counter";
+"ykW-dh-QDo.text" = "Resetear el contador de uso de la fuente de luz";
