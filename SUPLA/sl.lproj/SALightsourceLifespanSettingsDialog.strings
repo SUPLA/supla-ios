@@ -1,6 +1,6 @@
 
 /* Class = "UILabel"; text = "Light source lifespan (hours)"; ObjectID = "XfF-Xe-aOn"; */
-"XfF-Xe-aOn.text" = "Light source lifespan (hours)";
+"XfF-Xe-aOn.text" = "Življenjska doba svetlobnega vira (ure)";
 
 /* Class = "UIButton"; normalTitle = "OK"; ObjectID = "XmM-Te-dni"; */
 "XmM-Te-dni.normalTitle" = "OK";
@@ -12,4 +12,4 @@
 "hKG-BE-jQV.text" = "Nastavitve";
 
 /* Class = "UILabel"; text = "Reset the light source usage counter"; ObjectID = "ykW-dh-QDo"; */
-"ykW-dh-QDo.text" = "Reset the light source usage counter";
+"ykW-dh-QDo.text" = "Ponastavite števec porabe svetlobnega vira";

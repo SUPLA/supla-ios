@@ -1,30 +1,30 @@
 
 /* Class = "UIButton"; normalTitle = "NO"; ObjectID = "0Qk-BM-JC5"; */
-"0Qk-BM-JC5.normalTitle" = "NO";
+"0Qk-BM-JC5.normalTitle" = "NE";
 
 /* Class = "UIButton"; normalTitle = "MODE 3"; ObjectID = "5NZ-KI-0CD"; */
-"5NZ-KI-0CD.normalTitle" = "MODE 3";
+"5NZ-KI-0CD.normalTitle" = "3 REŽIMAS";
 
 /* Class = "UILabel"; text = "Boost"; ObjectID = "9CN-AY-yB1"; */
-"9CN-AY-yB1.text" = "Boost";
+"9CN-AY-yB1.text" = "Stiprinimas";
 
 /* Class = "UIButton"; normalTitle = "MODE 2"; ObjectID = "Mhd-rn-O8m"; */
-"Mhd-rn-O8m.normalTitle" = "MODE 2";
+"Mhd-rn-O8m.normalTitle" = "2 REŽIMAS";
 
 /* Class = "UILabel"; text = "Dimming mode"; ObjectID = "PYA-89-fe5"; */
-"PYA-89-fe5.text" = "Dimming mode";
+"PYA-89-fe5.text" = "Šviesos reguliavimo režimas";
 
 /* Class = "UIButton"; normalTitle = "OPERATING RANGE"; ObjectID = "WeS-eH-Y2T"; */
 "WeS-eH-Y2T.normalTitle" = "DARBO DIAPAZONAS";
 
 /* Class = "UIButton"; normalTitle = "YES"; ObjectID = "b2V-rw-W6a"; */
-"b2V-rw-W6a.normalTitle" = "YES";
+"b2V-rw-W6a.normalTitle" = "TAIP";
 
 /* Class = "UILabel"; text = "Status LED"; ObjectID = "nOa-zt-iSl"; */
 "nOa-zt-iSl.text" = "Statuso diodas";
 
 /* Class = "UIButton"; normalTitle = "MODE 1"; ObjectID = "rvo-jc-7PF"; */
-"rvo-jc-7PF.normalTitle" = "MODE 1";
+"rvo-jc-7PF.normalTitle" = "1 REŽIMAS";
 
 /* Class = "UIButton"; normalTitle = "BOOST"; ObjectID = "tMB-hx-Fnq"; */
 "tMB-hx-Fnq.normalTitle" = "SUSTIPRINIMAS";
