@@ -22,6 +22,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 -(void)editCaptionWithRecordId:(int)recordId;
 @property (readonly)int recordId;
+- (NSString*) getTitle;
+- (NSString*) getCaption;
+- (void) applyChanges:(NSString*)caption;
 @end
 
 NS_ASSUME_NONNULL_END

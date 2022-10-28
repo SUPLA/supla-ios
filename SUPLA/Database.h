@@ -130,6 +130,7 @@ typedef NS_ENUM(NSUInteger, GroupBy) {
 - (void)deleteObject:(NSManagedObject *)object;
 
 - (BOOL)updateScene: (void*)TODO;
+- (Scene*)fetchSceneById: (int)scene_id;
 - (nonnull NSArray<Scene*> *)fetchScenes;
 - (BOOL)updateSceneUserIcons;
 @end

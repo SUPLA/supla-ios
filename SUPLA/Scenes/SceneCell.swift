@@ -38,6 +38,8 @@ class SceneCell: MGSwipeTableCell {
     private var _initiator: UILabel!
     private var _sceneIcon: UIImageView!
     private let _statusIndicators = [UIView(), UIView()]
+    
+    private var _longPressGr: UILongPressGestureRecognizer!
 
     private let _executeButton = MGSwipeButton(title: Strings.Scenes.ActionButtons.execute,
                                                backgroundColor: .onLine())
@@ -131,6 +133,9 @@ class SceneCell: MGSwipeTableCell {
             .isActive = true
         _caption.bottomAnchor.constraint(equalTo: _iconContainer.bottomAnchor)
             .isActive = true
+        _longPressGr = UILongPressGestureRecognizer(target: self,
+                                                    action: #selector(onLongPress(_:)))
+        contentView.addGestureRecognizer(_longPressGr)
         
         _iconContainer.widthAnchor.constraint(greaterThanOrEqualTo: _caption.widthAnchor,
                                               multiplier: 1).isActive = true
@@ -176,6 +181,17 @@ class SceneCell: MGSwipeTableCell {
         }
     }
     
+
+    @objc private func onLongPress(_ gr: UILongPressGestureRecognizer) {
+        guard let delegate = delegate as? SceneCellDelegate,
+            let scene = sceneData else { return }
+        if _caption.point(inside: gr.location(in: _caption), with: nil) {
+            delegate.onCaptionLongPress(scene)
+        } else {
+            delegate.onAreaLongPress(scene)
+        }
+    }
+    
     // MARK: - swipe buttons handling
     @objc private func onButtonTap(_ btn: MGSwipeButton) {
         btn.backgroundColor = .btnTouched()
@@ -188,6 +204,7 @@ class SceneCell: MGSwipeTableCell {
             hideSwipe(animated: true)
         }
     }
+    
     
     // MARK: - scaling support
     private enum ScalingLimit {
@@ -209,3 +226,7 @@ class SceneCell: MGSwipeTableCell {
     }
 }
 
+protocol SceneCellDelegate: MGSwipeTableCellDelegate {
+    func onAreaLongPress(_ scn: Scene)
+    func onCaptionLongPress(_ scn: Scene)
+}

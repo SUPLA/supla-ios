@@ -41,6 +41,7 @@ class ScenesVC: UIViewController {
     private let _disposeBag = DisposeBag()
     
     private var _viewModel: ScenesVM!
+    private var _sceneCaptionEditor: SceneCaptionEditor?
 
     private var _sections = [Section]()
     
@@ -104,6 +105,7 @@ extension ScenesVC: UITableViewDataSource {
                                                  for: indexPath) as! SceneCell
         cell.scaleFactor = scaleFactor
         cell.sceneData = _sections[indexPath.section].scenes[indexPath.row]
+        cell.delegate = self
         
         return cell
     }
@@ -156,5 +158,26 @@ extension ScenesVC: SASectionCellDelegate {
 
     func sectionCellTouch(_ section: SASectionCell) {
         _sectionToggle.on(.next(section.tag))
+    }
+}
+
+extension ScenesVC: SceneCellDelegate {
+    func onAreaLongPress(_ scn: Scene) {
+        print("reorder")
+    }
+    
+    func onCaptionLongPress(_ scn: Scene) {
+        guard _sceneCaptionEditor == nil else { return }
+        _sceneCaptionEditor = SceneCaptionEditor(scn)
+        _sceneCaptionEditor?.delegate = self
+        _sceneCaptionEditor?.edit()
+    }
+}
+
+
+extension ScenesVC: SceneCaptionEditorDelegate {
+    func sceneCaptionEditorDidFinish(_ ed: SceneCaptionEditor) {
+        _sceneCaptionEditor = nil
+        _tableView.reloadData()
     }
 }

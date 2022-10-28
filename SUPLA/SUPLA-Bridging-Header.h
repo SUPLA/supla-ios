@@ -29,3 +29,4 @@
 #import "MGSwipeTableCell.h"
 #import "MGSwipeButton.h"
 #import "UIColor+SUPLA.h"
+#import "SACaptionEditor.h"
