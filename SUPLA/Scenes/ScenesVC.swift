@@ -51,6 +51,7 @@ class ScenesVC: UIViewController {
     override func loadView() {
         _tableView.translatesAutoresizingMaskIntoConstraints = false
         self.view = _tableView
+        
     }
     
     override func viewDidLoad() {
@@ -59,13 +60,14 @@ class ScenesVC: UIViewController {
         _tableView.dataSource = self
         _tableView.delegate = self
         _tableView.separatorStyle = .none
+        _tableView.dragInteractionEnabled = true
+        _tableView.dragDelegate = self
+        _tableView.dropDelegate = self
 
         if #available(iOS 15.0, *) {
             _tableView.sectionHeaderTopPadding = 0
         }
-        if #available(iOS 11.0, *) {
-            _tableView.dragInteractionEnabled = false
-        }
+
         _tableView.register(SceneCell.self,
                             forCellReuseIdentifier: _sceneCellId)
         _tableView.register(UINib(nibName: "SectionCell", bundle: nil),
@@ -106,6 +108,7 @@ extension ScenesVC: UITableViewDataSource {
         cell.scaleFactor = scaleFactor
         cell.sceneData = _sections[indexPath.section].scenes[indexPath.row]
         cell.delegate = self
+        cell.setup(for: tableView)
         
         return cell
     }
@@ -152,6 +155,54 @@ extension ScenesVC: UITableViewDelegate {
         separator.bottomAnchor.constraint(equalTo: cell.bottomAnchor,
                                           constant: -2.0 * separatorHeight).isActive = true
     }
+}
+
+extension ScenesVC: UITableViewDragDelegate {
+    func tableView(_ tableView: UITableView, itemsForBeginning session: UIDragSession,
+                   at indexPath: IndexPath) -> [UIDragItem] {
+        let prov = NSItemProvider()
+        let dragItem = UIDragItem(itemProvider: prov)
+        session.localContext = indexPath
+        dragItem.localObject = indexPath
+        return [dragItem]
+    }
+    
+    
+}
+
+extension ScenesVC: UITableViewDropDelegate {
+    func tableView(_ tableView: UITableView,
+                   dropSessionDidUpdate session: UIDropSession,
+                   withDestinationIndexPath path: IndexPath?) -> UITableViewDropProposal {
+        guard let a = session.localDragSession?.localContext as? IndexPath,
+              let b = path, a.section == b.section else {
+            return UITableViewDropProposal(operation: .forbidden, intent: .unspecified)
+        }
+        return UITableViewDropProposal(operation: .move,
+                                       intent: .insertAtDestinationIndexPath)
+    }
+    
+    func tableView(_ tableView: UITableView,
+                   performDropWith coordinator: UITableViewDropCoordinator) {
+        guard let a = coordinator.items.first?.sourceIndexPath,
+              let b = coordinator.destinationIndexPath,
+              a.section == b.section else { return }
+
+        var sect = _sections[a.section]
+        let tmp = sect.scenes[a.row]
+        let dir = a.row < b.row ? 1:-1
+        var si = a.row
+        while dir*si < dir*b.row {
+            sect.scenes[si] = sect.scenes[si+dir]
+            si += dir
+        }
+        sect.scenes[b.row] = tmp
+        _sections[a.section] = sect
+        _viewModel.sectionSorter.onNext(_sections)
+            
+    }
+    
+    
 }
 
 extension ScenesVC: SASectionCellDelegate {

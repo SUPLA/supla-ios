@@ -31,7 +31,7 @@ class SceneCell: MGSwipeTableCell {
     private let eltHorizSpacing = CGFloat(6)
     private let swipeButtonWidth = CGFloat(105)
     private static let statusIndicatorDim = CGFloat(12)
-
+    
     private var _iconContainer: UIView!
     private var _caption: UILabel!
     private var _timer: UILabel!
@@ -65,6 +65,17 @@ class SceneCell: MGSwipeTableCell {
         super.setSelected(false, animated: false)
 
         // Configure the view for the selected state
+    }
+    
+    func setup(for tableView: UITableView) {
+        guard let recognizers = tableView.gestureRecognizers else { return }
+        for tvgr in recognizers {
+            if let tvgr = tvgr as? UILongPressGestureRecognizer {
+                tvgr.require(toFail: _longPressGr)
+            }
+        }
+        tableView.addGestureRecognizer(_longPressGr)
+
     }
 
     // MARK: - configure cell layout
@@ -135,7 +146,7 @@ class SceneCell: MGSwipeTableCell {
             .isActive = true
         _longPressGr = UILongPressGestureRecognizer(target: self,
                                                     action: #selector(onLongPress(_:)))
-        contentView.addGestureRecognizer(_longPressGr)
+        _longPressGr.delegate = self
         
         _iconContainer.widthAnchor.constraint(greaterThanOrEqualTo: _caption.widthAnchor,
                                               multiplier: 1).isActive = true
@@ -192,6 +203,16 @@ class SceneCell: MGSwipeTableCell {
         }
     }
     
+    override func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer,
+                                    shouldReceive touch: UITouch) -> Bool {
+        guard gestureRecognizer == _longPressGr else {
+            return true
+        }
+        
+        return _caption.point(inside: touch.location(in: _caption),
+                              with: nil)
+    }
+
     // MARK: - swipe buttons handling
     @objc private func onButtonTap(_ btn: MGSwipeButton) {
         btn.backgroundColor = .btnTouched()

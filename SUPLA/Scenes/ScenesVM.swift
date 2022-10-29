@@ -38,6 +38,7 @@ class ScenesVM: NSObject {
     private let _bitCollapse = Int16(0x4)
 
     var sections = BehaviorRelay<[Section]>(value: [])
+    var sectionSorter = PublishSubject<[Section]>()
 
     @objc
     init(database: SADatabase) {
@@ -51,6 +52,10 @@ class ScenesVM: NSObject {
         inputs.sectionVisibilityToggle.subscribe { [weak self] in
             self?.toggleSectionCollapsed($0)
         }.disposed(by: _disposeBag)
+        
+        sectionSorter.subscribe { [weak self] in
+            self?.persistSortedSections($0)
+        }.disposed(by: _disposeBag)
     }
     
     func isSectionCollapsed(_ sec: Int) -> Bool {
@@ -62,7 +67,16 @@ class ScenesVM: NSObject {
         reloadScenes()
     }
     
-
+    private func persistSortedSections(_ secs: [Section]) {
+        for s in secs {
+            var so = Int32(0)
+            for scn in s.scenes {
+                scn.sortOrder = so
+                so += 1
+            }
+        }
+        sections.accept(secs)
+    }
     
     private func reloadScenes() {
         var loc: _SALocation?
