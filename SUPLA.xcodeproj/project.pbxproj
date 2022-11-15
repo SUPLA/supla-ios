@@ -783,6 +783,24 @@
 		017A3CAC23635DF6004AD1FC /* wind@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "wind@3x.png"; path = "Resources/Assets/Img/wind@3x.png"; sourceTree = "<group>"; };
 		017A3CAD23635DF7004AD1FC /* pressure@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "pressure@2x.png"; path = "Resources/Assets/Img/pressure@2x.png"; sourceTree = "<group>"; };
 		017A3CAE23635DF7004AD1FC /* pressure@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "pressure@3x.png"; path = "Resources/Assets/Img/pressure@3x.png"; sourceTree = "<group>"; };
+		017D392229244A66005F45FA /* uk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = uk; path = uk.lproj/HomePlusDetailViewGroupCell.strings; sourceTree = "<group>"; };
+		017D392329244A66005F45FA /* uk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = uk; path = uk.lproj/SAZWaveConfigurationWizardVC.strings; sourceTree = "<group>"; };
+		017D392429244A67005F45FA /* uk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = uk; path = uk.lproj/SALightsourceLifespanSettingsDialog.strings; sourceTree = "<group>"; };
+		017D392529244A67005F45FA /* uk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = uk; path = uk.lproj/SASuperuserAuthorizationDialog.strings; sourceTree = "<group>"; };
+		017D392629244A68005F45FA /* uk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = uk; path = uk.lproj/SAZWaveWakeupSettingsDialog.strings; sourceTree = "<group>"; };
+		017D392729244A68005F45FA /* uk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = uk; path = uk.lproj/TempHumidityDetailView.strings; sourceTree = "<group>"; };
+		017D392829244A6A005F45FA /* uk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = uk; path = uk.lproj/AboutVC.strings; sourceTree = "<group>"; };
+		017D392929244A6A005F45FA /* uk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = uk; path = uk.lproj/RGBWDetail.strings; sourceTree = "<group>"; };
+		017D392A29244A6B005F45FA /* uk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = uk; path = uk.lproj/ImpulseCounterDetailView.strings; sourceTree = "<group>"; };
+		017D392B29244A6B005F45FA /* uk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = uk; path = uk.lproj/ElectricityMeterDetailView.strings; sourceTree = "<group>"; };
+		017D392C29244A6B005F45FA /* uk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = uk; path = uk.lproj/HomePlusDetailView.strings; sourceTree = "<group>"; };
+		017D392D29244A6C005F45FA /* uk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = uk; path = uk.lproj/RSDetail.strings; sourceTree = "<group>"; };
+		017D392E29244A6C005F45FA /* uk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = uk; path = uk.lproj/AddWizardVC.strings; sourceTree = "<group>"; };
+		017D392F29244A6C005F45FA /* uk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = uk; path = uk.lproj/AuthVC.strings; sourceTree = "<group>"; };
+		017D393129244A6D005F45FA /* uk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = uk; path = uk.lproj/SAVLCalibrationTool.strings; sourceTree = "<group>"; };
+		017D393229244A6D005F45FA /* uk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = uk; path = uk.lproj/SADiwCalibrationTool.strings; sourceTree = "<group>"; };
+		017D393329244A6D005F45FA /* uk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = uk; path = uk.lproj/Localizable.strings; sourceTree = "<group>"; };
+		017D393429244AF5005F45FA /* uk */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = uk; path = uk.lproj/SAInfoVC.xib; sourceTree = "<group>"; };
 		0180440924C2001A005E53EB /* channelstateinfo@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "channelstateinfo@3x.png"; path = "Resources/Assets/Img/channelstateinfo@3x.png"; sourceTree = "<group>"; };
 		0180440B24C254CF005E53EB /* SAChannelStatePopup.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SAChannelStatePopup.xib; sourceTree = "<group>"; };
 		0182FCA22464691C00270CDC /* channel_warning_level2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "channel_warning_level2@2x.png"; path = "Resources/Assets/Img/channel_warning_level2@2x.png"; sourceTree = "<group>"; };
@@ -2537,6 +2555,7 @@
 				nb,
 				el,
 				nl,
+				uk,
 			);
 			mainGroup = 401CA1B01BA067DB00117AF4;
 			productRefGroup = 401CA1BA1BA067DB00117AF4 /* Products */;
@@ -3211,6 +3230,7 @@
 				0107149C2656EC60009C119F /* sk-SK */,
 				0107149E2656EC61009C119F /* sl */,
 				010714A02656EC62009C119F /* es */,
+				017D392629244A68005F45FA /* uk */,
 			);
 			name = SAZWaveWakeupSettingsDialog.xib;
 			sourceTree = "<group>";
@@ -3233,6 +3253,7 @@
 				010714E22656F6C3009C119F /* sk-SK */,
 				010714E42656F6C7009C119F /* sl */,
 				010714E62656F6CA009C119F /* es */,
+				017D392329244A66005F45FA /* uk */,
 			);
 			name = SAZWaveConfigurationWizardVC.xib;
 			sourceTree = "<group>";
@@ -3254,6 +3275,7 @@
 				01AF443B28FB4D200073FB88 /* sk-SK */,
 				01AF443E28FB4FC00073FB88 /* sl */,
 				012FF47628FB5CC900D421FD /* es */,
+				017D393429244AF5005F45FA /* uk */,
 			);
 			name = SAInfoVC.xib;
 			sourceTree = "<group>";
@@ -3276,6 +3298,7 @@
 				F40AA5CC28AE92CA00DE173D /* nb */,
 				F40AA5D528AEA49C00DE173D /* nl */,
 				F40AA5DE28AEB5F700DE173D /* sl */,
+				017D393129244A6D005F45FA /* uk */,
 			);
 			name = SAVLCalibrationTool.xib;
 			sourceTree = "<group>";
@@ -3297,6 +3320,7 @@
 				F40AA5CA28AE8BC900DE173D /* nb */,
 				F40AA5D328AE9AED00DE173D /* nl */,
 				F40AA5DC28AEAD9E00DE173D /* sl */,
+				017D392429244A67005F45FA /* uk */,
 			);
 			name = SALightsourceLifespanSettingsDialog.xib;
 			sourceTree = "<group>";
@@ -3319,6 +3343,7 @@
 				F40AA5D028AE944200DE173D /* nb */,
 				F40AA5D728AEA4C500DE173D /* nl */,
 				F40AA5E028AEB63300DE173D /* sl */,
+				017D393229244A6D005F45FA /* uk */,
 			);
 			name = SADiwCalibrationTool.xib;
 			sourceTree = "<group>";
@@ -3341,6 +3366,7 @@
 				017A3CA023633A80004AD1FC /* sk-SK */,
 				017A3CA223633A81004AD1FC /* sl */,
 				017A3CA423633A82004AD1FC /* es */,
+				017D392729244A68005F45FA /* uk */,
 			);
 			name = TempHumidityDetailView.xib;
 			sourceTree = "<group>";
@@ -3362,6 +3388,7 @@
 				F40AA5CE28AE93D800DE173D /* nb */,
 				F40AA5D928AEA5CF00DE173D /* nl */,
 				F40AA5E228AEB6F600DE173D /* sl */,
+				017D392529244A67005F45FA /* uk */,
 			);
 			name = SASuperuserAuthorizationDialog.xib;
 			sourceTree = "<group>";
@@ -3404,6 +3431,7 @@
 				019F4CC62354DC4700286139 /* sk-SK */,
 				019F4CC82354DC4800286139 /* sl */,
 				019F4CCA2354DC4900286139 /* es */,
+				017D392A29244A6B005F45FA /* uk */,
 			);
 			name = ImpulseCounterDetailView.xib;
 			sourceTree = "<group>";
@@ -3426,6 +3454,7 @@
 				01BF82D82347569500C9EE9F /* nb */,
 				01BF82E1234756A000C9EE9F /* el */,
 				01BF82EA234756B600C9EE9F /* nl */,
+				017D392229244A66005F45FA /* uk */,
 			);
 			name = HomePlusDetailViewGroupCell.xib;
 			sourceTree = "<group>";
@@ -3448,6 +3477,7 @@
 				01BF82D52347569400C9EE9F /* nb */,
 				01BF82DE2347569F00C9EE9F /* el */,
 				01BF82E7234756B500C9EE9F /* nl */,
+				017D392C29244A6B005F45FA /* uk */,
 			);
 			name = HomePlusDetailView.xib;
 			sourceTree = "<group>";
@@ -3470,6 +3500,7 @@
 				01BF82DD2347569F00C9EE9F /* el */,
 				01BF82E6234756B500C9EE9F /* nl */,
 				0117290024746D8100DAF1D0 /* pl */,
+				017D392B29244A6B005F45FA /* uk */,
 			);
 			name = ElectricityMeterDetailView.xib;
 			sourceTree = "<group>";
@@ -3492,6 +3523,7 @@
 				01BF82E0234756A000C9EE9F /* el */,
 				01BF82E9234756B600C9EE9F /* nl */,
 				0196E81D258CD2480016E8DC /* pl */,
+				017D392E29244A6C005F45FA /* uk */,
 			);
 			name = AddWizardVC.xib;
 			sourceTree = "<group>";
@@ -3500,6 +3532,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				40844D8A1FB0DF3B00432AA0 /* Base */,
+				017D392F29244A6C005F45FA /* uk */,
 			);
 			name = AuthVC.xib;
 			sourceTree = "<group>";
@@ -3522,6 +3555,7 @@
 				017A08BB249969A000DCF5BD /* sk-SK */,
 				017A08BD249969A100DCF5BD /* sl */,
 				017A08BF249969A200DCF5BD /* es */,
+				017D392929244A6A005F45FA /* uk */,
 			);
 			name = RGBWDetail.xib;
 			sourceTree = "<group>";
@@ -3544,6 +3578,7 @@
 				01BF82D22347569400C9EE9F /* nb */,
 				01BF82DB2347569F00C9EE9F /* el */,
 				01BF82E4234756B500C9EE9F /* nl */,
+				017D392829244A6A005F45FA /* uk */,
 			);
 			name = AboutVC.xib;
 			sourceTree = "<group>";
@@ -3566,6 +3601,7 @@
 				01BF82D92347569500C9EE9F /* nb */,
 				01BF82E2234756A000C9EE9F /* el */,
 				01BF82EB234756B600C9EE9F /* nl */,
+				017D393329244A6D005F45FA /* uk */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";
@@ -3588,6 +3624,7 @@
 				01BF82D62347569400C9EE9F /* nb */,
 				01BF82DF2347569F00C9EE9F /* el */,
 				01BF82E8234756B500C9EE9F /* nl */,
+				017D392D29244A6C005F45FA /* uk */,
 			);
 			name = RSDetail.xib;
 			sourceTree = "<group>";
