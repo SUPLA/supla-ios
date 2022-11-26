@@ -1,15 +1,15 @@
 
 /* Class = "UILabel"; text = "Status LED"; ObjectID = "5I7-oA-HK8"; */
-"5I7-oA-HK8.text" = "Status LED";
+"5I7-oA-HK8.text" = "Світлодіодний індикатор стану";
 
 /* Class = "UILabel"; text = "Operating range"; ObjectID = "BLx-gK-IQD"; */
-"BLx-gK-IQD.text" = "Operating range";
+"BLx-gK-IQD.text" = "Робочий діапазон";
 
 /* Class = "UIButton"; normalTitle = "BISTABLE"; ObjectID = "Hbe-vz-NMH"; */
-"Hbe-vz-NMH.normalTitle" = "BISTABLE";
+"Hbe-vz-NMH.normalTitle" = "БІСТАБІЛЬНИЙ";
 
 /* Class = "UILabel"; text = "Input"; ObjectID = "MT9-II-b0z"; */
-"MT9-II-b0z.text" = "Input";
+"MT9-II-b0z.text" = "Вхід";
 
 /* Class = "UIButton"; normalTitle = "MONOSTABLE"; ObjectID = "grA-oG-zkU"; */
-"grA-oG-zkU.normalTitle" = "MONOSTABLE";
+"grA-oG-zkU.normalTitle" = "МОНОСТАБІЛЬНИЙ";
