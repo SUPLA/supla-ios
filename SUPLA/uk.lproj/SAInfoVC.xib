@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21225" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina6_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21207"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -33,7 +33,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ia2-Fh-Qbb">
-                    <rect key="frame" x="54" y="298" width="320" height="330"/>
+                    <rect key="frame" x="54" y="268" width="320" height="390"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VgA-cP-YPd" userLabel="Header">
                             <rect key="frame" x="0.0" y="0.0" width="320" height="70"/>
@@ -60,8 +60,8 @@
                                         <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="1" id="h6F-d5-AGL"/>
                                     </constraints>
                                 </view>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Information" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XIr-wJ-ncG">
-                                    <rect key="frame" x="10" y="17.666666666666686" width="151.33333333333334" height="35"/>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Інформація" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XIr-wJ-ncG">
+                                    <rect key="frame" x="10" y="17.666666666666686" width="150" height="35"/>
                                     <fontDescription key="fontDescription" name="Quicksand-Regular" family="Quicksand" pointSize="28"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
@@ -79,7 +79,7 @@
                                 <constraint firstItem="XIr-wJ-ncG" firstAttribute="centerY" secondItem="VgA-cP-YPd" secondAttribute="centerY" id="r7g-sW-LF6"/>
                             </constraints>
                         </view>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Dimmer control" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4OO-1Q-8uX">
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Регулювання яскравості освітлення" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4OO-1Q-8uX">
                             <rect key="frame" x="10" y="80" width="300" height="20"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="20" id="ubh-h6-mW0"/>
@@ -88,40 +88,41 @@
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Control the dimmer by moving the control button on the brightness slider / wheel." lineBreakMode="wordWrap" numberOfLines="6" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7Ve-N3-qrQ">
-                            <rect key="frame" x="10" y="102" width="300" height="40"/>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Щоб змінити рівень яскравості, проведіть пальцем по повзунку або колесу яскравості." lineBreakMode="wordWrap" numberOfLines="6" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7Ve-N3-qrQ">
+                            <rect key="frame" x="10" y="102" width="300" height="60"/>
                             <constraints>
-                                <constraint firstAttribute="height" constant="40" id="m2s-v3-Rz0"/>
+                                <constraint firstAttribute="height" constant="60" id="m2s-v3-Rz0"/>
                             </constraints>
                             <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="14"/>
                             <color key="textColor" red="0.37643486259999998" green="0.37649342419999998" blue="0.37642204759999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="rgbwpoweroff.png" translatesAutoresizingMaskIntoConstraints="NO" id="Emy-SK-Ytc">
-                            <rect key="frame" x="6" y="152" width="25" height="25"/>
+                            <rect key="frame" x="6" y="172" width="25" height="25"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="25" id="E8i-CR-gvV"/>
                                 <constraint firstAttribute="height" constant="25" id="OXn-cX-CO1"/>
                             </constraints>
                         </imageView>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Switch on and off by tapping the on/off button. The dimmer will remember the previous brightness setting." lineBreakMode="wordWrap" numberOfLines="6" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tLa-FJ-5go">
-                            <rect key="frame" x="10" y="179" width="300" height="60"/>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="wordWrap" numberOfLines="6" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tLa-FJ-5go">
+                            <rect key="frame" x="10" y="199" width="300" height="100"/>
                             <constraints>
-                                <constraint firstAttribute="height" constant="60" id="b8t-sZ-xtE"/>
+                                <constraint firstAttribute="height" constant="100" id="b8t-sZ-xtE"/>
                             </constraints>
+                            <string key="text">За допомогою кнопки ввімкнути/вимкнути освітлення можна вимкнути або повністю ввімкнути. Регулятор освітлення запам'ятає рівень яскравості перед тим, як вимкнути освітлення.</string>
                             <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="14"/>
                             <color key="textColor" red="0.37643486259999998" green="0.37649342419999998" blue="0.37642204759999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="rgbwsettings.png" translatesAutoresizingMaskIntoConstraints="NO" id="EsP-j2-C1t">
-                            <rect key="frame" x="6" y="249" width="25" height="25"/>
+                            <rect key="frame" x="6" y="309" width="25" height="25"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="25" id="Yq8-Kv-JCx"/>
                                 <constraint firstAttribute="width" constant="25" id="r9H-If-E5v"/>
                             </constraints>
                         </imageView>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tap the config icon to adjust dimming settings." lineBreakMode="wordWrap" numberOfLines="6" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="udP-oX-Wat">
-                            <rect key="frame" x="10" y="276" width="300" height="40"/>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Щоб налаштувати параметри регулятора освітлення, натисніть кнопку налаштувань." lineBreakMode="wordWrap" numberOfLines="6" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="udP-oX-Wat">
+                            <rect key="frame" x="10" y="336" width="300" height="40"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="40" id="pZP-UI-niX"/>
                             </constraints>
@@ -151,7 +152,7 @@
                         <constraint firstItem="VgA-cP-YPd" firstAttribute="top" secondItem="ia2-Fh-Qbb" secondAttribute="top" id="mMY-TD-Bye"/>
                         <constraint firstItem="tLa-FJ-5go" firstAttribute="top" secondItem="Emy-SK-Ytc" secondAttribute="bottom" constant="2" id="mVg-Jt-HaW"/>
                         <constraint firstItem="EsP-j2-C1t" firstAttribute="leading" secondItem="ia2-Fh-Qbb" secondAttribute="leading" constant="6" id="n8j-NB-Z0Y"/>
-                        <constraint firstAttribute="height" constant="330" id="u9A-WI-CGi"/>
+                        <constraint firstAttribute="height" constant="390" id="u9A-WI-CGi"/>
                         <constraint firstItem="VgA-cP-YPd" firstAttribute="leading" secondItem="ia2-Fh-Qbb" secondAttribute="leading" id="zbf-A4-UPQ"/>
                     </constraints>
                 </view>
@@ -195,8 +196,8 @@
                                         <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="1" id="WeM-3Y-hq4"/>
                                     </constraints>
                                 </view>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Information" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fMA-es-G9m">
-                                    <rect key="frame" x="10" y="17.666666666666657" width="151.33333333333334" height="35"/>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Інформація" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fMA-es-G9m">
+                                    <rect key="frame" x="10" y="17.666666666666657" width="150" height="35"/>
                                     <fontDescription key="fontDescription" name="Quicksand-Regular" family="Quicksand" pointSize="28"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
@@ -218,19 +219,19 @@
                             <rect key="frame" x="0.0" y="70" width="320" height="370"/>
                             <subviews>
                                 <view contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RTC-1M-aaw">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="650"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="900"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="More information on can be found at" lineBreakMode="wordWrap" numberOfLines="6" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="A9M-mh-nPk">
-                                            <rect key="frame" x="10" y="581" width="300" height="20"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Додаткову інформацію про регулятор освітлення можна знайти на" lineBreakMode="wordWrap" numberOfLines="6" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="A9M-mh-nPk">
+                                            <rect key="frame" x="10" y="819" width="300" height="40"/>
                                             <constraints>
-                                                <constraint firstAttribute="height" constant="20" id="J4I-H7-VwK"/>
+                                                <constraint firstAttribute="height" constant="40" id="J4I-H7-VwK"/>
                                             </constraints>
                                             <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="14"/>
                                             <color key="textColor" red="0.37643486259999998" green="0.37649342419999998" blue="0.37642204759999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7fk-lS-lub">
-                                            <rect key="frame" x="10" y="603" width="300" height="30"/>
+                                            <rect key="frame" x="10" y="861" width="300" height="30"/>
                                             <state key="normal" title="https://www.varilight.co.uk/vps001">
                                                 <color key="titleColor" red="0.00028004610790000002" green="0.67520374059999999" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                             </state>
@@ -238,8 +239,8 @@
                                                 <action selector="varlilightUrlButtonTouch:" destination="-1" eventType="touchDown" id="ewp-Vc-crS"/>
                                             </connections>
                                         </button>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="The LED is always off, unless the device is in wifi configuration mode (AP Mode)." lineBreakMode="wordWrap" numberOfLines="7" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="H16-6M-1bj">
-                                            <rect key="frame" x="45" y="527.66666666666663" width="265" height="38.333333333333371"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Світлодіодний індикатор завжди вимкнений, якщо пристрій не перебуває в режимі налаштування Wi-Fi (режим AP)." lineBreakMode="wordWrap" numberOfLines="7" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="H16-6M-1bj">
+                                            <rect key="frame" x="45" y="727.66666666666674" width="265" height="76.333333333333371"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="20" id="haO-Ja-wNf"/>
                                             </constraints>
@@ -247,8 +248,8 @@
                                             <color key="textColor" red="0.37643486259999998" green="0.37649342419999998" blue="0.37642204759999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="The LED is off if there is a connection to the server." lineBreakMode="wordWrap" numberOfLines="7" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xe0-nk-NzR">
-                                            <rect key="frame" x="45" y="484.33333333333337" width="265" height="38.333333333333371"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="вітлодіод не світиться, коли встановлено з’єднання з сервером." lineBreakMode="wordWrap" numberOfLines="7" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xe0-nk-NzR">
+                                            <rect key="frame" x="45" y="684.33333333333337" width="265" height="38.333333333333371"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="20" id="ubi-0q-nlu"/>
                                             </constraints>
@@ -256,7 +257,7 @@
                                             <color key="textColor" red="0.37643486259999998" green="0.37649342419999998" blue="0.37642204759999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Dimming Mode / Operating Range" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LXk-or-azu">
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Режим затемнення / Робочий діапазон" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LXk-or-azu">
                                             <rect key="frame" x="10" y="10" width="300" height="20"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="20" id="gO5-5o-v5w"/>
@@ -266,27 +267,27 @@
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="wordWrap" numberOfLines="6" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hjF-xx-wmR">
-                                            <rect key="frame" x="10" y="32" width="300" height="115"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="wordWrap" numberOfLines="9" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hjF-xx-wmR">
+                                            <rect key="frame" x="10" y="32" width="300" height="185"/>
                                             <constraints>
-                                                <constraint firstAttribute="height" constant="115" id="K2S-yN-z48"/>
+                                                <constraint firstAttribute="height" constant="185" id="K2S-yN-z48"/>
                                             </constraints>
-                                            <string key="text">Fine tune the performance of your LED lights by selecting a different dimming mode or change the operating range by moving the dark grey sliders around the wheel to adjust the minimum and maximum brightness levels.</string>
+                                            <mutableString key="text">Відрегулюйте ефективність затемнення світлодіодного освітлення, вибравши відповідний режим. Також відрегулюйте робочий діапазон регулятора освітлення, встановивши мінімальний і максимальний рівень яскравості. Мінімальне і максимальне значення можна встановити, пересуваючи повзунки, розташовані по обидва боки колеса.</mutableString>
                                             <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="14"/>
                                             <color key="textColor" red="0.37643486259999998" green="0.37649342419999998" blue="0.37642204759999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Mode 1: V-Pro Trailing-Edge Dimming" lineBreakMode="wordWrap" numberOfLines="6" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v5A-Vl-lQN">
-                                            <rect key="frame" x="10" y="157" width="300" height="20"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Режим 1: Затемнення по спадаючій лінії (V-Pro)" lineBreakMode="wordWrap" numberOfLines="6" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v5A-Vl-lQN">
+                                            <rect key="frame" x="10" y="227" width="300" height="40"/>
                                             <constraints>
-                                                <constraint firstAttribute="height" constant="20" id="o1L-iZ-Ms0"/>
+                                                <constraint firstAttribute="height" constant="40" id="o1L-iZ-Ms0"/>
                                             </constraints>
                                             <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="14"/>
                                             <color key="textColor" red="0.37643486259999998" green="0.37649342419999998" blue="0.37642204759999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Mode 2: Leading-Edge Dimming" lineBreakMode="wordWrap" numberOfLines="6" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vr4-XF-HzG">
-                                            <rect key="frame" x="10" y="182" width="300" height="20"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Режим 2: затемнення по висхідній лінії" lineBreakMode="wordWrap" numberOfLines="6" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vr4-XF-HzG">
+                                            <rect key="frame" x="10" y="272" width="300" height="20"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="20" id="7lr-ih-raE"/>
                                             </constraints>
@@ -294,17 +295,17 @@
                                             <color key="textColor" red="0.37643486259999998" green="0.37649342419999998" blue="0.37642204759999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Mode 3: Alternative Trailing-Edge Dimming" lineBreakMode="wordWrap" numberOfLines="6" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2DG-ft-MTM">
-                                            <rect key="frame" x="10" y="207" width="300" height="20"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Режим 3: Затемнення по спадаючій лінії (альтернатива)" lineBreakMode="wordWrap" numberOfLines="6" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2DG-ft-MTM">
+                                            <rect key="frame" x="10" y="297" width="300" height="40"/>
                                             <constraints>
-                                                <constraint firstAttribute="height" constant="20" id="MhK-YS-Y7L"/>
+                                                <constraint firstAttribute="height" constant="40" id="MhK-YS-Y7L"/>
                                             </constraints>
                                             <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="14"/>
                                             <color key="textColor" red="0.37643486259999998" green="0.37649342419999998" blue="0.37642204759999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Boost" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2bB-RD-kAw">
-                                            <rect key="frame" x="10" y="242" width="300" height="20"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Посилення" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2bB-RD-kAw">
+                                            <rect key="frame" x="10" y="352" width="300" height="20"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="20" id="tV8-p3-tqh"/>
                                             </constraints>
@@ -313,17 +314,17 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="wordWrap" numberOfLines="12" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0xu-kG-dd0">
-                                            <rect key="frame" x="10" y="264" width="300" height="140"/>
+                                            <rect key="frame" x="10" y="374" width="300" height="230"/>
                                             <constraints>
-                                                <constraint firstAttribute="height" constant="140" id="isD-Fm-DJY"/>
+                                                <constraint firstAttribute="height" constant="230" id="isD-Fm-DJY"/>
                                             </constraints>
-                                            <string key="text">This feature helps LED lamps switch on at low brightness settings by providing an initial boost. Move the dark grey slider around the wheel to increase the boost level at switch-on, indicated by the green line. After the boost the brightness will return to the previously set level.</string>
+                                            <mutableString key="text">Ця функція допомагає ввімкнути світлодіодне освітлення на низькому рівні яскравості, забезпечуючи початкове підвищення (посилення) рівня яскравості. Переміщаючи темно-сірий повзунок по колу, ви можете збільшити або зменшити рівень посилення, який позначено зеленою лінією. Під час увімкнення освітлення рівень яскравості буде збільшено (підвищено) до встановленого значення, а потім повернеться до рівня, запам’ятованого до вимкнення освітлення.</mutableString>
                                             <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="14"/>
                                             <color key="textColor" red="0.37643486259999998" green="0.37649342419999998" blue="0.37642204759999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Status LED" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eA6-IA-uy5">
-                                            <rect key="frame" x="10" y="419" width="300" height="20"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Світлодіод стану" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eA6-IA-uy5">
+                                            <rect key="frame" x="10" y="619" width="300" height="20"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="20" id="gLm-K5-HAA"/>
                                                 <constraint firstAttribute="height" constant="20" id="x5x-vd-fSb"/>
@@ -333,14 +334,14 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ledon.png" translatesAutoresizingMaskIntoConstraints="NO" id="Zjw-YE-e2T">
-                                            <rect key="frame" x="10" y="444" width="25" height="25"/>
+                                            <rect key="frame" x="10" y="644" width="25" height="25"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="25" id="Ya2-56-8ff"/>
                                                 <constraint firstAttribute="height" constant="25" id="yTw-XU-HE9"/>
                                             </constraints>
                                         </imageView>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="The LED is on if there is a connection to the server." lineBreakMode="wordWrap" numberOfLines="7" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Z2E-W9-Fly">
-                                            <rect key="frame" x="45" y="441" width="265" height="38.333333333333314"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Світлодіод світиться, коли встановлено з’єднання з сервером." lineBreakMode="wordWrap" numberOfLines="7" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Z2E-W9-Fly">
+                                            <rect key="frame" x="45" y="641" width="265" height="38.333333333333371"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="20" id="seI-Sc-JiG"/>
                                             </constraints>
@@ -349,14 +350,14 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ledoff.png" translatesAutoresizingMaskIntoConstraints="NO" id="ie0-2a-dpL">
-                                            <rect key="frame" x="10" y="484.33333333333337" width="25" height="25"/>
+                                            <rect key="frame" x="10" y="684.33333333333337" width="25" height="25"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="25" id="1Xc-Il-1JI"/>
                                                 <constraint firstAttribute="width" constant="25" id="e7m-4r-dKG"/>
                                             </constraints>
                                         </imageView>
                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ledalwaysoff.png" translatesAutoresizingMaskIntoConstraints="NO" id="lnF-zx-GSf">
-                                            <rect key="frame" x="10" y="527.66666666666663" width="25" height="25"/>
+                                            <rect key="frame" x="10" y="727.66666666666674" width="25" height="25"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="25" id="l51-kf-Z2x"/>
                                                 <constraint firstAttribute="height" constant="25" id="xQH-2f-fSs"/>
@@ -409,7 +410,7 @@
                                         <constraint firstAttribute="trailing" secondItem="vr4-XF-HzG" secondAttribute="trailing" constant="10" id="q8h-Jl-GIN"/>
                                         <constraint firstItem="H16-6M-1bj" firstAttribute="top" secondItem="lnF-zx-GSf" secondAttribute="top" id="qfw-FQ-8kj"/>
                                         <constraint firstItem="A9M-mh-nPk" firstAttribute="leading" secondItem="RTC-1M-aaw" secondAttribute="leading" constant="10" id="umc-aK-Cbt"/>
-                                        <constraint firstAttribute="height" constant="650" id="vpr-Sj-bya"/>
+                                        <constraint firstAttribute="height" constant="900" id="vpr-Sj-bya"/>
                                         <constraint firstItem="Zjw-YE-e2T" firstAttribute="leading" secondItem="RTC-1M-aaw" secondAttribute="leading" constant="10" id="wkw-ra-Srh"/>
                                         <constraint firstItem="Z2E-W9-Fly" firstAttribute="leading" secondItem="Zjw-YE-e2T" secondAttribute="trailing" constant="10" id="ze8-tb-nYj"/>
                                     </constraints>
@@ -483,8 +484,8 @@
                                         <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="1" id="ugb-vT-XJe"/>
                                     </constraints>
                                 </view>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Information" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jyz-3V-0h0">
-                                    <rect key="frame" x="10" y="17.666666666666657" width="151.66666666666666" height="35"/>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Інформація" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jyz-3V-0h0">
+                                    <rect key="frame" x="10" y="17.666666666666657" width="150" height="35"/>
                                     <fontDescription key="fontDescription" name="Quicksand-Regular" family="Quicksand" pointSize="28"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
@@ -506,9 +507,9 @@
                             <rect key="frame" x="0.0" y="70" width="320" height="370"/>
                             <subviews>
                                 <view contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zf4-lU-j8x">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="770"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="850"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Operating Range" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WQT-if-7jN">
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Робочий діапазон" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WQT-if-7jN">
                                             <rect key="frame" x="10" y="10" width="300" height="20"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="20" id="Vd1-AV-exW"/>
@@ -519,17 +520,17 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="wordWrap" numberOfLines="6" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TPI-HM-L6F">
-                                            <rect key="frame" x="10" y="31.999999999999993" width="300" height="76.333333333333314"/>
+                                            <rect key="frame" x="10" y="32.000000000000007" width="300" height="114.66666666666669"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="10" id="NMZ-1o-UGb"/>
                                             </constraints>
-                                            <string key="text">Change the operating range by moving the dark grey sliders around the wheel to adjust the minimum and maximum brightness levels.</string>
+                                            <string key="text">Відрегулюйте робочий діапазон регулятора яскравості, встановивши мінімальний і максимальний рівень яскравості. Мінімальне і максимальне значення можна встановити, пересуваючи повзунки, розташовані по обидва боки колеса.</string>
                                             <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="14"/>
                                             <color key="textColor" red="0.37643486259999998" green="0.37649342419999998" blue="0.37642204759999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Input options" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7Pp-Da-Sq6">
-                                            <rect key="frame" x="10" y="123.33333333333331" width="94.666666666666671" height="20"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Параметри введення" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7Pp-Da-Sq6">
+                                            <rect key="frame" x="10" y="161.66666666666669" width="157.33333333333334" height="20"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="20" id="8j6-X3-iT8"/>
                                                 <constraint firstAttribute="height" constant="20" id="GDb-ms-DAR"/>
@@ -539,7 +540,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="infinity.png" translatesAutoresizingMaskIntoConstraints="NO" id="iWU-gr-W7t">
-                                            <rect key="frame" x="10" y="145.33333333333331" width="25" height="25"/>
+                                            <rect key="frame" x="10" y="183.66666666666669" width="25" height="25"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="25" id="4EB-Ao-zTH"/>
                                                 <constraint firstAttribute="width" constant="25" id="rDy-pB-14V"/>
@@ -548,17 +549,17 @@
                                             </constraints>
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="wordWrap" numberOfLines="14" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yBd-Ha-yfd">
-                                            <rect key="frame" x="45" y="145.33333333333331" width="260" height="267"/>
+                                            <rect key="frame" x="45" y="183.66666666666669" width="260" height="267"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="10" id="PhP-GE-WGq"/>
                                             </constraints>
-                                            <string key="text">This option changes the behavior of the input to which the monostable button is connected. In case the option is disabled, the dimmer stops brightening the light when the full brightness level is reached and in case of dimming, at the lowest brightness level. Enabling this option will switch to the minimum level as soon as the maximum brightness is reached, and in the case of dimming to the maximum value, as soon as the minimum is reached. Brightening / dimming will continue as long as the button is pressed.</string>
+                                            <mutableString key="text">Параметр змінює поведінку входу, до якого підключено моностабільну кнопку. Коли опція вимкнена, регулятор припиняє процес освітлення, коли досягає максимального рівня яскравості, а в разі затемнення – коли досягає мінімального рівня. Увімкнення цієї опції призведе до переходу на мінімальний рівень одразу після досягнення максимальної яскравості, а у разі затемнення до максимального значення – відразу після досягнення мінімальної. Затухання триватиме, поки натиснуто кнопку.</mutableString>
                                             <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="14"/>
                                             <color key="textColor" red="0.37643486259999998" green="0.37649342419999998" blue="0.37642204759999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="p100.png" translatesAutoresizingMaskIntoConstraints="NO" id="7aQ-nh-Uuu">
-                                            <rect key="frame" x="15" y="422.33333333333337" width="25" height="25"/>
+                                            <rect key="frame" x="15" y="460.66666666666663" width="25" height="25"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="25" id="9Pa-Iy-sPD"/>
                                                 <constraint firstAttribute="height" relation="lessThanOrEqual" constant="25" id="Br4-K4-eFh"/>
@@ -569,17 +570,17 @@
                                             </constraints>
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="wordWrap" numberOfLines="9" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NGz-cs-cov">
-                                            <rect key="frame" x="50" y="422.33333333333337" width="255" height="171.66666666666663"/>
+                                            <rect key="frame" x="50" y="460.66666666666669" width="255" height="171.66666666666669"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="10" id="pC0-h9-cJx"/>
                                             </constraints>
-                                            <string key="text">The option changes the behavior of the dimmer when the lighting is turned on by using the bistable button. If the option is enabled, the dimmer will set the full brightness level right after turning on the lighting. If the option is disabled, the dimmer will set the brightness level saved before turning off the lighting.</string>
+                                            <mutableString key="text">Опція змінює поведінку регулятора освітлення при включенні освітлення за допомогою бістабільної кнопки. Якщо опція включена, регулятор встановить максимальний рівень яскравості відразу після включення освітлення. Якщо параметр вимкнено, регулятор встановить рівень яскравості, який запам’ятався перед вимкненням освітлення. </mutableString>
                                             <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="14"/>
                                             <color key="textColor" red="0.37643486259999998" green="0.37649342419999998" blue="0.37642204759999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="The LED is always off, unless the device is in wifi configuration mode (AP Mode)." lineBreakMode="wordWrap" numberOfLines="7" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6dw-or-dvd">
-                                            <rect key="frame" x="45" y="717.66666666666674" width="265" height="38.333333333333371"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Світлодіодний індикатор завжди вимкнений, якщо пристрій не перебуває в режимі налаштування Wi-Fi (режим AP)." lineBreakMode="wordWrap" numberOfLines="7" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6dw-or-dvd">
+                                            <rect key="frame" x="45" y="756" width="265" height="76.333333333333371"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="20" id="XG5-BW-lsq"/>
                                             </constraints>
@@ -587,8 +588,8 @@
                                             <color key="textColor" red="0.37643486259999998" green="0.37649342419999998" blue="0.37642204759999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="The LED is off if there is a connection to the server." lineBreakMode="wordWrap" numberOfLines="7" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hEW-P7-NJd">
-                                            <rect key="frame" x="45" y="674.33333333333337" width="265" height="38.333333333333371"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Світлодіод не світиться, коли встановлено з’єднання з сервером." lineBreakMode="wordWrap" numberOfLines="7" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hEW-P7-NJd">
+                                            <rect key="frame" x="45" y="712.66666666666663" width="265" height="38.333333333333371"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="20" id="nNU-ey-Y2e"/>
                                             </constraints>
@@ -596,8 +597,8 @@
                                             <color key="textColor" red="0.37643486259999998" green="0.37649342419999998" blue="0.37642204759999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Status LED" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i9I-y3-jJD">
-                                            <rect key="frame" x="10" y="609" width="300" height="20"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Світлодіод стану" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i9I-y3-jJD">
+                                            <rect key="frame" x="10" y="647.33333333333337" width="300" height="20"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="20" id="1Zp-ah-EoL"/>
                                                 <constraint firstAttribute="height" constant="20" id="se2-fp-XGH"/>
@@ -607,14 +608,14 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ledon.png" translatesAutoresizingMaskIntoConstraints="NO" id="qlp-tg-Z3q">
-                                            <rect key="frame" x="10" y="634" width="25" height="25"/>
+                                            <rect key="frame" x="10" y="672.33333333333337" width="25" height="25"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="25" id="3GS-zh-Ubv"/>
                                                 <constraint firstAttribute="height" constant="25" id="Dqh-67-2zX"/>
                                             </constraints>
                                         </imageView>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="The LED is on if there is a connection to the server." lineBreakMode="wordWrap" numberOfLines="7" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7JR-5s-b4L">
-                                            <rect key="frame" x="45" y="631" width="265" height="38.333333333333371"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Світлодіод світиться, коли встановлено з’єднання з сервером." lineBreakMode="wordWrap" numberOfLines="7" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7JR-5s-b4L">
+                                            <rect key="frame" x="45" y="669.33333333333337" width="265" height="38.333333333333371"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="20" id="0o3-J6-ISb"/>
                                             </constraints>
@@ -623,14 +624,14 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ledoff.png" translatesAutoresizingMaskIntoConstraints="NO" id="LiP-6R-WPN">
-                                            <rect key="frame" x="10" y="674.33333333333337" width="25" height="25"/>
+                                            <rect key="frame" x="10" y="712.66666666666663" width="25" height="25"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="25" id="NZc-UB-fDI"/>
                                                 <constraint firstAttribute="width" constant="25" id="Waf-xA-yey"/>
                                             </constraints>
                                         </imageView>
                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ledalwaysoff.png" translatesAutoresizingMaskIntoConstraints="NO" id="wvr-16-Qyg">
-                                            <rect key="frame" x="10" y="717.66666666666674" width="25" height="25"/>
+                                            <rect key="frame" x="10" y="756" width="25" height="25"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="25" id="8UY-Dg-6It"/>
                                                 <constraint firstAttribute="width" constant="25" id="BX2-v4-gBh"/>
@@ -649,7 +650,7 @@
                                         <constraint firstItem="hEW-P7-NJd" firstAttribute="leading" secondItem="7JR-5s-b4L" secondAttribute="leading" id="FUV-lq-n6X"/>
                                         <constraint firstItem="hEW-P7-NJd" firstAttribute="top" secondItem="LiP-6R-WPN" secondAttribute="top" id="FpX-g5-kAv"/>
                                         <constraint firstItem="7aQ-nh-Uuu" firstAttribute="top" secondItem="yBd-Ha-yfd" secondAttribute="bottom" constant="10" id="HFA-OX-HiX"/>
-                                        <constraint firstAttribute="height" constant="770" id="IHz-gd-1qP"/>
+                                        <constraint firstAttribute="height" constant="850" id="IHz-gd-1qP"/>
                                         <constraint firstItem="qlp-tg-Z3q" firstAttribute="top" secondItem="i9I-y3-jJD" secondAttribute="bottom" constant="5" id="KhC-YZ-UFQ"/>
                                         <constraint firstItem="7Pp-Da-Sq6" firstAttribute="top" secondItem="TPI-HM-L6F" secondAttribute="bottom" constant="15" id="LuY-HT-3zZ"/>
                                         <constraint firstAttribute="trailing" secondItem="WQT-if-7jN" secondAttribute="trailing" constant="10" id="M0v-cg-T8v"/>
