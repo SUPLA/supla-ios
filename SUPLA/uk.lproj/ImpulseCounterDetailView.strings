@@ -3,28 +3,28 @@
 "37U-Zx-YA3.text" = "10 EUR";
 
 /* Class = "UILabel"; text = "The cost in the current month"; ObjectID = "BZV-5X-lZ7"; */
-"BZV-5X-lZ7.text" = "The cost in the current month";
+"BZV-5X-lZ7.text" = "Вартість поточного місяця";
 
 /* Class = "UILabel"; text = "Meter value"; ObjectID = "Kfn-dN-K0a"; */
-"Kfn-dN-K0a.text" = "Meter value";
+"Kfn-dN-K0a.text" = "Стан лічильника";
 
 /* Class = "UILabel"; text = "••••••••••"; ObjectID = "Ywd-JH-SeJ"; */
 "Ywd-JH-SeJ.text" = "••••••••••";
 
 /* Class = "UITextField"; text = "Minutes"; ObjectID = "btZ-qJ-HXI"; */
-"btZ-qJ-HXI.text" = "Minutes";
+"btZ-qJ-HXI.text" = "Хвилини";
 
 /* Class = "UIButton"; normalTitle = "Button"; ObjectID = "hlZ-mm-clg"; */
 "hlZ-mm-clg.normalTitle" = "Button";
 
 /* Class = "UILabel"; text = "Consumption in the current month"; ObjectID = "psK-hZ-nQF"; */
-"psK-hZ-nQF.text" = "Consumption in the current month";
+"psK-hZ-nQF.text" = "Споживання за поточний місяць";
 
 /* Class = "UITextField"; text = "Last 24 hours"; ObjectID = "pvG-5N-Xhd"; */
-"pvG-5N-Xhd.text" = "Last 24 hours";
+"pvG-5N-Xhd.text" = "Останні 24 години";
 
 /* Class = "UILabel"; text = "Total cost"; ObjectID = "qz5-1q-e4C"; */
-"qz5-1q-e4C.text" = "Total cost";
+"qz5-1q-e4C.text" = "Загальна вартість";
 
 /* Class = "UILabel"; text = "10 EUR"; ObjectID = "v3P-DR-NxZ"; */
 "v3P-DR-NxZ.text" = "10 EUR";

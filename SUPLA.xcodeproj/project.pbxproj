@@ -1819,6 +1819,7 @@
 		F4CD6F8C28ABE477006DAAD7 /* el */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = el; path = el.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		F4CD6F8E28ABFBFB006DAAD7 /* pt-PT */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-PT"; path = "pt-PT.lproj/SALightsourceLifespanSettingsDialog.strings"; sourceTree = "<group>"; };
 		F4CD6F9028ABFD70006DAAD7 /* pt-PT */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-PT"; path = "pt-PT.lproj/SASuperuserAuthorizationDialog.strings"; sourceTree = "<group>"; };
+		F4D3907C29324B570066014D /* uk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = uk; path = uk.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -4033,6 +4034,7 @@
 				F40AA5D128AE948A00DE173D /* nb */,
 				F40AA5DA28AEA69A00DE173D /* nl */,
 				F40AA5E328AEB77800DE173D /* sl */,
+				F4D3907C29324B570066014D /* uk */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";

@@ -1,9 +1,9 @@
 
 /* Class = "UILabel"; text = "Press Next to continue."; ObjectID = "3bd-Xm-Rok"; */
-"3bd-Xm-Rok.text" = "Press Next to continue.";
+"3bd-Xm-Rok.text" = "Для продовження натисніть Далі.";
 
 /* Class = "UILabel"; text = "Device parameters"; ObjectID = "8Da-uK-N1d"; */
-"8Da-uK-N1d.text" = "Device parameters";
+"8Da-uK-N1d.text" = "Дані пристрою";
 
 /* Class = "UILabel"; text = "MAC"; ObjectID = "CZ4-G4-iFJ"; */
 "CZ4-G4-iFJ.text" = "MAC";
@@ -12,37 +12,37 @@
 "DT8-Dx-8R4.text" = "If Assisted Configuration fails turn it off and click Start to configure the new I/O Device  manually.";
 
 /* Class = "UILabel"; text = "Last state"; ObjectID = "HRH-kq-mbQ"; */
-"HRH-kq-mbQ.text" = "Last state";
+"HRH-kq-mbQ.text" = "Попередній статус";
 
 /* Class = "UILabel"; text = "Enter Wi-Fi Network name and password to use with new I/O Device"; ObjectID = "Igv-nx-eY7"; */
-"Igv-nx-eY7.text" = "Enter Wi-Fi Network name and password to use with new I/O Device";
+"Igv-nx-eY7.text" = "Введіть ім'я та пароль вашої домашньої або корпоративної WiFi мережі, через яку виконавчий пристрій зможе встановити з'єднання з сервером.";
 
 /* Class = "UILabel"; text = "The settings have been transferred to the I/O device."; ObjectID = "JYg-Vc-pZn"; */
-"JYg-Vc-pZn.text" = "The settings have been transferred to the I/O device.";
+"JYg-Vc-pZn.text" = "Налаштування перенесено на пристрій.";
 
 /* Class = "UILabel"; text = "If your new I/O device fails to appear in the Supla app please run “Add I/O Device” wizard again and refer to the “Previous State” information on this page for troubleshooting. “SSID Not Found” is displayed when the chosen 2.4 GHz network is ether not in range or its name was incorrect."; ObjectID = "LiC-TH-iZO"; */
-"LiC-TH-iZO.text" = "If your new I/O device fails to appear in the Supla app please run “Add I/O Device” wizard again and refer to the “Previous State” information on this page for troubleshooting. “SSID Not Found” is displayed when the chosen 2.4 GHz network is ether not in range or its name was incorrect.";
+"LiC-TH-iZO.text" = "Якщо пристрій не відображається в додатку, повторіть процедуру додавання ще раз і прочитайте «попередній статус», показаний вище. Він містить інформацію, яка дозволяє визначити, чому пристрій не підключився до сервера. Повідомлення \"SSID not found \" («SSID не знайдено»)означає, що введене ім'я мережі Wi-Fi 2,4 ГГц не знайдено або ця мережа недоступна.";
 
 /* Class = "UILabel"; text = "Please use the System Settings shortcut below to select your I/O Device Wi-Fi for configuration such as SUPLA-A220A63612B1*. After connection is established, go back to the Supla application and press Start.\n\n*Configuration Wi-Fi name usually contains manufacturer name e.g. SUPLA, ZAMEL, NICE, HEATPOL etc. \n\nWhen the connection has been set, go back to the application and  continue adding  procedure by pressing the START button.  "; ObjectID = "LmT-sv-XIj"; */
 "LmT-sv-XIj.text" = "Please use the System Settings shortcut below to select your I/O Device Wi-Fi for configuration such as SUPLA-A220A63612B1*. After connection is established, go back to the Supla application and press Start.\n\n*Configuration Wi-Fi name usually contains manufacturer name e.g. SUPLA, ZAMEL, NICE, HEATPOL etc. \n\nWhen the connection has been set, go back to the application and  continue adding  procedure by pressing the START button.  ";
 
 /* Class = "UILabel"; text = "Remember password"; ObjectID = "OMR-DU-yyQ"; */
-"OMR-DU-yyQ.text" = "Remember password";
+"OMR-DU-yyQ.text" = "Запам’ятати пароль";
 
 /* Class = "UILabel"; text = "Power up your I/O Device and make sure it is configuration mode - the status LED should be flashing rapidly"; ObjectID = "QQN-Ba-rnP"; */
-"QQN-Ba-rnP.text" = "Power up your I/O Device and make sure it is configuration mode - the status LED should be flashing rapidly";
+"QQN-Ba-rnP.text" = "Підключіть пристрій до джерела живлення. За замовчуванням пристрій має працювати в режимі конфігурації, сигналізуючи про це блиманням світлодіода стану наступним чином";
 
 /* Class = "UIButton"; normalTitle = "Go to the system settings"; ObjectID = "a01-dG-nhT"; */
-"a01-dG-nhT.normalTitle" = "Go to the system settings";
+"a01-dG-nhT.normalTitle" = "Перейдіть до налаштувань системи";
 
 /* Class = "UILabel"; text = "Firmware"; ObjectID = "ctG-cj-mpZ"; */
 "ctG-cj-mpZ.text" = "Firmware";
 
 /* Class = "UITextField"; placeholder = "Password"; ObjectID = "mNF-Uh-cv0"; */
-"mNF-Uh-cv0.placeholder" = "Password";
+"mNF-Uh-cv0.placeholder" = "Пароль";
 
 /* Class = "UILabel"; text = "Name"; ObjectID = "qa8-ng-PzX"; */
-"qa8-ng-PzX.text" = "Name";
+"qa8-ng-PzX.text" = "Назва";
 
 /* Class = "UITextField"; placeholder = "WiFi Network name"; ObjectID = "t0Z-OG-dra"; */
 "t0Z-OG-dra.placeholder" = "WiFi Network name";
@@ -51,7 +51,7 @@
 "v4z-H5-9Z6.text" = "Assisted Configuration";
 
 /* Class = "UILabel"; text = "Welcome to Add I/O Device Wizard which will help you to add a new device to your system in a few simple steps."; ObjectID = "vbb-Xd-lIx"; */
-"vbb-Xd-lIx.text" = "Welcome to Add I/O Device Wizard which will help you to add a new device to your system in a few simple steps.";
+"vbb-Xd-lIx.text" = "Вітаємо у майстрі додавання пристроїв, який допоможе Вам швидко та легко додати новий пристрій до системи.";
 
 /* Class = "UILabel"; text = "*Configuration mode is enabled by default on brand new products. It can also be enabled manually by pressing and holding CONFIG button or dimmer knob for around 5s.\n\nPress Next to continue.\n"; ObjectID = "y0X-IV-sH5"; */
 "y0X-IV-sH5.text" = "*Configuration mode is enabled by default on brand new products. It can also be enabled manually by pressing and holding CONFIG button or dimmer knob for around 5s.\n\nPress Next to continue.\n";

@@ -3,7 +3,7 @@
 "1SC-7w-YLd.text" = "0.00";
 
 /* Class = "UILabel"; text = "Duration of the TURBO mode"; ObjectID = "5iX-rc-Viy"; */
-"5iX-rc-Viy.text" = "Duration of the TURBO mode";
+"5iX-rc-Viy.text" = "Тривалість режиму TURBO";
 
 /* Class = "UILabel"; text = "••••••••••"; ObjectID = "98P-Io-THg"; */
 "98P-Io-THg.text" = "••••••••••";
@@ -18,7 +18,7 @@
 "QMU-9W-tRX.text" = "Label";
 
 /* Class = "UIButton"; normalTitle = "MANUAL"; ObjectID = "RXJ-hp-AST"; */
-"RXJ-hp-AST.normalTitle" = "MANUAL";
+"RXJ-hp-AST.normalTitle" = "NORMAL";
 
 /* Class = "UILabel"; text = "5°"; ObjectID = "RkN-Zh-C5c"; */
 "RkN-Zh-C5c.text" = "5°";
@@ -27,13 +27,13 @@
 "VcQ-wF-eIG.text" = "67°";
 
 /* Class = "UIButton"; normalTitle = "ECO"; ObjectID = "aTC-ED-ndf"; */
-"aTC-ED-ndf.normalTitle" = "ECO";
+"aTC-ED-ndf.normalTitle" = "EKO";
 
 /* Class = "UILabel"; text = "17°"; ObjectID = "dn7-Mf-fO1"; */
 "dn7-Mf-fO1.text" = "17°";
 
 /* Class = "UIButton"; normalTitle = "ON"; ObjectID = "mxn-xd-sgq"; */
-"mxn-xd-sgq.normalTitle" = "ON";
+"mxn-xd-sgq.normalTitle" = "УВІМКНЕНИЙ";
 
 /* Class = "UILabel"; text = "Higher temperature in AUTO mode"; ObjectID = "oUh-5I-hqg"; */
 "oUh-5I-hqg.text" = "Higher temperature in AUTO mode";
@@ -42,7 +42,7 @@
 "pbd-am-y6L.normalTitle" = "AUTO";
 
 /* Class = "UILabel"; text = "Maximum water temperature"; ObjectID = "q66-xm-DaZ"; */
-"q66-xm-DaZ.text" = "Maximum water temperature";
+"q66-xm-DaZ.text" = "Максимальна температура води";
 
 /* Class = "UILabel"; text = "Lower temperature in AUTO mode"; ObjectID = "sCn-Z8-huV"; */
 "sCn-Z8-huV.text" = "Lower temperature in AUTO mode";
@@ -51,4 +51,4 @@
 "u97-J1-5hH.normalTitle" = "TURBO";
 
 /* Class = "UILabel"; text = "Temperature reduction in ECO mode"; ObjectID = "wzO-cl-uG7"; */
-"wzO-cl-uG7.text" = "Temperature reduction in ECO mode";
+"wzO-cl-uG7.text" = "Зниження температури в режимі ЕCО";

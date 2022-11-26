@@ -1,15 +1,15 @@
 
 /* Class = "UILabel"; text = "Light source lifespan (hours)"; ObjectID = "XfF-Xe-aOn"; */
-"XfF-Xe-aOn.text" = "Light source lifespan (hours)";
+"XfF-Xe-aOn.text" = "Термін служби джерела світла (години)";
 
 /* Class = "UIButton"; normalTitle = "OK"; ObjectID = "XmM-Te-dni"; */
 "XmM-Te-dni.normalTitle" = "OK";
 
 /* Class = "UIButton"; normalTitle = "CANCEL"; ObjectID = "aZZ-F7-rsl"; */
-"aZZ-F7-rsl.normalTitle" = "CANCEL";
+"aZZ-F7-rsl.normalTitle" = "СКАСУВАТИ";
 
 /* Class = "UILabel"; text = "Settings"; ObjectID = "hKG-BE-jQV"; */
-"hKG-BE-jQV.text" = "Settings";
+"hKG-BE-jQV.text" = "Налаштування";
 
 /* Class = "UILabel"; text = "Reset the light source usage counter"; ObjectID = "ykW-dh-QDo"; */
-"ykW-dh-QDo.text" = "Reset the light source usage counter";
+"ykW-dh-QDo.text" = "Обнулити лічильник споживання джерела світла";

@@ -40,11 +40,11 @@
 "Thermometer" = "Termometr";
 "Temperature and humidity" = "Temperatura i wilgotność";
 "No liquid sensor" = "Czujnik braku cieczy";
-"Gateway opening sensor" = "Czujnik otwacia furtki";
+"Gateway opening sensor" = "Czujnik otwarcia furtki";
 "Gate opening sensor" = "Czujnik otwarcia bramy";
-"Garage door opening sensor" = "Czujnik otwacia bramy garażowej";
-"Door opening sensor" = "Czujnik otwacia drzwi";
-"Roller shutter opening sensor" = "Czujnik otwacia rolet";
+"Garage door opening sensor" = "Czujnik otwarcia bramy garażowej";
+"Door opening sensor" = "Czujnik otwarcia drzwi";
+"Roller shutter opening sensor" = "Czujnik otwarcia rolet";
 "Connecting..." = "Łączenie...";
 "Unknown error" = "Nieznany błąd";
 "Service temporarily unavailable" = "Usługa tymczasowo niedostępna";
