@@ -88,7 +88,7 @@
 "Help" = "Help";
 "https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=L4N7RSWME6LG2" = "https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=QYN932S5UQG8N";
 "Staircase timer" = "Trap automaat";
-"https://cloud.supla.org/register" = "https://cloud.supla.org/register?lang=pl";
+"https://cloud.supla.org/register" = "https://cloud.supla.org/register?lang=nl";
 
 "Retrieving data from the server..." = "Gegevens downloaden van de server ...";
 "No chart data available." = "Er zijn geen gegevens voor de grafiek.";

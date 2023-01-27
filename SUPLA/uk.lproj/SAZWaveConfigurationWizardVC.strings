@@ -1,0 +1,84 @@
+
+/* Class = "UILabel"; text = "Below are the details of the selected channel. Please specify its purpose by selecting the appropriate function."; ObjectID = "107-YY-mJ9"; */
+"107-YY-mJ9.text" = "Нижче наведено детальну інформацію про обраний канал. Вкажіть його призначення, обравши відповідну функцію.";
+
+/* Class = "UILabel"; text = "Device"; ObjectID = "56E-9V-mlp"; */
+"56E-9V-mlp.text" = "Пристрій";
+
+/* Class = "UIButton"; normalTitle = "DELETE DEVICE"; ObjectID = "6df-IH-8y9"; */
+"6df-IH-8y9.normalTitle" = "ВИДАЛІТЬ ПРИСТРІЙ";
+
+/* Class = "UIButton"; normalTitle = "ADD DEVICE"; ObjectID = "BTs-3M-6Pr"; */
+"BTs-3M-6Pr.normalTitle" = "ДОДАЙТЕ ПРИСТРІЙ";
+
+/* Class = "UILabel"; text = "Function"; ObjectID = "CrA-tu-0Ln"; */
+"CrA-tu-0Ln.text" = "Функція";
+
+/* Class = "UILabel"; text = "It will take a while"; ObjectID = "F61-xF-s7k"; */
+"F61-xF-s7k.text" = "Це займе певний час";
+
+/* Class = "UILabel"; text = "Channel id"; ObjectID = "FAh-Cm-D3c"; */
+"FAh-Cm-D3c.text" = "Ідентифікатор каналу";
+
+/* Class = "UILabel"; text = "Device id"; ObjectID = "HEE-CO-WJl"; */
+"HEE-CO-WJl.text" = "Ідентифікатор пристрою";
+
+/* Class = "UILabel"; text = "Channel number"; ObjectID = "INT-0e-b9R"; */
+"INT-0e-b9R.text" = "Номер каналу";
+
+/* Class = "UILabel"; text = "Press back to return to the previous step or \"Exit\" to finish."; ObjectID = "OTk-BD-soD"; */
+"OTk-BD-soD.text" = "Натисніть \"Назад\" для повернення до попереднього кроку або \"Вихід\" для завершення.";
+
+/* Class = "UILabel"; text = "You can also change the wake-up settings by pressing the icon below."; ObjectID = "Os0-or-7MN"; */
+"Os0-or-7MN.text" = "Ви також можете змінити налаштування пробудження, натиснувши іконку нижче.";
+
+/* Class = "UILabel"; text = "Z-Wave wizard"; ObjectID = "TtI-D6-hIQ"; */
+"TtI-D6-hIQ.text" = "Майстер z-wave";
+
+/* Class = "UILabel"; text = "Caption"; ObjectID = "VR4-Zp-AZ8"; */
+"VR4-Zp-AZ8.text" = "Підпис";
+
+/* Class = "UILabel"; text = "Z-Wave device"; ObjectID = "Ymn-D1-eWm"; */
+"Ymn-D1-eWm.text" = "Пристрій z-wave";
+
+/* Class = "UILabel"; text = "Z-wave network"; ObjectID = "a7s-5S-iHt"; */
+"a7s-5S-iHt.text" = "Мережа z-wave";
+
+/* Class = "UIButton"; normalTitle = "RESET NETWORK AND SETTINGS"; ObjectID = "amT-2P-EgB"; */
+"amT-2P-EgB.normalTitle" = "СКИДАННЯ МЕРЕЖІ ТА НАЛАШТУВАНЬ";
+
+/* Class = "UILabel"; text = "Done! Now you can finish the configuration process by pressing \"OK\" or you can press back to configure the next channel or change existing settings."; ObjectID = "cGP-Ha-UqZ"; */
+"cGP-Ha-UqZ.text" = "Готово! Тепер ви можете завершити процес конфігурації, натиснувши кнопку \"ОК\", або можете натиснути кнопку \"Назад\", щоб налаштувати наступний канал або змінити існуючі налаштування.";
+
+/* Class = "UILabel"; text = "Device name"; ObjectID = "egA-F9-6fa"; */
+"egA-F9-6fa.text" = "Назва пристрою";
+
+/* Class = "UILabel"; text = "Software version"; ObjectID = "hcP-PE-jBL"; */
+"hcP-PE-jBL.text" = "Версія програмного забезпечення";
+
+/* Class = "UILabel"; text = "Function"; ObjectID = "kWy-QX-AJU"; */
+"kWy-QX-AJU.text" = "Функція";
+
+/* Class = "UILabel"; text = "Select the z-wave device that will be associated with the Supla channel."; ObjectID = "kc9-9O-Tmh"; */
+"kc9-9O-Tmh.text" = "Виберіть пристрій z-wave, який буде пов'язаний з каналом Supli.";
+
+/* Class = "UILabel"; text = "Select the z-wave bridge and then the channel you want to configure."; ObjectID = "kif-QE-f8n"; */
+"kif-QE-f8n.text" = "Виберіть міст z-wave, а потім канал, який Ви хочете налаштувати.";
+
+/* Class = "UILabel"; text = "Before continuing, make sure that all your z-wave devices are online. Pressing \"Next\" will search your z-wave network, which may take from a few seconds to several minutes."; ObjectID = "l1n-Id-vnO"; */
+"l1n-Id-vnO.text" = "Перш ніж продовжити, переконайтеся, що всі Ваші пристрої z-wave увімкнені. Натискання кнопки \"Далі\" призведе до пошуку Вашої мережі z-wave, що може зайняти від декількох секунд до декількох хвилин. ";
+
+/* Class = "UILabel"; text = "Welcome to the z-wave bridge configuration wizard. It will allow you to connect your z-wave devices to Supla. Tap \"Next\" to continue."; ObjectID = "nNP-Gd-gOi"; */
+"nNP-Gd-gOi.text" = "Вітаємо у майстрі конфігурації моста z-wave. Це дозволить Вам підключити пристрої z-wave до Supli. Для продовження натисніть \"Далі\".";
+
+/* Class = "UILabel"; text = "Channel"; ObjectID = "sNr-Xz-EUe"; */
+"sNr-Xz-EUe.text" = "Канал";
+
+/* Class = "UILabel"; text = "Channel"; ObjectID = "sY5-XC-gcM"; */
+"sY5-XC-gcM.text" = "Канал";
+
+/* Class = "UILabel"; text = "Bridge"; ObjectID = "ul5-ub-qWP"; */
+"ul5-ub-qWP.text" = "Міст";
+
+/* Class = "UILabel"; text = "Channel"; ObjectID = "z0I-kO-IcX"; */
+"z0I-kO-IcX.text" = "Канал";
