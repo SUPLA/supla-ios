@@ -30,7 +30,7 @@
 "MEJ-sn-3qn.normalTitle" = "Faza 1";
 
 /* Class = "UILabel"; text = "Reverse reactive Energy"; ObjectID = "MHn-5a-5ZR"; */
-"MHn-5a-5ZR.text" = "Energia bierna zwrócona";
+"MHn-5a-5ZR.text" = "Energia bierna pojemnościowa";
 
 /* Class = "UILabel"; text = "230 V"; ObjectID = "N6X-By-Rip"; */
 "N6X-By-Rip.text" = "230 V";
@@ -60,7 +60,7 @@
 "Zz9-Ny-np2.text" = "50 Hz";
 
 /* Class = "UILabel"; text = "Forward reactive Energy"; ObjectID = "aZs-XI-wYP"; */
-"aZs-XI-wYP.text" = "Energia bierna pobrana";
+"aZs-XI-wYP.text" = "Energia bierna indukcyjna";
 
 /* Class = "UILabel"; text = "115 kWh"; ObjectID = "ekV-lw-CKj"; */
 "ekV-lw-CKj.text" = "115 kWh";
