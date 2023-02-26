@@ -37,6 +37,7 @@ class SceneCell: MGSwipeTableCell {
     private var _timer: UILabel!
     private var _initiator: UILabel!
     private var _sceneIcon: UIImageView!
+    private var _separator: UIView!
     private let _statusIndicators = [UIView(), UIView()]
     
     private var _longPressGr: UILongPressGestureRecognizer!
@@ -85,6 +86,10 @@ class SceneCell: MGSwipeTableCell {
         _timer = UILabel()
         _initiator = UILabel()
         _sceneIcon = UIImageView()
+        _separator = UIView(frame: .zero)
+        
+        self.leftSwipeSettings.transition = MGSwipeTransition.rotate3D
+        self.rightSwipeSettings.transition = MGSwipeTransition.rotate3D
         
         [_executeButton, _abortButton].forEach {
             $0?.buttonWidth = swipeButtonWidth
@@ -169,6 +174,16 @@ class SceneCell: MGSwipeTableCell {
                                     constant: scaled(topMargin)).isActive = true
         _timer.rightAnchor.constraint(equalTo: contentView.rightAnchor,
                                       constant: -horizMargin).isActive = true
+        
+        self.contentView.addSubview(_separator)
+        let separatorInset = CGFloat(8)
+        let separatorHeight = CGFloat(1)
+        _separator.backgroundColor = .systemGray
+        _separator.translatesAutoresizingMaskIntoConstraints = false
+        _separator.heightAnchor.constraint(equalToConstant: separatorHeight).isActive = true
+        _separator.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: separatorInset).isActive = true
+        _separator.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -separatorInset).isActive = true
+        _separator.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -2.0 * separatorHeight).isActive = true
                 
         _timer.text = "--:--:--"
         _initiator.text = "pankracy"

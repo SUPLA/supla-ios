@@ -134,27 +134,6 @@ extension ScenesVC: UITableViewDelegate {
     func tableView(_ : UITableView, heightForHeaderInSection: Int) -> CGFloat {
         return 50
     }
-    
-    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell,
-                   forRowAt indexPath: IndexPath) {
-        let separatorTag = 0xC31183
-        let separatorHeight = CGFloat(1)
-        let separatorInset = CGFloat(8)
-        
-        guard cell.viewWithTag(separatorTag) == nil else { return }
-        let separator = UIView(frame: .zero)
-        cell.addSubview(separator)
-        separator.backgroundColor = .systemGray
-        separator.tag = separatorTag
-        separator.translatesAutoresizingMaskIntoConstraints = false
-        separator.heightAnchor.constraint(equalToConstant: separatorHeight).isActive = true
-        separator.leftAnchor.constraint(equalTo: cell.leftAnchor,
-                                        constant: separatorInset).isActive = true
-        separator.rightAnchor.constraint(equalTo: cell.rightAnchor,
-                                         constant: -separatorInset).isActive = true
-        separator.bottomAnchor.constraint(equalTo: cell.bottomAnchor,
-                                          constant: -2.0 * separatorHeight).isActive = true
-    }
 }
 
 extension ScenesVC: UITableViewDragDelegate {

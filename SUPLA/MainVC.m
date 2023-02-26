@@ -916,6 +916,7 @@
 }
 
 - (SADetailView*)getDetailViewForCell:(SAChannelCell*)_cell {
+    if (self.cTableView.hidden && self.gTableView.hidden) return nil;
     
     SADetailView *result = nil;
     
