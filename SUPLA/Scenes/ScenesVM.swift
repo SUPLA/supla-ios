@@ -39,6 +39,9 @@ class ScenesVM: NSObject {
 
     var sections = BehaviorRelay<[Section]>(value: [])
     var sectionSorter = PublishSubject<[Section]>()
+    
+    private var _swipedItemsCounter = 0
+    private var _reloadPending = false
 
     @objc
     init(database: SADatabase) {
@@ -46,6 +49,8 @@ class ScenesVM: NSObject {
         super.init()
 
         reloadScenes()
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(reloadScenes), name: Notification.Name("kSA-N01"), object: nil)
     }
     
     func bind(inputs: Inputs) {
@@ -60,6 +65,19 @@ class ScenesVM: NSObject {
     
     func isSectionCollapsed(_ sec: Int) -> Bool {
         return sections.value[sec].location.collapsed & _bitCollapse == _bitCollapse
+    }
+    
+    func openingItem() {
+        _swipedItemsCounter = _swipedItemsCounter + 1
+    }
+    
+    func closingItem() {
+        _swipedItemsCounter = _swipedItemsCounter - 1
+        
+        if (_reloadPending) {
+            reloadScenes()
+        }
+        
     }
     
     private func toggleSectionCollapsed(_ sec: Int) {
@@ -78,28 +96,33 @@ class ScenesVM: NSObject {
         sections.accept(secs)
     }
     
-    private func reloadScenes() {
+    @objc private func reloadScenes() {
+        if (_swipedItemsCounter > 0) {
+            _reloadPending = true
+            return
+        }
+        _reloadPending = false
+        
         var loc: _SALocation?
         var locScenes = [Scene]()
         var secs = [Section]()
         var i = 0
-
+        
         let allScenes = _db.fetchScenes()
         
         while i < allScenes.count {
             if loc == nil {
                 loc = allScenes[i].location
             }
-
             if loc!.collapsed & _bitCollapse == 0 {
                 locScenes.append(allScenes[i])
             }
             i += 1
             if i == allScenes.count ||
-                 allScenes[i].location != loc {
+                allScenes[i].location != loc {
                 secs.append(Section(location: loc!, scenes: locScenes))
                 locScenes = [Scene]()
-                loc = nil    
+                loc = nil
             }
         }
 

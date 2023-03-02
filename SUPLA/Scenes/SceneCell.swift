@@ -209,12 +209,14 @@ class SceneCell: MGSwipeTableCell {
     
 
     @objc private func onLongPress(_ gr: UILongPressGestureRecognizer) {
+        if (gr.state != .began) {
+            // Only begining of the gesture is interesting for us
+            return
+        }
         guard let delegate = delegate as? SceneCellDelegate,
             let scene = sceneData else { return }
         if _caption.point(inside: gr.location(in: _caption), with: nil) {
             delegate.onCaptionLongPress(scene)
-        } else {
-            delegate.onAreaLongPress(scene)
         }
     }
     

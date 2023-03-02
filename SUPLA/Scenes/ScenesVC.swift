@@ -125,8 +125,10 @@ extension ScenesVC: UITableViewDelegate {
 
         cell.delegate = self
         cell.label.text = _sections[sec].location.caption
+        cell.locationId = _sections[sec].location.location_id?.int32Value ?? 0
         cell.ivCollapsed.isHidden = !_viewModel.isSectionCollapsed(sec)
         cell.tag = sec
+        cell.captionEditable = true
 
         return cell
     }
@@ -201,6 +203,16 @@ extension ScenesVC: SceneCellDelegate {
         _sceneCaptionEditor = SceneCaptionEditor(scn)
         _sceneCaptionEditor?.delegate = self
         _sceneCaptionEditor?.edit()
+    }
+    
+    func swipeTableCellWillBeginSwiping(_ cell: MGSwipeTableCell!) {
+        print("swipe begin")
+        _viewModel.openingItem()
+    }
+    
+    func swipeTableCellWillEndSwiping(_ cell: MGSwipeTableCell!) {
+        print("swipe end")
+        _viewModel.closingItem()
     }
 }
 

@@ -79,6 +79,7 @@
     
     UITabBar *_tabBar;
     ScenesVC *_scenesVC;
+    ScenesVM *_scenesVM;
 }
 
 - (void)registerNibForTableView:(UITableView*)tv {
@@ -869,6 +870,10 @@
 #pragma mark Scenes support
 - (void)showScenes {
     if(_scenesVC) return;
+    
+    if(!_scenesVM) {
+        _scenesVM = [[ScenesVM alloc] initWithDatabase: [SAApp DB]];
+    }
     _scenesVC = [[ScenesVC alloc] init];
     _scenesVC.scaleFactor = _heightScaleFactor;
     [self addChildViewController: _scenesVC];
@@ -880,9 +885,7 @@
     [_scenesVC.view.rightAnchor constraintEqualToAnchor: self.view.rightAnchor].active = YES;
     [_scenesVC.view.bottomAnchor constraintEqualToAnchor: _tabBar.topAnchor].active = YES;
 
-    ScenesVM *svm = [[ScenesVM alloc] initWithDatabase: [SAApp DB]];
-
-    [_scenesVC bindWithViewModel: svm];
+    [_scenesVC bindWithViewModel: _scenesVM];
 }
 
 - (void)hideScenes {
