@@ -1486,6 +1486,15 @@ again:
                 scn.profile = self.currentProfile;
                 save = YES;
             }
+            
+            if (i == 0 && j == 0) {
+                NSDate *today = [[NSDate alloc] init];
+                
+                NSDateComponents *dayComponent = [[NSDateComponents alloc] init];
+                dayComponent.minute = 1;
+                NSCalendar *calendar = [NSCalendar currentCalendar];
+                scn.estimatedEndDate = [calendar dateByAddingComponents:dayComponent toDate:[NSDate date] options:0];
+            }
         }
     }
 
