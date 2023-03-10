@@ -466,7 +466,7 @@ void sasuplaclient_on_zwave_set_wake_up_time_result(void *_suplaclient,
     
     if (scc.host == NULL
         || strnlen(scc.host, SUPLA_SERVER_NAME_MAXSIZE) == 0) {
-        [self onConnError:SUPLA_RESULTCODE_HOSTNOTFOUND];
+        [self onConnError:SUPLA_RESULT_HOST_NOT_FOUND];
     }
     
     AuthInfo *ai = profile.authInfo;

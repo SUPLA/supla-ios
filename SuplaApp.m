@@ -465,7 +465,7 @@ NSString *kChannelHeightDidChange = @"ChannelHeightDidChange";
     
     NSNumber *code = [NSNumber codeNotificationToNumber:notification];
     
-    if ( code && [code intValue] == SUPLA_RESULTCODE_HOSTNOTFOUND ) {
+    if ( code && [code intValue] == SUPLA_RESULT_HOST_NOT_FOUND ) {
         
         [self SuplaClientTerminate];
         [[SAApp mainNavigationCoordinator] showStatusViewWithError:NSLocalizedString(@"Host not found. Make sure you are connected to the internet and that an account with the entered email address has been created.", nil) completion: nil];
