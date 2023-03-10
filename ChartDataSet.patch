@@ -1,0 +1,12 @@
+--- Pods/Charts/Source/Charts/Data/Implementations/Standard/ChartDataSet.swift	2023-01-24 23:02:53.000000000 +0100
++++ Pods-fix/Charts/Source/Charts/Data/Implementations/Standard/ChartDataSet.swift	2023-01-24 23:02:36.000000000 +0100
+@@ -571,4 +571,9 @@
+         entries.removeAll(keepingCapacity: keepCapacity)
+         notifyDataSetChanged()
+     }
++    
++    public func replaceSubrange<C>(_ subrange: Swift.Range<Int>, with newElements: C) where C : Collection, ChartDataEntry == C.Element {
++            entries.replaceSubrange(subrange, with: newElements)
++            notifyDataSetChanged()
++        }
+ }
