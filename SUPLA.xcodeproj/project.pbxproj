@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 46;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -382,6 +382,8 @@
 		01EE9BB022BA4B050029A142 /* SAChannelExtendedValue+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 01EE9BAF22BA4B050029A142 /* SAChannelExtendedValue+CoreDataProperties.m */; };
 		01EE9BBB22BA50D90029A142 /* SAChannelValueBase+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 01EE9BB722BA50D90029A142 /* SAChannelValueBase+CoreDataClass.m */; };
 		01EE9BBC22BA50D90029A142 /* SAChannelValueBase+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 01EE9BB822BA50D90029A142 /* SAChannelValueBase+CoreDataProperties.m */; };
+		01EF60E129BCA42A00F691A0 /* LibSsl.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 01EF60DF29BCA40C00F691A0 /* LibSsl.xcframework */; };
+		01EF60E829BCA7FA00F691A0 /* LibSuplaClient.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 01EF60E729BCA7F900F691A0 /* LibSuplaClient.xcframework */; };
 		01EFD94A236CA94400893489 /* NSData+AES.m in Sources */ = {isa = PBXBuildFile; fileRef = 01EFD949236CA94400893489 /* NSData+AES.m */; };
 		01EFD94C236CA9AE00893489 /* NSDataEncryptionTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 01EFD94B236CA9AE00893489 /* NSDataEncryptionTest.m */; };
 		01F8856922E5E79100D18373 /* SATempHumidityMeasurementItem+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 01F8855C22E5E79000D18373 /* SATempHumidityMeasurementItem+CoreDataClass.m */; };
@@ -425,9 +427,6 @@
 		401CA1C81BA067DB00117AF4 /* MainVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 401CA1C71BA067DB00117AF4 /* MainVC.m */; };
 		401CA1CD1BA067DB00117AF4 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 401CA1CC1BA067DB00117AF4 /* Images.xcassets */; };
 		401CA1DC1BA067DB00117AF4 /* SUPLATests.m in Sources */ = {isa = PBXBuildFile; fileRef = 401CA1DB1BA067DB00117AF4 /* SUPLATests.m */; };
-		401CA1E91BA0699F00117AF4 /* libsupla-client.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 401CA1E81BA0699F00117AF4 /* libsupla-client.a */; };
-		401CA1EB1BA069BE00117AF4 /* libcrypto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 401CA1EA1BA069BE00117AF4 /* libcrypto.a */; };
-		401CA1ED1BA069CF00117AF4 /* libssl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 401CA1EC1BA069CF00117AF4 /* libssl.a */; };
 		401CA1EF1BA0923600117AF4 /* MainVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 401CA1EE1BA0923600117AF4 /* MainVC.xib */; };
 		401CA1F21BA0A28A00117AF4 /* SuplaClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 401CA1F11BA0A28A00117AF4 /* SuplaClient.m */; };
 		403150FB1DC769430075D2D2 /* RGBWDetailView.m in Sources */ = {isa = PBXBuildFile; fileRef = 403150FA1DC769430075D2D2 /* RGBWDetailView.m */; };
@@ -1348,6 +1347,8 @@
 		01EE9BB622BA50D90029A142 /* SAChannelValueBase+CoreDataClass.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SAChannelValueBase+CoreDataClass.h"; sourceTree = "<group>"; };
 		01EE9BB722BA50D90029A142 /* SAChannelValueBase+CoreDataClass.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "SAChannelValueBase+CoreDataClass.m"; sourceTree = "<group>"; };
 		01EE9BB822BA50D90029A142 /* SAChannelValueBase+CoreDataProperties.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "SAChannelValueBase+CoreDataProperties.m"; sourceTree = "<group>"; };
+		01EF60DF29BCA40C00F691A0 /* LibSsl.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = LibSsl.xcframework; sourceTree = "<group>"; };
+		01EF60E729BCA7F900F691A0 /* LibSuplaClient.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = LibSuplaClient.xcframework; sourceTree = "<group>"; };
 		01EFD948236CA94400893489 /* NSData+AES.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSData+AES.h"; sourceTree = "<group>"; };
 		01EFD949236CA94400893489 /* NSData+AES.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSData+AES.m"; sourceTree = "<group>"; };
 		01EFD94B236CA9AE00893489 /* NSDataEncryptionTest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSDataEncryptionTest.m; sourceTree = "<group>"; };
@@ -1413,11 +1414,6 @@
 		401CA1D51BA067DB00117AF4 /* SUPLATests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SUPLATests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		401CA1DA1BA067DB00117AF4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		401CA1DB1BA067DB00117AF4 /* SUPLATests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SUPLATests.m; sourceTree = "<group>"; };
-		401CA1E61BA068BE00117AF4 /* proto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = proto.h; path = lib/include/proto.h; sourceTree = "<group>"; };
-		401CA1E71BA068BE00117AF4 /* supla-client.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "supla-client.h"; path = "lib/include/supla-client.h"; sourceTree = "<group>"; };
-		401CA1E81BA0699F00117AF4 /* libsupla-client.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libsupla-client.a"; path = "SUPLA/lib/libsupla-client.a"; sourceTree = "<group>"; };
-		401CA1EA1BA069BE00117AF4 /* libcrypto.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libcrypto.a; path = SUPLA/lib/libcrypto.a; sourceTree = "<group>"; };
-		401CA1EC1BA069CF00117AF4 /* libssl.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libssl.a; path = SUPLA/lib/libssl.a; sourceTree = "<group>"; };
 		401CA1EE1BA0923600117AF4 /* MainVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainVC.xib; sourceTree = "<group>"; };
 		401CA1F01BA0A28A00117AF4 /* SuplaClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SuplaClient.h; sourceTree = "<group>"; };
 		401CA1F11BA0A28A00117AF4 /* SuplaClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SuplaClient.m; sourceTree = "<group>"; };
@@ -1829,12 +1825,11 @@
 			files = (
 				40E8BE8D1FC06B4200FB2FE6 /* libxml2.tbd in Frameworks */,
 				01E2B0822649E158003694EC /* SystemConfiguration.framework in Frameworks */,
+				01EF60E129BCA42A00F691A0 /* LibSsl.xcframework in Frameworks */,
 				407ECDC21DAFBB9600F01C7E /* AudioToolbox.framework in Frameworks */,
+				01EF60E829BCA7FA00F691A0 /* LibSuplaClient.xcframework in Frameworks */,
 				40B397D81BCEA25700BE7D5A /* CFNetwork.framework in Frameworks */,
-				401CA1ED1BA069CF00117AF4 /* libssl.a in Frameworks */,
-				401CA1EB1BA069BE00117AF4 /* libcrypto.a in Frameworks */,
 				0163D0CD257EE483006C73CB /* NetworkExtension.framework in Frameworks */,
-				401CA1E91BA0699F00117AF4 /* libsupla-client.a in Frameworks */,
 				462253FD963449A978BBDDE8 /* Pods_SUPLA.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2151,9 +2146,6 @@
 			children = (
 				0178248C28426C57004313C2 /* ci_scripts */,
 				40B397D71BCEA25700BE7D5A /* CFNetwork.framework */,
-				401CA1EC1BA069CF00117AF4 /* libssl.a */,
-				401CA1EA1BA069BE00117AF4 /* libcrypto.a */,
-				401CA1E81BA0699F00117AF4 /* libsupla-client.a */,
 				401CA1BB1BA067DB00117AF4 /* SUPLA */,
 				401CA1D81BA067DB00117AF4 /* SUPLATests */,
 				401CA1BA1BA067DB00117AF4 /* Products */,
@@ -2295,8 +2287,6 @@
 				011021B325CC386D00621D41 /* SAVersionError.h */,
 				011021B425CC386D00621D41 /* SAVersionError.m */,
 				401CA1F11BA0A28A00117AF4 /* SuplaClient.m */,
-				401CA1E61BA068BE00117AF4 /* proto.h */,
-				401CA1E71BA068BE00117AF4 /* supla-client.h */,
 			);
 			name = "supla-client-lib";
 			sourceTree = "<group>";
@@ -2706,6 +2696,8 @@
 		407ECDC01DAFBB9600F01C7E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				01EF60E729BCA7F900F691A0 /* LibSuplaClient.xcframework */,
+				01EF60DF29BCA40C00F691A0 /* LibSsl.xcframework */,
 				01E2B0812649E158003694EC /* SystemConfiguration.framework */,
 				0163D0CC257EE483006C73CB /* NetworkExtension.framework */,
 				40E8BE8B1FC06B2000FB2FE6 /* libxml2.tbd */,
@@ -4382,7 +4374,10 @@
 				HEADER_SEARCH_PATHS = "$(SDKROOT)/usr/include/libxml2";
 				INFOPLIST_FILE = SUPLA/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/SUPLA/lib",
@@ -4417,7 +4412,10 @@
 				HEADER_SEARCH_PATHS = "$(SDKROOT)/usr/include/libxml2";
 				INFOPLIST_FILE = SUPLA/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/SUPLA/lib",
@@ -4448,7 +4446,11 @@
 				);
 				INFOPLIST_FILE = SUPLATests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.acsoftware.ios.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "SUPLATests/SUPLATests-Bridging-Header.h";
@@ -4471,7 +4473,11 @@
 				);
 				INFOPLIST_FILE = SUPLATests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.acsoftware.ios.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "SUPLATests/SUPLATests-Bridging-Header.h";
