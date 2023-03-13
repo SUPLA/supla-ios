@@ -88,22 +88,22 @@
     [self.lCurrentValue setText:[_formatter doubleToString:current withUnit:@"A" maxPrecision:3]];
 }
 
-- (void)setActivePower:(double)power visible:(BOOL)visible {
+- (void)setActivePower:(double)power visible:(BOOL)visible withunit:(NSString*)unit {
     [self setLabel:self.lActivePower Visible:visible withConstraint:self.cActivePowerTop];
     [self setLabel:self.lActivePowerValue Visible:visible withConstraint:self.cActivePowerValueTop];
-    [self.lActivePowerValue setText:[_formatter doubleToString:power withUnit:@"W" maxPrecision:5]];
+    [self.lActivePowerValue setText:[_formatter doubleToString:power withUnit:unit maxPrecision:5]];
 }
 
-- (void)setReactivePower:(double)power visible:(BOOL)visible {
+- (void)setReactivePower:(double)power visible:(BOOL)visible withunit:(NSString*)unit {
     [self setLabel:self.lReactivePower Visible:visible withConstraint:self.cReactivePowerTop];
     [self setLabel:self.lReactivePowerValue Visible:visible withConstraint:self.cReactivePowerValueTop];
-    [self.lReactivePowerValue setText:[_formatter doubleToString:power withUnit:@"var" maxPrecision:5]];
+    [self.lReactivePowerValue setText:[_formatter doubleToString:power withUnit:unit maxPrecision:5]];
 }
 
-- (void)setApparentPower:(double)power visible:(BOOL)visible {
+- (void)setApparentPower:(double)power visible:(BOOL)visible withunit:(NSString*)unit{
     [self setLabel:self.lApparentPower Visible:visible withConstraint:self.cApparentPowerTop];
     [self setLabel:self.lApparentPowerValue Visible:visible withConstraint:self.cApparentPowerValueTop];
-    [self.lApparentPowerValue setText:[_formatter doubleToString:power withUnit:@"VA" maxPrecision:5]];
+    [self.lApparentPowerValue setText:[_formatter doubleToString:power withUnit:unit maxPrecision:5]];
 }
 
 - (void)setPowerFactor:(double)factor visible:(BOOL)visible {
@@ -292,9 +292,9 @@
     [self setFrequency:freq visible:MVAL(EM_VAR_FREQ)];
     [self setVoltage:voltage visible:MVAL(EM_VAR_VOLTAGE) && selectedPhase > 0];
     [self setCurrent:current visible:(MVAL(EM_VAR_CURRENT) || MVAL(EM_VAR_CURRENT_OVER_65A)) && selectedPhase > 0 over65A:currentOver65A];
-    [self setActivePower:powerActive visible:MVAL(EM_VAR_POWER_ACTIVE)];
-    [self setReactivePower:powerReactive visible: MVAL(EM_VAR_POWER_REACTIVE)];
-    [self setApparentPower:powerApparent visible:MVAL(EM_VAR_POWER_APPARENT)];
+    [self setActivePower:powerActive visible:MVAL(EM_VAR_POWER_ACTIVE) || MVAL(EM_VAR_POWER_ACTIVE_KW) withunit:MVAL(EM_VAR_POWER_ACTIVE_KW) ? @"kW" : @"W"];
+    [self setReactivePower:powerReactive visible:MVAL(EM_VAR_POWER_REACTIVE) || MVAL(EM_VAR_POWER_REACTIVE_KVAR) withunit:MVAL(EM_VAR_POWER_REACTIVE_KVAR) ? @"kvar" : @"var"];
+    [self setApparentPower:powerApparent visible:MVAL(EM_VAR_POWER_APPARENT) || MVAL(EM_VAR_POWER_APPARENT_KVA) withunit:MVAL(EM_VAR_POWER_APPARENT_KVA) ? @"kVA" : @"VA"];
     [self setPowerFactor:powerFactor visible:MVAL(EM_VAR_POWER_FACTOR) && selectedPhase > 0];
     [self setPhaseAngle:phaseAngle visible:MVAL(EM_VAR_PHASE_ANGLE) && selectedPhase > 0];
     [self setForwardActiveEnergy:totalFAE visible:MVAL(EM_VAR_FORWARD_ACTIVE_ENERGY)];
