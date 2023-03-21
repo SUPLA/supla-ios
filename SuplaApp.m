@@ -486,7 +486,6 @@ NSString *kChannelHeightDidChange = @"ChannelHeightDidChange";
     }
     
     [[SAApp mainNavigationCoordinator] showStatusViewWithProgress:@1];
-    [[SAApp DB] updateScene: NULL]; // FIXME: remove, when scene support is ready.
 }
 
 -(void)onRegisterError:(NSNotification *)notification {

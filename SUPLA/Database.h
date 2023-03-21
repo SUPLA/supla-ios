@@ -23,7 +23,7 @@
 #import "SAThermostatMeasurementItem+CoreDataClass.h"
 #import "SATemperatureMeasurementItem+CoreDataClass.h"
 #import "SATempHumidityMeasurementItem+CoreDataClass.h"
-#import "Scene+CoreDataClass.h"
+#import "SAScene+CoreDataClass.h"
 #import "proto.h"
 
 typedef NS_ENUM(NSUInteger, GroupingDepth) {
@@ -129,10 +129,12 @@ typedef NS_ENUM(NSUInteger, GroupBy) {
 -(void) moveChannelGroup:(SAChannelBase*)src toPositionOfChannelGroup:(SAChannelBase*)dst;
 - (void)deleteObject:(NSManagedObject *)object;
 
-- (BOOL)updateScene: (void*)TODO;
-- (Scene*)fetchSceneById: (int)scene_id;
-- (nonnull NSArray<Scene*> *)fetchScenes;
+- (BOOL)updateScene: (TSC_SuplaScene *)scene;
+- (BOOL) updateSceneState: (TSC_SuplaSceneState *)state;
+- (SAScene*)fetchSceneById: (int)scene_id;
+- (nonnull NSArray<SAScene*> *)fetchScenes;
 - (BOOL)updateSceneUserIcons;
+- (BOOL) setAllOfScenesVisible:(int)visible whereVisibilityIs:(int)wvi;
 @end
 
 

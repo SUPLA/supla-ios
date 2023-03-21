@@ -2,6 +2,7 @@
 	
 
 import UIKit
+import os
 
 class SceneCell: MGSwipeTableCell {
     
@@ -11,11 +12,10 @@ class SceneCell: MGSwipeTableCell {
             resetCell()
         }
     }
-    var sceneData: Scene? {
+    var sceneData: SAScene? {
         didSet {
             _captionLabel.text = sceneData?.caption ?? ""
-            _initiator.text = sceneData?.initiatorName ?? ""
-            //_timer.text
+            
             if let iconId = sceneData?.usericon_id, iconId < 20 {
                 _sceneIcon.image = UIImage(named: "scene_\(iconId)")
             } else if let icon = sceneData?.usericon?.uimage1 as? UIImage {
@@ -26,9 +26,13 @@ class SceneCell: MGSwipeTableCell {
                 _timerLabel.text = ""
                 _timer?.invalidate()
             }
+            
             if (sceneData?.estimatedEndDate != nil) {
+                _initiator.text = sceneData?.initiatorName ?? ""
                 updateTimerLabel()
                 _timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(updateTimerLabel), userInfo: nil, repeats: true)
+            } else {
+                _initiator.text = ""
             }
         }
     }
@@ -291,6 +295,6 @@ class SceneCell: MGSwipeTableCell {
 }
 
 protocol SceneCellDelegate: MGSwipeTableCellDelegate {
-    func onAreaLongPress(_ scn: Scene)
-    func onCaptionLongPress(_ scn: Scene)
+    func onAreaLongPress(_ scn: SAScene)
+    func onCaptionLongPress(_ scn: SAScene)
 }

@@ -194,11 +194,11 @@ extension ScenesVC: SASectionCellDelegate {
 }
 
 extension ScenesVC: SceneCellDelegate {
-    func onAreaLongPress(_ scn: Scene) {
+    func onAreaLongPress(_ scn: SAScene) {
         print("reorder")
     }
     
-    func onCaptionLongPress(_ scn: Scene) {
+    func onCaptionLongPress(_ scn: SAScene) {
         guard _sceneCaptionEditor == nil else { return }
         _sceneCaptionEditor = SceneCaptionEditor(scn)
         _sceneCaptionEditor?.delegate = self

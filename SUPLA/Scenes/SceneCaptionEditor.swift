@@ -6,9 +6,9 @@ import UIKit
 class SceneCaptionEditor: SACaptionEditor {
     
     weak var delegate: SceneCaptionEditorDelegate?
-    let scene: Scene
+    let scene: SAScene
     
-    init(_ scene: Scene) {
+    init(_ scene: SAScene) {
         self.scene = scene
         super.init(nibName: "SACaptionEditor", bundle: nil)
     }

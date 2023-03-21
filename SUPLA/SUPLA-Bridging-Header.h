@@ -23,7 +23,7 @@
 #import "SAElectricityChartHelper.h"
 #import "SAChartFilterField.h"
 #import "SAFormatter.h"
-#import "Scene+CoreDataClass.h"
+#import "SAScene+CoreDataClass.h"
 #import "Database.h"
 #import "SectionCell.h"
 #import "MGSwipeTableCell.h"

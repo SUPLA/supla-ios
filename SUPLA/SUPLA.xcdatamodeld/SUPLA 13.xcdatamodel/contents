@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="20086" systemVersion="21G83" minimumToolsVersion="Automatic" sourceLanguage="Objective-C" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="21513" systemVersion="22D68" minimumToolsVersion="Automatic" sourceLanguage="Objective-C" userDefinedModelVersionIdentifier="">
     <entity name="AuthProfileItem" representedClassName="AuthProfileItem" syncable="YES" codeGenerationType="class">
         <attribute name="advancedSetup" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="authInfo" attributeType="Transformable" valueTransformerName="AuthInfoValueTransformer" customClassName="AuthInfo"/>
@@ -117,6 +117,20 @@
             <fetchIndexElement property="date" type="Binary" order="ascending"/>
         </fetchIndex>
     </entity>
+    <entity name="SAScene" representedClassName="SAScene" syncable="YES" codeGenerationType="class">
+        <attribute name="caption" optional="YES" attributeType="String"/>
+        <attribute name="estimatedEndDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="initiatorId" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="initiatorName" optional="YES" attributeType="String"/>
+        <attribute name="sceneId" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="sortOrder" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="startedAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="usericon_id" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="visible" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <relationship name="location" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="SALocation"/>
+        <relationship name="profile" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="AuthProfileItem"/>
+        <relationship name="usericon" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="SAUserIcon"/>
+    </entity>
     <entity name="SATemperatureMeasurementItem" representedClassName="SATemperatureMeasurementItem" parentEntity="SAMeasurementItem" syncable="YES">
         <attribute name="temperature" optional="YES" attributeType="Decimal" defaultValueString="0.0"/>
     </entity>
@@ -137,38 +151,4 @@
         <attribute name="uimage4" optional="YES" attributeType="Transformable" valueTransformerName="NSSecureUnarchiveFromData"/>
         <relationship name="profile" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="AuthProfileItem"/>
     </entity>
-    <entity name="Scene" representedClassName="Scene" syncable="YES" codeGenerationType="class">
-        <attribute name="caption" optional="YES" attributeType="String"/>
-        <attribute name="estimatedEndDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
-        <attribute name="initiatorId" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
-        <attribute name="initiatorName" optional="YES" attributeType="String"/>
-        <attribute name="sceneId" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
-        <attribute name="sortOrder" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
-        <attribute name="startedAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
-        <attribute name="usericon_id" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
-        <relationship name="location" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="SALocation"/>
-        <relationship name="profile" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="AuthProfileItem"/>
-        <relationship name="usericon" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="SAUserIcon"/>
-    </entity>
-    <elements>
-        <element name="AuthProfileItem" positionX="-603" positionY="117" width="128" height="89"/>
-        <element name="SAChannel" positionX="-20.5078125" positionY="10.7734375" width="128" height="150"/>
-        <element name="SAChannelBase" positionX="-484.6897583007812" positionY="-836.5016632080078" width="128" height="223"/>
-        <element name="SAChannelExtendedValue" positionX="-154.34375" positionY="196.6171875" width="128" height="58"/>
-        <element name="SAChannelGroup" positionX="-342" positionY="45" width="128" height="73"/>
-        <element name="SAChannelGroupRelation" positionX="-397.23828125" positionY="502.76953125" width="128" height="118"/>
-        <element name="SAChannelValue" positionX="-477" positionY="162" width="128" height="88"/>
-        <element name="SAChannelValueBase" positionX="-388.976806640625" positionY="325.0912475585938" width="128" height="88"/>
-        <element name="SAColorListItem" positionX="-216" positionY="-54" width="128" height="118"/>
-        <element name="SAElectricityMeasurementItem" positionX="-31.56640625" positionY="351.9609375" width="128" height="253"/>
-        <element name="SAImpulseCounterMeasurementItem" positionX="-527.6922607421875" positionY="282.3027801513672" width="128" height="75"/>
-        <element name="SAIncrementalMeasurementItem" positionX="-583.0123901367188" positionY="457.3605346679688" width="128" height="59"/>
-        <element name="SALocation" positionX="-747" positionY="-54" width="128" height="148"/>
-        <element name="SAMeasurementItem" positionX="-815.8125" positionY="271.2578125" width="128" height="193"/>
-        <element name="SATemperatureMeasurementItem" positionX="-633.7745971679688" positionY="214.4305725097656" width="128" height="58"/>
-        <element name="SATempHumidityMeasurementItem" positionX="-785.1148071289062" positionY="109.1131134033203" width="128" height="73"/>
-        <element name="SAThermostatMeasurementItem" positionX="-651.9935302734375" positionY="306.6170959472656" width="128" height="90"/>
-        <element name="SAUserIcon" positionX="-800.8446655273438" positionY="-222.4313354492188" width="128" height="133"/>
-        <element name="Scene" positionX="-612" positionY="-675" width="128" height="194"/>
-    </elements>
 </model>

@@ -25,7 +25,7 @@ class ScenesVM: NSObject {
 
     struct Section {
         var location: _SALocation
-        var scenes: [Scene]
+        var scenes: [SAScene]
     }
     
     struct Inputs {
@@ -104,7 +104,7 @@ class ScenesVM: NSObject {
         _reloadPending = false
         
         var loc: _SALocation?
-        var locScenes = [Scene]()
+        var locScenes = [SAScene]()
         var secs = [Section]()
         var i = 0
         
@@ -121,7 +121,7 @@ class ScenesVM: NSObject {
             if i == allScenes.count ||
                 allScenes[i].location != loc {
                 secs.append(Section(location: loc!, scenes: locScenes))
-                locScenes = [Scene]()
+                locScenes = [SAScene]()
                 loc = nil
             }
         }

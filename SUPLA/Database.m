@@ -1328,7 +1328,7 @@ again:
     NSMutableArray *result = [[NSMutableArray alloc] init];
     [self userIconsIdsWithEntity:@"SAChannel" channelBase:YES idField:@"usericon_id" exclude:i result:result];
     [self userIconsIdsWithEntity:@"SAChannelGroup" channelBase:YES idField:@"usericon_id" exclude:i result:result];
-    [self userIconsIdsWithEntity:@"Scene" channelBase:NO idField:@"usericon_id"
+    [self userIconsIdsWithEntity:@"SAScene" channelBase:NO idField:@"usericon_id"
                          exclude:i result:result];
     
     return result;
@@ -1452,58 +1452,117 @@ again:
 }
 
 #pragma mark Scenes
-- (Scene *)fetchSceneById: (int)scene_id {
+- (SAScene *)fetchSceneById: (int)scene_id {
     return [self fetchItemByPredicate: [NSPredicate predicateWithFormat: @"sceneId = %i AND "
-                                                    @"profile.isActive = true", scene_id]
-                           entityName: @"Scene"];
+                                        @"profile.isActive = true", scene_id]
+                           entityName: @"SAScene"];
 }
 
-- (Scene *)newScene {
+- (SAScene *)newScene {
     NSManagedObjectContext *ctx = self.managedObjectContext;
-    Scene *scn = [[Scene alloc] initWithEntity: [NSEntityDescription entityForName: @"Scene"
-                                                            inManagedObjectContext: ctx]
-                                insertIntoManagedObjectContext: ctx];
+    SAScene *scn = [[SAScene alloc] initWithEntity: [NSEntityDescription entityForName: @"SAScene"
+                                                                inManagedObjectContext: ctx]
+                    insertIntoManagedObjectContext: ctx];
     scn.profile = self.currentProfile;
-
+    
     return scn;
 }
 
-- (BOOL)updateScene: (void*)TODO {
-    /* Fake implementation just to have some data. Entirely to be replaced when
-     scene support in client is implemented. */
+- (BOOL)updateScene: (TSC_SuplaScene *)scene  {
     BOOL save = NO;
     
-    NSArray *locs = [self fetchVisibleLocations];
-    int sid = 0;
-    for(int i = 0; i < locs.count; i++) {
-        for(int j = 0; j <= i; j++) {
-            Scene *scn = [self fetchSceneById: ++sid];
-            if(!scn) {
-                scn = [self newScene];
-                scn.sceneId = sid;
-                scn.caption = [NSString stringWithFormat: @"Testowa scena %d", sid];
-                scn.location = locs[i];
-                scn.profile = self.currentProfile;
-                save = YES;
-            }
-            
-            if (i == 0 && j == 0) {
-                NSDate *today = [[NSDate alloc] init];
-                
-                NSDateComponents *dayComponent = [[NSDateComponents alloc] init];
-                dayComponent.minute = 1;
-                NSCalendar *calendar = [NSCalendar currentCalendar];
-                scn.estimatedEndDate = [calendar dateByAddingComponents:dayComponent toDate:[NSDate date] options:0];
-            }
-        }
+    _SALocation *location = [self fetchLocationById:scene->LocationId];
+    
+    if ( location == nil )
+        return NO;
+    
+    SAScene *sceneDb = [self fetchSceneById:scene->Id];
+    
+    if ( sceneDb == nil ) {
+        
+        sceneDb = [self newScene];
+        sceneDb.sceneId = scene->Id;
+        save = YES;
     }
-
-
+    
+    NSString *sceneCaption = [NSString stringWithUTF8String:scene->Caption];
+    if (![sceneDb.caption isEqualToString: sceneCaption]) {
+        sceneDb.caption = sceneCaption;
+        save = YES;
+    }
+    
+    if (sceneDb.location != location) {
+        sceneDb.location = location;
+        save = YES;
+    }
+    
+    if (sceneDb.usericon_id != scene->UserIcon) {
+        sceneDb.usericon_id = scene->UserIcon;
+        save = YES;
+    }
+    
+    if ( save ) {
+        [self saveContext];
+    }
+    
     return save;
 }
 
-- (NSArray<Scene *> *)fetchScenes {
-    NSFetchRequest *fr = [[NSFetchRequest alloc] initWithEntityName: @"Scene"];
+- (BOOL) updateSceneState: (TSC_SuplaSceneState *)state  {
+    BOOL save = NO;
+    
+    SAScene *sceneDb = [self fetchSceneById:state->SceneId];
+    if (sceneDb == nil) {
+        NSLog(@"Got state for scene which does not exist in the DB (id: %d)", state->SceneId);
+        return save;
+    }
+    
+    if (sceneDb.initiatorId != state->InitiatorId) {
+        sceneDb.initiatorId = state->InitiatorId;
+        save = YES;
+    }
+    
+    NSString *initatorName = [NSString stringWithUTF8String:state->InitiatorName];
+    if (![sceneDb.initiatorName isEqualToString: initatorName]) {
+        sceneDb.initiatorName = initatorName;
+        save = YES;
+    }
+    
+    if (state->MillisecondsFromStart > 0) {
+        NSDate *startDate = [[NSDate alloc] initWithTimeIntervalSinceNow: -state->MillisecondsFromStart/1000];
+        NSLog(@"Start date: %@", startDate);
+        if (sceneDb.startedAt == nil || [startDate compare:sceneDb.startedAt] != NSOrderedSame) {
+            NSLog(@"Start date saved");
+            sceneDb.startedAt = startDate;
+            save = YES;
+        }
+    } else if (sceneDb.startedAt != nil) {
+        sceneDb.startedAt = nil;
+        save = YES;
+    }
+    
+    if (state->MillisecondsLeft > 0) {
+        NSDate *endDate = [[NSDate alloc] initWithTimeIntervalSinceNow: state->MillisecondsLeft/1000];
+        NSLog(@"End date: %@, compare %ld", endDate, (long)[endDate compare:sceneDb.estimatedEndDate]);
+        if (sceneDb.estimatedEndDate == nil || [endDate compare:sceneDb.estimatedEndDate] != NSOrderedSame) {
+            NSLog(@"End date saved");
+            sceneDb.estimatedEndDate = endDate;
+            save = YES;
+        }
+    } else if (sceneDb.estimatedEndDate != nil) {
+        sceneDb.estimatedEndDate = nil;
+        save = YES;
+    }
+    
+    if ( save ) {
+        [self saveContext];
+    }
+    
+    return save;
+}
+
+- (NSArray<SAScene *> *)fetchScenes {
+    NSFetchRequest *fr = [[NSFetchRequest alloc] initWithEntityName: @"SAScene"];
     fr.predicate = [NSPredicate predicateWithFormat: @"profile == %@"
                                       argumentArray: @[self.currentProfile]];
     fr.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey: @"location.sortOrder"
@@ -1516,7 +1575,7 @@ again:
                                                             ascending: YES],
                               [NSSortDescriptor sortDescriptorWithKey: @"sceneId"
                                                             ascending: YES]];
-    NSArray<Scene *> *rv;
+    NSArray<SAScene *> *rv;
     NSError *err = nil;
     rv = [self.managedObjectContext executeFetchRequest: fr
                                                   error: &err];
@@ -1525,7 +1584,11 @@ again:
 }
 
 -(BOOL) updateSceneUserIcons {
-    return [self updateChannelUserIconsWithEntityName:@"Scene"];
+    return [self updateChannelUserIconsWithEntityName:@"SAScene"];
+}
+
+-(BOOL) setAllOfScenesVisible:(int)visible whereVisibilityIs:(int)wvi {
+    return [self setAllItemsVisible:visible whereVisibilityIs:wvi entityName:@"SAScene"];
 }
 
 @end
