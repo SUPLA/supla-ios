@@ -251,7 +251,14 @@ class SceneCell: MGSwipeTableCell {
         DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(200)) {
             btn.backgroundColor = .onLine()
         }
-        // TODO: dispatch requested action
+        
+        if (btn == _executeButton) {
+            SAApp.suplaClient().executeAction(parameters: .simple(action: .execute, subjectType: .scene, subjectId: sceneData!.sceneId))
+        }
+        if (btn == _abortButton) {
+            SAApp.suplaClient().executeAction(parameters: .simple(action: .interrupt, subjectType: .scene, subjectId: sceneData!.sceneId))
+        }
+        
         
         if(Config().autohideButtons) {
             hideSwipe(animated: true)

@@ -921,7 +921,7 @@ void sasuplaclient_scene_state_update(void *_suplaclient,
 
 - (void) sceneStateUpdate:(TSC_SuplaSceneState *)state {
     NSLog(@"State update for scene with ID: %i", state->SceneId);
-    if ([self.DB updateSceneState:state]) {
+    if ([self.DB updateSceneState:state currentId:_client_id]) {
         NSLog(@"State for scene with ID: %i updated", state->SceneId);
         [self onDataChanged];
     }
@@ -1516,6 +1516,15 @@ void sasuplaclient_scene_state_update(void *_suplaclient,
     
     [self cg:remoteId Open:on ? 1 : 0 group:group];
     return true;
+}
+
+- (BOOL) executeAction: (int)actionId subjecType: (int)subjectType subjectId: (int)subjectId rsParameters: (TAction_RS_Parameters*)rsParameters rgbwParameters: (TAction_RGBW_Parameters*)rgbwParameters {
+    if (!_sclient) {
+        return NO;
+    }
+    
+    AudioServicesPlayAlertSound(kSystemSoundID_Vibrate);
+    return supla_client_execute_action(_sclient, actionId, rsParameters, rgbwParameters, subjectType, subjectId) > 0;
 }
 
 @end

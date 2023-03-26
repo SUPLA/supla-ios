@@ -1508,7 +1508,7 @@ again:
     return save;
 }
 
-- (BOOL) updateSceneState: (TSC_SuplaSceneState *)state  {
+- (BOOL) updateSceneState: (TSC_SuplaSceneState *)state currentId:(int)currentId {
     BOOL save = NO;
     
     SAScene *sceneDb = [self fetchSceneById:state->SceneId];
@@ -1517,22 +1517,22 @@ again:
         return save;
     }
     
-    if (sceneDb.initiatorId != state->InitiatorId) {
-        sceneDb.initiatorId = state->InitiatorId;
-        save = YES;
-    }
-    
-    NSString *initatorName = [NSString stringWithUTF8String:state->InitiatorName];
-    if (![sceneDb.initiatorName isEqualToString: initatorName]) {
-        sceneDb.initiatorName = initatorName;
-        save = YES;
+    if (state->InitiatorId != currentId) {
+        if (sceneDb.initiatorId != state->InitiatorId) {
+            sceneDb.initiatorId = state->InitiatorId;
+            save = YES;
+        }
+        
+        NSString *initatorName = [NSString stringWithUTF8String:state->InitiatorName];
+        if (![sceneDb.initiatorName isEqualToString: initatorName]) {
+            sceneDb.initiatorName = initatorName;
+            save = YES;
+        }
     }
     
     if (state->MillisecondsFromStart > 0) {
         NSDate *startDate = [[NSDate alloc] initWithTimeIntervalSinceNow: -state->MillisecondsFromStart/1000];
-        NSLog(@"Start date: %@", startDate);
         if (sceneDb.startedAt == nil || [startDate compare:sceneDb.startedAt] != NSOrderedSame) {
-            NSLog(@"Start date saved");
             sceneDb.startedAt = startDate;
             save = YES;
         }
@@ -1543,9 +1543,7 @@ again:
     
     if (state->MillisecondsLeft > 0) {
         NSDate *endDate = [[NSDate alloc] initWithTimeIntervalSinceNow: state->MillisecondsLeft/1000];
-        NSLog(@"End date: %@, compare %ld", endDate, (long)[endDate compare:sceneDb.estimatedEndDate]);
         if (sceneDb.estimatedEndDate == nil || [endDate compare:sceneDb.estimatedEndDate] != NSOrderedSame) {
-            NSLog(@"End date saved");
             sceneDb.estimatedEndDate = endDate;
             save = YES;
         }
