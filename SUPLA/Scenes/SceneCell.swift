@@ -18,8 +18,10 @@ class SceneCell: MGSwipeTableCell {
             
             if let iconId = sceneData?.usericon_id, iconId < 20 {
                 _sceneIcon.image = UIImage(named: "scene_\(iconId)")
-            } else if let icon = sceneData?.usericon?.uimage1 as? UIImage {
-                _sceneIcon.image = icon
+            } else if let data = sceneData?.usericon?.uimage1 as? Data {
+                _sceneIcon.image = UIImage(data: data as Data)
+            } else {
+                _sceneIcon.image = UIImage(named: "scene_0")
             }
             
             if (_timer != nil) {
