@@ -869,29 +869,28 @@
 
 #pragma mark Scenes support
 - (void)showScenes {
-    if(_scenesVC) return;
-    
     if(!_scenesVM) {
         _scenesVM = [[ScenesVM alloc] initWithDatabase: [SAApp DB]];
-    }
-    _scenesVC = [[ScenesVC alloc] init];
-    _scenesVC.scaleFactor = _heightScaleFactor;
-    [self addChildViewController: _scenesVC];
-    [self.view addSubview: _scenesVC.view];
-    [_scenesVC.view.topAnchor constraintEqualToAnchor: self.view.topAnchor
-                                             constant: [UIApplication sharedApplication].statusBarFrame.size.height +
-                                                        self.navigationController.navigationBar.frame.size.height].active = YES;
-    [_scenesVC.view.leftAnchor constraintEqualToAnchor: self.view.leftAnchor].active = YES;
-    [_scenesVC.view.rightAnchor constraintEqualToAnchor: self.view.rightAnchor].active = YES;
-    [_scenesVC.view.bottomAnchor constraintEqualToAnchor: _tabBar.topAnchor].active = YES;
+        _scenesVC = [[ScenesVC alloc] init];
+        _scenesVC.scaleFactor = _heightScaleFactor;
+        [self addChildViewController: _scenesVC];
+        [self.view addSubview: _scenesVC.view];
+        [_scenesVC.view.topAnchor constraintEqualToAnchor: self.view.topAnchor
+                                                 constant: [UIApplication sharedApplication].statusBarFrame.size.height +
+                                                            self.navigationController.navigationBar.frame.size.height].active = YES;
+        [_scenesVC.view.leftAnchor constraintEqualToAnchor: self.view.leftAnchor].active = YES;
+        [_scenesVC.view.rightAnchor constraintEqualToAnchor: self.view.rightAnchor].active = YES;
+        [_scenesVC.view.bottomAnchor constraintEqualToAnchor: _tabBar.topAnchor].active = YES;
 
-    [_scenesVC bindWithViewModel: _scenesVM];
+        [_scenesVC bindWithViewModel: _scenesVM];
+    } else {
+        _scenesVC.view.hidden = false;
+    }
+    
 }
 
 - (void)hideScenes {
-    [_scenesVC.view removeFromSuperview];
-    [_scenesVC removeFromParentViewController];
-    _scenesVC = nil;
+    _scenesVC.view.hidden = true;
 }
 
 @end
