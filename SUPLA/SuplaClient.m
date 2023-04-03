@@ -582,6 +582,10 @@ void sasuplaclient_scene_state_update(void *_suplaclient,
                 DataChanged = YES;
             }
             
+            if ( [self.DB setAllOfScenesVisible:2 whereVisibilityIs:1] ) {
+                DataChanged = YES;
+            }
+            
             if ( [self.DB setChannelsOffline] ) {
                 DataChanged = YES;
             }

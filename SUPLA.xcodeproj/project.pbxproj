@@ -650,6 +650,7 @@
 		6EC4B0072871777B00731079 /* SAElectricityMeterChartMarkerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6EC4B0062871777A00731079 /* SAElectricityMeterChartMarkerView.xib */; };
 		A52ACD4729CB93060092729F /* SuplaClientActionExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A52ACD4629CB93060092729F /* SuplaClientActionExtension.swift */; };
 		A52ACD4929CB940B0092729F /* ActionParameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = A52ACD4829CB940B0092729F /* ActionParameters.swift */; };
+		A597271129DAEA480090A044 /* SceneExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A597271029DAEA480090A044 /* SceneExtensions.swift */; };
 		AE1874C2290C581D00437146 /* SceneCaptionEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE1874C1290C581D00437146 /* SceneCaptionEditor.swift */; };
 		AE348E66277F348700F363A3 /* SAMoveTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = AE348E65277F348700F363A3 /* SAMoveTableView.m */; };
 		AE3DECE22761DB32005923E4 /* AuthCfgNavigationCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE3DECE02761DB32005923E4 /* AuthCfgNavigationCoordinator.swift */; };
@@ -1714,6 +1715,7 @@
 		76FF65EADE7763EB8D61BC35 /* Pods_SUPLATests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SUPLATests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A52ACD4629CB93060092729F /* SuplaClientActionExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuplaClientActionExtension.swift; sourceTree = "<group>"; };
 		A52ACD4829CB940B0092729F /* ActionParameters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionParameters.swift; sourceTree = "<group>"; };
+		A597271029DAEA480090A044 /* SceneExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneExtensions.swift; sourceTree = "<group>"; };
 		AE1874C1290C581D00437146 /* SceneCaptionEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneCaptionEditor.swift; sourceTree = "<group>"; };
 		AE348E64277F348700F363A3 /* SAMoveTableView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SAMoveTableView.h; sourceTree = "<group>"; };
 		AE348E65277F348700F363A3 /* SAMoveTableView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SAMoveTableView.m; sourceTree = "<group>"; };
@@ -2924,6 +2926,7 @@
 				AEF6A5CF28BBD1EC0019684A /* SceneCell.swift */,
 				AEDFB81528C4C17B009E28F0 /* ScenesVM.swift */,
 				AE1874C1290C581D00437146 /* SceneCaptionEditor.swift */,
+				A597271029DAEA480090A044 /* SceneExtensions.swift */,
 			);
 			path = Scenes;
 			sourceTree = "<group>";
@@ -3755,6 +3758,7 @@
 				019D9E3225F27A4500881C99 /* SALocationCaptionEditor.m in Sources */,
 				40B610CC20C7E263002B762A /* SAUIChannelStatus.m in Sources */,
 				AECB1BE727109EA3001A9714 /* CheckBox.swift in Sources */,
+				A597271129DAEA480090A044 /* SceneExtensions.swift in Sources */,
 				AE535356276927690077BFFB /* LocationOrderingVC.swift in Sources */,
 				AEF79D8D2712FF8D00D7554B /* CfgVC.swift in Sources */,
 				01215A7324C8AECC00429947 /* SALightsourceLifespanSettingsDialog.m in Sources */,

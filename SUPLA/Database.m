@@ -28,7 +28,6 @@
 #import "SUPLA-Swift.h"
 
 @interface SADatabase ()
-@property (readonly, nonatomic) AuthProfileItem *currentProfile;
 @end
 
 @implementation SADatabase {
@@ -1502,6 +1501,11 @@ again:
         save = YES;
     }
     
+    if (sceneDb.visible != 1) {
+        sceneDb.visible = 1;
+        save = YES;
+    }
+    
     if ( save ) {
         [self saveContext];
     }
@@ -1562,7 +1566,7 @@ again:
 
 - (NSArray<SAScene *> *)fetchScenes {
     NSFetchRequest *fr = [[NSFetchRequest alloc] initWithEntityName: @"SAScene"];
-    fr.predicate = [NSPredicate predicateWithFormat: @"profile == %@"
+    fr.predicate = [NSPredicate predicateWithFormat: @"profile == %@ AND visible > 0"
                                       argumentArray: @[self.currentProfile]];
     fr.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey: @"location.sortOrder"
                                                          ascending: YES],

@@ -848,7 +848,7 @@
     [self.view addSubview: _tabBar];
     [_tabBar.leftAnchor constraintEqualToAnchor: self.view.leftAnchor].active = YES;
     [_tabBar.rightAnchor constraintEqualToAnchor: self.view.rightAnchor].active = YES;
-    [_tabBar.bottomAnchor constraintEqualToAnchor: self.view.bottomAnchor].active = YES;
+    [_tabBar.bottomAnchor constraintEqualToAnchor: self.view.safeAreaLayoutGuide.bottomAnchor].active = YES;
 }
 
 - (void)setActiveTab: (NSInteger)tab {

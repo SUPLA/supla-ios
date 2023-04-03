@@ -298,7 +298,7 @@ class SceneCell: MGSwipeTableCell {
         }
         else {
             let timeDiff = endTime - currentTime
-            _timerLabel.text = _formatter.string(from: timeDiff)
+            _timerLabel.text = _formatter.string(from: timeDiff + 1)
         }
     }
 }
