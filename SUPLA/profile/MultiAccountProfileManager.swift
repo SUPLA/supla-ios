@@ -20,12 +20,31 @@ import Foundation
 import CoreData
 
 class MultiAccountProfileManager: NSObject {
+    
     private let _ctx: NSManagedObjectContext
+    
+    /**
+     Temporairy introduced to solve issue with concurent access to current profile.
+     Will be removed with persisntency layer redesign.
+     */
+    private static var _currentProfileId: ProfileID?
     
     @objc
     init(context: NSManagedObjectContext) {
         _ctx = context
         super.init()
+        
+        if (MultiAccountProfileManager._currentProfileId == nil) {
+            MultiAccountProfileManager._currentProfileId = _findCurrentProfile().objectID
+        }
+    }
+    
+    private func _findCurrentProfile() -> AuthProfileItem {
+        if let profile = getAllProfiles().first(where: {$0.isActive}) {
+            return profile
+        } else {
+            return makeNewProfile()
+        }
     }
 }
 
@@ -49,13 +68,14 @@ extension MultiAccountProfileManager: ProfileManager {
     }
 
     func getCurrentProfile() -> AuthProfileItem {
-        let req = AuthProfileItem.fetchRequest()
-        if let profile = try! _ctx.fetch(req).first(where: {$0.isActive}) {
-            return profile
-        } else {
-            // Need to create initial profile
-            return makeNewProfile()
+        if (MultiAccountProfileManager._currentProfileId == nil) {
+            fatalError("Current profile ID not set, but expected to be set!")
         }
+        let profile = getProfile(id: MultiAccountProfileManager._currentProfileId!)
+        if (profile == nil) {
+            fatalError("Profile for ID \(MultiAccountProfileManager._currentProfileId!) was not found!")
+        }
+        return profile!
     }
     
     func updateCurrentProfile(_ profile: AuthProfileItem) {
@@ -94,10 +114,16 @@ extension MultiAccountProfileManager: ProfileManager {
         guard let profile = getProfile(id: id) else { return false }
         if profile.isActive && !force { return false }
         
+        let profiles = getAllProfiles()
+        profiles.forEach { $0.isActive = $0.objectID == id}
+        do {
+            try _ctx.save()
+        } catch {
+            NSLog("Error occured by saving \(error)")
+            return false;
+        }
+        MultiAccountProfileManager._currentProfileId = id
         initiateReconnect()
-        getAllProfiles().forEach { $0.isActive = false }
-        profile.isActive = true
-        try! _ctx.save()
         
         return true
     }

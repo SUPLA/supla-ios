@@ -346,11 +346,11 @@ again:
 };
 
 -(SAChannel*) newChannel {
-    
-    SAChannel *Channel = [[SAChannel alloc] initWithEntity:[NSEntityDescription entityForName:@"SAChannel" inManagedObjectContext:self.managedObjectContext] insertIntoManagedObjectContext:self.managedObjectContext];
+    NSManagedObjectContext *ctx = self.managedObjectContext;
+    SAChannel *Channel = [[SAChannel alloc] initWithEntity:[NSEntityDescription entityForName:@"SAChannel" inManagedObjectContext: ctx] insertIntoManagedObjectContext: ctx];
     [Channel initWithRemoteId:0];
     Channel.profile = self.currentProfile;
-    [self.managedObjectContext insertObject:Channel];
+    [ctx insertObject:Channel];
     
     return Channel;
 }
@@ -1464,6 +1464,7 @@ again:
                                                                 inManagedObjectContext: ctx]
                     insertIntoManagedObjectContext: ctx];
     scn.profile = self.currentProfile;
+    [ctx insertObject: scn];
     
     return scn;
 }
