@@ -1501,6 +1501,11 @@ again:
         save = YES;
     }
     
+    if (sceneDb.alticon != scene->AltIcon) {
+        sceneDb.alticon = scene->AltIcon;
+        save = YES;
+    }
+    
     if (sceneDb.visible != 1) {
         sceneDb.visible = 1;
         save = YES;

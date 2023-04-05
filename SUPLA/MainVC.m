@@ -827,9 +827,9 @@
 
 
 - (void)configureTabBar {
-    [UITabBar appearance].barTintColor = [UIColor suplaGreenBackground];
-    [UITabBar appearance].tintColor = [UIColor whiteColor];
-    [UITabBar appearance].unselectedItemTintColor = [UIColor unselectedItem];
+    [UITabBar appearance].barTintColor = [UIColor background];
+    [UITabBar appearance].tintColor = [UIColor suplaGreen];
+    [UITabBar appearance].unselectedItemTintColor = [UIColor textLight];
     _tabBar = [[UITabBar alloc] init];
     _tabBar.translucent = NO;
     [_tabBar setItems: @[
@@ -837,7 +837,7 @@
                                       image: [UIImage imageNamed: @"list"]
                                         tag: TAB_CHANNELS],
         [[UITabBarItem alloc] initWithTitle: NSLocalizedString(@"Groups", nil)
-                                      image: [UIImage imageNamed: @"groupsoff"]
+                                      image: [UIImage imageNamed: @"bottom_bar_groups"]
                                         tag: TAB_GROUPS],
         [[UITabBarItem alloc] initWithTitle:NSLocalizedString(@"Scenes", nil)
                                       image:[UIImage imageNamed: @"coffee"]
@@ -848,7 +848,12 @@
     [self.view addSubview: _tabBar];
     [_tabBar.leftAnchor constraintEqualToAnchor: self.view.leftAnchor].active = YES;
     [_tabBar.rightAnchor constraintEqualToAnchor: self.view.rightAnchor].active = YES;
-    [_tabBar.bottomAnchor constraintEqualToAnchor: self.view.safeAreaLayoutGuide.bottomAnchor].active = YES;
+    if (@available(iOS 11, *)) {
+        [_tabBar.bottomAnchor constraintEqualToAnchor: self.view.safeAreaLayoutGuide.bottomAnchor].active = YES;
+    } else {
+        [_tabBar.bottomAnchor constraintEqualToAnchor: self.view.bottomAnchor].active = YES;
+    }
+    [_tabBar setSelectedItem: [_tabBar.items objectAtIndex: 0]];
 }
 
 - (void)setActiveTab: (NSInteger)tab {

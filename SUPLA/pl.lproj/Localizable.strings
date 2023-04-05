@@ -301,3 +301,6 @@
 "Channels" = "Kanały";
 "Groups" = "Grupy";
 "Scenes" = "Sceny";
+"Scenes.ActionButtons.execute" = "Wykonaj";
+"Scenes.ActionButtons.abort" = "Przerwij";
+

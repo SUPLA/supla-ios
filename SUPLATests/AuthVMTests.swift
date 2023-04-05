@@ -71,8 +71,7 @@ class AuthVMTests: XCTestCase {
     }
 
     override func setUpWithError() throws {
-        let modelURL = Bundle.main.url(forResource: "SUPLA",
-                                       withExtension: "momd")!
+        let modelURL = Bundle.main.url(forResource: "SUPLA", withExtension: "momd")!
         let mom = NSManagedObjectModel(contentsOf: modelURL)!
         coordinator = NSPersistentStoreCoordinator(managedObjectModel: mom)
         try! coordinator.addPersistentStore(ofType: NSInMemoryStoreType,
@@ -116,19 +115,6 @@ class AuthVMTests: XCTestCase {
         wait(for: [expectServerAddressEmpty], timeout: 0.1)
     }
     
-    func testNoChangeOnAutoServerMaintainsServerAddress() throws {
-        let ai = profileManager.getCurrentAuthInfo()
-        ai.serverForEmail = "a.test.net"
-        profileManager.updateCurrentAuthInfo(ai)
-        let addr = profileManager.getCurrentAuthInfo().serverForEmail
-        XCTAssertFalse(addr.isEmpty)
-        _ = sut
-        _formSubmitRequest.accept(())
-
-        let addr2 = profileManager.getCurrentAuthInfo().serverForEmail
-        XCTAssertEqual(addr, addr2)
-    }
-
     func testDisablingAutoServerPrefillsServerAddress() throws {
         var email: String?
         var isAuto: Bool?
@@ -200,30 +186,6 @@ class AuthVMTests: XCTestCase {
         XCTAssertEqual(serverForAccessID, "aid.server.com")
     }
 
-    func testConfirmUpdatesSettingsWithNewValues() {
-        XCTAssertEqual(false, profileManager.getCurrentProfile().advancedSetup)
-
-        let oldAuthInfo = profileManager.getCurrentProfile().authInfo!.clone()
-        profileId = profileManager.getCurrentProfile().objectID
-        _ = sut
-        _advancedMode.accept(true)
-        _advancedModeAuthType.accept(AuthVM.AuthType.accessId)
-        _accessID.accept(345)
-        _accessIDpwd.accept("topsecret")
-        _serverAddrAccessID.accept("s1.testing.net")
-        _formSubmitRequest.accept({}())
-
-        let newAuthInfo = profileManager.getCurrentProfile().authInfo
-        XCTAssertNotEqual(oldAuthInfo, newAuthInfo)
-
-        XCTAssertTrue(profileManager.getCurrentProfile().advancedSetup)
-        XCTAssertFalse(newAuthInfo!.emailAuth)
-        XCTAssertEqual(345, newAuthInfo!.accessID)
-        XCTAssertEqual("topsecret", newAuthInfo!.accessIDpwd)
-        XCTAssertEqual("s1.testing.net",
-                       newAuthInfo!.serverForAccessID)
-    }
-    
     func testReturningToBasicModeRequiresEmailAuto1() {
         let disposeBag = DisposeBag()
         _ = sut

@@ -79,8 +79,8 @@ struct Strings {
     
     struct Scenes {
         struct ActionButtons {
-            static let execute = NSLocalizedString("Execute", comment: "")
-            static let abort = NSLocalizedString("Abort", comment: "")
+            static let execute = NSLocalizedString("Scenes.ActionButtons.execute", comment: "")
+            static let abort = NSLocalizedString("Scenes.ActionButtons.abort", comment: "")
         }
         struct RenameDialog {
             static let sceneName = NSLocalizedString("scene name", comment: "")

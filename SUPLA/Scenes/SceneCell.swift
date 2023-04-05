@@ -16,10 +16,14 @@ class SceneCell: MGSwipeTableCell {
         didSet {
             _captionLabel.text = sceneData?.caption ?? ""
             
-            if let iconId = sceneData?.usericon_id, iconId < 20 {
+            if let iconId = sceneData?.usericon_id, iconId != 0 {
+                if let data = sceneData?.usericon?.uimage1 as? Data {
+                    _sceneIcon.image = UIImage(data: data as Data)
+                } else {
+                    _sceneIcon.image = UIImage(named: "scene_0")
+                }
+            } else if let iconId = sceneData?.alticon, iconId < 20 {
                 _sceneIcon.image = UIImage(named: "scene_\(iconId)")
-            } else if let data = sceneData?.usericon?.uimage1 as? Data {
-                _sceneIcon.image = UIImage(data: data as Data)
             } else {
                 _sceneIcon.image = UIImage(named: "scene_0")
             }

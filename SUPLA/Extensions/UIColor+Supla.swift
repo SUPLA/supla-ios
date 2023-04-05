@@ -33,4 +33,6 @@ extension UIColor {
                                   blue: 40.0/255.0, alpha: 1)
 
     static let formLabelColor = UIColor(red: 0.706, green: 0.718, blue: 0.729, alpha: 1)
+    @objc static let background = UIColor(red: 0.98, green: 0.984, blue: 0.988, alpha: 1)
+    @objc static let textLight = UIColor(red: 0, green: 0, blue: 0, alpha: 1)
 }
