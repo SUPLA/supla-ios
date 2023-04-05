@@ -16,32 +16,24 @@
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 
-import UIKit
+import Foundation
+import RxSwift
 
-class RoundedButton: UIButton {
+class AccountRemovalVM : BaseViewModel<AccountRemovalViewState, AccountRemovalViewEvent> {
     
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        setUp()
-    }
+    private let removalFinishedSufix = "/db99845855b2ecbfecca9a095062b96c3e27703f?ack=true"
     
-    required init?(coder: NSCoder) {
-        super.init(coder: coder)
-        setUp()
-    }
-    
-    override var isEnabled: Bool {
-        didSet {
-            if (isEnabled) {
-                self.backgroundColor = .suplaGreen
-            } else {
-                self.backgroundColor = .disabled
-            }
+    func handleUrl(url: String?) {
+        guard let url = url else { return }
+        
+        if (url.hasSuffix(removalFinishedSufix)) {
+            send(event: .finish)
         }
     }
-
-    private func setUp() {
-        self.backgroundColor = .suplaGreen
-        self.layer.cornerRadius = 9
-    }
 }
+
+enum AccountRemovalViewEvent: ViewEvent {
+    case finish
+}
+
+struct AccountRemovalViewState: ViewState {}

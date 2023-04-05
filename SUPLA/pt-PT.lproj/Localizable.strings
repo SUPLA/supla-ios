@@ -298,3 +298,9 @@
 "Select active account" = "Selecione uma conta ativa";
 "Phase 1+2+3" = "Fase 1+2+3";
 "Phase %d" = "Fase %d";
+
+"Cfg.removal.dialog.missing_name" = "Introduza um nome de conta";
+"Cfg.removal.dialog.duplicated_name" = "Já existe uma conta com esse nome";
+"Cfg.removal.dialog.incomplete" = "Complete os restantes dados";
+
+"General.error" = "Erro";

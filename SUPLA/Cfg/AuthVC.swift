@@ -90,6 +90,12 @@ class AuthVC: BaseViewController {
     private weak var activeContentView: UIView?
     private var profileId: NSManagedObjectID?
     
+    private var navigator: AuthCfgNavigationCoordinator? {
+        get {
+            navigationCoordinator as? AuthCfgNavigationCoordinator
+        }
+    }
+    
     var viewModel: AuthVM {
         loadViewIfNeeded()
         assert(vM != nil)
@@ -208,33 +214,29 @@ class AuthVC: BaseViewController {
 
     private func bindVM() {
         /* Initialize view model and bind its inputs to the UI components */
-        let bindings = AuthVM.Inputs(basicEmail: bsEmailAddr.rx.text.asObservable(),
-                                     basicName: bsProfileName.rx.text.asObservable(),
-                                     advancedEmail: adEmailAddr.rx.text.asObservable(),
-                                     advancedName: adProfileName.rx.text.asObservable(),
-                                     accessID: adAccessID.rx.text.asObservable().map { Int($0 ?? "0") }.asObservable(),
-                                     accessIDpwd: adAccessPwd.rx.text.asObservable(),
-                                     serverAddressForEmail: adServerAddrEmail.rx.text.asObservable(),
-                                     serverAddressForAccessID: adServerAddrAccessId.rx.text.asObservable(),
-                                     toggleAdvancedState: modeToggle.rx.isOn.asObservable(),
-                                     advancedModeAuthType: adAuthType.rx.selectedSegmentIndex.asObservable().map({ AuthVM.AuthType(rawValue: $0)!}).asObservable(),
-        createAccountRequest: createAccountButton.rx.tap.asObservable(),
-        autoServerSelected: adServerAuto.rx.tap.asObservable().map({
-                                                    self.adServerAuto.isSelected
-                                                }),
-                                     formSubmitRequest: confirmButton.rx.tap.asObservable(),
-                                     accountDeleteRequest: deleteButton.rx.tap.asObservable())
+        let bindings = AuthVM.Inputs(
+            basicEmail: bsEmailAddr.rx.text.asObservable(),
+            basicName: bsProfileName.rx.text.asObservable(),
+            advancedEmail: adEmailAddr.rx.text.asObservable(),
+            advancedName: adProfileName.rx.text.asObservable(),
+            accessID: adAccessID.rx.text.asObservable().map { Int($0 ?? "0") }.asObservable(),
+            accessIDpwd: adAccessPwd.rx.text.asObservable(),
+            serverAddressForEmail: adServerAddrEmail.rx.text.asObservable(),
+            serverAddressForAccessID: adServerAddrAccessId.rx.text.asObservable(),
+            toggleAdvancedState: modeToggle.rx.isOn.asObservable(),
+            advancedModeAuthType: adAuthType.rx.selectedSegmentIndex.asObservable().map({ AuthVM.AuthType(rawValue: $0)!}).asObservable(),
+            createAccountRequest: createAccountButton.rx.tap.asObservable(),
+            autoServerSelected: adServerAuto.rx.tap.asObservable().map({
+                self.adServerAuto.isSelected
+            }),
+            formSubmitRequest: confirmButton.rx.tap.asObservable(),
+            accountDeleteRequest: deleteButton.rx.tap.asObservable()
+        )
         
         vM = AuthVM(bindings: bindings,
                     profileManager: SAApp.profileManager(),
                     profileId: profileId)
 
-        
-        profileNameContainer.forEach {
-            $0.isHidden = !vM.allowsEditingProfileName
-        }
-        
-        deleteButton.isHidden = !vM.allowsDeletingProfile
         
         /* Bind view model outputs to UI components */
         vM.isAdvancedMode.bind(to: self.modeToggle.rx.isOn)
@@ -275,32 +277,20 @@ class AuthVC: BaseViewController {
         
         vM.accessIDpwd.bind(to: self.adAccessPwd.rx.text).disposed(by: disposeBag)
         
-        vM.formSaved.subscribe { [weak self] needsReauth in
-            if needsReauth.element == true {
-                SAApp.revokeOAuthToken()
-                SAApp.db().deleteAllUserIcons()
-            }
-            (self?.navigationCoordinator as? AuthConfigActionHandler)?.didFinish(shouldReauthenticate: needsReauth.element!)
-            if needsReauth.element == true || !SAApp.suplaClientConnected() {
-                NotificationCenter.default.post(name: .saConnecting,
-                                                object: self, userInfo: nil)
-                let pm = SAApp.profileManager()
-                let ai = pm.getCurrentAuthInfo()
-                ai.preferredProtocolVersion = Int(SUPLA_PROTO_VERSION)
-                pm.updateCurrentAuthInfo(ai)
-                SAApp.suplaClient().reconnect()
-            }
-        }.disposed(by: disposeBag)
-        
         vM.basicModeUnavailable.subscribe(onNext: { [weak self] in
             self?.displayBasicModeUnavailableAlert()
         }).disposed(by: disposeBag)
-        
-        vM.signupPromptVisible.subscribe(onNext: {
-            self.createAccountPrompt.isHidden = !$0
-            self.createAccountButton.isHidden = !$0
+
+        vM.events.subscribe(onNext: { event in
+            self.handleViewEvents(event: event)
         }).disposed(by: disposeBag)
         
+        vM.state.subscribe(onNext: { state in
+            self.profileNameContainer.forEach { $0.isHidden = !state.profileNameVisible }
+            self.createAccountPrompt.isHidden = state.profileNameVisible
+            self.createAccountButton.isHidden = state.profileNameVisible
+            self.deleteButton.isHidden = !state.deleteButtonVisible
+        }).disposed(by: disposeBag)
     }
     
     override func updateViewConstraints() {
@@ -334,6 +324,76 @@ class AuthVC: BaseViewController {
         
         bottomOffset.constant = _bottomMargin
         
+    }
+    
+    private func handleViewEvents(event: AuthViewEvent) {
+        switch (event) {
+        case .showRemovalDialog:
+            handleShowRemovalDialogEvent()
+            break
+        case .formSaved(let needsReauth):
+            handleFormSavedEvent(needsReauth)
+            break
+        case .navigateToCreateAccount:
+            navigator?.navigateToCreateAccount()
+            break
+        case .navigateToRemoveAccount(let needsRestart):
+            navigator?.navigateToRemoveAccount(needsRestart: needsRestart)
+            break
+        case .finish(let needsRestart):
+            if (needsRestart) {
+                guard let window = UIApplication.shared.keyWindow else { return }
+                
+                let navCtrl = MainNavigationCoordinator()
+                navCtrl.attach(to: window)
+                navCtrl.start(from: nil)
+            } else {
+                navigator?.finish()
+            }
+            break
+        case .showRemovalFailure:
+            showInfoDialog(title: Strings.Cfg.Dialogs.Failed.title, message: Strings.Cfg.Dialogs.Failed.message)
+            break
+        case .showEmptyNameDialog:
+            showInfoDialog(title: Strings.General.error, message: Strings.Cfg.Dialogs.missing_name)
+            break
+        case .showDuplicatedNameDialog:
+            showInfoDialog(title: Strings.General.error, message: Strings.Cfg.Dialogs.duplicated_name)
+            break
+        case .showRequiredDataMisingDialog:
+            showInfoDialog(title: Strings.General.error, message: Strings.Cfg.Dialogs.incomplete)
+            break
+        }
+    }
+    
+    private func handleShowRemovalDialogEvent() {
+        let actionSheet = UIAlertController(title: Strings.Cfg.removalConfirmationTitle, message: nil, preferredStyle: .actionSheet)
+        actionSheet.addAction(UIAlertAction(title: Strings.Cfg.removalActionLogout, style: .destructive, handler: { action in
+            self.vM.logoutAccount()
+        }))
+        actionSheet.addAction(UIAlertAction(title: Strings.Cfg.removalActionRemove, style: .destructive, handler: { action in
+            self.vM.removeAccount()
+        }))
+        actionSheet.addAction(UIAlertAction(title: Strings.General.cancel, style: .cancel, handler: { action in
+            NSLog("User canceled removal action")
+        }))
+        self.present(actionSheet, animated: true)
+    }
+    
+    private func handleFormSavedEvent(_ needsReauth: Bool) {
+        if (needsReauth) {
+            SAApp.revokeOAuthToken()
+            SAApp.db().deleteAllUserIcons()
+        }
+        navigator?.didFinish(shouldReauthenticate: needsReauth)
+        if (needsReauth || !SAApp.suplaClientConnected()) {
+            NotificationCenter.default.post(name: .saConnecting, object: self, userInfo: nil)
+            let pm = SAApp.profileManager()
+            let ai = pm.getCurrentAuthInfo()
+            ai.preferredProtocolVersion = Int(SUPLA_PROTO_VERSION)
+            pm.updateCurrentAuthInfo(ai)
+            SAApp.suplaClient().reconnect()
+        }
     }
     
     private func setContentView(_ v: UIView) {

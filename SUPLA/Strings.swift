@@ -49,6 +49,20 @@ struct Strings {
         static let showOpeningMode = NSLocalizedString("Roller shutter %", comment: "settings label for reporting opening % rather than closing % in detail views")
         static let showOpeningModeOpening = NSLocalizedString("Opening", comment: "")
         static let showOpeningModeClosing = NSLocalizedString("Closing", comment: "")
+        
+        static let removalConfirmationTitle = NSLocalizedString("Cfg.removal.title", comment: "")
+        static let removalActionLogout = NSLocalizedString("Cfg.removal.action.logout", comment: "")
+        static let removalActionRemove = NSLocalizedString("Cfg.removal.action.remove", comment: "")
+        
+        struct Dialogs {
+            struct Failed {
+                static let title = NSLocalizedString("Cfg.removal.action.remove", comment: "")
+                static let message = NSLocalizedString("Cfg.removal.dialog.failed.message", comment: "")
+            }
+            static let missing_name = NSLocalizedString("Cfg.removal.dialog.missing_name", comment: "")
+            static let duplicated_name = NSLocalizedString("Cfg.removal.dialog.duplicated_name", comment: "")
+            static let incomplete = NSLocalizedString("Cfg.removal.dialog.incomplete", comment: "")
+        }
     }
 
     struct Profiles {
@@ -85,5 +99,11 @@ struct Strings {
         struct RenameDialog {
             static let sceneName = NSLocalizedString("scene name", comment: "")
         }
+    }
+    
+    struct General {
+        static let cancel = NSLocalizedString("Cancel", comment: "")
+        static let close = NSLocalizedString("Close", comment: "")
+        static let error = NSLocalizedString("General.error", comment: "")
     }
 }

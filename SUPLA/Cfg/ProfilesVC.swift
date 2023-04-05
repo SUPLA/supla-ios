@@ -150,6 +150,10 @@ class ProfilesVC: BaseViewController {
         _profilesModel.on(.next(dataModel(with: _viewModel.profileItems.value)))
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        _viewModel.reloadTrigger.on(.next(()))
+    }
+    
     private func dataModel(with items: [ProfileListItem]) -> [ProfilesListModel] {
         return [ .profileSection(items: items),
                  .commandSection(items: [.addNewProfileItem])

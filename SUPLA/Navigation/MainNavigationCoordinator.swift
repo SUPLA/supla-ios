@@ -73,8 +73,7 @@ class MainNavigationCoordinator: BaseNavigationCoordinator {
     
     private func updateNavBar() {
         let showNav = SAApp.configIsSet() && SAApp.isClientRegistered()
-        navigationController.setNavigationBarHidden(!showNav,
-                                                    animated: true)
+        navigationController.setNavigationBarHidden(!showNav, animated: true)
     }
 
     override func start(from parent: NavigationCoordinator?) {

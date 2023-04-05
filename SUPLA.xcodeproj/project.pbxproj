@@ -651,7 +651,16 @@
 		A52ACD4729CB93060092729F /* SuplaClientActionExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A52ACD4629CB93060092729F /* SuplaClientActionExtension.swift */; };
 		A52ACD4929CB940B0092729F /* ActionParameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = A52ACD4829CB940B0092729F /* ActionParameters.swift */; };
 		A55D43CE29DD495000BEF06E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A55D43CD29DD495000BEF06E /* Assets.xcassets */; };
+		A573B38C29DE9F5600EBAFC4 /* BaseViewControllerExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A573B38B29DE9F5600EBAFC4 /* BaseViewControllerExtensions.swift */; };
+		A573B39229DEB25900EBAFC4 /* ViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = A573B39129DEB25900EBAFC4 /* ViewState.swift */; };
+		A5756F8229DC102800C32A1B /* AccountRemovalVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5756F8129DC102800C32A1B /* AccountRemovalVC.swift */; };
+		A5756F8429DC23A800C32A1B /* AccountRemovalNavigationCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5756F8329DC23A800C32A1B /* AccountRemovalNavigationCoordinator.swift */; };
 		A597271129DAEA480090A044 /* SceneExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A597271029DAEA480090A044 /* SceneExtensions.swift */; };
+		A5F14B7229DED06400682FA6 /* AccountRemovalVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F14B7129DED06400682FA6 /* AccountRemovalVM.swift */; };
+		A5F14B7429DED41000682FA6 /* BaseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F14B7329DED41000682FA6 /* BaseViewModel.swift */; };
+		A5F14B7629DED44600682FA6 /* ViewEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F14B7529DED44600682FA6 /* ViewEvent.swift */; };
+		A5F14B7929DED9F000682FA6 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F14B7829DED9F000682FA6 /* BaseViewController.swift */; };
+		A5F14B7D29DEE4D800682FA6 /* AccountRemovalVMTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F14B7C29DEE4D800682FA6 /* AccountRemovalVMTest.swift */; };
 		AE1874C2290C581D00437146 /* SceneCaptionEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE1874C1290C581D00437146 /* SceneCaptionEditor.swift */; };
 		AE348E66277F348700F363A3 /* SAMoveTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = AE348E65277F348700F363A3 /* SAMoveTableView.m */; };
 		AE3DECE22761DB32005923E4 /* AuthCfgNavigationCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE3DECE02761DB32005923E4 /* AuthCfgNavigationCoordinator.swift */; };
@@ -670,7 +679,6 @@
 		AE7452912827F49100A3AFAD /* ProfilesNavigationCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE7452902827F49100A3AFAD /* ProfilesNavigationCoordinator.swift */; };
 		AE7CAAFD275BF87D0024095F /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AE7CAAFC275BF87D0024095F /* BaseViewController.m */; };
 		AE929A87275FD5D500B75715 /* MainNavigationCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE929A86275FD5D500B75715 /* MainNavigationCoordinator.swift */; };
-		AE929A89276145C400B75715 /* FlowActionHandlers.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE929A88276145C400B75715 /* FlowActionHandlers.swift */; };
 		AE929A8B2761487700B75715 /* NavigationCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE929A8A2761487700B75715 /* NavigationCoordinator.swift */; };
 		AEA1E96327422B0F005C34CB /* ProfileManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEA1E96227422B0F005C34CB /* ProfileManagerTests.swift */; };
 		AEA4B36128BB943D005C4869 /* ScenesVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEA4B36028BB943D005C4869 /* ScenesVC.swift */; };
@@ -1717,7 +1725,16 @@
 		A52ACD4629CB93060092729F /* SuplaClientActionExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuplaClientActionExtension.swift; sourceTree = "<group>"; };
 		A52ACD4829CB940B0092729F /* ActionParameters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionParameters.swift; sourceTree = "<group>"; };
 		A55D43CD29DD495000BEF06E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = Resources/Assets.xcassets; sourceTree = "<group>"; };
+		A573B38B29DE9F5600EBAFC4 /* BaseViewControllerExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewControllerExtensions.swift; sourceTree = "<group>"; };
+		A573B39129DEB25900EBAFC4 /* ViewState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewState.swift; sourceTree = "<group>"; };
+		A5756F8129DC102800C32A1B /* AccountRemovalVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountRemovalVC.swift; sourceTree = "<group>"; };
+		A5756F8329DC23A800C32A1B /* AccountRemovalNavigationCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountRemovalNavigationCoordinator.swift; sourceTree = "<group>"; };
 		A597271029DAEA480090A044 /* SceneExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneExtensions.swift; sourceTree = "<group>"; };
+		A5F14B7129DED06400682FA6 /* AccountRemovalVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountRemovalVM.swift; sourceTree = "<group>"; };
+		A5F14B7329DED41000682FA6 /* BaseViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewModel.swift; sourceTree = "<group>"; };
+		A5F14B7529DED44600682FA6 /* ViewEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewEvent.swift; sourceTree = "<group>"; };
+		A5F14B7829DED9F000682FA6 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
+		A5F14B7C29DEE4D800682FA6 /* AccountRemovalVMTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountRemovalVMTest.swift; sourceTree = "<group>"; };
 		AE1874C1290C581D00437146 /* SceneCaptionEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneCaptionEditor.swift; sourceTree = "<group>"; };
 		AE348E64277F348700F363A3 /* SAMoveTableView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SAMoveTableView.h; sourceTree = "<group>"; };
 		AE348E65277F348700F363A3 /* SAMoveTableView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SAMoveTableView.m; sourceTree = "<group>"; };
@@ -1738,7 +1755,6 @@
 		AE7CAAFB275BF87D0024095F /* BaseViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = BaseViewController.h; path = UI/BaseViewController.h; sourceTree = "<group>"; };
 		AE7CAAFC275BF87D0024095F /* BaseViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = BaseViewController.m; path = UI/BaseViewController.m; sourceTree = "<group>"; };
 		AE929A86275FD5D500B75715 /* MainNavigationCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainNavigationCoordinator.swift; sourceTree = "<group>"; };
-		AE929A88276145C400B75715 /* FlowActionHandlers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlowActionHandlers.swift; sourceTree = "<group>"; };
 		AE929A8A2761487700B75715 /* NavigationCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationCoordinator.swift; sourceTree = "<group>"; };
 		AEA1E96127422AA9005C34CB /* SAThermostatMeasurementItem+CoreDataProperties.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SAThermostatMeasurementItem+CoreDataProperties.h"; sourceTree = "<group>"; };
 		AEA1E96227422B0F005C34CB /* ProfileManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileManagerTests.swift; sourceTree = "<group>"; };
@@ -2183,6 +2199,8 @@
 		401CA1BB1BA067DB00117AF4 /* SUPLA */ = {
 			isa = PBXGroup;
 			children = (
+				A573B39029DEB24400EBAFC4 /* Core */,
+				A5756F7F29DC0FE900C32A1B /* Features */,
 				A52ACD4229CB92BB0092729F /* Networking */,
 				AEED1FCF2737F39100DE6289 /* profile */,
 				01D5E0C622DB7FAE00FBE1DC /* SUPLA-Bridging-Header.h */,
@@ -2240,6 +2258,7 @@
 		401CA1D81BA067DB00117AF4 /* SUPLATests */ = {
 			isa = PBXGroup;
 			children = (
+				A5F14B7A29DEE4B600682FA6 /* Features */,
 				01A66A7825364ABA00C00A1A /* SARoofWindowControllerTests.m */,
 				01DD2F0B247718C40025DFF9 /* SARangeCalibrationWheelTests.m */,
 				01EFD94B236CA9AE00893489 /* NSDataEncryptionTest.m */,
@@ -2887,6 +2906,60 @@
 			path = WebApi;
 			sourceTree = "<group>";
 		};
+		A573B39029DEB24400EBAFC4 /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				A5F14B7729DED97400682FA6 /* UI */,
+				A573B38B29DE9F5600EBAFC4 /* BaseViewControllerExtensions.swift */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		A5756F7F29DC0FE900C32A1B /* Features */ = {
+			isa = PBXGroup;
+			children = (
+				A5756F8029DC0FFC00C32A1B /* AccountRemoval */,
+			);
+			path = Features;
+			sourceTree = "<group>";
+		};
+		A5756F8029DC0FFC00C32A1B /* AccountRemoval */ = {
+			isa = PBXGroup;
+			children = (
+				A5756F8129DC102800C32A1B /* AccountRemovalVC.swift */,
+				A5756F8329DC23A800C32A1B /* AccountRemovalNavigationCoordinator.swift */,
+				A5F14B7129DED06400682FA6 /* AccountRemovalVM.swift */,
+			);
+			path = AccountRemoval;
+			sourceTree = "<group>";
+		};
+		A5F14B7729DED97400682FA6 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				A5F14B7329DED41000682FA6 /* BaseViewModel.swift */,
+				A5F14B7529DED44600682FA6 /* ViewEvent.swift */,
+				A573B39129DEB25900EBAFC4 /* ViewState.swift */,
+				A5F14B7829DED9F000682FA6 /* BaseViewController.swift */,
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
+		A5F14B7A29DEE4B600682FA6 /* Features */ = {
+			isa = PBXGroup;
+			children = (
+				A5F14B7B29DEE4C200682FA6 /* AccountRemoval */,
+			);
+			path = Features;
+			sourceTree = "<group>";
+		};
+		A5F14B7B29DEE4C200682FA6 /* AccountRemoval */ = {
+			isa = PBXGroup;
+			children = (
+				A5F14B7C29DEE4D800682FA6 /* AccountRemovalVMTest.swift */,
+			);
+			path = AccountRemoval;
+			sourceTree = "<group>";
+		};
 		AE5A60E4270E2A4100F2B780 /* Cfg */ = {
 			isa = PBXGroup;
 			children = (
@@ -2914,7 +2987,6 @@
 				AE3DECE12761DB32005923E4 /* PresentationNavigationCoordinator.swift */,
 				AE929A86275FD5D500B75715 /* MainNavigationCoordinator.swift */,
 				AE929A8A2761487700B75715 /* NavigationCoordinator.swift */,
-				AE929A88276145C400B75715 /* FlowActionHandlers.swift */,
 				AE5332E127648E770050E690 /* SuplaNavigationController.swift */,
 				AE5332E52764A7E30050E690 /* SuplaMenuController.swift */,
 				AE53535327691EFC0077BFFB /* CfgNavigationCoordinator.swift */,
@@ -3022,6 +3094,7 @@
 				401CA1D11BA067DB00117AF4 /* Sources */,
 				401CA1D21BA067DB00117AF4 /* Frameworks */,
 				401CA1D31BA067DB00117AF4 /* Resources */,
+				9F6494B08411F1C829CF2976 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -3658,6 +3731,26 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		9F6494B08411F1C829CF2976 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-SUPLATests/Pods-SUPLATests-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/RxTest/RxTest.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxTest.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-SUPLATests/Pods-SUPLATests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -3666,6 +3759,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				AEF6A5D028BBD1EC0019684A /* SceneCell.swift in Sources */,
+				A573B38C29DE9F5600EBAFC4 /* BaseViewControllerExtensions.swift in Sources */,
 				01F8857222E5E79100D18373 /* SAImpulseCounterMeasurementItem+CoreDataClass.m in Sources */,
 				010C8786249A6A92002FE526 /* SADialog.m in Sources */,
 				40C7BA6C20C045A800ACEE42 /* SAChannelGroup+CoreDataClass.m in Sources */,
@@ -3686,6 +3780,8 @@
 				01A195E2264B264A006D2A20 /* SAChannelCaptionSetResult.m in Sources */,
 				6E8756632830E86D00D5A283 /* ProfileItemCell.swift in Sources */,
 				01C1719922C7F55B005983E1 /* SAMeasurementItem+CoreDataClass.m in Sources */,
+				A5F14B7229DED06400682FA6 /* AccountRemovalVM.swift in Sources */,
+				A5756F8229DC102800C32A1B /* AccountRemovalVC.swift in Sources */,
 				AE929A87275FD5D500B75715 /* MainNavigationCoordinator.swift in Sources */,
 				019170A1233D4D5A00820BDB /* SADownloadThermostatMeasurements.m in Sources */,
 				019D22F0233CC2D000F17135 /* SAPreloader.m in Sources */,
@@ -3707,6 +3803,7 @@
 				01C1718F22C7F3A2005983E1 /* SAIncrementalMeasurementItem+CoreDataClass.m in Sources */,
 				01199C8324C34AC50062454B /* SAChannelStatePopup.m in Sources */,
 				011021B525CC386D00621D41 /* SAVersionError.m in Sources */,
+				A5F14B7929DED9F000682FA6 /* BaseViewController.swift in Sources */,
 				AEC6B6BA2753C06800A04204 /* ProfileMigrator.swift in Sources */,
 				AE7452912827F49100A3AFAD /* ProfilesNavigationCoordinator.swift in Sources */,
 				0172677D234FAF78000F1CFB /* SADownloadImpulseCounterMeasurements.m in Sources */,
@@ -3765,6 +3862,7 @@
 				A597271129DAEA480090A044 /* SceneExtensions.swift in Sources */,
 				AE535356276927690077BFFB /* LocationOrderingVC.swift in Sources */,
 				AEF79D8D2712FF8D00D7554B /* CfgVC.swift in Sources */,
+				A5F14B7429DED41000682FA6 /* BaseViewModel.swift in Sources */,
 				01215A7324C8AECC00429947 /* SALightsourceLifespanSettingsDialog.m in Sources */,
 				AEED87DF276F1FCE005D76CF /* LocationOrderingVM.swift in Sources */,
 				4077ACE320A21BB100BD2216 /* CreateAccountVC.m in Sources */,
@@ -3774,7 +3872,6 @@
 				012F722E22DFA0BE00E5F72E /* SABarChartDataSet.swift in Sources */,
 				AEA4B36128BB943D005C4869 /* ScenesVC.swift in Sources */,
 				408034C51BC83D1A007666E7 /* MGSwipeTableCell.m in Sources */,
-				AE929A89276145C400B75715 /* FlowActionHandlers.swift in Sources */,
 				AEF79D8B2712FE1800D7554B /* CfgVM.swift in Sources */,
 				010C8780249A4D55002FE526 /* SAInfoVC.m in Sources */,
 				01F8857522E6167100D18373 /* SADownloadUserIcons.m in Sources */,
@@ -3787,6 +3884,7 @@
 				01EE9BB022BA4B050029A142 /* SAChannelExtendedValue+CoreDataProperties.m in Sources */,
 				6E8004D328493463009A917A /* AuthProfileItem.swift in Sources */,
 				011021C925CC39FB00621D41 /* SASuperuserAuthorizationResult.m in Sources */,
+				A5F14B7629DED44600682FA6 /* ViewEvent.swift in Sources */,
 				AE929A8B2761487700B75715 /* NavigationCoordinator.swift in Sources */,
 				01BDAC7522C518DE00915646 /* SARestApiClientTask.m in Sources */,
 				401CA1BF1BA067DB00117AF4 /* main.m in Sources */,
@@ -3828,6 +3926,7 @@
 				40C7BA5220C007A300ACEE42 /* SAChannelValue+CoreDataClass.m in Sources */,
 				01DD2F0F247719000025DFF9 /* SARangeCalibrationWheel.m in Sources */,
 				6E05868128539E4A0044786B /* EditableProfileItemCell.swift in Sources */,
+				A5756F8429DC23A800C32A1B /* AccountRemovalNavigationCoordinator.swift in Sources */,
 				016157B6261CAAFA006AA0E8 /* SAPickerField.m in Sources */,
 				01E517C322C6AC1E000FE77A /* SADownloadIncrementalMeasurements.m in Sources */,
 				AEF79D9327130A5400D7554B /* CfgCell.swift in Sources */,
@@ -3854,6 +3953,7 @@
 				40E8BE881FC06A5600FB2FE6 /* TFHpple.m in Sources */,
 				01CEABFA25B9920A009C3BFD /* SADigiglassDetailView.m in Sources */,
 				013F7EC123EB33E30061A497 /* SAChannelStateExtendedValue.m in Sources */,
+				A573B39229DEB25900EBAFC4 /* ViewState.swift in Sources */,
 				019170A4233D67E900820BDB /* SAThermostatChartHelper.m in Sources */,
 				40C7BA5320C007A300ACEE42 /* SAChannelValue+CoreDataProperties.m in Sources */,
 				AEBCD8FC26E4D247001904F3 /* TemperaturePresenter.swift in Sources */,
@@ -3872,6 +3972,7 @@
 				016ABE18236DA795001BF5FB /* KeychainTests.m in Sources */,
 				AEBCD8FE26E4D52C001904F3 /* TemperatureUnitTests.swift in Sources */,
 				AEAAF2F82752937D0030CBA8 /* SUPLA.xcdatamodeld in Sources */,
+				A5F14B7D29DEE4D800682FA6 /* AccountRemovalVMTest.swift in Sources */,
 				AEFBC25226E39EFC00414C19 /* ConfigTests.swift in Sources */,
 				01CEAC2A25B9BAE2009C3BFD /* SADigiglassValueTests.m in Sources */,
 				01EFD94C236CA9AE00893489 /* NSDataEncryptionTest.m in Sources */,

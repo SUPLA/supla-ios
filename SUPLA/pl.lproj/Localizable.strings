@@ -301,6 +301,17 @@
 "Channels" = "Kanały";
 "Groups" = "Grupy";
 "Scenes" = "Sceny";
+
 "Scenes.ActionButtons.execute" = "Wykonaj";
 "Scenes.ActionButtons.abort" = "Przerwij";
 
+"Cfg.removal.title" = "Usunąć konto?";
+"Cfg.removal.action.logout" = "Zapomnij na tym urządzeniu";
+"Cfg.removal.action.remove" = "Zapomnij i usuń na serwerze";
+"Cfg.removal.dialog.failed.title" = "Błąd usuwania";
+"Cfg.removal.dialog.failed.message" = "Usunięcie konta nie powiodło się, spróbuj ponownie";
+"Cfg.removal.dialog.missing_name" = "Podaj nazwę konta";
+"Cfg.removal.dialog.duplicated_name" = "Już istnieje konto o tej nazwie";
+"Cfg.removal.dialog.incomplete" = "Uzupełnij wymagane dane";
+
+"General.error" = "Błąd";

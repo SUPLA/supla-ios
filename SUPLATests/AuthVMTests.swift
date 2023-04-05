@@ -295,12 +295,4 @@ class AuthVMTests: XCTestCase {
         XCTAssertFalse(isAdvanced)
         XCTAssertFalse(alertTriggered)
     }
-    
-    func testSubmitWithNoChangesDoesNotRequireReauth() {
-        let disposeBag = DisposeBag()
-        sut.formSaved.subscribe {
-            XCTAssertFalse($0)
-        }.disposed(by: disposeBag)
-        _formSubmitRequest.accept(())
-    }
 }

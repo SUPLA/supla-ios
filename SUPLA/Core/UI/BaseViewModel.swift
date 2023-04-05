@@ -16,9 +16,17 @@
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 
-
 import Foundation
+import RxSwift
 
-protocol AuthConfigActionHandler {
-    func didFinish(shouldReauthenticate: Bool)
+class BaseViewModel<S : ViewState, E : ViewEvent> {
+    
+    private let events = PublishSubject<E>()
+    private let state = BehaviorSubject<S?>(value: nil)
+    
+    func eventsObervable() -> Observable<E> { events.asObserver() }
+    func stateObservable() -> Observable<S> { state.filter({state in state != nil} ).map({ state in state! })}
+    
+    func send(event: E) { events.on(.next(event)) }
+    func update(state: S) { self.state.on(.next(state)) }
 }
