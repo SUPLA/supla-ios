@@ -28,7 +28,6 @@ class AuthCfgNavigationCoordinator: BaseNavigationCoordinator {
     
     private let _immediate: Bool
     private var _profileId: NSManagedObjectID?
-    private let _disposeBag = DisposeBag()
     
     private lazy var _viewController: AuthVC = {
         return AuthVC(navigationCoordinator: self,
@@ -38,15 +37,6 @@ class AuthCfgNavigationCoordinator: BaseNavigationCoordinator {
     init(immediate: Bool, profileId: ProfileID? = nil) {
         _immediate = immediate
         _profileId = profileId
-    }
-    
-    override func start(from parent: NavigationCoordinator?) {
-        super.start(from: parent)
-        _viewController.viewModel.initiateSignup.subscribe { _ in
-            let cavc = SACreateAccountVC(nibName: "CreateAccountVC", bundle: nil)
-            cavc.navigationCoordinator = self
-            self._viewController.navigationController?.pushViewController(cavc, animated: true)
-        }.disposed(by: _disposeBag)
     }
     
     @objc private func onDismissSubview(_ sender: AnyObject) {
@@ -59,8 +49,18 @@ class AuthCfgNavigationCoordinator: BaseNavigationCoordinator {
             super.startFlow(coordinator: child)
         }
     }
-}
-extension AuthCfgNavigationCoordinator: AuthConfigActionHandler {
+    
+    func navigateToCreateAccount() {
+        let cavc = SACreateAccountVC(nibName: "CreateAccountVC", bundle: nil)
+        cavc.navigationCoordinator = self
+        self._viewController.navigationController?.pushViewController(cavc, animated: true)
+    }
+    
+    func navigateToRemoveAccount(needsRestart: Bool) {
+        finish()
+        (parentCoordinator as? ProfilesNavigationCoordinator)?.navigateToRemoveAccount(needsRestart: needsRestart)
+    }
+    
     func didFinish(shouldReauthenticate: Bool) {
         finish()
         if shouldReauthenticate || !SAApp.isClientRegistered(),

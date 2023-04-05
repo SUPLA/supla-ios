@@ -298,3 +298,9 @@
 "Select active account" = "Επιλέξτε έναν ενεργό λογαριασμό";
 "Phase 1+2+3" = "Στάδιο 1+2+3";
 "Phase %d" = "Στάδιο %d";
+
+"Cfg.removal.dialog.missing_name" = "Εισαγάγετε ένα όνομα λογαριασμού";
+"Cfg.removal.dialog.duplicated_name" = "Υπάρχει ήδη ένας λογαριασμός με αυτό το όνομα";
+"Cfg.removal.dialog.incomplete" = "Συμπληρώστε τα απαιτούμενα δεδομένα";
+
+"General.error" = "Λάθος";

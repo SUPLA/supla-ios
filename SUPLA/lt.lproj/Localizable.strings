@@ -300,3 +300,9 @@
 "Select active account" = "Pasirinkite aktyvią paskyrą";
 "Phase 1+2+3" = "1+2+3 fazė";
 "Phase %d" = "%d fazė";
+
+"Cfg.removal.dialog.missing_name" = "Įveskite paskyros pavadinimą";
+"Cfg.removal.dialog.duplicated_name" = "Paskyra su tokiu pavadinimu jau yra";
+"Cfg.removal.dialog.incomplete" = "Užpildykite privalomus duomenis";
+
+"General.error" = "Klaida";

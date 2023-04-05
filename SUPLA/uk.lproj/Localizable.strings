@@ -301,3 +301,9 @@
 
 "Scenes.ActionButtons.execute" = "Виконати";
 "Scenes.ActionButtons.abort" = "Перервати";
+
+"Cfg.removal.dialog.missing_name" = "Введіть назву облікового запису";
+"Cfg.removal.dialog.duplicated_name" = "Обліковий запис із такою назвою вже існує";
+"Cfg.removal.dialog.incomplete" = "Заповніть необхідні дані";
+
+"General.error" = "Помилка";

@@ -16,32 +16,19 @@
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 
-import UIKit
+import Foundation
+import RxSwift
 
-class RoundedButton: UIButton {
-    
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        setUp()
-    }
-    
-    required init?(coder: NSCoder) {
-        super.init(coder: coder)
-        setUp()
-    }
-    
-    override var isEnabled: Bool {
-        didSet {
-            if (isEnabled) {
-                self.backgroundColor = .suplaGreen
-            } else {
-                self.backgroundColor = .disabled
-            }
-        }
-    }
+protocol ViewState {}
 
-    private func setUp() {
-        self.backgroundColor = .suplaGreen
-        self.layer.cornerRadius = 9
+extension ViewState {
+    func changing<T>(path: WritableKeyPath<Self, T>, to value: T) -> Self {
+        var clone = self
+        clone[keyPath: path] = value
+        return clone
+    }
+    
+    func sendTo(_ subject: BehaviorSubject<Self>) {
+        subject.on(.next(self))
     }
 }

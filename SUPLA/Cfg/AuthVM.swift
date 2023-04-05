@@ -47,9 +47,6 @@ class AuthVM {
         let accountDeleteRequest: Observable<Void>
     }
 
-    let allowsEditingProfileName: Bool
-    let allowsDeletingProfile: Bool
-    
     // MARK: Output bindings
     var isAdvancedMode: Observable<Bool> {
         return _advancedMode.asObservable()
@@ -80,20 +77,13 @@ class AuthVM {
     var advancedModeAuthType: Observable<AuthType> {
         return _advancedModeAuthType.asObservable()
     }
-    var initiateSignup: Observable<Void> {
-        return _initiateSignup.asObservable()
-    }
-    
-    let signupPromptVisible = Observable<Bool>.deferred {
-        return Observable<Bool>.of(!SAApp.suplaClientConnected())
-    }
     
     var basicModeUnavailable: Observable<Void> {
         return _basicModeUnavailable.asObservable()
     }
 
-    var formSaved: Observable<Bool> { return _formSaved.asObservable() }
-    
+    var events: Observable<AuthViewEvent> { return _events.asObserver() }
+    var state: Observable<AuthViewState> { return _state.asObserver() }
 
     // MARK: Internal state
     private let _advancedMode = BehaviorRelay<Bool>(value: false)
@@ -111,9 +101,10 @@ class AuthVM {
     private let _isActive: Bool
     
     private let _advancedModeAuthType = BehaviorRelay<AuthType>(value: .email)
-    private let _initiateSignup = PublishSubject<Void>()
-    private let _formSaved = PublishSubject<Bool>()
     private let _basicModeUnavailable = PublishSubject<Void>()
+    
+    private let _events = PublishSubject<AuthViewEvent>()
+    private let _state = BehaviorSubject<AuthViewState>(value: AuthViewState())
 
     private let disposeBag = DisposeBag()
     private let _profileManager: ProfileManager
@@ -125,6 +116,7 @@ class AuthVM {
 
         let profileName: String
         let profileAdvanced: Bool
+        let deleteButtonVisible: Bool
 
         if let profileId = profileId,
            let profile = profileManager.getProfile(id: profileId) {
@@ -132,7 +124,9 @@ class AuthVM {
             profileName = profile.displayName
             profileAdvanced = profile.advancedSetup
             _isActive = profile.isActive
-            allowsDeletingProfile = !_isActive
+            
+            // when the app is connected means that there is an configured account available
+            deleteButtonVisible = SAApp.suplaClientConnected()
         } else {
             _authCfg = AuthInfo(emailAuth: true,
                                 serverAutoDetect: true,
@@ -144,13 +138,10 @@ class AuthVM {
             profileName = ""
             profileAdvanced = false
             _isActive = false
-            allowsDeletingProfile = false
+            deleteButtonVisible = false
         }
         _loadedCfg = _authCfg.clone()
 
-        allowsEditingProfileName = _profileManager.getAllProfiles().count > 1 ||
-            _authCfg.isAuthDataComplete || profileId == nil
-        
         b.autoServerSelected.bind(to: _serverAutoDetect).disposed(by: disposeBag)
         b.serverAddressForEmail.bind(to: _serverAddressForEmail).disposed(by: disposeBag)
         b.serverAddressForAccessID.bind(to: _serverAddressForAccessID).disposed(by: disposeBag)
@@ -179,7 +170,7 @@ class AuthVM {
         }.disposed(by: disposeBag)
         
         b.createAccountRequest.subscribe(onNext: { [weak self] in
-            self?._initiateSignup.on(.next(()))
+            self?._events.on(.next(.navigateToCreateAccount))
         }).disposed(by: disposeBag)
         
         b.formSubmitRequest.subscribe(onNext: { [weak self] in
@@ -187,7 +178,7 @@ class AuthVM {
         }).disposed(by: disposeBag)
         
         b.accountDeleteRequest.subscribe(onNext: { [weak self] in
-            self?.onDeleteAccount()
+            self?._events.on(.next(.showRemovalDialog))
         }).disposed(by: disposeBag)
   
         
@@ -244,19 +235,75 @@ class AuthVM {
         _accessID.accept(_loadedCfg.accessID)
         _accessIDpwd.accept(_loadedCfg.accessIDpwd)
         _advancedModeAuthType.accept(_loadedCfg.emailAuth ? .email : .accessId)
+        
+        let profileNameVisible = _profileManager.getAllProfiles().count > 1 ||
+        _authCfg.isAuthDataComplete || profileId == nil
+        
+        try! _state.value().changing(path: \.deleteButtonVisible, to: deleteButtonVisible)
+            .changing(path: \.profileNameVisible, to: profileNameVisible)
+            .sendTo(_state)
+        
     }
 
-    private func onDeleteAccount() {
+    func logoutAccount() {
+        removeAccountFromDb(onSuccess: { needsRestart in
+            _events.on(.next(.finish(needsRestart: needsRestart)))
+        })
+    }
+    
+    func removeAccount() {
+        removeAccountFromDb(onSuccess: { needsRestart in
+            _events.on(.next(.navigateToRemoveAccount(needsRestart: needsRestart)))
+        })
+    }
+    
+    private func removeAccountFromDb(onSuccess: (_ needsRestart: Bool) -> Void) {
         guard let profileId = _profileId else { return }
-        _profileManager.removeProfile(id: profileId)
-        _formSaved.on(.next(false))
+        guard let profile = _profileManager.getProfile(id: profileId) else { return }
+        if (!profile.isActive) {
+            _profileManager.removeProfile(id: profileId)
+            onSuccess(false)
+        } else if let firstInactiveProfile = _profileManager.getAllProfiles().first(where: { profile in !profile.isActive }) {
+            if (_profileManager.activateProfile(id: firstInactiveProfile.objectID, force: true)) {
+                _profileManager.removeProfile(id: profileId)
+                onSuccess(false)
+            } else {
+                _events.on(.next(.showRemovalFailure))
+            }
+        } else {
+            let emptyProfile = _profileManager.makeNewProfile()
+            if (_profileManager.activateProfile(id: emptyProfile.objectID, force: true)) {
+                _profileManager.removeProfile(id: profileId)
+                onSuccess(true)
+            } else {
+                _events.on(.next(.showRemovalFailure))
+            }
+        }
+    }
+    
+    private func activateOtherProfile() -> Bool {
+        if let firstInactiveProfile = _profileManager.getAllProfiles().first(where: { profile in !profile.isActive }) {
+            return _profileManager.activateProfile(id: firstInactiveProfile.objectID, force: true)
+        } else {
+            let emptyProfile = _profileManager.makeNewProfile()
+            return _profileManager.activateProfile(id: emptyProfile.objectID, force: true)
+        }
     }
     
     private func onFormSubmit() {
         let needsReauth = self.needsReauth
+        
+        let profileName = _profileName.value?.trimmingCharacters(in: .whitespacesAndNewlines)
+        if (profileName?.isEmpty == true) {
+            _events.on(.next(.showEmptyNameDialog))
+            return
+        }
+        if (isNameDuplicated(profileName: profileName)) {
+            _events.on(.next(.showDuplicatedNameDialog))
+            return
+        }
 
         let profile: AuthProfileItem
-        
         if let profileId = _profileId,
            let p = _profileManager.getProfile(id: profileId) {
             profile = p
@@ -267,14 +314,53 @@ class AuthVM {
         
         profile.advancedSetup = _advancedMode.value
         profile.authInfo = _authCfg
-        profile.name = _profileName.value
+        profile.name = profileName
+        if (profile.authInfo?.isAuthDataComplete != true) {
+            _events.on(.next(.showRequiredDataMisingDialog))
+            return
+        }
+        
         _profileManager.updateCurrentProfile(profile)
         _loadedCfg = _authCfg
         _authCfg = _loadedCfg.clone()
-        _formSaved.on(.next(needsReauth))
+        _events.on(.next(.formSaved(needsReauth: needsReauth)))
     }
     
     private var needsReauth: Bool {
         return _isActive && _loadedCfg != _authCfg
+    }
+    
+    private func isNameDuplicated(profileName: String?) -> Bool {
+        return _profileManager.getAllProfiles().first(where: {profile in profile.displayName == profileName && profile.objectID != _profileId}) != nil
+    }
+    
+    private func updateState<T>(_ path: WritableKeyPath<AuthViewState, T>, to value: T) {
+        try! _state.on(.next(_state.value().changing(path: path, to: value)))
+    }
+}
+
+enum AuthViewEvent {
+    case showRemovalDialog
+    case showRemovalFailure
+    case formSaved(needsReauth: Bool)
+    case navigateToCreateAccount
+    case navigateToRemoveAccount(needsRestart: Bool)
+    case finish(needsRestart: Bool)
+    case showEmptyNameDialog
+    case showDuplicatedNameDialog
+    case showRequiredDataMisingDialog
+}
+
+struct AuthViewState: ViewState {
+    var profileNameVisible, deleteButtonVisible: Bool
+    
+    init() {
+        profileNameVisible = true
+        deleteButtonVisible = true
+    }
+    
+    init(profileNameVisible: Bool, deleteButtonVisible: Bool) {
+        self.profileNameVisible = profileNameVisible
+        self.deleteButtonVisible = deleteButtonVisible
     }
 }

@@ -16,32 +16,12 @@
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 
-import UIKit
+import Foundation
 
-class RoundedButton: UIButton {
-    
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        setUp()
-    }
-    
-    required init?(coder: NSCoder) {
-        super.init(coder: coder)
-        setUp()
-    }
-    
-    override var isEnabled: Bool {
-        didSet {
-            if (isEnabled) {
-                self.backgroundColor = .suplaGreen
-            } else {
-                self.backgroundColor = .disabled
-            }
-        }
-    }
-
-    private func setUp() {
-        self.backgroundColor = .suplaGreen
-        self.layer.cornerRadius = 9
+extension BaseViewController {
+    func showInfoDialog(title: String, message: String) {
+        let infoDialog = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        infoDialog.addAction(UIAlertAction(title: Strings.General.close, style: .default))
+        self.present(infoDialog, animated: true)
     }
 }

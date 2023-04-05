@@ -67,7 +67,6 @@ class ProfilesNavigationCoordinator: BaseNavigationCoordinator {
     override func didFinish(coordinator child: NavigationCoordinator) {
         _viewController.navigationController?
             .popToViewController(_viewController, animated: true)
-        _profilesViewModel?.reloadTrigger.on(.next(()))
     }
     
     @objc private func onDismissSubview(_ sender: AnyObject) {
@@ -81,6 +80,10 @@ class ProfilesNavigationCoordinator: BaseNavigationCoordinator {
         let authnc = AuthCfgNavigationCoordinator(immediate: false,
                                                   profileId: profileId)
         startFlow(coordinator: authnc)
+    }
+    
+    func navigateToRemoveAccount(needsRestart: Bool) {
+        startFlow(coordinator: AccountRemovalNavigationCoordinator(needsRestart: needsRestart))
     }
 }
 

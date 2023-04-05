@@ -16,32 +16,25 @@
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 
-import UIKit
+import Foundation
+import RxSwift
 
-class RoundedButton: UIButton {
+class BaseViewControllerVM<S : ViewState, E : ViewEvent, VM : BaseViewModel<S, E>> : BaseViewController {
     
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        setUp()
-    }
+    private let disposeBag = DisposeBag()
+    var viewModel: VM!
     
-    required init?(coder: NSCoder) {
-        super.init(coder: coder)
-        setUp()
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        viewModel.eventsObervable()
+            .subscribe(onNext: { event in self.handle(event: event) })
+            .disposed(by: disposeBag)
+        viewModel.stateObservable()
+            .subscribe(onNext: { state in self.handle(state: state) })
+            .disposed(by: disposeBag)
     }
-    
-    override var isEnabled: Bool {
-        didSet {
-            if (isEnabled) {
-                self.backgroundColor = .suplaGreen
-            } else {
-                self.backgroundColor = .disabled
-            }
-        }
-    }
-
-    private func setUp() {
-        self.backgroundColor = .suplaGreen
-        self.layer.cornerRadius = 9
-    }
+ 
+    func handle(event: E) { fatalError("handle(event:) has not been implemented!") }
+    func handle(state: S) { fatalError("handle(state:) has not been implemented!") }
 }

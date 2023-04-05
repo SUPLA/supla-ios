@@ -298,5 +298,17 @@
 "Select active account" = "Aktives Konto wählen";
 "Phase 1+2+3" = "Phase 1+2+3";
 "Phase %d" = "Phase %d";
+
 "Scenes.ActionButtons.execute" = "Ausführen";
 "Scenes.ActionButtons.abort" = "Abbrechen";
+
+"Cfg.removal.title" = "Das Konto löschen?";
+"Cfg.removal.action.logout" = "Vergiss auf diesem Gerät";
+"Cfg.removal.action.remove" = "Vergiss und lösch im Cloud";
+"Cfg.removal.dialog.failed.title" = "Löschen fehlgeschlagen";
+"Cfg.removal.dialog.failed.message" = "Das Löschen deines Konto ist fehlgeschalgen, bitte noch mal versuchen";
+"Cfg.removal.dialog.missing_name" = "Kontoname angeben";
+"Cfg.removal.dialog.duplicated_name" = "Es gibt schon ein Konto mit diesem Namen";
+"Cfg.removal.dialog.incomplete" = "Bitte die erforderliche Angaben vervollständigen";
+
+"General.error" = "Fehler";
