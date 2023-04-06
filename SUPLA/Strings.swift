@@ -76,4 +76,14 @@ struct Strings {
             static let selPhaseTitle = NSLocalizedString("Phase %d", comment: "")
         }
     }
+    
+    struct Scenes {
+        struct ActionButtons {
+            static let execute = NSLocalizedString("Scenes.ActionButtons.execute", comment: "")
+            static let abort = NSLocalizedString("Scenes.ActionButtons.abort", comment: "")
+        }
+        struct RenameDialog {
+            static let sceneName = NSLocalizedString("scene name", comment: "")
+        }
+    }
 }

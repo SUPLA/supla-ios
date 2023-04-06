@@ -277,7 +277,7 @@
     return result;
 }
 
-- (id<IChartMarker>)getMarker {
+- (id<ChartMarker>)getMarker {
     return nil;
 }
 

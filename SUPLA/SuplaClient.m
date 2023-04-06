@@ -56,6 +56,8 @@
 - (void) channelExtendedValueUpdate:(TSC_SuplaChannelExtendedValue *)channel_extendedvalue;
 - (void) channelGroupUpdate:(TSC_SuplaChannelGroup_B *)cgroup;
 - (void) channelGroupRelationUpdate:(TSC_SuplaChannelGroupRelation *)cgroup_relation;
+- (void) sceneUpdate:(TSC_SuplaScene *)scene;
+- (void) sceneStateUpdate:(TSC_SuplaSceneState *)state;
 - (void) onEvent:(SAEvent *)event;
 - (void) onRegistrationEnabled:(SARegistrationEnabled*)reg_enabled;
 - (void) onSetRegistrationEnabledResultCode:(int)code;
@@ -142,6 +144,8 @@ void sasuplaclient_location_update(void *_suplaclient, void *user_data, TSC_Supl
     if ( sc != nil )
         [sc locationUpdate:location];
 }
+
+#pragma mark Channels callbacks
 
 void sasuplaclient_channel_update(void *_suplaclient, void *user_data, TSC_SuplaChannel_D *channel) {
     SASuplaClient *sc = (__bridge SASuplaClient*)user_data;
@@ -343,6 +347,24 @@ void sasuplaclient_on_zwave_set_wake_up_time_result(void *_suplaclient,
      }
  }
 
+#pragma mark Scenes callbacks
+
+void sasuplaclient_scene_update(void *_suplaclient,
+                                   void *user_data,
+                                   TSC_SuplaScene *scene) {
+    SASuplaClient *sc = (__bridge SASuplaClient*)user_data;
+    if ( sc != nil )
+        [sc sceneUpdate: scene];
+}
+
+void sasuplaclient_scene_state_update(void *_suplaclient,
+                                      void *user_data,
+                                      TSC_SuplaSceneState *state) {
+    SASuplaClient *sc = (__bridge SASuplaClient*)user_data;
+    if ( sc != nil )
+        [sc sceneStateUpdate:state];
+}
+
 // ------------------------------------------------------------------------------------------------------
 
 @implementation SASuplaClient {
@@ -419,7 +441,7 @@ void sasuplaclient_on_zwave_set_wake_up_time_result(void *_suplaclient,
     AuthInfo *ai = [pm getCurrentAuthInfo];
     NSString *host = ai.serverForCurrentAuthMethod;
     if ( [host isEqualToString:@""] && ai.emailAuth && ![ai.emailAddress isEqualToString:@""] ) {
-                
+        
         NSMutableURLRequest *request =
         [NSMutableURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"https://autodiscover.supla.org/users/%@", ai.emailAddress]] cachePolicy:NSURLRequestReloadIgnoringLocalAndRemoteCacheData timeoutInterval:5];
         
@@ -523,6 +545,8 @@ void sasuplaclient_on_zwave_set_wake_up_time_result(void *_suplaclient,
     scc.cb_on_zwave_assign_node_id_result = sasuplaclient_on_zwave_assign_node_id_result;
     scc.cb_on_zwave_wake_up_settings_report = sasuplaclient_on_zwave_wake_up_settings_report;
     scc.cb_on_zwave_set_wake_up_time_result = sasuplaclient_on_zwave_set_wake_up_time_result;
+    scc.cb_scene_update = sasuplaclient_scene_update;
+    scc.cb_scene_state_update = sasuplaclient_scene_state_update;
     
     scc.protocol_version = ai.preferredProtocolVersion;
     
@@ -555,6 +579,10 @@ void sasuplaclient_on_zwave_set_wake_up_time_result(void *_suplaclient,
             }
             
             if ( [self.DB setAllOfChannelGroupRelationVisible:2 whereVisibilityIs:1] ) {
+                DataChanged = YES;
+            }
+            
+            if ( [self.DB setAllOfScenesVisible:2 whereVisibilityIs:1] ) {
                 DataChanged = YES;
             }
             
@@ -769,7 +797,7 @@ void sasuplaclient_on_zwave_set_wake_up_time_result(void *_suplaclient,
 }
 
 - (BOOL) isChannelExcluded:(TSC_SuplaChannel_D *)channel {
-    // For partner applications 
+    // For partner applications
     return NO;
 }
 
@@ -872,6 +900,33 @@ void sasuplaclient_on_zwave_set_wake_up_time_result(void *_suplaclient,
     }
     
     if ( DataChanged ) {
+        [self onDataChanged];
+    }
+}
+
+- (void) sceneUpdate:(TSC_SuplaScene *)scene {
+    
+    BOOL DataChanged = NO;
+    
+    NSLog(@"Scene with ID: %i, caption: %@", scene->Id, [NSString stringWithUTF8String:scene->Caption]);
+    
+    if ( [self.DB updateScene:scene] ) {
+        DataChanged = YES;
+    }
+    
+    if ( scene->EOL == 1 && [self.DB setAllOfScenesVisible:0 whereVisibilityIs:2] ) {
+        DataChanged = YES;
+    }
+    
+    if ( DataChanged ) {
+        [self onDataChanged];
+    }
+}
+
+- (void) sceneStateUpdate:(TSC_SuplaSceneState *)state {
+    NSLog(@"State update for scene with ID: %i", state->SceneId);
+    if ([self.DB updateSceneState:state currentId:_client_id]) {
+        NSLog(@"State for scene with ID: %i updated", state->SceneId);
         [self onDataChanged];
     }
 }
@@ -1465,6 +1520,15 @@ void sasuplaclient_on_zwave_set_wake_up_time_result(void *_suplaclient,
     
     [self cg:remoteId Open:on ? 1 : 0 group:group];
     return true;
+}
+
+- (BOOL) executeAction: (int)actionId subjecType: (int)subjectType subjectId: (int)subjectId rsParameters: (TAction_RS_Parameters*)rsParameters rgbwParameters: (TAction_RGBW_Parameters*)rgbwParameters {
+    if (!_sclient) {
+        return NO;
+    }
+    
+    AudioServicesPlayAlertSound(kSystemSoundID_Vibrate);
+    return supla_client_execute_action(_sclient, actionId, rsParameters, rgbwParameters, subjectType, subjectId) > 0;
 }
 
 @end

@@ -22,6 +22,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 
 @interface UIColor (SUPLA)
++(nonnull UIColor*)unselectedItem;
 +(nonnull UIColor*)btnTouched;
 +(nonnull UIColor*)onLine;
 +(nonnull UIColor*)offLine;
