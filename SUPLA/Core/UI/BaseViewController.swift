@@ -21,7 +21,7 @@ import RxSwift
 
 class BaseViewControllerVM<S : ViewState, E : ViewEvent, VM : BaseViewModel<S, E>> : BaseViewController {
     
-    private let disposeBag = DisposeBag()
+    fileprivate let disposeBag = DisposeBag()
     var viewModel: VM!
     
     override func viewDidLoad() {
@@ -36,5 +36,11 @@ class BaseViewControllerVM<S : ViewState, E : ViewEvent, VM : BaseViewModel<S, E
     }
  
     func handle(event: E) { fatalError("handle(event:) has not been implemented!") }
-    func handle(state: S) { fatalError("handle(state:) has not been implemented!") }
+    func handle(state: S) { } // default empty implementation
+}
+
+extension Disposable {
+    func disposed<S : ViewState, E : ViewEvent, VM : BaseViewModel<S, E>>(by vc: BaseViewControllerVM<S, E, VM>) {
+        self.disposed(by: vc.disposeBag)
+    }
 }

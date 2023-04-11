@@ -299,6 +299,8 @@
 "Phase 1+2+3" = "Fase 1 + 2 + 3";
 "Phase %d" = "Fase %d";
 
+"AccountCreation.title" = "Editar cuenta";
+
 "Cfg.removal.dialog.missing_name" = "Introducir el nombre de cuenta";
 "Cfg.removal.dialog.duplicated_name" = "La cuenta con este nombre ya existe";
 "Cfg.removal.dialog.incomplete" = "Completar los datos requeridos";

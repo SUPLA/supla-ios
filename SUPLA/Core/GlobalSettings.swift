@@ -17,25 +17,24 @@
  */
 
 import Foundation
-import RxSwift
 
-class AccountRemovalVM : BaseViewModel<AccountRemovalViewState, AccountRemovalViewEvent> {
+protocol GlobalSettings {
     
-    private let removalFinishedSufix = "/db99845855b2ecbfecca9a095062b96c3e27703f?ack=true"
+    var anyAccountRegistered: Bool { get set }
     
-    func handleUrl(url: String?) {
-        guard let url = url else { return }
-        
-        if (url.hasSuffix(removalFinishedSufix)) {
-            send(event: .finish)
+}
+
+class GlobalSettingsImpl: GlobalSettings {
+    
+    let defaults = UserDefaults.standard
+    
+    private let anyAccountRegisteredKey = "GlobalSettings.anyAccountRegisteredKey"
+    var anyAccountRegistered: Bool {
+        get {
+            defaults.bool(forKey: anyAccountRegisteredKey)
+        }
+        set {
+            defaults.set(newValue, forKey: anyAccountRegisteredKey)
         }
     }
-    
-    override func defaultViewState() -> AccountRemovalViewState { AccountRemovalViewState() }
 }
-
-enum AccountRemovalViewEvent: ViewEvent {
-    case finish
-}
-
-struct AccountRemovalViewState: ViewState {}

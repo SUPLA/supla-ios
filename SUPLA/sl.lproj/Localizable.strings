@@ -299,6 +299,8 @@
 "Phase 1+2+3" = "Faza 1+2+3";
 "Phase %d" = "Faza %d";
 
+"AccountCreation.title" = "Uredite račun";
+
 "Cfg.removal.dialog.missing_name" = "Vnesite ime računa";
 "Cfg.removal.dialog.duplicated_name" = "Račun s takšim imenom že obstaja";
 "Cfg.removal.dialog.incomplete" = "Izpolnite zahtevane podatke";

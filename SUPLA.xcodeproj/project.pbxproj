@@ -650,6 +650,10 @@
 		6EC4B0072871777B00731079 /* SAElectricityMeterChartMarkerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6EC4B0062871777A00731079 /* SAElectricityMeterChartMarkerView.xib */; };
 		A52ACD4729CB93060092729F /* SuplaClientActionExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A52ACD4629CB93060092729F /* SuplaClientActionExtension.swift */; };
 		A52ACD4929CB940B0092729F /* ActionParameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = A52ACD4829CB940B0092729F /* ActionParameters.swift */; };
+		A553862829E004E400B5CF3F /* GlobalSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = A553862729E004E400B5CF3F /* GlobalSettings.swift */; };
+		A553862B29E0202700B5CF3F /* Singleton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A553862A29E0202700B5CF3F /* Singleton.swift */; };
+		A553862D29E021AE00B5CF3F /* DiContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A553862C29E021AE00B5CF3F /* DiContainer.swift */; };
+		A553862F29E0297400B5CF3F /* Inject.swift in Sources */ = {isa = PBXBuildFile; fileRef = A553862E29E0297400B5CF3F /* Inject.swift */; };
 		A55D43CE29DD495000BEF06E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A55D43CD29DD495000BEF06E /* Assets.xcassets */; };
 		A573B38C29DE9F5600EBAFC4 /* BaseViewControllerExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A573B38B29DE9F5600EBAFC4 /* BaseViewControllerExtensions.swift */; };
 		A573B39229DEB25900EBAFC4 /* ViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = A573B39129DEB25900EBAFC4 /* ViewState.swift */; };
@@ -663,14 +667,14 @@
 		A5F14B7D29DEE4D800682FA6 /* AccountRemovalVMTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F14B7C29DEE4D800682FA6 /* AccountRemovalVMTest.swift */; };
 		AE1874C2290C581D00437146 /* SceneCaptionEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE1874C1290C581D00437146 /* SceneCaptionEditor.swift */; };
 		AE348E66277F348700F363A3 /* SAMoveTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = AE348E65277F348700F363A3 /* SAMoveTableView.m */; };
-		AE3DECE22761DB32005923E4 /* AuthCfgNavigationCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE3DECE02761DB32005923E4 /* AuthCfgNavigationCoordinator.swift */; };
+		AE3DECE22761DB32005923E4 /* AccountCreationNavigationCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE3DECE02761DB32005923E4 /* AccountCreationNavigationCoordinator.swift */; };
 		AE3DECE32761DB32005923E4 /* PresentationNavigationCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE3DECE12761DB32005923E4 /* PresentationNavigationCoordinator.swift */; };
 		AE5332E227648E770050E690 /* SuplaNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE5332E127648E770050E690 /* SuplaNavigationController.swift */; };
 		AE5332E427648F610050E690 /* UIFont+Supla.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE5332E327648F610050E690 /* UIFont+Supla.swift */; };
 		AE5332E62764A7E30050E690 /* SuplaMenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE5332E52764A7E30050E690 /* SuplaMenuController.swift */; };
 		AE53535427691EFC0077BFFB /* CfgNavigationCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE53535327691EFC0077BFFB /* CfgNavigationCoordinator.swift */; };
 		AE535356276927690077BFFB /* LocationOrderingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE535355276927690077BFFB /* LocationOrderingVC.swift */; };
-		AE5A60E6270E2A7A00F2B780 /* AuthVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE5A60E5270E2A7A00F2B780 /* AuthVC.swift */; };
+		AE5A60E6270E2A7A00F2B780 /* AccountCreationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE5A60E5270E2A7A00F2B780 /* AccountCreationVC.swift */; };
 		AE68E73227739D8500E55DB7 /* SwipeTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE68E73127739D8500E55DB7 /* SwipeTransition.swift */; };
 		AE7452892827E37600A3AFAD /* ProfilesVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE7452882827E37600A3AFAD /* ProfilesVM.swift */; };
 		AE74528B2827E38900A3AFAD /* ProfilesVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE74528A2827E38900A3AFAD /* ProfilesVC.swift */; };
@@ -687,7 +691,7 @@
 		AEBCD8FC26E4D247001904F3 /* TemperaturePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEBCD8FB26E4D247001904F3 /* TemperaturePresenter.swift */; };
 		AEBCD8FE26E4D52C001904F3 /* TemperatureUnitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEBCD8FD26E4D52C001904F3 /* TemperatureUnitTests.swift */; };
 		AEC6B6BA2753C06800A04204 /* ProfileMigrator.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEC6B6B92753C06800A04204 /* ProfileMigrator.swift */; };
-		AECB1BE5270EB56F001A9714 /* AuthVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = AECB1BE4270EB56F001A9714 /* AuthVM.swift */; };
+		AECB1BE5270EB56F001A9714 /* AccountCreationVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = AECB1BE4270EB56F001A9714 /* AccountCreationVM.swift */; };
 		AECB1BE727109EA3001A9714 /* CheckBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = AECB1BE627109EA3001A9714 /* CheckBox.swift */; };
 		AECB1BE92710A785001A9714 /* AuthVMTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AECB1BE82710A785001A9714 /* AuthVMTests.swift */; };
 		AECB1BEB2711CB67001A9714 /* AuthInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = AECB1BEA2711CB67001A9714 /* AuthInfo.swift */; };
@@ -1724,6 +1728,10 @@
 		76FF65EADE7763EB8D61BC35 /* Pods_SUPLATests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SUPLATests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A52ACD4629CB93060092729F /* SuplaClientActionExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuplaClientActionExtension.swift; sourceTree = "<group>"; };
 		A52ACD4829CB940B0092729F /* ActionParameters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionParameters.swift; sourceTree = "<group>"; };
+		A553862729E004E400B5CF3F /* GlobalSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalSettings.swift; sourceTree = "<group>"; };
+		A553862A29E0202700B5CF3F /* Singleton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Singleton.swift; sourceTree = "<group>"; };
+		A553862C29E021AE00B5CF3F /* DiContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiContainer.swift; sourceTree = "<group>"; };
+		A553862E29E0297400B5CF3F /* Inject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Inject.swift; sourceTree = "<group>"; };
 		A55D43CD29DD495000BEF06E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = Resources/Assets.xcassets; sourceTree = "<group>"; };
 		A573B38B29DE9F5600EBAFC4 /* BaseViewControllerExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewControllerExtensions.swift; sourceTree = "<group>"; };
 		A573B39129DEB25900EBAFC4 /* ViewState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewState.swift; sourceTree = "<group>"; };
@@ -1738,14 +1746,14 @@
 		AE1874C1290C581D00437146 /* SceneCaptionEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneCaptionEditor.swift; sourceTree = "<group>"; };
 		AE348E64277F348700F363A3 /* SAMoveTableView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SAMoveTableView.h; sourceTree = "<group>"; };
 		AE348E65277F348700F363A3 /* SAMoveTableView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SAMoveTableView.m; sourceTree = "<group>"; };
-		AE3DECE02761DB32005923E4 /* AuthCfgNavigationCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthCfgNavigationCoordinator.swift; sourceTree = "<group>"; };
+		AE3DECE02761DB32005923E4 /* AccountCreationNavigationCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountCreationNavigationCoordinator.swift; sourceTree = "<group>"; };
 		AE3DECE12761DB32005923E4 /* PresentationNavigationCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PresentationNavigationCoordinator.swift; sourceTree = "<group>"; };
 		AE5332E127648E770050E690 /* SuplaNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuplaNavigationController.swift; sourceTree = "<group>"; };
 		AE5332E327648F610050E690 /* UIFont+Supla.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+Supla.swift"; sourceTree = "<group>"; };
 		AE5332E52764A7E30050E690 /* SuplaMenuController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuplaMenuController.swift; sourceTree = "<group>"; };
 		AE53535327691EFC0077BFFB /* CfgNavigationCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CfgNavigationCoordinator.swift; sourceTree = "<group>"; };
 		AE535355276927690077BFFB /* LocationOrderingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationOrderingVC.swift; sourceTree = "<group>"; };
-		AE5A60E5270E2A7A00F2B780 /* AuthVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthVC.swift; sourceTree = "<group>"; };
+		AE5A60E5270E2A7A00F2B780 /* AccountCreationVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountCreationVC.swift; sourceTree = "<group>"; };
 		AE68E73127739D8500E55DB7 /* SwipeTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeTransition.swift; sourceTree = "<group>"; };
 		AE7452882827E37600A3AFAD /* ProfilesVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilesVM.swift; sourceTree = "<group>"; };
 		AE74528A2827E38900A3AFAD /* ProfilesVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilesVC.swift; sourceTree = "<group>"; };
@@ -1763,7 +1771,7 @@
 		AEBCD8FB26E4D247001904F3 /* TemperaturePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemperaturePresenter.swift; sourceTree = "<group>"; };
 		AEBCD8FD26E4D52C001904F3 /* TemperatureUnitTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemperatureUnitTests.swift; sourceTree = "<group>"; };
 		AEC6B6B92753C06800A04204 /* ProfileMigrator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileMigrator.swift; sourceTree = "<group>"; };
-		AECB1BE4270EB56F001A9714 /* AuthVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthVM.swift; sourceTree = "<group>"; };
+		AECB1BE4270EB56F001A9714 /* AccountCreationVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountCreationVM.swift; sourceTree = "<group>"; };
 		AECB1BE627109EA3001A9714 /* CheckBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckBox.swift; sourceTree = "<group>"; };
 		AECB1BE82710A785001A9714 /* AuthVMTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthVMTests.swift; sourceTree = "<group>"; };
 		AECB1BEA2711CB67001A9714 /* AuthInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthInfo.swift; sourceTree = "<group>"; };
@@ -2906,11 +2914,33 @@
 			path = WebApi;
 			sourceTree = "<group>";
 		};
+		A553862929E0201A00B5CF3F /* DI */ = {
+			isa = PBXGroup;
+			children = (
+				A553862A29E0202700B5CF3F /* Singleton.swift */,
+				A553862C29E021AE00B5CF3F /* DiContainer.swift */,
+				A553862E29E0297400B5CF3F /* Inject.swift */,
+			);
+			path = DI;
+			sourceTree = "<group>";
+		};
+		A553863029E02C4300B5CF3F /* AccountCreation */ = {
+			isa = PBXGroup;
+			children = (
+				AE3DECE02761DB32005923E4 /* AccountCreationNavigationCoordinator.swift */,
+				AE5A60E5270E2A7A00F2B780 /* AccountCreationVC.swift */,
+				AECB1BE4270EB56F001A9714 /* AccountCreationVM.swift */,
+			);
+			path = AccountCreation;
+			sourceTree = "<group>";
+		};
 		A573B39029DEB24400EBAFC4 /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				A553862929E0201A00B5CF3F /* DI */,
 				A5F14B7729DED97400682FA6 /* UI */,
 				A573B38B29DE9F5600EBAFC4 /* BaseViewControllerExtensions.swift */,
+				A553862729E004E400B5CF3F /* GlobalSettings.swift */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -2918,6 +2948,7 @@
 		A5756F7F29DC0FE900C32A1B /* Features */ = {
 			isa = PBXGroup;
 			children = (
+				A553863029E02C4300B5CF3F /* AccountCreation */,
 				A5756F8029DC0FFC00C32A1B /* AccountRemoval */,
 			);
 			path = Features;
@@ -2966,8 +2997,6 @@
 				6E05868028539E490044786B /* EditableProfileItemCell.swift */,
 				6E9F28C828436EE800142502 /* AddNewProfileCell.swift */,
 				6E8756622830E86B00D5A283 /* ProfileItemCell.swift */,
-				AE5A60E5270E2A7A00F2B780 /* AuthVC.swift */,
-				AECB1BE4270EB56F001A9714 /* AuthVM.swift */,
 				AEF79D8A2712FE1800D7554B /* CfgVM.swift */,
 				AEF79D8C2712FF8D00D7554B /* CfgVC.swift */,
 				AEF79D9227130A5400D7554B /* CfgCell.swift */,
@@ -2983,7 +3012,6 @@
 			isa = PBXGroup;
 			children = (
 				AE7452902827F49100A3AFAD /* ProfilesNavigationCoordinator.swift */,
-				AE3DECE02761DB32005923E4 /* AuthCfgNavigationCoordinator.swift */,
 				AE3DECE12761DB32005923E4 /* PresentationNavigationCoordinator.swift */,
 				AE929A86275FD5D500B75715 /* MainNavigationCoordinator.swift */,
 				AE929A8A2761487700B75715 /* NavigationCoordinator.swift */,
@@ -3764,7 +3792,7 @@
 				010C8786249A6A92002FE526 /* SADialog.m in Sources */,
 				40C7BA6C20C045A800ACEE42 /* SAChannelGroup+CoreDataClass.m in Sources */,
 				AE1874C2290C581D00437146 /* SceneCaptionEditor.swift in Sources */,
-				AE3DECE22761DB32005923E4 /* AuthCfgNavigationCoordinator.swift in Sources */,
+				AE3DECE22761DB32005923E4 /* AccountCreationNavigationCoordinator.swift in Sources */,
 				019D9E3725F27BC300881C99 /* SAChannelCaptionEditor.m in Sources */,
 				AE53535427691EFC0077BFFB /* CfgNavigationCoordinator.swift in Sources */,
 				010714782656C605009C119F /* SAZWaveWakeupSettingsReport.m in Sources */,
@@ -3794,7 +3822,7 @@
 				0148933425AA12DB00B9974E /* SADiwCalibrationTool.m in Sources */,
 				01C1719222C7F3A2005983E1 /* SAElectricityMeasurementItem+CoreDataProperties.m in Sources */,
 				40AB8BDE1DCB32EB0030F3DE /* SARateApp.m in Sources */,
-				AE5A60E6270E2A7A00F2B780 /* AuthVC.swift in Sources */,
+				AE5A60E6270E2A7A00F2B780 /* AccountCreationVC.swift in Sources */,
 				01C1719122C7F3A2005983E1 /* SAElectricityMeasurementItem+CoreDataClass.m in Sources */,
 				A52ACD4929CB940B0092729F /* ActionParameters.swift in Sources */,
 				40C7BA7720C047CF00ACEE42 /* SAChannel+CoreDataProperties.m in Sources */,
@@ -3811,6 +3839,7 @@
 				01C1719A22C7F55B005983E1 /* SAMeasurementItem+CoreDataProperties.m in Sources */,
 				01A4D4F4269210E300F3DCD1 /* SAFormatter.m in Sources */,
 				0194D80A264DC8580094A857 /* SAZWaveNodeIdResult.m in Sources */,
+				A553862829E004E400B5CF3F /* GlobalSettings.swift in Sources */,
 				01433DF8257F8FE20093C5DB /* SAWifi.m in Sources */,
 				AE5332E427648F610050E690 /* UIFont+Supla.swift in Sources */,
 				01511CFA24F50B470081A1EC /* SAPreloaderPopup.m in Sources */,
@@ -3842,6 +3871,7 @@
 				013D1C5D22CE47D5000C0784 /* SAChartHelper.m in Sources */,
 				015A98412655958500B6E6C6 /* NSDictionary+SUPLA.m in Sources */,
 				019F4CCD23577C3700286139 /* SAImpulseCounterChartHelper.m in Sources */,
+				A553862D29E021AE00B5CF3F /* DiContainer.swift in Sources */,
 				AE74528B2827E38900A3AFAD /* ProfilesVC.swift in Sources */,
 				01E3966E25A78B8B00A0DB18 /* SADimmerCalibrationTool.m in Sources */,
 				01392B3A235CA8B1003A2BAD /* ChartDetailView.m in Sources */,
@@ -3869,6 +3899,7 @@
 				401CA1C81BA067DB00117AF4 /* MainVC.m in Sources */,
 				01A0BD0A26CEFBC200C4A5F2 /* SAWarningIcon.m in Sources */,
 				AEF1F9BA27726D56008E441A /* DetailViewController.swift in Sources */,
+				A553862B29E0202700B5CF3F /* Singleton.swift in Sources */,
 				012F722E22DFA0BE00E5F72E /* SABarChartDataSet.swift in Sources */,
 				AEA4B36128BB943D005C4869 /* ScenesVC.swift in Sources */,
 				408034C51BC83D1A007666E7 /* MGSwipeTableCell.m in Sources */,
@@ -3900,7 +3931,7 @@
 				01C792FA22B7FB610020A900 /* SAChannelExtendedValue+CoreDataClass.m in Sources */,
 				01902A28235A180F005ED935 /* TempHumidityDetailView.m in Sources */,
 				AE5332E62764A7E30050E690 /* SuplaMenuController.swift in Sources */,
-				AECB1BE5270EB56F001A9714 /* AuthVM.swift in Sources */,
+				AECB1BE5270EB56F001A9714 /* AccountCreationVM.swift in Sources */,
 				0122613922F396440013E6A2 /* SAThermostatCalendar.m in Sources */,
 				010714732656A6FB009C119F /* SAZWaveWakeupSettingsDialog.m in Sources */,
 				01FCDA78264F28C4002D776F /* SAZWaveNodeResult.m in Sources */,
@@ -3919,6 +3950,7 @@
 				01D6A0F2249BD2F7006B3757 /* SASuperuserAuthorizationDialog.m in Sources */,
 				AE3DECE32761DB32005923E4 /* PresentationNavigationCoordinator.swift in Sources */,
 				01BDAC7822C5200600915646 /* SAOAuthToken.m in Sources */,
+				A553862F29E0297400B5CF3F /* Inject.swift in Sources */,
 				AED6395E270CA3A800E5105B /* RoundedButton.swift in Sources */,
 				015A9846265595E300B6E6C6 /* UIButton+SUPLA.m in Sources */,
 				AE74528D2827E5D400A3AFAD /* ProfileChooser.swift in Sources */,

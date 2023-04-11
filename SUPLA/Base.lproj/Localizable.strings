@@ -17,6 +17,8 @@
 "Reveal" = "Open";
 "Add Wizard is only available when server connection has been set based on the email address entered in the settings. (Disable advanced options in the settings)" = "Add Wizard is only available when server connection has been set based on the email address entered in the settings. (Disable advanced options in your account settings)";
 
+"AccountCreation.title" = "Edit account";
+
 "Scenes.ActionButtons.execute" = "Execute";
 "Scenes.ActionButtons.abort" = "Abort";
 

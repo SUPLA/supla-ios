@@ -1,0 +1,289 @@
+/*
+ Copyright (C) AC SOFTWARE SP. Z O.O.
+ 
+ This program is free software; you can redistribute it and/or
+ modify it under the terms of the GNU General Public License
+ as published by the Free Software Foundation; either version 2
+ of the License, or (at your option) any later version.
+ 
+ This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ GNU General Public License for more details.
+ 
+ You should have received a copy of the GNU General Public License
+ along with this program; if not, write to the Free Software
+ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
+ */
+
+import RxSwift
+import RxCocoa
+
+/*
+ Authentication config view model.
+ */
+class AccountCreationVM: BaseViewModel<AccountCreationViewState, AccountCreationViewEvent> {
+    
+    // MARK: Injected values
+    private let profileManager: ProfileManager
+    @Singleton<GlobalSettings> var settings
+    
+    // MARK: Internal state
+    private var profileId: ProfileID?
+    
+    var advancedMode: Observable<Bool> {
+        get {
+            stateObservable()
+                .map() { state in state.advancedMode }
+                .distinctUntilChanged()
+        }
+    }
+    
+    // MARK: Initialisation
+    init(profileManager: ProfileManager, profileId: NSManagedObjectID?) {
+        self.profileManager = profileManager
+        self.profileId = profileId
+        super.init()
+
+        if let profileId = profileId,
+           let profile = profileManager.getProfile(id: profileId) {
+            let authConfig = profile.authInfo!
+            
+            updateView() { state in
+                state
+                    .changing(path: \.advancedMode, to: profile.advancedSetup)
+                    .changing(path: \.profileName, to: profile.displayName)
+                    .changing(path: \.emailAddress, to: authConfig.emailAddress)
+                    .changing(path: \.authType, to: authConfig.emailAuth ? .email : .accessId)
+                    .changing(path: \.serverAddressForEmail, to: authConfig.serverForEmail)
+                    .changing(path: \.accessId, to: "\(authConfig.accessID)")
+                    .changing(path: \.accessIdPassword, to: authConfig.accessIDpwd)
+                    .changing(path: \.serverAddressForAccessId, to: authConfig.serverForAccessID)
+            }
+        }
+
+        updateView() { state in
+            state
+                .changing(path: \.deleteButtonVisible, to: settings.anyAccountRegistered && profileId != nil)
+                .changing(path: \.profileNameVisible, to: settings.anyAccountRegistered)
+                .changing(path: \.backButtonVisible, to: settings.anyAccountRegistered)
+                .changing(path: \.title, to: settings.anyAccountRegistered ? Strings.AccountCreation.title : Strings.NavBar.titleSupla)
+        }
+    }
+    
+    override func defaultViewState() -> AccountCreationViewState { AccountCreationViewState() }
+    
+    // MARK: Public modifiers
+    func setEmailAddress(_ emailAddress: String) {
+        guard let currentState = currentState() else { return }
+        
+        if currentState.emailAddress != emailAddress {
+            updateView() { state in
+                state
+                    .changing(path: \.serverAddressForEmail, to: "")
+                    .changing(path: \.emailAddress, to: emailAddress)
+            }
+        }
+    }
+    
+    func setServerAutodetect(_ autodetect: Bool) {
+        guard let currentState = currentState() else { return }
+        if (currentState.serverAutoDetect == autodetect) { return }
+        
+        updateView() { state in
+            if (autodetect) {
+                return state
+                    .changing(path: \.serverAutoDetect, to: autodetect)
+                    .changing(path: \.serverAddressForEmail, to: "")
+            } else {
+                return state
+                    .changing(path: \.serverAutoDetect, to: autodetect)
+                    .changing(path: \.serverAddressForEmail, to: currentState.getEmailDomain())
+            }
+        }
+    }
+    
+    func toggleAdvancedState(_ advancedOn: Bool) {
+        guard let currentState = currentState() else { return }
+        
+        NSLog("toggleAdvancedState(advancedOn: \(advancedOn))")
+        updateView() { $0.changing(path: \.advancedMode, to: advancedOn) }
+        if currentState.advancedMode && !advancedOn && (currentState.authType != .email || !currentState.serverAutoDetect) {
+            /* User needs to switch to email auth with auto-detected
+               server, before he can go back to basic mode. */
+            send(event: .showBasicModeUnavailableDialog)
+            updateView() { $0.changing(path: \.advancedMode, to: true) }
+        }
+    }
+    
+    func removeButtonTapped() {
+        send(event: .showRemovalDialog)
+    }
+    
+    func logoutAccount() {
+        removeAccountFromDb(onSuccess: { needsRestart in
+            send(event: .finish(needsRestart: needsRestart))
+        })
+    }
+    
+    func removeAccount() {
+        removeAccountFromDb(onSuccess: { needsRestart in
+            send(event: .navigateToRemoveAccount(needsRestart: needsRestart))
+        })
+    }
+    
+    func save() {
+        guard let state = currentState() else { return }
+        var settings = self.settings
+        
+        let profileName = state.profileName.trimmingCharacters(in: .whitespacesAndNewlines)
+        if (profileName.isEmpty) {
+            send(event: .showEmptyNameDialog)
+            return
+        }
+        if (isNameDuplicated(profileName: profileName)) {
+            send(event: .showDuplicatedNameDialog)
+            return
+        }
+
+        let profile: AuthProfileItem
+        if let profileId = profileId,
+           let p = profileManager.getProfile(id: profileId) {
+            profile = p
+        } else {
+            profile = profileManager.makeNewProfile()
+            profile.isActive = false
+        }
+        let needsReauth = authDataChanged(authInfo: profile.authInfo)
+        
+        profile.advancedSetup = state.advancedMode
+        profile.authInfo = createAuthInfoFromState()
+        profile.name = profileName
+        if (profile.authInfo?.isAuthDataComplete != true) {
+            send(event: .showRequiredDataMisingDialog)
+            return
+        }
+        
+        profileManager.updateCurrentProfile(profile)
+        settings.anyAccountRegistered = true
+        send(event: .formSaved(needsReauth: needsReauth))
+    }
+    
+    // MARK: Internal/private functions
+    private func removeAccountFromDb(onSuccess: (_ needsRestart: Bool) -> Void) {
+        guard let profileId = profileId else { return }
+        guard let profile = profileManager.getProfile(id: profileId) else { return }
+        var settings = settings
+        
+        if (!profile.isActive) {
+            // Removing inactive account - just remove
+            profileManager.removeProfile(id: profileId)
+            onSuccess(false)
+        } else if let firstInactiveProfile = profileManager.getAllProfiles().first(where: { profile in !profile.isActive }) {
+            // Removing active account, when other account exists
+            if (profileManager.activateProfile(id: firstInactiveProfile.objectID, force: true)) {
+                profileManager.removeProfile(id: profileId)
+                onSuccess(false)
+            } else {
+                send(event: .showRemovalFailure)
+            }
+        } else {
+            // Removing last account
+            let emptyProfile = profileManager.makeNewProfile()
+            if (profileManager.activateProfile(id: emptyProfile.objectID, force: true)) {
+                // Last account removed, cleanup settings
+                settings.anyAccountRegistered = false
+                profileManager.removeProfile(id: profileId)
+                onSuccess(true)
+            } else {
+                send(event: .showRemovalFailure)
+            }
+        }
+    }
+    
+    private func activateOtherProfile() -> Bool {
+        if let firstInactiveProfile = profileManager.getAllProfiles().first(where: { profile in !profile.isActive }) {
+            return profileManager.activateProfile(id: firstInactiveProfile.objectID, force: true)
+        } else {
+            let emptyProfile = profileManager.makeNewProfile()
+            return profileManager.activateProfile(id: emptyProfile.objectID, force: true)
+        }
+    }
+    
+    private func isNameDuplicated(profileName: String?) -> Bool {
+        return profileManager.getAllProfiles().first(where: {profile in profile.displayName == profileName && profile.objectID != profileId}) != nil
+    }
+    
+    private func createAuthInfoFromState() -> AuthInfo? {
+        guard let state = currentState() else { return nil }
+        
+        return AuthInfo(
+            emailAuth: state.authType == .email,
+            serverAutoDetect: state.serverAutoDetect,
+            emailAddress: state.emailAddress,
+            serverForEmail: state.serverAddressForEmail,
+            serverForAccessID: state.serverAddressForAccessId,
+            accessID: Int(state.accessId) ?? 0,
+            accessIDpwd: state.accessIdPassword
+        )
+    }
+    
+    private func authDataChanged(authInfo: AuthInfo?) -> Bool {
+        guard let state = currentState() else { return false }
+        guard let authInfo = authInfo else { return true }
+        
+        return state.emailAddress != authInfo.emailAddress
+        || state.serverAutoDetect != authInfo.serverAutoDetect
+        || state.emailAddress != authInfo.emailAddress
+        || state.serverAddressForEmail != authInfo.serverForEmail
+        || state.serverAddressForAccessId != authInfo.serverForAccessID
+        || authInfo.accessID != Int(state.accessId) ?? 0
+        || state.accessIdPassword != authInfo.accessIDpwd
+    }
+}
+
+enum AccountCreationViewEvent: ViewEvent {
+    case showRemovalDialog
+    case showRemovalFailure
+    case formSaved(needsReauth: Bool)
+    case navigateToCreateAccount
+    case navigateToRemoveAccount(needsRestart: Bool)
+    case finish(needsRestart: Bool)
+    case showEmptyNameDialog
+    case showDuplicatedNameDialog
+    case showRequiredDataMisingDialog
+    case showBasicModeUnavailableDialog
+}
+
+struct AccountCreationViewState: ViewState {
+    var title: String = ""
+    
+    var profileName: String = ""
+    var emailAddress: String = ""
+    var advancedMode: Bool = false
+    
+    var authType: AuthType = .email
+    var serverAutoDetect: Bool = true
+    var serverAddressForEmail: String = ""
+    var accessId: String = ""
+    var accessIdPassword: String = ""
+    var serverAddressForAccessId: String = ""
+    
+    var profileNameVisible: Bool = false
+    var deleteButtonVisible: Bool = false
+    var backButtonVisible: Bool = false
+    
+    func getEmailDomain() -> String {
+        if let atidx = emailAddress.lastIndex(of: "@"),
+           emailAddress.endIndex > emailAddress.index(after: atidx) {
+            return String(emailAddress[emailAddress.index(after: atidx)...])
+        } else {
+            return ""
+        }
+    }
+    
+    enum AuthType: Int {
+        case email = 0
+        case accessId = 1
+    }
+}

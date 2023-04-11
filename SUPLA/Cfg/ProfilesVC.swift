@@ -41,6 +41,8 @@ class ProfilesVC: BaseViewController {
     private static let _profileCellId = "ProfileCell"
     private static let _addNewCellId = "AddNewProfileCellId"
     
+    @Singleton<GlobalSettings> var settings
+    
     func dataSource() -> RxTableViewSectionedReloadDataSource<ProfilesListModel> {
         
         return RxTableViewSectionedReloadDataSource<ProfilesListModel>(
@@ -78,7 +80,7 @@ class ProfilesVC: BaseViewController {
         title = Strings.Profiles.Title.short
         view.backgroundColor = .viewBackground
         
-        navigationItem.hidesBackButton = !((navigationCoordinator as? ProfilesNavigationCoordinator)?.allowsBack ?? false)
+        navigationItem.hidesBackButton = !settings.anyAccountRegistered
 
         [ _headline, _tapMessage, _profileList ].forEach {
             $0.translatesAutoresizingMaskIntoConstraints = false

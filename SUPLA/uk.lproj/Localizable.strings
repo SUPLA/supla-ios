@@ -299,6 +299,8 @@
 "Phase 1+2+3" = "Фаза 1+2+3";
 "Phase %d" = "Фаза %d";
 
+"AccountCreation.title" = "Редагувати обліковий запис";
+
 "Scenes.ActionButtons.execute" = "Виконати";
 "Scenes.ActionButtons.abort" = "Перервати";
 

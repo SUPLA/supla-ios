@@ -17,25 +17,16 @@
  */
 
 import Foundation
-import RxSwift
 
-class AccountRemovalVM : BaseViewModel<AccountRemovalViewState, AccountRemovalViewEvent> {
-    
-    private let removalFinishedSufix = "/db99845855b2ecbfecca9a095062b96c3e27703f?ack=true"
-    
-    func handleUrl(url: String?) {
-        guard let url = url else { return }
-        
-        if (url.hasSuffix(removalFinishedSufix)) {
-            send(event: .finish)
+@propertyWrapper
+struct Singleton<T> {
+    var wrappedValue: T {
+        get {
+            guard let object = DiContainer.shared.resolve(type: T.self) else {
+                fatalError("Object of type \(T.self) not registered")
+            }
+            
+            return object
         }
     }
-    
-    override func defaultViewState() -> AccountRemovalViewState { AccountRemovalViewState() }
 }
-
-enum AccountRemovalViewEvent: ViewEvent {
-    case finish
-}
-
-struct AccountRemovalViewState: ViewState {}
