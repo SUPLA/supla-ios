@@ -25,12 +25,12 @@ import CoreData
 
 @testable import SUPLA
 
-class AuthVMTests: XCTestCase {
+class AccountCreationVMTests: XCTestCase {
 
     private var profileId: NSManagedObjectID?
     
-    private lazy var sut: AuthVM! = {
-        let bindings = AuthVM.Inputs(basicEmail: _basicEmail.asObservable(),
+    private lazy var sut: AccountCreationVM! = {
+        let bindings = AccountCreationVM.Inputs(basicEmail: _basicEmail.asObservable(),
                                      basicName: _basicName.asObservable(),
                                      advancedEmail: _advancedEmail.asObservable(),
                                      advancedName: _advancedName.asObservable(),
@@ -44,7 +44,7 @@ class AuthVMTests: XCTestCase {
                                      autoServerSelected: _autoServerSelected.asObservable(),
                                      formSubmitRequest: _formSubmitRequest.asObservable(),
                                      accountDeleteRequest: _accountDeleteRequest.asObservable())
-        return AuthVM(bindings: bindings, profileManager: profileManager,
+        return AccountCreationVM(bindings: bindings, profileManager: profileManager,
                       profileId: profileId)
     }()
     private let _basicEmail = BehaviorRelay<String?>(value: "")
@@ -56,7 +56,7 @@ class AuthVMTests: XCTestCase {
     private let _serverAddrEmail = BehaviorRelay<String?>(value: nil)
     private let _serverAddrAccessID = BehaviorRelay<String?>(value: nil)
     private let _advancedMode = BehaviorRelay(value: false)
-    private let _advancedModeAuthType = BehaviorRelay(value: AuthVM.AuthType.email)
+    private let _advancedModeAuthType = BehaviorRelay(value: AccountCreationVM.AuthType.email)
     private let _createAccountRequest = PublishRelay<Void>()
     private let _autoServerSelected = BehaviorRelay(value: true)
     private let _formSubmitRequest = PublishRelay<Void>()

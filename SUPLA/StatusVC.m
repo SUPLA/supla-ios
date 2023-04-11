@@ -105,7 +105,7 @@
 
 
 - (IBAction)btnTouch:(id)sender {
-    [[SAApp mainNavigationCoordinator] showProfilesViewWithAllowsBack: NO];
+    [[SAApp mainNavigationCoordinator] showProfilesView];
 }
 
 - (IBAction)btnRetryTouch:(id)sender {

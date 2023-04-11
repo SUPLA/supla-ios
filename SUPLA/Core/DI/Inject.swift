@@ -16,26 +16,20 @@
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 
+
 import Foundation
-import RxSwift
 
-class AccountRemovalVM : BaseViewModel<AccountRemovalViewState, AccountRemovalViewEvent> {
+@propertyWrapper
+struct Inject<T: Injectable> {
+    private lazy var object: T = {
+        T.init()
+    }()
     
-    private let removalFinishedSufix = "/db99845855b2ecbfecca9a095062b96c3e27703f?ack=true"
-    
-    func handleUrl(url: String?) {
-        guard let url = url else { return }
-        
-        if (url.hasSuffix(removalFinishedSufix)) {
-            send(event: .finish)
-        }
+    var wrappedValue: T {
+        mutating get { object }
     }
-    
-    override func defaultViewState() -> AccountRemovalViewState { AccountRemovalViewState() }
 }
 
-enum AccountRemovalViewEvent: ViewEvent {
-    case finish
+protocol Injectable {
+    init()
 }
-
-struct AccountRemovalViewState: ViewState {}

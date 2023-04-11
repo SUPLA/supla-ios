@@ -299,6 +299,8 @@
 "Phase 1+2+3" = "Phase 1+2+3";
 "Phase %d" = "Phase %d";
 
+"AccountCreation.title" = "Konto bearbeiten";
+
 "Scenes.ActionButtons.execute" = "Ausführen";
 "Scenes.ActionButtons.abort" = "Abbrechen";
 

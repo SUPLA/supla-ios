@@ -27,6 +27,14 @@
 
 @implementation AppDelegate
 
+- (id) init {
+    self = [super init];
+    
+    // Setup dependency injection
+    [DiContainer start];
+    
+    return self;
+}
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.

@@ -29,8 +29,8 @@ class AuthCfgNavigationCoordinator: BaseNavigationCoordinator {
     private let _immediate: Bool
     private var _profileId: NSManagedObjectID?
     
-    private lazy var _viewController: AuthVC = {
-        return AuthVC(navigationCoordinator: self,
+    private lazy var _viewController: AccountCreationVC = {
+        return AccountCreationVC(navigationCoordinator: self,
                       profileId: _profileId)
     }()
     

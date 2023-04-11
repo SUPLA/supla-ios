@@ -15,27 +15,32 @@
  along with this program; if not, write to the Free Software
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
-
 import Foundation
-import RxSwift
 
-class AccountRemovalVM : BaseViewModel<AccountRemovalViewState, AccountRemovalViewEvent> {
+protocol DiContainerProtocol {
+    func register<Component>(type: Component.Type, component: Any)
+    func resolve<Component>(type: Component.Type) -> Component?
+}
+
+@objc
+final class DiContainer: NSObject, DiContainerProtocol {
+    static let shared = DiContainer()
     
-    private let removalFinishedSufix = "/db99845855b2ecbfecca9a095062b96c3e27703f?ack=true"
+    private override init() {}
     
-    func handleUrl(url: String?) {
-        guard let url = url else { return }
-        
-        if (url.hasSuffix(removalFinishedSufix)) {
-            send(event: .finish)
-        }
+    var components: [String: Any] = [:]
+    
+    func register<Component>(type: Component.Type, component: Any) {
+        components["\(type)"] = component
     }
     
-    override func defaultViewState() -> AccountRemovalViewState { AccountRemovalViewState() }
+    func resolve<Component>(type: Component.Type) -> Component? {
+        return components["\(type)"] as? Component
+    }
 }
 
-enum AccountRemovalViewEvent: ViewEvent {
-    case finish
+extension DiContainer {
+    @objc static func start() {
+        DiContainer.shared.register(type: GlobalSettings.self, component: GlobalSettingsImpl())
+    }
 }
-
-struct AccountRemovalViewState: ViewState {}
