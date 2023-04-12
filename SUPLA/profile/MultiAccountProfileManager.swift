@@ -73,6 +73,7 @@ extension MultiAccountProfileManager: ProfileManager {
     
     func delete(id: ProfileID) -> Bool {
         if let p = read(id: id) {
+            deleteAllRelatedData(profileId: id)
             _ctx.delete(p)
             return saveContext("deleting")
         }
@@ -130,5 +131,40 @@ extension MultiAccountProfileManager: ProfileManager {
             return false
         }
         return true
+    }
+    
+    private func deleteAllRelatedData(profileId: ProfileID) {
+        if let profile = read(id: profileId) {
+            deleteRelatedData(entity: "SAChannel", profile: profile)
+            deleteRelatedData(entity: "SAChannelExtendedValue", profile: profile)
+            deleteRelatedData(entity: "SAChannelGroup", profile: profile)
+            deleteRelatedData(entity: "SAChannelValue", profile: profile)
+            deleteRelatedData(entity: "SAElectricityMeasurementItem", profile: profile)
+            deleteRelatedData(entity: "SAImpulseCounterMeasurementItem", profile: profile)
+            deleteRelatedData(entity: "SALocation", profile: profile)
+            deleteRelatedData(entity: "SAScene", profile: profile)
+            deleteRelatedData(entity: "SATemperatureMeasurementItem", profile: profile)
+            deleteRelatedData(entity: "SATempHumidityMeasurementItem", profile: profile)
+            deleteRelatedData(entity: "SAUserIcon", profile: profile)
+            deleteRelatedData(entity: "SAThermostatMeasurementItem", profile: profile)
+        }
+    }
+    
+    private func deleteRelatedData(entity: String, profile: AuthProfileItem) {
+        let request = NSFetchRequest<NSFetchRequestResult>(entityName: entity)
+        request.predicate = NSPredicate(format: "profile = %@", profile)
+        
+        do {
+            let results = try _ctx.fetch(request)
+            if (results.count == 0) {
+                return
+            }
+            for item in results as! [NSManagedObject] {
+                _ctx.delete(item)
+            }
+        } catch {
+            NSLog("Could not remove items from \(entity) for profile \(profile) because: \(error)")
+            // do nothing
+        }
     }
 }
