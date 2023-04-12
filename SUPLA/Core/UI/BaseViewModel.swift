@@ -36,7 +36,13 @@ class BaseViewModel<S : ViewState, E : ViewEvent> {
     func updateView(state: S) { self.state.on(.next(state)) }
     func updateView(_ stateModifier: (S) -> S) { try! state.on(.next(stateModifier(state.value()))) }
     
-    func currentState() -> S? { return try! state.value() }
+    func currentState() -> S? {
+        do {
+            return try state.value()
+        } catch {
+            return nil
+        }
+    }
     
     func bind<T>(field path: WritableKeyPath<S, T>, toObservable observable: Observable<T>) {
         observable

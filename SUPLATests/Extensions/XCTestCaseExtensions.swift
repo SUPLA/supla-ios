@@ -16,18 +16,23 @@
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 
-import Foundation
+import XCTest
 
-@objc
-protocol ProfileManager {
-    func create() -> AuthProfileItem
-    func read(id: ProfileID) -> AuthProfileItem?
-    func update(_ profile: AuthProfileItem) -> Bool
-    func delete(id: ProfileID) -> Bool
+extension XCTestCase {
+    func setUpInMemoryManagedObjectContext() -> NSManagedObjectContext {
+        let managedObjectModel = NSManagedObjectModel.mergedModel(from: [Bundle.main])!
     
-    func getAllProfiles() -> [AuthProfileItem]
+        let persistentStoreCoordinator = NSPersistentStoreCoordinator(managedObjectModel: managedObjectModel)
     
-    func getCurrentProfile() -> AuthProfileItem?
+        do {
+            try persistentStoreCoordinator.addPersistentStore(ofType: NSInMemoryStoreType, configurationName: nil, at: nil, options: nil)
+        } catch {
+            print("Adding in-memory persistent store failed")
+        }
     
-    func activateProfile(id: ProfileID, force: Bool) -> Bool
+        let managedObjectContext = NSManagedObjectContext()
+        managedObjectContext.persistentStoreCoordinator = persistentStoreCoordinator
+    
+        return managedObjectContext
+    }
 }

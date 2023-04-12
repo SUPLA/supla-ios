@@ -42,5 +42,6 @@ final class DiContainer: NSObject, DiContainerProtocol {
 extension DiContainer {
     @objc static func start() {
         DiContainer.shared.register(type: GlobalSettings.self, component: GlobalSettingsImpl())
+        DiContainer.shared.register(type: RuntimeConfig.self, component: RuntimeConfigImpl())
     }
 }

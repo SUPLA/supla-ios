@@ -21,6 +21,7 @@ import Foundation
 protocol GlobalSettings {
     
     var anyAccountRegistered: Bool { get set }
+    var dbSchema: Int { get set }
     
 }
 
@@ -35,6 +36,16 @@ class GlobalSettingsImpl: GlobalSettings {
         }
         set {
             defaults.set(newValue, forKey: anyAccountRegisteredKey)
+        }
+    }
+    
+    private let dbSchemaKey = "GlobalSettings.dbSchemaKey"
+    var dbSchema: Int {
+        get {
+            defaults.integer(forKey: dbSchemaKey)
+        }
+        set {
+            defaults.set(newValue, forKey: dbSchemaKey)
         }
     }
 }

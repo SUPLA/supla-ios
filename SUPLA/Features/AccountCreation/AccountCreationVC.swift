@@ -95,7 +95,7 @@ class AccountCreationVC: BaseViewControllerVM<AccountCreationViewState, AccountC
     
     convenience init(navigationCoordinator: NavigationCoordinator,
                      profileId: NSManagedObjectID?) {
-        self.init(nibName: "AuthVC", bundle: nil)
+        self.init(nibName: "AccountCreationVC", bundle: nil)
         self.navigationCoordinator = navigationCoordinator
         self.profileId = profileId
         
@@ -225,7 +225,8 @@ class AccountCreationVC: BaseViewControllerVM<AccountCreationViewState, AccountC
         viewModel.bind(adEmailAddr.rx.text.asObservable()) { self.viewModel.setEmailAddress($0!) }
         viewModel.bind(modeToggle.rx.isOn.debounce(.milliseconds(100), scheduler: MainScheduler.instance).distinctUntilChanged().asObservable()) { isOn in self.viewModel.toggleAdvancedState(isOn) }
         viewModel.bind(adServerAuto.rx.tap.asObservable().map({ self.adServerAuto.isSelected })) { isOn in self.viewModel.setServerAutodetect(isOn) }
-        viewModel.bind(deleteButton.rx.tap.asObservable()) { self.viewModel.removeButtonTapped() }
+        viewModel.bind(deleteButton.rx.tap.asObservable()) { self.viewModel.removeTapped() }
+        viewModel.bind(createAccountButton.rx.tap.asObservable()) { self.viewModel.addAccountTapped() }
     }
     
     override func updateViewConstraints() {
@@ -278,11 +279,7 @@ class AccountCreationVC: BaseViewControllerVM<AccountCreationViewState, AccountC
             break
         case .finish(let needsRestart):
             if (needsRestart) {
-                guard let window = UIApplication.shared.keyWindow else { return }
-                
-                let navCtrl = MainNavigationCoordinator()
-                navCtrl.attach(to: window)
-                navCtrl.start(from: nil)
+                navigator?.restartAppFlow()
             } else {
                 navigator?.finish()
             }
@@ -350,10 +347,6 @@ class AccountCreationVC: BaseViewControllerVM<AccountCreationViewState, AccountC
         navigator?.didFinish(shouldReauthenticate: needsReauth)
         if (needsReauth || !SAApp.suplaClientConnected()) {
             NotificationCenter.default.post(name: .saConnecting, object: self, userInfo: nil)
-            let pm = SAApp.profileManager()
-            let ai = pm.getCurrentAuthInfo()
-            ai.preferredProtocolVersion = Int(SUPLA_PROTO_VERSION)
-            pm.updateCurrentAuthInfo(ai)
             SAApp.suplaClient().reconnect()
         }
     }

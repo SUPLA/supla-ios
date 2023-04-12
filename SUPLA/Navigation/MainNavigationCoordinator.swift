@@ -67,7 +67,7 @@ class MainNavigationCoordinator: BaseNavigationCoordinator {
     
 
     private func showInitialView() {
-        if SAApp.configIsSet() {
+        if (settings.anyAccountRegistered) {
             showStatusView(progress: 0)
         } else {
             showAuthView()
@@ -182,8 +182,7 @@ class MainNavigationCoordinator: BaseNavigationCoordinator {
     // MARK: -
     
     @objc func showAuthView() {
-        startFlow(coordinator: AuthCfgNavigationCoordinator(immediate: true,
-                                                            profileId: SAApp.profileManager().getCurrentProfile().objectID))
+        startFlow(coordinator: AuthCfgNavigationCoordinator(immediate: true, profileId: nil))
     }
     
     @objc func showStatusView(progress: NSNumber) {

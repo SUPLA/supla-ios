@@ -50,6 +50,21 @@ class AuthCfgNavigationCoordinator: BaseNavigationCoordinator {
         }
     }
     
+    func restartAppFlow() {
+        finish()
+        
+        // Go back to main navigator, finish all inbetween and start from beginning.
+        var parent = parentCoordinator
+        while (parent != nil) {
+            if (parent is MainNavigationCoordinator) {
+                parent?.start(from: nil)
+                return
+            }
+            parent?.finish()
+            parent = parent?.parentCoordinator
+        }
+    }
+    
     func navigateToCreateAccount() {
         let cavc = SACreateAccountVC(nibName: "CreateAccountVC", bundle: nil)
         cavc.navigationCoordinator = self

@@ -46,7 +46,7 @@ class AccountCreationVM: BaseViewModel<AccountCreationViewState, AccountCreation
         super.init()
 
         if let profileId = profileId,
-           let profile = profileManager.getProfile(id: profileId) {
+           let profile = profileManager.read(id: profileId) {
             let authConfig = profile.authInfo!
             
             updateView() { state in
@@ -56,6 +56,7 @@ class AccountCreationVM: BaseViewModel<AccountCreationViewState, AccountCreation
                     .changing(path: \.emailAddress, to: authConfig.emailAddress)
                     .changing(path: \.authType, to: authConfig.emailAuth ? .email : .accessId)
                     .changing(path: \.serverAddressForEmail, to: authConfig.serverForEmail)
+                    .changing(path: \.serverAutoDetect, to: authConfig.serverAutoDetect)
                     .changing(path: \.accessId, to: "\(authConfig.accessID)")
                     .changing(path: \.accessIdPassword, to: authConfig.accessIDpwd)
                     .changing(path: \.serverAddressForAccessId, to: authConfig.serverForAccessID)
@@ -106,7 +107,6 @@ class AccountCreationVM: BaseViewModel<AccountCreationViewState, AccountCreation
     func toggleAdvancedState(_ advancedOn: Bool) {
         guard let currentState = currentState() else { return }
         
-        NSLog("toggleAdvancedState(advancedOn: \(advancedOn))")
         updateView() { $0.changing(path: \.advancedMode, to: advancedOn) }
         if currentState.advancedMode && !advancedOn && (currentState.authType != .email || !currentState.serverAutoDetect) {
             /* User needs to switch to email auth with auto-detected
@@ -116,18 +116,22 @@ class AccountCreationVM: BaseViewModel<AccountCreationViewState, AccountCreation
         }
     }
     
-    func removeButtonTapped() {
+    func removeTapped() {
         send(event: .showRemovalDialog)
     }
     
+    func addAccountTapped() {
+        send(event: .navigateToCreateAccount)
+    }
+    
     func logoutAccount() {
-        removeAccountFromDb(onSuccess: { needsRestart in
+        doRemoveAccount(onSuccess: { needsRestart in
             send(event: .finish(needsRestart: needsRestart))
         })
     }
     
     func removeAccount() {
-        removeAccountFromDb(onSuccess: { needsRestart in
+        doRemoveAccount(onSuccess: { needsRestart in
             send(event: .navigateToRemoveAccount(needsRestart: needsRestart))
         })
     }
@@ -137,7 +141,7 @@ class AccountCreationVM: BaseViewModel<AccountCreationViewState, AccountCreation
         var settings = self.settings
         
         let profileName = state.profileName.trimmingCharacters(in: .whitespacesAndNewlines)
-        if (profileName.isEmpty) {
+        if (state.profileNameVisible && profileName.isEmpty) {
             send(event: .showEmptyNameDialog)
             return
         }
@@ -145,68 +149,70 @@ class AccountCreationVM: BaseViewModel<AccountCreationViewState, AccountCreation
             send(event: .showDuplicatedNameDialog)
             return
         }
-
-        let profile: AuthProfileItem
-        if let profileId = profileId,
-           let p = profileManager.getProfile(id: profileId) {
-            profile = p
-        } else {
-            profile = profileManager.makeNewProfile()
-            profile.isActive = false
-        }
-        let needsReauth = authDataChanged(authInfo: profile.authInfo)
-        
-        profile.advancedSetup = state.advancedMode
-        profile.authInfo = createAuthInfoFromState()
-        profile.name = profileName
-        if (profile.authInfo?.isAuthDataComplete != true) {
+        let authInfo = createAuthInfoFromState()
+        if (authInfo?.isAuthDataComplete != true) {
             send(event: .showRequiredDataMisingDialog)
             return
         }
         
-        profileManager.updateCurrentProfile(profile)
-        settings.anyAccountRegistered = true
-        send(event: .formSaved(needsReauth: needsReauth))
+        let profile = getProfile()
+        let needsReauth = authDataChanged(authInfo: profile.authInfo)
+        
+        profile.name = profileName
+        profile.advancedSetup = state.advancedMode
+        profile.isActive = !settings.anyAccountRegistered
+        profile.authInfo = authInfo
+        if (needsReauth) {
+            profile.authInfo?.preferredProtocolVersion = Int(SUPLA_PROTO_VERSION)
+        }
+        
+        if (profileManager.update(profile)) {
+            settings.anyAccountRegistered = true
+            send(event: .formSaved(needsReauth: needsReauth))
+        } else {
+            send(event: .showRequiredDataMisingDialog)
+        }
+    }
+    
+    private func getProfile() -> AuthProfileItem {
+        if let profileId = profileId {
+            return profileManager.read(id: profileId)!
+        } else {
+            return profileManager.create()
+        }
     }
     
     // MARK: Internal/private functions
-    private func removeAccountFromDb(onSuccess: (_ needsRestart: Bool) -> Void) {
+    private func doRemoveAccount(onSuccess: (_ needsRestart: Bool) -> Void) {
         guard let profileId = profileId else { return }
-        guard let profile = profileManager.getProfile(id: profileId) else { return }
+        guard let profile = profileManager.read(id: profileId) else { return }
         var settings = settings
         
         if (!profile.isActive) {
             // Removing inactive account - just remove
-            profileManager.removeProfile(id: profileId)
-            onSuccess(false)
+            removeAccountFromDb(profileId) { onSuccess(false) }
         } else if let firstInactiveProfile = profileManager.getAllProfiles().first(where: { profile in !profile.isActive }) {
             // Removing active account, when other account exists
             if (profileManager.activateProfile(id: firstInactiveProfile.objectID, force: true)) {
-                profileManager.removeProfile(id: profileId)
-                onSuccess(false)
+                removeAccountFromDb(profileId) { onSuccess(false) }
             } else {
                 send(event: .showRemovalFailure)
             }
         } else {
             // Removing last account
-            let emptyProfile = profileManager.makeNewProfile()
-            if (profileManager.activateProfile(id: emptyProfile.objectID, force: true)) {
-                // Last account removed, cleanup settings
+            removeAccountFromDb(profileId) {
                 settings.anyAccountRegistered = false
-                profileManager.removeProfile(id: profileId)
                 onSuccess(true)
-            } else {
-                send(event: .showRemovalFailure)
             }
         }
     }
     
-    private func activateOtherProfile() -> Bool {
-        if let firstInactiveProfile = profileManager.getAllProfiles().first(where: { profile in !profile.isActive }) {
-            return profileManager.activateProfile(id: firstInactiveProfile.objectID, force: true)
+    private func removeAccountFromDb(_ profileId: ProfileID, _ onSuccess: () -> Void) {
+        // Removing inactive account - just remove
+        if (profileManager.delete(id: profileId)) {
+            onSuccess()
         } else {
-            let emptyProfile = profileManager.makeNewProfile()
-            return profileManager.activateProfile(id: emptyProfile.objectID, force: true)
+            send(event: .showRemovalFailure)
         }
     }
     

@@ -17,18 +17,16 @@
  */
 
 import Foundation
-import RxSwift
 
-protocol ViewState: Equatable {}
-
-extension ViewState {
-    func changing<T>(path: WritableKeyPath<Self, T>, to value: T) -> Self {
-        var clone = self
-        clone[keyPath: path] = value
-        return clone
-    }
+/**
+    Protocol created to avoid using static instances in code. Instance of it is created when the app starts and everything there will behave like a static content.
+ */
+protocol RuntimeConfig {
     
-    func sendTo(_ subject: BehaviorSubject<Self>) {
-        subject.on(.next(self))
-    }
+    var activeProfileId: ProfileID? { get set }
+    
+}
+
+class RuntimeConfigImpl: RuntimeConfig {
+    var activeProfileId: ProfileID?
 }
