@@ -21,14 +21,27 @@ import CoreData
 
 @objc
 class ProfileMigrator: NSObject {
-
+    
+    @Singleton<GlobalSettings> var settings
+    
     private let _defs = UserDefaults.standard
     
     @objc
     func migrateProfileFromUserDefaults(_ ctx: NSManagedObjectContext) throws {
         let pm = MultiAccountProfileManager(context: ctx)
+        var settings = settings
         
-        let profile = pm.getCurrentProfile()
+        let activeProfile = pm.getAllProfiles().first(where: { $0.isActive })
+        
+        if (activeProfile != nil) {
+            // update from latest version, no migration needed
+            settings.anyAccountRegistered = true
+            settings.dbSchema = 13
+            
+            return
+        }
+        
+        let profile = pm.create()
         if profile.authInfo?.isAuthDataComplete == false {
             // Obtain current authentication settings
             let accessID = _defs.integer(forKey: "access_id")
@@ -58,27 +71,30 @@ class ProfileMigrator: NSObject {
                                         accessID: accessID,
                                         accessIDpwd: accessIDpwd,
                                         preferredProtocolVersion: prefProtoVersion)
-            pm.updateCurrentProfile(profile)
+            
+            if (pm.update(profile)) {
+                settings.anyAccountRegistered = true
+            }
         }
         
         // profile was already migrated, so we're good now
         try updateRelationships(profile: profile, in: ctx)
-
-      var bytes = [CChar](repeating: 0, count: Int(SUPLA_GUID_SIZE))
-      if SAApp.getClientGUID(&bytes) {
-          profile.clientGUID = Data(bytes.map { UInt8(bitPattern: $0)})
-      }
-
-      bytes = [CChar](repeating: 0, count: Int(SUPLA_AUTHKEY_SIZE))
-      if SAApp.getAuthKey(&bytes) {
-          profile.authKey = Data(bytes.map { UInt8(bitPattern: $0) })
-      }
+        
+        var bytes = [CChar](repeating: 0, count: Int(SUPLA_GUID_SIZE))
+        if SAApp.getClientGUID(&bytes) {
+            profile.clientGUID = Data(bytes.map { UInt8(bitPattern: $0)})
+        }
+        
+        bytes = [CChar](repeating: 0, count: Int(SUPLA_AUTHKEY_SIZE))
+        if SAApp.getAuthKey(&bytes) {
+            profile.authKey = Data(bytes.map { UInt8(bitPattern: $0) })
+        }
     }
-
+    
     private func updateRelationships(profile: AuthProfileItem,
                                      in ctx: NSManagedObjectContext) throws {
         let entities = [ "SAChannelBase", "SAChannelValueBase",
-            "SAMeasurementItem", "SAUserIcon", "SALocation" ]
+                         "SAMeasurementItem", "SAUserIcon", "SALocation" ]
         
         for name in entities {
             let fr = NSFetchRequest<NSManagedObject>(entityName: name)

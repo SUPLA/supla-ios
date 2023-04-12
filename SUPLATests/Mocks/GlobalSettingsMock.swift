@@ -16,19 +16,28 @@
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 
-import Foundation
-import RxSwift
+@testable import SUPLA
 
-protocol ViewState: Equatable {}
-
-extension ViewState {
-    func changing<T>(path: WritableKeyPath<Self, T>, to value: T) -> Self {
-        var clone = self
-        clone[keyPath: path] = value
-        return clone
+class GlobalSettingsMock: GlobalSettings {
+    var anyAccountRegisteredReturns: Bool = false
+    var anyAccountRegisteredValues: [Bool] = []
+    var anyAccountRegistered: Bool {
+        get {
+            anyAccountRegisteredReturns
+        }
+        set {
+            anyAccountRegisteredValues.append(newValue)
+        }
     }
     
-    func sendTo(_ subject: BehaviorSubject<Self>) {
-        subject.on(.next(self))
+    var dbSchemaReturns: Int = 0
+    var dbSchemaValues: [Int] = []
+    var dbSchema: Int {
+        get {
+            dbSchemaReturns
+        }
+        set {
+            dbSchemaValues.append(newValue)
+        }
     }
 }

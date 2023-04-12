@@ -35,8 +35,8 @@ class ChartSettings: NSObject {
         _dateRangeField = dateRangeField
 
         _profileId = SAApp.profileManager()
-          .getCurrentProfile().objectID.uriRepresentation()
-          .dataRepresentation.base64EncodedString()
+          .getCurrentProfile()?.objectID.uriRepresentation()
+          .dataRepresentation.base64EncodedString() ?? ""
         
         super.init()
     }

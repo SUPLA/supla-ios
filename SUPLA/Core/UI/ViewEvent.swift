@@ -18,4 +18,4 @@
 
 import Foundation
 
-protocol ViewEvent {}
+protocol ViewEvent: Equatable {}
