@@ -35,69 +35,58 @@ class MultiAccountProfileManager: NSObject {
         super.init()
         
         if (MultiAccountProfileManager._currentProfileId == nil) {
-            MultiAccountProfileManager._currentProfileId = _findCurrentProfile().objectID
+            MultiAccountProfileManager._currentProfileId = _findCurrentProfile()?.objectID
         }
     }
     
-    private func _findCurrentProfile() -> AuthProfileItem {
-        if let profile = getAllProfiles().first(where: {$0.isActive}) {
-            return profile
-        } else {
-            return makeNewProfile()
-        }
+    private func _findCurrentProfile() -> AuthProfileItem? {
+        return getAllProfiles().first(where: {$0.isActive})
     }
 }
 
 extension MultiAccountProfileManager: ProfileManager {
 
-    func makeNewProfile() -> AuthProfileItem {
-        let profile = NSEntityDescription.insertNewObject(forEntityName: "AuthProfileItem",
-                                                          into: _ctx) as! AuthProfileItem
-        profile.name = ""
-        profile.isActive = true
-        profile.advancedSetup = false
-        profile.authInfo = AuthInfo(emailAuth: true,
-                                    serverAutoDetect: true,
-                                    emailAddress: "",
-                                    serverForEmail: "",
-                                    serverForAccessID: "",
-                                    accessID: 0,
-                                    accessIDpwd: "")
+    func create() -> AuthProfileItem {
+        let profile = NSEntityDescription.insertNewObject(forEntityName: "AuthProfileItem", into: _ctx) as! AuthProfileItem
         try! _ctx.save()
         return profile
     }
-
-    func getCurrentProfile() -> AuthProfileItem {
-        if (MultiAccountProfileManager._currentProfileId == nil) {
-            fatalError("Current profile ID not set, but expected to be set!")
+    
+    func read(id: ProfileID) -> AuthProfileItem? {
+        return try? _ctx.existingObject(with: id) as? AuthProfileItem
+    }
+    
+    func update(_ profile: AuthProfileItem) -> Bool {
+        if profile.managedObjectContext == _ctx {
+            if profile.hasChanges {
+                return saveContext("updating")
+            } else {
+                return true
+            }
+        } else {
+            _ctx.insert(profile)
+            return saveContext("updating (by insert)")
         }
-        let profile = getProfile(id: MultiAccountProfileManager._currentProfileId!)
+    }
+    
+    func delete(id: ProfileID) -> Bool {
+        if let p = read(id: id) {
+            _ctx.delete(p)
+            return saveContext("deleting")
+        }
+        
+        return false
+    }
+
+    func getCurrentProfile() -> AuthProfileItem? {
+        if (MultiAccountProfileManager._currentProfileId == nil) {
+            return nil
+        }
+        let profile = read(id: MultiAccountProfileManager._currentProfileId!)
         if (profile == nil) {
             fatalError("Profile for ID \(MultiAccountProfileManager._currentProfileId!) was not found!")
         }
         return profile!
-    }
-    
-    func updateCurrentProfile(_ profile: AuthProfileItem) {
-        // TODO: Delete user icons probably here
-        if profile.managedObjectContext == _ctx {
-            if profile.hasChanges {
-                try! _ctx.save()
-            }
-        } else {
-            _ctx.insert(profile)
-            try! _ctx.save()
-        }
-    }
-    
-    func getCurrentAuthInfo() -> AuthInfo {
-        return getCurrentProfile().authInfo!
-    }
-    
-    func updateCurrentAuthInfo(_ info: AuthInfo) {
-        let profile = getCurrentProfile()
-        profile.authInfo = info
-        updateCurrentProfile(profile)
     }
     
     func getAllProfiles() -> [AuthProfileItem] {
@@ -105,13 +94,8 @@ extension MultiAccountProfileManager: ProfileManager {
         return try! _ctx.fetch(req)
     }
 
-    func getProfile(id: ProfileID) -> AuthProfileItem? {
-        return try? _ctx.existingObject(with: id) as? AuthProfileItem
-    }
-    
-    
     func activateProfile(id: ProfileID, force: Bool) -> Bool {
-        guard let profile = getProfile(id: id) else { return false }
+        guard let profile = read(id: id) else { return false }
         if profile.isActive && !force { return false }
         
         let profiles = getAllProfiles()
@@ -128,13 +112,6 @@ extension MultiAccountProfileManager: ProfileManager {
         return true
     }
     
-    func removeProfile(id: ProfileID) {
-        if let p = getProfile(id: id) {
-            _ctx.delete(p)
-            try! _ctx.save()
-        }
-    }
-    
     private func initiateReconnect() {
         let app = SAApp.instance()
         let client = SAApp.suplaClient()
@@ -142,4 +119,13 @@ extension MultiAccountProfileManager: ProfileManager {
         client.reconnect()
     }
 
+    private func saveContext(_ action: String) -> Bool {
+        do {
+            try _ctx.save()
+        } catch {
+            NSLog("Error occured by \(action) '\(error)'")
+            return false
+        }
+        return true
+    }
 }

@@ -16,36 +16,28 @@
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 
-import Foundation
+@testable import SUPLA
 
-protocol GlobalSettings {
-    
-    var anyAccountRegistered: Bool { get set }
-    var dbSchema: Int { get set }
-    
-}
-
-class GlobalSettingsImpl: GlobalSettings {
-    
-    let defaults = UserDefaults.standard
-    
-    private let anyAccountRegisteredKey = "GlobalSettings.anyAccountRegisteredKey"
+class GlobalSettingsMock: GlobalSettings {
+    var anyAccountRegisteredReturns: Bool = false
+    var anyAccountRegisteredValues: [Bool] = []
     var anyAccountRegistered: Bool {
         get {
-            defaults.bool(forKey: anyAccountRegisteredKey)
+            anyAccountRegisteredReturns
         }
         set {
-            defaults.set(newValue, forKey: anyAccountRegisteredKey)
+            anyAccountRegisteredValues.append(newValue)
         }
     }
     
-    private let dbSchemaKey = "GlobalSettings.dbSchemaKey"
+    var dbSchemaReturns: Int = 0
+    var dbSchemaValues: [Int] = []
     var dbSchema: Int {
         get {
-            defaults.integer(forKey: dbSchemaKey)
+            dbSchemaReturns
         }
         set {
-            defaults.set(newValue, forKey: dbSchemaKey)
+            dbSchemaValues.append(newValue)
         }
     }
 }

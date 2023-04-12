@@ -16,19 +16,18 @@
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 
-import Foundation
-import RxSwift
+@testable import SUPLA
 
-protocol ViewState: Equatable {}
-
-extension ViewState {
-    func changing<T>(path: WritableKeyPath<Self, T>, to value: T) -> Self {
-        var clone = self
-        clone[keyPath: path] = value
-        return clone
-    }
-    
-    func sendTo(_ subject: BehaviorSubject<Self>) {
-        subject.on(.next(self))
+extension AuthInfo {
+    static func empty() -> AuthInfo {
+        AuthInfo(
+            emailAuth: true,
+            serverAutoDetect: true,
+            emailAddress: "",
+            serverForEmail: "",
+            serverForAccessID: "",
+            accessID: 0,
+            accessIDpwd: ""
+        )
     }
 }

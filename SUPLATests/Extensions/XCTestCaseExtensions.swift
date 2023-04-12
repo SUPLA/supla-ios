@@ -16,36 +16,23 @@
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 
-import Foundation
+import XCTest
 
-protocol GlobalSettings {
+extension XCTestCase {
+    func setUpInMemoryManagedObjectContext() -> NSManagedObjectContext {
+        let managedObjectModel = NSManagedObjectModel.mergedModel(from: [Bundle.main])!
     
-    var anyAccountRegistered: Bool { get set }
-    var dbSchema: Int { get set }
+        let persistentStoreCoordinator = NSPersistentStoreCoordinator(managedObjectModel: managedObjectModel)
     
-}
-
-class GlobalSettingsImpl: GlobalSettings {
-    
-    let defaults = UserDefaults.standard
-    
-    private let anyAccountRegisteredKey = "GlobalSettings.anyAccountRegisteredKey"
-    var anyAccountRegistered: Bool {
-        get {
-            defaults.bool(forKey: anyAccountRegisteredKey)
+        do {
+            try persistentStoreCoordinator.addPersistentStore(ofType: NSInMemoryStoreType, configurationName: nil, at: nil, options: nil)
+        } catch {
+            print("Adding in-memory persistent store failed")
         }
-        set {
-            defaults.set(newValue, forKey: anyAccountRegisteredKey)
-        }
-    }
     
-    private let dbSchemaKey = "GlobalSettings.dbSchemaKey"
-    var dbSchema: Int {
-        get {
-            defaults.integer(forKey: dbSchemaKey)
-        }
-        set {
-            defaults.set(newValue, forKey: dbSchemaKey)
-        }
+        let managedObjectContext = NSManagedObjectContext()
+        managedObjectContext.persistentStoreCoordinator = persistentStoreCoordinator
+    
+        return managedObjectContext
     }
 }

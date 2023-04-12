@@ -64,6 +64,7 @@ class AuthInfo: NSObject, NSCoding {
         accessIDpwd = coder.decodeObject(forKey: kAccessIDpwd) as? String ?? ""
         preferredProtocolVersion = coder.decodeInteger(forKey: kPreferredProtocolVersion)
     }
+    
     func encode(with coder: NSCoder) {
         coder.encode(emailAuth, forKey: kEmailAuth)
         coder.encode(serverAutoDetect, forKey: kServerAutoDetect)

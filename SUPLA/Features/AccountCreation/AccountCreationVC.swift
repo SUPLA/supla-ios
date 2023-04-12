@@ -95,7 +95,7 @@ class AccountCreationVC: BaseViewControllerVM<AccountCreationViewState, AccountC
     
     convenience init(navigationCoordinator: NavigationCoordinator,
                      profileId: NSManagedObjectID?) {
-        self.init(nibName: "AuthVC", bundle: nil)
+        self.init(nibName: "AccountCreationVC", bundle: nil)
         self.navigationCoordinator = navigationCoordinator
         self.profileId = profileId
         
@@ -278,11 +278,7 @@ class AccountCreationVC: BaseViewControllerVM<AccountCreationViewState, AccountC
             break
         case .finish(let needsRestart):
             if (needsRestart) {
-                guard let window = UIApplication.shared.keyWindow else { return }
-                
-                let navCtrl = MainNavigationCoordinator()
-                navCtrl.attach(to: window)
-                navCtrl.start(from: nil)
+                navigator?.restartAppFlow()
             } else {
                 navigator?.finish()
             }
@@ -350,10 +346,6 @@ class AccountCreationVC: BaseViewControllerVM<AccountCreationViewState, AccountC
         navigator?.didFinish(shouldReauthenticate: needsReauth)
         if (needsReauth || !SAApp.suplaClientConnected()) {
             NotificationCenter.default.post(name: .saConnecting, object: self, userInfo: nil)
-            let pm = SAApp.profileManager()
-            let ai = pm.getCurrentAuthInfo()
-            ai.preferredProtocolVersion = Int(SUPLA_PROTO_VERSION)
-            pm.updateCurrentAuthInfo(ai)
             SAApp.suplaClient().reconnect()
         }
     }

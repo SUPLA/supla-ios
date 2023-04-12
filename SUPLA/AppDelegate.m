@@ -41,6 +41,7 @@
     self.navigation = [[MainNavigationCoordinator alloc] init];
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     [self.navigation attachTo: self.window];
+    [SAApp profileManager]; // Get an instance to trigger db migration
 	[self.navigation startFrom:nil];
 
   //  [[SAApp UI] showStarterVC];
