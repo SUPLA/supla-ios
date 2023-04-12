@@ -27,6 +27,7 @@ class AccountCreationVM: BaseViewModel<AccountCreationViewState, AccountCreation
     // MARK: Injected values
     private let profileManager: ProfileManager
     @Singleton<GlobalSettings> var settings
+    @Singleton<RuntimeConfig> var config
     
     // MARK: Internal state
     private var profileId: ProfileID?
@@ -187,6 +188,7 @@ class AccountCreationVM: BaseViewModel<AccountCreationViewState, AccountCreation
         guard let profileId = profileId else { return }
         guard let profile = profileManager.read(id: profileId) else { return }
         var settings = settings
+        var config = config
         
         if (!profile.isActive) {
             // Removing inactive account - just remove
@@ -201,6 +203,7 @@ class AccountCreationVM: BaseViewModel<AccountCreationViewState, AccountCreation
         } else {
             // Removing last account
             removeAccountFromDb(profileId) {
+                config.activeProfileId = nil
                 settings.anyAccountRegistered = false
                 onSuccess(true)
             }
