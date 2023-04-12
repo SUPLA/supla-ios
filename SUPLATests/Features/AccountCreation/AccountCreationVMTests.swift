@@ -50,9 +50,11 @@ class AccountCreationVMTests: XCTestCase {
     }()
     
     private lazy var globalSettings: GlobalSettingsMock! = { GlobalSettingsMock() }()
+    private lazy var runtimeConfig: RuntimeConfigMock! = { RuntimeConfigMock() }()
     
     override func setUp() {
         DiContainer.shared.register(type: GlobalSettings.self, component: globalSettings!)
+        DiContainer.shared.register(type: RuntimeConfig.self, component: runtimeConfig!)
     }
     
     override func tearDown() {
@@ -66,6 +68,7 @@ class AccountCreationVMTests: XCTestCase {
         disposeBag = nil
         
         globalSettings = nil
+        runtimeConfig = nil
     }
     
     func test_shouldCleanServerAddres_whenEmailAddressChanged() {
@@ -349,6 +352,9 @@ class AccountCreationVMTests: XCTestCase {
         
         XCTAssertEqual(globalSettings.anyAccountRegisteredValues.count, 1)
         XCTAssertEqual(globalSettings.anyAccountRegisteredValues[0], false)
+        
+        XCTAssertEqual(runtimeConfig.activeProfileIdValues.count, 1)
+        XCTAssertEqual(runtimeConfig.activeProfileIdValues, [nil])
     }
     
     func test_shouldRemoveActiveAccountAndActivateOther_whenOtherInactiveAccountAvailable() {
