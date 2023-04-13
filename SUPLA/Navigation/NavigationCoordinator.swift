@@ -111,4 +111,35 @@ extension BaseNavigationCoordinator: NavigationCoordinator {
         assert(parentCoordinator == nil)
         parentCoordinator = parent
     }
+    
+    func goTo<T>(_ navigator: T.Type, _ callAction: (_ navigator: T) -> Void) -> Bool {
+        var found = false
+        var localParent = parentCoordinator
+        while (localParent != nil) {
+            if (localParent is T) {
+                found = true
+                break
+            }
+            localParent = localParent?.parentCoordinator
+        }
+        
+        if (found) {
+            localParent = parentCoordinator
+            finish()
+            while (localParent != nil) {
+                if (localParent is T) {
+                    break
+                }
+                localParent?.finish()
+                localParent = localParent?.parentCoordinator
+            }
+            
+            if let destination = localParent as? T {
+                callAction(destination)
+                return true
+            }
+        }
+        
+        return false
+    }
 }

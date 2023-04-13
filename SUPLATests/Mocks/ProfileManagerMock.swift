@@ -19,7 +19,12 @@
 @testable import SUPLA
 
 final class ProfileManagerMock : ProfileManager {
-    let item: AuthProfileItem
+    
+    private var ctx: NSManagedObjectContext
+    
+    var item: AuthProfileItem? = nil
+    
+    var createdProfiles: [AuthProfileItem] = []
     
     var updateResults: [Bool]? = nil
     var updatedProfiles: [ProfileID] = []
@@ -32,11 +37,16 @@ final class ProfileManagerMock : ProfileManager {
     var activateResults: [Bool]? = nil
     var activatedProfiles: [ActivatedProfile] = []
     
-    init(item: AuthProfileItem) {
-        self.item = item
+    init(_ ctx: NSManagedObjectContext) {
+        self.ctx = ctx
     }
     
-    func create() -> AuthProfileItem { item }
+    func create() -> AuthProfileItem {
+        let item = AuthProfileItem(context: ctx)
+        createdProfiles.append(item)
+        return item
+    }
+    
     func read(id: ProfileID) -> AuthProfileItem? { item }
     func update(_ profile: AuthProfileItem) -> Bool {
         updatedProfiles.append(profile.objectID)

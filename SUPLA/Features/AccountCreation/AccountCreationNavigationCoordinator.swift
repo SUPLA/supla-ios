@@ -51,17 +51,12 @@ class AuthCfgNavigationCoordinator: BaseNavigationCoordinator {
     }
     
     func restartAppFlow() {
-        finish()
-        
         // Go back to main navigator, finish all inbetween and start from beginning.
-        var parent = parentCoordinator
-        while (parent != nil) {
-            if (parent is MainNavigationCoordinator) {
-                parent?.start(from: nil)
-                return
-            }
-            parent?.finish()
-            parent = parent?.parentCoordinator
+        let navigated = goTo(MainNavigationCoordinator.self) { navigator in
+            navigator.start(from: nil)
+        }
+        if (!navigated) {
+            finish()
         }
     }
     
@@ -76,11 +71,16 @@ class AuthCfgNavigationCoordinator: BaseNavigationCoordinator {
         (parentCoordinator as? ProfilesNavigationCoordinator)?.navigateToRemoveAccount(needsRestart: needsRestart)
     }
     
-    func didFinish(shouldReauthenticate: Bool) {
-        finish()
-        if shouldReauthenticate || !SAApp.isClientRegistered(),
-            let main = parentCoordinator as? MainNavigationCoordinator {
-            main.showStatusView(progress: 0)
+    func finish(shouldReauthenticate: Bool) {
+        if (shouldReauthenticate || !SAApp.isClientRegistered()) {
+            let navigated = goTo(MainNavigationCoordinator.self) { navigator in
+                navigator.showStatusView(progress: 0)
+            }
+            if (!navigated) {
+                finish()
+            }
+        } else {
+            finish()
         }
     }
 }

@@ -277,9 +277,11 @@ class AccountCreationVC: BaseViewControllerVM<AccountCreationViewState, AccountC
         case .navigateToRemoveAccount(let needsRestart):
             navigator?.navigateToRemoveAccount(needsRestart: needsRestart)
             break
-        case .finish(let needsRestart):
+        case .finish(let needsRestart, let needsReauth):
             if (needsRestart) {
                 navigator?.restartAppFlow()
+            } else if(needsReauth) {
+                navigator?.finish(shouldReauthenticate: true)
             } else {
                 navigator?.finish()
             }
@@ -342,12 +344,10 @@ class AccountCreationVC: BaseViewControllerVM<AccountCreationViewState, AccountC
     private func handleFormSavedEvent(_ needsReauth: Bool) {
         if (needsReauth) {
             SAApp.revokeOAuthToken()
-            SAApp.db().deleteAllUserIcons()
         }
-        navigator?.didFinish(shouldReauthenticate: needsReauth)
+        navigator?.finish(shouldReauthenticate: needsReauth)
         if (needsReauth || !SAApp.suplaClientConnected()) {
             NotificationCenter.default.post(name: .saConnecting, object: self, userInfo: nil)
-            SAApp.suplaClient().reconnect()
         }
     }
     

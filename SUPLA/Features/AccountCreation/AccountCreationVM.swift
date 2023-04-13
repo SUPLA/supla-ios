@@ -28,6 +28,8 @@ class AccountCreationVM: BaseViewModel<AccountCreationViewState, AccountCreation
     private let profileManager: ProfileManager
     @Singleton<GlobalSettings> var settings
     @Singleton<RuntimeConfig> var config
+    @Singleton<SuplaClientProvider> var suplaClientProvider
+    @Singleton<SuplaAppWrapper> var suplaApp
     
     // MARK: Internal state
     private var profileId: ProfileID?
@@ -66,7 +68,7 @@ class AccountCreationVM: BaseViewModel<AccountCreationViewState, AccountCreation
 
         updateView() { state in
             state
-                .changing(path: \.deleteButtonVisible, to: settings.anyAccountRegistered && profileId != nil)
+                .changing(path: \.deleteButtonVisible, to: settings.anyAccountRegistered && isNewProfile())
                 .changing(path: \.profileNameVisible, to: settings.anyAccountRegistered)
                 .changing(path: \.backButtonVisible, to: settings.anyAccountRegistered)
                 .changing(path: \.title, to: settings.anyAccountRegistered ? Strings.AccountCreation.title : Strings.NavBar.titleSupla)
@@ -126,13 +128,13 @@ class AccountCreationVM: BaseViewModel<AccountCreationViewState, AccountCreation
     }
     
     func logoutAccount() {
-        doRemoveAccount(onSuccess: { needsRestart in
-            send(event: .finish(needsRestart: needsRestart))
+        doRemoveAccount(onSuccess: { needsRestart, needsReauth in
+            send(event: .finish(needsRestart: needsRestart, needsReauth: needsReauth))
         })
     }
     
     func removeAccount() {
-        doRemoveAccount(onSuccess: { needsRestart in
+        doRemoveAccount(onSuccess: { needsRestart, _ in
             send(event: .navigateToRemoveAccount(needsRestart: needsRestart))
         })
     }
@@ -157,18 +159,22 @@ class AccountCreationVM: BaseViewModel<AccountCreationViewState, AccountCreation
         }
         
         let profile = getProfile()
-        let needsReauth = authDataChanged(authInfo: profile.authInfo)
+        let authDataChanged = authDataChanged(authInfo: profile.authInfo)
         
         profile.name = profileName
         profile.advancedSetup = state.advancedMode
-        profile.isActive = !settings.anyAccountRegistered
         profile.authInfo = authInfo
-        if (needsReauth) {
+        if (authDataChanged) {
             profile.authInfo?.preferredProtocolVersion = Int(SUPLA_PROTO_VERSION)
         }
         
         if (profileManager.update(profile)) {
             settings.anyAccountRegistered = true
+            
+            let needsReauth = profile.isActive && authDataChanged
+            if (needsReauth) {
+                suplaClientProvider.provide().reconnect()
+            }
             send(event: .formSaved(needsReauth: needsReauth))
         } else {
             send(event: .showRequiredDataMisingDialog)
@@ -179,12 +185,14 @@ class AccountCreationVM: BaseViewModel<AccountCreationViewState, AccountCreation
         if let profileId = profileId {
             return profileManager.read(id: profileId)!
         } else {
-            return profileManager.create()
+            let profile = profileManager.create()
+            profile.isActive = !settings.anyAccountRegistered
+            return profile
         }
     }
     
     // MARK: Internal/private functions
-    private func doRemoveAccount(onSuccess: (_ needsRestart: Bool) -> Void) {
+    private func doRemoveAccount(onSuccess: (_ needsRestart: Bool, _ needsReauth: Bool ) -> Void) {
         guard let profileId = profileId else { return }
         guard let profile = profileManager.read(id: profileId) else { return }
         var settings = settings
@@ -192,21 +200,30 @@ class AccountCreationVM: BaseViewModel<AccountCreationViewState, AccountCreation
         
         if (!profile.isActive) {
             // Removing inactive account - just remove
-            removeAccountFromDb(profileId) { onSuccess(false) }
-        } else if let firstInactiveProfile = profileManager.getAllProfiles().first(where: { profile in !profile.isActive }) {
-            // Removing active account, when other account exists
-            if (profileManager.activateProfile(id: firstInactiveProfile.objectID, force: true)) {
-                removeAccountFromDb(profileId) { onSuccess(false) }
-            } else {
-                send(event: .showRemovalFailure)
-            }
+            removeAccountFromDb(profileId) { onSuccess(false, false) }
         } else {
-            // Removing last account
-            removeAccountFromDb(profileId) {
-                config.activeProfileId = nil
-                settings.anyAccountRegistered = false
-                onSuccess(true)
+            // We're removing an active account - supla client needs to be stopped first
+            suplaApp.terminateSuplaClient()
+            
+            if let firstInactiveProfile = profileManager.getAllProfiles().first(where: { profile in !profile.isActive }) {
+                // Removing active account, when other account exists
+                if (profileManager.activateProfile(id: firstInactiveProfile.objectID, force: true)) {
+                    removeAccountFromDb(profileId) {
+                        onSuccess(false, true)
+                    }
+                } else {
+                    send(event: .showRemovalFailure)
+                }
+            } else {
+                // Removing last account
+                removeAccountFromDb(profileId) {
+                    config.activeProfileId = nil
+                    settings.anyAccountRegistered = false
+                    onSuccess(true, true)
+                }
             }
+            
+            suplaClientProvider.provide().reconnect()
         }
     }
     
@@ -249,6 +266,8 @@ class AccountCreationVM: BaseViewModel<AccountCreationViewState, AccountCreation
         || authInfo.accessID != Int(state.accessId) ?? 0
         || state.accessIdPassword != authInfo.accessIDpwd
     }
+    
+    private func isNewProfile() -> Bool { profileId != nil }
 }
 
 enum AccountCreationViewEvent: ViewEvent {
@@ -257,7 +276,7 @@ enum AccountCreationViewEvent: ViewEvent {
     case formSaved(needsReauth: Bool)
     case navigateToCreateAccount
     case navigateToRemoveAccount(needsRestart: Bool)
-    case finish(needsRestart: Bool)
+    case finish(needsRestart: Bool, needsReauth: Bool)
     case showEmptyNameDialog
     case showDuplicatedNameDialog
     case showRequiredDataMisingDialog
