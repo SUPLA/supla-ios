@@ -128,14 +128,14 @@ class AccountCreationVM: BaseViewModel<AccountCreationViewState, AccountCreation
     }
     
     func logoutAccount() {
-        doRemoveAccount(onSuccess: { needsRestart, needsReauth in
+        doRemoveAccount(onSuccess: { needsRestart, needsReauth, _ in
             send(event: .finish(needsRestart: needsRestart, needsReauth: needsReauth))
         })
     }
     
     func removeAccount() {
-        doRemoveAccount(onSuccess: { needsRestart, _ in
-            send(event: .navigateToRemoveAccount(needsRestart: needsRestart))
+        doRemoveAccount(onSuccess: { needsRestart, _, serverAddress in
+            send(event: .navigateToRemoveAccount(needsRestart: needsRestart, serverAddress: serverAddress))
         })
     }
     
@@ -192,15 +192,17 @@ class AccountCreationVM: BaseViewModel<AccountCreationViewState, AccountCreation
     }
     
     // MARK: Internal/private functions
-    private func doRemoveAccount(onSuccess: (_ needsRestart: Bool, _ needsReauth: Bool ) -> Void) {
+    private func doRemoveAccount(onSuccess: (_ needsRestart: Bool, _ needsReauth: Bool, _ serverAddress: String? ) -> Void) {
         guard let profileId = profileId else { return }
         guard let profile = profileManager.read(id: profileId) else { return }
+        let serverAddress = getServerAddress(profile)
+        
         var settings = settings
         var config = config
         
         if (!profile.isActive) {
             // Removing inactive account - just remove
-            removeAccountFromDb(profileId) { onSuccess(false, false) }
+            removeAccountFromDb(profileId) { onSuccess(false, false, serverAddress) }
         } else {
             // We're removing an active account - supla client needs to be stopped first
             suplaApp.terminateSuplaClient()
@@ -209,7 +211,7 @@ class AccountCreationVM: BaseViewModel<AccountCreationViewState, AccountCreation
                 // Removing active account, when other account exists
                 if (profileManager.activateProfile(id: firstInactiveProfile.objectID, force: true)) {
                     removeAccountFromDb(profileId) {
-                        onSuccess(false, true)
+                        onSuccess(false, true, serverAddress)
                     }
                 } else {
                     send(event: .showRemovalFailure)
@@ -219,7 +221,7 @@ class AccountCreationVM: BaseViewModel<AccountCreationViewState, AccountCreation
                 removeAccountFromDb(profileId) {
                     config.activeProfileId = nil
                     settings.anyAccountRegistered = false
-                    onSuccess(true, true)
+                    onSuccess(true, true, serverAddress)
                 }
             }
             
@@ -268,6 +270,18 @@ class AccountCreationVM: BaseViewModel<AccountCreationViewState, AccountCreation
     }
     
     private func isNewProfile() -> Bool { profileId != nil }
+    
+    private func getServerAddress(_ profile: AuthProfileItem) -> String? {
+        guard let authInfo = profile.authInfo else { return nil }
+        
+        if (authInfo.emailAuth && authInfo.serverAutoDetect) {
+            return nil
+        } else if (authInfo.emailAuth) {
+            return authInfo.serverForEmail
+        } else {
+            return authInfo.serverForAccessID
+        }
+    }
 }
 
 enum AccountCreationViewEvent: ViewEvent {
@@ -275,7 +289,7 @@ enum AccountCreationViewEvent: ViewEvent {
     case showRemovalFailure
     case formSaved(needsReauth: Bool)
     case navigateToCreateAccount
-    case navigateToRemoveAccount(needsRestart: Bool)
+    case navigateToRemoveAccount(needsRestart: Bool, serverAddress: String?)
     case finish(needsRestart: Bool, needsReauth: Bool)
     case showEmptyNameDialog
     case showDuplicatedNameDialog

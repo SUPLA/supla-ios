@@ -75,8 +75,8 @@ class ProfilesNavigationCoordinator: BaseNavigationCoordinator {
         startFlow(coordinator: authnc)
     }
     
-    func navigateToRemoveAccount(needsRestart: Bool) {
-        startFlow(coordinator: AccountRemovalNavigationCoordinator(needsRestart: needsRestart))
+    func navigateToRemoveAccount(needsRestart: Bool, serverAddress: String?) {
+        startFlow(coordinator: AccountRemovalNavigationCoordinator(needsRestart: needsRestart, serverAddress: serverAddress))
     }
 }
 

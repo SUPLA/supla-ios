@@ -306,7 +306,7 @@ class AccountCreationVMTests: XCTestCase {
     }
     
     func test_shouldRemoveAccount_whenNotActive() {
-        doTest_shouldRemoveLogoutAccount_whenNotActive(event: .navigateToRemoveAccount(needsRestart: false)) {
+        doTest_shouldRemoveLogoutAccount_whenNotActive(event: .navigateToRemoveAccount(needsRestart: false, serverAddress: "")) {
             viewModel.removeAccount()
         }
     }
@@ -346,7 +346,7 @@ class AccountCreationVMTests: XCTestCase {
     }
     
     func test_shouldRemoveActiveAccountAndRestartApp_whenNoOtherActiveAccountAvailable() {
-        doTest_shouldLogoutRemoveActiveAccountAndRestartApp_whenNoOtherActiveAccountAvailable(event: .navigateToRemoveAccount(needsRestart: true)) {
+        doTest_shouldLogoutRemoveActiveAccountAndRestartApp_whenNoOtherActiveAccountAvailable(event: .navigateToRemoveAccount(needsRestart: true, serverAddress: "some.url.com")) {
             viewModel.removeAccount()
         }
     }
@@ -361,6 +361,8 @@ class AccountCreationVMTests: XCTestCase {
         setupProfile()
         
         // given
+        let server = "some.url.com"
+        profile?.authInfo?.serverForEmail = server
         observe()
         
         // when
@@ -371,7 +373,7 @@ class AccountCreationVMTests: XCTestCase {
         XCTAssertEqual(stateObserver.events.count, 1)
         XCTAssertEqual(eventObserver.events.count, 1)
         
-        let state = AccountCreationViewState.create()
+        let state = AccountCreationViewState.create(serverAddressForEmail: server)
         XCTAssertEqual(stateObserver.events, [ .next(0, state) ])
         XCTAssertEqual(eventObserver.events, [ .next(1, event) ])
         
@@ -389,7 +391,7 @@ class AccountCreationVMTests: XCTestCase {
     }
     
     func test_shouldRemoveActiveAccountAndActivateOther_whenOtherInactiveAccountAvailable() {
-        doTest_shouldLogoutRemoveActiveAccountAndActivateOther_whenOtherInactiveAccountAvailable(event: .navigateToRemoveAccount(needsRestart: false)) {
+        doTest_shouldLogoutRemoveActiveAccountAndActivateOther_whenOtherInactiveAccountAvailable(event: .navigateToRemoveAccount(needsRestart: false, serverAddress: "other.url.com")) {
             viewModel.removeAccount()
         }
     }
@@ -406,6 +408,10 @@ class AccountCreationVMTests: XCTestCase {
         // given
         let otherProfile = createProfile()
         profileManager.allProfilesResult = [profile!, otherProfile]
+        
+        let server = "other.url.com"
+        profile?.authInfo?.emailAuth = false
+        profile?.authInfo?.serverForAccessID = server
         observe()
         
         // when
@@ -413,7 +419,7 @@ class AccountCreationVMTests: XCTestCase {
         action()
         
         // then
-        let state = AccountCreationViewState.create()
+        let state = AccountCreationViewState.create(authType: .accessId, serverAddressForAccessId: server)
         XCTAssertEqual(stateObserver.events, [ .next(0, state) ])
         XCTAssertEqual(eventObserver.events, [ .next(1, event) ])
         
