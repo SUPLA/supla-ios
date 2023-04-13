@@ -262,11 +262,6 @@ NSString *kChannelHeightDidChange = @"ChannelHeightDidChange";
     return [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
 }
 
-+(BOOL) configIsSet {
-    return [SAApp.profileManager getCurrentAuthInfo]
-        .isAuthDataComplete;
-}
-
 +(void) setBrightnessPickerTypeToSlider:(BOOL)slider {
     [[self instance] setBrightnessPickerTypeToSlider:slider];
 }
@@ -415,8 +410,17 @@ NSString *kChannelHeightDidChange = @"ChannelHeightDidChange";
 }
 
 -(NSString*)getMsgHostName {
-    NSString *hostname = [SAApp.profileManager getCurrentAuthInfo]
-        .serverForCurrentAuthMethod;
+    AuthProfileItem *profile = [SAApp.profileManager getCurrentProfile];
+    if (profile == nil) {
+        return @"";
+    }
+    
+    AuthInfo *authInfo = profile.authInfo;
+    if (authInfo == nil) {
+        return @"";
+    }
+    
+    NSString *hostname = authInfo.serverForCurrentAuthMethod;
     if ( [[hostname lowercaseString] containsString:@"supla.org"] ) {
         return @"cloud.supla.org";
     } else {

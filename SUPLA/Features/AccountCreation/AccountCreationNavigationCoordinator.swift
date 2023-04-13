@@ -28,25 +28,15 @@ class AuthCfgNavigationCoordinator: BaseNavigationCoordinator {
     
     private let _immediate: Bool
     private var _profileId: NSManagedObjectID?
-    private let _disposeBag = DisposeBag()
     
-    private lazy var _viewController: AuthVC = {
-        return AuthVC(navigationCoordinator: self,
+    private lazy var _viewController: AccountCreationVC = {
+        return AccountCreationVC(navigationCoordinator: self,
                       profileId: _profileId)
     }()
     
     init(immediate: Bool, profileId: ProfileID? = nil) {
         _immediate = immediate
         _profileId = profileId
-    }
-    
-    override func start(from parent: NavigationCoordinator?) {
-        super.start(from: parent)
-        _viewController.viewModel.initiateSignup.subscribe { _ in
-            let cavc = SACreateAccountVC(nibName: "CreateAccountVC", bundle: nil)
-            cavc.navigationCoordinator = self
-            self._viewController.navigationController?.pushViewController(cavc, animated: true)
-        }.disposed(by: _disposeBag)
     }
     
     @objc private func onDismissSubview(_ sender: AnyObject) {
@@ -59,13 +49,38 @@ class AuthCfgNavigationCoordinator: BaseNavigationCoordinator {
             super.startFlow(coordinator: child)
         }
     }
-}
-extension AuthCfgNavigationCoordinator: AuthConfigActionHandler {
-    func didFinish(shouldReauthenticate: Bool) {
+    
+    func restartAppFlow() {
+        // Go back to main navigator, finish all inbetween and start from beginning.
+        let navigated = goTo(MainNavigationCoordinator.self) { navigator in
+            navigator.start(from: nil)
+        }
+        if (!navigated) {
+            finish()
+        }
+    }
+    
+    func navigateToCreateAccount() {
+        let cavc = SACreateAccountVC(nibName: "CreateAccountVC", bundle: nil)
+        cavc.navigationCoordinator = self
+        self._viewController.navigationController?.pushViewController(cavc, animated: true)
+    }
+    
+    func navigateToRemoveAccount(needsRestart: Bool, serverAddress: String?) {
         finish()
-        if shouldReauthenticate || !SAApp.isClientRegistered(),
-            let main = parentCoordinator as? MainNavigationCoordinator {
-            main.showStatusView(progress: 0)
+        (parentCoordinator as? ProfilesNavigationCoordinator)?.navigateToRemoveAccount(needsRestart: needsRestart, serverAddress: serverAddress)
+    }
+    
+    func finish(shouldReauthenticate: Bool) {
+        if (shouldReauthenticate || !SAApp.isClientRegistered()) {
+            let navigated = goTo(MainNavigationCoordinator.self) { navigator in
+                navigator.showStatusView(progress: 0)
+            }
+            if (!navigated) {
+                finish()
+            }
+        } else {
+            finish()
         }
     }
 }

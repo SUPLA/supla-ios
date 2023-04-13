@@ -17,5 +17,19 @@
 "Reveal" = "Open";
 "Add Wizard is only available when server connection has been set based on the email address entered in the settings. (Disable advanced options in the settings)" = "Add Wizard is only available when server connection has been set based on the email address entered in the settings. (Disable advanced options in your account settings)";
 
+"AccountCreation.title" = "Edit account";
+
 "Scenes.ActionButtons.execute" = "Execute";
 "Scenes.ActionButtons.abort" = "Abort";
+
+"General.error" = "Error";
+
+"Cfg.removal.title" = "Delete account?";
+"Cfg.removal.action.logout" = "Forget on this device";
+"Cfg.removal.action.remove" = "Forget and remove on cloud";
+"Cfg.removal.dialog.failed.title" = "Removal failed";
+"Cfg.removal.dialog.failed.message" = "Removal of your account failed, pleas try again";
+"Cfg.removal.dialog.missing_name" = "Account name is missing";
+"Cfg.removal.dialog.duplicated_name" = "Account by that name already exists";
+"Cfg.removal.dialog.incomplete" = "Required data is missing";
+

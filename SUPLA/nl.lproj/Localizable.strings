@@ -298,3 +298,11 @@
 "Select active account" = "Selecteer actieve rekening";
 "Phase 1+2+3" = "Fase 1+2+3";
 "Phase %d" = "Fase %d";
+
+"AccountCreation.title" = "Rekening bewerken";
+
+"Cfg.removal.dialog.missing_name" = "Voer de naam van uw rekening in";
+"Cfg.removal.dialog.duplicated_name" = "Er is al een rekening met deze naam";
+"Cfg.removal.dialog.incomplete" = "Vul de vereiste gegevens in";
+
+"General.error" = "Fout";

@@ -29,6 +29,16 @@ class RoundedButton: UIButton {
         super.init(coder: coder)
         setUp()
     }
+    
+    override var isEnabled: Bool {
+        didSet {
+            if (isEnabled) {
+                self.backgroundColor = .suplaGreen
+            } else {
+                self.backgroundColor = .disabled
+            }
+        }
+    }
 
     private func setUp() {
         self.backgroundColor = .suplaGreen

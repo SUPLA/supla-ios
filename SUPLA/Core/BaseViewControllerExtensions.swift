@@ -16,9 +16,12 @@
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 
-
 import Foundation
 
-protocol AuthConfigActionHandler {
-    func didFinish(shouldReauthenticate: Bool)
+extension BaseViewController {
+    func showInfoDialog(title: String, message: String) {
+        let infoDialog = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        infoDialog.addAction(UIAlertAction(title: Strings.General.close, style: .default))
+        self.present(infoDialog, animated: true)
+    }
 }

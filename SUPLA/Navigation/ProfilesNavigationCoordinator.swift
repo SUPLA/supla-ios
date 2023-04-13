@@ -20,8 +20,6 @@ import RxSwift
 
 class ProfilesNavigationCoordinator: BaseNavigationCoordinator {
     
-    let allowsBack: Bool
-    
     override var viewController: UIViewController {
         return _viewController
     }
@@ -36,11 +34,6 @@ class ProfilesNavigationCoordinator: BaseNavigationCoordinator {
     
     private var _profilesViewModel: ProfilesVM?
     
-    init(allowsBack: Bool = true) {
-        self.allowsBack = allowsBack
-        super.init()
-    }
-
     override func startFlow(coordinator child: NavigationCoordinator) {
         _viewController.navigationController?.pushViewController(child.viewController,
                                                                  animated: true)
@@ -67,7 +60,6 @@ class ProfilesNavigationCoordinator: BaseNavigationCoordinator {
     override func didFinish(coordinator child: NavigationCoordinator) {
         _viewController.navigationController?
             .popToViewController(_viewController, animated: true)
-        _profilesViewModel?.reloadTrigger.on(.next(()))
     }
     
     @objc private func onDismissSubview(_ sender: AnyObject) {
@@ -81,6 +73,10 @@ class ProfilesNavigationCoordinator: BaseNavigationCoordinator {
         let authnc = AuthCfgNavigationCoordinator(immediate: false,
                                                   profileId: profileId)
         startFlow(coordinator: authnc)
+    }
+    
+    func navigateToRemoveAccount(needsRestart: Bool, serverAddress: String?) {
+        startFlow(coordinator: AccountRemovalNavigationCoordinator(needsRestart: needsRestart, serverAddress: serverAddress))
     }
 }
 

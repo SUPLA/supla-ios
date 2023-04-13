@@ -298,3 +298,11 @@
 "Select active account" = "Velg en aktiv konto";
 "Phase 1+2+3" = "Fase 1 + 2 + 3";
 "Phase %d" = "Fase %d";
+
+"AccountCreation.title" = "Rediger konto";
+
+"Cfg.removal.dialog.missing_name" = "Skriv inn et kontonavn";
+"Cfg.removal.dialog.duplicated_name" = "En konto med dette navnet eksisterer allerede";
+"Cfg.removal.dialog.incomplete" = "Fyll ut de nødvendige dataene";
+
+"General.error" = "Feil";

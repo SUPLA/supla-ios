@@ -298,3 +298,11 @@
 "Select active account" = "Vybrat aktivní účet";
 "Phase 1+2+3" = "Fáze 1+2+3";
 "Phase %d" = "Fáze %d";
+
+"AccountCreation.title" = "Upravit účet";
+
+"Cfg.removal.dialog.missing_name" = "Zadat název účtu";
+"Cfg.removal.dialog.duplicated_name" = "Účet s tímto názvem již existuje";
+"Cfg.removal.dialog.incomplete" = "Vyplnit požadované údaje";
+
+"General.error" = "Chyba";

@@ -308,3 +308,11 @@
 "PHo-MD-YLQ.text" = "IDENTIFICATORE DELL'ACCESSO";
 "cZS-4u-QMr.text" = "INDIRIZZO E-MAIL";
 "my9-Mc-v9S.text" = "Impostazioni";
+
+"AccountCreation.title" = "Modifica account";
+
+"Cfg.removal.dialog.missing_name" = "Manca il nome dell’account";
+"Cfg.removal.dialog.duplicated_name" = "Un account con lo stesso nome è già esistente";
+"Cfg.removal.dialog.incomplete" = "Informazioni richieste mancanti";
+
+"General.error" = "Errore";
