@@ -306,7 +306,7 @@ class AccountCreationVMTests: XCTestCase {
     }
     
     func test_shouldRemoveAccount_whenNotActive() {
-        doTest_shouldRemoveLogoutAccount_whenNotActive(event: .navigateToRemoveAccount(needsRestart: false, serverAddress: "")) {
+        doTest_shouldRemoveLogoutAccount_whenNotActive(event: .navigateToRemoveAccount(needsRestart: false, serverAddress: nil)) {
             viewModel.removeAccount()
         }
     }
@@ -362,6 +362,7 @@ class AccountCreationVMTests: XCTestCase {
         
         // given
         let server = "some.url.com"
+        profile?.authInfo?.serverAutoDetect = false
         profile?.authInfo?.serverForEmail = server
         observe()
         
@@ -373,7 +374,7 @@ class AccountCreationVMTests: XCTestCase {
         XCTAssertEqual(stateObserver.events.count, 1)
         XCTAssertEqual(eventObserver.events.count, 1)
         
-        let state = AccountCreationViewState.create(serverAddressForEmail: server)
+        let state = AccountCreationViewState.create(authType: .email, serverAutoDetect: false, serverAddressForEmail: server)
         XCTAssertEqual(stateObserver.events, [ .next(0, state) ])
         XCTAssertEqual(eventObserver.events, [ .next(1, event) ])
         
