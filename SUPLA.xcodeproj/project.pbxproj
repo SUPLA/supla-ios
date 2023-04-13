@@ -664,6 +664,10 @@
 		A57777CD29E6907C004513E6 /* RuntimeConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = A57777CC29E6907C004513E6 /* RuntimeConfig.swift */; };
 		A57777CF29E69688004513E6 /* RuntimeConfigMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = A57777CE29E69688004513E6 /* RuntimeConfigMock.swift */; };
 		A57777D129E6A319004513E6 /* CreateAccountVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = A57777D029E6A319004513E6 /* CreateAccountVC.xib */; };
+		A57785BD29E7FAD0001C631E /* SuplaClientProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A57785BC29E7FAD0001C631E /* SuplaClientProvider.swift */; };
+		A57785BF29E80406001C631E /* SuplaAppWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = A57785BE29E80406001C631E /* SuplaAppWrapper.swift */; };
+		A57785C129E80C16001C631E /* SuplaClientProviderMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = A57785C029E80C16001C631E /* SuplaClientProviderMock.swift */; };
+		A57785C329E80CF7001C631E /* SuplaAppWrapperMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = A57785C229E80CF7001C631E /* SuplaAppWrapperMock.swift */; };
 		A597271129DAEA480090A044 /* SceneExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A597271029DAEA480090A044 /* SceneExtensions.swift */; };
 		A5F14B7229DED06400682FA6 /* AccountRemovalVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F14B7129DED06400682FA6 /* AccountRemovalVM.swift */; };
 		A5F14B7429DED41000682FA6 /* BaseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F14B7329DED41000682FA6 /* BaseViewModel.swift */; };
@@ -1747,6 +1751,10 @@
 		A57777CC29E6907C004513E6 /* RuntimeConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RuntimeConfig.swift; sourceTree = "<group>"; };
 		A57777CE29E69688004513E6 /* RuntimeConfigMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RuntimeConfigMock.swift; sourceTree = "<group>"; };
 		A57777D029E6A319004513E6 /* CreateAccountVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CreateAccountVC.xib; sourceTree = "<group>"; };
+		A57785BC29E7FAD0001C631E /* SuplaClientProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuplaClientProvider.swift; sourceTree = "<group>"; };
+		A57785BE29E80406001C631E /* SuplaAppWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuplaAppWrapper.swift; sourceTree = "<group>"; };
+		A57785C029E80C16001C631E /* SuplaClientProviderMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuplaClientProviderMock.swift; sourceTree = "<group>"; };
+		A57785C229E80CF7001C631E /* SuplaAppWrapperMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuplaAppWrapperMock.swift; sourceTree = "<group>"; };
 		A597271029DAEA480090A044 /* SceneExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneExtensions.swift; sourceTree = "<group>"; };
 		A5F14B7129DED06400682FA6 /* AccountRemovalVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountRemovalVM.swift; sourceTree = "<group>"; };
 		A5F14B7329DED41000682FA6 /* BaseViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewModel.swift; sourceTree = "<group>"; };
@@ -2914,6 +2922,7 @@
 			children = (
 				A52ACD4629CB93060092729F /* SuplaClientActionExtension.swift */,
 				A52ACD4829CB940B0092729F /* ActionParameters.swift */,
+				A57785BC29E7FAD0001C631E /* SuplaClientProvider.swift */,
 			);
 			name = SuplaClient;
 			sourceTree = "<group>";
@@ -2962,6 +2971,7 @@
 				A553862929E0201A00B5CF3F /* DI */,
 				A5F14B7729DED97400682FA6 /* UI */,
 				A573B38B29DE9F5600EBAFC4 /* BaseViewControllerExtensions.swift */,
+				A57785BE29E80406001C631E /* SuplaAppWrapper.swift */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -3014,6 +3024,8 @@
 				A57638CB29E5EF95003E15A3 /* ProfileManagerMock.swift */,
 				A57638CD29E5EFDA003E15A3 /* GlobalSettingsMock.swift */,
 				A57777CE29E69688004513E6 /* RuntimeConfigMock.swift */,
+				A57785C029E80C16001C631E /* SuplaClientProviderMock.swift */,
+				A57785C229E80CF7001C631E /* SuplaAppWrapperMock.swift */,
 			);
 			path = Mocks;
 			sourceTree = "<group>";
@@ -4029,6 +4041,7 @@
 				01567449232FD0A100397393 /* SAImpulseCounterExtendedValue.m in Sources */,
 				AE74528F2827F09400A3AFAD /* Dimens.swift in Sources */,
 				0111E924263F374800302356 /* UIColor+SUPLA.m in Sources */,
+				A57785BD29E7FAD0001C631E /* SuplaClientProvider.swift in Sources */,
 				01D5E0C822DB7FAF00FBE1DC /* SAChartMarkerView.swift in Sources */,
 				409934B61F30EF9C003110C5 /* RSDetailView.m in Sources */,
 				01C1719022C7F3A2005983E1 /* SAIncrementalMeasurementItem+CoreDataProperties.m in Sources */,
@@ -4037,6 +4050,7 @@
 				403150FB1DC769430075D2D2 /* RGBWDetailView.m in Sources */,
 				01F8856A22E5E79100D18373 /* SATempHumidityMeasurementItem+CoreDataProperties.m in Sources */,
 				01478826265317B000CC8A01 /* SACalCfgProgressReport.m in Sources */,
+				A57785BF29E80406001C631E /* SuplaAppWrapper.swift in Sources */,
 				AEB195DE276E5A040091D314 /* FadeTransition.swift in Sources */,
 				40E8BE881FC06A5600FB2FE6 /* TFHpple.m in Sources */,
 				01CEABFA25B9920A009C3BFD /* SADigiglassDetailView.m in Sources */,
@@ -4058,6 +4072,7 @@
 				01DD2F0C247718C40025DFF9 /* SARangeCalibrationWheelTests.m in Sources */,
 				401CA1DC1BA067DB00117AF4 /* SUPLATests.m in Sources */,
 				A57777CF29E69688004513E6 /* RuntimeConfigMock.swift in Sources */,
+				A57785C329E80CF7001C631E /* SuplaAppWrapperMock.swift in Sources */,
 				AEA1E96327422B0F005C34CB /* ProfileManagerTests.swift in Sources */,
 				A57638C629E5D4C9003E15A3 /* XCTestCaseExtensions.swift in Sources */,
 				016ABE18236DA795001BF5FB /* KeychainTests.m in Sources */,
@@ -4072,6 +4087,7 @@
 				0130894523395F4C00F46FCD /* ThermostatScheduleCfgTests.m in Sources */,
 				A57638CC29E5EF95003E15A3 /* ProfileManagerMock.swift in Sources */,
 				01AC1AD62487C35E00F734DF /* SAColorBrightnessPickerTests.m in Sources */,
+				A57785C129E80C16001C631E /* SuplaClientProviderMock.swift in Sources */,
 				012FCBD323217DE000AC6FF6 /* ThermostatCalendarTests.m in Sources */,
 				01A66A7925364ABA00C00A1A /* SARoofWindowControllerTests.m in Sources */,
 				AECB1BE92710A785001A9714 /* AccountCreationVMTests.swift in Sources */,

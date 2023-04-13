@@ -40,17 +40,8 @@ class AccountRemovalNavigationCoordinator: BaseNavigationCoordinator {
     
     override func viewControllerDidDismiss(_ viewController: UIViewController) {
         if (needsRestart) {
-            finish()
-            
-            // Go back to main navigator, finish all inbetween and start from beginning.
-            var parent = parentCoordinator
-            while (parent != nil) {
-                if (parent is MainNavigationCoordinator) {
-                    parent?.start(from: nil)
-                    return
-                }
-                parent?.finish()
-                parent = parent?.parentCoordinator
+            _ = goTo(MainNavigationCoordinator.self) { navigator in
+                navigator.start(from: nil)
             }
         }
     }

@@ -83,6 +83,10 @@
     NSDictionary *opts = nil;
     NSURL *storeURL = [[SAApp applicationDocumentsDirectory] URLByAppendingPathComponent:[NSString stringWithFormat:@"SUPLA_DB%i.sqlite", DBv]];
     
+#ifdef DEBUG
+    NSLog(@"Database path: %@", storeURL.absoluteString);
+#endif
+    
     // Create the coordinator and store
 again:
     _persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:[self managedObjectModel]];
@@ -1032,8 +1036,8 @@ again:
 
 -(SAElectricityMeasurementItem*) newElectricityMeasurementItemWithManagedObjectContext:(BOOL)moc {
     SAElectricityMeasurementItem *item = [[SAElectricityMeasurementItem alloc] initWithEntity:[NSEntityDescription entityForName:@"SAElectricityMeasurementItem" inManagedObjectContext:self.managedObjectContext] insertIntoManagedObjectContext:moc ? self.managedObjectContext : nil];
-    
     if (moc) {
+        item.profile = self.currentProfile;
         [self.managedObjectContext insertObject:item];
     }
     return item;
@@ -1096,6 +1100,7 @@ again:
     SAImpulseCounterMeasurementItem *item = [[SAImpulseCounterMeasurementItem alloc] initWithEntity:[NSEntityDescription entityForName:@"SAImpulseCounterMeasurementItem" inManagedObjectContext:self.managedObjectContext] insertIntoManagedObjectContext:moc ? self.managedObjectContext : nil];
     
     if (moc) {
+        item.profile = self.currentProfile;
         [self.managedObjectContext insertObject:item];
     }
     return item;
@@ -1149,6 +1154,7 @@ again:
 -(SATemperatureMeasurementItem*) newTemperatureMeasurementItem {
     SATemperatureMeasurementItem *item = [[SATemperatureMeasurementItem alloc] initWithEntity:[NSEntityDescription entityForName:@"SATemperatureMeasurementItem" inManagedObjectContext:self.managedObjectContext] insertIntoManagedObjectContext:self.managedObjectContext];
     
+    item.profile = self.currentProfile;
     [self.managedObjectContext insertObject:item];
     return item;
 }
@@ -1174,6 +1180,7 @@ again:
 -(SATempHumidityMeasurementItem*) newTempHumidityMeasurementItem {
     SATempHumidityMeasurementItem *item = [[SATempHumidityMeasurementItem alloc] initWithEntity:[NSEntityDescription entityForName:@"SATempHumidityMeasurementItem" inManagedObjectContext:self.managedObjectContext] insertIntoManagedObjectContext:self.managedObjectContext];
     
+    item.profile = self.currentProfile;
     [self.managedObjectContext insertObject:item];
     return item;
 }
@@ -1199,6 +1206,7 @@ again:
 -(SAThermostatMeasurementItem*) newThermostatMeasurementItem {
     SAThermostatMeasurementItem *item = [[SAThermostatMeasurementItem alloc] initWithEntity:[NSEntityDescription entityForName:@"SAThermostatMeasurementItem" inManagedObjectContext:self.managedObjectContext] insertIntoManagedObjectContext:self.managedObjectContext];
     
+    item.profile = self.currentProfile;
     [self.managedObjectContext insertObject:item];
     return item;
 }

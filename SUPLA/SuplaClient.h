@@ -20,14 +20,21 @@
 #import "SAThermostatScheduleCfg.h"
 #import "proto.h"
 
+@protocol SuplaClientProtocol <NSObject>
+
+- (void) cancel;
+- (void) reconnect;
+
+@end
+
 @class SASuplaClient;
-@protocol SASuplaClientDelegate <NSObject>
+@protocol SASuplaClientDelegate <NSObject, SuplaClientProtocol>
 
 @required
 -(void) onSuplaClientTerminated: (SASuplaClient*)client;
 @end
 
-@interface SASuplaClient : NSThread
+@interface SASuplaClient : NSThread <SuplaClientProtocol>
 - (id)initWithOneTimePassword:(NSString*)oneTimePassword;
 + (NSString *)codeToString:(NSNumber*)code;
 + (NSString *)codeToString:(NSNumber*)code authDialog:(BOOL)authDialog;

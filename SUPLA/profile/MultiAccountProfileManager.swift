@@ -135,10 +135,10 @@ extension MultiAccountProfileManager: ProfileManager {
     
     private func deleteAllRelatedData(profileId: ProfileID) {
         if let profile = read(id: profileId) {
-            deleteRelatedData(entity: "SAChannel", profile: profile)
             deleteRelatedData(entity: "SAChannelExtendedValue", profile: profile)
-            deleteRelatedData(entity: "SAChannelGroup", profile: profile)
             deleteRelatedData(entity: "SAChannelValue", profile: profile)
+            deleteRelatedData(entity: "SAChannel", profile: profile)
+            deleteRelatedData(entity: "SAChannelGroup", profile: profile)
             deleteRelatedData(entity: "SAElectricityMeasurementItem", profile: profile)
             deleteRelatedData(entity: "SAImpulseCounterMeasurementItem", profile: profile)
             deleteRelatedData(entity: "SALocation", profile: profile)
