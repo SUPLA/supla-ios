@@ -274,8 +274,8 @@ class AccountCreationVC: BaseViewControllerVM<AccountCreationViewState, AccountC
         case .navigateToCreateAccount:
             navigator?.navigateToCreateAccount()
             break
-        case .navigateToRemoveAccount(let needsRestart):
-            navigator?.navigateToRemoveAccount(needsRestart: needsRestart)
+        case .navigateToRemoveAccount(let needsRestart, let serverAddress):
+            navigator?.navigateToRemoveAccount(needsRestart: needsRestart, serverAddress: serverAddress)
             break
         case .finish(let needsRestart, let needsReauth):
             if (needsRestart) {

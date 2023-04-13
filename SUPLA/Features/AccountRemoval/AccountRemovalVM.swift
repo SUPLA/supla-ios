@@ -21,13 +21,33 @@ import RxSwift
 
 class AccountRemovalVM : BaseViewModel<AccountRemovalViewState, AccountRemovalViewEvent> {
     
-    private let removalFinishedSufix = "/db99845855b2ecbfecca9a095062b96c3e27703f?ack=true"
+    private static let REMOVAL_FINISHED_SUFIX = "/db99845855b2ecbfecca9a095062b96c3e27703f?ack=true"
+    
+    private let needsRestart: Bool
+    private let serverAddress: String?
+    
+    init(needsRestart: Bool, serverAddress: String? = nil) {
+        self.needsRestart = needsRestart
+        self.serverAddress = serverAddress
+    }
     
     func handleUrl(url: String?) {
         guard let url = url else { return }
         
-        if (url.hasSuffix(removalFinishedSufix)) {
-            send(event: .finish)
+        if (url.hasSuffix(AccountRemovalVM.REMOVAL_FINISHED_SUFIX)) {
+            if (needsRestart) {
+                send(event: .finishAndRestart)
+            } else {
+                send(event: .finish)
+            }
+        }
+    }
+    
+    func provideUrl() -> String {
+        if let server = serverAddress {
+            return "https://\(server)/db99845855b2ecbfecca9a095062b96c3e27703f"
+        } else {
+            return "https://cloud.supla.org/db99845855b2ecbfecca9a095062b96c3e27703f"
         }
     }
     
@@ -36,6 +56,7 @@ class AccountRemovalVM : BaseViewModel<AccountRemovalViewState, AccountRemovalVi
 
 enum AccountRemovalViewEvent: ViewEvent {
     case finish
+    case finishAndRestart
 }
 
 struct AccountRemovalViewState: ViewState {}

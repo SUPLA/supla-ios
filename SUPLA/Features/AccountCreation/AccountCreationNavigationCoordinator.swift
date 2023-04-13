@@ -66,9 +66,9 @@ class AuthCfgNavigationCoordinator: BaseNavigationCoordinator {
         self._viewController.navigationController?.pushViewController(cavc, animated: true)
     }
     
-    func navigateToRemoveAccount(needsRestart: Bool) {
+    func navigateToRemoveAccount(needsRestart: Bool, serverAddress: String?) {
         finish()
-        (parentCoordinator as? ProfilesNavigationCoordinator)?.navigateToRemoveAccount(needsRestart: needsRestart)
+        (parentCoordinator as? ProfilesNavigationCoordinator)?.navigateToRemoveAccount(needsRestart: needsRestart, serverAddress: serverAddress)
     }
     
     func finish(shouldReauthenticate: Bool) {

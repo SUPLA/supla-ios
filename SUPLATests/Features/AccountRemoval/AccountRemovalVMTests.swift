@@ -33,7 +33,6 @@ class AccountRemovalVMTest: XCTestCase {
     override func setUp() {
         super.setUp()
         scheduler = TestScheduler(initialClock: 0)
-        sut = AccountRemovalVM()
     }
     
     override func tearDown() {
@@ -42,6 +41,8 @@ class AccountRemovalVMTest: XCTestCase {
     }
     
     func testIfFinishIsEmittedForProperUrl() {
+        sut = AccountRemovalVM(needsRestart: false)
+        
         // given
         let observer = scheduler.createObserver(AccountRemovalViewEvent.self)
         sut.eventsObervable().subscribe(observer).disposed(by: disposeBag)
@@ -54,7 +55,24 @@ class AccountRemovalVMTest: XCTestCase {
         XCTAssertEqual(observer.events, [.next(0, .finish)])
     }
     
+    func testIfFinishWithRestartIsEmittedForProperUrl() {
+        sut = AccountRemovalVM(needsRestart: true)
+        
+        // given
+        let observer = scheduler.createObserver(AccountRemovalViewEvent.self)
+        sut.eventsObervable().subscribe(observer).disposed(by: disposeBag)
+        
+        // when
+        sut.handleUrl(url: "https://cloud.supla.org/db99845855b2ecbfecca9a095062b96c3e27703f?ack=true")
+        
+        // then
+        
+        XCTAssertEqual(observer.events, [.next(0, .finishAndRestart)])
+    }
+    
     func testIfNothingIsEmmittedForOtherUrls() {
+        sut = AccountRemovalVM(needsRestart: false)
+        
         // given
         let observer = scheduler.createObserver(AccountRemovalViewEvent.self)
         sut.eventsObervable().subscribe(observer).disposed(by: disposeBag)
@@ -66,5 +84,27 @@ class AccountRemovalVMTest: XCTestCase {
         // then
         
         XCTAssertEqual(observer.events, [])
+    }
+    
+    func test_shouldUseAddressToBuildUrl() {
+        // given
+        sut = AccountRemovalVM(needsRestart: false, serverAddress: "beta-cloud.supla.org")
+        
+        // when
+        let url = sut.provideUrl()
+        
+        // then
+        XCTAssertEqual(url, "https://beta-cloud.supla.org/db99845855b2ecbfecca9a095062b96c3e27703f")
+    }
+    
+    func test_shouldUseSuplaWhenNoAddressProvided() {
+        // given
+        sut = AccountRemovalVM(needsRestart: false)
+        
+        // when
+        let url = sut.provideUrl()
+        
+        // then
+        XCTAssertEqual(url, "https://cloud.supla.org/db99845855b2ecbfecca9a095062b96c3e27703f")
     }
 }
