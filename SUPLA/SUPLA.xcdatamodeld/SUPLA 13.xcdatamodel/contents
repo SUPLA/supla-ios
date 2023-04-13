@@ -40,8 +40,8 @@
         <attribute name="channel_id" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="group_id" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="visible" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
-        <relationship name="group" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="SAChannelGroup"/>
-        <relationship name="value" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="SAChannelValueBase"/>
+        <relationship name="group" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="SAChannelGroup"/>
+        <relationship name="value" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="SAChannelValueBase"/>
     </entity>
     <entity name="SAChannelValue" representedClassName="SAChannelValue" parentEntity="SAChannelValueBase" syncable="YES">
         <attribute name="online" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
@@ -129,7 +129,7 @@
         <attribute name="usericon_id" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="visible" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <relationship name="location" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="SALocation"/>
-        <relationship name="profile" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="AuthProfileItem"/>
+        <relationship name="profile" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="AuthProfileItem"/>
         <relationship name="usericon" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="SAUserIcon"/>
     </entity>
     <entity name="SATemperatureMeasurementItem" representedClassName="SATemperatureMeasurementItem" parentEntity="SAMeasurementItem" syncable="YES">

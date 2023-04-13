@@ -21,12 +21,60 @@ import RxSwift
 
 class BaseViewModel<S : ViewState, E : ViewEvent> {
     
+    private let disposeBag = DisposeBag()
     private let events = PublishSubject<E>()
-    private let state = BehaviorSubject<S?>(value: nil)
+    private lazy var state: BehaviorSubject<S> = {
+        BehaviorSubject(value: defaultViewState())
+    }()
+    
+    func defaultViewState() -> S { fatalError("defaultViewState() has not been implemented!") }
     
     func eventsObervable() -> Observable<E> { events.asObserver() }
-    func stateObservable() -> Observable<S> { state.filter({state in state != nil} ).map({ state in state! })}
+    func stateObservable() -> Observable<S> { state.asObserver() }
     
     func send(event: E) { events.on(.next(event)) }
-    func update(state: S) { self.state.on(.next(state)) }
+    func updateView(state: S) { self.state.on(.next(state)) }
+    func updateView(_ stateModifier: (S) -> S) { try! state.on(.next(stateModifier(state.value()))) }
+    
+    func currentState() -> S? {
+        do {
+            return try state.value()
+        } catch {
+            return nil
+        }
+    }
+    
+    func bind<T>(field path: WritableKeyPath<S, T>, toObservable observable: Observable<T>) {
+        observable
+            .subscribe(onNext: { value in
+                self.updateView() { state in return state.changing(path: path, to: value) }
+            })
+            .disposed(by: disposeBag)
+    }
+    
+    func bind<T>(field path: WritableKeyPath<S, T>, toOptional observable: Observable<T?>) {
+        observable
+            .subscribe(onNext: { value in
+                guard let value = value else { return }
+                self.updateView() { state in return state.changing(path: path, to: value) }
+            })
+            .disposed(by: disposeBag)
+    }
+    
+    func bind(_ observable: Observable<Void>, _ action: @escaping () -> Void) {
+        observable
+            .subscribe(onNext: {
+                action()
+            })
+            .disposed(by: disposeBag)
+    }
+    
+    func bind<T>(_ observable: Observable<T>, _ action: @escaping (T) -> Void) {
+        observable
+            .subscribe(onNext: { value in
+                action(value)
+            })
+            .disposed(by: disposeBag)
+    }
+    
 }

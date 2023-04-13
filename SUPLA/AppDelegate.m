@@ -27,12 +27,30 @@
 
 @implementation AppDelegate
 
+- (id) init {
+    self = [super init];
+    
+    // Setup dependency injection
+    [DiContainer start];
+    
+    return self;
+}
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+
+#ifdef DEBUG
+    // Short-circuit starting app if running unit tests
+    BOOL isInTest = NSProcessInfo.processInfo.environment[@"XCTestConfigurationFilePath"] != nil;
+    if (isInTest) {
+        return true;
+    }
+#endif
+    
     // Override point for customization after application launch.
     self.navigation = [[MainNavigationCoordinator alloc] init];
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     [self.navigation attachTo: self.window];
+    [SAApp profileManager]; // Get an instance to trigger db migration
 	[self.navigation startFrom:nil];
 
   //  [[SAApp UI] showStarterVC];
@@ -66,6 +84,14 @@
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+#ifdef DEBUG
+    // Short-circuit starting app if running unit tests
+    BOOL isInTest = NSProcessInfo.processInfo.environment[@"XCTestConfigurationFilePath"] != nil;
+    if (isInTest) {
+        return;
+    }
+#endif
+    
     id vc = [SAApp currentNavigationCoordinator].viewController;
     if ( ![vc isKindOfClass: [SAAddWizardVC class]] &&
         ![vc isKindOfClass: [CfgVC class]] ) {

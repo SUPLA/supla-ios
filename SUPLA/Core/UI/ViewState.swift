@@ -19,7 +19,7 @@
 import Foundation
 import RxSwift
 
-protocol ViewState {}
+protocol ViewState: Equatable {}
 
 extension ViewState {
     func changing<T>(path: WritableKeyPath<Self, T>, to value: T) -> Self {

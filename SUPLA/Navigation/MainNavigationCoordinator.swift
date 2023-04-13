@@ -23,6 +23,9 @@ import RxCocoa
 
 @objc
 class MainNavigationCoordinator: BaseNavigationCoordinator {
+    
+    @Singleton<GlobalSettings> var settings
+    
     override var viewController: UIViewController {
         return navigationController
     }
@@ -64,15 +67,15 @@ class MainNavigationCoordinator: BaseNavigationCoordinator {
     
 
     private func showInitialView() {
-        if SAApp.configIsSet() {
+        if (settings.anyAccountRegistered) {
             showStatusView(progress: 0)
         } else {
-            showAuthView(immediate: true)
+            showAuthView()
         }
     }
     
     private func updateNavBar() {
-        let showNav = SAApp.configIsSet() && SAApp.isClientRegistered()
+        let showNav = settings.anyAccountRegistered
         navigationController.setNavigationBarHidden(!showNav, animated: true)
     }
 
@@ -142,8 +145,8 @@ class MainNavigationCoordinator: BaseNavigationCoordinator {
         startFlow(coordinator: CfgNavigationCoordinator())
     }
 
-    @objc func showProfilesView(allowsBack: Bool) {
-        startFlow(coordinator: ProfilesNavigationCoordinator(allowsBack: allowsBack))
+    @objc func showProfilesView() {
+        startFlow(coordinator: ProfilesNavigationCoordinator())
     }
     
     func showAddWizard() {
@@ -178,9 +181,8 @@ class MainNavigationCoordinator: BaseNavigationCoordinator {
     // MARK: Public interface
     // MARK: -
     
-    @objc func showAuthView(immediate: Bool) {
-        startFlow(coordinator: AuthCfgNavigationCoordinator(immediate: immediate,
-                                                            profileId: SAApp.profileManager().getCurrentProfile().objectID))
+    @objc func showAuthView() {
+        startFlow(coordinator: AuthCfgNavigationCoordinator(immediate: true, profileId: nil))
     }
     
     @objc func showStatusView(progress: NSNumber) {

@@ -21,9 +21,11 @@ import Foundation
 class AccountRemovalNavigationCoordinator: BaseNavigationCoordinator {
     
     private let needsRestart: Bool
+    private let serverAddress: String?
     
-    init(needsRestart: Bool) {
+    init(needsRestart: Bool, serverAddress: String?) {
         self.needsRestart = needsRestart
+        self.serverAddress = serverAddress
     }
     
     override var wantsAnimatedTransitions: Bool {
@@ -35,22 +37,27 @@ class AccountRemovalNavigationCoordinator: BaseNavigationCoordinator {
     }
     
     private lazy var _viewController: AccountRemovalVC = {
-        return AccountRemovalVC(navigationCoordinator: self)
+        return AccountRemovalVC(
+            navigationCoordinator: self,
+            needsRestart: needsRestart,
+            serverAddress: serverAddress
+        )
     }()
+    
+    func finishWithRestart() {
+        let navigated = goTo(MainNavigationCoordinator.self) { navigator in
+            navigator.start(from: nil)
+        }
+        
+        if (!navigated) {
+            finish()
+        }
+    }
     
     override func viewControllerDidDismiss(_ viewController: UIViewController) {
         if (needsRestart) {
-            finish()
-            
-            // Go back to main navigator, finish all inbetween and start from beginning.
-            var parent = parentCoordinator
-            while (parent != nil) {
-                if (parent is MainNavigationCoordinator) {
-                    parent?.start(from: nil)
-                    return
-                }
-                parent?.finish()
-                parent = parent?.parentCoordinator
+            _ = goTo(MainNavigationCoordinator.self) { navigator in
+                navigator.start(from: nil)
             }
         }
     }

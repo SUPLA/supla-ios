@@ -484,7 +484,6 @@
 		40766C2B1FC9BC7A009E00BE /* generalsettings@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 40766C2A1FC9BC78009E00BE /* generalsettings@2x.png */; };
 		40766C2D1FC9C36D009E00BE /* iossettings.png in Resources */ = {isa = PBXBuildFile; fileRef = 40766C2C1FC9C36C009E00BE /* iossettings.png */; };
 		4077ACE320A21BB100BD2216 /* CreateAccountVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 4077ACE120A21BB100BD2216 /* CreateAccountVC.m */; };
-		4077ACE420A21BB100BD2216 /* CreateAccountVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4077ACE220A21BB100BD2216 /* CreateAccountVC.xib */; };
 		407D31931FD17C4D0062FB80 /* wifigeneral@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 407D31921FD17C4B0062FB80 /* wifigeneral@2x.png */; };
 		407D31941FD1A7070062FB80 /* AddWizardVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 407D31961FD1A7070062FB80 /* AddWizardVC.xib */; };
 		407D31A71FD1B75F0062FB80 /* logo-white@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 407D31A51FD1B75E0062FB80 /* logo-white@2x.png */; };
@@ -505,7 +504,7 @@
 		408034C41BC83D1A007666E7 /* MGSwipeButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 408034C11BC83D1A007666E7 /* MGSwipeButton.m */; };
 		408034C51BC83D1A007666E7 /* MGSwipeTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 408034C31BC83D1A007666E7 /* MGSwipeTableCell.m */; };
 		408034E61BC84A89007666E7 /* NavigationController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 408034E41BC84A89007666E7 /* NavigationController.xib */; };
-		40844D7F1FB0DDB000432AA0 /* AuthVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 40844D811FB0DDB000432AA0 /* AuthVC.xib */; };
+		40844D7F1FB0DDB000432AA0 /* AccountCreationVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 40844D811FB0DDB000432AA0 /* AccountCreationVC.xib */; };
 		4091654B1F3CBAF200F49193 /* rs_stop.png in Resources */ = {isa = PBXBuildFile; fileRef = 409165461F3CBAF200F49193 /* rs_stop.png */; };
 		4091654C1F3CBAF200F49193 /* rs_up.png in Resources */ = {isa = PBXBuildFile; fileRef = 409165471F3CBAF200F49193 /* rs_up.png */; };
 		4091654D1F3CBAF200F49193 /* rs_down.png in Resources */ = {isa = PBXBuildFile; fileRef = 409165481F3CBAF200F49193 /* rs_down.png */; };
@@ -650,27 +649,41 @@
 		6EC4B0072871777B00731079 /* SAElectricityMeterChartMarkerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6EC4B0062871777A00731079 /* SAElectricityMeterChartMarkerView.xib */; };
 		A52ACD4729CB93060092729F /* SuplaClientActionExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A52ACD4629CB93060092729F /* SuplaClientActionExtension.swift */; };
 		A52ACD4929CB940B0092729F /* ActionParameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = A52ACD4829CB940B0092729F /* ActionParameters.swift */; };
+		A553862829E004E400B5CF3F /* GlobalSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = A553862729E004E400B5CF3F /* GlobalSettings.swift */; };
+		A553862B29E0202700B5CF3F /* Singleton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A553862A29E0202700B5CF3F /* Singleton.swift */; };
+		A553862D29E021AE00B5CF3F /* DiContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A553862C29E021AE00B5CF3F /* DiContainer.swift */; };
+		A553862F29E0297400B5CF3F /* Inject.swift in Sources */ = {isa = PBXBuildFile; fileRef = A553862E29E0297400B5CF3F /* Inject.swift */; };
 		A55D43CE29DD495000BEF06E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A55D43CD29DD495000BEF06E /* Assets.xcassets */; };
 		A573B38C29DE9F5600EBAFC4 /* BaseViewControllerExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A573B38B29DE9F5600EBAFC4 /* BaseViewControllerExtensions.swift */; };
 		A573B39229DEB25900EBAFC4 /* ViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = A573B39129DEB25900EBAFC4 /* ViewState.swift */; };
 		A5756F8229DC102800C32A1B /* AccountRemovalVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5756F8129DC102800C32A1B /* AccountRemovalVC.swift */; };
 		A5756F8429DC23A800C32A1B /* AccountRemovalNavigationCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5756F8329DC23A800C32A1B /* AccountRemovalNavigationCoordinator.swift */; };
+		A57638C629E5D4C9003E15A3 /* XCTestCaseExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A57638C529E5D4C9003E15A3 /* XCTestCaseExtensions.swift */; };
+		A57638CC29E5EF95003E15A3 /* ProfileManagerMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = A57638CB29E5EF95003E15A3 /* ProfileManagerMock.swift */; };
+		A57638CE29E5EFDA003E15A3 /* GlobalSettingsMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = A57638CD29E5EFDA003E15A3 /* GlobalSettingsMock.swift */; };
+		A57777CD29E6907C004513E6 /* RuntimeConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = A57777CC29E6907C004513E6 /* RuntimeConfig.swift */; };
+		A57777CF29E69688004513E6 /* RuntimeConfigMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = A57777CE29E69688004513E6 /* RuntimeConfigMock.swift */; };
+		A57777D129E6A319004513E6 /* CreateAccountVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = A57777D029E6A319004513E6 /* CreateAccountVC.xib */; };
+		A57785BD29E7FAD0001C631E /* SuplaClientProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A57785BC29E7FAD0001C631E /* SuplaClientProvider.swift */; };
+		A57785BF29E80406001C631E /* SuplaAppWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = A57785BE29E80406001C631E /* SuplaAppWrapper.swift */; };
+		A57785C129E80C16001C631E /* SuplaClientProviderMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = A57785C029E80C16001C631E /* SuplaClientProviderMock.swift */; };
+		A57785C329E80CF7001C631E /* SuplaAppWrapperMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = A57785C229E80CF7001C631E /* SuplaAppWrapperMock.swift */; };
 		A597271129DAEA480090A044 /* SceneExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A597271029DAEA480090A044 /* SceneExtensions.swift */; };
 		A5F14B7229DED06400682FA6 /* AccountRemovalVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F14B7129DED06400682FA6 /* AccountRemovalVM.swift */; };
 		A5F14B7429DED41000682FA6 /* BaseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F14B7329DED41000682FA6 /* BaseViewModel.swift */; };
 		A5F14B7629DED44600682FA6 /* ViewEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F14B7529DED44600682FA6 /* ViewEvent.swift */; };
 		A5F14B7929DED9F000682FA6 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F14B7829DED9F000682FA6 /* BaseViewController.swift */; };
-		A5F14B7D29DEE4D800682FA6 /* AccountRemovalVMTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F14B7C29DEE4D800682FA6 /* AccountRemovalVMTest.swift */; };
+		A5F14B7D29DEE4D800682FA6 /* AccountRemovalVMTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F14B7C29DEE4D800682FA6 /* AccountRemovalVMTests.swift */; };
 		AE1874C2290C581D00437146 /* SceneCaptionEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE1874C1290C581D00437146 /* SceneCaptionEditor.swift */; };
 		AE348E66277F348700F363A3 /* SAMoveTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = AE348E65277F348700F363A3 /* SAMoveTableView.m */; };
-		AE3DECE22761DB32005923E4 /* AuthCfgNavigationCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE3DECE02761DB32005923E4 /* AuthCfgNavigationCoordinator.swift */; };
+		AE3DECE22761DB32005923E4 /* AccountCreationNavigationCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE3DECE02761DB32005923E4 /* AccountCreationNavigationCoordinator.swift */; };
 		AE3DECE32761DB32005923E4 /* PresentationNavigationCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE3DECE12761DB32005923E4 /* PresentationNavigationCoordinator.swift */; };
 		AE5332E227648E770050E690 /* SuplaNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE5332E127648E770050E690 /* SuplaNavigationController.swift */; };
 		AE5332E427648F610050E690 /* UIFont+Supla.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE5332E327648F610050E690 /* UIFont+Supla.swift */; };
 		AE5332E62764A7E30050E690 /* SuplaMenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE5332E52764A7E30050E690 /* SuplaMenuController.swift */; };
 		AE53535427691EFC0077BFFB /* CfgNavigationCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE53535327691EFC0077BFFB /* CfgNavigationCoordinator.swift */; };
 		AE535356276927690077BFFB /* LocationOrderingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE535355276927690077BFFB /* LocationOrderingVC.swift */; };
-		AE5A60E6270E2A7A00F2B780 /* AuthVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE5A60E5270E2A7A00F2B780 /* AuthVC.swift */; };
+		AE5A60E6270E2A7A00F2B780 /* AccountCreationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE5A60E5270E2A7A00F2B780 /* AccountCreationVC.swift */; };
 		AE68E73227739D8500E55DB7 /* SwipeTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE68E73127739D8500E55DB7 /* SwipeTransition.swift */; };
 		AE7452892827E37600A3AFAD /* ProfilesVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE7452882827E37600A3AFAD /* ProfilesVM.swift */; };
 		AE74528B2827E38900A3AFAD /* ProfilesVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE74528A2827E38900A3AFAD /* ProfilesVC.swift */; };
@@ -687,9 +700,9 @@
 		AEBCD8FC26E4D247001904F3 /* TemperaturePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEBCD8FB26E4D247001904F3 /* TemperaturePresenter.swift */; };
 		AEBCD8FE26E4D52C001904F3 /* TemperatureUnitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEBCD8FD26E4D52C001904F3 /* TemperatureUnitTests.swift */; };
 		AEC6B6BA2753C06800A04204 /* ProfileMigrator.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEC6B6B92753C06800A04204 /* ProfileMigrator.swift */; };
-		AECB1BE5270EB56F001A9714 /* AuthVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = AECB1BE4270EB56F001A9714 /* AuthVM.swift */; };
+		AECB1BE5270EB56F001A9714 /* AccountCreationVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = AECB1BE4270EB56F001A9714 /* AccountCreationVM.swift */; };
 		AECB1BE727109EA3001A9714 /* CheckBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = AECB1BE627109EA3001A9714 /* CheckBox.swift */; };
-		AECB1BE92710A785001A9714 /* AuthVMTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AECB1BE82710A785001A9714 /* AuthVMTests.swift */; };
+		AECB1BE92710A785001A9714 /* AccountCreationVMTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AECB1BE82710A785001A9714 /* AccountCreationVMTests.swift */; };
 		AECB1BEB2711CB67001A9714 /* AuthInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = AECB1BEA2711CB67001A9714 /* AuthInfo.swift */; };
 		AED6395E270CA3A800E5105B /* RoundedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = AED6395D270CA3A800E5105B /* RoundedButton.swift */; };
 		AED63961270CA46C00E5105B /* UIColor+Supla.swift in Sources */ = {isa = PBXBuildFile; fileRef = AED63960270CA46C00E5105B /* UIColor+Supla.swift */; };
@@ -1119,7 +1132,7 @@
 		017D392C29244A6B005F45FA /* uk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = uk; path = uk.lproj/HomePlusDetailView.strings; sourceTree = "<group>"; };
 		017D392D29244A6C005F45FA /* uk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = uk; path = uk.lproj/RSDetail.strings; sourceTree = "<group>"; };
 		017D392E29244A6C005F45FA /* uk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = uk; path = uk.lproj/AddWizardVC.strings; sourceTree = "<group>"; };
-		017D392F29244A6C005F45FA /* uk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = uk; path = uk.lproj/AuthVC.strings; sourceTree = "<group>"; };
+		017D392F29244A6C005F45FA /* uk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = uk; path = uk.lproj/AccountCreationVC.strings; sourceTree = "<group>"; };
 		017D393129244A6D005F45FA /* uk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = uk; path = uk.lproj/SAVLCalibrationTool.strings; sourceTree = "<group>"; };
 		017D393229244A6D005F45FA /* uk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = uk; path = uk.lproj/SADiwCalibrationTool.strings; sourceTree = "<group>"; };
 		017D393329244A6D005F45FA /* uk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = uk; path = uk.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -1491,7 +1504,6 @@
 		40766C2C1FC9C36C009E00BE /* iossettings.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = iossettings.png; path = Resources/Assets/Img/iossettings.png; sourceTree = "<group>"; };
 		4077ACE020A21BB100BD2216 /* CreateAccountVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CreateAccountVC.h; sourceTree = "<group>"; };
 		4077ACE120A21BB100BD2216 /* CreateAccountVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CreateAccountVC.m; sourceTree = "<group>"; };
-		4077ACE220A21BB100BD2216 /* CreateAccountVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CreateAccountVC.xib; sourceTree = "<group>"; };
 		407D31921FD17C4B0062FB80 /* wifigeneral@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "wifigeneral@2x.png"; path = "Resources/Assets/Img/wifigeneral@2x.png"; sourceTree = "<group>"; };
 		407D31951FD1A7070062FB80 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/AddWizardVC.xib; sourceTree = "<group>"; };
 		407D319A1FD1A70D0062FB80 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/AddWizardVC.strings; sourceTree = "<group>"; };
@@ -1521,7 +1533,7 @@
 		408034C21BC83D1A007666E7 /* MGSwipeTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MGSwipeTableCell.h; path = ThirdPartyComponents/MGSwipe/MGSwipeTableCell.h; sourceTree = "<group>"; };
 		408034C31BC83D1A007666E7 /* MGSwipeTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MGSwipeTableCell.m; path = ThirdPartyComponents/MGSwipe/MGSwipeTableCell.m; sourceTree = "<group>"; };
 		408034E41BC84A89007666E7 /* NavigationController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NavigationController.xib; sourceTree = "<group>"; };
-		40844D8A1FB0DF3B00432AA0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/AuthVC.xib; sourceTree = "<group>"; };
+		40844D8A1FB0DF3B00432AA0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/AccountCreationVC.xib; sourceTree = "<group>"; };
 		409165331F3C7B5700F49193 /* pl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pl; path = pl.lproj/AboutVC.strings; sourceTree = "<group>"; };
 		409165341F3C7B6300F49193 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/AboutVC.strings; sourceTree = "<group>"; };
 		409165351F3C7B6D00F49193 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/AboutVC.strings; sourceTree = "<group>"; };
@@ -1724,28 +1736,42 @@
 		76FF65EADE7763EB8D61BC35 /* Pods_SUPLATests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SUPLATests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A52ACD4629CB93060092729F /* SuplaClientActionExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuplaClientActionExtension.swift; sourceTree = "<group>"; };
 		A52ACD4829CB940B0092729F /* ActionParameters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionParameters.swift; sourceTree = "<group>"; };
+		A553862729E004E400B5CF3F /* GlobalSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalSettings.swift; sourceTree = "<group>"; };
+		A553862A29E0202700B5CF3F /* Singleton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Singleton.swift; sourceTree = "<group>"; };
+		A553862C29E021AE00B5CF3F /* DiContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiContainer.swift; sourceTree = "<group>"; };
+		A553862E29E0297400B5CF3F /* Inject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Inject.swift; sourceTree = "<group>"; };
 		A55D43CD29DD495000BEF06E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = Resources/Assets.xcassets; sourceTree = "<group>"; };
 		A573B38B29DE9F5600EBAFC4 /* BaseViewControllerExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewControllerExtensions.swift; sourceTree = "<group>"; };
 		A573B39129DEB25900EBAFC4 /* ViewState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewState.swift; sourceTree = "<group>"; };
 		A5756F8129DC102800C32A1B /* AccountRemovalVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountRemovalVC.swift; sourceTree = "<group>"; };
 		A5756F8329DC23A800C32A1B /* AccountRemovalNavigationCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountRemovalNavigationCoordinator.swift; sourceTree = "<group>"; };
+		A57638C529E5D4C9003E15A3 /* XCTestCaseExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XCTestCaseExtensions.swift; sourceTree = "<group>"; };
+		A57638CB29E5EF95003E15A3 /* ProfileManagerMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileManagerMock.swift; sourceTree = "<group>"; };
+		A57638CD29E5EFDA003E15A3 /* GlobalSettingsMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalSettingsMock.swift; sourceTree = "<group>"; };
+		A57777CC29E6907C004513E6 /* RuntimeConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RuntimeConfig.swift; sourceTree = "<group>"; };
+		A57777CE29E69688004513E6 /* RuntimeConfigMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RuntimeConfigMock.swift; sourceTree = "<group>"; };
+		A57777D029E6A319004513E6 /* CreateAccountVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CreateAccountVC.xib; sourceTree = "<group>"; };
+		A57785BC29E7FAD0001C631E /* SuplaClientProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuplaClientProvider.swift; sourceTree = "<group>"; };
+		A57785BE29E80406001C631E /* SuplaAppWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuplaAppWrapper.swift; sourceTree = "<group>"; };
+		A57785C029E80C16001C631E /* SuplaClientProviderMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuplaClientProviderMock.swift; sourceTree = "<group>"; };
+		A57785C229E80CF7001C631E /* SuplaAppWrapperMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuplaAppWrapperMock.swift; sourceTree = "<group>"; };
 		A597271029DAEA480090A044 /* SceneExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneExtensions.swift; sourceTree = "<group>"; };
 		A5F14B7129DED06400682FA6 /* AccountRemovalVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountRemovalVM.swift; sourceTree = "<group>"; };
 		A5F14B7329DED41000682FA6 /* BaseViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewModel.swift; sourceTree = "<group>"; };
 		A5F14B7529DED44600682FA6 /* ViewEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewEvent.swift; sourceTree = "<group>"; };
 		A5F14B7829DED9F000682FA6 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
-		A5F14B7C29DEE4D800682FA6 /* AccountRemovalVMTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountRemovalVMTest.swift; sourceTree = "<group>"; };
+		A5F14B7C29DEE4D800682FA6 /* AccountRemovalVMTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountRemovalVMTests.swift; sourceTree = "<group>"; };
 		AE1874C1290C581D00437146 /* SceneCaptionEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneCaptionEditor.swift; sourceTree = "<group>"; };
 		AE348E64277F348700F363A3 /* SAMoveTableView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SAMoveTableView.h; sourceTree = "<group>"; };
 		AE348E65277F348700F363A3 /* SAMoveTableView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SAMoveTableView.m; sourceTree = "<group>"; };
-		AE3DECE02761DB32005923E4 /* AuthCfgNavigationCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthCfgNavigationCoordinator.swift; sourceTree = "<group>"; };
+		AE3DECE02761DB32005923E4 /* AccountCreationNavigationCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountCreationNavigationCoordinator.swift; sourceTree = "<group>"; };
 		AE3DECE12761DB32005923E4 /* PresentationNavigationCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PresentationNavigationCoordinator.swift; sourceTree = "<group>"; };
 		AE5332E127648E770050E690 /* SuplaNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuplaNavigationController.swift; sourceTree = "<group>"; };
 		AE5332E327648F610050E690 /* UIFont+Supla.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+Supla.swift"; sourceTree = "<group>"; };
 		AE5332E52764A7E30050E690 /* SuplaMenuController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuplaMenuController.swift; sourceTree = "<group>"; };
 		AE53535327691EFC0077BFFB /* CfgNavigationCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CfgNavigationCoordinator.swift; sourceTree = "<group>"; };
 		AE535355276927690077BFFB /* LocationOrderingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationOrderingVC.swift; sourceTree = "<group>"; };
-		AE5A60E5270E2A7A00F2B780 /* AuthVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthVC.swift; sourceTree = "<group>"; };
+		AE5A60E5270E2A7A00F2B780 /* AccountCreationVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountCreationVC.swift; sourceTree = "<group>"; };
 		AE68E73127739D8500E55DB7 /* SwipeTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeTransition.swift; sourceTree = "<group>"; };
 		AE7452882827E37600A3AFAD /* ProfilesVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilesVM.swift; sourceTree = "<group>"; };
 		AE74528A2827E38900A3AFAD /* ProfilesVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilesVC.swift; sourceTree = "<group>"; };
@@ -1763,9 +1789,9 @@
 		AEBCD8FB26E4D247001904F3 /* TemperaturePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemperaturePresenter.swift; sourceTree = "<group>"; };
 		AEBCD8FD26E4D52C001904F3 /* TemperatureUnitTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemperatureUnitTests.swift; sourceTree = "<group>"; };
 		AEC6B6B92753C06800A04204 /* ProfileMigrator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileMigrator.swift; sourceTree = "<group>"; };
-		AECB1BE4270EB56F001A9714 /* AuthVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthVM.swift; sourceTree = "<group>"; };
+		AECB1BE4270EB56F001A9714 /* AccountCreationVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountCreationVM.swift; sourceTree = "<group>"; };
 		AECB1BE627109EA3001A9714 /* CheckBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckBox.swift; sourceTree = "<group>"; };
-		AECB1BE82710A785001A9714 /* AuthVMTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthVMTests.swift; sourceTree = "<group>"; };
+		AECB1BE82710A785001A9714 /* AccountCreationVMTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountCreationVMTests.swift; sourceTree = "<group>"; };
 		AECB1BEA2711CB67001A9714 /* AuthInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthInfo.swift; sourceTree = "<group>"; };
 		AED6395D270CA3A800E5105B /* RoundedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedButton.swift; sourceTree = "<group>"; };
 		AED63960270CA46C00E5105B /* UIColor+Supla.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Supla.swift"; sourceTree = "<group>"; };
@@ -2042,6 +2068,7 @@
 		012119122368B597004C1993 /* xib */ = {
 			isa = PBXGroup;
 			children = (
+				A57777D029E6A319004513E6 /* CreateAccountVC.xib */,
 				40CE7C6D1DCBBF6D00BBACE4 /* DistanceCell.xib */,
 				40BE3E611BCA7AEF00153680 /* ChannelCell.xib */,
 				4038A5531CE32B6800180B5D /* TempHumidityCell.xib */,
@@ -2068,8 +2095,6 @@
 				01C8EBFC234232EC0072AB8C /* HomePlusDetailView.xib */,
 				40F951471FD0654900698587 /* RSDetail.xib */,
 				407D31961FD1A7070062FB80 /* AddWizardVC.xib */,
-				4077ACE220A21BB100BD2216 /* CreateAccountVC.xib */,
-				40844D811FB0DDB000432AA0 /* AuthVC.xib */,
 				401CA1EE1BA0923600117AF4 /* MainVC.xib */,
 				408034E41BC84A89007666E7 /* NavigationController.xib */,
 				010C8789249AA1E1002FE526 /* SAInfoVC.xib */,
@@ -2258,6 +2283,9 @@
 		401CA1D81BA067DB00117AF4 /* SUPLATests */ = {
 			isa = PBXGroup;
 			children = (
+				A57638CA29E5EF80003E15A3 /* Mocks */,
+				A57638C729E5D8C9003E15A3 /* Asserts */,
+				A57638C429E5D4A7003E15A3 /* Extensions */,
 				A5F14B7A29DEE4B600682FA6 /* Features */,
 				01A66A7825364ABA00C00A1A /* SARoofWindowControllerTests.m */,
 				01DD2F0B247718C40025DFF9 /* SARangeCalibrationWheelTests.m */,
@@ -2275,7 +2303,6 @@
 				AEFBC25126E39EFC00414C19 /* ConfigTests.swift */,
 				AEFBC25026E39EFC00414C19 /* SUPLATests-Bridging-Header.h */,
 				AEBCD8FD26E4D52C001904F3 /* TemperatureUnitTests.swift */,
-				AECB1BE82710A785001A9714 /* AuthVMTests.swift */,
 				AEA1E96227422B0F005C34CB /* ProfileManagerTests.swift */,
 			);
 			path = SUPLATests;
@@ -2895,6 +2922,7 @@
 			children = (
 				A52ACD4629CB93060092729F /* SuplaClientActionExtension.swift */,
 				A52ACD4829CB940B0092729F /* ActionParameters.swift */,
+				A57785BC29E7FAD0001C631E /* SuplaClientProvider.swift */,
 			);
 			name = SuplaClient;
 			sourceTree = "<group>";
@@ -2906,11 +2934,44 @@
 			path = WebApi;
 			sourceTree = "<group>";
 		};
+		A553862929E0201A00B5CF3F /* DI */ = {
+			isa = PBXGroup;
+			children = (
+				A553862A29E0202700B5CF3F /* Singleton.swift */,
+				A553862C29E021AE00B5CF3F /* DiContainer.swift */,
+				A553862E29E0297400B5CF3F /* Inject.swift */,
+			);
+			path = DI;
+			sourceTree = "<group>";
+		};
+		A553863029E02C4300B5CF3F /* AccountCreation */ = {
+			isa = PBXGroup;
+			children = (
+				40844D811FB0DDB000432AA0 /* AccountCreationVC.xib */,
+				AE3DECE02761DB32005923E4 /* AccountCreationNavigationCoordinator.swift */,
+				AE5A60E5270E2A7A00F2B780 /* AccountCreationVC.swift */,
+				AECB1BE4270EB56F001A9714 /* AccountCreationVM.swift */,
+			);
+			path = AccountCreation;
+			sourceTree = "<group>";
+		};
+		A55E353929E68DEE00F88252 /* Config */ = {
+			isa = PBXGroup;
+			children = (
+				A553862729E004E400B5CF3F /* GlobalSettings.swift */,
+				A57777CC29E6907C004513E6 /* RuntimeConfig.swift */,
+			);
+			path = Config;
+			sourceTree = "<group>";
+		};
 		A573B39029DEB24400EBAFC4 /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				A55E353929E68DEE00F88252 /* Config */,
+				A553862929E0201A00B5CF3F /* DI */,
 				A5F14B7729DED97400682FA6 /* UI */,
 				A573B38B29DE9F5600EBAFC4 /* BaseViewControllerExtensions.swift */,
+				A57785BE29E80406001C631E /* SuplaAppWrapper.swift */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -2918,6 +2979,7 @@
 		A5756F7F29DC0FE900C32A1B /* Features */ = {
 			isa = PBXGroup;
 			children = (
+				A553863029E02C4300B5CF3F /* AccountCreation */,
 				A5756F8029DC0FFC00C32A1B /* AccountRemoval */,
 			);
 			path = Features;
@@ -2931,6 +2993,41 @@
 				A5F14B7129DED06400682FA6 /* AccountRemovalVM.swift */,
 			);
 			path = AccountRemoval;
+			sourceTree = "<group>";
+		};
+		A57638C329E585CA003E15A3 /* AccountCreation */ = {
+			isa = PBXGroup;
+			children = (
+				AECB1BE82710A785001A9714 /* AccountCreationVMTests.swift */,
+			);
+			path = AccountCreation;
+			sourceTree = "<group>";
+		};
+		A57638C429E5D4A7003E15A3 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				A57638C529E5D4C9003E15A3 /* XCTestCaseExtensions.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		A57638C729E5D8C9003E15A3 /* Asserts */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Asserts;
+			sourceTree = "<group>";
+		};
+		A57638CA29E5EF80003E15A3 /* Mocks */ = {
+			isa = PBXGroup;
+			children = (
+				A57638CB29E5EF95003E15A3 /* ProfileManagerMock.swift */,
+				A57638CD29E5EFDA003E15A3 /* GlobalSettingsMock.swift */,
+				A57777CE29E69688004513E6 /* RuntimeConfigMock.swift */,
+				A57785C029E80C16001C631E /* SuplaClientProviderMock.swift */,
+				A57785C229E80CF7001C631E /* SuplaAppWrapperMock.swift */,
+			);
+			path = Mocks;
 			sourceTree = "<group>";
 		};
 		A5F14B7729DED97400682FA6 /* UI */ = {
@@ -2947,6 +3044,7 @@
 		A5F14B7A29DEE4B600682FA6 /* Features */ = {
 			isa = PBXGroup;
 			children = (
+				A57638C329E585CA003E15A3 /* AccountCreation */,
 				A5F14B7B29DEE4C200682FA6 /* AccountRemoval */,
 			);
 			path = Features;
@@ -2955,7 +3053,7 @@
 		A5F14B7B29DEE4C200682FA6 /* AccountRemoval */ = {
 			isa = PBXGroup;
 			children = (
-				A5F14B7C29DEE4D800682FA6 /* AccountRemovalVMTest.swift */,
+				A5F14B7C29DEE4D800682FA6 /* AccountRemovalVMTests.swift */,
 			);
 			path = AccountRemoval;
 			sourceTree = "<group>";
@@ -2966,8 +3064,6 @@
 				6E05868028539E490044786B /* EditableProfileItemCell.swift */,
 				6E9F28C828436EE800142502 /* AddNewProfileCell.swift */,
 				6E8756622830E86B00D5A283 /* ProfileItemCell.swift */,
-				AE5A60E5270E2A7A00F2B780 /* AuthVC.swift */,
-				AECB1BE4270EB56F001A9714 /* AuthVM.swift */,
 				AEF79D8A2712FE1800D7554B /* CfgVM.swift */,
 				AEF79D8C2712FF8D00D7554B /* CfgVC.swift */,
 				AEF79D9227130A5400D7554B /* CfgCell.swift */,
@@ -2983,7 +3079,6 @@
 			isa = PBXGroup;
 			children = (
 				AE7452902827F49100A3AFAD /* ProfilesNavigationCoordinator.swift */,
-				AE3DECE02761DB32005923E4 /* AuthCfgNavigationCoordinator.swift */,
 				AE3DECE12761DB32005923E4 /* PresentationNavigationCoordinator.swift */,
 				AE929A86275FD5D500B75715 /* MainNavigationCoordinator.swift */,
 				AE929A8A2761487700B75715 /* NavigationCoordinator.swift */,
@@ -3175,7 +3270,7 @@
 				010714802656EC43009C119F /* SAZWaveWakeupSettingsDialog.xib in Resources */,
 				0103C0FB292E732B00566A23 /* gatealt1-open-nightmode@3x.png in Resources */,
 				40CF96C51BC7D4E70030EFFF /* power-on@3x.png in Resources */,
-				40844D7F1FB0DDB000432AA0 /* AuthVC.xib in Resources */,
+				40844D7F1FB0DDB000432AA0 /* AccountCreationVC.xib in Resources */,
 				017554F822F1CDB900EB58B7 /* heatpollogo@3x.png in Resources */,
 				4052DA0D1DC515AE000B8C45 /* rgb-off@2x.png in Resources */,
 				40CE7C6B1DCBBD5700BBACE4 /* depth@2x.png in Resources */,
@@ -3350,7 +3445,6 @@
 				0186055725BF80AC00C1332A /* wakeup@3x.png in Resources */,
 				40CF96C81BC7D4E70030EFFF /* rollershutter-open@2x.png in Resources */,
 				0103C0FC292E732B00566A23 /* valve-open-nightmode@2x.png in Resources */,
-				4077ACE420A21BB100BD2216 /* CreateAccountVC.xib in Resources */,
 				0103C095292E732A00566A23 /* light-off-nightmode@3x.png in Resources */,
 				405AC4321BC158E8004F7311 /* OpenSans-Regular.ttf in Resources */,
 				01CEAC1025B99A58009C3BFD /* digiglassv-transparent@3x.png in Resources */,
@@ -3445,6 +3539,7 @@
 				40CF96C11BC7D4E70030EFFF /* noliquid@3x.png in Resources */,
 				01FE611326BFF45400CEE7A5 /* recalibrate@2x.png in Resources */,
 				0103C096292E732A00566A23 /* staircasetimer_1-off-nightmode@3x.png in Resources */,
+				A57777D129E6A319004513E6 /* CreateAccountVC.xib in Resources */,
 				0103C0E3292E732B00566A23 /* noliquid-nightmode@2x.png in Resources */,
 				01CEAC1625B99A58009C3BFD /* digiglass1-transparent@2x.png in Resources */,
 				40B9ED4E1FACCF8100403B1A /* radio-on@3x.png in Resources */,
@@ -3764,7 +3859,7 @@
 				010C8786249A6A92002FE526 /* SADialog.m in Sources */,
 				40C7BA6C20C045A800ACEE42 /* SAChannelGroup+CoreDataClass.m in Sources */,
 				AE1874C2290C581D00437146 /* SceneCaptionEditor.swift in Sources */,
-				AE3DECE22761DB32005923E4 /* AuthCfgNavigationCoordinator.swift in Sources */,
+				AE3DECE22761DB32005923E4 /* AccountCreationNavigationCoordinator.swift in Sources */,
 				019D9E3725F27BC300881C99 /* SAChannelCaptionEditor.m in Sources */,
 				AE53535427691EFC0077BFFB /* CfgNavigationCoordinator.swift in Sources */,
 				010714782656C605009C119F /* SAZWaveWakeupSettingsReport.m in Sources */,
@@ -3794,7 +3889,7 @@
 				0148933425AA12DB00B9974E /* SADiwCalibrationTool.m in Sources */,
 				01C1719222C7F3A2005983E1 /* SAElectricityMeasurementItem+CoreDataProperties.m in Sources */,
 				40AB8BDE1DCB32EB0030F3DE /* SARateApp.m in Sources */,
-				AE5A60E6270E2A7A00F2B780 /* AuthVC.swift in Sources */,
+				AE5A60E6270E2A7A00F2B780 /* AccountCreationVC.swift in Sources */,
 				01C1719122C7F3A2005983E1 /* SAElectricityMeasurementItem+CoreDataClass.m in Sources */,
 				A52ACD4929CB940B0092729F /* ActionParameters.swift in Sources */,
 				40C7BA7720C047CF00ACEE42 /* SAChannel+CoreDataProperties.m in Sources */,
@@ -3811,6 +3906,7 @@
 				01C1719A22C7F55B005983E1 /* SAMeasurementItem+CoreDataProperties.m in Sources */,
 				01A4D4F4269210E300F3DCD1 /* SAFormatter.m in Sources */,
 				0194D80A264DC8580094A857 /* SAZWaveNodeIdResult.m in Sources */,
+				A553862829E004E400B5CF3F /* GlobalSettings.swift in Sources */,
 				01433DF8257F8FE20093C5DB /* SAWifi.m in Sources */,
 				AE5332E427648F610050E690 /* UIFont+Supla.swift in Sources */,
 				01511CFA24F50B470081A1EC /* SAPreloaderPopup.m in Sources */,
@@ -3842,6 +3938,7 @@
 				013D1C5D22CE47D5000C0784 /* SAChartHelper.m in Sources */,
 				015A98412655958500B6E6C6 /* NSDictionary+SUPLA.m in Sources */,
 				019F4CCD23577C3700286139 /* SAImpulseCounterChartHelper.m in Sources */,
+				A553862D29E021AE00B5CF3F /* DiContainer.swift in Sources */,
 				AE74528B2827E38900A3AFAD /* ProfilesVC.swift in Sources */,
 				01E3966E25A78B8B00A0DB18 /* SADimmerCalibrationTool.m in Sources */,
 				01392B3A235CA8B1003A2BAD /* ChartDetailView.m in Sources */,
@@ -3869,6 +3966,7 @@
 				401CA1C81BA067DB00117AF4 /* MainVC.m in Sources */,
 				01A0BD0A26CEFBC200C4A5F2 /* SAWarningIcon.m in Sources */,
 				AEF1F9BA27726D56008E441A /* DetailViewController.swift in Sources */,
+				A553862B29E0202700B5CF3F /* Singleton.swift in Sources */,
 				012F722E22DFA0BE00E5F72E /* SABarChartDataSet.swift in Sources */,
 				AEA4B36128BB943D005C4869 /* ScenesVC.swift in Sources */,
 				408034C51BC83D1A007666E7 /* MGSwipeTableCell.m in Sources */,
@@ -3889,6 +3987,7 @@
 				01BDAC7522C518DE00915646 /* SARestApiClientTask.m in Sources */,
 				401CA1BF1BA067DB00117AF4 /* main.m in Sources */,
 				018CFD2623281AF900888CB7 /* SAThermostatHPExtendedValue.m in Sources */,
+				A57777CD29E6907C004513E6 /* RuntimeConfig.swift in Sources */,
 				01F8857122E5E79100D18373 /* SATemperatureMeasurementItem+CoreDataClass.m in Sources */,
 				018CFD2323281ADB00888CB7 /* SAThermostatExtendedValue.m in Sources */,
 				40BBA35D20AC6E220054CD20 /* SAChannelGroupRelation+CoreDataProperties.m in Sources */,
@@ -3900,7 +3999,7 @@
 				01C792FA22B7FB610020A900 /* SAChannelExtendedValue+CoreDataClass.m in Sources */,
 				01902A28235A180F005ED935 /* TempHumidityDetailView.m in Sources */,
 				AE5332E62764A7E30050E690 /* SuplaMenuController.swift in Sources */,
-				AECB1BE5270EB56F001A9714 /* AuthVM.swift in Sources */,
+				AECB1BE5270EB56F001A9714 /* AccountCreationVM.swift in Sources */,
 				0122613922F396440013E6A2 /* SAThermostatCalendar.m in Sources */,
 				010714732656A6FB009C119F /* SAZWaveWakeupSettingsDialog.m in Sources */,
 				01FCDA78264F28C4002D776F /* SAZWaveNodeResult.m in Sources */,
@@ -3919,6 +4018,7 @@
 				01D6A0F2249BD2F7006B3757 /* SASuperuserAuthorizationDialog.m in Sources */,
 				AE3DECE32761DB32005923E4 /* PresentationNavigationCoordinator.swift in Sources */,
 				01BDAC7822C5200600915646 /* SAOAuthToken.m in Sources */,
+				A553862F29E0297400B5CF3F /* Inject.swift in Sources */,
 				AED6395E270CA3A800E5105B /* RoundedButton.swift in Sources */,
 				015A9846265595E300B6E6C6 /* UIButton+SUPLA.m in Sources */,
 				AE74528D2827E5D400A3AFAD /* ProfileChooser.swift in Sources */,
@@ -3941,6 +4041,7 @@
 				01567449232FD0A100397393 /* SAImpulseCounterExtendedValue.m in Sources */,
 				AE74528F2827F09400A3AFAD /* Dimens.swift in Sources */,
 				0111E924263F374800302356 /* UIColor+SUPLA.m in Sources */,
+				A57785BD29E7FAD0001C631E /* SuplaClientProvider.swift in Sources */,
 				01D5E0C822DB7FAF00FBE1DC /* SAChartMarkerView.swift in Sources */,
 				409934B61F30EF9C003110C5 /* RSDetailView.m in Sources */,
 				01C1719022C7F3A2005983E1 /* SAIncrementalMeasurementItem+CoreDataProperties.m in Sources */,
@@ -3949,6 +4050,7 @@
 				403150FB1DC769430075D2D2 /* RGBWDetailView.m in Sources */,
 				01F8856A22E5E79100D18373 /* SATempHumidityMeasurementItem+CoreDataProperties.m in Sources */,
 				01478826265317B000CC8A01 /* SACalCfgProgressReport.m in Sources */,
+				A57785BF29E80406001C631E /* SuplaAppWrapper.swift in Sources */,
 				AEB195DE276E5A040091D314 /* FadeTransition.swift in Sources */,
 				40E8BE881FC06A5600FB2FE6 /* TFHpple.m in Sources */,
 				01CEABFA25B9920A009C3BFD /* SADigiglassDetailView.m in Sources */,
@@ -3966,23 +4068,29 @@
 			buildActionMask = 2147483647;
 			files = (
 				01A4D4F8269211EA00F3DCD1 /* SAFormatterTests.m in Sources */,
+				A57638CE29E5EFDA003E15A3 /* GlobalSettingsMock.swift in Sources */,
 				01DD2F0C247718C40025DFF9 /* SARangeCalibrationWheelTests.m in Sources */,
 				401CA1DC1BA067DB00117AF4 /* SUPLATests.m in Sources */,
+				A57777CF29E69688004513E6 /* RuntimeConfigMock.swift in Sources */,
+				A57785C329E80CF7001C631E /* SuplaAppWrapperMock.swift in Sources */,
 				AEA1E96327422B0F005C34CB /* ProfileManagerTests.swift in Sources */,
+				A57638C629E5D4C9003E15A3 /* XCTestCaseExtensions.swift in Sources */,
 				016ABE18236DA795001BF5FB /* KeychainTests.m in Sources */,
 				AEBCD8FE26E4D52C001904F3 /* TemperatureUnitTests.swift in Sources */,
 				AEAAF2F82752937D0030CBA8 /* SUPLA.xcdatamodeld in Sources */,
-				A5F14B7D29DEE4D800682FA6 /* AccountRemovalVMTest.swift in Sources */,
+				A5F14B7D29DEE4D800682FA6 /* AccountRemovalVMTests.swift in Sources */,
 				AEFBC25226E39EFC00414C19 /* ConfigTests.swift in Sources */,
 				01CEAC2A25B9BAE2009C3BFD /* SADigiglassValueTests.m in Sources */,
 				01EFD94C236CA9AE00893489 /* NSDataEncryptionTest.m in Sources */,
 				012F722C22DF3E2300E5F72E /* ChartFilterFieldTests.m in Sources */,
 				01AB61ED25B8E0B400DBEF74 /* SADigiglassControllerTests.m in Sources */,
 				0130894523395F4C00F46FCD /* ThermostatScheduleCfgTests.m in Sources */,
+				A57638CC29E5EF95003E15A3 /* ProfileManagerMock.swift in Sources */,
 				01AC1AD62487C35E00F734DF /* SAColorBrightnessPickerTests.m in Sources */,
+				A57785C129E80C16001C631E /* SuplaClientProviderMock.swift in Sources */,
 				012FCBD323217DE000AC6FF6 /* ThermostatCalendarTests.m in Sources */,
 				01A66A7925364ABA00C00A1A /* SARoofWindowControllerTests.m in Sources */,
-				AECB1BE92710A785001A9714 /* AuthVMTests.swift in Sources */,
+				AECB1BE92710A785001A9714 /* AccountCreationVMTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4314,13 +4422,13 @@
 			name = AddWizardVC.xib;
 			sourceTree = "<group>";
 		};
-		40844D811FB0DDB000432AA0 /* AuthVC.xib */ = {
+		40844D811FB0DDB000432AA0 /* AccountCreationVC.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
 				40844D8A1FB0DF3B00432AA0 /* Base */,
 				017D392F29244A6C005F45FA /* uk */,
 			);
-			name = AuthVC.xib;
+			name = AccountCreationVC.xib;
 			sourceTree = "<group>";
 		};
 		40DB208F1DC9049400FAFAB0 /* RGBWDetail.xib */ = {

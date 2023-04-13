@@ -23,10 +23,11 @@ import RxSwift
 import RxCocoa
 
 /**
- `AuthVC` - a view controller for managing authentication settings of a profile.
+ `AccountCreationVC` - a view controller for managing authentication settings of a profile.
  */
-class AuthVC: BaseViewController {
+class AccountCreationVC: BaseViewControllerVM<AccountCreationViewState, AccountCreationViewEvent, AccountCreationVM> {
     
+    // MARK: UI variables
     @IBOutlet private var controlStack: UIStackView!
     
     @IBOutlet private var modeToggle: UISwitch!
@@ -73,10 +74,6 @@ class AuthVC: BaseViewController {
     
     @IBOutlet weak var adAccessIdWizardWarningHeight: NSLayoutConstraint!
     
-    
-    private let disposeBag = DisposeBag()
-    private var vM: AuthVM!
-    
     private let minTopMargin: CGFloat = 35
     private let minBottomMargin: CGFloat = 15
     private let topMargin: CGFloat = 65
@@ -96,35 +93,27 @@ class AuthVC: BaseViewController {
         }
     }
     
-    var viewModel: AuthVM {
-        loadViewIfNeeded()
-        assert(vM != nil)
-        return vM
-    }
-
     convenience init(navigationCoordinator: NavigationCoordinator,
                      profileId: NSManagedObjectID?) {
-        self.init(nibName: "AuthVC", bundle: nil)
+        self.init(nibName: "AccountCreationVC", bundle: nil)
         self.navigationCoordinator = navigationCoordinator
         self.profileId = profileId
+        
+        viewModel = AccountCreationVM(profileManager: SAApp.profileManager(), profileId: profileId)
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        title = Strings.NavBar.titleSupla
-        
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(onBackButtonPressed(_:)),
-                                               name: Notification.Name(kSAMenubarBackButtonPressed),
-                                               object: nil)
-
-        navigationItem.hidesBackButton = !SAApp.configIsSet() ||
-            !SAApp.isClientRegistered()
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(onBackButtonPressed(_:)),
+            name: Notification.Name(kSAMenubarBackButtonPressed),
+            object: nil
+        )
 
         configureUI()
         bindVM()
-        
     }
     
     override func viewDidLayoutSubviews() {
@@ -175,22 +164,22 @@ class AuthVC: BaseViewController {
         view.isUserInteractionEnabled = true
         
         createAccountButton.setAttributedTitle(NSLocalizedString("Create an account", comment: ""))
-        modeToggleLabel.text = Strings.Cfg.advancedSettings
-        createAccountPrompt.text = Strings.Cfg.createAccountPrompt
-        createAccountButton.setTitle(Strings.Cfg.createAccountButton)
+        modeToggleLabel.text = Strings.AccountCreation.advancedSettings
+        createAccountPrompt.text = Strings.AccountCreation.createAccountPrompt
+        createAccountButton.setTitle(Strings.AccountCreation.createAccountButton)
         
-        bsYourAccount.text = Strings.Cfg.yourAccountLabel
-        bsProfileNameLabel.text = Strings.Cfg.profileNameLabel
-        adProfileNameLabel.text = Strings.Cfg.profileNameLabel
-        bsEmailAddrLabel.text = Strings.Cfg.emailLabel
-        adEmailAddrLabel.text = Strings.Cfg.emailLabel
-        adServerAddrEmailLabel.text = Strings.Cfg.serverLabel
-        adAccessIDLabel.text = Strings.Cfg.accessIdLabel
-        adAccessPwdLabel.text = Strings.Cfg.passwordLabel
-        adServerAddrAccessIdLabel.text = Strings.Cfg.serverLabel
-        adAccessIdWizardWarning.text = Strings.Cfg.wizardWarningText
-        adAuthType.setTitle(Strings.Cfg.emailSegment, forSegmentAt: 0)
-        adAuthType.setTitle(Strings.Cfg.accessIdSegment, forSegmentAt: 1)
+        bsYourAccount.text = Strings.AccountCreation.yourAccountLabel
+        bsProfileNameLabel.text = Strings.AccountCreation.profileNameLabel
+        adProfileNameLabel.text = Strings.AccountCreation.profileNameLabel
+        bsEmailAddrLabel.text = Strings.AccountCreation.emailLabel
+        adEmailAddrLabel.text = Strings.AccountCreation.emailLabel
+        adServerAddrEmailLabel.text = Strings.AccountCreation.serverLabel
+        adAccessIDLabel.text = Strings.AccountCreation.accessIdLabel
+        adAccessPwdLabel.text = Strings.AccountCreation.passwordLabel
+        adServerAddrAccessIdLabel.text = Strings.AccountCreation.serverLabel
+        adAccessIdWizardWarning.text = Strings.AccountCreation.wizardWarningText
+        adAuthType.setTitle(Strings.AccountCreation.emailSegment, forSegmentAt: 0)
+        adAuthType.setTitle(Strings.AccountCreation.accessIdSegment, forSegmentAt: 1)
         
         adAccessIdWizardWarning.textColor = .alertRed
         adAccessIdWizardWarning.layer.cornerRadius = 9
@@ -213,84 +202,31 @@ class AuthVC: BaseViewController {
     }
 
     private func bindVM() {
-        /* Initialize view model and bind its inputs to the UI components */
-        let bindings = AuthVM.Inputs(
-            basicEmail: bsEmailAddr.rx.text.asObservable(),
-            basicName: bsProfileName.rx.text.asObservable(),
-            advancedEmail: adEmailAddr.rx.text.asObservable(),
-            advancedName: adProfileName.rx.text.asObservable(),
-            accessID: adAccessID.rx.text.asObservable().map { Int($0 ?? "0") }.asObservable(),
-            accessIDpwd: adAccessPwd.rx.text.asObservable(),
-            serverAddressForEmail: adServerAddrEmail.rx.text.asObservable(),
-            serverAddressForAccessID: adServerAddrAccessId.rx.text.asObservable(),
-            toggleAdvancedState: modeToggle.rx.isOn.asObservable(),
-            advancedModeAuthType: adAuthType.rx.selectedSegmentIndex.asObservable().map({ AuthVM.AuthType(rawValue: $0)!}).asObservable(),
-            createAccountRequest: createAccountButton.rx.tap.asObservable(),
-            autoServerSelected: adServerAuto.rx.tap.asObservable().map({
-                self.adServerAuto.isSelected
-            }),
-            formSubmitRequest: confirmButton.rx.tap.asObservable(),
-            accountDeleteRequest: deleteButton.rx.tap.asObservable()
-        )
-        
-        vM = AuthVM(bindings: bindings,
-                    profileManager: SAApp.profileManager(),
-                    profileId: profileId)
-
-        
-        /* Bind view model outputs to UI components */
-        vM.isAdvancedMode.bind(to: self.modeToggle.rx.isOn)
-            .disposed(by: disposeBag)
-        vM.serverAddressForEmail.bind(to: self.adServerAddrEmail.rx.text)
-            .disposed(by: disposeBag)
-        vM.serverAddressForAccessID.bind(to: self.adServerAddrAccessId.rx.text)
-            .disposed(by: disposeBag)
-        vM.emailAddress.bind(to: self.bsEmailAddr.rx.text, self.adEmailAddr.rx.text)
-            .disposed(by: disposeBag)
-        vM.profileName.bind(to: self.bsProfileName.rx.text,
-                            self.adProfileName.rx.text)
-          .disposed(by: disposeBag)
-        vM.isServerAutoDetect.bind(to: self.adServerAuto.rx.isSelected)
-            .disposed(by: disposeBag)
-        
-        vM.isAdvancedMode.subscribe { [weak self] (isAdvanced: Bool) in
+        viewModel.advancedMode.subscribe { [weak self] (isAdvanced: Bool) in
             guard let ss = self else { return }
             if isAdvanced {
                 ss.setContentView(ss.vAdvanced)
             } else {
                 ss.setContentView(ss.vBasic)
             }
-        }.disposed(by: disposeBag)
+            self?.modeToggle.isOn = isAdvanced
+        }.disposed(by: self)
         
-        vM.advancedModeAuthType.subscribe(onNext: { [weak self] at in
-            self?.setAdvancedAuthMode(at)
-        }).disposed(by: disposeBag)
+        viewModel.bind(field: \.profileName, toOptional: bsProfileName.rx.text.asObservable())
+        viewModel.bind(field: \.profileName, toOptional: adProfileName.rx.text.asObservable())
+        viewModel.bind(field: \.authType, toOptional: adAuthType.rx.selectedSegmentIndex.asObservable().map({ AccountCreationViewState.AuthType(rawValue: $0) }))
+        viewModel.bind(field: \.serverAddressForEmail, toOptional: adServerAddrEmail.rx.text.asObservable())
+        viewModel.bind(field: \.serverAddressForAccessId, toOptional: adServerAddrAccessId.rx.text.asObservable())
+        viewModel.bind(field: \.accessId, toOptional: adAccessID.rx.text.asObservable())
+        viewModel.bind(field: \.accessIdPassword, toOptional: adAccessPwd.rx.text.asObservable())
         
-        vM.isServerAutoDetect.subscribe { [weak self] autoDetect in
-            self?.adServerAddrEmail.isEnabled = autoDetect.element == false
-        }.disposed(by: disposeBag)
-
-        vM.accessID.subscribe { [weak self] accessID in
-            guard let accessID = accessID.element! else { return }
-            self?.adAccessID.text = String(accessID)
-        }.disposed(by: disposeBag)
-        
-        vM.accessIDpwd.bind(to: self.adAccessPwd.rx.text).disposed(by: disposeBag)
-        
-        vM.basicModeUnavailable.subscribe(onNext: { [weak self] in
-            self?.displayBasicModeUnavailableAlert()
-        }).disposed(by: disposeBag)
-
-        vM.events.subscribe(onNext: { event in
-            self.handleViewEvents(event: event)
-        }).disposed(by: disposeBag)
-        
-        vM.state.subscribe(onNext: { state in
-            self.profileNameContainer.forEach { $0.isHidden = !state.profileNameVisible }
-            self.createAccountPrompt.isHidden = state.profileNameVisible
-            self.createAccountButton.isHidden = state.profileNameVisible
-            self.deleteButton.isHidden = !state.deleteButtonVisible
-        }).disposed(by: disposeBag)
+        viewModel.bind(confirmButton.rx.tap.asObservable()) { self.viewModel.save() }
+        viewModel.bind(bsEmailAddr.rx.text.asObservable()) { self.viewModel.setEmailAddress($0!) }
+        viewModel.bind(adEmailAddr.rx.text.asObservable()) { self.viewModel.setEmailAddress($0!) }
+        viewModel.bind(modeToggle.rx.isOn.debounce(.milliseconds(100), scheduler: MainScheduler.instance).distinctUntilChanged().asObservable()) { isOn in self.viewModel.toggleAdvancedState(isOn) }
+        viewModel.bind(adServerAuto.rx.tap.asObservable().map({ self.adServerAuto.isSelected })) { isOn in self.viewModel.setServerAutodetect(isOn) }
+        viewModel.bind(deleteButton.rx.tap.asObservable()) { self.viewModel.removeTapped() }
+        viewModel.bind(createAccountButton.rx.tap.asObservable()) { self.viewModel.addAccountTapped() }
     }
     
     override func updateViewConstraints() {
@@ -326,7 +262,8 @@ class AuthVC: BaseViewController {
         
     }
     
-    private func handleViewEvents(event: AuthViewEvent) {
+    // MARK: Handlers
+    override func handle(event: AccountCreationViewEvent) {
         switch (event) {
         case .showRemovalDialog:
             handleShowRemovalDialogEvent()
@@ -337,16 +274,14 @@ class AuthVC: BaseViewController {
         case .navigateToCreateAccount:
             navigator?.navigateToCreateAccount()
             break
-        case .navigateToRemoveAccount(let needsRestart):
-            navigator?.navigateToRemoveAccount(needsRestart: needsRestart)
+        case .navigateToRemoveAccount(let needsRestart, let serverAddress):
+            navigator?.navigateToRemoveAccount(needsRestart: needsRestart, serverAddress: serverAddress)
             break
-        case .finish(let needsRestart):
+        case .finish(let needsRestart, let needsReauth):
             if (needsRestart) {
-                guard let window = UIApplication.shared.keyWindow else { return }
-                
-                let navCtrl = MainNavigationCoordinator()
-                navCtrl.attach(to: window)
-                navCtrl.start(from: nil)
+                navigator?.restartAppFlow()
+            } else if(needsReauth) {
+                navigator?.finish(shouldReauthenticate: true)
             } else {
                 navigator?.finish()
             }
@@ -363,16 +298,42 @@ class AuthVC: BaseViewController {
         case .showRequiredDataMisingDialog:
             showInfoDialog(title: Strings.General.error, message: Strings.Cfg.Dialogs.incomplete)
             break
+        case .showBasicModeUnavailableDialog:
+            displayBasicModeUnavailableAlert()
+            break
         }
+    }
+    
+    override func handle(state: AccountCreationViewState) {
+        bsProfileName.text = state.profileName
+        adProfileName.text = state.profileName
+        bsEmailAddr.text = state.emailAddress
+        adEmailAddr.text = state.emailAddress
+        adAccessID.text = state.accessId
+        adAccessPwd.text = state.accessIdPassword
+        adServerAddrAccessId.text = state.serverAddressForAccessId
+        
+        adServerAddrEmail.text = state.serverAddressForEmail
+        
+        profileNameContainer.forEach { $0.isHidden = !state.profileNameVisible }
+        createAccountPrompt.isHidden = state.profileNameVisible
+        createAccountButton.isHidden = state.profileNameVisible
+        deleteButton.isHidden = !state.deleteButtonVisible
+        adServerAddrEmail.isEnabled = !state.serverAutoDetect
+        adServerAuto.isSelected = state.serverAutoDetect
+        setAdvancedAuthMode(state.authType)
+        
+        navigationItem.hidesBackButton = !state.backButtonVisible
+        title = state.title
     }
     
     private func handleShowRemovalDialogEvent() {
         let actionSheet = UIAlertController(title: Strings.Cfg.removalConfirmationTitle, message: nil, preferredStyle: .actionSheet)
         actionSheet.addAction(UIAlertAction(title: Strings.Cfg.removalActionLogout, style: .destructive, handler: { action in
-            self.vM.logoutAccount()
+            self.viewModel.logoutAccount()
         }))
         actionSheet.addAction(UIAlertAction(title: Strings.Cfg.removalActionRemove, style: .destructive, handler: { action in
-            self.vM.removeAccount()
+            self.viewModel.removeAccount()
         }))
         actionSheet.addAction(UIAlertAction(title: Strings.General.cancel, style: .cancel, handler: { action in
             NSLog("User canceled removal action")
@@ -383,19 +344,14 @@ class AuthVC: BaseViewController {
     private func handleFormSavedEvent(_ needsReauth: Bool) {
         if (needsReauth) {
             SAApp.revokeOAuthToken()
-            SAApp.db().deleteAllUserIcons()
         }
-        navigator?.didFinish(shouldReauthenticate: needsReauth)
+        navigator?.finish(shouldReauthenticate: needsReauth)
         if (needsReauth || !SAApp.suplaClientConnected()) {
             NotificationCenter.default.post(name: .saConnecting, object: self, userInfo: nil)
-            let pm = SAApp.profileManager()
-            let ai = pm.getCurrentAuthInfo()
-            ai.preferredProtocolVersion = Int(SUPLA_PROTO_VERSION)
-            pm.updateCurrentAuthInfo(ai)
-            SAApp.suplaClient().reconnect()
         }
     }
     
+    // MARK: Private functions
     private func setContentView(_ v: UIView) {
         activeContentView?.removeFromSuperview()
         containerView.addSubview(v)
@@ -407,7 +363,7 @@ class AuthVC: BaseViewController {
         v.bottomAnchor.constraint(equalTo: containerView.bottomAnchor).isActive = true
     }
     
-    private func setAdvancedAuthMode(_ at: AuthVM.AuthType) {
+    private func setAdvancedAuthMode(_ at: AccountCreationViewState.AuthType) {
         let viewToRemove, viewToAdd: UIView
 
         switch at {
@@ -433,8 +389,8 @@ class AuthVC: BaseViewController {
     }
     
     private func displayBasicModeUnavailableAlert() {
-        let alert = UIAlertController(title: Strings.Cfg.basicModeNotAvailableTitle,
-                                      message: Strings.Cfg.basicModeNotAvailableMessage,
+        let alert = UIAlertController(title: Strings.AccountCreation.basicModeNotAvailableTitle,
+                                      message: Strings.AccountCreation.basicModeNotAvailableMessage,
                                       preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "OK",
                                       style: .default))
@@ -458,7 +414,7 @@ class AuthVC: BaseViewController {
     }
 }
 
-extension AuthVC: UITextFieldDelegate {
+extension AccountCreationVC: UITextFieldDelegate {
     func textFieldDidBeginEditing(_ textField: UITextField) {
         currentTextField = textField
     }

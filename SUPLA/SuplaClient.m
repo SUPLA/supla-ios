@@ -438,7 +438,12 @@ void sasuplaclient_scene_state_update(void *_suplaclient,
 
 - (char*) getServerHostName {
     id<ProfileManager> pm = SAApp.profileManager;
-    AuthInfo *ai = [pm getCurrentAuthInfo];
+    AuthProfileItem *profile = [pm getCurrentProfile];
+    if (profile == nil) {
+        return "";
+    }
+    
+    AuthInfo *ai = profile.authInfo;
     NSString *host = ai.serverForCurrentAuthMethod;
     if ( [host isEqualToString:@""] && ai.emailAuth && ![ai.emailAddress isEqualToString:@""] ) {
         
@@ -460,7 +465,7 @@ void sasuplaclient_scene_state_update(void *_suplaclient,
                 NSString *str = [jsonObj objectForKey:@"server"];
                 if ( str != nil && [str isKindOfClass:[NSString class]]) {
                     ai.serverForEmail = str;
-                    [pm updateCurrentAuthInfo:ai];
+                    [pm update: profile];
                     host = str;
                 }
             }
@@ -478,34 +483,37 @@ void sasuplaclient_scene_state_update(void *_suplaclient,
     id<ProfileManager> pm = SAApp.profileManager;
     AuthProfileItem *profile = [pm getCurrentProfile];
 
-    [profile.clientGUID getBytes: scc.clientGUID
-                          length: SUPLA_GUID_SIZE];
-    [profile.authKey getBytes: scc.AuthKey
-                       length: SUPLA_AUTHKEY_SIZE];
-    
-    scc.user_data = (__bridge void *)self;
-    scc.host = [self getServerHostName];
-    
-    if (scc.host == NULL
-        || strnlen(scc.host, SUPLA_SERVER_NAME_MAXSIZE) == 0) {
-        [self onConnError:SUPLA_RESULT_HOST_NOT_FOUND];
-    }
-    
-    AuthInfo *ai = profile.authInfo;
-    if ( !ai.emailAuth ) {
-        scc.AccessID = ai.accessID;
-        snprintf(scc.AccessIDpwd, SUPLA_ACCESSID_PWD_MAXSIZE, "%s", [ai.accessIDpwd UTF8String]);
+    if (profile != nil) {
+        [profile.clientGUID getBytes: scc.clientGUID
+                              length: SUPLA_GUID_SIZE];
+        [profile.authKey getBytes: scc.AuthKey
+                           length: SUPLA_AUTHKEY_SIZE];
         
-        if ( _regTryCounter >= 2 ) {
-            ai.preferredProtocolVersion = 4;
-            [pm updateCurrentAuthInfo:ai]; // supla-server v1.0 for Raspberry Compatibility fix
+        scc.user_data = (__bridge void *)self;
+        scc.host = [self getServerHostName];
+        
+        if (scc.host == NULL
+            || strnlen(scc.host, SUPLA_SERVER_NAME_MAXSIZE) == 0) {
+            [self onConnError:SUPLA_RESULT_HOST_NOT_FOUND];
         }
         
-    } else {
-        snprintf(scc.Email, SUPLA_EMAIL_MAXSIZE, "%s", [ai.emailAddress UTF8String]);
-        if (_oneTimePassword && _oneTimePassword.length) {
-            snprintf(scc.Password, SUPLA_PASSWORD_MAXSIZE, "%s", [_oneTimePassword UTF8String]);
+        AuthInfo *ai = profile.authInfo;
+        if ( !ai.emailAuth ) {
+            scc.AccessID = ai.accessID;
+            snprintf(scc.AccessIDpwd, SUPLA_ACCESSID_PWD_MAXSIZE, "%s", [ai.accessIDpwd UTF8String]);
+            
+            if ( _regTryCounter >= 2 ) {
+                ai.preferredProtocolVersion = 4;
+                [pm update:profile]; // supla-server v1.0 for Raspberry Compatibility fix
+            }
+            
+        } else {
+            snprintf(scc.Email, SUPLA_EMAIL_MAXSIZE, "%s", [ai.emailAddress UTF8String]);
+            if (_oneTimePassword && _oneTimePassword.length) {
+                snprintf(scc.Password, SUPLA_PASSWORD_MAXSIZE, "%s", [_oneTimePassword UTF8String]);
+            }
         }
+        scc.protocol_version = ai.preferredProtocolVersion;
     }
     
     _oneTimePassword = nil;
@@ -547,8 +555,6 @@ void sasuplaclient_scene_state_update(void *_suplaclient,
     scc.cb_on_zwave_set_wake_up_time_result = sasuplaclient_on_zwave_set_wake_up_time_result;
     scc.cb_scene_update = sasuplaclient_scene_update;
     scc.cb_scene_state_update = sasuplaclient_scene_state_update;
-    
-    scc.protocol_version = ai.preferredProtocolVersion;
     
     return supla_client_init(&scc);
 
@@ -650,18 +656,17 @@ void sasuplaclient_scene_state_update(void *_suplaclient,
     
     _regTryCounter = 0;
     id<ProfileManager> pm = SAApp.profileManager;
-    AuthInfo *ai = [pm getCurrentAuthInfo];
+    AuthProfileItem *profile = [pm getCurrentProfile];
     
-    if ( (!ai.emailAuth || ve.remoteVersion >= 7)
+    if ( profile != nil && (!profile.authInfo.emailAuth || ve.remoteVersion >= 7)
         && ve.remoteVersion >= 5
         && ve.version > ve.remoteVersion
-        && ai.preferredProtocolVersion != ve.remoteVersion ) {
-        ai.preferredProtocolVersion = ve.remoteVersion;
-        [pm updateCurrentAuthInfo: ai];
+        && profile.authInfo.preferredProtocolVersion != ve.remoteVersion ) {
+        profile.authInfo.preferredProtocolVersion = ve.remoteVersion;
+        [pm update: profile];
         [self reconnect];
         return;
     }
-    
     
     [self performSelectorOnMainThread:@selector(_onVersionError:)
                            withObject:ve waitUntilDone:NO];
@@ -722,13 +727,14 @@ void sasuplaclient_scene_state_update(void *_suplaclient,
 
     _regTryCounter = 0;
     id<ProfileManager> pm = [SAApp profileManager];
-    AuthInfo *ai = [pm getCurrentAuthInfo];
+    AuthProfileItem *profile = [pm getCurrentProfile];
+    AuthInfo *ai = profile.authInfo;
     
     if ( ai.preferredProtocolVersion < SUPLA_PROTO_VERSION
          && result.Version > ai.preferredProtocolVersion
         && result.Version <= SUPLA_PROTO_VERSION ) {
         ai.preferredProtocolVersion = result.Version;
-        [pm updateCurrentAuthInfo:ai];
+        [pm update:profile];
         
     };
     

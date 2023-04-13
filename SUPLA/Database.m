@@ -83,6 +83,10 @@
     NSDictionary *opts = nil;
     NSURL *storeURL = [[SAApp applicationDocumentsDirectory] URLByAppendingPathComponent:[NSString stringWithFormat:@"SUPLA_DB%i.sqlite", DBv]];
     
+#ifdef DEBUG
+    NSLog(@"Database path: %@", storeURL.absoluteString);
+#endif
+    
     // Create the coordinator and store
 again:
     _persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:[self managedObjectModel]];
@@ -296,6 +300,7 @@ again:
     
     Location.location_id = [NSNumber numberWithInt:0];
     Location.caption = @"";
+    Location.profile = self.currentProfile;
     [Location setLocationVisible:0];
     [self.managedObjectContext insertObject:Location];
    
@@ -359,6 +364,7 @@ again:
     SAChannelValue *Value = [[SAChannelValue alloc] initWithEntity:[NSEntityDescription entityForName:@"SAChannelValue" inManagedObjectContext:self.managedObjectContext] insertIntoManagedObjectContext:self.managedObjectContext];
     
     [Value initWithChannelId:channel_id];
+    Value.profile = self.currentProfile;
     [self.managedObjectContext insertObject:Value];
     
     return Value;
@@ -372,6 +378,7 @@ again:
                                      insertIntoManagedObjectContext:self.managedObjectContext];
     
     [Value initWithChannelId:channel_id];
+    Value.profile = self.currentProfile;
     [self.managedObjectContext insertObject:Value];
     
     return Value;
@@ -653,6 +660,7 @@ again:
     CGroup.flags = 0;
     CGroup.online = 0;
     CGroup.total_value = nil;
+    CGroup.profile = self.currentProfile;
     
     [self.managedObjectContext insertObject:CGroup];
     
@@ -1028,8 +1036,8 @@ again:
 
 -(SAElectricityMeasurementItem*) newElectricityMeasurementItemWithManagedObjectContext:(BOOL)moc {
     SAElectricityMeasurementItem *item = [[SAElectricityMeasurementItem alloc] initWithEntity:[NSEntityDescription entityForName:@"SAElectricityMeasurementItem" inManagedObjectContext:self.managedObjectContext] insertIntoManagedObjectContext:moc ? self.managedObjectContext : nil];
-    
     if (moc) {
+        item.profile = self.currentProfile;
         [self.managedObjectContext insertObject:item];
     }
     return item;
@@ -1092,6 +1100,7 @@ again:
     SAImpulseCounterMeasurementItem *item = [[SAImpulseCounterMeasurementItem alloc] initWithEntity:[NSEntityDescription entityForName:@"SAImpulseCounterMeasurementItem" inManagedObjectContext:self.managedObjectContext] insertIntoManagedObjectContext:moc ? self.managedObjectContext : nil];
     
     if (moc) {
+        item.profile = self.currentProfile;
         [self.managedObjectContext insertObject:item];
     }
     return item;
@@ -1145,6 +1154,7 @@ again:
 -(SATemperatureMeasurementItem*) newTemperatureMeasurementItem {
     SATemperatureMeasurementItem *item = [[SATemperatureMeasurementItem alloc] initWithEntity:[NSEntityDescription entityForName:@"SATemperatureMeasurementItem" inManagedObjectContext:self.managedObjectContext] insertIntoManagedObjectContext:self.managedObjectContext];
     
+    item.profile = self.currentProfile;
     [self.managedObjectContext insertObject:item];
     return item;
 }
@@ -1170,6 +1180,7 @@ again:
 -(SATempHumidityMeasurementItem*) newTempHumidityMeasurementItem {
     SATempHumidityMeasurementItem *item = [[SATempHumidityMeasurementItem alloc] initWithEntity:[NSEntityDescription entityForName:@"SATempHumidityMeasurementItem" inManagedObjectContext:self.managedObjectContext] insertIntoManagedObjectContext:self.managedObjectContext];
     
+    item.profile = self.currentProfile;
     [self.managedObjectContext insertObject:item];
     return item;
 }
@@ -1195,6 +1206,7 @@ again:
 -(SAThermostatMeasurementItem*) newThermostatMeasurementItem {
     SAThermostatMeasurementItem *item = [[SAThermostatMeasurementItem alloc] initWithEntity:[NSEntityDescription entityForName:@"SAThermostatMeasurementItem" inManagedObjectContext:self.managedObjectContext] insertIntoManagedObjectContext:self.managedObjectContext];
     
+    item.profile = self.currentProfile;
     [self.managedObjectContext insertObject:item];
     return item;
 }
@@ -1339,6 +1351,7 @@ again:
     if (i == nil && create) {
         i = [[SAUserIcon alloc] initWithEntity:[NSEntityDescription entityForName:@"SAUserIcon" inManagedObjectContext:self.managedObjectContext] insertIntoManagedObjectContext:self.managedObjectContext];
         i.remote_id = remote_id;
+        i.profile = self.currentProfile;
         [self.managedObjectContext insertObject:i];
     }
     

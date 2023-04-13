@@ -45,7 +45,6 @@ NS_ASSUME_NONNULL_BEGIN
 +(BOOL) getAuthKey:(char[SUPLA_AUTHKEY_SIZE])auth_key DEPRECATED_ATTRIBUTE;
 +(void) abstractMethodException:(NSString *)methodName;
 +(NSURL *)applicationDocumentsDirectory;
-+(BOOL) configIsSet;
 +(void) setBrightnessPickerTypeToSlider:(BOOL)slider;
 +(BOOL) isBrightnessPickerTypeSet;
 +(BOOL) isBrightnessPickerTypeSlider;

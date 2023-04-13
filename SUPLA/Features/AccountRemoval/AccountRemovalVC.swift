@@ -22,15 +22,19 @@ import WebKit
 
 class AccountRemovalVC : BaseViewControllerVM<AccountRemovalViewState, AccountRemovalViewEvent, AccountRemovalVM>, WKUIDelegate {
     
-    private let removalUrl = "https://cloud.supla.org/db99845855b2ecbfecca9a095062b96c3e27703f"
+    private var navigator: AccountRemovalNavigationCoordinator? {
+        get {
+            navigationCoordinator as? AccountRemovalNavigationCoordinator
+        }
+    }
     
     private var webView: WKWebView!
     
-    convenience init(navigationCoordinator: NavigationCoordinator) {
+    convenience init(navigationCoordinator: NavigationCoordinator, needsRestart: Bool, serverAddress: String?) {
         self.init(nibName: nil, bundle: nil)
         self.navigationCoordinator = navigationCoordinator
         
-        viewModel = AccountRemovalVM()
+        viewModel = AccountRemovalVM(needsRestart: needsRestart, serverAddress: serverAddress)
     }
     
     override func loadView() {
@@ -44,15 +48,17 @@ class AccountRemovalVC : BaseViewControllerVM<AccountRemovalViewState, AccountRe
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let url = URL(string: removalUrl)!
+        let url = URL(string: viewModel.provideUrl())!
         let urlRequet = URLRequest(url: url)
         webView.load(urlRequet)
     }
     
     override func handle(event: AccountRemovalViewEvent) {
         switch(event) {
+        case .finishAndRestart:
+            navigator?.finishWithRestart()
         case .finish:
-            navigationCoordinator?.finish()
+            navigator?.finish()
             break
         }
     }
