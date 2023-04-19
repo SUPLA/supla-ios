@@ -479,7 +479,7 @@ class AccountCreationVMTests: XCTestCase {
         XCTAssertEqual(stateObserver.events.count, 2)
         XCTAssertEqual(eventObserver.events.count, 1)
         
-        let state = AccountCreationViewState.create(title: Strings.AccountCreation.title, profileNameVisible: true, deleteButtonVisible: true, backButtonVisible: true)
+        let state = AccountCreationViewState.create(title: Strings.AccountCreation.creationTitle, profileNameVisible: true, deleteButtonVisible: true, backButtonVisible: true)
         XCTAssertEqual(stateObserver.events, [
             .next(0, state),
             .next(1, state.changing(path: \.profileName, to: ""))
@@ -515,7 +515,7 @@ class AccountCreationVMTests: XCTestCase {
         XCTAssertEqual(stateObserver.events.count, 2)
         XCTAssertEqual(eventObserver.events.count, 1)
         
-        let state = AccountCreationViewState.create(title: Strings.AccountCreation.title, profileNameVisible: true, deleteButtonVisible: true, backButtonVisible: true)
+        let state = AccountCreationViewState.create(title: Strings.AccountCreation.creationTitle, profileNameVisible: true, deleteButtonVisible: true, backButtonVisible: true)
         XCTAssertEqual(stateObserver.events, [
             .next(0, state),
             .next(1, state.changing(path: \.profileName, to: name))
@@ -543,7 +543,7 @@ class AccountCreationVMTests: XCTestCase {
         XCTAssertEqual(stateObserver.events.count, 1)
         XCTAssertEqual(eventObserver.events.count, 1)
         
-        let state = AccountCreationViewState.create(title: Strings.AccountCreation.title, profileNameVisible: true, deleteButtonVisible: true, backButtonVisible: true)
+        let state = AccountCreationViewState.create(title: Strings.AccountCreation.creationTitle, profileNameVisible: true, deleteButtonVisible: true, backButtonVisible: true)
         XCTAssertEqual(stateObserver.events, [ .next(0, state) ])
         XCTAssertEqual(eventObserver.events, [ .next(1, .showRequiredDataMisingDialog) ])
         
@@ -571,7 +571,7 @@ class AccountCreationVMTests: XCTestCase {
         XCTAssertEqual(stateObserver.events.count, 2)
         XCTAssertEqual(eventObserver.events.count, 1)
         
-        let state = AccountCreationViewState.create(title: Strings.AccountCreation.title, profileNameVisible: true, deleteButtonVisible: true, backButtonVisible: true)
+        let state = AccountCreationViewState.create(title: Strings.AccountCreation.creationTitle, profileNameVisible: true, deleteButtonVisible: true, backButtonVisible: true)
         XCTAssertEqual(stateObserver.events, [
             .next(0, state),
             .next(1, state.changing(path: \.emailAddress, to: email))
@@ -607,7 +607,7 @@ class AccountCreationVMTests: XCTestCase {
         XCTAssertEqual(stateObserver.events.count, 1)
         XCTAssertEqual(eventObserver.events.count, 1)
         
-        let state = AccountCreationViewState.create(title: Strings.AccountCreation.title, emailAddress: email, profileNameVisible: true, deleteButtonVisible: true, backButtonVisible: true)
+        let state = AccountCreationViewState.create(title: Strings.AccountCreation.creationTitle, emailAddress: email, profileNameVisible: true, deleteButtonVisible: true, backButtonVisible: true)
         XCTAssertEqual(stateObserver.events, [ .next(0, state) ])
         XCTAssertEqual(eventObserver.events, [ .next(1, .formSaved(needsReauth: false)) ])
         
@@ -642,7 +642,7 @@ class AccountCreationVMTests: XCTestCase {
         XCTAssertEqual(stateObserver.events.count, 2)
         XCTAssertEqual(eventObserver.events.count, 1)
         
-        let state = AccountCreationViewState.create(title: Strings.AccountCreation.title, profileNameVisible: true, deleteButtonVisible: true, backButtonVisible: true)
+        let state = AccountCreationViewState.create(title: Strings.AccountCreation.creationTitle, profileNameVisible: true, deleteButtonVisible: true, backButtonVisible: true)
         XCTAssertEqual(stateObserver.events, [
             .next(0, state),
             .next(1, state.changing(path: \.emailAddress, to: email))

@@ -310,6 +310,7 @@
 "my9-Mc-v9S.text" = "Impostazioni";
 
 "AccountCreation.title" = "Modifica account";
+"AccountCreation.modificationTitle" = "Aggiungi un account";
 
 "Cfg.removal.dialog.missing_name" = "Manca il nome dell’account";
 "Cfg.removal.dialog.duplicated_name" = "Un account con lo stesso nome è già esistente";

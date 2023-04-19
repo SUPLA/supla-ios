@@ -300,6 +300,7 @@
 "Phase %d" = "Phase %d";
 
 "AccountCreation.title" = "Konto bearbeiten";
+"AccountCreation.modificationTitle" = "Konto hinzufügen";
 
 "Scenes.ActionButtons.execute" = "Ausführen";
 "Scenes.ActionButtons.abort" = "Abbrechen";

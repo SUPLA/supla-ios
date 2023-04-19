@@ -51,7 +51,8 @@ struct Strings {
     }
     
     struct AccountCreation {
-        static let title = NSLocalizedString("AccountCreation.title", comment: "Title of the account creation screen")
+        static let creationTitle = NSLocalizedString("AccountCreation.title", comment: "Title of the account creation screen")
+        static let modificationTitle = NSLocalizedString("AccountCreation.modificationTitle", comment: "Title of the account creation screen")
         
         static let yourAccountLabel = NSLocalizedString("Your account", comment: "account configuration settings screen")
         static let profileNameLabel = NSLocalizedString("NAME", comment: "label for profile name")

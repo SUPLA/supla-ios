@@ -303,6 +303,7 @@
 "Scenes" = "Sceny";
 
 "AccountCreation.title" = "Edytuj konto";
+"AccountCreation.modificationTitle" = "Dodaj konto";
 
 "Scenes.ActionButtons.execute" = "Wykonaj";
 "Scenes.ActionButtons.abort" = "Przerwij";

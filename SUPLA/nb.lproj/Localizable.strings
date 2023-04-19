@@ -300,6 +300,7 @@
 "Phase %d" = "Fase %d";
 
 "AccountCreation.title" = "Rediger konto";
+"AccountCreation.modificationTitle" = "Legg til konto";
 
 "Cfg.removal.dialog.missing_name" = "Skriv inn et kontonavn";
 "Cfg.removal.dialog.duplicated_name" = "En konto med dette navnet eksisterer allerede";

@@ -302,6 +302,7 @@
 "Phase %d" = "%d fazė";
 
 "AccountCreation.title" = "Koreguoti paskyrą";
+"AccountCreation.modificationTitle" = "Pridėti paskyrą";
 
 "Cfg.removal.dialog.missing_name" = "Įveskite paskyros pavadinimą";
 "Cfg.removal.dialog.duplicated_name" = "Paskyra su tokiu pavadinimu jau yra";

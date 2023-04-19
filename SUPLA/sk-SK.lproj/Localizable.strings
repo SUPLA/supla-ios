@@ -300,6 +300,7 @@
 "Phase %d" = "Fáza %d";
 
 "AccountCreation.title" = "Upraviť účet";
+"AccountCreation.modificationTitle" = "Pridať účet";
 
 "Cfg.removal.dialog.missing_name" = "Zadaj názov účtu";
 "Cfg.removal.dialog.duplicated_name" = "Účet s týmto názvom už existuje";
