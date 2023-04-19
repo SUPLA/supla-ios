@@ -71,7 +71,7 @@ class AccountCreationVM: BaseViewModel<AccountCreationViewState, AccountCreation
                 .changing(path: \.deleteButtonVisible, to: settings.anyAccountRegistered && isNewProfile())
                 .changing(path: \.profileNameVisible, to: settings.anyAccountRegistered)
                 .changing(path: \.backButtonVisible, to: settings.anyAccountRegistered)
-                .changing(path: \.title, to: settings.anyAccountRegistered ? Strings.AccountCreation.title : Strings.NavBar.titleSupla)
+                .changing(path: \.title, to: title())
         }
     }
     
@@ -280,6 +280,16 @@ class AccountCreationVM: BaseViewModel<AccountCreationViewState, AccountCreation
             return authInfo.serverForEmail
         } else {
             return authInfo.serverForAccessID
+        }
+    }
+    
+    private func title() -> String {
+        if (!settings.anyAccountRegistered) {
+            return Strings.NavBar.titleSupla
+        } else if (isNewProfile()) {
+            return Strings.AccountCreation.creationTitle
+        } else {
+            return Strings.AccountCreation.modificationTitle
         }
     }
 }

@@ -300,6 +300,7 @@
 "Phase %d" = "Phase %d";
 
 "AccountCreation.title" = "Modifier le compte";
+"AccountCreation.modificationTitle" = "Ajouter un compte";
 
 "Cfg.removal.dialog.missing_name" = "Entrez le nom du compte";
 "Cfg.removal.dialog.duplicated_name" = "Le compte avec ce nom existe déjà";

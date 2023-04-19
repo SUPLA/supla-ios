@@ -300,6 +300,7 @@
 "Phase %d" = "Στάδιο %d";
 
 "AccountCreation.title" = "Επεξεργασία λογαριασμού";
+"AccountCreation.modificationTitle" = "Προσθήκη λογαριασμού";
 
 "Cfg.removal.dialog.missing_name" = "Εισαγάγετε ένα όνομα λογαριασμού";
 "Cfg.removal.dialog.duplicated_name" = "Υπάρχει ήδη ένας λογαριασμός με αυτό το όνομα";

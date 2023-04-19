@@ -141,6 +141,8 @@ extension ScenesVC: UITableViewDelegate {
 extension ScenesVC: UITableViewDragDelegate {
     func tableView(_ tableView: UITableView, itemsForBeginning session: UIDragSession,
                    at indexPath: IndexPath) -> [UIDragItem] {
+        _viewModel.movingStarted()
+        
         let prov = NSItemProvider()
         let dragItem = UIDragItem(itemProvider: prov)
         session.localContext = indexPath
@@ -180,7 +182,8 @@ extension ScenesVC: UITableViewDropDelegate {
         sect.scenes[b.row] = tmp
         _sections[a.section] = sect
         _viewModel.sectionSorter.onNext(_sections)
-            
+        
+        _viewModel.movingStopped()
     }
     
     

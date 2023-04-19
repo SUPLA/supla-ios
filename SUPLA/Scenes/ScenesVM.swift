@@ -41,6 +41,7 @@ class ScenesVM: NSObject {
     var sectionSorter = PublishSubject<[Section]>()
     
     private var _swipedItemsCounter = 0
+    private var _movingItem = false
     private var _reloadPending = false
 
     @objc
@@ -65,6 +66,18 @@ class ScenesVM: NSObject {
     
     func isSectionCollapsed(_ sec: Int) -> Bool {
         return sections.value[sec].location.collapsed & _bitCollapse == _bitCollapse
+    }
+    
+    func movingStarted() {
+        _movingItem = true
+    }
+    
+    func movingStopped() {
+        _movingItem = false
+        
+        if (_reloadPending) {
+            reloadScenes()
+        }
     }
     
     func openingItem() {
@@ -97,7 +110,7 @@ class ScenesVM: NSObject {
     }
     
     @objc private func reloadScenes() {
-        if (_swipedItemsCounter > 0) {
+        if (_swipedItemsCounter > 0 || _movingItem) {
             _reloadPending = true
             return
         }

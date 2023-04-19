@@ -300,6 +300,7 @@
 "Phase %d" = "Fase %d";
 
 "AccountCreation.title" = "Rekening bewerken";
+"AccountCreation.modificationTitle" = "Rekening toevoegen";
 
 "Cfg.removal.dialog.missing_name" = "Voer de naam van uw rekening in";
 "Cfg.removal.dialog.duplicated_name" = "Er is al een rekening met deze naam";

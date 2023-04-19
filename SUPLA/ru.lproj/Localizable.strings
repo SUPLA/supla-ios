@@ -304,6 +304,7 @@
 "Phase %d" = "Фаза %d";
 
 "AccountCreation.title" = "Редактировать учётную запись";
+"AccountCreation.modificationTitle" = "Добавить учётную запись";
 
 "Cfg.removal.dialog.missing_name" = "Введите название учётной записи";
 "Cfg.removal.dialog.duplicated_name" = "Учётная запись с таким названием уже существует";
