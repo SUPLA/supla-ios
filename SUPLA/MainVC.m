@@ -878,6 +878,8 @@
         _scenesVM = [[ScenesVM alloc] initWithDatabase: [SAApp DB]];
         _scenesVC = [[ScenesVC alloc] init];
         _scenesVC.scaleFactor = _heightScaleFactor;
+        [_scenesVC bindWithViewModel: _scenesVM];
+        
         [self addChildViewController: _scenesVC];
         [self.view addSubview: _scenesVC.view];
         [_scenesVC.view.topAnchor constraintEqualToAnchor: self.view.topAnchor
@@ -886,8 +888,6 @@
         [_scenesVC.view.leftAnchor constraintEqualToAnchor: self.view.leftAnchor].active = YES;
         [_scenesVC.view.rightAnchor constraintEqualToAnchor: self.view.rightAnchor].active = YES;
         [_scenesVC.view.bottomAnchor constraintEqualToAnchor: _tabBar.topAnchor].active = YES;
-
-        [_scenesVC bindWithViewModel: _scenesVM];
     } else {
         _scenesVC.view.hidden = false;
     }
@@ -1080,15 +1080,6 @@
 - (void)handleTap:(UITapGestureRecognizer *)gr {
     if ( _animating )
         return;
-    
-    UITableView *tableView = self.cTableView.hidden ? self.gTableView : self.cTableView;
-    CGPoint touch_point = [gr locationInView:tableView];
-    NSIndexPath *path = [tableView indexPathForRowAtPoint:touch_point];
-    
-    SASectionCell *section = [tableView cellForRowAtIndexPath:path];
-    if ([section isKindOfClass:[SASectionCell class]]) {
-        
-    }
 }
 
 

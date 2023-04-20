@@ -44,20 +44,27 @@ class LocationOrderingVM {
     }
     
     private func fetchLocations() throws -> [_SALocation] {
-        let fr = SAChannelBase.fetchRequest()
-        fr.predicate = NSPredicate(format: "visible = true")
-        fr.sortDescriptors = [NSSortDescriptor(key: "location.sortOrder",
-                                               ascending: true),
-                              NSSortDescriptor(key: "location.caption",
-                                               ascending: true,
-                                               selector: #selector(NSString.localizedCaseInsensitiveCompare(_:)))]
-        var rv = [_SALocation]()
-        for chn in try _ctx.fetch(fr) {
-            if let location = chn.location, rv.last != location {
-                rv.append(location)
-            }
+        let profileManager = MultiAccountProfileManager(context: _ctx)
+        
+        let fr = _SALocation.fetchRequest()
+        fr.predicate = NSPredicate(
+            format: "visible = true AND profile = %@",
+            profileManager.getCurrentProfile()!
+        )
+        fr.sortDescriptors = [
+            NSSortDescriptor(key: "sortOrder", ascending: true),
+            NSSortDescriptor(
+                key: "caption",
+                ascending: true,
+                selector: #selector(NSString.localizedCaseInsensitiveCompare(_:))
+            )
+        
+        ]
+        var result = [_SALocation]()
+        for location in try _ctx.fetch(fr) {
+            result.append(location)
         }
-        return rv
+        return result
     }
     
     private func saveNewOrder() {
