@@ -68,6 +68,12 @@ class ScenesVM: NSObject {
         return sections.value[sec].location.collapsed & _bitCollapse == _bitCollapse
     }
     
+    func onViewWillAppear() {
+        _swipedItemsCounter = 0
+        _movingItem = false
+        _reloadPending = false
+    }
+    
     func movingStarted() {
         _movingItem = true
     }

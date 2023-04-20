@@ -33,7 +33,8 @@ class ScenesVC: UIViewController {
         }
     }
     
-    private let _tableView = UITableView()
+    @objc
+    let _tableView = UITableView()
     
     private let _sectionCellId = "section"
     private let _sceneCellId = "scene"
@@ -73,6 +74,11 @@ class ScenesVC: UIViewController {
         _tableView.register(UINib(nibName: "SectionCell", bundle: nil),
                             forCellReuseIdentifier: _sectionCellId)
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        _viewModel.onViewWillAppear()
+    }
 
     @objc
     func bind(viewModel: ScenesVM) {
@@ -105,10 +111,10 @@ extension ScenesVC: UITableViewDataSource {
                    cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: _sceneCellId,
                                                  for: indexPath) as! SceneCell
+        cell.delegate = nil
         cell.scaleFactor = scaleFactor
         cell.sceneData = _sections[indexPath.section].scenes[indexPath.row]
         cell.delegate = self
-        cell.setup(for: tableView)
         
         return cell
     }
@@ -142,6 +148,17 @@ extension ScenesVC: UITableViewDragDelegate {
     func tableView(_ tableView: UITableView, itemsForBeginning session: UIDragSession,
                    at indexPath: IndexPath) -> [UIDragItem] {
         _viewModel.movingStarted()
+        
+        let cell = tableView.cellForRow(at: indexPath)
+        guard
+            let sceneCell = cell as? SceneCell
+        else {
+            return []
+        }
+        
+        if (sceneCell.isCaptionTouched()) {
+            return [] // Disable movement, when caption touched
+        }
         
         let prov = NSItemProvider()
         let dragItem = UIDragItem(itemProvider: prov)
@@ -197,12 +214,7 @@ extension ScenesVC: SASectionCellDelegate {
 }
 
 extension ScenesVC: SceneCellDelegate {
-    func onAreaLongPress(_ scn: SAScene) {
-        print("reorder")
-    }
-    
     func onCaptionLongPress(_ scn: SAScene) {
-        guard _sceneCaptionEditor == nil else { return }
         _sceneCaptionEditor = SceneCaptionEditor(scn)
         _sceneCaptionEditor?.delegate = self
         _sceneCaptionEditor?.edit()

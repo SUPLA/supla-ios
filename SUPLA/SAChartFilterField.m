@@ -106,29 +106,41 @@
             [self setText:chartHelper==nil ? @"" : [chartHelper stringRepresentationOfChartType:_chartType]];
         
             if (_dateRangeFilterField != nil) {
+                DateRange selectedRange = _dateRangeFilterField.dateRange;
                 _dateRangeFilterField.filterType = DateRangeFilter;
                 
                 switch(_chartType) {
                     case Bar_Minutes:
-                    case Bar_Hours:
                     case Bar_Comparsion_MinMin:
-                    case Bar_Comparsion_HourHour:
                     case Bar_AritmeticBalance_Minutes:
                     case Bar_VectorBalance_Minutes:
+                        if (selectedRange > Last90days) {
+                            _dateRangeFilterField.dateRange = Last24hours;
+                        }
+                        [_dateRangeFilterField excludeElements:@[[NSNumber numberWithInt:AllAvailableHistory]]];
+                        break;
+                    case Bar_Hours:
+                    case Bar_Comparsion_HourHour:
                     case Bar_AritmeticBalance_Hours:
                     case Bar_VectorBalance_Hours:
+                        if (selectedRange > Last90days || selectedRange < Last7days) {
+                            _dateRangeFilterField.dateRange = Last7days;
+                        }
+                        [_dateRangeFilterField excludeElements:@[[NSNumber numberWithInt:AllAvailableHistory]]];
                         break;
                     case Bar_Days:
                     case Bar_Comparsion_DayDay:
                     case Bar_AritmeticBalance_Days:
                     case Bar_VectorBalance_Days:
                         [_dateRangeFilterField excludeElements:@[[NSNumber numberWithInt:Last24hours]]];
+                        if (selectedRange > Last90days || selectedRange < Last7days) {
+                            _dateRangeFilterField.dateRange = Last7days;
+                        }
                         break;
                     default:
                         [_dateRangeFilterField leaveOneElement:AllAvailableHistory];
+                        [_dateRangeFilterField goToToFirst];
                 }
-                
-                [_dateRangeFilterField goToToFirst];
             }
         }
     }

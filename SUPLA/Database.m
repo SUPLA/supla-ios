@@ -1551,6 +1551,10 @@ again:
             sceneDb.initiatorName = initatorName;
             save = YES;
         }
+    } else if (sceneDb.initiatorId != 0) {
+        sceneDb.initiatorId = 0;
+        sceneDb.initiatorName = nil;
+        save = YES;
     }
     
     if (state->MillisecondsFromStart > 0) {

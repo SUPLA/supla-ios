@@ -1,5 +1,20 @@
-//
-	
+/*
+ Copyright (C) AC SOFTWARE SP. Z O.O.
+ 
+ This program is free software; you can redistribute it and/or
+ modify it under the terms of the GNU General Public License
+ as published by the Free Software Foundation; either version 2
+ of the License, or (at your option) any later version.
+ 
+ This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ GNU General Public License for more details.
+ 
+ You should have received a copy of the GNU General Public License
+ along with this program; if not, write to the Free Software
+ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
+ */
 
 import UIKit
 import os
@@ -69,6 +84,8 @@ class SceneCell: MGSwipeTableCell {
     private var _timer: Timer? = nil
     private let _formatter = DateComponentsFormatter()
     
+    private var captionTouched = false
+    
     private var allControls: [UIView] {
         return [_captionLabel, _timerLabel, _initiator, _sceneIcon]
     }
@@ -82,23 +99,8 @@ class SceneCell: MGSwipeTableCell {
         super.init(coder: coder)
         setupCell()
     }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(false, animated: false)
-
-        // Configure the view for the selected state
-    }
     
-    func setup(for tableView: UITableView) {
-        guard let recognizers = tableView.gestureRecognizers else { return }
-        for tvgr in recognizers {
-            if let tvgr = tvgr as? UILongPressGestureRecognizer {
-                tvgr.require(toFail: _longPressGr)
-            }
-        }
-        tableView.addGestureRecognizer(_longPressGr)
-
-    }
+    func isCaptionTouched() -> Bool { captionTouched }
 
     // MARK: - configure cell layout
     private func setupCell() {
@@ -138,11 +140,11 @@ class SceneCell: MGSwipeTableCell {
         self.leftButtons = [ _abortButton as Any ]
         self.rightButtons = [ _executeButton as Any ]
         
-        [_captionLabel, _timerLabel, _initiator].forEach {
+        [_timerLabel, _initiator].forEach {
             $0.font = .formLabelFont.withSize(self.scaled(14))
         }
         [_timerLabel, _initiator].forEach { $0?.textColor = .formLabelColor }
-        _captionLabel.font = .cellCaptionFont.withSize(scaled(14, limit: .lower(1)))
+        _captionLabel.font = .cellCaptionFont.withSize(scaled(12, limit: .lower(1)))
         [_iconContainer, _captionLabel, _timerLabel, _initiator, _sceneIcon]
             .forEach {
             $0.translatesAutoresizingMaskIntoConstraints = false
@@ -170,9 +172,12 @@ class SceneCell: MGSwipeTableCell {
             .isActive = true
         _captionLabel.bottomAnchor.constraint(equalTo: _iconContainer.bottomAnchor)
             .isActive = true
-        _longPressGr = UILongPressGestureRecognizer(target: self,
-                                                    action: #selector(onLongPress(_:)))
-        _longPressGr.delegate = self
+        
+        _longPressGr = UILongPressGestureRecognizer(target: self, action: #selector(onLongPress(_:)))
+        _longPressGr.allowableMovement = 5
+        _longPressGr.minimumPressDuration = 0.8
+        _captionLabel.isUserInteractionEnabled = true
+        _captionLabel.addGestureRecognizer(_longPressGr)
         
         _iconContainer.widthAnchor.constraint(greaterThanOrEqualTo: _captionLabel.widthAnchor,
                                               multiplier: 1).isActive = true
@@ -228,27 +233,25 @@ class SceneCell: MGSwipeTableCell {
         }
     }
     
-
     @objc private func onLongPress(_ gr: UILongPressGestureRecognizer) {
         if (gr.state != .began) {
-            // Only begining of the gesture is interesting for us
             return
         }
-        guard let delegate = delegate as? SceneCellDelegate,
-            let scene = sceneData else { return }
-        if _captionLabel.point(inside: gr.location(in: _captionLabel), with: nil) {
-            delegate.onCaptionLongPress(scene)
+        
+        guard
+            let delegate = delegate as? SceneCellDelegate,
+            let scene = sceneData
+        else {
+            return
         }
+        delegate.onCaptionLongPress(scene)
     }
     
-    override func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer,
-                                    shouldReceive touch: UITouch) -> Bool {
-        guard gestureRecognizer == _longPressGr else {
-            return true
-        }
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        super.touchesBegan(touches, with: event)
         
-        return _captionLabel.point(inside: touch.location(in: _captionLabel),
-                              with: nil)
+        let touchedObject = touches.first
+        captionTouched = touchedObject != nil && touchedObject?.view == _captionLabel
     }
 
     // MARK: - swipe buttons handling
@@ -258,11 +261,17 @@ class SceneCell: MGSwipeTableCell {
             btn.backgroundColor = .onLine()
         }
         
+        guard
+            let scene = sceneData
+        else {
+            return
+        }
+        
         if (btn == _executeButton) {
-            SAApp.suplaClient().executeAction(parameters: .simple(action: .execute, subjectType: .scene, subjectId: sceneData!.sceneId))
+            _ = SAApp.suplaClient().executeAction(parameters: .simple(action: .execute, subjectType: .scene, subjectId: scene.sceneId))
         }
         if (btn == _abortButton) {
-            SAApp.suplaClient().executeAction(parameters: .simple(action: .interrupt, subjectType: .scene, subjectId: sceneData!.sceneId))
+            _ = SAApp.suplaClient().executeAction(parameters: .simple(action: .interrupt, subjectType: .scene, subjectId: scene.sceneId))
         }
         
         
@@ -308,6 +317,5 @@ class SceneCell: MGSwipeTableCell {
 }
 
 protocol SceneCellDelegate: MGSwipeTableCellDelegate {
-    func onAreaLongPress(_ scn: SAScene)
     func onCaptionLongPress(_ scn: SAScene)
 }

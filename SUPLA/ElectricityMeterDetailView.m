@@ -36,7 +36,6 @@
     SAElectricityChartHelper *_chartHelper;
     SAFormatter *_formatter;
     BOOL _balanceAvailable;
-    ChartSettings *_chartSettings;
 }
 
 -(void)detailViewInit {
@@ -348,24 +347,8 @@
     
 }
 
--(void)setChannelBase:(SAChannelBase *)channelBase {
-    if(channelBase) {
-        if(!_chartSettings) {
-            _chartSettings = [[ChartSettings alloc]
-                                 initWithChannelId: channelBase.remote_id
-                                    chartTypeField: self.tfChartTypeFilter
-                                    dateRangeField: self.ftDateRangeFilter];
-            [_chartSettings restore];
-        }
-    } else {
-        [_chartSettings persist];
-    }
-
-    if (_chartHelper) {
-        _chartHelper.channelId = channelBase ? channelBase.remote_id : 0;
-    }
-    
-    [super setChannelBase:channelBase];
+- (SAChartFilterField*) provideChartTypeField {
+    return self.tfChartTypeFilter;
 }
 
 - (IBAction)phaseBtnTouch:(id)sender {
@@ -545,7 +528,6 @@
 
 -(void) onFilterChanged: (SAChartFilterField*)filterField {
     [self loadChartWithAnimation:YES];
-    [_chartSettings persist];
 }
 
 - (BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer {
