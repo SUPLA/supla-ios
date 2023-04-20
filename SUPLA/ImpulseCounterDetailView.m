@@ -22,10 +22,12 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #import "SADownloadImpulseCounterMeasurements.h"
 #import "SuplaApp.h"
 #import "SAFormatter.h"
+#import "SUPLA-Swift.h"
 #import <AudioToolbox/AudioToolbox.h>
 
 @implementation SAImpulseCounterDetailView {
     SAFormatter *_formatter;
+    ChartSettings *_chartSettings;
 }
 
 - (void)detailViewInit {
@@ -55,6 +57,10 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 - (void)applyChartFilter {
     self.chartHelper.chartType = self.tfChartTypeFilter.chartType;
     self.chartHelper.dateFrom = self.ftDateRangeFilter.dateFrom;
+}
+
+- (SAChartFilterField*) provideChartTypeField {
+    return _tfChartTypeFilter;
 }
 
 - (void)updateView {
