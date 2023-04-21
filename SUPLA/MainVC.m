@@ -35,6 +35,7 @@
 #import "SAEvent.h"
 #import "UIColor+SUPLA.h"
 #import "SUPLA-Swift.h"
+#import <AudioToolbox/AudioToolbox.h>
 
 @interface SAMainVC()
 @property (nonatomic) BOOL showingDetails;
@@ -155,6 +156,8 @@
     if ( cell != nil
         && [cell isKindOfClass:[SAChannelCell class]]
         && !((SAChannelCell*)cell).captionTouched) {
+        AudioServicesPlayAlertSound(kSystemSoundID_Vibrate);
+        
         NSItemProvider *itemProvicer = [[NSItemProvider alloc] init];
         UIDragItem *dragItem = [[UIDragItem alloc] initWithItemProvider:itemProvicer];
         dragItem.localObject = cell;
@@ -832,6 +835,12 @@
     [UITabBar appearance].unselectedItemTintColor = [UIColor textLight];
     _tabBar = [[UITabBar alloc] init];
     _tabBar.translucent = NO;
+    
+    _tabBar.layer.shadowOffset = CGSizeMake(0, 0);
+    _tabBar.layer.shadowRadius = 2;
+    _tabBar.layer.shadowColor = UIColor.blackColor.CGColor;
+    _tabBar.layer.shadowOpacity = 0.3;
+    
     [_tabBar setItems: @[
         [[UITabBarItem alloc] initWithTitle: NSLocalizedString(@"Channels", nil)
                                       image: [UIImage imageNamed: @"list"]
@@ -881,7 +890,7 @@
         [_scenesVC bindWithViewModel: _scenesVM];
         
         [self addChildViewController: _scenesVC];
-        [self.view addSubview: _scenesVC.view];
+        [self.view insertSubview: _scenesVC.view belowSubview: _tabBar];
         [_scenesVC.view.topAnchor constraintEqualToAnchor: self.view.topAnchor
                                                  constant: [UIApplication sharedApplication].statusBarFrame.size.height +
                                                             self.navigationController.navigationBar.frame.size.height].active = YES;
