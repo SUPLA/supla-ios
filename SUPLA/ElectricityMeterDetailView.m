@@ -351,6 +351,14 @@
     return self.tfChartTypeFilter;
 }
 
+-(void)setChannelBase:(SAChannelBase *)channelBase {
+    if (_chartHelper) {
+        _chartHelper.channelId = channelBase ? channelBase.remote_id : 0;
+    }
+    
+    [super setChannelBase:channelBase];
+}
+
 - (IBAction)phaseBtnTouch:(id)sender {
     if (sender == self.btnPhase1) {
         selectedPhase = 1;

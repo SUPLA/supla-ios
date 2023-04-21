@@ -442,6 +442,7 @@
 
 - (void)onLongPress:(UILongPressGestureRecognizer *)longPressGR {
     if (self.captionEditable && self.channelBase != nil && longPressGR.state == UIGestureRecognizerStateBegan) {
+        [self vibrate];
         [[SAChannelCaptionEditor globalInstance] editCaptionWithRecordId:self.channelBase.remote_id];
     }
 }

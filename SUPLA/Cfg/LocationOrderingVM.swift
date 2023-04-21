@@ -44,27 +44,49 @@ class LocationOrderingVM {
     }
     
     private func fetchLocations() throws -> [_SALocation] {
-        let profileManager = MultiAccountProfileManager(context: _ctx)
-        
-        let fr = _SALocation.fetchRequest()
-        fr.predicate = NSPredicate(
-            format: "visible = true AND profile = %@",
-            profileManager.getCurrentProfile()!
-        )
-        fr.sortDescriptors = [
-            NSSortDescriptor(key: "sortOrder", ascending: true),
-            NSSortDescriptor(
-                key: "caption",
-                ascending: true,
-                selector: #selector(NSString.localizedCaseInsensitiveCompare(_:))
-            )
-        
-        ]
-        var result = [_SALocation]()
-        for location in try _ctx.fetch(fr) {
-            result.append(location)
+        var locationsSet = Set<NSNumber>()
+        for channel in try getChannelsLocations() {
+            if let locationId = channel.location?.location_id {
+                locationsSet.insert(locationId)
+            }
         }
+        for scene in try getScenesLocations() {
+            if let locationId = scene.location?.location_id {
+                locationsSet.insert(locationId)
+            }
+        }
+        
+        var result = [_SALocation]()
+        for location in try getLocations() {
+            if let locationId = location.location_id {
+                if (locationsSet.contains(locationId)) {
+                    result.append(location)
+                }
+            }
+        }
+        
         return result
+    }
+    
+    private func getChannelsLocations() throws -> [SAChannelBase] {
+        let fr = SAChannelBase.fetchRequest()
+        fr.predicate = NSPredicate(format: "visible = true")
+        
+        return try _ctx.fetch(fr)
+    }
+    
+    private func getScenesLocations() throws -> [SAScene] {
+        let fr = SAScene.fetchRequest()
+        fr.predicate = NSPredicate(format: "visible = true")
+        
+        return try _ctx.fetch(fr)
+    }
+    
+    private func getLocations() throws -> [_SALocation] {
+        let fr = _SALocation.fetchRequest()
+        fr.predicate = NSPredicate(format: "visible = true")
+        
+        return try _ctx.fetch(fr)
     }
     
     private func saveNewOrder() {

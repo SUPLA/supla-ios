@@ -22,6 +22,7 @@ import RxSwift
 
 class ScenesVC: UIViewController {
 
+    @Singleton<VibrationService> var vibrationService
     typealias Section = ScenesVM.Section
 
     @objc
@@ -109,12 +110,12 @@ extension ScenesVC: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView,
                    cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: _sceneCellId,
-                                                 for: indexPath) as! SceneCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: _sceneCellId, for: indexPath) as! SceneCell
         cell.delegate = nil
         cell.scaleFactor = scaleFactor
         cell.sceneData = _sections[indexPath.section].scenes[indexPath.row]
         cell.delegate = self
+        cell.selectionStyle = .none
         
         return cell
     }
@@ -135,6 +136,7 @@ extension ScenesVC: UITableViewDelegate {
         cell.ivCollapsed.isHidden = !_viewModel.isSectionCollapsed(sec)
         cell.tag = sec
         cell.captionEditable = true
+        cell.selectionStyle = .none
 
         return cell
     }
@@ -147,8 +149,6 @@ extension ScenesVC: UITableViewDelegate {
 extension ScenesVC: UITableViewDragDelegate {
     func tableView(_ tableView: UITableView, itemsForBeginning session: UIDragSession,
                    at indexPath: IndexPath) -> [UIDragItem] {
-        _viewModel.movingStarted()
-        
         let cell = tableView.cellForRow(at: indexPath)
         guard
             let sceneCell = cell as? SceneCell
@@ -159,6 +159,7 @@ extension ScenesVC: UITableViewDragDelegate {
         if (sceneCell.isCaptionTouched()) {
             return [] // Disable movement, when caption touched
         }
+        _viewModel.movingStarted()
         
         let prov = NSItemProvider()
         let dragItem = UIDragItem(itemProvider: prov)
@@ -199,11 +200,11 @@ extension ScenesVC: UITableViewDropDelegate {
         sect.scenes[b.row] = tmp
         _sections[a.section] = sect
         _viewModel.sectionSorter.onNext(_sections)
-        
-        _viewModel.movingStopped()
     }
     
-    
+    func tableView(_ tableView: UITableView, dropSessionDidEnd session: UIDropSession) {
+        _viewModel.movingStopped()
+    }
 }
 
 extension ScenesVC: SASectionCellDelegate {
@@ -215,18 +216,18 @@ extension ScenesVC: SASectionCellDelegate {
 
 extension ScenesVC: SceneCellDelegate {
     func onCaptionLongPress(_ scn: SAScene) {
+        vibrationService.vibrate()
+        
         _sceneCaptionEditor = SceneCaptionEditor(scn)
         _sceneCaptionEditor?.delegate = self
         _sceneCaptionEditor?.edit()
     }
     
     func swipeTableCellWillBeginSwiping(_ cell: MGSwipeTableCell!) {
-        print("swipe begin")
         _viewModel.openingItem()
     }
     
     func swipeTableCellWillEndSwiping(_ cell: MGSwipeTableCell!) {
-        print("swipe end")
         _viewModel.closingItem()
     }
 }

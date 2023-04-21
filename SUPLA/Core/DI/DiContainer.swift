@@ -45,5 +45,6 @@ extension DiContainer {
         DiContainer.shared.register(type: RuntimeConfig.self, component: RuntimeConfigImpl())
         DiContainer.shared.register(type: SuplaClientProvider.self, component: SuplaClientProviderImpl())
         DiContainer.shared.register(type: SuplaAppWrapper.self, component: SuplaAppWrapperImpl())
+        DiContainer.shared.register(type: VibrationService.self, component: VibrationServiceImpl())
     }
 }

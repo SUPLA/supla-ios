@@ -22,6 +22,8 @@ import RxCocoa
 
 @objc
 class ScenesVM: NSObject {
+    
+    @Singleton<VibrationService> var vibrationService
 
     struct Section {
         var location: _SALocation
@@ -76,6 +78,7 @@ class ScenesVM: NSObject {
     
     func movingStarted() {
         _movingItem = true
+        vibrationService.vibrate()
     }
     
     func movingStopped() {
