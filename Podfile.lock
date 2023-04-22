@@ -24,6 +24,8 @@ PODS:
   - RxSwiftExt/RxCocoa (6.0.1):
     - RxCocoa (~> 6.0)
     - RxSwiftExt/Core
+  - RxTest (6.5.0):
+    - RxSwift (= 6.5.0)
   - SwiftAlgorithms (1.0.0)
 
 DEPENDENCIES:
@@ -34,6 +36,7 @@ DEPENDENCIES:
   - RxDataSources
   - RxSwift
   - RxSwiftExt
+  - RxTest
 
 SPEC REPOS:
   trunk:
@@ -46,6 +49,7 @@ SPEC REPOS:
     - RxRelay
     - RxSwift
     - RxSwiftExt
+    - RxTest
     - SwiftAlgorithms
 
 SPEC CHECKSUMS:
@@ -58,8 +62,9 @@ SPEC CHECKSUMS:
   RxRelay: 1de1523e604c72b6c68feadedd1af3b1b4d0ecbd
   RxSwift: 5710a9e6b17f3c3d6e40d6e559b9fa1e813b2ef8
   RxSwiftExt: d61c4b9b06e0a448041b1c659e0f1b5c5a035afc
+  RxTest: eb2d23adefc5a5ebf5779c7792fa3edfe6ebcc17
   SwiftAlgorithms: 38dda4731d19027fdeee1125f973111bf3386b53
 
-PODFILE CHECKSUM: 45acf7d513236047706bb8afe01d434c79dbdfcd
+PODFILE CHECKSUM: fd3339e8828c5b6fe4755f983704de37b3a5345d
 
-COCOAPODS: 1.11.0
+COCOAPODS: 1.11.3

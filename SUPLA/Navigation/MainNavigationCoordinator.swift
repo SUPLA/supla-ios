@@ -91,8 +91,7 @@ class MainNavigationCoordinator: BaseNavigationCoordinator {
         } else {
             if let child = child as? PresentationNavigationCoordinator {
                 child.isAnimating = true
-                navigationController.present(child.viewController,
-                                             animated: child.wantsAnimatedTransitions) {
+                navigationController.present(child.viewController, animated: child.wantsAnimatedTransitions) {
                     child.isAnimating = false
                     self.completeFlowTransition()
                 }
