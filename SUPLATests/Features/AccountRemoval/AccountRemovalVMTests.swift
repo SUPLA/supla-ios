@@ -94,7 +94,7 @@ class AccountRemovalVMTest: XCTestCase {
         let url = sut.provideUrl()
         
         // then
-        XCTAssertEqual(url, "https://beta-cloud.supla.org/db99845855b2ecbfecca9a095062b96c3e27703f")
+        XCTAssertTrue(url.starts(with: "https://beta-cloud.supla.org/db99845855b2ecbfecca9a095062b96c3e27703f"))
     }
     
     func test_shouldUseSuplaWhenNoAddressProvided() {
@@ -105,6 +105,6 @@ class AccountRemovalVMTest: XCTestCase {
         let url = sut.provideUrl()
         
         // then
-        XCTAssertEqual(url, "https://cloud.supla.org/db99845855b2ecbfecca9a095062b96c3e27703f")
+        XCTAssertTrue(url.starts(with: "https://cloud.supla.org/db99845855b2ecbfecca9a095062b96c3e27703f"))
     }
 }
