@@ -125,7 +125,7 @@ class MainNavigationCoordinator: BaseNavigationCoordinator {
             }
             
             super.didFinish(coordinator: child)
-            if child is CfgNavigationCoordinator {
+            if (child is CfgNavigationCoordinator || child is ProfilesNavigationCoordinator) {
                 mainVC.reloadTables();
             }
             self.resumeFlowIfNeeded()

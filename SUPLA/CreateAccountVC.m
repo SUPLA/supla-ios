@@ -71,7 +71,7 @@
         return;
     }
     
-    [self.webView stringByEvaluatingJavaScriptFromString:@"$(document.body).addClass('in-app-register');"];
+    [self.webView stringByEvaluatingJavaScriptFromString:@"document.body.classList.add('in-app-register');"];
     
    self.webView.hidden = NO;
    self.activityIndicator.hidden = YES;

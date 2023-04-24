@@ -21,7 +21,7 @@ import RxSwift
 
 class AccountRemovalVM : BaseViewModel<AccountRemovalViewState, AccountRemovalViewEvent> {
     
-    private static let REMOVAL_FINISHED_SUFIX = "/db99845855b2ecbfecca9a095062b96c3e27703f?ack=true"
+    private static let REMOVAL_FINISHED_SUFIX = "ack=true"
     
     private let needsRestart: Bool
     private let serverAddress: String?
@@ -45,9 +45,9 @@ class AccountRemovalVM : BaseViewModel<AccountRemovalViewState, AccountRemovalVi
     
     func provideUrl() -> String {
         if let server = serverAddress {
-            return "https://\(server)/db99845855b2ecbfecca9a095062b96c3e27703f"
+            return Strings.AccountRemoval.url.replacingOccurrences(of: "{SERVER_ADDRESS}", with: server)
         } else {
-            return "https://cloud.supla.org/db99845855b2ecbfecca9a095062b96c3e27703f"
+            return Strings.AccountRemoval.url.replacingOccurrences(of: "{SERVER_ADDRESS}", with: "cloud.supla.org")
         }
     }
     

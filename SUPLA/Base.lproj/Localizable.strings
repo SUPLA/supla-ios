@@ -20,6 +20,8 @@
 "AccountCreation.title" = "Edit account";
 "AccountCreation.modificationTitle" = "Add an account";
 
+"AccountRemoval.url" = "https://{SERVER_ADDRESS}/db99845855b2ecbfecca9a095062b96c3e27703f?lang=en";
+
 "Scenes.ActionButtons.execute" = "Execute";
 "Scenes.ActionButtons.abort" = "Abort";
 

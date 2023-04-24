@@ -29,6 +29,8 @@ class AccountCreationVC: BaseViewControllerVM<AccountCreationViewState, AccountC
     
     // MARK: UI variables
     @IBOutlet private var controlStack: UIStackView!
+    @IBOutlet private var loadingStack: UIStackView!
+    @IBOutlet private var loadingIndicator: UIActivityIndicatorView!
     
     @IBOutlet private var modeToggle: UISwitch!
     @IBOutlet private var modeToggleLabel: UILabel!
@@ -199,6 +201,8 @@ class AccountCreationVC: BaseViewControllerVM<AccountCreationViewState, AccountC
             controlStack.setCustomSpacing(24, after: confirmButton)
         }
         
+        loadingStack.isHidden = true
+        loadingIndicator.startAnimating()
     }
 
     private func bindVM() {
@@ -264,6 +268,8 @@ class AccountCreationVC: BaseViewControllerVM<AccountCreationViewState, AccountC
     
     // MARK: Handlers
     override func handle(event: AccountCreationViewEvent) {
+        loadingStack.isHidden = true
+        
         switch (event) {
         case .showRemovalDialog:
             handleShowRemovalDialogEvent()
@@ -300,6 +306,9 @@ class AccountCreationVC: BaseViewControllerVM<AccountCreationViewState, AccountC
             break
         case .showBasicModeUnavailableDialog:
             displayBasicModeUnavailableAlert()
+            break
+        case .showProgress:
+            loadingStack.isHidden = false
             break
         }
     }

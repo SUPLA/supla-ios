@@ -196,6 +196,7 @@ class AccountCreationVM: BaseViewModel<AccountCreationViewState, AccountCreation
         guard let profileId = profileId else { return }
         guard let profile = profileManager.read(id: profileId) else { return }
         let serverAddress = getServerAddress(profile)
+        send(event: .showProgress)
         
         var settings = settings
         var config = config
@@ -305,6 +306,7 @@ enum AccountCreationViewEvent: ViewEvent {
     case showDuplicatedNameDialog
     case showRequiredDataMisingDialog
     case showBasicModeUnavailableDialog
+    case showProgress
 }
 
 struct AccountCreationViewState: ViewState {

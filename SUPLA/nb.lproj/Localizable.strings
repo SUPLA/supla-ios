@@ -302,6 +302,8 @@
 "AccountCreation.title" = "Rediger konto";
 "AccountCreation.modificationTitle" = "Legg til konto";
 
+"AccountRemoval.url" = "https://{SERVER_ADDRESS}/db99845855b2ecbfecca9a095062b96c3e27703f?lang=nb";
+
 "Cfg.removal.dialog.missing_name" = "Skriv inn et kontonavn";
 "Cfg.removal.dialog.duplicated_name" = "En konto med dette navnet eksisterer allerede";
 "Cfg.removal.dialog.incomplete" = "Fyll ut de nødvendige dataene";

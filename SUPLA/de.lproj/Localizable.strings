@@ -302,6 +302,8 @@
 "AccountCreation.title" = "Konto bearbeiten";
 "AccountCreation.modificationTitle" = "Konto hinzufügen";
 
+"AccountRemoval.url" = "https://{SERVER_ADDRESS}/db99845855b2ecbfecca9a095062b96c3e27703f?lang=de";
+
 "Scenes.ActionButtons.execute" = "Ausführen";
 "Scenes.ActionButtons.abort" = "Abbrechen";
 

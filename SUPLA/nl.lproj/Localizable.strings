@@ -302,6 +302,8 @@
 "AccountCreation.title" = "Rekening bewerken";
 "AccountCreation.modificationTitle" = "Rekening toevoegen";
 
+"AccountRemoval.url" = "https://{SERVER_ADDRESS}/db99845855b2ecbfecca9a095062b96c3e27703f?lang=nl";
+
 "Cfg.removal.dialog.missing_name" = "Voer de naam van uw rekening in";
 "Cfg.removal.dialog.duplicated_name" = "Er is al een rekening met deze naam";
 "Cfg.removal.dialog.incomplete" = "Vul de vereiste gegevens in";
