@@ -330,11 +330,11 @@ class AccountCreationVMTests: XCTestCase {
         
         // then
         XCTAssertEqual(stateObserver.events.count, 1)
-        XCTAssertEqual(eventObserver.events.count, 1)
+        XCTAssertEqual(eventObserver.events.count, 2)
         
         let state = AccountCreationViewState.create()
         XCTAssertEqual(stateObserver.events, [ .next(0, state) ])
-        XCTAssertEqual(eventObserver.events, [ .next(1, event) ])
+        XCTAssertEqual(eventObserver.events, [ .next(1, .showProgress), .next(1, event) ])
         
         XCTAssertEqual(profileManager.deletedProfiles.count, 1)
         XCTAssertTrue(profileManager.deletedProfiles[0] == profile?.objectID)
@@ -372,11 +372,11 @@ class AccountCreationVMTests: XCTestCase {
         
         // then
         XCTAssertEqual(stateObserver.events.count, 1)
-        XCTAssertEqual(eventObserver.events.count, 1)
+        XCTAssertEqual(eventObserver.events.count, 2)
         
         let state = AccountCreationViewState.create(authType: .email, serverAutoDetect: false, serverAddressForEmail: server)
         XCTAssertEqual(stateObserver.events, [ .next(0, state) ])
-        XCTAssertEqual(eventObserver.events, [ .next(1, event) ])
+        XCTAssertEqual(eventObserver.events, [ .next(1, .showProgress), .next(1, event) ])
         
         XCTAssertEqual(profileManager.deletedProfiles.count, 1)
         XCTAssertTrue(profileManager.deletedProfiles[0] == profile?.objectID)
@@ -422,7 +422,7 @@ class AccountCreationVMTests: XCTestCase {
         // then
         let state = AccountCreationViewState.create(authType: .accessId, serverAddressForAccessId: server)
         XCTAssertEqual(stateObserver.events, [ .next(0, state) ])
-        XCTAssertEqual(eventObserver.events, [ .next(1, event) ])
+        XCTAssertEqual(eventObserver.events, [ .next(1, .showProgress), .next(1, event) ])
         
         XCTAssertEqual(profileManager.deletedProfiles.count, 1)
         XCTAssertTrue(profileManager.deletedProfiles[0] == profile?.objectID)
@@ -451,7 +451,7 @@ class AccountCreationVMTests: XCTestCase {
         // then
         let state = AccountCreationViewState.create()
         XCTAssertEqual(stateObserver.events, [ .next(0, state) ])
-        XCTAssertEqual(eventObserver.events, [ .next(1, .showRemovalFailure) ])
+        XCTAssertEqual(eventObserver.events, [ .next(1, .showProgress), .next(1, .showRemovalFailure) ])
         
         XCTAssertEqual(profileManager.deletedProfiles.count, 0)
         XCTAssertEqual(profileManager.activatedProfiles.count, 1)
