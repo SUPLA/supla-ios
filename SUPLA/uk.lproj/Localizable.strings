@@ -302,6 +302,8 @@
 "AccountCreation.title" = "Редагувати обліковий запис";
 "AccountCreation.modificationTitle" = "Додати обліковий запис";
 
+"AccountRemoval.url" = "https://{SERVER_ADDRESS}/db99845855b2ecbfecca9a095062b96c3e27703f?lang=uk";
+
 "Scenes.ActionButtons.execute" = "Виконати";
 "Scenes.ActionButtons.abort" = "Перервати";
 

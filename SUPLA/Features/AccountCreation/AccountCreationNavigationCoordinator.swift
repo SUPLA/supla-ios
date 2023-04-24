@@ -72,7 +72,7 @@ class AuthCfgNavigationCoordinator: BaseNavigationCoordinator {
     }
     
     func finish(shouldReauthenticate: Bool) {
-        if (shouldReauthenticate || !SAApp.isClientRegistered()) {
+        if (shouldReauthenticate) {
             let navigated = goTo(MainNavigationCoordinator.self) { navigator in
                 navigator.showStatusView(progress: 0)
             }

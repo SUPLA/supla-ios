@@ -91,8 +91,7 @@ class MainNavigationCoordinator: BaseNavigationCoordinator {
         } else {
             if let child = child as? PresentationNavigationCoordinator {
                 child.isAnimating = true
-                navigationController.present(child.viewController,
-                                             animated: child.wantsAnimatedTransitions) {
+                navigationController.present(child.viewController, animated: child.wantsAnimatedTransitions) {
                     child.isAnimating = false
                     self.completeFlowTransition()
                 }
@@ -126,7 +125,7 @@ class MainNavigationCoordinator: BaseNavigationCoordinator {
             }
             
             super.didFinish(coordinator: child)
-            if child is CfgNavigationCoordinator {
+            if (child is CfgNavigationCoordinator || child is ProfilesNavigationCoordinator) {
                 mainVC.reloadTables();
             }
             self.resumeFlowIfNeeded()

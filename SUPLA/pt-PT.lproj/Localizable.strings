@@ -302,6 +302,8 @@
 "AccountCreation.title" = "Editar Conta";
 "AccountCreation.modificationTitle" = "Adicionar conta";
 
+"AccountRemoval.url" = "https://{SERVER_ADDRESS}/db99845855b2ecbfecca9a095062b96c3e27703f?lang=pt";
+
 "Cfg.removal.dialog.missing_name" = "Introduza um nome de conta";
 "Cfg.removal.dialog.duplicated_name" = "Já existe uma conta com esse nome";
 "Cfg.removal.dialog.incomplete" = "Complete os restantes dados";

@@ -68,7 +68,10 @@ struct Strings {
         static let wizardWarningText = NSLocalizedString("In Access ID authentication mode you won't be able to use automatic Add device wizard. However you will still be able to add it by manual Add device procedure.", comment: "")
         static let createAccountPrompt = NSLocalizedString("Don't have an account in Supla Cloud yet?", comment: "")
         static let createAccountButton = NSLocalizedString("Create", comment: "")
-        
+    }
+    
+    struct AccountRemoval {
+        static let url = NSLocalizedString("AccountRemoval.url", comment: "")
     }
 
     struct Profiles {

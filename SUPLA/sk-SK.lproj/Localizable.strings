@@ -302,6 +302,8 @@
 "AccountCreation.title" = "Upraviť účet";
 "AccountCreation.modificationTitle" = "Pridať účet";
 
+"AccountRemoval.url" = "https://{SERVER_ADDRESS}/db99845855b2ecbfecca9a095062b96c3e27703f?lang=sk";
+
 "Cfg.removal.dialog.missing_name" = "Zadaj názov účtu";
 "Cfg.removal.dialog.duplicated_name" = "Účet s týmto názvom už existuje";
 "Cfg.removal.dialog.incomplete" = "Vyplň požadované údaje";

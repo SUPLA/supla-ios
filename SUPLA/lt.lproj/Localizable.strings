@@ -304,6 +304,8 @@
 "AccountCreation.title" = "Koreguoti paskyrą";
 "AccountCreation.modificationTitle" = "Pridėti paskyrą";
 
+"AccountRemoval.url" = "https://{SERVER_ADDRESS}/db99845855b2ecbfecca9a095062b96c3e27703f?lang=lt";
+
 "Cfg.removal.dialog.missing_name" = "Įveskite paskyros pavadinimą";
 "Cfg.removal.dialog.duplicated_name" = "Paskyra su tokiu pavadinimu jau yra";
 "Cfg.removal.dialog.incomplete" = "Užpildykite privalomus duomenis";

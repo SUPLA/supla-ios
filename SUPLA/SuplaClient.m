@@ -447,8 +447,12 @@ void sasuplaclient_scene_state_update(void *_suplaclient,
     NSString *host = ai.serverForCurrentAuthMethod;
     if ( [host isEqualToString:@""] && ai.emailAuth && ![ai.emailAddress isEqualToString:@""] ) {
         
+        NSMutableCharacterSet *set = [[NSCharacterSet URLQueryAllowedCharacterSet] mutableCopy];
+        [set removeCharactersInString:@"+"];
+        NSString *url = [NSString stringWithFormat:@"https://autodiscover.supla.org/users/%@", [ai.emailAddress stringByAddingPercentEncodingWithAllowedCharacters: set]];
+        
         NSMutableURLRequest *request =
-        [NSMutableURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"https://autodiscover.supla.org/users/%@", ai.emailAddress]] cachePolicy:NSURLRequestReloadIgnoringLocalAndRemoteCacheData timeoutInterval:5];
+        [NSMutableURLRequest requestWithURL:[NSURL URLWithString: url] cachePolicy:NSURLRequestReloadIgnoringLocalAndRemoteCacheData timeoutInterval:5];
         
         [request setHTTPMethod: @"GET"];
         

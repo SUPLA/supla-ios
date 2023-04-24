@@ -544,8 +544,7 @@ again:
 
 -(NSFetchRequest*) getChannelBaseFetchRequestForEntityName:(NSString*)entity locationId:(int)locationId {
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-    
-    fetchRequest.predicate = [NSPredicate predicateWithFormat:@"func > 0 AND visible > 0 AND (%i = 0 OR location.location_id = %i)", locationId, locationId];
+    fetchRequest.predicate = [NSPredicate predicateWithFormat:@"func > 0 AND visible > 0 AND (%i = 0 OR location.location_id = %i) AND profile == %@", locationId, locationId, self.currentProfile];
     [fetchRequest setEntity:[NSEntityDescription entityForName:entity inManagedObjectContext: self.managedObjectContext]];
     
     SEL localeAwareCompare = @selector(localizedCaseInsensitiveCompare:);

@@ -52,6 +52,8 @@
                 <outlet property="createAccountButton" destination="2Up-5L-11x" id="9V0-k8-qMs"/>
                 <outlet property="createAccountPrompt" destination="Qva-Ft-tLE" id="B0j-yL-0w4"/>
                 <outlet property="deleteButton" destination="1X3-nE-82h" id="3v3-Y7-fmt"/>
+                <outlet property="loadingIndicator" destination="ah0-u3-F09" id="acN-bP-A6L"/>
+                <outlet property="loadingStack" destination="dz1-kR-mmc" id="nqD-zm-woZ"/>
                 <outlet property="modeToggle" destination="CLE-eZ-RoC" id="jgC-uD-eBl"/>
                 <outlet property="modeToggleLabel" destination="9LH-es-n4B" id="gaz-NP-6dX"/>
                 <outlet property="topOffset" destination="aBo-Aw-th6" id="zQd-Aw-o6x"/>
@@ -308,19 +310,32 @@
                         </button>
                     </subviews>
                 </stackView>
+                <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dz1-kR-mmc">
+                    <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                    <subviews>
+                        <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="ah0-u3-F09">
+                            <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        </activityIndicatorView>
+                    </subviews>
+                    <color key="backgroundColor" white="0.48620191206331964" alpha="0.25227659151408904" colorSpace="calibratedWhite"/>
+                </stackView>
             </subviews>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
+                <constraint firstAttribute="bottom" secondItem="dz1-kR-mmc" secondAttribute="bottom" id="0Aa-G0-uYl"/>
+                <constraint firstAttribute="trailing" secondItem="dz1-kR-mmc" secondAttribute="trailing" id="49H-5E-y1l"/>
                 <constraint firstAttribute="bottom" secondItem="APj-NV-55D" secondAttribute="bottom" constant="20" symbolic="YES" id="Ctz-qR-yLF"/>
                 <constraint firstAttribute="trailing" secondItem="CLE-eZ-RoC" secondAttribute="trailing" constant="34" id="GXt-BD-rAz"/>
                 <constraint firstItem="CLE-eZ-RoC" firstAttribute="leading" secondItem="9LH-es-n4B" secondAttribute="trailing" constant="8" id="Lhp-PZ-jjH"/>
                 <constraint firstItem="APj-NV-55D" firstAttribute="leading" secondItem="nf1-7v-zx3" secondAttribute="leading" constant="33" id="LxB-92-Zrz"/>
                 <constraint firstItem="APj-NV-55D" firstAttribute="top" secondItem="CLE-eZ-RoC" secondAttribute="bottom" constant="6" id="YuO-JB-XRL"/>
                 <constraint firstItem="CLE-eZ-RoC" firstAttribute="top" secondItem="nf1-7v-zx3" secondAttribute="top" constant="65" id="aBo-Aw-th6"/>
+                <constraint firstItem="dz1-kR-mmc" firstAttribute="leading" secondItem="nf1-7v-zx3" secondAttribute="leading" id="dFU-qv-J6H"/>
                 <constraint firstItem="9LH-es-n4B" firstAttribute="centerY" secondItem="CLE-eZ-RoC" secondAttribute="centerY" id="e60-Wn-EH7"/>
                 <constraint firstAttribute="trailing" secondItem="APj-NV-55D" secondAttribute="trailing" constant="34" id="e9g-Sg-5Rv"/>
+                <constraint firstItem="dz1-kR-mmc" firstAttribute="top" secondItem="nf1-7v-zx3" secondAttribute="top" id="vQA-cE-Rb8"/>
             </constraints>
-            <point key="canvasLocation" x="-1372.5" y="-392.5"/>
+            <point key="canvasLocation" x="-1373.2824427480916" y="-392.95774647887328"/>
         </view>
         <view contentMode="scaleToFill" id="PVE-Oc-Cs0" userLabel="Email auth form">
             <rect key="frame" x="0.0" y="0.0" width="318" height="178"/>

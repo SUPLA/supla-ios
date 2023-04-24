@@ -819,9 +819,13 @@
 - (void)reloadTables {
     _cFrc = nil;
     _gFrc = nil;
+    
     _heightScaleFactor = [Config new].channelHeightFactor;
     [self adjustChannelHeight:YES];
     _scenesVC.scaleFactor = _heightScaleFactor;
+    
+    // always when comming back from cfg update the view
+    [self.view setNeedsUpdateConstraints];
 }
 
 #pragma mark -

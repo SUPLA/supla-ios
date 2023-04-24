@@ -302,6 +302,8 @@
 "AccountCreation.title" = "Επεξεργασία λογαριασμού";
 "AccountCreation.modificationTitle" = "Προσθήκη λογαριασμού";
 
+"AccountRemoval.url" = "https://{SERVER_ADDRESS}/db99845855b2ecbfecca9a095062b96c3e27703f?lang=el";
+
 "Cfg.removal.dialog.missing_name" = "Εισαγάγετε ένα όνομα λογαριασμού";
 "Cfg.removal.dialog.duplicated_name" = "Υπάρχει ήδη ένας λογαριασμός με αυτό το όνομα";
 "Cfg.removal.dialog.incomplete" = "Συμπληρώστε τα απαιτούμενα δεδομένα";
