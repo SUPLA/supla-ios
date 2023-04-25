@@ -85,6 +85,15 @@ class LocationOrderingVM {
     private func getLocations() throws -> [_SALocation] {
         let fr = _SALocation.fetchRequest()
         fr.predicate = NSPredicate(format: "visible = true")
+        fr.sortDescriptors = [
+            NSSortDescriptor(key: "sortOrder", ascending: true),
+            NSSortDescriptor(
+                key: "caption",
+                ascending: true,
+                selector: #selector(NSString.localizedCaseInsensitiveCompare(_:))
+            )
+            
+        ]
         
         return try _ctx.fetch(fr)
     }

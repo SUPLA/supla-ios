@@ -95,6 +95,11 @@ class ScenesVC: UIViewController {
         let inputs = ScenesVM.Inputs(sectionVisibilityToggle: _sectionToggle.asObservable())
         _viewModel.bind(inputs: inputs)
     }
+    
+    @objc
+    func reload() {
+        _viewModel.reloadScenes()
+    }
 }
 
 extension ScenesVC: UITableViewDataSource {

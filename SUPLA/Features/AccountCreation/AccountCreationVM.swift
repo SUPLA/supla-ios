@@ -217,6 +217,8 @@ class AccountCreationVM: BaseViewModel<AccountCreationViewState, AccountCreation
                 } else {
                     send(event: .showRemovalFailure)
                 }
+                
+                suplaClientProvider.provide().reconnect()
             } else {
                 // Removing last account
                 removeAccountFromDb(profileId) {
@@ -225,8 +227,6 @@ class AccountCreationVM: BaseViewModel<AccountCreationViewState, AccountCreation
                     onSuccess(true, true, serverAddress)
                 }
             }
-            
-            suplaClientProvider.provide().reconnect()
         }
     }
     

@@ -104,6 +104,7 @@ class ScenesVM: NSObject {
     
     private func toggleSectionCollapsed(_ sec: Int) {
         sections.value[sec].location.collapsed  ^= _bitCollapse
+        do { try _db.managedObjectContext.save() } catch { }
         reloadScenes()
     }
     
@@ -118,7 +119,7 @@ class ScenesVM: NSObject {
         sections.accept(secs)
     }
     
-    @objc private func reloadScenes() {
+    @objc func reloadScenes() {
         if (_swipedItemsCounter > 0 || _movingItem) {
             _reloadPending = true
             return

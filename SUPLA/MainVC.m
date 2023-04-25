@@ -823,6 +823,7 @@
     _heightScaleFactor = [Config new].channelHeightFactor;
     [self adjustChannelHeight:YES];
     _scenesVC.scaleFactor = _heightScaleFactor;
+    [_scenesVC reload];
     
     // always when comming back from cfg update the view
     [self.view setNeedsUpdateConstraints];

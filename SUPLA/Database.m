@@ -1587,22 +1587,23 @@ again:
 
 - (NSArray<SAScene *> *)fetchScenes {
     NSFetchRequest *fr = [[NSFetchRequest alloc] initWithEntityName: @"SAScene"];
-    fr.predicate = [NSPredicate predicateWithFormat: @"profile == %@ AND visible > 0"
-                                      argumentArray: @[self.currentProfile]];
-    fr.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey: @"location.sortOrder"
-                                                         ascending: YES],
-                              [NSSortDescriptor sortDescriptorWithKey: @"location.caption"
-                                                            ascending: YES],
-                              [NSSortDescriptor sortDescriptorWithKey: @"sortOrder"
-                                                            ascending: YES],
-                              [NSSortDescriptor sortDescriptorWithKey: @"caption"
-                                                            ascending: YES],
-                              [NSSortDescriptor sortDescriptorWithKey: @"sceneId"
-                                                            ascending: YES]];
+    AuthProfileItem *profile = self.currentProfile;
+    if (profile == nil) {
+        return @[];
+    }
+    
+    fr.predicate = [NSPredicate predicateWithFormat: @"profile == %@ AND visible > 0" argumentArray: @[profile]];
+    fr.sortDescriptors = @[
+        [NSSortDescriptor sortDescriptorWithKey: @"location.sortOrder" ascending: YES],
+        [NSSortDescriptor sortDescriptorWithKey: @"location.caption" ascending: YES],
+        [NSSortDescriptor sortDescriptorWithKey: @"sortOrder" ascending: YES],
+        [NSSortDescriptor sortDescriptorWithKey: @"caption" ascending: YES],
+        [NSSortDescriptor sortDescriptorWithKey: @"sceneId" ascending: YES]
+    ];
+    
     NSArray<SAScene *> *rv;
     NSError *err = nil;
-    rv = [self.managedObjectContext executeFetchRequest: fr
-                                                  error: &err];
+    rv = [self.managedObjectContext executeFetchRequest: fr error: &err];
     if(!rv) NSLog(@"error fetching scenes: %@", err);
     return rv;
 }

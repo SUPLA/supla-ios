@@ -52,14 +52,10 @@ class SceneCell: MGSwipeTableCell {
                 _initiator.text = sceneData?.initiatorName ?? ""
                 updateTimerLabel()
                 _timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(updateTimerLabel), userInfo: nil, repeats: true)
-                _statusIndicators.forEach {
-                    $0.layer.backgroundColor = UIColor.suplaGreen.cgColor
-                }
+                setActive(true)
             } else {
                 _initiator.text = ""
-                _statusIndicators.forEach {
-                    $0.layer.backgroundColor = UIColor.clear.cgColor
-                }
+                setActive(false)
             }
         }
     }
@@ -315,9 +311,7 @@ class SceneCell: MGSwipeTableCell {
             _timer?.invalidate()
             _timer = nil
             
-            _statusIndicators.forEach {
-                $0.layer.backgroundColor = UIColor.clear.cgColor
-            }
+            setActive(false)
         }
         else {
             let timeDiff = endTime - currentTime
