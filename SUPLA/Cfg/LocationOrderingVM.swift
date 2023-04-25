@@ -31,9 +31,12 @@ class LocationOrderingVM {
     
     private let _ctx: NSManagedObjectContext
     private let _disposeBag = DisposeBag()
+    private let profileManager: ProfileManager!
     
     init(managedObjectContext: NSManagedObjectContext) {
         _ctx = managedObjectContext
+        profileManager = MultiAccountProfileManager(context: _ctx)
+        
         locations.accept(try! fetchLocations())
     }
 
@@ -70,14 +73,16 @@ class LocationOrderingVM {
     
     private func getChannelsLocations() throws -> [SAChannelBase] {
         let fr = SAChannelBase.fetchRequest()
-        fr.predicate = NSPredicate(format: "visible = true")
+        let profile = profileManager.getCurrentProfile()!
+        fr.predicate = NSPredicate(format: "visible = true AND profile = %@", profile)
         
         return try _ctx.fetch(fr)
     }
     
     private func getScenesLocations() throws -> [SAScene] {
         let fr = SAScene.fetchRequest()
-        fr.predicate = NSPredicate(format: "visible = true")
+        let profile = profileManager.getCurrentProfile()!
+        fr.predicate = NSPredicate(format: "visible = true AND profile = %@", profile)
         
         return try _ctx.fetch(fr)
     }
@@ -85,6 +90,15 @@ class LocationOrderingVM {
     private func getLocations() throws -> [_SALocation] {
         let fr = _SALocation.fetchRequest()
         fr.predicate = NSPredicate(format: "visible = true")
+        fr.sortDescriptors = [
+            NSSortDescriptor(key: "sortOrder", ascending: true),
+            NSSortDescriptor(
+                key: "caption",
+                ascending: true,
+                selector: #selector(NSString.localizedCaseInsensitiveCompare(_:))
+            )
+            
+        ]
         
         return try _ctx.fetch(fr)
     }

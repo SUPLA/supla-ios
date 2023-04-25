@@ -387,7 +387,7 @@ class AccountCreationVMTests: XCTestCase {
         XCTAssertEqual(runtimeConfig.activeProfileIdValues.count, 1)
         XCTAssertEqual(runtimeConfig.activeProfileIdValues, [nil])
         
-        XCTAssertEqual(suplaClientProvider.suplaClientMock.reconnectCalls, 1)
+        XCTAssertEqual(suplaClientProvider.suplaClientMock.reconnectCalls, 0)
         XCTAssertEqual(suplaApp.terminateCalls, 1)
     }
     

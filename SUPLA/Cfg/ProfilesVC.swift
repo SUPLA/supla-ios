@@ -150,6 +150,15 @@ class ProfilesVC: BaseViewController {
         }).disposed(by: _disposeBag)
         
         _profilesModel.on(.next(dataModel(with: _viewModel.profileItems.value)))
+        
+        navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "backbtn"), style: .done, target: self, action: #selector(onBackPressed))
+    }
+    
+    @objc func onBackPressed() {
+        if (!SAApp.isClientRegistered()) {
+            SAApp.suplaClient().reconnect()
+        }
+        navigationCoordinator?.finish()
     }
     
     override func viewWillAppear(_ animated: Bool) {
