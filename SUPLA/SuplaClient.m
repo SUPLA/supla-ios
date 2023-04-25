@@ -596,10 +596,6 @@ void sasuplaclient_scene_state_update(void *_suplaclient,
                 DataChanged = YES;
             }
             
-            if ( [self.DB setChannelsOffline] ) {
-                DataChanged = YES;
-            }
-            
             if ( DataChanged ) {
                 [self onDataChanged];
             }
@@ -697,11 +693,6 @@ void sasuplaclient_scene_state_update(void *_suplaclient,
 }
 
 - (void) onDisconnected {
-    
-   if ( [self.DB setChannelsOffline] ) {
-       [self onDataChanged];
-   }
-    
    [self performSelectorOnMainThread:@selector(_onDisconnected) withObject:nil waitUntilDone:NO];
 }
 

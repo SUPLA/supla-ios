@@ -73,7 +73,6 @@ typedef NS_ENUM(NSUInteger, GroupBy) {
 -(BOOL) updateChannelValue:(TSC_SuplaChannelValue_B *)channel_value;
 -(BOOL) updateChannelExtendedValue:(TSC_SuplaChannelExtendedValue *)channel_value;
 -(NSFetchedResultsController*) getChannelFrc;
--(BOOL) setChannelsOffline;
 -(BOOL) setAllOfChannelVisible:(int)visible whereVisibilityIs:(int)wvi;
 -(NSUInteger) getChannelCount;
 -(BOOL) setAllOfChannelGroupVisible:(int)visible whereVisibilityIs:(int)wvi;
