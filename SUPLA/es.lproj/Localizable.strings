@@ -22,12 +22,12 @@
 "On" = "Activar";
 "Off" = "Desactivar";
 "opened the gateway" = "ha abierto el portillo";
-"opened / closed the gate" = "ha abierto / ha cerrado la puerta";
-"opened / closed the gate doors" = "ha abierto / ha cerrado la puerta de garaje";
+"opened / closed the gate" = "ha abierto / cerrado la puerta";
+"opened / closed the gate doors" = "ha abierto / cerrado la puerta de garaje";
 "opened the door" = "ha abierto la puerta";
-"opened / closed roller shutter" = "ha abierto / ha cerrado la persiana";
+"opened / closed roller shutter" = "ha abierto / cerrado la persiana";
 "turned the power ON/OFF" = "ha activado / desactivado la alimentación";
-"turned the light ON/OFF" = "ha encendido / ha apagado la luz";
+"turned the light ON/OFF" = "ha encendido / apagado la luz";
 "Settings" = "Ajustes";
 "About" = "Sobre el programa";
 "Gateway" = "Portillo";
@@ -48,7 +48,7 @@
 "Connecting..." = "Conectando...";
 "Unknown error" = "Error desconocido";
 "Service temporarily unavailable" = "Servicio temporalmente no disponible";
-"Bad credentials" = "Certificaciones incorrectas";
+"Bad credentials" = "Credenciales incorrectas";
 "Client limit exceeded" = "Se ha superado el límite de aplicaciones del cliente";
 "Device disabled. Please log in to \"Supla Cloud\" and enable this device in “Smartphone” section of the website." = "El dispositivo está deshabilitado";
 "Access Identifier is disabled" = "El identificador de acceso está deshabilitado";
@@ -75,8 +75,8 @@
 "Start" = "Start";
 "Cancel" = "Cancelar";
 "Go to the system settings" = "Proceda a los ajustes del sistema";
-"I/O Device registration is currently off. To continue go to „My SUPLA” at %@ and enable the Device Add Button." = "El registro de dispositivos de entrada/salida está actualmente deshabilitado. Para continuar vaya a la página %@ y en la pestaña Mi SUPLA active la registro de dispositivos.";
-"Add Wizard is only available when server connection has been set based on the email address entered in the settings. (Disable advanced options in the settings)" = "¡El Asistente para agregar solo está disponible cuando se ha establecido una conexión con el servidor según la dirección de correo electrónico ingresada! (Desactiva las opciones avanzadas en la configuración de tu cuenta)";
+"I/O Device registration is currently off. To continue go to „My SUPLA” at %@ and enable the Device Add Button." = "El registro de dispositivos está actualmente deshabilitado. Para continuar vaya a la página %@ y en la pestaña Mi SUPLA active el registro de dispositivos.";
+"Add Wizard is only available when server connection has been set based on the email address entered in the settings. (Disable advanced options in the settings)" = "¡El Asistente para agregar solo está disponible cuando se ha establecido la conexión con el servidor usando una cuenta de correo electrónico! (Desactiva las opciones avanzadas en la configuración de tu cuenta)";
 "The connected Server does not support this function!" = "¡El servidor al que ha conectado no es compatible con esta característica!";
 "Device Configuration Completion timeout!" = "¡Se ha superado el tiempo de espera para completar la configuración del dispositivo!";
 "Incorrect input parameters!" = "¡Parámetros de entrada erróneos!";
@@ -90,7 +90,7 @@
 "Staircase timer" = "Automático de escalera";
 "https://cloud.supla.org/register" = "https://cloud.supla.org/register?lang=es";
 "https://en-forum.supla.org" = "https://es-forum.supla.org";
-"Retrieving data from the server..." = "Descargando datos del servidor ...";
+"Retrieving data from the server..." = "Descargando datos del servidor...";
 "No chart data available." = "No hay datos para el gráfico.";
 "Electricity Meter" = "Contador de electricidad";
 "Water Meter" = "Contador de agua";
@@ -163,7 +163,7 @@
 "Vector balance - Years" = "Balance vectorial – Años";
 
 "Time exceeded. Try again." = "¡Se ha superado el tiempo! Inténtalo de nuevo.";
-"Are you sure you want to restore the default settings?" = "¿Está seguro de restaurar la cofiguración predeterminada?";
+"Are you sure you want to restore the default settings?" = "¿Está seguro de restaurar la configuración predeterminada?";
 "Default settings" = "Configuración por defecto";
 
 "Battery level" = "Nivel de batería";
@@ -172,14 +172,14 @@
 "Bridge node - online" = "Nodo del puente – en línea";
 "Bridge node - signal strength" = "Nodo puente: intensidad de la señal";
 "Uptime" = "Tiempo de trabajo";
-"Connection uptime" = "Tiempo de conección";
+"Connection uptime" = "Tiempo de conexión";
 "Battery health" = "Duración de la batería";
 "Connection reset cause" = "Causa del reinicio de la conexión";
 "Light source lifespan" = "Vida útil de la fuente de luz";
 "Light source operating time" = "Tiempo de trabajo de la fuente de luz";
 "CHANGE THE LIGHT SOURCE LIFESPAN SETTINGS" = "CAMBIAR CONFIGURACIÓN DE VIDA ÚTIL DE LA FUENTE DE LUZ";
-"The lifespan of the uv radiator is %.02f%%. Schedule its replacement." = "La vida útil de la lámpara ultravioleta es% .02f %%. Programar su reemplazo.";
-"The lifespan of the uv radiator is %.02f%%. Replace the radiator." = "La vida útil de la lámpara ultravioleta es% .02f %%. Reemplacer el calentador.";
+"The lifespan of the uv radiator is %.02f%%. Schedule its replacement." = "La vida útil de la lámpara ultravioleta es% .02f %%. Planee su reemplazo.";
+"The lifespan of the uv radiator is %.02f%%. Replace the radiator." = "La vida útil de la lámpara ultravioleta es% .02f %%. Reemplácela.";
 "The lifespan of the light source is %.02f%%." = "La vida útil de la fuente de luz es% .02f %%.";
 "Timeout for enabling registration has expired!" = "¡Se ha superado el tiempo de espera de inicialización del registro!";
 "Please enter your Supla Cloud login details." = "Ingrese sus datos de inicio de sesión en cloud.supla.org.";
@@ -194,7 +194,7 @@
 "*Configuration mode is enabled by default on brand new products. It can also be enabled manually by pressing and holding CONFIG button or dimmer knob for around 5s.\n\n%@\n" = "Si tras conectar la alimentación el dispositivo no funciona en el modo de configuración, mantén presionada la tecla CONFIG durante al menos 5 segundos.\n\n%@\n";
 "Press Next to continue." = "Para continuar presiona Siguiente.";
 "Press START to start configuration." = "Presiona la tecla START para iniciar la configuración.";
-"I/O Device connection setting timeout!" = "¡Se ha superado el tiempo de espera para establecer la conexión con el dispositivo de entrada/salida!";
+"I/O Device connection setting timeout!" = "¡Se ha superado el tiempo de espera para establecer la conexión con el dispositivo!";
 "No I/O Devices found! Please check if your I/O Device is ON and in configuration mode." = "¡No se ha encontrado ningún dispositivo! Comprueba que el dispositivo que quiere configurar esta en el modo de configuración y a continuación inténtelo de nuevo.";
 "Make sure that the application has permissions to discover and connect to devices in the local network. This means that the \"iOS->Settings->SUPLA->Local network\" permission must be turned on for the wizard to work properly." = "Asegúrate de que la aplicación tenga permisos para descubrir y conectarse a dispositivos en la red local. Esto significa que el permiso \"iOS->Configuración-> SUPLA->Red local\" debe estar habilitado para que el asistente funcione correctamente.";
 "The glass sections are exposed for more than 20 hours, which may adversely affect their life. It is recommended to cover all sections for a minimum of 4 hours in order to regenerate them." = "Las secciones de vidrio están expuestas durante más de 20 horas, lo que puede tener un impacto negativo en su vida útil. Se recomienda cubrir todas las secciones durante un mínimo de 4 horas para regenerarlas.";
@@ -203,11 +203,11 @@
 "Incorrect Email Address or Password" = "Dirección de correo electrónico o contraseña incorrecta";
 "Channel Id" = "ID del Canal";
 "Back" = "Atrás";
-"The z-wave bridge is not responding. Check if the bridge is connected to the server." = "Puente z-wave no responde. Verifice si el puente está conectado con al servidor.";
+"The z-wave bridge is not responding. Check if the bridge is connected to the server." = "Puente z-wave no responde. Verifica si el puente está conectado con al servidor.";
 "Exit" = "Salir";
 "The waiting time for basic channel configuration data has expired." = "¡Se ha superado el tiempo de espera a los datos de configuración básica del canal!";
 "Channel name" = "Nombre del canal";
-"Location name" = "Nombre del lugar";
+"Location name" = "Nombre de la localización";
 "Default" = "Defecto";
 "No function" = "No hay función";
 "Gateway lock operation" = "Apertura del portillo";
@@ -237,23 +237,23 @@
 "Assigned to:" = "Asignado a:";
 "Waiting for confirmation of resetting the z-wave network together with clearing the settings." = "Esperando la confirmación de resetear la red z-wave y eliminar los ajustes.";
 "The waiting time for the z-wave network reset has expired." = "¡Se ha superado el tiempo de espera al reinicio de la red z-wave!";
-"Are you sure you want to reset the settings and z-wave network?" = "¿Seguro de resetear los ajustes y la red z-wave?";
-"This function is not available when the bridge is in slave mode." = "Está función no está disponible cuando el puente esté en el submodo.";
+"Are you sure you want to reset the settings and z-wave network?" = "¿Está seguro de que quiere resetear los ajustes y la red z-wave?";
+"This function is not available when the bridge is in slave mode." = "Está función no está disponible cuando el puente esté en el modo esclavo.";
 "Waiting for button press on the z-wave device." = "Esperando a que se presione una tecla en el dispositivo z-wave.";
 "The waiting time for pressing the button has elapsed." = "¡Se ha superado el tiempo de espera a presionar una tecla!";
 "Waiting for the device to be added to the z-wave network." = "Esperando agregar el dispositivo a la red z-wave.";
 "The waiting time for adding the device to the z-wave network has expired." = "¡Se ha superado el tiempo de espera a añadir dispositivo a la red z-wave!";
 "The waiting time to remove the device has expired." = "¡Se ha superado el tiempo de espera a eliminar el dispositivo!";
-"The waiting time for the z-wave device assignment to the channel has elapsed." = "¡Se ha superado el tiempo de espera a asignar el dispositivo z-wave al. canal!";
-"The selected z-wave device is already associated with another channel. Are you sure you want to move this device to this channel?" = "El dispositivo elejido z-wave ya está asociado con otro canal. ¿Está seguro de mover el dispositivo a este canal?";
+"The waiting time for the z-wave device assignment to the channel has elapsed." = "¡Se ha superado el tiempo de espera a asignar el dispositivo z-wave al canal!";
+"The selected z-wave device is already associated with another channel. Are you sure you want to move this device to this channel?" = "El dispositivo elegido z-wave ya está asociado con otro canal. ¿Está seguro de mover el dispositivo a este canal?";
 "Timeout waiting for z-wave bridge response." = "¡Se ha superado el tiempo de espera a una respuesta del puente z-wave!";
 "Unexpected bridge response. Code: %i" = "Respuesta de puente inesperada. Código: %i";
 "Z-Wave bridge" = "Puente z-wave";
 "opened / closed the roof window" = "abrió / cerró la ventana de techo";
-"The power was turned off after the set threshold of the allowable current was exceeded." = "La alimentación se apagó después de que se excedió el umbral establecido de la corriente permitida.";
+"The power was turned off after the set threshold of the allowable current was exceeded." = "La alimentación se desactivo al superar el umbral establecido de la corriente permitida.";
 "Are you sure you want to start calibration?" = "¿Está seguro de que desea iniciar la calibración?";
-"Calibration lost." = "La calibración falló.";
-"Calibration failed." = "Calibración perdida.";
+"Calibration lost." = "Calibración perdida.";
+"Calibration failed." = "La calibración falló.";
 "Motor problem / Unexpected stop." = "Problema de motor / Parada inesperada.";
 "0: unknown" = "0: desconocido";
 "1: server timeout" = "1: sin respuesta del servidor";
@@ -263,7 +263,7 @@
 "App Settings" = "Ajustes";
 "Channel height" = "Altura del canal";
 "Temperature unit" = "Unidad de temperatura";
-"Auto-hide buttons" = "Ocultación automática de botones";
+"Auto-hide buttons" = "Ocultar botones automáticamente";
 "Device setup" = "Configuración del dispositivo";
 "This device does not have any channels visible in the application. To finish configuration go to cloud.supla.org" = "Este dispositivo no tiene ningún canal visible en la aplicación. Ir a cloud.supla.org para completar la configuración";
 "I understand" = "entiendo";
@@ -279,7 +279,7 @@
 "In Access ID authentication mode you won't be able to use automatic Add device wizard. However you will still be able to add it by manual Add device procedure." = "El asistente para agregar dispositivos automáticamente no está disponible en el modo de autenticación de acceso de ID. Luego, los dispositivos se pueden agregar manualmente.";
 "Don't have an account in Supla Cloud yet?" = "¿Todavía no tienes una cuenta Supla Cloud?";
 "Create" = "Crear cuenta";
-"Location order" = "El orden del lugar";
+"Location order" = "Orden de las localizaciones";
 "Roller shutter %" = "Persianas enrollables %";
 "Opening" = "Aperturas";
 "Closing" = "Cierres";
@@ -300,7 +300,7 @@
 "Phase %d" = "Fase %d";
 
 "AccountCreation.title" = "Editar cuenta";
-"AccountCreation.modificationTitle" = "Dñadir cuenta";
+"AccountCreation.modificationTitle" = "Añadir cuenta";
 
 "AccountRemoval.url" = "https://{SERVER_ADDRESS}/db99845855b2ecbfecca9a095062b96c3e27703f?lang=es";
 
