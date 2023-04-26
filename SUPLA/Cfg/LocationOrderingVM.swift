@@ -48,19 +48,20 @@ class LocationOrderingVM {
     
     private func fetchLocations() throws -> [_SALocation] {
         var locationsSet = Set<NSNumber>()
-        for channel in try getChannelsLocations() {
+        let profile = profileManager.getCurrentProfile()!
+        for channel in try getChannelsLocations(profile: profile) {
             if let locationId = channel.location?.location_id {
                 locationsSet.insert(locationId)
             }
         }
-        for scene in try getScenesLocations() {
+        for scene in try getScenesLocations(profile: profile) {
             if let locationId = scene.location?.location_id {
                 locationsSet.insert(locationId)
             }
         }
         
         var result = [_SALocation]()
-        for location in try getLocations() {
+        for location in try getLocations(profile: profile) {
             if let locationId = location.location_id {
                 if (locationsSet.contains(locationId)) {
                     result.append(location)
@@ -71,25 +72,23 @@ class LocationOrderingVM {
         return result
     }
     
-    private func getChannelsLocations() throws -> [SAChannelBase] {
+    private func getChannelsLocations(profile: AuthProfileItem) throws -> [SAChannelBase] {
         let fr = SAChannelBase.fetchRequest()
-        let profile = profileManager.getCurrentProfile()!
         fr.predicate = NSPredicate(format: "visible = true AND profile = %@", profile)
         
         return try _ctx.fetch(fr)
     }
     
-    private func getScenesLocations() throws -> [SAScene] {
+    private func getScenesLocations(profile: AuthProfileItem) throws -> [SAScene] {
         let fr = SAScene.fetchRequest()
-        let profile = profileManager.getCurrentProfile()!
         fr.predicate = NSPredicate(format: "visible = true AND profile = %@", profile)
         
         return try _ctx.fetch(fr)
     }
     
-    private func getLocations() throws -> [_SALocation] {
+    private func getLocations(profile: AuthProfileItem) throws -> [_SALocation] {
         let fr = _SALocation.fetchRequest()
-        fr.predicate = NSPredicate(format: "visible = true")
+        fr.predicate = NSPredicate(format: "visible = true AND profile = %@", profile)
         fr.sortDescriptors = [
             NSSortDescriptor(key: "sortOrder", ascending: true),
             NSSortDescriptor(

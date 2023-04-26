@@ -41,6 +41,7 @@
         <attribute name="group_id" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="visible" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <relationship name="group" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="SAChannelGroup"/>
+        <relationship name="profile" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="AuthProfileItem"/>
         <relationship name="value" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="SAChannelValueBase"/>
     </entity>
     <entity name="SAChannelValue" representedClassName="SAChannelValue" parentEntity="SAChannelValueBase" syncable="YES">
@@ -59,6 +60,7 @@
         <attribute name="group" optional="YES" attributeType="Boolean" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="idx" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="NO"/>
         <attribute name="remote_id" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+        <relationship name="profile" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="AuthProfileItem"/>
     </entity>
     <entity name="SAElectricityMeasurementItem" representedClassName="SAElectricityMeasurementItem" parentEntity="SAIncrementalMeasurementItem" syncable="YES">
         <attribute name="fae_balanced" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>

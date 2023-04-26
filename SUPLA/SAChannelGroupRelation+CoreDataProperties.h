@@ -20,6 +20,7 @@
 
 
 NS_ASSUME_NONNULL_BEGIN
+@class AuthProfileItem;
 
 @interface SAChannelGroupRelation (CoreDataProperties)
 
@@ -30,6 +31,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic) int32_t group_id;
 @property (nullable, nonatomic, retain) SAChannelValue *value;
 @property (nullable, nonatomic, retain) SAChannelGroup *group;
+@property (nonatomic, retain) AuthProfileItem *profile;
 
 @end
 
