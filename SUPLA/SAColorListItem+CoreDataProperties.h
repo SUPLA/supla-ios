@@ -20,6 +20,7 @@
 
 
 NS_ASSUME_NONNULL_BEGIN
+@class AuthProfileItem;
 
 @interface SAColorListItem (CoreDataProperties)
 
@@ -30,6 +31,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nullable, nonatomic, copy) NSNumber *idx;
 @property (nonatomic) int32_t remote_id;
 @property (nonatomic) BOOL group;
+@property (nonatomic, retain) AuthProfileItem *profile;
 
 @end
 

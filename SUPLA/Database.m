@@ -187,9 +187,12 @@ again:
     
     NSSet *entitiesWithProfile = [
         NSSet setWithObjects:
-            @"SALocation", @"SAChannel", @"SAChannelValue", @"SAChannelExtendedValue",
-        @"SAChannelGroup", @"SAElectricityMeasurementItem", @"SAImpulseCounterMeasurementItem", @"SATemperatureMeasurementItem",
-        @"SATempHumidityMeasurementItem", @"SAThermostatMeasurementItem", @"SAScene", nil
+            @"SALocation", @"SAChannel", @"SAChannelValue",
+            @"SAChannelExtendedValue", @"SAChannelGroup",
+            @"SAElectricityMeasurementItem", @"SAImpulseCounterMeasurementItem",
+            @"SATemperatureMeasurementItem", @"SATempHumidityMeasurementItem",
+            @"SAThermostatMeasurementItem", @"SAScene", @"SAChannelGroupRelation",
+            @"SAUserIcon", @"SAColorListItem", nil
     ];
     
     NSMutableArray *predicateArray = [NSMutableArray array];
@@ -245,9 +248,12 @@ again:
 -(NSUInteger) getCountByPredicate:(NSPredicate *)predicate entityName:(NSString *)en {
     NSSet *entitiesWithProfile = [
         NSSet setWithObjects:
-            @"SALocation", @"SAChannel", @"SAChannelValue", @"SAChannelExtendedValue",
-        @"SAChannelGroup", @"SAElectricityMeasurementItem", @"SAImpulseCounterMeasurementItem", @"SATemperatureMeasurementItem",
-        @"SATempHumidityMeasurementItem", @"SAThermostatMeasurementItem", @"SAScene", nil
+            @"SALocation", @"SAChannel", @"SAChannelValue",
+            @"SAChannelExtendedValue", @"SAChannelGroup",
+            @"SAElectricityMeasurementItem", @"SAImpulseCounterMeasurementItem",
+            @"SATemperatureMeasurementItem", @"SATempHumidityMeasurementItem",
+            @"SAThermostatMeasurementItem", @"SAScene", @"SAChannelGroupRelation",
+            @"SAUserIcon", @"SAColorListItem", nil
     ];
     
     NSMutableArray *predicateArray = [NSMutableArray array];
@@ -584,7 +590,7 @@ again:
     if (profile == nil) {
         fetchRequest.predicate = [NSPredicate predicateWithFormat:@"func > 0 AND visible > 0 AND (%i = 0 OR location.location_id = %i) AND profile.isActive = true", locationId, locationId];
     } else {
-        fetchRequest.predicate = [NSPredicate predicateWithFormat:@"func > 0 AND visible > 0 AND (%i = 0 OR location.location_id = %i) AND profile == %@", locationId, locationId, profile];
+        fetchRequest.predicate = [NSPredicate predicateWithFormat:@"func > 0 AND visible > 0 AND (%i = 0 OR location.location_id = %i) AND profile = %@", locationId, locationId, profile];
     }
     [fetchRequest setEntity:[NSEntityDescription entityForName:entity inManagedObjectContext: self.managedObjectContext]];
     
@@ -747,6 +753,7 @@ again:
     
     CGroupRel.group_id = 0;
     CGroupRel.channel_id = 0;
+    CGroupRel.profile = self.currentProfile;
     
     [self.managedObjectContext insertObject:CGroupRel];
     
@@ -802,11 +809,14 @@ again:
 }
 
 - (NSArray*) updateChannelGroups {
-    
+    AuthProfileItem *profile = self.currentProfile;
+    if (profile == nil) {
+        return nil;
+    }
     
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
     
-    fetchRequest.predicate = [NSPredicate predicateWithFormat:@"visible > 0 AND group <> %@ AND value <> %@ AND group.visible > 0", nil, nil];
+    fetchRequest.predicate = [NSPredicate predicateWithFormat:@"visible > 0 AND group <> %@ AND value <> %@ AND group.visible > 0 AND profile = %@", nil, nil, profile];
     [fetchRequest setEntity:[NSEntityDescription entityForName:@"SAChannelGroupRelation" inManagedObjectContext: self.managedObjectContext]];
     NSArray *sortDescriptors = [[NSArray alloc] initWithObjects:[[NSSortDescriptor alloc] initWithKey:@"group_id" ascending:YES],nil];
     
@@ -874,6 +884,8 @@ again:
         item.remote_id = remote_id;
         item.group = group;
         item.idx = [NSNumber numberWithInt:idx];
+        item.profile = self.currentProfile;
+        
         
         [self.managedObjectContext insertObject:item];
         [self saveContext];
@@ -1346,6 +1358,10 @@ again:
 }
 
 -(void) userIconsIdsWithEntity:(NSString*)en channelBase:(BOOL)cb idField:(NSString *)field exclude:(NSArray*)ex result:(NSMutableArray *)result {
+    AuthProfileItem *profile = self.currentProfile;
+    if (profile == nil) {
+        return;
+    }
     
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
     
@@ -1355,9 +1371,9 @@ again:
     [fetchRequest setEntity:entity];
     [fetchRequest setResultType:NSDictionaryResultType];
     if (cb) {
-        fetchRequest.predicate = [NSPredicate predicateWithFormat:[NSString stringWithFormat:@"%@ > 0 AND func > 0 AND visible > 0", field]];
+        fetchRequest.predicate = [NSPredicate predicateWithFormat:[NSString stringWithFormat:@"%@ > 0 AND func > 0 AND visible > 0 AND profile = %%@", field], profile];
     } else {
-        fetchRequest.predicate = [NSPredicate predicateWithFormat:[NSString stringWithFormat:@"%@ > 0", field]];
+        fetchRequest.predicate = [NSPredicate predicateWithFormat:[NSString stringWithFormat:@"%@ > 0 AND profile = %%@", field], profile];
     }
     
     fetchRequest.propertiesToGroupBy = @[[entity.propertiesByName objectForKey:field]];
@@ -1499,6 +1515,7 @@ again:
     [self.managedObjectContext deleteObject:object];
 }
 
+#pragma mark Profile
 - (AuthProfileItem *)currentProfile {
     id<ProfileManager> pm = [[MultiAccountProfileManager alloc]
                              initWithContext: [self managedObjectContext]];
@@ -1633,7 +1650,7 @@ again:
         return @[];
     }
     
-    fr.predicate = [NSPredicate predicateWithFormat: @"profile == %@ AND visible > 0" argumentArray: @[profile]];
+    fr.predicate = [NSPredicate predicateWithFormat: @"profile = %@ AND visible > 0" argumentArray: @[profile]];
     fr.sortDescriptors = @[
         [NSSortDescriptor sortDescriptorWithKey: @"location.sortOrder" ascending: YES],
         [NSSortDescriptor sortDescriptorWithKey: @"location.caption" ascending: YES],
