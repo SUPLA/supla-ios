@@ -37,7 +37,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 }
 
 -(void)prefixesInit {
-    _prefixes = [NSMutableArray arrayWithArray:@[@"ZAMEL-", @"SUPLA-", @"NICE-", @"HEATPOL-", @"COMELIT-"]];
+    _prefixes = [NSMutableArray arrayWithArray:@[@"ZAMEL-", @"SUPLA-", @"NICE-", @"HEATPOL-", @"COMELIT-", @"POLIER-"]];
 }
 
 -(void)onResultWithSuccess:(BOOL)success {

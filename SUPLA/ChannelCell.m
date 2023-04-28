@@ -391,6 +391,7 @@
     
     [[SAApp SuplaClient] cg:self.channelBase.remote_id Open:1 group:group];
     [self hideSwipeMaybe];
+    [self notifyDelegate];
 }
 
 - (IBAction)leftTouchDown:(id)sender {
@@ -400,6 +401,13 @@
     [self vibrate];
     [[SAApp SuplaClient] cg:self.channelBase.remote_id Open:0 group:[self.channelBase isKindOfClass:[SAChannelGroup class]]];
     [self hideSwipeMaybe];
+    [self notifyDelegate];
+}
+
+- (void)notifyDelegate {
+    if([self.delegate conformsToProtocol: @protocol(SAChannelCellDelegate)]) {
+        [((id<SAChannelCellDelegate>)self.delegate) channelButtonClicked: self];
+    }
 }
 
 - (IBAction)rlTouchCancel:(id)sender {
@@ -434,6 +442,7 @@
 
 - (void)onLongPress:(UILongPressGestureRecognizer *)longPressGR {
     if (self.captionEditable && self.channelBase != nil && longPressGR.state == UIGestureRecognizerStateBegan) {
+        [self vibrate];
         [[SAChannelCaptionEditor globalInstance] editCaptionWithRecordId:self.channelBase.remote_id];
     }
 }

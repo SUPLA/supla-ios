@@ -28,7 +28,6 @@
 #import "SUPLA-Swift.h"
 
 @interface SADatabase ()
-@property (readonly, nonatomic) AuthProfileItem *currentProfile;
 @end
 
 @implementation SADatabase {
@@ -83,6 +82,10 @@
     NSError *error = nil;
     NSDictionary *opts = nil;
     NSURL *storeURL = [[SAApp applicationDocumentsDirectory] URLByAppendingPathComponent:[NSString stringWithFormat:@"SUPLA_DB%i.sqlite", DBv]];
+    
+#ifdef DEBUG
+    NSLog(@"Database path: %@", storeURL.absoluteString);
+#endif
     
     // Create the coordinator and store
 again:
@@ -182,8 +185,30 @@ again:
 
 -(NSArray *) fetchByPredicate:(NSPredicate *)predicate entityName:(NSString*)en limit:(int)l sortDescriptors:(NSArray<NSSortDescriptor *> *)sortDescriptors {
     
+    NSSet *entitiesWithProfile = [
+        NSSet setWithObjects:
+            @"SALocation", @"SAChannel", @"SAChannelValue",
+            @"SAChannelExtendedValue", @"SAChannelGroup",
+            @"SAElectricityMeasurementItem", @"SAImpulseCounterMeasurementItem",
+            @"SATemperatureMeasurementItem", @"SATempHumidityMeasurementItem",
+            @"SAThermostatMeasurementItem", @"SAScene", @"SAChannelGroupRelation",
+            @"SAUserIcon", @"SAColorListItem", nil
+    ];
+    
+    NSMutableArray *predicateArray = [NSMutableArray array];
+    [predicateArray addObject:predicate];
+    
+    if ([entitiesWithProfile containsObject: en]) {
+        AuthProfileItem *profile = self.currentProfile;
+        if (profile == nil) {
+            [predicateArray addObject:[NSPredicate predicateWithFormat:@"profile.isActive = true"]];
+        } else {
+            [predicateArray addObject:[NSPredicate predicateWithFormat:@"profile = %@", profile]];
+        }
+    }
+    
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-    fetchRequest.predicate = predicate;
+    fetchRequest.predicate = [NSCompoundPredicate andPredicateWithSubpredicates: predicateArray];;
   
     fetchRequest.sortDescriptors = sortDescriptors;
     
@@ -221,8 +246,30 @@ again:
 }
 
 -(NSUInteger) getCountByPredicate:(NSPredicate *)predicate entityName:(NSString *)en {
+    NSSet *entitiesWithProfile = [
+        NSSet setWithObjects:
+            @"SALocation", @"SAChannel", @"SAChannelValue",
+            @"SAChannelExtendedValue", @"SAChannelGroup",
+            @"SAElectricityMeasurementItem", @"SAImpulseCounterMeasurementItem",
+            @"SATemperatureMeasurementItem", @"SATempHumidityMeasurementItem",
+            @"SAThermostatMeasurementItem", @"SAScene", @"SAChannelGroupRelation",
+            @"SAUserIcon", @"SAColorListItem", nil
+    ];
+    
+    NSMutableArray *predicateArray = [NSMutableArray array];
+    [predicateArray addObject:predicate];
+    
+    if ([entitiesWithProfile containsObject: en]) {
+        AuthProfileItem *profile = self.currentProfile;
+        if (profile == nil) {
+            [predicateArray addObject:[NSPredicate predicateWithFormat:@"profile.isActive = true"]];
+        } else {
+            [predicateArray addObject:[NSPredicate predicateWithFormat:@"profile = %@", profile]];
+        }
+    }
+    
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-    fetchRequest.predicate = predicate;
+    fetchRequest.predicate = [NSCompoundPredicate andPredicateWithSubpredicates: predicateArray];
     
     [fetchRequest setEntity:[NSEntityDescription entityForName:en inManagedObjectContext: self.managedObjectContext]];
     [fetchRequest setIncludesSubentities:NO];
@@ -283,7 +330,6 @@ again:
 
 #pragma mark Locations
 -(_SALocation*) fetchLocationById:(int)location_id {
-    
     return [self fetchItemByPredicate:[NSPredicate predicateWithFormat:@"location_id = %i", location_id] entityName:@"SALocation"];
 };
 
@@ -297,6 +343,7 @@ again:
     
     Location.location_id = [NSNumber numberWithInt:0];
     Location.caption = @"";
+    Location.profile = self.currentProfile;
     [Location setLocationVisible:0];
     [self.managedObjectContext insertObject:Location];
    
@@ -333,24 +380,23 @@ again:
 #pragma mark Channels
 
 -(SAChannel*) fetchChannelById:(int)channel_id {
-    return [self fetchItemByPredicate:[NSPredicate predicateWithFormat:@"remote_id = %i AND profile.isActive = true", channel_id] entityName:@"SAChannel"];
+    return [self fetchItemByPredicate:[NSPredicate predicateWithFormat:@"remote_id = %i", channel_id] entityName:@"SAChannel"];
 };
 
 -(SAChannelValue*) fetchChannelValueByChannelId:(int)channel_id {
-    
-    return [self fetchItemByPredicate:[NSPredicate predicateWithFormat:@"channel_id = %i AND profile.isActive = true", channel_id] entityName:@"SAChannelValue"];
+    return [self fetchItemByPredicate:[NSPredicate predicateWithFormat:@"channel_id = %i", channel_id] entityName:@"SAChannelValue"];
 };
 
 -(SAChannelExtendedValue*) fetchChannelExtendedValueByChannelId:(int)channel_id {
-    return [self fetchItemByPredicate:[NSPredicate predicateWithFormat:@"channel_id = %i AND profile.isActive = true", channel_id] entityName:@"SAChannelExtendedValue"];
+    return [self fetchItemByPredicate:[NSPredicate predicateWithFormat:@"channel_id = %i", channel_id] entityName:@"SAChannelExtendedValue"];
 };
 
 -(SAChannel*) newChannel {
-    
-    SAChannel *Channel = [[SAChannel alloc] initWithEntity:[NSEntityDescription entityForName:@"SAChannel" inManagedObjectContext:self.managedObjectContext] insertIntoManagedObjectContext:self.managedObjectContext];
+    NSManagedObjectContext *ctx = self.managedObjectContext;
+    SAChannel *Channel = [[SAChannel alloc] initWithEntity:[NSEntityDescription entityForName:@"SAChannel" inManagedObjectContext: ctx] insertIntoManagedObjectContext: ctx];
     [Channel initWithRemoteId:0];
     Channel.profile = self.currentProfile;
-    [self.managedObjectContext insertObject:Channel];
+    [ctx insertObject:Channel];
     
     return Channel;
 }
@@ -360,6 +406,7 @@ again:
     SAChannelValue *Value = [[SAChannelValue alloc] initWithEntity:[NSEntityDescription entityForName:@"SAChannelValue" inManagedObjectContext:self.managedObjectContext] insertIntoManagedObjectContext:self.managedObjectContext];
     
     [Value initWithChannelId:channel_id];
+    Value.profile = self.currentProfile;
     [self.managedObjectContext insertObject:Value];
     
     return Value;
@@ -373,6 +420,7 @@ again:
                                      insertIntoManagedObjectContext:self.managedObjectContext];
     
     [Value initWithChannelId:channel_id];
+    Value.profile = self.currentProfile;
     [self.managedObjectContext insertObject:Value];
     
     return Value;
@@ -538,20 +586,22 @@ again:
 
 -(NSFetchRequest*) getChannelBaseFetchRequestForEntityName:(NSString*)entity locationId:(int)locationId {
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-    
-    fetchRequest.predicate = [NSPredicate predicateWithFormat:@"func > 0 AND visible > 0 AND (%i = 0 OR location.location_id = %i)", locationId, locationId];
+    AuthProfileItem *profile = self.currentProfile;
+    if (profile == nil) {
+        fetchRequest.predicate = [NSPredicate predicateWithFormat:@"func > 0 AND visible > 0 AND (%i = 0 OR location.location_id = %i) AND profile.isActive = true", locationId, locationId];
+    } else {
+        fetchRequest.predicate = [NSPredicate predicateWithFormat:@"func > 0 AND visible > 0 AND (%i = 0 OR location.location_id = %i) AND profile = %@", locationId, locationId, profile];
+    }
     [fetchRequest setEntity:[NSEntityDescription entityForName:entity inManagedObjectContext: self.managedObjectContext]];
     
     SEL localeAwareCompare = @selector(localizedCaseInsensitiveCompare:);
     NSArray *sortDescriptors = @[
-								 [[NSSortDescriptor alloc] initWithKey:@"location.sortOrder" ascending:YES],
-								 [[NSSortDescriptor alloc] initWithKey:@"location.caption" ascending:YES
-															  selector: localeAwareCompare],
-                                [[NSSortDescriptor alloc] initWithKey:@"position" ascending:YES],
-                                [[NSSortDescriptor alloc] initWithKey:@"func" ascending:NO],
-                                [[NSSortDescriptor alloc] initWithKey:@"caption" ascending:NO
-								selector: localeAwareCompare]
-                                ];
+        [[NSSortDescriptor alloc] initWithKey:@"location.sortOrder" ascending:YES],
+        [[NSSortDescriptor alloc] initWithKey:@"location.caption" ascending:YES selector: localeAwareCompare],
+        [[NSSortDescriptor alloc] initWithKey:@"position" ascending:YES],
+        [[NSSortDescriptor alloc] initWithKey:@"func" ascending:NO],
+        [[NSSortDescriptor alloc] initWithKey:@"caption" ascending:NO selector: localeAwareCompare]
+    ];
     
     [fetchRequest setSortDescriptors:sortDescriptors];
     
@@ -575,32 +625,7 @@ again:
     return [self getChannelBaseFrcForEntityName:@"SAChannel"];
 }
 
--(BOOL) setChannelsOffline {
-    // TODO: rewrite
-
-         BOOL save = NO;
-        /*
-    NSArray *r = [self fetchByPredicate:[NSPredicate predicateWithFormat:@"online = YES"] entityName:@"SAChannel" limit:0];
-
-    
-    if ( r != nil ) {
-        for(int a=0;a<r.count;a++) {
-            if ( [[r objectAtIndex:a] setChannelOnline:0] ) {
-                save = YES;
-            }
-        }
-    }
-    
-    if ( save ) {
-        [self saveContext];
-    }
-         */
-    
-    return save;
-}
-
 -(BOOL) setAllItemsVisible:(int)visible whereVisibilityIs:(int)wvi entityName:(NSString*)ename {
-    
     NSArray *r = [self fetchByPredicate:[NSPredicate predicateWithFormat:@"visible = %i", wvi] entityName:ename limit:0];
     BOOL save = NO;
     
@@ -654,6 +679,7 @@ again:
     CGroup.flags = 0;
     CGroup.online = 0;
     CGroup.total_value = nil;
+    CGroup.profile = self.currentProfile;
     
     [self.managedObjectContext insertObject:CGroup];
     
@@ -727,6 +753,7 @@ again:
     
     CGroupRel.group_id = 0;
     CGroupRel.channel_id = 0;
+    CGroupRel.profile = self.currentProfile;
     
     [self.managedObjectContext insertObject:CGroupRel];
     
@@ -782,11 +809,14 @@ again:
 }
 
 - (NSArray*) updateChannelGroups {
-    
+    AuthProfileItem *profile = self.currentProfile;
+    if (profile == nil) {
+        return nil;
+    }
     
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
     
-    fetchRequest.predicate = [NSPredicate predicateWithFormat:@"visible > 0 AND group <> %@ AND value <> %@ AND group.visible > 0", nil, nil];
+    fetchRequest.predicate = [NSPredicate predicateWithFormat:@"visible > 0 AND group <> %@ AND value <> %@ AND group.visible > 0 AND profile = %@", nil, nil, profile];
     [fetchRequest setEntity:[NSEntityDescription entityForName:@"SAChannelGroupRelation" inManagedObjectContext: self.managedObjectContext]];
     NSArray *sortDescriptors = [[NSArray alloc] initWithObjects:[[NSSortDescriptor alloc] initWithKey:@"group_id" ascending:YES],nil];
     
@@ -854,6 +884,8 @@ again:
         item.remote_id = remote_id;
         item.group = group;
         item.idx = [NSNumber numberWithInt:idx];
+        item.profile = self.currentProfile;
+        
         
         [self.managedObjectContext insertObject:item];
         [self saveContext];
@@ -870,16 +902,18 @@ again:
 #pragma mark Measurements - Common
 
 -(NSArray *) getMeasurementsForChannelId:(int)channel_id dateFrom:(NSDate *)dateFrom dateTo:(NSDate *)dateTo entityName:(NSString*)entityName {
+    AuthProfileItem *profile = self.currentProfile;
+    if (profile == nil) {
+        return nil;
+    }
     
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-    
-    NSEntityDescription *entity = [NSEntityDescription
-                                   entityForName:entityName inManagedObjectContext:self.managedObjectContext];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:entityName inManagedObjectContext:self.managedObjectContext];
     
     [fetchRequest setEntity:entity];
     [fetchRequest setResultType:NSDictionaryResultType];
- 
-    fetchRequest.predicate = [NSPredicate predicateWithFormat:@"channel_id = %i AND (%@ = nil OR date >= %@) AND (%@ = nil OR date <= %@)", channel_id, dateFrom, dateFrom, dateTo, dateTo];
+    
+    fetchRequest.predicate = [NSPredicate predicateWithFormat:@"channel_id = %i AND (%@ = nil OR date >= %@) AND (%@ = nil OR date <= %@) AND profile = %@", channel_id, dateFrom, dateFrom, dateTo, dateTo, profile];
     
     fetchRequest.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"date" ascending:YES]];
     
@@ -894,16 +928,26 @@ again:
 }
 
 -(long) getTimestampOfMeasurementItemWithChannelId:(int)channel_id minimum:(BOOL)min entityName:(NSString*)en {
-    SAIncrementalMeasurementItem *item = [self fetchItemByPredicate:[NSPredicate predicateWithFormat:@"channel_id = %i", channel_id] entityName: en sortDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"date" ascending:min]]];
+    SAIncrementalMeasurementItem *item = [
+        self
+        fetchItemByPredicate:[NSPredicate predicateWithFormat:@"channel_id = %i", channel_id]
+        entityName: en
+        sortDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"date" ascending:min]]
+    ];
     
     return item ? [item.date timeIntervalSince1970] : 0;
 }
 
 -(void) deleteAllMeasurementsForChannelId:(int)channel_id entityName:(NSString *)en {
+    AuthProfileItem *profile = self.currentProfile;
+    if (profile == nil) {
+        return;
+    }
+    
     BOOL del = YES;
     do {
         del = NO;
-        NSArray *arr = [self fetchByPredicate:[NSPredicate predicateWithFormat:@"channel_id = %i", channel_id] entityName:en limit:1000];
+        NSArray *arr = [self fetchByPredicate:[NSPredicate predicateWithFormat:@"channel_id = %i AND profile = %@", channel_id, profile] entityName:en limit:1000];
         
         if (arr && arr.count) {
             del = YES;
@@ -959,6 +1003,10 @@ again:
 }
 
 -(NSArray *) getIncrementalMeasurementsForChannelId:(int)channel_id fields:(NSArray*)fields entityName:(NSString*)en dateFrom:(NSDate *)dateFrom dateTo:(NSDate *)dateTo  groupBy:(GroupBy)gb groupingDepth:(GroupingDepth)gd {
+    AuthProfileItem *profile = self.currentProfile;
+    if (profile == nil) {
+        return nil;
+    }
     
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
     
@@ -1010,7 +1058,7 @@ again:
 
     fetchRequest.propertiesToGroupBy = propertiesToGroupBy.count ? propertiesToGroupBy : nil;
     
-    fetchRequest.predicate = [NSPredicate predicateWithFormat:@"channel_id = %i AND (%@ = nil OR date >= %@) AND (%@ = nil OR date <= %@)", channel_id, dateFrom, dateFrom, dateTo, dateTo];
+    fetchRequest.predicate = [NSPredicate predicateWithFormat:@"channel_id = %i AND (%@ = nil OR date >= %@) AND (%@ = nil OR date <= %@) AND profile = %@", channel_id, dateFrom, dateFrom, dateTo, dateTo, profile];
     
     fetchRequest.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"date" ascending:YES]];
     
@@ -1029,8 +1077,8 @@ again:
 
 -(SAElectricityMeasurementItem*) newElectricityMeasurementItemWithManagedObjectContext:(BOOL)moc {
     SAElectricityMeasurementItem *item = [[SAElectricityMeasurementItem alloc] initWithEntity:[NSEntityDescription entityForName:@"SAElectricityMeasurementItem" inManagedObjectContext:self.managedObjectContext] insertIntoManagedObjectContext:moc ? self.managedObjectContext : nil];
-    
     if (moc) {
+        item.profile = self.currentProfile;
         [self.managedObjectContext insertObject:item];
     }
     return item;
@@ -1071,8 +1119,15 @@ again:
     
 
     NSDate *date = [self lastSecondInMonthWithOffset: offset];
-    NSPredicate *predicte = [NSPredicate predicateWithFormat:@"channel_id = %i AND date <= %@", channel_id, date];
-    NSDictionary *sum = [self sumValesOfEntitiesWithProperties:props predicate:predicte entityName:@"SAElectricityMeasurementItem"];
+    
+    AuthProfileItem *profile = self.currentProfile;
+    NSPredicate *predicate;
+    if (profile == nil) {
+        predicate = [NSPredicate predicateWithFormat:@"channel_id = %i AND date <= %@ AND profile.isActive = true", channel_id, date];
+    } else {
+        predicate = [NSPredicate predicateWithFormat:@"channel_id = %i AND date <= %@ AND profile = %@", channel_id, date, profile];
+    }
+    NSDictionary *sum = [self sumValesOfEntitiesWithProperties:props predicate:predicate entityName:@"SAElectricityMeasurementItem"];
     
     if (sum && sum.count == 3) {
         for(a=1;a<=3;a++) {
@@ -1093,6 +1148,7 @@ again:
     SAImpulseCounterMeasurementItem *item = [[SAImpulseCounterMeasurementItem alloc] initWithEntity:[NSEntityDescription entityForName:@"SAImpulseCounterMeasurementItem" inManagedObjectContext:self.managedObjectContext] insertIntoManagedObjectContext:moc ? self.managedObjectContext : nil];
     
     if (moc) {
+        item.profile = self.currentProfile;
         [self.managedObjectContext insertObject:item];
     }
     return item;
@@ -1118,6 +1174,10 @@ again:
 - (double) calculatedValueSumForChannelId:(int)channel_id monthLimitOffset:(int)offset {
     
     double result = 0;
+    AuthProfileItem *profile = self.currentProfile;
+    if (profile == nil) {
+        return result;
+    }
 
     NSMutableArray *props = [[NSMutableArray alloc] init];
     NSExpressionDescription *ed = [[NSExpressionDescription alloc] init];
@@ -1127,7 +1187,7 @@ again:
     [props addObject:ed];
 
     NSDate *date = [self lastSecondInMonthWithOffset: offset];
-    NSPredicate *predicte = [NSPredicate predicateWithFormat:@"channel_id = %i AND date <= %@", channel_id, date];
+    NSPredicate *predicte = [NSPredicate predicateWithFormat:@"channel_id = %i AND date <= %@ && profile = %@", channel_id, date, profile];
     NSDictionary *sum = [self sumValesOfEntitiesWithProperties:props predicate:predicte entityName:@"SAImpulseCounterMeasurementItem"];
     
     if (sum && sum.count == 1) {
@@ -1146,6 +1206,7 @@ again:
 -(SATemperatureMeasurementItem*) newTemperatureMeasurementItem {
     SATemperatureMeasurementItem *item = [[SATemperatureMeasurementItem alloc] initWithEntity:[NSEntityDescription entityForName:@"SATemperatureMeasurementItem" inManagedObjectContext:self.managedObjectContext] insertIntoManagedObjectContext:self.managedObjectContext];
     
+    item.profile = self.currentProfile;
     [self.managedObjectContext insertObject:item];
     return item;
 }
@@ -1171,6 +1232,7 @@ again:
 -(SATempHumidityMeasurementItem*) newTempHumidityMeasurementItem {
     SATempHumidityMeasurementItem *item = [[SATempHumidityMeasurementItem alloc] initWithEntity:[NSEntityDescription entityForName:@"SATempHumidityMeasurementItem" inManagedObjectContext:self.managedObjectContext] insertIntoManagedObjectContext:self.managedObjectContext];
     
+    item.profile = self.currentProfile;
     [self.managedObjectContext insertObject:item];
     return item;
 }
@@ -1196,6 +1258,7 @@ again:
 -(SAThermostatMeasurementItem*) newThermostatMeasurementItem {
     SAThermostatMeasurementItem *item = [[SAThermostatMeasurementItem alloc] initWithEntity:[NSEntityDescription entityForName:@"SAThermostatMeasurementItem" inManagedObjectContext:self.managedObjectContext] insertIntoManagedObjectContext:self.managedObjectContext];
     
+    item.profile = self.currentProfile;
     [self.managedObjectContext insertObject:item];
     return item;
 }
@@ -1231,7 +1294,12 @@ again:
     
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
     
-    fetchRequest.predicate = [NSPredicate predicateWithFormat:@"func > 0 AND visible > 0 AND remote_id IN %@", ids];
+    AuthProfileItem *profile = self.currentProfile;
+    if (profile == nil) {
+        fetchRequest.predicate = [NSPredicate predicateWithFormat:@"func > 0 AND visible > 0 AND remote_id IN %@ AND profile.isActive = true", ids];
+    } else {
+        fetchRequest.predicate = [NSPredicate predicateWithFormat:@"func > 0 AND visible > 0 AND remote_id IN %@ AND profile = %@", ids, profile];
+    }
     [fetchRequest setEntity:[NSEntityDescription entityForName:@"SAChannel" inManagedObjectContext: self.managedObjectContext]];
     
     NSArray *sortDescriptors = [[NSArray alloc] initWithObjects:
@@ -1290,6 +1358,10 @@ again:
 }
 
 -(void) userIconsIdsWithEntity:(NSString*)en channelBase:(BOOL)cb idField:(NSString *)field exclude:(NSArray*)ex result:(NSMutableArray *)result {
+    AuthProfileItem *profile = self.currentProfile;
+    if (profile == nil) {
+        return;
+    }
     
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
     
@@ -1299,9 +1371,9 @@ again:
     [fetchRequest setEntity:entity];
     [fetchRequest setResultType:NSDictionaryResultType];
     if (cb) {
-        fetchRequest.predicate = [NSPredicate predicateWithFormat:[NSString stringWithFormat:@"%@ > 0 AND func > 0 AND visible > 0", field]];
+        fetchRequest.predicate = [NSPredicate predicateWithFormat:[NSString stringWithFormat:@"%@ > 0 AND func > 0 AND visible > 0 AND profile = %%@", field], profile];
     } else {
-        fetchRequest.predicate = [NSPredicate predicateWithFormat:[NSString stringWithFormat:@"%@ > 0", field]];
+        fetchRequest.predicate = [NSPredicate predicateWithFormat:[NSString stringWithFormat:@"%@ > 0 AND profile = %%@", field], profile];
     }
     
     fetchRequest.propertiesToGroupBy = @[[entity.propertiesByName objectForKey:field]];
@@ -1328,6 +1400,7 @@ again:
     NSMutableArray *result = [[NSMutableArray alloc] init];
     [self userIconsIdsWithEntity:@"SAChannel" channelBase:YES idField:@"usericon_id" exclude:i result:result];
     [self userIconsIdsWithEntity:@"SAChannelGroup" channelBase:YES idField:@"usericon_id" exclude:i result:result];
+    [self userIconsIdsWithEntity:@"SAScene" channelBase:NO idField:@"usericon_id" exclude:i result:result];
     
     return result;
 }
@@ -1338,6 +1411,7 @@ again:
     if (i == nil && create) {
         i = [[SAUserIcon alloc] initWithEntity:[NSEntityDescription entityForName:@"SAUserIcon" inManagedObjectContext:self.managedObjectContext] insertIntoManagedObjectContext:self.managedObjectContext];
         i.remote_id = remote_id;
+        i.profile = self.currentProfile;
         [self.managedObjectContext insertObject:i];
     }
     
@@ -1371,10 +1445,8 @@ again:
 }
 
 -(NSArray*) zwaveBridgeChannelsWithLimit:(int)limit {
-    return [self fetchByPredicate:
-                  [NSPredicate predicateWithFormat:@"visible > 0 AND type = %i AND (flags & %i) > 0",
-                   SUPLA_CHANNELTYPE_BRIDGE,
-                   SUPLA_CHANNEL_FLAG_ZWAVE_BRIDGE] entityName:@"SAChannel" limit:limit];
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"visible > 0 AND type = %i AND (flags & %i) > 0", SUPLA_CHANNELTYPE_BRIDGE, SUPLA_CHANNEL_FLAG_ZWAVE_BRIDGE];
+    return [self fetchByPredicate: predicate entityName:@"SAChannel" limit:limit];
 }
 
 -(BOOL) zwaveBridgeChannelAvailable {
@@ -1443,10 +1515,164 @@ again:
     [self.managedObjectContext deleteObject:object];
 }
 
+#pragma mark Profile
 - (AuthProfileItem *)currentProfile {
     id<ProfileManager> pm = [[MultiAccountProfileManager alloc]
-                             initWithContext: _managedObjectContext];
+                             initWithContext: [self managedObjectContext]];
     return [pm getCurrentProfile];
 }
+
+#pragma mark Scenes
+- (SAScene *)fetchSceneById: (int)scene_id {
+    return [self fetchItemByPredicate: [NSPredicate predicateWithFormat:@"sceneId = %i", scene_id] entityName: @"SAScene"];
+}
+
+- (SAScene *)newScene {
+    NSManagedObjectContext *ctx = self.managedObjectContext;
+    SAScene *scn = [[SAScene alloc] initWithEntity: [NSEntityDescription entityForName: @"SAScene"
+                                                                inManagedObjectContext: ctx]
+                    insertIntoManagedObjectContext: ctx];
+    scn.profile = self.currentProfile;
+    [ctx insertObject: scn];
+    
+    return scn;
+}
+
+- (BOOL)updateScene: (TSC_SuplaScene *)scene  {
+    BOOL save = NO;
+    
+    _SALocation *location = [self fetchLocationById:scene->LocationId];
+    
+    if ( location == nil )
+        return NO;
+    
+    SAScene *sceneDb = [self fetchSceneById:scene->Id];
+    
+    if ( sceneDb == nil ) {
+        
+        sceneDb = [self newScene];
+        sceneDb.sceneId = scene->Id;
+        save = YES;
+    }
+    
+    NSString *sceneCaption = [NSString stringWithUTF8String:scene->Caption];
+    if (![sceneDb.caption isEqualToString: sceneCaption]) {
+        sceneDb.caption = sceneCaption;
+        save = YES;
+    }
+    
+    if (sceneDb.location != location) {
+        sceneDb.location = location;
+        save = YES;
+    }
+    
+    if (sceneDb.usericon_id != scene->UserIcon) {
+        sceneDb.usericon_id = scene->UserIcon;
+        save = YES;
+    }
+    
+    if (sceneDb.alticon != scene->AltIcon) {
+        sceneDb.alticon = scene->AltIcon;
+        save = YES;
+    }
+    
+    if (sceneDb.visible != 1) {
+        sceneDb.visible = 1;
+        save = YES;
+    }
+    
+    if ( save ) {
+        [self saveContext];
+    }
+    
+    return save;
+}
+
+- (BOOL) updateSceneState: (TSC_SuplaSceneState *)state currentId:(int)currentId {
+    BOOL save = NO;
+    
+    SAScene *sceneDb = [self fetchSceneById:state->SceneId];
+    if (sceneDb == nil) {
+        NSLog(@"Got state for scene which does not exist in the DB (id: %d)", state->SceneId);
+        return save;
+    }
+    
+    if (state->InitiatorId != currentId) {
+        if (sceneDb.initiatorId != state->InitiatorId) {
+            sceneDb.initiatorId = state->InitiatorId;
+            save = YES;
+        }
+        
+        NSString *initatorName = [NSString stringWithUTF8String:state->InitiatorName];
+        if (![sceneDb.initiatorName isEqualToString: initatorName]) {
+            sceneDb.initiatorName = initatorName;
+            save = YES;
+        }
+    } else if (sceneDb.initiatorId != 0) {
+        sceneDb.initiatorId = 0;
+        sceneDb.initiatorName = nil;
+        save = YES;
+    }
+    
+    if (state->MillisecondsFromStart > 0) {
+        NSDate *startDate = [[NSDate alloc] initWithTimeIntervalSinceNow: -state->MillisecondsFromStart/1000];
+        if (sceneDb.startedAt == nil || [startDate compare:sceneDb.startedAt] != NSOrderedSame) {
+            sceneDb.startedAt = startDate;
+            save = YES;
+        }
+    } else if (sceneDb.startedAt != nil) {
+        sceneDb.startedAt = nil;
+        save = YES;
+    }
+    
+    if (state->MillisecondsLeft > 0) {
+        NSDate *endDate = [[NSDate alloc] initWithTimeIntervalSinceNow: state->MillisecondsLeft/1000];
+        if (sceneDb.estimatedEndDate == nil || [endDate compare:sceneDb.estimatedEndDate] != NSOrderedSame) {
+            sceneDb.estimatedEndDate = endDate;
+            save = YES;
+        }
+    } else if (sceneDb.estimatedEndDate != nil) {
+        sceneDb.estimatedEndDate = nil;
+        save = YES;
+    }
+    
+    if ( save ) {
+        [self saveContext];
+    }
+    
+    return save;
+}
+
+- (NSArray<SAScene *> *)fetchScenes {
+    NSFetchRequest *fr = [[NSFetchRequest alloc] initWithEntityName: @"SAScene"];
+    AuthProfileItem *profile = self.currentProfile;
+    if (profile == nil) {
+        return @[];
+    }
+    
+    fr.predicate = [NSPredicate predicateWithFormat: @"profile = %@ AND visible > 0" argumentArray: @[profile]];
+    fr.sortDescriptors = @[
+        [NSSortDescriptor sortDescriptorWithKey: @"location.sortOrder" ascending: YES],
+        [NSSortDescriptor sortDescriptorWithKey: @"location.caption" ascending: YES],
+        [NSSortDescriptor sortDescriptorWithKey: @"sortOrder" ascending: YES],
+        [NSSortDescriptor sortDescriptorWithKey: @"caption" ascending: YES],
+        [NSSortDescriptor sortDescriptorWithKey: @"sceneId" ascending: YES]
+    ];
+    
+    NSArray<SAScene *> *rv;
+    NSError *err = nil;
+    rv = [self.managedObjectContext executeFetchRequest: fr error: &err];
+    if(!rv) NSLog(@"error fetching scenes: %@", err);
+    return rv;
+}
+
+-(BOOL) updateSceneUserIcons {
+    return [self updateChannelUserIconsWithEntityName:@"SAScene"];
+}
+
+-(BOOL) setAllOfScenesVisible:(int)visible whereVisibilityIs:(int)wvi {
+    return [self setAllItemsVisible:visible whereVisibilityIs:wvi entityName:@"SAScene"];
+}
+
 @end
 

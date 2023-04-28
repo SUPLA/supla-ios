@@ -40,11 +40,11 @@
 "Thermometer" = "Termometr";
 "Temperature and humidity" = "Temperatura i wilgotność";
 "No liquid sensor" = "Czujnik braku cieczy";
-"Gateway opening sensor" = "Czujnik otwacia furtki";
+"Gateway opening sensor" = "Czujnik otwarcia furtki";
 "Gate opening sensor" = "Czujnik otwarcia bramy";
-"Garage door opening sensor" = "Czujnik otwacia bramy garażowej";
-"Door opening sensor" = "Czujnik otwacia drzwi";
-"Roller shutter opening sensor" = "Czujnik otwacia rolet";
+"Garage door opening sensor" = "Czujnik otwarcia bramy garażowej";
+"Door opening sensor" = "Czujnik otwarcia drzwi";
+"Roller shutter opening sensor" = "Czujnik otwarcia rolet";
 "Connecting..." = "Łączenie...";
 "Unknown error" = "Nieznany błąd";
 "Service temporarily unavailable" = "Usługa tymczasowo niedostępna";
@@ -191,8 +191,7 @@
 "Mode change in progress" = "Trwa zmiana trybu";
 "Roof window" = "Okno dachowe";
 
-"*Configuration mode is enabled by default on brand new products. It can also be enabled manually by pressing and holding CONFIG button or dimmer knob for around 5s.\n\n%@\n" = "Jeżeli urządzenie po włączeniu zasilania nie pracuje w trybie konfiguracji, przytrzymaj wciśnięty przycisk CONFIG przez minimum 5 sekund.
-\n\n%@\n";
+"*Configuration mode is enabled by default on brand new products. It can also be enabled manually by pressing and holding CONFIG button or dimmer knob for around 5s.\n\n%@\n" = "Jeżeli urządzenie po włączeniu zasilania nie pracuje w trybie konfiguracji, przytrzymaj wciśnięty przycisk CONFIG przez minimum 5 sekund.\n\n%@\n";
 "Press Next to continue." = "Naciśnij Dalej aby kontynuować.";
 "Press START to start configuration." = "Naciśnij przycisk START aby rozpocząć konfigurację.";
 "I/O Device connection setting timeout!" = "Przekroczono czas oczekiwania na nawiązanie połączenia z urządzeniem wykonawczym!";
@@ -299,3 +298,25 @@
 "Select active account" = "Wybierz aktywne konto";
 "Phase 1+2+3" = "Faza 1+2+3";
 "Phase %d" = "Faza %d";
+"Channels" = "Kanały";
+"Groups" = "Grupy";
+"Scenes" = "Sceny";
+
+"AccountCreation.title" = "Edytuj konto";
+"AccountCreation.modificationTitle" = "Dodaj konto";
+
+"AccountRemoval.url" = "https://{SERVER_ADDRESS}/db99845855b2ecbfecca9a095062b96c3e27703f?lang=pl";
+
+"Scenes.ActionButtons.execute" = "Wykonaj";
+"Scenes.ActionButtons.abort" = "Przerwij";
+
+"Cfg.removal.title" = "Usunąć konto?";
+"Cfg.removal.action.logout" = "Zapomnij na tym urządzeniu";
+"Cfg.removal.action.remove" = "Zapomnij i usuń na serwerze";
+"Cfg.removal.dialog.failed.title" = "Błąd usuwania";
+"Cfg.removal.dialog.failed.message" = "Usunięcie konta nie powiodło się, spróbuj ponownie";
+"Cfg.removal.dialog.missing_name" = "Podaj nazwę konta";
+"Cfg.removal.dialog.duplicated_name" = "Już istnieje konto o tej nazwie";
+"Cfg.removal.dialog.incomplete" = "Uzupełnij wymagane dane";
+
+"General.error" = "Błąd";

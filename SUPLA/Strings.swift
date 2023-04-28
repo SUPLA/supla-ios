@@ -30,6 +30,30 @@ struct Strings {
         static let buttonAutoHide  = NSLocalizedString("Auto-hide buttons", comment: "label for button auto-hide setting")
         static let showChannelInfo = NSLocalizedString("Show ⓘ button", comment: "label for show channel info setting")
         
+        static let locationOrdering = NSLocalizedString("Location order", comment: "settings menu label for location order")
+        static let showOpeningMode = NSLocalizedString("Roller shutter %", comment: "settings label for reporting opening % rather than closing % in detail views")
+        static let showOpeningModeOpening = NSLocalizedString("Opening", comment: "")
+        static let showOpeningModeClosing = NSLocalizedString("Closing", comment: "")
+        
+        static let removalConfirmationTitle = NSLocalizedString("Cfg.removal.title", comment: "")
+        static let removalActionLogout = NSLocalizedString("Cfg.removal.action.logout", comment: "")
+        static let removalActionRemove = NSLocalizedString("Cfg.removal.action.remove", comment: "")
+        
+        struct Dialogs {
+            struct Failed {
+                static let title = NSLocalizedString("Cfg.removal.action.remove", comment: "")
+                static let message = NSLocalizedString("Cfg.removal.dialog.failed.message", comment: "")
+            }
+            static let missing_name = NSLocalizedString("Cfg.removal.dialog.missing_name", comment: "")
+            static let duplicated_name = NSLocalizedString("Cfg.removal.dialog.duplicated_name", comment: "")
+            static let incomplete = NSLocalizedString("Cfg.removal.dialog.incomplete", comment: "")
+        }
+    }
+    
+    struct AccountCreation {
+        static let creationTitle = NSLocalizedString("AccountCreation.title", comment: "Title of the account creation screen")
+        static let modificationTitle = NSLocalizedString("AccountCreation.modificationTitle", comment: "Title of the account creation screen")
+        
         static let yourAccountLabel = NSLocalizedString("Your account", comment: "account configuration settings screen")
         static let profileNameLabel = NSLocalizedString("NAME", comment: "label for profile name")
         static let basicModeNotAvailableTitle = NSLocalizedString("Setting not available", comment: "alert box title when basic authentication mode is not available")
@@ -42,13 +66,12 @@ struct Strings {
         static let serverLabel = NSLocalizedString("SERVER ADDRESS", comment: "")
         static let passwordLabel = NSLocalizedString("PASSWORD", comment: "")
         static let wizardWarningText = NSLocalizedString("In Access ID authentication mode you won't be able to use automatic Add device wizard. However you will still be able to add it by manual Add device procedure.", comment: "")
-        
         static let createAccountPrompt = NSLocalizedString("Don't have an account in Supla Cloud yet?", comment: "")
         static let createAccountButton = NSLocalizedString("Create", comment: "")
-        static let locationOrdering = NSLocalizedString("Location order", comment: "settings menu label for location order")
-        static let showOpeningMode = NSLocalizedString("Roller shutter %", comment: "settings label for reporting opening % rather than closing % in detail views")
-        static let showOpeningModeOpening = NSLocalizedString("Opening", comment: "")
-        static let showOpeningModeClosing = NSLocalizedString("Closing", comment: "")
+    }
+    
+    struct AccountRemoval {
+        static let url = NSLocalizedString("AccountRemoval.url", comment: "")
     }
 
     struct Profiles {
@@ -75,5 +98,21 @@ struct Strings {
             static let allPhasesTitle = NSLocalizedString("Phase 1+2+3", comment: "")
             static let selPhaseTitle = NSLocalizedString("Phase %d", comment: "")
         }
+    }
+    
+    struct Scenes {
+        struct ActionButtons {
+            static let execute = NSLocalizedString("Scenes.ActionButtons.execute", comment: "")
+            static let abort = NSLocalizedString("Scenes.ActionButtons.abort", comment: "")
+        }
+        struct RenameDialog {
+            static let sceneName = NSLocalizedString("scene name", comment: "")
+        }
+    }
+    
+    struct General {
+        static let cancel = NSLocalizedString("Cancel", comment: "")
+        static let close = NSLocalizedString("Close", comment: "")
+        static let error = NSLocalizedString("General.error", comment: "")
     }
 }

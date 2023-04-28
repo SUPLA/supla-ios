@@ -1,0 +1,15 @@
+
+/* Class = "UILabel"; text = "Light source lifespan (hours)"; ObjectID = "XfF-Xe-aOn"; */
+"XfF-Xe-aOn.text" = "Životnost světelného zdroje (hodiny)";
+
+/* Class = "UIButton"; normalTitle = "OK"; ObjectID = "XmM-Te-dni"; */
+"XmM-Te-dni.normalTitle" = "OK";
+
+/* Class = "UIButton"; normalTitle = "CANCEL"; ObjectID = "aZZ-F7-rsl"; */
+"aZZ-F7-rsl.normalTitle" = "ZRUŠIT";
+
+/* Class = "UILabel"; text = "Settings"; ObjectID = "hKG-BE-jQV"; */
+"hKG-BE-jQV.text" = "Nastavení";
+
+/* Class = "UILabel"; text = "Reset the light source usage counter"; ObjectID = "ykW-dh-QDo"; */
+"ykW-dh-QDo.text" = "Restartovat čítač spotřeby světelného zdroje";

@@ -3,7 +3,7 @@
 "37U-Zx-YA3.text" = "10 EUR";
 
 /* Class = "UILabel"; text = "The cost in the current month"; ObjectID = "BZV-5X-lZ7"; */
-"BZV-5X-lZ7.text" = "Consumo en el mes actual";
+"BZV-5X-lZ7.text" = "Coste del mes actual";
 
 /* Class = "UILabel"; text = "Meter value"; ObjectID = "Kfn-dN-K0a"; */
 "Kfn-dN-K0a.text" = "Lectura del contador";
@@ -18,7 +18,7 @@
 "hlZ-mm-clg.normalTitle" = "Button";
 
 /* Class = "UILabel"; text = "Consumption in the current month"; ObjectID = "psK-hZ-nQF"; */
-"psK-hZ-nQF.text" = "Consumo en el mes actual";
+"psK-hZ-nQF.text" = "Consumo del mes actual";
 
 /* Class = "UITextField"; text = "Last 24 hours"; ObjectID = "pvG-5N-Xhd"; */
 "pvG-5N-Xhd.text" = "Últimas 24 horas";

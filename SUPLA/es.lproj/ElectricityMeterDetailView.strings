@@ -12,7 +12,7 @@
 "6vS-Zf-6XX.text" = "60 kvarh";
 
 /* Class = "UILabel"; text = "The cost in the current month"; ObjectID = "BZV-5X-lZ7"; */
-"BZV-5X-lZ7.text" = "Consumo en el mes actual";
+"BZV-5X-lZ7.text" = "Coste del mes actual";
 
 /* Class = "UIButton"; normalTitle = "1+2+3"; ObjectID = "CZD-Xw-vbM"; */
 "CZD-Xw-vbM.normalTitle" = "1+2+3";
@@ -99,7 +99,7 @@
 "ouy-gz-4Go.text" = "100 var";
 
 /* Class = "UILabel"; text = "Consumption in the current month"; ObjectID = "psK-hZ-nQF"; */
-"psK-hZ-nQF.text" = "Consumo en el mes actual";
+"psK-hZ-nQF.text" = "Consumo del mes actual";
 
 /* Class = "UITextField"; text = "Last 24 hours"; ObjectID = "pvG-5N-Xhd"; */
 "pvG-5N-Xhd.text" = "Últimas 24 horas";

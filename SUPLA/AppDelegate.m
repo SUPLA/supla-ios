@@ -19,6 +19,7 @@
 #import "AppDelegate.h"
 #import "SuplaApp.h"
 #import "SUPLA-Swift.h"
+#import "SADialog.h"
 
 @interface AppDelegate ()
 
@@ -26,12 +27,30 @@
 
 @implementation AppDelegate
 
+- (id) init {
+    self = [super init];
+    
+    // Setup dependency injection
+    [DiContainer start];
+    
+    return self;
+}
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+
+#ifdef DEBUG
+    // Short-circuit starting app if running unit tests
+    BOOL isInTest = NSProcessInfo.processInfo.environment[@"XCTestConfigurationFilePath"] != nil;
+    if (isInTest) {
+        return true;
+    }
+#endif
+    
     // Override point for customization after application launch.
     self.navigation = [[MainNavigationCoordinator alloc] init];
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     [self.navigation attachTo: self.window];
+    [SAApp profileManager]; // Get an instance to trigger db migration
 	[self.navigation startFrom:nil];
 
   //  [[SAApp UI] showStarterVC];
@@ -44,18 +63,18 @@
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {
-    // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
-    // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
+    id pc = SAApp.currentNavigationCoordinator.viewController.presentedViewController;
+    if([pc isKindOfClass: [SADialog class]]) {
+        [((SADialog*)pc) close];
+    }
 }
 
 - (void)applicationDidEnterBackground:(UIApplication *)application {
     // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
     // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
-    
     if ( ![SAApp.currentNavigationCoordinator.viewController isKindOfClass: [SAAddWizardVC class]] ) {
         [SAApp SuplaClientWaitForTerminate];
     }
-    
     
 }
 
@@ -65,6 +84,14 @@
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+#ifdef DEBUG
+    // Short-circuit starting app if running unit tests
+    BOOL isInTest = NSProcessInfo.processInfo.environment[@"XCTestConfigurationFilePath"] != nil;
+    if (isInTest) {
+        return;
+    }
+#endif
+    
     id vc = [SAApp currentNavigationCoordinator].viewController;
     if ( ![vc isKindOfClass: [SAAddWizardVC class]] &&
         ![vc isKindOfClass: [CfgVC class]] ) {

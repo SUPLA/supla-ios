@@ -31,7 +31,7 @@
 @synthesize totalActiveEnergyPhase3;
 @synthesize productionDataSource;
 
-- (id<IChartMarker>)getMarker {
+- (id<ChartMarker>)getMarker {
     if([self shouldShowManyPhases]) {
         return [SAElectricityMeterChartMarkerView viewFromXibIn: [NSBundle mainBundle]];
     } else {

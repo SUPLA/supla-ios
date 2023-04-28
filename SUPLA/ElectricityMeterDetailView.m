@@ -288,13 +288,25 @@
         }
     }
     
+    if (MVAL(EM_VAR_POWER_ACTIVE_KW)) {
+        powerActive *= 1000;
+    }
+    
+    if (MVAL(EM_VAR_POWER_REACTIVE_KVAR)) {
+        powerReactive *= 1000;
+    }
+    
+    if (MVAL(EM_VAR_POWER_APPARENT_KVA)) {
+        powerApparent *= 1000;
+    }
+    
     self.btnDirection.hidden = !MVAL(EM_VAR_REVERSE_ACTIVE_ENERGY);
     [self setFrequency:freq visible:MVAL(EM_VAR_FREQ)];
     [self setVoltage:voltage visible:MVAL(EM_VAR_VOLTAGE) && selectedPhase > 0];
     [self setCurrent:current visible:(MVAL(EM_VAR_CURRENT) || MVAL(EM_VAR_CURRENT_OVER_65A)) && selectedPhase > 0 over65A:currentOver65A];
-    [self setActivePower:powerActive visible:MVAL(EM_VAR_POWER_ACTIVE)];
-    [self setReactivePower:powerReactive visible: MVAL(EM_VAR_POWER_REACTIVE)];
-    [self setApparentPower:powerApparent visible:MVAL(EM_VAR_POWER_APPARENT)];
+    [self setActivePower:powerActive visible:MVAL(EM_VAR_POWER_ACTIVE) || MVAL(EM_VAR_POWER_ACTIVE_KW)];
+    [self setReactivePower:powerReactive visible: MVAL(EM_VAR_POWER_REACTIVE) || MVAL(EM_VAR_POWER_REACTIVE_KVAR)];
+    [self setApparentPower:powerApparent visible:MVAL(EM_VAR_POWER_APPARENT) || MVAL(EM_VAR_POWER_APPARENT_KVA)];
     [self setPowerFactor:powerFactor visible:MVAL(EM_VAR_POWER_FACTOR) && selectedPhase > 0];
     [self setPhaseAngle:phaseAngle visible:MVAL(EM_VAR_PHASE_ANGLE) && selectedPhase > 0];
     [self setForwardActiveEnergy:totalFAE visible:MVAL(EM_VAR_FORWARD_ACTIVE_ENERGY)];

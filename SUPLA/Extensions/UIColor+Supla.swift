@@ -20,16 +20,15 @@ import UIKit
 
 extension UIColor {
     @objc static let suplaGreenBackground = #colorLiteral(red: 0.07058823529, green: 0.6549019608, blue: 0.1176470588, alpha: 1)
-    @objc static let suplaGreen = UIColor(red: 0, green: 209.0/255.0, blue: 81.0/255.0,
-                                    alpha: 1)
-    static let ctrlBorder = UIColor(red: 118.0/255.0, green: 120.0/255.0,
-                                    blue: 128.0/255.0, alpha: 0.12)
-    static let viewBackground = UIColor(red: 0.898, green: 0.898, blue: 0.898,
-                                        alpha: 1)
-    static let switcherBackground = UIColor(red: 118.0/255.0, green: 120.0/255.0,
-                                            blue: 128.0/255.0, alpha: 0.12)
-    static let alertRed = UIColor(red: 235.0/255.0, green: 58.0/255.0,
-                                  blue: 40.0/255.0, alpha: 1)
+    
+    @objc static let suplaGreen = UIColor(red: 0, green: 209.0/255.0, blue: 81.0/255.0, alpha: 1)
+    static let ctrlBorder = UIColor(red: 118.0/255.0, green: 120.0/255.0, blue: 128.0/255.0, alpha: 0.12)
+    static let viewBackground = UIColor(red: 0.898, green: 0.898, blue: 0.898, alpha: 1)
+    static let switcherBackground = UIColor(red: 118.0/255.0, green: 120.0/255.0, blue: 128.0/255.0, alpha: 0.12)
+    static let alertRed = UIColor(red: 235.0/255.0, green: 58.0/255.0, blue: 40.0/255.0, alpha: 1)
+    static let disabled = UIColor(red: 0.706, green: 0.718, blue: 0.729, alpha: 1)
 
     static let formLabelColor = UIColor(red: 0.706, green: 0.718, blue: 0.729, alpha: 1)
+    @objc static let background = UIColor(red: 0.98, green: 0.984, blue: 0.988, alpha: 1)
+    @objc static let textLight = UIColor(red: 0, green: 0, blue: 0, alpha: 1)
 }

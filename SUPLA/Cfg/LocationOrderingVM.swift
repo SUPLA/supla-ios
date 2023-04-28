@@ -31,9 +31,12 @@ class LocationOrderingVM {
     
     private let _ctx: NSManagedObjectContext
     private let _disposeBag = DisposeBag()
+    private let profileManager: ProfileManager!
     
     init(managedObjectContext: NSManagedObjectContext) {
         _ctx = managedObjectContext
+        profileManager = MultiAccountProfileManager(context: _ctx)
+        
         locations.accept(try! fetchLocations())
     }
 
@@ -44,20 +47,59 @@ class LocationOrderingVM {
     }
     
     private func fetchLocations() throws -> [_SALocation] {
-        let fr = SAChannelBase.fetchRequest()
-        fr.predicate = NSPredicate(format: "visible = true")
-        fr.sortDescriptors = [NSSortDescriptor(key: "location.sortOrder",
-                                               ascending: true),
-                              NSSortDescriptor(key: "location.caption",
-                                               ascending: true,
-                                               selector: #selector(NSString.localizedCaseInsensitiveCompare(_:)))]
-        var rv = [_SALocation]()
-        for chn in try _ctx.fetch(fr) {
-            if let location = chn.location, rv.last != location {
-                rv.append(location)
+        var locationsSet = Set<NSNumber>()
+        let profile = profileManager.getCurrentProfile()!
+        for channel in try getChannelsLocations(profile: profile) {
+            if let locationId = channel.location?.location_id {
+                locationsSet.insert(locationId)
             }
         }
-        return rv
+        for scene in try getScenesLocations(profile: profile) {
+            if let locationId = scene.location?.location_id {
+                locationsSet.insert(locationId)
+            }
+        }
+        
+        var result = [_SALocation]()
+        for location in try getLocations(profile: profile) {
+            if let locationId = location.location_id {
+                if (locationsSet.contains(locationId)) {
+                    result.append(location)
+                }
+            }
+        }
+        
+        return result
+    }
+    
+    private func getChannelsLocations(profile: AuthProfileItem) throws -> [SAChannelBase] {
+        let fr = SAChannelBase.fetchRequest()
+        fr.predicate = NSPredicate(format: "visible = true AND profile = %@", profile)
+        
+        return try _ctx.fetch(fr)
+    }
+    
+    private func getScenesLocations(profile: AuthProfileItem) throws -> [SAScene] {
+        let fr = SAScene.fetchRequest()
+        fr.predicate = NSPredicate(format: "visible = true AND profile = %@", profile)
+        
+        return try _ctx.fetch(fr)
+    }
+    
+    private func getLocations(profile: AuthProfileItem) throws -> [_SALocation] {
+        let fr = _SALocation.fetchRequest()
+        fr.predicate = NSPredicate(format: "visible = true AND profile = %@", profile)
+        fr.sortDescriptors = [
+            NSSortDescriptor(key: "sortOrder", ascending: true),
+            NSSortDescriptor(
+                key: "caption",
+                ascending: true,
+                selector: #selector(NSString.localizedCaseInsensitiveCompare(_:))
+            )
+            
+        ]
+        
+        return try _ctx.fetch(fr)
     }
     
     private func saveNewOrder() {

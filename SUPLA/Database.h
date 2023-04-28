@@ -23,6 +23,7 @@
 #import "SAThermostatMeasurementItem+CoreDataClass.h"
 #import "SATemperatureMeasurementItem+CoreDataClass.h"
 #import "SATempHumidityMeasurementItem+CoreDataClass.h"
+#import "SAScene+CoreDataClass.h"
 #import "proto.h"
 
 typedef NS_ENUM(NSUInteger, GroupingDepth) {
@@ -72,7 +73,6 @@ typedef NS_ENUM(NSUInteger, GroupBy) {
 -(BOOL) updateChannelValue:(TSC_SuplaChannelValue_B *)channel_value;
 -(BOOL) updateChannelExtendedValue:(TSC_SuplaChannelExtendedValue *)channel_value;
 -(NSFetchedResultsController*) getChannelFrc;
--(BOOL) setChannelsOffline;
 -(BOOL) setAllOfChannelVisible:(int)visible whereVisibilityIs:(int)wvi;
 -(NSUInteger) getChannelCount;
 -(BOOL) setAllOfChannelGroupVisible:(int)visible whereVisibilityIs:(int)wvi;
@@ -127,6 +127,13 @@ typedef NS_ENUM(NSUInteger, GroupBy) {
 -(void) moveChannel:(SAChannelBase*)src toPositionOfChannel:(SAChannelBase*)dst;
 -(void) moveChannelGroup:(SAChannelBase*)src toPositionOfChannelGroup:(SAChannelBase*)dst;
 - (void)deleteObject:(NSManagedObject *)object;
+
+- (BOOL)updateScene: (TSC_SuplaScene *)scene;
+- (BOOL) updateSceneState: (TSC_SuplaSceneState *)state currentId:(int)currentId;
+- (SAScene*)fetchSceneById: (int)scene_id;
+- (nonnull NSArray<SAScene*> *)fetchScenes;
+- (BOOL)updateSceneUserIcons;
+- (BOOL) setAllOfScenesVisible:(int)visible whereVisibilityIs:(int)wvi;
 @end
 
 

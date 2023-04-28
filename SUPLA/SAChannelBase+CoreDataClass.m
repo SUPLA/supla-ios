@@ -494,6 +494,194 @@
     return 0;
 }
 
+- (NSString*) getImageNameWithIdx:(short)idx {
+    NSString *n1 = nil;
+    NSString *n2 = nil;
+    NSString *t1 = nil;
+    
+    BOOL _50percent = ([self imgIsActive] & 0x2) == 0x2 && ([self imgIsActive] & 0x1) == 0;
+    
+    switch(self.func) {
+        case SUPLA_CHANNELFNC_OPENINGSENSOR_GATEWAY:
+        case SUPLA_CHANNELFNC_CONTROLLINGTHEGATEWAYLOCK:
+            n1 = @"gateway";
+            break;
+        case SUPLA_CHANNELFNC_CONTROLLINGTHEGATE: {
+            if (_50percent && self.alticon != 2) {
+                return self.alticon == 1 ? @"gatealt1-closed-50percent" : @"gate-closed-50percent";
+            }
+        }
+            // !no break;
+        case SUPLA_CHANNELFNC_OPENINGSENSOR_GATE:
+            switch(self.alticon) {
+                case 1:
+                    n1 = @"gatealt1";
+                    break;
+                case 2:
+                    n1 = @"barier";
+                    break;
+                default:
+                    n1 = @"gate";
+            }
+            break;
+        case SUPLA_CHANNELFNC_OPENINGSENSOR_GARAGEDOOR:
+        case SUPLA_CHANNELFNC_CONTROLLINGTHEGARAGEDOOR:
+            if (_50percent) {
+                return @"garagedoor-closed-50percent";
+            }
+            n1 = @"garagedoor";
+            break;
+        case SUPLA_CHANNELFNC_OPENINGSENSOR_DOOR:
+        case SUPLA_CHANNELFNC_CONTROLLINGTHEDOORLOCK:
+            n1 = @"door";
+            break;
+        case SUPLA_CHANNELFNC_OPENINGSENSOR_ROLLERSHUTTER:
+        case SUPLA_CHANNELFNC_CONTROLLINGTHEROLLERSHUTTER:
+            n1 = @"rollershutter";
+            break;
+        case SUPLA_CHANNELFNC_OPENINGSENSOR_ROOFWINDOW:
+        case SUPLA_CHANNELFNC_CONTROLLINGTHEROOFWINDOW:
+            n1 = @"roofwindow";
+            break;
+        case SUPLA_CHANNELFNC_POWERSWITCH:
+            switch(self.alticon) {
+                case 1:
+                    n2 = @"tv";
+                    break;
+                case 2:
+                    n2 = @"radio";
+                    break;
+                case 3:
+                    n2 = @"pc";
+                    break;
+                case 4:
+                    n2 = @"fan";
+                    break;
+                default:
+                    n2 = @"power";
+            }
+            break;
+        case SUPLA_CHANNELFNC_LIGHTSWITCH:
+            switch(self.alticon) {
+                case 1:
+                    n2 = @"xmastree";
+                    break;
+                case 2:
+                    n2 = @"uv";
+                    break;
+                default:
+                    n2 = @"light";
+            }
+            break;
+        case SUPLA_CHANNELFNC_STAIRCASETIMER:
+            switch(self.alticon) {
+                case 1:
+                    n2 = @"staircasetimer_1";
+                    break;
+                default:
+                    n2 = @"staircasetimer";
+            }
+            break;
+        case SUPLA_CHANNELFNC_THERMOMETER:
+        case SUPLA_CHANNELFNC_HUMIDITYANDTEMPERATURE:
+            return idx == 0 ? @"thermometer" : @"humidity";
+        case SUPLA_CHANNELFNC_HUMIDITY:
+            return @"humidity";
+        case SUPLA_CHANNELFNC_NOLIQUIDSENSOR:
+            return [self imgIsActive] ? @"liquid" : @"noliquid";
+        case SUPLA_CHANNELFNC_DIMMER:
+            n2 = @"dimmer";
+            break;
+            
+        case SUPLA_CHANNELFNC_RGBLIGHTING:
+            n2 = @"rgb";
+            break;
+     
+        case SUPLA_CHANNELFNC_DIMMERANDRGBLIGHTING:
+            return [NSString stringWithFormat:@"dimmerrgb-%@%@", [self imgIsActive] & 0x1 ? @"on" : @"off", [self imgIsActive] & 0x2 ? @"on" : @"off"];
+            
+        case SUPLA_CHANNELFNC_OPENINGSENSOR_WINDOW:
+            n1 = @"window";
+            break;
+            
+        case SUPLA_CHANNELFNC_MAILSENSOR:
+            return [self imgIsActive] ? @"mail" : @"nomail";
+            
+        case SUPLA_CHANNELFNC_ELECTRICITY_METER:
+        case SUPLA_CHANNELFNC_IC_ELECTRICITY_METER:
+            switch(self.alticon) {
+                case 1:
+                    return @"powerstation";
+            }
+            return @"electricitymeter";
+            
+        case SUPLA_CHANNELFNC_IC_GAS_METER:
+            return @"gasmeter";
+            
+        case SUPLA_CHANNELFNC_IC_WATER_METER:
+            return @"watermeter";
+        
+        case SUPLA_CHANNELFNC_IC_HEAT_METER:
+            return @"heatmeter";
+            
+        case SUPLA_CHANNELFNC_THERMOSTAT_HEATPOL_HOMEPLUS:
+            n2 = @"thermostat_hp_homeplus";
+            if (self.alticon > 0 && self.alticon <= 3) {
+                n2 = [NSString stringWithFormat:@"%@%i", n2, self.alticon];
+            }
+            break;
+        case SUPLA_CHANNELFNC_DISTANCESENSOR:
+           return @"distance";
+        case SUPLA_CHANNELFNC_DEPTHSENSOR:
+           return @"depth";
+        case SUPLA_CHANNELFNC_WINDSENSOR:
+           return @"wind";
+        case SUPLA_CHANNELFNC_PRESSURESENSOR:
+            return @"pressure";
+        case SUPLA_CHANNELFNC_WEIGHTSENSOR:
+            return @"weight";
+        case SUPLA_CHANNELFNC_RAINSENSOR:
+            return @"rain";
+        case SUPLA_CHANNELFNC_VALVE_OPENCLOSE:
+        case SUPLA_CHANNELFNC_VALVE_PERCENTAGE:
+            n1 = @"valve";
+            break;
+        case SUPLA_CHANNELFNC_DIGIGLASS_HORIZONTAL:
+            switch(self.alticon) {
+                case 1:
+                    t1 = @"digiglass1";
+                    break;
+                default:
+                    t1 = @"digiglass";
+            }
+            break;
+        case SUPLA_CHANNELFNC_DIGIGLASS_VERTICAL:
+            switch(self.alticon) {
+                case 1:
+                    t1 = [self imgIsActive] ? @"digiglassv1" : @"digiglass1";
+                    break;
+                default:
+                    t1 = [self imgIsActive] ? @"digiglassv" : @"digiglass";
+            }
+            break;
+            
+    }
+    
+    if ( n1 ) {
+        return [NSString stringWithFormat:@"%@-%@", n1, [self imgIsActive] ? @"closed" : @"open"];
+    }
+    
+    if ( n2 ) {
+        return [NSString stringWithFormat:@"%@-%@", n2, [self imgIsActive] ? @"on" : @"off"];
+    }
+    
+    if ( t1 ) {
+        return [NSString stringWithFormat:@"%@%@", t1, [self imgIsActive] ? @"-transparent" : @""];
+    }
+    
+    return nil;
+}
+
 - (UIImage*) getIconWithIndex:(short)idx {
     
     if (idx > 0
@@ -552,192 +740,17 @@
             return img;
         }
     }
+ 
+    bool nigheMode = NO; // TODO: Needs completion
     
-    NSString *n1 = nil;
-    NSString *n2 = nil;
-    NSString *t1 = nil;
-    
-    BOOL _50percent = ([self imgIsActive] & 0x2) == 0x2 && ([self imgIsActive] & 0x1) == 0;
-    
-    switch(self.func) {
-        case SUPLA_CHANNELFNC_OPENINGSENSOR_GATEWAY:
-        case SUPLA_CHANNELFNC_CONTROLLINGTHEGATEWAYLOCK:
-            n1 = @"gateway";
-            break;
-        case SUPLA_CHANNELFNC_CONTROLLINGTHEGATE: {
-            if (_50percent && self.alticon != 2) {
-                return [UIImage imageNamed:self.alticon == 1 ? @"gatealt1-closed-50percent" : @"gate-closed-50percent"];
-            }
-        }
-            // !no break;
-        case SUPLA_CHANNELFNC_OPENINGSENSOR_GATE:
-            switch(self.alticon) {
-                case 1:
-                    n1 = @"gatealt1";
-                    break;
-                case 2:
-                    n1 = @"barier";
-                    break;
-                default:
-                    n1 = @"gate";
-            }
-            break;
-        case SUPLA_CHANNELFNC_OPENINGSENSOR_GARAGEDOOR:
-        case SUPLA_CHANNELFNC_CONTROLLINGTHEGARAGEDOOR:
-            if (_50percent) {
-                return [UIImage imageNamed:@"garagedoor-closed-50percent"];
-            }
-            n1 = @"garagedoor";
-            break;
-        case SUPLA_CHANNELFNC_OPENINGSENSOR_DOOR:
-        case SUPLA_CHANNELFNC_CONTROLLINGTHEDOORLOCK:
-            n1 = @"door";
-            break;
-        case SUPLA_CHANNELFNC_OPENINGSENSOR_ROLLERSHUTTER:
-        case SUPLA_CHANNELFNC_CONTROLLINGTHEROLLERSHUTTER:
-            n1 = @"rollershutter";
-            break;
-        case SUPLA_CHANNELFNC_OPENINGSENSOR_ROOFWINDOW:
-        case SUPLA_CHANNELFNC_CONTROLLINGTHEROOFWINDOW:
-            n1 = @"roofwindow";
-            break;
-        case SUPLA_CHANNELFNC_POWERSWITCH:
-            switch(self.alticon) {
-                case 1:
-                    n2 = @"tv";
-                    break;
-                case 2:
-                    n2 = @"radio";
-                    break;
-                case 3:
-                    n2 = @"pc";
-                    break;
-                case 4:
-                    n2 = @"fan";
-                    break;
-                default:
-                    n2 = @"power";
-            }
-            break;
-        case SUPLA_CHANNELFNC_LIGHTSWITCH:
-            switch(self.alticon) {
-                case 1:
-                    n2 = @"xmastree";
-                    break;
-                case 2:
-                    n2 = @"uv";
-                    break;
-                default:
-                    n2 = @"light";
-            }
-            break;
-        case SUPLA_CHANNELFNC_STAIRCASETIMER:
-            switch(self.alticon) {
-                case 1:
-                    n2 = @"staircasetimer_1";
-                    break;
-                default:
-                    n2 = @"staircasetimer";
-            }
-            break;
-        case SUPLA_CHANNELFNC_THERMOMETER:
-        case SUPLA_CHANNELFNC_HUMIDITYANDTEMPERATURE:
-            return [UIImage imageNamed:idx == 0 ? @"thermometer" : @"humidity"];
-        case SUPLA_CHANNELFNC_HUMIDITY:
-            return [UIImage imageNamed:@"humidity"];
-        case SUPLA_CHANNELFNC_NOLIQUIDSENSOR:
-            return [UIImage imageNamed:[self imgIsActive] ? @"liquid" : @"noliquid"];
-        case SUPLA_CHANNELFNC_DIMMER:
-            n2 = @"dimmer";
-            break;
-            
-        case SUPLA_CHANNELFNC_RGBLIGHTING:
-            n2 = @"rgb";
-            break;
-            
-        case SUPLA_CHANNELFNC_DIMMERANDRGBLIGHTING:
-            return [UIImage imageNamed:[NSString stringWithFormat:@"dimmerrgb-%@%@", [self imgIsActive] & 0x1 ? @"on" : @"off", [self imgIsActive] & 0x2 ? @"on" : @"off"]];
-            
-        case SUPLA_CHANNELFNC_OPENINGSENSOR_WINDOW:
-            n1 = @"window";
-            break;
-            
-        case SUPLA_CHANNELFNC_MAILSENSOR:
-            return [UIImage imageNamed:[self imgIsActive] ? @"mail" : @"nomail"];
-            
-        case SUPLA_CHANNELFNC_ELECTRICITY_METER:
-        case SUPLA_CHANNELFNC_IC_ELECTRICITY_METER:
-            switch(self.alticon) {
-                case 1:
-                    return [UIImage imageNamed:@"powerstation"];
-            }
-            return [UIImage imageNamed:@"electricitymeter"];
-            
-        case SUPLA_CHANNELFNC_IC_GAS_METER:
-            return [UIImage imageNamed:@"gasmeter"];
-            
-        case SUPLA_CHANNELFNC_IC_WATER_METER:
-            return [UIImage imageNamed:@"watermeter"];
-        
-        case SUPLA_CHANNELFNC_IC_HEAT_METER:
-            return [UIImage imageNamed:@"heatmeter"];
-            
-        case SUPLA_CHANNELFNC_THERMOSTAT_HEATPOL_HOMEPLUS:
-            n2 = @"thermostat_hp_homeplus";
-            if (self.alticon > 0 && self.alticon <= 3) {
-                n2 = [NSString stringWithFormat:@"%@%i", n2, self.alticon];
-            }
-            break;
-        case SUPLA_CHANNELFNC_DISTANCESENSOR:
-           return [UIImage imageNamed:@"distance"];
-        case SUPLA_CHANNELFNC_DEPTHSENSOR:
-           return [UIImage imageNamed:@"depth"];
-        case SUPLA_CHANNELFNC_WINDSENSOR:
-           return [UIImage imageNamed:@"wind"];
-        case SUPLA_CHANNELFNC_PRESSURESENSOR:
-            return [UIImage imageNamed:@"pressure"];
-        case SUPLA_CHANNELFNC_WEIGHTSENSOR:
-            return [UIImage imageNamed:@"weight"];
-        case SUPLA_CHANNELFNC_RAINSENSOR:
-            return [UIImage imageNamed:@"rain"];
-        case SUPLA_CHANNELFNC_VALVE_OPENCLOSE:
-        case SUPLA_CHANNELFNC_VALVE_PERCENTAGE:
-            n1 = @"valve";
-            break;
-        case SUPLA_CHANNELFNC_DIGIGLASS_HORIZONTAL:
-            switch(self.alticon) {
-                case 1:
-                    t1 = @"digiglass1";
-                    break;
-                default:
-                    t1 = @"digiglass";
-            }
-            break;
-        case SUPLA_CHANNELFNC_DIGIGLASS_VERTICAL:
-            switch(self.alticon) {
-                case 1:
-                    t1 = [self imgIsActive] ? @"digiglassv1" : @"digiglass1";
-                    break;
-                default:
-                    t1 = [self imgIsActive] ? @"digiglassv" : @"digiglass";
-            }
-            break;
-            
+    NSString *imageName = [self getImageNameWithIdx:idx];
+    if (imageName == nil) {
+        imageName = @"unknown_channel";
+    } else if (nigheMode) {
+        imageName = [NSString stringWithFormat:@"%@-nightmode", imageName];
     }
     
-    if ( n1 ) {
-        return [UIImage imageNamed:[NSString stringWithFormat:@"%@-%@", n1, [self imgIsActive] ? @"closed" : @"open"]];
-    }
-    
-    if ( n2 ) {
-        return [UIImage imageNamed:[NSString stringWithFormat:@"%@-%@", n2, [self imgIsActive] ? @"on" : @"off"]];
-    }
-    
-    if ( t1 ) {
-        return [UIImage imageNamed:[NSString stringWithFormat:@"%@%@", t1, [self imgIsActive] ? @"-transparent" : @""]];
-    }
-    
-    return [UIImage imageNamed:[NSString stringWithFormat:@"unknown_channel"]];
+    return [UIImage imageNamed:imageName];
 }
 
 - (UIImage*) getIcon {

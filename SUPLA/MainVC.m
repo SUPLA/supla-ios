@@ -35,13 +35,19 @@
 #import "SAEvent.h"
 #import "UIColor+SUPLA.h"
 #import "SUPLA-Swift.h"
+#import <AudioToolbox/AudioToolbox.h>
 
 @interface SAMainVC()
 @property (nonatomic) BOOL showingDetails;
 @end
 
-@interface SAMainVC() <MGSwipeTableCellDelegate,ProfileChooserDelegate>
+@interface SAMainVC() <MGSwipeTableCellDelegate,ProfileChooserDelegate,
+                       SAChannelCellDelegate, UITabBarDelegate>
 @end
+
+#define TAB_CHANNELS 0
+#define TAB_GROUPS 1
+#define TAB_SCENES 2
 
 @implementation SAMainVC {
     NSFetchedResultsController *_cFrc;
@@ -60,8 +66,6 @@
     NSArray *_locations;
     CGFloat _standardChannelHeight;
     CGFloat _heightScaleFactor;
-	UIImage *_groupsOff;
-	UIImage *_groupsOn;
     BOOL _shouldUpdateRowHeight;
     NSMutableDictionary<NSString *, NSNumber *> *_cellConstraintValues;
     BOOL _dataRefreshEnabled;
@@ -73,6 +77,10 @@
     NSTimer *_delayedReloadTimer;
     
     ProfileChooser *_chooser;
+    
+    UITabBar *_tabBar;
+    ScenesVC *_scenesVC;
+    ScenesVM *_scenesVM;
 }
 
 - (void)registerNibForTableView:(UITableView*)tv {
@@ -118,29 +126,23 @@
     _tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapGesture:)];
     [self.notificationView addGestureRecognizer:_tapRecognizer];
     
-    if (@available(iOS 11.0, *)) {
-        self.cTableView.clearsContextBeforeDrawing = YES;
-        self.cTableView.dragInteractionEnabled = YES;
-        self.cTableView.dragDelegate = self;
-        self.cTableView.dropDelegate = self;
-        
-        self.gTableView.clearsContextBeforeDrawing = YES;
-        self.gTableView.dragInteractionEnabled = YES;
-        self.gTableView.dragDelegate = self;
-        self.gTableView.dropDelegate = self;
-    }
+    for(UITableView *tv in [self allTableViews]){
+        if (@available(iOS 11.0, *)) {
+            tv.clearsContextBeforeDrawing = YES;
+            tv.dragInteractionEnabled = YES;
+            tv.dragDelegate = self;
+            tv.dropDelegate = self;
+        }
 
-    if (@available(iOS 15.0, *)) {
-        self.cTableView.sectionHeaderTopPadding = 0;
-        self.gTableView.sectionHeaderTopPadding = 0;
+        if (@available(iOS 15.0, *)) {
+            tv.sectionHeaderTopPadding = 0;
+        }
     }
  
-	_groupsOff = [UIImage imageNamed: @"groupsoff"];
-	_groupsOn = [UIImage imageNamed: @"groupson"];
-    
     [self configureNavigationBar];
+    [self configureTabBar];
+    [self setActiveTab: TAB_CHANNELS];
 }
-
 
 - (void)didChangeRowHeight: notification {
     _shouldUpdateRowHeight = YES;
@@ -154,6 +156,8 @@
     if ( cell != nil
         && [cell isKindOfClass:[SAChannelCell class]]
         && !((SAChannelCell*)cell).captionTouched) {
+        AudioServicesPlayAlertSound(kSystemSoundID_Vibrate);
+        
         NSItemProvider *itemProvicer = [[NSItemProvider alloc] init];
         UIDragItem *dragItem = [[UIDragItem alloc] initWithItemProvider:itemProvicer];
         dragItem.localObject = cell;
@@ -216,7 +220,7 @@
 
 
 
-#define DATA_REFRESH_MIN_INTERVAL 0.5
+#define DATA_REFRESH_MIN_INTERVAL 0.250
 
 -(void)onDataChanged {
     if(_dataRefreshEnabled && [_lastReload timeIntervalSinceNow] < -DATA_REFRESH_MIN_INTERVAL) {
@@ -233,6 +237,7 @@
     } else {
         _dataRefreshPending = YES;
         if(_dataRefreshEnabled) {
+            [_delayedReloadTimer invalidate];
             _delayedReloadTimer = [NSTimer scheduledTimerWithTimeInterval:DATA_REFRESH_MIN_INTERVAL
                                                                target: self
                                                                  selector:@selector(onDataChanged)
@@ -393,6 +398,10 @@
 
 #pragma mark Table Support
 
+- (NSArray<UITableView *> *)allTableViews {
+    return @[_cTableView, _gTableView];
+}
+
 - (NSFetchedResultsController*)frcForTableView:(UITableView*)tableView {
     
     if (tableView == self.cTableView) {
@@ -444,7 +453,6 @@
 }
 
 - (void)sectionCellTouch:(SASectionCell*)section {
-    
     _SALocation *location = [self locationByName:section.label.text];
     if (location) {
         short bit = [self bitFlagCollapse];
@@ -455,6 +463,9 @@
         }
         
         [SAApp.DB saveContext];
+        [_delayedReloadTimer invalidate];
+        _delayedReloadTimer = nil;
+        [self deferredEnableRefresh:nil];
         [self onDataChanged];
     }
 }
@@ -621,13 +632,6 @@
  }
 
  
-- (void)groupTableHidden:(BOOL)hidden {
-    self.cTableView.hidden = !hidden;
-    self.gTableView.hidden = hidden;
-    
-    [self onDataChanged];
-}
-
 - (void) viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [[[SARateApp alloc] init] showDialogWithDelay: 1];
@@ -639,6 +643,14 @@
         self.showingDetails = NO;
     }
     
+    for(UITableView *tv in @[_cTableView, _gTableView]) {
+        tv.contentInset = UIEdgeInsetsMake(0, 0, _tabBar.frame.size.height, 0);
+    }
+}
+
+-(void)setShowingDetails:(BOOL)showingDetails {
+    _showingDetails = showingDetails;
+    _tabBar.hidden = _showingDetails;
 }
 
 -(void)runDownloadTask {
@@ -668,14 +680,7 @@
         _task = nil;
     }
 }
-#pragma mark Support for navigation bar
-- (UIImage *)imageForGroupState {
-	if([self isGroupTableHidden]) {
-		return _groupsOff;
-	} else {
-		return _groupsOn;
-	}
-}
+
 #pragma mark MGSwipeTableCellDelegate
 
 -(void) swipeTableCell:(MGSwipeTableCell*) cell
@@ -714,6 +719,12 @@
 }
 #endif
 
+- (void)channelButtonClicked:(SAChannelCell *)cell {
+    [_delayedReloadTimer invalidate];
+    _delayedReloadTimer = nil;
+    [self deferredEnableRefresh: nil];
+}
+
 - (void)deferredEnableRefresh: timer {
     _dataRefreshEnabled = YES;
     if(_dataRefreshEnabled && _dataRefreshPending) {
@@ -740,11 +751,6 @@
                                                   target: self
                                                   action: @selector(onProfileSelection:)]];
     }
-    [itms addObject:
-        [[UIBarButtonItem alloc] initWithImage: [self imageForGroupState]
-                                         style: UIBarButtonItemStylePlain
-                                        target: self
-                                        action: @selector(onGroupsToggle:)]];
     self.navigationItem.rightBarButtonItems = itms;
 }
 
@@ -771,12 +777,6 @@
     [[SAApp mainNavigationCoordinator] toggleMenuBar];
 }
 
-- (void)onGroupsToggle: sender {
-    [self groupTableHidden: ![self isGroupTableHidden]];
-	[self.navigationItem.rightBarButtonItems lastObject].image = [self imageForGroupState];
-}
-
-
 - (id<UIViewControllerInteractiveTransitioning>)interactionController {
     return ((SAMainView*)self.view).panController;
 }
@@ -800,7 +800,6 @@
             [self.view setNeedsUpdateConstraints];
         }
     }
-
 }	
 
 - (void)updateViewConstraints {
@@ -820,9 +819,99 @@
 - (void)reloadTables {
     _cFrc = nil;
     _gFrc = nil;
+    
     _heightScaleFactor = [Config new].channelHeightFactor;
     [self adjustChannelHeight:YES];
+    _scenesVC.scaleFactor = _heightScaleFactor;
+    [_scenesVC reload];
+    
+    // always when comming back from cfg update the view
+    [self.view setNeedsUpdateConstraints];
 }
+
+#pragma mark -
+#pragma mark Tab bar support
+#pragma mark -
+
+
+- (void)configureTabBar {
+    [UITabBar appearance].barTintColor = [UIColor background];
+    [UITabBar appearance].tintColor = [UIColor suplaGreen];
+    [UITabBar appearance].unselectedItemTintColor = [UIColor textLight];
+    _tabBar = [[UITabBar alloc] init];
+    _tabBar.translucent = NO;
+    
+    _tabBar.layer.shadowOffset = CGSizeMake(0, 0);
+    _tabBar.layer.shadowRadius = 2;
+    _tabBar.layer.shadowColor = UIColor.blackColor.CGColor;
+    _tabBar.layer.shadowOpacity = 0.3;
+    
+    [_tabBar setItems: @[
+        [[UITabBarItem alloc] initWithTitle: NSLocalizedString(@"Channels", nil)
+                                      image: [UIImage imageNamed: @"list"]
+                                        tag: TAB_CHANNELS],
+        [[UITabBarItem alloc] initWithTitle: NSLocalizedString(@"Groups", nil)
+                                      image: [UIImage imageNamed: @"bottom_bar_groups"]
+                                        tag: TAB_GROUPS],
+        [[UITabBarItem alloc] initWithTitle:NSLocalizedString(@"Scenes", nil)
+                                      image:[UIImage imageNamed: @"coffee"]
+                                        tag: TAB_SCENES]]
+            animated: NO];
+    _tabBar.delegate = self;
+    _tabBar.translatesAutoresizingMaskIntoConstraints = NO;
+    [self.view addSubview: _tabBar];
+    [_tabBar.leftAnchor constraintEqualToAnchor: self.view.leftAnchor].active = YES;
+    [_tabBar.rightAnchor constraintEqualToAnchor: self.view.rightAnchor].active = YES;
+    if (@available(iOS 11, *)) {
+        [_tabBar.bottomAnchor constraintEqualToAnchor: self.view.safeAreaLayoutGuide.bottomAnchor].active = YES;
+    } else {
+        [_tabBar.bottomAnchor constraintEqualToAnchor: self.view.bottomAnchor].active = YES;
+    }
+    [_tabBar setSelectedItem: [_tabBar.items objectAtIndex: 0]];
+}
+
+- (void)setActiveTab: (NSInteger)tab {
+    self.cTableView.hidden = tab != TAB_CHANNELS;
+    self.gTableView.hidden = tab != TAB_GROUPS;
+    if(tab == TAB_SCENES) {
+        [self showScenes];
+    } else {
+        [self hideScenes];
+    }
+    [self onDataChanged];
+}
+#pragma mark UITabBarDelegate
+
+- (void)tabBar:(UITabBar *)tabBar didSelectItem:(UITabBarItem *)item {
+    [self setActiveTab: item.tag];
+}
+
+#pragma mark Scenes support
+- (void)showScenes {
+    if(!_scenesVM) {
+        _scenesVM = [[ScenesVM alloc] initWithDatabase: [SAApp DB]];
+        _scenesVC = [[ScenesVC alloc] init];
+        _scenesVC.scaleFactor = _heightScaleFactor;
+        [_scenesVC bindWithViewModel: _scenesVM];
+        
+        [self addChildViewController: _scenesVC];
+        [self.view insertSubview: _scenesVC.view belowSubview: _tabBar];
+        [_scenesVC.view.topAnchor constraintEqualToAnchor: self.view.topAnchor
+                                                 constant: [UIApplication sharedApplication].statusBarFrame.size.height +
+                                                            self.navigationController.navigationBar.frame.size.height].active = YES;
+        [_scenesVC.view.leftAnchor constraintEqualToAnchor: self.view.leftAnchor].active = YES;
+        [_scenesVC.view.rightAnchor constraintEqualToAnchor: self.view.rightAnchor].active = YES;
+        [_scenesVC.view.bottomAnchor constraintEqualToAnchor: _tabBar.topAnchor].active = YES;
+    } else {
+        _scenesVC.view.hidden = false;
+    }
+    
+}
+
+- (void)hideScenes {
+    _scenesVC.view.hidden = true;
+}
+
 @end
 
 //------------------------------------------------------------------------------------------
@@ -848,6 +937,7 @@
 }
 
 - (SADetailView*)getDetailViewForCell:(SAChannelCell*)_cell {
+    if (self.cTableView.hidden && self.gTableView.hidden) return nil;
     
     SADetailView *result = nil;
     
@@ -995,6 +1085,7 @@
             [_panTransition finishInteractiveTransition];
          } else {
             [_panTransition cancelInteractiveTransition];
+             self.viewController.showingDetails = NO;
          }
         _panTransition = nil;
      }
@@ -1003,15 +1094,6 @@
 - (void)handleTap:(UITapGestureRecognizer *)gr {
     if ( _animating )
         return;
-    
-    UITableView *tableView = self.cTableView.hidden ? self.gTableView : self.cTableView;
-    CGPoint touch_point = [gr locationInView:tableView];
-    NSIndexPath *path = [tableView indexPathForRowAtPoint:touch_point];
-    
-    SASectionCell *section = [tableView cellForRowAtIndexPath:path];
-    if ([section isKindOfClass:[SASectionCell class]]) {
-        
-    }
 }
 
 

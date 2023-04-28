@@ -64,6 +64,7 @@ class AuthInfo: NSObject, NSCoding {
         accessIDpwd = coder.decodeObject(forKey: kAccessIDpwd) as? String ?? ""
         preferredProtocolVersion = coder.decodeInteger(forKey: kPreferredProtocolVersion)
     }
+    
     func encode(with coder: NSCoder) {
         coder.encode(emailAuth, forKey: kEmailAuth)
         coder.encode(serverAutoDetect, forKey: kServerAutoDetect)
@@ -131,5 +132,19 @@ class AuthInfoValueTransformer: ValueTransformer {
     override func transformedValue(_ value: Any?) -> Any? {
         guard let value = value as? AuthInfo else { return nil }
         return NSKeyedArchiver.archivedData(withRootObject: value)
+    }
+}
+
+extension AuthInfo {
+    static func empty() -> AuthInfo {
+        AuthInfo(
+            emailAuth: true,
+            serverAutoDetect: true,
+            emailAddress: "",
+            serverForEmail: "",
+            serverForAccessID: "",
+            accessID: 0,
+            accessIDpwd: ""
+        )
     }
 }

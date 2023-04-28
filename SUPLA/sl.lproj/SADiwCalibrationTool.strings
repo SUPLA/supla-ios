@@ -1,0 +1,15 @@
+
+/* Class = "UILabel"; text = "Status LED"; ObjectID = "5I7-oA-HK8"; */
+"5I7-oA-HK8.text" = "Status LED diode";
+
+/* Class = "UILabel"; text = "Operating range"; ObjectID = "BLx-gK-IQD"; */
+"BLx-gK-IQD.text" = "Območje delovanja";
+
+/* Class = "UIButton"; normalTitle = "BISTABLE"; ObjectID = "Hbe-vz-NMH"; */
+"Hbe-vz-NMH.normalTitle" = "BISTABILNI";
+
+/* Class = "UILabel"; text = "Input"; ObjectID = "MT9-II-b0z"; */
+"MT9-II-b0z.text" = "Vhod";
+
+/* Class = "UIButton"; normalTitle = "MONOSTABLE"; ObjectID = "grA-oG-zkU"; */
+"grA-oG-zkU.normalTitle" = "MONOSTABILNI";

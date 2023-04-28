@@ -39,7 +39,7 @@
 "VR4-Zp-AZ8.text" = "Firma";
 
 /* Class = "UILabel"; text = "Z-Wave device"; ObjectID = "Ymn-D1-eWm"; */
-"Ymn-D1-eWm.text" = "Dispositivio con z-wave";
+"Ymn-D1-eWm.text" = "Dispositivo con z-wave";
 
 /* Class = "UILabel"; text = "Z-wave network"; ObjectID = "a7s-5S-iHt"; */
 "a7s-5S-iHt.text" = "Red z-wave";
@@ -60,10 +60,10 @@
 "kWy-QX-AJU.text" = "Función";
 
 /* Class = "UILabel"; text = "Select the z-wave device that will be associated with the Supla channel."; ObjectID = "kc9-9O-Tmh"; */
-"kc9-9O-Tmh.text" = "Eliga un dispositivo z-wave que estará asociado con el canal en la parte de Supla.";
+"kc9-9O-Tmh.text" = "Elija un dispositivo z-wave que estará asociado con el canal en la parte de Supla.";
 
 /* Class = "UILabel"; text = "Select the z-wave bridge and then the channel you want to configure."; ObjectID = "kif-QE-f8n"; */
-"kif-QE-f8n.text" = "Elige el puente z-wave y elcanal que quieres configurar.";
+"kif-QE-f8n.text" = "Elige el puente z-wave y el canal que quieres configurar.";
 
 /* Class = "UILabel"; text = "Before continuing, make sure that all your z-wave devices are online. Pressing \"Next\" will search your z-wave network, which may take from a few seconds to several minutes."; ObjectID = "l1n-Id-vnO"; */
 "l1n-Id-vnO.text" = "Antes de continuar asegúrese de que todos sus dispositivos z-wave están en línea. Al presionar Siguiente se escaneará su red z-wave lo que puede tardar segundos o minutos.";

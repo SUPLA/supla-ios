@@ -128,12 +128,16 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     }
 }
 
+- (SAChartFilterField*) provideChartTypeField {
+    return nil;
+}
+
 -(void)setChannelBase:(SAChannelBase *)channelBase {
     if(channelBase) {
         if(!_chartSettings) {
             _chartSettings = [[ChartSettings alloc]
                                  initWithChannelId: channelBase.remote_id
-                                    chartTypeField: nil
+                                    chartTypeField: [self provideChartTypeField]
                                     dateRangeField: self.ftDateRangeFilter];
             [_chartSettings restore];
         }
@@ -146,6 +150,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     }
     [super setChannelBase:channelBase];
 }
+
 - (void)applyChartFilter {
     self.chartHelper.chartType = Bar_Minutes;
     self.chartHelper.dateFrom = _ftDateRangeFilter.dateFrom;
@@ -174,6 +179,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 -(void) onFilterChanged: (SAChartFilterField*)filterField {
     [self loadChartWithAnimation:YES moveToEnd:YES];
+    [_chartSettings persist];
 }
 
 - (void)updateView {

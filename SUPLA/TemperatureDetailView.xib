@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -14,10 +14,10 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yfP-yw-6n8" userLabel="vContent">
-                    <rect key="frame" x="10" y="130" width="394" height="751"/>
+                    <rect key="frame" x="10" y="105" width="394" height="776"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NHU-CU-o8S" userLabel="vCharts">
-                            <rect key="frame" x="0.0" y="0.0" width="394" height="751"/>
+                            <rect key="frame" x="0.0" y="0.0" width="394" height="776"/>
                             <subviews>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WTB-jW-RVM" userLabel="vFilters">
                                     <rect key="frame" x="0.0" y="0.0" width="394" height="32"/>
@@ -42,10 +42,10 @@
                                     </constraints>
                                 </view>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KC1-jt-PpO" userLabel="vChartContainer">
-                                    <rect key="frame" x="0.0" y="37" width="394" height="714"/>
+                                    <rect key="frame" x="0.0" y="37" width="394" height="739"/>
                                     <subviews>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ebk-eZ-hgm" customClass="CombinedChartView" customModule="Charts">
-                                            <rect key="frame" x="0.0" y="0.0" width="394" height="714"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="394" height="739"/>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </view>
                                     </subviews>
@@ -79,20 +79,20 @@
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AxH-u1-nUN" userLabel="vHeader">
-                    <rect key="frame" x="10" y="10" width="394" height="115"/>
+                    <rect key="frame" x="10" y="10" width="394" height="90"/>
                     <subviews>
                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="thermometer.png" translatesAutoresizingMaskIntoConstraints="NO" id="tH1-rG-hL3">
-                            <rect key="frame" x="10" y="12.5" width="80" height="90"/>
+                            <rect key="frame" x="10" y="15" width="60" height="60"/>
                             <constraints>
-                                <constraint firstAttribute="width" constant="80" id="Zj1-We-Ldb"/>
-                                <constraint firstAttribute="height" constant="90" id="c3v-H4-lHM"/>
+                                <constraint firstAttribute="width" constant="60" id="Zj1-We-Ldb"/>
+                                <constraint firstAttribute="height" constant="60" id="c3v-H4-lHM"/>
                             </constraints>
                         </imageView>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8zc-Rh-Ik4">
-                            <rect key="frame" x="110" y="-17.5" width="284" height="150"/>
+                            <rect key="frame" x="90" y="-5" width="304" height="100"/>
                             <subviews>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="630-dh-HYl" userLabel="btnChart">
-                                    <rect key="frame" x="251" y="90" width="30" height="30"/>
+                                    <rect key="frame" x="271" y="40" width="30" height="30"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="30" id="h3w-p2-q8L"/>
                                         <constraint firstAttribute="width" constant="30" id="p5g-Xr-Oki"/>
@@ -103,7 +103,7 @@
                                     </connections>
                                 </button>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="••••••••••" textAlignment="center" lineBreakMode="clip" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jlr-wT-Bib" customClass="SAPreloader">
-                                    <rect key="frame" x="251" y="120" width="30" height="7.5"/>
+                                    <rect key="frame" x="271" y="70" width="30" height="7.5"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="30" id="pHN-nC-gQV"/>
                                     </constraints>
@@ -115,22 +115,22 @@
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
                                 <constraint firstAttribute="trailing" secondItem="630-dh-HYl" secondAttribute="trailing" constant="3" id="BUh-nG-IUW"/>
-                                <constraint firstAttribute="height" constant="150" id="GDN-WU-4Wp"/>
+                                <constraint firstAttribute="height" constant="100" id="GDN-WU-4Wp"/>
                                 <constraint firstAttribute="trailing" secondItem="Jlr-wT-Bib" secondAttribute="trailing" constant="3" id="k5e-sN-Isd"/>
                                 <constraint firstAttribute="bottom" secondItem="630-dh-HYl" secondAttribute="bottom" constant="30" id="oDb-eL-7aM"/>
                                 <constraint firstItem="Jlr-wT-Bib" firstAttribute="top" secondItem="630-dh-HYl" secondAttribute="bottom" id="vdF-Q8-fdm"/>
                             </constraints>
                         </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wAz-gh-705" userLabel="vLine1">
-                            <rect key="frame" x="0.0" y="114" width="394" height="1"/>
+                            <rect key="frame" x="0.0" y="89" width="394" height="1"/>
                             <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="1" id="ye2-gO-gBc"/>
                             </constraints>
                         </view>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="20.0°" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="q9E-Xx-wtX">
-                            <rect key="frame" x="100" y="34.5" width="94" height="46"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="38"/>
+                            <rect key="frame" x="70" y="33" width="48" height="24"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="20"/>
                             <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <nil key="highlightedColor"/>
                         </label>
@@ -146,8 +146,8 @@
                         <constraint firstAttribute="trailing" secondItem="wAz-gh-705" secondAttribute="trailing" id="iPD-En-Rci"/>
                         <constraint firstAttribute="bottom" secondItem="wAz-gh-705" secondAttribute="bottom" id="jSg-dg-Mon"/>
                         <constraint firstItem="tH1-rG-hL3" firstAttribute="centerY" secondItem="AxH-u1-nUN" secondAttribute="centerY" id="lRr-UA-KuJ"/>
-                        <constraint firstItem="q9E-Xx-wtX" firstAttribute="leading" secondItem="tH1-rG-hL3" secondAttribute="trailing" constant="10" id="n6P-Lg-mn3"/>
-                        <constraint firstAttribute="height" constant="115" id="wb2-MT-7XP"/>
+                        <constraint firstItem="q9E-Xx-wtX" firstAttribute="leading" secondItem="tH1-rG-hL3" secondAttribute="trailing" id="n6P-Lg-mn3"/>
+                        <constraint firstAttribute="height" constant="90" id="wb2-MT-7XP"/>
                     </constraints>
                 </view>
             </subviews>

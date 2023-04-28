@@ -262,11 +262,6 @@ NSString *kChannelHeightDidChange = @"ChannelHeightDidChange";
     return [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
 }
 
-+(BOOL) configIsSet {
-    return [SAApp.profileManager getCurrentAuthInfo]
-        .isAuthDataComplete;
-}
-
 +(void) setBrightnessPickerTypeToSlider:(BOOL)slider {
     [[self instance] setBrightnessPickerTypeToSlider:slider];
 }
@@ -415,8 +410,17 @@ NSString *kChannelHeightDidChange = @"ChannelHeightDidChange";
 }
 
 -(NSString*)getMsgHostName {
-    NSString *hostname = [SAApp.profileManager getCurrentAuthInfo]
-        .serverForCurrentAuthMethod;
+    AuthProfileItem *profile = [SAApp.profileManager getCurrentProfile];
+    if (profile == nil) {
+        return @"";
+    }
+    
+    AuthInfo *authInfo = profile.authInfo;
+    if (authInfo == nil) {
+        return @"";
+    }
+    
+    NSString *hostname = authInfo.serverForCurrentAuthMethod;
     if ( [[hostname lowercaseString] containsString:@"supla.org"] ) {
         return @"cloud.supla.org";
     } else {
@@ -465,7 +469,7 @@ NSString *kChannelHeightDidChange = @"ChannelHeightDidChange";
     
     NSNumber *code = [NSNumber codeNotificationToNumber:notification];
     
-    if ( code && [code intValue] == SUPLA_RESULTCODE_HOSTNOTFOUND ) {
+    if ( code && [code intValue] == SUPLA_RESULT_HOST_NOT_FOUND ) {
         
         [self SuplaClientTerminate];
         [[SAApp mainNavigationCoordinator] showStatusViewWithError:NSLocalizedString(@"Host not found. Make sure you are connected to the internet and that an account with the entered email address has been created.", nil) completion: nil];

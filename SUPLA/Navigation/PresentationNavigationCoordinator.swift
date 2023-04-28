@@ -27,7 +27,13 @@ class PresentationNavigationCoordinator: BaseNavigationCoordinator {
     var shouldAnimatePresentation = true
     var isAnimating = false {
         didSet {
-            if !isAnimating && shouldFinish {
+            let state = UIApplication.shared.applicationState
+            if (isAnimating && state == .background) {
+                // when app is going to background we need to cancel the animation
+                isAnimating = false
+                finish()
+            }
+            else if (!isAnimating && shouldFinish) {
                 finish()
             }
         }

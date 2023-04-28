@@ -20,14 +20,21 @@
 #import "SAThermostatScheduleCfg.h"
 #import "proto.h"
 
+@protocol SuplaClientProtocol <NSObject>
+
+- (void) cancel;
+- (void) reconnect;
+
+@end
+
 @class SASuplaClient;
-@protocol SASuplaClientDelegate <NSObject>
+@protocol SASuplaClientDelegate <NSObject, SuplaClientProtocol>
 
 @required
 -(void) onSuplaClientTerminated: (SASuplaClient*)client;
 @end
 
-@interface SASuplaClient : NSThread
+@interface SASuplaClient : NSThread <SuplaClientProtocol>
 - (id)initWithOneTimePassword:(NSString*)oneTimePassword;
 + (NSString *)codeToString:(NSNumber*)code;
 + (NSString *)codeToString:(NSNumber*)code authDialog:(BOOL)authDialog;
@@ -73,6 +80,7 @@
 - (void) zwaveGetWakeUpSettingsForChannelId:(int)channelId;
 - (void) zwaveSetWakeUpTime:(int)time forChannelId:(int)channelId;
 - (BOOL) turnOn:(BOOL)on remoteId:(int)remoteId group:(BOOL)group channelFunc:(int)channelFunc vibrate:(BOOL)vibrate;
+- (BOOL) executeAction: (int)actionId subjecType: (int)subjectType subjectId: (int)subjectId rsParameters: (TAction_RS_Parameters*)rsParameters rgbwParameters: (TAction_RGBW_Parameters*)rgbwParameters;
 
 @property (nonatomic, weak) id<SASuplaClientDelegate> delegate;
 @end

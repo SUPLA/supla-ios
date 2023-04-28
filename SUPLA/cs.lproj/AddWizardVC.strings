@@ -1,6 +1,6 @@
 
 /* Class = "UILabel"; text = "Press Next to continue."; ObjectID = "3bd-Xm-Rok"; */
-"3bd-Xm-Rok.text" = "Aby kontynuować naciśnij Dalej.";
+"3bd-Xm-Rok.text" = "Chcete-li pokračovat, stiskněte tlačítko Další.";
 
 /* Class = "UILabel"; text = "Device parameters"; ObjectID = "8Da-uK-N1d"; */
 "8Da-uK-N1d.text" = "Data zařízení";

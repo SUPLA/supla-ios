@@ -31,7 +31,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nullable, nonatomic, copy) NSNumber *visible;
 @property (nonatomic) int16_t collapsed;
 @property (nullable, nonatomic, copy) NSNumber *sortOrder;
-@property (nonatomic, copy) AuthProfileItem *profile;
+@property (nonatomic, retain) AuthProfileItem *profile;
 @end
 
 NS_ASSUME_NONNULL_END

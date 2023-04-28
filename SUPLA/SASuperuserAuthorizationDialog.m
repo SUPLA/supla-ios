@@ -54,7 +54,7 @@ static SASuperuserAuthorizationDialog *_superuserAuthorizationDialogGlobalRef = 
 
 -(void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    NSString *serverName = [SAApp.profileManager getCurrentAuthInfo]
+    NSString *serverName = [SAApp.profileManager getCurrentProfile].authInfo
         .serverForCurrentAuthMethod;
     self.tvInfo.text = NSLocalizedString(
                     [serverName containsString:@"supla.org"] ?
@@ -168,8 +168,7 @@ static SASuperuserAuthorizationDialog *_superuserAuthorizationDialogGlobalRef = 
     [self timeoutTimerInvalidate];
     _lErrorMessage.text = @"";
     _lErrorMessage.hidden = YES;
-    _edEmail.text = [SAApp.profileManager getCurrentAuthInfo]
-        .emailAddress;
+    _edEmail.text = [SAApp.profileManager getCurrentProfile].authInfo.emailAddress;
     _edEmail.enabled = [SAApp isClientRegistered];
     _edPassword.text = @"";
     _edPassword.enabled = YES;

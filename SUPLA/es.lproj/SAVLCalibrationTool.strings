@@ -1,0 +1,30 @@
+
+/* Class = "UIButton"; normalTitle = "NO"; ObjectID = "0Qk-BM-JC5"; */
+"0Qk-BM-JC5.normalTitle" = "NO";
+
+/* Class = "UIButton"; normalTitle = "MODE 3"; ObjectID = "5NZ-KI-0CD"; */
+"5NZ-KI-0CD.normalTitle" = "MODO 3";
+
+/* Class = "UILabel"; text = "Boost"; ObjectID = "9CN-AY-yB1"; */
+"9CN-AY-yB1.text" = "Intensificación";
+
+/* Class = "UIButton"; normalTitle = "MODE 2"; ObjectID = "Mhd-rn-O8m"; */
+"Mhd-rn-O8m.normalTitle" = "MODO 2";
+
+/* Class = "UILabel"; text = "Dimming mode"; ObjectID = "PYA-89-fe5"; */
+"PYA-89-fe5.text" = "Modo de atenuación";
+
+/* Class = "UIButton"; normalTitle = "OPERATING RANGE"; ObjectID = "WeS-eH-Y2T"; */
+"WeS-eH-Y2T.normalTitle" = "RANGO DE OPERACIÓN";
+
+/* Class = "UIButton"; normalTitle = "YES"; ObjectID = "b2V-rw-W6a"; */
+"b2V-rw-W6a.normalTitle" = "SÍ";
+
+/* Class = "UILabel"; text = "Status LED"; ObjectID = "nOa-zt-iSl"; */
+"nOa-zt-iSl.text" = "LED de estado";
+
+/* Class = "UIButton"; normalTitle = "MODE 1"; ObjectID = "rvo-jc-7PF"; */
+"rvo-jc-7PF.normalTitle" = "MODO 1";
+
+/* Class = "UIButton"; normalTitle = "BOOST"; ObjectID = "tMB-hx-Fnq"; */
+"tMB-hx-Fnq.normalTitle" = "REFORZAMIENTO";

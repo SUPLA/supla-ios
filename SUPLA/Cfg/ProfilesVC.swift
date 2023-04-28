@@ -41,6 +41,8 @@ class ProfilesVC: BaseViewController {
     private static let _profileCellId = "ProfileCell"
     private static let _addNewCellId = "AddNewProfileCellId"
     
+    @Singleton<GlobalSettings> var settings
+    
     func dataSource() -> RxTableViewSectionedReloadDataSource<ProfilesListModel> {
         
         return RxTableViewSectionedReloadDataSource<ProfilesListModel>(
@@ -78,7 +80,7 @@ class ProfilesVC: BaseViewController {
         title = Strings.Profiles.Title.short
         view.backgroundColor = .viewBackground
         
-        navigationItem.hidesBackButton = !((navigationCoordinator as? ProfilesNavigationCoordinator)?.allowsBack ?? false)
+        navigationItem.hidesBackButton = !settings.anyAccountRegistered
 
         [ _headline, _tapMessage, _profileList ].forEach {
             $0.translatesAutoresizingMaskIntoConstraints = false
@@ -148,6 +150,19 @@ class ProfilesVC: BaseViewController {
         }).disposed(by: _disposeBag)
         
         _profilesModel.on(.next(dataModel(with: _viewModel.profileItems.value)))
+        
+        navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "backbtn"), style: .done, target: self, action: #selector(onBackPressed))
+    }
+    
+    @objc func onBackPressed() {
+        if (!SAApp.isClientRegistered()) {
+            SAApp.suplaClient().reconnect()
+        }
+        navigationCoordinator?.finish()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        _viewModel.reloadTrigger.on(.next(()))
     }
     
     private func dataModel(with items: [ProfileListItem]) -> [ProfilesListModel] {

@@ -20,64 +20,76 @@ import Foundation
 import CoreData
 
 class MultiAccountProfileManager: NSObject {
+    
     private let _ctx: NSManagedObjectContext
+    
+    @Singleton<RuntimeConfig> var config
     
     @objc
     init(context: NSManagedObjectContext) {
         _ctx = context
         super.init()
+        
+        if (config.activeProfileId == nil) {
+            var config = config
+            config.activeProfileId = _findCurrentProfile()?.objectID
+        }
+    }
+    
+    private func _findCurrentProfile() -> AuthProfileItem? {
+        return getAllProfiles().first(where: {$0.isActive})
     }
 }
 
 extension MultiAccountProfileManager: ProfileManager {
 
-    func makeNewProfile() -> AuthProfileItem {
-        let profile = NSEntityDescription.insertNewObject(forEntityName: "AuthProfileItem",
-                                                          into: _ctx) as! AuthProfileItem
-        profile.name = ""
-        profile.isActive = true
+    func create() -> AuthProfileItem {
+        let profile = NSEntityDescription.insertNewObject(forEntityName: "AuthProfileItem", into: _ctx) as! AuthProfileItem
+        
         profile.advancedSetup = false
-        profile.authInfo = AuthInfo(emailAuth: true,
-                                    serverAutoDetect: true,
-                                    emailAddress: "",
-                                    serverForEmail: "",
-                                    serverForAccessID: "",
-                                    accessID: 0,
-                                    accessIDpwd: "")
+        profile.isActive = true
+        profile.authInfo = AuthInfo.empty()
+        
         try! _ctx.save()
         return profile
     }
-
-    func getCurrentProfile() -> AuthProfileItem {
-        let req = AuthProfileItem.fetchRequest()
-        if let profile = try! _ctx.fetch(req).first(where: {$0.isActive}) {
-            return profile
-        } else {
-            // Need to create initial profile
-            return makeNewProfile()
-        }
+    
+    func read(id: ProfileID) -> AuthProfileItem? {
+        return try? _ctx.existingObject(with: id) as? AuthProfileItem
     }
     
-    func updateCurrentProfile(_ profile: AuthProfileItem) {
-        // TODO: Delete user icons probably here
+    func update(_ profile: AuthProfileItem) -> Bool {
         if profile.managedObjectContext == _ctx {
             if profile.hasChanges {
-                try! _ctx.save()
+                return saveContext("updating")
+            } else {
+                return true
             }
         } else {
             _ctx.insert(profile)
-            try! _ctx.save()
+            return saveContext("updating (by insert)")
         }
     }
     
-    func getCurrentAuthInfo() -> AuthInfo {
-        return getCurrentProfile().authInfo!
+    func delete(id: ProfileID) -> Bool {
+        if let p = read(id: id) {
+            deleteAllRelatedData(profileId: id)
+            _ctx.delete(p)
+            return saveContext("deleting")
+        }
+        
+        return false
     }
-    
-    func updateCurrentAuthInfo(_ info: AuthInfo) {
-        let profile = getCurrentProfile()
-        profile.authInfo = info
-        updateCurrentProfile(profile)
+
+    func getCurrentProfile() -> AuthProfileItem? {
+        if (config.activeProfileId == nil) {
+            return nil
+        }
+        let profile = read(id: config.activeProfileId!)
+        if (profile == nil) {
+            fatalError("Profile for ID \(config.activeProfileId!) was not found!")
+        }
+        return profile!
     }
     
     func getAllProfiles() -> [AuthProfileItem] {
@@ -85,28 +97,23 @@ extension MultiAccountProfileManager: ProfileManager {
         return try! _ctx.fetch(req)
     }
 
-    func getProfile(id: ProfileID) -> AuthProfileItem? {
-        return try? _ctx.existingObject(with: id) as? AuthProfileItem
-    }
-    
-    
     func activateProfile(id: ProfileID, force: Bool) -> Bool {
-        guard let profile = getProfile(id: id) else { return false }
+        var config = config
+        guard let profile = read(id: id) else { return false }
         if profile.isActive && !force { return false }
         
+        let profiles = getAllProfiles()
+        profiles.forEach { $0.isActive = $0.objectID == id }
+        do {
+            try _ctx.save()
+        } catch {
+            NSLog("Error occured by saving \(error)")
+            return false;
+        }
+        config.activeProfileId = id
         initiateReconnect()
-        getAllProfiles().forEach { $0.isActive = false }
-        profile.isActive = true
-        try! _ctx.save()
         
         return true
-    }
-    
-    func removeProfile(id: ProfileID) {
-        if let p = getProfile(id: id) {
-            _ctx.delete(p)
-            try! _ctx.save()
-        }
     }
     
     private func initiateReconnect() {
@@ -116,4 +123,48 @@ extension MultiAccountProfileManager: ProfileManager {
         client.reconnect()
     }
 
+    private func saveContext(_ action: String) -> Bool {
+        do {
+            try _ctx.save()
+        } catch {
+            NSLog("Error occured by \(action) '\(error)'")
+            return false
+        }
+        return true
+    }
+    
+    private func deleteAllRelatedData(profileId: ProfileID) {
+        if let profile = read(id: profileId) {
+            deleteRelatedData(entity: "SAChannelExtendedValue", profile: profile)
+            deleteRelatedData(entity: "SAChannelValue", profile: profile)
+            deleteRelatedData(entity: "SAChannel", profile: profile)
+            deleteRelatedData(entity: "SAChannelGroup", profile: profile)
+            deleteRelatedData(entity: "SAElectricityMeasurementItem", profile: profile)
+            deleteRelatedData(entity: "SAImpulseCounterMeasurementItem", profile: profile)
+            deleteRelatedData(entity: "SALocation", profile: profile)
+            deleteRelatedData(entity: "SAScene", profile: profile)
+            deleteRelatedData(entity: "SATemperatureMeasurementItem", profile: profile)
+            deleteRelatedData(entity: "SATempHumidityMeasurementItem", profile: profile)
+            deleteRelatedData(entity: "SAUserIcon", profile: profile)
+            deleteRelatedData(entity: "SAThermostatMeasurementItem", profile: profile)
+        }
+    }
+    
+    private func deleteRelatedData(entity: String, profile: AuthProfileItem) {
+        let request = NSFetchRequest<NSFetchRequestResult>(entityName: entity)
+        request.predicate = NSPredicate(format: "profile = %@", profile)
+        
+        do {
+            let results = try _ctx.fetch(request)
+            if (results.count == 0) {
+                return
+            }
+            for item in results as! [NSManagedObject] {
+                _ctx.delete(item)
+            }
+        } catch {
+            NSLog("Could not remove items from \(entity) for profile \(profile) because: \(error)")
+            // do nothing
+        }
+    }
 }

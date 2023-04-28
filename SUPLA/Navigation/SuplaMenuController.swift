@@ -117,7 +117,7 @@ extension SuplaMenuController: SAMenuItemsDelegate {
         case .settings:
             SAApp.mainNavigationCoordinator()?.showSettingsView()
         case .profile:
-            SAApp.mainNavigationCoordinator()?.showProfilesView(allowsBack: true) //AuthView(immediate: false)
+            SAApp.mainNavigationCoordinator()?.showProfilesView()
         case .addDevice:
             SAApp.mainNavigationCoordinator()?.showAddWizard()
         case .about:

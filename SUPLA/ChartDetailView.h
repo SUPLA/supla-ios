@@ -33,6 +33,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet CombinedChartView *combinedChart;
 @property (strong, nonatomic) SAChartHelper *chartHelper;
 - (IBAction)chartBtnTouch:(id)sender;
+- (SAChartFilterField*) provideChartTypeField;
 @end
 
 NS_ASSUME_NONNULL_END

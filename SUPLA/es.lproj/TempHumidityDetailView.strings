@@ -12,7 +12,7 @@
 "MSW-a7-MF2.text" = "33.0";
 
 /* Class = "UITextField"; text = "Last 24 hours"; ObjectID = "kgv-fs-w8P"; */
-"kgv-fs-w8P.text" = "Last 24 hours";
+"kgv-fs-w8P.text" = "Últimas 24 horas";
 
 /* Class = "UILabel"; text = "20.0°"; ObjectID = "qAx-Ae-Wgn"; */
 "qAx-Ae-Wgn.text" = "20.0°";

@@ -23,49 +23,20 @@ import CoreData
 
 class ProfileManagerTests: XCTestCase {
 
-    private var profileManager: ProfileManager!
-    private var coordinator: NSPersistentStoreCoordinator!
-    private var ctx: NSManagedObjectContext {
-        let rv = NSManagedObjectContext()
-        rv.persistentStoreCoordinator = coordinator
-        return rv
-    }
+    private lazy var ctx: NSManagedObjectContext! = { setUpInMemoryManagedObjectContext() }()
+    private lazy var profileManager: ProfileManager! = { MultiAccountProfileManager(context: ctx) }()
+    private lazy var runtimeConfig: RuntimeConfigMock! = { RuntimeConfigMock() }()
     
 
-    override func setUpWithError() throws {
-        let modelURL = Bundle.main.url(forResource: "SUPLA",
-                                       withExtension: "momd")!
-        let mom = NSManagedObjectModel(contentsOf: modelURL)!
-        coordinator = NSPersistentStoreCoordinator(managedObjectModel: mom)
-        try! coordinator.addPersistentStore(ofType: NSInMemoryStoreType,
-                                            configurationName: nil,
-                                            at: nil,
-                                            options: nil)
-        profileManager = MultiAccountProfileManager(context: ctx)
+    override func setUp() {
+        DiContainer.shared.register(type: RuntimeConfig.self, component: runtimeConfig!)
     }
 
-    override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
+    override func tearDown() {
+        profileManager = nil
+        runtimeConfig = nil
     }
 
-    func testCreatesDefaultProfile() throws {
-        let profile = profileManager.getCurrentProfile()
-        XCTAssertTrue(profile.isActive)
-    }
-    
-    func testProfileUpdatesAuthInfo() throws {
-        let authInfo = profileManager.getCurrentAuthInfo()
-        let newInfo = AuthInfo(emailAuth: false, serverAutoDetect: false,
-                               emailAddress: "", serverForEmail: "",
-                               serverForAccessID: "127.0.0.1",
-                               accessID: 6666, accessIDpwd: "testing")
-        XCTAssertNotEqual(newInfo, authInfo)
-        profileManager.updateCurrentAuthInfo(newInfo)
-        let profile = profileManager.getCurrentProfile()
-        XCTAssertEqual(newInfo, profile.authInfo)
-    }
-    
-    
     func testAuthInfoPassesEqualityTest() throws {
         let a1 = AuthInfo(emailAuth: true, serverAutoDetect: true,
                           emailAddress: "test1@test.net",
@@ -88,6 +59,96 @@ class ProfileManagerTests: XCTestCase {
                           serverForEmail: "hacker1", serverForAccessID: "",
                           accessID: 0, accessIDpwd: "")
         XCTAssertNotEqual(a1, a2)
-
+    }
+    
+    func test_getNoProfile_whenNoCurrentProfile() {
+        // given
+        runtimeConfig.activeProfileId = nil
+        
+        // when
+        let activeProfile = profileManager.getCurrentProfile()
+        
+        // then
+        XCTAssertNil(activeProfile)
+    }
+    
+    func test_getActiveProfile_whenExists() {
+        // given
+        let profile = profileManager.create()
+        runtimeConfig.activeProfileIdReturns = profile.objectID
+        
+        // when
+        let activeProfile = profileManager.getCurrentProfile()
+        
+        // then
+        XCTAssertIdentical(profile, activeProfile)
+    }
+    
+    func test_shouldDeleteSucceed_whenItemDeleted() {
+        // given
+        let profile = profileManager.create()
+        
+        // when
+        let result = profileManager.delete(id: profile.objectID)
+        
+        // then
+        XCTAssertTrue(result)
+    }
+    
+    func test_shouldDeleteFail_whenItemNotDeleted() {
+        // given
+        let profile = profileManager.create()
+        
+        // when
+        _ = profileManager.delete(id: profile.objectID)
+        let result = profileManager.delete(id: profile.objectID)
+        
+        // then
+        XCTAssertFalse(result)
+    }
+    
+    func test_shouldNotActivateProfile_whenProfileAlreadyActive() {
+        // given
+        let profile = profileManager.create()
+        
+        // when
+        let result = profileManager.activateProfile(id: profile.objectID, force: false)
+        
+        // then
+        XCTAssertFalse(result)
+    }
+    
+    func test_shouldActivateProfile_whenProfileNotActive() {
+        // given
+        let profile = profileManager.create()
+        profile.isActive = false
+        _ = profileManager.update(profile)
+        
+        // when
+        let result = profileManager.activateProfile(id: profile.objectID, force: false)
+        
+        // then
+        XCTAssertTrue(result)
+        XCTAssertTrue(profile.isActive)
+        XCTAssertEqual(runtimeConfig.activeProfileIdValues.count, 2)
+        XCTAssertEqual(runtimeConfig.activeProfileIdValues, [nil, profile.objectID])
+    }
+    
+    func test_shouldDeactivateOtherProfile_whenActivating() {
+        // given
+        let first = profileManager.create()
+        first.isActive = false
+        _ = profileManager.update(first)
+        let second = profileManager.create()
+        
+        // when
+        let result = profileManager.activateProfile(id: first.objectID, force: false)
+        
+        // then
+        XCTAssertTrue(result)
+        XCTAssertTrue(first.isActive)
+        XCTAssertFalse(second.isActive)
+        XCTAssertEqual(runtimeConfig.activeProfileIdValues.count, 2)
+        XCTAssertEqual(runtimeConfig.activeProfileIdValues, [nil, first.objectID])
     }
 }

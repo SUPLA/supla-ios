@@ -21,7 +21,7 @@
 "S43-Ly-5oI.normalTitle" = "OK";
 
 /* Class = "UILabel"; text = "Seconds"; ObjectID = "Y2W-R3-PSK"; */
-"Y2W-R3-PSK.text" = "Seconds";
+"Y2W-R3-PSK.text" = "Sekunden";
 
 /* Class = "UILabel"; text = "Wake up frequency"; ObjectID = "pcl-li-7Wf"; */
 "pcl-li-7Wf.text" = "Aufweckfrequenz";
