@@ -36,4 +36,4 @@
 "Cfg.removal.dialog.duplicated_name" = "Account by that name already exists";
 "Cfg.removal.dialog.incomplete" = "Required data is missing";
 
-"push_notification_limit_exceeded" = "You have exceeded the limit of %@ messages sent per hour.";
+"push_notification_limit_exceeded" = "You have exceeded the limit of %@ PUSH messages sent per hour.";

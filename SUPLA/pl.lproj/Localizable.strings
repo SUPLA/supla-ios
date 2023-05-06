@@ -320,3 +320,5 @@
 "Cfg.removal.dialog.incomplete" = "Uzupełnij wymagane dane";
 
 "General.error" = "Błąd";
+
+"push_notification_limit_exceeded" = "Przekroczono limit wysłanych wiadomości PUSH, który wynosi %@ na godzinę.";
