@@ -119,7 +119,7 @@ extern char sproto_tag[SUPLA_TAG_SIZE];
 // CS  - client -> server
 // SC  - server -> client
 
-#define SUPLA_PROTO_VERSION 19
+#define SUPLA_PROTO_VERSION 20
 #define SUPLA_PROTO_VERSION_MIN 1
 #if defined(ARDUINO_ARCH_AVR)     // Arduino IDE for Arduino HW
 #define SUPLA_MAX_DATA_SIZE 1248  // Registration header + 32 channels x 21 B
@@ -143,6 +143,7 @@ extern char sproto_tag[SUPLA_TAG_SIZE];
 #define SUPLA_LOCATION_CAPTION_MAXSIZE SUPLA_CAPTION_MAXSIZE
 #define SUPLA_LOCATIONPACK_MAXCOUNT 20
 #define SUPLA_CHANNEL_CAPTION_MAXSIZE SUPLA_CAPTION_MAXSIZE
+#define SUPLA_CHANNEL_GROUP_CAPTION_MAXSIZE SUPLA_CAPTION_MAXSIZE
 #define SUPLA_CHANNELPACK_MAXCOUNT 20
 #define SUPLA_URL_HOST_MAXSIZE 101
 #define SUPLA_URL_PATH_MAXSIZE 101
@@ -253,6 +254,8 @@ extern char sproto_tag[SUPLA_TAG_SIZE];
 #define SUPLA_SD_CALL_GET_CHANNEL_FUNCTIONS_RESULT 630        // ver. >= 12
 #define SUPLA_CS_CALL_SET_CHANNEL_CAPTION 640                 // ver. >= 12
 #define SUPLA_SC_CALL_SET_CHANNEL_CAPTION_RESULT 650          // ver. >= 12
+#define SUPLA_CS_CALL_SET_CHANNEL_GROUP_CAPTION 642           // ver. >= 20
+#define SUPLA_SC_CALL_SET_CHANNEL_GROUP_CAPTION_RESULT 652    // ver. >= 20
 #define SUPLA_CS_CALL_SET_LOCATION_CAPTION 645                // ver. >= 14
 #define SUPLA_SC_CALL_SET_LOCATION_CAPTION_RESULT 655         // ver. >= 14
 #define SUPLA_DS_CALL_GET_CHANNEL_CONFIG 680                  // ver. >= 16
@@ -268,6 +271,9 @@ extern char sproto_tag[SUPLA_TAG_SIZE];
 #define SUPLA_SC_CALL_GET_CHANNEL_VALUE_RESULT 1040           // ver. >= 19
 #define SUPLA_CS_CALL_SET_SCENE_CAPTION 1045                  // ver. >= 19
 #define SUPLA_SC_CALL_SET_SCENE_CAPTION_RESULT 1055           // ver. >= 19
+#define SUPLA_DS_CALL_REGISTER_PUSH_NOTIFICATION 1100         // ver. >= 20
+#define SUPLA_DS_CALL_SEND_PUSH_NOTIFICATION 1110             // ver. >= 20
+#define SUPLA_CS_CALL_REGISTER_PN_CLIENT_TOKEN 1120           // ver. >= 20
 
 #define SUPLA_RESULT_RESPONSE_TIMEOUT -8
 #define SUPLA_RESULT_CANT_CONNECT_TO_HOST -7
@@ -319,6 +325,7 @@ extern char sproto_tag[SUPLA_TAG_SIZE];
 #define SUPLA_RESULTCODE_CLIENT_NOT_EXISTS 36     // ver. >= 19
 #define SUPLA_RESULTCODE_COUNTRY_REJECTED 37
 #define SUPLA_RESULTCODE_CHANNEL_IS_OFFLINE 38  // ver. >= 19
+#define SUPLA_RESULTCODE_NOT_REGISTERED 39      // ver. >= 20
 
 #define SUPLA_OAUTH_RESULTCODE_ERROR 0         // ver. >= 10
 #define SUPLA_OAUTH_RESULTCODE_SUCCESS 1       // ver. >= 10
@@ -1135,6 +1142,7 @@ typedef struct {
 #define ACTION_SUBJECT_TYPE_CHANNEL 1
 #define ACTION_SUBJECT_TYPE_CHANNEL_GROUP 2
 #define ACTION_SUBJECT_TYPE_SCENE 3
+#define ACTION_SUBJECT_TYPE_SCHEDULE 4
 
 #define ACTION_OPEN 10
 #define ACTION_CLOSE 20
@@ -1151,6 +1159,9 @@ typedef struct {
 #define ACTION_UP_OR_STOP 140
 #define ACTION_DOWN_OR_STOP 150
 #define ACTION_STEP_BY_STEP 160
+#define ACTION_ENABLE 200
+#define ACTION_DISABLE 210
+#define ACTION_SEND 220
 #define ACTION_READ 1000
 #define ACTION_SET 2000
 #define ACTION_EXECUTE 3000
@@ -1171,7 +1182,7 @@ typedef struct {
   unsigned int Color;    // 0 == Ignore
   char ColorRandom;
   char OnOff;
-  char Reserverd[8];
+  char Reserved[8];
 } TAction_RGBW_Parameters;  // ver. >= 19
 
 typedef struct {
@@ -2142,6 +2153,49 @@ typedef struct {
   _supla_int_t ActionTrigger;
   unsigned char zero[10];  // Place for future variables
 } TDS_ActionTrigger;
+#define SUPLA_PN_TITLE_MAXSIZE 101
+#define SUPLA_PN_BODY_MAXSIZE 256
+
+#define PN_SERVER_MANAGED_TITLE (1 << 0)
+#define PN_SERVER_MANAGED_BODY (1 << 1)
+#define PN_SERVER_MANAGED_SOUND (1 << 2)
+
+typedef struct {
+  unsigned char
+      ServerManagedFields;  // Specifies the fields that will be managed by the
+                            // server. This value is only considered for the
+                            // first notification within a given context and
+                            // applies to all subsequent notifications.
+
+  _supla_int16_t Context;  // >= 0 Channel, -1 Device
+} TDS_RegisterPushNotification;
+
+typedef struct {
+  _supla_int16_t Context;  // >= 0 Channel, -1 Device
+  signed char Reserved[32];
+  _supla_int_t SoundId;
+  unsigned _supla_int16_t
+      TitleSize;  // Including the terminating null byte ('\0').
+  unsigned _supla_int16_t
+      BodySize;  // Including the terminating null byte ('\0').
+  signed char TitleAndBody[SUPLA_PN_TITLE_MAXSIZE +
+                           SUPLA_PN_BODY_MAXSIZE];  // Last variable in struct!
+} TDS_PushNotification;
+
+#define SUPLA_PN_CLIENT_TOKEN_MAXSIZE 256
+#define PLATFORM_UNKNOWN 0
+#define PLATFORM_IOS 1
+#define PLATFORM_ANDROID 2
+
+typedef struct {
+  unsigned char DevelopmentEnv;
+  _supla_int_t Platform;
+  _supla_int_t AppId;
+  unsigned _supla_int16_t
+      TokenSize;  // Including the terminating null byte ('\0'). Size
+                  // <= 1 removes the token
+  signed char Token[SUPLA_PN_CLIENT_TOKEN_MAXSIZE];  // Last variable in struct!
+} TCS_RegisterPnClientToken;
 
 #pragma pack(pop)
 
