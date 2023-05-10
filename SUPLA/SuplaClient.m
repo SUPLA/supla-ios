@@ -67,6 +67,7 @@
 - (void) onChannelState:(SAChannelStateExtendedValue*)state;
 - (void) onChannelBasicCfg:(SAChannelBasicCfg*)cfg;
 - (void) onChannelCaptionSetResult:(SAChannelCaptionSetResult*)result;
+- (void) onChannelGroupCaptionSetResult:(SAChannelCaptionSetResult*)result;
 - (void) onChannelFunctionSetResult:(SAChannelFunctionSetResult*)result;
 - (void) onZwaveGetAssignedNodeIdResult:(SAZWaveNodeIdResult*)result;
 - (void) onZwaveGetNodeListResult:(SAZWaveNodeResult*)result;
@@ -239,6 +240,15 @@ void sasuplaclient_on_channel_caption_set_result(void *_suplaclient,
     SASuplaClient *sc = (__bridge SASuplaClient*)user_data;
     if ( sc != nil && result != NULL) {
         [sc onChannelCaptionSetResult:[[SAChannelCaptionSetResult alloc] initWithResult:result]];
+    }
+}
+
+void sasuplaclient_on_channel_group_caption_set_result(void *_suplaclient,
+                                         void *user_data,
+                                         TSC_SetCaptionResult *result) {
+    SASuplaClient *sc = (__bridge SASuplaClient*)user_data;
+    if ( sc != nil && result != NULL) {
+        [sc onChannelGroupCaptionSetResult:[[SAChannelCaptionSetResult alloc] initWithResult:result]];
     }
 }
 
@@ -547,6 +557,7 @@ void sasuplaclient_scene_state_update(void *_suplaclient,
     scc.cb_on_set_registration_enabled_result = sasuplaclient_on_set_registration_enabled_result;
     scc.cb_on_channel_basic_cfg = sasuplaclient_on_channel_basic_cfg;
     scc.cb_on_channel_caption_set_result = sasuplaclient_on_channel_caption_set_result;
+    scc.cb_on_channel_group_caption_set_result = sasuplaclient_on_channel_group_caption_set_result;
     scc.cb_on_channel_function_set_result = sasuplaclient_on_channel_function_set_result;
     scc.cb_on_zwave_get_assigned_node_id_result = sasuplaclient_on_zwave_get_assigned_node_id_result;
     scc.cb_on_zwave_get_node_list_result = sasuplaclient_on_zwave_get_node_list_result;
@@ -1012,6 +1023,14 @@ void sasuplaclient_scene_state_update(void *_suplaclient,
     [self performSelectorOnMainThread:@selector(_onChannelCaptionSetResult:) withObject:result waitUntilDone:NO];
 }
 
+- (void) _onChannelGroupCaptionSetResult:(SAChannelCaptionSetResult*)result {
+    [[NSNotificationCenter defaultCenter] postNotificationName:kSAOnChannelGroupCaptionSetResult object:self userInfo:[[NSDictionary alloc] initWithObjects:@[result] forKeys:@[@"result"]]];
+}
+
+- (void) onChannelGroupCaptionSetResult:(SAChannelCaptionSetResult*)result {
+    [self performSelectorOnMainThread:@selector(_onChannelGroupCaptionSetResult:) withObject:result waitUntilDone:NO];
+}
+
 - (void) _onChannelFunctionSetResult:(SAChannelFunctionSetResult*)result {
     [[NSNotificationCenter defaultCenter] postNotificationName:kSAOnChannelFunctionSetResult object:self userInfo:[[NSDictionary alloc] initWithObjects:@[result] forKeys:@[@"result"]]];
 }
@@ -1354,6 +1373,14 @@ void sasuplaclient_scene_state_update(void *_suplaclient,
     @synchronized(self) {
         if ( _sclient ) {
             supla_client_set_channel_caption(_sclient, channelId, [caption UTF8String]);
+        }
+    }
+}
+
+- (void) setChannelGroupCaption:(int)channelGroupId caption:(NSString*)caption {
+    @synchronized(self) {
+        if ( _sclient ) {
+            supla_client_set_channel_group_caption(_sclient, channelGroupId, [caption UTF8String]);
         }
     }
 }

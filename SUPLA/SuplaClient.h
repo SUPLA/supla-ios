@@ -66,6 +66,7 @@
 - (BOOL) isSuperuserAuthorized;
 - (void) getChannelBasicCfg:(int)channelId;
 - (void) setChannelCaption:(int)channelId caption:(NSString*)caption;
+- (void) setChannelGroupCaption:(int)channelGroupId caption:(NSString*)caption;
 - (void) setLocationCaption:(int)locationId caption:(NSString*)caption;
 - (void) setFunction:(int)function forChannelId:(int)channelId;
 - (void) zwaveGetAssignedNodeIdForChannelId:(int)channelId;
