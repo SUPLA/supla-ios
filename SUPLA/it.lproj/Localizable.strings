@@ -308,9 +308,15 @@
 "PHo-MD-YLQ.text" = "IDENTIFICATORE DELL'ACCESSO";
 "cZS-4u-QMr.text" = "INDIRIZZO E-MAIL";
 "my9-Mc-v9S.text" = "Impostazioni";
+"Channels" = "Canali";
+"Groups" = "Gruppi";
+"Scenes" = "Scenari";
 
 "AccountCreation.title" = "Modifica account";
 "AccountCreation.modificationTitle" = "Aggiungi un account";
+
+"Scenes.ActionButtons.execute" = "Start";
+"Scenes.ActionButtons.abort" = "Stop";
 
 "AccountRemoval.url" = "https://{SERVER_ADDRESS}/db99845855b2ecbfecca9a095062b96c3e27703f?lang=it";
 
