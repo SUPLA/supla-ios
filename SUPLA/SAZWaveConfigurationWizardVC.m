@@ -331,6 +331,12 @@ static SAZWaveConfigurationWizardVC *_zwaveConfigurationWizardGlobalRef = nil;
             case SUPLA_RESULTCODE_DENY_CHANNEL_IS_ASSOCIETED_WITH_ACTION_TRIGGER:
                 errStr = @"The function of the channel associated with the action trigger cannot be changed.";
                 break;
+            case SUPLA_RESULTCODE_DENY_CHANNEL_IS_ASSOCIETED_WITH_VBT:
+                errStr = @"The channel function associated with reactions cannot be changed.";
+                break;
+            case SUPLA_RESULTCODE_DENY_CHANNEL_IS_ASSOCIETED_WITH_PUSH:
+                errStr = @"The function of the channel associated with the push notification cannot be changed.";
+                break;
         }
         
         if (errStr == nil) {
