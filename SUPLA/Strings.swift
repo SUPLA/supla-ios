@@ -110,6 +110,12 @@ struct Strings {
         }
     }
     
+    struct Main {
+        static let channels = NSLocalizedString("Channels", comment: "")
+        static let groups = NSLocalizedString("Groups", comment: "")
+        static let scenes = NSLocalizedString("Scenes", comment: "")
+    }
+    
     struct General {
         static let cancel = NSLocalizedString("Cancel", comment: "")
         static let close = NSLocalizedString("Close", comment: "")

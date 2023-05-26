@@ -6,6 +6,7 @@ PODS:
   - Differentiator (5.0.0)
   - FMMoveTableView (1.1.2)
   - PaddingLabel (1.2)
+  - QueryKit (0.14.1)
   - RxCocoa (6.5.0):
     - RxRelay (= 6.5.0)
     - RxSwift (= 6.5.0)
@@ -32,6 +33,7 @@ DEPENDENCIES:
   - Charts (~> 4.0)
   - FMMoveTableView (~> 1.1)
   - PaddingLabel (= 1.2)
+  - QueryKit
   - RxCocoa
   - RxDataSources
   - RxSwift
@@ -44,6 +46,7 @@ SPEC REPOS:
     - Differentiator
     - FMMoveTableView
     - PaddingLabel
+    - QueryKit
     - RxCocoa
     - RxDataSources
     - RxRelay
@@ -57,6 +60,7 @@ SPEC CHECKSUMS:
   Differentiator: e8497ceab83c1b10ca233716d547b9af21b9344d
   FMMoveTableView: 63b46cf806133f5220cf92592dc0e6f7eb07633d
   PaddingLabel: 21ab5282c780366018b04c30e3920c2f55a2fd14
+  QueryKit: 60dae8ff75d5805f9c703c68c0ef4294c9dd7de6
   RxCocoa: 94f817b71c07517321eb4f9ad299112ca8af743b
   RxDataSources: aa47cc1ed6c500fa0dfecac5c979b723542d79cf
   RxRelay: 1de1523e604c72b6c68feadedd1af3b1b4d0ecbd
@@ -65,6 +69,6 @@ SPEC CHECKSUMS:
   RxTest: eb2d23adefc5a5ebf5779c7792fa3edfe6ebcc17
   SwiftAlgorithms: 38dda4731d19027fdeee1125f973111bf3386b53
 
-PODFILE CHECKSUM: fd3339e8828c5b6fe4755f983704de37b3a5345d
+PODFILE CHECKSUM: e7577b9d65936293f5d5fc18960ceff60d07f1e6
 
 COCOAPODS: 1.11.3

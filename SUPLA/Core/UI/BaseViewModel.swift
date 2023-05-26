@@ -21,7 +21,7 @@ import RxSwift
 
 class BaseViewModel<S : ViewState, E : ViewEvent> {
     
-    private let disposeBag = DisposeBag()
+    fileprivate let disposeBag = DisposeBag()
     private let events = PublishSubject<E>()
     private lazy var state: BehaviorSubject<S> = {
         BehaviorSubject(value: defaultViewState())
@@ -76,5 +76,10 @@ class BaseViewModel<S : ViewState, E : ViewEvent> {
             })
             .disposed(by: disposeBag)
     }
-    
+}
+
+extension Disposable {
+    func disposedBy<S, E>(_ viewModel: BaseViewModel<S, E>) {
+        disposed(by: viewModel.disposeBag)
+    }
 }

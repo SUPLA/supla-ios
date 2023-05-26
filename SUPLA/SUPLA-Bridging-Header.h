@@ -31,3 +31,5 @@
 #import "UIColor+SUPLA.h"
 #import "SACaptionEditor.h"
 #import "SALocationCaptionEditor.h"
+#import "ChannelCell.h"
+#import "SAChannelGroup+CoreDataClass.h"
