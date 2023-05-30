@@ -21,13 +21,24 @@ import Foundation
 class ChannelListViewModel: BaseTableViewModel<ChannelListViewState, ChannelListViewEvent> {
     
     @Singleton<CreateProfileChannelsListUseCase> private var createProfileChannelsListUseCase
+    @Singleton<ListsEventsManager> private var listsEventsManager
+    
+    override init() {
+        super.init()
+        
+        listsEventsManager.observeChannelUpdates()
+            .subscribe(
+                onNext: { self.reloadTable() }
+            )
+            .disposed(by: self)
+    }
     
     override func defaultViewState() -> ChannelListViewState { ChannelListViewState() }
     
     override func reloadTable() {
         createProfileChannelsListUseCase.invoke()
             .subscribe(onNext: { self.listItems.accept($0) })
-            .disposedBy(self)
+            .disposed(by: self)
     }
     
     override func getCollapsedFlag() -> CollapsedFlag { .channel }

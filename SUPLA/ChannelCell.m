@@ -56,6 +56,7 @@
     BOOL _measurementSubChannel;
     BOOL _showChannelInfo;
     SAChannelBase *_channelBase;
+    DisposeBagContainer *_disposeBagContainer;
     UITapGestureRecognizer *tapGr1;
     UITapGestureRecognizer *tapGr2;
     UILongPressGestureRecognizer *longPressGr;
@@ -70,11 +71,14 @@
     self.delegate = nil;
     [super prepareForReuse];
     self.delegate = savedDelegate;
+    
+    _disposeBagContainer = [[DisposeBagContainer alloc] init];
 }
 
 - (void)initialize {
     if (_initialized) return;
     _initialized = YES;
+    _disposeBagContainer = [[DisposeBagContainer alloc] init];
     
     self.leftSwipeSettings.transition = MGSwipeTransitionRotate3D;
     self.rightSwipeSettings.transition = MGSwipeTransitionRotate3D;
@@ -105,6 +109,9 @@
     }
 }
 
+- (DisposeBagContainer *) getDisposeBagContainer {
+    return _disposeBagContainer;
+}
 
 - (void)awakeFromNib {
     [super awakeFromNib];
@@ -153,8 +160,19 @@
 -(void)setChannelBase:(SAChannelBase *)channelBase {
     //TODO: Add support for WINDSENSOR, PRESSURESENSOR, RAINSENSOR, WEIGHTSENSOR
     _channelBase = channelBase;
-    BOOL isGroup = [channelBase isKindOfClass:[SAChannelGroup class]];
-    SAChannel *channel = [channelBase isKindOfClass:[SAChannel class]] ? (SAChannel*)channelBase : nil;
+    [self updateCellView];
+    
+    [self observeChannelBaseChanges: _channelBase.remote_id];
+}
+
+-(void) updateChannelBase:(SAChannelBase *)channelBase {
+    _channelBase = channelBase;
+    [self updateCellView];
+}
+
+-(void) updateCellView {
+    BOOL isGroup = [_channelBase isKindOfClass:[SAChannelGroup class]];
+    SAChannel *channel = [_channelBase isKindOfClass:[SAChannel class]] ? (SAChannel*)_channelBase : nil;
     
     _measurementSubChannel = channel && channel.value
     && (channel.value.sub_value_type == SUBV_TYPE_IC_MEASUREMENTS
@@ -165,13 +183,13 @@
     self.leftButtons = @[];
     
     if (self.channelWarningIcon) {
-        self.channelWarningIcon.channel = channelBase;
+        self.channelWarningIcon.channel = _channelBase;
     }
     
     if ( isGroup ) {
         self.cint_LeftStatusWidth.constant = 6;
         self.cint_RightStatusWidth.constant = 6;
-        self.right_ActiveStatus.percent = ((SAChannelGroup*)channelBase).activePercent;
+        self.right_ActiveStatus.percent = ((SAChannelGroup*)_channelBase).activePercent;
         self.right_ActiveStatus.singleColor = YES;
         self.right_ActiveStatus.hidden = NO;
         self.right_OnlineStatus.shapeType = stLinearVertical;
@@ -183,7 +201,7 @@
         self.right_OnlineStatus.shapeType = stDot;
         self.left_OnlineStatus.shapeType = stDot;
         
-        if ([channelBase isKindOfClass:[SAChannel class]] && _showChannelInfo && [channel isOnline]) {
+        if ([_channelBase isKindOfClass:[SAChannel class]] && _showChannelInfo && [channel isOnline]) {
             UIImage *stateIcon = channel.stateIcon;
             if (stateIcon) {
                 self.channelStateIcon.hidden = NO;
@@ -192,14 +210,14 @@
         }
     }
     
-    self.right_OnlineStatus.percent = [channelBase onlinePercent];
+    self.right_OnlineStatus.percent = [_channelBase onlinePercent];
     self.left_OnlineStatus.percent = self.right_OnlineStatus.percent;
 
-    [self.caption setText:[channelBase getNonEmptyCaption]];
-    [self.image1 setImage:[channelBase getIconWithIndex:0]];
-    [self.image2 setImage:[channelBase getIconWithIndex:1]];
+    [self.caption setText:[_channelBase getNonEmptyCaption]];
+    [self.image1 setImage:[_channelBase getIconWithIndex:0]];
+    [self.image2 setImage:[_channelBase getIconWithIndex:1]];
     
-    switch(channelBase.func) {
+    switch(_channelBase.func) {
         case SUPLA_CHANNELFNC_CONTROLLINGTHEGATE:
         case SUPLA_CHANNELFNC_CONTROLLINGTHEGARAGEDOOR:
         case SUPLA_CHANNELFNC_CONTROLLINGTHEDOORLOCK:
@@ -250,40 +268,40 @@
     }
     
     
-    if ( channelBase.func == SUPLA_CHANNELFNC_THERMOMETER ) {
-        [self.temp setText:[[channelBase attrStringValue] string]];
-    } else if ( channelBase.func== SUPLA_CHANNELFNC_HUMIDITYANDTEMPERATURE ) {
+    if ( _channelBase.func == SUPLA_CHANNELFNC_THERMOMETER ) {
+        [self.temp setText:[[_channelBase attrStringValue] string]];
+    } else if ( _channelBase.func== SUPLA_CHANNELFNC_HUMIDITYANDTEMPERATURE ) {
         
-        [self.temp setText:[[channelBase attrStringValue] string]];
-        [self.humidity setText:[[channelBase attrStringValueWithIndex:1 font:nil] string]];
+        [self.temp setText:[[_channelBase attrStringValue] string]];
+        [self.humidity setText:[[_channelBase attrStringValueWithIndex:1 font:nil] string]];
        
-    } else if ( channelBase.func == SUPLA_CHANNELFNC_DEPTHSENSOR
-                 || channelBase.func == SUPLA_CHANNELFNC_WINDSENSOR
-                 || channelBase.func == SUPLA_CHANNELFNC_WEIGHTSENSOR
-                 || channelBase.func == SUPLA_CHANNELFNC_PRESSURESENSOR
-                 || channelBase.func == SUPLA_CHANNELFNC_RAINSENSOR
-                 || channelBase.func == SUPLA_CHANNELFNC_HUMIDITY ) {
-        [self.measuredValue setText:[[channelBase attrStringValue] string]];
-    } else if ( channelBase.func == SUPLA_CHANNELFNC_DISTANCESENSOR  ) {
-        [self.distance setText:[[channelBase attrStringValue] string]];
-    } else if ( channelBase.func == SUPLA_CHANNELFNC_ELECTRICITY_METER
-                || channelBase.func == SUPLA_CHANNELFNC_IC_ELECTRICITY_METER
-                || channelBase.func == SUPLA_CHANNELFNC_IC_WATER_METER
-                || channelBase.func == SUPLA_CHANNELFNC_IC_GAS_METER
-                || channelBase.func == SUPLA_CHANNELFNC_IC_HEAT_METER ) {
+    } else if ( _channelBase.func == SUPLA_CHANNELFNC_DEPTHSENSOR
+                 || _channelBase.func == SUPLA_CHANNELFNC_WINDSENSOR
+                 || _channelBase.func == SUPLA_CHANNELFNC_WEIGHTSENSOR
+                 || _channelBase.func == SUPLA_CHANNELFNC_PRESSURESENSOR
+                 || _channelBase.func == SUPLA_CHANNELFNC_RAINSENSOR
+                 || _channelBase.func == SUPLA_CHANNELFNC_HUMIDITY ) {
+        [self.measuredValue setText:[[_channelBase attrStringValue] string]];
+    } else if ( _channelBase.func == SUPLA_CHANNELFNC_DISTANCESENSOR  ) {
+        [self.distance setText:[[_channelBase attrStringValue] string]];
+    } else if ( _channelBase.func == SUPLA_CHANNELFNC_ELECTRICITY_METER
+                || _channelBase.func == SUPLA_CHANNELFNC_IC_ELECTRICITY_METER
+                || _channelBase.func == SUPLA_CHANNELFNC_IC_WATER_METER
+                || _channelBase.func == SUPLA_CHANNELFNC_IC_GAS_METER
+                || _channelBase.func == SUPLA_CHANNELFNC_IC_HEAT_METER ) {
         
-        [self.measuredValue setText:[[channelBase attrStringValue] string]];
+        [self.measuredValue setText:[[_channelBase attrStringValue] string]];
                 
-    } else if ( channelBase.func == SUPLA_CHANNELFNC_THERMOSTAT_HEATPOL_HOMEPLUS ) {
-        [self.temp setAttributedText:[channelBase attrStringValueWithIndex:0 font:self.temp.font]];
+    } else if ( _channelBase.func == SUPLA_CHANNELFNC_THERMOSTAT_HEATPOL_HOMEPLUS ) {
+        [self.temp setAttributedText:[_channelBase attrStringValueWithIndex:0 font:self.temp.font]];
     } else {
         [self resetButtonState];
                 
-        if ( [channelBase isOnline] ) {
+        if ( [_channelBase isOnline] ) {
             MGSwipeButton *bl = nil;
             MGSwipeButton *br = nil;
             
-            switch(channelBase.func) {
+            switch(_channelBase.func) {
                 case SUPLA_CHANNELFNC_CONTROLLINGTHEDOORLOCK:
                 case SUPLA_CHANNELFNC_CONTROLLINGTHEGATEWAYLOCK:
                     br = [MGSwipeButton buttonWithTitle:NSLocalizedString(@"Open", nil) icon:nil backgroundColor:[UIColor blackColor]];
@@ -300,7 +318,7 @@
                     bl = [self makeButtonWithTitle: NSLocalizedString(@"Off", nil)];
                     
                     if (_measurementSubChannel) {
-                        [self.measuredValue setText:[[channelBase attrStringValue] string]];
+                        [self.measuredValue setText:[[_channelBase attrStringValue] string]];
                     }
                 }
                     break;

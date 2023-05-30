@@ -25,19 +25,28 @@ protocol ListsEventsManagerEmitter {
     func emitSceneChange(sceneId: Int)
     func emitChannelChange(remoteId: Int)
     func emitGroupChange(remoteId: Int)
+    func emitChannelUpdate()
+    func emitGroupUpdate()
+    func emitSceneUpdate()
 }
 
 protocol ListsEventsManager: ListsEventsManagerEmitter {
     func observeScene(sceneId: Int) -> Observable<SAScene>
     func observeChannel(remoteId: Int) -> Observable<SAChannel>
     func observeGroup(remoteId: Int) -> Observable<SAChannelGroup>
-    
+    func observeChannelUpdates() -> Observable<Void>
+    func observeGroupUpdates() -> Observable<Void>
+    func observeSceneUpdates() -> Observable<Void>
 }
 
 final class ListsEventsManagerImpl: ListsEventsManager {
     
     private var subjects: [Id: BehaviorRelay<Int>] = [:]
     private let syncedQueue = DispatchQueue(label: "EventsPrivateQueue", attributes: .concurrent)
+    
+    private let channelUpdatesSubject = BehaviorRelay(value: ())
+    private let groupUpdatesSubject = BehaviorRelay(value: ())
+    private let sceneUpdatesSubject = BehaviorRelay(value: ())
     
     @Singleton<SceneRepository> private var sceneRepository
     @Singleton<ChannelRepository> private var channelRepository
@@ -58,6 +67,18 @@ final class ListsEventsManagerImpl: ListsEventsManager {
         subject.accept(subject.value + 1)
     }
     
+    func emitChannelUpdate() {
+        channelUpdatesSubject.accept(())
+    }
+    
+    func emitGroupUpdate() {
+        groupUpdatesSubject.accept(())
+    }
+    
+    func emitSceneUpdate() {
+        sceneUpdatesSubject.accept(())
+    }
+    
     func observeScene(sceneId: Int) -> Observable<SAScene> {
         let subject = getSubjectForScene(sceneId: sceneId)
         return subject.flatMap { _ in
@@ -66,14 +87,20 @@ final class ListsEventsManagerImpl: ListsEventsManager {
     }
     
     func observeChannel(remoteId: Int) -> Observable<SAChannel> {
-        return getSubjectForScene(sceneId: remoteId)
+        return getSubjectForChannel(channelId: remoteId)
             .flatMap { _ in self.channelRepository.getChannel(remoteId: remoteId) }
     }
     
     func observeGroup(remoteId: Int) -> Observable<SAChannelGroup> {
-        return getSubjectForScene(sceneId: remoteId)
+        return getSubjectForGroup(groupId: remoteId)
             .flatMap { _ in self.groupRepository.getGroup(remoteId: remoteId) }
     }
+    
+    func observeChannelUpdates() -> Observable<Void> { channelUpdatesSubject.asObservable() }
+    
+    func observeGroupUpdates() -> Observable<Void> { groupUpdatesSubject.asObservable() }
+    
+    func observeSceneUpdates() -> Observable<Void> { sceneUpdatesSubject.asObservable() }
     
     private func getSubjectForScene(sceneId: Int) -> BehaviorRelay<Int> {
         return syncedQueue.sync(execute: {

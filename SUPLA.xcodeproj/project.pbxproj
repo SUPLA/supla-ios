@@ -728,6 +728,8 @@
 		A5F29BD42A2623C000ED700A /* TempHumidityMeasurementItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F29BD32A2623C000ED700A /* TempHumidityMeasurementItem.swift */; };
 		A5F29BD62A2623E500ED700A /* UserIconRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F29BD52A2623E500ED700A /* UserIconRepository.swift */; };
 		A5F29BD82A26240E00ED700A /* ThermostatMeasurementItemRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F29BD72A26240E00ED700A /* ThermostatMeasurementItemRepository.swift */; };
+		A5F29BDA2A268DDE00ED700A /* DisposeBagContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F29BD92A268DDE00ED700A /* DisposeBagContainer.swift */; };
+		A5F29BDC2A26901100ED700A /* ChannelCell+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F29BDB2A26901100ED700A /* ChannelCell+Ext.swift */; };
 		AE1874C2290C581D00437146 /* SceneCaptionEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE1874C1290C581D00437146 /* SceneCaptionEditor.swift */; };
 		AE348E66277F348700F363A3 /* SAMoveTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = AE348E65277F348700F363A3 /* SAMoveTableView.m */; };
 		AE3DECE22761DB32005923E4 /* AccountCreationNavigationCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE3DECE02761DB32005923E4 /* AccountCreationNavigationCoordinator.swift */; };
@@ -1869,6 +1871,8 @@
 		A5F29BD32A2623C000ED700A /* TempHumidityMeasurementItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TempHumidityMeasurementItem.swift; sourceTree = "<group>"; };
 		A5F29BD52A2623E500ED700A /* UserIconRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserIconRepository.swift; sourceTree = "<group>"; };
 		A5F29BD72A26240E00ED700A /* ThermostatMeasurementItemRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThermostatMeasurementItemRepository.swift; sourceTree = "<group>"; };
+		A5F29BD92A268DDE00ED700A /* DisposeBagContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisposeBagContainer.swift; sourceTree = "<group>"; };
+		A5F29BDB2A26901100ED700A /* ChannelCell+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ChannelCell+Ext.swift"; sourceTree = "<group>"; };
 		AE1874C1290C581D00437146 /* SceneCaptionEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneCaptionEditor.swift; sourceTree = "<group>"; };
 		AE348E64277F348700F363A3 /* SAMoveTableView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SAMoveTableView.h; sourceTree = "<group>"; };
 		AE348E65277F348700F363A3 /* SAMoveTableView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SAMoveTableView.m; sourceTree = "<group>"; };
@@ -3336,6 +3340,8 @@
 		A5F29BC72A25D49700ED700A /* Legacy */ = {
 			isa = PBXGroup;
 			children = (
+				A5F29BD92A268DDE00ED700A /* DisposeBagContainer.swift */,
+				A5F29BDB2A26901100ED700A /* ChannelCell+Ext.swift */,
 			);
 			path = Legacy;
 			sourceTree = "<group>";
@@ -4231,6 +4237,7 @@
 				A5F29BAC2A24B80E00ED700A /* ChangeScenesVisibilityUseCase.swift in Sources */,
 				01B57DEC25BDA48F001F0DBC /* SAWizardVC.m in Sources */,
 				A5F29BA82A24B0FC00ED700A /* UpdateSceneStateUseCase.swift in Sources */,
+				A5F29BDC2A26901100ED700A /* ChannelCell+Ext.swift in Sources */,
 				AEF79D912713088100D7554B /* Strings.swift in Sources */,
 				01AB61E925B8E08E00DBEF74 /* SADigiglassController.m in Sources */,
 				40C7BA7920C047CF00ACEE42 /* SAChannelGroup+CoreDataProperties.m in Sources */,
@@ -4361,6 +4368,7 @@
 				AE3DECE32761DB32005923E4 /* PresentationNavigationCoordinator.swift in Sources */,
 				01BDAC7822C5200600915646 /* SAOAuthToken.m in Sources */,
 				A553862F29E0297400B5CF3F /* Inject.swift in Sources */,
+				A5F29BDA2A268DDE00ED700A /* DisposeBagContainer.swift in Sources */,
 				A5F29BD62A2623E500ED700A /* UserIconRepository.swift in Sources */,
 				AED6395E270CA3A800E5105B /* RoundedButton.swift in Sources */,
 				015A9846265595E300B6E6C6 /* UIButton+SUPLA.m in Sources */,

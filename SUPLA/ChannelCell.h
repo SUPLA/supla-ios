@@ -24,6 +24,8 @@
 
 #import "SAWarningIcon.h"
 
+@class DisposeBagContainer;
+
 @interface MGSwipeTableCell (SUPLA)
 
 -(void) prepareForReuse;
@@ -69,5 +71,7 @@
 @property (nonatomic) BOOL captionEditable;
 
 -(void) setShowChannelInfo: (BOOL)showChannelInfo;
+-(DisposeBagContainer*) getDisposeBagContainer;
+-(void) updateChannelBase: (SAChannelBase *) channelBase;
 
 @end

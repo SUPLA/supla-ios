@@ -17,31 +17,25 @@
  */
 
 import Foundation
+import RxSwift
 
-class HomeViewModel: BaseViewModel<HomeViewState, HomeViewEvent> {
+extension SAChannelCell {
     
-    @Singleton<ProfileRepository> private var profileRepository
-    
-    override func defaultViewState() -> HomeViewState { HomeViewState() }
-    
-    func onViewAppear() {
-        profileRepository.getAllProfiles()
-            .map { profiles in profiles.count }
+    @objc
+    func observeChannelBaseChanges(_ remoteId: Int) {
+        guard
+            let listsEventsManager = DiContainer.shared.resolve(type: ListsEventsManager.self)
+        else {
+            return
+        }
+        
+        listsEventsManager.observeChannel(remoteId: remoteId)
             .asDriverWithoutError()
             .drive(
-                onNext: { [weak self] count in
-                    self?.updateView { state in
-                        state.changing(path: \.showProfilesIcon, to: count > 1)
-                    }
+                onNext: { channel in
+                    self.updateChannelBase(channel)
                 }
             )
-            .disposed(by: self)
+            .disposed(by: self.getDisposeBagContainer())
     }
-}
-
-enum HomeViewEvent: ViewEvent {
-}
-
-struct HomeViewState: ViewState {
-    var showProfilesIcon: Bool = false
 }

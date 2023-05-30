@@ -118,11 +118,11 @@ void sasuplaclient_on_registering(void *_suplaclient, void *user_data) {
     
 }
 
-void sasuplaclient_on_registered(void *_suplaclient, void *user_data, TSC_SuplaRegisterClientResult_C *result) {
+void sasuplaclient_on_registered(void *_suplaclient, void *user_data, TSC_SuplaRegisterClientResult_D *result) {
     
     SASuplaClient *sc = (__bridge SASuplaClient*)user_data;
     if ( sc != nil )
-        [sc onRegistered:[SARegResult RegResultClientID:result->ClientID locationCount:result->LocationCount channelCount:result->ChannelCount channelGroupCount:result->ChannelGroupCount flags:result->Flags version:result->version]];
+        [sc onRegistered:[SARegResult RegResultClientID:result->ClientID locationCount:result->LocationCount channelCount:result->ChannelCount channelGroupCount:result->ChannelGroupCount sceneCount: result->SceneCount flags:result->Flags version:result->version]];
     
 }
 
@@ -747,11 +747,19 @@ void sasuplaclient_scene_state_update(void *_suplaclient,
     if ( result.ChannelCount == 0
         && [UseCaseLegacyWrapper changeChannelsVisibilityFrom:2 to:0] ) {
         [self onDataChanged];
+        [DiContainer.listsEventsManager emitChannelUpdate];
     }
     
     if ( result.ChannelGroupCount == 0
         && [UseCaseLegacyWrapper changeGroupsVisibilityFrom:2 to:0] ) {
         [self onDataChanged];
+        [DiContainer.listsEventsManager emitGroupUpdate];
+    }
+    
+    if (result.SceneCount == 0
+        && [UseCaseLegacyWrapper changeScenesVisibilityFrom:2 to:0]) {
+        [self onDataChanged];
+        [DiContainer.listsEventsManager emitSceneUpdate];
     }
     
     _client_id = result.ClientID;
@@ -836,9 +844,9 @@ void sasuplaclient_scene_state_update(void *_suplaclient,
         ChannelValueChanged = YES;
     }
     
-    if ( channel->EOL == 1
-        && [UseCaseLegacyWrapper changeChannelsVisibilityFrom:2 to:0] ) {
-        DataChanged = YES;
+    if ( channel->EOL == 1 ) {
+        [DiContainer.listsEventsManager emitChannelUpdate];
+        DataChanged = [UseCaseLegacyWrapper changeChannelsVisibilityFrom:2 to:0];
     }
     
     if ( DataChanged ) {
@@ -856,6 +864,7 @@ void sasuplaclient_scene_state_update(void *_suplaclient,
     if ( [UseCaseLegacyWrapper updateChannelValueWithSuplaChannelValue: *channel_value] ) {
         [self onChannelValueChanged: channel_value->Id isGroup:NO];
         [self onDataChanged];
+        [DiContainer.listsEventsManager emitChannelChangeWithRemoteId: channel_value->Id];
     }
     
     if (channel_value->EOL == 1) {
@@ -882,13 +891,10 @@ void sasuplaclient_scene_state_update(void *_suplaclient,
         DataChanged = YES;
     }
     
-    if ( cgroup->EOL == 1
-        && [UseCaseLegacyWrapper changeGroupsVisibilityFrom:2 to:0] ) {
-        DataChanged = YES;
-    }
-    
-    if (cgroup->EOL == 1) {
+    if ( cgroup->EOL == 1 ) {
+        [DiContainer.listsEventsManager emitGroupUpdate];
         [self onChannelGroupValueChanged];
+        DataChanged = [UseCaseLegacyWrapper changeGroupsVisibilityFrom:2 to:0];
     }
     
     if ( DataChanged ) {
@@ -928,8 +934,9 @@ void sasuplaclient_scene_state_update(void *_suplaclient,
         DataChanged = YES;
     }
     
-    if ( scene->EOL == 1 && [UseCaseLegacyWrapper changeScenesVisibilityFrom:2 to:0]) {
-        DataChanged = YES;
+    if ( scene->EOL == 1 ) {
+        [DiContainer.listsEventsManager emitSceneUpdate];
+        DataChanged = [UseCaseLegacyWrapper changeScenesVisibilityFrom:2 to:0];
     }
     
     if ( DataChanged ) {

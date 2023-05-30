@@ -29,7 +29,7 @@ class BaseTableViewModel<S : ViewState, E : ViewEvent>: BaseViewModel<S, E> {
     func toggleLocation(remoteId: Int) {
         toggleLocationUseCase.invoke(remoteId: remoteId, collapsedFlag: getCollapsedFlag())
             .subscribe(onNext: { self.reloadTable() })
-            .disposedBy(self)
+            .disposed(by: self)
     }
     
     func reloadTable() {

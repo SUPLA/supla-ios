@@ -23,13 +23,24 @@ import RxDataSources
 class SceneListVM: BaseTableViewModel<SceneListViewState, SceneListViewEvent> {
     
     @Singleton<CreateProfileScenesListUseCase> private var createProfileScenesListUseCase
+    @Singleton<ListsEventsManager> private var listsEventsManager
+    
+    override init() {
+        super.init()
+        
+        listsEventsManager.observeSceneUpdates()
+            .subscribe(
+                onNext: { self.reloadTable() }
+            )
+            .disposed(by: self)
+    }
     
     override func defaultViewState() -> SceneListViewState { SceneListViewState() }
     
     override func reloadTable() {
         createProfileScenesListUseCase.invoke()
             .subscribe(onNext: { self.listItems.accept($0) })
-            .disposedBy(self)
+            .disposed(by: self)
     }
     
     override func getCollapsedFlag() -> CollapsedFlag { .scene }

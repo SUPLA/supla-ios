@@ -21,13 +21,24 @@ import Foundation
 class GroupListViewModel: BaseTableViewModel<GroupListViewState, GroupListViewEvent> {
     
     @Singleton<CreateProfileGroupsListUseCase> private var createProfileGroupsListUseCase
+    @Singleton<ListsEventsManager> private var listsEventsManager
+    
+    override init() {
+        super.init()
+        
+        listsEventsManager.observeGroupUpdates()
+            .subscribe(
+                onNext: { self.reloadTable() }
+            )
+            .disposed(by: self)
+    }
     
     override func defaultViewState() -> GroupListViewState { GroupListViewState() }
     
     override func reloadTable() {
         createProfileGroupsListUseCase.invoke()
             .subscribe(onNext: { self.listItems.accept($0) })
-            .disposedBy(self)
+            .disposed(by: self)
     }
     
     override func getCollapsedFlag() -> CollapsedFlag { .group }

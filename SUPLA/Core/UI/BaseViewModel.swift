@@ -79,7 +79,7 @@ class BaseViewModel<S : ViewState, E : ViewEvent> {
 }
 
 extension Disposable {
-    func disposedBy<S, E>(_ viewModel: BaseViewModel<S, E>) {
+    func disposed<S, E>(by viewModel: BaseViewModel<S, E>) {
         disposed(by: viewModel.disposeBag)
     }
 }
