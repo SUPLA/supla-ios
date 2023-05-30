@@ -21,13 +21,22 @@ import RxDataSources
 
 class BaseTableViewController<S : ViewState, E : ViewEvent, VM : BaseTableViewModel<S, E>>: BaseViewControllerVM<S, E, VM>, SASectionCellDelegate, UITableViewDelegate {
     
+    @Singleton<RuntimeConfig> private var runtimeConfig
+    
     let cellIdForLocation = "LocationCell"
     let tableView = UITableView()
     var dataSource: RxTableViewSectionedReloadDataSource<List>!
     
-    var scaleFactor = 1.0 {
+    var scaleFactor: CGFloat = 1.0 {
         didSet {
             if oldValue != scaleFactor {
+                tableView.reloadData()
+            }
+        }
+    }
+    var showChannelInfo: Bool = false {
+        didSet {
+            if (oldValue != showChannelInfo) {
                 tableView.reloadData()
             }
         }
@@ -40,10 +49,15 @@ class BaseTableViewController<S : ViewState, E : ViewEvent, VM : BaseTableViewMo
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        viewModel.reloadTable()
         view.backgroundColor = .background
         
         setupTableView()
+        setupConfigObserver()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        viewModel.reloadTable()
     }
     
     func sectionCellTouch(_ section: SASectionCell) {
@@ -97,7 +111,7 @@ class BaseTableViewController<S : ViewState, E : ViewEvent, VM : BaseTableViewMo
         cell.delegate = self
         cell.label.text = location.caption
         cell.locationId = location.location_id?.int32Value ?? 0
-        cell.ivCollapsed.isHidden = location.isCollapsed(flag: .scene)
+        cell.ivCollapsed.isHidden = !location.isCollapsed(flag: .scene)
         cell.captionEditable = true
         cell.selectionStyle = .none
 
@@ -115,5 +129,20 @@ class BaseTableViewController<S : ViewState, E : ViewEvent, VM : BaseTableViewMo
         case .channelBase(channelBase: _):
             return 100 * scaleFactor
         }
+    }
+    
+    // MARK: Internal stuff
+    
+    private func setupConfigObserver() {
+        runtimeConfig
+            .preferencesObservable()
+            .asDriverWithoutError()
+            .drive(
+                onNext: { [weak self] newConfig in
+                    self?.scaleFactor = CGFloat(newConfig.scaleFactor)
+                    self?.showChannelInfo = newConfig.showChannelInfo
+                }
+            )
+            .disposed(by: self)
     }
 }

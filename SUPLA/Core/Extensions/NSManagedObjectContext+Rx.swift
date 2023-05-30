@@ -27,7 +27,6 @@ extension Reactive where Base: NSManagedObjectContext {
                   sectionNameKeyPath: String? = nil,
                   cacheName: String? = nil) -> Observable<[T]> {
         return Observable.create { observer in
-            
             let observerAdapter = FetchedResultsControllerEntityObserver(observer: observer, fetchRequest: fetchRequest, managedObjectContext: self.base, sectionNameKeyPath: sectionNameKeyPath, cacheName: cacheName)
             
             return Disposables.create {
@@ -40,7 +39,8 @@ extension Reactive where Base: NSManagedObjectContext {
         return Observable.create { observer in
             do {
                 try self.base.save()
-                observer.onNext(())
+                observer.on(.next(()))
+                observer.on(.completed)
             } catch {
                 observer.onError(error)
             }
@@ -51,10 +51,36 @@ extension Reactive where Base: NSManagedObjectContext {
     func delete<T: NSManagedObject>(entity: T) -> Observable<Void> {
         return Observable.create { observer in
             self.base.delete(entity)
-            observer.onNext(())
+            observer.on(.next(()))
+            observer.on(.completed)
             return Disposables.create()
         }.flatMapLatest {
             self.save()
+        }
+    }
+    
+    func deleteAll<T: NSManagedObject>(request: NSFetchRequest<T>) -> Observable<Void> {
+        return Observable.create { observer in
+            do {
+                let results = try self.base.fetch(request)
+                results.forEach { self.base.delete($0) }
+                
+                observer.on(.next(()))
+                observer.on(.completed)
+            } catch {
+                observer.onError(error)
+            }
+            return Disposables.create()
+        }.flatMapLatest {
+            self.save()
+        }
+    }
+    
+    func create<T: NSManagedObject>() -> Observable<T> {
+        return Observable.create { observer in
+            observer.on(.next(self.base.create()))
+            observer.on(.completed)
+            return Disposables.create()
         }
     }
 
@@ -71,21 +97,33 @@ extension Reactive where Base: NSManagedObjectContext {
         }
     }
     
-    private func getEntityName(_ entityName: String) -> String {
-        if (entityName == "_SALocation") {
-            return "SALocation"
+    func first<T: NSFetchRequestResult>(ofType: T.Type = T.self, with id: NSManagedObjectID) -> Observable<T?> {
+        return Observable.deferred {
+            do {
+                let result = try self.base.existingObject(with: id) as? T
+                return Observable.just(result)
+            } catch {
+                return Observable.error(error)
+            }
         }
-        
-        return entityName
     }
+    
 }
 
 extension NSManagedObjectContext {
     func create<T: NSFetchRequestResult>() -> T {
-        guard let entity = NSEntityDescription.insertNewObject(forEntityName: String(describing: T.self),
+        guard let entity = NSEntityDescription.insertNewObject(forEntityName: getEntityName(String(describing: T.self)),
                 into: self) as? T else {
             fatalError()
         }
         return entity
     }
+}
+
+fileprivate func getEntityName(_ entityName: String) -> String {
+    if (entityName == "_SALocation") {
+        return "SALocation"
+    }
+    
+    return entityName
 }

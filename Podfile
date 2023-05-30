@@ -9,6 +9,7 @@ target 'SUPLA' do
   pod 'RxSwiftExt'
   pod 'RxDataSources'
   pod 'RxCocoa'
+  pod 'RxBlocking'
   pod 'QueryKit'
   pod 'PaddingLabel', '1.2'
   pod 'FMMoveTableView', '~> 1.1'

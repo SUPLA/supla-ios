@@ -20,12 +20,15 @@ import Foundation
 import RxSwift
 
 protocol ChannelRepository: RepositoryProtocol where T == SAChannel {
+    func getAllProfileVisibleChannels(profile: AuthProfileItem) -> Observable<[SAChannel]>
     func getAllProfileChannels(profile: AuthProfileItem) -> Observable<[SAChannel]>
+    func getChannel(remoteId: Int) -> Observable<SAChannel>
+    func deleteAll(for profile: AuthProfileItem) -> Observable<Void>
 }
 
 class ChannelRepositoryImpl: Repository<SAChannel>, ChannelRepository {
     
-    func getAllProfileChannels(profile: AuthProfileItem) -> Observable<[SAChannel]> {
+    func getAllProfileVisibleChannels(profile: AuthProfileItem) -> Observable<[SAChannel]> {
         let request = SAChannel.fetchRequest()
             .filtered(by: NSPredicate(format: "func > 0 AND visible > 0 AND profile == %@", profile))
         
@@ -39,5 +42,22 @@ class ChannelRepositoryImpl: Repository<SAChannel>, ChannelRepository {
         ]
         
         return query(request)
+    }
+    
+    func getAllProfileChannels(profile: AuthProfileItem) -> Observable<[SAChannel]> {
+        let request = SAChannel.fetchRequest()
+            .filtered(by: NSPredicate(format: "profile == %@", profile))
+            .ordered(by: "remote_id")
+        
+        return query(request)
+    }
+    
+    func getChannel(remoteId: Int) -> Observable<SAChannel> {
+        queryItem(NSPredicate(format: "remote_id = %d", remoteId))
+            .compactMap { $0 }
+    }
+    
+    func deleteAll(for profile: AuthProfileItem) -> Observable<Void> {
+        deleteAll(SAChannel.fetchRequest().filtered(by: NSPredicate(format: "profile = %@", profile)))
     }
 }

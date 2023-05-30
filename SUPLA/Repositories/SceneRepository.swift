@@ -19,16 +19,20 @@
 import Foundation
 import CoreData
 import RxSwift
+import RxBlocking
 
 protocol SceneRepository: RepositoryProtocol where T == SAScene {
+    func getAllProfileVisibleScenes(profile: AuthProfileItem) -> Observable<[SAScene]>
     func getAllProfileScenes(profile: AuthProfileItem) -> Observable<[SAScene]>
+    func getScene(remoteId: Int) -> Observable<SAScene>
+    func deleteAll(for profile: AuthProfileItem) -> Observable<Void>
 }
 
 final class SceneRepositoryImpl: Repository<SAScene>, SceneRepository {
-    
-    func getAllProfileScenes(profile: AuthProfileItem) -> Observable<[SAScene]> {
+
+    func getAllProfileVisibleScenes(profile: AuthProfileItem) -> Observable<[SAScene]> {
         let fetchRequest = SAScene.fetchRequest()
-        fetchRequest.predicate = NSPredicate(format: "profile = %@ AND visible > 0", profile)
+            .filtered(by: NSPredicate(format: "profile = %@ AND visible > 0", profile))
         fetchRequest.sortDescriptors = [
             NSSortDescriptor(key: "location.sortOrder", ascending: true),
             NSSortDescriptor(key: "location.caption", ascending: true),
@@ -37,5 +41,22 @@ final class SceneRepositoryImpl: Repository<SAScene>, SceneRepository {
             NSSortDescriptor(key: "sceneId", ascending: true)
         ]
         return self.query(fetchRequest)
+    }
+    
+    func getAllProfileScenes(profile: AuthProfileItem) -> Observable<[SAScene]> {
+        let fetchRequest = SAScene.fetchRequest()
+            .filtered(by: NSPredicate(format: "profile = %@", profile))
+            .ordered(by: "sceneId")
+        
+        return self.query(fetchRequest)
+    }
+    
+    func getScene(remoteId: Int) -> Observable<SAScene> {
+        queryItem(NSPredicate(format: "sceneId = %d", remoteId))
+            .compactMap { $0 }
+    }
+    
+    func deleteAll(for profile: AuthProfileItem) -> Observable<Void> {
+        deleteAll(SAScene.fetchRequest().filtered(by: NSPredicate(format: "profile = %@", profile)))
     }
 }

@@ -21,17 +21,16 @@ import CoreData
 import RxSwift
 
 protocol ProfileRepository: RepositoryProtocol where T == AuthProfileItem {
-    func getActiveProfile() -> Observable<AuthProfileItem?>
+    func getActiveProfile() -> Observable<AuthProfileItem>
+    func getAllProfiles() -> Observable<[AuthProfileItem]>
 }
 
 final class ProfileRepositoryImpl: Repository<AuthProfileItem>, ProfileRepository {
     
     @Singleton<RuntimeConfig> var config
     
-    func getActiveProfile() -> Observable<AuthProfileItem?> {
-        let request = AuthProfileItem.fetchRequest()
-        request.sortDescriptors = [NSSortDescriptor(key: "name", ascending: true)]
-        return query(request)
+    func getActiveProfile() -> Observable<AuthProfileItem> {
+        return getAllProfiles()
             .map { items in
                 for item in items {
                     if (item.isActive) {
@@ -40,6 +39,14 @@ final class ProfileRepositoryImpl: Repository<AuthProfileItem>, ProfileRepositor
                 }
                 return nil
             }
+            .compactMap { $0 }
+    }
+    
+    func getAllProfiles() -> Observable<[AuthProfileItem]> {
+        let request = AuthProfileItem.fetchRequest()
+            .ordered(by: "name")
+        
+        return query(request)
     }
     
 }

@@ -17,9 +17,21 @@
  */
 
 import Foundation
+import RxSwift
 
 protocol LocationRepository: RepositoryProtocol where T == _SALocation {
+    func getLocation(remoteId: Int) -> Observable<_SALocation>
+    func deleteAll(for profile: AuthProfileItem) -> Observable<Void>
 }
 
 class LocationRepositoryImpl: Repository<_SALocation>, LocationRepository {
+    
+    func getLocation(remoteId: Int) -> Observable<_SALocation> {
+        queryItem(NSPredicate(format: "location_id = %d", remoteId))
+            .compactMap { $0 }
+    }
+    
+    func deleteAll(for profile: AuthProfileItem) -> Observable<Void> {
+        deleteAll(_SALocation.fetchRequest().filtered(by: NSPredicate(format: "profile = %@", profile)))
+    }
 }

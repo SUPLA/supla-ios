@@ -102,9 +102,9 @@
     
     _savedButtonStates = [NSMutableDictionary new];
 
-    [[NSNotificationCenter defaultCenter]
-        addObserver: self selector:@selector(didChangeRowHeight:)
-               name: kChannelHeightDidChange object:nil];
+//    [[NSNotificationCenter defaultCenter]
+//        addObserver: self selector:@selector(didChangeRowHeight:)
+//               name: kChannelHeightDidChange object:nil];
     _shouldUpdateRowHeight = YES;
     self.showingDetails = NO;
     ((SAMainView*)self.view).viewController = self;

@@ -59,6 +59,7 @@ final class FetchedResultsControllerEntityObserver<T: NSFetchRequestResult> : NS
         self.frc.managedObjectContext.perform {
             let entities = self.frc.fetchedObjects ?? []
             self.observer.on(.next(entities))
+            self.observer.on(.completed)
         }
     }
 }

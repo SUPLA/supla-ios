@@ -59,7 +59,6 @@ NSString *kSAOnZWaveRemoveNodeResult = @"KSA-N27";
 NSString *kSAOnZWaveAssignNodeIdResult = @"KSA-N28";
 NSString *kSAOnZWaveWakeupSettingsReport = @"KSA-N29";
 NSString *kSAOnZWaveSetWakeUpTimeResult = @"KSA-N30";
-NSString *kChannelHeightDidChange = @"ChannelHeightDidChange";
 NSString *kSAOnChannelGroupCaptionSetResult = @"OnChannelGroupCaptionSetResult";
 
 @implementation SAApp {

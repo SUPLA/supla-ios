@@ -31,8 +31,7 @@ final class CreateProfileChannelsListUseCaseImpl: CreateProfileChannelsListUseCa
     func invoke() -> Observable<[List]> {
         return profileRepository
             .getActiveProfile()
-            .compactMap { $0 }
-            .flatMapFirst { self.channelRepository.getAllProfileChannels(profile: $0) }
+            .flatMapFirst { self.channelRepository.getAllProfileVisibleChannels(profile: $0) }
             .map { self.toList($0) }
     }
     

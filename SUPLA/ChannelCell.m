@@ -54,6 +54,7 @@
     BOOL _initialized;
     BOOL _captionTouched;
     BOOL _measurementSubChannel;
+    BOOL _showChannelInfo;
     SAChannelBase *_channelBase;
     UITapGestureRecognizer *tapGr1;
     UITapGestureRecognizer *tapGr2;
@@ -145,6 +146,10 @@
     return btn;
 }
 
+-(void) setShowChannelInfo: (BOOL)showChannelInfo {
+    _showChannelInfo = showChannelInfo;
+}
+
 -(void)setChannelBase:(SAChannelBase *)channelBase {
     //TODO: Add support for WINDSENSOR, PRESSURESENSOR, RAINSENSOR, WEIGHTSENSOR
     _channelBase = channelBase;
@@ -178,8 +183,7 @@
         self.right_OnlineStatus.shapeType = stDot;
         self.left_OnlineStatus.shapeType = stDot;
         
-        if ([channelBase isKindOfClass:[SAChannel class]] &&
-            [Config new].showChannelInfo && [channel isOnline]) {
+        if ([channelBase isKindOfClass:[SAChannel class]] && _showChannelInfo && [channel isOnline]) {
             UIImage *stateIcon = channel.stateIcon;
             if (stateIcon) {
                 self.channelStateIcon.hidden = NO;

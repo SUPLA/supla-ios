@@ -68,4 +68,6 @@
 @property (nonatomic) BOOL captionTouched;
 @property (nonatomic) BOOL captionEditable;
 
+-(void) setShowChannelInfo: (BOOL)showChannelInfo;
+
 @end

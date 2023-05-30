@@ -20,10 +20,28 @@ import Foundation
 
 class HomeViewModel: BaseViewModel<HomeViewState, HomeViewEvent> {
     
+    @Singleton<ProfileRepository> private var profileRepository
+    
     override func defaultViewState() -> HomeViewState { HomeViewState() }
+    
+    func onViewAppear() {
+        profileRepository.getAllProfiles()
+            .map { profiles in profiles.count }
+            .asDriverWithoutError()
+            .drive(
+                onNext: { [weak self] count in
+                    self?.updateView { state in
+                        state.changing(path: \.showProfilesIcon, to: count > 1)
+                    }
+                }
+            )
+            .disposedBy(self)
+    }
 }
 
 enum HomeViewEvent: ViewEvent {
 }
 
-struct HomeViewState: ViewState {}
+struct HomeViewState: ViewState {
+    var showProfilesIcon: Bool = false
+}

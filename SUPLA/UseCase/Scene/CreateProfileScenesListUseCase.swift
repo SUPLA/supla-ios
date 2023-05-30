@@ -31,8 +31,7 @@ final class CreateProfileScenesListUseCaseImpl: CreateProfileScenesListUseCase {
     func invoke() -> Observable<[List]> {
         return profileRepository
             .getActiveProfile()
-            .compactMap { $0 }
-            .flatMapFirst { self.sceneRepository.getAllProfileScenes(profile: $0) }
+            .flatMapFirst { self.sceneRepository.getAllProfileVisibleScenes(profile: $0) }
             .map { self.toList($0) }
     }
     

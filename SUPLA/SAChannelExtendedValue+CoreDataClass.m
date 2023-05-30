@@ -57,6 +57,37 @@
     return result;
 }
 
+- (BOOL) setValueSwift:(TSuplaChannelExtendedValue)value {
+    
+    BOOL result = NO;
+    int size = sizeof(value.value);
+    
+    if (value.size < size) {
+        size = value.size;
+    }
+    
+    if (size > 0) {
+        self.type = value.type;
+        NSData *v =  [NSData dataWithBytes:value.value length:size];
+        
+        if ( self.type != value.type
+            || self.value == nil
+            || ![self.value isKindOfClass: NSData.class]
+            || ![v isEqualToData:(NSData *)self.value] ) {
+            self.value = v;
+            self.type = value.type;
+            result = YES;
+        }
+    } else {
+        if (self.type != 0) {
+           self.type = 0;
+           result = YES;
+        }
+    }
+    
+    return result;
+}
+
 - (int) valueType {
     return self.type;
 }

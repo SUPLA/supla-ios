@@ -131,24 +131,24 @@ class ScenesVM: NSObject {
         var secs = [Section]()
         var i = 0
         
-        let allScenes = _db.fetchScenes()
-        
-        while i < allScenes.count {
-            if loc == nil {
-                loc = allScenes[i].location
-            }
-            if loc!.collapsed & _bitCollapse == 0 {
-                locScenes.append(allScenes[i])
-            }
-            i += 1
-            if i == allScenes.count ||
-                allScenes[i].location != loc {
-                secs.append(Section(location: loc!, scenes: locScenes))
-                locScenes = [SAScene]()
-                loc = nil
-            }
-        }
-
-        sections.accept(secs)
+//        let allScenes = _db.fetchScenes()
+//        
+//        while i < allScenes.count {
+//            if loc == nil {
+//                loc = allScenes[i].location
+//            }
+//            if loc!.collapsed & _bitCollapse == 0 {
+//                locScenes.append(allScenes[i])
+//            }
+//            i += 1
+//            if i == allScenes.count ||
+//                allScenes[i].location != loc {
+//                secs.append(Section(location: loc!, scenes: locScenes))
+//                locScenes = [SAScene]()
+//                loc = nil
+//            }
+//        }
+//
+//        sections.accept(secs)
     }
 }

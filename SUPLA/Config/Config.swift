@@ -20,7 +20,7 @@ import Foundation
 
 class Config: NSObject {
 
-    let ChannelHeightDidChangeNotification = Notification.Name("ChannelHeightDidChange")
+    @Singleton<RuntimeConfig> private var runtimeConfig
     
     private let kChannelHeight = "supla_config_channel_height"
     private let kTemperatureUnit = "supla_config_temp_unit"
@@ -39,7 +39,7 @@ class Config: NSObject {
     }
     
     /**
-        returns temperature presenter object matching current user settings
+     returns temperature presenter object matching current user settings
      */
     @objc
     var currentTemperaturePresenter: TemperaturePresenter {
@@ -49,7 +49,7 @@ class Config: NSObject {
     }
     
     /**
-        boolean flag indicating if channel buttons should be automatically hidden after usage
+     boolean flag indicating if channel buttons should be automatically hidden after usage
      */
     @objc
     var autohideButtons: Bool {
@@ -69,16 +69,23 @@ class Config: NSObject {
         }
         
         set {
+            let change = showChannelInfo != newValue
             UserDefaults.standard.set(newValue, forKey: kShowChannelInfo)
+            if change {
+                runtimeConfig.emitPreferenceChange(
+                    scaleFactor: channelHeightFactor,
+                    showChannelInfo: showChannelInfo
+                )
+            }
         }
     }
-
+    
     @objc
     var showOpeningPercent: Bool {
         get {
             return UserDefaults.standard.bool(forKey: kShowOpeningPercent)
         }
-
+        
         set {
             UserDefaults.standard.set(newValue, forKey: kShowOpeningPercent)
         }
@@ -94,8 +101,10 @@ class Config: NSObject {
             let change = channelHeight != newValue
             UserDefaults.standard.set(newValue.rawValue, forKey: kChannelHeight)
             if change {
-                NotificationCenter.default.post(name: ChannelHeightDidChangeNotification,
-                                                object: self, userInfo: nil)
+                runtimeConfig.emitPreferenceChange(
+                    scaleFactor: channelHeightFactor,
+                    showChannelInfo: showChannelInfo
+                )
             }
         }
     }

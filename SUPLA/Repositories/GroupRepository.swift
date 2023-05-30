@@ -20,12 +20,15 @@ import Foundation
 import RxSwift
 
 protocol GroupRepository: RepositoryProtocol where T == SAChannelGroup {
+    func getAllProfileVisibleGroups(profile: AuthProfileItem) -> Observable<[SAChannelGroup]>
     func getAllProfileGroups(profile: AuthProfileItem) -> Observable<[SAChannelGroup]>
+    func getGroup(remoteId: Int) -> Observable<SAChannelGroup>
+    func deleteAll(for profile: AuthProfileItem) -> Observable<Void>
 }
 
 class GroupRepositoryImpl: Repository<SAChannelGroup>, GroupRepository {
     
-    func getAllProfileGroups(profile: AuthProfileItem) -> Observable<[SAChannelGroup]> {
+    func getAllProfileVisibleGroups(profile: AuthProfileItem) -> Observable<[SAChannelGroup]> {
         let request = SAChannelGroup.fetchRequest()
             .filtered(by: NSPredicate(format: "func > 0 AND visible > 0 AND profile == %@", profile))
         
@@ -39,5 +42,22 @@ class GroupRepositoryImpl: Repository<SAChannelGroup>, GroupRepository {
         ]
         
         return query(request)
+    }
+    
+    func getAllProfileGroups(profile: AuthProfileItem) -> Observable<[SAChannelGroup]> {
+        let request = SAChannelGroup.fetchRequest()
+            .filtered(by: NSPredicate(format: "profile == %@", profile))
+            .ordered(by: "remote_id")
+        
+        return query(request)
+    }
+    
+    func getGroup(remoteId: Int) -> Observable<SAChannelGroup> {
+        queryItem(NSPredicate(format: "remote_id = %d", remoteId))
+            .compactMap { $0 }
+    }
+    
+    func deleteAll(for profile: AuthProfileItem) -> Observable<Void> {
+        deleteAll(SAChannelGroup.fetchRequest().filtered(by: NSPredicate(format: "profile = %@", profile)))
     }
 }

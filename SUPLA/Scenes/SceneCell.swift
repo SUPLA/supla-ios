@@ -18,8 +18,11 @@
 
 import UIKit
 import os
+import RxSwift
 
 class SceneCell: MGSwipeTableCell {
+    
+    @Singleton<ListsEventsManager> private var listsEventsManager
     
     var scaleFactor: CGFloat = 1.0 {
         didSet {
@@ -29,34 +32,17 @@ class SceneCell: MGSwipeTableCell {
     }
     var sceneData: SAScene? {
         didSet {
-            _captionLabel.text = sceneData?.caption ?? ""
+            guard let scene = sceneData else { return }
             
-            if let iconId = sceneData?.usericon_id, iconId != 0 {
-                if let data = sceneData?.usericon?.uimage1 as? Data {
-                    _sceneIcon.image = UIImage(data: data as Data)
-                } else {
-                    _sceneIcon.image = UIImage(named: "scene_0")
-                }
-            } else if let iconId = sceneData?.alticon, iconId < 20 {
-                _sceneIcon.image = UIImage(named: "scene_\(iconId)")
-            } else {
-                _sceneIcon.image = UIImage(named: "scene_0")
-            }
-            
-            if (_timer != nil) {
-                _timerLabel.text = ""
-                _timer?.invalidate()
-            }
-            
-            if (sceneData?.estimatedEndDate != nil) {
-                _initiator.text = sceneData?.initiatorName ?? ""
-                updateTimerLabel()
-                _timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(updateTimerLabel), userInfo: nil, repeats: true)
-                setActive(true)
-            } else {
-                _initiator.text = ""
-                setActive(false)
-            }
+            displayData(scene: scene)
+            listsEventsManager.observeScene(sceneId: Int(scene.sceneId))
+                .asDriverWithoutError()
+                .drive(
+                    onNext: { [weak self] sceneUpdated in
+                        self?.displayData(scene: sceneUpdated)
+                    }
+                )
+                .disposed(by: disposeBag)
         }
     }
     
@@ -77,12 +63,12 @@ class SceneCell: MGSwipeTableCell {
     private let _statusIndicators = [UIView(), UIView()]
     
     private var _longPressGr: UILongPressGestureRecognizer!
-
+    
     private let _executeButton = MGSwipeButton(title: Strings.Scenes.ActionButtons.execute,
                                                backgroundColor: .onLine())
     private let _abortButton = MGSwipeButton(title: Strings.Scenes.ActionButtons.abort,
                                              backgroundColor: .onLine())
-
+    
     private var _timer: Timer? = nil
     private let _formatter = DateComponentsFormatter()
     
@@ -91,6 +77,8 @@ class SceneCell: MGSwipeTableCell {
     private var allControls: [UIView] {
         return [_captionLabel, _timerLabel, _initiator, _sceneIcon]
     }
+    
+    private let disposeBag = DisposeBag()
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -103,7 +91,7 @@ class SceneCell: MGSwipeTableCell {
     }
     
     func isCaptionTouched() -> Bool { captionTouched }
-
+    
     // MARK: - configure cell layout
     private func setupCell() {
         _iconContainer = UIView()
@@ -149,9 +137,9 @@ class SceneCell: MGSwipeTableCell {
         _captionLabel.font = .cellCaptionFont.withSize(scaled(12, limit: .lower(1)))
         [_iconContainer, _captionLabel, _timerLabel, _initiator, _sceneIcon]
             .forEach {
-            $0.translatesAutoresizingMaskIntoConstraints = false
-        }
-
+                $0.translatesAutoresizingMaskIntoConstraints = false
+            }
+        
         [_iconContainer, _timerLabel, _initiator].forEach {
             self.contentView.addSubview($0)
         }
@@ -188,10 +176,10 @@ class SceneCell: MGSwipeTableCell {
             .isActive = true
         _iconContainer.topAnchor.constraint(equalTo: contentView.topAnchor,
                                             constant: scaled(topMargin))
-            .isActive = true
+        .isActive = true
         _iconContainer.bottomAnchor.constraint(equalTo: contentView.bottomAnchor,
                                                constant: -scaled(topMargin))
-            .isActive = true
+        .isActive = true
         
         _initiator.leftAnchor.constraint(equalTo: contentView.leftAnchor,
                                          constant: horizMargin).isActive = true
@@ -199,9 +187,9 @@ class SceneCell: MGSwipeTableCell {
                                         constant: scaled(topMargin)).isActive = true
         
         _timerLabel.topAnchor.constraint(equalTo: contentView.topAnchor,
-                                    constant: scaled(topMargin)).isActive = true
+                                         constant: scaled(topMargin)).isActive = true
         _timerLabel.rightAnchor.constraint(equalTo: contentView.rightAnchor,
-                                      constant: -horizMargin).isActive = true
+                                           constant: -horizMargin).isActive = true
         
         self.contentView.addSubview(_separator)
         let separatorInset = CGFloat(8)
@@ -212,10 +200,41 @@ class SceneCell: MGSwipeTableCell {
         _separator.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: separatorInset).isActive = true
         _separator.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -separatorInset).isActive = true
         _separator.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -2.0 * separatorHeight).isActive = true
-                
+        
         
         _formatter.allowedUnits = [.hour, .minute, .second]
         _formatter.zeroFormattingBehavior = .pad
+    }
+    
+    private func displayData(scene: SAScene) {
+        _captionLabel.text = scene.caption ?? ""
+        
+        if scene.usericon_id != 0 {
+            if let data = scene.usericon?.uimage1 as? Data {
+                _sceneIcon.image = UIImage(data: data as Data)
+            } else {
+                _sceneIcon.image = UIImage(named: "scene_0")
+            }
+        } else if scene.alticon < 20 {
+            _sceneIcon.image = UIImage(named: "scene_\(scene.alticon)")
+        } else {
+            _sceneIcon.image = UIImage(named: "scene_0")
+        }
+        
+        if (_timer != nil) {
+            _timerLabel.text = ""
+            _timer?.invalidate()
+        }
+        
+        if (scene.estimatedEndDate != nil) {
+            _initiator.text = scene.initiatorName ?? ""
+            updateTimerLabel()
+            _timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(updateTimerLabel), userInfo: nil, repeats: true)
+            setActive(true)
+        } else {
+            _initiator.text = ""
+            setActive(false)
+        }
     }
     
     private func resetCell() {
@@ -255,7 +274,7 @@ class SceneCell: MGSwipeTableCell {
         let touchedObject = touches.first
         captionTouched = touchedObject != nil && touchedObject?.view == _captionLabel
     }
-
+    
     // MARK: - swipe buttons handling
     @objc private func onButtonTap(_ btn: MGSwipeButton) {
         btn.backgroundColor = .btnTouched()

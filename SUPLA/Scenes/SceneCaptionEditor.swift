@@ -5,6 +5,8 @@ import UIKit
 
 class SceneCaptionEditor: SACaptionEditor {
     
+    @Singleton<SceneRepository> private var sceneRepository
+    
     weak var delegate: SceneCaptionEditorDelegate?
     let scene: SAScene
     
@@ -26,7 +28,9 @@ class SceneCaptionEditor: SACaptionEditor {
     }
     
     override func getCaption() -> String {
-        SAApp.db().fetchScene(byId: recordId)?.caption ?? ""
+        try! sceneRepository
+            .getScene(remoteId: Int(recordId))
+            .subscribeSynchronous()?.caption ?? ""
     }
     
     override func applyChanges(_ caption: String) {

@@ -26,8 +26,10 @@ protocol RepositoryProtocol {
     
     func query(_ request: NSFetchRequest<T>) -> Observable<[T]>
     func queryItem(_ predicate: NSPredicate) -> Observable<T?>
+    func queryItem(_ id: NSManagedObjectID) -> Observable<T?>
     func save(_ entity: T) -> Observable<Void>
     func delete(_ entity: T) -> Observable<Void>
+    func create() -> Observable<T>
 }
 
 class Repository<T: NSManagedObject>: RepositoryProtocol {
@@ -45,6 +47,11 @@ class Repository<T: NSManagedObject>: RepositoryProtocol {
             .subscribe(on: scheduler)
     }
     
+    func queryItem(_ id: NSManagedObjectID) -> Observable<T?> {
+        return context.rx.first(ofType: T.self, with: id)
+            .subscribe(on: scheduler)
+    }
+    
     func save(_ entity: T) -> Observable<Void> {
         return context.rx.save()
             .subscribe(on: scheduler)
@@ -53,6 +60,15 @@ class Repository<T: NSManagedObject>: RepositoryProtocol {
     func delete(_ entity: T) -> Observable<Void> {
         return context.rx.delete(entity: entity)
             .subscribe(on: scheduler)
+    }
+    
+    func deleteAll(_ request: NSFetchRequest<T>) -> Observable<Void> {
+        return context.rx.deleteAll(request: request)
+            .subscribe(on: scheduler)
+    }
+    
+    func create() -> Observable<T> {
+        return context.rx.create()
     }
     
 }
