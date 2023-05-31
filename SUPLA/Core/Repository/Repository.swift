@@ -28,6 +28,7 @@ protocol RepositoryProtocol {
     func queryItem(_ predicate: NSPredicate) -> Observable<T?>
     func queryItem(_ id: NSManagedObjectID) -> Observable<T?>
     func save(_ entity: T) -> Observable<Void>
+    func save() -> Observable<Void>
     func delete(_ entity: T) -> Observable<Void>
     func create() -> Observable<T>
 }
@@ -53,6 +54,11 @@ class Repository<T: NSManagedObject>: RepositoryProtocol {
     }
     
     func save(_ entity: T) -> Observable<Void> {
+        return context.rx.save()
+            .subscribe(on: scheduler)
+    }
+    
+    func save() -> Observable<Void> {
         return context.rx.save()
             .subscribe(on: scheduler)
     }

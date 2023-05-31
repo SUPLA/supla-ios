@@ -20,15 +20,16 @@ import Foundation
 import RxSwift
 
 protocol ChannelRepository: RepositoryProtocol where T == SAChannel {
-    func getAllProfileVisibleChannels(profile: AuthProfileItem) -> Observable<[SAChannel]>
-    func getAllProfileChannels(profile: AuthProfileItem) -> Observable<[SAChannel]>
+    func getAllVisibleChannels(forProfile profile: AuthProfileItem) -> Observable<[SAChannel]>
+    func getAllChannels(forProfile profile: AuthProfileItem) -> Observable<[SAChannel]>
     func getChannel(remoteId: Int) -> Observable<SAChannel>
     func deleteAll(for profile: AuthProfileItem) -> Observable<Void>
+    func getAllVisibleChannels(forProfile profile: AuthProfileItem, inLocation locationId: Int) -> Observable<[SAChannel]>
 }
 
 class ChannelRepositoryImpl: Repository<SAChannel>, ChannelRepository {
     
-    func getAllProfileVisibleChannels(profile: AuthProfileItem) -> Observable<[SAChannel]> {
+    func getAllVisibleChannels(forProfile profile: AuthProfileItem) -> Observable<[SAChannel]> {
         let request = SAChannel.fetchRequest()
             .filtered(by: NSPredicate(format: "func > 0 AND visible > 0 AND profile == %@", profile))
         
@@ -44,7 +45,23 @@ class ChannelRepositoryImpl: Repository<SAChannel>, ChannelRepository {
         return query(request)
     }
     
-    func getAllProfileChannels(profile: AuthProfileItem) -> Observable<[SAChannel]> {
+    func getAllVisibleChannels(forProfile profile: AuthProfileItem, inLocation locationId: Int) -> Observable<[SAChannel]> {
+        let request = SAChannel.fetchRequest()
+            .filtered(by: NSPredicate(format: "func > 0 AND visible > 0 AND profile == %@ AND location.location_id = %i", profile, locationId))
+        
+        let localeAwareCompare = #selector(NSString.localizedCaseInsensitiveCompare)
+        request.sortDescriptors = [
+            NSSortDescriptor(key: "location.sortOrder", ascending: true),
+            NSSortDescriptor(key: "location.caption", ascending: true, selector: localeAwareCompare),
+            NSSortDescriptor(key: "position", ascending: true),
+            NSSortDescriptor(key: "func", ascending: false),
+            NSSortDescriptor(key: "caption", ascending: false, selector: localeAwareCompare)
+        ]
+        
+        return query(request)
+    }
+    
+    func getAllChannels(forProfile profile: AuthProfileItem) -> Observable<[SAChannel]> {
         let request = SAChannel.fetchRequest()
             .filtered(by: NSPredicate(format: "profile == %@", profile))
             .ordered(by: "remote_id")

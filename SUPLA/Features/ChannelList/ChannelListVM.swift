@@ -21,6 +21,7 @@ import Foundation
 class ChannelListViewModel: BaseTableViewModel<ChannelListViewState, ChannelListViewEvent> {
     
     @Singleton<CreateProfileChannelsListUseCase> private var createProfileChannelsListUseCase
+    @Singleton<SwapChannelPositionsUseCase> private var swapChannelPositionsUseCase
     @Singleton<ListsEventsManager> private var listsEventsManager
     
     override init() {
@@ -38,6 +39,13 @@ class ChannelListViewModel: BaseTableViewModel<ChannelListViewState, ChannelList
     override func reloadTable() {
         createProfileChannelsListUseCase.invoke()
             .subscribe(onNext: { self.listItems.accept($0) })
+            .disposed(by: self)
+    }
+    
+    override func swapItems(firstItem: Int32, secondItem: Int32, locationId: Int32) {
+        swapChannelPositionsUseCase
+            .invoke(firstRemoteId: firstItem, secondRemoteId: secondItem, locationId: Int(locationId))
+            .subscribe(onNext: { self.reloadTable() })
             .disposed(by: self)
     }
     

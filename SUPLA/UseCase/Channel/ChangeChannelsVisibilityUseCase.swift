@@ -30,7 +30,7 @@ final class ChangeChannelsVisibilityUseCase {
         do {
             try profileRepository.getActiveProfile()
                 .flatMapFirst { profile in
-                    self.channelRepository.getAllProfileChannels(profile: profile)
+                    self.channelRepository.getAllChannels(forProfile: profile)
                 }
                 .map { channels in channels.filter { $0.visible == from } }
                 .flatMapFirst { channels in

@@ -68,6 +68,9 @@ extension DiContainer {
         DiContainer.shared.register(type: CreateProfileChannelsListUseCase.self, component: CreateProfileChannelsListUseCaseImpl())
         DiContainer.shared.register(type: CreateProfileGroupsListUseCase.self, component: CreateProfileGroupsListUseCaseImpl())
         DiContainer.shared.register(type: DeleteAllProfileDataUseCase.self, component: DeleteAllProfileDataUseCaseImpl())
+        DiContainer.shared.register(type: SwapChannelPositionsUseCase.self, component: SwapChannelPositionsUseCaseImpl())
+        DiContainer.shared.register(type: SwapGroupPositionsUseCase.self, component: SwapGroupPositionsUseCaseImpl())
+        DiContainer.shared.register(type: SwapScenePositionsUseCase.self, component: SwapScenePositionsUseCaseImpl())
     }
     
     @objc static func listsEventsManager() -> ListsEventsManagerEmitter? {

@@ -31,7 +31,7 @@ final class CreateProfileGroupsListUseCaseImpl: CreateProfileGroupsListUseCase {
     func invoke() -> Observable<[List]> {
         return profileRepository
             .getActiveProfile()
-            .flatMapFirst { self.groupRepository.getAllProfileVisibleGroups(profile: $0) }
+            .flatMapFirst { self.groupRepository.getAllVisibleGroups(forProfile: $0) }
             .map { self.toList($0) }
     }
     

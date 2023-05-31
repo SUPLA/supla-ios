@@ -30,7 +30,7 @@ final class ChangeGroupsVisibilityUseCase {
         do {
             try profileRepository.getActiveProfile()
                 .flatMapFirst { profile in
-                    self.groupRepository.getAllProfileGroups(profile: profile)
+                    self.groupRepository.getAllGroups(forProfile: profile)
                 }
                 .map { groups in groups.filter { $0.visible == from } }
                 .flatMapFirst { groups in

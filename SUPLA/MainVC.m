@@ -174,10 +174,10 @@
     SAChannelCell *srcCell = (SAChannelCell *)coordinator.items.firstObject.dragItem.localObject;
 
     if (tableView == self.cTableView) {
-        [SAApp.DB  moveChannel:srcCell.channelBase toPositionOfChannel:dstCell.channelBase];
+//        [SAApp.DB  moveChannel:srcCell.channelBase toPositionOfChannel:dstCell.channelBase];
         _cFrc = nil;
     } else if (tableView == self.gTableView) {
-        [SAApp.DB  moveChannelGroup:srcCell.channelBase toPositionOfChannelGroup:dstCell.channelBase];
+//        [SAApp.DB  moveChannelGroup:srcCell.channelBase toPositionOfChannelGroup:dstCell.channelBase];
         _gFrc = nil;
     }
     _dataRefreshEnabled = YES;

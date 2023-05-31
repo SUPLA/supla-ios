@@ -945,32 +945,6 @@ again:
     return i;
 }
 
--(void) deleteAllUserIcons {
- 
-    NSArray *arr;
-    
-    int a,b;
-    for(b=0;b<2;b++) {
-        arr = [self fetchByPredicate:[NSPredicate predicateWithFormat:@"usericon != nil"] entityName:b == 0 ? @"SAChannel" : @"SAChannelGroup" limit:0];
-        
-        if (arr) {
-            for(a=0;a<arr.count;a++) {
-                ((SAChannelBase*)[arr objectAtIndex:a]).usericon = nil;
-            }
-        }
-    }
-    
-    arr = [self fetchByPredicate:nil entityName:@"SAUserIcon" limit:0];
-    if (arr) {
-        for(a=0;a<arr.count;a++) {
-            NSLog(@"Icon delete %@", [arr objectAtIndex:a]);
-            [self.managedObjectContext deleteObject:[arr objectAtIndex:a]];
-        }
-    }
-    
-    [self saveContext];
-}
-
 -(NSArray*) zwaveBridgeChannelsWithLimit:(int)limit {
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"visible > 0 AND type = %i AND (flags & %i) > 0", SUPLA_CHANNELTYPE_BRIDGE, SUPLA_CHANNEL_FLAG_ZWAVE_BRIDGE];
     return [self fetchByPredicate: predicate entityName:@"SAChannel" limit:limit];
@@ -983,59 +957,6 @@ again:
 
 -(NSArray*) zwaveBridgeChannels {
     return [self zwaveBridgeChannelsWithLimit:0];
-}
-
--(void)moveChannel:(SAChannelBase*)src toPositionOfChannel:(SAChannelBase*)dst entityName:(NSString*)entityName {
-    if (src == nil
-        || dst == nil
-        || src.location == nil
-        || src.location != dst.location) {
-        return;
-    }
-
-    
-    NSFetchRequest* fetchRequest =
-    [self getChannelBaseFetchRequestForEntityName:entityName
-                                       locationId:[src.location.location_id intValue]];
-
-    NSError *error = nil;
-    NSArray *r = [self.managedObjectContext executeFetchRequest:fetchRequest error:&error];
-    
-    if ( error != nil || r.count < 2 ) {
-        return;
-    }
-    
-    NSMutableArray *m = [NSMutableArray arrayWithArray:r];
-    r = nil;
-    
-    NSUInteger srcIdx = [m indexOfObject:src];
-    
-    if (srcIdx == NSNotFound) {
-        return;
-    }
-    
-    NSUInteger dstIdx = [m indexOfObject:dst];
-    
-    if (dstIdx == NSNotFound) {
-        return;
-    }
-    
-    [m removeObjectAtIndex:srcIdx];
-    [m insertObject:src atIndex:dstIdx];
-    
-    for(int a=0;a<m.count;a++) {
-        ((SAChannelBase*)[m objectAtIndex:a]).position = a;
-    }
-    
-    [self saveContext];
-}
-
--(void) moveChannel:(SAChannelBase*)src toPositionOfChannel:(SAChannelBase*)dst {
-    [self moveChannel:src toPositionOfChannel:dst entityName:@"SAChannel"];
-}
-
--(void) moveChannelGroup:(SAChannelBase*)src toPositionOfChannelGroup:(SAChannelBase*)dst {
-    [self moveChannel:src toPositionOfChannel:dst entityName:@"SAChannelGroup"];
 }
 
 - (void)deleteObject:(NSManagedObject *)object {

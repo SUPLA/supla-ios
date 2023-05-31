@@ -18,8 +18,9 @@
 
 import Foundation
 import RxDataSources
+import RxCocoa
 
-class BaseTableViewController<S : ViewState, E : ViewEvent, VM : BaseTableViewModel<S, E>>: BaseViewControllerVM<S, E, VM>, SASectionCellDelegate, UITableViewDelegate {
+class BaseTableViewController<S : ViewState, E : ViewEvent, VM : BaseTableViewModel<S, E>>: BaseViewControllerVM<S, E, VM>, SASectionCellDelegate, UITableViewDelegate, UITableViewDragDelegate, UITableViewDropDelegate {
     
     @Singleton<RuntimeConfig> private var runtimeConfig
     
@@ -67,6 +68,9 @@ class BaseTableViewController<S : ViewState, E : ViewEvent, VM : BaseTableViewMo
     func setupTableView() {
         tableView.register(UINib(nibName: Nibs.locationCell, bundle: nil), forCellReuseIdentifier: cellIdForLocation)
         tableView.delegate = self
+        tableView.dragDelegate = self
+        tableView.dropDelegate = self
+        tableView.dragInteractionEnabled = true
         
         dataSource = createDataSource()
         
@@ -75,6 +79,9 @@ class BaseTableViewController<S : ViewState, E : ViewEvent, VM : BaseTableViewMo
             .drive(tableView.rx.items(dataSource: dataSource))
             .disposed(by: self)
         
+        tableView.rx.itemMoved
+            .subscribe(onNext: { self.handleItemMovedEvent(event: $0) })
+            .disposed(by: self)
     }
     
     func createDataSource() -> RxTableViewSectionedReloadDataSource<List> {
@@ -88,8 +95,13 @@ class BaseTableViewController<S : ViewState, E : ViewEvent, VM : BaseTableViewMo
                 case let .channelBase(channelBase: channelBase):
                     return self.configureCell(channelBase: channelBase, indexPath: indexPath)
                 }
-            }, canMoveRowAtIndexPath: { _, _ in
-                return true
+            }, canMoveRowAtIndexPath: { dataSource, indexPath in
+                switch dataSource[indexPath] {
+                case .location(location: _):
+                    return false
+                default:
+                    return true
+                }
             }
         )
     }
@@ -144,5 +156,69 @@ class BaseTableViewController<S : ViewState, E : ViewEvent, VM : BaseTableViewMo
                 }
             )
             .disposed(by: self)
+    }
+    
+    // MARK: Drag & Drop
+    
+    func tableView(_ tableView: UITableView, itemsForBeginning session: UIDragSession, at indexPath: IndexPath) -> [UIDragItem] {
+        let dragItem = UIDragItem(itemProvider: NSItemProvider())
+        dragItem.localObject = tableView.cellForRow(at: indexPath)
+        return [dragItem]
+    }
+    
+    func tableView(_ tableView: UITableView, dropSessionDidUpdate session: UIDropSession, withDestinationIndexPath destinationIndexPath: IndexPath?) -> UITableViewDropProposal {
+        
+        let forbidden = UITableViewDropProposal(operation: .forbidden)
+        if (session.items.count != 1) {
+            return forbidden
+        }
+        
+        if
+            let sourceCell = session.items.first?.localObject as? SAChannelCell,
+            let destinationIndexPath = destinationIndexPath,
+            let destinationCell = tableView.cellForRow(at: destinationIndexPath) as? SAChannelCell {
+            
+            if (sourceCell.channelBase.location == destinationCell.channelBase.location) {
+                return UITableViewDropProposal(operation: .move, intent: .insertAtDestinationIndexPath)
+            }
+        }
+        if
+            let sourceCell = session.items.first?.localObject as? SceneCell,
+            let destinationIndexPath = destinationIndexPath,
+            let destinationCell = tableView.cellForRow(at: destinationIndexPath) as? SceneCell {
+            
+            if (sourceCell.sceneData?.location == destinationCell.sceneData?.location) {
+                return UITableViewDropProposal(operation: .move, intent: .insertAtDestinationIndexPath)
+            }
+        }
+        
+        return forbidden
+    }
+    
+    func handleItemMovedEvent(event: ItemMovedEvent) {
+        if
+            let sourceCell = tableView.cellForRow(at: event.sourceIndex) as? SAChannelCell,
+            let destinationCell = tableView.cellForRow(at: event.destinationIndex) as? SAChannelCell {
+            
+            viewModel.swapItems(
+                firstItem: sourceCell.channelBase.remote_id,
+                secondItem: destinationCell.channelBase.remote_id,
+                locationId: sourceCell.channelBase.location_id
+            )
+        }
+        
+        if
+            let sourceCell = tableView.cellForRow(at: event.sourceIndex) as? SceneCell,
+            let destinationCell = tableView.cellForRow(at: event.destinationIndex) as? SceneCell {
+            
+            viewModel.swapItems(
+                firstItem: sourceCell.sceneData!.sceneId,
+                secondItem: destinationCell.sceneData!.sceneId,
+                locationId: Int32(truncating: sourceCell.sceneData!.location!.location_id!)
+            )
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, performDropWith coordinator: UITableViewDropCoordinator) {
     }
 }

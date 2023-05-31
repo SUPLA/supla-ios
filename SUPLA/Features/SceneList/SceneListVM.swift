@@ -23,6 +23,7 @@ import RxDataSources
 class SceneListVM: BaseTableViewModel<SceneListViewState, SceneListViewEvent> {
     
     @Singleton<CreateProfileScenesListUseCase> private var createProfileScenesListUseCase
+    @Singleton<SwapScenePositionsUseCase> private var swapScenePositionsUseCase
     @Singleton<ListsEventsManager> private var listsEventsManager
     
     override init() {
@@ -40,6 +41,13 @@ class SceneListVM: BaseTableViewModel<SceneListViewState, SceneListViewEvent> {
     override func reloadTable() {
         createProfileScenesListUseCase.invoke()
             .subscribe(onNext: { self.listItems.accept($0) })
+            .disposed(by: self)
+    }
+    
+    override func swapItems(firstItem: Int32, secondItem: Int32, locationId: Int32) {
+        swapScenePositionsUseCase
+            .invoke(firstRemoteId: firstItem, secondRemoteId: secondItem, locationId: Int(locationId))
+            .subscribe(onNext: { self.reloadTable() })
             .disposed(by: self)
     }
     

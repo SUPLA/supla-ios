@@ -30,7 +30,7 @@ final class ChangeScenesVisibilityUseCase {
         do {
             try profileRepository.getActiveProfile()
                 .flatMapFirst { profile in
-                    self.sceneRepository.getAllProfileScenes(profile: profile)
+                    self.sceneRepository.getAllScenes(forProfile: profile)
                 }
                 .map { scenes in scenes.filter { $0.visible == from } }
                 .flatMapFirst { scenes in

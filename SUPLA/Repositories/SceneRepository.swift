@@ -22,15 +22,16 @@ import RxSwift
 import RxBlocking
 
 protocol SceneRepository: RepositoryProtocol where T == SAScene {
-    func getAllProfileVisibleScenes(profile: AuthProfileItem) -> Observable<[SAScene]>
-    func getAllProfileScenes(profile: AuthProfileItem) -> Observable<[SAScene]>
+    func getAllVisibleScenes(forProfile profile: AuthProfileItem) -> Observable<[SAScene]>
+    func getAllVisibleScenes(forProfile profile: AuthProfileItem, inLocation location: Int) -> Observable<[SAScene]>
+    func getAllScenes(forProfile profile: AuthProfileItem) -> Observable<[SAScene]>
     func getScene(remoteId: Int) -> Observable<SAScene>
     func deleteAll(for profile: AuthProfileItem) -> Observable<Void>
 }
 
 final class SceneRepositoryImpl: Repository<SAScene>, SceneRepository {
 
-    func getAllProfileVisibleScenes(profile: AuthProfileItem) -> Observable<[SAScene]> {
+    func getAllVisibleScenes(forProfile profile: AuthProfileItem) -> Observable<[SAScene]> {
         let fetchRequest = SAScene.fetchRequest()
             .filtered(by: NSPredicate(format: "profile = %@ AND visible > 0", profile))
         fetchRequest.sortDescriptors = [
@@ -43,7 +44,20 @@ final class SceneRepositoryImpl: Repository<SAScene>, SceneRepository {
         return self.query(fetchRequest)
     }
     
-    func getAllProfileScenes(profile: AuthProfileItem) -> Observable<[SAScene]> {
+    func getAllVisibleScenes(forProfile profile: AuthProfileItem, inLocation location: Int) -> Observable<[SAScene]> {
+        let fetchRequest = SAScene.fetchRequest()
+            .filtered(by: NSPredicate(format: "profile = %@ AND visible > 0 AND location.location_id = %i", profile, location))
+        fetchRequest.sortDescriptors = [
+            NSSortDescriptor(key: "location.sortOrder", ascending: true),
+            NSSortDescriptor(key: "location.caption", ascending: true),
+            NSSortDescriptor(key: "sortOrder", ascending: true),
+            NSSortDescriptor(key: "caption", ascending: true),
+            NSSortDescriptor(key: "sceneId", ascending: true)
+        ]
+        return self.query(fetchRequest)
+    }
+    
+    func getAllScenes(forProfile profile: AuthProfileItem) -> Observable<[SAScene]> {
         let fetchRequest = SAScene.fetchRequest()
             .filtered(by: NSPredicate(format: "profile = %@", profile))
             .ordered(by: "sceneId")

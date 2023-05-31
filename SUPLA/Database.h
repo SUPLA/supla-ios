@@ -109,12 +109,9 @@ typedef NS_ENUM(NSUInteger, GroupBy) {
 -(BOOL) updateChannelUserIcons;
 -(NSArray *) iconsToDownload;
 -(SAUserIcon*) fetchUserIconById:(int)remote_id createNewObject:(BOOL)create;
--(void) deleteAllUserIcons;
 -(BOOL) zwaveBridgeChannelAvailable;
 -(NSArray*) zwaveBridgeChannels;
 
--(void) moveChannel:(SAChannelBase*)src toPositionOfChannel:(SAChannelBase*)dst;
--(void) moveChannelGroup:(SAChannelBase*)src toPositionOfChannelGroup:(SAChannelBase*)dst;
 - (void)deleteObject:(NSManagedObject *)object;
 
 - (BOOL)updateSceneUserIcons;

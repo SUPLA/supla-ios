@@ -21,6 +21,7 @@ import Foundation
 class GroupListViewModel: BaseTableViewModel<GroupListViewState, GroupListViewEvent> {
     
     @Singleton<CreateProfileGroupsListUseCase> private var createProfileGroupsListUseCase
+    @Singleton<SwapGroupPositionsUseCase> private var swapGroupPositionsUseCase
     @Singleton<ListsEventsManager> private var listsEventsManager
     
     override init() {
@@ -38,6 +39,13 @@ class GroupListViewModel: BaseTableViewModel<GroupListViewState, GroupListViewEv
     override func reloadTable() {
         createProfileGroupsListUseCase.invoke()
             .subscribe(onNext: { self.listItems.accept($0) })
+            .disposed(by: self)
+    }
+    
+    override func swapItems(firstItem: Int32, secondItem: Int32, locationId: Int32) {
+        swapGroupPositionsUseCase
+            .invoke(firstRemoteId: firstItem, secondRemoteId: secondItem, locationId: Int(locationId))
+            .subscribe(onNext: { self.reloadTable() })
             .disposed(by: self)
     }
     

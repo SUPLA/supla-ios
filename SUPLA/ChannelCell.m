@@ -158,7 +158,6 @@
 }
 
 -(void)setChannelBase:(SAChannelBase *)channelBase {
-    //TODO: Add support for WINDSENSOR, PRESSURESENSOR, RAINSENSOR, WEIGHTSENSOR
     _channelBase = channelBase;
     [self updateCellView];
     

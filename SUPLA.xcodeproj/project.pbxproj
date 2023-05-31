@@ -730,6 +730,9 @@
 		A5F29BD82A26240E00ED700A /* ThermostatMeasurementItemRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F29BD72A26240E00ED700A /* ThermostatMeasurementItemRepository.swift */; };
 		A5F29BDA2A268DDE00ED700A /* DisposeBagContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F29BD92A268DDE00ED700A /* DisposeBagContainer.swift */; };
 		A5F29BDC2A26901100ED700A /* ChannelCell+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F29BDB2A26901100ED700A /* ChannelCell+Ext.swift */; };
+		A5F29BDE2A2737DA00ED700A /* SwapChannelPositionsUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F29BDD2A2737DA00ED700A /* SwapChannelPositionsUseCase.swift */; };
+		A5F29BE02A275F7600ED700A /* SwapGroupPositionsUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F29BDF2A275F7600ED700A /* SwapGroupPositionsUseCase.swift */; };
+		A5F29BE22A27628300ED700A /* SwapScenePositionsUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F29BE12A27628300ED700A /* SwapScenePositionsUseCase.swift */; };
 		AE1874C2290C581D00437146 /* SceneCaptionEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE1874C1290C581D00437146 /* SceneCaptionEditor.swift */; };
 		AE348E66277F348700F363A3 /* SAMoveTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = AE348E65277F348700F363A3 /* SAMoveTableView.m */; };
 		AE3DECE22761DB32005923E4 /* AccountCreationNavigationCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE3DECE02761DB32005923E4 /* AccountCreationNavigationCoordinator.swift */; };
@@ -1873,6 +1876,9 @@
 		A5F29BD72A26240E00ED700A /* ThermostatMeasurementItemRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThermostatMeasurementItemRepository.swift; sourceTree = "<group>"; };
 		A5F29BD92A268DDE00ED700A /* DisposeBagContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisposeBagContainer.swift; sourceTree = "<group>"; };
 		A5F29BDB2A26901100ED700A /* ChannelCell+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ChannelCell+Ext.swift"; sourceTree = "<group>"; };
+		A5F29BDD2A2737DA00ED700A /* SwapChannelPositionsUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwapChannelPositionsUseCase.swift; sourceTree = "<group>"; };
+		A5F29BDF2A275F7600ED700A /* SwapGroupPositionsUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwapGroupPositionsUseCase.swift; sourceTree = "<group>"; };
+		A5F29BE12A27628300ED700A /* SwapScenePositionsUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwapScenePositionsUseCase.swift; sourceTree = "<group>"; };
 		AE1874C1290C581D00437146 /* SceneCaptionEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneCaptionEditor.swift; sourceTree = "<group>"; };
 		AE348E64277F348700F363A3 /* SAMoveTableView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SAMoveTableView.h; sourceTree = "<group>"; };
 		AE348E65277F348700F363A3 /* SAMoveTableView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SAMoveTableView.m; sourceTree = "<group>"; };
@@ -3300,6 +3306,7 @@
 				A5F29BA72A24B0FC00ED700A /* UpdateSceneStateUseCase.swift */,
 				A5F29BA92A24B23000ED700A /* UpdateSceneUseCase.swift */,
 				A5F29BAB2A24B80E00ED700A /* ChangeScenesVisibilityUseCase.swift */,
+				A5F29BE12A27628300ED700A /* SwapScenePositionsUseCase.swift */,
 			);
 			path = Scene;
 			sourceTree = "<group>";
@@ -3312,6 +3319,7 @@
 				A5F29BB52A24CAAB00ED700A /* UpdateChannelValueUseCase.swift */,
 				A5F29BBB2A24D62300ED700A /* UpdateChannelExtendedValueUseCase.swift */,
 				A5F29BC12A24E30100ED700A /* ChangeChannelsVisibilityUseCase.swift */,
+				A5F29BDD2A2737DA00ED700A /* SwapChannelPositionsUseCase.swift */,
 			);
 			path = Channel;
 			sourceTree = "<group>";
@@ -3325,6 +3333,7 @@
 				A5F29BC32A24E35C00ED700A /* ChangeGroupsVisibilityUseCase.swift */,
 				A5F29BC52A24E5DE00ED700A /* ChangeChannelGroupRelationsVisibilityUseCase.swift */,
 				A5F29BC82A26168E00ED700A /* MagicUpdateGroupsUseCase.swift */,
+				A5F29BDF2A275F7600ED700A /* SwapGroupPositionsUseCase.swift */,
 			);
 			path = Group;
 			sourceTree = "<group>";
@@ -4169,8 +4178,10 @@
 				40C7BA8820C0492500ACEE42 /* SAChannelBase+CoreDataProperties.m in Sources */,
 				A5F29B672A1E268E00ED700A /* GroupListVC.swift in Sources */,
 				01D6A102249BEC8C006B3757 /* SAVLCalibrationTool.m in Sources */,
+				A5F29BDE2A2737DA00ED700A /* SwapChannelPositionsUseCase.swift in Sources */,
 				404749BE20BC608B005DA345 /* _SALocation+CoreDataClass.m in Sources */,
 				018CFD2923281F0C00888CB7 /* SAExtendedValue.m in Sources */,
+				A5F29BE22A27628300ED700A /* SwapScenePositionsUseCase.swift in Sources */,
 				404749BD20BC6070005DA345 /* SAChannel+CoreDataClass.m in Sources */,
 				404749BC20BC6058005DA345 /* SAColorListItem+CoreDataClass.m in Sources */,
 				40E8BE891FC06A5600FB2FE6 /* TFHppleElement.m in Sources */,
@@ -4244,6 +4255,7 @@
 				A5F29B8D2A20AD8100ED700A /* Nibs.swift in Sources */,
 				011021BA25CC38FA00621D41 /* SAEvent.m in Sources */,
 				40D69DEE1BB574FE00937769 /* Database.m in Sources */,
+				A5F29BE02A275F7600ED700A /* SwapGroupPositionsUseCase.swift in Sources */,
 				A5F29B5D2A1E161500ED700A /* HomeVM.swift in Sources */,
 				A5F29BD42A2623C000ED700A /* TempHumidityMeasurementItem.swift in Sources */,
 				A5F29B892A1F985A00ED700A /* LocationRepository.swift in Sources */,

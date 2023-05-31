@@ -20,15 +20,16 @@ import Foundation
 import RxSwift
 
 protocol GroupRepository: RepositoryProtocol where T == SAChannelGroup {
-    func getAllProfileVisibleGroups(profile: AuthProfileItem) -> Observable<[SAChannelGroup]>
-    func getAllProfileGroups(profile: AuthProfileItem) -> Observable<[SAChannelGroup]>
+    func getAllVisibleGroups(forProfile profile: AuthProfileItem) -> Observable<[SAChannelGroup]>
+    func getAllVisibleGroups(forProfile profile: AuthProfileItem, inLocation locationId: Int) -> Observable<[SAChannelGroup]>
+    func getAllGroups(forProfile profile: AuthProfileItem) -> Observable<[SAChannelGroup]>
     func getGroup(remoteId: Int) -> Observable<SAChannelGroup>
     func deleteAll(for profile: AuthProfileItem) -> Observable<Void>
 }
 
 class GroupRepositoryImpl: Repository<SAChannelGroup>, GroupRepository {
     
-    func getAllProfileVisibleGroups(profile: AuthProfileItem) -> Observable<[SAChannelGroup]> {
+    func getAllVisibleGroups(forProfile profile: AuthProfileItem) -> Observable<[SAChannelGroup]> {
         let request = SAChannelGroup.fetchRequest()
             .filtered(by: NSPredicate(format: "func > 0 AND visible > 0 AND profile == %@", profile))
         
@@ -44,7 +45,23 @@ class GroupRepositoryImpl: Repository<SAChannelGroup>, GroupRepository {
         return query(request)
     }
     
-    func getAllProfileGroups(profile: AuthProfileItem) -> Observable<[SAChannelGroup]> {
+    func getAllVisibleGroups(forProfile profile: AuthProfileItem, inLocation locationId: Int) -> Observable<[SAChannelGroup]> {
+        let request = SAChannelGroup.fetchRequest()
+            .filtered(by: NSPredicate(format: "func > 0 AND visible > 0 AND profile == %@ AND location.location_id = %i", profile, locationId))
+        
+        let localeAwareCompare = #selector(NSString.localizedCaseInsensitiveCompare)
+        request.sortDescriptors = [
+            NSSortDescriptor(key: "location.sortOrder", ascending: true),
+            NSSortDescriptor(key: "location.caption", ascending: true, selector: localeAwareCompare),
+            NSSortDescriptor(key: "position", ascending: true),
+            NSSortDescriptor(key: "func", ascending: false),
+            NSSortDescriptor(key: "caption", ascending: false, selector: localeAwareCompare)
+        ]
+        
+        return query(request)
+    }
+    
+    func getAllGroups(forProfile profile: AuthProfileItem) -> Observable<[SAChannelGroup]> {
         let request = SAChannelGroup.fetchRequest()
             .filtered(by: NSPredicate(format: "profile == %@", profile))
             .ordered(by: "remote_id")
