@@ -29,6 +29,7 @@
 -(void)detailDidShow;
 -(void)detailDidHide;
 -(BOOL)onMenubarBackButtonPressed;
+-(void)setChannelBase:(SAChannelBase *)channelBase;
 
 - (void)handlePan:(UIPanGestureRecognizer *)gr;
 

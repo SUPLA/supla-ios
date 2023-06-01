@@ -20,13 +20,21 @@ import Foundation
 
 class HomeVC : BaseViewControllerVM<HomeViewState, HomeViewEvent, HomeViewModel> {
     
+    @Singleton<ListsEventsManager> private var listsEventsManager
+    
     private let suplaTabBarController = UITabBarController()
+    private let notificationView: NotificationView = NotificationView()
+    private var notificationViewHeightConstraint: NSLayoutConstraint? = nil
+    
+    private var notificationTimer: Timer? = nil
     private var profileChooser: ProfileChooser? = nil
     private var navigator: MainNavigationCoordinator? {
         get {
             navigationCoordinator as? MainNavigationCoordinator
         }
     }
+    
+    private var iconsDownloadTask: SADownloadUserIcons? = nil
     
     convenience init() {
         self.init(nibName: nil, bundle: nil)
@@ -39,11 +47,20 @@ class HomeVC : BaseViewControllerVM<HomeViewState, HomeViewEvent, HomeViewModel>
         
         setupTabBarController()
         setupToolbar()
+        setupNotificationView()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         viewModel.onViewAppear()
+        
+        runIconsDownloadTask()
+        SARateApp().showDialog(withDelay: 1)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        viewModel.onViewDisappear()
     }
     
     override func handle(state: HomeViewState) {
@@ -59,28 +76,22 @@ class HomeVC : BaseViewControllerVM<HomeViewState, HomeViewEvent, HomeViewModel>
         }
     }
     
+    override func handle(event: HomeViewEvent) {
+        switch(event) {
+        case let .showNotification(message: message, icon: icon):
+            showNotification(message: message, image: icon)
+            break
+        }
+    }
+    
+    // MARK: View controller setup
+    
     private func setupToolbar() {
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(
             image: UIImage(named: "menu"),
             style: .plain, target: self,
             action: #selector(onMenuToggle)
         )
-    }
-    
-    @objc
-    private func onMenuToggle() {
-        navigator?.toggleMenuBar()
-    }
-    
-    @objc
-    private func onProfileButton() {
-        if (profileChooser != nil) {
-            return // Chooser already opened
-        }
-        
-        profileChooser = ProfileChooser(profileManager: SAApp.profileManager())
-        profileChooser?.delegate = self
-        profileChooser?.show(from: navigationController!)
     }
     
     private func setupTabBarController() {
@@ -119,11 +130,112 @@ class HomeVC : BaseViewControllerVM<HomeViewState, HomeViewEvent, HomeViewModel>
         suplaTabBarController.viewControllers = [channelListVC, groupListVC, sceneListVC]
         self.view.addSubview(suplaTabBarController.view)
     }
+    
+    // MARK: Notifications setup
+    
+    private func setupNotificationView() {
+        view.addSubview(notificationView)
+        
+        notificationView.translatesAutoresizingMaskIntoConstraints = false
+        notificationView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+        notificationView.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
+        notificationView.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
+        notificationViewHeightConstraint = notificationView.heightAnchor.constraint(equalToConstant: 0)
+        notificationViewHeightConstraint?.isActive = true
+        notificationView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(onNotificationiTapped)))
+        
+    }
+    
+    private func showNotification(message: String, image: UIImage) {
+        notificationTimer?.invalidate()
+        notificationTimer = Timer.scheduledTimer(timeInterval: 5.0, target: self, selector: #selector(hideNotification), userInfo: nil, repeats: false)
+        
+        notificationView.icon = image
+        notificationView.text = message
+        
+        view.layoutIfNeeded()
+        notificationViewHeightConstraint?.constant = getNotificationHeight()
+        UIView.animate(withDuration: 0.1, animations: {
+            self.view.layoutIfNeeded()
+        })
+    }
+    
+    private func getNotificationHeight() -> CGFloat {
+        if #available(iOS 11, *) {
+            return 140
+        } else {
+            return 110
+        }
+    }
+    
+    // MARK: Action handlers
+    
+    @objc
+    private func onMenuToggle() {
+        navigator?.toggleMenuBar()
+    }
+    
+    @objc
+    private func onProfileButton() {
+        if (profileChooser != nil) {
+            return // Chooser already opened
+        }
+        
+        profileChooser = ProfileChooser(profileManager: SAApp.profileManager())
+        profileChooser?.delegate = self
+        profileChooser?.show(from: navigationController!)
+    }
+    
+    @objc
+    private func hideNotification() {
+        notificationTimer?.invalidate()
+        
+        view.layoutIfNeeded()
+        notificationViewHeightConstraint?.constant = 0
+        UIView.animate(withDuration: 0.1, animations: {
+            self.view.layoutIfNeeded()
+        })
+    }
+    
+    @objc
+    private func onNotificationiTapped(recognizer: UITapGestureRecognizer? = nil) {
+        hideNotification()
+    }
+    
+    // MARK: Downloading user icons
+    
+    private func runIconsDownloadTask() {
+        if (iconsDownloadTask != nil && !iconsDownloadTask!.isTaskIsAlive(withTimeout: 90)) {
+            iconsDownloadTask?.cancel()
+            iconsDownloadTask?.delegate = nil
+            iconsDownloadTask = nil
+        }
+        
+        if (iconsDownloadTask == nil) {
+            iconsDownloadTask = SADownloadUserIcons()
+            iconsDownloadTask?.delegate = self
+            iconsDownloadTask?.start()
+        }
+    }
 }
 
 extension HomeVC: ProfileChooserDelegate {
     func profileChooserDidDismiss(profileChanged: Bool) {
         profileChooser = nil
+    }
+}
+
+extension HomeVC: SARestApiClientTaskDelegate {
+    func onRestApiTaskFinished(_ task: SARestApiClientTask) {
+        if (iconsDownloadTask == task) {
+            if (iconsDownloadTask?.channelsUpdated == true) {
+                listsEventsManager.emitChannelUpdate()
+                listsEventsManager.emitGroupUpdate()
+                listsEventsManager.emitSceneUpdate()
+            }
+            iconsDownloadTask?.delegate = nil
+            iconsDownloadTask = nil
+        }
     }
 }
 

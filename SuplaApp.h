@@ -29,7 +29,6 @@
 @class SADatabase;
 @class SASettingsVC;
 @class SAStatusVC;
-@class SAMainVC;
 @class SACreateAccountVC;
 @class MainNavigationCoordinator;
 @protocol ProfileManager;

@@ -51,8 +51,13 @@ class ChannelListViewModel: BaseTableViewModel<ChannelListViewState, ChannelList
     }
     
     override func onClicked(onItem item: Any) {
+        guard let item = item as? SAChannel else { return }
+        
+        if (!isAvailableInOffline(item) && !item.isOnline()) {
+            return // do not open details for offline channels
+        }
+        
         guard
-            let item = item as? SAChannelBase,
             let detailType = provideDetailTypeUseCase.invoke(channelBase: item)
         else {
             return
@@ -68,6 +73,31 @@ class ChannelListViewModel: BaseTableViewModel<ChannelListViewState, ChannelList
     }
     
     override func getCollapsedFlag() -> CollapsedFlag { .channel }
+    
+    private func isAvailableInOffline(_ channel: SAChannel) -> Bool {
+        switch(channel.func) {
+        case SUPLA_CHANNELFNC_THERMOMETER,
+            SUPLA_CHANNELFNC_HUMIDITYANDTEMPERATURE,
+            SUPLA_CHANNELFNC_ELECTRICITY_METER,
+            SUPLA_CHANNELFNC_IC_ELECTRICITY_METER,
+            SUPLA_CHANNELFNC_IC_GAS_METER,
+            SUPLA_CHANNELFNC_IC_WATER_METER,
+            SUPLA_CHANNELFNC_IC_HEAT_METER:
+            return true
+        case SUPLA_CHANNELFNC_LIGHTSWITCH,
+            SUPLA_CHANNELFNC_POWERSWITCH,
+            SUPLA_CHANNELFNC_STAIRCASETIMER:
+            switch (channel.value?.sub_value_type) {
+            case Int16(SUBV_TYPE_IC_MEASUREMENTS),
+                Int16(SUBV_TYPE_ELECTRICITY_MEASUREMENTS):
+                return true
+            default:
+                return false
+            }
+        default:
+            return false
+        }
+    }
 }
 
 enum ChannelListViewEvent: ViewEvent {

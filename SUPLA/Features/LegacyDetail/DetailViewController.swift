@@ -49,7 +49,8 @@ class DetailViewController: BaseViewController {
         super.viewDidLoad()
         addChildView(_detailView)
         
-        title = _detailView.channelBase.getNonEmptyCaption()
+        let channelCaption: String? = _detailView.channelBase?.getNonEmptyCaption()
+        title = channelCaption ?? ""
         
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(onAppDidEnterBackground(_:)),

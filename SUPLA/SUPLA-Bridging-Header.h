@@ -34,3 +34,5 @@
 #import "ChannelCell.h"
 #import "SAChannelGroup+CoreDataClass.h"
 #import "SAChannelGroupRelation+CoreDataClass.h"
+#import "SAEvent.h"
+#import "SARateApp.h"

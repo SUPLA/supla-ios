@@ -737,6 +737,7 @@
 		A5F29BE82A2774BF00ED700A /* LegacyDetailNavigationCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F29BE72A2774BF00ED700A /* LegacyDetailNavigationCoordinator.swift */; };
 		A5F29BEB2A27787600ED700A /* ProvideDetailTypeUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F29BEA2A27787600ED700A /* ProvideDetailTypeUseCase.swift */; };
 		A5F29BEF2A287C6800ED700A /* SAChannelBase+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F29BEE2A287C6800ED700A /* SAChannelBase+Ext.swift */; };
+		A5F29BF12A28AE0B00ED700A /* NotificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F29BF02A28AE0B00ED700A /* NotificationView.swift */; };
 		AE1874C2290C581D00437146 /* SceneCaptionEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE1874C1290C581D00437146 /* SceneCaptionEditor.swift */; };
 		AE348E66277F348700F363A3 /* SAMoveTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = AE348E65277F348700F363A3 /* SAMoveTableView.m */; };
 		AE3DECE22761DB32005923E4 /* AccountCreationNavigationCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE3DECE02761DB32005923E4 /* AccountCreationNavigationCoordinator.swift */; };
@@ -1887,6 +1888,7 @@
 		A5F29BE72A2774BF00ED700A /* LegacyDetailNavigationCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LegacyDetailNavigationCoordinator.swift; sourceTree = "<group>"; };
 		A5F29BEA2A27787600ED700A /* ProvideDetailTypeUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProvideDetailTypeUseCase.swift; sourceTree = "<group>"; };
 		A5F29BEE2A287C6800ED700A /* SAChannelBase+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SAChannelBase+Ext.swift"; sourceTree = "<group>"; };
+		A5F29BF02A28AE0B00ED700A /* NotificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationView.swift; sourceTree = "<group>"; };
 		AE1874C1290C581D00437146 /* SceneCaptionEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneCaptionEditor.swift; sourceTree = "<group>"; };
 		AE348E64277F348700F363A3 /* SAMoveTableView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SAMoveTableView.h; sourceTree = "<group>"; };
 		AE348E65277F348700F363A3 /* SAMoveTableView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SAMoveTableView.m; sourceTree = "<group>"; };
@@ -3202,6 +3204,7 @@
 			children = (
 				A5F29B5A2A1E15D600ED700A /* HomeVC.swift */,
 				A5F29B5C2A1E161500ED700A /* HomeVM.swift */,
+				A5F29BF02A28AE0B00ED700A /* NotificationView.swift */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -4416,6 +4419,7 @@
 				A5F29BD62A2623E500ED700A /* UserIconRepository.swift in Sources */,
 				AED6395E270CA3A800E5105B /* RoundedButton.swift in Sources */,
 				015A9846265595E300B6E6C6 /* UIButton+SUPLA.m in Sources */,
+				A5F29BF12A28AE0B00ED700A /* NotificationView.swift in Sources */,
 				AE74528D2827E5D400A3AFAD /* ProfileChooser.swift in Sources */,
 				6E9F28C928436EE900142502 /* AddNewProfileCell.swift in Sources */,
 				40C7BA5220C007A300ACEE42 /* SAChannelValue+CoreDataClass.m in Sources */,

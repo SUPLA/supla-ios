@@ -255,25 +255,6 @@ class MainNavigationCoordinator: BaseNavigationCoordinator {
     }
 }
 
-extension MainNavigationCoordinator: NavigationAnimationSupport {
-    func animationControllerFor(operation: UINavigationController.Operation,
-                                from fromVC: UIViewController,
-                                to toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-        if let fromVC = fromVC as? SAMainVC, toVC is DetailViewController {
-            let animator = SwipeTransitionAnimator(direction: .slideIn)
-            animator.interactionController = fromVC.interactionController
-            return animator
-        } else if let fromVC = fromVC as? DetailViewController, toVC is SAMainVC {
-            let animator = SwipeTransitionAnimator(direction: .slideOut)
-            animator.interactionController = fromVC.interactionController
-            return animator
-        }
-        return nil
-    }
-    
-    
-}
-
 protocol NavigationAnimationSupport {
     func animationControllerFor(operation: UINavigationController.Operation,
                                 from fromVC: UIViewController,
