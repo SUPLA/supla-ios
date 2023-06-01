@@ -38,4 +38,39 @@ extension SAChannelCell {
             )
             .disposed(by: self.getDisposeBagContainer())
     }
+    
+    @objc
+    func turnOn(_ channelBase: SAChannelBase) {
+        executeSimpleAction(channelBase: channelBase, action: .turn_on)
+    }
+    
+    @objc
+    func turnOff(_ channelBase: SAChannelBase) {
+        executeSimpleAction(channelBase: channelBase, action: .turn_off)
+    }
+    
+    @objc
+    func shut(_ channelBase: SAChannelBase) {
+        executeSimpleAction(channelBase: channelBase, action: .shut)
+    }
+    
+    @objc
+    func reveal(_ channelBase: SAChannelBase) {
+        executeSimpleAction(channelBase: channelBase, action: .reveal)
+    }
+    
+    private func executeSimpleAction(channelBase: SAChannelBase, action: Action) {
+        DiContainer.shared.resolve(type: VibrationService.self)?.vibrate()
+        
+        if (channelBase is SAChannel) {
+            _ = SAApp.suplaClient().executeAction(
+                parameters: .simple(action: action, subjectType: .channel, subjectId: channelBase.remote_id)
+            )
+        } else {
+            _ = SAApp.suplaClient().executeAction(
+                parameters: .simple(action: action, subjectType: .group, subjectId: channelBase.remote_id)
+            )
+        }
+        
+    }
 }

@@ -221,16 +221,11 @@
         case SUPLA_CHANNELFNC_CONTROLLINGTHEGARAGEDOOR:
         case SUPLA_CHANNELFNC_CONTROLLINGTHEDOORLOCK:
         case SUPLA_CHANNELFNC_CONTROLLINGTHEGATEWAYLOCK:
-        case SUPLA_CHANNELFNC_CONTROLLINGTHEROLLERSHUTTER:
-        case SUPLA_CHANNELFNC_CONTROLLINGTHEROOFWINDOW:
         case SUPLA_CHANNELFNC_ELECTRICITY_METER:
         case SUPLA_CHANNELFNC_IC_ELECTRICITY_METER:
         case SUPLA_CHANNELFNC_IC_GAS_METER:
         case SUPLA_CHANNELFNC_IC_WATER_METER:
         case SUPLA_CHANNELFNC_IC_HEAT_METER:
-        case SUPLA_CHANNELFNC_RGBLIGHTING:
-        case SUPLA_CHANNELFNC_DIMMER:
-        case SUPLA_CHANNELFNC_DIMMERANDRGBLIGHTING:
         case SUPLA_CHANNELFNC_THERMOSTAT_HEATPOL_HOMEPLUS:
         case SUPLA_CHANNELFNC_THERMOMETER:
         case SUPLA_CHANNELFNC_HUMIDITYANDTEMPERATURE:
@@ -243,6 +238,11 @@
         case SUPLA_CHANNELFNC_LIGHTSWITCH:
         case SUPLA_CHANNELFNC_STAIRCASETIMER:
         case SUPLA_CHANNELFNC_VALVE_OPENCLOSE:
+        case SUPLA_CHANNELFNC_RGBLIGHTING:
+        case SUPLA_CHANNELFNC_DIMMER:
+        case SUPLA_CHANNELFNC_DIMMERANDRGBLIGHTING:
+        case SUPLA_CHANNELFNC_CONTROLLINGTHEROLLERSHUTTER:
+        case SUPLA_CHANNELFNC_CONTROLLINGTHEROOFWINDOW:
             self.left_OnlineStatus.hidden = NO;
             self.right_OnlineStatus.hidden = NO;
             break;
@@ -312,16 +312,19 @@
                 case SUPLA_CHANNELFNC_POWERSWITCH:
                 case SUPLA_CHANNELFNC_LIGHTSWITCH:
                 case SUPLA_CHANNELFNC_STAIRCASETIMER:
-                {
+                case SUPLA_CHANNELFNC_RGBLIGHTING:
+                case SUPLA_CHANNELFNC_DIMMER:
+                case SUPLA_CHANNELFNC_DIMMERANDRGBLIGHTING:
                     br = [self makeButtonWithTitle: NSLocalizedString(@"On", nil)];
                     bl = [self makeButtonWithTitle: NSLocalizedString(@"Off", nil)];
                     
                     if (_measurementSubChannel) {
                         [self.measuredValue setText:[[_channelBase attrStringValue] string]];
                     }
-                }
                     break;
                 case SUPLA_CHANNELFNC_VALVE_OPENCLOSE:
+                case SUPLA_CHANNELFNC_CONTROLLINGTHEROOFWINDOW:
+                case SUPLA_CHANNELFNC_CONTROLLINGTHEROLLERSHUTTER:
                     br = [MGSwipeButton buttonWithTitle:NSLocalizedString(@"Open", nil) icon:nil backgroundColor:[UIColor blackColor]];
                     bl = [MGSwipeButton buttonWithTitle:NSLocalizedString(@"Close", nil) icon:nil backgroundColor:[UIColor blackColor]];
                     break;
@@ -394,6 +397,17 @@
 
     BOOL group = [self.channelBase isKindOfClass:[SAChannelGroup class]];
     
+    if (_channelBase.isRGBW) {
+        [self turnOn: self.channelBase];
+        [self hideSwipeMaybe];
+        return;
+    }
+    if (_channelBase.isRollerShutter) {
+        [self reveal: self.channelBase];
+        [self hideSwipeMaybe];
+        return;
+    }
+    
     if ([SAApp.SuplaClient turnOn:YES remoteId:_channelBase.remote_id group:group channelFunc:_channelBase.func vibrate:YES]) {
         [self hideSwipeMaybe];
         return;
@@ -418,6 +432,17 @@
 - (IBAction)leftTouchDown:(id)sender {
     [sender setBackgroundColor: [UIColor btnTouched]];
     [sender setBackgroundColor: [UIColor onLine] withDelay:0.2];
+    
+    if (_channelBase.isRGBW) {
+        [self turnOff: self.channelBase];
+        [self hideSwipeMaybe];
+        return;
+    }
+    if (_channelBase.isRollerShutter) {
+        [self shut: self.channelBase];
+        [self hideSwipeMaybe];
+        return;
+    }
 
     [self vibrate];
     [[SAApp SuplaClient] cg:self.channelBase.remote_id Open:0 group:[self.channelBase isKindOfClass:[SAChannelGroup class]]];

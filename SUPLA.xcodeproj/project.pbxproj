@@ -736,6 +736,7 @@
 		A5F29BE62A27739000ED700A /* MoveableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F29BE52A27739000ED700A /* MoveableCell.swift */; };
 		A5F29BE82A2774BF00ED700A /* LegacyDetailNavigationCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F29BE72A2774BF00ED700A /* LegacyDetailNavigationCoordinator.swift */; };
 		A5F29BEB2A27787600ED700A /* ProvideDetailTypeUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F29BEA2A27787600ED700A /* ProvideDetailTypeUseCase.swift */; };
+		A5F29BEF2A287C6800ED700A /* SAChannelBase+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F29BEE2A287C6800ED700A /* SAChannelBase+Ext.swift */; };
 		AE1874C2290C581D00437146 /* SceneCaptionEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE1874C1290C581D00437146 /* SceneCaptionEditor.swift */; };
 		AE348E66277F348700F363A3 /* SAMoveTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = AE348E65277F348700F363A3 /* SAMoveTableView.m */; };
 		AE3DECE22761DB32005923E4 /* AccountCreationNavigationCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE3DECE02761DB32005923E4 /* AccountCreationNavigationCoordinator.swift */; };
@@ -1885,6 +1886,7 @@
 		A5F29BE52A27739000ED700A /* MoveableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoveableCell.swift; sourceTree = "<group>"; };
 		A5F29BE72A2774BF00ED700A /* LegacyDetailNavigationCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LegacyDetailNavigationCoordinator.swift; sourceTree = "<group>"; };
 		A5F29BEA2A27787600ED700A /* ProvideDetailTypeUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProvideDetailTypeUseCase.swift; sourceTree = "<group>"; };
+		A5F29BEE2A287C6800ED700A /* SAChannelBase+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SAChannelBase+Ext.swift"; sourceTree = "<group>"; };
 		AE1874C1290C581D00437146 /* SceneCaptionEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneCaptionEditor.swift; sourceTree = "<group>"; };
 		AE348E64277F348700F363A3 /* SAMoveTableView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SAMoveTableView.h; sourceTree = "<group>"; };
 		AE348E65277F348700F363A3 /* SAMoveTableView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SAMoveTableView.m; sourceTree = "<group>"; };
@@ -3269,6 +3271,7 @@
 				A5F29B822A1F8D9B00ED700A /* SALocation+Ext.swift */,
 				A5F29B8A2A209EC900ED700A /* NSFetchRequest+Ext.swift */,
 				A5F29BA22A234BFA00ED700A /* ObservableType+Ext.swift */,
+				A5F29BEE2A287C6800ED700A /* SAChannelBase+Ext.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -4239,6 +4242,7 @@
 				A52ACD4929CB940B0092729F /* ActionParameters.swift in Sources */,
 				40C7BA7720C047CF00ACEE42 /* SAChannel+CoreDataProperties.m in Sources */,
 				01F8856E22E5E79100D18373 /* SAImpulseCounterMeasurementItem+CoreDataProperties.m in Sources */,
+				A5F29BEF2A287C6800ED700A /* SAChannelBase+Ext.swift in Sources */,
 				0126B84125BDFF2F0027D88A /* SAZWaveConfigurationWizardVC.m in Sources */,
 				A5F29BEB2A27787600ED700A /* ProvideDetailTypeUseCase.swift in Sources */,
 				01C1718F22C7F3A2005983E1 /* SAIncrementalMeasurementItem+CoreDataClass.m in Sources */,
