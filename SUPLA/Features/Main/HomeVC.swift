@@ -95,18 +95,21 @@ class HomeVC : BaseViewControllerVM<HomeViewState, HomeViewEvent, HomeViewModel>
         suplaTabBarController.tabBar.backgroundColor = .background
         
         let channelListVC = ChannelListVC()
+        channelListVC.navigationCoordinator = navigator
         channelListVC.tabBarItem = UITabBarItem(
             title: Strings.Main.channels,
             image: UIImage(named: "list"),
             tag: HomeTabTag.Channels.rawValue
         )
         let groupListVC = GroupListVC()
+        groupListVC.navigationCoordinator = navigator
         groupListVC.tabBarItem = UITabBarItem(
             title: Strings.Main.groups,
             image: UIImage(named: "bottom_bar_groups"),
             tag: HomeTabTag.Groups.rawValue
         )
         let sceneListVC = SceneListVC()
+        sceneListVC.navigationCoordinator = navigator
         sceneListVC.tabBarItem = UITabBarItem(
             title: Strings.Main.scenes,
             image: UIImage(named: "coffee"),

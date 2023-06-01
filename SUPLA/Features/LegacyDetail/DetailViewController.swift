@@ -26,13 +26,15 @@ class DetailViewController: BaseViewController {
         return _panController
     }
     
-    private let _detailView: SADetailView
+    private var _detailView: SADetailView!
     private let _panGR = UIPanGestureRecognizer()
     private var _panController: UIPercentDrivenInteractiveTransition?
     
-    @objc init(detailView: SADetailView) {
-        _detailView = detailView
+    init(detailViewType: LegacyDetailType, channelBase: SAChannelBase) {
         super.init(nibName: nil, bundle: nil)
+        _detailView = self.detailView(forDetailType: detailViewType)!
+        _detailView.detailViewInit()
+        _detailView.channelBase = channelBase
         
         _panGR.addTarget(self, action: #selector(onPan(_:)))
         _detailView.addGestureRecognizer(_panGR)
@@ -100,5 +102,26 @@ class DetailViewController: BaseViewController {
     @objc private func onAppDidEnterBackground(_ notification: Notification) {
         // Hide detail view, when application loses foreground context
         navigationController?.popViewController(animated: false)
+    }
+    
+    private func detailView(forDetailType detailType: LegacyDetailType) -> SADetailView? {
+        switch(detailType) {
+        case .em:
+            return Bundle.main.loadNibNamed("ElectricityMeterDetailView", owner: self, options: nil)?[0] as? SADetailView
+        case .ic:
+            return Bundle.main.loadNibNamed("ImpulseCounterDetailView", owner: self, options: nil)?[0] as? SADetailView
+        case .rgbw:
+            return Bundle.main.loadNibNamed("RGBWDetail", owner: self, options: nil)?[0] as? SADetailView
+        case .rs:
+            return Bundle.main.loadNibNamed("RSDetail", owner: self, options: nil)?[0] as? SADetailView
+        case .thermostat_hp:
+            return Bundle.main.loadNibNamed("HomePlusDetailView", owner: self, options: nil)?[0] as? SADetailView
+        case .temperature:
+            return Bundle.main.loadNibNamed("TemperatureDetailView", owner: self, options: nil)?[0] as? SADetailView
+        case .temperature_humidity:
+            return Bundle.main.loadNibNamed("TempHumidityDetailView", owner: self, options: nil)?[0] as? SADetailView
+        case .digiglass:
+            return Bundle.main.loadNibNamed("DigiglassDetailView", owner: self, options: nil)?[0] as? SADetailView
+        }
     }
 }

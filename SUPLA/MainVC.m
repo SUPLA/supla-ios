@@ -1062,18 +1062,18 @@
         if(path) {
             UITableViewCell *cell = [tableView cellForRowAtIndexPath: path];
             if([cell isKindOfClass: [SAChannelCell class]]) {
-                SADetailView *detailView = [self getDetailViewForCell:cell];
-                if(detailView) {
-                    BaseViewController *detailVC = [[DetailViewController alloc]
-                                                    initWithDetailView: detailView];
-                    detailVC.navigationCoordinator = self.viewController.navigationCoordinator;
-                    _panTransition = [[UIPercentDrivenInteractiveTransition alloc]
-                                      init];
-                    [self.viewController.navigationController pushViewController:detailVC
-																		animated:YES];
-                    self.viewController.showingDetails = YES;
-                    
-                 }
+//                SADetailView *detailView = [self getDetailViewForCell:cell];
+//                if(detailView) {
+//                    BaseViewController *detailVC = [[DetailViewController alloc]
+//                                                    initWithDetailView: detailView];
+//                    detailVC.navigationCoordinator = self.viewController.navigationCoordinator;
+//                    _panTransition = [[UIPercentDrivenInteractiveTransition alloc]
+//                                      init];
+//                    [self.viewController.navigationController pushViewController:detailVC
+//																		animated:YES];
+//                    self.viewController.showingDetails = YES;
+//                    
+//                 }
              }
          }
     } else if(gr.state == UIGestureRecognizerStateChanged) {

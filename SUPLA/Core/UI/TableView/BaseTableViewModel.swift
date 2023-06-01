@@ -43,6 +43,9 @@ class BaseTableViewModel<S : ViewState, E : ViewEvent>: BaseViewModel<S, E> {
     func swapItems(firstItem: Int32, secondItem: Int32, locationId: Int32) {
         fatalError("swapItems(firstItem: secondItem: locationId:) has not been implemented")
     }
+    
+    func onClicked(onItem item: Any) {
+    }
 }
 
 enum List {

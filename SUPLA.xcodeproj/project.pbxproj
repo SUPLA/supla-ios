@@ -733,6 +733,9 @@
 		A5F29BDE2A2737DA00ED700A /* SwapChannelPositionsUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F29BDD2A2737DA00ED700A /* SwapChannelPositionsUseCase.swift */; };
 		A5F29BE02A275F7600ED700A /* SwapGroupPositionsUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F29BDF2A275F7600ED700A /* SwapGroupPositionsUseCase.swift */; };
 		A5F29BE22A27628300ED700A /* SwapScenePositionsUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F29BE12A27628300ED700A /* SwapScenePositionsUseCase.swift */; };
+		A5F29BE62A27739000ED700A /* MoveableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F29BE52A27739000ED700A /* MoveableCell.swift */; };
+		A5F29BE82A2774BF00ED700A /* LegacyDetailNavigationCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F29BE72A2774BF00ED700A /* LegacyDetailNavigationCoordinator.swift */; };
+		A5F29BEB2A27787600ED700A /* ProvideDetailTypeUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F29BEA2A27787600ED700A /* ProvideDetailTypeUseCase.swift */; };
 		AE1874C2290C581D00437146 /* SceneCaptionEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE1874C1290C581D00437146 /* SceneCaptionEditor.swift */; };
 		AE348E66277F348700F363A3 /* SAMoveTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = AE348E65277F348700F363A3 /* SAMoveTableView.m */; };
 		AE3DECE22761DB32005923E4 /* AccountCreationNavigationCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE3DECE02761DB32005923E4 /* AccountCreationNavigationCoordinator.swift */; };
@@ -1879,6 +1882,9 @@
 		A5F29BDD2A2737DA00ED700A /* SwapChannelPositionsUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwapChannelPositionsUseCase.swift; sourceTree = "<group>"; };
 		A5F29BDF2A275F7600ED700A /* SwapGroupPositionsUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwapGroupPositionsUseCase.swift; sourceTree = "<group>"; };
 		A5F29BE12A27628300ED700A /* SwapScenePositionsUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwapScenePositionsUseCase.swift; sourceTree = "<group>"; };
+		A5F29BE52A27739000ED700A /* MoveableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoveableCell.swift; sourceTree = "<group>"; };
+		A5F29BE72A2774BF00ED700A /* LegacyDetailNavigationCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LegacyDetailNavigationCoordinator.swift; sourceTree = "<group>"; };
+		A5F29BEA2A27787600ED700A /* ProvideDetailTypeUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProvideDetailTypeUseCase.swift; sourceTree = "<group>"; };
 		AE1874C1290C581D00437146 /* SceneCaptionEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneCaptionEditor.swift; sourceTree = "<group>"; };
 		AE348E64277F348700F363A3 /* SAMoveTableView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SAMoveTableView.h; sourceTree = "<group>"; };
 		AE348E65277F348700F363A3 /* SAMoveTableView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SAMoveTableView.m; sourceTree = "<group>"; };
@@ -2999,7 +3005,6 @@
 				012119122368B597004C1993 /* xib */,
 				AE7CAAFB275BF87D0024095F /* BaseViewController.h */,
 				AE7CAAFC275BF87D0024095F /* BaseViewController.m */,
-				AEF1F9B927726D56008E441A /* DetailViewController.swift */,
 			);
 			name = UI;
 			sourceTree = "<group>";
@@ -3104,6 +3109,7 @@
 		A5756F7F29DC0FE900C32A1B /* Features */ = {
 			isa = PBXGroup;
 			children = (
+				A5F29BE42A2768F000ED700A /* LegacyDetail */,
 				A5F29B652A1E237700ED700A /* SceneList */,
 				A5F29B642A1E236000ED700A /* GroupList */,
 				A5F29B5E2A1E18BC00ED700A /* ChannelList */,
@@ -3270,6 +3276,7 @@
 		A5F29B842A1F95B100ED700A /* UseCase */ = {
 			isa = PBXGroup;
 			children = (
+				A5F29BE92A27785F00ED700A /* Detail */,
 				A5F29BCA2A2622A900ED700A /* Profile */,
 				A5F29B9B2A20D2DD00ED700A /* Group */,
 				A5F29B942A20B74B00ED700A /* Channel */,
@@ -3295,6 +3302,7 @@
 				A5F29B8F2A20B23E00ED700A /* BaseTableViewModel.swift */,
 				A5F29B992A20C26900ED700A /* BaseTableViewController.swift */,
 				A5F29BA02A20D6DD00ED700A /* ChannelBaseTableViewController.swift */,
+				A5F29BE52A27739000ED700A /* MoveableCell.swift */,
 			);
 			path = TableView;
 			sourceTree = "<group>";
@@ -3361,6 +3369,23 @@
 				A5F29BCB2A2622BD00ED700A /* DeleteAllProfileDataUseCase.swift */,
 			);
 			path = Profile;
+			sourceTree = "<group>";
+		};
+		A5F29BE42A2768F000ED700A /* LegacyDetail */ = {
+			isa = PBXGroup;
+			children = (
+				AEF1F9B927726D56008E441A /* DetailViewController.swift */,
+				A5F29BE72A2774BF00ED700A /* LegacyDetailNavigationCoordinator.swift */,
+			);
+			path = LegacyDetail;
+			sourceTree = "<group>";
+		};
+		A5F29BE92A27785F00ED700A /* Detail */ = {
+			isa = PBXGroup;
+			children = (
+				A5F29BEA2A27787600ED700A /* ProvideDetailTypeUseCase.swift */,
+			);
+			path = Detail;
 			sourceTree = "<group>";
 		};
 		AE5A60E4270E2A4100F2B780 /* Cfg */ = {
@@ -4185,10 +4210,12 @@
 				404749BD20BC6070005DA345 /* SAChannel+CoreDataClass.m in Sources */,
 				404749BC20BC6058005DA345 /* SAColorListItem+CoreDataClass.m in Sources */,
 				40E8BE891FC06A5600FB2FE6 /* TFHppleElement.m in Sources */,
+				A5F29BE82A2774BF00ED700A /* LegacyDetailNavigationCoordinator.swift in Sources */,
 				AED63961270CA46C00E5105B /* UIColor+Supla.swift in Sources */,
 				01A195E2264B264A006D2A20 /* SAChannelCaptionSetResult.m in Sources */,
 				6E8756632830E86D00D5A283 /* ProfileItemCell.swift in Sources */,
 				01C1719922C7F55B005983E1 /* SAMeasurementItem+CoreDataClass.m in Sources */,
+				A5F29BE62A27739000ED700A /* MoveableCell.swift in Sources */,
 				A5F29B962A20B97B00ED700A /* CreateProfileChannelsListUseCase.swift in Sources */,
 				A5F14B7229DED06400682FA6 /* AccountRemovalVM.swift in Sources */,
 				A5756F8229DC102800C32A1B /* AccountRemovalVC.swift in Sources */,
@@ -4213,6 +4240,7 @@
 				40C7BA7720C047CF00ACEE42 /* SAChannel+CoreDataProperties.m in Sources */,
 				01F8856E22E5E79100D18373 /* SAImpulseCounterMeasurementItem+CoreDataProperties.m in Sources */,
 				0126B84125BDFF2F0027D88A /* SAZWaveConfigurationWizardVC.m in Sources */,
+				A5F29BEB2A27787600ED700A /* ProvideDetailTypeUseCase.swift in Sources */,
 				01C1718F22C7F3A2005983E1 /* SAIncrementalMeasurementItem+CoreDataClass.m in Sources */,
 				01199C8324C34AC50062454B /* SAChannelStatePopup.m in Sources */,
 				011021B525CC386D00621D41 /* SAVersionError.m in Sources */,

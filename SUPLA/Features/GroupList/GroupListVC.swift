@@ -24,4 +24,11 @@ class GroupListVC : ChannelBaseTableViewController<GroupListViewState, GroupList
         self.init(nibName: nil, bundle: nil)
         viewModel = GroupListViewModel()
     }
+    
+    override func handle(event: GroupListViewEvent) {
+        switch(event) {
+        case let .navigateToDetail(legacy: legacyDetailType, channelBase: channelBase):
+            navigator?.navigateToLegacyDetail(legacyDetailType: legacyDetailType, channelBase: channelBase)
+        }
+    }
 }

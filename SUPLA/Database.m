@@ -965,9 +965,8 @@ again:
 
 #pragma mark Profile
 - (AuthProfileItem *)currentProfile {
-    id<ProfileManager> pm = [[MultiAccountProfileManager alloc]
-                             initWithContext: [self managedObjectContext]];
-    return [pm getCurrentProfile];
+    id<ProfileManager> pm = [[MultiAccountProfileManager alloc] init];
+    return [pm getCurrentProfileWithContext: self.managedObjectContext];
 }
 
 #pragma mark Scenes

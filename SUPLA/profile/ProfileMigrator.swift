@@ -28,7 +28,7 @@ class ProfileMigrator: NSObject {
     
     @objc
     func migrateProfileFromUserDefaults(_ ctx: NSManagedObjectContext) throws {
-        let pm = MultiAccountProfileManager(context: ctx)
+        let pm = MultiAccountProfileManager()
         var settings = settings
         
         let activeProfile = pm.getAllProfiles().first(where: { $0.isActive })

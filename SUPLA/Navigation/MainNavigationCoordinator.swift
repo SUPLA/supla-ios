@@ -234,6 +234,10 @@ class MainNavigationCoordinator: BaseNavigationCoordinator {
         }
     }
     
+    func navigateToLegacyDetail(legacyDetailType: LegacyDetailType, channelBase: SAChannelBase) {
+        startFlow(coordinator: LegacyDetailNavigationCoordinator(detailType: legacyDetailType, channelBase: channelBase))
+    }
+    
     
     // MARK: -
     // MARK: Application life cycle support

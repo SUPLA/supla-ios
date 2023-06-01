@@ -42,6 +42,11 @@ class BaseTableViewController<S : ViewState, E : ViewEvent, VM : BaseTableViewMo
             }
         }
     }
+    var navigator: MainNavigationCoordinator? {
+        get {
+            navigationCoordinator as? MainNavigationCoordinator
+        }
+    }
     
     override func loadView() {
         self.view = tableView
@@ -82,6 +87,9 @@ class BaseTableViewController<S : ViewState, E : ViewEvent, VM : BaseTableViewMo
         tableView.rx.itemMoved
             .subscribe(onNext: { self.handleItemMovedEvent(event: $0) })
             .disposed(by: self)
+        tableView.rx.itemSelected
+            .subscribe(onNext: { self.handleItemClicked(indexPath: $0) })
+            .disposed(by: self)
     }
     
     func createDataSource() -> RxTableViewSectionedReloadDataSource<List> {
@@ -100,7 +108,8 @@ class BaseTableViewController<S : ViewState, E : ViewEvent, VM : BaseTableViewMo
                 case .location(location: _):
                     return false
                 default:
-                    return true
+                    let cell = self.tableView.cellForRow(at: indexPath) as? MoveableCell
+                    return cell?.movementEnabled() ?? false
                 }
             }
         )
@@ -161,8 +170,17 @@ class BaseTableViewController<S : ViewState, E : ViewEvent, VM : BaseTableViewMo
     // MARK: Drag & Drop
     
     func tableView(_ tableView: UITableView, itemsForBeginning session: UIDragSession, at indexPath: IndexPath) -> [UIDragItem] {
+        let cell = tableView.cellForRow(at: indexPath)
+        
+        if (cell is SASectionCell) {
+            return []
+        }
+        if ((cell as? MoveableCell)?.movementEnabled() == false) {
+            return []
+        }
+        
         let dragItem = UIDragItem(itemProvider: NSItemProvider())
-        dragItem.localObject = tableView.cellForRow(at: indexPath)
+        dragItem.localObject = cell
         return [dragItem]
     }
     
@@ -220,5 +238,20 @@ class BaseTableViewController<S : ViewState, E : ViewEvent, VM : BaseTableViewMo
     }
     
     func tableView(_ tableView: UITableView, performDropWith coordinator: UITableViewDropCoordinator) {
+    }
+    
+    // MARK: Click event
+    
+    func handleItemClicked(indexPath: IndexPath) {
+        switch(dataSource[indexPath]) {
+        case let .scene(scene: scene):
+            viewModel.onClicked(onItem: scene)
+            break
+        case let .channelBase(channelBase: channelBase):
+            viewModel.onClicked(onItem: channelBase)
+            break
+        default:
+            break
+        }
     }
 }

@@ -24,4 +24,11 @@ class ChannelListVC : ChannelBaseTableViewController<ChannelListViewState, Chann
         self.init(nibName: nil, bundle: nil)
         viewModel = ChannelListViewModel()
     }
+    
+    override func handle(event: ChannelListViewEvent) {
+        switch(event) {
+        case let .navigateToDetail(legacy: legacyDetailType, channelBase: channelBase):
+            navigator?.navigateToLegacyDetail(legacyDetailType: legacyDetailType, channelBase: channelBase)
+        }
+    }
 }

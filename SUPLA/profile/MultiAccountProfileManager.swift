@@ -21,15 +21,16 @@ import CoreData
 
 class MultiAccountProfileManager: NSObject {
     
-    private let _ctx: NSManagedObjectContext
-    
     @Singleton<ProfileRepository> private var profileRepository
     @Singleton<DeleteAllProfileDataUseCase> private var deleteAllProfileDataUseCase
+    @Singleton<RuntimeConfig> private var runtimeConfig
     
     @objc
-    init(context: NSManagedObjectContext) {
-        _ctx = context
+    override init() {
         super.init()
+        
+        var config = runtimeConfig
+        config.activeProfileId = getCurrentProfile()?.objectID
     }
 }
 
@@ -99,6 +100,9 @@ extension MultiAccountProfileManager: ProfileManager {
                     self.profileRepository.save(profiles[0])
                 }
                 .subscribeSynchronous()
+            
+            var config = runtimeConfig
+            config.activeProfileId = profile.objectID
         } catch {
             NSLog("Error occured by saving \(error)")
             return false;
@@ -106,6 +110,19 @@ extension MultiAccountProfileManager: ProfileManager {
         initiateReconnect()
         
         return true
+    }
+    
+    @objc
+    func getCurrentProfile(withContext context: NSManagedObjectContext) -> AuthProfileItem? {
+        if (runtimeConfig.activeProfileId != nil) {
+            do {
+                return try context.existingObject(with: runtimeConfig.activeProfileId!) as? AuthProfileItem
+            } catch {
+                return nil
+            }
+        }
+        
+        return nil
     }
     
     private func initiateReconnect() {

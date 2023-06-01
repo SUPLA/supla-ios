@@ -71,6 +71,7 @@ extension DiContainer {
         DiContainer.shared.register(type: SwapChannelPositionsUseCase.self, component: SwapChannelPositionsUseCaseImpl())
         DiContainer.shared.register(type: SwapGroupPositionsUseCase.self, component: SwapGroupPositionsUseCaseImpl())
         DiContainer.shared.register(type: SwapScenePositionsUseCase.self, component: SwapScenePositionsUseCaseImpl())
+        DiContainer.shared.register(type: ProvideDetailTypeUseCase.self, component: ProvideDetailTypeUseCaseImpl())
     }
     
     @objc static func listsEventsManager() -> ListsEventsManagerEmitter? {

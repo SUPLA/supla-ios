@@ -227,8 +227,7 @@ NSString *kSAOnChannelGroupCaptionSetResult = @"OnChannelGroupCaptionSetResult";
 }
 
 + (id<ProfileManager>)profileManager {
-    return [[MultiAccountProfileManager alloc] initWithContext: [[self instance] DB]
-            .managedObjectContext];
+    return [[MultiAccountProfileManager alloc] init];
 }
 
 -(void) setBrightnessPickerTypeToSlider:(BOOL)slider {

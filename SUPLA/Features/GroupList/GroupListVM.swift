@@ -22,6 +22,7 @@ class GroupListViewModel: BaseTableViewModel<GroupListViewState, GroupListViewEv
     
     @Singleton<CreateProfileGroupsListUseCase> private var createProfileGroupsListUseCase
     @Singleton<SwapGroupPositionsUseCase> private var swapGroupPositionsUseCase
+    @Singleton<ProvideDetailTypeUseCase> private var provideDetailTypeUseCase
     @Singleton<ListsEventsManager> private var listsEventsManager
     
     override init() {
@@ -49,10 +50,28 @@ class GroupListViewModel: BaseTableViewModel<GroupListViewState, GroupListViewEv
             .disposed(by: self)
     }
     
+    override func onClicked(onItem item: Any) {
+        guard
+            let item = item as? SAChannelBase,
+            let detailType = provideDetailTypeUseCase.invoke(channelBase: item)
+        else {
+            return
+        }
+        
+        switch (detailType) {
+        case let .legacy(type: legacyDetailType):
+            send(event: .navigateToDetail(legacy: legacyDetailType, channelBase: item))
+            break
+        default:
+            break
+        }
+    }
+    
     override func getCollapsedFlag() -> CollapsedFlag { .group }
 }
 
 enum GroupListViewEvent: ViewEvent {
+    case navigateToDetail(legacy: LegacyDetailType, channelBase: SAChannelBase)
 }
 
 struct GroupListViewState: ViewState {}
