@@ -424,10 +424,8 @@
 		4017E12C1BB9CE2900570AC8 /* ChannelCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4017E12A1BB9CE2900570AC8 /* ChannelCell.m */; };
 		401CA1BF1BA067DB00117AF4 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 401CA1BE1BA067DB00117AF4 /* main.m */; };
 		401CA1C21BA067DB00117AF4 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 401CA1C11BA067DB00117AF4 /* AppDelegate.m */; };
-		401CA1C81BA067DB00117AF4 /* MainVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 401CA1C71BA067DB00117AF4 /* MainVC.m */; };
 		401CA1CD1BA067DB00117AF4 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 401CA1CC1BA067DB00117AF4 /* Images.xcassets */; };
 		401CA1DC1BA067DB00117AF4 /* SUPLATests.m in Sources */ = {isa = PBXBuildFile; fileRef = 401CA1DB1BA067DB00117AF4 /* SUPLATests.m */; };
-		401CA1EF1BA0923600117AF4 /* MainVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 401CA1EE1BA0923600117AF4 /* MainVC.xib */; };
 		401CA1F21BA0A28A00117AF4 /* SuplaClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 401CA1F11BA0A28A00117AF4 /* SuplaClient.m */; };
 		403150FB1DC769430075D2D2 /* RGBWDetailView.m in Sources */ = {isa = PBXBuildFile; fileRef = 403150FA1DC769430075D2D2 /* RGBWDetailView.m */; };
 		4038A5541CE32B6800180B5D /* TempHumidityCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4038A5531CE32B6800180B5D /* TempHumidityCell.xib */; };
@@ -1501,13 +1499,10 @@
 		401CA1BE1BA067DB00117AF4 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		401CA1C01BA067DB00117AF4 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		401CA1C11BA067DB00117AF4 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		401CA1C61BA067DB00117AF4 /* MainVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MainVC.h; sourceTree = "<group>"; };
-		401CA1C71BA067DB00117AF4 /* MainVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MainVC.m; sourceTree = "<group>"; };
 		401CA1CC1BA067DB00117AF4 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		401CA1D51BA067DB00117AF4 /* SUPLATests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SUPLATests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		401CA1DA1BA067DB00117AF4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		401CA1DB1BA067DB00117AF4 /* SUPLATests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SUPLATests.m; sourceTree = "<group>"; };
-		401CA1EE1BA0923600117AF4 /* MainVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainVC.xib; sourceTree = "<group>"; };
 		401CA1F01BA0A28A00117AF4 /* SuplaClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SuplaClient.h; sourceTree = "<group>"; };
 		401CA1F11BA0A28A00117AF4 /* SuplaClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SuplaClient.m; sourceTree = "<group>"; };
 		403150F91DC769430075D2D2 /* RGBWDetailView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RGBWDetailView.h; sourceTree = "<group>"; };
@@ -2223,7 +2218,6 @@
 				01C8EBFC234232EC0072AB8C /* HomePlusDetailView.xib */,
 				40F951471FD0654900698587 /* RSDetail.xib */,
 				407D31961FD1A7070062FB80 /* AddWizardVC.xib */,
-				401CA1EE1BA0923600117AF4 /* MainVC.xib */,
 				408034E41BC84A89007666E7 /* NavigationController.xib */,
 				010C8789249AA1E1002FE526 /* SAInfoVC.xib */,
 				011E736A24A1367B004D99EE /* SAVLCalibrationTool.xib */,
@@ -2933,8 +2927,6 @@
 				012023C0234E54ED00E131B7 /* ImpulseCounterDetailView.h */,
 				012023C1234E54ED00E131B7 /* ImpulseCounterDetailView.m */,
 				40B397CE1BCE7F3200BE7D5A /* Launch Screen.storyboard */,
-				401CA1C61BA067DB00117AF4 /* MainVC.h */,
-				401CA1C71BA067DB00117AF4 /* MainVC.m */,
 				4031ACFA1BBC0FFB00CF9D8B /* MGSwipe */,
 				403150F91DC769430075D2D2 /* RGBWDetailView.h */,
 				403150FA1DC769430075D2D2 /* RGBWDetailView.m */,
@@ -3812,7 +3804,6 @@
 				01902A2A235A1840005ED935 /* TemperatureDetailView.xib in Resources */,
 				01CEAC1725B99A58009C3BFD /* digiglass1@2x.png in Resources */,
 				40477B5120C6CF2600E995E6 /* gate-closed-50percent@2x.png in Resources */,
-				401CA1EF1BA0923600117AF4 /* MainVC.xib in Resources */,
 				40CF96BB1BC7D4E70030EFFF /* light-off@3x.png in Resources */,
 				01D4293A22AAAA450050C1A2 /* IncrementalMeterCell.xib in Resources */,
 				40CF96C91BC7D4E70030EFFF /* rollershutter-open@3x.png in Resources */,
@@ -4340,7 +4331,6 @@
 				01215A7324C8AECC00429947 /* SALightsourceLifespanSettingsDialog.m in Sources */,
 				AEED87DF276F1FCE005D76CF /* LocationOrderingVM.swift in Sources */,
 				4077ACE320A21BB100BD2216 /* CreateAccountVC.m in Sources */,
-				401CA1C81BA067DB00117AF4 /* MainVC.m in Sources */,
 				01A0BD0A26CEFBC200C4A5F2 /* SAWarningIcon.m in Sources */,
 				AEF1F9BA27726D56008E441A /* DetailViewController.swift in Sources */,
 				A553862B29E0202700B5CF3F /* Singleton.swift in Sources */,

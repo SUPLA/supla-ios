@@ -333,56 +333,11 @@ again:
     return [self fetchItemByPredicate:[NSPredicate predicateWithFormat:@"location_id = %i", location_id] entityName:@"SALocation"];
 };
 
--(NSArray*) fetchVisibleLocations {
-   return [self fetchByPredicate:[NSPredicate predicateWithFormat:@"visible > 0"] entityName:@"SALocation" limit:0 sortDescriptors:nil];
-}
-
 #pragma mark Channels
 
 -(SAChannel*) fetchChannelById:(int)channel_id {
     return [self fetchItemByPredicate:[NSPredicate predicateWithFormat:@"remote_id = %i", channel_id] entityName:@"SAChannel"];
 };
-
--(NSFetchRequest*) getChannelBaseFetchRequestForEntityName:(NSString*)entity locationId:(int)locationId {
-    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-    AuthProfileItem *profile = self.currentProfile;
-    if (profile == nil) {
-        fetchRequest.predicate = [NSPredicate predicateWithFormat:@"func > 0 AND visible > 0 AND (%i = 0 OR location.location_id = %i) AND profile.isActive = true", locationId, locationId];
-    } else {
-        fetchRequest.predicate = [NSPredicate predicateWithFormat:@"func > 0 AND visible > 0 AND (%i = 0 OR location.location_id = %i) AND profile = %@", locationId, locationId, profile];
-    }
-    [fetchRequest setEntity:[NSEntityDescription entityForName:entity inManagedObjectContext: self.managedObjectContext]];
-    
-    SEL localeAwareCompare = @selector(localizedCaseInsensitiveCompare:);
-    NSArray *sortDescriptors = @[
-        [[NSSortDescriptor alloc] initWithKey:@"location.sortOrder" ascending:YES],
-        [[NSSortDescriptor alloc] initWithKey:@"location.caption" ascending:YES selector: localeAwareCompare],
-        [[NSSortDescriptor alloc] initWithKey:@"position" ascending:YES],
-        [[NSSortDescriptor alloc] initWithKey:@"func" ascending:NO],
-        [[NSSortDescriptor alloc] initWithKey:@"caption" ascending:NO selector: localeAwareCompare]
-    ];
-    
-    [fetchRequest setSortDescriptors:sortDescriptors];
-    
-    return fetchRequest;
-}
-
--(NSFetchedResultsController*) getChannelBaseFrcForEntityName:(NSString*)entity {
-    NSFetchRequest *fetchRequest = [self getChannelBaseFetchRequestForEntityName:entity locationId:0];
-
-    NSFetchedResultsController *frc = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:self.managedObjectContext sectionNameKeyPath:@"location.sortOrderCaption" cacheName:nil];
-    NSError *error;
-    [frc performFetch:&error];
-    if ( error ) {
-        NSLog(@"%@", error);
-    }
-    
-    return frc;
-}
-
--(NSFetchedResultsController*) getChannelFrc {
-    return [self getChannelBaseFrcForEntityName:@"SAChannel"];
-}
 
 -(NSUInteger) getChannelCount {
     return [self getCountByPredicate:[NSPredicate predicateWithFormat:@"func > 0 AND visible > 0"] entityName:@"SAChannel"];
@@ -393,10 +348,6 @@ again:
 -(SAChannelGroup*) fetchChannelGroupById:(int)remote_id {
     return [self fetchItemByPredicate:[NSPredicate predicateWithFormat:@"remote_id = %i", remote_id] entityName:@"SAChannelGroup"];
 };
-
--(NSFetchedResultsController*) getChannelGroupFrc {
-    return [self getChannelBaseFrcForEntityName:@"SAChannelGroup"];
-}
 
 #pragma mark Color List
 

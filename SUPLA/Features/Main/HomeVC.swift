@@ -129,6 +129,12 @@ class HomeVC : BaseViewControllerVM<HomeViewState, HomeViewEvent, HomeViewModel>
         
         suplaTabBarController.viewControllers = [channelListVC, groupListVC, sceneListVC]
         self.view.addSubview(suplaTabBarController.view)
+        
+        if #available(iOS 11.0, *) {
+            suplaTabBarController.view.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
+        } else {
+            suplaTabBarController.view.topAnchor.constraint(equalTo: topLayoutGuide.topAnchor).isActive = true
+        }
     }
     
     // MARK: Notifications setup

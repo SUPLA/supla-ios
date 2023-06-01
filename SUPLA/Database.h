@@ -63,14 +63,11 @@ typedef NS_ENUM(NSUInteger, GroupBy) {
 - (void)saveContext;
 
 -(_SALocation*) fetchLocationById:(int)location_id;
--(NSArray*) fetchVisibleLocations;
 -(_SALocation*) newLocation;
 
 -(SAChannel*) fetchChannelById:(int)channel_id;
--(NSFetchedResultsController*) getChannelFrc;
 -(NSUInteger) getChannelCount;
 -(SAChannelGroup*) fetchChannelGroupById:(int)remote_id;
--(NSFetchedResultsController*) getChannelGroupFrc;
 -(SAColorListItem *) getColorListItemForRemoteId:(int)remote_id andIndex:(int)idx forGroup:(BOOL)group;
 -(void) updateColorListItem:(SAColorListItem *)item;
 -(SAElectricityMeasurementItem*) newElectricityMeasurementItemWithManagedObjectContext:(BOOL)moc;

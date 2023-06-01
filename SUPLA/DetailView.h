@@ -18,7 +18,7 @@
 
 #import <UIKit/UIKit.h>
 #import "SAChannel+CoreDataClass.h"
-#import "MainVC.h"
+#import "SARestApiClientTask.h"
 
 @interface SADetailView : UIView 
 
@@ -34,7 +34,6 @@
 - (void)handlePan:(UIPanGestureRecognizer *)gr;
 
 @property (weak, nonatomic) SAChannelBase  *channelBase;
-@property (weak, nonatomic) SAMainView *main_view;
 @property (weak, nonatomic) UIViewController *viewController;
 @property (nonatomic) BOOL initialized;
 @end
