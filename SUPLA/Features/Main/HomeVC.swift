@@ -164,7 +164,9 @@ class HomeVC : BaseViewControllerVM<HomeViewState, HomeViewEvent, HomeViewModel>
     }
     
     private func getNotificationHeight() -> CGFloat {
-        if #available(iOS 11, *) {
+        if #available(iOS 11, *),
+            let keyWindow = UIApplication.shared.keyWindow,
+            keyWindow.safeAreaInsets.bottom > 0 {
             return 140
         } else {
             return 110

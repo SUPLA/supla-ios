@@ -53,7 +53,7 @@ class HomeViewModel: BaseViewModel<HomeViewState, HomeViewEvent> {
         }
         
         let event: SAEvent? = SAEvent.notification(toEvent: notification)
-        if (event == nil) {
+        if (event == nil || event?.owner == true) {
             return
         }
         
