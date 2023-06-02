@@ -69,89 +69,110 @@
     }
 }
 
+- (void) setText: (NSString*) text inField: (UILabel*) field {
+    if (self.channelBase.isOnline) {
+        [field setText: text];
+    } else {
+        [field setText:@"---"];
+    }
+}
+
 - (void)setFrequency:(double)freq visible:(BOOL)visible {
     [self setLabel:self.lFrequency Visible:visible withConstraint:self.cFrequencyTop];
     [self setLabel:self.lFrequencyValue Visible:visible withConstraint:self.cFrequencyValueTop];
     
-    [self.lFrequencyValue setText:[_formatter doubleToString:freq withUnit:@"Hz" maxPrecision:2]];
+    [self setText:[_formatter doubleToString:freq withUnit:@"Hz" maxPrecision:2] inField: self.lFrequencyValue];
 }
 
 - (void)setVoltage:(double)voltage visible:(BOOL)visible {
     [self setLabel:self.lVoltage Visible:visible withConstraint:self.cVoltageTop];
     [self setLabel:self.lVoltageValue Visible:visible withConstraint:self.cVoltageValueTop];
-    [self.lVoltageValue setText:[_formatter doubleToString:voltage withUnit:@"V" maxPrecision:2]];
+    
+    [self setText:[_formatter doubleToString:voltage withUnit:@"V" maxPrecision:2] inField: self.lVoltageValue];
 }
 
 - (void)setCurrent:(double)current visible:(BOOL)visible over65A:(BOOL)over65A {
     [self setLabel:self.lCurrent Visible:visible withConstraint:self.cCurrentTop];
     [self setLabel:self.lCurrentValue Visible:visible withConstraint:self.cCurrentValueTop];
-    [self.lCurrentValue setText:[_formatter doubleToString:current withUnit:@"A" maxPrecision:3]];
+    
+    [self setText:[_formatter doubleToString:current withUnit:@"A" maxPrecision:3] inField: self.lCurrentValue];
 }
 
 - (void)setActivePower:(double)power visible:(BOOL)visible {
     [self setLabel:self.lActivePower Visible:visible withConstraint:self.cActivePowerTop];
     [self setLabel:self.lActivePowerValue Visible:visible withConstraint:self.cActivePowerValueTop];
-    [self.lActivePowerValue setText:[_formatter doubleToString:power withUnit:@"W" maxPrecision:5]];
+    
+    [self setText:[_formatter doubleToString:power withUnit:@"W" maxPrecision:5] inField: self.lActivePowerValue];
 }
 
 - (void)setReactivePower:(double)power visible:(BOOL)visible {
     [self setLabel:self.lReactivePower Visible:visible withConstraint:self.cReactivePowerTop];
     [self setLabel:self.lReactivePowerValue Visible:visible withConstraint:self.cReactivePowerValueTop];
-    [self.lReactivePowerValue setText:[_formatter doubleToString:power withUnit:@"var" maxPrecision:5]];
+    
+    [self setText:[_formatter doubleToString:power withUnit:@"var" maxPrecision:5] inField: self.lReactivePowerValue];
 }
 
 - (void)setApparentPower:(double)power visible:(BOOL)visible {
     [self setLabel:self.lApparentPower Visible:visible withConstraint:self.cApparentPowerTop];
     [self setLabel:self.lApparentPowerValue Visible:visible withConstraint:self.cApparentPowerValueTop];
-    [self.lApparentPowerValue setText:[_formatter doubleToString:power withUnit:@"VA" maxPrecision:5]];
+    
+    [self setText:[_formatter doubleToString:power withUnit:@"VA" maxPrecision:5] inField: self.lApparentPowerValue];
 }
 
 - (void)setPowerFactor:(double)factor visible:(BOOL)visible {
     [self setLabel:self.lPowerFactor Visible:visible withConstraint:self.cPowerFactorTop];
     [self setLabel:self.lPowerFactorValue Visible:visible withConstraint:self.cPowerFactorValueTop];
-    [self.lPowerFactorValue setText:[_formatter doubleToString:factor withUnit:nil maxPrecision:3]];
+    
+    [self setText:[_formatter doubleToString:factor withUnit:nil maxPrecision:3] inField: self.lPowerFactorValue];
 }
 
 - (void)setPhaseAngle:(double)angle visible:(BOOL)visible {
     [self setLabel:self.lPhaseAngle Visible:visible withConstraint:self.cPhaseAngleTop];
     [self setLabel:self.lPhaseAngleValue Visible:visible withConstraint:self.cPhaseAngleValueTop];
-    [self.lPhaseAngleValue setText:[_formatter doubleToString:angle withUnit:@"\u00B0" maxPrecision:2]];
+    
+    [self setText:[_formatter doubleToString:angle withUnit:@"\u00B0" maxPrecision:2] inField: self.lPhaseAngleValue];
 }
 
 - (void)setForwardActiveEnergy:(double)energy visible:(BOOL)visible {
     [self setLabel:self.lForwardActiveEnergy Visible:visible withConstraint:self.cForwardActiveEnergyTop];
     [self setLabel:self.lForwardActiveEnergyValue Visible:visible withConstraint:self.cForwardActiveEnergyValueTop];
-    [self.lForwardActiveEnergyValue setText:[_formatter doubleToString:energy withUnit:@"kWh" maxPrecision:5]];
+    
+    [self setText:[_formatter doubleToString:energy withUnit:@"kWh" maxPrecision:5] inField: self.lForwardActiveEnergyValue];
 }
 
 - (void)setReverseActiveEnergy:(double)energy visible:(BOOL)visible {
     [self setLabel:self.lReverseActiveEnergy Visible:visible withConstraint:self.cReverseActiveEnergyTop];
     [self setLabel:self.lReverseActiveEnergyValue Visible:visible withConstraint:self.cReverseActiveEnergyValueTop];
-    [self.lReverseActiveEnergyValue setText:[_formatter doubleToString:energy withUnit:@"kWh" maxPrecision:5]];
+    
+    [self setText:[_formatter doubleToString:energy withUnit:@"kWh" maxPrecision:5] inField: self.lReverseActiveEnergyValue];
 }
 
 - (void)setForwardReactiveEnergy:(double)energy visible:(BOOL)visible {
     [self setLabel:self.lForwardReactiveEnergy Visible:visible withConstraint:self.cForwardReactiveEnergyTop];
     [self setLabel:self.lForwardReactiveEnergyValue Visible:visible withConstraint:self.cForwardReactiveEnergyValueTop];
-    [self.lForwardReactiveEnergyValue setText:[_formatter doubleToString:energy withUnit:@"kvarh" maxPrecision:5]];
+    
+    [self setText:[_formatter doubleToString:energy withUnit:@"kvarh" maxPrecision:5] inField: self.lForwardReactiveEnergyValue];
 }
 
 - (void)setReverseReactiveEnergy:(double)energy visible:(BOOL)visible {
     [self setLabel:self.lReverseReactiveEnergy Visible:visible withConstraint:self.cReverseReactiveEnergyTop];
     [self setLabel:self.lReverseReactiveEnergyValue Visible:visible withConstraint:self.cReverseReactiveEnergyValueTop];
-    [self.lReverseReactiveEnergyValue setText:[_formatter doubleToString:energy withUnit:@"kvarh" maxPrecision:5]];
+    
+    [self setText:[_formatter doubleToString:energy withUnit:@"kvarh" maxPrecision:5] inField: self.lReverseReactiveEnergyValue];
 }
 
 - (void)setForwardActiveEnergyBalance:(double)energy visible:(BOOL)visible {
     [self setLabel:self.lForwardActiveEnergyBalance Visible:visible withConstraint:self.cForwardActiveEnergyBalanceTop];
     [self setLabel:self.lForwardActiveEnergyValueBalance Visible:visible withConstraint:self.cForwardActiveEnergyValueBalanceTop];
-    [self.lForwardActiveEnergyValueBalance setText:[_formatter doubleToString:energy withUnit:@"kWh" maxPrecision:5]];
+    
+    [self setText:[_formatter doubleToString:energy withUnit:@"kWh" maxPrecision:5] inField: self.lForwardActiveEnergyValueBalance];
 }
 
 - (void)setReverseActiveEnergyBalance:(double)energy visible:(BOOL)visible {
     [self setLabel:self.lReverseActiveEnergyBalance Visible:visible withConstraint:self.cReverseActiveEnergyBalanceTop];
     [self setLabel:self.lReverseActiveEnergyValueBalance Visible:visible withConstraint:self.cReverseActiveEnergyValueBalanceTop];
-    [self.lReverseActiveEnergyValueBalance setText:[_formatter doubleToString:energy withUnit:@"kWh" maxPrecision:5]];
+    
+    [self setText:[_formatter doubleToString:energy withUnit:@"kWh" maxPrecision:5] inField: self.lReverseActiveEnergyValueBalance];
 }
 
 - (NSString*)totalActiveEnergyStringForValue:(double)value {
@@ -168,6 +189,7 @@
 
 - (void)updateView {
     
+    self.offlineLabel.hidden = self.channelBase.isOnline;
     self.warningIcon.channel = self.channelBase;
     unsigned int measured_values = 0;
     SAElectricityMeterExtendedValue *emev = nil;
@@ -212,28 +234,31 @@
             if (selectedPhase > 0) {
                 p = selectedPhase;
             }
+            
+            if (((SAChannel*)self.channelBase).isOnline) {
         
-            freq = [emev freqForPhase:p];
+                freq = [emev freqForPhase:p];
+                    
+                if (voltage == 0) {
+                    voltage = [emev voltegeForPhase:p];
+                }
                 
-            if (voltage == 0) {
-                voltage = [emev voltegeForPhase:p];
-            }
-            
-            if ( voltage > 0 ) {
-                btnBorderColor = [[UIColor greenColor] CGColor];
-            }
+                if ( voltage > 0 ) {
+                    btnBorderColor = [[UIColor greenColor] CGColor];
+                }
                 
-            current = [emev currentForPhase:p];
-            powerActive += [emev powerActiveForPhase:p];
-            powerReactive += [emev powerReactiveForPhase:p];
-            powerApparent += [emev powerApparentForPhase:p];
-            powerFactor = [emev powerFactorForPhase:p];
-            phaseAngle = [emev phaseAngleForPhase:p];
-            
-            totalFAE += [emev totalForwardActiveEnergyForPhase:p];
-            totalRAE += [emev totalReverseActiveEnergyForPhase:p];
-            totalFRE += [emev totalForwardReactiveEnergyForPhase:p];
-            totalRRE += [emev totalReverseReactiveEnergyForPhase:p];
+                current = [emev currentForPhase:p];
+                powerActive += [emev powerActiveForPhase:p];
+                powerReactive += [emev powerReactiveForPhase:p];
+                powerApparent += [emev powerApparentForPhase:p];
+                powerFactor = [emev powerFactorForPhase:p];
+                phaseAngle = [emev phaseAngleForPhase:p];
+                
+                totalFAE += [emev totalForwardActiveEnergyForPhase:p];
+                totalRAE += [emev totalReverseActiveEnergyForPhase:p];
+                totalFRE += [emev totalForwardReactiveEnergyForPhase:p];
+                totalRRE += [emev totalReverseReactiveEnergyForPhase:p];
+            }
             
             if (selectedPhase > 0) {
                 break;

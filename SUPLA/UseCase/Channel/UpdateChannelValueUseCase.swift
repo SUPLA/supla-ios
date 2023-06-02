@@ -35,7 +35,7 @@ final class UpdateChannelValueUseCase {
                 .getChannelValue(channelRemoteId: Int(suplaChannelValue.Id))
                 .ifEmpty(switchTo: createChannelValue(channelRemoteId: suplaChannelValue.Id))
                 .map { value in
-                    if (value.setValueSwift(suplaChannelValue.value)) {
+                    if (suplaChannelValue.online != 0 && value.setValueSwift(suplaChannelValue.value)) {
                         changed = true
                     }
                     if (value.setOnlineState(suplaChannelValue.online)) {
