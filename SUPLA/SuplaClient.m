@@ -1386,6 +1386,14 @@ void sasuplaclient_scene_state_update(void *_suplaclient,
     }
 }
 
+- (void) setSceneCaption:(int)sceneId caption:(NSString*)caption {
+    @synchronized(self) {
+        if ( _sclient ) {
+            supla_client_set_scene_caption(_sclient, sceneId, [caption UTF8String]);
+        }
+    }
+}
+
 - (void) setChannelGroupCaption:(int)channelGroupId caption:(NSString*)caption {
     @synchronized(self) {
         if ( _sclient ) {

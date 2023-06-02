@@ -20,6 +20,8 @@ import Foundation
 
 class GroupListVC : ChannelBaseTableViewController<GroupListViewState, GroupListViewEvent, GroupListViewModel> {
     
+    private var captionEditor: GroupCaptionEditor? = nil
+    
     convenience init() {
         self.init(nibName: nil, bundle: nil)
         viewModel = GroupListViewModel()
@@ -31,4 +33,34 @@ class GroupListVC : ChannelBaseTableViewController<GroupListViewState, GroupList
             navigator?.navigateToLegacyDetail(legacyDetailType: legacyDetailType, channelBase: channelBase)
         }
     }
+    
+    override func configureCell(channelBase: SAChannelBase, indexPath: IndexPath) -> UITableViewCell {
+        let cell = super.configureCell(channelBase: channelBase, indexPath: indexPath) as! SAChannelCell
+        cell.delegate = self
+        
+        return cell
+    }
+    
+    override func captionEditorDidFinish(_ editor: SACaptionEditor) {
+        if (editor == captionEditor) {
+            captionEditor = nil
+            tableView.reloadData()
+        } else {
+            super.captionEditorDidFinish(editor)
+        }
+    }
 }
+
+extension GroupListVC: SAChannelCellDelegate {
+    func channelButtonClicked(_ cell: SAChannelCell!) {
+    }
+    
+    func channelCaptionLongPressed(_ remoteId: Int32) {
+        vibrationService.vibrate()
+        
+        captionEditor = GroupCaptionEditor()
+        captionEditor?.delegate = self
+        captionEditor?.editCaption(withRecordId: remoteId)
+    }
+}
+

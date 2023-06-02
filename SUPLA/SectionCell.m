@@ -17,7 +17,6 @@
  */
 
 #import "SectionCell.h"
-#import "SALocationCaptionEditor.h"
 
 @implementation SASectionCell {
     UITapGestureRecognizer *_tap;
@@ -55,7 +54,7 @@
 
 - (void)onLongPress:(UILongPressGestureRecognizer *)longPressGR {
     if (self.captionEditable && self.locationId && longPressGR.state == UIGestureRecognizerStateBegan) {
-        [[SALocationCaptionEditor globalInstance] editCaptionWithRecordId:self.locationId];
+        [self.delegate sectionCaptionLongPressed: self.locationId];
     }
 }
 @end

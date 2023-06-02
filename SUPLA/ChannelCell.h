@@ -33,8 +33,9 @@
 @end
 
 @class SAChannelCell;
-@protocol SAChannelCellDelegate
+@protocol SAChannelCellDelegate <MGSwipeTableCellDelegate>
 - (void)channelButtonClicked: (SAChannelCell*)cell;
+- (void)channelCaptionLongPressed: (int) remoteId;
 @end
 
 @interface MGSwipeButton (SUPLA)

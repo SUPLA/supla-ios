@@ -20,8 +20,11 @@ import Foundation
 import RxDataSources
 import RxCocoa
 
-class BaseTableViewController<S : ViewState, E : ViewEvent, VM : BaseTableViewModel<S, E>>: BaseViewControllerVM<S, E, VM>, SASectionCellDelegate, UITableViewDelegate, UITableViewDragDelegate, UITableViewDropDelegate {
+class BaseTableViewController<S : ViewState, E : ViewEvent, VM : BaseTableViewModel<S, E>>: BaseViewControllerVM<S, E, VM>, SASectionCellDelegate, UITableViewDelegate, UITableViewDragDelegate, UITableViewDropDelegate, SACaptionEditorDelegate {
     
+    private var captionEditor: LocationCaptionEditor? = nil
+    
+    @Singleton<VibrationService> var vibrationService
     @Singleton<RuntimeConfig> private var runtimeConfig
     
     let cellIdForLocation = "LocationCell"
@@ -64,10 +67,6 @@ class BaseTableViewController<S : ViewState, E : ViewEvent, VM : BaseTableViewMo
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         viewModel.reloadTable()
-    }
-    
-    func sectionCellTouch(_ section: SASectionCell) {
-        viewModel.toggleLocation(remoteId: Int(section.locationId))
     }
     
     func setupTableView() {
@@ -137,6 +136,27 @@ class BaseTableViewController<S : ViewState, E : ViewEvent, VM : BaseTableViewMo
         cell.selectionStyle = .none
 
         return cell
+    }
+    
+    // MARK: SACaptionEditorDelegate
+    
+    func captionEditorDidFinish(_ editor: SACaptionEditor) {
+        captionEditor = nil
+        tableView.reloadData()
+    }
+    
+    // MARK: SASectionCellDelegate
+    
+    func sectionCellTouch(_ section: SASectionCell) {
+        viewModel.toggleLocation(remoteId: Int(section.locationId))
+    }
+    
+    func sectionCaptionLongPressed(_ remoteId: Int32) {
+        vibrationService.vibrate()
+        
+        captionEditor = LocationCaptionEditor()
+        captionEditor?.delegate = self
+        captionEditor?.editCaption(withRecordId: remoteId)
     }
     
     // MARK: UITableViewDelegate

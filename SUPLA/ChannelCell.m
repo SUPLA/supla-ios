@@ -24,7 +24,6 @@
 #import "SAChannelGroup+CoreDataClass.h"
 #import "SAChannelStateExtendedValue.h"
 #import "SAChannelStatePopup.h"
-#import "SAChannelCaptionEditor.h"
 #import "SuplaApp.h"
 #import "proto.h"
 #import "UIColor+SUPLA.h"
@@ -488,8 +487,9 @@
 
 - (void)onLongPress:(UILongPressGestureRecognizer *)longPressGR {
     if (self.captionEditable && self.channelBase != nil && longPressGR.state == UIGestureRecognizerStateBegan) {
-        [self vibrate];
-        [[SAChannelCaptionEditor globalInstance] editCaptionWithRecordId:self.channelBase.remote_id];
+        if([self.delegate conformsToProtocol: @protocol(SAChannelCellDelegate)]) {
+            [((id<SAChannelCellDelegate>)self.delegate) channelCaptionLongPressed: self.channelBase.remote_id];
+        }
     }
 }
 

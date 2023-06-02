@@ -24,6 +24,7 @@ import RxDataSources
 class SceneListVC : BaseTableViewController<SceneListViewState, SceneListViewEvent, SceneListVM> {
     
     static let cellIdForScene = "SceneCell"
+    private var captionEditor: SceneCaptionEditor? = nil
     
     convenience init() {
         self.init(nibName: nil, bundle: nil)
@@ -41,11 +42,30 @@ class SceneListVC : BaseTableViewController<SceneListViewState, SceneListViewEve
             for: indexPath
         ) as! SceneCell
         
-        cell.delegate = nil
+        cell.delegate = self
         cell.scaleFactor = self.scaleFactor
         cell.sceneData = scene
         cell.selectionStyle = .none
         
         return cell
+    }
+    
+    override func captionEditorDidFinish(_ editor: SACaptionEditor) {
+        if (editor == captionEditor) {
+            captionEditor = nil
+            tableView.reloadData()
+        } else {
+            super.captionEditorDidFinish(editor)
+        }
+    }
+}
+
+extension SceneListVC: SceneCellDelegate {
+    func onCaptionLongPress(_ scene: SAScene) {
+        vibrationService.vibrate()
+        
+        captionEditor = SceneCaptionEditor()
+        captionEditor?.delegate = self
+        captionEditor?.editCaption(withRecordId: scene.sceneId)
     }
 }
