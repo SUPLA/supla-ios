@@ -28,10 +28,10 @@ class ProfileMigrator: NSObject {
     
     @objc
     func migrateProfileFromUserDefaults(_ ctx: NSManagedObjectContext) throws {
-        let pm = MultiAccountProfileManager()
         var settings = settings
         
-        let activeProfile = pm.getAllProfiles().first(where: { $0.isActive })
+        let profiles = try! ctx.fetch(AuthProfileItem.fetchRequest())
+        let activeProfile = profiles.first(where: { $0.isActive })
         
         if (activeProfile != nil) {
             // update from latest version, no migration needed
@@ -41,7 +41,8 @@ class ProfileMigrator: NSObject {
             return
         }
         
-        let profile = pm.create()
+        let profile = NSEntityDescription.insertNewObject(forEntityName: "AuthProfileItem", into: ctx) as! AuthProfileItem
+        profile.authInfo = AuthInfo.empty()
         if profile.authInfo?.isAuthDataComplete == false {
             // Obtain current authentication settings
             let accessID = _defs.integer(forKey: "access_id")
@@ -71,9 +72,13 @@ class ProfileMigrator: NSObject {
                                         accessID: accessID,
                                         accessIDpwd: accessIDpwd,
                                         preferredProtocolVersion: prefProtoVersion)
+            profile.isActive = true
             
-            if (pm.update(profile)) {
+            do {
+                try ctx.save()
                 settings.anyAccountRegistered = true
+            } catch {
+                
             }
         }
         
@@ -93,8 +98,12 @@ class ProfileMigrator: NSObject {
     
     private func updateRelationships(profile: AuthProfileItem,
                                      in ctx: NSManagedObjectContext) throws {
-        let entities = [ "SAChannelBase", "SAChannelValueBase",
-                         "SAMeasurementItem", "SAUserIcon", "SALocation" ]
+        let entities = [ "SALocation", "SAChannel", "SAChannelValue",
+                         "SAChannelExtendedValue", "SAChannelGroup",
+                         "SAElectricityMeasurementItem", "SAImpulseCounterMeasurementItem",
+                         "SATemperatureMeasurementItem", "SATempHumidityMeasurementItem",
+                         "SAThermostatMeasurementItem", "SAScene", "SAChannelGroupRelation",
+                         "SAUserIcon", "SAColorListItem" ]
         
         for name in entities {
             let fr = NSFetchRequest<NSManagedObject>(entityName: name)

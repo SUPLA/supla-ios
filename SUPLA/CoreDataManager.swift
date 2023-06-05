@@ -22,11 +22,16 @@ import CoreData
 @objc
 class CoreDataManager: NSObject {
     
+    private let storeType: String
+    
     @objc
     lazy var persistntContainer: NSPersistentContainer! = {
         let container = NSPersistentContainer(name: "SUPLA")
-        let path = SAApp.applicationDocumentsDirectory().appendingPathComponent("SUPLA_DB14.sqlite")
-        container.persistentStoreDescriptions = [NSPersistentStoreDescription(url: path)]
+        let description = container.persistentStoreDescriptions.first
+        description?.url = SAApp.applicationDocumentsDirectory().appendingPathComponent("SUPLA_DB14.sqlite")
+        description?.shouldInferMappingModelAutomatically = false
+        description?.shouldMigrateStoreAutomatically = false
+        description?.type = storeType
         
         return container
     }()
@@ -49,6 +54,10 @@ class CoreDataManager: NSObject {
     
     @objc
     static let shared = CoreDataManager()
+    
+    init(storeType: String = NSSQLiteStoreType) {
+        self.storeType = storeType
+    }
     
     @objc func setup(completion: @escaping () -> Void) {
         loadPersistentStore {
