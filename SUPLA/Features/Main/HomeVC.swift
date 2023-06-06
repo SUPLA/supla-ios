@@ -57,7 +57,7 @@ class HomeVC : BaseViewControllerVM<HomeViewState, HomeViewEvent, HomeViewModel>
         super.viewWillAppear(animated)
         viewModel.onViewAppear()
         
-        runIconsDownloadTask()
+        //runIconsDownloadTask()
         SARateApp().showDialog(withDelay: 1)
     }
     

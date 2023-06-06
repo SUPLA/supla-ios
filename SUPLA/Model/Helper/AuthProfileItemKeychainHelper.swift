@@ -15,50 +15,15 @@
  along with this program; if not, write to the Free Software
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
+
 import Foundation
-import CoreData
 
-typealias ProfileID = NSManagedObjectID
-
-extension AuthProfileItem {
-
-    @objc
-    var clientGUID: Data {
-        get {
-          return getSecureRandom(size: Int(SUPLA_GUID_SIZE),
-                                   key: "guid",
-                                   id: objectID)
-        }
-
-        set {
-            setSecureRandom(newValue, key: "guid", id: objectID)
-        }
-    }
-
-    @objc
-    var authKey: Data {
-        get {
-          return getSecureRandom(size: Int(SUPLA_AUTHKEY_SIZE),
-                                   key: "key",
-                                   id: objectID)
-        }
-
-        set {
-            setSecureRandom(newValue, key: "key", id: objectID)
-        }
-    }
+class AuthProfileItemKeychainHelper {
     
-    var displayName: String {
-        let rawName = name ?? ""
-        if rawName.count == 0 {
-            return Strings.Profiles.defaultProfileName
-        } else {
-            return rawName
-        }
-    }
-
-    private func getSecureRandom(size: Int, key: String,
-                                 id: NSManagedObjectID) -> Data {
+    static let guidKey = "guid"
+    static let authKey = "key"
+    
+    static func getSecureRandom(size: Int, key: String, id: NSManagedObjectID) -> Data {
         let keychainKey = keychainKey(key: key, id: id)
         if let bytes = bytes(for: keychainKey, size: size) {
             return bytes
@@ -72,14 +37,12 @@ extension AuthProfileItem {
     }
 
 
-    private func setSecureRandom(_ bytes: Data,
-                                 key: String,
-                                 id: NSManagedObjectID) {
+    static func setSecureRandom(_ bytes: Data, key: String, id: NSManagedObjectID) {
         let keychainKey = keychainKey(key: key, id: id)
         setBytes(bytes, for: keychainKey)
     }
 
-    private func bytes(for key: String, size: Int) -> Data? {
+    private static func bytes(for key: String, size: Int) -> Data? {
         if let data = SAKeychain.getObjectWithKey(key) as? Data,
            data.count == size {
             return data
@@ -88,13 +51,13 @@ extension AuthProfileItem {
         }
     }
 
-    private func setBytes(_ bytes: Data, for key: String) {
+    private static func setBytes(_ bytes: Data, for key: String) {
         SAKeychain.deleteObject(withKey: key)
         SAKeychain.add(bytes, withKey: key)
     }
 
 
-    private func keychainKey(key: String, id: NSManagedObjectID) -> String {
+    private static func keychainKey(key: String, id: NSManagedObjectID) -> String {
         let idhash = id.uriRepresentation().dataRepresentation
           .base64EncodedString()
          return "\(key)_\(idhash)"

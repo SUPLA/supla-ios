@@ -649,6 +649,10 @@
 		A553862B29E0202700B5CF3F /* Singleton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A553862A29E0202700B5CF3F /* Singleton.swift */; };
 		A553862D29E021AE00B5CF3F /* DiContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A553862C29E021AE00B5CF3F /* DiContainer.swift */; };
 		A553862F29E0297400B5CF3F /* Inject.swift in Sources */ = {isa = PBXBuildFile; fileRef = A553862E29E0297400B5CF3F /* Inject.swift */; };
+		A56F15EF2A2E68BA00C2E21B /* Migration11to12ModelMapping.xcmappingmodel in Sources */ = {isa = PBXBuildFile; fileRef = A56F15EE2A2E68BA00C2E21B /* Migration11to12ModelMapping.xcmappingmodel */; };
+		A56F15F12A2E698400C2E21B /* DeleteEntitiesMigrationPolicy.swift in Sources */ = {isa = PBXBuildFile; fileRef = A56F15F02A2E698400C2E21B /* DeleteEntitiesMigrationPolicy.swift */; };
+		A56F15F52A2E6E3C00C2E21B /* Migration12to13ModelMapping.xcmappingmodel in Sources */ = {isa = PBXBuildFile; fileRef = A56F15F42A2E6E3C00C2E21B /* Migration12to13ModelMapping.xcmappingmodel */; };
+		A56F15F72A2E721F00C2E21B /* ActiveAccount12to13MigrationPolicy.swift in Sources */ = {isa = PBXBuildFile; fileRef = A56F15F62A2E721F00C2E21B /* ActiveAccount12to13MigrationPolicy.swift */; };
 		A573B38C29DE9F5600EBAFC4 /* BaseViewControllerExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A573B38B29DE9F5600EBAFC4 /* BaseViewControllerExtensions.swift */; };
 		A573B39229DEB25900EBAFC4 /* ViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = A573B39129DEB25900EBAFC4 /* ViewState.swift */; };
 		A5756F8229DC102800C32A1B /* AccountRemovalVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5756F8129DC102800C32A1B /* AccountRemovalVC.swift */; };
@@ -664,6 +668,7 @@
 		A57785C129E80C16001C631E /* SuplaClientProviderMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = A57785C029E80C16001C631E /* SuplaClientProviderMock.swift */; };
 		A57785C329E80CF7001C631E /* SuplaAppWrapperMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = A57785C229E80CF7001C631E /* SuplaAppWrapperMock.swift */; };
 		A597271129DAEA480090A044 /* SAScene+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = A597271029DAEA480090A044 /* SAScene+Ext.swift */; };
+		A59AB89A2A2F6D7600D91F1F /* AuthProfileItemKeychainHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = A59AB8992A2F6D7600D91F1F /* AuthProfileItemKeychainHelper.swift */; };
 		A5A1C0A829F2AAFA0083818D /* VibrationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5A1C0A729F2AAFA0083818D /* VibrationService.swift */; };
 		A5F14B7229DED06400682FA6 /* AccountRemovalVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F14B7129DED06400682FA6 /* AccountRemovalVM.swift */; };
 		A5F14B7429DED41000682FA6 /* BaseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F14B7329DED41000682FA6 /* BaseViewModel.swift */; };
@@ -737,6 +742,13 @@
 		A5F29BF32A2A197F00ED700A /* GroupCaptionEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F29BF22A2A197F00ED700A /* GroupCaptionEditor.swift */; };
 		A5F29BF52A2A1E1200ED700A /* ChannelCaptionEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F29BF42A2A1E1200ED700A /* ChannelCaptionEditor.swift */; };
 		A5F29BF72A2A29BE00ED700A /* LocationCaptionEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F29BF62A2A29BE00ED700A /* LocationCaptionEditor.swift */; };
+		A5F29BFC2A2DC16100ED700A /* CoreDataMigration.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F29BFB2A2DC16100ED700A /* CoreDataMigration.swift */; };
+		A5F29BFE2A2DC19500ED700A /* CoreDataMigrationVersion.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F29BFD2A2DC19500ED700A /* CoreDataMigrationVersion.swift */; };
+		A5F29C002A2DC50000ED700A /* CoreDataMigrationStep.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F29BFF2A2DC50000ED700A /* CoreDataMigrationStep.swift */; };
+		A5F29C022A2DC56600ED700A /* NSPersistentStoreCoordinator+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F29C012A2DC56600ED700A /* NSPersistentStoreCoordinator+Ext.swift */; };
+		A5F29C042A2DC5D500ED700A /* NSManagedObjectModel+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F29C032A2DC5D500ED700A /* NSManagedObjectModel+Ext.swift */; };
+		A5F8361D2A2E004C00E5CA71 /* Migration10to11ModelMapping.xcmappingmodel in Sources */ = {isa = PBXBuildFile; fileRef = A5F8361C2A2E004C00E5CA71 /* Migration10to11ModelMapping.xcmappingmodel */; };
+		A5F8361F2A2E008C00E5CA71 /* AuthProfileItemInitialMigrationPolicy.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F8361E2A2E008C00E5CA71 /* AuthProfileItemInitialMigrationPolicy.swift */; };
 		AE1874C2290C581D00437146 /* SceneCaptionEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE1874C1290C581D00437146 /* SceneCaptionEditor.swift */; };
 		AE348E66277F348700F363A3 /* SAMoveTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = AE348E65277F348700F363A3 /* SAMoveTableView.m */; };
 		AE3DECE22761DB32005923E4 /* AccountCreationNavigationCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE3DECE02761DB32005923E4 /* AccountCreationNavigationCoordinator.swift */; };
@@ -1793,6 +1805,10 @@
 		A553862A29E0202700B5CF3F /* Singleton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Singleton.swift; sourceTree = "<group>"; };
 		A553862C29E021AE00B5CF3F /* DiContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiContainer.swift; sourceTree = "<group>"; };
 		A553862E29E0297400B5CF3F /* Inject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Inject.swift; sourceTree = "<group>"; };
+		A56F15EE2A2E68BA00C2E21B /* Migration11to12ModelMapping.xcmappingmodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcmappingmodel; path = Migration11to12ModelMapping.xcmappingmodel; sourceTree = "<group>"; };
+		A56F15F02A2E698400C2E21B /* DeleteEntitiesMigrationPolicy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteEntitiesMigrationPolicy.swift; sourceTree = "<group>"; };
+		A56F15F42A2E6E3C00C2E21B /* Migration12to13ModelMapping.xcmappingmodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcmappingmodel; path = Migration12to13ModelMapping.xcmappingmodel; sourceTree = "<group>"; };
+		A56F15F62A2E721F00C2E21B /* ActiveAccount12to13MigrationPolicy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActiveAccount12to13MigrationPolicy.swift; sourceTree = "<group>"; };
 		A573B38B29DE9F5600EBAFC4 /* BaseViewControllerExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewControllerExtensions.swift; sourceTree = "<group>"; };
 		A573B39129DEB25900EBAFC4 /* ViewState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewState.swift; sourceTree = "<group>"; };
 		A5756F8129DC102800C32A1B /* AccountRemovalVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountRemovalVC.swift; sourceTree = "<group>"; };
@@ -1808,6 +1824,7 @@
 		A57785C029E80C16001C631E /* SuplaClientProviderMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuplaClientProviderMock.swift; sourceTree = "<group>"; };
 		A57785C229E80CF7001C631E /* SuplaAppWrapperMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuplaAppWrapperMock.swift; sourceTree = "<group>"; };
 		A597271029DAEA480090A044 /* SAScene+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SAScene+Ext.swift"; sourceTree = "<group>"; };
+		A59AB8992A2F6D7600D91F1F /* AuthProfileItemKeychainHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthProfileItemKeychainHelper.swift; sourceTree = "<group>"; };
 		A5A1C0A729F2AAFA0083818D /* VibrationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VibrationService.swift; sourceTree = "<group>"; };
 		A5F14B7129DED06400682FA6 /* AccountRemovalVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountRemovalVM.swift; sourceTree = "<group>"; };
 		A5F14B7329DED41000682FA6 /* BaseViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewModel.swift; sourceTree = "<group>"; };
@@ -1881,6 +1898,13 @@
 		A5F29BF22A2A197F00ED700A /* GroupCaptionEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupCaptionEditor.swift; sourceTree = "<group>"; };
 		A5F29BF42A2A1E1200ED700A /* ChannelCaptionEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelCaptionEditor.swift; sourceTree = "<group>"; };
 		A5F29BF62A2A29BE00ED700A /* LocationCaptionEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationCaptionEditor.swift; sourceTree = "<group>"; };
+		A5F29BFB2A2DC16100ED700A /* CoreDataMigration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataMigration.swift; sourceTree = "<group>"; };
+		A5F29BFD2A2DC19500ED700A /* CoreDataMigrationVersion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataMigrationVersion.swift; sourceTree = "<group>"; };
+		A5F29BFF2A2DC50000ED700A /* CoreDataMigrationStep.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataMigrationStep.swift; sourceTree = "<group>"; };
+		A5F29C012A2DC56600ED700A /* NSPersistentStoreCoordinator+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSPersistentStoreCoordinator+Ext.swift"; sourceTree = "<group>"; };
+		A5F29C032A2DC5D500ED700A /* NSManagedObjectModel+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSManagedObjectModel+Ext.swift"; sourceTree = "<group>"; };
+		A5F8361C2A2E004C00E5CA71 /* Migration10to11ModelMapping.xcmappingmodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcmappingmodel; path = Migration10to11ModelMapping.xcmappingmodel; sourceTree = "<group>"; };
+		A5F8361E2A2E008C00E5CA71 /* AuthProfileItemInitialMigrationPolicy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthProfileItemInitialMigrationPolicy.swift; sourceTree = "<group>"; };
 		AE1874C1290C581D00437146 /* SceneCaptionEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneCaptionEditor.swift; sourceTree = "<group>"; };
 		AE348E64277F348700F363A3 /* SAMoveTableView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SAMoveTableView.h; sourceTree = "<group>"; };
 		AE348E65277F348700F363A3 /* SAMoveTableView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SAMoveTableView.m; sourceTree = "<group>"; };
@@ -2340,6 +2364,7 @@
 		401CA1BB1BA067DB00117AF4 /* SUPLA */ = {
 			isa = PBXGroup;
 			children = (
+				A59AB8962A2F6D3900D91F1F /* Model */,
 				A5F29B842A1F95B100ED700A /* UseCase */,
 				A5F29B7C2A1E36B300ED700A /* Repositories */,
 				A573B39029DEB24400EBAFC4 /* Core */,
@@ -3077,6 +3102,7 @@
 		A573B39029DEB24400EBAFC4 /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				A5F29BF82A2DC11E00ED700A /* CoreData */,
 				A5F29BC72A25D49700ED700A /* Legacy */,
 				A5F29BA42A248EC100ED700A /* Events */,
 				A5F29B812A1F8D7A00ED700A /* Extensions */,
@@ -3147,6 +3173,52 @@
 				A57785C229E80CF7001C631E /* SuplaAppWrapperMock.swift */,
 			);
 			path = Mocks;
+			sourceTree = "<group>";
+		};
+		A59AB8962A2F6D3900D91F1F /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				A59AB8982A2F6D5600D91F1F /* Helper */,
+				A59AB8972A2F6D4000D91F1F /* CoreData */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		A59AB8972A2F6D4000D91F1F /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				6E8004D228493463009A917A /* AuthProfileItem.swift */,
+				AECB1BEA2711CB67001A9714 /* AuthInfo.swift */,
+			);
+			path = CoreData;
+			sourceTree = "<group>";
+		};
+		A59AB8982A2F6D5600D91F1F /* Helper */ = {
+			isa = PBXGroup;
+			children = (
+				A59AB8992A2F6D7600D91F1F /* AuthProfileItemKeychainHelper.swift */,
+			);
+			path = Helper;
+			sourceTree = "<group>";
+		};
+		A5A184B22A2DD0A20063FD2B /* Mappings */ = {
+			isa = PBXGroup;
+			children = (
+				A5F8361C2A2E004C00E5CA71 /* Migration10to11ModelMapping.xcmappingmodel */,
+				A56F15EE2A2E68BA00C2E21B /* Migration11to12ModelMapping.xcmappingmodel */,
+				A56F15F42A2E6E3C00C2E21B /* Migration12to13ModelMapping.xcmappingmodel */,
+			);
+			path = Mappings;
+			sourceTree = "<group>";
+		};
+		A5A184B42A2DD0BE0063FD2B /* Policies */ = {
+			isa = PBXGroup;
+			children = (
+				A5F8361E2A2E008C00E5CA71 /* AuthProfileItemInitialMigrationPolicy.swift */,
+				A56F15F02A2E698400C2E21B /* DeleteEntitiesMigrationPolicy.swift */,
+				A56F15F62A2E721F00C2E21B /* ActiveAccount12to13MigrationPolicy.swift */,
+			);
+			path = Policies;
 			sourceTree = "<group>";
 		};
 		A5F14B7729DED97400682FA6 /* UI */ = {
@@ -3260,6 +3332,8 @@
 				A5F29B8A2A209EC900ED700A /* NSFetchRequest+Ext.swift */,
 				A5F29BA22A234BFA00ED700A /* ObservableType+Ext.swift */,
 				A5F29BEE2A287C6800ED700A /* SAChannelBase+Ext.swift */,
+				A5F29C012A2DC56600ED700A /* NSPersistentStoreCoordinator+Ext.swift */,
+				A5F29C032A2DC5D500ED700A /* NSManagedObjectModel+Ext.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -3380,6 +3454,34 @@
 			path = Detail;
 			sourceTree = "<group>";
 		};
+		A5F29BF82A2DC11E00ED700A /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				A5F29BFA2A2DC15100ED700A /* Migration */,
+				A5F29BF92A2DC12400ED700A /* Model */,
+			);
+			path = CoreData;
+			sourceTree = "<group>";
+		};
+		A5F29BF92A2DC12400ED700A /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		A5F29BFA2A2DC15100ED700A /* Migration */ = {
+			isa = PBXGroup;
+			children = (
+				A5A184B22A2DD0A20063FD2B /* Mappings */,
+				A5A184B42A2DD0BE0063FD2B /* Policies */,
+				A5F29BFB2A2DC16100ED700A /* CoreDataMigration.swift */,
+				A5F29BFD2A2DC19500ED700A /* CoreDataMigrationVersion.swift */,
+				A5F29BFF2A2DC50000ED700A /* CoreDataMigrationStep.swift */,
+			);
+			path = Migration;
+			sourceTree = "<group>";
+		};
 		AE5A60E4270E2A4100F2B780 /* Cfg */ = {
 			isa = PBXGroup;
 			children = (
@@ -3451,12 +3553,10 @@
 		AEED1FCF2737F39100DE6289 /* profile */ = {
 			isa = PBXGroup;
 			children = (
-				AECB1BEA2711CB67001A9714 /* AuthInfo.swift */,
 				AEED1FD02737F3BE00DE6289 /* ProfileManager.swift */,
 				AEED1FD32737F71C00DE6289 /* MultiAccountProfileManager.swift */,
 				AEC6B6B92753C06800A04204 /* ProfileMigrator.swift */,
 				AE74528C2827E5D400A3AFAD /* ProfileChooser.swift */,
-				6E8004D228493463009A917A /* AuthProfileItem.swift */,
 			);
 			path = profile;
 			sourceTree = "<group>";
@@ -4180,6 +4280,7 @@
 				A5F29BB62A24CAAB00ED700A /* UpdateChannelValueUseCase.swift in Sources */,
 				40C7BA8820C0492500ACEE42 /* SAChannelBase+CoreDataProperties.m in Sources */,
 				A5F29B672A1E268E00ED700A /* GroupListVC.swift in Sources */,
+				A56F15F72A2E721F00C2E21B /* ActiveAccount12to13MigrationPolicy.swift in Sources */,
 				01D6A102249BEC8C006B3757 /* SAVLCalibrationTool.m in Sources */,
 				A5F29BDE2A2737DA00ED700A /* SwapChannelPositionsUseCase.swift in Sources */,
 				404749BE20BC608B005DA345 /* _SALocation+CoreDataClass.m in Sources */,
@@ -4197,11 +4298,14 @@
 				A5F29B962A20B97B00ED700A /* CreateProfileChannelsListUseCase.swift in Sources */,
 				A5F14B7229DED06400682FA6 /* AccountRemovalVM.swift in Sources */,
 				A5756F8229DC102800C32A1B /* AccountRemovalVC.swift in Sources */,
+				A5F29C042A2DC5D500ED700A /* NSManagedObjectModel+Ext.swift in Sources */,
+				A5F8361D2A2E004C00E5CA71 /* Migration10to11ModelMapping.xcmappingmodel in Sources */,
 				AE929A87275FD5D500B75715 /* MainNavigationCoordinator.swift in Sources */,
 				019170A1233D4D5A00820BDB /* SADownloadThermostatMeasurements.m in Sources */,
 				A5F29BBE2A24DB1300ED700A /* UpdateGroupUseCase.swift in Sources */,
 				019D22F0233CC2D000F17135 /* SAPreloader.m in Sources */,
 				A5F29BB22A24C52600ED700A /* UpdateChannelUseCase.swift in Sources */,
+				A5F8361F2A2E008C00E5CA71 /* AuthProfileItemInitialMigrationPolicy.swift in Sources */,
 				40DE1A361BCD1B55004CF43B /* AboutVC.m in Sources */,
 				4017E12C1BB9CE2900570AC8 /* ChannelCell.m in Sources */,
 				011021C425CC39AC00621D41 /* SARegistrationEnabled.m in Sources */,
@@ -4253,6 +4357,7 @@
 				01D0616E22C294D90043C947 /* ElectricityMeterDetailView.m in Sources */,
 				01F8856C22E5E79100D18373 /* SAUserIcon+CoreDataClass.m in Sources */,
 				013D73B022DD105400E3515A /* SAChartFilterField.m in Sources */,
+				A5F29C022A2DC56600ED700A /* NSPersistentStoreCoordinator+Ext.swift in Sources */,
 				A5F29BAC2A24B80E00ED700A /* ChangeScenesVisibilityUseCase.swift in Sources */,
 				01B57DEC25BDA48F001F0DBC /* SAWizardVC.m in Sources */,
 				A5F29BA82A24B0FC00ED700A /* UpdateSceneStateUseCase.swift in Sources */,
@@ -4296,6 +4401,7 @@
 				AE68E73227739D8500E55DB7 /* SwipeTransition.swift in Sources */,
 				017554F622F1A62500EB58B7 /* HomePlusDetailView.m in Sources */,
 				013D1C6322CE75A3000C0784 /* SAElectricityChartHelper.m in Sources */,
+				A5F29BFC2A2DC16100ED700A /* CoreDataMigration.swift in Sources */,
 				A5F29BA12A20D6DD00ED700A /* ChannelBaseTableViewController.swift in Sources */,
 				406778551BCBF9F4008DD37F /* SectionCell.m in Sources */,
 				A5F29B582A1CB7DC00ED700A /* CoreDataManager.swift in Sources */,
@@ -4317,6 +4423,7 @@
 				A5F29BBC2A24D62300ED700A /* UpdateChannelExtendedValueUseCase.swift in Sources */,
 				012F722E22DFA0BE00E5F72E /* SABarChartDataSet.swift in Sources */,
 				A5F29B872A1F960000ED700A /* ToggleLocationUseCase.swift in Sources */,
+				A59AB89A2A2F6D7600D91F1F /* AuthProfileItemKeychainHelper.swift in Sources */,
 				408034C51BC83D1A007666E7 /* MGSwipeTableCell.m in Sources */,
 				AEF79D8B2712FE1800D7554B /* CfgVM.swift in Sources */,
 				A5F29BCC2A2622BD00ED700A /* DeleteAllProfileDataUseCase.swift in Sources */,
@@ -4336,6 +4443,7 @@
 				AE929A8B2761487700B75715 /* NavigationCoordinator.swift in Sources */,
 				01BDAC7522C518DE00915646 /* SARestApiClientTask.m in Sources */,
 				401CA1BF1BA067DB00117AF4 /* main.m in Sources */,
+				A5F29BFE2A2DC19500ED700A /* CoreDataMigrationVersion.swift in Sources */,
 				018CFD2623281AF900888CB7 /* SAThermostatHPExtendedValue.m in Sources */,
 				A57777CD29E6907C004513E6 /* RuntimeConfig.swift in Sources */,
 				01F8857122E5E79100D18373 /* SATemperatureMeasurementItem+CoreDataClass.m in Sources */,
@@ -4370,6 +4478,7 @@
 				A5F29BD82A26240E00ED700A /* ThermostatMeasurementItemRepository.swift in Sources */,
 				A5F29BC42A24E35C00ED700A /* ChangeGroupsVisibilityUseCase.swift in Sources */,
 				017A3C8223631302004AD1FC /* SATempHumidityChartHelper.m in Sources */,
+				A56F15EF2A2E68BA00C2E21B /* Migration11to12ModelMapping.xcmappingmodel in Sources */,
 				40C9E4F71F2A186A00753796 /* SARollerShutter.m in Sources */,
 				A5F29B602A1E18E600ED700A /* ChannelListVC.swift in Sources */,
 				01392B3D235CE68D003A2BAD /* SATemperatureChartHelper.m in Sources */,
@@ -4389,6 +4498,7 @@
 				A5F29BDA2A268DDE00ED700A /* DisposeBagContainer.swift in Sources */,
 				A5F29BD62A2623E500ED700A /* UserIconRepository.swift in Sources */,
 				AED6395E270CA3A800E5105B /* RoundedButton.swift in Sources */,
+				A5F29C002A2DC50000ED700A /* CoreDataMigrationStep.swift in Sources */,
 				015A9846265595E300B6E6C6 /* UIButton+SUPLA.m in Sources */,
 				A5F29BF12A28AE0B00ED700A /* NotificationView.swift in Sources */,
 				AE74528D2827E5D400A3AFAD /* ProfileChooser.swift in Sources */,
@@ -4414,6 +4524,7 @@
 				0111E924263F374800302356 /* UIColor+SUPLA.m in Sources */,
 				A57785BD29E7FAD0001C631E /* SuplaClientProvider.swift in Sources */,
 				01D5E0C822DB7FAF00FBE1DC /* SAChartMarkerView.swift in Sources */,
+				A56F15F52A2E6E3C00C2E21B /* Migration12to13ModelMapping.xcmappingmodel in Sources */,
 				409934B61F30EF9C003110C5 /* RSDetailView.m in Sources */,
 				01C1719022C7F3A2005983E1 /* SAIncrementalMeasurementItem+CoreDataProperties.m in Sources */,
 				A5A1C0A829F2AAFA0083818D /* VibrationService.swift in Sources */,
@@ -4421,6 +4532,7 @@
 				A5F29B692A1E269800ED700A /* GroupListVM.swift in Sources */,
 				01E517C622C6AD7D000FE77A /* SADownloadMeasurements.m in Sources */,
 				A52ACD4729CB93060092729F /* SuplaClientActionExtension.swift in Sources */,
+				A56F15F12A2E698400C2E21B /* DeleteEntitiesMigrationPolicy.swift in Sources */,
 				403150FB1DC769430075D2D2 /* RGBWDetailView.m in Sources */,
 				01F8856A22E5E79100D18373 /* SATempHumidityMeasurementItem+CoreDataProperties.m in Sources */,
 				01478826265317B000CC8A01 /* SACalCfgProgressReport.m in Sources */,
@@ -5031,6 +5143,7 @@
 					"$(PROJECT_DIR)/SUPLA/lib",
 				);
 				MARKETING_VERSION = 23.04;
+				OTHER_SWIFT_FLAGS = "$(inherited) -D COCOAPODS -D DEBUG";
 				PRODUCT_BUNDLE_IDENTIFIER = com.acsoftware.ios.supla;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "SUPLA/SUPLA-Bridging-Header.h";

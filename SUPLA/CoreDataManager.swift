@@ -22,23 +22,31 @@ import CoreData
 @objc
 class CoreDataManager: NSObject {
     
+    @Singleton<GlobalSettings> private var settings
+    
+    let migrator: CoreDataMigrator
     private let storeType: String
     
     @objc
-    lazy var persistntContainer: NSPersistentContainer! = {
+    lazy var persistentContainer: NSPersistentContainer! = {
+        let dbUrl = SAApp.applicationDocumentsDirectory().appendingPathComponent("SUPLA_DB14.sqlite")
         let container = NSPersistentContainer(name: "SUPLA")
         let description = container.persistentStoreDescriptions.first
-        description?.url = SAApp.applicationDocumentsDirectory().appendingPathComponent("SUPLA_DB14.sqlite")
+        description?.url = dbUrl
         description?.shouldInferMappingModelAutomatically = false
         description?.shouldMigrateStoreAutomatically = false
         description?.type = storeType
+        
+#if DEBUG
+        NSLog("Database path: \(dbUrl.absoluteString)")
+#endif
         
         return container
     }()
     
     @objc
     lazy var backgroundContext: NSManagedObjectContext = {
-        let context = self.persistntContainer.newBackgroundContext()
+        let context = self.persistentContainer.newBackgroundContext()
         context.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy
         
         return context
@@ -46,7 +54,7 @@ class CoreDataManager: NSObject {
     
     @objc
     lazy var mainContext: NSManagedObjectContext = {
-        let context = self.persistntContainer.viewContext
+        let context = self.persistentContainer.viewContext
         context.automaticallyMergesChangesFromParent = true
         
         return context
@@ -55,23 +63,82 @@ class CoreDataManager: NSObject {
     @objc
     static let shared = CoreDataManager()
     
-    init(storeType: String = NSSQLiteStoreType) {
+    init(storeType: String = NSSQLiteStoreType, migrator: CoreDataMigrator = CoreDataMigratorImpl()) {
         self.storeType = storeType
+        self.migrator = migrator
     }
     
     @objc func setup(completion: @escaping () -> Void) {
+        removeOldDatabases()
+        
         loadPersistentStore {
             completion()
         }
     }
     
     private func loadPersistentStore(completion: @escaping () -> Void) {
-        self.persistntContainer.loadPersistentStores { description, error in
-            guard error == nil else {
-                fatalError("Not able to load store \(error)")
+        migrateStoreIfNeeded {
+            self.persistentContainer.loadPersistentStores { description, error in
+                guard error == nil else {
+                    fatalError("Not able to load store \(error!)")
+                }
+                
+                completion()
             }
-            
+        }
+    }
+    
+    private func migrateStoreIfNeeded(completion: @escaping () -> Void) {
+        guard let storeUrl = persistentContainer.persistentStoreDescriptions.first?.url else {
+            fatalError("persistentContainer was not set up properly")
+        }
+        
+        if migrator.requiresMigration(at: storeUrl, toVersion: CoreDataMigrationVersion.current) {
+            DispatchQueue.global(qos: .userInitiated).async {
+                do {
+                    try self.migrator.migrateStore(at: storeUrl, toVersion: CoreDataMigrationVersion.current)
+                } catch {
+#if DEBUG
+                    fatalError("Migration failed with error \(error)")
+#else
+                    // If migration fails in production we want to delete the database so the
+                    // user is able to create account again
+                    self.removeCurrentDatabase()
+#endif
+                }
+                
+                DispatchQueue.main.async {
+                    completion()
+                }
+            }
+        } else {
             completion()
         }
     }
+    
+    private func removeCurrentDatabase() {
+        var settings = settings
+        do {
+            try removeDatabase(with: "SUPLA_DB14.sqlite")
+            settings.anyAccountRegistered = false
+        } catch {
+            fatalError("Could not delete database after migration failure")
+        }
+    }
+    
+    private func removeOldDatabases() {
+        try? removeDatabase(with: "SUPLA_DB.sqlite")
+        for i in 0..<14 {
+            try? removeDatabase(with: String.init(format: "SUPLA_DB%i.sqlite", i))
+        }
+    }
+    
+    private func removeDatabase(with name: String) throws {
+        let url = SAApp.applicationDocumentsDirectory().appendingPathComponent(name)
+        let fileManager = FileManager.default
+        if (fileManager.fileExists(atPath: url.path)) {
+            try fileManager.removeItem(atPath: url.path)
+        }
+    }
 }
+
