@@ -772,7 +772,6 @@
 		AEB195DE276E5A040091D314 /* FadeTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEB195DD276E5A040091D314 /* FadeTransition.swift */; };
 		AEBCD8FC26E4D247001904F3 /* TemperaturePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEBCD8FB26E4D247001904F3 /* TemperaturePresenter.swift */; };
 		AEBCD8FE26E4D52C001904F3 /* TemperatureUnitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEBCD8FD26E4D52C001904F3 /* TemperatureUnitTests.swift */; };
-		AEC6B6BA2753C06800A04204 /* ProfileMigrator.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEC6B6B92753C06800A04204 /* ProfileMigrator.swift */; };
 		AECB1BE5270EB56F001A9714 /* AccountCreationVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = AECB1BE4270EB56F001A9714 /* AccountCreationVM.swift */; };
 		AECB1BE727109EA3001A9714 /* CheckBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = AECB1BE627109EA3001A9714 /* CheckBox.swift */; };
 		AECB1BE92710A785001A9714 /* AccountCreationVMTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AECB1BE82710A785001A9714 /* AccountCreationVMTests.swift */; };
@@ -1930,7 +1929,6 @@
 		AEB195DD276E5A040091D314 /* FadeTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FadeTransition.swift; sourceTree = "<group>"; };
 		AEBCD8FB26E4D247001904F3 /* TemperaturePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemperaturePresenter.swift; sourceTree = "<group>"; };
 		AEBCD8FD26E4D52C001904F3 /* TemperatureUnitTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemperatureUnitTests.swift; sourceTree = "<group>"; };
-		AEC6B6B92753C06800A04204 /* ProfileMigrator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileMigrator.swift; sourceTree = "<group>"; };
 		AECB1BE4270EB56F001A9714 /* AccountCreationVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountCreationVM.swift; sourceTree = "<group>"; };
 		AECB1BE627109EA3001A9714 /* CheckBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckBox.swift; sourceTree = "<group>"; };
 		AECB1BE82710A785001A9714 /* AccountCreationVMTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountCreationVMTests.swift; sourceTree = "<group>"; };
@@ -3555,7 +3553,6 @@
 			children = (
 				AEED1FD02737F3BE00DE6289 /* ProfileManager.swift */,
 				AEED1FD32737F71C00DE6289 /* MultiAccountProfileManager.swift */,
-				AEC6B6B92753C06800A04204 /* ProfileMigrator.swift */,
 				AE74528C2827E5D400A3AFAD /* ProfileChooser.swift */,
 			);
 			path = profile;
@@ -4328,7 +4325,6 @@
 				01199C8324C34AC50062454B /* SAChannelStatePopup.m in Sources */,
 				011021B525CC386D00621D41 /* SAVersionError.m in Sources */,
 				A5F14B7929DED9F000682FA6 /* BaseViewController.swift in Sources */,
-				AEC6B6BA2753C06800A04204 /* ProfileMigrator.swift in Sources */,
 				A5F29BC22A24E30100ED700A /* ChangeChannelsVisibilityUseCase.swift in Sources */,
 				AE7452912827F49100A3AFAD /* ProfilesNavigationCoordinator.swift in Sources */,
 				0172677D234FAF78000F1CFB /* SADownloadImpulseCounterMeasurements.m in Sources */,
