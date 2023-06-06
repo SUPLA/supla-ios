@@ -769,12 +769,19 @@ again:
                 if (userIcon != c.usericon) {
                     c.usericon = userIcon;
                     save = YES;
+                    
+                    if ([c isKindOfClass: [SAChannel class]]) {
+                        [DiContainer.listsEventsManager emitChannelChangeWithRemoteId: c.remote_id];
+                    } else if ([c isKindOfClass: [SAScene class]]) {
+                        [DiContainer.listsEventsManager emitSceneChangeWithSceneId: ((SAScene *) c).sceneId];
+                    } else {
+                        [DiContainer.listsEventsManager emitGroupChangeWithRemoteId: c.remote_id];
+                    }
                 }
             } else if (c.usericon) {
                 c.usericon = nil;
                 save = YES;
             }
-           
         }
     }
     

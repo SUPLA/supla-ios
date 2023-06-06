@@ -23,8 +23,13 @@ class HomeViewModel: BaseViewModel<HomeViewState, HomeViewEvent> {
     
     @Singleton<ProfileRepository> private var profileRepository
     @Singleton<ChannelRepository> private var channelRepository
+    @Singleton<ListsEventsManager> private var listsEventsManager
     
     override func defaultViewState() -> HomeViewState { HomeViewState() }
+    
+    func onViewDidLoad() {
+        observeChangesForIconsReload()
+    }
     
     func onViewAppear() {
         profileRepository.getAllProfiles()
@@ -105,10 +110,31 @@ class HomeViewModel: BaseViewModel<HomeViewState, HomeViewEvent> {
             return nil
         }
     }
+    
+    private func observeChangesForIconsReload() {
+        listsEventsManager
+            .observeChannelUpdates()
+            .asDriverWithoutError()
+            .drive(onNext: { self.send(event: .loadIcons) })
+            .disposed(by: self)
+        
+        listsEventsManager
+            .observeGroupUpdates()
+            .asDriverWithoutError()
+            .drive(onNext: { self.send(event: .loadIcons) })
+            .disposed(by: self)
+        
+        listsEventsManager
+            .observeSceneUpdates()
+            .asDriverWithoutError()
+            .drive(onNext: { self.send(event: .loadIcons) })
+            .disposed(by: self)
+    }
 }
 
 enum HomeViewEvent: ViewEvent {
     case showNotification(message: String, icon: UIImage)
+    case loadIcons
 }
 
 struct HomeViewState: ViewState {

@@ -43,6 +43,7 @@ class HomeVC : BaseViewControllerVM<HomeViewState, HomeViewEvent, HomeViewModel>
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        viewModel.onViewDidLoad()
         edgesForExtendedLayout = []
         statusBarBackgroundView.isHidden = true
         
@@ -56,8 +57,6 @@ class HomeVC : BaseViewControllerVM<HomeViewState, HomeViewEvent, HomeViewModel>
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         viewModel.onViewAppear()
-        
-        //runIconsDownloadTask()
         SARateApp().showDialog(withDelay: 1)
     }
     
@@ -84,6 +83,9 @@ class HomeVC : BaseViewControllerVM<HomeViewState, HomeViewEvent, HomeViewModel>
         case let .showNotification(message: message, icon: icon):
             showNotification(message: message, image: icon)
             break
+        case .loadIcons:
+            runIconsDownloadTask()
+            break;
         }
     }
     
