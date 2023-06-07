@@ -34,16 +34,14 @@ class MainNavigationCoordinator: BaseNavigationCoordinator {
     
     private let navigationController: SuplaNavigationController
     
-    //private var mainVC: SAMainVC
-    private var mainVC: HomeVC
+    private var mainVC: MainVC
 
     
     private var pendingFlow: NavigationCoordinator?
     private var pendingCompletion: (()->Void)?
     
     override init() {
-        //mainVC = SAMainVC(nibName: "MainVC", bundle: nil)
-        mainVC = HomeVC()
+        mainVC = MainVC()
         navigationController = SuplaNavigationController(rootViewController: mainVC)
         super.init()
         mainVC.navigationCoordinator = self

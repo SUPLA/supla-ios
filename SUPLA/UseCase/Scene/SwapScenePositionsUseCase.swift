@@ -35,7 +35,7 @@ final class SwapScenePositionsUseCaseImpl: SwapScenePositionsUseCase {
             }
             .map { scenes in
                 if (scenes.count < 2) {
-                    return () // nothing to do, there is at most only one channel
+                    return false // nothing to do, there is at most only one channel
                 }
                 guard
                     let firstScene = scenes.first(where: { $0.sceneId == firstRemoteId }),
@@ -43,7 +43,7 @@ final class SwapScenePositionsUseCaseImpl: SwapScenePositionsUseCase {
                     let sourcePosition = scenes.firstIndex(of: firstScene),
                     let destinationPosition = scenes.firstIndex(of: secondScene)
                 else {
-                    return ()
+                    return false
                 }
                 
                 var newList = scenes
@@ -53,8 +53,14 @@ final class SwapScenePositionsUseCaseImpl: SwapScenePositionsUseCase {
                     newList[position].sortOrder = Int32(position)
                 }
                 
-                return ()
+                return true
             }
-            .flatMapFirst { self.sceneRepository.save() }
+            .flatMapFirst { save in
+                if (save) {
+                    return self.sceneRepository.save()
+                } else {
+                    return Observable.just(())
+                }
+            }
     }
 }

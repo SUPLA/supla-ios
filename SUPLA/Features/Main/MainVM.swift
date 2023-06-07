@@ -19,13 +19,13 @@
 import Foundation
 import RxSwift
 
-class HomeViewModel: BaseViewModel<HomeViewState, HomeViewEvent> {
+class MainViewModel: BaseViewModel<MainViewState, MainViewEvent> {
     
     @Singleton<ProfileRepository> private var profileRepository
     @Singleton<ChannelRepository> private var channelRepository
     @Singleton<ListsEventsManager> private var listsEventsManager
     
-    override func defaultViewState() -> HomeViewState { HomeViewState() }
+    override func defaultViewState() -> MainViewState { MainViewState() }
     
     func onViewDidLoad() {
         observeChangesForIconsReload()
@@ -69,7 +69,7 @@ class HomeViewModel: BaseViewModel<HomeViewState, HomeViewEvent> {
             .disposed(by: self)
     }
     
-    private func channelToEvent(channel: SAChannel, event: SAEvent) -> Observable<HomeViewEvent> {
+    private func channelToEvent(channel: SAChannel, event: SAEvent) -> Observable<MainViewEvent> {
         let icon: UIImage? = channel.getIcon()
         var message = getMessageForEvent(event)
             
@@ -132,11 +132,11 @@ class HomeViewModel: BaseViewModel<HomeViewState, HomeViewEvent> {
     }
 }
 
-enum HomeViewEvent: ViewEvent {
+enum MainViewEvent: ViewEvent {
     case showNotification(message: String, icon: UIImage)
     case loadIcons
 }
 
-struct HomeViewState: ViewState {
+struct MainViewState: ViewState {
     var showProfilesIcon: Bool = false
 }

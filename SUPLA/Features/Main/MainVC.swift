@@ -18,7 +18,7 @@
 
 import Foundation
 
-class HomeVC : BaseViewControllerVM<HomeViewState, HomeViewEvent, HomeViewModel> {
+class MainVC : BaseViewControllerVM<MainViewState, MainViewEvent, MainViewModel> {
     
     @Singleton<ListsEventsManager> private var listsEventsManager
     
@@ -38,7 +38,7 @@ class HomeVC : BaseViewControllerVM<HomeViewState, HomeViewEvent, HomeViewModel>
     
     convenience init() {
         self.init(nibName: nil, bundle: nil)
-        viewModel = HomeViewModel()
+        viewModel = MainViewModel()
     }
     
     override func viewDidLoad() {
@@ -65,7 +65,7 @@ class HomeVC : BaseViewControllerVM<HomeViewState, HomeViewEvent, HomeViewModel>
         viewModel.onViewDisappear()
     }
     
-    override func handle(state: HomeViewState) {
+    override func handle(state: MainViewState) {
         if (state.showProfilesIcon) {
             self.navigationItem.rightBarButtonItem = UIBarButtonItem(
                 image: UIImage(named: "profile-navbar"),
@@ -78,7 +78,7 @@ class HomeVC : BaseViewControllerVM<HomeViewState, HomeViewEvent, HomeViewModel>
         }
     }
     
-    override func handle(event: HomeViewEvent) {
+    override func handle(event: MainViewEvent) {
         switch(event) {
         case let .showNotification(message: message, icon: icon):
             showNotification(message: message, image: icon)
@@ -226,13 +226,13 @@ class HomeVC : BaseViewControllerVM<HomeViewState, HomeViewEvent, HomeViewModel>
     }
 }
 
-extension HomeVC: ProfileChooserDelegate {
+extension MainVC: ProfileChooserDelegate {
     func profileChooserDidDismiss(profileChanged: Bool) {
         profileChooser = nil
     }
 }
 
-extension HomeVC: SARestApiClientTaskDelegate {
+extension MainVC: SARestApiClientTaskDelegate {
     func onRestApiTaskFinished(_ task: SARestApiClientTask) {
         if (iconsDownloadTask == task) {
             if (iconsDownloadTask?.channelsUpdated == true) {

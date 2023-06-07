@@ -35,7 +35,7 @@ final class SwapGroupPositionsUseCaseImpl: SwapGroupPositionsUseCase {
             }
             .map { groups in
                 if (groups.count < 2) {
-                    return () // nothing to do, there is at most only one channel
+                    return false // nothing to do, there is at most only one channel
                 }
                 guard
                     let firstGroup = groups.first(where: { $0.remote_id == firstRemoteId }),
@@ -43,7 +43,7 @@ final class SwapGroupPositionsUseCaseImpl: SwapGroupPositionsUseCase {
                     let sourcePosition = groups.firstIndex(of: firstGroup),
                     let destinationPosition = groups.firstIndex(of: secondGroup)
                 else {
-                    return ()
+                    return false
                 }
                 
                 var newList = groups
@@ -53,8 +53,14 @@ final class SwapGroupPositionsUseCaseImpl: SwapGroupPositionsUseCase {
                     newList[position].position = Int32(position)
                 }
                 
-                return ()
+                return true
             }
-            .flatMapFirst { self.groupRepository.save() }
+            .flatMapFirst { save in
+                if (save) {
+                    return self.groupRepository.save()
+                } else {
+                    return Observable.just(())
+                }
+            }
     }
 }

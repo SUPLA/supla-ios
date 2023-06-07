@@ -52,7 +52,7 @@ enum List {
     case list(items: [ListItem])
 }
 
-enum ListItem {
+enum ListItem: Equatable {
     case location(location: _SALocation)
     case scene(scene: SAScene)
     case channelBase(channelBase: SAChannelBase)

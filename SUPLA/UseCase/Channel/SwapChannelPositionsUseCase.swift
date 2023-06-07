@@ -35,7 +35,7 @@ final class SwapChannelPositionsUseCaseImpl: SwapChannelPositionsUseCase {
             }
             .map { channels in
                 if (channels.count < 2) {
-                    return () // nothing to do, there is at most only one channel
+                    return false // nothing to do, there is at most only one channel
                 }
                 guard
                     let firstChannel = channels.first(where: { $0.remote_id == firstRemoteId }),
@@ -43,7 +43,7 @@ final class SwapChannelPositionsUseCaseImpl: SwapChannelPositionsUseCase {
                     let sourcePosition = channels.firstIndex(of: firstChannel),
                     let destinationPosition = channels.firstIndex(of: secondChannel)
                 else {
-                    return ()
+                    return false
                 }
                 
                 var newList = channels
@@ -53,8 +53,14 @@ final class SwapChannelPositionsUseCaseImpl: SwapChannelPositionsUseCase {
                     newList[position].position = Int32(position)
                 }
                 
-                return ()
+                return true
             }
-            .flatMapFirst { self.channelRepository.save() }
+            .flatMapFirst { save in
+                if (save) {
+                    return self.channelRepository.save()
+                } else {
+                    return Observable.just(())
+                }
+            }
     }
 }

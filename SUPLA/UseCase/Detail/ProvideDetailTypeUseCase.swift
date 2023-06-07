@@ -81,7 +81,7 @@ final class ProvideDetailTypeUseCaseImpl: ProvideDetailTypeUseCase {
     }
 }
 
-enum DetailType {
+enum DetailType: Equatable {
     case legacy(type: LegacyDetailType)
     case standard(type: StandardDetailType)
 }

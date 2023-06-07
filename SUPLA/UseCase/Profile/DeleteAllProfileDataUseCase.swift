@@ -29,7 +29,7 @@ final class DeleteAllProfileDataUseCaseImpl: DeleteAllProfileDataUseCase {
     @Singleton<ThermostatMeasurementItemRepository> private var thermostatMeasurementItemRepository
     
     func invoke(profile: AuthProfileItem) -> Observable<Void> {
-        return Observable.merge([
+        return Observable.combineLatest([
             self.channelExtendedValueRepository.deleteAll(for: profile),
             self.channelValueRepository.deleteAll(for: profile),
             self.channelRepository.deleteAll(for: profile),
@@ -42,6 +42,8 @@ final class DeleteAllProfileDataUseCaseImpl: DeleteAllProfileDataUseCase {
             self.tempHumidityMeasurementItemRepository.deleteAll(for: profile),
             self.userIconRepository.deleteAll(for: profile),
             self.thermostatMeasurementItemRepository.deleteAll(for: profile)
-        ])
+        ]).map {
+            $0.first
+        }
     }
 }
