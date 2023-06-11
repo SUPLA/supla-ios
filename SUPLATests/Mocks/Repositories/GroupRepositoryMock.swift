@@ -32,11 +32,11 @@ final class GroupRepositoryMock: BaseRepositoryMock<SAChannelGroup>, GroupReposi
     
     var allVisibleGroupsInLocationObservable: Observable<[SAChannelGroup]> = Observable.empty()
     var allVisibleGroupsInLocationProfiles: [AuthProfileItem] = []
-    var allVisibleGroupsInLocationLocationIds: [Int] = []
+    var allVisibleGroupsInLocationCaptions: [String] = []
     
-    func getAllVisibleGroups(forProfile profile: AuthProfileItem, inLocation locationId: Int) -> Observable<[SAChannelGroup]> {
+    func getAllVisibleGroups(forProfile profile: AuthProfileItem, inLocation locationCaption: String) -> Observable<[SAChannelGroup]> {
         allVisibleGroupsInLocationProfiles.append(profile)
-        allVisibleGroupsInLocationLocationIds.append(locationId)
+        allVisibleGroupsInLocationCaptions.append(locationCaption)
         return allVisibleGroupsInLocationObservable
     }
     

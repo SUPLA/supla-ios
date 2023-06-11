@@ -20,7 +20,7 @@ import Foundation
 import RxSwift
 
 protocol SwapScenePositionsUseCase {
-    func invoke(firstRemoteId: Int32, secondRemoteId: Int32, locationId: Int) -> Observable<Void>
+    func invoke(firstRemoteId: Int32, secondRemoteId: Int32, locationCaption: String) -> Observable<Void>
 }
 
 final class SwapScenePositionsUseCaseImpl: SwapScenePositionsUseCase {
@@ -28,10 +28,10 @@ final class SwapScenePositionsUseCaseImpl: SwapScenePositionsUseCase {
     @Singleton<SceneRepository> private var sceneRepository
     @Singleton<ProfileRepository> private var profileRepository
     
-    func invoke(firstRemoteId: Int32, secondRemoteId: Int32, locationId: Int) -> Observable<Void> {
+    func invoke(firstRemoteId: Int32, secondRemoteId: Int32, locationCaption: String) -> Observable<Void> {
         return profileRepository.getActiveProfile()
             .flatMapFirst { profile in
-                self.sceneRepository.getAllVisibleScenes(forProfile: profile, inLocation: locationId)
+                self.sceneRepository.getAllVisibleScenes(forProfile: profile, inLocation: locationCaption)
             }
             .map { scenes in
                 if (scenes.count < 2) {

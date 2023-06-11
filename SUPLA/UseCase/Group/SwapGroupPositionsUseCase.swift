@@ -20,7 +20,7 @@ import Foundation
 import RxSwift
 
 protocol SwapGroupPositionsUseCase {
-    func invoke(firstRemoteId: Int32, secondRemoteId: Int32, locationId: Int) -> Observable<Void>
+    func invoke(firstRemoteId: Int32, secondRemoteId: Int32, locationCaption: String) -> Observable<Void>
 }
 
 final class SwapGroupPositionsUseCaseImpl: SwapGroupPositionsUseCase {
@@ -28,10 +28,10 @@ final class SwapGroupPositionsUseCaseImpl: SwapGroupPositionsUseCase {
     @Singleton<GroupRepository> private var groupRepository
     @Singleton<ProfileRepository> private var profileRepository
     
-    func invoke(firstRemoteId: Int32, secondRemoteId: Int32, locationId: Int) -> Observable<Void> {
+    func invoke(firstRemoteId: Int32, secondRemoteId: Int32, locationCaption: String) -> Observable<Void> {
         return profileRepository.getActiveProfile()
             .flatMapFirst { profile in
-                self.groupRepository.getAllVisibleGroups(forProfile: profile, inLocation: locationId)
+                self.groupRepository.getAllVisibleGroups(forProfile: profile, inLocation: locationCaption)
             }
             .map { groups in
                 if (groups.count < 2) {

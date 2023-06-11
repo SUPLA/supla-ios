@@ -20,7 +20,7 @@ import Foundation
 import RxSwift
 
 protocol SwapChannelPositionsUseCase {
-    func invoke(firstRemoteId: Int32, secondRemoteId: Int32, locationId: Int) -> Observable<Void>
+    func invoke(firstRemoteId: Int32, secondRemoteId: Int32, locationCaption: String) -> Observable<Void>
 }
 
 final class SwapChannelPositionsUseCaseImpl: SwapChannelPositionsUseCase {
@@ -28,10 +28,10 @@ final class SwapChannelPositionsUseCaseImpl: SwapChannelPositionsUseCase {
     @Singleton<ChannelRepository> private var channelRepository
     @Singleton<ProfileRepository> private var profileRepository
     
-    func invoke(firstRemoteId: Int32, secondRemoteId: Int32, locationId: Int) -> Observable<Void> {
+    func invoke(firstRemoteId: Int32, secondRemoteId: Int32, locationCaption: String) -> Observable<Void> {
         return profileRepository.getActiveProfile()
             .flatMapFirst { profile in
-                self.channelRepository.getAllVisibleChannels(forProfile: profile, inLocation: locationId)
+                self.channelRepository.getAllVisibleChannels(forProfile: profile, inLocation: locationCaption)
             }
             .map { channels in
                 if (channels.count < 2) {

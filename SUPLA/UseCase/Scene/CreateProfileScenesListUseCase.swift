@@ -45,7 +45,7 @@ final class CreateProfileScenesListUseCaseImpl: CreateProfileScenesListUseCase {
         items.append(.location(location: lastLocation))
         
         for scene in scenes {
-            if (lastLocation != scene.location) {
+            if (lastLocation.caption != scene.location!.caption) {
                 items.append(.location(location: scene.location!))
                 lastLocation = scene.location!
             }

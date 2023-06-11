@@ -48,7 +48,7 @@ final class SwapGroupPositionsUseCaseTests: UseCaseTest<Void> {
     
     func test_shouldSwapGroupPositions() {
         // given
-        let locationId = 3
+        let locationCaption = "Caption"
         let profile = AuthProfileItem(testContext: nil)
         profileRepository.activeProfileObservable = Observable.just(profile)
         
@@ -62,7 +62,7 @@ final class SwapGroupPositionsUseCaseTests: UseCaseTest<Void> {
         groupRepository.saveObservable = Observable.just(())
         
         // when
-        useCase.invoke(firstRemoteId: group1.remote_id, secondRemoteId: group2.remote_id, locationId: locationId).subscribe(observer).disposed(by: disposeBag)
+        useCase.invoke(firstRemoteId: group1.remote_id, secondRemoteId: group2.remote_id, locationCaption: locationCaption).subscribe(observer).disposed(by: disposeBag)
         
         // then
         XCTAssertEqual(observer.events.count, 2)
@@ -70,13 +70,13 @@ final class SwapGroupPositionsUseCaseTests: UseCaseTest<Void> {
         XCTAssertEqual(group2.position, 0)
         
         XCTAssertEqual(groupRepository.allVisibleGroupsInLocationProfiles, [profile])
-        XCTAssertEqual(groupRepository.allVisibleGroupsInLocationLocationIds, [locationId])
+        XCTAssertEqual(groupRepository.allVisibleGroupsInLocationCaptions, [locationCaption])
         XCTAssertEqual(groupRepository.saveCounter, 1)
     }
     
     func test_shouldNotSwap_whenGroupWasNotFound() {
         // given
-        let locationId = 3
+        let locationCaption = "Caption"
         let profile = AuthProfileItem(testContext: nil)
         profileRepository.activeProfileObservable = Observable.just(profile)
         
@@ -90,7 +90,7 @@ final class SwapGroupPositionsUseCaseTests: UseCaseTest<Void> {
         groupRepository.saveObservable = Observable.just(())
         
         // when
-        useCase.invoke(firstRemoteId: group1.remote_id, secondRemoteId: 3, locationId: locationId).subscribe(observer).disposed(by: disposeBag)
+        useCase.invoke(firstRemoteId: group1.remote_id, secondRemoteId: 3, locationCaption: locationCaption).subscribe(observer).disposed(by: disposeBag)
         
         // then
         XCTAssertEqual(observer.events.count, 2)
@@ -98,13 +98,13 @@ final class SwapGroupPositionsUseCaseTests: UseCaseTest<Void> {
         XCTAssertEqual(group2.position, 0)
         
         XCTAssertEqual(groupRepository.allVisibleGroupsInLocationProfiles, [profile])
-        XCTAssertEqual(groupRepository.allVisibleGroupsInLocationLocationIds, [locationId])
+        XCTAssertEqual(groupRepository.allVisibleGroupsInLocationCaptions, [locationCaption])
         XCTAssertEqual(groupRepository.saveCounter, 0)
     }
     
     func test_shouldNotSwap_whenThereIsOnlyOneGroup() {
         // given
-        let locationId = 3
+        let locationCaption = "Caption"
         let profile = AuthProfileItem(testContext: nil)
         profileRepository.activeProfileObservable = Observable.just(profile)
         
@@ -115,13 +115,13 @@ final class SwapGroupPositionsUseCaseTests: UseCaseTest<Void> {
         groupRepository.saveObservable = Observable.just(())
         
         // when
-        useCase.invoke(firstRemoteId: group1.remote_id, secondRemoteId: 3, locationId: locationId).subscribe(observer).disposed(by: disposeBag)
+        useCase.invoke(firstRemoteId: group1.remote_id, secondRemoteId: 3, locationCaption: locationCaption).subscribe(observer).disposed(by: disposeBag)
         
         // then
         XCTAssertEqual(observer.events.count, 2)
         
         XCTAssertEqual(groupRepository.allVisibleGroupsInLocationProfiles, [profile])
-        XCTAssertEqual(groupRepository.allVisibleGroupsInLocationLocationIds, [locationId])
+        XCTAssertEqual(groupRepository.allVisibleGroupsInLocationCaptions, [locationCaption])
         XCTAssertEqual(groupRepository.saveCounter, 0)
     }
 }

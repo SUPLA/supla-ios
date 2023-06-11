@@ -24,7 +24,7 @@ protocol ChannelRepository: RepositoryProtocol where T == SAChannel {
     func getAllChannels(forProfile profile: AuthProfileItem) -> Observable<[SAChannel]>
     func getChannel(remoteId: Int) -> Observable<SAChannel>
     func deleteAll(for profile: AuthProfileItem) -> Observable<Void>
-    func getAllVisibleChannels(forProfile profile: AuthProfileItem, inLocation locationId: Int) -> Observable<[SAChannel]>
+    func getAllVisibleChannels(forProfile profile: AuthProfileItem, inLocation locationCaption: String) -> Observable<[SAChannel]>
 }
 
 class ChannelRepositoryImpl: Repository<SAChannel>, ChannelRepository {
@@ -45,9 +45,9 @@ class ChannelRepositoryImpl: Repository<SAChannel>, ChannelRepository {
         return query(request)
     }
     
-    func getAllVisibleChannels(forProfile profile: AuthProfileItem, inLocation locationId: Int) -> Observable<[SAChannel]> {
+    func getAllVisibleChannels(forProfile profile: AuthProfileItem, inLocation locationCaption: String) -> Observable<[SAChannel]> {
         let request = SAChannel.fetchRequest()
-            .filtered(by: NSPredicate(format: "func > 0 AND visible > 0 AND profile == %@ AND location.location_id = %i", profile, locationId))
+            .filtered(by: NSPredicate(format: "func > 0 AND visible > 0 AND profile == %@ AND location.caption = %@", profile, locationCaption))
         
         let localeAwareCompare = #selector(NSString.localizedCaseInsensitiveCompare)
         request.sortDescriptors = [

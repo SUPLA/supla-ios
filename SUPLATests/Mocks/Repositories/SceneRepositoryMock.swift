@@ -30,11 +30,11 @@ final class SceneRepositoryMock: BaseRepositoryMock<SAScene>, SceneRepository {
     
     var allVisibleScenesInLocationObservable: Observable<[SAScene]> = Observable.empty()
     var allVisibleScenesInLocationProfiles: [AuthProfileItem] = []
-    var allVisibleScenesInLocationLocationIds: [Int] = []
+    var allVisibleScenesInLocationCaptions: [String] = []
     
-    func getAllVisibleScenes(forProfile profile: AuthProfileItem, inLocation location: Int) -> Observable<[SAScene]> {
+    func getAllVisibleScenes(forProfile profile: AuthProfileItem, inLocation locationCaption: String) -> Observable<[SAScene]> {
         allVisibleScenesInLocationProfiles.append(profile)
-        allVisibleScenesInLocationLocationIds.append(location)
+        allVisibleScenesInLocationCaptions.append(locationCaption)
         return allVisibleScenesInLocationObservable
     }
     

@@ -96,11 +96,11 @@ final class SceneListVMTests: ViewModelTest<SceneListViewState, SceneListViewEve
         swapScenePositionsUseCase.observable = Observable.just(())
         let firstItemId: Int32 = 2
         let secondItemId: Int32 = 4
-        let locationId: Int32 = 6
+        let locationCaption = "Caption"
         
         // when
         observe(viewModel)
-        viewModel.swapItems(firstItem: firstItemId, secondItem: secondItemId, locationId: locationId)
+        viewModel.swapItems(firstItem: firstItemId, secondItem: secondItemId, locationCaption: locationCaption)
         
         // then
         XCTAssertEqual(stateObserver.events.count, 1)
@@ -108,7 +108,7 @@ final class SceneListVMTests: ViewModelTest<SceneListViewState, SceneListViewEve
         
         XCTAssertEqual(swapScenePositionsUseCase.firstRemoteIdArray[0], firstItemId)
         XCTAssertEqual(swapScenePositionsUseCase.secondRemoteIdArray[0], secondItemId)
-        XCTAssertEqual(swapScenePositionsUseCase.locationIdArray[0], Int(locationId))
+        XCTAssertEqual(swapScenePositionsUseCase.locationCaptionArray[0], locationCaption)
         
         XCTAssertEqual(createProfileScenesListUseCase.invokeCounter, 1)
     }

@@ -50,11 +50,11 @@ final class ChannelRepositoryMock: BaseRepositoryMock<SAChannel>, ChannelReposit
     
     var allVisibleChannelsInLocationObservable: Observable<[SAChannel]> = Observable.empty()
     var allVisibleChannelsInLocationProfiles: [AuthProfileItem] = []
-    var allVisibleChannelsInLocationLocationIds: [Int] = []
+    var allVisibleChannelsInLocationCaptions: [String] = []
     
-    func getAllVisibleChannels(forProfile profile: AuthProfileItem, inLocation locationId: Int) -> Observable<[SAChannel]> {
+    func getAllVisibleChannels(forProfile profile: AuthProfileItem, inLocation locationCaption: String) -> Observable<[SAChannel]> {
         allVisibleChannelsInLocationProfiles.append(profile)
-        allVisibleChannelsInLocationLocationIds.append(locationId)
+        allVisibleChannelsInLocationCaptions.append(locationCaption)
         return allVisibleChannelsInLocationObservable
     }
     

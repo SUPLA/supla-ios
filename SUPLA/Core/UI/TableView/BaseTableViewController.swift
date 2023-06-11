@@ -217,7 +217,7 @@ class BaseTableViewController<S : ViewState, E : ViewEvent, VM : BaseTableViewMo
             let destinationIndexPath = destinationIndexPath,
             let destinationCell = tableView.cellForRow(at: destinationIndexPath) as? SAChannelCell {
             
-            if (sourceCell.channelBase.location == destinationCell.channelBase.location) {
+            if (sourceCell.channelBase.location?.caption == destinationCell.channelBase.location?.caption) {
                 return UITableViewDropProposal(operation: .move, intent: .insertAtDestinationIndexPath)
             }
         }
@@ -226,7 +226,7 @@ class BaseTableViewController<S : ViewState, E : ViewEvent, VM : BaseTableViewMo
             let destinationIndexPath = destinationIndexPath,
             let destinationCell = tableView.cellForRow(at: destinationIndexPath) as? SceneCell {
             
-            if (sourceCell.sceneData?.location == destinationCell.sceneData?.location) {
+            if (sourceCell.sceneData?.location?.caption == destinationCell.sceneData?.location?.caption) {
                 return UITableViewDropProposal(operation: .move, intent: .insertAtDestinationIndexPath)
             }
         }
@@ -242,7 +242,7 @@ class BaseTableViewController<S : ViewState, E : ViewEvent, VM : BaseTableViewMo
             viewModel.swapItems(
                 firstItem: sourceCell.channelBase.remote_id,
                 secondItem: destinationCell.channelBase.remote_id,
-                locationId: sourceCell.channelBase.location_id
+                locationCaption: sourceCell.channelBase.location!.caption!
             )
         }
         
@@ -253,7 +253,7 @@ class BaseTableViewController<S : ViewState, E : ViewEvent, VM : BaseTableViewMo
             viewModel.swapItems(
                 firstItem: sourceCell.sceneData!.sceneId,
                 secondItem: destinationCell.sceneData!.sceneId,
-                locationId: Int32(truncating: sourceCell.sceneData!.location!.location_id!)
+                locationCaption: sourceCell.sceneData!.location!.caption!
             )
         }
     }

@@ -101,11 +101,11 @@ final class GroupListVMTests: ViewModelTest<GroupListViewState, GroupListViewEve
         swapGroupPositionsUseCase.observable = Observable.just(())
         let firstItemId: Int32 = 2
         let secondItemId: Int32 = 4
-        let locationId: Int32 = 6
+        let locationCaption = "Caption"
         
         // when
         observe(viewModel)
-        viewModel.swapItems(firstItem: firstItemId, secondItem: secondItemId, locationId: locationId)
+        viewModel.swapItems(firstItem: firstItemId, secondItem: secondItemId, locationCaption: locationCaption)
         
         // then
         XCTAssertEqual(stateObserver.events.count, 1)
@@ -113,7 +113,7 @@ final class GroupListVMTests: ViewModelTest<GroupListViewState, GroupListViewEve
         
         XCTAssertEqual(swapGroupPositionsUseCase.firstRemoteIdArray[0], firstItemId)
         XCTAssertEqual(swapGroupPositionsUseCase.secondRemoteIdArray[0], secondItemId)
-        XCTAssertEqual(swapGroupPositionsUseCase.locationIdArray[0], Int(locationId))
+        XCTAssertEqual(swapGroupPositionsUseCase.locationCaptionArray[0], locationCaption)
         
         XCTAssertEqual(createProfileGroupsListUseCase.invokeCounter, 1)
     }

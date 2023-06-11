@@ -45,7 +45,7 @@ final class CreateProfileGroupsListUseCaseImpl: CreateProfileGroupsListUseCase {
         items.append(.location(location: lastLocation))
         
         for channel in channels {
-            if (lastLocation != channel.location) {
+            if (lastLocation.caption != channel.location!.caption) {
                 items.append(.location(location: channel.location!))
                 lastLocation = channel.location!
             }

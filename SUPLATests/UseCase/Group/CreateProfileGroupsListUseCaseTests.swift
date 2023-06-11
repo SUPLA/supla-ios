@@ -52,11 +52,13 @@ final class CreateProfileGroupsListUseCaseTests: UseCaseTest<[List]> {
         profileRepository.activeProfileObservable = Observable.just(profile)
         
         let location1 = _SALocation(testContext: nil)
+        location1.caption = "Location 1"
         location1.location_id = 1
         let group1 = SAChannelGroup(testContext: nil)
         group1.location = location1
         
         let location2 = _SALocation(testContext: nil)
+        location2.caption = "Location 2"
         location2.location_id = 2
         let group2 = SAChannelGroup(testContext: nil)
         group2.location = location2
@@ -88,6 +90,7 @@ final class CreateProfileGroupsListUseCaseTests: UseCaseTest<[List]> {
         profileRepository.activeProfileObservable = Observable.just(profile)
         
         let location1 = _SALocation(testContext: nil)
+        location1.caption = "Location 1"
         location1.location_id = 1
         location1.collapsed = 0 | CollapsedFlag.group.rawValue
         
@@ -95,6 +98,7 @@ final class CreateProfileGroupsListUseCaseTests: UseCaseTest<[List]> {
         group1.location = location1
         
         let location2 = _SALocation(testContext: nil)
+        location2.caption = "Location 2"
         location2.location_id = 2
         let group2 = SAChannelGroup(testContext: nil)
         group2.location = location2
@@ -115,6 +119,44 @@ final class CreateProfileGroupsListUseCaseTests: UseCaseTest<[List]> {
         XCTAssertEqual(items, [
             .location(location: location1),
             .location(location: location2),
+            .channelBase(channelBase: group2)
+        ])
+    }
+    
+    func test_shouldMergeLocationWithTheSameNameIntoOne() {
+        // given
+        let profile = AuthProfileItem(testContext: nil)
+        profileRepository.activeProfileObservable = Observable.just(profile)
+        
+        let location1 = _SALocation(testContext: nil)
+        location1.caption = "Location"
+        location1.location_id = 1
+        
+        let group1 = SAChannelGroup(testContext: nil)
+        group1.location = location1
+        
+        let location2 = _SALocation(testContext: nil)
+        location2.caption = "Location"
+        location2.location_id = 2
+        let group2 = SAChannelGroup(testContext: nil)
+        group2.location = location2
+        
+        groupRepository.allVisibleGroupsObservable = Observable.just([ group1, group2 ])
+        
+        // when
+        useCase.invoke().subscribe(observer).disposed(by: disposeBag)
+        
+        // then
+        XCTAssertEqual(observer.events.count, 2)
+        guard let items = observer.events[0].value.element?.first?.items else {
+            XCTFail("No items produced")
+            return
+        }
+        
+        XCTAssertEqual(items.count, 3)
+        XCTAssertEqual(items, [
+            .location(location: location1),
+            .channelBase(channelBase: group1),
             .channelBase(channelBase: group2)
         ])
     }

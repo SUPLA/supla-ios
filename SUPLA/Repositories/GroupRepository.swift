@@ -21,7 +21,7 @@ import RxSwift
 
 protocol GroupRepository: RepositoryProtocol where T == SAChannelGroup {
     func getAllVisibleGroups(forProfile profile: AuthProfileItem) -> Observable<[SAChannelGroup]>
-    func getAllVisibleGroups(forProfile profile: AuthProfileItem, inLocation locationId: Int) -> Observable<[SAChannelGroup]>
+    func getAllVisibleGroups(forProfile profile: AuthProfileItem, inLocation locationCaption: String) -> Observable<[SAChannelGroup]>
     func getAllGroups(forProfile profile: AuthProfileItem) -> Observable<[SAChannelGroup]>
     func getGroup(remoteId: Int) -> Observable<SAChannelGroup>
     func deleteAll(for profile: AuthProfileItem) -> Observable<Void>
@@ -45,9 +45,9 @@ class GroupRepositoryImpl: Repository<SAChannelGroup>, GroupRepository {
         return query(request)
     }
     
-    func getAllVisibleGroups(forProfile profile: AuthProfileItem, inLocation locationId: Int) -> Observable<[SAChannelGroup]> {
+    func getAllVisibleGroups(forProfile profile: AuthProfileItem, inLocation locationCaption: String) -> Observable<[SAChannelGroup]> {
         let request = SAChannelGroup.fetchRequest()
-            .filtered(by: NSPredicate(format: "func > 0 AND visible > 0 AND profile == %@ AND location.location_id = %i", profile, locationId))
+            .filtered(by: NSPredicate(format: "func > 0 AND visible > 0 AND profile == %@ AND location.caption = %@", profile, locationCaption))
         
         let localeAwareCompare = #selector(NSString.localizedCaseInsensitiveCompare)
         request.sortDescriptors = [

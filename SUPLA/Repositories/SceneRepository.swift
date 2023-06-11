@@ -23,7 +23,7 @@ import RxBlocking
 
 protocol SceneRepository: RepositoryProtocol where T == SAScene {
     func getAllVisibleScenes(forProfile profile: AuthProfileItem) -> Observable<[SAScene]>
-    func getAllVisibleScenes(forProfile profile: AuthProfileItem, inLocation location: Int) -> Observable<[SAScene]>
+    func getAllVisibleScenes(forProfile profile: AuthProfileItem, inLocation locationCaption: String) -> Observable<[SAScene]>
     func getAllScenes(forProfile profile: AuthProfileItem) -> Observable<[SAScene]>
     func getScene(remoteId: Int) -> Observable<SAScene>
     func deleteAll(for profile: AuthProfileItem) -> Observable<Void>
@@ -44,9 +44,9 @@ final class SceneRepositoryImpl: Repository<SAScene>, SceneRepository {
         return self.query(fetchRequest)
     }
     
-    func getAllVisibleScenes(forProfile profile: AuthProfileItem, inLocation location: Int) -> Observable<[SAScene]> {
+    func getAllVisibleScenes(forProfile profile: AuthProfileItem, inLocation locationCaption: String) -> Observable<[SAScene]> {
         let fetchRequest = SAScene.fetchRequest()
-            .filtered(by: NSPredicate(format: "profile = %@ AND visible > 0 AND location.location_id = %i", profile, location))
+            .filtered(by: NSPredicate(format: "profile = %@ AND visible > 0 AND location.caption = %@", profile, locationCaption))
         fetchRequest.sortDescriptors = [
             NSSortDescriptor(key: "location.sortOrder", ascending: true),
             NSSortDescriptor(key: "location.caption", ascending: true),

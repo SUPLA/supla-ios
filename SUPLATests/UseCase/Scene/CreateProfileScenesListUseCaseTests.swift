@@ -52,11 +52,13 @@ final class CreateProfileScenesListUseCaseTests: UseCaseTest<[List]> {
         profileRepository.activeProfileObservable = Observable.just(profile)
         
         let location1 = _SALocation(testContext: nil)
+        location1.caption = "Location 1"
         location1.location_id = 1
         let scene1 = SAScene(testContext: nil)
         scene1.location = location1
         
         let location2 = _SALocation(testContext: nil)
+        location2.caption = "Location 2"
         location2.location_id = 2
         let scene2 = SAScene(testContext: nil)
         scene2.location = location2
@@ -88,6 +90,7 @@ final class CreateProfileScenesListUseCaseTests: UseCaseTest<[List]> {
         profileRepository.activeProfileObservable = Observable.just(profile)
         
         let location1 = _SALocation(testContext: nil)
+        location1.caption = "Location 1"
         location1.location_id = 1
         location1.collapsed = 0 | CollapsedFlag.scene.rawValue
         
@@ -95,6 +98,7 @@ final class CreateProfileScenesListUseCaseTests: UseCaseTest<[List]> {
         scene1.location = location1
         
         let location2 = _SALocation(testContext: nil)
+        location2.caption = "Location 2"
         location2.location_id = 2
         let scene2 = SAScene(testContext: nil)
         scene2.location = location2
@@ -115,6 +119,44 @@ final class CreateProfileScenesListUseCaseTests: UseCaseTest<[List]> {
         XCTAssertEqual(items, [
             .location(location: location1),
             .location(location: location2),
+            .scene(scene: scene2)
+        ])
+    }
+    
+    func test_shouldMergeLocationWithTheSameNameIntoOne() {
+        // given
+        let profile = AuthProfileItem(testContext: nil)
+        profileRepository.activeProfileObservable = Observable.just(profile)
+        
+        let location1 = _SALocation(testContext: nil)
+        location1.caption = "Location"
+        location1.location_id = 1
+        
+        let scene1 = SAScene(testContext: nil)
+        scene1.location = location1
+        
+        let location2 = _SALocation(testContext: nil)
+        location2.caption = "Location"
+        location2.location_id = 2
+        let scene2 = SAScene(testContext: nil)
+        scene2.location = location2
+        
+        sceneRepository.allVisibleScenesObservable = Observable.just([ scene1, scene2 ])
+        
+        // when
+        useCase.invoke().subscribe(observer).disposed(by: disposeBag)
+        
+        // then
+        XCTAssertEqual(observer.events.count, 2)
+        guard let items = observer.events[0].value.element?.first?.items else {
+            XCTFail("No items produced")
+            return
+        }
+        
+        XCTAssertEqual(items.count, 3)
+        XCTAssertEqual(items, [
+            .location(location: location1),
+            .scene(scene: scene1),
             .scene(scene: scene2)
         ])
     }

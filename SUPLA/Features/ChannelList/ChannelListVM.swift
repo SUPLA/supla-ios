@@ -43,9 +43,9 @@ class ChannelListViewModel: BaseTableViewModel<ChannelListViewState, ChannelList
             .disposed(by: self)
     }
     
-    override func swapItems(firstItem: Int32, secondItem: Int32, locationId: Int32) {
+    override func swapItems(firstItem: Int32, secondItem: Int32, locationCaption: String) {
         swapChannelPositionsUseCase
-            .invoke(firstRemoteId: firstItem, secondRemoteId: secondItem, locationId: Int(locationId))
+            .invoke(firstRemoteId: firstItem, secondRemoteId: secondItem, locationCaption: locationCaption)
             .subscribe(onNext: { self.reloadTable() })
             .disposed(by: self)
     }

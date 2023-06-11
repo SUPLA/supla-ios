@@ -36,12 +36,12 @@ final class SwapGroupPositionsUseCaseMock: SwapGroupPositionsUseCase {
     var observable: Observable<Void> = Observable.empty()
     var firstRemoteIdArray: [Int32] = []
     var secondRemoteIdArray: [Int32] = []
-    var locationIdArray: [Int] = []
+    var locationCaptionArray: [String] = []
     
-    func invoke(firstRemoteId: Int32, secondRemoteId: Int32, locationId: Int) -> Observable<Void> {
+    func invoke(firstRemoteId: Int32, secondRemoteId: Int32, locationCaption: String) -> Observable<Void> {
         firstRemoteIdArray.append(firstRemoteId)
         secondRemoteIdArray.append(secondRemoteId)
-        locationIdArray.append(locationId)
+        locationCaptionArray.append(locationCaption)
         
         return observable
     }
