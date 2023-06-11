@@ -46,8 +46,8 @@ class SceneCell: MGSwipeTableCell {
         }
     }
     
-    private let iconWidth = CGFloat(60)
-    private let iconHeight = CGFloat(60)
+    private let iconWidth = CGFloat(100)
+    private let iconHeight = CGFloat(50)
     private let topMargin = CGFloat(11)
     private let horizMargin = CGFloat(22)
     private let eltHorizSpacing = CGFloat(6)
@@ -78,7 +78,7 @@ class SceneCell: MGSwipeTableCell {
         return [_captionLabel, _timerLabel, _initiator, _sceneIcon]
     }
     
-    private let disposeBag = DisposeBag()
+    private var disposeBag = DisposeBag()
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -88,6 +88,11 @@ class SceneCell: MGSwipeTableCell {
     required init?(coder: NSCoder) {
         super.init(coder: coder)
         setupCell()
+    }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        disposeBag = DisposeBag()
     }
     
     func isCaptionTouched() -> Bool { captionTouched }
@@ -147,14 +152,15 @@ class SceneCell: MGSwipeTableCell {
         _iconContainer.addSubview(_sceneIcon)
         _iconContainer.addSubview(_captionLabel)
         
-        _sceneIcon.heightAnchor.constraint(equalToConstant: scaled(iconWidth))
+        _sceneIcon.heightAnchor.constraint(equalToConstant: scaled(iconHeight))
             .isActive = true
-        _sceneIcon.widthAnchor.constraint(equalToConstant: scaled(iconHeight))
+        _sceneIcon.widthAnchor.constraint(equalToConstant: scaled(iconWidth))
             .isActive = true
         _sceneIcon.centerXAnchor.constraint(equalTo: _iconContainer.centerXAnchor)
             .isActive = true
         _sceneIcon.topAnchor.constraint(equalTo: _iconContainer.topAnchor)
             .isActive = true
+        _sceneIcon.contentMode = .scaleAspectFit
         
         _captionLabel.topAnchor.constraint(equalTo: _sceneIcon.bottomAnchor)
             .isActive = true
