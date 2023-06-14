@@ -706,6 +706,8 @@
 		A59AB8ED2A30AAFA00D91F1F /* SwapScenePositionsUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A59AB8EC2A30AAFA00D91F1F /* SwapScenePositionsUseCaseTests.swift */; };
 		A59AB8F02A30ACB500D91F1F /* ToggleLocationUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A59AB8EF2A30ACB500D91F1F /* ToggleLocationUseCaseTests.swift */; };
 		A5A1C0A829F2AAFA0083818D /* VibrationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5A1C0A729F2AAFA0083818D /* VibrationService.swift */; };
+		A5AE7A7F2A3998260097FA8B /* NewGestureInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5AE7A7E2A3998260097FA8B /* NewGestureInfoView.swift */; };
+		A5AE7A812A39AF410097FA8B /* Default.strings in Resources */ = {isa = PBXBuildFile; fileRef = A5AE7A802A39AF410097FA8B /* Default.strings */; };
 		A5F14B7229DED06400682FA6 /* AccountRemovalVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F14B7129DED06400682FA6 /* AccountRemovalVM.swift */; };
 		A5F14B7429DED41000682FA6 /* BaseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F14B7329DED41000682FA6 /* BaseViewModel.swift */; };
 		A5F14B7629DED44600682FA6 /* ViewEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F14B7529DED44600682FA6 /* ViewEvent.swift */; };
@@ -1897,6 +1899,8 @@
 		A59AB8EC2A30AAFA00D91F1F /* SwapScenePositionsUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwapScenePositionsUseCaseTests.swift; sourceTree = "<group>"; };
 		A59AB8EF2A30ACB500D91F1F /* ToggleLocationUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToggleLocationUseCaseTests.swift; sourceTree = "<group>"; };
 		A5A1C0A729F2AAFA0083818D /* VibrationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VibrationService.swift; sourceTree = "<group>"; };
+		A5AE7A7E2A3998260097FA8B /* NewGestureInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewGestureInfoView.swift; sourceTree = "<group>"; };
+		A5AE7A802A39AF410097FA8B /* Default.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = Default.strings; sourceTree = "<group>"; };
 		A5F14B7129DED06400682FA6 /* AccountRemovalVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountRemovalVM.swift; sourceTree = "<group>"; };
 		A5F14B7329DED41000682FA6 /* BaseViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewModel.swift; sourceTree = "<group>"; };
 		A5F14B7529DED44600682FA6 /* ViewEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewEvent.swift; sourceTree = "<group>"; };
@@ -2968,6 +2972,7 @@
 				40DE1A421BCD6F06004CF43B /* Localizable.strings */,
 				0196E82C258CEEEC0016E8DC /* InfoPlist.strings */,
 				AEF79D902713088100D7554B /* Strings.swift */,
+				A5AE7A802A39AF410097FA8B /* Default.strings */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -3475,6 +3480,7 @@
 				A5F29B5A2A1E15D600ED700A /* MainVC.swift */,
 				A5F29B5C2A1E161500ED700A /* MainVM.swift */,
 				A5F29BF02A28AE0B00ED700A /* NotificationView.swift */,
+				A5AE7A7E2A3998260097FA8B /* NewGestureInfoView.swift */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -4158,6 +4164,7 @@
 				0103C0A1292E732A00566A23 /* distance-nightmode@2x.png in Resources */,
 				0103C0D8292E732B00566A23 /* roofwindow-closed-nightmode@2x.png in Resources */,
 				0103C0B5292E732A00566A23 /* digiglassv-transparent-nightmode@2x.png in Resources */,
+				A5AE7A812A39AF410097FA8B /* Default.strings in Resources */,
 				0103C0B2292E732A00566A23 /* wind-nightmode@3x.png in Resources */,
 				018D2E5224BF258B00773D2F /* uv-off@3x.png in Resources */,
 				40477B4220C6C57700E995E6 /* staircasetimer-on@3x.png in Resources */,
@@ -4661,6 +4668,7 @@
 				401CA1BF1BA067DB00117AF4 /* main.m in Sources */,
 				A5F29BFE2A2DC19500ED700A /* CoreDataMigrationVersion.swift in Sources */,
 				018CFD2623281AF900888CB7 /* SAThermostatHPExtendedValue.m in Sources */,
+				A5AE7A7F2A3998260097FA8B /* NewGestureInfoView.swift in Sources */,
 				A57777CD29E6907C004513E6 /* RuntimeConfig.swift in Sources */,
 				01F8857122E5E79100D18373 /* SATemperatureMeasurementItem+CoreDataClass.m in Sources */,
 				018CFD2323281ADB00888CB7 /* SAThermostatExtendedValue.m in Sources */,

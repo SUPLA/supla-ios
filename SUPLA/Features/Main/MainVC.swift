@@ -21,9 +21,11 @@ import Foundation
 class MainVC : BaseViewControllerVM<MainViewState, MainViewEvent, MainViewModel> {
     
     @Singleton<ListsEventsManager> private var listsEventsManager
+    @Singleton<GlobalSettings> private var settings
     
     private let suplaTabBarController = UITabBarController()
     private let notificationView: NotificationView = NotificationView()
+    private let newGestureInfoView: NewGestureInfoView = NewGestureInfoView()
     private var notificationViewHeightConstraint: NSLayoutConstraint? = nil
     
     private var notificationTimer: Timer? = nil
@@ -52,6 +54,7 @@ class MainVC : BaseViewControllerVM<MainViewState, MainViewEvent, MainViewModel>
         setupTabBarController()
         setupToolbar()
         setupNotificationView()
+        setupNewGestureInfoView()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -151,6 +154,26 @@ class MainVC : BaseViewControllerVM<MainViewState, MainViewEvent, MainViewModel>
         
     }
     
+    private func setupNewGestureInfoView() {
+        var settings = settings
+        if (settings.newGestureInfoShown) {
+            // Already shown, skip
+            return
+        }
+        settings.newGestureInfoShown = true
+        
+        view.addSubview(newGestureInfoView)
+        
+        newGestureInfoView.translatesAutoresizingMaskIntoConstraints = false
+        newGestureInfoView.delegate = self
+        NSLayoutConstraint.activate([
+            newGestureInfoView.topAnchor.constraint(equalTo: view.topAnchor),
+            newGestureInfoView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            newGestureInfoView.leftAnchor.constraint(equalTo: view.leftAnchor),
+            newGestureInfoView.rightAnchor.constraint(equalTo: view.rightAnchor)
+        ])
+    }
+    
     private func showNotification(message: String, image: UIImage) {
         notificationTimer?.invalidate()
         notificationTimer = Timer.scheduledTimer(timeInterval: 5.0, target: self, selector: #selector(hideNotification), userInfo: nil, repeats: false)
@@ -243,6 +266,12 @@ extension MainVC: SARestApiClientTaskDelegate {
             iconsDownloadTask?.delegate = nil
             iconsDownloadTask = nil
         }
+    }
+}
+
+extension MainVC: NewGestureInfoDelegate {
+    func onCloseTapped() {
+        newGestureInfoView.isHidden = true
     }
 }
 

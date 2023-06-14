@@ -317,3 +317,4 @@
 "Cfg.removal.dialog.incomplete" = "Bitte die erforderliche Angaben vervollständigen";
 
 "General.error" = "Fehler";
+"dialog_new_gesture_info_text" = "Wischgeste zum Öffnen der Kanaldetails wurde gelöscht, tippe auf dem Kanal, um sie zu sehen.";
