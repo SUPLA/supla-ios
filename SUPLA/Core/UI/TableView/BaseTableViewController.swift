@@ -80,7 +80,7 @@ class BaseTableViewController<S : ViewState, E : ViewEvent, VM : BaseTableViewMo
         dataSource = createDataSource()
         
         viewModel.listItems
-            .asDriver()
+            .asDriverWithoutError()
             .drive(tableView.rx.items(dataSource: dataSource))
             .disposed(by: self)
         

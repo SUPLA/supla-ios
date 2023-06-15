@@ -16,13 +16,27 @@
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 
-#import <UIKit/UIKit.h>
-#import "SUPLA-Swift.h"
-@import UserNotifications;
+import UIKit
+import RxSwift
 
-@interface AppDelegate : UIResponder <UIApplicationDelegate, UNUserNotificationCenterDelegate>
-
-@property (strong, nonatomic) UIWindow *window;
-@property (strong, nonatomic) id<NavigationCoordinator> navigation;
-@end
-
+class AppSettingsNavigationCoordinator: BaseNavigationCoordinator {
+    
+    override var viewController: UIViewController {
+        _viewController
+    }
+    
+    private lazy var _viewController: AppSettingsVC = {
+        let controller = AppSettingsVC()
+        controller.navigationCoordinator = self
+        return controller
+    }()
+    
+    func navigateToLocationOrdering() {
+        if let nc = self.parentCoordinator?.viewController as? UINavigationController {
+            let locVC = LocationOrderingVC()
+            locVC.bind(viewModel: LocationOrderingVM())
+            locVC.navigationCoordinator = self
+            nc.pushViewController(locVC, animated: true)
+        }
+    }
+}

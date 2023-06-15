@@ -42,7 +42,7 @@
     // Short-circuit starting app if running unit tests
     BOOL isInTest = NSProcessInfo.processInfo.environment[@"XCTestConfigurationFilePath"] != nil;
     if (isInTest) {
-        return true;
+        return YES;
     }
 #endif
     
@@ -60,6 +60,7 @@
         [SAApp SuplaClient];
     }];
 
+    [self registerForNotifications];
     return YES;
 }
 
@@ -94,8 +95,7 @@
 #endif
     
     id vc = [SAApp currentNavigationCoordinator].viewController;
-    if ( ![vc isKindOfClass: [SAAddWizardVC class]] &&
-        ![vc isKindOfClass: [CfgVC class]] ) {
+    if ( ![vc isKindOfClass: [SAAddWizardVC class]] ) {
         // TODO: such checks should be solved in a generic way by coordintators
         [SAApp SuplaClient];
     }
@@ -107,5 +107,44 @@
     // Saves changes in the application's managed object context before the application terminates.
 }
 
+#pragma mark Notifications
+
+- (void) registerForNotifications {
+    [UNUserNotificationCenter currentNotificationCenter].delegate = self;
+    [[UNUserNotificationCenter currentNotificationCenter] requestAuthorizationWithOptions: (UNAuthorizationOptionAlert + UNAuthorizationOptionSound) completionHandler: ^(BOOL granted, NSError * _Nullable error) {
+        
+        if (granted) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [UIApplication.sharedApplication registerForRemoteNotifications];
+            });
+        } else {
+            NSLog(@"Notifications not allowed %@", error);
+        }
+    }];
+}
+
+- (void) application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
+#ifdef DEBUG
+    const char *data = [deviceToken bytes];
+    NSMutableString *token = [NSMutableString string];
+    for (NSUInteger i = 0; i < [deviceToken length]; i++) {
+        [token appendFormat:@"%02.2hhx", data[i]];
+    }
+    NSLog(@"Push token: %@", token);
+#endif
+
+    [DiContainer setPushTokenWithToken: deviceToken];
+    if ([[SAApp SuplaClient] isRegistered]) {
+        [[SAApp SuplaClient] registerPushNotificationClientToken:deviceToken appId:APP_ID];
+    }
+}
+
+- (void) application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error {
+    NSLog(@"Failed to register for remote notifications with error %@", error);
+}
+
+- (void) userNotificationCenter:(UNUserNotificationCenter *)center willPresentNotification:(UNNotification *)notification withCompletionHandler:(void (^)(UNNotificationPresentationOptions))completionHandler {
+    completionHandler(UNNotificationPresentationOptionAlert);
+}
 
 @end

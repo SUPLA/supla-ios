@@ -763,6 +763,10 @@ void sasuplaclient_scene_state_update(void *_suplaclient,
     }
     
     _client_id = result.ClientID;
+    NSData* pushToken = [DiContainer getPushToken];
+    if (pushToken != nil) {
+        [self registerPushNotificationClientToken:pushToken appId:APP_ID];
+    }
     
     [self performSelectorOnMainThread:@selector(_onRegistered:) withObject:result waitUntilDone:NO];
 }

@@ -72,9 +72,18 @@ extension DiContainer {
         DiContainer.shared.register(type: SwapGroupPositionsUseCase.self, component: SwapGroupPositionsUseCaseImpl())
         DiContainer.shared.register(type: SwapScenePositionsUseCase.self, component: SwapScenePositionsUseCaseImpl())
         DiContainer.shared.register(type: ProvideDetailTypeUseCase.self, component: ProvideDetailTypeUseCaseImpl())
+        
+        DiContainer.shared.register(type: UserNotificationCenter.self, component: UserNotificationCenterImpl())
     }
     
     @objc static func listsEventsManager() -> ListsEventsManagerEmitter? {
         return DiContainer.shared.resolve(type: ListsEventsManager.self)
+    }
+    @objc static func setPushToken(token: Data) {
+        var settings = DiContainer.shared.resolve(type: GlobalSettings.self)
+        settings?.pushToken = token
+    }
+    @objc static func getPushToken() -> Data? {
+        DiContainer.shared.resolve(type: GlobalSettings.self)?.pushToken
     }
 }

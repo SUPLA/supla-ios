@@ -47,7 +47,7 @@
         self.onlineStatus.offlineColor = [UIColor offLine];
         self.onlineStatus.borderColor = [UIColor statusBorder];
 
-		showsOpeningPercent = [Config new].showOpeningPercent;
+		showsOpeningPercent = [GlobalSettingsLegacy new].showOpeningPercent;
 		if(showsOpeningPercent) {
 			self.labelPercentCaption.text = NSLocalizedString(@"Percent of opening", nil);
 		} else {

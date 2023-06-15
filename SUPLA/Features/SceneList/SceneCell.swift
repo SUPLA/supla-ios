@@ -23,6 +23,7 @@ import RxSwift
 class SceneCell: MGSwipeTableCell {
     
     @Singleton<ListsEventsManager> private var listsEventsManager
+    @Singleton<GlobalSettings> private var settings
     
     var scaleFactor: CGFloat = 1.0 {
         didSet {
@@ -302,7 +303,7 @@ class SceneCell: MGSwipeTableCell {
         }
         
         
-        if(Config().autohideButtons) {
+        if (settings.autohideButtons) {
             hideSwipe(animated: true)
         }
     }

@@ -38,3 +38,7 @@
 "push_notification_limit_exceeded" = "The push notification limit of %@ per hour has been exceeded.";
 
 "dialog_new_gesture_info_text" = "Swipe gesture to open details was removed, tap on particular channel to open it.";
+
+"app_settings.permissions_header" = "Permissions";
+"app_settings.notifications_label" = "Notifications";
+"app_settings.location_label" = "Location";

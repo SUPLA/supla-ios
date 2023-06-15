@@ -125,9 +125,6 @@ class MainNavigationCoordinator: BaseNavigationCoordinator {
             }
             
             super.didFinish(coordinator: child)
-            if (child is CfgNavigationCoordinator || child is ProfilesNavigationCoordinator) {
-                //mainVC.reloadTables();
-            }
             self.resumeFlowIfNeeded()
         }
     }
@@ -141,7 +138,7 @@ class MainNavigationCoordinator: BaseNavigationCoordinator {
 
     
     func showSettingsView() {
-        startFlow(coordinator: CfgNavigationCoordinator())
+        startFlow(coordinator: AppSettingsNavigationCoordinator())
     }
 
     @objc func showProfilesView() {

@@ -19,7 +19,7 @@
 import UIKit
 
 extension UIColor {
-    @objc static let suplaGreenBackground = #colorLiteral(red: 0.07058823529, green: 0.6549019608, blue: 0.1176470588, alpha: 1)
+    @objc static let suplaGreenBackground = #colorLiteral(red: 0, green: 0.6549019608, blue: 0.1176470588, alpha: 1)
     
     @objc static let suplaGreen = UIColor(red: 0, green: 209.0/255.0, blue: 81.0/255.0, alpha: 1)
     static let ctrlBorder = UIColor(red: 118.0/255.0, green: 120.0/255.0, blue: 128.0/255.0, alpha: 0.12)

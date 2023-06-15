@@ -24,6 +24,7 @@
 #import "proto.h"
 #import "SAChannelStateExtendedValue.h"
 
+#define APP_ID 1
 #define ABSTRACT_METHOD_EXCEPTION [SAApp abstractMethodException:NSStringFromSelector(_cmd)]
  
 @class SADatabase;

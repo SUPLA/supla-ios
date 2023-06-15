@@ -34,7 +34,7 @@ struct Strings {
         static let showOpeningMode = NSLocalizedString("Roller shutter %", comment: "settings label for reporting opening % rather than closing % in detail views")
         static let showOpeningModeOpening = NSLocalizedString("Opening", comment: "")
         static let showOpeningModeClosing = NSLocalizedString("Closing", comment: "")
-        
+
         static let removalConfirmationTitle = "Cfg.removal.title".toLocalized()
         static let removalActionLogout = "Cfg.removal.action.logout".toLocalized()
         static let removalActionRemove = "Cfg.removal.action.remove".toLocalized()
@@ -48,6 +48,12 @@ struct Strings {
             static let duplicated_name = "Cfg.removal.dialog.duplicated_name".toLocalized()
             static let incomplete = "Cfg.removal.dialog.incomplete".toLocalized()
         }
+    }
+    
+    struct AppSettings {
+        static let permissionsHeader = "app_settings.permissions_header".toLocalized()
+        static let notificationsLabel = "app_settings.notifications_label".toLocalized()
+        static let locationLabel = "app_settings.location_label".toLocalized()
     }
     
     struct AccountCreation {
