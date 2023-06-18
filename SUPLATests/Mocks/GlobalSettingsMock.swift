@@ -33,6 +33,13 @@ class GlobalSettingsMock: GlobalSettings {
         get { newGestureInfoShownReturns }
         set { newGestureInfoShownValues.append(newValue) }
     }
+    
+    var shouldShowNewGestureInfoReturns: Bool = false
+    var shouldShowNewGestureInfoValues: [Bool] = []
+    var shouldShowNewGestureInfo: Bool {
+        get { shouldShowNewGestureInfoReturns }
+        set { shouldShowNewGestureInfoValues.append(newValue) }
+    }
 
     var pushTokenReturns: Data? = nil
     var pushTokenValues: [Data?] = []

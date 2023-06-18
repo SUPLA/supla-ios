@@ -76,6 +76,8 @@ final class NewGestureInfoView: UIView {
     }
     
     private func setupView() {
+        isHidden = true
+        
         addSubview(icon)
         addSubview(close)
         addSubview(text)

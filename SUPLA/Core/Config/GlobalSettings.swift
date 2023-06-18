@@ -22,6 +22,7 @@ protocol GlobalSettings {
     
     var anyAccountRegistered: Bool { get set }
     var newGestureInfoShown: Bool { get set }
+    var shouldShowNewGestureInfo: Bool { get set }
     var pushToken: Data? { get set }
     
     var temperatureUnit: TemperatureUnit { get set }
@@ -38,7 +39,10 @@ class GlobalSettingsImpl: GlobalSettings {
     let defaults = UserDefaults.standard
     
     init() {
-        defaults.register(defaults: [showChannelInfoKey: true])
+        defaults.register(defaults: [
+            showChannelInfoKey: true,
+            shouldShowNewGestureInfoKey: false
+        ])
     }
     
     private let anyAccountRegisteredKey = "GlobalSettings.anyAccountRegisteredKey"
@@ -51,6 +55,12 @@ class GlobalSettingsImpl: GlobalSettings {
     var newGestureInfoShown: Bool {
         get { defaults.bool(forKey: newGestureInfoShownKey) }
         set { defaults.set(newValue, forKey: newGestureInfoShownKey) }
+    }
+    
+    private let shouldShowNewGestureInfoKey = "GlobalSettings.shouldShowNewGestureInfo"
+    var shouldShowNewGestureInfo: Bool {
+        get { defaults.bool(forKey: shouldShowNewGestureInfoKey) }
+        set { defaults.set(newValue, forKey: shouldShowNewGestureInfoKey) }
     }
     
     private let pushTokenKey = "GlobalSettings.pushTokenKey"
