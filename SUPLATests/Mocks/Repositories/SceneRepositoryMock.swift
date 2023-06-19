@@ -23,7 +23,6 @@ import RxSwift
 final class SceneRepositoryMock: BaseRepositoryMock<SAScene>, SceneRepository {
     
     var allVisibleScenesObservable: Observable<[SAScene]> = Observable.empty()
-    
     func getAllVisibleScenes(forProfile profile: AuthProfileItem) -> Observable<[SAScene]> {
         allVisibleScenesObservable
     }
@@ -31,7 +30,6 @@ final class SceneRepositoryMock: BaseRepositoryMock<SAScene>, SceneRepository {
     var allVisibleScenesInLocationObservable: Observable<[SAScene]> = Observable.empty()
     var allVisibleScenesInLocationProfiles: [AuthProfileItem] = []
     var allVisibleScenesInLocationCaptions: [String] = []
-    
     func getAllVisibleScenes(forProfile profile: AuthProfileItem, inLocation locationCaption: String) -> Observable<[SAScene]> {
         allVisibleScenesInLocationProfiles.append(profile)
         allVisibleScenesInLocationCaptions.append(locationCaption)
@@ -39,23 +37,24 @@ final class SceneRepositoryMock: BaseRepositoryMock<SAScene>, SceneRepository {
     }
     
     var allScenesObservable: Observable<[SAScene]> = Observable.empty()
-    
     func getAllScenes(forProfile profile: AuthProfileItem) -> Observable<[SAScene]> {
         allScenesObservable
     }
     
     var sceneObservable: Observable<SAScene> = Observable.empty()
-    
     func getScene(remoteId: Int) -> Observable<SAScene> {
         sceneObservable
     }
     
     var deleteAllObservable: Observable<Void> = Observable.empty()
     var deleteAllCounter = 0
-    
     func deleteAll(for profile: AuthProfileItem) -> Observable<Void> {
         deleteAllCounter += 1
         return deleteAllObservable
+    }
+    
+    func getAllIconIds(for profile: AuthProfileItem) -> Observable<[Int32]> {
+        Observable.empty()
     }
 }
 

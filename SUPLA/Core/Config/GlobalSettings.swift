@@ -39,7 +39,7 @@ class GlobalSettingsImpl: GlobalSettings {
         }
     }
     
-    private let newGestureInfoShownKey = "GlobalSettings.dbSchemaKey"
+    private let newGestureInfoShownKey = "GlobalSettings.newGestureInfoShownKey"
     var newGestureInfoShown: Bool {
         get {
             defaults.bool(forKey: newGestureInfoShownKey)

@@ -23,26 +23,22 @@ import RxSwift
 final class ChannelRepositoryMock: BaseRepositoryMock<SAChannel>, ChannelRepository {
     
     var allVisibleChannelsObservable: Observable<[SAChannel]> = Observable.empty()
-    
     func getAllVisibleChannels(forProfile profile: AuthProfileItem) -> Observable<[SAChannel]> {
         return allVisibleChannelsObservable
     }
     
     var allChannelsObservable: Observable<[SAChannel]> = Observable.empty()
-    
     func getAllChannels(forProfile profile: AuthProfileItem) -> Observable<[SAChannel]> {
         return allChannelsObservable
     }
     
     var channelObservable: Observable<SAChannel> = Observable.empty()
-    
     func getChannel(remoteId: Int) -> Observable<SAChannel> {
         return channelObservable
     }
     
     var deleteAllObservable: Observable<Void> = Observable.empty()
     var deleteAllCounter = 0
-    
     func deleteAll(for profile: AuthProfileItem) -> Observable<Void> {
         deleteAllCounter += 1
         return deleteAllObservable
@@ -51,11 +47,13 @@ final class ChannelRepositoryMock: BaseRepositoryMock<SAChannel>, ChannelReposit
     var allVisibleChannelsInLocationObservable: Observable<[SAChannel]> = Observable.empty()
     var allVisibleChannelsInLocationProfiles: [AuthProfileItem] = []
     var allVisibleChannelsInLocationCaptions: [String] = []
-    
     func getAllVisibleChannels(forProfile profile: AuthProfileItem, inLocation locationCaption: String) -> Observable<[SAChannel]> {
         allVisibleChannelsInLocationProfiles.append(profile)
         allVisibleChannelsInLocationCaptions.append(locationCaption)
         return allVisibleChannelsInLocationObservable
     }
     
+    func getAllIconIds(for profile: AuthProfileItem) -> Observable<[Int32]> {
+        Observable.empty()
+    }
 }

@@ -38,6 +38,11 @@ final class UseCaseLegacyWrapper: NSObject {
         return UpdateSceneStateUseCase().invoke(state: state, clientId: clientId)
     }
     
+    @objc
+    static func updateSceneIconsRelation() {
+        UpdateSceneIconRelationsUseCase().invoke()
+    }
+    
     // MARK: Locations
     
     @objc
@@ -67,7 +72,12 @@ final class UseCaseLegacyWrapper: NSObject {
         return UpdateChannelExtendedValueUseCase().invoke(suplaChannelExtendedValue: suplaChannelExtendedValue)
     }
     
-    // Mark: Groups
+    @objc
+    static func updateChannelIconsRelation() {
+        UpdateChannelIconRelationsUseCase().invoke()
+    }
+    
+    // MARK: Groups
     
     @objc
     static func changeGroupsVisibility(from: Int16, to: Int16) -> Bool {
@@ -92,5 +102,22 @@ final class UseCaseLegacyWrapper: NSObject {
     @objc
     static func updateChannelGroups() -> [NSNumber] {
         return MagicUpdateGroupsUseCase().invoke()
+    }
+    
+    @objc
+    static func updateGroupIconsRelation() {
+        UpdateGroupIconRelationsUseCase().invoke()
+    }
+    
+    // MARK: Icons
+    
+    @objc
+    static func getAllIconsToDownload() -> [Int32] {
+        return GetAllIconsToDownloadUseCase().invoke()
+    }
+    
+    @objc
+    static func saveIcon(remoteId: NSNumber, images: [String]) {
+        SaveIconUseCase().invoke(remoteId: Int32(remoteId as! Int), images: images)
     }
 }

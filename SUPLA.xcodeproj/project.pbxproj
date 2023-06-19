@@ -708,6 +708,12 @@
 		A5A1C0A829F2AAFA0083818D /* VibrationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5A1C0A729F2AAFA0083818D /* VibrationService.swift */; };
 		A5AE7A7F2A3998260097FA8B /* NewGestureInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5AE7A7E2A3998260097FA8B /* NewGestureInfoView.swift */; };
 		A5AE7A812A39AF410097FA8B /* Default.strings in Resources */ = {isa = PBXBuildFile; fileRef = A5AE7A802A39AF410097FA8B /* Default.strings */; };
+		A5E4905A2A3FA151006801FE /* GetAllIconsToDownloadUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E490592A3FA151006801FE /* GetAllIconsToDownloadUseCase.swift */; };
+		A5E4905C2A400C03006801FE /* SaveIconUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E4905B2A400C03006801FE /* SaveIconUseCase.swift */; };
+		A5E4905F2A401020006801FE /* SAUserIcon+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E4905E2A401020006801FE /* SAUserIcon+Ext.swift */; };
+		A5E490612A4012E9006801FE /* UpdateChannelIconRelationsUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E490602A4012E9006801FE /* UpdateChannelIconRelationsUseCase.swift */; };
+		A5E490632A4019E6006801FE /* UpdateGroupIconRelationsUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E490622A4019E6006801FE /* UpdateGroupIconRelationsUseCase.swift */; };
+		A5E490652A401A7D006801FE /* UpdateSceneIconRelationsUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E490642A401A7D006801FE /* UpdateSceneIconRelationsUseCase.swift */; };
 		A5F14B7229DED06400682FA6 /* AccountRemovalVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F14B7129DED06400682FA6 /* AccountRemovalVM.swift */; };
 		A5F14B7429DED41000682FA6 /* BaseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F14B7329DED41000682FA6 /* BaseViewModel.swift */; };
 		A5F14B7629DED44600682FA6 /* ViewEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F14B7529DED44600682FA6 /* ViewEvent.swift */; };
@@ -1901,6 +1907,12 @@
 		A5A1C0A729F2AAFA0083818D /* VibrationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VibrationService.swift; sourceTree = "<group>"; };
 		A5AE7A7E2A3998260097FA8B /* NewGestureInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewGestureInfoView.swift; sourceTree = "<group>"; };
 		A5AE7A802A39AF410097FA8B /* Default.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = Default.strings; sourceTree = "<group>"; };
+		A5E490592A3FA151006801FE /* GetAllIconsToDownloadUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetAllIconsToDownloadUseCase.swift; sourceTree = "<group>"; };
+		A5E4905B2A400C03006801FE /* SaveIconUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveIconUseCase.swift; sourceTree = "<group>"; };
+		A5E4905E2A401020006801FE /* SAUserIcon+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SAUserIcon+Ext.swift"; sourceTree = "<group>"; };
+		A5E490602A4012E9006801FE /* UpdateChannelIconRelationsUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateChannelIconRelationsUseCase.swift; sourceTree = "<group>"; };
+		A5E490622A4019E6006801FE /* UpdateGroupIconRelationsUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateGroupIconRelationsUseCase.swift; sourceTree = "<group>"; };
+		A5E490642A401A7D006801FE /* UpdateSceneIconRelationsUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateSceneIconRelationsUseCase.swift; sourceTree = "<group>"; };
 		A5F14B7129DED06400682FA6 /* AccountRemovalVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountRemovalVM.swift; sourceTree = "<group>"; };
 		A5F14B7329DED41000682FA6 /* BaseViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewModel.swift; sourceTree = "<group>"; };
 		A5F14B7529DED44600682FA6 /* ViewEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewEvent.swift; sourceTree = "<group>"; };
@@ -3440,6 +3452,15 @@
 			path = Policies;
 			sourceTree = "<group>";
 		};
+		A5E490582A3FA137006801FE /* Icon */ = {
+			isa = PBXGroup;
+			children = (
+				A5E490592A3FA151006801FE /* GetAllIconsToDownloadUseCase.swift */,
+				A5E4905B2A400C03006801FE /* SaveIconUseCase.swift */,
+			);
+			path = Icon;
+			sourceTree = "<group>";
+		};
 		A5F14B7729DED97400682FA6 /* UI */ = {
 			isa = PBXGroup;
 			children = (
@@ -3558,6 +3579,7 @@
 				A5F29BEE2A287C6800ED700A /* SAChannelBase+Ext.swift */,
 				A5F29C012A2DC56600ED700A /* NSPersistentStoreCoordinator+Ext.swift */,
 				A5F29C032A2DC5D500ED700A /* NSManagedObjectModel+Ext.swift */,
+				A5E4905E2A401020006801FE /* SAUserIcon+Ext.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -3565,6 +3587,7 @@
 		A5F29B842A1F95B100ED700A /* UseCase */ = {
 			isa = PBXGroup;
 			children = (
+				A5E490582A3FA137006801FE /* Icon */,
 				A5F29BE92A27785F00ED700A /* Detail */,
 				A5F29BCA2A2622A900ED700A /* Profile */,
 				A5F29B9B2A20D2DD00ED700A /* Group */,
@@ -3604,6 +3627,7 @@
 				A5F29BA92A24B23000ED700A /* UpdateSceneUseCase.swift */,
 				A5F29BAB2A24B80E00ED700A /* ChangeScenesVisibilityUseCase.swift */,
 				A5F29BE12A27628300ED700A /* SwapScenePositionsUseCase.swift */,
+				A5E490642A401A7D006801FE /* UpdateSceneIconRelationsUseCase.swift */,
 			);
 			path = Scene;
 			sourceTree = "<group>";
@@ -3617,6 +3641,7 @@
 				A5F29BBB2A24D62300ED700A /* UpdateChannelExtendedValueUseCase.swift */,
 				A5F29BC12A24E30100ED700A /* ChangeChannelsVisibilityUseCase.swift */,
 				A5F29BDD2A2737DA00ED700A /* SwapChannelPositionsUseCase.swift */,
+				A5E490602A4012E9006801FE /* UpdateChannelIconRelationsUseCase.swift */,
 			);
 			path = Channel;
 			sourceTree = "<group>";
@@ -3631,6 +3656,7 @@
 				A5F29BC52A24E5DE00ED700A /* ChangeChannelGroupRelationsVisibilityUseCase.swift */,
 				A5F29BC82A26168E00ED700A /* MagicUpdateGroupsUseCase.swift */,
 				A5F29BDF2A275F7600ED700A /* SwapGroupPositionsUseCase.swift */,
+				A5E490622A4019E6006801FE /* UpdateGroupIconRelationsUseCase.swift */,
 			);
 			path = Group;
 			sourceTree = "<group>";
@@ -4522,6 +4548,8 @@
 				A5F29B962A20B97B00ED700A /* CreateProfileChannelsListUseCase.swift in Sources */,
 				A5F14B7229DED06400682FA6 /* AccountRemovalVM.swift in Sources */,
 				A5756F8229DC102800C32A1B /* AccountRemovalVC.swift in Sources */,
+				A5E490652A401A7D006801FE /* UpdateSceneIconRelationsUseCase.swift in Sources */,
+				A5E4905C2A400C03006801FE /* SaveIconUseCase.swift in Sources */,
 				A5F29C042A2DC5D500ED700A /* NSManagedObjectModel+Ext.swift in Sources */,
 				A5F8361D2A2E004C00E5CA71 /* Migration10to11ModelMapping.xcmappingmodel in Sources */,
 				AE929A87275FD5D500B75715 /* MainNavigationCoordinator.swift in Sources */,
@@ -4531,6 +4559,7 @@
 				A5F29BB22A24C52600ED700A /* UpdateChannelUseCase.swift in Sources */,
 				A5F8361F2A2E008C00E5CA71 /* AuthProfileItemInitialMigrationPolicy.swift in Sources */,
 				40DE1A361BCD1B55004CF43B /* AboutVC.m in Sources */,
+				A5E4905A2A3FA151006801FE /* GetAllIconsToDownloadUseCase.swift in Sources */,
 				4017E12C1BB9CE2900570AC8 /* ChannelCell.m in Sources */,
 				011021C425CC39AC00621D41 /* SARegistrationEnabled.m in Sources */,
 				A5F29B6B2A1E26AA00ED700A /* SceneListVC.swift in Sources */,
@@ -4602,6 +4631,7 @@
 				A5F29B782A1E34C700ED700A /* ContextScheduler.swift in Sources */,
 				019D9E2C25F271CF00881C99 /* SACaptionEditor.m in Sources */,
 				401CA1C21BA067DB00117AF4 /* AppDelegate.m in Sources */,
+				A5E490632A4019E6006801FE /* UpdateGroupIconRelationsUseCase.swift in Sources */,
 				A5F29BAE2A24BA5800ED700A /* LegacyWrapper.swift in Sources */,
 				A5F29B9A2A20C26900ED700A /* BaseTableViewController.swift in Sources */,
 				013D1C5D22CE47D5000C0784 /* SAChartHelper.m in Sources */,
@@ -4728,6 +4758,7 @@
 				AE74528D2827E5D400A3AFAD /* ProfileChooser.swift in Sources */,
 				6E9F28C928436EE900142502 /* AddNewProfileCell.swift in Sources */,
 				40C7BA5220C007A300ACEE42 /* SAChannelValue+CoreDataClass.m in Sources */,
+				A5E490612A4012E9006801FE /* UpdateChannelIconRelationsUseCase.swift in Sources */,
 				01DD2F0F247719000025DFF9 /* SARangeCalibrationWheel.m in Sources */,
 				6E05868128539E4A0044786B /* EditableProfileItemCell.swift in Sources */,
 				A5F29B982A20B9D200ED700A /* ChannelRepository.swift in Sources */,
@@ -4763,6 +4794,7 @@
 				A57785BF29E80406001C631E /* SuplaAppWrapper.swift in Sources */,
 				AEB195DE276E5A040091D314 /* FadeTransition.swift in Sources */,
 				40E8BE881FC06A5600FB2FE6 /* TFHpple.m in Sources */,
+				A5E4905F2A401020006801FE /* SAUserIcon+Ext.swift in Sources */,
 				01CEABFA25B9920A009C3BFD /* SADigiglassDetailView.m in Sources */,
 				013F7EC123EB33E30061A497 /* SAChannelStateExtendedValue.m in Sources */,
 				A573B39229DEB25900EBAFC4 /* ViewState.swift in Sources */,

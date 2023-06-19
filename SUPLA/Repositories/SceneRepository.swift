@@ -27,6 +27,7 @@ protocol SceneRepository: RepositoryProtocol where T == SAScene {
     func getAllScenes(forProfile profile: AuthProfileItem) -> Observable<[SAScene]>
     func getScene(remoteId: Int) -> Observable<SAScene>
     func deleteAll(for profile: AuthProfileItem) -> Observable<Void>
+    func getAllIconIds(for profile: AuthProfileItem) -> Observable<[Int32]>
 }
 
 final class SceneRepositoryImpl: Repository<SAScene>, SceneRepository {
@@ -72,5 +73,18 @@ final class SceneRepositoryImpl: Repository<SAScene>, SceneRepository {
     
     func deleteAll(for profile: AuthProfileItem) -> Observable<Void> {
         deleteAll(SAScene.fetchRequest().filtered(by: NSPredicate(format: "profile = %@", profile)))
+    }
+    
+    func getAllIconIds(for profile: AuthProfileItem) -> Observable<[Int32]> {
+        let request = SAScene.fetchRequest()
+            .filtered(by: NSPredicate(format: "usericon_id > 0 AND visible > 0 AND profile == %@", profile))
+            .ordered(by: "usericon_id")
+        
+        return query(request)
+            .map { scenes in
+                var resultSet: Set<Int32> = []
+                scenes.forEach { resultSet.insert($0.usericon_id) }
+                return Array(resultSet)
+            }
     }
 }

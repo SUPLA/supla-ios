@@ -25,6 +25,7 @@ protocol GroupRepository: RepositoryProtocol where T == SAChannelGroup {
     func getAllGroups(forProfile profile: AuthProfileItem) -> Observable<[SAChannelGroup]>
     func getGroup(remoteId: Int) -> Observable<SAChannelGroup>
     func deleteAll(for profile: AuthProfileItem) -> Observable<Void>
+    func getAllIconIds(for profile: AuthProfileItem) -> Observable<[Int32]>
 }
 
 class GroupRepositoryImpl: Repository<SAChannelGroup>, GroupRepository {
@@ -76,5 +77,18 @@ class GroupRepositoryImpl: Repository<SAChannelGroup>, GroupRepository {
     
     func deleteAll(for profile: AuthProfileItem) -> Observable<Void> {
         deleteAll(SAChannelGroup.fetchRequest().filtered(by: NSPredicate(format: "profile = %@", profile)))
+    }
+    
+    func getAllIconIds(for profile: AuthProfileItem) -> Observable<[Int32]> {
+        let request = SAChannelGroup.fetchRequest()
+            .filtered(by: NSPredicate(format: "usericon_id > 0 AND func > 0 AND visible > 0 AND profile == %@", profile))
+            .ordered(by: "usericon_id")
+        
+        return query(request)
+            .map { groups in
+                var resultSet: Set<Int32> = []
+                groups.forEach { resultSet.insert($0.usericon_id) }
+                return Array(resultSet)
+            }
     }
 }

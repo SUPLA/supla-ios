@@ -24,10 +24,17 @@ final class UserIconRepositoryMock: BaseRepositoryMock<SAUserIcon>, UserIconRepo
     
     var deleteAllObservable: Observable<Void> = Observable.empty()
     var deleteAllCounter = 0
-    
     func deleteAll(for profile: AuthProfileItem) -> Observable<Void> {
         deleteAllCounter += 1
         return deleteAllObservable
+    }
+    
+    func getIcon(for profile: AuthProfileItem, withId remoteId: Int32) -> Observable<SAUserIcon> {
+        Observable.empty()
+    }
+    
+    func getDownloadedIconIds(for profile: AuthProfileItem) -> Observable<[Int32]> {
+        Observable.empty()
     }
 }
 

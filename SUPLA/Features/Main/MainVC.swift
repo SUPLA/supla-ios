@@ -258,11 +258,6 @@ extension MainVC: ProfileChooserDelegate {
 extension MainVC: SARestApiClientTaskDelegate {
     func onRestApiTaskFinished(_ task: SARestApiClientTask) {
         if (iconsDownloadTask == task) {
-            if (iconsDownloadTask?.channelsUpdated == true) {
-                listsEventsManager.emitChannelUpdate()
-                listsEventsManager.emitGroupUpdate()
-                listsEventsManager.emitSceneUpdate()
-            }
             iconsDownloadTask?.delegate = nil
             iconsDownloadTask = nil
         }

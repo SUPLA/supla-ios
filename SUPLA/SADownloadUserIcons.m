@@ -19,29 +19,19 @@
 #import "SADownloadUserIcons.h"
 #import "SuplaApp.h"
 #import "SAUserIcon+CoreDataClass.h"
+#import "SUPLA-Swift.h"
 
 #define PACKAGE_SIZE 4
 #define START_DELAY 2.5
 
 @implementation SADownloadUserIcons {
-    BOOL _channelsUpdated;
-}
-
-- (NSData *) imageAtIndex:(int)idx data:(NSArray *)arr {
-    if (arr.count > idx) {
-        return [[NSData alloc] initWithBase64EncodedString:[arr objectAtIndex:idx] options:0];
-    }
-    return nil;
 }
 
 - (void)task {
-    @synchronized(self) {
-        _channelsUpdated = NO;
-    }
     
     [NSThread sleepForTimeInterval:START_DELAY];
     
-    NSArray *ids = [SAApp.DB iconsToDownload];
+    NSArray *ids = [UseCaseLegacyWrapper getAllIconsToDownload];
     NSString *packageIds = @"";
     
     for(int a=0;a<ids.count;a++) {
@@ -71,23 +61,9 @@
                         && [images isKindOfClass:[NSArray class]]
                         && (remote_id = [i valueForKey:@"id"])
                         && [remote_id isKindOfClass:[NSNumber class]]) {
+                        
+                        [UseCaseLegacyWrapper saveIconWithRemoteId:remote_id images: images];
                     
-                        SAUserIcon *userIcon = [self.DB fetchUserIconById:[remote_id intValue] createNewObject:YES];
-                        if (userIcon != nil) {
-                            userIcon.uimage1 = [self imageAtIndex:0 data:images];
-                            userIcon.uimage2 = [self imageAtIndex:1 data:images];
-                            userIcon.uimage3 = [self imageAtIndex:2 data:images];
-                            userIcon.uimage4 = [self imageAtIndex:3 data:images];
-                            
-                            if (userIcon.uimage1 == nil
-                                && userIcon.uimage2 == nil
-                                && userIcon.uimage3 == nil
-                                && userIcon.uimage4 == nil) {
-                                [self.DB deleteObject:userIcon];
-                            }
-
-                            [self.DB saveContext];
-                        }
                     }
                 }
             }
@@ -95,18 +71,9 @@
         }
     }
     
-    @synchronized(self) {
-      _channelsUpdated = [self.DB updateChannelUserIcons];
-      _scenesUpdated = [self.DB updateSceneUserIcons];
-    }
-}
-
-- (BOOL)channelsUpdated {
-    BOOL result = NO;
-    @synchronized(self) {
-        result = _channelsUpdated;
-    }
-    return result;
+    [UseCaseLegacyWrapper updateChannelIconsRelation];
+    [UseCaseLegacyWrapper updateGroupIconsRelation];
+    [UseCaseLegacyWrapper updateSceneIconsRelation];
 }
 
 @end

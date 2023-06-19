@@ -24,7 +24,6 @@ final class GroupRepositoryMock: BaseRepositoryMock<SAChannelGroup>, GroupReposi
     
     var allVisibleGroupsObservable: Observable<[SAChannelGroup]> = Observable.empty()
     var allVisibleGroupsProfilesArray: [AuthProfileItem] = []
-    
     func getAllVisibleGroups(forProfile profile: AuthProfileItem) -> Observable<[SAChannelGroup]> {
         allVisibleGroupsProfilesArray.append(profile)
         return allVisibleGroupsObservable
@@ -33,7 +32,6 @@ final class GroupRepositoryMock: BaseRepositoryMock<SAChannelGroup>, GroupReposi
     var allVisibleGroupsInLocationObservable: Observable<[SAChannelGroup]> = Observable.empty()
     var allVisibleGroupsInLocationProfiles: [AuthProfileItem] = []
     var allVisibleGroupsInLocationCaptions: [String] = []
-    
     func getAllVisibleGroups(forProfile profile: AuthProfileItem, inLocation locationCaption: String) -> Observable<[SAChannelGroup]> {
         allVisibleGroupsInLocationProfiles.append(profile)
         allVisibleGroupsInLocationCaptions.append(locationCaption)
@@ -41,23 +39,23 @@ final class GroupRepositoryMock: BaseRepositoryMock<SAChannelGroup>, GroupReposi
     }
     
     var allGroupsObservable: Observable<[SAChannelGroup]> = Observable.empty()
-    
     func getAllGroups(forProfile profile: AuthProfileItem) -> Observable<[SAChannelGroup]> {
         allGroupsObservable
     }
     
     var groupObservable: Observable<SAChannelGroup> = Observable.empty()
-    
     func getGroup(remoteId: Int) -> Observable<SAChannelGroup> {
         groupObservable
     }
     
     var deleteAllObservable: Observable<Void> = Observable.empty()
     var deleteAllCounter = 0
-    
     func deleteAll(for profile: AuthProfileItem) -> Observable<Void> {
         deleteAllCounter += 1
         return deleteAllObservable
     }
     
+    func getAllIconIds(for profile: AuthProfileItem) -> Observable<[Int32]> {
+        Observable.empty()
+    }
 }
