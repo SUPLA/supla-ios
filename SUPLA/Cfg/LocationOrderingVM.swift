@@ -35,7 +35,7 @@ class LocationOrderingVM {
     
     init(managedObjectContext: NSManagedObjectContext) {
         _ctx = managedObjectContext
-        profileManager = MultiAccountProfileManager(context: _ctx)
+        profileManager = MultiAccountProfileManager()
         
         locations.accept(try! fetchLocations())
     }

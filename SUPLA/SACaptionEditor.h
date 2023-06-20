@@ -18,10 +18,17 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 NS_ASSUME_NONNULL_BEGIN
 
+@class SACaptionEditor;
+@protocol SACaptionEditorDelegate <NSObject>
+- (void) captionEditorDidFinish: (SACaptionEditor*) editor;
+@end
+
 @interface SACaptionEditor : SADialog <SASuperuserAuthorizationDialogDelegate>
 
--(void)editCaptionWithRecordId:(int)recordId;
 @property (readonly)int recordId;
+@property (weak, nonatomic) id<SACaptionEditorDelegate> delegate;
+
+-(void)editCaptionWithRecordId:(int)recordId;
 - (NSString*) getTitle;
 - (NSString*) getCaption;
 - (void) applyChanges:(NSString*)caption;

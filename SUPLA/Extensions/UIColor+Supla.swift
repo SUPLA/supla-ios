@@ -31,4 +31,8 @@ extension UIColor {
     static let formLabelColor = UIColor(red: 0.706, green: 0.718, blue: 0.729, alpha: 1)
     @objc static let background = UIColor(red: 0.98, green: 0.984, blue: 0.988, alpha: 1)
     @objc static let textLight = UIColor(red: 0, green: 0, blue: 0, alpha: 1)
+    @objc static let yellow = UIColor(red: 254, green: 231, blue: 0, alpha: 1)
+    
+    static let newGestureBackgroundDarker = UIColor(red: 54.0/255.0, green: 55.0/255.0, blue: 56.0/255.0, alpha: 0.87)
+    static let newGestureBackgroundLighter = UIColor(red: 54.0/255.0, green: 55.0/255.0, blue: 56.0/255.0, alpha: 0.27)
 }

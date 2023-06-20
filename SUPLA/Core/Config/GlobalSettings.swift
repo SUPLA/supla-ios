@@ -21,7 +21,7 @@ import Foundation
 protocol GlobalSettings {
     
     var anyAccountRegistered: Bool { get set }
-    var dbSchema: Int { get set }
+    var newGestureInfoShown: Bool { get set }
     
 }
 
@@ -39,13 +39,13 @@ class GlobalSettingsImpl: GlobalSettings {
         }
     }
     
-    private let dbSchemaKey = "GlobalSettings.dbSchemaKey"
-    var dbSchema: Int {
+    private let newGestureInfoShownKey = "GlobalSettings.newGestureInfoShownKey"
+    var newGestureInfoShown: Bool {
         get {
-            defaults.integer(forKey: dbSchemaKey)
+            defaults.bool(forKey: newGestureInfoShownKey)
         }
         set {
-            defaults.set(newValue, forKey: dbSchemaKey)
+            defaults.set(newValue, forKey: newGestureInfoShownKey)
         }
     }
 }

@@ -324,3 +324,4 @@
 "General.error" = "Błąd";
 
 "push_notification_limit_exceeded" = "Przekroczono limit wysłanych wiadomości PUSH, który wynosi %@ na godzinę.";
+"dialog_new_gesture_info_text" = "Usunęliśmy gest przesunięcia otwierający szczegóły, aby je zobaczyć dotknij wybrany kanał.";

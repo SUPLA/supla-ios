@@ -35,24 +35,24 @@ struct Strings {
         static let showOpeningModeOpening = NSLocalizedString("Opening", comment: "")
         static let showOpeningModeClosing = NSLocalizedString("Closing", comment: "")
         
-        static let removalConfirmationTitle = NSLocalizedString("Cfg.removal.title", comment: "")
-        static let removalActionLogout = NSLocalizedString("Cfg.removal.action.logout", comment: "")
-        static let removalActionRemove = NSLocalizedString("Cfg.removal.action.remove", comment: "")
+        static let removalConfirmationTitle = "Cfg.removal.title".toLocalized()
+        static let removalActionLogout = "Cfg.removal.action.logout".toLocalized()
+        static let removalActionRemove = "Cfg.removal.action.remove".toLocalized()
         
         struct Dialogs {
             struct Failed {
-                static let title = NSLocalizedString("Cfg.removal.action.remove", comment: "")
-                static let message = NSLocalizedString("Cfg.removal.dialog.failed.message", comment: "")
+                static let title = "Cfg.removal.action.remove".toLocalized()
+                static let message = "Cfg.removal.dialog.failed.message".toLocalized()
             }
-            static let missing_name = NSLocalizedString("Cfg.removal.dialog.missing_name", comment: "")
-            static let duplicated_name = NSLocalizedString("Cfg.removal.dialog.duplicated_name", comment: "")
-            static let incomplete = NSLocalizedString("Cfg.removal.dialog.incomplete", comment: "")
+            static let missing_name = "Cfg.removal.dialog.missing_name".toLocalized()
+            static let duplicated_name = "Cfg.removal.dialog.duplicated_name".toLocalized()
+            static let incomplete = "Cfg.removal.dialog.incomplete".toLocalized()
         }
     }
     
     struct AccountCreation {
-        static let creationTitle = NSLocalizedString("AccountCreation.title", comment: "Title of the account creation screen")
-        static let modificationTitle = NSLocalizedString("AccountCreation.modificationTitle", comment: "Title of the account creation screen")
+        static let creationTitle = "AccountCreation.title".toLocalized()
+        static let modificationTitle = "AccountCreation.modificationTitle".toLocalized()
         
         static let yourAccountLabel = NSLocalizedString("Your account", comment: "account configuration settings screen")
         static let profileNameLabel = NSLocalizedString("NAME", comment: "label for profile name")
@@ -71,7 +71,7 @@ struct Strings {
     }
     
     struct AccountRemoval {
-        static let url = NSLocalizedString("AccountRemoval.url", comment: "")
+        static let url = "AccountRemoval.url".toLocalized()
     }
 
     struct Profiles {
@@ -102,17 +102,30 @@ struct Strings {
     
     struct Scenes {
         struct ActionButtons {
-            static let execute = NSLocalizedString("Scenes.ActionButtons.execute", comment: "")
-            static let abort = NSLocalizedString("Scenes.ActionButtons.abort", comment: "")
+            static let execute = "Scenes.ActionButtons.execute".toLocalized()
+            static let abort = "Scenes.ActionButtons.abort".toLocalized()
         }
         struct RenameDialog {
             static let sceneName = NSLocalizedString("scene name", comment: "")
         }
     }
     
+    struct Main {
+        static let channels = NSLocalizedString("Channels", comment: "")
+        static let groups = NSLocalizedString("Groups", comment: "")
+        static let scenes = NSLocalizedString("Scenes", comment: "")
+        static let newGestureInfo = "dialog_new_gesture_info_text".toLocalized()
+    }
+    
     struct General {
         static let cancel = NSLocalizedString("Cancel", comment: "")
         static let close = NSLocalizedString("Close", comment: "")
-        static let error = NSLocalizedString("General.error", comment: "")
+        static let error = "General.error".toLocalized()
+    }
+}
+
+extension String {
+    func toLocalized() -> String {
+        NSLocalizedString(self, tableName: "Localizable", value: "\(NSLocalizedString(self, tableName: "Default", bundle: .main, comment: ""))", comment: "")
     }
 }

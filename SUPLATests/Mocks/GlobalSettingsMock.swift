@@ -30,14 +30,14 @@ class GlobalSettingsMock: GlobalSettings {
         }
     }
     
-    var dbSchemaReturns: Int = 0
-    var dbSchemaValues: [Int] = []
-    var dbSchema: Int {
+    var newGestureInfoShownReturns: Bool = false
+    var newGestureInfoShownValues: [Bool] = []
+    var newGestureInfoShown: Bool {
         get {
-            dbSchemaReturns
+            newGestureInfoShownReturns
         }
         set {
-            dbSchemaValues.append(newValue)
+            newGestureInfoShownValues.append(newValue)
         }
     }
 }

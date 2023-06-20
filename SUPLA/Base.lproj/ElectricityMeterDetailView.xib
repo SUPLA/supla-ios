@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19150" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina5_5" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19134"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -176,8 +176,14 @@
                                         <action selector="phaseBtnTouch:" destination="Xvv-Xf-gNW" eventType="touchDown" id="15C-uG-HmA"/>
                                     </connections>
                                 </button>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Channel is offline" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3yh-hx-fTc">
+                                    <rect key="frame" x="131" y="270" width="113" height="20"/>
+                                    <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="14"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aRP-7O-HIg" userLabel="vLabels">
-                                    <rect key="frame" x="0.0" y="40" width="170" height="235"/>
+                                    <rect key="frame" x="0.0" y="82" width="170" height="235"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Frequency" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DlL-bA-H7x">
                                             <rect key="frame" x="0.0" y="0.0" width="170" height="19.666666666666668"/>
@@ -186,7 +192,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Voltage" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YDN-T2-eyC">
-                                            <rect key="frame" x="0.0" y="19.666666666666657" width="170" height="19.333333333333329"/>
+                                            <rect key="frame" x="0.0" y="19.666666666666686" width="170" height="19.333333333333329"/>
                                             <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="14"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
@@ -295,7 +301,7 @@
                                     </constraints>
                                 </view>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="84i-jo-dye" userLabel="vValues">
-                                    <rect key="frame" x="170" y="40" width="224" height="235"/>
+                                    <rect key="frame" x="170" y="82" width="224" height="235"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="50 Hz" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="7" translatesAutoresizingMaskIntoConstraints="NO" id="Zz9-Ny-np2">
                                             <rect key="frame" x="0.0" y="0.0" width="224" height="19.666666666666668"/>
@@ -304,7 +310,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="230 V" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="7" translatesAutoresizingMaskIntoConstraints="NO" id="N6X-By-Rip">
-                                            <rect key="frame" x="0.0" y="19.666666666666657" width="224" height="19.333333333333329"/>
+                                            <rect key="frame" x="0.0" y="19.666666666666686" width="224" height="19.333333333333329"/>
                                             <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="14"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
@@ -412,13 +418,13 @@
                                     </constraints>
                                 </view>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Vector phase-to-phase balancing" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FPJ-3b-cCR">
-                                    <rect key="frame" x="0.0" y="283" width="394" height="19.333333333333314"/>
+                                    <rect key="frame" x="0.0" y="325" width="394" height="19.333333333333314"/>
                                     <fontDescription key="fontDescription" name="OpenSans-Bold" family="Open Sans" pointSize="14"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5kh-QG-euh" userLabel="vLabelsBalance">
-                                    <rect key="frame" x="0.0" y="303.33333333333326" width="170" height="258.66666666666674"/>
+                                    <rect key="frame" x="0.0" y="345.33333333333331" width="170" height="216.66666666666669"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Forward active Energy" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GfA-ig-rf2" userLabel="Forward active Energy Balance">
                                             <rect key="frame" x="0.0" y="0.0" width="170" height="19.666666666666668"/>
@@ -445,7 +451,7 @@
                                     </constraints>
                                 </view>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="J2Z-bb-peO" userLabel="vValuesBalance">
-                                    <rect key="frame" x="170" y="303.33333333333326" width="224" height="258.66666666666674"/>
+                                    <rect key="frame" x="170" y="345.33333333333331" width="224" height="216.66666666666669"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="115 kWh" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="7" translatesAutoresizingMaskIntoConstraints="NO" id="Oln-S4-T0d">
                                             <rect key="frame" x="0.0" y="0.0" width="224" height="19.666666666666668"/>
@@ -481,6 +487,7 @@
                                 <constraint firstItem="5kh-QG-euh" firstAttribute="leading" secondItem="KE1-vg-Yeo" secondAttribute="leading" id="DJb-T9-ydY"/>
                                 <constraint firstItem="MEJ-sn-3qn" firstAttribute="leading" secondItem="KE1-vg-Yeo" secondAttribute="leading" id="Dch-OW-1vQ"/>
                                 <constraint firstItem="VyG-Y8-JRf" firstAttribute="leading" secondItem="keR-AG-qQO" secondAttribute="trailing" constant="5" id="DsM-sO-C7g"/>
+                                <constraint firstItem="3yh-hx-fTc" firstAttribute="centerX" secondItem="KE1-vg-Yeo" secondAttribute="centerX" id="FJf-iN-N2Y"/>
                                 <constraint firstAttribute="bottom" secondItem="J2Z-bb-peO" secondAttribute="bottom" id="KCT-dO-ZBY"/>
                                 <constraint firstAttribute="trailing" secondItem="J2Z-bb-peO" secondAttribute="trailing" id="Mi1-dE-ya0"/>
                                 <constraint firstItem="keR-AG-qQO" firstAttribute="width" secondItem="MEJ-sn-3qn" secondAttribute="width" id="UjT-Yx-3KV"/>
@@ -491,15 +498,16 @@
                                 <constraint firstAttribute="trailing" secondItem="CZD-Xw-vbM" secondAttribute="trailing" id="XeL-uZ-BcX"/>
                                 <constraint firstItem="VyG-Y8-JRf" firstAttribute="top" secondItem="KE1-vg-Yeo" secondAttribute="top" id="ZnB-IY-nKQ"/>
                                 <constraint firstAttribute="trailing" secondItem="FPJ-3b-cCR" secondAttribute="trailing" id="ae7-NC-7Ux"/>
-                                <constraint firstItem="84i-jo-dye" firstAttribute="top" secondItem="keR-AG-qQO" secondAttribute="bottom" constant="10" id="bS2-DI-H3e"/>
+                                <constraint firstItem="84i-jo-dye" firstAttribute="top" secondItem="3yh-hx-fTc" secondAttribute="bottom" constant="16" id="bS2-DI-H3e"/>
                                 <constraint firstItem="J2Z-bb-peO" firstAttribute="top" secondItem="FPJ-3b-cCR" secondAttribute="bottom" constant="1" id="cJ1-WW-LYx"/>
                                 <constraint firstItem="CZD-Xw-vbM" firstAttribute="width" secondItem="MEJ-sn-3qn" secondAttribute="width" id="f9l-Yt-QS7"/>
                                 <constraint firstItem="aRP-7O-HIg" firstAttribute="leading" secondItem="KE1-vg-Yeo" secondAttribute="leading" id="gbu-hs-I5h"/>
-                                <constraint firstItem="aRP-7O-HIg" firstAttribute="top" secondItem="MEJ-sn-3qn" secondAttribute="bottom" constant="10" id="gem-5Z-gsf"/>
+                                <constraint firstItem="aRP-7O-HIg" firstAttribute="top" secondItem="3yh-hx-fTc" secondAttribute="bottom" constant="16" id="gem-5Z-gsf"/>
                                 <constraint firstItem="VyG-Y8-JRf" firstAttribute="height" secondItem="MEJ-sn-3qn" secondAttribute="height" id="i1b-Ci-SBi"/>
                                 <constraint firstItem="keR-AG-qQO" firstAttribute="leading" secondItem="MEJ-sn-3qn" secondAttribute="trailing" constant="5" id="k33-D4-iFN"/>
                                 <constraint firstItem="CZD-Xw-vbM" firstAttribute="leading" secondItem="VyG-Y8-JRf" secondAttribute="trailing" constant="5" id="miI-lu-1ZD"/>
                                 <constraint firstItem="keR-AG-qQO" firstAttribute="top" secondItem="KE1-vg-Yeo" secondAttribute="top" id="qeh-Gb-80i"/>
+                                <constraint firstItem="3yh-hx-fTc" firstAttribute="top" secondItem="MEJ-sn-3qn" secondAttribute="bottom" constant="16" id="tky-V5-gIN"/>
                                 <constraint firstAttribute="trailing" secondItem="84i-jo-dye" secondAttribute="trailing" id="w6K-rl-9Ox"/>
                                 <constraint firstItem="84i-jo-dye" firstAttribute="leading" secondItem="aRP-7O-HIg" secondAttribute="trailing" id="weh-Ip-C9x"/>
                                 <constraint firstItem="VyG-Y8-JRf" firstAttribute="width" secondItem="MEJ-sn-3qn" secondAttribute="width" id="x5r-dO-iKu"/>
@@ -772,6 +780,7 @@
                 <outlet property="lTotalCost" destination="37U-Zx-YA3" id="aVD-51-ebf"/>
                 <outlet property="lVoltage" destination="YDN-T2-eyC" id="KNO-Jz-O4v"/>
                 <outlet property="lVoltageValue" destination="N6X-By-Rip" id="5xM-wg-xSU"/>
+                <outlet property="offlineLabel" destination="3yh-hx-fTc" id="sUQ-bA-DJ8"/>
                 <outlet property="pieChart" destination="Q7j-4f-xav" id="V26-Vi-WEM"/>
                 <outlet property="tfChartTypeFilter" destination="btZ-qJ-HXI" id="AUI-ya-Egd"/>
                 <outlet property="vCharts" destination="WP8-xn-lei" id="qMg-sQ-CuV"/>

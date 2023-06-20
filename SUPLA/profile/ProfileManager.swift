@@ -28,6 +28,8 @@ protocol ProfileManager {
     func getAllProfiles() -> [AuthProfileItem]
     
     func getCurrentProfile() -> AuthProfileItem?
+    @available(*, deprecated, message: "Only for legacy code")
+    func getCurrentProfile(withContext context: NSManagedObjectContext) -> AuthProfileItem?
     
     func activateProfile(id: ProfileID, force: Bool) -> Bool
 }

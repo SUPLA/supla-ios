@@ -34,14 +34,14 @@ class MainNavigationCoordinator: BaseNavigationCoordinator {
     
     private let navigationController: SuplaNavigationController
     
-    private var mainVC: SAMainVC
+    private var mainVC: MainVC
 
     
     private var pendingFlow: NavigationCoordinator?
     private var pendingCompletion: (()->Void)?
     
     override init() {
-        mainVC = SAMainVC(nibName: "MainVC", bundle: nil)
+        mainVC = MainVC()
         navigationController = SuplaNavigationController(rootViewController: mainVC)
         super.init()
         mainVC.navigationCoordinator = self
@@ -126,7 +126,7 @@ class MainNavigationCoordinator: BaseNavigationCoordinator {
             
             super.didFinish(coordinator: child)
             if (child is CfgNavigationCoordinator || child is ProfilesNavigationCoordinator) {
-                mainVC.reloadTables();
+                //mainVC.reloadTables();
             }
             self.resumeFlowIfNeeded()
         }
@@ -232,6 +232,10 @@ class MainNavigationCoordinator: BaseNavigationCoordinator {
         }
     }
     
+    func navigateToLegacyDetail(legacyDetailType: LegacyDetailType, channelBase: SAChannelBase) {
+        startFlow(coordinator: LegacyDetailNavigationCoordinator(detailType: legacyDetailType, channelBase: channelBase))
+    }
+    
     
     // MARK: -
     // MARK: Application life cycle support
@@ -247,25 +251,6 @@ class MainNavigationCoordinator: BaseNavigationCoordinator {
         self.updateNavBar()
 
     }
-}
-
-extension MainNavigationCoordinator: NavigationAnimationSupport {
-    func animationControllerFor(operation: UINavigationController.Operation,
-                                from fromVC: UIViewController,
-                                to toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-        if let fromVC = fromVC as? SAMainVC, toVC is DetailViewController {
-            let animator = SwipeTransitionAnimator(direction: .slideIn)
-            animator.interactionController = fromVC.interactionController
-            return animator
-        } else if let fromVC = fromVC as? DetailViewController, toVC is SAMainVC {
-            let animator = SwipeTransitionAnimator(direction: .slideOut)
-            animator.interactionController = fromVC.interactionController
-            return animator
-        }
-        return nil
-    }
-    
-    
 }
 
 protocol NavigationAnimationSupport {

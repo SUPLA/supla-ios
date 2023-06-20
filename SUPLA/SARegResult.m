@@ -24,10 +24,11 @@
 @synthesize LocationCount;
 @synthesize ChannelCount;
 @synthesize ChannelGroupCount;
+@synthesize SceneCount;
 @synthesize Flags;
 @synthesize Version;
 
-+ (SARegResult*) RegResultClientID:(int) clientID locationCount:(int) location_count channelCount:(int) channel_count channelGroupCount:(int) cgroup_count flags:(int) flags version:(int)version {
++ (SARegResult*) RegResultClientID:(int) clientID locationCount:(int) location_count channelCount:(int) channel_count channelGroupCount:(int) cgroup_count sceneCount:(int) scene_count flags:(int) flags version:(int)version {
     SARegResult *rr = [[SARegResult alloc] init];
     
     rr.ClientID = clientID;

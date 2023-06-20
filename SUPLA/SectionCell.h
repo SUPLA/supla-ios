@@ -22,6 +22,7 @@
 @protocol SASectionCellDelegate
 @optional
 - (void)sectionCellTouch:(SASectionCell*_Nonnull)section;
+- (void)sectionCaptionLongPressed: (int) remoteId;
 @end
 
 @interface SASectionCell : UITableViewCell

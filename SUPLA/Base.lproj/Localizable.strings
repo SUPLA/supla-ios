@@ -37,3 +37,5 @@
 "Cfg.removal.dialog.incomplete" = "Required data is missing";
 
 "push_notification_limit_exceeded" = "The push notification limit of %@ per hour has been exceeded.";
+
+"dialog_new_gesture_info_text" = "Swipe gesture to open details was removed, tap on particular channel to open it.";

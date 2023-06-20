@@ -21,8 +21,6 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface SADownloadUserIcons : SARestApiClientTask
-@property (atomic, readonly) BOOL channelsUpdated;
-@property (readonly) BOOL scenesUpdated;
 @end
 
 NS_ASSUME_NONNULL_END

@@ -16,6 +16,8 @@
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 
+import RxSwift
+
 @testable import SUPLA
 
 class RuntimeConfigMock: RuntimeConfig {
@@ -28,5 +30,19 @@ class RuntimeConfigMock: RuntimeConfig {
         set {
             activeProfileIdValues.append(newValue)
         }
+    }
+    
+    var runtimePreferences: RuntimePreferences? = nil
+    
+    func preferencesObservable() -> Observable<RuntimePreferences> {
+        if let toEmit = runtimePreferences {
+            return Observable.just(toEmit)
+        } else {
+            return Observable.empty()
+        }
+    }
+    
+    func emitPreferenceChange(scaleFactor: Float, showChannelInfo: Bool) {
+        runtimePreferences = RuntimePreferences(scaleFactor: scaleFactor, showChannelInfo: showChannelInfo)
     }
 }
