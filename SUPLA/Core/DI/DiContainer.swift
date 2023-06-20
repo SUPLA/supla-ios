@@ -79,7 +79,7 @@ extension DiContainer {
     @objc static func listsEventsManager() -> ListsEventsManagerEmitter? {
         return DiContainer.shared.resolve(type: ListsEventsManager.self)
     }
-    @objc static func setPushToken(token: Data) {
+    @objc static func setPushToken(token: Data?) {
         var settings = DiContainer.shared.resolve(type: GlobalSettings.self)
         settings?.pushToken = token
     }

@@ -119,6 +119,7 @@
             });
         } else {
             NSLog(@"Notifications not allowed %@", error);
+            [DiContainer setPushTokenWithToken: nil];
         }
     }];
 }
