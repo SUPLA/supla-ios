@@ -20,15 +20,17 @@ import Foundation
 import RxSwift
 
 protocol ToggleLocationUseCase {
-    func invoke(remoteId: Int, collapsedFlag: CollapsedFlag) -> Observable<Void>
+    func invoke(remoteId: Int32, collapsedFlag: CollapsedFlag) -> Observable<Void>
 }
 
 class ToggleLocationUseCaseImpl: ToggleLocationUseCase {
     
     @Singleton<LocationRepository> var locationRepository
+    @Singleton<ProfileRepository> var profileRepository
     
-    func invoke(remoteId: Int, collapsedFlag: CollapsedFlag) -> Observable<Void> {
-        return locationRepository.queryItem(NSPredicate(format: "location_id = %d", remoteId))
+    func invoke(remoteId: Int32, collapsedFlag: CollapsedFlag) -> Observable<Void> {
+        return profileRepository.getActiveProfile()
+            .flatMapFirst { self.locationRepository.getLocation(for: $0, with: remoteId) }
             .compactMap { $0 }
             .map { item in
                 item.collapsed ^= collapsedFlag.rawValue

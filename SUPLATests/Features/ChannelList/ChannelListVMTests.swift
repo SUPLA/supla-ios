@@ -218,7 +218,7 @@ class ChannelListVMTests: ViewModelTest<ChannelListViewState, ChannelListViewEve
     
     func test_shouldReloadTable_whenLocationToggled() {
         // given
-        let remoteId = 123
+        let remoteId: Int32 = 123
         toggleLocationUseCase.observable = Observable.just(())
         
         // when

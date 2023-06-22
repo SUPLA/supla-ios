@@ -29,9 +29,13 @@ final class ToggleLocationUseCaseTests: UseCaseTest<Void> {
     private lazy var locationRepository: LocationRepositoryMock! = {
         LocationRepositoryMock()
     }()
+    private lazy var profileRepository: ProfileRepositoryMock! = {
+        ProfileRepositoryMock()
+    }()
     
     override func setUp() {
         DiContainer.shared.register(type: (any LocationRepository).self, component: locationRepository!)
+        DiContainer.shared.register(type: (any ProfileRepository).self, component: profileRepository!)
     }
     
     override func tearDown() {
@@ -41,12 +45,13 @@ final class ToggleLocationUseCaseTests: UseCaseTest<Void> {
     
     func test_collapseLocation() {
         // given
-        let remoteId = 123
+        let remoteId: Int32 = 123
         let location = _SALocation(testContext: nil)
         location.collapsed = 0
         
-        locationRepository.queryItemByPredicateObservable = Observable.just(location)
+        locationRepository.locationObservable = Observable.just(location)
         locationRepository.saveObservable = Observable.just(())
+        profileRepository.activeProfileObservable = Observable.just(AuthProfileItem(testContext: nil))
         
         // when
         useCase.invoke(remoteId: remoteId, collapsedFlag: .scene).subscribe(observer).disposed(by: disposeBag)
@@ -59,12 +64,13 @@ final class ToggleLocationUseCaseTests: UseCaseTest<Void> {
     
     func test_expandLocation() {
         // given
-        let remoteId = 123
+        let remoteId: Int32 = 123
         let location = _SALocation(testContext: nil)
         location.collapsed = 0 | CollapsedFlag.group.rawValue
         
-        locationRepository.queryItemByPredicateObservable = Observable.just(location)
+        locationRepository.locationObservable = Observable.just(location)
         locationRepository.saveObservable = Observable.just(())
+        profileRepository.activeProfileObservable = Observable.just(AuthProfileItem(testContext: nil))
         
         // when
         useCase.invoke(remoteId: remoteId, collapsedFlag: .group).subscribe(observer).disposed(by: disposeBag)

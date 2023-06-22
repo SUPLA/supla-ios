@@ -153,7 +153,7 @@ class BaseTableViewController<S : ViewState, E : ViewEvent, VM : BaseTableViewMo
     // MARK: SASectionCellDelegate
     
     func sectionCellTouch(_ section: SASectionCell) {
-        viewModel.toggleLocation(remoteId: Int(section.locationId))
+        viewModel.toggleLocation(remoteId: section.locationId)
     }
     
     func sectionCaptionLongPressed(_ remoteId: Int32) {

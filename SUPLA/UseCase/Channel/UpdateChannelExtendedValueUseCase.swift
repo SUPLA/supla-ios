@@ -35,29 +35,29 @@ final class UpdateChannelExtendedValueUseCase {
                     self.channelExtendedValueRepository
                         .getChannelValue(for: profile, with: suplaChannelExtendedValue.Id)
                         .ifEmpty(switchTo: self.createValue(channelRemoteId: suplaChannelExtendedValue.Id))
-                }
-                .map { value in
-                    if (value.setValueSwift(suplaChannelExtendedValue.value)) {
-                        changed = true
-                    }
-                    
-                    return value
-                }
-                .flatMapFirst { value in
-                    let channelsUpdateQuery = SAChannel.fetchRequest()
-                        .filtered(by: NSPredicate(
-                            format: "remote_id = %i AND (ev = nil OR ev <> %@)",
-                            suplaChannelExtendedValue.Id, value
-                        ))
-                        .ordered(by: "remote_id")
-                    
-                    return self.channelRepository.query(channelsUpdateQuery)
-                        .map { channels in
-                            channels.forEach { channel in
-                                channel.ev = value
+                        .map { value in
+                            if (value.setValueSwift(suplaChannelExtendedValue.value)) {
                                 changed = true
                             }
+                            
                             return value
+                        }
+                        .flatMapFirst { value in
+                            let channelsUpdateQuery = SAChannel.fetchRequest()
+                                .filtered(by: NSPredicate(
+                                    format: "remote_id = %i AND (ev = nil OR ev <> %@) AND profile = %@",
+                                    suplaChannelExtendedValue.Id, value, profile
+                                ))
+                                .ordered(by: "remote_id")
+                            
+                            return self.channelRepository.query(channelsUpdateQuery)
+                                .map { channels in
+                                    channels.forEach { channel in
+                                        channel.ev = value
+                                        changed = true
+                                    }
+                                    return value
+                                }
                         }
                 }
                 .flatMapFirst { value in
