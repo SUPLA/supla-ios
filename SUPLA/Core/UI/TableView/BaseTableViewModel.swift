@@ -26,7 +26,7 @@ class BaseTableViewModel<S : ViewState, E : ViewEvent>: BaseViewModel<S, E> {
     
     @Singleton<ToggleLocationUseCase> private var toggleLocationUseCase
     
-    func toggleLocation(remoteId: Int) {
+    func toggleLocation(remoteId: Int32) {
         toggleLocationUseCase.invoke(remoteId: remoteId, collapsedFlag: getCollapsedFlag())
             .subscribe(onNext: { self.reloadTable() })
             .disposed(by: self)

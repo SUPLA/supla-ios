@@ -23,10 +23,10 @@ import RxSwift
 final class ToggleLocationUseCaseMock: ToggleLocationUseCase {
     
     var observable: Observable<Void> = Observable.empty()
-    var remoteIdArray: [Int] = []
+    var remoteIdArray: [Int32] = []
     var collapsedFlagArray: [CollapsedFlag] = []
     
-    func invoke(remoteId: Int, collapsedFlag: CollapsedFlag) -> Observable<Void> {
+    func invoke(remoteId: Int32, collapsedFlag: CollapsedFlag) -> Observable<Void> {
         remoteIdArray.append(remoteId)
         collapsedFlagArray.append(collapsedFlag)
         

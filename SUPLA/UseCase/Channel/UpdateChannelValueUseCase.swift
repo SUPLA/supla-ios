@@ -36,52 +36,52 @@ final class UpdateChannelValueUseCase {
                     self.channelValueRepository
                         .getChannelValue(for: profile, with: suplaChannelValue.Id)
                         .ifEmpty(switchTo: self.createChannelValue(channelRemoteId: suplaChannelValue.Id))
-                }
-                .map { value in
-                    if (suplaChannelValue.online != 0 && value.setValueSwift(suplaChannelValue.value)) {
-                        changed = true
-                    }
-                    if (value.setOnlineState(suplaChannelValue.online)) {
-                        changed = true
-                    }
-                    return value
-                }
-                .flatMapFirst { (value: SAChannelValue) in
-                    let channelUpdateQuery = SAChannel.fetchRequest()
-                        .filtered(by: NSPredicate(format: "remote_id = %i AND (value = nil OR value <> %@)", suplaChannelValue.Id, value))
-                        .ordered(by: "remote_id")
-
-                    return self.channelRepository.query(channelUpdateQuery)
-                        .map { channels in
-                            channels.forEach { channel in
-                                channel.value = value
+                        .map { value in
+                            if (suplaChannelValue.online != 0 && value.setValueSwift(suplaChannelValue.value)) {
                                 changed = true
                             }
-
-                            return value
-                        }
-                }
-                .flatMapFirst { value in
-                    let groupsUpadteQuery = SAChannelGroupRelation.fetchRequest()
-                        .filtered(by: NSPredicate(format: "channel_id = %i AND (value = nil OR value <> %@)", suplaChannelValue.Id, value))
-                        .ordered(by: "channel_id")
-
-                    return self.channelGroupRelationRepository.query(groupsUpadteQuery)
-                        .map { groups in
-                            groups.forEach { group in
-                                group.value = value
+                            if (value.setOnlineState(suplaChannelValue.online)) {
                                 changed = true
                             }
-
                             return value
                         }
-                }
-                .flatMapFirst { value in
-                    if (changed) {
-                        return self.channelValueRepository.save(value).map { true }
-                    }
-                    
-                    return Observable.just(false)
+                        .flatMapFirst { (value: SAChannelValue) in
+                            let channelUpdateQuery = SAChannel.fetchRequest()
+                                .filtered(by: NSPredicate(format: "remote_id = %i AND (value = nil OR value <> %@) AND profile = %@", suplaChannelValue.Id, value, profile))
+                                .ordered(by: "remote_id")
+
+                            return self.channelRepository.query(channelUpdateQuery)
+                                .map { channels in
+                                    channels.forEach { channel in
+                                        channel.value = value
+                                        changed = true
+                                    }
+
+                                    return value
+                                }
+                        }
+                        .flatMapFirst { value in
+                            let groupsUpadteQuery = SAChannelGroupRelation.fetchRequest()
+                                .filtered(by: NSPredicate(format: "channel_id = %i AND (value = nil OR value <> %@) AND profile = %@", suplaChannelValue.Id, value, profile))
+                                .ordered(by: "channel_id")
+
+                            return self.channelGroupRelationRepository.query(groupsUpadteQuery)
+                                .map { groups in
+                                    groups.forEach { group in
+                                        group.value = value
+                                        changed = true
+                                    }
+
+                                    return value
+                                }
+                        }
+                        .flatMapFirst { value in
+                            if (changed) {
+                                return self.channelValueRepository.save(value).map { true }
+                            }
+                            
+                            return Observable.just(false)
+                        }
                 }
                 .toBlocking()
                 .first() ?? false
