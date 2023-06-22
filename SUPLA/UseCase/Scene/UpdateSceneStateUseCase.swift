@@ -22,6 +22,7 @@ import RxSwift
 final class UpdateSceneStateUseCase {
     
     @Singleton<SceneRepository> private var sceneRepository
+    @Singleton<ProfileRepository> private var profileRepository
     @Singleton<ListsEventsManager> private var listsEventsManager
     
     @available(*, deprecated, message: "Only for legacy code")
@@ -29,8 +30,8 @@ final class UpdateSceneStateUseCase {
         var saved = false
         
         do {
-            saved = try sceneRepository
-                .getScene(remoteId: Int(state.SceneId))
+            saved = try profileRepository.getActiveProfile()
+                .flatMapFirst { self.sceneRepository.getScene(for: $0, with: state.SceneId) }
                 .map { scene in self.updateScene(scene: scene, state: state, clientId: clientId) }
                 .flatMapFirst { tuple in
                     if (tuple.0) {

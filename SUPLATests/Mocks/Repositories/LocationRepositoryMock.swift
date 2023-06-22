@@ -23,14 +23,17 @@ import RxSwift
 final class LocationRepositoryMock: BaseRepositoryMock<_SALocation>, LocationRepository {
     
     var locationObservable: Observable<_SALocation> = Observable.empty()
-    
-    func getLocation(remoteId: Int) -> Observable<_SALocation> {
+    func getLocation(for profile: AuthProfileItem, with remoteId: Int32) -> Observable<_SALocation> {
         locationObservable
+    }
+    
+    var allLocationsObservable: Observable<[_SALocation]> = Observable.empty()
+    func getAllLocations(forProfile profile: AuthProfileItem) -> Observable<[_SALocation]> {
+        allLocationsObservable
     }
     
     var deleteAllObservable: Observable<Void> = Observable.empty()
     var deleteAllCounter = 0
-    
     func deleteAll(for profile: AuthProfileItem) -> Observable<Void> {
         deleteAllCounter += 1
         return deleteAllObservable

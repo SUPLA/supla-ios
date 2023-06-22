@@ -51,6 +51,7 @@ final class ListsEventsManagerImpl: ListsEventsManager {
     @Singleton<SceneRepository> private var sceneRepository
     @Singleton<ChannelRepository> private var channelRepository
     @Singleton<GroupRepository> private var groupRepository
+    @Singleton<ProfileRepository> private var profileRepository
     
     func emitSceneChange(sceneId: Int) {
         let subject = getSubjectForScene(sceneId: sceneId)
@@ -80,20 +81,27 @@ final class ListsEventsManagerImpl: ListsEventsManager {
     }
     
     func observeScene(sceneId: Int) -> Observable<SAScene> {
-        let subject = getSubjectForScene(sceneId: sceneId)
-        return subject.flatMap { _ in
-            self.sceneRepository.getScene(remoteId: sceneId)
-        }
+        return getSubjectForScene(sceneId: sceneId)
+            .flatMap { _ in
+                self.profileRepository.getActiveProfile()
+                    .flatMapFirst { self.sceneRepository.getScene(for: $0, with: Int32(sceneId)) }
+            }
     }
     
     func observeChannel(remoteId: Int) -> Observable<SAChannel> {
         return getSubjectForChannel(channelId: remoteId)
-            .flatMap { _ in self.channelRepository.getChannel(remoteId: remoteId) }
+            .flatMap { _ in
+                self.profileRepository.getActiveProfile()
+                    .flatMapFirst { self.channelRepository.getChannel(for: $0, with: Int32(remoteId)) }
+            }
     }
     
     func observeGroup(remoteId: Int) -> Observable<SAChannelGroup> {
         return getSubjectForGroup(groupId: remoteId)
-            .flatMap { _ in self.groupRepository.getGroup(remoteId: remoteId) }
+            .flatMap { _ in
+                self.profileRepository.getActiveProfile()
+                    .flatMapFirst { self.groupRepository.getGroup(for: $0, with: Int32(remoteId)) }
+            }
     }
     
     func observeChannelUpdates() -> Observable<Void> { channelUpdatesSubject.asObservable() }

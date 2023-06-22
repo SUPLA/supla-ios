@@ -25,7 +25,7 @@ protocol SceneRepository: RepositoryProtocol where T == SAScene {
     func getAllVisibleScenes(forProfile profile: AuthProfileItem) -> Observable<[SAScene]>
     func getAllVisibleScenes(forProfile profile: AuthProfileItem, inLocation locationCaption: String) -> Observable<[SAScene]>
     func getAllScenes(forProfile profile: AuthProfileItem) -> Observable<[SAScene]>
-    func getScene(remoteId: Int) -> Observable<SAScene>
+    func getScene(for profile: AuthProfileItem, with sceneId: Int32) -> Observable<SAScene>
     func deleteAll(for profile: AuthProfileItem) -> Observable<Void>
     func getAllIconIds(for profile: AuthProfileItem) -> Observable<[Int32]>
 }
@@ -66,8 +66,8 @@ final class SceneRepositoryImpl: Repository<SAScene>, SceneRepository {
         return self.query(fetchRequest)
     }
     
-    func getScene(remoteId: Int) -> Observable<SAScene> {
-        queryItem(NSPredicate(format: "sceneId = %d", remoteId))
+    func getScene(for profile: AuthProfileItem, with sceneId: Int32) -> Observable<SAScene> {
+        queryItem(NSPredicate(format: "sceneId = %d AND profile = %@", sceneId, profile))
             .compactMap { $0 }
     }
     
@@ -77,7 +77,7 @@ final class SceneRepositoryImpl: Repository<SAScene>, SceneRepository {
     
     func getAllIconIds(for profile: AuthProfileItem) -> Observable<[Int32]> {
         let request = SAScene.fetchRequest()
-            .filtered(by: NSPredicate(format: "usericon_id > 0 AND visible > 0 AND profile == %@", profile))
+            .filtered(by: NSPredicate(format: "usericon_id > 0 AND visible > 0 AND profile = %@", profile))
             .ordered(by: "usericon_id")
         
         return query(request)

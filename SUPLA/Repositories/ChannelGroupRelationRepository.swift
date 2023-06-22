@@ -20,21 +20,23 @@ import Foundation
 import RxSwift
 
 protocol ChannelGroupRelationRepository: RepositoryProtocol where T == SAChannelGroupRelation {
-    func getAllRelations() -> Observable<[SAChannelGroupRelation]>
-    func getRelation(groupId: Int32, channelId: Int32) -> Observable<SAChannelGroupRelation>
+    func getAllRelations(for profile: AuthProfileItem) -> Observable<[SAChannelGroupRelation]>
+    func getRelation(for profile: AuthProfileItem, groupId: Int32, channelId: Int32) -> Observable<SAChannelGroupRelation>
 }
 
 final class ChannelGroupRelationRepositoryImpl: Repository<SAChannelGroupRelation>, ChannelGroupRelationRepository {
     
-    func getAllRelations() -> Observable<[SAChannelGroupRelation]> {
+    func getAllRelations(for profile: AuthProfileItem) -> Observable<[SAChannelGroupRelation]> {
         let request = SAChannelGroupRelation.fetchRequest()
+            .filtered(by: NSPredicate(format: "profile = %@", profile))
             .ordered(by: "group_id")
         
         return query(request)
     }
     
-    func getRelation(groupId: Int32, channelId: Int32) -> Observable<SAChannelGroupRelation> {
-        return queryItem(NSPredicate(format: "group_id = %i AND channel_id = %i", groupId, channelId))
+    func getRelation(for profile: AuthProfileItem, groupId: Int32, channelId: Int32) -> Observable<SAChannelGroupRelation> {
+        let queryString = "group_id = %i AND channel_id = %i AND profile = %@"
+        return queryItem(NSPredicate(format: queryString, groupId, channelId, profile))
             .compactMap { $0 }
     }
 }

@@ -31,13 +31,16 @@ final class UpdateGroupUseCase {
         var changed = false
         
         do {
-            changed = try locationRepository
-                .getLocation(remoteId: Int(suplaGroup.LocationID))
-                .flatMapFirst { location in
-                    self.groupRepository
-                        .getGroup(remoteId: Int(suplaGroup.Id))
-                        .ifEmpty(switchTo: self.createGroup(remoteId: suplaGroup.Id))
-                        .map { scene in (location, scene) }
+            changed = try profileRepository.getActiveProfile()
+                .flatMapFirst { profile in
+                    self.locationRepository
+                        .getLocation(for: profile, with: suplaGroup.LocationID)
+                        .flatMapFirst { location in
+                            self.groupRepository
+                                .getGroup(for: profile, with: suplaGroup.Id)
+                                .ifEmpty(switchTo: self.createGroup(remoteId: suplaGroup.Id))
+                                .map { scene in (location, scene) }
+                        }
                 }
                 .map { tuple in self.updateGroup(group: tuple.1, suplaGroup: suplaGroup, location: tuple.0) }
                 .flatMapFirst { tuple in

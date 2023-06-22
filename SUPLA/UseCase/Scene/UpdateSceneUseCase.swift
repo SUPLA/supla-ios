@@ -31,13 +31,14 @@ final class UpdateSceneUseCase {
         var changed = false
         
         do {
-            changed = try locationRepository
-                .getLocation(remoteId: Int(suplaScene.LocationId))
-                .flatMapFirst { location in
-                    self.sceneRepository
-                        .getScene(remoteId: Int(suplaScene.Id))
-                        .ifEmpty(switchTo: self.createScene(remoteId: suplaScene.Id))
-                        .map { scene in (location, scene) }
+            changed = try profileRepository.getActiveProfile()
+                .flatMapFirst{ profile in
+                    self.locationRepository.getLocation(for: profile, with: suplaScene.LocationId)
+                        .flatMapFirst { location in
+                            self.sceneRepository.getScene(for: profile, with: suplaScene.Id)
+                                .ifEmpty(switchTo: self.createScene(remoteId: suplaScene.Id))
+                                .map { scene in (location, scene) }
+                        }
                 }
                 .map { tuple in self.updateScene(scene: tuple.1, suplaScene: suplaScene, location: tuple.0)}
                 .flatMapFirst { tuple in

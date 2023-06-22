@@ -29,9 +29,11 @@ final class UpdateLocationUseCase {
         var changed = false
         
         do {
-            changed = try locationRepository
-                .getLocation(remoteId: Int(suplaLocation.Id))
-                .ifEmpty(switchTo: createLocation(remoteId: suplaLocation.Id))
+            changed = try profileRepository.getActiveProfile()
+                .flatMapFirst{ profile in
+                    self.locationRepository.getLocation(for: profile, with: suplaLocation.Id)
+                        .ifEmpty(switchTo: self.createLocation(remoteId: suplaLocation.Id))
+                }
                 .map { location in self.updateLocation(location: location, suplaLocation: suplaLocation) }
                 .flatMapFirst { tuple in
                     if (tuple.0) {
@@ -66,7 +68,7 @@ final class UpdateLocationUseCase {
         return (changed, location)
     }
     
-    private func createLocation(remoteId: Int32) throws -> Observable<_SALocation> {
+    private func createLocation(remoteId: Int32) -> Observable<_SALocation> {
         return locationRepository.create()
             .flatMapFirst { location in
                 self.profileRepository.getActiveProfile()
