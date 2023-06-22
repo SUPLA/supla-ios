@@ -32,7 +32,9 @@ final class GetAllIconsToDownloadUseCase {
             let downloadedIcons = try profileRepository.getActiveProfile()
                 .flatMapFirst { self.userIconRepository.getDownloadedIconIds(for: $0 )}
                 .toBlocking()
-                .first()!
+                .first()
+            guard let downloadedIcons = downloadedIcons
+            else { return [] }
             
             let channelIcons = try profileRepository.getActiveProfile()
                 .flatMapFirst { self.channelRepository.getAllIconIds(for: $0 )}

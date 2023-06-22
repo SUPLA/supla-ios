@@ -32,6 +32,7 @@ class LocationOrderingVC: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = Strings.Cfg.locationOrdering
+        _viewModel?.onViewDidLoad()
 
         _tableView.translatesAutoresizingMaskIntoConstraints = false
         
@@ -49,6 +50,10 @@ class LocationOrderingVC: BaseViewController {
         _tableView.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
     }
     
+    override func viewDidDisappear(_ animated: Bool) {
+        _viewModel?.saveNewOrder()
+    }
+
     func bind(viewModel: LocationOrderingVM) {
         _viewModel = viewModel
         viewModel.locations.subscribe { list in
