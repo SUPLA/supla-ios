@@ -23,14 +23,12 @@ import RxSwift
 final class ChannelValueRepositoryMock: BaseRepositoryMock<SAChannelValue>, ChannelValueRepository {
     
     var channelValueObservable: Observable<SAChannelValue> = Observable.empty()
-    
-    func getChannelValue(channelRemoteId: Int) -> Observable<SAChannelValue> {
+    func getChannelValue(for profile: AuthProfileItem, with remoteId: Int32) -> Observable<SAChannelValue> {
         channelValueObservable
     }
     
     var deleteAllObservable: Observable<Void> = Observable.empty()
     var deleteAllCounter = 0
-    
     func deleteAll(for profile: AuthProfileItem) -> Observable<Void> {
         deleteAllCounter += 1
         return deleteAllObservable

@@ -132,11 +132,15 @@ class BaseTableViewController<S : ViewState, E : ViewEvent, VM : BaseTableViewMo
         cell.delegate = self
         cell.label.text = location.caption
         cell.locationId = location.location_id?.int32Value ?? 0
-        cell.ivCollapsed.isHidden = !location.isCollapsed(flag: .scene)
+        cell.ivCollapsed.isHidden = !location.isCollapsed(flag: getCollapsedFlag())
         cell.captionEditable = true
         cell.selectionStyle = .none
 
         return cell
+    }
+    
+    func getCollapsedFlag() -> CollapsedFlag {
+        fatalError("getCollapsedFlag() has not been implemented")
     }
     
     // MARK: SACaptionEditorDelegate

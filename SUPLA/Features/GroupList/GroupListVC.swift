@@ -27,6 +27,8 @@ class GroupListVC : ChannelBaseTableViewController<GroupListViewState, GroupList
         viewModel = GroupListViewModel()
     }
     
+    override func getCollapsedFlag() -> CollapsedFlag { .group }
+    
     override func handle(event: GroupListViewEvent) {
         switch(event) {
         case let .navigateToDetail(legacy: legacyDetailType, channelBase: channelBase):

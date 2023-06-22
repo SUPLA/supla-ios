@@ -23,7 +23,7 @@ protocol GroupRepository: RepositoryProtocol where T == SAChannelGroup {
     func getAllVisibleGroups(forProfile profile: AuthProfileItem) -> Observable<[SAChannelGroup]>
     func getAllVisibleGroups(forProfile profile: AuthProfileItem, inLocation locationCaption: String) -> Observable<[SAChannelGroup]>
     func getAllGroups(forProfile profile: AuthProfileItem) -> Observable<[SAChannelGroup]>
-    func getGroup(remoteId: Int) -> Observable<SAChannelGroup>
+    func getGroup(for profile: AuthProfileItem, with remoteId: Int32) -> Observable<SAChannelGroup>
     func deleteAll(for profile: AuthProfileItem) -> Observable<Void>
     func getAllIconIds(for profile: AuthProfileItem) -> Observable<[Int32]>
 }
@@ -32,7 +32,7 @@ class GroupRepositoryImpl: Repository<SAChannelGroup>, GroupRepository {
     
     func getAllVisibleGroups(forProfile profile: AuthProfileItem) -> Observable<[SAChannelGroup]> {
         let request = SAChannelGroup.fetchRequest()
-            .filtered(by: NSPredicate(format: "func > 0 AND visible > 0 AND profile == %@", profile))
+            .filtered(by: NSPredicate(format: "func > 0 AND visible > 0 AND profile = %@", profile))
         
         let localeAwareCompare = #selector(NSString.localizedCaseInsensitiveCompare)
         request.sortDescriptors = [
@@ -48,7 +48,7 @@ class GroupRepositoryImpl: Repository<SAChannelGroup>, GroupRepository {
     
     func getAllVisibleGroups(forProfile profile: AuthProfileItem, inLocation locationCaption: String) -> Observable<[SAChannelGroup]> {
         let request = SAChannelGroup.fetchRequest()
-            .filtered(by: NSPredicate(format: "func > 0 AND visible > 0 AND profile == %@ AND location.caption = %@", profile, locationCaption))
+            .filtered(by: NSPredicate(format: "func > 0 AND visible > 0 AND profile = %@ AND location.caption = %@", profile, locationCaption))
         
         let localeAwareCompare = #selector(NSString.localizedCaseInsensitiveCompare)
         request.sortDescriptors = [
@@ -64,14 +64,14 @@ class GroupRepositoryImpl: Repository<SAChannelGroup>, GroupRepository {
     
     func getAllGroups(forProfile profile: AuthProfileItem) -> Observable<[SAChannelGroup]> {
         let request = SAChannelGroup.fetchRequest()
-            .filtered(by: NSPredicate(format: "profile == %@", profile))
+            .filtered(by: NSPredicate(format: "profile = %@", profile))
             .ordered(by: "remote_id")
         
         return query(request)
     }
     
-    func getGroup(remoteId: Int) -> Observable<SAChannelGroup> {
-        queryItem(NSPredicate(format: "remote_id = %d", remoteId))
+    func getGroup(for profile: AuthProfileItem, with remoteId: Int32) -> Observable<SAChannelGroup> {
+        queryItem(NSPredicate(format: "remote_id = %d AND profile = %@", remoteId, profile))
             .compactMap { $0 }
     }
     
@@ -81,7 +81,7 @@ class GroupRepositoryImpl: Repository<SAChannelGroup>, GroupRepository {
     
     func getAllIconIds(for profile: AuthProfileItem) -> Observable<[Int32]> {
         let request = SAChannelGroup.fetchRequest()
-            .filtered(by: NSPredicate(format: "usericon_id > 0 AND func > 0 AND visible > 0 AND profile == %@", profile))
+            .filtered(by: NSPredicate(format: "usericon_id > 0 AND func > 0 AND visible > 0 AND profile = %@", profile))
             .ordered(by: "usericon_id")
         
         return query(request)

@@ -31,54 +31,57 @@ final class UpdateChannelGroupRelationUseCase {
         var changed = false
         
         do {
-            changed = try channelGroupRelationRepository
-                .getRelation(groupId: suplaGroupRelation.ChannelGroupID, channelId: suplaGroupRelation.ChannelID)
-                .ifEmpty(switchTo: createRelation(groupId: suplaGroupRelation.ChannelGroupID, channelId: suplaGroupRelation.ChannelID))
-                .map { relation in
-                    if (relation.setItemVisible(1)) {
-                        changed = true
-                    }
-                    
-                    if (relation.value != nil && relation.value?.channel_id != relation.channel_id) {
-                        relation.value = nil
-                        changed = true
-                    }
-                    if (relation.group != nil && relation.group?.remote_id != relation.group_id) {
-                        relation.group = nil
-                        changed = true
-                    }
-                    
-                    return relation
-                }
-                .flatMapFirst { relation in
-                    if (relation.value == nil) {
-                        return self.channelValueRepository.getChannelValue(channelRemoteId: Int(relation.channel_id))
-                            .map { channel in
-                                relation.value = channel
-                                if (relation.value != nil) {
-                                    changed = true
-                                }
-                                
-                                return relation
+            changed = try profileRepository.getActiveProfile()
+                .flatMapFirst { profile in
+                    self.channelGroupRelationRepository
+                        .getRelation(for: profile, groupId: suplaGroupRelation.ChannelGroupID, channelId: suplaGroupRelation.ChannelID)
+                        .ifEmpty(switchTo: self.createRelation(groupId: suplaGroupRelation.ChannelGroupID, channelId: suplaGroupRelation.ChannelID))
+                        .map { relation in
+                            if (relation.setItemVisible(1)) {
+                                changed = true
                             }
-                    }
-                    
-                    return Observable.just(relation)
-                }
-                .flatMapFirst { (relation: SAChannelGroupRelation) in
-                    if (relation.group == nil) {
-                        return self.groupRepository.getGroup(remoteId: Int(relation.group_id))
-                            .map { group in
-                                relation.group = group
-                                if (relation.group != nil) {
-                                    changed = true
-                                }
-
-                                return relation
+                            
+                            if (relation.value != nil && relation.value?.channel_id != relation.channel_id) {
+                                relation.value = nil
+                                changed = true
                             }
-                    }
-
-                    return Observable.just(relation)
+                            if (relation.group != nil && relation.group?.remote_id != relation.group_id) {
+                                relation.group = nil
+                                changed = true
+                            }
+                            
+                            return relation
+                        }
+                        .flatMapFirst { (relation: SAChannelGroupRelation) in
+                            if (relation.value == nil) {
+                                return self.channelValueRepository.getChannelValue(for: profile, with: relation.channel_id)
+                                    .map { channel in
+                                        relation.value = channel
+                                        if (relation.value != nil) {
+                                            changed = true
+                                        }
+                                        
+                                        return relation
+                                    }
+                            }
+                            
+                            return Observable.just(relation)
+                        }
+                        .flatMapFirst { (relation: SAChannelGroupRelation) in
+                            if (relation.group == nil) {
+                                return self.groupRepository.getGroup(for: profile, with: relation.group_id)
+                                    .map { group in
+                                        relation.group = group
+                                        if (relation.group != nil) {
+                                            changed = true
+                                        }
+                                        
+                                        return relation
+                                    }
+                            }
+                            
+                            return Observable.just(relation)
+                        }
                 }
                 .flatMapFirst { relation in
                     if (changed) {

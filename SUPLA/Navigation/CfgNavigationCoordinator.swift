@@ -38,13 +38,10 @@ class CfgNavigationCoordinator: BaseNavigationCoordinator {
     override func start(from parent: NavigationCoordinator?) {
         super.start(from: parent)
         _viewController.openLocalizationOrderingCmd.subscribe { _ in
-            if let nc = self.parentCoordinator?.viewController as?
-                 UINavigationController {
-                let vm = LocationOrderingVM(managedObjectContext: SAApp.db().managedObjectContext)
+            if let nc = self.parentCoordinator?.viewController as? UINavigationController {
                 let locVC = LocationOrderingVC()
+                locVC.bind(viewModel: LocationOrderingVM())
                 locVC.navigationCoordinator = self
-                locVC.bind(viewModel: vm)
-                vm.bind(inputs: LocationOrderingVM.Inputs(commitChangesTrigger: self.locOrderingDismissCmd))
                 nc.pushViewController(locVC, animated: true)
             }
         }.disposed(by: disposeBag)

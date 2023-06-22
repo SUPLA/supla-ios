@@ -28,7 +28,8 @@ final class ChangeChannelGroupRelationsVisibilityUseCase {
     func invoke(from: Int16, to: Int16) -> Bool {
         var changed = false
         do {
-            try channelGroupRelationRepository.getAllRelations()
+            try profileRepository.getActiveProfile()
+                .flatMapFirst { self.channelGroupRelationRepository.getAllRelations(for: $0) }
                 .map { relations in relations.filter { $0.visible == from } }
                 .flatMapFirst { relations in
                     var updates: [Observable<Void>] = []

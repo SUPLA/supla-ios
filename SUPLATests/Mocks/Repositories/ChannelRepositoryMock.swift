@@ -33,7 +33,7 @@ final class ChannelRepositoryMock: BaseRepositoryMock<SAChannel>, ChannelReposit
     }
     
     var channelObservable: Observable<SAChannel> = Observable.empty()
-    func getChannel(remoteId: Int) -> Observable<SAChannel> {
+    func getChannel(for profile: AuthProfileItem, with remoteId: Int32) -> Observable<SAChannel> {
         return channelObservable
     }
     

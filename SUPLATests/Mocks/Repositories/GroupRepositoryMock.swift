@@ -44,7 +44,7 @@ final class GroupRepositoryMock: BaseRepositoryMock<SAChannelGroup>, GroupReposi
     }
     
     var groupObservable: Observable<SAChannelGroup> = Observable.empty()
-    func getGroup(remoteId: Int) -> Observable<SAChannelGroup> {
+    func getGroup(for profile: AuthProfileItem, with remoteId: Int32) -> Observable<SAChannelGroup> {
         groupObservable
     }
     

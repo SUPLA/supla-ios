@@ -31,6 +31,8 @@ class SceneListVC : BaseTableViewController<SceneListViewState, SceneListViewEve
         viewModel = SceneListVM()
     }
     
+    override func getCollapsedFlag() -> CollapsedFlag { .scene }
+    
     override func setupTableView() {
         tableView.register(SceneCell.self,forCellReuseIdentifier: SceneListVC.cellIdForScene)
         super.setupTableView()

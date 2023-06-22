@@ -19,10 +19,11 @@
 import Foundation
 
 extension NSFetchRequest {
-    @objc func ordered(by column: String) -> NSFetchRequest {
-        sortDescriptors = [
-            NSSortDescriptor(key: column, ascending: true)
-        ]
+    @objc func ordered(by column: String, ascending: Bool = true, selector: Selector? = nil) -> NSFetchRequest {
+        if (sortDescriptors == nil) {
+            sortDescriptors = []
+        }
+        sortDescriptors?.append(NSSortDescriptor(key: column, ascending: ascending, selector: selector))
         return self
     }
     

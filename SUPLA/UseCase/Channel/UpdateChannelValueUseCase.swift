@@ -31,9 +31,12 @@ final class UpdateChannelValueUseCase {
         var changed = false
         
         do {
-            changed = try channelValueRepository
-                .getChannelValue(channelRemoteId: Int(suplaChannelValue.Id))
-                .ifEmpty(switchTo: createChannelValue(channelRemoteId: suplaChannelValue.Id))
+            changed = try profileRepository.getActiveProfile()
+                .flatMapFirst { profile in
+                    self.channelValueRepository
+                        .getChannelValue(for: profile, with: suplaChannelValue.Id)
+                        .ifEmpty(switchTo: self.createChannelValue(channelRemoteId: suplaChannelValue.Id))
+                }
                 .map { value in
                     if (suplaChannelValue.online != 0 && value.setValueSwift(suplaChannelValue.value)) {
                         changed = true

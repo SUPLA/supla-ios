@@ -20,14 +20,14 @@ import Foundation
 import RxSwift
 
 protocol ChannelExtendedValueRepository: RepositoryProtocol where T == SAChannelExtendedValue {
-    func getChannelValue(channelRemoteId: Int) -> Observable<SAChannelExtendedValue>
+    func getChannelValue(for profile: AuthProfileItem, with remoteId: Int32) -> Observable<SAChannelExtendedValue>
     func deleteAll(for profile: AuthProfileItem) -> Observable<Void>
 }
 
 final class ChannelExtendedValueRepositoryImpl: Repository<SAChannelExtendedValue>, ChannelExtendedValueRepository {
     
-    func getChannelValue(channelRemoteId: Int) -> Observable<SAChannelExtendedValue> {
-        queryItem(NSPredicate(format: "channel_id = %i", channelRemoteId))
+    func getChannelValue(for profile: AuthProfileItem, with remoteId: Int32) -> Observable<SAChannelExtendedValue> {
+        queryItem(NSPredicate(format: "channel_id = %i AND profile = %@", remoteId, profile))
             .compactMap { $0 }
     }
     

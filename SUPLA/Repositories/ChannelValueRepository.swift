@@ -21,13 +21,13 @@ import RxSwift
 
 protocol ChannelValueRepository: RepositoryProtocol where T == SAChannelValue {
     func deleteAll(for profile: AuthProfileItem) -> Observable<Void>
-    func getChannelValue(channelRemoteId: Int) -> Observable<SAChannelValue>
+    func getChannelValue(for profile: AuthProfileItem, with remoteId: Int32) -> Observable<SAChannelValue>
 }
 
 final class ChannelValueRepositoryImpl: Repository<SAChannelValue>, ChannelValueRepository {
     
-    func getChannelValue(channelRemoteId: Int) -> Observable<SAChannelValue> {
-        queryItem(NSPredicate(format: "channel_id = %i", channelRemoteId))
+    func getChannelValue(for profile: AuthProfileItem, with remoteId: Int32) -> Observable<SAChannelValue> {
+        queryItem(NSPredicate(format: "channel_id = %i AND profile = %@", remoteId, profile))
             .compactMap { $0 }
     }
     

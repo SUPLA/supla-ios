@@ -30,9 +30,12 @@ final class UpdateChannelExtendedValueUseCase {
         var changed = false
         
         do {
-            return try channelExtendedValueRepository
-                .getChannelValue(channelRemoteId: Int(suplaChannelExtendedValue.Id))
-                .ifEmpty(switchTo: createValue(channelRemoteId: suplaChannelExtendedValue.Id))
+            return try profileRepository.getActiveProfile()
+                .flatMapFirst{ profile in
+                    self.channelExtendedValueRepository
+                        .getChannelValue(for: profile, with: suplaChannelExtendedValue.Id)
+                        .ifEmpty(switchTo: self.createValue(channelRemoteId: suplaChannelExtendedValue.Id))
+                }
                 .map { value in
                     if (value.setValueSwift(suplaChannelExtendedValue.value)) {
                         changed = true

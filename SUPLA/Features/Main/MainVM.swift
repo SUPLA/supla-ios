@@ -62,7 +62,8 @@ class MainViewModel: BaseViewModel<MainViewState, MainViewEvent> {
             return
         }
         
-        channelRepository.getChannel(remoteId: Int(event!.channelID))
+        profileRepository.getActiveProfile()
+            .flatMapFirst { self.channelRepository.getChannel(for: $0, with: event!.channelID) }
             .flatMapFirst { self.channelToEvent(channel: $0, event: event!) }
             .asDriverWithoutError()
             .drive(onNext: { self.send(event: $0)})

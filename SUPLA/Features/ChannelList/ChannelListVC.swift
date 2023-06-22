@@ -27,6 +27,8 @@ class ChannelListVC : ChannelBaseTableViewController<ChannelListViewState, Chann
         viewModel = ChannelListViewModel()
     }
     
+    override func getCollapsedFlag() -> CollapsedFlag { .channel }
+    
     override func handle(event: ChannelListViewEvent) {
         switch(event) {
         case let .navigateToDetail(legacy: legacyDetailType, channelBase: channelBase):

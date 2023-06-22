@@ -21,6 +21,7 @@ import UIKit
 class ChannelCaptionEditor: SACaptionEditor {
     
     @Singleton<ChannelRepository> private var channelRepository
+    @Singleton<ProfileRepository> private var profileRepository
     
     init() {
         super.init(nibName: "SACaptionEditor", bundle: nil)
@@ -35,13 +36,14 @@ class ChannelCaptionEditor: SACaptionEditor {
     }
     
     override func getCaption() -> String {
-        try! channelRepository
-            .getChannel(remoteId: Int(recordId))
+        try! profileRepository.getActiveProfile()
+            .flatMapFirst { self.channelRepository.getChannel(for: $0, with: self.recordId) }
             .subscribeSynchronous()?.caption ?? ""
     }
     
     override func applyChanges(_ caption: String) {
-        try! channelRepository.getChannel(remoteId: Int(recordId))
+        try! profileRepository.getActiveProfile()
+            .flatMapFirst { self.channelRepository.getChannel(for: $0, with: self.recordId) }
             .compactMap { $0 }
             .map { channel in
                 channel.caption = caption

@@ -22,7 +22,7 @@ import RxSwift
 protocol ChannelRepository: RepositoryProtocol where T == SAChannel {
     func getAllVisibleChannels(forProfile profile: AuthProfileItem) -> Observable<[SAChannel]>
     func getAllChannels(forProfile profile: AuthProfileItem) -> Observable<[SAChannel]>
-    func getChannel(remoteId: Int) -> Observable<SAChannel>
+    func getChannel(for profile: AuthProfileItem, with remoteId: Int32) -> Observable<SAChannel>
     func deleteAll(for profile: AuthProfileItem) -> Observable<Void>
     func getAllVisibleChannels(forProfile profile: AuthProfileItem, inLocation locationCaption: String) -> Observable<[SAChannel]>
     func getAllIconIds(for profile: AuthProfileItem) -> Observable<[Int32]>
@@ -32,7 +32,7 @@ class ChannelRepositoryImpl: Repository<SAChannel>, ChannelRepository {
     
     func getAllVisibleChannels(forProfile profile: AuthProfileItem) -> Observable<[SAChannel]> {
         let request = SAChannel.fetchRequest()
-            .filtered(by: NSPredicate(format: "func > 0 AND visible > 0 AND profile == %@", profile))
+            .filtered(by: NSPredicate(format: "func > 0 AND visible > 0 AND profile = %@", profile))
         
         let localeAwareCompare = #selector(NSString.localizedCaseInsensitiveCompare)
         request.sortDescriptors = [
@@ -48,7 +48,7 @@ class ChannelRepositoryImpl: Repository<SAChannel>, ChannelRepository {
     
     func getAllVisibleChannels(forProfile profile: AuthProfileItem, inLocation locationCaption: String) -> Observable<[SAChannel]> {
         let request = SAChannel.fetchRequest()
-            .filtered(by: NSPredicate(format: "func > 0 AND visible > 0 AND profile == %@ AND location.caption = %@", profile, locationCaption))
+            .filtered(by: NSPredicate(format: "func > 0 AND visible > 0 AND profile = %@ AND location.caption = %@", profile, locationCaption))
         
         let localeAwareCompare = #selector(NSString.localizedCaseInsensitiveCompare)
         request.sortDescriptors = [
@@ -64,14 +64,14 @@ class ChannelRepositoryImpl: Repository<SAChannel>, ChannelRepository {
     
     func getAllChannels(forProfile profile: AuthProfileItem) -> Observable<[SAChannel]> {
         let request = SAChannel.fetchRequest()
-            .filtered(by: NSPredicate(format: "profile == %@", profile))
+            .filtered(by: NSPredicate(format: "profile = %@", profile))
             .ordered(by: "remote_id")
         
         return query(request)
     }
     
-    func getChannel(remoteId: Int) -> Observable<SAChannel> {
-        queryItem(NSPredicate(format: "remote_id = %d", remoteId))
+    func getChannel(for profile: AuthProfileItem, with remoteId: Int32) -> Observable<SAChannel> {
+        queryItem(NSPredicate(format: "remote_id = %d AND profile = %@", remoteId, profile))
             .compactMap { $0 }
     }
     
@@ -81,7 +81,7 @@ class ChannelRepositoryImpl: Repository<SAChannel>, ChannelRepository {
     
     func getAllIconIds(for profile: AuthProfileItem) -> Observable<[Int32]> {
         let request = SAChannel.fetchRequest()
-            .filtered(by: NSPredicate(format: "usericon_id > 0 AND func > 0 AND visible > 0 AND profile == %@", profile))
+            .filtered(by: NSPredicate(format: "usericon_id > 0 AND func > 0 AND visible > 0 AND profile = %@", profile))
             .ordered(by: "usericon_id")
         
         return query(request)

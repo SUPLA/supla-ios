@@ -31,13 +31,16 @@ final class UpdateChannelUseCase {
         var changed = false
         
         do {
-            changed = try locationRepository
-                .getLocation(remoteId: Int(suplaChannel.LocationID))
-                .flatMapFirst { location in
-                    self.channelRepository
-                        .getChannel(remoteId: Int(suplaChannel.Id))
-                        .ifEmpty(switchTo: self.createChannel(remoteId: suplaChannel.Id))
-                        .map { scene in (location, scene) }
+            changed = try profileRepository.getActiveProfile()
+                .flatMapFirst { profile in
+                    self.locationRepository
+                        .getLocation(for: profile, with: suplaChannel.LocationID)
+                        .flatMapFirst { location in
+                            self.channelRepository
+                                .getChannel(for: profile, with: suplaChannel.Id)
+                                .ifEmpty(switchTo: self.createChannel(remoteId: suplaChannel.Id))
+                                .map { scene in (location, scene) }
+                        }
                 }
                 .map { tuple in self.updateChannel(channel: tuple.1, suplaChannel: suplaChannel, location: tuple.0) }
                 .flatMapFirst { tuple in

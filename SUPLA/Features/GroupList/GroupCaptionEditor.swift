@@ -21,6 +21,7 @@ import UIKit
 class GroupCaptionEditor: SACaptionEditor {
     
     @Singleton<GroupRepository> private var groupRepository
+    @Singleton<ProfileRepository> private var profileRepository
     
     init() {
         super.init(nibName: "SACaptionEditor", bundle: nil)
@@ -35,13 +36,14 @@ class GroupCaptionEditor: SACaptionEditor {
     }
     
     override func getCaption() -> String {
-        try! groupRepository
-            .getGroup(remoteId: Int(recordId))
+        try! profileRepository.getActiveProfile()
+            .flatMapFirst { self.groupRepository.getGroup(for: $0, with: self.recordId) }
             .subscribeSynchronous()?.caption ?? ""
     }
     
     override func applyChanges(_ caption: String) {
-        try! groupRepository.getGroup(remoteId: Int(recordId))
+        try! profileRepository.getActiveProfile()
+            .flatMapFirst { self.groupRepository.getGroup(for: $0, with: self.recordId) }
             .compactMap { $0 }
             .map { scene in
                 scene.caption = caption

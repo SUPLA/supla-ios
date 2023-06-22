@@ -42,7 +42,7 @@ final class SceneRepositoryMock: BaseRepositoryMock<SAScene>, SceneRepository {
     }
     
     var sceneObservable: Observable<SAScene> = Observable.empty()
-    func getScene(remoteId: Int) -> Observable<SAScene> {
+    func getScene(for profile: AuthProfileItem, with sceneId: Int32) -> Observable<SAScene> {
         sceneObservable
     }
     
