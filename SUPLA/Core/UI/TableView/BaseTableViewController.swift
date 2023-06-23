@@ -204,6 +204,7 @@ class BaseTableViewController<S : ViewState, E : ViewEvent, VM : BaseTableViewMo
             return []
         }
         
+        vibrationService.vibrate()
         let dragItem = UIDragItem(itemProvider: NSItemProvider())
         dragItem.localObject = cell
         return [dragItem]
