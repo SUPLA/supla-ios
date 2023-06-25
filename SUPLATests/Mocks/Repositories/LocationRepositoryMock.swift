@@ -27,15 +27,17 @@ final class LocationRepositoryMock: BaseRepositoryMock<_SALocation>, LocationRep
         locationObservable
     }
     
-    var allLocationsObservable: Observable<[_SALocation]> = Observable.empty()
-    func getAllLocations(forProfile profile: AuthProfileItem) -> Observable<[_SALocation]> {
-        allLocationsObservable
-    }
-    
     var deleteAllObservable: Observable<Void> = Observable.empty()
     var deleteAllCounter = 0
     func deleteAll(for profile: AuthProfileItem) -> Observable<Void> {
         deleteAllCounter += 1
         return deleteAllObservable
+    }
+
+    var getAllLocationsObservable: Observable<[_SALocation]> = Observable.empty()
+    var getAllLocationProfiles: [AuthProfileItem] = []
+    func getAllLocations(forProfile profile: AuthProfileItem) -> Observable<[_SALocation]> {
+        getAllLocationProfiles.append(profile)
+        return getAllLocationsObservable
     }
 }

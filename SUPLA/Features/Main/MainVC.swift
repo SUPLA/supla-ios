@@ -60,6 +60,7 @@ class MainVC : BaseViewControllerVM<MainViewState, MainViewEvent, MainViewModel>
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         viewModel.onViewAppear()
+        showNewGestureInfoView()
         SARateApp().showDialog(withDelay: 1)
     }
     
@@ -154,14 +155,13 @@ class MainVC : BaseViewControllerVM<MainViewState, MainViewEvent, MainViewModel>
         
     }
     
-    private func setupNewGestureInfoView() {
-        var settings = settings
-        if (settings.newGestureInfoShown) {
-            // Already shown, skip
-            return
+    private func showNewGestureInfoView() {
+        if (!settings.newGestureInfoShown && settings.shouldShowNewGestureInfo) {
+            newGestureInfoView.isHidden = false
         }
-        settings.newGestureInfoShown = true
-        
+    }
+    
+    private func setupNewGestureInfoView() {
         view.addSubview(newGestureInfoView)
         
         newGestureInfoView.translatesAutoresizingMaskIntoConstraints = false
@@ -266,6 +266,8 @@ extension MainVC: SARestApiClientTaskDelegate {
 
 extension MainVC: NewGestureInfoDelegate {
     func onCloseTapped() {
+        var settings = settings
+        settings.newGestureInfoShown = true
         newGestureInfoView.isHidden = true
     }
 }

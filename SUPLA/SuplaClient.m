@@ -39,6 +39,7 @@
 #import "SAChannel+CoreDataClass.h"
 #import "supla-client.h"
 #import "SUPLA-Swift.h"
+@import UserNotifications;
 
 #define MINIMUM_WAITING_TIME_SEC 2
 
@@ -763,7 +764,9 @@ void sasuplaclient_scene_state_update(void *_suplaclient,
     }
     
     _client_id = result.ClientID;
-    
+    NSData* pushToken = [DiContainer getPushToken];
+    [self registerPushNotificationClientToken:pushToken appId:APP_ID];
+
     [self performSelectorOnMainThread:@selector(_onRegistered:) withObject:result waitUntilDone:NO];
 }
 

@@ -32,17 +32,16 @@ protocol RuntimeConfig {
 }
 
 class RuntimeConfigImpl: RuntimeConfig {
+    
+    @Singleton<GlobalSettings> private var settings
+    
     var activeProfileId: ProfileID?
-    
-    let configRelay: BehaviorRelay<RuntimePreferences>
-    
-    init() {
-        let config = Config()
-        configRelay = BehaviorRelay(value: RuntimePreferences(
-            scaleFactor: config.channelHeightFactor,
-            showChannelInfo: config.showChannelInfo
+    lazy var configRelay: BehaviorRelay<RuntimePreferences> = {
+        BehaviorRelay(value: RuntimePreferences(
+            scaleFactor: settings.channelHeight.factor(),
+            showChannelInfo: settings.showChannelInfo
         ))
-    }
+    }()
     
     func preferencesObservable() -> Observable<RuntimePreferences> {
         return configRelay.asObservable()

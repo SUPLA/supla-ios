@@ -19,25 +19,68 @@
 @testable import SUPLA
 
 class GlobalSettingsMock: GlobalSettings {
+
     var anyAccountRegisteredReturns: Bool = false
     var anyAccountRegisteredValues: [Bool] = []
     var anyAccountRegistered: Bool {
-        get {
-            anyAccountRegisteredReturns
-        }
-        set {
-            anyAccountRegisteredValues.append(newValue)
-        }
+        get { anyAccountRegisteredReturns }
+        set { anyAccountRegisteredValues.append(newValue) }
     }
-    
+
     var newGestureInfoShownReturns: Bool = false
     var newGestureInfoShownValues: [Bool] = []
     var newGestureInfoShown: Bool {
-        get {
-            newGestureInfoShownReturns
-        }
-        set {
-            newGestureInfoShownValues.append(newValue)
-        }
+        get { newGestureInfoShownReturns }
+        set { newGestureInfoShownValues.append(newValue) }
     }
+    
+    var shouldShowNewGestureInfoReturns: Bool = false
+    var shouldShowNewGestureInfoValues: [Bool] = []
+    var shouldShowNewGestureInfo: Bool {
+        get { shouldShowNewGestureInfoReturns }
+        set { shouldShowNewGestureInfoValues.append(newValue) }
+    }
+
+    var pushTokenReturns: Data? = nil
+    var pushTokenValues: [Data?] = []
+    var pushToken: Data? {
+        get { pushTokenReturns }
+        set { pushTokenValues.append(newValue) }
+    }
+    
+    var temperatureUnitReturns: TemperatureUnit = .celsius
+    var temperatureUnitValues: [TemperatureUnit] = []
+    var temperatureUnit: TemperatureUnit {
+        get { temperatureUnitReturns }
+        set { temperatureUnitValues.append(newValue) }
+    }
+
+    var autohideButtonsReturns: Bool = false
+    var autohideButtonsValues: [Bool] = []
+    var autohideButtons: Bool {
+        get { autohideButtonsReturns }
+        set { autohideButtonsValues.append(newValue) }
+    }
+
+    var showChannelInfoReturns: Bool = false
+    var showChannelInfoValues: [Bool] = []
+    var showChannelInfo: Bool {
+        get { showChannelInfoReturns }
+        set { showChannelInfoValues.append(newValue) }
+    }
+
+    var channelHeightReturns: ChannelHeight = .height150
+    var channelHeightValues: [ChannelHeight] = []
+    var channelHeight: ChannelHeight {
+        get { channelHeightReturns }
+        set { channelHeightValues.append(newValue) }
+    }
+
+    var showOpeningPercentReturns: Bool = false
+    var showOpeningPercentValues: [Bool] = []
+    var showOpeningPercent: Bool {
+        get { showOpeningPercentReturns }
+        set { showOpeningPercentValues.append(newValue) }
+    }
+
 }

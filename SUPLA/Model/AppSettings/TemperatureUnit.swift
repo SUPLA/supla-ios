@@ -16,13 +16,16 @@
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 
-#import <UIKit/UIKit.h>
-#import "SUPLA-Swift.h"
-@import UserNotifications;
+enum TemperatureUnit: String, CaseIterable {
+    case celsius
+    case fahrenheit
+}
 
-@interface AppDelegate : UIResponder <UIApplicationDelegate, UNUserNotificationCenterDelegate>
-
-@property (strong, nonatomic) UIWindow *window;
-@property (strong, nonatomic) id<NavigationCoordinator> navigation;
-@end
-
+extension TemperatureUnit {
+    var symbol: String {
+        switch self {
+        case .celsius: return "°C"
+        case .fahrenheit: return "°F"
+        }
+    }
+}

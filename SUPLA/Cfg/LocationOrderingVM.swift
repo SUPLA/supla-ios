@@ -77,7 +77,7 @@ class LocationOrderingVM {
             .flatMapFirst { self.groupRepository.getAllVisibleGroups(forProfile: $0) }
             .subscribeSynchronous()!
     }
-    
+
     private func getScenesLocations() throws -> [SAScene] {
         try profileRepository.getActiveProfile()
             .flatMapFirst { self.sceneRepository.getAllVisibleScenes(forProfile: $0) }
@@ -95,7 +95,7 @@ class LocationOrderingVM {
         locations.value.enumerated().forEach { (i, location) in
             map[location.location_id!] = i
         }
-        
+
         try! profileRepository.getActiveProfile()
             .flatMapFirst { self.locationRepository.getAllLocations(forProfile: $0) }
             .map { locations in

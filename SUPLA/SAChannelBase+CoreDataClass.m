@@ -924,6 +924,6 @@
 }
 
 - (TemperaturePresenter*)temperaturePresenter {
-	return [Config new].currentTemperaturePresenter;
+	return [GlobalSettingsLegacy new].currentTemperaturePresenter;
 }
 @end

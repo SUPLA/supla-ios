@@ -16,13 +16,12 @@
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 
-#import <UIKit/UIKit.h>
-#import "SUPLA-Swift.h"
-@import UserNotifications;
+enum ChannelHeight: Int, CaseIterable {
+    case height60 = 60
+    case height100 = 100
+    case height150 = 150
+}
 
-@interface AppDelegate : UIResponder <UIApplicationDelegate, UNUserNotificationCenterDelegate>
-
-@property (strong, nonatomic) UIWindow *window;
-@property (strong, nonatomic) id<NavigationCoordinator> navigation;
-@end
-
+extension ChannelHeight {
+    func factor() -> Float { Float(rawValue) / 100.0 }
+}

@@ -457,12 +457,12 @@
 
 - (IBAction)rlTouchCancel:(id)sender {
     [sender setBackgroundColor: [UIColor onLine] withDelay:0.2];
-    if([[Config alloc] init].autohideButtons)
+    if([GlobalSettingsLegacy new].autohideButtons)
         [self resetButtonState];
 }
 
 - (void)hideSwipeMaybe {
-    if([[Config alloc] init].autohideButtons) {
+    if([GlobalSettingsLegacy new].autohideButtons) {
         [self hideSwipeAnimated:YES];
         [self resetButtonState];
     }
@@ -523,7 +523,7 @@
 
 
 - (CGFloat)iconScaleFactor {
-    CGFloat channelScale = [Config new].channelHeightFactor;
+    CGFloat channelScale = [GlobalSettingsLegacy new].channelHeightFactor;
     return MIN(1.0, channelScale);
 }
 

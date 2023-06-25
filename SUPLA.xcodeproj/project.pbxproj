@@ -714,6 +714,18 @@
 		A5E490612A4012E9006801FE /* UpdateChannelIconRelationsUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E490602A4012E9006801FE /* UpdateChannelIconRelationsUseCase.swift */; };
 		A5E490632A4019E6006801FE /* UpdateGroupIconRelationsUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E490622A4019E6006801FE /* UpdateGroupIconRelationsUseCase.swift */; };
 		A5E490652A401A7D006801FE /* UpdateSceneIconRelationsUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E490642A401A7D006801FE /* UpdateSceneIconRelationsUseCase.swift */; };
+		A5AE7A852A3AC7020097FA8B /* BaseSettingsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5AE7A842A3AC7020097FA8B /* BaseSettingsCell.swift */; };
+		A5AE7A872A3AD6A10097FA8B /* ChannelHeightCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5AE7A862A3AD6A10097FA8B /* ChannelHeightCell.swift */; };
+		A5AE7A892A3ADE800097FA8B /* TemperatureUnitCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5AE7A882A3ADE800097FA8B /* TemperatureUnitCell.swift */; };
+		A5AE7A8B2A3ADF330097FA8B /* TitleSwitchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5AE7A8A2A3ADF330097FA8B /* TitleSwitchCell.swift */; };
+		A5AE7A8D2A3ADFAD0097FA8B /* RsOpenningClosingPersentageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5AE7A8C2A3ADFAD0097FA8B /* RsOpenningClosingPersentageCell.swift */; };
+		A5AE7A8F2A3AE0290097FA8B /* TitleArrowButtonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5AE7A8E2A3AE0290097FA8B /* TitleArrowButtonCell.swift */; };
+		A5AE7A912A3B17AF0097FA8B /* PermissionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5AE7A902A3B17AF0097FA8B /* PermissionCell.swift */; };
+		A5E4904A2A3C6215006801FE /* ChannelHeight.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E490492A3C6215006801FE /* ChannelHeight.swift */; };
+		A5E4904D2A3C6250006801FE /* TemperatureUnit.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E4904C2A3C6250006801FE /* TemperatureUnit.swift */; };
+		A5E490502A3C79A4006801FE /* UserNotificationCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E4904F2A3C79A4006801FE /* UserNotificationCenter.swift */; };
+		A5E490532A3C7E8F006801FE /* AppSettingsVMTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E490522A3C7E8F006801FE /* AppSettingsVMTests.swift */; };
+		A5E490552A3C7F2A006801FE /* UserNotificationCenterMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E490542A3C7F2A006801FE /* UserNotificationCenterMock.swift */; };
 		A5F14B7229DED06400682FA6 /* AccountRemovalVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F14B7129DED06400682FA6 /* AccountRemovalVM.swift */; };
 		A5F14B7429DED41000682FA6 /* BaseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F14B7329DED41000682FA6 /* BaseViewModel.swift */; };
 		A5F14B7629DED44600682FA6 /* ViewEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F14B7529DED44600682FA6 /* ViewEvent.swift */; };
@@ -800,7 +812,7 @@
 		AE5332E227648E770050E690 /* SuplaNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE5332E127648E770050E690 /* SuplaNavigationController.swift */; };
 		AE5332E427648F610050E690 /* UIFont+Supla.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE5332E327648F610050E690 /* UIFont+Supla.swift */; };
 		AE5332E62764A7E30050E690 /* SuplaMenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE5332E52764A7E30050E690 /* SuplaMenuController.swift */; };
-		AE53535427691EFC0077BFFB /* CfgNavigationCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE53535327691EFC0077BFFB /* CfgNavigationCoordinator.swift */; };
+		AE53535427691EFC0077BFFB /* AppSettingsNavigationCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE53535327691EFC0077BFFB /* AppSettingsNavigationCoordinator.swift */; };
 		AE535356276927690077BFFB /* LocationOrderingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE535355276927690077BFFB /* LocationOrderingVC.swift */; };
 		AE5A60E6270E2A7A00F2B780 /* AccountCreationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE5A60E5270E2A7A00F2B780 /* AccountCreationVC.swift */; };
 		AE68E73227739D8500E55DB7 /* SwipeTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE68E73127739D8500E55DB7 /* SwipeTransition.swift */; };
@@ -827,12 +839,9 @@
 		AEED87DF276F1FCE005D76CF /* LocationOrderingVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEED87DE276F1FCE005D76CF /* LocationOrderingVM.swift */; };
 		AEF1F9BA27726D56008E441A /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF1F9B927726D56008E441A /* DetailViewController.swift */; };
 		AEF6A5D028BBD1EC0019684A /* SceneCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF6A5CF28BBD1EC0019684A /* SceneCell.swift */; };
-		AEF79D8B2712FE1800D7554B /* CfgVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF79D8A2712FE1800D7554B /* CfgVM.swift */; };
-		AEF79D8D2712FF8D00D7554B /* CfgVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF79D8C2712FF8D00D7554B /* CfgVC.swift */; };
+		AEF79D8B2712FE1800D7554B /* AppSettingsVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF79D8A2712FE1800D7554B /* AppSettingsVM.swift */; };
+		AEF79D8D2712FF8D00D7554B /* AppSettingsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF79D8C2712FF8D00D7554B /* AppSettingsVC.swift */; };
 		AEF79D912713088100D7554B /* Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF79D902713088100D7554B /* Strings.swift */; };
-		AEF79D9327130A5400D7554B /* CfgCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF79D9227130A5400D7554B /* CfgCell.swift */; };
-		AEFBC24F26E37CD800414C19 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEFBC24E26E37CD800414C19 /* Config.swift */; };
-		AEFBC25226E39EFC00414C19 /* ConfigTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEFBC25126E39EFC00414C19 /* ConfigTests.swift */; };
 		B2DA9E0A10D8023EEDA25970 /* Pods_SUPLATests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 76FF65EADE7763EB8D61BC35 /* Pods_SUPLATests.framework */; };
 /* End PBXBuildFile section */
 
@@ -1913,6 +1922,18 @@
 		A5E490602A4012E9006801FE /* UpdateChannelIconRelationsUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateChannelIconRelationsUseCase.swift; sourceTree = "<group>"; };
 		A5E490622A4019E6006801FE /* UpdateGroupIconRelationsUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateGroupIconRelationsUseCase.swift; sourceTree = "<group>"; };
 		A5E490642A401A7D006801FE /* UpdateSceneIconRelationsUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateSceneIconRelationsUseCase.swift; sourceTree = "<group>"; };
+		A5AE7A842A3AC7020097FA8B /* BaseSettingsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseSettingsCell.swift; sourceTree = "<group>"; };
+		A5AE7A862A3AD6A10097FA8B /* ChannelHeightCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelHeightCell.swift; sourceTree = "<group>"; };
+		A5AE7A882A3ADE800097FA8B /* TemperatureUnitCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemperatureUnitCell.swift; sourceTree = "<group>"; };
+		A5AE7A8A2A3ADF330097FA8B /* TitleSwitchCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleSwitchCell.swift; sourceTree = "<group>"; };
+		A5AE7A8C2A3ADFAD0097FA8B /* RsOpenningClosingPersentageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RsOpenningClosingPersentageCell.swift; sourceTree = "<group>"; };
+		A5AE7A8E2A3AE0290097FA8B /* TitleArrowButtonCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleArrowButtonCell.swift; sourceTree = "<group>"; };
+		A5AE7A902A3B17AF0097FA8B /* PermissionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PermissionCell.swift; sourceTree = "<group>"; };
+		A5E490492A3C6215006801FE /* ChannelHeight.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelHeight.swift; sourceTree = "<group>"; };
+		A5E4904C2A3C6250006801FE /* TemperatureUnit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemperatureUnit.swift; sourceTree = "<group>"; };
+		A5E4904F2A3C79A4006801FE /* UserNotificationCenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserNotificationCenter.swift; sourceTree = "<group>"; };
+		A5E490522A3C7E8F006801FE /* AppSettingsVMTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSettingsVMTests.swift; sourceTree = "<group>"; };
+		A5E490542A3C7F2A006801FE /* UserNotificationCenterMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserNotificationCenterMock.swift; sourceTree = "<group>"; };
 		A5F14B7129DED06400682FA6 /* AccountRemovalVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountRemovalVM.swift; sourceTree = "<group>"; };
 		A5F14B7329DED41000682FA6 /* BaseViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewModel.swift; sourceTree = "<group>"; };
 		A5F14B7529DED44600682FA6 /* ViewEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewEvent.swift; sourceTree = "<group>"; };
@@ -2000,7 +2021,7 @@
 		AE5332E127648E770050E690 /* SuplaNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuplaNavigationController.swift; sourceTree = "<group>"; };
 		AE5332E327648F610050E690 /* UIFont+Supla.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+Supla.swift"; sourceTree = "<group>"; };
 		AE5332E52764A7E30050E690 /* SuplaMenuController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuplaMenuController.swift; sourceTree = "<group>"; };
-		AE53535327691EFC0077BFFB /* CfgNavigationCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CfgNavigationCoordinator.swift; sourceTree = "<group>"; };
+		AE53535327691EFC0077BFFB /* AppSettingsNavigationCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSettingsNavigationCoordinator.swift; sourceTree = "<group>"; };
 		AE535355276927690077BFFB /* LocationOrderingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationOrderingVC.swift; sourceTree = "<group>"; };
 		AE5A60E5270E2A7A00F2B780 /* AccountCreationVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountCreationVC.swift; sourceTree = "<group>"; };
 		AE68E73127739D8500E55DB7 /* SwipeTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeTransition.swift; sourceTree = "<group>"; };
@@ -2031,13 +2052,10 @@
 		AEF1F9B927726D56008E441A /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		AEF6A5CF28BBD1EC0019684A /* SceneCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneCell.swift; sourceTree = "<group>"; };
 		AEF6A5D128BBD35B0019684A /* SUPLA 13.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "SUPLA 13.xcdatamodel"; sourceTree = "<group>"; };
-		AEF79D8A2712FE1800D7554B /* CfgVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CfgVM.swift; sourceTree = "<group>"; };
-		AEF79D8C2712FF8D00D7554B /* CfgVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CfgVC.swift; sourceTree = "<group>"; };
+		AEF79D8A2712FE1800D7554B /* AppSettingsVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSettingsVM.swift; sourceTree = "<group>"; };
+		AEF79D8C2712FF8D00D7554B /* AppSettingsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSettingsVC.swift; sourceTree = "<group>"; };
 		AEF79D902713088100D7554B /* Strings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Strings.swift; sourceTree = "<group>"; };
-		AEF79D9227130A5400D7554B /* CfgCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CfgCell.swift; sourceTree = "<group>"; };
-		AEFBC24E26E37CD800414C19 /* Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
 		AEFBC25026E39EFC00414C19 /* SUPLATests-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SUPLATests-Bridging-Header.h"; sourceTree = "<group>"; };
-		AEFBC25126E39EFC00414C19 /* ConfigTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigTests.swift; sourceTree = "<group>"; };
 		B89C18EECE6BFD26C7FD75A2 /* Pods-SUPLATests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SUPLATests.debug.xcconfig"; path = "Target Support Files/Pods-SUPLATests/Pods-SUPLATests.debug.xcconfig"; sourceTree = "<group>"; };
 		E44D11C8AE14E2E33F566A79 /* Pods-SUPLA.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SUPLA.debug.xcconfig"; path = "Target Support Files/Pods-SUPLA/Pods-SUPLA.debug.xcconfig"; sourceTree = "<group>"; };
 		F2C5B3CA264E0C52808D2558 /* Pods-SUPLA.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SUPLA.release.xcconfig"; path = "Target Support Files/Pods-SUPLA/Pods-SUPLA.release.xcconfig"; sourceTree = "<group>"; };
@@ -2459,7 +2477,6 @@
 				AEED1FCF2737F39100DE6289 /* profile */,
 				01D5E0C622DB7FAE00FBE1DC /* SUPLA-Bridging-Header.h */,
 				AEBCD8FA26E4D212001904F3 /* DataPresenters */,
-				AEFBC24D26E37CA300414C19 /* Config */,
 				01CEAC1B25B99D47009C3BFD /* Value */,
 				0163D0CB257EE483006C73CB /* SUPLA.entitlements */,
 				018CFD1D23281A0F00888CB7 /* ExtendedValue */,
@@ -2531,7 +2548,6 @@
 				01AC1AD52487C35E00F734DF /* SAColorBrightnessPickerTests.m */,
 				01AB61EC25B8E0B400DBEF74 /* SADigiglassControllerTests.m */,
 				01CEAC2925B9BAE2009C3BFD /* SADigiglassValueTests.m */,
-				AEFBC25126E39EFC00414C19 /* ConfigTests.swift */,
 				AEFBC25026E39EFC00414C19 /* SUPLATests-Bridging-Header.h */,
 				AEBCD8FD26E4D52C001904F3 /* TemperatureUnitTests.swift */,
 			);
@@ -3191,6 +3207,7 @@
 		A573B39029DEB24400EBAFC4 /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				A5E4904E2A3C7987006801FE /* Infrastructure */,
 				A5F29BF82A2DC11E00ED700A /* CoreData */,
 				A5F29BC72A25D49700ED700A /* Legacy */,
 				A5F29BA42A248EC100ED700A /* Events */,
@@ -3208,6 +3225,7 @@
 		A5756F7F29DC0FE900C32A1B /* Features */ = {
 			isa = PBXGroup;
 			children = (
+				A5AE7A822A39E6C20097FA8B /* AppSettings */,
 				A5F29BE42A2768F000ED700A /* LegacyDetail */,
 				A5F29B652A1E237700ED700A /* SceneList */,
 				A5F29B642A1E236000ED700A /* GroupList */,
@@ -3264,6 +3282,7 @@
 				A57785C029E80C16001C631E /* SuplaClientProviderMock.swift */,
 				A57785C229E80CF7001C631E /* SuplaAppWrapperMock.swift */,
 				A59AB8A32A3058A600D91F1F /* ListsEventsManagerMock.swift */,
+				A5E490542A3C7F2A006801FE /* UserNotificationCenterMock.swift */,
 			);
 			path = Mocks;
 			sourceTree = "<group>";
@@ -3271,6 +3290,7 @@
 		A59AB8962A2F6D3900D91F1F /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				A5E490482A3C61FD006801FE /* AppSettings */,
 				A59AB8982A2F6D5600D91F1F /* Helper */,
 				A59AB8972A2F6D4000D91F1F /* CoreData */,
 			);
@@ -3461,6 +3481,56 @@
 			path = Icon;
 			sourceTree = "<group>";
 		};
+		A5AE7A822A39E6C20097FA8B /* AppSettings */ = {
+			isa = PBXGroup;
+			children = (
+				A5AE7A832A3AC6E80097FA8B /* Cells */,
+				AEF79D8A2712FE1800D7554B /* AppSettingsVM.swift */,
+				AEF79D8C2712FF8D00D7554B /* AppSettingsVC.swift */,
+				AE53535327691EFC0077BFFB /* AppSettingsNavigationCoordinator.swift */,
+			);
+			path = AppSettings;
+			sourceTree = "<group>";
+		};
+		A5AE7A832A3AC6E80097FA8B /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				A5AE7A842A3AC7020097FA8B /* BaseSettingsCell.swift */,
+				A5AE7A862A3AD6A10097FA8B /* ChannelHeightCell.swift */,
+				A5AE7A882A3ADE800097FA8B /* TemperatureUnitCell.swift */,
+				A5AE7A8A2A3ADF330097FA8B /* TitleSwitchCell.swift */,
+				A5AE7A8C2A3ADFAD0097FA8B /* RsOpenningClosingPersentageCell.swift */,
+				A5AE7A8E2A3AE0290097FA8B /* TitleArrowButtonCell.swift */,
+				A5AE7A902A3B17AF0097FA8B /* PermissionCell.swift */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		A5E490482A3C61FD006801FE /* AppSettings */ = {
+			isa = PBXGroup;
+			children = (
+				A5E490492A3C6215006801FE /* ChannelHeight.swift */,
+				A5E4904C2A3C6250006801FE /* TemperatureUnit.swift */,
+			);
+			path = AppSettings;
+			sourceTree = "<group>";
+		};
+		A5E4904E2A3C7987006801FE /* Infrastructure */ = {
+			isa = PBXGroup;
+			children = (
+				A5E4904F2A3C79A4006801FE /* UserNotificationCenter.swift */,
+			);
+			path = Infrastructure;
+			sourceTree = "<group>";
+		};
+		A5E490512A3C7E10006801FE /* AppSettings */ = {
+			isa = PBXGroup;
+			children = (
+				A5E490522A3C7E8F006801FE /* AppSettingsVMTests.swift */,
+			);
+			path = AppSettings;
+			sourceTree = "<group>";
+		};
 		A5F14B7729DED97400682FA6 /* UI */ = {
 			isa = PBXGroup;
 			children = (
@@ -3477,6 +3547,7 @@
 		A5F14B7A29DEE4B600682FA6 /* Features */ = {
 			isa = PBXGroup;
 			children = (
+				A5E490512A3C7E10006801FE /* AppSettings */,
 				A59AB8B62A307F2300D91F1F /* Home */,
 				A59AB8B12A3078E900D91F1F /* SceneList */,
 				A59AB8AC2A30718D00D91F1F /* GroupList */,
@@ -3738,9 +3809,6 @@
 				6E05868028539E490044786B /* EditableProfileItemCell.swift */,
 				6E9F28C828436EE800142502 /* AddNewProfileCell.swift */,
 				6E8756622830E86B00D5A283 /* ProfileItemCell.swift */,
-				AEF79D8A2712FE1800D7554B /* CfgVM.swift */,
-				AEF79D8C2712FF8D00D7554B /* CfgVC.swift */,
-				AEF79D9227130A5400D7554B /* CfgCell.swift */,
 				AE535355276927690077BFFB /* LocationOrderingVC.swift */,
 				AEED87DE276F1FCE005D76CF /* LocationOrderingVM.swift */,
 				AE7452882827E37600A3AFAD /* ProfilesVM.swift */,
@@ -3758,7 +3826,6 @@
 				AE929A8A2761487700B75715 /* NavigationCoordinator.swift */,
 				AE5332E127648E770050E690 /* SuplaNavigationController.swift */,
 				AE5332E52764A7E30050E690 /* SuplaMenuController.swift */,
-				AE53535327691EFC0077BFFB /* CfgNavigationCoordinator.swift */,
 			);
 			path = Navigation;
 			sourceTree = "<group>";
@@ -3808,14 +3875,6 @@
 				AE74528C2827E5D400A3AFAD /* ProfileChooser.swift */,
 			);
 			path = profile;
-			sourceTree = "<group>";
-		};
-		AEFBC24D26E37CA300414C19 /* Config */ = {
-			isa = PBXGroup;
-			children = (
-				AEFBC24E26E37CD800414C19 /* Config.swift */,
-			);
-			path = Config;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -4522,7 +4581,7 @@
 				40C7BA6C20C045A800ACEE42 /* SAChannelGroup+CoreDataClass.m in Sources */,
 				AE1874C2290C581D00437146 /* SceneCaptionEditor.swift in Sources */,
 				AE3DECE22761DB32005923E4 /* AccountCreationNavigationCoordinator.swift in Sources */,
-				AE53535427691EFC0077BFFB /* CfgNavigationCoordinator.swift in Sources */,
+				AE53535427691EFC0077BFFB /* AppSettingsNavigationCoordinator.swift in Sources */,
 				A5F29BC02A24DDB100ED700A /* UpdateChannelGroupRelationUseCase.swift in Sources */,
 				A5F29B802A1E489300ED700A /* ProfileRepository.swift in Sources */,
 				010714782656C605009C119F /* SAZWaveWakeupSettingsReport.m in Sources */,
@@ -4545,6 +4604,7 @@
 				6E8756632830E86D00D5A283 /* ProfileItemCell.swift in Sources */,
 				01C1719922C7F55B005983E1 /* SAMeasurementItem+CoreDataClass.m in Sources */,
 				A5F29BE62A27739000ED700A /* MoveableCell.swift in Sources */,
+				A5AE7A8F2A3AE0290097FA8B /* TitleArrowButtonCell.swift in Sources */,
 				A5F29B962A20B97B00ED700A /* CreateProfileChannelsListUseCase.swift in Sources */,
 				A5F14B7229DED06400682FA6 /* AccountRemovalVM.swift in Sources */,
 				A5756F8229DC102800C32A1B /* AccountRemovalVC.swift in Sources */,
@@ -4586,6 +4646,7 @@
 				0172677D234FAF78000F1CFB /* SADownloadImpulseCounterMeasurements.m in Sources */,
 				01392B37235C91C1003A2BAD /* SADownloadTemperatureMeasurements.m in Sources */,
 				A5F29BF52A2A1E1200ED700A /* ChannelCaptionEditor.swift in Sources */,
+				A5AE7A8B2A3ADF330097FA8B /* TitleSwitchCell.swift in Sources */,
 				01C1719A22C7F55B005983E1 /* SAMeasurementItem+CoreDataProperties.m in Sources */,
 				01A4D4F4269210E300F3DCD1 /* SAFormatter.m in Sources */,
 				0194D80A264DC8580094A857 /* SAZWaveNodeIdResult.m in Sources */,
@@ -4614,6 +4675,7 @@
 				01B57DEC25BDA48F001F0DBC /* SAWizardVC.m in Sources */,
 				A5F29BA82A24B0FC00ED700A /* UpdateSceneStateUseCase.swift in Sources */,
 				A5F29BDC2A26901100ED700A /* ChannelCell+Ext.swift in Sources */,
+				A5AE7A892A3ADE800097FA8B /* TemperatureUnitCell.swift in Sources */,
 				AEF79D912713088100D7554B /* Strings.swift in Sources */,
 				01AB61E925B8E08E00DBEF74 /* SADigiglassController.m in Sources */,
 				40C7BA7920C047CF00ACEE42 /* SAChannelGroup+CoreDataProperties.m in Sources */,
@@ -4630,6 +4692,7 @@
 				4004DE8D1DC4E270009C34E3 /* SAColorBrightnessPicker.m in Sources */,
 				A5F29B782A1E34C700ED700A /* ContextScheduler.swift in Sources */,
 				019D9E2C25F271CF00881C99 /* SACaptionEditor.m in Sources */,
+				A5AE7A912A3B17AF0097FA8B /* PermissionCell.swift in Sources */,
 				401CA1C21BA067DB00117AF4 /* AppDelegate.m in Sources */,
 				A5E490632A4019E6006801FE /* UpdateGroupIconRelationsUseCase.swift in Sources */,
 				A5F29BAE2A24BA5800ED700A /* LegacyWrapper.swift in Sources */,
@@ -4649,7 +4712,6 @@
 				01567446232FCFD700397393 /* SAIncrementalMeterExtendedValue.m in Sources */,
 				AE5332E227648E770050E690 /* SuplaNavigationController.swift in Sources */,
 				015A983C265594B300B6E6C6 /* NSNumber+SUPLA.m in Sources */,
-				AEFBC24F26E37CD800414C19 /* Config.swift in Sources */,
 				01147CE4264BE317002B2E1C /* SAChannelFunctionSetResult.m in Sources */,
 				AE68E73227739D8500E55DB7 /* SwipeTransition.swift in Sources */,
 				017554F622F1A62500EB58B7 /* HomePlusDetailView.m in Sources */,
@@ -4665,7 +4727,7 @@
 				A597271129DAEA480090A044 /* SAScene+Ext.swift in Sources */,
 				AE535356276927690077BFFB /* LocationOrderingVC.swift in Sources */,
 				A5F29B632A1E18FA00ED700A /* ChannelListVM.swift in Sources */,
-				AEF79D8D2712FF8D00D7554B /* CfgVC.swift in Sources */,
+				AEF79D8D2712FF8D00D7554B /* AppSettingsVC.swift in Sources */,
 				A5F14B7429DED41000682FA6 /* BaseViewModel.swift in Sources */,
 				01215A7324C8AECC00429947 /* SALightsourceLifespanSettingsDialog.m in Sources */,
 				AEED87DF276F1FCE005D76CF /* LocationOrderingVM.swift in Sources */,
@@ -4678,7 +4740,7 @@
 				A5F29B872A1F960000ED700A /* ToggleLocationUseCase.swift in Sources */,
 				A59AB89A2A2F6D7600D91F1F /* AuthProfileItemKeychainHelper.swift in Sources */,
 				408034C51BC83D1A007666E7 /* MGSwipeTableCell.m in Sources */,
-				AEF79D8B2712FE1800D7554B /* CfgVM.swift in Sources */,
+				AEF79D8B2712FE1800D7554B /* AppSettingsVM.swift in Sources */,
 				A5F29BCC2A2622BD00ED700A /* DeleteAllProfileDataUseCase.swift in Sources */,
 				010C8780249A4D55002FE526 /* SAInfoVC.m in Sources */,
 				01F8857522E6167100D18373 /* SADownloadUserIcons.m in Sources */,
@@ -4703,11 +4765,13 @@
 				01F8857122E5E79100D18373 /* SATemperatureMeasurementItem+CoreDataClass.m in Sources */,
 				018CFD2323281ADB00888CB7 /* SAThermostatExtendedValue.m in Sources */,
 				40BBA35D20AC6E220054CD20 /* SAChannelGroupRelation+CoreDataProperties.m in Sources */,
+				A5AE7A872A3AD6A10097FA8B /* ChannelHeightCell.swift in Sources */,
 				01F8856922E5E79100D18373 /* SATempHumidityMeasurementItem+CoreDataClass.m in Sources */,
 				40C7BA8720C0492500ACEE42 /* SAChannelBase+CoreDataClass.m in Sources */,
 				A5F29BF72A2A29BE00ED700A /* LocationCaptionEditor.swift in Sources */,
 				A5F29B5B2A1E15D600ED700A /* MainVC.swift in Sources */,
 				011021D325CC4DE700621D41 /* SAChannelBasicCfg.m in Sources */,
+				A5AE7A8D2A3ADFAD0097FA8B /* RsOpenningClosingPersentageCell.swift in Sources */,
 				A5F29B742A1E33AC00ED700A /* NSManagedObjectContext+Rx.swift in Sources */,
 				40E8BE8A1FC06A5600FB2FE6 /* XPathQuery.m in Sources */,
 				01EE9BBC22BA50D90029A142 /* SAChannelValueBase+CoreDataProperties.m in Sources */,
@@ -4725,6 +4789,7 @@
 				011021CE25CC3A6F00621D41 /* SACalCfgResult.m in Sources */,
 				A5F29BA32A234BFA00ED700A /* ObservableType+Ext.swift in Sources */,
 				011021BF25CC394500621D41 /* SARegResult.m in Sources */,
+				A5E4904D2A3C6250006801FE /* TemperatureUnit.swift in Sources */,
 				A5F29BB02A24C12500ED700A /* UpdateLocationUseCase.swift in Sources */,
 				A5F29BC62A24E5DE00ED700A /* ChangeChannelGroupRelationsVisibilityUseCase.swift in Sources */,
 				40A6757F1BA1A5B6004A51C4 /* SuplaApp.m in Sources */,
@@ -4765,7 +4830,6 @@
 				A5756F8429DC23A800C32A1B /* AccountRemovalNavigationCoordinator.swift in Sources */,
 				016157B6261CAAFA006AA0E8 /* SAPickerField.m in Sources */,
 				01E517C322C6AC1E000FE77A /* SADownloadIncrementalMeasurements.m in Sources */,
-				AEF79D9327130A5400D7554B /* CfgCell.swift in Sources */,
 				013D1C6022CE757F000C0784 /* SAIncrementalMeterChartHelper.m in Sources */,
 				40C9E4FD1F2B841400753796 /* SAColorListPicker.m in Sources */,
 				013D73A522DCAB4400E3515A /* SAIncrementalMeterChartMarkerView.swift in Sources */,
@@ -4792,6 +4856,7 @@
 				01F8856A22E5E79100D18373 /* SATempHumidityMeasurementItem+CoreDataProperties.m in Sources */,
 				01478826265317B000CC8A01 /* SACalCfgProgressReport.m in Sources */,
 				A57785BF29E80406001C631E /* SuplaAppWrapper.swift in Sources */,
+				A5E490502A3C79A4006801FE /* UserNotificationCenter.swift in Sources */,
 				AEB195DE276E5A040091D314 /* FadeTransition.swift in Sources */,
 				40E8BE881FC06A5600FB2FE6 /* TFHpple.m in Sources */,
 				A5E4905F2A401020006801FE /* SAUserIcon+Ext.swift in Sources */,
@@ -4801,8 +4866,10 @@
 				019170A4233D67E900820BDB /* SAThermostatChartHelper.m in Sources */,
 				40C7BA5320C007A300ACEE42 /* SAChannelValue+CoreDataProperties.m in Sources */,
 				A5F29BAA2A24B23000ED700A /* UpdateSceneUseCase.swift in Sources */,
+				A5AE7A852A3AC7020097FA8B /* BaseSettingsCell.swift in Sources */,
 				AEBCD8FC26E4D247001904F3 /* TemperaturePresenter.swift in Sources */,
 				407D4AFF1BC6E491009A5505 /* StatusVC.m in Sources */,
+				A5E4904A2A3C6215006801FE /* ChannelHeight.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4839,7 +4906,6 @@
 				A59AB8D12A3091EE00D91F1F /* SceneRepositoryMock.swift in Sources */,
 				A59AB8B32A3078FB00D91F1F /* SceneListVMTests.swift in Sources */,
 				A59AB8D92A30930E00D91F1F /* ThermostatMeasurementItemRepositoryMock.swift in Sources */,
-				AEFBC25226E39EFC00414C19 /* ConfigTests.swift in Sources */,
 				A59AB8C92A30906100D91F1F /* GroupRepositoryMock.swift in Sources */,
 				01CEAC2A25B9BAE2009C3BFD /* SADigiglassValueTests.m in Sources */,
 				01EFD94C236CA9AE00893489 /* NSDataEncryptionTest.m in Sources */,
@@ -4859,6 +4925,7 @@
 				A57785C129E80C16001C631E /* SuplaClientProviderMock.swift in Sources */,
 				A59AB8B02A30721D00D91F1F /* GroupUseCasesMocks.swift in Sources */,
 				012FCBD323217DE000AC6FF6 /* ThermostatCalendarTests.m in Sources */,
+				A5E490552A3C7F2A006801FE /* UserNotificationCenterMock.swift in Sources */,
 				A59AB8A22A30583E00D91F1F /* DetailUseCasesMocks.swift in Sources */,
 				A59AB8E32A30A35000D91F1F /* SwapGroupPositionsUseCaseTests.swift in Sources */,
 				A59AB8ED2A30AAFA00D91F1F /* SwapScenePositionsUseCaseTests.swift in Sources */,
@@ -4866,6 +4933,7 @@
 				A59AB8A42A3058A600D91F1F /* ListsEventsManagerMock.swift in Sources */,
 				A59AB8BB2A30800F00D91F1F /* ProfileRepositoryMock.swift in Sources */,
 				AECB1BE92710A785001A9714 /* AccountCreationVMTests.swift in Sources */,
+				A5E490532A3C7E8F006801FE /* AppSettingsVMTests.swift in Sources */,
 				A59AB8DC2A30935B00D91F1F /* DeleteAllProfileDataUseCaseTests.swift in Sources */,
 				A59AB8E62A30A73100D91F1F /* CreateProfileChannelsListUseCaseTests.swift in Sources */,
 				A59AB8A02A30535E00D91F1F /* ChannelUseCasesMocks.swift in Sources */,
