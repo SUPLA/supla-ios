@@ -737,10 +737,15 @@ void sasuplaclient_scene_state_update(void *_suplaclient,
     AuthProfileItem *profile = [pm getCurrentProfile];
     AuthInfo *ai = profile.authInfo;
     
-    if ( ai.preferredProtocolVersion < SUPLA_PROTO_VERSION
-        && result.Version > ai.preferredProtocolVersion
-        && result.Version <= SUPLA_PROTO_VERSION ) {
-        ai.preferredProtocolVersion = result.Version;
+    long maxVersionSupportedByLibrary = SUPLA_PROTO_VERSION;
+    long storedVersion = ai.preferredProtocolVersion;
+    long serverVersion = result.Version;
+    if (storedVersion < maxVersionSupportedByLibrary && serverVersion > storedVersion) {
+        long newVersion = serverVersion;
+        if (newVersion > maxVersionSupportedByLibrary) {
+            newVersion = maxVersionSupportedByLibrary;
+        }
+        ai.preferredProtocolVersion = newVersion;
         [pm update:profile];
         
     };
