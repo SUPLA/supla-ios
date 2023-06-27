@@ -120,7 +120,7 @@ final class UpdateChannelUseCase {
         if (channel.setChannelType(suplaChannel.Type)) {
             changed = true
         }
-        if (channel.setChannelFlags(channel.flags)) {
+        if (channel.setChannelFlags(Int32(suplaChannel.Flags))) {
             changed = true
         }
         

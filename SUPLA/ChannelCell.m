@@ -220,14 +220,6 @@
         case SUPLA_CHANNELFNC_CONTROLLINGTHEGARAGEDOOR:
         case SUPLA_CHANNELFNC_CONTROLLINGTHEDOORLOCK:
         case SUPLA_CHANNELFNC_CONTROLLINGTHEGATEWAYLOCK:
-        case SUPLA_CHANNELFNC_ELECTRICITY_METER:
-        case SUPLA_CHANNELFNC_IC_ELECTRICITY_METER:
-        case SUPLA_CHANNELFNC_IC_GAS_METER:
-        case SUPLA_CHANNELFNC_IC_WATER_METER:
-        case SUPLA_CHANNELFNC_IC_HEAT_METER:
-        case SUPLA_CHANNELFNC_THERMOSTAT_HEATPOL_HOMEPLUS:
-        case SUPLA_CHANNELFNC_THERMOMETER:
-        case SUPLA_CHANNELFNC_HUMIDITYANDTEMPERATURE:
         case SUPLA_CHANNELFNC_DIGIGLASS_HORIZONTAL:
         case SUPLA_CHANNELFNC_DIGIGLASS_VERTICAL:
             self.left_OnlineStatus.hidden = YES;
@@ -254,6 +246,14 @@
         case SUPLA_CHANNELFNC_OPENINGSENSOR_ROOFWINDOW:
         case SUPLA_CHANNELFNC_OPENINGSENSOR_WINDOW:
         case SUPLA_CHANNELFNC_MAILSENSOR:
+        case SUPLA_CHANNELFNC_THERMOSTAT_HEATPOL_HOMEPLUS:
+        case SUPLA_CHANNELFNC_THERMOMETER:
+        case SUPLA_CHANNELFNC_HUMIDITYANDTEMPERATURE:
+        case SUPLA_CHANNELFNC_ELECTRICITY_METER:
+        case SUPLA_CHANNELFNC_IC_ELECTRICITY_METER:
+        case SUPLA_CHANNELFNC_IC_GAS_METER:
+        case SUPLA_CHANNELFNC_IC_WATER_METER:
+        case SUPLA_CHANNELFNC_IC_HEAT_METER:
             self.left_OnlineStatus.hidden = NO;
             self.right_OnlineStatus.hidden = NO;
             self.right_OnlineStatus.shapeType = stRing;
@@ -332,7 +332,6 @@
             if ( br ) {
                 [br setButtonWidth:105];
                 [br.titleLabel setFont:[UIFont fontWithName:@"Quicksand" size:16]];
-                //[br.titleLabel setFont:[UIFont fontWithName:@"OpenSens" size:10]];
                 br.backgroundColor = [UIColor onLine];
                 [self btn:br SetAction:@selector(rightTouchDown:)];
                 self.rightButtons = @[br];
@@ -341,7 +340,6 @@
             if ( bl ) {
                 [bl setButtonWidth:105];
                 [bl.titleLabel setFont:[UIFont fontWithName:@"Quicksand" size:16]];
-                //[bl.titleLabel setFont:[UIFont fontWithName:@"OpenSens" size:10]];
                 bl.backgroundColor = [UIColor onLine];
                 [self btn:bl SetAction:@selector(leftTouchDown:)];
                 self.leftButtons = @[bl];
