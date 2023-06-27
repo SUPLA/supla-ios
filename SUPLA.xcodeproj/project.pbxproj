@@ -708,12 +708,6 @@
 		A5A1C0A829F2AAFA0083818D /* VibrationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5A1C0A729F2AAFA0083818D /* VibrationService.swift */; };
 		A5AE7A7F2A3998260097FA8B /* NewGestureInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5AE7A7E2A3998260097FA8B /* NewGestureInfoView.swift */; };
 		A5AE7A812A39AF410097FA8B /* Default.strings in Resources */ = {isa = PBXBuildFile; fileRef = A5AE7A802A39AF410097FA8B /* Default.strings */; };
-		A5E4905A2A3FA151006801FE /* GetAllIconsToDownloadUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E490592A3FA151006801FE /* GetAllIconsToDownloadUseCase.swift */; };
-		A5E4905C2A400C03006801FE /* SaveIconUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E4905B2A400C03006801FE /* SaveIconUseCase.swift */; };
-		A5E4905F2A401020006801FE /* SAUserIcon+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E4905E2A401020006801FE /* SAUserIcon+Ext.swift */; };
-		A5E490612A4012E9006801FE /* UpdateChannelIconRelationsUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E490602A4012E9006801FE /* UpdateChannelIconRelationsUseCase.swift */; };
-		A5E490632A4019E6006801FE /* UpdateGroupIconRelationsUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E490622A4019E6006801FE /* UpdateGroupIconRelationsUseCase.swift */; };
-		A5E490652A401A7D006801FE /* UpdateSceneIconRelationsUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E490642A401A7D006801FE /* UpdateSceneIconRelationsUseCase.swift */; };
 		A5AE7A852A3AC7020097FA8B /* BaseSettingsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5AE7A842A3AC7020097FA8B /* BaseSettingsCell.swift */; };
 		A5AE7A872A3AD6A10097FA8B /* ChannelHeightCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5AE7A862A3AD6A10097FA8B /* ChannelHeightCell.swift */; };
 		A5AE7A892A3ADE800097FA8B /* TemperatureUnitCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5AE7A882A3ADE800097FA8B /* TemperatureUnitCell.swift */; };
@@ -726,6 +720,12 @@
 		A5E490502A3C79A4006801FE /* UserNotificationCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E4904F2A3C79A4006801FE /* UserNotificationCenter.swift */; };
 		A5E490532A3C7E8F006801FE /* AppSettingsVMTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E490522A3C7E8F006801FE /* AppSettingsVMTests.swift */; };
 		A5E490552A3C7F2A006801FE /* UserNotificationCenterMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E490542A3C7F2A006801FE /* UserNotificationCenterMock.swift */; };
+		A5E4905A2A3FA151006801FE /* GetAllIconsToDownloadUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E490592A3FA151006801FE /* GetAllIconsToDownloadUseCase.swift */; };
+		A5E4905C2A400C03006801FE /* SaveIconUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E4905B2A400C03006801FE /* SaveIconUseCase.swift */; };
+		A5E4905F2A401020006801FE /* SAUserIcon+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E4905E2A401020006801FE /* SAUserIcon+Ext.swift */; };
+		A5E490612A4012E9006801FE /* UpdateChannelIconRelationsUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E490602A4012E9006801FE /* UpdateChannelIconRelationsUseCase.swift */; };
+		A5E490632A4019E6006801FE /* UpdateGroupIconRelationsUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E490622A4019E6006801FE /* UpdateGroupIconRelationsUseCase.swift */; };
+		A5E490652A401A7D006801FE /* UpdateSceneIconRelationsUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E490642A401A7D006801FE /* UpdateSceneIconRelationsUseCase.swift */; };
 		A5F14B7229DED06400682FA6 /* AccountRemovalVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F14B7129DED06400682FA6 /* AccountRemovalVM.swift */; };
 		A5F14B7429DED41000682FA6 /* BaseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F14B7329DED41000682FA6 /* BaseViewModel.swift */; };
 		A5F14B7629DED44600682FA6 /* ViewEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F14B7529DED44600682FA6 /* ViewEvent.swift */; };
@@ -1916,12 +1916,6 @@
 		A5A1C0A729F2AAFA0083818D /* VibrationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VibrationService.swift; sourceTree = "<group>"; };
 		A5AE7A7E2A3998260097FA8B /* NewGestureInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewGestureInfoView.swift; sourceTree = "<group>"; };
 		A5AE7A802A39AF410097FA8B /* Default.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = Default.strings; sourceTree = "<group>"; };
-		A5E490592A3FA151006801FE /* GetAllIconsToDownloadUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetAllIconsToDownloadUseCase.swift; sourceTree = "<group>"; };
-		A5E4905B2A400C03006801FE /* SaveIconUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveIconUseCase.swift; sourceTree = "<group>"; };
-		A5E4905E2A401020006801FE /* SAUserIcon+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SAUserIcon+Ext.swift"; sourceTree = "<group>"; };
-		A5E490602A4012E9006801FE /* UpdateChannelIconRelationsUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateChannelIconRelationsUseCase.swift; sourceTree = "<group>"; };
-		A5E490622A4019E6006801FE /* UpdateGroupIconRelationsUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateGroupIconRelationsUseCase.swift; sourceTree = "<group>"; };
-		A5E490642A401A7D006801FE /* UpdateSceneIconRelationsUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateSceneIconRelationsUseCase.swift; sourceTree = "<group>"; };
 		A5AE7A842A3AC7020097FA8B /* BaseSettingsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseSettingsCell.swift; sourceTree = "<group>"; };
 		A5AE7A862A3AD6A10097FA8B /* ChannelHeightCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelHeightCell.swift; sourceTree = "<group>"; };
 		A5AE7A882A3ADE800097FA8B /* TemperatureUnitCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemperatureUnitCell.swift; sourceTree = "<group>"; };
@@ -1934,6 +1928,12 @@
 		A5E4904F2A3C79A4006801FE /* UserNotificationCenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserNotificationCenter.swift; sourceTree = "<group>"; };
 		A5E490522A3C7E8F006801FE /* AppSettingsVMTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSettingsVMTests.swift; sourceTree = "<group>"; };
 		A5E490542A3C7F2A006801FE /* UserNotificationCenterMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserNotificationCenterMock.swift; sourceTree = "<group>"; };
+		A5E490592A3FA151006801FE /* GetAllIconsToDownloadUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetAllIconsToDownloadUseCase.swift; sourceTree = "<group>"; };
+		A5E4905B2A400C03006801FE /* SaveIconUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveIconUseCase.swift; sourceTree = "<group>"; };
+		A5E4905E2A401020006801FE /* SAUserIcon+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SAUserIcon+Ext.swift"; sourceTree = "<group>"; };
+		A5E490602A4012E9006801FE /* UpdateChannelIconRelationsUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateChannelIconRelationsUseCase.swift; sourceTree = "<group>"; };
+		A5E490622A4019E6006801FE /* UpdateGroupIconRelationsUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateGroupIconRelationsUseCase.swift; sourceTree = "<group>"; };
+		A5E490642A401A7D006801FE /* UpdateSceneIconRelationsUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateSceneIconRelationsUseCase.swift; sourceTree = "<group>"; };
 		A5F14B7129DED06400682FA6 /* AccountRemovalVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountRemovalVM.swift; sourceTree = "<group>"; };
 		A5F14B7329DED41000682FA6 /* BaseViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewModel.swift; sourceTree = "<group>"; };
 		A5F14B7529DED44600682FA6 /* ViewEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewEvent.swift; sourceTree = "<group>"; };
@@ -3472,15 +3472,6 @@
 			path = Policies;
 			sourceTree = "<group>";
 		};
-		A5E490582A3FA137006801FE /* Icon */ = {
-			isa = PBXGroup;
-			children = (
-				A5E490592A3FA151006801FE /* GetAllIconsToDownloadUseCase.swift */,
-				A5E4905B2A400C03006801FE /* SaveIconUseCase.swift */,
-			);
-			path = Icon;
-			sourceTree = "<group>";
-		};
 		A5AE7A822A39E6C20097FA8B /* AppSettings */ = {
 			isa = PBXGroup;
 			children = (
@@ -3529,6 +3520,15 @@
 				A5E490522A3C7E8F006801FE /* AppSettingsVMTests.swift */,
 			);
 			path = AppSettings;
+			sourceTree = "<group>";
+		};
+		A5E490582A3FA137006801FE /* Icon */ = {
+			isa = PBXGroup;
+			children = (
+				A5E490592A3FA151006801FE /* GetAllIconsToDownloadUseCase.swift */,
+				A5E4905B2A400C03006801FE /* SaveIconUseCase.swift */,
+			);
+			path = Icon;
 			sourceTree = "<group>";
 		};
 		A5F14B7729DED97400682FA6 /* UI */ = {
@@ -5483,7 +5483,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = SUPLA/SUPLA.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 134;
+				CURRENT_PROJECT_VERSION = 135;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = T6ZPGSWA75;
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -5522,7 +5522,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = SUPLA/SUPLA.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 134;
+				CURRENT_PROJECT_VERSION = 135;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = T6ZPGSWA75;
 				GCC_PREPROCESSOR_DEFINITIONS = (
