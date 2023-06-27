@@ -81,7 +81,7 @@ class GlobalSettingsImpl: GlobalSettings {
         set { defaults.set(!newValue, forKey: keepButtonsVisibleKey) }
     }
     
-    private let showChannelInfoKey = "supla_config_channel_height"
+    private let showChannelInfoKey = "supla_config_show_channel_info"
     var showChannelInfo: Bool {
         get { return defaults.bool(forKey: showChannelInfoKey) }
         set {
@@ -103,7 +103,7 @@ class GlobalSettingsImpl: GlobalSettings {
         set {
             if (channelHeight != newValue) {
                 runtimeConfig.emitPreferenceChange(
-                    scaleFactor: channelHeight.factor(),
+                    scaleFactor: newValue.factor(),
                     showChannelInfo: showChannelInfo
                 )
             }
