@@ -274,6 +274,7 @@ extern char sproto_tag[SUPLA_TAG_SIZE];
 #define SUPLA_DS_CALL_REGISTER_PUSH_NOTIFICATION 1100         // ver. >= 20
 #define SUPLA_DS_CALL_SEND_PUSH_NOTIFICATION 1110             // ver. >= 20
 #define SUPLA_CS_CALL_REGISTER_PN_CLIENT_TOKEN 1120           // ver. >= 20
+#define SUPLA_SC_CALL_REGISTER_PN_CLIENT_TOKEN_RESULT 1121    // ver. >= 20
 
 #define SUPLA_RESULT_RESPONSE_TIMEOUT -8
 #define SUPLA_RESULT_CANT_CONNECT_TO_HOST -7
@@ -324,8 +325,8 @@ extern char sproto_tag[SUPLA_TAG_SIZE];
 #define SUPLA_RESULTCODE_INCORRECT_PARAMETERS 35  // ver. >= 19
 #define SUPLA_RESULTCODE_CLIENT_NOT_EXISTS 36     // ver. >= 19
 #define SUPLA_RESULTCODE_COUNTRY_REJECTED 37
-#define SUPLA_RESULTCODE_CHANNEL_IS_OFFLINE 38  // ver. >= 19
-#define SUPLA_RESULTCODE_NOT_REGISTERED 39      // ver. >= 20
+#define SUPLA_RESULTCODE_CHANNEL_IS_OFFLINE 38                    // ver. >= 19
+#define SUPLA_RESULTCODE_NOT_REGISTERED 39                        // ver. >= 20
 #define SUPLA_RESULTCODE_DENY_CHANNEL_IS_ASSOCIETED_WITH_VBT 40   // >= 20
 #define SUPLA_RESULTCODE_DENY_CHANNEL_IS_ASSOCIETED_WITH_PUSH 41  // >= 20
 
@@ -1414,10 +1415,13 @@ typedef struct {
   unsigned _supla_int16_t freq;        // * 0.01 Hz
   unsigned _supla_int16_t voltage[3];  // * 0.01 V
   unsigned _supla_int16_t
-      current[3];  // * 0.001 A (0.01A FOR EM_VAR_CURRENT_OVER_65A)
-  _supla_int_t power_active[3];    // * 0.00001 W or kW
-  _supla_int_t power_reactive[3];  // * 0.00001 var or kvar
-  _supla_int_t power_apparent[3];  // * 0.00001 VA or kVA
+      current[3];  // * 0.001A (0.01A WHEN EM_VAR_CURRENT_OVER_65A)
+  _supla_int_t
+      power_active[3];  // * 0.00001W (0.01kW WHEN EM_VAR_POWER_ACTIVE_KW)
+  _supla_int_t power_reactive[3];  // * 0.00001var (0.01kvar WHEN
+                                   // EM_VAR_POWER_REACTIVE_KVAR)
+  _supla_int_t power_apparent[3];  // * 0.00001VA (0.01kVA WHEN
+                                   // EM_VAR_POWER_APPARENT_KVA)
   _supla_int16_t power_factor[3];  // * 0.001
   _supla_int16_t phase_angle[3];   // * 0.1 degree
 } TElectricityMeter_Measurement;   // v. >= 10
@@ -2200,7 +2204,16 @@ typedef struct {
       TokenSize;  // Including the terminating null byte ('\0'). Size
                   // <= 1 removes the token
   signed char Token[SUPLA_PN_CLIENT_TOKEN_MAXSIZE];  // Last variable in struct!
+} TCS_PnClientToken;
+
+typedef struct {
+  TCS_ClientAuthorizationDetails Auth;
+  TCS_PnClientToken Token;  // Last variable in struct!
 } TCS_RegisterPnClientToken;
+
+typedef struct {
+  _supla_int_t ResultCode;
+} TSC_RegisterPnClientTokenResult;
 
 #pragma pack(pop)
 
