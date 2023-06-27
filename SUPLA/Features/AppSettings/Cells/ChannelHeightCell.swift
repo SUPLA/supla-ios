@@ -35,14 +35,15 @@ final class ChannelHeightCell: BaseSettingsCell<UISegmentedControl> {
         let cell = cellProvider()
         cell.setLabel(Strings.Cfg.channelHeight)
         
-        cell.actionView.rx.selectedSegmentIndex
-            .subscribe(onNext: { callback($0) })
-            .disposed(by: cell.disposeBag)
         ChannelHeight.allCases.enumerated().forEach { (i, height) in
             if (height == channelHeight) {
                 cell.actionView.selectedSegmentIndex = i
             }
         }
+        cell.actionView.rx.selectedSegmentIndex
+            .subscribe(onNext: { callback($0) })
+            .disposed(by: cell.disposeBag)
+        
         return cell
     }
 }
