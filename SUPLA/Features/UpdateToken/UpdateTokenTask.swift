@@ -27,7 +27,14 @@ class UpdateTokenTask: NSObject {
     @Singleton<DateProvider> private var dateProvider
     
     @objc
-    func update(token: Data, updateSelf: Bool) async {
+    func update(token: Data, updateSelf: Bool, completionHandler: @escaping () -> Void) {
+        DispatchQueue.global(qos: .default).async {
+            self.doUpdate(token: token, updateSelf: updateSelf)
+            completionHandler()
+        }
+    }
+    
+    private func doUpdate(token: Data, updateSelf: Bool) {
         var settings = settings
         if (settings.pushToken == token && tokenUpdateNotNeeded()) {
             NSLog("Token update skipped. Tokens are equal")

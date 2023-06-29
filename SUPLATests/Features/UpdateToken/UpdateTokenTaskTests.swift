@@ -54,67 +54,83 @@ final class UpdateTokenTaskTests: XCTestCase {
         dateProvider = nil
     }
     
-    func test_shouldNotUpdateTokenWhenTokensAreEqualAndUpdateNotNeeded() async {
+    func test_shouldNotUpdateTokenWhenTokensAreEqualAndUpdateNotNeeded() {
         // given
         let token = Data()
         settings.pushTokenReturns = token
+        let expectation = XCTestExpectation(description: "Update task finished")
         
         // when
-        await updateTokenTask.update(token: token, updateSelf: false)
+        updateTokenTask.update(token: token, updateSelf: false) {
+            expectation.fulfill()
+        }
         
         // then
+        wait(for: [expectation], timeout: 5.0)
         XCTAssertEqual(profileRepository.allProfilesCalls, 0)
         XCTAssertEqual(singleCall.registerPushTokenCalls, 0)
         XCTAssertEqual(settings.pushTokenLastUpdateValues.count, 0)
     }
     
-    func test_shouldUpdateTokenWhenTokensEqualButPauseTimeElapsed() async {
+    func test_shouldUpdateTokenWhenTokensEqualButPauseTimeElapsed() {
         // given
         let token = Data()
         settings.pushTokenReturns = token
         dateProvider.currentTimestampReturns = 8 * 24 * 60 * 60.0
+        let expectation = XCTestExpectation(description: "Update task finished")
         
         // when
-        await updateTokenTask.update(token: token, updateSelf: false)
+        updateTokenTask.update(token: token, updateSelf: false) {
+            expectation.fulfill()
+        }
         
         // then
+        wait(for: [expectation], timeout: 5.0)
         XCTAssertEqual(profileRepository.allProfilesCalls, 1)
         XCTAssertEqual(singleCall.registerPushTokenCalls, 0)
         XCTAssertEqual(settings.pushTokenLastUpdateValues.count, 0)
     }
     
-    func test_shouldNotUpdateTokenWhenThereIsNoProfile() async {
+    func test_shouldNotUpdateTokenWhenThereIsNoProfile() {
         // given
         let token = Data()
         settings.pushTokenReturns = token
+        let expectation = XCTestExpectation(description: "Update task finished")
         
         // when
-        await updateTokenTask.update(token: Data([1]), updateSelf: false)
+        updateTokenTask.update(token: Data([1]), updateSelf: false) {
+            expectation.fulfill()
+        }
         
         // then
+        wait(for: [expectation], timeout: 5.0)
         XCTAssertEqual(profileRepository.allProfilesCalls, 1)
         XCTAssertEqual(singleCall.registerPushTokenCalls, 0)
         XCTAssertEqual(settings.pushTokenLastUpdateValues.count, 0)
     }
     
-    func test_shouldNotUpdateTokenForProfileWithIncompleteData() async {
+    func test_shouldNotUpdateTokenForProfileWithIncompleteData() {
         // given
         let token = Data()
         settings.pushTokenReturns = token
         
         let profile = AuthProfileItem(testContext: nil)
         profileRepository.allProfilesObservable = Observable.just([profile])
+        let expectation = XCTestExpectation(description: "Update task finished")
         
         // when
-        await updateTokenTask.update(token: Data([1]), updateSelf: false)
+        updateTokenTask.update(token: Data([1]), updateSelf: false) {
+            expectation.fulfill()
+        }
         
         // then
+        wait(for: [expectation], timeout: 5.0)
         XCTAssertEqual(profileRepository.allProfilesCalls, 1)
         XCTAssertEqual(singleCall.registerPushTokenCalls, 0)
         XCTAssertEqual(settings.pushTokenLastUpdateValues.count, 1)
     }
     
-    func test_shouldUpdateToken() async {
+    func test_shouldUpdateToken() {
         // given
         let token = Data()
         settings.pushTokenReturns = token
@@ -131,18 +147,22 @@ final class UpdateTokenTaskTests: XCTestCase {
             accessIDpwd: ""
         )
         profileRepository.allProfilesObservable = Observable.just([profile])
+        let expectation = XCTestExpectation(description: "Update task finished")
         
         // when
-        await updateTokenTask.update(token: Data([1]), updateSelf: false)
+        updateTokenTask.update(token: Data([1]), updateSelf: false) {
+            expectation.fulfill()
+        }
         
         // then
+        wait(for: [expectation], timeout: 5.0)
         XCTAssertEqual(profileRepository.allProfilesCalls, 1)
         XCTAssertEqual(singleCall.registerPushTokenCalls, 1)
         XCTAssertEqual(settings.pushTokenLastUpdateValues.count, 1)
         XCTAssertEqual(settings.pushTokenLastUpdateValues[0], 12.0)
     }
     
-    func test_shouldNotUpdateTokenForActiveProfile() async {
+    func test_shouldNotUpdateTokenForActiveProfile() {
         // given
         let token = Data()
         settings.pushTokenReturns = token
@@ -150,11 +170,15 @@ final class UpdateTokenTaskTests: XCTestCase {
         let profile = AuthProfileItem(testContext: nil)
         profile.isActive = true
         profileRepository.allProfilesObservable = Observable.just([profile])
+        let expectation = XCTestExpectation(description: "Update task finished")
         
         // when
-        await updateTokenTask.update(token: Data([1]), updateSelf: false)
+        updateTokenTask.update(token: Data([1]), updateSelf: false) {
+            expectation.fulfill()
+        }
         
         // then
+        wait(for: [expectation], timeout: 5.0)
         XCTAssertEqual(profileRepository.allProfilesCalls, 1)
         XCTAssertEqual(singleCall.registerPushTokenCalls, 0)
         XCTAssertEqual(settings.pushTokenLastUpdateValues.count, 1)
