@@ -47,6 +47,8 @@ extension DiContainer {
         DiContainer.shared.register(type: SuplaAppWrapper.self, component: SuplaAppWrapperImpl())
         DiContainer.shared.register(type: VibrationService.self, component: VibrationServiceImpl())
         DiContainer.shared.register(type: ListsEventsManager.self, component: ListsEventsManagerImpl())
+        DiContainer.shared.register(type: SingleCall.self, component: SingleCallImpl())
+        DiContainer.shared.register(type: DateProvider.self, component: DateProviderImpl())
         
         DiContainer.shared.register(type: (any ProfileRepository).self, component: ProfileRepositoryImpl())
         DiContainer.shared.register(type: (any SceneRepository).self, component: SceneRepositoryImpl())

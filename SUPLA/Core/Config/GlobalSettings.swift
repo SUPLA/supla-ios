@@ -24,6 +24,7 @@ protocol GlobalSettings {
     var newGestureInfoShown: Bool { get set }
     var shouldShowNewGestureInfo: Bool { get set }
     var pushToken: Data? { get set }
+    var pushTokenLastUpdate: Double { get set }
     
     var temperatureUnit: TemperatureUnit { get set }
     var autohideButtons: Bool { get set }
@@ -67,6 +68,12 @@ class GlobalSettingsImpl: GlobalSettings {
     var pushToken: Data? {
         get { defaults.data(forKey: pushTokenKey) }
         set { defaults.set(newValue, forKey: pushTokenKey) }
+    }
+    
+    private let pushTokenLastUpdateKey = "GlobalSettings.pushTokenLastUpdateKey"
+    var pushTokenLastUpdate: Double {
+        get { defaults.double(forKey: pushTokenLastUpdateKey) }
+        set { defaults.set(newValue, forKey: pushTokenLastUpdateKey) }
     }
     
     private let temperatureUnitKey = "supla_config_temp_unit"

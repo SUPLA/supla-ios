@@ -16,21 +16,19 @@
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 
-import RxSwift
+#import "proto.h"
+#import <Foundation/Foundation.h>
 
-@testable import SUPLA
+#ifndef SingleCallWrapper_h
+#define SingleCallWrapper_h
 
-final class ProfileRepositoryMock: BaseRepositoryMock<AuthProfileItem>, ProfileRepository {
-    
-    var activeProfileObservable: Observable<AuthProfileItem> = Observable.empty()
-    func getActiveProfile() -> Observable<AuthProfileItem> {
-        return activeProfileObservable
-    }
-    
-    var allProfilesObservable: Observable<[AuthProfileItem]> = Observable.empty()
-    var allProfilesCalls = 0
-    func getAllProfiles() -> RxSwift.Observable<[AuthProfileItem]> {
-        allProfilesCalls += 1
-        return allProfilesObservable
-    }
-}
+@class AuthProfileItem;
+
+@interface SingleCallWrapper : NSObject { }
+
++ (TCS_ClientAuthorizationDetails) prepareAuthorizationDetailsFor: (AuthProfileItem*) profile;
++ (TCS_PnClientToken) prepareClientTokenFor: (NSData*) token;
++ (TCS_RegisterPnClientToken) prepareRegisterStructureFor: (AuthProfileItem*) profile with: (NSData*) token;
+@end
+
+#endif /* SingleCallWrapper_h */

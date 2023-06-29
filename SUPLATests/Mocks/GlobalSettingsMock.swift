@@ -48,6 +48,13 @@ class GlobalSettingsMock: GlobalSettings {
         set { pushTokenValues.append(newValue) }
     }
     
+    var pushTokenLastUpdateReturns: Double = 0
+    var pushTokenLastUpdateValues: [Double] = []
+    var pushTokenLastUpdate: Double {
+        get { pushTokenLastUpdateReturns }
+        set { pushTokenLastUpdateValues.append(newValue) }
+    }
+    
     var temperatureUnitReturns: TemperatureUnit = .celsius
     var temperatureUnitValues: [TemperatureUnit] = []
     var temperatureUnit: TemperatureUnit {

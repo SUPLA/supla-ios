@@ -16,21 +16,12 @@
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 
-import RxSwift
-
 @testable import SUPLA
 
-final class ProfileRepositoryMock: BaseRepositoryMock<AuthProfileItem>, ProfileRepository {
+final class SingleCallMock: SingleCall {
     
-    var activeProfileObservable: Observable<AuthProfileItem> = Observable.empty()
-    func getActiveProfile() -> Observable<AuthProfileItem> {
-        return activeProfileObservable
-    }
-    
-    var allProfilesObservable: Observable<[AuthProfileItem]> = Observable.empty()
-    var allProfilesCalls = 0
-    func getAllProfiles() -> RxSwift.Observable<[AuthProfileItem]> {
-        allProfilesCalls += 1
-        return allProfilesObservable
+    var registerPushTokenCalls = 0
+    func registerPushToken(_ authDetails: UnsafeMutablePointer<TCS_ClientAuthorizationDetails>, _ protocolVersion: Int32, _ tokenDetails: UnsafeMutablePointer<TCS_PnClientToken>) throws {
+        registerPushTokenCalls += 1
     }
 }
