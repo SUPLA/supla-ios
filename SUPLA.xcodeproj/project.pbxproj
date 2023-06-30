@@ -5552,7 +5552,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/SUPLA/lib",
 				);
-				MARKETING_VERSION = 23.06;
+				MARKETING_VERSION = 23.07;
 				OTHER_SWIFT_FLAGS = "$(inherited) -D COCOAPODS -D DEBUG";
 				PRODUCT_BUNDLE_IDENTIFIER = com.acsoftware.ios.supla;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -5591,7 +5591,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/SUPLA/lib",
 				);
-				MARKETING_VERSION = 23.06;
+				MARKETING_VERSION = 23.07;
 				PRODUCT_BUNDLE_IDENTIFIER = com.acsoftware.ios.supla;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "SUPLA/SUPLA-Bridging-Header.h";
