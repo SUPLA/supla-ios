@@ -72,9 +72,7 @@
 
 + (TCS_RegisterPnClientToken) prepareRegisterStructureFor: (AuthProfileItem*) profile with: (NSData*) token {
     TCS_RegisterPnClientToken reg = {};
-    if (profile) {
-        reg.Token = [SingleCallWrapper prepareClientTokenFor: token];
-    }
+    reg.Token = [SingleCallWrapper prepareClientTokenFor: token];
     reg.Auth = [SingleCallWrapper prepareAuthorizationDetailsFor: profile];
     
     return reg;
