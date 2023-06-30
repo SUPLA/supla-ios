@@ -643,12 +643,20 @@
 		6EC0BF2C2875F97B0000CAA8 /* ChartSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EC0BF2B2875F9780000CAA8 /* ChartSettings.swift */; };
 		6EC4B005286F420500731079 /* SAElectricityMeterChartMarkerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EC4B004286F420500731079 /* SAElectricityMeterChartMarkerView.swift */; };
 		6EC4B0072871777B00731079 /* SAElectricityMeterChartMarkerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6EC4B0062871777A00731079 /* SAElectricityMeterChartMarkerView.xib */; };
+		A50CD3D12A4D78610012DD9B /* libc++abi.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = A50CD3D02A4D78610012DD9B /* libc++abi.tbd */; };
+		A50CD3D32A4D82ED0012DD9B /* DateProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A50CD3D22A4D82ED0012DD9B /* DateProvider.swift */; };
+		A50CD3D62A4D99E60012DD9B /* UpdateTokenTaskTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A50CD3D52A4D99E60012DD9B /* UpdateTokenTaskTests.swift */; };
+		A50CD3D82A4D9A040012DD9B /* SingleCallMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = A50CD3D72A4D9A040012DD9B /* SingleCallMock.swift */; };
+		A50CD3DA2A4D9AFC0012DD9B /* DateProviderMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = A50CD3D92A4D9AFC0012DD9B /* DateProviderMock.swift */; };
 		A52ACD4729CB93060092729F /* SuplaClientActionExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A52ACD4629CB93060092729F /* SuplaClientActionExtension.swift */; };
 		A52ACD4929CB940B0092729F /* ActionParameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = A52ACD4829CB940B0092729F /* ActionParameters.swift */; };
 		A553862829E004E400B5CF3F /* GlobalSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = A553862729E004E400B5CF3F /* GlobalSettings.swift */; };
 		A553862B29E0202700B5CF3F /* Singleton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A553862A29E0202700B5CF3F /* Singleton.swift */; };
 		A553862D29E021AE00B5CF3F /* DiContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A553862C29E021AE00B5CF3F /* DiContainer.swift */; };
 		A553862F29E0297400B5CF3F /* Inject.swift in Sources */ = {isa = PBXBuildFile; fileRef = A553862E29E0297400B5CF3F /* Inject.swift */; };
+		A56D5ACD2A4C304C004F45DA /* SingleCall.swift in Sources */ = {isa = PBXBuildFile; fileRef = A56D5ACC2A4C304C004F45DA /* SingleCall.swift */; };
+		A56D5ACF2A4C37AD004F45DA /* SingleCallWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = A56D5ACE2A4C37AD004F45DA /* SingleCallWrapper.m */; };
+		A56D5AD32A4C693A004F45DA /* UpdateTokenTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = A56D5AD22A4C693A004F45DA /* UpdateTokenTask.swift */; };
 		A56F15EF2A2E68BA00C2E21B /* Migration11to12ModelMapping.xcmappingmodel in Sources */ = {isa = PBXBuildFile; fileRef = A56F15EE2A2E68BA00C2E21B /* Migration11to12ModelMapping.xcmappingmodel */; };
 		A56F15F12A2E698400C2E21B /* DeleteEntitiesMigrationPolicy.swift in Sources */ = {isa = PBXBuildFile; fileRef = A56F15F02A2E698400C2E21B /* DeleteEntitiesMigrationPolicy.swift */; };
 		A56F15F52A2E6E3C00C2E21B /* Migration12to13ModelMapping.xcmappingmodel in Sources */ = {isa = PBXBuildFile; fileRef = A56F15F42A2E6E3C00C2E21B /* Migration12to13ModelMapping.xcmappingmodel */; };
@@ -1851,12 +1859,21 @@
 		6EC4B004286F420500731079 /* SAElectricityMeterChartMarkerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SAElectricityMeterChartMarkerView.swift; sourceTree = "<group>"; };
 		6EC4B0062871777A00731079 /* SAElectricityMeterChartMarkerView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SAElectricityMeterChartMarkerView.xib; sourceTree = "<group>"; };
 		76FF65EADE7763EB8D61BC35 /* Pods_SUPLATests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SUPLATests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A50CD3D02A4D78610012DD9B /* libc++abi.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++abi.tbd"; path = "usr/lib/libc++abi.tbd"; sourceTree = SDKROOT; };
+		A50CD3D22A4D82ED0012DD9B /* DateProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateProvider.swift; sourceTree = "<group>"; };
+		A50CD3D52A4D99E60012DD9B /* UpdateTokenTaskTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateTokenTaskTests.swift; sourceTree = "<group>"; };
+		A50CD3D72A4D9A040012DD9B /* SingleCallMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleCallMock.swift; sourceTree = "<group>"; };
+		A50CD3D92A4D9AFC0012DD9B /* DateProviderMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateProviderMock.swift; sourceTree = "<group>"; };
 		A52ACD4629CB93060092729F /* SuplaClientActionExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuplaClientActionExtension.swift; sourceTree = "<group>"; };
 		A52ACD4829CB940B0092729F /* ActionParameters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionParameters.swift; sourceTree = "<group>"; };
 		A553862729E004E400B5CF3F /* GlobalSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalSettings.swift; sourceTree = "<group>"; };
 		A553862A29E0202700B5CF3F /* Singleton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Singleton.swift; sourceTree = "<group>"; };
 		A553862C29E021AE00B5CF3F /* DiContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiContainer.swift; sourceTree = "<group>"; };
 		A553862E29E0297400B5CF3F /* Inject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Inject.swift; sourceTree = "<group>"; };
+		A56D5ACC2A4C304C004F45DA /* SingleCall.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleCall.swift; sourceTree = "<group>"; };
+		A56D5ACE2A4C37AD004F45DA /* SingleCallWrapper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SingleCallWrapper.m; sourceTree = "<group>"; };
+		A56D5AD02A4C37DA004F45DA /* SingleCallWrapper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SingleCallWrapper.h; sourceTree = "<group>"; };
+		A56D5AD22A4C693A004F45DA /* UpdateTokenTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateTokenTask.swift; sourceTree = "<group>"; };
 		A56F15EE2A2E68BA00C2E21B /* Migration11to12ModelMapping.xcmappingmodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcmappingmodel; path = Migration11to12ModelMapping.xcmappingmodel; sourceTree = "<group>"; };
 		A56F15F02A2E698400C2E21B /* DeleteEntitiesMigrationPolicy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteEntitiesMigrationPolicy.swift; sourceTree = "<group>"; };
 		A56F15F42A2E6E3C00C2E21B /* Migration12to13ModelMapping.xcmappingmodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcmappingmodel; path = Migration12to13ModelMapping.xcmappingmodel; sourceTree = "<group>"; };
@@ -2127,6 +2144,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A50CD3D12A4D78610012DD9B /* libc++abi.tbd in Frameworks */,
 				40E8BE8D1FC06B4200FB2FE6 /* libxml2.tbd in Frameworks */,
 				01E2B0822649E158003694EC /* SystemConfiguration.framework in Frameworks */,
 				01EF60E129BCA42A00F691A0 /* LibSsl.xcframework in Frameworks */,
@@ -3008,6 +3026,7 @@
 		407ECDC01DAFBB9600F01C7E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				A50CD3D02A4D78610012DD9B /* libc++abi.tbd */,
 				01EF60E729BCA7F900F691A0 /* LibSuplaClient.xcframework */,
 				01EF60DF29BCA40C00F691A0 /* LibSsl.xcframework */,
 				01E2B0812649E158003694EC /* SystemConfiguration.framework */,
@@ -3147,6 +3166,14 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		A50CD3D42A4D99CF0012DD9B /* UpdateToken */ = {
+			isa = PBXGroup;
+			children = (
+				A50CD3D52A4D99E60012DD9B /* UpdateTokenTaskTests.swift */,
+			);
+			path = UpdateToken;
+			sourceTree = "<group>";
+		};
 		A52ACD4229CB92BB0092729F /* Networking */ = {
 			isa = PBXGroup;
 			children = (
@@ -3162,6 +3189,9 @@
 				A52ACD4629CB93060092729F /* SuplaClientActionExtension.swift */,
 				A52ACD4829CB940B0092729F /* ActionParameters.swift */,
 				A57785BC29E7FAD0001C631E /* SuplaClientProvider.swift */,
+				A56D5ACC2A4C304C004F45DA /* SingleCall.swift */,
+				A56D5ACE2A4C37AD004F45DA /* SingleCallWrapper.m */,
+				A56D5AD02A4C37DA004F45DA /* SingleCallWrapper.h */,
 			);
 			name = SuplaClient;
 			sourceTree = "<group>";
@@ -3204,6 +3234,14 @@
 			path = Config;
 			sourceTree = "<group>";
 		};
+		A56D5AD12A4C68F4004F45DA /* UpdateToken */ = {
+			isa = PBXGroup;
+			children = (
+				A56D5AD22A4C693A004F45DA /* UpdateTokenTask.swift */,
+			);
+			path = UpdateToken;
+			sourceTree = "<group>";
+		};
 		A573B39029DEB24400EBAFC4 /* Core */ = {
 			isa = PBXGroup;
 			children = (
@@ -3225,6 +3263,7 @@
 		A5756F7F29DC0FE900C32A1B /* Features */ = {
 			isa = PBXGroup;
 			children = (
+				A56D5AD12A4C68F4004F45DA /* UpdateToken */,
 				A5AE7A822A39E6C20097FA8B /* AppSettings */,
 				A5F29BE42A2768F000ED700A /* LegacyDetail */,
 				A5F29B652A1E237700ED700A /* SceneList */,
@@ -3283,6 +3322,7 @@
 				A57785C229E80CF7001C631E /* SuplaAppWrapperMock.swift */,
 				A59AB8A32A3058A600D91F1F /* ListsEventsManagerMock.swift */,
 				A5E490542A3C7F2A006801FE /* UserNotificationCenterMock.swift */,
+				A50CD3D72A4D9A040012DD9B /* SingleCallMock.swift */,
 			);
 			path = Mocks;
 			sourceTree = "<group>";
@@ -3330,6 +3370,7 @@
 				A59AB8A52A305D8700D91F1F /* LocationUseCasesMocks.swift */,
 				A59AB8AF2A30721D00D91F1F /* GroupUseCasesMocks.swift */,
 				A59AB8B42A30795B00D91F1F /* SceneUseCasesMocks.swift */,
+				A50CD3D92A4D9AFC0012DD9B /* DateProviderMock.swift */,
 			);
 			path = UseCase;
 			sourceTree = "<group>";
@@ -3510,6 +3551,7 @@
 			isa = PBXGroup;
 			children = (
 				A5E4904F2A3C79A4006801FE /* UserNotificationCenter.swift */,
+				A50CD3D22A4D82ED0012DD9B /* DateProvider.swift */,
 			);
 			path = Infrastructure;
 			sourceTree = "<group>";
@@ -3547,6 +3589,7 @@
 		A5F14B7A29DEE4B600682FA6 /* Features */ = {
 			isa = PBXGroup;
 			children = (
+				A50CD3D42A4D99CF0012DD9B /* UpdateToken */,
 				A5E490512A3C7E10006801FE /* AppSettings */,
 				A59AB8B62A307F2300D91F1F /* Home */,
 				A59AB8B12A3078E900D91F1F /* SceneList */,
@@ -4680,6 +4723,7 @@
 				01AB61E925B8E08E00DBEF74 /* SADigiglassController.m in Sources */,
 				40C7BA7920C047CF00ACEE42 /* SAChannelGroup+CoreDataProperties.m in Sources */,
 				A5F29B8D2A20AD8100ED700A /* Nibs.swift in Sources */,
+				A50CD3D32A4D82ED0012DD9B /* DateProvider.swift in Sources */,
 				011021BA25CC38FA00621D41 /* SAEvent.m in Sources */,
 				40D69DEE1BB574FE00937769 /* Database.m in Sources */,
 				A5F29BE02A275F7600ED700A /* SwapGroupPositionsUseCase.swift in Sources */,
@@ -4689,6 +4733,7 @@
 				01BE3C87233EAFEC00201B47 /* HomePlusDetailViewGroupCell.m in Sources */,
 				01CEAC1E25B99DAC009C3BFD /* SADigiglassValue.m in Sources */,
 				AEED1FD42737F71C00DE6289 /* MultiAccountProfileManager.swift in Sources */,
+				A56D5ACF2A4C37AD004F45DA /* SingleCallWrapper.m in Sources */,
 				4004DE8D1DC4E270009C34E3 /* SAColorBrightnessPicker.m in Sources */,
 				A5F29B782A1E34C700ED700A /* ContextScheduler.swift in Sources */,
 				019D9E2C25F271CF00881C99 /* SACaptionEditor.m in Sources */,
@@ -4816,6 +4861,7 @@
 				A553862F29E0297400B5CF3F /* Inject.swift in Sources */,
 				A5F29BDA2A268DDE00ED700A /* DisposeBagContainer.swift in Sources */,
 				A5F29BD62A2623E500ED700A /* UserIconRepository.swift in Sources */,
+				A56D5ACD2A4C304C004F45DA /* SingleCall.swift in Sources */,
 				AED6395E270CA3A800E5105B /* RoundedButton.swift in Sources */,
 				A5F29C002A2DC50000ED700A /* CoreDataMigrationStep.swift in Sources */,
 				015A9846265595E300B6E6C6 /* UIButton+SUPLA.m in Sources */,
@@ -4834,6 +4880,7 @@
 				40C9E4FD1F2B841400753796 /* SAColorListPicker.m in Sources */,
 				013D73A522DCAB4400E3515A /* SAIncrementalMeterChartMarkerView.swift in Sources */,
 				017A3C8523631796004AD1FC /* SADownloadTempHumidityMeasurements.m in Sources */,
+				A56D5AD32A4C693A004F45DA /* UpdateTokenTask.swift in Sources */,
 				01F8856B22E5E79100D18373 /* SAThermostatMeasurementItem+CoreDataProperties.m in Sources */,
 				40DA56901DCA1908008F05DE /* _SALocation+CoreDataProperties.m in Sources */,
 				01F8857022E5E79100D18373 /* SATemperatureMeasurementItem+CoreDataProperties.m in Sources */,
@@ -4890,9 +4937,11 @@
 				A57785C329E80CF7001C631E /* SuplaAppWrapperMock.swift in Sources */,
 				A59AB8CB2A30911A00D91F1F /* ElectricityMeasurementItemRepositoryMock.swift in Sources */,
 				A59AB8BF2A30820900D91F1F /* ChannelRepositoryMock.swift in Sources */,
+				A50CD3D62A4D99E60012DD9B /* UpdateTokenTaskTests.swift in Sources */,
 				A59AB8BD2A30806800D91F1F /* BaseRepositoryMock.swift in Sources */,
 				A59AB8D52A3092C500D91F1F /* TempHumidityMeasurementItemRepositoryMock.swift in Sources */,
 				A59AB8AB2A306FC700D91F1F /* ViewModelTest.swift in Sources */,
+				A50CD3D82A4D9A040012DD9B /* SingleCallMock.swift in Sources */,
 				A59AB8B52A30795B00D91F1F /* SceneUseCasesMocks.swift in Sources */,
 				A57638C629E5D4C9003E15A3 /* XCTestCaseExtensions.swift in Sources */,
 				A59AB8EB2A30AA2600D91F1F /* CreateProfileScenesListUseCaseTests.swift in Sources */,
@@ -4908,6 +4957,7 @@
 				A59AB8D92A30930E00D91F1F /* ThermostatMeasurementItemRepositoryMock.swift in Sources */,
 				A59AB8C92A30906100D91F1F /* GroupRepositoryMock.swift in Sources */,
 				01CEAC2A25B9BAE2009C3BFD /* SADigiglassValueTests.m in Sources */,
+				A50CD3DA2A4D9AFC0012DD9B /* DateProviderMock.swift in Sources */,
 				01EFD94C236CA9AE00893489 /* NSDataEncryptionTest.m in Sources */,
 				A59AB89D2A3052C600D91F1F /* ChannelListVMTests.swift in Sources */,
 				012F722C22DF3E2300E5F72E /* ChartFilterFieldTests.m in Sources */,

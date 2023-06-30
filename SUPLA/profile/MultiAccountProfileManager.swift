@@ -24,6 +24,7 @@ class MultiAccountProfileManager: NSObject {
     @Singleton<ProfileRepository> private var profileRepository
     @Singleton<DeleteAllProfileDataUseCase> private var deleteAllProfileDataUseCase
     @Singleton<RuntimeConfig> private var runtimeConfig
+    @Singleton<SingleCall> private var singleCall
     
     @objc
     override init() {
@@ -68,6 +69,17 @@ extension MultiAccountProfileManager: ProfileManager {
         do {
             try profileRepository.queryItem(id)
                 .compactMap { $0 }
+                .map { profile in
+                    if let authInfo = profile.authInfo, authInfo.isAuthDataComplete {
+                        self.deletePushToken(
+                            SingleCallWrapper.prepareAuthorizationDetails(for: profile),
+                            Int32(authInfo.preferredProtocolVersion)
+                        )
+                    } else {
+                        NSLog("Push token removal skipped because of incomplete data")
+                    }
+                    return profile
+                }
                 .flatMapFirst { profile in self.profileRepository.delete(profile).map { profile } }
                 .flatMapFirst { self.deleteAllProfileDataUseCase.invoke(profile: $0) }
                 .subscribeSynchronous()
@@ -130,5 +142,17 @@ extension MultiAccountProfileManager: ProfileManager {
         let client = SAApp.suplaClient()
         app.cancelAllRestApiClientTasks()
         client.reconnect()
+    }
+    
+    private func deletePushToken(_ authDetails: TCS_ClientAuthorizationDetails, _ protocolVersion: Int32) {
+        DispatchQueue.global(qos: .default).async {
+            do {
+                var authDetails = authDetails
+                var tokenDetails = SingleCallWrapper.prepareClientToken(for: nil)
+                try self.singleCall.registerPushToken(&authDetails, protocolVersion, &tokenDetails)
+            } catch {
+                NSLog("Push token removal failed with error: \(error)")
+            }
+        }
     }
 }

@@ -134,10 +134,16 @@
     NSLog(@"Push token: %@", token);
 #endif
 
+    bool tokenUpdated = false;
     [DiContainer setPushTokenWithToken: deviceToken];
     if ([[SAApp SuplaClient] isRegistered]) {
-        [[SAApp SuplaClient] registerPushNotificationClientToken:deviceToken appId:APP_ID];
+        tokenUpdated = true;
+        [[SAApp SuplaClient] registerPushNotificationClientToken:deviceToken];
     }
+    
+    [[[UpdateTokenTask alloc] init] updateWithToken: deviceToken updateSelf: !tokenUpdated completionHandler: ^{
+        NSLog(@"Token update task finished");
+    }];
 }
 
 - (void) application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error {

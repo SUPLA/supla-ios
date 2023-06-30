@@ -16,21 +16,19 @@
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 
-import RxSwift
+protocol DateProvider {
+    func currentDate() -> Date
+    func currentTimestamp() -> TimeInterval
+}
 
-@testable import SUPLA
-
-final class ProfileRepositoryMock: BaseRepositoryMock<AuthProfileItem>, ProfileRepository {
-    
-    var activeProfileObservable: Observable<AuthProfileItem> = Observable.empty()
-    func getActiveProfile() -> Observable<AuthProfileItem> {
-        return activeProfileObservable
+final class DateProviderImpl: DateProvider {
+    func currentDate() -> Date {
+        Date()
     }
     
-    var allProfilesObservable: Observable<[AuthProfileItem]> = Observable.empty()
-    var allProfilesCalls = 0
-    func getAllProfiles() -> RxSwift.Observable<[AuthProfileItem]> {
-        allProfilesCalls += 1
-        return allProfilesObservable
+    func currentTimestamp() -> TimeInterval {
+        Date().timeIntervalSince1970
     }
+    
+    
 }

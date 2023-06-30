@@ -770,7 +770,7 @@ void sasuplaclient_scene_state_update(void *_suplaclient,
     
     _client_id = result.ClientID;
     NSData* pushToken = [DiContainer getPushToken];
-    [self registerPushNotificationClientToken:pushToken appId:APP_ID];
+    [self registerPushNotificationClientToken:pushToken];
 
     [self performSelectorOnMainThread:@selector(_onRegistered:) withObject:result waitUntilDone:NO];
 }
@@ -1584,31 +1584,10 @@ void sasuplaclient_scene_state_update(void *_suplaclient,
     return supla_client_execute_action(_sclient, actionId, rsParameters, rgbwParameters, subjectType, subjectId) > 0;
 }
 
-- (void) registerPushNotificationClientToken:(NSData *)token appId:(int)appId {
+- (void) registerPushNotificationClientToken:(NSData *)token {
     @synchronized(self) {
         if ( _sclient ) {
-            TCS_RegisterPnClientToken reg = {};
-            reg.AppId = appId;
-#ifdef DEBUG
-            reg.DevelopmentEnv = 1;
-#endif /*DEBUG*/
-            reg.Platform = PLATFORM_IOS;
-            if (token) {
-                NSMutableString *_token = [NSMutableString string];
-                const char *bytes = [token bytes];
-                
-                for (NSUInteger i = 0; i < [token length]; i++) {
-                    [_token appendFormat:@"%02.2hhx", bytes[i]];
-                }
-                
-                reg.TokenSize = _token.length + 1;
-                reg.RealTokenSize = reg.TokenSize;
-                if (reg.TokenSize > SUPLA_PN_CLIENT_TOKEN_MAXSIZE) {
-                    reg.TokenSize = SUPLA_PN_CLIENT_TOKEN_MAXSIZE;
-                }
-                snprintf((char*)reg.Token, reg.TokenSize, "%s", [_token UTF8String]);
-            }
-            
+            TCS_RegisterPnClientToken reg = [SingleCallWrapper prepareRegisterStructureFor: nil with: token];
             supla_client_pn_register_client_token(_sclient, &reg);
         }
     }
