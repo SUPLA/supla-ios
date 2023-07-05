@@ -67,7 +67,8 @@ class ChannelListViewModel: BaseTableViewModel<ChannelListViewState, ChannelList
         case let .legacy(type: legacyDetailType):
             send(event: .navigateToDetail(legacy: legacyDetailType, channelBase: item))
             break
-        default:
+        case .standard(let pages):
+            send(event: .navigateToStandardDetail(remoteId: item.remote_id, pages: pages))
             break
         }
     }
@@ -102,6 +103,7 @@ class ChannelListViewModel: BaseTableViewModel<ChannelListViewState, ChannelList
 
 enum ChannelListViewEvent: ViewEvent {
     case navigateToDetail(legacy: LegacyDetailType, channelBase: SAChannelBase)
+    case navigateToStandardDetail(remoteId: Int32, pages: [DetailPage])
 }
 
 struct ChannelListViewState: ViewState {}

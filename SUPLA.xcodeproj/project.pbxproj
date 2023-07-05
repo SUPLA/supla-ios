@@ -650,6 +650,17 @@
 		A50CD3DA2A4D9AFC0012DD9B /* DateProviderMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = A50CD3D92A4D9AFC0012DD9B /* DateProviderMock.swift */; };
 		A52ACD4729CB93060092729F /* SuplaClientActionExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A52ACD4629CB93060092729F /* SuplaClientActionExtension.swift */; };
 		A52ACD4929CB940B0092729F /* ActionParameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = A52ACD4829CB940B0092729F /* ActionParameters.swift */; };
+		A530EDEB2A53F60400F8DAEE /* StandardDetailVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = A530EDEA2A53F60400F8DAEE /* StandardDetailVM.swift */; };
+		A530EDED2A53F6A800F8DAEE /* StandardDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A530EDEC2A53F6A800F8DAEE /* StandardDetailVC.swift */; };
+		A530EDF02A53F8E100F8DAEE /* SuplaTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A530EDEF2A53F8E100F8DAEE /* SuplaTabBarController.swift */; };
+		A530EDF32A54018A00F8DAEE /* SwitchDetailVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = A530EDF22A54018A00F8DAEE /* SwitchDetailVM.swift */; };
+		A530EDF52A5401BE00F8DAEE /* SwitchDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A530EDF42A5401BE00F8DAEE /* SwitchDetailVC.swift */; };
+		A530EDF72A5404A200F8DAEE /* SuplaTypography.swift in Sources */ = {isa = PBXBuildFile; fileRef = A530EDF62A5404A200F8DAEE /* SuplaTypography.swift */; };
+		A530EDFA2A54063F00F8DAEE /* OpenSans-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A530EDF82A54063F00F8DAEE /* OpenSans-Medium.ttf */; };
+		A530EDFB2A54063F00F8DAEE /* OpenSans-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A530EDF92A54063F00F8DAEE /* OpenSans-Light.ttf */; };
+		A530EDFD2A54153000F8DAEE /* StandardDetailNavigationCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A530EDFC2A54153000F8DAEE /* StandardDetailNavigationCoordinator.swift */; };
+		A530EE002A54417400F8DAEE /* TimerDetailVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = A530EDFF2A54417400F8DAEE /* TimerDetailVM.swift */; };
+		A530EE022A5441F300F8DAEE /* TimerDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A530EE012A5441F300F8DAEE /* TimerDetailVC.swift */; };
 		A553862829E004E400B5CF3F /* GlobalSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = A553862729E004E400B5CF3F /* GlobalSettings.swift */; };
 		A553862B29E0202700B5CF3F /* Singleton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A553862A29E0202700B5CF3F /* Singleton.swift */; };
 		A553862D29E021AE00B5CF3F /* DiContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A553862C29E021AE00B5CF3F /* DiContainer.swift */; };
@@ -1866,6 +1877,17 @@
 		A50CD3D92A4D9AFC0012DD9B /* DateProviderMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateProviderMock.swift; sourceTree = "<group>"; };
 		A52ACD4629CB93060092729F /* SuplaClientActionExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuplaClientActionExtension.swift; sourceTree = "<group>"; };
 		A52ACD4829CB940B0092729F /* ActionParameters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionParameters.swift; sourceTree = "<group>"; };
+		A530EDEA2A53F60400F8DAEE /* StandardDetailVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StandardDetailVM.swift; sourceTree = "<group>"; };
+		A530EDEC2A53F6A800F8DAEE /* StandardDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StandardDetailVC.swift; sourceTree = "<group>"; };
+		A530EDEF2A53F8E100F8DAEE /* SuplaTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuplaTabBarController.swift; sourceTree = "<group>"; };
+		A530EDF22A54018A00F8DAEE /* SwitchDetailVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchDetailVM.swift; sourceTree = "<group>"; };
+		A530EDF42A5401BE00F8DAEE /* SwitchDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchDetailVC.swift; sourceTree = "<group>"; };
+		A530EDF62A5404A200F8DAEE /* SuplaTypography.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuplaTypography.swift; sourceTree = "<group>"; };
+		A530EDF82A54063F00F8DAEE /* OpenSans-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "OpenSans-Medium.ttf"; path = "../../../Downloads/Open_Sans/OpenSans-Medium.ttf"; sourceTree = "<group>"; };
+		A530EDF92A54063F00F8DAEE /* OpenSans-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "OpenSans-Light.ttf"; path = "../../../Downloads/Open_Sans/OpenSans-Light.ttf"; sourceTree = "<group>"; };
+		A530EDFC2A54153000F8DAEE /* StandardDetailNavigationCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StandardDetailNavigationCoordinator.swift; sourceTree = "<group>"; };
+		A530EDFF2A54417400F8DAEE /* TimerDetailVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerDetailVM.swift; sourceTree = "<group>"; };
+		A530EE012A5441F300F8DAEE /* TimerDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerDetailVC.swift; sourceTree = "<group>"; };
 		A553862729E004E400B5CF3F /* GlobalSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalSettings.swift; sourceTree = "<group>"; };
 		A553862A29E0202700B5CF3F /* Singleton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Singleton.swift; sourceTree = "<group>"; };
 		A553862C29E021AE00B5CF3F /* DiContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiContainer.swift; sourceTree = "<group>"; };
@@ -2922,6 +2944,8 @@
 		405AC4021BC15882004F7311 /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
+				A530EDF92A54063F00F8DAEE /* OpenSans-Light.ttf */,
+				A530EDF82A54063F00F8DAEE /* OpenSans-Medium.ttf */,
 				40B397E11BCED7C000BE7D5A /* Quicksand-Regular.ttf */,
 				40B397DD1BCED5EB00BE7D5A /* Quicksand-Light.ttf */,
 				405AC42F1BC158E8004F7311 /* OpenSans-Bold.ttf */,
@@ -3019,6 +3043,7 @@
 				0196E82C258CEEEC0016E8DC /* InfoPlist.strings */,
 				AEF79D902713088100D7554B /* Strings.swift */,
 				A5AE7A802A39AF410097FA8B /* Default.strings */,
+				A530EDF62A5404A200F8DAEE /* SuplaTypography.swift */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -3203,6 +3228,44 @@
 			path = WebApi;
 			sourceTree = "<group>";
 		};
+		A530EDE92A53F5CB00F8DAEE /* StandardDetail */ = {
+			isa = PBXGroup;
+			children = (
+				A530EDFE2A5440AF00F8DAEE /* TimerDetail */,
+				A530EDF12A54001F00F8DAEE /* SwitchDetail */,
+				A530EDEA2A53F60400F8DAEE /* StandardDetailVM.swift */,
+				A530EDEC2A53F6A800F8DAEE /* StandardDetailVC.swift */,
+				A530EDFC2A54153000F8DAEE /* StandardDetailNavigationCoordinator.swift */,
+			);
+			path = StandardDetail;
+			sourceTree = "<group>";
+		};
+		A530EDEE2A53F79900F8DAEE /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				A530EDEF2A53F8E100F8DAEE /* SuplaTabBarController.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		A530EDF12A54001F00F8DAEE /* SwitchDetail */ = {
+			isa = PBXGroup;
+			children = (
+				A530EDF22A54018A00F8DAEE /* SwitchDetailVM.swift */,
+				A530EDF42A5401BE00F8DAEE /* SwitchDetailVC.swift */,
+			);
+			path = SwitchDetail;
+			sourceTree = "<group>";
+		};
+		A530EDFE2A5440AF00F8DAEE /* TimerDetail */ = {
+			isa = PBXGroup;
+			children = (
+				A530EDFF2A54417400F8DAEE /* TimerDetailVM.swift */,
+				A530EE012A5441F300F8DAEE /* TimerDetailVC.swift */,
+			);
+			path = TimerDetail;
+			sourceTree = "<group>";
+		};
 		A553862929E0201A00B5CF3F /* DI */ = {
 			isa = PBXGroup;
 			children = (
@@ -3263,15 +3326,16 @@
 		A5756F7F29DC0FE900C32A1B /* Features */ = {
 			isa = PBXGroup;
 			children = (
-				A56D5AD12A4C68F4004F45DA /* UpdateToken */,
-				A5AE7A822A39E6C20097FA8B /* AppSettings */,
-				A5F29BE42A2768F000ED700A /* LegacyDetail */,
-				A5F29B652A1E237700ED700A /* SceneList */,
-				A5F29B642A1E236000ED700A /* GroupList */,
-				A5F29B5E2A1E18BC00ED700A /* ChannelList */,
-				A5F29B592A1E157A00ED700A /* Main */,
 				A553863029E02C4300B5CF3F /* AccountCreation */,
 				A5756F8029DC0FFC00C32A1B /* AccountRemoval */,
+				A5AE7A822A39E6C20097FA8B /* AppSettings */,
+				A5F29B5E2A1E18BC00ED700A /* ChannelList */,
+				A5F29B642A1E236000ED700A /* GroupList */,
+				A5F29BE42A2768F000ED700A /* LegacyDetail */,
+				A5F29B592A1E157A00ED700A /* Main */,
+				A5F29B652A1E237700ED700A /* SceneList */,
+				A530EDE92A53F5CB00F8DAEE /* StandardDetail */,
+				A56D5AD12A4C68F4004F45DA /* UpdateToken */,
 			);
 			path = Features;
 			sourceTree = "<group>";
@@ -3576,6 +3640,7 @@
 		A5F14B7729DED97400682FA6 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				A530EDEE2A53F79900F8DAEE /* Components */,
 				A5F29B8E2A20B21A00ED700A /* TableView */,
 				A5F14B7329DED41000682FA6 /* BaseViewModel.swift */,
 				A5F14B7529DED44600682FA6 /* ViewEvent.swift */,
@@ -4086,6 +4151,7 @@
 				0103C0A6292E732A00566A23 /* digiglassv1-transparent-nightmode@2x.png in Resources */,
 				0103C0DD292E732B00566A23 /* valve-open-nightmode@3x.png in Resources */,
 				4052DA051DC515AE000B8C45 /* dimmerrgb-onoff@2x.png in Resources */,
+				A530EDFB2A54063F00F8DAEE /* OpenSans-Light.ttf in Resources */,
 				0103C0C7292E732B00566A23 /* fan-off-nightmode@3x.png in Resources */,
 				0186054B25BF673800C1332A /* time@3x.png in Resources */,
 				40B9ED451FACCE8700403B1A /* tv-off@3x.png in Resources */,
@@ -4338,6 +4404,7 @@
 				40477B5220C6CF2600E995E6 /* gatealt1-closed-50percent@2x.png in Resources */,
 				40477B4C20C6C5FE00E995E6 /* staircasetimer_1-on@2x.png in Resources */,
 				010C8783249A6471002FE526 /* infoclose@2x.png in Resources */,
+				A530EDFA2A54063F00F8DAEE /* OpenSans-Medium.ttf in Resources */,
 				407D4AF91BC6C7DE009A5505 /* app_icon114x114@2x.png in Resources */,
 				4052DA001DC515AE000B8C45 /* dimmerrgb-offoff@3x.png in Resources */,
 				01F9110B22EF954400BFF91D /* thermostat_hp_homeplus2-on@3x.png in Resources */,
@@ -4645,6 +4712,7 @@
 				AED63961270CA46C00E5105B /* UIColor+Supla.swift in Sources */,
 				01A195E2264B264A006D2A20 /* SAChannelCaptionSetResult.m in Sources */,
 				6E8756632830E86D00D5A283 /* ProfileItemCell.swift in Sources */,
+				A530EE022A5441F300F8DAEE /* TimerDetailVC.swift in Sources */,
 				01C1719922C7F55B005983E1 /* SAMeasurementItem+CoreDataClass.m in Sources */,
 				A5F29BE62A27739000ED700A /* MoveableCell.swift in Sources */,
 				A5AE7A8F2A3AE0290097FA8B /* TitleArrowButtonCell.swift in Sources */,
@@ -4697,6 +4765,7 @@
 				01433DF8257F8FE20093C5DB /* SAWifi.m in Sources */,
 				AE5332E427648F610050E690 /* UIFont+Supla.swift in Sources */,
 				A5F29BBA2A24D5DB00ED700A /* ChannelExtendedValueRepository.swift in Sources */,
+				A530EDF72A5404A200F8DAEE /* SuplaTypography.swift in Sources */,
 				01511CFA24F50B470081A1EC /* SAPreloaderPopup.m in Sources */,
 				01A66A7525364AA400C00A1A /* SARoofWindowController.m in Sources */,
 				A5F29BA62A248ED800ED700A /* ListsEventsManager.swift in Sources */,
@@ -4723,11 +4792,13 @@
 				01AB61E925B8E08E00DBEF74 /* SADigiglassController.m in Sources */,
 				40C7BA7920C047CF00ACEE42 /* SAChannelGroup+CoreDataProperties.m in Sources */,
 				A5F29B8D2A20AD8100ED700A /* Nibs.swift in Sources */,
+				A530EDED2A53F6A800F8DAEE /* StandardDetailVC.swift in Sources */,
 				A50CD3D32A4D82ED0012DD9B /* DateProvider.swift in Sources */,
 				011021BA25CC38FA00621D41 /* SAEvent.m in Sources */,
 				40D69DEE1BB574FE00937769 /* Database.m in Sources */,
 				A5F29BE02A275F7600ED700A /* SwapGroupPositionsUseCase.swift in Sources */,
 				A5F29B5D2A1E161500ED700A /* MainVM.swift in Sources */,
+				A530EE002A54417400F8DAEE /* TimerDetailVM.swift in Sources */,
 				A5F29BD42A2623C000ED700A /* TempHumidityMeasurementItem.swift in Sources */,
 				A5F29B892A1F985A00ED700A /* LocationRepository.swift in Sources */,
 				01BE3C87233EAFEC00201B47 /* HomePlusDetailViewGroupCell.m in Sources */,
@@ -4735,6 +4806,7 @@
 				AEED1FD42737F71C00DE6289 /* MultiAccountProfileManager.swift in Sources */,
 				A56D5ACF2A4C37AD004F45DA /* SingleCallWrapper.m in Sources */,
 				4004DE8D1DC4E270009C34E3 /* SAColorBrightnessPicker.m in Sources */,
+				A530EDF32A54018A00F8DAEE /* SwitchDetailVM.swift in Sources */,
 				A5F29B782A1E34C700ED700A /* ContextScheduler.swift in Sources */,
 				019D9E2C25F271CF00881C99 /* SACaptionEditor.m in Sources */,
 				A5AE7A912A3B17AF0097FA8B /* PermissionCell.swift in Sources */,
@@ -4807,12 +4879,14 @@
 				018CFD2623281AF900888CB7 /* SAThermostatHPExtendedValue.m in Sources */,
 				A5AE7A7F2A3998260097FA8B /* NewGestureInfoView.swift in Sources */,
 				A57777CD29E6907C004513E6 /* RuntimeConfig.swift in Sources */,
+				A530EDEB2A53F60400F8DAEE /* StandardDetailVM.swift in Sources */,
 				01F8857122E5E79100D18373 /* SATemperatureMeasurementItem+CoreDataClass.m in Sources */,
 				018CFD2323281ADB00888CB7 /* SAThermostatExtendedValue.m in Sources */,
 				40BBA35D20AC6E220054CD20 /* SAChannelGroupRelation+CoreDataProperties.m in Sources */,
 				A5AE7A872A3AD6A10097FA8B /* ChannelHeightCell.swift in Sources */,
 				01F8856922E5E79100D18373 /* SATempHumidityMeasurementItem+CoreDataClass.m in Sources */,
 				40C7BA8720C0492500ACEE42 /* SAChannelBase+CoreDataClass.m in Sources */,
+				A530EDF02A53F8E100F8DAEE /* SuplaTabBarController.swift in Sources */,
 				A5F29BF72A2A29BE00ED700A /* LocationCaptionEditor.swift in Sources */,
 				A5F29B5B2A1E15D600ED700A /* MainVC.swift in Sources */,
 				011021D325CC4DE700621D41 /* SAChannelBasicCfg.m in Sources */,
@@ -4844,6 +4918,7 @@
 				017A3C8223631302004AD1FC /* SATempHumidityChartHelper.m in Sources */,
 				A56F15EF2A2E68BA00C2E21B /* Migration11to12ModelMapping.xcmappingmodel in Sources */,
 				40C9E4F71F2A186A00753796 /* SARollerShutter.m in Sources */,
+				A530EDF52A5401BE00F8DAEE /* SwitchDetailVC.swift in Sources */,
 				A5F29B602A1E18E600ED700A /* ChannelListVC.swift in Sources */,
 				01392B3D235CE68D003A2BAD /* SATemperatureChartHelper.m in Sources */,
 				A5F29BD22A26239C00ED700A /* TemperatureMeasurementItemRepository.swift in Sources */,
@@ -4914,6 +4989,7 @@
 				40C7BA5320C007A300ACEE42 /* SAChannelValue+CoreDataProperties.m in Sources */,
 				A5F29BAA2A24B23000ED700A /* UpdateSceneUseCase.swift in Sources */,
 				A5AE7A852A3AC7020097FA8B /* BaseSettingsCell.swift in Sources */,
+				A530EDFD2A54153000F8DAEE /* StandardDetailNavigationCoordinator.swift in Sources */,
 				AEBCD8FC26E4D247001904F3 /* TemperaturePresenter.swift in Sources */,
 				407D4AFF1BC6E491009A5505 /* StatusVC.m in Sources */,
 				A5E4904A2A3C6215006801FE /* ChannelHeight.swift in Sources */,
