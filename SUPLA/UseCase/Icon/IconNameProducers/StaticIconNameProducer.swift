@@ -1,27 +1,42 @@
 /*
  Copyright (C) AC SOFTWARE SP. Z O.O.
- 
+
  This program is free software; you can redistribute it and/or
  modify it under the terms of the GNU General Public License
  as published by the Free Software Foundation; either version 2
  of the License, or (at your option) any later version.
- 
+
  This program is distributed in the hope that it will be useful,
  but WITHOUT ANY WARRANTY; without even the implied warranty of
  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  GNU General Public License for more details.
- 
+
  You should have received a copy of the GNU General Public License
  along with this program; if not, write to the Free Software
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 
-import UIKit
-
-extension UIFont {
-    @objc static let suplaTitleBarFont = UIFont(name: "Quicksand-Regular", size: 27)!
-    @objc static let suplaSubtitleFont = UIFont(name: "Quicksand-Regular", size: 16)!
-
-    static let formLabelFont = UIFont(name: "OpenSans", size: 14)!
-    static let cellCaptionFont = UIFont(name: "OpenSans-Bold", size: 14)!
+final class StaticIconNameProducer: IconNameProducer {
+    
+    let function: Int32
+    let name: String
+    let withSuffix: Bool
+    
+    init(function: Int32, name: String, withSuffix: Bool = true) {
+        self.function = function
+        self.name = name
+        self.withSuffix = withSuffix
+    }
+    
+    func accepts(function: Int32) -> Bool {
+        self.function == function
+    }
+    
+    func produce(function: Int32, state: ChannelState, altIcon: Int32, iconType: IconType) -> String {
+        if (withSuffix) {
+            return addStateSufix(name: name, state: state)
+        } else {
+            return name
+        }
+    }
 }

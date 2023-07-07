@@ -29,7 +29,7 @@ class AppSettingsVM: BaseViewModel<AppSettingsViewState, AppSettingsViewEvent> {
     
     override func defaultViewState() -> AppSettingsViewState { AppSettingsViewState(list: []) }
     
-    func onViewDidLoad() {
+    override func onViewDidLoad() {
         createListObservable()
             .asDriverWithoutError()
             .drive(onNext: { list in

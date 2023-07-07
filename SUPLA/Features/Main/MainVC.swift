@@ -47,7 +47,6 @@ class MainVC : SuplaTabBarController<MainViewState, MainViewEvent, MainViewModel
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        viewModel.onViewDidLoad()
         edgesForExtendedLayout = []
         
         self.title = Strings.NavBar.titleSupla

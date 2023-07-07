@@ -49,6 +49,17 @@ class SuplaTabBarController<S : ViewState, E : ViewEvent, VM : BaseViewModel<S, 
             .subscribe(onNext: { state in self.handle(state: state) })
             .disposed(by: disposeBag)
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        var attributes: [NSAttributedString.Key : Any] = [.foregroundColor: UIColor.white]
+        if (navigationCoordinator is MainNavigationCoordinator) {
+            attributes[.font] = UIFont.suplaTitleBarFont
+        } else {
+            attributes[.font] = UIFont.suplaSubtitleFont
+        }
+        navigationController?.navigationBar.titleTextAttributes = attributes
+    }
  
     func handle(event: E) { fatalError("handle(event:) has not been implemented!") }
     func handle(state: S) { } // default empty implementation

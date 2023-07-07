@@ -24,6 +24,7 @@
 
 - (void) cancel;
 - (void) reconnect;
+- (BOOL) executeAction: (int)actionId subjecType: (int)subjectType subjectId: (int)subjectId rsParameters: (TAction_RS_Parameters*)rsParameters rgbwParameters: (TAction_RGBW_Parameters*)rgbwParameters;
 
 @end
 

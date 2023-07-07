@@ -318,3 +318,8 @@
 
 "General.error" = "Fehler";
 "dialog_new_gesture_info_text" = "Wischgeste zum Öffnen der Kanaldetails wurde gelöscht, tippe auf dem Kanal, um sie zu sehen.";
+
+/* Switch Detail */
+
+"switch_detail_state_label" = "Aktuellen Zustand:";
+"switch_detail_state_label_for_timer" = "Zustand bis zum %s Uhr:";

@@ -39,14 +39,16 @@ class StandardDetailVC : SuplaTabBarController<StandardDetailViewState, Standard
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         edgesForExtendedLayout = []
         view.backgroundColor = .background
+        
+        viewModel.loadChannel(remoteId: remoteId)
         
         setupViewController()
     }
     
     override func handle(state: StandardDetailViewState) {
+        if let title = state.title { self.title = title }
     }
 
     override func handle(event: StandardDetailViewEvent) {
@@ -60,27 +62,41 @@ class StandardDetailVC : SuplaTabBarController<StandardDetailViewState, Standard
                 let vc = SwitchDetailVC(remoteId: remoteId)
                 vc.navigationCoordinator = navigator
                 vc.tabBarItem = UITabBarItem(
-                    title: "General",
-                    image: UIImage(named: "list"),
+                    title: Strings.StandardDetail.tabGeneral,
+                    image: .iconGeneral,
                     tag: DetailTabTag.General.rawValue
                 )
                 viewControllers.append(vc)
                 break
             case .timer:
-                let vc = TimerDetailVC()
+                let vc = TimerDetailVC(remoteId: remoteId)
                 vc.navigationCoordinator = navigator
                 vc.tabBarItem = UITabBarItem(
-                    title: "TImer",
-                    image: UIImage(named: "list"),
+                    title: Strings.StandardDetail.tabTimer,
+                    image: .iconTimer,
                     tag: DetailTabTag.Timer.rawValue
                 )
                 viewControllers.append(vc)
                 break
             case .historyEm:
-                // TODO: Add history
+                let vc = DetailViewController(detailViewType: .em, remoteId: remoteId)
+                vc.navigationCoordinator = navigator
+                vc.tabBarItem = UITabBarItem(
+                    title: Strings.StandardDetail.tabMetrics,
+                    image: .iconMetrics,
+                    tag: DetailTabTag.Timer.rawValue
+                )
+                viewControllers.append(vc)
                 break
             case .historyIc:
-                // TODO: Add history
+                let vc = DetailViewController(detailViewType: .ic, remoteId: remoteId)
+                vc.navigationCoordinator = navigator
+                vc.tabBarItem = UITabBarItem(
+                    title: Strings.StandardDetail.tabMetrics,
+                    image: .iconMetrics,
+                    tag: DetailTabTag.Timer.rawValue
+                )
+                viewControllers.append(vc)
                 break
             }
         }

@@ -27,7 +27,7 @@ class MainViewModel: BaseViewModel<MainViewState, MainViewEvent> {
     
     override func defaultViewState() -> MainViewState { MainViewState() }
     
-    func onViewDidLoad() {
+    override func onViewDidLoad() {
         observeChangesForIconsReload()
     }
     

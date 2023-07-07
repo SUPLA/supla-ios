@@ -22,13 +22,15 @@ import UIKit
 @objc
 class DetailViewController: BaseViewController {
     
+    @Singleton<ReadChannelByRemoteIdUseCase> private var readChannelByRemoteIdUseCase
+    
     var interactionController: UIViewControllerInteractiveTransitioning? {
         return _panController
     }
     
     private var _detailView: SADetailView!
-    private let _panGR = UIPanGestureRecognizer()
     private var _panController: UIPercentDrivenInteractiveTransition?
+    private var inNewDetail = false
     
     init(detailViewType: LegacyDetailType, channelBase: SAChannelBase) {
         super.init(nibName: nil, bundle: nil)
@@ -36,9 +38,18 @@ class DetailViewController: BaseViewController {
         _detailView.detailViewInit()
         _detailView.channelBase = channelBase
         
-        _panGR.addTarget(self, action: #selector(onPan(_:)))
-        _detailView.addGestureRecognizer(_panGR)
         _detailView.viewController = self
+    }
+    
+    init(detailViewType: LegacyDetailType, remoteId: Int32) {
+        super.init(nibName: nil, bundle: nil)
+        _detailView = self.detailView(forDetailType: detailViewType)!
+        _detailView.detailViewInit()
+        _detailView.channelBase = try! readChannelByRemoteIdUseCase.invoke(remoteId: remoteId).subscribeSynchronous()
+        
+        _detailView.viewController = self
+        
+        inNewDetail = true
     }
     
     required init?(coder: NSCoder) {
@@ -47,7 +58,12 @@ class DetailViewController: BaseViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        addChildView(_detailView)
+        if (inNewDetail) {
+            statusBarBackgroundView.isHidden = true
+            view.addSubview(_detailView)
+        } else {
+            addChildView(_detailView)
+        }
         
         let channelCaption: String? = _detailView.channelBase?.getNonEmptyCaption()
         title = channelCaption ?? ""
@@ -76,28 +92,6 @@ class DetailViewController: BaseViewController {
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         _detailView.detailDidHide()
-    }
-    
-    @objc private func onPan(_ gr: UIPanGestureRecognizer) {
-        switch gr.state {
-        case .began:
-            _panController = UIPercentDrivenInteractiveTransition()
-            navigationController?.popViewController(animated: true)
-        case .changed:
-            let translation = gr.translation(in: _detailView)
-            let d = translation.x / view.bounds.width
-            _panController?.update(d)
-        case .ended:
-            if let _panController = _panController {
-                if _panController.percentComplete > 0.28 {
-                    _panController.finish()
-                } else {
-                    _panController.cancel()
-                }
-            }
-            _panController = nil
-        default: break
-        }
     }
     
     @objc private func onAppDidEnterBackground(_ notification: Notification) {

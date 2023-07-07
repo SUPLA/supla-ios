@@ -16,14 +16,44 @@
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 
-class SwitchDetailVM: BaseViewModel<SwitchDetailViewState, SwitchDetailViewEvent> {
+class SwitchDetailVM: BaseViewModel<SwitchDetailViewState, SwitchDetailViewEvent>, DeviceStateHelperVMI {
+    
+    @Singleton<ReadChannelByRemoteIdUseCase> private var readChannelByRemoteIdUseCase
+    @Singleton<GetChannelBaseStateUseCase> private var getChannelBaseStateUseCase
+    @Singleton<ExecuteSimpleActionUseCase> private var executeSimpleActionUseCase
+    @Singleton<DateProvider> private var dateProvider
     
     override func defaultViewState() -> SwitchDetailViewState { SwitchDetailViewState() }
     
+    func loadChannel(remoteId: Int32) {
+        readChannelByRemoteIdUseCase.invoke(remoteId: remoteId)
+            .asDriverWithoutError()
+            .drive(onNext: { channel in
+                self.updateView() { $0.changing(path: \.deviceState, to: self.createDeviceState(from: channel)) }
+            })
+            .disposed(by: self)
+    }
+    
+    func turnOn(remoteId: Int32) {
+        performAction(action: .turn_on, remoteId: remoteId)
+    }
+    
+    func turnOff(remoteId: Int32) {
+        performAction(action: .turn_off, remoteId: remoteId)
+    }
+
+    private func performAction(action: Action, remoteId: Int32) {
+        executeSimpleActionUseCase.invoke(action: action, type: .channel, remoteId: remoteId)
+            .asDriverWithoutError()
+            .drive()
+            .disposed(by: self)
+    }
 }
 
 enum SwitchDetailViewEvent: ViewEvent {
 }
 
 struct SwitchDetailViewState: ViewState {
+    var deviceState: DeviceStateViewState? = nil
 }
+

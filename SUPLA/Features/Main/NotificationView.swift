@@ -16,14 +16,10 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 */
 
-import Foundation
-
 final class NotificationView: UIView {
     
     var text: String? = nil {
-        didSet {
-            textView.text = text
-        }
+        didSet { textView.text = text }
     }
     
     var icon: UIImage? = nil {

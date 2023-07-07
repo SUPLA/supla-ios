@@ -16,9 +16,20 @@
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 
-class TimerDetailVC: BaseViewControllerVM<TimerDetailViewState, TimerDetailViewEvent, TimerDetailVM> {
+class TimerDetailVC: BaseViewControllerVM<TimerDetailViewState, TimerDetailViewEvent, TimerDetailVM>, DeviceStateHelperVCI {
     
-    init() {
+    @Singleton<GetChannelBaseIconUseCase> private var getChannelBaseIconUseCase
+    
+    private let remoteId: Int32
+    
+    private lazy var deviceStateView: DeviceStateView = {
+        let view = DeviceStateView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+    
+    init(remoteId: Int32) {
+        self.remoteId = remoteId
         super.init(nibName: nil, bundle: nil)
         viewModel = TimerDetailVM()
     }
@@ -31,11 +42,50 @@ class TimerDetailVC: BaseViewControllerVM<TimerDetailViewState, TimerDetailViewE
         super.viewDidLoad()
         statusBarBackgroundView.isHidden = true
         view.backgroundColor = .background
+        
+        setupView()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        viewModel.loadChannel(remoteId: remoteId)
+        
+        observeNotification(
+            name: NSNotification.Name.saChannelValueChanged,
+            selector: #selector(handleChannelValueChange)
+        )
     }
     
     override func handle(event: TimerDetailViewEvent) {
     }
     
     override func handle(state: TimerDetailViewState) {
+        if let deviceState = state.deviceState {
+            updateDeviceStateView(deviceStateView, with: deviceState)
+        }
+    }
+    
+    private func setupView() {
+        view.addSubview(deviceStateView)
+        
+        setupLayout()
+    }
+    
+    private func setupLayout() {
+        NSLayoutConstraint.activate([
+            deviceStateView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            deviceStateView.topAnchor.constraint(equalTo: view.topAnchor, constant: 24)
+        ])
+    }
+    
+    @objc
+    private func handleChannelValueChange(notification: Notification) {
+        if
+            let isGroup = notification.userInfo?["isGroup"] as? NSNumber,
+            let remoteId = notification.userInfo?["remoteId"] as? NSNumber {
+            if (!isGroup.boolValue && remoteId.int32Value == self.remoteId) {
+                viewModel.loadChannel(remoteId: self.remoteId)
+            }
+        }
     }
 }

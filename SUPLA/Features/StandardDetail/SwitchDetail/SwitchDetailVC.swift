@@ -16,29 +16,35 @@
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 
-class SwitchDetailVC : BaseViewControllerVM<SwitchDetailViewState, SwitchDetailViewEvent, SwitchDetailVM> {
+import RxSwift
+import RxCocoa
+
+class SwitchDetailVC : BaseViewControllerVM<SwitchDetailViewState, SwitchDetailViewEvent, SwitchDetailVM>, DeviceStateHelperVCI {
+    
+    @Singleton<GetChannelBaseIconUseCase> private var getChannelBaseIconUseCase
     
     private let remoteId: Int32
     
-    private lazy var stateLabelView: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = .body2
-        return label
+    private lazy var deviceStateView: DeviceStateView = {
+        let view = DeviceStateView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
     }()
     
-    private lazy var stateIcon: UIImageView = {
-        let icon = UIImageView()
-        icon.translatesAutoresizingMaskIntoConstraints = false
-        icon.contentMode = .scaleAspectFit
-        return icon
+    private lazy var powerOnButtonView: PowerButtonView = {
+        let view = PowerButtonView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.type = .positive
+        view.text = Strings.General.turnOn
+        return view
     }()
     
-    private lazy var stateValue: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = .openSansBold(style: .body, size: 14)
-        return label
+    private lazy var powerOffButtonView: PowerButtonView = {
+        let view = PowerButtonView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.type = .negative
+        view.text = Strings.General.turnOff
+        return view
     }()
     
     init(remoteId: Int32) {
@@ -54,39 +60,94 @@ class SwitchDetailVC : BaseViewControllerVM<SwitchDetailViewState, SwitchDetailV
     override func viewDidLoad() {
         super.viewDidLoad()
         statusBarBackgroundView.isHidden = true
-        
         view.backgroundColor = .background
         
         setupView()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        viewModel.loadChannel(remoteId: remoteId)
+        
+        observeNotification(
+            name: NSNotification.Name.saChannelValueChanged,
+            selector: #selector(handleChannelValueChange)
+        )
     }
     
     override func handle(event: SwitchDetailViewEvent) {
     }
     
     override func handle(state: SwitchDetailViewState) {
+        if let iconData = state.deviceState?.iconData {
+            powerOnButtonView.icon = getChannelBaseIconUseCase.invoke(
+                function: iconData.function,
+                userIcon: iconData.userIcon,
+                channelState: .on,
+                altIcon: iconData.altIcon
+            )
+            powerOffButtonView.icon = getChannelBaseIconUseCase.invoke(
+                function: iconData.function,
+                userIcon: iconData.userIcon,
+                channelState: .off,
+                altIcon: iconData.altIcon
+            )
+        }
+        
+        powerOnButtonView.disabled = state.deviceState?.isOnline != true
+        powerOffButtonView.disabled = state.deviceState?.isOnline != true
+
+        if let deviceState = state.deviceState {
+            updateDeviceStateView(deviceStateView, with: deviceState)
+        }
     }
     
     private func setupView() {
-//        view.addSubview(stateLabelView)
-//        view.addSubview(stateIcon)
-//        view.addSubview(stateValue)
+        view.addSubview(deviceStateView)
+        view.addSubview(powerOnButtonView)
+        view.addSubview(powerOffButtonView)
+        
+        viewModel.bind(powerOnButtonView.tap.asObservable()) {
+            self.viewModel.turnOn(remoteId: self.remoteId)
+        }
+        viewModel.bind(powerOffButtonView.tap.asObservable()) {
+            self.viewModel.turnOff(remoteId: self.remoteId)
+        }
         
         setupLayout()
     }
     
     private func setupLayout() {
-//        NSLayoutConstraint.activate([
-//            stateLabelView.topAnchor.constraint(equalTo: view.topAnchor, constant: 24),
-//            stateLabelView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 24),
-//            stateLabelView.trailingAnchor.constraint(equalTo: stateIcon.leadingAnchor, constant: 8),
-//            
-//            stateIcon.centerYAnchor.constraint(equalTo: stateLabelView.centerYAnchor),
-//            stateIcon.trailingAnchor.constraint(equalTo: stateValue.leadingAnchor, constant: 8),
-//            
-//            stateValue.centerYAnchor.constraint(equalTo: stateIcon.centerYAnchor),
-//            stateIcon.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 24)
-//        ])
+        NSLayoutConstraint.activate([
+            deviceStateView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            deviceStateView.topAnchor.constraint(equalTo: view.topAnchor, constant: 24),
+            
+            powerOnButtonView.leftAnchor.constraint(equalTo: view.centerXAnchor, constant: 12),
+            powerOnButtonView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -24),
+            powerOnButtonView.widthAnchor.constraint(equalToConstant: PowerButtonView.SIZE),
+            powerOnButtonView.heightAnchor.constraint(equalToConstant: PowerButtonView.SIZE),
+            
+            powerOffButtonView.rightAnchor.constraint(equalTo: view.centerXAnchor, constant: -12),
+            powerOffButtonView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -24),
+            powerOffButtonView.widthAnchor.constraint(equalToConstant: PowerButtonView.SIZE),
+            powerOffButtonView.heightAnchor.constraint(equalToConstant: PowerButtonView.SIZE)
+        ])
     }
     
+    @objc
+    private func handleChannelValueChange(notification: Notification) {
+        if
+            let isGroup = notification.userInfo?["isGroup"] as? NSNumber,
+            let remoteId = notification.userInfo?["remoteId"] as? NSNumber {
+            if (!isGroup.boolValue && remoteId.int32Value == self.remoteId) {
+                viewModel.loadChannel(remoteId: self.remoteId)
+            }
+        }
+    }
 }
 
+extension ControlEvent {
+    func hide() -> Observable<Void> {
+        return self.map { _ in () }
+    }
+}

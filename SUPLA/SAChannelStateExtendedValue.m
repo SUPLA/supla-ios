@@ -20,11 +20,12 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 @implementation SAChannelStateExtendedValue {
     TChannelState_ExtendedValue _csev;
+    TTimerState_ExtendedValue _tsev;
 }
 
 -(id)initWithExtendedValue:(SAChannelExtendedValue *)ev {
     if ([super initWithExtendedValue:ev]
-        && [self getChannelStateExtendedValue:&_csev]) {
+        && [self getChannelStateExtendedValue:&_csev timeState:&_tsev]) {
         return self;
     }
     return nil;
@@ -42,16 +43,18 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     return nil;
 }
 
--(BOOL)getChannelStateExtendedValue:(TChannelState_ExtendedValue*)csev {
+-(BOOL)getChannelStateExtendedValue:(TChannelState_ExtendedValue*)csev timeState: (TTimerState_ExtendedValue*) tsev {
     if (csev == NULL) {
         return false;
     }
     
     memset(csev, 0, sizeof(TChannelState_ExtendedValue));
+    memset(tsev, 0, sizeof(TTimerState_ExtendedValue));
     
     __block BOOL result = NO;
     
     [self forEach:^BOOL(TSuplaChannelExtendedValue * _Nonnull ev) {
+        NSLog(@"Type %d, size: %d (%lu)", ev->type, ev->size, sizeof(TTimerState_ExtendedValue));
         if (ev->type == EV_TYPE_CHANNEL_STATE_V1
               && ev->size == sizeof(TChannelState_ExtendedValue)) {
             memcpy(csev, ev->value, sizeof(TChannelState_ExtendedValue));
@@ -62,6 +65,11 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
                    && ev->size <= sizeof(TChannelAndTimerState_ExtendedValue)) {
             TChannelAndTimerState_ExtendedValue *state = (TChannelAndTimerState_ExtendedValue*)ev->value;
             memcpy(csev, &state->Channel, sizeof(TChannelState_ExtendedValue));
+            memcpy(tsev, &state->Timer, ev->size);
+            result = YES;
+        } else if (ev->type == EV_TYPE_TIMER_STATE_V1 && ev->size <= sizeof(TTimerState_ExtendedValue)
+                   && ev->size >= sizeof(TTimerState_ExtendedValue) - SUPLA_SENDER_NAME_MAXSIZE) {
+            memcpy(tsev, &ev->value, ev->size);
             result = YES;
         }
         
@@ -340,6 +348,10 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
             timeSec / 3600,
             timeSec % 3600 / 60,
             timeSec % 3600 % 60];
+}
+
+-(NSDate*) countdownEndsAt {
+    return [NSDate dateWithTimeIntervalSince1970: _tsev.CountdownEndsAt];
 }
 
 

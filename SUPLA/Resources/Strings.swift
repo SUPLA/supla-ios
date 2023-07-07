@@ -123,10 +123,27 @@ struct Strings {
         static let newGestureInfo = "dialog_new_gesture_info_text".toLocalized()
     }
     
+    struct StandardDetail {
+        static let tabGeneral = "standard_detail_general_tab".toLocalized()
+        static let tabTimer = "standard_detail_timer_tab".toLocalized()
+        static let tabMetrics = "standard_detail_metrics_tab".toLocalized()
+    }
+    
+    struct SwitchDetail {
+        static let stateLabel = "switch_detail_state_label".toLocalized()
+        static let stateLabelForTimer = "switch_detail_state_label_for_timer".toLocalized()
+        static let stateOn = "switch_detail_state_on".toLocalized()
+        static let stateOff = "switch_detail_state_off".toLocalized()
+        static let stateOffline = "switch_detail_state_offline".toLocalized()
+    }
+    
     struct General {
         static let cancel = NSLocalizedString("Cancel", comment: "")
         static let close = NSLocalizedString("Close", comment: "")
         static let error = "General.error".toLocalized()
+        static let hourFormat = "General.hour_format".toLocalized()
+        static let turnOn = "On".toLocalized()
+        static let turnOff = "Off".toLocalized()
     }
 }
 

@@ -19,6 +19,18 @@
 import UIKit
 
 extension UIColor {
+    
+    // App primary colors
+    
+    static let primary = UIColor(red: 0, green: 209/255.0, blue: 81/255.0, alpha: 1)
+    static let primaryVariant = UIColor(red: 18/255.0, green: 167/255.0, blue: 30/255.0, alpha: 1)
+    static let border = UIColor(red: 180/255.0, green: 183/255.0, blue: 186/255.0, alpha: 1)
+    
+    // View specific colors
+    static let innerShadow = UIColor(red: 0, green: 0, blue: 0, alpha: 0.25) // PowerButtonView
+    static let negativeBorder = UIColor(red: 235/255.0, green: 58/255.0, blue: 40/255.0, alpha: 1) // PowerButtonView
+    static let disabledOverlay = UIColor(red: 1, green: 1, blue: 1, alpha: 221/255.0) // PowerButtonView
+    
     @objc static let suplaGreenBackground = #colorLiteral(red: 0, green: 0.6549019608, blue: 0.1176470588, alpha: 1)
     
     @objc static let suplaGreen = UIColor(red: 0, green: 209.0/255.0, blue: 81.0/255.0, alpha: 1)

@@ -18,7 +18,21 @@
 
 class StandardDetailVM: BaseViewModel<StandardDetailViewState, StandardDetailViewEvent> {
     
+    @Singleton<ReadChannelByRemoteIdUseCase> private var readChannelByRemoteIdUseCase
+    
     override func defaultViewState() -> StandardDetailViewState { StandardDetailViewState() }
+    
+    func loadChannel(remoteId: Int32) {
+        readChannelByRemoteIdUseCase.invoke(remoteId: remoteId)
+            .asDriverWithoutError()
+            .drive(onNext: { channel in
+                self.updateView() { state in
+                    state
+                        .changing(path: \.title, to: channel.getNonEmptyCaption())
+                }
+            })
+            .disposed(by: self)
+    }
     
 }
 
@@ -26,5 +40,6 @@ enum StandardDetailViewEvent: ViewEvent {
 }
 
 struct StandardDetailViewState: ViewState {
+    var title: String? = nil
 }
 

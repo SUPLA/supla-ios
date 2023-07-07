@@ -16,14 +16,27 @@
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 
-class TimerDetailVM: BaseViewModel<TimerDetailViewState, TimerDetailViewEvent> {
+class TimerDetailVM: BaseViewModel<TimerDetailViewState, TimerDetailViewEvent>, DeviceStateHelperVMI {
+    
+    @Singleton<ReadChannelByRemoteIdUseCase> private var readChannelByRemoteIdUseCase
+    @Singleton<GetChannelBaseStateUseCase> private var getChannelBaseStateUseCase
+    @Singleton<DateProvider> private var dateProvider
     
     override func defaultViewState() -> TimerDetailViewState { TimerDetailViewState() }
     
+    func loadChannel(remoteId: Int32) {
+        readChannelByRemoteIdUseCase.invoke(remoteId: remoteId)
+            .asDriverWithoutError()
+            .drive(onNext: { channel in
+                self.updateView() { $0.changing(path: \.deviceState, to: self.createDeviceState(from: channel)) }
+            })
+            .disposed(by: self)
+    }
 }
 
 enum TimerDetailViewEvent: ViewEvent {
 }
 
 struct TimerDetailViewState: ViewState {
+    var deviceState: DeviceStateViewState? = nil
 }

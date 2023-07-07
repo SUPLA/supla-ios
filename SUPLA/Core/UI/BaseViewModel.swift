@@ -29,6 +29,8 @@ class BaseViewModel<S : ViewState, E : ViewEvent> {
     
     func defaultViewState() -> S { fatalError("defaultViewState() has not been implemented!") }
     
+    func onViewDidLoad() {}
+    
     func eventsObervable() -> Observable<E> { events.asObserver() }
     func stateObservable() -> Observable<S> { state.asObserver() }
     

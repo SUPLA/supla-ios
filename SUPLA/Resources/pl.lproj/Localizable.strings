@@ -321,11 +321,23 @@
 "Cfg.removal.dialog.duplicated_name" = "Już istnieje konto o tej nazwie";
 "Cfg.removal.dialog.incomplete" = "Uzupełnij wymagane dane";
 
-"General.error" = "Błąd";
-
 "push_notification_limit_exceeded" = "Przekroczono limit wysłanych wiadomości PUSH, który wynosi %@ na godzinę.";
 "dialog_new_gesture_info_text" = "Usunęliśmy gest przesunięcia otwierający szczegóły, aby je zobaczyć dotknij wybrany kanał.";
 
 "app_settings.permissions_header" = "Uprawnienia";
 "app_settings.notifications_label" = "Powiadomienia";
 "app_settings.location_label" = "Lokalizacja";
+
+/* General */
+"General.error" = "Błąd";
+
+/* Standard Detail */
+"standard_detail_general_tab" = "Ogólne";
+"standard_detail_timer_tab" = "Timer";
+"standard_detail_metrics_tab" = "Pomiary";
+
+/* Switch Detail */
+"switch_detail_state_label" = "Aktualny stan:";
+"switch_detail_state_label_for_timer" = "Stan do godz. %@:";
+"switch_detail_state_on" = "włączony";
+"switch_detail_state_off" = "wyłączony";

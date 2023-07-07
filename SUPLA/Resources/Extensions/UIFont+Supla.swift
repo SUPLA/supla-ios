@@ -41,7 +41,7 @@ extension UIFont {
     }
     
     static func openSansRegular(style: UIFont.TextStyle, size: CGFloat) -> UIFont {
-        guard let openSansFont = UIFont(name: "OpenSans-Regular", size: size)
+        guard let openSansFont = UIFont(name: "OpenSans", size: size)
         else {
             let descriptor = UIFontDescriptor.preferredFontDescriptor(withTextStyle: style)
             return UIFont(descriptor: descriptor, size: size)
@@ -74,4 +74,12 @@ extension UIFont {
         let metrics = UIFontMetrics(forTextStyle: style)
         return metrics.scaledFont(for: self)
     }
+    
+    // TODO: Replace with system fonts
+    
+    @objc static let suplaTitleBarFont = UIFont(name: "Quicksand-Regular", size: 27)!
+    @objc static let suplaSubtitleFont = UIFont(name: "Quicksand-Regular", size: 16)!
+
+    static let formLabelFont = UIFont(name: "OpenSans", size: 14)!
+    static let cellCaptionFont = UIFont(name: "OpenSans-Bold", size: 14)!
 }
