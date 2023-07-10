@@ -78,6 +78,7 @@ extension DiContainer {
         DiContainer.shared.register(type: GetChannelBaseIconUseCase.self, component: GetChannelBaseIconUseCaseImpl())
         // Usecases - Client
         DiContainer.shared.register(type: ExecuteSimpleActionUseCase.self, component: ExecuteSimpleActionUseCaseImpl())
+        DiContainer.shared.register(type: StartTimerUseCase.self, component: StartTimerUseCaseImpl())
         // Usecases - Detail
         DiContainer.shared.register(type: ProvideDetailTypeUseCase.self, component: ProvideDetailTypeUseCaseImpl())
         // Usecases - Group

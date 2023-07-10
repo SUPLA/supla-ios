@@ -341,3 +341,24 @@
 "switch_detail_state_label_for_timer" = "Stan do godz. %@:";
 "switch_detail_state_on" = "włączony";
 "switch_detail_state_off" = "wyłączony";
+
+/* Timer Detail */
+"timer_detail_header" = "Określ czas, w którym urządzenie powinno być:";
+"timer_detail_edit_header" = "Edytuj czas, w którym urządzenie będzie %@";
+"timer_detail_edit_header_on" = "włączone";
+"timer_detail_edit_header_off" = "wyłączone";
+"timer_detail_turned_on" = "Włączone";
+"timer_detail_turned_off" = "Wyłączone";
+"timer_detail_hour_pattern" = "%d godz.";
+"timer_detail_hours_pattern" = "%d godz.";
+"timer_detail_minute_pattern" = "%d min.";
+"timer_detail_second_pattern" = "%d sec.";
+"timer_detail_info" = "Urządzenie będzie %@ przez %@, a następnie się %@";
+"timer_detail_info_on" = "włączone";
+"timer_detail_info_off" = "wyłączone";
+"timer_detail_info_next_on" = "włączy";
+"timer_detail_info_next_off" = "wyłączy";
+"timer_detail_stop" = "Pozostaw %@";
+"timer_detail_cancel" = "Anuluj i %@";
+"timer_detail_cancel_on" = "włącz";
+"timer_detail_cancel_off" = "wyłącz";

@@ -1584,6 +1584,14 @@ void sasuplaclient_scene_state_update(void *_suplaclient,
     return supla_client_execute_action(_sclient, actionId, rsParameters, rgbwParameters, subjectType, subjectId) > 0;
 }
 
+- (BOOL) timerArmFor: (int) remoteId withTurnOn: (BOOL) on withTime: (int) milis {
+    if (!_sclient) {
+        return NO;
+    }
+    
+    return supla_client_timer_arm(_sclient, remoteId, on ? 1 : 0, milis);
+}
+
 - (void) registerPushNotificationClientToken:(NSData *)token {
     @synchronized(self) {
         if ( _sclient ) {

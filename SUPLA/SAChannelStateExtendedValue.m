@@ -54,7 +54,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     __block BOOL result = NO;
     
     [self forEach:^BOOL(TSuplaChannelExtendedValue * _Nonnull ev) {
-        NSLog(@"Type %d, size: %d (%lu)", ev->type, ev->size, sizeof(TTimerState_ExtendedValue));
         if (ev->type == EV_TYPE_CHANNEL_STATE_V1
               && ev->size == sizeof(TChannelState_ExtendedValue)) {
             memcpy(csev, ev->value, sizeof(TChannelState_ExtendedValue));

@@ -24,6 +24,8 @@ extension UIColor {
     
     static let primary = UIColor(red: 0, green: 209/255.0, blue: 81/255.0, alpha: 1)
     static let primaryVariant = UIColor(red: 18/255.0, green: 167/255.0, blue: 30/255.0, alpha: 1)
+    static let surface = UIColor(red: 1, green: 1, blue: 1, alpha: 1)
+    
     static let border = UIColor(red: 180/255.0, green: 183/255.0, blue: 186/255.0, alpha: 1)
     
     // View specific colors

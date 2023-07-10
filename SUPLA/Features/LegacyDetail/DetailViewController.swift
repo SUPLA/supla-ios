@@ -94,6 +94,8 @@ class DetailViewController: BaseViewController {
         _detailView.detailDidHide()
     }
     
+    override func shouldUpdateTitleFont() -> Bool { false }
+    
     @objc private func onAppDidEnterBackground(_ notification: Notification) {
         // Hide detail view, when application loses foreground context
         navigationController?.popViewController(animated: false)

@@ -132,7 +132,7 @@ final class PowerButtonView: UIView {
     }
     
     private func setupView() {
-        backgroundColor = .white
+        backgroundColor = .surface
         
         layer.cornerRadius = PowerButtonView.SIZE / 2
         

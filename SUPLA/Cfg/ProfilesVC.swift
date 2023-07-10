@@ -89,14 +89,14 @@ class ProfilesVC: BaseViewController {
 
         if #available(iOS 11, *) {
             _headline.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor,
-                                           constant: Dimens.screenMargin).isActive = true
+                                           constant: Dimens.distanceDefault).isActive = true
         } else {
-            _headline.topAnchor.constraint(equalTo: view.topAnchor, constant: Dimens.screenMargin)
+            _headline.topAnchor.constraint(equalTo: view.topAnchor, constant: Dimens.distanceDefault)
               .isActive = true
         }
-        _headline.leftAnchor.constraint(equalTo: view.leftAnchor, constant: Dimens.screenMargin)
+        _headline.leftAnchor.constraint(equalTo: view.leftAnchor, constant: Dimens.distanceDefault)
           .isActive = true
-        _headline.rightAnchor.constraint(equalTo: view.rightAnchor, constant: Dimens.screenMargin)
+        _headline.rightAnchor.constraint(equalTo: view.rightAnchor, constant: Dimens.distanceDefault)
           .isActive = true
         _headline.text = Strings.Profiles.Title.plural.uppercased()
         _headline.font = .formLabelFont
@@ -104,9 +104,9 @@ class ProfilesVC: BaseViewController {
 
         _tapMessage.topAnchor.constraint(equalTo: _headline.bottomAnchor,
                                          constant: Dimens.elementOffset).isActive = true
-        _tapMessage.leftAnchor.constraint(equalTo: view.leftAnchor, constant: Dimens.screenMargin)
+        _tapMessage.leftAnchor.constraint(equalTo: view.leftAnchor, constant: Dimens.distanceDefault)
           .isActive = true
-        _tapMessage.rightAnchor.constraint(equalTo: view.rightAnchor, constant: Dimens.screenMargin)
+        _tapMessage.rightAnchor.constraint(equalTo: view.rightAnchor, constant: Dimens.distanceDefault)
           .isActive = true
         _tapMessage.text = Strings.Profiles.tapMessage
         _tapMessage.font = .formLabelFont

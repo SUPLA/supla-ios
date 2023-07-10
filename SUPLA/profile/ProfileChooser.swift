@@ -121,7 +121,7 @@ fileprivate class ProfileChooserVC: UIViewController {
         profileList.leftAnchor.constraint(equalTo: containerView.leftAnchor).isActive = true
         profileList.rightAnchor.constraint(equalTo: containerView.rightAnchor).isActive = true
         profileList.topAnchor.constraint(equalTo: titleLabel.bottomAnchor,
-                                         constant: Dimens.screenMargin).isActive = true
+                                         constant: Dimens.distanceDefault).isActive = true
         profileList.bottomAnchor.constraint(equalTo: containerView.bottomAnchor,
                                             constant: -Dimens.Form.elementSpacing).isActive = true
         profileList.widthAnchor.constraint(equalToConstant:240).isActive = true

@@ -44,7 +44,7 @@
 
 /* General */
 "General.error" = "Error";
-"General.hour_format" = "HH.mm.ss";
+"General.hour_format" = "HH:mm:ss";
 
 /* Standard Detail */
 "standard_detail_general_tab" = "General";
@@ -57,3 +57,25 @@
 "switch_detail_state_on" = "on";
 "switch_detail_state_off" = "off";
 "switch_detail_state_offline" = "offline";
+
+/* Timer Detail */
+"timer_detail_header" = "Define time for which device should stay:";
+"timer_detail_edit_header" = "Edit turned %@ time";
+"timer_detail_edit_header_on" = "on";
+"timer_detail_edit_header_off" = "off";
+"timer_detail_turned_on" = "Turned on";
+"timer_detail_turned_off" = "Turned off";
+"timer_detail_hour_pattern" = "%d hour";
+"timer_detail_hours_pattern" = "%d hours";
+"timer_detail_minute_pattern" = "%d min";
+"timer_detail_second_pattern" = "%d sec";
+"timer_detail_info" = "Device will be %@ for %@, and then turn %@";
+"timer_detail_info_on" = "on";
+"timer_detail_info_off" = "off";
+"timer_detail_info_next_on" = "on";
+"timer_detail_info_next_off" = "off";
+"timer_detail_start" = "Start";
+"timer_detail_stop" = "Leave it %@";
+"timer_detail_cancel" = "Cancel and turn %@";
+"timer_detail_cancel_on" = "on";
+"timer_detail_cancel_off" = "off";

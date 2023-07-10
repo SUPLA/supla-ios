@@ -16,6 +16,8 @@
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 
+import RxCocoa
+
 class TimerDetailVC: BaseViewControllerVM<TimerDetailViewState, TimerDetailViewEvent, TimerDetailVM>, DeviceStateHelperVCI {
     
     @Singleton<GetChannelBaseIconUseCase> private var getChannelBaseIconUseCase
@@ -26,6 +28,25 @@ class TimerDetailVC: BaseViewControllerVM<TimerDetailViewState, TimerDetailViewE
         let view = DeviceStateView()
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
+    }()
+    
+    private lazy var timerConfigurationView: TimerConfigurationView = {
+        let view = TimerConfigurationView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.delegate = self
+        return view
+    }()
+    
+    private lazy var stopButton: UIBorderedButton = {
+        let button = UIBorderedButton()
+        button.translatesAutoresizingMaskIntoConstraints = false
+        return button
+    }()
+    
+    private lazy var cancelButton: UIFilledButton = {
+        let button = UIFilledButton()
+        button.translatesAutoresizingMaskIntoConstraints = false
+        return button
     }()
     
     init(remoteId: Int32) {
@@ -63,10 +84,42 @@ class TimerDetailVC: BaseViewControllerVM<TimerDetailViewState, TimerDetailViewE
         if let deviceState = state.deviceState {
             updateDeviceStateView(deviceStateView, with: deviceState)
         }
+        
+        if let timerData = state.deviceState?.timerEndDate {
+            timerConfigurationView.isHidden = true
+        } else {
+            timerConfigurationView.isHidden = false
+        }
+        
+        if let isOn = state.deviceState?.isOn {
+            stopButton.setAttributedTitle(
+                Strings.TimerDetail.stop.arguments(
+                    isOn ? Strings.TimerDetail.infoOn : Strings.TimerDetail.infoOff
+                )
+            )
+            cancelButton.setAttributedTitle(
+                Strings.TimerDetail.cancel.arguments(
+                    isOn ? Strings.TimerDetail.cancelOff : Strings.TimerDetail.cancelOn
+                )
+            )
+        }
+        timerConfigurationView.header = Strings.TimerDetail.header
     }
     
     private func setupView() {
         view.addSubview(deviceStateView)
+        view.addSubview(stopButton)
+        view.addSubview(cancelButton)
+        view.addSubview(timerConfigurationView)
+        
+        timerConfigurationView.timeInSeconds = 3 * 60
+        viewModel.bind(stopButton.rx.tap.asObservable()) {
+            self.viewModel.stopTimer(remoteId: self.remoteId)
+            
+        }
+        viewModel.bind(cancelButton.rx.tap.asObservable()) {
+            self.viewModel.cancelTimer(remoteId: self.remoteId)
+        }
         
         setupLayout()
     }
@@ -74,7 +127,19 @@ class TimerDetailVC: BaseViewControllerVM<TimerDetailViewState, TimerDetailViewE
     private func setupLayout() {
         NSLayoutConstraint.activate([
             deviceStateView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            deviceStateView.topAnchor.constraint(equalTo: view.topAnchor, constant: 24)
+            deviceStateView.topAnchor.constraint(equalTo: view.topAnchor, constant: Dimens.distanceDefault),
+            
+            timerConfigurationView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            timerConfigurationView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            timerConfigurationView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            
+            stopButton.leftAnchor.constraint(equalTo: view.leftAnchor, constant: Dimens.distanceDefault),
+            stopButton.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -Dimens.distanceDefault),
+            stopButton.bottomAnchor.constraint(equalTo: cancelButton.topAnchor, constant: -Dimens.distanceDefault),
+            
+            cancelButton.leftAnchor.constraint(equalTo: view.leftAnchor, constant: Dimens.distanceDefault),
+            cancelButton.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -Dimens.distanceDefault),
+            cancelButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -Dimens.distanceDefault)
         ])
     }
     
@@ -87,5 +152,15 @@ class TimerDetailVC: BaseViewControllerVM<TimerDetailViewState, TimerDetailViewE
                 viewModel.loadChannel(remoteId: self.remoteId)
             }
         }
+    }
+}
+
+extension TimerDetailVC: TimerConfigurationViewDelegate {
+    func onStartTapped() {
+        viewModel.startTimer(
+            remoteId: remoteId,
+            action: timerConfigurationView.action,
+            durationInSecs: timerConfigurationView.timeInSeconds
+        )
     }
 }

@@ -137,6 +137,30 @@ struct Strings {
         static let stateOffline = "switch_detail_state_offline".toLocalized()
     }
     
+    struct TimerDetail {
+        static let header = "timer_detail_header".toLocalized()
+        static let editHeader = "timer_detail_edit_header".toLocalized()
+        static let editHeaderOn = "timer_detail_edit_header_on".toLocalized()
+        static let editHeaderOff = "timer_detail_edit_header_off".toLocalized()
+        static let turnedOn = "timer_detail_turned_on".toLocalized()
+        static let turnedOff = "timer_detail_turned_off".toLocalized()
+        static let hourPattern = "timer_detail_hour_pattern".toLocalized()
+        static let hoursPattern = "timer_detail_hours_pattern".toLocalized()
+        static let minutePattern = "timer_detail_minute_pattern".toLocalized()
+        static let secondPattern = "timer_detail_second_pattern".toLocalized()
+        static let info = "timer_detail_info".toLocalized()
+        static let infoOn = "timer_detail_info_on".toLocalized()
+        static let infoOff = "timer_detail_info_off".toLocalized()
+        static let infoNextOn = "timer_detail_info_next_on".toLocalized()
+        static let infoNextOff = "timer_detail_info_next_off".toLocalized()
+        static let start = "timer_detail_start".toLocalized()
+        static let stop = "timer_detail_stop".toLocalized()
+        static let cancel = "timer_detail_cancel".toLocalized()
+        static let cancelOn = "timer_detail_cancel_on".toLocalized()
+        static let cancelOff = "timer_detail_cancel_off".toLocalized()
+        
+    }
+    
     struct General {
         static let cancel = NSLocalizedString("Cancel", comment: "")
         static let close = NSLocalizedString("Close", comment: "")
@@ -150,5 +174,9 @@ struct Strings {
 extension String {
     func toLocalized() -> String {
         NSLocalizedString(self, tableName: "Localizable", value: "\(NSLocalizedString(self, tableName: "Default", bundle: .main, comment: ""))", comment: "")
+    }
+    
+    func arguments(_ args: CVarArg...) -> String {
+        String.init(format: self, args)
     }
 }

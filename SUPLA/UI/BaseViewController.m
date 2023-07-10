@@ -50,6 +50,9 @@
 }
 
 - (void)updateNavBarFont {
+    if (![self shouldUpdateTitleFont]) {
+        return;
+    }
     UIFont *font;
     if(self.navigationController.viewControllers.count > 1 &&
        self.navigationController.topViewController == self) {
@@ -105,5 +108,9 @@
                                   self.view.frame.size.width,
                                   self.view.frame.size.height - CGRectGetMaxY(navBarFrame));
     v.frame = destFrame;
+}
+
+- (BOOL) shouldUpdateTitleFont {
+    return YES;
 }
 @end

@@ -52,6 +52,8 @@ class BaseViewControllerVM<S : ViewState, E : ViewEvent, VM : BaseViewModel<S, E
         super.viewWillDisappear(animated)
         NotificationCenter.default.removeObserver(self)
     }
+    
+    override func shouldUpdateTitleFont() -> Bool { false }
  
     func handle(event: E) { fatalError("handle(event:) has not been implemented!") }
     func handle(state: S) { } // default empty implementation

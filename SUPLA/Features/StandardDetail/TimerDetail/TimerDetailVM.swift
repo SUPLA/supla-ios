@@ -16,10 +16,14 @@
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 
+import RxSwift
+
 class TimerDetailVM: BaseViewModel<TimerDetailViewState, TimerDetailViewEvent>, DeviceStateHelperVMI {
     
     @Singleton<ReadChannelByRemoteIdUseCase> private var readChannelByRemoteIdUseCase
     @Singleton<GetChannelBaseStateUseCase> private var getChannelBaseStateUseCase
+    @Singleton<StartTimerUseCase> private var startTimerUseCase
+    @Singleton<ExecuteSimpleActionUseCase> private var executeSimpleAxtionUseCase
     @Singleton<DateProvider> private var dateProvider
     
     override func defaultViewState() -> TimerDetailViewState { TimerDetailViewState() }
@@ -31,6 +35,42 @@ class TimerDetailVM: BaseViewModel<TimerDetailViewState, TimerDetailViewEvent>, 
                 self.updateView() { $0.changing(path: \.deviceState, to: self.createDeviceState(from: channel)) }
             })
             .disposed(by: self)
+    }
+    
+    func startTimer(remoteId: Int32, action: TimerTargetAction, durationInSecs: Int) {
+        startTimerUseCase.invoke(remoteId: remoteId, turnOn: action == .turnOn, durationInSecs: Int32(durationInSecs))
+            .subscribe(
+                onError: { error in
+                    if (error is StartTimerUseCaseImpl.InvalidTimeError) {
+                        NSLog("Invalid time")
+                    }
+                }
+            )
+            .disposed(by: self)
+    }
+    
+    func stopTimer(remoteId: Int32) {
+        readChannelByRemoteIdUseCase.invoke(remoteId: remoteId)
+            .flatMapFirst { self.doAbort(remoteId: remoteId, turnOn: $0.value?.hiValue() ?? 0 >= 0) }
+            .asDriverWithoutError()
+            .drive()
+            .disposed(by: self)
+    }
+    
+    func cancelTimer(remoteId: Int32) {
+        readChannelByRemoteIdUseCase.invoke(remoteId: remoteId)
+            .flatMapFirst { self.doAbort(remoteId: remoteId, turnOn: $0.value?.hiValue() ?? 0 == 0) }
+            .asDriverWithoutError()
+            .drive()
+            .disposed(by: self)
+    }
+    
+    private func doAbort(remoteId: Int32, turnOn: Bool) -> Observable<Void> {
+        executeSimpleAxtionUseCase.invoke(
+            action: turnOn ? .turn_on : .turn_off,
+            type: .channel,
+            remoteId: remoteId
+        )
     }
 }
 

@@ -689,6 +689,10 @@
 		A530EE402A58417D00F8DAEE /* ExecuteSimpleActionUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A530EE3F2A58417D00F8DAEE /* ExecuteSimpleActionUseCase.swift */; };
 		A530EE432A58AA6E00F8DAEE /* DeviceStateHelperVCI.swift in Sources */ = {isa = PBXBuildFile; fileRef = A530EE422A58AA6E00F8DAEE /* DeviceStateHelperVCI.swift */; };
 		A530EE452A58AAD800F8DAEE /* DeviceStateHelperVMI.swift in Sources */ = {isa = PBXBuildFile; fileRef = A530EE442A58AAD800F8DAEE /* DeviceStateHelperVMI.swift */; };
+		A530EE472A5BEBFA00F8DAEE /* TimerConfigurationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A530EE462A5BEBFA00F8DAEE /* TimerConfigurationView.swift */; };
+		A530EE4A2A5C13F800F8DAEE /* UIFilledButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A530EE492A5C13F800F8DAEE /* UIFilledButton.swift */; };
+		A530EE4C2A5C2A3E00F8DAEE /* UIBorderedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A530EE4B2A5C2A3E00F8DAEE /* UIBorderedButton.swift */; };
+		A530EE4E2A5C357100F8DAEE /* StartTimerUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A530EE4D2A5C357100F8DAEE /* StartTimerUseCase.swift */; };
 		A553862829E004E400B5CF3F /* GlobalSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = A553862729E004E400B5CF3F /* GlobalSettings.swift */; };
 		A553862B29E0202700B5CF3F /* Singleton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A553862A29E0202700B5CF3F /* Singleton.swift */; };
 		A553862D29E021AE00B5CF3F /* DiContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A553862C29E021AE00B5CF3F /* DiContainer.swift */; };
@@ -1943,6 +1947,10 @@
 		A530EE3F2A58417D00F8DAEE /* ExecuteSimpleActionUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExecuteSimpleActionUseCase.swift; sourceTree = "<group>"; };
 		A530EE422A58AA6E00F8DAEE /* DeviceStateHelperVCI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceStateHelperVCI.swift; sourceTree = "<group>"; };
 		A530EE442A58AAD800F8DAEE /* DeviceStateHelperVMI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceStateHelperVMI.swift; sourceTree = "<group>"; };
+		A530EE462A5BEBFA00F8DAEE /* TimerConfigurationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerConfigurationView.swift; sourceTree = "<group>"; };
+		A530EE492A5C13F800F8DAEE /* UIFilledButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIFilledButton.swift; sourceTree = "<group>"; };
+		A530EE4B2A5C2A3E00F8DAEE /* UIBorderedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIBorderedButton.swift; sourceTree = "<group>"; };
+		A530EE4D2A5C357100F8DAEE /* StartTimerUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartTimerUseCase.swift; sourceTree = "<group>"; };
 		A553862729E004E400B5CF3F /* GlobalSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalSettings.swift; sourceTree = "<group>"; };
 		A553862A29E0202700B5CF3F /* Singleton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Singleton.swift; sourceTree = "<group>"; };
 		A553862C29E021AE00B5CF3F /* DiContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiContainer.swift; sourceTree = "<group>"; };
@@ -3318,6 +3326,7 @@
 			children = (
 				A530EDFF2A54417400F8DAEE /* TimerDetailVM.swift */,
 				A530EE012A5441F300F8DAEE /* TimerDetailVC.swift */,
+				A530EE462A5BEBFA00F8DAEE /* TimerConfigurationView.swift */,
 			);
 			path = TimerDetail;
 			sourceTree = "<group>";
@@ -3382,6 +3391,7 @@
 			isa = PBXGroup;
 			children = (
 				A530EE3F2A58417D00F8DAEE /* ExecuteSimpleActionUseCase.swift */,
+				A530EE4D2A5C357100F8DAEE /* StartTimerUseCase.swift */,
 			);
 			path = Client;
 			sourceTree = "<group>";
@@ -3393,6 +3403,15 @@
 				A530EE442A58AAD800F8DAEE /* DeviceStateHelperVMI.swift */,
 			);
 			path = DeviceStateHelper;
+			sourceTree = "<group>";
+		};
+		A530EE482A5C13D700F8DAEE /* Buttons */ = {
+			isa = PBXGroup;
+			children = (
+				A530EE492A5C13F800F8DAEE /* UIFilledButton.swift */,
+				A530EE4B2A5C2A3E00F8DAEE /* UIBorderedButton.swift */,
+			);
+			path = Buttons;
 			sourceTree = "<group>";
 		};
 		A553862929E0201A00B5CF3F /* DI */ = {
@@ -3775,6 +3794,7 @@
 		A5F14B7729DED97400682FA6 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				A530EE482A5C13D700F8DAEE /* Buttons */,
 				A530EDEE2A53F79900F8DAEE /* Components */,
 				A5F29B8E2A20B21A00ED700A /* TableView */,
 				A5F14B7329DED41000682FA6 /* BaseViewModel.swift */,
@@ -4829,6 +4849,7 @@
 				40C7BA5420C008DB00ACEE42 /* SAChannelGroupRelation+CoreDataClass.m in Sources */,
 				A5F29BB62A24CAAB00ED700A /* UpdateChannelValueUseCase.swift in Sources */,
 				40C7BA8820C0492500ACEE42 /* SAChannelBase+CoreDataProperties.m in Sources */,
+				A530EE472A5BEBFA00F8DAEE /* TimerConfigurationView.swift in Sources */,
 				A530EE2A2A57E0BA00F8DAEE /* ElelectricityMeterIconNameProducer.swift in Sources */,
 				A530EE3B2A5801AB00F8DAEE /* GetChannelBaseIconUseCase.swift in Sources */,
 				A5F29B672A1E268E00ED700A /* GroupListVC.swift in Sources */,
@@ -4925,6 +4946,7 @@
 				01F8856C22E5E79100D18373 /* SAUserIcon+CoreDataClass.m in Sources */,
 				013D73B022DD105400E3515A /* SAChartFilterField.m in Sources */,
 				A5F29C022A2DC56600ED700A /* NSPersistentStoreCoordinator+Ext.swift in Sources */,
+				A530EE4A2A5C13F800F8DAEE /* UIFilledButton.swift in Sources */,
 				A5F29BAC2A24B80E00ED700A /* ChangeScenesVisibilityUseCase.swift in Sources */,
 				01B57DEC25BDA48F001F0DBC /* SAWizardVC.m in Sources */,
 				A5F29BA82A24B0FC00ED700A /* UpdateSceneStateUseCase.swift in Sources */,
@@ -4989,6 +5011,8 @@
 				40B610CC20C7E263002B762A /* SAUIChannelStatus.m in Sources */,
 				AECB1BE727109EA3001A9714 /* CheckBox.swift in Sources */,
 				A597271129DAEA480090A044 /* SAScene+Ext.swift in Sources */,
+				A530EE4E2A5C357100F8DAEE /* StartTimerUseCase.swift in Sources */,
+				A530EE4C2A5C2A3E00F8DAEE /* UIBorderedButton.swift in Sources */,
 				AE535356276927690077BFFB /* LocationOrderingVC.swift in Sources */,
 				A5F29B632A1E18FA00ED700A /* ChannelListVM.swift in Sources */,
 				AEF79D8D2712FF8D00D7554B /* AppSettingsVC.swift in Sources */,

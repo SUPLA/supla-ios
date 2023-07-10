@@ -19,7 +19,12 @@
 import Foundation
 
 struct Dimens {
-    static let screenMargin = CGFloat(24)
+    static let distanceTiny = CGFloat(8)
+    static let distanceSmall = CGFloat(16)
+    static let distanceDefault = CGFloat(24)
+    
+    static let radiusButton = CGFloat(9)
+    
     static let elementOffset = CGFloat(8)
     struct Form {
         static let elementSpacing = CGFloat(16)
