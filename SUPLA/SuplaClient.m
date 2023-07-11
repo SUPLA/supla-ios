@@ -39,6 +39,7 @@
 #import "SAChannel+CoreDataClass.h"
 #import "supla-client.h"
 #import "SUPLA-Swift.h"
+@import UserNotifications;
 
 #define MINIMUM_WAITING_TIME_SEC 2
 
@@ -67,6 +68,7 @@
 - (void) onChannelState:(SAChannelStateExtendedValue*)state;
 - (void) onChannelBasicCfg:(SAChannelBasicCfg*)cfg;
 - (void) onChannelCaptionSetResult:(SAChannelCaptionSetResult*)result;
+- (void) onChannelGroupCaptionSetResult:(SAChannelCaptionSetResult*)result;
 - (void) onChannelFunctionSetResult:(SAChannelFunctionSetResult*)result;
 - (void) onZwaveGetAssignedNodeIdResult:(SAZWaveNodeIdResult*)result;
 - (void) onZwaveGetNodeListResult:(SAZWaveNodeResult*)result;
@@ -117,11 +119,11 @@ void sasuplaclient_on_registering(void *_suplaclient, void *user_data) {
     
 }
 
-void sasuplaclient_on_registered(void *_suplaclient, void *user_data, TSC_SuplaRegisterClientResult_C *result) {
+void sasuplaclient_on_registered(void *_suplaclient, void *user_data, TSC_SuplaRegisterClientResult_D *result) {
     
     SASuplaClient *sc = (__bridge SASuplaClient*)user_data;
     if ( sc != nil )
-        [sc onRegistered:[SARegResult RegResultClientID:result->ClientID locationCount:result->LocationCount channelCount:result->ChannelCount channelGroupCount:result->ChannelGroupCount flags:result->Flags version:result->version]];
+        [sc onRegistered:[SARegResult RegResultClientID:result->ClientID locationCount:result->LocationCount channelCount:result->ChannelCount channelGroupCount:result->ChannelGroupCount sceneCount: result->SceneCount flags:result->Flags version:result->version]];
     
 }
 
@@ -239,6 +241,15 @@ void sasuplaclient_on_channel_caption_set_result(void *_suplaclient,
     SASuplaClient *sc = (__bridge SASuplaClient*)user_data;
     if ( sc != nil && result != NULL) {
         [sc onChannelCaptionSetResult:[[SAChannelCaptionSetResult alloc] initWithResult:result]];
+    }
+}
+
+void sasuplaclient_on_channel_group_caption_set_result(void *_suplaclient,
+                                         void *user_data,
+                                         TSC_SetCaptionResult *result) {
+    SASuplaClient *sc = (__bridge SASuplaClient*)user_data;
+    if ( sc != nil && result != NULL) {
+        [sc onChannelGroupCaptionSetResult:[[SAChannelCaptionSetResult alloc] initWithResult:result]];
     }
 }
 
@@ -463,8 +474,8 @@ void sasuplaclient_scene_state_update(void *_suplaclient,
         
         if ( response != nil && requestError == nil ) {
             NSError *jsonError = nil;
-           NSDictionary *jsonObj = [NSJSONSerialization JSONObjectWithData: response options: NSJSONReadingMutableContainers error: &jsonError];
-
+            NSDictionary *jsonObj = [NSJSONSerialization JSONObjectWithData: response options: NSJSONReadingMutableContainers error: &jsonError];
+            
             if ( [jsonObj isKindOfClass:[NSDictionary class]] ) {
                 NSString *str = [jsonObj objectForKey:@"server"];
                 if ( str != nil && [str isKindOfClass:[NSString class]]) {
@@ -477,7 +488,7 @@ void sasuplaclient_scene_state_update(void *_suplaclient,
     }
     
     return (char*)[host UTF8String];
-
+    
 }
 
 - (void*) client_init {
@@ -486,7 +497,7 @@ void sasuplaclient_scene_state_update(void *_suplaclient,
     supla_client_cfginit(&scc);
     id<ProfileManager> pm = SAApp.profileManager;
     AuthProfileItem *profile = [pm getCurrentProfile];
-
+    
     if (profile != nil) {
         [profile.clientGUID getBytes: scc.clientGUID
                               length: SUPLA_GUID_SIZE];
@@ -521,7 +532,7 @@ void sasuplaclient_scene_state_update(void *_suplaclient,
     }
     
     _oneTimePassword = nil;
-
+    
     snprintf(scc.Name, SUPLA_CLIENT_NAME_MAXSIZE, "%s", [[[UIDevice currentDevice] name] UTF8String]);
     snprintf(scc.SoftVer, SUPLA_SOFTVER_MAXSIZE, "iOS%s/%s", [[[UIDevice currentDevice] systemVersion] UTF8String], [[[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleShortVersionString"] UTF8String]);
     
@@ -547,6 +558,7 @@ void sasuplaclient_scene_state_update(void *_suplaclient,
     scc.cb_on_set_registration_enabled_result = sasuplaclient_on_set_registration_enabled_result;
     scc.cb_on_channel_basic_cfg = sasuplaclient_on_channel_basic_cfg;
     scc.cb_on_channel_caption_set_result = sasuplaclient_on_channel_caption_set_result;
+    scc.cb_on_channel_group_caption_set_result = sasuplaclient_on_channel_group_caption_set_result;
     scc.cb_on_channel_function_set_result = sasuplaclient_on_channel_function_set_result;
     scc.cb_on_zwave_get_assigned_node_id_result = sasuplaclient_on_zwave_get_assigned_node_id_result;
     scc.cb_on_zwave_get_node_list_result = sasuplaclient_on_zwave_get_node_list_result;
@@ -561,16 +573,16 @@ void sasuplaclient_scene_state_update(void *_suplaclient,
     scc.cb_scene_state_update = sasuplaclient_scene_state_update;
     
     return supla_client_init(&scc);
-
+    
 }
 
 - (void)main {
-
+    
     //NSLog(@"Started");
     
     while(![self isCancelled]) {
         @autoreleasepool {
-           
+            
             @synchronized(self) {
                 _superuserAuthorized = NO;
             }
@@ -580,19 +592,19 @@ void sasuplaclient_scene_state_update(void *_suplaclient,
             [self onConnecting];
             BOOL DataChanged = NO;
             
-            if ( [self.DB setAllOfChannelVisible:2 whereVisibilityIs:1] ) {
+            if ( [UseCaseLegacyWrapper changeChannelsVisibilityFrom:1 to:2] ) {
                 DataChanged = YES;
             }
             
-            if ( [self.DB setAllOfChannelGroupVisible:2 whereVisibilityIs:1] ) {
+            if ( [UseCaseLegacyWrapper changeGroupsVisibilityFrom:1 to:2] ) {
                 DataChanged = YES;
             }
             
-            if ( [self.DB setAllOfChannelGroupRelationVisible:2 whereVisibilityIs:1] ) {
+            if ( [UseCaseLegacyWrapper changeChannelGroupRelationsVisibilityFrom:1 to:2] ) {
                 DataChanged = YES;
             }
             
-            if ( [self.DB setAllOfScenesVisible:2 whereVisibilityIs:1] ) {
+            if ([UseCaseLegacyWrapper changeScenesVisibilityFrom:1 to:2]) {
                 DataChanged = YES;
             }
             
@@ -677,7 +689,7 @@ void sasuplaclient_scene_state_update(void *_suplaclient,
 }
 
 - (void) onConnected {
-   [self performSelectorOnMainThread:@selector(_onConnected) withObject:nil waitUntilDone:NO];
+    [self performSelectorOnMainThread:@selector(_onConnected) withObject:nil waitUntilDone:NO];
 }
 
 - (void) _onConnError:(NSNumber*)code {
@@ -693,7 +705,7 @@ void sasuplaclient_scene_state_update(void *_suplaclient,
 }
 
 - (void) onDisconnected {
-   [self performSelectorOnMainThread:@selector(_onDisconnected) withObject:nil waitUntilDone:NO];
+    [self performSelectorOnMainThread:@selector(_onDisconnected) withObject:nil waitUntilDone:NO];
 }
 
 - (void) _onRegistering {
@@ -702,7 +714,7 @@ void sasuplaclient_scene_state_update(void *_suplaclient,
 
 - (void) onRegistering {
     _regTryCounter++;
-   [self performSelectorOnMainThread:@selector(_onRegistering) withObject:nil waitUntilDone:NO];
+    [self performSelectorOnMainThread:@selector(_onRegistering) withObject:nil waitUntilDone:NO];
 }
 
 - (void) _onRegisterError:(NSNumber*)code {
@@ -710,7 +722,7 @@ void sasuplaclient_scene_state_update(void *_suplaclient,
 }
 
 - (void) onRegisterError:(int)code {
-     _regTryCounter = 0;
+    _regTryCounter = 0;
     [self performSelectorOnMainThread:@selector(_onRegisterError:) withObject:[NSNumber numberWithInt:code] waitUntilDone:NO];
 }
 
@@ -719,32 +731,47 @@ void sasuplaclient_scene_state_update(void *_suplaclient,
 }
 
 - (void) onRegistered:(SARegResult*)result {
-
+    
     _regTryCounter = 0;
     id<ProfileManager> pm = [SAApp profileManager];
     AuthProfileItem *profile = [pm getCurrentProfile];
     AuthInfo *ai = profile.authInfo;
     
-    if ( ai.preferredProtocolVersion < SUPLA_PROTO_VERSION
-         && result.Version > ai.preferredProtocolVersion
-        && result.Version <= SUPLA_PROTO_VERSION ) {
-        ai.preferredProtocolVersion = result.Version;
+    long maxVersionSupportedByLibrary = SUPLA_PROTO_VERSION;
+    long storedVersion = ai.preferredProtocolVersion;
+    long serverVersion = result.Version;
+    if (storedVersion < maxVersionSupportedByLibrary && serverVersion > storedVersion) {
+        long newVersion = serverVersion;
+        if (newVersion > maxVersionSupportedByLibrary) {
+            newVersion = maxVersionSupportedByLibrary;
+        }
+        ai.preferredProtocolVersion = newVersion;
         [pm update:profile];
         
     };
     
     if ( result.ChannelCount == 0
-         && [self.DB setAllOfChannelVisible:0 whereVisibilityIs:2] ) {
+        && [UseCaseLegacyWrapper changeChannelsVisibilityFrom:2 to:0] ) {
         [self onDataChanged];
+        [DiContainer.listsEventsManager emitChannelUpdate];
     }
     
     if ( result.ChannelGroupCount == 0
-        && [self.DB setAllOfChannelGroupVisible:0 whereVisibilityIs:2] ) {
+        && [UseCaseLegacyWrapper changeGroupsVisibilityFrom:2 to:0] ) {
         [self onDataChanged];
+        [DiContainer.listsEventsManager emitGroupUpdate];
+    }
+    
+    if (result.SceneCount == 0
+        && [UseCaseLegacyWrapper changeScenesVisibilityFrom:2 to:0]) {
+        [self onDataChanged];
+        [DiContainer.listsEventsManager emitSceneUpdate];
     }
     
     _client_id = result.ClientID;
-    
+    NSData* pushToken = [DiContainer getPushToken];
+    [self registerPushNotificationClientToken:pushToken];
+
     [self performSelectorOnMainThread:@selector(_onRegistered:) withObject:result waitUntilDone:NO];
 }
 
@@ -774,7 +801,7 @@ void sasuplaclient_scene_state_update(void *_suplaclient,
 };
 
 - (void) onChannelGroupValueChanged {
-    NSArray *result = [self.DB updateChannelGroups];
+    NSArray *result = [UseCaseLegacyWrapper updateChannelGroups];
     BOOL DataChanged = NO;
     
     if (result!=nil) {
@@ -791,7 +818,7 @@ void sasuplaclient_scene_state_update(void *_suplaclient,
 
 - (void) locationUpdate:(TSC_SuplaLocation *)location {
     
-    if ( [self.DB updateLocation: location] ) {
+    if ( [UseCaseLegacyWrapper updateLocationWithSuplaLocation: *location] ) {
         [self onDataChanged];
     };
     
@@ -810,7 +837,7 @@ void sasuplaclient_scene_state_update(void *_suplaclient,
     NSLog(@"ChannelID: %i, caption: %@", channel->Id, [NSString stringWithUTF8String:channel->Caption]);
     
     if ( ![self isChannelExcluded:channel]
-         && [self.DB updateChannel:channel] ) {
+        && [UseCaseLegacyWrapper updateChannelWithSuplaChannel: *channel] ) {
         DataChanged = YES;
     }
     
@@ -820,18 +847,19 @@ void sasuplaclient_scene_state_update(void *_suplaclient,
     value.online = channel->online;
     memcpy(&value.value, &channel->value, sizeof(TSuplaChannelValue_B));
     
-    if ( [self.DB updateChannelValue:&value] ) {
+    if ( [UseCaseLegacyWrapper updateChannelValueWithSuplaChannelValue: value] ) {
         DataChanged = YES;
         ChannelValueChanged = YES;
     }
-
-    if ( channel->EOL == 1
-         && [self.DB setAllOfChannelVisible:0 whereVisibilityIs:2] ) {
-        DataChanged = YES;
+    
+    if ( channel->EOL == 1 ) {
+        [DiContainer.listsEventsManager emitChannelUpdate];
+        DataChanged = [UseCaseLegacyWrapper changeChannelsVisibilityFrom:2 to:0];
     }
     
     if ( DataChanged ) {
         [self onDataChanged];
+        [DiContainer.listsEventsManager emitChannelChangeWithRemoteId: channel->Id];
     }
     
     if ( ChannelValueChanged ) {
@@ -841,9 +869,10 @@ void sasuplaclient_scene_state_update(void *_suplaclient,
 }
 
 - (void) channelValueUpdate:(TSC_SuplaChannelValue_B *)channel_value {
-    if ( [self.DB updateChannelValue:channel_value] ) {
+    if ( [UseCaseLegacyWrapper updateChannelValueWithSuplaChannelValue: *channel_value] ) {
         [self onChannelValueChanged: channel_value->Id isGroup:NO];
         [self onDataChanged];
+        [DiContainer.listsEventsManager emitChannelChangeWithRemoteId: channel_value->Id];
     }
     
     if (channel_value->EOL == 1) {
@@ -853,12 +882,12 @@ void sasuplaclient_scene_state_update(void *_suplaclient,
 }
 
 - (void) channelExtendedValueUpdate:(TSC_SuplaChannelExtendedValue *)channel_extendedvalue {
-  
-    if ( [self.DB updateChannelExtendedValue:channel_extendedvalue] ) {
+    
+    if ( [UseCaseLegacyWrapper updateChannelExtendedValueWithSuplaChannelExtendedValue: *channel_extendedvalue] ) {
         [self onChannelValueChanged: channel_extendedvalue->Id isGroup:NO];
         [self onDataChanged];
     }
-
+    
 }
 
 - (void) channelGroupUpdate:(TSC_SuplaChannelGroup_B *)cgroup {
@@ -866,33 +895,31 @@ void sasuplaclient_scene_state_update(void *_suplaclient,
     
     BOOL DataChanged = NO;
     
-    if ( [self.DB updateChannelGroup:cgroup] ) {
+    if ( [UseCaseLegacyWrapper updateGroupWithSuplaGroup: *cgroup] ) {
         DataChanged = YES;
     }
     
-    if ( cgroup->EOL == 1
-        && [self.DB setAllOfChannelGroupVisible:0 whereVisibilityIs:2] ) {
-        DataChanged = YES;
-    }
-    
-    if (cgroup->EOL == 1) {
+    if ( cgroup->EOL == 1 ) {
+        [DiContainer.listsEventsManager emitGroupUpdate];
         [self onChannelGroupValueChanged];
+        DataChanged = [UseCaseLegacyWrapper changeGroupsVisibilityFrom:2 to:0];
     }
     
     if ( DataChanged ) {
         [self onDataChanged];
+        [DiContainer.listsEventsManager emitGroupChangeWithRemoteId: cgroup->Id];
     }
 }
 
 - (void) channelGroupRelationUpdate:(TSC_SuplaChannelGroupRelation *)cgroup_relation {
     BOOL DataChanged = NO;
     
-    if ( [self.DB updateChannelGroupRelation:cgroup_relation] ) {
+    if ( [UseCaseLegacyWrapper updateGroupRelationWithSuplaGroupRelation: *cgroup_relation] ) {
         DataChanged = YES;
     }
     
     if ( cgroup_relation->EOL == 1
-        && [self.DB setAllOfChannelGroupRelationVisible:0 whereVisibilityIs:2] ) {
+        && [UseCaseLegacyWrapper changeChannelGroupRelationsVisibilityFrom:2 to:0] ) {
         DataChanged = YES;
     }
     
@@ -911,12 +938,13 @@ void sasuplaclient_scene_state_update(void *_suplaclient,
     
     NSLog(@"Scene with ID: %i, caption: %@", scene->Id, [NSString stringWithUTF8String:scene->Caption]);
     
-    if ( [self.DB updateScene:scene] ) {
+    if ( [UseCaseLegacyWrapper updateSceneWithScene: *scene] ) {
         DataChanged = YES;
     }
     
-    if ( scene->EOL == 1 && [self.DB setAllOfScenesVisible:0 whereVisibilityIs:2] ) {
-        DataChanged = YES;
+    if ( scene->EOL == 1 ) {
+        [DiContainer.listsEventsManager emitSceneUpdate];
+        DataChanged = [UseCaseLegacyWrapper changeScenesVisibilityFrom:2 to:0];
     }
     
     if ( DataChanged ) {
@@ -926,7 +954,7 @@ void sasuplaclient_scene_state_update(void *_suplaclient,
 
 - (void) sceneStateUpdate:(TSC_SuplaSceneState *)state {
     NSLog(@"State update for scene with ID: %i", state->SceneId);
-    if ([self.DB updateSceneState:state currentId:_client_id]) {
+    if ([UseCaseLegacyWrapper updateSceneStateWithState: *state clientId:_client_id]) {
         NSLog(@"State for scene with ID: %i updated", state->SceneId);
         [self onDataChanged];
     }
@@ -976,7 +1004,7 @@ void sasuplaclient_scene_state_update(void *_suplaclient,
         && result.success
         && result.code == SUPLA_RESULTCODE_AUTHORIZED;
     }
-   
+    
     [self performSelectorOnMainThread:@selector(_onSuperuserAuthorizationResult:) withObject:result waitUntilDone:NO];
 }
 
@@ -985,7 +1013,7 @@ void sasuplaclient_scene_state_update(void *_suplaclient,
 }
 
 - (void) onCalCfgResult:(SACalCfgResult*)result {
-      [self performSelectorOnMainThread:@selector(_onCalCfgResult:) withObject:result waitUntilDone:NO];
+    [self performSelectorOnMainThread:@selector(_onCalCfgResult:) withObject:result waitUntilDone:NO];
 }
 
 - (void) _onChannelState:(SAChannelStateExtendedValue*)state  {
@@ -1010,6 +1038,14 @@ void sasuplaclient_scene_state_update(void *_suplaclient,
 
 - (void) onChannelCaptionSetResult:(SAChannelCaptionSetResult*)result {
     [self performSelectorOnMainThread:@selector(_onChannelCaptionSetResult:) withObject:result waitUntilDone:NO];
+}
+
+- (void) _onChannelGroupCaptionSetResult:(SAChannelCaptionSetResult*)result {
+    [[NSNotificationCenter defaultCenter] postNotificationName:kSAOnChannelGroupCaptionSetResult object:self userInfo:[[NSDictionary alloc] initWithObjects:@[result] forKeys:@[@"result"]]];
+}
+
+- (void) onChannelGroupCaptionSetResult:(SAChannelCaptionSetResult*)result {
+    [self performSelectorOnMainThread:@selector(_onChannelGroupCaptionSetResult:) withObject:result waitUntilDone:NO];
 }
 
 - (void) _onChannelFunctionSetResult:(SAChannelFunctionSetResult*)result {
@@ -1209,7 +1245,7 @@ void sasuplaclient_scene_state_update(void *_suplaclient,
 }
 
 - (void) deviceCalCfgCommand:(int)command cg:(int)ID group:(BOOL)group shortValue:(short)s {
-   [self deviceCalCfgCommand:command cg:ID group:group data:(char*)&s dataSize:sizeof(s)];
+    [self deviceCalCfgCommand:command cg:ID group:group data:(char*)&s dataSize:sizeof(s)];
 }
 
 - (void) thermostatScheduleCfgRequest:(SAThermostatScheduleCfg *)cfg cg:(int)ID group:(BOOL)group {
@@ -1225,7 +1261,7 @@ void sasuplaclient_scene_state_update(void *_suplaclient,
     request.DataSize = sizeof(TThermostat_ScheduleCfg);
     
     TThermostat_ScheduleCfg *scfg = (TThermostat_ScheduleCfg *)request.Data;
- 
+    
     int n = 0;
     for(int a=0;a<cfg.groupCount;a++) {
         
@@ -1235,7 +1271,7 @@ void sasuplaclient_scene_state_update(void *_suplaclient,
         
         scfg->Group[n].WeekDays = [cfg weekDaysForGroupIndex:a];
         [cfg getHourValue:scfg->Group[n].HourValue forGroupIndex:a];
-            
+        
         n++;
         if (n==4 || a == cfg.groupCount - 1) {
             @synchronized(self) {
@@ -1279,7 +1315,7 @@ void sasuplaclient_scene_state_update(void *_suplaclient,
                 _tokenRequestTime = now;
             }
         }
-
+        
     }
     
     return result;
@@ -1354,6 +1390,22 @@ void sasuplaclient_scene_state_update(void *_suplaclient,
     @synchronized(self) {
         if ( _sclient ) {
             supla_client_set_channel_caption(_sclient, channelId, [caption UTF8String]);
+        }
+    }
+}
+
+- (void) setSceneCaption:(int)sceneId caption:(NSString*)caption {
+    @synchronized(self) {
+        if ( _sclient ) {
+            supla_client_set_scene_caption(_sclient, sceneId, [caption UTF8String]);
+        }
+    }
+}
+
+- (void) setChannelGroupCaption:(int)channelGroupId caption:(NSString*)caption {
+    @synchronized(self) {
+        if ( _sclient ) {
+            supla_client_set_channel_group_caption(_sclient, channelGroupId, [caption UTF8String]);
         }
     }
 }
@@ -1469,7 +1521,7 @@ void sasuplaclient_scene_state_update(void *_suplaclient,
         return false;
     }
     
-
+    
     if (on) {
         SADatabase *DB = [SADatabase alloc];
         if (DB == nil || [DB init] == nil) {
@@ -1488,9 +1540,9 @@ void sasuplaclient_scene_state_update(void *_suplaclient,
                                          preferredStyle:UIAlertControllerStyleAlert];
             
             UIAlertAction* yesBtn = [UIAlertAction
-                                        actionWithTitle:NSLocalizedString(@"Yes", nil)
-                                        style:UIAlertActionStyleDefault
-                                        handler:^(UIAlertAction * action) {
+                                     actionWithTitle:NSLocalizedString(@"Yes", nil)
+                                     style:UIAlertActionStyleDefault
+                                     handler:^(UIAlertAction * action) {
                 if (vibrate) {
                     AudioServicesPlayAlertSound(kSystemSoundID_Vibrate);
                 }
@@ -1530,6 +1582,15 @@ void sasuplaclient_scene_state_update(void *_suplaclient,
     
     AudioServicesPlayAlertSound(kSystemSoundID_Vibrate);
     return supla_client_execute_action(_sclient, actionId, rsParameters, rgbwParameters, subjectType, subjectId) > 0;
+}
+
+- (void) registerPushNotificationClientToken:(NSData *)token {
+    @synchronized(self) {
+        if ( _sclient ) {
+            TCS_RegisterPnClientToken reg = [SingleCallWrapper prepareRegisterStructureFor: nil with: token];
+            supla_client_pn_register_client_token(_sclient, &reg);
+        }
+    }
 }
 
 @end

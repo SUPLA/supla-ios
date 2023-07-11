@@ -269,6 +269,8 @@
 "I understand" = "Rozumiem";
 "Go to CLOUD" = "Przejdź do CLOUD";
 "The function of the channel associated with the action trigger cannot be changed." = "Nie można zmienić funkcji kanału powiązanego z wyzwalaczem akcji.";
+"The channel function associated with reactions cannot be changed." = "Nie można zmienić funkcji kanału powiązanego z reakcjami.";
+"The function of the channel associated with the push notification cannot be changed." = "Nie można zmienić funkcji kanału powiązanego z powiadomieniami PUSH.";
 "Show ⓘ button" = "Pokazuj przycisk ⓘ";
 "Advanced settings" = "Zaawansowane";
 "Access ID" = "Identyfikator";
@@ -320,3 +322,10 @@
 "Cfg.removal.dialog.incomplete" = "Uzupełnij wymagane dane";
 
 "General.error" = "Błąd";
+
+"push_notification_limit_exceeded" = "Przekroczono limit wysłanych wiadomości PUSH, który wynosi %@ na godzinę.";
+"dialog_new_gesture_info_text" = "Usunęliśmy gest przesunięcia otwierający szczegóły, aby je zobaczyć dotknij wybrany kanał.";
+
+"app_settings.permissions_header" = "Uprawnienia";
+"app_settings.notifications_label" = "Powiadomienia";
+"app_settings.location_label" = "Lokalizacja";

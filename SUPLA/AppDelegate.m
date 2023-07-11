@@ -42,7 +42,7 @@
     // Short-circuit starting app if running unit tests
     BOOL isInTest = NSProcessInfo.processInfo.environment[@"XCTestConfigurationFilePath"] != nil;
     if (isInTest) {
-        return true;
+        return YES;
     }
 #endif
     
@@ -50,15 +50,17 @@
     self.navigation = [[MainNavigationCoordinator alloc] init];
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     [self.navigation attachTo: self.window];
-    [SAApp profileManager]; // Get an instance to trigger db migration
-	[self.navigation startFrom:nil];
-
-  //  [[SAApp UI] showStarterVC];
-    // Start SuplaClient only after the status window is displayed.
-    // Otherwise - with empty settings, the user will see the message "Host not found"
-    // instead of the settings window.
-    [SAApp SuplaClient];
     
+    [CoreDataManager.shared setupWithCompletion: ^() {
+        [self.navigation startFrom:nil];
+        
+        // Start SuplaClient only after the status window is displayed.
+        // Otherwise - with empty settings, the user will see the message "Host not found"
+        // instead of the settings window.
+        [SAApp SuplaClient];
+    }];
+
+    [self registerForNotifications];
     return YES;
 }
 
@@ -93,8 +95,7 @@
 #endif
     
     id vc = [SAApp currentNavigationCoordinator].viewController;
-    if ( ![vc isKindOfClass: [SAAddWizardVC class]] &&
-        ![vc isKindOfClass: [CfgVC class]] ) {
+    if ( ![vc isKindOfClass: [SAAddWizardVC class]] ) {
         // TODO: such checks should be solved in a generic way by coordintators
         [SAApp SuplaClient];
     }
@@ -106,5 +107,51 @@
     // Saves changes in the application's managed object context before the application terminates.
 }
 
+#pragma mark Notifications
+
+- (void) registerForNotifications {
+    [UNUserNotificationCenter currentNotificationCenter].delegate = self;
+    [[UNUserNotificationCenter currentNotificationCenter] requestAuthorizationWithOptions: (UNAuthorizationOptionAlert + UNAuthorizationOptionSound) completionHandler: ^(BOOL granted, NSError * _Nullable error) {
+        
+        if (granted) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [UIApplication.sharedApplication registerForRemoteNotifications];
+            });
+        } else {
+            NSLog(@"Notifications not allowed %@", error);
+            [DiContainer setPushTokenWithToken: nil];
+        }
+    }];
+}
+
+- (void) application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
+#ifdef DEBUG
+    const char *data = [deviceToken bytes];
+    NSMutableString *token = [NSMutableString string];
+    for (NSUInteger i = 0; i < [deviceToken length]; i++) {
+        [token appendFormat:@"%02.2hhx", data[i]];
+    }
+    NSLog(@"Push token: %@", token);
+#endif
+
+    bool tokenUpdated = false;
+    [DiContainer setPushTokenWithToken: deviceToken];
+    if ([[SAApp SuplaClient] isRegistered]) {
+        tokenUpdated = true;
+        [[SAApp SuplaClient] registerPushNotificationClientToken:deviceToken];
+    }
+    
+    [[[UpdateTokenTask alloc] init] updateWithToken: deviceToken updateSelf: !tokenUpdated completionHandler: ^{
+        NSLog(@"Token update task finished");
+    }];
+}
+
+- (void) application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error {
+    NSLog(@"Failed to register for remote notifications with error %@", error);
+}
+
+- (void) userNotificationCenter:(UNUserNotificationCenter *)center willPresentNotification:(UNNotification *)notification withCompletionHandler:(void (^)(UNNotificationPresentationOptions))completionHandler {
+    completionHandler(UNNotificationPresentationOptionAlert);
+}
 
 @end

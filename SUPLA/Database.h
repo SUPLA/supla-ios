@@ -63,25 +63,11 @@ typedef NS_ENUM(NSUInteger, GroupBy) {
 - (void)saveContext;
 
 -(_SALocation*) fetchLocationById:(int)location_id;
--(NSArray*) fetchVisibleLocations;
 -(_SALocation*) newLocation;
--(BOOL) updateLocation:(TSC_SuplaLocation *)location;
 
 -(SAChannel*) fetchChannelById:(int)channel_id;
--(SAChannelValue*) fetchChannelValueByChannelId:(int)channel_id;
--(BOOL) updateChannel:(TSC_SuplaChannel_D *)channel;
--(BOOL) updateChannelValue:(TSC_SuplaChannelValue_B *)channel_value;
--(BOOL) updateChannelExtendedValue:(TSC_SuplaChannelExtendedValue *)channel_value;
--(NSFetchedResultsController*) getChannelFrc;
--(BOOL) setAllOfChannelVisible:(int)visible whereVisibilityIs:(int)wvi;
 -(NSUInteger) getChannelCount;
--(BOOL) setAllOfChannelGroupVisible:(int)visible whereVisibilityIs:(int)wvi;
--(BOOL) setAllOfChannelGroupRelationVisible:(int)visible whereVisibilityIs:(int)wvi;
 -(SAChannelGroup*) fetchChannelGroupById:(int)remote_id;
--(BOOL) updateChannelGroup:(TSC_SuplaChannelGroup_B *)channel_group;
--(BOOL) updateChannelGroupRelation:(TSC_SuplaChannelGroupRelation *)cgroup_relation;
-- (NSArray*) updateChannelGroups;
--(NSFetchedResultsController*) getChannelGroupFrc;
 -(SAColorListItem *) getColorListItemForRemoteId:(int)remote_id andIndex:(int)idx forGroup:(BOOL)group;
 -(void) updateColorListItem:(SAColorListItem *)item;
 -(SAElectricityMeasurementItem*) newElectricityMeasurementItemWithManagedObjectContext:(BOOL)moc;
@@ -117,23 +103,10 @@ typedef NS_ENUM(NSUInteger, GroupBy) {
 -(void) deleteAllThermostatMeasurementsForChannelId:(int)channel_id;
 -(NSArray *) getThermostatMeasurementsForChannelId:(int)channel_id dateFrom:(NSDate *)dateFrom dateTo:(NSDate *)dateTo;
 -(NSFetchedResultsController*) getHomePlusGroupFrcWithGroupId:(int)groupId;
--(BOOL) updateChannelUserIcons;
--(NSArray *) iconsToDownload;
--(SAUserIcon*) fetchUserIconById:(int)remote_id createNewObject:(BOOL)create;
--(void) deleteAllUserIcons;
 -(BOOL) zwaveBridgeChannelAvailable;
 -(NSArray*) zwaveBridgeChannels;
 
--(void) moveChannel:(SAChannelBase*)src toPositionOfChannel:(SAChannelBase*)dst;
--(void) moveChannelGroup:(SAChannelBase*)src toPositionOfChannelGroup:(SAChannelBase*)dst;
 - (void)deleteObject:(NSManagedObject *)object;
-
-- (BOOL)updateScene: (TSC_SuplaScene *)scene;
-- (BOOL) updateSceneState: (TSC_SuplaSceneState *)state currentId:(int)currentId;
-- (SAScene*)fetchSceneById: (int)scene_id;
-- (nonnull NSArray<SAScene*> *)fetchScenes;
-- (BOOL)updateSceneUserIcons;
-- (BOOL) setAllOfScenesVisible:(int)visible whereVisibilityIs:(int)wvi;
 @end
 
 

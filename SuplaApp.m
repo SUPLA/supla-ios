@@ -59,7 +59,7 @@ NSString *kSAOnZWaveRemoveNodeResult = @"KSA-N27";
 NSString *kSAOnZWaveAssignNodeIdResult = @"KSA-N28";
 NSString *kSAOnZWaveWakeupSettingsReport = @"KSA-N29";
 NSString *kSAOnZWaveSetWakeUpTimeResult = @"KSA-N30";
-NSString *kChannelHeightDidChange = @"ChannelHeightDidChange";
+NSString *kSAOnChannelGroupCaptionSetResult = @"OnChannelGroupCaptionSetResult";
 
 @implementation SAApp {
     
@@ -227,8 +227,7 @@ NSString *kChannelHeightDidChange = @"ChannelHeightDidChange";
 }
 
 + (id<ProfileManager>)profileManager {
-    return [[MultiAccountProfileManager alloc] initWithContext: [[self instance] DB]
-            .managedObjectContext];
+    return [[MultiAccountProfileManager alloc] init];
 }
 
 -(void) setBrightnessPickerTypeToSlider:(BOOL)slider {

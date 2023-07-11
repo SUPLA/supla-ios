@@ -251,22 +251,14 @@
         || self.func == SUPLA_CHANNELFNC_IC_GAS_METER
         || self.func == SUPLA_CHANNELFNC_IC_HEAT_METER) {
         
-        if ( [self isOnline] ) {
-            
-            double value = 0.0;
-            // TODO: Remove channel type checking in future versions. Check function instead of type. Issue #82
-            if ( self.type == SUPLA_CHANNELTYPE_ELECTRICITY_METER ) {
-                value = self.totalForwardActiveEnergy;
-            } else {
-                value = self.impulseCounterCalculatedValue;
-            }
-            
-            return [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"%@ %@", [n2fmt stringFromNumber:@(value)], self.unit]];
-        
+        double value = 0.0;
+        if ( self.type == SUPLA_CHANNELTYPE_ELECTRICITY_METER ) {
+            value = self.totalForwardActiveEnergy;
         } else {
-            return [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"--- %@", self.unit]];
+            value = self.impulseCounterCalculatedValue;
         }
-                
+        
+        return [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"%@ %@", [n2fmt stringFromNumber:@(value)], self.unit]];
     }
     
     return [super attrStringValueWithIndex:idx font:font];

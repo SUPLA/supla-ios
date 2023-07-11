@@ -28,8 +28,6 @@
     SAChannelBase *_channelBase;
 }
 
-@synthesize main_view;
-
 -(BOOL)initialized {
     return _initialized;
 }
@@ -90,7 +88,6 @@
 
 -(void)removeFromSuperview {
     self.channelBase = nil;
-    self.main_view = nil;
 	[super removeFromSuperview];
 }
 

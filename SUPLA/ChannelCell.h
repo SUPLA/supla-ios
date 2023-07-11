@@ -24,6 +24,8 @@
 
 #import "SAWarningIcon.h"
 
+@class DisposeBagContainer;
+
 @interface MGSwipeTableCell (SUPLA)
 
 -(void) prepareForReuse;
@@ -31,8 +33,9 @@
 @end
 
 @class SAChannelCell;
-@protocol SAChannelCellDelegate
+@protocol SAChannelCellDelegate <MGSwipeTableCellDelegate>
 - (void)channelButtonClicked: (SAChannelCell*)cell;
+- (void)channelCaptionLongPressed: (int) remoteId;
 @end
 
 @interface MGSwipeButton (SUPLA)
@@ -67,5 +70,9 @@
 @property (strong, nonatomic) IBOutletCollection(NSLayoutConstraint) NSArray<NSLayoutConstraint *> *channelIconScalableConstraints;
 @property (nonatomic) BOOL captionTouched;
 @property (nonatomic) BOOL captionEditable;
+
+-(void) setShowChannelInfo: (BOOL)showChannelInfo;
+-(DisposeBagContainer*) getDisposeBagContainer;
+-(void) updateChannelBase: (SAChannelBase *) channelBase;
 
 @end

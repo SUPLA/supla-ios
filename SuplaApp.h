@@ -29,7 +29,6 @@
 @class SADatabase;
 @class SASettingsVC;
 @class SAStatusVC;
-@class SAMainVC;
 @class SACreateAccountVC;
 @class MainNavigationCoordinator;
 @protocol ProfileManager;
@@ -97,5 +96,5 @@ extern NSString *kSAOnZWaveRemoveNodeResult;
 extern NSString *kSAOnZWaveAssignNodeIdResult;
 extern NSString *kSAOnZWaveWakeupSettingsReport;
 extern NSString *kSAOnZWaveSetWakeUpTimeResult;
-extern NSString *kChannelHeightDidChange;
+extern NSString *kSAOnChannelGroupCaptionSetResult;
 NS_ASSUME_NONNULL_END

@@ -66,6 +66,8 @@
 - (BOOL) isSuperuserAuthorized;
 - (void) getChannelBasicCfg:(int)channelId;
 - (void) setChannelCaption:(int)channelId caption:(NSString*)caption;
+- (void) setSceneCaption:(int)sceneId caption:(NSString*)caption;
+- (void) setChannelGroupCaption:(int)channelGroupId caption:(NSString*)caption;
 - (void) setLocationCaption:(int)locationId caption:(NSString*)caption;
 - (void) setFunction:(int)function forChannelId:(int)channelId;
 - (void) zwaveGetAssignedNodeIdForChannelId:(int)channelId;
@@ -81,6 +83,7 @@
 - (void) zwaveSetWakeUpTime:(int)time forChannelId:(int)channelId;
 - (BOOL) turnOn:(BOOL)on remoteId:(int)remoteId group:(BOOL)group channelFunc:(int)channelFunc vibrate:(BOOL)vibrate;
 - (BOOL) executeAction: (int)actionId subjecType: (int)subjectType subjectId: (int)subjectId rsParameters: (TAction_RS_Parameters*)rsParameters rgbwParameters: (TAction_RGBW_Parameters*)rgbwParameters;
+- (void) registerPushNotificationClientToken:(NSData *)token;
 
 @property (nonatomic, weak) id<SASuplaClientDelegate> delegate;
 @end

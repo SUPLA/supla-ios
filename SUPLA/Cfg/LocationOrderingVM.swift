@@ -23,45 +23,39 @@ import RxSwift
 import RxRelay
 
 class LocationOrderingVM {
-    struct Inputs {
-        let commitChangesTrigger: Observable<Void>
-    }
     
     let locations = BehaviorRelay<[_SALocation]>(value: [_SALocation]())
     
-    private let _ctx: NSManagedObjectContext
-    private let _disposeBag = DisposeBag()
-    private let profileManager: ProfileManager!
+    @Singleton<ProfileRepository> private var profileRepository
+    @Singleton<ChannelRepository> private var channelRepository
+    @Singleton<GroupRepository> private var groupRepository
+    @Singleton<SceneRepository> private var sceneRepository
+    @Singleton<LocationRepository> private var locationRepository
     
-    init(managedObjectContext: NSManagedObjectContext) {
-        _ctx = managedObjectContext
-        profileManager = MultiAccountProfileManager(context: _ctx)
-        
+    func onViewDidLoad() {
         locations.accept(try! fetchLocations())
-    }
-
-    func bind(inputs: Inputs) {
-        inputs.commitChangesTrigger.subscribe { _ in
-            self.saveNewOrder()
-        }.disposed(by: _disposeBag)
     }
     
     private func fetchLocations() throws -> [_SALocation] {
         var locationsSet = Set<NSNumber>()
-        let profile = profileManager.getCurrentProfile()!
-        for channel in try getChannelsLocations(profile: profile) {
+        for channel in try getChannelsLocations() {
             if let locationId = channel.location?.location_id {
                 locationsSet.insert(locationId)
             }
         }
-        for scene in try getScenesLocations(profile: profile) {
+        for scene in try getScenesLocations() {
             if let locationId = scene.location?.location_id {
                 locationsSet.insert(locationId)
             }
         }
-        
+        for group in try getGroupsLocations() {
+            if let locationId = group.location?.location_id {
+                locationsSet.insert(locationId)
+            }
+        }
+
         var result = [_SALocation]()
-        for location in try getLocations(profile: profile) {
+        for location in try getLocations() {
             if let locationId = location.location_id {
                 if (locationsSet.contains(locationId)) {
                     result.append(location)
@@ -72,42 +66,48 @@ class LocationOrderingVM {
         return result
     }
     
-    private func getChannelsLocations(profile: AuthProfileItem) throws -> [SAChannelBase] {
-        let fr = SAChannelBase.fetchRequest()
-        fr.predicate = NSPredicate(format: "visible = true AND profile = %@", profile)
-        
-        return try _ctx.fetch(fr)
+    private func getChannelsLocations() throws -> [SAChannelBase] {
+        try profileRepository.getActiveProfile()
+            .flatMapFirst { self.channelRepository.getAllVisibleChannels(forProfile: $0) }
+            .subscribeSynchronous()!
+    }
+
+    private func getGroupsLocations() throws -> [SAChannelBase] {
+        try profileRepository.getActiveProfile()
+            .flatMapFirst { self.groupRepository.getAllVisibleGroups(forProfile: $0) }
+            .subscribeSynchronous()!
+    }
+
+    private func getScenesLocations() throws -> [SAScene] {
+        try profileRepository.getActiveProfile()
+            .flatMapFirst { self.sceneRepository.getAllVisibleScenes(forProfile: $0) }
+            .subscribeSynchronous()!
     }
     
-    private func getScenesLocations(profile: AuthProfileItem) throws -> [SAScene] {
-        let fr = SAScene.fetchRequest()
-        fr.predicate = NSPredicate(format: "visible = true AND profile = %@", profile)
-        
-        return try _ctx.fetch(fr)
+    private func getLocations() throws -> [_SALocation] {
+        try profileRepository.getActiveProfile()
+            .flatMapFirst { self.locationRepository.getAllLocations(forProfile: $0) }
+            .subscribeSynchronous()!
     }
-    
-    private func getLocations(profile: AuthProfileItem) throws -> [_SALocation] {
-        let fr = _SALocation.fetchRequest()
-        fr.predicate = NSPredicate(format: "visible = true AND profile = %@", profile)
-        fr.sortDescriptors = [
-            NSSortDescriptor(key: "sortOrder", ascending: true),
-            NSSortDescriptor(
-                key: "caption",
-                ascending: true,
-                selector: #selector(NSString.localizedCaseInsensitiveCompare(_:))
-            )
-            
-        ]
-        
-        return try _ctx.fetch(fr)
-    }
-    
-    private func saveNewOrder() {
-        var pos = Int16(0)
-        for elt in self.locations.value {
-            elt.sortOrder = NSNumber(value: pos)
-            pos += 1
+
+    func saveNewOrder() {
+        var map: [NSNumber: Int] = [:]
+        locations.value.enumerated().forEach { (i, location) in
+            map[location.location_id!] = i
         }
-        if _ctx.hasChanges { try! _ctx.save() }
+
+        try! profileRepository.getActiveProfile()
+            .flatMapFirst { self.locationRepository.getAllLocations(forProfile: $0) }
+            .map { locations in
+                locations.forEach { location in
+                    if
+                        let locationId = location.location_id,
+                        let order = map[locationId] {
+                        location.sortOrder = NSNumber(value: order)
+                    }
+                }
+            }
+            .flatMapFirst { self.locationRepository.save() }
+            .subscribeSynchronous()
     }
 }

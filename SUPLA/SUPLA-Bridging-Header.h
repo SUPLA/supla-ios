@@ -4,7 +4,6 @@
 
 #import "SuplaApp.h"
 #import "SAChartHelper.h"
-#import "MainVC.h"
 #import "CreateAccountVC.h"
 #import "StatusVC.h"
 #import "AddWizardVC.h"
@@ -30,4 +29,12 @@
 #import "MGSwipeButton.h"
 #import "UIColor+SUPLA.h"
 #import "SACaptionEditor.h"
-#import "SALocationCaptionEditor.h"
+#import "ChannelCell.h"
+#import "SAChannelGroup+CoreDataClass.h"
+#import "SAChannelGroupRelation+CoreDataClass.h"
+#import "SAEvent.h"
+#import "SARateApp.h"
+#import "SADownloadUserIcons.h"
+#import "SingleCallWrapper.h"
+
+#import "supla-client.h"

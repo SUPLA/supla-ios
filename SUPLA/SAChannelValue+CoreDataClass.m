@@ -72,6 +72,31 @@
     return result;    
 }
 
+- (BOOL) setValueSwift:(TSuplaChannelValue_B)value {
+    
+    BOOL result = NO;
+    
+    NSData *v =  [NSData dataWithBytes:value.value length:SUPLA_CHANNELVALUE_SIZE];
+    NSData *sv = [NSData dataWithBytes:value.sub_value length:SUPLA_CHANNELVALUE_SIZE];
+    
+    if ( self.value == nil || ![v isEqualToData:[self dataValue]] ) {
+        self.value = v;
+        result = YES;
+    }
+    
+    if ( self.sub_value == nil || ![sv isEqualToData:[self dataSubValue]] ) {
+        self.sub_value = sv;
+        result = YES;
+    }
+    
+    if (self.sub_value_type != value.sub_value_type) {
+        self.sub_value_type = value.sub_value_type;
+        result = YES;
+    }
+    
+    return result;
+}
+
 - (BOOL) isOnline {
     return self.online;
 }

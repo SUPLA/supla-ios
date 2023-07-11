@@ -18,8 +18,9 @@
 
 #import <UIKit/UIKit.h>
 #import "SUPLA-Swift.h"
+@import UserNotifications;
 
-@interface AppDelegate : UIResponder <UIApplicationDelegate>
+@interface AppDelegate : UIResponder <UIApplicationDelegate, UNUserNotificationCenterDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
 @property (strong, nonatomic) id<NavigationCoordinator> navigation;

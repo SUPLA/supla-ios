@@ -17,6 +17,8 @@
  */
 
 import Foundation
+import RxRelay
+import RxSwift
 
 /**
     Protocol created to avoid using static instances in code. Instance of it is created when the app starts and everything there will behave like a static content.
@@ -25,8 +27,32 @@ protocol RuntimeConfig {
     
     var activeProfileId: ProfileID? { get set }
     
+    func preferencesObservable() -> Observable<RuntimePreferences>
+    func emitPreferenceChange(scaleFactor: Float, showChannelInfo: Bool)
 }
 
 class RuntimeConfigImpl: RuntimeConfig {
+    
+    @Singleton<GlobalSettings> private var settings
+    
     var activeProfileId: ProfileID?
+    lazy var configRelay: BehaviorRelay<RuntimePreferences> = {
+        BehaviorRelay(value: RuntimePreferences(
+            scaleFactor: settings.channelHeight.factor(),
+            showChannelInfo: settings.showChannelInfo
+        ))
+    }()
+    
+    func preferencesObservable() -> Observable<RuntimePreferences> {
+        return configRelay.asObservable()
+    }
+    
+    func emitPreferenceChange(scaleFactor: Float, showChannelInfo: Bool) {
+        configRelay.accept(RuntimePreferences(scaleFactor: scaleFactor, showChannelInfo: showChannelInfo))
+    }
+}
+
+struct RuntimePreferences {
+    let scaleFactor: Float
+    let showChannelInfo: Bool
 }

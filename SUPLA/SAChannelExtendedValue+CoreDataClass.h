@@ -26,6 +26,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface SAChannelExtendedValue : SAChannelValueBase
 - (void) initWithChannelId:(int)channelId;
 - (BOOL) setValueWithChannelExtendedValue:(TSuplaChannelExtendedValue*)value;
+- (BOOL) setValueSwift:(TSuplaChannelExtendedValue)value;
 - (int) valueType;
 @end
 

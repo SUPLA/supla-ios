@@ -16,8 +16,6 @@
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 
-
-
 import XCTest
 import RxTest
 import RxSwift
@@ -26,16 +24,7 @@ import CoreData
 
 @testable import SUPLA
 
-class AccountCreationVMTests: XCTestCase {
-    
-    private lazy var scheduler: TestScheduler! = { TestScheduler(initialClock: 0) }()
-    private lazy var stateObserver: TestableObserver<AccountCreationViewState>! = {
-        scheduler.createObserver(AccountCreationViewState.self)
-    }()
-    private lazy var eventObserver: TestableObserver<AccountCreationViewEvent>! = {
-        scheduler.createObserver(AccountCreationViewEvent.self)
-    }()
-    private lazy var disposeBag: DisposeBag! = { DisposeBag() }()
+class AccountCreationVMTests: ViewModelTest<AccountCreationViewState, AccountCreationViewEvent> {
     
     private lazy var ctx: NSManagedObjectContext! = { setUpInMemoryManagedObjectContext() }()
     private lazy var profile: AuthProfileItem? = nil
@@ -61,15 +50,12 @@ class AccountCreationVMTests: XCTestCase {
         profile = nil
         profileManager = nil
         
-        scheduler = nil
-        stateObserver = nil
-        eventObserver = nil
-        disposeBag = nil
-        
         globalSettings = nil
         runtimeConfig = nil
         suplaClientProvider = nil
         suplaApp = nil
+        
+        super.tearDown()
     }
     
     func test_shouldCleanServerAddres_whenEmailAddressChanged() {
@@ -79,7 +65,7 @@ class AccountCreationVMTests: XCTestCase {
         let email = "second@test.org"
         let serverAddress = "test.com"
         profile?.authInfo?.serverForEmail = serverAddress
-        observe()
+        observe(viewModel)
         
         // when
         scheduler.advanceTo(1)
@@ -107,7 +93,7 @@ class AccountCreationVMTests: XCTestCase {
         
         profile?.authInfo?.emailAddress = email
         profile?.authInfo?.serverForEmail = serverAddress
-        observe()
+        observe(viewModel)
         
         // when
         scheduler.advanceTo(1)
@@ -130,7 +116,7 @@ class AccountCreationVMTests: XCTestCase {
         let serverAddress = "test.com"
         profile?.authInfo?.serverAutoDetect = false
         profile?.authInfo?.serverForEmail = serverAddress
-        observe()
+        observe(viewModel)
         
         // when
         scheduler.advanceTo(1)
@@ -157,7 +143,7 @@ class AccountCreationVMTests: XCTestCase {
         let email = "some@\(serverAddress)"
         
         profile?.authInfo?.emailAddress = email
-        observe()
+        observe(viewModel)
         
         // when
         scheduler.advanceTo(1)
@@ -180,7 +166,7 @@ class AccountCreationVMTests: XCTestCase {
         setupProfile()
         
         // given
-        observe()
+        observe(viewModel)
         
         // when
         scheduler.advanceTo(1)
@@ -200,7 +186,7 @@ class AccountCreationVMTests: XCTestCase {
         setupProfile()
         
         // given
-        observe()
+        observe(viewModel)
         
         // when
         scheduler.advanceTo(1)
@@ -223,7 +209,7 @@ class AccountCreationVMTests: XCTestCase {
         // given
         profile?.advancedSetup = true
         profile?.authInfo?.emailAuth = false
-        observe()
+        observe(viewModel)
         
         // when
         scheduler.advanceTo(1)
@@ -248,7 +234,7 @@ class AccountCreationVMTests: XCTestCase {
         // given
         profile?.advancedSetup = true
         profile?.authInfo?.serverAutoDetect = false
-        observe()
+        observe(viewModel)
         
         // when
         scheduler.advanceTo(1)
@@ -271,7 +257,7 @@ class AccountCreationVMTests: XCTestCase {
         setupProfile()
         
         // given
-        observe()
+        observe(viewModel)
         
         // when
         scheduler.advanceTo(1)
@@ -290,7 +276,7 @@ class AccountCreationVMTests: XCTestCase {
         setupProfile()
         
         // given
-        observe()
+        observe(viewModel)
         
         // when
         scheduler.advanceTo(1)
@@ -322,7 +308,7 @@ class AccountCreationVMTests: XCTestCase {
         
         // given
         profile?.isActive = false
-        observe()
+        observe(viewModel)
         
         // when
         scheduler.advanceTo(1)
@@ -364,7 +350,7 @@ class AccountCreationVMTests: XCTestCase {
         let server = "some.url.com"
         profile?.authInfo?.serverAutoDetect = false
         profile?.authInfo?.serverForEmail = server
-        observe()
+        observe(viewModel)
         
         // when
         scheduler.advanceTo(1)
@@ -413,7 +399,7 @@ class AccountCreationVMTests: XCTestCase {
         let server = "other.url.com"
         profile?.authInfo?.emailAuth = false
         profile?.authInfo?.serverForAccessID = server
-        observe()
+        observe(viewModel)
         
         // when
         scheduler.advanceTo(1)
@@ -442,7 +428,7 @@ class AccountCreationVMTests: XCTestCase {
         let otherProfile = createProfile()
         profileManager.allProfilesResult = [profile!, otherProfile]
         profileManager.activateResults = [false]
-        observe()
+        observe(viewModel)
         
         // when
         scheduler.advanceTo(1)
@@ -466,7 +452,7 @@ class AccountCreationVMTests: XCTestCase {
         // given
         globalSettings.anyAccountRegisteredReturns = true
         let nameObservable = PublishSubject<String>()
-        observe()
+        observe(viewModel)
         
         // when
         scheduler.advanceTo(1)
@@ -502,7 +488,7 @@ class AccountCreationVMTests: XCTestCase {
         let otherProfile = createProfile()
         otherProfile.name = name
         profileManager.allProfilesResult = [profile!, otherProfile]
-        observe()
+        observe(viewModel)
         
         // when
         scheduler.advanceTo(1)
@@ -533,7 +519,7 @@ class AccountCreationVMTests: XCTestCase {
         
         // given
         globalSettings.anyAccountRegisteredReturns = true
-        observe()
+        observe(viewModel)
         
         // when
         scheduler.advanceTo(1)
@@ -559,7 +545,7 @@ class AccountCreationVMTests: XCTestCase {
         // given
         let email = "some@email.org"
         globalSettings.anyAccountRegisteredReturns = true
-        observe()
+        observe(viewModel)
         
         // when
         scheduler.advanceTo(1)
@@ -597,7 +583,7 @@ class AccountCreationVMTests: XCTestCase {
         let email = "some@email.org"
         profile?.authInfo?.emailAddress = email
         globalSettings.anyAccountRegisteredReturns = true
-        observe()
+        observe(viewModel)
         
         // when
         scheduler.advanceTo(1)
@@ -630,7 +616,7 @@ class AccountCreationVMTests: XCTestCase {
         let email = "some@email.org"
         profile?.isActive = false
         globalSettings.anyAccountRegisteredReturns = true
-        observe()
+        observe(viewModel)
         
         // when
         scheduler.advanceTo(1)
@@ -665,7 +651,7 @@ class AccountCreationVMTests: XCTestCase {
         // given
         let email = "same@email.org"
         globalSettings.anyAccountRegisteredReturns = false
-        observe()
+        observe(viewModel)
         
         // when
         scheduler.advanceTo(1)
@@ -696,11 +682,6 @@ class AccountCreationVMTests: XCTestCase {
         XCTAssertEqual(globalSettings.anyAccountRegisteredValues[0], true)
         
         XCTAssertEqual(suplaClientProvider.suplaClientMock.reconnectCalls, 1)
-    }
-    
-    private func observe() {
-        viewModel.eventsObervable().subscribe(eventObserver).disposed(by: disposeBag)
-        viewModel.stateObservable().subscribe(stateObserver).disposed(by: disposeBag)
     }
     
     private func createProfile() -> AuthProfileItem {

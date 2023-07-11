@@ -27,10 +27,11 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic)int LocationCount;
 @property (nonatomic)int ChannelCount;
 @property (nonatomic)int ChannelGroupCount;
+@property (nonatomic)int SceneCount;
 @property (nonatomic)int Flags;
 @property (nonatomic)int Version;
 
-+ (SARegResult*) RegResultClientID:(int) clientID locationCount:(int) location_count channelCount:(int) channel_count channelGroupCount:(int) cgroup_count flags:(int) flags version:(int)version;
++ (SARegResult*) RegResultClientID:(int) clientID locationCount:(int) location_count channelCount:(int) channel_count channelGroupCount:(int) cgroup_count sceneCount:(int) scene_count flags:(int) flags version:(int)version;
 
 @end
 

@@ -1,0 +1,44 @@
+/*
+ This program is free software; you can redistribute it and/or
+ modify it under the terms of the GNU General Public License
+ as published by the Free Software Foundation; either version 2
+ of the License, or (at your option) any later version.
+
+ This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ GNU General Public License for more details.
+
+ You should have received a copy of the GNU General Public License
+ along with this program; if not, write to the Free Software
+ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
+ */
+
+/* This file contains default (english) translations for strings keys */
+
+"AccountCreation.title" = "Edit account";
+"AccountCreation.modificationTitle" = "Add an account";
+
+"AccountRemoval.url" = "https://{SERVER_ADDRESS}/db99845855b2ecbfecca9a095062b96c3e27703f?lang=en";
+
+"Scenes.ActionButtons.execute" = "Execute";
+"Scenes.ActionButtons.abort" = "Abort";
+
+"General.error" = "Error";
+
+"Cfg.removal.title" = "Delete account?";
+"Cfg.removal.action.logout" = "Forget on this device";
+"Cfg.removal.action.remove" = "Forget and remove on cloud";
+"Cfg.removal.dialog.failed.title" = "Removal failed";
+"Cfg.removal.dialog.failed.message" = "Removal of your account failed, pleas try again";
+"Cfg.removal.dialog.missing_name" = "Account name is missing";
+"Cfg.removal.dialog.duplicated_name" = "Account by that name already exists";
+"Cfg.removal.dialog.incomplete" = "Required data is missing";
+
+"push_notification_limit_exceeded" = "The push notification limit of %@ per hour has been exceeded.";
+
+"dialog_new_gesture_info_text" = "Swipe gesture to open details was removed, tap on particular channel to open it.";
+
+"app_settings.permissions_header" = "Permissions";
+"app_settings.notifications_label" = "Notifications";
+"app_settings.location_label" = "Location";
