@@ -1967,6 +1967,7 @@
 		A56F15F02A2E698400C2E21B /* DeleteEntitiesMigrationPolicy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteEntitiesMigrationPolicy.swift; sourceTree = "<group>"; };
 		A56F15F42A2E6E3C00C2E21B /* Migration12to13ModelMapping.xcmappingmodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcmappingmodel; path = Migration12to13ModelMapping.xcmappingmodel; sourceTree = "<group>"; };
 		A56F15F62A2E721F00C2E21B /* ActiveAccount12to13MigrationPolicy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActiveAccount12to13MigrationPolicy.swift; sourceTree = "<group>"; };
+		A573B0942A5E9191001E19D0 /* SUPLA 14.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "SUPLA 14.xcdatamodel"; sourceTree = "<group>"; };
 		A573B38B29DE9F5600EBAFC4 /* BaseViewControllerExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewControllerExtensions.swift; sourceTree = "<group>"; };
 		A573B39129DEB25900EBAFC4 /* ViewState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewState.swift; sourceTree = "<group>"; };
 		A5756F8129DC102800C32A1B /* AccountRemovalVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountRemovalVC.swift; sourceTree = "<group>"; };
@@ -5965,6 +5966,7 @@
 		407004251BB5706500F6187F /* SUPLA.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				A573B0942A5E9191001E19D0 /* SUPLA 14.xcdatamodel */,
 				AEF6A5D128BBD35B0019684A /* SUPLA 13.xcdatamodel */,
 				AEDC40B02857B60500FA8A9B /* SUPLA 12.xcdatamodel */,
 				AEED1FD22737F55C00DE6289 /* SUPLA 11.xcdatamodel */,
@@ -5979,7 +5981,7 @@
 				40BBA34620AC52EA0054CD20 /* SUPLA 2.xcdatamodel */,
 				407004261BB5706500F6187F /* SUPLA.xcdatamodel */,
 			);
-			currentVersion = AEF6A5D128BBD35B0019684A /* SUPLA 13.xcdatamodel */;
+			currentVersion = A573B0942A5E9191001E19D0 /* SUPLA 14.xcdatamodel */;
 			path = SUPLA.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

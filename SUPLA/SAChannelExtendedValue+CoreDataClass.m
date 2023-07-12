@@ -18,6 +18,7 @@
 
 #import "SAChannelExtendedValue+CoreDataClass.h"
 #import "proto.h"
+#import "supla-client.h"
 
 @implementation SAChannelExtendedValue
 
@@ -57,6 +58,52 @@
     return result;
 }
 
+- (NSDate*) getTimerEndDate: (int32_t) type size: (int32_t) size value: (char[]) value {
+    TTimerState_ExtendedValue timerState = {};
+    if (type == EV_TYPE_CHANNEL_AND_TIMER_STATE_V1) {
+        if (size >= sizeof(TChannelAndTimerState_ExtendedValue) - SUPLA_SENDER_NAME_MAXSIZE
+            && size <= sizeof(TChannelAndTimerState_ExtendedValue)) {
+            TChannelAndTimerState_ExtendedValue *state = (TChannelAndTimerState_ExtendedValue*) value;
+            memcpy(&timerState, &state->Timer, size - sizeof(TChannelState_ExtendedValue));
+            
+            return [[NSDate alloc] initWithTimeIntervalSince1970: timerState.CountdownEndsAt];
+        }
+    } else if (type == EV_TYPE_TIMER_STATE_V1) {
+        memcpy(&timerState, value, size);
+        
+        return [[NSDate alloc] initWithTimeIntervalSince1970: timerState.CountdownEndsAt];
+    }
+    return nil;
+}
+
+- (NSDate*) getTimerEndDate {
+    NSData* data = [self dataValue];
+    TSuplaChannelExtendedValue multi_ev = {};
+    if (data && data.length <= SUPLA_CHANNELEXTENDEDVALUE_SIZE) {
+        [data getBytes:multi_ev.value length:data.length];
+        multi_ev.size = (unsigned int) data.length;
+        multi_ev.type = self.valueType;
+        
+        if (self.valueType != EV_TYPE_MULTI_VALUE) {
+            return [self getTimerEndDate:multi_ev.type size:multi_ev.size value:multi_ev.value];
+        }
+        
+        int index = 0;
+        TSuplaChannelExtendedValue single_ev = {};
+        
+        while (srpc_evtool_value_get(&multi_ev, index, &single_ev)) {
+            TTimerState_ExtendedValue timerState = {};
+            
+            NSDate* timerEndDate = [self getTimerEndDate:single_ev.type size:single_ev.size value:single_ev.value];
+            if (timerEndDate != nil) {
+                return timerEndDate;
+            }
+        }
+    }
+    
+    return nil;
+}
+
 - (BOOL) setValueSwift:(TSuplaChannelExtendedValue)value {
     
     BOOL result = NO;
@@ -67,6 +114,8 @@
     }
     
     if (size > 0) {
+        NSDate* oldTimerEndDate = [self getTimerEndDate];
+        
         self.type = value.type;
         NSData *v =  [NSData dataWithBytes:value.value length:size];
         
@@ -76,6 +125,21 @@
             || ![v isEqualToData:(NSData *)self.value] ) {
             self.value = v;
             self.type = value.type;
+            
+            NSDate* timerEndDate = [self getTimerEndDate];
+            if (timerEndDate != nil) {
+                NSDate* currentDate = [[NSDate alloc] init];
+                if (self.timerStartTime == nil) {
+                    self.timerStartTime = currentDate;
+                } else if (currentDate.timeIntervalSince1970 > timerEndDate.timeIntervalSince1970) {
+                    self.timerStartTime = nil;
+                } else if(timerEndDate != oldTimerEndDate) {
+                    self.timerStartTime = currentDate;
+                }
+            } else {
+                self.timerStartTime = nil;
+            }
+            
             result = YES;
         }
     } else {

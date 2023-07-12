@@ -133,30 +133,26 @@ class TimerDetailVC: BaseViewControllerVM<TimerDetailViewState, TimerDetailViewE
                 state.deviceState?.isOn ?? false ?
                     Strings.TimerDetail.editHeaderOn : Strings.TimerDetail.editHeaderOff
             )
-            
-            timerConfigurationView.isHidden = false
-            timerProgressView.isHidden = true
-            progressTimeLabel.isHidden = true
-            progressEndHourLabel.isHidden = true
-        } else if let timerEndDate = state.deviceState?.timerEndDate {
+        }
+        if let timerEndDate = state.deviceState?.timerEndDate {
+            let timerData = TimerData(
+                timerStartDate: state.deviceState?.timerStartTime,
+                timerEndDate: timerEndDate
+            )
             timer = Timer.scheduledTimer(
                 timeInterval: 0.1,
                 target: self,
-                selector: #selector(handleTimerUpdate),
-                userInfo: timerEndDate,
+                selector: #selector(handleTimerUpdate(timer:)),
+                userInfo: timerData,
                 repeats: true
             )
-            
-            timerConfigurationView.isHidden = true
-            timerProgressView.isHidden = false
-            progressTimeLabel.isHidden = false
-            progressEndHourLabel.isHidden = false
-        } else {
-            timerConfigurationView.isHidden = false
-            timerProgressView.isHidden = true
-            progressTimeLabel.isHidden = true
-            progressEndHourLabel.isHidden = true
+            handleTimerUpdate(timerData: timerData)
         }
+        
+        timerConfigurationView.isHidden = !state.editMode && state.deviceState?.timerEndDate != nil
+        timerProgressView.isHidden = state.deviceState?.timerEndDate == nil
+        progressTimeLabel.isHidden = state.deviceState?.timerEndDate == nil
+        progressEndHourLabel.isHidden = state.deviceState?.timerEndDate == nil
         
         if let isOn = state.deviceState?.isOn {
             stopButton.setAttributedTitle(
@@ -245,24 +241,36 @@ class TimerDetailVC: BaseViewControllerVM<TimerDetailViewState, TimerDetailViewE
     
     @objc
     private func handleTimerUpdate(timer: Timer) {
-        if let timerEndDate = timer.userInfo as? Date {
-            let dateFormatter = DateFormatter()
-            dateFormatter.dateFormat = Strings.General.hourFormat
-            let dateString = dateFormatter.string(from: timerEndDate)
-            progressEndHourLabel.text = Strings.TimerDetail.endHour.arguments(dateString)
-            
-            let data = viewModel.calculateProgressViewData(startTime: current, endTime: timerEndDate)
-            timerProgressView.progressPercentage = data.progres
-            progressTimeLabel.text = Strings.TimerDetail.format.arguments(
-                data.leftTimeValues.hours,
-                data.leftTimeValues.minutes,
-                data.leftTimeValues.seconds
-            )
+        if let timerData = timer.userInfo as? TimerData {
+            handleTimerUpdate(timerData: timerData)
         } else {
             timer.invalidate()
             progressTimeLabel.text = ""
             progressEndHourLabel.text = ""
         }
+    }
+    
+    private func handleTimerUpdate(timerData: TimerData) {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = Strings.General.hourFormat
+        let dateString = dateFormatter.string(from: timerData.timerEndDate)
+        progressEndHourLabel.text = Strings.TimerDetail.endHour.arguments(dateString)
+        
+        let data = viewModel.calculateProgressViewData(
+            startTime: timerData.timerStartDate ?? current,
+            endTime: timerData.timerEndDate
+        )
+        timerProgressView.progressPercentage = data.progres
+        progressTimeLabel.text = Strings.TimerDetail.format.arguments(
+            data.leftTimeValues.hours,
+            data.leftTimeValues.minutes,
+            data.leftTimeValues.seconds
+        )
+    }
+    
+    struct TimerData {
+        let timerStartDate: Date?
+        let timerEndDate: Date
     }
 }
 

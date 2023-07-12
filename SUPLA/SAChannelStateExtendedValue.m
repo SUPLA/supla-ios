@@ -64,7 +64,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
                    && ev->size <= sizeof(TChannelAndTimerState_ExtendedValue)) {
             TChannelAndTimerState_ExtendedValue *state = (TChannelAndTimerState_ExtendedValue*)ev->value;
             memcpy(csev, &state->Channel, sizeof(TChannelState_ExtendedValue));
-            memcpy(tsev, &state->Timer, ev->size);
+            memcpy(tsev, &state->Timer, ev->size - sizeof(TChannelState_ExtendedValue));
             result = YES;
         } else if (ev->type == EV_TYPE_TIMER_STATE_V1 && ev->size <= sizeof(TTimerState_ExtendedValue)
                    && ev->size >= sizeof(TTimerState_ExtendedValue) - SUPLA_SENDER_NAME_MAXSIZE) {

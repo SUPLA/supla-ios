@@ -27,6 +27,7 @@ extension DeviceStateHelperVMI {
             isOnline: channel.isOnline(),
             isOn: channel.value?.hiValue() ?? 0 > 0,
             timerEndDate: createTimerEndDateFor(channel),
+            timerStartTime: channel.ev?.timerStartTime,
             iconData: createIconData(channel)
         )
     }
@@ -61,15 +62,16 @@ extension DeviceStateHelperVMI {
 }
 
 struct DeviceStateViewState: Equatable {
-    var isOnline: Bool
-    var isOn: Bool
-    var timerEndDate: Date?
-    var iconData: IconData
+    let isOnline: Bool
+    let isOn: Bool
+    let timerEndDate: Date?
+    let timerStartTime: Date?
+    let iconData: IconData
     
     struct IconData: Equatable {
-        var function: Int32
-        var userIcon: SAUserIcon?
-        var altIcon: Int32
-        var channelState: ChannelState
+        let function: Int32
+        let userIcon: SAUserIcon?
+        let altIcon: Int32
+        let channelState: ChannelState
     }
 }
