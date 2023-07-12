@@ -79,3 +79,8 @@
 "timer_detail_cancel" = "Cancel and turn %@";
 "timer_detail_cancel_on" = "on";
 "timer_detail_cancel_off" = "off";
+"timer_detail_edit_time" = "Edit time";
+"timer_detail_save" = "Save";
+"timer_detail_edit_cancel" = "Cancel editing";
+"timer_detail_end_hour" = "until %@";
+"timer_detail_format" = "%02d:%02d:%02d";

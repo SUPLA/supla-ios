@@ -362,3 +362,7 @@
 "timer_detail_cancel" = "Anuluj i %@";
 "timer_detail_cancel_on" = "włącz";
 "timer_detail_cancel_off" = "wyłącz";
+"timer_detail_edit_time" = "Edytuj czas";
+"timer_detail_save" = "Zapisz";
+"timer_detail_edit_cancel" = "Anuluj edycję";
+"timer_detail_end_hour" = "do godz. %@";

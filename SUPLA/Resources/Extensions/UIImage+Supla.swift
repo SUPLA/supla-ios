@@ -22,4 +22,7 @@ extension UIImage {
     static let iconGeneral = UIImage(named: "icon_general")
     static let iconTimer = UIImage(named: "icon_timer")
     static let iconMetrics = UIImage(named: "icon_metrics")
+    
+    // Icons
+    static let pencil = UIImage(named: "pencil")
 }

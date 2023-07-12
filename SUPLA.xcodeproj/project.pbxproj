@@ -693,6 +693,8 @@
 		A530EE4A2A5C13F800F8DAEE /* UIFilledButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A530EE492A5C13F800F8DAEE /* UIFilledButton.swift */; };
 		A530EE4C2A5C2A3E00F8DAEE /* UIBorderedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A530EE4B2A5C2A3E00F8DAEE /* UIBorderedButton.swift */; };
 		A530EE4E2A5C357100F8DAEE /* StartTimerUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A530EE4D2A5C357100F8DAEE /* StartTimerUseCase.swift */; };
+		A530EE502A5C991C00F8DAEE /* UIPlainButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A530EE4F2A5C991C00F8DAEE /* UIPlainButton.swift */; };
+		A530EE532A5D437C00F8DAEE /* TimerProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A530EE522A5D437C00F8DAEE /* TimerProgressView.swift */; };
 		A553862829E004E400B5CF3F /* GlobalSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = A553862729E004E400B5CF3F /* GlobalSettings.swift */; };
 		A553862B29E0202700B5CF3F /* Singleton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A553862A29E0202700B5CF3F /* Singleton.swift */; };
 		A553862D29E021AE00B5CF3F /* DiContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A553862C29E021AE00B5CF3F /* DiContainer.swift */; };
@@ -1951,6 +1953,8 @@
 		A530EE492A5C13F800F8DAEE /* UIFilledButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIFilledButton.swift; sourceTree = "<group>"; };
 		A530EE4B2A5C2A3E00F8DAEE /* UIBorderedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIBorderedButton.swift; sourceTree = "<group>"; };
 		A530EE4D2A5C357100F8DAEE /* StartTimerUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartTimerUseCase.swift; sourceTree = "<group>"; };
+		A530EE4F2A5C991C00F8DAEE /* UIPlainButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIPlainButton.swift; sourceTree = "<group>"; };
+		A530EE522A5D437C00F8DAEE /* TimerProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerProgressView.swift; sourceTree = "<group>"; };
 		A553862729E004E400B5CF3F /* GlobalSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalSettings.swift; sourceTree = "<group>"; };
 		A553862A29E0202700B5CF3F /* Singleton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Singleton.swift; sourceTree = "<group>"; };
 		A553862C29E021AE00B5CF3F /* DiContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiContainer.swift; sourceTree = "<group>"; };
@@ -3410,8 +3414,17 @@
 			children = (
 				A530EE492A5C13F800F8DAEE /* UIFilledButton.swift */,
 				A530EE4B2A5C2A3E00F8DAEE /* UIBorderedButton.swift */,
+				A530EE4F2A5C991C00F8DAEE /* UIPlainButton.swift */,
 			);
 			path = Buttons;
+			sourceTree = "<group>";
+		};
+		A530EE512A5D432600F8DAEE /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				A530EE522A5D437C00F8DAEE /* TimerProgressView.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 		A553862929E0201A00B5CF3F /* DI */ = {
@@ -3794,6 +3807,7 @@
 		A5F14B7729DED97400682FA6 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				A530EE512A5D432600F8DAEE /* Views */,
 				A530EE482A5C13D700F8DAEE /* Buttons */,
 				A530EDEE2A53F79900F8DAEE /* Components */,
 				A5F29B8E2A20B21A00ED700A /* TableView */,
@@ -5084,6 +5098,7 @@
 				A5E4904D2A3C6250006801FE /* TemperatureUnit.swift in Sources */,
 				A5F29BB02A24C12500ED700A /* UpdateLocationUseCase.swift in Sources */,
 				A5F29BC62A24E5DE00ED700A /* ChangeChannelGroupRelationsVisibilityUseCase.swift in Sources */,
+				A530EE532A5D437C00F8DAEE /* TimerProgressView.swift in Sources */,
 				A530EE082A557EE400F8DAEE /* PowerButtonView.swift in Sources */,
 				40A6757F1BA1A5B6004A51C4 /* SuplaApp.m in Sources */,
 				018CFD2023281A5900888CB7 /* SAElectricityMeterExtendedValue.m in Sources */,
@@ -5100,6 +5115,7 @@
 				401CA1F21BA0A28A00117AF4 /* SuplaClient.m in Sources */,
 				AE7CAAFD275BF87D0024095F /* BaseViewController.m in Sources */,
 				A5F29B932A20B56500ED700A /* CreateProfileScenesListUseCase.swift in Sources */,
+				A530EE502A5C991C00F8DAEE /* UIPlainButton.swift in Sources */,
 				A5F29B6D2A1E26B400ED700A /* SceneListVM.swift in Sources */,
 				6EC0BF2C2875F97B0000CAA8 /* ChartSettings.swift in Sources */,
 				A530EE1E2A56FD4300F8DAEE /* StaircaseTimerIconNameProducer.swift in Sources */,

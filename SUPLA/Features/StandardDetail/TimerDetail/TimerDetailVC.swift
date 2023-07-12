@@ -23,6 +23,8 @@ class TimerDetailVC: BaseViewControllerVM<TimerDetailViewState, TimerDetailViewE
     @Singleton<GetChannelBaseIconUseCase> private var getChannelBaseIconUseCase
     
     private let remoteId: Int32
+    private var timer: Timer? = nil
+    private let current = Date()
     
     private lazy var deviceStateView: DeviceStateView = {
         let view = DeviceStateView()
@@ -30,11 +32,45 @@ class TimerDetailVC: BaseViewControllerVM<TimerDetailViewState, TimerDetailViewE
         return view
     }()
     
+    private lazy var timerProgressGuide: UILayoutGuide = {
+        let guide = UILayoutGuide()
+        guide.identifier = "timerProgressGuide"
+        return guide
+    }()
+    
+    private lazy var timerProgressView: TimerProgressView = {
+        let view = TimerProgressView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+    
+    private lazy var progressTimeLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.font = .h5
+        return label
+    }()
+    
+    private lazy var progressEndHourLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.font = .body1
+        return label
+    }()
+    
     private lazy var timerConfigurationView: TimerConfigurationView = {
         let view = TimerConfigurationView()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.delegate = self
         return view
+    }()
+    
+    private lazy var editButton: UIPlainButton = {
+        let button = UIPlainButton()
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.setAttributedTitle(Strings.TimerDetail.editTime)
+        button.icon = .pencil
+        return button
     }()
     
     private lazy var stopButton: UIBorderedButton = {
@@ -81,14 +117,45 @@ class TimerDetailVC: BaseViewControllerVM<TimerDetailViewState, TimerDetailViewE
     }
     
     override func handle(state: TimerDetailViewState) {
+        timer?.invalidate()
+        timerProgressView.progressPercentage = 0
+        
         if let deviceState = state.deviceState {
             updateDeviceStateView(deviceStateView, with: deviceState)
         }
         
-        if let timerData = state.deviceState?.timerEndDate {
+        timerConfigurationView.editMode = state.editMode
+        timerConfigurationView.header = Strings.TimerDetail.header
+        timerConfigurationView.enabled = state.deviceState?.isOnline ?? false == true
+        
+        if (state.editMode) {
+            timerConfigurationView.header = Strings.TimerDetail.editHeader.arguments(
+                state.deviceState?.isOn ?? false ?
+                    Strings.TimerDetail.editHeaderOn : Strings.TimerDetail.editHeaderOff
+            )
+            
+            timerConfigurationView.isHidden = false
+            timerProgressView.isHidden = true
+            progressTimeLabel.isHidden = true
+            progressEndHourLabel.isHidden = true
+        } else if let timerEndDate = state.deviceState?.timerEndDate {
+            timer = Timer.scheduledTimer(
+                timeInterval: 0.1,
+                target: self,
+                selector: #selector(handleTimerUpdate),
+                userInfo: timerEndDate,
+                repeats: true
+            )
+            
             timerConfigurationView.isHidden = true
+            timerProgressView.isHidden = false
+            progressTimeLabel.isHidden = false
+            progressEndHourLabel.isHidden = false
         } else {
             timerConfigurationView.isHidden = false
+            timerProgressView.isHidden = true
+            progressTimeLabel.isHidden = true
+            progressEndHourLabel.isHidden = true
         }
         
         if let isOn = state.deviceState?.isOn {
@@ -103,14 +170,18 @@ class TimerDetailVC: BaseViewControllerVM<TimerDetailViewState, TimerDetailViewE
                 )
             )
         }
-        timerConfigurationView.header = Strings.TimerDetail.header
     }
     
     private func setupView() {
         view.addSubview(deviceStateView)
+        view.addSubview(progressTimeLabel)
+        view.addSubview(progressEndHourLabel)
+        view.addSubview(timerProgressView)
+        view.addSubview(editButton)
         view.addSubview(stopButton)
         view.addSubview(cancelButton)
         view.addSubview(timerConfigurationView)
+        view.addLayoutGuide(timerProgressGuide)
         
         timerConfigurationView.timeInSeconds = 3 * 60
         viewModel.bind(stopButton.rx.tap.asObservable()) {
@@ -119,6 +190,9 @@ class TimerDetailVC: BaseViewControllerVM<TimerDetailViewState, TimerDetailViewE
         }
         viewModel.bind(cancelButton.rx.tap.asObservable()) {
             self.viewModel.cancelTimer(remoteId: self.remoteId)
+        }
+        viewModel.bind(editButton.rx.tap.asObservable()) {
+            self.viewModel.startEditMode()
         }
         
         setupLayout()
@@ -129,9 +203,24 @@ class TimerDetailVC: BaseViewControllerVM<TimerDetailViewState, TimerDetailViewE
             deviceStateView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             deviceStateView.topAnchor.constraint(equalTo: view.topAnchor, constant: Dimens.distanceDefault),
             
+            progressTimeLabel.bottomAnchor.constraint(equalTo: timerProgressView.centerYAnchor, constant: -4),
+            progressTimeLabel.centerXAnchor.constraint(equalTo: timerProgressView.centerXAnchor),
+            
+            progressEndHourLabel.topAnchor.constraint(equalTo: timerProgressView.centerYAnchor, constant: 4),
+            progressEndHourLabel.centerXAnchor.constraint(equalTo: timerProgressView.centerXAnchor),
+            
+            timerProgressGuide.topAnchor.constraint(equalTo: deviceStateView.bottomAnchor),
+            timerProgressGuide.bottomAnchor.constraint(equalTo: editButton.topAnchor),
+            
+            timerProgressView.centerYAnchor.constraint(equalTo: timerProgressGuide.centerYAnchor),
+            timerProgressView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            
             timerConfigurationView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             timerConfigurationView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             timerConfigurationView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            
+            editButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            editButton.bottomAnchor.constraint(equalTo: stopButton.topAnchor, constant: -Dimens.distanceDefault),
             
             stopButton.leftAnchor.constraint(equalTo: view.leftAnchor, constant: Dimens.distanceDefault),
             stopButton.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -Dimens.distanceDefault),
@@ -153,6 +242,28 @@ class TimerDetailVC: BaseViewControllerVM<TimerDetailViewState, TimerDetailViewE
             }
         }
     }
+    
+    @objc
+    private func handleTimerUpdate(timer: Timer) {
+        if let timerEndDate = timer.userInfo as? Date {
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = Strings.General.hourFormat
+            let dateString = dateFormatter.string(from: timerEndDate)
+            progressEndHourLabel.text = Strings.TimerDetail.endHour.arguments(dateString)
+            
+            let data = viewModel.calculateProgressViewData(startTime: current, endTime: timerEndDate)
+            timerProgressView.progressPercentage = data.progres
+            progressTimeLabel.text = Strings.TimerDetail.format.arguments(
+                data.leftTimeValues.hours,
+                data.leftTimeValues.minutes,
+                data.leftTimeValues.seconds
+            )
+        } else {
+            timer.invalidate()
+            progressTimeLabel.text = ""
+            progressEndHourLabel.text = ""
+        }
+    }
 }
 
 extension TimerDetailVC: TimerConfigurationViewDelegate {
@@ -162,5 +273,9 @@ extension TimerDetailVC: TimerConfigurationViewDelegate {
             action: timerConfigurationView.action,
             durationInSecs: timerConfigurationView.timeInSeconds
         )
+    }
+    
+    func onCancelEditTapped() {
+        viewModel.stopEditMode()
     }
 }

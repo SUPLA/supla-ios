@@ -158,7 +158,11 @@ struct Strings {
         static let cancel = "timer_detail_cancel".toLocalized()
         static let cancelOn = "timer_detail_cancel_on".toLocalized()
         static let cancelOff = "timer_detail_cancel_off".toLocalized()
-        
+        static let editTime = "timer_detail_edit_time".toLocalized()
+        static let save = "timer_detail_save".toLocalized()
+        static let editCancel = "timer_detail_edit_cancel".toLocalized()
+        static let endHour = "timer_detail_end_hour".toLocalized()
+        static let format = "timer_detail_format".toLocalized()
     }
     
     struct General {

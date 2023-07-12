@@ -25,13 +25,19 @@ extension UIColor {
     static let primary = UIColor(red: 0, green: 209/255.0, blue: 81/255.0, alpha: 1)
     static let primaryVariant = UIColor(red: 18/255.0, green: 167/255.0, blue: 30/255.0, alpha: 1)
     static let surface = UIColor(red: 1, green: 1, blue: 1, alpha: 1)
+    @objc static let background = UIColor(red: 245/255.0, green: 246/255.0, blue: 247/255.0, alpha: 1)
     
+    static let disabled = UIColor(red: 180/255.0, green: 183/255.0, blue: 186/255.0, alpha: 1)
+    
+    static let grayLight = UIColor(red: 239/255.0, green: 239/255.0, blue: 240/255.0, alpha: 1)
     static let border = UIColor(red: 180/255.0, green: 183/255.0, blue: 186/255.0, alpha: 1)
     
     // View specific colors
     static let innerShadow = UIColor(red: 0, green: 0, blue: 0, alpha: 0.25) // PowerButtonView
     static let negativeBorder = UIColor(red: 235/255.0, green: 58/255.0, blue: 40/255.0, alpha: 1) // PowerButtonView
     static let disabledOverlay = UIColor(red: 1, green: 1, blue: 1, alpha: 221/255.0) // PowerButtonView
+    
+    static let progressPointShadow = UIColor(red: 178/255.0, green: 244/255.0, blue: 184/255.0, alpha: 0.6)
     
     @objc static let suplaGreenBackground = #colorLiteral(red: 0, green: 0.6549019608, blue: 0.1176470588, alpha: 1)
     
@@ -40,10 +46,8 @@ extension UIColor {
     static let viewBackground = UIColor(red: 0.898, green: 0.898, blue: 0.898, alpha: 1)
     static let switcherBackground = UIColor(red: 118.0/255.0, green: 120.0/255.0, blue: 128.0/255.0, alpha: 0.12)
     static let alertRed = UIColor(red: 235.0/255.0, green: 58.0/255.0, blue: 40.0/255.0, alpha: 1)
-    static let disabled = UIColor(red: 0.706, green: 0.718, blue: 0.729, alpha: 1)
 
     static let formLabelColor = UIColor(red: 0.706, green: 0.718, blue: 0.729, alpha: 1)
-    @objc static let background = UIColor(red: 0.98, green: 0.984, blue: 0.988, alpha: 1)
     @objc static let textLight = UIColor(red: 0, green: 0, blue: 0, alpha: 1)
     @objc static let yellow = UIColor(red: 254, green: 231, blue: 0, alpha: 1)
     

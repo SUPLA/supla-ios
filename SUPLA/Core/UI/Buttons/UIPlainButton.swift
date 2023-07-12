@@ -16,17 +16,19 @@
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 
-class UIFilledButton: UIButton {
+class UIPlainButton: UIButton {
     
-    override open var isHighlighted: Bool {
-        didSet {
-            backgroundColor = getBackgroundColor()
-        }
-    }
-    
-    override open var isEnabled: Bool {
-        didSet {
-            backgroundColor = getBackgroundColor()
+    var icon: UIImage? {
+        get { nil }
+        set {
+            if let newIcon = newValue {
+                setImage(newIcon.withRenderingMode(.alwaysTemplate))
+                tintColor = .primary
+                semanticContentAttribute = .forceRightToLeft
+                imageEdgeInsets = UIEdgeInsets(top: 0, left: 8, bottom: 0, right: -8)
+            } else {
+                semanticContentAttribute = .forceLeftToRight
+            }
         }
     }
     
@@ -41,23 +43,7 @@ class UIFilledButton: UIButton {
     }
     
     private func setupView() {
-        backgroundColor = .primaryVariant
-        setTitleColor(.white, for: .normal)
-        layer.borderWidth = 1
-        layer.borderColor = UIColor(red: 118/255.0, green: 120/255.0, blue: 128/255.0, alpha: 0.12).cgColor
-        layer.cornerRadius = Dimens.radiusButton
         contentEdgeInsets = UIEdgeInsets(top: 8, left: 24, bottom: 8, right: 24)
-        
         titleLabel?.font = .button
-    }
-    
-    private func getBackgroundColor() -> UIColor {
-        if (!isEnabled) {
-            return .disabled
-        } else if (isHighlighted) {
-            return .primary
-        } else {
-            return .primaryVariant
-        }
     }
 }

@@ -26,6 +26,18 @@ final class TimerConfigurationView: UIView {
         didSet { headerView.text = header }
     }
     
+    var enabled: Bool = true {
+        didSet {
+            startButton.isEnabled = enabled
+        }
+    }
+    
+    var editMode: Bool = false {
+        didSet {
+            updateInfoText()
+        }
+    }
+    
     var action: TimerTargetAction {
         get {
             if (actionSwitch.selectedSegmentIndex == 0) {
@@ -59,9 +71,15 @@ final class TimerConfigurationView: UIView {
         view.translatesAutoresizingMaskIntoConstraints = false
         view.selectedSegmentIndex = 0
         view.addTarget(self, action: #selector(updateInfoText), for: .valueChanged)
-        view.setTitleTextAttributes([
-            .font: UIFont.body2
-        ], for: .normal)
+        view.setTitleTextAttributes([.font: UIFont.body2], for: .normal)
+        return view
+    }()
+    
+    private lazy var selectedPickerRowView: UIView = {
+        let view = UIView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.backgroundColor = .grayLight
+        view.layer.cornerRadius = Dimens.radiusButton
         return view
     }()
     
@@ -92,6 +110,13 @@ final class TimerConfigurationView: UIView {
         return view
     }()
     
+    private lazy var divider: UIView = {
+        let view = UIView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.backgroundColor = .background
+        return view
+    }()
+    
     private lazy var infoTextView: UILabel = {
         let view = UILabel()
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -101,6 +126,13 @@ final class TimerConfigurationView: UIView {
         return view
     }()
     
+    private lazy var editCancelButton: UIBorderedButton = {
+        let button = UIBorderedButton()
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.setAttributedTitle(Strings.TimerDetail.editCancel)
+        return button
+    }()
+    
     private lazy var startButton: UIFilledButton = {
         let button = UIFilledButton()
         button.translatesAutoresizingMaskIntoConstraints = false
@@ -108,9 +140,15 @@ final class TimerConfigurationView: UIView {
         return button
     }()
     
-    private lazy var startButtonTapGestureRecognizer: UIGestureRecognizer = {
-        UITapGestureRecognizer(target: self, action: #selector(onStartTapped))
-    }()
+    private lazy var normalModeConstraints: [NSLayoutConstraint] = {[
+        minutePickerView.topAnchor.constraint(equalTo: actionSwitch.bottomAnchor, constant: Dimens.distanceDefault),
+        startButton.topAnchor.constraint(equalTo: infoTextView.bottomAnchor, constant: Dimens.distanceDefault)
+    ]}()
+    private lazy var editModeConstraints: [NSLayoutConstraint] = {[
+        minutePickerView.topAnchor.constraint(equalTo: headerView.bottomAnchor, constant: Dimens.distanceDefault),
+        editCancelButton.topAnchor.constraint(equalTo: minutePickerView.bottomAnchor, constant: Dimens.distanceDefault),
+        startButton.topAnchor.constraint(equalTo: editCancelButton.bottomAnchor, constant: Dimens.distanceDefault)
+    ]}()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -125,14 +163,18 @@ final class TimerConfigurationView: UIView {
     private func setupView() {
         addSubview(headerView)
         addSubview(actionSwitch)
+        addSubview(selectedPickerRowView)
         addSubview(hourPickerView)
         addSubview(minutePickerView)
         addSubview(secondPickerView)
+        addSubview(divider)
         addSubview(infoTextView)
+        addSubview(editCancelButton)
         addSubview(startButton)
         backgroundColor = .surface
 
-        startButton.addGestureRecognizer(startButtonTapGestureRecognizer)
+        startButton.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(onStartTapped)))
+        editCancelButton.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(onCancelEditTapped)))
         
         setupLayout()
         updateInfoText()
@@ -149,13 +191,17 @@ final class TimerConfigurationView: UIView {
             actionSwitch.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -Dimens.distanceDefault),
             actionSwitch.heightAnchor.constraint(equalToConstant: 44),
             
+            selectedPickerRowView.leftAnchor.constraint(equalTo: leftAnchor, constant: Dimens.distanceDefault),
+            selectedPickerRowView.rightAnchor.constraint(equalTo: rightAnchor, constant: -Dimens.distanceDefault),
+            selectedPickerRowView.centerYAnchor.constraint(equalTo: minutePickerView.centerYAnchor),
+            selectedPickerRowView.heightAnchor.constraint(equalToConstant: 40),
+            
             hourPickerView.topAnchor.constraint(equalTo: minutePickerView.topAnchor),
             hourPickerView.trailingAnchor.constraint(equalTo: minutePickerView.leadingAnchor, constant: 8),
             hourPickerView.widthAnchor.constraint(equalToConstant: 130),
             hourPickerView.heightAnchor.constraint(equalToConstant: 160),
             
             minutePickerView.centerXAnchor.constraint(equalTo: centerXAnchor),
-            minutePickerView.topAnchor.constraint(equalTo: actionSwitch.bottomAnchor, constant: Dimens.distanceDefault),
             minutePickerView.widthAnchor.constraint(equalToConstant: 130),
             minutePickerView.heightAnchor.constraint(equalToConstant: 160),
             
@@ -164,20 +210,40 @@ final class TimerConfigurationView: UIView {
             secondPickerView.widthAnchor.constraint(equalToConstant: 130),
             secondPickerView.heightAnchor.constraint(equalToConstant: 160),
             
-            infoTextView.topAnchor.constraint(equalTo: minutePickerView.bottomAnchor, constant: Dimens.distanceDefault),
+            divider.topAnchor.constraint(equalTo: minutePickerView.bottomAnchor, constant: Dimens.distanceDefault),
+            divider.leftAnchor.constraint(equalTo: leftAnchor),
+            divider.rightAnchor.constraint(equalTo: rightAnchor),
+            divider.heightAnchor.constraint(equalToConstant: 1),
+            
+            infoTextView.topAnchor.constraint(equalTo: divider.bottomAnchor, constant: Dimens.distanceDefault),
             infoTextView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: Dimens.distanceDefault),
             infoTextView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -Dimens.distanceDefault),
             
-            startButton.topAnchor.constraint(equalTo: infoTextView.bottomAnchor, constant: Dimens.distanceDefault),
+            editCancelButton.leftAnchor.constraint(equalTo: leftAnchor, constant: Dimens.distanceDefault),
+            editCancelButton.rightAnchor.constraint(equalTo: rightAnchor, constant: -Dimens.distanceDefault),
+            
             startButton.leftAnchor.constraint(equalTo: leftAnchor, constant: Dimens.distanceDefault),
             startButton.rightAnchor.constraint(equalTo: rightAnchor, constant: -Dimens.distanceDefault),
             startButton.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -Dimens.distanceDefault)
-            
         ])
     }
     
     @objc
     private func updateInfoText() {
+        if (editMode) {
+            NSLayoutConstraint.deactivate(normalModeConstraints)
+            NSLayoutConstraint.activate(editModeConstraints)
+        } else {
+            NSLayoutConstraint.activate(normalModeConstraints)
+            NSLayoutConstraint.deactivate(editModeConstraints)
+        }
+        infoTextView.isHidden = editMode
+        actionSwitch.isHidden = editMode
+        divider.isHidden = editMode
+        editCancelButton.isHidden = !editMode
+        
+        startButton.setAttributedTitle(editMode ? Strings.TimerDetail.save : Strings.TimerDetail.start)
+        
         if (actionSwitch.selectedSegmentIndex == 0) {
             infoTextView.text = Strings.TimerDetail.info.arguments(
                 Strings.TimerDetail.infoOn,
@@ -191,6 +257,8 @@ final class TimerConfigurationView: UIView {
                 Strings.TimerDetail.infoNextOn
             )
         }
+        
+        needsUpdateConstraints()
     }
     
     private func calculateTimeInSeconds() -> Int {
@@ -211,6 +279,11 @@ final class TimerConfigurationView: UIView {
     @objc
     private func onStartTapped() {
         delegate?.onStartTapped()
+    }
+    
+    @objc
+    private func onCancelEditTapped() {
+        delegate?.onCancelEditTapped()
     }
 }
 
@@ -268,6 +341,7 @@ extension TimerConfigurationView: UIPickerViewDelegate {
 
 protocol TimerConfigurationViewDelegate {
     func onStartTapped()
+    func onCancelEditTapped()
 }
 
 enum TimerTargetAction: Int {
