@@ -45,23 +45,11 @@ class TimerDetailVM: BaseViewModel<TimerDetailViewState, TimerDetailViewEvent>, 
                         durationInSecs: Int32(durationInSecs)
                     )
                 }
-                .subscribe(
-                    onError: { error in
-                        if (error is StartTimerUseCaseImpl.InvalidTimeError) {
-                            NSLog("Invalid time")
-                        }
-                    }
-                )
+                .subscribe(onError: { self.handleStartTimerError(error: $0) })
                 .disposed(by: self)
         } else {
             startTimerUseCase.invoke(remoteId: remoteId, turnOn: action == .turnOn, durationInSecs: Int32(durationInSecs))
-                .subscribe(
-                    onError: { error in
-                        if (error is StartTimerUseCaseImpl.InvalidTimeError) {
-                            NSLog("Invalid time")
-                        }
-                    }
-                )
+                .subscribe(onError: { self.handleStartTimerError(error: $0) })
                 .disposed(by: self)
         }
     }
@@ -122,9 +110,16 @@ class TimerDetailVM: BaseViewModel<TimerDetailViewState, TimerDetailViewEvent>, 
                 .changing(path: \.editMode, to: editMode)
         }
     }
+    
+    private func handleStartTimerError(error: Error) {
+        if (error is StartTimerUseCaseImpl.InvalidTimeError) {
+            send(event: .showInvalidTime)
+        }
+    }
 }
 
 enum TimerDetailViewEvent: ViewEvent {
+    case showInvalidTime
 }
 
 struct TimerDetailViewState: ViewState {

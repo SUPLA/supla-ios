@@ -27,7 +27,7 @@ extension DeviceStateHelperVMI {
             isOnline: channel.isOnline(),
             isOn: channel.value?.hiValue() ?? 0 > 0,
             timerEndDate: createTimerEndDateFor(channel),
-            timerStartTime: channel.ev?.timerStartTime,
+            timerStartDate: channel.ev?.timerStartTime,
             iconData: createIconData(channel)
         )
     }
@@ -65,7 +65,7 @@ struct DeviceStateViewState: Equatable {
     let isOnline: Bool
     let isOn: Bool
     let timerEndDate: Date?
-    let timerStartTime: Date?
+    let timerStartDate: Date?
     let iconData: IconData
     
     struct IconData: Equatable {

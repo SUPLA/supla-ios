@@ -18,6 +18,8 @@
 
 class StandardDetailVC : SuplaTabBarController<StandardDetailViewState, StandardDetailViewEvent, StandardDetailVM> {
     
+    @Singleton<RuntimeConfig> private var runtimeConfig
+    
     private let remoteId: Int32
     private let pages: [DetailPage]
     
@@ -54,6 +56,10 @@ class StandardDetailVC : SuplaTabBarController<StandardDetailViewState, Standard
     override func handle(event: StandardDetailViewEvent) {
     }
     
+    override func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
+        runtimeConfig.setDetailOpenedPage(remoteId: remoteId, openedPage: item.tag - 1)
+    }
+    
     private func setupViewController() {
         var viewControllers: [UIViewController] = []
         for page in pages {
@@ -84,7 +90,7 @@ class StandardDetailVC : SuplaTabBarController<StandardDetailViewState, Standard
                 vc.tabBarItem = UITabBarItem(
                     title: Strings.StandardDetail.tabMetrics,
                     image: .iconMetrics,
-                    tag: DetailTabTag.Timer.rawValue
+                    tag: DetailTabTag.History.rawValue
                 )
                 viewControllers.append(vc)
                 break
@@ -94,7 +100,7 @@ class StandardDetailVC : SuplaTabBarController<StandardDetailViewState, Standard
                 vc.tabBarItem = UITabBarItem(
                     title: Strings.StandardDetail.tabMetrics,
                     image: .iconMetrics,
-                    tag: DetailTabTag.Timer.rawValue
+                    tag: DetailTabTag.History.rawValue
                 )
                 viewControllers.append(vc)
                 break
@@ -102,10 +108,12 @@ class StandardDetailVC : SuplaTabBarController<StandardDetailViewState, Standard
         }
         
         self.viewControllers = viewControllers
+        self.selectedViewController = viewControllers[runtimeConfig.getDetailOpenedPage(remoteId: remoteId)]
     }
 }
 
 enum DetailTabTag: Int {
     case General = 1
     case Timer = 2
+    case History = 3
 }

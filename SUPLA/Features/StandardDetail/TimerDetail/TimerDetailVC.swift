@@ -21,6 +21,7 @@ import RxCocoa
 class TimerDetailVC: BaseViewControllerVM<TimerDetailViewState, TimerDetailViewEvent, TimerDetailVM>, DeviceStateHelperVCI {
     
     @Singleton<GetChannelBaseIconUseCase> private var getChannelBaseIconUseCase
+    @Singleton<RuntimeConfig> private var runtimeConfig
     
     private let remoteId: Int32
     private var timer: Timer? = nil
@@ -62,6 +63,7 @@ class TimerDetailVC: BaseViewControllerVM<TimerDetailViewState, TimerDetailViewE
         let view = TimerConfigurationView()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.delegate = self
+        view.timeInSeconds = runtimeConfig.getLastTimerValue(remoteId: remoteId)
         return view
     }()
     
@@ -114,6 +116,16 @@ class TimerDetailVC: BaseViewControllerVM<TimerDetailViewState, TimerDetailViewE
     }
     
     override func handle(event: TimerDetailViewEvent) {
+        switch(event) {
+        case .showInvalidTime:
+            let alert = UIAlertController(
+                title: Strings.TimerDetail.wrongTimeTitle,
+                message: Strings.TimerDetail.wrongTimeMessage,
+                preferredStyle: .alert
+            )
+            alert.addAction(UIAlertAction(title: Strings.General.ok, style: .default))
+            self.present(alert, animated: true)
+        }
     }
     
     override func handle(state: TimerDetailViewState) {
@@ -124,19 +136,19 @@ class TimerDetailVC: BaseViewControllerVM<TimerDetailViewState, TimerDetailViewE
             updateDeviceStateView(deviceStateView, with: deviceState)
         }
         
-        timerConfigurationView.editMode = state.editMode
-        timerConfigurationView.header = Strings.TimerDetail.header
-        timerConfigurationView.enabled = state.deviceState?.isOnline ?? false == true
-        
+        timerConfigurationView.header = Strings.TimerDetail.header // Must be before edit mode
         if (state.editMode) {
-            timerConfigurationView.header = Strings.TimerDetail.editHeader.arguments(
-                state.deviceState?.isOn ?? false ?
-                    Strings.TimerDetail.editHeaderOn : Strings.TimerDetail.editHeaderOff
-            )
+            let headerArgument = state.deviceState?.isOn ?? false ?
+                Strings.TimerDetail.editHeaderOn : Strings.TimerDetail.editHeaderOff
+            timerConfigurationView.header = Strings.TimerDetail.editHeader.arguments(headerArgument)
+            
+            if let timerEndDate = state.deviceState?.timerEndDate {
+                timerConfigurationView.timeInSeconds = Int(timerEndDate.timeIntervalSince(Date()))
+            }
         }
         if let timerEndDate = state.deviceState?.timerEndDate {
             let timerData = TimerData(
-                timerStartDate: state.deviceState?.timerStartTime,
+                timerStartDate: state.deviceState?.timerStartDate,
                 timerEndDate: timerEndDate
             )
             timer = Timer.scheduledTimer(
@@ -149,23 +161,20 @@ class TimerDetailVC: BaseViewControllerVM<TimerDetailViewState, TimerDetailViewE
             handleTimerUpdate(timerData: timerData)
         }
         
+        if let isOn = state.deviceState?.isOn {
+            let stopArgument = isOn ? Strings.TimerDetail.infoOn : Strings.TimerDetail.infoOff
+            stopButton.setAttributedTitle(Strings.TimerDetail.stop.arguments(stopArgument))
+            
+            let cancelArgument = isOn ? Strings.TimerDetail.cancelOff : Strings.TimerDetail.cancelOn
+            cancelButton.setAttributedTitle(Strings.TimerDetail.cancel.arguments(cancelArgument))
+        }
+        
+        timerConfigurationView.editMode = state.editMode
+        timerConfigurationView.enabled = state.deviceState?.isOnline ?? false == true
         timerConfigurationView.isHidden = !state.editMode && state.deviceState?.timerEndDate != nil
         timerProgressView.isHidden = state.deviceState?.timerEndDate == nil
         progressTimeLabel.isHidden = state.deviceState?.timerEndDate == nil
         progressEndHourLabel.isHidden = state.deviceState?.timerEndDate == nil
-        
-        if let isOn = state.deviceState?.isOn {
-            stopButton.setAttributedTitle(
-                Strings.TimerDetail.stop.arguments(
-                    isOn ? Strings.TimerDetail.infoOn : Strings.TimerDetail.infoOff
-                )
-            )
-            cancelButton.setAttributedTitle(
-                Strings.TimerDetail.cancel.arguments(
-                    isOn ? Strings.TimerDetail.cancelOff : Strings.TimerDetail.cancelOn
-                )
-            )
-        }
     }
     
     private func setupView() {
@@ -179,7 +188,6 @@ class TimerDetailVC: BaseViewControllerVM<TimerDetailViewState, TimerDetailViewE
         view.addSubview(timerConfigurationView)
         view.addLayoutGuide(timerProgressGuide)
         
-        timerConfigurationView.timeInSeconds = 3 * 60
         viewModel.bind(stopButton.rx.tap.asObservable()) {
             self.viewModel.stopTimer(remoteId: self.remoteId)
             
@@ -285,5 +293,9 @@ extension TimerDetailVC: TimerConfigurationViewDelegate {
     
     func onCancelEditTapped() {
         viewModel.stopEditMode()
+    }
+    
+    func onTimeChanged() {
+        runtimeConfig.setLastTimerValue(remoteId: remoteId, value: timerConfigurationView.timeInSeconds)
     }
 }

@@ -319,7 +319,41 @@
 "General.error" = "Fehler";
 "dialog_new_gesture_info_text" = "Wischgeste zum Öffnen der Kanaldetails wurde gelöscht, tippe auf dem Kanal, um sie zu sehen.";
 
-/* Switch Detail */
 
+/* Standard Detail */
+"standard_detail_general_tab" = "Allgemein";
+"standard_detail_timer_tab" = "Timer";
+"standard_detail_metrics_tab" = "Messungen";
+
+/* Switch Detail */
 "switch_detail_state_label" = "Aktuellen Zustand:";
-"switch_detail_state_label_for_timer" = "Zustand bis zum %s Uhr:";
+"switch_detail_state_label_for_timer" = "Zustand bis zum %@ Uhr:";
+"switch_detail_state_on" = "eingeschaltet";
+"switch_detail_state_off" = "ausgeschaltet";
+
+/* Timer Detail */
+"timer_detail_header" = "Bestimmen Sie bitte die Zeit, zu der das Gerät ein- oder ausgeschaltet werden sollte";
+"timer_detail_edit_header" = "Bearbeiten Sie die Zeit, zu der das Gerät %@ wird";
+"timer_detail_edit_header_on" = "eingeschaltet";
+"timer_detail_edit_header_off" = "ausgeschaltet";
+"timer_detail_turned_on" = "Einschalten für";
+"timer_detail_turned_off" = "Ausschalten für";
+"timer_detail_hour_pattern" = "%d Std.";
+"timer_detail_hours_pattern" = "%d Std.";
+"timer_detail_minute_pattern" = "%d Min.";
+"timer_detail_second_pattern" = "%d Sek.";
+"timer_detail_info" = "Das Gerät wird %@, bis zum %@ Uhr und dann %@";
+"timer_detail_info_on" = "eingeschaltet";
+"timer_detail_info_off" = "ausgeschaltet";
+"timer_detail_info_next_on" = "eingeschaltet";
+"timer_detail_info_next_off" = "ausgeschaltet";
+"timer_detail_stop" = "Lass es %@";
+"timer_detail_cancel" = "Abbrechen und %@";
+"timer_detail_cancel_on" = "einschalten";
+"timer_detail_cancel_off" = "auschalten";
+"timer_detail_edit_time" = "Zeit ändern";
+"timer_detail_save" = "Speichern";
+"timer_detail_edit_cancel" = "Änderung abbrechen";
+"timer_detail_end_hour" = "bis %@";
+"timer_detail_wrong_time_title" = "Falsche Zeit";
+"timer_detail_wrong_time_message" = "Zeit muss größer als 0 sein";

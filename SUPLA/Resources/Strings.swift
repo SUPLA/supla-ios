@@ -163,6 +163,8 @@ struct Strings {
         static let editCancel = "timer_detail_edit_cancel".toLocalized()
         static let endHour = "timer_detail_end_hour".toLocalized()
         static let format = "timer_detail_format".toLocalized()
+        static let wrongTimeTitle = "timer_detail_wrong_time_title".toLocalized()
+        static let wrongTimeMessage = "timer_detail_wrong_time_message".toLocalized()
     }
     
     struct General {
@@ -170,6 +172,8 @@ struct Strings {
         static let close = NSLocalizedString("Close", comment: "")
         static let error = "General.error".toLocalized()
         static let hourFormat = "General.hour_format".toLocalized()
+        static let ok = "General.ok".toLocalized()
+        
         static let turnOn = "On".toLocalized()
         static let turnOff = "Off".toLocalized()
     }

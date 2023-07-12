@@ -45,6 +45,7 @@
 /* General */
 "General.error" = "Error";
 "General.hour_format" = "HH:mm:ss";
+"General.ok" = "OK";
 
 /* Standard Detail */
 "standard_detail_general_tab" = "General";
@@ -84,3 +85,5 @@
 "timer_detail_edit_cancel" = "Cancel editing";
 "timer_detail_end_hour" = "until %@";
 "timer_detail_format" = "%02d:%02d:%02d";
+"timer_detail_wrong_time_title" = "Invalid time";
+"timer_detail_wrong_time_message" = "Time should be bigger then 0";

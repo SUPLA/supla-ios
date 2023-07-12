@@ -63,6 +63,7 @@ final class TimerConfigurationView: UIView {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = .subtitle2
         label.textAlignment = .center
+        label.numberOfLines = 2
         return label
     }()
     
@@ -294,9 +295,9 @@ extension TimerConfigurationView: UIPickerViewDataSource {
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         if (pickerView == hourPickerView) {
-            return 23
+            return 24
         } else {
-            return 59
+            return 60
         }
     }
 }
@@ -332,6 +333,7 @@ extension TimerConfigurationView: UIPickerViewDelegate {
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         updateInfoText()
+        delegate?.onTimeChanged()
     }
     
     func pickerView(_ pickerView: UIPickerView, rowHeightForComponent component: Int) -> CGFloat {
@@ -342,6 +344,7 @@ extension TimerConfigurationView: UIPickerViewDelegate {
 protocol TimerConfigurationViewDelegate {
     func onStartTapped()
     func onCancelEditTapped()
+    func onTimeChanged()
 }
 
 enum TimerTargetAction: Int {

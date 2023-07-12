@@ -366,3 +366,5 @@
 "timer_detail_save" = "Zapisz";
 "timer_detail_edit_cancel" = "Anuluj edycję";
 "timer_detail_end_hour" = "do godz. %@";
+"timer_detail_wrong_time_title" = "Nieprawidłowy czas";
+"timer_detail_wrong_time_message" = "Czas musi być większy od 0";
