@@ -26,10 +26,20 @@ class SuplaClientProviderMock: SuplaClientProvider {
 }
 
 class SuplaClientProtocolMock: NSObject, SuplaClientProtocol {
-    var reconnectCalls: Int = 0
-    var cancelCalls: Int = 0
     
+    var cancelCalls: Int = 0
     func cancel() { cancelCalls += 1 }
     
+    var reconnectCalls: Int = 0
     func reconnect() { reconnectCalls += 1 }
+    
+    var executeActionReturns = false
+    func executeAction(_ actionId: Int32, subjecType subjectType: Int32, subjectId: Int32, rsParameters: UnsafeMutablePointer<TAction_RS_Parameters>!, rgbwParameters: UnsafeMutablePointer<TAction_RGBW_Parameters>!) -> Bool {
+        executeActionReturns
+    }
+    
+    var timerArmReturns = false
+    func timerArm(for remoteId: Int32, withTurnOn on: Bool, withTime milis: Int32) -> Bool {
+        timerArmReturns
+    }
 }
