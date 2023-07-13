@@ -61,12 +61,11 @@ class DetailViewController: BaseViewController {
         if (inNewDetail) {
             statusBarBackgroundView.isHidden = true
             view.addSubview(_detailView)
+            _detailView.frame = CGRect(x: 0, y: 0, width: view.frame.size.width, height: view.frame.size.height)
         } else {
             addChildView(_detailView)
+            title = _detailView.channelBase?.getNonEmptyCaption() ?? ""
         }
-        
-        let channelCaption: String? = _detailView.channelBase?.getNonEmptyCaption()
-        title = channelCaption ?? ""
         
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(onAppDidEnterBackground(_:)),

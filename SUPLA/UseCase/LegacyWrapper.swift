@@ -120,4 +120,19 @@ final class UseCaseLegacyWrapper: NSObject {
     static func saveIcon(remoteId: NSNumber, images: [String]) {
         SaveIconUseCase().invoke(remoteId: Int32(remoteId as! Int), images: images)
     }
+    
+    @objc
+    static func getChannelCount() -> Int {
+        @Singleton<ProfileRepository> var profileRepository;
+        @Singleton<ChannelRepository> var channelRepository;
+        
+        do {
+            return try profileRepository.getActiveProfile()
+                .flatMapFirst { channelRepository.getAllChannels(forProfile: $0) }
+                .map { $0.count }
+                .subscribeSynchronous() ?? 0
+        } catch {
+            return 0
+        }
+    }
 }
