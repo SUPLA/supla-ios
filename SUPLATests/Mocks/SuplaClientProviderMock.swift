@@ -33,13 +33,17 @@ class SuplaClientProtocolMock: NSObject, SuplaClientProtocol {
     var reconnectCalls: Int = 0
     func reconnect() { reconnectCalls += 1 }
     
+    var executeActionParameters: [(Int32, Int32, Int32, UnsafeMutablePointer<TAction_RS_Parameters>?, UnsafeMutablePointer<TAction_RGBW_Parameters>?)] = []
     var executeActionReturns = false
-    func executeAction(_ actionId: Int32, subjecType subjectType: Int32, subjectId: Int32, rsParameters: UnsafeMutablePointer<TAction_RS_Parameters>!, rgbwParameters: UnsafeMutablePointer<TAction_RGBW_Parameters>!) -> Bool {
-        executeActionReturns
+    func executeAction(_ actionId: Int32, subjecType subjectType: Int32, subjectId: Int32, rsParameters: UnsafeMutablePointer<TAction_RS_Parameters>?, rgbwParameters: UnsafeMutablePointer<TAction_RGBW_Parameters>?) -> Bool {
+        executeActionParameters.append((actionId, subjectType, subjectId, rsParameters, rgbwParameters))
+        return executeActionReturns
     }
     
+    var timerArmParameters: [(Int32, Bool, Int32)] = []
     var timerArmReturns = false
     func timerArm(for remoteId: Int32, withTurnOn on: Bool, withTime milis: Int32) -> Bool {
-        timerArmReturns
+        timerArmParameters.append((remoteId, on, milis))
+        return timerArmReturns
     }
 }

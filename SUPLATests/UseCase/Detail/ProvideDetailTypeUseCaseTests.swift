@@ -172,6 +172,71 @@ final class ProvideDetailTypeUseCaseTests: XCTestCase {
         }
     }
     
+    func test_shouldProvideStandardDetailWithGeneralPage_forGroupOfSwitches() {
+        doTest(expectedResult: .standard(pages: [.general])) {
+            let channel = SAChannelBase(testContext: nil)
+            channel.func = SUPLA_CHANNELFNC_LIGHTSWITCH
+            
+            return channel
+        }
+    }
+    
+    func test_shouldProvideStandardDetailWithGeneralPage_forChannelWithoutFlags() {
+        doTest(expectedResult: .standard(pages: [.general])) {
+            let channel = SAChannel(testContext: nil)
+            channel.func = SUPLA_CHANNELFNC_LIGHTSWITCH
+            
+            return channel
+        }
+    }
+    
+    func test_shouldProvideStandardDetailWithGeneralAndTimer_forChannelWithTimer() {
+        doTest(expectedResult: .standard(pages: [.general, .timer])) {
+            let channel = SAChannel(testContext: nil)
+            channel.func = SUPLA_CHANNELFNC_LIGHTSWITCH
+            channel.flags = SUPLA_CHANNEL_FLAG_COUNTDOWN_TIMER_SUPPORTED
+            
+            return channel
+        }
+    }
+    
+    func test_shouldProvideStandardDetailWithGeneralOnly_forStaircaseWithTimer() {
+        doTest(expectedResult: .standard(pages: [.general])) {
+            let channel = SAChannel(testContext: nil)
+            channel.func = SUPLA_CHANNELFNC_STAIRCASETIMER
+            channel.flags = SUPLA_CHANNEL_FLAG_COUNTDOWN_TIMER_SUPPORTED
+            
+            return channel
+        }
+    }
+    
+    func test_shouldProvideStandardDetailWithGeneralTimerAndIC() {
+        doTest(expectedResult: .standard(pages: [.general, .timer, .historyIc])) {
+            let value = SAChannelValue(testContext: nil)
+            value.sub_value_type = Int16(SUBV_TYPE_IC_MEASUREMENTS)
+            
+            let channel = SAChannel(testContext: nil)
+            channel.func = SUPLA_CHANNELFNC_POWERSWITCH
+            channel.flags = SUPLA_CHANNEL_FLAG_COUNTDOWN_TIMER_SUPPORTED
+            channel.value = value
+            
+            return channel
+        }
+    }
+    
+    func test_shouldProvideStandardDetailWithGeneralAndIC() {
+        doTest(expectedResult: .standard(pages: [.general, .historyEm])) {
+            let value = SAChannelValue(testContext: nil)
+            value.sub_value_type = Int16(SUBV_TYPE_ELECTRICITY_MEASUREMENTS)
+            
+            let channel = SAChannel(testContext: nil)
+            channel.func = SUPLA_CHANNELFNC_POWERSWITCH
+            channel.value = value
+            
+            return channel
+        }
+    }
+    
     private func doTest(expectedResult: DetailType?, provider: () -> SAChannelBase) {
         // given
         let channel = provider()

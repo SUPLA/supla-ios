@@ -43,4 +43,17 @@ class ViewModelTest<S : ViewState, E : ViewEvent>: XCTestCase {
         viewModel.eventsObervable().subscribe(eventObserver).disposed(by: disposeBag)
         viewModel.stateObservable().subscribe(stateObserver).disposed(by: disposeBag)
     }
+    
+    func assertState<T: Equatable>(_ id: Int, withPath path: KeyPath<S, T>, equalTo value: T) {
+        XCTAssertEqual(stateObserver.events[id].value.element?[keyPath: path], value)
+    }
+    
+    func assertEvent(_ id: Int, equalTo value: E) {
+        XCTAssertEqual(eventObserver.events[id].value.element, value)
+    }
+    
+    func assertObserverItems(statesCount: Int, eventsCount: Int) {
+        XCTAssertEqual(eventObserver.events.count, eventsCount)
+        XCTAssertEqual(stateObserver.events.count, statesCount)
+    }
 }

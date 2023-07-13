@@ -70,9 +70,8 @@ final class GetChannelBaseIconUseCaseImpl: GetChannelBaseIconUseCase {
         
         if (nightMode) {
             return .init(named: .init(format: "%@-nightmode", name))
-        } else {
-            return .init(named: name)
         }
+        return .init(named: name)
     }
     
     private func getUserIcon(_ function: Int32, _ userIcon: SAUserIcon?, _ channelState: ChannelState, _ iconType: IconType) -> UIImage? {

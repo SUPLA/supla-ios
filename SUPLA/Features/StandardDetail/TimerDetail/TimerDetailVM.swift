@@ -79,7 +79,7 @@ class TimerDetailVM: BaseViewModel<TimerDetailViewState, TimerDetailViewEvent>, 
     }
     
     func calculateProgressViewData(startTime: Date, endTime: Date) -> ProgressViewData {
-        let leftTime = endTime.timeIntervalSinceNow
+        let leftTime = endTime.timeIntervalSince(dateProvider.currentDate())
         let wholeTime = endTime.timeIntervalSince(startTime)
         
         return ProgressViewData(

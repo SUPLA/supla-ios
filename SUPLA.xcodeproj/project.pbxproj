@@ -706,6 +706,20 @@
 		A56F15F12A2E698400C2E21B /* DeleteEntitiesMigrationPolicy.swift in Sources */ = {isa = PBXBuildFile; fileRef = A56F15F02A2E698400C2E21B /* DeleteEntitiesMigrationPolicy.swift */; };
 		A56F15F52A2E6E3C00C2E21B /* Migration12to13ModelMapping.xcmappingmodel in Sources */ = {isa = PBXBuildFile; fileRef = A56F15F42A2E6E3C00C2E21B /* Migration12to13ModelMapping.xcmappingmodel */; };
 		A56F15F72A2E721F00C2E21B /* ActiveAccount12to13MigrationPolicy.swift in Sources */ = {isa = PBXBuildFile; fileRef = A56F15F62A2E721F00C2E21B /* ActiveAccount12to13MigrationPolicy.swift */; };
+		A573B0962A5FD152001E19D0 /* FatalError.swift in Sources */ = {isa = PBXBuildFile; fileRef = A573B0952A5FD152001E19D0 /* FatalError.swift */; };
+		A573B0992A5FD869001E19D0 /* StandardDetailVMTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A573B0982A5FD869001E19D0 /* StandardDetailVMTests.swift */; };
+		A573B09B2A5FE997001E19D0 /* ReadChannelByRemoteIdUseCaseMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = A573B09A2A5FE997001E19D0 /* ReadChannelByRemoteIdUseCaseMock.swift */; };
+		A573B09E2A5FEF57001E19D0 /* SwitchDetailVMTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A573B09D2A5FEF57001E19D0 /* SwitchDetailVMTests.swift */; };
+		A573B0A02A5FEFE6001E19D0 /* GetChannelBaseStateUseCaseMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = A573B09F2A5FEFE6001E19D0 /* GetChannelBaseStateUseCaseMock.swift */; };
+		A573B0A22A5FF0AE001E19D0 /* ExecuteSimpleActionUseCaseMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = A573B0A12A5FF0AE001E19D0 /* ExecuteSimpleActionUseCaseMock.swift */; };
+		A573B0A62A600733001E19D0 /* TimerDetailVMTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A573B0A52A600733001E19D0 /* TimerDetailVMTests.swift */; };
+		A573B0A82A60077B001E19D0 /* StartTimerUseCaseMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = A573B0A72A60077B001E19D0 /* StartTimerUseCaseMock.swift */; };
+		A573B0AA2A601A57001E19D0 /* ReadChannelByRemoteIdUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A573B0A92A601A57001E19D0 /* ReadChannelByRemoteIdUseCaseTests.swift */; };
+		A573B0AC2A601DB6001E19D0 /* GetChannelBaseIconUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A573B0AB2A601DB6001E19D0 /* GetChannelBaseIconUseCaseTests.swift */; };
+		A573B0AE2A6022C1001E19D0 /* GetDefaultIconNameUseCaseMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = A573B0AD2A6022C1001E19D0 /* GetDefaultIconNameUseCaseMock.swift */; };
+		A573B0B12A602F5F001E19D0 /* ExecuteSimpleActionUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A573B0B02A602F5F001E19D0 /* ExecuteSimpleActionUseCaseTests.swift */; };
+		A573B0B32A603003001E19D0 /* VibrationServiceMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = A573B0B22A603003001E19D0 /* VibrationServiceMock.swift */; };
+		A573B0B52A6037EA001E19D0 /* StartTimerUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A573B0B42A6037EA001E19D0 /* StartTimerUseCaseTests.swift */; };
 		A573B38C29DE9F5600EBAFC4 /* BaseViewControllerExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A573B38B29DE9F5600EBAFC4 /* BaseViewControllerExtensions.swift */; };
 		A573B39229DEB25900EBAFC4 /* ViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = A573B39129DEB25900EBAFC4 /* ViewState.swift */; };
 		A5756F8229DC102800C32A1B /* AccountRemovalVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5756F8129DC102800C32A1B /* AccountRemovalVC.swift */; };
@@ -1968,6 +1982,20 @@
 		A56F15F42A2E6E3C00C2E21B /* Migration12to13ModelMapping.xcmappingmodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcmappingmodel; path = Migration12to13ModelMapping.xcmappingmodel; sourceTree = "<group>"; };
 		A56F15F62A2E721F00C2E21B /* ActiveAccount12to13MigrationPolicy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActiveAccount12to13MigrationPolicy.swift; sourceTree = "<group>"; };
 		A573B0942A5E9191001E19D0 /* SUPLA 14.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "SUPLA 14.xcdatamodel"; sourceTree = "<group>"; };
+		A573B0952A5FD152001E19D0 /* FatalError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FatalError.swift; sourceTree = "<group>"; };
+		A573B0982A5FD869001E19D0 /* StandardDetailVMTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StandardDetailVMTests.swift; sourceTree = "<group>"; };
+		A573B09A2A5FE997001E19D0 /* ReadChannelByRemoteIdUseCaseMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadChannelByRemoteIdUseCaseMock.swift; sourceTree = "<group>"; };
+		A573B09D2A5FEF57001E19D0 /* SwitchDetailVMTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchDetailVMTests.swift; sourceTree = "<group>"; };
+		A573B09F2A5FEFE6001E19D0 /* GetChannelBaseStateUseCaseMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetChannelBaseStateUseCaseMock.swift; sourceTree = "<group>"; };
+		A573B0A12A5FF0AE001E19D0 /* ExecuteSimpleActionUseCaseMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExecuteSimpleActionUseCaseMock.swift; sourceTree = "<group>"; };
+		A573B0A52A600733001E19D0 /* TimerDetailVMTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerDetailVMTests.swift; sourceTree = "<group>"; };
+		A573B0A72A60077B001E19D0 /* StartTimerUseCaseMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartTimerUseCaseMock.swift; sourceTree = "<group>"; };
+		A573B0A92A601A57001E19D0 /* ReadChannelByRemoteIdUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadChannelByRemoteIdUseCaseTests.swift; sourceTree = "<group>"; };
+		A573B0AB2A601DB6001E19D0 /* GetChannelBaseIconUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetChannelBaseIconUseCaseTests.swift; sourceTree = "<group>"; };
+		A573B0AD2A6022C1001E19D0 /* GetDefaultIconNameUseCaseMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetDefaultIconNameUseCaseMock.swift; sourceTree = "<group>"; };
+		A573B0B02A602F5F001E19D0 /* ExecuteSimpleActionUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExecuteSimpleActionUseCaseTests.swift; sourceTree = "<group>"; };
+		A573B0B22A603003001E19D0 /* VibrationServiceMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VibrationServiceMock.swift; sourceTree = "<group>"; };
+		A573B0B42A6037EA001E19D0 /* StartTimerUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartTimerUseCaseTests.swift; sourceTree = "<group>"; };
 		A573B38B29DE9F5600EBAFC4 /* BaseViewControllerExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewControllerExtensions.swift; sourceTree = "<group>"; };
 		A573B39129DEB25900EBAFC4 /* ViewState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewState.swift; sourceTree = "<group>"; };
 		A5756F8129DC102800C32A1B /* AccountRemovalVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountRemovalVC.swift; sourceTree = "<group>"; };
@@ -3388,6 +3416,7 @@
 			isa = PBXGroup;
 			children = (
 				A530EE382A57FCE200F8DAEE /* GetChannelBaseStateUseCaseTests.swift */,
+				A573B0AB2A601DB6001E19D0 /* GetChannelBaseIconUseCaseTests.swift */,
 			);
 			path = ChannelBase;
 			sourceTree = "<group>";
@@ -3454,7 +3483,6 @@
 			children = (
 				A553862729E004E400B5CF3F /* GlobalSettings.swift */,
 				A57777CC29E6907C004513E6 /* RuntimeConfig.swift */,
-				A5A1C0A729F2AAFA0083818D /* VibrationService.swift */,
 			);
 			path = Config;
 			sourceTree = "<group>";
@@ -3465,6 +3493,50 @@
 				A56D5AD22A4C693A004F45DA /* UpdateTokenTask.swift */,
 			);
 			path = UpdateToken;
+			sourceTree = "<group>";
+		};
+		A573B0972A5FD849001E19D0 /* StandardDetail */ = {
+			isa = PBXGroup;
+			children = (
+				A573B0A42A600725001E19D0 /* TimerDetail */,
+				A573B09C2A5FEF42001E19D0 /* SwitchDetail */,
+				A573B0982A5FD869001E19D0 /* StandardDetailVMTests.swift */,
+			);
+			path = StandardDetail;
+			sourceTree = "<group>";
+		};
+		A573B09C2A5FEF42001E19D0 /* SwitchDetail */ = {
+			isa = PBXGroup;
+			children = (
+				A573B09D2A5FEF57001E19D0 /* SwitchDetailVMTests.swift */,
+			);
+			path = SwitchDetail;
+			sourceTree = "<group>";
+		};
+		A573B0A32A5FF185001E19D0 /* Infrastructure */ = {
+			isa = PBXGroup;
+			children = (
+				A50CD3D92A4D9AFC0012DD9B /* DateProviderMock.swift */,
+				A573B0B22A603003001E19D0 /* VibrationServiceMock.swift */,
+			);
+			path = Infrastructure;
+			sourceTree = "<group>";
+		};
+		A573B0A42A600725001E19D0 /* TimerDetail */ = {
+			isa = PBXGroup;
+			children = (
+				A573B0A52A600733001E19D0 /* TimerDetailVMTests.swift */,
+			);
+			path = TimerDetail;
+			sourceTree = "<group>";
+		};
+		A573B0AF2A602F4A001E19D0 /* Client */ = {
+			isa = PBXGroup;
+			children = (
+				A573B0B02A602F5F001E19D0 /* ExecuteSimpleActionUseCaseTests.swift */,
+				A573B0B42A6037EA001E19D0 /* StartTimerUseCaseTests.swift */,
+			);
+			path = Client;
 			sourceTree = "<group>";
 		};
 		A573B39029DEB24400EBAFC4 /* Core */ = {
@@ -3539,6 +3611,7 @@
 		A57638CA29E5EF80003E15A3 /* Mocks */ = {
 			isa = PBXGroup;
 			children = (
+				A573B0A32A5FF185001E19D0 /* Infrastructure */,
 				A59AB8B92A307FAD00D91F1F /* Repositories */,
 				A59AB89E2A30534F00D91F1F /* UseCase */,
 				A57638CB29E5EF95003E15A3 /* ProfileManagerMock.swift */,
@@ -3598,7 +3671,11 @@
 				A59AB8A52A305D8700D91F1F /* LocationUseCasesMocks.swift */,
 				A59AB8AF2A30721D00D91F1F /* GroupUseCasesMocks.swift */,
 				A59AB8B42A30795B00D91F1F /* SceneUseCasesMocks.swift */,
-				A50CD3D92A4D9AFC0012DD9B /* DateProviderMock.swift */,
+				A573B09A2A5FE997001E19D0 /* ReadChannelByRemoteIdUseCaseMock.swift */,
+				A573B09F2A5FEFE6001E19D0 /* GetChannelBaseStateUseCaseMock.swift */,
+				A573B0A12A5FF0AE001E19D0 /* ExecuteSimpleActionUseCaseMock.swift */,
+				A573B0A72A60077B001E19D0 /* StartTimerUseCaseMock.swift */,
+				A573B0AD2A6022C1001E19D0 /* GetDefaultIconNameUseCaseMock.swift */,
 			);
 			path = UseCase;
 			sourceTree = "<group>";
@@ -3660,14 +3737,15 @@
 		A59AB8C02A308ADA00D91F1F /* UseCase */ = {
 			isa = PBXGroup;
 			children = (
+				A573B0AF2A602F4A001E19D0 /* Client */,
+				A59AB8E42A30A72000D91F1F /* Channel */,
 				A530EE372A57FCA500F8DAEE /* ChannelBase */,
+				A59AB8C12A308AE500D91F1F /* Detail */,
+				A59AB8DD2A309BA900D91F1F /* Group */,
 				A530EE312A57E36600F8DAEE /* Icon */,
 				A59AB8EE2A30ACA700D91F1F /* Location */,
-				A59AB8E92A30AA1800D91F1F /* Scene */,
-				A59AB8E42A30A72000D91F1F /* Channel */,
-				A59AB8DD2A309BA900D91F1F /* Group */,
 				A59AB8DA2A30934300D91F1F /* Profile */,
-				A59AB8C12A308AE500D91F1F /* Detail */,
+				A59AB8E92A30AA1800D91F1F /* Scene */,
 			);
 			path = UseCase;
 			sourceTree = "<group>";
@@ -3702,6 +3780,7 @@
 			children = (
 				A59AB8E52A30A73100D91F1F /* CreateProfileChannelsListUseCaseTests.swift */,
 				A59AB8E72A30A81200D91F1F /* SwapChannelPositionsUseCaseTests.swift */,
+				A573B0A92A601A57001E19D0 /* ReadChannelByRemoteIdUseCaseTests.swift */,
 			);
 			path = Channel;
 			sourceTree = "<group>";
@@ -3780,6 +3859,7 @@
 		A5E4904E2A3C7987006801FE /* Infrastructure */ = {
 			isa = PBXGroup;
 			children = (
+				A5A1C0A729F2AAFA0083818D /* VibrationService.swift */,
 				A5E4904F2A3C79A4006801FE /* UserNotificationCenter.swift */,
 				A50CD3D22A4D82ED0012DD9B /* DateProvider.swift */,
 			);
@@ -3824,14 +3904,15 @@
 		A5F14B7A29DEE4B600682FA6 /* Features */ = {
 			isa = PBXGroup;
 			children = (
-				A50CD3D42A4D99CF0012DD9B /* UpdateToken */,
-				A5E490512A3C7E10006801FE /* AppSettings */,
-				A59AB8B62A307F2300D91F1F /* Home */,
-				A59AB8B12A3078E900D91F1F /* SceneList */,
-				A59AB8AC2A30718D00D91F1F /* GroupList */,
-				A59AB89B2A3052B000D91F1F /* ChannelList */,
 				A57638C329E585CA003E15A3 /* AccountCreation */,
 				A5F14B7B29DEE4C200682FA6 /* AccountRemoval */,
+				A5E490512A3C7E10006801FE /* AppSettings */,
+				A59AB89B2A3052B000D91F1F /* ChannelList */,
+				A59AB8AC2A30718D00D91F1F /* GroupList */,
+				A59AB8B62A307F2300D91F1F /* Home */,
+				A59AB8B12A3078E900D91F1F /* SceneList */,
+				A573B0972A5FD849001E19D0 /* StandardDetail */,
+				A50CD3D42A4D99CF0012DD9B /* UpdateToken */,
 			);
 			path = Features;
 			sourceTree = "<group>";
@@ -3929,6 +4010,7 @@
 				A5F29C012A2DC56600ED700A /* NSPersistentStoreCoordinator+Ext.swift */,
 				A5F29C032A2DC5D500ED700A /* NSManagedObjectModel+Ext.swift */,
 				A5E4905E2A401020006801FE /* SAUserIcon+Ext.swift */,
+				A573B0952A5FD152001E19D0 /* FatalError.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -5078,6 +5160,7 @@
 				A5F29BF72A2A29BE00ED700A /* LocationCaptionEditor.swift in Sources */,
 				A5F29B5B2A1E15D600ED700A /* MainVC.swift in Sources */,
 				011021D325CC4DE700621D41 /* SAChannelBasicCfg.m in Sources */,
+				A573B0962A5FD152001E19D0 /* FatalError.swift in Sources */,
 				A5AE7A8D2A3ADFAD0097FA8B /* RsOpenningClosingPersentageCell.swift in Sources */,
 				A5F29B742A1E33AC00ED700A /* NSManagedObjectContext+Rx.swift in Sources */,
 				40E8BE8A1FC06A5600FB2FE6 /* XPathQuery.m in Sources */,
@@ -5202,6 +5285,7 @@
 				A59AB8CD2A30916F00D91F1F /* ImpulseCounterMeasurementItemRepositoryMock.swift in Sources */,
 				01DD2F0C247718C40025DFF9 /* SARangeCalibrationWheelTests.m in Sources */,
 				401CA1DC1BA067DB00117AF4 /* SUPLATests.m in Sources */,
+				A573B0AE2A6022C1001E19D0 /* GetDefaultIconNameUseCaseMock.swift in Sources */,
 				A59AB8AE2A3071A300D91F1F /* GroupListVMTests.swift in Sources */,
 				A57777CF29E69688004513E6 /* RuntimeConfigMock.swift in Sources */,
 				A59AB8E82A30A81200D91F1F /* SwapChannelPositionsUseCaseTests.swift in Sources */,
@@ -5229,24 +5313,32 @@
 				A59AB8B32A3078FB00D91F1F /* SceneListVMTests.swift in Sources */,
 				A59AB8D92A30930E00D91F1F /* ThermostatMeasurementItemRepositoryMock.swift in Sources */,
 				A59AB8C92A30906100D91F1F /* GroupRepositoryMock.swift in Sources */,
+				A573B0B32A603003001E19D0 /* VibrationServiceMock.swift in Sources */,
 				01CEAC2A25B9BAE2009C3BFD /* SADigiglassValueTests.m in Sources */,
 				A50CD3DA2A4D9AFC0012DD9B /* DateProviderMock.swift in Sources */,
 				01EFD94C236CA9AE00893489 /* NSDataEncryptionTest.m in Sources */,
+				A573B09B2A5FE997001E19D0 /* ReadChannelByRemoteIdUseCaseMock.swift in Sources */,
 				A59AB89D2A3052C600D91F1F /* ChannelListVMTests.swift in Sources */,
 				012F722C22DF3E2300E5F72E /* ChartFilterFieldTests.m in Sources */,
 				01AB61ED25B8E0B400DBEF74 /* SADigiglassControllerTests.m in Sources */,
+				A573B0A62A600733001E19D0 /* TimerDetailVMTests.swift in Sources */,
+				A573B0AA2A601A57001E19D0 /* ReadChannelByRemoteIdUseCaseTests.swift in Sources */,
 				A59AB8A82A306B4E00D91F1F /* NSManagedObject+Test.swift in Sources */,
+				A573B0AC2A601DB6001E19D0 /* GetChannelBaseIconUseCaseTests.swift in Sources */,
 				0130894523395F4C00F46FCD /* ThermostatScheduleCfgTests.m in Sources */,
 				A59AB8D72A3092F000D91F1F /* UserIconRepositoryMock.swift in Sources */,
 				A59AB8C32A308AF700D91F1F /* ProvideDetailTypeUseCaseTests.swift in Sources */,
 				A59AB8B82A307F3200D91F1F /* MainVMTests.swift in Sources */,
 				A59AB8E12A309C1500D91F1F /* UseCaseTest.swift in Sources */,
+				A573B09E2A5FEF57001E19D0 /* SwitchDetailVMTests.swift in Sources */,
 				A57638CC29E5EF95003E15A3 /* ProfileManagerMock.swift in Sources */,
 				A59AB8C52A308F7D00D91F1F /* ChannelExtendedValueRepositoryMock.swift in Sources */,
 				01AC1AD62487C35E00F734DF /* SAColorBrightnessPickerTests.m in Sources */,
+				A573B0A22A5FF0AE001E19D0 /* ExecuteSimpleActionUseCaseMock.swift in Sources */,
 				A59AB8A62A305D8700D91F1F /* LocationUseCasesMocks.swift in Sources */,
 				A57785C129E80C16001C631E /* SuplaClientProviderMock.swift in Sources */,
 				A59AB8B02A30721D00D91F1F /* GroupUseCasesMocks.swift in Sources */,
+				A573B0992A5FD869001E19D0 /* StandardDetailVMTests.swift in Sources */,
 				012FCBD323217DE000AC6FF6 /* ThermostatCalendarTests.m in Sources */,
 				A5E490552A3C7F2A006801FE /* UserNotificationCenterMock.swift in Sources */,
 				A59AB8A22A30583E00D91F1F /* DetailUseCasesMocks.swift in Sources */,
@@ -5254,12 +5346,16 @@
 				A59AB8ED2A30AAFA00D91F1F /* SwapScenePositionsUseCaseTests.swift in Sources */,
 				01A66A7925364ABA00C00A1A /* SARoofWindowControllerTests.m in Sources */,
 				A59AB8A42A3058A600D91F1F /* ListsEventsManagerMock.swift in Sources */,
+				A573B0A82A60077B001E19D0 /* StartTimerUseCaseMock.swift in Sources */,
 				A59AB8BB2A30800F00D91F1F /* ProfileRepositoryMock.swift in Sources */,
+				A573B0B52A6037EA001E19D0 /* StartTimerUseCaseTests.swift in Sources */,
 				AECB1BE92710A785001A9714 /* AccountCreationVMTests.swift in Sources */,
 				A5E490532A3C7E8F006801FE /* AppSettingsVMTests.swift in Sources */,
 				A59AB8DC2A30935B00D91F1F /* DeleteAllProfileDataUseCaseTests.swift in Sources */,
+				A573B0A02A5FEFE6001E19D0 /* GetChannelBaseStateUseCaseMock.swift in Sources */,
 				A59AB8E62A30A73100D91F1F /* CreateProfileChannelsListUseCaseTests.swift in Sources */,
 				A59AB8A02A30535E00D91F1F /* ChannelUseCasesMocks.swift in Sources */,
+				A573B0B12A602F5F001E19D0 /* ExecuteSimpleActionUseCaseTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

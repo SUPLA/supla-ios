@@ -183,4 +183,17 @@ final class GetChannelBaseStateUseCaseTests: XCTestCase {
         XCTAssertEqual(state, .complex([.off, .off]))
         XCTAssertFalse(state.isActive())
     }
+    
+    func test_noneFunction_notUsedState() {
+        // given
+        let function = SUPLA_CHANNELFNC_NONE
+        let activeValue: Int32 = 0
+        
+        // when
+        let state = useCase.invoke(function: function, activeValue: activeValue)
+        
+        // then
+        XCTAssertEqual(state, .notUsed)
+        XCTAssertFalse(state.isActive())
+    }
 }

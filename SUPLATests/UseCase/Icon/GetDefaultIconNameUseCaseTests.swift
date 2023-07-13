@@ -17,7 +17,6 @@
  */
 
 import XCTest
-
 @testable import SUPLA
 
 final class GetDefaultIconNameUseCaseTests: XCTestCase {
@@ -523,6 +522,36 @@ final class GetDefaultIconNameUseCaseTests: XCTestCase {
         XCTAssertEqual(iconName, "dimmerrgb-onoff")
     }
     
+    func test_dimmerAndRgbFail_whenWrongState() {
+        // given
+        let function = SUPLA_CHANNELFNC_DIMMERANDRGBLIGHTING
+        
+        // when
+        expectFatalError(expectedMessage: "Dimmer and RGB function needs complex state") {
+            _ = self.useCase.invoke(
+                function: function,
+                state: .notUsed,
+                altIcon: 0,
+                iconType: .single
+            )
+        }
+    }
+    
+    func test_dimmerAndRgbFail_whenWrongValues() {
+        // given
+        let function = SUPLA_CHANNELFNC_DIMMERANDRGBLIGHTING
+        
+        // when
+        expectFatalError(expectedMessage: "Dimmer and RGB function needs complex with two values but got [SUPLA.ChannelState.on, SUPLA.ChannelState.off, SUPLA.ChannelState.on]") {
+            _ = self.useCase.invoke(
+                function: function,
+                state: .complex([.on, .off, .on]),
+                altIcon: 0,
+                iconType: .single
+            )
+        }
+    }
+    
     func test_windowOpened() {
         // given
         let function = SUPLA_CHANNELFNC_OPENINGSENSOR_WINDOW
@@ -829,5 +858,16 @@ final class GetDefaultIconNameUseCaseTests: XCTestCase {
         
         // then
         XCTAssertEqual(iconName, "digiglass1")
+    }
+    
+    func test_unknownChannelFunction() {
+        // given
+        let function = SUPLA_CHANNELFNC_NONE
+        
+        // when
+        let iconName = useCase.invoke(function: function, state: .opaque, altIcon: 1, iconType: .single)
+        
+        // then
+        XCTAssertEqual(iconName, "unknown_channel")
     }
 }
