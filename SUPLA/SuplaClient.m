@@ -122,9 +122,10 @@ void sasuplaclient_on_registering(void *_suplaclient, void *user_data) {
 void sasuplaclient_on_registered(void *_suplaclient, void *user_data, TSC_SuplaRegisterClientResult_D *result) {
     
     SASuplaClient *sc = (__bridge SASuplaClient*)user_data;
-    if ( sc != nil )
+    if ( sc != nil ) {
+        sc->serverTimeDiffInSec = [[NSDate alloc] init].timeIntervalSince1970 - result->serverUnixTimestamp;
         [sc onRegistered:[SARegResult RegResultClientID:result->ClientID locationCount:result->LocationCount channelCount:result->ChannelCount channelGroupCount:result->ChannelGroupCount sceneCount: result->SceneCount flags:result->Flags version:result->version]];
-    
+    }
 }
 
 void sasuplaclient_on_set_registration_enabled_result(void *_suplaclient, void *user_data, TSC_SetRegistrationEnabledResult *result) {
@@ -1586,6 +1587,14 @@ void sasuplaclient_scene_state_update(void *_suplaclient,
     
     AudioServicesPlayAlertSound(kSystemSoundID_Vibrate);
     return supla_client_execute_action(_sclient, actionId, rsParameters, rgbwParameters, subjectType, subjectId) > 0;
+}
+
+- (BOOL) timerArmFor: (int) remoteId withTurnOn: (BOOL) on withTime: (int) milis {
+    if (!_sclient) {
+        return NO;
+    }
+    
+    return supla_client_timer_arm(_sclient, remoteId, on ? 1 : 0, milis);
 }
 
 - (void) registerPushNotificationClientToken:(NSData *)token {

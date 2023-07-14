@@ -33,7 +33,6 @@ class RuntimeConfigMock: RuntimeConfig {
     }
     
     var runtimePreferences: RuntimePreferences? = nil
-    
     func preferencesObservable() -> Observable<RuntimePreferences> {
         if let toEmit = runtimePreferences {
             return Observable.just(toEmit)
@@ -44,5 +43,17 @@ class RuntimeConfigMock: RuntimeConfig {
     
     func emitPreferenceChange(scaleFactor: Float, showChannelInfo: Bool) {
         runtimePreferences = RuntimePreferences(scaleFactor: scaleFactor, showChannelInfo: showChannelInfo)
+    }
+    
+    var detailOpenePageReturns = 0
+    func getDetailOpenedPage(remoteId: Int32) -> Int { detailOpenePageReturns }
+    
+    func setDetailOpenedPage(remoteId: Int32, openedPage: Int) {
+    }
+    
+    var lstTimerValueReturns = 0
+    func getLastTimerValue(remoteId: Int32) -> Int { lstTimerValueReturns }
+    
+    func setLastTimerValue(remoteId: Int32, value: Int) {
     }
 }

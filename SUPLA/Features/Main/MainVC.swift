@@ -18,12 +18,11 @@
 
 import Foundation
 
-class MainVC : BaseViewControllerVM<MainViewState, MainViewEvent, MainViewModel> {
+class MainVC : SuplaTabBarController<MainViewState, MainViewEvent, MainViewModel> {
     
     @Singleton<ListsEventsManager> private var listsEventsManager
     @Singleton<GlobalSettings> private var settings
     
-    private let suplaTabBarController = UITabBarController()
     private let notificationView: NotificationView = NotificationView()
     private let newGestureInfoView: NewGestureInfoView = NewGestureInfoView()
     private var notificationViewHeightConstraint: NSLayoutConstraint? = nil
@@ -38,16 +37,17 @@ class MainVC : BaseViewControllerVM<MainViewState, MainViewEvent, MainViewModel>
     
     private var iconsDownloadTask: SADownloadUserIcons? = nil
     
-    convenience init() {
-        self.init(nibName: nil, bundle: nil)
-        viewModel = MainViewModel()
+    init(navigator: MainNavigationCoordinator) {
+        super.init(navigationCoordinator: navigator, viewModel: MainViewModel())
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        viewModel.onViewDidLoad()
         edgesForExtendedLayout = []
-        statusBarBackgroundView.isHidden = true
         
         self.title = Strings.NavBar.titleSupla
         
@@ -104,16 +104,6 @@ class MainVC : BaseViewControllerVM<MainViewState, MainViewEvent, MainViewModel>
     }
     
     private func setupTabBarController() {
-        suplaTabBarController.tabBar.barTintColor = .background
-        suplaTabBarController.tabBar.tintColor = .suplaGreen
-        suplaTabBarController.tabBar.unselectedItemTintColor = .textLight
-        suplaTabBarController.tabBar.isTranslucent = false
-        suplaTabBarController.tabBar.layer.shadowOffset = CGSizeMake(0, 0)
-        suplaTabBarController.tabBar.layer.shadowRadius = 2
-        suplaTabBarController.tabBar.layer.shadowColor = UIColor.black.cgColor
-        suplaTabBarController.tabBar.layer.shadowOpacity = 0.3
-        suplaTabBarController.tabBar.backgroundColor = .background
-        
         let channelListVC = ChannelListVC()
         channelListVC.navigationCoordinator = navigator
         channelListVC.tabBarItem = UITabBarItem(
@@ -136,8 +126,7 @@ class MainVC : BaseViewControllerVM<MainViewState, MainViewEvent, MainViewModel>
             tag: HomeTabTag.Scenes.rawValue
         )
         
-        suplaTabBarController.viewControllers = [channelListVC, groupListVC, sceneListVC]
-        self.view.addSubview(suplaTabBarController.view)
+        self.viewControllers = [channelListVC, groupListVC, sceneListVC]
     }
     
     // MARK: Notifications setup

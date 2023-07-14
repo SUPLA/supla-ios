@@ -41,6 +41,7 @@ final class DiContainer: NSObject, DiContainerProtocol {
 
 extension DiContainer {
     @objc static func start() {
+        // MARK: General
         DiContainer.shared.register(type: GlobalSettings.self, component: GlobalSettingsImpl())
         DiContainer.shared.register(type: RuntimeConfig.self, component: RuntimeConfigImpl())
         DiContainer.shared.register(type: SuplaClientProvider.self, component: SuplaClientProviderImpl())
@@ -49,7 +50,9 @@ extension DiContainer {
         DiContainer.shared.register(type: ListsEventsManager.self, component: ListsEventsManagerImpl())
         DiContainer.shared.register(type: SingleCall.self, component: SingleCallImpl())
         DiContainer.shared.register(type: DateProvider.self, component: DateProviderImpl())
+        DiContainer.shared.register(type: UserNotificationCenter.self, component: UserNotificationCenterImpl())
         
+        // MARK: Repositories
         DiContainer.shared.register(type: (any ProfileRepository).self, component: ProfileRepositoryImpl())
         DiContainer.shared.register(type: (any SceneRepository).self, component: SceneRepositoryImpl())
         DiContainer.shared.register(type: (any LocationRepository).self, component: LocationRepositoryImpl())
@@ -65,17 +68,31 @@ extension DiContainer {
         DiContainer.shared.register(type: (any UserIconRepository).self, component: UserIconRepositoryImpl())
         DiContainer.shared.register(type: (any ThermostatMeasurementItemRepository).self, component: ThermostatMeasurementItemRepositoryImpl())
         
-        DiContainer.shared.register(type: ToggleLocationUseCase.self, component: ToggleLocationUseCaseImpl())
-        DiContainer.shared.register(type: CreateProfileScenesListUseCase.self, component: CreateProfileScenesListUseCaseImpl())
-        DiContainer.shared.register(type: CreateProfileChannelsListUseCase.self, component: CreateProfileChannelsListUseCaseImpl())
-        DiContainer.shared.register(type: CreateProfileGroupsListUseCase.self, component: CreateProfileGroupsListUseCaseImpl())
-        DiContainer.shared.register(type: DeleteAllProfileDataUseCase.self, component: DeleteAllProfileDataUseCaseImpl())
+        // MARK: Usecases
+        // Usecases - Channel
         DiContainer.shared.register(type: SwapChannelPositionsUseCase.self, component: SwapChannelPositionsUseCaseImpl())
-        DiContainer.shared.register(type: SwapGroupPositionsUseCase.self, component: SwapGroupPositionsUseCaseImpl())
-        DiContainer.shared.register(type: SwapScenePositionsUseCase.self, component: SwapScenePositionsUseCaseImpl())
+        DiContainer.shared.register(type: CreateProfileChannelsListUseCase.self, component: CreateProfileChannelsListUseCaseImpl())
+        DiContainer.shared.register(type: ReadChannelByRemoteIdUseCase.self, component: ReadChannelByRemoteIdUseCaseImpl())
+        // Usecases - ChannelBase
+        DiContainer.shared.register(type: GetChannelBaseStateUseCase.self, component: GetChannelBaseStateUseCaseImpl())
+        DiContainer.shared.register(type: GetChannelBaseIconUseCase.self, component: GetChannelBaseIconUseCaseImpl())
+        // Usecases - Client
+        DiContainer.shared.register(type: ExecuteSimpleActionUseCase.self, component: ExecuteSimpleActionUseCaseImpl())
+        DiContainer.shared.register(type: StartTimerUseCase.self, component: StartTimerUseCaseImpl())
+        // Usecases - Detail
         DiContainer.shared.register(type: ProvideDetailTypeUseCase.self, component: ProvideDetailTypeUseCaseImpl())
-        
-        DiContainer.shared.register(type: UserNotificationCenter.self, component: UserNotificationCenterImpl())
+        // Usecases - Group
+        DiContainer.shared.register(type: SwapGroupPositionsUseCase.self, component: SwapGroupPositionsUseCaseImpl())
+        DiContainer.shared.register(type: CreateProfileGroupsListUseCase.self, component: CreateProfileGroupsListUseCaseImpl())
+        // Usecases - Icon
+        DiContainer.shared.register(type: GetDefaultIconNameUseCase.self, component: GetDefaultIconNameUseCaseImpl())
+        // Usecases - Location
+        DiContainer.shared.register(type: ToggleLocationUseCase.self, component: ToggleLocationUseCaseImpl())
+        // Usecases - Profile
+        DiContainer.shared.register(type: DeleteAllProfileDataUseCase.self, component: DeleteAllProfileDataUseCaseImpl())
+        // Usecases - Profile
+        DiContainer.shared.register(type: CreateProfileScenesListUseCase.self, component: CreateProfileScenesListUseCaseImpl())
+        DiContainer.shared.register(type: SwapScenePositionsUseCase.self, component: SwapScenePositionsUseCaseImpl())
     }
     
     @objc static func listsEventsManager() -> ListsEventsManagerEmitter? {

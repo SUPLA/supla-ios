@@ -27,5 +27,6 @@ NS_ASSUME_NONNULL_BEGIN
 - (BOOL)adjustsStatusBarBackground;
 - (BOOL)hidesNavigationBar;
 - (void)addChildView: (UIView *)v;
+- (BOOL)shouldUpdateTitleFont;
 @end
 NS_ASSUME_NONNULL_END

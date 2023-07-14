@@ -19,6 +19,7 @@
 #import "SARateApp.h"
 #import "SuplaApp.h"
 #import "Database.h"
+#import "SUPLA-Swift.h"
 
 #define CFG_KEY @"rate_time"
 
@@ -42,7 +43,7 @@
         
     } else if ( [[NSDate date] timeIntervalSince1970] >= rt ) {
         
-        if ( [[SAApp DB] getChannelCount] > 0 ) {
+        if ( [UseCaseLegacyWrapper getChannelCount] > 0 ) {
             
             [self moreDays:1];
             [NSTimer scheduledTimerWithTimeInterval:time target:self selector:@selector(showAlertDialog:) userInfo:nil repeats:NO];

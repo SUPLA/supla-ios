@@ -26,6 +26,7 @@ NS_ASSUME_NONNULL_BEGIN
 + (NSFetchRequest<SAChannelExtendedValue *> *)fetchRequest;
 
 @property (nonatomic) int32_t type;
+@property (nullable, nonatomic, copy) NSDate* timerStartTime;
 
 @end
 

@@ -24,6 +24,8 @@
 
 - (void) cancel;
 - (void) reconnect;
+- (BOOL) executeAction: (int)actionId subjecType: (int)subjectType subjectId: (int)subjectId rsParameters: (TAction_RS_Parameters*)rsParameters rgbwParameters: (TAction_RGBW_Parameters*)rgbwParameters;
+- (BOOL) timerArmFor: (int) remoteId withTurnOn: (BOOL) on withTime: (int) milis;
 
 @end
 
@@ -35,6 +37,11 @@
 @end
 
 @interface SASuplaClient : NSThread <SuplaClientProtocol>
+{
+@public
+    int serverTimeDiffInSec;
+}
+
 - (id)initWithOneTimePassword:(NSString*)oneTimePassword;
 + (NSString *)codeToString:(NSNumber*)code;
 + (NSString *)codeToString:(NSNumber*)code authDialog:(BOOL)authDialog;

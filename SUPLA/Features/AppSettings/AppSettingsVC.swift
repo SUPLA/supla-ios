@@ -40,7 +40,6 @@ class AppSettingsVC: BaseViewControllerVM<AppSettingsViewState, AppSettingsViewE
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        viewModel.onViewDidLoad()
         edgesForExtendedLayout = []
         statusBarBackgroundView.isHidden = true
         
