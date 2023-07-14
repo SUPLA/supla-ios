@@ -92,8 +92,6 @@
         TSuplaChannelExtendedValue single_ev = {};
         
         while (srpc_evtool_value_get(&multi_ev, index, &single_ev)) {
-            TTimerState_ExtendedValue timerState = {};
-            
             NSDate* timerEndDate = [self getTimerEndDate:single_ev.type size:single_ev.size value:single_ev.value];
             if (timerEndDate != nil) {
                 return timerEndDate;

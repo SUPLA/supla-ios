@@ -46,6 +46,9 @@ final class TimerConfigurationView: UIView {
                 return .turnOff
             }
         }
+        set {
+            actionSwitch.selectedSegmentIndex = newValue.rawValue
+        }
     }
     
     var timeInSeconds: Int {

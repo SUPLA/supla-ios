@@ -17,6 +17,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 */
 
 #import "SAChannelStateExtendedValue.h"
+#import "SuplaApp.h"
 
 @implementation SAChannelStateExtendedValue {
     TChannelState_ExtendedValue _csev;
@@ -350,7 +351,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 }
 
 -(NSDate*) countdownEndsAt {
-    return [NSDate dateWithTimeIntervalSince1970: _tsev.CountdownEndsAt];
+    int timeDiff = [SAApp SuplaClient]->serverTimeDiffInSec;
+    return [NSDate dateWithTimeIntervalSince1970: _tsev.CountdownEndsAt + timeDiff];
 }
 
 

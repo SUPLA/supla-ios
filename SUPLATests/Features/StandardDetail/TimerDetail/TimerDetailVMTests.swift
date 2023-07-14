@@ -225,50 +225,6 @@ final class TimerDetailVMTests: ViewModelTest<TimerDetailViewState, TimerDetailV
         assertEvent(0, equalTo: .showInvalidTime)
     }
     
-    func test_startTimer_inEditMode_channelOn() {
-        // given
-        let remoteId: Int32 = 123
-        let duration = 322
-        
-        let channel = createChannelWithHiValue(1)
-        readChannelByRemoteIdUseCase.returns = Observable.just(channel)
-        
-        // when
-        observe(viewModel)
-        viewModel.startEditMode()
-        viewModel.startTimer(remoteId: remoteId, action: .turnOff, durationInSecs: duration)
-        
-        // then
-        assertObserverItems(statesCount: 2, eventsCount: 0)
-        
-        XCTAssertEqual(startTimerUseCase.remoteIdsArray.count, 1)
-        XCTAssertEqual(startTimerUseCase.remoteIdsArray[0], remoteId)
-        XCTAssertEqual(startTimerUseCase.turnOnsArray[0], true)
-        XCTAssertEqual(startTimerUseCase.durationsArray[0], Int32(duration))
-    }
-    
-    func test_startTimer_inEditMode_channelOff() {
-        // given
-        let remoteId: Int32 = 123
-        let duration = 322
-        
-        let channel = createChannelWithHiValue(0)
-        readChannelByRemoteIdUseCase.returns = Observable.just(channel)
-        
-        // when
-        observe(viewModel)
-        viewModel.startEditMode()
-        viewModel.startTimer(remoteId: remoteId, action: .turnOff, durationInSecs: duration)
-        
-        // then
-        assertObserverItems(statesCount: 2, eventsCount: 0)
-        
-        XCTAssertEqual(startTimerUseCase.remoteIdsArray.count, 1)
-        XCTAssertEqual(startTimerUseCase.remoteIdsArray[0], remoteId)
-        XCTAssertEqual(startTimerUseCase.turnOnsArray[0], false)
-        XCTAssertEqual(startTimerUseCase.durationsArray[0], Int32(duration))
-    }
-    
     func test_startTimer_informAboutWrongTime_editMode() {
         // given
         let remoteId: Int32 = 123
@@ -289,7 +245,7 @@ final class TimerDetailVMTests: ViewModelTest<TimerDetailViewState, TimerDetailV
         
         XCTAssertEqual(startTimerUseCase.remoteIdsArray.count, 1)
         XCTAssertEqual(startTimerUseCase.remoteIdsArray[0], remoteId)
-        XCTAssertEqual(startTimerUseCase.turnOnsArray[0], false)
+        XCTAssertEqual(startTimerUseCase.turnOnsArray[0], true)
         XCTAssertEqual(startTimerUseCase.durationsArray[0], Int32(duration))
         
         assertEvent(0, equalTo: .showInvalidTime)

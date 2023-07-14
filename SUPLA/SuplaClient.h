@@ -37,6 +37,11 @@
 @end
 
 @interface SASuplaClient : NSThread <SuplaClientProtocol>
+{
+@public
+    int serverTimeDiffInSec;
+}
+
 - (id)initWithOneTimePassword:(NSString*)oneTimePassword;
 + (NSString *)codeToString:(NSNumber*)code;
 + (NSString *)codeToString:(NSNumber*)code authDialog:(BOOL)authDialog;

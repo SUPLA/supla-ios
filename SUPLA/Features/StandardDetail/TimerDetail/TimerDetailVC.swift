@@ -169,6 +169,7 @@ class TimerDetailVC: BaseViewControllerVM<TimerDetailViewState, TimerDetailViewE
             cancelButton.setAttributedTitle(Strings.TimerDetail.cancel.arguments(cancelArgument))
         }
         
+        timerConfigurationView.action = state.editMode && state.deviceState?.isOn ?? false == false ? .turnOff : .turnOn
         timerConfigurationView.editMode = state.editMode
         timerConfigurationView.enabled = state.deviceState?.isOnline ?? false == true
         timerConfigurationView.isHidden = !state.editMode && state.deviceState?.timerEndDate != nil

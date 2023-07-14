@@ -36,22 +36,9 @@ class TimerDetailVM: BaseViewModel<TimerDetailViewState, TimerDetailViewEvent>, 
     }
     
     func startTimer(remoteId: Int32, action: TimerTargetAction, durationInSecs: Int) {
-        if (currentState()?.editMode ?? false == true) {
-            readChannelByRemoteIdUseCase.invoke(remoteId: remoteId)
-                .flatMapFirst {
-                    self.startTimerUseCase.invoke(
-                        remoteId: remoteId,
-                        turnOn: $0.value?.hiValue() ?? 0 > 0,
-                        durationInSecs: Int32(durationInSecs)
-                    )
-                }
-                .subscribe(onError: { self.handleStartTimerError(error: $0) })
-                .disposed(by: self)
-        } else {
-            startTimerUseCase.invoke(remoteId: remoteId, turnOn: action == .turnOn, durationInSecs: Int32(durationInSecs))
-                .subscribe(onError: { self.handleStartTimerError(error: $0) })
-                .disposed(by: self)
-        }
+        startTimerUseCase.invoke(remoteId: remoteId, turnOn: action == .turnOn, durationInSecs: Int32(durationInSecs))
+            .subscribe(onError: { self.handleStartTimerError(error: $0) })
+            .disposed(by: self)
     }
     
     func stopTimer(remoteId: Int32) {

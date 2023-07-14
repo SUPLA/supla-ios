@@ -122,9 +122,10 @@ void sasuplaclient_on_registering(void *_suplaclient, void *user_data) {
 void sasuplaclient_on_registered(void *_suplaclient, void *user_data, TSC_SuplaRegisterClientResult_D *result) {
     
     SASuplaClient *sc = (__bridge SASuplaClient*)user_data;
-    if ( sc != nil )
+    if ( sc != nil ) {
+        sc->serverTimeDiffInSec = [[NSDate alloc] init].timeIntervalSince1970 - result->serverUnixTimestamp;
         [sc onRegistered:[SARegResult RegResultClientID:result->ClientID locationCount:result->LocationCount channelCount:result->ChannelCount channelGroupCount:result->ChannelGroupCount sceneCount: result->SceneCount flags:result->Flags version:result->version]];
-    
+    }
 }
 
 void sasuplaclient_on_set_registration_enabled_result(void *_suplaclient, void *user_data, TSC_SetRegistrationEnabledResult *result) {
