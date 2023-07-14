@@ -58,7 +58,7 @@
     return result;
 }
 
-- (NSDate*) getTimerEndDate: (int32_t) type size: (int32_t) size value: (char[]) value {
+- (NSDate*) getTimerEndDateWithEvType: (int32_t) type size: (int32_t) size value: (char[]) value {
     TTimerState_ExtendedValue timerState = {};
     if (type == EV_TYPE_CHANNEL_AND_TIMER_STATE_V1) {
         if (size >= sizeof(TChannelAndTimerState_ExtendedValue) - SUPLA_SENDER_NAME_MAXSIZE
@@ -85,14 +85,14 @@
         multi_ev.type = self.valueType;
         
         if (self.valueType != EV_TYPE_MULTI_VALUE) {
-            return [self getTimerEndDate:multi_ev.type size:multi_ev.size value:multi_ev.value];
+            return [self getTimerEndDateWithEvType:multi_ev.type size:multi_ev.size value:multi_ev.value];
         }
         
         int index = 0;
         TSuplaChannelExtendedValue single_ev = {};
         
         while (srpc_evtool_value_get(&multi_ev, index, &single_ev)) {
-            NSDate* timerEndDate = [self getTimerEndDate:single_ev.type size:single_ev.size value:single_ev.value];
+            NSDate* timerEndDate = [self getTimerEndDateWithEvType:single_ev.type size:single_ev.size value:single_ev.value];
             if (timerEndDate != nil) {
                 return timerEndDate;
             }

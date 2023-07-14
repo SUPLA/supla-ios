@@ -46,6 +46,11 @@
 
 @class SAChannel;
 @interface SAChannelCell : MGSwipeTableCell
+{
+@private
+    NSTimer* timer;
+    NSDate* timerEndTime;
+}
 
 
 @property (strong, nonatomic) SAChannelBase *channelBase;
@@ -64,6 +69,7 @@
 @property (weak, nonatomic) IBOutlet UIImageView *channelStateIcon;
 @property (weak, nonatomic) IBOutlet SAWarningIcon *channelWarningIcon;
 @property (copy, nonatomic) NSIndexPath *currentIndexPath;
+@property (weak, nonatomic) IBOutlet UILabel *durationTimer;
 /**
  Collection of layout constraints which should be subject to scaling with respect to Channel Height adjustment.
  */

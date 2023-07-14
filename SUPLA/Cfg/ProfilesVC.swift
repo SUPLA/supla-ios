@@ -100,7 +100,7 @@ class ProfilesVC: BaseViewController {
           .isActive = true
         _headline.text = Strings.Profiles.Title.plural.uppercased()
         _headline.font = .formLabelFont
-        _headline.textColor = .formLabelColor
+        _headline.textColor = .gray
 
         _tapMessage.topAnchor.constraint(equalTo: _headline.bottomAnchor,
                                          constant: Dimens.elementOffset).isActive = true

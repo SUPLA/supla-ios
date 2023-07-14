@@ -106,6 +106,9 @@
     for(NSLayoutConstraint *constraint in self.channelIconScalableConstraints) {
         constraint.constant *= scaleFactor;
     }
+    
+    self.durationTimer.font = UIFont.body2;
+    self.durationTimer.textColor = UIColor.gray;
 }
 
 - (DisposeBagContainer *) getDisposeBagContainer {
@@ -168,6 +171,45 @@
     [self updateCellView];
 }
 
+-(void) updateTimerDurationView {
+    if (timerEndTime == nil) {
+        self.durationTimer.hidden = YES;
+        return;
+    }
+    
+    self.durationTimer.hidden = NO;
+    
+    NSDate* currentTime = [[NSDate alloc] init];
+    int leftTime = (int) ([timerEndTime timeIntervalSince1970] - [currentTime timeIntervalSince1970]);
+    self.durationTimer.text = [NSString stringWithFormat: @"%02d:%02d:%02d",
+                               leftTime / 3600,
+                               (leftTime / 60) % 60,
+                               leftTime % 60];
+}
+
+-(void) setupTimerWithChannel: (SAChannel*) channel {
+    if (timer != nil) {
+        [timer invalidate];
+        timerEndTime = nil;
+        [self updateTimerDurationView];
+    }
+    
+    SAChannelExtendedValue* extendedValue = channel.ev;
+    if (extendedValue == nil) {
+        return;
+    }
+    SAChannelStateExtendedValue* channelState = [extendedValue channelState];
+    if (channelState == nil) {
+        return;
+    }
+    timerEndTime = [channelState countdownEndsAt];
+    if (timerEndTime == nil || [timerEndTime timeIntervalSinceDate: [[NSDate alloc] init]] < 1) {
+        return;
+    }
+    
+    timer = [NSTimer scheduledTimerWithTimeInterval:0.1 target:self selector:@selector(updateTimerDurationView) userInfo:nil repeats:YES];
+}
+
 -(void) updateCellView {
     BOOL isGroup = [_channelBase isKindOfClass:[SAChannelGroup class]];
     SAChannel *channel = [_channelBase isKindOfClass:[SAChannel class]] ? (SAChannel*)_channelBase : nil;
@@ -177,6 +219,7 @@
         || channel.value.sub_value_type == SUBV_TYPE_ELECTRICITY_MEASUREMENTS);
     
     self.channelStateIcon.hidden = YES;
+    self.durationTimer.hidden = YES;
     self.rightButtons = @[];
     self.leftButtons = @[];
     
@@ -199,12 +242,15 @@
         self.right_OnlineStatus.shapeType = stDot;
         self.left_OnlineStatus.shapeType = stDot;
         
-        if ([_channelBase isKindOfClass:[SAChannel class]] && _showChannelInfo && [channel isOnline]) {
-            UIImage *stateIcon = channel.stateIcon;
-            if (stateIcon) {
-                self.channelStateIcon.hidden = NO;
-                self.channelStateIcon.image = stateIcon;
+        if (channel != nil) {
+            if (_showChannelInfo && [channel isOnline]) {
+                UIImage *stateIcon = channel.stateIcon;
+                if (stateIcon) {
+                    self.channelStateIcon.hidden = NO;
+                    self.channelStateIcon.image = stateIcon;
+                }
             }
+            [self setupTimerWithChannel: channel];
         }
     }
     
