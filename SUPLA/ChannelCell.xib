@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -85,6 +85,12 @@
                             <constraint firstAttribute="height" constant="30" id="U2K-CO-MhU"/>
                         </constraints>
                     </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00:03:21" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="k2R-fw-5yY">
+                        <rect key="frame" x="290" y="9" width="68" height="21"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
                 <color key="backgroundColor" red="0.97647058823529409" green="0.98039215686274506" blue="0.98431372549019602" alpha="1" colorSpace="calibratedRGB"/>
                 <constraints>
@@ -96,6 +102,7 @@
                     <constraint firstItem="ilZ-Cd-uym" firstAttribute="leading" secondItem="8O3-5x-52I" secondAttribute="trailing" id="J7I-kC-uC0"/>
                     <constraint firstItem="ilZ-Cd-uym" firstAttribute="centerY" secondItem="oDG-Oh-yeF" secondAttribute="centerY" id="L7i-c0-DBP"/>
                     <constraint firstItem="mwc-4O-K3V" firstAttribute="centerY" secondItem="oDG-Oh-yeF" secondAttribute="centerY" id="MLv-Ff-uKK"/>
+                    <constraint firstAttribute="trailing" secondItem="k2R-fw-5yY" secondAttribute="trailing" constant="22" id="Pqr-Nm-EZK"/>
                     <constraint firstAttribute="bottomMargin" secondItem="WUf-g2-rWR" secondAttribute="bottom" constant="-8" id="Ttl-9z-BW4"/>
                     <constraint firstItem="WUf-g2-rWR" firstAttribute="trailing" secondItem="oDG-Oh-yeF" secondAttribute="trailingMargin" constant="10" id="U7Q-rd-Ykp"/>
                     <constraint firstItem="mwc-4O-K3V" firstAttribute="leading" secondItem="oDG-Oh-yeF" secondAttribute="leadingMargin" constant="11" id="Wct-aD-J9X"/>
@@ -104,6 +111,7 @@
                     <constraint firstItem="4Xr-cm-fdh" firstAttribute="centerY" secondItem="oDG-Oh-yeF" secondAttribute="centerY" id="ebd-ht-UoB"/>
                     <constraint firstAttribute="bottom" secondItem="CZP-9z-72p" secondAttribute="bottom" constant="9" identifier="captionToBottom" id="iWU-zK-Qit"/>
                     <constraint firstItem="VDN-tt-KUq" firstAttribute="centerY" secondItem="oDG-Oh-yeF" secondAttribute="centerY" constant="-10" id="lix-yi-6iL"/>
+                    <constraint firstItem="k2R-fw-5yY" firstAttribute="top" secondItem="oDG-Oh-yeF" secondAttribute="top" constant="9" id="ncU-rl-LdJ"/>
                     <constraint firstItem="8O3-5x-52I" firstAttribute="leading" secondItem="hr3-yJ-aHV" secondAttribute="trailing" constant="20" id="ocW-Ty-uoL"/>
                     <constraint firstItem="VDN-tt-KUq" firstAttribute="centerX" secondItem="oDG-Oh-yeF" secondAttribute="centerX" id="x5q-BV-mzE"/>
                 </constraints>
@@ -114,6 +122,7 @@
                 <outlet property="channelWarningIcon" destination="hr3-yJ-aHV" id="jlq-It-OAJ"/>
                 <outlet property="cint_LeftStatusWidth" destination="S8n-Ie-UUr" id="Vvb-rR-f9L"/>
                 <outlet property="cint_RightStatusWidth" destination="8MR-Jr-6sX" id="H83-AZ-MaW"/>
+                <outlet property="durationTimer" destination="k2R-fw-5yY" id="8e2-ks-7Gk"/>
                 <outlet property="image1" destination="VDN-tt-KUq" id="gep-Co-Zre"/>
                 <outlet property="left_OnlineStatus" destination="mwc-4O-K3V" id="UU1-4f-2q6"/>
                 <outlet property="right_ActiveStatus" destination="8O3-5x-52I" id="5a3-0x-PN4"/>

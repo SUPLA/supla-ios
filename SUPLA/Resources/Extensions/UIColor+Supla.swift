@@ -29,6 +29,7 @@ extension UIColor {
     
     static let disabled = UIColor(red: 180/255.0, green: 183/255.0, blue: 186/255.0, alpha: 1)
     
+    @objc static let gray = UIColor(red: 126/255.0, green: 128/255.0, blue: 130/255.0, alpha: 1)
     static let grayLight = UIColor(red: 239/255.0, green: 239/255.0, blue: 240/255.0, alpha: 1)
     static let border = UIColor(red: 180/255.0, green: 183/255.0, blue: 186/255.0, alpha: 1)
     
@@ -47,7 +48,6 @@ extension UIColor {
     static let switcherBackground = UIColor(red: 118.0/255.0, green: 120.0/255.0, blue: 128.0/255.0, alpha: 0.12)
     static let alertRed = UIColor(red: 235.0/255.0, green: 58.0/255.0, blue: 40.0/255.0, alpha: 1)
 
-    static let formLabelColor = UIColor(red: 0.706, green: 0.718, blue: 0.729, alpha: 1)
     @objc static let textLight = UIColor(red: 0, green: 0, blue: 0, alpha: 1)
     @objc static let yellow = UIColor(red: 254, green: 231, blue: 0, alpha: 1)
     

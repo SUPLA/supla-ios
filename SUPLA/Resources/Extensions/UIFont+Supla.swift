@@ -26,7 +26,7 @@ extension UIFont {
     static let subtitle1 = openSansRegular(style: .subheadline, size: 16)
     static let subtitle2 = openSansMedium(style: .subheadline, size: 14)
     static let body1 = openSansRegular(style: .body, size: 16)
-    static let body2 = openSansRegular(style: .body, size: 14)
+    @objc static let body2 = openSansRegular(style: .body, size: 14)
     static let button = openSansMedium(style: .caption1, size: 17)
     static let caption = openSansMedium(style: .caption2, size: 10)
     
