@@ -796,6 +796,11 @@ void sasuplaclient_scene_state_update(void *_suplaclient,
 }
 
 - (void) onChannelValueChanged:(int)Id isGroup:(BOOL)group {
+    if (group) {
+        [DiContainer.listsEventsManager emitGroupChangeWithRemoteId: Id];
+    } else {
+        [DiContainer.listsEventsManager emitChannelChangeWithRemoteId: Id];
+    }
     NSArray *arr = [NSArray arrayWithObjects:[NSNumber numberWithInt:Id], [NSNumber numberWithBool:group], nil];
     [self performSelectorOnMainThread:@selector(_onChannelValueChanged:) withObject:arr waitUntilDone:NO];
 };
@@ -872,7 +877,6 @@ void sasuplaclient_scene_state_update(void *_suplaclient,
     if ( [UseCaseLegacyWrapper updateChannelValueWithSuplaChannelValue: *channel_value] ) {
         [self onChannelValueChanged: channel_value->Id isGroup:NO];
         [self onDataChanged];
-        [DiContainer.listsEventsManager emitChannelChangeWithRemoteId: channel_value->Id];
     }
     
     if (channel_value->EOL == 1) {

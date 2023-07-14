@@ -29,14 +29,25 @@ extension SAChannelCell {
             return
         }
         
-        listsEventsManager.observeChannel(remoteId: remoteId)
-            .asDriverWithoutError()
-            .drive(
-                onNext: { channel in
-                    self.updateChannelBase(channel)
-                }
-            )
-            .disposed(by: self.getDisposeBagContainer())
+        if (channelBase is SAChannel) {
+            listsEventsManager.observeChannel(remoteId: remoteId)
+                .asDriverWithoutError()
+                .drive(
+                    onNext: { channel in
+                        self.updateChannelBase(channel)
+                    }
+                )
+                .disposed(by: self.getDisposeBagContainer())
+        } else if (channelBase is SAChannelGroup) {
+            listsEventsManager.observeGroup(remoteId: remoteId)
+                .asDriverWithoutError()
+                .drive(
+                    onNext: { channel in
+                        self.updateChannelBase(channel)
+                    }
+                )
+                .disposed(by: self.getDisposeBagContainer())
+        }
     }
     
     @objc
