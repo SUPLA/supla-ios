@@ -165,7 +165,7 @@ class AccountCreationVM: BaseViewModel<AccountCreationViewState, AccountCreation
         profile.advancedSetup = state.advancedMode
         profile.authInfo = authInfo
         if (authDataChanged) {
-            profile.authInfo?.preferredProtocolVersion = Int(SUPLA_PROTO_VERSION)
+            profile.authInfo = authInfo?.copy(preferredProtocolVersion: Int(SUPLA_PROTO_VERSION))
         }
         
         if (profileManager.update(profile)) {
