@@ -79,7 +79,7 @@
 "Add Wizard is only available when server connection has been set based on the email address entered in the settings. (Disable advanced options in the settings)" = "Майстер додавання доступний лише тоді, коли встановлено з’єднання з сервером на основі введеної електронної адреси! (Вимкніть додаткові параметри в налаштуваннях облікового запису)";
 "The connected Server does not support this function!" = "Сервер, до якого ви підключені, не підтримує цю функцію!";
 "Device Configuration Completion timeout!" = "Час очікування завершення налаштування пристрою минув!";
-"Incorrect input parameters!" = "Неправильні вхідні параметри!";
+"Incorrect input parameters (%@)!" = "Неправильні вхідні параметри (%@)!";
 "The connected device is not compatible with this Wizard!" = "Підключений пристрій несумісний із цим майстром!";
 "Configuration Failed!" = "Помилка налаштування!";
 "Connection with the device cannot be set!" = "Неможливо підключитися до пристрою!";

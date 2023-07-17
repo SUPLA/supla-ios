@@ -79,7 +79,7 @@
 "Add Wizard is only available when server connection has been set based on the email address entered in the settings. (Disable advanced options in the settings)" = "Čarovnik za dodajanje je na voljo le, če je na podlagi vnesenega e-poštnega naslova vzpostavljena povezava s strežnikom! (Onemogočite napredne možnosti v konfiguraciji računa)";
 "The connected Server does not support this function!" = "Strežnik, na katerega ste se povezali, ne podpira te funkcije!";
 "Device Configuration Completion timeout!" = "Čakalna doba za dokončanje konfiguracije naprave je prekoračena!";
-"Incorrect input parameters!" = "Napačni vhodni parametri!";
+"Incorrect input parameters (%@)!" = "Napačni vhodni parametri (%@)!";
 "The connected device is not compatible with this Wizard!" = "Naprava, na katero ste se povezali, ni združljiva s tem čarovnikom!";
 "Configuration Failed!" = "Konfiguracija ni bila uspešna!";
 "Connection with the device cannot be set!" = "Povezave z napravo ni mogoče nastaviti!";

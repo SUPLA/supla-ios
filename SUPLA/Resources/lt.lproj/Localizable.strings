@@ -81,7 +81,7 @@
 "Add Wizard is only available when server connection has been set based on the email address entered in the settings. (Disable advanced options in the settings)" = "Pridėjimo vedlys prieinamas tik tada, kai pagal įvestą el. pašto adresą užmegztas ryšys su serveriu! (Savo paskyros konfigūracijoje išjunkite išplėstines parinktis)";
 "The connected Server does not support this function!" = "Serveris, prie kurio prisijungta, nepaliko šios funkcijos!";
 "Device Configuration Completion timeout!" = "Viršytas įrenginio konfigūracijos užbaigimo laukimo laikas!";
-"Incorrect input parameters!" = "Klaidingi įvesties parametrai!";
+"Incorrect input parameters (%@)!" = "Klaidingi įvesties parametrai (%@)!";
 "The connected device is not compatible with this Wizard!" = "Įrenginys, su kuriuo užmegztas ryšys nėra suderinamas su šiuo vedliu!";
 "Configuration Failed!" = "Nepavyko sėkmingai baigti konfigūravimo!";
 "Connection with the device cannot be set!" = "Negalima užmegzti ryšio su įrenginiu!";

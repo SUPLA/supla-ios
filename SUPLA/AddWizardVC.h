@@ -34,10 +34,11 @@
 @end
 
 
+@class SASetConfigOperation;
 @protocol SASetConfOpDelegate <NSObject>
 
 @required
--(void)configResult:(SAConfigResult*)result;
+-(void)configResult:(SAConfigResult*)result of: (SASetConfigOperation*) op;
 @end
 
 @interface SASetConfigOperation : NSOperation

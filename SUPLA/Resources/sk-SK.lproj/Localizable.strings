@@ -79,7 +79,7 @@
 "Add Wizard is only available when server connection has been set based on the email address entered in the settings. (Disable advanced options in the settings)" = "Sprievodca pridávaním je dostupný len po nadviazaní spojenia so serverom na základe zadanej e-mailovej adresy! (Vypnite pokročilé možnosti v nastavení svojho účtu)";
 "The connected Server does not support this function!" = "Server, s ktorým bolo nadviazané spojenie, túto funkciu nepodporuje!";
 "Device Configuration Completion timeout!" = "Bola prekročená lehota čakania na dokončenie konfigurácie zariadenia!";
-"Incorrect input parameters!" = "Nesprávne vstupné parametre!";
+"Incorrect input parameters (%@)!" = "Nesprávne vstupné parametre (%@)!";
 "The connected device is not compatible with this Wizard!" = "Pripojené zariadenie nie je kompatibilné s týmto sprievodcom!";
 "Configuration Failed!" = "Konfigurácia zlyhala!";
 "Connection with the device cannot be set!" = "Nedá sa pripojiť k zariadeniu!";

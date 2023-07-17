@@ -79,7 +79,7 @@
 "Add Wizard is only available when server connection has been set based on the email address entered in the settings. (Disable advanced options in the settings)" = "De Toevoegen-Wizard is alleen beschikbaar als er op basis van het ingevoerde e-mailadres! een verbinding met de server tot stand is gebracht (Schakel geavanceerde opties in uw accountconfiguratie uit)";
 "The connected Server does not support this function!" = "De server waarmee u verbonden bent, ondersteunt deze functie niet!";
 "Device Configuration Completion timeout!" = "Wachttijd voor het voltooien van de apparaatconfiguratie overschreden!";
-"Incorrect input parameters!" = "Ongeldige invoerparameters!";
+"Incorrect input parameters (%@)!" = "Ongeldige invoerparameters (%@)!";
 "The connected device is not compatible with this Wizard!" = "Het apparaat waarmee u verbonden bent, is niet compatibel met deze wizard!";
 "Configuration Failed!" = "Configuratie mislukt!";
 "Connection with the device cannot be set!" = "U kunt geen verbinding maken met het apparaat!";

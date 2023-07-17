@@ -75,7 +75,7 @@
 "Add Wizard is only available when server connection has been set based on the email address entered in the settings. (Disable advanced options in the settings)" = "La procedura guidata di aggiunta è disponibile solo dopo aver stabilito una connessione al server in base all\'indirizzo email inserito! (Disattivare le opzioni avanzate nella configurazione dell\'account)";
 "The connected Server does not support this function!" = "Il server, con il quale è stata stabilita la connessione, non supporta questa funzione!";
 "Device Configuration Completion timeout!" = "Il tempo di attesa per la terminazione della configurazione del dispositivo è stato superato!";
-"Incorrect input parameters!" = "Parametri di input non validi!";
+"Incorrect input parameters (%@)!" = "Parametri di input non validi (%@)!";
 "The connected device is not compatible with this Wizard!" = "Il dispositivo con il quale è stata stabilita la connessione non è compatibile con questa procedura guidata!";
 "Configuration Failed!" = "Configurazione fallita!";
 "Connection with the device cannot be set!" = "Impossibile stabilire una connessione con il dispositivo!";

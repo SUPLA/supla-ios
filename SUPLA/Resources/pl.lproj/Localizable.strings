@@ -79,7 +79,7 @@
 "Add Wizard is only available when server connection has been set based on the email address entered in the settings. (Disable advanced options in the settings)" = "Kreator dodawania jest dostępny tylko gdy nawiązano połączenie z serwerem na podstawie wprowadzonego adresu email! (Wyłącz opcje zaawansowane w konfiguracji Twojego konta)";
 "The connected Server does not support this function!" = "Serwer z którym nawiązano połączenie nie obsługuje tej funkcji!";
 "Device Configuration Completion timeout!" = "Przekroczono czas oczekiwania na zakończenie konfiguracji urządzenia!";
-"Incorrect input parameters!" = "Błędne parametry wejściowe!";
+"Incorrect input parameters (%@)!" = "Błędne parametry wejściowe (%@)!";
 "The connected device is not compatible with this Wizard!" = "Urządzenie z którym nawiązano połączenie nie jest kompatybilne z tym kreatorem!";
 "Configuration Failed!" = "Konfiguracja zakończona niepowodzeniem!";
 "Connection with the device cannot be set!" = "Nie można nawiązać połączenia z urządzeniem!";

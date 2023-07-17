@@ -79,7 +79,7 @@
 "Add Wizard is only available when server connection has been set based on the email address entered in the settings. (Disable advanced options in the settings)" = "Der Hinzufügen-Assistent ist nur verfügbar, wenn die Verbindung zum Server basierend auf der eingegebenen E-Mail-Adresse hergestellt wurde! (Erweiterte Optionen in Ihrer Kontokonfiguration deaktivieren)";
 "The connected Server does not support this function!" = "Der Server, mit dem eine Verbindung herstellen wurde, unterstützt diese Funktion nicht!";
 "Device Configuration Completion timeout!" = "Für den Abschluss der Konfiguration des Gerätes wurde das Zeitlimit überschritten!";
-"Incorrect input parameters!" = "Falsche Eingabeparameter!";
+"Incorrect input parameters (%@)!" = "Falsche Eingabeparameter (%@)!";
 "The connected device is not compatible with this Wizard!" = "Das Gerät, mit dem die Verbindung hergestellt wurde, ist mit diesem Assistenten nicht kompatibel!";
 "Configuration Failed!" = "Die Konfiguration war nicht erfolgreich!";
 "Connection with the device cannot be set!" = "Es gelang nicht, die Verbindung mit dem Gerät herzustellen!";
