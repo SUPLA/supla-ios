@@ -111,7 +111,7 @@
                     <constraint firstItem="4Xr-cm-fdh" firstAttribute="centerY" secondItem="oDG-Oh-yeF" secondAttribute="centerY" id="ebd-ht-UoB"/>
                     <constraint firstAttribute="bottom" secondItem="CZP-9z-72p" secondAttribute="bottom" constant="9" identifier="captionToBottom" id="iWU-zK-Qit"/>
                     <constraint firstItem="VDN-tt-KUq" firstAttribute="centerY" secondItem="oDG-Oh-yeF" secondAttribute="centerY" constant="-10" id="lix-yi-6iL"/>
-                    <constraint firstItem="k2R-fw-5yY" firstAttribute="top" secondItem="oDG-Oh-yeF" secondAttribute="top" constant="9" id="ncU-rl-LdJ"/>
+                    <constraint firstItem="k2R-fw-5yY" firstAttribute="top" secondItem="oDG-Oh-yeF" secondAttribute="top" constant="9" identifier="durationToTop" id="ncU-rl-LdJ"/>
                     <constraint firstItem="8O3-5x-52I" firstAttribute="leading" secondItem="hr3-yJ-aHV" secondAttribute="trailing" constant="20" id="ocW-Ty-uoL"/>
                     <constraint firstItem="VDN-tt-KUq" firstAttribute="centerX" secondItem="oDG-Oh-yeF" secondAttribute="centerX" id="x5q-BV-mzE"/>
                 </constraints>
@@ -131,6 +131,7 @@
                 <outletCollection property="channelIconScalableConstraints" destination="XDd-eb-8ai" id="WSx-GP-0O4"/>
                 <outletCollection property="channelIconScalableConstraints" destination="iWU-zK-Qit" id="aPB-3e-dKz"/>
                 <outletCollection property="channelIconScalableConstraints" destination="sla-7c-lp6" id="T9M-8v-xDe"/>
+                <outletCollection property="channelIconScalableConstraints" destination="ncU-rl-LdJ" id="1Lt-yh-tiC"/>
             </connections>
             <point key="canvasLocation" x="169.56521739130437" y="-100.78125"/>
         </tableViewCell>
