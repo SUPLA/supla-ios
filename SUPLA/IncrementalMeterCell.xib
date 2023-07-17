@@ -129,7 +129,7 @@
                     <constraint firstItem="C5z-HN-1vC" firstAttribute="leading" secondItem="k1r-Vp-z4T" secondAttribute="leadingMargin" constant="10" id="BAQ-OV-5SR"/>
                     <constraint firstAttribute="trailingMargin" secondItem="C5z-HN-1vC" secondAttribute="trailing" constant="10" id="OpW-cJ-sgU"/>
                     <constraint firstItem="y66-SI-rXq" firstAttribute="trailing" secondItem="k1r-Vp-z4T" secondAttribute="trailingMargin" constant="10" id="Pp4-SV-3Yp"/>
-                    <constraint firstItem="48w-Mh-0Ck" firstAttribute="top" secondItem="k1r-Vp-z4T" secondAttribute="top" constant="9" id="R8W-qW-D2l"/>
+                    <constraint firstItem="48w-Mh-0Ck" firstAttribute="top" secondItem="k1r-Vp-z4T" secondAttribute="top" constant="9" identifier="durationToTop" id="R8W-qW-D2l"/>
                     <constraint firstAttribute="trailingMargin" secondItem="E2X-NK-oTg" secondAttribute="trailing" constant="10" id="Wgf-Wm-ks1"/>
                     <constraint firstItem="Wav-Kb-AAg" firstAttribute="centerY" secondItem="k1r-Vp-z4T" secondAttribute="centerY" id="Yal-RF-AKW"/>
                     <constraint firstItem="E2X-NK-oTg" firstAttribute="centerY" secondItem="k1r-Vp-z4T" secondAttribute="centerY" id="dgI-j2-nSV"/>
@@ -158,6 +158,7 @@
                 <outletCollection property="channelIconScalableConstraints" destination="RXV-1G-Kb4" id="nvH-hj-hcf"/>
                 <outletCollection property="channelIconScalableConstraints" destination="K58-bK-zei" id="0QD-r8-0hZ"/>
                 <outletCollection property="channelIconScalableConstraints" destination="2ln-8R-upt" id="k6e-ge-BBs"/>
+                <outletCollection property="channelIconScalableConstraints" destination="R8W-qW-D2l" id="pqE-EW-Irc"/>
             </connections>
             <point key="canvasLocation" x="336" y="-102"/>
         </tableViewCell>

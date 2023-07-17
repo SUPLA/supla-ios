@@ -79,7 +79,7 @@
 "Add Wizard is only available when server connection has been set based on the email address entered in the settings. (Disable advanced options in the settings)" = "Ο Οδηγός εγκατάστασης είναι διαθέσιμος μόνο όταν έχει δημιουργηθεί σύνδεση με τον διακομιστή με βάση τη διεύθυνση e-mail που είχατε εισαγάγει! (Απενεργοποιήστε τις σύνθετες επιλογές στη διαμόρφωση του λογαριασμού σας)";
 "The connected Server does not support this function!" = "Ο διακομιστής στον οποίο συνδέεστε δεν υποστηρίζει αυτή τη λειτουργία!";
 "Device Configuration Completion timeout!" = "Υπέρβαση χρόνου αναμονής για την ολοκλήρωση διαμόρφωσης της συσκευής!";
-"Incorrect input parameters!" = "Μη έγκυρες παράμετροι εισόδου!";
+"Incorrect input parameters (%@)!" = "Μη έγκυρες παράμετροι εισόδου (%@)!";
 "The connected device is not compatible with this Wizard!" = "Η συσκευή με την οποία συνδεθήκατε δεν είναι συμβατή με αυτόν τον οδηγό!";
 "Configuration Failed!" = "Η διαμόρφωση απέτυχε!";
 "Connection with the device cannot be set!" = "Δεν είναι δυνατή η σύνδεση με τη συσκευή!";

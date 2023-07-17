@@ -79,7 +79,7 @@
 "Add Wizard is only available when server connection has been set based on the email address entered in the settings. (Disable advanced options in the settings)" = "Veiviseren legg er kun tilgjengelig når tilkobling til serveren er etablert basert på e-postadressen som er angitt! (Deaktiver avanserte innstillinger i kontokonfigurasjonen din).";
 "The connected Server does not support this function!" = "Serveren du er koblet til, støtter ikke denne funksjonen!";
 "Device Configuration Completion timeout!" = "Ventetiden for avslutning av konfigurasjon av enheten er overskredet!";
-"Incorrect input parameters!" = "wizard_result_param_error!";
+"Incorrect input parameters (%@)!" = "wizard_result_param_error (%@)!";
 "The connected device is not compatible with this Wizard!" = "Enheten som er koblet til er ikke kompatibel med denne assistenten!";
 "Configuration Failed!" = "Konfigurasjon mislykket!";
 "Connection with the device cannot be set!" = "Kunne ikke koble til enheten!";
