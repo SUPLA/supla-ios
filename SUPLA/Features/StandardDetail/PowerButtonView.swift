@@ -37,8 +37,20 @@ final class PowerButtonView: UIView {
         didSet { textView.text = text }
     }
     
-    var icon: UIImage? = nil {
-        didSet { iconView.image = icon?.withRenderingMode(.alwaysTemplate) }
+    var icon: IconResult? = nil {
+        didSet {
+            switch (icon) {
+            case .suplaIcon(let icon):
+                iconView.image = icon?.withRenderingMode(.alwaysTemplate)
+                break
+            case .userIcon(let icon) :
+                iconView.image = icon
+                break
+            default:
+                iconView.image = icon?.icon
+                break
+            }
+        }
     }
     
     private lazy var textView: UILabel = {

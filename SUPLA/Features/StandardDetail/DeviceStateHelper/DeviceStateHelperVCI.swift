@@ -44,6 +44,6 @@ extension DeviceStateHelperVCI {
             userIcon: state.iconData.userIcon,
             channelState: state.iconData.channelState,
             altIcon: state.iconData.altIcon
-        )
+        ).icon
     }
 }

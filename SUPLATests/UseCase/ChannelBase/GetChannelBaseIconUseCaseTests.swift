@@ -37,17 +37,16 @@ final class GetChannelBaseIconUseCaseTests: XCTestCase {
     
     func test_noIconForFirstType_whenNotHumidityAndTemperature() {
         // when
-        let icon = useCase.invoke(
-            function: SUPLA_CHANNELFNC_LIGHTSWITCH,
-            userIcon: nil,
-            channelState: .notUsed,
-            altIcon: 123,
-            iconType: .first,
-            nightMode: false
-        )
-        
-        // when
-        XCTAssertNil(icon)
+        expectFatalError(expectedMessage: "Wrong icon configuration (iconType: 'first', function: '140'") {
+            _ = self.useCase.invoke(
+                function: SUPLA_CHANNELFNC_LIGHTSWITCH,
+                userIcon: nil,
+                channelState: .notUsed,
+                altIcon: 123,
+                iconType: .first,
+                nightMode: false
+            )
+        }
     }
     
     func test_defaultIcon_whenThereIsNoUserIcon() {
@@ -66,7 +65,7 @@ final class GetChannelBaseIconUseCaseTests: XCTestCase {
         
         // then
         XCTAssertNotNil(icon)
-        XCTAssertEqual(icon, UIImage(named: "uv-on"))
+        XCTAssertEqual(icon, .suplaIcon(icon: UIImage(named: "uv-on")))
     }
     
     func test_defaultIconInNightMode_whenThereIsNoUserIcon() {
@@ -85,7 +84,7 @@ final class GetChannelBaseIconUseCaseTests: XCTestCase {
         
         // then
         XCTAssertNotNil(icon)
-        XCTAssertEqual(icon, UIImage(named: "uv-on-nightmode"))
+        XCTAssertEqual(icon, .suplaIcon(icon: UIImage(named: "uv-on-nightmode")))
     }
     
     func test_userIcon_activeState() {

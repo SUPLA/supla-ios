@@ -24,7 +24,7 @@ protocol GetChannelBaseIconUseCase {
         altIcon: Int32,
         iconType: IconType,
         nightMode: Bool
-    ) -> UIImage?
+    ) -> IconResult
 }
 
 extension GetChannelBaseIconUseCase {
@@ -35,7 +35,7 @@ extension GetChannelBaseIconUseCase {
         altIcon: Int32,
         iconType: IconType = .single,
         nightMode: Bool = false
-    ) -> UIImage? {
+    ) -> IconResult {
         invoke(
             function: function,
             userIcon: userIcon,
@@ -51,14 +51,14 @@ final class GetChannelBaseIconUseCaseImpl: GetChannelBaseIconUseCase {
     
     @Singleton<GetDefaultIconNameUseCase> private var getDefaultIconNameUseCase
     
-    func invoke(function: Int32, userIcon: SAUserIcon?, channelState: ChannelState, altIcon: Int32, iconType: IconType = .single, nightMode: Bool = false) -> UIImage? {
+    func invoke(function: Int32, userIcon: SAUserIcon?, channelState: ChannelState, altIcon: Int32, iconType: IconType = .single, nightMode: Bool = false) -> IconResult {
         if (iconType != .single && function != SUPLA_CHANNELFNC_HUMIDITYANDTEMPERATURE) {
             // Currently only humidity and temperature may have multiple icons
-            return nil
+            fatalError("Wrong icon configuration (iconType: '\(iconType)', function: '\(function)'")
         }
         
         if let icon = getUserIcon(function, userIcon, channelState, iconType) {
-            return icon
+            return .userIcon(icon: icon)
         }
         
         let name = getDefaultIconNameUseCase.invoke(
@@ -69,9 +69,9 @@ final class GetChannelBaseIconUseCaseImpl: GetChannelBaseIconUseCase {
         )
         
         if (nightMode) {
-            return .init(named: .init(format: "%@-nightmode", name))
+            return .suplaIcon(icon: .init(named: .init(format: "%@-nightmode", name)))
         }
-        return .init(named: name)
+        return .suplaIcon(icon: .init(named: name))
     }
     
     private func getUserIcon(_ function: Int32, _ userIcon: SAUserIcon?, _ channelState: ChannelState, _ iconType: IconType) -> UIImage? {
@@ -99,6 +99,22 @@ final class GetChannelBaseIconUseCaseImpl: GetChannelBaseIconUseCase {
             }
         default:
             return channelState.isActive() ? userIcon?.uimage2 : userIcon?.uimage1
+        }
+    }
+}
+
+enum IconResult: Equatable {
+    case suplaIcon(icon: UIImage?)
+    case userIcon(icon: UIImage?)
+}
+
+extension IconResult {
+    var icon: UIImage? {
+        get {
+            switch(self) {
+            case .suplaIcon(let icon): return icon
+            case .userIcon(let icon): return icon
+            }
         }
     }
 }
