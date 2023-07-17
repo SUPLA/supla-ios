@@ -20,7 +20,6 @@ import RxCocoa
 
 class TimerDetailVC: BaseViewControllerVM<TimerDetailViewState, TimerDetailViewEvent, TimerDetailVM>, DeviceStateHelperVCI {
     
-    @Singleton<GetChannelBaseIconUseCase> private var getChannelBaseIconUseCase
     @Singleton<RuntimeConfig> private var runtimeConfig
     
     private let remoteId: Int32

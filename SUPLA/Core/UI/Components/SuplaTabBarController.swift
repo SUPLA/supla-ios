@@ -37,6 +37,7 @@ class SuplaTabBarController<S : ViewState, E : ViewEvent, VM : BaseViewModel<S, 
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        viewModel.onViewDidLoad()
         
         if #available(iOS 14, *) {
             navigationItem.backButtonDisplayMode = .minimal

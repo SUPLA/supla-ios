@@ -113,21 +113,15 @@ class MainViewModel: BaseViewModel<MainViewState, MainViewEvent> {
     }
     
     private func observeChangesForIconsReload() {
-        listsEventsManager
-            .observeChannelUpdates()
-            .asDriverWithoutError()
-            .drive(onNext: { self.send(event: .loadIcons) })
-            .disposed(by: self)
-        
-        listsEventsManager
-            .observeGroupUpdates()
-            .asDriverWithoutError()
-            .drive(onNext: { self.send(event: .loadIcons) })
-            .disposed(by: self)
-        
-        listsEventsManager
-            .observeSceneUpdates()
-            .asDriverWithoutError()
+        Observable.combineLatest(
+            listsEventsManager.observeChannelUpdates(),
+            listsEventsManager.observeGroupUpdates(),
+            listsEventsManager.observeSceneUpdates(),
+            resultSelector: { _, _, _ in
+                return ()
+            }
+        ).asDriverWithoutError()
+            .debounce(.seconds(2))
             .drive(onNext: { self.send(event: .loadIcons) })
             .disposed(by: self)
     }
