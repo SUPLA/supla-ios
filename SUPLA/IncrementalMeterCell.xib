@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -112,6 +112,12 @@
                             <constraint firstAttribute="width" constant="30" id="oZ9-E0-Epy"/>
                         </constraints>
                     </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00:03:21" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="48w-Mh-0Ck">
+                        <rect key="frame" x="290" y="9" width="68" height="21"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
                 <color key="backgroundColor" red="0.97647058819999999" green="0.98039215690000003" blue="0.98431372549999996" alpha="1" colorSpace="calibratedRGB"/>
                 <constraints>
@@ -123,6 +129,7 @@
                     <constraint firstItem="C5z-HN-1vC" firstAttribute="leading" secondItem="k1r-Vp-z4T" secondAttribute="leadingMargin" constant="10" id="BAQ-OV-5SR"/>
                     <constraint firstAttribute="trailingMargin" secondItem="C5z-HN-1vC" secondAttribute="trailing" constant="10" id="OpW-cJ-sgU"/>
                     <constraint firstItem="y66-SI-rXq" firstAttribute="trailing" secondItem="k1r-Vp-z4T" secondAttribute="trailingMargin" constant="10" id="Pp4-SV-3Yp"/>
+                    <constraint firstItem="48w-Mh-0Ck" firstAttribute="top" secondItem="k1r-Vp-z4T" secondAttribute="top" constant="9" identifier="durationToTop" id="R8W-qW-D2l"/>
                     <constraint firstAttribute="trailingMargin" secondItem="E2X-NK-oTg" secondAttribute="trailing" constant="10" id="Wgf-Wm-ks1"/>
                     <constraint firstItem="Wav-Kb-AAg" firstAttribute="centerY" secondItem="k1r-Vp-z4T" secondAttribute="centerY" id="Yal-RF-AKW"/>
                     <constraint firstItem="E2X-NK-oTg" firstAttribute="centerY" secondItem="k1r-Vp-z4T" secondAttribute="centerY" id="dgI-j2-nSV"/>
@@ -133,6 +140,7 @@
                     <constraint firstAttribute="bottom" secondItem="C5z-HN-1vC" secondAttribute="bottom" constant="9" identifier="captionToBottom" id="qPL-Jb-xyl"/>
                     <constraint firstAttribute="bottomMargin" secondItem="y66-SI-rXq" secondAttribute="bottom" constant="-8" id="rgt-Bg-rKE"/>
                     <constraint firstItem="Wav-Kb-AAg" firstAttribute="leading" secondItem="Ocx-Jp-kEb" secondAttribute="trailing" id="rqP-Rg-qj4"/>
+                    <constraint firstAttribute="trailing" secondItem="48w-Mh-0Ck" secondAttribute="trailing" constant="22" id="zeH-BD-1TO"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
@@ -140,6 +148,7 @@
                 <outlet property="channelStateIcon" destination="YC7-Ml-y7x" id="Eg4-DK-YGY"/>
                 <outlet property="channelWarningIcon" destination="Wav-Kb-AAg" id="ljo-yd-DF6"/>
                 <outlet property="cint_RightStatusWidth" destination="6Hx-oJ-GW4" id="4tl-2l-r3n"/>
+                <outlet property="durationTimer" destination="48w-Mh-0Ck" id="2H9-gr-1kQ"/>
                 <outlet property="image1" destination="jqp-Ie-Ob9" id="Wgg-mJ-Boj"/>
                 <outlet property="left_OnlineStatus" destination="3Wu-a5-aQL" id="BhX-yO-fqw"/>
                 <outlet property="measuredValue" destination="mPI-lf-fIE" id="9RR-Dg-riq"/>
@@ -149,6 +158,7 @@
                 <outletCollection property="channelIconScalableConstraints" destination="RXV-1G-Kb4" id="nvH-hj-hcf"/>
                 <outletCollection property="channelIconScalableConstraints" destination="K58-bK-zei" id="0QD-r8-0hZ"/>
                 <outletCollection property="channelIconScalableConstraints" destination="2ln-8R-upt" id="k6e-ge-BBs"/>
+                <outletCollection property="channelIconScalableConstraints" destination="R8W-qW-D2l" id="pqE-EW-Irc"/>
             </connections>
             <point key="canvasLocation" x="336" y="-102"/>
         </tableViewCell>

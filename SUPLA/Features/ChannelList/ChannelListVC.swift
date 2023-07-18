@@ -31,8 +31,10 @@ class ChannelListVC : ChannelBaseTableViewController<ChannelListViewState, Chann
     
     override func handle(event: ChannelListViewEvent) {
         switch(event) {
-        case let .navigateToDetail(legacy: legacyDetailType, channelBase: channelBase):
+        case .navigateToDetail(let legacyDetailType, let channelBase):
             navigator?.navigateToLegacyDetail(legacyDetailType: legacyDetailType, channelBase: channelBase)
+        case .navigateToStandardDetail(let remoteId, let pages):
+            navigator?.navigateToStandardDetail(remoteId: remoteId, pages: pages)
         }
     }
     

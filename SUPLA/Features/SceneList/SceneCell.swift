@@ -139,7 +139,7 @@ class SceneCell: MGSwipeTableCell {
         [_timerLabel, _initiator].forEach {
             $0.font = .formLabelFont.withSize(self.scaled(14))
         }
-        [_timerLabel, _initiator].forEach { $0?.textColor = .formLabelColor }
+        [_timerLabel, _initiator].forEach { $0?.textColor = .gray }
         _captionLabel.font = .cellCaptionFont.withSize(scaled(12, limit: .lower(1)))
         [_iconContainer, _captionLabel, _timerLabel, _initiator, _sceneIcon]
             .forEach {

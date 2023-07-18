@@ -32,19 +32,17 @@ class MainNavigationCoordinator: BaseNavigationCoordinator {
     
     private let disposeBag = DisposeBag()
     
-    private let navigationController: SuplaNavigationController
-    
-    private var mainVC: MainVC
+    private lazy var navigationController: SuplaNavigationController = {
+        SuplaNavigationController(rootViewController: mainVC)
+    }()
+    private lazy var mainVC: MainVC = { MainVC(navigator: self) }()
 
     
     private var pendingFlow: NavigationCoordinator?
     private var pendingCompletion: (()->Void)?
     
     override init() {
-        mainVC = MainVC()
-        navigationController = SuplaNavigationController(rootViewController: mainVC)
         super.init()
-        mainVC.navigationCoordinator = self
         NotificationCenter.default.addObserver(self, selector: #selector(onRegistered(_:)),
                                                name: .saRegistered,
                                                object: nil)
@@ -231,6 +229,10 @@ class MainNavigationCoordinator: BaseNavigationCoordinator {
     
     func navigateToLegacyDetail(legacyDetailType: LegacyDetailType, channelBase: SAChannelBase) {
         startFlow(coordinator: LegacyDetailNavigationCoordinator(detailType: legacyDetailType, channelBase: channelBase))
+    }
+    
+    func navigateToStandardDetail(remoteId: Int32, pages: [DetailPage]) {
+        startFlow(coordinator: StandardDetailNavigationCoordinator(remoteId: remoteId, pages: pages))
     }
     
     

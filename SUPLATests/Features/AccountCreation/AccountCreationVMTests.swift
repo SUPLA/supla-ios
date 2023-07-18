@@ -64,7 +64,7 @@ class AccountCreationVMTests: ViewModelTest<AccountCreationViewState, AccountCre
         // given
         let email = "second@test.org"
         let serverAddress = "test.com"
-        profile?.authInfo?.serverForEmail = serverAddress
+        profile?.authInfo = profile?.authInfo?.copy(serverForEmail: serverAddress)
         observe(viewModel)
         
         // when
@@ -91,8 +91,7 @@ class AccountCreationVMTests: ViewModelTest<AccountCreationViewState, AccountCre
         let email = "second@test.org"
         let serverAddress = "test.com"
         
-        profile?.authInfo?.emailAddress = email
-        profile?.authInfo?.serverForEmail = serverAddress
+        profile?.authInfo = profile?.authInfo?.copy(emailAddress: email, serverForEmail: serverAddress)
         observe(viewModel)
         
         // when
@@ -114,8 +113,7 @@ class AccountCreationVMTests: ViewModelTest<AccountCreationViewState, AccountCre
         
         // given
         let serverAddress = "test.com"
-        profile?.authInfo?.serverAutoDetect = false
-        profile?.authInfo?.serverForEmail = serverAddress
+        profile?.authInfo = profile?.authInfo?.copy(serverAutoDetect: false, serverForEmail: serverAddress)
         observe(viewModel)
         
         // when
@@ -142,7 +140,7 @@ class AccountCreationVMTests: ViewModelTest<AccountCreationViewState, AccountCre
         let serverAddress = "test.com"
         let email = "some@\(serverAddress)"
         
-        profile?.authInfo?.emailAddress = email
+        profile?.authInfo = profile?.authInfo?.copy(emailAddress: email)
         observe(viewModel)
         
         // when
@@ -208,7 +206,7 @@ class AccountCreationVMTests: ViewModelTest<AccountCreationViewState, AccountCre
         
         // given
         profile?.advancedSetup = true
-        profile?.authInfo?.emailAuth = false
+        profile?.authInfo = profile?.authInfo?.copy(emailAuth: false)
         observe(viewModel)
         
         // when
@@ -233,7 +231,7 @@ class AccountCreationVMTests: ViewModelTest<AccountCreationViewState, AccountCre
         
         // given
         profile?.advancedSetup = true
-        profile?.authInfo?.serverAutoDetect = false
+        profile?.authInfo = profile?.authInfo?.copy(serverAutoDetect: false)
         observe(viewModel)
         
         // when
@@ -348,8 +346,7 @@ class AccountCreationVMTests: ViewModelTest<AccountCreationViewState, AccountCre
         
         // given
         let server = "some.url.com"
-        profile?.authInfo?.serverAutoDetect = false
-        profile?.authInfo?.serverForEmail = server
+        profile?.authInfo = profile?.authInfo?.copy(serverAutoDetect: false, serverForEmail: server)
         observe(viewModel)
         
         // when
@@ -397,8 +394,7 @@ class AccountCreationVMTests: ViewModelTest<AccountCreationViewState, AccountCre
         profileManager.allProfilesResult = [profile!, otherProfile]
         
         let server = "other.url.com"
-        profile?.authInfo?.emailAuth = false
-        profile?.authInfo?.serverForAccessID = server
+        profile?.authInfo = profile?.authInfo?.copy(emailAuth: false, serverForAccessID: server)
         observe(viewModel)
         
         // when
@@ -581,7 +577,7 @@ class AccountCreationVMTests: ViewModelTest<AccountCreationViewState, AccountCre
         
         // given
         let email = "some@email.org"
-        profile?.authInfo?.emailAddress = email
+        profile?.authInfo = profile?.authInfo?.copy(emailAddress: email)
         globalSettings.anyAccountRegisteredReturns = true
         observe(viewModel)
         

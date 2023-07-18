@@ -1,0 +1,315 @@
+/*
+ This program is free software; you can redistribute it and/or
+ modify it under the terms of the GNU General Public License
+ as published by the Free Software Foundation; either version 2
+ of the License, or (at your option) any later version.
+ 
+ This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ GNU General Public License for more details.
+ 
+ You should have received a copy of the GNU General Public License
+ along with this program; if not, write to the Free Software
+ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
+ 
+ Author: Mike Jangolenko 7472945@mail.ru
+ */
+
+
+"version" = "версия";
+"Open" = "Открыть";
+"Open Close" = "Открыть Закрыть";
+"Reveal" = "Поднять";
+"Shut" = "Опустить";
+"On" = "Включить";
+"Off" = "Выключить";
+"opened the gateway" = "открытие калитки";
+"opened / closed the gate" = "открытие / закрытие ворот";
+"opened / closed the gate doors" = "открытие / закрытие гаражных ворот";
+"opened the door" = "открытие двери";
+"opened / closed roller shutter" = "поднятие / опускание роллет";
+"turned the power ON/OFF" = "включение/выключение розетки";
+"turned the light ON/OFF" = "включение/выключение света";
+"Settings" = "Установки";
+"About" = "О программе";
+"Feedback" = "Отзыв";
+"Gateway" = "Калитка";
+"Gate" = "Ворота";
+"Garage door" = "Гаражные ворота";
+"Door" = "Дверь";
+"Roller shutter" = "Роллеты";
+"Power switch" = "Управление розеткой";
+"Lighting switch" = "Управление светом";
+"Thermometer" = "Термометр";
+"Temperature and humidity" = "Температура и влажность";
+"No liquid sensor" = "Датчик жидкости";
+"Gateway opening sensor" = "Датчик открытия калитки";
+"Gate opening sensor" = "Датчик открытия ворот";
+"Garage door opening sensor" = "Датчик открытия гаражных ворот";
+"Door opening sensor" = "Датчик открытия двери";
+"Roller shutter opening sensor" = "Датчик открытия роллет";
+"Connecting..." = "Подключение...";
+"Unknown error" = "Непонятная ошибка";
+"Service temporarily unavailable" = "Сервис временно не доступен";
+"Bad credentials" = "Неправильные логин/пароль";
+"Client limit exceeded" = "Ограничение количества пользователей";
+"Device disabled. Please log in to \"Supla Cloud\" and enable this device in “Smartphone” section of the website." = "Устройство выключено";
+"Access Identifier is disabled" = "Ключ доступа отключен";
+"New client registration disabled. Please log in to \"Supla Cloud\" and enable \"New client registration\" in \"Smartphone\" section of the website." = "Регистрация в настоящее время отключена. Для ее включения перейдите на вкладку Смартфоны на странице \"Supla Cloud\"";
+"Client activation required. Please log in to \"Supla Cloud\" and assign an “Access ID” for this device in “Smartphone” section of the website." = "Это устройство не имеет назначенного ключа доступа. Перейдите на страницу \"Supla Cloud\" и  на вкладке Смартфоны назначьте соответствующий ключ.";
+"Incompatible server version" = "Несовместимая версия сервера";
+"Host not found. Make sure you are connected to the internet and that an account with the entered email address has been created." = "Хост не найден";
+"RGB Lighting" = "Контроллер освещения RGB";
+"Dimmer and RGB lighting" = "Диммер и контроллер освещения RGB";
+"Dimmer" = "Диммер";
+"Distance sensor" = "датчик расстояния";
+"Depth sensor" = "датчик глубины";
+"Did you know that Supla is an open, free project developed by the community? If you like the app, spend a moment on rating it. Thank you for your support!" = "Знаете ли вы, что Supla - это открытый и бесплатный проект, разрабатываемый сообществом? Если вам нравится это приложение, найдите минуту, чтобы его оценить. Спасибо за вашу поддержку!";
+"Rate Now" = "Оценить сейчас";
+"Later" = "Потом";
+"No thanks" = "Спасибо, не надо";
+"Mail sensor" = "Сигнализатор наличия почты";
+"Window opening sensor" = "Датчик открытия окна";
+"Add I/O device" = "Добавить устройство";
+"Donate" = "Donate";
+"Create an account" = "Создать учетку";
+"Device registration availability information timeout!" = "Превышено время ожидания информации о досfтупности регистрации устройств!";
+"Next" = "Далее";
+"Start" = "Start";
+"Cancel" = "Аннулируйте";
+"Go to the system settings" = "Перейти к системным настройкам";
+"I/O Device registration is currently off. To continue go to „My SUPLA” at %@ and enable the Device Add Button." = "Регистрация устройств ввода/вывода в настоящее время отключена. Для продолжения перейдите на сайт %@ и во вкладке ”Моя SUPLA” включите добавление устройств.";
+"Add Wizard is only available when server connection has been set based on the email address entered in the settings. (Disable advanced options in the settings)" = "Мастер добавления доступен только при подключении к серверу на основе введенного адреса электронной почты! (Отключите дополнительные параметры в настройках вашей учетной записи)";
+"The connected Server does not support this function!" = "Сервер, к которому вы подключены, не поддерживает эту функцию!";
+"Device Configuration Completion timeout!" = "Превышено время ожидания завершения конфигурации устройства!";
+"Incorrect input parameters (%@)!" = "Неверные входные параметры (%@)!";
+"The connected device is not compatible with this Wizard!" = "Устройство, с которым установлено соединение, не совместимо с данным мастером!";
+"Configuration Failed!" = "Конфигурация завершена с ошибкой!";
+"Connection with the device cannot be set!" = "Не удается установить соединение с устройством!";
+"Make sure, if the Wi-fi connection has been set for the I/O device." = "Убедитесь, что соединение с сетью Wi-Fi исполнительного устройства установлено.";
+"[Calibration]" = "[калибровка]";
+"Help" = "Помощь";
+
+"Staircase timer" = "Лестничный автомат";
+"https://cloud.supla.org/register" = "https://cloud.supla.org/register?lang=ru";
+"https://en-forum.supla.org" = "https://ru-forum.supla.org";
+"Retrieving data from the server..." = "Загрузка данных с сервера ...";
+"No chart data available." = "Нет данных для графика.";
+"Electricity Meter" = "Счётчик электроэнергии";
+"Water Meter" = "Счётчик воды";
+"Gas Meter" = "Счётчик газа";
+
+"Forward active Energy" = "Продвижение активной энергии";
+"Reverse active Energy" = "Обратная активная энергия";
+"Consumption in the current month" = "Потребление в текущем месяце";
+"Production in the current month" = "Производство в текущем месяце";
+"Minutes" = "Минуты";
+"Hours" = "Часы";
+"Days" = "Дни";
+"Months" = "Месяцы";
+"Years" = "Года";
+"Minute to minute comparison" = "Сравнение минут к минутам";
+"Hour to hour comparison" = "Сравнение час к часу";
+"Day to day comparison" = "Ежедневное сравнение";
+"Month to month comparison" = "Сравнение месяца к месяцу";
+"Year to year comparison" = "Сравнение в год к году";
+"Ranking of hours" = "Ранжирование часов";
+"Ranking of weekdays" = "Рейтинг дней недели";
+"Ranking of months" = "Рейтинг месяцев";
+"Consumption according to phases" = "Расход по фазе";
+"Production according to phases" = "Производство по фазе";
+"Last 24 hours" = "Последние 24 часа";
+"Last 7 days" = "Последние 7 дней";
+"Last 30 days" = "Последние 30 дней";
+"Last 90 days" = "Последние 90 дней";
+"All available history" = "Вся доступная история";
+"Phase 1" = "Фаза 1";
+"Phase 2" = "Фаза 2";
+"Phase 3" = "Фаза 3";
+"Home+ Heater" = "Дом + обогреватель";
+"Comfort" = "Комфортная";
+"ECO" = "ЭКО";
+"Higher" = "Комфортная";
+"Lower" = "ЭКО";
+"No water" = "Нет Воды";
+"Burnt heater" = "Сгоревший нагреватель";
+"Water temperature sensor error" = "Ошибка датчика температуры воды";
+"Room temperature sensor error" = "Ошибка датчика комнатной температуры";
+"No network interruptions" = "Нет сетевых прерываний";
+"Room temperature" = "Комнатная температура";
+"ON" = "ВКЛЮЧЕННЫЙ";
+"OFF" = "ВЫКЛЮЧЕННЫЙ";
+"h" = "h";
+"Wind sensor" = "Скорость ветра";
+"Weight sensor" = "Вес";
+"Pressure sensor" = "Датчик давления";
+"Rain sensor" = "Измерение осадков";
+
+"Close" = "Закрыть";
+"Valve" = "Клапан";
+"The valve has been closed in manual mode. Before you open it, make sure it has not been closed due to flooding. To turn off the warning, open the valve manually. Are you sure you want to open it from the application ?!" = "Клапан закрыт в ручном режиме. Прежде чем открыть его, убедитесь, что он не был закрыт по причине залития. Чтобы отключить предупреждение, откройте клапан вручную. Вы уверены, что хотите открыть клапан из приложения?!";
+"The valve has been closed in manual mode. Before you open it, make sure it has not been closed due to flooding. To turn off the warning, open the valve manually." = "Клапан закрыт в ручном режиме. Прежде чем открыть его, убедитесь, что он не был закрыт по причине залития. Чтобы отключить предупреждение, откройте клапан вручную.";
+"Warning" = "Предупреждение";
+"Yes" = "Да";
+"No" = "Нет";
+
+"Heat meter" = "Теплосчетчик";
+"Arithmetic balance - Minutes" = "Арифметический баланс - Минуты";
+"Arithmetic balance - Hours" = "Арифметический баланс - Часы";
+"Arithmetic balance - Days" = "Арифметический баланс - Дни";
+"Arithmetic balance - Months" = "Арифметический баланс - Месяцы";
+"Arithmetic balance - Years" = "Арифметический баланс - Годы";
+"Vector balance - Minutes" = "Векторный баланс - Минуты";
+"Vector balance - Hours" = "Векторный баланс - Часы";
+"Vector balance - Days" = "Векторный баланс - Дни";
+"Vector balance - Months" = "Векторный баланс - Месяцы";
+"Vector balance - Years" = "Векторный баланс - Годы";
+
+"Time exceeded. Try again." = "Превышено время. Повторите попытку.";
+"Are you sure you want to restore the default settings?" = "Вы уверены, что хотите восстановить настройки по умолчанию?";
+"Default settings" = "Настройки по умолчанию";
+
+"Battery level" = "Уровень заряда батареи";
+"Battery powered" = "Питание через батарею";
+"Wifi signal strength" = "Сила сигнала WiFi";
+"Bridge node - online" = "Узел моста - онлайн";
+"Bridge node - signal strength" = "Узел моста - мощность сигнала";
+"Uptime" = "Время работы";
+"Connection uptime" = "Время соединения";
+"Battery health" = "Срок службы батареи";
+"Connection reset cause" = "Причина перезапуска соединения";
+"Light source lifespan" = "Срок службы источника света";
+"Light source operating time" = "Время работы источника света";
+"CHANGE THE LIGHT SOURCE LIFESPAN SETTINGS" = "ИЗМЕНИТЬ НАСТРОЙКИ СРОКА ДЕЙСТВИЯ ИСТОЧНИКА СВЕТА";
+"The lifespan of the uv radiator is %.02f%%. Schedule its replacement." = "Срок действия УФ-лампы составляет %.02f %%. Запланируйте её замену.";
+"The lifespan of the uv radiator is %.02f%%. Replace the radiator." = "Срок действия УФ-лампы составляет %.02f %%. Замените лампу.";
+"The lifespan of the light source is %.02f%%." = "Срок действия источника света составляет % .02f %%.";
+"Timeout for enabling registration has expired!" = "Время ожидания регистрации истекло!";
+"Please enter your Supla Cloud login details." = "Введите данные для входа в систему cloud.supla.org.";
+"Enter superuser credentials" = "Введите учетные данные суперпользователя";
+"Dimmer settings" = "Настройки диммера";
+"Do you want to quit without saving?" = "Вы уверены, что хотите выйти без сохранения?";
+"Do you want to save the settings?" = "Вы хотите сохранить настройки?";
+"Restoring default settings" = "Идет восстановление настроек по умолчанию";
+"Mode change in progress" = "Идет изменение режима";
+"Roof window" = "Окно крыши";
+
+"*Configuration mode is enabled by default on brand new products. It can also be enabled manually by pressing and holding CONFIG button or dimmer knob for around 5s.\n\n%@\n" = "Если устройство после подключения питания не работает в режиме конфигурации, удерживайте нажатой кнопку CONFIG в течение минимум 5 секунд.\n\n%@\n";
+"Press Next to continue." = "Для продолжения нажмите Далее.";
+"Press START to start configuration." = "Нажмите кнопку START, чтобы начать конфигурацию.";
+"I/O Device connection setting timeout!" = "Превышено время ожидания соединения с устройством ввода-вывода!";
+"No I/O Devices found! Please check if your I/O Device is ON and in configuration mode." = "Не найдено никаких устройств! Убедитесь, что устройство, которое вы хотите настроить, работает в режиме конфигурации, а затем попробуйте снова.";
+"Make sure that the application has permissions to discover and connect to devices in the local network. This means that the \"iOS->Settings->SUPLA->Local network\" permission must be turned on for the wizard to work properly." = "Убедитесь, что у приложения есть разрешение на обнаружение и подключение к устройствам в локальной сети. Это означает, что разрешение \"iOS->Настройки->SUPLA->Локальная сеть\" должно быть включено, чтобы мастер работал правильно.";
+"The glass sections are exposed for more than 20 hours, which may adversely affect their life. It is recommended to cover all sections for a minimum of 4 hours in order to regenerate them." = "Стеклянные секции открыты более 20 часов, что может отрицательно сказаться на их сроке действия. Рекомендуется закрыть все секции не менее чем на 4 часа для их регенерации.";
+"Planned regeneration is in progress." = "Идёт плановая регенерация.";
+"Regeneration initiated after 20 hours of operation is in progress." = "Выполняется регенерация, начатая после 20 часов работы.";
+"Incorrect Email Address or Password" = "Неверный адрес email или пароль";
+"Channel Id" = "Id канала";
+"Back" = "Назад";
+"The z-wave bridge is not responding. Check if the bridge is connected to the server." = "Мост z-wave не отвечает. Проверьте подключение моста к серверу.";
+"Exit" = "Выход";
+"The waiting time for basic channel configuration data has expired." = "Время ожидания данных базовой конфигурации канала истекло";
+"Channel name" = "Название канала";
+"Location name" = "Название локализации";
+"Default" = "По умолчанию";
+"No function" = "Не назначено";
+"Gateway lock operation" = "Открытие калитки";
+"Gate operation" = "Открытие/закрытие ворот";
+"Garage door operation" = "Открытие/закрытие гаражных ворот";
+"Humidity sensor" = "Датчик влажности";
+"Temperature and humidity sensor" = "Датчик температуры и влажности";
+"Door lock operation" = "Открытие двери";
+"Roller shutter operation" = "Управление роллетами";
+"Roof window operation" = "Открытые и закрытие окна крыши";
+"Roof window opening sensor" = "Датчик открытия окна крыши";
+"On/Off switch" = "Выключатель";
+"Light switch" = "Управление светом";
+"Weather Station" = "Метеостанция";
+"Thermostat" = "Термостат";
+"The waiting time for changing the channel caption has expired." = "Время ожидания изменения подписи канала истекло.";
+"The channel caption change failed. Code %i" = "Изменение подписи канала не удалось. Код %i";
+"You cannot change the function of a channel that belongs to a group." = "Нельзя изменить функцию канала, который входит в группу.";
+"You cannot change the function of a channel that has a schedule." = "Нельзя изменить функцию канала, который имеет расписание.";
+"You cannot change the function of a channel that is associated with a scene." = "Нельзя изменить функцию канала, который связан со сценой.";
+"The channel function change failed. Code %i" = "Изменение функции канала не удалось. Код %i";
+"The waiting time for changing the channel function has expired." = "Время ожидания изменения функции канала истекло.";
+"Searching the z-wave network to build a list of devices." = "Поиск по сети z-wave для создания списка устройств.";
+"The waiting time for the ID of the assigned z-wave device has expired." = "Время ожидания идентификатора назначенного устройства z-wave истекло.";
+"Device response not as expected. Method: \"%@\" Code: %i" = "Ответ устройства не соответствует ожидаемому. Метод: \"%@\" Код: %i";
+"The waiting time for the list of z-wave devices has expired." = "Время ожидания списка устройств z-wave истекло.";
+"Assigned to:" = "Назначено для:";
+"Waiting for confirmation of resetting the z-wave network together with clearing the settings." = "Ожидание подтверждения сброса сети z-wave с удалением настроек.";
+"The waiting time for the z-wave network reset has expired." = "Время ожидания сброса сети z-wave истекло.";
+"Are you sure you want to reset the settings and z-wave network?" = "Вы уверены, что хотите сбросить настройки и сеть z-wave?";
+"This function is not available when the bridge is in slave mode." = "Эта функция недоступна, когда мост работает в подчиненном режиме.";
+"Waiting for button press on the z-wave device." = "Ожидание нажатия кнопки на устройстве z-wave.";
+"The waiting time for pressing the button has elapsed." = "Время ожидания нажатия кнопки истекло.";
+"Waiting for the device to be added to the z-wave network." = "Ожидание добавления устройства в сеть z-wave.";
+"The waiting time for adding the device to the z-wave network has expired." = "Время ожидания добавления устройства в сеть z-wave истекло.";
+"The waiting time to remove the device has expired." = "Время ожидания удаления устройства истекло.";
+"The waiting time for the z-wave device assignment to the channel has elapsed." = "Время ожидания назначения устройства z-wave каналу истекло.";
+"The selected z-wave device is already associated with another channel. Are you sure you want to move this device to this channel?" = "Выбранное устройство z-wave уже связано с другим каналом. Вы уверены, что хотите перенести это устройство на этот канал?";
+"Timeout waiting for z-wave bridge response." = "Время ожидания ответа моста z-wave истекло.";
+"Unexpected bridge response. Code: %i" = "Неожиданный ответ моста. Код: %i";
+"Z-Wave bridge" = "Мост z-wave";
+"opened / closed the roof window" = "открыл/закрыл окно крыши";
+"The power was turned off after the set threshold of the allowable current was exceeded." = "Питание отключено после превышения установленного порога допустимого тока.";
+"Are you sure you want to start calibration?" = "Вы уверены, что хотите начать калибровку?";
+"Calibration lost." = "Калибровка не удалась.";
+"Calibration failed." = "Калибровка потеряна.";
+"Motor problem / Unexpected stop." = "Проблема с двигателем / Неожиданная остановка.";
+"0: unknown" = "0: неизвестно";
+"1: server timeout" = "1: нет ответа от сервера";
+"2: Wi-Fi connection lost" = "2: потеряно соединение Wi-Fi";
+"3: server connection reset" = "3: сброс соединения с сервером";
+"Your account" = "Ваша учётная запись";
+"App Settings" = "Установки";
+"Channel height" = "Высота канала";
+"Temperature unit" = "Единица измерения температуры";   
+"Auto-hide buttons" = "Автоматическое скрытие кнопок";
+"Device setup" = "Конфигурация устройства";
+"This device does not have any channels visible in the application. To finish configuration go to cloud.supla.org" = "На этом устройстве нет каналов, видимых в приложении. Чтобы завершить настройку, перейдите на сайт cloud.supla.org";
+"I understand" = "Я понимаю";
+"Go to CLOUD" = "Перейти к CLOUD";
+"The function of the channel associated with the action trigger cannot be changed." = "Функция канала, связанного с триггером действия, не может быть изменена.";
+"Show ⓘ button" = "Показать кнопку ⓘ";
+"Advanced settings" = "Расширенные";
+"Access ID" = "Идентификатор";
+"ACCESS IDENTIFIER" = "КЛЮЧ ДОСТУПА";
+"E-MAIL ADDRESS" = "АДРЕС ЭЛЕКТРОННОЙ ПОЧТЫ";
+"SERVER ADDRESS" = "АДРЕС СЕРВЕРА";
+"PASSWORD" = "ПАРОЛЬ";
+"In Access ID authentication mode you won't be able to use automatic Add device wizard. However you will still be able to add it by manual Add device procedure." = "Мастер автоматического добавления устройств недоступен в режиме аутентификации идентификатором доступа. В этом случае устройства можно добавить вручную.";
+"Don't have an account in Supla Cloud yet?" = "У вас еще нет учётной записи в Supla Cloud?";
+"Create" = "Создать учетку";
+"Location order" = "Порядок локализации";
+"Roller shutter %" = "Роллеты %";
+"Opening" = "Открытия";
+"Closing" = "Закрытия";
+"Percent of opening" = "Процент открытия";
+"Percent of closing" = "Процент закрытия";
+"Access Identifier inactive." = "Идентификатор доступа неактивен.";
+"Your account" = "Ваша учётная запись";
+"Your accounts" = "Ваши учётные записи";
+"Accounts" = "Учётные записи";
+"NAME" = "НАЗВАНИЕ";
+"Tap the account to log in." = "Нажмите на учётную запись, чтобы войти";
+"Add new" = "Добавить новую";
+"active" = "активная";
+"Default" = "По умолчанию";
+"Delete account" = "Удалить учётную запись";
+"Select active account" = "Выберите активную учетную запись";
+"Phase 1+2+3" = "Фаза 1+2+3";
+"Phase %d" = "Фаза %d";
+
+"AccountCreation.title" = "Редактировать учётную запись";
+"AccountCreation.modificationTitle" = "Добавить учётную запись";
+
+"AccountRemoval.url" = "https://{SERVER_ADDRESS}/db99845855b2ecbfecca9a095062b96c3e27703f?lang=ru";
+
+"Cfg.removal.dialog.missing_name" = "Введите название учётной записи";
+"Cfg.removal.dialog.duplicated_name" = "Учётная запись с таким названием уже существует";
+"Cfg.removal.dialog.incomplete" = "Заполните необходимые данные";
+
+"General.error" = "Ошибка";

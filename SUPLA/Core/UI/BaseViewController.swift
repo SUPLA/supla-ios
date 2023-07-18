@@ -27,6 +27,8 @@ class BaseViewControllerVM<S : ViewState, E : ViewEvent, VM : BaseViewModel<S, E
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        viewModel.onViewDidLoad()
+        
         viewModel.eventsObervable()
             .subscribe(onNext: { event in self.handle(event: event) })
             .disposed(by: disposeBag)
@@ -34,9 +36,31 @@ class BaseViewControllerVM<S : ViewState, E : ViewEvent, VM : BaseViewModel<S, E
             .subscribe(onNext: { state in self.handle(state: state) })
             .disposed(by: disposeBag)
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        var attributes: [NSAttributedString.Key : Any] = [.foregroundColor: UIColor.white]
+        if (navigationCoordinator is MainNavigationCoordinator) {
+            attributes[.font] = UIFont.suplaTitleBarFont
+        } else {
+            attributes[.font] = UIFont.suplaSubtitleFont
+        }
+        navigationController?.navigationBar.titleTextAttributes = attributes
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        NotificationCenter.default.removeObserver(self)
+    }
+    
+    override func shouldUpdateTitleFont() -> Bool { false }
  
     func handle(event: E) { fatalError("handle(event:) has not been implemented!") }
     func handle(state: S) { } // default empty implementation
+    
+    func observeNotification(name: NSNotification.Name?, selector: Selector) {
+        NotificationCenter.default.addObserver(self, selector: selector, name: name, object: nil)
+    }
 }
 
 extension Disposable {

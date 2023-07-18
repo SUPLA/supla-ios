@@ -71,7 +71,11 @@ class ChannelBaseTableViewController<S : ViewState, E : ViewEvent, VM : BaseTabl
                 scaleFactorLocal = 1.0
             }
 
-            if (constraint.firstItem is UILabel || constraint.secondItem is UILabel) {
+            if (constraint.identifier == "durationToTop") {
+                value = 9
+                cell.durationTimer.font = cell.durationTimer.font.withSize(14 * scaleFactorLocal)
+            }
+            else if (constraint.firstItem is UILabel || constraint.secondItem is UILabel) {
                 let label = (constraint.firstItem is UILabel ? constraint.firstItem : constraint.secondItem) as! UILabel
                 var scaleFactorCopy = scaleFactorLocal
                 if (label === cell.caption) {

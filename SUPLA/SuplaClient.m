@@ -122,9 +122,10 @@ void sasuplaclient_on_registering(void *_suplaclient, void *user_data) {
 void sasuplaclient_on_registered(void *_suplaclient, void *user_data, TSC_SuplaRegisterClientResult_D *result) {
     
     SASuplaClient *sc = (__bridge SASuplaClient*)user_data;
-    if ( sc != nil )
+    if ( sc != nil ) {
+        sc->serverTimeDiffInSec = [[NSDate alloc] init].timeIntervalSince1970 - result->serverUnixTimestamp;
         [sc onRegistered:[SARegResult RegResultClientID:result->ClientID locationCount:result->LocationCount channelCount:result->ChannelCount channelGroupCount:result->ChannelGroupCount sceneCount: result->SceneCount flags:result->Flags version:result->version]];
-    
+    }
 }
 
 void sasuplaclient_on_set_registration_enabled_result(void *_suplaclient, void *user_data, TSC_SetRegistrationEnabledResult *result) {
@@ -457,34 +458,7 @@ void sasuplaclient_scene_state_update(void *_suplaclient,
     AuthInfo *ai = profile.authInfo;
     NSString *host = ai.serverForCurrentAuthMethod;
     if ( [host isEqualToString:@""] && ai.emailAuth && ![ai.emailAddress isEqualToString:@""] ) {
-        
-        NSMutableCharacterSet *set = [[NSCharacterSet URLQueryAllowedCharacterSet] mutableCopy];
-        [set removeCharactersInString:@"+"];
-        NSString *url = [NSString stringWithFormat:@"https://autodiscover.supla.org/users/%@", [ai.emailAddress stringByAddingPercentEncodingWithAllowedCharacters: set]];
-        
-        NSMutableURLRequest *request =
-        [NSMutableURLRequest requestWithURL:[NSURL URLWithString: url] cachePolicy:NSURLRequestReloadIgnoringLocalAndRemoteCacheData timeoutInterval:5];
-        
-        [request setHTTPMethod: @"GET"];
-        
-        NSError *requestError = nil;
-        NSURLResponse *urlResponse = nil;
-        
-        NSData *response = [NSURLConnection sendSynchronousRequest:request returningResponse:&urlResponse error:&requestError];
-        
-        if ( response != nil && requestError == nil ) {
-            NSError *jsonError = nil;
-            NSDictionary *jsonObj = [NSJSONSerialization JSONObjectWithData: response options: NSJSONReadingMutableContainers error: &jsonError];
-            
-            if ( [jsonObj isKindOfClass:[NSDictionary class]] ) {
-                NSString *str = [jsonObj objectForKey:@"server"];
-                if ( str != nil && [str isKindOfClass:[NSString class]]) {
-                    ai.serverForEmail = str;
-                    [pm update: profile];
-                    host = str;
-                }
-            }
-        }
+        host = [UseCaseLegacyWrapper loadServerHostName];
     }
     
     return (char*)[host UTF8String];
@@ -518,8 +492,7 @@ void sasuplaclient_scene_state_update(void *_suplaclient,
             snprintf(scc.AccessIDpwd, SUPLA_ACCESSID_PWD_MAXSIZE, "%s", [ai.accessIDpwd UTF8String]);
             
             if ( _regTryCounter >= 2 ) {
-                ai.preferredProtocolVersion = 4;
-                [pm update:profile]; // supla-server v1.0 for Raspberry Compatibility fix
+                [UseCaseLegacyWrapper updatePreferredProtocolVersion: 4];
             }
             
         } else {
@@ -674,8 +647,7 @@ void sasuplaclient_scene_state_update(void *_suplaclient,
         && ve.remoteVersion >= 5
         && ve.version > ve.remoteVersion
         && profile.authInfo.preferredProtocolVersion != ve.remoteVersion ) {
-        profile.authInfo.preferredProtocolVersion = ve.remoteVersion;
-        [pm update: profile];
+        [UseCaseLegacyWrapper updatePreferredProtocolVersion: ve.remoteVersion];
         [self reconnect];
         return;
     }
@@ -745,9 +717,7 @@ void sasuplaclient_scene_state_update(void *_suplaclient,
         if (newVersion > maxVersionSupportedByLibrary) {
             newVersion = maxVersionSupportedByLibrary;
         }
-        ai.preferredProtocolVersion = newVersion;
-        [pm update:profile];
-        
+        [UseCaseLegacyWrapper updatePreferredProtocolVersion: newVersion];
     };
     
     if ( result.ChannelCount == 0
@@ -796,6 +766,11 @@ void sasuplaclient_scene_state_update(void *_suplaclient,
 }
 
 - (void) onChannelValueChanged:(int)Id isGroup:(BOOL)group {
+    if (group) {
+        [DiContainer.listsEventsManager emitGroupChangeWithRemoteId: Id];
+    } else {
+        [DiContainer.listsEventsManager emitChannelChangeWithRemoteId: Id];
+    }
     NSArray *arr = [NSArray arrayWithObjects:[NSNumber numberWithInt:Id], [NSNumber numberWithBool:group], nil];
     [self performSelectorOnMainThread:@selector(_onChannelValueChanged:) withObject:arr waitUntilDone:NO];
 };
@@ -872,7 +847,6 @@ void sasuplaclient_scene_state_update(void *_suplaclient,
     if ( [UseCaseLegacyWrapper updateChannelValueWithSuplaChannelValue: *channel_value] ) {
         [self onChannelValueChanged: channel_value->Id isGroup:NO];
         [self onDataChanged];
-        [DiContainer.listsEventsManager emitChannelChangeWithRemoteId: channel_value->Id];
     }
     
     if (channel_value->EOL == 1) {
@@ -1582,6 +1556,14 @@ void sasuplaclient_scene_state_update(void *_suplaclient,
     
     AudioServicesPlayAlertSound(kSystemSoundID_Vibrate);
     return supla_client_execute_action(_sclient, actionId, rsParameters, rgbwParameters, subjectType, subjectId) > 0;
+}
+
+- (BOOL) timerArmFor: (int) remoteId withTurnOn: (BOOL) on withTime: (int) milis {
+    if (!_sclient) {
+        return NO;
+    }
+    
+    return supla_client_timer_arm(_sclient, remoteId, on ? 1 : 0, milis);
 }
 
 - (void) registerPushNotificationClientToken:(NSData *)token {

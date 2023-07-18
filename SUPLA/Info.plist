@@ -28,6 +28,8 @@
 	<string>This application will be able to find and configure SUPLA-compatible IoT devices.</string>
 	<key>UIAppFonts</key>
 	<array>
+		<string>OpenSans-Light.ttf</string>
+		<string>OpenSans-Medium.ttf</string>
 		<string>Quicksand-Regular.ttf</string>
 		<string>Quicksand-Light.ttf</string>
 		<string>OpenSans-Regular.ttf</string>

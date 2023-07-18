@@ -55,35 +55,7 @@ class MainVMTests: ViewModelTest<MainViewState, MainViewEvent> {
     func test_shouldLoadIcons_onChannelUpdate() {
         // given
         listsEventsManager.observeChannelUpdatesObservable = Observable.just(())
-        
-        // when
-        observe(viewModel)
-        viewModel.onViewDidLoad()
-        
-        // then
-        XCTAssertEqual(stateObserver.events.count, 1)
-        XCTAssertEqual(eventObserver.events.count, 1)
-        
-        XCTAssertEqual(eventObserver.events, [.next(0, .loadIcons)])
-    }
-    
-    func test_shouldLoadIcons_onGroupUpdate() {
-        // given
         listsEventsManager.observeGroupUpdatesObservable = Observable.just(())
-        
-        // when
-        observe(viewModel)
-        viewModel.onViewDidLoad()
-        
-        // then
-        XCTAssertEqual(stateObserver.events.count, 1)
-        XCTAssertEqual(eventObserver.events.count, 1)
-        
-        XCTAssertEqual(eventObserver.events, [.next(0, .loadIcons)])
-    }
-    
-    func test_shouldLoadIcons_onSceneUpdate() {
-        // given
         listsEventsManager.observeSceneUpdatesObservable = Observable.just(())
         
         // when

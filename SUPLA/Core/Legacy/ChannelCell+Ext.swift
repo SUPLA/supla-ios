@@ -29,14 +29,25 @@ extension SAChannelCell {
             return
         }
         
-        listsEventsManager.observeChannel(remoteId: remoteId)
-            .asDriverWithoutError()
-            .drive(
-                onNext: { channel in
-                    self.updateChannelBase(channel)
-                }
-            )
-            .disposed(by: self.getDisposeBagContainer())
+        if (channelBase is SAChannel) {
+            listsEventsManager.observeChannel(remoteId: remoteId)
+                .asDriverWithoutError()
+                .drive(
+                    onNext: { channel in
+                        self.updateChannelBase(channel)
+                    }
+                )
+                .disposed(by: self.getDisposeBagContainer())
+        } else if (channelBase is SAChannelGroup) {
+            listsEventsManager.observeGroup(remoteId: remoteId)
+                .asDriverWithoutError()
+                .drive(
+                    onNext: { channel in
+                        self.updateChannelBase(channel)
+                    }
+                )
+                .disposed(by: self.getDisposeBagContainer())
+        }
     }
     
     @objc
@@ -51,12 +62,20 @@ extension SAChannelCell {
     
     @objc
     func shut(_ channelBase: SAChannelBase) {
-        executeSimpleAction(channelBase: channelBase, action: .shut)
+        if (channelBase.flags & SUPLA_CHANNEL_FLAG_RS_SBS_AND_STOP_ACTIONS > 0) {
+            executeSimpleAction(channelBase: channelBase, action: .down_or_stop)
+        } else {
+            executeSimpleAction(channelBase: channelBase, action: .shut)
+        }
     }
     
     @objc
     func reveal(_ channelBase: SAChannelBase) {
-        executeSimpleAction(channelBase: channelBase, action: .reveal)
+        if (channelBase.flags & SUPLA_CHANNEL_FLAG_RS_SBS_AND_STOP_ACTIONS > 0) {
+            executeSimpleAction(channelBase: channelBase, action: .up_or_stop)
+        } else {
+            executeSimpleAction(channelBase: channelBase, action: .reveal)
+        }
     }
     
     private func executeSimpleAction(channelBase: SAChannelBase, action: Action) {

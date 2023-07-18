@@ -114,7 +114,7 @@
 
 -(void)_onOperationDone:(SAConfigResult*)result {
     if ( self.delegate != nil ) {
-        [self.delegate performSelector:@selector(configResult:) withObject:result];
+        [self.delegate performSelector:@selector(configResult:of:) withObject:result withObject:self];
     }
 };
 
@@ -622,13 +622,32 @@
     // Dispose of any resources that can be recreated.
 }
 
--(void)configResult:(SAConfigResult*)result {
+-(void)configResult:(SAConfigResult*)result of:(SASetConfigOperation *)op {
     
     [SAWifi cleanup];
     
     switch(result.resultCode) {
-        case RESULT_PARAM_ERROR:
-            [self showError:NSLocalizedString(@"Incorrect input parameters!", NULL)];
+        case RESULT_PARAM_ERROR: {
+            NSString *missingParameters = @"";
+            if (op.SSID == nil || op.SSID.length == 0) {
+                missingParameters = @"SSID";
+            }
+            if (op.Email == nil || op.Email.length == 0) {
+                if (missingParameters.length > 0) {
+                    missingParameters = [NSString stringWithFormat:@"%@, %@", missingParameters, @"Email"];
+                } else {
+                    missingParameters = @"Email";
+                }
+            }
+            if (op.Server == nil || op.Server.length == 0) {
+                if (missingParameters.length > 0) {
+                    missingParameters = [NSString stringWithFormat:@"%@, %@", missingParameters, @"URL"];
+                } else {
+                    missingParameters = @"URL";
+                }
+            }
+            [self showError:[NSString stringWithFormat:NSLocalizedString(@"Incorrect input parameters (%@)!", NULL), missingParameters]];
+        }
             break;
         case RESULT_COMPAT_ERROR:
             [self showError:NSLocalizedString(@"The connected device is not compatible with this Wizard!", NULL)];

@@ -120,4 +120,38 @@ final class UseCaseLegacyWrapper: NSObject {
     static func saveIcon(remoteId: NSNumber, images: [String]) {
         SaveIconUseCase().invoke(remoteId: Int32(remoteId as! Int), images: images)
     }
+    
+    @objc
+    static func getChannelCount() -> Int {
+        @Singleton<ProfileRepository> var profileRepository;
+        @Singleton<ChannelRepository> var channelRepository;
+        
+        do {
+            return try profileRepository.getActiveProfile()
+                .flatMapFirst { channelRepository.getAllChannels(forProfile: $0) }
+                .map { $0.count }
+                .subscribeSynchronous() ?? 0
+        } catch {
+            return 0
+        }
+    }
+    
+    @objc
+    static func loadServerHostName() -> String? {
+        do {
+            return try UpdateServerHostNameUseCase().invoke().subscribeSynchronous()
+        } catch {
+            NSLog("Could not load server address because of \(error)")
+            return nil
+        }
+    }
+    
+    @objc
+    static func updatePreferredProtocolVersion(_ version: Int) {
+        do {
+            try UpdatePreferredProtocolVersionUseCase().invoke(version: version).subscribeSynchronous()
+        } catch {
+            NSLog("Could not update preferred protocol version to \(version)")
+        }
+    }
 }

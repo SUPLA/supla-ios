@@ -233,4 +233,27 @@ class ChannelListVMTests: ViewModelTest<ChannelListViewState, ChannelListViewEve
         
         XCTAssertEqual(createProfileChannelsListUseCase.invokeCounter, 1)
     }
+    
+    func test_shouldOpenStandardDetail() {
+        // given
+        let remoteId: Int32 = 322
+        let channel = SAChannel(testContext: nil)
+        channel.value = SAChannelValue(testContext: nil)
+        channel.value?.online = true
+        channel.remote_id = remoteId
+        
+        provideDetailTypeUseCase.detailType = .standard(pages: [.general])
+        
+        // when
+        observe(viewModel)
+        viewModel.onClicked(onItem: channel)
+        
+        // then
+        XCTAssertEqual(stateObserver.events.count, 1)
+        XCTAssertEqual(eventObserver.events.count, 1)
+        
+        XCTAssertEqual(eventObserver.events, [
+            .next(0, .navigateToStandardDetail(remoteId: remoteId, pages: [.general]))
+        ])
+    }
 }
