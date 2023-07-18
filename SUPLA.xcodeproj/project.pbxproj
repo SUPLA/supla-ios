@@ -872,6 +872,13 @@
 		A5F29C042A2DC5D500ED700A /* NSManagedObjectModel+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F29C032A2DC5D500ED700A /* NSManagedObjectModel+Ext.swift */; };
 		A5F8361D2A2E004C00E5CA71 /* Migration10to11ModelMapping.xcmappingmodel in Sources */ = {isa = PBXBuildFile; fileRef = A5F8361C2A2E004C00E5CA71 /* Migration10to11ModelMapping.xcmappingmodel */; };
 		A5F8361F2A2E008C00E5CA71 /* AuthProfileItemInitialMigrationPolicy.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F8361E2A2E008C00E5CA71 /* AuthProfileItemInitialMigrationPolicy.swift */; };
+		A5FE675C2A65CA1700147D1F /* ClientRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5FE675B2A65CA1700147D1F /* ClientRepository.swift */; };
+		A5FE675F2A65CC4300147D1F /* Autodiscover.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5FE675E2A65CC4300147D1F /* Autodiscover.swift */; };
+		A5FE67612A65CC9900147D1F /* Client.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5FE67602A65CC9900147D1F /* Client.swift */; };
+		A5FE67632A65D56300147D1F /* UpdateServerHostNameUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5FE67622A65D56300147D1F /* UpdateServerHostNameUseCase.swift */; };
+		A5FE67652A65E69E00147D1F /* UpdatePreferredProtocolVersionUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5FE67642A65E69E00147D1F /* UpdatePreferredProtocolVersionUseCase.swift */; };
+		A5FE67672A666F2200147D1F /* String+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5FE67662A666F2200147D1F /* String+Ext.swift */; };
+		A5FE67692A666FF800147D1F /* RequestHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5FE67682A666FF800147D1F /* RequestHelper.swift */; };
 		AE1874C2290C581D00437146 /* SceneCaptionEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE1874C1290C581D00437146 /* SceneCaptionEditor.swift */; };
 		AE348E66277F348700F363A3 /* SAMoveTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = AE348E65277F348700F363A3 /* SAMoveTableView.m */; };
 		AE3DECE22761DB32005923E4 /* AccountCreationNavigationCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE3DECE02761DB32005923E4 /* AccountCreationNavigationCoordinator.swift */; };
@@ -2148,6 +2155,13 @@
 		A5F29C032A2DC5D500ED700A /* NSManagedObjectModel+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSManagedObjectModel+Ext.swift"; sourceTree = "<group>"; };
 		A5F8361C2A2E004C00E5CA71 /* Migration10to11ModelMapping.xcmappingmodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcmappingmodel; path = Migration10to11ModelMapping.xcmappingmodel; sourceTree = "<group>"; };
 		A5F8361E2A2E008C00E5CA71 /* AuthProfileItemInitialMigrationPolicy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthProfileItemInitialMigrationPolicy.swift; sourceTree = "<group>"; };
+		A5FE675B2A65CA1700147D1F /* ClientRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientRepository.swift; sourceTree = "<group>"; };
+		A5FE675E2A65CC4300147D1F /* Autodiscover.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Autodiscover.swift; sourceTree = "<group>"; };
+		A5FE67602A65CC9900147D1F /* Client.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Client.swift; sourceTree = "<group>"; };
+		A5FE67622A65D56300147D1F /* UpdateServerHostNameUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateServerHostNameUseCase.swift; sourceTree = "<group>"; };
+		A5FE67642A65E69E00147D1F /* UpdatePreferredProtocolVersionUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdatePreferredProtocolVersionUseCase.swift; sourceTree = "<group>"; };
+		A5FE67662A666F2200147D1F /* String+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Ext.swift"; sourceTree = "<group>"; };
+		A5FE67682A666FF800147D1F /* RequestHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestHelper.swift; sourceTree = "<group>"; };
 		AE1874C1290C581D00437146 /* SceneCaptionEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneCaptionEditor.swift; sourceTree = "<group>"; };
 		AE348E64277F348700F363A3 /* SAMoveTableView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SAMoveTableView.h; sourceTree = "<group>"; };
 		AE348E65277F348700F363A3 /* SAMoveTableView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SAMoveTableView.m; sourceTree = "<group>"; };
@@ -3426,6 +3440,7 @@
 			children = (
 				A530EE3F2A58417D00F8DAEE /* ExecuteSimpleActionUseCase.swift */,
 				A530EE4D2A5C357100F8DAEE /* StartTimerUseCase.swift */,
+				A5FE67622A65D56300147D1F /* UpdateServerHostNameUseCase.swift */,
 			);
 			path = Client;
 			sourceTree = "<group>";
@@ -3629,6 +3644,7 @@
 		A59AB8962A2F6D3900D91F1F /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				A5FE675D2A65CC2A00147D1F /* ClientApi */,
 				A5E490482A3C61FD006801FE /* AppSettings */,
 				A59AB8982A2F6D5600D91F1F /* Helper */,
 				A59AB8972A2F6D4000D91F1F /* CoreData */,
@@ -3862,6 +3878,7 @@
 				A5A1C0A729F2AAFA0083818D /* VibrationService.swift */,
 				A5E4904F2A3C79A4006801FE /* UserNotificationCenter.swift */,
 				A50CD3D22A4D82ED0012DD9B /* DateProvider.swift */,
+				A5FE67682A666FF800147D1F /* RequestHelper.swift */,
 			);
 			path = Infrastructure;
 			sourceTree = "<group>";
@@ -3994,6 +4011,7 @@
 				A5F29BD32A2623C000ED700A /* TempHumidityMeasurementItem.swift */,
 				A5F29BD52A2623E500ED700A /* UserIconRepository.swift */,
 				A5F29BD72A26240E00ED700A /* ThermostatMeasurementItemRepository.swift */,
+				A5FE675B2A65CA1700147D1F /* ClientRepository.swift */,
 			);
 			path = Repositories;
 			sourceTree = "<group>";
@@ -4011,6 +4029,7 @@
 				A5F29C032A2DC5D500ED700A /* NSManagedObjectModel+Ext.swift */,
 				A5E4905E2A401020006801FE /* SAUserIcon+Ext.swift */,
 				A573B0952A5FD152001E19D0 /* FatalError.swift */,
+				A5FE67662A666F2200147D1F /* String+Ext.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -4117,6 +4136,7 @@
 			isa = PBXGroup;
 			children = (
 				A5F29BCB2A2622BD00ED700A /* DeleteAllProfileDataUseCase.swift */,
+				A5FE67642A65E69E00147D1F /* UpdatePreferredProtocolVersionUseCase.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -4164,6 +4184,15 @@
 				A5F29BFF2A2DC50000ED700A /* CoreDataMigrationStep.swift */,
 			);
 			path = Migration;
+			sourceTree = "<group>";
+		};
+		A5FE675D2A65CC2A00147D1F /* ClientApi */ = {
+			isa = PBXGroup;
+			children = (
+				A5FE675E2A65CC4300147D1F /* Autodiscover.swift */,
+				A5FE67602A65CC9900147D1F /* Client.swift */,
+			);
+			path = ClientApi;
 			sourceTree = "<group>";
 		};
 		AE5A60E4270E2A4100F2B780 /* Cfg */ = {
@@ -4976,6 +5005,7 @@
 				A5E490652A401A7D006801FE /* UpdateSceneIconRelationsUseCase.swift in Sources */,
 				A5E4905C2A400C03006801FE /* SaveIconUseCase.swift in Sources */,
 				A530EE182A56FADF00F8DAEE /* GarageDoorIconNameProducer.swift in Sources */,
+				A5FE67612A65CC9900147D1F /* Client.swift in Sources */,
 				A5F29C042A2DC5D500ED700A /* NSManagedObjectModel+Ext.swift in Sources */,
 				A5F8361D2A2E004C00E5CA71 /* Migration10to11ModelMapping.xcmappingmodel in Sources */,
 				AE929A87275FD5D500B75715 /* MainNavigationCoordinator.swift in Sources */,
@@ -5040,6 +5070,7 @@
 				01F8856D22E5E79100D18373 /* SAUserIcon+CoreDataProperties.m in Sources */,
 				A530EE282A57E02C00F8DAEE /* MailSensorIconNameProducer.swift in Sources */,
 				01D0616E22C294D90043C947 /* ElectricityMeterDetailView.m in Sources */,
+				A5FE67692A666FF800147D1F /* RequestHelper.swift in Sources */,
 				01F8856C22E5E79100D18373 /* SAUserIcon+CoreDataClass.m in Sources */,
 				013D73B022DD105400E3515A /* SAChartFilterField.m in Sources */,
 				A5F29C022A2DC56600ED700A /* NSPersistentStoreCoordinator+Ext.swift in Sources */,
@@ -5062,6 +5093,7 @@
 				A530EE002A54417400F8DAEE /* TimerDetailVM.swift in Sources */,
 				A5F29BD42A2623C000ED700A /* TempHumidityMeasurementItem.swift in Sources */,
 				A5F29B892A1F985A00ED700A /* LocationRepository.swift in Sources */,
+				A5FE675C2A65CA1700147D1F /* ClientRepository.swift in Sources */,
 				01BE3C87233EAFEC00201B47 /* HomePlusDetailViewGroupCell.m in Sources */,
 				01CEAC1E25B99DAC009C3BFD /* SADigiglassValue.m in Sources */,
 				AEED1FD42737F71C00DE6289 /* MultiAccountProfileManager.swift in Sources */,
@@ -5083,6 +5115,7 @@
 				019F4CCD23577C3700286139 /* SAImpulseCounterChartHelper.m in Sources */,
 				A5F29B762A1E33D500ED700A /* FetchedResultsControllerEntityObserver.swift in Sources */,
 				A530EE452A58AAD800F8DAEE /* DeviceStateHelperVMI.swift in Sources */,
+				A5FE67652A65E69E00147D1F /* UpdatePreferredProtocolVersionUseCase.swift in Sources */,
 				A553862D29E021AE00B5CF3F /* DiContainer.swift in Sources */,
 				A5F29BC92A26168E00ED700A /* MagicUpdateGroupsUseCase.swift in Sources */,
 				A5F29BCE2A26232900ED700A /* ElectricityMeasurementItemRepository.swift in Sources */,
@@ -5179,6 +5212,7 @@
 				011021CE25CC3A6F00621D41 /* SACalCfgResult.m in Sources */,
 				A5F29BA32A234BFA00ED700A /* ObservableType+Ext.swift in Sources */,
 				011021BF25CC394500621D41 /* SARegResult.m in Sources */,
+				A5FE67672A666F2200147D1F /* String+Ext.swift in Sources */,
 				A5E4904D2A3C6250006801FE /* TemperatureUnit.swift in Sources */,
 				A5F29BB02A24C12500ED700A /* UpdateLocationUseCase.swift in Sources */,
 				A5F29BC62A24E5DE00ED700A /* ChangeChannelGroupRelationsVisibilityUseCase.swift in Sources */,
@@ -5186,6 +5220,7 @@
 				A530EE082A557EE400F8DAEE /* PowerButtonView.swift in Sources */,
 				40A6757F1BA1A5B6004A51C4 /* SuplaApp.m in Sources */,
 				018CFD2023281A5900888CB7 /* SAElectricityMeterExtendedValue.m in Sources */,
+				A5FE67632A65D56300147D1F /* UpdateServerHostNameUseCase.swift in Sources */,
 				A5F29BD82A26240E00ED700A /* ThermostatMeasurementItemRepository.swift in Sources */,
 				A5F29BC42A24E35C00ED700A /* ChangeGroupsVisibilityUseCase.swift in Sources */,
 				017A3C8223631302004AD1FC /* SATempHumidityChartHelper.m in Sources */,
@@ -5214,6 +5249,7 @@
 				A56D5ACD2A4C304C004F45DA /* SingleCall.swift in Sources */,
 				AED6395E270CA3A800E5105B /* RoundedButton.swift in Sources */,
 				A5F29C002A2DC50000ED700A /* CoreDataMigrationStep.swift in Sources */,
+				A5FE675F2A65CC4300147D1F /* Autodiscover.swift in Sources */,
 				015A9846265595E300B6E6C6 /* UIButton+SUPLA.m in Sources */,
 				A5F29BF12A28AE0B00ED700A /* NotificationView.swift in Sources */,
 				AE74528D2827E5D400A3AFAD /* ProfileChooser.swift in Sources */,

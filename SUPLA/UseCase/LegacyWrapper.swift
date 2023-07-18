@@ -135,4 +135,23 @@ final class UseCaseLegacyWrapper: NSObject {
             return 0
         }
     }
+    
+    @objc
+    static func loadServerHostName() -> String? {
+        do {
+            return try UpdateServerHostNameUseCase().invoke().subscribeSynchronous()
+        } catch {
+            NSLog("Could not load server address because of \(error)")
+            return nil
+        }
+    }
+    
+    @objc
+    static func updatePreferredProtocolVersion(_ version: Int) {
+        do {
+            try UpdatePreferredProtocolVersionUseCase().invoke(version: version).subscribeSynchronous()
+        } catch {
+            NSLog("Could not update preferred protocol version to \(version)")
+        }
+    }
 }

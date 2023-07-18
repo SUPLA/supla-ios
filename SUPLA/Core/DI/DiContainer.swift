@@ -51,6 +51,7 @@ extension DiContainer {
         DiContainer.shared.register(type: SingleCall.self, component: SingleCallImpl())
         DiContainer.shared.register(type: DateProvider.self, component: DateProviderImpl())
         DiContainer.shared.register(type: UserNotificationCenter.self, component: UserNotificationCenterImpl())
+        DiContainer.shared.register(type: RequestHelper.self, component: RequestHelperImpl())
         
         // MARK: Repositories
         DiContainer.shared.register(type: (any ProfileRepository).self, component: ProfileRepositoryImpl())
@@ -67,6 +68,7 @@ extension DiContainer {
         DiContainer.shared.register(type: (any TempHumidityMeasurementItemRepository).self, component: TempHumidityMeasurementItemRepositoryImpl())
         DiContainer.shared.register(type: (any UserIconRepository).self, component: UserIconRepositoryImpl())
         DiContainer.shared.register(type: (any ThermostatMeasurementItemRepository).self, component: ThermostatMeasurementItemRepositoryImpl())
+        DiContainer.shared.register(type: (any ClientRepository).self, component: ClientRepositoryImpl())
         
         // MARK: Usecases
         // Usecases - Channel

@@ -458,34 +458,7 @@ void sasuplaclient_scene_state_update(void *_suplaclient,
     AuthInfo *ai = profile.authInfo;
     NSString *host = ai.serverForCurrentAuthMethod;
     if ( [host isEqualToString:@""] && ai.emailAuth && ![ai.emailAddress isEqualToString:@""] ) {
-        
-        NSMutableCharacterSet *set = [[NSCharacterSet URLQueryAllowedCharacterSet] mutableCopy];
-        [set removeCharactersInString:@"+"];
-        NSString *url = [NSString stringWithFormat:@"https://autodiscover.supla.org/users/%@", [ai.emailAddress stringByAddingPercentEncodingWithAllowedCharacters: set]];
-        
-        NSMutableURLRequest *request =
-        [NSMutableURLRequest requestWithURL:[NSURL URLWithString: url] cachePolicy:NSURLRequestReloadIgnoringLocalAndRemoteCacheData timeoutInterval:5];
-        
-        [request setHTTPMethod: @"GET"];
-        
-        NSError *requestError = nil;
-        NSURLResponse *urlResponse = nil;
-        
-        NSData *response = [NSURLConnection sendSynchronousRequest:request returningResponse:&urlResponse error:&requestError];
-        
-        if ( response != nil && requestError == nil ) {
-            NSError *jsonError = nil;
-            NSDictionary *jsonObj = [NSJSONSerialization JSONObjectWithData: response options: NSJSONReadingMutableContainers error: &jsonError];
-            
-            if ( [jsonObj isKindOfClass:[NSDictionary class]] ) {
-                NSString *str = [jsonObj objectForKey:@"server"];
-                if ( str != nil && [str isKindOfClass:[NSString class]]) {
-                    ai.serverForEmail = str;
-                    [pm update: profile];
-                    host = str;
-                }
-            }
-        }
+        host = [UseCaseLegacyWrapper loadServerHostName];
     }
     
     return (char*)[host UTF8String];
@@ -519,8 +492,7 @@ void sasuplaclient_scene_state_update(void *_suplaclient,
             snprintf(scc.AccessIDpwd, SUPLA_ACCESSID_PWD_MAXSIZE, "%s", [ai.accessIDpwd UTF8String]);
             
             if ( _regTryCounter >= 2 ) {
-                ai.preferredProtocolVersion = 4;
-                [pm update:profile]; // supla-server v1.0 for Raspberry Compatibility fix
+                [UseCaseLegacyWrapper updatePreferredProtocolVersion: 4];
             }
             
         } else {
@@ -675,8 +647,7 @@ void sasuplaclient_scene_state_update(void *_suplaclient,
         && ve.remoteVersion >= 5
         && ve.version > ve.remoteVersion
         && profile.authInfo.preferredProtocolVersion != ve.remoteVersion ) {
-        profile.authInfo.preferredProtocolVersion = ve.remoteVersion;
-        [pm update: profile];
+        [UseCaseLegacyWrapper updatePreferredProtocolVersion: ve.remoteVersion];
         [self reconnect];
         return;
     }
@@ -746,9 +717,7 @@ void sasuplaclient_scene_state_update(void *_suplaclient,
         if (newVersion > maxVersionSupportedByLibrary) {
             newVersion = maxVersionSupportedByLibrary;
         }
-        ai.preferredProtocolVersion = newVersion;
-        [pm update:profile];
-        
+        [UseCaseLegacyWrapper updatePreferredProtocolVersion: newVersion];
     };
     
     if ( result.ChannelCount == 0
