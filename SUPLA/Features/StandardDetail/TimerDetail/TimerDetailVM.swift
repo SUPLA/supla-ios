@@ -91,10 +91,15 @@ class TimerDetailVM: BaseViewModel<TimerDetailViewState, TimerDetailViewEvent>, 
                 // To avoid screen blinking, edit mode is canceled when new timer values will come
                 editMode = false
             }
+            var targetAction = state.targetAction
+            if (targetAction == nil) {
+                targetAction = deviceState.isOn ? .turnOff : .turnOn
+            }
             
             return state
                 .changing(path: \.deviceState, to: deviceState)
                 .changing(path: \.editMode, to: editMode)
+                .changing(path: \.targetAction, to: targetAction)
         }
     }
     
@@ -112,6 +117,7 @@ enum TimerDetailViewEvent: ViewEvent {
 struct TimerDetailViewState: ViewState {
     var deviceState: DeviceStateViewState? = nil
     var editMode: Bool = false
+    var targetAction: TimerTargetAction? = nil
 }
 
 struct ProgressViewData {

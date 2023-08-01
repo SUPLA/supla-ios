@@ -108,7 +108,10 @@ class StandardDetailVC : SuplaTabBarController<StandardDetailViewState, Standard
         }
         
         self.viewControllers = viewControllers
-        self.selectedViewController = viewControllers[runtimeConfig.getDetailOpenedPage(remoteId: remoteId)]
+        let pageToOpen = runtimeConfig.getDetailOpenedPage(remoteId: remoteId)
+        if (pageToOpen > 0 && pageToOpen < viewControllers.count) {
+            self.selectedViewController = viewControllers[pageToOpen]
+        }
     }
 }
 
