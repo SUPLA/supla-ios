@@ -64,6 +64,7 @@ final class PowerButtonView: UIView {
         let view = UIImageView()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.tintColor = .black
+        view.contentMode = .scaleAspectFit
         return view
     }()
     
