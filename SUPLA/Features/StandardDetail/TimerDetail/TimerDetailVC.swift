@@ -168,7 +168,7 @@ class TimerDetailVC: BaseViewControllerVM<TimerDetailViewState, TimerDetailViewE
             cancelButton.setAttributedTitle(Strings.TimerDetail.cancel.arguments(cancelArgument))
         }
         
-        timerConfigurationView.action = state.editMode && state.deviceState?.isOn ?? false == false ? .turnOff : .turnOn
+        timerConfigurationView.action = state.targetAction ?? .turnOn
         timerConfigurationView.editMode = state.editMode
         timerConfigurationView.enabled = state.deviceState?.isOnline ?? false == true
         timerConfigurationView.isHidden = !state.editMode && state.deviceState?.timerEndDate != nil
@@ -198,6 +198,7 @@ class TimerDetailVC: BaseViewControllerVM<TimerDetailViewState, TimerDetailViewE
         viewModel.bind(editButton.rx.tap.asObservable()) {
             self.viewModel.startEditMode()
         }
+        viewModel.bindWhenInitialized(field: \.targetAction, toObservable: timerConfigurationView.actionObservable.map { TimerTargetAction.from(value: $0) })
         
         setupLayout()
     }
