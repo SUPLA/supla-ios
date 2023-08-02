@@ -16,6 +16,9 @@
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 
+import RxSwift
+import RxCocoa
+
 final class TimerConfigurationView: UIView {
     
     private let timeFormat = "%02d:%02d:%02d"
@@ -58,6 +61,12 @@ final class TimerConfigurationView: UIView {
             minutePickerView.selectRow(((newValue / 60) % 60), inComponent: 0, animated: true)
             hourPickerView.selectRow((newValue / 3600), inComponent: 0, animated: true)
             updateInfoText()
+        }
+    }
+    
+    var actionObservable: Observable<Int> {
+        get {
+            actionSwitch.rx.value.asObservable()
         }
     }
     
@@ -353,4 +362,14 @@ protocol TimerConfigurationViewDelegate {
 enum TimerTargetAction: Int {
     case turnOn = 0
     case turnOff = 1
+}
+
+extension TimerTargetAction {
+    static func from(value: Int) -> TimerTargetAction {
+        switch(value) {
+        case 0: return .turnOn
+        case 1: return .turnOff
+        default: fatalError("Invalid value '\(value)' for target action")
+        }
+    }
 }

@@ -54,6 +54,19 @@ class BaseViewModel<S : ViewState, E : ViewEvent> {
             .disposed(by: disposeBag)
     }
     
+    func bindWhenInitialized<T>(field path: WritableKeyPath<S, T?>, toObservable observable: Observable<T>) {
+        observable
+            .subscribe(onNext: { value in
+                self.updateView() { state in
+                    if (state.value(path: path) == nil) {
+                        return state
+                    }
+                    return state.changing(path: path, to: value)
+                }
+            })
+            .disposed(by: disposeBag)
+    }
+    
     func bind<T>(field path: WritableKeyPath<S, T>, toOptional observable: Observable<T?>) {
         observable
             .subscribe(onNext: { value in

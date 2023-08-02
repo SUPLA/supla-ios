@@ -28,6 +28,10 @@ extension ViewState {
         return clone
     }
     
+    func value<T>(path: KeyPath<Self, T?>) -> T? {
+        self[keyPath: path]
+    }
+    
     func sendTo(_ subject: BehaviorSubject<Self>) {
         subject.on(.next(self))
     }
