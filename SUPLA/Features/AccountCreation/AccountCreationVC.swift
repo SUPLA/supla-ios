@@ -159,6 +159,7 @@ class AccountCreationVC: BaseViewControllerVM<AccountCreationViewState, AccountC
         [ bsEmailAddr, adEmailAddr, adServerAddrEmail, adAccessID, adAccessPwd,
           adServerAddrAccessId ].forEach { $0.delegate = self }
         modeToggle.tintColor = .switcherBackground
+        modeToggle.onTintColor = .primary
 
         let gr = UITapGestureRecognizer(target: self,
                                         action: #selector(didTapBackground(_:)))
