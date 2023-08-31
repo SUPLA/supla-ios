@@ -122,6 +122,21 @@ final class UseCaseLegacyWrapper: NSObject {
     }
     
     @objc
+    static func insertChannelRelation(relation: TSC_SuplaChannelRelation) {
+        InsertChannelRelationForProfileUseCase().invoke(suplaRelation: relation)
+    }
+    
+    @objc
+    static func markChannelRelationsAsRemovable() {
+        MarkChannelRelationsAsRemovableUseCase().invoke()
+    }
+    
+    @objc
+    static func deleteRemovableRelations() {
+        DeleteRemovableChannelRelationsUseCase().invoke()
+    }
+    
+    @objc
     static func getChannelCount() -> Int {
         @Singleton<ProfileRepository> var profileRepository;
         @Singleton<ChannelRepository> var channelRepository;

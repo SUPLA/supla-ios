@@ -108,8 +108,8 @@ class AuthInfo: NSObject, NSCoding {
                  serverForEmail == o.serverForEmail &&
                  serverForAccessID == o.serverForAccessID &&
                  accessIDpwd == o.accessIDpwd &&
-                 emailAddress == o.emailAddress
-
+                 emailAddress == o.emailAddress &&
+                 preferredProtocolVersion == o.preferredProtocolVersion
     }
     
     @objc var serverForCurrentAuthMethod: String {

@@ -22,6 +22,7 @@ import RxSwift
 protocol ChannelRepository: RepositoryProtocol where T == SAChannel {
     func getAllVisibleChannels(forProfile profile: AuthProfileItem) -> Observable<[SAChannel]>
     func getAllChannels(forProfile profile: AuthProfileItem) -> Observable<[SAChannel]>
+    func getAllChannels(forProfile profile: AuthProfileItem, with ids: [Int32]) -> Observable<[SAChannel]>
     func getChannel(for profile: AuthProfileItem, with remoteId: Int32) -> Observable<SAChannel>
     func deleteAll(for profile: AuthProfileItem) -> Observable<Void>
     func getAllVisibleChannels(forProfile profile: AuthProfileItem, inLocation locationCaption: String) -> Observable<[SAChannel]>
@@ -65,6 +66,14 @@ class ChannelRepositoryImpl: Repository<SAChannel>, ChannelRepository {
     func getAllChannels(forProfile profile: AuthProfileItem) -> Observable<[SAChannel]> {
         let request = SAChannel.fetchRequest()
             .filtered(by: NSPredicate(format: "profile = %@", profile))
+            .ordered(by: "remote_id")
+        
+        return query(request)
+    }
+    
+    func getAllChannels(forProfile profile: AuthProfileItem, with ids: [Int32]) -> Observable<[SAChannel]> {
+        let request = SAChannel.fetchRequest()
+            .filtered(by: NSPredicate(format: "profile = %@ && remote_id IN %@", profile, ids))
             .ordered(by: "remote_id")
         
         return query(request)

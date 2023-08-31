@@ -23,11 +23,51 @@ struct Dimens {
     static let distanceSmall = CGFloat(16)
     static let distanceDefault = CGFloat(24)
     
-    static let radiusButton = CGFloat(9)
+    static let radiusDefault = CGFloat(9)
+    static let radiusSmall = CGFloat(4)
+    
+    static let buttonRadius = radiusDefault
+    static let buttonHeight = CGFloat(48)
+    static let buttonSmallHeight = CGFloat(32)
+    
+    static let iconSize = CGFloat(24)
     
     static let elementOffset = CGFloat(8)
+    
     struct Form {
         static let elementSpacing = CGFloat(16)
         static let verticalMargin = CGFloat(11)
+    }
+    
+    struct Fonts {
+        static let caption = CGFloat(12)
+        static let label = CGFloat(14)
+        
+        static let value = CGFloat(21)
+    }
+    
+    struct ListItem {
+        static let verticalPadding = CGFloat(11)
+        static let horizontalPadding = CGFloat(11)
+        static let separatorHeight = CGFloat(1)
+        static let separatorInset = CGFloat(8)
+        
+        static let statusIndicatorSize = CGFloat(10)
+        
+        static let buttonWidth = CGFloat(105)
+        
+        static let iconWidth = CGFloat(100)
+        static let iconHeight = CGFloat(50)
+    }
+    
+    struct Shadow {
+        static let radius = CGFloat(2)
+        static let opacity: Float = 0.3
+        static let offset = CGSizeMake(0, 0)
+    }
+    
+    struct Point {
+        static let radius = CGFloat(8)
+        static let shadowRadius = CGFloat(12)
     }
 }

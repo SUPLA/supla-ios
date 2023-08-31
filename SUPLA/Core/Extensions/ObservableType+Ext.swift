@@ -33,6 +33,13 @@ extension Observable {
         let subscriber = SynchronousSubscriber(observable: self)
         return try subscriber.subscribeAndWait()
     }
+    
+    func modify(_ modifier: @escaping (Element) -> Void) -> Observable<Element> {
+        map { element in
+            modifier(element)
+            return element
+        }
+    }
 }
 
 final class SynchronousSubscriber<T> {

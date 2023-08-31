@@ -21,8 +21,8 @@ final class DimmerAndRgbLightningIconNameProducer: IconNameProducer {
         return function == SUPLA_CHANNELFNC_DIMMERANDRGBLIGHTING
     }
     
-    func produce(function: Int32, state: ChannelState, altIcon: Int32, iconType: IconType) -> String {
-        switch (state) {
+    func produce(iconData: IconData) -> String {
+        switch (iconData.state) {
         case .complex(let values):
             if (values.count == 2) {
                 return String.init(

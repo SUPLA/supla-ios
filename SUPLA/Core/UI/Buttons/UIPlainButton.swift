@@ -23,7 +23,7 @@ class UIPlainButton: UIButton {
         set {
             if let newIcon = newValue {
                 setImage(newIcon.withRenderingMode(.alwaysTemplate))
-                tintColor = .primary
+                tintColor = .primaryVariant
                 semanticContentAttribute = .forceRightToLeft
                 imageEdgeInsets = UIEdgeInsets(top: 0, left: 8, bottom: 0, right: -8)
             } else {

@@ -95,7 +95,7 @@ class GlobalSettingsImpl: GlobalSettings {
             if (showChannelInfo != newValue) {
                 runtimeConfig.emitPreferenceChange(
                     scaleFactor: channelHeight.factor(),
-                    showChannelInfo: showChannelInfo
+                    showChannelInfo: newValue
                 )
             }
             defaults.set(newValue, forKey: showChannelInfoKey)

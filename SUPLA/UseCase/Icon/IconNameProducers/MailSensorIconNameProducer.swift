@@ -21,8 +21,8 @@ final class MailSensorIconNameProducer: IconNameProducer {
         return function == SUPLA_CHANNELFNC_MAILSENSOR
     }
     
-    func produce(function: Int32, state: ChannelState, altIcon: Int32, iconType: IconType) -> String {
-        if (state.isActive()) {
+    func produce(iconData: IconData) -> String {
+        if (iconData.state.isActive()) {
             return "mail"
         } else {
             return "nomail"
