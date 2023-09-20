@@ -32,16 +32,21 @@ final class CreateProfileChannelsListUseCaseTests: UseCaseTest<[List]> {
     private lazy var profileRepository: ProfileRepositoryMock! = {
         ProfileRepositoryMock()
     }()
+    private lazy var channelRelationRepository: ChannelRelationRepositoryMock! = {
+        ChannelRelationRepositoryMock()
+    }()
     
     override func setUp() {
         DiContainer.shared.register(type: (any ChannelRepository).self, component: channelRepository!)
         DiContainer.shared.register(type: (any ProfileRepository).self, component: profileRepository!)
+        DiContainer.shared.register(type: (any ChannelRelationRepository).self, component: channelRelationRepository!)
     }
     
     override func tearDown() {
         useCase = nil
         channelRepository = nil
         profileRepository = nil
+        channelRelationRepository = nil
         
         super.tearDown()
     }
@@ -64,6 +69,7 @@ final class CreateProfileChannelsListUseCaseTests: UseCaseTest<[List]> {
         channel2.location = location2
         
         channelRepository.allVisibleChannelsObservable = Observable.just([ channel1, channel2 ])
+        channelRelationRepository.getParentsMapReturns = Observable.just([:])
         
         // when
         useCase.invoke().subscribe(observer).disposed(by: disposeBag)
@@ -78,9 +84,9 @@ final class CreateProfileChannelsListUseCaseTests: UseCaseTest<[List]> {
         XCTAssertEqual(items.count, 4)
         XCTAssertEqual(items, [
             .location(location: location1),
-            .channelBase(channelBase: channel1),
+            .channelBase(channelBase: channel1, children: []),
             .location(location: location2),
-            .channelBase(channelBase: channel2)
+            .channelBase(channelBase: channel2, children: [])
         ])
     }
     
@@ -104,6 +110,7 @@ final class CreateProfileChannelsListUseCaseTests: UseCaseTest<[List]> {
         channel2.location = location2
         
         channelRepository.allVisibleChannelsObservable = Observable.just([ channel1, channel2 ])
+        channelRelationRepository.getParentsMapReturns = Observable.just([:])
         
         // when
         useCase.invoke().subscribe(observer).disposed(by: disposeBag)
@@ -119,7 +126,7 @@ final class CreateProfileChannelsListUseCaseTests: UseCaseTest<[List]> {
         XCTAssertEqual(items, [
             .location(location: location1),
             .location(location: location2),
-            .channelBase(channelBase: channel2)
+            .channelBase(channelBase: channel2, children: [])
         ])
     }
     
@@ -142,6 +149,7 @@ final class CreateProfileChannelsListUseCaseTests: UseCaseTest<[List]> {
         channel2.location = location2
         
         channelRepository.allVisibleChannelsObservable = Observable.just([ channel1, channel2 ])
+        channelRelationRepository.getParentsMapReturns = Observable.just([:])
         
         // when
         useCase.invoke().subscribe(observer).disposed(by: disposeBag)
@@ -156,8 +164,8 @@ final class CreateProfileChannelsListUseCaseTests: UseCaseTest<[List]> {
         XCTAssertEqual(items.count, 3)
         XCTAssertEqual(items, [
             .location(location: location1),
-            .channelBase(channelBase: channel1),
-            .channelBase(channelBase: channel2)
+            .channelBase(channelBase: channel1, children: []),
+            .channelBase(channelBase: channel2, children: [])
         ])
     }
 }

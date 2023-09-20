@@ -46,11 +46,30 @@
 "General.error" = "Error";
 "General.hour_format" = "HH:mm:ss";
 "General.ok" = "OK";
+"turn_on" = "Turn on";
+"turn_off" = "Turn off";
+"save" = "Save";
+/* General - DayOfWeek */
+"monday" = "Monday";
+"tuesday" = "Tuesday";
+"wednesday" = "Wednesday";
+"thursday" = "Thursday";
+"friday" = "Friday";
+"saturday" = "Saturday";
+"sunday" = "Sunday";
+"monday_short" = "MO";
+"tuesday_short" = "TU";
+"wednesday_short" = "WE";
+"thursday_short" = "TH";
+"friday_short" = "FR";
+"saturday_short" = "SA";
+"sunday_short" = "SU";
 
 /* Standard Detail */
 "standard_detail_general_tab" = "General";
 "standard_detail_timer_tab" = "Timer";
 "standard_detail_metrics_tab" = "Metrics";
+"standard_detail_schedule_tab" = "Week";
 
 /* Switch Detail */
 "switch_detail_state_label" = "Current state:";
@@ -87,3 +106,14 @@
 "timer_detail_format" = "%02d:%02d:%02d";
 "timer_detail_wrong_time_title" = "Invalid time";
 "timer_detail_wrong_time_message" = "Time should be bigger then 0";
+
+/* Thermostat Detail */
+"thermostat_thermometer_error" = "Temperature reading error";
+"thermostat_clock_error" = "Clock error";
+"thermostat_detail_mode_manual" = "Manual";
+"thermostat_detail_mode_weekly_schedule" = "Preset";
+"schedule_detail_program_dialog_header" = "Program %d Settings";
+"hvac_mode_temperature_heating" = "Heating temperature";
+"hvac_mode_temperature_cooling" = "Cooling temperature";
+"schedule_detail_quarters_dialog_header" = "Time %02d:00";
+

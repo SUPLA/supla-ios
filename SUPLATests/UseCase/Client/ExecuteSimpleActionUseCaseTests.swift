@@ -60,7 +60,7 @@ final class ExecuteSimpleActionUseCaseTests: UseCaseTest<Void> {
         XCTAssertEqual(observer.events.count, 2) // next & complete
         XCTAssertEqual(vibrationService.vibrateCalls, 1)
         assertTuple(suplaClientProvider.suplaClientMock.executeActionParameters, equalTo: [
-            (action.rawValue, type.rawValue, remoteId, nil, nil)
+            (action.rawValue, type.rawValue, remoteId, nil, 0)
         ])
     }
     
@@ -81,7 +81,7 @@ final class ExecuteSimpleActionUseCaseTests: UseCaseTest<Void> {
         XCTAssertEqual(observer.events.count, 2) // next & complete
         XCTAssertEqual(vibrationService.vibrateCalls, 0)
         assertTuple(suplaClientProvider.suplaClientMock.executeActionParameters, equalTo: [
-            (action.rawValue, type.rawValue, remoteId, nil, nil)
+            (action.rawValue, type.rawValue, remoteId, nil, 0)
         ])
     }
 }

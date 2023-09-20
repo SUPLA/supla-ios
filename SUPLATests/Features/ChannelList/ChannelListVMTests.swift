@@ -234,7 +234,7 @@ class ChannelListVMTests: ViewModelTest<ChannelListViewState, ChannelListViewEve
         XCTAssertEqual(createProfileChannelsListUseCase.invokeCounter, 1)
     }
     
-    func test_shouldOpenStandardDetail() {
+    func test_shouldOpenSwitchDetail() {
         // given
         let remoteId: Int32 = 322
         let channel = SAChannel(testContext: nil)
@@ -242,7 +242,7 @@ class ChannelListVMTests: ViewModelTest<ChannelListViewState, ChannelListViewEve
         channel.value?.online = true
         channel.remote_id = remoteId
         
-        provideDetailTypeUseCase.detailType = .standard(pages: [.general])
+        provideDetailTypeUseCase.detailType = .switchDetail(pages: [.general])
         
         // when
         observe(viewModel)
@@ -253,7 +253,30 @@ class ChannelListVMTests: ViewModelTest<ChannelListViewState, ChannelListViewEve
         XCTAssertEqual(eventObserver.events.count, 1)
         
         XCTAssertEqual(eventObserver.events, [
-            .next(0, .navigateToStandardDetail(remoteId: remoteId, pages: [.general]))
+            .next(0, .navigateToSwitchDetail(remoteId: remoteId, pages: [.general]))
+        ])
+    }
+    
+    func test_shouldOpenThermostatDetail() {
+        // given
+        let remoteId: Int32 = 322
+        let channel = SAChannel(testContext: nil)
+        channel.value = SAChannelValue(testContext: nil)
+        channel.value?.online = true
+        channel.remote_id = remoteId
+        
+        provideDetailTypeUseCase.detailType = .thermostatDetail(pages: [.general])
+        
+        // when
+        observe(viewModel)
+        viewModel.onClicked(onItem: channel)
+        
+        // then
+        XCTAssertEqual(stateObserver.events.count, 1)
+        XCTAssertEqual(eventObserver.events.count, 1)
+        
+        XCTAssertEqual(eventObserver.events, [
+            .next(0, .navigateToThermostatDetail(remoteId: remoteId, pages: [.general]))
         ])
     }
 }

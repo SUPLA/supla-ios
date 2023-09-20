@@ -20,16 +20,21 @@ import Foundation
 
 protocol MoveableCell {
     func movementEnabled() -> Bool
-}
-
-extension SceneCell: MoveableCell {
-    func movementEnabled() -> Bool {
-        return !isCaptionTouched()
-    }
+    
+    func getLocationCaption() -> String?
+    func dropAllowed(to destination: MoveableCell) -> Bool
 }
 
 extension SAChannelCell: MoveableCell {
     func movementEnabled() -> Bool {
         return !captionTouched
+    }
+    
+    func getLocationCaption() -> String? {
+        channelBase.location?.caption
+    }
+    
+    func dropAllowed(to destination: MoveableCell) -> Bool {
+        return channelBase.location?.caption == destination.getLocationCaption()
     }
 }

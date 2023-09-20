@@ -33,10 +33,10 @@ class SuplaClientProtocolMock: NSObject, SuplaClientProtocol {
     var reconnectCalls: Int = 0
     func reconnect() { reconnectCalls += 1 }
     
-    var executeActionParameters: [(Int32, Int32, Int32, UnsafeMutablePointer<TAction_RS_Parameters>?, UnsafeMutablePointer<TAction_RGBW_Parameters>?)] = []
+    var executeActionParameters: [(Int32, Int32, Int32, UnsafeMutableRawPointer?, Int32)] = []
     var executeActionReturns = false
-    func executeAction(_ actionId: Int32, subjecType subjectType: Int32, subjectId: Int32, rsParameters: UnsafeMutablePointer<TAction_RS_Parameters>?, rgbwParameters: UnsafeMutablePointer<TAction_RGBW_Parameters>?) -> Bool {
-        executeActionParameters.append((actionId, subjectType, subjectId, rsParameters, rgbwParameters))
+    func executeAction(_ actionId: Int32, subjecType subjectType: Int32, subjectId: Int32, parameters: UnsafeMutableRawPointer!, length: Int32) -> Bool {
+        executeActionParameters.append((actionId, subjectType, subjectId, parameters, length))
         return executeActionReturns
     }
     
@@ -45,5 +45,19 @@ class SuplaClientProtocolMock: NSObject, SuplaClientProtocol {
     func timerArm(for remoteId: Int32, withTurnOn on: Bool, withTime milis: Int32) -> Bool {
         timerArmParameters.append((remoteId, on, milis))
         return timerArmReturns
+    }
+    
+    var getChannelConfigParameters: [UnsafeMutablePointer<TCS_GetChannelConfigRequest>] = []
+    var getChannelConfigReturns = false
+    func getChannelConfig(_ configRequest: UnsafeMutablePointer<TCS_GetChannelConfigRequest>!) -> Bool {
+        getChannelConfigParameters.append(configRequest)
+        return getChannelConfigReturns
+    }
+    
+    var setChannelConfigParameters: [UnsafeMutablePointer<TSCS_ChannelConfig>] = []
+    var setChannelConfigReturns = false
+    func setChannelConfig(_ config: UnsafeMutablePointer<TSCS_ChannelConfig>!) -> Bool {
+        setChannelConfigParameters.append(config)
+        return setChannelConfigReturns
     }
 }

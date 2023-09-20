@@ -1,0 +1,465 @@
+/*
+ Copyright (C) AC SOFTWARE SP. Z O.O.
+
+ This program is free software; you can redistribute it and/or
+ modify it under the terms of the GNU General Public License
+ as published by the Free Software Foundation; either version 2
+ of the License, or (at your option) any later version.
+
+ This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ GNU General Public License for more details.
+
+ You should have received a copy of the GNU General Public License
+ along with this program; if not, write to the Free Software
+ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
+ */
+
+import RxSwift
+
+private let REFRESH_DELAY_S: Double = 3
+
+class ThermostatGeneralVM: BaseViewModel<ThermostatGeneralViewState, ThermostatGeneralViewEvent> {
+    
+    @Singleton<TemperatureFormatter> private var temperatureFormatter
+    @Singleton<ReadChannelWithChildrenUseCase> private var readChannelWithChildrenUseCase
+    @Singleton<CreateTemperaturesListUseCase> private var createTemperaturesListUseCase
+    @Singleton<GetChannelConfigUseCase> private var getChannelConfigUseCase
+    @Singleton<ConfigEventsManager> private var configEventManager
+    @Singleton<DelayedThermostatActionSubject> private var delayedThermostatActionSubject
+    @Singleton<DateProvider> private var dateProvider
+    @Inject<LoadingTimeoutManager> private var loadingTimeoutManager
+    
+    override func defaultViewState() -> ThermostatGeneralViewState { ThermostatGeneralViewState() }
+    
+    override func onViewDidLoad() {
+        loadingTimeoutManager.watch(stateProvider: { self.currentState()?.loadingState }) {
+            self.updateView { state in
+                if let channelFunction = state.channelFunc {
+                    self.loadChannel(remoteId: channelFunction)
+                }
+                
+                return state.changing(path: \.loadingState, to: state.loadingState.copy(loading: false))
+            }
+        }
+        .disposed(by: self)
+    }
+    
+    func loadChannel(remoteId: Int32) {
+        Observable.zip(
+            readChannelWithChildrenUseCase.invoke(remoteId: remoteId)
+                .map { ($0, self.createTemperaturesListUseCase.invoke(channelWithChildren: $0)) },
+            configEventManager.observeConfig(remoteId: remoteId)
+                .filter { $0.config is SuplaChannelHvacConfig && $0.result == .resultTrue },
+            resultSelector: { ($0, $1.config as! SuplaChannelHvacConfig) }
+        )
+            .asDriverWithoutError()
+            .drive(onNext: { self.handleData(data: $0) })
+            .disposed(by: self)
+        
+        getChannelConfigUseCase.invoke(remoteId: remoteId, type: .defaultConfig)
+            .subscribe()
+            .disposed(by: self)
+    }
+    
+    func loadTemperatures(remoteId: Int32, otherId: Int32) {
+        if let state = currentState(),
+           state.childrenIds.contains(otherId) {
+            loadChannel(remoteId: remoteId)
+        }
+    }
+    
+    func onPositionEvent(_ event: SetpointEvent) {
+        switch (event) {
+        case .mooving(let setpointType, let position):
+            setpointPositionChanged(setpointType, position.float)
+        case .finished:
+            updateView { $0.changing(path: \.changing, to: false) }
+        }
+    }
+    
+    func onTemperatureChange(_ step: TemperatureChangeStep) {
+        updateView { state in
+            guard let setpointType = state.activeSetpointType,
+                  let remoteId = state.remoteId
+            else { return state }
+            
+            let resultState = state.changing(path: \.lastInteractionTime, to: dateProvider.currentTimestamp())
+
+            switch (setpointType) {
+            case .cool:
+                let temperature = getNewTemperature(state.setpointCool, state: state, step: step)
+                delayedThermostatActionSubject.emit(
+                    data: ThermostatActionData(remoteId: remoteId, setpointCool: temperature)
+                )
+                return resultState.changing(path: \.setpointCool, to: temperature)
+            case .heat:
+                let temperature = getNewTemperature(state.setpointHeat, state: state, step: step)
+                delayedThermostatActionSubject.emit(
+                    data: ThermostatActionData(remoteId: remoteId, setpointHeat: temperature)
+                )
+                return resultState.changing(path: \.setpointHeat, to: temperature)
+            }
+        }
+    }
+    
+    func onPowerButtonTap() {
+        updateView { state in
+            guard let remoteId = state.remoteId else { return state }
+            
+            let mode: SuplaHvacMode = state.off ? .cmdTurnOn : .off
+            let data = ThermostatActionData(remoteId: remoteId, mode: mode)
+            delayedThermostatActionSubject.sendImmediately(data: data)
+                .subscribe()
+                .disposed(by: self)
+            
+            return state.changing(path: \.mode, to: mode)
+                .changing(path: \.lastInteractionTime, to: nil)
+                .changing(path: \.loadingState, to: state.loadingState.copy(loading: true))
+        }
+    }
+    
+    func onManualButtonTap() {
+        updateView { state in
+            guard let remoteId = state.remoteId else { return state }
+            
+            let mode: SuplaHvacMode = .cmdSwitchToManual
+            
+            let data = ThermostatActionData(remoteId: remoteId, mode: mode)
+            delayedThermostatActionSubject.sendImmediately(data: data)
+                .subscribe()
+                .disposed(by: self)
+            
+            return state.changing(path: \.mode, to: mode)
+                .changing(path: \.manualActive, to: true)
+                .changing(path: \.weeklyScheduleActive, to: false)
+                .changing(path: \.lastInteractionTime, to: nil)
+                .changing(path: \.loadingState, to: state.loadingState.copy(loading: true))
+        }
+    }
+    
+    func onWeeklyScheduleButtonTap() {
+        updateView { state in
+            guard let remoteId = state.remoteId else { return state }
+            
+            let mode: SuplaHvacMode = .cmdWeeklySchedule
+            let data = ThermostatActionData(remoteId: remoteId, mode: mode)
+            delayedThermostatActionSubject.sendImmediately(data: data)
+                .subscribe()
+                .disposed(by: self)
+            
+            return state.changing(path: \.mode, to: mode)
+                .changing(path: \.manualActive, to: false)
+                .changing(path: \.weeklyScheduleActive, to: true)
+                .changing(path: \.lastInteractionTime, to: nil)
+                .changing(path: \.loadingState, to: state.loadingState.copy(loading: true))
+        }
+    }
+    
+    private func setpointPositionChanged(_ type: SetpointType, _ position: Float) {
+        updateView { state in
+            guard let min = state.configMin,
+                  let max = state.configMax,
+                  let remoteId = state.remoteId
+            else { return state }
+            
+            let resultState = state.changing(path: \.activeSetpointType, to: type)
+                .changing(path: \.lastInteractionTime, to: dateProvider.currentTimestamp())
+                .changing(path: \.changing, to: true)
+            
+            let newTemperature = Float(Int((min + (max - min) * position) * 10)) / 10
+            switch (type) {
+            case .cool:
+                delayedThermostatActionSubject.emit(
+                    data: ThermostatActionData(remoteId: remoteId, setpointCool: newTemperature)
+                )
+                return resultState.changing(path: \.setpointCool, to: newTemperature)
+            case .heat:
+                delayedThermostatActionSubject.emit(
+                    data: ThermostatActionData(remoteId: remoteId, setpointHeat: newTemperature)
+                )
+                return resultState.changing(path: \.setpointHeat, to: newTemperature)
+            }
+        }
+    }
+    
+    private func handleData(data: ((ChannelWithChildren, [ThermostatTemperature]), SuplaChannelHvacConfig)) {
+        let channel = data.0.0
+        let temperatures = data.0.1
+        let config = data.1
+        guard let thermostatValue = channel.channel.value?.asThermostatValue() else { return }
+        
+        updateView { state in
+            if (state.changing) {
+                return state // Do not change anything, when user makes manual operations
+            }
+            
+            if let lastInteractionTime = state.lastInteractionTime,
+               lastInteractionTime + REFRESH_DELAY_S > dateProvider.currentTimestamp() {
+                loadChannel(remoteId: channel.channel.remote_id)
+                return state // Do not change anything during 3 secs after last user interaction
+            }
+            
+            var changedState = state
+                .changing(path: \.remoteId, to: channel.channel.remote_id)
+                .changing(path: \.channelFunc, to: channel.channel.func)
+                .changing(path: \.mode, to: thermostatValue.mode)
+                .changing(path: \.mainTemperature, to: nil)
+                .changing(path: \.auxTemperature, to: nil)
+                .changing(path: \.childrenIds, to: channel.children.map { $0.channel.remote_id })
+                .changing(path: \.offline, to: !channel.channel.isOnline())
+                .changing(path: \.configMin, to: config.temperatures.roomMin?.toTemperature())
+                .changing(path: \.configMax, to: config.temperatures.roomMax?.toTemperature())
+                .changing(path: \.loadingState, to: state.loadingState.copy(loading: false))
+            
+            changedState = handleSetpoints(changedState, channel: channel.channel)
+            changedState = handleFlags(changedState, value: thermostatValue)
+            changedState = handleButtons(changedState, channel: channel.channel)
+            
+            if let mainTermometer = channel.children.first(where: { $0.relationType == .mainThermometer }) {
+                let temperature = mainTermometer.channel.temperatureValue()
+                changedState = handleCurrentTemperture(changedState, temperature: Float(temperature))
+            }
+            if (temperatures.count > 0) {
+                changedState = changedState.changing(path: \.mainTemperature, to: temperatures[0])
+            }
+            if (temperatures.count > 1) {
+                changedState = changedState.changing(path: \.auxTemperature, to: temperatures[1])
+            }
+            
+            return changedState
+        }
+    }
+    
+    private func getNewTemperature(_ temperature: Float?, state: ThermostatGeneralViewState, step: TemperatureChangeStep) -> Float? {
+        guard let configMin = state.configMin,
+              let configMax = state.configMax
+        else { return temperature }
+        
+        guard let temperature = temperature
+        else { return 0 + step.rawValue }
+        
+        let newTemperature = temperature + step.rawValue
+        if (newTemperature < configMin) {
+            return configMin
+        } else if (newTemperature > configMax) {
+            return configMax
+        } else {
+            return newTemperature
+        }
+    }
+    
+    private func handleSetpoints(_ state: ThermostatGeneralViewState, channel: SAChannel) -> ThermostatGeneralViewState {
+        guard let value = channel.value?.asThermostatValue() else { return state }
+        
+        if (channel.isThermostatOff()) {
+            return state
+                .changing(path: \.setpointHeat, to: nil)
+                .changing(path: \.setpointCool, to: nil)
+                .changing(path: \.activeSetpointType, to: nil)
+        }
+        
+        var changedState = state
+        let heatAllowed = value.mode == .heat || value.mode == .auto
+        if (channel.isSetpointHeatSupported() && value.flags.contains(.setpointTempMinSet) && heatAllowed) {
+            changedState = changedState.changing(path: \.setpointHeat, to: value.setpointTemperatureHeat)
+        }
+        let coolAllowed = value.mode == .cool || value.mode == .auto
+        if (channel.isSetpointCoolSupported() && value.flags.contains(.setpointTempMaxSet) && coolAllowed) {
+            changedState = changedState.changing(path: \.setpointCool, to: value.setpointTemperatureCool)
+        }
+        
+        if (changedState.activeSetpointType == nil) {
+            switch (value.mode) {
+            case .heat, .auto:
+                changedState = changedState.changing(path: \.activeSetpointType, to: .heat)
+            case .cool:
+                changedState = changedState.changing(path: \.activeSetpointType, to: .cool)
+            default: break
+            }
+        }
+        
+        return changedState
+    }
+    
+    private func handleCurrentTemperture(_ state: ThermostatGeneralViewState, temperature: Float) -> ThermostatGeneralViewState {
+        guard let configMin = state.configMin,
+              let configMax = state.configMax
+        else { return state }
+
+        let range = configMax - configMin
+        let temperaturePercentage = (temperature - configMin) / range
+        return state.changing(path: \.currentTemperaturePercentage, to: temperaturePercentage)
+    }
+    
+    private func handleFlags(_ state: ThermostatGeneralViewState, value: ThermostatValue) -> ThermostatGeneralViewState {
+        return state
+            .changing(
+                path: \.heatingIndicatorInactive,
+                to: !value.state.isOn() || !value.flags.contains(.heating)
+            )
+            .changing(
+                path: \.coolingIndicatorInactive,
+                to: !value.state.isOn() || !value.flags.contains(.cooling)
+            )
+    }
+    
+    private func handleButtons(_ state: ThermostatGeneralViewState, channel: SAChannel) -> ThermostatGeneralViewState {
+        guard let value = channel.value?.asThermostatValue() else { return state }
+        
+        return state
+            .changing(
+                path: \.manualActive,
+                to: !channel.isThermostatOff() && !value.flags.contains(.weeklySchedule)
+            )
+            .changing(
+                path: \.weeklyScheduleActive,
+                to: channel.isOnline() && value.flags.contains(.weeklySchedule)
+            )
+            .changing(
+                path: \.plusMinusHidden,
+                to: !channel.isOnline() || channel.isThermostatOff() || value.flags.contains(.weeklySchedule)
+            )
+    }
+}
+
+enum ThermostatGeneralViewEvent: ViewEvent {
+}
+
+struct ThermostatGeneralViewState: ViewState {
+    
+    /* Logic properties */
+    
+    var remoteId: Int32? = nil
+    var channelFunc: Int32? = nil
+    var mode: SuplaHvacMode? = nil
+    var offline: Bool = true
+    var configMin: Float? = nil
+    var configMax: Float? = nil
+    var childrenIds: [Int32] = []
+    var sent: Bool = false
+    var lastInteractionTime: TimeInterval? = nil
+    var changing: Bool = false
+    var loadingState: LoadingState = LoadingState()
+    
+    /* View properties */
+    
+    var mainTemperature: ThermostatTemperature? = nil
+    var auxTemperature: ThermostatTemperature? = nil
+    var setpointHeat: Float? = nil
+    var setpointCool: Float? = nil
+    var activeSetpointType: SetpointType? = nil
+    var currentTemperaturePercentage: Float? = nil
+    var heatingIndicatorInactive: Bool? = nil
+    var coolingIndicatorInactive: Bool? = nil
+    var manualActive: Bool = false
+    var weeklyScheduleActive: Bool = false
+    var plusMinusHidden: Bool = false
+    
+    /* All calculated properties below */
+    
+    var off: Bool {
+        get {
+            offline || mode == .off || mode == .notSet
+        }
+    }
+    var setpointText: String? {
+        get {
+            @Singleton<TemperatureFormatter> var formatter
+            
+            if (offline) {
+                return "offline"
+            } else if (off) {
+                return "off"
+            } else if (mode == .heat) {
+                return formatter.toString(setpointHeat, withUnit: false)
+            } else if (mode == .cool) {
+                return formatter.toString(setpointCool, withUnit: false)
+            }
+            
+            return nil
+        }
+    }
+    var setpointHeatPercentage: Float? {
+        get {
+            guard let min = configMin,
+                  let max = configMax,
+                  let current = setpointHeat,
+                  !off
+            else { return nil }
+            return (current - min) / (max - min)
+        }
+    }
+    var setpointCoolPercentage: Float? {
+        get {
+            guard let min = configMin,
+                  let max = configMax,
+                  let current = setpointCool,
+                  !off
+            else { return nil }
+            return (current - min) / (max - min)
+        }
+    }
+    var plusButtonEnabled: Bool {
+        get {
+            switch (activeSetpointType) {
+            case .heat: return (setpointHeat ?? 0) < (configMax ?? 0)
+            case .cool: return (setpointCool ?? 0) < (configMax ?? 0)
+            default: return false
+            }
+        }
+    }
+    var minusButtonEnabled: Bool {
+        get {
+            switch (activeSetpointType) {
+            case .heat: return (setpointHeat ?? 0) > (configMin ?? 0)
+            case .cool: return (setpointCool ?? 0) > (configMin ?? 0)
+            default: return false
+            }
+        }
+    }
+    var modeIndicatorColor: UIColor {
+        get {
+            if (off || offline) {
+                return .black
+            } else if (heatingIndicatorInactive == false) {
+                return .red
+            } else if (coolingIndicatorInactive == false) {
+                return .blue
+            } else {
+                return .primary
+            }
+        }
+    }
+    var powerIconColor: UIColor {
+        get {
+            if (off || offline) {
+                return .red
+            } else {
+                return .primary
+            }
+        }
+    }
+    var controlButtonsEnabled: Bool { get { !offline } }
+    var configMinMaxHidden: Bool { get { offline } }
+}
+
+fileprivate extension SAChannel {
+    func isThermostatOff() -> Bool {
+        guard let value = value?.asThermostatValue() else { return false }
+        
+        return !isOnline() || value.mode == .off || value.mode == .notSet
+    }
+    
+    func isSetpointHeatSupported() -> Bool {
+        return self.func == SUPLA_CHANNELFNC_HVAC_THERMOSTAT ||
+        self.func == SUPLA_CHANNELFNC_HVAC_THERMOSTAT_AUTO ||
+        self.func == SUPLA_CHANNELFNC_HVAC_DOMESTIC_HOT_WATER
+    }
+    
+    func isSetpointCoolSupported() -> Bool {
+        return self.func == SUPLA_CHANNELFNC_HVAC_THERMOSTAT ||
+        self.func == SUPLA_CHANNELFNC_HVAC_THERMOSTAT_AUTO
+    }
+}

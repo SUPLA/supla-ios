@@ -25,6 +25,7 @@ class SceneListVM: BaseTableViewModel<SceneListViewState, SceneListViewEvent> {
     @Singleton<CreateProfileScenesListUseCase> private var createProfileScenesListUseCase
     @Singleton<SwapScenePositionsUseCase> private var swapScenePositionsUseCase
     @Singleton<ListsEventsManager> private var listsEventsManager
+    @Singleton<ExecuteSimpleActionUseCase> private var executeSimpleActionUseCase
     
     override init() {
         super.init()
@@ -52,6 +53,29 @@ class SceneListVM: BaseTableViewModel<SceneListViewState, SceneListViewEvent> {
     }
     
     override func getCollapsedFlag() -> CollapsedFlag { .scene }
+    
+    func onButtonClicked(buttonType: CellButtonType, sceneId: Int32) {
+        switch (buttonType) {
+        case .leftButton:
+            abortScene(sceneId: sceneId)
+            break
+        case .rightButton:
+            executeScene(sceneId: sceneId)
+            break
+        }
+    }
+    
+    private func executeScene(sceneId: Int32) {
+        executeSimpleActionUseCase.invoke(action: .execute, type: .scene, remoteId: sceneId)
+            .subscribe()
+            .disposed(by: self)
+    }
+    
+    private func abortScene(sceneId: Int32) {
+        executeSimpleActionUseCase.invoke(action: .interrupt, type: .scene, remoteId: sceneId)
+            .subscribe()
+            .disposed(by: self)
+    }
 }
 
 enum SceneListViewEvent: ViewEvent {}

@@ -29,13 +29,29 @@ final class DiContainer: NSObject, DiContainerProtocol {
     private override init() {}
     
     var components: [String: Any] = [:]
+    var producers: [String: () -> Any] = [:]
     
     func register<Component>(type: Component.Type, component: Any) {
+        if (!(component is Component)) {
+            fatalError("Registered component (type: `\(type)` does not implement defined protocol")
+        }
         components["\(type)"] = component
+    }
+    
+    func register<Component>(type: Component.Type, producer: @escaping () -> Any) {
+        producers["\(type)"] = producer
     }
     
     func resolve<Component>(type: Component.Type) -> Component? {
         return components["\(type)"] as? Component
+    }
+    
+    func producer<Component>(type: Component.Type) -> Component? {
+        if let producer = producers["\(type)"] {
+            return producer() as? Component
+        }
+        
+        return nil
     }
 }
 
@@ -48,10 +64,14 @@ extension DiContainer {
         DiContainer.shared.register(type: SuplaAppWrapper.self, component: SuplaAppWrapperImpl())
         DiContainer.shared.register(type: VibrationService.self, component: VibrationServiceImpl())
         DiContainer.shared.register(type: ListsEventsManager.self, component: ListsEventsManagerImpl())
+        DiContainer.shared.register(type: ConfigEventsManager.self, component: ConfigEventsManagerImpl())
         DiContainer.shared.register(type: SingleCall.self, component: SingleCallImpl())
         DiContainer.shared.register(type: DateProvider.self, component: DateProviderImpl())
         DiContainer.shared.register(type: UserNotificationCenter.self, component: UserNotificationCenterImpl())
         DiContainer.shared.register(type: RequestHelper.self, component: RequestHelperImpl())
+        DiContainer.shared.register(type: TemperatureFormatter.self, component: TemperatureFormatterImpl())
+        DiContainer.shared.register(type: DelayedThermostatActionSubject.self, component: DelayedThermostatActionSubjectImpl())
+        DiContainer.shared.register(type: DelayedWeeklyScheduleConfigSubject.self, component: DelayedWeeklyScheduleConfigSubjectImpl())
         
         // MARK: Repositories
         DiContainer.shared.register(type: (any ProfileRepository).self, component: ProfileRepositoryImpl())
@@ -69,18 +89,24 @@ extension DiContainer {
         DiContainer.shared.register(type: (any UserIconRepository).self, component: UserIconRepositoryImpl())
         DiContainer.shared.register(type: (any ThermostatMeasurementItemRepository).self, component: ThermostatMeasurementItemRepositoryImpl())
         DiContainer.shared.register(type: (any ClientRepository).self, component: ClientRepositoryImpl())
+        DiContainer.shared.register(type: (any ChannelRelationRepository).self, component: ChannelRelationRepositoryImpl())
         
         // MARK: Usecases
         // Usecases - Channel
         DiContainer.shared.register(type: SwapChannelPositionsUseCase.self, component: SwapChannelPositionsUseCaseImpl())
         DiContainer.shared.register(type: CreateProfileChannelsListUseCase.self, component: CreateProfileChannelsListUseCaseImpl())
         DiContainer.shared.register(type: ReadChannelByRemoteIdUseCase.self, component: ReadChannelByRemoteIdUseCaseImpl())
+        DiContainer.shared.register(type: ReadChannelWithChildrenUseCase.self, component: ReadChannelWithChildrenUseCaseImpl())
+        DiContainer.shared.register(type: CreateTemperaturesListUseCase.self, component: CreateTemperaturesListUseCaseImpl())
         // Usecases - ChannelBase
         DiContainer.shared.register(type: GetChannelBaseStateUseCase.self, component: GetChannelBaseStateUseCaseImpl())
         DiContainer.shared.register(type: GetChannelBaseIconUseCase.self, component: GetChannelBaseIconUseCaseImpl())
         // Usecases - Client
         DiContainer.shared.register(type: ExecuteSimpleActionUseCase.self, component: ExecuteSimpleActionUseCaseImpl())
         DiContainer.shared.register(type: StartTimerUseCase.self, component: StartTimerUseCaseImpl())
+        DiContainer.shared.register(type: GetChannelConfigUseCase.self, component: GetChannelConfigUseCaseImpl())
+        DiContainer.shared.register(type: SetChannelConfigUseCase.self, component: SetChannelConfigUseCaseImpl())
+        DiContainer.shared.register(type: ExecuteThermostatActionUseCase.self, component: ExecuteThermostatActionUseCaseImpl())
         // Usecases - Detail
         DiContainer.shared.register(type: ProvideDetailTypeUseCase.self, component: ProvideDetailTypeUseCaseImpl())
         // Usecases - Group
@@ -95,10 +121,17 @@ extension DiContainer {
         // Usecases - Profile
         DiContainer.shared.register(type: CreateProfileScenesListUseCase.self, component: CreateProfileScenesListUseCaseImpl())
         DiContainer.shared.register(type: SwapScenePositionsUseCase.self, component: SwapScenePositionsUseCaseImpl())
+        DiContainer.shared.register(type: CreateChannelWithChildrenUseCase.self, component: CreateChannelWithChildrenUseCaseImpl())
+        
+        // MARK: Not singletons
+        DiContainer.shared.register(type: LoadingTimeoutManager.self, producer: { LoadingTimeoutManagerImpl() })
     }
     
     @objc static func listsEventsManager() -> ListsEventsManagerEmitter? {
         return DiContainer.shared.resolve(type: ListsEventsManager.self)
+    }
+    @objc static func configEventsManager() -> ConfigEventsManagerEmitter? {
+        return DiContainer.shared.resolve(type: ConfigEventsManager.self)
     }
     @objc static func setPushToken(token: Data?) {
         var settings = DiContainer.shared.resolve(type: GlobalSettings.self)

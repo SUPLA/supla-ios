@@ -20,16 +20,15 @@
 import Foundation
 
 @propertyWrapper
-struct Inject<T: Injectable> {
-    private lazy var object: T = {
-        T.init()
-    }()
-    
+struct Inject<T> {
     var wrappedValue: T {
-        mutating get { object }
+        get {
+            guard let object = DiContainer.shared.producer(type: T.self) else {
+                fatalError("Object of type \(T.self) not registered")
+            }
+            
+            return object
+        }
     }
 }
 
-protocol Injectable {
-    init()
-}

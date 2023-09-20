@@ -22,11 +22,11 @@ final class GarageDoorIconNameProducer: IconNameProducer {
         || function == SUPLA_CHANNELFNC_CONTROLLINGTHEGARAGEDOOR
     }
     
-    func produce(function: Int32, state: ChannelState, altIcon: Int32, iconType: IconType) -> String {
-        if (state == .partialyOpened) {
+    func produce(iconData: IconData) -> String {
+        if (iconData.state == .partialyOpened) {
             return "garagedoor-closed-50percent"
         }
         
-        return addStateSufix(name: "garagedoor", state: state)
+        return addStateSufix(name: "garagedoor", state: iconData.state)
     }
 }

@@ -250,6 +250,11 @@
                 case SUPLA_CHANNELFNC_DIGIGLASS_VERTICAL:
                 case SUPLA_CHANNELFNC_DIGIGLASS_HORIZONTAL:
                     return NSLocalizedString(@"Digiglass", nil);
+            case SUPLA_CHANNELFNC_HVAC_THERMOSTAT:
+            case SUPLA_CHANNELFNC_HVAC_DOMESTIC_HOT_WATER:
+                return NSLocalizedString(@"Thermostat", nil);
+            default:
+                return NSLocalizedString(@"Not supported function", nil);
         }
         
     }
@@ -836,16 +841,16 @@
     n2fmt.minimumFractionDigits = 1;
     switch (self.func) {
         case SUPLA_CHANNELFNC_THERMOMETER:
-            result = [self isOnline] && self.temperatureValue > -273 ? [pres stringRepresentation: self.temperatureValue] : [@"----" stringByAppendingString: pres.unitString];
+            result = [self isOnline] && self.temperatureValue > -273 ? [pres stringRepresentation: self.temperatureValue] : @"---";
             break;
         case SUPLA_CHANNELFNC_HUMIDITY:
-            result = [self isOnline] && self.humidityValue > -1 ? [nfmt stringFromNumber: @(self.humidityValue)] : @"----";
+            result = [self isOnline] && self.humidityValue > -1 ? [nfmt stringFromNumber: @(self.humidityValue)] : @"---";
             break;
         case SUPLA_CHANNELFNC_HUMIDITYANDTEMPERATURE:
             if (idx == 1) {
-                result = [self isOnline] && self.humidityValue > -1 ? [nfmt stringFromNumber: @(self.humidityValue)] : @"----";
+                result = [self isOnline] && self.humidityValue > -1 ? [nfmt stringFromNumber: @(self.humidityValue)] : @"---";
             } else {
-                result = [self isOnline] && self.temperatureValue > -273 ? [pres stringRepresentation:  self.temperatureValue] : [@"----" stringByAppendingString: pres.unitString];
+                result = [self isOnline] && self.temperatureValue > -273 ? [pres stringRepresentation:  self.temperatureValue] : @"---";
             }
             break;
         case SUPLA_CHANNELFNC_DEPTHSENSOR:

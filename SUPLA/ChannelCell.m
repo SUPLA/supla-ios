@@ -29,10 +29,6 @@
 #import "UIColor+SUPLA.h"
 #import "SUPLA-Swift.h"
 
-#define CLEFT_MARGIN     5
-#define CRIGHT_MARGIN    5
-#define CTOP_MARGIN      5
-#define CBOTTOM_MARGIN   5
 
 @interface MGSwipeTableCell (ExposePrivateMethods)
 -(void)panHandler: (UIPanGestureRecognizer *)gesture;

@@ -22,7 +22,23 @@ extension UIImage {
     static let iconGeneral = UIImage(named: "icon_general")
     static let iconTimer = UIImage(named: "icon_timer")
     static let iconMetrics = UIImage(named: "icon_metrics")
+    static let iconSchedule = UIImage(named: "icon_schedule")
     
     // Icons
     static let pencil = UIImage(named: "pencil")
+    static let iconThermostatHeat = UIImage(named: "icon_thermostat_heat")
+    static let iconThermostatCool = UIImage(named: "icon_thermostat_cool")
+    static let iconThermostatDhw = UIImage(named: "icon_thermostat_dhw")
+    static let iconInfo = UIImage(named: "channelstateinfo")
+    static let iconHeating = UIImage(named: "icon_heating")
+    static let iconCooling = UIImage(named: "icon_cooling")
+    static let iconStandby = UIImage(named: "icon_standby")
+    static let iconPowerButton = UIImage(named: "icon_power_button")
+    static let iconHeat = UIImage(named: "icon_heat")
+    static let iconCool = UIImage(named: "icon_cool")
+    static let iconMinus = UIImage(named: "icon_minus")
+    static let iconPlus = UIImage(named: "icon_plus")
+    
+    static let iconWarning = UIImage(named: "channel_warning_level1")
+    static let iconError = UIImage(named: "channel_warning_level2")
 }
