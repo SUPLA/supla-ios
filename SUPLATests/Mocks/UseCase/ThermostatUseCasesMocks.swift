@@ -17,14 +17,14 @@
  */
 
 import RxSwift
+
 @testable import SUPLA
 
-final class ReadChannelByRemoteIdUseCaseMock: ReadChannelByRemoteIdUseCase {
-    
-    var returns: Observable<SAChannel> = Observable.empty()
-    var remoteIdArray: [Int32] = []
-    func invoke(remoteId: Int32) -> Observable<SAChannel> {
-        remoteIdArray.append(remoteId)
+final class CreateTemperaturesListUseCaseMock: CreateTemperaturesListUseCase {
+    var parameters: [ChannelWithChildren] = []
+    var returns: [ThermostatTemperature] = []
+    func invoke(channelWithChildren: ChannelWithChildren) -> [ThermostatTemperature] {
+        parameters.append(channelWithChildren)
         return returns
     }
 }

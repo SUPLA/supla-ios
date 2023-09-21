@@ -288,6 +288,13 @@ struct ScheduleDetailBoxValue: Equatable {
         }
     }
     
+    init(_ first: SuplaScheduleProgram, _ second: SuplaScheduleProgram, _ third: SuplaScheduleProgram, _ fourth: SuplaScheduleProgram) {
+        firstQuarterProgram = first
+        secondQuarterProgram = second
+        thirdQuarterProgram = third
+        fourthQuarterProgram = fourth
+    }
+    
     init(oneProgram: SuplaScheduleProgram) {
         firstQuarterProgram = oneProgram
         secondQuarterProgram = oneProgram

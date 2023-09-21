@@ -56,3 +56,22 @@ final class GetChannelConfigUseCaseMock: GetChannelConfigUseCase {
         return returns
     }
 }
+
+final class ReadChannelByRemoteIdUseCaseMock: ReadChannelByRemoteIdUseCase {
+    
+    var returns: Observable<SAChannel> = Observable.empty()
+    var remoteIdArray: [Int32] = []
+    func invoke(remoteId: Int32) -> Observable<SAChannel> {
+        remoteIdArray.append(remoteId)
+        return returns
+    }
+}
+
+final class ReadChannelWithChildrenUseCaseMock: ReadChannelWithChildrenUseCase {
+    var returns: Observable<ChannelWithChildren> = Observable.empty()
+    var parameters: [Int32] = []
+    func invoke(remoteId: Int32) -> Observable<ChannelWithChildren> {
+        parameters.append(remoteId)
+        return returns
+    }
+}
