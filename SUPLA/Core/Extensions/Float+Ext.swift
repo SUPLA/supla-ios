@@ -20,7 +20,8 @@ import Foundation
 
 extension Float {
     func toTemperature() -> String {
-        String(format: "%.1f", self)
+        @Singleton<TemperatureFormatter> var formatter
+        return formatter.toString(self, withUnit: false, withDegree: false)
     }
     
     var cg: CGFloat {

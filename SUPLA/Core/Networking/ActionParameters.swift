@@ -18,13 +18,13 @@
 
 import Foundation
 
-public enum SubjectType: Int32 {
+public enum SubjectType: Int32, Equatable {
     case channel = 1
     case group = 2
     case scene = 3
 }
 
-public enum Action: Int32 {
+public enum Action: Int32, Equatable {
     case open = 10
     case close = 20
     case shut = 30

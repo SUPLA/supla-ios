@@ -220,9 +220,6 @@ fileprivate class EditTemperatureView: UIView, UITextFieldDelegate {
             .asObservable()
             .skip(1) // always emits empty value when subscribing - is not needed so skip it
             .compactMap { $0 }
-            .map { value in
-                return value.replacingOccurrences(of: ",", with: ".")
-            }
             .distinctUntilChanged()
         }
     }
@@ -286,7 +283,7 @@ fileprivate class EditTemperatureView: UIView, UITextFieldDelegate {
         editText.layer.cornerRadius = Dimens.radiusDefault
         editText.delegate = self
         editText.font = .body1
-        editText.keyboardType = .numberPad
+        editText.keyboardType = .decimalPad
         
         return editText
     }()

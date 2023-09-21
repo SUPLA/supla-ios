@@ -98,7 +98,7 @@ final class EditProgramDialogVM: BaseViewModel<EditProgramDialogViewState, EditP
     
     private func getTemperature(_ temperature: String?) -> Float {
         if let temperature = temperature,
-           let temperatureFloat = Float(temperature) {
+           let temperatureFloat = Float(temperature.replacingOccurrences(of: ",", with: ".")) {
             return temperatureFloat
         }
         

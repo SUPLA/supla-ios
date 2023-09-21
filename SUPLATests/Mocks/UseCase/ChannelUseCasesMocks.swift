@@ -46,3 +46,13 @@ final class SwapChannelPositionsUseCaseMock: SwapChannelPositionsUseCase {
         return observable
     }
 }
+
+final class GetChannelConfigUseCaseMock: GetChannelConfigUseCase {
+    
+    var parameters: [(Int32, ChannelConfigType)] = []
+    var returns: Observable<RequestResult> = Observable.empty()
+    func invoke(remoteId: Int32, type: ChannelConfigType) -> Observable<RequestResult> {
+        parameters.append((remoteId, type))
+        return returns
+    }
+}

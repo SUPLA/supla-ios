@@ -63,4 +63,72 @@ extension XCTestCase {
             FatalErrorUtil.restoreFatalError()
         }
     }
+    
+    func XCTAssertTuple<A: Equatable, B: Equatable>(_ first: (A, B), _ second : (A, B)) {
+        XCTAssertEqual(first.0, second.0)
+        XCTAssertEqual(first.1, second.1)
+    }
+    
+    func XCTAssertTuple<A: Equatable, B: Equatable, C: Equatable>(_ first: (A, B, C), _ second : (A, B, C)) {
+        XCTAssertEqual(first.0, second.0)
+        XCTAssertEqual(first.1, second.1)
+        XCTAssertEqual(first.2, second.2)
+    }
+    
+    func XCTAssertTuple<A: Equatable, B: Equatable, C: Equatable, D:Equatable>(_ first: (A, B, C, D), _ second : (A, B, C, D)) {
+        XCTAssertEqual(first.0, second.0)
+        XCTAssertEqual(first.1, second.1)
+        XCTAssertEqual(first.2, second.2)
+        XCTAssertEqual(first.3, second.3)
+    }
+    
+    func XCTAssertTuple<A: Equatable, B: Equatable, C: Equatable, D:Equatable, E: Equatable>(_ first: (A, B, C, D, E), _ second : (A, B, C, D, E)) {
+        XCTAssertEqual(first.0, second.0)
+        XCTAssertEqual(first.1, second.1)
+        XCTAssertEqual(first.2, second.2)
+        XCTAssertEqual(first.3, second.3)
+        XCTAssertEqual(first.4, second.4)
+    }
+    
+    func XCTAssertTuples<A: Equatable, B: Equatable>(_ first: [(A, B)], _ second: [(A, B)]) {
+        XCTAssertEqual(first.count, second.count)
+        for i in 0..<first.count {
+            XCTAssertTuple(first[i], second[i])
+        }
+    }
+    
+    func XCTAssertTuples<A: Equatable, B: Equatable, C: Equatable>(_ first: [(A, B, C)], _ second: [(A, B, C)]) {
+        XCTAssertEqual(first.count, second.count)
+        for i in 0..<first.count {
+            XCTAssertTuple(first[i], second[i])
+        }
+    }
+    
+    func XCTAssertTuples<A: Equatable, B: Equatable, C: Equatable, D: Equatable>(_ first: [(A, B, C, D)], _ second: [(A, B, C, D)]) {
+        XCTAssertEqual(first.count, second.count)
+        for i in 0..<first.count {
+            XCTAssertTuple(first[i], second[i])
+        }
+    }
+    
+    func XCTAssertTuples<A: Equatable, B: Equatable, C: Equatable, D: Equatable, E: Equatable>(_ first: [(A, B, C, D, E)], _ second: [(A, B, C, D, E)]) {
+        XCTAssertEqual(first.count, second.count)
+        for i in 0..<first.count {
+            XCTAssertTuple(first[i], second[i])
+        }
+    }
+    
+    func XCTAssertAwait(timeout: TimeInterval, condition: () -> Bool, sleepTimeMs: Double = 0.001, test: () -> Void) {
+        let endTime = Date().timeIntervalSince1970 + timeout
+        
+        while (endTime > Date().timeIntervalSince1970) {
+            if (condition()) {
+                test()
+                return
+            }
+            Thread.sleep(forTimeInterval: sleepTimeMs)
+        }
+        
+        XCTFail("Time is up!")
+    }
 }

@@ -20,10 +20,10 @@
 
 final class GetDefaultIconNameUseCaseMock: GetDefaultIconNameUseCase {
     
+    var parameters: [IconData] = []
     var returns: String = ""
-    var functionsArray: [Int32] = []
-    func invoke(function: Int32, state: ChannelState, altIcon: Int32, iconType: IconType) -> String {
-        functionsArray.append(function)
+    func invoke(iconData: IconData) -> String {
+        parameters.append(iconData)
         return returns
     }
 }

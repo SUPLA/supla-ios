@@ -45,6 +45,7 @@ final class LoadingTimeoutManagerImpl: LoadingTimeoutManager {
     @Singleton<DateProvider> private var dateProvider
     
     private let timeoutWatcher = Observable<Int>.interval(.milliseconds(100), scheduler: SerialDispatchQueueScheduler(qos: .background))
+        .observe(on: MainScheduler.instance)
     
     func watch(stateProvider: @escaping () -> LoadingState?, onTimeout: @escaping () -> Void) -> Disposable {
         return timeoutWatcher.subscribe(onNext: { _ in

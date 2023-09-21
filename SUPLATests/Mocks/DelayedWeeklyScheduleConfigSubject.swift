@@ -17,16 +17,20 @@
  */
 
 import RxSwift
+
 @testable import SUPLA
 
-final class ExecuteSimpleActionUseCaseMock: ExecuteSimpleActionUseCase {
+final class DelayedWeeklyScheduleConfigSubjectMock: DelayedWeeklyScheduleConfigSubject {
     
-    var returns: Observable<Void> = Observable.empty()
-    var parameters: [(Action, SUPLA.SubjectType, Int32)] = []
-    func invoke(action: Action, type: SUPLA.SubjectType, remoteId: Int32) -> Observable<Void> {
-        parameters.append((action, type, remoteId))
-        return returns
+    var emitParameters: [WeeklyScheduleConfigData] = []
+    func emit(data: WeeklyScheduleConfigData) {
+        emitParameters.append(data)
     }
     
-    
+    var sendImmediatelyParameters: [WeeklyScheduleConfigData] = []
+    var sendImmediatelyReturns: Observable<RequestResult> = Observable.empty()
+    func sendImmediately(data: WeeklyScheduleConfigData) -> Observable<RequestResult> {
+        sendImmediatelyParameters.append(data)
+        return sendImmediatelyReturns
+    }
 }

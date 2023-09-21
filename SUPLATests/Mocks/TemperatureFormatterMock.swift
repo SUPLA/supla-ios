@@ -16,17 +16,14 @@
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 
-import RxSwift
 @testable import SUPLA
 
-final class ExecuteSimpleActionUseCaseMock: ExecuteSimpleActionUseCase {
-    
-    var returns: Observable<Void> = Observable.empty()
-    var parameters: [(Action, SUPLA.SubjectType, Int32)] = []
-    func invoke(action: Action, type: SUPLA.SubjectType, remoteId: Int32) -> Observable<Void> {
-        parameters.append((action, type, remoteId))
-        return returns
+final class TemperatureFormatterMock: TemperatureFormatter {
+    func toString(_ value: Float?, withUnit: Bool, withDegree: Bool) -> String {
+        if let value = value {
+            return String(format: "%.1f", value)
+        } else {
+            return "0.0"
+        }
     }
-    
-    
 }
