@@ -43,8 +43,11 @@ final class EditProgramDialogVM: BaseViewModel<EditProgramDialogViewState, EditP
     
     func heatTemperatureChange(_ value: String) {
         updateView { state in
+            if (value.isEmpty) {
+                return changeHeatTemperature(state: state, temperature: 0, temperatureText: "")
+            }
             guard let temperature = getTemperature(value) else { return state }
-            return changeHeatTemperature(state: state, temperature: temperature)
+            return changeHeatTemperature(state: state, temperature: temperature, temperatureText: value)
         }
     }
     
@@ -57,8 +60,11 @@ final class EditProgramDialogVM: BaseViewModel<EditProgramDialogViewState, EditP
     
     func coolTemperatureChange(_ value: String) {
         updateView { state in
+            if (value.isEmpty) {
+                return changeCoolTemperature(state: state, temperature: 0, temperatureText: "")
+            }
             guard let temperature = getTemperature(value) else { return state }
-            return changeCoolTemperature(state: state, temperature: temperature)
+            return changeCoolTemperature(state: state, temperature: temperature, temperatureText: value)
         }
     }
     
@@ -70,21 +76,21 @@ final class EditProgramDialogVM: BaseViewModel<EditProgramDialogViewState, EditP
         currentState()?.showHeatEdit == true
     }
     
-    private func changeHeatTemperature(state: EditProgramDialogViewState, temperature: Float) -> EditProgramDialogViewState {
+    private func changeHeatTemperature(state: EditProgramDialogViewState, temperature: Float, temperatureText: String? = nil) -> EditProgramDialogViewState {
         let (plusActive, minusActive) = checkTemperature(temperature, min: state.configMin, max: state.configMax)
         return state
             .changing(path: \.program, to: state.program.changing(path: \.heatTemperature, to: temperature))
-            .changing(path: \.heatTemperatureText, to: temperature.toTemperature())
+            .changing(path: \.heatTemperatureText, to: temperatureText ?? temperature.toTemperature())
             .changing(path: \.heatPlusActive, to: plusActive)
             .changing(path: \.heatMinusActive, to: minusActive)
             .changing(path: \.heatCorrect, to: temperatureCorrect(temperature, min: state.configMin, max: state.configMax))
     }
     
-    private func changeCoolTemperature(state: EditProgramDialogViewState, temperature: Float) -> EditProgramDialogViewState {
+    private func changeCoolTemperature(state: EditProgramDialogViewState, temperature: Float, temperatureText: String? = nil) -> EditProgramDialogViewState {
         let (plusActive, minusActive) = checkTemperature(temperature, min: state.configMin, max: state.configMax)
         return state
             .changing(path: \.program, to: state.program.changing(path: \.coolTemperature, to: temperature))
-            .changing(path: \.coolTemperatureText, to: temperature.toTemperature())
+            .changing(path: \.coolTemperatureText, to: temperatureText ?? temperature.toTemperature())
             .changing(path: \.coolPlusActive, to: plusActive)
             .changing(path: \.coolMinusActive, to: minusActive)
             .changing(path: \.coolCorrect, to: temperatureCorrect(temperature, min: state.configMin, max: state.configMax))
