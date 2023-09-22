@@ -28,6 +28,14 @@ extension ObservableType {
     }
 }
 
+extension Single {
+    func asDriverWithoutError() -> Driver<Element> {
+        return asDriver { error in
+            return Driver.empty()
+        }
+    }
+}
+
 extension Observable {
     func subscribeSynchronous() throws -> Element? {
         let subscriber = SynchronousSubscriber(observable: self)

@@ -1,16 +1,16 @@
 /*
  Copyright (C) AC SOFTWARE SP. Z O.O.
-
+ 
  This program is free software; you can redistribute it and/or
  modify it under the terms of the GNU General Public License
  as published by the Free Software Foundation; either version 2
  of the License, or (at your option) any later version.
-
+ 
  This program is distributed in the hope that it will be useful,
  but WITHOUT ANY WARRANTY; without even the implied warranty of
  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  GNU General Public License for more details.
-
+ 
  You should have received a copy of the GNU General Public License
  along with this program; if not, write to the Free Software
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
@@ -47,16 +47,18 @@ class ThermostatGeneralVM: BaseViewModel<ThermostatGeneralViewState, ThermostatG
     }
     
     func loadChannel(remoteId: Int32) {
-        Observable.zip(
+        Single.zip(
             readChannelWithChildrenUseCase.invoke(remoteId: remoteId)
-                .map { ($0, self.createTemperaturesListUseCase.invoke(channelWithChildren: $0)) },
+                .map { ($0, self.createTemperaturesListUseCase.invoke(channelWithChildren: $0)) }
+                .first(),
             configEventManager.observeConfig(remoteId: remoteId)
-                .filter { $0.config is SuplaChannelHvacConfig && $0.result == .resultTrue },
-            resultSelector: { ($0, $1.config as! SuplaChannelHvacConfig) }
+                .filter { $0.config is SuplaChannelHvacConfig && $0.result == .resultTrue }
+                .first(),
+            resultSelector: { ($0, $1?.config as? SuplaChannelHvacConfig) }
         )
-            .asDriverWithoutError()
-            .drive(onNext: { self.handleData(data: $0) })
-            .disposed(by: self)
+        .asDriverWithoutError()
+        .drive(onNext: { self.handleData(data: $0) })
+        .disposed(by: self)
         
         getChannelConfigUseCase.invoke(remoteId: remoteId, type: .defaultConfig)
             .subscribe()
@@ -86,7 +88,7 @@ class ThermostatGeneralVM: BaseViewModel<ThermostatGeneralViewState, ThermostatG
             else { return state }
             
             let resultState = state.changing(path: \.lastInteractionTime, to: dateProvider.currentTimestamp())
-
+            
             switch (setpointType) {
             case .cool:
                 let temperature = getNewTemperature(state.setpointCool, state: state, step: step)
@@ -108,7 +110,12 @@ class ThermostatGeneralVM: BaseViewModel<ThermostatGeneralViewState, ThermostatG
         updateView { state in
             guard let remoteId = state.remoteId else { return state }
             
-            let mode: SuplaHvacMode = state.off ? .cmdTurnOn : .off
+            let mode: SuplaHvacMode
+            if (state.weeklyScheduleActive && state.off) {
+                mode = .off
+            } else {
+                mode = state.off ? .cmdTurnOn : .off
+            }
             let data = ThermostatActionData(remoteId: remoteId, mode: mode)
             delayedThermostatActionSubject.sendImmediately(data: data)
                 .subscribe()
@@ -123,6 +130,7 @@ class ThermostatGeneralVM: BaseViewModel<ThermostatGeneralViewState, ThermostatG
     func onManualButtonTap() {
         updateView { state in
             guard let remoteId = state.remoteId else { return state }
+            if (state.manualActive) { return state }
             
             let mode: SuplaHvacMode = .cmdSwitchToManual
             
@@ -142,6 +150,7 @@ class ThermostatGeneralVM: BaseViewModel<ThermostatGeneralViewState, ThermostatG
     func onWeeklyScheduleButtonTap() {
         updateView { state in
             guard let remoteId = state.remoteId else { return state }
+            if (state.weeklyScheduleActive) { return state }
             
             let mode: SuplaHvacMode = .cmdWeeklySchedule
             let data = ThermostatActionData(remoteId: remoteId, mode: mode)
@@ -161,7 +170,8 @@ class ThermostatGeneralVM: BaseViewModel<ThermostatGeneralViewState, ThermostatG
         updateView { state in
             guard let min = state.configMin,
                   let max = state.configMax,
-                  let remoteId = state.remoteId
+                  let remoteId = state.remoteId,
+                  state.manualActive
             else { return state }
             
             let resultState = state.changing(path: \.activeSetpointType, to: type)
@@ -184,10 +194,10 @@ class ThermostatGeneralVM: BaseViewModel<ThermostatGeneralViewState, ThermostatG
         }
     }
     
-    private func handleData(data: ((ChannelWithChildren, [ThermostatTemperature]), SuplaChannelHvacConfig)) {
-        let channel = data.0.0
-        let temperatures = data.0.1
-        let config = data.1
+    private func handleData(data: ((ChannelWithChildren, [ThermostatTemperature])?, SuplaChannelHvacConfig?)) {
+        guard let channel = data.0?.0 else { return }
+        guard let temperatures = data.0?.1 else { return }
+        guard let config = data.1 else { return }
         guard let thermostatValue = channel.channel.value?.asThermostatValue() else { return }
         
         updateView { state in
@@ -287,7 +297,7 @@ class ThermostatGeneralVM: BaseViewModel<ThermostatGeneralViewState, ThermostatG
         guard let configMin = state.configMin,
               let configMax = state.configMax
         else { return state }
-
+        
         let range = configMax - configMin
         let temperaturePercentage = (temperature - configMin) / range
         return state.changing(path: \.currentTemperaturePercentage, to: temperaturePercentage)
@@ -434,7 +444,7 @@ struct ThermostatGeneralViewState: ViewState {
     }
     var powerIconColor: UIColor {
         get {
-            if (off || offline) {
+            if ((off && !weeklyScheduleActive) || offline) {
                 return .red
             } else {
                 return .primary

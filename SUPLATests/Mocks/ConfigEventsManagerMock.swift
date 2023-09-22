@@ -17,14 +17,24 @@
  */
 
 import RxSwift
+
 @testable import SUPLA
 
-final class ReadChannelByRemoteIdUseCaseMock: ReadChannelByRemoteIdUseCase {
+final class ConfigEventsManagerMock: ConfigEventsManager {
     
-    var returns: Observable<SAChannel> = Observable.empty()
-    var remoteIdArray: [Int32] = []
-    func invoke(remoteId: Int32) -> Observable<SAChannel> {
-        remoteIdArray.append(remoteId)
-        return returns
+    var observeConfigParameters: [Int32] = []
+    var observeConfigReturns: [Observable<ConfigEvent>] = [Observable.empty()]
+    var observeConfigReturnsIdx = 0
+    func observeConfig(remoteId: Int32) -> Observable<ConfigEvent> {
+        observeConfigParameters.append(remoteId)
+        
+        let toReturn = observeConfigReturns[observeConfigReturnsIdx]
+        observeConfigReturnsIdx += 1
+        return toReturn
+    }
+    
+    var emitConfigParameters: [(UInt8, TSCS_ChannelConfig)] = []
+    func emitConfig(result: UInt8, config: TSCS_ChannelConfig) {
+        emitConfigParameters.append((result, config))
     }
 }

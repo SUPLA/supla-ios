@@ -32,7 +32,14 @@ final class GetDefaultIconNameUseCaseTests: XCTestCase {
         let function = SUPLA_CHANNELFNC_OPENINGSENSOR_GATEWAY
         
         // when
-        let iconName = useCase.invoke(function: function, state: .opened, altIcon: 0, iconType: .single)
+        let iconName = useCase.invoke(
+            iconData: IconData(
+                function: function,
+                altIcon: 0,
+                state: .opened,
+                type: .single
+            )
+        )
         
         // then
         XCTAssertEqual(iconName, "gateway-open")
@@ -43,7 +50,14 @@ final class GetDefaultIconNameUseCaseTests: XCTestCase {
         let function = SUPLA_CHANNELFNC_OPENINGSENSOR_GATEWAY
         
         // when
-        let iconName = useCase.invoke(function: function, state: .closed, altIcon: 0, iconType: .single)
+        let iconName = useCase.invoke(
+            iconData: IconData(
+                function: function,
+                altIcon: 0,
+                state: .closed,
+                type: .single
+            )
+        )
         
         // then
         XCTAssertEqual(iconName, "gateway-closed")
@@ -54,7 +68,14 @@ final class GetDefaultIconNameUseCaseTests: XCTestCase {
         let function = SUPLA_CHANNELFNC_CONTROLLINGTHEGATEWAYLOCK
         
         // when
-        let iconName = useCase.invoke(function: function, state: .opened, altIcon: 0, iconType: .single)
+        let iconName = useCase.invoke(
+            iconData: IconData(
+                function: function,
+                altIcon: 0,
+                state: .opened,
+                type: .single
+            )
+        )
         
         // then
         XCTAssertEqual(iconName, "gateway-open")
@@ -65,7 +86,14 @@ final class GetDefaultIconNameUseCaseTests: XCTestCase {
         let function = SUPLA_CHANNELFNC_CONTROLLINGTHEGATEWAYLOCK
         
         // when
-        let iconName = useCase.invoke(function: function, state: .closed, altIcon: 0, iconType: .single)
+        let iconName = useCase.invoke(
+            iconData: IconData(
+                function: function,
+                altIcon: 0,
+                state: .closed,
+                type: .single
+            )
+        )
         
         // then
         XCTAssertEqual(iconName, "gateway-closed")
@@ -76,7 +104,14 @@ final class GetDefaultIconNameUseCaseTests: XCTestCase {
         let function = SUPLA_CHANNELFNC_CONTROLLINGTHEGATE
         
         // when
-        let iconName = useCase.invoke(function: function, state: .partialyOpened, altIcon: 0, iconType: .single)
+        let iconName = useCase.invoke(
+            iconData: IconData(
+                function: function,
+                altIcon: 0,
+                state: .partialyOpened,
+                type: .single
+            )
+        )
         
         // then
         XCTAssertEqual(iconName, "gate-closed-50percent")
@@ -87,7 +122,14 @@ final class GetDefaultIconNameUseCaseTests: XCTestCase {
         let function = SUPLA_CHANNELFNC_CONTROLLINGTHEGATE
         
         // when
-        let iconName = useCase.invoke(function: function, state: .partialyOpened, altIcon: 1, iconType: .single)
+        let iconName = useCase.invoke(
+            iconData: IconData(
+                function: function,
+                altIcon: 1,
+                state: .partialyOpened,
+                type: .single
+            )
+        )
         
         // then
         XCTAssertEqual(iconName, "gatealt1-closed-50percent")
@@ -98,7 +140,14 @@ final class GetDefaultIconNameUseCaseTests: XCTestCase {
         let function = SUPLA_CHANNELFNC_CONTROLLINGTHEGATE
         
         // when
-        let iconName = useCase.invoke(function: function, state: .partialyOpened, altIcon: 2, iconType: .single)
+        let iconName = useCase.invoke(
+            iconData: IconData(
+                function: function,
+                altIcon: 2,
+                state: .partialyOpened,
+                type: .single
+            )
+        )
         
         // then
         XCTAssertEqual(iconName, "barier-closed")
@@ -109,7 +158,14 @@ final class GetDefaultIconNameUseCaseTests: XCTestCase {
         let function = SUPLA_CHANNELFNC_CONTROLLINGTHEGATE
         
         // when
-        let iconName = useCase.invoke(function: function, state: .opened, altIcon: 0, iconType: .single)
+        let iconName = useCase.invoke(
+            iconData: IconData(
+                function: function,
+                altIcon: 0,
+                state: .opened,
+                type: .single
+            )
+        )
         
         // then
         XCTAssertEqual(iconName, "gate-open")
@@ -120,7 +176,14 @@ final class GetDefaultIconNameUseCaseTests: XCTestCase {
         let function = SUPLA_CHANNELFNC_CONTROLLINGTHEGATE
         
         // when
-        let iconName = useCase.invoke(function: function, state: .closed, altIcon: 0, iconType: .single)
+        let iconName = useCase.invoke(
+            iconData: IconData(
+                function: function,
+                altIcon: 0,
+                state: .closed,
+                type: .single
+            )
+        )
         
         // then
         XCTAssertEqual(iconName, "gate-closed")
@@ -131,7 +194,14 @@ final class GetDefaultIconNameUseCaseTests: XCTestCase {
         let function = SUPLA_CHANNELFNC_OPENINGSENSOR_GATE
         
         // when
-        let iconName = useCase.invoke(function: function, state: .opened, altIcon: 0, iconType: .single)
+        let iconName = useCase.invoke(
+            iconData: IconData(
+                function: function,
+                altIcon: 0,
+                state: .opened,
+                type: .single
+            )
+        )
         
         // then
         XCTAssertEqual(iconName, "gate-open")
@@ -142,7 +212,14 @@ final class GetDefaultIconNameUseCaseTests: XCTestCase {
         let function = SUPLA_CHANNELFNC_OPENINGSENSOR_GATE
         
         // when
-        let iconName = useCase.invoke(function: function, state: .closed, altIcon: 1, iconType: .single)
+        let iconName = useCase.invoke(
+            iconData: IconData(
+                function: function,
+                altIcon: 1,
+                state: .closed,
+                type: .single
+            )
+        )
         
         // then
         XCTAssertEqual(iconName, "gatealt1-closed")
@@ -153,7 +230,14 @@ final class GetDefaultIconNameUseCaseTests: XCTestCase {
         let function = SUPLA_CHANNELFNC_OPENINGSENSOR_GATE
         
         // when
-        let iconName = useCase.invoke(function: function, state: .opened, altIcon: 2, iconType: .single)
+        let iconName = useCase.invoke(
+            iconData: IconData(
+                function: function,
+                altIcon: 2,
+                state: .opened,
+                type: .single
+            )
+        )
         
         // then
         XCTAssertEqual(iconName, "barier-open")
@@ -164,7 +248,14 @@ final class GetDefaultIconNameUseCaseTests: XCTestCase {
         let function = SUPLA_CHANNELFNC_OPENINGSENSOR_GARAGEDOOR
         
         // when
-        let iconName = useCase.invoke(function: function, state: .partialyOpened, altIcon: 0, iconType: .single)
+        let iconName = useCase.invoke(
+            iconData: IconData(
+                function: function,
+                altIcon: 0,
+                state: .partialyOpened,
+                type: .single
+            )
+        )
         
         // then
         XCTAssertEqual(iconName, "garagedoor-closed-50percent")
@@ -175,7 +266,14 @@ final class GetDefaultIconNameUseCaseTests: XCTestCase {
         let function = SUPLA_CHANNELFNC_CONTROLLINGTHEGARAGEDOOR
         
         // when
-        let iconName = useCase.invoke(function: function, state: .opened, altIcon: 0, iconType: .single)
+        let iconName = useCase.invoke(
+            iconData: IconData(
+                function: function,
+                altIcon: 0,
+                state: .opened,
+                type: .single
+            )
+        )
         
         // then
         XCTAssertEqual(iconName, "garagedoor-open")
@@ -186,7 +284,14 @@ final class GetDefaultIconNameUseCaseTests: XCTestCase {
         let function = SUPLA_CHANNELFNC_OPENINGSENSOR_GARAGEDOOR
         
         // when
-        let iconName = useCase.invoke(function: function, state: .closed, altIcon: 0, iconType: .single)
+        let iconName = useCase.invoke(
+            iconData: IconData(
+                function: function,
+                altIcon: 0,
+                state: .closed,
+                type: .single
+            )
+        )
         
         // then
         XCTAssertEqual(iconName, "garagedoor-closed")
@@ -197,7 +302,14 @@ final class GetDefaultIconNameUseCaseTests: XCTestCase {
         let function = SUPLA_CHANNELFNC_OPENINGSENSOR_DOOR
         
         // when
-        let iconName = useCase.invoke(function: function, state: .opened, altIcon: 0, iconType: .single)
+        let iconName = useCase.invoke(
+            iconData: IconData(
+                function: function,
+                altIcon: 0,
+                state: .opened,
+                type: .single
+            )
+        )
         
         // then
         XCTAssertEqual(iconName, "door-open")
@@ -208,7 +320,14 @@ final class GetDefaultIconNameUseCaseTests: XCTestCase {
         let function = SUPLA_CHANNELFNC_CONTROLLINGTHEDOORLOCK
         
         // when
-        let iconName = useCase.invoke(function: function, state: .closed, altIcon: 0, iconType: .single)
+        let iconName = useCase.invoke(
+            iconData: IconData(
+                function: function,
+                altIcon: 0,
+                state: .closed,
+                type: .single
+            )
+        )
         
         // then
         XCTAssertEqual(iconName, "door-closed")
@@ -219,7 +338,14 @@ final class GetDefaultIconNameUseCaseTests: XCTestCase {
         let function = SUPLA_CHANNELFNC_OPENINGSENSOR_ROLLERSHUTTER
         
         // when
-        let iconName = useCase.invoke(function: function, state: .opened, altIcon: 0, iconType: .single)
+        let iconName = useCase.invoke(
+            iconData: IconData(
+                function: function,
+                altIcon: 0,
+                state: .opened,
+                type: .single
+            )
+        )
         
         // then
         XCTAssertEqual(iconName, "rollershutter-open")
@@ -230,7 +356,14 @@ final class GetDefaultIconNameUseCaseTests: XCTestCase {
         let function = SUPLA_CHANNELFNC_CONTROLLINGTHEROLLERSHUTTER
         
         // when
-        let iconName = useCase.invoke(function: function, state: .closed, altIcon: 0, iconType: .single)
+        let iconName = useCase.invoke(
+            iconData: IconData(
+                function: function,
+                altIcon: 0,
+                state: .closed,
+                type: .single
+            )
+        )
         
         // then
         XCTAssertEqual(iconName, "rollershutter-closed")
@@ -241,7 +374,14 @@ final class GetDefaultIconNameUseCaseTests: XCTestCase {
         let function = SUPLA_CHANNELFNC_OPENINGSENSOR_ROOFWINDOW
         
         // when
-        let iconName = useCase.invoke(function: function, state: .opened, altIcon: 0, iconType: .single)
+        let iconName = useCase.invoke(
+            iconData: IconData(
+                function: function,
+                altIcon: 0,
+                state: .opened,
+                type: .single
+            )
+        )
         
         // then
         XCTAssertEqual(iconName, "roofwindow-open")
@@ -252,7 +392,14 @@ final class GetDefaultIconNameUseCaseTests: XCTestCase {
         let function = SUPLA_CHANNELFNC_CONTROLLINGTHEROOFWINDOW
         
         // when
-        let iconName = useCase.invoke(function: function, state: .closed, altIcon: 0, iconType: .single)
+        let iconName = useCase.invoke(
+            iconData: IconData(
+                function: function,
+                altIcon: 0,
+                state: .closed,
+                type: .single
+            )
+        )
         
         // then
         XCTAssertEqual(iconName, "roofwindow-closed")
@@ -263,7 +410,14 @@ final class GetDefaultIconNameUseCaseTests: XCTestCase {
         let function = SUPLA_CHANNELFNC_POWERSWITCH
         
         // when
-        let iconName = useCase.invoke(function: function, state: .on, altIcon: 0, iconType: .single)
+        let iconName = useCase.invoke(
+            iconData: IconData(
+                function: function,
+                altIcon: 0,
+                state: .on,
+                type: .single
+            )
+        )
         
         // then
         XCTAssertEqual(iconName, "power-on")
@@ -274,7 +428,14 @@ final class GetDefaultIconNameUseCaseTests: XCTestCase {
         let function = SUPLA_CHANNELFNC_POWERSWITCH
         
         // when
-        let iconName = useCase.invoke(function: function, state: .off, altIcon: 1, iconType: .single)
+        let iconName = useCase.invoke(
+            iconData: IconData(
+                function: function,
+                altIcon: 1,
+                state: .off,
+                type: .single
+            )
+        )
         
         // then
         XCTAssertEqual(iconName, "tv-off")
@@ -285,7 +446,14 @@ final class GetDefaultIconNameUseCaseTests: XCTestCase {
         let function = SUPLA_CHANNELFNC_POWERSWITCH
         
         // when
-        let iconName = useCase.invoke(function: function, state: .on, altIcon: 2, iconType: .single)
+        let iconName = useCase.invoke(
+            iconData: IconData(
+                function: function,
+                altIcon: 2,
+                state: .on,
+                type: .single
+            )
+        )
         
         // then
         XCTAssertEqual(iconName, "radio-on")
@@ -296,7 +464,14 @@ final class GetDefaultIconNameUseCaseTests: XCTestCase {
         let function = SUPLA_CHANNELFNC_POWERSWITCH
         
         // when
-        let iconName = useCase.invoke(function: function, state: .off, altIcon: 3, iconType: .single)
+        let iconName = useCase.invoke(
+            iconData: IconData(
+                function: function,
+                altIcon: 3,
+                state: .off,
+                type: .single
+            )
+        )
         
         // then
         XCTAssertEqual(iconName, "pc-off")
@@ -307,7 +482,14 @@ final class GetDefaultIconNameUseCaseTests: XCTestCase {
         let function = SUPLA_CHANNELFNC_POWERSWITCH
         
         // when
-        let iconName = useCase.invoke(function: function, state: .on, altIcon: 4, iconType: .single)
+        let iconName = useCase.invoke(
+            iconData: IconData(
+                function: function,
+                altIcon: 4,
+                state: .on,
+                type: .single
+            )
+        )
         
         // then
         XCTAssertEqual(iconName, "fan-on")
@@ -318,7 +500,14 @@ final class GetDefaultIconNameUseCaseTests: XCTestCase {
         let function = SUPLA_CHANNELFNC_LIGHTSWITCH
         
         // when
-        let iconName = useCase.invoke(function: function, state: .on, altIcon: 0, iconType: .single)
+        let iconName = useCase.invoke(
+            iconData: IconData(
+                function: function,
+                altIcon: 0,
+                state: .on,
+                type: .single
+            )
+        )
         
         // then
         XCTAssertEqual(iconName, "light-on")
@@ -329,7 +518,14 @@ final class GetDefaultIconNameUseCaseTests: XCTestCase {
         let function = SUPLA_CHANNELFNC_LIGHTSWITCH
         
         // when
-        let iconName = useCase.invoke(function: function, state: .off, altIcon: 1, iconType: .single)
+        let iconName = useCase.invoke(
+            iconData: IconData(
+                function: function,
+                altIcon: 1,
+                state: .off,
+                type: .single
+            )
+        )
         
         // then
         XCTAssertEqual(iconName, "xmastree-off")
@@ -340,7 +536,14 @@ final class GetDefaultIconNameUseCaseTests: XCTestCase {
         let function = SUPLA_CHANNELFNC_LIGHTSWITCH
         
         // when
-        let iconName = useCase.invoke(function: function, state: .on, altIcon: 2, iconType: .single)
+        let iconName = useCase.invoke(
+            iconData: IconData(
+                function: function,
+                altIcon: 2,
+                state: .on,
+                type: .single
+            )
+        )
         
         // then
         XCTAssertEqual(iconName, "uv-on")
@@ -351,7 +554,14 @@ final class GetDefaultIconNameUseCaseTests: XCTestCase {
         let function = SUPLA_CHANNELFNC_STAIRCASETIMER
         
         // when
-        let iconName = useCase.invoke(function: function, state: .on, altIcon: 0, iconType: .single)
+        let iconName = useCase.invoke(
+            iconData: IconData(
+                function: function,
+                altIcon: 0,
+                state: .on,
+                type: .single
+            )
+        )
         
         // then
         XCTAssertEqual(iconName, "staircasetimer-on")
@@ -362,7 +572,14 @@ final class GetDefaultIconNameUseCaseTests: XCTestCase {
         let function = SUPLA_CHANNELFNC_STAIRCASETIMER
         
         // when
-        let iconName = useCase.invoke(function: function, state: .off, altIcon: 1, iconType: .single)
+        let iconName = useCase.invoke(
+            iconData: IconData(
+                function: function,
+                altIcon: 1,
+                state: .off,
+                type: .single
+            )
+        )
         
         // then
         XCTAssertEqual(iconName, "staircasetimer_1-off")
@@ -373,7 +590,14 @@ final class GetDefaultIconNameUseCaseTests: XCTestCase {
         let function = SUPLA_CHANNELFNC_THERMOMETER
         
         // when
-        let iconName = useCase.invoke(function: function, state: .notUsed, altIcon: 0, iconType: .single)
+        let iconName = useCase.invoke(
+            iconData: IconData(
+                function: function,
+                altIcon: 0,
+                state: .notUsed,
+                type: .single
+            )
+        )
         
         // then
         XCTAssertEqual(iconName, "thermometer")
@@ -384,7 +608,14 @@ final class GetDefaultIconNameUseCaseTests: XCTestCase {
         let function = SUPLA_CHANNELFNC_HUMIDITYANDTEMPERATURE
         
         // when
-        let iconName = useCase.invoke(function: function, state: .notUsed, altIcon: 0, iconType: .first)
+        let iconName = useCase.invoke(
+            iconData: IconData(
+                function: function,
+                altIcon: 0,
+                state: .notUsed,
+                type: .single
+            )
+        )
         
         // then
         XCTAssertEqual(iconName, "thermometer")
@@ -395,7 +626,14 @@ final class GetDefaultIconNameUseCaseTests: XCTestCase {
         let function = SUPLA_CHANNELFNC_HUMIDITYANDTEMPERATURE
         
         // when
-        let iconName = useCase.invoke(function: function, state: .notUsed, altIcon: 0, iconType: .second)
+        let iconName = useCase.invoke(
+            iconData: IconData(
+                function: function,
+                altIcon: 0,
+                state: .notUsed,
+                type: .second
+            )
+        )
         
         // then
         XCTAssertEqual(iconName, "humidity")
@@ -406,7 +644,14 @@ final class GetDefaultIconNameUseCaseTests: XCTestCase {
         let function = SUPLA_CHANNELFNC_HUMIDITY
         
         // when
-        let iconName = useCase.invoke(function: function, state: .notUsed, altIcon: 0, iconType: .single)
+        let iconName = useCase.invoke(
+            iconData: IconData(
+                function: function,
+                altIcon: 0,
+                state: .notUsed,
+                type: .single
+            )
+        )
         
         // then
         XCTAssertEqual(iconName, "humidity")
@@ -417,7 +662,14 @@ final class GetDefaultIconNameUseCaseTests: XCTestCase {
         let function = SUPLA_CHANNELFNC_NOLIQUIDSENSOR
         
         // when
-        let iconName = useCase.invoke(function: function, state: .on, altIcon: 0, iconType: .single)
+        let iconName = useCase.invoke(
+            iconData: IconData(
+                function: function,
+                altIcon: 0,
+                state: .on,
+                type: .single
+            )
+        )
         
         // then
         XCTAssertEqual(iconName, "liquid")
@@ -428,7 +680,14 @@ final class GetDefaultIconNameUseCaseTests: XCTestCase {
         let function = SUPLA_CHANNELFNC_NOLIQUIDSENSOR
         
         // when
-        let iconName = useCase.invoke(function: function, state: .off, altIcon: 0, iconType: .single)
+        let iconName = useCase.invoke(
+            iconData: IconData(
+                function: function,
+                altIcon: 0,
+                state: .off,
+                type: .single
+            )
+        )
         
         // then
         XCTAssertEqual(iconName, "noliquid")
@@ -439,7 +698,14 @@ final class GetDefaultIconNameUseCaseTests: XCTestCase {
         let function = SUPLA_CHANNELFNC_DIMMER
         
         // when
-        let iconName = useCase.invoke(function: function, state: .on, altIcon: 0, iconType: .single)
+        let iconName = useCase.invoke(
+            iconData: IconData(
+                function: function,
+                altIcon: 0,
+                state: .on,
+                type: .single
+            )
+        )
         
         // then
         XCTAssertEqual(iconName, "dimmer-on")
@@ -450,7 +716,14 @@ final class GetDefaultIconNameUseCaseTests: XCTestCase {
         let function = SUPLA_CHANNELFNC_DIMMER
         
         // when
-        let iconName = useCase.invoke(function: function, state: .off, altIcon: 0, iconType: .single)
+        let iconName = useCase.invoke(
+            iconData: IconData(
+                function: function,
+                altIcon: 0,
+                state: .off,
+                type: .single
+            )
+        )
         
         // then
         XCTAssertEqual(iconName, "dimmer-off")
@@ -461,7 +734,14 @@ final class GetDefaultIconNameUseCaseTests: XCTestCase {
         let function = SUPLA_CHANNELFNC_RGBLIGHTING
         
         // when
-        let iconName = useCase.invoke(function: function, state: .on, altIcon: 0, iconType: .single)
+        let iconName = useCase.invoke(
+            iconData: IconData(
+                function: function,
+                altIcon: 0,
+                state: .on,
+                type: .single
+            )
+        )
         
         // then
         XCTAssertEqual(iconName, "rgb-on")
@@ -472,7 +752,14 @@ final class GetDefaultIconNameUseCaseTests: XCTestCase {
         let function = SUPLA_CHANNELFNC_RGBLIGHTING
         
         // when
-        let iconName = useCase.invoke(function: function, state: .off, altIcon: 0, iconType: .single)
+        let iconName = useCase.invoke(
+            iconData: IconData(
+                function: function,
+                altIcon: 0,
+                state: .off,
+                type: .single
+            )
+        )
         
         // then
         XCTAssertEqual(iconName, "rgb-off")
@@ -483,7 +770,14 @@ final class GetDefaultIconNameUseCaseTests: XCTestCase {
         let function = SUPLA_CHANNELFNC_DIMMERANDRGBLIGHTING
         
         // when
-        let iconName = useCase.invoke(function: function, state: .complex([.on, .on]), altIcon: 0, iconType: .single)
+        let iconName = useCase.invoke(
+            iconData: IconData(
+                function: function,
+                altIcon: 0,
+                state: .complex([.on, .on]),
+                type: .single
+            )
+        )
         
         // then
         XCTAssertEqual(iconName, "dimmerrgb-onon")
@@ -494,7 +788,14 @@ final class GetDefaultIconNameUseCaseTests: XCTestCase {
         let function = SUPLA_CHANNELFNC_DIMMERANDRGBLIGHTING
         
         // when
-        let iconName = useCase.invoke(function: function, state: .complex([.off, .off]), altIcon: 0, iconType: .single)
+        let iconName = useCase.invoke(
+            iconData: IconData(
+                function: function,
+                altIcon: 0,
+                state: .complex([.off, .off]),
+                type: .single
+            )
+        )
         
         // then
         XCTAssertEqual(iconName, "dimmerrgb-offoff")
@@ -505,7 +806,14 @@ final class GetDefaultIconNameUseCaseTests: XCTestCase {
         let function = SUPLA_CHANNELFNC_DIMMERANDRGBLIGHTING
         
         // when
-        let iconName = useCase.invoke(function: function, state: .complex([.off, .on]), altIcon: 0, iconType: .single)
+        let iconName = useCase.invoke(
+            iconData: IconData(
+                function: function,
+                altIcon: 0,
+                state: .complex([.off, .on]),
+                type: .single
+            )
+        )
         
         // then
         XCTAssertEqual(iconName, "dimmerrgb-offon")
@@ -516,7 +824,14 @@ final class GetDefaultIconNameUseCaseTests: XCTestCase {
         let function = SUPLA_CHANNELFNC_DIMMERANDRGBLIGHTING
         
         // when
-        let iconName = useCase.invoke(function: function, state: .complex([.on, .off]), altIcon: 0, iconType: .single)
+        let iconName = useCase.invoke(
+            iconData: IconData(
+                function: function,
+                altIcon: 0,
+                state: .complex([.on, .off]),
+                type: .single
+            )
+        )
         
         // then
         XCTAssertEqual(iconName, "dimmerrgb-onoff")
@@ -529,10 +844,12 @@ final class GetDefaultIconNameUseCaseTests: XCTestCase {
         // when
         expectFatalError(expectedMessage: "Dimmer and RGB function needs complex state") {
             _ = self.useCase.invoke(
-                function: function,
-                state: .notUsed,
-                altIcon: 0,
-                iconType: .single
+                iconData: IconData(
+                    function: function,
+                    altIcon: 0,
+                    state: .notUsed,
+                    type: .single
+                )
             )
         }
     }
@@ -544,10 +861,12 @@ final class GetDefaultIconNameUseCaseTests: XCTestCase {
         // when
         expectFatalError(expectedMessage: "Dimmer and RGB function needs complex with two values but got [SUPLA.ChannelState.on, SUPLA.ChannelState.off, SUPLA.ChannelState.on]") {
             _ = self.useCase.invoke(
-                function: function,
-                state: .complex([.on, .off, .on]),
-                altIcon: 0,
-                iconType: .single
+                iconData: IconData(
+                    function: function,
+                    altIcon: 0,
+                    state: .complex([.on, .off, .on]),
+                    type: .single
+                )
             )
         }
     }
@@ -557,7 +876,14 @@ final class GetDefaultIconNameUseCaseTests: XCTestCase {
         let function = SUPLA_CHANNELFNC_OPENINGSENSOR_WINDOW
         
         // when
-        let iconName = useCase.invoke(function: function, state: .opened, altIcon: 0, iconType: .single)
+        let iconName = useCase.invoke(
+            iconData: IconData(
+                function: function,
+                altIcon: 0,
+                state: .opened,
+                type: .single
+            )
+        )
         
         // then
         XCTAssertEqual(iconName, "window-open")
@@ -568,7 +894,14 @@ final class GetDefaultIconNameUseCaseTests: XCTestCase {
         let function = SUPLA_CHANNELFNC_OPENINGSENSOR_WINDOW
         
         // when
-        let iconName = useCase.invoke(function: function, state: .closed, altIcon: 0, iconType: .single)
+        let iconName = useCase.invoke(
+            iconData: IconData(
+                function: function,
+                altIcon: 0,
+                state: .closed,
+                type: .single
+            )
+        )
         
         // then
         XCTAssertEqual(iconName, "window-closed")
@@ -579,7 +912,14 @@ final class GetDefaultIconNameUseCaseTests: XCTestCase {
         let function = SUPLA_CHANNELFNC_MAILSENSOR
         
         // when
-        let iconName = useCase.invoke(function: function, state: .on, altIcon: 0, iconType: .single)
+        let iconName = useCase.invoke(
+            iconData: IconData(
+                function: function,
+                altIcon: 0,
+                state: .on,
+                type: .single
+            )
+        )
         
         // then
         XCTAssertEqual(iconName, "mail")
@@ -590,7 +930,14 @@ final class GetDefaultIconNameUseCaseTests: XCTestCase {
         let function = SUPLA_CHANNELFNC_MAILSENSOR
         
         // when
-        let iconName = useCase.invoke(function: function, state: .off, altIcon: 0, iconType: .single)
+        let iconName = useCase.invoke(
+            iconData: IconData(
+                function: function,
+                altIcon: 0,
+                state: .off,
+                type: .single
+            )
+        )
         
         // then
         XCTAssertEqual(iconName, "nomail")
@@ -601,7 +948,14 @@ final class GetDefaultIconNameUseCaseTests: XCTestCase {
         let function = SUPLA_CHANNELFNC_ELECTRICITY_METER
         
         // when
-        let iconName = useCase.invoke(function: function, state: .notUsed, altIcon: 0, iconType: .single)
+        let iconName = useCase.invoke(
+            iconData: IconData(
+                function: function,
+                altIcon: 0,
+                state: .notUsed,
+                type: .single
+            )
+        )
         
         // then
         XCTAssertEqual(iconName, "electricitymeter")
@@ -612,7 +966,14 @@ final class GetDefaultIconNameUseCaseTests: XCTestCase {
         let function = SUPLA_CHANNELFNC_IC_ELECTRICITY_METER
         
         // when
-        let iconName = useCase.invoke(function: function, state: .notUsed, altIcon: 1, iconType: .single)
+        let iconName = useCase.invoke(
+            iconData: IconData(
+                function: function,
+                altIcon: 1,
+                state: .notUsed,
+                type: .single
+            )
+        )
         
         // then
         XCTAssertEqual(iconName, "powerstation")
@@ -623,7 +984,14 @@ final class GetDefaultIconNameUseCaseTests: XCTestCase {
         let function = SUPLA_CHANNELFNC_IC_GAS_METER
         
         // when
-        let iconName = useCase.invoke(function: function, state: .notUsed, altIcon: 0, iconType: .single)
+        let iconName = useCase.invoke(
+            iconData: IconData(
+                function: function,
+                altIcon: 0,
+                state: .notUsed,
+                type: .single
+            )
+        )
         
         // then
         XCTAssertEqual(iconName, "gasmeter")
@@ -634,7 +1002,14 @@ final class GetDefaultIconNameUseCaseTests: XCTestCase {
         let function = SUPLA_CHANNELFNC_IC_WATER_METER
         
         // when
-        let iconName = useCase.invoke(function: function, state: .notUsed, altIcon: 0, iconType: .single)
+        let iconName = useCase.invoke(
+            iconData: IconData(
+                function: function,
+                altIcon: 0,
+                state: .notUsed,
+                type: .single
+            )
+        )
         
         // then
         XCTAssertEqual(iconName, "watermeter")
@@ -645,7 +1020,14 @@ final class GetDefaultIconNameUseCaseTests: XCTestCase {
         let function = SUPLA_CHANNELFNC_IC_HEAT_METER
         
         // when
-        let iconName = useCase.invoke(function: function, state: .notUsed, altIcon: 0, iconType: .single)
+        let iconName = useCase.invoke(
+            iconData: IconData(
+                function: function,
+                altIcon: 0,
+                state: .notUsed,
+                type: .single
+            )
+        )
         
         // then
         XCTAssertEqual(iconName, "heatmeter")
@@ -656,7 +1038,14 @@ final class GetDefaultIconNameUseCaseTests: XCTestCase {
         let function = SUPLA_CHANNELFNC_THERMOSTAT_HEATPOL_HOMEPLUS
         
         // when
-        let iconName = useCase.invoke(function: function, state: .on, altIcon: 0, iconType: .single)
+        let iconName = useCase.invoke(
+            iconData: IconData(
+                function: function,
+                altIcon: 0,
+                state: .on,
+                type: .single
+            )
+        )
         
         // then
         XCTAssertEqual(iconName, "thermostat_hp_homeplus-on")
@@ -667,7 +1056,14 @@ final class GetDefaultIconNameUseCaseTests: XCTestCase {
         let function = SUPLA_CHANNELFNC_THERMOSTAT_HEATPOL_HOMEPLUS
         
         // when
-        let iconName = useCase.invoke(function: function, state: .off, altIcon: 1, iconType: .single)
+        let iconName = useCase.invoke(
+            iconData: IconData(
+                function: function,
+                altIcon: 1,
+                state: .off,
+                type: .single
+            )
+        )
         
         // then
         XCTAssertEqual(iconName, "thermostat_hp_homeplus1-off")
@@ -678,7 +1074,14 @@ final class GetDefaultIconNameUseCaseTests: XCTestCase {
         let function = SUPLA_CHANNELFNC_THERMOSTAT_HEATPOL_HOMEPLUS
         
         // when
-        let iconName = useCase.invoke(function: function, state: .on, altIcon: 2, iconType: .single)
+        let iconName = useCase.invoke(
+            iconData: IconData(
+                function: function,
+                altIcon: 2,
+                state: .on,
+                type: .single
+            )
+        )
         
         // then
         XCTAssertEqual(iconName, "thermostat_hp_homeplus2-on")
@@ -689,7 +1092,14 @@ final class GetDefaultIconNameUseCaseTests: XCTestCase {
         let function = SUPLA_CHANNELFNC_THERMOSTAT_HEATPOL_HOMEPLUS
         
         // when
-        let iconName = useCase.invoke(function: function, state: .off, altIcon: 3, iconType: .single)
+        let iconName = useCase.invoke(
+            iconData: IconData(
+                function: function,
+                altIcon: 3,
+                state: .off,
+                type: .single
+            )
+        )
         
         // then
         XCTAssertEqual(iconName, "thermostat_hp_homeplus3-off")
@@ -700,7 +1110,14 @@ final class GetDefaultIconNameUseCaseTests: XCTestCase {
         let function = SUPLA_CHANNELFNC_THERMOSTAT_HEATPOL_HOMEPLUS
         
         // when
-        let iconName = useCase.invoke(function: function, state: .on, altIcon: 4, iconType: .single)
+        let iconName = useCase.invoke(
+            iconData: IconData(
+                function: function,
+                altIcon: 4,
+                state: .on,
+                type: .single
+            )
+        )
         
         // then
         XCTAssertEqual(iconName, "thermostat_hp_homeplus-on")
@@ -711,7 +1128,14 @@ final class GetDefaultIconNameUseCaseTests: XCTestCase {
         let function = SUPLA_CHANNELFNC_DISTANCESENSOR
         
         // when
-        let iconName = useCase.invoke(function: function, state: .notUsed, altIcon: 0, iconType: .single)
+        let iconName = useCase.invoke(
+            iconData: IconData(
+                function: function,
+                altIcon: 0,
+                state: .notUsed,
+                type: .single
+            )
+        )
         
         // then
         XCTAssertEqual(iconName, "distance")
@@ -722,7 +1146,14 @@ final class GetDefaultIconNameUseCaseTests: XCTestCase {
         let function = SUPLA_CHANNELFNC_DEPTHSENSOR
         
         // when
-        let iconName = useCase.invoke(function: function, state: .notUsed, altIcon: 0, iconType: .single)
+        let iconName = useCase.invoke(
+            iconData: IconData(
+                function: function,
+                altIcon: 0,
+                state: .notUsed,
+                type: .single
+            )
+        )
         
         // then
         XCTAssertEqual(iconName, "depth")
@@ -733,7 +1164,14 @@ final class GetDefaultIconNameUseCaseTests: XCTestCase {
         let function = SUPLA_CHANNELFNC_WINDSENSOR
         
         // when
-        let iconName = useCase.invoke(function: function, state: .notUsed, altIcon: 0, iconType: .single)
+        let iconName = useCase.invoke(
+            iconData: IconData(
+                function: function,
+                altIcon: 0,
+                state: .notUsed,
+                type: .single
+            )
+        )
         
         // then
         XCTAssertEqual(iconName, "wind")
@@ -744,7 +1182,14 @@ final class GetDefaultIconNameUseCaseTests: XCTestCase {
         let function = SUPLA_CHANNELFNC_PRESSURESENSOR
         
         // when
-        let iconName = useCase.invoke(function: function, state: .notUsed, altIcon: 0, iconType: .single)
+        let iconName = useCase.invoke(
+            iconData: IconData(
+                function: function,
+                altIcon: 0,
+                state: .notUsed,
+                type: .single
+            )
+        )
         
         // then
         XCTAssertEqual(iconName, "pressure")
@@ -755,7 +1200,14 @@ final class GetDefaultIconNameUseCaseTests: XCTestCase {
         let function = SUPLA_CHANNELFNC_WEIGHTSENSOR
         
         // when
-        let iconName = useCase.invoke(function: function, state: .notUsed, altIcon: 0, iconType: .single)
+        let iconName = useCase.invoke(
+            iconData: IconData(
+                function: function,
+                altIcon: 0,
+                state: .notUsed,
+                type: .single
+            )
+        )
         
         // then
         XCTAssertEqual(iconName, "weight")
@@ -766,7 +1218,14 @@ final class GetDefaultIconNameUseCaseTests: XCTestCase {
         let function = SUPLA_CHANNELFNC_RAINSENSOR
         
         // when
-        let iconName = useCase.invoke(function: function, state: .notUsed, altIcon: 0, iconType: .single)
+        let iconName = useCase.invoke(
+            iconData: IconData(
+                function: function,
+                altIcon: 0,
+                state: .notUsed,
+                type: .single
+            )
+        )
         
         // then
         XCTAssertEqual(iconName, "rain")
@@ -777,7 +1236,14 @@ final class GetDefaultIconNameUseCaseTests: XCTestCase {
         let function = SUPLA_CHANNELFNC_VALVE_OPENCLOSE
         
         // when
-        let iconName = useCase.invoke(function: function, state: .opened, altIcon: 0, iconType: .single)
+        let iconName = useCase.invoke(
+            iconData: IconData(
+                function: function,
+                altIcon: 0,
+                state: .opened,
+                type: .single
+            )
+        )
         
         // then
         XCTAssertEqual(iconName, "valve-open")
@@ -788,7 +1254,14 @@ final class GetDefaultIconNameUseCaseTests: XCTestCase {
         let function = SUPLA_CHANNELFNC_VALVE_PERCENTAGE
         
         // when
-        let iconName = useCase.invoke(function: function, state: .closed, altIcon: 0, iconType: .single)
+        let iconName = useCase.invoke(
+            iconData: IconData(
+                function: function,
+                altIcon: 0,
+                state: .closed,
+                type: .single
+            )
+        )
         
         // then
         XCTAssertEqual(iconName, "valve-closed")
@@ -799,7 +1272,14 @@ final class GetDefaultIconNameUseCaseTests: XCTestCase {
         let function = SUPLA_CHANNELFNC_DIGIGLASS_HORIZONTAL
         
         // when
-        let iconName = useCase.invoke(function: function, state: .opaque, altIcon: 0, iconType: .single)
+        let iconName = useCase.invoke(
+            iconData: IconData(
+                function: function,
+                altIcon: 0,
+                state: .opaque,
+                type: .single
+            )
+        )
         
         // then
         XCTAssertEqual(iconName, "digiglass")
@@ -810,7 +1290,14 @@ final class GetDefaultIconNameUseCaseTests: XCTestCase {
         let function = SUPLA_CHANNELFNC_DIGIGLASS_HORIZONTAL
         
         // when
-        let iconName = useCase.invoke(function: function, state: .transparent, altIcon: 1, iconType: .single)
+        let iconName = useCase.invoke(
+            iconData: IconData(
+                function: function,
+                altIcon: 1,
+                state: .transparent,
+                type: .single
+            )
+        )
         
         // then
         XCTAssertEqual(iconName, "digiglass1-transparent")
@@ -821,7 +1308,14 @@ final class GetDefaultIconNameUseCaseTests: XCTestCase {
         let function = SUPLA_CHANNELFNC_DIGIGLASS_VERTICAL
         
         // when
-        let iconName = useCase.invoke(function: function, state: .transparent, altIcon: 0, iconType: .single)
+        let iconName = useCase.invoke(
+            iconData: IconData(
+                function: function,
+                altIcon: 0,
+                state: .transparent,
+                type: .single
+            )
+        )
         
         // then
         XCTAssertEqual(iconName, "digiglassv-transparent")
@@ -832,7 +1326,14 @@ final class GetDefaultIconNameUseCaseTests: XCTestCase {
         let function = SUPLA_CHANNELFNC_DIGIGLASS_VERTICAL
         
         // when
-        let iconName = useCase.invoke(function: function, state: .opaque, altIcon: 0, iconType: .single)
+        let iconName = useCase.invoke(
+            iconData: IconData(
+                function: function,
+                altIcon: 0,
+                state: .opaque,
+                type: .single
+            )
+        )
         
         // then
         XCTAssertEqual(iconName, "digiglass")
@@ -843,7 +1344,14 @@ final class GetDefaultIconNameUseCaseTests: XCTestCase {
         let function = SUPLA_CHANNELFNC_DIGIGLASS_VERTICAL
         
         // when
-        let iconName = useCase.invoke(function: function, state: .transparent, altIcon: 1, iconType: .single)
+        let iconName = useCase.invoke(
+            iconData: IconData(
+                function: function,
+                altIcon: 1,
+                state: .transparent,
+                type: .single
+            )
+        )
         
         // then
         XCTAssertEqual(iconName, "digiglassv1-transparent")
@@ -854,7 +1362,14 @@ final class GetDefaultIconNameUseCaseTests: XCTestCase {
         let function = SUPLA_CHANNELFNC_DIGIGLASS_VERTICAL
         
         // when
-        let iconName = useCase.invoke(function: function, state: .opaque, altIcon: 1, iconType: .single)
+        let iconName = useCase.invoke(
+            iconData: IconData(
+                function: function,
+                altIcon: 1,
+                state: .opaque,
+                type: .single
+            )
+        )
         
         // then
         XCTAssertEqual(iconName, "digiglass1")
@@ -865,7 +1380,89 @@ final class GetDefaultIconNameUseCaseTests: XCTestCase {
         let function = SUPLA_CHANNELFNC_NONE
         
         // when
-        let iconName = useCase.invoke(function: function, state: .opaque, altIcon: 1, iconType: .single)
+        let iconName = useCase.invoke(
+            iconData: IconData(
+                function: function,
+                altIcon: 1,
+                state: .opaque,
+                type: .single
+            )
+        )
+        
+        // then
+        XCTAssertEqual(iconName, "unknown_channel")
+    }
+    
+    func test_thermostatFunctionHeat() {
+        // given
+        let function = SUPLA_CHANNELFNC_HVAC_THERMOSTAT
+        
+        // when
+        let iconName = useCase.invoke(
+            iconData: IconData(
+                function: function,
+                altIcon: 0,
+                state: .notUsed,
+                type: .single,
+                subfunction: .heat
+            )
+        )
+        
+        // then
+        XCTAssertEqual(iconName, "icon_thermostat_heat")
+    }
+    
+    func test_thermostatFunctionCool() {
+        // given
+        let function = SUPLA_CHANNELFNC_HVAC_THERMOSTAT
+        
+        // when
+        let iconName = useCase.invoke(
+            iconData: IconData(
+                function: function,
+                altIcon: 0,
+                state: .notUsed,
+                type: .single,
+                subfunction: .cool
+            )
+        )
+        
+        // then
+        XCTAssertEqual(iconName, "icon_thermostat_cool")
+    }
+    
+    func test_thermostatFunctionDhw() {
+        // given
+        let function = SUPLA_CHANNELFNC_HVAC_DOMESTIC_HOT_WATER
+        
+        // when
+        let iconName = useCase.invoke(
+            iconData: IconData(
+                function: function,
+                altIcon: 0,
+                state: .notUsed,
+                type: .single
+            )
+        )
+        
+        // then
+        XCTAssertEqual(iconName, "icon_thermostat_dhw")
+    }
+    
+    func test_thermostatFunctionNotSet() {
+        // given
+        let function = SUPLA_CHANNELFNC_HVAC_THERMOSTAT
+        
+        // when
+        let iconName = useCase.invoke(
+            iconData: IconData(
+                function: function,
+                altIcon: 0,
+                state: .notUsed,
+                type: .single,
+                subfunction: .notSet
+            )
+        )
         
         // then
         XCTAssertEqual(iconName, "unknown_channel")

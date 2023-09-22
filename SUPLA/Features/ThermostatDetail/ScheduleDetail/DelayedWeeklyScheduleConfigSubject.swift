@@ -42,7 +42,7 @@ final class DelayedWeeklyScheduleConfigSubjectImpl: DelayedCommandSubject<Weekly
     }
 }
 
-struct WeeklyScheduleConfigData: DelayableData {
+struct WeeklyScheduleConfigData: DelayableData, Equatable {
     let remoteId: Int32
     let programs: [SuplaWeeklyScheduleProgram]
     let schedule: [SuplaWeeklyScheduleEntry]

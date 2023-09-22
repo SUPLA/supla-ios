@@ -17,16 +17,14 @@
  */
 
 import RxSwift
+
 @testable import SUPLA
 
-final class ExecuteSimpleActionUseCaseMock: ExecuteSimpleActionUseCase {
-    
-    var returns: Observable<Void> = Observable.empty()
-    var parameters: [(Action, SUPLA.SubjectType, Int32)] = []
-    func invoke(action: Action, type: SUPLA.SubjectType, remoteId: Int32) -> Observable<Void> {
-        parameters.append((action, type, remoteId))
+final class CreateTemperaturesListUseCaseMock: CreateTemperaturesListUseCase {
+    var parameters: [ChannelWithChildren] = []
+    var returns: [ThermostatTemperature] = []
+    func invoke(channelWithChildren: ChannelWithChildren) -> [ThermostatTemperature] {
+        parameters.append(channelWithChildren)
         return returns
     }
-    
-    
 }

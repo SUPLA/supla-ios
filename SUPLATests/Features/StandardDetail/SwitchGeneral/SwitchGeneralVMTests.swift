@@ -110,7 +110,7 @@ final class SwitchGeneralVMTest: ViewModelTest<SwitchGeneralViewState, SwitchGen
         XCTAssertEqual(stateObserver.events[1].value.element?.deviceState?.iconData.altIcon, altIcon)
         XCTAssertEqual(stateObserver.events[1].value.element?.deviceState?.iconData.function, function)
         XCTAssertEqual(stateObserver.events[1].value.element?.deviceState?.iconData.userIcon, userIcon)
-        XCTAssertEqual(stateObserver.events[1].value.element?.deviceState?.iconData.channelState, .opened)
+        XCTAssertEqual(stateObserver.events[1].value.element?.deviceState?.iconData.state, .opened)
         
         XCTAssertEqual(readChannelByRemoteIdUseCase.remoteIdArray[0], 123)
         XCTAssertEqual(getChannelBaseStateUseCase.functionsArray[0], function)
@@ -163,7 +163,7 @@ final class SwitchGeneralVMTest: ViewModelTest<SwitchGeneralViewState, SwitchGen
         XCTAssertEqual(stateObserver.events[1].value.element?.deviceState?.iconData.altIcon, altIcon)
         XCTAssertEqual(stateObserver.events[1].value.element?.deviceState?.iconData.function, function)
         XCTAssertEqual(stateObserver.events[1].value.element?.deviceState?.iconData.userIcon, userIcon)
-        XCTAssertEqual(stateObserver.events[1].value.element?.deviceState?.iconData.channelState, .opened)
+        XCTAssertEqual(stateObserver.events[1].value.element?.deviceState?.iconData.state, .opened)
         
         XCTAssertEqual(readChannelByRemoteIdUseCase.remoteIdArray[0], 123)
         XCTAssertEqual(getChannelBaseStateUseCase.functionsArray[0], function)
@@ -182,10 +182,9 @@ final class SwitchGeneralVMTest: ViewModelTest<SwitchGeneralViewState, SwitchGen
         XCTAssertEqual(stateObserver.events.count, 1)
         XCTAssertEqual(eventObserver.events.count, 0)
         
-        XCTAssertEqual(executeSimpleActionUseCase.remoteIdsArray.count, 1)
-        XCTAssertEqual(executeSimpleActionUseCase.remoteIdsArray[0], remoteId)
-        XCTAssertEqual(executeSimpleActionUseCase.typesArray[0], .channel)
-        XCTAssertEqual(executeSimpleActionUseCase.actionsArray[0], .turn_on)
+        XCTAssertTuples(executeSimpleActionUseCase.parameters, [
+            (Action.turn_on, SUPLA.SubjectType.channel, remoteId)
+        ])
     }
     
     func test_shouldInvokeTurnOff() {
@@ -200,9 +199,8 @@ final class SwitchGeneralVMTest: ViewModelTest<SwitchGeneralViewState, SwitchGen
         XCTAssertEqual(stateObserver.events.count, 1)
         XCTAssertEqual(eventObserver.events.count, 0)
         
-        XCTAssertEqual(executeSimpleActionUseCase.remoteIdsArray.count, 1)
-        XCTAssertEqual(executeSimpleActionUseCase.remoteIdsArray[0], remoteId)
-        XCTAssertEqual(executeSimpleActionUseCase.typesArray[0], .channel)
-        XCTAssertEqual(executeSimpleActionUseCase.actionsArray[0], .turn_off)
+        XCTAssertTuples(executeSimpleActionUseCase.parameters, [
+            (Action.turn_off, SUPLA.SubjectType.channel, remoteId)
+        ])
     }
 }

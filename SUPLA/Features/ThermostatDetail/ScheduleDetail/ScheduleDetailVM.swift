@@ -45,6 +45,7 @@ class ScheduleDetailVM: BaseViewModel<ScheduleDetailViewState, ScheduleDetailVie
             .disposed(by: self)
         
         reloadConfigRelay
+            .subscribe(on: ConcurrentDispatchQueueScheduler(qos: .background))
             .asDriverWithoutError()
             .debounce(.milliseconds(100))
             .drive(onNext: { _ in self.triggerConfigLoad(remoteId: remoteId) })
@@ -92,9 +93,11 @@ class ScheduleDetailVM: BaseViewModel<ScheduleDetailViewState, ScheduleDetailVie
         case .panning(let boxKey):
             boxTap(boxKey)
         case .finished:
-            updateView {
-                $0.changing(path: \.changing, to: false)
-                    .changing(path: \.lastInteractionTime, to: dateProvider.currentTimestamp())
+            if (currentState()?.activeProgram != nil) {
+                updateView {
+                    $0.changing(path: \.changing, to: false)
+                        .changing(path: \.lastInteractionTime, to: dateProvider.currentTimestamp())
+                }
             }
         }
     }
@@ -132,6 +135,7 @@ class ScheduleDetailVM: BaseViewModel<ScheduleDetailViewState, ScheduleDetailVie
             let programs = state.programs.map { $0.program == program.program ? program : $0 }
             return publishChanges(
                 state.changing(path: \.programs, to: programs)
+                    .changing(path: \.activeProgram, to: program.program)
                     .changing(path: \.lastInteractionTime, to: dateProvider.currentTimestamp())
             )
         }
@@ -163,7 +167,7 @@ class ScheduleDetailVM: BaseViewModel<ScheduleDetailViewState, ScheduleDetailVie
                 return state // Do not change anything, when user makes manual operations
             }
             if let lastInteractionTime = state.lastInteractionTime,
-               lastInteractionTime + REFRESH_DELAY_S > dateProvider.currentTimestamp() {
+               lastInteractionTime + REFRESH_DELAY_S >= dateProvider.currentTimestamp() {
                 scheduleConfigReload(lastInteractionTime, hvacConfig.remoteId)
                 return state // Do not change anything during 3 secs after last user interaction
             }
@@ -208,7 +212,7 @@ class ScheduleDetailVM: BaseViewModel<ScheduleDetailViewState, ScheduleDetailVie
     }
     
     private func scheduleConfigReload(_ lastInteractionTime: TimeInterval, _ remoteId: Int32) {
-        let delay = dateProvider.currentTimestamp() - lastInteractionTime
+        let delay = lastInteractionTime + REFRESH_DELAY_S - dateProvider.currentTimestamp()
         if (delay > 0) {
             DispatchQueue.main.asyncAfter(deadline: .now() + delay, execute: { [weak self] in
                 self?.triggerConfigLoad(remoteId: remoteId)
@@ -282,6 +286,13 @@ struct ScheduleDetailBoxValue: Equatable {
                     && secondQuarterProgram == thirdQuarterProgram
                     && thirdQuarterProgram == fourthQuarterProgram
         }
+    }
+    
+    init(_ first: SuplaScheduleProgram, _ second: SuplaScheduleProgram, _ third: SuplaScheduleProgram, _ fourth: SuplaScheduleProgram) {
+        firstQuarterProgram = first
+        secondQuarterProgram = second
+        thirdQuarterProgram = third
+        fourthQuarterProgram = fourth
     }
     
     init(oneProgram: SuplaScheduleProgram) {

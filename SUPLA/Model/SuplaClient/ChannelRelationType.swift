@@ -20,6 +20,7 @@
 import Foundation
 
 enum ChannelRelationType: Int16, CaseIterable {
+    case defaultType = 0
     case openingSensor = 1
     case partialOpeningSensor = 2
     case meter = 3
