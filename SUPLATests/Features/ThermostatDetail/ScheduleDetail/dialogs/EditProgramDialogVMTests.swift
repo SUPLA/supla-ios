@@ -26,6 +26,10 @@ final class EditProgramDialogVMTests: ViewModelTest<EditProgramDialogViewState, 
         EditProgramDialogVM(initialState: initialState)
     }()
     
+    override func setUp() {
+        DiContainer.shared.register(type: TemperatureFormatter.self, component: TemperatureFormatterMock())
+    }
+    
     override func tearDown() {
         viewModel = nil
         super.tearDown()
@@ -200,7 +204,7 @@ final class EditProgramDialogVMTests: ViewModelTest<EditProgramDialogViewState, 
             state,
             state
                 .changing(path: \.program, to: state.program.changing(path: \.heatTemperature, to: 25.5))
-                .changing(path: \.heatTemperatureText, to: "25.5")
+                .changing(path: \.heatTemperatureText, to: "25,5")
         ])
     }
     
@@ -362,7 +366,7 @@ final class EditProgramDialogVMTests: ViewModelTest<EditProgramDialogViewState, 
             state,
             state
                 .changing(path: \.program, to: state.program.changing(path: \.coolTemperature, to: 25.5))
-                .changing(path: \.coolTemperatureText, to: "25.5")
+                .changing(path: \.coolTemperatureText, to: "25,5")
         ])
     }
     
