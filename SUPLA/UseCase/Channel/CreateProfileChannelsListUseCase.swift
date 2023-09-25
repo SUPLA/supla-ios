@@ -78,21 +78,4 @@ final class CreateProfileChannelsListUseCaseImpl: CreateProfileChannelsListUseCa
         
         return [.list(items: items)]
     }
-    
-    private func makeChildrenList(_ channels: [SAChannel], _ relations: [SAChannelRelation]) -> [ChannelChild] {
-        let childrenIds = relations.map { $0.channel_id }
-        let children = channels.filter { childrenIds.contains($0.remote_id) }
-        
-        var result: [ChannelChild] = []
-        for child in children {
-            let relationType = relations
-                .first { $0.channel_id == child.remote_id }
-                .map {$0.relationType}
-            
-            if let relationType = relationType {
-                result.append(ChannelChild(channel: child, relationType: relationType))
-            }
-        }
-        return result
-    }
 }

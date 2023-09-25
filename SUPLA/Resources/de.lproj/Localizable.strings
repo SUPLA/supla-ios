@@ -370,3 +370,4 @@
 "hvac_mode_temperature_heating" = "Heiztemperature";
 "hvac_mode_temperature_cooling" = "Kühltemperature";
 "schedule_detail_quarters_dialog_header" = "Zeit %02d:00";
+"schedule_detail_configuration_failure" = "Fehler - ungültige Kanalkonfiguration";

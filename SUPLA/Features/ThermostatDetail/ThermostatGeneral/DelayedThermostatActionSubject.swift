@@ -42,7 +42,7 @@ final class DelayedThermostatActionSubjectImpl: DelayedCommandSubject<Thermostat
     
 }
 
-struct ThermostatActionData: DelayableData {
+struct ThermostatActionData: DelayableData, Equatable {
     let remoteId: Int32
     var mode: SuplaHvacMode? = nil
     var setpointHeat: Float? = nil

@@ -33,9 +33,11 @@ final class TemperatureFormatterImpl: TemperatureFormatter {
     
     @Singleton<GlobalSettings> private var settings
     
+    var decimalSeparator = Locale.current.decimalSeparator
+    
     private lazy var formatter: NumberFormatter! = {
         let formatter = NumberFormatter()
-        formatter.decimalSeparator = Locale.current.decimalSeparator
+        formatter.decimalSeparator = decimalSeparator
         formatter.minimumFractionDigits = 1
         formatter.maximumFractionDigits = 1
         return formatter

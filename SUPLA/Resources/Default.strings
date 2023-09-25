@@ -116,4 +116,5 @@
 "hvac_mode_temperature_heating" = "Heating temperature";
 "hvac_mode_temperature_cooling" = "Cooling temperature";
 "schedule_detail_quarters_dialog_header" = "Time %02d:00";
+"schedule_detail_configuration_failure" = "Error - invalid channel configuration";
 

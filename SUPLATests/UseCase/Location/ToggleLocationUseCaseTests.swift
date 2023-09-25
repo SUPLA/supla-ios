@@ -59,7 +59,7 @@ final class ToggleLocationUseCaseTests: UseCaseTest<Void> {
         // then
         XCTAssertEqual(observer.events.count, 2)
         XCTAssertTrue(location.isCollapsed(flag: .scene))
-        XCTAssertEqual(locationRepository.saveCounter, 1)
+        XCTAssertEqual(locationRepository.saveParameters, [location])
     }
     
     func test_expandLocation() {
@@ -78,6 +78,6 @@ final class ToggleLocationUseCaseTests: UseCaseTest<Void> {
         // then
         XCTAssertEqual(observer.events.count, 2)
         XCTAssertFalse(location.isCollapsed(flag: .group))
-        XCTAssertEqual(locationRepository.saveCounter, 1)
+        XCTAssertEqual(locationRepository.saveParameters, [location])
     }
 }

@@ -29,3 +29,13 @@ final class GetChannelBaseStateUseCaseMock: GetChannelBaseStateUseCase {
         return returns
     }
 }
+
+final class GetChannelBaseIconUseCaseMock: GetChannelBaseIconUseCase {
+    
+    var returns: IconResult = .suplaIcon(icon: nil)
+    var parameters: [IconData] = []
+    func invoke(iconData: IconData) -> IconResult {
+        parameters.append(iconData)
+        return returns
+    }
+}

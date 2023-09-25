@@ -768,7 +768,6 @@
 		A573B0962A5FD152001E19D0 /* FatalError.swift in Sources */ = {isa = PBXBuildFile; fileRef = A573B0952A5FD152001E19D0 /* FatalError.swift */; };
 		A573B0992A5FD869001E19D0 /* SwitchDetailVMTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A573B0982A5FD869001E19D0 /* SwitchDetailVMTests.swift */; };
 		A573B09E2A5FEF57001E19D0 /* SwitchGeneralVMTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A573B09D2A5FEF57001E19D0 /* SwitchGeneralVMTests.swift */; };
-		A573B0A02A5FEFE6001E19D0 /* GetChannelBaseStateUseCaseMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = A573B09F2A5FEFE6001E19D0 /* GetChannelBaseStateUseCaseMock.swift */; };
 		A573B0A22A5FF0AE001E19D0 /* ExecuteSimpleActionUseCaseMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = A573B0A12A5FF0AE001E19D0 /* ExecuteSimpleActionUseCaseMock.swift */; };
 		A573B0A62A600733001E19D0 /* TimerDetailVMTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A573B0A52A600733001E19D0 /* TimerDetailVMTests.swift */; };
 		A573B0A82A60077B001E19D0 /* StartTimerUseCaseMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = A573B0A72A60077B001E19D0 /* StartTimerUseCaseMock.swift */; };
@@ -804,6 +803,12 @@
 		A58A9C012AA0AD0E00D28848 /* ThermostatCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58A9C002AA0AD0E00D28848 /* ThermostatCell.swift */; };
 		A58A9C052AA1D58F00D28848 /* InsertChannelRelationForProfileUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58A9C042AA1D58F00D28848 /* InsertChannelRelationForProfileUseCase.swift */; };
 		A58A9C072AA1D64A00D28848 /* ChannelRelationRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58A9C062AA1D64A00D28848 /* ChannelRelationRepository.swift */; };
+		A58B2CB42AC195FA00764388 /* CreateTemperaturesListUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58B2CB32AC195FA00764388 /* CreateTemperaturesListUseCaseTests.swift */; };
+		A58B2CB62AC197E300764388 /* ChannelBaseUseCasesMocks.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58B2CB52AC197E300764388 /* ChannelBaseUseCasesMocks.swift */; };
+		A58D98C82AC1A3AD00DCB526 /* SetChannelConfigUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58D98C72AC1A3AD00DCB526 /* SetChannelConfigUseCaseTests.swift */; };
+		A59683882ABE1E5A0005E73C /* ReadChannelWithChildrenUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A59683872ABE1E5A0005E73C /* ReadChannelWithChildrenUseCaseTests.swift */; };
+		A596838A2ABE1FD10005E73C /* SAChannel+Mock.swift in Sources */ = {isa = PBXBuildFile; fileRef = A59683892ABE1FD10005E73C /* SAChannel+Mock.swift */; };
+		A596838D2ABE26590005E73C /* DeleteRemovableChannelRelationUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A596838C2ABE26590005E73C /* DeleteRemovableChannelRelationUseCaseTests.swift */; };
 		A597271129DAEA480090A044 /* SAScene+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = A597271029DAEA480090A044 /* SAScene+Ext.swift */; };
 		A59AB89A2A2F6D7600D91F1F /* AuthProfileItemKeychainHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = A59AB8992A2F6D7600D91F1F /* AuthProfileItemKeychainHelper.swift */; };
 		A59AB89D2A3052C600D91F1F /* ChannelListVMTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A59AB89C2A3052C600D91F1F /* ChannelListVMTests.swift */; };
@@ -843,6 +848,13 @@
 		A59AB8ED2A30AAFA00D91F1F /* SwapScenePositionsUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A59AB8EC2A30AAFA00D91F1F /* SwapScenePositionsUseCaseTests.swift */; };
 		A59AB8F02A30ACB500D91F1F /* ToggleLocationUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A59AB8EF2A30ACB500D91F1F /* ToggleLocationUseCaseTests.swift */; };
 		A5A1C0A829F2AAFA0083818D /* VibrationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5A1C0A729F2AAFA0083818D /* VibrationService.swift */; };
+		A5A23C2D2ABD96DB00233542 /* SuplaChannelConfigTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5A23C2C2ABD96DB00233542 /* SuplaChannelConfigTests.swift */; };
+		A5A23C2F2ABDAF8E00233542 /* TemperatureFormatterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5A23C2E2ABDAF8E00233542 /* TemperatureFormatterTests.swift */; };
+		A5A23C312ABDBCAC00233542 /* CreateChannelWithChildrenUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5A23C302ABDBCAC00233542 /* CreateChannelWithChildrenUseCaseTests.swift */; };
+		A5A23C342ABE1B8700233542 /* SAChannelRelation+Mock.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5A23C332ABE1B8700233542 /* SAChannelRelation+Mock.swift */; };
+		A5A72E412AC1767600405C41 /* MarkChannelRelationAsRemovableUseCaseTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5A72E402AC1767600405C41 /* MarkChannelRelationAsRemovableUseCaseTest.swift */; };
+		A5A72E432AC1787200405C41 /* ExecuteThermostatActionUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5A72E422AC1787200405C41 /* ExecuteThermostatActionUseCaseTests.swift */; };
+		A5A72E452AC18A6E00405C41 /* GetClientConfigUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5A72E442AC18A6E00405C41 /* GetClientConfigUseCaseTests.swift */; };
 		A5ABE5B52ABC271100FFA50B /* ScheduleDetailVMTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5ABE5B42ABC271100FFA50B /* ScheduleDetailVMTests.swift */; };
 		A5ABE5B72ABC278700FFA50B /* ConfigEventsManagerMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5ABE5B62ABC278700FFA50B /* ConfigEventsManagerMock.swift */; };
 		A5ABE5BB2ABC292400FFA50B /* DelayedWeeklyScheduleConfigSubjectMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5ABE5BA2ABC292400FFA50B /* DelayedWeeklyScheduleConfigSubjectMock.swift */; };
@@ -854,6 +866,7 @@
 		A5ABE5C92ABCD76300FFA50B /* ThermostatUseCasesMocks.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5ABE5C82ABCD76300FFA50B /* ThermostatUseCasesMocks.swift */; };
 		A5ABE5CB2ABCD80300FFA50B /* DelayedThermostatActionSubjectMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5ABE5CA2ABCD80300FFA50B /* DelayedThermostatActionSubjectMock.swift */; };
 		A5ABE5CD2ABCD89400FFA50B /* LoadingTimoutManagerMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5ABE5CC2ABCD89400FFA50B /* LoadingTimoutManagerMock.swift */; };
+		A5ABE5CF2ABD696900FFA50B /* DataMocks.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5ABE5CE2ABD696900FFA50B /* DataMocks.swift */; };
 		A5AE7A7F2A3998260097FA8B /* NewGestureInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5AE7A7E2A3998260097FA8B /* NewGestureInfoView.swift */; };
 		A5AE7A812A39AF410097FA8B /* Default.strings in Resources */ = {isa = PBXBuildFile; fileRef = A5AE7A802A39AF410097FA8B /* Default.strings */; };
 		A5AE7A852A3AC7020097FA8B /* BaseSettingsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5AE7A842A3AC7020097FA8B /* BaseSettingsCell.swift */; };
@@ -863,6 +876,7 @@
 		A5AE7A8D2A3ADFAD0097FA8B /* RsOpenningClosingPersentageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5AE7A8C2A3ADFAD0097FA8B /* RsOpenningClosingPersentageCell.swift */; };
 		A5AE7A8F2A3AE0290097FA8B /* TitleArrowButtonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5AE7A8E2A3AE0290097FA8B /* TitleArrowButtonCell.swift */; };
 		A5AE7A912A3B17AF0097FA8B /* PermissionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5AE7A902A3B17AF0097FA8B /* PermissionCell.swift */; };
+		A5DA31072AC16B21008179DB /* InsertChannelRelationForProfileUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5DA31062AC16B21008179DB /* InsertChannelRelationForProfileUseCaseTests.swift */; };
 		A5E4904A2A3C6215006801FE /* ChannelHeight.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E490492A3C6215006801FE /* ChannelHeight.swift */; };
 		A5E4904D2A3C6250006801FE /* TemperatureUnit.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E4904C2A3C6250006801FE /* TemperatureUnit.swift */; };
 		A5E490502A3C79A4006801FE /* UserNotificationCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E4904F2A3C79A4006801FE /* UserNotificationCenter.swift */; };
@@ -2133,7 +2147,6 @@
 		A573B0952A5FD152001E19D0 /* FatalError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FatalError.swift; sourceTree = "<group>"; };
 		A573B0982A5FD869001E19D0 /* SwitchDetailVMTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchDetailVMTests.swift; sourceTree = "<group>"; };
 		A573B09D2A5FEF57001E19D0 /* SwitchGeneralVMTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchGeneralVMTests.swift; sourceTree = "<group>"; };
-		A573B09F2A5FEFE6001E19D0 /* GetChannelBaseStateUseCaseMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetChannelBaseStateUseCaseMock.swift; sourceTree = "<group>"; };
 		A573B0A12A5FF0AE001E19D0 /* ExecuteSimpleActionUseCaseMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExecuteSimpleActionUseCaseMock.swift; sourceTree = "<group>"; };
 		A573B0A52A600733001E19D0 /* TimerDetailVMTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerDetailVMTests.swift; sourceTree = "<group>"; };
 		A573B0A72A60077B001E19D0 /* StartTimerUseCaseMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartTimerUseCaseMock.swift; sourceTree = "<group>"; };
@@ -2170,6 +2183,12 @@
 		A58A9C022AA1C9D700D28848 /* SUPLA 15.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "SUPLA 15.xcdatamodel"; sourceTree = "<group>"; };
 		A58A9C042AA1D58F00D28848 /* InsertChannelRelationForProfileUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsertChannelRelationForProfileUseCase.swift; sourceTree = "<group>"; };
 		A58A9C062AA1D64A00D28848 /* ChannelRelationRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelRelationRepository.swift; sourceTree = "<group>"; };
+		A58B2CB32AC195FA00764388 /* CreateTemperaturesListUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateTemperaturesListUseCaseTests.swift; sourceTree = "<group>"; };
+		A58B2CB52AC197E300764388 /* ChannelBaseUseCasesMocks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelBaseUseCasesMocks.swift; sourceTree = "<group>"; };
+		A58D98C72AC1A3AD00DCB526 /* SetChannelConfigUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetChannelConfigUseCaseTests.swift; sourceTree = "<group>"; };
+		A59683872ABE1E5A0005E73C /* ReadChannelWithChildrenUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadChannelWithChildrenUseCaseTests.swift; sourceTree = "<group>"; };
+		A59683892ABE1FD10005E73C /* SAChannel+Mock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SAChannel+Mock.swift"; sourceTree = "<group>"; };
+		A596838C2ABE26590005E73C /* DeleteRemovableChannelRelationUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteRemovableChannelRelationUseCaseTests.swift; sourceTree = "<group>"; };
 		A597271029DAEA480090A044 /* SAScene+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SAScene+Ext.swift"; sourceTree = "<group>"; };
 		A59AB8992A2F6D7600D91F1F /* AuthProfileItemKeychainHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthProfileItemKeychainHelper.swift; sourceTree = "<group>"; };
 		A59AB89C2A3052C600D91F1F /* ChannelListVMTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelListVMTests.swift; sourceTree = "<group>"; };
@@ -2209,6 +2228,13 @@
 		A59AB8EC2A30AAFA00D91F1F /* SwapScenePositionsUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwapScenePositionsUseCaseTests.swift; sourceTree = "<group>"; };
 		A59AB8EF2A30ACB500D91F1F /* ToggleLocationUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToggleLocationUseCaseTests.swift; sourceTree = "<group>"; };
 		A5A1C0A729F2AAFA0083818D /* VibrationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VibrationService.swift; sourceTree = "<group>"; };
+		A5A23C2C2ABD96DB00233542 /* SuplaChannelConfigTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuplaChannelConfigTests.swift; sourceTree = "<group>"; };
+		A5A23C2E2ABDAF8E00233542 /* TemperatureFormatterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemperatureFormatterTests.swift; sourceTree = "<group>"; };
+		A5A23C302ABDBCAC00233542 /* CreateChannelWithChildrenUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateChannelWithChildrenUseCaseTests.swift; sourceTree = "<group>"; };
+		A5A23C332ABE1B8700233542 /* SAChannelRelation+Mock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SAChannelRelation+Mock.swift"; sourceTree = "<group>"; };
+		A5A72E402AC1767600405C41 /* MarkChannelRelationAsRemovableUseCaseTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarkChannelRelationAsRemovableUseCaseTest.swift; sourceTree = "<group>"; };
+		A5A72E422AC1787200405C41 /* ExecuteThermostatActionUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExecuteThermostatActionUseCaseTests.swift; sourceTree = "<group>"; };
+		A5A72E442AC18A6E00405C41 /* GetClientConfigUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetClientConfigUseCaseTests.swift; sourceTree = "<group>"; };
 		A5ABE5B42ABC271100FFA50B /* ScheduleDetailVMTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleDetailVMTests.swift; sourceTree = "<group>"; };
 		A5ABE5B62ABC278700FFA50B /* ConfigEventsManagerMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigEventsManagerMock.swift; sourceTree = "<group>"; };
 		A5ABE5BA2ABC292400FFA50B /* DelayedWeeklyScheduleConfigSubjectMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DelayedWeeklyScheduleConfigSubjectMock.swift; sourceTree = "<group>"; };
@@ -2220,6 +2246,7 @@
 		A5ABE5C82ABCD76300FFA50B /* ThermostatUseCasesMocks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThermostatUseCasesMocks.swift; sourceTree = "<group>"; };
 		A5ABE5CA2ABCD80300FFA50B /* DelayedThermostatActionSubjectMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DelayedThermostatActionSubjectMock.swift; sourceTree = "<group>"; };
 		A5ABE5CC2ABCD89400FFA50B /* LoadingTimoutManagerMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingTimoutManagerMock.swift; sourceTree = "<group>"; };
+		A5ABE5CE2ABD696900FFA50B /* DataMocks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataMocks.swift; sourceTree = "<group>"; };
 		A5AE7A7E2A3998260097FA8B /* NewGestureInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewGestureInfoView.swift; sourceTree = "<group>"; };
 		A5AE7A802A39AF410097FA8B /* Default.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = Default.strings; sourceTree = "<group>"; };
 		A5AE7A842A3AC7020097FA8B /* BaseSettingsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseSettingsCell.swift; sourceTree = "<group>"; };
@@ -2229,6 +2256,7 @@
 		A5AE7A8C2A3ADFAD0097FA8B /* RsOpenningClosingPersentageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RsOpenningClosingPersentageCell.swift; sourceTree = "<group>"; };
 		A5AE7A8E2A3AE0290097FA8B /* TitleArrowButtonCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleArrowButtonCell.swift; sourceTree = "<group>"; };
 		A5AE7A902A3B17AF0097FA8B /* PermissionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PermissionCell.swift; sourceTree = "<group>"; };
+		A5DA31062AC16B21008179DB /* InsertChannelRelationForProfileUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsertChannelRelationForProfileUseCaseTests.swift; sourceTree = "<group>"; };
 		A5E490492A3C6215006801FE /* ChannelHeight.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelHeight.swift; sourceTree = "<group>"; };
 		A5E4904C2A3C6250006801FE /* TemperatureUnit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemperatureUnit.swift; sourceTree = "<group>"; };
 		A5E4904F2A3C79A4006801FE /* UserNotificationCenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserNotificationCenter.swift; sourceTree = "<group>"; };
@@ -2840,6 +2868,7 @@
 		401CA1D81BA067DB00117AF4 /* SUPLATests */ = {
 			isa = PBXGroup;
 			children = (
+				A5A23C2A2ABD96BE00233542 /* Model */,
 				A59AB8C02A308ADA00D91F1F /* UseCase */,
 				A59AB8A92A306FB600D91F1F /* Core */,
 				A57638CA29E5EF80003E15A3 /* Mocks */,
@@ -3830,6 +3859,9 @@
 			children = (
 				A573B0B02A602F5F001E19D0 /* ExecuteSimpleActionUseCaseTests.swift */,
 				A573B0B42A6037EA001E19D0 /* StartTimerUseCaseTests.swift */,
+				A5A72E422AC1787200405C41 /* ExecuteThermostatActionUseCaseTests.swift */,
+				A5A72E442AC18A6E00405C41 /* GetClientConfigUseCaseTests.swift */,
+				A58D98C72AC1A3AD00DCB526 /* SetChannelConfigUseCaseTests.swift */,
 			);
 			path = Client;
 			sourceTree = "<group>";
@@ -3908,6 +3940,7 @@
 		A57638CA29E5EF80003E15A3 /* Mocks */ = {
 			isa = PBXGroup;
 			children = (
+				A5A23C322ABE1B7600233542 /* Entity */,
 				A573B0A32A5FF185001E19D0 /* Infrastructure */,
 				A59AB8B92A307FAD00D91F1F /* Repositories */,
 				A59AB89E2A30534F00D91F1F /* UseCase */,
@@ -3924,6 +3957,7 @@
 				A5ABE5BC2ABC5EAB00FFA50B /* TemperatureFormatterMock.swift */,
 				A5ABE5CA2ABCD80300FFA50B /* DelayedThermostatActionSubjectMock.swift */,
 				A5ABE5CC2ABCD89400FFA50B /* LoadingTimoutManagerMock.swift */,
+				A5ABE5CE2ABD696900FFA50B /* DataMocks.swift */,
 			);
 			path = Mocks;
 			sourceTree = "<group>";
@@ -3962,6 +3996,24 @@
 				A58A9C042AA1D58F00D28848 /* InsertChannelRelationForProfileUseCase.swift */,
 				A5477DB32AA1EF0600220B4A /* MarkChannelRelationsAsRemovableUseCase.swift */,
 				A5477DB52AA1F17600220B4A /* DeleteRemovableChannelRelationsUseCase.swift */,
+			);
+			path = ChannelRelation;
+			sourceTree = "<group>";
+		};
+		A58B2CB22AC195EB00764388 /* Thermostat */ = {
+			isa = PBXGroup;
+			children = (
+				A58B2CB32AC195FA00764388 /* CreateTemperaturesListUseCaseTests.swift */,
+			);
+			path = Thermostat;
+			sourceTree = "<group>";
+		};
+		A596838B2ABE26430005E73C /* ChannelRelation */ = {
+			isa = PBXGroup;
+			children = (
+				A596838C2ABE26590005E73C /* DeleteRemovableChannelRelationUseCaseTests.swift */,
+				A5DA31062AC16B21008179DB /* InsertChannelRelationForProfileUseCaseTests.swift */,
+				A5A72E402AC1767600405C41 /* MarkChannelRelationAsRemovableUseCaseTest.swift */,
 			);
 			path = ChannelRelation;
 			sourceTree = "<group>";
@@ -4020,11 +4072,11 @@
 				A59AB8A52A305D8700D91F1F /* LocationUseCasesMocks.swift */,
 				A59AB8AF2A30721D00D91F1F /* GroupUseCasesMocks.swift */,
 				A59AB8B42A30795B00D91F1F /* SceneUseCasesMocks.swift */,
-				A573B09F2A5FEFE6001E19D0 /* GetChannelBaseStateUseCaseMock.swift */,
 				A573B0A12A5FF0AE001E19D0 /* ExecuteSimpleActionUseCaseMock.swift */,
 				A573B0A72A60077B001E19D0 /* StartTimerUseCaseMock.swift */,
 				A573B0AD2A6022C1001E19D0 /* GetDefaultIconNameUseCaseMock.swift */,
 				A5ABE5C82ABCD76300FFA50B /* ThermostatUseCasesMocks.swift */,
+				A58B2CB52AC197E300764388 /* ChannelBaseUseCasesMocks.swift */,
 			);
 			path = UseCase;
 			sourceTree = "<group>";
@@ -4087,6 +4139,8 @@
 		A59AB8C02A308ADA00D91F1F /* UseCase */ = {
 			isa = PBXGroup;
 			children = (
+				A58B2CB22AC195EB00764388 /* Thermostat */,
+				A596838B2ABE26430005E73C /* ChannelRelation */,
 				A573B0AF2A602F4A001E19D0 /* Client */,
 				A59AB8E42A30A72000D91F1F /* Channel */,
 				A530EE372A57FCA500F8DAEE /* ChannelBase */,
@@ -4131,6 +4185,8 @@
 				A59AB8E52A30A73100D91F1F /* CreateProfileChannelsListUseCaseTests.swift */,
 				A59AB8E72A30A81200D91F1F /* SwapChannelPositionsUseCaseTests.swift */,
 				A573B0A92A601A57001E19D0 /* ReadChannelByRemoteIdUseCaseTests.swift */,
+				A5A23C302ABDBCAC00233542 /* CreateChannelWithChildrenUseCaseTests.swift */,
+				A59683872ABE1E5A0005E73C /* ReadChannelWithChildrenUseCaseTests.swift */,
 			);
 			path = Channel;
 			sourceTree = "<group>";
@@ -4170,6 +4226,32 @@
 				A56F15F62A2E721F00C2E21B /* ActiveAccount12to13MigrationPolicy.swift */,
 			);
 			path = Policies;
+			sourceTree = "<group>";
+		};
+		A5A23C2A2ABD96BE00233542 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				A5A23C2B2ABD96C600233542 /* SuplaClient */,
+				A5A23C2E2ABDAF8E00233542 /* TemperatureFormatterTests.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		A5A23C2B2ABD96C600233542 /* SuplaClient */ = {
+			isa = PBXGroup;
+			children = (
+				A5A23C2C2ABD96DB00233542 /* SuplaChannelConfigTests.swift */,
+			);
+			path = SuplaClient;
+			sourceTree = "<group>";
+		};
+		A5A23C322ABE1B7600233542 /* Entity */ = {
+			isa = PBXGroup;
+			children = (
+				A5A23C332ABE1B8700233542 /* SAChannelRelation+Mock.swift */,
+				A59683892ABE1FD10005E73C /* SAChannel+Mock.swift */,
+			);
+			path = Entity;
 			sourceTree = "<group>";
 		};
 		A5ABE5B22ABC26B000FFA50B /* ThermostatDetail */ = {
@@ -5783,8 +5865,10 @@
 				401CA1DC1BA067DB00117AF4 /* SUPLATests.m in Sources */,
 				A573B0AE2A6022C1001E19D0 /* GetDefaultIconNameUseCaseMock.swift in Sources */,
 				A59AB8AE2A3071A300D91F1F /* GroupListVMTests.swift in Sources */,
+				A5A72E452AC18A6E00405C41 /* GetClientConfigUseCaseTests.swift in Sources */,
 				A5ABE5BD2ABC5EAB00FFA50B /* TemperatureFormatterMock.swift in Sources */,
 				A57777CF29E69688004513E6 /* RuntimeConfigMock.swift in Sources */,
+				A5A23C342ABE1B8700233542 /* SAChannelRelation+Mock.swift in Sources */,
 				A59AB8E82A30A81200D91F1F /* SwapChannelPositionsUseCaseTests.swift in Sources */,
 				A530EE332A57E42100F8DAEE /* GetDefaultIconNameUseCaseTests.swift in Sources */,
 				A57785C329E80CF7001C631E /* SuplaAppWrapperMock.swift in Sources */,
@@ -5795,14 +5879,17 @@
 				A59AB8BD2A30806800D91F1F /* BaseRepositoryMock.swift in Sources */,
 				A59AB8D52A3092C500D91F1F /* TempHumidityMeasurementItemRepositoryMock.swift in Sources */,
 				A59AB8AB2A306FC700D91F1F /* ViewModelTest.swift in Sources */,
+				A5A23C2D2ABD96DB00233542 /* SuplaChannelConfigTests.swift in Sources */,
 				A50CD3D82A4D9A040012DD9B /* SingleCallMock.swift in Sources */,
 				A5ABE5C02ABC774C00FFA50B /* EditProgramDialogVMTests.swift in Sources */,
 				A59AB8B52A30795B00D91F1F /* SceneUseCasesMocks.swift in Sources */,
+				A5DA31072AC16B21008179DB /* InsertChannelRelationForProfileUseCaseTests.swift in Sources */,
 				A57638C629E5D4C9003E15A3 /* XCTestCaseExtensions.swift in Sources */,
 				A59AB8EB2A30AA2600D91F1F /* CreateProfileScenesListUseCaseTests.swift in Sources */,
 				016ABE18236DA795001BF5FB /* KeychainTests.m in Sources */,
 				A59AB8C72A30902D00D91F1F /* ChannelValueRepositoryMock.swift in Sources */,
 				AEBCD8FE26E4D52C001904F3 /* TemperatureUnitTests.swift in Sources */,
+				A5ABE5CF2ABD696900FFA50B /* DataMocks.swift in Sources */,
 				A59AB8F02A30ACB500D91F1F /* ToggleLocationUseCaseTests.swift in Sources */,
 				A59AB8CF2A30919500D91F1F /* LocationRepositoryMock.swift in Sources */,
 				A5ABE5B52ABC271100FFA50B /* ScheduleDetailVMTests.swift in Sources */,
@@ -5816,6 +5903,7 @@
 				A59AB8C92A30906100D91F1F /* GroupRepositoryMock.swift in Sources */,
 				A573B0B32A603003001E19D0 /* VibrationServiceMock.swift in Sources */,
 				01CEAC2A25B9BAE2009C3BFD /* SADigiglassValueTests.m in Sources */,
+				A59683882ABE1E5A0005E73C /* ReadChannelWithChildrenUseCaseTests.swift in Sources */,
 				A50CD3DA2A4D9AFC0012DD9B /* DateProviderMock.swift in Sources */,
 				01EFD94C236CA9AE00893489 /* NSDataEncryptionTest.m in Sources */,
 				A59AB89D2A3052C600D91F1F /* ChannelListVMTests.swift in Sources */,
@@ -5830,15 +5918,20 @@
 				A5ABE5C72ABCD52500FFA50B /* ThermostatGeneralVMTests.swift in Sources */,
 				A59AB8C32A308AF700D91F1F /* ProvideDetailTypeUseCaseTests.swift in Sources */,
 				A59AB8B82A307F3200D91F1F /* MainVMTests.swift in Sources */,
+				A58B2CB62AC197E300764388 /* ChannelBaseUseCasesMocks.swift in Sources */,
 				A59AB8E12A309C1500D91F1F /* UseCaseTest.swift in Sources */,
 				A573B09E2A5FEF57001E19D0 /* SwitchGeneralVMTests.swift in Sources */,
+				A5A23C312ABDBCAC00233542 /* CreateChannelWithChildrenUseCaseTests.swift in Sources */,
 				A57638CC29E5EF95003E15A3 /* ProfileManagerMock.swift in Sources */,
 				A59AB8C52A308F7D00D91F1F /* ChannelExtendedValueRepositoryMock.swift in Sources */,
 				A56233FD2AB9C01F001CB948 /* ChannelRelationRepositoryMock.swift in Sources */,
 				01AC1AD62487C35E00F734DF /* SAColorBrightnessPickerTests.m in Sources */,
+				A5A72E432AC1787200405C41 /* ExecuteThermostatActionUseCaseTests.swift in Sources */,
 				A5ABE5CB2ABCD80300FFA50B /* DelayedThermostatActionSubjectMock.swift in Sources */,
+				A58D98C82AC1A3AD00DCB526 /* SetChannelConfigUseCaseTests.swift in Sources */,
 				A573B0A22A5FF0AE001E19D0 /* ExecuteSimpleActionUseCaseMock.swift in Sources */,
 				A59AB8A62A305D8700D91F1F /* LocationUseCasesMocks.swift in Sources */,
+				A5A23C2F2ABDAF8E00233542 /* TemperatureFormatterTests.swift in Sources */,
 				A57785C129E80C16001C631E /* SuplaClientProviderMock.swift in Sources */,
 				A59AB8B02A30721D00D91F1F /* GroupUseCasesMocks.swift in Sources */,
 				A573B0992A5FD869001E19D0 /* SwitchDetailVMTests.swift in Sources */,
@@ -5849,18 +5942,21 @@
 				A5ABE5CD2ABCD89400FFA50B /* LoadingTimoutManagerMock.swift in Sources */,
 				A5E490552A3C7F2A006801FE /* UserNotificationCenterMock.swift in Sources */,
 				A59AB8A22A30583E00D91F1F /* DetailUseCasesMocks.swift in Sources */,
+				A596838A2ABE1FD10005E73C /* SAChannel+Mock.swift in Sources */,
 				A59AB8E32A30A35000D91F1F /* SwapGroupPositionsUseCaseTests.swift in Sources */,
 				A59AB8ED2A30AAFA00D91F1F /* SwapScenePositionsUseCaseTests.swift in Sources */,
 				01A66A7925364ABA00C00A1A /* SARoofWindowControllerTests.m in Sources */,
 				A59AB8A42A3058A600D91F1F /* ListsEventsManagerMock.swift in Sources */,
 				A573B0A82A60077B001E19D0 /* StartTimerUseCaseMock.swift in Sources */,
 				A59AB8BB2A30800F00D91F1F /* ProfileRepositoryMock.swift in Sources */,
+				A596838D2ABE26590005E73C /* DeleteRemovableChannelRelationUseCaseTests.swift in Sources */,
+				A58B2CB42AC195FA00764388 /* CreateTemperaturesListUseCaseTests.swift in Sources */,
 				A573B0B52A6037EA001E19D0 /* StartTimerUseCaseTests.swift in Sources */,
 				AECB1BE92710A785001A9714 /* AccountCreationVMTests.swift in Sources */,
 				A5E490532A3C7E8F006801FE /* AppSettingsVMTests.swift in Sources */,
 				A59AB8DC2A30935B00D91F1F /* DeleteAllProfileDataUseCaseTests.swift in Sources */,
-				A573B0A02A5FEFE6001E19D0 /* GetChannelBaseStateUseCaseMock.swift in Sources */,
 				A59AB8E62A30A73100D91F1F /* CreateProfileChannelsListUseCaseTests.swift in Sources */,
+				A5A72E412AC1767600405C41 /* MarkChannelRelationAsRemovableUseCaseTest.swift in Sources */,
 				A59AB8A02A30535E00D91F1F /* ChannelUseCasesMocks.swift in Sources */,
 				A573B0B12A602F5F001E19D0 /* ExecuteSimpleActionUseCaseTests.swift in Sources */,
 			);

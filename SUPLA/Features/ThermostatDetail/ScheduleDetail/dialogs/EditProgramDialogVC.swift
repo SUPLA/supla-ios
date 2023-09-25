@@ -61,6 +61,14 @@ final class EditProgramDialogVC : SuplaCustomDialogVC<EditProgramDialogViewState
         return view
     }()
     
+    private lazy var configurationFailureLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.font = .body2
+        label.text = Strings.ThermostatDetail.configurationFailure
+        return label
+    }()
+    
     private lazy var bottonSeparatorView: SeparatorView = {
         let view = SeparatorView()
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -203,6 +211,13 @@ final class EditProgramDialogVC : SuplaCustomDialogVC<EditProgramDialogViewState
                 editCoolTemperatureView.rightAnchor.constraint(equalTo: container.rightAnchor, constant: -Dimens.distanceDefault),
                 
                 bottonSeparatorView.topAnchor.constraint(equalTo: editCoolTemperatureView.bottomAnchor, constant: Dimens.distanceDefault)
+            ])
+        } else {
+            container.addSubview(configurationFailureLabel)
+            constraints.append(contentsOf: [
+                configurationFailureLabel.centerXAnchor.constraint(equalTo: container.centerXAnchor),
+                configurationFailureLabel.topAnchor.constraint(equalTo: topSeparatorView.bottomAnchor, constant: Dimens.distanceDefault),
+                configurationFailureLabel.bottomAnchor.constraint(equalTo: bottonSeparatorView.topAnchor, constant: -Dimens.distanceDefault)
             ])
         }
         
