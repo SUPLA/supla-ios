@@ -26,6 +26,7 @@ class ScheduleDetailVM: BaseViewModel<ScheduleDetailViewState, ScheduleDetailVie
     @Singleton<ConfigEventsManager> private var configEventsManager
     @Singleton<GetChannelConfigUseCase> private var getChannelConfigUseCase
     @Singleton<DelayedWeeklyScheduleConfigSubject> private var dealyedWeeklyScheduleConfigSubject
+    @Singleton<ReadChannelByRemoteIdUseCase> private var readChannelByRemoteIdUseCase
     @Singleton<DateProvider> private var dateProvider
     
     private let reloadConfigRelay = PublishRelay<Void>()
@@ -181,6 +182,10 @@ class ScheduleDetailVM: BaseViewModel<ScheduleDetailViewState, ScheduleDetailVie
                 .changing(path: \.configMax, to: configMax)
                 .changing(path: \.schedule, to: weeklyScheduleConfig.viewScheduleBoxes())
         }
+        
+        if (hvacConfig.subfunction == .notSet) {
+            loadSubfunction(hvacConfig.remoteId)
+        }
     }
     
     private func boxTap(_ key: ScheduleDetailBoxKey) {
@@ -220,6 +225,19 @@ class ScheduleDetailVM: BaseViewModel<ScheduleDetailViewState, ScheduleDetailVie
         } else {
             triggerConfigLoad(remoteId: remoteId)
         }
+    }
+    
+    private func loadSubfunction(_ remoteId: Int32) {
+        readChannelByRemoteIdUseCase.invoke(remoteId: remoteId)
+            .asDriverWithoutError()
+            .drive(onNext: { [weak self] channel in
+                self?.updateView {
+                    $0.changing(
+                        path: \.thermostatSubfunction,
+                        to: channel.value?.asThermostatValue().subfunction)
+                }
+            })
+            .disposed(by: self)
     }
 }
 

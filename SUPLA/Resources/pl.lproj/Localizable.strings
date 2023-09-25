@@ -400,3 +400,4 @@
 "hvac_mode_temperature_heating" = "Temperatura grzania";
 "hvac_mode_temperature_cooling" = "Temperatura chłodzenia";
 "schedule_detail_quarters_dialog_header" = "Godzina %02d:00";
+"schedule_detail_configuration_failure" = "Błąd - nieprawidłowa konfiguracja kanału";

@@ -180,6 +180,7 @@ struct Strings {
         static let coolingTemperature = "hvac_mode_temperature_cooling".toLocalized()
         
         static let editQuartersDialogHeader = "schedule_detail_quarters_dialog_header".toLocalized()
+        static let configurationFailure = "schedule_detail_configuration_failure".toLocalized()
     }
     
     struct General {
