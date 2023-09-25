@@ -27,6 +27,7 @@ final class ReadChannelWithChildrenUseCaseImpl: ReadChannelWithChildrenUseCase {
     @Singleton<ProfileRepository> private var profileRepository
     @Singleton<ChannelRepository> private var channelRepository
     @Singleton<ChannelRelationRepository> private var channelRelationRepository
+    @Singleton<CreateChannelWithChildrenUseCase> private var createChannelWithChildrenUseCase
     
     func invoke(remoteId: Int32) -> Observable<ChannelWithChildren> {
         profileRepository.getActiveProfile()
@@ -50,18 +51,8 @@ final class ReadChannelWithChildrenUseCaseImpl: ReadChannelWithChildrenUseCase {
     }
     
     private func createChannelWithChildren(_ parentId: Int32, _ relations: [SAChannelRelation], _ channels: [SAChannel]) -> ChannelWithChildren? {
-        guard let parent = channels.first(where: { $0.remote_id == parentId })
-        else { return nil }
-        return ChannelWithChildren(channel: parent, children: self.createChildren(relations, channels))
-    }
-    
-    private func createChildren(_ relations: [SAChannelRelation], _ channels: [SAChannel]) -> [ChannelChild] {
-        var children: [ChannelChild] = []
-        for relation in relations {
-            if let channel = channels.first(where: { $0.remote_id == relation.channel_id }) {
-                children.append(ChannelChild(channel: channel, relationType: relation.relationType))
-            }
-        }
-        return children
+        
+        guard let parent = channels.first(where: { $0.remote_id == parentId }) else { return nil }
+        return createChannelWithChildrenUseCase.invoke(parent, allChannels: channels, relations: relations)
     }
 }

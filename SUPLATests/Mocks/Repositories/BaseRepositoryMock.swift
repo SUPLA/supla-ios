@@ -42,13 +42,14 @@ class BaseRepositoryMock<T: NSManagedObject>: RepositoryProtocol {
     }
     
     var saveObservable: Observable<Void> = Observable.empty()
-    var saveCounter = 0
+    var saveParameters: [T] = []
     
     func save(_ entity: T) -> Observable<Void> {
-        saveCounter += 1
+        saveParameters.append(entity)
         return saveObservable
     }
     
+    var saveCounter = 0
     func save() -> Observable<Void> {
         saveCounter += 1
         return saveObservable
@@ -61,8 +62,9 @@ class BaseRepositoryMock<T: NSManagedObject>: RepositoryProtocol {
     }
     
     var createObservable: Observable<T> = Observable.empty()
-    
+    var createCounter = 0
     func create() -> Observable<T> {
+        createCounter += 1
         return createObservable
     }
 }

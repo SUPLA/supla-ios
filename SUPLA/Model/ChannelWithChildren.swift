@@ -18,7 +18,7 @@
 
 import Foundation
 
-struct ChannelWithChildren {
+struct ChannelWithChildren: Equatable {
     let channel: SAChannel
     let children: [ChannelChild]
 }

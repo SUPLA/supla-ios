@@ -16,25 +16,19 @@
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 
-import Foundation
+import RxSwift
 
 final class MarkChannelRelationsAsRemovableUseCase {
     
     @Singleton<ProfileRepository> private var profileRepository
     @Singleton<ChannelRelationRepository> private var channelRelationRepository
     
-    func invoke() {
-        do {
-            try profileRepository.getActiveProfile()
-                .flatMapFirst { self.channelRelationRepository.getAllRelations(for: $0)}
-                .modify { relations in
-                    relations.forEach { $0.delete_flag = true }
-                }
-                .flatMapFirst { _ in self.channelRelationRepository.save() }
-                .toBlocking()
-                .first()
-        } catch {
-            NSLog("Could not mark relations as removable because of `\(error)`")
-        }
+    func invoke() -> Observable<Void> {
+        profileRepository.getActiveProfile()
+            .flatMapFirst { self.channelRelationRepository.getAllRelations(for: $0)}
+            .modify { relations in
+                relations.forEach { $0.delete_flag = true }
+            }
+            .flatMapFirst { _ in self.channelRelationRepository.save() }
     }
 }

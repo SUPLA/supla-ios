@@ -42,6 +42,10 @@
 
 + (int) suplaWeeklyScheduleValuesSize: (TChannelConfig_WeeklySchedule) config;
 
++ (TSCS_ChannelConfig) mockHvacConfig;
+
++ (TSCS_ChannelConfig) mockWeeklyScheduleConfig;
+
 @end
 
 

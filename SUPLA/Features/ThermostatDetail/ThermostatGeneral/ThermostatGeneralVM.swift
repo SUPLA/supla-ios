@@ -110,7 +110,7 @@ class ThermostatGeneralVM: BaseViewModel<ThermostatGeneralViewState, ThermostatG
         updateView { state in
             guard let remoteId = state.remoteId else { return state }
             
-            let mode: SuplaHvacMode
+            var mode: SuplaHvacMode
             if (state.weeklyScheduleActive && state.off) {
                 mode = .off
             } else {
@@ -120,6 +120,14 @@ class ThermostatGeneralVM: BaseViewModel<ThermostatGeneralViewState, ThermostatG
             delayedThermostatActionSubject.sendImmediately(data: data)
                 .subscribe()
                 .disposed(by: self)
+            
+            if (mode == .cmdTurnOn) {
+                if (state.channelFunc == SUPLA_CHANNELFNC_HVAC_DOMESTIC_HOT_WATER || state.setpointHeat != nil) {
+                    mode = .heat
+                } else {
+                    mode = .cool
+                }
+            }
             
             return state.changing(path: \.mode, to: mode)
                 .changing(path: \.lastInteractionTime, to: nil)
@@ -207,7 +215,7 @@ class ThermostatGeneralVM: BaseViewModel<ThermostatGeneralViewState, ThermostatG
             
             if let lastInteractionTime = state.lastInteractionTime,
                lastInteractionTime + REFRESH_DELAY_S > dateProvider.currentTimestamp() {
-                loadChannel(remoteId: channel.channel.remote_id)
+                scheduleConfigReload(lastInteractionTime, channel.channel.remote_id)
                 return state // Do not change anything during 3 secs after last user interaction
             }
             
@@ -224,10 +232,11 @@ class ThermostatGeneralVM: BaseViewModel<ThermostatGeneralViewState, ThermostatG
                 .changing(path: \.loadingState, to: state.loadingState.copy(loading: false))
             
             changedState = handleSetpoints(changedState, channel: channel.channel)
-            changedState = handleFlags(changedState, value: thermostatValue)
+            changedState = handleFlags(changedState, value: thermostatValue, isOnline: channel.channel.isOnline())
             changedState = handleButtons(changedState, channel: channel.channel)
             
-            if let mainTermometer = channel.children.first(where: { $0.relationType == .mainThermometer }) {
+            if let mainTermometer = channel.children.first(where: { $0.relationType == .mainThermometer }),
+               channel.channel.isOnline() {
                 let temperature = mainTermometer.channel.temperatureValue()
                 changedState = handleCurrentTemperture(changedState, temperature: Float(temperature))
             }
@@ -303,15 +312,15 @@ class ThermostatGeneralVM: BaseViewModel<ThermostatGeneralViewState, ThermostatG
         return state.changing(path: \.currentTemperaturePercentage, to: temperaturePercentage)
     }
     
-    private func handleFlags(_ state: ThermostatGeneralViewState, value: ThermostatValue) -> ThermostatGeneralViewState {
+    private func handleFlags(_ state: ThermostatGeneralViewState, value: ThermostatValue, isOnline: Bool) -> ThermostatGeneralViewState {
         return state
             .changing(
                 path: \.heatingIndicatorInactive,
-                to: !value.state.isOn() || !value.flags.contains(.heating)
+                to: !value.state.isOn() || !value.flags.contains(.heating) || !isOnline
             )
             .changing(
                 path: \.coolingIndicatorInactive,
-                to: !value.state.isOn() || !value.flags.contains(.cooling)
+                to: !value.state.isOn() || !value.flags.contains(.cooling) || !isOnline
             )
     }
     
@@ -331,6 +340,17 @@ class ThermostatGeneralVM: BaseViewModel<ThermostatGeneralViewState, ThermostatG
                 path: \.plusMinusHidden,
                 to: !channel.isOnline() || channel.isThermostatOff() || value.flags.contains(.weeklySchedule)
             )
+    }
+    
+    private func scheduleConfigReload(_ lastInteractionTime: TimeInterval, _ remoteId: Int32) {
+        let delay = lastInteractionTime + REFRESH_DELAY_S - dateProvider.currentTimestamp()
+        if (delay > 0) {
+            DispatchQueue.main.asyncAfter(deadline: .now() + delay, execute: { [weak self] in
+                self?.loadChannel(remoteId: remoteId)
+            })
+        } else {
+            loadChannel(remoteId: remoteId)
+        }
     }
 }
 

@@ -102,7 +102,7 @@ enum SuplaHvacThermometerType: UInt8, CaseIterable {
 enum SuplaHvacAlgorithm: UInt16, CaseIterable {
     case notSet = 0
     case onOffSetpointMiddle = 1
-    case onOffSetpointAtMoste = 2
+    case onOffSetpointAtMost = 2
     
     static func from(value: UInt16) -> SuplaHvacAlgorithm {
         for result in SuplaHvacAlgorithm.allCases {

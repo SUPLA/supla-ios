@@ -29,7 +29,7 @@ final class SetChannelConfigUseCaseImpl: SetChannelConfigUseCase {
     func invoke(remoteId: Int32, config: SuplaChannelConfig) -> Observable<RequestResult> {
         guard let scheduleConfig = config as? SuplaChannelWeeklyScheduleConfig
         else {
-            fatalError("Trying to set config which is not supported \(config)")
+            fatalError("Trying to set config which is not supported for \(config)")
         }
         
         return Observable.create { observer in
@@ -57,7 +57,7 @@ final class SetChannelConfigUseCaseImpl: SetChannelConfigUseCase {
         for program in scheduleConfig.programConfigurations {
             let programId = program.program.rawValue
             if (programId < 1 || programId > 4) {
-                fatalError("Trying to set invalid program \(program)")
+                fatalError("Trying to set invalid program \(program.program)")
             }
             
             SuplaChannelConfigIntegrator.setProgramWith(

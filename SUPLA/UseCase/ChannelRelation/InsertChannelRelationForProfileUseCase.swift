@@ -23,25 +23,19 @@ final class InsertChannelRelationForProfileUseCase {
     @Singleton<ProfileRepository> private var profileRepository
     @Singleton<ChannelRelationRepository> private var channelRelationRepository
     
-    func invoke(suplaRelation: TSC_SuplaChannelRelation) {
-        do {
-            try profileRepository.getActiveProfile()
-                .flatMapFirst { profile in
-                    let relationType = ChannelRelationType.from(suplaRelation.Type)
-                    return self.channelRelationRepository
-                        .getRelation(for: profile, with: suplaRelation.Id, with: suplaRelation.ParentId, and: relationType)
-                        .ifEmpty(switchTo: self.createRelation(profile, suplaRelation.Id, relationType))
-                }
-                .modify { relation in
-                    relation.parent_id = suplaRelation.ParentId
-                    relation.delete_flag = false
-                }
-                .flatMapFirst { self.channelRelationRepository.save($0) }
-                .toBlocking()
-                .first()
-        } catch {
-            NSLog("Could not insert relation `\(suplaRelation)` because of `\(error)`")
-        }
+    func invoke(suplaRelation: TSC_SuplaChannelRelation) -> Observable<Void> {
+        profileRepository.getActiveProfile()
+            .flatMapFirst { profile in
+                let relationType = ChannelRelationType.from(suplaRelation.Type)
+                return self.channelRelationRepository
+                    .getRelation(for: profile, with: suplaRelation.Id, with: suplaRelation.ParentId, and: relationType)
+                    .ifEmpty(switchTo: self.createRelation(profile, suplaRelation.Id, relationType))
+            }
+            .modify { relation in
+                relation.parent_id = suplaRelation.ParentId
+                relation.delete_flag = false
+            }
+            .flatMapFirst { self.channelRelationRepository.save($0) }
     }
     
     private func createRelation(_ profile: AuthProfileItem, _ channelId: Int32, _ relationType: ChannelRelationType) -> Observable<SAChannelRelation> {

@@ -237,6 +237,15 @@ final class ProvideDetailTypeUseCaseTests: XCTestCase {
         }
     }
     
+    func test_shouldProvideThermostatDetail() {
+        doTest(expectedResult: .thermostatDetail(pages: [.thermostat, .schedule])) {
+            let channel = SAChannel(testContext: nil)
+            channel.func = SUPLA_CHANNELFNC_HVAC_THERMOSTAT
+            
+            return channel
+        }
+    }
+    
     private func doTest(expectedResult: DetailType?, provider: () -> SAChannelBase) {
         // given
         let channel = provider()
