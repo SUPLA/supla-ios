@@ -230,6 +230,7 @@ class ThermostatGeneralVM: BaseViewModel<ThermostatGeneralViewState, ThermostatG
                 .changing(path: \.configMin, to: config.temperatures.roomMin?.toTemperature())
                 .changing(path: \.configMax, to: config.temperatures.roomMax?.toTemperature())
                 .changing(path: \.loadingState, to: state.loadingState.copy(loading: false))
+                .changing(path: \.issues, to: createThermostatIssues(flags: thermostatValue.flags))
             
             changedState = handleSetpoints(changedState, channel: channel.channel)
             changedState = handleFlags(changedState, value: thermostatValue, isOnline: channel.channel.isOnline())
@@ -352,6 +353,23 @@ class ThermostatGeneralVM: BaseViewModel<ThermostatGeneralViewState, ThermostatG
             loadChannel(remoteId: remoteId)
         }
     }
+    
+    private func createThermostatIssues(flags: [SuplaThermostatFlag]) -> [ThermostatIssueItem] {
+        var result: [ThermostatIssueItem] = []
+        if (flags.contains(.thermometerError)) {
+            result.append(ThermostatIssueItem(
+                issueIconType: .error,
+                description: Strings.ThermostatDetail.thermometerError
+            ))
+        }
+        if (flags.contains(.clockError)) {
+            result.append(ThermostatIssueItem(
+                issueIconType: .warning,
+                description: Strings.ThermostatDetail.clockError
+            ))
+        }
+        return result
+    }
 }
 
 enum ThermostatGeneralViewEvent: ViewEvent {
@@ -386,6 +404,7 @@ struct ThermostatGeneralViewState: ViewState {
     var manualActive: Bool = false
     var weeklyScheduleActive: Bool = false
     var plusMinusHidden: Bool = false
+    var issues: [ThermostatIssueItem] = []
     
     /* All calculated properties below */
     
@@ -492,4 +511,9 @@ fileprivate extension SAChannel {
         return self.func == SUPLA_CHANNELFNC_HVAC_THERMOSTAT ||
         self.func == SUPLA_CHANNELFNC_HVAC_THERMOSTAT_AUTO
     }
+}
+
+struct ThermostatIssueItem: Equatable {
+    let issueIconType: IssueIconType
+    let description: String
 }

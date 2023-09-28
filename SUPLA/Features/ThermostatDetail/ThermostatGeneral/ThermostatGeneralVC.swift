@@ -63,6 +63,18 @@ class ThermostatGeneralVC: BaseViewControllerVM<ThermostatGeneralViewState, Ther
         return view
     }()
     
+    private lazy var firstIssueRowView: IssueView = {
+        let view = IssueView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+    
+    private lazy var secondIssueRowView: IssueView = {
+        let view = IssueView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+    
     init(remoteId: Int32) {
         self.remoteId = remoteId
         super.init(nibName: nil, bundle: nil)
@@ -115,6 +127,19 @@ class ThermostatGeneralVC: BaseViewControllerVM<ThermostatGeneralViewState, Ther
         buttonsView.weeklyScheduleModeActive = state.weeklyScheduleActive
         buttonsView.powerIconColor = state.powerIconColor
         loaderView.isHidden = !state.loadingState.loading
+
+        firstIssueRowView.isHidden = state.issues.count <= 0
+        secondIssueRowView.isHidden = state.issues.count <= 1
+        for (idx, issue) in state.issues.enumerated() {
+            if (idx == 0) {
+                firstIssueRowView.icon = issue.issueIconType.icon()
+                firstIssueRowView.text = issue.description
+            }
+            if (idx == 1) {
+                secondIssueRowView.icon = issue.issueIconType.icon()
+                secondIssueRowView.text = issue.description
+            }
+        }
     }
     
     private func setupView() {
@@ -143,6 +168,8 @@ class ThermostatGeneralVC: BaseViewControllerVM<ThermostatGeneralViewState, Ther
         view.addSubview(plusButton)
         view.addSubview(minusButton)
         view.addSubview(loaderView)
+        view.addSubview(firstIssueRowView)
+        view.addSubview(secondIssueRowView)
         
         setupLayout()
     }
@@ -168,7 +195,15 @@ class ThermostatGeneralVC: BaseViewControllerVM<ThermostatGeneralViewState, Ther
             loaderView.topAnchor.constraint(equalTo: view.topAnchor),
             loaderView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
             loaderView.leftAnchor.constraint(equalTo: view.leftAnchor),
-            loaderView.rightAnchor.constraint(equalTo: view.rightAnchor)
+            loaderView.rightAnchor.constraint(equalTo: view.rightAnchor),
+            
+            firstIssueRowView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: Dimens.distanceDefault),
+            firstIssueRowView.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -Dimens.distanceDefault),
+            firstIssueRowView.bottomAnchor.constraint(equalTo: buttonsView.topAnchor),
+            
+            secondIssueRowView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: Dimens.distanceDefault),
+            secondIssueRowView.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -Dimens.distanceDefault),
+            secondIssueRowView.bottomAnchor.constraint(equalTo: firstIssueRowView.topAnchor, constant: -Dimens.distanceTiny)
         ])
     }
     
@@ -299,6 +334,67 @@ fileprivate class ThermostatGeneralButtons: UIView {
             weeklyScheduleModeButtonView.leftAnchor.constraint(equalTo: containerView.centerXAnchor, constant: Dimens.distanceDefault/2),
             weeklyScheduleModeButtonView.rightAnchor.constraint(equalTo: containerView.rightAnchor),
             weeklyScheduleModeButtonView.centerYAnchor.constraint(equalTo: centerYAnchor)
+        ])
+    }
+}
+
+// MARK: - Issue view -
+
+fileprivate class IssueView: UIView {
+    
+    override var intrinsicContentSize: CGSize {
+        CGSize(width: UIView.noIntrinsicMetric, height: Dimens.iconSizeList)
+    }
+    
+    var icon: UIImage? {
+        get { iconView.image }
+        set { iconView.image = newValue }
+    }
+    
+    var text: String? {
+        get { textLabel.text }
+        set { textLabel.text = newValue }
+    }
+    
+    private lazy var iconView: UIImageView = {
+        let view = UIImageView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.contentMode = .scaleAspectFit
+        return view
+    }()
+    
+    private lazy var textLabel: UILabel = {
+        let view = UILabel()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.font = .body2
+        return view
+    }()
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        setupView()
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    private func setupView() {
+        addSubview(iconView)
+        addSubview(textLabel)
+        
+        setLayout()
+    }
+    
+    private func setLayout() {
+        NSLayoutConstraint.activate([
+            iconView.topAnchor.constraint(equalTo: topAnchor),
+            iconView.leftAnchor.constraint(equalTo: leftAnchor),
+            iconView.heightAnchor.constraint(equalToConstant: Dimens.iconSizeList),
+            iconView.widthAnchor.constraint(equalToConstant: Dimens.iconSizeList),
+            
+            textLabel.centerYAnchor.constraint(equalTo: centerYAnchor),
+            textLabel.leftAnchor.constraint(equalTo: iconView.rightAnchor, constant: Dimens.distanceSmall)
         ])
     }
 }

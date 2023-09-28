@@ -140,7 +140,8 @@ final class ThermostatGeneralVMTests: ViewModelTest<ThermostatGeneralViewState, 
     
     func test_shouldLoadData_coolCoolingProgram() {
         // given
-        var hvacValue = THVACValue(IsOn: 1, Mode: SuplaHvacMode.cool.rawValue, SetpointTemperatureHeat: 0, SetpointTemperatureCool: 2300, Flags: (2 | (1 << 3) | (1 << 4) | (1 << 10)))
+        let flags = (2 | (1 << 3) | (1 << 4) | (1 << 7) | (1 << 8) | (1 << 10))
+        var hvacValue = THVACValue(IsOn: 1, Mode: SuplaHvacMode.cool.rawValue, SetpointTemperatureHeat: 0, SetpointTemperatureCool: 2300, Flags: UInt16(flags))
         let remoteId: Int32 = 231
         let channel = SAChannel(testContext: nil)
         channel.remote_id = remoteId
@@ -186,6 +187,10 @@ final class ThermostatGeneralVMTests: ViewModelTest<ThermostatGeneralViewState, 
                 .changing(path: \.coolingIndicatorInactive, to: false)
                 .changing(path: \.currentTemperaturePercentage, to: 0.32666665)
                 .changing(path: \.childrenIds, to: [0])
+                .changing(path: \.issues, to: [
+                    ThermostatIssueItem(issueIconType: .error, description: Strings.ThermostatDetail.thermometerError),
+                    ThermostatIssueItem(issueIconType: .warning, description: Strings.ThermostatDetail.clockError)
+                ])
         ])
         
         assertState(1) {
