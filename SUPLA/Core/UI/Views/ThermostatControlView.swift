@@ -100,6 +100,11 @@ final class ThermostatControlView: UIView {
         get { indicatorHeatingShape.isHidden }
         set {
             indicatorHeatingShape.isHidden = newValue
+            if (newValue) {
+                indicatorHeatingShape.removeAllAnimations()
+            } else {
+                indicatorHeatingShape.add(blinkingAnimation, forKey: "heat blinking")
+            }
             setNeedsDisplay()
         }
     }
@@ -108,6 +113,11 @@ final class ThermostatControlView: UIView {
         get { indicatorCoolingShape.isHidden }
         set {
             indicatorCoolingShape.isHidden = newValue
+            if (newValue) {
+                indicatorCoolingShape.removeAllAnimations()
+            } else {
+                indicatorCoolingShape.add(blinkingAnimation, forKey: "cool blinking")
+            }
             setNeedsDisplay()
         }
     }
@@ -189,6 +199,20 @@ final class ThermostatControlView: UIView {
         label.font = .thermostatControlBigTemperature
         return label
     }()
+    
+    // MARK: Animations
+    
+    private lazy var blinkingAnimation: CABasicAnimation = {
+        let animation = CABasicAnimation(keyPath: "opacity")
+        animation.fromValue = 1.0
+        animation.toValue = 0.2
+        animation.duration = 0.8
+        animation.autoreverses = true
+        animation.repeatCount = .infinity
+        return animation
+    }()
+    
+    // MARK: Functions
     
     override init(frame: CGRect) {
         super.init(frame: frame)
