@@ -322,6 +322,8 @@
 "General.error" = "Fehler";
 "turn_on" = "Einschalten";
 "turn_off" = "Auschalten";
+"time_just_mintes" = "%d Min.";
+"time_hours_and_minutes" = "%d Std. %d Min.";
 
 /* Standard Detail */
 "standard_detail_general_tab" = "Allgemein";
@@ -371,3 +373,6 @@
 "hvac_mode_temperature_cooling" = "Kühltemperature";
 "schedule_detail_quarters_dialog_header" = "Zeit %02d:00";
 "schedule_detail_configuration_failure" = "Fehler - ungültige Kanalkonfiguration";
+"thermostat_detail_program_time" = "für %@";
+"thermostat_detail_program_current" = "Aktuell:";
+"thermostat_detail_program_next" = "Danach:";

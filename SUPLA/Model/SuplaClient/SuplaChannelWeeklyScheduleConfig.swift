@@ -84,6 +84,48 @@ struct SuplaWeeklyScheduleProgram: Equatable {
     let mode: SuplaHvacMode
     let setpointTemperatureHeat: Int16?
     let setpointTemperatureCool: Int16?
+    
+    var description: String {
+        get {
+            @Singleton<ValuesFormatter> var valuesFormatter
+            let heatTemperature = setpointTemperatureHeat?.fromSuplaTemperature()
+            let coolTemperature = setpointTemperatureCool?.fromSuplaTemperature()
+            
+            if (program == .off) {
+                return Strings.General.turnOff
+            } else if (mode == .heat) {
+                return valuesFormatter.temperatureToString(heatTemperature)
+            } else if (mode == .cool) {
+                return valuesFormatter.temperatureToString(coolTemperature)
+            } else if (mode == .auto) {
+                let min = valuesFormatter.temperatureToString(heatTemperature)
+                let max = valuesFormatter.temperatureToString(coolTemperature)
+                return "\(min) - \(max)"
+            } else {
+                return NO_VALUE_TEXT
+            }
+        }
+    }
+    
+    func copy(newHeatTemperature: Int16? = nil, newCoolTemperature: Int16? = nil) -> SuplaWeeklyScheduleProgram {
+        return SuplaWeeklyScheduleProgram(
+            program: program,
+            mode: mode,
+            setpointTemperatureHeat: newHeatTemperature == nil ? setpointTemperatureHeat : newHeatTemperature,
+            setpointTemperatureCool: newCoolTemperature == nil ? setpointTemperatureCool : newCoolTemperature
+        )
+    }
+    
+    static var OFF: SuplaWeeklyScheduleProgram {
+        get {
+            SuplaWeeklyScheduleProgram(
+                program: .off,
+                mode: .off,
+                setpointTemperatureHeat: nil,
+                setpointTemperatureCool: nil
+            )
+        }
+    }
 }
 
 struct SuplaWeeklyScheduleEntry: Equatable {

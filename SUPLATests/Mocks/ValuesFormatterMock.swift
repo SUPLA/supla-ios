@@ -18,12 +18,14 @@
 
 @testable import SUPLA
 
-final class TemperatureFormatterMock: TemperatureFormatter {
-    func toString(_ value: Float?, withUnit: Bool, withDegree: Bool) -> String {
+final class ValuesFormatterMock: ValuesFormatter {
+    func temperatureToString(_ value: Float?, withUnit: Bool, withDegree: Bool) -> String {
         if let value = value {
             return String(format: "%.1f", value)
         } else {
             return "0.0"
         }
     }
+    
+    func minutesToString(minutes: Int) -> String { "\(minutes)" }
 }

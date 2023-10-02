@@ -56,7 +56,7 @@ final class ThermostatGeneralVMTests: ViewModelTest<ThermostatGeneralViewState, 
         DiContainer.shared.register(type: GetChannelConfigUseCase.self, component: getChannelConfigUseCase!)
         DiContainer.shared.register(type: DelayedThermostatActionSubject.self, component: delayedThermostatActionSubject!)
         DiContainer.shared.register(type: DateProvider.self, component: dateProvider!)
-        DiContainer.shared.register(type: TemperatureFormatter.self, component: TemperatureFormatterMock())
+        DiContainer.shared.register(type: ValuesFormatter.self, component: ValuesFormatterMock())
         DiContainer.shared.register(type: LoadingTimeoutManager.self, producer: { self.loadingTimeoutManager! })
     }
     
@@ -96,14 +96,29 @@ final class ThermostatGeneralVMTests: ViewModelTest<ThermostatGeneralViewState, 
         
         readChannelWithChildrenUseCase.returns = Observable.just(ChannelWithChildren(channel: channel, children: [mockMainTemperatureChild()]))
         createTemperaturesListUseCase.returns = temperatures
-        configEventsManager.observeConfigReturns = [Observable.just(mockHvacConfigEvent(remoteId))]
+        configEventsManager.observeConfigReturns = [
+            Observable.just(mockHvacConfigEvent(remoteId)),
+            Observable.just(mockWeeklyConfigEvent(remoteId))
+        ]
+        let expectation = expectation(description: "States loaded")
         
         // when
-        observe(viewModel)
-        viewModel.loadChannel(remoteId: remoteId)
+        var statesCount = 0
+        observe(viewModel) { object in
+            if (object is ThermostatGeneralViewState) {
+                statesCount += 1
+            }
+            if (statesCount == 2) {
+                expectation.fulfill()
+            }
+        }
+        viewModel.observeData(remoteId: remoteId)
+        viewModel.triggerDataLoad(remoteId: remoteId)
         
         // then
+        waitForExpectations(timeout: 1)
         assertObserverItems(statesCount: 2, eventsCount: 0)
+        
         let state = ThermostatGeneralViewState()
         assertStates(expected: [
             state,
@@ -125,7 +140,7 @@ final class ThermostatGeneralVMTests: ViewModelTest<ThermostatGeneralViewState, 
                 .changing(path: \.currentTemperaturePercentage, to: 0.32666665)
                 .changing(path: \.childrenIds, to: [0])
         ])
-        
+
         assertState(1) {
             XCTAssertEqual($0.off, false)
             XCTAssertEqual($0.setpointText, "21.2")
@@ -159,13 +174,27 @@ final class ThermostatGeneralVMTests: ViewModelTest<ThermostatGeneralViewState, 
         
         readChannelWithChildrenUseCase.returns = Observable.just(ChannelWithChildren(channel: channel, children: [mockMainTemperatureChild()]))
         createTemperaturesListUseCase.returns = temperatures
-        configEventsManager.observeConfigReturns = [Observable.just(mockHvacConfigEvent(remoteId))]
+        configEventsManager.observeConfigReturns = [
+            Observable.just(mockHvacConfigEvent(remoteId)),
+            Observable.just(mockWeeklyConfigEvent(remoteId))
+        ]
+        let expectation = expectation(description: "States loaded")
         
         // when
-        observe(viewModel)
-        viewModel.loadChannel(remoteId: remoteId)
+        var statesCount = 0
+        observe(viewModel) { object in
+            if (object is ThermostatGeneralViewState) {
+                statesCount += 1
+            }
+            if (statesCount == 2) {
+                expectation.fulfill()
+            }
+        }
+        viewModel.observeData(remoteId: remoteId)
+        viewModel.triggerDataLoad(remoteId: remoteId)
         
         // then
+        waitForExpectations(timeout: 1)
         assertObserverItems(statesCount: 2, eventsCount: 0)
         let state = ThermostatGeneralViewState()
         assertStates(expected: [
@@ -181,7 +210,7 @@ final class ThermostatGeneralVMTests: ViewModelTest<ThermostatGeneralViewState, 
                 .changing(path: \.loadingState, to: state.loadingState.copy(loading: false))
                 .changing(path: \.setpointCool, to: 23)
                 .changing(path: \.activeSetpointType, to: .cool)
-                .changing(path: \.plusMinusHidden, to: true)
+                .changing(path: \.plusMinusHidden, to: false)
                 .changing(path: \.weeklyScheduleActive, to: true)
                 .changing(path: \.heatingIndicatorInactive, to: true)
                 .changing(path: \.coolingIndicatorInactive, to: false)
@@ -224,13 +253,27 @@ final class ThermostatGeneralVMTests: ViewModelTest<ThermostatGeneralViewState, 
         
         readChannelWithChildrenUseCase.returns = Observable.just(ChannelWithChildren(channel: channel, children: [mockMainTemperatureChild()]))
         createTemperaturesListUseCase.returns = temperatures
-        configEventsManager.observeConfigReturns = [Observable.just(mockHvacConfigEvent(remoteId))]
+        configEventsManager.observeConfigReturns = [
+            Observable.just(mockHvacConfigEvent(remoteId)),
+            Observable.just(mockWeeklyConfigEvent(remoteId))
+        ]
+        let expectation = expectation(description: "States loaded")
         
         // when
-        observe(viewModel)
-        viewModel.loadChannel(remoteId: remoteId)
+        var statesCount = 0
+        observe(viewModel) { object in
+            if (object is ThermostatGeneralViewState) {
+                statesCount += 1
+            }
+            if (statesCount == 2) {
+                expectation.fulfill()
+            }
+        }
+        viewModel.observeData(remoteId: remoteId)
+        viewModel.triggerDataLoad(remoteId: remoteId)
         
         // then
+        waitForExpectations(timeout: 1)
         assertObserverItems(statesCount: 2, eventsCount: 0)
         let state = ThermostatGeneralViewState()
         assertStates(expected: [
@@ -249,6 +292,7 @@ final class ThermostatGeneralVMTests: ViewModelTest<ThermostatGeneralViewState, 
                 .changing(path: \.coolingIndicatorInactive, to: true)
                 .changing(path: \.currentTemperaturePercentage, to: 0.32666665)
                 .changing(path: \.childrenIds, to: [0])
+                .changing(path: \.activeSetpointType, to: .heat)
         ])
         
         assertState(1) {
@@ -281,13 +325,27 @@ final class ThermostatGeneralVMTests: ViewModelTest<ThermostatGeneralViewState, 
         
         readChannelWithChildrenUseCase.returns = Observable.just(ChannelWithChildren(channel: channel, children: [mockMainTemperatureChild()]))
         createTemperaturesListUseCase.returns = temperatures
-        configEventsManager.observeConfigReturns = [Observable.just(mockHvacConfigEvent(remoteId))]
+        configEventsManager.observeConfigReturns = [
+            Observable.just(mockHvacConfigEvent(remoteId)),
+            Observable.just(mockWeeklyConfigEvent(remoteId))
+        ]
+        let expectation = expectation(description: "States loaded")
         
         // when
-        observe(viewModel)
-        viewModel.loadChannel(remoteId: remoteId)
+        var statesCount = 0
+        observe(viewModel) { object in
+            if (object is ThermostatGeneralViewState) {
+                statesCount += 1
+            }
+            if (statesCount == 2) {
+                expectation.fulfill()
+            }
+        }
+        viewModel.observeData(remoteId: remoteId)
+        viewModel.triggerDataLoad(remoteId: remoteId)
         
         // then
+        waitForExpectations(timeout: 1)
         assertObserverItems(statesCount: 2, eventsCount: 0)
         let state = ThermostatGeneralViewState()
         assertStates(expected: [
@@ -331,16 +389,30 @@ final class ThermostatGeneralVMTests: ViewModelTest<ThermostatGeneralViewState, 
         channel.value = channelValue
         
         readChannelWithChildrenUseCase.returns = Observable.just(ChannelWithChildren(channel: channel, children: [mockMainTemperatureChild()]))
-        configEventsManager.observeConfigReturns = [Observable.just(mockHvacConfigEvent(remoteId))]
+        configEventsManager.observeConfigReturns = [
+            Observable.just(mockHvacConfigEvent(remoteId)),
+            Observable.just(mockWeeklyConfigEvent(remoteId))
+        ]
         
         let initialState = ThermostatGeneralViewState(changing: true)
         viewModel.updateView { _ in initialState }
+        let expectation = expectation(description: "States loaded")
         
         // when
-        observe(viewModel)
-        viewModel.loadChannel(remoteId: remoteId)
+        var statesCount = 0
+        observe(viewModel) { object in
+            if (object is ThermostatGeneralViewState) {
+                statesCount += 1
+            }
+            if (statesCount == 2) {
+                expectation.fulfill()
+            }
+        }
+        viewModel.observeData(remoteId: remoteId)
+        viewModel.triggerDataLoad(remoteId: remoteId)
         
         // then
+        waitForExpectations(timeout: 1)
         assertObserverItems(statesCount: 2, eventsCount: 0)
         assertStates(expected: [
             initialState,
@@ -361,18 +433,30 @@ final class ThermostatGeneralVMTests: ViewModelTest<ThermostatGeneralViewState, 
         
         readChannelWithChildrenUseCase.returns = Observable.just(ChannelWithChildren(channel: channel, children: [mockMainTemperatureChild()]))
         configEventsManager.observeConfigReturns = [
-            Observable.just(mockHvacConfigEvent(remoteId))
+            Observable.just(mockHvacConfigEvent(remoteId)),
+            Observable.just(mockWeeklyConfigEvent(remoteId))
         ]
         dateProvider.currentTimestampReturns = 1001
         
         let initialState = ThermostatGeneralViewState(lastInteractionTime: 1000)
         viewModel.updateView { _ in initialState }
+        let expectation = expectation(description: "States loaded")
         
         // when
-        observe(viewModel)
-        viewModel.loadChannel(remoteId: remoteId)
+        var statesCount = 0
+        observe(viewModel) { object in
+            if (object is ThermostatGeneralViewState) {
+                statesCount += 1
+            }
+            if (statesCount == 2) {
+                expectation.fulfill()
+            }
+        }
+        viewModel.observeData(remoteId: remoteId)
+        viewModel.triggerDataLoad(remoteId: remoteId)
         
         // then
+        waitForExpectations(timeout: 1)
         assertObserverItems(statesCount: 2, eventsCount: 0)
         assertStates(expected: [
             initialState,
@@ -441,30 +525,6 @@ final class ThermostatGeneralVMTests: ViewModelTest<ThermostatGeneralViewState, 
         XCTAssertEqual(delayedThermostatActionSubject.emitParameters, [
             ThermostatActionData(remoteId: 1233, setpointCool: 25)
         ])
-    }
-    
-    func test_shouldNotChangeSetpoint_whenManualModeNotActive() {
-        // given
-        let initialState = ThermostatGeneralViewState()
-            .changing(path: \.configMin, to: 10)
-            .changing(path: \.configMax, to: 40)
-            .changing(path: \.remoteId, to: 1233)
-        
-        viewModel.updateView { _ in initialState }
-        
-        dateProvider.currentTimestampReturns = 1100
-        
-        // when
-        observe(viewModel)
-        viewModel.onPositionEvent(.mooving(setpointType: .cool, position: 0.5))
-        
-        // then
-        assertObserverItems(statesCount: 2, eventsCount: 0)
-        assertStates(expected: [
-            initialState,
-            initialState
-        ])
-        XCTAssertEqual(delayedThermostatActionSubject.emitParameters.count, 0)
     }
     
     func test_shouldStopChanging_whenDraggingFinished() {
@@ -826,6 +886,13 @@ final class ThermostatGeneralVMTests: ViewModelTest<ThermostatGeneralViewState, 
                 configMin: 1000,
                 configMax: 4000
             )
+        )
+    }
+    
+    private func mockWeeklyConfigEvent(_ remoteId: Int32) -> ConfigEvent {
+        ConfigEvent(
+            result: .resultTrue,
+            config: SuplaChannelWeeklyScheduleConfig.mock(remoteId: remoteId)
         )
     }
 }

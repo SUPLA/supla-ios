@@ -19,9 +19,9 @@
 import Foundation
 
 extension Float {
-    func toTemperature() -> String {
-        @Singleton<TemperatureFormatter> var formatter
-        return formatter.toString(self, withUnit: false, withDegree: false)
+    func toTemperatureString() -> String {
+        @Singleton<ValuesFormatter> var formatter
+        return formatter.temperatureToString(self, withUnit: false, withDegree: false)
     }
     
     var cg: CGFloat {

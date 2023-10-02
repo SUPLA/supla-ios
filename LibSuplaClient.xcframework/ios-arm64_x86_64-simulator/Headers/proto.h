@@ -466,8 +466,6 @@ extern char sproto_tag[SUPLA_TAG_SIZE];
 #define SUPLA_CHANNELFNC_IC_HEAT_METER 340         // ver. >= 10
 #define SUPLA_CHANNELFNC_IC_EVENTS 350             // ver. >= 21
 #define SUPLA_CHANNELFNC_IC_SECONDS 360            // ver. >= 21
-// Thermostat 400 funciton is not used
-#define SUPLA_CHANNELFNC_THERMOSTAT 400                    // ver. >= 11
 #define SUPLA_CHANNELFNC_THERMOSTAT_HEATPOL_HOMEPLUS 410   // ver. >= 11
 #define SUPLA_CHANNELFNC_HVAC_THERMOSTAT 420               // ver. >= 21
 #define SUPLA_CHANNELFNC_HVAC_THERMOSTAT_AUTO 422          // ver. >= 21
@@ -500,7 +498,11 @@ extern char sproto_tag[SUPLA_TAG_SIZE];
 #define SUPLA_BIT_FUNC_RAINSENSOR 0x00002000                // ver. >= 12
 #define SUPLA_BIT_FUNC_WEIGHTSENSOR 0x00004000              // ver. >= 12
 #define SUPLA_BIT_FUNC_CONTROLLINGTHEROOFWINDOW 0x00008000  // ver. >= 13
-#define SUPLA_BIT_FUNC_CONTROLLINGTHEFACADEBLIND 0x0010000  // ver. >= 17
+#define SUPLA_BIT_FUNC_CONTROLLINGTHEFACADEBLIND 0x00010000  // ver. >= 17
+#define SUPLA_BIT_FUNC_HVAC_THERMOSTAT 0x00020000           // ver. >= 21
+#define SUPLA_BIT_FUNC_HVAC_THERMOSTAT_AUTO 0x00040000      // ver. >= 21
+#define SUPLA_BIT_FUNC_HVAC_THERMOSTAT_DIFFERENTIAL 0x00080000  // ver. >= 21
+#define SUPLA_BIT_FUNC_HVAC_DOMESTIC_HOT_WATER 0x00100000   // ver. >= 21
 
 #define SUPLA_EVENT_CONTROLLINGTHEGATEWAYLOCK 10
 #define SUPLA_EVENT_CONTROLLINGTHEGATE 20
@@ -2070,16 +2072,6 @@ typedef struct {
 #define SUPLA_THERMOSTAT_CMD_SET_TIME 12
 #define SUPLA_THERMOSTAT_CMD_SET_TEMPERATURE 13
 
-// HVAC channel capability flags - ver. >= 21
-#define SUPLA_HVAC_CAP_FLAG_MODE_ONOFF 0x0001
-#define SUPLA_HVAC_CAP_FLAG_MODE_AUTO 0x0002  // AUTO = HEAT + COOL
-#define SUPLA_HVAC_CAP_FLAG_MODE_COOL 0x0004
-#define SUPLA_HVAC_CAP_FLAG_MODE_HEAT 0x0008
-#define SUPLA_HVAC_CAP_FLAG_MODE_DRY 0x0010
-#define SUPLA_HVAC_CAP_FLAG_MODE_FAN 0x0020
-#define SUPLA_HVAC_CAP_FLAG_DIFFERENTIAL 0x0040
-#define SUPLA_HVAC_CAP_FLAG_DOMESTIC_HOT_WATER 0x0080
-
 // Heatpol: Thermostat value flags - ver. >= 11
 #define SUPLA_THERMOSTAT_VALUE_FLAG_ON 0x0001
 #define SUPLA_THERMOSTAT_VALUE_FLAG_AUTO_MODE 0x0002
@@ -2561,7 +2553,8 @@ typedef struct {
   _supla_int16_t HumidityAdjustment;        // * 0.01
   unsigned char AdjustmentAppliedByDevice;  // 1/true - by device
                                             // 0/false - by server
-} TChannelConfig_TemperatureAndHumidity;    // v. >= 21
+  unsigned char Reserved[27];
+} TChannelConfig_TemperatureAndHumidity;  // v. >= 21
 
 // ChannelConfig for all binary sensors (all functions valid for
 // SUPLA_CHANNELTYPE_BINARYSENSOR)
@@ -2570,6 +2563,7 @@ typedef struct {
 // like MQTT
 typedef struct {
   unsigned char InvertedLogic;  // 0 - not inverted, 1 - inverted
+  unsigned char Reserved[31];
 } TChannelConfig_BinarySensor;  // v. >= 21
 
 // Not set is set when there is no thermometer for "AUX" available

@@ -33,4 +33,25 @@ final class DateProviderMock: DateProvider {
         currentTimestampCalls += 1
         return currentTimestampReturns
     }
+    
+    var currentDayOfWeekCalls = 0
+    var currentDayOfWeekReturns = DayOfWeek.monday
+    func currentDayOfWeek() -> DayOfWeek {
+        currentDayOfWeekCalls += 1
+        return currentDayOfWeekReturns
+    }
+    
+    var currentHourCalls = 0
+    var currentHourReturns = 0
+    func currentHour() -> Int {
+        currentHourCalls += 1
+        return currentHourReturns
+    }
+    
+    var currentMinuteCalls = 0
+    var currentMinuteReturns = 0
+    func currentMinute() -> Int {
+        currentMinuteCalls += 1
+        return currentMinuteReturns
+    }
 }

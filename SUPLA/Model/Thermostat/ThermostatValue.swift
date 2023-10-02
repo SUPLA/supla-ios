@@ -33,8 +33,8 @@ struct ThermostatValue {
         ThermostatValue(
             state: ThermostatState(value: hvacValue.IsOn),
             mode: SuplaHvacMode.from(hvacMode: hvacValue.Mode),
-            setpointTemperatureHeat: hvacValue.SetpointTemperatureHeat.toTemperature(),
-            setpointTemperatureCool: hvacValue.SetpointTemperatureCool.toTemperature(),
+            setpointTemperatureHeat: hvacValue.SetpointTemperatureHeat.fromSuplaTemperature(),
+            setpointTemperatureCool: hvacValue.SetpointTemperatureCool.fromSuplaTemperature(),
             flags: SuplaThermostatFlag.from(flags: hvacValue.Flags)
         )
     }

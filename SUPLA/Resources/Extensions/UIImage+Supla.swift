@@ -38,6 +38,7 @@ extension UIImage {
     static let iconCool = UIImage(named: "icon_cool")
     static let iconMinus = UIImage(named: "icon_minus")
     static let iconPlus = UIImage(named: "icon_plus")
+    static let iconManual = UIImage(named: "icon_manual")
     
     static let iconWarning = UIImage(named: "channel_warning_level1")
     static let iconError = UIImage(named: "channel_warning_level2")

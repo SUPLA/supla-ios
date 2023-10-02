@@ -30,6 +30,28 @@ public enum SuplaHvacMode: UInt8, CaseIterable {
     case cmdWeeklySchedule = 9
     case cmdSwitchToManual = 10
     
+    var icon: UIImage? {
+        get {
+            switch (self) {
+            case .off: return .iconPowerButton
+            case .heat: return .iconHeat
+            case .cool: return .iconCool
+            default: return nil
+            }
+        }
+    }
+    
+    var iconColor: UIColor? {
+        get {
+            switch (self) {
+            case .off: return .gray
+            case .heat: return .red
+            case .cool: return .blue
+            default: return nil
+            }
+        }
+    }
+    
     static func from(hvacMode: UInt8) -> SuplaHvacMode {
         for mode in SuplaHvacMode.allCases {
             if (mode.rawValue == hvacMode) {

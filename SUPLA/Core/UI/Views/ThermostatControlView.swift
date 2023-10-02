@@ -117,6 +117,14 @@ final class ThermostatControlView: UIView {
         set { temperatureCircleShape.shadowColor = newValue }
     }
     
+    var greyOutSetpoins: Bool {
+        get { false }
+        set {
+            setpointHeatPoint.greyOut = newValue
+            setpointCoolPoint.greyOut = newValue
+        }
+    }
+    
     private var setpointHeat: CGFloat? = 0
     private var setpointCool: CGFloat? = 0
     private var temperature: CGFloat = 0.2
@@ -581,6 +589,19 @@ fileprivate class SetpointLayers: LayerGroup {
     
     var position: CGPoint {
         get { currentPosition }
+    }
+    
+    var greyOut: Bool {
+        get { false }
+        set {
+            if (newValue) {
+                shadowShape.fillColor = UIColor.disabled.cgColor
+                backgroundShape.fillColor = UIColor.disabled.copy(alpha: 0.6).cgColor
+            } else {
+                shadowShape.fillColor = type.color.cgColor
+                backgroundShape.fillColor = type.color.copy(alpha: 0.6).cgColor
+            }
+        }
     }
     
     private lazy var shadowShape: CAShapeLayer = {

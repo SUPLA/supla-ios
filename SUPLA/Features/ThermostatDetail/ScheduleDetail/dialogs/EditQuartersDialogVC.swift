@@ -253,15 +253,15 @@ fileprivate class ButtonsRowView: UIView {
         
         for program in programs {
             let buttonView = RoundedControlButtonView(height: Dimens.buttonSmallHeight)
-            buttonView.backgroundColor = program.program.color()
+            buttonView.backgroundColor = program.scheduleProgram.program.color()
             buttonView.icon = program.icon != nil ? .suplaIcon(icon: program.icon) : nil
             buttonView.text = program.text
             buttonView.textFont = .scheduleDetailButton
             buttonView.type = .neutral
-            buttonView.tap.subscribe(onNext: { self.tapRelay.accept(program.program) }).disposed(by: disposeBag)
+            buttonView.tap.subscribe(onNext: { self.tapRelay.accept(program.scheduleProgram.program) }).disposed(by: disposeBag)
             buttonView.frame.size.width = buttonView.intrinsicContentSize.width
             buttonView.frame.size.height = buttonView.intrinsicContentSize.height
-            buttons[program.program] = buttonView
+            buttons[program.scheduleProgram.program] = buttonView
             
             addSubview(buttonView)
         }
@@ -277,7 +277,7 @@ fileprivate class ButtonsRowView: UIView {
         var currentY: CGFloat = Dimens.distanceSmall
         
         for program in programs {
-            let button = buttons[program.program]!
+            let button = buttons[program.scheduleProgram.program]!
             
             if (currentX + button.frame.width + Dimens.distanceDefault > containerWidth) {
                 currentX = Dimens.distanceDefault

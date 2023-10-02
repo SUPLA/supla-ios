@@ -42,17 +42,18 @@ class ScheduleDetailVM: BaseViewModel<ScheduleDetailViewState, ScheduleDetailVie
             resultSelector: { ($0.config as! SuplaChannelWeeklyScheduleConfig, $0.result, $1.config as! SuplaChannelHvacConfig, $1.result)}
         )
             .asDriverWithoutError()
+            .debounce(.milliseconds(50))
             .drive(onNext: { self.onConfigLoaded(configs: $0) })
             .disposed(by: self)
         
         reloadConfigRelay
             .subscribe(on: ConcurrentDispatchQueueScheduler(qos: .background))
             .asDriverWithoutError()
-            .debounce(.milliseconds(100))
+            .debounce(.seconds(1))
             .drive(onNext: { _ in self.triggerConfigLoad(remoteId: remoteId) })
             .disposed(by: self)
         
-        loadConfig()
+        triggerConfigLoad(remoteId: remoteId)
     }
     
     func loadConfig() {
@@ -69,7 +70,7 @@ class ScheduleDetailVM: BaseViewModel<ScheduleDetailViewState, ScheduleDetailVie
         if let state = currentState(),
            let configMin = state.configMin,
            let configMax = state.configMax,
-           let program = state.programs.first(where: { $0.program == program}),
+           let program = state.programs.first(where: { $0.scheduleProgram.program == program} ),
            let channelFunc = state.channelFunction,
            let subfunction = state.thermostatSubfunction {
             let isHeat = channelFunc == SUPLA_CHANNELFNC_HVAC_THERMOSTAT && subfunction == .heat
@@ -77,8 +78,8 @@ class ScheduleDetailVM: BaseViewModel<ScheduleDetailViewState, ScheduleDetailVie
             
             let programState = EditProgramDialogViewState(
                 program: program,
-                heatTemperatureText: program.heatTemperature?.toTemperature(),
-                coolTemperatureText: program.coolTemperature?.toTemperature(),
+                heatTemperatureText: program.scheduleProgram.setpointTemperatureHeat?.fromSuplaTemperature().toTemperatureString(),
+                coolTemperatureText: program.scheduleProgram.setpointTemperatureCool?.fromSuplaTemperature().toTemperatureString(),
                 showHeatEdit: isHeat || channelFunc == SUPLA_CHANNELFNC_HVAC_DOMESTIC_HOT_WATER,
                 showCoolEdit: isCool,
                 configMin: configMin,
@@ -133,10 +134,10 @@ class ScheduleDetailVM: BaseViewModel<ScheduleDetailViewState, ScheduleDetailVie
     
     func onProgramChanged(_ program: ScheduleDetailProgram) {
         updateView { state in
-            let programs = state.programs.map { $0.program == program.program ? program : $0 }
+            let programs = state.programs.map { $0.scheduleProgram.program == program.scheduleProgram.program ? program : $0 }
             return publishChanges(
                 state.changing(path: \.programs, to: programs)
-                    .changing(path: \.activeProgram, to: program.program)
+                    .changing(path: \.activeProgram, to: program.scheduleProgram.program)
                     .changing(path: \.lastInteractionTime, to: dateProvider.currentTimestamp())
             )
         }
@@ -159,8 +160,8 @@ class ScheduleDetailVM: BaseViewModel<ScheduleDetailViewState, ScheduleDetailVie
             NSLog("Got unsuccessfull result (schedule: \(weeklyScheduleResult), hvac: \(hvacResult))")
             return
         }
-        guard let configMin = hvacConfig.temperatures.roomMin?.toTemperature(),
-              let configMax = hvacConfig.temperatures.roomMax?.toTemperature()
+        guard let configMin = hvacConfig.temperatures.roomMin?.fromSuplaTemperature(),
+              let configMax = hvacConfig.temperatures.roomMax?.fromSuplaTemperature()
         else { return }
         
         updateView { state in
@@ -169,7 +170,7 @@ class ScheduleDetailVM: BaseViewModel<ScheduleDetailViewState, ScheduleDetailVie
             }
             if let lastInteractionTime = state.lastInteractionTime,
                lastInteractionTime + REFRESH_DELAY_S >= dateProvider.currentTimestamp() {
-                scheduleConfigReload(lastInteractionTime, hvacConfig.remoteId)
+                reloadConfigRelay.accept(())
                 return state // Do not change anything during 3 secs after last user interaction
             }
             
@@ -216,17 +217,6 @@ class ScheduleDetailVM: BaseViewModel<ScheduleDetailViewState, ScheduleDetailVie
         return state
     }
     
-    private func scheduleConfigReload(_ lastInteractionTime: TimeInterval, _ remoteId: Int32) {
-        let delay = lastInteractionTime + REFRESH_DELAY_S - dateProvider.currentTimestamp()
-        if (delay > 0) {
-            DispatchQueue.main.asyncAfter(deadline: .now() + delay, execute: { [weak self] in
-                self?.triggerConfigLoad(remoteId: remoteId)
-            })
-        } else {
-            triggerConfigLoad(remoteId: remoteId)
-        }
-    }
-    
     private func loadSubfunction(_ remoteId: Int32) {
         readChannelByRemoteIdUseCase.invoke(remoteId: remoteId)
             .asDriverWithoutError()
@@ -263,26 +253,11 @@ struct ScheduleDetailViewState: ViewState {
 }
 
 struct ScheduleDetailProgram: Equatable, Changeable {
-    var program: SuplaScheduleProgram
-    var mode: SuplaHvacMode
-    var heatTemperature: Float?
-    var coolTemperature: Float?
+    var scheduleProgram: SuplaWeeklyScheduleProgram
     var icon: UIImage? = nil
     
     var text: String {
-        get {
-            @Singleton<TemperatureFormatter> var formatter
-            
-            if (program == .off) {
-                return Strings.General.turnOff
-            } else if (mode == .heat) {
-                return formatter.toString(heatTemperature, withUnit: false)
-            } else if (mode == .cool) {
-                return formatter.toString(coolTemperature, withUnit: false)
-            } else {
-                return TEMPERATURE_NO_VALUE
-            }
-        }
+        get { scheduleProgram.description }
     }
 }
 
@@ -327,18 +302,14 @@ fileprivate extension SuplaChannelWeeklyScheduleConfig {
         
         for program in programConfigurations {
             result.append(ScheduleDetailProgram(
-                program: program.program,
-                mode: program.mode,
-                heatTemperature: program.setpointTemperatureHeat?.toTemperature(),
-                coolTemperature: program.setpointTemperatureCool?.toTemperature(),
+                scheduleProgram: program,
                 icon: getProgramIcon(program)
             ))
         }
         
         result.append(ScheduleDetailProgram(
-            program: .off,
-            mode: .off,
-            icon: .iconPowerButton
+            scheduleProgram: SuplaWeeklyScheduleProgram.OFF,
+            icon: SuplaHvacMode.off.icon
         ))
         
         return result
@@ -374,11 +345,8 @@ fileprivate extension SuplaChannelWeeklyScheduleConfig {
     }
     
     private func getProgramIcon(_ program: SuplaWeeklyScheduleProgram) -> UIImage? {
-        if (channelFunc == SUPLA_CHANNELFNC_HVAC_THERMOSTAT_AUTO && program.mode == .heat) {
-            return .iconHeat
-        }
-        if (channelFunc == SUPLA_CHANNELFNC_HVAC_THERMOSTAT_AUTO && program.mode == .cool) {
-            return .iconCool
+        if (channelFunc == SUPLA_CHANNELFNC_HVAC_THERMOSTAT_AUTO) {
+            return program.mode.icon
         }
         
         return nil
@@ -391,15 +359,8 @@ fileprivate extension ScheduleDetailViewState {
         var result: [SuplaWeeklyScheduleProgram] = []
         
         programs.forEach { program in
-            if (program.program != .off) {
-                result.append(
-                    SuplaWeeklyScheduleProgram(
-                        program: program.program,
-                        mode: program.mode,
-                        setpointTemperatureHeat: program.heatTemperature?.toSuplaTemperature(),
-                        setpointTemperatureCool: program.coolTemperature?.toSuplaTemperature()
-                    )
-                )
+            if (program.scheduleProgram.program != .off) {
+                result.append(program.scheduleProgram)
             }
         }
         

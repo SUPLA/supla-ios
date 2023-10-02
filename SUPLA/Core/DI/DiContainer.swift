@@ -69,7 +69,7 @@ extension DiContainer {
         DiContainer.shared.register(type: DateProvider.self, component: DateProviderImpl())
         DiContainer.shared.register(type: UserNotificationCenter.self, component: UserNotificationCenterImpl())
         DiContainer.shared.register(type: RequestHelper.self, component: RequestHelperImpl())
-        DiContainer.shared.register(type: TemperatureFormatter.self, component: TemperatureFormatterImpl())
+        DiContainer.shared.register(type: ValuesFormatter.self, component: ValuesFormatterImpl())
         DiContainer.shared.register(type: DelayedThermostatActionSubject.self, component: DelayedThermostatActionSubjectImpl())
         DiContainer.shared.register(type: DelayedWeeklyScheduleConfigSubject.self, component: DelayedWeeklyScheduleConfigSubjectImpl())
         

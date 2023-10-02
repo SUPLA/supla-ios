@@ -181,6 +181,10 @@ struct Strings {
         
         static let editQuartersDialogHeader = "schedule_detail_quarters_dialog_header".toLocalized()
         static let configurationFailure = "schedule_detail_configuration_failure".toLocalized()
+        
+        static let programTime = "thermostat_detail_program_time".toLocalized()
+        static let programCurrent = "thermostat_detail_program_current".toLocalized()
+        static let programNext = "thermostat_detail_program_next".toLocalized()
     }
     
     struct General {
@@ -211,6 +215,9 @@ struct Strings {
         static let fridayShort = "friday_short".toLocalized()
         static let saturdayShort = "saturday_short".toLocalized()
         static let sundayShort = "sunday_short".toLocalized()
+        
+        static let time_just_minutes = "time_just_mintes".toLocalized()
+        static let time_hours_and_mintes = "time_hours_and_minutes".toLocalized()
     }
 }
 

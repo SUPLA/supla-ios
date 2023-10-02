@@ -19,7 +19,7 @@
 import Foundation
 
 extension Int16 {
-    func toTemperature() -> Float {
+    func fromSuplaTemperature() -> Float {
         return Float(self) / 100
     }
 }

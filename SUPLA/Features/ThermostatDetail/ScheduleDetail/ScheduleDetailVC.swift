@@ -190,21 +190,21 @@ fileprivate class ButtonsRowView: UIScrollView {
         
         for program in programs {
             let buttonView = RoundedControlButtonView(height: Dimens.buttonSmallHeight)
-            buttonView.backgroundColor = program.program.color()
+            buttonView.backgroundColor = program.scheduleProgram.program.color()
             buttonView.translatesAutoresizingMaskIntoConstraints = false
             buttonView.icon = program.icon != nil ? .suplaIcon(icon: program.icon) : nil
             buttonView.text = program.text
             buttonView.textFont = .scheduleDetailButton
             buttonView.type = .neutral
             buttonView.tap
-                .subscribe(onNext: { self.tapRelay.accept(program.program) })
+                .subscribe(onNext: { self.tapRelay.accept(program.scheduleProgram.program) })
                 .disposed(by: disposeBag)
-            if (program.program != .off) {
+            if (program.scheduleProgram.program != .off) {
                 buttonView.longPress
-                    .subscribe(onNext: { self.longPressRelay.accept(program.program) })
+                    .subscribe(onNext: { self.longPressRelay.accept(program.scheduleProgram.program) })
                     .disposed(by: disposeBag)
             }
-            buttons[program.program] = buttonView
+            buttons[program.scheduleProgram.program] = buttonView
             
             contentView.addSubview(buttonView)
         }
@@ -216,7 +216,7 @@ fileprivate class ButtonsRowView: UIScrollView {
         var width: CGFloat = Dimens.distanceDefault
         var previousButton: RoundedControlButtonView? = nil
         for program in programs {
-            guard let buttonView = buttons[program.program] else { continue }
+            guard let buttonView = buttons[program.scheduleProgram.program] else { continue }
             width += buttonView.intrinsicContentSize.width + Dimens.distanceTiny
 
             changableConstraints.append(buttonView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: Dimens.distanceSmall))

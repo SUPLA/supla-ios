@@ -335,7 +335,6 @@
 "save" = "Zapisz";
 "turn_on" = "Włącz";
 "turn_off" = "Wyłącz";
-
 /* General - DayOfWeek */
 "monday" = "Poniedziałek";
 "tuesday" = "Wtorek";
@@ -351,6 +350,8 @@
 "friday_short" = "PT";
 "saturday_short" = "SO";
 "sunday_short" = "ND";
+"time_just_mintes" = "%d min.";
+"time_hours_and_minutes" = "%d godz. %d min.";
 
 /* Standard Detail */
 "standard_detail_general_tab" = "Ogólne";
@@ -401,3 +402,6 @@
 "hvac_mode_temperature_cooling" = "Temperatura chłodzenia";
 "schedule_detail_quarters_dialog_header" = "Godzina %02d:00";
 "schedule_detail_configuration_failure" = "Błąd - nieprawidłowa konfiguracja kanału";
+"thermostat_detail_program_time" = "przez %@";
+"thermostat_detail_program_current" = "Aktualnie:";
+"thermostat_detail_program_next" = "Następnie:";
