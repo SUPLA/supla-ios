@@ -26,6 +26,8 @@ class MultiAccountProfileManager: NSObject {
     @Singleton<RuntimeConfig> private var runtimeConfig
     @Singleton<SingleCall> private var singleCall
     
+    private let userDefaults = UserDefaults.standard
+    
     @objc
     override init() {
         super.init()
@@ -135,6 +137,52 @@ extension MultiAccountProfileManager: ProfileManager {
         }
         
         return nil
+    }
+    
+    func restoreProfileFromDefaults() -> Bool {
+        let authInfo = AuthInfo.from(userDefaults: userDefaults)
+        
+        if (authInfo.isAuthDataComplete) {
+            let isAdvanced = userDefaults.bool(forKey: "advanced_config")
+            
+            do {
+                try profileRepository.create()
+                    .map { profile in
+                        profile.advancedSetup = isAdvanced
+                        profile.authInfo = authInfo
+                        profile.isActive = true
+                        
+                        return profile
+                    }
+                    .flatMap { profile in self.profileRepository.save().map { profile } }
+                    .map { profile in
+                        var bytes = [CChar](repeating: 0, count: Int(SUPLA_GUID_SIZE))
+                        if (SAApp.getClientGUID(&bytes)) {
+                            AuthProfileItemKeychainHelper.setSecureRandom(
+                                Data(bytes.map { UInt8(bitPattern: $0)}),
+                                key: AuthProfileItemKeychainHelper.guidKey,
+                                id: profile.objectID
+                            )
+                        }
+                        
+                        bytes = [CChar](repeating: 0, count: Int(SUPLA_AUTHKEY_SIZE))
+                        if (SAApp.getAuthKey(&bytes)) {
+                            AuthProfileItemKeychainHelper.setSecureRandom(
+                                Data(bytes.map { UInt8(bitPattern: $0) }),
+                                key: AuthProfileItemKeychainHelper.authKey,
+                                id: profile.objectID
+                            )
+                        }
+                    }
+                    .subscribeSynchronous()
+                
+                return true
+            } catch {
+                NSLog("Could not restore account because of \(error)")
+            }
+        }
+        
+        return false
     }
     
     private func initiateReconnect() {

@@ -303,6 +303,8 @@
 "Channels" = "Kanały";
 "Groups" = "Grupy";
 "Scenes" = "Sceny";
+"Thermostat" = "Termostat";
+"Not supported function" = "Niewspierana funkcja";
 
 "AccountCreation.title" = "Edytuj konto";
 "AccountCreation.modificationTitle" = "Dodaj konto";
@@ -330,11 +332,32 @@
 
 /* General */
 "General.error" = "Błąd";
+"save" = "Zapisz";
+"turn_on" = "Włącz";
+"turn_off" = "Wyłącz";
+/* General - DayOfWeek */
+"monday" = "Poniedziałek";
+"tuesday" = "Wtorek";
+"wednesday" = "Środa";
+"thursday" = "Czwartek";
+"friday" = "Piątek";
+"saturday" = "Sobota";
+"sunday" = "Niedziela";
+"monday_short" = "PN";
+"tuesday_short" = "WT";
+"wednesday_short" = "ŚR";
+"thursday_short" = "CZ";
+"friday_short" = "PT";
+"saturday_short" = "SO";
+"sunday_short" = "ND";
+"time_just_mintes" = "%d min.";
+"time_hours_and_minutes" = "%d godz. %d min.";
 
 /* Standard Detail */
 "standard_detail_general_tab" = "Ogólne";
 "standard_detail_timer_tab" = "Timer";
 "standard_detail_metrics_tab" = "Pomiary";
+"standard_detail_schedule_tab" = "Tydzień";
 
 /* Switch Detail */
 "switch_detail_state_label" = "Aktualny stan:";
@@ -368,3 +391,17 @@
 "timer_detail_end_hour" = "do godz. %@";
 "timer_detail_wrong_time_title" = "Nieprawidłowy czas";
 "timer_detail_wrong_time_message" = "Czas musi być większy od 0";
+
+/* Thermostat Detail */
+"thermostat_thermometer_error" = "Błąd odczytu temperatury";
+"thermostat_clock_error" = "Błąd zegara";
+"thermostat_detail_mode_manual" = "Ręczny";
+"thermostat_detail_mode_weekly_schedule" = "Program";
+"schedule_detail_program_dialog_header" = "Ustawienia program %d";
+"hvac_mode_temperature_heating" = "Temperatura grzania";
+"hvac_mode_temperature_cooling" = "Temperatura chłodzenia";
+"schedule_detail_quarters_dialog_header" = "Godzina %02d:00";
+"schedule_detail_configuration_failure" = "Błąd - nieprawidłowa konfiguracja kanału";
+"thermostat_detail_program_time" = "przez %@";
+"thermostat_detail_program_current" = "Aktualnie:";
+"thermostat_detail_program_next" = "Następnie:";

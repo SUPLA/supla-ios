@@ -51,7 +51,7 @@ final class CreateProfileGroupsListUseCaseImpl: CreateProfileGroupsListUseCase {
             }
             
             if (!lastLocation.isCollapsed(flag: .group)) {
-                items.append(.channelBase(channelBase: channel))
+                items.append(.channelBase(channelBase: channel, children: []))
             }
         }
         

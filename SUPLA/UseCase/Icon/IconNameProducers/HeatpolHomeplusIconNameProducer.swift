@@ -21,12 +21,12 @@ final class HeatpolHomeplusIconNameProducer: IconNameProducer {
         return function == SUPLA_CHANNELFNC_THERMOSTAT_HEATPOL_HOMEPLUS
     }
     
-    func produce(function: Int32, state: ChannelState, altIcon: Int32, iconType: IconType) -> String {
+    func produce(iconData: IconData) -> String {
         var name = "thermostat_hp_homeplus"
-        if (altIcon > 0 && altIcon <= 3) {
-            name = String.init(format: "%@%i", name, altIcon)
+        if (iconData.altIcon > 0 && iconData.altIcon <= 3) {
+            name = String.init(format: "%@%i", name, iconData.altIcon)
         }
         
-        return addStateSufix(name: name, state: state)
+        return addStateSufix(name: name, state: iconData.state)
     }
 }

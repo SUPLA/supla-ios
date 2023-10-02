@@ -34,6 +34,7 @@ protocol ListsEventsManager: ListsEventsManagerEmitter {
     func observeScene(sceneId: Int) -> Observable<SAScene>
     func observeChannel(remoteId: Int) -> Observable<SAChannel>
     func observeGroup(remoteId: Int) -> Observable<SAChannelGroup>
+    func observeChannelWithChildren(remoteId: Int) -> Observable<ChannelWithChildren>
     func observeChannelUpdates() -> Observable<Void>
     func observeGroupUpdates() -> Observable<Void>
     func observeSceneUpdates() -> Observable<Void>
@@ -52,6 +53,8 @@ final class ListsEventsManagerImpl: ListsEventsManager {
     @Singleton<ChannelRepository> private var channelRepository
     @Singleton<GroupRepository> private var groupRepository
     @Singleton<ProfileRepository> private var profileRepository
+    @Singleton<ChannelRelationRepository> private var channelRelationRepository
+    @Singleton<CreateChannelWithChildrenUseCase> private var createChannelWithChildrenUseCase
     
     func emitSceneChange(sceneId: Int) {
         let subject = getSubjectForScene(sceneId: sceneId)
@@ -104,6 +107,23 @@ final class ListsEventsManagerImpl: ListsEventsManager {
             }
     }
     
+    func observeChannelWithChildren(remoteId: Int) -> Observable<ChannelWithChildren> {
+        return getSubjectForChannel(channelId: remoteId)
+            .flatMap { _ in
+                self.profileRepository.getActiveProfile()
+                    .flatMap { profile in
+                        Observable.zip(
+                            self.channelRepository.getAllVisibleChannels(forProfile: profile),
+                            self.channelRelationRepository.getParentsMap(for: profile),
+                            resultSelector: { channels, listOfParents in
+                                self.toChannelWithChildren(remoteId: remoteId, channels, listOfParents)
+                            }
+                        )
+                    }
+            }
+            .compactMap { $0 }
+    }
+    
     func observeChannelUpdates() -> Observable<Void> { channelUpdatesSubject.asObservable() }
     
     func observeGroupUpdates() -> Observable<Void> { groupUpdatesSubject.asObservable() }
@@ -138,6 +158,16 @@ final class ListsEventsManagerImpl: ListsEventsManager {
         let subject = BehaviorRelay(value: 0)
         subjects[subjectId] = subject
         return subject
+    }
+    
+    private func toChannelWithChildren(remoteId: Int, _ channels: [SAChannel], _ parentsMap: [Int32: [SAChannelRelation]]) -> ChannelWithChildren? {
+        
+        guard
+            let channel = channels.first(where: { $0.remote_id == remoteId}),
+            let relations = parentsMap.first(where: { $0.key == remoteId})?.value
+        else { return nil }
+        
+        return createChannelWithChildrenUseCase.invoke(channel, allChannels: channels, relations: relations)
     }
     
     enum IdType {

@@ -77,7 +77,6 @@ final class ProfileManagerMock : ProfileManager {
     
     func getCurrentProfile() -> AuthProfileItem? { nil }
     func getCurrentProfile(withContext context: NSManagedObjectContext) -> AuthProfileItem? { nil }
-    
     func activateProfile(id: ProfileID, force: Bool) -> Bool {
         activatedProfiles.append(ActivatedProfile(id: id, force: force))
         
@@ -86,6 +85,11 @@ final class ProfileManagerMock : ProfileManager {
         } else {
             return true
         }
+    }
+    
+    var restoreProfileFromDefaultsReturns = false
+    func restoreProfileFromDefaults() -> Bool {
+        restoreProfileFromDefaultsReturns
     }
     
     struct ActivatedProfile: Equatable {

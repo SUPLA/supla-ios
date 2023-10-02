@@ -41,11 +41,11 @@ class UIFilledButton: UIButton {
     }
     
     private func setupView() {
-        backgroundColor = .primaryVariant
+        backgroundColor = .primary
         setTitleColor(.white, for: .normal)
         layer.borderWidth = 1
         layer.borderColor = UIColor(red: 118/255.0, green: 120/255.0, blue: 128/255.0, alpha: 0.12).cgColor
-        layer.cornerRadius = Dimens.radiusButton
+        layer.cornerRadius = Dimens.buttonRadius
         contentEdgeInsets = UIEdgeInsets(top: 8, left: 24, bottom: 8, right: 24)
         
         titleLabel?.font = .button
@@ -55,9 +55,9 @@ class UIFilledButton: UIButton {
         if (!isEnabled) {
             return .disabled
         } else if (isHighlighted) {
-            return .primary
-        } else {
             return .primaryVariant
+        } else {
+            return .primary
         }
     }
 }

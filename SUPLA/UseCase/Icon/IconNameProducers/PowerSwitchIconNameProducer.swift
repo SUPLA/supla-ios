@@ -21,8 +21,8 @@ final class PowerSwitchIconNameProducer: IconNameProducer {
         return function == SUPLA_CHANNELFNC_POWERSWITCH
     }
     
-    func produce(function: Int32, state: ChannelState, altIcon: Int32, iconType: IconType) -> String {
-        addStateSufix(name: switchIcon(altIcon), state: state)
+    func produce(iconData: IconData) -> String {
+        addStateSufix(name: switchIcon(iconData.altIcon), state: iconData.state)
     }
     
     private func switchIcon(_ altIcon: Int32) -> String {

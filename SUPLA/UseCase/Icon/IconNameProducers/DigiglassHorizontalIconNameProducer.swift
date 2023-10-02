@@ -21,8 +21,8 @@ final class DigiglassHorizontalIconNameProducer: IconNameProducer {
         return function == SUPLA_CHANNELFNC_DIGIGLASS_HORIZONTAL
     }
     
-    func produce(function: Int32, state: ChannelState, altIcon: Int32, iconType: IconType) -> String {
-        return addStateSufix(name: getName(altIcon), state: state)
+    func produce(iconData: IconData) -> String {
+        return addStateSufix(name: getName(iconData.altIcon), state: iconData.state)
     }
     
     private func getName(_ altIcon: Int32) -> String {

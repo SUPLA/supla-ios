@@ -39,7 +39,7 @@ final class ProvideDetailTypeUseCaseImpl: ProvideDetailTypeUseCase {
             SUPLA_CHANNELFNC_LIGHTSWITCH,
             SUPLA_CHANNELFNC_POWERSWITCH,
             SUPLA_CHANNELFNC_STAIRCASETIMER:
-            return .standard(pages: getSwitchDetailPages(channelBase: channelBase))
+            return .switchDetail(pages: getSwitchDetailPages(channelBase: channelBase))
         case
             SUPLA_CHANNELFNC_ELECTRICITY_METER:
             return .legacy(type: .em)
@@ -62,6 +62,10 @@ final class ProvideDetailTypeUseCaseImpl: ProvideDetailTypeUseCase {
             SUPLA_CHANNELFNC_DIGIGLASS_VERTICAL,
             SUPLA_CHANNELFNC_DIGIGLASS_HORIZONTAL:
             return .legacy(type: .digiglass)
+        case
+            SUPLA_CHANNELFNC_HVAC_THERMOSTAT,
+            SUPLA_CHANNELFNC_HVAC_DOMESTIC_HOT_WATER:
+            return .thermostatDetail(pages: [.thermostat, .schedule])
         default:
             return nil
         }
@@ -92,7 +96,8 @@ final class ProvideDetailTypeUseCaseImpl: ProvideDetailTypeUseCase {
 
 enum DetailType: Equatable {
     case legacy(type: LegacyDetailType)
-    case standard(pages: [DetailPage])
+    case switchDetail(pages: [DetailPage])
+    case thermostatDetail(pages: [DetailPage])
 }
 
 enum LegacyDetailType {
@@ -104,4 +109,7 @@ enum DetailPage {
     case timer
     case historyIc
     case historyEm
+    
+    case thermostat
+    case schedule
 }

@@ -32,16 +32,21 @@ final class CreateProfileChannelsListUseCaseTests: UseCaseTest<[List]> {
     private lazy var profileRepository: ProfileRepositoryMock! = {
         ProfileRepositoryMock()
     }()
+    private lazy var channelRelationRepository: ChannelRelationRepositoryMock! = {
+        ChannelRelationRepositoryMock()
+    }()
     
     override func setUp() {
         DiContainer.shared.register(type: (any ChannelRepository).self, component: channelRepository!)
         DiContainer.shared.register(type: (any ProfileRepository).self, component: profileRepository!)
+        DiContainer.shared.register(type: (any ChannelRelationRepository).self, component: channelRelationRepository!)
     }
     
     override func tearDown() {
         useCase = nil
         channelRepository = nil
         profileRepository = nil
+        channelRelationRepository = nil
         
         super.tearDown()
     }
@@ -62,8 +67,12 @@ final class CreateProfileChannelsListUseCaseTests: UseCaseTest<[List]> {
         location2.location_id = 2
         let channel2 = SAChannel(testContext: nil)
         channel2.location = location2
+        let channel3 = SAChannel(testContext: nil)
+        channel3.location_id = 2
+        channel3.flags = SUPLA_CHANNEL_FLAG_HAS_PARENT
         
-        channelRepository.allVisibleChannelsObservable = Observable.just([ channel1, channel2 ])
+        channelRepository.allVisibleChannelsObservable = Observable.just([ channel1, channel2, channel3 ])
+        channelRelationRepository.getParentsMapReturns = Observable.just([:])
         
         // when
         useCase.invoke().subscribe(observer).disposed(by: disposeBag)
@@ -78,9 +87,9 @@ final class CreateProfileChannelsListUseCaseTests: UseCaseTest<[List]> {
         XCTAssertEqual(items.count, 4)
         XCTAssertEqual(items, [
             .location(location: location1),
-            .channelBase(channelBase: channel1),
+            .channelBase(channelBase: channel1, children: []),
             .location(location: location2),
-            .channelBase(channelBase: channel2)
+            .channelBase(channelBase: channel2, children: [])
         ])
     }
     
@@ -104,6 +113,7 @@ final class CreateProfileChannelsListUseCaseTests: UseCaseTest<[List]> {
         channel2.location = location2
         
         channelRepository.allVisibleChannelsObservable = Observable.just([ channel1, channel2 ])
+        channelRelationRepository.getParentsMapReturns = Observable.just([:])
         
         // when
         useCase.invoke().subscribe(observer).disposed(by: disposeBag)
@@ -119,7 +129,7 @@ final class CreateProfileChannelsListUseCaseTests: UseCaseTest<[List]> {
         XCTAssertEqual(items, [
             .location(location: location1),
             .location(location: location2),
-            .channelBase(channelBase: channel2)
+            .channelBase(channelBase: channel2, children: [])
         ])
     }
     
@@ -142,6 +152,7 @@ final class CreateProfileChannelsListUseCaseTests: UseCaseTest<[List]> {
         channel2.location = location2
         
         channelRepository.allVisibleChannelsObservable = Observable.just([ channel1, channel2 ])
+        channelRelationRepository.getParentsMapReturns = Observable.just([:])
         
         // when
         useCase.invoke().subscribe(observer).disposed(by: disposeBag)
@@ -156,8 +167,60 @@ final class CreateProfileChannelsListUseCaseTests: UseCaseTest<[List]> {
         XCTAssertEqual(items.count, 3)
         XCTAssertEqual(items, [
             .location(location: location1),
-            .channelBase(channelBase: channel1),
-            .channelBase(channelBase: channel2)
+            .channelBase(channelBase: channel1, children: []),
+            .channelBase(channelBase: channel2, children: [])
+        ])
+    }
+    
+    func test_shouldLoadChannelWithChildren() {
+        // given
+        let profile = AuthProfileItem(testContext: nil)
+        profileRepository.activeProfileObservable = Observable.just(profile)
+        
+        let location1 = _SALocation(testContext: nil)
+        location1.caption = "Caption 1"
+        location1.location_id = 1
+        let channel1 = SAChannel(testContext: nil)
+        channel1.remote_id = 1
+        channel1.location = location1
+        
+        let location2 = _SALocation(testContext: nil)
+        location2.caption = "Caption 2"
+        location2.location_id = 2
+        let channel2 = SAChannel(testContext: nil)
+        channel2.remote_id = 2
+        channel2.location = location2
+        channel2.flags = SUPLA_CHANNEL_FLAG_HAS_PARENT
+        let channel3 = SAChannel(testContext: nil)
+        channel3.remote_id = 3
+        channel3.location_id = 2
+        channel3.flags = SUPLA_CHANNEL_FLAG_HAS_PARENT
+        
+        channelRepository.allVisibleChannelsObservable = Observable.just([ channel1, channel2, channel3 ])
+        channelRelationRepository.getParentsMapReturns = Observable.just([
+            1: [
+                SAChannelRelation.mock(1, channelId: 2, type: .mainThermometer),
+                SAChannelRelation.mock(1, channelId: 3, type: .auxThermometerFloor)
+            ]
+        ])
+        
+        // when
+        useCase.invoke().subscribe(observer).disposed(by: disposeBag)
+        
+        // then
+        XCTAssertEqual(observer.events.count, 2)
+        guard let items = observer.events[0].value.element?.first?.items else {
+            XCTFail("No items produced")
+            return
+        }
+        
+        XCTAssertEqual(items.count, 2)
+        XCTAssertEqual(items, [
+            .location(location: location1),
+            .channelBase(channelBase: channel1, children: [
+                ChannelChild(channel: channel2, relationType: .mainThermometer),
+                ChannelChild(channel: channel3, relationType: .auxThermometerFloor)
+            ]),
         ])
     }
 }

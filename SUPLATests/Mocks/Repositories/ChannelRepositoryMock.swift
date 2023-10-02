@@ -41,6 +41,13 @@ final class ChannelRepositoryMock: BaseRepositoryMock<SAChannel>, ChannelReposit
         return channelObservable
     }
     
+    var getAllChannelsParameters: [(AuthProfileItem, [Int32])] = []
+    var getAllChannelsReturns: Observable<[SAChannel]> = Observable.empty()
+    func getAllChannels(forProfile profile: AuthProfileItem, with ids: [Int32]) -> Observable<[SAChannel]> {
+        getAllChannelsParameters.append((profile, ids))
+        return getAllChannelsReturns
+    }
+    
     var deleteAllObservable: Observable<Void> = Observable.empty()
     var deleteAllCounter = 0
     func deleteAll(for profile: AuthProfileItem) -> Observable<Void> {

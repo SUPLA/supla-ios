@@ -19,9 +19,15 @@
 protocol DateProvider {
     func currentDate() -> Date
     func currentTimestamp() -> TimeInterval
+    func currentDayOfWeek() -> DayOfWeek
+    func currentHour() -> Int
+    func currentMinute() -> Int
 }
 
 final class DateProviderImpl: DateProvider {
+    
+    let calendar = Calendar.current
+    
     func currentDate() -> Date {
         Date()
     }
@@ -30,5 +36,15 @@ final class DateProviderImpl: DateProvider {
         Date().timeIntervalSince1970
     }
     
+    func currentDayOfWeek() -> DayOfWeek {
+        DayOfWeek.from(value: UInt8(calendar.component(.weekday, from: Date()) - 1))
+    }
     
+    func currentHour() -> Int {
+        calendar.component(.hour, from: Date())
+    }
+    
+    func currentMinute() -> Int {
+        calendar.component(.minute, from: Date())
+    }
 }

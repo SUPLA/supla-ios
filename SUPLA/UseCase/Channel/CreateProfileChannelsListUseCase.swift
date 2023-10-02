@@ -27,15 +27,22 @@ final class CreateProfileChannelsListUseCaseImpl: CreateProfileChannelsListUseCa
     
     @Singleton<ChannelRepository> private var channelRepository
     @Singleton<ProfileRepository> private var profileRepository
+    @Singleton<ChannelRelationRepository> private var channelRelationRepository
+    @Singleton<CreateChannelWithChildrenUseCase> private var createChannelWithChildrenUseCase
     
     func invoke() -> Observable<[List]> {
         return profileRepository
             .getActiveProfile()
-            .flatMapFirst { self.channelRepository.getAllVisibleChannels(forProfile: $0) }
-            .map { self.toList($0) }
+            .flatMapFirst { profile in
+                Observable.zip(
+                    self.channelRepository.getAllVisibleChannels(forProfile: profile),
+                    self.channelRelationRepository.getParentsMap(for: profile),
+                    resultSelector: { channels, listOfParents in self.toList(channels, listOfParents) }
+                )
+            }
     }
     
-    private func toList(_ channels: [SAChannel]) -> [List] {
+    private func toList(_ channels: [SAChannel], _ parentsMap: [Int32: [SAChannelRelation]]) -> [List] {
         if (channels.isEmpty) {
             return []
         }
@@ -45,13 +52,27 @@ final class CreateProfileChannelsListUseCaseImpl: CreateProfileChannelsListUseCa
         items.append(.location(location: lastLocation))
         
         for channel in channels {
+            if (channel.flags & SUPLA_CHANNEL_FLAG_HAS_PARENT > 0) {
+                // skip channels which have parent ID.
+                continue
+            }
+            
             if (lastLocation.caption != channel.location!.caption) {
                 items.append(.location(location: channel.location!))
                 lastLocation = channel.location!
             }
             
             if (!lastLocation.isCollapsed(flag: .channel)) {
-                items.append(.channelBase(channelBase: channel))
+                if let childrenRelations = parentsMap[channel.remote_id] {
+                    let channelWithChildren = createChannelWithChildrenUseCase.invoke(
+                        channel,
+                        allChannels: channels,
+                        relations: childrenRelations
+                    )
+                    items.append(.channelBase(channelBase: channel, children: channelWithChildren.children))
+                } else {
+                    items.append(.channelBase(channelBase: channel, children: []))
+                }
             }
         }
         

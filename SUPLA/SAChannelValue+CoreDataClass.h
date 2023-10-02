@@ -62,6 +62,7 @@ NS_ASSUME_NONNULL_BEGIN
 -(BOOL) calibrationFailed;
 -(BOOL) calibrationLost;
 -(BOOL) motorProblem;
+-(THVACValue) hvacValue;
 @end
 
 NS_ASSUME_NONNULL_END

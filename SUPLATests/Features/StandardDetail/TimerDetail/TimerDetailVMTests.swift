@@ -107,7 +107,7 @@ final class TimerDetailVMTests: ViewModelTest<TimerDetailViewState, TimerDetailV
         assertState(1, withPath: \.deviceState?.iconData.altIcon, equalTo: altIcon)
         assertState(1, withPath: \.deviceState?.iconData.function, equalTo: function)
         assertState(1, withPath: \.deviceState?.iconData.userIcon, equalTo: userIcon)
-        assertState(1, withPath: \.deviceState?.iconData.channelState, equalTo: .opened)
+        assertState(1, withPath: \.deviceState?.iconData.state, equalTo: .opened)
         assertState(1, withPath: \.editMode, equalTo: false)
         
         XCTAssertEqual(readChannelByRemoteIdUseCase.remoteIdArray[0], 123)
@@ -162,7 +162,7 @@ final class TimerDetailVMTests: ViewModelTest<TimerDetailViewState, TimerDetailV
         assertState(2, withPath: \.deviceState?.iconData.altIcon, equalTo: altIcon)
         assertState(2, withPath: \.deviceState?.iconData.function, equalTo: function)
         assertState(2, withPath: \.deviceState?.iconData.userIcon, equalTo: userIcon)
-        assertState(2, withPath: \.deviceState?.iconData.channelState, equalTo: .opened)
+        assertState(2, withPath: \.deviceState?.iconData.state, equalTo: .opened)
         assertState(2, withPath: \.editMode, equalTo: false)
         
         XCTAssertEqual(readChannelByRemoteIdUseCase.remoteIdArray[0], 123)
@@ -264,10 +264,9 @@ final class TimerDetailVMTests: ViewModelTest<TimerDetailViewState, TimerDetailV
         
         // then
         assertObserverItems(statesCount: 1, eventsCount: 0) // only default state
-        XCTAssertEqual(executeSimpleActionUseCase.remoteIdsArray.count, 1)
-        XCTAssertEqual(executeSimpleActionUseCase.remoteIdsArray[0], remoteId)
-        XCTAssertEqual(executeSimpleActionUseCase.actionsArray[0], .turn_on)
-        XCTAssertEqual(executeSimpleActionUseCase.typesArray[0], .channel)
+        XCTAssertTuples(executeSimpleActionUseCase.parameters, [
+            (Action.turn_on, SUPLA.SubjectType.channel, remoteId)
+        ])
     }
     
     func test_stopTimer_channelOff() {
@@ -283,10 +282,9 @@ final class TimerDetailVMTests: ViewModelTest<TimerDetailViewState, TimerDetailV
         
         // then
         assertObserverItems(statesCount: 1, eventsCount: 0) // only default state
-        XCTAssertEqual(executeSimpleActionUseCase.remoteIdsArray.count, 1)
-        XCTAssertEqual(executeSimpleActionUseCase.remoteIdsArray[0], remoteId)
-        XCTAssertEqual(executeSimpleActionUseCase.actionsArray[0], .turn_off)
-        XCTAssertEqual(executeSimpleActionUseCase.typesArray[0], .channel)
+        XCTAssertTuples(executeSimpleActionUseCase.parameters, [
+            (Action.turn_off, SUPLA.SubjectType.channel, remoteId)
+        ])
     }
     
     func test_cancelTimer_channelOn() {
@@ -302,10 +300,9 @@ final class TimerDetailVMTests: ViewModelTest<TimerDetailViewState, TimerDetailV
         
         // then
         assertObserverItems(statesCount: 1, eventsCount: 0) // only default state
-        XCTAssertEqual(executeSimpleActionUseCase.remoteIdsArray.count, 1)
-        XCTAssertEqual(executeSimpleActionUseCase.remoteIdsArray[0], remoteId)
-        XCTAssertEqual(executeSimpleActionUseCase.actionsArray[0], .turn_off)
-        XCTAssertEqual(executeSimpleActionUseCase.typesArray[0], .channel)
+        XCTAssertTuples(executeSimpleActionUseCase.parameters, [
+            (Action.turn_off, SUPLA.SubjectType.channel, remoteId)
+        ])
     }
     
     func test_cancelTimer_channelOff() {
@@ -321,10 +318,9 @@ final class TimerDetailVMTests: ViewModelTest<TimerDetailViewState, TimerDetailV
         
         // then
         assertObserverItems(statesCount: 1, eventsCount: 0) // only default state
-        XCTAssertEqual(executeSimpleActionUseCase.remoteIdsArray.count, 1)
-        XCTAssertEqual(executeSimpleActionUseCase.remoteIdsArray[0], remoteId)
-        XCTAssertEqual(executeSimpleActionUseCase.actionsArray[0], .turn_on)
-        XCTAssertEqual(executeSimpleActionUseCase.typesArray[0], .channel)
+        XCTAssertTuples(executeSimpleActionUseCase.parameters, [
+            (Action.turn_on, SUPLA.SubjectType.channel, remoteId)
+        ])
     }
     
     func test_shouldCalculateProgressData() {

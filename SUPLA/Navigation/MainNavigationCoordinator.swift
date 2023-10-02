@@ -231,10 +231,13 @@ class MainNavigationCoordinator: BaseNavigationCoordinator {
         startFlow(coordinator: LegacyDetailNavigationCoordinator(detailType: legacyDetailType, channelBase: channelBase))
     }
     
-    func navigateToStandardDetail(remoteId: Int32, pages: [DetailPage]) {
-        startFlow(coordinator: StandardDetailNavigationCoordinator(remoteId: remoteId, pages: pages))
+    func navigateToSwitchDetail(remoteId: Int32, pages: [DetailPage]) {
+        startFlow(coordinator: SwitchDetailNavigationCoordinator(remoteId: remoteId, pages: pages))
     }
     
+    func navigateToThermostatDetail(remoteId: Int32, pages: [DetailPage]) {
+        startFlow(coordinator: ThermostatDetailNavigationCoordinator(remoteId: remoteId, pages: pages))
+    }
     
     // MARK: -
     // MARK: Application life cycle support

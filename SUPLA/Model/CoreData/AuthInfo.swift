@@ -108,8 +108,8 @@ class AuthInfo: NSObject, NSCoding {
                  serverForEmail == o.serverForEmail &&
                  serverForAccessID == o.serverForAccessID &&
                  accessIDpwd == o.accessIDpwd &&
-                 emailAddress == o.emailAddress
-
+                 emailAddress == o.emailAddress &&
+                 preferredProtocolVersion == o.preferredProtocolVersion
     }
     
     @objc var serverForCurrentAuthMethod: String {
@@ -154,6 +154,36 @@ extension AuthInfo {
             serverForAccessID: "",
             accessID: 0,
             accessIDpwd: ""
+        )
+    }
+    
+    static func from(userDefaults: UserDefaults) -> AuthInfo {
+        let accessID = userDefaults.integer(forKey: "access_id")
+        let accessIDpwd = userDefaults.string(forKey: "access_id_pwd") ?? ""
+        let serverHostName = userDefaults.string(forKey: "server_host") ?? ""
+        let emailAddress = userDefaults.string(forKey: "email_address") ?? ""
+        let isAdvanced = userDefaults.bool(forKey: "advanced_config")
+        let prefProtoVersion = Int(SUPLA_PROTO_VERSION)
+        let serverForEmail: String
+        let serverForAccessID: String
+        
+        if isAdvanced {
+            serverForAccessID = serverHostName
+            serverForEmail = ""
+        } else {
+            serverForAccessID = ""
+            serverForEmail = serverHostName
+        }
+        
+        return AuthInfo(
+            emailAuth: !isAdvanced,
+            serverAutoDetect: !isAdvanced,
+            emailAddress: emailAddress,
+            serverForEmail: serverForEmail,
+            serverForAccessID: serverForAccessID,
+            accessID: accessID,
+            accessIDpwd: accessIDpwd,
+            preferredProtocolVersion: prefProtoVersion
         )
     }
 }

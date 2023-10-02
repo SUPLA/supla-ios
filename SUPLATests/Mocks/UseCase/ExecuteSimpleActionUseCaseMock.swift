@@ -22,13 +22,9 @@ import RxSwift
 final class ExecuteSimpleActionUseCaseMock: ExecuteSimpleActionUseCase {
     
     var returns: Observable<Void> = Observable.empty()
-    var actionsArray: [Action] = []
-    var typesArray: [SUPLA.SubjectType] = []
-    var remoteIdsArray: [Int32] = []
+    var parameters: [(Action, SUPLA.SubjectType, Int32)] = []
     func invoke(action: Action, type: SUPLA.SubjectType, remoteId: Int32) -> Observable<Void> {
-        actionsArray.append(action)
-        typesArray.append(type)
-        remoteIdsArray.append(remoteId)
+        parameters.append((action, type, remoteId))
         return returns
     }
     

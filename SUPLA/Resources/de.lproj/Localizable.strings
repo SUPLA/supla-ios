@@ -316,9 +316,14 @@
 "Cfg.removal.dialog.duplicated_name" = "Es gibt schon ein Konto mit diesem Namen";
 "Cfg.removal.dialog.incomplete" = "Bitte die erforderliche Angaben vervollständigen";
 
-"General.error" = "Fehler";
 "dialog_new_gesture_info_text" = "Wischgeste zum Öffnen der Kanaldetails wurde gelöscht, tippe auf dem Kanal, um sie zu sehen.";
 
+/* General */
+"General.error" = "Fehler";
+"turn_on" = "Einschalten";
+"turn_off" = "Auschalten";
+"time_just_mintes" = "%d Min.";
+"time_hours_and_minutes" = "%d Std. %d Min.";
 
 /* Standard Detail */
 "standard_detail_general_tab" = "Allgemein";
@@ -357,3 +362,17 @@
 "timer_detail_end_hour" = "bis %@";
 "timer_detail_wrong_time_title" = "Falsche Zeit";
 "timer_detail_wrong_time_message" = "Zeit muss größer als 0 sein";
+
+/* Thermostat Detail */
+"thermostat_thermometer_error" = "Fehler beim Temperaturelesen";
+"thermostat_clock_error" = "Uhrfehler";
+"thermostat_detail_mode_manual" = "Handbetrieb";
+"thermostat_detail_mode_weekly_schedule" = "Wöchentlich";
+"schedule_detail_program_dialog_header" = "Program %d Einstellungen";
+"hvac_mode_temperature_heating" = "Heiztemperature";
+"hvac_mode_temperature_cooling" = "Kühltemperature";
+"schedule_detail_quarters_dialog_header" = "Zeit %02d:00";
+"schedule_detail_configuration_failure" = "Fehler - ungültige Kanalkonfiguration";
+"thermostat_detail_program_time" = "für %@";
+"thermostat_detail_program_current" = "Aktuell:";
+"thermostat_detail_program_next" = "Danach:";
