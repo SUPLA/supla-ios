@@ -42,4 +42,14 @@ enum QuarterOfHour: UInt8, CaseIterable {
         
         fatalError("Could not convert value `\(value)` to QuarterOfHour")
     }
+    
+    static func from(minute: Int) -> QuarterOfHour {
+        for quarter in QuarterOfHour.allCases {
+            if (minute < quarter.minutes() + 15) {
+                return quarter
+            }
+        }
+        
+        fatalError("Could not find quarter for minute `\(minute)`")
+    }
 }

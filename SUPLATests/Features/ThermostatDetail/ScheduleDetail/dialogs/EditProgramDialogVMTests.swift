@@ -1,10 +1,20 @@
-//
-//  EditProgramDialogVMTests.swift
-//  SUPLATests
-//
-//  Created by Michał Polański on 21/09/2023.
-//  Copyright © 2023 AC SOFTWARE SP. Z O.O. All rights reserved.
-//
+/*
+ Copyright (C) AC SOFTWARE SP. Z O.O.
+
+ This program is free software; you can redistribute it and/or
+ modify it under the terms of the GNU General Public License
+ as published by the Free Software Foundation; either version 2
+ of the License, or (at your option) any later version.
+
+ This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ GNU General Public License for more details.
+
+ You should have received a copy of the GNU General Public License
+ along with this program; if not, write to the Free Software
+ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
+ */
 
 import XCTest
 import RxTest
@@ -15,7 +25,7 @@ import RxSwift
 final class EditProgramDialogVMTests: ViewModelTest<EditProgramDialogViewState, EditProgramDialogViewEvent> {
     
     private let initialState = EditProgramDialogViewState(
-        program: ScheduleDetailProgram(program: .off, mode: .notSet),
+        program: ScheduleDetailProgram(scheduleProgram: .OFF),
         showHeatEdit: false,
         showCoolEdit: false,
         configMin: 0,
@@ -27,7 +37,7 @@ final class EditProgramDialogVMTests: ViewModelTest<EditProgramDialogViewState, 
     }()
     
     override func setUp() {
-        DiContainer.shared.register(type: TemperatureFormatter.self, component: TemperatureFormatterMock())
+        DiContainer.shared.register(type: ValuesFormatter.self, component: ValuesFormatterMock())
     }
     
     override func tearDown() {
@@ -51,7 +61,7 @@ final class EditProgramDialogVMTests: ViewModelTest<EditProgramDialogViewState, 
     func test_shouldIncreaseHeatTemperature() {
         // given
         let state = initialState
-            .changing(path: \.program, to: initialState.program.changing(path: \.heatTemperature, to: 21))
+            .changing(path: \.program, to: initialState.program.changing(path: \.scheduleProgram, to: initialState.program.scheduleProgram.copy(newHeatTemperature: 2100)))
             .changing(path: \.configMin, to: 10)
             .changing(path: \.configMax, to: 40)
         viewModel.updateView { _ in state }
@@ -65,7 +75,7 @@ final class EditProgramDialogVMTests: ViewModelTest<EditProgramDialogViewState, 
         assertStates(expected: [
             state,
             state
-                .changing(path: \.program, to: state.program.changing(path: \.heatTemperature, to: 21.1))
+                .changing(path: \.program, to: initialState.program.changing(path: \.scheduleProgram, to: initialState.program.scheduleProgram.copy(newHeatTemperature: 2110)))
                 .changing(path: \.heatTemperatureText, to: "21.1")
         ])
     }
@@ -73,7 +83,7 @@ final class EditProgramDialogVMTests: ViewModelTest<EditProgramDialogViewState, 
     func test_shouldDecreaseHeatTemperature() {
         // given
         let state = initialState
-            .changing(path: \.program, to: initialState.program.changing(path: \.heatTemperature, to: 21))
+            .changing(path: \.program, to: initialState.program.changing(path: \.scheduleProgram, to: initialState.program.scheduleProgram.copy(newHeatTemperature: 2100)))
             .changing(path: \.configMin, to: 10)
             .changing(path: \.configMax, to: 40)
         viewModel.updateView { _ in state }
@@ -87,7 +97,7 @@ final class EditProgramDialogVMTests: ViewModelTest<EditProgramDialogViewState, 
         assertStates(expected: [
             state,
             state
-                .changing(path: \.program, to: state.program.changing(path: \.heatTemperature, to: 20.9))
+                .changing(path: \.program, to: initialState.program.changing(path: \.scheduleProgram, to: initialState.program.scheduleProgram.copy(newHeatTemperature: 2090)))
                 .changing(path: \.heatTemperatureText, to: "20.9")
         ])
     }
@@ -95,7 +105,7 @@ final class EditProgramDialogVMTests: ViewModelTest<EditProgramDialogViewState, 
     func test_shouldLockPlusButtonWhenReachingMaxHeatTemperature() {
         // given
         let state = initialState
-            .changing(path: \.program, to: initialState.program.changing(path: \.heatTemperature, to: 39.9))
+            .changing(path: \.program, to: initialState.program.changing(path: \.scheduleProgram, to: initialState.program.scheduleProgram.copy(newHeatTemperature: 3990)))
             .changing(path: \.configMin, to: 10)
             .changing(path: \.configMax, to: 40)
         viewModel.updateView { _ in state }
@@ -109,7 +119,7 @@ final class EditProgramDialogVMTests: ViewModelTest<EditProgramDialogViewState, 
         assertStates(expected: [
             state,
             state
-                .changing(path: \.program, to: state.program.changing(path: \.heatTemperature, to: 40))
+                .changing(path: \.program, to: initialState.program.changing(path: \.scheduleProgram, to: initialState.program.scheduleProgram.copy(newHeatTemperature: 4000)))
                 .changing(path: \.heatTemperatureText, to: "40.0")
                 .changing(path: \.heatPlusActive, to: false)
         ])
@@ -118,7 +128,7 @@ final class EditProgramDialogVMTests: ViewModelTest<EditProgramDialogViewState, 
     func test_shouldLockMinusButtonWhenReachingMinHeatTemperature() {
         // given
         let state = initialState
-            .changing(path: \.program, to: initialState.program.changing(path: \.heatTemperature, to: 10.1))
+            .changing(path: \.program, to: initialState.program.changing(path: \.scheduleProgram, to: initialState.program.scheduleProgram.copy(newHeatTemperature: 1010)))
             .changing(path: \.configMin, to: 10)
             .changing(path: \.configMax, to: 40)
         viewModel.updateView { _ in state }
@@ -132,7 +142,7 @@ final class EditProgramDialogVMTests: ViewModelTest<EditProgramDialogViewState, 
         assertStates(expected: [
             state,
             state
-                .changing(path: \.program, to: state.program.changing(path: \.heatTemperature, to: 10))
+                .changing(path: \.program, to: initialState.program.changing(path: \.scheduleProgram, to: initialState.program.scheduleProgram.copy(newHeatTemperature: 1000)))
                 .changing(path: \.heatTemperatureText, to: "10.0")
                 .changing(path: \.heatMinusActive, to: false)
         ])
@@ -141,7 +151,7 @@ final class EditProgramDialogVMTests: ViewModelTest<EditProgramDialogViewState, 
     func test_shouldMarkInputRedWhenHeatTemperatureOutOfRange() {
         // given
         let state = initialState
-            .changing(path: \.program, to: initialState.program.changing(path: \.heatTemperature, to: 41))
+            .changing(path: \.program, to: initialState.program.changing(path: \.scheduleProgram, to: initialState.program.scheduleProgram.copy(newHeatTemperature: 4100)))
             .changing(path: \.configMin, to: 10)
             .changing(path: \.configMax, to: 40)
         viewModel.updateView { _ in state }
@@ -155,7 +165,7 @@ final class EditProgramDialogVMTests: ViewModelTest<EditProgramDialogViewState, 
         assertStates(expected: [
             state,
             state
-                .changing(path: \.program, to: state.program.changing(path: \.heatTemperature, to: 40.9))
+                .changing(path: \.program, to: initialState.program.changing(path: \.scheduleProgram, to: initialState.program.scheduleProgram.copy(newHeatTemperature: 4090)))
                 .changing(path: \.heatTemperatureText, to: "40.9")
                 .changing(path: \.heatPlusActive, to: false)
                 .changing(path: \.heatCorrect, to: false)
@@ -167,7 +177,7 @@ final class EditProgramDialogVMTests: ViewModelTest<EditProgramDialogViewState, 
     func test_shouldChangeHeatTemperature() {
         // given
         let state = initialState
-            .changing(path: \.program, to: initialState.program.changing(path: \.heatTemperature, to: 21))
+            .changing(path: \.program, to: initialState.program.changing(path: \.scheduleProgram, to: initialState.program.scheduleProgram.copy(newHeatTemperature: 2100)))
             .changing(path: \.configMin, to: 10)
             .changing(path: \.configMax, to: 40)
         viewModel.updateView { _ in state }
@@ -181,7 +191,7 @@ final class EditProgramDialogVMTests: ViewModelTest<EditProgramDialogViewState, 
         assertStates(expected: [
             state,
             state
-                .changing(path: \.program, to: state.program.changing(path: \.heatTemperature, to: 25.5))
+                .changing(path: \.program, to: initialState.program.changing(path: \.scheduleProgram, to: initialState.program.scheduleProgram.copy(newHeatTemperature: 2550)))
                 .changing(path: \.heatTemperatureText, to: "25.5")
         ])
     }
@@ -189,7 +199,7 @@ final class EditProgramDialogVMTests: ViewModelTest<EditProgramDialogViewState, 
     func test_shouldChangeHeatTemperatureWithComa() {
         // given
         let state = initialState
-            .changing(path: \.program, to: initialState.program.changing(path: \.heatTemperature, to: 21))
+            .changing(path: \.program, to: initialState.program.changing(path: \.scheduleProgram, to: initialState.program.scheduleProgram.copy(newHeatTemperature: 2100)))
             .changing(path: \.configMin, to: 10)
             .changing(path: \.configMax, to: 40)
         viewModel.updateView { _ in state }
@@ -203,9 +213,37 @@ final class EditProgramDialogVMTests: ViewModelTest<EditProgramDialogViewState, 
         assertStates(expected: [
             state,
             state
-                .changing(path: \.program, to: state.program.changing(path: \.heatTemperature, to: 25.5))
+                .changing(path: \.program, to: initialState.program.changing(path: \.scheduleProgram, to: initialState.program.scheduleProgram.copy(newHeatTemperature: 2550)))
                 .changing(path: \.heatTemperatureText, to: "25,5")
         ])
+    }
+    
+    func test_shouldCleanHeatTemperatureWhenValueIsEmpty() {
+        // given
+        let state = initialState
+            .changing(path: \.program, to: initialState.program.changing(path: \.scheduleProgram, to: initialState.program.scheduleProgram.copy(newHeatTemperature: 2100)))
+            .changing(path: \.configMin, to: 10)
+            .changing(path: \.configMax, to: 40)
+            .changing(path: \.showHeatEdit, to: true)
+        viewModel.updateView { _ in state }
+        
+        // when
+        observe(viewModel)
+        viewModel.heatTemperatureChange("")
+        
+        // then
+        assertObserverItems(statesCount: 2, eventsCount: 0)
+        assertStates(expected: [
+            state,
+            state
+                .changing(path: \.program, to: initialState.program.changing(path: \.scheduleProgram, to: initialState.program.scheduleProgram.copy(newHeatTemperature: 0)))
+                .changing(path: \.heatTemperatureText, to: "")
+                .changing(path: \.heatMinusActive, to: false)
+                .changing(path: \.heatCorrect, to: false)
+        ])
+        assertState(1) {
+            XCTAssertEqual($0.saveAllowed, false)
+        }
     }
     
     // MARK: - Cool temperature by step -
@@ -213,7 +251,7 @@ final class EditProgramDialogVMTests: ViewModelTest<EditProgramDialogViewState, 
     func test_shouldIncreaseCoolTemperature() {
         // given
         let state = initialState
-            .changing(path: \.program, to: initialState.program.changing(path: \.coolTemperature, to: 21))
+            .changing(path: \.program, to: initialState.program.changing(path: \.scheduleProgram, to: initialState.program.scheduleProgram.copy(newCoolTemperature: 2100)))
             .changing(path: \.configMin, to: 10)
             .changing(path: \.configMax, to: 40)
         viewModel.updateView { _ in state }
@@ -227,7 +265,7 @@ final class EditProgramDialogVMTests: ViewModelTest<EditProgramDialogViewState, 
         assertStates(expected: [
             state,
             state
-                .changing(path: \.program, to: state.program.changing(path: \.coolTemperature, to: 21.1))
+                .changing(path: \.program, to: initialState.program.changing(path: \.scheduleProgram, to: initialState.program.scheduleProgram.copy(newCoolTemperature: 2110)))
                 .changing(path: \.coolTemperatureText, to: "21.1")
         ])
     }
@@ -235,7 +273,7 @@ final class EditProgramDialogVMTests: ViewModelTest<EditProgramDialogViewState, 
     func test_shouldDecreaseCoolTemperature() {
         // given
         let state = initialState
-            .changing(path: \.program, to: initialState.program.changing(path: \.coolTemperature, to: 21))
+            .changing(path: \.program, to: initialState.program.changing(path: \.scheduleProgram, to: initialState.program.scheduleProgram.copy(newCoolTemperature: 2100)))
             .changing(path: \.configMin, to: 10)
             .changing(path: \.configMax, to: 40)
         viewModel.updateView { _ in state }
@@ -249,7 +287,7 @@ final class EditProgramDialogVMTests: ViewModelTest<EditProgramDialogViewState, 
         assertStates(expected: [
             state,
             state
-                .changing(path: \.program, to: state.program.changing(path: \.coolTemperature, to: 20.9))
+                .changing(path: \.program, to: initialState.program.changing(path: \.scheduleProgram, to: initialState.program.scheduleProgram.copy(newCoolTemperature: 2090)))
                 .changing(path: \.coolTemperatureText, to: "20.9")
         ])
     }
@@ -257,7 +295,7 @@ final class EditProgramDialogVMTests: ViewModelTest<EditProgramDialogViewState, 
     func test_shouldLockPlusButtonWhenReachingMaxCoolTemperature() {
         // given
         let state = initialState
-            .changing(path: \.program, to: initialState.program.changing(path: \.coolTemperature, to: 39.9))
+            .changing(path: \.program, to: initialState.program.changing(path: \.scheduleProgram, to: initialState.program.scheduleProgram.copy(newCoolTemperature: 3990)))
             .changing(path: \.configMin, to: 10)
             .changing(path: \.configMax, to: 40)
         viewModel.updateView { _ in state }
@@ -271,7 +309,7 @@ final class EditProgramDialogVMTests: ViewModelTest<EditProgramDialogViewState, 
         assertStates(expected: [
             state,
             state
-                .changing(path: \.program, to: state.program.changing(path: \.coolTemperature, to: 40))
+                .changing(path: \.program, to: initialState.program.changing(path: \.scheduleProgram, to: initialState.program.scheduleProgram.copy(newCoolTemperature: 4000)))
                 .changing(path: \.coolTemperatureText, to: "40.0")
                 .changing(path: \.coolPlusActive, to: false)
         ])
@@ -280,7 +318,7 @@ final class EditProgramDialogVMTests: ViewModelTest<EditProgramDialogViewState, 
     func test_shouldLockMinusButtonWhenReachingMinCoolTemperature() {
         // given
         let state = initialState
-            .changing(path: \.program, to: initialState.program.changing(path: \.coolTemperature, to: 10.1))
+            .changing(path: \.program, to: initialState.program.changing(path: \.scheduleProgram, to: initialState.program.scheduleProgram.copy(newCoolTemperature: 1010)))
             .changing(path: \.configMin, to: 10)
             .changing(path: \.configMax, to: 40)
         viewModel.updateView { _ in state }
@@ -294,7 +332,7 @@ final class EditProgramDialogVMTests: ViewModelTest<EditProgramDialogViewState, 
         assertStates(expected: [
             state,
             state
-                .changing(path: \.program, to: state.program.changing(path: \.coolTemperature, to: 10))
+                .changing(path: \.program, to: initialState.program.changing(path: \.scheduleProgram, to: initialState.program.scheduleProgram.copy(newCoolTemperature: 1000)))
                 .changing(path: \.coolTemperatureText, to: "10.0")
                 .changing(path: \.coolMinusActive, to: false)
         ])
@@ -303,7 +341,7 @@ final class EditProgramDialogVMTests: ViewModelTest<EditProgramDialogViewState, 
     func test_shouldMarkInputRedWhenCoolTemperatureOutOfRange() {
         // given
         let state = initialState
-            .changing(path: \.program, to: initialState.program.changing(path: \.coolTemperature, to: 41))
+            .changing(path: \.program, to: initialState.program.changing(path: \.scheduleProgram, to: initialState.program.scheduleProgram.copy(newCoolTemperature: 4100)))
             .changing(path: \.configMin, to: 10)
             .changing(path: \.configMax, to: 40)
         viewModel.updateView { _ in state }
@@ -317,7 +355,7 @@ final class EditProgramDialogVMTests: ViewModelTest<EditProgramDialogViewState, 
         assertStates(expected: [
             state,
             state
-                .changing(path: \.program, to: state.program.changing(path: \.coolTemperature, to: 40.9))
+                .changing(path: \.program, to: initialState.program.changing(path: \.scheduleProgram, to: initialState.program.scheduleProgram.copy(newCoolTemperature: 4090)))
                 .changing(path: \.coolTemperatureText, to: "40.9")
                 .changing(path: \.coolPlusActive, to: false)
                 .changing(path: \.coolCorrect, to: false)
@@ -329,7 +367,7 @@ final class EditProgramDialogVMTests: ViewModelTest<EditProgramDialogViewState, 
     func test_shouldChangeCoolTemperature() {
         // given
         let state = initialState
-            .changing(path: \.program, to: initialState.program.changing(path: \.coolTemperature, to: 21))
+            .changing(path: \.program, to: initialState.program.changing(path: \.scheduleProgram, to: initialState.program.scheduleProgram.copy(newCoolTemperature: 2100)))
             .changing(path: \.configMin, to: 10)
             .changing(path: \.configMax, to: 40)
         viewModel.updateView { _ in state }
@@ -343,7 +381,7 @@ final class EditProgramDialogVMTests: ViewModelTest<EditProgramDialogViewState, 
         assertStates(expected: [
             state,
             state
-                .changing(path: \.program, to: state.program.changing(path: \.coolTemperature, to: 25.5))
+                .changing(path: \.program, to: initialState.program.changing(path: \.scheduleProgram, to: initialState.program.scheduleProgram.copy(newCoolTemperature: 2550)))
                 .changing(path: \.coolTemperatureText, to: "25.5")
         ])
     }
@@ -351,7 +389,7 @@ final class EditProgramDialogVMTests: ViewModelTest<EditProgramDialogViewState, 
     func test_shouldChangeCoolTemperatureWithComa() {
         // given
         let state = initialState
-            .changing(path: \.program, to: initialState.program.changing(path: \.coolTemperature, to: 21))
+            .changing(path: \.program, to: initialState.program.changing(path: \.scheduleProgram, to: initialState.program.scheduleProgram.copy(newCoolTemperature: 2100)))
             .changing(path: \.configMin, to: 10)
             .changing(path: \.configMax, to: 40)
         viewModel.updateView { _ in state }
@@ -365,9 +403,37 @@ final class EditProgramDialogVMTests: ViewModelTest<EditProgramDialogViewState, 
         assertStates(expected: [
             state,
             state
-                .changing(path: \.program, to: state.program.changing(path: \.coolTemperature, to: 25.5))
+                .changing(path: \.program, to: initialState.program.changing(path: \.scheduleProgram, to: initialState.program.scheduleProgram.copy(newCoolTemperature: 2550)))
                 .changing(path: \.coolTemperatureText, to: "25,5")
         ])
+    }
+    
+    func test_shouldCleanCoolTemperatureWhenValueIsEmpty() {
+        // given
+        let state = initialState
+            .changing(path: \.program, to: initialState.program.changing(path: \.scheduleProgram, to: initialState.program.scheduleProgram.copy(newCoolTemperature: 2100)))
+            .changing(path: \.configMin, to: 10)
+            .changing(path: \.configMax, to: 40)
+            .changing(path: \.showCoolEdit, to: true)
+        viewModel.updateView { _ in state }
+        
+        // when
+        observe(viewModel)
+        viewModel.coolTemperatureChange("")
+        
+        // then
+        assertObserverItems(statesCount: 2, eventsCount: 0)
+        assertStates(expected: [
+            state,
+            state
+                .changing(path: \.program, to: initialState.program.changing(path: \.scheduleProgram, to: initialState.program.scheduleProgram.copy(newCoolTemperature: 0)))
+                .changing(path: \.coolTemperatureText, to: "")
+                .changing(path: \.coolMinusActive, to: false)
+                .changing(path: \.coolCorrect, to: false)
+        ])
+        assertState(1) {
+            XCTAssertEqual($0.saveAllowed, false)
+        }
     }
     
     // MARK: - Rest -
@@ -375,7 +441,7 @@ final class EditProgramDialogVMTests: ViewModelTest<EditProgramDialogViewState, 
     func test_shouldNotChangeTemperatureWhenGivenValueIsNotValid() {
         // given
         let state = initialState
-            .changing(path: \.program, to: initialState.program.changing(path: \.coolTemperature, to: 21))
+            .changing(path: \.program, to: initialState.program.changing(path: \.scheduleProgram, to: initialState.program.scheduleProgram.copy(newCoolTemperature: 2100)))
             .changing(path: \.coolTemperatureText, to: "21.0")
             .changing(path: \.configMin, to: 10)
             .changing(path: \.configMax, to: 40)

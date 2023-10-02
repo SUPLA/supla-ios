@@ -20,7 +20,7 @@ import RxSwift
 
 final class ThermostatCell: BaseCell<ChannelWithChildren> {
     
-    @Singleton<TemperatureFormatter> private var temperatureFormatter
+    @Singleton<ValuesFormatter> private var formatter
     @Singleton<GetChannelBaseIconUseCase> private var getChannelBaseIconUseCase
     
     private lazy var thermostatIconView: UIImageView = {
@@ -189,7 +189,7 @@ final class ThermostatCell: BaseCell<ChannelWithChildren> {
         if let mainThermometer = data.children.first(where: { $0.relationType == .mainThermometer })?.channel {
             currentTemperatureView.text = mainThermometer.attrStringValue().string
         } else {
-            currentTemperatureView.text = TEMPERATURE_NO_VALUE
+            currentTemperatureView.text = NO_VALUE_TEXT
         }
     }
     
@@ -198,12 +198,12 @@ final class ThermostatCell: BaseCell<ChannelWithChildren> {
             return ""
         }
         switch (thermostatValue.mode) {
-        case .cool: return temperatureFormatter.toString(thermostatValue.setpointTemperatureCool)
-        case .heat: return temperatureFormatter.toString(thermostatValue.setpointTemperatureHeat)
+        case .cool: return formatter.temperatureToString(thermostatValue.setpointTemperatureCool)
+        case .heat: return formatter.temperatureToString(thermostatValue.setpointTemperatureHeat)
         case .off: return "Off"
         case .auto:
-            let min = temperatureFormatter.toString(thermostatValue.setpointTemperatureHeat)
-            let max = temperatureFormatter.toString(thermostatValue.setpointTemperatureCool)
+            let min = formatter.temperatureToString(thermostatValue.setpointTemperatureHeat)
+            let max = formatter.temperatureToString(thermostatValue.setpointTemperatureCool)
             return "\(min) - \(max)"
         default: return ""
         }

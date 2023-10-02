@@ -18,9 +18,9 @@ final class EditQuartersDialogVMTests: ViewModelTest<EditQuartersDialogViewState
         key: ScheduleDetailBoxKey(dayOfWeek: .monday, hour: 13),
         activeProgram: nil,
         availablePrograms: [
-            ScheduleDetailProgram(program: .off, mode: .notSet),
-            ScheduleDetailProgram(program: .program1, mode: .heat),
-            ScheduleDetailProgram(program: .program2, mode: .cool)
+            ScheduleDetailProgram(scheduleProgram: .OFF),
+            ScheduleDetailProgram(scheduleProgram: SuplaWeeklyScheduleProgram(program: .program1, mode: .heat, setpointTemperatureHeat: nil, setpointTemperatureCool: nil)),
+            ScheduleDetailProgram(scheduleProgram: SuplaWeeklyScheduleProgram(program: .program1, mode: .cool, setpointTemperatureHeat: nil, setpointTemperatureCool: nil))
         ],
         quarterPrograms: ScheduleDetailBoxValue(oneProgram: .program3)
     )
@@ -29,17 +29,17 @@ final class EditQuartersDialogVMTests: ViewModelTest<EditQuartersDialogViewState
         EditQuartersDialogVM(initialState: initialState)
     }()
     
-    private lazy var temperatureFormatter: TemperatureFormatterMock! = {
-        TemperatureFormatterMock()
+    private lazy var valuesFormatter: ValuesFormatterMock! = {
+        ValuesFormatterMock()
     }()
     
     override func setUp() {
-        DiContainer.shared.register(type: TemperatureFormatter.self, component: temperatureFormatter!)
+        DiContainer.shared.register(type: ValuesFormatter.self, component: valuesFormatter!)
     }
     
     override func tearDown() {
         viewModel = nil
-        temperatureFormatter = nil
+        valuesFormatter = nil
         super.tearDown()
     }
     

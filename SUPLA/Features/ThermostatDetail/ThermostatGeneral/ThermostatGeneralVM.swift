@@ -17,12 +17,12 @@
  */
 
 import RxSwift
+import RxRelay
 
 private let REFRESH_DELAY_S: Double = 3
 
 class ThermostatGeneralVM: BaseViewModel<ThermostatGeneralViewState, ThermostatGeneralViewEvent> {
     
-    @Singleton<TemperatureFormatter> private var temperatureFormatter
     @Singleton<ReadChannelWithChildrenUseCase> private var readChannelWithChildrenUseCase
     @Singleton<CreateTemperaturesListUseCase> private var createTemperaturesListUseCase
     @Singleton<GetChannelConfigUseCase> private var getChannelConfigUseCase
@@ -31,13 +31,16 @@ class ThermostatGeneralVM: BaseViewModel<ThermostatGeneralViewState, ThermostatG
     @Singleton<DateProvider> private var dateProvider
     @Inject<LoadingTimeoutManager> private var loadingTimeoutManager
     
+    private let updateRelay = PublishRelay<Void>()
+    private let channelRelay = PublishRelay<ChannelWithChildren>()
+    
     override func defaultViewState() -> ThermostatGeneralViewState { ThermostatGeneralViewState() }
     
     override func onViewDidLoad() {
         loadingTimeoutManager.watch(stateProvider: { self.currentState()?.loadingState }) {
             self.updateView { state in
                 if let channelFunction = state.channelFunc {
-                    self.loadChannel(remoteId: channelFunction)
+                    self.triggerDataLoad(remoteId: channelFunction)
                 }
                 
                 return state.changing(path: \.loadingState, to: state.loadingState.copy(loading: false))
@@ -46,29 +49,42 @@ class ThermostatGeneralVM: BaseViewModel<ThermostatGeneralViewState, ThermostatG
         .disposed(by: self)
     }
     
-    func loadChannel(remoteId: Int32) {
-        Single.zip(
-            readChannelWithChildrenUseCase.invoke(remoteId: remoteId)
-                .map { ($0, self.createTemperaturesListUseCase.invoke(channelWithChildren: $0)) }
-                .first(),
-            configEventManager.observeConfig(remoteId: remoteId)
-                .filter { $0.config is SuplaChannelHvacConfig && $0.result == .resultTrue }
-                .first(),
-            resultSelector: { ($0, $1?.config as? SuplaChannelHvacConfig) }
-        )
-        .asDriverWithoutError()
-        .drive(onNext: { self.handleData(data: $0) })
-        .disposed(by: self)
+    func observeData(remoteId: Int32) {
+        updateRelay
+            .debounce(.seconds(1), scheduler: ConcurrentDispatchQueueScheduler(qos: .background))
+            .subscribe(onNext: { [weak self] in self?.triggerDataLoad(remoteId: remoteId) })
+            .disposed(by: self)
         
+        Observable.combineLatest(
+            channelRelay.asObservable()
+                .map { ($0, self.createTemperaturesListUseCase.invoke(channelWithChildren: $0))},
+            configEventManager.observeConfig(remoteId: remoteId)
+                .filter { $0.config is SuplaChannelHvacConfig && $0.result == .resultTrue },
+            configEventManager.observeConfig(remoteId: remoteId)
+                .filter { $0.config is SuplaChannelWeeklyScheduleConfig },
+            resultSelector: { ($0, $1.config as? SuplaChannelHvacConfig, $2.config as? SuplaChannelWeeklyScheduleConfig) }
+        ).asDriverWithoutError()
+            .debounce(.milliseconds(50))
+            .drive(onNext: { self.handleData(data: $0) })
+            .disposed(by: self)
+    }
+    
+    func triggerDataLoad(remoteId: Int32) {
         getChannelConfigUseCase.invoke(remoteId: remoteId, type: .defaultConfig)
             .subscribe()
+            .disposed(by: self)
+        getChannelConfigUseCase.invoke(remoteId: remoteId, type: .weeklyScheduleConfig)
+            .subscribe()
+            .disposed(by: self)
+        readChannelWithChildrenUseCase.invoke(remoteId: remoteId)
+            .subscribe(onNext: { [weak self] in self?.channelRelay.accept($0) })
             .disposed(by: self)
     }
     
     func loadTemperatures(remoteId: Int32, otherId: Int32) {
         if let state = currentState(),
            state.childrenIds.contains(otherId) {
-            loadChannel(remoteId: remoteId)
+            triggerDataLoad(remoteId: remoteId)
         }
     }
     
@@ -93,15 +109,25 @@ class ThermostatGeneralVM: BaseViewModel<ThermostatGeneralViewState, ThermostatG
             case .cool:
                 let temperature = getNewTemperature(state.setpointCool, state: state, step: step)
                 delayedThermostatActionSubject.emit(
-                    data: ThermostatActionData(remoteId: remoteId, setpointCool: temperature)
+                    data: ThermostatActionData(
+                        remoteId: remoteId,
+                        mode: state.weeklyScheduleActive ? .notSet : nil,
+                        setpointCool: temperature
+                    )
                 )
                 return resultState.changing(path: \.setpointCool, to: temperature)
+                    .changing(path: \.mode, to: getModeForOffChanges(state: state))
             case .heat:
                 let temperature = getNewTemperature(state.setpointHeat, state: state, step: step)
                 delayedThermostatActionSubject.emit(
-                    data: ThermostatActionData(remoteId: remoteId, setpointHeat: temperature)
+                    data: ThermostatActionData(
+                        remoteId: remoteId,
+                        mode: state.weeklyScheduleActive ? .notSet : nil,
+                        setpointHeat: temperature
+                    )
                 )
                 return resultState.changing(path: \.setpointHeat, to: temperature)
+                    .changing(path: \.mode, to: getModeForOffChanges(state: state))
             }
         }
     }
@@ -158,7 +184,7 @@ class ThermostatGeneralVM: BaseViewModel<ThermostatGeneralViewState, ThermostatG
     func onWeeklyScheduleButtonTap() {
         updateView { state in
             guard let remoteId = state.remoteId else { return state }
-            if (state.weeklyScheduleActive) { return state }
+            if (state.weeklyScheduleActive && !state.temporaryChangeActive) { return state }
             
             let mode: SuplaHvacMode = .cmdWeeklySchedule
             let data = ThermostatActionData(remoteId: remoteId, mode: mode)
@@ -178,8 +204,7 @@ class ThermostatGeneralVM: BaseViewModel<ThermostatGeneralViewState, ThermostatG
         updateView { state in
             guard let min = state.configMin,
                   let max = state.configMax,
-                  let remoteId = state.remoteId,
-                  state.manualActive
+                  let remoteId = state.remoteId
             else { return state }
             
             let resultState = state.changing(path: \.activeSetpointType, to: type)
@@ -190,19 +215,29 @@ class ThermostatGeneralVM: BaseViewModel<ThermostatGeneralViewState, ThermostatG
             switch (type) {
             case .cool:
                 delayedThermostatActionSubject.emit(
-                    data: ThermostatActionData(remoteId: remoteId, setpointCool: newTemperature)
+                    data: ThermostatActionData(
+                        remoteId: remoteId,
+                        mode: state.weeklyScheduleActive ? .notSet : nil,
+                        setpointCool: newTemperature
+                    )
                 )
                 return resultState.changing(path: \.setpointCool, to: newTemperature)
+                    .changing(path: \.mode, to: getModeForOffChanges(state: state))
             case .heat:
                 delayedThermostatActionSubject.emit(
-                    data: ThermostatActionData(remoteId: remoteId, setpointHeat: newTemperature)
+                    data: ThermostatActionData(
+                        remoteId: remoteId,
+                        mode: state.weeklyScheduleActive ? .notSet : nil,
+                        setpointHeat: newTemperature
+                    )
                 )
                 return resultState.changing(path: \.setpointHeat, to: newTemperature)
+                    .changing(path: \.mode, to: getModeForOffChanges(state: state))
             }
         }
     }
     
-    private func handleData(data: ((ChannelWithChildren, [ThermostatTemperature])?, SuplaChannelHvacConfig?)) {
+    private func handleData(data: ((ChannelWithChildren, [ThermostatTemperature])?, SuplaChannelHvacConfig?, SuplaChannelWeeklyScheduleConfig?)) {
         guard let channel = data.0?.0 else { return }
         guard let temperatures = data.0?.1 else { return }
         guard let config = data.1 else { return }
@@ -210,14 +245,18 @@ class ThermostatGeneralVM: BaseViewModel<ThermostatGeneralViewState, ThermostatG
         
         updateView { state in
             if (state.changing) {
+                NSLog("ThermostatGeneralVM: update skipped because of changing")
                 return state // Do not change anything, when user makes manual operations
             }
             
             if let lastInteractionTime = state.lastInteractionTime,
                lastInteractionTime + REFRESH_DELAY_S > dateProvider.currentTimestamp() {
-                scheduleConfigReload(lastInteractionTime, channel.channel.remote_id)
+                NSLog("ThermostatGeneralVM: update skipped because of last interaction time")
+                updateRelay.accept(())
                 return state // Do not change anything during 3 secs after last user interaction
             }
+            
+            NSLog("ThermostatGeneralVM: updating state with data")
             
             var changedState = state
                 .changing(path: \.remoteId, to: channel.channel.remote_id)
@@ -227,9 +266,12 @@ class ThermostatGeneralVM: BaseViewModel<ThermostatGeneralViewState, ThermostatG
                 .changing(path: \.auxTemperature, to: nil)
                 .changing(path: \.childrenIds, to: channel.children.map { $0.channel.remote_id })
                 .changing(path: \.offline, to: !channel.channel.isOnline())
-                .changing(path: \.configMin, to: config.temperatures.roomMin?.toTemperature())
-                .changing(path: \.configMax, to: config.temperatures.roomMax?.toTemperature())
+                .changing(path: \.configMin, to: config.temperatures.roomMin?.fromSuplaTemperature())
+                .changing(path: \.configMax, to: config.temperatures.roomMax?.fromSuplaTemperature())
                 .changing(path: \.loadingState, to: state.loadingState.copy(loading: false))
+                .changing(path: \.issues, to: createThermostatIssues(flags: thermostatValue.flags))
+                .changing(path: \.temporaryChangeActive, to: channel.channel.isOnline() && thermostatValue.flags.contains(.weeklyScheduleTemporalOverride))
+                .changing(path: \.programInfo, to: createProgramInfo(config: data.2, value: thermostatValue, channelOnline: channel.channel.isOnline()))
             
             changedState = handleSetpoints(changedState, channel: channel.channel)
             changedState = handleFlags(changedState, value: thermostatValue, isOnline: channel.channel.isOnline())
@@ -272,7 +314,7 @@ class ThermostatGeneralVM: BaseViewModel<ThermostatGeneralViewState, ThermostatG
     private func handleSetpoints(_ state: ThermostatGeneralViewState, channel: SAChannel) -> ThermostatGeneralViewState {
         guard let value = channel.value?.asThermostatValue() else { return state }
         
-        if (channel.isThermostatOff()) {
+        if (!channel.isOnline()) {
             return state
                 .changing(path: \.setpointHeat, to: nil)
                 .changing(path: \.setpointCool, to: nil)
@@ -280,12 +322,18 @@ class ThermostatGeneralVM: BaseViewModel<ThermostatGeneralViewState, ThermostatG
         }
         
         var changedState = state
-        let heatAllowed = value.mode == .heat || value.mode == .auto
-        if (channel.isSetpointHeatSupported() && value.flags.contains(.setpointTempMinSet) && heatAllowed) {
+        let setpointHeatSet = value.flags.contains(.setpointTempMinSet)
+        let dhv = channel.isDhw() && setpointHeatSet
+        let autoHeat = channel.isThermostatAuto() && setpointHeatSet
+        let heat = channel.isThermostat() && setpointHeatSet && value.subfunction == .heat
+        if (dhv || autoHeat || heat) {
             changedState = changedState.changing(path: \.setpointHeat, to: value.setpointTemperatureHeat)
         }
-        let coolAllowed = value.mode == .cool || value.mode == .auto
-        if (channel.isSetpointCoolSupported() && value.flags.contains(.setpointTempMaxSet) && coolAllowed) {
+        
+        let setpointCoolSet = value.flags.contains(.setpointTempMaxSet)
+        let autoCool = channel.isThermostatAuto() && setpointCoolSet
+        let cool = channel.isThermostat() && setpointCoolSet && value.subfunction == .cool
+        if (autoCool || cool) {
             changedState = changedState.changing(path: \.setpointCool, to: value.setpointTemperatureCool)
         }
         
@@ -295,6 +343,12 @@ class ThermostatGeneralVM: BaseViewModel<ThermostatGeneralViewState, ThermostatG
                 changedState = changedState.changing(path: \.activeSetpointType, to: .heat)
             case .cool:
                 changedState = changedState.changing(path: \.activeSetpointType, to: .cool)
+            case .off:
+                if (value.subfunction == .heat) {
+                    changedState = changedState.changing(path: \.activeSetpointType, to: .heat)
+                } else if (value.subfunction == .cool) {
+                    changedState = changedState.changing(path: \.activeSetpointType, to: .cool)
+                }
             default: break
             }
         }
@@ -338,18 +392,50 @@ class ThermostatGeneralVM: BaseViewModel<ThermostatGeneralViewState, ThermostatG
             )
             .changing(
                 path: \.plusMinusHidden,
-                to: !channel.isOnline() || channel.isThermostatOff() || value.flags.contains(.weeklySchedule)
+                to: !channel.isOnline() || ((channel.isThermostatOff() && !value.flags.contains(.weeklySchedule)))
             )
     }
     
-    private func scheduleConfigReload(_ lastInteractionTime: TimeInterval, _ remoteId: Int32) {
-        let delay = lastInteractionTime + REFRESH_DELAY_S - dateProvider.currentTimestamp()
-        if (delay > 0) {
-            DispatchQueue.main.asyncAfter(deadline: .now() + delay, execute: { [weak self] in
-                self?.loadChannel(remoteId: remoteId)
-            })
+    private func createThermostatIssues(flags: [SuplaThermostatFlag]) -> [ThermostatIssueItem] {
+        var result: [ThermostatIssueItem] = []
+        if (flags.contains(.thermometerError)) {
+            result.append(ThermostatIssueItem(
+                issueIconType: .error,
+                description: Strings.ThermostatDetail.thermometerError
+            ))
+        }
+        if (flags.contains(.clockError)) {
+            result.append(ThermostatIssueItem(
+                issueIconType: .warning,
+                description: Strings.ThermostatDetail.clockError
+            ))
+        }
+        return result
+    }
+    
+    private func createProgramInfo(config: SuplaChannelWeeklyScheduleConfig?, value: ThermostatValue, channelOnline: Bool) -> [ThermostatProgramInfo] {
+        guard let config = config else { return [] }
+        
+        let builder = ThermostatProgramInfo.Builder()
+        builder.config = config
+        builder.thermostatFlags = value.flags
+        builder.currentMode = value.mode
+        builder.channelOnline = channelOnline
+        
+        switch(value.subfunction) {
+        case .heat: builder.currentTemperature = value.setpointTemperatureHeat
+        case .cool: builder.currentTemperature = value.setpointTemperatureCool
+        default: break
+        }
+        
+        return builder.build()
+    }
+    
+    private func getModeForOffChanges(state: ThermostatGeneralViewState) -> SuplaHvacMode? {
+        if (state.mode == .off && !state.offline && state.weeklyScheduleActive) {
+            return state.activeSetpointType == .heat ? .heat : .cool
         } else {
-            loadChannel(remoteId: remoteId)
+            return state.mode
         }
     }
 }
@@ -386,6 +472,9 @@ struct ThermostatGeneralViewState: ViewState {
     var manualActive: Bool = false
     var weeklyScheduleActive: Bool = false
     var plusMinusHidden: Bool = false
+    var temporaryChangeActive: Bool = false
+    var programInfo: [ThermostatProgramInfo] = []
+    var issues: [ThermostatIssueItem] = []
     
     /* All calculated properties below */
     
@@ -396,16 +485,16 @@ struct ThermostatGeneralViewState: ViewState {
     }
     var setpointText: String? {
         get {
-            @Singleton<TemperatureFormatter> var formatter
+            @Singleton<ValuesFormatter> var formatter
             
             if (offline) {
                 return "offline"
             } else if (off) {
                 return "off"
             } else if (mode == .heat) {
-                return formatter.toString(setpointHeat, withUnit: false)
+                return formatter.temperatureToString(setpointHeat, withUnit: false)
             } else if (mode == .cool) {
-                return formatter.toString(setpointCool, withUnit: false)
+                return formatter.temperatureToString(setpointCool, withUnit: false)
             }
             
             return nil
@@ -416,7 +505,7 @@ struct ThermostatGeneralViewState: ViewState {
             guard let min = configMin,
                   let max = configMax,
                   let current = setpointHeat,
-                  !off
+                  !off || weeklyScheduleActive
             else { return nil }
             return (current - min) / (max - min)
         }
@@ -426,13 +515,16 @@ struct ThermostatGeneralViewState: ViewState {
             guard let min = configMin,
                   let max = configMax,
                   let current = setpointCool,
-                  !off
+                  !off || weeklyScheduleActive
             else { return nil }
             return (current - min) / (max - min)
         }
     }
     var plusButtonEnabled: Bool {
         get {
+            if (mode == .off && !weeklyScheduleActive) {
+                return false
+            }
             switch (activeSetpointType) {
             case .heat: return (setpointHeat ?? 0) < (configMax ?? 0)
             case .cool: return (setpointCool ?? 0) < (configMax ?? 0)
@@ -442,6 +534,9 @@ struct ThermostatGeneralViewState: ViewState {
     }
     var minusButtonEnabled: Bool {
         get {
+            if (mode == .off && !weeklyScheduleActive) {
+                return false
+            }
             switch (activeSetpointType) {
             case .heat: return (setpointHeat ?? 0) > (configMin ?? 0)
             case .cool: return (setpointCool ?? 0) > (configMin ?? 0)
@@ -473,23 +568,33 @@ struct ThermostatGeneralViewState: ViewState {
     }
     var controlButtonsEnabled: Bool { get { !offline } }
     var configMinMaxHidden: Bool { get { offline } }
+    var grayOutSetpoints: Bool {
+        get {
+            return !offline && off && weeklyScheduleActive
+        }
+    }
 }
 
 fileprivate extension SAChannel {
     func isThermostatOff() -> Bool {
         guard let value = value?.asThermostatValue() else { return false }
-        
         return !isOnline() || value.mode == .off || value.mode == .notSet
     }
     
-    func isSetpointHeatSupported() -> Bool {
-        return self.func == SUPLA_CHANNELFNC_HVAC_THERMOSTAT ||
-        self.func == SUPLA_CHANNELFNC_HVAC_THERMOSTAT_AUTO ||
-        self.func == SUPLA_CHANNELFNC_HVAC_DOMESTIC_HOT_WATER
+    func isDhw() -> Bool {
+        return self.func == SUPLA_CHANNELFNC_HVAC_DOMESTIC_HOT_WATER
     }
     
-    func isSetpointCoolSupported() -> Bool {
-        return self.func == SUPLA_CHANNELFNC_HVAC_THERMOSTAT ||
-        self.func == SUPLA_CHANNELFNC_HVAC_THERMOSTAT_AUTO
+    func isThermostatAuto() -> Bool {
+        return self.func == SUPLA_CHANNELFNC_HVAC_THERMOSTAT_AUTO
     }
+    
+    func isThermostat() -> Bool {
+        return self.func == SUPLA_CHANNELFNC_HVAC_THERMOSTAT
+    }
+}
+
+struct ThermostatIssueItem: Equatable {
+    let issueIconType: IssueIconType
+    let description: String
 }

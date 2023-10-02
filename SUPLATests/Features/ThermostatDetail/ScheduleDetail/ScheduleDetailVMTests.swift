@@ -38,13 +38,17 @@ final class ScheduleDetailVMTests: ViewModelTest<ScheduleDetailViewState, Schedu
     private lazy var dateProvider: DateProviderMock! = {
         DateProviderMock()
     }()
+    private lazy var readChannelByRemoteIdUseCAse: ReadChannelByRemoteIdUseCaseMock! = {
+        ReadChannelByRemoteIdUseCaseMock()
+    }()
     
     override func setUp() {
         DiContainer.shared.register(type: ConfigEventsManager.self, component: configEventsManager!)
         DiContainer.shared.register(type: GetChannelConfigUseCase.self, component: getChannelConfigUseCase!)
         DiContainer.shared.register(type: DelayedWeeklyScheduleConfigSubject.self, component: dealyedWeeklyScheduleConfigSubject!)
         DiContainer.shared.register(type: DateProvider.self, component: dateProvider!)
-        DiContainer.shared.register(type: TemperatureFormatter.self, component: TemperatureFormatterMock())
+        DiContainer.shared.register(type: ValuesFormatter.self, component: ValuesFormatterMock())
+        DiContainer.shared.register(type: ReadChannelByRemoteIdUseCase.self, component: readChannelByRemoteIdUseCAse!)
     }
     
     override func tearDown() {
@@ -54,6 +58,7 @@ final class ScheduleDetailVMTests: ViewModelTest<ScheduleDetailViewState, Schedu
         getChannelConfigUseCase = nil
         dealyedWeeklyScheduleConfigSubject = nil
         dateProvider = nil
+        readChannelByRemoteIdUseCAse = nil
         
         super.tearDown()
     }
@@ -80,7 +85,7 @@ final class ScheduleDetailVMTests: ViewModelTest<ScheduleDetailViewState, Schedu
     
     func test_shouldOpenProgramEditDialog_forHeat() {
         // given
-        let program = ScheduleDetailProgram(program: .program2, mode: .heat, heatTemperature: 22)
+        let program = ScheduleDetailProgram(scheduleProgram: SuplaWeeklyScheduleProgram(program: .program2, mode: .heat, setpointTemperatureHeat: 2200, setpointTemperatureCool: nil))
         let state = ScheduleDetailViewState(
             channelFunction: SUPLA_CHANNELFNC_HVAC_THERMOSTAT,
             thermostatSubfunction: .heat,
@@ -114,7 +119,7 @@ final class ScheduleDetailVMTests: ViewModelTest<ScheduleDetailViewState, Schedu
     
     func test_shouldOpenProgramEditDialog_forCool() {
         // given
-        let program = ScheduleDetailProgram(program: .program2, mode: .cool, coolTemperature: 22)
+        let program = ScheduleDetailProgram(scheduleProgram: SuplaWeeklyScheduleProgram(program: .program2, mode: .cool, setpointTemperatureHeat: nil, setpointTemperatureCool: 2200))
         viewModel.updateView { _ in
             ScheduleDetailViewState(
                 channelFunction: SUPLA_CHANNELFNC_HVAC_THERMOSTAT,
@@ -222,7 +227,7 @@ final class ScheduleDetailVMTests: ViewModelTest<ScheduleDetailViewState, Schedu
             firstKey : firstValue,
             ScheduleDetailBoxKey(dayOfWeek: .monday, hour: 1) : ScheduleDetailBoxValue(oneProgram: .program1)
         ]
-        let programs = [ScheduleDetailProgram(program: .program2, mode: .heat, heatTemperature: 22)]
+        let programs = [ScheduleDetailProgram(scheduleProgram: SuplaWeeklyScheduleProgram(program: .program2, mode: .heat, setpointTemperatureHeat: 2200, setpointTemperatureCool: nil))]
         viewModel.updateView { _ in
             ScheduleDetailViewState(
                 activeProgram: activeProgram,
@@ -289,10 +294,10 @@ final class ScheduleDetailVMTests: ViewModelTest<ScheduleDetailViewState, Schedu
     
     func test_shouldTakeOverProgramChanges() {
         // given
-        let newProgram = ScheduleDetailProgram(program: .program2, mode: .cool, heatTemperature: 21)
+        let newProgram = ScheduleDetailProgram(scheduleProgram: SuplaWeeklyScheduleProgram(program: .program2, mode: .cool, setpointTemperatureHeat: nil, setpointTemperatureCool: 2100))
         let programs = [
-            ScheduleDetailProgram(program: .program2, mode: .heat, heatTemperature: 22),
-            ScheduleDetailProgram(program: .program1, mode: .heat, heatTemperature: 24)
+            ScheduleDetailProgram(scheduleProgram: SuplaWeeklyScheduleProgram(program: .program2, mode: .heat, setpointTemperatureHeat: 2200, setpointTemperatureCool: nil)),
+            ScheduleDetailProgram(scheduleProgram: SuplaWeeklyScheduleProgram(program: .program1, mode: .heat, setpointTemperatureHeat: 2400, setpointTemperatureCool: nil))
         ]
         let initialState = ScheduleDetailViewState(
             remoteId: 4321,
@@ -312,14 +317,14 @@ final class ScheduleDetailVMTests: ViewModelTest<ScheduleDetailViewState, Schedu
         assertStates(expected: [
             initialState,
             initialState.changing(path: \.programs, to: [newProgram, programs[1]])
-                .changing(path: \.activeProgram, to: newProgram.program)
+                .changing(path: \.activeProgram, to: newProgram.scheduleProgram.program)
                 .changing(path: \.lastInteractionTime, to: 123)
         ])
         XCTAssertEqual(dealyedWeeklyScheduleConfigSubject.emitParameters, [
             WeeklyScheduleConfigData(
                 remoteId: 4321,
                 programs: [
-                    SuplaWeeklyScheduleProgram(program: .program2, mode: .cool, setpointTemperatureHeat: 2100, setpointTemperatureCool: nil),
+                    SuplaWeeklyScheduleProgram(program: .program2, mode: .cool, setpointTemperatureHeat: nil, setpointTemperatureCool: 2100),
                     SuplaWeeklyScheduleProgram(program: .program1, mode: .heat, setpointTemperatureHeat: 2400, setpointTemperatureCool: nil)
                 ],
                 schedule: []
@@ -331,11 +336,9 @@ final class ScheduleDetailVMTests: ViewModelTest<ScheduleDetailViewState, Schedu
         // given
         let remoteId: Int32 = 123
         let channelFunction: Int32 = 213
-        let weeklyConfig = SuplaChannelWeeklyScheduleConfig(
+        let weeklyConfig = SuplaChannelWeeklyScheduleConfig.mock(
             remoteId: remoteId,
-            channelFunc: channelFunction,
-            programConfigurations: [],
-            schedule: []
+            channelFunc: channelFunction
         )
         let hvacConfig = SuplaChannelHvacConfig.mock(
             remoteId: remoteId,
@@ -364,8 +367,7 @@ final class ScheduleDetailVMTests: ViewModelTest<ScheduleDetailViewState, Schedu
                 .changing(path: \.remoteId, to: remoteId)
                 .changing(path: \.programs, to: [
                     ScheduleDetailProgram(
-                        program: .off,
-                        mode: .off,
+                        scheduleProgram: .OFF,
                         icon: .iconPowerButton
                     )
                 ])
@@ -378,11 +380,9 @@ final class ScheduleDetailVMTests: ViewModelTest<ScheduleDetailViewState, Schedu
         // given
         let remoteId: Int32 = 123
         let channelFunction: Int32 = 213
-        let weeklyConfig = SuplaChannelWeeklyScheduleConfig(
+        let weeklyConfig = SuplaChannelWeeklyScheduleConfig.mock(
             remoteId: remoteId,
-            channelFunc: channelFunction,
-            programConfigurations: [],
-            schedule: []
+            channelFunc: channelFunction
         )
         let hvacConfig = SuplaChannelHvacConfig.mock(
             remoteId: remoteId,
@@ -413,11 +413,9 @@ final class ScheduleDetailVMTests: ViewModelTest<ScheduleDetailViewState, Schedu
         // given
         let remoteId: Int32 = 123
         let channelFunction: Int32 = 213
-        let weeklyConfig = SuplaChannelWeeklyScheduleConfig(
+        let weeklyConfig = SuplaChannelWeeklyScheduleConfig.mock(
             remoteId: remoteId,
-            channelFunc: channelFunction,
-            programConfigurations: [],
-            schedule: []
+            channelFunc: channelFunction
         )
         let hvacConfig = SuplaChannelHvacConfig.mock(
             remoteId: remoteId,
@@ -448,11 +446,9 @@ final class ScheduleDetailVMTests: ViewModelTest<ScheduleDetailViewState, Schedu
         // given
         let remoteId: Int32 = 123
         let channelFunction: Int32 = 213
-        let weeklyConfig = SuplaChannelWeeklyScheduleConfig(
+        let weeklyConfig = SuplaChannelWeeklyScheduleConfig.mock(
             remoteId: remoteId,
-            channelFunc: channelFunction,
-            programConfigurations: [],
-            schedule: []
+            channelFunc: channelFunction
         )
         let hvacConfig = SuplaChannelHvacConfig.mock(
             remoteId: remoteId,
@@ -486,11 +482,9 @@ final class ScheduleDetailVMTests: ViewModelTest<ScheduleDetailViewState, Schedu
         // given
         let remoteId: Int32 = 123
         let channelFunction: Int32 = 213
-        let weeklyConfig = SuplaChannelWeeklyScheduleConfig(
+        let weeklyConfig = SuplaChannelWeeklyScheduleConfig.mock(
             remoteId: remoteId,
-            channelFunc: channelFunction,
-            programConfigurations: [],
-            schedule: []
+            channelFunc: channelFunction
         )
         let hvacConfig = SuplaChannelHvacConfig.mock(
             remoteId: remoteId,
@@ -522,6 +516,67 @@ final class ScheduleDetailVMTests: ViewModelTest<ScheduleDetailViewState, Schedu
         XCTAssertTuples(getChannelConfigUseCase.parameters, [
             (remoteId, .defaultConfig),
             (remoteId, .weeklyScheduleConfig)
+        ])
+    }
+    
+    func test_shouldLoadConfigsAndLoadSubfunctionFromValue() {
+        // given
+        let remoteId: Int32 = 123
+        let channelFunction: Int32 = 213
+        let weeklyConfig = SuplaChannelWeeklyScheduleConfig.mock(
+            remoteId: remoteId,
+            channelFunc: channelFunction
+        )
+        let hvacConfig = SuplaChannelHvacConfig.mock(
+            remoteId: remoteId,
+            channelFunction: channelFunction,
+            subfunction: .notSet,
+            configMin: 1000,
+            configMax: 4000
+        )
+        
+        configEventsManager.observeConfigReturns = [
+            Observable.just(ConfigEvent(result: .resultTrue, config: weeklyConfig)),
+            Observable.just(ConfigEvent(result: .resultTrue, config: hvacConfig))
+        ]
+        
+        let channel = SAChannel(testContext: nil)
+        channel.remote_id = remoteId
+        channel.func = SUPLA_CHANNELFNC_HVAC_THERMOSTAT
+        channel.value = .mockThermostat()
+        readChannelByRemoteIdUseCAse.returns = Observable.just(channel)
+        
+        // when
+        observe(viewModel)
+        viewModel.observeConfig(remoteId: remoteId)
+        
+        // then
+        assertObserverItems(statesCount: 3, eventsCount: 0)
+        let state = ScheduleDetailViewState()
+        assertStates(expected: [
+            state,
+            state.changing(path: \.channelFunction, to: channelFunction)
+                .changing(path: \.thermostatSubfunction, to: .notSet)
+                .changing(path: \.remoteId, to: remoteId)
+                .changing(path: \.programs, to: [
+                    ScheduleDetailProgram(
+                        scheduleProgram: .OFF,
+                        icon: .iconPowerButton
+                    )
+                ])
+                .changing(path: \.configMin, to: 10)
+                .changing(path: \.configMax, to: 40),
+            state.changing(path: \.channelFunction, to: channelFunction)
+                .changing(path: \.thermostatSubfunction, to: .heat)
+                .changing(path: \.remoteId, to: remoteId)
+                .changing(path: \.programs, to: [
+                    ScheduleDetailProgram(
+                        scheduleProgram: .OFF,
+                        icon: .iconPowerButton
+                    )
+                ])
+                .changing(path: \.configMin, to: 10)
+                .changing(path: \.configMax, to: 40)
         ])
     }
 }

@@ -100,6 +100,11 @@ final class ThermostatControlView: UIView {
         get { indicatorHeatingShape.isHidden }
         set {
             indicatorHeatingShape.isHidden = newValue
+            if (newValue) {
+                indicatorHeatingShape.removeAllAnimations()
+            } else {
+                indicatorHeatingShape.add(blinkingAnimation, forKey: "heat blinking")
+            }
             setNeedsDisplay()
         }
     }
@@ -108,6 +113,11 @@ final class ThermostatControlView: UIView {
         get { indicatorCoolingShape.isHidden }
         set {
             indicatorCoolingShape.isHidden = newValue
+            if (newValue) {
+                indicatorCoolingShape.removeAllAnimations()
+            } else {
+                indicatorCoolingShape.add(blinkingAnimation, forKey: "cool blinking")
+            }
             setNeedsDisplay()
         }
     }
@@ -115,6 +125,14 @@ final class ThermostatControlView: UIView {
     var indicationColor: CGColor? {
         get { temperatureCircleShape.shadowColor }
         set { temperatureCircleShape.shadowColor = newValue }
+    }
+    
+    var greyOutSetpoins: Bool {
+        get { false }
+        set {
+            setpointHeatPoint.greyOut = newValue
+            setpointCoolPoint.greyOut = newValue
+        }
     }
     
     private var setpointHeat: CGFloat? = 0
@@ -181,6 +199,20 @@ final class ThermostatControlView: UIView {
         label.font = .thermostatControlBigTemperature
         return label
     }()
+    
+    // MARK: Animations
+    
+    private lazy var blinkingAnimation: CABasicAnimation = {
+        let animation = CABasicAnimation(keyPath: "opacity")
+        animation.fromValue = 1.0
+        animation.toValue = 0.2
+        animation.duration = 0.8
+        animation.autoreverses = true
+        animation.repeatCount = .infinity
+        return animation
+    }()
+    
+    // MARK: Functions
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -581,6 +613,19 @@ fileprivate class SetpointLayers: LayerGroup {
     
     var position: CGPoint {
         get { currentPosition }
+    }
+    
+    var greyOut: Bool {
+        get { false }
+        set {
+            if (newValue) {
+                shadowShape.fillColor = UIColor.disabled.cgColor
+                backgroundShape.fillColor = UIColor.disabled.copy(alpha: 0.6).cgColor
+            } else {
+                shadowShape.fillColor = type.color.cgColor
+                backgroundShape.fillColor = type.color.copy(alpha: 0.6).cgColor
+            }
+        }
     }
     
     private lazy var shadowShape: CAShapeLayer = {

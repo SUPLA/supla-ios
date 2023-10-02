@@ -302,13 +302,13 @@ class BaseCell<T>: MGSwipeTableCell {
             containerView.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
             containerView.bottomAnchor.constraint(equalTo: captionView.topAnchor),
             
-            infoView.widthAnchor.constraint(equalToConstant: 30),
-            infoView.heightAnchor.constraint(equalToConstant: 30),
+            infoView.widthAnchor.constraint(equalToConstant: Dimens.iconSizeList),
+            infoView.heightAnchor.constraint(equalToConstant: Dimens.iconSizeList),
             infoView.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
             infoView.leftAnchor.constraint(equalTo: leftStatusIndicatorView.rightAnchor, constant: 20),
             
-            issueView.widthAnchor.constraint(equalToConstant: 30),
-            issueView.heightAnchor.constraint(equalToConstant: 30),
+            issueView.widthAnchor.constraint(equalToConstant: Dimens.iconSizeList),
+            issueView.heightAnchor.constraint(equalToConstant: Dimens.iconSizeList),
             issueView.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
             issueView.rightAnchor.constraint(equalTo: rightStatusIndicatorView.leftAnchor, constant: -30)
         ]

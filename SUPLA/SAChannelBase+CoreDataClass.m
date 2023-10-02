@@ -337,8 +337,6 @@
             return NSLocalizedString(@"Water meter", nil);
         case SUPLA_CHANNELFNC_IC_HEAT_METER:
             return NSLocalizedString(@"Heat meter", nil);
-        case SUPLA_CHANNELFNC_THERMOSTAT:
-            return NSLocalizedString(@"Thermostat", nil);
         case SUPLA_CHANNELFNC_THERMOSTAT_HEATPOL_HOMEPLUS:
             return NSLocalizedString(@"Home+ Heater", nil);
         case SUPLA_CHANNELFNC_VALVE_OPENCLOSE:

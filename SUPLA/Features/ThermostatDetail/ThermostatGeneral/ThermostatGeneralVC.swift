@@ -21,7 +21,7 @@ import RxSwift
 
 class ThermostatGeneralVC: BaseViewControllerVM<ThermostatGeneralViewState, ThermostatGeneralViewEvent, ThermostatGeneralVM> {
     
-    @Singleton<TemperatureFormatter> private var temperatureFormatter
+    @Singleton<ValuesFormatter> private var formatter
     
     private let remoteId: Int32
     
@@ -33,6 +33,18 @@ class ThermostatGeneralVC: BaseViewControllerVM<ThermostatGeneralViewState, Ther
     
     private lazy var buttonsView: ThermostatGeneralButtons = {
         let view = ThermostatGeneralButtons()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+    
+    private lazy var firstProgramInfoView: ProgramView = {
+        let view = ProgramView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+    
+    private lazy var secondProgramInfoView: ProgramView = {
+        let view = ProgramView()
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
@@ -63,6 +75,18 @@ class ThermostatGeneralVC: BaseViewControllerVM<ThermostatGeneralViewState, Ther
         return view
     }()
     
+    private lazy var firstIssueRowView: IssueView = {
+        let view = IssueView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+    
+    private lazy var secondIssueRowView: IssueView = {
+        let view = IssueView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+    
     init(remoteId: Int32) {
         self.remoteId = remoteId
         super.init(nibName: nil, bundle: nil)
@@ -78,13 +102,15 @@ class ThermostatGeneralVC: BaseViewControllerVM<ThermostatGeneralViewState, Ther
         statusBarBackgroundView.isHidden = true
         view.backgroundColor = .background
         
+        viewModel.observeData(remoteId: remoteId)
+        
         setupView()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        viewModel.loadChannel(remoteId: remoteId)
+        viewModel.triggerDataLoad(remoteId: remoteId)
         
         observeNotification(
             name: NSNotification.Name.saChannelValueChanged,
@@ -96,8 +122,8 @@ class ThermostatGeneralVC: BaseViewControllerVM<ThermostatGeneralViewState, Ther
         temperaturesView.firstTemperature = state.mainTemperature
         temperaturesView.secondTemperature = state.auxTemperature
         
-        thermostatControlView.minTemperatureText = temperatureFormatter.toString(state.configMin, withUnit: false)
-        thermostatControlView.maxTemperatureText = temperatureFormatter.toString(state.configMax, withUnit: false)
+        thermostatControlView.minTemperatureText = formatter.temperatureToString(state.configMin, withUnit: false)
+        thermostatControlView.maxTemperatureText = formatter.temperatureToString(state.configMax, withUnit: false)
         thermostatControlView.minMaxHidden = state.configMinMaxHidden
         thermostatControlView.setpointText = state.setpointText
         thermostatControlView.setpointHeatPercentage = state.setpointHeatPercentage?.cg
@@ -106,6 +132,7 @@ class ThermostatGeneralVC: BaseViewControllerVM<ThermostatGeneralViewState, Ther
         thermostatControlView.indicatorCoolingHidden = state.coolingIndicatorInactive ?? false
         thermostatControlView.indicatorHeatingHidden = state.heatingIndicatorInactive ?? false
         thermostatControlView.indicationColor = state.modeIndicatorColor.cgColor
+        thermostatControlView.greyOutSetpoins = state.grayOutSetpoints
         minusButton.isEnabled = state.minusButtonEnabled
         minusButton.isHidden = state.plusMinusHidden
         plusButton.isEnabled = state.plusButtonEnabled
@@ -115,6 +142,30 @@ class ThermostatGeneralVC: BaseViewControllerVM<ThermostatGeneralViewState, Ther
         buttonsView.weeklyScheduleModeActive = state.weeklyScheduleActive
         buttonsView.powerIconColor = state.powerIconColor
         loaderView.isHidden = !state.loadingState.loading
+
+        firstIssueRowView.isHidden = state.issues.count <= 0
+        secondIssueRowView.isHidden = state.issues.count <= 1
+        for (idx, issue) in state.issues.enumerated() {
+            if (idx == 0) {
+                firstIssueRowView.icon = issue.issueIconType.icon()
+                firstIssueRowView.text = issue.description
+            }
+            if (idx == 1) {
+                secondIssueRowView.icon = issue.issueIconType.icon()
+                secondIssueRowView.text = issue.description
+            }
+        }
+        
+        firstProgramInfoView.isHidden = state.programInfo.isEmpty
+        secondProgramInfoView.isHidden = state.programInfo.count < 2
+        for (idx, program) in state.programInfo.enumerated() {
+            if (idx == 0) {
+                firstProgramInfoView.info = program
+            }
+            if (idx == 1) {
+                secondProgramInfoView.info = program
+            }
+        }
     }
     
     private func setupView() {
@@ -143,6 +194,10 @@ class ThermostatGeneralVC: BaseViewControllerVM<ThermostatGeneralViewState, Ther
         view.addSubview(plusButton)
         view.addSubview(minusButton)
         view.addSubview(loaderView)
+        view.addSubview(firstIssueRowView)
+        view.addSubview(secondIssueRowView)
+        view.addSubview(firstProgramInfoView)
+        view.addSubview(secondProgramInfoView)
         
         setupLayout()
     }
@@ -152,6 +207,14 @@ class ThermostatGeneralVC: BaseViewControllerVM<ThermostatGeneralViewState, Ther
             temperaturesView.topAnchor.constraint(equalTo: view.topAnchor),
             temperaturesView.leftAnchor.constraint(equalTo: view.leftAnchor),
             temperaturesView.rightAnchor.constraint(equalTo: view.rightAnchor),
+            
+            firstProgramInfoView.topAnchor.constraint(equalTo: temperaturesView.bottomAnchor, constant: Dimens.distanceDefault),
+            firstProgramInfoView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: Dimens.distanceDefault),
+            firstProgramInfoView.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -Dimens.distanceDefault),
+            
+            secondProgramInfoView.topAnchor.constraint(equalTo: firstProgramInfoView.bottomAnchor, constant: 10),
+            secondProgramInfoView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: Dimens.distanceDefault),
+            secondProgramInfoView.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -Dimens.distanceDefault),
             
             buttonsView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
             buttonsView.leftAnchor.constraint(equalTo: view.leftAnchor),
@@ -168,7 +231,15 @@ class ThermostatGeneralVC: BaseViewControllerVM<ThermostatGeneralViewState, Ther
             loaderView.topAnchor.constraint(equalTo: view.topAnchor),
             loaderView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
             loaderView.leftAnchor.constraint(equalTo: view.leftAnchor),
-            loaderView.rightAnchor.constraint(equalTo: view.rightAnchor)
+            loaderView.rightAnchor.constraint(equalTo: view.rightAnchor),
+            
+            firstIssueRowView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: Dimens.distanceDefault),
+            firstIssueRowView.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -Dimens.distanceDefault),
+            firstIssueRowView.bottomAnchor.constraint(equalTo: buttonsView.topAnchor),
+            
+            secondIssueRowView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: Dimens.distanceDefault),
+            secondIssueRowView.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -Dimens.distanceDefault),
+            secondIssueRowView.bottomAnchor.constraint(equalTo: firstIssueRowView.topAnchor, constant: -Dimens.distanceTiny)
         ])
     }
     
@@ -179,7 +250,7 @@ class ThermostatGeneralVC: BaseViewControllerVM<ThermostatGeneralViewState, Ther
             let remoteId = notification.userInfo?["remoteId"] as? NSNumber,
             !isGroup.boolValue {
             if (remoteId.int32Value == self.remoteId) {
-                viewModel.loadChannel(remoteId: self.remoteId)
+                viewModel.triggerDataLoad(remoteId: self.remoteId)
             } else {
                 viewModel.loadTemperatures(remoteId: self.remoteId, otherId: remoteId.int32Value)
             }
@@ -300,5 +371,208 @@ fileprivate class ThermostatGeneralButtons: UIView {
             weeklyScheduleModeButtonView.rightAnchor.constraint(equalTo: containerView.rightAnchor),
             weeklyScheduleModeButtonView.centerYAnchor.constraint(equalTo: centerYAnchor)
         ])
+    }
+}
+
+// MARK: - Issue view -
+
+fileprivate class IssueView: UIView {
+    
+    override var intrinsicContentSize: CGSize {
+        CGSize(width: UIView.noIntrinsicMetric, height: Dimens.iconSizeList)
+    }
+    
+    var icon: UIImage? {
+        get { iconView.image }
+        set { iconView.image = newValue }
+    }
+    
+    var text: String? {
+        get { textLabel.text }
+        set { textLabel.text = newValue }
+    }
+    
+    private lazy var iconView: UIImageView = {
+        let view = UIImageView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.contentMode = .scaleAspectFit
+        return view
+    }()
+    
+    private lazy var textLabel: UILabel = {
+        let view = UILabel()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.font = .body2
+        return view
+    }()
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        setupView()
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    private func setupView() {
+        addSubview(iconView)
+        addSubview(textLabel)
+        
+        setLayout()
+    }
+    
+    private func setLayout() {
+        NSLayoutConstraint.activate([
+            iconView.topAnchor.constraint(equalTo: topAnchor),
+            iconView.leftAnchor.constraint(equalTo: leftAnchor),
+            iconView.heightAnchor.constraint(equalToConstant: Dimens.iconSizeList),
+            iconView.widthAnchor.constraint(equalToConstant: Dimens.iconSizeList),
+            
+            textLabel.centerYAnchor.constraint(equalTo: centerYAnchor),
+            textLabel.leftAnchor.constraint(equalTo: iconView.rightAnchor, constant: Dimens.distanceSmall)
+        ])
+    }
+}
+
+fileprivate class ProgramView: UIView {
+    
+    override var intrinsicContentSize: CGSize {
+        get { CGSize(width: UIView.noIntrinsicMetric, height: 20) }
+    }
+    
+    var info: ThermostatProgramInfo? {
+        get { nil }
+        set {
+            guard let info = newValue else { return }
+            
+            infoTypeLabel.text = info.type.text().uppercased()
+            iconView.isHidden = info.icon == nil || info.iconColor == nil
+            if let icon = info.icon,
+               let color = info.iconColor {
+                iconView.image = icon.withRenderingMode(.alwaysTemplate)
+                iconView.tintColor = color
+            }
+            descriptionLabel.isHidden = info.description == nil
+            descriptionLabel.text = info.description
+            timeLabel.isHidden = info.time == nil
+            timeLabel.text = info.time
+            manualIconView.isHidden = !info.manualActive
+            
+            setupLayout()
+            setNeedsLayout()
+        }
+    }
+    
+    private lazy var infoTypeLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.font = .body2
+        label.textColor = .gray
+        return label
+    }()
+    
+    private lazy var iconView: UIImageView = {
+        let view = UIImageView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.contentMode = .scaleAspectFit
+        return view
+    }()
+    
+    private lazy var descriptionLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.font = .openSansSemiBold(style: .body, size: 14)
+        label.textColor = .onBackground
+        return label
+    }()
+    
+    private lazy var timeLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.font = .body2
+        label.textColor = .onBackground
+        return label
+    }()
+    
+    private lazy var manualIconView: UIImageView = {
+        let view = UIImageView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.image = .iconManual
+        view.contentMode = .scaleAspectFit
+        return view
+    }()
+    
+    private var allConstraints: [NSLayoutConstraint] = []
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        
+        setupView()
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    private func setupView() {
+        addSubview(infoTypeLabel)
+        addSubview(iconView)
+        addSubview(descriptionLabel)
+        addSubview(timeLabel)
+        addSubview(manualIconView)
+        
+        setupLayout()
+    }
+    
+    private func setupLayout() {
+        NSLayoutConstraint.deactivate(allConstraints)
+        allConstraints.removeAll()
+        
+        allConstraints.append(contentsOf: [
+            infoTypeLabel.leftAnchor.constraint(equalTo: leftAnchor),
+            infoTypeLabel.centerYAnchor.constraint(equalTo: centerYAnchor),
+            infoTypeLabel.widthAnchor.constraint(greaterThanOrEqualToConstant: 80),
+            
+            iconView.widthAnchor.constraint(equalToConstant: Dimens.iconSizeSmall),
+            iconView.heightAnchor.constraint(equalToConstant: Dimens.iconSizeSmall),
+            
+            manualIconView.widthAnchor.constraint(equalToConstant: Dimens.iconSizeSmall),
+            manualIconView.heightAnchor.constraint(equalToConstant: Dimens.iconSizeSmall)
+        ])
+        var lastRightAnchor = infoTypeLabel.rightAnchor
+        
+        if (!iconView.isHidden) {
+            allConstraints.append(contentsOf: [
+                iconView.leftAnchor.constraint(equalTo: lastRightAnchor, constant: Dimens.distanceTiny),
+                iconView.centerYAnchor.constraint(equalTo: centerYAnchor)
+            ])
+            lastRightAnchor = iconView.rightAnchor
+        }
+
+        if (!descriptionLabel.isHidden) {
+            allConstraints.append(contentsOf: [
+                descriptionLabel.leftAnchor.constraint(equalTo: lastRightAnchor, constant: Dimens.distanceTiny),
+                descriptionLabel.centerYAnchor.constraint(equalTo: centerYAnchor)
+            ])
+            lastRightAnchor = descriptionLabel.rightAnchor
+        }
+
+        if (!timeLabel.isHidden) {
+            allConstraints.append(contentsOf: [
+                timeLabel.leftAnchor.constraint(equalTo: lastRightAnchor, constant: Dimens.distanceTiny),
+                timeLabel.centerYAnchor.constraint(equalTo: centerYAnchor)
+            ])
+            lastRightAnchor = timeLabel.rightAnchor
+        }
+
+        if (!manualIconView.isHidden) {
+            allConstraints.append(contentsOf: [
+                manualIconView.leftAnchor.constraint(equalTo: lastRightAnchor, constant: Dimens.distanceTiny),
+                manualIconView.centerYAnchor.constraint(equalTo: centerYAnchor)
+            ])
+        }
+        
+        NSLayoutConstraint.activate(allConstraints)
     }
 }

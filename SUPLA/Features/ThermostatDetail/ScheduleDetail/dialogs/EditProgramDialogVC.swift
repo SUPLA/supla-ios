@@ -109,8 +109,8 @@ final class EditProgramDialogVC : SuplaCustomDialogVC<EditProgramDialogViewState
     }
     
     override func handle(state: EditProgramDialogViewState) {
-        titleLabel.text = Strings.ThermostatDetail.editProgramDialogHeader.arguments(state.program.program.rawValue)
-        titleIconView.backgroundColor = state.program.program.color()
+        titleLabel.text = Strings.ThermostatDetail.editProgramDialogHeader.arguments(state.program.scheduleProgram.program.rawValue)
+        titleIconView.backgroundColor = state.program.scheduleProgram.program.color()
         editHeatTemperatureView.isHidden = !state.showHeatEdit
         editHeatTemperatureView.minusIconButton.isEnabled = state.heatMinusActive
         editHeatTemperatureView.plusIconButton.isEnabled = state.heatPlusActive

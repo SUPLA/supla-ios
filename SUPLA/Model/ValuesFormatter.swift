@@ -15,21 +15,21 @@
  along with this program; if not, write to the Free Software
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
-import Foundation
 
-let TEMPERATURE_NO_VALUE = "---"
+let NO_VALUE_TEXT = "---"
 
-protocol TemperatureFormatter {
-    func toString(_ value: Float?, withUnit: Bool, withDegree: Bool) -> String
+protocol ValuesFormatter {
+    func temperatureToString(_ value: Float?, withUnit: Bool, withDegree: Bool) -> String
+    func minutesToString(minutes: Int) -> String
 }
 
-extension TemperatureFormatter {
-    func toString(_ value: Float?, withUnit: Bool = true, withDegree: Bool = true) -> String {
-        toString(value, withUnit: withUnit, withDegree: withDegree)
+extension ValuesFormatter {
+    func temperatureToString(_ value: Float?, withUnit: Bool = true, withDegree: Bool = true) -> String {
+        temperatureToString(value, withUnit: withUnit, withDegree: withDegree)
     }
 }
 
-final class TemperatureFormatterImpl: TemperatureFormatter {
+final class ValuesFormatterImpl: ValuesFormatter {
     
     @Singleton<GlobalSettings> private var settings
     
@@ -43,11 +43,11 @@ final class TemperatureFormatterImpl: TemperatureFormatter {
         return formatter
     }()
     
-    func toString(_ value: Float?, withUnit: Bool = true, withDegree: Bool = true) -> String {
+    func temperatureToString(_ value: Float?, withUnit: Bool = true, withDegree: Bool = true) -> String {
         guard let value = value,
               let formatted = formatter.string(from: NSNumber(value: convert(value)))
         else {
-            return TEMPERATURE_NO_VALUE
+            return NO_VALUE_TEXT
         }
         
         if (withUnit) {
@@ -56,6 +56,16 @@ final class TemperatureFormatterImpl: TemperatureFormatter {
             return "\(formatted)°"
         } else {
             return formatted
+        }
+    }
+    
+    func minutesToString(minutes: Int) -> String {
+        let hours = minutes / 60
+        
+        if (hours < 1) {
+            return Strings.General.time_just_minutes.arguments(minutes)
+        } else {
+            return Strings.General.time_hours_and_mintes.arguments(hours, (minutes % 60))
         }
     }
     

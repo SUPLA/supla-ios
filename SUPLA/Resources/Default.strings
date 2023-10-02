@@ -64,6 +64,8 @@
 "friday_short" = "FR";
 "saturday_short" = "SA";
 "sunday_short" = "SU";
+"time_just_mintes" = "%d min.";
+"time_hours_and_minutes" = "%d hours %d min.";
 
 /* Standard Detail */
 "standard_detail_general_tab" = "General";
@@ -117,4 +119,7 @@
 "hvac_mode_temperature_cooling" = "Cooling temperature";
 "schedule_detail_quarters_dialog_header" = "Time %02d:00";
 "schedule_detail_configuration_failure" = "Error - invalid channel configuration";
+"thermostat_detail_program_time" = "for %@";
+"thermostat_detail_program_current" = "Currently:";
+"thermostat_detail_program_next" = "Next:";
 
