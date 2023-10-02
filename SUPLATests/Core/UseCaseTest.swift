@@ -37,12 +37,40 @@ class UseCaseTest<R>: XCTestCase {
         observer = nil
     }
     
-    func assertEventsCount(_ count: Int) {
-        XCTAssertEqual(observer.events.count, count)
+    func assertTuple<T1: Equatable, T2:Equatable>(_ tuples: [(T1, T2)], equalTo others: [(T1, T2)]) {
+        XCTAssertEqual(tuples.count, others.count)
+        
+        for i in 0...(tuples.count-1) {
+            XCTAssertEqual(tuples[i].0, others[i].0)
+            XCTAssertEqual(tuples[i].1, others[i].1)
+        }
     }
     
-    func assertEvents(_ items: [Event<R>]) {
-        let events = observer.events
+    func assertTuple<T1: Equatable, T2:Equatable, T3:Equatable>(_ tuples: [(T1, T2, T3)], equalTo others: [(T1, T2, T3)]) {
+        XCTAssertEqual(tuples.count, others.count)
+        
+        if (tuples.count > 0) {
+            for i in 0...(tuples.count-1) {
+                XCTAssertEqual(tuples[i].0, others[i].0)
+                XCTAssertEqual(tuples[i].1, others[i].1)
+                XCTAssertEqual(tuples[i].2, others[i].2)
+            }
+        }
+    }
+    
+    func assertTuple<T1: Equatable, T2:Equatable, T3:Equatable, T4:Equatable, T5:Equatable>(_ tuples: [(T1, T2, T3, T4, T5)], equalTo others: [(T1, T2, T3, T4, T5)]) {
+        XCTAssertEqual(tuples.count, others.count)
+        
+        for i in 0...(tuples.count-1) {
+            XCTAssertEqual(tuples[i].0, others[i].0)
+            XCTAssertEqual(tuples[i].1, others[i].1)
+            XCTAssertEqual(tuples[i].2, others[i].2)
+            XCTAssertEqual(tuples[i].3, others[i].3)
+            XCTAssertEqual(tuples[i].4, others[i].4)
+        }
+    }
+    
+    func assertVoid(_ events: [Recorded<Event<Void>>], equalTo items: [Event<Void>]) {
         XCTAssertEqual(events.count, items.count)
         
         for (event, item) in zip(events, items) {
@@ -51,28 +79,6 @@ class UseCaseTest<R>: XCTestCase {
                 XCTAssertEqual("\(e1)", "\(e2)")
                 break
             case (.next, .next), (.completed, .completed):
-                break
-            default:
-                XCTFail("Events not equal (\(event), \(item))")
-            }
-        }
-    }
-}
-
-extension UseCaseTest where R:Equatable {
-    func assertEvents(_ items: [Event<R>]) {
-        let events = observer.events
-        XCTAssertEqual(events.count, items.count)
-        
-        for (event, item) in zip(events, items) {
-            switch (event.value, item) {
-            case (.error(let e1), .error(let e2)):
-                XCTAssertEqual("\(e1)", "\(e2)")
-                break
-            case (.next(let firstElement), .next(let secondElement)):
-                XCTAssertEqual(firstElement, secondElement)
-                break
-            case (.completed, .completed):
                 break
             default:
                 XCTFail("Events not equal (\(event), \(item))")

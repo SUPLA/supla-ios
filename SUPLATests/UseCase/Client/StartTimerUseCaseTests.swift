@@ -59,7 +59,7 @@ final class StartTimerUseCaseTests: UseCaseTest<Void> {
         // then
         XCTAssertEqual(observer.events.count, 2) // next & complete
         XCTAssertEqual(vibrationService.vibrateCalls, 1)
-        XCTAssertTuples(suplaClientProvider.suplaClientMock.timerArmParameters, [
+        assertTuple(suplaClientProvider.suplaClientMock.timerArmParameters, equalTo: [
             (remoteId, turnOn, Int32(15000))
         ])
     }
@@ -80,7 +80,7 @@ final class StartTimerUseCaseTests: UseCaseTest<Void> {
         // then
         XCTAssertEqual(observer.events.count, 2) // next & complete
         XCTAssertEqual(vibrationService.vibrateCalls, 0)
-        XCTAssertTuples(suplaClientProvider.suplaClientMock.timerArmParameters, [
+        assertTuple(suplaClientProvider.suplaClientMock.timerArmParameters, equalTo: [
             (remoteId, turnOn, Int32(15000))
         ])
     }
@@ -99,8 +99,8 @@ final class StartTimerUseCaseTests: UseCaseTest<Void> {
             .disposed(by: disposeBag)
         
         // then
-        assertEvents([.error(StartTimerUseCaseImpl.InvalidTimeError())])
+        assertVoid(observer.events, equalTo: [.error(StartTimerUseCaseImpl.InvalidTimeError())])
         XCTAssertEqual(vibrationService.vibrateCalls, 0)
-        XCTAssertTuples(suplaClientProvider.suplaClientMock.timerArmParameters, [])
+        assertTuple(suplaClientProvider.suplaClientMock.timerArmParameters, equalTo: [])
     }
 }

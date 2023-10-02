@@ -24,7 +24,6 @@ class ChannelListViewModel: BaseTableViewModel<ChannelListViewState, ChannelList
     @Singleton<SwapChannelPositionsUseCase> private var swapChannelPositionsUseCase
     @Singleton<ProvideDetailTypeUseCase> private var provideDetailTypeUseCase
     @Singleton<ListsEventsManager> private var listsEventsManager
-    @Singleton<ExecuteSimpleActionUseCase> private var executeSimpleActionUseCase
     
     override init() {
         super.init()
@@ -68,32 +67,13 @@ class ChannelListViewModel: BaseTableViewModel<ChannelListViewState, ChannelList
         case let .legacy(type: legacyDetailType):
             send(event: .navigateToDetail(legacy: legacyDetailType, channelBase: item))
             break
-        case .switchDetail(let pages):
-            send(event: .navigateToSwitchDetail(remoteId: item.remote_id, pages: pages))
-            break
-        case let .thermostatDetail(pages):
-            send(event: .navigateToThermostatDetail(remoteId: item.remote_id, pages: pages))
+        case .standard(let pages):
+            send(event: .navigateToStandardDetail(remoteId: item.remote_id, pages: pages))
             break
         }
     }
     
     override func getCollapsedFlag() -> CollapsedFlag { .channel }
-    
-    func onButtonClicked(buttonType: CellButtonType, data: Any?) {
-        // currently used only by TermostatCell
-        if let channelWithChildren = data as? ChannelWithChildren {
-            switch (buttonType) {
-            case .leftButton:
-                executeSimpleActionUseCase.invoke(action: .turn_off, type: .channel, remoteId: channelWithChildren.channel.remote_id)
-                    .subscribe()
-                    .disposed(by: self)
-            case .rightButton:
-                executeSimpleActionUseCase.invoke(action: .turn_on, type: .channel, remoteId: channelWithChildren.channel.remote_id)
-                    .subscribe()
-                    .disposed(by: self)
-            }
-        }
-    }
     
     private func isAvailableInOffline(_ channel: SAChannel) -> Bool {
         switch(channel.func) {
@@ -103,9 +83,7 @@ class ChannelListViewModel: BaseTableViewModel<ChannelListViewState, ChannelList
             SUPLA_CHANNELFNC_IC_ELECTRICITY_METER,
             SUPLA_CHANNELFNC_IC_GAS_METER,
             SUPLA_CHANNELFNC_IC_WATER_METER,
-            SUPLA_CHANNELFNC_IC_HEAT_METER,
-            SUPLA_CHANNELFNC_HVAC_DOMESTIC_HOT_WATER,
-            SUPLA_CHANNELFNC_HVAC_THERMOSTAT:
+            SUPLA_CHANNELFNC_IC_HEAT_METER:
             return true
         case SUPLA_CHANNELFNC_LIGHTSWITCH,
             SUPLA_CHANNELFNC_POWERSWITCH,
@@ -125,8 +103,7 @@ class ChannelListViewModel: BaseTableViewModel<ChannelListViewState, ChannelList
 
 enum ChannelListViewEvent: ViewEvent {
     case navigateToDetail(legacy: LegacyDetailType, channelBase: SAChannelBase)
-    case navigateToSwitchDetail(remoteId: Int32, pages: [DetailPage])
-    case navigateToThermostatDetail(remoteId: Int32, pages: [DetailPage])
+    case navigateToStandardDetail(remoteId: Int32, pages: [DetailPage])
 }
 
 struct ChannelListViewState: ViewState {}

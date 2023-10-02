@@ -57,7 +57,6 @@
 - (void) channelExtendedValueUpdate:(TSC_SuplaChannelExtendedValue *)channel_extendedvalue;
 - (void) channelGroupUpdate:(TSC_SuplaChannelGroup_B *)cgroup;
 - (void) channelGroupRelationUpdate:(TSC_SuplaChannelGroupRelation *)cgroup_relation;
-- (void) channelRelationUpdate: (TSC_SuplaChannelRelation *) relation;
 - (void) sceneUpdate:(TSC_SuplaScene *)scene;
 - (void) sceneStateUpdate:(TSC_SuplaSceneState *)state;
 - (void) onEvent:(SAEvent *)event;
@@ -80,7 +79,6 @@
 - (void) onZwaveOnAssignNodeIdResult:(SAZWaveNodeIdResult*)result;
 - (void) onZwaveWakeupSettingsReport:(SAZWaveWakeupSettingsReport*)report;
 - (void) onZWaveSetWakeUpTimeResult:(NSNumber *)result;
-- (void) onChannelConfigUpdateOrResult: (TSC_ChannelConfigUpdateOrResult*) config;
 @end
 
 void sasuplaclient_on_versionerror(void *_suplaclient, void *user_data, int version, int remote_version_min, int remote_version) {
@@ -181,13 +179,6 @@ void sasuplaclient_channelgroup_relation_update(void *_suplaclient, void *user_d
     SASuplaClient *sc = (__bridge SASuplaClient*)user_data;
     if ( sc != nil )
         [sc channelGroupRelationUpdate: channelgroup_relation];
-}
-
-void sasuplaclient_channel_relation_update(void *_suplaclient, void *user_data, TSC_SuplaChannelRelation *channel_relation) {
-    SASuplaClient *sc = (__bridge SASuplaClient*)user_data;
-    if ( sc != nil ) {
-        [sc channelRelationUpdate: channel_relation];
-    }
 }
 
 void sasuplaclient_on_event(void *_suplaclient, void *user_data, TSC_SuplaEvent *event) {
@@ -386,15 +377,6 @@ void sasuplaclient_scene_state_update(void *_suplaclient,
         [sc sceneStateUpdate:state];
 }
 
-void sasuplaclient_channel_config_update_or_result(void *_suplaclient,
-                                                   void *user_data,
-                                                   TSC_ChannelConfigUpdateOrResult *config) {
-    SASuplaClient *sc = (__bridge SASuplaClient*) user_data;
-    if ( sc != nil ) {
-        [sc onChannelConfigUpdateOrResult: config];
-    }
-}
-
 // ------------------------------------------------------------------------------------------------------
 
 @implementation SASuplaClient {
@@ -540,7 +522,6 @@ void sasuplaclient_channel_config_update_or_result(void *_suplaclient,
     scc.cb_channelgroup_relation_update = sasuplaclient_channelgroup_relation_update;
     scc.cb_channel_value_update = sasuplaclient_channel_value_update;
     scc.cb_channel_extendedvalue_update = sasuplaclient_channel_extendedvalue_update;
-    scc.cb_channel_relation_update = sasuplaclient_channel_relation_update;
     scc.cb_on_event = sasuplaclient_on_event;
     scc.cb_on_registration_enabled = sasuplaclient_on_registration_enabled;
     scc.cb_on_oauth_token_request_result = sasuplaclient_on_oauth_token_request_result;
@@ -563,7 +544,6 @@ void sasuplaclient_channel_config_update_or_result(void *_suplaclient,
     scc.cb_on_zwave_set_wake_up_time_result = sasuplaclient_on_zwave_set_wake_up_time_result;
     scc.cb_scene_update = sasuplaclient_scene_update;
     scc.cb_scene_state_update = sasuplaclient_scene_state_update;
-    scc.cb_on_channel_config_update_or_result = sasuplaclient_channel_config_update_or_result;
     
     return supla_client_init(&scc);
     
@@ -600,8 +580,6 @@ void sasuplaclient_channel_config_update_or_result(void *_suplaclient,
             if ([UseCaseLegacyWrapper changeScenesVisibilityFrom:1 to:2]) {
                 DataChanged = YES;
             }
-            
-            [UseCaseLegacyWrapper markChannelRelationsAsRemovable];
             
             if ( DataChanged ) {
                 [self onDataChanged];
@@ -741,8 +719,6 @@ void sasuplaclient_channel_config_update_or_result(void *_suplaclient,
         }
         [UseCaseLegacyWrapper updatePreferredProtocolVersion: newVersion];
     };
-    
-    NSLog(@"Protocol Version=%d", result.Version);
     
     if ( result.ChannelCount == 0
         && [UseCaseLegacyWrapper changeChannelsVisibilityFrom:2 to:0] ) {
@@ -930,17 +906,6 @@ void sasuplaclient_channel_config_update_or_result(void *_suplaclient,
     }
 }
 
-- (void) channelRelationUpdate: (TSC_SuplaChannelRelation *) relation {
-    
-    NSLog(@"Relation for channel `%i` setting parent to `%i`", relation->Id, relation->ParentId);
-    [UseCaseLegacyWrapper insertChannelRelationWithRelation: *relation];
-    
-    if (relation->EOL == 1) {
-        [UseCaseLegacyWrapper deleteRemovableRelations];
-        [DiContainer.listsEventsManager emitChannelUpdate];
-    }
-}
-
 - (void) sceneUpdate:(TSC_SuplaScene *)scene {
     
     BOOL DataChanged = NO;
@@ -967,10 +932,6 @@ void sasuplaclient_channel_config_update_or_result(void *_suplaclient,
         NSLog(@"State for scene with ID: %i updated", state->SceneId);
         [self onDataChanged];
     }
-}
-
-- (void) onChannelConfigUpdateOrResult: (TSC_ChannelConfigUpdateOrResult*) config {
-    [[DiContainer configEventsManager] emitConfigWithResult: config->Result config: config->Config];
 }
 
 - (void) _onEvent:(SAEvent *)event {
@@ -1367,26 +1328,6 @@ void sasuplaclient_channel_config_update_or_result(void *_suplaclient,
     }
 }
 
-- (BOOL) getChannelConfig: (TCS_GetChannelConfigRequest*) configRequest {
-    @synchronized (self) {
-        if ( _sclient ) {
-            return supla_client_get_channel_config(_sclient, configRequest) > 0;
-        }
-    }
-    
-    return false;
-}
-
-- (BOOL) setChannelConfig: (TSCS_ChannelConfig*) config {
-    @synchronized (self) {
-        if ( _sclient ) {
-            return supla_client_set_channel_config(_sclient, config) > 0;
-        }
-    }
-    
-    return false;
-}
-
 - (void) setLightsourceLifespanWithChannelId:(int)channelId resetCounter:(BOOL)reset setTime:(BOOL)setTime lifespan:(unsigned short)lifespan {
     @synchronized(self) {
         if ( _sclient ) {
@@ -1608,12 +1549,13 @@ void sasuplaclient_channel_config_update_or_result(void *_suplaclient,
     return true;
 }
 
-- (BOOL) executeAction: (int)actionId subjecType: (int)subjectType subjectId: (int)subjectId parameters: (void *) parameters length: (int) length {
+- (BOOL) executeAction: (int)actionId subjecType: (int)subjectType subjectId: (int)subjectId rsParameters: (TAction_RS_Parameters*)rsParameters rgbwParameters: (TAction_RGBW_Parameters*)rgbwParameters {
     if (!_sclient) {
         return NO;
     }
     
-    return supla_client_execute_action(_sclient, actionId, parameters, length, subjectType, subjectId) > 0;
+    AudioServicesPlayAlertSound(kSystemSoundID_Vibrate);
+    return supla_client_execute_action(_sclient, actionId, rsParameters, rgbwParameters, subjectType, subjectId) > 0;
 }
 
 - (BOOL) timerArmFor: (int) remoteId withTurnOn: (BOOL) on withTime: (int) milis {

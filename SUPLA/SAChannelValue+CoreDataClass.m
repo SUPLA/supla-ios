@@ -305,14 +305,6 @@
     return result;
 }
 
--(THVACValue) hvacValue {
-    THVACValue result = {};
-    if (self.dataValue.length == sizeof(THVACValue)) {
-        [self.dataValue getBytes:&result length:sizeof(THVACValue)];
-    }
-    return result;
-}
-
 -(BOOL) isManuallyClosed {
     return ([self secondByte] & SUPLA_VALVE_FLAG_MANUALLY_CLOSED) > 0;
 }

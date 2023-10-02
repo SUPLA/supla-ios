@@ -159,7 +159,6 @@ class AccountCreationVC: BaseViewControllerVM<AccountCreationViewState, AccountC
         [ bsEmailAddr, adEmailAddr, adServerAddrEmail, adAccessID, adAccessPwd,
           adServerAddrAccessId ].forEach { $0.delegate = self }
         modeToggle.tintColor = .switcherBackground
-        modeToggle.onTintColor = .primary
 
         let gr = UITapGestureRecognizer(target: self,
                                         action: #selector(didTapBackground(_:)))
@@ -184,9 +183,9 @@ class AccountCreationVC: BaseViewControllerVM<AccountCreationViewState, AccountC
         adAuthType.setTitle(Strings.AccountCreation.emailSegment, forSegmentAt: 0)
         adAuthType.setTitle(Strings.AccountCreation.accessIdSegment, forSegmentAt: 1)
         
-        adAccessIdWizardWarning.textColor = .error
+        adAccessIdWizardWarning.textColor = .alertRed
         adAccessIdWizardWarning.layer.cornerRadius = 9
-        adAccessIdWizardWarning.layer.borderColor = UIColor.error.cgColor
+        adAccessIdWizardWarning.layer.borderColor = UIColor.alertRed.cgColor
         adAccessIdWizardWarning.layer.borderWidth = 1
         
         deleteButton.setTitle(Strings.Profiles.delete, for: .normal)

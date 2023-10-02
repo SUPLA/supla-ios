@@ -16,25 +16,13 @@
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 
-public let CHANNEL_UNKNOWN_ICON_NAME = "unknown_channel"
-
 protocol GetDefaultIconNameUseCase {
-    func invoke(iconData: IconData) -> String
+    func invoke(function: Int32, state: ChannelState, altIcon: Int32, iconType: IconType) -> String
 }
 
 protocol IconNameProducer {
     func accepts(function: Int32) -> Bool
-    func produce(iconData: IconData) -> String
-}
-
-struct IconData: Changeable, Equatable {
-    let function: Int32
-    let altIcon: Int32
-    var state: ChannelState = .notUsed
-    var type: IconType = .single
-    var userIcon: SAUserIcon? = nil
-    var nightMode = false
-    var subfunction: ThermostatSubfunction? = nil // Thermostat specific parameter
+    func produce(function: Int32, state: ChannelState, altIcon: Int32, iconType: IconType) -> String
 }
 
 extension IconNameProducer {
@@ -52,17 +40,17 @@ extension IconNameProducer {
 
 final class GetDefaultIconNameUseCaseImpl: GetDefaultIconNameUseCase {
     
-    func invoke(iconData: IconData) -> String {
+    func invoke(function: Int32, state: ChannelState, altIcon: Int32, iconType: IconType) -> String {
         var name: String? = nil
         producers.forEach { producer in
-            if (producer.accepts(function: iconData.function)) {
-                name = producer.produce(iconData: iconData)
+            if (producer.accepts(function: function)) {
+                name = producer.produce(function: function, state: state, altIcon: altIcon, iconType: iconType)
             }
         }
         if let name = name {
             return name
         } else {
-            return CHANNEL_UNKNOWN_ICON_NAME
+            return "unknown_channel"
         }
     }
     
@@ -102,8 +90,7 @@ final class GetDefaultIconNameUseCaseImpl: GetDefaultIconNameUseCase {
         StaticIconNameProducer(function: SUPLA_CHANNELFNC_VALVE_OPENCLOSE, name: "valve"),
         StaticIconNameProducer(function: SUPLA_CHANNELFNC_VALVE_PERCENTAGE, name: "valve"),
         DigiglassHorizontalIconNameProducer(),
-        DigiglassVerticalIconNameProducer(),
-        ThermostatIconNameProducer()
+        DigiglassVerticalIconNameProducer()
     ]
 }
 

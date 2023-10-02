@@ -41,9 +41,6 @@ class ChannelListVMTests: ViewModelTest<ChannelListViewState, ChannelListViewEve
     private lazy var listsEventsManager: ListsEventsManagerMock! = {
         ListsEventsManagerMock()
     }()
-    private lazy var executeSimpleActionUseCase: ExecuteSimpleActionUseCaseMock! = {
-        ExecuteSimpleActionUseCaseMock()
-    }()
     
     override func setUp() {
         DiContainer.shared.register(type: CreateProfileChannelsListUseCase.self, component: createProfileChannelsListUseCase!)
@@ -51,7 +48,6 @@ class ChannelListVMTests: ViewModelTest<ChannelListViewState, ChannelListViewEve
         DiContainer.shared.register(type: ProvideDetailTypeUseCase.self, component: provideDetailTypeUseCase!)
         DiContainer.shared.register(type: ToggleLocationUseCase.self, component: toggleLocationUseCase!)
         DiContainer.shared.register(type: ListsEventsManager.self, component: listsEventsManager!)
-        DiContainer.shared.register(type: ExecuteSimpleActionUseCase.self, component: executeSimpleActionUseCase!)
     }
     
     override func tearDown() {
@@ -62,7 +58,6 @@ class ChannelListVMTests: ViewModelTest<ChannelListViewState, ChannelListViewEve
         provideDetailTypeUseCase = nil
         toggleLocationUseCase = nil
         listsEventsManager = nil
-        executeSimpleActionUseCase = nil
         
         super.tearDown()
     }
@@ -239,7 +234,7 @@ class ChannelListVMTests: ViewModelTest<ChannelListViewState, ChannelListViewEve
         XCTAssertEqual(createProfileChannelsListUseCase.invokeCounter, 1)
     }
     
-    func test_shouldOpenSwitchDetail() {
+    func test_shouldOpenStandardDetail() {
         // given
         let remoteId: Int32 = 322
         let channel = SAChannel(testContext: nil)
@@ -247,7 +242,7 @@ class ChannelListVMTests: ViewModelTest<ChannelListViewState, ChannelListViewEve
         channel.value?.online = true
         channel.remote_id = remoteId
         
-        provideDetailTypeUseCase.detailType = .switchDetail(pages: [.general])
+        provideDetailTypeUseCase.detailType = .standard(pages: [.general])
         
         // when
         observe(viewModel)
@@ -258,68 +253,7 @@ class ChannelListVMTests: ViewModelTest<ChannelListViewState, ChannelListViewEve
         XCTAssertEqual(eventObserver.events.count, 1)
         
         XCTAssertEqual(eventObserver.events, [
-            .next(0, .navigateToSwitchDetail(remoteId: remoteId, pages: [.general]))
-        ])
-    }
-    
-    func test_shouldOpenThermostatDetail() {
-        // given
-        let remoteId: Int32 = 322
-        let channel = SAChannel(testContext: nil)
-        channel.value = SAChannelValue(testContext: nil)
-        channel.value?.online = true
-        channel.remote_id = remoteId
-        
-        provideDetailTypeUseCase.detailType = .thermostatDetail(pages: [.general])
-        
-        // when
-        observe(viewModel)
-        viewModel.onClicked(onItem: channel)
-        
-        // then
-        XCTAssertEqual(stateObserver.events.count, 1)
-        XCTAssertEqual(eventObserver.events.count, 1)
-        
-        XCTAssertEqual(eventObserver.events, [
-            .next(0, .navigateToThermostatDetail(remoteId: remoteId, pages: [.general]))
-        ])
-    }
-    
-    func test_leftButtonClicked() {
-        // given
-        let buttonType: CellButtonType = .leftButton
-        let channel = SAChannel(testContext: nil)
-        channel.remote_id = 321
-        let data = ChannelWithChildren(channel: channel, children: [])
-        
-        // when
-        viewModel.onButtonClicked(buttonType: buttonType, data: data)
-        
-        // then
-        XCTAssertEqual(stateObserver.events.count, 0)
-        XCTAssertEqual(eventObserver.events.count, 0)
-        
-        XCTAssertTuples(executeSimpleActionUseCase.parameters, [
-            (Action.turn_off, SUPLA.SubjectType.channel, channel.remote_id)
-        ])
-    }
-    
-    func test_rightButtonClicked() {
-        // given
-        let buttonType: CellButtonType = .rightButton
-        let channel = SAChannel(testContext: nil)
-        channel.remote_id = 321
-        let data = ChannelWithChildren(channel: channel, children: [])
-        
-        // when
-        viewModel.onButtonClicked(buttonType: buttonType, data: data)
-        
-        // then
-        XCTAssertEqual(stateObserver.events.count, 0)
-        XCTAssertEqual(eventObserver.events.count, 0)
-        
-        XCTAssertTuples(executeSimpleActionUseCase.parameters, [
-            (Action.turn_on, SUPLA.SubjectType.channel, channel.remote_id)
+            .next(0, .navigateToStandardDetail(remoteId: remoteId, pages: [.general]))
         ])
     }
 }

@@ -32,7 +32,7 @@ class LocationCaptionEditor: SACaptionEditor {
     }
     
     override func getTitle() -> String {
-        return NSLocalizedString("Location name", comment: "")
+        return NSLocalizedString("Group name", comment: "")
     }
     
     override func getCaption() -> String {

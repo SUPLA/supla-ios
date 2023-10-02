@@ -36,8 +36,8 @@ class GroupListVC : ChannelBaseTableViewController<GroupListViewState, GroupList
         }
     }
     
-    override func configureCell(channelBase: SAChannelBase, children: [ChannelChild], indexPath: IndexPath) -> UITableViewCell {
-        let cell = super.configureCell(channelBase: channelBase, children: children, indexPath: indexPath) as! SAChannelCell
+    override func configureCell(channelBase: SAChannelBase, indexPath: IndexPath) -> UITableViewCell {
+        let cell = super.configureCell(channelBase: channelBase, indexPath: indexPath) as! SAChannelCell
         cell.delegate = self
         
         return cell

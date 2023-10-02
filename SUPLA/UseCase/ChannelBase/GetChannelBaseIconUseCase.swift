@@ -17,17 +17,33 @@
  */
 
 protocol GetChannelBaseIconUseCase {
-    func invoke(iconData: IconData) -> IconResult
+    func invoke(
+        function: Int32,
+        userIcon: SAUserIcon?,
+        channelState: ChannelState,
+        altIcon: Int32,
+        iconType: IconType,
+        nightMode: Bool
+    ) -> IconResult
 }
 
 extension GetChannelBaseIconUseCase {
     func invoke(
-        channel: SAChannel,
-        type: IconType = .single,
-        nightMode: Bool = false,
-        subfunction: ThermostatSubfunction? = nil
-    ) -> UIImage? {
-        return invoke(iconData: channel.getIconData(type: type, nightMode: nightMode, subfunction: subfunction)).icon
+        function: Int32,
+        userIcon: SAUserIcon?,
+        channelState: ChannelState,
+        altIcon: Int32,
+        iconType: IconType = .single,
+        nightMode: Bool = false
+    ) -> IconResult {
+        invoke(
+            function: function,
+            userIcon: userIcon,
+            channelState: channelState,
+            altIcon: altIcon,
+            iconType: iconType,
+            nightMode: nightMode
+        )
     }
 }
 
@@ -35,19 +51,24 @@ final class GetChannelBaseIconUseCaseImpl: GetChannelBaseIconUseCase {
     
     @Singleton<GetDefaultIconNameUseCase> private var getDefaultIconNameUseCase
     
-    func invoke(iconData: IconData) -> IconResult {
-        if (iconData.type != .single && iconData.function != SUPLA_CHANNELFNC_HUMIDITYANDTEMPERATURE) {
+    func invoke(function: Int32, userIcon: SAUserIcon?, channelState: ChannelState, altIcon: Int32, iconType: IconType = .single, nightMode: Bool = false) -> IconResult {
+        if (iconType != .single && function != SUPLA_CHANNELFNC_HUMIDITYANDTEMPERATURE) {
             // Currently only humidity and temperature may have multiple icons
-            fatalError("Wrong icon configuration (iconType: '\(iconData.type)', function: '\(iconData.function)'")
+            fatalError("Wrong icon configuration (iconType: '\(iconType)', function: '\(function)'")
         }
         
-        if let icon = getUserIcon(iconData.function, iconData.userIcon, iconData.state, iconData.type) {
+        if let icon = getUserIcon(function, userIcon, channelState, iconType) {
             return .userIcon(icon: icon)
         }
         
-        let name = getDefaultIconNameUseCase.invoke(iconData: iconData)
+        let name = getDefaultIconNameUseCase.invoke(
+            function: function,
+            state: channelState,
+            altIcon: altIcon,
+            iconType: iconType
+        )
         
-        if (iconData.nightMode) {
+        if (nightMode) {
             return .suplaIcon(icon: .init(named: .init(format: "%@-nightmode", name)))
         }
         return .suplaIcon(icon: .init(named: name))

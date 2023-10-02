@@ -122,33 +122,6 @@ final class UseCaseLegacyWrapper: NSObject {
     }
     
     @objc
-    static func insertChannelRelation(relation: TSC_SuplaChannelRelation) {
-        do {
-            try InsertChannelRelationForProfileUseCase().invoke(suplaRelation: relation).subscribeSynchronous()
-        } catch {
-            NSLog("Could not insert relation `\(relation)` because of `\(error)`")
-        }
-    }
-    
-    @objc
-    static func markChannelRelationsAsRemovable() {
-        do {
-            try MarkChannelRelationsAsRemovableUseCase().invoke().subscribeSynchronous()
-        } catch {
-            NSLog("Could not mark relations as removable because of `\(error)`")
-        }
-    }
-    
-    @objc
-    static func deleteRemovableRelations() {
-        do {
-            try DeleteRemovableChannelRelationsUseCase().invoke().subscribeSynchronous()
-        } catch {
-            NSLog("Could not delete removable relations because of `\(error)`")
-        }
-    }
-    
-    @objc
     static func getChannelCount() -> Int {
         @Singleton<ProfileRepository> var profileRepository;
         @Singleton<ChannelRepository> var channelRepository;

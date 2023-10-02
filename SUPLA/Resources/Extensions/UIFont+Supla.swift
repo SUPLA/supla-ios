@@ -22,7 +22,7 @@ extension UIFont {
     static let h3 = openSansRegular(style: .title2, size: 48)
     static let h4 = openSansRegular(style: .title3, size: 34)
     static let h5 = openSansRegular(style: .title3, size: 24)
-    static let h6 = openSansSemiBold(style: .title3, size: 17)
+    static let h6 = openSansRegular(style: .title3, size: 20)
     static let subtitle1 = openSansRegular(style: .subheadline, size: 16)
     static let subtitle2 = openSansMedium(style: .subheadline, size: 14)
     static let body1 = openSansRegular(style: .body, size: 16)
@@ -37,7 +37,7 @@ extension UIFont {
             return UIFont(descriptor: descriptor, size: size)
         }
         
-        return openSansFont.dynamicallyTyped(withStyle: style)
+        return openSansFont.dynamicallyTyped(withStyle: .title1)
     }
     
     static func openSansRegular(style: UIFont.TextStyle, size: CGFloat) -> UIFont {
@@ -47,7 +47,7 @@ extension UIFont {
             return UIFont(descriptor: descriptor, size: size)
         }
         
-        return openSansFont.dynamicallyTyped(withStyle: style)
+        return openSansFont.dynamicallyTyped(withStyle: .title1)
     }
     
     static func openSansMedium(style: UIFont.TextStyle, size: CGFloat) -> UIFont {
@@ -57,17 +57,7 @@ extension UIFont {
             return UIFont(descriptor: descriptor, size: size)
         }
         
-        return openSansFont.dynamicallyTyped(withStyle: style)
-    }
-    
-    static func openSansSemiBold(style: UIFont.TextStyle, size: CGFloat) -> UIFont {
-        guard let openSansFont = UIFont(name: "OpenSans-SemiBold", size: size)
-        else {
-            let descriptor = UIFontDescriptor.preferredFontDescriptor(withTextStyle: style)
-            return UIFont(descriptor: descriptor, size: size)
-        }
-        
-        return openSansFont.dynamicallyTyped(withStyle: style)
+        return openSansFont.dynamicallyTyped(withStyle: .title1)
     }
     
     static func openSansBold(style: UIFont.TextStyle, size: CGFloat) -> UIFont {
@@ -77,7 +67,7 @@ extension UIFont {
             return UIFont(descriptor: descriptor, size: size)
         }
         
-        return openSansFont.dynamicallyTyped(withStyle: style)
+        return openSansFont.dynamicallyTyped(withStyle: .title1)
     }
     
     private func dynamicallyTyped(withStyle style: UIFont.TextStyle) -> UIFont {
@@ -85,18 +75,11 @@ extension UIFont {
         return metrics.scaledFont(for: self)
     }
     
-    static let thermostatControlBigTemperature = UIFont(name: "OpenSans-Medium", size: 48)
-    static let thermostatControlSmallTemperature = UIFont(name: "OpenSans-Medium", size: 32)
-    
-    static let scheduleDetailButton = UIFont(name: "OpenSans-Bold", size: 14)
-    
     // TODO: Replace with system fonts
     
     @objc static let suplaTitleBarFont = UIFont(name: "Quicksand-Regular", size: 27)!
     @objc static let suplaSubtitleFont = UIFont(name: "Quicksand-Regular", size: 16)!
 
-    static let formLabelFont = UIFont(name: "OpenSans", size: Dimens.Fonts.label)!
-    
-    static let cellCaptionFont = UIFont(name: "OpenSans-Bold", size: Dimens.Fonts.caption)!
-    static let cellValueFont = UIFont(name: "Quicksand-Regular", size: Dimens.Fonts.value)!
+    static let formLabelFont = UIFont(name: "OpenSans", size: 14)!
+    static let cellCaptionFont = UIFont(name: "OpenSans-Bold", size: 14)!
 }

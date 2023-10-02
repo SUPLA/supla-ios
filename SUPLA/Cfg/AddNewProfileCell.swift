@@ -69,6 +69,6 @@ class AddNewProfileCell: UITableViewCell {
           .isActive = true
         _plusIcon.widthAnchor.constraint(equalToConstant: 24).isActive = true
         _plusIcon.heightAnchor.constraint(equalToConstant: 24).isActive = true
-        _plusIcon.image = .iconPlus
+        _plusIcon.image = UIImage(named: "Plus")
     }
 }

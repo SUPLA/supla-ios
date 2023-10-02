@@ -127,7 +127,6 @@ struct Strings {
         static let tabGeneral = "standard_detail_general_tab".toLocalized()
         static let tabTimer = "standard_detail_timer_tab".toLocalized()
         static let tabMetrics = "standard_detail_metrics_tab".toLocalized()
-        static let tabSchedule = "standard_detail_schedule_tab".toLocalized()
     }
     
     struct SwitchDetail {
@@ -168,56 +167,15 @@ struct Strings {
         static let wrongTimeMessage = "timer_detail_wrong_time_message".toLocalized()
     }
     
-    struct ThermostatDetail {
-        static let thermometerError = "thermostat_thermometer_error".toLocalized()
-        static let clockError = "thermostat_clock_error".toLocalized()
-        
-        static let modeManual = "thermostat_detail_mode_manual".toLocalized()
-        static let modeWeeklySchedule = "thermostat_detail_mode_weekly_schedule".toLocalized()
-        
-        static let editProgramDialogHeader = "schedule_detail_program_dialog_header".toLocalized()
-        static let heatingTemperature = "hvac_mode_temperature_heating".toLocalized()
-        static let coolingTemperature = "hvac_mode_temperature_cooling".toLocalized()
-        
-        static let editQuartersDialogHeader = "schedule_detail_quarters_dialog_header".toLocalized()
-        static let configurationFailure = "schedule_detail_configuration_failure".toLocalized()
-        
-        static let programTime = "thermostat_detail_program_time".toLocalized()
-        static let programCurrent = "thermostat_detail_program_current".toLocalized()
-        static let programNext = "thermostat_detail_program_next".toLocalized()
-    }
-    
     struct General {
         static let cancel = NSLocalizedString("Cancel", comment: "")
         static let close = NSLocalizedString("Close", comment: "")
-        static let save = "save".toLocalized()
         static let error = "General.error".toLocalized()
         static let hourFormat = "General.hour_format".toLocalized()
         static let ok = "General.ok".toLocalized()
         
-        static let on = "On".toLocalized()
-        static let off = "Off".toLocalized()
-        static let turnOn = "turn_on".toLocalized()
-        static let turnOff = "turn_off".toLocalized()
-        
-        static let monday = "monday".toLocalized()
-        static let tuesday = "tuesday".toLocalized()
-        static let wednesday = "wednesday".toLocalized()
-        static let thursday = "thursday".toLocalized()
-        static let friday = "friday".toLocalized()
-        static let saturday = "saturday".toLocalized()
-        static let sunday = "sunday".toLocalized()
-        
-        static let mondayShort = "monday_short".toLocalized()
-        static let tuesdayShort = "tuesday_short".toLocalized()
-        static let wednesdayShort = "wednesday_short".toLocalized()
-        static let thursdayShort = "thursday_short".toLocalized()
-        static let fridayShort = "friday_short".toLocalized()
-        static let saturdayShort = "saturday_short".toLocalized()
-        static let sundayShort = "sunday_short".toLocalized()
-        
-        static let time_just_minutes = "time_just_mintes".toLocalized()
-        static let time_hours_and_mintes = "time_hours_and_minutes".toLocalized()
+        static let turnOn = "On".toLocalized()
+        static let turnOff = "Off".toLocalized()
     }
 }
 

@@ -55,7 +55,7 @@ enum List {
 enum ListItem: Equatable {
     case location(location: _SALocation)
     case scene(scene: SAScene)
-    case channelBase(channelBase: SAChannelBase, children: [ChannelChild])
+    case channelBase(channelBase: SAChannelBase)
 }
 
 extension List : SectionModelType {

@@ -39,14 +39,12 @@ final class GetChannelBaseIconUseCaseTests: XCTestCase {
         // when
         expectFatalError(expectedMessage: "Wrong icon configuration (iconType: 'first', function: '140'") {
             _ = self.useCase.invoke(
-                iconData: IconData(
-                    function: SUPLA_CHANNELFNC_LIGHTSWITCH,
-                    altIcon: 123,
-                    state: .notUsed,
-                    type: .first,
-                    userIcon: nil,
-                    nightMode: false
-                )
+                function: SUPLA_CHANNELFNC_LIGHTSWITCH,
+                userIcon: nil,
+                channelState: .notUsed,
+                altIcon: 123,
+                iconType: .first,
+                nightMode: false
             )
         }
     }
@@ -57,14 +55,12 @@ final class GetChannelBaseIconUseCaseTests: XCTestCase {
         
         // when
         let icon = useCase.invoke(
-            iconData: IconData(
-                function: SUPLA_CHANNELFNC_LIGHTSWITCH,
-                altIcon: 123,
-                state: .on,
-                type: .single,
-                userIcon: nil,
-                nightMode: false
-            )
+            function: SUPLA_CHANNELFNC_LIGHTSWITCH,
+            userIcon: nil,
+            channelState: .on,
+            altIcon: 123,
+            iconType: .single,
+            nightMode: false
         )
         
         // then
@@ -78,14 +74,12 @@ final class GetChannelBaseIconUseCaseTests: XCTestCase {
         
         // when
         let icon = useCase.invoke(
-            iconData: IconData(
-                function: SUPLA_CHANNELFNC_LIGHTSWITCH,
-                altIcon: 123,
-                state: .on,
-                type: .single,
-                userIcon: nil,
-                nightMode: true
-            )
+            function: SUPLA_CHANNELFNC_LIGHTSWITCH,
+            userIcon: nil,
+            channelState: .on,
+            altIcon: 123,
+            iconType: .single,
+            nightMode: true
         )
         
         // then
@@ -100,19 +94,17 @@ final class GetChannelBaseIconUseCaseTests: XCTestCase {
         
         // when
         let icon = useCase.invoke(
-            iconData: IconData(
-                function: SUPLA_CHANNELFNC_LIGHTSWITCH,
-                altIcon: 123,
-                state: .on,
-                type: .single,
-                userIcon: userIcon,
-                nightMode: false
-            )
+            function: SUPLA_CHANNELFNC_LIGHTSWITCH,
+            userIcon: userIcon,
+            channelState: .on,
+            altIcon: 123,
+            iconType: .single,
+            nightMode: false
         )
         
         // then
         XCTAssertNotNil(icon)
-        XCTAssertEqual(getDefaultIconNameUseCase.parameters, [])
+        XCTAssertEqual(getDefaultIconNameUseCase.functionsArray, [])
     }
     
     func test_userIcon_inactiveState() {
@@ -122,19 +114,17 @@ final class GetChannelBaseIconUseCaseTests: XCTestCase {
         
         // when
         let icon = useCase.invoke(
-            iconData: IconData(
-                function: SUPLA_CHANNELFNC_LIGHTSWITCH,
-                altIcon: 123,
-                state: .off,
-                type: .single,
-                userIcon: userIcon,
-                nightMode: false
-            )
+            function: SUPLA_CHANNELFNC_LIGHTSWITCH,
+            userIcon: userIcon,
+            channelState: .off,
+            altIcon: 123,
+            iconType: .single,
+            nightMode: false
         )
         
         // then
         XCTAssertNotNil(icon)
-        XCTAssertEqual(getDefaultIconNameUseCase.parameters, [])
+        XCTAssertEqual(getDefaultIconNameUseCase.functionsArray, [])
     }
     
     func test_userIcon_humidityAndTemperatureFirst() {
@@ -144,19 +134,17 @@ final class GetChannelBaseIconUseCaseTests: XCTestCase {
         
         // when
         let icon = useCase.invoke(
-            iconData: IconData(
-                function: SUPLA_CHANNELFNC_HUMIDITYANDTEMPERATURE,
-                altIcon: 123,
-                state: .notUsed,
-                type: .first,
-                userIcon: userIcon,
-                nightMode: false
-            )
+            function: SUPLA_CHANNELFNC_HUMIDITYANDTEMPERATURE,
+            userIcon: userIcon,
+            channelState: .notUsed,
+            altIcon: 123,
+            iconType: .first,
+            nightMode: false
         )
         
         // then
         XCTAssertNotNil(icon)
-        XCTAssertEqual(getDefaultIconNameUseCase.parameters, [])
+        XCTAssertEqual(getDefaultIconNameUseCase.functionsArray, [])
     }
     
     func test_userIcon_humidityAndTemperatureSecond() {
@@ -166,19 +154,17 @@ final class GetChannelBaseIconUseCaseTests: XCTestCase {
         
         // when
         let icon = useCase.invoke(
-            iconData: IconData(
-                function: SUPLA_CHANNELFNC_HUMIDITYANDTEMPERATURE,
-                altIcon: 123,
-                state: .notUsed,
-                type: .second,
-                userIcon: userIcon,
-                nightMode: false
-            )
+            function: SUPLA_CHANNELFNC_HUMIDITYANDTEMPERATURE,
+            userIcon: userIcon,
+            channelState: .notUsed,
+            altIcon: 123,
+            iconType: .second,
+            nightMode: false
         )
         
         // then
         XCTAssertNotNil(icon)
-        XCTAssertEqual(getDefaultIconNameUseCase.parameters, [])
+        XCTAssertEqual(getDefaultIconNameUseCase.functionsArray, [])
     }
     
     func test_userIcon_thermometer() {
@@ -188,19 +174,17 @@ final class GetChannelBaseIconUseCaseTests: XCTestCase {
         
         // when
         let icon = useCase.invoke(
-            iconData: IconData(
-                function: SUPLA_CHANNELFNC_THERMOMETER,
-                altIcon: 123,
-                state: .notUsed,
-                type: .single,
-                userIcon: userIcon,
-                nightMode: false
-            )
+            function: SUPLA_CHANNELFNC_THERMOMETER,
+            userIcon: userIcon,
+            channelState: .notUsed,
+            altIcon: 123,
+            iconType: .single,
+            nightMode: false
         )
         
         // then
         XCTAssertNotNil(icon)
-        XCTAssertEqual(getDefaultIconNameUseCase.parameters, [])
+        XCTAssertEqual(getDefaultIconNameUseCase.functionsArray, [])
     }
     
     func test_userIcon_garageDoorOpened() {
@@ -210,19 +194,17 @@ final class GetChannelBaseIconUseCaseTests: XCTestCase {
         
         // when
         let icon = useCase.invoke(
-            iconData: IconData(
-                function: SUPLA_CHANNELFNC_CONTROLLINGTHEGARAGEDOOR,
-                altIcon: 123,
-                state: .opened,
-                type: .single,
-                userIcon: userIcon,
-                nightMode: false
-            )
+            function: SUPLA_CHANNELFNC_CONTROLLINGTHEGARAGEDOOR,
+            userIcon: userIcon,
+            channelState: .opened,
+            altIcon: 123,
+            iconType: .single,
+            nightMode: false
         )
         
         // then
         XCTAssertNotNil(icon)
-        XCTAssertEqual(getDefaultIconNameUseCase.parameters, [])
+        XCTAssertEqual(getDefaultIconNameUseCase.functionsArray, [])
     }
     
     func test_userIcon_garageDoorPartialyOpened() {
@@ -232,19 +214,17 @@ final class GetChannelBaseIconUseCaseTests: XCTestCase {
         
         // when
         let icon = useCase.invoke(
-            iconData: IconData(
-                function: SUPLA_CHANNELFNC_CONTROLLINGTHEGARAGEDOOR,
-                altIcon: 123,
-                state: .partialyOpened,
-                type: .single,
-                userIcon: userIcon,
-                nightMode: false
-            )
+            function: SUPLA_CHANNELFNC_CONTROLLINGTHEGARAGEDOOR,
+            userIcon: userIcon,
+            channelState: .partialyOpened,
+            altIcon: 123,
+            iconType: .single,
+            nightMode: false
         )
         
         // then
         XCTAssertNotNil(icon)
-        XCTAssertEqual(getDefaultIconNameUseCase.parameters, [])
+        XCTAssertEqual(getDefaultIconNameUseCase.functionsArray, [])
     }
     
     func test_userIcon_garageDoorClosed() {
@@ -254,18 +234,16 @@ final class GetChannelBaseIconUseCaseTests: XCTestCase {
         
         // when
         let icon = useCase.invoke(
-            iconData: IconData(
-                function: SUPLA_CHANNELFNC_CONTROLLINGTHEGARAGEDOOR,
-                altIcon: 123,
-                state: .closed,
-                type: .single,
-                userIcon: userIcon,
-                nightMode: false
-            )
+            function: SUPLA_CHANNELFNC_CONTROLLINGTHEGARAGEDOOR,
+            userIcon: userIcon,
+            channelState: .closed,
+            altIcon: 123,
+            iconType: .single,
+            nightMode: false
         )
         
         // then
         XCTAssertNotNil(icon)
-        XCTAssertEqual(getDefaultIconNameUseCase.parameters, [])
+        XCTAssertEqual(getDefaultIconNameUseCase.functionsArray, [])
     }
 }

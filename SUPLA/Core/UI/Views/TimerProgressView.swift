@@ -64,15 +64,25 @@ class TimerProgressView: UIView {
         let layer = CAShapeLayer()
         layer.fillColor = nil
         layer.lineCap = .round
-        layer.strokeColor = UIColor.primaryVariant.cgColor
+        layer.strokeColor = UIColor.primary.cgColor
         layer.lineWidth = 6
         layer.shadowRadius = 9
         layer.shadowOpacity = 0.8
-        layer.shadowColor = UIColor.primaryVariant.cgColor
+        layer.shadowColor = UIColor.primary.cgColor
         return layer
     }()
     
-    private var endPoint = GreenPointLayers()
+    private lazy var endPointShadowShape: CAShapeLayer = {
+        let layer = CAShapeLayer()
+        layer.fillColor = UIColor.progressPointShadow.cgColor
+        return layer
+    }()
+    
+    private lazy var endPointShape: CAShapeLayer = {
+        let layer = CAShapeLayer()
+        layer.fillColor = UIColor.primary.cgColor
+        return layer
+    }()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -87,7 +97,12 @@ class TimerProgressView: UIView {
     override func layoutSubviews() {
         circleShape.frame = bounds
         progressShape.frame = bounds
-        endPoint.frame = bounds
+        endPointShadowShape.frame = bounds
+        endPointShape.frame = bounds
+        layer.addSublayer(circleShape)
+        layer.addSublayer(progressShape)
+        layer.addSublayer(endPointShadowShape)
+        layer.addSublayer(endPointShape)
     }
     
     override func draw(_ rect: CGRect) {
@@ -95,7 +110,20 @@ class TimerProgressView: UIView {
         let x = 100 * cos(alpha) + 110
         let y = 100 * sin(alpha) + 110
         
-        endPoint.move(to: CGPoint(x: x, y: y))
+        endPointShadowShape.path = UIBezierPath(
+            arcCenter: CGPoint(x: x, y: y),
+            radius: 12,
+            startAngle: 0,
+            endAngle: 2 * .pi,
+            clockwise: true
+        ).cgPath
+        endPointShape.path = UIBezierPath(
+            arcCenter: CGPoint(x: x, y: y),
+            radius: 8,
+            startAngle: 0,
+            endAngle: 2 * .pi,
+            clockwise: true
+        ).cgPath
         
         progressShape.path = UIBezierPath(ovalIn: rect.insetBy(dx: 10, dy: 10)).cgPath
         progressShape.strokeStart = 0
@@ -104,9 +132,6 @@ class TimerProgressView: UIView {
     
     private func setupView() {
         layer.transform = CATransform3DMakeRotation(CGFloat(90 * Double.pi / 180), 0, 0, -1)
-        
-        layer.addSublayer(circleShape)
-        layer.addSublayer(progressShape)
-        layer.addSublayer(endPoint)
     }
+    
 }

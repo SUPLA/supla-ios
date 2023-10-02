@@ -20,7 +20,6 @@
 #import "_SALocation+CoreDataClass.h"
 #import "SAImpulseCounterExtendedValue.h"
 #import "Database.h"
-#import "SUPLA-Swift.h"
 
 @implementation SAChannel
 
@@ -432,5 +431,4 @@
     
     return nil;
 }
-
 @end

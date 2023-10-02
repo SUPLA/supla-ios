@@ -21,9 +21,7 @@ final class TitleSwitchCell: BaseSettingsCell<UISwitch> {
     static let id = "TitleSwitchCell"
     
     override func provideActionView() -> UISwitch {
-        let view = UISwitch()
-        view.onTintColor = .primary
-        return view
+        return UISwitch()
     }
     
     static func configure(_ label: String, _ selected: Bool, _ callback: @escaping (Bool) -> Void, cellProvider: () -> TitleSwitchCell) -> TitleSwitchCell {

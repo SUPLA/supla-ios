@@ -27,7 +27,6 @@ class ChannelBaseTableViewController<S : ViewState, E : ViewEvent, VM : BaseTabl
     let cellIdForDistance = "DistanceCell"
     let cellIdForIncremental = "IncrementalCell"
     let cellIdForHomePlus = "HomePlusCell"
-    let cellIdForHvacThermostat = "HvacThermostatCell"
     
     var cellConstraintalues: [String: CGFloat] = [:]
     
@@ -39,47 +38,22 @@ class ChannelBaseTableViewController<S : ViewState, E : ViewEvent, VM : BaseTabl
         register(nib: Nibs.distanceCell, for: cellIdForDistance)
         register(nib: Nibs.incrementalMeterCell, for: cellIdForIncremental)
         register(nib: Nibs.homePlusCell, for: cellIdForHomePlus)
-        tableView.register(ThermostatCell.self, forCellReuseIdentifier: cellIdForHvacThermostat)
+        
         
         super.setupTableView()
     }
     
-    override func configureCell(channelBase: SAChannelBase, children: [ChannelChild], indexPath: IndexPath) -> UITableViewCell {
+    override func configureCell(channelBase: SAChannelBase, indexPath: IndexPath) -> UITableViewCell {
         let cellId = getCellId(channelBase)
-        let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! SAChannelCell
         
-        if (cellId == cellIdForHvacThermostat) {
-            return setupThermostatCell(cell, channelBase: channelBase, children: children)
-        } else {
-            return setupLegacyCell(cell, cellId: cellId, channelBase: channelBase, indexPath: indexPath)
-        }
-    }
-    
-    private func setupThermostatCell(_ cell: UITableViewCell, channelBase: SAChannelBase, children: [ChannelChild]) -> UITableViewCell {
-        let thermostatCell = cell as! ThermostatCell
+        cell.delegate = nil
+        cell.currentIndexPath = indexPath
+        cell.setShowChannelInfo(showChannelInfo)
+        cell.channelBase = channelBase
+        cell.captionEditable = true
         
-        thermostatCell.scaleFactor = scaleFactor
-        thermostatCell.data = ChannelWithChildren(channel: channelBase as! SAChannel, children: children)
-        thermostatCell.showChannelInfo = showChannelInfo
-        
-        return cell
-    }
-    
-    private func setupLegacyCell(
-        _ cell: UITableViewCell,
-        cellId: String,
-        channelBase: SAChannelBase,
-        indexPath: IndexPath
-    ) -> UITableViewCell {
-        let channelCell = cell as! SAChannelCell
-        
-        channelCell.delegate = nil
-        channelCell.currentIndexPath = indexPath
-        channelCell.setShowChannelInfo(showChannelInfo)
-        channelCell.channelBase = channelBase
-        channelCell.captionEditable = true
-        
-        for constraint in channelCell.channelIconScalableConstraints {
+        for constraint in cell.channelIconScalableConstraints {
             var scaleFactorLocal = scaleFactor
             var value: CGFloat
             let constraintId = cellId.appending(constraint.identifier ?? "")
@@ -99,12 +73,12 @@ class ChannelBaseTableViewController<S : ViewState, E : ViewEvent, VM : BaseTabl
 
             if (constraint.identifier == "durationToTop") {
                 value = 9
-                channelCell.durationTimer.font = channelCell.durationTimer.font.withSize(14 * scaleFactorLocal)
+                cell.durationTimer.font = cell.durationTimer.font.withSize(14 * scaleFactorLocal)
             }
             else if (constraint.firstItem is UILabel || constraint.secondItem is UILabel) {
                 let label = (constraint.firstItem is UILabel ? constraint.firstItem : constraint.secondItem) as! UILabel
                 var scaleFactorCopy = scaleFactorLocal
-                if (label === channelCell.caption) {
+                if (label === cell.caption) {
                     if (scaleFactorCopy < 1.0) {
                         scaleFactorCopy = 0.8
                     }
@@ -112,7 +86,7 @@ class ChannelBaseTableViewController<S : ViewState, E : ViewEvent, VM : BaseTabl
                         scaleFactorLocal *= 1.2
                     }
                 }
-                adjustFontSize(label, scaleFactorCopy, label === channelCell.caption)
+                adjustFontSize(label, scaleFactorCopy, label === cell.caption)
             }
 
             if (constraint.identifier == "captionToBottom") {
@@ -178,9 +152,6 @@ class ChannelBaseTableViewController<S : ViewState, E : ViewEvent, VM : BaseTabl
             return cellIdForIncremental
         case SUPLA_CHANNELFNC_THERMOSTAT_HEATPOL_HOMEPLUS:
             return cellIdForHomePlus
-        case SUPLA_CHANNELFNC_HVAC_THERMOSTAT,
-        SUPLA_CHANNELFNC_HVAC_DOMESTIC_HOT_WATER:
-            return cellIdForHvacThermostat
         default:
             return cellIdForChannel
         }

@@ -32,12 +32,9 @@
 #import "ChannelCell.h"
 #import "SAChannelGroup+CoreDataClass.h"
 #import "SAChannelGroupRelation+CoreDataClass.h"
-#import "SAChannelRelation+CoreDataClass.h"
 #import "SAEvent.h"
 #import "SARateApp.h"
 #import "SADownloadUserIcons.h"
 #import "SingleCallWrapper.h"
-#import "SAChannelStatePopup.h"
-#import "SuplaChannelConfigIntegrator.h"
 
 #import "supla-client.h"

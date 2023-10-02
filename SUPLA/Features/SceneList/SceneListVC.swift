@@ -46,7 +46,7 @@ class SceneListVC : BaseTableViewController<SceneListViewState, SceneListViewEve
         
         cell.delegate = self
         cell.scaleFactor = self.scaleFactor
-        cell.data = scene
+        cell.sceneData = scene
         cell.selectionStyle = .none
         
         return cell
@@ -63,18 +63,11 @@ class SceneListVC : BaseTableViewController<SceneListViewState, SceneListViewEve
 }
 
 extension SceneListVC: SceneCellDelegate {
-    
-    func onButtonTapped(buttonType: CellButtonType, remoteId: Int32, data: Any?) {
-        viewModel.onButtonClicked(buttonType: buttonType, sceneId: remoteId)
-    }
-    
-    func onIssueIconTapped(issueMessage: String) {  } // Not relevant for scene
-    
-    func onCaptionLongPress(_ remoteId: Int32) {
+    func onCaptionLongPress(_ scene: SAScene) {
         vibrationService.vibrate()
         
         captionEditor = SceneCaptionEditor()
         captionEditor?.delegate = self
-        captionEditor?.editCaption(withRecordId: remoteId)
+        captionEditor?.editCaption(withRecordId: scene.sceneId)
     }
 }

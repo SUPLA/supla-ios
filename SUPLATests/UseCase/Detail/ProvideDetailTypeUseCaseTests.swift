@@ -173,7 +173,7 @@ final class ProvideDetailTypeUseCaseTests: XCTestCase {
     }
     
     func test_shouldProvideStandardDetailWithGeneralPage_forGroupOfSwitches() {
-        doTest(expectedResult: .switchDetail(pages: [.general])) {
+        doTest(expectedResult: .standard(pages: [.general])) {
             let channel = SAChannelBase(testContext: nil)
             channel.func = SUPLA_CHANNELFNC_LIGHTSWITCH
             
@@ -182,7 +182,7 @@ final class ProvideDetailTypeUseCaseTests: XCTestCase {
     }
     
     func test_shouldProvideStandardDetailWithGeneralPage_forChannelWithoutFlags() {
-        doTest(expectedResult: .switchDetail(pages: [.general])) {
+        doTest(expectedResult: .standard(pages: [.general])) {
             let channel = SAChannel(testContext: nil)
             channel.func = SUPLA_CHANNELFNC_LIGHTSWITCH
             
@@ -191,7 +191,7 @@ final class ProvideDetailTypeUseCaseTests: XCTestCase {
     }
     
     func test_shouldProvideStandardDetailWithGeneralAndTimer_forChannelWithTimer() {
-        doTest(expectedResult: .switchDetail(pages: [.general, .timer])) {
+        doTest(expectedResult: .standard(pages: [.general, .timer])) {
             let channel = SAChannel(testContext: nil)
             channel.func = SUPLA_CHANNELFNC_LIGHTSWITCH
             channel.flags = SUPLA_CHANNEL_FLAG_COUNTDOWN_TIMER_SUPPORTED
@@ -201,7 +201,7 @@ final class ProvideDetailTypeUseCaseTests: XCTestCase {
     }
     
     func test_shouldProvideStandardDetailWithGeneralOnly_forStaircaseWithTimer() {
-        doTest(expectedResult: .switchDetail(pages: [.general])) {
+        doTest(expectedResult: .standard(pages: [.general])) {
             let channel = SAChannel(testContext: nil)
             channel.func = SUPLA_CHANNELFNC_STAIRCASETIMER
             channel.flags = SUPLA_CHANNEL_FLAG_COUNTDOWN_TIMER_SUPPORTED
@@ -211,7 +211,7 @@ final class ProvideDetailTypeUseCaseTests: XCTestCase {
     }
     
     func test_shouldProvideStandardDetailWithGeneralTimerAndIC() {
-        doTest(expectedResult: .switchDetail(pages: [.general, .timer, .historyIc])) {
+        doTest(expectedResult: .standard(pages: [.general, .timer, .historyIc])) {
             let value = SAChannelValue(testContext: nil)
             value.sub_value_type = Int16(SUBV_TYPE_IC_MEASUREMENTS)
             
@@ -225,22 +225,13 @@ final class ProvideDetailTypeUseCaseTests: XCTestCase {
     }
     
     func test_shouldProvideStandardDetailWithGeneralAndIC() {
-        doTest(expectedResult: .switchDetail(pages: [.general, .historyEm])) {
+        doTest(expectedResult: .standard(pages: [.general, .historyEm])) {
             let value = SAChannelValue(testContext: nil)
             value.sub_value_type = Int16(SUBV_TYPE_ELECTRICITY_MEASUREMENTS)
             
             let channel = SAChannel(testContext: nil)
             channel.func = SUPLA_CHANNELFNC_POWERSWITCH
             channel.value = value
-            
-            return channel
-        }
-    }
-    
-    func test_shouldProvideThermostatDetail() {
-        doTest(expectedResult: .thermostatDetail(pages: [.thermostat, .schedule])) {
-            let channel = SAChannel(testContext: nil)
-            channel.func = SUPLA_CHANNELFNC_HVAC_THERMOSTAT
             
             return channel
         }

@@ -97,7 +97,7 @@ fileprivate class ProfileChooserVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        view.backgroundColor =  .dialogScrim
+        view.backgroundColor = UIColor(white: 0, alpha: 0.3)
         let gr = UITapGestureRecognizer(target: self,
                                         action: #selector(onBackgroundTap(_:)))
         gr.delegate = self

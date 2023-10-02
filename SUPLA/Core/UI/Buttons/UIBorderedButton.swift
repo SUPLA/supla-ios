@@ -20,7 +20,7 @@ class UIBorderedButton: UIButton {
     
     override open var isHighlighted: Bool {
         didSet {
-            layer.borderColor = isHighlighted ? UIColor.primaryVariant.cgColor : UIColor.primary.cgColor
+            layer.borderColor = isHighlighted ? UIColor.primary.cgColor : UIColor.primaryVariant.cgColor
         }
     }
     
@@ -36,11 +36,11 @@ class UIBorderedButton: UIButton {
     
     private func setupView() {
         backgroundColor = .surface
-        setTitleColor(.primary, for: .normal)
-        setTitleColor(.primaryVariant, for: .highlighted)
+        setTitleColor(.primaryVariant, for: .normal)
+        setTitleColor(.primary, for: .highlighted)
         layer.borderWidth = 1
-        layer.borderColor = UIColor.primary.cgColor
-        layer.cornerRadius = Dimens.buttonRadius
+        layer.borderColor = UIColor.primaryVariant.cgColor
+        layer.cornerRadius = Dimens.radiusButton
         contentEdgeInsets = UIEdgeInsets(top: 8, left: 24, bottom: 8, right: 24)
         
         titleLabel?.font = .button

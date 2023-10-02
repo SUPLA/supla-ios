@@ -32,6 +32,4 @@ protocol ProfileManager {
     func getCurrentProfile(withContext context: NSManagedObjectContext) -> AuthProfileItem?
     
     func activateProfile(id: ProfileID, force: Bool) -> Bool
-    
-    func restoreProfileFromDefaults() -> Bool
 }

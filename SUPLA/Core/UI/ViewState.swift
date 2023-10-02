@@ -19,13 +19,19 @@
 import Foundation
 import RxSwift
 
-protocol ViewState: Equatable, Changeable {}
+protocol ViewState: Equatable {}
 
 extension ViewState {
+    func changing<T>(path: WritableKeyPath<Self, T>, to value: T) -> Self {
+        var clone = self
+        clone[keyPath: path] = value
+        return clone
+    }
+    
     func value<T>(path: KeyPath<Self, T?>) -> T? {
         self[keyPath: path]
     }
-
+    
     func sendTo(_ subject: BehaviorSubject<Self>) {
         subject.on(.next(self))
     }

@@ -32,9 +32,9 @@ final class StaticIconNameProducer: IconNameProducer {
         self.function == function
     }
     
-    func produce(iconData: IconData) -> String {
+    func produce(function: Int32, state: ChannelState, altIcon: Int32, iconType: IconType) -> String {
         if (withSuffix) {
-            return addStateSufix(name: name, state: iconData.state)
+            return addStateSufix(name: name, state: state)
         } else {
             return name
         }

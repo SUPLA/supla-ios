@@ -78,9 +78,9 @@ final class CreateProfileGroupsListUseCaseTests: UseCaseTest<[List]> {
         XCTAssertEqual(items.count, 4)
         XCTAssertEqual(items, [
             .location(location: location1),
-            .channelBase(channelBase: group1, children: []),
+            .channelBase(channelBase: group1),
             .location(location: location2),
-            .channelBase(channelBase: group2, children: [])
+            .channelBase(channelBase: group2)
         ])
     }
     
@@ -119,7 +119,7 @@ final class CreateProfileGroupsListUseCaseTests: UseCaseTest<[List]> {
         XCTAssertEqual(items, [
             .location(location: location1),
             .location(location: location2),
-            .channelBase(channelBase: group2, children: [])
+            .channelBase(channelBase: group2)
         ])
     }
     
@@ -156,8 +156,8 @@ final class CreateProfileGroupsListUseCaseTests: UseCaseTest<[List]> {
         XCTAssertEqual(items.count, 3)
         XCTAssertEqual(items, [
             .location(location: location1),
-            .channelBase(channelBase: group1, children: []),
-            .channelBase(channelBase: group2, children: [])
+            .channelBase(channelBase: group1),
+            .channelBase(channelBase: group2)
         ])
     }
 }

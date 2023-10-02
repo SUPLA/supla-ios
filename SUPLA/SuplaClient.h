@@ -24,10 +24,8 @@
 
 - (void) cancel;
 - (void) reconnect;
-- (BOOL) executeAction: (int)actionId subjecType: (int)subjectType subjectId: (int)subjectId parameters: (void*)parameters length: (int)length;
+- (BOOL) executeAction: (int)actionId subjecType: (int)subjectType subjectId: (int)subjectId rsParameters: (TAction_RS_Parameters*)rsParameters rgbwParameters: (TAction_RGBW_Parameters*)rgbwParameters;
 - (BOOL) timerArmFor: (int) remoteId withTurnOn: (BOOL) on withTime: (int) milis;
-- (BOOL) getChannelConfig: (TCS_GetChannelConfigRequest*) configRequest;
-- (BOOL) setChannelConfig: (TSCS_ChannelConfig*) config;
 
 @end
 
@@ -68,8 +66,6 @@
 - (BOOL) OAuthTokenRequest;
 - (void) superuserAuthorizationRequestWithEmail:(NSString*)email andPassword:(NSString*)password;
 - (void) channelStateRequestWithChannelId:(int)channelId;
-- (BOOL) getChannelConfig: (TCS_GetChannelConfigRequest*) configRequest;
-- (BOOL) setChannelConfig: (TSCS_ChannelConfig*) config;
 - (void) setLightsourceLifespanWithChannelId:(int)channelId resetCounter:(BOOL)reset setTime:(BOOL)setTime lifespan:(unsigned short)lifespan;
 - (void) setIODeviceRegistrationEnabledForTime:(int)iodevice_sec clientRegistrationEnabledForTime:(int)client_sec;
 - (void) setDgfTransparencyMask:(short)mask activeBits:(short)active_bits channelId:(int)channelId;

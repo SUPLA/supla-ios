@@ -22,8 +22,33 @@ final class AuthProfileItemInitialMigrationPolicy: NSEntityMigrationPolicy {
     private let userDefaults = UserDefaults.standard
     
     override func begin(_ mapping: NSEntityMapping, with manager: NSMigrationManager) throws {
+        let accessID = userDefaults.integer(forKey: "access_id")
+        let accessIDpwd = userDefaults.string(forKey: "access_id_pwd") ?? ""
+        let serverHostName = userDefaults.string(forKey: "server_host") ?? ""
+        let emailAddress = userDefaults.string(forKey: "email_address") ?? ""
         let isAdvanced = userDefaults.bool(forKey: "advanced_config")
-        let authInfo = AuthInfo.from(userDefaults: userDefaults)
+        let prefProtoVersion = Int(SUPLA_PROTO_VERSION)
+        let serverForEmail: String
+        let serverForAccessID: String
+        
+        if isAdvanced {
+            serverForAccessID = serverHostName
+            serverForEmail = ""
+        } else {
+            serverForAccessID = ""
+            serverForEmail = serverHostName
+        }
+        
+        let authInfo = AuthInfo(
+            emailAuth: !isAdvanced,
+            serverAutoDetect: !isAdvanced,
+            emailAddress: emailAddress,
+            serverForEmail: serverForEmail,
+            serverForAccessID: serverForAccessID,
+            accessID: accessID,
+            accessIDpwd: accessIDpwd,
+            preferredProtocolVersion: prefProtoVersion
+        )
         
         if (authInfo.isAuthDataComplete) {
             let profile = NSEntityDescription.insertNewObject(forEntityName: "AuthProfileItem", into: manager.destinationContext)

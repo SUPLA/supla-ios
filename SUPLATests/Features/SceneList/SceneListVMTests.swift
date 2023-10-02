@@ -38,16 +38,12 @@ final class SceneListVMTests: ViewModelTest<SceneListViewState, SceneListViewEve
     private lazy var listsEventsManager: ListsEventsManagerMock! = {
         ListsEventsManagerMock()
     }()
-    private lazy var executeSimpleActionUseCase: ExecuteSimpleActionUseCaseMock! = {
-        ExecuteSimpleActionUseCaseMock()
-    }()
     
     override func setUp() {
         DiContainer.shared.register(type: CreateProfileScenesListUseCase.self, component: createProfileScenesListUseCase!)
         DiContainer.shared.register(type: SwapScenePositionsUseCase.self, component: swapScenePositionsUseCase!)
         DiContainer.shared.register(type: ToggleLocationUseCase.self, component: toggleLocationUseCase!)
         DiContainer.shared.register(type: ListsEventsManager.self, component: listsEventsManager!)
-        DiContainer.shared.register(type: ExecuteSimpleActionUseCase.self, component: executeSimpleActionUseCase!)
     }
     
     override func tearDown() {
@@ -57,7 +53,6 @@ final class SceneListVMTests: ViewModelTest<SceneListViewState, SceneListViewEve
         swapScenePositionsUseCase = nil
         toggleLocationUseCase = nil
         listsEventsManager = nil
-        executeSimpleActionUseCase = nil
         
         super.tearDown()
     }
@@ -134,39 +129,5 @@ final class SceneListVMTests: ViewModelTest<SceneListViewState, SceneListViewEve
         XCTAssertEqual(toggleLocationUseCase.collapsedFlagArray[0], .scene)
         
         XCTAssertEqual(createProfileScenesListUseCase.invokeCounter, 1)
-    }
-    
-    func test_leftButtonClicked() {
-        // given
-        let buttonType: CellButtonType = .leftButton
-        let sceneId: Int32 = 231
-        
-        // when
-        viewModel.onButtonClicked(buttonType: buttonType, sceneId: sceneId)
-        
-        // then
-        XCTAssertEqual(stateObserver.events.count, 0)
-        XCTAssertEqual(eventObserver.events.count, 0)
-        
-        XCTAssertTuples(executeSimpleActionUseCase.parameters, [
-            (Action.interrupt, SUPLA.SubjectType.scene, sceneId)
-        ])
-    }
-    
-    func test_rightButtonClicked() {
-        // given
-        let buttonType: CellButtonType = .rightButton
-        let sceneId: Int32 = 231
-        
-        // when
-        viewModel.onButtonClicked(buttonType: buttonType, sceneId: sceneId)
-        
-        // then
-        XCTAssertEqual(stateObserver.events.count, 0)
-        XCTAssertEqual(eventObserver.events.count, 0)
-        
-        XCTAssertTuples(executeSimpleActionUseCase.parameters, [
-            (Action.execute, SUPLA.SubjectType.scene, sceneId)
-        ])
     }
 }

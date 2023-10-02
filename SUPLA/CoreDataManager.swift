@@ -1,16 +1,16 @@
 /*
  Copyright (C) AC SOFTWARE SP. Z O.O.
- 
+
  This program is free software; you can redistribute it and/or
  modify it under the terms of the GNU General Public License
  as published by the Free Software Foundation; either version 2
  of the License, or (at your option) any later version.
- 
+
  This program is distributed in the hope that it will be useful,
  but WITHOUT ANY WARRANTY; without even the implied warranty of
  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  GNU General Public License for more details.
- 
+
  You should have received a copy of the GNU General Public License
  along with this program; if not, write to the Free Software
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
@@ -26,8 +26,6 @@ class CoreDataManager: NSObject {
     
     let migrator: CoreDataMigrator
     private let storeType: String
-    
-    private var tryRecreateAccount = false
     
     @objc
     lazy var persistentContainer: NSPersistentContainer! = {
@@ -85,20 +83,7 @@ class CoreDataManager: NSObject {
                     fatalError("Not able to load store \(error!)")
                 }
                 
-                if(self.tryRecreateAccount) {
-                    DispatchQueue.global(qos: .userInitiated).async {
-                        if (SAApp.profileManager().restoreProfileFromDefaults()) {
-                            var settings = self.settings
-                            settings.anyAccountRegistered = true
-                        }
-                        DispatchQueue.main.async {
-                            completion()
-                        }
-                    }
-                }
-                else {
-                    completion()
-                }
+                completion()
             }
         }
     }
@@ -134,7 +119,7 @@ class CoreDataManager: NSObject {
     private func removeCurrentDatabase() {
         var settings = settings
         do {
-            _ = try removeDatabase(with: "SUPLA_DB14.sqlite")
+            try removeDatabase(with: "SUPLA_DB14.sqlite")
             settings.anyAccountRegistered = false
         } catch {
             fatalError("Could not delete database after migration failure")
@@ -142,25 +127,18 @@ class CoreDataManager: NSObject {
     }
     
     private func removeOldDatabases() {
-        if let removed = try? removeDatabase(with: "SUPLA_DB.sqlite"), removed {
-            tryRecreateAccount = true
-        }
+        try? removeDatabase(with: "SUPLA_DB.sqlite")
         for i in 0..<14 {
-            if let removed = try? removeDatabase(with: String.init(format: "SUPLA_DB%i.sqlite", i)), removed {
-                tryRecreateAccount = true
-            }
+            try? removeDatabase(with: String.init(format: "SUPLA_DB%i.sqlite", i))
         }
     }
     
-    private func removeDatabase(with name: String) throws -> Bool {
+    private func removeDatabase(with name: String) throws {
         let url = SAApp.applicationDocumentsDirectory().appendingPathComponent(name)
         let fileManager = FileManager.default
         if (fileManager.fileExists(atPath: url.path)) {
             try fileManager.removeItem(atPath: url.path)
-            return true
         }
-        
-        return false
     }
 }
 
