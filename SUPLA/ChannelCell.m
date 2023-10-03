@@ -105,6 +105,8 @@
     
     self.durationTimer.font = UIFont.body2;
     self.durationTimer.textColor = UIColor.gray;
+    
+    [self.caption setFont: UIFont.cellCaptionFont];
 }
 
 - (DisposeBagContainer *) getDisposeBagContainer {
