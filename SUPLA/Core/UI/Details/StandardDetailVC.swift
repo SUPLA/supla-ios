@@ -85,6 +85,8 @@ class StandardDetailVC<S : ViewState, E : ViewEvent, VM : StandardDetailVM<S, E>
         } else {
             self.selectedViewController = viewControllers[pageToOpen]
         }
+        
+        tabBar.isHidden = pages.count == 1
     }
     
     private func switchGeneral() -> SwitchGeneralVC {

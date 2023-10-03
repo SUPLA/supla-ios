@@ -93,7 +93,7 @@ class DetailViewController: BaseViewController {
         _detailView.detailDidHide()
     }
     
-    override func shouldUpdateTitleFont() -> Bool { false }
+    override func shouldUpdateTitleFont() -> Bool { true }
     
     @objc private func onAppDidEnterBackground(_ notification: Notification) {
         // Hide detail view, when application loses foreground context
