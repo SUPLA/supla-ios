@@ -183,76 +183,76 @@
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aRP-7O-HIg" userLabel="vLabels">
-                                    <rect key="frame" x="0.0" y="81.999999999999986" width="170" height="231.66666666666663"/>
+                                    <rect key="frame" x="0.0" y="82.000000000000014" width="170" height="234.33333333333337"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Frequency" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DlL-bA-H7x">
-                                            <rect key="frame" x="0.0" y="0.0" width="170" height="16.666666666666668"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="170" height="19.333333333333332"/>
                                             <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="14"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Voltage" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YDN-T2-eyC">
-                                            <rect key="frame" x="0.0" y="16.666666666666686" width="170" height="19.333333333333329"/>
+                                            <rect key="frame" x="0.0" y="19.333333333333314" width="170" height="19.333333333333329"/>
                                             <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="14"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Current" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="g8r-4G-jnQ">
-                                            <rect key="frame" x="0.0" y="36" width="170" height="19.666666666666671"/>
+                                            <rect key="frame" x="0.0" y="38.666666666666686" width="170" height="19.666666666666671"/>
                                             <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="14"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Active Power" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vFK-4R-JvR">
-                                            <rect key="frame" x="0.0" y="55.666666666666693" width="170" height="19.333333333333336"/>
+                                            <rect key="frame" x="0.0" y="58.333333333333321" width="170" height="19.333333333333336"/>
                                             <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="14"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Reactive Power" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NRY-lA-uaG">
-                                            <rect key="frame" x="0.0" y="75" width="170" height="19.666666666666671"/>
+                                            <rect key="frame" x="0.0" y="77.666666666666686" width="170" height="19.666666666666671"/>
                                             <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="14"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Apparent Power" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="el3-yj-vIH">
-                                            <rect key="frame" x="0.0" y="94.666666666666686" width="170" height="19.333333333333329"/>
+                                            <rect key="frame" x="0.0" y="97.333333333333314" width="170" height="19.333333333333329"/>
                                             <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="14"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Power factor" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oZk-rH-6VT">
-                                            <rect key="frame" x="0.0" y="114" width="170" height="19.666666666666657"/>
+                                            <rect key="frame" x="0.0" y="116.66666666666669" width="170" height="19.666666666666657"/>
                                             <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="14"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Phase angle" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="076-HU-QdY">
-                                            <rect key="frame" x="0.0" y="133.66666666666669" width="170" height="19.333333333333343"/>
+                                            <rect key="frame" x="0.0" y="136.33333333333331" width="170" height="19.333333333333343"/>
                                             <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="14"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Forward active Energy" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5dz-EL-yMd">
-                                            <rect key="frame" x="0.0" y="153" width="170" height="19.333333333333343"/>
+                                            <rect key="frame" x="0.0" y="155.66666666666669" width="170" height="19.333333333333343"/>
                                             <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="14"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Reverse active Energy" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tl7-wk-oBL">
-                                            <rect key="frame" x="0.0" y="172.33333333333331" width="170" height="19.333333333333343"/>
+                                            <rect key="frame" x="0.0" y="175" width="170" height="19.333333333333343"/>
                                             <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="14"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Forward reactive Energy" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aZs-XI-wYP">
-                                            <rect key="frame" x="0.0" y="191.66666666666669" width="170" height="19.666666666666657"/>
+                                            <rect key="frame" x="0.0" y="194.33333333333331" width="170" height="19.666666666666657"/>
                                             <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="14"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Reverse reactive Energy" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MHn-5a-5ZR">
-                                            <rect key="frame" x="0.0" y="211.33333333333331" width="170" height="19.333333333333343"/>
+                                            <rect key="frame" x="0.0" y="214" width="170" height="19.333333333333343"/>
                                             <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="14"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
@@ -418,13 +418,13 @@
                                     </constraints>
                                 </view>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Vector phase-to-phase balancing" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FPJ-3b-cCR">
-                                    <rect key="frame" x="0.0" y="321.66666666666669" width="394" height="19.333333333333314"/>
+                                    <rect key="frame" x="0.0" y="324.33333333333331" width="394" height="19.333333333333314"/>
                                     <fontDescription key="fontDescription" name="OpenSans-Bold" family="Open Sans" pointSize="14"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5kh-QG-euh" userLabel="vLabelsBalance">
-                                    <rect key="frame" x="0.0" y="342" width="170" height="220"/>
+                                    <rect key="frame" x="0.0" y="344.66666666666669" width="170" height="217.33333333333331"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Forward active Energy" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GfA-ig-rf2" userLabel="Forward active Energy Balance">
                                             <rect key="frame" x="0.0" y="0.0" width="170" height="19.666666666666668"/>
@@ -433,7 +433,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Reverse active Energy" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ERC-iT-07T" userLabel="Reverse active Energy Balance">
-                                            <rect key="frame" x="0.0" y="19.666666666666629" width="170" height="19.333333333333329"/>
+                                            <rect key="frame" x="0.0" y="19.666666666666686" width="170" height="19.333333333333329"/>
                                             <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="14"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
@@ -451,7 +451,7 @@
                                     </constraints>
                                 </view>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="J2Z-bb-peO" userLabel="vValuesBalance">
-                                    <rect key="frame" x="170" y="342" width="224" height="220"/>
+                                    <rect key="frame" x="170" y="344.66666666666669" width="224" height="217.33333333333331"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="115 kWh" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="7" translatesAutoresizingMaskIntoConstraints="NO" id="Oln-S4-T0d">
                                             <rect key="frame" x="0.0" y="0.0" width="224" height="19.666666666666668"/>
@@ -460,7 +460,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0 kWh" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="7" translatesAutoresizingMaskIntoConstraints="NO" id="0On-ET-VS9">
-                                            <rect key="frame" x="0.0" y="19.666666666666629" width="224" height="19.333333333333329"/>
+                                            <rect key="frame" x="0.0" y="19.666666666666686" width="224" height="19.333333333333329"/>
                                             <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="14"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>

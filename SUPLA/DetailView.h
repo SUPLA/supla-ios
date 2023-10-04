@@ -28,10 +28,7 @@
 -(void)detailWillHide;
 -(void)detailDidShow;
 -(void)detailDidHide;
--(BOOL)onMenubarBackButtonPressed;
 -(void)setChannelBase:(SAChannelBase *)channelBase;
-
-- (void)handlePan:(UIPanGestureRecognizer *)gr;
 
 @property (weak, nonatomic) SAChannelBase  *channelBase;
 @property (weak, nonatomic) UIViewController *viewController;

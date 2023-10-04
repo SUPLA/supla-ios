@@ -508,12 +508,6 @@
     return YES;
 }
 
-- (void)handlePan:(UIPanGestureRecognizer *)gr {
-    if (_dimmerCalibrationTool == nil || _dimmerCalibrationTool.superview == nil) {
-        [super handlePan:gr];
-    }
-}
-
 -(void)detailWillHide {
     [super detailWillHide];
     

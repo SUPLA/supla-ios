@@ -94,12 +94,12 @@ struct SuplaWeeklyScheduleProgram: Equatable {
             if (program == .off) {
                 return Strings.General.turnOff
             } else if (mode == .heat) {
-                return valuesFormatter.temperatureToString(heatTemperature)
+                return valuesFormatter.temperatureToString(heatTemperature, withUnit: false)
             } else if (mode == .cool) {
-                return valuesFormatter.temperatureToString(coolTemperature)
+                return valuesFormatter.temperatureToString(coolTemperature, withUnit: false)
             } else if (mode == .auto) {
-                let min = valuesFormatter.temperatureToString(heatTemperature)
-                let max = valuesFormatter.temperatureToString(coolTemperature)
+                let min = valuesFormatter.temperatureToString(heatTemperature, withUnit: false)
+                let max = valuesFormatter.temperatureToString(coolTemperature, withUnit: false)
                 return "\(min) - \(max)"
             } else {
                 return NO_VALUE_TEXT

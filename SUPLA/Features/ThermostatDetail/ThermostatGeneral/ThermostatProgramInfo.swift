@@ -131,7 +131,7 @@ extension ThermostatProgramInfo.Builder {
         
         let minutesToNextProgram = quartersToNextProgram! * 15 + (15 - (currentMinute! % 15))
         let nextScheduleProgram = getProgram(program: foundNextProgram)
-        let currentTemperatureString = valuesFormatter.temperatureToString(currentTemperature, withUnit: false, withDegree: false)
+        let currentTemperatureString = valuesFormatter.temperatureToString(currentTemperature, withUnit: false)
         
         return [
             ThermostatProgramInfo(
