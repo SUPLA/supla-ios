@@ -55,6 +55,33 @@
     
     [super detailViewInit];
     [self.tfChartTypeFilter resetList];
+    
+    NSArray *labelsBody2 = [
+        NSArray arrayWithObjects:
+        _lCurrentCost, _lFrequency,
+        _lFrequencyValue, _lVoltage, _lVoltageValue, _lCurrent, _lCurrentValue,
+        _lActivePower, _lActivePowerValue, _lReactivePower, _lReactivePowerValue,
+        _lApparentPower, _lApparentPowerValue, _lPowerFactor, _lPowerFactorValue,
+        _lPhaseAngle, _lPhaseAngleValue, _lForwardActiveEnergy, _lForwardActiveEnergyValue,
+        _lReverseActiveEnergy, _lReverseActiveEnergyValue, _lForwardReactiveEnergy,
+        _lForwardReactiveEnergyValue, _lReverseReactiveEnergy, _lReverseReactiveEnergyValue, nil
+    ];
+    
+    for (int i = 0; i < [labelsBody2 count]; i++) {
+        [[labelsBody2 objectAtIndex: i] setFont: UIFont.body2];
+    }
+    
+    [_lTotalActiveEnergy setFont: [UIFont fontWithName:@"OpenSans" size:9]];
+    [_lTotalActiveEnergyValue setFont: [UIFont fontWithName:@"OpenSans" size:22]];
+    [_lConsumptionProduction setFont: [UIFont fontWithName:@"OpenSans" size:9]];
+    [_lConsumptionProductionValue setFont: [UIFont fontWithName:@"OpenSans" size:15]];
+    [_lTotalCost setFont: [UIFont fontWithName:@"OpenSans" size:12]];
+    [_lPhaseToPhase setFont: [UIFont fontWithName:@"OpenSans-Bold" size:14]];
+    
+    [_btnPhase1 setFont: UIFont.body2];
+    [_btnPhase2 setFont: UIFont.body2];
+    [_btnPhase3 setFont: UIFont.body2];
+    [_btnPhaseSum setFont: UIFont.body2];
 }
 
 - (void)setLabel:(UILabel*)label Visible:(BOOL)visible withConstraint:(NSLayoutConstraint*)cns {
@@ -228,7 +255,7 @@
         
         measured_values = emev.measuredValues;
         currentOver65A = emev.currentIsOver65A;
-    
+        
         for(unsigned char p=1;p<=3;p++) {
             
             if (selectedPhase > 0) {
@@ -236,9 +263,9 @@
             }
             
             if (((SAChannel*)self.channelBase).isOnline) {
-        
+                
                 freq = [emev freqForPhase:p];
-                    
+                
                 if (voltage == 0) {
                     voltage = [emev voltegeForPhase:p];
                 }
@@ -298,7 +325,7 @@
         [self.lCurrentCost setText:[_formatter doubleToString: currentCost
                                                      withUnit: emev.currency
                                                  maxPrecision: 2]];
-    
+        
         _chartHelper.pricePerUnit = emev.pricePerUnit;
         _chartHelper.currency = emev.currency;
         
@@ -377,15 +404,15 @@
     if(channelBase) {
         if(!_chartSettings) {
             _chartSettings = [[ChartSettings alloc]
-                                 initWithChannelId: channelBase.remote_id
-                                    chartTypeField: self.tfChartTypeFilter
-                                    dateRangeField: self.ftDateRangeFilter];
+                              initWithChannelId: channelBase.remote_id
+                              chartTypeField: self.tfChartTypeFilter
+                              dateRangeField: self.ftDateRangeFilter];
             [_chartSettings restore];
         }
     } else {
         [_chartSettings persist];
     }
-
+    
     if (_chartHelper) {
         _chartHelper.channelId = channelBase ? channelBase.remote_id : 0;
     }
@@ -419,8 +446,8 @@
     bool hidden = NO;
     
     if (self.channelBase == NULL
-    || ((self.channelBase.flags & SUPLA_CHANNEL_FLAG_PHASE2_UNSUPPORTED)
-        && (self.channelBase.flags & SUPLA_CHANNEL_FLAG_PHASE3_UNSUPPORTED))) {
+        || ((self.channelBase.flags & SUPLA_CHANNEL_FLAG_PHASE2_UNSUPPORTED)
+            && (self.channelBase.flags & SUPLA_CHANNEL_FLAG_PHASE3_UNSUPPORTED))) {
         hidden = YES;
     }
     
@@ -450,7 +477,7 @@
         [self.btnChart setImage:[UIImage imageNamed:@"graphoff.png"]];
     } else {
         if (!_balanceAvailable) {
-           [self.tfChartTypeFilter excludeAllFrom:Bar_VectorBalance_Minutes];
+            [self.tfChartTypeFilter excludeAllFrom:Bar_VectorBalance_Minutes];
         }
         self.vPhases.hidden = YES;
         self.vCharts.hidden = NO;
@@ -504,10 +531,10 @@
     
     if (_taskTimer == nil) {
         _taskTimer = [NSTimer scheduledTimerWithTimeInterval:120
-                                                           target:self
-                                                         selector:@selector(onTaskTimer:)
-                                                         userInfo:nil
-                                                          repeats:YES];
+                                                      target:self
+                                                    selector:@selector(onTaskTimer:)
+                                                    userInfo:nil
+                                                     repeats:YES];
     }
     [self runDownloadTask];
 }
@@ -557,7 +584,7 @@
         _task.delegate = nil;
         _task = nil;
     }
-
+    
     self.lPreloader.hidden = YES;
     [self updateView];
     _chartHelper.downloadProgress = nil;
@@ -575,16 +602,16 @@
 
 - (BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer {
     return self.ivImage.gestureRecognizers.firstObject == gestureRecognizer
-        && (self.channelBase.func == SUPLA_CHANNELFNC_LIGHTSWITCH
+    && (self.channelBase.func == SUPLA_CHANNELFNC_LIGHTSWITCH
         || self.channelBase.func == SUPLA_CHANNELFNC_POWERSWITCH
         || self.channelBase.func == SUPLA_CHANNELFNC_STAIRCASETIMER);
 }
 
 - (IBAction)imgTapped:(id)sender {
     [SAApp.SuplaClient turnOn:!self.channelBase.hiValue
-                      remoteId:self.channelBase.remote_id
-                      group:NO
-                      channelFunc:self.channelBase.func
+                     remoteId:self.channelBase.remote_id
+                        group:NO
+                  channelFunc:self.channelBase.func
                       vibrate:YES];
 }
 

@@ -135,11 +135,12 @@ final class ThermostatControlView: UIView {
         }
     }
     
+    var setpointToDrag: SetpointType? = nil
+    
     private var setpointHeat: CGFloat? = 0
     private var setpointCool: CGFloat? = 0
     private var temperature: CGFloat = 0.2
     private var isDragging: Bool = false
-    private var setpointToDrag: SetpointType = .heat
     private var positionRelay: PublishRelay<SetpointEvent> = PublishRelay()
     
     private lazy var temperatureCircleShape: CAShapeLayer = { TemperatureCircleLayer() }()
@@ -321,6 +322,7 @@ final class ThermostatControlView: UIView {
             positionRelay.accept(.mooving(setpointType: .heat, position: alignToCircle(point: point)))
         case .cool:
             positionRelay.accept(.mooving(setpointType: .cool, position: alignToCircle(point: point)))
+        default: break
         }
     }
     

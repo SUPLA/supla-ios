@@ -113,7 +113,7 @@
 "thermostat_thermometer_error" = "Temperature reading error";
 "thermostat_clock_error" = "Clock error";
 "thermostat_detail_mode_manual" = "Manual";
-"thermostat_detail_mode_weekly_schedule" = "Preset";
+"thermostat_detail_mode_weekly_schedule" = "Program";
 "schedule_detail_program_dialog_header" = "Program %d Settings";
 "hvac_mode_temperature_heating" = "Heating temperature";
 "hvac_mode_temperature_cooling" = "Cooling temperature";
