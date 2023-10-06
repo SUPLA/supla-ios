@@ -157,9 +157,11 @@ class AccountCreationVC: BaseViewControllerVM<AccountCreationViewState, AccountC
         }
         
         [ bsEmailAddr, adEmailAddr, adServerAddrEmail, adAccessID, adAccessPwd, adServerAddrAccessId ].forEach {
-            $0?.delegate = self
-            $0?.font = .body2
+            $0.delegate = self
+            $0.font = .body2
         }
+        bsProfileName.font = .body2
+        adProfileName.font = .body2
         modeToggleLabel.font = .body2
         modeToggle.tintColor = .switcherBackground
         modeToggle.onTintColor = .primary

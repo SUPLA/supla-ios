@@ -77,6 +77,10 @@
     [_lConsumptionProductionValue setFont: [UIFont fontWithName:@"OpenSans" size:15]];
     [_lTotalCost setFont: [UIFont fontWithName:@"OpenSans" size:12]];
     [_lPhaseToPhase setFont: [UIFont fontWithName:@"OpenSans-Bold" size:14]];
+    [_lForwardActiveEnergyBalance setFont: UIFont.body2];
+    [_lReverseActiveEnergyBalance setFont: UIFont.body2];
+    [_lForwardActiveEnergyValueBalance setFont: UIFont.body2];
+    [_lReverseActiveEnergyValueBalance setFont: UIFont.body2];
     
     [_btnPhase1 setFont: UIFont.body2];
     [_btnPhase2 setFont: UIFont.body2];

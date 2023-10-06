@@ -546,12 +546,14 @@ struct ThermostatGeneralViewState: ViewState {
     }
     var modeIndicatorColor: UIColor {
         get {
-            if (off || offline) {
+            if (offline) {
                 return .black
             } else if (heatingIndicatorInactive == false) {
                 return .red
             } else if (coolingIndicatorInactive == false) {
                 return .blue
+            } else if (off) {
+                return .black
             } else {
                 return .primary
             }
