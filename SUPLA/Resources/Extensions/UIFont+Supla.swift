@@ -30,6 +30,22 @@ extension UIFont {
     static let button = openSansMedium(style: .caption1, size: 17)
     static let caption = openSansMedium(style: .caption2, size: 10)
     
+    @objc
+    class StaticSize: NSObject {
+        static let h1 = UIFont(name: "OpenSans-Light", size: 96)!
+        static let h2 = UIFont(name: "OpenSans-Light", size: 60)!
+        static let h3 = UIFont(name: "OpenSans", size: 48)!
+        static let h4 = UIFont(name: "OpenSans", size: 34)!
+        static let h5 = UIFont(name: "OpenSans", size: 24)!
+        static let h6 = UIFont(name: "OpenSans-SemiBold", size: 17)!
+        static let subtitle1 = UIFont(name: "OpenSans", size: 16)!
+        static let subtitle2 = UIFont(name: "OpenSans-Medium", size: 14)!
+        static let body1 = UIFont(name: "OpenSans", size: 16)!
+        @objc static let body2 = UIFont(name: "OpenSans", size: 14)!
+        static let button = UIFont(name: "OpenSans-Medium", size: 17)!
+        static let caption = UIFont(name: "OpenSans-Medium", size: 10)!
+    }
+    
     static func openSansLight(style: UIFont.TextStyle, size: CGFloat) -> UIFont {
         guard let openSansFont = UIFont(name: "OpenSans-Light", size: size)
         else {

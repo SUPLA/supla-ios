@@ -68,7 +68,7 @@
     ];
     
     for (int i = 0; i < [labelsBody2 count]; i++) {
-        [[labelsBody2 objectAtIndex: i] setFont: UIFont.body2];
+        [[labelsBody2 objectAtIndex: i] setFont: StaticSize.body2];
     }
     
     [_lTotalActiveEnergy setFont: [UIFont fontWithName:@"OpenSans" size:9]];
@@ -77,15 +77,15 @@
     [_lConsumptionProductionValue setFont: [UIFont fontWithName:@"OpenSans" size:15]];
     [_lTotalCost setFont: [UIFont fontWithName:@"OpenSans" size:12]];
     [_lPhaseToPhase setFont: [UIFont fontWithName:@"OpenSans-Bold" size:14]];
-    [_lForwardActiveEnergyBalance setFont: UIFont.body2];
-    [_lReverseActiveEnergyBalance setFont: UIFont.body2];
-    [_lForwardActiveEnergyValueBalance setFont: UIFont.body2];
-    [_lReverseActiveEnergyValueBalance setFont: UIFont.body2];
+    [_lForwardActiveEnergyBalance setFont: StaticSize.body2];
+    [_lReverseActiveEnergyBalance setFont: StaticSize.body2];
+    [_lForwardActiveEnergyValueBalance setFont: StaticSize.body2];
+    [_lReverseActiveEnergyValueBalance setFont: StaticSize.body2];
     
-    [_btnPhase1 setFont: UIFont.body2];
-    [_btnPhase2 setFont: UIFont.body2];
-    [_btnPhase3 setFont: UIFont.body2];
-    [_btnPhaseSum setFont: UIFont.body2];
+    [_btnPhase1 setFont: StaticSize.body2];
+    [_btnPhase2 setFont: StaticSize.body2];
+    [_btnPhase3 setFont: StaticSize.body2];
+    [_btnPhaseSum setFont: StaticSize.body2];
 }
 
 - (void)setLabel:(UILabel*)label Visible:(BOOL)visible withConstraint:(NSLayoutConstraint*)cns {
