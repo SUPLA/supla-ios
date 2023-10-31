@@ -16,16 +16,34 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 */
 
-struct Client {
+struct SuplaCloudClient {
     static var emailCharacterSet: CharacterSet = {
         var set = NSCharacterSet.urlQueryAllowed
         set.remove("+")
         return set
     }()
-    
+ 
+    static var decoder: JSONDecoder {
+        get {
+            let decoder = JSONDecoder()
+            decoder.dateDecodingStrategy = .custom({ (decoder) -> Date in
+                let container = try decoder.singleValueContainer()
+                let dateStr = try container.decode(String.self)
+                
+                if let timeinterval = TimeInterval(dateStr) {
+                    return Date(timeIntervalSince1970: timeinterval)
+                } else {
+                    throw DecodingError.dataCorruptedError(
+                        in: container,
+                        debugDescription: "Cannot decoade date string \(dateStr)"
+                    )
+                }
+            })
+            return decoder
+        }
+    }
 }
 
-enum ClientError: Error {
-    case inputError(message: String)
+enum SuplaCloudClientError: Error {
     case parseError(message: String)
 }

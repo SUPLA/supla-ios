@@ -311,3 +311,6 @@
 "Cfg.removal.dialog.incomplete" = "Užpildykite privalomus duomenis";
 
 "General.error" = "Klaida";
+
+/* Thermometer Chart */
+"history_no_data_in_selected_period" = "Nėra duomenų diagramai.";

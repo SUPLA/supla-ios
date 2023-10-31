@@ -765,6 +765,7 @@ void sasuplaclient_channel_config_update_or_result(void *_suplaclient,
     _client_id = result.ClientID;
     NSData* pushToken = [DiContainer getPushToken];
     [self registerPushNotificationClientToken:pushToken];
+    [DiContainer setOAuthUrlWithUrl: ai.serverUrlString];
 
     [self performSelectorOnMainThread:@selector(_onRegistered:) withObject:result waitUntilDone:NO];
 }
@@ -1001,6 +1002,8 @@ void sasuplaclient_channel_config_update_or_result(void *_suplaclient,
 
 - (void) _onOAuthTokenRequestResult:(SAOAuthToken *)token {
     [[NSNotificationCenter defaultCenter] postNotificationName:kSAOAuthTokenRequestResult object:self userInfo:[[NSDictionary alloc] initWithObjects:@[token] forKeys:@[@"token"]]];
+    
+    [DiContainer setOAuthTokenWithToken: token];
 }
 
 - (void) onOAuthTokenRequestResult:(SAOAuthToken *)token {

@@ -70,5 +70,9 @@ extension AuthProfileItem {
         }
     }
     
-    
+    var idString: String {
+        get {
+            objectID.uriRepresentation().dataRepresentation.base64EncodedString()
+        }
+    }
 }

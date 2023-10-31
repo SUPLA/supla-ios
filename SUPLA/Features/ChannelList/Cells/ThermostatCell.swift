@@ -170,7 +170,6 @@ final class ThermostatCell: BaseCell<ChannelWithChildren> {
             channel: channel,
             subfunction: thermostatValue?.subfunction
         )
-        currentTemperatureView.text = channel.attrStringValue().string
         
         indicatorView.image = .iconStandby
         issueIcon = nil

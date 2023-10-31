@@ -309,3 +309,6 @@
 "Cfg.removal.dialog.incomplete" = "Fyll ut de nødvendige dataene";
 
 "General.error" = "Feil";
+
+/* Thermometer Chart */
+"history_no_data_in_selected_period" = "Manglende data for diagrammet.";

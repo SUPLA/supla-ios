@@ -56,14 +56,14 @@ class ThermostatGeneralVC: BaseViewControllerVM<ThermostatGeneralViewState, Ther
     }()
     
     private lazy var plusButton: UIIconButton = {
-        let button = UIIconButton(size: Dimens.buttonHeight)
+        let button = UIIconButton(config: .primary(size: Dimens.buttonHeight))
         button.translatesAutoresizingMaskIntoConstraints = false
         button.icon = .iconPlus
         return button
     }()
     
     private lazy var minusButton: UIIconButton = {
-        let button = UIIconButton(size: Dimens.buttonHeight)
+        let button = UIIconButton(config: .primary(size: Dimens.buttonHeight))
         button.translatesAutoresizingMaskIntoConstraints = false
         button.icon = .iconMinus
         return button

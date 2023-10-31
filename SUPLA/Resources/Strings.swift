@@ -100,6 +100,31 @@ struct Strings {
     }
 
     struct Charts {
+        static let rangeLabel = "history_range_label".toLocalized()
+        static let aggregationLabel = "history_aggregation_label".toLocalized()
+        static let lastDay = "history_range_last_day".toLocalized()
+        static let lastWeek = "history_range_last_week".toLocalized()
+        static let last30Days = "history_range_last_30_days".toLocalized()
+        static let last90Days = "history_range_last_90_days".toLocalized()
+        static let day = "history_range_current_day".toLocalized()
+        static let week = "history_range_current_week".toLocalized()
+        static let month = "history_range_current_month".toLocalized()
+        static let quarter = "history_range_current_quarter".toLocalized()
+        static let year = "history_range_current_year".toLocalized()
+        static let custom = "history_range_custom".toLocalized()
+        static let refreshing = "history_refreshing".toLocalized()
+        static let refreshingFailed = "history_refreshing_failed".toLocalized()
+        static let noDataSelected = "history_no_data_selected".toLocalized()
+        static let noDataAvailable = "history_no_data_available".toLocalized()
+        static let noDataInSelectedPeriod = "history_no_data_in_selected_period".toLocalized()
+        static let loading = "Retrieving data from the server...".toLocalized()
+        
+        static let minutes = "Minutes".toLocalized()
+        static let hours = "Hours".toLocalized()
+        static let days = "Days".toLocalized()
+        static let months = "Months".toLocalized()
+        static let years = "Years".toLocalized()
+        
         struct Electricity {
             static let allPhasesTitle = NSLocalizedString("Phase 1+2+3", comment: "")
             static let selPhaseTitle = NSLocalizedString("Phase %d", comment: "")
@@ -128,6 +153,7 @@ struct Strings {
         static let tabTimer = "standard_detail_timer_tab".toLocalized()
         static let tabMetrics = "standard_detail_metrics_tab".toLocalized()
         static let tabSchedule = "standard_detail_schedule_tab".toLocalized()
+        static let tabHistory = "standard_detail_history_tab".toLocalized()
     }
     
     struct SwitchDetail {

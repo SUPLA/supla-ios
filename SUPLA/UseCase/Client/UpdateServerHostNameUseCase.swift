@@ -20,7 +20,7 @@ import RxSwift
 
 
 final class UpdateServerHostNameUseCase {
-    @Singleton<ClientRepository> private var clientRepository
+    @Singleton<SuplaCloudClientRepository> private var clientRepository
     @Singleton<ProfileRepository> private var profileRepository
     
     func invoke() -> Observable<String> {

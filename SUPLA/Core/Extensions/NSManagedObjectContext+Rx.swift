@@ -108,6 +108,19 @@ extension Reactive where Base: NSManagedObjectContext {
         }
     }
     
+    func count<T: NSFetchRequestResult>(ofType: T.Type = T.self, with predicate: NSPredicate) -> Observable<Int> {
+        return Observable.deferred {
+            let request = NSFetchRequest<T>(entityName: getEntityName(String(describing: T.self)))
+            request.predicate = predicate
+            do {
+                let result = try self.base.count(for: request)
+                return Observable.just(result)
+            } catch {
+                return Observable.error(error)
+            }
+        }
+    }
+    
 }
 
 extension NSManagedObjectContext {

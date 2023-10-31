@@ -313,3 +313,6 @@
 "Cfg.removal.dialog.incomplete" = "Заполните необходимые данные";
 
 "General.error" = "Ошибка";
+
+/* Thermometer Chart */
+"history_no_data_in_selected_period" = "Нет данных для графика.";

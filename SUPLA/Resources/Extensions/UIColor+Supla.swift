@@ -26,6 +26,7 @@ extension UIColor {
     static let primaryVariant = UIColor(red: 0, green: 209/255.0, blue: 81/255.0, alpha: 1)
     
     static let onBackground = UIColor(red: 0, green: 0, blue: 0, alpha: 1)
+    static let onPrimary = UIColor(red: 255, green: 255, blue: 255, alpha: 1)
     
     static let surface = UIColor(red: 1, green: 1, blue: 1, alpha: 1)
     @objc static let background = UIColor(red: 245/255.0, green: 246/255.0, blue: 247/255.0, alpha: 1)
@@ -40,12 +41,15 @@ extension UIColor {
     static let lightGreen = UIColor.from(red: 176, green: 224, blue: 168, alpha: 1)
     static let lightOrange = UIColor.from(red: 255, green: 209, blue: 154, alpha: 1)
     static let lightRed = UIColor.from(red: 224, green: 152, blue: 146, alpha: 1)
+    static let darkRed = UIColor(argb: 0xFF800000)
+    static let darkBlue = UIColor(argb: 0xFF000080)
     
     static let border = UIColor(red: 180/255.0, green: 183/255.0, blue: 186/255.0, alpha: 1)
     static let separator = UIColor.from(red: 170, green: 170, blue: 170, alpha: 1)
     static let separatorLight = UIColor.from(red: 220, green: 222, blue: 224, alpha: 1)
     
     static let dialogScrim = UIColor(white: 0, alpha: 0.3)
+    static let transparent = UIColor(argb: 0x00FFFFFF)
     
     // View specific colors
     static let listItemBackground = UIColor(red: 249/255.0, green: 250/255.0, blue: 251/255.0, alpha: 1)
@@ -62,7 +66,7 @@ extension UIColor {
     static let ctrlBorder = UIColor(red: 118.0/255.0, green: 120.0/255.0, blue: 128.0/255.0, alpha: 0.12)
     static let viewBackground = UIColor(red: 0.898, green: 0.898, blue: 0.898, alpha: 1)
     static let switcherBackground = UIColor(red: 118.0/255.0, green: 120.0/255.0, blue: 128.0/255.0, alpha: 0.12)
-
+    
     @objc static let textLight = UIColor(red: 0, green: 0, blue: 0, alpha: 1)
     @objc static let yellow = UIColor(red: 254, green: 231, blue: 0, alpha: 1)
     
@@ -71,15 +75,38 @@ extension UIColor {
 }
 
 extension UIColor {
+    convenience init (alpha: Int, red: Int, green: Int, blue: Int) {
+        assert(alpha >= 0 && alpha <= 255, "Invalid red component")
+        assert(red >= 0 && red <= 255, "Invalid red component")
+        assert(green >= 0 && green <= 255, "Invalid green component")
+        assert(blue >= 0 && blue <= 255, "Invalid blue component")
+        
+        self.init(
+            red: CGFloat(red) / 255.0,
+            green: CGFloat(green) / 255.0,
+            blue: CGFloat(blue) / 255.0,
+            alpha: CGFloat(alpha) / 255.0
+        )
+    }
+    
+    convenience init (argb: Int) {
+        self.init(
+            alpha: (argb >> 24) & 0xFF,
+            red: (argb >> 16) & 0xFF,
+            green: (argb >> 8) & 0xFF,
+            blue: argb & 0xFF
+        )
+    }
+    
     var rgba: (red: CGFloat, green: CGFloat, blue: CGFloat, alpha: CGFloat) {
-            var red: CGFloat = 0
-            var green: CGFloat = 0
-            var blue: CGFloat = 0
-            var alpha: CGFloat = 0
-            getRed(&red, green: &green, blue: &blue, alpha: &alpha)
-
-            return (red, green, blue, alpha)
-        }
+        var red: CGFloat = 0
+        var green: CGFloat = 0
+        var blue: CGFloat = 0
+        var alpha: CGFloat = 0
+        getRed(&red, green: &green, blue: &blue, alpha: &alpha)
+        
+        return (red, green, blue, alpha)
+    }
     
     func copy(alpha: CGFloat) -> UIColor {
         let (red, green, blue, _) = rgba

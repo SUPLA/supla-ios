@@ -121,7 +121,7 @@ enum PanningEvent: Equatable {
 
 // MARK: - Buttons row
 
-fileprivate class ButtonsRowView: UIScrollView {
+fileprivate class ButtonsRowView: HorizontalyScrollableView<RoundedControlButtonView> {
     
     var tapEvents: Observable<SuplaScheduleProgram> {
         get { tapRelay.asObservable() }
@@ -131,9 +131,12 @@ fileprivate class ButtonsRowView: UIScrollView {
     }
     var activeProgram: SuplaScheduleProgram? = nil {
         didSet {
-            buttons.values.forEach { $0.active = false }
-            if let activeProgram = activeProgram {
-                buttons[activeProgram]?.active = true
+            items.forEach { $0.active = false }
+            
+            for (index, program) in programs.enumerated() {
+                if (program.scheduleProgram.program == activeProgram) {
+                    items[index].active = true
+                }
             }
         }
     }
@@ -147,46 +150,18 @@ fileprivate class ButtonsRowView: UIScrollView {
     
     private let tapRelay: PublishRelay<SuplaScheduleProgram> = PublishRelay()
     private let longPressRelay: PublishRelay<SuplaScheduleProgram> = PublishRelay()
-    private var buttons: [SuplaScheduleProgram : RoundedControlButtonView] = [:]
-    private let disposeBag = DisposeBag()
     private var changableConstraints: [NSLayoutConstraint] = []
-    
-    private let contentView: UIView = {
-        let view = UIView()
-        view.translatesAutoresizingMaskIntoConstraints = false
-        return view
-    }()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        setupView()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    override func touchesShouldCancel(in view: UIView) -> Bool {
-        return true
-    }
-    
-    private func setupView() {
-        delaysContentTouches = false
-        showsHorizontalScrollIndicator = false
-        addSubview(contentView)
-    }
-    
-    private func setupLayout() {
-        NSLayoutConstraint.activate([
-            contentView.topAnchor.constraint(equalTo: topAnchor),
-            contentView.bottomAnchor.constraint(equalTo: bottomAnchor),
-            contentView.leftAnchor.constraint(equalTo: leftAnchor),
-            contentView.rightAnchor.constraint(equalTo: rightAnchor)
-        ])
-    }
-    
-    override func layoutSubviews() {
-        cleanUpView()
+    override func createItems() -> [RoundedControlButtonView] {
+        var items: [RoundedControlButtonView] = []
         
         for program in programs {
             let buttonView = RoundedControlButtonView(height: Dimens.buttonSmallHeight)
@@ -204,46 +179,14 @@ fileprivate class ButtonsRowView: UIScrollView {
                     .subscribe(onNext: { self.longPressRelay.accept(program.scheduleProgram.program) })
                     .disposed(by: disposeBag)
             }
-            buttons[program.scheduleProgram.program] = buttonView
-            
-            contentView.addSubview(buttonView)
+           items.append(buttonView)
         }
         
-        setupButtonsLayout()
+        return items
     }
     
-    private func setupButtonsLayout() {
-        var width: CGFloat = Dimens.distanceDefault
-        var previousButton: RoundedControlButtonView? = nil
-        for program in programs {
-            guard let buttonView = buttons[program.scheduleProgram.program] else { continue }
-            width += buttonView.intrinsicContentSize.width + Dimens.distanceTiny
-
-            changableConstraints.append(buttonView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: Dimens.distanceSmall))
-            changableConstraints.append(buttonView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -Dimens.distanceSmall))
-
-            if let previousButton = previousButton {
-                changableConstraints.append(buttonView.leftAnchor.constraint(equalTo: previousButton.rightAnchor, constant: Dimens.distanceTiny))
-            } else {
-                changableConstraints.append(buttonView.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: Dimens.distanceDefault))
-            }
-            previousButton = buttonView
-        }
-        if let lastButton = previousButton {
-            changableConstraints.append(lastButton.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -Dimens.distanceDefault))
-        }
-        contentSize = CGSize(width: width + 16, height: 64)
-
-        NSLayoutConstraint.activate(changableConstraints)
-    }
-    
-    private func cleanUpView() {
-        if (!changableConstraints.isEmpty) {
-            NSLayoutConstraint.deactivate(changableConstraints)
-            changableConstraints.removeAll()
-        }
-        buttons.values.forEach { $0.removeFromSuperview() }
-        buttons.removeAll()
+    override func horizontalConstraint(item: RoundedControlButtonView) -> NSLayoutConstraint {
+        item.topAnchor.constraint(equalTo: contentView.topAnchor, constant: Dimens.distanceSmall)
     }
 }
 
