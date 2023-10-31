@@ -49,6 +49,11 @@ class ThermostatHistoryDetailVC: BaseViewControllerVM<ThermostatHistoryDetailVie
         return view
     }()
     
+    private lazy var pullToRefresh: PullToRefreshView = {
+        let view = PullToRefreshView()
+        return view
+    }()
+    
     init(remoteId: Int32) {
         self.remoteId = remoteId
         super.init(nibName: nil, bundle: nil)
@@ -101,6 +106,8 @@ class ThermostatHistoryDetailVC: BaseViewControllerVM<ThermostatHistoryDetailVie
         paginationView.leftEnabled = state.shiftLeftEnabled
         paginationView.rightEnabled = state.shiftRightEnabled
         paginationView.text = state.rangeText
+        
+        pullToRefresh.isRefreshing = state.loading
     }
     
     private func setupView() {
@@ -108,6 +115,7 @@ class ThermostatHistoryDetailVC: BaseViewControllerVM<ThermostatHistoryDetailVie
         view.addSubview(filtersRow)
         view.addSubview(chartView)
         view.addSubview(paginationView)
+        view.addSubview(pullToRefresh)
         
         viewModel.bind(dataSetsRow.tapEvents) { self.viewModel.changeSetActive(setId: $0) }
         
@@ -120,7 +128,9 @@ class ThermostatHistoryDetailVC: BaseViewControllerVM<ThermostatHistoryDetailVie
         viewModel.bind(paginationView.tap.filter({ $0 == .left })) { _ in self.viewModel.moveRangeLeft() }
         viewModel.bind(paginationView.tap.filter({ $0 == .right })) { _ in self.viewModel.moveRangeRight() }
         viewModel.bind(paginationView.tap.filter({ $0 == .start })) { _ in self.viewModel.moveToDataBegin() }
-
+        
+        viewModel.bind(pullToRefresh.refreshObservable) { _ in self.viewModel.refresh() }
+        
         setupLayout()
     }
     

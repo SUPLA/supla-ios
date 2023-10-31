@@ -50,6 +50,17 @@ class ThermostatHistoryDetailVM: BaseViewModel<ThermostatHistoryDetailViewState,
             .disposed(by: self)
     }
     
+    func refresh() {
+        updateView {
+            $0.changing(path: \.loading, to: true)
+                .changing(path: \.initialLoadStarted, to: false)
+                .changing(path: \.sets, to: $0.sets.map { set in set.changing(path: \.entries, to: []) })
+        }
+        if let remoteId = currentState()?.remoteId {
+            triggerDataLoad(remoteId: remoteId)
+        }
+    }
+    
     func changeSetActive(setId: HistoryDataSet.Id) {
         updateView { state in
             state.changing(

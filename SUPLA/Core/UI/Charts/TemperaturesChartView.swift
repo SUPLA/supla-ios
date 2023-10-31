@@ -29,6 +29,7 @@ class TemperaturesChartView: UIView {
     var data: CombinedChartData? {
         get { combinedChart.data as? CombinedChartData }
         set {
+            combinedChart.highlightValue(nil)
             combinedChart.data = newValue
             if let yMinValue = newValue?.allData.map({ $0.yMin }).min() {
                 combinedChart.leftAxis.axisMinimum = yMinValue < 0 ? yMinValue : 0
