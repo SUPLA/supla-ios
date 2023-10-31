@@ -23,7 +23,6 @@ private let MAX_ALLOWED_DISTANCE_MUTLIPLIER = 1.5
 private let AGGREGATING_MINUTES_DISTANCE_SEC = 600 * MAX_ALLOWED_DISTANCE_MUTLIPLIER
 
 protocol BaseLoadMeasurementsUseCase {
-    
 }
 
 extension BaseLoadMeasurementsUseCase {
@@ -100,7 +99,7 @@ extension BaseLoadMeasurementsUseCase {
         
         return switch(type) {
         case .temperature: formatter.temperatureToString(channel.temperatureValue(), withUnit: false)
-        case .humidity: formatter.humidityToString(rawValue: channel.humidityValue())
+        case .humidity: formatter.humidityToString(channel.humidityValue())
         }
     }
     

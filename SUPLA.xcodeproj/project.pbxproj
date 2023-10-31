@@ -650,7 +650,7 @@
 		A51BE8F72AA71E3E00718F2F /* ScheduleDetailVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51BE8F62AA71E3E00718F2F /* ScheduleDetailVM.swift */; };
 		A51BE8F92AA71EB900718F2F /* ScheduleDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51BE8F82AA71EB900718F2F /* ScheduleDetailVC.swift */; };
 		A51BE8FC2AA7300A00718F2F /* ThermometerValues.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51BE8FB2AA7300A00718F2F /* ThermometerValues.swift */; };
-		A51BE8FF2AA73A5900718F2F /* ThermostatTemperature.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51BE8FE2AA73A5900718F2F /* ThermostatTemperature.swift */; };
+		A51BE8FF2AA73A5900718F2F /* MeasurementValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51BE8FE2AA73A5900718F2F /* MeasurementValue.swift */; };
 		A51BE9032AA746C100718F2F /* RoundedControlButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51BE9022AA746C100718F2F /* RoundedControlButtonView.swift */; };
 		A51BE9052AA754F200718F2F /* BaseControlButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51BE9042AA754F200718F2F /* BaseControlButtonView.swift */; };
 		A51BE9072AA8532600718F2F /* ThermostatControlView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51BE9062AA8532600718F2F /* ThermostatControlView.swift */; };
@@ -2045,7 +2045,7 @@
 		A51BE8F62AA71E3E00718F2F /* ScheduleDetailVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleDetailVM.swift; sourceTree = "<group>"; };
 		A51BE8F82AA71EB900718F2F /* ScheduleDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleDetailVC.swift; sourceTree = "<group>"; };
 		A51BE8FB2AA7300A00718F2F /* ThermometerValues.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThermometerValues.swift; sourceTree = "<group>"; };
-		A51BE8FE2AA73A5900718F2F /* ThermostatTemperature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThermostatTemperature.swift; sourceTree = "<group>"; };
+		A51BE8FE2AA73A5900718F2F /* MeasurementValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeasurementValue.swift; sourceTree = "<group>"; };
 		A51BE9022AA746C100718F2F /* RoundedControlButtonView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoundedControlButtonView.swift; sourceTree = "<group>"; };
 		A51BE9042AA754F200718F2F /* BaseControlButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseControlButtonView.swift; sourceTree = "<group>"; };
 		A51BE9062AA8532600718F2F /* ThermostatControlView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThermostatControlView.swift; sourceTree = "<group>"; };
@@ -3602,7 +3602,7 @@
 			isa = PBXGroup;
 			children = (
 				A5477DBC2AA52F5700220B4A /* ThermostatValue.swift */,
-				A51BE8FE2AA73A5900718F2F /* ThermostatTemperature.swift */,
+				A51BE8FE2AA73A5900718F2F /* MeasurementValue.swift */,
 				A51BE90A2AAAF29D00718F2F /* SetpointType.swift */,
 				A56233EC2AB38CED001CB948 /* TemperatureChangeStep.swift */,
 			);
@@ -5603,7 +5603,7 @@
 				40C7BA6C20C045A800ACEE42 /* SAChannelGroup+CoreDataClass.m in Sources */,
 				AE1874C2290C581D00437146 /* SceneCaptionEditor.swift in Sources */,
 				A530EE162A56F82A00F8DAEE /* GateIconNameProducer.swift in Sources */,
-				A51BE8FF2AA73A5900718F2F /* ThermostatTemperature.swift in Sources */,
+				A51BE8FF2AA73A5900718F2F /* MeasurementValue.swift in Sources */,
 				A56234012ABACEAF001CB948 /* SAChannel+Ext.swift in Sources */,
 				AE3DECE22761DB32005923E4 /* AccountCreationNavigationCoordinator.swift in Sources */,
 				AE53535427691EFC0077BFFB /* AppSettingsNavigationCoordinator.swift in Sources */,

@@ -17,34 +17,48 @@
  */
 
 protocol CreateTemperaturesListUseCase {
-    func invoke(channelWithChildren: ChannelWithChildren) -> [ThermostatTemperature]
+    func invoke(channelWithChildren: ChannelWithChildren) -> [MeasurementValue]
 }
 
 final class CreateTemperaturesListUseCaseImpl: CreateTemperaturesListUseCase {
     
     @Singleton<GetChannelBaseIconUseCase> private var getChannelBaseIconUseCase
+    @Singleton<ValuesFormatter> private var formatter
     
-    func invoke(channelWithChildren: ChannelWithChildren) -> [ThermostatTemperature] {
-        let mainTermometerChannel = channelWithChildren.children
-            .first { $0.relationType == .mainThermometer }
-            .map { $0.channel }
-        let auxTermometerChannel = channelWithChildren.children
-            .first { $0.relationType.isAux() }
-            .map { $0.channel }
+    func invoke(channelWithChildren: ChannelWithChildren) -> [MeasurementValue] {
+        let children = channelWithChildren.children
+            .filter { $0.relationType.isThermometer() }
+            .sorted { $0.relationType.rawValue < $1.relationType.rawValue }
         
-        var result: [ThermostatTemperature] = []
-        if let main = mainTermometerChannel {
-            result.append(ThermostatTemperature(
-                icon: getChannelBaseIconUseCase.invoke(channel: main),
-                temperature: main.attrStringValue().string
-            ))
-        }
-        if let aux = auxTermometerChannel {
-            result.append(ThermostatTemperature(
-                icon: getChannelBaseIconUseCase.invoke(channel: aux),
-                temperature: aux.attrStringValue().string
-            ))
+        var result: [MeasurementValue] = []
+        for child in children {
+            result.append(child.channel.toTemperatureValue(getChannelBaseIconUseCase, formatter))
+            if (child.channel.func == SUPLA_CHANNELFNC_HUMIDITYANDTEMPERATURE) {
+                result.append(child.channel.toHumidityValue(getChannelBaseIconUseCase, formatter))
+            }
         }
         return result
+    }
+}
+
+fileprivate extension SAChannel {
+    func toTemperatureValue(
+        _ getChannelBaseIconUseCase: GetChannelBaseIconUseCase,
+        _ valuesFormatter: ValuesFormatter
+    ) -> MeasurementValue {
+        MeasurementValue(
+            icon: getChannelBaseIconUseCase.invoke(channel: self),
+            value: isOnline() ? valuesFormatter.temperatureToString(temperatureValue(), withUnit: false) : NO_VALUE_TEXT
+        )
+    }
+    
+    func toHumidityValue(
+        _ getChannelBaseIconUseCase: GetChannelBaseIconUseCase,
+        _ valuesFormatter: ValuesFormatter
+    ) -> MeasurementValue {
+        MeasurementValue(
+            icon: getChannelBaseIconUseCase.invoke(channel: self, type: .second),
+            value: isOnline() ? valuesFormatter.humidityToString(humidityValue()) : NO_VALUE_TEXT
+        )
     }
 }

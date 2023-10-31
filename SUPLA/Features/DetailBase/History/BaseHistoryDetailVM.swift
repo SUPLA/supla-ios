@@ -387,7 +387,7 @@ struct BaseHistoryDetailViewState: ViewState {
             switch (downloadState) {
             case .started: return Strings.Charts.refreshing
             case .inProgress(let progress):
-                let percentage = formatter.percentageToString(value: progress)
+                let percentage = formatter.percentageToString(progress)
                 return "\(Strings.Charts.loading) \(percentage)"
             case .finished:
                 if (loading) {

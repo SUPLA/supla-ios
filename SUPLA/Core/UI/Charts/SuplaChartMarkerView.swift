@@ -121,7 +121,7 @@ import Charts
         case .temperature:
             formatter.temperatureToString(value, withUnit: false, precision: 2)
         case .humidity:
-            formatter.humidityToString(rawValue: value, withPercentage: true)
+            formatter.humidityToString(value, withPercentage: true)
         }
     }
     

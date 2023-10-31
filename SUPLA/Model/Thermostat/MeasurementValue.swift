@@ -18,7 +18,7 @@
 
 import Foundation
 
-struct ThermostatTemperature: Equatable {
+struct MeasurementValue: Equatable {
     let icon: UIImage?
-    let temperature: String
+    let value: String
 }

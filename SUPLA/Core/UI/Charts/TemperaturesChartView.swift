@@ -218,7 +218,7 @@ fileprivate class AxisRightFormatter: NSObject, AxisValueFormatter {
         return if (value > 100) {
             ""
         } else {
-            formatter.humidityToString(rawValue: value, withPercentage: true)
+            formatter.humidityToString(value, withPercentage: true)
         }
     }
 }

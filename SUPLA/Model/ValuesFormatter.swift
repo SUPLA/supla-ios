@@ -22,8 +22,8 @@ private let TIME_ZONE_GMT = TimeZone(identifier: "GMT")!
 protocol ValuesFormatter {
     // Values
     func temperatureToString(_ value: Float?, withUnit: Bool, withDegree: Bool, precision: Int) -> String
-    func humidityToString(rawValue: Double?, withPercentage: Bool) -> String
-    func percentageToString(value: Float) -> String
+    func humidityToString(_ rawValue: Double?, withPercentage: Bool) -> String
+    func percentageToString(_ value: Float) -> String
     
     // Time
     func minutesToString(minutes: Int) -> String
@@ -49,8 +49,8 @@ extension ValuesFormatter {
             return temperatureToString(nil, withUnit: withUnit, withDegree: withDegree, precision: precision)
         }
     }
-    func humidityToString(rawValue: Double?, withPercentage: Bool = false) -> String {
-        humidityToString(rawValue: rawValue, withPercentage: withPercentage)
+    func humidityToString(_ rawValue: Double?, withPercentage: Bool = false) -> String {
+        humidityToString(rawValue, withPercentage: withPercentage)
     }
 }
 
@@ -87,7 +87,7 @@ final class ValuesFormatterImpl: ValuesFormatter {
         }
     }
     
-    func humidityToString(rawValue: Double?, withPercentage: Bool) -> String {
+    func humidityToString(_ rawValue: Double?, withPercentage: Bool) -> String {
         guard let value = rawValue else { return NO_VALUE_TEXT }
         return if (withPercentage) {
             String(format: "%.1f%%", value)
@@ -96,7 +96,7 @@ final class ValuesFormatterImpl: ValuesFormatter {
         }
     }
     
-    func percentageToString(value: Float) -> String {
+    func percentageToString(_ value: Float) -> String {
         let percentage = Int((value * 100).rounded())
         return "\(percentage)%"
     }

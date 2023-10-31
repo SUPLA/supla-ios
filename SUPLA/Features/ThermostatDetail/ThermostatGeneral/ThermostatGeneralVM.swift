@@ -237,7 +237,7 @@ class ThermostatGeneralVM: BaseViewModel<ThermostatGeneralViewState, ThermostatG
         }
     }
     
-    private func handleData(data: ((ChannelWithChildren, [ThermostatTemperature])?, SuplaChannelHvacConfig?, SuplaChannelWeeklyScheduleConfig?)) {
+    private func handleData(data: ((ChannelWithChildren, [MeasurementValue])?, SuplaChannelHvacConfig?, SuplaChannelWeeklyScheduleConfig?)) {
         guard let channel = data.0?.0 else { return }
         guard let temperatures = data.0?.1 else { return }
         guard let config = data.1 else { return }
@@ -262,8 +262,7 @@ class ThermostatGeneralVM: BaseViewModel<ThermostatGeneralViewState, ThermostatG
                 .changing(path: \.remoteId, to: channel.channel.remote_id)
                 .changing(path: \.channelFunc, to: channel.channel.func)
                 .changing(path: \.mode, to: thermostatValue.mode)
-                .changing(path: \.mainTemperature, to: nil)
-                .changing(path: \.auxTemperature, to: nil)
+                .changing(path: \.measurements, to: temperatures)
                 .changing(path: \.childrenIds, to: channel.children.map { $0.channel.remote_id })
                 .changing(path: \.offline, to: !channel.channel.isOnline())
                 .changing(path: \.configMin, to: config.temperatures.roomMin?.fromSuplaTemperature())
@@ -281,12 +280,6 @@ class ThermostatGeneralVM: BaseViewModel<ThermostatGeneralViewState, ThermostatG
                channel.channel.isOnline() {
                 let temperature = mainTermometer.channel.temperatureValue()
                 changedState = handleCurrentTemperture(changedState, temperature: Float(temperature))
-            }
-            if (temperatures.count > 0) {
-                changedState = changedState.changing(path: \.mainTemperature, to: temperatures[0])
-            }
-            if (temperatures.count > 1) {
-                changedState = changedState.changing(path: \.auxTemperature, to: temperatures[1])
             }
             
             return changedState
@@ -461,8 +454,7 @@ struct ThermostatGeneralViewState: ViewState {
     
     /* View properties */
     
-    var mainTemperature: ThermostatTemperature? = nil
-    var auxTemperature: ThermostatTemperature? = nil
+    var measurements: [MeasurementValue] = []
     var setpointHeat: Float? = nil
     var setpointCool: Float? = nil
     var activeSetpointType: SetpointType? = nil

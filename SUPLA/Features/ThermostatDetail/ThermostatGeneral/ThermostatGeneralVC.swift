@@ -119,8 +119,7 @@ class ThermostatGeneralVC: BaseViewControllerVM<ThermostatGeneralViewState, Ther
     }
     
     override func handle(state: ThermostatGeneralViewState) {
-        temperaturesView.firstTemperature = state.mainTemperature
-        temperaturesView.secondTemperature = state.auxTemperature
+        temperaturesView.measurements = state.measurements
         
         if (state.activeSetpointType != nil && thermostatControlView.setpointToDrag == nil) {
             // Set it only once at the begining.
