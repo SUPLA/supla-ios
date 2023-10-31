@@ -18,10 +18,6 @@
 
 import RxSwift
 
-private let MAX_ALLOWED_DISTANCE_MUTLIPLIER = 1.5
-// Server provides data for each 10 minutes
-private let AGGREGATING_MINUTES_DISTANCE_SEC = 600 * MAX_ALLOWED_DISTANCE_MUTLIPLIER
-
 protocol LoadChannelWithChildrenMeasurementsUseCase {
     func invoke(
         remoteId: Int32,
@@ -31,12 +27,11 @@ protocol LoadChannelWithChildrenMeasurementsUseCase {
     ) -> Observable<[HistoryDataSet]>
 }
 
-final class LoadChannelWithChildrenMeasurementsUseCaseImpl: LoadChannelWithChildrenMeasurementsUseCase {
+final class LoadChannelWithChildrenMeasurementsUseCaseImpl: LoadChannelWithChildrenMeasurementsUseCase, BaseLoadMeasurementsUseCase {
+    
     @Singleton<ReadChannelWithChildrenUseCase> private var readChannelWithChidlrenUseCase
     @Singleton<TemperatureMeasurementItemRepository> private var temperatureMeasurementItemRepository
     @Singleton<TempHumidityMeasurementItemRepository> private var tempHumidityMeasurementItemRepository
-    @Singleton<ValuesFormatter> private var formatter
-    @Singleton<GetChannelBaseIconUseCase> private var getChannelBaseIconUseCase
     @Singleton<ProfileRepository> private var profileRepository
     
     func invoke(
@@ -51,16 +46,22 @@ final class LoadChannelWithChildrenMeasurementsUseCaseImpl: LoadChannelWithChild
             }
             .flatMapFirst {
                 if ($0.0.channel.isHvacThermostat()) {
-                    return self.buildDataSets(channelWithChildren: $0.0, profile: $0.1, startDate: startDate, endDate: endDate, aggregation: aggregation)
+                    return self.buildDataSets($0.0, $0.1, startDate, endDate, aggregation)
                 } else {
                     return Observable.error(
-                        GeneralError.illegalArgument(message: "Channel function not supported (\($0.0.channel.func)")
+                        GeneralError.illegalArgument(message: "LoadChannelWithChildrenMeasurementsUseCase: channel function not supported (\($0.0.channel.func)")
                     )
                 }
             }
     }
     
-    private func buildDataSets(channelWithChildren: ChannelWithChildren, profile: AuthProfileItem, startDate: Date, endDate: Date, aggregation: ChartDataAggregation) -> Observable<[HistoryDataSet]> {
+    private func buildDataSets(
+        _ channelWithChildren: ChannelWithChildren,
+        _ profile: AuthProfileItem,
+        _ startDate: Date,
+        _ endDate: Date,
+        _ aggregation: ChartDataAggregation
+    ) -> Observable<[HistoryDataSet]> {
         var channelsWithMeasurements = channelWithChildren.children
             .sorted(by: { $0.relationType.rawValue < $1.relationType.rawValue })
             .filter { $0.channel.hasMeasurements() }
@@ -84,11 +85,7 @@ final class LoadChannelWithChildrenMeasurementsUseCaseImpl: LoadChannelWithChild
                         endDate: endDate
                     )
                     .map { list in
-                        self.aggregating(
-                            measurements: list,
-                            aggregation: aggregation,
-                            extractor: { $0.temperature?.toDouble() }
-                        )
+                        self.aggregating(list, aggregation) { $0.temperature?.toDouble() }
                     }
                         .map { [self.historyDataSet(channel, .temperature, color, aggregation, $0)] }
                 )
@@ -103,16 +100,12 @@ final class LoadChannelWithChildrenMeasurementsUseCaseImpl: LoadChannelWithChild
                         endDate: endDate
                     )
                         .map {
-                            let temperatures = self.aggregating(
-                                measurements: $0,
-                                aggregation: aggregation,
-                                extractor: { Double(truncating: $0.temperature!)}
-                            )
-                            let humidities = self.aggregating(
-                                measurements: $0,
-                                aggregation: aggregation,
-                                extractor: { Double(truncating: $0.humidity!)}
-                            )
+                            let temperatures = self.aggregating($0, aggregation) {
+                                Double(truncating: $0.temperature!)
+                            }
+                            let humidities = self.aggregating($0, aggregation) {
+                                Double(truncating: $0.humidity!)
+                            }
                             return [
                                 self.historyDataSet(channel, .temperature, firstColor, aggregation, temperatures),
                                 self.historyDataSet(channel, .humidity, secondColor, aggregation, humidities)
@@ -128,151 +121,5 @@ final class LoadChannelWithChildrenMeasurementsUseCaseImpl: LoadChannelWithChild
             return allSets
         }
     }
-    
-    private func aggregating<T: SAMeasurementItem>(measurements: [T], aggregation: ChartDataAggregation, extractor: (T) -> Double?) -> [AggregatedEntity] {
-        if (aggregation == .minutes) {
-            return measurements
-                .filter { extractor($0) != nil }
-                .map {
-                    AggregatedEntity(
-                        aggregation: aggregation,
-                        date: $0.date!.timeIntervalSince1970,
-                        value: extractor($0)!,
-                        min: nil,
-                        max: nil
-                    )
-                }
-        }
-        
-        return measurements
-            .filter { extractor($0) != nil }
-            .reduce([TimeInterval: [T]]()) {
-                var map = $0
-                let aggregator = aggregation.aggregator(date: $1.date!)
-                if (map[aggregator] == nil) {
-                    map[aggregator] = []
-                }
-                map[aggregator]?.append($1)
-                return map
-            }
-            .map { group in
-                AggregatedEntity (
-                    aggregation: aggregation,
-                    date: aggregation.groupTimeProvider(date: group.value.first!.date!),
-                    value: group.value.map { extractor($0)! }.avg(),
-                    min: group.value.map { extractor($0)! }.min(),
-                    max: group.value.map { extractor($0)! }.max()
-                )
-            }
-            .sorted { $0.date < $1.date }
-    }
-    
-    private func historyDataSet(
-        _ channel: SAChannel,
-        _ type: ChartEntryType,
-        _ color: UIColor,
-        _ aggregation: ChartDataAggregation,
-        _ measurements: [AggregatedEntity]
-    ) -> HistoryDataSet {
-        return HistoryDataSet(
-            setId: HistoryDataSet.Id(remoteId: channel.remote_id, type: type),
-            icon: channelIcon(channel, type),
-            value: channelValueText(channel, type),
-            color: color,
-            entries: divideSetToSubsets(measurements, aggregation, type),
-            active: true
-        )
-    }
-    
-    private func channelValueText(_ channel: SAChannel, _ type: ChartEntryType) -> String {
-        switch(type) {
-        case .temperature: formatter.temperatureToString(channel.temperatureValue(), withUnit: false)
-        case .humidity: formatter.humidityToString(rawValue: channel.humidityValue())
-        }
-    }
-    
-    private func channelIcon(_ channel: SAChannel, _ type: ChartEntryType) -> UIImage? {
-        switch(type) {
-        case .temperature: getChannelBaseIconUseCase.invoke(channel: channel)
-        case .humidity: getChannelBaseIconUseCase.invoke(channel: channel, type: .second)
-        }
-    }
-    
-    private func divideSetToSubsets(_ entities: [AggregatedEntity], _ aggregation: ChartDataAggregation, _ type: ChartEntryType) -> [[ChartDataEntry]] {
-        var result: [[ChartDataEntry]] = []
-        var currentSet: [ChartDataEntry] = []
-        
-        entities.forEach { entity in
-            let entry = ChartDataEntry(x: entity.date, y: entity.value, data: entity.toDetails(type: type))
-            
-            if let lastInCurrentSet = currentSet.last {
-                let distance = aggregation == .minutes ? AGGREGATING_MINUTES_DISTANCE_SEC : aggregation.timeInSec * MAX_ALLOWED_DISTANCE_MUTLIPLIER
-                
-                if (entry.x - lastInCurrentSet.x > distance) {
-                    result.append(currentSet)
-                    currentSet = []
-                }
-            }
-            
-            currentSet.append(entry)
-        }
-        
-        if (!currentSet.isEmpty) {
-            result.append(currentSet)
-        }
-        
-        return result
-    }
 }
 
-fileprivate extension NSDecimalNumber {
-    func toDouble() -> Double {
-        Double(truncating: self)
-    }
-}
-
-class Colors {
-    private let colors: [UIColor]
-    private var position: Int = 0
-    
-    init(colors: [UIColor]) {
-        self.colors = colors
-    }
-    
-    func nextColor() -> UIColor {
-        let color = colors[position % colors.count]
-        position += 1
-        return color
-    }
-}
-
-final class TemperatureColors: Colors {
-    init() {
-        super.init(colors: [.red, .darkRed])
-    }
-}
-
-final class HumidityColors: Colors {
-    init() {
-        super.init(colors: [.blue, .darkBlue])
-    }
-}
-
-struct AggregatedEntity {
-    let aggregation: ChartDataAggregation
-    let date: TimeInterval
-    let value: Double
-    let min: Double?
-    let max: Double?
-    
-    func toDetails(type: ChartEntryType) -> EntryDetails {
-        EntryDetails(aggregation: aggregation, type: type, min: min, max: max)
-    }
-}
-
-struct EntryDetails {
-    let aggregation: ChartDataAggregation
-    let type: ChartEntryType
-    let min: Double?
-    let max: Double?
-}

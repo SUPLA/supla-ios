@@ -50,11 +50,9 @@ final class ProvideDetailTypeUseCaseImpl: ProvideDetailTypeUseCase {
             SUPLA_CHANNELFNC_IC_HEAT_METER:
             return .legacy(type: .ic)
         case
-            SUPLA_CHANNELFNC_THERMOMETER:
-            return .legacy(type: .temperature)
-        case
+            SUPLA_CHANNELFNC_THERMOMETER,
             SUPLA_CHANNELFNC_HUMIDITYANDTEMPERATURE:
-            return .legacy(type: .temperature_humidity)
+            return .thermometerDetail(pages: [.thermometerHistory])
         case
             SUPLA_CHANNELFNC_THERMOSTAT_HEATPOL_HOMEPLUS:
             return .legacy(type: .thermostat_hp)
@@ -98,10 +96,11 @@ enum DetailType: Equatable {
     case legacy(type: LegacyDetailType)
     case switchDetail(pages: [DetailPage])
     case thermostatDetail(pages: [DetailPage])
+    case thermometerDetail(pages: [DetailPage])
 }
 
 enum LegacyDetailType {
-    case rgbw, rs, ic, em, temperature, temperature_humidity, thermostat_hp, digiglass
+    case rgbw, rs, ic, em, thermostat_hp, digiglass
 }
 
 enum DetailPage {

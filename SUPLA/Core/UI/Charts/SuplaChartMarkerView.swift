@@ -76,7 +76,7 @@ import Charts
             text.topAnchor.constraint(equalTo: title.bottomAnchor),
             text.leftAnchor.constraint(equalTo: leftAnchor, constant: Dimens.distanceTiny),
             
-            subtext.topAnchor.constraint(equalTo: title.bottomAnchor),
+            subtext.centerYAnchor.constraint(equalTo: text.centerYAnchor),
             subtext.leftAnchor.constraint(equalTo: text.rightAnchor, constant: 8)
         ])
     }
@@ -119,7 +119,7 @@ import Charts
     private func getValueString(type: ChartEntryType, _ value: Double) -> String {
         switch (type) {
         case .temperature:
-            formatter.temperatureToString(value, withUnit: false)
+            formatter.temperatureToString(value, withUnit: false, precision: 2)
         case .humidity:
             formatter.humidityToString(rawValue: value, withPercentage: true)
         }

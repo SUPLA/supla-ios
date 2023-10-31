@@ -18,7 +18,8 @@
 
 fileprivate let formatter: DateFormatter = {
     let formatter = DateFormatter()
-    formatter.dateFormat = "yyyyMMddHHmm "
+    formatter.dateFormat = "yyyyMMddHHmm"
+    formatter.timeZone = TimeZone(identifier: "GMT")!
     return formatter
 }()
 

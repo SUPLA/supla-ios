@@ -17,23 +17,24 @@
  */
 
 import Foundation
-import RxSwift
-import RxRelay
-import RxCocoa
 
-final class ThermostatHistoryDetailVC: BaseHistoryDetailVC {
+class ThermometerDetailNavigatorCoordinator: BaseNavigationCoordinator {
     
-    private var navigator: ThermostatDetailNavigationCoordinator? {
-        get { navigationCoordinator as? ThermostatDetailNavigationCoordinator }
+    private let remoteId: Int32
+    private let pages: [DetailPage]
+    
+    override var viewController: UIViewController {
+        _viewController
     }
     
-    override init(remoteId: Int32) {
-        super.init(remoteId: remoteId)
-        viewModel = ThermostatHistoryDetailVM()
-    }
+    private lazy var _viewController: ThermometerDetailVC = {
+        let controller = ThermometerDetailVC(navigator: self, remoteId: remoteId, pages: pages)
+        controller.navigationCoordinator = self
+        return controller
+    }()
     
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+    init(remoteId: Int32, pages: [DetailPage]) {
+        self.remoteId = remoteId
+        self.pages = pages
     }
 }
-

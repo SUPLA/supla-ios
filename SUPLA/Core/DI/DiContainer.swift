@@ -105,6 +105,8 @@ extension DiContainer {
         DiContainer.shared.register(type: DownloadChannelMeasurementsUseCase.self, component: DownloadChannelMeasurementsUseCaseImpl())
         DiContainer.shared.register(type: DownloadTemperatureMeasurementsUseCase.self, component: DownloadTemperatureMeasurementsUseCaseImpl())
         DiContainer.shared.register(type: DownloadTempHumidityMeasurementsUseCase.self, component: DownloadTempHumidityMeasurementsUseCaseImpl())
+        DiContainer.shared.register(type: LoadChannelMeasurementsUseCase.self, component: LoadChannelMeasurementsUseCaseImpl())
+        DiContainer.shared.register(type: LoadChannelMeasurementsDateRangeUseCase.self, component: LoadChannelMeasurementsDateRangeUseCaseImpl())
         // Usecases - ChannelBase
         DiContainer.shared.register(type: GetChannelBaseStateUseCase.self, component: GetChannelBaseStateUseCaseImpl())
         DiContainer.shared.register(type: GetChannelBaseIconUseCase.self, component: GetChannelBaseIconUseCaseImpl())

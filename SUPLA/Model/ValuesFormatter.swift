@@ -21,7 +21,7 @@ private let TIME_ZONE_GMT = TimeZone(identifier: "GMT")!
 
 protocol ValuesFormatter {
     // Values
-    func temperatureToString(_ value: Float?, withUnit: Bool, withDegree: Bool) -> String
+    func temperatureToString(_ value: Float?, withUnit: Bool, withDegree: Bool, precision: Int) -> String
     func humidityToString(rawValue: Double?, withPercentage: Bool) -> String
     func percentageToString(value: Float) -> String
     
@@ -39,14 +39,14 @@ protocol ValuesFormatter {
 }
 
 extension ValuesFormatter {
-    func temperatureToString(_ value: Float?, withUnit: Bool = true, withDegree: Bool = true) -> String {
-        temperatureToString(value, withUnit: withUnit, withDegree: withDegree)
+    func temperatureToString(_ value: Float?, withUnit: Bool = true, withDegree: Bool = true, precision: Int = 1) -> String {
+        temperatureToString(value, withUnit: withUnit, withDegree: withDegree, precision: precision)
     }
-    func temperatureToString(_ value: Double?, withUnit: Bool = true, withDegree: Bool = true) -> String {
+    func temperatureToString(_ value: Double?, withUnit: Bool = true, withDegree: Bool = true, precision: Int = 1) -> String {
         if let value = value {
-            return temperatureToString(Float(value), withUnit: withUnit, withDegree: withDegree)
+            return temperatureToString(Float(value), withUnit: withUnit, withDegree: withDegree, precision: precision)
         } else {
-            return temperatureToString(nil, withUnit: withUnit, withDegree: withDegree)
+            return temperatureToString(nil, withUnit: withUnit, withDegree: withDegree, precision: precision)
         }
     }
     func humidityToString(rawValue: Double?, withPercentage: Bool = false) -> String {
@@ -64,14 +64,14 @@ final class ValuesFormatterImpl: ValuesFormatter {
     private lazy var formatter: NumberFormatter! = {
         let formatter = NumberFormatter()
         formatter.decimalSeparator = decimalSeparator
-        formatter.minimumFractionDigits = 1
-        formatter.maximumFractionDigits = 1
         return formatter
     }()
     
     // MARK: - Values
     
-    func temperatureToString(_ value: Float?, withUnit: Bool = true, withDegree: Bool = true) -> String {
+    func temperatureToString(_ value: Float?, withUnit: Bool = true, withDegree: Bool = true, precision: Int = 1) -> String {
+        formatter.minimumFractionDigits = precision
+        formatter.maximumFractionDigits = precision
         guard let value = value,
               let formatted = formatter.string(from: NSNumber(value: convert(value)))
         else {

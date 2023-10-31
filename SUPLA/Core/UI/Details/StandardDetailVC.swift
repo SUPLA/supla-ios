@@ -76,7 +76,8 @@ class StandardDetailVC<S : ViewState, E : ViewEvent, VM : StandardDetailVM<S, E>
                 viewControllers.append(scheduleDetail())
             case .thermostatHistory:
                 viewControllers.append(thermostatHistoryDetail())
-            default: break
+            case .thermometerHistory:
+                viewControllers.append(thermometerHistoryDetail())
             }
         }
         
@@ -149,6 +150,17 @@ class StandardDetailVC<S : ViewState, E : ViewEvent, VM : StandardDetailVM<S, E>
     
     private func thermostatHistoryDetail() -> ThermostatHistoryDetailVC {
         let vc = ThermostatHistoryDetailVC(remoteId: remoteId)
+        vc.navigationCoordinator = navigationCoordinator
+        vc.tabBarItem = UITabBarItem(
+            title: Strings.StandardDetail.tabHistory,
+            image: .iconHistory,
+            tag: DetailTabTag.ThermostatHistory.rawValue
+        )
+        return vc
+    }
+    
+    private func thermometerHistoryDetail() -> ThermometerHistoryDetailVC {
+        let vc = ThermometerHistoryDetailVC(remoteId: remoteId)
         vc.navigationCoordinator = navigationCoordinator
         vc.tabBarItem = UITabBarItem(
             title: Strings.StandardDetail.tabHistory,

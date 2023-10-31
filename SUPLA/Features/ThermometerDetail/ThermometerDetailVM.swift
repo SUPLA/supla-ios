@@ -16,24 +16,18 @@
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 
-import Foundation
-import RxSwift
-import RxRelay
-import RxCocoa
-
-final class ThermostatHistoryDetailVC: BaseHistoryDetailVC {
+class ThermometerDetailVM: StandardDetailVM<ThermometerDetailVewState, ThermometerDetailViewEvent> {
     
-    private var navigator: ThermostatDetailNavigationCoordinator? {
-        get { navigationCoordinator as? ThermostatDetailNavigationCoordinator }
-    }
+    override func defaultViewState() -> ThermometerDetailVewState { ThermometerDetailVewState() }
     
-    override init(remoteId: Int32) {
-        super.init(remoteId: remoteId)
-        viewModel = ThermostatHistoryDetailVM()
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+    override func setTitle(_ title: String) {
+        updateView { $0.changing(path: \.title, to: title) }
     }
 }
 
+enum ThermometerDetailViewEvent: ViewEvent {
+}
+
+struct ThermometerDetailVewState: ViewState {
+    var title: String? = nil
+}

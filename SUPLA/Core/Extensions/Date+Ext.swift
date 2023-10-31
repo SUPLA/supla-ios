@@ -37,7 +37,9 @@ extension Date {
     }
     
     func dayNoon() -> Date {
-        return calendar.date(bySettingHour: 12, minute: 0, second: 0, of: self)!
+        var components = DateComponents()
+        components.hour = 12
+        return calendar.date(byAdding: components, to: dayStart())!
     }
     
     func dayEnd() -> Date {

@@ -19,6 +19,10 @@
 import Foundation
 
 extension SAChannelBase {
+    func isThermometer() -> Bool {
+        return self.func == SUPLA_CHANNELFNC_THERMOMETER || self.func == SUPLA_CHANNELFNC_HUMIDITYANDTEMPERATURE
+    }
+    
     func isHvacThermostat() -> Bool {
         return self.func == SUPLA_CHANNELFNC_HVAC_THERMOSTAT || self.func == SUPLA_CHANNELFNC_HVAC_DOMESTIC_HOT_WATER
     }

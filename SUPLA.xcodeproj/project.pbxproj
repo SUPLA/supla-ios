@@ -202,9 +202,7 @@
 		012F722E22DFA0BE00E5F72E /* SABarChartDataSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 012F722D22DFA0BE00E5F72E /* SABarChartDataSet.swift */; };
 		012FCBD323217DE000AC6FF6 /* ThermostatCalendarTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 012FCBD223217DE000AC6FF6 /* ThermostatCalendarTests.m */; };
 		0130894523395F4C00F46FCD /* ThermostatScheduleCfgTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 0130894423395F4C00F46FCD /* ThermostatScheduleCfgTests.m */; };
-		01392B37235C91C1003A2BAD /* SADownloadTemperatureMeasurements.m in Sources */ = {isa = PBXBuildFile; fileRef = 01392B36235C91C1003A2BAD /* SADownloadTemperatureMeasurements.m */; };
 		01392B3A235CA8B1003A2BAD /* ChartDetailView.m in Sources */ = {isa = PBXBuildFile; fileRef = 01392B39235CA8B1003A2BAD /* ChartDetailView.m */; };
-		01392B3D235CE68D003A2BAD /* SATemperatureChartHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 01392B3C235CE68D003A2BAD /* SATemperatureChartHelper.m */; };
 		013A1BFB2538BAA0000583A2 /* roofwindow-open@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 013A1BF72538BAA0000583A2 /* roofwindow-open@3x.png */; };
 		013A1BFC2538BAA0000583A2 /* roofwindow-closed@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 013A1BF82538BAA0000583A2 /* roofwindow-closed@3x.png */; };
 		013A1BFD2538BAA0000583A2 /* roofwindow-open@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 013A1BF92538BAA0000583A2 /* roofwindow-open@2x.png */; };
@@ -262,9 +260,6 @@
 		017554FF22F1DDA300EB58B7 /* hp_plus@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 017554FD22F1DDA300EB58B7 /* hp_plus@3x.png */; };
 		0175550022F1DDA300EB58B7 /* hp_minus@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 017554FE22F1DDA300EB58B7 /* hp_minus@3x.png */; };
 		01793C5524D76EBB00CD2533 /* lookblack@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 01793C5424D76EBB00CD2533 /* lookblack@2x.png */; };
-		017A3C8223631302004AD1FC /* SATempHumidityChartHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 017A3C8123631302004AD1FC /* SATempHumidityChartHelper.m */; };
-		017A3C8523631796004AD1FC /* SADownloadTempHumidityMeasurements.m in Sources */ = {isa = PBXBuildFile; fileRef = 017A3C8423631796004AD1FC /* SADownloadTempHumidityMeasurements.m */; };
-		017A3C8623633A70004AD1FC /* TempHumidityDetailView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 017A3C8823633A70004AD1FC /* TempHumidityDetailView.xib */; };
 		017A3CA723635C22004AD1FC /* weight@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 017A3CA523635C22004AD1FC /* weight@2x.png */; };
 		017A3CA823635C22004AD1FC /* weight@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 017A3CA623635C22004AD1FC /* weight@3x.png */; };
 		017A3CAF23635DF7004AD1FC /* rain@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 017A3CA923635DF6004AD1FC /* rain@2x.png */; };
@@ -296,9 +291,6 @@
 		018D2E5324BF258B00773D2F /* uv-on@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 018D2E4F24BF258B00773D2F /* uv-on@3x.png */; };
 		018D2E5424BF258B00773D2F /* uv-off@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 018D2E5024BF258B00773D2F /* uv-off@2x.png */; };
 		018E67CF22C8CA0A00FF1427 /* SADownloadElectricityMeasurements.m in Sources */ = {isa = PBXBuildFile; fileRef = 018E67CE22C8CA0A00FF1427 /* SADownloadElectricityMeasurements.m */; };
-		01902A25235A17E9005ED935 /* TemperatureDetailView.m in Sources */ = {isa = PBXBuildFile; fileRef = 01902A24235A17E9005ED935 /* TemperatureDetailView.m */; };
-		01902A28235A180F005ED935 /* TempHumidityDetailView.m in Sources */ = {isa = PBXBuildFile; fileRef = 01902A27235A180F005ED935 /* TempHumidityDetailView.m */; };
-		01902A2A235A1840005ED935 /* TemperatureDetailView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 01902A29235A1840005ED935 /* TemperatureDetailView.xib */; };
 		019170A1233D4D5A00820BDB /* SADownloadThermostatMeasurements.m in Sources */ = {isa = PBXBuildFile; fileRef = 019170A0233D4D5A00820BDB /* SADownloadThermostatMeasurements.m */; };
 		019170A4233D67E900820BDB /* SAThermostatChartHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 019170A3233D67E900820BDB /* SAThermostatChartHelper.m */; };
 		01943EBE249D1C8800DA2B8F /* SASuperuserAuthorizationDialog.xib in Resources */ = {isa = PBXBuildFile; fileRef = 01943EC0249D1C8800DA2B8F /* SASuperuserAuthorizationDialog.xib */; };
@@ -914,6 +906,16 @@
 		A5AE7A8F2A3AE0290097FA8B /* TitleArrowButtonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5AE7A8E2A3AE0290097FA8B /* TitleArrowButtonCell.swift */; };
 		A5AE7A912A3B17AF0097FA8B /* PermissionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5AE7A902A3B17AF0097FA8B /* PermissionCell.swift */; };
 		A5D837C82AF0F154002A420D /* PullToRefreshView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D837C72AF0F154002A420D /* PullToRefreshView.swift */; };
+		A5D837CB2AF1034E002A420D /* ThermometerDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D837CA2AF1034E002A420D /* ThermometerDetailVC.swift */; };
+		A5D837CD2AF1035E002A420D /* ThermometerDetailVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D837CC2AF1035E002A420D /* ThermometerDetailVM.swift */; };
+		A5D837CF2AF10374002A420D /* ThermometerDetailNavigatorCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D837CE2AF10374002A420D /* ThermometerDetailNavigatorCoordinator.swift */; };
+		A5D837D22AF1061C002A420D /* ThermometerHistoryDetailVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D837D12AF1061C002A420D /* ThermometerHistoryDetailVM.swift */; };
+		A5D837D42AF1062B002A420D /* ThermometerHistoryDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D837D32AF1062B002A420D /* ThermometerHistoryDetailVC.swift */; };
+		A5D837D92AF1069A002A420D /* BaseHistoryDetailVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D837D82AF1069A002A420D /* BaseHistoryDetailVM.swift */; };
+		A5D837DB2AF106A8002A420D /* BaseHistoryDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D837DA2AF106A8002A420D /* BaseHistoryDetailVC.swift */; };
+		A5D837DD2AF12B5B002A420D /* BaseLoadMeasurementsUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D837DC2AF12B5B002A420D /* BaseLoadMeasurementsUseCase.swift */; };
+		A5D837DF2AF12CA5002A420D /* LoadChannelMeasurementsUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D837DE2AF12CA5002A420D /* LoadChannelMeasurementsUseCase.swift */; };
+		A5D837E12AF132F6002A420D /* LoadChannelMeasurementsDateRangeUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D837E02AF132F6002A420D /* LoadChannelMeasurementsDateRangeUseCase.swift */; };
 		A5DA31072AC16B21008179DB /* InsertChannelRelationForProfileUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5DA31062AC16B21008179DB /* InsertChannelRelationForProfileUseCaseTests.swift */; };
 		A5E4904A2A3C6215006801FE /* ChannelHeight.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E490492A3C6215006801FE /* ChannelHeight.swift */; };
 		A5E4904D2A3C6250006801FE /* TemperatureUnit.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E4904C2A3C6250006801FE /* TemperatureUnit.swift */; };
@@ -1314,12 +1316,8 @@
 		012FCBD223217DE000AC6FF6 /* ThermostatCalendarTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ThermostatCalendarTests.m; sourceTree = "<group>"; };
 		012FF47628FB5CC900D421FD /* es */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = es; path = Resources/es.lproj/SAInfoVC.xib; sourceTree = "<group>"; };
 		0130894423395F4C00F46FCD /* ThermostatScheduleCfgTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ThermostatScheduleCfgTests.m; sourceTree = "<group>"; };
-		01392B35235C91C1003A2BAD /* SADownloadTemperatureMeasurements.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SADownloadTemperatureMeasurements.h; sourceTree = "<group>"; };
-		01392B36235C91C1003A2BAD /* SADownloadTemperatureMeasurements.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SADownloadTemperatureMeasurements.m; sourceTree = "<group>"; };
 		01392B38235CA8B1003A2BAD /* ChartDetailView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChartDetailView.h; sourceTree = "<group>"; };
 		01392B39235CA8B1003A2BAD /* ChartDetailView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChartDetailView.m; sourceTree = "<group>"; };
-		01392B3B235CE68D003A2BAD /* SATemperatureChartHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SATemperatureChartHelper.h; sourceTree = "<group>"; };
-		01392B3C235CE68D003A2BAD /* SATemperatureChartHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SATemperatureChartHelper.m; sourceTree = "<group>"; };
 		013A1BF72538BAA0000583A2 /* roofwindow-open@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "roofwindow-open@3x.png"; sourceTree = "<group>"; };
 		013A1BF82538BAA0000583A2 /* roofwindow-closed@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "roofwindow-closed@3x.png"; sourceTree = "<group>"; };
 		013A1BF92538BAA0000583A2 /* roofwindow-open@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "roofwindow-open@2x.png"; sourceTree = "<group>"; };
@@ -1422,25 +1420,6 @@
 		017A08BB249969A000DCF5BD /* sk-SK */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "sk-SK"; path = "Resources/sk-SK.lproj/RGBWDetail.strings"; sourceTree = "<group>"; };
 		017A08BD249969A100DCF5BD /* sl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sl; path = Resources/sl.lproj/RGBWDetail.strings; sourceTree = "<group>"; };
 		017A08BF249969A200DCF5BD /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = Resources/es.lproj/RGBWDetail.strings; sourceTree = "<group>"; };
-		017A3C8023631302004AD1FC /* SATempHumidityChartHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SATempHumidityChartHelper.h; sourceTree = "<group>"; };
-		017A3C8123631302004AD1FC /* SATempHumidityChartHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SATempHumidityChartHelper.m; sourceTree = "<group>"; };
-		017A3C8323631796004AD1FC /* SADownloadTempHumidityMeasurements.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SADownloadTempHumidityMeasurements.h; sourceTree = "<group>"; };
-		017A3C8423631796004AD1FC /* SADownloadTempHumidityMeasurements.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SADownloadTempHumidityMeasurements.m; sourceTree = "<group>"; };
-		017A3C8723633A70004AD1FC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Resources/Base.lproj/TempHumidityDetailView.xib; sourceTree = "<group>"; };
-		017A3C8A23633A77004AD1FC /* cs */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = cs; path = Resources/cs.lproj/TempHumidityDetailView.strings; sourceTree = "<group>"; };
-		017A3C8C23633A78004AD1FC /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = Resources/nl.lproj/TempHumidityDetailView.strings; sourceTree = "<group>"; };
-		017A3C8E23633A79004AD1FC /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = Resources/fr.lproj/TempHumidityDetailView.strings; sourceTree = "<group>"; };
-		017A3C9023633A79004AD1FC /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = Resources/de.lproj/TempHumidityDetailView.strings; sourceTree = "<group>"; };
-		017A3C9223633A7A004AD1FC /* el */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = el; path = Resources/el.lproj/TempHumidityDetailView.strings; sourceTree = "<group>"; };
-		017A3C9423633A7D004AD1FC /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = Resources/it.lproj/TempHumidityDetailView.strings; sourceTree = "<group>"; };
-		017A3C9623633A7D004AD1FC /* lt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = lt; path = Resources/lt.lproj/TempHumidityDetailView.strings; sourceTree = "<group>"; };
-		017A3C9823633A7E004AD1FC /* nb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nb; path = Resources/nb.lproj/TempHumidityDetailView.strings; sourceTree = "<group>"; };
-		017A3C9A23633A7F004AD1FC /* pl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pl; path = Resources/pl.lproj/TempHumidityDetailView.strings; sourceTree = "<group>"; };
-		017A3C9C23633A7F004AD1FC /* pt-PT */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-PT"; path = "Resources/pt-PT.lproj/TempHumidityDetailView.strings"; sourceTree = "<group>"; };
-		017A3C9E23633A80004AD1FC /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = Resources/ru.lproj/TempHumidityDetailView.strings; sourceTree = "<group>"; };
-		017A3CA023633A80004AD1FC /* sk-SK */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "sk-SK"; path = "Resources/sk-SK.lproj/TempHumidityDetailView.strings"; sourceTree = "<group>"; };
-		017A3CA223633A81004AD1FC /* sl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sl; path = Resources/sl.lproj/TempHumidityDetailView.strings; sourceTree = "<group>"; };
-		017A3CA423633A82004AD1FC /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = Resources/es.lproj/TempHumidityDetailView.strings; sourceTree = "<group>"; };
 		017A3CA523635C22004AD1FC /* weight@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "weight@2x.png"; sourceTree = "<group>"; };
 		017A3CA623635C22004AD1FC /* weight@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "weight@3x.png"; sourceTree = "<group>"; };
 		017A3CA923635DF6004AD1FC /* rain@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "rain@2x.png"; sourceTree = "<group>"; };
@@ -1454,7 +1433,6 @@
 		017D392429244A67005F45FA /* uk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = uk; path = Resources/uk.lproj/SALightsourceLifespanSettingsDialog.strings; sourceTree = "<group>"; };
 		017D392529244A67005F45FA /* uk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = uk; path = Resources/uk.lproj/SASuperuserAuthorizationDialog.strings; sourceTree = "<group>"; };
 		017D392629244A68005F45FA /* uk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = uk; path = Resources/uk.lproj/SAZWaveWakeupSettingsDialog.strings; sourceTree = "<group>"; };
-		017D392729244A68005F45FA /* uk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = uk; path = Resources/uk.lproj/TempHumidityDetailView.strings; sourceTree = "<group>"; };
 		017D392829244A6A005F45FA /* uk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = uk; path = Resources/uk.lproj/AboutVC.strings; sourceTree = "<group>"; };
 		017D392929244A6A005F45FA /* uk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = uk; path = Resources/uk.lproj/RGBWDetail.strings; sourceTree = "<group>"; };
 		017D392A29244A6B005F45FA /* uk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = uk; path = Resources/uk.lproj/ImpulseCounterDetailView.strings; sourceTree = "<group>"; };
@@ -1495,11 +1473,6 @@
 		018D2E5024BF258B00773D2F /* uv-off@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "uv-off@2x.png"; sourceTree = "<group>"; };
 		018E67CD22C8CA0A00FF1427 /* SADownloadElectricityMeasurements.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SADownloadElectricityMeasurements.h; sourceTree = "<group>"; };
 		018E67CE22C8CA0A00FF1427 /* SADownloadElectricityMeasurements.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SADownloadElectricityMeasurements.m; sourceTree = "<group>"; };
-		01902A23235A17E9005ED935 /* TemperatureDetailView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TemperatureDetailView.h; sourceTree = "<group>"; };
-		01902A24235A17E9005ED935 /* TemperatureDetailView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TemperatureDetailView.m; sourceTree = "<group>"; };
-		01902A26235A180F005ED935 /* TempHumidityDetailView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TempHumidityDetailView.h; sourceTree = "<group>"; };
-		01902A27235A180F005ED935 /* TempHumidityDetailView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TempHumidityDetailView.m; sourceTree = "<group>"; };
-		01902A29235A1840005ED935 /* TemperatureDetailView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TemperatureDetailView.xib; sourceTree = "<group>"; };
 		0191709F233D4D5A00820BDB /* SADownloadThermostatMeasurements.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SADownloadThermostatMeasurements.h; sourceTree = "<group>"; };
 		019170A0233D4D5A00820BDB /* SADownloadThermostatMeasurements.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SADownloadThermostatMeasurements.m; sourceTree = "<group>"; };
 		019170A2233D67E900820BDB /* SAThermostatChartHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SAThermostatChartHelper.h; sourceTree = "<group>"; };
@@ -2332,6 +2305,16 @@
 		A5AE7A8E2A3AE0290097FA8B /* TitleArrowButtonCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleArrowButtonCell.swift; sourceTree = "<group>"; };
 		A5AE7A902A3B17AF0097FA8B /* PermissionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PermissionCell.swift; sourceTree = "<group>"; };
 		A5D837C72AF0F154002A420D /* PullToRefreshView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PullToRefreshView.swift; sourceTree = "<group>"; };
+		A5D837CA2AF1034E002A420D /* ThermometerDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThermometerDetailVC.swift; sourceTree = "<group>"; };
+		A5D837CC2AF1035E002A420D /* ThermometerDetailVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThermometerDetailVM.swift; sourceTree = "<group>"; };
+		A5D837CE2AF10374002A420D /* ThermometerDetailNavigatorCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThermometerDetailNavigatorCoordinator.swift; sourceTree = "<group>"; };
+		A5D837D12AF1061C002A420D /* ThermometerHistoryDetailVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThermometerHistoryDetailVM.swift; sourceTree = "<group>"; };
+		A5D837D32AF1062B002A420D /* ThermometerHistoryDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThermometerHistoryDetailVC.swift; sourceTree = "<group>"; };
+		A5D837D82AF1069A002A420D /* BaseHistoryDetailVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseHistoryDetailVM.swift; sourceTree = "<group>"; };
+		A5D837DA2AF106A8002A420D /* BaseHistoryDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseHistoryDetailVC.swift; sourceTree = "<group>"; };
+		A5D837DC2AF12B5B002A420D /* BaseLoadMeasurementsUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseLoadMeasurementsUseCase.swift; sourceTree = "<group>"; };
+		A5D837DE2AF12CA5002A420D /* LoadChannelMeasurementsUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadChannelMeasurementsUseCase.swift; sourceTree = "<group>"; };
+		A5D837E02AF132F6002A420D /* LoadChannelMeasurementsDateRangeUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadChannelMeasurementsDateRangeUseCase.swift; sourceTree = "<group>"; };
 		A5DA31062AC16B21008179DB /* InsertChannelRelationForProfileUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsertChannelRelationForProfileUseCaseTests.swift; sourceTree = "<group>"; };
 		A5E490492A3C6215006801FE /* ChannelHeight.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelHeight.swift; sourceTree = "<group>"; };
 		A5E4904C2A3C6250006801FE /* TemperatureUnit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemperatureUnit.swift; sourceTree = "<group>"; };
@@ -2746,8 +2729,6 @@
 				0180440B24C254CF005E53EB /* SAChannelStatePopup.xib */,
 				01943EC0249D1C8800DA2B8F /* SASuperuserAuthorizationDialog.xib */,
 				010714822656EC43009C119F /* SAZWaveWakeupSettingsDialog.xib */,
-				017A3C8823633A70004AD1FC /* TempHumidityDetailView.xib */,
-				01902A29235A1840005ED935 /* TemperatureDetailView.xib */,
 				407D4AFE1BC6E491009A5505 /* StatusVC.xib */,
 				406778541BCBF9F4008DD37F /* SectionCell.xib */,
 				40DE1A3A1BCD5E9B004CF43B /* AboutVC.xib */,
@@ -2787,10 +2768,6 @@
 				012F722D22DFA0BE00E5F72E /* SABarChartDataSet.swift */,
 				019170A2233D67E900820BDB /* SAThermostatChartHelper.h */,
 				019170A3233D67E900820BDB /* SAThermostatChartHelper.m */,
-				01392B3B235CE68D003A2BAD /* SATemperatureChartHelper.h */,
-				01392B3C235CE68D003A2BAD /* SATemperatureChartHelper.m */,
-				017A3C8023631302004AD1FC /* SATempHumidityChartHelper.h */,
-				017A3C8123631302004AD1FC /* SATempHumidityChartHelper.m */,
 				6EC4B0062871777A00731079 /* SAElectricityMeterChartMarkerView.xib */,
 				6EC4B004286F420500731079 /* SAElectricityMeterChartMarkerView.swift */,
 			);
@@ -2837,10 +2814,6 @@
 				01E517C522C6AD7D000FE77A /* SADownloadMeasurements.m */,
 				018E67CD22C8CA0A00FF1427 /* SADownloadElectricityMeasurements.h */,
 				0172677B234FAF78000F1CFB /* SADownloadImpulseCounterMeasurements.h */,
-				017A3C8323631796004AD1FC /* SADownloadTempHumidityMeasurements.h */,
-				017A3C8423631796004AD1FC /* SADownloadTempHumidityMeasurements.m */,
-				01392B35235C91C1003A2BAD /* SADownloadTemperatureMeasurements.h */,
-				01392B36235C91C1003A2BAD /* SADownloadTemperatureMeasurements.m */,
 				0172677C234FAF78000F1CFB /* SADownloadImpulseCounterMeasurements.m */,
 				018E67CE22C8CA0A00FF1427 /* SADownloadElectricityMeasurements.m */,
 				01F8857322E6167100D18373 /* SADownloadUserIcons.h */,
@@ -3533,10 +3506,6 @@
 				406778531BCBF9F4008DD37F /* SectionCell.m */,
 				407D4AFC1BC6E491009A5505 /* StatusVC.h */,
 				407D4AFD1BC6E491009A5505 /* StatusVC.m */,
-				01902A23235A17E9005ED935 /* TemperatureDetailView.h */,
-				01902A24235A17E9005ED935 /* TemperatureDetailView.m */,
-				01902A26235A180F005ED935 /* TempHumidityDetailView.h */,
-				01902A27235A180F005ED935 /* TempHumidityDetailView.m */,
 				012119122368B597004C1993 /* xib */,
 				AE7CAAFB275BF87D0024095F /* BaseViewController.h */,
 				AE7CAAFC275BF87D0024095F /* BaseViewController.m */,
@@ -3979,6 +3948,8 @@
 		A5756F7F29DC0FE900C32A1B /* Features */ = {
 			isa = PBXGroup;
 			children = (
+				A5D837D52AF1067A002A420D /* DetailBase */,
+				A5D837C92AF10335002A420D /* ThermometerDetail */,
 				A51BE8E92AA70D9600718F2F /* ThermostatDetail */,
 				A553863029E02C4300B5CF3F /* AccountCreation */,
 				A5756F8029DC0FFC00C32A1B /* AccountRemoval */,
@@ -4454,6 +4425,43 @@
 			path = Cells;
 			sourceTree = "<group>";
 		};
+		A5D837C92AF10335002A420D /* ThermometerDetail */ = {
+			isa = PBXGroup;
+			children = (
+				A5D837D02AF10607002A420D /* History */,
+				A5D837CA2AF1034E002A420D /* ThermometerDetailVC.swift */,
+				A5D837CC2AF1035E002A420D /* ThermometerDetailVM.swift */,
+				A5D837CE2AF10374002A420D /* ThermometerDetailNavigatorCoordinator.swift */,
+			);
+			path = ThermometerDetail;
+			sourceTree = "<group>";
+		};
+		A5D837D02AF10607002A420D /* History */ = {
+			isa = PBXGroup;
+			children = (
+				A5D837D12AF1061C002A420D /* ThermometerHistoryDetailVM.swift */,
+				A5D837D32AF1062B002A420D /* ThermometerHistoryDetailVC.swift */,
+			);
+			path = History;
+			sourceTree = "<group>";
+		};
+		A5D837D52AF1067A002A420D /* DetailBase */ = {
+			isa = PBXGroup;
+			children = (
+				A5D837D62AF10684002A420D /* History */,
+			);
+			path = DetailBase;
+			sourceTree = "<group>";
+		};
+		A5D837D62AF10684002A420D /* History */ = {
+			isa = PBXGroup;
+			children = (
+				A5D837D82AF1069A002A420D /* BaseHistoryDetailVM.swift */,
+				A5D837DA2AF106A8002A420D /* BaseHistoryDetailVC.swift */,
+			);
+			path = History;
+			sourceTree = "<group>";
+		};
 		A5E490482A3C61FD006801FE /* AppSettings */ = {
 			isa = PBXGroup;
 			children = (
@@ -4715,6 +4723,9 @@
 				A57668EE2AEA9F150025509D /* DownloadTemperatureMeasurementsUseCase.swift */,
 				A57668F02AEA9F5B0025509D /* BaseDownloadMeasurementsUseCase.swift */,
 				A57668F22AEAA2600025509D /* DownloadTempHumidityMeasurementsUseCase.swift */,
+				A5D837DC2AF12B5B002A420D /* BaseLoadMeasurementsUseCase.swift */,
+				A5D837DE2AF12CA5002A420D /* LoadChannelMeasurementsUseCase.swift */,
+				A5D837E02AF132F6002A420D /* LoadChannelMeasurementsDateRangeUseCase.swift */,
 			);
 			path = Channel;
 			sourceTree = "<group>";
@@ -5012,7 +5023,6 @@
 				405AC4341BC15C08004F7311 /* logo-supla@2x.png in Resources */,
 				405C49A11FCAFFD400C15602 /* wizard_ok@2x.png in Resources */,
 				0103C09E292E732A00566A23 /* thermometer-nightmode@2x.png in Resources */,
-				017A3C8623633A70004AD1FC /* TempHumidityDetailView.xib in Resources */,
 				01F9110522EF954400BFF91D /* thermostat_hp_homeplus-off@3x.png in Resources */,
 				0103C0B8292E732A00566A23 /* uv-off-nightmode@2x.png in Resources */,
 				40CF96B21BC7D4E70030EFFF /* gate-closed@2x.png in Resources */,
@@ -5202,7 +5212,6 @@
 				01F910FE22EF954400BFF91D /* thermostat_hp_homeplus2-on@2x.png in Resources */,
 				019F848425F7C0F800A18C3B /* SACaptionEditor.xib in Resources */,
 				405AC41B1BC15898004F7311 /* app_icon@3x.png in Resources */,
-				01902A2A235A1840005ED935 /* TemperatureDetailView.xib in Resources */,
 				01CEAC1725B99A58009C3BFD /* digiglass1@2x.png in Resources */,
 				40477B5120C6CF2600E995E6 /* gate-closed-50percent@2x.png in Resources */,
 				40CF96BB1BC7D4E70030EFFF /* light-off@3x.png in Resources */,
@@ -5669,11 +5678,13 @@
 				01EFD94A236CA94400893489 /* NSData+AES.m in Sources */,
 				A5477DCD2AA5F7A900220B4A /* IssueIconType.swift in Sources */,
 				A5D837C82AF0F154002A420D /* PullToRefreshView.swift in Sources */,
+				A5D837D92AF1069A002A420D /* BaseHistoryDetailVM.swift in Sources */,
 				A57668F12AEA9F5B0025509D /* BaseDownloadMeasurementsUseCase.swift in Sources */,
 				A56233FB2AB88722001CB948 /* DelayedWeeklyScheduleConfigSubject.swift in Sources */,
 				A530EE432A58AA6E00F8DAEE /* DeviceStateHelperVCI.swift in Sources */,
 				0148933425AA12DB00B9974E /* SADiwCalibrationTool.m in Sources */,
 				01C1719222C7F3A2005983E1 /* SAElectricityMeasurementItem+CoreDataProperties.m in Sources */,
+				A5D837DD2AF12B5B002A420D /* BaseLoadMeasurementsUseCase.swift in Sources */,
 				40AB8BDE1DCB32EB0030F3DE /* SARateApp.m in Sources */,
 				AE5A60E6270E2A7A00F2B780 /* AccountCreationVC.swift in Sources */,
 				A51BE9162AAB022400718F2F /* DayOfWeek.swift in Sources */,
@@ -5682,6 +5693,7 @@
 				40C7BA7720C047CF00ACEE42 /* SAChannel+CoreDataProperties.m in Sources */,
 				A530EE302A57E2B900F8DAEE /* DigiglassVerticalIconNameProducer.swift in Sources */,
 				01F8856E22E5E79100D18373 /* SAImpulseCounterMeasurementItem+CoreDataProperties.m in Sources */,
+				A5D837DF2AF12CA5002A420D /* LoadChannelMeasurementsUseCase.swift in Sources */,
 				A5F29BEF2A287C6800ED700A /* SAChannelBase+Ext.swift in Sources */,
 				A58A9C012AA0AD0E00D28848 /* ThermostatCell.swift in Sources */,
 				0126B84125BDFF2F0027D88A /* SAZWaveConfigurationWizardVC.m in Sources */,
@@ -5698,7 +5710,6 @@
 				AE7452912827F49100A3AFAD /* ProfilesNavigationCoordinator.swift in Sources */,
 				0172677D234FAF78000F1CFB /* SADownloadImpulseCounterMeasurements.m in Sources */,
 				A56233FF2ABAC488001CB948 /* ThermostatIconNameProducer.swift in Sources */,
-				01392B37235C91C1003A2BAD /* SADownloadTemperatureMeasurements.m in Sources */,
 				A5F29BF52A2A1E1200ED700A /* ChannelCaptionEditor.swift in Sources */,
 				A51BE8ED2AA713A500718F2F /* ThermostatDetailVM.swift in Sources */,
 				A58A9C072AA1D64A00D28848 /* ChannelRelationRepository.swift in Sources */,
@@ -5716,9 +5727,10 @@
 				01A66A7525364AA400C00A1A /* SARoofWindowController.m in Sources */,
 				A530EE1C2A56FC5000F8DAEE /* LightSwitchIconNameProducer.swift in Sources */,
 				A530EE2E2A57E23D00F8DAEE /* DigiglassHorizontalIconNameProducer.swift in Sources */,
+				A5D837DB2AF106A8002A420D /* BaseHistoryDetailVC.swift in Sources */,
+				A5D837D42AF1062B002A420D /* ThermometerHistoryDetailVC.swift in Sources */,
 				A5F29BA62A248ED800ED700A /* ListsEventsManager.swift in Sources */,
 				AE348E66277F348700F363A3 /* SAMoveTableView.m in Sources */,
-				01902A25235A17E9005ED935 /* TemperatureDetailView.m in Sources */,
 				01EE9BBB22BA50D90029A142 /* SAChannelValueBase+CoreDataClass.m in Sources */,
 				AE7452892827E37600A3AFAD /* ProfilesVM.swift in Sources */,
 				A57668EB2AEA81C00025509D /* ChartRange.swift in Sources */,
@@ -5770,6 +5782,7 @@
 				A5F29B782A1E34C700ED700A /* ContextScheduler.swift in Sources */,
 				A57668C32AE799AC0025509D /* ChartEntryType.swift in Sources */,
 				A51BE8F52AA7190500718F2F /* ThermostatGeneralVC.swift in Sources */,
+				A5D837CB2AF1034E002A420D /* ThermometerDetailVC.swift in Sources */,
 				A51BE8E72AA705AD00718F2F /* StandardDetailVM.swift in Sources */,
 				019D9E2C25F271CF00881C99 /* SACaptionEditor.m in Sources */,
 				A57668D72AE98FCA0025509D /* TemperatureAndHumidityMeasurement.swift in Sources */,
@@ -5779,8 +5792,10 @@
 				A5E490632A4019E6006801FE /* UpdateGroupIconRelationsUseCase.swift in Sources */,
 				A5F29BAE2A24BA5800ED700A /* LegacyWrapper.swift in Sources */,
 				A5F29B9A2A20C26900ED700A /* BaseTableViewController.swift in Sources */,
+				A5D837CF2AF10374002A420D /* ThermometerDetailNavigatorCoordinator.swift in Sources */,
 				A530EE402A58417D00F8DAEE /* ExecuteSimpleActionUseCase.swift in Sources */,
 				A530EE262A57011F00F8DAEE /* DimmerAndRgbLightningIconNameProducer.swift in Sources */,
+				A5D837CD2AF1035E002A420D /* ThermometerDetailVM.swift in Sources */,
 				013D1C5D22CE47D5000C0784 /* SAChartHelper.m in Sources */,
 				A5F29B832A1F8D9B00ED700A /* SALocation+Ext.swift in Sources */,
 				A566398B2ABAD52300BA51D7 /* LoadingTimeoutManager.swift in Sources */,
@@ -5853,6 +5868,7 @@
 				013D350423350C48006E3B75 /* SAThermostatScheduleCfg.m in Sources */,
 				A51BE90B2AAAF29D00718F2F /* SetpointType.swift in Sources */,
 				A56233E12AB0F5B1001CB948 /* EditQuartersDialogVM.swift in Sources */,
+				A5D837D22AF1061C002A420D /* ThermometerHistoryDetailVM.swift in Sources */,
 				408034C41BC83D1A007666E7 /* MGSwipeButton.m in Sources */,
 				016ABE16236D8363001BF5FB /* SAKeychain.m in Sources */,
 				01EE9BB022BA4B050029A142 /* SAChannelExtendedValue+CoreDataProperties.m in Sources */,
@@ -5899,7 +5915,6 @@
 				A57C88352ACB4903000B0F10 /* ThermostatProgramInfo.swift in Sources */,
 				A5F29BF32A2A197F00ED700A /* GroupCaptionEditor.swift in Sources */,
 				A51BE8F92AA71EB900718F2F /* ScheduleDetailVC.swift in Sources */,
-				01902A28235A180F005ED935 /* TempHumidityDetailView.m in Sources */,
 				AE5332E62764A7E30050E690 /* SuplaMenuController.swift in Sources */,
 				AECB1BE5270EB56F001A9714 /* AccountCreationVM.swift in Sources */,
 				0122613922F396440013E6A2 /* SAThermostatCalendar.m in Sources */,
@@ -5929,17 +5944,16 @@
 				A51BE8FC2AA7300A00718F2F /* ThermometerValues.swift in Sources */,
 				A5F29BD82A26240E00ED700A /* ThermostatMeasurementItemRepository.swift in Sources */,
 				A5F29BC42A24E35C00ED700A /* ChangeGroupsVisibilityUseCase.swift in Sources */,
-				017A3C8223631302004AD1FC /* SATempHumidityChartHelper.m in Sources */,
 				A56F15EF2A2E68BA00C2E21B /* Migration11to12ModelMapping.xcmappingmodel in Sources */,
 				40C9E4F71F2A186A00753796 /* SARollerShutter.m in Sources */,
 				A530EDF52A5401BE00F8DAEE /* SwitchGeneralVC.swift in Sources */,
 				A5F29B602A1E18E600ED700A /* ChannelListVC.swift in Sources */,
-				01392B3D235CE68D003A2BAD /* SATemperatureChartHelper.m in Sources */,
 				A58A9BFA2A9F77BB00D28848 /* BaseCell.swift in Sources */,
 				A5F29BD22A26239C00ED700A /* TemperatureMeasurementItemRepository.swift in Sources */,
 				A5F29BB42A24C96600ED700A /* ChannelValueRepository.swift in Sources */,
 				401CA1F21BA0A28A00117AF4 /* SuplaClient.m in Sources */,
 				AE7CAAFD275BF87D0024095F /* BaseViewController.m in Sources */,
+				A5D837E12AF132F6002A420D /* LoadChannelMeasurementsDateRangeUseCase.swift in Sources */,
 				A5F29B932A20B56500ED700A /* CreateProfileScenesListUseCase.swift in Sources */,
 				A530EE502A5C991C00F8DAEE /* UIPlainButton.swift in Sources */,
 				A5F29B6D2A1E26B400ED700A /* SceneListVM.swift in Sources */,
@@ -5979,7 +5993,6 @@
 				40C9E4FD1F2B841400753796 /* SAColorListPicker.m in Sources */,
 				013D73A522DCAB4400E3515A /* SAIncrementalMeterChartMarkerView.swift in Sources */,
 				A58A9C052AA1D58F00D28848 /* InsertChannelRelationForProfileUseCase.swift in Sources */,
-				017A3C8523631796004AD1FC /* SADownloadTempHumidityMeasurements.m in Sources */,
 				A56D5AD32A4C693A004F45DA /* UpdateTokenTask.swift in Sources */,
 				A57C4AAE2AAB21F700D9C695 /* ConfigEventsManager.swift in Sources */,
 				01F8856B22E5E79100D18373 /* SAThermostatMeasurementItem+CoreDataProperties.m in Sources */,
@@ -6299,29 +6312,6 @@
 				017D393229244A6D005F45FA /* uk */,
 			);
 			name = SADiwCalibrationTool.xib;
-			sourceTree = "<group>";
-		};
-		017A3C8823633A70004AD1FC /* TempHumidityDetailView.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				017A3C8723633A70004AD1FC /* Base */,
-				017A3C8A23633A77004AD1FC /* cs */,
-				017A3C8C23633A78004AD1FC /* nl */,
-				017A3C8E23633A79004AD1FC /* fr */,
-				017A3C9023633A79004AD1FC /* de */,
-				017A3C9223633A7A004AD1FC /* el */,
-				017A3C9423633A7D004AD1FC /* it */,
-				017A3C9623633A7D004AD1FC /* lt */,
-				017A3C9823633A7E004AD1FC /* nb */,
-				017A3C9A23633A7F004AD1FC /* pl */,
-				017A3C9C23633A7F004AD1FC /* pt-PT */,
-				017A3C9E23633A80004AD1FC /* ru */,
-				017A3CA023633A80004AD1FC /* sk-SK */,
-				017A3CA223633A81004AD1FC /* sl */,
-				017A3CA423633A82004AD1FC /* es */,
-				017D392729244A68005F45FA /* uk */,
-			);
-			name = TempHumidityDetailView.xib;
 			sourceTree = "<group>";
 		};
 		01943EC0249D1C8800DA2B8F /* SASuperuserAuthorizationDialog.xib */ = {
