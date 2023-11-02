@@ -89,13 +89,13 @@ final class ThermostatGeneralVMTests: ViewModelTest<ThermostatGeneralViewState, 
         channelValue.online = true
         channel.value = channelValue
         
-        let temperatures: [ThermostatTemperature] = [
-            ThermostatTemperature(icon: nil, temperature: "12.2"),
-            ThermostatTemperature(icon: nil, temperature: "21.2")
+        let measurements: [MeasurementValue] = [
+            MeasurementValue(icon: nil, value: "12.2"),
+            MeasurementValue(icon: nil, value: "21.2")
         ]
         
         readChannelWithChildrenUseCase.returns = Observable.just(ChannelWithChildren(channel: channel, children: [mockMainTemperatureChild()]))
-        createTemperaturesListUseCase.returns = temperatures
+        createTemperaturesListUseCase.returns = measurements
         configEventsManager.observeConfigReturns = [
             Observable.just(mockHvacConfigEvent(remoteId)),
             Observable.just(mockWeeklyConfigEvent(remoteId))
@@ -125,8 +125,7 @@ final class ThermostatGeneralVMTests: ViewModelTest<ThermostatGeneralViewState, 
             state.changing(path: \.remoteId, to: remoteId)
                 .changing(path: \.channelFunc, to: SUPLA_CHANNELFNC_HVAC_THERMOSTAT)
                 .changing(path: \.mode, to: .heat)
-                .changing(path: \.mainTemperature, to: temperatures[0])
-                .changing(path: \.auxTemperature, to: temperatures[1])
+                .changing(path: \.measurements, to: measurements)
                 .changing(path: \.offline, to: false)
                 .changing(path: \.configMin, to: 10)
                 .changing(path: \.configMax, to: 40)
@@ -167,13 +166,13 @@ final class ThermostatGeneralVMTests: ViewModelTest<ThermostatGeneralViewState, 
         channelValue.online = true
         channel.value = channelValue
         
-        let temperatures: [ThermostatTemperature] = [
-            ThermostatTemperature(icon: nil, temperature: "12.2"),
-            ThermostatTemperature(icon: nil, temperature: "21.2")
+        let measurements: [MeasurementValue] = [
+            MeasurementValue(icon: nil, value: "12.2"),
+            MeasurementValue(icon: nil, value: "21.2")
         ]
         
         readChannelWithChildrenUseCase.returns = Observable.just(ChannelWithChildren(channel: channel, children: [mockMainTemperatureChild()]))
-        createTemperaturesListUseCase.returns = temperatures
+        createTemperaturesListUseCase.returns = measurements
         configEventsManager.observeConfigReturns = [
             Observable.just(mockHvacConfigEvent(remoteId)),
             Observable.just(mockWeeklyConfigEvent(remoteId))
@@ -202,8 +201,7 @@ final class ThermostatGeneralVMTests: ViewModelTest<ThermostatGeneralViewState, 
             state.changing(path: \.remoteId, to: remoteId)
                 .changing(path: \.channelFunc, to: SUPLA_CHANNELFNC_HVAC_THERMOSTAT)
                 .changing(path: \.mode, to: .cool)
-                .changing(path: \.mainTemperature, to: temperatures[0])
-                .changing(path: \.auxTemperature, to: temperatures[1])
+                .changing(path: \.measurements, to: measurements)
                 .changing(path: \.offline, to: false)
                 .changing(path: \.configMin, to: 10)
                 .changing(path: \.configMax, to: 40)
@@ -246,13 +244,13 @@ final class ThermostatGeneralVMTests: ViewModelTest<ThermostatGeneralViewState, 
         channelValue.online = true
         channel.value = channelValue
         
-        let temperatures: [ThermostatTemperature] = [
-            ThermostatTemperature(icon: nil, temperature: "12.2"),
-            ThermostatTemperature(icon: nil, temperature: "21.2")
+        let measurements: [MeasurementValue] = [
+            MeasurementValue(icon: nil, value: "12.2"),
+            MeasurementValue(icon: nil, value: "21.2")
         ]
         
         readChannelWithChildrenUseCase.returns = Observable.just(ChannelWithChildren(channel: channel, children: [mockMainTemperatureChild()]))
-        createTemperaturesListUseCase.returns = temperatures
+        createTemperaturesListUseCase.returns = measurements
         configEventsManager.observeConfigReturns = [
             Observable.just(mockHvacConfigEvent(remoteId)),
             Observable.just(mockWeeklyConfigEvent(remoteId))
@@ -281,8 +279,7 @@ final class ThermostatGeneralVMTests: ViewModelTest<ThermostatGeneralViewState, 
             state.changing(path: \.remoteId, to: remoteId)
                 .changing(path: \.channelFunc, to: SUPLA_CHANNELFNC_HVAC_THERMOSTAT)
                 .changing(path: \.mode, to: .off)
-                .changing(path: \.mainTemperature, to: temperatures[0])
-                .changing(path: \.auxTemperature, to: temperatures[1])
+                .changing(path: \.measurements, to: measurements)
                 .changing(path: \.offline, to: false)
                 .changing(path: \.configMin, to: 10)
                 .changing(path: \.configMax, to: 40)
@@ -318,13 +315,13 @@ final class ThermostatGeneralVMTests: ViewModelTest<ThermostatGeneralViewState, 
         channelValue.online = false
         channel.value = channelValue
         
-        let temperatures: [ThermostatTemperature] = [
-            ThermostatTemperature(icon: nil, temperature: "12.2"),
-            ThermostatTemperature(icon: nil, temperature: "21.2")
+        let measurements: [MeasurementValue] = [
+            MeasurementValue(icon: nil, value: "12.2"),
+            MeasurementValue(icon: nil, value: "21.2")
         ]
         
         readChannelWithChildrenUseCase.returns = Observable.just(ChannelWithChildren(channel: channel, children: [mockMainTemperatureChild()]))
-        createTemperaturesListUseCase.returns = temperatures
+        createTemperaturesListUseCase.returns = measurements
         configEventsManager.observeConfigReturns = [
             Observable.just(mockHvacConfigEvent(remoteId)),
             Observable.just(mockWeeklyConfigEvent(remoteId))
@@ -353,8 +350,7 @@ final class ThermostatGeneralVMTests: ViewModelTest<ThermostatGeneralViewState, 
             state.changing(path: \.remoteId, to: remoteId)
                 .changing(path: \.channelFunc, to: SUPLA_CHANNELFNC_HVAC_THERMOSTAT)
                 .changing(path: \.mode, to: .notSet)
-                .changing(path: \.mainTemperature, to: temperatures[0])
-                .changing(path: \.auxTemperature, to: temperatures[1])
+                .changing(path: \.measurements, to: measurements)
                 .changing(path: \.offline, to: true)
                 .changing(path: \.configMin, to: 10)
                 .changing(path: \.configMax, to: 40)

@@ -17,12 +17,11 @@
  */
 
 let NO_VALUE_TEXT = "---"
-private let TIME_ZONE_GMT = TimeZone(identifier: "GMT")!
 
 protocol ValuesFormatter {
     // Values
-    func temperatureToString(_ value: Float?, withUnit: Bool, withDegree: Bool, precision: Int) -> String
-    func humidityToString(_ rawValue: Double?, withPercentage: Bool) -> String
+    func temperatureToString(value: Float?, withUnit: Bool, withDegree: Bool, precision: Int) -> String
+    func humidityToString(value: Double?, withPercentage: Bool) -> String
     func percentageToString(_ value: Float) -> String
     
     // Time
@@ -40,17 +39,17 @@ protocol ValuesFormatter {
 
 extension ValuesFormatter {
     func temperatureToString(_ value: Float?, withUnit: Bool = true, withDegree: Bool = true, precision: Int = 1) -> String {
-        temperatureToString(value, withUnit: withUnit, withDegree: withDegree, precision: precision)
+        temperatureToString(value: value, withUnit: withUnit, withDegree: withDegree, precision: precision)
     }
     func temperatureToString(_ value: Double?, withUnit: Bool = true, withDegree: Bool = true, precision: Int = 1) -> String {
         if let value = value {
-            return temperatureToString(Float(value), withUnit: withUnit, withDegree: withDegree, precision: precision)
+            return temperatureToString(value: Float(value), withUnit: withUnit, withDegree: withDegree, precision: precision)
         } else {
-            return temperatureToString(nil, withUnit: withUnit, withDegree: withDegree, precision: precision)
+            return temperatureToString(value: nil, withUnit: withUnit, withDegree: withDegree, precision: precision)
         }
     }
-    func humidityToString(_ rawValue: Double?, withPercentage: Bool = false) -> String {
-        humidityToString(rawValue, withPercentage: withPercentage)
+    func humidityToString(_ value: Double?, withPercentage: Bool = false) -> String {
+        humidityToString(value: value, withPercentage: withPercentage)
     }
 }
 
@@ -69,7 +68,7 @@ final class ValuesFormatterImpl: ValuesFormatter {
     
     // MARK: - Values
     
-    func temperatureToString(_ value: Float?, withUnit: Bool = true, withDegree: Bool = true, precision: Int = 1) -> String {
+    func temperatureToString(value: Float?, withUnit: Bool = true, withDegree: Bool = true, precision: Int = 1) -> String {
         formatter.minimumFractionDigits = precision
         formatter.maximumFractionDigits = precision
         guard let value = value,
@@ -87,8 +86,8 @@ final class ValuesFormatterImpl: ValuesFormatter {
         }
     }
     
-    func humidityToString(_ rawValue: Double?, withPercentage: Bool) -> String {
-        guard let value = rawValue else { return NO_VALUE_TEXT }
+    func humidityToString(value: Double?, withPercentage: Bool) -> String {
+        guard let value = value else { return NO_VALUE_TEXT }
         return if (withPercentage) {
             String(format: "%.1f%%", value)
         } else {
@@ -118,7 +117,7 @@ final class ValuesFormatterImpl: ValuesFormatter {
     }
     
     func getDateShortString(date: Date?) -> String? {
-        formattedDate(date: date, format: "dd.MM.yy", timezone: TIME_ZONE_GMT)
+        formattedDate(date: date, format: "dd.MM.yy")
     }
     
     func getHourString(date: Date?) -> String? {
@@ -126,11 +125,11 @@ final class ValuesFormatterImpl: ValuesFormatter {
     }
     
     func getDayHourDateString(date: Date?) -> String? {
-        formattedDate(date: date, format: "EEEE HH:mm", timezone: TIME_ZONE_GMT)
+        formattedDate(date: date, format: "EEEE HH:mm")
     }
     
     func getDayAndHourDateString(date: Date?) -> String? {
-        formattedDate(date: date, format: "dd MMM HH:mm", timezone: TIME_ZONE_GMT)
+        formattedDate(date: date, format: "dd MMM HH:mm")
     }
     
     func getMonthString(date: Date?) -> String? {

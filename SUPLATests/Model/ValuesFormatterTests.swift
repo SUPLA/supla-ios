@@ -40,7 +40,8 @@ class ValuesFormatterTests: XCTestCase {
     
     func test_shouldReturnNoValueWhenValueIsNull() {
         // when
-        let result = formatter.temperatureToString(nil)
+        let value: Double? = nil
+        let result = formatter.temperatureToString(value)
         
         // then
         XCTAssertEqual(result, "---")

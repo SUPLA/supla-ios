@@ -22,8 +22,8 @@ import RxSwift
 
 final class CreateTemperaturesListUseCaseMock: CreateTemperaturesListUseCase {
     var parameters: [ChannelWithChildren] = []
-    var returns: [ThermostatTemperature] = []
-    func invoke(channelWithChildren: ChannelWithChildren) -> [ThermostatTemperature] {
+    var returns: [MeasurementValue] = []
+    func invoke(channelWithChildren: ChannelWithChildren) -> [MeasurementValue] {
         parameters.append(channelWithChildren)
         return returns
     }

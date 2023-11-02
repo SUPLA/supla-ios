@@ -48,11 +48,11 @@ extension BaseLoadMeasurementsUseCase {
         
         return measurements
             .filter { extractor($0) != nil }
-            .reduce([TimeInterval: [T]]()) {
+            .reduce([TimeInterval: LinkedList<T>]()) {
                 var map = $0
-                let aggregator = aggregation.aggregator(date: $1.date!)
+                let aggregator = aggregation.aggregator(item: $1)
                 if (map[aggregator] == nil) {
-                    map[aggregator] = []
+                    map[aggregator] = LinkedList<T>()
                 }
                 map[aggregator]?.append($1)
                 return map
@@ -79,18 +79,17 @@ extension BaseLoadMeasurementsUseCase {
     }
     
     private func toAggregatedEntities<T: SAMeasurementItem>(
-        _ group: Dictionary<TimeInterval, [T]>.Element,
+        _ group: Dictionary<TimeInterval, LinkedList<T>>.Element,
         aggregation: ChartDataAggregation,
         extractor: (T) -> Double?
     ) -> AggregatedEntity {
-        let groupData = group.value.sorted { $0.date! < $1.date! }
-        let date = aggregation.groupTimeProvider(date: groupData.first!.date!)
+        let date = aggregation.groupTimeProvider(date: group.value.head!.value.date!)
         return AggregatedEntity (
             aggregation: aggregation,
             date: date,
-            value: group.value.map { extractor($0)! }.avg(),
-            min: group.value.map { extractor($0)! }.min(),
-            max: group.value.map { extractor($0)! }.max()
+            value: group.value.avg { extractor($0) },
+            min: group.value.min { extractor($0)! },
+            max: group.value.max { extractor($0)! }
         )
     }
     

@@ -20,7 +20,7 @@ import Foundation
 
 private let calendar: Calendar = {
     var calendar = Calendar(identifier: .gregorian)
-    calendar.timeZone = TimeZone(identifier: "GMT")!
+    calendar.timeZone = TimeZone.current
     calendar.firstWeekday = 2
     return calendar
 }()
@@ -37,13 +37,13 @@ extension Date {
     }
     
     func dayNoon() -> Date {
-        var components = DateComponents()
+        var components = DateComponents(timeZone: TimeZone.current)
         components.hour = 12
         return calendar.date(byAdding: components, to: dayStart())!
     }
     
     func dayEnd() -> Date {
-        var components = DateComponents()
+        var components = DateComponents(timeZone: TimeZone.current)
         components.day = 1
         components.second = -1
         return calendar.date(byAdding: components, to: dayStart())!
@@ -54,7 +54,7 @@ extension Date {
     }
     
     func weekEnd() -> Date {
-        var components = DateComponents()
+        var components = DateComponents(timeZone: TimeZone.current)
         components.weekOfYear = 1
         components.second = -1
         return calendar.date(byAdding: components, to: weekStart())!
@@ -65,52 +65,52 @@ extension Date {
     }
     
     func monthHalf() -> Date {
-        var components = DateComponents()
+        var components = DateComponents(timeZone: TimeZone.current)
         components.day = 15
         return calendar.date(byAdding: components, to: monthStart())!
     }
     
     func monthNext() -> Date {
-        var components = DateComponents()
+        var components = DateComponents(timeZone: TimeZone.current)
         components.month = 1
         return calendar.date(byAdding: components, to: monthStart())!
     }
     
     func monthPrevious() -> Date {
-        var components = DateComponents()
+        var components = DateComponents(timeZone: TimeZone.current)
         components.second = -1
         return calendar.date(byAdding: components, to: monthStart())!
     }
     
     func monthEnd() -> Date {
-        var components = DateComponents()
+        var components = DateComponents(timeZone: TimeZone.current)
         components.month = 1
         components.second = -1
         return calendar.date(byAdding: components, to: monthStart())!
     }
     
     func quarterStart() -> Date {
-        var quarterBegin = ((calendar.component(.month, from: monthHalf()) - 1) / 3 * 3)
-        var components = DateComponents()
+        let quarterBegin = ((calendar.component(.month, from: monthHalf()) - 1) / 3 * 3)
+        var components = DateComponents(timeZone: TimeZone.current)
         components.month = quarterBegin
         return calendar.date(byAdding: components, to: yearStart())!
     }
     
     func quarterEnd() -> Date {
-        var components = DateComponents()
+        var components = DateComponents(timeZone: TimeZone.current)
         components.month = 3
         components.second = -1
         return calendar.date(byAdding: components, to: quarterStart())!
     }
     
     func quarterNext() -> Date {
-        var components = DateComponents()
+        var components = DateComponents(timeZone: TimeZone.current)
         components.month = 3
         return calendar.date(byAdding: components, to: quarterStart())!
     }
     
     func quarterPrevious() -> Date {
-        var components = DateComponents()
+        var components = DateComponents(timeZone: TimeZone.current)
         components.second = -1
         return calendar.date(byAdding: components, to: quarterStart())!
     }
@@ -126,20 +126,20 @@ extension Date {
     }
     
     func yearEnd() -> Date {
-        var components = DateComponents()
+        var components = DateComponents(timeZone: TimeZone.current)
         components.month = 12
         components.second = -1
         return calendar.date(byAdding: components, to: yearStart())!
     }
     
     func yearNext() -> Date {
-        var components = DateComponents()
+        var components = DateComponents(timeZone: TimeZone.current)
         components.month = 12
         return calendar.date(byAdding: components, to: yearStart())!
     }
     
     func yearPrevious() -> Date {
-        var components = DateComponents()
+        var components = DateComponents(timeZone: TimeZone.current)
         components.second = -1
         return calendar.date(byAdding: components, to: yearStart())!
     }

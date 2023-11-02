@@ -19,7 +19,6 @@
 fileprivate let formatter: DateFormatter = {
     let formatter = DateFormatter()
     formatter.dateFormat = "yyyyMMddHHmm"
-    formatter.timeZone = TimeZone(identifier: "GMT")!
     return formatter
 }()
 
@@ -54,14 +53,27 @@ enum ChartDataAggregation: Equatable, Codable, CaseIterable {
         }
     }
     
-    func aggregator(date: Date) -> TimeInterval {
-        return switch(self) {
-        case .minutes: TimeInterval(date.getAggregationString())!
-        case .hours: TimeInterval(date.getAggregationString().substringIndexed(to: 10))!
-        case .days: TimeInterval(date.getAggregationString().substringIndexed(to: 8))!
-        case .months: TimeInterval(date.getAggregationString().substringIndexed(to: 6))!
-        case .years: TimeInterval(date.getAggregationString().substringIndexed(to: 4))!
+    func aggregator(item: SAMeasurementItem) -> TimeInterval {
+        let year = Double(item.year)
+        if (self == .years) {
+            return TimeInterval(year)
         }
+        let month = Double(item.month)
+        if (self == .months) {
+            return TimeInterval((year * 100) + month)
+        }
+        
+        let day = Double(item.day)
+        if (self == .days) {
+            return TimeInterval((year * 10000) + (100 * month) + day)
+        }
+        
+        let hour = Double(item.hour)
+        if (self == .hours) {
+            return TimeInterval((year * 1000000) + (10000 * month) + (100 * day) + hour)
+        }
+        
+        return 0
     }
     
     func groupTimeProvider(date: Date) -> TimeInterval {
@@ -79,8 +91,3 @@ enum ChartDataAggregation: Equatable, Codable, CaseIterable {
     }
 }
 
-fileprivate extension Date {
-    func getAggregationString() -> String {
-        formatter.string(from: self)
-    }
-}

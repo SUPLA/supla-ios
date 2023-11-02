@@ -119,7 +119,7 @@ final class ProvideDetailTypeUseCaseTests: XCTestCase {
     }
     
     func test_shouldProvideTemp_forThermometerFunction() {
-        doTest(expectedResult: .legacy(type: .temperature)) {
+        doTest(expectedResult: .thermometerDetail(pages: [.thermometerHistory])) {
             let channel = SAChannel(testContext: nil)
             channel.func = SUPLA_CHANNELFNC_THERMOMETER
             
@@ -128,7 +128,7 @@ final class ProvideDetailTypeUseCaseTests: XCTestCase {
     }
     
     func test_shouldProvideHumidityAndTemp_forHumidityAndTemperatureFunction() {
-        doTest(expectedResult: .legacy(type: .temperature_humidity)) {
+        doTest(expectedResult: .thermometerDetail(pages: [.thermometerHistory])) {
             let channel = SAChannel(testContext: nil)
             channel.func = SUPLA_CHANNELFNC_HUMIDITYANDTEMPERATURE
             
@@ -173,7 +173,7 @@ final class ProvideDetailTypeUseCaseTests: XCTestCase {
     }
     
     func test_shouldProvideStandardDetailWithGeneralPage_forGroupOfSwitches() {
-        doTest(expectedResult: .switchDetail(pages: [.general])) {
+        doTest(expectedResult: .switchDetail(pages: [.switchGeneral])) {
             let channel = SAChannelBase(testContext: nil)
             channel.func = SUPLA_CHANNELFNC_LIGHTSWITCH
             
@@ -182,7 +182,7 @@ final class ProvideDetailTypeUseCaseTests: XCTestCase {
     }
     
     func test_shouldProvideStandardDetailWithGeneralPage_forChannelWithoutFlags() {
-        doTest(expectedResult: .switchDetail(pages: [.general])) {
+        doTest(expectedResult: .switchDetail(pages: [.switchGeneral])) {
             let channel = SAChannel(testContext: nil)
             channel.func = SUPLA_CHANNELFNC_LIGHTSWITCH
             
@@ -191,7 +191,7 @@ final class ProvideDetailTypeUseCaseTests: XCTestCase {
     }
     
     func test_shouldProvideStandardDetailWithGeneralAndTimer_forChannelWithTimer() {
-        doTest(expectedResult: .switchDetail(pages: [.general, .timer])) {
+        doTest(expectedResult: .switchDetail(pages: [.switchGeneral, .timer])) {
             let channel = SAChannel(testContext: nil)
             channel.func = SUPLA_CHANNELFNC_LIGHTSWITCH
             channel.flags = SUPLA_CHANNEL_FLAG_COUNTDOWN_TIMER_SUPPORTED
@@ -201,7 +201,7 @@ final class ProvideDetailTypeUseCaseTests: XCTestCase {
     }
     
     func test_shouldProvideStandardDetailWithGeneralOnly_forStaircaseWithTimer() {
-        doTest(expectedResult: .switchDetail(pages: [.general])) {
+        doTest(expectedResult: .switchDetail(pages: [.switchGeneral])) {
             let channel = SAChannel(testContext: nil)
             channel.func = SUPLA_CHANNELFNC_STAIRCASETIMER
             channel.flags = SUPLA_CHANNEL_FLAG_COUNTDOWN_TIMER_SUPPORTED
@@ -211,7 +211,7 @@ final class ProvideDetailTypeUseCaseTests: XCTestCase {
     }
     
     func test_shouldProvideStandardDetailWithGeneralTimerAndIC() {
-        doTest(expectedResult: .switchDetail(pages: [.general, .timer, .historyIc])) {
+        doTest(expectedResult: .switchDetail(pages: [.switchGeneral, .timer, .historyIc])) {
             let value = SAChannelValue(testContext: nil)
             value.sub_value_type = Int16(SUBV_TYPE_IC_MEASUREMENTS)
             
@@ -225,7 +225,7 @@ final class ProvideDetailTypeUseCaseTests: XCTestCase {
     }
     
     func test_shouldProvideStandardDetailWithGeneralAndIC() {
-        doTest(expectedResult: .switchDetail(pages: [.general, .historyEm])) {
+        doTest(expectedResult: .switchDetail(pages: [.switchGeneral, .historyEm])) {
             let value = SAChannelValue(testContext: nil)
             value.sub_value_type = Int16(SUBV_TYPE_ELECTRICITY_MEASUREMENTS)
             
@@ -238,7 +238,7 @@ final class ProvideDetailTypeUseCaseTests: XCTestCase {
     }
     
     func test_shouldProvideThermostatDetail() {
-        doTest(expectedResult: .thermostatDetail(pages: [.thermostat, .schedule])) {
+        doTest(expectedResult: .thermostatDetail(pages: [.thermostatGeneral, .schedule, .thermostatHistory])) {
             let channel = SAChannel(testContext: nil)
             channel.func = SUPLA_CHANNELFNC_HVAC_THERMOSTAT
             
