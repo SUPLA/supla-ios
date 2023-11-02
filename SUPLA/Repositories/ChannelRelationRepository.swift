@@ -72,11 +72,9 @@ final class ChannelRelationRepositoryImpl: Repository<SAChannelRelation>, Channe
             .map { relations in
                 var map: [Int32: [SAChannelRelation]] = [:]
                 relations.forEach {
-                    if var children = map[$0.parent_id] {
-                        children.append($0)
-                    } else {
-                        map[$0.parent_id] = [$0]
-                    }
+                    var children = map[$0.parent_id] ?? []
+                    children.append($0)
+                    map[$0.parent_id] = children
                 }
                 return map
             }

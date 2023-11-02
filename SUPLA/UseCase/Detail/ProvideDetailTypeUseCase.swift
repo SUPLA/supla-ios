@@ -50,11 +50,9 @@ final class ProvideDetailTypeUseCaseImpl: ProvideDetailTypeUseCase {
             SUPLA_CHANNELFNC_IC_HEAT_METER:
             return .legacy(type: .ic)
         case
-            SUPLA_CHANNELFNC_THERMOMETER:
-            return .legacy(type: .temperature)
-        case
+            SUPLA_CHANNELFNC_THERMOMETER,
             SUPLA_CHANNELFNC_HUMIDITYANDTEMPERATURE:
-            return .legacy(type: .temperature_humidity)
+            return .thermometerDetail(pages: [.thermometerHistory])
         case
             SUPLA_CHANNELFNC_THERMOSTAT_HEATPOL_HOMEPLUS:
             return .legacy(type: .thermostat_hp)
@@ -65,7 +63,7 @@ final class ProvideDetailTypeUseCaseImpl: ProvideDetailTypeUseCase {
         case
             SUPLA_CHANNELFNC_HVAC_THERMOSTAT,
             SUPLA_CHANNELFNC_HVAC_DOMESTIC_HOT_WATER:
-            return .thermostatDetail(pages: [.thermostat, .schedule])
+            return .thermostatDetail(pages: [.thermostatGeneral, .schedule, .thermostatHistory])
         default:
             return nil
         }
@@ -73,9 +71,9 @@ final class ProvideDetailTypeUseCaseImpl: ProvideDetailTypeUseCase {
     
     private func getSwitchDetailPages(channelBase: SAChannelBase) -> [DetailPage] {
         guard let channel = channelBase as? SAChannel
-        else { return [.general] }
+        else { return [.switchGeneral] }
         
-        var pages: [DetailPage] = [.general]
+        var pages: [DetailPage] = [.switchGeneral]
         
         if (channel.flags & SUPLA_CHANNEL_FLAG_COUNTDOWN_TIMER_SUPPORTED > 0 && channel.func != SUPLA_CHANNELFNC_STAIRCASETIMER) {
             pages.append(.timer)
@@ -98,18 +96,25 @@ enum DetailType: Equatable {
     case legacy(type: LegacyDetailType)
     case switchDetail(pages: [DetailPage])
     case thermostatDetail(pages: [DetailPage])
+    case thermometerDetail(pages: [DetailPage])
 }
 
 enum LegacyDetailType {
-    case rgbw, rs, ic, em, temperature, temperature_humidity, thermostat_hp, digiglass
+    case rgbw, rs, ic, em, thermostat_hp, digiglass
 }
 
 enum DetailPage {
-    case general
+    // Switches
+    case switchGeneral
     case timer
     case historyIc
     case historyEm
     
-    case thermostat
+    // Thermostat
+    case thermostatGeneral
     case schedule
+    case thermostatHistory
+    
+    // Thermometers
+    case thermometerHistory
 }

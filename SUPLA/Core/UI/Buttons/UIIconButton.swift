@@ -21,13 +21,18 @@ import Foundation
 class UIIconButton: UIButton {
     
     override var intrinsicContentSize: CGSize {
-        get { CGSize(width: size, height: size) }
+        get { CGSize(width: config.size, height: config.size) }
     }
     
     override var isEnabled: Bool {
         didSet {
-            color = isEnabled ? .primary : .disabled
-            backgroundColor = color
+            if (isEnabled) {
+                backgroundColor = config.backgroundColor
+                tintColor = config.contentColor
+            } else {
+                backgroundColor = config.backgroundDisabledColor
+                tintColor = config.contentDisabledColor
+            }
         }
     }
     
@@ -38,11 +43,10 @@ class UIIconButton: UIButton {
         }
     }
     
-    private var color: UIColor = .primary
-    private var size: CGFloat
+    private let config: Configuration
     
-    init(size: CGFloat = Dimens.buttonSmallHeight) {
-        self.size = size
+    init(config: Configuration = .primary()) {
+        self.config = config
         super.init(frame: CGRect.zero)
         setupView()
     }
@@ -53,25 +57,71 @@ class UIIconButton: UIButton {
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         super.touchesBegan(touches, with: event)
-        backgroundColor = .primaryVariant
+        
+        if (isEnabled) {
+            backgroundColor = config.backgroundPressedColor
+            tintColor = config.contentPressedColor
+        }
     }
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         super.touchesEnded(touches, with: event)
-        backgroundColor = color
+        
+        if (isEnabled) {
+            backgroundColor = config.backgroundColor
+            tintColor = config.contentColor
+        }
     }
     
     override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
         super.touchesCancelled(touches, with: event)
-        backgroundColor = color
+        
+        if (isEnabled) {
+            backgroundColor = config.backgroundColor
+            tintColor = config.contentColor
+        }
     }
     
     private func setupView() {
-        backgroundColor = color
-        layer.cornerRadius = size / 2
-        tintColor = .white
+        backgroundColor = config.backgroundColor
+        layer.cornerRadius = config.size / 2
+        tintColor = config.contentColor
         
         imageEdgeInsets = UIEdgeInsets(top: 6, left: 6, bottom: 6, right: 6)
         imageView?.contentMode = .scaleAspectFit
     }
+    
+    struct Configuration {
+        var backgroundColor: UIColor
+        var backgroundDisabledColor: UIColor
+        var backgroundPressedColor: UIColor
+        var contentColor: UIColor
+        var contentDisabledColor: UIColor
+        var contentPressedColor: UIColor
+        var size: CGFloat
+        
+        static func primary(size: CGFloat = Dimens.buttonSmallHeight) -> Configuration {
+            Configuration(
+                backgroundColor: .primary,
+                backgroundDisabledColor: .disabled,
+                backgroundPressedColor: .primaryVariant,
+                contentColor: .white,
+                contentDisabledColor: .white,
+                contentPressedColor: .white,
+                size: size)
+        }
+        
+        static func transparent() -> Configuration {
+            Configuration(
+                backgroundColor: .transparent,
+                backgroundDisabledColor: .transparent,
+                backgroundPressedColor: .transparent,
+                contentColor: .primary,
+                contentDisabledColor: .disabled,
+                contentPressedColor: .primaryVariant,
+                size: Dimens.buttonSmallHeight
+            )
+        }
+    }
 }
+

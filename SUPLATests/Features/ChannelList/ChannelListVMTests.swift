@@ -129,7 +129,7 @@ class ChannelListVMTests: ViewModelTest<ChannelListViewState, ChannelListViewEve
         channel.value = SAChannelValue(testContext: nil)
         channel.value?.online = true
         
-        provideDetailTypeUseCase.detailType = .legacy(type: .temperature)
+        provideDetailTypeUseCase.detailType = .legacy(type: .em)
         
         // when
         observe(viewModel)
@@ -140,7 +140,7 @@ class ChannelListVMTests: ViewModelTest<ChannelListViewState, ChannelListViewEve
         XCTAssertEqual(eventObserver.events.count, 1)
         
         XCTAssertEqual(eventObserver.events, [
-            .next(0, .navigateToDetail(legacy: .temperature, channelBase: channel))
+            .next(0, .navigateToDetail(legacy: .em, channelBase: channel))
         ])
     }
     
@@ -149,7 +149,7 @@ class ChannelListVMTests: ViewModelTest<ChannelListViewState, ChannelListViewEve
         let channel = SAChannel(testContext: nil)
         channel.func = SUPLA_CHANNELFNC_THERMOMETER
         
-        provideDetailTypeUseCase.detailType = .legacy(type: .temperature)
+        provideDetailTypeUseCase.detailType = .legacy(type: .em)
         
         // when
         observe(viewModel)
@@ -160,7 +160,7 @@ class ChannelListVMTests: ViewModelTest<ChannelListViewState, ChannelListViewEve
         XCTAssertEqual(eventObserver.events.count, 1)
         
         XCTAssertEqual(eventObserver.events, [
-            .next(0, .navigateToDetail(legacy: .temperature, channelBase: channel))
+            .next(0, .navigateToDetail(legacy: .em, channelBase: channel))
         ])
     }
     
@@ -169,7 +169,7 @@ class ChannelListVMTests: ViewModelTest<ChannelListViewState, ChannelListViewEve
         let channel = SAChannel(testContext: nil)
         channel.func = SUPLA_CHANNELFNC_STAIRCASETIMER
         
-        provideDetailTypeUseCase.detailType = .legacy(type: .temperature)
+        provideDetailTypeUseCase.detailType = .legacy(type: .em)
         
         // when
         observe(viewModel)
@@ -247,7 +247,7 @@ class ChannelListVMTests: ViewModelTest<ChannelListViewState, ChannelListViewEve
         channel.value?.online = true
         channel.remote_id = remoteId
         
-        provideDetailTypeUseCase.detailType = .switchDetail(pages: [.general])
+        provideDetailTypeUseCase.detailType = .switchDetail(pages: [.switchGeneral])
         
         // when
         observe(viewModel)
@@ -258,7 +258,7 @@ class ChannelListVMTests: ViewModelTest<ChannelListViewState, ChannelListViewEve
         XCTAssertEqual(eventObserver.events.count, 1)
         
         XCTAssertEqual(eventObserver.events, [
-            .next(0, .navigateToSwitchDetail(remoteId: remoteId, pages: [.general]))
+            .next(0, .navigateToSwitchDetail(remoteId: remoteId, pages: [.switchGeneral]))
         ])
     }
     
@@ -270,7 +270,7 @@ class ChannelListVMTests: ViewModelTest<ChannelListViewState, ChannelListViewEve
         channel.value?.online = true
         channel.remote_id = remoteId
         
-        provideDetailTypeUseCase.detailType = .thermostatDetail(pages: [.general])
+        provideDetailTypeUseCase.detailType = .thermostatDetail(pages: [.thermostatGeneral])
         
         // when
         observe(viewModel)
@@ -281,7 +281,7 @@ class ChannelListVMTests: ViewModelTest<ChannelListViewState, ChannelListViewEve
         XCTAssertEqual(eventObserver.events.count, 1)
         
         XCTAssertEqual(eventObserver.events, [
-            .next(0, .navigateToThermostatDetail(remoteId: remoteId, pages: [.general]))
+            .next(0, .navigateToThermostatDetail(remoteId: remoteId, pages: [.thermostatGeneral]))
         ])
     }
     

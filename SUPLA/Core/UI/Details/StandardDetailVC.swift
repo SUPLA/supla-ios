@@ -62,7 +62,7 @@ class StandardDetailVC<S : ViewState, E : ViewEvent, VM : StandardDetailVM<S, E>
         var viewControllers: [UIViewController] = []
         for page in pages {
             switch(page) {
-            case .general:
+            case .switchGeneral:
                 viewControllers.append(switchGeneral())
             case .timer:
                 viewControllers.append(timerDetail())
@@ -70,10 +70,14 @@ class StandardDetailVC<S : ViewState, E : ViewEvent, VM : StandardDetailVM<S, E>
                 viewControllers.append(legacyDetail(type: .em))
             case .historyIc:
                 viewControllers.append(legacyDetail(type: .ic))
-            case .thermostat:
+            case .thermostatGeneral:
                 viewControllers.append(thermostatGeneral())
             case .schedule:
                 viewControllers.append(scheduleDetail())
+            case .thermostatHistory:
+                viewControllers.append(thermostatHistoryDetail())
+            case .thermometerHistory:
+                viewControllers.append(thermometerHistoryDetail())
             }
         }
         
@@ -143,6 +147,28 @@ class StandardDetailVC<S : ViewState, E : ViewEvent, VM : StandardDetailVM<S, E>
         )
         return vc
     }
+    
+    private func thermostatHistoryDetail() -> ThermostatHistoryDetailVC {
+        let vc = ThermostatHistoryDetailVC(remoteId: remoteId)
+        vc.navigationCoordinator = navigationCoordinator
+        vc.tabBarItem = UITabBarItem(
+            title: Strings.StandardDetail.tabHistory,
+            image: .iconHistory,
+            tag: DetailTabTag.ThermostatHistory.rawValue
+        )
+        return vc
+    }
+    
+    private func thermometerHistoryDetail() -> ThermometerHistoryDetailVC {
+        let vc = ThermometerHistoryDetailVC(remoteId: remoteId)
+        vc.navigationCoordinator = navigationCoordinator
+        vc.tabBarItem = UITabBarItem(
+            title: Strings.StandardDetail.tabHistory,
+            image: .iconHistory,
+            tag: DetailTabTag.ThermostatHistory.rawValue
+        )
+        return vc
+    }
 }
 
 fileprivate enum DetailTabTag: Int {
@@ -151,4 +177,5 @@ fileprivate enum DetailTabTag: Int {
     case History = 3
     case Thermostat = 4
     case Schedule = 5
+    case ThermostatHistory = 6
 }

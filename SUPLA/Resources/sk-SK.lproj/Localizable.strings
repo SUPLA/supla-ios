@@ -309,3 +309,6 @@
 "Cfg.removal.dialog.incomplete" = "Vyplň požadované údaje";
 
 "General.error" = "Chyba";
+
+/* Thermometer Chart */
+"history_no_data_in_selected_period" = "Žiadne údaje pre graf.";

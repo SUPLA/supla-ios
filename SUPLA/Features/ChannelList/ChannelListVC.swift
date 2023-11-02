@@ -37,6 +37,9 @@ class ChannelListVC : ChannelBaseTableViewController<ChannelListViewState, Chann
             navigator?.navigateToSwitchDetail(remoteId: remoteId, pages: pages)
         case .navigateToThermostatDetail(let remoteId, let pages):
             navigator?.navigateToThermostatDetail(remoteId: remoteId, pages: pages)
+        case .navigateToThermometerDetail(let remoteId, let pages):
+            navigator?.navigateToThermometerDetail(remoteId: remoteId, pages: pages)
+            
         }
     }
     

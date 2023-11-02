@@ -28,6 +28,7 @@
 - (BOOL) timerArmFor: (int) remoteId withTurnOn: (BOOL) on withTime: (int) milis;
 - (BOOL) getChannelConfig: (TCS_GetChannelConfigRequest*) configRequest;
 - (BOOL) setChannelConfig: (TSCS_ChannelConfig*) config;
+- (BOOL) OAuthTokenRequest;
 
 @end
 

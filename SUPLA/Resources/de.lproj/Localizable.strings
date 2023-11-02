@@ -329,6 +329,7 @@
 "standard_detail_general_tab" = "Allgemein";
 "standard_detail_timer_tab" = "Timer";
 "standard_detail_metrics_tab" = "Messungen";
+"standard_detail_history_tab" = "Historie";
 
 /* Switch Detail */
 "switch_detail_state_label" = "Aktuellen Zustand:";
@@ -376,3 +377,22 @@
 "thermostat_detail_program_time" = "für %@";
 "thermostat_detail_program_current" = "Aktuell:";
 "thermostat_detail_program_next" = "Danach:";
+
+/* Thermometer Chart */
+"history_range_label" = "Bereich";
+"history_aggregation_label" = "Anhäufung";
+"history_range_last_day" = "Letzte 24 Stunden";
+"history_range_last_week" = "Letzte 7 Tagen";
+"history_range_last_30_days" = "Letzte 30 Tagen";
+"history_range_last_90_days" = "Letzte 90 Tagen";
+"history_range_current_day" = "Tag";
+"history_range_current_week" = "Woche";
+"history_range_current_month" = "Monat";
+"history_range_current_quarter" = "Quartal";
+"history_range_current_year" = "Jahr";
+"history_range_custom" = "Andere Bereich";
+"history_refreshing" = "Aktualisierung…";
+"history_refreshing_failed" = "Aktualisiereung fehlgeschlagen";
+"history_no_data_selected" = "Keine Daten ausgewählt.";
+"history_no_data_available" = "Kein Daten verfügbar";
+"history_no_data_in_selected_period" = "Keine Daten für das Diagramm in ausgewälte Zeitraum.";

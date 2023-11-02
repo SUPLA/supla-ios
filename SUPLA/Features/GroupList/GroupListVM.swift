@@ -66,9 +66,7 @@ class GroupListViewModel: BaseTableViewModel<GroupListViewState, GroupListViewEv
         switch (detailType) {
         case let .legacy(type: legacyDetailType):
             send(event: .navigateToDetail(legacy: legacyDetailType, channelBase: item))
-            break
-        default:
-            break
+        default: break
         }
     }
     

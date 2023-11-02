@@ -67,13 +67,12 @@ class ChannelListViewModel: BaseTableViewModel<ChannelListViewState, ChannelList
         switch (detailType) {
         case let .legacy(type: legacyDetailType):
             send(event: .navigateToDetail(legacy: legacyDetailType, channelBase: item))
-            break
         case .switchDetail(let pages):
             send(event: .navigateToSwitchDetail(remoteId: item.remote_id, pages: pages))
-            break
         case let .thermostatDetail(pages):
             send(event: .navigateToThermostatDetail(remoteId: item.remote_id, pages: pages))
-            break
+        case let .thermometerDetail(pages):
+            send(event: .navigateToThermometerDetail(remoteId: item.remote_id, pages: pages))
         }
     }
     
@@ -127,6 +126,7 @@ enum ChannelListViewEvent: ViewEvent {
     case navigateToDetail(legacy: LegacyDetailType, channelBase: SAChannelBase)
     case navigateToSwitchDetail(remoteId: Int32, pages: [DetailPage])
     case navigateToThermostatDetail(remoteId: Int32, pages: [DetailPage])
+    case navigateToThermometerDetail(remoteId: Int32, pages: [DetailPage])
 }
 
 struct ChannelListViewState: ViewState {}

@@ -29,6 +29,9 @@ class AuthInfo: NSObject, NSCoding {
     @objc let accessID: Int
     @objc let accessIDpwd: String
     @objc let preferredProtocolVersion: Int
+    @objc var serverUrlString: String {
+        get { "https://\(serverForCurrentAuthMethod)" }
+    }
 
     
     private let kEmailAuth = "emailAuth"

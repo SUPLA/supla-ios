@@ -19,7 +19,8 @@
 @testable import SUPLA
 
 final class ValuesFormatterMock: ValuesFormatter {
-    func temperatureToString(_ value: Float?, withUnit: Bool, withDegree: Bool) -> String {
+    
+    func temperatureToString(value: Float?, withUnit: Bool, withDegree: Bool, precision: Int) -> String {
         if let value = value {
             return String(format: "%.1f", value)
         } else {
@@ -28,4 +29,49 @@ final class ValuesFormatterMock: ValuesFormatter {
     }
     
     func minutesToString(minutes: Int) -> String { "\(minutes)" }
+    
+    
+    func percentageToString(_ value: Float) -> String {
+        ""
+    }
+    
+    func humidityToString(value: Double?, withPercentage: Bool) -> String {
+        ""
+    }
+    
+    func getDateString(date: Date?) -> String? {
+        ""
+    }
+    
+    func getDateShortString(date: Date?) -> String? {
+        ""
+    }
+    
+    func getHourString(date: Date?) -> String? {
+        ""
+    }
+    
+    func getDayHourDateString(date: Date?) -> String? {
+        ""
+    }
+    
+    func getDayAndHourDateString(date: Date?) -> String? {
+        ""
+    }
+    
+    func getMonthString(date: Date?) -> String? {
+        ""
+    }
+    
+    func getFullDateString(date: Date?) -> String? {
+        ""
+    }
+    
+    func getMonthAndYearString(date: Date?) -> String? {
+        ""
+    }
+    
+    func getYearString(date: Date?) -> String? {
+        ""
+    }
 }

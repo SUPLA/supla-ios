@@ -43,7 +43,7 @@ protocol ListsEventsManager: ListsEventsManagerEmitter {
 final class ListsEventsManagerImpl: ListsEventsManager {
     
     private var subjects: [Id: BehaviorRelay<Int>] = [:]
-    private let syncedQueue = DispatchQueue(label: "EventsPrivateQueue", attributes: .concurrent)
+    private let syncedQueue = DispatchQueue(label: "ListsEventsPrivateQueue", attributes: .concurrent)
     
     private let channelUpdatesSubject = BehaviorRelay(value: ())
     private let groupUpdatesSubject = BehaviorRelay(value: ())

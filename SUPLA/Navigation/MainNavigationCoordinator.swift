@@ -239,6 +239,10 @@ class MainNavigationCoordinator: BaseNavigationCoordinator {
         startFlow(coordinator: ThermostatDetailNavigationCoordinator(remoteId: remoteId, pages: pages))
     }
     
+    func navigateToThermometerDetail(remoteId: Int32, pages: [DetailPage]) {
+        startFlow(coordinator: ThermometerDetailNavigatorCoordinator(remoteId: remoteId, pages: pages))
+    }
+    
     // MARK: -
     // MARK: Application life cycle support
     // MARK: -

@@ -32,7 +32,7 @@ PODS:
   - SwiftAlgorithms (1.0.0)
 
 DEPENDENCIES:
-  - Charts (~> 4.0)
+  - Charts (= 4.1.0)
   - FMMoveTableView (~> 1.1)
   - PaddingLabel (= 1.2)
   - QueryKit
@@ -74,6 +74,6 @@ SPEC CHECKSUMS:
   RxTest: a23f26bb53a5e146a0a69db4f0fa0b69001ce7f4
   SwiftAlgorithms: 38dda4731d19027fdeee1125f973111bf3386b53
 
-PODFILE CHECKSUM: 145bd26f7b1e010514af05db7d555929d17e2eaf
+PODFILE CHECKSUM: 8594438cb47bcd9d7cd9d580d7ccd58df5468093
 
 COCOAPODS: 1.11.3

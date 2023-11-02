@@ -28,7 +28,7 @@ extension UIFont {
     static let body1 = openSansRegular(style: .body, size: 16)
     @objc static let body2 = openSansRegular(style: .body, size: 14)
     static let button = openSansMedium(style: .caption1, size: 17)
-    static let caption = openSansMedium(style: .caption2, size: 10)
+    static let caption = openSansRegular(style: .caption2, size: 12)
     
     @objc
     class StaticSize: NSObject {

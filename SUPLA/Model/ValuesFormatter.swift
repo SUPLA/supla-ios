@@ -19,13 +19,37 @@
 let NO_VALUE_TEXT = "---"
 
 protocol ValuesFormatter {
-    func temperatureToString(_ value: Float?, withUnit: Bool, withDegree: Bool) -> String
+    // Values
+    func temperatureToString(value: Float?, withUnit: Bool, withDegree: Bool, precision: Int) -> String
+    func humidityToString(value: Double?, withPercentage: Bool) -> String
+    func percentageToString(_ value: Float) -> String
+    
+    // Time
     func minutesToString(minutes: Int) -> String
+    func getDateString(date: Date?) -> String?
+    func getDateShortString(date: Date?) -> String?
+    func getHourString(date: Date?) -> String?
+    func getDayHourDateString(date: Date?) -> String?
+    func getDayAndHourDateString(date: Date?) -> String?
+    func getMonthString(date: Date?) -> String?
+    func getFullDateString(date: Date?) -> String?
+    func getMonthAndYearString(date: Date?) -> String?
+    func getYearString(date: Date?) -> String?
 }
 
 extension ValuesFormatter {
-    func temperatureToString(_ value: Float?, withUnit: Bool = true, withDegree: Bool = true) -> String {
-        temperatureToString(value, withUnit: withUnit, withDegree: withDegree)
+    func temperatureToString(_ value: Float?, withUnit: Bool = true, withDegree: Bool = true, precision: Int = 1) -> String {
+        temperatureToString(value: value, withUnit: withUnit, withDegree: withDegree, precision: precision)
+    }
+    func temperatureToString(_ value: Double?, withUnit: Bool = true, withDegree: Bool = true, precision: Int = 1) -> String {
+        if let value = value {
+            return temperatureToString(value: Float(value), withUnit: withUnit, withDegree: withDegree, precision: precision)
+        } else {
+            return temperatureToString(value: nil, withUnit: withUnit, withDegree: withDegree, precision: precision)
+        }
+    }
+    func humidityToString(_ value: Double?, withPercentage: Bool = false) -> String {
+        humidityToString(value: value, withPercentage: withPercentage)
     }
 }
 
@@ -34,16 +58,19 @@ final class ValuesFormatterImpl: ValuesFormatter {
     @Singleton<GlobalSettings> private var settings
     
     var decimalSeparator = Locale.current.decimalSeparator
+    let dateFormatter = DateFormatter()
     
     private lazy var formatter: NumberFormatter! = {
         let formatter = NumberFormatter()
         formatter.decimalSeparator = decimalSeparator
-        formatter.minimumFractionDigits = 1
-        formatter.maximumFractionDigits = 1
         return formatter
     }()
     
-    func temperatureToString(_ value: Float?, withUnit: Bool = true, withDegree: Bool = true) -> String {
+    // MARK: - Values
+    
+    func temperatureToString(value: Float?, withUnit: Bool = true, withDegree: Bool = true, precision: Int = 1) -> String {
+        formatter.minimumFractionDigits = precision
+        formatter.maximumFractionDigits = precision
         guard let value = value,
               let formatted = formatter.string(from: NSNumber(value: convert(value)))
         else {
@@ -59,6 +86,22 @@ final class ValuesFormatterImpl: ValuesFormatter {
         }
     }
     
+    func humidityToString(value: Double?, withPercentage: Bool) -> String {
+        guard let value = value else { return NO_VALUE_TEXT }
+        return if (withPercentage) {
+            String(format: "%.1f%%", value)
+        } else {
+            String(format: "%.1f", value)
+        }
+    }
+    
+    func percentageToString(_ value: Float) -> String {
+        let percentage = Int((value * 100).rounded())
+        return "\(percentage)%"
+    }
+    
+    // MARK: - Time
+    
     func minutesToString(minutes: Int) -> String {
         let hours = minutes / 60
         
@@ -66,6 +109,52 @@ final class ValuesFormatterImpl: ValuesFormatter {
             return Strings.General.time_just_minutes.arguments(minutes)
         } else {
             return Strings.General.time_hours_and_mintes.arguments(hours, (minutes % 60))
+        }
+    }
+    
+    func getDateString(date: Date?) -> String? {
+        formattedDate(date: date, format: "dd.MM.yyyy")
+    }
+    
+    func getDateShortString(date: Date?) -> String? {
+        formattedDate(date: date, format: "dd.MM.yy")
+    }
+    
+    func getHourString(date: Date?) -> String? {
+        formattedDate(date: date, format: "HH:mm")
+    }
+    
+    func getDayHourDateString(date: Date?) -> String? {
+        formattedDate(date: date, format: "EEEE HH:mm")
+    }
+    
+    func getDayAndHourDateString(date: Date?) -> String? {
+        formattedDate(date: date, format: "dd MMM HH:mm")
+    }
+    
+    func getMonthString(date: Date?) -> String? {
+        formattedDate(date: date, format: "dd MMM")
+    }
+    
+    func getFullDateString(date: Date?) -> String? {
+        formattedDate(date: date, format: "dd.MM.yyyy HH:mm")
+    }
+    
+    func getMonthAndYearString(date: Date?) -> String? {
+        formattedDate(date: date, format: "yyyy MMM")
+    }
+    
+    func getYearString(date: Date?) -> String? {
+        formattedDate(date: date, format: "yyyy")
+    }
+    
+    private func formattedDate(date: Date?, format: String, timezone: TimeZone = TimeZone.current) -> String? {
+        dateFormatter.dateFormat = format
+        dateFormatter.timeZone = timezone
+        return if let date = date {
+            dateFormatter.string(from: date)
+        } else {
+            nil
         }
     }
     

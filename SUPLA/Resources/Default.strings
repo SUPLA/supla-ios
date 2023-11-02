@@ -72,6 +72,7 @@
 "standard_detail_timer_tab" = "Timer";
 "standard_detail_metrics_tab" = "Metrics";
 "standard_detail_schedule_tab" = "Week";
+"standard_detail_history_tab" = "History";
 
 /* Switch Detail */
 "switch_detail_state_label" = "Current state:";
@@ -123,3 +124,26 @@
 "thermostat_detail_program_current" = "Currently:";
 "thermostat_detail_program_next" = "Next:";
 
+/* Thermometer Chart */
+"history_range_label" = "Range";
+"history_aggregation_label" = "Aggregation";
+"history_range_last_day" = "Last 24 hours";
+"history_range_last_week" = "Last 7 days";
+"history_range_last_30_days" = "Last 30 days";
+"history_range_last_90_days" = "Last 90 days";
+"history_range_current_day" = "Current day";
+"history_range_current_week" = "Current week";
+"history_range_current_month" = "Current month";
+"history_range_current_quarter" = "Current quarter";
+"history_range_current_year" = "Current year";
+"history_range_custom" = "Custom range";
+"history_refreshing" = "Refreshing…";
+"history_refreshing_failed" = "Refresh failed";
+"history_no_data_selected" = "No data set selected.";
+"history_no_data_available" = "There are no measurements available yet";
+"history_no_data_in_selected_period" = "No chart data available in selected time period.";
+"Minutes" = "Minuty";
+"Hours" = "Godziny";
+"Days" = "Dni";
+"Months" = "Miesiące";
+"Years" = "Lata";

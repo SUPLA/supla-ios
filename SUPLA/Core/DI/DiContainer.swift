@@ -65,6 +65,7 @@ extension DiContainer {
         DiContainer.shared.register(type: VibrationService.self, component: VibrationServiceImpl())
         DiContainer.shared.register(type: ListsEventsManager.self, component: ListsEventsManagerImpl())
         DiContainer.shared.register(type: ConfigEventsManager.self, component: ConfigEventsManagerImpl())
+        DiContainer.shared.register(type: DownloadEventsManager.self, component: DownloadEventsManagerImpl())
         DiContainer.shared.register(type: SingleCall.self, component: SingleCallImpl())
         DiContainer.shared.register(type: DateProvider.self, component: DateProviderImpl())
         DiContainer.shared.register(type: UserNotificationCenter.self, component: UserNotificationCenterImpl())
@@ -72,6 +73,9 @@ extension DiContainer {
         DiContainer.shared.register(type: ValuesFormatter.self, component: ValuesFormatterImpl())
         DiContainer.shared.register(type: DelayedThermostatActionSubject.self, component: DelayedThermostatActionSubjectImpl())
         DiContainer.shared.register(type: DelayedWeeklyScheduleConfigSubject.self, component: DelayedWeeklyScheduleConfigSubjectImpl())
+        DiContainer.shared.register(type: SuplaCloudService.self, component: SuplaCloudServiceImpl())
+        DiContainer.shared.register(type: SuplaCloudConfigHolder.self, component: SuplaCloudConfigHolderImpl())
+        DiContainer.shared.register(type: UserStateHolder.self, component: UserStateHolderImpl())
         
         // MARK: Repositories
         DiContainer.shared.register(type: (any ProfileRepository).self, component: ProfileRepositoryImpl())
@@ -88,7 +92,7 @@ extension DiContainer {
         DiContainer.shared.register(type: (any TempHumidityMeasurementItemRepository).self, component: TempHumidityMeasurementItemRepositoryImpl())
         DiContainer.shared.register(type: (any UserIconRepository).self, component: UserIconRepositoryImpl())
         DiContainer.shared.register(type: (any ThermostatMeasurementItemRepository).self, component: ThermostatMeasurementItemRepositoryImpl())
-        DiContainer.shared.register(type: (any ClientRepository).self, component: ClientRepositoryImpl())
+        DiContainer.shared.register(type: (any SuplaCloudClientRepository).self, component: SuplaCloudClientRepositoryImpl())
         DiContainer.shared.register(type: (any ChannelRelationRepository).self, component: ChannelRelationRepositoryImpl())
         
         // MARK: Usecases
@@ -98,9 +102,16 @@ extension DiContainer {
         DiContainer.shared.register(type: ReadChannelByRemoteIdUseCase.self, component: ReadChannelByRemoteIdUseCaseImpl())
         DiContainer.shared.register(type: ReadChannelWithChildrenUseCase.self, component: ReadChannelWithChildrenUseCaseImpl())
         DiContainer.shared.register(type: CreateTemperaturesListUseCase.self, component: CreateTemperaturesListUseCaseImpl())
+        DiContainer.shared.register(type: DownloadChannelMeasurementsUseCase.self, component: DownloadChannelMeasurementsUseCaseImpl())
+        DiContainer.shared.register(type: DownloadTemperatureMeasurementsUseCase.self, component: DownloadTemperatureMeasurementsUseCaseImpl())
+        DiContainer.shared.register(type: DownloadTempHumidityMeasurementsUseCase.self, component: DownloadTempHumidityMeasurementsUseCaseImpl())
+        DiContainer.shared.register(type: LoadChannelMeasurementsUseCase.self, component: LoadChannelMeasurementsUseCaseImpl())
+        DiContainer.shared.register(type: LoadChannelMeasurementsDateRangeUseCase.self, component: LoadChannelMeasurementsDateRangeUseCaseImpl())
         // Usecases - ChannelBase
         DiContainer.shared.register(type: GetChannelBaseStateUseCase.self, component: GetChannelBaseStateUseCaseImpl())
         DiContainer.shared.register(type: GetChannelBaseIconUseCase.self, component: GetChannelBaseIconUseCaseImpl())
+        DiContainer.shared.register(type: LoadChannelWithChildrenMeasurementsUseCase.self, component: LoadChannelWithChildrenMeasurementsUseCaseImpl())
+        DiContainer.shared.register(type: LoadChannelWithChildrenMeasurementsDateRangeUseCase.self, component: LoadChannelWithChildrenMeasurementsDateRangeUseCaseImpl())
         // Usecases - Client
         DiContainer.shared.register(type: ExecuteSimpleActionUseCase.self, component: ExecuteSimpleActionUseCaseImpl())
         DiContainer.shared.register(type: StartTimerUseCase.self, component: StartTimerUseCaseImpl())
@@ -139,5 +150,13 @@ extension DiContainer {
     }
     @objc static func getPushToken() -> Data? {
         DiContainer.shared.resolve(type: GlobalSettings.self)?.pushToken
+    }
+    @objc static func setOAuthToken(token: SAOAuthToken) {
+        var configHolder = DiContainer.shared.resolve(type: SuplaCloudConfigHolder.self)
+        configHolder?.token = token
+    }
+    @objc static func setOAuthUrl(url: String) {
+        var configHolder = DiContainer.shared.resolve(type: SuplaCloudConfigHolder.self)
+        configHolder?.url = url
     }
 }

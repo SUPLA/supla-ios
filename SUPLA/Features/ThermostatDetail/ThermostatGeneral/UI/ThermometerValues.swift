@@ -18,44 +18,27 @@
 
 import Foundation
 
-final class ThermometerValues: UIView {
+final class ThermometerValues: UIStackView {
     
-    var firstTemperature: ThermostatTemperature? {
-        set {
-            firstValueView.icon = newValue?.icon
-            firstValueView.label = newValue?.temperature
+    var measurements: [MeasurementValue] = [] {
+        didSet {
+            if (measurements != oldValue) {
+                createSubviews()
+                setNeedsLayout()
+                layoutIfNeeded()
+            }
         }
-        get { nil }
     }
     
-    var secondTemperature: ThermostatTemperature? {
-        set {
-            secondValueView.icon = newValue?.icon
-            secondValueView.label = newValue?.temperature
-        }
-        get { nil }
-    }
-    
-    private lazy var firstValueView: TermometerValue = {
-        let view = TermometerValue()
-        view.translatesAutoresizingMaskIntoConstraints = false
-        return view
-    }()
-    
-    private lazy var secondValueView: TermometerValue = {
-        let view = TermometerValue()
-        view.translatesAutoresizingMaskIntoConstraints = false
-        return view
-    }()
+    private var measurementViews: [ThermometerValueView] = []
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupView()
     }
     
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-        setupView()
+    required init(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
     
     override var intrinsicContentSize: CGSize {
@@ -67,24 +50,34 @@ final class ThermometerValues: UIView {
         layer.shadowRadius = Dimens.Shadow.radius
         layer.shadowOpacity = Dimens.Shadow.opacity
         layer.shadowOffset = Dimens.Shadow.offset
-        backgroundColor = .background
+        backgroundColor = .surface
         
-        addSubview(firstValueView)
-        addSubview(secondValueView)
-        
-        setupLayout()
+        axis = .horizontal
+        distribution = .equalSpacing
+        alignment = .center
+        layoutMargins = UIEdgeInsets(top: 0, left: Dimens.distanceSmall, bottom: 0, right: Dimens.distanceDefault)
+        isLayoutMarginsRelativeArrangement = true
     }
     
-    private func setupLayout() {
-        NSLayoutConstraint.activate([
-            firstValueView.leftAnchor.constraint(equalTo: leftAnchor),
-            firstValueView.rightAnchor.constraint(equalTo: centerXAnchor, constant: -1),
-            firstValueView.topAnchor.constraint(equalTo: topAnchor),
-            
-            secondValueView.leftAnchor.constraint(equalTo: centerXAnchor, constant: 1),
-            secondValueView.rightAnchor.constraint(equalTo: rightAnchor),
-            secondValueView.topAnchor.constraint(equalTo: topAnchor)
-        ])
+    private func createSubviews() {
+        if (!measurementViews.isEmpty) {
+            measurementViews.forEach { $0.removeFromSuperview() }
+            measurementViews.removeAll()
+        }
+        
+        for value in measurements {
+            let view = measurementView(value: value, makeSmall: measurements.count > 3)
+            measurementViews.append(view)
+            addArrangedSubview(view)
+        }
+    }
+    
+    private func measurementView(value: MeasurementValue, makeSmall: Bool) -> ThermometerValueView {
+        let view = ThermometerValueView(small: makeSmall)
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.icon = value.icon
+        view.label = value.value
+        return view
     }
     
     override class var requiresConstraintBasedLayout: Bool {
@@ -92,7 +85,7 @@ final class ThermometerValues: UIView {
     }
 }
 
-fileprivate final class TermometerValue: UIView {
+fileprivate final class ThermometerValueView: UIView {
     
     var icon: UIImage? = nil {
         didSet {
@@ -119,35 +112,29 @@ fileprivate final class TermometerValue: UIView {
     private lazy var labelView: UILabel = {
         let view = UILabel()
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.font = .h5
+        view.font = small ? .body1 : .h5
         view.isHidden = true
         return view
     }()
     
-    private lazy var containerView: UIView = {
-        let view = UIView()
-        view.translatesAutoresizingMaskIntoConstraints = false
-        return view
-    }()
+    private let small: Bool
     
-    override init(frame: CGRect) {
-        super.init(frame: frame)
+    init(small: Bool) {
+        self.small = small
+        super.init(frame: .zero)
         setupView()
     }
     
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-        setupView()
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
     
     override var intrinsicContentSize: CGSize {
-        CGSize(width: UIView.noIntrinsicMetric, height: 80)
+        let width = (small ? 24 : 36) + Dimens.distanceTiny + labelView.intrinsicContentSize.width
+        return CGSize(width: width, height: 80)
     }
     
     private func setupView() {
-        backgroundColor = UIColor.surface
-        
-        addSubview(containerView)
         addSubview(iconView)
         addSubview(labelView)
         
@@ -156,18 +143,14 @@ fileprivate final class TermometerValue: UIView {
     
     private func setupLayout() {
         NSLayoutConstraint.activate([
-            containerView.centerXAnchor.constraint(equalTo: centerXAnchor),
-            containerView.topAnchor.constraint(equalTo: topAnchor),
-            containerView.bottomAnchor.constraint(equalTo: bottomAnchor),
-            
-            iconView.widthAnchor.constraint(equalToConstant: 48),
-            iconView.heightAnchor.constraint(equalToConstant: 48),
+            iconView.widthAnchor.constraint(equalToConstant: small ? 24 : 36),
+            iconView.heightAnchor.constraint(equalToConstant: small ? 24 : 36),
             iconView.centerYAnchor.constraint(equalTo: centerYAnchor),
-            iconView.leftAnchor.constraint(equalTo: containerView.leftAnchor),
+            iconView.leftAnchor.constraint(equalTo: leftAnchor),
             
             labelView.centerYAnchor.constraint(equalTo: centerYAnchor),
             labelView.leftAnchor.constraint(equalTo: iconView.rightAnchor, constant: Dimens.distanceTiny),
-            labelView.rightAnchor.constraint(equalTo: containerView.rightAnchor)
+            labelView.rightAnchor.constraint(equalTo: rightAnchor)
         ])
     }
     

@@ -29,4 +29,39 @@ final class TemperatureMeasurementItemRepositoryMock: BaseRepositoryMock<SATempe
         deleteAllCounter += 1
         return deleteAllObservable
     }
+    
+    var findMeasurementsParameters: [(Int32, AuthProfileItem, Date, Date)] = []
+    var findMeasurementsReturns: Observable<[SATemperatureMeasurementItem]> = Observable.empty()
+    func findMeasurements(remoteId: Int32, profile: AuthProfileItem, startDate: Date, endDate: Date) -> Observable<[SATemperatureMeasurementItem]> {
+        findMeasurementsParameters.append((remoteId, profile, startDate, endDate))
+        return findMeasurementsReturns
+    }
+    
+    var findMinTimestampParameters: [(Int32, AuthProfileItem)] = []
+    var findMinTimestampReturns: Observable<TimeInterval> = Observable.empty()
+    func findMinTimestamp(remoteId: Int32, profile: AuthProfileItem) -> Observable<TimeInterval> {
+        findMinTimestampParameters.append((remoteId, profile))
+        return findMinTimestampReturns
+    }
+    
+    var findMaxTimestampParameters: [(Int32, AuthProfileItem)] = []
+    var findMaxTimestampReturns: Observable<TimeInterval> = Observable.empty()
+    func findMaxTimestamp(remoteId: Int32, profile: AuthProfileItem) -> Observable<TimeInterval> {
+        findMaxTimestampParameters.append((remoteId, profile))
+        return findMaxTimestampReturns
+    }
+    
+    var findCountParameters: [(Int32, AuthProfileItem)] = []
+    var findCountReturns: Observable<Int> = Observable.empty()
+    func findCount(remoteId: Int32, profile: AuthProfileItem) -> Observable<Int> {
+        findCountParameters.append((remoteId, profile))
+        return findCountReturns
+    }
+    
+    var storeMeasurementsParameters: [([SuplaCloudClient.TemperatureMeasurement], TimeInterval, AuthProfileItem, Int32)] = []
+    var storeMeasurementsReturns: () throws -> TimeInterval = { 0 }
+    func storeMeasurements(measurements: [SuplaCloudClient.TemperatureMeasurement], timestamp: TimeInterval, profile: AuthProfileItem, remoteId: Int32) throws -> TimeInterval {
+        storeMeasurementsParameters.append((measurements, timestamp, profile, remoteId))
+        return try storeMeasurementsReturns()
+    }
 }

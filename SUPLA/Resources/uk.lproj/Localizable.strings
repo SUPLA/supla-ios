@@ -312,3 +312,6 @@
 "Cfg.removal.dialog.incomplete" = "Заповніть необхідні дані";
 
 "General.error" = "Помилка";
+
+/* Thermometer Chart */
+"history_no_data_in_selected_period" = "Немає даних для діаграми.";

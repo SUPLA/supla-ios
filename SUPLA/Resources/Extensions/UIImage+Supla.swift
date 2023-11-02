@@ -23,6 +23,7 @@ extension UIImage {
     static let iconTimer = UIImage(named: "icon_timer")
     static let iconMetrics = UIImage(named: "icon_metrics")
     static let iconSchedule = UIImage(named: "icon_schedule")
+    static let iconHistory = UIImage(named: "icon_history")
     
     // Icons
     static let pencil = UIImage(named: "pencil")
@@ -42,4 +43,7 @@ extension UIImage {
     
     static let iconWarning = UIImage(named: "channel_warning_level1")
     static let iconError = UIImage(named: "channel_warning_level2")
+    
+    static let iconArrowRight = UIImage(named: "icon_arrow_right")
+    static let iconArrowDoubleRight = UIImage(named: "icon_arrow_double_right")
 }

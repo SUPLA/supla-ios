@@ -54,8 +54,8 @@ final class CreateTemperaturesListUseCaseTests: XCTestCase {
         
         // then
         XCTAssertEqual(temperatures, [
-            ThermostatTemperature(icon: nil, temperature: "---"),
-            ThermostatTemperature(icon: nil, temperature: "---")
+            MeasurementValue(icon: nil, value: "---"),
+            MeasurementValue(icon: nil, value: "---")
         ])
     }
     
@@ -71,7 +71,7 @@ final class CreateTemperaturesListUseCaseTests: XCTestCase {
         
         // then
         XCTAssertEqual(temperatures, [
-            ThermostatTemperature(icon: nil, temperature: "---"),
+            MeasurementValue(icon: nil, value: "---"),
         ])
     }
 }

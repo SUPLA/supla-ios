@@ -25,6 +25,7 @@ class MultiAccountProfileManager: NSObject {
     @Singleton<DeleteAllProfileDataUseCase> private var deleteAllProfileDataUseCase
     @Singleton<RuntimeConfig> private var runtimeConfig
     @Singleton<SingleCall> private var singleCall
+    @Singleton<SuplaCloudConfigHolder> private var cloudConfigHolder
     
     private let userDefaults = UserDefaults.standard
     
@@ -121,6 +122,7 @@ extension MultiAccountProfileManager: ProfileManager {
             NSLog("Error occured by saving \(error)")
             return false;
         }
+        cloudConfigHolder.clean()
         initiateReconnect()
         
         return true

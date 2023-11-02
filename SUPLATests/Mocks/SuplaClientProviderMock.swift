@@ -63,7 +63,7 @@ class SuplaClientProtocolMock: NSObject, SuplaClientProtocol {
         // As the parametets memory is fried after end of the execute action we need to make
         // a copy of it to assert values inside the object
         let configRequestCopy = UnsafeMutablePointer<TCS_GetChannelConfigRequest>.allocate(capacity: 1)
-        configRequestCopy.assign(from: configRequest, count: 1)
+        configRequestCopy.update(from: configRequest, count: 1)
         getChannelConfigParameters.append(configRequestCopy)
         
         return getChannelConfigReturns
@@ -76,9 +76,15 @@ class SuplaClientProtocolMock: NSObject, SuplaClientProtocol {
         // As the parametets memory is fried after end of the execute action we need to make
         // a copy of it to assert values inside the object
         let configRequestCopy = UnsafeMutablePointer<TSCS_ChannelConfig>.allocate(capacity: 1)
-        configRequestCopy.assign(from: config, count: 1)
+        configRequestCopy.update(from: config, count: 1)
         setChannelConfigParameters.append(configRequestCopy)
         
         return setChannelConfigReturns
+    }
+    
+    var oAuthTokenRequestCalls = 0
+    var oAuthTokenRequestReturns = false
+    func oAuthTokenRequest() -> Bool {
+        oAuthTokenRequestReturns
     }
 }

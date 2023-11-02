@@ -20,6 +20,15 @@ import Foundation
 
 extension String {
     func urlEncoded() -> String? {
-        self.addingPercentEncoding(withAllowedCharacters: Client.emailCharacterSet)
+        self.addingPercentEncoding(withAllowedCharacters: SuplaCloudClient.emailCharacterSet)
+    }
+    
+    func substringIndexed(to: Int) -> String {
+        let index = if (to < 0) {
+            self.index(self.startIndex, offsetBy: self.count + to)
+        } else {
+            self.index(self.startIndex, offsetBy: to)
+        }
+        return String(self[..<index])
     }
 }
