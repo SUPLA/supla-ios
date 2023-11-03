@@ -82,6 +82,7 @@ class BaseHistoryDetailVC: BaseViewControllerVM<BaseHistoryDetailViewState, Base
         
         chartView.data = state.combinedData
         chartView.maxTemperature = state.maxTemperature
+        chartView.minTemperature = state.minTemperature
         chartView.rangeStart = state.range?.start.timeIntervalSince1970
         chartView.rangeEnd = state.range?.end.timeIntervalSince1970
         chartView.emptyChartMessage = state.emptyChartMessage

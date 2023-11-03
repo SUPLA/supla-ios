@@ -33,11 +33,11 @@ final class DownloadTemperatureMeasurementsUseCaseImpl: BaseDownloadMeasurements
         temperatureMeasurementItemRepository.deleteAll(for: profile)
     }
     
-    func findMinTimestamp(remoteId: Int32, profile: AuthProfileItem) -> Observable<TimeInterval> {
+    func findMinTimestamp(remoteId: Int32, profile: AuthProfileItem) -> Observable<TimeInterval?> {
         temperatureMeasurementItemRepository.findMinTimestamp(remoteId: remoteId, profile: profile)
     }
     
-    func findMaxTimestamp(remoteId: Int32, profile: AuthProfileItem) -> Observable<TimeInterval> {
+    func findMaxTimestamp(remoteId: Int32, profile: AuthProfileItem) -> Observable<TimeInterval?> {
         temperatureMeasurementItemRepository.findMaxTimestamp(remoteId: remoteId, profile: profile)
     }
     

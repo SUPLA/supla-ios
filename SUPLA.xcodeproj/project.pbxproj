@@ -723,6 +723,15 @@
 		A5477DCB2AA5EC4000220B4A /* CreateChannelWithChildrenUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5477DCA2AA5EC4000220B4A /* CreateChannelWithChildrenUseCase.swift */; };
 		A5477DCD2AA5F7A900220B4A /* IssueIconType.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5477DCC2AA5F7A900220B4A /* IssueIconType.swift */; };
 		A5477DCF2AA616FD00220B4A /* CellButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5477DCE2AA616FD00220B4A /* CellButton.swift */; };
+		A54A064A2AF3DF6B00C03DBC /* SessionResponseProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A54A06492AF3DF6B00C03DBC /* SessionResponseProvider.swift */; };
+		A54A064C2AF3E55700C03DBC /* SuplaSchedulers.swift in Sources */ = {isa = PBXBuildFile; fileRef = A54A064B2AF3E55700C03DBC /* SuplaSchedulers.swift */; };
+		A54A064F2AF3ED6200C03DBC /* RequestHelperTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A54A064E2AF3ED6200C03DBC /* RequestHelperTests.swift */; };
+		A54A06512AF3F05000C03DBC /* SessionResponseProviderMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = A54A06502AF3F05000C03DBC /* SessionResponseProviderMock.swift */; };
+		A54A06542AF3F1EF00C03DBC /* SuplaCloudConfigHolderMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = A54A06532AF3F1EF00C03DBC /* SuplaCloudConfigHolderMock.swift */; };
+		A54A06562AF3F2B100C03DBC /* SuplaSchedulersMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = A54A06552AF3F2B100C03DBC /* SuplaSchedulersMock.swift */; };
+		A54A06582AF3FDCA00C03DBC /* ObservableTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A54A06572AF3FDCA00C03DBC /* ObservableTestCase.swift */; };
+		A54A065B2AF4E3C300C03DBC /* SAOAuthToken+Mock.swift in Sources */ = {isa = PBXBuildFile; fileRef = A54A065A2AF4E3C300C03DBC /* SAOAuthToken+Mock.swift */; };
+		A54A065D2AF4E58F00C03DBC /* CStructsConstructor.m in Sources */ = {isa = PBXBuildFile; fileRef = A54A065C2AF4E58F00C03DBC /* CStructsConstructor.m */; };
 		A553862829E004E400B5CF3F /* GlobalSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = A553862729E004E400B5CF3F /* GlobalSettings.swift */; };
 		A553862B29E0202700B5CF3F /* Singleton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A553862A29E0202700B5CF3F /* Singleton.swift */; };
 		A553862D29E021AE00B5CF3F /* DiContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A553862C29E021AE00B5CF3F /* DiContainer.swift */; };
@@ -2120,6 +2129,16 @@
 		A5477DCA2AA5EC4000220B4A /* CreateChannelWithChildrenUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateChannelWithChildrenUseCase.swift; sourceTree = "<group>"; };
 		A5477DCC2AA5F7A900220B4A /* IssueIconType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueIconType.swift; sourceTree = "<group>"; };
 		A5477DCE2AA616FD00220B4A /* CellButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellButton.swift; sourceTree = "<group>"; };
+		A54A06492AF3DF6B00C03DBC /* SessionResponseProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionResponseProvider.swift; sourceTree = "<group>"; };
+		A54A064B2AF3E55700C03DBC /* SuplaSchedulers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuplaSchedulers.swift; sourceTree = "<group>"; };
+		A54A064E2AF3ED6200C03DBC /* RequestHelperTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestHelperTests.swift; sourceTree = "<group>"; };
+		A54A06502AF3F05000C03DBC /* SessionResponseProviderMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionResponseProviderMock.swift; sourceTree = "<group>"; };
+		A54A06532AF3F1EF00C03DBC /* SuplaCloudConfigHolderMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuplaCloudConfigHolderMock.swift; sourceTree = "<group>"; };
+		A54A06552AF3F2B100C03DBC /* SuplaSchedulersMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuplaSchedulersMock.swift; sourceTree = "<group>"; };
+		A54A06572AF3FDCA00C03DBC /* ObservableTestCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObservableTestCase.swift; sourceTree = "<group>"; };
+		A54A065A2AF4E3C300C03DBC /* SAOAuthToken+Mock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SAOAuthToken+Mock.swift"; sourceTree = "<group>"; };
+		A54A065C2AF4E58F00C03DBC /* CStructsConstructor.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CStructsConstructor.m; sourceTree = "<group>"; };
+		A54A065E2AF4E5A600C03DBC /* CStructsConstructor.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CStructsConstructor.h; sourceTree = "<group>"; };
 		A553862729E004E400B5CF3F /* GlobalSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalSettings.swift; sourceTree = "<group>"; };
 		A553862A29E0202700B5CF3F /* Singleton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Singleton.swift; sourceTree = "<group>"; };
 		A553862C29E021AE00B5CF3F /* DiContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiContainer.swift; sourceTree = "<group>"; };
@@ -3824,6 +3843,33 @@
 			path = SuplaClient;
 			sourceTree = "<group>";
 		};
+		A54A064D2AF3ED4B00C03DBC /* Infrastructure */ = {
+			isa = PBXGroup;
+			children = (
+				A54A064E2AF3ED6200C03DBC /* RequestHelperTests.swift */,
+			);
+			path = Infrastructure;
+			sourceTree = "<group>";
+		};
+		A54A06522AF3F1DB00C03DBC /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				A54A06532AF3F1EF00C03DBC /* SuplaCloudConfigHolderMock.swift */,
+				A54A06552AF3F2B100C03DBC /* SuplaSchedulersMock.swift */,
+			);
+			path = Networking;
+			sourceTree = "<group>";
+		};
+		A54A06592AF4E3A300C03DBC /* Native */ = {
+			isa = PBXGroup;
+			children = (
+				A54A065A2AF4E3C300C03DBC /* SAOAuthToken+Mock.swift */,
+				A54A065C2AF4E58F00C03DBC /* CStructsConstructor.m */,
+				A54A065E2AF4E5A600C03DBC /* CStructsConstructor.h */,
+			);
+			path = Native;
+			sourceTree = "<group>";
+		};
 		A553862929E0201A00B5CF3F /* DI */ = {
 			isa = PBXGroup;
 			children = (
@@ -3904,6 +3950,7 @@
 			children = (
 				A50CD3D92A4D9AFC0012DD9B /* DateProviderMock.swift */,
 				A573B0B22A603003001E19D0 /* VibrationServiceMock.swift */,
+				A54A06502AF3F05000C03DBC /* SessionResponseProviderMock.swift */,
 			);
 			path = Infrastructure;
 			sourceTree = "<group>";
@@ -4004,6 +4051,8 @@
 		A57638CA29E5EF80003E15A3 /* Mocks */ = {
 			isa = PBXGroup;
 			children = (
+				A54A06592AF4E3A300C03DBC /* Native */,
+				A54A06522AF3F1DB00C03DBC /* Networking */,
 				A57C88382ACB4BBE000B0F10 /* Model */,
 				A5A23C322ABE1B7600233542 /* Entity */,
 				A573B0A32A5FF185001E19D0 /* Infrastructure */,
@@ -4194,8 +4243,10 @@
 		A59AB8A92A306FB600D91F1F /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				A54A064D2AF3ED4B00C03DBC /* Infrastructure */,
 				A59AB8AA2A306FC700D91F1F /* ViewModelTest.swift */,
 				A59AB8E02A309C1500D91F1F /* UseCaseTest.swift */,
+				A54A06572AF3FDCA00C03DBC /* ObservableTestCase.swift */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -4481,6 +4532,8 @@
 				A5E4904F2A3C79A4006801FE /* UserNotificationCenter.swift */,
 				A50CD3D22A4D82ED0012DD9B /* DateProvider.swift */,
 				A5FE67682A666FF800147D1F /* RequestHelper.swift */,
+				A54A06492AF3DF6B00C03DBC /* SessionResponseProvider.swift */,
+				A54A064B2AF3E55700C03DBC /* SuplaSchedulers.swift */,
 			);
 			path = Infrastructure;
 			sourceTree = "<group>";
@@ -5660,6 +5713,7 @@
 				A530EE182A56FADF00F8DAEE /* GarageDoorIconNameProducer.swift in Sources */,
 				A5FE67612A65CC9900147D1F /* SuplaCloudClient.swift in Sources */,
 				A5F29C042A2DC5D500ED700A /* NSManagedObjectModel+Ext.swift in Sources */,
+				A54A064A2AF3DF6B00C03DBC /* SessionResponseProvider.swift in Sources */,
 				A5F8361D2A2E004C00E5CA71 /* Migration10to11ModelMapping.xcmappingmodel in Sources */,
 				A56091752AE685A800AFE14F /* ThermostatHistoryDetailVM.swift in Sources */,
 				AE929A87275FD5D500B75715 /* MainNavigationCoordinator.swift in Sources */,
@@ -5894,6 +5948,7 @@
 				01F8857122E5E79100D18373 /* SATemperatureMeasurementItem+CoreDataClass.m in Sources */,
 				A56233EB2AB31A45001CB948 /* CALayer+Ext.swift in Sources */,
 				A56233F02AB3949D001CB948 /* ReadChannelWithChildrenUseCase.swift in Sources */,
+				A54A064C2AF3E55700C03DBC /* SuplaSchedulers.swift in Sources */,
 				A57668E52AEA67E00025509D /* LoadChannelWithChildrenMeasurementsDateRangeUseCase.swift in Sources */,
 				018CFD2323281ADB00888CB7 /* SAThermostatExtendedValue.m in Sources */,
 				40BBA35D20AC6E220054CD20 /* SAChannelGroupRelation+CoreDataProperties.m in Sources */,
@@ -6064,11 +6119,13 @@
 				01A4D4F8269211EA00F3DCD1 /* SAFormatterTests.m in Sources */,
 				A57C883C2ACB564B000B0F10 /* SuplaWeeklyScheduleProgramTests.swift in Sources */,
 				A59AB8DF2A309BBE00D91F1F /* CreateProfileGroupsListUseCaseTests.swift in Sources */,
+				A54A064F2AF3ED6200C03DBC /* RequestHelperTests.swift in Sources */,
 				A59AB8D32A30929F00D91F1F /* TemperatureMeasurementItemRepositoryMock.swift in Sources */,
 				A57638CE29E5EFDA003E15A3 /* GlobalSettingsMock.swift in Sources */,
 				A59AB8CD2A30916F00D91F1F /* ImpulseCounterMeasurementItemRepositoryMock.swift in Sources */,
 				01DD2F0C247718C40025DFF9 /* SARangeCalibrationWheelTests.m in Sources */,
 				401CA1DC1BA067DB00117AF4 /* SUPLATests.m in Sources */,
+				A54A065D2AF4E58F00C03DBC /* CStructsConstructor.m in Sources */,
 				A573B0AE2A6022C1001E19D0 /* GetDefaultIconNameUseCaseMock.swift in Sources */,
 				A59AB8AE2A3071A300D91F1F /* GroupListVMTests.swift in Sources */,
 				A5A72E452AC18A6E00405C41 /* GetClientConfigUseCaseTests.swift in Sources */,
@@ -6080,6 +6137,7 @@
 				A57785C329E80CF7001C631E /* SuplaAppWrapperMock.swift in Sources */,
 				A59AB8CB2A30911A00D91F1F /* ElectricityMeasurementItemRepositoryMock.swift in Sources */,
 				A5ABE5C92ABCD76300FFA50B /* ThermostatUseCasesMocks.swift in Sources */,
+				A54A06582AF3FDCA00C03DBC /* ObservableTestCase.swift in Sources */,
 				A59AB8BF2A30820900D91F1F /* ChannelRepositoryMock.swift in Sources */,
 				A50CD3D62A4D99E60012DD9B /* UpdateTokenTaskTests.swift in Sources */,
 				A59AB8BD2A30806800D91F1F /* BaseRepositoryMock.swift in Sources */,
@@ -6088,6 +6146,7 @@
 				A5A23C2D2ABD96DB00233542 /* SuplaChannelConfigTests.swift in Sources */,
 				A50CD3D82A4D9A040012DD9B /* SingleCallMock.swift in Sources */,
 				A5ABE5C02ABC774C00FFA50B /* EditProgramDialogVMTests.swift in Sources */,
+				A54A065B2AF4E3C300C03DBC /* SAOAuthToken+Mock.swift in Sources */,
 				A59AB8B52A30795B00D91F1F /* SceneUseCasesMocks.swift in Sources */,
 				A5DA31072AC16B21008179DB /* InsertChannelRelationForProfileUseCaseTests.swift in Sources */,
 				A57638C629E5D4C9003E15A3 /* XCTestCaseExtensions.swift in Sources */,
@@ -6108,6 +6167,7 @@
 				A59AB8D92A30930E00D91F1F /* ThermostatMeasurementItemRepositoryMock.swift in Sources */,
 				A59AB8C92A30906100D91F1F /* GroupRepositoryMock.swift in Sources */,
 				A573B0B32A603003001E19D0 /* VibrationServiceMock.swift in Sources */,
+				A54A06512AF3F05000C03DBC /* SessionResponseProviderMock.swift in Sources */,
 				01CEAC2A25B9BAE2009C3BFD /* SADigiglassValueTests.m in Sources */,
 				A59683882ABE1E5A0005E73C /* ReadChannelWithChildrenUseCaseTests.swift in Sources */,
 				A50CD3DA2A4D9AFC0012DD9B /* DateProviderMock.swift in Sources */,
@@ -6115,6 +6175,8 @@
 				A59AB89D2A3052C600D91F1F /* ChannelListVMTests.swift in Sources */,
 				012F722C22DF3E2300E5F72E /* ChartFilterFieldTests.m in Sources */,
 				A57C88372ACB49C5000B0F10 /* ThermostatProgramInfoTests.swift in Sources */,
+				A54A06542AF3F1EF00C03DBC /* SuplaCloudConfigHolderMock.swift in Sources */,
+				A54A06562AF3F2B100C03DBC /* SuplaSchedulersMock.swift in Sources */,
 				01AB61ED25B8E0B400DBEF74 /* SADigiglassControllerTests.m in Sources */,
 				A573B0A62A600733001E19D0 /* TimerDetailVMTests.swift in Sources */,
 				A573B0AA2A601A57001E19D0 /* ReadChannelByRemoteIdUseCaseTests.swift in Sources */,

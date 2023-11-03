@@ -17,7 +17,6 @@
  */
 
 import RxSwift
-import RxCocoa
 
 protocol RequestHelper {
     func getRequest(urlString: String) -> Observable<Data>
@@ -26,9 +25,10 @@ protocol RequestHelper {
 
 final class RequestHelperImpl: NSObject, RequestHelper {
     
-    @Singleton<SuplaCloudConfigHolder> var configHolder
-    @Singleton<SuplaClientProvider> var clientProvider
-    
+    @Singleton<SuplaCloudConfigHolder> private var configHolder
+    @Singleton<SuplaClientProvider> private var clientProvider
+    @Singleton<SessionResponseProvider> private var sessionResponseProvider
+    @Singleton<SuplaSchedulers> private var schedulers
     
     private let syncedQueue = DispatchQueue(label: "RequestPrivateQueue", attributes: .concurrent)
     
@@ -36,7 +36,7 @@ final class RequestHelperImpl: NSObject, RequestHelper {
         guard let url: URL = .init(string: urlString)
         else {
             return Observable.error(
-                RequestHelperError.wrongUrl
+                RequestHelperError.wrongUrl(url: urlString)
             )
         }
         
@@ -47,40 +47,33 @@ final class RequestHelperImpl: NSObject, RequestHelper {
         )
         request.httpMethod = "GET"
         
-        return URLSession.shared.rx.data(request: request)
+        return sessionResponseProvider.data(request)
     }
     
     func getOAuthRequest(urlString: String) -> Observable<(response: HTTPURLResponse, data: Data)> {
         guard let url: URL = .init(string: urlString) else {
-            return Observable.error(RequestHelperError.wrongUrl)
+            return Observable.error(RequestHelperError.wrongUrl(url: urlString))
         }
         
         if (configHolder.token == nil || configHolder.token?.isAlive() == false) {
             if (!updateToken()) {
-                return Observable.error(RequestHelperError.tokenNotValid)
+                return Observable.error(RequestHelperError.tokenNotValid(message: "By preparing request"))
             }
         }
         
-        let session: URLSession
-        if (url.host?.contains(".supla.org") == true) {
-            session = URLSession.shared
-        } else {
-            session = URLSession(configuration: .default, delegate: self, delegateQueue: nil)
-        }
-        
-        return session.rx.response(request: oauthRequest(url))
+        return sessionResponseProvider.response(oauthRequest(url))
             .flatMap { (response, data) in
                 if (response.statusCode == 401) {
                     if (self.updateToken()) {
-                        return session.rx.response(request: self.oauthRequest(url))
+                        return self.sessionResponseProvider.response(self.oauthRequest(url))
                     } else {
-                        return Observable.error(RequestHelperError.tokenNotValid)
+                        return Observable.error(RequestHelperError.tokenNotValid(message: "By refreshing during the request"))
                     }
                 } else {
                     return Observable.just((response, data))
                 }
             }
-            .subscribe(on: ConcurrentDispatchQueueScheduler(qos: .userInitiated))
+            .subscribe(on: schedulers.background)
     }
     
     private func oauthRequest(_ url: URL) -> URLRequest {
@@ -91,6 +84,7 @@ final class RequestHelperImpl: NSObject, RequestHelper {
         if let token = configHolder.token {
             request.setValue("Bearer \(token.tokenString)", forHTTPHeaderField: "Authorization")
         }
+        request.httpMethod = "GET"
         
         return request
     }
@@ -111,16 +105,7 @@ final class RequestHelperImpl: NSObject, RequestHelper {
     }
 }
 
-extension RequestHelperImpl: URLSessionDelegate {
-    func urlSession(_ session: URLSession, didReceive challenge: URLAuthenticationChallenge, completionHandler: @escaping (URLSession.AuthChallengeDisposition, URLCredential?) -> Void) {
-        if (challenge.protectionSpace.authenticationMethod == NSURLAuthenticationMethodServerTrust) {
-            let credential = URLCredential(trust: challenge.protectionSpace.serverTrust!)
-            completionHandler(.useCredential, credential)
-        }
-    }
-}
-
 enum RequestHelperError: Error {
-    case wrongUrl
-    case tokenNotValid
+    case wrongUrl(url: String)
+    case tokenNotValid(message: String)
 }

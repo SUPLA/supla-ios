@@ -41,10 +41,12 @@ final class LoadChannelMeasurementsDateRangeUseCaseImpl: LoadChannelMeasurements
                         self.findMaxTime(channel: $0.0, profile: $0.1)
                     ) { min, max in
                         var result: DaysRange? = nil
-                        if (min > 0 && max > 0) {
+                        if let start = min,
+                           let end = max,
+                           (start > 0 && end > 0) {
                             result = DaysRange(
-                                start: Date(timeIntervalSince1970: min),
-                                end: Date(timeIntervalSince1970: max)
+                                start: Date(timeIntervalSince1970: start),
+                                end: Date(timeIntervalSince1970: end)
                             )
                         }
                         
@@ -58,23 +60,23 @@ final class LoadChannelMeasurementsDateRangeUseCaseImpl: LoadChannelMeasurements
             }
     }
     
-    private func findMinTime(channel: SAChannel, profile: AuthProfileItem) -> Observable<Double> {
+    private func findMinTime(channel: SAChannel, profile: AuthProfileItem) -> Observable<Double?> {
         if (channel.func == SUPLA_CHANNELFNC_THERMOMETER) {
             return temperatureMeasurementItemRepository.findMinTimestamp(remoteId: channel.remote_id, profile: profile)
         } else if (channel.func == SUPLA_CHANNELFNC_HUMIDITYANDTEMPERATURE) {
             return tempHumidityMeasurementItemRepository.findMinTimestamp(remoteId: channel.remote_id, profile: profile)
         } else {
-            return Observable.just(0)
+            return Observable.just(nil)
         }
     }
     
-    private func findMaxTime(channel: SAChannel, profile: AuthProfileItem) -> Observable<Double> {
+    private func findMaxTime(channel: SAChannel, profile: AuthProfileItem) -> Observable<Double?> {
         if (channel.func == SUPLA_CHANNELFNC_THERMOMETER) {
             return temperatureMeasurementItemRepository.findMaxTimestamp(remoteId: channel.remote_id, profile: profile)
         } else if (channel.func == SUPLA_CHANNELFNC_HUMIDITYANDTEMPERATURE) {
             return tempHumidityMeasurementItemRepository.findMaxTimestamp(remoteId: channel.remote_id, profile: profile)
         } else {
-            return Observable.just(0)
+            return Observable.just(nil)
         }
     }
 }

@@ -31,9 +31,13 @@ class TemperaturesChartView: UIView {
         set {
             combinedChart.highlightValue(nil)
             combinedChart.data = newValue
-            if let yMinValue = newValue?.allData.map({ $0.yMin }).min() {
-                combinedChart.leftAxis.axisMinimum = yMinValue < 0 ? yMinValue : 0
+            if (newValue != nil) {
+                if let yMinValue = newValue?.allData.map({ $0.yMin }).min() {
+                    combinedChart.leftAxis.axisMinimum = yMinValue < 0 ? yMinValue : 0
+                }
             }
+            combinedChart.notifyDataSetChanged()
+            combinedChart.setNeedsLayout()
         }
     }
     
@@ -59,7 +63,12 @@ class TemperaturesChartView: UIView {
     
     var maxTemperature: Double? {
         get { combinedChart.leftAxis.axisMaximum }
-        set { if let max = newValue { combinedChart.leftAxis.axisMaximum = max } }
+        set { if let max = newValue { combinedChart.leftAxis.axisMaximum = max < 0 ? 0 : max } }
+    }
+    
+    var minTemperature: Double? {
+        get { combinedChart.leftAxis.axisMinimum }
+        set { if let min = newValue { combinedChart.leftAxis.axisMinimum = min < 0 ? min : 0 } }
     }
     
     private lazy var combinedChart: CombinedChartView = {

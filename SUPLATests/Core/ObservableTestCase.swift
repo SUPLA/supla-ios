@@ -22,28 +22,28 @@ import RxSwift
 
 @testable import SUPLA
 
-class UseCaseTest<R>: ObservableTestCase {
+class ObservableTestCase: XCTestCase {
     
-    lazy var observer: TestableObserver<R>! = {
-        schedulers.testScheduler.createObserver(R.self)
+    lazy var schedulers: SuplaSchedulersMock! = {
+        SuplaSchedulersMock()
     }()
     
+    lazy var disposeBag: DisposeBag! = { DisposeBag() }()
+    
+    override func setUp() {
+        DiContainer.shared.register(type: SuplaSchedulers.self, component: schedulers!)
+    }
+    
     override func tearDown() {
-        super.tearDown()
-        observer = nil
+        schedulers = nil
+        disposeBag = nil
     }
     
-    func assertEventsCount(_ count: Int) {
-        assertEvents(observer, count: count)
+    func assertEvents<T>(_ observer: TestableObserver<T>, count: Int) {
+        XCTAssertEqual(observer.events.count, count)
     }
     
-    func assertEvents(_ items: [Event<R>]) {
-        assertEvents(observer, items: items)
-    }
-}
-
-extension UseCaseTest where R:Equatable {
-    func assertEvents(_ items: [Event<R>]) {
+    func assertEvents<T>(_ observer: TestableObserver<T>, items: [Event<T>]) {
         let events = observer.events
         XCTAssertEqual(events.count, items.count)
         
@@ -52,14 +52,19 @@ extension UseCaseTest where R:Equatable {
             case (.error(let e1), .error(let e2)):
                 XCTAssertEqual("\(e1)", "\(e2)")
                 break
-            case (.next(let firstElement), .next(let secondElement)):
-                XCTAssertEqual(firstElement, secondElement)
-                break
-            case (.completed, .completed):
+            case (.next, .next), (.completed, .completed):
                 break
             default:
                 XCTFail("Events not equal (\(event), \(item))")
             }
         }
+    }
+    
+    func observer<T>() -> TestableObserver<T> {
+        schedulers.testScheduler.createObserver(T.self)
+    }
+
+    func startScheduler() {
+        schedulers.testScheduler.start()
     }
 }

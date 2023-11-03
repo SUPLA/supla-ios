@@ -90,6 +90,7 @@ class BaseHistoryDetailVM: BaseViewModel<BaseHistoryDetailViewState, BaseHistory
                 .changing(path: \.aggregations, to: aggregations(newRange, state.aggregations?.selected))
                 .changing(path: \.sets, to: state.sets.map({ $0.changing(path: \.entries, to: []) }))
                 .changing(path: \.chartParameters, to: HideableValue(ChartParameters(scaleX: 1, scaleY: 1, x: 0, y: 0)))
+                .changing(path: \.loading, to: true)
         }
         
         if let state = currentState() { triggerMeasurementsLoad(state: state) }
@@ -127,6 +128,7 @@ class BaseHistoryDetailVM: BaseViewModel<BaseHistoryDetailViewState, BaseHistory
     func changeAggregation(aggregation: ChartDataAggregation) {
         updateView {
             $0.changing(path: \.aggregations, to: $0.aggregations?.changing(path: \.selected, to: aggregation))
+                .changing(path: \.loading, to: true)
         }
         
         if let state = currentState() { triggerMeasurementsLoad(state: state) }
@@ -278,6 +280,7 @@ class BaseHistoryDetailVM: BaseViewModel<BaseHistoryDetailViewState, BaseHistory
         
         return state.changing(path: \.range, to: DaysRange(start: start, end: end))
             .changing(path: \.sets, to: state.sets.map({ $0.changing(path: \.entries, to: [])}))
+            .changing(path: \.loading, to: true)
     }
     
     private func handleMeasurements(sets: [HistoryDataSet], range: DaysRange?, chartState: TemperatureChartState) {
@@ -293,6 +296,11 @@ class BaseHistoryDetailVM: BaseViewModel<BaseHistoryDetailViewState, BaseHistory
                     path: \.maxTemperature,
                     to: sets.filter { $0.setId.type == .temperature }
                         .map { $0.entries.map { $0.map { $0.y } }.maxOrNull() }.maxOrNull()?.plus(2)
+                )
+                .changing(
+                    path: \.minTemperature,
+                    to: sets.filter { $0.setId.type == .temperature }
+                        .map { $0.entries.map { $0.map { $0.y } }.minOrNull() }.minOrNull()?.minus(2)
                 )
                 .changing(path: \.minDate, to: range?.start ?? $0.minDate)
                 .changing(path: \.maxDate, to: range?.end ?? $0.maxDate)
@@ -342,6 +350,7 @@ struct BaseHistoryDetailViewState: ViewState {
     var maxDate: Date? = nil
     var withHumidity: Bool = false
     var maxTemperature: Double? = nil
+    var minTemperature: Double? = nil
     var chartParameters: HideableValue<ChartParameters>? = nil
     
     var combinedData: CombinedChartData? {

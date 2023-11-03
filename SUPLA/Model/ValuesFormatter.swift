@@ -17,6 +17,7 @@
  */
 
 let NO_VALUE_TEXT = "---"
+private let MIN_TEMPERATURE_VALUE: Float = -273
 
 protocol ValuesFormatter {
     // Values
@@ -72,6 +73,7 @@ final class ValuesFormatterImpl: ValuesFormatter {
         formatter.minimumFractionDigits = precision
         formatter.maximumFractionDigits = precision
         guard let value = value,
+              value >= MIN_TEMPERATURE_VALUE,
               let formatted = formatter.string(from: NSNumber(value: convert(value)))
         else {
             return NO_VALUE_TEXT
@@ -87,11 +89,19 @@ final class ValuesFormatterImpl: ValuesFormatter {
     }
     
     func humidityToString(value: Double?, withPercentage: Bool) -> String {
-        guard let value = value else { return NO_VALUE_TEXT }
+        formatter.minimumFractionDigits = 1
+        formatter.maximumFractionDigits = 1
+        guard let value = value,
+              value >= 0 && value <= 100,
+              let formatted = formatter.string(from: NSNumber(value: convert(Float(value))))
+        else {
+            return NO_VALUE_TEXT
+        }
+        
         return if (withPercentage) {
-            String(format: "%.1f%%", value)
+            "\(formatted)%"
         } else {
-            String(format: "%.1f", value)
+            "\(formatted)"
         }
     }
     
