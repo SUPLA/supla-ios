@@ -76,6 +76,8 @@ extension DiContainer {
         DiContainer.shared.register(type: SuplaCloudService.self, component: SuplaCloudServiceImpl())
         DiContainer.shared.register(type: SuplaCloudConfigHolder.self, component: SuplaCloudConfigHolderImpl())
         DiContainer.shared.register(type: UserStateHolder.self, component: UserStateHolderImpl())
+        DiContainer.shared.register(type: SessionResponseProvider.self, component: SessionResponseProviderImpl())
+        DiContainer.shared.register(type: SuplaSchedulers.self, component: SuplaSchedulersImpl())
         
         // MARK: Repositories
         DiContainer.shared.register(type: (any ProfileRepository).self, component: ProfileRepositoryImpl())

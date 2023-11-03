@@ -21,9 +21,9 @@ import RxSwift
 protocol TempHumidityMeasurementItemRepository: RepositoryProtocol where T == SATempHumidityMeasurementItem {
     func deleteAll(for profile: AuthProfileItem) -> Observable<Void>
     func findMeasurements(remoteId: Int32, profile: AuthProfileItem, startDate: Date, endDate: Date) -> Observable<[SATempHumidityMeasurementItem]>
-    func findMinTimestamp(remoteId: Int32, profile: AuthProfileItem) -> Observable<TimeInterval>
+    func findMinTimestamp(remoteId: Int32, profile: AuthProfileItem) -> Observable<TimeInterval?>
     
-    func findMaxTimestamp(remoteId: Int32, profile: AuthProfileItem) -> Observable<TimeInterval>
+    func findMaxTimestamp(remoteId: Int32, profile: AuthProfileItem) -> Observable<TimeInterval?>
     
     func findCount(remoteId: Int32, profile: AuthProfileItem) -> Observable<Int>
     
@@ -52,7 +52,7 @@ final class TempHumidityMeasurementItemRepositoryImpl: Repository<SATempHumidity
         )
     }
     
-    func findMinTimestamp(remoteId: Int32, profile: AuthProfileItem) -> Observable<TimeInterval> {
+    func findMinTimestamp(remoteId: Int32, profile: AuthProfileItem) -> Observable<TimeInterval?> {
         let request = SATempHumidityMeasurementItem.fetchRequest()
             .filtered(by: NSPredicate(format: "channel_id = %d AND profile = %@", remoteId, profile))
             .ordered(by: "date", ascending: true)
@@ -60,14 +60,14 @@ final class TempHumidityMeasurementItemRepositoryImpl: Repository<SATempHumidity
         
         return query(request).map { measurements in
             if (measurements.isEmpty) {
-                return 0
+                return nil
             } else {
-                return measurements[0].date?.timeIntervalSince1970 ?? 0
+                return measurements[0].date?.timeIntervalSince1970 ?? nil
             }
         }
     }
     
-    func findMaxTimestamp(remoteId: Int32, profile: AuthProfileItem) -> Observable<TimeInterval> {
+    func findMaxTimestamp(remoteId: Int32, profile: AuthProfileItem) -> Observable<TimeInterval?> {
         let request = SATempHumidityMeasurementItem.fetchRequest()
             .filtered(by: NSPredicate(format: "channel_id = %d AND profile = %@", remoteId, profile))
             .ordered(by: "date", ascending: false)
@@ -75,9 +75,9 @@ final class TempHumidityMeasurementItemRepositoryImpl: Repository<SATempHumidity
         
         return query(request).map { measurements in
             if (measurements.isEmpty) {
-                return 0
+                return nil
             } else {
-                return measurements[0].date?.timeIntervalSince1970 ?? 0
+                return measurements[0].date?.timeIntervalSince1970 ?? nil
             }
         }
     }

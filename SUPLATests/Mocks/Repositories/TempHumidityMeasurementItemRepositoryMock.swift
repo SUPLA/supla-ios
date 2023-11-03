@@ -38,15 +38,15 @@ final class TempHumidityMeasurementItemRepositoryMock: BaseRepositoryMock<SATemp
     }
     
     var findMinTimestampParameters: [(Int32, AuthProfileItem)] = []
-    var findMinTimestampReturns: Observable<TimeInterval> = Observable.empty()
-    func findMinTimestamp(remoteId: Int32, profile: AuthProfileItem) -> Observable<TimeInterval> {
+    var findMinTimestampReturns: Observable<TimeInterval?> = Observable.empty()
+    func findMinTimestamp(remoteId: Int32, profile: AuthProfileItem) -> Observable<TimeInterval?> {
         findMinTimestampParameters.append((remoteId, profile))
         return findMinTimestampReturns
     }
     
     var findMaxTimestampParameters: [(Int32, AuthProfileItem)] = []
-    var findMaxTimestampReturns: Observable<TimeInterval> = Observable.empty()
-    func findMaxTimestamp(remoteId: Int32, profile: AuthProfileItem) -> Observable<TimeInterval> {
+    var findMaxTimestampReturns: Observable<TimeInterval?> = Observable.empty()
+    func findMaxTimestamp(remoteId: Int32, profile: AuthProfileItem) -> Observable<TimeInterval?> {
         findMaxTimestampParameters.append((remoteId, profile))
         return findMaxTimestampReturns
     }

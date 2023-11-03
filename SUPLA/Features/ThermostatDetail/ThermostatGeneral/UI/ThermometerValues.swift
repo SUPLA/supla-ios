@@ -53,7 +53,7 @@ final class ThermometerValues: UIStackView {
         backgroundColor = .surface
         
         axis = .horizontal
-        distribution = .equalSpacing
+        distribution = .fillProportionally
         alignment = .center
         layoutMargins = UIEdgeInsets(top: 0, left: Dimens.distanceSmall, bottom: 0, right: Dimens.distanceDefault)
         isLayoutMarginsRelativeArrangement = true

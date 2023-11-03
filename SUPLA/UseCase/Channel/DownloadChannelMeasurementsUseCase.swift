@@ -28,6 +28,7 @@ final class DownloadChannelMeasurementsUseCaseImpl: DownloadChannelMeasurementsU
     @Singleton<DownloadTemperatureMeasurementsUseCase> private var downloadTemperatureMeasurementsUseCase
     @Singleton<DownloadTempHumidityMeasurementsUseCase> private var downloadTempHumidityMeasurementsUseCase
     @Singleton<ProfileRepository> private var profileRepository
+    @Singleton<SuplaSchedulers> private var schedulers
     
     private let syncedQueue = DispatchQueue(label: "MeasurementsPrivateQueue", attributes: .concurrent)
     private var workingList: [Int32] = []
@@ -71,7 +72,7 @@ final class DownloadChannelMeasurementsUseCaseImpl: DownloadChannelMeasurementsU
     
     private func setupObservable(remoteId: Int32, observable: Observable<Float>) {
         observable
-            .subscribe(on: ConcurrentDispatchQueueScheduler(qos: .userInitiated))
+            .subscribe(on: schedulers.background)
             .do(onSubscribe: {
                 self.downloadEventsManager.emitProgressState(remoteId: remoteId, state: .started)
             })

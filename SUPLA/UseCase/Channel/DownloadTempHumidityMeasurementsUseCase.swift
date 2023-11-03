@@ -33,11 +33,11 @@ final class DownloadTempHumidityMeasurementsUseCaseImpl: BaseDownloadMeasurement
         tempHumidityMeasurementItemRepository.deleteAll(for: profile)
     }
     
-    func findMinTimestamp(remoteId: Int32, profile: AuthProfileItem) -> Observable<TimeInterval> {
+    func findMinTimestamp(remoteId: Int32, profile: AuthProfileItem) -> Observable<TimeInterval?> {
         tempHumidityMeasurementItemRepository.findMinTimestamp(remoteId: remoteId, profile: profile)
     }
     
-    func findMaxTimestamp(remoteId: Int32, profile: AuthProfileItem) -> Observable<TimeInterval> {
+    func findMaxTimestamp(remoteId: Int32, profile: AuthProfileItem) -> Observable<TimeInterval?> {
         tempHumidityMeasurementItemRepository.findMaxTimestamp(remoteId: remoteId, profile: profile)
     }
     

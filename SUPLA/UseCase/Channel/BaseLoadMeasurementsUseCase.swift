@@ -94,6 +94,9 @@ extension BaseLoadMeasurementsUseCase {
     }
     
     private func channelValueText(_ channel: SAChannel, _ type: ChartEntryType) -> String {
+        if (!channel.isOnline()) {
+            return NO_VALUE_TEXT
+        }
         @Singleton<ValuesFormatter> var formatter
         
         return switch(type) {

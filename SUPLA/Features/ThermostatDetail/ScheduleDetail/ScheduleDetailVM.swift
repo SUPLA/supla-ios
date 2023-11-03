@@ -28,6 +28,7 @@ class ScheduleDetailVM: BaseViewModel<ScheduleDetailViewState, ScheduleDetailVie
     @Singleton<DelayedWeeklyScheduleConfigSubject> private var dealyedWeeklyScheduleConfigSubject
     @Singleton<ReadChannelByRemoteIdUseCase> private var readChannelByRemoteIdUseCase
     @Singleton<DateProvider> private var dateProvider
+    @Singleton<SuplaSchedulers> private var schedulers
     
     private let reloadConfigRelay = PublishRelay<Void>()
     
@@ -47,7 +48,7 @@ class ScheduleDetailVM: BaseViewModel<ScheduleDetailViewState, ScheduleDetailVie
             .disposed(by: self)
         
         reloadConfigRelay
-            .subscribe(on: ConcurrentDispatchQueueScheduler(qos: .background))
+            .subscribe(on: schedulers.background)
             .asDriverWithoutError()
             .debounce(.seconds(1))
             .drive(onNext: { _ in self.triggerConfigLoad(remoteId: remoteId) })

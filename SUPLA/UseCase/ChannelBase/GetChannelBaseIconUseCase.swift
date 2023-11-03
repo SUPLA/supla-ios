@@ -64,7 +64,7 @@ final class GetChannelBaseIconUseCaseImpl: GetChannelBaseIconUseCase {
     private func findUserIcon(_ function: Int32, _ userIcon: SAUserIcon?, _ channelState: ChannelState, _ iconType: IconType) -> NSObject? {
         switch (function) {
         case SUPLA_CHANNELFNC_HUMIDITYANDTEMPERATURE:
-            return iconType == .first ? userIcon?.uimage2 : userIcon?.uimage1
+            return iconType == .second ? userIcon?.uimage1 : userIcon?.uimage2
         case SUPLA_CHANNELFNC_THERMOMETER:
             return userIcon?.uimage1
         case SUPLA_CHANNELFNC_CONTROLLINGTHEGARAGEDOOR,

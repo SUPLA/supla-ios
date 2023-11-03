@@ -42,7 +42,8 @@ final class LoadChannelWithChildrenMeasurementsDateRangeUseCaseImpl: LoadChannel
                     ) { min, max in
                         var result: DaysRange? = nil
                         if let start = min,
-                           let end = max {
+                           let end = max,
+                           (start > 0 && end > 0) {
                             result = DaysRange(
                                 start: Date(timeIntervalSince1970: start),
                                 end: Date(timeIntervalSince1970: end)
@@ -68,7 +69,7 @@ final class LoadChannelWithChildrenMeasurementsDateRangeUseCaseImpl: LoadChannel
             channelsWithMeasurements.append(channelWithChildren.channel)
         }
         
-        var observables: [Observable<TimeInterval>] = []
+        var observables: [Observable<TimeInterval?>] = []
         
         channelsWithMeasurements.forEach {
             if ($0.func == SUPLA_CHANNELFNC_THERMOMETER) {
@@ -92,13 +93,15 @@ final class LoadChannelWithChildrenMeasurementsDateRangeUseCaseImpl: LoadChannel
             var minTime: TimeInterval? = nil
             
             items.forEach {
-                if let min = minTime {
-                    if ($0.isLess(than: min)) {
-                        minTime = $0
+                if let new = $0 {
+                    if let min = minTime {
+                        if (new.isLess(than: min)) {
+                            minTime = new
+                        }
+                    } else {
+                        // Not initialized yet
+                        minTime = new
                     }
-                } else {
-                    // Not initialized yet
-                    minTime = $0
                 }
             }
             
@@ -115,7 +118,7 @@ final class LoadChannelWithChildrenMeasurementsDateRangeUseCaseImpl: LoadChannel
             channelsWithMeasurements.append(channelWithChildren.channel)
         }
         
-        var observables: [Observable<TimeInterval>] = []
+        var observables: [Observable<TimeInterval?>] = []
         
         channelsWithMeasurements.forEach {
             if ($0.func == SUPLA_CHANNELFNC_THERMOMETER) {
@@ -139,13 +142,15 @@ final class LoadChannelWithChildrenMeasurementsDateRangeUseCaseImpl: LoadChannel
             var maxTime: TimeInterval? = nil
             
             items.forEach {
-                if let max = maxTime {
-                    if (max.isLess(than: $0)) {
-                        maxTime = $0
+                if let new = $0 {
+                    if let max = maxTime {
+                        if (max.isLess(than: new)) {
+                            maxTime = new
+                        }
+                    } else {
+                        // Not initialized yet
+                        maxTime = new
                     }
-                } else {
-                    // Not initialized yet
-                    maxTime = $0
                 }
             }
             

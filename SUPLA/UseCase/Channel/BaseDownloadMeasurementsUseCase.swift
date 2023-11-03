@@ -28,9 +28,9 @@ protocol BaseDownloadMeasurementsUseCase {
     
     func deleteAll(for profile: AuthProfileItem) -> Observable<Void>
     
-    func findMinTimestamp(remoteId: Int32, profile: AuthProfileItem) -> Observable<TimeInterval>
+    func findMinTimestamp(remoteId: Int32, profile: AuthProfileItem) -> Observable<TimeInterval?>
     
-    func findMaxTimestamp(remoteId: Int32, profile: AuthProfileItem) -> Observable<TimeInterval>
+    func findMaxTimestamp(remoteId: Int32, profile: AuthProfileItem) -> Observable<TimeInterval?>
     
     func findCount(remoteId: Int32, profile: AuthProfileItem) -> Observable<Int>
     
@@ -126,7 +126,8 @@ extension BaseDownloadMeasurementsUseCase {
             }
             
             let timestamp = try findMinTimestamp(remoteId: remoteId, profile: profile).subscribeSynchronous()
-            guard let minTimestamp = timestamp
+            guard let firstUnwrap = timestamp,
+                  let minTimestamp = firstUnwrap
             else {
                 NSLog("No entries in DB - no cleaning needed")
                 return false
@@ -183,7 +184,7 @@ extension BaseDownloadMeasurementsUseCase {
         let entriesToImport = totalCount - databaseCount
         var importedEntries = 0
         var afterTimestamp = findMaxTimestamp(remoteId: remoteId, profile: profile)
-            .subscribeSynchronous(defaultValue: 0)
+            .subscribeSynchronous(defaultValue: 0) ?? 0
         
         while (!disposable.isDisposed) {
             let measurements = try getMeasurements(remoteId: remoteId, afterTimestamp: afterTimestamp).toBlocking().single()
