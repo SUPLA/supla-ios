@@ -40,6 +40,7 @@ final class DownloadChannelMeasurementsUseCaseTests: UseCaseTest<Void> {
     
     override func setUp() {
         // super.setUp() intentionally commented out
+        DiContainer.shared.register(type: SuplaSchedulers.self, component: SuplaSchedulersImpl())
         
         DiContainer.shared.register(type: DownloadEventsManager.self, component: downloadEventsManager!)
         DiContainer.shared.register(type: DownloadTemperatureMeasurementsUseCase.self, component: downloadTemperatureMeasurementsUseCase!)

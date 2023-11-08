@@ -2980,29 +2980,12 @@
 		401CA1D81BA067DB00117AF4 /* SUPLATests */ = {
 			isa = PBXGroup;
 			children = (
-				A5A23C2A2ABD96BE00233542 /* Model */,
-				A59AB8C02A308ADA00D91F1F /* UseCase */,
-				A59AB8A92A306FB600D91F1F /* Core */,
-				A57638CA29E5EF80003E15A3 /* Mocks */,
-				A57638C729E5D8C9003E15A3 /* Asserts */,
-				A57638C429E5D4A7003E15A3 /* Extensions */,
-				A5F14B7A29DEE4B600682FA6 /* Features */,
-				01A66A7825364ABA00C00A1A /* SARoofWindowControllerTests.m */,
-				01DD2F0B247718C40025DFF9 /* SARangeCalibrationWheelTests.m */,
-				01EFD94B236CA9AE00893489 /* NSDataEncryptionTest.m */,
-				01A4D4F7269211EA00F3DCD1 /* SAFormatterTests.m */,
-				016ABE17236DA795001BF5FB /* KeychainTests.m */,
-				012F722822DF3CF000E5F72E /* ChartFilterFieldTests.m */,
-				401CA1DB1BA067DB00117AF4 /* SUPLATests.m */,
-				401CA1D91BA067DB00117AF4 /* Supporting Files */,
-				012FCBD223217DE000AC6FF6 /* ThermostatCalendarTests.m */,
-				0130894423395F4C00F46FCD /* ThermostatScheduleCfgTests.m */,
-				01AC1AD52487C35E00F734DF /* SAColorBrightnessPickerTests.m */,
-				01AB61EC25B8E0B400DBEF74 /* SADigiglassControllerTests.m */,
-				01CEAC2925B9BAE2009C3BFD /* SADigiglassValueTests.m */,
 				AEFBC25026E39EFC00414C19 /* SUPLATests-Bridging-Header.h */,
-				AEBCD8FD26E4D52C001904F3 /* TemperatureUnitTests.swift */,
-				A54A06872AF9252C00C03DBC /* MultiAccountProfileManagerTests.swift */,
+				401CA1DB1BA067DB00117AF4 /* SUPLATests.m */,
+				A57638CA29E5EF80003E15A3 /* Mocks */,
+				401CA1D91BA067DB00117AF4 /* Supporting Files */,
+				A54A068F2AFB737B00C03DBC /* Tests */,
+				A54A06902AFB738400C03DBC /* Tools */,
 			);
 			path = SUPLATests;
 			sourceTree = "<group>";
@@ -3963,6 +3946,56 @@
 			path = SuplaCloud;
 			sourceTree = "<group>";
 		};
+		A54A068F2AFB737B00C03DBC /* Tests */ = {
+			isa = PBXGroup;
+			children = (
+				A54A06912AFB73C000C03DBC /* Core */,
+				A5F14B7A29DEE4B600682FA6 /* Features */,
+				A5A23C2A2ABD96BE00233542 /* Model */,
+				A54A06922AFB740900C03DBC /* Other */,
+				A59AB8C02A308ADA00D91F1F /* UseCase */,
+			);
+			path = Tests;
+			sourceTree = "<group>";
+		};
+		A54A06902AFB738400C03DBC /* Tools */ = {
+			isa = PBXGroup;
+			children = (
+				A57638C429E5D4A7003E15A3 /* Extensions */,
+				A59AB8A92A306FB600D91F1F /* Core */,
+			);
+			path = Tools;
+			sourceTree = "<group>";
+		};
+		A54A06912AFB73C000C03DBC /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				A54A064D2AF3ED4B00C03DBC /* Infrastructure */,
+				A54A065F2AF50DEC00C03DBC /* Networking */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		A54A06922AFB740900C03DBC /* Other */ = {
+			isa = PBXGroup;
+			children = (
+				AEBCD8FD26E4D52C001904F3 /* TemperatureUnitTests.swift */,
+				A54A06872AF9252C00C03DBC /* MultiAccountProfileManagerTests.swift */,
+				01EFD94B236CA9AE00893489 /* NSDataEncryptionTest.m */,
+				01AC1AD52487C35E00F734DF /* SAColorBrightnessPickerTests.m */,
+				01AB61EC25B8E0B400DBEF74 /* SADigiglassControllerTests.m */,
+				01CEAC2925B9BAE2009C3BFD /* SADigiglassValueTests.m */,
+				01A4D4F7269211EA00F3DCD1 /* SAFormatterTests.m */,
+				01DD2F0B247718C40025DFF9 /* SARangeCalibrationWheelTests.m */,
+				01A66A7825364ABA00C00A1A /* SARoofWindowControllerTests.m */,
+				012F722822DF3CF000E5F72E /* ChartFilterFieldTests.m */,
+				016ABE17236DA795001BF5FB /* KeychainTests.m */,
+				012FCBD223217DE000AC6FF6 /* ThermostatCalendarTests.m */,
+				0130894423395F4C00F46FCD /* ThermostatScheduleCfgTests.m */,
+			);
+			path = Other;
+			sourceTree = "<group>";
+		};
 		A553862929E0201A00B5CF3F /* DI */ = {
 			isa = PBXGroup;
 			children = (
@@ -4133,13 +4166,6 @@
 				A59AB8A72A306B4E00D91F1F /* NSManagedObject+Test.swift */,
 			);
 			path = Extensions;
-			sourceTree = "<group>";
-		};
-		A57638C729E5D8C9003E15A3 /* Asserts */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Asserts;
 			sourceTree = "<group>";
 		};
 		A57638CA29E5EF80003E15A3 /* Mocks */ = {
@@ -4340,8 +4366,6 @@
 		A59AB8A92A306FB600D91F1F /* Core */ = {
 			isa = PBXGroup;
 			children = (
-				A54A065F2AF50DEC00C03DBC /* Networking */,
-				A54A064D2AF3ED4B00C03DBC /* Infrastructure */,
 				A59AB8AA2A306FC700D91F1F /* ViewModelTest.swift */,
 				A59AB8E02A309C1500D91F1F /* UseCaseTest.swift */,
 				A54A06572AF3FDCA00C03DBC /* ObservableTestCase.swift */,

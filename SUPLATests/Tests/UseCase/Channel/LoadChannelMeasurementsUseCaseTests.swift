@@ -48,6 +48,9 @@ final class LoadChannelMeasurementsUseCaseTests: UseCaseTest<[HistoryDataSet]> {
         DiContainer.shared.register(type: (any TemperatureMeasurementItemRepository).self, component: temperatureMeasurementItemRepository!)
         DiContainer.shared.register(type: (any TempHumidityMeasurementItemRepository).self, component: tempHumidityMeasurementItemRepository!)
         DiContainer.shared.register(type: (any ProfileRepository).self, component: profileRepository!)
+        
+        DiContainer.shared.register(type: GlobalSettings.self, component: GlobalSettingsMock())
+        DiContainer.shared.register(type: ValuesFormatter.self, component: ValuesFormatterImpl())
     }
     
     override func tearDown() {
