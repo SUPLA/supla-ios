@@ -47,7 +47,7 @@ protocol BaseDownloadMeasurementsUseCase {
 }
 
 extension BaseDownloadMeasurementsUseCase {
-    func loadMeasurements(remoteId: Int32) -> Observable<Float> {
+    func invoke(remoteId: Int32) -> Observable<Float> {
         return Observable.create { observer in
             let disposable = BooleanDisposable()
             guard let profile = loadCurrentProfile() else {

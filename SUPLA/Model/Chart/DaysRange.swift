@@ -46,7 +46,7 @@ struct DaysRange: Equatable, Codable {
                 return .hours
             } else if (days <= 31) {
                 return .days
-            } else if (daysCount <= 420) {
+            } else if (daysCount <= 548) {
                 return .months
             } else {
                 return .years

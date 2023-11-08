@@ -64,13 +64,13 @@ final class SuplaCloudServiceImpl: SuplaCloudService {
         
         let urlPath = Constants.urlMeasurements
             .replacingOccurrences(of: "{remoteId}", with: "\(remoteId)")
-        let urlString = "\(host)\(urlPath)\(afterTimestamp)"
+        let urlString = "\(host)\(urlPath)\(Int(afterTimestamp))"
         
         return requestHelper.getOAuthRequest(urlString: urlString)
             .flatMap { (response, data) in
                 if (response.statusCode != 200) {
                     return Observable<[SuplaCloudClient.TemperatureMeasurement]>
-                        .error(SuplaCloudError.statusCodeNoSuccess)
+                        .error(SuplaCloudError.statusCodeNoSuccess(code: response.statusCode))
                 }
                 
                 do {
@@ -92,13 +92,13 @@ final class SuplaCloudServiceImpl: SuplaCloudService {
         
         let urlPath = Constants.urlMeasurements
             .replacingOccurrences(of: "{remoteId}", with: "\(remoteId)")
-        let urlString = "\(host)\(urlPath)\(afterTimestamp)"
+        let urlString = "\(host)\(urlPath)\(Int(afterTimestamp))"
         
         return requestHelper.getOAuthRequest(urlString: urlString)
             .flatMap { (response, data) in
                 if (response.statusCode != 200) {
                     return Observable<[SuplaCloudClient.TemperatureAndHumidityMeasurement]>
-                        .error(SuplaCloudError.statusCodeNoSuccess)
+                        .error(SuplaCloudError.statusCodeNoSuccess(code: response.statusCode))
                 }
                 
                 do {
@@ -122,5 +122,5 @@ final class SuplaCloudServiceImpl: SuplaCloudService {
 
 enum SuplaCloudError: Error {
     case urlIsNull
-    case statusCodeNoSuccess
+    case statusCodeNoSuccess(code: Int)
 }

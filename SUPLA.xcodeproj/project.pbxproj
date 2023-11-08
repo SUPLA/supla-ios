@@ -732,6 +732,27 @@
 		A54A06582AF3FDCA00C03DBC /* ObservableTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A54A06572AF3FDCA00C03DBC /* ObservableTestCase.swift */; };
 		A54A065B2AF4E3C300C03DBC /* SAOAuthToken+Mock.swift in Sources */ = {isa = PBXBuildFile; fileRef = A54A065A2AF4E3C300C03DBC /* SAOAuthToken+Mock.swift */; };
 		A54A065D2AF4E58F00C03DBC /* CStructsConstructor.m in Sources */ = {isa = PBXBuildFile; fileRef = A54A065C2AF4E58F00C03DBC /* CStructsConstructor.m */; };
+		A54A06612AF50E2200C03DBC /* SuplaCloudServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A54A06602AF50E2200C03DBC /* SuplaCloudServiceTests.swift */; };
+		A54A06632AF50E8A00C03DBC /* RequestHelperMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = A54A06622AF50E8A00C03DBC /* RequestHelperMock.swift */; };
+		A54A06662AF5271900C03DBC /* ThermometerHistoryDetailVMTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A54A06652AF5271900C03DBC /* ThermometerHistoryDetailVMTests.swift */; };
+		A54A06692AF527DB00C03DBC /* UserStateHolderMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = A54A06682AF527DB00C03DBC /* UserStateHolderMock.swift */; };
+		A54A066C2AF5290900C03DBC /* DownloadEventsManagerMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = A54A066B2AF5290900C03DBC /* DownloadEventsManagerMock.swift */; };
+		A54A066F2AF540AD00C03DBC /* ChartDataAggregationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A54A066E2AF540AD00C03DBC /* ChartDataAggregationTests.swift */; };
+		A54A06712AF8CD4A00C03DBC /* DaysRangeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A54A06702AF8CD4A00C03DBC /* DaysRangeTests.swift */; };
+		A54A06732AF8D31D00C03DBC /* HideableValueTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A54A06722AF8D31D00C03DBC /* HideableValueTests.swift */; };
+		A54A06752AF8D61000C03DBC /* LinkedListTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A54A06742AF8D61000C03DBC /* LinkedListTests.swift */; };
+		A54A06772AF8E1B200C03DBC /* DownloadChannelMeasurementsUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A54A06762AF8E1B200C03DBC /* DownloadChannelMeasurementsUseCaseTests.swift */; };
+		A54A06792AF8EE5C00C03DBC /* DownloadTempHumidityMeasurementsUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A54A06782AF8EE5C00C03DBC /* DownloadTempHumidityMeasurementsUseCaseTests.swift */; };
+		A54A067C2AF8EEC200C03DBC /* SuplaCloudServiceMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = A54A067B2AF8EEC200C03DBC /* SuplaCloudServiceMock.swift */; };
+		A54A067E2AF903A700C03DBC /* DownloadTemperatureMeasurementsUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A54A067D2AF903A700C03DBC /* DownloadTemperatureMeasurementsUseCaseTests.swift */; };
+		A54A06802AF90BF800C03DBC /* LoadChannelMeasurementsDateRangeUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A54A067F2AF90BF800C03DBC /* LoadChannelMeasurementsDateRangeUseCaseTests.swift */; };
+		A54A06822AF9124B00C03DBC /* LoadChannelMeasurementsUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A54A06812AF9124B00C03DBC /* LoadChannelMeasurementsUseCaseTests.swift */; };
+		A54A06842AF9157C00C03DBC /* SATemperatureMeasurementItem+Mock.swift in Sources */ = {isa = PBXBuildFile; fileRef = A54A06832AF9157C00C03DBC /* SATemperatureMeasurementItem+Mock.swift */; };
+		A54A06862AF9219200C03DBC /* SATempHumidityMeasurementItem+Mock.swift in Sources */ = {isa = PBXBuildFile; fileRef = A54A06852AF9219200C03DBC /* SATempHumidityMeasurementItem+Mock.swift */; };
+		A54A06882AF9252C00C03DBC /* MultiAccountProfileManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A54A06872AF9252C00C03DBC /* MultiAccountProfileManagerTests.swift */; };
+		A54A068A2AF925FB00C03DBC /* ProfileUseCasesMocks.swift in Sources */ = {isa = PBXBuildFile; fileRef = A54A06892AF925FB00C03DBC /* ProfileUseCasesMocks.swift */; };
+		A54A068C2AF97E0000C03DBC /* LoadChannelWithChildrenMeasurementsDateRangeUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A54A068B2AF97E0000C03DBC /* LoadChannelWithChildrenMeasurementsDateRangeUseCaseTests.swift */; };
+		A54A068E2AFB6F9200C03DBC /* LoadChannelWithChildrenMeasurementsUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A54A068D2AFB6F9200C03DBC /* LoadChannelWithChildrenMeasurementsUseCaseTests.swift */; };
 		A553862829E004E400B5CF3F /* GlobalSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = A553862729E004E400B5CF3F /* GlobalSettings.swift */; };
 		A553862B29E0202700B5CF3F /* Singleton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A553862A29E0202700B5CF3F /* Singleton.swift */; };
 		A553862D29E021AE00B5CF3F /* DiContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A553862C29E021AE00B5CF3F /* DiContainer.swift */; };
@@ -2139,6 +2160,27 @@
 		A54A065A2AF4E3C300C03DBC /* SAOAuthToken+Mock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SAOAuthToken+Mock.swift"; sourceTree = "<group>"; };
 		A54A065C2AF4E58F00C03DBC /* CStructsConstructor.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CStructsConstructor.m; sourceTree = "<group>"; };
 		A54A065E2AF4E5A600C03DBC /* CStructsConstructor.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CStructsConstructor.h; sourceTree = "<group>"; };
+		A54A06602AF50E2200C03DBC /* SuplaCloudServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuplaCloudServiceTests.swift; sourceTree = "<group>"; };
+		A54A06622AF50E8A00C03DBC /* RequestHelperMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestHelperMock.swift; sourceTree = "<group>"; };
+		A54A06652AF5271900C03DBC /* ThermometerHistoryDetailVMTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThermometerHistoryDetailVMTests.swift; sourceTree = "<group>"; };
+		A54A06682AF527DB00C03DBC /* UserStateHolderMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserStateHolderMock.swift; sourceTree = "<group>"; };
+		A54A066B2AF5290900C03DBC /* DownloadEventsManagerMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadEventsManagerMock.swift; sourceTree = "<group>"; };
+		A54A066E2AF540AD00C03DBC /* ChartDataAggregationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartDataAggregationTests.swift; sourceTree = "<group>"; };
+		A54A06702AF8CD4A00C03DBC /* DaysRangeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DaysRangeTests.swift; sourceTree = "<group>"; };
+		A54A06722AF8D31D00C03DBC /* HideableValueTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HideableValueTests.swift; sourceTree = "<group>"; };
+		A54A06742AF8D61000C03DBC /* LinkedListTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinkedListTests.swift; sourceTree = "<group>"; };
+		A54A06762AF8E1B200C03DBC /* DownloadChannelMeasurementsUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadChannelMeasurementsUseCaseTests.swift; sourceTree = "<group>"; };
+		A54A06782AF8EE5C00C03DBC /* DownloadTempHumidityMeasurementsUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadTempHumidityMeasurementsUseCaseTests.swift; sourceTree = "<group>"; };
+		A54A067B2AF8EEC200C03DBC /* SuplaCloudServiceMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuplaCloudServiceMock.swift; sourceTree = "<group>"; };
+		A54A067D2AF903A700C03DBC /* DownloadTemperatureMeasurementsUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadTemperatureMeasurementsUseCaseTests.swift; sourceTree = "<group>"; };
+		A54A067F2AF90BF800C03DBC /* LoadChannelMeasurementsDateRangeUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadChannelMeasurementsDateRangeUseCaseTests.swift; sourceTree = "<group>"; };
+		A54A06812AF9124B00C03DBC /* LoadChannelMeasurementsUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadChannelMeasurementsUseCaseTests.swift; sourceTree = "<group>"; };
+		A54A06832AF9157C00C03DBC /* SATemperatureMeasurementItem+Mock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SATemperatureMeasurementItem+Mock.swift"; sourceTree = "<group>"; };
+		A54A06852AF9219200C03DBC /* SATempHumidityMeasurementItem+Mock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SATempHumidityMeasurementItem+Mock.swift"; sourceTree = "<group>"; };
+		A54A06872AF9252C00C03DBC /* MultiAccountProfileManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultiAccountProfileManagerTests.swift; sourceTree = "<group>"; };
+		A54A06892AF925FB00C03DBC /* ProfileUseCasesMocks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileUseCasesMocks.swift; sourceTree = "<group>"; };
+		A54A068B2AF97E0000C03DBC /* LoadChannelWithChildrenMeasurementsDateRangeUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadChannelWithChildrenMeasurementsDateRangeUseCaseTests.swift; sourceTree = "<group>"; };
+		A54A068D2AFB6F9200C03DBC /* LoadChannelWithChildrenMeasurementsUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadChannelWithChildrenMeasurementsUseCaseTests.swift; sourceTree = "<group>"; };
 		A553862729E004E400B5CF3F /* GlobalSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalSettings.swift; sourceTree = "<group>"; };
 		A553862A29E0202700B5CF3F /* Singleton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Singleton.swift; sourceTree = "<group>"; };
 		A553862C29E021AE00B5CF3F /* DiContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiContainer.swift; sourceTree = "<group>"; };
@@ -2938,28 +2980,12 @@
 		401CA1D81BA067DB00117AF4 /* SUPLATests */ = {
 			isa = PBXGroup;
 			children = (
-				A5A23C2A2ABD96BE00233542 /* Model */,
-				A59AB8C02A308ADA00D91F1F /* UseCase */,
-				A59AB8A92A306FB600D91F1F /* Core */,
-				A57638CA29E5EF80003E15A3 /* Mocks */,
-				A57638C729E5D8C9003E15A3 /* Asserts */,
-				A57638C429E5D4A7003E15A3 /* Extensions */,
-				A5F14B7A29DEE4B600682FA6 /* Features */,
-				01A66A7825364ABA00C00A1A /* SARoofWindowControllerTests.m */,
-				01DD2F0B247718C40025DFF9 /* SARangeCalibrationWheelTests.m */,
-				01EFD94B236CA9AE00893489 /* NSDataEncryptionTest.m */,
-				01A4D4F7269211EA00F3DCD1 /* SAFormatterTests.m */,
-				016ABE17236DA795001BF5FB /* KeychainTests.m */,
-				012F722822DF3CF000E5F72E /* ChartFilterFieldTests.m */,
-				401CA1DB1BA067DB00117AF4 /* SUPLATests.m */,
-				401CA1D91BA067DB00117AF4 /* Supporting Files */,
-				012FCBD223217DE000AC6FF6 /* ThermostatCalendarTests.m */,
-				0130894423395F4C00F46FCD /* ThermostatScheduleCfgTests.m */,
-				01AC1AD52487C35E00F734DF /* SAColorBrightnessPickerTests.m */,
-				01AB61EC25B8E0B400DBEF74 /* SADigiglassControllerTests.m */,
-				01CEAC2925B9BAE2009C3BFD /* SADigiglassValueTests.m */,
 				AEFBC25026E39EFC00414C19 /* SUPLATests-Bridging-Header.h */,
-				AEBCD8FD26E4D52C001904F3 /* TemperatureUnitTests.swift */,
+				401CA1DB1BA067DB00117AF4 /* SUPLATests.m */,
+				A57638CA29E5EF80003E15A3 /* Mocks */,
+				401CA1D91BA067DB00117AF4 /* Supporting Files */,
+				A54A068F2AFB737B00C03DBC /* Tests */,
+				A54A06902AFB738400C03DBC /* Tools */,
 			);
 			path = SUPLATests;
 			sourceTree = "<group>";
@@ -3854,6 +3880,7 @@
 		A54A06522AF3F1DB00C03DBC /* Networking */ = {
 			isa = PBXGroup;
 			children = (
+				A54A067A2AF8EEB200C03DBC /* SuplaCloud */,
 				A54A06532AF3F1EF00C03DBC /* SuplaCloudConfigHolderMock.swift */,
 				A54A06552AF3F2B100C03DBC /* SuplaSchedulersMock.swift */,
 			);
@@ -3868,6 +3895,105 @@
 				A54A065E2AF4E5A600C03DBC /* CStructsConstructor.h */,
 			);
 			path = Native;
+			sourceTree = "<group>";
+		};
+		A54A065F2AF50DEC00C03DBC /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				A54A06602AF50E2200C03DBC /* SuplaCloudServiceTests.swift */,
+			);
+			path = Networking;
+			sourceTree = "<group>";
+		};
+		A54A06642AF526EE00C03DBC /* ThermometerDetail */ = {
+			isa = PBXGroup;
+			children = (
+				A54A06652AF5271900C03DBC /* ThermometerHistoryDetailVMTests.swift */,
+			);
+			path = ThermometerDetail;
+			sourceTree = "<group>";
+		};
+		A54A06672AF527CD00C03DBC /* Config */ = {
+			isa = PBXGroup;
+			children = (
+				A54A06682AF527DB00C03DBC /* UserStateHolderMock.swift */,
+			);
+			path = Config;
+			sourceTree = "<group>";
+		};
+		A54A066A2AF528F200C03DBC /* Events */ = {
+			isa = PBXGroup;
+			children = (
+				A54A066B2AF5290900C03DBC /* DownloadEventsManagerMock.swift */,
+			);
+			path = Events;
+			sourceTree = "<group>";
+		};
+		A54A066D2AF5409D00C03DBC /* Chart */ = {
+			isa = PBXGroup;
+			children = (
+				A54A066E2AF540AD00C03DBC /* ChartDataAggregationTests.swift */,
+				A54A06702AF8CD4A00C03DBC /* DaysRangeTests.swift */,
+			);
+			path = Chart;
+			sourceTree = "<group>";
+		};
+		A54A067A2AF8EEB200C03DBC /* SuplaCloud */ = {
+			isa = PBXGroup;
+			children = (
+				A54A067B2AF8EEC200C03DBC /* SuplaCloudServiceMock.swift */,
+			);
+			path = SuplaCloud;
+			sourceTree = "<group>";
+		};
+		A54A068F2AFB737B00C03DBC /* Tests */ = {
+			isa = PBXGroup;
+			children = (
+				A54A06912AFB73C000C03DBC /* Core */,
+				A5F14B7A29DEE4B600682FA6 /* Features */,
+				A5A23C2A2ABD96BE00233542 /* Model */,
+				A54A06922AFB740900C03DBC /* Other */,
+				A59AB8C02A308ADA00D91F1F /* UseCase */,
+			);
+			path = Tests;
+			sourceTree = "<group>";
+		};
+		A54A06902AFB738400C03DBC /* Tools */ = {
+			isa = PBXGroup;
+			children = (
+				A57638C429E5D4A7003E15A3 /* Extensions */,
+				A59AB8A92A306FB600D91F1F /* Core */,
+			);
+			path = Tools;
+			sourceTree = "<group>";
+		};
+		A54A06912AFB73C000C03DBC /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				A54A064D2AF3ED4B00C03DBC /* Infrastructure */,
+				A54A065F2AF50DEC00C03DBC /* Networking */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		A54A06922AFB740900C03DBC /* Other */ = {
+			isa = PBXGroup;
+			children = (
+				AEBCD8FD26E4D52C001904F3 /* TemperatureUnitTests.swift */,
+				A54A06872AF9252C00C03DBC /* MultiAccountProfileManagerTests.swift */,
+				01EFD94B236CA9AE00893489 /* NSDataEncryptionTest.m */,
+				01AC1AD52487C35E00F734DF /* SAColorBrightnessPickerTests.m */,
+				01AB61EC25B8E0B400DBEF74 /* SADigiglassControllerTests.m */,
+				01CEAC2925B9BAE2009C3BFD /* SADigiglassValueTests.m */,
+				01A4D4F7269211EA00F3DCD1 /* SAFormatterTests.m */,
+				01DD2F0B247718C40025DFF9 /* SARangeCalibrationWheelTests.m */,
+				01A66A7825364ABA00C00A1A /* SARoofWindowControllerTests.m */,
+				012F722822DF3CF000E5F72E /* ChartFilterFieldTests.m */,
+				016ABE17236DA795001BF5FB /* KeychainTests.m */,
+				012FCBD223217DE000AC6FF6 /* ThermostatCalendarTests.m */,
+				0130894423395F4C00F46FCD /* ThermostatScheduleCfgTests.m */,
+			);
+			path = Other;
 			sourceTree = "<group>";
 		};
 		A553862929E0201A00B5CF3F /* DI */ = {
@@ -3951,6 +4077,7 @@
 				A50CD3D92A4D9AFC0012DD9B /* DateProviderMock.swift */,
 				A573B0B22A603003001E19D0 /* VibrationServiceMock.swift */,
 				A54A06502AF3F05000C03DBC /* SessionResponseProviderMock.swift */,
+				A54A06622AF50E8A00C03DBC /* RequestHelperMock.swift */,
 			);
 			path = Infrastructure;
 			sourceTree = "<group>";
@@ -4041,16 +4168,11 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
-		A57638C729E5D8C9003E15A3 /* Asserts */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Asserts;
-			sourceTree = "<group>";
-		};
 		A57638CA29E5EF80003E15A3 /* Mocks */ = {
 			isa = PBXGroup;
 			children = (
+				A54A066A2AF528F200C03DBC /* Events */,
+				A54A06672AF527CD00C03DBC /* Config */,
 				A54A06592AF4E3A300C03DBC /* Native */,
 				A54A06522AF3F1DB00C03DBC /* Networking */,
 				A57C88382ACB4BBE000B0F10 /* Model */,
@@ -4236,6 +4358,7 @@
 				A573B0AD2A6022C1001E19D0 /* GetDefaultIconNameUseCaseMock.swift */,
 				A5ABE5C82ABCD76300FFA50B /* ThermostatUseCasesMocks.swift */,
 				A58B2CB52AC197E300764388 /* ChannelBaseUseCasesMocks.swift */,
+				A54A06892AF925FB00C03DBC /* ProfileUseCasesMocks.swift */,
 			);
 			path = UseCase;
 			sourceTree = "<group>";
@@ -4243,7 +4366,6 @@
 		A59AB8A92A306FB600D91F1F /* Core */ = {
 			isa = PBXGroup;
 			children = (
-				A54A064D2AF3ED4B00C03DBC /* Infrastructure */,
 				A59AB8AA2A306FC700D91F1F /* ViewModelTest.swift */,
 				A59AB8E02A309C1500D91F1F /* UseCaseTest.swift */,
 				A54A06572AF3FDCA00C03DBC /* ObservableTestCase.swift */,
@@ -4348,6 +4470,13 @@
 				A573B0A92A601A57001E19D0 /* ReadChannelByRemoteIdUseCaseTests.swift */,
 				A5A23C302ABDBCAC00233542 /* CreateChannelWithChildrenUseCaseTests.swift */,
 				A59683872ABE1E5A0005E73C /* ReadChannelWithChildrenUseCaseTests.swift */,
+				A54A06762AF8E1B200C03DBC /* DownloadChannelMeasurementsUseCaseTests.swift */,
+				A54A06782AF8EE5C00C03DBC /* DownloadTempHumidityMeasurementsUseCaseTests.swift */,
+				A54A067D2AF903A700C03DBC /* DownloadTemperatureMeasurementsUseCaseTests.swift */,
+				A54A067F2AF90BF800C03DBC /* LoadChannelMeasurementsDateRangeUseCaseTests.swift */,
+				A54A06812AF9124B00C03DBC /* LoadChannelMeasurementsUseCaseTests.swift */,
+				A54A068B2AF97E0000C03DBC /* LoadChannelWithChildrenMeasurementsDateRangeUseCaseTests.swift */,
+				A54A068D2AFB6F9200C03DBC /* LoadChannelWithChildrenMeasurementsUseCaseTests.swift */,
 			);
 			path = Channel;
 			sourceTree = "<group>";
@@ -4392,8 +4521,11 @@
 		A5A23C2A2ABD96BE00233542 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				A54A066D2AF5409D00C03DBC /* Chart */,
 				A5A23C2B2ABD96C600233542 /* SuplaClient */,
 				A5A23C2E2ABDAF8E00233542 /* ValuesFormatterTests.swift */,
+				A54A06722AF8D31D00C03DBC /* HideableValueTests.swift */,
+				A54A06742AF8D61000C03DBC /* LinkedListTests.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -4413,6 +4545,8 @@
 				A5A23C332ABE1B8700233542 /* SAChannelRelation+Mock.swift */,
 				A59683892ABE1FD10005E73C /* SAChannel+Mock.swift */,
 				A57C88312ACB4603000B0F10 /* SAChannelValue+Mock.swift */,
+				A54A06832AF9157C00C03DBC /* SATemperatureMeasurementItem+Mock.swift */,
+				A54A06852AF9219200C03DBC /* SATempHumidityMeasurementItem+Mock.swift */,
 			);
 			path = Entity;
 			sourceTree = "<group>";
@@ -4579,6 +4713,7 @@
 		A5F14B7A29DEE4B600682FA6 /* Features */ = {
 			isa = PBXGroup;
 			children = (
+				A54A06642AF526EE00C03DBC /* ThermometerDetail */,
 				A5ABE5B22ABC26B000FFA50B /* ThermostatDetail */,
 				A57638C329E585CA003E15A3 /* AccountCreation */,
 				A5F14B7B29DEE4C200682FA6 /* AccountRemoval */,
@@ -6120,6 +6255,8 @@
 				A57C883C2ACB564B000B0F10 /* SuplaWeeklyScheduleProgramTests.swift in Sources */,
 				A59AB8DF2A309BBE00D91F1F /* CreateProfileGroupsListUseCaseTests.swift in Sources */,
 				A54A064F2AF3ED6200C03DBC /* RequestHelperTests.swift in Sources */,
+				A54A06822AF9124B00C03DBC /* LoadChannelMeasurementsUseCaseTests.swift in Sources */,
+				A54A06712AF8CD4A00C03DBC /* DaysRangeTests.swift in Sources */,
 				A59AB8D32A30929F00D91F1F /* TemperatureMeasurementItemRepositoryMock.swift in Sources */,
 				A57638CE29E5EFDA003E15A3 /* GlobalSettingsMock.swift in Sources */,
 				A59AB8CD2A30916F00D91F1F /* ImpulseCounterMeasurementItemRepositoryMock.swift in Sources */,
@@ -6128,10 +6265,13 @@
 				A54A065D2AF4E58F00C03DBC /* CStructsConstructor.m in Sources */,
 				A573B0AE2A6022C1001E19D0 /* GetDefaultIconNameUseCaseMock.swift in Sources */,
 				A59AB8AE2A3071A300D91F1F /* GroupListVMTests.swift in Sources */,
+				A54A06752AF8D61000C03DBC /* LinkedListTests.swift in Sources */,
 				A5A72E452AC18A6E00405C41 /* GetClientConfigUseCaseTests.swift in Sources */,
 				A5ABE5BD2ABC5EAB00FFA50B /* ValuesFormatterMock.swift in Sources */,
 				A57777CF29E69688004513E6 /* RuntimeConfigMock.swift in Sources */,
+				A54A06842AF9157C00C03DBC /* SATemperatureMeasurementItem+Mock.swift in Sources */,
 				A5A23C342ABE1B8700233542 /* SAChannelRelation+Mock.swift in Sources */,
+				A54A068E2AFB6F9200C03DBC /* LoadChannelWithChildrenMeasurementsUseCaseTests.swift in Sources */,
 				A59AB8E82A30A81200D91F1F /* SwapChannelPositionsUseCaseTests.swift in Sources */,
 				A530EE332A57E42100F8DAEE /* GetDefaultIconNameUseCaseTests.swift in Sources */,
 				A57785C329E80CF7001C631E /* SuplaAppWrapperMock.swift in Sources */,
@@ -6140,7 +6280,9 @@
 				A54A06582AF3FDCA00C03DBC /* ObservableTestCase.swift in Sources */,
 				A59AB8BF2A30820900D91F1F /* ChannelRepositoryMock.swift in Sources */,
 				A50CD3D62A4D99E60012DD9B /* UpdateTokenTaskTests.swift in Sources */,
+				A54A06772AF8E1B200C03DBC /* DownloadChannelMeasurementsUseCaseTests.swift in Sources */,
 				A59AB8BD2A30806800D91F1F /* BaseRepositoryMock.swift in Sources */,
+				A54A06662AF5271900C03DBC /* ThermometerHistoryDetailVMTests.swift in Sources */,
 				A59AB8D52A3092C500D91F1F /* TempHumidityMeasurementItemRepositoryMock.swift in Sources */,
 				A59AB8AB2A306FC700D91F1F /* ViewModelTest.swift in Sources */,
 				A5A23C2D2ABD96DB00233542 /* SuplaChannelConfigTests.swift in Sources */,
@@ -6149,11 +6291,13 @@
 				A54A065B2AF4E3C300C03DBC /* SAOAuthToken+Mock.swift in Sources */,
 				A59AB8B52A30795B00D91F1F /* SceneUseCasesMocks.swift in Sources */,
 				A5DA31072AC16B21008179DB /* InsertChannelRelationForProfileUseCaseTests.swift in Sources */,
+				A54A068C2AF97E0000C03DBC /* LoadChannelWithChildrenMeasurementsDateRangeUseCaseTests.swift in Sources */,
 				A57638C629E5D4C9003E15A3 /* XCTestCaseExtensions.swift in Sources */,
 				A59AB8EB2A30AA2600D91F1F /* CreateProfileScenesListUseCaseTests.swift in Sources */,
 				016ABE18236DA795001BF5FB /* KeychainTests.m in Sources */,
 				A59AB8C72A30902D00D91F1F /* ChannelValueRepositoryMock.swift in Sources */,
 				AEBCD8FE26E4D52C001904F3 /* TemperatureUnitTests.swift in Sources */,
+				A54A06612AF50E2200C03DBC /* SuplaCloudServiceTests.swift in Sources */,
 				A5ABE5CF2ABD696900FFA50B /* DataMocks.swift in Sources */,
 				A59AB8F02A30ACB500D91F1F /* ToggleLocationUseCaseTests.swift in Sources */,
 				A59AB8CF2A30919500D91F1F /* LocationRepositoryMock.swift in Sources */,
@@ -6164,6 +6308,7 @@
 				A5ABE5B72ABC278700FFA50B /* ConfigEventsManagerMock.swift in Sources */,
 				A59AB8D12A3091EE00D91F1F /* SceneRepositoryMock.swift in Sources */,
 				A59AB8B32A3078FB00D91F1F /* SceneListVMTests.swift in Sources */,
+				A54A06882AF9252C00C03DBC /* MultiAccountProfileManagerTests.swift in Sources */,
 				A59AB8D92A30930E00D91F1F /* ThermostatMeasurementItemRepositoryMock.swift in Sources */,
 				A59AB8C92A30906100D91F1F /* GroupRepositoryMock.swift in Sources */,
 				A573B0B32A603003001E19D0 /* VibrationServiceMock.swift in Sources */,
@@ -6175,10 +6320,14 @@
 				A59AB89D2A3052C600D91F1F /* ChannelListVMTests.swift in Sources */,
 				012F722C22DF3E2300E5F72E /* ChartFilterFieldTests.m in Sources */,
 				A57C88372ACB49C5000B0F10 /* ThermostatProgramInfoTests.swift in Sources */,
+				A54A067E2AF903A700C03DBC /* DownloadTemperatureMeasurementsUseCaseTests.swift in Sources */,
 				A54A06542AF3F1EF00C03DBC /* SuplaCloudConfigHolderMock.swift in Sources */,
 				A54A06562AF3F2B100C03DBC /* SuplaSchedulersMock.swift in Sources */,
 				01AB61ED25B8E0B400DBEF74 /* SADigiglassControllerTests.m in Sources */,
+				A54A067C2AF8EEC200C03DBC /* SuplaCloudServiceMock.swift in Sources */,
+				A54A06792AF8EE5C00C03DBC /* DownloadTempHumidityMeasurementsUseCaseTests.swift in Sources */,
 				A573B0A62A600733001E19D0 /* TimerDetailVMTests.swift in Sources */,
+				A54A066F2AF540AD00C03DBC /* ChartDataAggregationTests.swift in Sources */,
 				A573B0AA2A601A57001E19D0 /* ReadChannelByRemoteIdUseCaseTests.swift in Sources */,
 				A59AB8A82A306B4E00D91F1F /* NSManagedObject+Test.swift in Sources */,
 				A573B0AC2A601DB6001E19D0 /* GetChannelBaseIconUseCaseTests.swift in Sources */,
@@ -6186,26 +6335,31 @@
 				A59AB8D72A3092F000D91F1F /* UserIconRepositoryMock.swift in Sources */,
 				A5ABE5C72ABCD52500FFA50B /* ThermostatGeneralVMTests.swift in Sources */,
 				A59AB8C32A308AF700D91F1F /* ProvideDetailTypeUseCaseTests.swift in Sources */,
+				A54A06692AF527DB00C03DBC /* UserStateHolderMock.swift in Sources */,
 				A59AB8B82A307F3200D91F1F /* MainVMTests.swift in Sources */,
 				A58B2CB62AC197E300764388 /* ChannelBaseUseCasesMocks.swift in Sources */,
 				A59AB8E12A309C1500D91F1F /* UseCaseTest.swift in Sources */,
 				A573B09E2A5FEF57001E19D0 /* SwitchGeneralVMTests.swift in Sources */,
 				A5A23C312ABDBCAC00233542 /* CreateChannelWithChildrenUseCaseTests.swift in Sources */,
 				A57638CC29E5EF95003E15A3 /* ProfileManagerMock.swift in Sources */,
+				A54A06732AF8D31D00C03DBC /* HideableValueTests.swift in Sources */,
 				A59AB8C52A308F7D00D91F1F /* ChannelExtendedValueRepositoryMock.swift in Sources */,
 				A56233FD2AB9C01F001CB948 /* ChannelRelationRepositoryMock.swift in Sources */,
 				01AC1AD62487C35E00F734DF /* SAColorBrightnessPickerTests.m in Sources */,
+				A54A066C2AF5290900C03DBC /* DownloadEventsManagerMock.swift in Sources */,
 				A5A72E432AC1787200405C41 /* ExecuteThermostatActionUseCaseTests.swift in Sources */,
 				A5ABE5CB2ABCD80300FFA50B /* DelayedThermostatActionSubjectMock.swift in Sources */,
 				A58D98C82AC1A3AD00DCB526 /* SetChannelConfigUseCaseTests.swift in Sources */,
 				A573B0A22A5FF0AE001E19D0 /* ExecuteSimpleActionUseCaseMock.swift in Sources */,
 				A59AB8A62A305D8700D91F1F /* LocationUseCasesMocks.swift in Sources */,
+				A54A06862AF9219200C03DBC /* SATempHumidityMeasurementItem+Mock.swift in Sources */,
 				A5A23C2F2ABDAF8E00233542 /* ValuesFormatterTests.swift in Sources */,
 				A57785C129E80C16001C631E /* SuplaClientProviderMock.swift in Sources */,
 				A59AB8B02A30721D00D91F1F /* GroupUseCasesMocks.swift in Sources */,
 				A573B0992A5FD869001E19D0 /* SwitchDetailVMTests.swift in Sources */,
 				A5ABE5C42ABCD3F600FFA50B /* ThermostatDetailVMTests.swift in Sources */,
 				012FCBD323217DE000AC6FF6 /* ThermostatCalendarTests.m in Sources */,
+				A54A06802AF90BF800C03DBC /* LoadChannelMeasurementsDateRangeUseCaseTests.swift in Sources */,
 				A5ABE5C22ABCCC4C00FFA50B /* EditQuartersDialogVMTests.swift in Sources */,
 				A5ABE5BB2ABC292400FFA50B /* DelayedWeeklyScheduleConfigSubjectMock.swift in Sources */,
 				A5ABE5CD2ABCD89400FFA50B /* LoadingTimoutManagerMock.swift in Sources */,
@@ -6220,6 +6374,7 @@
 				A573B0A82A60077B001E19D0 /* StartTimerUseCaseMock.swift in Sources */,
 				A59AB8BB2A30800F00D91F1F /* ProfileRepositoryMock.swift in Sources */,
 				A596838D2ABE26590005E73C /* DeleteRemovableChannelRelationUseCaseTests.swift in Sources */,
+				A54A06632AF50E8A00C03DBC /* RequestHelperMock.swift in Sources */,
 				A58B2CB42AC195FA00764388 /* CreateTemperaturesListUseCaseTests.swift in Sources */,
 				A573B0B52A6037EA001E19D0 /* StartTimerUseCaseTests.swift in Sources */,
 				AECB1BE92710A785001A9714 /* AccountCreationVMTests.swift in Sources */,
@@ -6228,6 +6383,7 @@
 				A59AB8E62A30A73100D91F1F /* CreateProfileChannelsListUseCaseTests.swift in Sources */,
 				A5A72E412AC1767600405C41 /* MarkChannelRelationAsRemovableUseCaseTest.swift in Sources */,
 				A57C883A2ACB4BDB000B0F10 /* SuplaChannelWeeklyScheduleConfig+Mock.swift in Sources */,
+				A54A068A2AF925FB00C03DBC /* ProfileUseCasesMocks.swift in Sources */,
 				A59AB8A02A30535E00D91F1F /* ChannelUseCasesMocks.swift in Sources */,
 				A573B0B12A602F5F001E19D0 /* ExecuteSimpleActionUseCaseTests.swift in Sources */,
 			);

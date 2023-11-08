@@ -16,23 +16,20 @@
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 
+@testable import SUPLA
 import RxSwift
 
-@testable import SUPLA
-
-final class ProfileRepositoryMock: BaseRepositoryMock<AuthProfileItem>, ProfileRepository {
+final class DownloadEventsManagerMock: DownloadEventsManager {
     
-    var activeProfileObservable: Observable<AuthProfileItem> = Observable.empty()
-    var activeProfileCalls = 0
-    func getActiveProfile() -> Observable<AuthProfileItem> {
-        activeProfileCalls += 1
-        return activeProfileObservable
+    var emitProgressStateParameters: [(Int32, DownloadEventsManagerState)] = []
+    func emitProgressState(remoteId: Int32, state: DownloadEventsManagerState) {
+        emitProgressStateParameters.append((remoteId, state))
     }
     
-    var allProfilesObservable: Observable<[AuthProfileItem]> = Observable.empty()
-    var allProfilesCalls = 0
-    func getAllProfiles() -> RxSwift.Observable<[AuthProfileItem]> {
-        allProfilesCalls += 1
-        return allProfilesObservable
+    var observeProgressParameters: [Int32] = []
+    var observeProgressReturns: Observable<DownloadEventsManagerState> = Observable.empty()
+    func observeProgress(remoteId: Int32) -> Observable<DownloadEventsManagerState> {
+        observeProgressParameters.append(remoteId)
+        return observeProgressReturns
     }
 }

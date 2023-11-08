@@ -16,23 +16,14 @@
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 
-import RxSwift
-
 @testable import SUPLA
 
-final class ProfileRepositoryMock: BaseRepositoryMock<AuthProfileItem>, ProfileRepository {
-    
-    var activeProfileObservable: Observable<AuthProfileItem> = Observable.empty()
-    var activeProfileCalls = 0
-    func getActiveProfile() -> Observable<AuthProfileItem> {
-        activeProfileCalls += 1
-        return activeProfileObservable
-    }
-    
-    var allProfilesObservable: Observable<[AuthProfileItem]> = Observable.empty()
-    var allProfilesCalls = 0
-    func getAllProfiles() -> RxSwift.Observable<[AuthProfileItem]> {
-        allProfilesCalls += 1
-        return allProfilesObservable
+extension SATempHumidityMeasurementItem {
+    static func mock(_ date: Date, _ temperature: Float, _ humidity: Float) -> SATempHumidityMeasurementItem {
+        let mock = SATempHumidityMeasurementItem(testContext: nil)
+        mock.setDateAndDateParts(date)
+        mock.temperature = NSDecimalNumber(floatLiteral: Double(temperature))
+        mock.humidity = NSDecimalNumber(floatLiteral: Double(humidity))
+        return mock
     }
 }

@@ -187,7 +187,7 @@ struct AggregatedEntity {
     }
 }
 
-struct EntryDetails {
+struct EntryDetails: Equatable {
     let aggregation: ChartDataAggregation
     let type: ChartEntryType
     let min: Double?

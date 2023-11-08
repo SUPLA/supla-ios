@@ -26,6 +26,7 @@ class MultiAccountProfileManager: NSObject {
     @Singleton<RuntimeConfig> private var runtimeConfig
     @Singleton<SingleCall> private var singleCall
     @Singleton<SuplaCloudConfigHolder> private var cloudConfigHolder
+    @Singleton<SuplaClientProvider> private var suplaClientProvider
     
     private let userDefaults = UserDefaults.standard
     
@@ -112,7 +113,7 @@ extension MultiAccountProfileManager: ProfileManager {
                     return profiles
                 }
                 .flatMapFirst { profiles in
-                    self.profileRepository.save(profiles[0])
+                    self.profileRepository.save()
                 }
                 .subscribeSynchronous()
             
@@ -189,8 +190,9 @@ extension MultiAccountProfileManager: ProfileManager {
     
     private func initiateReconnect() {
         let app = SAApp.instance()
-        let client = SAApp.suplaClient()
         app.cancelAllRestApiClientTasks()
+        
+        let client = suplaClientProvider.provide()
         client.reconnect()
     }
     

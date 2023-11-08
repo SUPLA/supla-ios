@@ -42,6 +42,18 @@ struct SuplaCloudClient {
             return decoder
         }
     }
+    
+    static var encoder: JSONEncoder {
+        get {
+            let encoder = JSONEncoder()
+            encoder.dateEncodingStrategy = .custom({ (date, encoder) in
+                let value = Int(date.timeIntervalSince1970)
+                var container = encoder.singleValueContainer()
+                try container.encode("\(value)")
+            })
+            return encoder
+        }
+    }
 }
 
 enum SuplaCloudClientError: Error {

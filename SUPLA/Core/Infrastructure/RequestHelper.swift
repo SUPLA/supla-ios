@@ -93,7 +93,9 @@ final class RequestHelperImpl: NSObject, RequestHelper {
         return syncedQueue.sync(execute: {
             clientProvider.provide().oAuthTokenRequest()
             
-            for _ in 0...50 {
+            let rounds: Int32 = ProcessInfo.processInfo.environment["XCTestConfigurationFilePath"] != nil ? 1 : 50
+            
+            for _ in 0...rounds {
                 if (self.configHolder.token != nil && self.configHolder.token?.isAlive() == true) {
                     return true
                 }

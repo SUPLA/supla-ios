@@ -285,6 +285,29 @@ class ChannelListVMTests: ViewModelTest<ChannelListViewState, ChannelListViewEve
         ])
     }
     
+    func test_shouldOpenThermometerDetail() {
+        // given
+        let remoteId: Int32 = 322
+        let channel = SAChannel(testContext: nil)
+        channel.value = SAChannelValue(testContext: nil)
+        channel.value?.online = true
+        channel.remote_id = remoteId
+        
+        provideDetailTypeUseCase.detailType = .thermometerDetail(pages: [.thermometerHistory])
+        
+        // when
+        observe(viewModel)
+        viewModel.onClicked(onItem: channel)
+        
+        // then
+        XCTAssertEqual(stateObserver.events.count, 1)
+        XCTAssertEqual(eventObserver.events.count, 1)
+        
+        XCTAssertEqual(eventObserver.events, [
+            .next(0, .navigateToThermometerDetail(remoteId: remoteId, pages: [.thermometerHistory]))
+        ])
+    }
+    
     func test_leftButtonClicked() {
         // given
         let buttonType: CellButtonType = .leftButton
