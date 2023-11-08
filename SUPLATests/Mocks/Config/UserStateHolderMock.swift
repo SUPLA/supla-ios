@@ -16,23 +16,21 @@
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 
-import RxSwift
-
 @testable import SUPLA
 
-final class ProfileRepositoryMock: BaseRepositoryMock<AuthProfileItem>, ProfileRepository {
+final class UserStateHolderMock: UserStateHolder {
     
-    var activeProfileObservable: Observable<AuthProfileItem> = Observable.empty()
-    var activeProfileCalls = 0
-    func getActiveProfile() -> Observable<AuthProfileItem> {
-        activeProfileCalls += 1
-        return activeProfileObservable
+    var getTemperatureCharStateParameters: [(String, Int32)] = []
+    var getTemperatureChartStateReturns: TemperatureChartState = .defaultState()
+    func getTemperatureChartState(profileId: String, remoteId: Int32) -> TemperatureChartState {
+        getTemperatureCharStateParameters.append((profileId, remoteId))
+        return getTemperatureChartStateReturns
     }
     
-    var allProfilesObservable: Observable<[AuthProfileItem]> = Observable.empty()
-    var allProfilesCalls = 0
-    func getAllProfiles() -> RxSwift.Observable<[AuthProfileItem]> {
-        allProfilesCalls += 1
-        return allProfilesObservable
+    var setTemperatureChartStateParameters: [(TemperatureChartState, String, Int32)] = []
+    func setTemperatureChartState(_ state: TemperatureChartState, profileId: String, remoteId: Int32) {
+        setTemperatureChartStateParameters.append((state, profileId, remoteId))
     }
+    
+    
 }

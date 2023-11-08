@@ -19,7 +19,7 @@
 import RxSwift
 
 protocol DownloadTempHumidityMeasurementsUseCase {
-    func loadMeasurements(remoteId: Int32) -> Observable<Float>
+    func invoke(remoteId: Int32) -> Observable<Float>
 }
 
 final class DownloadTempHumidityMeasurementsUseCaseImpl: BaseDownloadMeasurementsUseCase, DownloadTempHumidityMeasurementsUseCase {

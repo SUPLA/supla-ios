@@ -16,23 +16,24 @@
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 
+@testable import SUPLA
 import RxSwift
 
-@testable import SUPLA
-
-final class ProfileRepositoryMock: BaseRepositoryMock<AuthProfileItem>, ProfileRepository {
+final class RequestHelperMock: RequestHelper {
     
-    var activeProfileObservable: Observable<AuthProfileItem> = Observable.empty()
-    var activeProfileCalls = 0
-    func getActiveProfile() -> Observable<AuthProfileItem> {
-        activeProfileCalls += 1
-        return activeProfileObservable
+    var requestParameters: [String] = []
+    var requestResturns: Observable<Data> = Observable.empty()
+    func getRequest(urlString: String) -> Observable<Data> {
+        requestParameters.append(urlString)
+        return requestResturns
     }
     
-    var allProfilesObservable: Observable<[AuthProfileItem]> = Observable.empty()
-    var allProfilesCalls = 0
-    func getAllProfiles() -> RxSwift.Observable<[AuthProfileItem]> {
-        allProfilesCalls += 1
-        return allProfilesObservable
+    var oauthRequestParameters: [String] = []
+    var oauthRequestReturns: Observable<(response: HTTPURLResponse, data: Data)> = Observable.empty()
+    func getOAuthRequest(urlString: String) -> Observable<(response: HTTPURLResponse, data: Data)> {
+        oauthRequestParameters.append(urlString)
+        return oauthRequestReturns
     }
+    
+    
 }

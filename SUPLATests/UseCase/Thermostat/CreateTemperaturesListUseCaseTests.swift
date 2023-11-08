@@ -46,7 +46,7 @@ final class CreateTemperaturesListUseCaseTests: XCTestCase {
         let channelWithChildren = ChannelWithChildren(channel: SAChannel.mock(123), children: [
             ChannelChild(channel: SAChannel.mock(234, SUPLA_CHANNELFNC_THERMOMETER), relationType: .mainThermometer),
             ChannelChild(channel: SAChannel.mock(345), relationType: .defaultType),
-            ChannelChild(channel: SAChannel.mock(456, SUPLA_CHANNELFNC_THERMOMETER), relationType: .auxThermometerFloor)
+            ChannelChild(channel: SAChannel.mock(456, SUPLA_CHANNELFNC_HUMIDITYANDTEMPERATURE), relationType: .auxThermometerFloor)
         ])
         
         // when
@@ -54,6 +54,7 @@ final class CreateTemperaturesListUseCaseTests: XCTestCase {
         
         // then
         XCTAssertEqual(temperatures, [
+            MeasurementValue(icon: nil, value: "---"),
             MeasurementValue(icon: nil, value: "---"),
             MeasurementValue(icon: nil, value: "---")
         ])
@@ -72,6 +73,27 @@ final class CreateTemperaturesListUseCaseTests: XCTestCase {
         // then
         XCTAssertEqual(temperatures, [
             MeasurementValue(icon: nil, value: "---"),
+        ])
+    }
+    
+    func test_createTemperaturesList_online() {
+        // given
+        let value = SAChannelValue(testContext: nil)
+        value.online = true
+        let channel = SAChannel.mock(234, SUPLA_CHANNELFNC_HUMIDITYANDTEMPERATURE)
+        channel.value = value
+        
+        let channelWithChildren = ChannelWithChildren(channel: SAChannel.mock(123), children: [
+            ChannelChild(channel: channel, relationType: .mainThermometer),
+        ])
+        
+        // when
+        let temperatures = useCase.invoke(channelWithChildren: channelWithChildren)
+        
+        // then
+        XCTAssertEqual(temperatures, [
+            MeasurementValue(icon: nil, value: "-273.0°"),
+            MeasurementValue(icon: nil, value: "---")
         ])
     }
 }

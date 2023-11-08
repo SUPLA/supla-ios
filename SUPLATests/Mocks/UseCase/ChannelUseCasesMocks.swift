@@ -75,3 +75,46 @@ final class ReadChannelWithChildrenUseCaseMock: ReadChannelWithChildrenUseCase {
         return returns
     }
 }
+
+final class DownloadChannelMeasurementsUseCaseMock: DownloadChannelMeasurementsUseCase {
+    var parameters: [(Int32, Int32)] = []
+    func invoke(remoteId: Int32, function: Int32) {
+        parameters.append((remoteId, function))
+    }
+}
+
+final class LoadChannelMeasurementsUseCaseMock: LoadChannelMeasurementsUseCase {
+    var parameters: [(Int32, Date, Date, ChartDataAggregation)] = []
+    var returns: Observable<[HistoryDataSet]> = Observable.empty()
+    func invoke(remoteId: Int32, startDate: Date, endDate: Date, aggregation: ChartDataAggregation) -> Observable<[HistoryDataSet]> {
+        parameters.append((remoteId, startDate, endDate, aggregation))
+        return returns
+    }
+}
+
+final class LoadChannelMeasurementsDateRangeUseCaseMock: LoadChannelMeasurementsDateRangeUseCase {
+    var parameters: [Int32] = []
+    var returns: Observable<DaysRange?> = Observable.empty()
+    func invoke(remoteId: Int32) -> Observable<DaysRange?> {
+        parameters.append(remoteId)
+        return returns
+    }
+}
+
+final class DownloadTemperatureMeasurementsUseCaseMock: DownloadTemperatureMeasurementsUseCase {
+    var parameters: [Int32] = []
+    var returns: Observable<Float> = Observable.empty()
+    func invoke(remoteId: Int32) -> Observable<Float> {
+        parameters.append(remoteId)
+        return returns
+    }
+}
+
+final class DownloadTempHumidityMeasurementsUseCaseMock: DownloadTempHumidityMeasurementsUseCase {
+    var parameters: [Int32] = []
+    var returns: Observable<Float> = Observable.empty()
+    func invoke(remoteId: Int32) -> Observable<Float> {
+        parameters.append(remoteId)
+        return returns
+    }
+}

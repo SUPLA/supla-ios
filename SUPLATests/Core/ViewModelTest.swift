@@ -55,7 +55,13 @@ class ViewModelTest<S : ViewState, E : ViewEvent>: XCTestCase {
     
     func assertStates(expected: [S]) {
         let states = stateObserver.events.map { $0.value.element }
-        XCTAssertEqual(states, expected)
+        XCTAssertEqual(states.count, expected.count)
+        
+        if (states.count == expected.count) {
+            for i in 0..<states.count {
+                XCTAssertEqual(states[i], expected[i])
+            }
+        }
     }
     
     func assertState<T: Equatable>(_ id: Int, withPath path: KeyPath<S, T>, equalTo value: T) {

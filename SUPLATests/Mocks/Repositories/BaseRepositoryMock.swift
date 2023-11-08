@@ -24,26 +24,22 @@ class BaseRepositoryMock<T: NSManagedObject>: RepositoryProtocol {
     typealias T = T
     
     var queryObservable: Observable<[T]> = Observable.empty()
-    
     func query(_ request: NSFetchRequest<T>) -> Observable<[T]> {
         return queryObservable
     }
     
     var queryItemByPredicateObservable: Observable<T?> = Observable.empty()
-    
     func queryItem(_ predicate: NSPredicate) -> Observable<T?> {
         return queryItemByPredicateObservable
     }
     
     var queryItemByIdObservable: Observable<T?> = Observable.empty()
-    
     func queryItem(_ id: NSManagedObjectID) -> Observable<T?> {
         return queryItemByIdObservable
     }
     
     var saveObservable: Observable<Void> = Observable.empty()
     var saveParameters: [T] = []
-    
     func save(_ entity: T) -> Observable<Void> {
         saveParameters.append(entity)
         return saveObservable

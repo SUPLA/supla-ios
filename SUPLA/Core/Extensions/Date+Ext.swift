@@ -120,9 +120,9 @@ extension Date {
     }
     
     func yearHalf() -> Date {
-        var date = calendar.date(bySetting: .month, value: 7, of: self)!
-        date = calendar.date(bySetting: .day, value: 1, of: date)!
-        return calendar.date(bySettingHour: 0, minute: 0, second: 0, of: date)!
+        var components = DateComponents(timeZone: TimeZone.current)
+        components.month = 6
+        return calendar.date(byAdding: components, to: yearStart())!
     }
     
     func yearEnd() -> Date {
@@ -147,5 +147,31 @@ extension Date {
     func shift(days: Int) -> Date {
         let toShift: Double = Double(days) * 24 * 60 * 60
         return Date(timeIntervalSince1970: self.timeIntervalSince1970 + toShift)
+    }
+    
+    static func create(year: Int, month: Int = 1, day: Int = 1, hour: Int = 0, minute: Int = 0, second: Int = 0) -> Date? {
+        var dateComponents = DateComponents()
+        dateComponents.timeZone = TimeZone.current
+        dateComponents.year = year
+        dateComponents.month = month
+        dateComponents.day = day
+        dateComponents.hour = hour
+        dateComponents.minute = minute
+        dateComponents.second = second
+        
+        return calendar.date(from: dateComponents)
+    }
+    
+    static func create(_ year: Int, _ month: Int, _ day: Int, _ hour: Int, _ minute: Int, _ second: Int) -> Date? {
+        var dateComponents = DateComponents()
+        dateComponents.timeZone = TimeZone.current
+        dateComponents.year = year
+        dateComponents.month = month
+        dateComponents.day = day
+        dateComponents.hour = hour
+        dateComponents.minute = minute
+        dateComponents.second = second
+        
+        return calendar.date(from: dateComponents)
     }
 }

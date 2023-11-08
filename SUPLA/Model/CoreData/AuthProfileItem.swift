@@ -72,7 +72,10 @@ extension AuthProfileItem {
     
     var idString: String {
         get {
-            objectID.uriRepresentation().dataRepresentation.base64EncodedString()
+            if (objectID == nil) {
+                return "" // Used for testing
+            }
+            return objectID.uriRepresentation().dataRepresentation.base64EncodedString()
         }
     }
 }

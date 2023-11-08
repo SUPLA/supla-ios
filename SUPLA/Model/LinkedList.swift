@@ -68,6 +68,8 @@ public class LinkedList<Value> {
     }
     
     func avg(extractor: (Value) -> Double?) -> Double {
+        if (isEmpty) { return 0 }
+        
         var sum: Double = 0
         var count: Double = 0
         
