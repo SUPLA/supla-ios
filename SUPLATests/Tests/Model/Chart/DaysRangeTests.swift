@@ -21,6 +21,10 @@ import XCTest
 
 final class DaysRangeTests: XCTestCase {
     
+    override func setUp() {
+        NSTimeZone.default = NSTimeZone(forSecondsFromGMT: 0) as TimeZone
+    }
+    
     func test_shouldGetMinAggregationMinutesWhenDaysCountBelow31() {
         // given
         let start: Date = .create(year: 2023, month: 11, day: 4)!
@@ -128,16 +132,16 @@ final class DaysRangeTests: XCTestCase {
     
     func test_shouldShiftRangeByWeek() {
         // given
-        let start: Date = .create(year: 2023, month: 11, day: 6)!
-        let end: Date = .create(year: 2023, month: 11, day: 10)!
+        let start: Date = .create(year: 2023, month: 11, day: 13)!
+        let end: Date = .create(year: 2023, month: 11, day: 17)!
         let range = DaysRange(start: start, end: end)
         
         // when
         let shifted = range.shift(by: .week, forward: false)
         
         // then
-        XCTAssertEqual(shifted.start, .create(year: 2023, month: 10, day: 30)!)
-        XCTAssertEqual(shifted.end, .create(year: 2023, month: 11, day: 3)!)
+        XCTAssertEqual(shifted.start, .create(year: 2023, month: 11, day: 6)!)
+        XCTAssertEqual(shifted.end, .create(year: 2023, month: 11, day: 10)!)
     }
     
     func test_shouldShiftRangeByMonthForward() {

@@ -34,6 +34,7 @@ final class CreateTemperaturesListUseCaseTests: XCTestCase {
         
         DiContainer.shared.register(type: GetChannelBaseIconUseCase.self, component: getChannelBaseIconUseCaseMock!)
         DiContainer.shared.register(type: GlobalSettings.self, component: GlobalSettingsImpl())
+        DiContainer.shared.register(type: ValuesFormatter.self, component: ValuesFormatterImpl())
     }
     
     override func tearDown() {
@@ -79,7 +80,7 @@ final class CreateTemperaturesListUseCaseTests: XCTestCase {
     
     func test_createTemperaturesList_online() {
         // given
-        var temperature: Int32 = 23400
+        var temperature: Int = 23400
         let value = SAChannelValue(testContext: nil)
         value.online = true
         value.value = NSData(bytes: &temperature, length: MemoryLayout<Int>.size)
@@ -96,7 +97,7 @@ final class CreateTemperaturesListUseCaseTests: XCTestCase {
         // then
         XCTAssertEqual(temperatures, [
             MeasurementValue(icon: nil, value: "23.4°"),
-            MeasurementValue(icon: nil, value: "---")
+            MeasurementValue(icon: nil, value: "0.0")
         ])
     }
 }

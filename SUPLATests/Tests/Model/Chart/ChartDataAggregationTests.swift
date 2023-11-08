@@ -24,6 +24,10 @@ final class ChartDataAggregationTests: XCTestCase {
     // 2023.11.03 13:00 (GMT)
     let date = Date(timeIntervalSince1970: TimeInterval(1699016400))
     
+    override func setUp() {
+        NSTimeZone.default = NSTimeZone(forSecondsFromGMT: 0) as TimeZone
+    }
+    
     func test_shouldGetYearAggregator() {
         // given
         let aggregation = ChartDataAggregation.years
@@ -73,7 +77,7 @@ final class ChartDataAggregationTests: XCTestCase {
         let aggregator = aggregation.aggregator(item: item)
         
         // then
-        XCTAssertEqual(aggregator, 2023110314)
+        XCTAssertEqual(aggregator, 2023110313)
     }
     
     func test_checkBetweenRanges() {
