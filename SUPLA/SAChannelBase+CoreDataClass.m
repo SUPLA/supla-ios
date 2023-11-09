@@ -195,6 +195,8 @@
                 return NSLocalizedString(@"Roof window opening sensor", nil);
             case SUPLA_CHANNELFNC_HOTELCARDSENSOR:
                 return [LegacyStrings localized: @"channel_caption_hotelcard"];
+            case SUPLA_CHANNELFNC_ALARMARMAMENTSENSOR:
+                return [LegacyStrings localized: @"channel_caption_alarm_armament"];
             case SUPLA_CHANNELFNC_CONTROLLINGTHEROLLERSHUTTER:
                 return NSLocalizedString(@"Roller shutter", nil);
             case SUPLA_CHANNELFNC_CONTROLLINGTHEROOFWINDOW:
@@ -302,6 +304,8 @@
             return NSLocalizedString(@"Roof window opening sensor", nil);
         case SUPLA_CHANNELFNC_HOTELCARDSENSOR:
             return [LegacyStrings localized: @"channel_caption_hotelcard"];
+        case SUPLA_CHANNELFNC_ALARMARMAMENTSENSOR:
+            return [LegacyStrings localized: @"channel_caption_alarm_armament"];
         case SUPLA_CHANNELFNC_POWERSWITCH:
             return NSLocalizedString(@"On/Off switch", nil);
         case SUPLA_CHANNELFNC_LIGHTSWITCH:
@@ -465,6 +469,7 @@
             case SUPLA_CHANNELFNC_OPENINGSENSOR_ROLLERSHUTTER:
             case SUPLA_CHANNELFNC_OPENINGSENSOR_ROOFWINDOW:
             case SUPLA_CHANNELFNC_HOTELCARDSENSOR:
+            case SUPLA_CHANNELFNC_ALARMARMAMENTSENSOR:
             case SUPLA_CHANNELFNC_MAILSENSOR:
             case SUPLA_CHANNELFNC_OPENINGSENSOR_WINDOW:
             case SUPLA_CHANNELFNC_POWERSWITCH:
@@ -553,6 +558,9 @@
             break;
         case SUPLA_CHANNELFNC_HOTELCARDSENSOR:
             n2 = @"fnc_hotel_card";
+            break;
+        case SUPLA_CHANNELFNC_ALARMARMAMENTSENSOR:
+            n2 = @"fnc_alarm_armament";
             break;
         case SUPLA_CHANNELFNC_POWERSWITCH:
             switch(self.alticon) {

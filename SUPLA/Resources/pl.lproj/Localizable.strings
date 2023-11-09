@@ -354,6 +354,7 @@
 "time_hours_and_minutes" = "%d godz. %d min.";
 /* General - Channels */
 "channel_caption_hotelcard" = "Czytnik karty hotelowej";
+"channel_caption_alarm_armament" = "Czujnik uzbrojenia alarmu";
 
 /* Standard Detail */
 "standard_detail_general_tab" = "Ogólne";

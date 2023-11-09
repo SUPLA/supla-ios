@@ -68,6 +68,7 @@
 "time_hours_and_minutes" = "%d hours %d min.";
 /* General - Channels */
 "channel_caption_hotelcard" = "Hotel card sensor";
+"channel_caption_alarm_armament" = "Alarm armament sensor";
 
 /* Standard Detail */
 "standard_detail_general_tab" = "General";

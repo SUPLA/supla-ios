@@ -1505,4 +1505,42 @@ final class GetDefaultIconNameUseCaseTests: XCTestCase {
         // then
         XCTAssertEqual(iconName, "fnc_hotel_card-off")
     }
+    
+    func test_alarmArmamentFunctionOn() {
+        // given
+        let function = SUPLA_CHANNELFNC_ALARMARMAMENTSENSOR
+        
+        // when
+        let iconName = useCase.invoke(
+            iconData: IconData(
+                function: function,
+                altIcon: 0,
+                state: .on,
+                type: .single,
+                subfunction: .notSet
+            )
+        )
+        
+        // then
+        XCTAssertEqual(iconName, "fnc_alarm_armament-on")
+    }
+    
+    func test_alarmArmamentFunctionOff() {
+        // given
+        let function = SUPLA_CHANNELFNC_ALARMARMAMENTSENSOR
+        
+        // when
+        let iconName = useCase.invoke(
+            iconData: IconData(
+                function: function,
+                altIcon: 0,
+                state: .off,
+                type: .single,
+                subfunction: .notSet
+            )
+        )
+        
+        // then
+        XCTAssertEqual(iconName, "fnc_alarm_armament-off")
+    }
 }

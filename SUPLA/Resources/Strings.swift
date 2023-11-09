@@ -251,6 +251,7 @@ struct Strings {
         
         struct Channel {
             static let channelCaptionHotelCard = "channel_caption_hotelcard".toLocalized()
+            static let channelCaptionAlarmArmament = "channel_caption_alarm_armament".toLocalized()
         }
     }
 }
