@@ -29,6 +29,7 @@ class ThermostatGeneralVM: BaseViewModel<ThermostatGeneralViewState, ThermostatG
     @Singleton<ConfigEventsManager> private var configEventManager
     @Singleton<DelayedThermostatActionSubject> private var delayedThermostatActionSubject
     @Singleton<DateProvider> private var dateProvider
+    @Singleton<GetChannelBaseIconUseCase> private var getChannelBaseIconUseCase
     @Inject<LoadingTimeoutManager> private var loadingTimeoutManager
     
     private let updateRelay = PublishRelay<Void>()
@@ -269,6 +270,7 @@ class ThermostatGeneralVM: BaseViewModel<ThermostatGeneralViewState, ThermostatG
                 .changing(path: \.configMax, to: config.temperatures.roomMax?.fromSuplaTemperature())
                 .changing(path: \.loadingState, to: state.loadingState.copy(loading: false))
                 .changing(path: \.issues, to: createThermostatIssues(flags: thermostatValue.flags))
+                .changing(path: \.sensorIssue, to: createSensorIssue(value: thermostatValue, children: channel.children))
                 .changing(path: \.temporaryChangeActive, to: channel.channel.isOnline() && thermostatValue.flags.contains(.weeklyScheduleTemporalOverride))
                 .changing(path: \.programInfo, to: createProgramInfo(config: data.2, value: thermostatValue, channelOnline: channel.channel.isOnline()))
             
@@ -406,6 +408,28 @@ class ThermostatGeneralVM: BaseViewModel<ThermostatGeneralViewState, ThermostatG
         return result
     }
     
+    private func createSensorIssue(value: ThermostatValue, children: [ChannelChild]) -> SensorIssue? {
+        if (!value.flags.contains(.forcedOffBySensor)) {
+            return nil
+        }
+        
+        if let sensor = children.first(where: { $0.relationType == .defaultType }) {
+            let message = switch(sensor.channel.func) {
+            case SUPLA_CHANNELFNC_OPENINGSENSOR_WINDOW, SUPLA_CHANNELFNC_OPENINGSENSOR_ROOFWINDOW:
+                Strings.ThermostatDetail.offByWindow
+            case SUPLA_CHANNELFNC_HOTELCARDSENSOR:
+                Strings.ThermostatDetail.offByCard
+            default: Strings.ThermostatDetail.offBySensor
+            }
+            return SensorIssue(
+                sensorIcon: getChannelBaseIconUseCase.invoke(channel: sensor.channel),
+                message: message
+            )
+        }
+        
+        return nil
+    }
+    
     private func createProgramInfo(config: SuplaChannelWeeklyScheduleConfig?, value: ThermostatValue, channelOnline: Bool) -> [ThermostatProgramInfo] {
         guard let config = config else { return [] }
         
@@ -467,6 +491,7 @@ struct ThermostatGeneralViewState: ViewState {
     var temporaryChangeActive: Bool = false
     var programInfo: [ThermostatProgramInfo] = []
     var issues: [ThermostatIssueItem] = []
+    var sensorIssue: SensorIssue? = nil
     
     /* All calculated properties below */
     
@@ -591,4 +616,9 @@ fileprivate extension SAChannel {
 struct ThermostatIssueItem: Equatable {
     let issueIconType: IssueIconType
     let description: String
+}
+
+struct SensorIssue: Equatable {
+    let sensorIcon: UIImage?
+    let message: String
 }

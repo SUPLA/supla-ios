@@ -211,6 +211,10 @@ struct Strings {
         static let programTime = "thermostat_detail_program_time".toLocalized()
         static let programCurrent = "thermostat_detail_program_current".toLocalized()
         static let programNext = "thermostat_detail_program_next".toLocalized()
+        
+        static let offByWindow = "thermostat_detail_off_by_window".toLocalized()
+        static let offByCard = "thermostat_detail_off_by_card".toLocalized()
+        static let offBySensor = "thermostat_detail_off_by_sensor".toLocalized()
     }
     
     struct General {
@@ -244,6 +248,10 @@ struct Strings {
         
         static let time_just_minutes = "time_just_mintes".toLocalized()
         static let time_hours_and_mintes = "time_hours_and_minutes".toLocalized()
+        
+        struct Channel {
+            static let channelCaptionHotelCard = "channel_caption_hotelcard".toLocalized()
+        }
     }
 }
 
@@ -254,5 +262,12 @@ extension String {
     
     func arguments(_ args: CVarArg...) -> String {
         String.init(format: self, args)
+    }
+}
+
+class LegacyStrings: NSObject {
+    @objc
+    static func localized(_ key: String) -> String {
+        NSLocalizedString(key, tableName: "Localizable", value: "\(NSLocalizedString(key, tableName: "Default", bundle: .main, comment: ""))", comment: "")
     }
 }

@@ -1,0 +1,12 @@
+{
+  "images" : [
+    {
+      "filename" : "fnc_hotel_card_off_nm.svg",
+      "idiom" : "universal"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}

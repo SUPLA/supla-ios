@@ -324,6 +324,8 @@
 "turn_off" = "Auschalten";
 "time_just_mintes" = "%d Min.";
 "time_hours_and_minutes" = "%d Std. %d Min.";
+/* General - Channels */
+"channel_caption_hotelcard" = "Hotelkartensensor";
 
 /* Standard Detail */
 "standard_detail_general_tab" = "Allgemein";
@@ -377,6 +379,9 @@
 "thermostat_detail_program_time" = "für %@";
 "thermostat_detail_program_current" = "Aktuell:";
 "thermostat_detail_program_next" = "Danach:";
+"thermostat_detail_off_by_window" = "Wegen offenem Fenster ausgeschaltet";
+"thermostat_detail_off_by_card" = "Wegen fehlender Hotelkarte ausgeschaltet";
+"thermostat_detail_off_by_sensor" = "Durch Sensor ausgeschaltet";
 
 /* Thermometer Chart */
 "history_range_label" = "Bereich";

@@ -352,6 +352,8 @@
 "sunday_short" = "ND";
 "time_just_mintes" = "%d min.";
 "time_hours_and_minutes" = "%d godz. %d min.";
+/* General - Channels */
+"channel_caption_hotelcard" = "Czytnik karty hotelowej";
 
 /* Standard Detail */
 "standard_detail_general_tab" = "Ogólne";
@@ -406,6 +408,9 @@
 "thermostat_detail_program_time" = "przez %@";
 "thermostat_detail_program_current" = "Aktualnie:";
 "thermostat_detail_program_next" = "Następnie:";
+"thermostat_detail_off_by_window" = "Wyłączony przez otwarte okno";
+"thermostat_detail_off_by_card" = "Wyłączony z powodu braku karty hotelowej";
+"thermostat_detail_off_by_sensor" = "Wyłączony przez czujnik";
 
 /* Thermometer Chart */
 "history_range_label" = "Zakres";

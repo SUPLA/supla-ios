@@ -58,6 +58,7 @@ final class ThermostatGeneralVMTests: ViewModelTest<ThermostatGeneralViewState, 
         DiContainer.shared.register(type: DateProvider.self, component: dateProvider!)
         DiContainer.shared.register(type: ValuesFormatter.self, component: ValuesFormatterMock())
         DiContainer.shared.register(type: LoadingTimeoutManager.self, producer: { self.loadingTimeoutManager! })
+        DiContainer.shared.register(type: GetChannelBaseIconUseCase.self, component: GetChannelBaseIconUseCaseMock())
     }
     
     override func tearDown() {
@@ -78,7 +79,7 @@ final class ThermostatGeneralVMTests: ViewModelTest<ThermostatGeneralViewState, 
     
     func test_shouldLoadData_heatStandbyManual() {
         // given
-        var hvacValue = THVACValue(IsOn: 1, Mode: SuplaHvacMode.heat.rawValue, SetpointTemperatureHeat: 2120, SetpointTemperatureCool: 0, Flags: 1)
+        var hvacValue = THVACValue(IsOn: 1, Mode: SuplaHvacMode.heat.rawValue, SetpointTemperatureHeat: 2120, SetpointTemperatureCool: 0, Flags: (1 | (1 << 9)))
         let remoteId: Int32 = 231
         let channel = SAChannel(testContext: nil)
         channel.remote_id = remoteId
@@ -94,7 +95,7 @@ final class ThermostatGeneralVMTests: ViewModelTest<ThermostatGeneralViewState, 
             MeasurementValue(icon: nil, value: "21.2")
         ]
         
-        readChannelWithChildrenUseCase.returns = Observable.just(ChannelWithChildren(channel: channel, children: [mockMainTemperatureChild()]))
+        readChannelWithChildrenUseCase.returns = Observable.just(ChannelWithChildren(channel: channel, children: [mockMainTemperatureChild(), mockSensorChild()]))
         createTemperaturesListUseCase.returns = measurements
         configEventsManager.observeConfigReturns = [
             Observable.just(mockHvacConfigEvent(remoteId)),
@@ -137,7 +138,8 @@ final class ThermostatGeneralVMTests: ViewModelTest<ThermostatGeneralViewState, 
                 .changing(path: \.heatingIndicatorInactive, to: true)
                 .changing(path: \.coolingIndicatorInactive, to: true)
                 .changing(path: \.currentTemperaturePercentage, to: 0.32666665)
-                .changing(path: \.childrenIds, to: [0])
+                .changing(path: \.childrenIds, to: [0, 0])
+                .changing(path: \.sensorIssue, to: SensorIssue(sensorIcon: nil, message: Strings.ThermostatDetail.offByCard))
         ])
 
         assertState(1) {
@@ -870,6 +872,13 @@ final class ThermostatGeneralVMTests: ViewModelTest<ThermostatGeneralViewState, 
         channel.value = channelValue
         
         return ChannelChild(channel: channel, relationType: .mainThermometer)
+    }
+    
+    private func mockSensorChild() -> ChannelChild {
+        let channel = SAChannel(testContext: nil)
+        channel.func = SUPLA_CHANNELFNC_HOTELCARDSENSOR
+        
+        return ChannelChild(channel: channel, relationType: .defaultType)
     }
     
     private func mockHvacConfigEvent(_ remoteId: Int32) -> ConfigEvent {
