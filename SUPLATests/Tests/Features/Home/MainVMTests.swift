@@ -32,14 +32,14 @@ class MainVMTests: ViewModelTest<MainViewState, MainViewEvent> {
     private lazy var channelRepository: ChannelRepositoryMock! = {
         ChannelRepositoryMock()
     }()
-    private lazy var listsEventsManager: ListsEventsManagerMock! = {
-        ListsEventsManagerMock()
+    private lazy var updateEventsManager: UpdateEventsManagerMock! = {
+        UpdateEventsManagerMock()
     }()
     
     override func setUp() {
         DiContainer.shared.register(type: (any ProfileRepository).self, component: profileRepository!)
         DiContainer.shared.register(type: (any ChannelRepository).self, component: channelRepository!)
-        DiContainer.shared.register(type: ListsEventsManager.self, component: listsEventsManager!)
+        DiContainer.shared.register(type: UpdateEventsManager.self, component: updateEventsManager!)
     }
     
     override func tearDown() {
@@ -47,16 +47,16 @@ class MainVMTests: ViewModelTest<MainViewState, MainViewEvent> {
         
         profileRepository = nil
         channelRepository = nil
-        listsEventsManager = nil
+        updateEventsManager = nil
         
         super.tearDown()
     }
     
     func test_shouldLoadIcons_onChannelUpdate() {
         // given
-        listsEventsManager.observeChannelUpdatesObservable = Observable.just(())
-        listsEventsManager.observeGroupUpdatesObservable = Observable.just(())
-        listsEventsManager.observeSceneUpdatesObservable = Observable.just(())
+        updateEventsManager.observeChannelUpdatesObservable = Observable.just(())
+        updateEventsManager.observeGroupUpdatesObservable = Observable.just(())
+        updateEventsManager.observeSceneUpdatesObservable = Observable.just(())
         
         // when
         observe(viewModel)

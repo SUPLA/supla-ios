@@ -71,8 +71,8 @@ final class SceneCell: BaseCell<SAScene> {
     
     override func derivedClassControls() -> [UIView] { return [sceneIconView] }
     
-    override func provideRefreshData(_ listsEventsManager: ListsEventsManager, forData: SAScene) -> Observable<SAScene> {
-        listsEventsManager.observeScene(sceneId: Int(forData.sceneId))
+    override func provideRefreshData(_ updateEventsManager: UpdateEventsManager, forData: SAScene) -> Observable<SAScene> {
+        updateEventsManager.observeScene(sceneId: Int(forData.sceneId))
     }
     
     // MARK: - configure cell layout

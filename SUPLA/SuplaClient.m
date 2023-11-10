@@ -747,19 +747,19 @@ void sasuplaclient_channel_config_update_or_result(void *_suplaclient,
     if ( result.ChannelCount == 0
         && [UseCaseLegacyWrapper changeChannelsVisibilityFrom:2 to:0] ) {
         [self onDataChanged];
-        [DiContainer.listsEventsManager emitChannelUpdate];
+        [DiContainer.updateEventsManager emitChannelsUpdate];
     }
     
     if ( result.ChannelGroupCount == 0
         && [UseCaseLegacyWrapper changeGroupsVisibilityFrom:2 to:0] ) {
         [self onDataChanged];
-        [DiContainer.listsEventsManager emitGroupUpdate];
+        [DiContainer.updateEventsManager emitGroupsUpdate];
     }
     
     if (result.SceneCount == 0
         && [UseCaseLegacyWrapper changeScenesVisibilityFrom:2 to:0]) {
         [self onDataChanged];
-        [DiContainer.listsEventsManager emitSceneUpdate];
+        [DiContainer.updateEventsManager emitScenesUpdate];
     }
     
     _client_id = result.ClientID;
@@ -792,9 +792,9 @@ void sasuplaclient_channel_config_update_or_result(void *_suplaclient,
 
 - (void) onChannelValueChanged:(int)Id isGroup:(BOOL)group {
     if (group) {
-        [DiContainer.listsEventsManager emitGroupChangeWithRemoteId: Id];
+        [DiContainer.updateEventsManager emitGroupUpdateWithRemoteId: Id];
     } else {
-        [DiContainer.listsEventsManager emitChannelChangeWithRemoteId: Id];
+        [DiContainer.updateEventsManager emitChannelUpdateWithRemoteId: Id];
     }
     NSArray *arr = [NSArray arrayWithObjects:[NSNumber numberWithInt:Id], [NSNumber numberWithBool:group], nil];
     [self performSelectorOnMainThread:@selector(_onChannelValueChanged:) withObject:arr waitUntilDone:NO];
@@ -853,13 +853,13 @@ void sasuplaclient_channel_config_update_or_result(void *_suplaclient,
     }
     
     if ( channel->EOL == 1 ) {
-        [DiContainer.listsEventsManager emitChannelUpdate];
+        [DiContainer.updateEventsManager emitChannelsUpdate];
         DataChanged = [UseCaseLegacyWrapper changeChannelsVisibilityFrom:2 to:0];
     }
     
     if ( DataChanged ) {
         [self onDataChanged];
-        [DiContainer.listsEventsManager emitChannelChangeWithRemoteId: channel->Id];
+        [DiContainer.updateEventsManager emitChannelUpdateWithRemoteId: channel->Id];
     }
     
     if ( ChannelValueChanged ) {
@@ -899,14 +899,14 @@ void sasuplaclient_channel_config_update_or_result(void *_suplaclient,
     }
     
     if ( cgroup->EOL == 1 ) {
-        [DiContainer.listsEventsManager emitGroupUpdate];
+        [DiContainer.updateEventsManager emitGroupsUpdate];
         [self onChannelGroupValueChanged];
         DataChanged = [UseCaseLegacyWrapper changeGroupsVisibilityFrom:2 to:0];
     }
     
     if ( DataChanged ) {
         [self onDataChanged];
-        [DiContainer.listsEventsManager emitGroupChangeWithRemoteId: cgroup->Id];
+        [DiContainer.updateEventsManager emitGroupUpdateWithRemoteId: cgroup->Id];
     }
 }
 
@@ -938,7 +938,7 @@ void sasuplaclient_channel_config_update_or_result(void *_suplaclient,
     
     if (relation->EOL == 1) {
         [UseCaseLegacyWrapper deleteRemovableRelations];
-        [DiContainer.listsEventsManager emitChannelUpdate];
+        [DiContainer.updateEventsManager emitChannelsUpdate];
     }
 }
 
@@ -953,7 +953,7 @@ void sasuplaclient_channel_config_update_or_result(void *_suplaclient,
     }
     
     if ( scene->EOL == 1 ) {
-        [DiContainer.listsEventsManager emitSceneUpdate];
+        [DiContainer.updateEventsManager emitScenesUpdate];
         DataChanged = [UseCaseLegacyWrapper changeScenesVisibilityFrom:2 to:0];
     }
     

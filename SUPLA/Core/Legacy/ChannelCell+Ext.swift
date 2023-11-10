@@ -24,13 +24,13 @@ extension SAChannelCell {
     @objc
     func observeChannelBaseChanges(_ remoteId: Int) {
         guard
-            let listsEventsManager = DiContainer.shared.resolve(type: ListsEventsManager.self)
+            let updateEventsManager = DiContainer.shared.resolve(type: UpdateEventsManager.self)
         else {
             return
         }
         
         if (channelBase is SAChannel) {
-            listsEventsManager.observeChannel(remoteId: remoteId)
+            updateEventsManager.observeChannel(remoteId: remoteId)
                 .asDriverWithoutError()
                 .drive(
                     onNext: { channel in
@@ -39,7 +39,7 @@ extension SAChannelCell {
                 )
                 .disposed(by: self.getDisposeBagContainer())
         } else if (channelBase is SAChannelGroup) {
-            listsEventsManager.observeGroup(remoteId: remoteId)
+            updateEventsManager.observeGroup(remoteId: remoteId)
                 .asDriverWithoutError()
                 .drive(
                     onNext: { channel in

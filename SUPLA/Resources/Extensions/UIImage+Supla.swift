@@ -27,9 +27,6 @@ extension UIImage {
     
     // Icons
     static let pencil = UIImage(named: "pencil")
-    static let iconThermostatHeat = UIImage(named: "fnc_thermostat_heat")
-    static let iconThermostatCool = UIImage(named: "fnc_thermostat_cool")
-    static let iconThermostatDhw = UIImage(named: "fnc_thermostat_dhw")
     static let iconInfo = UIImage(named: "channelstateinfo")
     static let iconHeating = UIImage(named: "icon_heating")
     static let iconCooling = UIImage(named: "icon_cooling")
@@ -41,6 +38,12 @@ extension UIImage {
     static let iconPlus = UIImage(named: "icon_plus")
     static let iconManual = UIImage(named: "icon_manual")
     static let iconSensorAlertCircle = UIImage(named: "icon_sensor_alert_circle")
+    
+    // Functions
+    static let fncUnknown = UIImage(named: "unknown_channel")
+    static let fncThermostatHeat = UIImage(named: "fnc_thermostat_heat")
+    static let fncThermostatCool = UIImage(named: "fnc_thermostat_cool")
+    static let fncThermostatDhw = UIImage(named: "fnc_thermostat_dhw")
     
     static let iconWarning = UIImage(named: "channel_warning_level1")
     static let iconError = UIImage(named: "channel_warning_level2")

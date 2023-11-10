@@ -38,8 +38,8 @@ final class GroupListVMTests: ViewModelTest<GroupListViewState, GroupListViewEve
     private lazy var provideDetailTypeUseCase: ProvideDetailTypeUseCaseMock! = {
         ProvideDetailTypeUseCaseMock()
     }()
-    private lazy var listsEventsManager: ListsEventsManagerMock! = {
-        ListsEventsManagerMock()
+    private lazy var updateEventsManager: UpdateEventsManagerMock! = {
+        UpdateEventsManagerMock()
     }()
     
     override func setUp() {
@@ -47,7 +47,7 @@ final class GroupListVMTests: ViewModelTest<GroupListViewState, GroupListViewEve
         DiContainer.shared.register(type: SwapGroupPositionsUseCase.self, component: swapGroupPositionsUseCase!)
         DiContainer.shared.register(type: ProvideDetailTypeUseCase.self, component: provideDetailTypeUseCase!)
         DiContainer.shared.register(type: ToggleLocationUseCase.self, component: toggleLocationUseCase!)
-        DiContainer.shared.register(type: ListsEventsManager.self, component: listsEventsManager!)
+        DiContainer.shared.register(type: UpdateEventsManager.self, component: updateEventsManager!)
     }
     
     override func tearDown() {
@@ -57,14 +57,14 @@ final class GroupListVMTests: ViewModelTest<GroupListViewState, GroupListViewEve
         swapGroupPositionsUseCase = nil
         provideDetailTypeUseCase = nil
         toggleLocationUseCase = nil
-        listsEventsManager = nil
+        updateEventsManager = nil
         
         super.tearDown()
     }
     
     func test_shouldReloadTable_onGroupUpdate() {
         // given
-        listsEventsManager.observeGroupUpdatesObservable = Observable.just(())
+        updateEventsManager.observeGroupUpdatesObservable = Observable.just(())
         
         // when
         observe(viewModel)

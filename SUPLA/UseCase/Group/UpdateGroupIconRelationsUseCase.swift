@@ -23,7 +23,7 @@ final class UpdateGroupIconRelationsUseCase {
     @Singleton<UserIconRepository> private var userIconRepository
     @Singleton<ProfileRepository> private var profileRepository
     @Singleton<GroupRepository> private var groupRepository
-    @Singleton<ListsEventsManager> private var listsEventsManager
+    @Singleton<UpdateEventsManager> private var updateEventsManager
     
     @available(*, deprecated, message: "Only for legacy code")
     func invoke() {
@@ -58,7 +58,7 @@ final class UpdateGroupIconRelationsUseCase {
             .flatMapFirst { icon in
                 if (icon != group.usericon) {
                     group.usericon = icon
-                    self.listsEventsManager.emitGroupChange(remoteId: Int(group.remote_id))
+                    self.updateEventsManager.emitGroupUpdate(remoteId: Int(group.remote_id))
                     return self.userIconRepository.save()
                 } else {
                     return Observable.just(())
@@ -68,7 +68,7 @@ final class UpdateGroupIconRelationsUseCase {
     
     private func removeRelation(group: SAChannelGroup) -> Observable<Void> {
         group.usericon = nil
-        self.listsEventsManager.emitGroupChange(remoteId: Int(group.remote_id))
+        self.updateEventsManager.emitGroupUpdate(remoteId: Int(group.remote_id))
         return self.groupRepository.save()
     }
 }

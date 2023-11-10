@@ -22,7 +22,7 @@ import RxSwift
 class BaseCell<T>: MGSwipeTableCell {
     
     @Singleton<GlobalSettings> private var settings
-    @Singleton<ListsEventsManager> private var listsEventsManager
+    @Singleton<UpdateEventsManager> private var updateEventsManager
     
     var scaleFactor: CGFloat = 1.0 {
         didSet {
@@ -35,7 +35,7 @@ class BaseCell<T>: MGSwipeTableCell {
             guard let data = data else { return }
             
             updateContent(data: data)
-            provideRefreshData(listsEventsManager, forData: data)
+            provideRefreshData(updateEventsManager, forData: data)
                 .asDriverWithoutError()
                 .drive(
                     onNext: { [weak self] data in self?.updateContent(data: data) }
@@ -200,7 +200,7 @@ class BaseCell<T>: MGSwipeTableCell {
 
     func issueMessage() -> String? { nil }
     
-    func provideRefreshData(_ listsEventsManager: ListsEventsManager, forData: T) -> Observable<T> {
+    func provideRefreshData(_ updateEventsManager: UpdateEventsManager, forData: T) -> Observable<T> {
         fatalError("provideRefreshData(_:) has not been implemented")
     }
     

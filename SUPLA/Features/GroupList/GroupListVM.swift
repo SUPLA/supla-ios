@@ -23,12 +23,12 @@ class GroupListViewModel: BaseTableViewModel<GroupListViewState, GroupListViewEv
     @Singleton<CreateProfileGroupsListUseCase> private var createProfileGroupsListUseCase
     @Singleton<SwapGroupPositionsUseCase> private var swapGroupPositionsUseCase
     @Singleton<ProvideDetailTypeUseCase> private var provideDetailTypeUseCase
-    @Singleton<ListsEventsManager> private var listsEventsManager
+    @Singleton<UpdateEventsManager> private var updateEventsManager
     
     override init() {
         super.init()
         
-        listsEventsManager.observeGroupUpdates()
+        updateEventsManager.observeGroupsUpdate()
             .subscribe(
                 onNext: { self.reloadTable() }
             )

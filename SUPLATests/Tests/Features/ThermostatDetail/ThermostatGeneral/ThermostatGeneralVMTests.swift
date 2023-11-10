@@ -140,6 +140,7 @@ final class ThermostatGeneralVMTests: ViewModelTest<ThermostatGeneralViewState, 
                 .changing(path: \.currentTemperaturePercentage, to: 0.32666665)
                 .changing(path: \.childrenIds, to: [0, 0])
                 .changing(path: \.sensorIssue, to: SensorIssue(sensorIcon: nil, message: Strings.ThermostatDetail.offByCard))
+                .changing(path: \.subfunction, to: .heat)
         ])
 
         assertState(1) {
@@ -220,6 +221,7 @@ final class ThermostatGeneralVMTests: ViewModelTest<ThermostatGeneralViewState, 
                     ThermostatIssueItem(issueIconType: .error, description: Strings.ThermostatDetail.thermometerError),
                     ThermostatIssueItem(issueIconType: .warning, description: Strings.ThermostatDetail.clockError)
                 ])
+                .changing(path: \.subfunction, to: .cool)
         ])
         
         assertState(1) {
@@ -292,6 +294,7 @@ final class ThermostatGeneralVMTests: ViewModelTest<ThermostatGeneralViewState, 
                 .changing(path: \.currentTemperaturePercentage, to: 0.32666665)
                 .changing(path: \.childrenIds, to: [0])
                 .changing(path: \.activeSetpointType, to: .heat)
+                .changing(path: \.subfunction, to: .heat)
         ])
         
         assertState(1) {

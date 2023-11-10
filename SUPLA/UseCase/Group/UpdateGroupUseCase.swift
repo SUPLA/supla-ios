@@ -24,7 +24,7 @@ final class UpdateGroupUseCase {
     @Singleton<LocationRepository> private var locationRepository
     @Singleton<GroupRepository> private var groupRepository
     @Singleton<ProfileRepository> private var profileRepository
-    @Singleton<ListsEventsManager> private var listsEventsManager
+    @Singleton<UpdateEventsManager> private var updateEventsManager
     
     @available(*, deprecated, message: "Only for legacy code")
     func invoke(suplaGroup: TSC_SuplaChannelGroup_B) -> Bool {
@@ -54,7 +54,7 @@ final class UpdateGroupUseCase {
                 .first() ?? false
             
             if (changed) {
-                listsEventsManager.emitGroupChange(remoteId: Int(suplaGroup.Id))
+                updateEventsManager.emitGroupUpdate(remoteId: Int(suplaGroup.Id))
             }
         } catch {
             changed = false

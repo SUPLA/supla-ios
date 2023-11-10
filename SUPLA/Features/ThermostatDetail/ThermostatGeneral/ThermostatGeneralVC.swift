@@ -62,14 +62,14 @@ class ThermostatGeneralVC: BaseViewControllerVM<ThermostatGeneralViewState, Ther
     }()
     
     private lazy var plusButton: UIIconButton = {
-        let button = UIIconButton(config: .primary(size: Dimens.buttonHeight))
+        let button = UIIconButton(config: .bordered(color: .disabled))
         button.translatesAutoresizingMaskIntoConstraints = false
         button.icon = .iconPlus
         return button
     }()
     
     private lazy var minusButton: UIIconButton = {
-        let button = UIIconButton(config: .primary(size: Dimens.buttonHeight))
+        let button = UIIconButton(config: .bordered(color: .disabled))
         button.translatesAutoresizingMaskIntoConstraints = false
         button.icon = .iconMinus
         return button
@@ -144,8 +144,10 @@ class ThermostatGeneralVC: BaseViewControllerVM<ThermostatGeneralViewState, Ther
         thermostatControlView.greyOutSetpoins = state.grayOutSetpoints
         minusButton.isEnabled = state.minusButtonEnabled
         minusButton.isHidden = state.plusMinusHidden
+        minusButton.setColor(activeSetpointType: state.activeSetpointType)
         plusButton.isEnabled = state.plusButtonEnabled
         plusButton.isHidden = state.plusMinusHidden
+        plusButton.setColor(activeSetpointType: state.activeSetpointType)
         buttonsView.isEnabled = state.controlButtonsEnabled
         buttonsView.manualModeActive = state.manualActive
         buttonsView.weeklyScheduleModeActive = state.weeklyScheduleActive
@@ -662,5 +664,20 @@ fileprivate class SensorIssueView: UIView {
             warningIconView.leftAnchor.constraint(equalTo: iconView.leftAnchor, constant: -4),
             warningIconView.bottomAnchor.constraint(equalTo: iconView.bottomAnchor, constant: 4)
         ])
+    }
+}
+
+fileprivate extension UIIconButton {
+    
+    func setColor(activeSetpointType: SetpointType?) {
+        let color: UIColor = switch(activeSetpointType) {
+        case .cool: .blue
+        case .heat: .red
+        default: .disabled
+        }
+        var configuration = config
+        configuration.contentColor = color
+        configuration.borderColor = color
+        config = configuration
     }
 }

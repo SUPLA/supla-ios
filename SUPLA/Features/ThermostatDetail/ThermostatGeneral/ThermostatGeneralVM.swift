@@ -30,6 +30,7 @@ class ThermostatGeneralVM: BaseViewModel<ThermostatGeneralViewState, ThermostatG
     @Singleton<DelayedThermostatActionSubject> private var delayedThermostatActionSubject
     @Singleton<DateProvider> private var dateProvider
     @Singleton<GetChannelBaseIconUseCase> private var getChannelBaseIconUseCase
+    @Singleton<UpdateEventsManager> private var updateEventsManager
     @Inject<LoadingTimeoutManager> private var loadingTimeoutManager
     
     private let updateRelay = PublishRelay<Void>()
@@ -51,6 +52,10 @@ class ThermostatGeneralVM: BaseViewModel<ThermostatGeneralViewState, ThermostatG
     }
     
     func observeData(remoteId: Int32) {
+        updateEventsManager.observeChannelsUpdate()
+            .debounce(.seconds(1), scheduler: ConcurrentDispatchQueueScheduler(qos: .background))
+            .subscribe(onNext: { [weak self] in self?.triggerDataLoad(remoteId: remoteId) })
+            .disposed(by: self)
         updateRelay
             .debounce(.seconds(1), scheduler: ConcurrentDispatchQueueScheduler(qos: .background))
             .subscribe(onNext: { [weak self] in self?.triggerDataLoad(remoteId: remoteId) })
@@ -323,6 +328,8 @@ class ThermostatGeneralVM: BaseViewModel<ThermostatGeneralViewState, ThermostatG
         let heat = channel.isThermostat() && setpointHeatSet && value.subfunction == .heat
         if (dhv || autoHeat || heat) {
             changedState = changedState.changing(path: \.setpointHeat, to: value.setpointTemperatureHeat)
+        } else {
+            changedState = changedState.changing(path: \.setpointHeat, to: nil)
         }
         
         let setpointCoolSet = value.flags.contains(.setpointTempMaxSet)
@@ -330,9 +337,11 @@ class ThermostatGeneralVM: BaseViewModel<ThermostatGeneralViewState, ThermostatG
         let cool = channel.isThermostat() && setpointCoolSet && value.subfunction == .cool
         if (autoCool || cool) {
             changedState = changedState.changing(path: \.setpointCool, to: value.setpointTemperatureCool)
+        } else {
+            changedState = changedState.changing(path: \.setpointCool, to: nil)
         }
         
-        if (changedState.activeSetpointType == nil) {
+        if (changedState.activeSetpointType == nil || changedState.subfunction != value.subfunction) {
             switch (value.mode) {
             case .heat, .auto:
                 changedState = changedState.changing(path: \.activeSetpointType, to: .heat)
@@ -346,6 +355,7 @@ class ThermostatGeneralVM: BaseViewModel<ThermostatGeneralViewState, ThermostatG
                 }
             default: break
             }
+            changedState = changedState.changing(path: \.subfunction, to: value.subfunction)
         }
         
         return changedState
@@ -475,6 +485,7 @@ struct ThermostatGeneralViewState: ViewState {
     var lastInteractionTime: TimeInterval? = nil
     var changing: Bool = false
     var loadingState: LoadingState = LoadingState()
+    var subfunction: ThermostatSubfunction? = nil
     
     /* View properties */
     

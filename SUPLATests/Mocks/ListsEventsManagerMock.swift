@@ -20,7 +20,7 @@ import RxSwift
 
 @testable import SUPLA
 
-final class ListsEventsManagerMock: ListsEventsManager {
+final class UpdateEventsManagerMock: UpdateEventsManager {
     
     var observeSceneObservable: Observable<SAScene> = Observable.empty()
     var observeSceneSceneIdArray: [Int] = []
@@ -51,47 +51,47 @@ final class ListsEventsManagerMock: ListsEventsManager {
     }
     
     var observeChannelUpdatesObservable: Observable<Void> = Observable.empty()
-    func observeChannelUpdates() -> Observable<Void> {
+    func observeChannelsUpdate() -> Observable<Void> {
         return observeChannelUpdatesObservable
     }
     
     var observeGroupUpdatesObservable: Observable<Void> = Observable.empty()
-    func observeGroupUpdates() -> Observable<Void> {
+    func observeGroupsUpdate() -> Observable<Void> {
         return observeGroupUpdatesObservable
     }
     
     var observeSceneUpdatesObservable: Observable<Void> = Observable.empty()
-    func observeSceneUpdates() -> Observable<Void> {
+    func observeScenesUpdate() -> Observable<Void> {
         return observeSceneUpdatesObservable
     }
     
     var emitSceneChangeSceneIdArray: [Int] = []
-    func emitSceneChange(sceneId: Int) {
+    func emitSceneUpdate(sceneId: Int) {
         emitSceneChangeSceneIdArray.append(sceneId)
     }
     
     var emitChannelChangeRemoteIdArray: [Int] = []
-    func emitChannelChange(remoteId: Int) {
+    func emitChannelUpdate(remoteId: Int) {
         emitChannelChangeRemoteIdArray.append(remoteId)
     }
     
     var emitGroupChangeRemoteIdArray: [Int] = []
-    func emitGroupChange(remoteId: Int) {
+    func emitGroupUpdate(remoteId: Int) {
         emitGroupChangeRemoteIdArray.append(remoteId)
     }
     
     var emitChannelUpdateCounter = 0
-    func emitChannelUpdate() {
+    func emitChannelsUpdate() {
         emitChannelUpdateCounter += 1
     }
     
     var emitGroupUpdateCounter = 0
-    func emitGroupUpdate() {
+    func emitGroupsUpdate() {
         emitGroupUpdateCounter += 1
     }
     
     var emitSceneUpdateCounter = 0
-    func emitSceneUpdate() {
+    func emitScenesUpdate() {
         emitSceneUpdateCounter += 1
     }
 }

@@ -53,8 +53,8 @@ final class ThermostatCell: BaseCell<ChannelWithChildren> {
         return view
     }()
     
-    override func provideRefreshData(_ listsEventsManager: ListsEventsManager, forData: ChannelWithChildren) -> Observable<ChannelWithChildren> {
-        listsEventsManager.observeChannelWithChildren(remoteId: Int(forData.channel.remote_id))
+    override func provideRefreshData(_ updateEventsManager: UpdateEventsManager, forData: ChannelWithChildren) -> Observable<ChannelWithChildren> {
+        updateEventsManager.observeChannelWithChildren(remoteId: Int(forData.channel.remote_id))
     }
     
     override func leftButtonSettings() -> CellButtonSettings {
