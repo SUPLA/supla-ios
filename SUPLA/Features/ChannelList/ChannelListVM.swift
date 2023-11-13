@@ -23,13 +23,13 @@ class ChannelListViewModel: BaseTableViewModel<ChannelListViewState, ChannelList
     @Singleton<CreateProfileChannelsListUseCase> private var createProfileChannelsListUseCase
     @Singleton<SwapChannelPositionsUseCase> private var swapChannelPositionsUseCase
     @Singleton<ProvideDetailTypeUseCase> private var provideDetailTypeUseCase
-    @Singleton<ListsEventsManager> private var listsEventsManager
+    @Singleton<UpdateEventsManager> private var updateEventsManager
     @Singleton<ExecuteSimpleActionUseCase> private var executeSimpleActionUseCase
     
     override init() {
         super.init()
         
-        listsEventsManager.observeChannelUpdates()
+        updateEventsManager.observeChannelsUpdate()
             .subscribe(
                 onNext: { self.reloadTable() }
             )

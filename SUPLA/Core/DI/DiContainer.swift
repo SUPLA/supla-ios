@@ -63,7 +63,7 @@ extension DiContainer {
         DiContainer.shared.register(type: SuplaClientProvider.self, component: SuplaClientProviderImpl())
         DiContainer.shared.register(type: SuplaAppWrapper.self, component: SuplaAppWrapperImpl())
         DiContainer.shared.register(type: VibrationService.self, component: VibrationServiceImpl())
-        DiContainer.shared.register(type: ListsEventsManager.self, component: ListsEventsManagerImpl())
+        DiContainer.shared.register(type: UpdateEventsManager.self, component: UpdateEventsManagerImpl())
         DiContainer.shared.register(type: ConfigEventsManager.self, component: ConfigEventsManagerImpl())
         DiContainer.shared.register(type: DownloadEventsManager.self, component: DownloadEventsManagerImpl())
         DiContainer.shared.register(type: SingleCall.self, component: SingleCallImpl())
@@ -140,8 +140,8 @@ extension DiContainer {
         DiContainer.shared.register(type: LoadingTimeoutManager.self, producer: { LoadingTimeoutManagerImpl() })
     }
     
-    @objc static func listsEventsManager() -> ListsEventsManagerEmitter? {
-        return DiContainer.shared.resolve(type: ListsEventsManager.self)
+    @objc static func updateEventsManager() -> UpdateEventsManagerEmitter? {
+        return DiContainer.shared.resolve(type: UpdateEventsManager.self)
     }
     @objc static func configEventsManager() -> ConfigEventsManagerEmitter? {
         return DiContainer.shared.resolve(type: ConfigEventsManager.self)

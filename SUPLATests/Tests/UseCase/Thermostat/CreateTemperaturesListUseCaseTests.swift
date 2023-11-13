@@ -100,5 +100,18 @@ final class CreateTemperaturesListUseCaseTests: XCTestCase {
             MeasurementValue(icon: nil, value: "0.0")
         ])
     }
+    
+    func test_createTemperaturesList_noThermometer() {
+        // given
+        let channelWithChildren = ChannelWithChildren(channel: SAChannel.mock(123), children: [])
+        
+        // when
+        let temperatures = useCase.invoke(channelWithChildren: channelWithChildren)
+        
+        // then
+        XCTAssertEqual(temperatures, [
+            MeasurementValue(icon: .fncUnknown, value: "---")
+        ])
+    }
 }
 

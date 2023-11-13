@@ -410,7 +410,12 @@ struct BaseHistoryDetailViewState: ViewState {
                     return Strings.Charts.noDataInSelectedPeriod
                 }
             case .failed: return Strings.Charts.refreshingFailed
-            default: return Strings.Charts.refreshing
+            default:
+                if (!loading && sets.isEmpty) {
+                    return Strings.Charts.noDataAvailable
+                } else {
+                    return Strings.Charts.refreshing
+                }
             }
         }
     }

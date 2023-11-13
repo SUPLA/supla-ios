@@ -23,7 +23,7 @@ final class UpdateSceneStateUseCase {
     
     @Singleton<SceneRepository> private var sceneRepository
     @Singleton<ProfileRepository> private var profileRepository
-    @Singleton<ListsEventsManager> private var listsEventsManager
+    @Singleton<UpdateEventsManager> private var updateEventsManager
     
     @available(*, deprecated, message: "Only for legacy code")
     func invoke(state: TSC_SuplaSceneState, clientId: Int) -> Bool {
@@ -44,7 +44,7 @@ final class UpdateSceneStateUseCase {
                 .first() ?? false
             
             if (saved) {
-                listsEventsManager.emitSceneChange(sceneId: Int(state.SceneId))
+                updateEventsManager.emitSceneUpdate(sceneId: Int(state.SceneId))
             }
             
         } catch {

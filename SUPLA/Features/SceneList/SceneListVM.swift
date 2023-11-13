@@ -24,13 +24,13 @@ class SceneListVM: BaseTableViewModel<SceneListViewState, SceneListViewEvent> {
     
     @Singleton<CreateProfileScenesListUseCase> private var createProfileScenesListUseCase
     @Singleton<SwapScenePositionsUseCase> private var swapScenePositionsUseCase
-    @Singleton<ListsEventsManager> private var listsEventsManager
+    @Singleton<UpdateEventsManager> private var updateEventsManager
     @Singleton<ExecuteSimpleActionUseCase> private var executeSimpleActionUseCase
     
     override init() {
         super.init()
         
-        listsEventsManager.observeSceneUpdates()
+        updateEventsManager.observeScenesUpdate()
             .subscribe(
                 onNext: { self.reloadTable() }
             )

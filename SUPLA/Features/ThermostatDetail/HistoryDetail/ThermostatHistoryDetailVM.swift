@@ -50,9 +50,13 @@ final class ThermostatHistoryDetailVM: BaseHistoryDetailVM {
     private func handleData(channel: ChannelWithChildren, chartState: TemperatureChartState) {
         updateView { $0.changing(path: \.profileId, to: channel.channel.profile.idString) }
         
-        restoreRange(chartState: chartState)
-        configureDownloadObserver(channel: channel)
-        startInitialDataLoad(channel: channel)
+        if (channel.children.filter({ $0.relationType.isThermometer()}).isEmpty) {
+            updateView { $0.changing(path: \.loading, to: false) }
+        } else {
+            restoreRange(chartState: chartState)
+            configureDownloadObserver(channel: channel)
+            startInitialDataLoad(channel: channel)
+        }
     }
     
     private func configureDownloadObserver(channel: ChannelWithChildren) {

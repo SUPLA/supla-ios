@@ -49,6 +49,12 @@ class ThermostatGeneralVC: BaseViewControllerVM<ThermostatGeneralViewState, Ther
         return view
     }()
     
+    private lazy var sensorIssueView: SensorIssueView = {
+        let view = SensorIssueView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+    
     private lazy var thermostatControlView: ThermostatControlView = {
         let view = ThermostatControlView()
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -56,14 +62,14 @@ class ThermostatGeneralVC: BaseViewControllerVM<ThermostatGeneralViewState, Ther
     }()
     
     private lazy var plusButton: UIIconButton = {
-        let button = UIIconButton(config: .primary(size: Dimens.buttonHeight))
+        let button = UIIconButton(config: .bordered(color: .disabled))
         button.translatesAutoresizingMaskIntoConstraints = false
         button.icon = .iconPlus
         return button
     }()
     
     private lazy var minusButton: UIIconButton = {
-        let button = UIIconButton(config: .primary(size: Dimens.buttonHeight))
+        let button = UIIconButton(config: .bordered(color: .disabled))
         button.translatesAutoresizingMaskIntoConstraints = false
         button.icon = .iconMinus
         return button
@@ -138,8 +144,10 @@ class ThermostatGeneralVC: BaseViewControllerVM<ThermostatGeneralViewState, Ther
         thermostatControlView.greyOutSetpoins = state.grayOutSetpoints
         minusButton.isEnabled = state.minusButtonEnabled
         minusButton.isHidden = state.plusMinusHidden
+        minusButton.setColor(activeSetpointType: state.activeSetpointType)
         plusButton.isEnabled = state.plusButtonEnabled
         plusButton.isHidden = state.plusMinusHidden
+        plusButton.setColor(activeSetpointType: state.activeSetpointType)
         buttonsView.isEnabled = state.controlButtonsEnabled
         buttonsView.manualModeActive = state.manualActive
         buttonsView.weeklyScheduleModeActive = state.weeklyScheduleActive
@@ -159,8 +167,8 @@ class ThermostatGeneralVC: BaseViewControllerVM<ThermostatGeneralViewState, Ther
             }
         }
         
-        firstProgramInfoView.isHidden = state.programInfo.isEmpty
-        secondProgramInfoView.isHidden = state.programInfo.count < 2
+        firstProgramInfoView.isHidden = state.sensorIssue != nil || state.programInfo.isEmpty
+        secondProgramInfoView.isHidden = state.sensorIssue != nil || state.programInfo.count < 2
         for (idx, program) in state.programInfo.enumerated() {
             if (idx == 0) {
                 firstProgramInfoView.info = program
@@ -169,6 +177,10 @@ class ThermostatGeneralVC: BaseViewControllerVM<ThermostatGeneralViewState, Ther
                 secondProgramInfoView.info = program
             }
         }
+        
+        sensorIssueView.isHidden = state.sensorIssue == nil
+        sensorIssueView.icon = state.sensorIssue?.sensorIcon
+        sensorIssueView.message = state.sensorIssue?.message
     }
     
     private func setupView() {
@@ -201,6 +213,7 @@ class ThermostatGeneralVC: BaseViewControllerVM<ThermostatGeneralViewState, Ther
         view.addSubview(secondIssueRowView)
         view.addSubview(firstProgramInfoView)
         view.addSubview(secondProgramInfoView)
+        view.addSubview(sensorIssueView)
         
         setupLayout()
     }
@@ -218,6 +231,10 @@ class ThermostatGeneralVC: BaseViewControllerVM<ThermostatGeneralViewState, Ther
             secondProgramInfoView.topAnchor.constraint(equalTo: firstProgramInfoView.bottomAnchor, constant: 10),
             secondProgramInfoView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: Dimens.distanceDefault),
             secondProgramInfoView.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -Dimens.distanceDefault),
+            
+            sensorIssueView.topAnchor.constraint(equalTo: temperaturesView.bottomAnchor, constant: Dimens.distanceDefault),
+            sensorIssueView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: Dimens.distanceDefault),
+            sensorIssueView.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -Dimens.distanceDefault),
             
             buttonsView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
             buttonsView.leftAnchor.constraint(equalTo: view.leftAnchor),
@@ -577,5 +594,90 @@ fileprivate class ProgramView: UIView {
         }
         
         NSLayoutConstraint.activate(allConstraints)
+    }
+}
+
+fileprivate class SensorIssueView: UIView {
+    
+    var icon: UIImage? {
+        get { iconView.image }
+        set { iconView.image = newValue }
+    }
+    
+    var message: String? {
+        get { messageView.text }
+        set { messageView.text = newValue }
+    }
+    
+    private lazy var iconView: UIImageView = {
+        let view = UIImageView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.contentMode = .scaleAspectFit
+        return view
+    }()
+    
+    private lazy var warningIconView: UIImageView = {
+        let view = UIImageView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.contentMode = .scaleAspectFit
+        view.image = .iconSensorAlertCircle
+        return view
+    }()
+    
+    private lazy var messageView: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.font = .body2
+        label.textColor = .onBackground
+        return label
+    }()
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        
+        setupView()
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    private func setupView() {
+        addSubview(iconView)
+        addSubview(warningIconView)
+        addSubview(messageView)
+        
+        setupLayout()
+    }
+    
+    private func setupLayout() {
+        NSLayoutConstraint.activate([
+            iconView.topAnchor.constraint(equalTo: topAnchor),
+            iconView.leftAnchor.constraint(equalTo: leftAnchor),
+            iconView.bottomAnchor.constraint(equalTo: bottomAnchor),
+            iconView.heightAnchor.constraint(equalToConstant: Dimens.iconSizeBig),
+            iconView.widthAnchor.constraint(equalToConstant: Dimens.iconSizeBig),
+            
+            messageView.leftAnchor.constraint(equalTo: iconView.rightAnchor, constant: Dimens.distanceTiny),
+            messageView.centerYAnchor.constraint(equalTo: centerYAnchor),
+            
+            warningIconView.leftAnchor.constraint(equalTo: iconView.leftAnchor, constant: -4),
+            warningIconView.bottomAnchor.constraint(equalTo: iconView.bottomAnchor, constant: 4)
+        ])
+    }
+}
+
+fileprivate extension UIIconButton {
+    
+    func setColor(activeSetpointType: SetpointType?) {
+        let color: UIColor = switch(activeSetpointType) {
+        case .cool: .blue
+        case .heat: .red
+        default: .disabled
+        }
+        var configuration = config
+        configuration.contentColor = color
+        configuration.borderColor = color
+        config = configuration
     }
 }

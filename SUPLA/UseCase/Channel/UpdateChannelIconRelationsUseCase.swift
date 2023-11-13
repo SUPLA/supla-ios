@@ -23,7 +23,7 @@ final class UpdateChannelIconRelationsUseCase {
     @Singleton<UserIconRepository> private var userIconRepository
     @Singleton<ProfileRepository> private var profileRepository
     @Singleton<ChannelRepository> private var channelRepository
-    @Singleton<ListsEventsManager> private var listsEventsManager
+    @Singleton<UpdateEventsManager> private var updateEventsManager
     
     @available(*, deprecated, message: "Only for legacy code")
     func invoke() {
@@ -58,7 +58,7 @@ final class UpdateChannelIconRelationsUseCase {
             .flatMapFirst { icon in
                 if (icon != channel.usericon) {
                     channel.usericon = icon
-                    self.listsEventsManager.emitChannelChange(remoteId: Int(channel.remote_id))
+                    self.updateEventsManager.emitChannelUpdate(remoteId: Int(channel.remote_id))
                     return self.userIconRepository.save()
                 } else {
                     return Observable.just(())
@@ -68,7 +68,7 @@ final class UpdateChannelIconRelationsUseCase {
     
     private func removeRelation(channel: SAChannel) -> Observable<Void> {
         channel.usericon = nil
-        self.listsEventsManager.emitChannelChange(remoteId: Int(channel.remote_id))
+        self.updateEventsManager.emitChannelUpdate(remoteId: Int(channel.remote_id))
         return self.channelRepository.save()
     }
 }

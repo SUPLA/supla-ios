@@ -26,13 +26,7 @@ class UIIconButton: UIButton {
     
     override var isEnabled: Bool {
         didSet {
-            if (isEnabled) {
-                backgroundColor = config.backgroundColor
-                tintColor = config.contentColor
-            } else {
-                backgroundColor = config.backgroundDisabledColor
-                tintColor = config.contentDisabledColor
-            }
+            setColors()
         }
     }
     
@@ -43,7 +37,11 @@ class UIIconButton: UIButton {
         }
     }
     
-    private let config: Configuration
+    var config: Configuration {
+        didSet {
+            setColors()
+        }
+    }
     
     init(config: Configuration = .primary()) {
         self.config = config
@@ -83,12 +81,27 @@ class UIIconButton: UIButton {
     }
     
     private func setupView() {
-        backgroundColor = config.backgroundColor
         layer.cornerRadius = config.size / 2
-        tintColor = config.contentColor
+        
+        if let borderColor = config.borderColor {
+            layer.borderColor = borderColor.cgColor
+            layer.borderWidth = 1
+        }
         
         imageEdgeInsets = UIEdgeInsets(top: 6, left: 6, bottom: 6, right: 6)
         imageView?.contentMode = .scaleAspectFit
+        
+        setColors()
+    }
+    
+    private func setColors() {
+        backgroundColor = isEnabled ? config.backgroundColor : config.backgroundDisabledColor
+        tintColor = isEnabled ? config.contentColor : config.contentDisabledColor
+        
+        if let borderColor = config.borderColor {
+            layer.borderColor = isEnabled ? borderColor.cgColor : config.contentDisabledColor.cgColor
+            layer.borderWidth = 1
+        }
     }
     
     struct Configuration {
@@ -98,6 +111,7 @@ class UIIconButton: UIButton {
         var contentColor: UIColor
         var contentDisabledColor: UIColor
         var contentPressedColor: UIColor
+        var borderColor: UIColor?
         var size: CGFloat
         
         static func primary(size: CGFloat = Dimens.buttonSmallHeight) -> Configuration {
@@ -108,6 +122,7 @@ class UIIconButton: UIButton {
                 contentColor: .white,
                 contentDisabledColor: .white,
                 contentPressedColor: .white,
+                borderColor: nil,
                 size: size)
         }
         
@@ -119,7 +134,21 @@ class UIIconButton: UIButton {
                 contentColor: .primary,
                 contentDisabledColor: .disabled,
                 contentPressedColor: .primaryVariant,
+                borderColor: nil,
                 size: Dimens.buttonSmallHeight
+            )
+        }
+        
+        static func bordered(color: UIColor) -> Configuration {
+            Configuration(
+                backgroundColor: .transparent,
+                backgroundDisabledColor: .transparent,
+                backgroundPressedColor: .transparent,
+                contentColor: color,
+                contentDisabledColor: color,
+                contentPressedColor: color,
+                borderColor: color,
+                size: 48
             )
         }
     }

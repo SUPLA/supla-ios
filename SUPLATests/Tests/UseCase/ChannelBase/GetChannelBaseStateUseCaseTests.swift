@@ -196,4 +196,56 @@ final class GetChannelBaseStateUseCaseTests: XCTestCase {
         XCTAssertEqual(state, .notUsed)
         XCTAssertFalse(state.isActive())
     }
+    
+    func test_hotelCard_on() {
+        // given
+        let function = SUPLA_CHANNELFNC_HOTELCARDSENSOR
+        let activeValue: Int32 = 1
+        
+        // when
+        let state = useCase.invoke(function: function, activeValue: activeValue)
+        
+        // then
+        XCTAssertEqual(state, .on)
+        XCTAssertTrue(state.isActive())
+    }
+    
+    func test_hotelCard_off() {
+        // given
+        let function = SUPLA_CHANNELFNC_HOTELCARDSENSOR
+        let activeValue: Int32 = 0
+        
+        // when
+        let state = useCase.invoke(function: function, activeValue: activeValue)
+        
+        // then
+        XCTAssertEqual(state, .off)
+        XCTAssertFalse(state.isActive())
+    }
+    
+    func test_alarmArmament_on() {
+        // given
+        let function = SUPLA_CHANNELFNC_ALARMARMAMENTSENSOR
+        let activeValue: Int32 = 1
+        
+        // when
+        let state = useCase.invoke(function: function, activeValue: activeValue)
+        
+        // then
+        XCTAssertEqual(state, .on)
+        XCTAssertTrue(state.isActive())
+    }
+    
+    func test_alarmArmament_off() {
+        // given
+        let function = SUPLA_CHANNELFNC_ALARMARMAMENTSENSOR
+        let activeValue: Int32 = 0
+        
+        // when
+        let state = useCase.invoke(function: function, activeValue: activeValue)
+        
+        // then
+        XCTAssertEqual(state, .off)
+        XCTAssertFalse(state.isActive())
+    }
 }

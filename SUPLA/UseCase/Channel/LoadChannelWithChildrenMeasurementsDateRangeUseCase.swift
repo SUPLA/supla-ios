@@ -154,7 +154,7 @@ final class LoadChannelWithChildrenMeasurementsDateRangeUseCaseImpl: LoadChannel
                 }
             }
             
-            return maxTime!
+            return maxTime
         }
     }
 }

@@ -23,7 +23,7 @@ class MainViewModel: BaseViewModel<MainViewState, MainViewEvent> {
     
     @Singleton<ProfileRepository> private var profileRepository
     @Singleton<ChannelRepository> private var channelRepository
-    @Singleton<ListsEventsManager> private var listsEventsManager
+    @Singleton<UpdateEventsManager> private var updateEventsManager
     
     override func defaultViewState() -> MainViewState { MainViewState() }
     
@@ -114,9 +114,9 @@ class MainViewModel: BaseViewModel<MainViewState, MainViewEvent> {
     
     private func observeChangesForIconsReload() {
         Observable.combineLatest(
-            listsEventsManager.observeChannelUpdates(),
-            listsEventsManager.observeGroupUpdates(),
-            listsEventsManager.observeSceneUpdates(),
+            updateEventsManager.observeChannelsUpdate(),
+            updateEventsManager.observeGroupsUpdate(),
+            updateEventsManager.observeScenesUpdate(),
             resultSelector: { _, _, _ in
                 return ()
             }

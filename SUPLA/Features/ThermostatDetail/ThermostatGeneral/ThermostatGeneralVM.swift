@@ -29,6 +29,8 @@ class ThermostatGeneralVM: BaseViewModel<ThermostatGeneralViewState, ThermostatG
     @Singleton<ConfigEventsManager> private var configEventManager
     @Singleton<DelayedThermostatActionSubject> private var delayedThermostatActionSubject
     @Singleton<DateProvider> private var dateProvider
+    @Singleton<GetChannelBaseIconUseCase> private var getChannelBaseIconUseCase
+    @Singleton<UpdateEventsManager> private var updateEventsManager
     @Inject<LoadingTimeoutManager> private var loadingTimeoutManager
     
     private let updateRelay = PublishRelay<Void>()
@@ -50,6 +52,10 @@ class ThermostatGeneralVM: BaseViewModel<ThermostatGeneralViewState, ThermostatG
     }
     
     func observeData(remoteId: Int32) {
+        updateEventsManager.observeChannelsUpdate()
+            .debounce(.seconds(1), scheduler: ConcurrentDispatchQueueScheduler(qos: .background))
+            .subscribe(onNext: { [weak self] in self?.triggerDataLoad(remoteId: remoteId) })
+            .disposed(by: self)
         updateRelay
             .debounce(.seconds(1), scheduler: ConcurrentDispatchQueueScheduler(qos: .background))
             .subscribe(onNext: { [weak self] in self?.triggerDataLoad(remoteId: remoteId) })
@@ -269,6 +275,7 @@ class ThermostatGeneralVM: BaseViewModel<ThermostatGeneralViewState, ThermostatG
                 .changing(path: \.configMax, to: config.temperatures.roomMax?.fromSuplaTemperature())
                 .changing(path: \.loadingState, to: state.loadingState.copy(loading: false))
                 .changing(path: \.issues, to: createThermostatIssues(flags: thermostatValue.flags))
+                .changing(path: \.sensorIssue, to: createSensorIssue(value: thermostatValue, children: channel.children))
                 .changing(path: \.temporaryChangeActive, to: channel.channel.isOnline() && thermostatValue.flags.contains(.weeklyScheduleTemporalOverride))
                 .changing(path: \.programInfo, to: createProgramInfo(config: data.2, value: thermostatValue, channelOnline: channel.channel.isOnline()))
             
@@ -321,6 +328,8 @@ class ThermostatGeneralVM: BaseViewModel<ThermostatGeneralViewState, ThermostatG
         let heat = channel.isThermostat() && setpointHeatSet && value.subfunction == .heat
         if (dhv || autoHeat || heat) {
             changedState = changedState.changing(path: \.setpointHeat, to: value.setpointTemperatureHeat)
+        } else {
+            changedState = changedState.changing(path: \.setpointHeat, to: nil)
         }
         
         let setpointCoolSet = value.flags.contains(.setpointTempMaxSet)
@@ -328,9 +337,11 @@ class ThermostatGeneralVM: BaseViewModel<ThermostatGeneralViewState, ThermostatG
         let cool = channel.isThermostat() && setpointCoolSet && value.subfunction == .cool
         if (autoCool || cool) {
             changedState = changedState.changing(path: \.setpointCool, to: value.setpointTemperatureCool)
+        } else {
+            changedState = changedState.changing(path: \.setpointCool, to: nil)
         }
         
-        if (changedState.activeSetpointType == nil) {
+        if (changedState.activeSetpointType == nil || changedState.subfunction != value.subfunction) {
             switch (value.mode) {
             case .heat, .auto:
                 changedState = changedState.changing(path: \.activeSetpointType, to: .heat)
@@ -344,6 +355,7 @@ class ThermostatGeneralVM: BaseViewModel<ThermostatGeneralViewState, ThermostatG
                 }
             default: break
             }
+            changedState = changedState.changing(path: \.subfunction, to: value.subfunction)
         }
         
         return changedState
@@ -406,6 +418,28 @@ class ThermostatGeneralVM: BaseViewModel<ThermostatGeneralViewState, ThermostatG
         return result
     }
     
+    private func createSensorIssue(value: ThermostatValue, children: [ChannelChild]) -> SensorIssue? {
+        if (!value.flags.contains(.forcedOffBySensor)) {
+            return nil
+        }
+        
+        if let sensor = children.first(where: { $0.relationType == .defaultType }) {
+            let message = switch(sensor.channel.func) {
+            case SUPLA_CHANNELFNC_OPENINGSENSOR_WINDOW, SUPLA_CHANNELFNC_OPENINGSENSOR_ROOFWINDOW:
+                Strings.ThermostatDetail.offByWindow
+            case SUPLA_CHANNELFNC_HOTELCARDSENSOR:
+                Strings.ThermostatDetail.offByCard
+            default: Strings.ThermostatDetail.offBySensor
+            }
+            return SensorIssue(
+                sensorIcon: getChannelBaseIconUseCase.invoke(channel: sensor.channel),
+                message: message
+            )
+        }
+        
+        return nil
+    }
+    
     private func createProgramInfo(config: SuplaChannelWeeklyScheduleConfig?, value: ThermostatValue, channelOnline: Bool) -> [ThermostatProgramInfo] {
         guard let config = config else { return [] }
         
@@ -451,6 +485,7 @@ struct ThermostatGeneralViewState: ViewState {
     var lastInteractionTime: TimeInterval? = nil
     var changing: Bool = false
     var loadingState: LoadingState = LoadingState()
+    var subfunction: ThermostatSubfunction? = nil
     
     /* View properties */
     
@@ -467,6 +502,7 @@ struct ThermostatGeneralViewState: ViewState {
     var temporaryChangeActive: Bool = false
     var programInfo: [ThermostatProgramInfo] = []
     var issues: [ThermostatIssueItem] = []
+    var sensorIssue: SensorIssue? = nil
     
     /* All calculated properties below */
     
@@ -591,4 +627,9 @@ fileprivate extension SAChannel {
 struct ThermostatIssueItem: Equatable {
     let issueIconType: IssueIconType
     let description: String
+}
+
+struct SensorIssue: Equatable {
+    let sensorIcon: UIImage?
+    let message: String
 }

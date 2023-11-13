@@ -35,8 +35,8 @@ final class SceneListVMTests: ViewModelTest<SceneListViewState, SceneListViewEve
     private lazy var toggleLocationUseCase: ToggleLocationUseCaseMock! = {
         ToggleLocationUseCaseMock()
     }()
-    private lazy var listsEventsManager: ListsEventsManagerMock! = {
-        ListsEventsManagerMock()
+    private lazy var updateEventsManager: UpdateEventsManagerMock! = {
+        UpdateEventsManagerMock()
     }()
     private lazy var executeSimpleActionUseCase: ExecuteSimpleActionUseCaseMock! = {
         ExecuteSimpleActionUseCaseMock()
@@ -46,7 +46,7 @@ final class SceneListVMTests: ViewModelTest<SceneListViewState, SceneListViewEve
         DiContainer.shared.register(type: CreateProfileScenesListUseCase.self, component: createProfileScenesListUseCase!)
         DiContainer.shared.register(type: SwapScenePositionsUseCase.self, component: swapScenePositionsUseCase!)
         DiContainer.shared.register(type: ToggleLocationUseCase.self, component: toggleLocationUseCase!)
-        DiContainer.shared.register(type: ListsEventsManager.self, component: listsEventsManager!)
+        DiContainer.shared.register(type: UpdateEventsManager.self, component: updateEventsManager!)
         DiContainer.shared.register(type: ExecuteSimpleActionUseCase.self, component: executeSimpleActionUseCase!)
     }
     
@@ -56,7 +56,7 @@ final class SceneListVMTests: ViewModelTest<SceneListViewState, SceneListViewEve
         createProfileScenesListUseCase = nil
         swapScenePositionsUseCase = nil
         toggleLocationUseCase = nil
-        listsEventsManager = nil
+        updateEventsManager = nil
         executeSimpleActionUseCase = nil
         
         super.tearDown()
@@ -64,7 +64,7 @@ final class SceneListVMTests: ViewModelTest<SceneListViewState, SceneListViewEve
     
     func test_shouldReloadTable_onSceneUpdate() {
         // given
-        listsEventsManager.observeSceneUpdatesObservable = Observable.just(())
+        updateEventsManager.observeSceneUpdatesObservable = Observable.just(())
         
         // when
         observe(viewModel)

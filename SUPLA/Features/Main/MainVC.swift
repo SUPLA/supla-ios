@@ -20,7 +20,6 @@ import Foundation
 
 class MainVC : SuplaTabBarController<MainViewState, MainViewEvent, MainViewModel> {
     
-    @Singleton<ListsEventsManager> private var listsEventsManager
     @Singleton<GlobalSettings> private var settings
     
     private let notificationView: NotificationView = NotificationView()

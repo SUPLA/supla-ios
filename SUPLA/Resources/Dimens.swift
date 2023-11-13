@@ -33,6 +33,7 @@ struct Dimens {
     static let iconSize = CGFloat(24)
     static let iconSizeSmall = CGFloat(19)
     static let iconSizeList = CGFloat(30)
+    static let iconSizeBig = CGFloat(32)
     
     static let elementOffset = CGFloat(8)
     

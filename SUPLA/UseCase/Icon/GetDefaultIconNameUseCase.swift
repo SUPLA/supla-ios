@@ -103,7 +103,9 @@ final class GetDefaultIconNameUseCaseImpl: GetDefaultIconNameUseCase {
         StaticIconNameProducer(function: SUPLA_CHANNELFNC_VALVE_PERCENTAGE, name: "valve"),
         DigiglassHorizontalIconNameProducer(),
         DigiglassVerticalIconNameProducer(),
-        ThermostatIconNameProducer()
+        ThermostatIconNameProducer(),
+        StaticIconNameProducer(function: SUPLA_CHANNELFNC_HOTELCARDSENSOR, name: "fnc_hotel_card", withSuffix: true),
+        StaticIconNameProducer(function: SUPLA_CHANNELFNC_ALARMARMAMENTSENSOR, name: "fnc_alarm_armament", withSuffix: true)
     ]
 }
 

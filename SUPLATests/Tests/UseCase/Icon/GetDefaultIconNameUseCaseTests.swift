@@ -1409,7 +1409,7 @@ final class GetDefaultIconNameUseCaseTests: XCTestCase {
         )
         
         // then
-        XCTAssertEqual(iconName, "icon_thermostat_heat")
+        XCTAssertEqual(iconName, "fnc_thermostat_heat")
     }
     
     func test_thermostatFunctionCool() {
@@ -1428,7 +1428,7 @@ final class GetDefaultIconNameUseCaseTests: XCTestCase {
         )
         
         // then
-        XCTAssertEqual(iconName, "icon_thermostat_cool")
+        XCTAssertEqual(iconName, "fnc_thermostat_cool")
     }
     
     func test_thermostatFunctionDhw() {
@@ -1446,7 +1446,7 @@ final class GetDefaultIconNameUseCaseTests: XCTestCase {
         )
         
         // then
-        XCTAssertEqual(iconName, "icon_thermostat_dhw")
+        XCTAssertEqual(iconName, "fnc_thermostat_dhw")
     }
     
     func test_thermostatFunctionNotSet() {
@@ -1466,5 +1466,81 @@ final class GetDefaultIconNameUseCaseTests: XCTestCase {
         
         // then
         XCTAssertEqual(iconName, "unknown_channel")
+    }
+    
+    func test_hotelCardFunctionOn() {
+        // given
+        let function = SUPLA_CHANNELFNC_HOTELCARDSENSOR
+        
+        // when
+        let iconName = useCase.invoke(
+            iconData: IconData(
+                function: function,
+                altIcon: 0,
+                state: .on,
+                type: .single,
+                subfunction: .notSet
+            )
+        )
+        
+        // then
+        XCTAssertEqual(iconName, "fnc_hotel_card-on")
+    }
+    
+    func test_hotelCardFunctionOff() {
+        // given
+        let function = SUPLA_CHANNELFNC_HOTELCARDSENSOR
+        
+        // when
+        let iconName = useCase.invoke(
+            iconData: IconData(
+                function: function,
+                altIcon: 0,
+                state: .off,
+                type: .single,
+                subfunction: .notSet
+            )
+        )
+        
+        // then
+        XCTAssertEqual(iconName, "fnc_hotel_card-off")
+    }
+    
+    func test_alarmArmamentFunctionOn() {
+        // given
+        let function = SUPLA_CHANNELFNC_ALARMARMAMENTSENSOR
+        
+        // when
+        let iconName = useCase.invoke(
+            iconData: IconData(
+                function: function,
+                altIcon: 0,
+                state: .on,
+                type: .single,
+                subfunction: .notSet
+            )
+        )
+        
+        // then
+        XCTAssertEqual(iconName, "fnc_alarm_armament-on")
+    }
+    
+    func test_alarmArmamentFunctionOff() {
+        // given
+        let function = SUPLA_CHANNELFNC_ALARMARMAMENTSENSOR
+        
+        // when
+        let iconName = useCase.invoke(
+            iconData: IconData(
+                function: function,
+                altIcon: 0,
+                state: .off,
+                type: .single,
+                subfunction: .notSet
+            )
+        )
+        
+        // then
+        XCTAssertEqual(iconName, "fnc_alarm_armament-off")
     }
 }

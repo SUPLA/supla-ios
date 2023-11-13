@@ -54,6 +54,8 @@ final class GetChannelBaseStateUseCaseImpl: GetChannelBaseStateUseCase {
             SUPLA_CHANNELFNC_RGBLIGHTING,
             SUPLA_CHANNELFNC_MAILSENSOR,
             SUPLA_CHANNELFNC_THERMOSTAT_HEATPOL_HOMEPLUS,
+            SUPLA_CHANNELFNC_HOTELCARDSENSOR,
+            SUPLA_CHANNELFNC_ALARMARMAMENTSENSOR,
         SUPLA_CHANNELFNC_LIGHTSWITCH:
             if (activeValue != 0) {
                 return .on

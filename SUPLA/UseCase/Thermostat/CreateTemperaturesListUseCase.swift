@@ -31,6 +31,10 @@ final class CreateTemperaturesListUseCaseImpl: CreateTemperaturesListUseCase {
             .sorted { $0.relationType.rawValue < $1.relationType.rawValue }
         
         var result: [MeasurementValue] = []
+        if (children.filter({ $0.relationType == .mainThermometer }).isEmpty) {
+            result.append(MeasurementValue(icon: .fncUnknown, value: NO_VALUE_TEXT))
+        }
+        
         for child in children {
             result.append(child.channel.toTemperatureValue(getChannelBaseIconUseCase, formatter))
             if (child.channel.func == SUPLA_CHANNELFNC_HUMIDITYANDTEMPERATURE) {
