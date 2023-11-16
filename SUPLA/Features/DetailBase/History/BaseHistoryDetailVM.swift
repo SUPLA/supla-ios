@@ -76,16 +76,17 @@ class BaseHistoryDetailVM: BaseViewModel<BaseHistoryDetailViewState, BaseHistory
         } else {
             updateView { state in
                 guard let currentRange = state.range,
+                      let minDate = state.minDate,
                       let maxDate = state.maxDate
                 else { return state }
                 
                 let currentDate = dateProvider.currentDate()
                 
-                var rangeStart = getStartDateForRange(range, currentRange.end, currentDate, currentRange.start)
-                var rangeEnd = getEndDateForRange(range, currentRange.end, currentDate, currentRange.end)
+                var rangeStart = getStartDateForRange(range, currentRange.end, currentDate, currentRange.start, minDate)
+                var rangeEnd = getEndDateForRange(range, currentRange.end, currentDate, currentRange.end, maxDate)
                 if (rangeStart.timeIntervalSince1970 > maxDate.timeIntervalSince1970) {
-                    rangeStart = getStartDateForRange(range, maxDate, currentDate, maxDate.dayStart())
-                    rangeEnd = getEndDateForRange(range, maxDate, currentDate, maxDate.dayEnd())
+                    rangeStart = getStartDateForRange(range, maxDate, currentDate, maxDate.dayStart(), minDate)
+                    rangeEnd = getEndDateForRange(range, maxDate, currentDate, maxDate.dayEnd(), maxDate)
                 }
                 
                 let newRange = DaysRange(start: rangeStart, end: rangeEnd)
@@ -268,7 +269,7 @@ class BaseHistoryDetailVM: BaseViewModel<BaseHistoryDetailViewState, BaseHistory
         }
     }
     
-    private func getStartDateForRange(_ range: ChartRange, _ date: Date, _ currentDate: Date, _ dateForCustom: Date) -> Date {
+    private func getStartDateForRange(_ range: ChartRange, _ date: Date, _ currentDate: Date, _ dateForCustom: Date, _ minDate: Date) -> Date {
         switch (range) {
         case .day: date.dayStart()
         case .lastDay, .lastWeek, .lastMonth, .lastQuarter: currentDate.shift(days: -range.roundedDaysCount)
@@ -278,10 +279,11 @@ class BaseHistoryDetailVM: BaseViewModel<BaseHistoryDetailViewState, BaseHistory
         case .quarter: date.quarterStart()
         case .year: date.yearStart()
         case .custom: dateForCustom
+        case .allHistory: minDate
         }
     }
     
-    private func getEndDateForRange(_ range: ChartRange, _ date: Date, _ currentDate: Date, _ dateForCustom: Date) -> Date {
+    private func getEndDateForRange(_ range: ChartRange, _ date: Date, _ currentDate: Date, _ dateForCustom: Date, _ maxDate: Date) -> Date {
         switch (range) {
         case .day: date.dayEnd()
         case .lastDay, .lastWeek, .lastMonth, .lastQuarter: currentDate
@@ -291,6 +293,7 @@ class BaseHistoryDetailVM: BaseViewModel<BaseHistoryDetailViewState, BaseHistory
         case .quarter: date.quarterEnd()
         case .year: date.yearEnd()
         case .custom: dateForCustom
+        case .allHistory: maxDate
         }
     }
     
@@ -475,8 +478,19 @@ struct BaseHistoryDetailViewState: ViewState {
             guard let range = ranges?.selected else { return true }
             
             return switch (range) {
-            case .day, .week, .month, .quarter, .year: false
+            case .day, .week, .month, .quarter, .year, .allHistory: false
             default: true
+            }
+        }
+    }
+    
+    var paginationAllowed: Bool {
+        get {
+            guard let range = ranges?.selected else { return false }
+            
+            return switch (range) {
+            case .day, .week, .month, .quarter, .year: true
+            default: false
             }
         }
     }
@@ -529,7 +543,8 @@ struct BaseHistoryDetailViewState: ViewState {
             
         case .week, .month, .lastQuarter, .quarter: dateString(formatter, dateRange)
             
-        case .year, .custom: formatter.getYearString(date: dateRange.start)
+        case .year: formatter.getYearString(date: dateRange.start)
+        case .custom, .allHistory: longDateString(formatter, dateRange)
         }
     }
     
@@ -547,7 +562,7 @@ struct BaseHistoryDetailViewState: ViewState {
     
     private func chartMarginNotNeeded() -> Bool {
         switch (ranges?.selected) {
-        case .lastDay, .lastWeek, .lastMonth, .lastQuarter, .custom: false
+        case .lastDay, .lastWeek, .lastMonth, .lastQuarter, .custom, .allHistory: false
         default: true
         }
     }
@@ -567,6 +582,12 @@ struct BaseHistoryDetailViewState: ViewState {
     private func dateString(_ formatter: ValuesFormatter, _ range: DaysRange) -> String {
         let rangeStart = formatter.getDateShortString(date: range.start) ?? ""
         let rangeEnd = formatter.getDateShortString(date: range.end) ?? ""
+        return "\(rangeStart) - \(rangeEnd)"
+    }
+    
+    private func longDateString(_ formatter: ValuesFormatter, _ range: DaysRange) -> String {
+        let rangeStart = formatter.getFullDateString(date: range.start) ?? ""
+        let rangeEnd = formatter.getFullDateString(date: range.end) ?? ""
         return "\(rangeStart) - \(rangeEnd)"
     }
 }

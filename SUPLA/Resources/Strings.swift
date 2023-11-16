@@ -112,6 +112,7 @@ struct Strings {
         static let quarter = "history_range_current_quarter".toLocalized()
         static let year = "history_range_current_year".toLocalized()
         static let custom = "history_range_custom".toLocalized()
+        static let allHistory = "All available history".toLocalized()
         static let refreshing = "history_refreshing".toLocalized()
         static let refreshingFailed = "history_refreshing_failed".toLocalized()
         static let noDataSelected = "history_no_data_selected".toLocalized()

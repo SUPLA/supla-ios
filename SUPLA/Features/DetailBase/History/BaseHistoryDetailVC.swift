@@ -108,7 +108,8 @@ class BaseHistoryDetailVC: BaseViewControllerVM<BaseHistoryDetailViewState, Base
             }
         }
         
-        paginationView.isHidden = state.paginationHidden || state.ranges?.selected == .custom
+        paginationView.isHidden = state.paginationHidden
+        paginationView.paginationAllowed = state.paginationAllowed
         paginationView.leftEnabled = state.shiftLeftEnabled
         paginationView.rightEnabled = state.shiftRightEnabled
         paginationView.text = state.rangeText
@@ -550,6 +551,16 @@ fileprivate class BottomPaginationView: UIView {
     var text: String? {
         get { rangeTextLabel.text }
         set { rangeTextLabel.text = newValue }
+    }
+    
+    var paginationAllowed: Bool {
+        get { fatalError("Getter not supported") }
+        set {
+            doubleLeftButton.isHidden = !newValue
+            leftButton.isHidden = !newValue
+            rightButton.isHidden = !newValue
+            doubleRightButton.isHidden = !newValue
+        }
     }
     
     private lazy var doubleLeftButton: UIIconButton = {
