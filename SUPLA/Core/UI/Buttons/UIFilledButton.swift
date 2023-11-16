@@ -41,6 +41,7 @@ class UIFilledButton: UIButton {
     }
     
     private func setupView() {
+        translatesAutoresizingMaskIntoConstraints = false
         backgroundColor = .primary
         setTitleColor(.white, for: .normal)
         layer.borderWidth = 1
@@ -59,5 +60,9 @@ class UIFilledButton: UIButton {
         } else {
             return .primary
         }
+    }
+    
+    override class var requiresConstraintBasedLayout: Bool {
+        return true
     }
 }

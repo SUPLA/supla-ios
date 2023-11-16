@@ -27,6 +27,7 @@ protocol ValuesFormatter {
     
     // Time
     func minutesToString(minutes: Int) -> String
+    func getHourString(hour: Hour?) -> String?
     func getDateString(date: Date?) -> String?
     func getDateShortString(date: Date?) -> String?
     func getHourString(date: Date?) -> String?
@@ -120,6 +121,15 @@ final class ValuesFormatterImpl: ValuesFormatter {
         } else {
             return Strings.General.time_hours_and_mintes.arguments(hours, (minutes % 60))
         }
+    }
+    
+    func getHourString(hour: Hour?) -> String? {
+        guard let hour = hour else { return nil }
+        
+        let hourString = hour.hour < 10 ? "0\(hour.hour)" : "\(hour.hour)"
+        let minuteString = hour.minute < 10 ? "0\(hour.minute)" : "\(hour.minute)"
+        
+        return "\(hourString):\(minuteString)"
     }
     
     func getDateString(date: Date?) -> String? {

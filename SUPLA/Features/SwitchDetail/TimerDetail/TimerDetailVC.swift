@@ -68,7 +68,6 @@ class TimerDetailVC: BaseViewControllerVM<TimerDetailViewState, TimerDetailViewE
     
     private lazy var editButton: UIPlainButton = {
         let button = UIPlainButton()
-        button.translatesAutoresizingMaskIntoConstraints = false
         button.setAttributedTitle(Strings.TimerDetail.editTime)
         button.icon = .pencil
         return button
@@ -82,7 +81,6 @@ class TimerDetailVC: BaseViewControllerVM<TimerDetailViewState, TimerDetailViewE
     
     private lazy var cancelButton: UIFilledButton = {
         let button = UIFilledButton()
-        button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
     

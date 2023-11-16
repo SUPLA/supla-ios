@@ -18,21 +18,33 @@
 
 import Foundation
 
-final class SeparatorView: UIView {
+final class SATextField: UITextField {
     
     override var intrinsicContentSize: CGSize {
-        get { CGSize(width: UIView.noIntrinsicMetric, height: 1) }
+        CGSize(width: UIView.noIntrinsicMetric, height: height)
     }
     
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        
-        backgroundColor = .separatorLight
-        translatesAutoresizingMaskIntoConstraints = false
+    private let height: Double
+    
+    init(height: Double = 42) {
+        self.height = height
+        super.init(frame: .zero)
+        setupView()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    private func setupView() {
+        translatesAutoresizingMaskIntoConstraints = false
+        
+        rightViewMode = .always
+        leftViewMode = .always
+        font = .body1
+        layer.borderWidth = 1
+        layer.borderColor = UIColor.grayLight.cgColor
+        layer.cornerRadius = Dimens.radiusDefault
     }
     
     override class var requiresConstraintBasedLayout: Bool {

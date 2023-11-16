@@ -39,11 +39,7 @@ final class EditProgramDialogVC : SuplaCustomDialogVC<EditProgramDialogViewState
         return view
     }()
     
-    private lazy var topSeparatorView: SeparatorView = {
-        let view = SeparatorView()
-        view.translatesAutoresizingMaskIntoConstraints = false
-        return view
-    }()
+    private lazy var topSeparatorView: SeparatorView = { SeparatorView() }()
     
     private lazy var editHeatTemperatureView: EditTemperatureView = {
         let view = EditTemperatureView()
@@ -69,11 +65,7 @@ final class EditProgramDialogVC : SuplaCustomDialogVC<EditProgramDialogViewState
         return label
     }()
     
-    private lazy var bottonSeparatorView: SeparatorView = {
-        let view = SeparatorView()
-        view.translatesAutoresizingMaskIntoConstraints = false
-        return view
-    }()
+    private lazy var bottonSeparatorView: SeparatorView = { SeparatorView() }()
     
     private lazy var cancelButton: UIBorderedButton = {
         let button = UIBorderedButton()
@@ -84,7 +76,6 @@ final class EditProgramDialogVC : SuplaCustomDialogVC<EditProgramDialogViewState
     
     private lazy var saveButton: UIFilledButton = {
         let button = UIFilledButton()
-        button.translatesAutoresizingMaskIntoConstraints = false
         button.setTitle(Strings.General.save, for: .normal)
         return button
     }()
@@ -287,17 +278,10 @@ fileprivate class EditTemperatureView: UIView, UITextFieldDelegate {
         leftPadding.translatesAutoresizingMaskIntoConstraints = false
         leftPadding.widthAnchor.constraint(equalToConstant: 12).isActive = true
         
-        let editText = UITextField()
-        editText.translatesAutoresizingMaskIntoConstraints = false
-        editText.rightViewMode = .always
+        let editText = SATextField()
         editText.rightView = unitLabel
-        editText.leftViewMode = .always
         editText.leftView = leftPadding
-        editText.layer.borderWidth = 1
-        editText.layer.borderColor = UIColor.grayLight.cgColor
-        editText.layer.cornerRadius = Dimens.radiusDefault
         editText.delegate = self
-        editText.font = .body1
         editText.keyboardType = .decimalPad
         
         return editText
@@ -345,7 +329,6 @@ fileprivate class EditTemperatureView: UIView, UITextFieldDelegate {
             temperatureTextField.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: Dimens.distanceTiny),
             temperatureTextField.leftAnchor.constraint(equalTo: minusIconButton.rightAnchor, constant: Dimens.distanceTiny),
             temperatureTextField.widthAnchor.constraint(equalToConstant: 120),
-            temperatureTextField.heightAnchor.constraint(equalToConstant: 42),
             
             plusIconButton.leftAnchor.constraint(equalTo: temperatureTextField.rightAnchor, constant: Dimens.distanceTiny),
             plusIconButton.centerYAnchor.constraint(equalTo: temperatureTextField.centerYAnchor),

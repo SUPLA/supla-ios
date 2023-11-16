@@ -16,26 +16,7 @@
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 
-import Foundation
-
-final class SeparatorView: UIView {
-    
-    override var intrinsicContentSize: CGSize {
-        get { CGSize(width: UIView.noIntrinsicMetric, height: 1) }
-    }
-    
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        
-        backgroundColor = .separatorLight
-        translatesAutoresizingMaskIntoConstraints = false
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-    override class var requiresConstraintBasedLayout: Bool {
-        return true
-    }
+struct Hour {
+    let hour: Int
+    let minute: Int
 }

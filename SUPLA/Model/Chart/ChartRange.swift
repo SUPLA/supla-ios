@@ -30,6 +30,8 @@ enum ChartRange: CaseIterable, Codable {
     case quarter
     case year
     
+    case custom
+    
     var roundedDaysCount: Int {
         get {
             switch (self) {
@@ -38,6 +40,7 @@ enum ChartRange: CaseIterable, Codable {
             case .lastMonth, .month: 30
             case .lastQuarter, .quarter: 90
             case .year: 365
+            case .custom: -1
             }
         }
     }
@@ -55,6 +58,8 @@ enum ChartRange: CaseIterable, Codable {
             case .month: Strings.Charts.month
             case .quarter: Strings.Charts.quarter
             case .year: Strings.Charts.year
+                
+            case .custom: Strings.Charts.custom
             }
         }
     }

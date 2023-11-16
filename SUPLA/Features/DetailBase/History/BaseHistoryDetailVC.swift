@@ -45,8 +45,18 @@ class BaseHistoryDetailVC: BaseViewControllerVM<BaseHistoryDetailViewState, Base
         return view
     }()
     
+    private lazy var rangeSelectionView: RangeSelectionView = {
+        let view = RangeSelectionView()
+        return view
+    }()
+    
     private lazy var pullToRefresh: PullToRefreshView = {
         let view = PullToRefreshView()
+        return view
+    }()
+    
+    private lazy var datePicker: SADateTimePicker = {
+        let view = SADateTimePicker()
         return view
     }()
     
@@ -98,10 +108,19 @@ class BaseHistoryDetailVC: BaseViewControllerVM<BaseHistoryDetailViewState, Base
             }
         }
         
-        paginationView.isHidden = state.paginationHidden
+        paginationView.isHidden = state.paginationHidden || state.ranges?.selected == .custom
         paginationView.leftEnabled = state.shiftLeftEnabled
         paginationView.rightEnabled = state.shiftRightEnabled
         paginationView.text = state.rangeText
+        
+        rangeSelectionView.isHidden = state.ranges?.selected != nil && state.ranges?.selected != .custom
+        rangeSelectionView.startDate = state.range?.start
+        rangeSelectionView.endDate = state.range?.end
+        
+        datePicker.isHidden = state.editDate == nil
+        datePicker.minDate = state.minDate
+        datePicker.maxDate = state.maxDate
+        datePicker.date = state.dateForEdit
         
         pullToRefresh.isRefreshing = state.loading
     }
@@ -111,7 +130,9 @@ class BaseHistoryDetailVC: BaseViewControllerVM<BaseHistoryDetailViewState, Base
         view.addSubview(filtersRow)
         view.addSubview(chartView)
         view.addSubview(paginationView)
+        view.addSubview(rangeSelectionView)
         view.addSubview(pullToRefresh)
+        view.addSubview(datePicker)
         
         viewModel.bind(dataSetsRow.tapEvents) { self.viewModel.changeSetActive(setId: $0) }
         
@@ -126,6 +147,10 @@ class BaseHistoryDetailVC: BaseViewControllerVM<BaseHistoryDetailViewState, Base
         viewModel.bind(paginationView.tap.filter({ $0 == .start })) { _ in self.viewModel.moveToDataBegin() }
         
         viewModel.bind(pullToRefresh.refreshObservable) { _ in self.viewModel.refresh() }
+        
+        viewModel.bind(rangeSelectionView.tap) { self.viewModel.customRangeEditDate($0) }
+        viewModel.bind(datePicker.cancelTap) { _ in self.viewModel.customRangeEditCancel() }
+        viewModel.bind(datePicker.saveTap) { self.viewModel.customRangeEditSave($0)}
         
         setupLayout()
     }
@@ -148,7 +173,16 @@ class BaseHistoryDetailVC: BaseViewControllerVM<BaseHistoryDetailViewState, Base
             
             paginationView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: Dimens.distanceSmall),
             paginationView.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -Dimens.distanceSmall),
-            paginationView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -Dimens.distanceDefault)
+            paginationView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -Dimens.distanceDefault),
+            
+            rangeSelectionView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: Dimens.distanceDefault),
+            rangeSelectionView.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -Dimens.distanceDefault),
+            rangeSelectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            
+            datePicker.leftAnchor.constraint(equalTo: view.leftAnchor),
+            datePicker.topAnchor.constraint(equalTo: view.topAnchor),
+            datePicker.rightAnchor.constraint(equalTo: view.rightAnchor),
+            datePicker.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ]))
     }
 }
@@ -623,5 +657,104 @@ fileprivate class BottomPaginationView: UIView {
     
     enum ButtonType {
         case start, left, right, end
+    }
+}
+
+fileprivate class RangeSelectionView: UIView {
+    
+    @Singleton<ValuesFormatter> private var valuesFormatter
+    
+    override var intrinsicContentSize: CGSize {
+        CGSize(width: UIView.noIntrinsicMetric, height: 96)
+    }
+    
+    var tap: Observable<RangeValueType> {
+        get {
+            Observable.merge(
+                startDateField.rx.controlEvent(.touchDown).map { _ in RangeValueType.start },
+                endDateField.rx.controlEvent(.touchDown).map { _ in RangeValueType.end }
+            )
+        }
+    }
+    
+    var startDate: Date? {
+        get { fatalError("Getter not supported") }
+        set { startDateField.text = valuesFormatter.getFullDateString(date: newValue) }
+    }
+    
+    var endDate: Date? {
+        get { fatalError("Getter not supported") }
+        set { endDateField.text = valuesFormatter.getFullDateString(date: newValue) }
+    }
+    
+    private lazy var startDateField: SATextField = {
+        let field = textField()
+        return field
+    }()
+    
+    private lazy var separatorLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.text = "-"
+        return label
+    }()
+    
+    private lazy var endDateField: SATextField = {
+        let field = textField()
+        return field
+    }()
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        setupView()
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    private func setupView() {
+        translatesAutoresizingMaskIntoConstraints = false
+        
+        addSubview(startDateField)
+        addSubview(separatorLabel)
+        addSubview(endDateField)
+        
+        setupLayout()
+    }
+    
+    private func setupLayout() {
+        NSLayoutConstraint.activate([
+            startDateField.leftAnchor.constraint(equalTo: leftAnchor),
+            startDateField.rightAnchor.constraint(equalTo: separatorLabel.leftAnchor, constant: -8),
+            startDateField.centerYAnchor.constraint(equalTo: centerYAnchor),
+            
+            separatorLabel.centerXAnchor.constraint(equalTo: centerXAnchor),
+            separatorLabel.centerYAnchor.constraint(equalTo: centerYAnchor),
+        
+            endDateField.leftAnchor.constraint(equalTo: separatorLabel.rightAnchor, constant: 8),
+            endDateField.centerYAnchor.constraint(equalTo: centerYAnchor),
+            endDateField.rightAnchor.constraint(equalTo: rightAnchor)
+        ])
+    }
+    
+    private func textField() -> SATextField {
+        let field = SATextField(height: 32)
+        field.font = .body2
+        field.textAlignment = .center
+        field.backgroundColor = .surface
+        field.isUserInteractionEnabled = true
+        field.delegate = self
+        return field
+    }
+    
+    override class var requiresConstraintBasedLayout: Bool {
+        return true
+    }
+}
+
+extension RangeSelectionView: UITextFieldDelegate {
+    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
+        false
     }
 }
