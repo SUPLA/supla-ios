@@ -23,7 +23,7 @@ private let REFRESH_DELAY_S: Double = 3
 
 class ScheduleDetailVM: BaseViewModel<ScheduleDetailViewState, ScheduleDetailViewEvent> {
     
-    @Singleton<ConfigEventsManager> private var configEventsManager
+    @Singleton<ChannelConfigEventsManager> private var configEventsManager
     @Singleton<GetChannelConfigUseCase> private var getChannelConfigUseCase
     @Singleton<DelayedWeeklyScheduleConfigSubject> private var dealyedWeeklyScheduleConfigSubject
     @Singleton<ReadChannelByRemoteIdUseCase> private var readChannelByRemoteIdUseCase
@@ -36,9 +36,9 @@ class ScheduleDetailVM: BaseViewModel<ScheduleDetailViewState, ScheduleDetailVie
     
     func observeConfig(remoteId: Int32) {
         Observable.combineLatest(
-            configEventsManager.observeConfig(remoteId: remoteId)
+            configEventsManager.observeConfig(id: remoteId)
                 .filter { $0.config is SuplaChannelWeeklyScheduleConfig},
-            configEventsManager.observeConfig(remoteId: remoteId)
+            configEventsManager.observeConfig(id: remoteId)
                 .filter { $0.config is SuplaChannelHvacConfig},
             resultSelector: { ($0.config as! SuplaChannelWeeklyScheduleConfig, $0.result, $1.config as! SuplaChannelHvacConfig, $1.result)}
         )
@@ -149,7 +149,7 @@ class ScheduleDetailVM: BaseViewModel<ScheduleDetailViewState, ScheduleDetailVie
         getChannelConfigUseCase.invoke(remoteId: remoteId, type: .weeklyScheduleConfig).subscribe().disposed(by: self)
     }
     
-    private func onConfigLoaded(configs: (SuplaChannelWeeklyScheduleConfig, ChannelConfigResult, SuplaChannelHvacConfig, ChannelConfigResult)) {
+    private func onConfigLoaded(configs: (SuplaChannelWeeklyScheduleConfig, SuplaConfigResult, SuplaChannelHvacConfig, SuplaConfigResult)) {
         
         NSLog("Schedule detail got data: `\(configs)`")
         let weeklyScheduleConfig = configs.0

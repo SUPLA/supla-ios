@@ -60,7 +60,7 @@ final class SetChannelConfigUseCaseImpl: SetChannelConfigUseCase {
                 fatalError("Trying to set invalid program \(program.program)")
             }
             
-            SuplaChannelConfigIntegrator.setProgramWith(
+            SuplaConfigIntegrator.setProgramWith(
                 programId - 1,
                 withMode: program.mode.rawValue,
                 withHeatTemp: program.setpointTemperatureHeat ?? 0,
@@ -85,7 +85,7 @@ final class SetChannelConfigUseCaseImpl: SetChannelConfigUseCase {
                 program = quarter.program.rawValue << 4
             }
             
-            SuplaChannelConfigIntegrator.setQuarterProgram(program, for: index, in: suplaConfig)
+            SuplaConfigIntegrator.setQuarterProgram(program, for: index, in: suplaConfig)
         }
     }
 }

@@ -143,10 +143,10 @@ class SuplaChannelConfigTests: XCTestCase {
     }
     
     private func getHvacConfig() -> TSCS_ChannelConfig {
-        return SuplaChannelConfigIntegrator.mockHvacConfig()
+        return SuplaConfigIntegrator.mockHvacConfig()
     }
     
     private func getWeeklScheduleConfig() -> TSCS_ChannelConfig {
-        return SuplaChannelConfigIntegrator.mockWeeklyScheduleConfig()
+        return SuplaConfigIntegrator.mockWeeklyScheduleConfig()
     }
 }

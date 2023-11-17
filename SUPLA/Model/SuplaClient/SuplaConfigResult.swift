@@ -16,25 +16,23 @@
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 
-import RxSwift
-
-@testable import SUPLA
-
-final class ConfigEventsManagerMock: ChannelConfigEventsManager {
+enum SuplaConfigResult: UInt8, CaseIterable {
+    case resultFalse = 0
+    case resultTrue = 1
+    case dataError = 2
+    case typeNotSupported = 3
+    case functionNotSupported = 4
+    case localConfigDisabled = 5
+    case notAllowed = 6
     
-    var observeConfigParameters: [Int32] = []
-    var observeConfigReturns: [Observable<ChannelConfigEvent>] = [Observable.empty()]
-    var observeConfigReturnsIdx = 0
-    func observeConfig(id: Int32) -> Observable<ChannelConfigEvent> {
-        observeConfigParameters.append(id)
+    
+    static func from(value: UInt8) -> SuplaConfigResult {
+        for result in SuplaConfigResult.allCases {
+            if (result.rawValue == value) {
+                return result
+            }
+        }
         
-        let toReturn = observeConfigReturns[observeConfigReturnsIdx]
-        observeConfigReturnsIdx += 1
-        return toReturn
-    }
-    
-    var emitConfigParameters: [(UInt8, TSCS_ChannelConfig)] = []
-    func emitConfig(result: UInt8, config: TSCS_ChannelConfig) {
-        emitConfigParameters.append((result, config))
+        fatalError("Could not convert value `\(value)` to ChannelConfigResult")
     }
 }

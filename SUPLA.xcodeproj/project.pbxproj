@@ -662,12 +662,24 @@
 		A51BE9132AAAFFEB00718F2F /* SuplaChannelConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51BE9122AAAFFEB00718F2F /* SuplaChannelConfig.swift */; };
 		A51BE9162AAB022400718F2F /* DayOfWeek.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51BE9152AAB022400718F2F /* DayOfWeek.swift */; };
 		A51BE9182AAB027400718F2F /* QuarterOfHour.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51BE9172AAB027400718F2F /* QuarterOfHour.swift */; };
-		A51BE91B2AAB0DF900718F2F /* SuplaChannelConfigIntegrator.m in Sources */ = {isa = PBXBuildFile; fileRef = A51BE91A2AAB0DF900718F2F /* SuplaChannelConfigIntegrator.m */; };
+		A51BE91B2AAB0DF900718F2F /* SuplaConfigIntegrator.m in Sources */ = {isa = PBXBuildFile; fileRef = A51BE91A2AAB0DF900718F2F /* SuplaConfigIntegrator.m */; };
 		A52ACD4929CB940B0092729F /* ActionParameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = A52ACD4829CB940B0092729F /* ActionParameters.swift */; };
 		A52BFEAD2B050D2500A2F64C /* SATextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = A52BFEAC2B050D2500A2F64C /* SATextField.swift */; };
 		A52BFEAF2B060EAA00A2F64C /* Hour.swift in Sources */ = {isa = PBXBuildFile; fileRef = A52BFEAE2B060EAA00A2F64C /* Hour.swift */; };
 		A52BFEB12B06163B00A2F64C /* SADateTimePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = A52BFEB02B06163B00A2F64C /* SADateTimePicker.swift */; };
 		A52BFEB32B063EAC00A2F64C /* RangeValueType.swift in Sources */ = {isa = PBXBuildFile; fileRef = A52BFEB22B063EAC00A2F64C /* RangeValueType.swift */; };
+		A52BFEB52B0659FD00A2F64C /* BaseConfigEventsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A52BFEB42B0659FD00A2F64C /* BaseConfigEventsManager.swift */; };
+		A52BFEB72B065B9400A2F64C /* DeviceConfigEventsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A52BFEB62B065B9400A2F64C /* DeviceConfigEventsManager.swift */; };
+		A52BFEB92B065BF800A2F64C /* SuplaConfigResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = A52BFEB82B065BF800A2F64C /* SuplaConfigResult.swift */; };
+		A52BFEBB2B074D7900A2F64C /* SuplaDeviceConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = A52BFEBA2B074D7900A2F64C /* SuplaDeviceConfig.swift */; };
+		A52BFEBF2B077CCB00A2F64C /* SuplaDeviceConfigTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A52BFEBE2B077CCB00A2F64C /* SuplaDeviceConfigTests.swift */; };
+		A52BFEC22B078BB200A2F64C /* SuplaLedStatusField.swift in Sources */ = {isa = PBXBuildFile; fileRef = A52BFEC12B078BB200A2F64C /* SuplaLedStatusField.swift */; };
+		A52BFEC42B078FBE00A2F64C /* SuplaScreenBrightnessField.swift in Sources */ = {isa = PBXBuildFile; fileRef = A52BFEC32B078FBE00A2F64C /* SuplaScreenBrightnessField.swift */; };
+		A52BFEC62B07904E00A2F64C /* SuplaButtonVolumeField.swift in Sources */ = {isa = PBXBuildFile; fileRef = A52BFEC52B07904E00A2F64C /* SuplaButtonVolumeField.swift */; };
+		A52BFEC82B0790F400A2F64C /* SuplaDisableUserInterfaceField.swift in Sources */ = {isa = PBXBuildFile; fileRef = A52BFEC72B0790F400A2F64C /* SuplaDisableUserInterfaceField.swift */; };
+		A52BFECA2B07953600A2F64C /* SuplaAutomaticTimeSyncField.swift in Sources */ = {isa = PBXBuildFile; fileRef = A52BFEC92B07953600A2F64C /* SuplaAutomaticTimeSyncField.swift */; };
+		A52BFECC2B07962000A2F64C /* SuplaHomeScreenOffDelayField.swift in Sources */ = {isa = PBXBuildFile; fileRef = A52BFECB2B07962000A2F64C /* SuplaHomeScreenOffDelayField.swift */; };
+		A52BFECE2B0796BC00A2F64C /* SuplaHomeScreenContentField.swift in Sources */ = {isa = PBXBuildFile; fileRef = A52BFECD2B0796BC00A2F64C /* SuplaHomeScreenContentField.swift */; };
 		A530EDEB2A53F60400F8DAEE /* SwitchDetailVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = A530EDEA2A53F60400F8DAEE /* SwitchDetailVM.swift */; };
 		A530EDED2A53F6A800F8DAEE /* SwitchDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A530EDEC2A53F6A800F8DAEE /* SwitchDetailVC.swift */; };
 		A530EDF02A53F8E100F8DAEE /* SuplaTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A530EDEF2A53F8E100F8DAEE /* SuplaTabBarController.swift */; };
@@ -849,7 +861,7 @@
 		A57785C129E80C16001C631E /* SuplaClientProviderMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = A57785C029E80C16001C631E /* SuplaClientProviderMock.swift */; };
 		A57785C329E80CF7001C631E /* SuplaAppWrapperMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = A57785C229E80CF7001C631E /* SuplaAppWrapperMock.swift */; };
 		A57C4AAC2AAB20B100D9C695 /* RequestResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = A57C4AAB2AAB20B100D9C695 /* RequestResult.swift */; };
-		A57C4AAE2AAB21F700D9C695 /* ConfigEventsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A57C4AAD2AAB21F700D9C695 /* ConfigEventsManager.swift */; };
+		A57C4AAE2AAB21F700D9C695 /* ChannelConfigEventsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A57C4AAD2AAB21F700D9C695 /* ChannelConfigEventsManager.swift */; };
 		A57C4AB02AAB3E3400D9C695 /* SuplaChannelHvacConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = A57C4AAF2AAB3E3400D9C695 /* SuplaChannelHvacConfig.swift */; };
 		A57C4AB32AAF374900D9C695 /* EditProgramDialogVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A57C4AB22AAF374900D9C695 /* EditProgramDialogVC.swift */; };
 		A57C4AB52AAF458F00D9C695 /* SuplaScheduleProgram.swift in Sources */ = {isa = PBXBuildFile; fileRef = A57C4AB42AAF458F00D9C695 /* SuplaScheduleProgram.swift */; };
@@ -2092,13 +2104,25 @@
 		A51BE9122AAAFFEB00718F2F /* SuplaChannelConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuplaChannelConfig.swift; sourceTree = "<group>"; };
 		A51BE9152AAB022400718F2F /* DayOfWeek.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayOfWeek.swift; sourceTree = "<group>"; };
 		A51BE9172AAB027400718F2F /* QuarterOfHour.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuarterOfHour.swift; sourceTree = "<group>"; };
-		A51BE91A2AAB0DF900718F2F /* SuplaChannelConfigIntegrator.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SuplaChannelConfigIntegrator.m; sourceTree = "<group>"; };
-		A51BE91C2AAB0E0900718F2F /* SuplaChannelConfigIntegrator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SuplaChannelConfigIntegrator.h; sourceTree = "<group>"; };
+		A51BE91A2AAB0DF900718F2F /* SuplaConfigIntegrator.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SuplaConfigIntegrator.m; sourceTree = "<group>"; };
+		A51BE91C2AAB0E0900718F2F /* SuplaConfigIntegrator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SuplaConfigIntegrator.h; sourceTree = "<group>"; };
 		A52ACD4829CB940B0092729F /* ActionParameters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionParameters.swift; sourceTree = "<group>"; };
 		A52BFEAC2B050D2500A2F64C /* SATextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SATextField.swift; sourceTree = "<group>"; };
 		A52BFEAE2B060EAA00A2F64C /* Hour.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Hour.swift; sourceTree = "<group>"; };
 		A52BFEB02B06163B00A2F64C /* SADateTimePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SADateTimePicker.swift; sourceTree = "<group>"; };
 		A52BFEB22B063EAC00A2F64C /* RangeValueType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RangeValueType.swift; sourceTree = "<group>"; };
+		A52BFEB42B0659FD00A2F64C /* BaseConfigEventsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseConfigEventsManager.swift; sourceTree = "<group>"; };
+		A52BFEB62B065B9400A2F64C /* DeviceConfigEventsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceConfigEventsManager.swift; sourceTree = "<group>"; };
+		A52BFEB82B065BF800A2F64C /* SuplaConfigResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuplaConfigResult.swift; sourceTree = "<group>"; };
+		A52BFEBA2B074D7900A2F64C /* SuplaDeviceConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuplaDeviceConfig.swift; sourceTree = "<group>"; };
+		A52BFEBE2B077CCB00A2F64C /* SuplaDeviceConfigTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuplaDeviceConfigTests.swift; sourceTree = "<group>"; };
+		A52BFEC12B078BB200A2F64C /* SuplaLedStatusField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuplaLedStatusField.swift; sourceTree = "<group>"; };
+		A52BFEC32B078FBE00A2F64C /* SuplaScreenBrightnessField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuplaScreenBrightnessField.swift; sourceTree = "<group>"; };
+		A52BFEC52B07904E00A2F64C /* SuplaButtonVolumeField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuplaButtonVolumeField.swift; sourceTree = "<group>"; };
+		A52BFEC72B0790F400A2F64C /* SuplaDisableUserInterfaceField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuplaDisableUserInterfaceField.swift; sourceTree = "<group>"; };
+		A52BFEC92B07953600A2F64C /* SuplaAutomaticTimeSyncField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuplaAutomaticTimeSyncField.swift; sourceTree = "<group>"; };
+		A52BFECB2B07962000A2F64C /* SuplaHomeScreenOffDelayField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuplaHomeScreenOffDelayField.swift; sourceTree = "<group>"; };
+		A52BFECD2B0796BC00A2F64C /* SuplaHomeScreenContentField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuplaHomeScreenContentField.swift; sourceTree = "<group>"; };
 		A530EDEA2A53F60400F8DAEE /* SwitchDetailVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchDetailVM.swift; sourceTree = "<group>"; };
 		A530EDEC2A53F6A800F8DAEE /* SwitchDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchDetailVC.swift; sourceTree = "<group>"; };
 		A530EDEF2A53F8E100F8DAEE /* SuplaTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuplaTabBarController.swift; sourceTree = "<group>"; };
@@ -2283,7 +2307,7 @@
 		A57785C029E80C16001C631E /* SuplaClientProviderMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuplaClientProviderMock.swift; sourceTree = "<group>"; };
 		A57785C229E80CF7001C631E /* SuplaAppWrapperMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuplaAppWrapperMock.swift; sourceTree = "<group>"; };
 		A57C4AAB2AAB20B100D9C695 /* RequestResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestResult.swift; sourceTree = "<group>"; };
-		A57C4AAD2AAB21F700D9C695 /* ConfigEventsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigEventsManager.swift; sourceTree = "<group>"; };
+		A57C4AAD2AAB21F700D9C695 /* ChannelConfigEventsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelConfigEventsManager.swift; sourceTree = "<group>"; };
 		A57C4AAF2AAB3E3400D9C695 /* SuplaChannelHvacConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuplaChannelHvacConfig.swift; sourceTree = "<group>"; };
 		A57C4AB22AAF374900D9C695 /* EditProgramDialogVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProgramDialogVC.swift; sourceTree = "<group>"; };
 		A57C4AB42AAF458F00D9C695 /* SuplaScheduleProgram.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuplaScheduleProgram.swift; sourceTree = "<group>"; };
@@ -3677,8 +3701,8 @@
 		A51BE9192AAB0DBB00718F2F /* Integration */ = {
 			isa = PBXGroup;
 			children = (
-				A51BE91A2AAB0DF900718F2F /* SuplaChannelConfigIntegrator.m */,
-				A51BE91C2AAB0E0900718F2F /* SuplaChannelConfigIntegrator.h */,
+				A51BE91A2AAB0DF900718F2F /* SuplaConfigIntegrator.m */,
+				A51BE91C2AAB0E0900718F2F /* SuplaConfigIntegrator.h */,
 			);
 			path = Integration;
 			sourceTree = "<group>";
@@ -3719,6 +3743,21 @@
 				A52BFEAC2B050D2500A2F64C /* SATextField.swift */,
 			);
 			path = TextFields;
+			sourceTree = "<group>";
+		};
+		A52BFEC02B078B6F00A2F64C /* DeviceConfig */ = {
+			isa = PBXGroup;
+			children = (
+				A52BFEBA2B074D7900A2F64C /* SuplaDeviceConfig.swift */,
+				A52BFEC12B078BB200A2F64C /* SuplaLedStatusField.swift */,
+				A52BFEC32B078FBE00A2F64C /* SuplaScreenBrightnessField.swift */,
+				A52BFEC52B07904E00A2F64C /* SuplaButtonVolumeField.swift */,
+				A52BFEC72B0790F400A2F64C /* SuplaDisableUserInterfaceField.swift */,
+				A52BFEC92B07953600A2F64C /* SuplaAutomaticTimeSyncField.swift */,
+				A52BFECB2B07962000A2F64C /* SuplaHomeScreenOffDelayField.swift */,
+				A52BFECD2B0796BC00A2F64C /* SuplaHomeScreenContentField.swift */,
+			);
+			path = DeviceConfig;
 			sourceTree = "<group>";
 		};
 		A530EDE92A53F5CB00F8DAEE /* SwitchDetail */ = {
@@ -3874,6 +3913,7 @@
 		A5477DB02AA1DB4600220B4A /* SuplaClient */ = {
 			isa = PBXGroup;
 			children = (
+				A52BFEC02B078B6F00A2F64C /* DeviceConfig */,
 				A5477DB12AA1DB5900220B4A /* ChannelRelationType.swift */,
 				A5477DBE2AA5B40C00220B4A /* SuplaHvacMode.swift */,
 				A5477DC02AA5B4EC00220B4A /* SuplaThermostatFlags.swift */,
@@ -3882,6 +3922,7 @@
 				A57C4AAB2AAB20B100D9C695 /* RequestResult.swift */,
 				A57C4AAF2AAB3E3400D9C695 /* SuplaChannelHvacConfig.swift */,
 				A57C4AB42AAF458F00D9C695 /* SuplaScheduleProgram.swift */,
+				A52BFEB82B065BF800A2F64C /* SuplaConfigResult.swift */,
 			);
 			path = SuplaClient;
 			sourceTree = "<group>";
@@ -4553,6 +4594,7 @@
 			children = (
 				A5A23C2C2ABD96DB00233542 /* SuplaChannelConfigTests.swift */,
 				A57C883B2ACB564B000B0F10 /* SuplaWeeklyScheduleProgramTests.swift */,
+				A52BFEBE2B077CCB00A2F64C /* SuplaDeviceConfigTests.swift */,
 			);
 			path = SuplaClient;
 			sourceTree = "<group>";
@@ -4960,9 +5002,11 @@
 			isa = PBXGroup;
 			children = (
 				A5F29BA52A248ED800ED700A /* ListsEventsManager.swift */,
-				A57C4AAD2AAB21F700D9C695 /* ConfigEventsManager.swift */,
+				A57C4AAD2AAB21F700D9C695 /* ChannelConfigEventsManager.swift */,
 				A566398A2ABAD52300BA51D7 /* LoadingTimeoutManager.swift */,
 				A57668D42AE94A060025509D /* DownloadEventsManager.swift */,
+				A52BFEB42B0659FD00A2F64C /* BaseConfigEventsManager.swift */,
+				A52BFEB62B065B9400A2F64C /* DeviceConfigEventsManager.swift */,
 			);
 			path = Events;
 			sourceTree = "<group>";
@@ -5892,6 +5936,7 @@
 				A5D837C82AF0F154002A420D /* PullToRefreshView.swift in Sources */,
 				A5D837D92AF1069A002A420D /* BaseHistoryDetailVM.swift in Sources */,
 				A57668F12AEA9F5B0025509D /* BaseDownloadMeasurementsUseCase.swift in Sources */,
+				A52BFEC22B078BB200A2F64C /* SuplaLedStatusField.swift in Sources */,
 				A56233FB2AB88722001CB948 /* DelayedWeeklyScheduleConfigSubject.swift in Sources */,
 				A530EE432A58AA6E00F8DAEE /* DeviceStateHelperVCI.swift in Sources */,
 				0148933425AA12DB00B9974E /* SADiwCalibrationTool.m in Sources */,
@@ -5905,6 +5950,7 @@
 				40C7BA7720C047CF00ACEE42 /* SAChannel+CoreDataProperties.m in Sources */,
 				A530EE302A57E2B900F8DAEE /* DigiglassVerticalIconNameProducer.swift in Sources */,
 				01F8856E22E5E79100D18373 /* SAImpulseCounterMeasurementItem+CoreDataProperties.m in Sources */,
+				A52BFEC62B07904E00A2F64C /* SuplaButtonVolumeField.swift in Sources */,
 				A5D837DF2AF12CA5002A420D /* LoadChannelMeasurementsUseCase.swift in Sources */,
 				A5F29BEF2A287C6800ED700A /* SAChannelBase+Ext.swift in Sources */,
 				A58A9C012AA0AD0E00D28848 /* ThermostatCell.swift in Sources */,
@@ -5940,9 +5986,11 @@
 				A52BFEAF2B060EAA00A2F64C /* Hour.swift in Sources */,
 				A530EE1C2A56FC5000F8DAEE /* LightSwitchIconNameProducer.swift in Sources */,
 				A530EE2E2A57E23D00F8DAEE /* DigiglassHorizontalIconNameProducer.swift in Sources */,
+				A52BFECA2B07953600A2F64C /* SuplaAutomaticTimeSyncField.swift in Sources */,
 				A5D837DB2AF106A8002A420D /* BaseHistoryDetailVC.swift in Sources */,
 				A5D837D42AF1062B002A420D /* ThermometerHistoryDetailVC.swift in Sources */,
 				A5F29BA62A248ED800ED700A /* ListsEventsManager.swift in Sources */,
+				A52BFEC42B078FBE00A2F64C /* SuplaScreenBrightnessField.swift in Sources */,
 				AE348E66277F348700F363A3 /* SAMoveTableView.m in Sources */,
 				01EE9BBB22BA50D90029A142 /* SAChannelValueBase+CoreDataClass.m in Sources */,
 				AE7452892827E37600A3AFAD /* ProfilesVM.swift in Sources */,
@@ -5976,12 +6024,15 @@
 				A530EDED2A53F6A800F8DAEE /* SwitchDetailVC.swift in Sources */,
 				A50CD3D32A4D82ED0012DD9B /* DateProvider.swift in Sources */,
 				011021BA25CC38FA00621D41 /* SAEvent.m in Sources */,
+				A52BFEC82B0790F400A2F64C /* SuplaDisableUserInterfaceField.swift in Sources */,
 				40D69DEE1BB574FE00937769 /* Database.m in Sources */,
 				A5F29BE02A275F7600ED700A /* SwapGroupPositionsUseCase.swift in Sources */,
 				A5F29B5D2A1E161500ED700A /* MainVM.swift in Sources */,
 				A56233F92AB85CA1001CB948 /* ExecuteThermostatActionUseCase.swift in Sources */,
 				A57668E92AEA7AF50025509D /* SelectableList.swift in Sources */,
 				A530EE002A54417400F8DAEE /* TimerDetailVM.swift in Sources */,
+				A52BFECE2B0796BC00A2F64C /* SuplaHomeScreenContentField.swift in Sources */,
+				A52BFEB72B065B9400A2F64C /* DeviceConfigEventsManager.swift in Sources */,
 				A56091772AE685B600AFE14F /* ThermostatHistoryDetailVC.swift in Sources */,
 				A5F29BD42A2623C000ED700A /* TempHumidityMeasurementItemRepository.swift in Sources */,
 				A5F29B892A1F985A00ED700A /* LocationRepository.swift in Sources */,
@@ -6134,6 +6185,7 @@
 				AE5332E62764A7E30050E690 /* SuplaMenuController.swift in Sources */,
 				AECB1BE5270EB56F001A9714 /* AccountCreationVM.swift in Sources */,
 				0122613922F396440013E6A2 /* SAThermostatCalendar.m in Sources */,
+				A52BFEBB2B074D7900A2F64C /* SuplaDeviceConfig.swift in Sources */,
 				A5F29BB82A24D16000ED700A /* ChannelGroupRelationRepository.swift in Sources */,
 				A5477DBB2AA202A800220B4A /* SAChannelRelation+Ext.swift in Sources */,
 				A51BE8EB2AA7136000718F2F /* ThermostatDetailVC.swift in Sources */,
@@ -6155,6 +6207,7 @@
 				A530EE532A5D437C00F8DAEE /* TimerProgressView.swift in Sources */,
 				A530EE082A557EE400F8DAEE /* CircleControlButtonView.swift in Sources */,
 				A57C88302ACAA445000B0F10 /* ValuesFormatter.swift in Sources */,
+				A52BFEB92B065BF800A2F64C /* SuplaConfigResult.swift in Sources */,
 				40A6757F1BA1A5B6004A51C4 /* SuplaApp.m in Sources */,
 				018CFD2023281A5900888CB7 /* SAElectricityMeterExtendedValue.m in Sources */,
 				A5FE67632A65D56300147D1F /* UpdateServerHostNameUseCase.swift in Sources */,
@@ -6212,7 +6265,7 @@
 				A58A9C052AA1D58F00D28848 /* InsertChannelRelationForProfileUseCase.swift in Sources */,
 				A52BFEAD2B050D2500A2F64C /* SATextField.swift in Sources */,
 				A56D5AD32A4C693A004F45DA /* UpdateTokenTask.swift in Sources */,
-				A57C4AAE2AAB21F700D9C695 /* ConfigEventsManager.swift in Sources */,
+				A57C4AAE2AAB21F700D9C695 /* ChannelConfigEventsManager.swift in Sources */,
 				01F8856B22E5E79100D18373 /* SAThermostatMeasurementItem+CoreDataProperties.m in Sources */,
 				40DA56901DCA1908008F05DE /* _SALocation+CoreDataProperties.m in Sources */,
 				A57668CD2AE8F87D0025509D /* SuplaCloudConfigHolder.swift in Sources */,
@@ -6233,6 +6286,7 @@
 				01C1719022C7F3A2005983E1 /* SAIncrementalMeasurementItem+CoreDataProperties.m in Sources */,
 				A5A1C0A829F2AAFA0083818D /* VibrationService.swift in Sources */,
 				A5F29BD02A26237200ED700A /* ImpulseCounterMeasurementItemRepository.swift in Sources */,
+				A52BFECC2B07962000A2F64C /* SuplaHomeScreenOffDelayField.swift in Sources */,
 				A5F29B692A1E269800ED700A /* GroupListVM.swift in Sources */,
 				A56233E72AB2FE37001CB948 /* Changeable.swift in Sources */,
 				A56233F52AB856B3001CB948 /* DelayedCommandSubject.swift in Sources */,
@@ -6253,6 +6307,7 @@
 				A57C4AB32AAF374900D9C695 /* EditProgramDialogVC.swift in Sources */,
 				01CEABFA25B9920A009C3BFD /* SADigiglassDetailView.m in Sources */,
 				013F7EC123EB33E30061A497 /* SAChannelStateExtendedValue.m in Sources */,
+				A52BFEB52B0659FD00A2F64C /* BaseConfigEventsManager.swift in Sources */,
 				A573B39229DEB25900EBAFC4 /* ViewState.swift in Sources */,
 				019170A4233D67E900820BDB /* SAThermostatChartHelper.m in Sources */,
 				A56233DD2AB065AD001CB948 /* EditQuartersDialogVC.swift in Sources */,
@@ -6264,7 +6319,7 @@
 				A530EE242A57006A00F8DAEE /* LiquidSensorIconNameProducer.swift in Sources */,
 				A530EDFD2A54153000F8DAEE /* SwitchDetailNavigationCoordinator.swift in Sources */,
 				AEBCD8FC26E4D247001904F3 /* TemperaturePresenter.swift in Sources */,
-				A51BE91B2AAB0DF900718F2F /* SuplaChannelConfigIntegrator.m in Sources */,
+				A51BE91B2AAB0DF900718F2F /* SuplaConfigIntegrator.m in Sources */,
 				407D4AFF1BC6E491009A5505 /* StatusVC.m in Sources */,
 				A5E4904A2A3C6215006801FE /* ChannelHeight.swift in Sources */,
 				A57668F72AEAA8870025509D /* ChartParameters.swift in Sources */,
@@ -6368,6 +6423,7 @@
 				A57638CC29E5EF95003E15A3 /* ProfileManagerMock.swift in Sources */,
 				A54A06732AF8D31D00C03DBC /* HideableValueTests.swift in Sources */,
 				A59AB8C52A308F7D00D91F1F /* ChannelExtendedValueRepositoryMock.swift in Sources */,
+				A52BFEBF2B077CCB00A2F64C /* SuplaDeviceConfigTests.swift in Sources */,
 				A56233FD2AB9C01F001CB948 /* ChannelRelationRepositoryMock.swift in Sources */,
 				01AC1AD62487C35E00F734DF /* SAColorBrightnessPickerTests.m in Sources */,
 				A54A066C2AF5290900C03DBC /* DownloadEventsManagerMock.swift in Sources */,

@@ -43,7 +43,7 @@ final class ScheduleDetailVMTests: ViewModelTest<ScheduleDetailViewState, Schedu
     }()
     
     override func setUp() {
-        DiContainer.shared.register(type: ConfigEventsManager.self, component: configEventsManager!)
+        DiContainer.shared.register(type: ChannelConfigEventsManager.self, component: configEventsManager!)
         DiContainer.shared.register(type: GetChannelConfigUseCase.self, component: getChannelConfigUseCase!)
         DiContainer.shared.register(type: DelayedWeeklyScheduleConfigSubject.self, component: dealyedWeeklyScheduleConfigSubject!)
         DiContainer.shared.register(type: DateProvider.self, component: dateProvider!)
@@ -349,8 +349,8 @@ final class ScheduleDetailVMTests: ViewModelTest<ScheduleDetailViewState, Schedu
         )
         
         configEventsManager.observeConfigReturns = [
-            Observable.just(ConfigEvent(result: .resultTrue, config: weeklyConfig)),
-            Observable.just(ConfigEvent(result: .resultTrue, config: hvacConfig))
+            Observable.just(ChannelConfigEvent(result: .resultTrue, config: weeklyConfig)),
+            Observable.just(ChannelConfigEvent(result: .resultTrue, config: hvacConfig))
         ]
         
         // when
@@ -393,8 +393,8 @@ final class ScheduleDetailVMTests: ViewModelTest<ScheduleDetailViewState, Schedu
         )
         
         configEventsManager.observeConfigReturns = [
-            Observable.just(ConfigEvent(result: .resultFalse, config: weeklyConfig)),
-            Observable.just(ConfigEvent(result: .dataError, config: hvacConfig))
+            Observable.just(ChannelConfigEvent(result: .resultFalse, config: weeklyConfig)),
+            Observable.just(ChannelConfigEvent(result: .dataError, config: hvacConfig))
         ]
         
         // when
@@ -426,8 +426,8 @@ final class ScheduleDetailVMTests: ViewModelTest<ScheduleDetailViewState, Schedu
         )
         
         configEventsManager.observeConfigReturns = [
-            Observable.just(ConfigEvent(result: .resultTrue, config: weeklyConfig)),
-            Observable.just(ConfigEvent(result: .resultTrue, config: hvacConfig))
+            Observable.just(ChannelConfigEvent(result: .resultTrue, config: weeklyConfig)),
+            Observable.just(ChannelConfigEvent(result: .resultTrue, config: hvacConfig))
         ]
         
         // when
@@ -459,8 +459,8 @@ final class ScheduleDetailVMTests: ViewModelTest<ScheduleDetailViewState, Schedu
         )
         
         configEventsManager.observeConfigReturns = [
-            Observable.just(ConfigEvent(result: .resultTrue, config: weeklyConfig)),
-            Observable.just(ConfigEvent(result: .resultTrue, config: hvacConfig))
+            Observable.just(ChannelConfigEvent(result: .resultTrue, config: weeklyConfig)),
+            Observable.just(ChannelConfigEvent(result: .resultTrue, config: hvacConfig))
         ]
         
         let initialState = ScheduleDetailViewState(changing: true)
@@ -495,8 +495,8 @@ final class ScheduleDetailVMTests: ViewModelTest<ScheduleDetailViewState, Schedu
         )
         
         configEventsManager.observeConfigReturns = [
-            Observable.just(ConfigEvent(result: .resultTrue, config: weeklyConfig)),
-            Observable.just(ConfigEvent(result: .resultTrue, config: hvacConfig))
+            Observable.just(ChannelConfigEvent(result: .resultTrue, config: weeklyConfig)),
+            Observable.just(ChannelConfigEvent(result: .resultTrue, config: hvacConfig))
         ]
         
         dateProvider.currentTimestampReturns = 1003
@@ -536,8 +536,8 @@ final class ScheduleDetailVMTests: ViewModelTest<ScheduleDetailViewState, Schedu
         )
         
         configEventsManager.observeConfigReturns = [
-            Observable.just(ConfigEvent(result: .resultTrue, config: weeklyConfig)),
-            Observable.just(ConfigEvent(result: .resultTrue, config: hvacConfig))
+            Observable.just(ChannelConfigEvent(result: .resultTrue, config: weeklyConfig)),
+            Observable.just(ChannelConfigEvent(result: .resultTrue, config: hvacConfig))
         ]
         
         let channel = SAChannel(testContext: nil)

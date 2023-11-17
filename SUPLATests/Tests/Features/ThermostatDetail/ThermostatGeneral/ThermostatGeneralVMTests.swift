@@ -52,7 +52,7 @@ final class ThermostatGeneralVMTests: ViewModelTest<ThermostatGeneralViewState, 
     override func setUp() {
         DiContainer.shared.register(type: ReadChannelWithChildrenUseCase.self, component: readChannelWithChildrenUseCase!)
         DiContainer.shared.register(type: CreateTemperaturesListUseCase.self, component: createTemperaturesListUseCase!)
-        DiContainer.shared.register(type: ConfigEventsManager.self, component: configEventsManager!)
+        DiContainer.shared.register(type: ChannelConfigEventsManager.self, component: configEventsManager!)
         DiContainer.shared.register(type: GetChannelConfigUseCase.self, component: getChannelConfigUseCase!)
         DiContainer.shared.register(type: DelayedThermostatActionSubject.self, component: delayedThermostatActionSubject!)
         DiContainer.shared.register(type: DateProvider.self, component: dateProvider!)
@@ -884,8 +884,8 @@ final class ThermostatGeneralVMTests: ViewModelTest<ThermostatGeneralViewState, 
         return ChannelChild(channel: channel, relationType: .defaultType)
     }
     
-    private func mockHvacConfigEvent(_ remoteId: Int32) -> ConfigEvent {
-        ConfigEvent(
+    private func mockHvacConfigEvent(_ remoteId: Int32) -> ChannelConfigEvent {
+        ChannelConfigEvent(
             result: .resultTrue,
             config: SuplaChannelHvacConfig.mock(
                 remoteId: remoteId,
@@ -897,8 +897,8 @@ final class ThermostatGeneralVMTests: ViewModelTest<ThermostatGeneralViewState, 
         )
     }
     
-    private func mockWeeklyConfigEvent(_ remoteId: Int32) -> ConfigEvent {
-        ConfigEvent(
+    private func mockWeeklyConfigEvent(_ remoteId: Int32) -> ChannelConfigEvent {
+        ChannelConfigEvent(
             result: .resultTrue,
             config: SuplaChannelWeeklyScheduleConfig.mock(remoteId: remoteId)
         )

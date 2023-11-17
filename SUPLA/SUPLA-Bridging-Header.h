@@ -38,6 +38,6 @@
 #import "SADownloadUserIcons.h"
 #import "SingleCallWrapper.h"
 #import "SAChannelStatePopup.h"
-#import "SuplaChannelConfigIntegrator.h"
+#import "SuplaConfigIntegrator.h"
 
 #import "supla-client.h"

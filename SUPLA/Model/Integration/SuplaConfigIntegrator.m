@@ -16,10 +16,10 @@
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 
-#import "SuplaChannelConfigIntegrator.h"
+#import "SuplaConfigIntegrator.h"
 #import "SUPLA-Swift.h"
 
-@implementation SuplaChannelConfigIntegrator
+@implementation SuplaConfigIntegrator
 
 + (void) setProgramWith: (UInt8) programId withMode: (UInt8) mode withHeatTemp: (short) heatTemp withCoolTemp: (short) coolTemp inConfig: (TSCS_ChannelConfig*) config {
     TChannelConfig_WeeklySchedule* weeklyConfig = (TChannelConfig_WeeklySchedule*) config->Config;
@@ -133,6 +133,72 @@
             weekly->Quarters[i] = 0;
         }
     }
+    
+    return config;
+}
+
++ (TSCS_DeviceConfig) mockDeviceConfigWithUserInterfaceField: (BOOL) disableUserInterfaceField {
+    TSCS_DeviceConfig config = {};
+    
+    config.DeviceId = 123456;
+    config.EndOfDataFlag = 1;
+    config.AvailableFields = SUPLA_DEVICE_CONFIG_FIELD_STATUS_LED | SUPLA_DEVICE_CONFIG_FIELD_SCREEN_BRIGHTNESS | SUPLA_DEVICE_CONFIG_FIELD_BUTTON_VOLUME | SUPLA_DEVICE_CONFIG_FIELD_DISABLE_USER_INTERFACE | SUPLA_DEVICE_CONFIG_FIELD_AUTOMATIC_TIME_SYNC | SUPLA_DEVICE_CONFIG_FIELD_HOME_SCREEN_OFF_DELAY | SUPLA_DEVICE_CONFIG_FIELD_HOME_SCREEN_CONTENT;
+    config.Fields = SUPLA_DEVICE_CONFIG_FIELD_STATUS_LED | SUPLA_DEVICE_CONFIG_FIELD_SCREEN_BRIGHTNESS | SUPLA_DEVICE_CONFIG_FIELD_BUTTON_VOLUME | SUPLA_DEVICE_CONFIG_FIELD_AUTOMATIC_TIME_SYNC | SUPLA_DEVICE_CONFIG_FIELD_HOME_SCREEN_OFF_DELAY | SUPLA_DEVICE_CONFIG_FIELD_HOME_SCREEN_CONTENT;
+    if (disableUserInterfaceField) {
+        config.Fields |= SUPLA_DEVICE_CONFIG_FIELD_DISABLE_USER_INTERFACE;
+    }
+    
+    TDeviceConfig_StatusLed statusLed = {};
+    statusLed.StatusLedType = 1;
+    
+    TDeviceConfig_ScreenBrightness screenBrightness = {};
+    screenBrightness.AdjustmentForAutomatic = 10;
+    screenBrightness.Automatic = 1;
+    screenBrightness.ScreenBrightness = 50;
+    
+    TDeviceConfig_ButtonVolume buttonVolume = {};
+    buttonVolume.Volume = 80;
+    
+    TDeviceConfig_DisableUserInterface disableUserInterface = {};
+    disableUserInterface.DisableUserInterface = 2;
+    disableUserInterface.minAllowedTemperatureSetpointFromLocalUI = 1200;
+    disableUserInterface.maxAllowedTemperatureSetpointFromLocalUI = 2500;
+    
+    TDeviceConfig_AutomaticTimeSync automaticTimeSync = {};
+    automaticTimeSync.AutomaticTimeSync = 1;
+    
+    TDeviceConfig_HomeScreenOffDelay homeScreenOffDelay = {};
+    homeScreenOffDelay.HomeScreenOffDelayS = 10;
+    
+    TDeviceConfig_HomeScreenContent homeScreenContent = {};
+    homeScreenContent.ContentAvailable = SUPLA_DEVCFG_HOME_SCREEN_CONTENT_NONE | SUPLA_DEVCFG_HOME_SCREEN_CONTENT_TEMPERATURE | SUPLA_DEVCFG_HOME_SCREEN_CONTENT_TEMPERATURE_AND_HUMIDITY | SUPLA_DEVCFG_HOME_SCREEN_CONTENT_TIME | SUPLA_DEVCFG_HOME_SCREEN_CONTENT_TIME_DATE | SUPLA_DEVCFG_HOME_SCREEN_CONTENT_TEMPERATURE_TIME | SUPLA_DEVCFG_HOME_SCREEN_CONTENT_MAIN_AND_AUX_TEMPERATURE;
+    homeScreenContent.HomeScreenContent = SUPLA_DEVCFG_HOME_SCREEN_CONTENT_TEMPERATURE_AND_HUMIDITY;
+    
+    int size = 0;
+    memcpy(config.Config, &statusLed, sizeof(TDeviceConfig_StatusLed));
+    size += sizeof(TDeviceConfig_StatusLed);
+    
+    memcpy(config.Config + size, &screenBrightness, sizeof(TDeviceConfig_ScreenBrightness));
+    size += sizeof(TDeviceConfig_ScreenBrightness);
+    
+    memcpy(config.Config + size, &buttonVolume, sizeof(TDeviceConfig_ButtonVolume));
+    size += sizeof(TDeviceConfig_ButtonVolume);
+    
+    if (disableUserInterfaceField) {
+        memcpy(config.Config + size, &disableUserInterface, sizeof(TDeviceConfig_DisableUserInterface));
+        size += sizeof(TDeviceConfig_DisableUserInterface);
+    }
+    
+    memcpy(config.Config + size, &automaticTimeSync, sizeof(TDeviceConfig_AutomaticTimeSync));
+    size += sizeof(TDeviceConfig_AutomaticTimeSync);
+    
+    memcpy(config.Config + size, &homeScreenOffDelay, sizeof(TDeviceConfig_HomeScreenOffDelay));
+    size += sizeof(TDeviceConfig_HomeScreenOffDelay);
+    
+    memcpy(config.Config + size, &homeScreenContent, sizeof(TDeviceConfig_HomeScreenContent));
+    size += sizeof(TDeviceConfig_HomeScreenContent);
+    
+    config.ConfigSize = size;
     
     return config;
 }

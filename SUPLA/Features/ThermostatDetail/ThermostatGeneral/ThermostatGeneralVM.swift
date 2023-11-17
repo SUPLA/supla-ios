@@ -26,7 +26,7 @@ class ThermostatGeneralVM: BaseViewModel<ThermostatGeneralViewState, ThermostatG
     @Singleton<ReadChannelWithChildrenUseCase> private var readChannelWithChildrenUseCase
     @Singleton<CreateTemperaturesListUseCase> private var createTemperaturesListUseCase
     @Singleton<GetChannelConfigUseCase> private var getChannelConfigUseCase
-    @Singleton<ConfigEventsManager> private var configEventManager
+    @Singleton<ChannelConfigEventsManager> private var configEventManager
     @Singleton<DelayedThermostatActionSubject> private var delayedThermostatActionSubject
     @Singleton<DateProvider> private var dateProvider
     @Singleton<GetChannelBaseIconUseCase> private var getChannelBaseIconUseCase
@@ -64,9 +64,9 @@ class ThermostatGeneralVM: BaseViewModel<ThermostatGeneralViewState, ThermostatG
         Observable.combineLatest(
             channelRelay.asObservable()
                 .map { ($0, self.createTemperaturesListUseCase.invoke(channelWithChildren: $0))},
-            configEventManager.observeConfig(remoteId: remoteId)
+            configEventManager.observeConfig(id: remoteId)
                 .filter { $0.config is SuplaChannelHvacConfig && $0.result == .resultTrue },
-            configEventManager.observeConfig(remoteId: remoteId)
+            configEventManager.observeConfig(id: remoteId)
                 .filter { $0.config is SuplaChannelWeeklyScheduleConfig },
             resultSelector: { ($0, $1.config as? SuplaChannelHvacConfig, $2.config as? SuplaChannelWeeklyScheduleConfig) }
         ).asDriverWithoutError()

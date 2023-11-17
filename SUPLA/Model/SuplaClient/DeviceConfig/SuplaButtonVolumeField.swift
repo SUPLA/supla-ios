@@ -16,25 +16,15 @@
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 
-import RxSwift
-
-@testable import SUPLA
-
-final class ConfigEventsManagerMock: ChannelConfigEventsManager {
+struct SuplaButtonVolumeField: SuplaField {
+    let type: SuplaFieldType = .buttonVolume
+    let volume: Int
     
-    var observeConfigParameters: [Int32] = []
-    var observeConfigReturns: [Observable<ChannelConfigEvent>] = [Observable.empty()]
-    var observeConfigReturnsIdx = 0
-    func observeConfig(id: Int32) -> Observable<ChannelConfigEvent> {
-        observeConfigParameters.append(id)
-        
-        let toReturn = observeConfigReturns[observeConfigReturnsIdx]
-        observeConfigReturnsIdx += 1
-        return toReturn
+    init(config: TDeviceConfig_ButtonVolume) {
+        volume = Int(config.Volume)
     }
     
-    var emitConfigParameters: [(UInt8, TSCS_ChannelConfig)] = []
-    func emitConfig(result: UInt8, config: TSCS_ChannelConfig) {
-        emitConfigParameters.append((result, config))
+    init(volume: Int) {
+        self.volume = volume
     }
 }

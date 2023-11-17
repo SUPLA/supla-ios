@@ -16,25 +16,32 @@
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 
+import RxRelay
 import RxSwift
 
-@testable import SUPLA
-
-final class ConfigEventsManagerMock: ChannelConfigEventsManager {
+class BaseConfigEventsManager<T> {
     
-    var observeConfigParameters: [Int32] = []
-    var observeConfigReturns: [Observable<ChannelConfigEvent>] = [Observable.empty()]
-    var observeConfigReturnsIdx = 0
-    func observeConfig(id: Int32) -> Observable<ChannelConfigEvent> {
-        observeConfigParameters.append(id)
-        
-        let toReturn = observeConfigReturns[observeConfigReturnsIdx]
-        observeConfigReturnsIdx += 1
-        return toReturn
+    private var subjects: [Int32: PublishRelay<T>] = [:]
+    
+    private let syncedQueue: DispatchQueue
+    
+    init(queueLabel: String) {
+        self.syncedQueue = DispatchQueue(label: queueLabel, attributes: .concurrent)
     }
     
-    var emitConfigParameters: [(UInt8, TSCS_ChannelConfig)] = []
-    func emitConfig(result: UInt8, config: TSCS_ChannelConfig) {
-        emitConfigParameters.append((result, config))
+    func observeConfig(id: Int32) -> Observable<T> {
+        getSubject(id: id).asObservable()
+    }
+    
+    internal func getSubject(id: Int32) -> PublishRelay<T> {
+        return syncedQueue.sync(execute: {
+            if let subject = subjects[id] {
+                return subject
+            }
+            
+            let subject = PublishRelay<T>()
+            subjects[id] = subject
+            return subject
+        })
     }
 }

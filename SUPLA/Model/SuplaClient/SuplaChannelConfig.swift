@@ -16,8 +16,6 @@
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 
-import Foundation
-
 class SuplaChannelConfig {
     let remoteId: Int32
     let channelFunc: Int32?
@@ -37,13 +35,13 @@ class SuplaChannelConfig {
                 return SuplaChannelHvacConfig.from(
                     remoteId: suplaConfig.ChannelId,
                     channelFunc: suplaConfig.Func,
-                    suplaConfig: SuplaChannelConfigIntegrator.extractHvacConfig(from: suplaConfig)
+                    suplaConfig: SuplaConfigIntegrator.extractHvacConfig(from: suplaConfig)
                 )
             case UInt8(SUPLA_CONFIG_TYPE_WEEKLY_SCHEDULE):
                 return SuplaChannelWeeklyScheduleConfig.from(
                     remoteId: suplaConfig.ChannelId,
                     channelFunc: suplaConfig.Func,
-                    suplaConfig: SuplaChannelConfigIntegrator.extractWeeklyConfig(from: suplaConfig)
+                    suplaConfig: SuplaConfigIntegrator.extractWeeklyConfig(from: suplaConfig)
                 )
             default:
                 return SuplaChannelConfig(remoteId: suplaConfig.ChannelId, channelFunc: suplaConfig.Func)
@@ -51,26 +49,5 @@ class SuplaChannelConfig {
         default:
             return SuplaChannelConfig(remoteId: suplaConfig.ChannelId, channelFunc: suplaConfig.Func)
         }
-    }
-}
-
-enum ChannelConfigResult: UInt8, CaseIterable {
-    case resultFalse = 0
-    case resultTrue = 1
-    case dataError = 2
-    case typeNotSupported = 3
-    case functionNotSupported = 4
-    case localConfigDisabled = 5
-    case notAllowed = 6
-    
-    
-    static func from(value: UInt8) -> ChannelConfigResult {
-        for result in ChannelConfigResult.allCases {
-            if (result.rawValue == value) {
-                return result
-            }
-        }
-        
-        fatalError("Could not convert value `\(value)` to ChannelConfigResult")
     }
 }

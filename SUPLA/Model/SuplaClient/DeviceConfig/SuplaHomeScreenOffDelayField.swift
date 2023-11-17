@@ -16,25 +16,19 @@
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 
-import RxSwift
-
-@testable import SUPLA
-
-final class ConfigEventsManagerMock: ChannelConfigEventsManager {
+struct SuplaHomeScreenOffDelayField: SuplaField {
+    let type: SuplaFieldType = .homeScreenOffDelay
+    let enabled: Bool
+    let seconds: UInt16
     
-    var observeConfigParameters: [Int32] = []
-    var observeConfigReturns: [Observable<ChannelConfigEvent>] = [Observable.empty()]
-    var observeConfigReturnsIdx = 0
-    func observeConfig(id: Int32) -> Observable<ChannelConfigEvent> {
-        observeConfigParameters.append(id)
-        
-        let toReturn = observeConfigReturns[observeConfigReturnsIdx]
-        observeConfigReturnsIdx += 1
-        return toReturn
+    init(config: TDeviceConfig_HomeScreenOffDelay) {
+        enabled = config.HomeScreenOffDelayS > 0
+        seconds = config.HomeScreenOffDelayS
     }
     
-    var emitConfigParameters: [(UInt8, TSCS_ChannelConfig)] = []
-    func emitConfig(result: UInt8, config: TSCS_ChannelConfig) {
-        emitConfigParameters.append((result, config))
+    init(enabled: Bool, seconds: UInt16) {
+        self.enabled = enabled
+        self.seconds = seconds
     }
 }
+
