@@ -20,7 +20,7 @@ import RxSwift
 
 @testable import SUPLA
 
-final class ConfigEventsManagerMock: ChannelConfigEventsManager {
+final class ChannelConfigEventsManagerMock: ChannelConfigEventsManager {
     
     var observeConfigParameters: [Int32] = []
     var observeConfigReturns: [Observable<ChannelConfigEvent>] = [Observable.empty()]

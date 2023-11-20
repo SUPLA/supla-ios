@@ -242,10 +242,12 @@ class ChannelListVMTests: ViewModelTest<ChannelListViewState, ChannelListViewEve
     func test_shouldOpenSwitchDetail() {
         // given
         let remoteId: Int32 = 322
+        let deviceId: Int32 = 433
         let channel = SAChannel(testContext: nil)
         channel.value = SAChannelValue(testContext: nil)
         channel.value?.online = true
         channel.remote_id = remoteId
+        channel.device_id = deviceId
         
         provideDetailTypeUseCase.detailType = .switchDetail(pages: [.switchGeneral])
         
@@ -258,17 +260,19 @@ class ChannelListVMTests: ViewModelTest<ChannelListViewState, ChannelListViewEve
         XCTAssertEqual(eventObserver.events.count, 1)
         
         XCTAssertEqual(eventObserver.events, [
-            .next(0, .navigateToSwitchDetail(remoteId: remoteId, pages: [.switchGeneral]))
+            .next(0, .navigateToSwitchDetail(item: ItemBundle(remoteId: remoteId, deviceId: deviceId), pages: [.switchGeneral]))
         ])
     }
     
     func test_shouldOpenThermostatDetail() {
         // given
         let remoteId: Int32 = 322
+        let deviceId: Int32 = 433
         let channel = SAChannel(testContext: nil)
         channel.value = SAChannelValue(testContext: nil)
         channel.value?.online = true
         channel.remote_id = remoteId
+        channel.device_id = deviceId
         
         provideDetailTypeUseCase.detailType = .thermostatDetail(pages: [.thermostatGeneral])
         
@@ -281,17 +285,19 @@ class ChannelListVMTests: ViewModelTest<ChannelListViewState, ChannelListViewEve
         XCTAssertEqual(eventObserver.events.count, 1)
         
         XCTAssertEqual(eventObserver.events, [
-            .next(0, .navigateToThermostatDetail(remoteId: remoteId, pages: [.thermostatGeneral]))
+            .next(0, .navigateToThermostatDetail(item: ItemBundle(remoteId: remoteId, deviceId: deviceId), pages: [.thermostatGeneral]))
         ])
     }
     
     func test_shouldOpenThermometerDetail() {
         // given
         let remoteId: Int32 = 322
+        let deviceId: Int32 = 433
         let channel = SAChannel(testContext: nil)
         channel.value = SAChannelValue(testContext: nil)
         channel.value?.online = true
         channel.remote_id = remoteId
+        channel.device_id = deviceId
         
         provideDetailTypeUseCase.detailType = .thermometerDetail(pages: [.thermometerHistory])
         
@@ -304,7 +310,7 @@ class ChannelListVMTests: ViewModelTest<ChannelListViewState, ChannelListViewEve
         XCTAssertEqual(eventObserver.events.count, 1)
         
         XCTAssertEqual(eventObserver.events, [
-            .next(0, .navigateToThermometerDetail(remoteId: remoteId, pages: [.thermometerHistory]))
+            .next(0, .navigateToThermometerDetail(item: ItemBundle(remoteId: remoteId, deviceId: deviceId), pages: [.thermometerHistory]))
         ])
     }
     

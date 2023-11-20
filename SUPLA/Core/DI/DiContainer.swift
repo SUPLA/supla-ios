@@ -120,6 +120,7 @@ extension DiContainer {
         DiContainer.shared.register(type: StartTimerUseCase.self, component: StartTimerUseCaseImpl())
         DiContainer.shared.register(type: GetChannelConfigUseCase.self, component: GetChannelConfigUseCaseImpl())
         DiContainer.shared.register(type: SetChannelConfigUseCase.self, component: SetChannelConfigUseCaseImpl())
+        DiContainer.shared.register(type: GetDeviceConfigUseCase.self, component: GetDeviceConfigUseCaseImpl())
         DiContainer.shared.register(type: ExecuteThermostatActionUseCase.self, component: ExecuteThermostatActionUseCaseImpl())
         // Usecases - Detail
         DiContainer.shared.register(type: ProvideDetailTypeUseCase.self, component: ProvideDetailTypeUseCaseImpl())

@@ -680,6 +680,10 @@
 		A52BFECA2B07953600A2F64C /* SuplaAutomaticTimeSyncField.swift in Sources */ = {isa = PBXBuildFile; fileRef = A52BFEC92B07953600A2F64C /* SuplaAutomaticTimeSyncField.swift */; };
 		A52BFECC2B07962000A2F64C /* SuplaHomeScreenOffDelayField.swift in Sources */ = {isa = PBXBuildFile; fileRef = A52BFECB2B07962000A2F64C /* SuplaHomeScreenOffDelayField.swift */; };
 		A52BFECE2B0796BC00A2F64C /* SuplaHomeScreenContentField.swift in Sources */ = {isa = PBXBuildFile; fileRef = A52BFECD2B0796BC00A2F64C /* SuplaHomeScreenContentField.swift */; };
+		A52BFED02B07AF5500A2F64C /* GetDeviceConfigUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A52BFECF2B07AF5500A2F64C /* GetDeviceConfigUseCase.swift */; };
+		A52BFED22B07B8BC00A2F64C /* ItemBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = A52BFED12B07B8BC00A2F64C /* ItemBundle.swift */; };
+		A52BFED42B0B51C100A2F64C /* DeviceConfigEventsManagerMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = A52BFED32B0B51C100A2F64C /* DeviceConfigEventsManagerMock.swift */; };
+		A52BFED72B0B533E00A2F64C /* SuplaDeviceConfig+Mock.swift in Sources */ = {isa = PBXBuildFile; fileRef = A52BFED62B0B533E00A2F64C /* SuplaDeviceConfig+Mock.swift */; };
 		A530EDEB2A53F60400F8DAEE /* SwitchDetailVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = A530EDEA2A53F60400F8DAEE /* SwitchDetailVM.swift */; };
 		A530EDED2A53F6A800F8DAEE /* SwitchDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A530EDEC2A53F6A800F8DAEE /* SwitchDetailVC.swift */; };
 		A530EDF02A53F8E100F8DAEE /* SuplaTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A530EDEF2A53F8E100F8DAEE /* SuplaTabBarController.swift */; };
@@ -931,7 +935,7 @@
 		A5A72E432AC1787200405C41 /* ExecuteThermostatActionUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5A72E422AC1787200405C41 /* ExecuteThermostatActionUseCaseTests.swift */; };
 		A5A72E452AC18A6E00405C41 /* GetClientConfigUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5A72E442AC18A6E00405C41 /* GetClientConfigUseCaseTests.swift */; };
 		A5ABE5B52ABC271100FFA50B /* ScheduleDetailVMTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5ABE5B42ABC271100FFA50B /* ScheduleDetailVMTests.swift */; };
-		A5ABE5B72ABC278700FFA50B /* ConfigEventsManagerMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5ABE5B62ABC278700FFA50B /* ConfigEventsManagerMock.swift */; };
+		A5ABE5B72ABC278700FFA50B /* ChannelConfigEventsManagerMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5ABE5B62ABC278700FFA50B /* ChannelConfigEventsManagerMock.swift */; };
 		A5ABE5BB2ABC292400FFA50B /* DelayedWeeklyScheduleConfigSubjectMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5ABE5BA2ABC292400FFA50B /* DelayedWeeklyScheduleConfigSubjectMock.swift */; };
 		A5ABE5BD2ABC5EAB00FFA50B /* ValuesFormatterMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5ABE5BC2ABC5EAB00FFA50B /* ValuesFormatterMock.swift */; };
 		A5ABE5C02ABC774C00FFA50B /* EditProgramDialogVMTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5ABE5BF2ABC774C00FFA50B /* EditProgramDialogVMTests.swift */; };
@@ -2123,6 +2127,10 @@
 		A52BFEC92B07953600A2F64C /* SuplaAutomaticTimeSyncField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuplaAutomaticTimeSyncField.swift; sourceTree = "<group>"; };
 		A52BFECB2B07962000A2F64C /* SuplaHomeScreenOffDelayField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuplaHomeScreenOffDelayField.swift; sourceTree = "<group>"; };
 		A52BFECD2B0796BC00A2F64C /* SuplaHomeScreenContentField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuplaHomeScreenContentField.swift; sourceTree = "<group>"; };
+		A52BFECF2B07AF5500A2F64C /* GetDeviceConfigUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetDeviceConfigUseCase.swift; sourceTree = "<group>"; };
+		A52BFED12B07B8BC00A2F64C /* ItemBundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemBundle.swift; sourceTree = "<group>"; };
+		A52BFED32B0B51C100A2F64C /* DeviceConfigEventsManagerMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceConfigEventsManagerMock.swift; sourceTree = "<group>"; };
+		A52BFED62B0B533E00A2F64C /* SuplaDeviceConfig+Mock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SuplaDeviceConfig+Mock.swift"; sourceTree = "<group>"; };
 		A530EDEA2A53F60400F8DAEE /* SwitchDetailVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchDetailVM.swift; sourceTree = "<group>"; };
 		A530EDEC2A53F6A800F8DAEE /* SwitchDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchDetailVC.swift; sourceTree = "<group>"; };
 		A530EDEF2A53F8E100F8DAEE /* SuplaTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuplaTabBarController.swift; sourceTree = "<group>"; };
@@ -2378,7 +2386,7 @@
 		A5A72E422AC1787200405C41 /* ExecuteThermostatActionUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExecuteThermostatActionUseCaseTests.swift; sourceTree = "<group>"; };
 		A5A72E442AC18A6E00405C41 /* GetClientConfigUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetClientConfigUseCaseTests.swift; sourceTree = "<group>"; };
 		A5ABE5B42ABC271100FFA50B /* ScheduleDetailVMTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleDetailVMTests.swift; sourceTree = "<group>"; };
-		A5ABE5B62ABC278700FFA50B /* ConfigEventsManagerMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigEventsManagerMock.swift; sourceTree = "<group>"; };
+		A5ABE5B62ABC278700FFA50B /* ChannelConfigEventsManagerMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelConfigEventsManagerMock.swift; sourceTree = "<group>"; };
 		A5ABE5BA2ABC292400FFA50B /* DelayedWeeklyScheduleConfigSubjectMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DelayedWeeklyScheduleConfigSubjectMock.swift; sourceTree = "<group>"; };
 		A5ABE5BC2ABC5EAB00FFA50B /* ValuesFormatterMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValuesFormatterMock.swift; sourceTree = "<group>"; };
 		A5ABE5BF2ABC774C00FFA50B /* EditProgramDialogVMTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProgramDialogVMTests.swift; sourceTree = "<group>"; };
@@ -3629,6 +3637,7 @@
 			children = (
 				A51BE8E62AA705AD00718F2F /* StandardDetailVC.swift */,
 				A51BE8E52AA705AD00718F2F /* StandardDetailVM.swift */,
+				A52BFED12B07B8BC00A2F64C /* ItemBundle.swift */,
 			);
 			path = Details;
 			sourceTree = "<group>";
@@ -3760,6 +3769,14 @@
 			path = DeviceConfig;
 			sourceTree = "<group>";
 		};
+		A52BFED52B0B532900A2F64C /* SuplaClient */ = {
+			isa = PBXGroup;
+			children = (
+				A52BFED62B0B533E00A2F64C /* SuplaDeviceConfig+Mock.swift */,
+			);
+			path = SuplaClient;
+			sourceTree = "<group>";
+		};
 		A530EDE92A53F5CB00F8DAEE /* SwitchDetail */ = {
 			isa = PBXGroup;
 			children = (
@@ -3869,6 +3886,7 @@
 				A5FE67622A65D56300147D1F /* UpdateServerHostNameUseCase.swift */,
 				A51BE90E2AAAFB1400718F2F /* SetChannelConfigUseCase.swift */,
 				A56233F82AB85CA1001CB948 /* ExecuteThermostatActionUseCase.swift */,
+				A52BFECF2B07AF5500A2F64C /* GetDeviceConfigUseCase.swift */,
 			);
 			path = Client;
 			sourceTree = "<group>";
@@ -3982,7 +4000,9 @@
 		A54A066A2AF528F200C03DBC /* Events */ = {
 			isa = PBXGroup;
 			children = (
+				A5ABE5B62ABC278700FFA50B /* ChannelConfigEventsManagerMock.swift */,
 				A54A066B2AF5290900C03DBC /* DownloadEventsManagerMock.swift */,
+				A52BFED32B0B51C100A2F64C /* DeviceConfigEventsManagerMock.swift */,
 			);
 			path = Events;
 			sourceTree = "<group>";
@@ -4246,7 +4266,6 @@
 				A59AB8A32A3058A600D91F1F /* ListsEventsManagerMock.swift */,
 				A5E490542A3C7F2A006801FE /* UserNotificationCenterMock.swift */,
 				A50CD3D72A4D9A040012DD9B /* SingleCallMock.swift */,
-				A5ABE5B62ABC278700FFA50B /* ConfigEventsManagerMock.swift */,
 				A5ABE5BA2ABC292400FFA50B /* DelayedWeeklyScheduleConfigSubjectMock.swift */,
 				A5ABE5BC2ABC5EAB00FFA50B /* ValuesFormatterMock.swift */,
 				A5ABE5CA2ABCD80300FFA50B /* DelayedThermostatActionSubjectMock.swift */,
@@ -4302,6 +4321,7 @@
 		A57C88382ACB4BBE000B0F10 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				A52BFED52B0B532900A2F64C /* SuplaClient */,
 				A57C88392ACB4BDB000B0F10 /* SuplaChannelWeeklyScheduleConfig+Mock.swift */,
 			);
 			path = Model;
@@ -6021,6 +6041,7 @@
 				40C7BA7920C047CF00ACEE42 /* SAChannelGroup+CoreDataProperties.m in Sources */,
 				A57668C52AE79BA40025509D /* HorizontalyScrollableView.swift in Sources */,
 				A5F29B8D2A20AD8100ED700A /* Nibs.swift in Sources */,
+				A52BFED22B07B8BC00A2F64C /* ItemBundle.swift in Sources */,
 				A530EDED2A53F6A800F8DAEE /* SwitchDetailVC.swift in Sources */,
 				A50CD3D32A4D82ED0012DD9B /* DateProvider.swift in Sources */,
 				011021BA25CC38FA00621D41 /* SAEvent.m in Sources */,
@@ -6050,6 +6071,7 @@
 				A51BE8E72AA705AD00718F2F /* StandardDetailVM.swift in Sources */,
 				019D9E2C25F271CF00881C99 /* SACaptionEditor.m in Sources */,
 				A57668D72AE98FCA0025509D /* TemperatureAndHumidityMeasurement.swift in Sources */,
+				A52BFED02B07AF5500A2F64C /* GetDeviceConfigUseCase.swift in Sources */,
 				A5AE7A912A3B17AF0097FA8B /* PermissionCell.swift in Sources */,
 				A51BE9032AA746C100718F2F /* RoundedControlButtonView.swift in Sources */,
 				401CA1C21BA067DB00117AF4 /* AppDelegate.m in Sources */,
@@ -6384,11 +6406,12 @@
 				AEAAF2F82752937D0030CBA8 /* SUPLA.xcdatamodeld in Sources */,
 				A5F14B7D29DEE4D800682FA6 /* AccountRemovalVMTests.swift in Sources */,
 				A530EE392A57FCE200F8DAEE /* GetChannelBaseStateUseCaseTests.swift in Sources */,
-				A5ABE5B72ABC278700FFA50B /* ConfigEventsManagerMock.swift in Sources */,
+				A5ABE5B72ABC278700FFA50B /* ChannelConfigEventsManagerMock.swift in Sources */,
 				A59AB8D12A3091EE00D91F1F /* SceneRepositoryMock.swift in Sources */,
 				A59AB8B32A3078FB00D91F1F /* SceneListVMTests.swift in Sources */,
 				A54A06882AF9252C00C03DBC /* MultiAccountProfileManagerTests.swift in Sources */,
 				A59AB8D92A30930E00D91F1F /* ThermostatMeasurementItemRepositoryMock.swift in Sources */,
+				A52BFED42B0B51C100A2F64C /* DeviceConfigEventsManagerMock.swift in Sources */,
 				A59AB8C92A30906100D91F1F /* GroupRepositoryMock.swift in Sources */,
 				A573B0B32A603003001E19D0 /* VibrationServiceMock.swift in Sources */,
 				A54A06512AF3F05000C03DBC /* SessionResponseProviderMock.swift in Sources */,
@@ -6452,6 +6475,7 @@
 				A59AB8A42A3058A600D91F1F /* ListsEventsManagerMock.swift in Sources */,
 				A57C88322ACB4603000B0F10 /* SAChannelValue+Mock.swift in Sources */,
 				A573B0A82A60077B001E19D0 /* StartTimerUseCaseMock.swift in Sources */,
+				A52BFED72B0B533E00A2F64C /* SuplaDeviceConfig+Mock.swift in Sources */,
 				A59AB8BB2A30800F00D91F1F /* ProfileRepositoryMock.swift in Sources */,
 				A596838D2ABE26590005E73C /* DeleteRemovableChannelRelationUseCaseTests.swift in Sources */,
 				A54A06632AF50E8A00C03DBC /* RequestHelperMock.swift in Sources */,

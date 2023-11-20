@@ -23,7 +23,7 @@ class ThermostatGeneralVC: BaseViewControllerVM<ThermostatGeneralViewState, Ther
     
     @Singleton<ValuesFormatter> private var formatter
     
-    private let remoteId: Int32
+    private let item: ItemBundle
     
     private lazy var temperaturesView: ThermometerValues = {
         let view = ThermometerValues()
@@ -93,8 +93,8 @@ class ThermostatGeneralVC: BaseViewControllerVM<ThermostatGeneralViewState, Ther
         return view
     }()
     
-    init(remoteId: Int32) {
-        self.remoteId = remoteId
+    init(item: ItemBundle) {
+        self.item = item
         super.init(nibName: nil, bundle: nil)
         viewModel = ThermostatGeneralVM()
     }
@@ -108,7 +108,7 @@ class ThermostatGeneralVC: BaseViewControllerVM<ThermostatGeneralViewState, Ther
         statusBarBackgroundView.isHidden = true
         view.backgroundColor = .background
         
-        viewModel.observeData(remoteId: remoteId)
+        viewModel.observeData(remoteId: item.remoteId, deviceId: item.deviceId)
         
         setupView()
     }
@@ -116,7 +116,7 @@ class ThermostatGeneralVC: BaseViewControllerVM<ThermostatGeneralViewState, Ther
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        viewModel.triggerDataLoad(remoteId: remoteId)
+        viewModel.loadData(remoteId: item.remoteId, deviceId: item.deviceId)
         
         observeNotification(
             name: NSNotification.Name.saChannelValueChanged,
@@ -269,10 +269,10 @@ class ThermostatGeneralVC: BaseViewControllerVM<ThermostatGeneralViewState, Ther
             let isGroup = notification.userInfo?["isGroup"] as? NSNumber,
             let remoteId = notification.userInfo?["remoteId"] as? NSNumber,
             !isGroup.boolValue {
-            if (remoteId.int32Value == self.remoteId) {
-                viewModel.triggerDataLoad(remoteId: self.remoteId)
+            if (remoteId.int32Value == self.item.remoteId) {
+                viewModel.triggerDataLoad(remoteId: self.item.remoteId)
             } else {
-                viewModel.loadTemperatures(remoteId: self.remoteId, otherId: remoteId.int32Value)
+                viewModel.loadTemperatures(remoteId: self.item.remoteId, otherId: remoteId.int32Value)
             }
         }
     }

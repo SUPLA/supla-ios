@@ -54,14 +54,14 @@ final class ThermostatProgramInfoTests: XCTestCase {
     
     func test_shouldNotBuildWhenFlagsNotSet() {
         expectFatalError(expectedMessage: "Thermostat flags cannot be null") {
-            self.builder.config = SuplaChannelWeeklyScheduleConfig.mock()
+            self.builder.channelConfig = SuplaChannelWeeklyScheduleConfig.mock()
             _ = self.builder.build()
         }
     }
     
     func test_shouldNotBuildWhenCurrentModeNotSet() {
         expectFatalError(expectedMessage: "Current mode cannot be null") {
-            self.builder.config = SuplaChannelWeeklyScheduleConfig.mock()
+            self.builder.channelConfig = SuplaChannelWeeklyScheduleConfig.mock()
             self.builder.thermostatFlags = []
             _ = self.builder.build()
         }
@@ -69,7 +69,7 @@ final class ThermostatProgramInfoTests: XCTestCase {
     
     func test_shouldNotBuildWhenCurrentTemperatureNotSet() {
         expectFatalError(expectedMessage: "Current temperature cannot be null") {
-            self.builder.config = SuplaChannelWeeklyScheduleConfig.mock()
+            self.builder.channelConfig = SuplaChannelWeeklyScheduleConfig.mock()
             self.builder.thermostatFlags = []
             self.builder.currentMode = .heat
             _ = self.builder.build()
@@ -78,7 +78,7 @@ final class ThermostatProgramInfoTests: XCTestCase {
     
     func test_shouldNotBuildWhenChannelOnlineNotSet() {
         expectFatalError(expectedMessage: "Channel online cannot be null") {
-            self.builder.config = SuplaChannelWeeklyScheduleConfig.mock()
+            self.builder.channelConfig = SuplaChannelWeeklyScheduleConfig.mock()
             self.builder.thermostatFlags = []
             self.builder.currentMode = .heat
             self.builder.currentTemperature = 10
@@ -88,7 +88,7 @@ final class ThermostatProgramInfoTests: XCTestCase {
     
     func test_shouldBuildEmptyListWhenChannelOffline() {
         // when
-        self.builder.config = SuplaChannelWeeklyScheduleConfig.mock(withPrograms: true, withSchedule: true)
+        self.builder.channelConfig = SuplaChannelWeeklyScheduleConfig.mock(withPrograms: true, withSchedule: true)
         self.builder.thermostatFlags = []
         self.builder.currentMode = .heat
         self.builder.currentTemperature = 10
@@ -103,7 +103,7 @@ final class ThermostatProgramInfoTests: XCTestCase {
     
     func test_shouldBuildEmptyListWhenNoPrograms() {
         // when
-        self.builder.config = SuplaChannelWeeklyScheduleConfig.mock(withSchedule: true)
+        self.builder.channelConfig = SuplaChannelWeeklyScheduleConfig.mock(withSchedule: true)
         self.builder.thermostatFlags = []
         self.builder.currentMode = .heat
         self.builder.currentTemperature = 10
@@ -118,7 +118,7 @@ final class ThermostatProgramInfoTests: XCTestCase {
     
     func test_shouldBuildEmptyListWhenNoSchedule() {
         // when
-        self.builder.config = SuplaChannelWeeklyScheduleConfig.mock(withPrograms: true)
+        self.builder.channelConfig = SuplaChannelWeeklyScheduleConfig.mock(withPrograms: true)
         self.builder.thermostatFlags = []
         self.builder.currentMode = .heat
         self.builder.currentTemperature = 10
@@ -133,7 +133,7 @@ final class ThermostatProgramInfoTests: XCTestCase {
     
     func test_shouldBuildEmptyListWhenWeeklyScheduleNotSet() {
         // when
-        self.builder.config = SuplaChannelWeeklyScheduleConfig.mock(withPrograms: true, withSchedule: true)
+        self.builder.channelConfig = SuplaChannelWeeklyScheduleConfig.mock(withPrograms: true, withSchedule: true)
         self.builder.thermostatFlags = []
         self.builder.currentMode = .heat
         self.builder.currentTemperature = 10
@@ -148,7 +148,7 @@ final class ThermostatProgramInfoTests: XCTestCase {
     
     func test_shouldBuildErrorListWhenClockError() {
         // when
-        self.builder.config = SuplaChannelWeeklyScheduleConfig.mock(withPrograms: true, withSchedule: true)
+        self.builder.channelConfig = SuplaChannelWeeklyScheduleConfig.mock(withPrograms: true, withSchedule: true)
         self.builder.thermostatFlags = [.clockError, .weeklySchedule]
         self.builder.currentMode = .heat
         self.builder.currentTemperature = 10
@@ -172,7 +172,7 @@ final class ThermostatProgramInfoTests: XCTestCase {
     
     func test_shouldBuildEmptyListWhenCurrentProgramNotFound() {
         // when
-        self.builder.config = SuplaChannelWeeklyScheduleConfig.mock(withPrograms: true, withSchedule: true)
+        self.builder.channelConfig = SuplaChannelWeeklyScheduleConfig.mock(withPrograms: true, withSchedule: true)
         self.builder.thermostatFlags = [.weeklySchedule]
         self.builder.currentMode = .heat
         self.builder.currentTemperature = 10
@@ -187,7 +187,7 @@ final class ThermostatProgramInfoTests: XCTestCase {
     
     func test_shouldBuildEmptyListWhenOnlyOneProgram() {
         // when
-        self.builder.config = SuplaChannelWeeklyScheduleConfig.mock(
+        self.builder.channelConfig = SuplaChannelWeeklyScheduleConfig.mock(
             withPrograms: true,
             withSchedule: true,
             secondProgram: .program2
@@ -208,7 +208,7 @@ final class ThermostatProgramInfoTests: XCTestCase {
     
     func test_shouldBuildProperList() {
         // when
-        self.builder.config = SuplaChannelWeeklyScheduleConfig.mock(
+        self.builder.channelConfig = SuplaChannelWeeklyScheduleConfig.mock(
             withPrograms: true,
             withSchedule: true
         )
@@ -248,7 +248,7 @@ final class ThermostatProgramInfoTests: XCTestCase {
     
     func test_shouldBuildProperListWhenTemporarChangeActive() {
         // when
-        self.builder.config = SuplaChannelWeeklyScheduleConfig.mock(
+        self.builder.channelConfig = SuplaChannelWeeklyScheduleConfig.mock(
             withPrograms: true,
             withSchedule: true
         )
@@ -288,7 +288,7 @@ final class ThermostatProgramInfoTests: XCTestCase {
     
     func test_shouldBuildProperListWhenNextProgramIsOff() {
         // when
-        self.builder.config = SuplaChannelWeeklyScheduleConfig.mock(
+        self.builder.channelConfig = SuplaChannelWeeklyScheduleConfig.mock(
             withPrograms: true,
             withSchedule: true,
             secondProgram: .off

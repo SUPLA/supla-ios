@@ -36,7 +36,8 @@ struct ThermostatProgramInfo: Equatable {
     }
     
     class Builder {
-        var config: SuplaChannelWeeklyScheduleConfig? = nil
+        var channelConfig: SuplaChannelWeeklyScheduleConfig? = nil
+        var deviceConfig: SuplaDeviceConfig? = nil
         var thermostatFlags: [SuplaThermostatFlag]? = nil
         var currentMode: SuplaHvacMode? = nil
         var currentTemperature: Float? = nil
@@ -54,7 +55,7 @@ struct ThermostatProgramInfo: Equatable {
 
 extension ThermostatProgramInfo.Builder {
     func build() -> [ThermostatProgramInfo] {
-        guard let config = config else { fatalError("Config cannot be null") }
+        guard let config = channelConfig else { fatalError("Config cannot be null") }
         guard let flags = thermostatFlags else { fatalError("Thermostat flags cannot be null") }
         guard let _ = currentMode else { fatalError("Current mode cannot be null") }
         guard let _ = currentTemperature else { fatalError("Current temperature cannot be null") }
@@ -90,7 +91,7 @@ extension ThermostatProgramInfo.Builder {
         
         var idx = 0
         while (true) {
-            let entry = config!.schedule[idx % config!.schedule.count]
+            let entry = channelConfig!.schedule[idx % channelConfig!.schedule.count]
             if (foundCurrentProgram != nil) {
                 if (entry.program != foundCurrentProgram) {
                     foundNextProgram = entry.program
@@ -105,7 +106,7 @@ extension ThermostatProgramInfo.Builder {
             }
             
             idx += 1
-            if (idx > config!.schedule.count * 2) {
+            if (idx > channelConfig!.schedule.count * 2) {
                 break
             }
         }
@@ -133,6 +134,19 @@ extension ThermostatProgramInfo.Builder {
         let nextScheduleProgram = getProgram(program: foundNextProgram)
         let currentTemperatureString = valuesFormatter.temperatureToString(currentTemperature, withUnit: false)
         
+        if (deviceConfig?.isAutomaticTimeSyncDisabled() == true) {
+            return [
+                ThermostatProgramInfo(
+                    type: .current,
+                    time: nil,
+                    icon: currentMode!.icon,
+                    iconColor: currentMode!.iconColor,
+                    description: currentMode == .off ? nil : currentTemperatureString,
+                    manualActive: thermostatFlags!.contains(.weeklyScheduleTemporalOverride)
+                )
+            ]
+        }
+        
         return [
             ThermostatProgramInfo(
                 type: .current,
@@ -159,7 +173,7 @@ extension ThermostatProgramInfo.Builder {
         if (program == .off) {
             return SuplaWeeklyScheduleProgram.OFF
         } else {
-            return config!.programConfigurations.first { $0.program == program }
+            return channelConfig!.programConfigurations.first { $0.program == program }
         }
     }
 }

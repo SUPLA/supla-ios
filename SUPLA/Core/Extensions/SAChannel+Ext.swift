@@ -30,4 +30,8 @@ extension SAChannel {
             subfunction: subfunction
         )
     }
+    
+    func item() -> ItemBundle {
+        ItemBundle(remoteId: remote_id, deviceId: device_id)
+    }
 }

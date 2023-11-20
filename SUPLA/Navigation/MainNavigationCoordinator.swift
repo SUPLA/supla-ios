@@ -231,16 +231,16 @@ class MainNavigationCoordinator: BaseNavigationCoordinator {
         startFlow(coordinator: LegacyDetailNavigationCoordinator(detailType: legacyDetailType, channelBase: channelBase))
     }
     
-    func navigateToSwitchDetail(remoteId: Int32, pages: [DetailPage]) {
-        startFlow(coordinator: SwitchDetailNavigationCoordinator(remoteId: remoteId, pages: pages))
+    func navigateToSwitchDetail(item: ItemBundle, pages: [DetailPage]) {
+        startFlow(coordinator: SwitchDetailNavigationCoordinator(item: item, pages: pages))
     }
     
-    func navigateToThermostatDetail(remoteId: Int32, pages: [DetailPage]) {
-        startFlow(coordinator: ThermostatDetailNavigationCoordinator(remoteId: remoteId, pages: pages))
+    func navigateToThermostatDetail(item: ItemBundle, pages: [DetailPage]) {
+        startFlow(coordinator: ThermostatDetailNavigationCoordinator(item: item, pages: pages))
     }
     
-    func navigateToThermometerDetail(remoteId: Int32, pages: [DetailPage]) {
-        startFlow(coordinator: ThermometerDetailNavigatorCoordinator(remoteId: remoteId, pages: pages))
+    func navigateToThermometerDetail(item: ItemBundle, pages: [DetailPage]) {
+        startFlow(coordinator: ThermometerDetailNavigatorCoordinator(item: item, pages: pages))
     }
     
     // MARK: -

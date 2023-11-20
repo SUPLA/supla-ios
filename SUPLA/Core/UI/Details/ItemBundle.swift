@@ -16,23 +16,7 @@
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 
-class SwitchDetailNavigationCoordinator: BaseNavigationCoordinator {
-    
-    private let item: ItemBundle
-    private let pages: [DetailPage]
-    
-    override var viewController: UIViewController {
-        _viewController
-    }
-    
-    private lazy var _viewController: SwitchDetailVC = {
-        let controller = SwitchDetailVC(navigator: self, item: item, pages: pages)
-        controller.navigationCoordinator = self
-        return controller
-    }()
-    
-    init(item: ItemBundle, pages: [DetailPage]) {
-        self.item = item
-        self.pages = pages
-    }
+struct ItemBundle: Equatable {
+    let remoteId: Int32
+    let deviceId: Int32
 }

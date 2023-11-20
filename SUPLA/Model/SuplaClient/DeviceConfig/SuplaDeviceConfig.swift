@@ -31,6 +31,10 @@ enum SuplaFieldType: Int, CaseIterable {
         UInt64(1 << rawValue)
     }
     
+    static var allFields: UInt64 {
+        SuplaFieldType.allCases.reduce(UInt64(0)) { result, field in result | field.value }
+    }
+    
     static func from(bits: UInt64) -> [SuplaFieldType] {
         var fields: [SuplaFieldType] = []
         
@@ -57,6 +61,16 @@ struct SuplaDeviceConfig {
         deviceId = config.DeviceId
         availableFields = SuplaFieldType.from(bits: config.AvailableFields)
         fields = SuplaDeviceConfig.readFieldsFrom(config)
+    }
+    
+    init(deviceId: Int32, availableFields: [SuplaFieldType], fields: [any SuplaField]) {
+        self.deviceId = deviceId
+        self.availableFields = availableFields
+        self.fields = fields
+    }
+    
+    func isAutomaticTimeSyncDisabled() -> Bool {
+        (fields.first { $0 is SuplaAutomaticTimeSyncField } as? SuplaAutomaticTimeSyncField)?.enabled == false
     }
     
     private static func readFieldsFrom(_ config: TSCS_DeviceConfig) -> [any SuplaField] {

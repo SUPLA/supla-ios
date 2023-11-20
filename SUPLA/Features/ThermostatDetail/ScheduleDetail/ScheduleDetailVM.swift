@@ -23,8 +23,10 @@ private let REFRESH_DELAY_S: Double = 3
 
 class ScheduleDetailVM: BaseViewModel<ScheduleDetailViewState, ScheduleDetailViewEvent> {
     
-    @Singleton<ChannelConfigEventsManager> private var configEventsManager
+    @Singleton<ChannelConfigEventsManager> private var channelConfigEventsManager
+    @Singleton<DeviceConfigEventsManager> private var deviceConfigEventsManager
     @Singleton<GetChannelConfigUseCase> private var getChannelConfigUseCase
+    @Singleton<GetDeviceConfigUseCase> private var getDeviceConfigUseCase
     @Singleton<DelayedWeeklyScheduleConfigSubject> private var dealyedWeeklyScheduleConfigSubject
     @Singleton<ReadChannelByRemoteIdUseCase> private var readChannelByRemoteIdUseCase
     @Singleton<DateProvider> private var dateProvider
@@ -34,13 +36,14 @@ class ScheduleDetailVM: BaseViewModel<ScheduleDetailViewState, ScheduleDetailVie
     
     override func defaultViewState() -> ScheduleDetailViewState { ScheduleDetailViewState() }
     
-    func observeConfig(remoteId: Int32) {
+    func observeConfig(remoteId: Int32, deviceId: Int32) {
         Observable.combineLatest(
-            configEventsManager.observeConfig(id: remoteId)
+            channelConfigEventsManager.observeConfig(id: remoteId)
                 .filter { $0.config is SuplaChannelWeeklyScheduleConfig},
-            configEventsManager.observeConfig(id: remoteId)
+            channelConfigEventsManager.observeConfig(id: remoteId)
                 .filter { $0.config is SuplaChannelHvacConfig},
-            resultSelector: { ($0.config as! SuplaChannelWeeklyScheduleConfig, $0.result, $1.config as! SuplaChannelHvacConfig, $1.result)}
+            deviceConfigEventsManager.observeConfig(id: deviceId),
+            resultSelector: { ($0.config as! SuplaChannelWeeklyScheduleConfig, $0.result, $1.config as! SuplaChannelHvacConfig, $1.result, $2.config)}
         )
             .asDriverWithoutError()
             .debounce(.milliseconds(50))
@@ -55,6 +58,9 @@ class ScheduleDetailVM: BaseViewModel<ScheduleDetailViewState, ScheduleDetailVie
             .disposed(by: self)
         
         triggerConfigLoad(remoteId: remoteId)
+        getDeviceConfigUseCase.invoke(deviceId: deviceId)
+            .subscribe()
+            .disposed(by: self)
     }
     
     func loadConfig() {
@@ -149,7 +155,7 @@ class ScheduleDetailVM: BaseViewModel<ScheduleDetailViewState, ScheduleDetailVie
         getChannelConfigUseCase.invoke(remoteId: remoteId, type: .weeklyScheduleConfig).subscribe().disposed(by: self)
     }
     
-    private func onConfigLoaded(configs: (SuplaChannelWeeklyScheduleConfig, SuplaConfigResult, SuplaChannelHvacConfig, SuplaConfigResult)) {
+    private func onConfigLoaded(configs: (SuplaChannelWeeklyScheduleConfig, SuplaConfigResult, SuplaChannelHvacConfig, SuplaConfigResult, SuplaDeviceConfig)) {
         
         NSLog("Schedule detail got data: `\(configs)`")
         let weeklyScheduleConfig = configs.0
@@ -183,6 +189,7 @@ class ScheduleDetailVM: BaseViewModel<ScheduleDetailViewState, ScheduleDetailVie
                 .changing(path: \.configMin, to: configMin)
                 .changing(path: \.configMax, to: configMax)
                 .changing(path: \.schedule, to: weeklyScheduleConfig.viewScheduleBoxes())
+                .changing(path: \.showDayIndicator, to: !configs.4.isAutomaticTimeSyncDisabled())
         }
         
         if (hvacConfig.subfunction == .notSet) {
@@ -251,6 +258,8 @@ struct ScheduleDetailViewState: ViewState {
     
     var lastInteractionTime: TimeInterval? = nil
     var changing: Bool = false
+    
+    var showDayIndicator: Bool = true
 }
 
 struct ScheduleDetailProgram: Equatable, Changeable {
