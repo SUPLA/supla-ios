@@ -21,7 +21,10 @@ import Foundation
 protocol MoveableCell {
     func movementEnabled() -> Bool
     
+    func getRemoteId() -> Int32?
+    
     func getLocationCaption() -> String?
+    
     func dropAllowed(to destination: MoveableCell) -> Bool
 }
 
@@ -32,6 +35,10 @@ extension SAChannelCell: MoveableCell {
     
     func getLocationCaption() -> String? {
         channelBase.location?.caption
+    }
+    
+    func getRemoteId() -> Int32? {
+        channelBase.remote_id
     }
     
     func dropAllowed(to destination: MoveableCell) -> Bool {

@@ -186,11 +186,11 @@ class BaseCell<T>: MGSwipeTableCell {
     
     func getLocationCaption() -> String? { fatalError("getLocationCaption() has not been implemented") }
     
+    func getRemoteId() -> Int32? { fatalError("getRemoteId() has not been implemented") }
+    
     func leftButtonSettings() -> CellButtonSettings { CellButtonSettings(visible: false) }
     
     func rightButtonSettings() -> CellButtonSettings { CellButtonSettings(visible: false) }
-    
-    func remoteId() -> Int32? { fatalError("remoteId() has not been implemented") }
     
     func online() -> Bool { false }
     
@@ -358,7 +358,7 @@ class BaseCell<T>: MGSwipeTableCell {
         
         guard
             let delegate = delegate as? BaseCellDelegate,
-            let remoteId = remoteId()
+            let remoteId = getRemoteId()
         else {
             return
         }
@@ -389,7 +389,7 @@ class BaseCell<T>: MGSwipeTableCell {
         
         guard
             let delegate = delegate as? BaseCellDelegate,
-            let remoteId = remoteId()
+            let remoteId = getRemoteId()
         else { return }
         
         if (btn == leftButton) {

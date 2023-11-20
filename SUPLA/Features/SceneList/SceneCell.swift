@@ -67,7 +67,7 @@ final class SceneCell: BaseCell<SAScene> {
     
     override func getLocationCaption() -> String? { data?.location?.caption }
     
-    override func remoteId() -> Int32? { data?.sceneId }
+    override func getRemoteId() -> Int32? { data?.sceneId }
     
     override func derivedClassControls() -> [UIView] { return [sceneIconView] }
     
