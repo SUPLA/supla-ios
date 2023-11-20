@@ -68,32 +68,40 @@ class BaseHistoryDetailVM: BaseViewModel<BaseHistoryDetailViewState, BaseHistory
     }
     
     func changeRange(range: ChartRange) {
-        updateView { state in
-            guard let currentRange = state.range,
-                  let maxDate = state.maxDate
-            else { return state }
-            
-            let currentDate = dateProvider.currentDate()
-            
-            var rangeStart = getStartDateForRange(range, currentRange.end, currentDate)
-            var rangeEnd = getEndDateForRange(range, currentRange.end, currentDate)
-            if (rangeStart.timeIntervalSince1970 > maxDate.timeIntervalSince1970) {
-                rangeStart = getStartDateForRange(range, maxDate, currentDate)
-                rangeEnd = getEndDateForRange(range, maxDate, currentDate)
+        if (range == .custom) {
+            updateView {
+                // For custom range no reload is needed
+                $0.changing(path: \.ranges, to: $0.ranges?.changing(path: \.selected, to: range))
+            }
+        } else {
+            updateView { state in
+                guard let currentRange = state.range,
+                      let minDate = state.minDate,
+                      let maxDate = state.maxDate
+                else { return state }
+                
+                let currentDate = dateProvider.currentDate()
+                
+                var rangeStart = getStartDateForRange(range, currentRange.end, currentDate, currentRange.start, minDate)
+                var rangeEnd = getEndDateForRange(range, currentRange.end, currentDate, currentRange.end, maxDate)
+                if (rangeStart.timeIntervalSince1970 > maxDate.timeIntervalSince1970) {
+                    rangeStart = getStartDateForRange(range, maxDate, currentDate, maxDate.dayStart(), minDate)
+                    rangeEnd = getEndDateForRange(range, maxDate, currentDate, maxDate.dayEnd(), maxDate)
+                }
+                
+                let newRange = DaysRange(start: rangeStart, end: rangeEnd)
+                
+                return state
+                    .changing(path: \.ranges, to: state.ranges?.changing(path: \.selected, to: range))
+                    .changing(path: \.range, to: newRange)
+                    .changing(path: \.aggregations, to: aggregations(newRange, state.aggregations?.selected))
+                    .changing(path: \.sets, to: state.sets.map({ $0.changing(path: \.entries, to: []) }))
+                    .changing(path: \.chartParameters, to: HideableValue(ChartParameters(scaleX: 1, scaleY: 1, x: 0, y: 0)))
+                    .changing(path: \.loading, to: true)
             }
             
-            let newRange = DaysRange(start: rangeStart, end: rangeEnd)
-            
-            return state
-                .changing(path: \.ranges, to: state.ranges?.changing(path: \.selected, to: range))
-                .changing(path: \.range, to: newRange)
-                .changing(path: \.aggregations, to: aggregations(newRange, state.aggregations?.selected))
-                .changing(path: \.sets, to: state.sets.map({ $0.changing(path: \.entries, to: []) }))
-                .changing(path: \.chartParameters, to: HideableValue(ChartParameters(scaleX: 1, scaleY: 1, x: 0, y: 0)))
-                .changing(path: \.loading, to: true)
+            if let state = currentState() { triggerMeasurementsLoad(state: state) }
         }
-        
-        if let state = currentState() { triggerMeasurementsLoad(state: state) }
         updateUserState()
     }
     
@@ -127,7 +135,8 @@ class BaseHistoryDetailVM: BaseViewModel<BaseHistoryDetailViewState, BaseHistory
     
     func changeAggregation(aggregation: ChartDataAggregation) {
         updateView {
-            $0.changing(path: \.aggregations, to: $0.aggregations?.changing(path: \.selected, to: aggregation))
+            let aggregations = $0.aggregations?.changing(path: \.selected, to: aggregation)
+            return $0.changing(path: \.aggregations, to: aggregations)
                 .changing(path: \.loading, to: true)
         }
         
@@ -140,17 +149,6 @@ class BaseHistoryDetailVM: BaseViewModel<BaseHistoryDetailViewState, BaseHistory
             return $0.changing(path: \.chartParameters, to: HideableValue(parameters, hide: true))
         }
         updateUserState()
-    }
-    
-    func aggregations(_ currentRange: DaysRange, _ selectedAggregation: ChartDataAggregation? = .minutes) -> SelectableList<ChartDataAggregation> {
-        let minAggregation = currentRange.minAggregation
-        let maxAggregation = currentRange.maxAggregation
-        let aggregation = selectedAggregation?.between(min: minAggregation, max: maxAggregation) == true ? selectedAggregation! : minAggregation
-        
-        return SelectableList(
-            selected: aggregation,
-            items: ChartDataAggregation.allCases.filter { $0.between(min: minAggregation, max: maxAggregation) }
-        )
     }
     
     func triggerMeasurementsLoad(state: BaseHistoryDetailViewState) {
@@ -212,6 +210,55 @@ class BaseHistoryDetailVM: BaseViewModel<BaseHistoryDetailViewState, BaseHistory
         }
     }
     
+    func customRangeEditDate(_ type: RangeValueType) {
+        updateView {
+            $0.changing(path: \.editDate, to: type)
+        }
+    }
+    
+    func customRangeEditCancel() {
+        updateView {
+            $0.changing(path: \.editDate, to: nil)
+        }
+    }
+    
+    func customRangeEditSave(_ date: Date?) {
+        updateView { state in
+            guard 
+                let editValueType = state.editDate,
+                let range = state.range,
+                let date = date
+            else { return state }
+            
+            let newRange = switch (editValueType) {
+            case .start: DaysRange(start: date, end: range.end)
+            case .end: DaysRange(start: range.start, end: date)
+            }
+            
+            return state
+                .changing(path: \.range, to: newRange)
+                .changing(path: \.aggregations, to: aggregations(newRange, state.aggregations?.selected))
+                .changing(path: \.sets, to: state.sets.map({ $0.changing(path: \.entries, to: []) }))
+                .changing(path: \.chartParameters, to: HideableValue(ChartParameters(scaleX: 1, scaleY: 1, x: 0, y: 0)))
+                .changing(path: \.loading, to: true)
+                .changing(path: \.editDate, to: nil)
+        }
+        
+        if let state = currentState() { triggerMeasurementsLoad(state: state) }
+        updateUserState()
+    }
+    
+    private func aggregations(_ currentRange: DaysRange, _ selectedAggregation: ChartDataAggregation? = .minutes) -> SelectableList<ChartDataAggregation> {
+        let minAggregation = currentRange.minAggregation
+        let maxAggregation = currentRange.maxAggregation
+        let aggregation = selectedAggregation?.between(min: minAggregation, max: maxAggregation) == true ? selectedAggregation! : minAggregation
+        
+        return SelectableList(
+            selected: aggregation,
+            items: ChartDataAggregation.allCases.filter { $0.between(min: minAggregation, max: maxAggregation) }
+        )
+    }
+    
     private func getDateRangeForChartRange(_ chartRange: ChartRange, _ dateRange: DaysRange?) -> DaysRange {
         let date = dateProvider.currentDate()
         return switch (chartRange) {
@@ -222,7 +269,7 @@ class BaseHistoryDetailVM: BaseViewModel<BaseHistoryDetailViewState, BaseHistory
         }
     }
     
-    private func getStartDateForRange(_ range: ChartRange, _ date: Date, _ currentDate: Date) -> Date {
+    private func getStartDateForRange(_ range: ChartRange, _ date: Date, _ currentDate: Date, _ dateForCustom: Date, _ minDate: Date) -> Date {
         switch (range) {
         case .day: date.dayStart()
         case .lastDay, .lastWeek, .lastMonth, .lastQuarter: currentDate.shift(days: -range.roundedDaysCount)
@@ -231,10 +278,12 @@ class BaseHistoryDetailVM: BaseViewModel<BaseHistoryDetailViewState, BaseHistory
         case .month: date.monthStart()
         case .quarter: date.quarterStart()
         case .year: date.yearStart()
+        case .custom: dateForCustom
+        case .allHistory: minDate
         }
     }
     
-    private func getEndDateForRange(_ range: ChartRange, _ date: Date, _ currentDate: Date) -> Date {
+    private func getEndDateForRange(_ range: ChartRange, _ date: Date, _ currentDate: Date, _ dateForCustom: Date, _ maxDate: Date) -> Date {
         switch (range) {
         case .day: date.dayEnd()
         case .lastDay, .lastWeek, .lastMonth, .lastQuarter: currentDate
@@ -243,6 +292,8 @@ class BaseHistoryDetailVM: BaseViewModel<BaseHistoryDetailViewState, BaseHistory
         case .month: date.monthEnd()
         case .quarter: date.quarterEnd()
         case .year: date.yearEnd()
+        case .custom: dateForCustom
+        case .allHistory: maxDate
         }
     }
     
@@ -353,6 +404,8 @@ struct BaseHistoryDetailViewState: ViewState {
     var minTemperature: Double? = nil
     var chartParameters: HideableValue<ChartParameters>? = nil
     
+    var editDate: RangeValueType? = nil
+    
     var combinedData: CombinedChartData? {
         get {
             var lineDataSets: [LineChartDataSet] = []
@@ -425,8 +478,19 @@ struct BaseHistoryDetailViewState: ViewState {
             guard let range = ranges?.selected else { return true }
             
             return switch (range) {
-            case .day, .week, .month, .quarter, .year: false
+            case .day, .week, .month, .quarter, .year, .allHistory: false
             default: true
+            }
+        }
+    }
+    
+    var paginationAllowed: Bool {
+        get {
+            guard let range = ranges?.selected else { return false }
+            
+            return switch (range) {
+            case .day, .week, .month, .quarter, .year: true
+            default: false
             }
         }
     }
@@ -437,7 +501,7 @@ struct BaseHistoryDetailViewState: ViewState {
                 return range?.start.timeIntervalSince1970
             }
             guard let daysCount = range?.daysCount else { return range?.start.timeIntervalSince1970 }
-            return range?.start.timeIntervalSince1970.minus(chartRnageMargin(daysCount))
+            return range?.start.timeIntervalSince1970.minus(chartRangeMargin(daysCount))
         }
     }
     
@@ -447,7 +511,15 @@ struct BaseHistoryDetailViewState: ViewState {
                 return range?.end.timeIntervalSince1970
             }
             guard let daysCount = range?.daysCount else { return range?.end.timeIntervalSince1970 }
-            return range?.end.timeIntervalSince1970.plus(chartRnageMargin(daysCount))
+            return range?.end.timeIntervalSince1970.plus(chartRangeMargin(daysCount))
+        }
+    }
+    
+    var dateForEdit: Date? {
+        switch(editDate) {
+        case .start: range?.start
+        case .end: range?.end
+        default: nil
         }
     }
     
@@ -472,20 +544,25 @@ struct BaseHistoryDetailViewState: ViewState {
         case .week, .month, .lastQuarter, .quarter: dateString(formatter, dateRange)
             
         case .year: formatter.getYearString(date: dateRange.start)
+        case .custom, .allHistory: longDateString(formatter, dateRange)
         }
     }
     
-    private func chartRnageMargin(_ daysCount: Int) -> Double {
-        return if (daysCount <= 1) {
-            60 * 60 // 1 hour in seconds
-        } else {
-            24 * 60 * 60 // 1 day in seconds
+    private func chartRangeMargin(_ daysCount: Int) -> Double {
+        guard let aggregation = aggregations?.selected else {
+            return if (daysCount <= 1) {
+                60 * 60 // 1 hour in seconds
+            } else {
+                24 * 60 * 60 // 1 day in seconds
+            }
         }
+        
+        return aggregation.timeInSec * 0.6
     }
     
     private func chartMarginNotNeeded() -> Bool {
         switch (ranges?.selected) {
-        case .lastDay, .lastWeek, .lastMonth, .lastQuarter: false
+        case .lastDay, .lastWeek, .lastMonth, .lastQuarter, .custom, .allHistory: false
         default: true
         }
     }
@@ -505,6 +582,12 @@ struct BaseHistoryDetailViewState: ViewState {
     private func dateString(_ formatter: ValuesFormatter, _ range: DaysRange) -> String {
         let rangeStart = formatter.getDateShortString(date: range.start) ?? ""
         let rangeEnd = formatter.getDateShortString(date: range.end) ?? ""
+        return "\(rangeStart) - \(rangeEnd)"
+    }
+    
+    private func longDateString(_ formatter: ValuesFormatter, _ range: DaysRange) -> String {
+        let rangeStart = formatter.getFullDateString(date: range.start) ?? ""
+        let rangeEnd = formatter.getFullDateString(date: range.end) ?? ""
         return "\(rangeStart) - \(rangeEnd)"
     }
 }

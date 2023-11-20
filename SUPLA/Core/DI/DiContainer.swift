@@ -64,7 +64,8 @@ extension DiContainer {
         DiContainer.shared.register(type: SuplaAppWrapper.self, component: SuplaAppWrapperImpl())
         DiContainer.shared.register(type: VibrationService.self, component: VibrationServiceImpl())
         DiContainer.shared.register(type: UpdateEventsManager.self, component: UpdateEventsManagerImpl())
-        DiContainer.shared.register(type: ConfigEventsManager.self, component: ConfigEventsManagerImpl())
+        DiContainer.shared.register(type: ChannelConfigEventsManager.self, component: ChannelConfigEventsManagerImpl())
+        DiContainer.shared.register(type: DeviceConfigEventsManager.self, component: DeviceConfigEventsManagerImpl())
         DiContainer.shared.register(type: DownloadEventsManager.self, component: DownloadEventsManagerImpl())
         DiContainer.shared.register(type: SingleCall.self, component: SingleCallImpl())
         DiContainer.shared.register(type: DateProvider.self, component: DateProviderImpl())
@@ -119,6 +120,7 @@ extension DiContainer {
         DiContainer.shared.register(type: StartTimerUseCase.self, component: StartTimerUseCaseImpl())
         DiContainer.shared.register(type: GetChannelConfigUseCase.self, component: GetChannelConfigUseCaseImpl())
         DiContainer.shared.register(type: SetChannelConfigUseCase.self, component: SetChannelConfigUseCaseImpl())
+        DiContainer.shared.register(type: GetDeviceConfigUseCase.self, component: GetDeviceConfigUseCaseImpl())
         DiContainer.shared.register(type: ExecuteThermostatActionUseCase.self, component: ExecuteThermostatActionUseCaseImpl())
         // Usecases - Detail
         DiContainer.shared.register(type: ProvideDetailTypeUseCase.self, component: ProvideDetailTypeUseCaseImpl())
@@ -143,8 +145,11 @@ extension DiContainer {
     @objc static func updateEventsManager() -> UpdateEventsManagerEmitter? {
         return DiContainer.shared.resolve(type: UpdateEventsManager.self)
     }
-    @objc static func configEventsManager() -> ConfigEventsManagerEmitter? {
-        return DiContainer.shared.resolve(type: ConfigEventsManager.self)
+    @objc static func channelConfigEventsManager() -> ChannelConfigEventsManagerEmitter? {
+        return DiContainer.shared.resolve(type: ChannelConfigEventsManager.self)
+    }
+    @objc static func deviceConfigEventsManager() -> DeviceConfigEventsManagerEmitter? {
+        return DiContainer.shared.resolve(type: DeviceConfigEventsManager.self)
     }
     @objc static func setPushToken(token: Data?) {
         var settings = DiContainer.shared.resolve(type: GlobalSettings.self)

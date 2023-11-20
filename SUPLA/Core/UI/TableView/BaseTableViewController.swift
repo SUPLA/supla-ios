@@ -232,24 +232,13 @@ class BaseTableViewController<S : ViewState, E : ViewEvent, VM : BaseTableViewMo
     
     func handleItemMovedEvent(event: ItemMovedEvent) {
         if
-            let sourceCell = tableView.cellForRow(at: event.sourceIndex) as? SAChannelCell,
-            let destinationCell = tableView.cellForRow(at: event.destinationIndex) as? SAChannelCell {
+            let sourceCell = tableView.cellForRow(at: event.sourceIndex) as? MoveableCell,
+            let destinationCell = tableView.cellForRow(at: event.destinationIndex) as? MoveableCell {
             
             viewModel.swapItems(
-                firstItem: sourceCell.channelBase.remote_id,
-                secondItem: destinationCell.channelBase.remote_id,
-                locationCaption: sourceCell.channelBase.location!.caption!
-            )
-        }
-        
-        if
-            let sourceCell = tableView.cellForRow(at: event.sourceIndex) as? SceneCell,
-            let destinationCell = tableView.cellForRow(at: event.destinationIndex) as? SceneCell {
-            
-            viewModel.swapItems(
-                firstItem: sourceCell.data!.sceneId,
-                secondItem: destinationCell.data!.sceneId,
-                locationCaption: sourceCell.data!.location!.caption!
+                firstItem: sourceCell.getRemoteId()!,
+                secondItem: destinationCell.getRemoteId()!,
+                locationCaption: sourceCell.getLocationCaption()!
             )
         }
     }

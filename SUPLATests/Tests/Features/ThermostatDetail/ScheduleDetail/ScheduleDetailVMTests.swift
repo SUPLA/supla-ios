@@ -26,8 +26,11 @@ final class ScheduleDetailVMTests: ViewModelTest<ScheduleDetailViewState, Schedu
     
     private lazy var viewModel: ScheduleDetailVM! = { ScheduleDetailVM() }()
     
-    private lazy var configEventsManager: ConfigEventsManagerMock! = {
-        ConfigEventsManagerMock()
+    private lazy var channelConfigEventsManager: ChannelConfigEventsManagerMock! = {
+        ChannelConfigEventsManagerMock()
+    }()
+    private lazy var deviceConfigEventsManager: DeviceConfigEventsManagerMock! = {
+        DeviceConfigEventsManagerMock()
     }()
     private lazy var getChannelConfigUseCase: GetChannelConfigUseCaseMock! = {
         GetChannelConfigUseCaseMock()
@@ -43,7 +46,8 @@ final class ScheduleDetailVMTests: ViewModelTest<ScheduleDetailViewState, Schedu
     }()
     
     override func setUp() {
-        DiContainer.shared.register(type: ConfigEventsManager.self, component: configEventsManager!)
+        DiContainer.shared.register(type: ChannelConfigEventsManager.self, component: channelConfigEventsManager!)
+        DiContainer.shared.register(type: DeviceConfigEventsManager.self, component: deviceConfigEventsManager!)
         DiContainer.shared.register(type: GetChannelConfigUseCase.self, component: getChannelConfigUseCase!)
         DiContainer.shared.register(type: DelayedWeeklyScheduleConfigSubject.self, component: dealyedWeeklyScheduleConfigSubject!)
         DiContainer.shared.register(type: DateProvider.self, component: dateProvider!)
@@ -54,7 +58,8 @@ final class ScheduleDetailVMTests: ViewModelTest<ScheduleDetailViewState, Schedu
     override func tearDown() {
         viewModel = nil
         
-        configEventsManager = nil
+        channelConfigEventsManager = nil
+        deviceConfigEventsManager = nil
         getChannelConfigUseCase = nil
         dealyedWeeklyScheduleConfigSubject = nil
         dateProvider = nil
@@ -348,14 +353,22 @@ final class ScheduleDetailVMTests: ViewModelTest<ScheduleDetailViewState, Schedu
             configMax: 4000
         )
         
-        configEventsManager.observeConfigReturns = [
-            Observable.just(ConfigEvent(result: .resultTrue, config: weeklyConfig)),
-            Observable.just(ConfigEvent(result: .resultTrue, config: hvacConfig))
+        channelConfigEventsManager.observeConfigReturns = [
+            Observable.just(ChannelConfigEvent(result: .resultTrue, config: weeklyConfig)),
+            Observable.just(ChannelConfigEvent(result: .resultTrue, config: hvacConfig))
         ]
+        
+        deviceConfigEventsManager.observeConfigReturns = .just(DeviceConfigEvent(
+            result: .resultTrue,
+            config: SuplaDeviceConfig.mock(
+                availableFields: [.automaticTimeSync],
+                fields: [SuplaAutomaticTimeSyncField(enabled: false)]
+            )
+        ))
         
         // when
         observe(viewModel)
-        viewModel.observeConfig(remoteId: remoteId)
+        viewModel.observeConfig(remoteId: remoteId, deviceId: 321)
         
         // then
         assertObserverItems(statesCount: 2, eventsCount: 0)
@@ -373,6 +386,7 @@ final class ScheduleDetailVMTests: ViewModelTest<ScheduleDetailViewState, Schedu
                 ])
                 .changing(path: \.configMin, to: 10)
                 .changing(path: \.configMax, to: 40)
+                .changing(path: \.showDayIndicator, to: false)
         ])
     }
     
@@ -392,14 +406,14 @@ final class ScheduleDetailVMTests: ViewModelTest<ScheduleDetailViewState, Schedu
             configMax: 4000
         )
         
-        configEventsManager.observeConfigReturns = [
-            Observable.just(ConfigEvent(result: .resultFalse, config: weeklyConfig)),
-            Observable.just(ConfigEvent(result: .dataError, config: hvacConfig))
+        channelConfigEventsManager.observeConfigReturns = [
+            Observable.just(ChannelConfigEvent(result: .resultFalse, config: weeklyConfig)),
+            Observable.just(ChannelConfigEvent(result: .dataError, config: hvacConfig))
         ]
         
         // when
         observe(viewModel)
-        viewModel.observeConfig(remoteId: remoteId)
+        viewModel.observeConfig(remoteId: remoteId, deviceId: 321)
         
         // then
         assertObserverItems(statesCount: 1, eventsCount: 0)
@@ -425,14 +439,14 @@ final class ScheduleDetailVMTests: ViewModelTest<ScheduleDetailViewState, Schedu
             configMax: nil
         )
         
-        configEventsManager.observeConfigReturns = [
-            Observable.just(ConfigEvent(result: .resultTrue, config: weeklyConfig)),
-            Observable.just(ConfigEvent(result: .resultTrue, config: hvacConfig))
+        channelConfigEventsManager.observeConfigReturns = [
+            Observable.just(ChannelConfigEvent(result: .resultTrue, config: weeklyConfig)),
+            Observable.just(ChannelConfigEvent(result: .resultTrue, config: hvacConfig))
         ]
         
         // when
         observe(viewModel)
-        viewModel.observeConfig(remoteId: remoteId)
+        viewModel.observeConfig(remoteId: remoteId, deviceId: 321)
         
         // then
         assertObserverItems(statesCount: 1, eventsCount: 0)
@@ -458,17 +472,22 @@ final class ScheduleDetailVMTests: ViewModelTest<ScheduleDetailViewState, Schedu
             configMax: 4000
         )
         
-        configEventsManager.observeConfigReturns = [
-            Observable.just(ConfigEvent(result: .resultTrue, config: weeklyConfig)),
-            Observable.just(ConfigEvent(result: .resultTrue, config: hvacConfig))
+        channelConfigEventsManager.observeConfigReturns = [
+            Observable.just(ChannelConfigEvent(result: .resultTrue, config: weeklyConfig)),
+            Observable.just(ChannelConfigEvent(result: .resultTrue, config: hvacConfig))
         ]
+        
+        deviceConfigEventsManager.observeConfigReturns = .just(DeviceConfigEvent(
+            result: .resultTrue,
+            config: SuplaDeviceConfig.mock()
+        ))
         
         let initialState = ScheduleDetailViewState(changing: true)
         viewModel.updateView { _ in initialState }
         
         // when
         observe(viewModel)
-        viewModel.observeConfig(remoteId: remoteId)
+        viewModel.observeConfig(remoteId: remoteId, deviceId: 321)
         
         // then
         assertObserverItems(statesCount: 2, eventsCount: 0)
@@ -494,10 +513,15 @@ final class ScheduleDetailVMTests: ViewModelTest<ScheduleDetailViewState, Schedu
             configMax: 4000
         )
         
-        configEventsManager.observeConfigReturns = [
-            Observable.just(ConfigEvent(result: .resultTrue, config: weeklyConfig)),
-            Observable.just(ConfigEvent(result: .resultTrue, config: hvacConfig))
+        channelConfigEventsManager.observeConfigReturns = [
+            Observable.just(ChannelConfigEvent(result: .resultTrue, config: weeklyConfig)),
+            Observable.just(ChannelConfigEvent(result: .resultTrue, config: hvacConfig))
         ]
+        
+        deviceConfigEventsManager.observeConfigReturns = .just(DeviceConfigEvent(
+            result: .resultTrue,
+            config: SuplaDeviceConfig.mock()
+        ))
         
         dateProvider.currentTimestampReturns = 1003
         let initialState = ScheduleDetailViewState(lastInteractionTime: 1000)
@@ -505,7 +529,7 @@ final class ScheduleDetailVMTests: ViewModelTest<ScheduleDetailViewState, Schedu
         
         // when
         observe(viewModel)
-        viewModel.observeConfig(remoteId: remoteId)
+        viewModel.observeConfig(remoteId: remoteId, deviceId: 321)
         
         // then
         assertObserverItems(statesCount: 2, eventsCount: 0)
@@ -535,10 +559,15 @@ final class ScheduleDetailVMTests: ViewModelTest<ScheduleDetailViewState, Schedu
             configMax: 4000
         )
         
-        configEventsManager.observeConfigReturns = [
-            Observable.just(ConfigEvent(result: .resultTrue, config: weeklyConfig)),
-            Observable.just(ConfigEvent(result: .resultTrue, config: hvacConfig))
+        channelConfigEventsManager.observeConfigReturns = [
+            Observable.just(ChannelConfigEvent(result: .resultTrue, config: weeklyConfig)),
+            Observable.just(ChannelConfigEvent(result: .resultTrue, config: hvacConfig))
         ]
+        
+        deviceConfigEventsManager.observeConfigReturns = .just(DeviceConfigEvent(
+            result: .resultTrue,
+            config: SuplaDeviceConfig.mock()
+        ))
         
         let channel = SAChannel(testContext: nil)
         channel.remote_id = remoteId
@@ -548,7 +577,7 @@ final class ScheduleDetailVMTests: ViewModelTest<ScheduleDetailViewState, Schedu
         
         // when
         observe(viewModel)
-        viewModel.observeConfig(remoteId: remoteId)
+        viewModel.observeConfig(remoteId: remoteId, deviceId: 321)
         
         // then
         assertObserverItems(statesCount: 3, eventsCount: 0)

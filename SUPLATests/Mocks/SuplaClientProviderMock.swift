@@ -87,4 +87,15 @@ class SuplaClientProtocolMock: NSObject, SuplaClientProtocol {
     func oAuthTokenRequest() -> Bool {
         oAuthTokenRequestReturns
     }
+    
+    var getDeficeConfigParameters: [UnsafeMutablePointer<TCS_GetDeviceConfigRequest>] = []
+    var getDeviceConfigReturns = false
+    func getDeviceConfig(_ configRequest: UnsafeMutablePointer<TCS_GetDeviceConfigRequest>!) -> Bool {
+        
+        let configRequestCopy = UnsafeMutablePointer<TCS_GetDeviceConfigRequest>.allocate(capacity: 1)
+        configRequestCopy.update(from: configRequest, count: 1)
+        getDeficeConfigParameters.append(configRequestCopy)
+        
+        return getDeviceConfigReturns
+    }
 }

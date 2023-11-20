@@ -22,7 +22,7 @@ import RxRelay
 
 class ScheduleDetailVC: BaseViewControllerVM<ScheduleDetailViewState, ScheduleDetailViewEvent, ScheduleDetailVM> {
     
-    private let remoteId: Int32
+    private let item: ItemBundle
     
     private lazy var buttonsRowView: ButtonsRowView = {
         let view = ButtonsRowView()
@@ -40,8 +40,8 @@ class ScheduleDetailVC: BaseViewControllerVM<ScheduleDetailViewState, ScheduleDe
         get { navigationCoordinator as? ThermostatDetailNavigationCoordinator }
     }
     
-    init(remoteId: Int32) {
-        self.remoteId = remoteId
+    init(item: ItemBundle) {
+        self.item = item
         super.init(nibName: nil, bundle: nil)
         viewModel = ScheduleDetailVM()
     }
@@ -55,7 +55,7 @@ class ScheduleDetailVC: BaseViewControllerVM<ScheduleDetailViewState, ScheduleDe
         statusBarBackgroundView.isHidden = true
         view.backgroundColor = .background
         
-        viewModel.observeConfig(remoteId: remoteId)
+        viewModel.observeConfig(remoteId: item.remoteId, deviceId: item.deviceId)
         
         setupView()
     }
@@ -84,6 +84,7 @@ class ScheduleDetailVC: BaseViewControllerVM<ScheduleDetailViewState, ScheduleDe
     override func handle(state: ScheduleDetailViewState) {
         buttonsRowView.activeProgram = state.activeProgram
         buttonsRowView.programs = state.programs
+        scheduleDetailTableView.showDayIndicator = state.showDayIndicator
         scheduleDetailTableView.updateBoxes(schedule: state.schedule)
     }
     
@@ -200,6 +201,19 @@ fileprivate class ScheduleDetailTableView: UIView {
     var panningEvents: Observable<PanningEvent> {
         get { tapRelay.asObservable().distinctUntilChanged() }
     }
+    var showDayIndicator: Bool = true {
+        didSet {
+            if (!showDayIndicator) {
+                currentDayIndicatorLayer.frame = .zero
+                currentHourIndicatorLayer.frame = .zero
+                currentItemIndicatorLayer.path = UIBezierPath().cgPath
+            }
+            if (showDayIndicator != oldValue) {
+                setNeedsLayout()
+                layoutIfNeeded()
+            }
+        }
+    }
     
     private let itemPadding: CGFloat = 2
     
@@ -221,8 +235,8 @@ fileprivate class ScheduleDetailTableView: UIView {
         layer.fillColor = UIColor.black.cgColor
         return layer
     }()
-    let longPressRelay: PublishRelay<ScheduleDetailBoxKey> = PublishRelay()
-    let tapRelay: PublishRelay<PanningEvent> = PublishRelay()
+    private let longPressRelay: PublishRelay<ScheduleDetailBoxKey> = PublishRelay()
+    private let tapRelay: PublishRelay<PanningEvent> = PublishRelay()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -256,23 +270,14 @@ fileprivate class ScheduleDetailTableView: UIView {
         let currentDay = calendar.component(.weekday, from: date) - 1
         let currentHour = calendar.component(.hour, from: date)
         for day in DayOfWeek.allCases {
-            if (day.rawValue == currentDay) {
-                dayLabels.append(createBoldLabel(text: day.shortText()))
-            } else {
-                dayLabels.append(createRegularLabel(text: day.shortText()))
-            }
-            
+            dayLabels.append(createRegularLabel(text: day.shortText()))
             for _ in HoursRange {
                 boxes.append(BoxShapeLayerWrapper())
             }
         }
         
         for hour in HoursRange {
-            if (hour == currentHour) {
-                hourLabels.append(createBoldLabel(text: hour.toHour()))
-            } else {
-                hourLabels.append(createRegularLabel(text: hour.toHour()))
-            }
+            hourLabels.append(createRegularLabel(text: hour.toHour()))
         }
         
         boxes.forEach { layer.addSublayer($0) }
@@ -305,19 +310,12 @@ fileprivate class ScheduleDetailTableView: UIView {
         currentItemIndicatorLayer.frame = bounds
     }
     
-    private func createRegularLabel(text: String) -> CATextLayer {
-        return createLabel(text: text, fontName: "OpenSans-Regular")
-    }
-    
-    private func createBoldLabel(text: String) -> CATextLayer {
-        return createLabel(text: text, fontName: "OpenSans-Bold")
-    }
-    
     private func setupTable(_ itemWidth: CGFloat, _ itemHeight: CGFloat, _ gridWidth: CGFloat, _ gridHeight: CGFloat, _ currentDay: Int, _ currentHour: Int, _ firstColumnWidth: CGFloat) {
         var idx = 0
         var x = Dimens.distanceDefault + firstColumnWidth
         for day in DayOfWeek.allCases {
-            if (day.rawValue == currentDay) {
+            let isCurrentDay = day.rawValue == currentDay && showDayIndicator
+            if (isCurrentDay) {
                 currentDayIndicatorLayer.frame = CGRect(
                     x: x + itemPadding,
                     y: itemPadding,
@@ -328,6 +326,7 @@ fileprivate class ScheduleDetailTableView: UIView {
             }
             
             let dayLabel = dayLabels[idx / 24]
+            dayLabel.font = isCurrentDay ? createFont("OpenSans-Bold") : createFont("OpenSans-Regular")
             let labelSize = dayLabel.preferredFrameSize()
             let top = (gridHeight - labelSize.height) / 2
             if (top < 0) {
@@ -349,7 +348,7 @@ fileprivate class ScheduleDetailTableView: UIView {
                 let box = boxes[idx]
                 box.frame = rect
                 
-                if (day.rawValue == currentDay && hour == currentHour) {
+                if (day.rawValue == currentDay && hour == currentHour && showDayIndicator) {
                     currentItemIndicatorLayer.path = setupCurrentBoxIndicatorPath(x, y, itemHeight)
                 }
                 
@@ -364,7 +363,8 @@ fileprivate class ScheduleDetailTableView: UIView {
         var y = gridHeight
         var hour = 0
         hourLabels.forEach {
-            if (hour == currentHour) {
+            let isCurrentHour = hour == currentHour && showDayIndicator
+            if (isCurrentHour) {
                 currentHourIndicatorLayer.frame = CGRect(
                     x: Dimens.distanceDefault + itemPadding,
                     y: y + itemPadding,
@@ -373,6 +373,7 @@ fileprivate class ScheduleDetailTableView: UIView {
                 )
                 currentHourIndicatorLayer.cornerRadius = itemHeight / 2
             }
+            $0.font = isCurrentHour ? createFont("OpenSans-Bold") : createFont("OpenSans-Regular")
             let labelSize = $0.preferredFrameSize()
             let x = Dimens.distanceDefault
             let top = (gridHeight - labelSize.height) / 2
@@ -386,6 +387,10 @@ fileprivate class ScheduleDetailTableView: UIView {
             y += gridHeight
             hour += 1
         }
+    }
+    
+    private func createRegularLabel(text: String) -> CATextLayer {
+        return createLabel(text: text, fontName: "OpenSans-Regular")
     }
     
     private func setupCurrentBoxIndicatorPath(_ x: CGFloat, _ y: CGFloat, _ itemHeight: CGFloat) -> CGPath {
@@ -402,7 +407,7 @@ fileprivate class ScheduleDetailTableView: UIView {
     
     private func createLabel(text: String, fontName: String) -> CATextLayer {
         let label = CATextLayer()
-        label.font = CTFontCreateWithName(fontName as CFString, 12, nil)
+        label.font = createFont(fontName)
         label.fontSize = 12
         label.string = text
         label.alignmentMode = .center
@@ -410,6 +415,10 @@ fileprivate class ScheduleDetailTableView: UIView {
         label.contentsScale = UIScreen.main.scale
         
         return label
+    }
+    
+    private func createFont(_ name: String) -> CFTypeRef {
+        CTFontCreateWithName(name as CFString, 12, nil)
     }
     
     @objc private func onTap(_ recognizer: UITapGestureRecognizer) {

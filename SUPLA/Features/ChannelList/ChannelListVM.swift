@@ -68,11 +68,11 @@ class ChannelListViewModel: BaseTableViewModel<ChannelListViewState, ChannelList
         case let .legacy(type: legacyDetailType):
             send(event: .navigateToDetail(legacy: legacyDetailType, channelBase: item))
         case .switchDetail(let pages):
-            send(event: .navigateToSwitchDetail(remoteId: item.remote_id, pages: pages))
+            send(event: .navigateToSwitchDetail(item: item.item(), pages: pages))
         case let .thermostatDetail(pages):
-            send(event: .navigateToThermostatDetail(remoteId: item.remote_id, pages: pages))
+            send(event: .navigateToThermostatDetail(item: item.item(), pages: pages))
         case let .thermometerDetail(pages):
-            send(event: .navigateToThermometerDetail(remoteId: item.remote_id, pages: pages))
+            send(event: .navigateToThermometerDetail(item: item.item(), pages: pages))
         }
     }
     
@@ -124,9 +124,9 @@ class ChannelListViewModel: BaseTableViewModel<ChannelListViewState, ChannelList
 
 enum ChannelListViewEvent: ViewEvent {
     case navigateToDetail(legacy: LegacyDetailType, channelBase: SAChannelBase)
-    case navigateToSwitchDetail(remoteId: Int32, pages: [DetailPage])
-    case navigateToThermostatDetail(remoteId: Int32, pages: [DetailPage])
-    case navigateToThermometerDetail(remoteId: Int32, pages: [DetailPage])
+    case navigateToSwitchDetail(item: ItemBundle, pages: [DetailPage])
+    case navigateToThermostatDetail(item: ItemBundle, pages: [DetailPage])
+    case navigateToThermometerDetail(item: ItemBundle, pages: [DetailPage])
 }
 
 struct ChannelListViewState: ViewState {}

@@ -26,10 +26,16 @@ final class SeparatorView: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+        
         backgroundColor = .separatorLight
+        translatesAutoresizingMaskIntoConstraints = false
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    override class var requiresConstraintBasedLayout: Bool {
+        return true
     }
 }

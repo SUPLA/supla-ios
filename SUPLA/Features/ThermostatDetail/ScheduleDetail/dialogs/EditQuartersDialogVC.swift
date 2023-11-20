@@ -68,11 +68,7 @@ final class EditQuartersDialogVC: SuplaCustomDialogVC<EditQuartersDialogViewStat
         return row
     }()
     
-    private lazy var bottonSeparatorView = {
-        let view = SeparatorView()
-        view.translatesAutoresizingMaskIntoConstraints = false
-        return view
-    }()
+    private lazy var bottonSeparatorView = { SeparatorView() }()
     
     private lazy var cancelButton = {
         let button = UIBorderedButton()
@@ -83,7 +79,6 @@ final class EditQuartersDialogVC: SuplaCustomDialogVC<EditQuartersDialogViewStat
     
     private lazy var saveButton = {
         let button = UIFilledButton()
-        button.translatesAutoresizingMaskIntoConstraints = false
         button.setTitle(Strings.General.save, for: .normal)
         return button
     }()

@@ -81,6 +81,7 @@
 - (void) onZwaveWakeupSettingsReport:(SAZWaveWakeupSettingsReport*)report;
 - (void) onZWaveSetWakeUpTimeResult:(NSNumber *)result;
 - (void) onChannelConfigUpdateOrResult: (TSC_ChannelConfigUpdateOrResult*) config;
+- (void) onDeviceConfigUpdateOrResult: (TSC_DeviceConfigUpdateOrResult*) config;
 @end
 
 void sasuplaclient_on_versionerror(void *_suplaclient, void *user_data, int version, int remote_version_min, int remote_version) {
@@ -395,6 +396,15 @@ void sasuplaclient_channel_config_update_or_result(void *_suplaclient,
     }
 }
 
+void sasuplaclient_device_config_update_or_result(void *_suplaclient,
+                                                  void *user_data,
+                                                  TSC_DeviceConfigUpdateOrResult *config) {
+    SASuplaClient *sc = (__bridge SASuplaClient*) user_data;
+    if ( sc != nil ) {
+        [sc onDeviceConfigUpdateOrResult: config];
+    }
+}
+
 // ------------------------------------------------------------------------------------------------------
 
 @implementation SASuplaClient {
@@ -564,6 +574,7 @@ void sasuplaclient_channel_config_update_or_result(void *_suplaclient,
     scc.cb_scene_update = sasuplaclient_scene_update;
     scc.cb_scene_state_update = sasuplaclient_scene_state_update;
     scc.cb_on_channel_config_update_or_result = sasuplaclient_channel_config_update_or_result;
+    scc.cb_on_device_config_update_or_result = sasuplaclient_device_config_update_or_result;
     
     return supla_client_init(&scc);
     
@@ -971,7 +982,11 @@ void sasuplaclient_channel_config_update_or_result(void *_suplaclient,
 }
 
 - (void) onChannelConfigUpdateOrResult: (TSC_ChannelConfigUpdateOrResult*) config {
-    [[DiContainer configEventsManager] emitConfigWithResult: config->Result config: config->Config];
+    [[DiContainer channelConfigEventsManager] emitConfigWithResult: config->Result config: config->Config];
+}
+
+- (void) onDeviceConfigUpdateOrResult: (TSC_DeviceConfigUpdateOrResult*) config {
+    [[DiContainer deviceConfigEventsManager] emitConfigWithResult: config->Result config: config->Config];
 }
 
 - (void) _onEvent:(SAEvent *)event {
@@ -1384,6 +1399,16 @@ void sasuplaclient_channel_config_update_or_result(void *_suplaclient,
     @synchronized (self) {
         if ( _sclient ) {
             return supla_client_set_channel_config(_sclient, config) > 0;
+        }
+    }
+    
+    return false;
+}
+
+- (BOOL) getDeviceConfig: (TCS_GetDeviceConfigRequest*) configRequest {
+    @synchronized (self) {
+        if ( _sclient ) {
+            return supla_client_get_device_config(_sclient, configRequest);
         }
     }
     

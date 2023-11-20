@@ -18,6 +18,18 @@
 
 class UIPlainButton: UIButton {
     
+    override open var isHighlighted: Bool {
+        didSet {
+            setTitleColor(getTextColor(), for: .normal)
+        }
+    }
+    
+    override open var isEnabled: Bool {
+        didSet {
+            setTitleColor(getTextColor(), for: .normal)
+        }
+    }
+    
     var icon: UIImage? {
         get { nil }
         set {
@@ -43,7 +55,23 @@ class UIPlainButton: UIButton {
     }
     
     private func setupView() {
+        translatesAutoresizingMaskIntoConstraints = false
         contentEdgeInsets = UIEdgeInsets(top: 8, left: 24, bottom: 8, right: 24)
+        setTitleColor(getTextColor(), for: .normal)
         titleLabel?.font = .button
+    }
+    
+    private func getTextColor() -> UIColor {
+        if (!isEnabled) {
+            return .disabled
+        } else if (isHighlighted) {
+            return .primaryVariant
+        } else {
+            return .primary
+        }
+    }
+    
+    override class var requiresConstraintBasedLayout: Bool {
+        return true
     }
 }

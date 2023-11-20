@@ -148,7 +148,6 @@ final class TimerConfigurationView: UIView {
     
     private lazy var startButton: UIFilledButton = {
         let button = UIFilledButton()
-        button.translatesAutoresizingMaskIntoConstraints = false
         button.setAttributedTitle(Strings.TimerDetail.start)
         return button
     }()

@@ -20,11 +20,11 @@ class StandardDetailVC<S : ViewState, E : ViewEvent, VM : StandardDetailVM<S, E>
     
     @Singleton<RuntimeConfig> private var runtimeConfig
     
-    private let remoteId: Int32
+    private let item: ItemBundle
     private let pages: [DetailPage]
     
-    init(navigator: NavigationCoordinator, viewModel: VM, remoteId: Int32, pages: [DetailPage]) {
-        self.remoteId = remoteId
+    init(navigator: NavigationCoordinator, viewModel: VM, item: ItemBundle, pages: [DetailPage]) {
+        self.item = item
         self.pages = pages
         super.init(navigationCoordinator: navigator, viewModel: viewModel)
     }
@@ -38,7 +38,7 @@ class StandardDetailVC<S : ViewState, E : ViewEvent, VM : StandardDetailVM<S, E>
         edgesForExtendedLayout = []
         view.backgroundColor = .background
         
-        viewModel.loadChannel(remoteId: remoteId)
+        viewModel.loadChannel(remoteId: item.remoteId)
         
         setupViewController()
     }
@@ -55,7 +55,7 @@ class StandardDetailVC<S : ViewState, E : ViewEvent, VM : StandardDetailVM<S, E>
             
         }
         
-        runtimeConfig.setDetailOpenedPage(remoteId: remoteId, openedPage: openedPage)
+        runtimeConfig.setDetailOpenedPage(remoteId: self.item.remoteId, openedPage: openedPage)
     }
     
     private func setupViewController() {
@@ -83,7 +83,7 @@ class StandardDetailVC<S : ViewState, E : ViewEvent, VM : StandardDetailVM<S, E>
         
         self.viewControllers = viewControllers
         
-        let pageToOpen = runtimeConfig.getDetailOpenedPage(remoteId: remoteId)
+        let pageToOpen = runtimeConfig.getDetailOpenedPage(remoteId: item.remoteId)
         if (pageToOpen < 0 || pageToOpen >= viewControllers.count) {
             self.selectedViewController = viewControllers[0]
         } else {
@@ -94,7 +94,7 @@ class StandardDetailVC<S : ViewState, E : ViewEvent, VM : StandardDetailVM<S, E>
     }
     
     private func switchGeneral() -> SwitchGeneralVC {
-        let vc = SwitchGeneralVC(remoteId: remoteId)
+        let vc = SwitchGeneralVC(remoteId: item.remoteId)
         vc.navigationCoordinator = navigationCoordinator
         vc.tabBarItem = UITabBarItem(
             title: Strings.StandardDetail.tabGeneral,
@@ -105,7 +105,7 @@ class StandardDetailVC<S : ViewState, E : ViewEvent, VM : StandardDetailVM<S, E>
     }
     
     private func timerDetail() -> TimerDetailVC {
-        let vc = TimerDetailVC(remoteId: remoteId)
+        let vc = TimerDetailVC(remoteId: item.remoteId)
         vc.navigationCoordinator = navigationCoordinator
         vc.tabBarItem = UITabBarItem(
             title: Strings.StandardDetail.tabTimer,
@@ -116,7 +116,7 @@ class StandardDetailVC<S : ViewState, E : ViewEvent, VM : StandardDetailVM<S, E>
     }
     
     private func legacyDetail(type: LegacyDetailType) -> DetailViewController {
-        let vc = DetailViewController(detailViewType: type, remoteId: remoteId)
+        let vc = DetailViewController(detailViewType: type, remoteId: item.remoteId)
         vc.navigationCoordinator = navigationCoordinator
         vc.tabBarItem = UITabBarItem(
             title: Strings.StandardDetail.tabMetrics,
@@ -127,7 +127,7 @@ class StandardDetailVC<S : ViewState, E : ViewEvent, VM : StandardDetailVM<S, E>
     }
     
     private func thermostatGeneral() -> ThermostatGeneralVC {
-        let vc = ThermostatGeneralVC(remoteId: remoteId)
+        let vc = ThermostatGeneralVC(item: item)
         vc.navigationCoordinator = navigationCoordinator
         vc.tabBarItem = UITabBarItem(
             title: Strings.StandardDetail.tabGeneral,
@@ -138,7 +138,7 @@ class StandardDetailVC<S : ViewState, E : ViewEvent, VM : StandardDetailVM<S, E>
     }
     
     private func scheduleDetail() -> ScheduleDetailVC {
-        let vc = ScheduleDetailVC(remoteId: remoteId)
+        let vc = ScheduleDetailVC(item: item)
         vc.navigationCoordinator = navigationCoordinator
         vc.tabBarItem = UITabBarItem(
             title: Strings.StandardDetail.tabSchedule,
@@ -149,7 +149,7 @@ class StandardDetailVC<S : ViewState, E : ViewEvent, VM : StandardDetailVM<S, E>
     }
     
     private func thermostatHistoryDetail() -> ThermostatHistoryDetailVC {
-        let vc = ThermostatHistoryDetailVC(remoteId: remoteId)
+        let vc = ThermostatHistoryDetailVC(remoteId: item.remoteId)
         vc.navigationCoordinator = navigationCoordinator
         vc.tabBarItem = UITabBarItem(
             title: Strings.StandardDetail.tabHistory,
@@ -160,7 +160,7 @@ class StandardDetailVC<S : ViewState, E : ViewEvent, VM : StandardDetailVM<S, E>
     }
     
     private func thermometerHistoryDetail() -> ThermometerHistoryDetailVC {
-        let vc = ThermometerHistoryDetailVC(remoteId: remoteId)
+        let vc = ThermometerHistoryDetailVC(remoteId: item.remoteId)
         vc.navigationCoordinator = navigationCoordinator
         vc.tabBarItem = UITabBarItem(
             title: Strings.StandardDetail.tabHistory,

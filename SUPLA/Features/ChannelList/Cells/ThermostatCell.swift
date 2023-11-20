@@ -73,7 +73,7 @@ final class ThermostatCell: BaseCell<ChannelWithChildren> {
     
     override func getLocationCaption() -> String? { data?.channel.location?.caption }
     
-    override func remoteId() -> Int32? { data?.channel.remote_id }
+    override func getRemoteId() -> Int32? { data?.channel.remote_id ?? 0 }
     
     override func online() -> Bool { data?.channel.isOnline() ?? false }
     

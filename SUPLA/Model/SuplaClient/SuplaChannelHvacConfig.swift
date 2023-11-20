@@ -176,7 +176,7 @@ struct SuplaHvacTemperatures {
             
             for a in 0..<size {
                 if ((1 << a) == index) {
-                    return SuplaChannelConfigIntegrator.extractTemperature(from: temperatures, for: Int32(a))
+                    return SuplaConfigIntegrator.extractTemperature(from: temperatures, for: Int32(a))
                 }
             }
         }

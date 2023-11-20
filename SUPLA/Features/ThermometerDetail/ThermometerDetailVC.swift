@@ -24,8 +24,8 @@ class ThermometerDetailVC: StandardDetailVC<ThermometerDetailVewState, Thermomet
         get { navigationCoordinator as? ThermometerDetailNavigatorCoordinator }
     }
     
-    init(navigator: ThermometerDetailNavigatorCoordinator, remoteId: Int32, pages: [DetailPage]) {
-        super.init(navigator: navigator, viewModel: ThermometerDetailVM(), remoteId: remoteId, pages: pages)
+    init(navigator: ThermometerDetailNavigatorCoordinator, item: ItemBundle, pages: [DetailPage]) {
+        super.init(navigator: navigator, viewModel: ThermometerDetailVM(), item: item, pages: pages)
     }
     
     required init?(coder: NSCoder) {

@@ -34,7 +34,7 @@ final class SuplaChannelWeeklyScheduleConfig: SuplaChannelConfig {
         var programConfigurations: [SuplaWeeklyScheduleProgram] = []
         let size = SUPLA_WEEKLY_SCHEDULE_PROGRAMS_MAX_SIZE
         for programId in 0..<size {
-            let program = SuplaChannelConfigIntegrator.getProgramWith(programId, fromConfig: suplaConfig)
+            let program = SuplaConfigIntegrator.getProgramWith(programId, fromConfig: suplaConfig)
             programConfigurations.append(
                 SuplaWeeklyScheduleProgram(
                     program: SuplaScheduleProgram.from(value: UInt8(programId + 1)),
@@ -46,11 +46,11 @@ final class SuplaChannelWeeklyScheduleConfig: SuplaChannelConfig {
         }
         
         var schedule: [SuplaWeeklyScheduleEntry] = []
-        for index in 0..<SuplaChannelConfigIntegrator.suplaWeeklyScheduleValuesSize(suplaConfig) {
+        for index in 0..<SuplaConfigIntegrator.suplaWeeklyScheduleValuesSize(suplaConfig) {
             let dayOfWeek = (index / 2 / 24) % 7
             let hour = (index / 2) % 24
             let quarterOfHour = (index % 2) * 2
-            let program = SuplaChannelConfigIntegrator.getQuarterProgram(for: index, inConfig: suplaConfig)
+            let program = SuplaConfigIntegrator.getQuarterProgram(for: index, inConfig: suplaConfig)
             
             schedule.append(
                 SuplaWeeklyScheduleEntry(

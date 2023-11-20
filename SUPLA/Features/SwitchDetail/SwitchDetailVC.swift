@@ -24,8 +24,8 @@ class SwitchDetailVC : StandardDetailVC<SwitchDetailViewState, SwitchDetailViewE
         }
     }
     
-    init(navigator: SwitchDetailNavigationCoordinator, remoteId: Int32, pages: [DetailPage]) {
-        super.init(navigator: navigator, viewModel: SwitchDetailVM(), remoteId: remoteId, pages: pages)
+    init(navigator: SwitchDetailNavigationCoordinator, item: ItemBundle, pages: [DetailPage]) {
+        super.init(navigator: navigator, viewModel: SwitchDetailVM(), item: item, pages: pages)
     }
     
     required init?(coder: NSCoder) {

@@ -32,8 +32,11 @@ final class ThermostatGeneralVMTests: ViewModelTest<ThermostatGeneralViewState, 
     private lazy var createTemperaturesListUseCase: CreateTemperaturesListUseCaseMock! = {
         CreateTemperaturesListUseCaseMock()
     }()
-    private lazy var configEventsManager: ConfigEventsManagerMock! = {
-        ConfigEventsManagerMock()
+    private lazy var channelConfigEventsManager: ChannelConfigEventsManagerMock! = {
+        ChannelConfigEventsManagerMock()
+    }()
+    private lazy var deviceConfigEventsManager: DeviceConfigEventsManagerMock! = {
+        DeviceConfigEventsManagerMock()
     }()
     private lazy var getChannelConfigUseCase: GetChannelConfigUseCaseMock! = {
         GetChannelConfigUseCaseMock()
@@ -52,7 +55,8 @@ final class ThermostatGeneralVMTests: ViewModelTest<ThermostatGeneralViewState, 
     override func setUp() {
         DiContainer.shared.register(type: ReadChannelWithChildrenUseCase.self, component: readChannelWithChildrenUseCase!)
         DiContainer.shared.register(type: CreateTemperaturesListUseCase.self, component: createTemperaturesListUseCase!)
-        DiContainer.shared.register(type: ConfigEventsManager.self, component: configEventsManager!)
+        DiContainer.shared.register(type: ChannelConfigEventsManager.self, component: channelConfigEventsManager!)
+        DiContainer.shared.register(type: DeviceConfigEventsManager.self, component: deviceConfigEventsManager!)
         DiContainer.shared.register(type: GetChannelConfigUseCase.self, component: getChannelConfigUseCase!)
         DiContainer.shared.register(type: DelayedThermostatActionSubject.self, component: delayedThermostatActionSubject!)
         DiContainer.shared.register(type: DateProvider.self, component: dateProvider!)
@@ -66,7 +70,8 @@ final class ThermostatGeneralVMTests: ViewModelTest<ThermostatGeneralViewState, 
         
         readChannelWithChildrenUseCase = nil
         createTemperaturesListUseCase = nil
-        configEventsManager = nil
+        channelConfigEventsManager = nil
+        deviceConfigEventsManager = nil
         getChannelConfigUseCase = nil
         delayedThermostatActionSubject = nil
         dateProvider = nil
@@ -97,10 +102,14 @@ final class ThermostatGeneralVMTests: ViewModelTest<ThermostatGeneralViewState, 
         
         readChannelWithChildrenUseCase.returns = Observable.just(ChannelWithChildren(channel: channel, children: [mockMainTemperatureChild(), mockSensorChild()]))
         createTemperaturesListUseCase.returns = measurements
-        configEventsManager.observeConfigReturns = [
+        channelConfigEventsManager.observeConfigReturns = [
             Observable.just(mockHvacConfigEvent(remoteId)),
             Observable.just(mockWeeklyConfigEvent(remoteId))
         ]
+        deviceConfigEventsManager.observeConfigReturns = .just(DeviceConfigEvent(
+            result: .resultTrue,
+            config: SuplaDeviceConfig.mock())
+        )
         let expectation = expectation(description: "States loaded")
         
         // when
@@ -113,7 +122,7 @@ final class ThermostatGeneralVMTests: ViewModelTest<ThermostatGeneralViewState, 
                 expectation.fulfill()
             }
         }
-        viewModel.observeData(remoteId: remoteId)
+        viewModel.observeData(remoteId: remoteId, deviceId: 321)
         viewModel.triggerDataLoad(remoteId: remoteId)
         
         // then
@@ -176,10 +185,17 @@ final class ThermostatGeneralVMTests: ViewModelTest<ThermostatGeneralViewState, 
         
         readChannelWithChildrenUseCase.returns = Observable.just(ChannelWithChildren(channel: channel, children: [mockMainTemperatureChild()]))
         createTemperaturesListUseCase.returns = measurements
-        configEventsManager.observeConfigReturns = [
+        channelConfigEventsManager.observeConfigReturns = [
             Observable.just(mockHvacConfigEvent(remoteId)),
             Observable.just(mockWeeklyConfigEvent(remoteId))
         ]
+        deviceConfigEventsManager.observeConfigReturns = .just(DeviceConfigEvent(
+            result: .resultTrue,
+            config: SuplaDeviceConfig.mock(
+                availableFields: [.automaticTimeSync],
+                fields: [SuplaAutomaticTimeSyncField(enabled: false)]
+            )
+        ))
         let expectation = expectation(description: "States loaded")
         
         // when
@@ -192,7 +208,7 @@ final class ThermostatGeneralVMTests: ViewModelTest<ThermostatGeneralViewState, 
                 expectation.fulfill()
             }
         }
-        viewModel.observeData(remoteId: remoteId)
+        viewModel.observeData(remoteId: remoteId, deviceId: 321)
         viewModel.triggerDataLoad(remoteId: remoteId)
         
         // then
@@ -255,10 +271,14 @@ final class ThermostatGeneralVMTests: ViewModelTest<ThermostatGeneralViewState, 
         
         readChannelWithChildrenUseCase.returns = Observable.just(ChannelWithChildren(channel: channel, children: [mockMainTemperatureChild()]))
         createTemperaturesListUseCase.returns = measurements
-        configEventsManager.observeConfigReturns = [
+        channelConfigEventsManager.observeConfigReturns = [
             Observable.just(mockHvacConfigEvent(remoteId)),
             Observable.just(mockWeeklyConfigEvent(remoteId))
         ]
+        deviceConfigEventsManager.observeConfigReturns = .just(DeviceConfigEvent(
+            result: .resultTrue,
+            config: SuplaDeviceConfig.mock())
+        )
         let expectation = expectation(description: "States loaded")
         
         // when
@@ -271,7 +291,7 @@ final class ThermostatGeneralVMTests: ViewModelTest<ThermostatGeneralViewState, 
                 expectation.fulfill()
             }
         }
-        viewModel.observeData(remoteId: remoteId)
+        viewModel.observeData(remoteId: remoteId, deviceId: 321)
         viewModel.triggerDataLoad(remoteId: remoteId)
         
         // then
@@ -327,10 +347,14 @@ final class ThermostatGeneralVMTests: ViewModelTest<ThermostatGeneralViewState, 
         
         readChannelWithChildrenUseCase.returns = Observable.just(ChannelWithChildren(channel: channel, children: [mockMainTemperatureChild()]))
         createTemperaturesListUseCase.returns = measurements
-        configEventsManager.observeConfigReturns = [
+        channelConfigEventsManager.observeConfigReturns = [
             Observable.just(mockHvacConfigEvent(remoteId)),
             Observable.just(mockWeeklyConfigEvent(remoteId))
         ]
+        deviceConfigEventsManager.observeConfigReturns = .just(DeviceConfigEvent(
+            result: .resultTrue,
+            config: SuplaDeviceConfig.mock())
+        )
         let expectation = expectation(description: "States loaded")
         
         // when
@@ -343,7 +367,7 @@ final class ThermostatGeneralVMTests: ViewModelTest<ThermostatGeneralViewState, 
                 expectation.fulfill()
             }
         }
-        viewModel.observeData(remoteId: remoteId)
+        viewModel.observeData(remoteId: remoteId, deviceId: 321)
         viewModel.triggerDataLoad(remoteId: remoteId)
         
         // then
@@ -390,10 +414,14 @@ final class ThermostatGeneralVMTests: ViewModelTest<ThermostatGeneralViewState, 
         channel.value = channelValue
         
         readChannelWithChildrenUseCase.returns = Observable.just(ChannelWithChildren(channel: channel, children: [mockMainTemperatureChild()]))
-        configEventsManager.observeConfigReturns = [
+        channelConfigEventsManager.observeConfigReturns = [
             Observable.just(mockHvacConfigEvent(remoteId)),
             Observable.just(mockWeeklyConfigEvent(remoteId))
         ]
+        deviceConfigEventsManager.observeConfigReturns = .just(DeviceConfigEvent(
+            result: .resultTrue,
+            config: SuplaDeviceConfig.mock())
+        )
         
         let initialState = ThermostatGeneralViewState(changing: true)
         viewModel.updateView { _ in initialState }
@@ -409,7 +437,7 @@ final class ThermostatGeneralVMTests: ViewModelTest<ThermostatGeneralViewState, 
                 expectation.fulfill()
             }
         }
-        viewModel.observeData(remoteId: remoteId)
+        viewModel.observeData(remoteId: remoteId, deviceId: 321)
         viewModel.triggerDataLoad(remoteId: remoteId)
         
         // then
@@ -433,10 +461,14 @@ final class ThermostatGeneralVMTests: ViewModelTest<ThermostatGeneralViewState, 
         channel.value = channelValue
         
         readChannelWithChildrenUseCase.returns = Observable.just(ChannelWithChildren(channel: channel, children: [mockMainTemperatureChild()]))
-        configEventsManager.observeConfigReturns = [
+        channelConfigEventsManager.observeConfigReturns = [
             Observable.just(mockHvacConfigEvent(remoteId)),
             Observable.just(mockWeeklyConfigEvent(remoteId))
         ]
+        deviceConfigEventsManager.observeConfigReturns = .just(DeviceConfigEvent(
+            result: .resultTrue,
+            config: SuplaDeviceConfig.mock())
+        )
         dateProvider.currentTimestampReturns = 1001
         
         let initialState = ThermostatGeneralViewState(lastInteractionTime: 1000)
@@ -453,7 +485,7 @@ final class ThermostatGeneralVMTests: ViewModelTest<ThermostatGeneralViewState, 
                 expectation.fulfill()
             }
         }
-        viewModel.observeData(remoteId: remoteId)
+        viewModel.observeData(remoteId: remoteId, deviceId: 321)
         viewModel.triggerDataLoad(remoteId: remoteId)
         
         // then
@@ -884,8 +916,8 @@ final class ThermostatGeneralVMTests: ViewModelTest<ThermostatGeneralViewState, 
         return ChannelChild(channel: channel, relationType: .defaultType)
     }
     
-    private func mockHvacConfigEvent(_ remoteId: Int32) -> ConfigEvent {
-        ConfigEvent(
+    private func mockHvacConfigEvent(_ remoteId: Int32) -> ChannelConfigEvent {
+        ChannelConfigEvent(
             result: .resultTrue,
             config: SuplaChannelHvacConfig.mock(
                 remoteId: remoteId,
@@ -897,8 +929,8 @@ final class ThermostatGeneralVMTests: ViewModelTest<ThermostatGeneralViewState, 
         )
     }
     
-    private func mockWeeklyConfigEvent(_ remoteId: Int32) -> ConfigEvent {
-        ConfigEvent(
+    private func mockWeeklyConfigEvent(_ remoteId: Int32) -> ChannelConfigEvent {
+        ChannelConfigEvent(
             result: .resultTrue,
             config: SuplaChannelWeeklyScheduleConfig.mock(remoteId: remoteId)
         )

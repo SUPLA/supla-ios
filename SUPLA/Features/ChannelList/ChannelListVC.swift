@@ -33,12 +33,12 @@ class ChannelListVC : ChannelBaseTableViewController<ChannelListViewState, Chann
         switch(event) {
         case .navigateToDetail(let legacyDetailType, let channelBase):
             navigator?.navigateToLegacyDetail(legacyDetailType: legacyDetailType, channelBase: channelBase)
-        case .navigateToSwitchDetail(let remoteId, let pages):
-            navigator?.navigateToSwitchDetail(remoteId: remoteId, pages: pages)
-        case .navigateToThermostatDetail(let remoteId, let pages):
-            navigator?.navigateToThermostatDetail(remoteId: remoteId, pages: pages)
-        case .navigateToThermometerDetail(let remoteId, let pages):
-            navigator?.navigateToThermometerDetail(remoteId: remoteId, pages: pages)
+        case .navigateToSwitchDetail(let item, let pages):
+            navigator?.navigateToSwitchDetail(item: item, pages: pages)
+        case .navigateToThermostatDetail(let item, let pages):
+            navigator?.navigateToThermostatDetail(item: item, pages: pages)
+        case .navigateToThermometerDetail(let item, let pages):
+            navigator?.navigateToThermometerDetail(item: item, pages: pages)
             
         }
     }

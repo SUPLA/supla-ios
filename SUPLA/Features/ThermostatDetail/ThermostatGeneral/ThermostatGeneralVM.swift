@@ -26,7 +26,9 @@ class ThermostatGeneralVM: BaseViewModel<ThermostatGeneralViewState, ThermostatG
     @Singleton<ReadChannelWithChildrenUseCase> private var readChannelWithChildrenUseCase
     @Singleton<CreateTemperaturesListUseCase> private var createTemperaturesListUseCase
     @Singleton<GetChannelConfigUseCase> private var getChannelConfigUseCase
-    @Singleton<ConfigEventsManager> private var configEventManager
+    @Singleton<GetDeviceConfigUseCase> private var getDeviceConfigUseCase
+    @Singleton<ChannelConfigEventsManager> private var channelConfigEventManager
+    @Singleton<DeviceConfigEventsManager> private var deviceConfigEventManager
     @Singleton<DelayedThermostatActionSubject> private var delayedThermostatActionSubject
     @Singleton<DateProvider> private var dateProvider
     @Singleton<GetChannelBaseIconUseCase> private var getChannelBaseIconUseCase
@@ -51,7 +53,7 @@ class ThermostatGeneralVM: BaseViewModel<ThermostatGeneralViewState, ThermostatG
         .disposed(by: self)
     }
     
-    func observeData(remoteId: Int32) {
+    func observeData(remoteId: Int32, deviceId: Int32) {
         updateEventsManager.observeChannelsUpdate()
             .debounce(.seconds(1), scheduler: ConcurrentDispatchQueueScheduler(qos: .background))
             .subscribe(onNext: { [weak self] in self?.triggerDataLoad(remoteId: remoteId) })
@@ -64,24 +66,33 @@ class ThermostatGeneralVM: BaseViewModel<ThermostatGeneralViewState, ThermostatG
         Observable.combineLatest(
             channelRelay.asObservable()
                 .map { ($0, self.createTemperaturesListUseCase.invoke(channelWithChildren: $0))},
-            configEventManager.observeConfig(remoteId: remoteId)
+            channelConfigEventManager.observeConfig(id: remoteId)
                 .filter { $0.config is SuplaChannelHvacConfig && $0.result == .resultTrue },
-            configEventManager.observeConfig(remoteId: remoteId)
+            channelConfigEventManager.observeConfig(id: remoteId)
                 .filter { $0.config is SuplaChannelWeeklyScheduleConfig },
-            resultSelector: { ($0, $1.config as? SuplaChannelHvacConfig, $2.config as? SuplaChannelWeeklyScheduleConfig) }
+            deviceConfigEventManager.observeConfig(id: deviceId),
+            resultSelector: { ($0, $1.config as? SuplaChannelHvacConfig, $2.config as? SuplaChannelWeeklyScheduleConfig, $3.config) }
         ).asDriverWithoutError()
             .debounce(.milliseconds(50))
             .drive(onNext: { self.handleData(data: $0) })
             .disposed(by: self)
     }
     
-    func triggerDataLoad(remoteId: Int32) {
+    func loadData(remoteId: Int32, deviceId: Int32) {
         getChannelConfigUseCase.invoke(remoteId: remoteId, type: .defaultConfig)
             .subscribe()
             .disposed(by: self)
         getChannelConfigUseCase.invoke(remoteId: remoteId, type: .weeklyScheduleConfig)
             .subscribe()
             .disposed(by: self)
+        getDeviceConfigUseCase.invoke(deviceId: deviceId)
+            .subscribe()
+            .disposed(by: self)
+        
+        triggerDataLoad(remoteId: remoteId)
+    }
+    
+    func triggerDataLoad(remoteId: Int32) {
         readChannelWithChildrenUseCase.invoke(remoteId: remoteId)
             .subscribe(onNext: { [weak self] in self?.channelRelay.accept($0) })
             .disposed(by: self)
@@ -243,7 +254,7 @@ class ThermostatGeneralVM: BaseViewModel<ThermostatGeneralViewState, ThermostatG
         }
     }
     
-    private func handleData(data: ((ChannelWithChildren, [MeasurementValue])?, SuplaChannelHvacConfig?, SuplaChannelWeeklyScheduleConfig?)) {
+    private func handleData(data: ((ChannelWithChildren, [MeasurementValue])?, SuplaChannelHvacConfig?, SuplaChannelWeeklyScheduleConfig?, SuplaDeviceConfig)) {
         guard let channel = data.0?.0 else { return }
         guard let temperatures = data.0?.1 else { return }
         guard let config = data.1 else { return }
@@ -277,7 +288,7 @@ class ThermostatGeneralVM: BaseViewModel<ThermostatGeneralViewState, ThermostatG
                 .changing(path: \.issues, to: createThermostatIssues(flags: thermostatValue.flags))
                 .changing(path: \.sensorIssue, to: createSensorIssue(value: thermostatValue, children: channel.children))
                 .changing(path: \.temporaryChangeActive, to: channel.channel.isOnline() && thermostatValue.flags.contains(.weeklyScheduleTemporalOverride))
-                .changing(path: \.programInfo, to: createProgramInfo(config: data.2, value: thermostatValue, channelOnline: channel.channel.isOnline()))
+                .changing(path: \.programInfo, to: createProgramInfo(data.2, thermostatValue, channel.channel.isOnline(), data.3))
             
             changedState = handleSetpoints(changedState, channel: channel.channel)
             changedState = handleFlags(changedState, value: thermostatValue, isOnline: channel.channel.isOnline())
@@ -440,11 +451,17 @@ class ThermostatGeneralVM: BaseViewModel<ThermostatGeneralViewState, ThermostatG
         return nil
     }
     
-    private func createProgramInfo(config: SuplaChannelWeeklyScheduleConfig?, value: ThermostatValue, channelOnline: Bool) -> [ThermostatProgramInfo] {
-        guard let config = config else { return [] }
+    private func createProgramInfo(
+        _ channelConfig: SuplaChannelWeeklyScheduleConfig?,
+        _ value: ThermostatValue,
+        _ channelOnline: Bool,
+        _ deviceConfig: SuplaDeviceConfig
+    ) -> [ThermostatProgramInfo] {
+        guard let channelConfig = channelConfig else { return [] }
         
         let builder = ThermostatProgramInfo.Builder()
-        builder.config = config
+        builder.channelConfig = channelConfig
+        builder.deviceConfig = deviceConfig
         builder.thermostatFlags = value.flags
         builder.currentMode = value.mode
         builder.channelOnline = channelOnline

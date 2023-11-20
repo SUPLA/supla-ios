@@ -18,7 +18,7 @@
 
 class SwitchDetailNavigationCoordinator: BaseNavigationCoordinator {
     
-    private let remoteId: Int32
+    private let item: ItemBundle
     private let pages: [DetailPage]
     
     override var viewController: UIViewController {
@@ -26,13 +26,13 @@ class SwitchDetailNavigationCoordinator: BaseNavigationCoordinator {
     }
     
     private lazy var _viewController: SwitchDetailVC = {
-        let controller = SwitchDetailVC(navigator: self, remoteId: remoteId, pages: pages)
+        let controller = SwitchDetailVC(navigator: self, item: item, pages: pages)
         controller.navigationCoordinator = self
         return controller
     }()
     
-    init(remoteId: Int32, pages: [DetailPage]) {
-        self.remoteId = remoteId
+    init(item: ItemBundle, pages: [DetailPage]) {
+        self.item = item
         self.pages = pages
     }
 }

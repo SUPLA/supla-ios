@@ -28,6 +28,7 @@
 - (BOOL) timerArmFor: (int) remoteId withTurnOn: (BOOL) on withTime: (int) milis;
 - (BOOL) getChannelConfig: (TCS_GetChannelConfigRequest*) configRequest;
 - (BOOL) setChannelConfig: (TSCS_ChannelConfig*) config;
+- (BOOL) getDeviceConfig: (TCS_GetDeviceConfigRequest*) configRequest;
 - (BOOL) OAuthTokenRequest;
 
 @end
@@ -71,6 +72,7 @@
 - (void) channelStateRequestWithChannelId:(int)channelId;
 - (BOOL) getChannelConfig: (TCS_GetChannelConfigRequest*) configRequest;
 - (BOOL) setChannelConfig: (TSCS_ChannelConfig*) config;
+- (BOOL) getDeviceConfig: (TCS_GetDeviceConfigRequest*) configRequest;
 - (void) setLightsourceLifespanWithChannelId:(int)channelId resetCounter:(BOOL)reset setTime:(BOOL)setTime lifespan:(unsigned short)lifespan;
 - (void) setIODeviceRegistrationEnabledForTime:(int)iodevice_sec clientRegistrationEnabledForTime:(int)client_sec;
 - (void) setDgfTransparencyMask:(short)mask activeBits:(short)active_bits channelId:(int)channelId;

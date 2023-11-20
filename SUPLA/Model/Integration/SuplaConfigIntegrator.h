@@ -24,7 +24,7 @@
 
 @class SuplaHvacTemperatures;
 
-@interface SuplaChannelConfigIntegrator : NSObject
+@interface SuplaConfigIntegrator : NSObject
 
 + (void) setProgramWith: (UInt8) programId withMode: (UInt8) mode withHeatTemp: (short) heatTemp withCoolTemp: (short) coolTemp inConfig: (TSCS_ChannelConfig*) config;
 
@@ -45,6 +45,8 @@
 + (TSCS_ChannelConfig) mockHvacConfig;
 
 + (TSCS_ChannelConfig) mockWeeklyScheduleConfig;
+
++ (TSCS_DeviceConfig) mockDeviceConfigWithUserInterfaceField: (BOOL) disableUserInterfaceField;
 
 @end
 
