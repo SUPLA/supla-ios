@@ -67,7 +67,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
             memcpy(csev, &state->Channel, sizeof(TChannelState_ExtendedValue));
             memcpy(tsev, &state->Timer, ev->size - sizeof(TChannelState_ExtendedValue));
             result = YES;
-        } else if (ev->type == EV_TYPE_TIMER_STATE_V1 && ev->size <= sizeof(TTimerState_ExtendedValue)
+        } else if ((ev->type == EV_TYPE_TIMER_STATE_V1
+                    || ev->type == EV_TYPE_TIMER_STATE_V1_SEC) && ev->size <= sizeof(TTimerState_ExtendedValue)
                    && ev->size >= sizeof(TTimerState_ExtendedValue) - SUPLA_SENDER_NAME_MAXSIZE) {
             memcpy(tsev, &ev->value, ev->size);
             result = YES;

@@ -68,7 +68,7 @@
             
             return [[NSDate alloc] initWithTimeIntervalSince1970: timerState.CountdownEndsAt];
         }
-    } else if (type == EV_TYPE_TIMER_STATE_V1) {
+    } else if (type == EV_TYPE_TIMER_STATE_V1 || type == EV_TYPE_TIMER_STATE_V1_SEC) {
         memcpy(&timerState, value, size);
         
         return [[NSDate alloc] initWithTimeIntervalSince1970: timerState.CountdownEndsAt];
