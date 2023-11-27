@@ -5,6 +5,8 @@
 	<key>AvailableLibraries</key>
 	<array>
 		<dict>
+			<key>BinaryPath</key>
+			<string>libssl-os.a</string>
 			<key>HeadersPath</key>
 			<string>Headers</string>
 			<key>LibraryIdentifier</key>
@@ -20,6 +22,8 @@
 			<string>ios</string>
 		</dict>
 		<dict>
+			<key>BinaryPath</key>
+			<string>libssl-sim.a</string>
 			<key>HeadersPath</key>
 			<string>Headers</string>
 			<key>LibraryIdentifier</key>

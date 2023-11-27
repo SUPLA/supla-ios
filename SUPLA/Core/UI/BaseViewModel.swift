@@ -29,6 +29,8 @@ class BaseViewModel<S : ViewState, E : ViewEvent> {
     
     func defaultViewState() -> S { fatalError("defaultViewState() has not been implemented!") }
     
+    func onViewDidLoad() {}
+    
     func eventsObervable() -> Observable<E> { events.asObserver() }
     func stateObservable() -> Observable<S> { state.asObserver() }
     
@@ -48,6 +50,19 @@ class BaseViewModel<S : ViewState, E : ViewEvent> {
         observable
             .subscribe(onNext: { value in
                 self.updateView() { state in return state.changing(path: path, to: value) }
+            })
+            .disposed(by: disposeBag)
+    }
+    
+    func bindWhenInitialized<T>(field path: WritableKeyPath<S, T?>, toObservable observable: Observable<T>) {
+        observable
+            .subscribe(onNext: { value in
+                self.updateView() { state in
+                    if (state.value(path: path) == nil) {
+                        return state
+                    }
+                    return state.changing(path: path, to: value)
+                }
             })
             .disposed(by: disposeBag)
     }

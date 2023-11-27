@@ -16,7 +16,7 @@
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 
-import Foundation
+import RxSwift
 
 @objc
 final class UseCaseLegacyWrapper: NSObject {
@@ -119,5 +119,66 @@ final class UseCaseLegacyWrapper: NSObject {
     @objc
     static func saveIcon(remoteId: NSNumber, images: [String]) {
         SaveIconUseCase().invoke(remoteId: Int32(remoteId as! Int), images: images)
+    }
+    
+    @objc
+    static func insertChannelRelation(relation: TSC_SuplaChannelRelation) {
+        do {
+            try InsertChannelRelationForProfileUseCase().invoke(suplaRelation: relation).subscribeSynchronous()
+        } catch {
+            NSLog("Could not insert relation `\(relation)` because of `\(error)`")
+        }
+    }
+    
+    @objc
+    static func markChannelRelationsAsRemovable() {
+        do {
+            try MarkChannelRelationsAsRemovableUseCase().invoke().subscribeSynchronous()
+        } catch {
+            NSLog("Could not mark relations as removable because of `\(error)`")
+        }
+    }
+    
+    @objc
+    static func deleteRemovableRelations() {
+        do {
+            try DeleteRemovableChannelRelationsUseCase().invoke().subscribeSynchronous()
+        } catch {
+            NSLog("Could not delete removable relations because of `\(error)`")
+        }
+    }
+    
+    @objc
+    static func getChannelCount() -> Int {
+        @Singleton<ProfileRepository> var profileRepository;
+        @Singleton<ChannelRepository> var channelRepository;
+        
+        do {
+            return try profileRepository.getActiveProfile()
+                .flatMapFirst { channelRepository.getAllChannels(forProfile: $0) }
+                .map { $0.count }
+                .subscribeSynchronous() ?? 0
+        } catch {
+            return 0
+        }
+    }
+    
+    @objc
+    static func loadServerHostName() -> String? {
+        do {
+            return try UpdateServerHostNameUseCase().invoke().subscribeSynchronous()
+        } catch {
+            NSLog("Could not load server address because of \(error)")
+            return nil
+        }
+    }
+    
+    @objc
+    static func updatePreferredProtocolVersion(_ version: Int) {
+        do {
+            try UpdatePreferredProtocolVersionUseCase().invoke(version: version).subscribeSynchronous()
+        } catch {
+            NSLog("Could not update preferred protocol version to \(version)")
+        }
     }
 }

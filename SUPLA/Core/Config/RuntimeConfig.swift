@@ -29,11 +29,20 @@ protocol RuntimeConfig {
     
     func preferencesObservable() -> Observable<RuntimePreferences>
     func emitPreferenceChange(scaleFactor: Float, showChannelInfo: Bool)
+    
+    func getDetailOpenedPage(remoteId: Int32) -> Int
+    func setDetailOpenedPage(remoteId: Int32, openedPage: Int)
+    
+    func getLastTimerValue(remoteId: Int32) -> Int
+    func setLastTimerValue(remoteId: Int32, value: Int)
 }
 
 class RuntimeConfigImpl: RuntimeConfig {
     
     @Singleton<GlobalSettings> private var settings
+    
+    var detailOpenedPageMap: [Int32: Int] = [:]
+    var lastTimerValueMap: [Int32: Int] = [:]
     
     var activeProfileId: ProfileID?
     lazy var configRelay: BehaviorRelay<RuntimePreferences> = {
@@ -49,6 +58,22 @@ class RuntimeConfigImpl: RuntimeConfig {
     
     func emitPreferenceChange(scaleFactor: Float, showChannelInfo: Bool) {
         configRelay.accept(RuntimePreferences(scaleFactor: scaleFactor, showChannelInfo: showChannelInfo))
+    }
+    
+    func getDetailOpenedPage(remoteId: Int32) -> Int {
+        return detailOpenedPageMap[remoteId] ?? 0
+    }
+    
+    func setDetailOpenedPage(remoteId: Int32, openedPage: Int) {
+        detailOpenedPageMap[remoteId] = openedPage
+    }
+    
+    func getLastTimerValue(remoteId: Int32) -> Int {
+        lastTimerValueMap[remoteId] ?? 6 * 30 // Return 3 minus as default timer value
+    }
+    
+    func setLastTimerValue(remoteId: Int32, value: Int) {
+        lastTimerValueMap[remoteId] = value
     }
 }
 

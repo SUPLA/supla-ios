@@ -23,11 +23,11 @@ class MainViewModel: BaseViewModel<MainViewState, MainViewEvent> {
     
     @Singleton<ProfileRepository> private var profileRepository
     @Singleton<ChannelRepository> private var channelRepository
-    @Singleton<ListsEventsManager> private var listsEventsManager
+    @Singleton<UpdateEventsManager> private var updateEventsManager
     
     override func defaultViewState() -> MainViewState { MainViewState() }
     
-    func onViewDidLoad() {
+    override func onViewDidLoad() {
         observeChangesForIconsReload()
     }
     
@@ -113,21 +113,15 @@ class MainViewModel: BaseViewModel<MainViewState, MainViewEvent> {
     }
     
     private func observeChangesForIconsReload() {
-        listsEventsManager
-            .observeChannelUpdates()
-            .asDriverWithoutError()
-            .drive(onNext: { self.send(event: .loadIcons) })
-            .disposed(by: self)
-        
-        listsEventsManager
-            .observeGroupUpdates()
-            .asDriverWithoutError()
-            .drive(onNext: { self.send(event: .loadIcons) })
-            .disposed(by: self)
-        
-        listsEventsManager
-            .observeSceneUpdates()
-            .asDriverWithoutError()
+        Observable.combineLatest(
+            updateEventsManager.observeChannelsUpdate(),
+            updateEventsManager.observeGroupsUpdate(),
+            updateEventsManager.observeScenesUpdate(),
+            resultSelector: { _, _, _ in
+                return ()
+            }
+        ).asDriverWithoutError()
+            .debounce(.seconds(2))
             .drive(onNext: { self.send(event: .loadIcons) })
             .disposed(by: self)
     }

@@ -432,7 +432,7 @@
 
     if (pieEntries.count) {
         PieChartDataSet *pieDataSet = [[PieChartDataSet alloc] initWithEntries:pieEntries label:@""];
-        pieDataSet.colors = [ChartColorTemplates material];
+        pieDataSet.colors = [ChartSettings colors];
         
         PieChartData *chartData = [[PieChartData alloc] initWithDataSets:@[pieDataSet]];
         pieChart.data = chartData;

@@ -55,6 +55,7 @@ NS_ASSUME_NONNULL_BEGIN
 -(NSNumber *)lightSourceOperatingTimePercent;
 -(NSNumber *)lightSourceOperatingTimePercentLeft;
 -(NSString *)lightSourceOperatingTimeString;
+-(NSDate *)countdownEndsAt;
 
 -(id)initWithChannelState:(TDSC_ChannelState *)state;
 @end

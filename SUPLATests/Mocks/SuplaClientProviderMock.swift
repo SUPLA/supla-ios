@@ -26,10 +26,76 @@ class SuplaClientProviderMock: SuplaClientProvider {
 }
 
 class SuplaClientProtocolMock: NSObject, SuplaClientProtocol {
-    var reconnectCalls: Int = 0
-    var cancelCalls: Int = 0
     
+    var cancelCalls: Int = 0
     func cancel() { cancelCalls += 1 }
     
+    var reconnectCalls: Int = 0
     func reconnect() { reconnectCalls += 1 }
+    
+    var executeActionParameters: [(Int32, Int32, Int32, UnsafeMutableRawPointer?, Int32)] = []
+    var executeActionReturns = false
+    func executeAction(_ actionId: Int32, subjecType subjectType: Int32, subjectId: Int32, parameters: UnsafeMutableRawPointer!, length: Int32) -> Bool {
+        
+        // As the parametets memory is fried after end of the execute action we need to make
+        // a copy of it to assert values inside the object
+        var parametersCopy: UnsafeMutableRawPointer? = nil
+        if (parameters != nil) {
+            parametersCopy = UnsafeMutableRawPointer.allocate(byteCount: Int(length), alignment: MemoryLayout<UInt8>.alignment)
+            parametersCopy?.copyMemory(from: parameters, byteCount: Int(length))
+        }
+        
+        executeActionParameters.append((actionId, subjectType, subjectId, parametersCopy, length))
+        return executeActionReturns
+    }
+    
+    var timerArmParameters: [(Int32, Bool, Int32)] = []
+    var timerArmReturns = false
+    func timerArm(for remoteId: Int32, withTurnOn on: Bool, withTime milis: Int32) -> Bool {
+        timerArmParameters.append((remoteId, on, milis))
+        return timerArmReturns
+    }
+    
+    var getChannelConfigParameters: [UnsafeMutablePointer<TCS_GetChannelConfigRequest>] = []
+    var getChannelConfigReturns = false
+    func getChannelConfig(_ configRequest: UnsafeMutablePointer<TCS_GetChannelConfigRequest>!) -> Bool {
+        
+        // As the parametets memory is fried after end of the execute action we need to make
+        // a copy of it to assert values inside the object
+        let configRequestCopy = UnsafeMutablePointer<TCS_GetChannelConfigRequest>.allocate(capacity: 1)
+        configRequestCopy.update(from: configRequest, count: 1)
+        getChannelConfigParameters.append(configRequestCopy)
+        
+        return getChannelConfigReturns
+    }
+    
+    var setChannelConfigParameters: [UnsafeMutablePointer<TSCS_ChannelConfig>] = []
+    var setChannelConfigReturns = false
+    func setChannelConfig(_ config: UnsafeMutablePointer<TSCS_ChannelConfig>!) -> Bool {
+        
+        // As the parametets memory is fried after end of the execute action we need to make
+        // a copy of it to assert values inside the object
+        let configRequestCopy = UnsafeMutablePointer<TSCS_ChannelConfig>.allocate(capacity: 1)
+        configRequestCopy.update(from: config, count: 1)
+        setChannelConfigParameters.append(configRequestCopy)
+        
+        return setChannelConfigReturns
+    }
+    
+    var oAuthTokenRequestCalls = 0
+    var oAuthTokenRequestReturns = false
+    func oAuthTokenRequest() -> Bool {
+        oAuthTokenRequestReturns
+    }
+    
+    var getDeficeConfigParameters: [UnsafeMutablePointer<TCS_GetDeviceConfigRequest>] = []
+    var getDeviceConfigReturns = false
+    func getDeviceConfig(_ configRequest: UnsafeMutablePointer<TCS_GetDeviceConfigRequest>!) -> Bool {
+        
+        let configRequestCopy = UnsafeMutablePointer<TCS_GetDeviceConfigRequest>.allocate(capacity: 1)
+        configRequestCopy.update(from: configRequest, count: 1)
+        getDeficeConfigParameters.append(configRequestCopy)
+        
+        return getDeviceConfigReturns
+    }
 }

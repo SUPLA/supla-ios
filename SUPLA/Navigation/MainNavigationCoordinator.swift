@@ -32,19 +32,17 @@ class MainNavigationCoordinator: BaseNavigationCoordinator {
     
     private let disposeBag = DisposeBag()
     
-    private let navigationController: SuplaNavigationController
-    
-    private var mainVC: MainVC
+    private lazy var navigationController: SuplaNavigationController = {
+        SuplaNavigationController(rootViewController: mainVC)
+    }()
+    private lazy var mainVC: MainVC = { MainVC(navigator: self) }()
 
     
     private var pendingFlow: NavigationCoordinator?
     private var pendingCompletion: (()->Void)?
     
     override init() {
-        mainVC = MainVC()
-        navigationController = SuplaNavigationController(rootViewController: mainVC)
         super.init()
-        mainVC.navigationCoordinator = self
         NotificationCenter.default.addObserver(self, selector: #selector(onRegistered(_:)),
                                                name: .saRegistered,
                                                object: nil)
@@ -233,6 +231,17 @@ class MainNavigationCoordinator: BaseNavigationCoordinator {
         startFlow(coordinator: LegacyDetailNavigationCoordinator(detailType: legacyDetailType, channelBase: channelBase))
     }
     
+    func navigateToSwitchDetail(item: ItemBundle, pages: [DetailPage]) {
+        startFlow(coordinator: SwitchDetailNavigationCoordinator(item: item, pages: pages))
+    }
+    
+    func navigateToThermostatDetail(item: ItemBundle, pages: [DetailPage]) {
+        startFlow(coordinator: ThermostatDetailNavigationCoordinator(item: item, pages: pages))
+    }
+    
+    func navigateToThermometerDetail(item: ItemBundle, pages: [DetailPage]) {
+        startFlow(coordinator: ThermometerDetailNavigatorCoordinator(item: item, pages: pages))
+    }
     
     // MARK: -
     // MARK: Application life cycle support

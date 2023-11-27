@@ -20,6 +20,22 @@ import Foundation
 
 @objc
 class ChartSettings: NSObject {
+    
+    @objc open class func colors () -> [NSUIColor]
+    {
+        return [
+            NSUIColor(red: 231/255.0, green: 76/255.0, blue: 60/255.0, alpha: 1.0),
+            NSUIColor(red: 52/255.0, green: 152/255.0, blue: 219/255.0, alpha: 1.0),
+            NSUIColor(red: 46/255.0, green: 204/255.0, blue: 113/255.0, alpha: 1.0),
+            NSUIColor(red: 241/255.0, green: 196/255.0, blue: 15/255.0, alpha: 1.0),
+            NSUIColor(red: 152/255.0, green: 78/255.0, blue: 163/255.0, alpha: 1.0),
+            NSUIColor(red: 228/255.0, green: 26/255.0, blue: 163/28, alpha: 1.0),
+            NSUIColor(red: 153/255.0, green: 153/255.0, blue: 153/28, alpha: 1.0),
+            NSUIColor(red: 255/255.0, green: 127/255.0, blue: 0/28, alpha: 1.0),
+            NSUIColor(red: 55/255.0, green: 126/255.0, blue: 184/28, alpha: 1.0),
+            NSUIColor(red: 166/255.0, green: 86/255.0, blue: 40/28, alpha: 1.0)
+        ]
+    }
 
     private let _channelId: Int
     private let _profileId: String

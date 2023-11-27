@@ -46,3 +46,75 @@ final class SwapChannelPositionsUseCaseMock: SwapChannelPositionsUseCase {
         return observable
     }
 }
+
+final class GetChannelConfigUseCaseMock: GetChannelConfigUseCase {
+    
+    var parameters: [(Int32, ChannelConfigType)] = []
+    var returns: Observable<RequestResult> = Observable.empty()
+    func invoke(remoteId: Int32, type: ChannelConfigType) -> Observable<RequestResult> {
+        parameters.append((remoteId, type))
+        return returns
+    }
+}
+
+final class ReadChannelByRemoteIdUseCaseMock: ReadChannelByRemoteIdUseCase {
+    
+    var returns: Observable<SAChannel> = Observable.empty()
+    var remoteIdArray: [Int32] = []
+    func invoke(remoteId: Int32) -> Observable<SAChannel> {
+        remoteIdArray.append(remoteId)
+        return returns
+    }
+}
+
+final class ReadChannelWithChildrenUseCaseMock: ReadChannelWithChildrenUseCase {
+    var returns: Observable<ChannelWithChildren> = Observable.empty()
+    var parameters: [Int32] = []
+    func invoke(remoteId: Int32) -> Observable<ChannelWithChildren> {
+        parameters.append(remoteId)
+        return returns
+    }
+}
+
+final class DownloadChannelMeasurementsUseCaseMock: DownloadChannelMeasurementsUseCase {
+    var parameters: [(Int32, Int32)] = []
+    func invoke(remoteId: Int32, function: Int32) {
+        parameters.append((remoteId, function))
+    }
+}
+
+final class LoadChannelMeasurementsUseCaseMock: LoadChannelMeasurementsUseCase {
+    var parameters: [(Int32, Date, Date, ChartDataAggregation)] = []
+    var returns: Observable<[HistoryDataSet]> = Observable.empty()
+    func invoke(remoteId: Int32, startDate: Date, endDate: Date, aggregation: ChartDataAggregation) -> Observable<[HistoryDataSet]> {
+        parameters.append((remoteId, startDate, endDate, aggregation))
+        return returns
+    }
+}
+
+final class LoadChannelMeasurementsDateRangeUseCaseMock: LoadChannelMeasurementsDateRangeUseCase {
+    var parameters: [Int32] = []
+    var returns: Observable<DaysRange?> = Observable.empty()
+    func invoke(remoteId: Int32) -> Observable<DaysRange?> {
+        parameters.append(remoteId)
+        return returns
+    }
+}
+
+final class DownloadTemperatureMeasurementsUseCaseMock: DownloadTemperatureMeasurementsUseCase {
+    var parameters: [Int32] = []
+    var returns: Observable<Float> = Observable.empty()
+    func invoke(remoteId: Int32) -> Observable<Float> {
+        parameters.append(remoteId)
+        return returns
+    }
+}
+
+final class DownloadTempHumidityMeasurementsUseCaseMock: DownloadTempHumidityMeasurementsUseCase {
+    var parameters: [Int32] = []
+    var returns: Observable<Float> = Observable.empty()
+    func invoke(remoteId: Int32) -> Observable<Float> {
+        parameters.append(remoteId)
+        return returns
+    }
+}

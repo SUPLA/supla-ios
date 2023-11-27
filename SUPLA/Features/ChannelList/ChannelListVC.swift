@@ -31,14 +31,27 @@ class ChannelListVC : ChannelBaseTableViewController<ChannelListViewState, Chann
     
     override func handle(event: ChannelListViewEvent) {
         switch(event) {
-        case let .navigateToDetail(legacy: legacyDetailType, channelBase: channelBase):
+        case .navigateToDetail(let legacyDetailType, let channelBase):
             navigator?.navigateToLegacyDetail(legacyDetailType: legacyDetailType, channelBase: channelBase)
+        case .navigateToSwitchDetail(let item, let pages):
+            navigator?.navigateToSwitchDetail(item: item, pages: pages)
+        case .navigateToThermostatDetail(let item, let pages):
+            navigator?.navigateToThermostatDetail(item: item, pages: pages)
+        case .navigateToThermometerDetail(let item, let pages):
+            navigator?.navigateToThermometerDetail(item: item, pages: pages)
+            
         }
     }
     
-    override func configureCell(channelBase: SAChannelBase, indexPath: IndexPath) -> UITableViewCell {
-        let cell = super.configureCell(channelBase: channelBase, indexPath: indexPath) as! SAChannelCell
-        cell.delegate = self
+    override func configureCell(channelBase: SAChannelBase, children: [ChannelChild], indexPath: IndexPath) -> UITableViewCell {
+        let cell = super.configureCell(channelBase: channelBase, children: children, indexPath: indexPath)
+        
+        if let channelCell = cell as? SAChannelCell {
+            channelCell.delegate = self
+        }
+        if let thermostatCell = cell as? ThermostatCell {
+            thermostatCell.delegate = self
+        }
         
         return cell
     }
@@ -63,5 +76,33 @@ extension ChannelListVC: SAChannelCellDelegate {
         captionEditor = ChannelCaptionEditor()
         captionEditor?.delegate = self
         captionEditor?.editCaption(withRecordId: remoteId)
+    }
+}
+
+extension ChannelListVC: ThermostatCellDelgate {
+    
+    func onButtonTapped(buttonType: CellButtonType, remoteId: Int32, data: Any?) {
+        viewModel.onButtonClicked(buttonType: buttonType, data: data)
+    }
+    
+    func onIssueIconTapped(issueMessage: String) {
+        let alert = UIAlertController(title: "SUPLA", message: issueMessage, preferredStyle: .alert)
+        let okButton = UIAlertAction(title: Strings.General.ok, style: .default)
+        
+        alert.title = NSLocalizedString("Warning", comment: "")
+        alert.addAction(okButton)
+        navigationCoordinator?.viewController.present(alert, animated: true)
+    }
+    
+    func onCaptionLongPress(_ remoteId: Int32) {
+        vibrationService.vibrate()
+        
+        captionEditor = ChannelCaptionEditor()
+        captionEditor?.delegate = self
+        captionEditor?.editCaption(withRecordId: remoteId)
+    }
+    
+    func onInfoIconTapped(_ channel: SAChannel) {
+        SAChannelStatePopup.globalInstance().show(channel)
     }
 }

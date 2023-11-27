@@ -35,7 +35,7 @@ protocol RepositoryProtocol {
 
 class Repository<T: NSManagedObject>: RepositoryProtocol {
 
-    private lazy var context = { CoreDataManager.shared.backgroundContext }()
+    lazy var context = { CoreDataManager.shared.backgroundContext }()
     private lazy var scheduler = { ContextScheduler(context: context) }()
     
     func query(_ request: NSFetchRequest<T>) -> Observable<[T]> {
@@ -50,6 +50,11 @@ class Repository<T: NSManagedObject>: RepositoryProtocol {
     
     func queryItem(_ id: NSManagedObjectID) -> Observable<T?> {
         return context.rx.first(ofType: T.self, with: id)
+            .subscribe(on: scheduler)
+    }
+    
+    func count(_ predicate: NSPredicate) -> Observable<Int> {
+        return context.rx.count(ofType: T.self, with: predicate)
             .subscribe(on: scheduler)
     }
     
@@ -75,6 +80,7 @@ class Repository<T: NSManagedObject>: RepositoryProtocol {
     
     func create() -> Observable<T> {
         return context.rx.create()
+            .subscribe(on: scheduler)
     }
     
 }

@@ -417,6 +417,7 @@
     markerRect.origin.x = rect.origin.x + rect.size.width/2 - size / 2;
     markerRect.size.height = size;
     markerRect.size.width = size;
+    CGFloat markerAreaHeight = rect.size.height - rect.size.width;
     
     for(int a=0;a<self.brightnessMarkers.count;a++) {
         obj = [self.brightnessMarkers objectAtIndex:a];
@@ -424,8 +425,8 @@
             continue;
         }
         
-        markerRect.origin.y = rect.origin.y + rect.size.width/2 - size /2
-        + (rect.size.height - rect.size.width) * [obj floatValue] / 100.0;
+        markerRect.origin.y = rect.origin.y+ rect.size.width/2 - size /2
+        + markerAreaHeight - markerAreaHeight * [obj floatValue] / 100.0;
         
         [self drawMarkerInRect:markerRect ctx:ctx];
     }

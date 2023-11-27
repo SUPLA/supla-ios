@@ -23,7 +23,9 @@ import RxSwift
 final class ProfileRepositoryMock: BaseRepositoryMock<AuthProfileItem>, ProfileRepository {
     
     var activeProfileObservable: Observable<AuthProfileItem> = Observable.empty()
+    var activeProfileCalls = 0
     func getActiveProfile() -> Observable<AuthProfileItem> {
+        activeProfileCalls += 1
         return activeProfileObservable
     }
     

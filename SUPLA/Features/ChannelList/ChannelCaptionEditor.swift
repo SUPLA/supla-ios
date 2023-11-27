@@ -32,7 +32,7 @@ class ChannelCaptionEditor: SACaptionEditor {
     }
     
     override func getTitle() -> String {
-        return NSLocalizedString("Group name", comment: "")
+        return NSLocalizedString("Channel name", comment: "")
     }
     
     override func getCaption() -> String {

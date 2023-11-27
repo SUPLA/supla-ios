@@ -16,14 +16,10 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 */
 
-import Foundation
-
 final class NotificationView: UIView {
     
     var text: String? = nil {
-        didSet {
-            textView.text = text
-        }
+        didSet { textView.text = text }
     }
     
     var icon: UIImage? = nil {
@@ -73,17 +69,8 @@ final class NotificationView: UIView {
             iconView.widthAnchor.constraint(equalToConstant: 60),
             
             textView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -8),
-            textView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 8),
-            getTextBottomConstraint()
+            textView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 8)
         ])
-    }
-    
-    private func getTextBottomConstraint() -> NSLayoutConstraint {
-        if #available(iOS 11, *) {
-            return textView.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor)
-        } else {
-            return textView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -16)
-        }
     }
     
     override class var requiresConstraintBasedLayout: Bool {

@@ -32,6 +32,12 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 - (void)detailViewInit {
     _formatter = [[SAFormatter alloc] init];
+    
+    [_lMeterValue setFont: [UIFont fontWithName:@"OpenSans" size:22]];
+    [_lCurrentConsumption setFont: [UIFont fontWithName:@"OpenSans" size:15]];
+    [_lCurrentCost setFont: [UIFont fontWithName:@"OpenSans" size:14]];
+    [_lTotalCost setFont: [UIFont fontWithName:@"OpenSans" size:12]];
+    
     [super detailViewInit];
 }
 

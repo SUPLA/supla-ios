@@ -1,0 +1,155 @@
+/*
+ This program is free software; you can redistribute it and/or
+ modify it under the terms of the GNU General Public License
+ as published by the Free Software Foundation; either version 2
+ of the License, or (at your option) any later version.
+
+ This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ GNU General Public License for more details.
+
+ You should have received a copy of the GNU General Public License
+ along with this program; if not, write to the Free Software
+ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
+ */
+
+/* This file contains default (english) translations for strings keys */
+
+"AccountCreation.title" = "Edit account";
+"AccountCreation.modificationTitle" = "Add an account";
+
+"AccountRemoval.url" = "https://{SERVER_ADDRESS}/db99845855b2ecbfecca9a095062b96c3e27703f?lang=en";
+
+"Scenes.ActionButtons.execute" = "Execute";
+"Scenes.ActionButtons.abort" = "Abort";
+
+
+"Cfg.removal.title" = "Delete account?";
+"Cfg.removal.action.logout" = "Forget on this device";
+"Cfg.removal.action.remove" = "Forget and remove on cloud";
+"Cfg.removal.dialog.failed.title" = "Removal failed";
+"Cfg.removal.dialog.failed.message" = "Removal of your account failed, pleas try again";
+"Cfg.removal.dialog.missing_name" = "Account name is missing";
+"Cfg.removal.dialog.duplicated_name" = "Account by that name already exists";
+"Cfg.removal.dialog.incomplete" = "Required data is missing";
+
+"push_notification_limit_exceeded" = "The push notification limit of %@ per hour has been exceeded.";
+
+"dialog_new_gesture_info_text" = "Swipe gesture to open details was removed, tap on particular channel to open it.";
+
+"app_settings.permissions_header" = "Permissions";
+"app_settings.notifications_label" = "Notifications";
+"app_settings.location_label" = "Location";
+
+/* General */
+"General.error" = "Error";
+"General.hour_format" = "HH:mm:ss";
+"General.ok" = "OK";
+"turn_on" = "Turn on";
+"turn_off" = "Turn off";
+"save" = "Save";
+/* General - DayOfWeek */
+"monday" = "Monday";
+"tuesday" = "Tuesday";
+"wednesday" = "Wednesday";
+"thursday" = "Thursday";
+"friday" = "Friday";
+"saturday" = "Saturday";
+"sunday" = "Sunday";
+"monday_short" = "MO";
+"tuesday_short" = "TU";
+"wednesday_short" = "WE";
+"thursday_short" = "TH";
+"friday_short" = "FR";
+"saturday_short" = "SA";
+"sunday_short" = "SU";
+"time_just_mintes" = "%d min.";
+"time_hours_and_minutes" = "%d hours %d min.";
+/* General - Channels */
+"channel_caption_hotelcard" = "Hotel card sensor";
+"channel_caption_alarm_armament" = "Alarm armament sensor";
+
+/* Standard Detail */
+"standard_detail_general_tab" = "General";
+"standard_detail_timer_tab" = "Timer";
+"standard_detail_metrics_tab" = "Metrics";
+"standard_detail_schedule_tab" = "Week";
+"standard_detail_history_tab" = "History";
+
+/* Switch Detail */
+"switch_detail_state_label" = "Current state:";
+"switch_detail_state_label_for_timer" = "State until %@:";
+"switch_detail_state_on" = "on";
+"switch_detail_state_off" = "off";
+"switch_detail_state_offline" = "offline";
+
+/* Timer Detail */
+"timer_detail_header" = "Define time for which device should stay:";
+"timer_detail_edit_header" = "Edit turned %@ time";
+"timer_detail_edit_header_on" = "on";
+"timer_detail_edit_header_off" = "off";
+"timer_detail_turned_on" = "Turned on";
+"timer_detail_turned_off" = "Turned off";
+"timer_detail_hour_pattern" = "%d hour";
+"timer_detail_hours_pattern" = "%d hours";
+"timer_detail_minute_pattern" = "%d min";
+"timer_detail_second_pattern" = "%d sec";
+"timer_detail_info" = "Device will be %@ for %@, and then turn %@";
+"timer_detail_info_on" = "on";
+"timer_detail_info_off" = "off";
+"timer_detail_info_next_on" = "on";
+"timer_detail_info_next_off" = "off";
+"timer_detail_start" = "Start";
+"timer_detail_stop" = "Leave it %@";
+"timer_detail_cancel" = "Cancel and turn %@";
+"timer_detail_cancel_on" = "on";
+"timer_detail_cancel_off" = "off";
+"timer_detail_edit_time" = "Edit time";
+"timer_detail_save" = "Save";
+"timer_detail_edit_cancel" = "Cancel editing";
+"timer_detail_end_hour" = "until %@";
+"timer_detail_format" = "%02d:%02d:%02d";
+"timer_detail_wrong_time_title" = "Invalid time";
+"timer_detail_wrong_time_message" = "Time should be bigger then 0";
+
+/* Thermostat Detail */
+"thermostat_thermometer_error" = "Temperature reading error";
+"thermostat_clock_error" = "Clock error";
+"thermostat_detail_mode_manual" = "Manual";
+"thermostat_detail_mode_weekly_schedule" = "Program";
+"schedule_detail_program_dialog_header" = "Program %d Settings";
+"hvac_mode_temperature_heating" = "Heating temperature";
+"hvac_mode_temperature_cooling" = "Cooling temperature";
+"schedule_detail_quarters_dialog_header" = "Time %02d:00";
+"schedule_detail_configuration_failure" = "Error - invalid channel configuration";
+"thermostat_detail_program_time" = "for %@";
+"thermostat_detail_program_current" = "Currently:";
+"thermostat_detail_program_next" = "Next:";
+"thermostat_detail_off_by_window" = "Turned off due to open window";
+"thermostat_detail_off_by_card" = "Turned off due to the lack of hotel card";
+"thermostat_detail_off_by_sensor" = "Turned off by sensor";
+
+/* Thermometer Chart */
+"history_range_label" = "Range";
+"history_aggregation_label" = "Aggregation";
+"history_range_last_day" = "Last 24 hours";
+"history_range_last_week" = "Last 7 days";
+"history_range_last_30_days" = "Last 30 days";
+"history_range_last_90_days" = "Last 90 days";
+"history_range_current_day" = "Current day";
+"history_range_current_week" = "Current week";
+"history_range_current_month" = "Current month";
+"history_range_current_quarter" = "Current quarter";
+"history_range_current_year" = "Current year";
+"history_range_custom" = "Custom range";
+"history_refreshing" = "Refreshing…";
+"history_refreshing_failed" = "Refresh failed";
+"history_no_data_selected" = "No data set selected.";
+"history_no_data_available" = "There are no measurements available yet";
+"history_no_data_in_selected_period" = "No chart data available in selected time period.";
+"Minutes" = "Minuty";
+"Hours" = "Godziny";
+"Days" = "Dni";
+"Months" = "Miesiące";
+"Years" = "Lata";

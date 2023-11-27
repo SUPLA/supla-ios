@@ -4,3 +4,4 @@
 
 #import "SUPLA-Bridging-Header.h"
 //#import "SUPLA-Swift.h"
+#import "Mocks/Native/CStructsConstructor.h"

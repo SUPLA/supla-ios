@@ -1,0 +1,317 @@
+/*
+ This program is free software; you can redistribute it and/or
+ modify it under the terms of the GNU General Public License
+ as published by the Free Software Foundation; either version 2
+ of the License, or (at your option) any later version.
+ 
+ This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ GNU General Public License for more details.
+ 
+ You should have received a copy of the GNU General Public License
+ along with this program; if not, write to the Free Software
+ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
+ */
+
+"version" = "версія";
+"Open" = "Відчинити";
+"Open Close" = "Відчинити Зачинити";
+"Reveal" = "Open";
+"Shut" = "Приховати";
+"On" = "Увімкнути";
+"Off" = "Вимкнути";
+"opened the gateway" = "відчинив ворота";
+"opened / closed the gate" = "відчинив/зачинив ворота";
+"opened / closed the gate doors" = "відчинив/зачинив двері гаража";
+"opened the door" = "відчинив двері";
+"opened / closed roller shutter" = "відчинив/зачинив ролету";
+"turned the power ON/OFF" = "увімкнув/вимкнув живлення";
+"turned the light ON/OFF" = "увімкнув/вимкнув світло";
+"Settings" = "Налаштування";
+"About" = "Про програму";
+"Gateway" = "Хвіртка";
+"Gate" = "Ворота";
+"Garage door" = "Гаражні ворота";
+"Door" = "Двері";
+"Roller shutter" = "Ролета";
+"Power switch" = "Вимикач живлення";
+"Lighting switch" = "Вимикач світла";
+"Thermometer" = "Термометр";
+"Temperature and humidity" = "Температура і вологість";
+"No liquid sensor" = "Датчик відсутності рідини";
+"Gateway opening sensor" = "Датчик відчинення хвіртки";
+"Gate opening sensor" = "Датчик відчинення воріт";
+"Garage door opening sensor" = "Датчик відчинення гаражних воріт";
+"Door opening sensor" = "Датчик відчинення дверей";
+"Roller shutter opening sensor" = "Датчик відчинення ролет";
+"Connecting..." = "Підключення...";
+"Unknown error" = "Невідома помилка";
+"Service temporarily unavailable" = "Послуга тимчасово недоступна";
+"Bad credentials" = "Неправильні облікові дані";
+"Client limit exceeded" = "Перевищено ліміт клієнтських додатків";
+"Device disabled. Please log in to \"Supla Cloud\" and enable this device in “Smartphone” section of the website." = "Пристрій вимкнено. Увійдіть в \"Supla Cloud\" і включіть цей смартфон на вкладці \"Смартфони\".";
+"Access Identifier is disabled" = "Ідентифікатор доступу вимкнено";
+"New client registration disabled. Please log in to \"Supla Cloud\" and enable \"New client registration\" in \"Smartphone\" section of the website." = "Реєстрація в даний час відключена. Увійдіть в \"Supla Cloud\" і переключіть реєстрацію клієнтів на АКТИВНУ на вкладці \"Смартфони\".";
+"Client activation required. Please log in to \"Supla Cloud\" and assign an “Access ID” for this device in “Smartphone” section of the website." = "Цьому пристрою не присвоєно ідентифікатор доступу. Перейдіть на сторінку \"Supla Cloud\" і на вкладці \"Смартфони\" призначте відповідний ідентифікатор.";
+"Incompatible server version" = "Несумісна версія сервера";
+"Host not found. Make sure you are connected to the internet and that an account with the entered email address has been created." = "Адреса сервера не знайдена. Переконайтеся, що у вас є підключення до Інтернету та що створено обліковий запис із введеною адресою електронної пошти.";
+"RGB Lighting" = "Освітлення RGB";
+"Dimmer and RGB lighting" = "Регулятор освітленості та освітлення RGB";
+"Dimmer" = "Регулятор освітленості";
+"Distance sensor" = "Датчик відстані";
+"Depth sensor" = "Датчик глибини";
+"Did you know that Supla is an open, free project developed by the community? If you like the app, spend a moment on rating it. Thank you for your support!" = "Чи знаєте ви, що Supla є відкритим і безкоштовним проєктом, розробленим спільнотою? Якщо вам подобається ця програма, будь ласка, знайдіть час, щоб оцінити її. Дякуємо вам за підтримку!";
+"Rate Now" = "Оцінити зараз";
+"Later" = "Пізніше";
+"No thanks" = "Ні, дякую";
+"Mail sensor" = "Датчик пошти";
+"Window opening sensor" = "Датчик відкриття вікна";
+"Add I/O device" = "Додайте пристрій";
+"Donate" = "Підтримайте проект";
+"Create an account" = "Створити";
+"Device registration availability information timeout!" = "Минув час очікування інформації про наявність реєстрації пристрою!";
+"Next" = "Далі";
+"Start" = "старт";
+"Cancel" = "Скасувати";
+"Go to the system settings" = "Перейдіть до налаштувань системи";
+"I/O Device registration is currently off. To continue go to „My SUPLA” at %@ and enable the Device Add Button." = "Реєстрацію пристроїв введення/виведення наразі вимкнено. Щоб продовжити, перейдіть на сторінку %@ і на вкладці «Моя SUPLA» увімкніть додавання пристроїв.";
+"Add Wizard is only available when server connection has been set based on the email address entered in the settings. (Disable advanced options in the settings)" = "Майстер додавання доступний лише тоді, коли встановлено з’єднання з сервером на основі введеної електронної адреси! (Вимкніть додаткові параметри в налаштуваннях облікового запису)";
+"The connected Server does not support this function!" = "Сервер, до якого ви підключені, не підтримує цю функцію!";
+"Device Configuration Completion timeout!" = "Час очікування завершення налаштування пристрою минув!";
+"Incorrect input parameters (%@)!" = "Неправильні вхідні параметри (%@)!";
+"The connected device is not compatible with this Wizard!" = "Підключений пристрій несумісний із цим майстром!";
+"Configuration Failed!" = "Помилка налаштування!";
+"Connection with the device cannot be set!" = "Неможливо підключитися до пристрою!";
+"Make sure, if the Wi-fi connection has been set for the I/O device." = "Переконайтеся, що з'єднання виконавчого пристрою з мережею WiFi встановлено.";
+"[Calibration]" = "[Калібрування]";
+"Help" = "Довідка";
+
+"Staircase timer" = "Сходовий автомат";
+"https://cloud.supla.org/register" = "https://cloud.supla.org/register?lang=uk";
+
+"Retrieving data from the server..." = "Завантаження даних із сервера...";
+"No chart data available." = "Немає даних для діаграми.";
+"Electricity Meter" = "Лічильник електроенергії";
+"Water Meter" = "Лічильник води";
+"Gas Meter" = "Лічильник газу";
+
+"Forward active Energy" = "Спожита активна енергія";
+"Reverse active Energy" = "Повернуто активну енергію";
+"Consumption in the current month" = "Споживання за поточний місяць";
+"Production in the current month" = "Виробництво поточного місяця";
+"Minutes" = "Хвилини";
+"Hours" = "Години";
+"Days" = "Дні";
+"Months" = "Місяці";
+"Years" = "Роки";
+"Minute to minute comparison" = "Похвилинне порівняння";
+"Hour to hour comparison" = "Погодинне порівняння";
+"Day to day comparison" = "Порівняння за день";
+"Month to month comparison" = "Порівняння за місяць";
+"Year to year comparison" = "Порівняння за рік";
+"Ranking of hours" = "Рейтинг годин";
+"Ranking of weekdays" = "Рейтинг днів тижня";
+"Ranking of months" = "Рейтинг місяців";
+"Consumption according to phases" = "Споживання за фазою";
+"Production according to phases" = "Виробництво за фазою";
+"Last 24 hours" = "Останні 24 години";
+"Last 7 days" = "Останні 7 днів";
+"Last 30 days" = "Останні 30 днів";
+"Last 90 days" = "Останні 90 днів";
+"All available history" = "Вся історія доступна";
+"Phase 1" = "Фаза 1";
+"Phase 2" = "Фаза 2";
+"Phase 3" = "Фаза 3";
+"Home+ Heater" = "Обігрівач Home+";
+"Comfort" = "Комфорт";
+"ECO" = "ЕКО";
+"Higher" = "Комфорт";
+"Lower" = "ЕКО";
+"No water" = "Нестача води";
+"Burnt heater" = "Згорів обігрівач";
+"Water temperature sensor error" = "Помилка датчика температури води";
+"Room temperature sensor error" = "Помилка датчика температури в приміщенні";
+"No network interruptions" = "Відсутність перебоїв у роботі мережі";
+"Room temperature" = "Температура в приміщенні";
+"ON" = "УВІМКНЕНИЙ";
+"OFF" = "ВИМКНЕНИЙ";
+"h" = "год.";
+"Wind sensor" = "Швидкість вітру";
+"Weight sensor" = "Вага";
+"Pressure sensor" = "Датчик тиску";
+"Rain sensor" = "Вимірювання опадів";
+
+"Close" = "Зачинити";
+"Valve" = "Клапан";
+"The valve has been closed in manual mode. Before you open it, make sure it has not been closed due to flooding. To turn off the warning, open the valve manually. Are you sure you want to open it from the application ?!" = "Клапан був закритий в ручному режимі. Перш ніж відкрити його, переконайтеся, що він не був закритий через затоплення. Щоб вимкнути попередження, відкрийте клапан вручну. Ви впевнені, що хочете відкрити клапан із додатку?!";
+"The valve has been closed in manual mode. Before you open it, make sure it has not been closed due to flooding. To turn off the warning, open the valve manually." = "Клапан був закритий в ручному режимі. Перш ніж відкрити його, переконайтеся, що він не був закритий через затоплення. Щоб вимкнути попередження, відкрийте клапан вручну.";
+"Warning" = "Попередження";
+"Yes" = "Так";
+"No" = "Ні";
+
+"Heat meter" = "Теплолічильник";
+"Arithmetic balance - Minutes" = "Арифметичний баланс - Хвилини";
+"Arithmetic balance - Hours" = "Арифметичний баланс - Години";
+"Arithmetic balance - Days" = "Арифметичний баланс - Дні";
+"Arithmetic balance - Months" = "Арифметичний баланс - Місяці";
+"Arithmetic balance - Years" = "Арифметичний баланс - Роки";
+"Vector balance - Minutes" = "Векторний баланс - Хвилини";
+"Vector balance - Hours" = "Векторний баланс - Години";
+"Vector balance - Days" = "Векторний баланс - Дні";
+"Vector balance - Months" = "Векторний баланс - Місяці";
+"Vector balance - Years" = "Bilans wektorowy - Lata";
+
+"Time exceeded. Try again." = "Час вийшов. Спробуйте знову.";
+"Are you sure you want to restore the default settings?" = "Ви впевнені, що хочете відновити налаштування за замовчуванням ?";
+"Default settings" = "Налаштування за замовчуванням";
+
+"Battery level" = "Рівень заряду батареї";
+"Battery powered" = "Працює від батареї";
+"Wifi signal strength" = "Потужність сигналу WiFi";
+"Bridge node - online" = "Мостовий вузол - онлайн";
+"Bridge node - signal strength" = "Мостовий вузол  - потужність сигналу";
+"Uptime" = "Час роботи";
+"Connection uptime" = "Час підключення";
+"Battery health" = "Термін служби батареї";
+"Connection reset cause" = "Причина перезапуску з'єднання";
+"Light source lifespan" = "Термін служби джерела світла";
+"Light source operating time" = "Час роботи джерела світла";
+"CHANGE THE LIGHT SOURCE LIFESPAN SETTINGS" = "ЗМІНИТИ НАЛАШТУВАННЯ РЕСУРСУ ДЖЕРЕЛА СВІТЛА";
+"The lifespan of the uv radiator is %.02f%%. Schedule its replacement." = "Термін служби УФ-випромінювача становить %,02f%%. Заплануйте його заміну.";
+"The lifespan of the uv radiator is %.02f%%. Replace the radiator." = "Термін служби УФ-випромінювача становить %,02f%%. Замінити випромінювач.";
+"The lifespan of the light source is %.02f%%." = "Термін служби джерела світла становить %,02f%%.";
+"Timeout for enabling registration has expired!" = "Час реєстрації минув!";
+"Please enter your Supla Cloud login details." = "Введіть дані для входу в Supla Cloud.";
+"Enter superuser credentials" = "Введіть облікові дані основного користувача";
+"Dimmer settings" = "Налаштування регулятора освітленості";
+"Do you want to quit without saving?" = "Ви впевнені, що хочете вийти без запису?";
+"Do you want to save the settings?" = "Хочете зберегти налаштування?";
+"Restoring default settings" = "Відновлення налаштувань за замовчуванням триває";
+"Mode change in progress" = "Триває зміна режиму";
+"Roof window" = "Мансардне вікно";
+
+"*Configuration mode is enabled by default on brand new products. It can also be enabled manually by pressing and holding CONFIG button or dimmer knob for around 5s.\n\n%@\n" = "Якщо пристрій не перебуває в режимі налаштування після ввімкнення живлення, утримуйте кнопку CONFIG принаймні 5 секунд.\n\n%@\n";
+"Press Next to continue." = "Натисніть Далі, щоб продовжити.";
+"Press START to start configuration." = "Натисніть кнопку СТАРТ, щоб почати налаштування.";
+"I/O Device connection setting timeout!" = "Минув час очікування встановлення з'єднання з пристроєм виконання!";
+"No I/O Devices found! Please check if your I/O Device is ON and in configuration mode." = "Пристроїв не знайдено! Переконайтеся, що пристрій, який ви хочете налаштувати, знаходиться в режимі налаштування, а потім повторіть спробу.";
+"Make sure that the application has permissions to discover and connect to devices in the local network. This means that the \"iOS->Settings->SUPLA->Local network\" permission must be turned on for the wizard to work properly." = "Переконайтеся, що програма має дозвіл на пошук пристроїв у вашій локальній мережі та підключення до них. Це означає, що для належної роботи майстра має бути ввімкнено дозвіл \"iOS->Налаштування->SUPLA->Локальна мережа\".";
+"The glass sections are exposed for more than 20 hours, which may adversely affect their life. It is recommended to cover all sections for a minimum of 4 hours in order to regenerate them." = "Скляні секції експонуються більше 20 годин, що може негативно вплинути на термін їх служби. Рекомендується накрити всі секції мінімум на 4 години для їх регенерації.";
+"Planned regeneration is in progress." = "Виконується планова регенерація.";
+"Regeneration initiated after 20 hours of operation is in progress." = "Триває регенерація, розпочата після 20 годин роботи.";
+"Incorrect Email Address or Password" = "Неправильна адреса електронної пошти або пароль";
+"Channel Id" = "Ідентифікатор каналу";
+"Back" = "Назад";
+"The z-wave bridge is not responding. Check if the bridge is connected to the server." = "Міст z-wave не відповідає. Перевірте, чи підключено міст до сервера.";
+"Exit" = "Вихід";
+"The waiting time for basic channel configuration data has expired." = "Минув час очікування базових даних конфігурації каналу";
+"Channel name" = "Назва каналу";
+"Location name" = "Назва місця";
+"Default" = "За замовчуванням";
+"No function" = "Немає функції";
+"Gateway lock operation" = "Відкриття воріт";
+"Gate operation" = "Відкриття/закриття в'їзних воріт";
+"Garage door operation" = "Відкриття/закриття гаражних воріт";
+"Humidity sensor" = "Датчик вологості";
+"Temperature and humidity sensor" = "Датчик температури та вологості";
+"Door lock operation" = "Відчинення дверей";
+"Roller shutter operation" = "Відкривання і закривання ролет";
+"Roof window operation" = "Відчинення та зачинення мансардного вікна";
+"Roof window opening sensor" = "Датчик відчинення мансардного вікна";
+"On/Off switch" = "Вимикач живлення";
+"Light switch" = "Вимикач світла";
+"Weather Station" = "Метеостанція";
+"Thermostat" = "Термостат";
+"The waiting time for changing the channel caption has expired." = "Час очікування зміни підпису каналу минув.";
+"The channel caption change failed. Code %i" = "Не вдалося змінити підпис каналу. Код %i";
+"You cannot change the function of a channel that belongs to a group." = "Ви не можете змінити функцію каналу, який належить до групи.";
+"You cannot change the function of a channel that has a schedule." = "Ви не можете змінити функції каналу, який має розклад.";
+"You cannot change the function of a channel that is associated with a scene." = "Ви не можете змінити функцію каналу, пов’язаного зі сценою.";
+"The channel function change failed. Code %i" = "Не вдалося змінити функцію каналу. Код %i";
+"The waiting time for changing the channel function has expired." = "Минув час для зміни функції каналу.";
+"Searching the z-wave network to build a list of devices." = "Пошук мережі z-wave для створення списку пристроїв.";
+"The waiting time for the ID of the assigned z-wave device has expired." = "Час очікування ідентифікатора призначеного пристрою z-wave минув.";
+"Device response not as expected. Method: \"%@\" Code: %i" = "Відповідь пристрою не відповідає очікуванням. Метод: \"%@\" Код: %i";
+"The waiting time for the list of z-wave devices has expired." = "Час очікування для списку пристроїв z-wave минув.";
+"Assigned to:" = "Присвоєно:";
+"Waiting for confirmation of resetting the z-wave network together with clearing the settings." = "Очікування підтвердження скидання мережі z-wave разом із видаленням налаштувань.";
+"The waiting time for the z-wave network reset has expired." = "Час очікування скидання мережі z-wave минув.";
+"Are you sure you want to reset the settings and z-wave network?" = "Ви впевнені, що бажаєте скинути налаштування та мережу z-wave?";
+"This function is not available when the bridge is in slave mode." = "Ця функція недоступна, коли міст перебуває в підлеглому режимі.";
+"Waiting for button press on the z-wave device." = "Очікування натискання кнопки в пристрої z-wave.";
+"The waiting time for pressing the button has elapsed." = "Час натискання кнопки минув.";
+"Waiting for the device to be added to the z-wave network." = "Очікування додавання пристрою до мережі z-wave.";
+"The waiting time for adding the device to the z-wave network has expired." = "Час очікування для додавання пристрою до мережі z-wave минув.";
+"The waiting time to remove the device has expired." = "Час очікування видалення пристрою минув.";
+"The waiting time for the z-wave device assignment to the channel has elapsed." = "Час очікування для призначення пристрою z-wave каналу минув.";
+"The selected z-wave device is already associated with another channel. Are you sure you want to move this device to this channel?" = "Вибраний пристрій z-wave уже пов’язано з іншим каналом. Ви впевнені, що бажаєте перемістити цей пристрій на цей канал?";
+"Timeout waiting for z-wave bridge response." = "Час очікування відповіді моста z-wave минув.";
+"Unexpected bridge response. Code: %i" = "Nieoczekiwana odpowiedź mostu. Kod: %i";
+"Z-Wave bridge" = "Міст z-wave";
+"opened / closed the roof window" = "відчинив/зачинив мансардне вікно";
+"The power was turned off after the set threshold of the allowable current was exceeded." = "Відключення живлення відбулося після перевищення встановленого порогу допустимої сили струму.";
+"Are you sure you want to start calibration?" = "Ви впевнені, що хочете почати калібрування?";
+"Calibration lost." = "Помилка калібрування.";
+"Calibration failed." = "Калібрування втрачено.";
+"Motor problem / Unexpected stop." = "Проблема з двигуном / Несподівана зупинка.";
+"0: unknown" = "0: невідомо";
+"1: server timeout" = "1: немає відповіді сервера";
+"2: Wi-Fi connection lost" = "2: Wi-Fi з’єднання втрачено";
+"3: server connection reset" = "3: скидання підключення до сервера";
+"Your account" = "Ваш обліковий запис";
+"App Settings" = "Налаштування";
+"Channel height" = "Висота каналу";
+"Temperature unit" = "Одиниця вимірювання температури";
+"Auto-hide buttons" = "Автоматичне приховування кнопки";
+"Device setup" = "Конфігурація пристрою";
+"This device does not have any channels visible in the application. To finish configuration go to cloud.supla.org" = "Цей пристрій не має видимих каналів у програмі. Щоб завершити налаштування, перейдіть на cloud.supla.org";
+"I understand" = "Розумію";
+"Go to CLOUD" = "Перейдіть до CLOUD";
+"The function of the channel associated with the action trigger cannot be changed." = "Неможливо змінити функцію каналу, пов’язаного з активатором дії.";
+"Show ⓘ button" = "Показати кнопку ⓘ";
+"Advanced settings" = "Розширений";
+"Access ID" = "ID";
+"ACCESS IDENTIFIER" = "ID ДОСТУПУ";
+"E-MAIL ADDRESS" = "ЕЛЕКТРОННА ПОШТА";
+"SERVER ADDRESS" = "АДРЕСА СЕРВЕРА";
+"PASSWORD" = "ПАРОЛЬ";
+"In Access ID authentication mode you won't be able to use automatic Add device wizard. However you will still be able to add it by manual Add device procedure." = "Майстер автоматичного додавання пристроїв недоступний у режимі автентифікації за ідентифікатором доступу. Пристрої можуть бути додані вручну.";
+"Don't have an account in Supla Cloud yet?" = "У вас ще немає облікового запису в Supla Cloud?";
+"Create" = "Створити обліковий запис";
+"Location order" = "Порядок розташування";
+"Roller shutter %" = "Ролети %";
+"Opening" = "Відкриття";
+"Closing" = "Закриття";
+"Percent of opening" = "Відсоток відкриття";
+"Percent of closing" = "Відсоток закриття";
+"Access Identifier inactive." = "Ідентифікатор доступу неактивний.";
+"Your account" = "Ваш обліковий запис";
+"Your accounts" = "Ваші облікові записи";
+"Accounts" = "Облікові записи";
+"NAME" = "НАЗВА";
+"Tap the account to log in." = "Торкніться облікового запису, щоб увійти";
+"Add new" = "Додати нові";
+"active" = "активні";
+"Default" = "За замовчуванням";
+"Delete account" = "Видалити обліковий запси";
+"Select active account" = "Виберіть активний обліковий запис";
+"Phase 1+2+3" = "Фаза 1+2+3";
+"Phase %d" = "Фаза %d";
+
+"AccountCreation.title" = "Редагувати обліковий запис";
+"AccountCreation.modificationTitle" = "Додати обліковий запис";
+
+"AccountRemoval.url" = "https://{SERVER_ADDRESS}/db99845855b2ecbfecca9a095062b96c3e27703f?lang=uk";
+
+"Scenes.ActionButtons.execute" = "Виконати";
+"Scenes.ActionButtons.abort" = "Перервати";
+
+"Cfg.removal.dialog.missing_name" = "Введіть назву облікового запису";
+"Cfg.removal.dialog.duplicated_name" = "Обліковий запис із такою назвою вже існує";
+"Cfg.removal.dialog.incomplete" = "Заповніть необхідні дані";
+
+"General.error" = "Помилка";
+
+/* Thermometer Chart */
+"history_no_data_in_selected_period" = "Немає даних для діаграми.";

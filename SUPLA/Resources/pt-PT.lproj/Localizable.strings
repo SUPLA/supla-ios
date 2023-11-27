@@ -1,0 +1,314 @@
+/*
+ This program is free software; you can redistribute it and/or
+ modify it under the terms of the GNU General Public License
+ as published by the Free Software Foundation; either version 2
+ of the License, or (at your option) any later version.
+ 
+ This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ GNU General Public License for more details.
+ 
+ You should have received a copy of the GNU General Public License
+ along with this program; if not, write to the Free Software
+ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
+ */
+
+"version" = "versão";
+"Open" = "Abrir";
+"Open Close" = "Abrir Fechar";
+"Reveal" = "Esconder";
+"Shut" = "Revelar";
+"On" = "Ligar";
+"Off" = "Desligar";
+"opened the gateway" = "o portão foi aberto";
+"opened / closed the gate" = "abriu / fechou o portão";
+"opened / closed the gate doors" = "abriu / fechou a porta de garagem";
+"opened the door" = "abriu a porta";
+"opened / closed roller shutter" = "abriu / fechou um estore";
+"turned the power ON/OFF" = "luz ON/OFF";
+"turned the light ON/OFF" = "luz ligada / desligada";
+"Settings" = "Configurações";
+"About" = "Sobre o programa";
+"Gateway" = "Portinhola";
+"Gate" = "Portão";
+"Garage door" = "Portão de garagem";
+"Door" = "Porta";
+"Roller shutter" = "Estores";
+"Power switch" = "Interruptor de alimentação";
+"Lighting switch" = "Interruptor de luz";
+"Thermometer" = "Termómetro";
+"Temperature and humidity" = "Temperatura e humidade";
+"No liquid sensor" = "Sensor de falta do líquido";
+"Gateway opening sensor" = "Sensor de abertura da portinhola";
+"Gate opening sensor" = "Sensor de abertura do portão";
+"Garage door opening sensor" = "Sensor de abertura da garagem";
+"Door opening sensor" = "Sensor de abertura da porta";
+"Roller shutter opening sensor" = "Sensor de abertura dos estores";
+"Connecting..." = "Está a ligar...";
+"Unknown error" = "Erro indefinido";
+"Service temporarily unavailable" = "Serviço temporariamente indisponível";
+"Bad credentials" = "Dados de identificação errados";
+"Client limit exceeded" = "Excedeu o limite de aplicações de clientes";
+"Device disabled. Please log in to \"Supla Cloud\" and enable this device in “Smartphone” section of the website." = "O dispositivo está desligado";
+"Access Identifier is disabled" = "O ID de acesso está desativado";
+"New client registration disabled. Please log in to \"Supla Cloud\" and enable \"New client registration\" in \"Smartphone\" section of the website." = "Atualmente o registro está desativado. Para activá-lo, vá para a guia \"Smartphones\" na página \"Supla Cloud\"";
+"Client activation required. Please log in to \"Supla Cloud\" and assign an “Access ID” for this device in “Smartphone” section of the website." = "Este dispositivo não possui um ID de acesso atribuído. Vá para a página \"Supla Cloud\" e atribua o ID apropriado na guia \"Smartphones\".";
+"Incompatible server version" = "Versão do servidor incompátivel";
+"Host not found. Make sure you are connected to the internet and that an account with the entered email address has been created." = "O endereço do servidor não foi encontrado";
+"RGB Lighting" = "Iluminação RGB";
+"Dimmer and RGB lighting" = "Controlador de luz e iluminação RGB";
+"Dimmer" = "Controlador de luz";
+"Distance sensor" = "Sensor de distância";
+"Depth sensor" = "Sensor de profundidade";
+"Did you know that Supla is an open, free project developed by the community? If you like the app, spend a moment on rating it. Thank you for your support!" = "Sabia que Supla é um projeto aberto e gratuito desenvolvido pela comunidade? Se gosta desta aplicação, gaste um minuto a avaliá-la. Obrigado pelo seu apoio!";
+"Rate Now" = "Avalie agora";
+"Later" = "Mais tarde";
+"No thanks" = "Não, obrigado";
+"Mail sensor" = "Sensor de correio";
+"Window opening sensor" = "Sensor de abertura para uma janela";
+"Add I/O device" = "Adicionar um dispositivo";
+"Donate" = "Doar";
+"Create an account" = "Crie uma conta";
+"Device registration availability information timeout!" = "O tempo-limite de informação sobre a disponibilidade do registo dos dispositivos foi excedido!";
+"Next" = "Continuar";
+"Start" = "Start";
+"Cancel" = "Cancelar";
+"Go to the system settings" = "Passe às configurações do sistema";
+"I/O Device registration is currently off. To continue go to „My SUPLA” at %@ and enable the Device Add Button." = "O registo de dispositivos de entrada/saída está atualmente desligado. Para continuar vá para a página %@ e ligue adicionar dispositivos no marcador “Meu SUPLA”.";
+"Add Wizard is only available when server connection has been set based on the email address entered in the settings. (Disable advanced options in the settings)" = "A Opção Adicionar Assistente só está disponível quando for estabelecida uma ligação ao servidor com base no endereço de e-mail inscrito! (Desative as opções avançadas na configuração da sua conta)";
+"The connected Server does not support this function!" = "O assistente para adicionar está disponível só se uma ligação com o servidor foi criada usando o enderço e-mail presente nas configurações!";
+"Device Configuration Completion timeout!" = "O tempo-limite de configuração de um dispositivo foi excedido!";
+"Incorrect input parameters (%@)!" = "Os parâmetros de entrada errados (%@)!";
+"The connected device is not compatible with this Wizard!" = "O dispositivo que conectou não é compatível com este assistente!";
+"Configuration Failed!" = "A configuração falhou!";
+"Connection with the device cannot be set!" = "Impossível conectar um dispositivo!";
+"Make sure, if the Wi-fi connection has been set for the I/O device." = "Assegurar que a ligação à rede WiFi do dispositivo executivo tenha sido estabelecida.";
+"[Calibration]" = "[Calibrar]";
+"Help" = "Ajuda";
+
+"Staircase timer" = "Comutador de escada";
+"https://cloud.supla.org/register" = "https://cloud.supla.org/register?lang=pt";
+
+"Retrieving data from the server..." = "Baixando dados do servidor ...";
+"No chart data available." = "Nenhum dado para o gráfico.";
+"Electricity Meter" = "Medidor de energia elétrica";
+"Water Meter" = "Medidor de água";
+"Gas Meter" = "Medidor de energia elétrica";
+
+"Forward active Energy" = "Energia ativa direta";
+"Reverse active Energy" = "Energia ativa reversa";
+"Consumption in the current month" = "Consumo no mês atual";
+"Production in the current month" = "Produção no mês atual";
+"Minutes" = "Minutos";
+"Hours" = "Horas";
+"Days" = "Dias";
+"Months" = "Meses";
+"Years" = "Anos";
+"Minute to minute comparison" = "Comparação minuto a minuto";
+"Hour to hour comparison" = "Comparação hora a hora";
+"Day to day comparison" = "Comparação dia a dia";
+"Month to month comparison" = "Comparação mês a mês";
+"Year to year comparison" = "Comparação ano a ano";
+"Ranking of hours" = "Ranking de horas";
+"Ranking of weekdays" = "Ranking de dias da semana";
+"Ranking of months" = "Ranking de meses";
+"Consumption according to phases" = "Consumo de acordo com fase";
+"Production according to phases" = "Produção de acordo com fase";
+"Last 24 hours" = "Últimas 24 horas";
+"Last 7 days" = "Últimos 7 dias";
+"Last 30 days" = "Últimos 30 dias";
+"Last 90 days" = "Últimos 90 dias";
+"All available history" = "Todo o histórico disponível";
+"Phase 1" = "Fase 1";
+"Phase 2" = "Fase 2";
+"Phase 3" = "Fase 3";
+"Home+ Heater" = "Aquecedor Home+";
+"Comfort" = "Conforto";
+"ECO" = "ECO";
+"Higher" = "Conforto";
+"Lower" = "ECO";
+"No water" = "Falta de água";
+"Burnt heater" = "Aquecedor estourado";
+"Water temperature sensor error" = "Erro do sensor da temperatura de água";
+"Room temperature sensor error" = "Erro do sensor da temperatura de ambiente";
+"No network interruptions" = "Fornecimento ininterrupto de eletricidade";
+"Room temperature" = "Temperatura ambiente";
+"ON" = "LIGADO";
+"OFF" = "DESLIGADO";
+"h" = "h";
+"Wind sensor" = "Velocidade do vento";
+"Weight sensor" = "Peso";
+"Pressure sensor" = "Sensor de pressão";
+"Rain sensor" = "Medições da precipitação";
+
+"Close" = "Encerrar";
+"Valve" = "Válvula";
+"The valve has been closed in manual mode. Before you open it, make sure it has not been closed due to flooding. To turn off the warning, open the valve manually. Are you sure you want to open it from the application ?!" = "A válvula foi fechada em modo manual. Antes de o abrir, certifique-se de que não foi fechado devido a inundações. Para desactivar o aviso, abrir manualmente a válvula. Tem a certeza que quer abrir a válvula a partir da aplicação!";
+"The valve has been closed in manual mode. Before you open it, make sure it has not been closed due to flooding. To turn off the warning, open the valve manually." = "A válvula foi fechada em modo manual. Antes de a abrir, certifique-se de que não foi fechada devido a inundações. Para desativar o aviso, abra a válvula manualmente.";
+"Warning" = "Aviso";
+"Yes" = "Sim";
+"No" = "Não";
+
+"Heat meter" = "Medidor de calor";
+"Arithmetic balance - Minutes" = "Equilíbrio aritmético - Minutos";
+"Arithmetic balance - Hours" = "Equilíbrio aritmético - Horas";
+"Arithmetic balance - Days" = "Equilíbrio aritmético - Dias";
+"Arithmetic balance - Months" = "Equilíbrio aritmético - Meses";
+"Arithmetic balance - Years" = "Equilíbrio aritmético - Anos";
+"Vector balance - Minutes" = "Equilíbrio do Vetor - Minutos";
+"Vector balance - Hours" = "Equilíbrio do Vetor - Horas";
+"Vector balance - Days" = "Equilíbrio do Vetor - Dias";
+"Vector balance - Months" = "Equilíbrio do Vetor - Meses";
+"Vector balance - Years" = "Equilíbrio do Vetor - Anos";
+
+"Time exceeded. Try again." = "Tempo Ultrapassado . Tente outra vez";
+"Are you sure you want to restore the default settings?" = "Tem a certeza de que pretende restaurar as definições predefinições?";
+"Default settings" = "Configurações predefinidas";
+
+"Battery level" = "Nível de bateria";
+"Battery powered" = "Bateria";
+"Wifi signal strength" = "Força do sinal WiFi";
+"Bridge node - online" = "Junção de pontes - online";
+"Bridge node - signal strength" = "Junção da ponte - força do sinal";
+"Uptime" = "Tempo de trabalho";
+"Connection uptime" = "Tempo de ligação";
+"Battery health" = "Duração da bateria";
+"Connection reset cause" = "Motivo para reiniciar a ligação";
+"Light source lifespan" = "Vida útil da fonte de luz";
+"Light source operating time" = "Tempo de funcionamento da fonte luminosa";
+"CHANGE THE LIGHT SOURCE LIFESPAN SETTINGS" = "ALTERAR AS DEFINIÇÕES DE VIDA ÚTIL DA FONTE DE LUZ";
+"The lifespan of the uv radiator is %.02f%%. Schedule its replacement." = "A vida útil do radiador UV é de %02f%%. Planeia substituí-lo.";
+"The lifespan of the uv radiator is %.02f%%. Replace the radiator." = "A vida útil do radiador UV é de %02f%%. Substitua o radiador.";
+"The lifespan of the light source is %.02f%%." = "A vida útil da fonte de luz é de %02f%%.";
+"Timeout for enabling registration has expired!" = "O tempo de espera para o registo ter sido activado expirou!";
+"Please enter your Supla Cloud login details." = "Introduza os seus dados de login para Supla Cloud.";
+"Enter superuser credentials" = "Introduzir as credenciais do utilizador principal";
+"Dimmer settings" = "Configurações de dimmer";
+"Do you want to quit without saving?" = "Tem certeza que quer ir embora sem poupar?";
+"Do you want to save the settings?" = "Deseja guardar as suas definições?";
+"Restoring default settings" = "Restaurar as definições predefinidos";
+"Mode change in progress" = "Mudança de modo em curso";
+"Roof window" = "Janela do telhado";
+
+"*Configuration mode is enabled by default on brand new products. It can also be enabled manually by pressing and holding CONFIG button or dimmer knob for around 5s.\n\n%@\n" = "Se um dispositivo não trabalha no modo de configuração depois de o ligar à rede elétrica, mantenha o botão carregado CONFIG por 5 segundos ao mínimo..\n\n%@\n";
+"Press Next to continue." = "Para continuar carregue em Continuar.";
+"Press START to start configuration." = "Carregue no botão START para iniciar uma configuração.";
+"I/O Device connection setting timeout!" = "O tempo-limite de conexão a um atuador foi excedido!";
+"No I/O Devices found! Please check if your I/O Device is ON and in configuration mode." = "Nenhum dispositivo foi encontardo! Certifique-se que um dispositivo que quer configurar trabalha no modo de configuração e tente novamente.";
+"Make sure that the application has permissions to discover and connect to devices in the local network. This means that the \"iOS->Settings->SUPLA->Local network\" permission must be turned on for the wizard to work properly." = "Assegurar que a aplicação tem permissão para encontrar dispositivos na rede local e ligar-se a eles. Isto significa que a permissão \"iOS->Settings->SUPLA->Local Network\" deve ser activada para que o assistente possa funcionar correctamente. ";
+"The glass sections are exposed for more than 20 hours, which may adversely affect their life. It is recommended to cover all sections for a minimum of 4 hours in order to regenerate them." = "As secções do vidro são expostas por mais de 20 horas, o que pode afetar negativamente a sua vida útil. Recomenda-se cobrir todas as secções durante um mínimo de 4 horas para as regenerar.";
+"Planned regeneration is in progress." = "A regeneração planeada está em curso.";
+"Regeneration initiated after 20 hours of operation is in progress." = "A regeneração iniciará  após 20 horas de trabalho.";
+"Incorrect Email Address or Password" = "Erro de morada de emailou de palavra passe";
+"Channel Id" = "ID do Canal";
+"Back" = "Voltar";
+"The z-wave bridge is not responding. Check if the bridge is connected to the server." = "A ponte z-wave não responde. Verifique se a ponte está conectada ao servidor.";
+"Exit" = "Sair";
+"The waiting time for basic channel configuration data has expired." = "Tempo decorrido para dados básicos de configuração de canais";
+"Channel name" = "Nome do canal";
+"Location name" = "Nome da localização";
+"Default" = "Predefinição";
+"No function" = "Falta de funções";
+"Gateway lock operation" = "Abrir um portão";
+"Gate operation" = "Abrir/fechar um portão de entrada";
+"Garage door operation" = "OAbrir/fechar um portão de garagem";
+"Humidity sensor" = "Sensor de humidade";
+"Temperature and humidity sensor" = "Sensor da temperatura e humidade";
+"Door lock operation" = "Abrir uma porta";
+"Roller shutter operation" = "Abrir e fechar estores";
+"Roof window operation" = "Abrir e fechar a janela do telhado";
+"Roof window opening sensor" = "Sensor de abertura da janela do telhado";
+"On/Off switch" = "Interruptor da alimentação";
+"Light switch" = "Interruptor de luz";
+"Weather Station" = "Estação meteorológica";
+"Thermostat" = "Termostato";
+"The waiting time for changing the channel caption has expired." = "O tempo limite de espera para alterar a assinatura do canal expirou.";
+"The channel caption change failed. Code %i" = "Falha ao alterar a assinatura do canal. Código %i";
+"You cannot change the function of a channel that belongs to a group." = "Não é possível alterar as funções de um canal que faz parte do grupo.";
+"You cannot change the function of a channel that has a schedule." = "Não é possível alterar a função de um canal que tenha uma programação.";
+"You cannot change the function of a channel that is associated with a scene." = "Não é possível alterar a função de um canal associado a uma cena.";
+"The channel function change failed. Code %i" = "Falha ao alterar a função do canal. Código %i";
+"The waiting time for changing the channel function has expired." = "O tempo de espera para alterar a função do canal expirou.";
+"Searching the z-wave network to build a list of devices." = "Pesquisando redes z-wave para construir uma lista de dispositivos.";
+"The waiting time for the ID of the assigned z-wave device has expired." = "O tempo limite de espera pelo ID do dispositivo z-wave atribuído expirou.";
+"Device response not as expected. Method: \"%@\" Code: %i" = "A resposta do dispositivo não foi a esperada. Método: \"%@\" Código: %i";
+"The waiting time for the list of z-wave devices has expired." = "O tempo limite de espera pela lista de dispositivos z-wave expirou.";
+"Assigned to:" = "Atribuído a:";
+"Waiting for confirmation of resetting the z-wave network together with clearing the settings." = "Aguardando a confirmação da redefinição da rede z-wave junto com a exclusão das configurações.";
+"The waiting time for the z-wave network reset has expired." = "O tempo limite de espera para redefinição da rede z-wave expirou.";
+"Are you sure you want to reset the settings and z-wave network?" = "Tem certeza de que deseja redefinir as configurações e a rede z-wave?";
+"This function is not available when the bridge is in slave mode." = "Esta função não está disponível quando a ponte está no modo escravo.";
+"Waiting for button press on the z-wave device." = "Espera por pressionamento de botão num dispositivo z-wave.";
+"The waiting time for pressing the button has elapsed." = "O tempo de espera para pressionar o botão expirou.";
+"Waiting for the device to be added to the z-wave network." = "Esperando para adicionar o dispositivo à rede z-wave.";
+"The waiting time for adding the device to the z-wave network has expired." = "O tempo de espera para adicionar o dispositivo à rede z-wave expirou.";
+"The waiting time to remove the device has expired." = "O tempo limite de espera para remoção do dispositivo expirou.";
+"The waiting time for the z-wave device assignment to the channel has elapsed." = "O tempo limite de espera para atribuição de um dispositivo z-wave ao canal expirou.";
+"The selected z-wave device is already associated with another channel. Are you sure you want to move this device to this channel?" = "O dispositivo z-wave selecionado já está associado a outro canal. Tem certeza de que deseja mover este dispositivo para este canal?";
+"Timeout waiting for z-wave bridge response." = "O tempo limite de espera pela resposta da ponte z-wave expirou.";
+"Unexpected bridge response. Code: %i" = "Resposta inesperada da ponte. Código: %i";
+"Z-Wave bridge" = "Ponte z-wave";
+"opened / closed the roof window" = "aberto / fechou a janela do telhado";
+"The power was turned off after the set threshold of the allowable current was exceeded." = "A potência foi desligada quando o limiar definido de corrente admissível foi ultrapassado.";
+"Are you sure you want to start calibration?" = "Tem certeza que quer começar a calibrar?";
+"Calibration lost." = "A calibração falhou.";
+"Calibration failed." = "A calibração perdeu-se.";
+"Motor problem / Unexpected stop." = "Problema do motor / Paragem inesperada.";
+"0: unknown" = "0: desconhecido";
+"1: server timeout" = "1: sem resposta do servidor";
+"2: Wi-Fi connection lost" = "2: perda da ligação WiFi";
+"3: server connection reset" = "3: Reiniciar a ligação ao servidor";
+"Your account" = "A sua conta";
+"App Settings" = "Configurações";
+"Channel height" = "Altura do canal";
+"Temperature unit" = "Unidade de temperatura";
+"Auto-hide buttons" = "Ocultar automaticamente botões";
+"Device setup" = "Configuração do dispositivo";
+"This device does not have any channels visible in the application. To finish configuration go to cloud.supla.org" = "Este dispositivo não tem quaisquer canais visíveis na aplicação. Para completar a configuração, vá a cloud.supla.org";
+"I understand" = "Compreendo";
+"Go to CLOUD" = "Ir para a CLOUD";
+"The function of the channel associated with the action trigger cannot be changed." = "Não é possível alterar a função do canal associado ao gatilho de ação.";
+"Show ⓘ button" = "Mostrar Botõesⓘ";
+"Advanced settings" = "Mais Opções";
+"Access ID" = "Identificador";
+"ACCESS IDENTIFIER" = "ACESSO ID";
+"E-MAIL ADDRESS" = "MORADA DE E-MAIL";
+"SERVER ADDRESS" = "MORADA DE SERVER";
+"PASSWORD" = "PALAVRA PASSE";
+"In Access ID authentication mode you won't be able to use automatic Add device wizard. However you will still be able to add it by manual Add device procedure." = "O Assistente de Adicionar dispositivo automático não está disponível no modo de autenticação do Access ID. Os dispositivos podem então ser adicionados manualmente.";
+"Don't have an account in Supla Cloud yet?" = "Ainda não tem uma conta Supla Cloud?";
+"Create" = "Abrir conta";
+"Location order" = "Ordem de localização";
+"Roller shutter %" = "Persianas %";
+"Opening" = "Aberto";
+"Closing" = "Encerramentos";
+"Percent of opening" = "Percentagem de abertura";
+"Percent of closing" = "Percentagem de encerramento";
+"Access Identifier inactive." = "Acesso ao identificador  inativo.";
+"Your account" = "A sua conta";
+"Your accounts" = "As suas contas";
+"Accounts" = "Conta";
+"NAME" = "NOME";
+"Tap the account to log in." = "Toque aqui para fazer login ";
+"Add new" = "Adicionar novo";
+"active" = "Activo";
+"Default" = "Predefinição";
+"Delete account" = "Apagar Conta";
+"Select active account" = "Selecione uma conta ativa";
+"Phase 1+2+3" = "Fase 1+2+3";
+"Phase %d" = "Fase %d";
+
+"AccountCreation.title" = "Editar Conta";
+"AccountCreation.modificationTitle" = "Adicionar conta";
+
+"AccountRemoval.url" = "https://{SERVER_ADDRESS}/db99845855b2ecbfecca9a095062b96c3e27703f?lang=pt";
+
+"Cfg.removal.dialog.missing_name" = "Introduza um nome de conta";
+"Cfg.removal.dialog.duplicated_name" = "Já existe uma conta com esse nome";
+"Cfg.removal.dialog.incomplete" = "Complete os restantes dados";
+
+"General.error" = "Erro";
+
+/* Thermometer Chart */
+"history_no_data_in_selected_period" = "Nenhum dado para o gráfico.";

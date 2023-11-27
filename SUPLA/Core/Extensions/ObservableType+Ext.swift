@@ -23,6 +23,18 @@ import RxCocoa
 extension ObservableType {
     func asDriverWithoutError() -> Driver<Element> {
         return asDriver { error in
+            let errorDescription = String(describing: error)
+            NSLog("Driver got error: \(error.localizedDescription)")
+            NSLog(errorDescription)
+            
+            return Driver.empty()
+        }
+    }
+}
+
+extension Single {
+    func asDriverWithoutError() -> Driver<Element> {
+        return asDriver { error in
             return Driver.empty()
         }
     }
@@ -32,6 +44,23 @@ extension Observable {
     func subscribeSynchronous() throws -> Element? {
         let subscriber = SynchronousSubscriber(observable: self)
         return try subscriber.subscribeAndWait()
+    }
+    
+    func subscribeSynchronous(defaultValue: Element) -> Element {
+        let subscriber = SynchronousSubscriber(observable: self)
+        
+        do {
+            return try subscriber.subscribeAndWait() ?? defaultValue
+        } catch {
+            return defaultValue
+        }
+    }
+    
+    func modify(_ modifier: @escaping (Element) -> Void) -> Observable<Element> {
+        map { element in
+            modifier(element)
+            return element
+        }
     }
 }
 

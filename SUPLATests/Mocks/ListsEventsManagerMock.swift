@@ -16,16 +16,14 @@
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 
-import Foundation
 import RxSwift
 
 @testable import SUPLA
 
-final class ListsEventsManagerMock: ListsEventsManager {
+final class UpdateEventsManagerMock: UpdateEventsManager {
     
     var observeSceneObservable: Observable<SAScene> = Observable.empty()
     var observeSceneSceneIdArray: [Int] = []
-    
     func observeScene(sceneId: Int) -> Observable<SAScene> {
         observeSceneSceneIdArray.append(sceneId)
         return observeSceneObservable
@@ -33,7 +31,6 @@ final class ListsEventsManagerMock: ListsEventsManager {
     
     var observeChannelObservable: Observable<SAChannel> = Observable.empty()
     var observeChannelRemoteIdArray: [Int] = []
-    
     func observeChannel(remoteId: Int) -> Observable<SAChannel> {
         observeChannelRemoteIdArray.append(remoteId)
         return observeChannelObservable
@@ -41,63 +38,60 @@ final class ListsEventsManagerMock: ListsEventsManager {
     
     var observeGroupObservable: Observable<SAChannelGroup> = Observable.empty()
     var observeGroupRemoteIdArray: [Int] = []
-    
     func observeGroup(remoteId: Int) -> Observable<SAChannelGroup> {
         observeGroupRemoteIdArray.append(remoteId)
         return observeGroupObservable
     }
     
-    var observeChannelUpdatesObservable: Observable<Void> = Observable.empty()
+    var observeChannelWithChildrenParameters: [Int] = []
+    var observeChannelWithChildrenReturns: Observable<ChannelWithChildren> = Observable.empty()
+    func observeChannelWithChildren(remoteId: Int) -> Observable<ChannelWithChildren> {
+        observeChannelWithChildrenParameters.append(remoteId)
+        return observeChannelWithChildrenReturns
+    }
     
-    func observeChannelUpdates() -> Observable<Void> {
+    var observeChannelUpdatesObservable: Observable<Void> = Observable.empty()
+    func observeChannelsUpdate() -> Observable<Void> {
         return observeChannelUpdatesObservable
     }
     
     var observeGroupUpdatesObservable: Observable<Void> = Observable.empty()
-    
-    func observeGroupUpdates() -> Observable<Void> {
+    func observeGroupsUpdate() -> Observable<Void> {
         return observeGroupUpdatesObservable
     }
     
     var observeSceneUpdatesObservable: Observable<Void> = Observable.empty()
-    
-    func observeSceneUpdates() -> Observable<Void> {
+    func observeScenesUpdate() -> Observable<Void> {
         return observeSceneUpdatesObservable
     }
     
     var emitSceneChangeSceneIdArray: [Int] = []
-    
-    func emitSceneChange(sceneId: Int) {
+    func emitSceneUpdate(sceneId: Int) {
         emitSceneChangeSceneIdArray.append(sceneId)
     }
     
     var emitChannelChangeRemoteIdArray: [Int] = []
-    
-    func emitChannelChange(remoteId: Int) {
+    func emitChannelUpdate(remoteId: Int) {
         emitChannelChangeRemoteIdArray.append(remoteId)
     }
     
     var emitGroupChangeRemoteIdArray: [Int] = []
-    
-    func emitGroupChange(remoteId: Int) {
+    func emitGroupUpdate(remoteId: Int) {
         emitGroupChangeRemoteIdArray.append(remoteId)
     }
     
     var emitChannelUpdateCounter = 0
-    
-    func emitChannelUpdate() {
+    func emitChannelsUpdate() {
         emitChannelUpdateCounter += 1
     }
     
     var emitGroupUpdateCounter = 0
-    
-    func emitGroupUpdate() {
+    func emitGroupsUpdate() {
         emitGroupUpdateCounter += 1
     }
     
     var emitSceneUpdateCounter = 0
-    
-    func emitSceneUpdate() {
+    func emitScenesUpdate() {
         emitSceneUpdateCounter += 1
     }
 }

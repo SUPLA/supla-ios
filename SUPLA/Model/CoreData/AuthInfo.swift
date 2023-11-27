@@ -21,14 +21,17 @@ import Foundation
 
 @objc
 class AuthInfo: NSObject, NSCoding {
-    @objc var emailAuth: Bool = true
-    @objc var serverAutoDetect: Bool = true
-    @objc var emailAddress: String = ""
-    @objc var serverForEmail: String = ""
-    @objc var serverForAccessID: String = ""
-    @objc var accessID: Int = 0
-    @objc var accessIDpwd: String = ""
-    @objc var preferredProtocolVersion: Int = 0
+    @objc let emailAuth: Bool
+    @objc let serverAutoDetect: Bool
+    @objc let emailAddress: String
+    @objc let serverForEmail: String
+    @objc let serverForAccessID: String
+    @objc let accessID: Int
+    @objc let accessIDpwd: String
+    @objc let preferredProtocolVersion: Int
+    @objc var serverUrlString: String {
+        get { "https://\(serverForCurrentAuthMethod)" }
+    }
 
     
     private let kEmailAuth = "emailAuth"
@@ -45,9 +48,12 @@ class AuthInfo: NSObject, NSCoding {
          serverForAccessID: String, accessID: Int,
          accessIDpwd: String,
          preferredProtocolVersion: Int = 0) {
-        self.emailAuth = emailAuth; self.serverAutoDetect = serverAutoDetect
-        self.emailAddress = emailAddress; self.serverForEmail = serverForEmail
-        self.serverForAccessID = serverForAccessID; self.accessID = accessID
+        self.emailAuth = emailAuth
+        self.serverAutoDetect = serverAutoDetect
+        self.emailAddress = emailAddress
+        self.serverForEmail = serverForEmail
+        self.serverForAccessID = serverForAccessID
+        self.accessID = accessID
         self.accessIDpwd = accessIDpwd
         self.preferredProtocolVersion = preferredProtocolVersion
 
@@ -76,8 +82,26 @@ class AuthInfo: NSObject, NSCoding {
         coder.encode(preferredProtocolVersion, forKey: kPreferredProtocolVersion)
     }
     
-    func clone() -> AuthInfo {
-        return copy() as! AuthInfo
+    func copy(
+        emailAuth: Bool? = nil,
+        serverAutoDetect: Bool? = nil,
+        emailAddress: String? = nil,
+        serverForEmail: String? = nil,
+        serverForAccessID: String? = nil,
+        accessID: Int? = nil,
+        accessIDpwd: String? = nil,
+        preferredProtocolVersion: Int? = nil
+    ) -> AuthInfo {
+        AuthInfo(
+            emailAuth: emailAuth ?? self.emailAuth,
+            serverAutoDetect: serverAutoDetect ?? self.serverAutoDetect,
+            emailAddress: emailAddress ?? self.emailAddress,
+            serverForEmail: serverForEmail ?? self.serverForEmail,
+            serverForAccessID: serverForAccessID ?? self.serverForAccessID,
+            accessID: accessID ?? self.accessID,
+            accessIDpwd: accessIDpwd ?? self.accessIDpwd,
+            preferredProtocolVersion: preferredProtocolVersion ?? self.preferredProtocolVersion
+        )
     }
     
     override func isEqual(_ object: Any?) -> Bool {
@@ -87,8 +111,8 @@ class AuthInfo: NSObject, NSCoding {
                  serverForEmail == o.serverForEmail &&
                  serverForAccessID == o.serverForAccessID &&
                  accessIDpwd == o.accessIDpwd &&
-                 emailAddress == o.emailAddress
-
+                 emailAddress == o.emailAddress &&
+                 preferredProtocolVersion == o.preferredProtocolVersion
     }
     
     @objc var serverForCurrentAuthMethod: String {
@@ -107,18 +131,6 @@ class AuthInfo: NSObject, NSCoding {
     
     override var debugDescription: String {
         return "email: \(emailAddress) autoDetect: \(serverAutoDetect) server: \(serverForEmail)"
-    }
-}
-
-extension AuthInfo: NSCopying {
-    public func copy(with zone: NSZone? = nil) -> Any {
-        return AuthInfo(emailAuth: emailAuth,
-                        serverAutoDetect: serverAutoDetect,
-                        emailAddress: emailAddress,
-                        serverForEmail: serverForEmail,
-                        serverForAccessID: serverForAccessID,
-                        accessID: accessID, accessIDpwd: accessIDpwd,
-                        preferredProtocolVersion:  preferredProtocolVersion)
     }
 }
 
@@ -145,6 +157,36 @@ extension AuthInfo {
             serverForAccessID: "",
             accessID: 0,
             accessIDpwd: ""
+        )
+    }
+    
+    static func from(userDefaults: UserDefaults) -> AuthInfo {
+        let accessID = userDefaults.integer(forKey: "access_id")
+        let accessIDpwd = userDefaults.string(forKey: "access_id_pwd") ?? ""
+        let serverHostName = userDefaults.string(forKey: "server_host") ?? ""
+        let emailAddress = userDefaults.string(forKey: "email_address") ?? ""
+        let isAdvanced = userDefaults.bool(forKey: "advanced_config")
+        let prefProtoVersion = Int(SUPLA_PROTO_VERSION)
+        let serverForEmail: String
+        let serverForAccessID: String
+        
+        if isAdvanced {
+            serverForAccessID = serverHostName
+            serverForEmail = ""
+        } else {
+            serverForAccessID = ""
+            serverForEmail = serverHostName
+        }
+        
+        return AuthInfo(
+            emailAuth: !isAdvanced,
+            serverAutoDetect: !isAdvanced,
+            emailAddress: emailAddress,
+            serverForEmail: serverForEmail,
+            serverForAccessID: serverForAccessID,
+            accessID: accessID,
+            accessIDpwd: accessIDpwd,
+            preferredProtocolVersion: prefProtoVersion
         )
     }
 }

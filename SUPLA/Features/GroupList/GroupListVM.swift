@@ -23,12 +23,12 @@ class GroupListViewModel: BaseTableViewModel<GroupListViewState, GroupListViewEv
     @Singleton<CreateProfileGroupsListUseCase> private var createProfileGroupsListUseCase
     @Singleton<SwapGroupPositionsUseCase> private var swapGroupPositionsUseCase
     @Singleton<ProvideDetailTypeUseCase> private var provideDetailTypeUseCase
-    @Singleton<ListsEventsManager> private var listsEventsManager
+    @Singleton<UpdateEventsManager> private var updateEventsManager
     
     override init() {
         super.init()
         
-        listsEventsManager.observeGroupUpdates()
+        updateEventsManager.observeGroupsUpdate()
             .subscribe(
                 onNext: { self.reloadTable() }
             )
@@ -66,9 +66,7 @@ class GroupListViewModel: BaseTableViewModel<GroupListViewState, GroupListViewEv
         switch (detailType) {
         case let .legacy(type: legacyDetailType):
             send(event: .navigateToDetail(legacy: legacyDetailType, channelBase: item))
-            break
-        default:
-            break
+        default: break
         }
     }
     

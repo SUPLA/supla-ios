@@ -21,28 +21,29 @@ import RxSwift
 import RxRelay
 
 @objc
-protocol ListsEventsManagerEmitter {
-    func emitSceneChange(sceneId: Int)
-    func emitChannelChange(remoteId: Int)
-    func emitGroupChange(remoteId: Int)
-    func emitChannelUpdate()
-    func emitGroupUpdate()
-    func emitSceneUpdate()
+protocol UpdateEventsManagerEmitter {
+    func emitSceneUpdate(sceneId: Int)
+    func emitChannelUpdate(remoteId: Int)
+    func emitGroupUpdate(remoteId: Int)
+    func emitChannelsUpdate()
+    func emitGroupsUpdate()
+    func emitScenesUpdate()
 }
 
-protocol ListsEventsManager: ListsEventsManagerEmitter {
+protocol UpdateEventsManager: UpdateEventsManagerEmitter {
     func observeScene(sceneId: Int) -> Observable<SAScene>
     func observeChannel(remoteId: Int) -> Observable<SAChannel>
     func observeGroup(remoteId: Int) -> Observable<SAChannelGroup>
-    func observeChannelUpdates() -> Observable<Void>
-    func observeGroupUpdates() -> Observable<Void>
-    func observeSceneUpdates() -> Observable<Void>
+    func observeChannelWithChildren(remoteId: Int) -> Observable<ChannelWithChildren>
+    func observeChannelsUpdate() -> Observable<Void>
+    func observeGroupsUpdate() -> Observable<Void>
+    func observeScenesUpdate() -> Observable<Void>
 }
 
-final class ListsEventsManagerImpl: ListsEventsManager {
+final class UpdateEventsManagerImpl: UpdateEventsManager {
     
     private var subjects: [Id: BehaviorRelay<Int>] = [:]
-    private let syncedQueue = DispatchQueue(label: "EventsPrivateQueue", attributes: .concurrent)
+    private let syncedQueue = DispatchQueue(label: "ListsEventsPrivateQueue", attributes: .concurrent)
     
     private let channelUpdatesSubject = BehaviorRelay(value: ())
     private let groupUpdatesSubject = BehaviorRelay(value: ())
@@ -52,31 +53,33 @@ final class ListsEventsManagerImpl: ListsEventsManager {
     @Singleton<ChannelRepository> private var channelRepository
     @Singleton<GroupRepository> private var groupRepository
     @Singleton<ProfileRepository> private var profileRepository
+    @Singleton<ChannelRelationRepository> private var channelRelationRepository
+    @Singleton<CreateChannelWithChildrenUseCase> private var createChannelWithChildrenUseCase
     
-    func emitSceneChange(sceneId: Int) {
+    func emitSceneUpdate(sceneId: Int) {
         let subject = getSubjectForScene(sceneId: sceneId)
         subject.accept(subject.value + 1)
     }
     
-    func emitChannelChange(remoteId: Int) {
+    func emitChannelUpdate(remoteId: Int) {
         let subject = getSubjectForChannel(channelId: remoteId)
         subject.accept(subject.value + 1)
     }
     
-    func emitGroupChange(remoteId: Int) {
+    func emitGroupUpdate(remoteId: Int) {
         let subject = getSubjectForGroup(groupId: remoteId)
         subject.accept(subject.value + 1)
     }
     
-    func emitChannelUpdate() {
+    func emitChannelsUpdate() {
         channelUpdatesSubject.accept(())
     }
     
-    func emitGroupUpdate() {
+    func emitGroupsUpdate() {
         groupUpdatesSubject.accept(())
     }
     
-    func emitSceneUpdate() {
+    func emitScenesUpdate() {
         sceneUpdatesSubject.accept(())
     }
     
@@ -104,11 +107,28 @@ final class ListsEventsManagerImpl: ListsEventsManager {
             }
     }
     
-    func observeChannelUpdates() -> Observable<Void> { channelUpdatesSubject.asObservable() }
+    func observeChannelWithChildren(remoteId: Int) -> Observable<ChannelWithChildren> {
+        return getSubjectForChannel(channelId: remoteId)
+            .flatMap { _ in
+                self.profileRepository.getActiveProfile()
+                    .flatMap { profile in
+                        Observable.zip(
+                            self.channelRepository.getAllVisibleChannels(forProfile: profile),
+                            self.channelRelationRepository.getParentsMap(for: profile),
+                            resultSelector: { channels, listOfParents in
+                                self.toChannelWithChildren(remoteId: remoteId, channels, listOfParents)
+                            }
+                        )
+                    }
+            }
+            .compactMap { $0 }
+    }
     
-    func observeGroupUpdates() -> Observable<Void> { groupUpdatesSubject.asObservable() }
+    func observeChannelsUpdate() -> Observable<Void> { channelUpdatesSubject.asObservable() }
     
-    func observeSceneUpdates() -> Observable<Void> { sceneUpdatesSubject.asObservable() }
+    func observeGroupsUpdate() -> Observable<Void> { groupUpdatesSubject.asObservable() }
+    
+    func observeScenesUpdate() -> Observable<Void> { sceneUpdatesSubject.asObservable() }
     
     private func getSubjectForScene(sceneId: Int) -> BehaviorRelay<Int> {
         return syncedQueue.sync(execute: {
@@ -138,6 +158,16 @@ final class ListsEventsManagerImpl: ListsEventsManager {
         let subject = BehaviorRelay(value: 0)
         subjects[subjectId] = subject
         return subject
+    }
+    
+    private func toChannelWithChildren(remoteId: Int, _ channels: [SAChannel], _ parentsMap: [Int32: [SAChannelRelation]]) -> ChannelWithChildren? {
+        
+        guard
+            let channel = channels.first(where: { $0.remote_id == remoteId}),
+            let relations = parentsMap.first(where: { $0.key == remoteId})?.value
+        else { return nil }
+        
+        return createChannelWithChildrenUseCase.invoke(channel, allChannels: channels, relations: relations)
     }
     
     enum IdType {

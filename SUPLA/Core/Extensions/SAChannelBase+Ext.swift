@@ -19,6 +19,14 @@
 import Foundation
 
 extension SAChannelBase {
+    func isThermometer() -> Bool {
+        return self.func == SUPLA_CHANNELFNC_THERMOMETER || self.func == SUPLA_CHANNELFNC_HUMIDITYANDTEMPERATURE
+    }
+    
+    func isHvacThermostat() -> Bool {
+        return self.func == SUPLA_CHANNELFNC_HVAC_THERMOSTAT || self.func == SUPLA_CHANNELFNC_HVAC_DOMESTIC_HOT_WATER
+    }
+    
     @objc
     func isRGBW() -> Bool {
         return self.func == SUPLA_CHANNELFNC_RGBLIGHTING || self.func == SUPLA_CHANNELFNC_DIMMERANDRGBLIGHTING || self.func == SUPLA_CHANNELFNC_DIMMER
@@ -27,5 +35,9 @@ extension SAChannelBase {
     @objc
     func isRollerShutter() -> Bool {
         return self.func == SUPLA_CHANNELFNC_CONTROLLINGTHEROLLERSHUTTER || self.func == SUPLA_CHANNELFNC_CONTROLLINGTHEROOFWINDOW
+    }
+    
+    func hasMeasurements() -> Bool {
+        return self.func == SUPLA_CHANNELFNC_THERMOMETER || self.func == SUPLA_CHANNELFNC_HUMIDITYANDTEMPERATURE
     }
 }

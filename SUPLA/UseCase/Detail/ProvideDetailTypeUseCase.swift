@@ -39,20 +39,7 @@ final class ProvideDetailTypeUseCaseImpl: ProvideDetailTypeUseCase {
             SUPLA_CHANNELFNC_LIGHTSWITCH,
             SUPLA_CHANNELFNC_POWERSWITCH,
             SUPLA_CHANNELFNC_STAIRCASETIMER:
-            guard
-                let channel = channelBase as? SAChannel,
-                let type = channel.value?.sub_value_type
-            else {
-                return nil
-            }
-            switch (Int32(type)) {
-            case SUBV_TYPE_IC_MEASUREMENTS:
-                return .legacy(type: .ic)
-            case SUBV_TYPE_ELECTRICITY_MEASUREMENTS:
-                return .legacy(type: .em)
-            default:
-                return nil
-            }
+            return .switchDetail(pages: getSwitchDetailPages(channelBase: channelBase))
         case
             SUPLA_CHANNELFNC_ELECTRICITY_METER:
             return .legacy(type: .em)
@@ -63,11 +50,9 @@ final class ProvideDetailTypeUseCaseImpl: ProvideDetailTypeUseCase {
             SUPLA_CHANNELFNC_IC_HEAT_METER:
             return .legacy(type: .ic)
         case
-            SUPLA_CHANNELFNC_THERMOMETER:
-            return .legacy(type: .temperature)
-        case
+            SUPLA_CHANNELFNC_THERMOMETER,
             SUPLA_CHANNELFNC_HUMIDITYANDTEMPERATURE:
-            return .legacy(type: .temperature_humidity)
+            return .thermometerDetail(pages: [.thermometerHistory])
         case
             SUPLA_CHANNELFNC_THERMOSTAT_HEATPOL_HOMEPLUS:
             return .legacy(type: .thermostat_hp)
@@ -75,21 +60,61 @@ final class ProvideDetailTypeUseCaseImpl: ProvideDetailTypeUseCase {
             SUPLA_CHANNELFNC_DIGIGLASS_VERTICAL,
             SUPLA_CHANNELFNC_DIGIGLASS_HORIZONTAL:
             return .legacy(type: .digiglass)
+        case
+            SUPLA_CHANNELFNC_HVAC_THERMOSTAT,
+            SUPLA_CHANNELFNC_HVAC_DOMESTIC_HOT_WATER:
+            return .thermostatDetail(pages: [.thermostatGeneral, .schedule, .thermostatHistory])
         default:
             return nil
         }
+    }
+    
+    private func getSwitchDetailPages(channelBase: SAChannelBase) -> [DetailPage] {
+        guard let channel = channelBase as? SAChannel
+        else { return [.switchGeneral] }
+        
+        var pages: [DetailPage] = [.switchGeneral]
+        
+        if (channel.flags & SUPLA_CHANNEL_FLAG_COUNTDOWN_TIMER_SUPPORTED > 0 && channel.func != SUPLA_CHANNELFNC_STAIRCASETIMER) {
+            pages.append(.timer)
+        }
+        
+        if let type = channel.value?.sub_value_type {
+            if (type == SUBV_TYPE_IC_MEASUREMENTS) {
+                pages.append(.historyIc)
+            }
+            if (type == SUBV_TYPE_ELECTRICITY_MEASUREMENTS) {
+                pages.append(.historyEm)
+            }
+        }
+        
+        return pages
     }
 }
 
 enum DetailType: Equatable {
     case legacy(type: LegacyDetailType)
-    case standard(type: StandardDetailType)
+    case switchDetail(pages: [DetailPage])
+    case thermostatDetail(pages: [DetailPage])
+    case thermometerDetail(pages: [DetailPage])
 }
 
 enum LegacyDetailType {
-    case rgbw, rs, ic, em, temperature, temperature_humidity, thermostat_hp, digiglass
+    case rgbw, rs, ic, em, thermostat_hp, digiglass
 }
 
-enum StandardDetailType {
-    case switchType
+enum DetailPage {
+    // Switches
+    case switchGeneral
+    case timer
+    case historyIc
+    case historyEm
+    
+    // Thermostat
+    case thermostatGeneral
+    case schedule
+    case thermostatHistory
+    
+    // Thermometers
+    case thermometerHistory
 }

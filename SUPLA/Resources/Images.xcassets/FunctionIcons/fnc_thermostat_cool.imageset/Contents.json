@@ -1,0 +1,12 @@
+{
+  "images" : [
+    {
+      "filename" : "Mode=Cooling, States=Cooling.svg",
+      "idiom" : "universal"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}

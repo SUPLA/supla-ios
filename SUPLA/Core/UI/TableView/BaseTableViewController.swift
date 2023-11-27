@@ -100,8 +100,8 @@ class BaseTableViewController<S : ViewState, E : ViewEvent, VM : BaseTableViewMo
                     return self.configureCell(scene: scene, indexPath: indexPath)
                 case let .location(location: location):
                     return self.configureCell(location: location, indexPath: indexPath)
-                case let .channelBase(channelBase: channelBase):
-                    return self.configureCell(channelBase: channelBase, indexPath: indexPath)
+                case let .channelBase(channelBase: channelBase, children: children):
+                    return self.configureCell(channelBase: channelBase, children: children, indexPath: indexPath)
                 }
             }, canMoveRowAtIndexPath: { dataSource, indexPath in
                 switch dataSource[indexPath] {
@@ -119,7 +119,7 @@ class BaseTableViewController<S : ViewState, E : ViewEvent, VM : BaseTableViewMo
         return UITableViewCell()
     }
     
-    func configureCell(channelBase: SAChannelBase, indexPath: IndexPath) -> UITableViewCell {
+    func configureCell(channelBase: SAChannelBase, children: [ChannelChild], indexPath: IndexPath) -> UITableViewCell {
         return UITableViewCell()
     }
     
@@ -218,20 +218,11 @@ class BaseTableViewController<S : ViewState, E : ViewEvent, VM : BaseTableViewMo
         }
         
         if
-            let sourceCell = session.items.first?.localObject as? SAChannelCell,
+            let sourceCell = session.items.first?.localObject as? MoveableCell,
             let destinationIndexPath = destinationIndexPath,
-            let destinationCell = tableView.cellForRow(at: destinationIndexPath) as? SAChannelCell {
+            let destinationCell = tableView.cellForRow(at: destinationIndexPath) as? MoveableCell {
             
-            if (sourceCell.channelBase.location?.caption == destinationCell.channelBase.location?.caption) {
-                return UITableViewDropProposal(operation: .move, intent: .insertAtDestinationIndexPath)
-            }
-        }
-        if
-            let sourceCell = session.items.first?.localObject as? SceneCell,
-            let destinationIndexPath = destinationIndexPath,
-            let destinationCell = tableView.cellForRow(at: destinationIndexPath) as? SceneCell {
-            
-            if (sourceCell.sceneData?.location?.caption == destinationCell.sceneData?.location?.caption) {
+            if (sourceCell.dropAllowed(to: destinationCell)) {
                 return UITableViewDropProposal(operation: .move, intent: .insertAtDestinationIndexPath)
             }
         }
@@ -241,24 +232,13 @@ class BaseTableViewController<S : ViewState, E : ViewEvent, VM : BaseTableViewMo
     
     func handleItemMovedEvent(event: ItemMovedEvent) {
         if
-            let sourceCell = tableView.cellForRow(at: event.sourceIndex) as? SAChannelCell,
-            let destinationCell = tableView.cellForRow(at: event.destinationIndex) as? SAChannelCell {
+            let sourceCell = tableView.cellForRow(at: event.sourceIndex) as? MoveableCell,
+            let destinationCell = tableView.cellForRow(at: event.destinationIndex) as? MoveableCell {
             
             viewModel.swapItems(
-                firstItem: sourceCell.channelBase.remote_id,
-                secondItem: destinationCell.channelBase.remote_id,
-                locationCaption: sourceCell.channelBase.location!.caption!
-            )
-        }
-        
-        if
-            let sourceCell = tableView.cellForRow(at: event.sourceIndex) as? SceneCell,
-            let destinationCell = tableView.cellForRow(at: event.destinationIndex) as? SceneCell {
-            
-            viewModel.swapItems(
-                firstItem: sourceCell.sceneData!.sceneId,
-                secondItem: destinationCell.sceneData!.sceneId,
-                locationCaption: sourceCell.sceneData!.location!.caption!
+                firstItem: sourceCell.getRemoteId()!,
+                secondItem: destinationCell.getRemoteId()!,
+                locationCaption: sourceCell.getLocationCaption()!
             )
         }
     }
@@ -273,7 +253,7 @@ class BaseTableViewController<S : ViewState, E : ViewEvent, VM : BaseTableViewMo
         case let .scene(scene: scene):
             viewModel.onClicked(onItem: scene)
             break
-        case let .channelBase(channelBase: channelBase):
+        case let .channelBase(channelBase: channelBase, _):
             viewModel.onClicked(onItem: channelBase)
             break
         default:

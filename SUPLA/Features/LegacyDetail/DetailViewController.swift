@@ -22,13 +22,15 @@ import UIKit
 @objc
 class DetailViewController: BaseViewController {
     
+    @Singleton<ReadChannelByRemoteIdUseCase> private var readChannelByRemoteIdUseCase
+    
     var interactionController: UIViewControllerInteractiveTransitioning? {
         return _panController
     }
     
     private var _detailView: SADetailView!
-    private let _panGR = UIPanGestureRecognizer()
     private var _panController: UIPercentDrivenInteractiveTransition?
+    private var inNewDetail = false
     
     init(detailViewType: LegacyDetailType, channelBase: SAChannelBase) {
         super.init(nibName: nil, bundle: nil)
@@ -36,9 +38,18 @@ class DetailViewController: BaseViewController {
         _detailView.detailViewInit()
         _detailView.channelBase = channelBase
         
-        _panGR.addTarget(self, action: #selector(onPan(_:)))
-        _detailView.addGestureRecognizer(_panGR)
         _detailView.viewController = self
+    }
+    
+    init(detailViewType: LegacyDetailType, remoteId: Int32) {
+        super.init(nibName: nil, bundle: nil)
+        _detailView = self.detailView(forDetailType: detailViewType)!
+        _detailView.detailViewInit()
+        _detailView.channelBase = try! readChannelByRemoteIdUseCase.invoke(remoteId: remoteId).subscribeSynchronous()
+        
+        _detailView.viewController = self
+        
+        inNewDetail = true
     }
     
     required init?(coder: NSCoder) {
@@ -47,10 +58,14 @@ class DetailViewController: BaseViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        addChildView(_detailView)
-        
-        let channelCaption: String? = _detailView.channelBase?.getNonEmptyCaption()
-        title = channelCaption ?? ""
+        if (inNewDetail) {
+            statusBarBackgroundView.isHidden = true
+            view.addSubview(_detailView)
+            _detailView.frame = CGRect(x: 0, y: 0, width: view.frame.size.width, height: view.frame.size.height)
+        } else {
+            addChildView(_detailView)
+            title = _detailView.channelBase?.getNonEmptyCaption() ?? ""
+        }
         
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(onAppDidEnterBackground(_:)),
@@ -78,27 +93,7 @@ class DetailViewController: BaseViewController {
         _detailView.detailDidHide()
     }
     
-    @objc private func onPan(_ gr: UIPanGestureRecognizer) {
-        switch gr.state {
-        case .began:
-            _panController = UIPercentDrivenInteractiveTransition()
-            navigationController?.popViewController(animated: true)
-        case .changed:
-            let translation = gr.translation(in: _detailView)
-            let d = translation.x / view.bounds.width
-            _panController?.update(d)
-        case .ended:
-            if let _panController = _panController {
-                if _panController.percentComplete > 0.28 {
-                    _panController.finish()
-                } else {
-                    _panController.cancel()
-                }
-            }
-            _panController = nil
-        default: break
-        }
-    }
+    override func shouldUpdateTitleFont() -> Bool { !inNewDetail }
     
     @objc private func onAppDidEnterBackground(_ notification: Notification) {
         // Hide detail view, when application loses foreground context
@@ -117,10 +112,6 @@ class DetailViewController: BaseViewController {
             return Bundle.main.loadNibNamed("RSDetail", owner: self, options: nil)?[0] as? SADetailView
         case .thermostat_hp:
             return Bundle.main.loadNibNamed("HomePlusDetailView", owner: self, options: nil)?[0] as? SADetailView
-        case .temperature:
-            return Bundle.main.loadNibNamed("TemperatureDetailView", owner: self, options: nil)?[0] as? SADetailView
-        case .temperature_humidity:
-            return Bundle.main.loadNibNamed("TempHumidityDetailView", owner: self, options: nil)?[0] as? SADetailView
         case .digiglass:
             return Bundle.main.loadNibNamed("DigiglassDetailView", owner: self, options: nil)?[0] as? SADetailView
         }

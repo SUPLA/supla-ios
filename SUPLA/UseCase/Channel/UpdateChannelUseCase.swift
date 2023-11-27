@@ -24,7 +24,7 @@ final class UpdateChannelUseCase {
     @Singleton<LocationRepository> private var locationRepository
     @Singleton<ChannelRepository> private var channelRepository
     @Singleton<ProfileRepository> private var profileRepository
-    @Singleton<ListsEventsManager> private var listsEventsManager
+    @Singleton<UpdateEventsManager> private var updateEventsManager
     
     @available(*, deprecated, message: "Only for legacy code")
     func invoke(suplaChannel: TSC_SuplaChannel_D) -> Bool {
@@ -54,7 +54,7 @@ final class UpdateChannelUseCase {
                 .first() ?? false
             
             if (changed) {
-                listsEventsManager.emitChannelChange(remoteId: Int(suplaChannel.Id))
+                updateEventsManager.emitChannelUpdate(remoteId: Int(suplaChannel.Id))
             }
         } catch {
             changed = false

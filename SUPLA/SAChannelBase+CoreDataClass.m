@@ -173,83 +173,92 @@
     if ( channel.caption == nil || [channel.caption isEqualToString:@""] ) {
         int _func = func ? [func intValue] : channel.func;
         switch(_func) {
-                case SUPLA_CHANNELFNC_OPENINGSENSOR_GATEWAY:
-                    return NSLocalizedString(@"Gateway opening sensor", nil);
-                case SUPLA_CHANNELFNC_CONTROLLINGTHEGATEWAYLOCK:
-                    return NSLocalizedString(@"Gateway", nil);
-                case SUPLA_CHANNELFNC_OPENINGSENSOR_GATE:
-                    return NSLocalizedString(@"Gate opening sensor", nil);
-                case SUPLA_CHANNELFNC_CONTROLLINGTHEGATE:
-                    return NSLocalizedString(@"Gate", nil);
-                case SUPLA_CHANNELFNC_OPENINGSENSOR_GARAGEDOOR:
-                    return NSLocalizedString(@"Garage door opening sensor", nil);
-                case SUPLA_CHANNELFNC_CONTROLLINGTHEGARAGEDOOR:
-                    return NSLocalizedString(@"Garage door", nil);
-                case SUPLA_CHANNELFNC_OPENINGSENSOR_DOOR:
-                    return NSLocalizedString(@"Door opening sensor", nil);
-                case SUPLA_CHANNELFNC_CONTROLLINGTHEDOORLOCK:
-                    return NSLocalizedString(@"Door", nil);
-                case SUPLA_CHANNELFNC_OPENINGSENSOR_ROLLERSHUTTER:
-                    return NSLocalizedString(@"Roller shutter opening sensor", nil);
+            case SUPLA_CHANNELFNC_OPENINGSENSOR_GATEWAY:
+                return NSLocalizedString(@"Gateway opening sensor", nil);
+            case SUPLA_CHANNELFNC_CONTROLLINGTHEGATEWAYLOCK:
+                return NSLocalizedString(@"Gateway", nil);
+            case SUPLA_CHANNELFNC_OPENINGSENSOR_GATE:
+                return NSLocalizedString(@"Gate opening sensor", nil);
+            case SUPLA_CHANNELFNC_CONTROLLINGTHEGATE:
+                return NSLocalizedString(@"Gate", nil);
+            case SUPLA_CHANNELFNC_OPENINGSENSOR_GARAGEDOOR:
+                return NSLocalizedString(@"Garage door opening sensor", nil);
+            case SUPLA_CHANNELFNC_CONTROLLINGTHEGARAGEDOOR:
+                return NSLocalizedString(@"Garage door", nil);
+            case SUPLA_CHANNELFNC_OPENINGSENSOR_DOOR:
+                return NSLocalizedString(@"Door opening sensor", nil);
+            case SUPLA_CHANNELFNC_CONTROLLINGTHEDOORLOCK:
+                return NSLocalizedString(@"Door", nil);
+            case SUPLA_CHANNELFNC_OPENINGSENSOR_ROLLERSHUTTER:
+                return NSLocalizedString(@"Roller shutter opening sensor", nil);
             case SUPLA_CHANNELFNC_OPENINGSENSOR_ROOFWINDOW:
                 return NSLocalizedString(@"Roof window opening sensor", nil);
-                case SUPLA_CHANNELFNC_CONTROLLINGTHEROLLERSHUTTER:
-                    return NSLocalizedString(@"Roller shutter", nil);
+            case SUPLA_CHANNELFNC_HOTELCARDSENSOR:
+                return [LegacyStrings localized: @"channel_caption_hotelcard"];
+            case SUPLA_CHANNELFNC_ALARMARMAMENTSENSOR:
+                return [LegacyStrings localized: @"channel_caption_alarm_armament"];
+            case SUPLA_CHANNELFNC_CONTROLLINGTHEROLLERSHUTTER:
+                return NSLocalizedString(@"Roller shutter", nil);
             case SUPLA_CHANNELFNC_CONTROLLINGTHEROOFWINDOW:
                 return NSLocalizedString(@"Roof window", nil);
-                case SUPLA_CHANNELFNC_POWERSWITCH:
-                    return NSLocalizedString(@"Power switch", nil);
-                case SUPLA_CHANNELFNC_LIGHTSWITCH:
-                    return NSLocalizedString(@"Lighting switch", nil);
-                case SUPLA_CHANNELFNC_STAIRCASETIMER:
-                    return NSLocalizedString(@"Staircase timer", nil);
-                case SUPLA_CHANNELFNC_THERMOMETER:
-                    return NSLocalizedString(@"Thermometer", nil);
-                case SUPLA_CHANNELFNC_HUMIDITYANDTEMPERATURE:
-                    return NSLocalizedString(@"Temperature and humidity", nil);
-                case SUPLA_CHANNELFNC_HUMIDITY:
-                    return NSLocalizedString(@"Humidity", nil);
-                case SUPLA_CHANNELFNC_NOLIQUIDSENSOR:
-                    return NSLocalizedString(@"No liquid sensor", nil);
-                case SUPLA_CHANNELFNC_RGBLIGHTING:
-                    return NSLocalizedString(@"RGB Lighting", nil);
-                case SUPLA_CHANNELFNC_DIMMERANDRGBLIGHTING:
-                    return NSLocalizedString(@"Dimmer and RGB lighting", nil);
-                case SUPLA_CHANNELFNC_DIMMER:
-                    return NSLocalizedString(@"Dimmer", nil);
-                case SUPLA_CHANNELFNC_DISTANCESENSOR:
-                    return NSLocalizedString(@"Distance sensor", nil);
-                case SUPLA_CHANNELFNC_DEPTHSENSOR:
-                    return NSLocalizedString(@"Depth sensor", nil);
-                case SUPLA_CHANNELFNC_WINDSENSOR:
-                    return NSLocalizedString(@"Wind sensor", nil);
-                case SUPLA_CHANNELFNC_WEIGHTSENSOR:
-                    return NSLocalizedString(@"Weight sensor", nil);
-                case SUPLA_CHANNELFNC_PRESSURESENSOR:
-                    return NSLocalizedString(@"Pressure sensor", nil);
-                case SUPLA_CHANNELFNC_RAINSENSOR:
-                    return NSLocalizedString(@"Rain sensor", nil);
-                case SUPLA_CHANNELFNC_MAILSENSOR:
-                    return NSLocalizedString(@"Mail sensor", nil);
-                case SUPLA_CHANNELFNC_OPENINGSENSOR_WINDOW:
-                    return NSLocalizedString(@"Window opening sensor", nil);
-                case SUPLA_CHANNELFNC_ELECTRICITY_METER:
-                case SUPLA_CHANNELFNC_IC_ELECTRICITY_METER:
-                    return NSLocalizedString(@"Electricity Meter", nil);
-                case SUPLA_CHANNELFNC_IC_GAS_METER:
-                    return NSLocalizedString(@"Gas Meter", nil);
-                case SUPLA_CHANNELFNC_IC_WATER_METER:
-                    return NSLocalizedString(@"Water Meter", nil);
-                case SUPLA_CHANNELFNC_IC_HEAT_METER:
-                    return NSLocalizedString(@"Heat Meter", nil);
-                case SUPLA_CHANNELFNC_THERMOSTAT_HEATPOL_HOMEPLUS:
-                    return NSLocalizedString(@"Home+ Heater", nil);
-                case SUPLA_CHANNELFNC_VALVE_OPENCLOSE:
-                case SUPLA_CHANNELFNC_VALVE_PERCENTAGE:
-                    return NSLocalizedString(@"Valve", nil);
-                case SUPLA_CHANNELFNC_DIGIGLASS_VERTICAL:
-                case SUPLA_CHANNELFNC_DIGIGLASS_HORIZONTAL:
-                    return NSLocalizedString(@"Digiglass", nil);
+            case SUPLA_CHANNELFNC_POWERSWITCH:
+                return NSLocalizedString(@"Power switch", nil);
+            case SUPLA_CHANNELFNC_LIGHTSWITCH:
+                return NSLocalizedString(@"Lighting switch", nil);
+            case SUPLA_CHANNELFNC_STAIRCASETIMER:
+                return NSLocalizedString(@"Staircase timer", nil);
+            case SUPLA_CHANNELFNC_THERMOMETER:
+                return NSLocalizedString(@"Thermometer", nil);
+            case SUPLA_CHANNELFNC_HUMIDITYANDTEMPERATURE:
+                return NSLocalizedString(@"Temperature and humidity", nil);
+            case SUPLA_CHANNELFNC_HUMIDITY:
+                return NSLocalizedString(@"Humidity", nil);
+            case SUPLA_CHANNELFNC_NOLIQUIDSENSOR:
+                return NSLocalizedString(@"No liquid sensor", nil);
+            case SUPLA_CHANNELFNC_RGBLIGHTING:
+                return NSLocalizedString(@"RGB Lighting", nil);
+            case SUPLA_CHANNELFNC_DIMMERANDRGBLIGHTING:
+                return NSLocalizedString(@"Dimmer and RGB lighting", nil);
+            case SUPLA_CHANNELFNC_DIMMER:
+                return NSLocalizedString(@"Dimmer", nil);
+            case SUPLA_CHANNELFNC_DISTANCESENSOR:
+                return NSLocalizedString(@"Distance sensor", nil);
+            case SUPLA_CHANNELFNC_DEPTHSENSOR:
+                return NSLocalizedString(@"Depth sensor", nil);
+            case SUPLA_CHANNELFNC_WINDSENSOR:
+                return NSLocalizedString(@"Wind sensor", nil);
+            case SUPLA_CHANNELFNC_WEIGHTSENSOR:
+                return NSLocalizedString(@"Weight sensor", nil);
+            case SUPLA_CHANNELFNC_PRESSURESENSOR:
+                return NSLocalizedString(@"Pressure sensor", nil);
+            case SUPLA_CHANNELFNC_RAINSENSOR:
+                return NSLocalizedString(@"Rain sensor", nil);
+            case SUPLA_CHANNELFNC_MAILSENSOR:
+                return NSLocalizedString(@"Mail sensor", nil);
+            case SUPLA_CHANNELFNC_OPENINGSENSOR_WINDOW:
+                return NSLocalizedString(@"Window opening sensor", nil);
+            case SUPLA_CHANNELFNC_ELECTRICITY_METER:
+            case SUPLA_CHANNELFNC_IC_ELECTRICITY_METER:
+                return NSLocalizedString(@"Electricity Meter", nil);
+            case SUPLA_CHANNELFNC_IC_GAS_METER:
+                return NSLocalizedString(@"Gas Meter", nil);
+            case SUPLA_CHANNELFNC_IC_WATER_METER:
+                return NSLocalizedString(@"Water Meter", nil);
+            case SUPLA_CHANNELFNC_IC_HEAT_METER:
+                return NSLocalizedString(@"Heat Meter", nil);
+            case SUPLA_CHANNELFNC_THERMOSTAT_HEATPOL_HOMEPLUS:
+                return NSLocalizedString(@"Home+ Heater", nil);
+            case SUPLA_CHANNELFNC_VALVE_OPENCLOSE:
+            case SUPLA_CHANNELFNC_VALVE_PERCENTAGE:
+                return NSLocalizedString(@"Valve", nil);
+            case SUPLA_CHANNELFNC_DIGIGLASS_VERTICAL:
+            case SUPLA_CHANNELFNC_DIGIGLASS_HORIZONTAL:
+                return NSLocalizedString(@"Digiglass", nil);
+            case SUPLA_CHANNELFNC_HVAC_THERMOSTAT:
+            case SUPLA_CHANNELFNC_HVAC_DOMESTIC_HOT_WATER:
+                return NSLocalizedString(@"Thermostat", nil);
+            default:
+                return NSLocalizedString(@"Not supported function", nil);
         }
         
     }
@@ -293,6 +302,10 @@
             return NSLocalizedString(@"Roller shutter opening sensor", nil);
         case SUPLA_CHANNELFNC_OPENINGSENSOR_ROOFWINDOW:
             return NSLocalizedString(@"Roof window opening sensor", nil);
+        case SUPLA_CHANNELFNC_HOTELCARDSENSOR:
+            return [LegacyStrings localized: @"channel_caption_hotelcard"];
+        case SUPLA_CHANNELFNC_ALARMARMAMENTSENSOR:
+            return [LegacyStrings localized: @"channel_caption_alarm_armament"];
         case SUPLA_CHANNELFNC_POWERSWITCH:
             return NSLocalizedString(@"On/Off switch", nil);
         case SUPLA_CHANNELFNC_LIGHTSWITCH:
@@ -332,8 +345,6 @@
             return NSLocalizedString(@"Water meter", nil);
         case SUPLA_CHANNELFNC_IC_HEAT_METER:
             return NSLocalizedString(@"Heat meter", nil);
-        case SUPLA_CHANNELFNC_THERMOSTAT:
-            return NSLocalizedString(@"Thermostat", nil);
         case SUPLA_CHANNELFNC_THERMOSTAT_HEATPOL_HOMEPLUS:
             return NSLocalizedString(@"Home+ Heater", nil);
         case SUPLA_CHANNELFNC_VALVE_OPENCLOSE:
@@ -457,6 +468,8 @@
             case SUPLA_CHANNELFNC_OPENINGSENSOR_DOOR:
             case SUPLA_CHANNELFNC_OPENINGSENSOR_ROLLERSHUTTER:
             case SUPLA_CHANNELFNC_OPENINGSENSOR_ROOFWINDOW:
+            case SUPLA_CHANNELFNC_HOTELCARDSENSOR:
+            case SUPLA_CHANNELFNC_ALARMARMAMENTSENSOR:
             case SUPLA_CHANNELFNC_MAILSENSOR:
             case SUPLA_CHANNELFNC_OPENINGSENSOR_WINDOW:
             case SUPLA_CHANNELFNC_POWERSWITCH:
@@ -542,6 +555,12 @@
         case SUPLA_CHANNELFNC_OPENINGSENSOR_ROOFWINDOW:
         case SUPLA_CHANNELFNC_CONTROLLINGTHEROOFWINDOW:
             n1 = @"roofwindow";
+            break;
+        case SUPLA_CHANNELFNC_HOTELCARDSENSOR:
+            n2 = @"fnc_hotel_card";
+            break;
+        case SUPLA_CHANNELFNC_ALARMARMAMENTSENSOR:
+            n2 = @"fnc_alarm_armament";
             break;
         case SUPLA_CHANNELFNC_POWERSWITCH:
             switch(self.alticon) {
@@ -836,16 +855,16 @@
     n2fmt.minimumFractionDigits = 1;
     switch (self.func) {
         case SUPLA_CHANNELFNC_THERMOMETER:
-            result = [self isOnline] && self.temperatureValue > -273 ? [pres stringRepresentation: self.temperatureValue] : [@"----" stringByAppendingString: pres.unitString];
+            result = [self isOnline] && self.temperatureValue > -273 ? [pres stringRepresentation: self.temperatureValue] : @"---";
             break;
         case SUPLA_CHANNELFNC_HUMIDITY:
-            result = [self isOnline] && self.humidityValue > -1 ? [nfmt stringFromNumber: @(self.humidityValue)] : @"----";
+            result = [self isOnline] && self.humidityValue > -1 ? [nfmt stringFromNumber: @(self.humidityValue)] : @"---";
             break;
         case SUPLA_CHANNELFNC_HUMIDITYANDTEMPERATURE:
             if (idx == 1) {
-                result = [self isOnline] && self.humidityValue > -1 ? [nfmt stringFromNumber: @(self.humidityValue)] : @"----";
+                result = [self isOnline] && self.humidityValue > -1 ? [nfmt stringFromNumber: @(self.humidityValue)] : @"---";
             } else {
-                result = [self isOnline] && self.temperatureValue > -273 ? [pres stringRepresentation:  self.temperatureValue] : [@"----" stringByAppendingString: pres.unitString];
+                result = [self isOnline] && self.temperatureValue > -273 ? [pres stringRepresentation:  self.temperatureValue] : @"---";
             }
             break;
         case SUPLA_CHANNELFNC_DEPTHSENSOR:

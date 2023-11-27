@@ -23,7 +23,7 @@ final class UpdateSceneIconRelationsUseCase {
     @Singleton<UserIconRepository> private var userIconRepository
     @Singleton<ProfileRepository> private var profileRepository
     @Singleton<SceneRepository> private var sceneRepository
-    @Singleton<ListsEventsManager> private var listsEventsManager
+    @Singleton<UpdateEventsManager> private var updateEventsManager
     
     @available(*, deprecated, message: "Only for legacy code")
     func invoke() {
@@ -58,7 +58,7 @@ final class UpdateSceneIconRelationsUseCase {
             .flatMapFirst { icon in
                 if (icon != scene.usericon) {
                     scene.usericon = icon
-                    self.listsEventsManager.emitSceneChange(sceneId: Int(scene.sceneId))
+                    self.updateEventsManager.emitSceneUpdate(sceneId: Int(scene.sceneId))
                     return self.userIconRepository.save()
                 } else {
                     return Observable.just(())
@@ -68,7 +68,7 @@ final class UpdateSceneIconRelationsUseCase {
     
     private func removeRelation(scene: SAScene) -> Observable<Void> {
         scene.usericon = nil
-        self.listsEventsManager.emitSceneChange(sceneId: Int(scene.sceneId))
+        self.updateEventsManager.emitSceneUpdate(sceneId: Int(scene.sceneId))
         return self.sceneRepository.save()
     }
 }
