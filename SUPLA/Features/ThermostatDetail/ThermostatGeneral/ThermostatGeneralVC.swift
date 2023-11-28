@@ -55,6 +55,10 @@ class ThermostatGeneralVC: BaseViewControllerVM<ThermostatGeneralViewState, Ther
         return view
     }()
     
+    private lazy var deviceStateView: DeviceStateView = {
+        DeviceStateView(iconSize: 16)
+    }()
+    
     private lazy var thermostatControlView: ThermostatControlView = {
         let view = ThermostatControlView()
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -167,8 +171,14 @@ class ThermostatGeneralVC: BaseViewControllerVM<ThermostatGeneralViewState, Ther
             }
         }
         
-        firstProgramInfoView.isHidden = state.sensorIssue != nil || state.programInfo.isEmpty
-        secondProgramInfoView.isHidden = state.sensorIssue != nil || state.programInfo.count < 2
+        deviceStateView.isHidden = state.timerInfoHidden
+        deviceStateView.label = state.endDateText
+        deviceStateView.icon = state.currentStateIcon
+        deviceStateView.iconTint = state.currentStateIconColor
+        deviceStateView.value = state.currentStateValue
+        
+        firstProgramInfoView.isHidden = !state.timerInfoHidden || state.sensorIssue != nil || state.programInfo.isEmpty
+        secondProgramInfoView.isHidden = !state.timerInfoHidden || state.sensorIssue != nil || state.programInfo.count < 2
         for (idx, program) in state.programInfo.enumerated() {
             if (idx == 0) {
                 firstProgramInfoView.info = program
@@ -184,23 +194,23 @@ class ThermostatGeneralVC: BaseViewControllerVM<ThermostatGeneralViewState, Ther
     }
     
     private func setupView() {
-        viewModel.bind(thermostatControlView.setpointPositionEvents) { event in
-            self.viewModel.onPositionEvent(event)
+        viewModel.bind(thermostatControlView.setpointPositionEvents) { [weak self] event in
+            self?.viewModel.onPositionEvent(event)
         }
-        viewModel.bind(minusButton.rx.tap.asObservable()) { _ in
-            self.viewModel.onTemperatureChange(.smallDown)
+        viewModel.bind(minusButton.rx.tap.asObservable()) { [weak self] _ in
+            self?.viewModel.onTemperatureChange(.smallDown)
         }
-        viewModel.bind(plusButton.rx.tap.asObservable()) { _ in
-            self.viewModel.onTemperatureChange(.smallUp)
+        viewModel.bind(plusButton.rx.tap.asObservable()) { [weak self] _ in
+            self?.viewModel.onTemperatureChange(.smallUp)
         }
-        viewModel.bind(buttonsView.powerTapEvents) { _ in
-            self.viewModel.onPowerButtonTap()
+        viewModel.bind(buttonsView.powerTapEvents) { [weak self] _ in
+            self?.viewModel.onPowerButtonTap()
         }
-        viewModel.bind(buttonsView.manualTapEvents) { _ in
-            self.viewModel.onManualButtonTap()
+        viewModel.bind(buttonsView.manualTapEvents) { [weak self] _ in
+            self?.viewModel.onManualButtonTap()
         }
-        viewModel.bind(buttonsView.weeklyScheduleTapEvents) { _ in
-            self.viewModel.onWeeklyScheduleButtonTap()
+        viewModel.bind(buttonsView.weeklyScheduleTapEvents) { [weak self] _ in
+            self?.viewModel.onWeeklyScheduleButtonTap()
         }
         
         view.addSubview(temperaturesView)
@@ -214,6 +224,7 @@ class ThermostatGeneralVC: BaseViewControllerVM<ThermostatGeneralViewState, Ther
         view.addSubview(firstProgramInfoView)
         view.addSubview(secondProgramInfoView)
         view.addSubview(sensorIssueView)
+        view.addSubview(deviceStateView)
         
         setupLayout()
     }
@@ -235,6 +246,9 @@ class ThermostatGeneralVC: BaseViewControllerVM<ThermostatGeneralViewState, Ther
             sensorIssueView.topAnchor.constraint(equalTo: temperaturesView.bottomAnchor, constant: Dimens.distanceDefault),
             sensorIssueView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: Dimens.distanceDefault),
             sensorIssueView.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -Dimens.distanceDefault),
+            
+            deviceStateView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            deviceStateView.topAnchor.constraint(equalTo: temperaturesView.bottomAnchor, constant: Dimens.distanceDefault),
             
             buttonsView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
             buttonsView.leftAnchor.constraint(equalTo: view.leftAnchor),
@@ -282,21 +296,9 @@ class ThermostatGeneralVC: BaseViewControllerVM<ThermostatGeneralViewState, Ther
 
 fileprivate class ThermostatGeneralButtons: UIView {
     
-    var powerTapEvents: Observable<Void> {
-        get {
-            powerButtonView.tap.asObservable()
-        }
-    }
-    var manualTapEvents: Observable<Void> {
-        get {
-            manualModeButtonView.tap.asObservable()
-        }
-    }
-    var weeklyScheduleTapEvents: Observable<Void> {
-        get {
-            weeklyScheduleModeButtonView.tap.asObservable()
-        }
-    }
+    var powerTapEvents: Observable<Void> { powerButtonView.tapObservable }
+    var manualTapEvents: Observable<Void> { manualModeButtonView.tapObservable }
+    var weeklyScheduleTapEvents: Observable<Void> { weeklyScheduleModeButtonView.tapObservable }
     
     var isEnabled: Bool {
         get {
@@ -601,7 +603,11 @@ fileprivate class SensorIssueView: UIView {
     
     var icon: UIImage? {
         get { iconView.image }
-        set { iconView.image = newValue }
+        set {
+            iconView.image = newValue
+            iconView.isHidden = newValue == nil
+            setupChangeableConstraints()
+        }
     }
     
     var message: String? {
@@ -632,6 +638,8 @@ fileprivate class SensorIssueView: UIView {
         return label
     }()
     
+    private var changeableConstraints: [NSLayoutConstraint] = []
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         
@@ -651,33 +659,44 @@ fileprivate class SensorIssueView: UIView {
     }
     
     private func setupLayout() {
+        setupChangeableConstraints()
+        
         NSLayoutConstraint.activate([
-            iconView.topAnchor.constraint(equalTo: topAnchor),
-            iconView.leftAnchor.constraint(equalTo: leftAnchor),
-            iconView.bottomAnchor.constraint(equalTo: bottomAnchor),
-            iconView.heightAnchor.constraint(equalToConstant: Dimens.iconSizeBig),
-            iconView.widthAnchor.constraint(equalToConstant: Dimens.iconSizeBig),
-            
-            messageView.leftAnchor.constraint(equalTo: iconView.rightAnchor, constant: Dimens.distanceTiny),
             messageView.centerYAnchor.constraint(equalTo: centerYAnchor),
-            
-            warningIconView.leftAnchor.constraint(equalTo: iconView.leftAnchor, constant: -4),
-            warningIconView.bottomAnchor.constraint(equalTo: iconView.bottomAnchor, constant: 4)
         ])
     }
-}
-
-fileprivate extension UIIconButton {
     
-    func setColor(activeSetpointType: SetpointType?) {
-        let color: UIColor = switch(activeSetpointType) {
-        case .cool: .blue
-        case .heat: .red
-        default: .disabled
+    private func setupChangeableConstraints() {
+        if (!changeableConstraints.isEmpty) {
+            NSLayoutConstraint.deactivate(changeableConstraints)
+            changeableConstraints.removeAll()
         }
-        var configuration = config
-        configuration.contentColor = color
-        configuration.borderColor = color
-        config = configuration
+        
+        if (icon != nil) {
+            changeableConstraints.append(contentsOf: [
+                iconView.topAnchor.constraint(equalTo: topAnchor),
+                iconView.leftAnchor.constraint(equalTo: leftAnchor),
+                iconView.bottomAnchor.constraint(equalTo: bottomAnchor),
+                iconView.heightAnchor.constraint(equalToConstant: Dimens.iconSizeBig),
+                iconView.widthAnchor.constraint(equalToConstant: Dimens.iconSizeBig),
+                
+                messageView.leftAnchor.constraint(equalTo: iconView.rightAnchor, constant: Dimens.distanceTiny),
+                
+                warningIconView.leftAnchor.constraint(equalTo: iconView.leftAnchor, constant: -4),
+                warningIconView.bottomAnchor.constraint(equalTo: iconView.bottomAnchor, constant: 4)
+            ])
+        } else {
+            changeableConstraints.append(contentsOf: [
+                warningIconView.topAnchor.constraint(equalTo: topAnchor),
+                warningIconView.leftAnchor.constraint(equalTo: leftAnchor),
+                warningIconView.bottomAnchor.constraint(equalTo: bottomAnchor),
+                warningIconView.heightAnchor.constraint(equalToConstant: Dimens.iconSizeSmall),
+                warningIconView.widthAnchor.constraint(equalToConstant: Dimens.iconSizeSmall),
+                
+                messageView.leftAnchor.constraint(equalTo: warningIconView.rightAnchor, constant: Dimens.distanceTiny)
+            ])
+        }
+        
+        NSLayoutConstraint.activate(changeableConstraints)
     }
 }

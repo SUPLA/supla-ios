@@ -91,6 +91,8 @@
 "timer_detail_edit_header_off" = "off";
 "timer_detail_turned_on" = "Turned on";
 "timer_detail_turned_off" = "Turned off";
+"timer_detail_day_pattern" = "%d day";
+"timer_detail_days_pattern" = "%d days";
 "timer_detail_hour_pattern" = "%d hour";
 "timer_detail_hours_pattern" = "%d hours";
 "timer_detail_minute_pattern" = "%d min";
@@ -112,6 +114,18 @@
 "timer_detail_format" = "%02d:%02d:%02d";
 "timer_detail_wrong_time_title" = "Invalid time";
 "timer_detail_wrong_time_message" = "Time should be bigger then 0";
+"timer_detail_cancel_thermostat" = "Cancel and turn on:";
+"timer_detail_select_mode" = "Select mode";
+"timer_detail_manual_mode" = "Manual mode";
+"timer_detail_min_temp" = "Temp. min.";
+"timer_detail_max_temp" = "Temp. max.";
+"timer_detail_select_time" = "Specify time";
+"timer_detail_counter" = "Counter";
+"timer_detail_calendar" = "Calendar";
+"timer_detail_info_thermostat_off" = "Thermostat will stay turned off for\n%@";
+"timer_detail_info_thermostat_heating" = "Thermostat will stay in heating mode for\n%@";
+"timer_detail_info_thermostat_cooling" = "Thermostat will stay in cooling mode for\n%@";
+"timer_detail_state_label_for_timer_days" = "State until %@:";
 
 /* Thermostat Detail */
 "thermostat_thermometer_error" = "Temperature reading error";

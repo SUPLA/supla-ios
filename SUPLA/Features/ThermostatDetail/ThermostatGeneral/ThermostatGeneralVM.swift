@@ -41,10 +41,12 @@ class ThermostatGeneralVM: BaseViewModel<ThermostatGeneralViewState, ThermostatG
     override func defaultViewState() -> ThermostatGeneralViewState { ThermostatGeneralViewState() }
     
     override func onViewDidLoad() {
-        loadingTimeoutManager.watch(stateProvider: { self.currentState()?.loadingState }) {
-            self.updateView { state in
+        loadingTimeoutManager.watch(
+            stateProvider: { [weak self] in self?.currentState()?.loadingState }
+        ) { [weak self] in
+            self?.updateView { state in
                 if let channelFunction = state.channelFunc {
-                    self.triggerDataLoad(remoteId: channelFunction)
+                    self?.triggerDataLoad(remoteId: channelFunction)
                 }
                 
                 return state.changing(path: \.loadingState, to: state.loadingState.copy(loading: false))
@@ -65,7 +67,7 @@ class ThermostatGeneralVM: BaseViewModel<ThermostatGeneralViewState, ThermostatG
         
         Observable.combineLatest(
             channelRelay.asObservable()
-                .map { ($0, self.createTemperaturesListUseCase.invoke(channelWithChildren: $0))},
+                .map { [weak self] in ($0, self?.createTemperaturesListUseCase.invoke(channelWithChildren: $0))},
             channelConfigEventManager.observeConfig(id: remoteId)
                 .filter { $0.config is SuplaChannelHvacConfig && $0.result == .resultTrue },
             channelConfigEventManager.observeConfig(id: remoteId)
@@ -74,7 +76,7 @@ class ThermostatGeneralVM: BaseViewModel<ThermostatGeneralViewState, ThermostatG
             resultSelector: { ($0, $1.config as? SuplaChannelHvacConfig, $2.config as? SuplaChannelWeeklyScheduleConfig, $3.config) }
         ).asDriverWithoutError()
             .debounce(.milliseconds(50))
-            .drive(onNext: { self.handleData(data: $0) })
+            .drive(onNext: { [weak self] in self?.handleData(data: $0) })
             .disposed(by: self)
     }
     
@@ -254,11 +256,14 @@ class ThermostatGeneralVM: BaseViewModel<ThermostatGeneralViewState, ThermostatG
         }
     }
     
-    private func handleData(data: ((ChannelWithChildren, [MeasurementValue])?, SuplaChannelHvacConfig?, SuplaChannelWeeklyScheduleConfig?, SuplaDeviceConfig)) {
-        guard let channel = data.0?.0 else { return }
-        guard let temperatures = data.0?.1 else { return }
-        guard let config = data.1 else { return }
-        guard let thermostatValue = channel.channel.value?.asThermostatValue() else { return }
+    private func handleData(data: ((ChannelWithChildren, [MeasurementValue]?), SuplaChannelHvacConfig?, SuplaChannelWeeklyScheduleConfig?, SuplaDeviceConfig)) {
+        NSLog("General handle data")
+        let channel = data.0.0
+        
+        guard let temperatures = data.0.1,
+              let config = data.1,
+              let thermostatValue = channel.channel.value?.asThermostatValue()
+        else { return }
         
         updateView { state in
             if (state.changing) {
@@ -289,6 +294,7 @@ class ThermostatGeneralVM: BaseViewModel<ThermostatGeneralViewState, ThermostatG
                 .changing(path: \.sensorIssue, to: createSensorIssue(value: thermostatValue, children: channel.children))
                 .changing(path: \.temporaryChangeActive, to: channel.channel.isOnline() && thermostatValue.flags.contains(.weeklyScheduleTemporalOverride))
                 .changing(path: \.programInfo, to: createProgramInfo(data.2, thermostatValue, channel.channel.isOnline(), data.3))
+                .changing(path: \.timerEndDate, to: channel.channel.getTimerEndDate())
             
             changedState = handleSetpoints(changedState, channel: channel.channel)
             changedState = handleFlags(changedState, value: thermostatValue, isOnline: channel.channel.isOnline())
@@ -446,9 +452,12 @@ class ThermostatGeneralVM: BaseViewModel<ThermostatGeneralViewState, ThermostatG
                 sensorIcon: getChannelBaseIconUseCase.invoke(channel: sensor.channel),
                 message: message
             )
+        } else {
+            return SensorIssue(
+                sensorIcon: nil,
+                message: Strings.ThermostatDetail.offBySensor
+            )
         }
-        
-        return nil
     }
     
     private func createProgramInfo(
@@ -503,6 +512,7 @@ struct ThermostatGeneralViewState: ViewState {
     var changing: Bool = false
     var loadingState: LoadingState = LoadingState()
     var subfunction: ThermostatSubfunction? = nil
+    var timerEndDate: Date? = nil
     
     /* View properties */
     
@@ -613,12 +623,22 @@ struct ThermostatGeneralViewState: ViewState {
             }
         }
     }
-    var controlButtonsEnabled: Bool { get { !offline } }
-    var configMinMaxHidden: Bool { get { offline } }
-    var grayOutSetpoints: Bool {
-        get {
-            return !offline && off && weeklyScheduleActive
-        }
+    var controlButtonsEnabled: Bool { !offline }
+    var configMinMaxHidden: Bool { offline }
+    var grayOutSetpoints: Bool { !offline && off && weeklyScheduleActive }
+    
+    var timerInfoHidden: Bool {
+        sensorIssue != nil || timerEndDate == nil || timerEndDate!.timeIntervalSince1970 < Date().timeIntervalSince1970
+    }
+    var endDateText: String { DeviceState.endDateText(timerEndDate) }
+    var currentStateIcon: UIImage? { DeviceState.currentStateIcon(mode) }
+    var currentStateIconColor: UIColor { DeviceState.currentStateIconColor(mode) }
+    var currentStateValue: String {
+        DeviceState.currentStateValue(
+            mode,
+            heatSetpoint: setpointHeat,
+            coolSetpoint: setpointCool
+        )
     }
 }
 

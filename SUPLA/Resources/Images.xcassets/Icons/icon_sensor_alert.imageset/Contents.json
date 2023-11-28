@@ -1,0 +1,12 @@
+{
+  "images" : [
+    {
+      "filename" : "icon_sensor_alert.svg",
+      "idiom" : "universal"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}

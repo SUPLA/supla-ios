@@ -230,13 +230,29 @@ class AccountCreationVC: BaseViewControllerVM<AccountCreationViewState, AccountC
         viewModel.bind(field: \.accessId, toOptional: adAccessID.rx.text.asObservable())
         viewModel.bind(field: \.accessIdPassword, toOptional: adAccessPwd.rx.text.asObservable())
         
-        viewModel.bind(confirmButton.rx.tap.asObservable()) { self.viewModel.save() }
-        viewModel.bind(bsEmailAddr.rx.text.asObservable()) { self.viewModel.setEmailAddress($0!) }
-        viewModel.bind(adEmailAddr.rx.text.asObservable()) { self.viewModel.setEmailAddress($0!) }
-        viewModel.bind(modeToggle.rx.isOn.debounce(.milliseconds(100), scheduler: MainScheduler.instance).distinctUntilChanged().asObservable()) { isOn in self.viewModel.toggleAdvancedState(isOn) }
-        viewModel.bind(adServerAuto.rx.tap.asObservable().map({ self.adServerAuto.isSelected })) { isOn in self.viewModel.setServerAutodetect(isOn) }
-        viewModel.bind(deleteButton.rx.tap.asObservable()) { self.viewModel.removeTapped() }
-        viewModel.bind(createAccountButton.rx.tap.asObservable()) { self.viewModel.addAccountTapped() }
+        viewModel.bind(confirmButton.rx.tap.asObservable()) { [weak self] in self?.viewModel.save() }
+        viewModel.bind(bsEmailAddr.rx.text.asObservable()) { [weak self] in
+            self?.viewModel.setEmailAddress($0!)
+        }
+        viewModel.bind(adEmailAddr.rx.text.asObservable()) { [weak self] in
+            self?.viewModel.setEmailAddress($0!)
+        }
+        viewModel.bind(
+            modeToggle.rx.isOn
+                .debounce(.milliseconds(100), scheduler: MainScheduler.instance)
+                .distinctUntilChanged()
+                .asObservable()
+        ) { [weak self] isOn in self?.viewModel.toggleAdvancedState(isOn) }
+        viewModel.bind(
+            adServerAuto.rx.tap.asObservable()
+                .map({ [weak self] in self?.adServerAuto.isSelected == true })
+        ) { [weak self] isOn in self?.viewModel.setServerAutodetect(isOn) }
+        viewModel.bind(deleteButton.rx.tap.asObservable()) { [weak self] in
+            self?.viewModel.removeTapped()
+        }
+        viewModel.bind(createAccountButton.rx.tap.asObservable()) { [weak self] in
+            self?.viewModel.addAccountTapped()
+        }
     }
     
     override func updateViewConstraints() {
@@ -344,11 +360,11 @@ class AccountCreationVC: BaseViewControllerVM<AccountCreationViewState, AccountC
     
     private func handleShowRemovalDialogEvent() {
         let actionSheet = UIAlertController(title: Strings.Cfg.removalConfirmationTitle, message: nil, preferredStyle: .actionSheet)
-        actionSheet.addAction(UIAlertAction(title: Strings.Cfg.removalActionLogout, style: .destructive, handler: { action in
-            self.viewModel.logoutAccount()
+        actionSheet.addAction(UIAlertAction(title: Strings.Cfg.removalActionLogout, style: .destructive, handler: { [weak self] action in
+            self?.viewModel.logoutAccount()
         }))
-        actionSheet.addAction(UIAlertAction(title: Strings.Cfg.removalActionRemove, style: .destructive, handler: { action in
-            self.viewModel.removeAccount()
+        actionSheet.addAction(UIAlertAction(title: Strings.Cfg.removalActionRemove, style: .destructive, handler: { [weak self] action in
+            self?.viewModel.removeAccount()
         }))
         actionSheet.addAction(UIAlertAction(title: Strings.General.cancel, style: .cancel, handler: { action in
             NSLog("User canceled removal action")

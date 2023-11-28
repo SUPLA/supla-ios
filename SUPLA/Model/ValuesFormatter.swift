@@ -28,6 +28,7 @@ protocol ValuesFormatter {
     // Time
     func minutesToString(minutes: Int) -> String
     func getHourString(hour: Hour?) -> String?
+    func getTimeString(hour: Int?, minute: Int?, second: Int?) -> String
     func getDateString(date: Date?) -> String?
     func getDateShortString(date: Date?) -> String?
     func getHourString(date: Date?) -> String?
@@ -52,6 +53,9 @@ extension ValuesFormatter {
     }
     func humidityToString(_ value: Double?, withPercentage: Bool = false) -> String {
         humidityToString(value: value, withPercentage: withPercentage)
+    }
+    func getTimeString(hour: Int? = nil, minute: Int? = nil, second: Int? = nil) -> String {
+        getTimeString(hour: hour, minute: minute, second: second)
     }
 }
 
@@ -125,11 +129,29 @@ final class ValuesFormatterImpl: ValuesFormatter {
     
     func getHourString(hour: Hour?) -> String? {
         guard let hour = hour else { return nil }
+        return getTimeString(hour: hour.hour, minute: hour.minute)
+    }
+    
+    func getTimeString(hour: Int? = nil, minute: Int? = nil, second: Int? = nil) -> String {
+        var result = ""
         
-        let hourString = hour.hour < 10 ? "0\(hour.hour)" : "\(hour.hour)"
-        let minuteString = hour.minute < 10 ? "0\(hour.minute)" : "\(hour.minute)"
+        if let hour = hour {
+            result += hour < 10 ? "0\(hour)" : "\(hour)"
+        }
+        if let minute = minute {
+            if (!result.isEmpty) {
+                result += ":"
+            }
+            result += minute < 10 ? "0\(minute)" : "\(minute)"
+        }
+        if let second = second {
+            if (!result.isEmpty) {
+                result += ":"
+            }
+            result += second < 10 ? "0\(second)" : "\(second)"
+        }
         
-        return "\(hourString):\(minuteString)"
+        return result
     }
     
     func getDateString(date: Date?) -> String? {

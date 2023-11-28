@@ -23,17 +23,14 @@ class BaseViewControllerVM<S : ViewState, E : ViewEvent, VM : BaseViewModel<S, E
     
     fileprivate let disposeBag = DisposeBag()
     var viewModel: VM!
+    var stateDisposable: Disposable? = nil
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         viewModel.onViewDidLoad()
         
         viewModel.eventsObervable()
-            .subscribe(onNext: { event in self.handle(event: event) })
-            .disposed(by: disposeBag)
-        viewModel.stateObservable()
-            .subscribe(onNext: { state in self.handle(state: state) })
+            .subscribe(onNext: { [weak self] event in self?.handle(event: event) })
             .disposed(by: disposeBag)
     }
     
@@ -46,10 +43,16 @@ class BaseViewControllerVM<S : ViewState, E : ViewEvent, VM : BaseViewModel<S, E
             attributes[.font] = UIFont.suplaSubtitleFont
         }
         navigationController?.navigationBar.titleTextAttributes = attributes
+        
+        stateDisposable = viewModel.stateObservable()
+            .subscribe(onNext: { [weak self] state in self?.handle(state: state) })
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
+        
+        stateDisposable?.dispose()
+        stateDisposable = nil
         NotificationCenter.default.removeObserver(self)
     }
     
@@ -61,6 +64,13 @@ class BaseViewControllerVM<S : ViewState, E : ViewEvent, VM : BaseViewModel<S, E
     func observeNotification(name: NSNotification.Name?, selector: Selector) {
         NotificationCenter.default.addObserver(self, selector: selector, name: name, object: nil)
     }
+    
+#if DEBUG
+    deinit {
+        let className = NSStringFromClass(type(of: self))
+        NSLog("[DEINIT] VC:\(className)")
+    }
+#endif
 }
 
 extension Disposable {

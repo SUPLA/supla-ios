@@ -49,8 +49,10 @@ final class LoadingTimeoutManagerImpl: LoadingTimeoutManager {
         return Observable<Int>
             .interval(.milliseconds(100), scheduler: schedulers.background)
             .observe(on: schedulers.main)
-            .subscribe(onNext: { _ in
-                guard let state = stateProvider() else { return }
+            .subscribe(onNext: { [weak self] _ in
+                guard let state = stateProvider(),
+                      let self = self
+                else { return }
                 
                 if (state.initialLoading) {
                     return

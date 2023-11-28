@@ -122,7 +122,7 @@ final class ThermostatCell: BaseCell<ChannelWithChildren> {
             thermostatIconView.leftAnchor.constraint(equalTo: container.leftAnchor),
             thermostatIconView.topAnchor.constraint(equalTo: container.topAnchor),
             
-            currentTemperatureView.leftAnchor.constraint(equalTo: thermostatIconView.rightAnchor, constant: Dimens.distanceTiny),
+            currentTemperatureView.leftAnchor.constraint(equalTo: thermostatIconView.rightAnchor, constant: 4),
             
             indicatorView.widthAnchor.constraint(equalToConstant: scale(12.0, limit: .lower(1))),
             indicatorView.heightAnchor.constraint(equalToConstant: scale(12.0, limit: .lower(1))),
@@ -132,12 +132,12 @@ final class ThermostatCell: BaseCell<ChannelWithChildren> {
         
         if (scaleFactor > 1) {
             constraints.append(contentsOf: [
-                currentTemperatureView.bottomAnchor.constraint(equalTo: thermostatIconView.centerYAnchor),
+                currentTemperatureView.bottomAnchor.constraint(equalTo: thermostatIconView.centerYAnchor, constant: 6),
 
                 indicatorView.centerYAnchor.constraint(equalTo: setpointTemperatureView.centerYAnchor),
-                indicatorView.leftAnchor.constraint(equalTo: thermostatIconView.rightAnchor, constant: Dimens.distanceTiny),
+                indicatorView.leftAnchor.constraint(equalTo: thermostatIconView.rightAnchor, constant: 4),
                 
-                setpointTemperatureView.topAnchor.constraint(equalTo: thermostatIconView.centerYAnchor),
+                setpointTemperatureView.topAnchor.constraint(equalTo: thermostatIconView.centerYAnchor, constant: 6),
                 setpointTemperatureView.rightAnchor.constraint(equalTo: container.rightAnchor)
             ])
         } else {
@@ -192,6 +192,10 @@ final class ThermostatCell: BaseCell<ChannelWithChildren> {
         }
     }
     
+    override func timerEndDate() -> Date? {
+        data?.channel.getTimerEndDate()
+    }
+    
     private func getSetpointTemperatureString(_ channel: SAChannel, _ thermostatValue: ThermostatValue) -> String {
         if (!channel.isOnline()) {
             return ""
@@ -209,7 +213,9 @@ final class ThermostatCell: BaseCell<ChannelWithChildren> {
     }
     
     private func getIndicatorIcon(_ channel: SAChannel, _ thermostatValue: ThermostatValue) -> UIImage? {
-        if (channel.isOnline() && thermostatValue.flags.contains(.cooling)) {
+        if (thermostatValue.flags.contains(.forcedOffBySensor)) {
+            return .iconSensorAlert
+        } else if (channel.isOnline() && thermostatValue.flags.contains(.cooling)) {
             return .iconCooling
         } else if (channel.isOnline() && thermostatValue.flags.contains(.heating)) {
             return .iconHeating

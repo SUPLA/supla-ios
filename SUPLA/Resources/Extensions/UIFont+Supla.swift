@@ -103,6 +103,7 @@ extension UIFont {
     
     static let thermostatControlBigTemperature = UIFont(name: "OpenSans-Medium", size: 48)
     static let thermostatControlSmallTemperature = UIFont(name: "OpenSans-Medium", size: 32)
+    static let thermostatTimerTime = UIFont(name: "OpenSans-Bold", size: 24)
     
     static let scheduleDetailButton = UIFont(name: "OpenSans-Bold", size: 14)
     

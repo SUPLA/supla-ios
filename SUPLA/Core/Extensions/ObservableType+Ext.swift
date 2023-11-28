@@ -35,6 +35,10 @@ extension ObservableType {
 extension Single {
     func asDriverWithoutError() -> Driver<Element> {
         return asDriver { error in
+            let errorDescription = String(describing: error)
+            NSLog("Driver got error: \(error.localizedDescription)")
+            NSLog(errorDescription)
+            
             return Driver.empty()
         }
     }

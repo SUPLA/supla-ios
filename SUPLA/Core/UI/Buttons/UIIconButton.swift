@@ -53,6 +53,15 @@ class UIIconButton: UIButton {
         fatalError("init(coder:) has not been implemented")
     }
     
+    func setColor(activeSetpointType: SetpointType?) {
+        let color = activeSetpointType?.color ?? .disabled
+        
+        var configuration = config
+        configuration.contentColor = color
+        configuration.borderColor = color
+        config = configuration
+    }
+    
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         super.touchesBegan(touches, with: event)
         

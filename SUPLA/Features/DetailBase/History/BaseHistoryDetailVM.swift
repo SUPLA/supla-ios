@@ -22,7 +22,6 @@ import RxSwift
 class BaseHistoryDetailVM: BaseViewModel<BaseHistoryDetailViewState, BaseHistoryDetailViewEvent> {
     
     @Singleton<DateProvider> var dateProvider
-    @Singleton<UserStateHolder> var userStateHolder
     @Singleton<ProfileRepository> var profileRepository
     
     override func defaultViewState() -> BaseHistoryDetailViewState { BaseHistoryDetailViewState() }
@@ -163,11 +162,13 @@ class BaseHistoryDetailVM: BaseViewModel<BaseHistoryDetailViewState, BaseHistory
         
         measurementsObservable(remoteId: remoteId, start: start, end: end, aggregation: aggregation)
             .asDriverWithoutError()
-            .drive(onNext: {
-                self.handleMeasurements(
+            .drive(onNext: { [weak self] in
+                @Singleton<UserStateHolder> var userStateHolder
+                
+                self?.handleMeasurements(
                     sets: $0.0,
                     range: $0.1,
-                    chartState: self.userStateHolder.getTemperatureChartState(
+                    chartState: userStateHolder.getTemperatureChartState(
                         profileId: profileId,
                         remoteId: remoteId
                     )
@@ -190,7 +191,7 @@ class BaseHistoryDetailVM: BaseViewModel<BaseHistoryDetailViewState, BaseHistory
         }
     }
     
-    func handleDownloadEvents(downloadState: DownloadEventsManagerState) {
+    func handleDownloadEvents(downloadState: DownloadEventsManagerState?) {
         switch (downloadState) {
         case .inProgress(_), .started:
             updateView {
@@ -360,6 +361,8 @@ class BaseHistoryDetailVM: BaseViewModel<BaseHistoryDetailViewState, BaseHistory
     }
     
     private func updateUserState() {
+        @Singleton<UserStateHolder> var userStateHolder
+        
         guard let state = currentState(),
               let aggregation = state.aggregations?.selected,
               let chartRange = state.ranges?.selected,
