@@ -160,6 +160,8 @@ class AccountCreationVC: BaseViewControllerVM<AccountCreationViewState, AccountC
             $0.delegate = self
             $0.font = .StaticSize.body2
         }
+        bsEmailAddr.keyboardType = .emailAddress
+        adEmailAddr.keyboardType = .emailAddress
         bsProfileName.font = .StaticSize.body2
         adProfileName.font = .StaticSize.body2
         modeToggleLabel.font = .StaticSize.body2
