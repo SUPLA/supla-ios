@@ -215,7 +215,7 @@ final class ThermostatTimerDetailVMTests: ViewModelTest<ThermostatTimerDetailVie
             state.changing(path: \.loadingState, to: state.loadingState.copy(loading: true))
         ])
         XCTAssertTuples(executeThermostatActionUseCase.parameters, [
-            (SubjectType.channel, remoteId, SuplaHvacMode.heat, 14.5, nil, 259200)
+            (SubjectType.channel, remoteId, SuplaHvacMode.heat, 14.5, nil, Int32(currentDate.differenceInSeconds(endDate)))
         ])
     }
     
@@ -280,7 +280,7 @@ final class ThermostatTimerDetailVMTests: ViewModelTest<ThermostatTimerDetailVie
         assertStates(expected: [
             state,
             state.changing(path: \.editTime, to: true)
-                .changing(path: \.pickerValue, to: .init(valueForDays: 259200))
+                .changing(path: \.pickerValue, to: .init(valueForDays: currentDate.differenceInSeconds(endDate)))
                 .changing(path: \.calendarValue, to: endDate)
                 .changing(path: \.selectedMode, to: .manual)
         ])
