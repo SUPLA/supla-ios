@@ -73,7 +73,7 @@ class AccountCreationVM: BaseViewModel<AccountCreationViewState, AccountCreation
                         .changing(path: \.accessId, to: "\(authConfig.accessID)")
                         .changing(path: \.accessIdPassword, to: authConfig.accessIDpwd)
                         .changing(path: \.serverAddressForAccessId, to: authConfig.serverForAccessID)
-                        .changing(path: \.deleteButtonVisible, to: self?.settings.anyAccountRegistered == true && profileId == nil)
+                        .changing(path: \.deleteButtonVisible, to: self?.settings.anyAccountRegistered == true && profileId != nil)
                     
                 }
             })
