@@ -90,6 +90,15 @@ extension XCTestCase {
         XCTAssertEqual(first.4, second.4)
     }
     
+    func XCTAssertTuple<A: Equatable, B: Equatable, C: Equatable, D:Equatable, E: Equatable, F: Equatable>(_ first: (A, B, C, D, E, F), _ second : (A, B, C, D, E, F)) {
+        XCTAssertEqual(first.0, second.0)
+        XCTAssertEqual(first.1, second.1)
+        XCTAssertEqual(first.2, second.2)
+        XCTAssertEqual(first.3, second.3)
+        XCTAssertEqual(first.4, second.4)
+        XCTAssertEqual(first.5, second.5)
+    }
+    
     func XCTAssertTuples<A: Equatable, B: Equatable>(_ first: [(A, B)], _ second: [(A, B)]) {
         XCTAssertEqual(first.count, second.count)
         for i in 0..<first.count {
@@ -112,6 +121,13 @@ extension XCTestCase {
     }
     
     func XCTAssertTuples<A: Equatable, B: Equatable, C: Equatable, D: Equatable, E: Equatable>(_ first: [(A, B, C, D, E)], _ second: [(A, B, C, D, E)]) {
+        XCTAssertEqual(first.count, second.count)
+        for i in 0..<first.count {
+            XCTAssertTuple(first[i], second[i])
+        }
+    }
+    
+    func XCTAssertTuples<A: Equatable, B: Equatable, C: Equatable, D: Equatable, E: Equatable, F: Equatable>(_ first: [(A, B, C, D, E, F)], _ second: [(A, B, C, D, E, F)]) {
         XCTAssertEqual(first.count, second.count)
         for i in 0..<first.count {
             XCTAssertTuple(first[i], second[i])

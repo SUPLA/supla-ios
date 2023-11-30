@@ -22,9 +22,9 @@ import RxSwift
 
 @testable import SUPLA
 
-final class TimerDetailVMTests: ViewModelTest<TimerDetailViewState, TimerDetailViewEvent> {
+final class TimerDetailVMTests: ViewModelTest<SwitchTimerDetailViewState, SwitchTimerDetailViewEvent> {
     
-    private lazy var viewModel: TimerDetailVM! = { TimerDetailVM() }()
+    private lazy var viewModel: SwitchTimerDetailVM! = { SwitchTimerDetailVM() }()
     
     private lazy var readChannelByRemoteIdUseCase: ReadChannelByRemoteIdUseCaseMock! = {
         ReadChannelByRemoteIdUseCaseMock()
@@ -337,10 +337,10 @@ final class TimerDetailVMTests: ViewModelTest<TimerDetailViewState, TimerDetailV
         // then
         assertObserverItems(statesCount: 1, eventsCount: 0) // only default state
         
-        XCTAssertEqual(progressData.progres, 0.5)
-        XCTAssertEqual(progressData.leftTimeValues.seconds, 16)
-        XCTAssertEqual(progressData.leftTimeValues.minutes, 0)
-        XCTAssertEqual(progressData.leftTimeValues.hours, 0)
+        XCTAssertEqual(progressData!.progres, 0.5)
+        XCTAssertEqual(progressData!.leftTimeValues.seconds, 16)
+        XCTAssertEqual(progressData!.leftTimeValues.minutes, 0)
+        XCTAssertEqual(progressData!.leftTimeValues.hours, 0)
     }
     
     private func createChannelWithHiValue(_ value: Int8, isOnline: Bool = false) -> SAChannel {

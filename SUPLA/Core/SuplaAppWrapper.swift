@@ -18,10 +18,15 @@
 
 protocol SuplaAppWrapper {
     func terminateSuplaClient()
+    func cancelAllRestApiClientTasks() 
 }
 
 class SuplaAppWrapperImpl: SuplaAppWrapper {
     func terminateSuplaClient() {
         SAApp.suplaClientWaitForTerminate()
+    }
+    
+    func cancelAllRestApiClientTasks() {
+        SAApp.instance().cancelAllRestApiClientTasks()
     }
 }

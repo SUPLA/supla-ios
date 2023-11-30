@@ -58,6 +58,7 @@ final class SADateTimePicker: UIView {
         let view = UIDatePicker()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.datePickerMode = .dateAndTime
+        view.tintColor = .primary
         if #available(iOS 14.0, *) {
             view.preferredDatePickerStyle = .inline
         }

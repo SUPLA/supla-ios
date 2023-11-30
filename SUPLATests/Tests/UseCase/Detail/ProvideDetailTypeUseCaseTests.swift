@@ -191,7 +191,7 @@ final class ProvideDetailTypeUseCaseTests: XCTestCase {
     }
     
     func test_shouldProvideStandardDetailWithGeneralAndTimer_forChannelWithTimer() {
-        doTest(expectedResult: .switchDetail(pages: [.switchGeneral, .timer])) {
+        doTest(expectedResult: .switchDetail(pages: [.switchGeneral, .switchTimer])) {
             let channel = SAChannel(testContext: nil)
             channel.func = SUPLA_CHANNELFNC_LIGHTSWITCH
             channel.flags = SUPLA_CHANNEL_FLAG_COUNTDOWN_TIMER_SUPPORTED
@@ -211,7 +211,7 @@ final class ProvideDetailTypeUseCaseTests: XCTestCase {
     }
     
     func test_shouldProvideStandardDetailWithGeneralTimerAndIC() {
-        doTest(expectedResult: .switchDetail(pages: [.switchGeneral, .timer, .historyIc])) {
+        doTest(expectedResult: .switchDetail(pages: [.switchGeneral, .switchTimer, .historyIc])) {
             let value = SAChannelValue(testContext: nil)
             value.sub_value_type = Int16(SUBV_TYPE_IC_MEASUREMENTS)
             
@@ -238,7 +238,7 @@ final class ProvideDetailTypeUseCaseTests: XCTestCase {
     }
     
     func test_shouldProvideThermostatDetail() {
-        doTest(expectedResult: .thermostatDetail(pages: [.thermostatGeneral, .schedule, .thermostatHistory])) {
+        doTest(expectedResult: .thermostatDetail(pages: [.thermostatGeneral, .schedule, .thermostatTimer, .thermostatHistory])) {
             let channel = SAChannel(testContext: nil)
             channel.func = SUPLA_CHANNELFNC_HVAC_THERMOSTAT
             

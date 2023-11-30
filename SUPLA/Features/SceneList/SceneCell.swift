@@ -29,18 +29,8 @@ final class SceneCell: BaseCell<SAScene> {
         return view
     }()
     
-    private lazy var formatter: DateComponentsFormatter = {
-        let formatter = DateComponentsFormatter()
-        formatter.allowedUnits = [.hour, .minute, .second]
-        formatter.zeroFormattingBehavior = .pad
-        return formatter
-    }()
-    
     private let executeButton = CellButton(title: Strings.Scenes.ActionButtons.execute, backgroundColor: .onLine())
     private let abortButton = CellButton(title: Strings.Scenes.ActionButtons.abort, backgroundColor: .onLine())
-    
-    private var counter: Timer? = nil
-    private var disposeBag = DisposeBag()
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -50,11 +40,6 @@ final class SceneCell: BaseCell<SAScene> {
     required init?(coder: NSCoder) {
         super.init(coder: coder)
         setupView()
-    }
-    
-    override func prepareForReuse() {
-        super.prepareForReuse()
-        disposeBag = DisposeBag()
     }
     
     override func leftButtonSettings() -> CellButtonSettings {
@@ -74,6 +59,10 @@ final class SceneCell: BaseCell<SAScene> {
     override func provideRefreshData(_ updateEventsManager: UpdateEventsManager, forData: SAScene) -> Observable<SAScene> {
         updateEventsManager.observeScene(sceneId: Int(forData.sceneId))
     }
+    
+    override func timerEndDate() -> Date? { data?.estimatedEndDate }
+    
+    override func onTimerStopped() { setActive(false) }
     
     // MARK: - configure cell layout
     
@@ -111,42 +100,12 @@ final class SceneCell: BaseCell<SAScene> {
             sceneIconView.image = UIImage(named: "scene_0")
         }
         
-        if (counter != nil) {
-            timer = ""
-            counter?.invalidate()
-        }
-        
-        if (data.estimatedEndDate != nil) {
-            initiator = data.initiatorName ?? ""
-            updateTimerLabel()
-            counter = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(updateTimerLabel), userInfo: nil, repeats: true)
-            setActive(true)
-        } else {
-            initiator = ""
-            setActive(false)
-        }
+        setActive(data.estimatedEndDate != nil)
     }
     
     private func setActive(_ active: Bool) {
         leftStatusIndicatorView.configure(filled: active, online: true)
         rightStatusIndicatorView.configure(filled: active, online: true)
-    }
-    
-    @objc private func updateTimerLabel() {
-        let currentTime = NSDate().timeIntervalSince1970
-        let endTime = data?.estimatedEndDate?.timeIntervalSince1970 ?? 0
-        
-        if (currentTime > endTime) {
-            timer = ""
-            counter?.invalidate()
-            counter = nil
-            
-            setActive(false)
-        }
-        else {
-            let timeDiff = endTime - currentTime
-            timer = formatter.string(from: timeDiff + 1)
-        }
     }
 }
 

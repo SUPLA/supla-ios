@@ -27,3 +27,32 @@ final class DeleteAllProfileDataUseCaseMock: DeleteAllProfileDataUseCase {
         return returns
     }
 }
+
+final class DeleteProfileUseCaseMock: DeleteProfileUseCase {
+    var parameters: [ProfileID] = []
+    var returns: Observable<DeleteProfileResult> = .empty()
+    func invoke(profileId: ProfileID) -> Observable<DeleteProfileResult> {
+        parameters.append(profileId)
+        return returns
+    }
+}
+
+final class SaveOrCreateProfileUseCaseMock: SaveOrCreateProfileUseCase {
+    var parameters: [(ProfileID?, String, Bool, AuthInfo)] = []
+    var returns: Observable<SaveOrCreateProfileResult> = .empty()
+    func invoke(profileId: ProfileID?, name: String, advancedMode: Bool, authInfo: AuthInfo) -> Observable<SaveOrCreateProfileResult> {
+        parameters.append((profileId, name, advancedMode, authInfo))
+        return returns
+    }
+}
+
+final class ActivateProfileUseCaseMock: ActivateProfileUseCase {
+    var parameters: [(ProfileID, Bool)] = []
+    var returns: Observable<Bool> = .empty()
+    func invoke(profileId: ProfileID, force: Bool) -> Observable<Bool> {
+        parameters.append((profileId, force))
+        return returns
+    }
+    
+    
+}

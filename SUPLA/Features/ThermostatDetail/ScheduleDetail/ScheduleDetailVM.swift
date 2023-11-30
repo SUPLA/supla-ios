@@ -47,14 +47,14 @@ class ScheduleDetailVM: BaseViewModel<ScheduleDetailViewState, ScheduleDetailVie
         )
             .asDriverWithoutError()
             .debounce(.milliseconds(50))
-            .drive(onNext: { self.onConfigLoaded(configs: $0) })
+            .drive(onNext: { [weak self] in self?.onConfigLoaded(configs: $0) })
             .disposed(by: self)
         
         reloadConfigRelay
             .subscribe(on: schedulers.background)
             .asDriverWithoutError()
             .debounce(.seconds(1))
-            .drive(onNext: { _ in self.triggerConfigLoad(remoteId: remoteId) })
+            .drive(onNext: { [weak self] _ in self?.triggerConfigLoad(remoteId: remoteId) })
             .disposed(by: self)
         
         triggerConfigLoad(remoteId: remoteId)

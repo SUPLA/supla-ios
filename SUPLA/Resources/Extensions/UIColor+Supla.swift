@@ -46,7 +46,7 @@ extension UIColor {
     
     static let border = UIColor(red: 180/255.0, green: 183/255.0, blue: 186/255.0, alpha: 1)
     static let separator = UIColor.from(red: 170, green: 170, blue: 170, alpha: 1)
-    static let separatorLight = UIColor.from(red: 220, green: 222, blue: 224, alpha: 1)
+    static let separatorLight = UIColor(argb: 0xFFDCDEE0)
     
     static let dialogScrim = UIColor(white: 0, alpha: 0.3)
     static let transparent = UIColor(argb: 0x00FFFFFF)

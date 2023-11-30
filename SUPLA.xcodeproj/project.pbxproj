@@ -684,6 +684,20 @@
 		A52BFED22B07B8BC00A2F64C /* ItemBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = A52BFED12B07B8BC00A2F64C /* ItemBundle.swift */; };
 		A52BFED42B0B51C100A2F64C /* DeviceConfigEventsManagerMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = A52BFED32B0B51C100A2F64C /* DeviceConfigEventsManagerMock.swift */; };
 		A52BFED72B0B533E00A2F64C /* SuplaDeviceConfig+Mock.swift in Sources */ = {isa = PBXBuildFile; fileRef = A52BFED62B0B533E00A2F64C /* SuplaDeviceConfig+Mock.swift */; };
+		A52BFEDC2B0F8F8300A2F64C /* ThermostatTimerDetailVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = A52BFEDB2B0F8F8300A2F64C /* ThermostatTimerDetailVM.swift */; };
+		A52BFEDE2B0F906900A2F64C /* ThermostatTimerDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A52BFEDD2B0F906900A2F64C /* ThermostatTimerDetailVC.swift */; };
+		A52BFEE02B109F5A00A2F64C /* ThermostatTimerConfigurationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A52BFEDF2B109F5A00A2F64C /* ThermostatTimerConfigurationView.swift */; };
+		A52BFEE22B113BD700A2F64C /* TrippleNumberSelectorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A52BFEE12B113BD700A2F64C /* TrippleNumberSelectorView.swift */; };
+		A52BFEE82B1726DC00A2F64C /* ThermostatTimerDetailVMTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A52BFEE72B1726DC00A2F64C /* ThermostatTimerDetailVMTests.swift */; };
+		A52BFEEA2B17277C00A2F64C /* ClientUseCasesMocks.swift in Sources */ = {isa = PBXBuildFile; fileRef = A52BFEE92B17277C00A2F64C /* ClientUseCasesMocks.swift */; };
+		A52BFEEC2B173F7100A2F64C /* ReadProfileByIdUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A52BFEEB2B173F7100A2F64C /* ReadProfileByIdUseCase.swift */; };
+		A52BFEEE2B174AFE00A2F64C /* SaveOrCreateProfileUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A52BFEED2B174AFE00A2F64C /* SaveOrCreateProfileUseCase.swift */; };
+		A52BFEF02B1754FD00A2F64C /* DeleteProfileUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A52BFEEF2B1754FD00A2F64C /* DeleteProfileUseCase.swift */; };
+		A52BFEF22B175AB300A2F64C /* ActivateProfileUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A52BFEF12B175AB300A2F64C /* ActivateProfileUseCase.swift */; };
+		A52BFEF42B18832D00A2F64C /* SaveOrCreateProfileUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A52BFEF32B18832D00A2F64C /* SaveOrCreateProfileUseCaseTests.swift */; };
+		A52BFEF62B18883600A2F64C /* AuthInfo+Mock.swift in Sources */ = {isa = PBXBuildFile; fileRef = A52BFEF52B18883600A2F64C /* AuthInfo+Mock.swift */; };
+		A52BFEF82B189ECC00A2F64C /* ActivateProfileUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A52BFEF72B189ECC00A2F64C /* ActivateProfileUseCaseTests.swift */; };
+		A52BFEFA2B18A43000A2F64C /* DeleteProfileUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A52BFEF92B18A43000A2F64C /* DeleteProfileUseCaseTests.swift */; };
 		A530EDEB2A53F60400F8DAEE /* SwitchDetailVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = A530EDEA2A53F60400F8DAEE /* SwitchDetailVM.swift */; };
 		A530EDED2A53F6A800F8DAEE /* SwitchDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A530EDEC2A53F6A800F8DAEE /* SwitchDetailVC.swift */; };
 		A530EDF02A53F8E100F8DAEE /* SuplaTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A530EDEF2A53F8E100F8DAEE /* SuplaTabBarController.swift */; };
@@ -693,8 +707,8 @@
 		A530EDFA2A54063F00F8DAEE /* OpenSans-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A530EDF82A54063F00F8DAEE /* OpenSans-Medium.ttf */; };
 		A530EDFB2A54063F00F8DAEE /* OpenSans-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A530EDF92A54063F00F8DAEE /* OpenSans-Light.ttf */; };
 		A530EDFD2A54153000F8DAEE /* SwitchDetailNavigationCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A530EDFC2A54153000F8DAEE /* SwitchDetailNavigationCoordinator.swift */; };
-		A530EE002A54417400F8DAEE /* TimerDetailVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = A530EDFF2A54417400F8DAEE /* TimerDetailVM.swift */; };
-		A530EE022A5441F300F8DAEE /* TimerDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A530EE012A5441F300F8DAEE /* TimerDetailVC.swift */; };
+		A530EE002A54417400F8DAEE /* SwitchTimerDetailVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = A530EDFF2A54417400F8DAEE /* SwitchTimerDetailVM.swift */; };
+		A530EE022A5441F300F8DAEE /* SwitchTimerDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A530EE012A5441F300F8DAEE /* SwitchTimerDetailVC.swift */; };
 		A530EE042A555AFA00F8DAEE /* ReadChannelByRemoteIdUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A530EE032A555AFA00F8DAEE /* ReadChannelByRemoteIdUseCase.swift */; };
 		A530EE062A5575D700F8DAEE /* DeviceStateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A530EE052A5575D700F8DAEE /* DeviceStateView.swift */; };
 		A530EE082A557EE400F8DAEE /* CircleControlButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A530EE072A557EE400F8DAEE /* CircleControlButtonView.swift */; };
@@ -723,7 +737,7 @@
 		A530EE402A58417D00F8DAEE /* ExecuteSimpleActionUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A530EE3F2A58417D00F8DAEE /* ExecuteSimpleActionUseCase.swift */; };
 		A530EE432A58AA6E00F8DAEE /* DeviceStateHelperVCI.swift in Sources */ = {isa = PBXBuildFile; fileRef = A530EE422A58AA6E00F8DAEE /* DeviceStateHelperVCI.swift */; };
 		A530EE452A58AAD800F8DAEE /* DeviceStateHelperVMI.swift in Sources */ = {isa = PBXBuildFile; fileRef = A530EE442A58AAD800F8DAEE /* DeviceStateHelperVMI.swift */; };
-		A530EE472A5BEBFA00F8DAEE /* TimerConfigurationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A530EE462A5BEBFA00F8DAEE /* TimerConfigurationView.swift */; };
+		A530EE472A5BEBFA00F8DAEE /* SwitchTimerConfigurationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A530EE462A5BEBFA00F8DAEE /* SwitchTimerConfigurationView.swift */; };
 		A530EE4A2A5C13F800F8DAEE /* UIFilledButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A530EE492A5C13F800F8DAEE /* UIFilledButton.swift */; };
 		A530EE4C2A5C2A3E00F8DAEE /* UIBorderedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A530EE4B2A5C2A3E00F8DAEE /* UIBorderedButton.swift */; };
 		A530EE4E2A5C357100F8DAEE /* StartTimerUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A530EE4D2A5C357100F8DAEE /* StartTimerUseCase.swift */; };
@@ -2131,6 +2145,20 @@
 		A52BFED12B07B8BC00A2F64C /* ItemBundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemBundle.swift; sourceTree = "<group>"; };
 		A52BFED32B0B51C100A2F64C /* DeviceConfigEventsManagerMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceConfigEventsManagerMock.swift; sourceTree = "<group>"; };
 		A52BFED62B0B533E00A2F64C /* SuplaDeviceConfig+Mock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SuplaDeviceConfig+Mock.swift"; sourceTree = "<group>"; };
+		A52BFEDB2B0F8F8300A2F64C /* ThermostatTimerDetailVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThermostatTimerDetailVM.swift; sourceTree = "<group>"; };
+		A52BFEDD2B0F906900A2F64C /* ThermostatTimerDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThermostatTimerDetailVC.swift; sourceTree = "<group>"; };
+		A52BFEDF2B109F5A00A2F64C /* ThermostatTimerConfigurationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThermostatTimerConfigurationView.swift; sourceTree = "<group>"; };
+		A52BFEE12B113BD700A2F64C /* TrippleNumberSelectorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrippleNumberSelectorView.swift; sourceTree = "<group>"; };
+		A52BFEE72B1726DC00A2F64C /* ThermostatTimerDetailVMTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThermostatTimerDetailVMTests.swift; sourceTree = "<group>"; };
+		A52BFEE92B17277C00A2F64C /* ClientUseCasesMocks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientUseCasesMocks.swift; sourceTree = "<group>"; };
+		A52BFEEB2B173F7100A2F64C /* ReadProfileByIdUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadProfileByIdUseCase.swift; sourceTree = "<group>"; };
+		A52BFEED2B174AFE00A2F64C /* SaveOrCreateProfileUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveOrCreateProfileUseCase.swift; sourceTree = "<group>"; };
+		A52BFEEF2B1754FD00A2F64C /* DeleteProfileUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteProfileUseCase.swift; sourceTree = "<group>"; };
+		A52BFEF12B175AB300A2F64C /* ActivateProfileUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivateProfileUseCase.swift; sourceTree = "<group>"; };
+		A52BFEF32B18832D00A2F64C /* SaveOrCreateProfileUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveOrCreateProfileUseCaseTests.swift; sourceTree = "<group>"; };
+		A52BFEF52B18883600A2F64C /* AuthInfo+Mock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AuthInfo+Mock.swift"; sourceTree = "<group>"; };
+		A52BFEF72B189ECC00A2F64C /* ActivateProfileUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivateProfileUseCaseTests.swift; sourceTree = "<group>"; };
+		A52BFEF92B18A43000A2F64C /* DeleteProfileUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteProfileUseCaseTests.swift; sourceTree = "<group>"; };
 		A530EDEA2A53F60400F8DAEE /* SwitchDetailVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchDetailVM.swift; sourceTree = "<group>"; };
 		A530EDEC2A53F6A800F8DAEE /* SwitchDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchDetailVC.swift; sourceTree = "<group>"; };
 		A530EDEF2A53F8E100F8DAEE /* SuplaTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuplaTabBarController.swift; sourceTree = "<group>"; };
@@ -2140,8 +2168,8 @@
 		A530EDF82A54063F00F8DAEE /* OpenSans-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Medium.ttf"; sourceTree = "<group>"; };
 		A530EDF92A54063F00F8DAEE /* OpenSans-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Light.ttf"; sourceTree = "<group>"; };
 		A530EDFC2A54153000F8DAEE /* SwitchDetailNavigationCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchDetailNavigationCoordinator.swift; sourceTree = "<group>"; };
-		A530EDFF2A54417400F8DAEE /* TimerDetailVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerDetailVM.swift; sourceTree = "<group>"; };
-		A530EE012A5441F300F8DAEE /* TimerDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerDetailVC.swift; sourceTree = "<group>"; };
+		A530EDFF2A54417400F8DAEE /* SwitchTimerDetailVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchTimerDetailVM.swift; sourceTree = "<group>"; };
+		A530EE012A5441F300F8DAEE /* SwitchTimerDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchTimerDetailVC.swift; sourceTree = "<group>"; };
 		A530EE032A555AFA00F8DAEE /* ReadChannelByRemoteIdUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadChannelByRemoteIdUseCase.swift; sourceTree = "<group>"; };
 		A530EE052A5575D700F8DAEE /* DeviceStateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceStateView.swift; sourceTree = "<group>"; };
 		A530EE072A557EE400F8DAEE /* CircleControlButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleControlButtonView.swift; sourceTree = "<group>"; };
@@ -2170,7 +2198,7 @@
 		A530EE3F2A58417D00F8DAEE /* ExecuteSimpleActionUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExecuteSimpleActionUseCase.swift; sourceTree = "<group>"; };
 		A530EE422A58AA6E00F8DAEE /* DeviceStateHelperVCI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceStateHelperVCI.swift; sourceTree = "<group>"; };
 		A530EE442A58AAD800F8DAEE /* DeviceStateHelperVMI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceStateHelperVMI.swift; sourceTree = "<group>"; };
-		A530EE462A5BEBFA00F8DAEE /* TimerConfigurationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerConfigurationView.swift; sourceTree = "<group>"; };
+		A530EE462A5BEBFA00F8DAEE /* SwitchTimerConfigurationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchTimerConfigurationView.swift; sourceTree = "<group>"; };
 		A530EE492A5C13F800F8DAEE /* UIFilledButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIFilledButton.swift; sourceTree = "<group>"; };
 		A530EE4B2A5C2A3E00F8DAEE /* UIBorderedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIBorderedButton.swift; sourceTree = "<group>"; };
 		A530EE4D2A5C357100F8DAEE /* StartTimerUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartTimerUseCase.swift; sourceTree = "<group>"; };
@@ -3645,6 +3673,7 @@
 		A51BE8E92AA70D9600718F2F /* ThermostatDetail */ = {
 			isa = PBXGroup;
 			children = (
+				A52BFEDA2B0F8EFC00A2F64C /* TimerDetail */,
 				A56091732AE6858000AFE14F /* HistoryDetail */,
 				A51BE8F12AA7185600718F2F /* ScheduleDetail */,
 				A51BE8F02AA7183F00718F2F /* ThermostatGeneral */,
@@ -3777,6 +3806,24 @@
 			path = SuplaClient;
 			sourceTree = "<group>";
 		};
+		A52BFEDA2B0F8EFC00A2F64C /* TimerDetail */ = {
+			isa = PBXGroup;
+			children = (
+				A52BFEDB2B0F8F8300A2F64C /* ThermostatTimerDetailVM.swift */,
+				A52BFEDD2B0F906900A2F64C /* ThermostatTimerDetailVC.swift */,
+				A52BFEDF2B109F5A00A2F64C /* ThermostatTimerConfigurationView.swift */,
+			);
+			path = TimerDetail;
+			sourceTree = "<group>";
+		};
+		A52BFEE62B1726C700A2F64C /* TimerDetail */ = {
+			isa = PBXGroup;
+			children = (
+				A52BFEE72B1726DC00A2F64C /* ThermostatTimerDetailVMTests.swift */,
+			);
+			path = TimerDetail;
+			sourceTree = "<group>";
+		};
 		A530EDE92A53F5CB00F8DAEE /* SwitchDetail */ = {
 			isa = PBXGroup;
 			children = (
@@ -3812,9 +3859,9 @@
 		A530EDFE2A5440AF00F8DAEE /* TimerDetail */ = {
 			isa = PBXGroup;
 			children = (
-				A530EDFF2A54417400F8DAEE /* TimerDetailVM.swift */,
-				A530EE012A5441F300F8DAEE /* TimerDetailVC.swift */,
-				A530EE462A5BEBFA00F8DAEE /* TimerConfigurationView.swift */,
+				A530EDFF2A54417400F8DAEE /* SwitchTimerDetailVM.swift */,
+				A530EE012A5441F300F8DAEE /* SwitchTimerDetailVC.swift */,
+				A530EE462A5BEBFA00F8DAEE /* SwitchTimerConfigurationView.swift */,
 			);
 			path = TimerDetail;
 			sourceTree = "<group>";
@@ -3924,6 +3971,7 @@
 				A566398C2ABADFD700BA51D7 /* LoadingScrimView.swift */,
 				A57668C42AE79BA40025509D /* HorizontalyScrollableView.swift */,
 				A5D837C72AF0F154002A420D /* PullToRefreshView.swift */,
+				A52BFEE12B113BD700A2F64C /* TrippleNumberSelectorView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -4438,6 +4486,7 @@
 				A5ABE5C82ABCD76300FFA50B /* ThermostatUseCasesMocks.swift */,
 				A58B2CB52AC197E300764388 /* ChannelBaseUseCasesMocks.swift */,
 				A54A06892AF925FB00C03DBC /* ProfileUseCasesMocks.swift */,
+				A52BFEE92B17277C00A2F64C /* ClientUseCasesMocks.swift */,
 			);
 			path = UseCase;
 			sourceTree = "<group>";
@@ -4528,6 +4577,9 @@
 			isa = PBXGroup;
 			children = (
 				A59AB8DB2A30935B00D91F1F /* DeleteAllProfileDataUseCaseTests.swift */,
+				A52BFEF32B18832D00A2F64C /* SaveOrCreateProfileUseCaseTests.swift */,
+				A52BFEF72B189ECC00A2F64C /* ActivateProfileUseCaseTests.swift */,
+				A52BFEF92B18A43000A2F64C /* DeleteProfileUseCaseTests.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -4627,6 +4679,7 @@
 				A57C88312ACB4603000B0F10 /* SAChannelValue+Mock.swift */,
 				A54A06832AF9157C00C03DBC /* SATemperatureMeasurementItem+Mock.swift */,
 				A54A06852AF9219200C03DBC /* SATempHumidityMeasurementItem+Mock.swift */,
+				A52BFEF52B18883600A2F64C /* AuthInfo+Mock.swift */,
 			);
 			path = Entity;
 			sourceTree = "<group>";
@@ -4634,6 +4687,7 @@
 		A5ABE5B22ABC26B000FFA50B /* ThermostatDetail */ = {
 			isa = PBXGroup;
 			children = (
+				A52BFEE62B1726C700A2F64C /* TimerDetail */,
 				A5ABE5C52ABCD51300FFA50B /* ThermostatGeneral */,
 				A5ABE5B32ABC26F200FFA50B /* ScheduleDetail */,
 				A5ABE5C32ABCD3F600FFA50B /* ThermostatDetailVMTests.swift */,
@@ -5046,6 +5100,10 @@
 			children = (
 				A5F29BCB2A2622BD00ED700A /* DeleteAllProfileDataUseCase.swift */,
 				A5FE67642A65E69E00147D1F /* UpdatePreferredProtocolVersionUseCase.swift */,
+				A52BFEEB2B173F7100A2F64C /* ReadProfileByIdUseCase.swift */,
+				A52BFEED2B174AFE00A2F64C /* SaveOrCreateProfileUseCase.swift */,
+				A52BFEEF2B1754FD00A2F64C /* DeleteProfileUseCase.swift */,
+				A52BFEF12B175AB300A2F64C /* ActivateProfileUseCase.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -5891,7 +5949,7 @@
 				A5477DB42AA1EF0600220B4A /* MarkChannelRelationsAsRemovableUseCase.swift in Sources */,
 				A57668F52AEAA8410025509D /* TemperatureChartState.swift in Sources */,
 				40C7BA8820C0492500ACEE42 /* SAChannelBase+CoreDataProperties.m in Sources */,
-				A530EE472A5BEBFA00F8DAEE /* TimerConfigurationView.swift in Sources */,
+				A530EE472A5BEBFA00F8DAEE /* SwitchTimerConfigurationView.swift in Sources */,
 				A57668FB2AEB999F0025509D /* SuplaChartMarkerView.swift in Sources */,
 				A530EE2A2A57E0BA00F8DAEE /* ElelectricityMeterIconNameProducer.swift in Sources */,
 				A530EE3B2A5801AB00F8DAEE /* GetChannelBaseIconUseCase.swift in Sources */,
@@ -5915,7 +5973,7 @@
 				A57668E12AE99DB90025509D /* ChartDataAggregation.swift in Sources */,
 				A57C4AB02AAB3E3400D9C695 /* SuplaChannelHvacConfig.swift in Sources */,
 				A51BE8F72AA71E3E00718F2F /* ScheduleDetailVM.swift in Sources */,
-				A530EE022A5441F300F8DAEE /* TimerDetailVC.swift in Sources */,
+				A530EE022A5441F300F8DAEE /* SwitchTimerDetailVC.swift in Sources */,
 				01C1719922C7F55B005983E1 /* SAMeasurementItem+CoreDataClass.m in Sources */,
 				A5F29BE62A27739000ED700A /* MoveableCell.swift in Sources */,
 				A5AE7A8F2A3AE0290097FA8B /* TitleArrowButtonCell.swift in Sources */,
@@ -5929,6 +5987,7 @@
 				A5E4905C2A400C03006801FE /* SaveIconUseCase.swift in Sources */,
 				A5477DB22AA1DB5900220B4A /* ChannelRelationType.swift in Sources */,
 				A57668E32AEA4E450025509D /* Date+Ext.swift in Sources */,
+				A52BFEF22B175AB300A2F64C /* ActivateProfileUseCase.swift in Sources */,
 				A530EE182A56FADF00F8DAEE /* GarageDoorIconNameProducer.swift in Sources */,
 				A5FE67612A65CC9900147D1F /* SuplaCloudClient.swift in Sources */,
 				A5F29C042A2DC5D500ED700A /* NSManagedObjectModel+Ext.swift in Sources */,
@@ -6000,6 +6059,7 @@
 				01433DF8257F8FE20093C5DB /* SAWifi.m in Sources */,
 				A5477DC12AA5B4EC00220B4A /* SuplaThermostatFlags.swift in Sources */,
 				A5F29BBA2A24D5DB00ED700A /* ChannelExtendedValueRepository.swift in Sources */,
+				A52BFEEE2B174AFE00A2F64C /* SaveOrCreateProfileUseCase.swift in Sources */,
 				A530EDF72A5404A200F8DAEE /* UIFont+Supla.swift in Sources */,
 				01511CFA24F50B470081A1EC /* SAPreloaderPopup.m in Sources */,
 				01A66A7525364AA400C00A1A /* SARoofWindowController.m in Sources */,
@@ -6028,6 +6088,7 @@
 				013D73B022DD105400E3515A /* SAChartFilterField.m in Sources */,
 				A5F29C022A2DC56600ED700A /* NSPersistentStoreCoordinator+Ext.swift in Sources */,
 				A5477DC52AA5C47F00220B4A /* SAChannelValue+Ext.swift in Sources */,
+				A52BFEDC2B0F8F8300A2F64C /* ThermostatTimerDetailVM.swift in Sources */,
 				A51BE9092AAA5E4D00718F2F /* GreenPointLayers.swift in Sources */,
 				A530EE4A2A5C13F800F8DAEE /* UIFilledButton.swift in Sources */,
 				A5F29BAC2A24B80E00ED700A /* ChangeScenesVisibilityUseCase.swift in Sources */,
@@ -6051,7 +6112,7 @@
 				A5F29B5D2A1E161500ED700A /* MainVM.swift in Sources */,
 				A56233F92AB85CA1001CB948 /* ExecuteThermostatActionUseCase.swift in Sources */,
 				A57668E92AEA7AF50025509D /* SelectableList.swift in Sources */,
-				A530EE002A54417400F8DAEE /* TimerDetailVM.swift in Sources */,
+				A530EE002A54417400F8DAEE /* SwitchTimerDetailVM.swift in Sources */,
 				A52BFECE2B0796BC00A2F64C /* SuplaHomeScreenContentField.swift in Sources */,
 				A52BFEB72B065B9400A2F64C /* DeviceConfigEventsManager.swift in Sources */,
 				A56091772AE685B600AFE14F /* ThermostatHistoryDetailVC.swift in Sources */,
@@ -6080,6 +6141,7 @@
 				A5F29B9A2A20C26900ED700A /* BaseTableViewController.swift in Sources */,
 				A5D837CF2AF10374002A420D /* ThermometerDetailNavigatorCoordinator.swift in Sources */,
 				A5D837E32AF3A728002A420D /* LinkedList.swift in Sources */,
+				A52BFEF02B1754FD00A2F64C /* DeleteProfileUseCase.swift in Sources */,
 				A530EE402A58417D00F8DAEE /* ExecuteSimpleActionUseCase.swift in Sources */,
 				A530EE262A57011F00F8DAEE /* DimmerAndRgbLightningIconNameProducer.swift in Sources */,
 				A5D837CD2AF1035E002A420D /* ThermometerDetailVM.swift in Sources */,
@@ -6098,7 +6160,9 @@
 				A5477DB92AA1F56400220B4A /* ChannelChild.swift in Sources */,
 				A57668D52AE94A060025509D /* DownloadEventsManager.swift in Sources */,
 				A5F29BCE2A26232900ED700A /* ElectricityMeasurementItemRepository.swift in Sources */,
+				A52BFEE22B113BD700A2F64C /* TrippleNumberSelectorView.swift in Sources */,
 				AE74528B2827E38900A3AFAD /* ProfilesVC.swift in Sources */,
+				A52BFEE02B109F5A00A2F64C /* ThermostatTimerConfigurationView.swift in Sources */,
 				A530EE042A555AFA00F8DAEE /* ReadChannelByRemoteIdUseCase.swift in Sources */,
 				01E3966E25A78B8B00A0DB18 /* SADimmerCalibrationTool.m in Sources */,
 				01392B3A235CA8B1003A2BAD /* ChartDetailView.m in Sources */,
@@ -6316,6 +6380,7 @@
 				A56F15F12A2E698400C2E21B /* DeleteEntitiesMigrationPolicy.swift in Sources */,
 				A56233E32AB1903C001CB948 /* Float+Ext.swift in Sources */,
 				A5477DB62AA1F17600220B4A /* DeleteRemovableChannelRelationsUseCase.swift in Sources */,
+				A52BFEDE2B0F906900A2F64C /* ThermostatTimerDetailVC.swift in Sources */,
 				403150FB1DC769430075D2D2 /* RGBWDetailView.m in Sources */,
 				01F8856A22E5E79100D18373 /* SATempHumidityMeasurementItem+CoreDataProperties.m in Sources */,
 				01478826265317B000CC8A01 /* SACalCfgProgressReport.m in Sources */,
@@ -6338,6 +6403,7 @@
 				A57668DF2AE99CCD0025509D /* LoadChannelWithChildrenMeasurementsUseCase.swift in Sources */,
 				A56233F32AB3A386001CB948 /* CreateTemperaturesListUseCase.swift in Sources */,
 				A5AE7A852A3AC7020097FA8B /* BaseSettingsCell.swift in Sources */,
+				A52BFEEC2B173F7100A2F64C /* ReadProfileByIdUseCase.swift in Sources */,
 				A530EE242A57006A00F8DAEE /* LiquidSensorIconNameProducer.swift in Sources */,
 				A530EDFD2A54153000F8DAEE /* SwitchDetailNavigationCoordinator.swift in Sources */,
 				AEBCD8FC26E4D247001904F3 /* TemperaturePresenter.swift in Sources */,
@@ -6424,9 +6490,11 @@
 				A57C88372ACB49C5000B0F10 /* ThermostatProgramInfoTests.swift in Sources */,
 				A54A067E2AF903A700C03DBC /* DownloadTemperatureMeasurementsUseCaseTests.swift in Sources */,
 				A54A06542AF3F1EF00C03DBC /* SuplaCloudConfigHolderMock.swift in Sources */,
+				A52BFEEA2B17277C00A2F64C /* ClientUseCasesMocks.swift in Sources */,
 				A54A06562AF3F2B100C03DBC /* SuplaSchedulersMock.swift in Sources */,
 				01AB61ED25B8E0B400DBEF74 /* SADigiglassControllerTests.m in Sources */,
 				A54A067C2AF8EEC200C03DBC /* SuplaCloudServiceMock.swift in Sources */,
+				A52BFEF82B189ECC00A2F64C /* ActivateProfileUseCaseTests.swift in Sources */,
 				A54A06792AF8EE5C00C03DBC /* DownloadTempHumidityMeasurementsUseCaseTests.swift in Sources */,
 				A573B0A62A600733001E19D0 /* TimerDetailVMTests.swift in Sources */,
 				A54A066F2AF540AD00C03DBC /* ChartDataAggregationTests.swift in Sources */,
@@ -6443,6 +6511,8 @@
 				A59AB8E12A309C1500D91F1F /* UseCaseTest.swift in Sources */,
 				A573B09E2A5FEF57001E19D0 /* SwitchGeneralVMTests.swift in Sources */,
 				A5A23C312ABDBCAC00233542 /* CreateChannelWithChildrenUseCaseTests.swift in Sources */,
+				A52BFEE82B1726DC00A2F64C /* ThermostatTimerDetailVMTests.swift in Sources */,
+				A52BFEF42B18832D00A2F64C /* SaveOrCreateProfileUseCaseTests.swift in Sources */,
 				A57638CC29E5EF95003E15A3 /* ProfileManagerMock.swift in Sources */,
 				A54A06732AF8D31D00C03DBC /* HideableValueTests.swift in Sources */,
 				A59AB8C52A308F7D00D91F1F /* ChannelExtendedValueRepositoryMock.swift in Sources */,
@@ -6454,6 +6524,7 @@
 				A5ABE5CB2ABCD80300FFA50B /* DelayedThermostatActionSubjectMock.swift in Sources */,
 				A58D98C82AC1A3AD00DCB526 /* SetChannelConfigUseCaseTests.swift in Sources */,
 				A573B0A22A5FF0AE001E19D0 /* ExecuteSimpleActionUseCaseMock.swift in Sources */,
+				A52BFEFA2B18A43000A2F64C /* DeleteProfileUseCaseTests.swift in Sources */,
 				A59AB8A62A305D8700D91F1F /* LocationUseCasesMocks.swift in Sources */,
 				A54A06862AF9219200C03DBC /* SATempHumidityMeasurementItem+Mock.swift in Sources */,
 				A5A23C2F2ABDAF8E00233542 /* ValuesFormatterTests.swift in Sources */,
@@ -6462,6 +6533,7 @@
 				A573B0992A5FD869001E19D0 /* SwitchDetailVMTests.swift in Sources */,
 				A5ABE5C42ABCD3F600FFA50B /* ThermostatDetailVMTests.swift in Sources */,
 				012FCBD323217DE000AC6FF6 /* ThermostatCalendarTests.m in Sources */,
+				A52BFEF62B18883600A2F64C /* AuthInfo+Mock.swift in Sources */,
 				A54A06802AF90BF800C03DBC /* LoadChannelMeasurementsDateRangeUseCaseTests.swift in Sources */,
 				A5ABE5C22ABCCC4C00FFA50B /* EditQuartersDialogVMTests.swift in Sources */,
 				A5ABE5BB2ABC292400FFA50B /* DelayedWeeklyScheduleConfigSubjectMock.swift in Sources */,

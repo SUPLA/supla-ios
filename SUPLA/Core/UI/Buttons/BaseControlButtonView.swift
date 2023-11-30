@@ -21,7 +21,9 @@ import RxRelay
 
 class BaseControlButtonView: UIView {
 
-    let tap: PublishRelay<Void> = PublishRelay()
+    var tapObservable: Observable<Void> {
+        tapRelay.asObservable()
+    }
     var longPress: PublishRelay<Void> {
         get {
             longPressEnabled = true
@@ -123,6 +125,7 @@ class BaseControlButtonView: UIView {
         return view
     }()
     
+    private let tapRelay: PublishRelay<Void> = PublishRelay()
     private let longPressRelay: PublishRelay<Void> = PublishRelay()
     private var longPressEnabled = false
     private var activeConstraints: [NSLayoutConstraint] = []
@@ -216,7 +219,7 @@ class BaseControlButtonView: UIView {
 
     @objc private func onTap() {
         if (isEnabled) {
-            tap.accept(())
+            tapRelay.accept(())
         }
 
         layer.shadowRadius = 3
@@ -236,7 +239,7 @@ class BaseControlButtonView: UIView {
             if (longPressEnabled) {
                 longPressRelay.accept(())
             } else {
-                tap.accept(())
+                tapRelay.accept(())
             }
         }
 

@@ -135,23 +135,43 @@ class BaseHistoryDetailVC: BaseViewControllerVM<BaseHistoryDetailViewState, Base
         view.addSubview(pullToRefresh)
         view.addSubview(datePicker)
         
-        viewModel.bind(dataSetsRow.tapEvents) { self.viewModel.changeSetActive(setId: $0) }
+        viewModel.bind(dataSetsRow.tapEvents) { [weak self] in
+            self?.viewModel.changeSetActive(setId: $0)
+        }
         
-        viewModel.bind(filtersRow.rangesObservable) { self.viewModel.changeRange(range: $0) }
-        viewModel.bind(filtersRow.aggregationsObservable) { self.viewModel.changeAggregation(aggregation: $0) }
+        viewModel.bind(filtersRow.rangesObservable) { [weak self] in
+            self?.viewModel.changeRange(range: $0)
+        }
+        viewModel.bind(filtersRow.aggregationsObservable) { [weak self] in
+            self?.viewModel.changeAggregation(aggregation: $0)
+        }
         
-        viewModel.bind(chartView.parametersObservable) { self.viewModel.updateChartPosition(parameters: $0) }
+        viewModel.bind(chartView.parametersObservable) { [weak self] in
+            self?.viewModel.updateChartPosition(parameters: $0)
+        }
         
-        viewModel.bind(paginationView.tap.filter({ $0 == .end })) { _ in self.viewModel.moveToDataEnd() }
-        viewModel.bind(paginationView.tap.filter({ $0 == .left })) { _ in self.viewModel.moveRangeLeft() }
-        viewModel.bind(paginationView.tap.filter({ $0 == .right })) { _ in self.viewModel.moveRangeRight() }
-        viewModel.bind(paginationView.tap.filter({ $0 == .start })) { _ in self.viewModel.moveToDataBegin() }
+        viewModel.bind(paginationView.tap.filter({ $0 == .end })) { [weak self] _ in
+            self?.viewModel.moveToDataEnd()
+        }
+        viewModel.bind(paginationView.tap.filter({ $0 == .left })) { [weak self] _ in
+            self?.viewModel.moveRangeLeft()
+        }
+        viewModel.bind(paginationView.tap.filter({ $0 == .right })) { [weak self] _ in
+            self?.viewModel.moveRangeRight()
+        }
+        viewModel.bind(paginationView.tap.filter({ $0 == .start })) { [weak self] _ in
+            self?.viewModel.moveToDataBegin()
+        }
         
-        viewModel.bind(pullToRefresh.refreshObservable) { _ in self.viewModel.refresh() }
+        viewModel.bind(pullToRefresh.refreshObservable) { [weak self] _ in self?.viewModel.refresh() }
         
-        viewModel.bind(rangeSelectionView.tap) { self.viewModel.customRangeEditDate($0) }
-        viewModel.bind(datePicker.cancelTap) { _ in self.viewModel.customRangeEditCancel() }
-        viewModel.bind(datePicker.saveTap) { self.viewModel.customRangeEditSave($0)}
+        viewModel.bind(rangeSelectionView.tap) { [weak self] in
+            self?.viewModel.customRangeEditDate($0)
+        }
+        viewModel.bind(datePicker.cancelTap) { [weak self] _ in
+            self?.viewModel.customRangeEditCancel()
+        }
+        viewModel.bind(datePicker.saveTap) { [weak self] in self?.viewModel.customRangeEditSave($0)}
         
         setupLayout()
     }

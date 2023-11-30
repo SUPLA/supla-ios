@@ -70,12 +70,14 @@ class ScheduleDetailVC: BaseViewControllerVM<ScheduleDetailViewState, ScheduleDe
         switch(event) {
         case .editProgram(let state):
             let dialog = EditProgramDialogVC(initialState: state)
-            dialog.onFinishCallback = { self.viewModel.onProgramChanged($0) }
+            dialog.onFinishCallback = { [weak self] in
+                self?.viewModel.onProgramChanged($0)
+            }
             present(dialog, animated: true)
         case .editScheduleBox(let state):
             let dialog = EditQuartersDialogVC(initialState: state)
-            dialog.onFinishCallback = {
-                self.viewModel.onQuartersChanged(key: state.key, value: $0, activeProgram: $1)
+            dialog.onFinishCallback = { [weak self] in
+                self?.viewModel.onQuartersChanged(key: state.key, value: $0, activeProgram: $1)
             }
             present(dialog, animated: true)
         }
@@ -92,10 +94,16 @@ class ScheduleDetailVC: BaseViewControllerVM<ScheduleDetailViewState, ScheduleDe
         view.addSubview(buttonsRowView)
         view.addSubview(scheduleDetailTableView)
         
-        viewModel.bind(buttonsRowView.tapEvents) { self.viewModel.onProgramTap($0) }
-        viewModel.bind(buttonsRowView.longPressEvents) { self.viewModel.onProgramLongPress($0) }
-        viewModel.bind(scheduleDetailTableView.longPressEvents) { self.viewModel.onBoxLongPress($0) }
-        viewModel.bind(scheduleDetailTableView.panningEvents) { self.viewModel.onBoxEvent($0) }
+        viewModel.bind(buttonsRowView.tapEvents) { [weak self] in self?.viewModel.onProgramTap($0) }
+        viewModel.bind(buttonsRowView.longPressEvents) { [weak self] in
+            self?.viewModel.onProgramLongPress($0)
+        }
+        viewModel.bind(scheduleDetailTableView.longPressEvents) { [weak self] in
+            self?.viewModel.onBoxLongPress($0)
+        }
+        viewModel.bind(scheduleDetailTableView.panningEvents) { [weak self] in
+            self?.viewModel.onBoxEvent($0)
+        }
         
         setupLayout()
     }
@@ -172,12 +180,16 @@ fileprivate class ButtonsRowView: HorizontalyScrollableView<RoundedControlButton
             buttonView.text = program.text
             buttonView.textFont = .scheduleDetailButton
             buttonView.type = .neutral
-            buttonView.tap
-                .subscribe(onNext: { self.tapRelay.accept(program.scheduleProgram.program) })
+            buttonView.tapObservable
+                .subscribe(onNext: { [weak self] in
+                    self?.tapRelay.accept(program.scheduleProgram.program)
+                })
                 .disposed(by: disposeBag)
             if (program.scheduleProgram.program != .off) {
                 buttonView.longPress
-                    .subscribe(onNext: { self.longPressRelay.accept(program.scheduleProgram.program) })
+                    .subscribe(onNext: { [weak self] in
+                        self?.longPressRelay.accept(program.scheduleProgram.program)
+                    })
                     .disposed(by: disposeBag)
             }
            items.append(buttonView)

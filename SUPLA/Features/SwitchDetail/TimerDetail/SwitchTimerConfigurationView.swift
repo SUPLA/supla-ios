@@ -18,12 +18,11 @@
 
 import RxSwift
 import RxCocoa
+import RxRelay
 
-final class TimerConfigurationView: UIView {
+final class SwitchTimerConfigurationView: UIView {
     
     private let timeFormat = "%02d:%02d:%02d"
-    
-    var delegate: TimerConfigurationViewDelegate? = nil
     
     var header: String? = nil {
         didSet { headerView.text = header }
@@ -57,17 +56,21 @@ final class TimerConfigurationView: UIView {
     var timeInSeconds: Int {
         get { calculateTimeInSeconds() }
         set {
-            secondPickerView.selectRow((newValue % 60), inComponent: 0, animated: true)
-            minutePickerView.selectRow(((newValue / 60) % 60), inComponent: 0, animated: true)
-            hourPickerView.selectRow((newValue / 3600), inComponent: 0, animated: true)
+            numberSelectorView.value = TrippleNumberSelectorView.Value(valueForHours: newValue)
             updateInfoText()
         }
     }
     
-    var actionObservable: Observable<Int> {
-        get {
-            actionSwitch.rx.value.asObservable()
-        }
+    var actionObservable: Observable<Int> { actionSwitch.rx.value.asObservable() }
+    
+    var cancelObservable: Observable<Void> { cancelRelay.asObservable() }
+    
+    var startObservable: Observable<Void> { startRelay.asObservable() }
+    
+    var timeObservable: Observable<Int> {
+        numberSelectorView.valueObservable
+            .map { $0.toHoursInSec() }
+            .do(onNext: { _ in self.updateInfoText() })
     }
     
     private lazy var headerView: UILabel = {
@@ -88,40 +91,23 @@ final class TimerConfigurationView: UIView {
         return view
     }()
     
-    private lazy var selectedPickerRowView: UIView = {
-        let view = UIView()
-        view.translatesAutoresizingMaskIntoConstraints = false
-        view.backgroundColor = .grayLight
-        view.layer.cornerRadius = Dimens.buttonRadius
+    private lazy var numberSelectorView: TrippleNumberSelectorView = {
+        let view = TrippleNumberSelectorView()
+        view.firstColumnCount = 24
+        view.secondColumnCount = 60
+        view.thirdColumnCount = 60
+        view.firstColumnValueFormatter = {
+            if ($0 == 1) {
+                Strings.TimerDetail.hourPattern.arguments($0)
+            } else {
+                Strings.TimerDetail.hoursPattern.arguments($0)
+            }
+        }
+        view.secondColumnValueFormatter = { Strings.TimerDetail.minutePattern.arguments($0) }
+        view.thirdColumnValueFormatter = { Strings.TimerDetail.secondPattern.arguments($0) }
         return view
     }()
     
-    private lazy var hourPickerView: UIPickerView = {
-        let view = UIPickerView()
-        view.translatesAutoresizingMaskIntoConstraints = false
-        view.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
-        view.dataSource = self
-        view.delegate = self
-        return view
-    }()
-    
-    private lazy var minutePickerView: UIPickerView = {
-        let view = UIPickerView()
-        view.translatesAutoresizingMaskIntoConstraints = false
-        view.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
-        view.dataSource = self
-        view.delegate = self
-        return view
-    }()
-    
-    private lazy var secondPickerView: UIPickerView = {
-        let view = UIPickerView()
-        view.translatesAutoresizingMaskIntoConstraints = false
-        view.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
-        view.dataSource = self
-        view.delegate = self
-        return view
-    }()
     
     private lazy var divider: UIView = {
         let view = UIView()
@@ -153,14 +139,17 @@ final class TimerConfigurationView: UIView {
     }()
     
     private lazy var normalModeConstraints: [NSLayoutConstraint] = {[
-        minutePickerView.topAnchor.constraint(equalTo: actionSwitch.bottomAnchor, constant: Dimens.distanceDefault),
+        numberSelectorView.topAnchor.constraint(equalTo: actionSwitch.bottomAnchor, constant: Dimens.distanceDefault),
         startButton.topAnchor.constraint(equalTo: infoTextView.bottomAnchor, constant: Dimens.distanceDefault)
     ]}()
     private lazy var editModeConstraints: [NSLayoutConstraint] = {[
-        minutePickerView.topAnchor.constraint(equalTo: headerView.bottomAnchor, constant: Dimens.distanceDefault),
-        editCancelButton.topAnchor.constraint(equalTo: minutePickerView.bottomAnchor, constant: Dimens.distanceDefault),
+        numberSelectorView.topAnchor.constraint(equalTo: headerView.bottomAnchor, constant: Dimens.distanceDefault),
+        editCancelButton.topAnchor.constraint(equalTo: numberSelectorView.bottomAnchor, constant: Dimens.distanceDefault),
         startButton.topAnchor.constraint(equalTo: editCancelButton.bottomAnchor, constant: Dimens.distanceDefault)
     ]}()
+    
+    private let cancelRelay = PublishRelay<Void>()
+    private let startRelay = PublishRelay<Void>()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -175,10 +164,7 @@ final class TimerConfigurationView: UIView {
     private func setupView() {
         addSubview(headerView)
         addSubview(actionSwitch)
-        addSubview(selectedPickerRowView)
-        addSubview(hourPickerView)
-        addSubview(minutePickerView)
-        addSubview(secondPickerView)
+        addSubview(numberSelectorView)
         addSubview(divider)
         addSubview(infoTextView)
         addSubview(editCancelButton)
@@ -203,26 +189,9 @@ final class TimerConfigurationView: UIView {
             actionSwitch.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -Dimens.distanceDefault),
             actionSwitch.heightAnchor.constraint(equalToConstant: 44),
             
-            selectedPickerRowView.leftAnchor.constraint(equalTo: leftAnchor, constant: Dimens.distanceDefault),
-            selectedPickerRowView.rightAnchor.constraint(equalTo: rightAnchor, constant: -Dimens.distanceDefault),
-            selectedPickerRowView.centerYAnchor.constraint(equalTo: minutePickerView.centerYAnchor),
-            selectedPickerRowView.heightAnchor.constraint(equalToConstant: 40),
+            numberSelectorView.centerXAnchor.constraint(equalTo: centerXAnchor),
             
-            hourPickerView.topAnchor.constraint(equalTo: minutePickerView.topAnchor),
-            hourPickerView.trailingAnchor.constraint(equalTo: minutePickerView.leadingAnchor, constant: 8),
-            hourPickerView.widthAnchor.constraint(equalToConstant: 130),
-            hourPickerView.heightAnchor.constraint(equalToConstant: 160),
-            
-            minutePickerView.centerXAnchor.constraint(equalTo: centerXAnchor),
-            minutePickerView.widthAnchor.constraint(equalToConstant: 130),
-            minutePickerView.heightAnchor.constraint(equalToConstant: 160),
-            
-            secondPickerView.topAnchor.constraint(equalTo: minutePickerView.topAnchor),
-            secondPickerView.leadingAnchor.constraint(equalTo: minutePickerView.trailingAnchor, constant: -8),
-            secondPickerView.widthAnchor.constraint(equalToConstant: 130),
-            secondPickerView.heightAnchor.constraint(equalToConstant: 160),
-            
-            divider.topAnchor.constraint(equalTo: minutePickerView.bottomAnchor, constant: Dimens.distanceDefault),
+            divider.topAnchor.constraint(equalTo: numberSelectorView.bottomAnchor, constant: Dimens.distanceDefault),
             divider.leftAnchor.constraint(equalTo: leftAnchor),
             divider.rightAnchor.constraint(equalTo: rightAnchor),
             divider.heightAnchor.constraint(equalToConstant: 1),
@@ -274,88 +243,27 @@ final class TimerConfigurationView: UIView {
     }
     
     private func calculateTimeInSeconds() -> Int {
-        return secondPickerView.selectedRow(inComponent: 0) +
-        minutePickerView.selectedRow(inComponent: 0) * 60 +
-        hourPickerView.selectedRow(inComponent: 0) * 3600
+        return numberSelectorView.value.toHoursInSec()
     }
     
     private func timeString() -> String {
         String.init(
             format: timeFormat,
-            hourPickerView.selectedRow(inComponent: 0),
-            minutePickerView.selectedRow(inComponent: 0),
-            secondPickerView.selectedRow(inComponent: 0)
+            numberSelectorView.value.firstValue,
+            numberSelectorView.value.secondValue,
+            numberSelectorView.value.thirdValue
         )
     }
     
     @objc
     private func onStartTapped() {
-        delegate?.onStartTapped()
+        startRelay.accept(())
     }
     
     @objc
     private func onCancelEditTapped() {
-        delegate?.onCancelEditTapped()
+        cancelRelay.accept(())
     }
-}
-
-extension TimerConfigurationView: UIPickerViewDataSource {
-    func numberOfComponents(in pickerView: UIPickerView) -> Int {
-        1
-    }
-    
-    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        if (pickerView == hourPickerView) {
-            return 24
-        } else {
-            return 60
-        }
-    }
-}
-
-extension TimerConfigurationView: UIPickerViewDelegate {
-    
-    func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
-        pickerView.subviews[1].backgroundColor = .clear
-        
-        let label: UILabel
-        if (view == nil) {
-            label = UILabel()
-            label.font = .button
-            label.textAlignment = .center
-        } else {
-            label = view as! UILabel
-        }
-        
-        if (pickerView == hourPickerView) {
-            if (row == 1) {
-                label.text = Strings.TimerDetail.hourPattern.arguments(row)
-            } else {
-                label.text = Strings.TimerDetail.hoursPattern.arguments(row)
-            }
-        } else if (pickerView == minutePickerView) {
-            label.text = Strings.TimerDetail.minutePattern.arguments(row)
-        } else {
-            label.text = Strings.TimerDetail.secondPattern.arguments(row)
-        }
-        
-        return label
-    }
-    
-    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        updateInfoText()
-        delegate?.onTimeChanged()
-    }
-    
-    func pickerView(_ pickerView: UIPickerView, rowHeightForComponent component: Int) -> CGFloat {
-        40
-    }
-}
-
-protocol TimerConfigurationViewDelegate {
-    func onStartTapped()
-    func onCancelEditTapped()
-    func onTimeChanged()
 }
 
 enum TimerTargetAction: Int {

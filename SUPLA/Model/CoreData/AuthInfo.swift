@@ -189,4 +189,16 @@ extension AuthInfo {
             preferredProtocolVersion: prefProtoVersion
         )
     }
+    
+    static func from(state: AccountCreationViewState) -> AuthInfo {
+        return AuthInfo(
+            emailAuth: state.authType == .email,
+            serverAutoDetect: state.serverAutoDetect,
+            emailAddress: state.emailAddress,
+            serverForEmail: state.serverAddressForEmail,
+            serverForAccessID: state.serverAddressForAccessId,
+            accessID: Int(state.accessId) ?? 0,
+            accessIDpwd: state.accessIdPassword
+        )
+    }
 }

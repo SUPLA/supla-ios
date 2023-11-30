@@ -145,8 +145,12 @@ extension Date {
     }
     
     func shift(days: Int) -> Date {
-        let toShift: Double = Double(days) * 24 * 60 * 60
+        let toShift: Double = Double(days * DAY_IN_SEC)
         return Date(timeIntervalSince1970: self.timeIntervalSince1970 + toShift)
+    }
+    
+    func differenceInSeconds(_ otherDate: Date) -> Int {
+        Int(abs(timeIntervalSince1970 - otherDate.timeIntervalSince1970))
     }
     
     static func create(year: Int, month: Int = 1, day: Int = 1, hour: Int = 0, minute: Int = 0, second: Int = 0) -> Date? {

@@ -18,6 +18,7 @@
 
 import Foundation
 import RxSwift
+import RxCocoa
 
 class BaseViewModel<S : ViewState, E : ViewEvent> {
     
@@ -48,16 +49,16 @@ class BaseViewModel<S : ViewState, E : ViewEvent> {
     
     func bind<T>(field path: WritableKeyPath<S, T>, toObservable observable: Observable<T>) {
         observable
-            .subscribe(onNext: { value in
-                self.updateView() { state in return state.changing(path: path, to: value) }
+            .subscribe(onNext: { [weak self] value in
+                self?.updateView() { state in return state.changing(path: path, to: value) }
             })
             .disposed(by: disposeBag)
     }
     
     func bindWhenInitialized<T>(field path: WritableKeyPath<S, T?>, toObservable observable: Observable<T>) {
         observable
-            .subscribe(onNext: { value in
-                self.updateView() { state in
+            .subscribe(onNext: { [weak self] value in
+                self?.updateView() { state in
                     if (state.value(path: path) == nil) {
                         return state
                     }
@@ -69,9 +70,9 @@ class BaseViewModel<S : ViewState, E : ViewEvent> {
     
     func bind<T>(field path: WritableKeyPath<S, T>, toOptional observable: Observable<T?>) {
         observable
-            .subscribe(onNext: { value in
+            .subscribe(onNext: { [weak self] value in
                 guard let value = value else { return }
-                self.updateView() { state in return state.changing(path: path, to: value) }
+                self?.updateView() { state in return state.changing(path: path, to: value) }
             })
             .disposed(by: disposeBag)
     }
@@ -91,6 +92,21 @@ class BaseViewModel<S : ViewState, E : ViewEvent> {
             })
             .disposed(by: disposeBag)
     }
+    
+    func bind(_ observable: ControlEvent<Void>, _ action: @escaping () -> Void) {
+        observable
+            .subscribe(onNext: {
+                action()
+            })
+            .disposed(by: disposeBag)
+    }
+    
+#if DEBUG
+    deinit {
+        let className = NSStringFromClass(type(of: self))
+        NSLog("[DEINIT] VM:\(className)")
+    }
+#endif
 }
 
 extension Disposable {

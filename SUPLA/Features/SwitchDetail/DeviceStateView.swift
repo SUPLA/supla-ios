@@ -16,24 +16,62 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 */
 
-final class DeviceStateView: UIView {
+final class DeviceState {
+    
+    static func endDateText(_ timerEndDate: Date?) -> String {
+        guard let date = timerEndDate else { return "" }
+        
+        @Singleton<ValuesFormatter> var formatter
+        let dateString = formatter.getFullDateString(date: date) ?? ""
+        return Strings.TimerDetail.stateLabelForTimerDays.arguments(dateString)
+    }
+    
+    static func currentStateIcon(_ mode: SuplaHvacMode?) -> UIImage? {
+        mode?.icon
+    }
+    
+    static func currentStateIconColor(_ mode: SuplaHvacMode?) -> UIColor {
+        return mode?.iconColor ?? .disabled
+    }
+    
+    static func currentStateValue(_ mode: SuplaHvacMode?, heatSetpoint: Float?, coolSetpoint: Float?) -> String {
+        @Singleton<ValuesFormatter> var formatter
+        
+        return switch(mode) {
+        case .off: "OFF"
+        case .heat: formatter.temperatureToString(heatSetpoint, withUnit: false)
+        case .cool: formatter.temperatureToString(coolSetpoint, withUnit: false)
+        default: ""
+        }
+    }
+}
+
+final class DeviceStateView: UIStackView {
     
     var label: String? = nil {
-        didSet { labelView.text = label }
+        didSet { labelView.text = label?.uppercased() }
     }
     
     var icon: UIImage? = nil {
-        didSet { iconView.image = icon }
+        didSet {
+            iconView.image = icon
+            iconView.isHidden = icon == nil
+        }
     }
     
     var value: String? = nil {
         didSet { valueView.text = value }
     }
     
+    var iconTint: UIColor? {
+        get { iconView.tintColor }
+        set { iconView.tintColor = newValue }
+    }
+    
     private lazy var labelView: UILabel = {
         let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
         label.font = .body2
+        label.textColor = .gray
         return label
     }()
     
@@ -46,44 +84,41 @@ final class DeviceStateView: UIView {
     
     private lazy var valueView: UILabel = {
         let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
         label.font = .openSansBold(style: .body, size: 14)
         return label
     }()
     
-    override init(frame: CGRect) {
-        super.init(frame: frame)
+    private let iconSize: CGFloat
+    
+    init(iconSize: CGFloat = Dimens.iconSize) {
+        self.iconSize = iconSize
+        super.init(frame: .zero)
         setupView()
     }
     
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-        setupView()
+    required init(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
     
     private func setupView() {
-        addSubview(labelView)
-        addSubview(iconView)
-        addSubview(valueView)
+        translatesAutoresizingMaskIntoConstraints = false
+        spacing = Dimens.distanceTiny
+        
+        addArrangedSubview(labelView)
+        addArrangedSubview(iconView)
+        addArrangedSubview(valueView)
         
         setupLayout()
     }
     
     private func setupLayout() {
         NSLayoutConstraint.activate([
-            labelView.leadingAnchor.constraint(equalTo: leadingAnchor),
-            
-            iconView.topAnchor.constraint(equalTo: topAnchor),
-            iconView.leadingAnchor.constraint(equalTo: labelView.trailingAnchor, constant: 3),
-            iconView.bottomAnchor.constraint(equalTo: bottomAnchor),
-            iconView.heightAnchor.constraint(equalToConstant: 24),
-            iconView.widthAnchor.constraint(equalToConstant: 24),
-            
-            valueView.leadingAnchor.constraint(equalTo: iconView.trailingAnchor, constant: 5),
-            valueView.trailingAnchor.constraint(equalTo: trailingAnchor),
-            
-            labelView.centerYAnchor.constraint(equalTo: iconView.centerYAnchor),
-            valueView.centerYAnchor.constraint(equalTo: iconView.centerYAnchor)
+            iconView.heightAnchor.constraint(equalToConstant: iconSize),
+            iconView.widthAnchor.constraint(equalToConstant: iconSize),
         ])
+    }
+    
+    override class var requiresConstraintBasedLayout: Bool {
+        return true
     }
 }

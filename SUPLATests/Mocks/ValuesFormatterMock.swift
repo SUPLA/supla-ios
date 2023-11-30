@@ -35,6 +35,30 @@ final class ValuesFormatterMock: ValuesFormatter {
         return "\(hour.hour):\(hour.minute)"
     }
     
+    func getTimeString(hour: Int?, minute: Int?, second: Int?) -> String {
+        var result = ""
+        
+        if let hour = hour {
+            result += "\(hour)"
+        } else {
+            result += "nil"
+        }
+        
+        if let minute = minute {
+            result += "\(minute)"
+        } else {
+            result += "nil"
+        }
+        
+        if let second = second {
+            result += "\(second)"
+        } else {
+            result += "nil"
+        }
+        
+        return result
+    }
+    
     
     func percentageToString(_ value: Float) -> String {
         ""
