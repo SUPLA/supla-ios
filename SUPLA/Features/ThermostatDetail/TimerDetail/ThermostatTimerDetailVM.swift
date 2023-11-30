@@ -99,6 +99,12 @@ class ThermostatTimerDetailVM: BaseViewModel<ThermostatTimerDetailViewState, The
         }
     }
     
+    func onTemperatureChange(step: TemperatureChangeStep) {
+        updateView {
+            $0.changing(path: \.currentTemperature, to: $0.currentTemperature?.plus(step.rawValue))
+        }
+    }
+    
     func onStartTimer() {
         guard let state = currentState(),
               let remoteId = state.remoteId,
