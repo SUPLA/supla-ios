@@ -191,6 +191,12 @@ class ThermostatTimerDetailVC: BaseViewControllerVM<ThermostatTimerDetailViewSta
         viewModel.bind(configurationView.cancelTaps) { [weak self] in
             self?.viewModel.editTimerCancel()
         }
+        viewModel.bind(configurationView.plusTaps) { [weak self] in
+            self?.viewModel.onTemperatureChange(step: .smallUp)
+        }
+        viewModel.bind(configurationView.minusTaps) { [weak self] in
+            self?.viewModel.onTemperatureChange(step: .smallDown)
+        }
         viewModel.bind(manualButtonView.tapObservable) { [weak self] in
             self?.viewModel.cancelTimerStartManual()
         }

@@ -127,7 +127,7 @@ final class ThermostatTimerDetailVMTests: ViewModelTest<ThermostatTimerDetailVie
         ])
     }
     
-    func test_shouldChangeTemperature() {
+    func test_shouldChangeTemperatureByValue() {
         // given
         let temperature: Float = 14.3
         
@@ -140,6 +140,22 @@ final class ThermostatTimerDetailVMTests: ViewModelTest<ThermostatTimerDetailVie
         assertStates(expected: [
             state,
             state.changing(path: \.currentTemperature, to: temperature)
+        ])
+    }
+    
+    func test_shouldChangeTemperatureByStep() {
+        // given
+        let state = ThermostatTimerDetailViewState(currentTemperature: 14.2)
+        viewModel.updateView(state: state)
+        
+        // when
+        observe(viewModel)
+        viewModel.onTemperatureChange(step: .smallUp)
+        
+        // then
+        assertStates(expected: [
+            state,
+            state.changing(path: \.currentTemperature, to: 14.3)
         ])
     }
     

@@ -91,6 +91,14 @@ final class ThermostatTimerConfigurationView: UIView {
         cancelButton.rx.tap
     }
     
+    var plusTaps: ControlEvent<Void> {
+        configureTemperatureView.plusButtonTaps
+    }
+    
+    var minusTaps: ControlEvent<Void> {
+        configureTemperatureView.minusButtonTaps
+    }
+    
     var startEnabled: Bool {
         get { startButton.isEnabled }
         set { startButton.isEnabled = newValue }
@@ -267,9 +275,9 @@ final class ThermostatTimerConfigurationView: UIView {
             scrollView.rightAnchor.constraint(equalTo: rightAnchor),
             scrollView.bottomAnchor.constraint(equalTo: separatorView.topAnchor),
             
-            scrollContainerView.leftAnchor.constraint(equalTo: scrollView.leftAnchor, constant: Dimens.distanceDefault),
+            scrollContainerView.leftAnchor.constraint(equalTo: leftAnchor, constant: Dimens.distanceDefault),
             scrollContainerView.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: Dimens.distanceDefault),
-            scrollContainerView.rightAnchor.constraint(equalTo: scrollView.rightAnchor, constant: -Dimens.distanceDefault),
+            scrollContainerView.rightAnchor.constraint(equalTo: rightAnchor, constant: -Dimens.distanceDefault),
             scrollContainerView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor, constant: -Dimens.distanceDefault),
             
             startButton.leftAnchor.constraint(equalTo: leftAnchor, constant: Dimens.distanceDefault),
@@ -358,12 +366,12 @@ private class ConfigureTemperatureView: UIView {
         temperatureSlider.rx.value.asObservable()
     }
     
-    var plusButtonObservable: Observable<Void> {
-        plusButton.rx.tap.asObservable()
+    var plusButtonTaps: ControlEvent<Void> {
+        plusButton.rx.tap
     }
     
-    var minusButtonObservable: Observable<Void> {
-        minusButton.rx.tap.asObservable()
+    var minusButtonTaps: ControlEvent<Void> {
+        minusButton.rx.tap
     }
     
     private lazy var minTemperatureLabel: UILabel = {
