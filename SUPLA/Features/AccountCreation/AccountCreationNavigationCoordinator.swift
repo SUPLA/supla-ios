@@ -74,7 +74,7 @@ class AuthCfgNavigationCoordinator: BaseNavigationCoordinator {
     func finish(shouldReauthenticate: Bool) {
         if (shouldReauthenticate) {
             let navigated = goTo(MainNavigationCoordinator.self) { navigator in
-                navigator.showStatusView(progress: 0)
+                //navigator.showStatusView(progress: 0)
             }
             if (!navigated) {
                 finish()

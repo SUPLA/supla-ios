@@ -20,6 +20,11 @@
 @testable import SUPLA
 
 class SuplaAppWrapperMock: SuplaAppWrapper {
+    var cancelAllRestApiClientTasksCalls = 0
+    func cancelAllRestApiClientTasks() {
+        cancelAllRestApiClientTasksCalls += 1
+    }
+    
     var terminateCalls = 0
     func terminateSuplaClient() { terminateCalls += 1 }
 }

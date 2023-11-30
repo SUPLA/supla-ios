@@ -95,13 +95,12 @@ class AccountCreationVC: BaseViewControllerVM<AccountCreationViewState, AccountC
         }
     }
     
-    convenience init(navigationCoordinator: NavigationCoordinator,
-                     profileId: NSManagedObjectID?) {
+    convenience init(navigationCoordinator: NavigationCoordinator, profileId: NSManagedObjectID?) {
         self.init(nibName: "AccountCreationVC", bundle: nil)
         self.navigationCoordinator = navigationCoordinator
         self.profileId = profileId
         
-        viewModel = AccountCreationVM(profileManager: SAApp.profileManager(), profileId: profileId)
+        viewModel = AccountCreationVM()
     }
     
     override func viewDidLoad() {
@@ -116,6 +115,12 @@ class AccountCreationVC: BaseViewControllerVM<AccountCreationViewState, AccountC
 
         configureUI()
         bindVM()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        viewModel.loadData(profileId: profileId)
     }
     
     override func viewDidLayoutSubviews() {
@@ -239,12 +244,9 @@ class AccountCreationVC: BaseViewControllerVM<AccountCreationViewState, AccountC
         viewModel.bind(adEmailAddr.rx.text.asObservable()) { [weak self] in
             self?.viewModel.setEmailAddress($0!)
         }
-        viewModel.bind(
-            modeToggle.rx.isOn
-                .debounce(.milliseconds(100), scheduler: MainScheduler.instance)
-                .distinctUntilChanged()
-                .asObservable()
-        ) { [weak self] isOn in self?.viewModel.toggleAdvancedState(isOn) }
+        viewModel.bind(modeToggle.rx.isOn.asObservable()) { [weak self] isOn in
+            self?.viewModel.toggleAdvancedState(isOn)
+        }
         viewModel.bind(
             adServerAuto.rx.tap.asObservable()
                 .map({ [weak self] in self?.adServerAuto.isSelected == true })
