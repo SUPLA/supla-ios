@@ -308,7 +308,6 @@ typedef enum {
         self.btnSchedule.hidden = NO;
         [self runDownloadTask];
         [_chartHelper load];
-        [_chartHelper moveToEnd];
     }
     
     [self updateView];
