@@ -43,6 +43,10 @@ extension UIColor {
     static let lightRed = UIColor.from(red: 224, green: 152, blue: 146, alpha: 1)
     static let darkRed = UIColor(argb: 0xFF800000)
     static let darkBlue = UIColor(argb: 0xFF000080)
+    static let chartTemperature1 = UIColor(argb: 0xFFFF3333)
+    static let chartTemperature2 = UIColor(argb: 0xFFFF8C53)
+    static let chartHumidity1 = UIColor(argb: 0xFF57A0FF)
+    static let chartHumidity2 = UIColor(argb: 0xFF33FFEC)
     
     static let border = UIColor(red: 180/255.0, green: 183/255.0, blue: 186/255.0, alpha: 1)
     static let separator = UIColor.from(red: 170, green: 170, blue: 170, alpha: 1)

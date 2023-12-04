@@ -52,16 +52,17 @@ class BaseHistoryDetailVM: BaseViewModel<BaseHistoryDetailViewState, BaseHistory
     
     func changeSetActive(setId: HistoryDataSet.Id) {
         updateView { state in
-            state.changing(
-                path: \.sets,
-                to: state.sets.map { set in
-                    if (set.setId == setId) {
-                        set.changing(path: \.active, to: !set.active)
-                    } else {
-                        set
-                    }
+            let sets = state.sets.map { set in
+                if (set.setId == setId) {
+                    set.changing(path: \.active, to: !set.active)
+                } else {
+                    set
                 }
-            )
+            }
+            
+            return state.changing(path: \.sets, to: sets)
+                .changing(path: \.withHumidity, to: sets.first(where: { $0.setId.type == .humidity && $0.active }) != nil)
+                .changing(path: \.withTemperature, to: sets.first(where: { $0.setId.type == .temperature && $0.active }) != nil)
         }
         updateUserState()
     }
@@ -337,13 +338,11 @@ class BaseHistoryDetailVM: BaseViewModel<BaseHistoryDetailViewState, BaseHistory
     
     private func handleMeasurements(sets: [HistoryDataSet], range: DaysRange?, chartState: TemperatureChartState) {
         updateView {
-            $0.changing(
-                path: \.sets,
-                to: sets.map {
-                    $0.changing(path: \.active, to: chartState.visibleSets?.contains($0.setId) ?? true)
-                }
-            )
-                .changing(path: \.withHumidity, to: sets.first(where: { $0.setId.type == .humidity}) != nil)
+            let setsWithActiveSet = sets.map { $0.changing(path: \.active, to: chartState.visibleSets?.contains($0.setId) ?? true) }
+            
+            return $0.changing(path: \.sets, to: setsWithActiveSet)
+                .changing(path: \.withHumidity, to: setsWithActiveSet.first(where: { $0.setId.type == .humidity && $0.active }) != nil)
+                .changing(path: \.withTemperature, to: setsWithActiveSet.first(where: { $0.setId.type == .temperature && $0.active }) != nil)
                 .changing(
                     path: \.maxTemperature,
                     to: sets.filter { $0.setId.type == .temperature }
@@ -353,6 +352,11 @@ class BaseHistoryDetailVM: BaseViewModel<BaseHistoryDetailViewState, BaseHistory
                     path: \.minTemperature,
                     to: sets.filter { $0.setId.type == .temperature }
                         .map { $0.entries.map { $0.map { $0.y } }.minOrNull() }.minOrNull()?.minus(2)
+                )
+                .changing(
+                    path: \.maxHumidity,
+                    to: sets.filter { $0.setId.type == .humidity }
+                        .map { $0.entries.map { $0.map { $0.y } }.maxOrNull() }.maxOrNull()?.plus(2)
                 )
                 .changing(path: \.minDate, to: range?.start ?? $0.minDate)
                 .changing(path: \.maxDate, to: range?.end ?? $0.maxDate)
@@ -402,9 +406,11 @@ struct BaseHistoryDetailViewState: ViewState {
     
     var minDate: Date? = nil
     var maxDate: Date? = nil
+    var withTemperature: Bool = false
     var withHumidity: Bool = false
     var maxTemperature: Double? = nil
     var minTemperature: Double? = nil
+    var maxHumidity: Double? = nil
     var chartParameters: HideableValue<ChartParameters>? = nil
     
     var editDate: RangeValueType? = nil
@@ -603,10 +609,16 @@ fileprivate func lineDataSet(set: [ChartDataEntry], color: UIColor, type: ChartE
     set.colors = [color]
     set.circleColors = [color]
     set.drawCircleHoleEnabled = false
-    set.circleRadius = 1.5
+    set.drawCirclesEnabled = false
+    set.lineWidth = 2
     switch (type) {
     case .temperature: set.axisDependency = .left
     case .humidity: set.axisDependency = .right
     }
+    set.highlightColor = .primaryVariant
+    
+    set.drawFilledEnabled = true
+    set.fillColor = color
+    set.fillAlpha = 0.08
     return set
 }

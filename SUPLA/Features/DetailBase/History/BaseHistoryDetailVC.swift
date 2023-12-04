@@ -93,11 +93,14 @@ class BaseHistoryDetailVC: BaseViewControllerVM<BaseHistoryDetailViewState, Base
         chartView.data = state.combinedData
         chartView.maxTemperature = state.maxTemperature
         chartView.minTemperature = state.minTemperature
+        chartView.maxHumidity = state.maxHumidity
         chartView.rangeStart = state.range?.start.timeIntervalSince1970
         chartView.rangeEnd = state.range?.end.timeIntervalSince1970
         chartView.emptyChartMessage = state.emptyChartMessage
         chartView.rangeStart = state.xMin
         chartView.rangeEnd = state.xMax
+        chartView.withTemperature = state.withTemperature
+        chartView.withHumidity = state.withHumidity
         if (state.combinedData != nil) {
             if let chartParameters = state.chartParameters?.getOptional() {
                 if (chartParameters.hasDefaultValues()) {
@@ -183,13 +186,13 @@ class BaseHistoryDetailVC: BaseViewControllerVM<BaseHistoryDetailViewState, Base
             dataSetsRow.rightAnchor.constraint(equalTo: view.rightAnchor),
             dataSetsRow.heightAnchor.constraint(equalToConstant: 80),
             
-            filtersRow.topAnchor.constraint(equalTo: dataSetsRow.bottomAnchor, constant: Dimens.distanceSmall),
+            filtersRow.topAnchor.constraint(equalTo: dataSetsRow.bottomAnchor, constant: Dimens.distanceTiny),
             filtersRow.leftAnchor.constraint(equalTo: view.leftAnchor, constant: Dimens.distanceDefault),
             filtersRow.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -Dimens.distanceDefault),
             
             chartView.topAnchor.constraint(equalTo: filtersRow.bottomAnchor, constant: Dimens.distanceSmall),
-            chartView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: Dimens.distanceDefault),
-            chartView.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -Dimens.distanceDefault),
+            chartView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: Dimens.distanceTiny),
+            chartView.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -Dimens.distanceTiny),
             chartView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -96),
             
             paginationView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: Dimens.distanceSmall),
@@ -312,6 +315,10 @@ fileprivate class DataSetItem: UIView {
         button.layer.borderColor = color.cgColor
         button.titleLabel?.font = UIFont(name: "OpenSans-Bold", size: 14)
         button.setAttributedTitle(value)
+        button.layer.shadowRadius = Dimens.Shadow.radius
+        button.layer.shadowOpacity = Dimens.Shadow.opacity
+        button.layer.shadowOffset = Dimens.Shadow.offset
+        button.layer.shadowColor = UIColor.black.cgColor
         return button
     }()
     

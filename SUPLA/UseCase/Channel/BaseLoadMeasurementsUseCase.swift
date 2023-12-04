@@ -165,13 +165,13 @@ class Colors {
 
 final class TemperatureColors: Colors {
     init() {
-        super.init(colors: [.red, .darkRed])
+        super.init(colors: [.chartTemperature1, .chartTemperature2])
     }
 }
 
 final class HumidityColors: Colors {
     init() {
-        super.init(colors: [.blue, .darkBlue])
+        super.init(colors: [.chartHumidity1, .chartHumidity2])
     }
 }
 
