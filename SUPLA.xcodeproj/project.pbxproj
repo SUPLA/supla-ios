@@ -360,7 +360,6 @@
 		01D5E0CA22DB8F0A00FBE1DC /* SAChartMarkerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 01D5E0C922DB8F0A00FBE1DC /* SAChartMarkerView.xib */; };
 		01D6A0F2249BD2F7006B3757 /* SASuperuserAuthorizationDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = 01D6A0F0249BD2F7006B3757 /* SASuperuserAuthorizationDialog.m */; };
 		01D6A102249BEC8C006B3757 /* SAVLCalibrationTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 01D6A101249BEC8C006B3757 /* SAVLCalibrationTool.m */; };
-		01D6A104249C0DC8006B3757 /* vprosmart@3.png in Resources */ = {isa = PBXBuildFile; fileRef = 01D6A103249C0DC8006B3757 /* vprosmart@3.png */; };
 		01D6A106249C0EAC006B3757 /* vlinfo@3.png in Resources */ = {isa = PBXBuildFile; fileRef = 01D6A105249C0EAC006B3757 /* vlinfo@3.png */; };
 		01D6A109249C0F40006B3757 /* vlrestore@3.png in Resources */ = {isa = PBXBuildFile; fileRef = 01D6A107249C0F40006B3757 /* vlrestore@3.png */; };
 		01DD2F0C247718C40025DFF9 /* SARangeCalibrationWheelTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 01DD2F0B247718C40025DFF9 /* SARangeCalibrationWheelTests.m */; };
@@ -1720,7 +1719,6 @@
 		01D6A0F0249BD2F7006B3757 /* SASuperuserAuthorizationDialog.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SASuperuserAuthorizationDialog.m; sourceTree = "<group>"; };
 		01D6A100249BEC8C006B3757 /* SAVLCalibrationTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SAVLCalibrationTool.h; sourceTree = "<group>"; };
 		01D6A101249BEC8C006B3757 /* SAVLCalibrationTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SAVLCalibrationTool.m; sourceTree = "<group>"; };
-		01D6A103249C0DC8006B3757 /* vprosmart@3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "vprosmart@3.png"; sourceTree = "<group>"; };
 		01D6A105249C0EAC006B3757 /* vlinfo@3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "vlinfo@3.png"; sourceTree = "<group>"; };
 		01D6A107249C0F40006B3757 /* vlrestore@3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "vlrestore@3.png"; sourceTree = "<group>"; };
 		01DD2F0B247718C40025DFF9 /* SARangeCalibrationWheelTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SARangeCalibrationWheelTests.m; sourceTree = "<group>"; };
@@ -3184,7 +3182,6 @@
 				018D2E4F24BF258B00773D2F /* uv-on@3x.png */,
 				01D3FF6624A20E26000EBE77 /* backbtn@3x.png */,
 				01D6A105249C0EAC006B3757 /* vlinfo@3.png */,
-				01D6A103249C0DC8006B3757 /* vprosmart@3.png */,
 				010C8782249A6471002FE526 /* infoclose@2x.png */,
 				012BD7292499183700E64F25 /* rgbwsettings@3x.png */,
 				012BD7232499173600E64F25 /* rgbwinfo@3x.png */,
@@ -5539,7 +5536,6 @@
 				012E341523DF5FB800F17D39 /* valve-open@3x.png in Resources */,
 				4091AF3E1FC8405200EFF357 /* btnnextr@2x.png in Resources */,
 				40DE1A2A1BCCFF8A004CF43B /* feedback@3x.png in Resources */,
-				01D6A104249C0DC8006B3757 /* vprosmart@3.png in Resources */,
 				012BD7272499173600E64F25 /* rgbwinfo@3x.png in Resources */,
 				0103C0F2292E732B00566A23 /* door-closed-nightmode@2x.png in Resources */,
 				01F910FE22EF954400BFF91D /* thermostat_hp_homeplus2-on@2x.png in Resources */,
