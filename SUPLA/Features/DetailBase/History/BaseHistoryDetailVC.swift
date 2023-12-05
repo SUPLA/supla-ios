@@ -314,9 +314,9 @@ fileprivate class DataSetItem: UIView {
         button.layer.borderColor = color.cgColor
         button.titleLabel?.font = UIFont(name: "OpenSans-Bold", size: 14)
         button.setAttributedTitle(value)
-        button.layer.shadowRadius = Dimens.Shadow.radius
-        button.layer.shadowOpacity = Dimens.Shadow.opacity
-        button.layer.shadowOffset = Dimens.Shadow.offset
+        button.layer.shadowRadius = 4
+        button.layer.shadowOpacity = 0.4
+        button.layer.shadowOffset = CGSizeMake(0, 2)
         button.layer.shadowColor = UIColor.black.cgColor
         return button
     }()

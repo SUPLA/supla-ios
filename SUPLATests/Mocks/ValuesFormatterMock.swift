@@ -64,7 +64,7 @@ final class ValuesFormatterMock: ValuesFormatter {
         ""
     }
     
-    func humidityToString(value: Double?, withPercentage: Bool) -> String {
+    func humidityToString(value: Double?, withPercentage: Bool, precision: Int) -> String {
         ""
     }
     
