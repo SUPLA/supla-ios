@@ -22,7 +22,7 @@ private let MIN_TEMPERATURE_VALUE: Float = -273
 protocol ValuesFormatter {
     // Values
     func temperatureToString(value: Float?, withUnit: Bool, withDegree: Bool, precision: Int) -> String
-    func humidityToString(value: Double?, withPercentage: Bool) -> String
+    func humidityToString(value: Double?, withPercentage: Bool, precision: Int) -> String
     func percentageToString(_ value: Float) -> String
     
     // Time
@@ -51,8 +51,8 @@ extension ValuesFormatter {
             return temperatureToString(value: nil, withUnit: withUnit, withDegree: withDegree, precision: precision)
         }
     }
-    func humidityToString(_ value: Double?, withPercentage: Bool = false) -> String {
-        humidityToString(value: value, withPercentage: withPercentage)
+    func humidityToString(_ value: Double?, withPercentage: Bool = false, precision: Int = 1) -> String {
+        humidityToString(value: value, withPercentage: withPercentage, precision: precision)
     }
     func getTimeString(hour: Int? = nil, minute: Int? = nil, second: Int? = nil) -> String {
         getTimeString(hour: hour, minute: minute, second: second)
@@ -93,9 +93,9 @@ final class ValuesFormatterImpl: ValuesFormatter {
         }
     }
     
-    func humidityToString(value: Double?, withPercentage: Bool) -> String {
-        formatter.minimumFractionDigits = 1
-        formatter.maximumFractionDigits = 1
+    func humidityToString(value: Double?, withPercentage: Bool, precision: Int = 1) -> String {
+        formatter.minimumFractionDigits = precision
+        formatter.maximumFractionDigits = precision
         guard let value = value,
               value >= 0 && value <= 100,
               let formatted = formatter.string(from: NSNumber(value: convert(Float(value))))

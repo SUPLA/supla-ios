@@ -16,7 +16,6 @@
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 
-import Foundation
 import RxSwift
 import RxRelay
 
@@ -55,6 +54,7 @@ final class UpdateEventsManagerImpl: UpdateEventsManager {
     @Singleton<ProfileRepository> private var profileRepository
     @Singleton<ChannelRelationRepository> private var channelRelationRepository
     @Singleton<CreateChannelWithChildrenUseCase> private var createChannelWithChildrenUseCase
+    @Singleton<ReadChannelWithChildrenUseCase> private var readChannelWithChildrenUseCase
     
     func emitSceneUpdate(sceneId: Int) {
         let subject = getSubjectForScene(sceneId: sceneId)
@@ -108,20 +108,17 @@ final class UpdateEventsManagerImpl: UpdateEventsManager {
     }
     
     func observeChannelWithChildren(remoteId: Int) -> Observable<ChannelWithChildren> {
-        return getSubjectForChannel(channelId: remoteId)
-            .flatMap { _ in
-                self.profileRepository.getActiveProfile()
-                    .flatMap { profile in
-                        Observable.zip(
-                            self.channelRepository.getAllVisibleChannels(forProfile: profile),
-                            self.channelRelationRepository.getParentsMap(for: profile),
-                            resultSelector: { channels, listOfParents in
-                                self.toChannelWithChildren(remoteId: remoteId, channels, listOfParents)
-                            }
-                        )
-                    }
+        return readChannelWithChildrenUseCase.invoke(remoteId: Int32(remoteId))
+            .flatMapFirst { channelWithChildren in
+                var ids: [Int32] = [channelWithChildren.channel.remote_id]
+                if let child = channelWithChildren.children.first(where: { $0.relationType == .mainThermometer }) {
+                    ids.append(child.channel.remote_id)
+                }
+                
+                return Observable.merge(
+                    ids.map { self.getSubjectForChannel(channelId: Int($0)).asObservable() }
+                ).map { _ in channelWithChildren }
             }
-            .compactMap { $0 }
     }
     
     func observeChannelsUpdate() -> Observable<Void> { channelUpdatesSubject.asObservable() }

@@ -95,7 +95,7 @@ final class LoadChannelMeasurementsUseCaseTests: UseCaseTest<[HistoryDataSet]> {
         
         XCTAssertEqual(historyDataSets.count, 1)
         XCTAssertEqual(historyDataSets[0].setId, HistoryDataSet.Id(remoteId: remotId, type: .temperature))
-        XCTAssertEqual(historyDataSets[0].color, .red)
+        XCTAssertEqual(historyDataSets[0].color, .chartTemperature1)
         XCTAssertEqual(historyDataSets[0].active, true)
         XCTAssertEqual(historyDataSets[0].value, "0.0°")
         XCTAssertEqual(
@@ -140,7 +140,7 @@ final class LoadChannelMeasurementsUseCaseTests: UseCaseTest<[HistoryDataSet]> {
         
         XCTAssertEqual(historyDataSets.count, 1)
         XCTAssertEqual(historyDataSets[0].setId, HistoryDataSet.Id(remoteId: remotId, type: .temperature))
-        XCTAssertEqual(historyDataSets[0].color, .red)
+        XCTAssertEqual(historyDataSets[0].color, .chartTemperature1)
         XCTAssertEqual(historyDataSets[0].active, true)
         XCTAssertEqual(
             historyDataSets[0].entries[0].map { $0.x },
@@ -177,7 +177,7 @@ final class LoadChannelMeasurementsUseCaseTests: UseCaseTest<[HistoryDataSet]> {
         
         XCTAssertEqual(historyDataSets.count, 1)
         XCTAssertEqual(historyDataSets[0].setId, HistoryDataSet.Id(remoteId: remotId, type: .temperature))
-        XCTAssertEqual(historyDataSets[0].color, .red)
+        XCTAssertEqual(historyDataSets[0].color, .chartTemperature1)
         XCTAssertEqual(historyDataSets[0].active, true)
         XCTAssertEqual(historyDataSets[0].entries[0].map { $0.x }, [startDate.timeIntervalSince1970])
         XCTAssertEqual(historyDataSets[0].entries[1].map { $0.x }, [endDate.timeIntervalSince1970])
@@ -217,7 +217,7 @@ final class LoadChannelMeasurementsUseCaseTests: UseCaseTest<[HistoryDataSet]> {
         
         // - temperature sets
         XCTAssertEqual(historyDataSets[0].setId, HistoryDataSet.Id(remoteId: remotId, type: .temperature))
-        XCTAssertEqual(historyDataSets[0].color, .red)
+        XCTAssertEqual(historyDataSets[0].color, .chartTemperature1)
         XCTAssertEqual(historyDataSets[0].active, true)
         XCTAssertEqual(historyDataSets[0].value, "-273.0°")
         XCTAssertEqual(
@@ -234,7 +234,7 @@ final class LoadChannelMeasurementsUseCaseTests: UseCaseTest<[HistoryDataSet]> {
         
         // - humidity sets
         XCTAssertEqual(historyDataSets[1].setId, HistoryDataSet.Id(remoteId: remotId, type: .humidity))
-        XCTAssertEqual(historyDataSets[1].color, UIColor(red: 0, green: 122/255.0, blue: 1, alpha: 1))
+        XCTAssertEqual(historyDataSets[1].color, .chartHumidity1)
         XCTAssertEqual(historyDataSets[1].active, true)
         XCTAssertEqual(historyDataSets[1].value, "---")
         XCTAssertEqual(

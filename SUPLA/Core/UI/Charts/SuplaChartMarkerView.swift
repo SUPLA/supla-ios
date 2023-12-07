@@ -97,12 +97,12 @@ import Charts
                 title.text = formatter.getFullDateString(date: entry.xAsDate)
             }
             
-            text.text = getValueString(type: data.type, entry.y)
+            text.text = getValueString(type: data.type, entry.y, 2)
             
             if let min = data.min,
                let max = data.max {
-                let minText = getValueString(type: data.type, min)
-                let maxText = getValueString(type: data.type, max)
+                let minText = getValueString(type: data.type, min, 1)
+                let maxText = getValueString(type: data.type, max, 1)
 
                 subtext.text = "(\(minText) - \(maxText))"
             } else {
@@ -116,12 +116,12 @@ import Charts
         layoutIfNeeded()
     }
     
-    private func getValueString(type: ChartEntryType, _ value: Double) -> String {
+    private func getValueString(type: ChartEntryType, _ value: Double, _ precision: Int) -> String {
         switch (type) {
         case .temperature:
-            formatter.temperatureToString(value, withUnit: false, precision: 2)
+            formatter.temperatureToString(value, withUnit: false, precision: precision)
         case .humidity:
-            formatter.humidityToString(value, withPercentage: true)
+            formatter.humidityToString(value, withPercentage: true, precision: precision)
         }
     }
     

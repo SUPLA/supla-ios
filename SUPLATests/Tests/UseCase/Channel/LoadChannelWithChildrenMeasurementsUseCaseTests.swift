@@ -98,15 +98,15 @@ final class LoadChannelWithChildrenMeasurementsUseCaseTests: UseCaseTest<[Histor
         
         XCTAssertEqual(historyDataSets.count, 3)
         XCTAssertEqual(historyDataSets[0].setId, HistoryDataSet.Id(remoteId: child1Id, type: .temperature))
-        XCTAssertEqual(historyDataSets[0].color, .red)
+        XCTAssertEqual(historyDataSets[0].color, .chartTemperature1)
         XCTAssertEqual(historyDataSets[0].active, true)
         XCTAssertEqual(historyDataSets[0].value, "---")
         XCTAssertEqual(historyDataSets[1].setId, HistoryDataSet.Id(remoteId: child1Id, type: .humidity))
-        XCTAssertEqual(historyDataSets[1].color, UIColor(red: 0, green: 122/255.0, blue: 1, alpha: 1))
+        XCTAssertEqual(historyDataSets[1].color, .chartHumidity1)
         XCTAssertEqual(historyDataSets[1].active, true)
         XCTAssertEqual(historyDataSets[1].value, "---")
         XCTAssertEqual(historyDataSets[2].setId, HistoryDataSet.Id(remoteId: child2Id, type: .temperature))
-        XCTAssertEqual(historyDataSets[2].color, .darkRed)
+        XCTAssertEqual(historyDataSets[2].color, .chartTemperature2)
         XCTAssertEqual(historyDataSets[2].active, true)
         XCTAssertEqual(historyDataSets[2].value, "---")
     }
@@ -143,7 +143,7 @@ final class LoadChannelWithChildrenMeasurementsUseCaseTests: UseCaseTest<[Histor
         
         XCTAssertEqual(historyDataSets.count, 3)
         XCTAssertEqual(historyDataSets[0].setId, HistoryDataSet.Id(remoteId: child1Id, type: .temperature))
-        XCTAssertEqual(historyDataSets[0].color, .red)
+        XCTAssertEqual(historyDataSets[0].color, .chartTemperature1)
         XCTAssertEqual(historyDataSets[0].active, true)
         XCTAssertEqual(historyDataSets[0].value, "---")
     }
