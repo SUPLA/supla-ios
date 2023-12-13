@@ -230,6 +230,10 @@ struct Strings {
         static let offByWindow = "thermostat_detail_off_by_window".toLocalized()
         static let offByCard = "thermostat_detail_off_by_card".toLocalized()
         static let offBySensor = "thermostat_detail_off_by_sensor".toLocalized()
+        
+        static let programInfo = "thermostat_detail_program_info".toLocalized()
+        static let boxInfo = "thermostat_detail_box_info".toLocalized()
+        static let arrowInfo = "thermostat_detail_arrow_info".toLocalized()
     }
     
     struct General {

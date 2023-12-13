@@ -31,10 +31,15 @@ class ScheduleDetailVM: BaseViewModel<ScheduleDetailViewState, ScheduleDetailVie
     @Singleton<ReadChannelByRemoteIdUseCase> private var readChannelByRemoteIdUseCase
     @Singleton<DateProvider> private var dateProvider
     @Singleton<SuplaSchedulers> private var schedulers
+    @Singleton<GlobalSettings> private var globalSettings
     
     private let reloadConfigRelay = PublishRelay<Void>()
     
     override func defaultViewState() -> ScheduleDetailViewState { ScheduleDetailViewState() }
+    
+    override func onViewDidLoad() {
+        updateView { $0.changing(path: \.showHelp, to: globalSettings.shouldShowThermostatScheduleInfo) }
+    }
     
     func observeConfig(remoteId: Int32, deviceId: Int32) {
         Observable.combineLatest(
@@ -150,6 +155,12 @@ class ScheduleDetailVM: BaseViewModel<ScheduleDetailViewState, ScheduleDetailVie
         }
     }
     
+    func onHelpClosed() {
+        var settings = globalSettings
+        settings.shouldShowThermostatScheduleInfo = false
+        updateView { $0.changing(path: \.showHelp, to: false) }
+    }
+    
     private func triggerConfigLoad(remoteId: Int32) {
         getChannelConfigUseCase.invoke(remoteId: remoteId, type: .defaultConfig).subscribe().disposed(by: self)
         getChannelConfigUseCase.invoke(remoteId: remoteId, type: .weeklyScheduleConfig).subscribe().disposed(by: self)
@@ -260,6 +271,7 @@ struct ScheduleDetailViewState: ViewState {
     var changing: Bool = false
     
     var showDayIndicator: Bool = true
+    var showHelp: Bool = false
 }
 
 struct ScheduleDetailProgram: Equatable, Changeable {

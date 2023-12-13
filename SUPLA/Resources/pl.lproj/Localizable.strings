@@ -424,6 +424,9 @@
 "thermostat_detail_off_by_window" = "Wyłączony przez otwarte okno";
 "thermostat_detail_off_by_card" = "Wyłączony z powodu braku karty hotelowej";
 "thermostat_detail_off_by_sensor" = "Wyłączony przez czujnik";
+"thermostat_detail_program_info" = "Dotknij, aby aktywować program. Przytrzymaj aby modyfikować program.";
+"thermostat_detail_box_info" = "Dotknij, aby ustawić wybrany program. Przytrzymaj, aby ustawić wybrane kwadranse.";
+"thermostat_detail_arrow_info" = "Czarny narożnik informuje o aktualnej godzinie i dniu.";
 
 /* Thermometer Chart */
 "history_range_label" = "Zakres";
