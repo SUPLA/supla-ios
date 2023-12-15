@@ -395,6 +395,9 @@
 "thermostat_detail_off_by_window" = "Wegen offenem Fenster ausgeschaltet";
 "thermostat_detail_off_by_card" = "Wegen fehlender Hotelkarte ausgeschaltet";
 "thermostat_detail_off_by_sensor" = "Durch Sensor ausgeschaltet";
+"thermostat_detail_program_info" = "Tippen, um es zu aktivieren. Lang halten, um es zu ändern.";
+"thermostat_detail_box_info" = "Tippen, um das aktivierten Program zu setzen. Long halten, um die Viertelstunde anzupassen.";
+"thermostat_detail_arrow_info" = "Die dunkle Ecke zeigt aktuelles Tag und Zeit.";
 
 /* Thermometer Chart */
 "history_range_label" = "Bereich";

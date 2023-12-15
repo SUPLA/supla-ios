@@ -86,6 +86,10 @@
     [self updateView];
 }
 
+-(void)setChannelBaseWithoutUpdate:(SAChannelBase *)channelBase {
+    _channelBase = channelBase;
+}
+
 -(void)removeFromSuperview {
     self.channelBase = nil;
 	[super removeFromSuperview];

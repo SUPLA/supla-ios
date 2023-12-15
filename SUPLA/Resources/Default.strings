@@ -143,6 +143,9 @@
 "thermostat_detail_off_by_window" = "Turned off due to open window";
 "thermostat_detail_off_by_card" = "Turned off due to the lack of hotel card";
 "thermostat_detail_off_by_sensor" = "Turned off by sensor";
+"thermostat_detail_program_info" = "Tap to select program. Press long to modify.";
+"thermostat_detail_box_info" = "Tap to set selected program. Press long to set quarters.";
+"thermostat_detail_arrow_info" = "Black corner indicates current day and hour.";
 
 /* Thermometer Chart */
 "history_range_label" = "Range";

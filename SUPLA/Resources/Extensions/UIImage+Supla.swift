@@ -39,6 +39,7 @@ extension UIImage {
     static let iconManual = UIImage(named: "icon_manual")
     static let iconSensorAlertCircle = UIImage(named: "icon_sensor_alert_circle")
     static let iconSensorAlert = UIImage(named: "icon_sensor_alert")
+    static let iconClose = UIImage(named: "icon_close")
     
     // Functions
     static let fncUnknown = UIImage(named: "unknown_channel")

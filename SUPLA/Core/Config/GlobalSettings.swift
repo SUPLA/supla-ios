@@ -23,6 +23,7 @@ protocol GlobalSettings {
     var anyAccountRegistered: Bool { get set }
     var newGestureInfoShown: Bool { get set }
     var shouldShowNewGestureInfo: Bool { get set }
+    var shouldShowThermostatScheduleInfo: Bool { get set }
     var pushToken: Data? { get set }
     var pushTokenLastUpdate: Double { get set }
     
@@ -62,6 +63,17 @@ class GlobalSettingsImpl: GlobalSettings {
     var shouldShowNewGestureInfo: Bool {
         get { defaults.bool(forKey: shouldShowNewGestureInfoKey) }
         set { defaults.set(newValue, forKey: shouldShowNewGestureInfoKey) }
+    }
+    
+    private let shouldShowThermostatScheduleInfoKey = "GlobalSettings.shouldShowThermostatScheduleInfo"
+    var shouldShowThermostatScheduleInfo: Bool {
+        get {
+            if (defaults.value(forKey: shouldShowThermostatScheduleInfoKey) == nil) {
+                return true
+            }
+            return defaults.bool(forKey: shouldShowThermostatScheduleInfoKey)
+        }
+        set { defaults.set(newValue, forKey: shouldShowThermostatScheduleInfoKey) }
     }
     
     private let pushTokenKey = "GlobalSettings.pushTokenKey"

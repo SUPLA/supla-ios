@@ -877,6 +877,7 @@
 		A57785BF29E80406001C631E /* SuplaAppWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = A57785BE29E80406001C631E /* SuplaAppWrapper.swift */; };
 		A57785C129E80C16001C631E /* SuplaClientProviderMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = A57785C029E80C16001C631E /* SuplaClientProviderMock.swift */; };
 		A57785C329E80CF7001C631E /* SuplaAppWrapperMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = A57785C229E80CF7001C631E /* SuplaAppWrapperMock.swift */; };
+		A57B03C62B29D68B00C22966 /* HomePlusDetailRefreshHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = A57B03C52B29D68B00C22966 /* HomePlusDetailRefreshHelper.swift */; };
 		A57C4AAC2AAB20B100D9C695 /* RequestResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = A57C4AAB2AAB20B100D9C695 /* RequestResult.swift */; };
 		A57C4AAE2AAB21F700D9C695 /* ChannelConfigEventsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A57C4AAD2AAB21F700D9C695 /* ChannelConfigEventsManager.swift */; };
 		A57C4AB02AAB3E3400D9C695 /* SuplaChannelHvacConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = A57C4AAF2AAB3E3400D9C695 /* SuplaChannelHvacConfig.swift */; };
@@ -2340,6 +2341,7 @@
 		A57785BE29E80406001C631E /* SuplaAppWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuplaAppWrapper.swift; sourceTree = "<group>"; };
 		A57785C029E80C16001C631E /* SuplaClientProviderMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuplaClientProviderMock.swift; sourceTree = "<group>"; };
 		A57785C229E80CF7001C631E /* SuplaAppWrapperMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuplaAppWrapperMock.swift; sourceTree = "<group>"; };
+		A57B03C52B29D68B00C22966 /* HomePlusDetailRefreshHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePlusDetailRefreshHelper.swift; sourceTree = "<group>"; };
 		A57C4AAB2AAB20B100D9C695 /* RequestResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestResult.swift; sourceTree = "<group>"; };
 		A57C4AAD2AAB21F700D9C695 /* ChannelConfigEventsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelConfigEventsManager.swift; sourceTree = "<group>"; };
 		A57C4AAF2AAB3E3400D9C695 /* SuplaChannelHvacConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuplaChannelHvacConfig.swift; sourceTree = "<group>"; };
@@ -4352,6 +4354,14 @@
 			path = SuplaCloud;
 			sourceTree = "<group>";
 		};
+		A57B03C42B29D67700C22966 /* Helper */ = {
+			isa = PBXGroup;
+			children = (
+				A57B03C52B29D68B00C22966 /* HomePlusDetailRefreshHelper.swift */,
+			);
+			path = Helper;
+			sourceTree = "<group>";
+		};
 		A57C4AB12AAF372B00D9C695 /* dialogs */ = {
 			isa = PBXGroup;
 			children = (
@@ -5108,6 +5118,7 @@
 		A5F29BE42A2768F000ED700A /* LegacyDetail */ = {
 			isa = PBXGroup;
 			children = (
+				A57B03C42B29D67700C22966 /* Helper */,
 				AEF1F9B927726D56008E441A /* DetailViewController.swift */,
 				A5F29BE72A2774BF00ED700A /* LegacyDetailNavigationCoordinator.swift */,
 			);
@@ -6257,6 +6268,7 @@
 				011021D325CC4DE700621D41 /* SAChannelBasicCfg.m in Sources */,
 				A573B0962A5FD152001E19D0 /* FatalError.swift in Sources */,
 				A5AE7A8D2A3ADFAD0097FA8B /* RsOpenningClosingPersentageCell.swift in Sources */,
+				A57B03C62B29D68B00C22966 /* HomePlusDetailRefreshHelper.swift in Sources */,
 				A5F29B742A1E33AC00ED700A /* NSManagedObjectContext+Rx.swift in Sources */,
 				40E8BE8A1FC06A5600FB2FE6 /* XPathQuery.m in Sources */,
 				01EE9BBC22BA50D90029A142 /* SAChannelValueBase+CoreDataProperties.m in Sources */,

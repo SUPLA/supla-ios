@@ -41,6 +41,7 @@ class BaseControlButtonView: UIView {
             disabledOverlay.isHidden = isEnabled
         }
     }
+    var isClickable: Bool = true
     
     var text: String? = nil {
         didSet {
@@ -143,7 +144,7 @@ class BaseControlButtonView: UIView {
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         super.touchesBegan(touches, with: event)
         
-        if (isEnabled) {
+        if (isEnabled && isClickable) {
             layer.shadowRadius = 6
             layer.shadowColor = type.pressedColor.cgColor
             layer.borderColor = type.pressedColor.cgColor
@@ -218,7 +219,7 @@ class BaseControlButtonView: UIView {
     func textAndIconConstraints(_ textView: UILabel, _ iconView: UIImageView) -> [NSLayoutConstraint] { return [] }
 
     @objc private func onTap() {
-        if (isEnabled) {
+        if (isEnabled && isClickable) {
             tapRelay.accept(())
         }
 
@@ -238,7 +239,7 @@ class BaseControlButtonView: UIView {
         if (isEnabled) {
             if (longPressEnabled) {
                 longPressRelay.accept(())
-            } else {
+            } else if(isClickable) {
                 tapRelay.accept(())
             }
         }
