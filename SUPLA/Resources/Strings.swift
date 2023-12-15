@@ -172,6 +172,8 @@ struct Strings {
         static let editHeaderOff = "timer_detail_edit_header_off".toLocalized()
         static let turnedOn = "timer_detail_turned_on".toLocalized()
         static let turnedOff = "timer_detail_turned_off".toLocalized()
+        static let dayPattern = "timer_detail_day_pattern".toLocalized()
+        static let daysPattern = "timer_detail_days_pattern".toLocalized()
         static let hourPattern = "timer_detail_hour_pattern".toLocalized()
         static let hoursPattern = "timer_detail_hours_pattern".toLocalized()
         static let minutePattern = "timer_detail_minute_pattern".toLocalized()
@@ -193,6 +195,18 @@ struct Strings {
         static let format = "timer_detail_format".toLocalized()
         static let wrongTimeTitle = "timer_detail_wrong_time_title".toLocalized()
         static let wrongTimeMessage = "timer_detail_wrong_time_message".toLocalized()
+        static let cancelThermostat = "timer_detail_cancel_thermostat".toLocalized()
+        static let selectMode = "timer_detail_select_mode".toLocalized()
+        static let manualMode = "timer_detail_manual_mode".toLocalized()
+        static let minTemp = "timer_detail_min_temp".toLocalized()
+        static let maxTemp = "timer_detail_max_temp".toLocalized()
+        static let selectTime = "timer_detail_select_time".toLocalized()
+        static let counter = "timer_detail_counter".toLocalized()
+        static let calendar = "timer_detail_calendar".toLocalized()
+        static let infoThermostatOff = "timer_detail_info_thermostat_off".toLocalized()
+        static let infoThermostatHeating = "timer_detail_info_thermostat_heating".toLocalized()
+        static let infoThermostatCooling = "timer_detail_info_thermostat_cooling".toLocalized()
+        static let stateLabelForTimerDays = "timer_detail_state_label_for_timer_days".toLocalized()
     }
     
     struct ThermostatDetail {
@@ -216,6 +230,10 @@ struct Strings {
         static let offByWindow = "thermostat_detail_off_by_window".toLocalized()
         static let offByCard = "thermostat_detail_off_by_card".toLocalized()
         static let offBySensor = "thermostat_detail_off_by_sensor".toLocalized()
+        
+        static let programInfo = "thermostat_detail_program_info".toLocalized()
+        static let boxInfo = "thermostat_detail_box_info".toLocalized()
+        static let arrowInfo = "thermostat_detail_arrow_info".toLocalized()
     }
     
     struct General {

@@ -45,6 +45,9 @@ static SASuperuserAuthorizationDialog *_superuserAuthorizationDialogGlobalRef = 
     if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
         self.cancelByTouchOutside = NO;
     }
+    _edEmail.textContentType = UITextContentTypeUsername;
+    _edEmail.keyboardType = UIKeyboardTypeEmailAddress;
+    _edPassword.textContentType = UITextContentTypePassword;
     return self;
 }
 

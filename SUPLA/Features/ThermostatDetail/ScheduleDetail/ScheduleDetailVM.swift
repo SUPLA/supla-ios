@@ -31,10 +31,15 @@ class ScheduleDetailVM: BaseViewModel<ScheduleDetailViewState, ScheduleDetailVie
     @Singleton<ReadChannelByRemoteIdUseCase> private var readChannelByRemoteIdUseCase
     @Singleton<DateProvider> private var dateProvider
     @Singleton<SuplaSchedulers> private var schedulers
+    @Singleton<GlobalSettings> private var globalSettings
     
     private let reloadConfigRelay = PublishRelay<Void>()
     
     override func defaultViewState() -> ScheduleDetailViewState { ScheduleDetailViewState() }
+    
+    override func onViewDidLoad() {
+        updateView { $0.changing(path: \.showHelp, to: globalSettings.shouldShowThermostatScheduleInfo) }
+    }
     
     func observeConfig(remoteId: Int32, deviceId: Int32) {
         Observable.combineLatest(
@@ -47,14 +52,14 @@ class ScheduleDetailVM: BaseViewModel<ScheduleDetailViewState, ScheduleDetailVie
         )
             .asDriverWithoutError()
             .debounce(.milliseconds(50))
-            .drive(onNext: { self.onConfigLoaded(configs: $0) })
+            .drive(onNext: { [weak self] in self?.onConfigLoaded(configs: $0) })
             .disposed(by: self)
         
         reloadConfigRelay
             .subscribe(on: schedulers.background)
             .asDriverWithoutError()
             .debounce(.seconds(1))
-            .drive(onNext: { _ in self.triggerConfigLoad(remoteId: remoteId) })
+            .drive(onNext: { [weak self] _ in self?.triggerConfigLoad(remoteId: remoteId) })
             .disposed(by: self)
         
         triggerConfigLoad(remoteId: remoteId)
@@ -148,6 +153,12 @@ class ScheduleDetailVM: BaseViewModel<ScheduleDetailViewState, ScheduleDetailVie
                     .changing(path: \.lastInteractionTime, to: dateProvider.currentTimestamp())
             )
         }
+    }
+    
+    func onHelpClosed() {
+        var settings = globalSettings
+        settings.shouldShowThermostatScheduleInfo = false
+        updateView { $0.changing(path: \.showHelp, to: false) }
     }
     
     private func triggerConfigLoad(remoteId: Int32) {
@@ -260,6 +271,7 @@ struct ScheduleDetailViewState: ViewState {
     var changing: Bool = false
     
     var showDayIndicator: Bool = true
+    var showHelp: Bool = false
 }
 
 struct ScheduleDetailProgram: Equatable, Changeable {

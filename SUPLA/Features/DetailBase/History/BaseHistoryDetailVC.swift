@@ -16,7 +16,6 @@
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 
-import Foundation
 import RxSwift
 import RxRelay
 import RxCocoa
@@ -93,11 +92,14 @@ class BaseHistoryDetailVC: BaseViewControllerVM<BaseHistoryDetailViewState, Base
         chartView.data = state.combinedData
         chartView.maxTemperature = state.maxTemperature
         chartView.minTemperature = state.minTemperature
+        chartView.maxHumidity = state.maxHumidity
         chartView.rangeStart = state.range?.start.timeIntervalSince1970
         chartView.rangeEnd = state.range?.end.timeIntervalSince1970
         chartView.emptyChartMessage = state.emptyChartMessage
         chartView.rangeStart = state.xMin
         chartView.rangeEnd = state.xMax
+        chartView.withTemperature = state.withTemperature
+        chartView.withHumidity = state.withHumidity
         if (state.combinedData != nil) {
             if let chartParameters = state.chartParameters?.getOptional() {
                 if (chartParameters.hasDefaultValues()) {
@@ -135,23 +137,43 @@ class BaseHistoryDetailVC: BaseViewControllerVM<BaseHistoryDetailViewState, Base
         view.addSubview(pullToRefresh)
         view.addSubview(datePicker)
         
-        viewModel.bind(dataSetsRow.tapEvents) { self.viewModel.changeSetActive(setId: $0) }
+        viewModel.bind(dataSetsRow.tapEvents) { [weak self] in
+            self?.viewModel.changeSetActive(setId: $0)
+        }
         
-        viewModel.bind(filtersRow.rangesObservable) { self.viewModel.changeRange(range: $0) }
-        viewModel.bind(filtersRow.aggregationsObservable) { self.viewModel.changeAggregation(aggregation: $0) }
+        viewModel.bind(filtersRow.rangesObservable) { [weak self] in
+            self?.viewModel.changeRange(range: $0)
+        }
+        viewModel.bind(filtersRow.aggregationsObservable) { [weak self] in
+            self?.viewModel.changeAggregation(aggregation: $0)
+        }
         
-        viewModel.bind(chartView.parametersObservable) { self.viewModel.updateChartPosition(parameters: $0) }
+        viewModel.bind(chartView.parametersObservable) { [weak self] in
+            self?.viewModel.updateChartPosition(parameters: $0)
+        }
         
-        viewModel.bind(paginationView.tap.filter({ $0 == .end })) { _ in self.viewModel.moveToDataEnd() }
-        viewModel.bind(paginationView.tap.filter({ $0 == .left })) { _ in self.viewModel.moveRangeLeft() }
-        viewModel.bind(paginationView.tap.filter({ $0 == .right })) { _ in self.viewModel.moveRangeRight() }
-        viewModel.bind(paginationView.tap.filter({ $0 == .start })) { _ in self.viewModel.moveToDataBegin() }
+        viewModel.bind(paginationView.tap.filter({ $0 == .end })) { [weak self] _ in
+            self?.viewModel.moveToDataEnd()
+        }
+        viewModel.bind(paginationView.tap.filter({ $0 == .left })) { [weak self] _ in
+            self?.viewModel.moveRangeLeft()
+        }
+        viewModel.bind(paginationView.tap.filter({ $0 == .right })) { [weak self] _ in
+            self?.viewModel.moveRangeRight()
+        }
+        viewModel.bind(paginationView.tap.filter({ $0 == .start })) { [weak self] _ in
+            self?.viewModel.moveToDataBegin()
+        }
         
-        viewModel.bind(pullToRefresh.refreshObservable) { _ in self.viewModel.refresh() }
+        viewModel.bind(pullToRefresh.refreshObservable) { [weak self] _ in self?.viewModel.refresh() }
         
-        viewModel.bind(rangeSelectionView.tap) { self.viewModel.customRangeEditDate($0) }
-        viewModel.bind(datePicker.cancelTap) { _ in self.viewModel.customRangeEditCancel() }
-        viewModel.bind(datePicker.saveTap) { self.viewModel.customRangeEditSave($0)}
+        viewModel.bind(rangeSelectionView.tap) { [weak self] in
+            self?.viewModel.customRangeEditDate($0)
+        }
+        viewModel.bind(datePicker.cancelTap) { [weak self] _ in
+            self?.viewModel.customRangeEditCancel()
+        }
+        viewModel.bind(datePicker.saveTap) { [weak self] in self?.viewModel.customRangeEditSave($0)}
         
         setupLayout()
     }
@@ -163,13 +185,13 @@ class BaseHistoryDetailVC: BaseViewControllerVM<BaseHistoryDetailViewState, Base
             dataSetsRow.rightAnchor.constraint(equalTo: view.rightAnchor),
             dataSetsRow.heightAnchor.constraint(equalToConstant: 80),
             
-            filtersRow.topAnchor.constraint(equalTo: dataSetsRow.bottomAnchor, constant: Dimens.distanceSmall),
+            filtersRow.topAnchor.constraint(equalTo: dataSetsRow.bottomAnchor, constant: Dimens.distanceTiny),
             filtersRow.leftAnchor.constraint(equalTo: view.leftAnchor, constant: Dimens.distanceDefault),
             filtersRow.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -Dimens.distanceDefault),
             
             chartView.topAnchor.constraint(equalTo: filtersRow.bottomAnchor, constant: Dimens.distanceSmall),
-            chartView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: Dimens.distanceDefault),
-            chartView.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -Dimens.distanceDefault),
+            chartView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: Dimens.distanceTiny),
+            chartView.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -Dimens.distanceTiny),
             chartView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -96),
             
             paginationView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: Dimens.distanceSmall),
@@ -292,6 +314,10 @@ fileprivate class DataSetItem: UIView {
         button.layer.borderColor = color.cgColor
         button.titleLabel?.font = UIFont(name: "OpenSans-Bold", size: 14)
         button.setAttributedTitle(value)
+        button.layer.shadowRadius = 4
+        button.layer.shadowOpacity = 0.4
+        button.layer.shadowOffset = CGSizeMake(0, 2)
+        button.layer.shadowColor = UIColor.black.cgColor
         return button
     }()
     

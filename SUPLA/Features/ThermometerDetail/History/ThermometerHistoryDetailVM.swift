@@ -31,7 +31,11 @@ final class ThermometerHistoryDetailVM: BaseHistoryDetailVM {
         Observable.zip(
             readChannelByRemoteIdUseCase.invoke(remoteId: remoteId),
             profileRepository.getActiveProfile().map {
-                self.userStateHolder.getTemperatureChartState(profileId: $0.idString, remoteId: remoteId)
+                @Singleton<UserStateHolder> var userStateHolder
+                return userStateHolder.getTemperatureChartState(
+                    profileId: $0.idString,
+                    remoteId: remoteId
+                )
             }
         ) { ($0, $1) }
             .asDriverWithoutError()
@@ -66,7 +70,7 @@ final class ThermometerHistoryDetailVM: BaseHistoryDetailVM {
         downloadEventsManager.observeProgress(remoteId: channel.remote_id)
             .distinctUntilChanged()
             .asDriverWithoutError()
-            .drive(onNext: { self.handleDownloadEvents(downloadState: $0) })
+            .drive(onNext: { [weak self] in self?.handleDownloadEvents(downloadState: $0) })
             .disposed(by: self)
     }
     

@@ -22,12 +22,13 @@ private let MIN_TEMPERATURE_VALUE: Float = -273
 protocol ValuesFormatter {
     // Values
     func temperatureToString(value: Float?, withUnit: Bool, withDegree: Bool, precision: Int) -> String
-    func humidityToString(value: Double?, withPercentage: Bool) -> String
+    func humidityToString(value: Double?, withPercentage: Bool, precision: Int) -> String
     func percentageToString(_ value: Float) -> String
     
     // Time
     func minutesToString(minutes: Int) -> String
     func getHourString(hour: Hour?) -> String?
+    func getTimeString(hour: Int?, minute: Int?, second: Int?) -> String
     func getDateString(date: Date?) -> String?
     func getDateShortString(date: Date?) -> String?
     func getHourString(date: Date?) -> String?
@@ -50,8 +51,11 @@ extension ValuesFormatter {
             return temperatureToString(value: nil, withUnit: withUnit, withDegree: withDegree, precision: precision)
         }
     }
-    func humidityToString(_ value: Double?, withPercentage: Bool = false) -> String {
-        humidityToString(value: value, withPercentage: withPercentage)
+    func humidityToString(_ value: Double?, withPercentage: Bool = false, precision: Int = 1) -> String {
+        humidityToString(value: value, withPercentage: withPercentage, precision: precision)
+    }
+    func getTimeString(hour: Int? = nil, minute: Int? = nil, second: Int? = nil) -> String {
+        getTimeString(hour: hour, minute: minute, second: second)
     }
 }
 
@@ -89,9 +93,9 @@ final class ValuesFormatterImpl: ValuesFormatter {
         }
     }
     
-    func humidityToString(value: Double?, withPercentage: Bool) -> String {
-        formatter.minimumFractionDigits = 1
-        formatter.maximumFractionDigits = 1
+    func humidityToString(value: Double?, withPercentage: Bool, precision: Int = 1) -> String {
+        formatter.minimumFractionDigits = precision
+        formatter.maximumFractionDigits = precision
         guard let value = value,
               value >= 0 && value <= 100,
               let formatted = formatter.string(from: NSNumber(value: convert(Float(value))))
@@ -125,11 +129,29 @@ final class ValuesFormatterImpl: ValuesFormatter {
     
     func getHourString(hour: Hour?) -> String? {
         guard let hour = hour else { return nil }
+        return getTimeString(hour: hour.hour, minute: hour.minute)
+    }
+    
+    func getTimeString(hour: Int? = nil, minute: Int? = nil, second: Int? = nil) -> String {
+        var result = ""
         
-        let hourString = hour.hour < 10 ? "0\(hour.hour)" : "\(hour.hour)"
-        let minuteString = hour.minute < 10 ? "0\(hour.minute)" : "\(hour.minute)"
+        if let hour = hour {
+            result += hour < 10 ? "0\(hour)" : "\(hour)"
+        }
+        if let minute = minute {
+            if (!result.isEmpty) {
+                result += ":"
+            }
+            result += minute < 10 ? "0\(minute)" : "\(minute)"
+        }
+        if let second = second {
+            if (!result.isEmpty) {
+                result += ":"
+            }
+            result += second < 10 ? "0\(second)" : "\(second)"
+        }
         
-        return "\(hourString):\(minuteString)"
+        return result
     }
     
     func getDateString(date: Date?) -> String? {

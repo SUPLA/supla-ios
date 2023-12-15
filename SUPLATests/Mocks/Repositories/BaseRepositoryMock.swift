@@ -51,9 +51,10 @@ class BaseRepositoryMock<T: NSManagedObject>: RepositoryProtocol {
         return saveObservable
     }
     
+    var deleteParameters: [T] = []
     var deleteObservable: Observable<Void> = Observable.empty()
-    
     func delete(_ entity: T) -> Observable<Void> {
+        deleteParameters.append(entity)
         return deleteObservable
     }
     

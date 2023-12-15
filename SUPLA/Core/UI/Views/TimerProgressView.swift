@@ -32,6 +32,12 @@ class TimerProgressView: UIView {
             setNeedsDisplay()
         }
     }
+    var indeterminate: Bool = false {
+        didSet {
+            endPoint.isHidden = indeterminate
+            indeterminateLayer.isHidden = !indeterminate
+        }
+    }
     
     override var intrinsicContentSize: CGSize {
         CGSize(width: 220, height: 220)
@@ -72,6 +78,35 @@ class TimerProgressView: UIView {
         return layer
     }()
     
+    private lazy var indeterminateLayer: CAGradientLayer = {
+        let layer = CAGradientLayer()
+        layer.type = .radial
+        layer.colors = [UIColor.white.cgColor, UIColor.transparent.cgColor]
+        layer.locations = [ 0, 1 ]
+        layer.startPoint = CGPoint(x: 1, y: 0.5)
+        layer.endPoint = CGPoint(x: 0.5, y: 1)
+        layer.add(indeterminateAnimation, forKey: "rotationAnimation")
+        return layer
+    }()
+    
+    private lazy var indeterminateLayerMask: CAShapeLayer = {
+        let layer = CAShapeLayer()
+        layer.strokeColor = UIColor.black.cgColor
+        layer.fillColor = UIColor.clear.cgColor
+        layer.lineWidth = 6
+        return layer
+    }()
+    
+    private lazy var indeterminateAnimation: CABasicAnimation = {
+        let animation = CABasicAnimation(keyPath: "transform.rotation.z")
+        animation.fromValue = 0.0
+        animation.toValue = Double.pi * 2
+        animation.duration = 1.5
+        animation.repeatCount = .infinity
+        animation.timingFunction = CAMediaTimingFunction(name: .easeInEaseOut)
+        return animation
+    }()
+    
     private var endPoint = GreenPointLayers()
     
     override init(frame: CGRect) {
@@ -88,25 +123,44 @@ class TimerProgressView: UIView {
         circleShape.frame = bounds
         progressShape.frame = bounds
         endPoint.frame = bounds
+        indeterminateLayer.frame = bounds
     }
     
     override func draw(_ rect: CGRect) {
-        let alpha = 2 * progress * .pi
-        let x = 100 * cos(alpha) + 110
-        let y = 100 * sin(alpha) + 110
-        
-        endPoint.move(to: CGPoint(x: x, y: y))
-        
         progressShape.path = UIBezierPath(ovalIn: rect.insetBy(dx: 10, dy: 10)).cgPath
-        progressShape.strokeStart = 0
-        progressShape.strokeEnd = progress
+        
+        if (indeterminate) {
+            indeterminateLayerMask.path = UIBezierPath(ovalIn: rect.insetBy(dx: 10, dy: 10)).cgPath
+            indeterminateLayer.mask = indeterminateLayerMask
+            
+            progressShape.strokeStart = 0
+            progressShape.strokeEnd = 1
+        } else {
+            let alpha = 2 * progress * .pi
+            let x = 100 * cos(alpha) + 110
+            let y = 100 * sin(alpha) + 110
+            
+            endPoint.move(to: CGPoint(x: x, y: y))
+            
+            progressShape.strokeStart = 0
+            progressShape.strokeEnd = progress
+        }
     }
     
     private func setupView() {
+        translatesAutoresizingMaskIntoConstraints = false
         layer.transform = CATransform3DMakeRotation(CGFloat(90 * Double.pi / 180), 0, 0, -1)
+        
+        endPoint.isHidden = indeterminate
+        indeterminateLayer.isHidden = !indeterminate
         
         layer.addSublayer(circleShape)
         layer.addSublayer(progressShape)
         layer.addSublayer(endPoint)
+        layer.addSublayer(indeterminateLayer)
+    }
+    
+    override class var requiresConstraintBasedLayout: Bool {
+        return true
     }
 }

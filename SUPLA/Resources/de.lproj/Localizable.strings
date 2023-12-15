@@ -347,6 +347,8 @@
 "timer_detail_edit_header_off" = "ausgeschaltet";
 "timer_detail_turned_on" = "Einschalten für";
 "timer_detail_turned_off" = "Ausschalten für";
+"timer_detail_day_pattern" = "%d Tag";
+"timer_detail_days_pattern" = "%d Tage";
 "timer_detail_hour_pattern" = "%d Std.";
 "timer_detail_hours_pattern" = "%d Std.";
 "timer_detail_minute_pattern" = "%d Min.";
@@ -366,6 +368,16 @@
 "timer_detail_end_hour" = "bis %@";
 "timer_detail_wrong_time_title" = "Falsche Zeit";
 "timer_detail_wrong_time_message" = "Zeit muss größer als 0 sein";
+"timer_detail_cancel_thermostat" = "Abbrechen und einschalten in:";
+"timer_detail_select_mode" = "Modusauswahl";
+"timer_detail_manual_mode" = "Manuellbetrieb";
+"timer_detail_select_time" = "Zeitauswahl";
+"timer_detail_counter" = "Zähler";
+"timer_detail_calendar" = "Kalender";
+"timer_detail_info_thermostat_off" = "Thermostat bleibt %@ ausgeschaltet";
+"timer_detail_info_thermostat_heating" = "Thermostat bleibt %@ im Heizmodus";
+"timer_detail_info_thermostat_cooling" = "Thermostat bleibt %@ im Kühlmodus";
+"timer_detail_state_label_for_timer_days" = "Zustand bis %@:";
 
 /* Thermostat Detail */
 "thermostat_thermometer_error" = "Fehler beim Temperaturelesen";
@@ -383,6 +395,9 @@
 "thermostat_detail_off_by_window" = "Wegen offenem Fenster ausgeschaltet";
 "thermostat_detail_off_by_card" = "Wegen fehlender Hotelkarte ausgeschaltet";
 "thermostat_detail_off_by_sensor" = "Durch Sensor ausgeschaltet";
+"thermostat_detail_program_info" = "Tippen, um es zu aktivieren. Lang halten, um es zu ändern.";
+"thermostat_detail_box_info" = "Tippen, um das aktivierten Program zu setzen. Long halten, um die Viertelstunde anzupassen.";
+"thermostat_detail_arrow_info" = "Die dunkle Ecke zeigt aktuelles Tag und Zeit.";
 
 /* Thermometer Chart */
 "history_range_label" = "Bereich";

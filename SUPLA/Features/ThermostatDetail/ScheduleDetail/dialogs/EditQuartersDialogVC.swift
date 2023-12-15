@@ -253,7 +253,11 @@ fileprivate class ButtonsRowView: UIView {
             buttonView.text = program.text
             buttonView.textFont = .scheduleDetailButton
             buttonView.type = .neutral
-            buttonView.tap.subscribe(onNext: { self.tapRelay.accept(program.scheduleProgram.program) }).disposed(by: disposeBag)
+            buttonView.tapObservable
+                .subscribe(onNext: { [weak self] in
+                    self?.tapRelay.accept(program.scheduleProgram.program)
+                })
+                .disposed(by: disposeBag)
             buttonView.frame.size.width = buttonView.intrinsicContentSize.width
             buttonView.frame.size.height = buttonView.intrinsicContentSize.height
             buttons[program.scheduleProgram.program] = buttonView

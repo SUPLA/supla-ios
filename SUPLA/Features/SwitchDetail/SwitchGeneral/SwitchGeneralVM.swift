@@ -28,8 +28,12 @@ class SwitchGeneralVM: BaseViewModel<SwitchGeneralViewState, SwitchGeneralViewEv
     func loadChannel(remoteId: Int32) {
         readChannelByRemoteIdUseCase.invoke(remoteId: remoteId)
             .asDriverWithoutError()
-            .drive(onNext: { channel in
-                self.updateView() { $0.changing(path: \.deviceState, to: self.createDeviceState(from: channel)) }
+            .drive(onNext: { [weak self] channel in
+                guard let self = self else { return }
+                
+                self.updateView() {
+                    $0.changing(path: \.deviceState, to: self.createDeviceState(from: channel))
+                }
             })
             .disposed(by: self)
     }

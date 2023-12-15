@@ -49,11 +49,6 @@ class BaseCell<T>: MGSwipeTableCell {
         set { captionView.text = newValue }
     }
     
-    var timer: String? {
-        get { timerView.text }
-        set { timerView.text = newValue}
-    }
-    
     var initiator: String? {
         get { initiatorView.text }
         set { initiatorView.text = newValue }
@@ -161,9 +156,11 @@ class BaseCell<T>: MGSwipeTableCell {
         button.addTarget(self, action: #selector(onButtonTap(_:)), for: .touchUpInside)
         return button
     }()
+    
     private var captionTouched = false
     private var currentConstraints: [NSLayoutConstraint] = []
     private var disposeBag = DisposeBag()
+    private var timer: Timer? = nil
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -222,7 +219,30 @@ class BaseCell<T>: MGSwipeTableCell {
         } else {
             rightButtons = []
         }
+        
+        if (timer != nil) {
+            timerView.text = nil
+            timer?.invalidate()
+            timer = nil
+        }
+        
+        if let timerEndDate = timerEndDate(),
+           timerEndDate.timeIntervalSinceNow > 0 {
+            
+            updateTimerLabel(endTime: timerEndDate)
+            timer = Timer.scheduledTimer(
+                timeInterval: 1,
+                target: self,
+                selector: #selector(timerTick(timer:)),
+                userInfo: timerEndDate,
+                repeats: true
+            )
+        }
     }
+    
+    func timerEndDate() -> Date? { nil }
+    
+    func onTimerStopped() { }
     
     // MARK: Public content
     
@@ -247,7 +267,7 @@ class BaseCell<T>: MGSwipeTableCell {
         contentView.backgroundColor = .listItemBackground
         
         captionView.font = .cellCaptionFont.withSize(scale(Dimens.Fonts.caption, limit: .lower(1)))
-        timerView.font = .formLabelFont.withSize(scale(Dimens.Fonts.label))
+        timerView.font = .formLabelFont.withSize(scale(Dimens.Fonts.label, limit: .upper(1)))
         initiatorView.font = .formLabelFont.withSize(scale(Dimens.Fonts.label))
         
         self.leftSwipeSettings.transition = MGSwipeTransition.rotate3D
@@ -282,7 +302,7 @@ class BaseCell<T>: MGSwipeTableCell {
             captionView.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
             captionView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -scale(Dimens.ListItem.verticalPadding)),
             
-            timerView.topAnchor.constraint(equalTo: topAnchor, constant: scale(Dimens.ListItem.verticalPadding)),
+            timerView.topAnchor.constraint(equalTo: topAnchor, constant: scale(10)),
             timerView.rightAnchor.constraint(equalTo: rightMarginAnchor, constant: -Dimens.ListItem.horizontalPadding),
             
             initiatorView.leftAnchor.constraint(equalTo: leftMarginAnchor, constant: Dimens.ListItem.horizontalPadding),
@@ -397,6 +417,47 @@ class BaseCell<T>: MGSwipeTableCell {
         }
         if (btn == rightButton) {
             delegate.onButtonTapped(buttonType: .rightButton, remoteId: remoteId, data: data)
+        }
+    }
+    
+    @objc private func timerTick(timer: Timer) {
+        guard let endTime = timer.userInfo as? Date else {
+            timerView.text = nil
+            self.timer?.invalidate()
+            self.timer = nil
+            
+            return
+        }
+        
+        updateTimerLabel(endTime: endTime)
+    }
+    
+    private func updateTimerLabel(endTime: Date) {
+        if (endTime.timeIntervalSinceNow < 0) {
+            timerView.text = nil
+            self.timer?.invalidate()
+            self.timer = nil
+            
+            onTimerStopped()
+        }
+        else {
+            @Singleton<ValuesFormatter> var formatter
+            let timeDiff = endTime.differenceInSeconds(Date())
+            
+            let days = timeDiff.days
+            if (days == 0) {
+                timerView.text = formatter.getTimeString(
+                    hour: timeDiff.hoursInDay,
+                    minute: timeDiff.minutesInHour,
+                    second: timeDiff.secondsInMinute
+                )
+            } else if (days == 1) {
+                let daysString = Strings.TimerDetail.dayPattern.arguments(days)
+                timerView.text = "\(daysString) ⏱️"
+            } else {
+                let daysString = Strings.TimerDetail.daysPattern.arguments(days)
+                timerView.text =  "\(daysString) ⏱️"
+            }
         }
     }
     

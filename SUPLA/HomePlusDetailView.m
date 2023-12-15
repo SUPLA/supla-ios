@@ -25,6 +25,7 @@
 #import "HomePlusDetailViewGroupCell.h"
 #import "SAChannelGroup+CoreDataClass.h"
 #import "UIColor+SUPLA.h"
+#import "SUPLA-Swift.h"
 
 #define CFGID_TURBO_TIME 1
 #define CFGID_WATER_MAX 2
@@ -125,6 +126,7 @@ typedef enum {
     double _presetTempMin;
     double _presetTempMax;
     NSTimer *_refreshTimer1;
+    HomePlusDetailRefreshHelper *_refreshHelper;
 }
 
 -(void)detailViewInit {
@@ -198,15 +200,18 @@ typedef enum {
                               delegate:self]];
     }
     
+    _refreshHelper = [[HomePlusDetailRefreshHelper alloc] init];
     _refreshTimer1 = nil;
     [super detailViewInit];
 }
 
 -(void)setChannelBase:(SAChannelBase *)channelBase {
+    [_refreshHelper emit];
+    
     if (_chartHelper) {
         _chartHelper.channelId = channelBase ? channelBase.remote_id : 0;
     }
-    [super setChannelBase:channelBase];
+    [super setChannelBaseWithoutUpdate:channelBase];
 }
 
 -(void)updateCalendarECOLabelWithCfgItem:(SAHomePlusCfgItem *)item {
@@ -308,11 +313,13 @@ typedef enum {
         self.btnSchedule.hidden = NO;
         [self runDownloadTask];
         [_chartHelper load];
-        [_chartHelper moveToEnd];
     }
-    
+
     [self updateView];
     _refreshTimer1 = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(onRefreshTimer:) userInfo:nil repeats:NO];
+    [_refreshHelper observeWithObserver: ^(HomePlusRefreshEvent* event) {
+        [self updateViewWithEvent: event];
+    }];
 };
 
 -(void)detailWillHide {
@@ -323,6 +330,7 @@ typedef enum {
         _task.delegate = nil;
     }
     _frc = nil;
+    [_refreshHelper dispose];
 };
 
 - (IBAction)calendarButtonTouched:(id)sender {
@@ -409,12 +417,19 @@ typedef enum {
 }
 
 - (void)updateView {
+    [self updateViewWithEvent: nil];
+}
+
+- (void) updateViewWithEvent: (HomePlusRefreshEvent*) event {
     if ([self isGroup]) {
         [self loadChannelList];
     }
     
     if (_refreshLock > [[NSDate date] timeIntervalSince1970]) {
         return;
+    }
+    if (event != nil) {
+        [event setProcessed];
     }
     
     _presetTempMin = self.channelBase.presetTemperatureMin;

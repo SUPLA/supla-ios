@@ -95,13 +95,12 @@ class AccountCreationVC: BaseViewControllerVM<AccountCreationViewState, AccountC
         }
     }
     
-    convenience init(navigationCoordinator: NavigationCoordinator,
-                     profileId: NSManagedObjectID?) {
+    convenience init(navigationCoordinator: NavigationCoordinator, profileId: NSManagedObjectID?) {
         self.init(nibName: "AccountCreationVC", bundle: nil)
         self.navigationCoordinator = navigationCoordinator
         self.profileId = profileId
         
-        viewModel = AccountCreationVM(profileManager: SAApp.profileManager(), profileId: profileId)
+        viewModel = AccountCreationVM()
     }
     
     override func viewDidLoad() {
@@ -116,6 +115,12 @@ class AccountCreationVC: BaseViewControllerVM<AccountCreationViewState, AccountC
 
         configureUI()
         bindVM()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        viewModel.loadData(profileId: profileId)
     }
     
     override func viewDidLayoutSubviews() {
@@ -160,6 +165,8 @@ class AccountCreationVC: BaseViewControllerVM<AccountCreationViewState, AccountC
             $0.delegate = self
             $0.font = .StaticSize.body2
         }
+        bsEmailAddr.keyboardType = .emailAddress
+        adEmailAddr.keyboardType = .emailAddress
         bsProfileName.font = .StaticSize.body2
         adProfileName.font = .StaticSize.body2
         modeToggleLabel.font = .StaticSize.body2
@@ -230,13 +237,26 @@ class AccountCreationVC: BaseViewControllerVM<AccountCreationViewState, AccountC
         viewModel.bind(field: \.accessId, toOptional: adAccessID.rx.text.asObservable())
         viewModel.bind(field: \.accessIdPassword, toOptional: adAccessPwd.rx.text.asObservable())
         
-        viewModel.bind(confirmButton.rx.tap.asObservable()) { self.viewModel.save() }
-        viewModel.bind(bsEmailAddr.rx.text.asObservable()) { self.viewModel.setEmailAddress($0!) }
-        viewModel.bind(adEmailAddr.rx.text.asObservable()) { self.viewModel.setEmailAddress($0!) }
-        viewModel.bind(modeToggle.rx.isOn.debounce(.milliseconds(100), scheduler: MainScheduler.instance).distinctUntilChanged().asObservable()) { isOn in self.viewModel.toggleAdvancedState(isOn) }
-        viewModel.bind(adServerAuto.rx.tap.asObservable().map({ self.adServerAuto.isSelected })) { isOn in self.viewModel.setServerAutodetect(isOn) }
-        viewModel.bind(deleteButton.rx.tap.asObservable()) { self.viewModel.removeTapped() }
-        viewModel.bind(createAccountButton.rx.tap.asObservable()) { self.viewModel.addAccountTapped() }
+        viewModel.bind(confirmButton.rx.tap.asObservable()) { [weak self] in self?.viewModel.save() }
+        viewModel.bind(bsEmailAddr.rx.text.asObservable()) { [weak self] in
+            self?.viewModel.setEmailAddress($0!)
+        }
+        viewModel.bind(adEmailAddr.rx.text.asObservable()) { [weak self] in
+            self?.viewModel.setEmailAddress($0!)
+        }
+        viewModel.bind(modeToggle.rx.isOn.asObservable()) { [weak self] isOn in
+            self?.viewModel.toggleAdvancedState(isOn)
+        }
+        viewModel.bind(
+            adServerAuto.rx.tap.asObservable()
+                .map({ [weak self] in self?.adServerAuto.isSelected == true })
+        ) { [weak self] isOn in self?.viewModel.setServerAutodetect(isOn) }
+        viewModel.bind(deleteButton.rx.tap.asObservable()) { [weak self] in
+            self?.viewModel.removeTapped()
+        }
+        viewModel.bind(createAccountButton.rx.tap.asObservable()) { [weak self] in
+            self?.viewModel.addAccountTapped()
+        }
     }
     
     override func updateViewConstraints() {
@@ -344,11 +364,11 @@ class AccountCreationVC: BaseViewControllerVM<AccountCreationViewState, AccountC
     
     private func handleShowRemovalDialogEvent() {
         let actionSheet = UIAlertController(title: Strings.Cfg.removalConfirmationTitle, message: nil, preferredStyle: .actionSheet)
-        actionSheet.addAction(UIAlertAction(title: Strings.Cfg.removalActionLogout, style: .destructive, handler: { action in
-            self.viewModel.logoutAccount()
+        actionSheet.addAction(UIAlertAction(title: Strings.Cfg.removalActionLogout, style: .destructive, handler: { [weak self] action in
+            self?.viewModel.logoutAccount()
         }))
-        actionSheet.addAction(UIAlertAction(title: Strings.Cfg.removalActionRemove, style: .destructive, handler: { action in
-            self.viewModel.removeAccount()
+        actionSheet.addAction(UIAlertAction(title: Strings.Cfg.removalActionRemove, style: .destructive, handler: { [weak self] action in
+            self?.viewModel.removeAccount()
         }))
         actionSheet.addAction(UIAlertAction(title: Strings.General.cancel, style: .cancel, handler: { action in
             NSLog("User canceled removal action")

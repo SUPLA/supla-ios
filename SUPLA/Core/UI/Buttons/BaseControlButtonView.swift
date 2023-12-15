@@ -21,7 +21,9 @@ import RxRelay
 
 class BaseControlButtonView: UIView {
 
-    let tap: PublishRelay<Void> = PublishRelay()
+    var tapObservable: Observable<Void> {
+        tapRelay.asObservable()
+    }
     var longPress: PublishRelay<Void> {
         get {
             longPressEnabled = true
@@ -39,6 +41,7 @@ class BaseControlButtonView: UIView {
             disabledOverlay.isHidden = isEnabled
         }
     }
+    var isClickable: Bool = true
     
     var text: String? = nil {
         didSet {
@@ -123,6 +126,7 @@ class BaseControlButtonView: UIView {
         return view
     }()
     
+    private let tapRelay: PublishRelay<Void> = PublishRelay()
     private let longPressRelay: PublishRelay<Void> = PublishRelay()
     private var longPressEnabled = false
     private var activeConstraints: [NSLayoutConstraint] = []
@@ -140,7 +144,7 @@ class BaseControlButtonView: UIView {
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         super.touchesBegan(touches, with: event)
         
-        if (isEnabled) {
+        if (isEnabled && isClickable) {
             layer.shadowRadius = 6
             layer.shadowColor = type.pressedColor.cgColor
             layer.borderColor = type.pressedColor.cgColor
@@ -215,8 +219,8 @@ class BaseControlButtonView: UIView {
     func textAndIconConstraints(_ textView: UILabel, _ iconView: UIImageView) -> [NSLayoutConstraint] { return [] }
 
     @objc private func onTap() {
-        if (isEnabled) {
-            tap.accept(())
+        if (isEnabled && isClickable) {
+            tapRelay.accept(())
         }
 
         layer.shadowRadius = 3
@@ -235,8 +239,8 @@ class BaseControlButtonView: UIView {
         if (isEnabled) {
             if (longPressEnabled) {
                 longPressRelay.accept(())
-            } else {
-                tap.accept(())
+            } else if(isClickable) {
+                tapRelay.accept(())
             }
         }
 

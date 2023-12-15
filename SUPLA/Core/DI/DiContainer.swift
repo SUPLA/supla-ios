@@ -133,6 +133,10 @@ extension DiContainer {
         DiContainer.shared.register(type: ToggleLocationUseCase.self, component: ToggleLocationUseCaseImpl())
         // Usecases - Profile
         DiContainer.shared.register(type: DeleteAllProfileDataUseCase.self, component: DeleteAllProfileDataUseCaseImpl())
+        DiContainer.shared.register(type: ReadProfileByIdUseCase.self, component: ReadProfileByIdUseCaseImpl())
+        DiContainer.shared.register(type: SaveOrCreateProfileUseCase.self, component: SaveOrCreateProfileUseCaseImpl())
+        DiContainer.shared.register(type: DeleteProfileUseCase.self, component: DeleteProfileUseCaseImpl())
+        DiContainer.shared.register(type: ActivateProfileUseCase.self, component: ActivateProfileUseCaseImpl())
         // Usecases - Profile
         DiContainer.shared.register(type: CreateProfileScenesListUseCase.self, component: CreateProfileScenesListUseCaseImpl())
         DiContainer.shared.register(type: SwapScenePositionsUseCase.self, component: SwapScenePositionsUseCaseImpl())

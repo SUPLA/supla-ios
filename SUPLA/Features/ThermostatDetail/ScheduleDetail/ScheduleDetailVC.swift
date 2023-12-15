@@ -1,16 +1,16 @@
 /*
  Copyright (C) AC SOFTWARE SP. Z O.O.
-
+ 
  This program is free software; you can redistribute it and/or
  modify it under the terms of the GNU General Public License
  as published by the Free Software Foundation; either version 2
  of the License, or (at your option) any later version.
-
+ 
  This program is distributed in the hope that it will be useful,
  but WITHOUT ANY WARRANTY; without even the implied warranty of
  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  GNU General Public License for more details.
-
+ 
  You should have received a copy of the GNU General Public License
  along with this program; if not, write to the Free Software
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
@@ -19,6 +19,7 @@
 import Foundation
 import RxSwift
 import RxRelay
+import RxCocoa
 
 class ScheduleDetailVC: BaseViewControllerVM<ScheduleDetailViewState, ScheduleDetailViewEvent, ScheduleDetailVM> {
     
@@ -33,6 +34,12 @@ class ScheduleDetailVC: BaseViewControllerVM<ScheduleDetailViewState, ScheduleDe
     private lazy var scheduleDetailTableView: ScheduleDetailTableView = {
         let view = ScheduleDetailTableView()
         view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+    
+    private lazy var scheduleInfoView: ScheduleInfoView = {
+        let view = ScheduleInfoView()
+        view.isHidden = true
         return view
     }()
     
@@ -66,16 +73,22 @@ class ScheduleDetailVC: BaseViewControllerVM<ScheduleDetailViewState, ScheduleDe
         viewModel.loadConfig()
     }
     
+    override func viewDidLayoutSubviews() {
+        scheduleInfoView.itemSize = scheduleDetailTableView.itemSize
+    }
+    
     override func handle(event: ScheduleDetailViewEvent) {
         switch(event) {
         case .editProgram(let state):
             let dialog = EditProgramDialogVC(initialState: state)
-            dialog.onFinishCallback = { self.viewModel.onProgramChanged($0) }
+            dialog.onFinishCallback = { [weak self] in
+                self?.viewModel.onProgramChanged($0)
+            }
             present(dialog, animated: true)
         case .editScheduleBox(let state):
             let dialog = EditQuartersDialogVC(initialState: state)
-            dialog.onFinishCallback = {
-                self.viewModel.onQuartersChanged(key: state.key, value: $0, activeProgram: $1)
+            dialog.onFinishCallback = { [weak self] in
+                self?.viewModel.onQuartersChanged(key: state.key, value: $0, activeProgram: $1)
             }
             present(dialog, animated: true)
         }
@@ -86,16 +99,27 @@ class ScheduleDetailVC: BaseViewControllerVM<ScheduleDetailViewState, ScheduleDe
         buttonsRowView.programs = state.programs
         scheduleDetailTableView.showDayIndicator = state.showDayIndicator
         scheduleDetailTableView.updateBoxes(schedule: state.schedule)
+        scheduleInfoView.isHidden = !state.showHelp
     }
     
     private func setupView() {
         view.addSubview(buttonsRowView)
         view.addSubview(scheduleDetailTableView)
+        view.addSubview(scheduleInfoView)
         
-        viewModel.bind(buttonsRowView.tapEvents) { self.viewModel.onProgramTap($0) }
-        viewModel.bind(buttonsRowView.longPressEvents) { self.viewModel.onProgramLongPress($0) }
-        viewModel.bind(scheduleDetailTableView.longPressEvents) { self.viewModel.onBoxLongPress($0) }
-        viewModel.bind(scheduleDetailTableView.panningEvents) { self.viewModel.onBoxEvent($0) }
+        viewModel.bind(buttonsRowView.tapEvents) { [weak self] in self?.viewModel.onProgramTap($0) }
+        viewModel.bind(buttonsRowView.longPressEvents) { [weak self] in
+            self?.viewModel.onProgramLongPress($0)
+        }
+        viewModel.bind(scheduleDetailTableView.longPressEvents) { [weak self] in
+            self?.viewModel.onBoxLongPress($0)
+        }
+        viewModel.bind(scheduleDetailTableView.panningEvents) { [weak self] in
+            self?.viewModel.onBoxEvent($0)
+        }
+        viewModel.bind(scheduleInfoView.closeTap) { [weak self] in
+            self?.viewModel.onHelpClosed()
+        }
         
         setupLayout()
     }
@@ -110,7 +134,12 @@ class ScheduleDetailVC: BaseViewControllerVM<ScheduleDetailViewState, ScheduleDe
             scheduleDetailTableView.leftAnchor.constraint(equalTo: view.leftAnchor),
             scheduleDetailTableView.topAnchor.constraint(equalTo: buttonsRowView.bottomAnchor),
             scheduleDetailTableView.rightAnchor.constraint(equalTo: view.rightAnchor),
-            scheduleDetailTableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+            scheduleDetailTableView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            
+            scheduleInfoView.topAnchor.constraint(equalTo: view.topAnchor),
+            scheduleInfoView.leftAnchor.constraint(equalTo: view.leftAnchor),
+            scheduleInfoView.rightAnchor.constraint(equalTo: view.rightAnchor),
+            scheduleInfoView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
         ]))
     }
 }
@@ -172,15 +201,19 @@ fileprivate class ButtonsRowView: HorizontalyScrollableView<RoundedControlButton
             buttonView.text = program.text
             buttonView.textFont = .scheduleDetailButton
             buttonView.type = .neutral
-            buttonView.tap
-                .subscribe(onNext: { self.tapRelay.accept(program.scheduleProgram.program) })
+            buttonView.tapObservable
+                .subscribe(onNext: { [weak self] in
+                    self?.tapRelay.accept(program.scheduleProgram.program)
+                })
                 .disposed(by: disposeBag)
             if (program.scheduleProgram.program != .off) {
                 buttonView.longPress
-                    .subscribe(onNext: { self.longPressRelay.accept(program.scheduleProgram.program) })
+                    .subscribe(onNext: { [weak self] in
+                        self?.longPressRelay.accept(program.scheduleProgram.program)
+                    })
                     .disposed(by: disposeBag)
             }
-           items.append(buttonView)
+            items.append(buttonView)
         }
         
         return items
@@ -214,6 +247,7 @@ fileprivate class ScheduleDetailTableView: UIView {
             }
         }
     }
+    var itemSize: CGSize = .zero
     
     private let itemPadding: CGFloat = 2
     
@@ -265,10 +299,6 @@ fileprivate class ScheduleDetailTableView: UIView {
         addGestureRecognizer(UILongPressGestureRecognizer(target: self, action: #selector(onLongPress(_:))))
         addGestureRecognizer(UIPanGestureRecognizer(target: self, action: #selector(onPan(_:))))
         
-        let date = Date()
-        let calendar = Calendar.current
-        let currentDay = calendar.component(.weekday, from: date) - 1
-        let currentHour = calendar.component(.hour, from: date)
         for day in DayOfWeek.allCases {
             dayLabels.append(createRegularLabel(text: day.shortText()))
             for _ in HoursRange {
@@ -301,16 +331,18 @@ fileprivate class ScheduleDetailTableView: UIView {
         
         let gridWidth = (self.frame.width - horizontalPaddings - firstColumnWidth) / CGFloat(boxColumns)
         let gridHeight = (self.frame.height - verticalPaddings) / allRows
-        let itemWidth = gridWidth - (itemPadding * 2)
-        let itemHeight = gridHeight - (itemPadding * 2)
+        itemSize = CGSize(
+            width: gridWidth - (itemPadding * 2),
+            height: gridHeight - (itemPadding * 2)
+        )
         
-        setupTable(itemWidth, itemHeight, gridWidth, gridHeight, currentDay, currentHour, firstColumnWidth)
-        setupHourLabels(gridHeight, firstColumnWidth, currentHour, itemHeight)
+        setupTable(gridWidth, gridHeight, currentDay, currentHour, firstColumnWidth)
+        setupHourLabels(gridHeight, firstColumnWidth, currentHour)
         
         currentItemIndicatorLayer.frame = bounds
     }
     
-    private func setupTable(_ itemWidth: CGFloat, _ itemHeight: CGFloat, _ gridWidth: CGFloat, _ gridHeight: CGFloat, _ currentDay: Int, _ currentHour: Int, _ firstColumnWidth: CGFloat) {
+    private func setupTable(_ gridWidth: CGFloat, _ gridHeight: CGFloat, _ currentDay: Int, _ currentHour: Int, _ firstColumnWidth: CGFloat) {
         var idx = 0
         var x = Dimens.distanceDefault + firstColumnWidth
         for day in DayOfWeek.allCases {
@@ -319,10 +351,10 @@ fileprivate class ScheduleDetailTableView: UIView {
                 currentDayIndicatorLayer.frame = CGRect(
                     x: x + itemPadding,
                     y: itemPadding,
-                    width: itemWidth,
-                    height: itemHeight
+                    width: itemSize.width,
+                    height: itemSize.height
                 )
-                currentDayIndicatorLayer.cornerRadius = itemHeight / 2
+                currentDayIndicatorLayer.cornerRadius = itemSize.height / 2
             }
             
             let dayLabel = dayLabels[idx / 24]
@@ -341,15 +373,15 @@ fileprivate class ScheduleDetailTableView: UIView {
                 let rect = CGRect(
                     x: x + itemPadding,
                     y: y + itemPadding,
-                    width: itemWidth,
-                    height: itemHeight
+                    width: itemSize.width,
+                    height: itemSize.height
                 )
                 
                 let box = boxes[idx]
                 box.frame = rect
                 
                 if (day.rawValue == currentDay && hour == currentHour && showDayIndicator) {
-                    currentItemIndicatorLayer.path = setupCurrentBoxIndicatorPath(x, y, itemHeight)
+                    currentItemIndicatorLayer.path = setupCurrentBoxIndicatorPath(x, y, itemSize.height)
                 }
                 
                 y += gridHeight
@@ -359,7 +391,7 @@ fileprivate class ScheduleDetailTableView: UIView {
         }
     }
     
-    private func setupHourLabels(_ gridHeight: CGFloat, _ firstColumnWidth: CGFloat, _ currentHour: Int, _ itemHeight: CGFloat) {
+    private func setupHourLabels(_ gridHeight: CGFloat, _ firstColumnWidth: CGFloat, _ currentHour: Int) {
         var y = gridHeight
         var hour = 0
         hourLabels.forEach {
@@ -369,9 +401,9 @@ fileprivate class ScheduleDetailTableView: UIView {
                     x: Dimens.distanceDefault + itemPadding,
                     y: y + itemPadding,
                     width: firstColumnWidth - (itemPadding * 2),
-                    height: itemHeight
+                    height: itemSize.height
                 )
-                currentHourIndicatorLayer.cornerRadius = itemHeight / 2
+                currentHourIndicatorLayer.cornerRadius = itemSize.height / 2
             }
             $0.font = isCurrentHour ? createFont("OpenSans-Bold") : createFont("OpenSans-Regular")
             let labelSize = $0.preferredFrameSize()
@@ -533,3 +565,297 @@ fileprivate class BoxShapeLayerWrapper: LayerGroup {
     }
 }
 
+fileprivate class ScheduleInfoView: UIView {
+    
+    @Singleton<ValuesFormatter> private var formatter
+    
+    var itemSize: CGSize = .zero {
+        didSet {
+            setNeedsLayout()
+            layoutIfNeeded()
+        }
+    }
+    
+    var closeTap: ControlEvent<Void> {
+        closeButton.rx.tap
+    }
+    
+    private lazy var closeButton: UIIconButton = {
+        let button = UIIconButton(
+            config: .transparent(
+                size: Dimens.buttonHeight,
+                contentColor: .white,
+                contentPressedColor: .disabled
+            )
+        )
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.icon = .iconClose
+        return button
+    }()
+    
+    private lazy var sampleProgramButton: RoundedControlButtonView = {
+        let buttonView = RoundedControlButtonView(height: Dimens.buttonSmallHeight)
+        buttonView.backgroundColor = SuplaScheduleProgram.program1.color()
+        buttonView.translatesAutoresizingMaskIntoConstraints = false
+        buttonView.text = formatter.temperatureToString(CGFloat(19), withUnit: false)
+        buttonView.textFont = .scheduleDetailButton
+        buttonView.type = .neutral
+        buttonView.isClickable = false
+        buttonView.alpha = 0
+        
+        return buttonView
+    }()
+    
+    private lazy var sampleProgramButtonArrow: UIView = {
+        let view = makeArrowView()
+        view.alpha = 0
+        return view
+    }()
+    
+    private lazy var sampleProgramButtonText: UILabel = {
+        let label = makeLabelView()
+        label.text = Strings.ThermostatDetail.programInfo
+        label.alpha = 0
+        return label
+    }()
+    
+    private lazy var sampleProgramBox: BoxShapeLayerWrapper = {
+        let box = BoxShapeLayerWrapper()
+        box.setBackgrounds(ScheduleDetailBoxValue(oneProgram: .program1))
+        return box
+    }()
+    
+    private lazy var sampleProgramBoxView: UIView = {
+        let view = UIView()
+        view.layer.addSublayer(sampleProgramBox)
+        view.alpha = 0
+        return view
+    }()
+    
+    private lazy var sampleProgramBoxArrow: UIView = {
+        let view = makeArrowView()
+        view.layer.transform = CATransform3DMakeRotation(.pi/2, 0, 0, 1)
+        view.alpha = 0
+        return view
+    }()
+    
+    private lazy var sampleProgramBoxText: UILabel = {
+        let label = makeLabelView()
+        label.text = Strings.ThermostatDetail.boxInfo
+        label.alpha = 0
+        return label
+    }()
+    
+    private lazy var sampleDarkCornerBox: BoxShapeLayerWrapper = {
+        let box = BoxShapeLayerWrapper()
+        box.setBackgrounds(ScheduleDetailBoxValue(oneProgram: .program2))
+        return box
+    }()
+    
+    private lazy var sampleDarkCorner = {
+        let layer = CAShapeLayer()
+        layer.fillColor = UIColor.black.cgColor
+        return layer
+    }()
+    
+    private lazy var sampleDarkCornerBoxView: UIView = {
+        let view = UIView()
+        view.layer.addSublayer(sampleDarkCornerBox)
+        view.layer.addSublayer(sampleDarkCorner)
+        view.alpha = 0
+        return view
+    }()
+    
+    private lazy var sampleDarkCornerArrow: UIView = {
+        let view = makeArrowView()
+        view.layer.transform = CATransform3DMakeRotation(.pi/2, 0, 0, 1)
+        view.alpha = 0
+        return view
+    }()
+    
+    private lazy var sampleDarkCornerText: UILabel = {
+        let label = makeLabelView()
+        label.text = Strings.ThermostatDetail.arrowInfo
+        label.alpha = 0
+        return label
+    }()
+    
+    private var dynamicConstraints: [NSLayoutConstraint] = []
+    private var presented = false
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        
+        setupView()
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    override func layoutSubviews() {
+        if (!dynamicConstraints.isEmpty) {
+            NSLayoutConstraint.deactivate(dynamicConstraints)
+            dynamicConstraints.removeAll()
+        }
+        
+        setupSampleProgramBox()
+        setupSampleDarkCornerBox()
+        
+        NSLayoutConstraint.activate(dynamicConstraints)
+        
+        if (itemSize != .zero && !presented) {
+            UIView.animate(withDuration: 1) {
+                self.sampleProgramButton.alpha = 1
+                self.sampleProgramButtonArrow.alpha = 1
+                self.sampleProgramButtonText.alpha = 1
+            }
+            UIView.animate(withDuration: 1, delay: 0.25) {
+                self.sampleProgramBoxView.alpha = 1
+                self.sampleProgramBoxArrow.alpha = 1
+                self.sampleProgramBoxText.alpha = 1
+            }
+            UIView.animate(withDuration: 1, delay: 0.5) {
+                self.sampleDarkCornerBoxView.alpha = 1
+                self.sampleDarkCornerArrow.alpha = 1
+                self.sampleDarkCornerText.alpha = 1
+            }
+            presented = true
+        }
+    }
+    
+    private func setupView() {
+        translatesAutoresizingMaskIntoConstraints = false
+        backgroundColor = .onBackground.copy(alpha: 0.8)
+        
+        addSubview(closeButton)
+        addSubview(sampleProgramButton)
+        addSubview(sampleProgramButtonArrow)
+        addSubview(sampleProgramButtonText)
+        
+        addSubview(sampleProgramBoxView)
+        addSubview(sampleProgramBoxArrow)
+        addSubview(sampleProgramBoxText)
+        
+        addSubview(sampleDarkCornerBoxView)
+        addSubview(sampleDarkCornerArrow)
+        addSubview(sampleDarkCornerText)
+        
+        setupLayout()
+    }
+    
+    private func setupLayout() {
+        NSLayoutConstraint.activate([
+            closeButton.topAnchor.constraint(equalTo: topAnchor, constant: Dimens.distanceSmall),
+            closeButton.rightAnchor.constraint(equalTo: rightAnchor, constant: -Dimens.distanceDefault),
+            
+            sampleProgramButton.topAnchor.constraint(equalTo: topAnchor, constant: Dimens.distanceSmall),
+            sampleProgramButton.leftAnchor.constraint(equalTo: leftAnchor, constant: Dimens.distanceDefault),
+            
+            sampleProgramButtonArrow.topAnchor.constraint(
+                equalTo: topAnchor,
+                constant: Dimens.distanceSmall + Dimens.buttonSmallHeight / 2
+            ),
+            sampleProgramButtonArrow.leftAnchor.constraint(
+                equalTo: leftAnchor,
+                constant: Dimens.distanceDefault + sampleProgramButton.intrinsicContentSize.width + 4
+            ),
+            sampleProgramButtonArrow.widthAnchor.constraint(equalToConstant: 50),
+            sampleProgramButtonArrow.heightAnchor.constraint(equalToConstant: 50),
+            
+            sampleProgramButtonText.topAnchor.constraint(equalTo: sampleProgramButtonArrow.bottomAnchor, constant: 4),
+            sampleProgramButtonText.leftAnchor.constraint(equalTo: leftAnchor, constant: Dimens.distanceDefault),
+            sampleProgramButtonText.widthAnchor.constraint(equalToConstant: 200),
+            
+            sampleProgramBoxArrow.widthAnchor.constraint(equalToConstant: 50),
+            sampleProgramBoxArrow.heightAnchor.constraint(equalToConstant: 50),
+            sampleProgramBoxText.widthAnchor.constraint(equalToConstant: 200),
+            
+            sampleDarkCornerArrow.widthAnchor.constraint(equalToConstant: 50),
+            sampleDarkCornerArrow.heightAnchor.constraint(equalToConstant: 50),
+            sampleDarkCornerText.widthAnchor.constraint(equalToConstant: 200)
+        ])
+    }
+    
+    private func setupSampleProgramBox() {
+        let x = frame.width - Dimens.distanceDefault - itemSize.width-2
+        let y = (Dimens.distanceSmall * 2) + sampleProgramButton.intrinsicContentSize.height + 26 + itemSize.height * 6
+        
+        CALayer.performWithoutAnimation {
+            sampleProgramBox.frame = CGRect(x: x, y: y, width: itemSize.width, height: itemSize.height)
+        }
+        
+        if (itemSize != .zero) {
+            dynamicConstraints.append(contentsOf: [
+                sampleProgramBoxArrow.topAnchor.constraint(equalTo: topAnchor, constant: y + itemSize.height + 6),
+                sampleProgramBoxArrow.rightAnchor.constraint(equalTo: rightAnchor, constant: -(itemSize.width / 2 + Dimens.distanceDefault)),
+                
+                sampleProgramBoxText.rightAnchor.constraint(equalTo: sampleProgramBoxArrow.leftAnchor, constant: -4),
+                sampleProgramBoxText.centerYAnchor.constraint(equalTo: sampleProgramBoxArrow.bottomAnchor)
+            ])
+        }
+    }
+    
+    private func setupSampleDarkCornerBox() {
+        let x = frame.width - Dimens.distanceDefault - itemSize.width-2
+        let y = (Dimens.distanceSmall * 2) + sampleProgramButton.intrinsicContentSize.height + 70 + itemSize.height * 17
+        
+        CALayer.performWithoutAnimation {
+            sampleDarkCornerBox.frame = CGRect(x: x, y: y, width: itemSize.width, height: itemSize.height)
+        }
+        
+        let halfHeight = itemSize.height / 2
+        let path = UIBezierPath()
+        path.move(to: CGPoint(x: x, y: y + Dimens.radiusSmall + halfHeight))
+        path.addLine(to: CGPoint(x: x, y: y + Dimens.radiusSmall))
+        path.addLine(to: CGPoint(x: x + Dimens.radiusSmall, y: y))
+        path.addLine(to: CGPoint(x: x + Dimens.radiusSmall + halfHeight, y: y))
+        path.close()
+        sampleDarkCorner.path = path.cgPath
+        
+        if (itemSize != .zero) {
+            dynamicConstraints.append(contentsOf: [
+                sampleDarkCornerArrow.topAnchor.constraint(equalTo: topAnchor, constant: y + itemSize.height + 6),
+                sampleDarkCornerArrow.rightAnchor.constraint(equalTo: rightAnchor, constant: -(itemSize.width / 2 + Dimens.distanceDefault)),
+                
+                sampleDarkCornerText.rightAnchor.constraint(equalTo: sampleDarkCornerArrow.leftAnchor, constant: -4),
+                sampleDarkCornerText.centerYAnchor.constraint(equalTo: sampleDarkCornerArrow.bottomAnchor)
+            ])
+        }
+    }
+    
+    private func makeArrowView() -> UIView {
+        let path = UIBezierPath()
+        path.move(to: CGPoint(x: 0, y: 0))
+        path.addCurve(to: CGPoint(x: 50, y: 50), controlPoint1: CGPoint(x: 25, y: 0), controlPoint2: CGPoint(x: 50, y: 25))
+        path.move(to: CGPoint(x: 5, y: -5))
+        path.addLine(to: CGPoint(x: 0, y: 0))
+        path.addLine(to: CGPoint(x: 5, y: 5))
+        
+        let layer = CAShapeLayer()
+        layer.path = path.cgPath
+        layer.strokeColor = UIColor.white.cgColor
+        layer.fillColor = UIColor.transparent.cgColor
+        layer.lineWidth = 2
+        
+        let view = UIView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.layer.addSublayer(layer)
+        return view
+    }
+    
+    private func makeLabelView() -> UILabel {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.font = .body1
+        label.textColor = .onPrimary
+        label.numberOfLines = 0
+        label.textAlignment = .center
+        
+        return label
+    }
+    
+    override class var requiresConstraintBasedLayout: Bool {
+        return true
+    }
+}

@@ -63,7 +63,7 @@ final class ProvideDetailTypeUseCaseImpl: ProvideDetailTypeUseCase {
         case
             SUPLA_CHANNELFNC_HVAC_THERMOSTAT,
             SUPLA_CHANNELFNC_HVAC_DOMESTIC_HOT_WATER:
-            return .thermostatDetail(pages: [.thermostatGeneral, .schedule, .thermostatHistory])
+            return .thermostatDetail(pages: [.thermostatGeneral, .schedule, .thermostatTimer, .thermostatHistory])
         default:
             return nil
         }
@@ -76,7 +76,7 @@ final class ProvideDetailTypeUseCaseImpl: ProvideDetailTypeUseCase {
         var pages: [DetailPage] = [.switchGeneral]
         
         if (channel.flags & SUPLA_CHANNEL_FLAG_COUNTDOWN_TIMER_SUPPORTED > 0 && channel.func != SUPLA_CHANNELFNC_STAIRCASETIMER) {
-            pages.append(.timer)
+            pages.append(.switchTimer)
         }
         
         if let type = channel.value?.sub_value_type {
@@ -106,13 +106,14 @@ enum LegacyDetailType {
 enum DetailPage {
     // Switches
     case switchGeneral
-    case timer
+    case switchTimer
     case historyIc
     case historyEm
     
     // Thermostat
     case thermostatGeneral
     case schedule
+    case thermostatTimer
     case thermostatHistory
     
     // Thermometers

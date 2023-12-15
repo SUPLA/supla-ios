@@ -53,6 +53,15 @@ class UIIconButton: UIButton {
         fatalError("init(coder:) has not been implemented")
     }
     
+    func setColor(activeSetpointType: SetpointType?) {
+        let color = activeSetpointType?.color ?? .disabled
+        
+        var configuration = config
+        configuration.contentColor = color
+        configuration.borderColor = color
+        config = configuration
+    }
+    
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         super.touchesBegan(touches, with: event)
         
@@ -126,14 +135,18 @@ class UIIconButton: UIButton {
                 size: size)
         }
         
-        static func transparent() -> Configuration {
+        static func transparent(
+            size: CGFloat = Dimens.buttonSmallHeight,
+            contentColor: UIColor = .primary,
+            contentPressedColor: UIColor = .primaryVariant
+        ) -> Configuration {
             Configuration(
                 backgroundColor: .transparent,
                 backgroundDisabledColor: .transparent,
                 backgroundPressedColor: .transparent,
-                contentColor: .primary,
+                contentColor: contentColor,
                 contentDisabledColor: .disabled,
-                contentPressedColor: .primaryVariant,
+                contentPressedColor: contentPressedColor,
                 borderColor: nil,
                 size: Dimens.buttonSmallHeight
             )

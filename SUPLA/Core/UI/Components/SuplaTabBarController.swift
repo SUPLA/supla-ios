@@ -22,7 +22,7 @@ class SuplaTabBarController<S : ViewState, E : ViewEvent, VM : BaseViewModel<S, 
     
     fileprivate let disposeBag = DisposeBag()
     let viewModel: VM
-    var navigationCoordinator: NavigationCoordinator?
+    weak var navigationCoordinator: NavigationCoordinator?
     
     init(navigationCoordinator: NavigationCoordinator, viewModel: VM) {
         self.viewModel = viewModel
@@ -44,10 +44,10 @@ class SuplaTabBarController<S : ViewState, E : ViewEvent, VM : BaseViewModel<S, 
         }
         
         viewModel.eventsObervable()
-            .subscribe(onNext: { event in self.handle(event: event) })
+            .subscribe(onNext: { [weak self] event in self?.handle(event: event) })
             .disposed(by: disposeBag)
         viewModel.stateObservable()
-            .subscribe(onNext: { state in self.handle(state: state) })
+            .subscribe(onNext: { [weak self] state in self?.handle(state: state) })
             .disposed(by: disposeBag)
     }
     
@@ -76,6 +76,13 @@ class SuplaTabBarController<S : ViewState, E : ViewEvent, VM : BaseViewModel<S, 
         tabBar.layer.shadowColor = UIColor.black.cgColor
         tabBar.backgroundColor = .background
     }
+    
+#if DEBUG
+    deinit {
+        let className = NSStringFromClass(type(of: self))
+        NSLog("[DEINIT] BC:\(className)")
+    }
+#endif
 }
 
 extension Disposable {

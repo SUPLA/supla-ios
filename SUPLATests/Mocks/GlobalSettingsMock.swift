@@ -40,6 +40,13 @@ class GlobalSettingsMock: GlobalSettings {
         get { shouldShowNewGestureInfoReturns }
         set { shouldShowNewGestureInfoValues.append(newValue) }
     }
+    
+    var shouldShowThermostatScheduleInfoReturns: Bool = false
+    var shouldShowThermostatScheduleInfoValues: [Bool] = []
+    var shouldShowThermostatScheduleInfo: Bool {
+        get { shouldShowThermostatScheduleInfoReturns }
+        set { shouldShowThermostatScheduleInfoValues.append(newValue) }
+    }
 
     var pushTokenReturns: Data? = nil
     var pushTokenValues: [Data?] = []

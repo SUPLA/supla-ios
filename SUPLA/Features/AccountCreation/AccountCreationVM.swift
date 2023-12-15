@@ -25,14 +25,11 @@ import RxCocoa
 class AccountCreationVM: BaseViewModel<AccountCreationViewState, AccountCreationViewEvent> {
     
     // MARK: Injected values
-    private let profileManager: ProfileManager
     @Singleton<GlobalSettings> var settings
-    @Singleton<RuntimeConfig> var config
-    @Singleton<SuplaClientProvider> var suplaClientProvider
-    @Singleton<SuplaAppWrapper> var suplaApp
-    
-    // MARK: Internal state
-    private var profileId: ProfileID?
+    @Singleton<ReadProfileByIdUseCase> private var readProfileByIdUseCase
+    @Singleton<SaveOrCreateProfileUseCase> private var saveOrCreateProfileUseCase
+    @Singleton<DeleteProfileUseCase> private var deleteProfileUseCase
+    @Singleton<SuplaSchedulers> private var schedulers
     
     var advancedMode: Observable<Bool> {
         get {
@@ -43,41 +40,46 @@ class AccountCreationVM: BaseViewModel<AccountCreationViewState, AccountCreation
     }
     
     // MARK: Initialisation
-    init(profileManager: ProfileManager, profileId: NSManagedObjectID?) {
-        self.profileManager = profileManager
-        self.profileId = profileId
+    override init() {
         super.init()
-
-        if let profileId = profileId,
-           let profile = profileManager.read(id: profileId) {
-            let authConfig = profile.authInfo!
-            
-            updateView() { state in
-                state
-                    .changing(path: \.advancedMode, to: profile.advancedSetup)
-                    .changing(path: \.profileName, to: profile.displayName)
-                    .changing(path: \.emailAddress, to: authConfig.emailAddress)
-                    .changing(path: \.authType, to: authConfig.emailAuth ? .email : .accessId)
-                    .changing(path: \.serverAddressForEmail, to: authConfig.serverForEmail)
-                    .changing(path: \.serverAutoDetect, to: authConfig.serverAutoDetect)
-                    .changing(path: \.accessId, to: "\(authConfig.accessID)")
-                    .changing(path: \.accessIdPassword, to: authConfig.accessIDpwd)
-                    .changing(path: \.serverAddressForAccessId, to: authConfig.serverForAccessID)
-            }
-        }
-
+        
         updateView() { state in
             state
-                .changing(path: \.deleteButtonVisible, to: settings.anyAccountRegistered && isNewProfile())
                 .changing(path: \.profileNameVisible, to: settings.anyAccountRegistered)
                 .changing(path: \.backButtonVisible, to: settings.anyAccountRegistered)
-                .changing(path: \.title, to: title())
         }
     }
     
     override func defaultViewState() -> AccountCreationViewState { AccountCreationViewState() }
     
     // MARK: Public modifiers
+    func loadData(profileId: NSManagedObjectID?) {
+        guard let id = profileId else { return }
+        
+        readProfileByIdUseCase.invoke(profileId: id)
+            .asDriverWithoutError()
+            .drive(onNext: { [weak self] profile in
+                let authConfig = profile.authInfo!
+                
+                self?.updateView { state in
+                    state
+                        .changing(path: \.profileId, to: profileId)
+                        .changing(path: \.advancedMode, to: profile.advancedSetup)
+                        .changing(path: \.profileName, to: profile.displayName)
+                        .changing(path: \.emailAddress, to: authConfig.emailAddress)
+                        .changing(path: \.authType, to: authConfig.emailAuth ? .email : .accessId)
+                        .changing(path: \.serverAddressForEmail, to: authConfig.serverForEmail)
+                        .changing(path: \.serverAutoDetect, to: authConfig.serverAutoDetect)
+                        .changing(path: \.accessId, to: "\(authConfig.accessID)")
+                        .changing(path: \.accessIdPassword, to: authConfig.accessIDpwd)
+                        .changing(path: \.serverAddressForAccessId, to: authConfig.serverForAccessID)
+                        .changing(path: \.deleteButtonVisible, to: self?.settings.anyAccountRegistered == true && profileId != nil)
+                    
+                }
+            })
+            .disposed(by: self)
+    }
+    
     func setEmailAddress(_ emailAddress: String) {
         guard let currentState = currentState() else { return }
         
@@ -113,7 +115,7 @@ class AccountCreationVM: BaseViewModel<AccountCreationViewState, AccountCreation
         updateView() { $0.changing(path: \.advancedMode, to: advancedOn) }
         if currentState.advancedMode && !advancedOn && (currentState.authType != .email || !currentState.serverAutoDetect) {
             /* User needs to switch to email auth with auto-detected
-               server, before he can go back to basic mode. */
+             server, before he can go back to basic mode. */
             send(event: .showBasicModeUnavailableDialog)
             updateView() { $0.changing(path: \.advancedMode, to: true) }
         }
@@ -128,170 +130,94 @@ class AccountCreationVM: BaseViewModel<AccountCreationViewState, AccountCreation
     }
     
     func logoutAccount() {
-        doRemoveAccount(onSuccess: { needsRestart, needsReauth, _ in
-            send(event: .finish(needsRestart: needsRestart, needsReauth: needsReauth))
-        })
+        guard let profileId = currentState()?.profileId else { return }
+        
+        send(event: .showProgress)
+        deleteProfileUseCase.invoke(profileId: profileId)
+            .observe(on: schedulers.main)
+            .subscribe(
+                onNext: { [weak self] result in
+                    self?.send(event: .finish(
+                        needsRestart: result.restartNeeded,
+                        needsReauth: result.reauthNeeded
+                    ))
+                },
+                onError: { [weak self] error in
+                    self?.send(event: .showRemovalFailure)
+                }
+            )
+            .disposed(by: self)
     }
     
     func removeAccount() {
-        doRemoveAccount(onSuccess: { needsRestart, _, serverAddress in
-            send(event: .navigateToRemoveAccount(needsRestart: needsRestart, serverAddress: serverAddress))
-        })
+        guard let profileId = currentState()?.profileId else { return }
+        
+        send(event: .showProgress)
+        deleteProfileUseCase.invoke(profileId: profileId)
+            .observe(on: schedulers.main)
+            .subscribe(
+                onNext: { [weak self] result in
+                    self?.send(event: .navigateToRemoveAccount(
+                        needsRestart: result.restartNeeded,
+                        serverAddress: result.servertAddress
+                    ))
+                },
+                onError: { [weak self] error in
+                    self?.send(event: .showRemovalFailure)
+                }
+            )
+            .disposed(by: self)
     }
     
     func save() {
         guard let state = currentState() else { return }
-        var settings = self.settings
         
         let profileName = state.profileName.trimmingCharacters(in: .whitespacesAndNewlines)
         if (state.profileNameVisible && profileName.isEmpty) {
             send(event: .showEmptyNameDialog)
             return
         }
-        if (isNameDuplicated(profileName: profileName)) {
-            send(event: .showDuplicatedNameDialog)
-            return
-        }
-        let authInfo = createAuthInfoFromState()
-        if (authInfo?.isAuthDataComplete != true) {
-            send(event: .showRequiredDataMisingDialog)
-            return
-        }
         
-        let profile = getProfile()
-        let authDataChanged = authDataChanged(authInfo: profile.authInfo)
+        guard let authInfo = createAuthInfoFromState() else { return }
         
-        profile.name = profileName
-        profile.advancedSetup = state.advancedMode
-        profile.authInfo = authInfo
-        if (authDataChanged) {
-            profile.authInfo = authInfo?.copy(preferredProtocolVersion: Int(SUPLA_PROTO_VERSION))
-        }
-        
-        if (profileManager.update(profile)) {
-            settings.anyAccountRegistered = true
-            
-            let needsReauth = profile.isActive && authDataChanged
-            if (needsReauth) {
-                suplaClientProvider.provide().reconnect()
-            }
-            send(event: .formSaved(needsReauth: needsReauth))
-        } else {
-            send(event: .showRequiredDataMisingDialog)
-        }
-    }
-    
-    private func getProfile() -> AuthProfileItem {
-        if let profileId = profileId {
-            return profileManager.read(id: profileId)!
-        } else {
-            let profile = profileManager.create()
-            profile.isActive = !settings.anyAccountRegistered
-            return profile
-        }
+        send(event: .showProgress)
+        saveOrCreateProfileUseCase.invoke(
+            profileId: currentState()?.profileId,
+            name: profileName,
+            advancedMode: state.advancedMode,
+            authInfo: authInfo
+        ).observe(on: schedulers.main)
+            .subscribe(
+                onNext: { [weak self] result in
+                    if (result.saved) {
+                        self?.send(event: .formSaved(needsReauth: result.needsReauth))
+                    } else {
+                        self?.send(event: .showRequiredDataMisingDialog)
+                    }
+                },
+                onError: { [weak self] error in
+                    if let error = error as? SaveOrCreateProfileError {
+                        switch (error) {
+                        case .dataIncomplete:
+                            self?.send(event: .showRequiredDataMisingDialog)
+                        case .duplicatedName:
+                            self?.send(event: .showDuplicatedNameDialog)
+                        }
+                    } else {
+                        let description = String(describing: error)
+                        NSLog("Could not create account: \(description)")
+                        self?.send(event: .showRequiredDataMisingDialog)
+                    }
+                }
+            )
+            .disposed(by: self)
     }
     
     // MARK: Internal/private functions
-    private func doRemoveAccount(onSuccess: (_ needsRestart: Bool, _ needsReauth: Bool, _ serverAddress: String? ) -> Void) {
-        guard let profileId = profileId else { return }
-        guard let profile = profileManager.read(id: profileId) else { return }
-        let serverAddress = getServerAddress(profile)
-        send(event: .showProgress)
-        
-        var settings = settings
-        var config = config
-        
-        if (!profile.isActive) {
-            // Removing inactive account - just remove
-            removeAccountFromDb(profileId) { onSuccess(false, false, serverAddress) }
-        } else {
-            // We're removing an active account - supla client needs to be stopped first
-            suplaApp.terminateSuplaClient()
-            
-            if let firstInactiveProfile = profileManager.getAllProfiles().first(where: { profile in !profile.isActive }) {
-                // Removing active account, when other account exists
-                if (profileManager.activateProfile(id: firstInactiveProfile.objectID, force: true)) {
-                    removeAccountFromDb(profileId) {
-                        onSuccess(false, true, serverAddress)
-                    }
-                } else {
-                    send(event: .showRemovalFailure)
-                }
-                
-                suplaClientProvider.provide().reconnect()
-            } else {
-                // Removing last account
-                removeAccountFromDb(profileId) {
-                    config.activeProfileId = nil
-                    settings.anyAccountRegistered = false
-                    onSuccess(true, true, serverAddress)
-                }
-            }
-        }
-    }
-    
-    private func removeAccountFromDb(_ profileId: ProfileID, _ onSuccess: () -> Void) {
-        // Removing inactive account - just remove
-        if (profileManager.delete(id: profileId)) {
-            onSuccess()
-        } else {
-            send(event: .showRemovalFailure)
-        }
-    }
-    
-    private func isNameDuplicated(profileName: String?) -> Bool {
-        return profileManager.getAllProfiles().first(where: {profile in profile.displayName == profileName && profile.objectID != profileId}) != nil
-    }
     
     private func createAuthInfoFromState() -> AuthInfo? {
         guard let state = currentState() else { return nil }
-        
-        return AuthInfo(
-            emailAuth: state.authType == .email,
-            serverAutoDetect: state.serverAutoDetect,
-            emailAddress: state.emailAddress,
-            serverForEmail: state.serverAddressForEmail,
-            serverForAccessID: state.serverAddressForAccessId,
-            accessID: Int(state.accessId) ?? 0,
-            accessIDpwd: state.accessIdPassword
-        )
-    }
-    
-    private func authDataChanged(authInfo: AuthInfo?) -> Bool {
-        guard let state = currentState() else { return false }
-        guard let authInfo = authInfo else { return true }
-        
-        return state.emailAddress != authInfo.emailAddress
-        || state.serverAutoDetect != authInfo.serverAutoDetect
-        || state.emailAddress != authInfo.emailAddress
-        || state.serverAddressForEmail != authInfo.serverForEmail
-        || state.serverAddressForAccessId != authInfo.serverForAccessID
-        || authInfo.accessID != Int(state.accessId) ?? 0
-        || state.accessIdPassword != authInfo.accessIDpwd
-    }
-    
-    private func isNewProfile() -> Bool { profileId != nil }
-    
-    private func getServerAddress(_ profile: AuthProfileItem) -> String? {
-        guard let authInfo = profile.authInfo else { return nil }
-        
-        if (authInfo.emailAuth && authInfo.serverAutoDetect) {
-            return nil
-        } else if (authInfo.emailAuth) {
-            return authInfo.serverForEmail
-        } else {
-            return authInfo.serverForAccessID
-        }
-    }
-    
-    private func title() -> String {
-        if (!settings.anyAccountRegistered) {
-            return Strings.NavBar.titleSupla
-        } else if (isNewProfile()) {
-            return Strings.AccountCreation.creationTitle
-        } else {
-            return Strings.AccountCreation.modificationTitle
-        }
+        return AuthInfo.from(state: state)
     }
 }
 
@@ -310,7 +236,7 @@ enum AccountCreationViewEvent: ViewEvent {
 }
 
 struct AccountCreationViewState: ViewState {
-    var title: String = ""
+    var profileId: ProfileID? = nil
     
     var profileName: String = ""
     var emailAddress: String = ""
@@ -339,5 +265,15 @@ struct AccountCreationViewState: ViewState {
     enum AuthType: Int {
         case email = 0
         case accessId = 1
+    }
+    
+    var title: String {
+        if (!profileNameVisible) {
+            return Strings.NavBar.titleSupla
+        } else if (profileId != nil) {
+            return Strings.AccountCreation.creationTitle
+        } else {
+            return Strings.AccountCreation.modificationTitle
+        }
     }
 }

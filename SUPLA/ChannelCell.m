@@ -284,6 +284,7 @@
         case SUPLA_CHANNELFNC_DIMMERANDRGBLIGHTING:
         case SUPLA_CHANNELFNC_CONTROLLINGTHEROLLERSHUTTER:
         case SUPLA_CHANNELFNC_CONTROLLINGTHEROOFWINDOW:
+        case SUPLA_CHANNELFNC_THERMOSTAT_HEATPOL_HOMEPLUS:
             self.left_OnlineStatus.hidden = NO;
             self.right_OnlineStatus.hidden = NO;
             break;
@@ -298,7 +299,6 @@
         case SUPLA_CHANNELFNC_ALARMARMAMENTSENSOR:
         case SUPLA_CHANNELFNC_OPENINGSENSOR_WINDOW:
         case SUPLA_CHANNELFNC_MAILSENSOR:
-        case SUPLA_CHANNELFNC_THERMOSTAT_HEATPOL_HOMEPLUS:
         case SUPLA_CHANNELFNC_THERMOMETER:
             self.left_OnlineStatus.hidden = NO;
             self.right_OnlineStatus.hidden = NO;
@@ -336,9 +336,11 @@
         
         [self.measuredValue setText:[[_channelBase attrStringValue] string]];
                 
-    } else if ( _channelBase.func == SUPLA_CHANNELFNC_THERMOSTAT_HEATPOL_HOMEPLUS ) {
-        [self.temp setAttributedText:[_channelBase attrStringValueWithIndex:0 font:self.temp.font]];
     } else {
+        if ( _channelBase.func == SUPLA_CHANNELFNC_THERMOSTAT_HEATPOL_HOMEPLUS ) {
+            [self.temp setAttributedText:[_channelBase attrStringValueWithIndex:0 font:self.temp.font]];
+        }
+        
         [self resetButtonState];
                 
         if ( [_channelBase isOnline] ) {
@@ -360,6 +362,7 @@
                 case SUPLA_CHANNELFNC_RGBLIGHTING:
                 case SUPLA_CHANNELFNC_DIMMER:
                 case SUPLA_CHANNELFNC_DIMMERANDRGBLIGHTING:
+                case SUPLA_CHANNELFNC_THERMOSTAT_HEATPOL_HOMEPLUS:
                     br = [self makeButtonWithTitle: NSLocalizedString(@"On", nil)];
                     bl = [self makeButtonWithTitle: NSLocalizedString(@"Off", nil)];
                     
@@ -440,7 +443,7 @@
 
     BOOL group = [self.channelBase isKindOfClass:[SAChannelGroup class]];
     
-    if (_channelBase.isRGBW) {
+    if (_channelBase.isRGBW || _channelBase.func == SUPLA_CHANNELFNC_THERMOSTAT_HEATPOL_HOMEPLUS) {
         [self turnOn: self.channelBase];
         [self hideSwipeMaybe];
         return;
@@ -476,7 +479,7 @@
     [sender setBackgroundColor: [UIColor btnTouched]];
     [sender setBackgroundColor: [UIColor onLine] withDelay:0.2];
     
-    if (_channelBase.isRGBW) {
+    if (_channelBase.isRGBW || _channelBase.func == SUPLA_CHANNELFNC_THERMOSTAT_HEATPOL_HOMEPLUS) {
         [self turnOff: self.channelBase];
         [self hideSwipeMaybe];
         return;

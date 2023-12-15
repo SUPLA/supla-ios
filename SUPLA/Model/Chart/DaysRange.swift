@@ -16,14 +16,12 @@
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 
-fileprivate let DAY_IN_SEC: Double = 24 * 60 * 60
-
 struct DaysRange: Equatable, Codable {
     let start: Date
     let end: Date
     
     var daysCount: Int {
-        get { Int(abs(end.timeIntervalSince1970 - start.timeIntervalSince1970) / DAY_IN_SEC) }
+        get { Int(abs(end.timeIntervalSince1970 - start.timeIntervalSince1970)) / DAY_IN_SEC }
     }
     
     var minAggregation: ChartDataAggregation {

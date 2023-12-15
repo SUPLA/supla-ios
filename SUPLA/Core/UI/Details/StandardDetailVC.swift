@@ -64,8 +64,8 @@ class StandardDetailVC<S : ViewState, E : ViewEvent, VM : StandardDetailVM<S, E>
             switch(page) {
             case .switchGeneral:
                 viewControllers.append(switchGeneral())
-            case .timer:
-                viewControllers.append(timerDetail())
+            case .switchTimer:
+                viewControllers.append(switchTimerDetail())
             case .historyEm:
                 viewControllers.append(legacyDetail(type: .em))
             case .historyIc:
@@ -78,6 +78,8 @@ class StandardDetailVC<S : ViewState, E : ViewEvent, VM : StandardDetailVM<S, E>
                 viewControllers.append(thermostatHistoryDetail())
             case .thermometerHistory:
                 viewControllers.append(thermometerHistoryDetail())
+            case .thermostatTimer:
+                viewControllers.append(thermostatTimerDetail())
             }
         }
         
@@ -104,8 +106,8 @@ class StandardDetailVC<S : ViewState, E : ViewEvent, VM : StandardDetailVM<S, E>
         return vc
     }
     
-    private func timerDetail() -> TimerDetailVC {
-        let vc = TimerDetailVC(remoteId: item.remoteId)
+    private func switchTimerDetail() -> SwitchTimerDetailVC {
+        let vc = SwitchTimerDetailVC(remoteId: item.remoteId)
         vc.navigationCoordinator = navigationCoordinator
         vc.tabBarItem = UITabBarItem(
             title: Strings.StandardDetail.tabTimer,
@@ -167,6 +169,18 @@ class StandardDetailVC<S : ViewState, E : ViewEvent, VM : StandardDetailVM<S, E>
             image: .iconHistory,
             tag: DetailTabTag.ThermostatHistory.rawValue
         )
+        return vc
+    }
+    
+    private func thermostatTimerDetail() -> ThermostatTimerDetailVC {
+        let vc = ThermostatTimerDetailVC(remoteId: item.remoteId)
+        vc.navigationCoordinator = navigationCoordinator
+        vc.tabBarItem = UITabBarItem(
+            title: Strings.StandardDetail.tabTimer,
+            image: .iconTimer,
+            tag: DetailTabTag.Timer.rawValue
+        )
+        
         return vc
     }
 }

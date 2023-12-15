@@ -24,6 +24,8 @@
 NS_ASSUME_NONNULL_BEGIN
 @import Charts;
 
+@class HomePlusRefreshEvent;
+
 @class SAHomePlusCfgItem;
 @protocol SAHomePlusCfgItemDelegate <NSObject>
 @required
@@ -75,6 +77,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UIButton *btnAuto;
 - (IBAction)plusMinusTouched:(id)sender;
 - (IBAction)onOffTouched:(id)sender;
+- (void) updateViewWithEvent: (HomePlusRefreshEvent*) event;
 
 @end
 

@@ -26,9 +26,7 @@ class SwitchGeneralVC : BaseViewControllerVM<SwitchGeneralViewState, SwitchGener
     private let remoteId: Int32
     
     private lazy var deviceStateView: DeviceStateView = {
-        let view = DeviceStateView()
-        view.translatesAutoresizingMaskIntoConstraints = false
-        return view
+        return DeviceStateView()
     }()
     
     private lazy var powerOnButtonView: CircleControlButtonView = {
@@ -101,10 +99,12 @@ class SwitchGeneralVC : BaseViewControllerVM<SwitchGeneralViewState, SwitchGener
         view.addSubview(powerOnButtonView)
         view.addSubview(powerOffButtonView)
         
-        viewModel.bind(powerOnButtonView.tap.asObservable()) {
+        viewModel.bind(powerOnButtonView.tapObservable) { [weak self] in
+            guard let self = self else { return }
             self.viewModel.turnOn(remoteId: self.remoteId)
         }
-        viewModel.bind(powerOffButtonView.tap.asObservable()) {
+        viewModel.bind(powerOffButtonView.tapObservable) { [weak self] in
+            guard let self = self else { return }
             self.viewModel.turnOff(remoteId: self.remoteId)
         }
         
@@ -114,15 +114,15 @@ class SwitchGeneralVC : BaseViewControllerVM<SwitchGeneralViewState, SwitchGener
     private func setupLayout() {
         NSLayoutConstraint.activate([
             deviceStateView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            deviceStateView.topAnchor.constraint(equalTo: view.topAnchor, constant: 24),
+            deviceStateView.topAnchor.constraint(equalTo: view.topAnchor, constant: Dimens.distanceDefault),
             
             powerOnButtonView.leftAnchor.constraint(equalTo: view.centerXAnchor, constant: 12),
-            powerOnButtonView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -24),
+            powerOnButtonView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -Dimens.distanceDefault),
             powerOnButtonView.widthAnchor.constraint(equalToConstant: CircleControlButtonView.SIZE),
             powerOnButtonView.heightAnchor.constraint(equalToConstant: CircleControlButtonView.SIZE),
             
             powerOffButtonView.rightAnchor.constraint(equalTo: view.centerXAnchor, constant: -12),
-            powerOffButtonView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -24),
+            powerOffButtonView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -Dimens.distanceDefault),
             powerOffButtonView.widthAnchor.constraint(equalToConstant: CircleControlButtonView.SIZE),
             powerOffButtonView.heightAnchor.constraint(equalToConstant: CircleControlButtonView.SIZE)
         ])

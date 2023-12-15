@@ -36,12 +36,18 @@ class UIPlainButton: UIButton {
             if let newIcon = newValue {
                 setImage(newIcon.withRenderingMode(.alwaysTemplate))
                 tintColor = .primaryVariant
-                semanticContentAttribute = .forceRightToLeft
-                imageEdgeInsets = UIEdgeInsets(top: 0, left: 8, bottom: 0, right: -8)
-            } else {
-                semanticContentAttribute = .forceLeftToRight
             }
         }
+    }
+    
+    var textColor: UIColor = .primary {
+        didSet {
+            setTitleColor(getTextColor(), for: .normal)
+        }
+    }
+    
+    var iconPosition: IconPosition = .trailing {
+        didSet { setupIconPosition() }
     }
     
     override init(frame: CGRect) {
@@ -56,9 +62,10 @@ class UIPlainButton: UIButton {
     
     private func setupView() {
         translatesAutoresizingMaskIntoConstraints = false
-        contentEdgeInsets = UIEdgeInsets(top: 8, left: 24, bottom: 8, right: 24)
+        contentEdgeInsets = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
         setTitleColor(getTextColor(), for: .normal)
         titleLabel?.font = .button
+        setupIconPosition()
     }
     
     private func getTextColor() -> UIColor {
@@ -67,11 +74,26 @@ class UIPlainButton: UIButton {
         } else if (isHighlighted) {
             return .primaryVariant
         } else {
-            return .primary
+            return textColor
+        }
+    }
+    
+    private func setupIconPosition() {
+        switch (iconPosition) {
+        case .leading:
+            semanticContentAttribute = .forceLeftToRight
+            imageEdgeInsets = UIEdgeInsets(top: 0, left: -8, bottom: 0, right: 8)
+        case .trailing:
+            semanticContentAttribute = .forceRightToLeft
+            imageEdgeInsets = UIEdgeInsets(top: 0, left: 8, bottom: 0, right: -8)
         }
     }
     
     override class var requiresConstraintBasedLayout: Bool {
         return true
+    }
+    
+    enum IconPosition {
+        case leading, trailing
     }
 }

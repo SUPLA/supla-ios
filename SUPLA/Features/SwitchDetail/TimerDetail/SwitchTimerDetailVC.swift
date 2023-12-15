@@ -18,7 +18,7 @@
 
 import RxCocoa
 
-class TimerDetailVC: BaseViewControllerVM<TimerDetailViewState, TimerDetailViewEvent, TimerDetailVM>, DeviceStateHelperVCI {
+class SwitchTimerDetailVC: BaseViewControllerVM<SwitchTimerDetailViewState, SwitchTimerDetailViewEvent, SwitchTimerDetailVM>, DeviceStateHelperVCI {
     
     @Singleton<RuntimeConfig> private var runtimeConfig
     
@@ -27,9 +27,7 @@ class TimerDetailVC: BaseViewControllerVM<TimerDetailViewState, TimerDetailViewE
     private let current = Date()
     
     private lazy var deviceStateView: DeviceStateView = {
-        let view = DeviceStateView()
-        view.translatesAutoresizingMaskIntoConstraints = false
-        return view
+        return DeviceStateView()
     }()
     
     private lazy var timerProgressGuide: UILayoutGuide = {
@@ -39,9 +37,7 @@ class TimerDetailVC: BaseViewControllerVM<TimerDetailViewState, TimerDetailViewE
     }()
     
     private lazy var timerProgressView: TimerProgressView = {
-        let view = TimerProgressView()
-        view.translatesAutoresizingMaskIntoConstraints = false
-        return view
+        return TimerProgressView()
     }()
     
     private lazy var progressTimeLabel: UILabel = {
@@ -58,10 +54,9 @@ class TimerDetailVC: BaseViewControllerVM<TimerDetailViewState, TimerDetailViewE
         return label
     }()
     
-    private lazy var timerConfigurationView: TimerConfigurationView = {
-        let view = TimerConfigurationView()
+    private lazy var timerConfigurationView: SwitchTimerConfigurationView = {
+        let view = SwitchTimerConfigurationView()
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.delegate = self
         view.timeInSeconds = runtimeConfig.getLastTimerValue(remoteId: remoteId)
         return view
     }()
@@ -69,7 +64,9 @@ class TimerDetailVC: BaseViewControllerVM<TimerDetailViewState, TimerDetailViewE
     private lazy var editButton: UIPlainButton = {
         let button = UIPlainButton()
         button.setAttributedTitle(Strings.TimerDetail.editTime)
+        button.titleLabel?.font = .body2
         button.icon = .pencil
+        button.textColor = .onBackground
         return button
     }()
     
@@ -87,7 +84,7 @@ class TimerDetailVC: BaseViewControllerVM<TimerDetailViewState, TimerDetailViewE
     init(remoteId: Int32) {
         self.remoteId = remoteId
         super.init(nibName: nil, bundle: nil)
-        viewModel = TimerDetailVM()
+        viewModel = SwitchTimerDetailVM()
     }
     
     required init?(coder: NSCoder) {
@@ -112,7 +109,14 @@ class TimerDetailVC: BaseViewControllerVM<TimerDetailViewState, TimerDetailViewE
         )
     }
     
-    override func handle(event: TimerDetailViewEvent) {
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        timer?.invalidate()
+        timer = nil
+    }
+    
+    override func handle(event: SwitchTimerDetailViewEvent) {
         switch(event) {
         case .showInvalidTime:
             let alert = UIAlertController(
@@ -125,7 +129,7 @@ class TimerDetailVC: BaseViewControllerVM<TimerDetailViewState, TimerDetailViewE
         }
     }
     
-    override func handle(state: TimerDetailViewState) {
+    override func handle(state: SwitchTimerDetailViewState) {
         timer?.invalidate()
         timerProgressView.progressPercentage = 0
         
@@ -186,17 +190,36 @@ class TimerDetailVC: BaseViewControllerVM<TimerDetailViewState, TimerDetailViewE
         view.addSubview(timerConfigurationView)
         view.addLayoutGuide(timerProgressGuide)
         
-        viewModel.bind(stopButton.rx.tap.asObservable()) {
+        viewModel.bind(stopButton.rx.tap.asObservable()) { [weak self] in
+            guard let self = self else { return }
             self.viewModel.stopTimer(remoteId: self.remoteId)
             
         }
-        viewModel.bind(cancelButton.rx.tap.asObservable()) {
+        viewModel.bind(cancelButton.rx.tap.asObservable()) { [weak self] in
+            guard let self = self else { return }
             self.viewModel.cancelTimer(remoteId: self.remoteId)
         }
-        viewModel.bind(editButton.rx.tap.asObservable()) {
-            self.viewModel.startEditMode()
+        viewModel.bind(editButton.rx.tap.asObservable()) { [weak self] in
+            self?.viewModel.startEditMode()
         }
         viewModel.bindWhenInitialized(field: \.targetAction, toObservable: timerConfigurationView.actionObservable.map { TimerTargetAction.from(value: $0) })
+        viewModel.bind(timerConfigurationView.startObservable) { [weak self] in
+            guard let self = self else { return }
+            self.viewModel.startTimer(
+                remoteId: self.remoteId,
+                action: self.timerConfigurationView.action,
+                durationInSecs: self.timerConfigurationView.timeInSeconds
+            )
+        }
+        viewModel.bind(timerConfigurationView.cancelObservable) { [weak self] in
+            self?.viewModel.stopEditMode()
+        }
+        timerConfigurationView.timeObservable.asDriverWithoutError()
+            .drive(onNext: { [weak self] in
+                guard let self = self else { return }
+                self.runtimeConfig.setLastTimerValue(remoteId: self.remoteId, value: $0)
+            })
+            .disposed(by: self)
         
         setupLayout()
     }
@@ -263,10 +286,15 @@ class TimerDetailVC: BaseViewControllerVM<TimerDetailViewState, TimerDetailViewE
         let dateString = dateFormatter.string(from: timerData.timerEndDate)
         progressEndHourLabel.text = Strings.TimerDetail.endHour.arguments(dateString)
         
-        let data = viewModel.calculateProgressViewData(
+        guard let data = viewModel.calculateProgressViewData(
             startTime: timerData.timerStartDate ?? current,
             endTime: timerData.timerEndDate
-        )
+        ) else {
+            timer?.invalidate()
+            timer = nil
+            return
+        }
+        
         timerProgressView.progressPercentage = data.progres
         progressTimeLabel.text = Strings.TimerDetail.format.arguments(
             data.leftTimeValues.hours,
@@ -278,23 +306,5 @@ class TimerDetailVC: BaseViewControllerVM<TimerDetailViewState, TimerDetailViewE
     struct TimerData {
         let timerStartDate: Date?
         let timerEndDate: Date
-    }
-}
-
-extension TimerDetailVC: TimerConfigurationViewDelegate {
-    func onStartTapped() {
-        viewModel.startTimer(
-            remoteId: remoteId,
-            action: timerConfigurationView.action,
-            durationInSecs: timerConfigurationView.timeInSeconds
-        )
-    }
-    
-    func onCancelEditTapped() {
-        viewModel.stopEditMode()
-    }
-    
-    func onTimeChanged() {
-        runtimeConfig.setLastTimerValue(remoteId: remoteId, value: timerConfigurationView.timeInSeconds)
     }
 }

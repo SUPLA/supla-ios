@@ -38,6 +38,8 @@ extension UIImage {
     static let iconPlus = UIImage(named: "icon_plus")
     static let iconManual = UIImage(named: "icon_manual")
     static let iconSensorAlertCircle = UIImage(named: "icon_sensor_alert_circle")
+    static let iconSensorAlert = UIImage(named: "icon_sensor_alert")
+    static let iconClose = UIImage(named: "icon_close")
     
     // Functions
     static let fncUnknown = UIImage(named: "unknown_channel")
@@ -50,4 +52,8 @@ extension UIImage {
     
     static let iconArrowRight = UIImage(named: "icon_arrow_right")
     static let iconArrowDoubleRight = UIImage(named: "icon_arrow_double_right")
+    
+    // other
+    static let thumbHeat = UIImage(named: "thumb_heat")
+    static let thumbCool = UIImage(named: "thumb_cool")
 }

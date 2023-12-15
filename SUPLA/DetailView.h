@@ -29,6 +29,7 @@
 -(void)detailDidShow;
 -(void)detailDidHide;
 -(void)setChannelBase:(SAChannelBase *)channelBase;
+-(void)setChannelBaseWithoutUpdate:(SAChannelBase *)channelBase;
 
 @property (weak, nonatomic) SAChannelBase  *channelBase;
 @property (weak, nonatomic) UIViewController *viewController;

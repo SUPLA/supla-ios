@@ -37,7 +37,11 @@ final class ThermostatHistoryDetailVM: BaseHistoryDetailVM {
         Observable.zip(
             readChannelWithChildrenUseCase.invoke(remoteId: remoteId),
             profileRepository.getActiveProfile().map {
-                self.userStateHolder.getTemperatureChartState(profileId: $0.idString, remoteId: remoteId)
+                @Singleton<UserStateHolder> var userStateHolder
+                return userStateHolder.getTemperatureChartState(
+                    profileId: $0.idString,
+                    remoteId: remoteId
+                )
             }
         ) { ($0, $1) }
             .asDriverWithoutError()
@@ -80,10 +84,10 @@ final class ThermostatHistoryDetailVM: BaseHistoryDetailVM {
         }
         
         observable.subscribe(on: ConcurrentMainScheduler.instance)
-            .map { self.mergeEvents(main: $0.0, aux: $0.1) }
+            .map { [weak self] in self?.mergeEvents(main: $0.0, aux: $0.1) }
             .distinctUntilChanged()
             .asDriverWithoutError()
-            .drive(onNext: { self.handleDownloadEvents(downloadState: $0) })
+            .drive(onNext: { [weak self] in self?.handleDownloadEvents(downloadState: $0) })
             .disposed(by: self)
     }
     

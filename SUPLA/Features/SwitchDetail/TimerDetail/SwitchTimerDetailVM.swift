@@ -18,7 +18,7 @@
 
 import RxSwift
 
-class TimerDetailVM: BaseViewModel<TimerDetailViewState, TimerDetailViewEvent>, DeviceStateHelperVMI {
+class SwitchTimerDetailVM: BaseViewModel<SwitchTimerDetailViewState, SwitchTimerDetailViewEvent>, DeviceStateHelperVMI {
     
     @Singleton<ReadChannelByRemoteIdUseCase> private var readChannelByRemoteIdUseCase
     @Singleton<GetChannelBaseStateUseCase> private var getChannelBaseStateUseCase
@@ -26,24 +26,27 @@ class TimerDetailVM: BaseViewModel<TimerDetailViewState, TimerDetailViewEvent>, 
     @Singleton<ExecuteSimpleActionUseCase> private var executeSimpleAxtionUseCase
     @Singleton<DateProvider> private var dateProvider
     
-    override func defaultViewState() -> TimerDetailViewState { TimerDetailViewState() }
+    override func defaultViewState() -> SwitchTimerDetailViewState { SwitchTimerDetailViewState() }
     
     func loadChannel(remoteId: Int32) {
         readChannelByRemoteIdUseCase.invoke(remoteId: remoteId)
             .asDriverWithoutError()
-            .drive(onNext: { self.handleChannel(channel: $0) })
+            .drive(onNext: { [weak self] in self?.handleChannel(channel: $0) })
             .disposed(by: self)
     }
     
     func startTimer(remoteId: Int32, action: TimerTargetAction, durationInSecs: Int) {
         startTimerUseCase.invoke(remoteId: remoteId, turnOn: action == .turnOn, durationInSecs: Int32(durationInSecs))
-            .subscribe(onError: { self.handleStartTimerError(error: $0) })
+            .subscribe(onError: { [weak self] in self?.handleStartTimerError(error: $0) })
             .disposed(by: self)
     }
     
     func stopTimer(remoteId: Int32) {
         readChannelByRemoteIdUseCase.invoke(remoteId: remoteId)
-            .flatMapFirst { self.doAbort(remoteId: remoteId, turnOn: $0.value?.hiValue() ?? 0 > 0) }
+            .flatMapFirst { [weak self] in
+                guard let self = self else { return Observable.just(()) }
+                return self.doAbort(remoteId: remoteId, turnOn: $0.value?.hiValue() ?? 0 > 0)
+            }
             .asDriverWithoutError()
             .drive()
             .disposed(by: self)
@@ -51,7 +54,10 @@ class TimerDetailVM: BaseViewModel<TimerDetailViewState, TimerDetailViewEvent>, 
     
     func cancelTimer(remoteId: Int32) {
         readChannelByRemoteIdUseCase.invoke(remoteId: remoteId)
-            .flatMapFirst { self.doAbort(remoteId: remoteId, turnOn: $0.value?.hiValue() ?? 0 == 0) }
+            .flatMapFirst { [weak self] in
+                guard let self = self else { return Observable.just(()) }
+                return self.doAbort(remoteId: remoteId, turnOn: $0.value?.hiValue() ?? 0 == 0)
+            }
             .asDriverWithoutError()
             .drive()
             .disposed(by: self)
@@ -65,10 +71,13 @@ class TimerDetailVM: BaseViewModel<TimerDetailViewState, TimerDetailViewEvent>, 
         updateView() { $0.changing(path: \.editMode, to: false) }
     }
     
-    func calculateProgressViewData(startTime: Date, endTime: Date) -> ProgressViewData {
+    func calculateProgressViewData(startTime: Date, endTime: Date) -> ProgressViewData? {
         let leftTime = endTime.timeIntervalSince(dateProvider.currentDate())
-        let wholeTime = endTime.timeIntervalSince(startTime)
+        if (leftTime < 0) {
+            return nil
+        }
         
+        let wholeTime = endTime.timeIntervalSince(startTime)
         return ProgressViewData(
             progres: 1 - leftTime / wholeTime,
             leftTimeValues: TimeValues.from(time: leftTime + 1)
@@ -110,11 +119,11 @@ class TimerDetailVM: BaseViewModel<TimerDetailViewState, TimerDetailViewEvent>, 
     }
 }
 
-enum TimerDetailViewEvent: ViewEvent {
+enum SwitchTimerDetailViewEvent: ViewEvent {
     case showInvalidTime
 }
 
-struct TimerDetailViewState: ViewState {
+struct SwitchTimerDetailViewState: ViewState {
     var deviceState: DeviceStateViewState? = nil
     var editMode: Bool = false
     var targetAction: TimerTargetAction? = nil

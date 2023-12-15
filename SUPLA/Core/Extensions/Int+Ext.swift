@@ -18,6 +18,11 @@
 
 import Foundation
 
+
+let DAY_IN_SEC = 24 * 60 * 60
+let HOUR_IN_SEC = 60 * 60
+let MINUTE_IN_SEC = 60
+
 extension Int16 {
     func fromSuplaTemperature() -> Float {
         return Float(self) / 100
@@ -35,6 +40,22 @@ extension Int {
         }
     }
     
+    var days: Int {
+        self / DAY_IN_SEC
+    }
+    
+    var hoursInDay: Int {
+        (self % DAY_IN_SEC) / HOUR_IN_SEC
+    }
+    
+    var minutesInHour: Int {
+        (self % HOUR_IN_SEC) / MINUTE_IN_SEC
+    }
+    
+    var secondsInMinute: Int {
+        self % MINUTE_IN_SEC
+    }
+    
     func toHour(withMinutes: Int? = nil) -> String {
         if let minutes = withMinutes {
             return "\(self.withLeadingZero):\(minutes.withLeadingZero)"
@@ -42,6 +63,4 @@ extension Int {
             return "\(self.withLeadingZero)"
         }
     }
-    
-
 }

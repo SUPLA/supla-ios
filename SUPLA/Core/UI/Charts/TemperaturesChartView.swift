@@ -56,7 +56,12 @@ class TemperaturesChartView: UIView {
         set { combinedChart.noDataText = newValue }
     }
     
-    var withHumdity: Bool {
+    var withTemperature: Bool {
+        get { combinedChart.leftAxis.isEnabled }
+        set { combinedChart.leftAxis.enabled = newValue }
+    }
+    
+    var withHumidity: Bool {
         get { combinedChart.rightAxis.isEnabled }
         set { combinedChart.rightAxis.enabled = newValue }
     }
@@ -71,6 +76,11 @@ class TemperaturesChartView: UIView {
         set { if let min = newValue { combinedChart.leftAxis.axisMinimum = min < 0 ? min : 0 } }
     }
     
+    var maxHumidity: Double? {
+        get { combinedChart.rightAxis.axisMaximum }
+        set { if let max = newValue { combinedChart.rightAxis.axisMaximum = max > 100 ? max : 100 } }
+    }
+    
     private lazy var combinedChart: CombinedChartView = {
         let view = CombinedChartView()
         let xAxisFormatter = AxisXFormatter(chart: view, handler: view.viewPortHandler)
@@ -78,24 +88,32 @@ class TemperaturesChartView: UIView {
         view.translatesAutoresizingMaskIntoConstraints = false
         view.backgroundColor = .background
         
-        view.xAxis.drawGridLinesEnabled = false
-        view.xAxis.drawAxisLineEnabled = false
-        view.legend.enabled = false
+        // Left axis
         view.leftAxis.drawAxisLineEnabled = false
         view.leftAxis.labelTextColor = .darkRed
         view.leftAxis.gridColor = .darkRed
         view.leftAxis.zeroLineColor = .onBackground
         view.leftAxis.valueFormatter = AxisLeftFormatter()
+        view.leftAxis.gridLineDashLengths = [1.5]
+        view.leftAxis.gridLineDashLengths = [3]
+        // Right axis
         view.rightAxis.drawAxisLineEnabled = false
         view.rightAxis.labelTextColor = .darkBlue
         view.rightAxis.gridColor = .darkBlue
         view.rightAxis.zeroLineColor = .onBackground
         view.rightAxis.valueFormatter = AxisRightFormatter()
+        view.rightAxis.axisMinimum = 0
+        view.rightAxis.axisMaximum = 100
+        view.rightAxis.gridLineDashLengths = [1.5]
+        view.rightAxis.gridLineDashLengths = [3]
+        // X axis
+        view.xAxis.drawGridLinesEnabled = false
+        view.xAxis.drawAxisLineEnabled = false
         view.xAxis.labelPosition = .bottom
         view.xAxis.valueFormatter = xAxisFormatter
         view.xAxis.labelCount = 6
-        view.rightAxis.axisMinimum = 0
-        view.rightAxis.axisMaximum = 100
+        // Others
+        view.legend.enabled = false
         view.chartDescription.enabled = false
         view.delegate = self
         view.noDataTextColor = .onBackground
