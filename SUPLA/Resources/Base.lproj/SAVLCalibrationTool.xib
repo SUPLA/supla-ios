@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="22154" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="22505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22130"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22504"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -21,8 +21,8 @@
         <view contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iN0-l3-epB" customClass="SAVLCalibrationTool">
             <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
             <subviews>
-                <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nN6-QF-5He" userLabel="vTabsMode">
-                    <rect key="frame" x="15" y="109" width="363" height="35"/>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nN6-QF-5He" userLabel="vTabsMode">
+                    <rect key="frame" x="15" y="92.666666666666671" width="363" height="35"/>
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" selected="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rvo-jc-7PF" userLabel="tabMode1">
                             <rect key="frame" x="2" y="2" width="118.33333333333333" height="31"/>
@@ -118,8 +118,8 @@
                         </userDefinedRuntimeAttribute>
                     </userDefinedRuntimeAttributes>
                 </view>
-                <view contentMode="scaleToFill" ambiguous="YES" insetsLayoutMarginsFromSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yCM-1x-jYm" userLabel="vTabsBoost">
-                    <rect key="frame" x="15" y="176" width="363" height="35"/>
+                <view contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yCM-1x-jYm" userLabel="vTabsBoost">
+                    <rect key="frame" x="15" y="159.66666666666666" width="363" height="35"/>
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" selected="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="b2V-rw-W6a" userLabel="tabYes">
                             <rect key="frame" x="2" y="2" width="178.66666666666666" height="31"/>
@@ -220,14 +220,14 @@
                         <action selector="btnOKTouch:" destination="iN0-l3-epB" eventType="touchDown" id="sa0-HG-vxA"/>
                     </connections>
                 </button>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Dimming mode" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PYA-89-fe5">
-                    <rect key="frame" x="15" y="89" width="94" height="18"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Dimming mode" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PYA-89-fe5">
+                    <rect key="frame" x="15" y="72.666666666666671" width="94" height="18"/>
                     <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="13"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Boost" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9CN-AY-yB1">
-                    <rect key="frame" x="15" y="154" width="35" height="20"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Boost" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9CN-AY-yB1">
+                    <rect key="frame" x="15" y="137.66666666666666" width="35" height="20"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="20" id="ag3-Ob-8Sj"/>
                     </constraints>
@@ -235,8 +235,8 @@
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <view contentMode="scaleToFill" ambiguous="YES" insetsLayoutMarginsFromSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cWC-eR-CQL" userLabel="vTabsOpRange">
-                    <rect key="frame" x="15" y="226" width="363" height="35"/>
+                <view contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cWC-eR-CQL" userLabel="vTabsOpRange">
+                    <rect key="frame" x="15" y="209.66666666666666" width="363" height="35"/>
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" selected="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WeS-eH-Y2T" userLabel="tabOpRange">
                             <rect key="frame" x="0.0" y="0.0" width="181.66666666666666" height="35"/>
@@ -289,8 +289,8 @@
                         </userDefinedRuntimeAttribute>
                     </userDefinedRuntimeAttributes>
                 </view>
-                <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="oFN-cJ-xUT" customClass="SARangeCalibrationWheel">
-                    <rect key="frame" x="15" y="261" width="363" height="501"/>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oFN-cJ-xUT" customClass="SARangeCalibrationWheel">
+                    <rect key="frame" x="15" y="244.66666666666669" width="363" height="517.33333333333326"/>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                 </view>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Status LED" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nOa-zt-iSl">
@@ -419,6 +419,7 @@
                 <constraint firstItem="PYA-89-fe5" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="15" id="hEs-X2-30J"/>
                 <constraint firstItem="nN6-QF-5He" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="15" id="hjg-rO-rh3"/>
                 <constraint firstItem="oFN-cJ-xUT" firstAttribute="top" secondItem="cWC-eR-CQL" secondAttribute="bottom" id="k3P-h0-Gex"/>
+                <constraint firstItem="PYA-89-fe5" firstAttribute="firstBaseline" secondItem="uhx-4u-dOp" secondAttribute="baseline" constant="19.666666666666668" symbolType="layoutAnchor" id="lML-DM-TBP"/>
                 <constraint firstItem="cWC-eR-CQL" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="15" id="mGH-3g-pLy"/>
                 <constraint firstItem="nOa-zt-iSl" firstAttribute="top" secondItem="oFN-cJ-xUT" secondAttribute="bottom" constant="10" id="pPt-4c-RHf"/>
                 <constraint firstItem="233-mb-2Sc" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="15" id="ufs-bG-UUk"/>
