@@ -39,5 +39,6 @@
 #import "SingleCallWrapper.h"
 #import "SAChannelStatePopup.h"
 #import "SuplaConfigIntegrator.h"
+#import "TFHpple.h"
 
 #import "supla-client.h"

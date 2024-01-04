@@ -19,26 +19,13 @@
 #import <UIKit/UIKit.h>
 #import "SAWizardVC.h"
 
-@interface SAConfigResult : NSObject
-
-@property(nonatomic) int resultCode;
-@property(copy, nonatomic) NSString *extendedResultError;
-@property(nonatomic) long extendedResultCode;
-
-@property (copy, nonatomic) NSString *name;
-@property (copy, nonatomic) NSString *state;
-@property (copy, nonatomic) NSString *version;
-@property (copy, nonatomic) NSString *guid;
-@property (copy, nonatomic) NSString *mac;
-@property (assign, nonatomic) BOOL needsCloudConfig;
-@end
-
+@class EspConfigResult; // Import from swift
 
 @class SASetConfigOperation;
 @protocol SASetConfOpDelegate <NSObject>
 
 @required
--(void)configResult:(SAConfigResult*)result of: (SASetConfigOperation*) op;
+-(void)configResult:(EspConfigResult*)result of: (SASetConfigOperation*) op;
 @end
 
 @interface SASetConfigOperation : NSOperation
