@@ -39,4 +39,27 @@
         self.complement = src.complement;
     }
 }
+
+- (double) calculateValue: (double) current and: (double) previous {
+    double diff = current - previous;
+    if (diff >= 0) {
+        return diff;
+    } else if (fabs(diff) <= previous * 0.1) {
+        return 0;
+    } else {
+        return current;
+    }
+}
+
+- (int64_t) calculateValueInt: (int64_t) current and: (int64_t) previous {
+    double diff = current - previous;
+    if (diff >= 0) {
+        return diff;
+    } else if (fabs(diff) <= previous * 0.1) {
+        return 0;
+    } else {
+        return current;
+    }
+}
+
 @end

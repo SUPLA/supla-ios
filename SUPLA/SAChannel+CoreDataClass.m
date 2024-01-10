@@ -238,11 +238,22 @@
 
     if (self.value) {
         if (self.value.sub_value_type == SUBV_TYPE_IC_MEASUREMENTS) {
-            return [[NSMutableAttributedString alloc] initWithString:
-                    [NSString stringWithFormat:@"%@ %@", [n2fmt stringFromNumber: @(self.impulseCounterCalculatedValueFromSubValue)], self.unit]];
+            double value = self.impulseCounterCalculatedValueFromSubValue;
+            if (value == 0.0) {
+                return [[NSMutableAttributedString alloc] initWithString:
+                        [NSString stringWithFormat:@"--- %@", self.unit]];
+            } else {
+                return [[NSMutableAttributedString alloc] initWithString:
+                        [NSString stringWithFormat:@"%@ %@", [n2fmt stringFromNumber: @(value)], self.unit]];
+            }
         } else if (self.value.sub_value_type == SUBV_TYPE_ELECTRICITY_MEASUREMENTS) {
-            return [[NSMutableAttributedString alloc] initWithString:
-                    [NSString stringWithFormat:@"%@ kWh", [n2fmt stringFromNumber:@(self.totalForwardActiveEnergyFromSubValue)]]];
+            double value = self.totalForwardActiveEnergyFromSubValue;
+            if (value == 0.0) {
+                return [[NSMutableAttributedString alloc] initWithString: @"--- kWh"];
+            } else {
+                return [[NSMutableAttributedString alloc] initWithString:
+                        [NSString stringWithFormat:@"%@ kWh", [n2fmt stringFromNumber:@(value)]]];
+            }
         }
     }
     
@@ -259,7 +270,11 @@
             value = self.impulseCounterCalculatedValue;
         }
         
-        return [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"%@ %@", [n2fmt stringFromNumber:@(value)], self.unit]];
+        if (value == 0.0) {
+            return [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"--- %@", self.unit]];
+        } else {
+            return [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"%@ %@", [n2fmt stringFromNumber:@(value)], self.unit]];
+        }
     }
     
     return [super attrStringValueWithIndex:idx font:font];
