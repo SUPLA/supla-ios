@@ -26,12 +26,6 @@
 #import "UIButton+SUPLA.h"
 #import "SUPLA-Swift.h"
 
-#define RESULT_PARAM_ERROR   -3
-#define RESULT_COMPAT_ERROR  -2
-#define RESULT_CONN_ERROR    -1
-#define RESULT_FAILED         0
-#define RESULT_SUCCESS        1
-
 #define STEP_NONE                              0
 #define STEP_CHECK_REGISTRATION_ENABLED_TRY1   1
 #define STEP_CHECK_REGISTRATION_ENABLED_TRY2   2
@@ -48,21 +42,6 @@
 #define PAGE_STEP_4  4
 #define PAGE_ERROR   5
 #define PAGE_DONE    6
-
-@implementation SAConfigResult
-
-@synthesize resultCode;
-@synthesize extendedResultError;
-@synthesize extendedResultCode;
-
-@synthesize name;
-@synthesize state;
-@synthesize version;
-@synthesize guid;
-@synthesize mac;
-@synthesize needsCloudConfig;
-
-@end
 
 @implementation SASetConfigOperation {
     int _result;
@@ -112,13 +91,13 @@
     return NO;
 }
 
--(void)_onOperationDone:(SAConfigResult*)result {
+-(void)_onOperationDone:(EspConfigResult*)result {
     if ( self.delegate != nil ) {
         [self.delegate performSelector:@selector(configResult:of:) withObject:result withObject:self];
     }
 };
 
-- (void)onOperationDone:(SAConfigResult*)result  {
+- (void)onOperationDone:(EspConfigResult*)result  {
 
     [self performSelectorOnMainThread:@selector(_onOperationDone:) withObject:result waitUntilDone:NO];
 }
@@ -129,7 +108,7 @@
         [NSThread sleepForTimeInterval:_delay];
     }
     
-    SAConfigResult *result = [[SAConfigResult alloc] init];
+    EspConfigResult *result = [[EspConfigResult alloc] init];
     
     if ( self.SSID == nil
         || self.SSID.length == 0
@@ -140,7 +119,7 @@
         || self.Email == nil
         || self.Email.length == 0 ) {
         
-        result.resultCode = RESULT_PARAM_ERROR;
+        result.resultCode = EspConfigResultCodeParamError;
         [self onOperationDone:result];
         return;
     };
@@ -176,7 +155,7 @@
     } while(retryCount > 0);
     
     if ( requestError != nil || response == nil ) {
-        result.resultCode = RESULT_CONN_ERROR;
+        result.resultCode = EspConfigResultCodeConnectionError;
         if (requestError != nil) {
             result.extendedResultError = [NSString stringWithFormat:@"%ld - %@", (long)requestError.code, requestError.localizedDescription];
             result.extendedResultCode = (long)requestError.code;
@@ -185,83 +164,16 @@
         return;
     }
     
-    {
-        NSString *html = [[NSString alloc] initWithData:response encoding:NSUTF8StringEncoding];
-        NSError  *error = nil;
-        NSString *pattern = @"\\<h1\\>(.*)\\<\\/h1\\>\\<span\\>LAST\\ STATE:\\ (.*)\\<br\\>Firmware:\\ (.*)\\<br\\>GUID:\\ (.*)\\<br\\>MAC:\\ (.*)\\<\\/span\\>";
-        
-        if (html!=nil) {
-            NSRegularExpression* regex = [NSRegularExpression regularExpressionWithPattern: pattern options:0 error:&error];
-            NSArray *matches = [regex matchesInString:html options:0 range:NSMakeRange(0, [html length])];
-            
-            if ( error == nil && matches != nil && matches.count == 1 ) {
-                NSTextCheckingResult *match = [matches objectAtIndex:0];
-                if ([match numberOfRanges] == 6) {
-                    
-                    result.name = [html substringWithRange:[match rangeAtIndex:1]];
-                    result.state = [html substringWithRange:[match rangeAtIndex:2]];
-                    result.version = [html substringWithRange:[match rangeAtIndex:3]];
-                    result.guid = [html substringWithRange:[match rangeAtIndex:4]];
-                    result.mac = [html substringWithRange:[match rangeAtIndex:5]];
-                    
-                }
-            }
-        }
-    }
+    EspHtmlParser *parser = [[EspHtmlParser alloc] init];
+    
+    NSString *html = [[NSString alloc] initWithData:response encoding:NSUTF8StringEncoding];
+    [result mergeWithResult: [parser prepareResultWithDocument: html]];
     
     NSMutableDictionary *fields = [[NSMutableDictionary alloc] init];
-    
     if ( result.name != nil ) {
-        
         TFHpple *doc = [[TFHpple alloc] initWithHTMLData:response];
-        NSArray *inputs = [doc searchWithXPathQuery:@"//input"];
-        
-        
-        for(TFHppleElement *element in inputs) {
-            
-            NSDictionary *attr = [element attributes];
-            if ( attr != nil ) {
-                NSString *name = [attr objectForKey:@"name"];
-                NSString *value = [attr objectForKey:@"value"];
-                
-                if ( name != nil  ) {
-                    [fields setObject:value == nil ? @"" : value forKey:name];
-                }
-                
-                if ( [name isEqualToString: @"no_visible_channels"] &&
-                    [value isEqualToString: @"1"] ) {
-                    result.needsCloudConfig = YES;
-                }
-            }
-            
-        }
-        
-        NSArray *selects = [doc searchWithXPathQuery:@"//select"];
-        
-        for(TFHppleElement *element in selects) {
-            NSArray *options = [element searchWithXPathQuery:@"//option[@selected=\"selected\"]"];
-            if ( options.count == 1 ) {
-                TFHppleElement *option = [options objectAtIndex:0];
-                
-                NSString *name = nil;
-                NSString *value = nil;
-                
-                NSDictionary *attr = [element attributes];
-                if ( attr != nil ) {
-                    name = [attr objectForKey:@"name"];
-                };
-                
-                attr = [option attributes];
-                if ( attr != nil ) {
-                    value = [attr objectForKey:@"value"];
-                };
-                
-                if ( name != nil && value != nil ) {
-                    [fields setObject:value forKey:name];
-                }
-            }
-            
-        }
+        [fields addEntriesFromDictionary: [parser findInputsWithDocument:doc]];
+        result.needsCloudConfig = [parser needsCloudConfigWithFieldMap: fields];
     }
     
     if ( [fields objectForKey:@"sid"] == nil
@@ -269,7 +181,7 @@
         || [fields objectForKey:@"svr"] == nil
         || [fields objectForKey:@"eml"] == nil ) {
         
-        result.resultCode = RESULT_COMPAT_ERROR;
+        result.resultCode = EspConfigResultCodeCompatError;
         [self onOperationDone:result];
         
         return;
@@ -305,7 +217,7 @@
             [self postDataWithFields:fields];
             sleep(1);
             
-            result.resultCode = RESULT_SUCCESS;
+            result.resultCode = EspConfigResultCodeSuccess;
             [self onOperationDone:result];
             
             return;
@@ -321,7 +233,7 @@
     }while(retryCount > 0);
     
     
-    result.resultCode = RESULT_FAILED;
+    result.resultCode = EspConfigResultCodeFailed;
     [self onOperationDone:result];
 }
 
@@ -622,12 +534,12 @@
     // Dispose of any resources that can be recreated.
 }
 
--(void)configResult:(SAConfigResult*)result of:(SASetConfigOperation *)op {
+-(void)configResult:(EspConfigResult*)result of:(SASetConfigOperation *)op {
     
     [SAWifi cleanup];
     
     switch(result.resultCode) {
-        case RESULT_PARAM_ERROR: {
+        case EspConfigResultCodeParamError: {
             NSString *missingParameters = @"";
             if (op.SSID == nil || op.SSID.length == 0) {
                 missingParameters = @"SSID";
@@ -649,10 +561,10 @@
             [self showError:[NSString stringWithFormat:NSLocalizedString(@"Incorrect input parameters (%@)!", NULL), missingParameters]];
         }
             break;
-        case RESULT_COMPAT_ERROR:
+        case EspConfigResultCodeCompatError:
             [self showError:NSLocalizedString(@"The connected device is not compatible with this Wizard!", NULL)];
             break;
-        case RESULT_CONN_ERROR: {
+        case EspConfigResultCodeConnectionError: {
             NSString *errInfo = @"";
             if (result.extendedResultCode == NSURLErrorNotConnectedToInternet && _1stAttempt) {
                 _1stAttempt = NO;
@@ -671,10 +583,10 @@
             }
         }
             break;
-        case RESULT_FAILED:
+        case EspConfigResultCodeFailed:
             [self showError:NSLocalizedString(@"Configuration Failed!", NULL)];
             break;
-        case RESULT_SUCCESS:
+        case EspConfigResultCodeSuccess:
             
             self.lName.text = result.name;
             self.lFirmware.text = result.version;

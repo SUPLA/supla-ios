@@ -39,8 +39,8 @@
 - (void) calculateWithSource:(SAMeasurementItem*)source {
     if ([source isKindOfClass:[SAImpulseCounterMeasurementItem class]]) {
         SAImpulseCounterMeasurementItem *src = (SAImpulseCounterMeasurementItem*)source;
-        self.counter  = self.counter  - src.counter;
-        self.calculated_value = self.calculated_value - src.calculated_value;
+        self.counter = [self calculateValueInt:self.counter and:src.counter];
+        self.calculated_value = [self calculateValue:self.calculated_value and:src.calculated_value];
         
         self.calculated = YES;
     }

@@ -969,6 +969,10 @@
 		A5AE7A8D2A3ADFAD0097FA8B /* RsOpenningClosingPersentageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5AE7A8C2A3ADFAD0097FA8B /* RsOpenningClosingPersentageCell.swift */; };
 		A5AE7A8F2A3AE0290097FA8B /* TitleArrowButtonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5AE7A8E2A3AE0290097FA8B /* TitleArrowButtonCell.swift */; };
 		A5AE7A912A3B17AF0097FA8B /* PermissionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5AE7A902A3B17AF0097FA8B /* PermissionCell.swift */; };
+		A5CE73272B45A6EB003F882C /* EspHtmlParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5CE73262B45A6EB003F882C /* EspHtmlParser.swift */; };
+		A5CE73292B4607AE003F882C /* EspConfigResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5CE73282B4607AE003F882C /* EspConfigResult.swift */; };
+		A5CE732C2B469C02003F882C /* arduino.html in Resources */ = {isa = PBXBuildFile; fileRef = A5CE732B2B469C02003F882C /* arduino.html */; };
+		A5CE732F2B469C36003F882C /* EspHtmlParserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5CE732E2B469C36003F882C /* EspHtmlParserTests.swift */; };
 		A5D837C82AF0F154002A420D /* PullToRefreshView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D837C72AF0F154002A420D /* PullToRefreshView.swift */; };
 		A5D837CB2AF1034E002A420D /* ThermometerDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D837CA2AF1034E002A420D /* ThermometerDetailVC.swift */; };
 		A5D837CD2AF1035E002A420D /* ThermometerDetailVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D837CC2AF1035E002A420D /* ThermometerDetailVM.swift */; };
@@ -2434,6 +2438,10 @@
 		A5AE7A8C2A3ADFAD0097FA8B /* RsOpenningClosingPersentageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RsOpenningClosingPersentageCell.swift; sourceTree = "<group>"; };
 		A5AE7A8E2A3AE0290097FA8B /* TitleArrowButtonCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleArrowButtonCell.swift; sourceTree = "<group>"; };
 		A5AE7A902A3B17AF0097FA8B /* PermissionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PermissionCell.swift; sourceTree = "<group>"; };
+		A5CE73262B45A6EB003F882C /* EspHtmlParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EspHtmlParser.swift; sourceTree = "<group>"; };
+		A5CE73282B4607AE003F882C /* EspConfigResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EspConfigResult.swift; sourceTree = "<group>"; };
+		A5CE732B2B469C02003F882C /* arduino.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = arduino.html; sourceTree = "<group>"; };
+		A5CE732E2B469C36003F882C /* EspHtmlParserTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EspHtmlParserTests.swift; sourceTree = "<group>"; };
 		A5D837C72AF0F154002A420D /* PullToRefreshView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PullToRefreshView.swift; sourceTree = "<group>"; };
 		A5D837CA2AF1034E002A420D /* ThermometerDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThermometerDetailVC.swift; sourceTree = "<group>"; };
 		A5D837CC2AF1035E002A420D /* ThermometerDetailVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThermometerDetailVM.swift; sourceTree = "<group>"; };
@@ -3048,6 +3056,7 @@
 		401CA1D81BA067DB00117AF4 /* SUPLATests */ = {
 			isa = PBXGroup;
 			children = (
+				A5CE732A2B469B5F003F882C /* TestData */,
 				AEFBC25026E39EFC00414C19 /* SUPLATests-Bridging-Header.h */,
 				401CA1DB1BA067DB00117AF4 /* SUPLATests.m */,
 				A57638CA29E5EF80003E15A3 /* Mocks */,
@@ -3747,6 +3756,7 @@
 		A52ACD4229CB92BB0092729F /* Networking */ = {
 			isa = PBXGroup;
 			children = (
+				A5CE73252B45A6C8003F882C /* Esp */,
 				A57668CB2AE8F75C0025509D /* SuplaCloud */,
 				A52ACD4529CB92E30092729F /* WebApi */,
 				A52ACD4329CB92C50092729F /* SuplaClient */,
@@ -4023,6 +4033,7 @@
 		A54A065F2AF50DEC00C03DBC /* Networking */ = {
 			isa = PBXGroup;
 			children = (
+				A5CE732D2B469C25003F882C /* Esp */,
 				A54A06602AF50E2200C03DBC /* SuplaCloudServiceTests.swift */,
 			);
 			path = Networking;
@@ -4752,6 +4763,31 @@
 				A5AE7A902A3B17AF0097FA8B /* PermissionCell.swift */,
 			);
 			path = Cells;
+			sourceTree = "<group>";
+		};
+		A5CE73252B45A6C8003F882C /* Esp */ = {
+			isa = PBXGroup;
+			children = (
+				A5CE73262B45A6EB003F882C /* EspHtmlParser.swift */,
+				A5CE73282B4607AE003F882C /* EspConfigResult.swift */,
+			);
+			path = Esp;
+			sourceTree = "<group>";
+		};
+		A5CE732A2B469B5F003F882C /* TestData */ = {
+			isa = PBXGroup;
+			children = (
+				A5CE732B2B469C02003F882C /* arduino.html */,
+			);
+			path = TestData;
+			sourceTree = "<group>";
+		};
+		A5CE732D2B469C25003F882C /* Esp */ = {
+			isa = PBXGroup;
+			children = (
+				A5CE732E2B469C36003F882C /* EspHtmlParserTests.swift */,
+			);
+			path = Esp;
 			sourceTree = "<group>";
 		};
 		A5D837C92AF10335002A420D /* ThermometerDetail */ = {
@@ -5818,6 +5854,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A5CE732C2B469C02003F882C /* arduino.html in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -5984,6 +6021,7 @@
 				01C1719922C7F55B005983E1 /* SAMeasurementItem+CoreDataClass.m in Sources */,
 				A5F29BE62A27739000ED700A /* MoveableCell.swift in Sources */,
 				A5AE7A8F2A3AE0290097FA8B /* TitleArrowButtonCell.swift in Sources */,
+				A5CE73292B4607AE003F882C /* EspConfigResult.swift in Sources */,
 				A530EE1A2A56FBBC00F8DAEE /* PowerSwitchIconNameProducer.swift in Sources */,
 				A5F29B962A20B97B00ED700A /* CreateProfileChannelsListUseCase.swift in Sources */,
 				A5F14B7229DED06400682FA6 /* AccountRemovalVM.swift in Sources */,
@@ -6210,6 +6248,7 @@
 				01A0BD0A26CEFBC200C4A5F2 /* SAWarningIcon.m in Sources */,
 				AEF1F9BA27726D56008E441A /* DetailViewController.swift in Sources */,
 				A51BE9052AA754F200718F2F /* BaseControlButtonView.swift in Sources */,
+				A5CE73272B45A6EB003F882C /* EspHtmlParser.swift in Sources */,
 				A553862B29E0202700B5CF3F /* Singleton.swift in Sources */,
 				A5F29BBC2A24D62300ED700A /* UpdateChannelExtendedValueUseCase.swift in Sources */,
 				012F722E22DFA0BE00E5F72E /* SABarChartDataSet.swift in Sources */,
@@ -6459,6 +6498,7 @@
 				A59AB8BD2A30806800D91F1F /* BaseRepositoryMock.swift in Sources */,
 				A54A06662AF5271900C03DBC /* ThermometerHistoryDetailVMTests.swift in Sources */,
 				A59AB8D52A3092C500D91F1F /* TempHumidityMeasurementItemRepositoryMock.swift in Sources */,
+				A5CE732F2B469C36003F882C /* EspHtmlParserTests.swift in Sources */,
 				A59AB8AB2A306FC700D91F1F /* ViewModelTest.swift in Sources */,
 				A5A23C2D2ABD96DB00233542 /* SuplaChannelConfigTests.swift in Sources */,
 				A50CD3D82A4D9A040012DD9B /* SingleCallMock.swift in Sources */,
@@ -7093,7 +7133,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = SUPLA/SUPLA.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 161;
+				CURRENT_PROJECT_VERSION = 162;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = T6ZPGSWA75;
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -7112,7 +7152,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/SUPLA/lib",
 				);
-				MARKETING_VERSION = 23.12.01;
+				MARKETING_VERSION = 24.01;
 				OTHER_SWIFT_FLAGS = "$(inherited) -D COCOAPODS -D DEBUG";
 				PRODUCT_BUNDLE_IDENTIFIER = com.acsoftware.ios.supla;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -7132,7 +7172,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = SUPLA/SUPLA.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 161;
+				CURRENT_PROJECT_VERSION = 162;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = T6ZPGSWA75;
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -7151,7 +7191,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/SUPLA/lib",
 				);
-				MARKETING_VERSION = 23.12.01;
+				MARKETING_VERSION = 24.01;
 				PRODUCT_BUNDLE_IDENTIFIER = com.acsoftware.ios.supla;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "SUPLA/SUPLA-Bridging-Header.h";

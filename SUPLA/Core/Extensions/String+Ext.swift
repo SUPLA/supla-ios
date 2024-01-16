@@ -31,4 +31,12 @@ extension String {
         }
         return String(self[..<index])
     }
+    
+    func substring(range: NSRange) -> String? {
+        if let range = Swift.Range(range, in: self) {
+            return String(self[range])
+        } else {
+            return nil
+        }
+    }
 }
