@@ -129,6 +129,22 @@ typedef enum {
     HomePlusDetailRefreshHelper *_refreshHelper;
 }
 
+- (void)initChartFilters {
+    self.tfChartTypeFilter.hidden = true;
+    self.tfChartTypeFilter.excludeAllHistory = false;
+    self.ftDateRangeFilter.excludeAllHistory = false;
+    self.ftDateRangeFilter.ff_delegate = self;
+    self.ftDateRangeFilter.chartHelper = self->_chartHelper;
+    self.ftDateRangeFilter.filterType = DateRangeFilter;
+    
+    self.tfChartTypeFilter.chartHelper = self->_chartHelper;
+    self.tfChartTypeFilter.dateRangeFilterField = self.ftDateRangeFilter;
+    [self.tfChartTypeFilter excludeAllFrom: Bar_Comparsion_MinMin];
+    self.tfChartTypeFilter.ff_delegate = self;
+    self.ftDateRangeFilter.ff_delegate = self;
+}
+
+
 -(void)detailViewInit {
     if (!self.initialized) {
         self.vCalendar.program0Label = NSLocalizedString(@"ECO", nil);
@@ -198,6 +214,8 @@ typedef enum {
                               valueDefault:19
                               cfgId:CFGID_TEMP_ECO
                               delegate:self]];
+        
+        [self initChartFilters];
     }
     
     _refreshHelper = [[HomePlusDetailRefreshHelper alloc] init];
@@ -293,6 +311,11 @@ typedef enum {
     [self updateView];
 }
 
+- (void)applyChartFilter {
+    self->_chartHelper.chartType = Bar_Minutes;
+    self->_chartHelper.dateFrom = _ftDateRangeFilter.dateFrom;
+}
+
 -(void)detailWillShow {
     _frc = nil;
     [self showMainView];
@@ -312,6 +335,7 @@ typedef enum {
         self.btnSettings.hidden = NO;
         self.btnSchedule.hidden = NO;
         [self runDownloadTask];
+        [self applyChartFilter];
         [_chartHelper load];
     }
 
@@ -760,6 +784,19 @@ typedef enum {
     
     if (value == 1 && sender != self.btnOnOff) {
         [self setBtnsOffWithExclude:@[sender, self.btnOnOff]];
+    }
+}
+
+- (void)onFilterChanged:(nonnull SAChartFilterField *)filterField { 
+    _chartHelper.chartType = _tfChartTypeFilter.chartType;
+    _chartHelper.dateFrom = _tfChartTypeFilter.dateRangeFilterField.dateFrom;
+    
+    [self->_chartHelper load];
+    
+    if (_ftDateRangeFilter.dateRange == AllAvailableHistory) {
+        [self->_chartHelper moveToEnd];
+    } else {
+        [self.combinedChart fitScreen];
     }
 }
 

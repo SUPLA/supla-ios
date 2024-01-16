@@ -61,6 +61,7 @@ typedef NS_ENUM(NSUInteger, DateRange) {
 @property (nonatomic, weak) SAChartFilterField *dateRangeFilterField;
 @property (nonatomic, weak) id<SAChartFilterFieldDelegate> ff_delegate;
 @property (nonatomic, weak) SAChartHelper *chartHelper;
+@property bool excludeAllHistory;
 @end
 
 NS_ASSUME_NONNULL_END
