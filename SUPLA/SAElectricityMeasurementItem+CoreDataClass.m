@@ -70,20 +70,20 @@
 - (void) calculateWithSource:(SAMeasurementItem*)source {
     if ([source isKindOfClass:[SAElectricityMeasurementItem class]]) {
         SAElectricityMeasurementItem *src = (SAElectricityMeasurementItem*)source;
-        self.phase1_fae = self.phase1_fae - src.phase1_fae;
-        self.phase2_fae = self.phase2_fae - src.phase2_fae;
-        self.phase3_fae = self.phase3_fae - src.phase3_fae;
-        self.phase1_rae = self.phase1_rae - src.phase1_rae;
-        self.phase2_rae = self.phase2_rae - src.phase2_rae;
-        self.phase3_rae = self.phase3_rae - src.phase3_rae;
-        self.phase1_fre = self.phase1_fre - src.phase1_fre;
-        self.phase2_fre = self.phase2_fre - src.phase2_fre;
-        self.phase3_fre = self.phase3_fre - src.phase3_fre;
-        self.phase1_rre = self.phase1_rre - src.phase1_rre;
-        self.phase2_rre = self.phase2_rre - src.phase2_rre;
-        self.phase3_rre = self.phase3_rre - src.phase3_rre;
-        self.fae_balanced = self.fae_balanced - src.fae_balanced;
-        self.rae_balanced = self.rae_balanced - src.rae_balanced;
+        self.phase1_fae = [self calculateValue:self.phase1_fae and: src.phase1_fae];
+        self.phase2_fae = [self calculateValue:self.phase2_fae and: src.phase2_fae];
+        self.phase3_fae = [self calculateValue:self.phase3_fae and: src.phase3_fae];
+        self.phase1_rae = [self calculateValue:self.phase1_rae and: src.phase1_rae];
+        self.phase2_rae = [self calculateValue:self.phase2_rae and: src.phase2_rae];
+        self.phase3_rae = [self calculateValue:self.phase3_rae and: src.phase3_rae];
+        self.phase1_fre = [self calculateValue:self.phase1_fre and: src.phase1_fre];
+        self.phase2_fre = [self calculateValue:self.phase2_fre and: src.phase2_fre];
+        self.phase3_fre = [self calculateValue:self.phase3_fre and: src.phase3_fre];
+        self.phase1_rre = [self calculateValue:self.phase1_rre and: src.phase1_rre];
+        self.phase2_rre = [self calculateValue:self.phase2_rre and: src.phase2_rre];
+        self.phase3_rre = [self calculateValue:self.phase3_rre and: src.phase3_rre];
+        self.fae_balanced = [self calculateValue:self.fae_balanced and: src.fae_balanced];
+        self.rae_balanced = [self calculateValue:self.rae_balanced and: src.rae_balanced];
         
         self.calculated = YES;
     }

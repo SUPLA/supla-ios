@@ -24,6 +24,8 @@ NS_ASSUME_NONNULL_BEGIN
 @interface SAIncrementalMeasurementItem : SAMeasurementItem
 - (void) calculateWithSource:(SAMeasurementItem*)source;
 - (void) divideBy:(double)n;
+- (double) calculateValue: (double) current and: (double) previous;
+- (int64_t) calculateValueInt: (int64_t) current and: (int64_t) previous;
 @property (nonatomic) BOOL calculated;
 @end
 
