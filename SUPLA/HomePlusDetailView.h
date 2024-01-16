@@ -20,6 +20,7 @@
 #import "DetailView.h"
 #import "SAThermostatCalendar.h"
 #import "SAPreloader.h"
+#import "SAChartFilterField.h"
 
 NS_ASSUME_NONNULL_BEGIN
 @import Charts;
@@ -38,7 +39,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (readonly, nonatomic) short value;
 @end
 
-@interface SAHomePlusDetailView : SADetailView <SARestApiClientTaskDelegate, SAHomePlusCfgItemDelegate, SAThermostatCalendarDelegate, UITableViewDataSource, UITableViewDelegate>
+@interface SAHomePlusDetailView : SADetailView <SARestApiClientTaskDelegate, SAHomePlusCfgItemDelegate, SAThermostatCalendarDelegate, UITableViewDataSource, UITableViewDelegate, SAChartFilterFieldDelegate>
 @property (weak, nonatomic) IBOutlet UILabel *lCfgEco;
 @property (weak, nonatomic) IBOutlet UILabel *lCfgComfort;
 @property (weak, nonatomic) IBOutlet UILabel *lCfgEcoReduction;
@@ -75,6 +76,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UIButton *btnEco;
 @property (weak, nonatomic) IBOutlet UIButton *btnTurbo;
 @property (weak, nonatomic) IBOutlet UIButton *btnAuto;
+@property (weak, nonatomic) IBOutlet SAChartFilterField *tfChartTypeFilter;
+@property (weak, nonatomic) IBOutlet SAChartFilterField *ftDateRangeFilter;
 - (IBAction)plusMinusTouched:(id)sender;
 - (IBAction)onOffTouched:(id)sender;
 - (void) updateViewWithEvent: (HomePlusRefreshEvent*) event;

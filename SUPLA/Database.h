@@ -85,18 +85,6 @@ typedef NS_ENUM(NSUInteger, GroupBy) {
 -(double) calculatedValueSumForChannelId:(int)channel_id monthLimitOffset:(int)offset;
 -(NSArray *) getImpulseCounterMeasurementsForChannelId:(int)channel_id dateFrom:(NSDate *)dateFrom dateTo:(NSDate *)dateTo groupBy:(GroupBy)gb groupingDepth:(GroupingDepth)gd;
 
--(SATemperatureMeasurementItem*) newTemperatureMeasurementItem;
--(long) getTimestampOfTemperatureMeasurementItemWithChannelId:(int)channel_id minimum:(BOOL)min;
--(NSUInteger) getTemperatureMeasurementItemCountForChannelId:(int)channel_id;
--(void) deleteAllTemperatureMeasurementsForChannelId:(int)channel_id;
--(NSArray *) getTemperatureMeasurementsForChannelId:(int)channel_id dateFrom:(NSDate *)dateFrom dateTo:(NSDate *)dateTo;
-
--(SATempHumidityMeasurementItem*) newTempHumidityMeasurementItem;
--(long) getTimestampOfTempHumidityMeasurementItemWithChannelId:(int)channel_id minimum:(BOOL)min;
--(NSUInteger) getTempHumidityMeasurementItemCountForChannelId:(int)channel_id;
--(void) deleteAllTempHumidityMeasurementsForChannelId:(int)channel_id;
--(NSArray *) getTempHumidityMeasurementsForChannelId:(int)channel_id dateFrom:(NSDate *)dateFrom dateTo:(NSDate *)dateTo;
-
 -(SAThermostatMeasurementItem*) newThermostatMeasurementItem;
 -(long) getTimestampOfThermostatMeasurementItemWithChannelId:(int)channel_id minimum:(BOOL)min;
 -(NSUInteger) getThermostatMeasurementItemCountForChannelId:(int)channel_id;

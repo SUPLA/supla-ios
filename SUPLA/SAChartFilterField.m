@@ -32,6 +32,7 @@
 @synthesize chartHelper;
 
 -(void) __init {
+    self.excludeAllHistory = true;
     self.filterType = TypeFilter;
 }
 
@@ -117,7 +118,9 @@
                         if (selectedRange > Last90days) {
                             _dateRangeFilterField.dateRange = Last24hours;
                         }
-                        [_dateRangeFilterField excludeElements:@[[NSNumber numberWithInt:AllAvailableHistory]]];
+                        if (_excludeAllHistory) {
+                            [_dateRangeFilterField excludeElements:@[[NSNumber numberWithInt:AllAvailableHistory]]];
+                        }
                         break;
                     case Bar_Hours:
                     case Bar_Comparsion_HourHour:
@@ -126,7 +129,9 @@
                         if (selectedRange > Last90days || selectedRange < Last7days) {
                             _dateRangeFilterField.dateRange = Last7days;
                         }
-                        [_dateRangeFilterField excludeElements:@[[NSNumber numberWithInt:AllAvailableHistory]]];
+                        if (_excludeAllHistory) {
+                            [_dateRangeFilterField excludeElements:@[[NSNumber numberWithInt:AllAvailableHistory]]];
+                        }
                         break;
                     case Bar_Days:
                     case Bar_Comparsion_DayDay:
