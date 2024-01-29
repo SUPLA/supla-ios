@@ -31,8 +31,8 @@ final class ExecuteSimpleActionUseCaseTests: UseCaseTest<Void> {
     }()
     
     override func setUp() {
-        DiContainer.shared.register(type: SuplaClientProvider.self, component: suplaClientProvider!)
-        DiContainer.shared.register(type: VibrationService.self, component: vibrationService!)
+        DiContainer.shared.register(type: SuplaClientProvider.self, suplaClientProvider!)
+        DiContainer.shared.register(type: VibrationService.self, vibrationService!)
     }
     
     override func tearDown() {

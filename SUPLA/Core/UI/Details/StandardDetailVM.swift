@@ -19,12 +19,15 @@
 class StandardDetailVM<S : ViewState, E : ViewEvent>: BaseViewModel<S, E> {
     
     @Singleton<ReadChannelByRemoteIdUseCase> private var readChannelByRemoteIdUseCase
+    @Singleton<GetChannelBaseCaptionUseCase> private var getChannelBaseCaptionUseCase
     
     func loadChannel(remoteId: Int32) {
         readChannelByRemoteIdUseCase.invoke(remoteId: remoteId)
             .asDriverWithoutError()
-            .drive(onNext: { channel in
-                self.setTitle(channel.getNonEmptyCaption())
+            .drive(onNext: { [weak self] channel in
+                if let caption = self?.getChannelBaseCaptionUseCase.invoke(channelBase: channel) {
+                    self?.setTitle(caption)
+                }
             })
             .disposed(by: self)
     }

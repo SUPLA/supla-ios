@@ -52,7 +52,7 @@ final class CreateProfileChannelsListUseCaseImpl: CreateProfileChannelsListUseCa
         items.append(.location(location: lastLocation))
         
         for channel in channels {
-            if (channel.flags & SUPLA_CHANNEL_FLAG_HAS_PARENT > 0) {
+            if (channel.flags & Int64(SUPLA_CHANNEL_FLAG_HAS_PARENT) > 0) {
                 // skip channels which have parent ID.
                 continue
             }

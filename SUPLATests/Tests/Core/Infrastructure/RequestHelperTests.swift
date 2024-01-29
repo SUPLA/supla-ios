@@ -42,9 +42,9 @@ class RequestHelperTests: ObservableTestCase {
     override func setUp() {
         super.setUp()
         
-        DiContainer.shared.register(type: SuplaCloudConfigHolder.self, component: suplaCloudConfigHolder!)
-        DiContainer.shared.register(type: SuplaClientProvider.self, component: suplaClientProvider!)
-        DiContainer.shared.register(type: SessionResponseProvider.self, component: sessionResponseProvider!)
+        DiContainer.shared.register(type: SuplaCloudConfigHolder.self, suplaCloudConfigHolder!)
+        DiContainer.shared.register(type: SuplaClientProvider.self, suplaClientProvider!)
+        DiContainer.shared.register(type: SessionResponseProvider.self, sessionResponseProvider!)
     }
     
     override func tearDown() {

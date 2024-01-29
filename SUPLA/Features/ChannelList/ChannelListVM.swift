@@ -19,7 +19,6 @@
 import Foundation
 
 class ChannelListViewModel: BaseTableViewModel<ChannelListViewState, ChannelListViewEvent> {
-    
     @Singleton<CreateProfileChannelsListUseCase> private var createProfileChannelsListUseCase
     @Singleton<SwapChannelPositionsUseCase> private var swapChannelPositionsUseCase
     @Singleton<ProvideDetailTypeUseCase> private var provideDetailTypeUseCase
@@ -67,12 +66,14 @@ class ChannelListViewModel: BaseTableViewModel<ChannelListViewState, ChannelList
         switch (detailType) {
         case let .legacy(type: legacyDetailType):
             send(event: .navigateToDetail(legacy: legacyDetailType, channelBase: item))
-        case .switchDetail(let pages):
+        case let .switchDetail(pages):
             send(event: .navigateToSwitchDetail(item: item.item(), pages: pages))
         case let .thermostatDetail(pages):
             send(event: .navigateToThermostatDetail(item: item.item(), pages: pages))
         case let .thermometerDetail(pages):
             send(event: .navigateToThermometerDetail(item: item.item(), pages: pages))
+        case let .gpmDetail(pages):
+            send(event: .navigateToGpmDetail(item: item.item(), pages: pages))
         }
     }
     
@@ -95,23 +96,25 @@ class ChannelListViewModel: BaseTableViewModel<ChannelListViewState, ChannelList
     }
     
     private func isAvailableInOffline(_ channel: SAChannel) -> Bool {
-        switch(channel.func) {
+        switch (channel.func) {
         case SUPLA_CHANNELFNC_THERMOMETER,
-            SUPLA_CHANNELFNC_HUMIDITYANDTEMPERATURE,
-            SUPLA_CHANNELFNC_ELECTRICITY_METER,
-            SUPLA_CHANNELFNC_IC_ELECTRICITY_METER,
-            SUPLA_CHANNELFNC_IC_GAS_METER,
-            SUPLA_CHANNELFNC_IC_WATER_METER,
-            SUPLA_CHANNELFNC_IC_HEAT_METER,
-            SUPLA_CHANNELFNC_HVAC_DOMESTIC_HOT_WATER,
-            SUPLA_CHANNELFNC_HVAC_THERMOSTAT:
+             SUPLA_CHANNELFNC_HUMIDITYANDTEMPERATURE,
+             SUPLA_CHANNELFNC_ELECTRICITY_METER,
+             SUPLA_CHANNELFNC_IC_ELECTRICITY_METER,
+             SUPLA_CHANNELFNC_IC_GAS_METER,
+             SUPLA_CHANNELFNC_IC_WATER_METER,
+             SUPLA_CHANNELFNC_IC_HEAT_METER,
+             SUPLA_CHANNELFNC_HVAC_DOMESTIC_HOT_WATER,
+             SUPLA_CHANNELFNC_HVAC_THERMOSTAT,
+             SUPLA_CHANNELFNC_GENERAL_PURPOSE_METER,
+             SUPLA_CHANNELFNC_GENERAL_PURPOSE_MEASUREMENT:
             return true
         case SUPLA_CHANNELFNC_LIGHTSWITCH,
-            SUPLA_CHANNELFNC_POWERSWITCH,
-            SUPLA_CHANNELFNC_STAIRCASETIMER:
-            switch (channel.value?.sub_value_type) {
+             SUPLA_CHANNELFNC_POWERSWITCH,
+             SUPLA_CHANNELFNC_STAIRCASETIMER:
+            switch channel.value?.sub_value_type {
             case Int16(SUBV_TYPE_IC_MEASUREMENTS),
-                Int16(SUBV_TYPE_ELECTRICITY_MEASUREMENTS):
+                 Int16(SUBV_TYPE_ELECTRICITY_MEASUREMENTS):
                 return true
             default:
                 return false
@@ -127,6 +130,7 @@ enum ChannelListViewEvent: ViewEvent {
     case navigateToSwitchDetail(item: ItemBundle, pages: [DetailPage])
     case navigateToThermostatDetail(item: ItemBundle, pages: [DetailPage])
     case navigateToThermometerDetail(item: ItemBundle, pages: [DetailPage])
+    case navigateToGpmDetail(item: ItemBundle, pages: [DetailPage])
 }
 
 struct ChannelListViewState: ViewState {}

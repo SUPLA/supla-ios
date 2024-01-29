@@ -18,8 +18,7 @@
 
 import Foundation
 
-class ChannelListVC : ChannelBaseTableViewController<ChannelListViewState, ChannelListViewEvent, ChannelListViewModel> {
-    
+class ChannelListVC: ChannelBaseTableViewController<ChannelListViewState, ChannelListViewEvent, ChannelListViewModel> {
     private var captionEditor: ChannelCaptionEditor? = nil
     
     convenience init() {
@@ -30,7 +29,7 @@ class ChannelListVC : ChannelBaseTableViewController<ChannelListViewState, Chann
     override func getCollapsedFlag() -> CollapsedFlag { .channel }
     
     override func handle(event: ChannelListViewEvent) {
-        switch(event) {
+        switch (event) {
         case .navigateToDetail(let legacyDetailType, let channelBase):
             navigator?.navigateToLegacyDetail(legacyDetailType: legacyDetailType, channelBase: channelBase)
         case .navigateToSwitchDetail(let item, let pages):
@@ -39,7 +38,8 @@ class ChannelListVC : ChannelBaseTableViewController<ChannelListViewState, Chann
             navigator?.navigateToThermostatDetail(item: item, pages: pages)
         case .navigateToThermometerDetail(let item, let pages):
             navigator?.navigateToThermometerDetail(item: item, pages: pages)
-            
+        case .navigateToGpmDetail(let item, let pages):
+            navigator?.navigateToGpmDetail(item: item, pages: pages)
         }
     }
     
@@ -51,6 +51,9 @@ class ChannelListVC : ChannelBaseTableViewController<ChannelListViewState, Chann
         }
         if let thermostatCell = cell as? ThermostatCell {
             thermostatCell.delegate = self
+        }
+        if let measurementCell = cell as? MeasurementCell {
+            measurementCell.delegate = self
         }
         
         return cell
@@ -67,8 +70,7 @@ class ChannelListVC : ChannelBaseTableViewController<ChannelListViewState, Chann
 }
 
 extension ChannelListVC: SAChannelCellDelegate {
-    func channelButtonClicked(_ cell: SAChannelCell!) {
-    }
+    func channelButtonClicked(_ cell: SAChannelCell!) {}
     
     func channelCaptionLongPressed(_ remoteId: Int32) {
         vibrationService.vibrate()
@@ -80,7 +82,6 @@ extension ChannelListVC: SAChannelCellDelegate {
 }
 
 extension ChannelListVC: ThermostatCellDelgate {
-    
     func onButtonTapped(buttonType: CellButtonType, remoteId: Int32, data: Any?) {
         viewModel.onButtonClicked(buttonType: buttonType, data: data)
     }
@@ -105,4 +106,7 @@ extension ChannelListVC: ThermostatCellDelgate {
     func onInfoIconTapped(_ channel: SAChannel) {
         SAChannelStatePopup.globalInstance().show(channel)
     }
+}
+
+extension ChannelListVC: MeasurementCellDelegate {
 }

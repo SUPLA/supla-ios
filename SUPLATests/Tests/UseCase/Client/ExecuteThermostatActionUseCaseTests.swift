@@ -28,7 +28,7 @@ final class ExecuteThermostatActionUseCaseTests: UseCaseTest<RequestResult> {
     }()
     
     override func setUp() {
-        DiContainer.shared.register(type: SuplaClientProvider.self, component: suplaClientProvider!)
+        DiContainer.shared.register(type: SuplaClientProvider.self, suplaClientProvider!)
     }
     
     override func tearDown() {

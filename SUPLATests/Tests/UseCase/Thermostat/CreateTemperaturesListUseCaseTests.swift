@@ -32,9 +32,9 @@ final class CreateTemperaturesListUseCaseTests: XCTestCase {
     override func setUp() {
         super.setUp()
         
-        DiContainer.shared.register(type: GetChannelBaseIconUseCase.self, component: getChannelBaseIconUseCaseMock!)
-        DiContainer.shared.register(type: GlobalSettings.self, component: GlobalSettingsImpl())
-        DiContainer.shared.register(type: ValuesFormatter.self, component: ValuesFormatterImpl())
+        DiContainer.shared.register(type: GetChannelBaseIconUseCase.self, getChannelBaseIconUseCaseMock!)
+        DiContainer.shared.register(type: GlobalSettings.self, GlobalSettingsImpl())
+        DiContainer.shared.register(type: ValuesFormatter.self, ValuesFormatterImpl())
     }
     
     override func tearDown() {

@@ -80,7 +80,7 @@
 - (void) onZwaveOnAssignNodeIdResult:(SAZWaveNodeIdResult*)result;
 - (void) onZwaveWakeupSettingsReport:(SAZWaveWakeupSettingsReport*)report;
 - (void) onZWaveSetWakeUpTimeResult:(NSNumber *)result;
-- (void) onChannelConfigUpdateOrResult: (TSC_ChannelConfigUpdateOrResult*) config;
+- (void) onChannelConfigUpdateOrResult: (TSC_ChannelConfigUpdateOrResult*) config crc32: (unsigned _supla_int_t) crc32;
 - (void) onDeviceConfigUpdateOrResult: (TSC_DeviceConfigUpdateOrResult*) config;
 @end
 
@@ -153,7 +153,7 @@ void sasuplaclient_location_update(void *_suplaclient, void *user_data, TSC_Supl
 
 #pragma mark Channels callbacks
 
-void sasuplaclient_channel_update(void *_suplaclient, void *user_data, TSC_SuplaChannel_D *channel) {
+void sasuplaclient_channel_update(void *_suplaclient, void *user_data, TSC_SuplaChannel_E *channel) {
     SASuplaClient *sc = (__bridge SASuplaClient*)user_data;
     if ( sc != nil )
         [sc channelUpdate: channel];
@@ -389,10 +389,11 @@ void sasuplaclient_scene_state_update(void *_suplaclient,
 
 void sasuplaclient_channel_config_update_or_result(void *_suplaclient,
                                                    void *user_data,
-                                                   TSC_ChannelConfigUpdateOrResult *config) {
+                                                   TSC_ChannelConfigUpdateOrResult *config,
+                                                   unsigned _supla_int_t crc32) {
     SASuplaClient *sc = (__bridge SASuplaClient*) user_data;
     if ( sc != nil ) {
-        [sc onChannelConfigUpdateOrResult: config];
+        [sc onChannelConfigUpdateOrResult: config crc32:crc32];
     }
 }
 
@@ -835,12 +836,12 @@ void sasuplaclient_device_config_update_or_result(void *_suplaclient,
     
 }
 
-- (BOOL) isChannelExcluded:(TSC_SuplaChannel_D *)channel {
+- (BOOL) isChannelExcluded:(TSC_SuplaChannel_E *)channel {
     // For partner applications
     return NO;
 }
 
-- (void) channelUpdate:(TSC_SuplaChannel_D *)channel {
+- (void) channelUpdate:(TSC_SuplaChannel_E *)channel {
     
     BOOL DataChanged = NO;
     BOOL ChannelValueChanged = NO;
@@ -981,8 +982,9 @@ void sasuplaclient_device_config_update_or_result(void *_suplaclient,
     }
 }
 
-- (void) onChannelConfigUpdateOrResult: (TSC_ChannelConfigUpdateOrResult*) config {
-    [[DiContainer channelConfigEventsManager] emitConfigWithResult: config->Result config: config->Config];
+- (void) onChannelConfigUpdateOrResult: (TSC_ChannelConfigUpdateOrResult*) config crc32: (unsigned _supla_int_t) crc32 {
+    [UseCaseLegacyWrapper insertChannelConfig:config->Result :config->Config :crc32];
+    [[DiContainer channelConfigEventsManager] emitConfigWithResult: config->Result config: config->Config crc32: crc32];
 }
 
 - (void) onDeviceConfigUpdateOrResult: (TSC_DeviceConfigUpdateOrResult*) config {

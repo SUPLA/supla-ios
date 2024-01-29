@@ -34,7 +34,7 @@ final class EditQuartersDialogVMTests: ViewModelTest<EditQuartersDialogViewState
     }()
     
     override func setUp() {
-        DiContainer.shared.register(type: ValuesFormatter.self, component: valuesFormatter!)
+        DiContainer.shared.register(type: ValuesFormatter.self, valuesFormatter!)
     }
     
     override func tearDown() {

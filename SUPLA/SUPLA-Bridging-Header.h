@@ -40,5 +40,8 @@
 #import "SAChannelStatePopup.h"
 #import "SuplaConfigIntegrator.h"
 #import "TFHpple.h"
+#import "SAGeneralPurposeMeasurementItem+CoreDataClass.h"
+#import "SAGeneralPurposeMeterItem+CoreDataClass.h"
+#import "SAChannelConfig+CoreDataClass.h"
 
 #import "supla-client.h"

@@ -37,8 +37,8 @@ class SuplaCloudServiceTests: ObservableTestCase {
     override func setUp() {
         super.setUp()
         
-        DiContainer.shared.register(type: RequestHelper.self, component: requestHelper!)
-        DiContainer.shared.register(type: SuplaCloudConfigHolder.self, component: configHolder!)
+        DiContainer.shared.register(type: RequestHelper.self, requestHelper!)
+        DiContainer.shared.register(type: SuplaCloudConfigHolder.self, configHolder!)
     }
     
     override func tearDown() {

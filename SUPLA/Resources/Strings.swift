@@ -119,12 +119,16 @@ struct Strings {
         static let noDataAvailable = "history_no_data_available".toLocalized()
         static let noDataInSelectedPeriod = "history_no_data_in_selected_period".toLocalized()
         static let loading = "Retrieving data from the server...".toLocalized()
+        static let historyDisabled = "history_disabled".toLocalized()
         
         static let minutes = "Minutes".toLocalized()
         static let hours = "Hours".toLocalized()
         static let days = "Days".toLocalized()
         static let months = "Months".toLocalized()
         static let years = "Years".toLocalized()
+        
+        static let markerOpening = "chart_marker_opening".toLocalized()
+        static let markerClosing = "chart_marker_closing".toLocalized()
         
         struct Electricity {
             static let allPhasesTitle = NSLocalizedString("Phase 1+2+3", comment: "")
@@ -269,8 +273,10 @@ struct Strings {
         static let time_hours_and_mintes = "time_hours_and_minutes".toLocalized()
         
         struct Channel {
-            static let channelCaptionHotelCard = "channel_caption_hotelcard".toLocalized()
-            static let channelCaptionAlarmArmament = "channel_caption_alarm_armament".toLocalized()
+            static let captionHotelCard = "channel_caption_hotelcard".toLocalized()
+            static let captionAlarmArmament = "channel_caption_alarm_armament".toLocalized()
+            static let captionGeneralPurposeMeasurement = "channel_caption_general_purpose_measurment".toLocalized()
+            static let captionGeneralPurposeMeter = "channel_caption_general_purpose_meter".toLocalized()
         }
     }
 }

@@ -43,11 +43,11 @@ final class SceneListVMTests: ViewModelTest<SceneListViewState, SceneListViewEve
     }()
     
     override func setUp() {
-        DiContainer.shared.register(type: CreateProfileScenesListUseCase.self, component: createProfileScenesListUseCase!)
-        DiContainer.shared.register(type: SwapScenePositionsUseCase.self, component: swapScenePositionsUseCase!)
-        DiContainer.shared.register(type: ToggleLocationUseCase.self, component: toggleLocationUseCase!)
-        DiContainer.shared.register(type: UpdateEventsManager.self, component: updateEventsManager!)
-        DiContainer.shared.register(type: ExecuteSimpleActionUseCase.self, component: executeSimpleActionUseCase!)
+        DiContainer.shared.register(type: CreateProfileScenesListUseCase.self, createProfileScenesListUseCase!)
+        DiContainer.shared.register(type: SwapScenePositionsUseCase.self, swapScenePositionsUseCase!)
+        DiContainer.shared.register(type: ToggleLocationUseCase.self, toggleLocationUseCase!)
+        DiContainer.shared.register(type: UpdateEventsManager.self, updateEventsManager!)
+        DiContainer.shared.register(type: ExecuteSimpleActionUseCase.self, executeSimpleActionUseCase!)
     }
     
     override func tearDown() {

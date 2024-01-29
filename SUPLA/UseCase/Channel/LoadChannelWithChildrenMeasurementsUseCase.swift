@@ -85,7 +85,7 @@ final class LoadChannelWithChildrenMeasurementsUseCaseImpl: LoadChannelWithChild
                         endDate: endDate
                     )
                     .map { list in
-                        self.aggregating(list, aggregation) { $0.temperature?.toDouble() }
+                        self.aggregatingTemperature(list, aggregation)
                     }
                         .map { [self.historyDataSet(channel, .temperature, color, aggregation, $0)] }
                 )
@@ -100,11 +100,11 @@ final class LoadChannelWithChildrenMeasurementsUseCaseImpl: LoadChannelWithChild
                         endDate: endDate
                     )
                         .map {
-                            let temperatures = self.aggregating($0, aggregation) {
-                                Double(truncating: $0.temperature!)
+                            let temperatures = self.aggregatingTemperatureOrHumidity($0, aggregation, .temperature) {
+                                $0.temperature!.toDouble()
                             }
-                            let humidities = self.aggregating($0, aggregation) {
-                                Double(truncating: $0.humidity!)
+                            let humidities = self.aggregatingTemperatureOrHumidity($0, aggregation, .humidity) {
+                                $0.humidity!.toDouble()
                             }
                             return [
                                 self.historyDataSet(channel, .temperature, firstColor, aggregation, temperatures),

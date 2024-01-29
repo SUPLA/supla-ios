@@ -37,9 +37,9 @@ final class CreateProfileChannelsListUseCaseTests: UseCaseTest<[List]> {
     }()
     
     override func setUp() {
-        DiContainer.shared.register(type: (any ChannelRepository).self, component: channelRepository!)
-        DiContainer.shared.register(type: (any ProfileRepository).self, component: profileRepository!)
-        DiContainer.shared.register(type: (any ChannelRelationRepository).self, component: channelRelationRepository!)
+        DiContainer.shared.register(type: (any ChannelRepository).self, channelRepository!)
+        DiContainer.shared.register(type: (any ProfileRepository).self, profileRepository!)
+        DiContainer.shared.register(type: (any ChannelRelationRepository).self, channelRelationRepository!)
     }
     
     override func tearDown() {
@@ -69,7 +69,7 @@ final class CreateProfileChannelsListUseCaseTests: UseCaseTest<[List]> {
         channel2.location = location2
         let channel3 = SAChannel(testContext: nil)
         channel3.location_id = 2
-        channel3.flags = SUPLA_CHANNEL_FLAG_HAS_PARENT
+        channel3.flags = Int64(SUPLA_CHANNEL_FLAG_HAS_PARENT)
         
         channelRepository.allVisibleChannelsObservable = Observable.just([ channel1, channel2, channel3 ])
         channelRelationRepository.getParentsMapReturns = Observable.just([:])
@@ -190,11 +190,11 @@ final class CreateProfileChannelsListUseCaseTests: UseCaseTest<[List]> {
         let channel2 = SAChannel(testContext: nil)
         channel2.remote_id = 2
         channel2.location = location2
-        channel2.flags = SUPLA_CHANNEL_FLAG_HAS_PARENT
+        channel2.flags = Int64(SUPLA_CHANNEL_FLAG_HAS_PARENT)
         let channel3 = SAChannel(testContext: nil)
         channel3.remote_id = 3
         channel3.location_id = 2
-        channel3.flags = SUPLA_CHANNEL_FLAG_HAS_PARENT
+        channel3.flags = Int64(SUPLA_CHANNEL_FLAG_HAS_PARENT)
         
         channelRepository.allVisibleChannelsObservable = Observable.just([ channel1, channel2, channel3 ])
         channelRelationRepository.getParentsMapReturns = Observable.just([

@@ -33,9 +33,9 @@ final class ReadChannelWithChildrenUseCaseTests: UseCaseTest<ChannelWithChildren
     }()
     
     override func setUp() {
-        DiContainer.shared.register(type: (any ProfileRepository).self, component: profileRepository!)
-        DiContainer.shared.register(type: (any ChannelRepository).self, component: channelRepository!)
-        DiContainer.shared.register(type: (any ChannelRelationRepository).self, component: channelRelationRepository!)
+        DiContainer.shared.register(type: (any ProfileRepository).self, profileRepository!)
+        DiContainer.shared.register(type: (any ChannelRepository).self, channelRepository!)
+        DiContainer.shared.register(type: (any ChannelRelationRepository).self, channelRelationRepository!)
         
         super.setUp()
     }

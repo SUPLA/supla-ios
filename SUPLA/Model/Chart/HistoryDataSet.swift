@@ -19,16 +19,38 @@
 import Foundation
 
 struct HistoryDataSet: Equatable, Changeable {
-    
     let setId: Id
     let icon: UIImage?
     let value: String
+    let valueFormatter: ChannelValueFormatter
     let color: UIColor
-    var entries: [[ChartDataEntry]]
+    var entries: [[AggregatedEntity]]
     var active: Bool
-    
+
     struct Id: Equatable, Codable {
         let remoteId: Int32
         let type: ChartEntryType
+    }
+
+    func toDetails(_ entity: AggregatedEntity) -> ChartEntryDetails {
+        ChartEntryDetails(
+            aggregation: entity.aggregation,
+            type: entity.type,
+            date: Date(timeIntervalSince1970: entity.date),
+            min: entity.min,
+            max: entity.max,
+            open: entity.open,
+            close: entity.close,
+            valueFormatter: valueFormatter
+        )
+    }
+
+    static func == (lhs: HistoryDataSet, rhs: HistoryDataSet) -> Bool {
+        lhs.setId == rhs.setId
+            && lhs.icon == rhs.icon
+            && lhs.value == rhs.value
+            && lhs.color == rhs.color
+            && lhs.entries == rhs.entries
+            && lhs.active == rhs.active
     }
 }

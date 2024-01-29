@@ -92,7 +92,7 @@
     return NO;
 }
 
-- (BOOL) setChannelFlags:(int)flags {
+- (BOOL) setChannelFlags:(long long)flags {
     
     if ( self.flags != flags ) {
         self.flags = flags;

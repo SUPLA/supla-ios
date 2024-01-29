@@ -28,7 +28,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic) int32_t alticon;
 @property (nullable, nonatomic, copy) NSString *caption;
-@property (nonatomic) int32_t flags;
+@property (nonatomic) int64_t flags;
 @property (nonatomic) int32_t func;
 @property (nonatomic) int32_t location_id;
 @property (nonatomic) int32_t remote_id;

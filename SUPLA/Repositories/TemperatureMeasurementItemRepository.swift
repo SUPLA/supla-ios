@@ -18,7 +18,10 @@
 
 import RxSwift
 
-protocol TemperatureMeasurementItemRepository: RepositoryProtocol where T == SATemperatureMeasurementItem {
+protocol TemperatureMeasurementItemRepository:
+    BaseMeasurementRepository<SuplaCloudClient.TemperatureMeasurement, SATemperatureMeasurementItem> where
+    T == SATemperatureMeasurementItem
+{
     func deleteAll(for profile: AuthProfileItem) -> Observable<Void>
     func findMeasurements(remoteId: Int32, profile: AuthProfileItem, startDate: Date, endDate: Date) -> Observable<[SATemperatureMeasurementItem]>
     func findMinTimestamp(remoteId: Int32, profile: AuthProfileItem) -> Observable<TimeInterval?>
@@ -33,11 +36,7 @@ protocol TemperatureMeasurementItemRepository: RepositoryProtocol where T == SAT
 }
 
 final class TemperatureMeasurementItemRepositoryImpl: Repository<SATemperatureMeasurementItem>, TemperatureMeasurementItemRepository {
-    typealias Dto = SuplaCloudClient.TemperatureMeasurement
-    
-    static let allowedTimeDifference: Double = 1800
-    
-    @Singleton<SuplaCloudService> private var service
+    @Singleton<SuplaCloudService> private var cloudService
     
     func deleteAll(for profile: AuthProfileItem) -> Observable<Void> {
         deleteAll(SATemperatureMeasurementItem.fetchRequest().filtered(by: NSPredicate(format: "profile = %@", profile)))
@@ -85,10 +84,6 @@ final class TemperatureMeasurementItemRepositoryImpl: Repository<SATemperatureMe
         count(NSPredicate(format: "channel_id = %d AND profile = %@", remoteId, profile))
     }
     
-    func getMeasurements(remoteId: Int32, afterTimestamp: TimeInterval) -> Observable<[SuplaCloudClient.TemperatureMeasurement]> {
-        return service.getTemperatureMeasurements(remoteId: remoteId, afterTimestamp: afterTimestamp)
-    }
-    
     func storeMeasurements(
         measurements: [SuplaCloudClient.TemperatureMeasurement],
         timestamp: TimeInterval,
@@ -99,7 +94,7 @@ final class TemperatureMeasurementItemRepositoryImpl: Repository<SATemperatureMe
         
         var saveError: Error? = nil
         context.performAndWait {
-            measurements.forEach { measurement in
+            for measurement in measurements {
                 if (timestampToReturn.isLess(than: measurement.date_timestamp.timeIntervalSince1970)) {
                     timestampToReturn = measurement.date_timestamp.timeIntervalSince1970
                 }
@@ -122,5 +117,13 @@ final class TemperatureMeasurementItemRepositoryImpl: Repository<SATemperatureMe
         }
         
         return timestampToReturn
+    }
+    
+    func getMeasurements(remoteId: Int32, afterTimestamp: TimeInterval) -> Observable<[SuplaCloudClient.TemperatureMeasurement]> {
+        cloudService.getTemperatureMeasurements(remoteId: remoteId, afterTimestamp: afterTimestamp)
+    }
+    
+    func fromJson(data: Data) throws -> [SuplaCloudClient.TemperatureMeasurement] {
+        try SuplaCloudClient.TemperatureMeasurement.fromJson(data: data)
     }
 }

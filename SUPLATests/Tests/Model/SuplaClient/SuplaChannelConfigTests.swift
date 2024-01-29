@@ -29,7 +29,7 @@ class SuplaChannelConfigTests: XCTestCase {
         config.Func = SUPLA_CHANNELFNC_HUMIDITY
         
         // when
-        let result = SuplaChannelConfig.from(suplaConfig: config)
+        let result = SuplaChannelConfig.from(suplaConfig: config, crc32: 0)
         
         // then
         XCTAssertTrue(type(of: result) == SuplaChannelConfig.self)
@@ -42,9 +42,11 @@ class SuplaChannelConfigTests: XCTestCase {
         var config = getHvacConfig()
         config.ChannelId = 123
         config.Func = SUPLA_CHANNELFNC_HVAC_THERMOSTAT
+        config.ConfigType = UInt8(SUPLA_CONFIG_TYPE_DEFAULT)
+        config.ConfigSize = UInt16(MemoryLayout<TChannelConfig_HVAC>.size)
         
         // when
-        let result = SuplaChannelConfig.from(suplaConfig: config)
+        let result = SuplaChannelConfig.from(suplaConfig: config, crc32: 0)
         
         // then
         XCTAssertTrue(type(of: result) == SuplaChannelHvacConfig.self)
@@ -89,9 +91,10 @@ class SuplaChannelConfigTests: XCTestCase {
         config.ChannelId = 123
         config.Func = SUPLA_CHANNELFNC_HVAC_THERMOSTAT
         config.ConfigType = UInt8(SUPLA_CONFIG_TYPE_WEEKLY_SCHEDULE)
+        config.ConfigSize = UInt16(MemoryLayout<TChannelConfig_WeeklySchedule>.size)
         
         // when
-        let result = SuplaChannelConfig.from(suplaConfig: config)
+        let result = SuplaChannelConfig.from(suplaConfig: config, crc32: 0)
         
         // then
         XCTAssertTrue(type(of: result) == SuplaChannelWeeklyScheduleConfig.self)

@@ -26,7 +26,7 @@ final class SuplaWeeklyScheduleProgramTests: XCTestCase {
     }()
     
     override func setUp() {
-        DiContainer.shared.register(type: ValuesFormatter.self, component: valuesFormatter!)
+        DiContainer.shared.register(type: ValuesFormatter.self, valuesFormatter!)
     }
     
     override func tearDown() {

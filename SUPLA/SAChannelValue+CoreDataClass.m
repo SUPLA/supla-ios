@@ -206,7 +206,7 @@
     return result;
 }
 
-- (double) humidityValue {
+- (double)  humidityValue {
     
     if (self.value != nil && self.dataValue.length >= sizeof(int)*2) {
         int i[2];

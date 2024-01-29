@@ -48,11 +48,11 @@ final class ActivateProfileUseCaseTests: UseCaseTest<Bool> {
     override func setUp() {
         super.setUp()
         
-        DiContainer.shared.register(type: (any ProfileRepository).self, component: profileRepository!)
-        DiContainer.shared.register(type: RuntimeConfig.self, component: runtimeConfig!)
-        DiContainer.shared.register(type: SuplaCloudConfigHolder.self, component: cloudConfigHolder!)
-        DiContainer.shared.register(type: SuplaAppWrapper.self, component: suplaApp!)
-        DiContainer.shared.register(type: SuplaClientProvider.self, component: suplaClientProvider!)
+        DiContainer.shared.register(type: (any ProfileRepository).self, profileRepository!)
+        DiContainer.shared.register(type: RuntimeConfig.self, runtimeConfig!)
+        DiContainer.shared.register(type: SuplaCloudConfigHolder.self, cloudConfigHolder!)
+        DiContainer.shared.register(type: SuplaAppWrapper.self, suplaApp!)
+        DiContainer.shared.register(type: SuplaClientProvider.self, suplaClientProvider!)
     }
     
     override func tearDown() {

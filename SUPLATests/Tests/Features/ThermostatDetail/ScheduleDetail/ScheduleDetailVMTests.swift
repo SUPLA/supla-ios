@@ -46,13 +46,13 @@ final class ScheduleDetailVMTests: ViewModelTest<ScheduleDetailViewState, Schedu
     }()
     
     override func setUp() {
-        DiContainer.shared.register(type: ChannelConfigEventsManager.self, component: channelConfigEventsManager!)
-        DiContainer.shared.register(type: DeviceConfigEventsManager.self, component: deviceConfigEventsManager!)
-        DiContainer.shared.register(type: GetChannelConfigUseCase.self, component: getChannelConfigUseCase!)
-        DiContainer.shared.register(type: DelayedWeeklyScheduleConfigSubject.self, component: dealyedWeeklyScheduleConfigSubject!)
-        DiContainer.shared.register(type: DateProvider.self, component: dateProvider!)
-        DiContainer.shared.register(type: ValuesFormatter.self, component: ValuesFormatterMock())
-        DiContainer.shared.register(type: ReadChannelByRemoteIdUseCase.self, component: readChannelByRemoteIdUseCAse!)
+        DiContainer.shared.register(type: ChannelConfigEventsManager.self, channelConfigEventsManager!)
+        DiContainer.shared.register(type: DeviceConfigEventsManager.self, deviceConfigEventsManager!)
+        DiContainer.shared.register(type: GetChannelConfigUseCase.self, getChannelConfigUseCase!)
+        DiContainer.shared.register(type: DelayedWeeklyScheduleConfigSubject.self, dealyedWeeklyScheduleConfigSubject!)
+        DiContainer.shared.register(type: DateProvider.self, dateProvider!)
+        DiContainer.shared.register(type: ValuesFormatter.self, ValuesFormatterMock())
+        DiContainer.shared.register(type: ReadChannelByRemoteIdUseCase.self, readChannelByRemoteIdUseCAse!)
     }
     
     override func tearDown() {

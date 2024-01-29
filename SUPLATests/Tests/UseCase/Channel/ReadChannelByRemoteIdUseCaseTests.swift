@@ -34,8 +34,8 @@ final class ReadChannelByRemoteIdUseCaseTests: UseCaseTest<SAChannel> {
     }()
     
     override func setUp() {
-        DiContainer.shared.register(type: (any ChannelRepository).self, component: channelRepository!)
-        DiContainer.shared.register(type: (any ProfileRepository).self, component: profileRepository!)
+        DiContainer.shared.register(type: (any ChannelRepository).self, channelRepository!)
+        DiContainer.shared.register(type: (any ProfileRepository).self, profileRepository!)
     }
     
     override func tearDown() {

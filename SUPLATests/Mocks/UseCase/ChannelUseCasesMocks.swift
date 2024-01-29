@@ -101,7 +101,7 @@ final class LoadChannelMeasurementsDateRangeUseCaseMock: LoadChannelMeasurements
     }
 }
 
-final class DownloadTemperatureMeasurementsUseCaseMock: DownloadTemperatureMeasurementsUseCase {
+final class DownloadTemperatureMeasurementsUseCaseMock: DownloadTemperatureLogUseCase {
     var parameters: [Int32] = []
     var returns: Observable<Float> = Observable.empty()
     func invoke(remoteId: Int32) -> Observable<Float> {
@@ -110,11 +110,38 @@ final class DownloadTemperatureMeasurementsUseCaseMock: DownloadTemperatureMeasu
     }
 }
 
-final class DownloadTempHumidityMeasurementsUseCaseMock: DownloadTempHumidityMeasurementsUseCase {
+final class DownloadTempHumidityMeasurementsUseCaseMock: DownloadTempHumidityLogUseCase {
     var parameters: [Int32] = []
     var returns: Observable<Float> = Observable.empty()
     func invoke(remoteId: Int32) -> Observable<Float> {
         parameters.append(remoteId)
         return returns
+    }
+}
+
+final class GetChannelValueStringUseCaseMock: GetChannelValueStringUseCase {
+    var parameters: [(SAChannel, ValueType, Bool)] = []
+    var returns: String = ""
+    func invoke(_ channel: SAChannel, valueType: ValueType, withUnit: Bool) -> String {
+        parameters.append((channel, valueType, withUnit))
+        return returns
+    }
+}
+
+// MARK: - Channel Values Formatter Mocks -
+
+final class ChannelValueFormatterMock: ChannelValueFormatter {
+    var handleParameters: [Int] = []
+    var handleReturns: Bool = false
+    func handle(function: Int) -> Bool {
+        handleParameters.append(function)
+        return handleReturns
+    }
+    
+    var formatParameters: [(Any, Bool, Int)] = []
+    var formatReturns: String = ""
+    func format(_ value: Any, withUnit: Bool, precision: Int) -> String {
+        formatParameters.append((value, withUnit, precision))
+        return formatReturns
     }
 }

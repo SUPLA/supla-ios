@@ -194,7 +194,7 @@ final class ProvideDetailTypeUseCaseTests: XCTestCase {
         doTest(expectedResult: .switchDetail(pages: [.switchGeneral, .switchTimer])) {
             let channel = SAChannel(testContext: nil)
             channel.func = SUPLA_CHANNELFNC_LIGHTSWITCH
-            channel.flags = SUPLA_CHANNEL_FLAG_COUNTDOWN_TIMER_SUPPORTED
+            channel.flags = Int64(SUPLA_CHANNEL_FLAG_COUNTDOWN_TIMER_SUPPORTED)
             
             return channel
         }
@@ -204,7 +204,7 @@ final class ProvideDetailTypeUseCaseTests: XCTestCase {
         doTest(expectedResult: .switchDetail(pages: [.switchGeneral])) {
             let channel = SAChannel(testContext: nil)
             channel.func = SUPLA_CHANNELFNC_STAIRCASETIMER
-            channel.flags = SUPLA_CHANNEL_FLAG_COUNTDOWN_TIMER_SUPPORTED
+            channel.flags = Int64(SUPLA_CHANNEL_FLAG_COUNTDOWN_TIMER_SUPPORTED)
             
             return channel
         }
@@ -217,7 +217,7 @@ final class ProvideDetailTypeUseCaseTests: XCTestCase {
             
             let channel = SAChannel(testContext: nil)
             channel.func = SUPLA_CHANNELFNC_POWERSWITCH
-            channel.flags = SUPLA_CHANNEL_FLAG_COUNTDOWN_TIMER_SUPPORTED
+            channel.flags = Int64(SUPLA_CHANNEL_FLAG_COUNTDOWN_TIMER_SUPPORTED)
             channel.value = value
             
             return channel
