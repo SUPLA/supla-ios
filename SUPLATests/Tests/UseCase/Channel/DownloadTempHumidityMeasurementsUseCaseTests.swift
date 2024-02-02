@@ -35,16 +35,16 @@ final class DownloadTempHumidityMeasurementsUseCaseTests: UseCaseTest<Float> {
         TempHumidityMeasurementItemRepositoryMock()
     }()
     
-    private lazy var useCase: DownloadTempHumidityMeasurementsUseCase! = {
-        DownloadTempHumidityMeasurementsUseCaseImpl()
+    private lazy var useCase: DownloadTempHumidityLogUseCase! = {
+        DownloadTempHumidityLogUseCaseImpl(tempHumidityMeasurementItemRepository)
     }()
     
     override func setUp() {
         super.setUp()
         
-        DiContainer.shared.register(type: SuplaCloudService.self, component: suplaCloudService!)
-        DiContainer.shared.register(type: (any ProfileRepository).self, component: profileRepository!)
-        DiContainer.shared.register(type: (any TempHumidityMeasurementItemRepository).self, component: tempHumidityMeasurementItemRepository!)
+        DiContainer.shared.register(type: SuplaCloudService.self, suplaCloudService!)
+        DiContainer.shared.register(type: (any ProfileRepository).self, profileRepository!)
+        DiContainer.shared.register(type: (any TempHumidityMeasurementItemRepository).self, tempHumidityMeasurementItemRepository!)
     }
     
     override func tearDown() {
@@ -131,7 +131,7 @@ final class DownloadTempHumidityMeasurementsUseCaseTests: UseCaseTest<Float> {
             response: mockedHttpResponse(),
             data: mockedData()
         ))
-        suplaCloudService.temperatureAndHumidityMeasurementsReturns = [Observable.just([])]
+        tempHumidityMeasurementItemRepository.getMeasurementsReturns = [Observable.just([])]
         
         // when
         useCase.invoke(remoteId: remoteId).subscribe(observer).disposed(by: disposeBag)
@@ -157,7 +157,8 @@ final class DownloadTempHumidityMeasurementsUseCaseTests: UseCaseTest<Float> {
             response: mockedHttpResponse(count: 1),
             data: mockedData(measurements: [measurement])
         ))
-        suplaCloudService.temperatureAndHumidityMeasurementsReturns = [
+        
+        tempHumidityMeasurementItemRepository.getMeasurementsReturns = [
             Observable.just([measurement]),
             Observable.just([])
         ]
@@ -187,7 +188,7 @@ final class DownloadTempHumidityMeasurementsUseCaseTests: UseCaseTest<Float> {
             response: mockedHttpResponse(count: 1),
             data: mockedData(measurements: [measurement])
         ))
-        suplaCloudService.temperatureAndHumidityMeasurementsReturns = [
+        tempHumidityMeasurementItemRepository.getMeasurementsReturns = [
             Observable.just([])
         ]
         tempHumidityMeasurementItemRepository.findMinTimestampReturns = .just(measurementDate.timeIntervalSince1970)
@@ -200,7 +201,7 @@ final class DownloadTempHumidityMeasurementsUseCaseTests: UseCaseTest<Float> {
         assertEvents([
             .completed
         ])
-        XCTAssertTuples(suplaCloudService.temperatureAndHumidityMeasurementsParameters, [(remoteId, measurementDate.timeIntervalSince1970)])
+        XCTAssertTuples(tempHumidityMeasurementItemRepository.getMeasurementsParameters, [(remoteId, measurementDate.timeIntervalSince1970)])
     }
     
     func test_shouldSkipImportWhenDbAndCloudAreSimilar() {
@@ -246,7 +247,7 @@ final class DownloadTempHumidityMeasurementsUseCaseTests: UseCaseTest<Float> {
             response: mockedHttpResponse(count: 1),
             data: mockedData(measurements: [measurement])
         ))
-        suplaCloudService.temperatureAndHumidityMeasurementsReturns = [
+        tempHumidityMeasurementItemRepository.getMeasurementsReturns = [
             Observable.just([])
         ]
         let oldDate = Date.create(year: 2018)!.timeIntervalSince1970
@@ -260,7 +261,7 @@ final class DownloadTempHumidityMeasurementsUseCaseTests: UseCaseTest<Float> {
         assertEvents([
             .completed
         ])
-        XCTAssertTuples(suplaCloudService.temperatureAndHumidityMeasurementsParameters, [(remoteId, oldDate)])
+        XCTAssertTuples(tempHumidityMeasurementItemRepository.getMeasurementsParameters, [(remoteId, oldDate)])
         XCTAssertEqual(tempHumidityMeasurementItemRepository.deleteAllCounter, 1)
     }
     

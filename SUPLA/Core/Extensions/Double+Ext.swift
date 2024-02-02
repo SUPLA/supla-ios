@@ -26,4 +26,21 @@ extension Double {
     func plus(_ value: Double) -> Double {
         return self + value
     }
+    
+    func times(_ value: Double) -> Double {
+        return self * value
+    }
+    
+    func also(_ transformation: (Double) -> Double) -> Double {
+        return transformation(self)
+    }
+}
+
+extension Double? {
+    func also(_ transformation: (Double) -> Double) -> Double? {
+        if let value = self {
+            return transformation(value)
+        }
+        return nil
+    }
 }

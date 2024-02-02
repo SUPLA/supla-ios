@@ -327,6 +327,8 @@
 /* General - Channels */
 "channel_caption_hotelcard" = "Hotelkartensensor";
 "channel_caption_alarm_armament" = "Alarmsensor";
+"channel_caption_general_purpose_measurment" = "Messungskanal";
+"channel_caption_general_purpose_meter" = "Zählerkanal";
 
 /* Standard Detail */
 "standard_detail_general_tab" = "Allgemein";
@@ -399,7 +401,7 @@
 "thermostat_detail_box_info" = "Tippen, um das aktivierten Program zu setzen. Long halten, um die Viertelstunde anzupassen.";
 "thermostat_detail_arrow_info" = "Die dunkle Ecke zeigt aktuelles Tag und Zeit.";
 
-/* Thermometer Chart */
+/* Combined Chart */
 "history_range_label" = "Bereich";
 "history_aggregation_label" = "Anhäufung";
 "history_range_last_day" = "Letzte 24 Stunden";
@@ -417,3 +419,4 @@
 "history_no_data_selected" = "Keine Daten ausgewählt.";
 "history_no_data_available" = "Kein Daten verfügbar";
 "history_no_data_in_selected_period" = "Keine Daten für das Diagramm in ausgewälte Zeitraum.";
+"history_disabled" = "Der Verlauf ist für diesen Kanal deaktiviert.";

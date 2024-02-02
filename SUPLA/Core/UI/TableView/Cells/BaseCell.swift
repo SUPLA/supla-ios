@@ -321,6 +321,7 @@ class BaseCell<T>: MGSwipeTableCell {
             containerView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: scale(Dimens.ListItem.verticalPadding)),
             containerView.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
             containerView.bottomAnchor.constraint(equalTo: captionView.topAnchor),
+            containerView.widthAnchor.constraint(lessThanOrEqualTo: contentView.widthAnchor, multiplier: 0.6),
             
             infoView.widthAnchor.constraint(equalToConstant: Dimens.iconSizeList),
             infoView.heightAnchor.constraint(equalToConstant: Dimens.iconSizeList),

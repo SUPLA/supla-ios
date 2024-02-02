@@ -64,4 +64,28 @@ final class TemperatureMeasurementItemRepositoryMock: BaseRepositoryMock<SATempe
         storeMeasurementsParameters.append((measurements, timestamp, profile, remoteId))
         return try storeMeasurementsReturns()
     }
+    
+    var getMeasurementsParameters: [(Int32, TimeInterval)] = []
+    var getMeasurementsReturns: [Observable<[SuplaCloudClient.TemperatureMeasurement]>] = []
+    private var getMeasurementsCurrent = 0
+    func getMeasurements(remoteId: Int32, afterTimestamp: TimeInterval) -> Observable<[SuplaCloudClient.TemperatureMeasurement]> {
+        getMeasurementsParameters.append((remoteId, afterTimestamp))
+        let id = getMeasurementsCurrent
+        getMeasurementsCurrent += 1
+        if (id < getMeasurementsReturns.count) {
+            return getMeasurementsReturns[id]
+        } else {
+            return .empty()
+        }
+    }
+    
+    var fromJsonParameters: [Data] = []
+    var fromJsonReturns: [SuplaCloudClient.TemperatureMeasurement]? = nil
+    func fromJson(data: Data) throws -> [SuplaCloudClient.TemperatureMeasurement] {
+        fromJsonParameters.append(data)
+        if let fromJsonReturns = fromJsonReturns {
+            return fromJsonReturns
+        }
+        return try SuplaCloudClient.TemperatureMeasurement.fromJson(data: data)
+    }
 }

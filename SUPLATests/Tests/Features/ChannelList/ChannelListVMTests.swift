@@ -46,12 +46,12 @@ class ChannelListVMTests: ViewModelTest<ChannelListViewState, ChannelListViewEve
     }()
     
     override func setUp() {
-        DiContainer.shared.register(type: CreateProfileChannelsListUseCase.self, component: createProfileChannelsListUseCase!)
-        DiContainer.shared.register(type: SwapChannelPositionsUseCase.self, component: swapChannelPositionsUseCase!)
-        DiContainer.shared.register(type: ProvideDetailTypeUseCase.self, component: provideDetailTypeUseCase!)
-        DiContainer.shared.register(type: ToggleLocationUseCase.self, component: toggleLocationUseCase!)
-        DiContainer.shared.register(type: UpdateEventsManager.self, component: updateEventsManager!)
-        DiContainer.shared.register(type: ExecuteSimpleActionUseCase.self, component: executeSimpleActionUseCase!)
+        DiContainer.shared.register(type: CreateProfileChannelsListUseCase.self, createProfileChannelsListUseCase!)
+        DiContainer.shared.register(type: SwapChannelPositionsUseCase.self, swapChannelPositionsUseCase!)
+        DiContainer.shared.register(type: ProvideDetailTypeUseCase.self, provideDetailTypeUseCase!)
+        DiContainer.shared.register(type: ToggleLocationUseCase.self, toggleLocationUseCase!)
+        DiContainer.shared.register(type: UpdateEventsManager.self, updateEventsManager!)
+        DiContainer.shared.register(type: ExecuteSimpleActionUseCase.self, executeSimpleActionUseCase!)
     }
     
     override func tearDown() {
@@ -311,6 +311,31 @@ class ChannelListVMTests: ViewModelTest<ChannelListViewState, ChannelListViewEve
         
         XCTAssertEqual(eventObserver.events, [
             .next(0, .navigateToThermometerDetail(item: ItemBundle(remoteId: remoteId, deviceId: deviceId), pages: [.thermometerHistory]))
+        ])
+    }
+    
+    func test_shouldOpenGpmDetail() {
+        // given
+        let remoteId: Int32 = 322
+        let deviceId: Int32 = 433
+        let channel = SAChannel(testContext: nil)
+        channel.value = SAChannelValue(testContext: nil)
+        channel.value?.online = true
+        channel.remote_id = remoteId
+        channel.device_id = deviceId
+        
+        provideDetailTypeUseCase.detailType = .gpmDetail(pages: [.gpmHistory])
+        
+        // when
+        observe(viewModel)
+        viewModel.onClicked(onItem: channel)
+        
+        // then
+        XCTAssertEqual(stateObserver.events.count, 1)
+        XCTAssertEqual(eventObserver.events.count, 1)
+        
+        XCTAssertEqual(eventObserver.events, [
+            .next(0, .navigateToGpmDetail(item: ItemBundle(remoteId: remoteId, deviceId: deviceId), pages: [.gpmHistory]))
         ])
     }
     

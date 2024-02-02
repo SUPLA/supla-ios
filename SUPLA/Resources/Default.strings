@@ -69,6 +69,8 @@
 /* General - Channels */
 "channel_caption_hotelcard" = "Hotel card sensor";
 "channel_caption_alarm_armament" = "Alarm armament sensor";
+"channel_caption_general_purpose_measurment" = "Measurement channel";
+"channel_caption_general_purpose_meter" = "Meter channel";
 
 /* Standard Detail */
 "standard_detail_general_tab" = "General";
@@ -147,7 +149,7 @@
 "thermostat_detail_box_info" = "Tap to set selected program. Press long to set quarters.";
 "thermostat_detail_arrow_info" = "Black corner indicates current day and hour.";
 
-/* Thermometer Chart */
+/* Combined Chart */
 "history_range_label" = "Range";
 "history_aggregation_label" = "Aggregation";
 "history_range_last_day" = "Last 24 hours";
@@ -165,6 +167,9 @@
 "history_no_data_selected" = "No data set selected.";
 "history_no_data_available" = "There are no measurements available yet";
 "history_no_data_in_selected_period" = "No chart data available in selected time period.";
+"history_disabled" = "History is disabled for this channel.";
+"chart_marker_opening" = "Open";
+"chart_marker_closing" = "Close";
 "Minutes" = "Minuty";
 "Hours" = "Godziny";
 "Days" = "Dni";

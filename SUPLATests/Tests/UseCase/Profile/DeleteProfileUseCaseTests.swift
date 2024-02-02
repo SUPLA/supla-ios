@@ -56,13 +56,13 @@ final class DeleteProfileUseCaseTests: UseCaseTest<DeleteProfileResult> {
     override func setUp() {
         super.setUp()
         
-        DiContainer.shared.register(type: (any ProfileRepository).self, component: profileRepository!)
-        DiContainer.shared.register(type: SingleCall.self, component: singleCall!)
-        DiContainer.shared.register(type: DeleteAllProfileDataUseCase.self, component: deleteAllProfileDataUseCase!)
-        DiContainer.shared.register(type: ActivateProfileUseCase.self, component: activateProfileUseCase!)
-        DiContainer.shared.register(type: SuplaAppWrapper.self, component: suplaApp!)
-        DiContainer.shared.register(type: RuntimeConfig.self, component: runtimeConfig!)
-        DiContainer.shared.register(type: GlobalSettings.self, component: settings!)
+        DiContainer.shared.register(type: (any ProfileRepository).self, profileRepository!)
+        DiContainer.shared.register(type: SingleCall.self, singleCall!)
+        DiContainer.shared.register(type: DeleteAllProfileDataUseCase.self, deleteAllProfileDataUseCase!)
+        DiContainer.shared.register(type: ActivateProfileUseCase.self, activateProfileUseCase!)
+        DiContainer.shared.register(type: SuplaAppWrapper.self, suplaApp!)
+        DiContainer.shared.register(type: RuntimeConfig.self, runtimeConfig!)
+        DiContainer.shared.register(type: GlobalSettings.self, settings!)
     }
     
     override func tearDown() {

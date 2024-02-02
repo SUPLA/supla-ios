@@ -46,7 +46,19 @@ final class GetChannelConfigUseCaseImpl: GetChannelConfigUseCase {
     }
 }
 
-enum ChannelConfigType: UInt8 {
+enum ChannelConfigType: UInt8, CaseIterable {
     case defaultConfig = 0
     case weeklyScheduleConfig = 2
+    case generalPurposeMeasurement = 3
+    case generalPurposeMeter = 4
+    
+    static func from(value: UInt8) -> ChannelConfigType {
+        for configType in ChannelConfigType.allCases {
+            if (configType.rawValue == value) {
+                return configType
+            }
+        }
+        
+        fatalError("Invalid ChannelConfigType value `\(value)`")
+    }
 }

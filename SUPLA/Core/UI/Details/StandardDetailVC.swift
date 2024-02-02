@@ -80,6 +80,9 @@ class StandardDetailVC<S : ViewState, E : ViewEvent, VM : StandardDetailVM<S, E>
                 viewControllers.append(thermometerHistoryDetail())
             case .thermostatTimer:
                 viewControllers.append(thermostatTimerDetail())
+            case .gpmHistory:
+                viewControllers.append(gpmHistoryDetail()
+                )
             }
         }
         
@@ -179,6 +182,18 @@ class StandardDetailVC<S : ViewState, E : ViewEvent, VM : StandardDetailVM<S, E>
             title: Strings.StandardDetail.tabTimer,
             image: .iconTimer,
             tag: DetailTabTag.Timer.rawValue
+        )
+        
+        return vc
+    }
+    
+    private func gpmHistoryDetail() -> GpmHistoryDetailVC {
+        let vc = GpmHistoryDetailVC(remoteId: item.remoteId)
+        vc.navigationCoordinator = navigationCoordinator
+        vc.tabBarItem = UITabBarItem(
+            title: Strings.StandardDetail.tabHistory,
+            image: .iconHistory,
+            tag: DetailTabTag.History.rawValue
         )
         
         return vc

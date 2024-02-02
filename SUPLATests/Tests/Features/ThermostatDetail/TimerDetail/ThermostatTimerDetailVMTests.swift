@@ -47,11 +47,11 @@ final class ThermostatTimerDetailVMTests: ViewModelTest<ThermostatTimerDetailVie
     override func setUp() {
         super.setUp()
         
-        DiContainer.shared.register(type: ReadChannelByRemoteIdUseCase.self, component: readChannelByRemoteIdUseCase!)
-        DiContainer.shared.register(type: ChannelConfigEventsManager.self, component: channelConfigEventManager!)
-        DiContainer.shared.register(type: GetChannelConfigUseCase.self, component: getChannelConfigUseCase!)
-        DiContainer.shared.register(type: ExecuteThermostatActionUseCase.self, component: executeThermostatActionUseCase!)
-        DiContainer.shared.register(type: DateProvider.self, component: dateProvider!)
+        DiContainer.shared.register(type: ReadChannelByRemoteIdUseCase.self, readChannelByRemoteIdUseCase!)
+        DiContainer.shared.register(type: ChannelConfigEventsManager.self, channelConfigEventManager!)
+        DiContainer.shared.register(type: GetChannelConfigUseCase.self, getChannelConfigUseCase!)
+        DiContainer.shared.register(type: ExecuteThermostatActionUseCase.self, executeThermostatActionUseCase!)
+        DiContainer.shared.register(type: DateProvider.self, dateProvider!)
     }
     
     override func tearDown() {

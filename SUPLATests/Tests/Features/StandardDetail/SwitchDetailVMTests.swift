@@ -31,7 +31,7 @@ final class SwitchDetailVMTests: ViewModelTest<SwitchDetailViewState, SwitchDeta
     }()
     
     override func setUp() {
-        DiContainer.shared.register(type: ReadChannelByRemoteIdUseCase.self, component: readChannelByRemoteIdUseCase!)
+        DiContainer.shared.register(type: ReadChannelByRemoteIdUseCase.self, readChannelByRemoteIdUseCase!)
     }
     
     override func tearDown() {

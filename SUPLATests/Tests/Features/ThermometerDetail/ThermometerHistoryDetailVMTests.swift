@@ -55,19 +55,23 @@ final class ThermometerHistoryDetailVMTests: ViewModelTest<BaseHistoryDetailView
         LoadChannelMeasurementsDateRangeUseCaseMock()
     }()
     
+    private lazy var channelValueFormatter: ChannelValueFormatterMock! = {
+        ChannelValueFormatterMock()
+    }()
+    
     private lazy var viewModel: ThermometerHistoryDetailVM! = {
         ThermometerHistoryDetailVM()
     }()
     
     override func setUp() {
-        DiContainer.shared.register(type: DateProvider.self, component: dateProvider!)
-        DiContainer.shared.register(type: UserStateHolder.self, component: userStateHolder!)
-        DiContainer.shared.register(type: (any ProfileRepository).self, component: profileRepository!)
-        DiContainer.shared.register(type: DownloadEventsManager.self, component: downloadEventsManager!)
-        DiContainer.shared.register(type: ReadChannelByRemoteIdUseCase.self, component: readChannelByRemoteIdUseCase!)
-        DiContainer.shared.register(type: DownloadChannelMeasurementsUseCase.self, component: downloadChannelMeasurementsUseCase!)
-        DiContainer.shared.register(type: LoadChannelMeasurementsUseCase.self, component: loadChannelMeasurementsUseCase!)
-        DiContainer.shared.register(type: LoadChannelMeasurementsDateRangeUseCase.self, component: loadChannelMeasurementsDateRangeUseCase!)
+        DiContainer.shared.register(type: DateProvider.self, dateProvider!)
+        DiContainer.shared.register(type: UserStateHolder.self, userStateHolder!)
+        DiContainer.shared.register(type: (any ProfileRepository).self, profileRepository!)
+        DiContainer.shared.register(type: DownloadEventsManager.self, downloadEventsManager!)
+        DiContainer.shared.register(type: ReadChannelByRemoteIdUseCase.self, readChannelByRemoteIdUseCase!)
+        DiContainer.shared.register(type: DownloadChannelMeasurementsUseCase.self, downloadChannelMeasurementsUseCase!)
+        DiContainer.shared.register(type: LoadChannelMeasurementsUseCase.self, loadChannelMeasurementsUseCase!)
+        DiContainer.shared.register(type: LoadChannelMeasurementsDateRangeUseCase.self, loadChannelMeasurementsDateRangeUseCase!)
     }
     
     override func tearDown() {
@@ -118,6 +122,7 @@ final class ThermometerHistoryDetailVMTests: ViewModelTest<BaseHistoryDetailView
         let state1 = BaseHistoryDetailViewState()
         let state2 = state1.changing(path: \.remoteId, to: remoteId)
         let state3 = state2.changing(path: \.profileId, to: "")
+            .changing(path: \.channelFunction, to: 40)
         let state4 = state3.changing(path: \.ranges, to: SelectableList(selected: .lastWeek, items: ChartRange.allCases))
             .changing(path: \.range, to: DaysRange(start: currentDate.shift(days: -7), end: currentDate))
             .changing(path: \.aggregations, to: SelectableList(selected: .minutes, items: [.minutes, .hours, .days]))
@@ -161,8 +166,8 @@ final class ThermometerHistoryDetailVMTests: ViewModelTest<BaseHistoryDetailView
     
     func test_shouldChangeActiveSet() {
         let setId = HistoryDataSet.Id(remoteId: 123, type: .temperature)
-        let set = HistoryDataSet(setId: setId, icon: nil, value: "", color: .red, entries: [], active: true)
-        let state = mockState(remoteId: 123, sets: [set])
+        let set = HistoryDataSet(setId: setId, icon: nil, value: "", valueFormatter: channelValueFormatter, color: .red, entries: [], active: true)
+        let state = mockState(remoteId: 123, chartData: LineChartData(nil, nil, nil, [set]))
         viewModel.updateView { _ in state }
         
         // when
@@ -172,7 +177,7 @@ final class ThermometerHistoryDetailVMTests: ViewModelTest<BaseHistoryDetailView
         // then
         assertStates(expected: [
             state,
-            state.changing(path: \.sets, to: state.sets.map { $0.changing(path: \.active, to: false) })
+            state.changing(path: \.chartData, to: state.chartData.newInstance(sets: state.chartData.sets.map { $0.changing(path: \.active, to: false) }))
         ])
         XCTAssertEqual(userStateHolder.setTemperatureChartStateParameters.count, 1)
     }
@@ -180,12 +185,12 @@ final class ThermometerHistoryDetailVMTests: ViewModelTest<BaseHistoryDetailView
     func mockState(
         remoteId: Int32,
         currentDate: Date = Date(),
-        sets: [HistoryDataSet] = []
+        chartData: SUPLA.ChartData = EmptyChartData()
     ) -> BaseHistoryDetailViewState {
         BaseHistoryDetailViewState(
             remoteId: remoteId,
             profileId: "",
-            sets: sets,
+            chartData: chartData,
             range: DaysRange(start: currentDate.shift(days: -7), end: currentDate),
             ranges: SelectableList(selected: .lastWeek, items: ChartRange.allCases),
             aggregations: SelectableList(selected: .minutes, items: [.minutes, .hours, .days]),

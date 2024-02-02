@@ -45,10 +45,10 @@ final class LoadChannelWithChildrenMeasurementsDateRangeUseCaseTests: UseCaseTes
     override func setUp() {
         super.setUp()
         
-        DiContainer.shared.register(type: ReadChannelWithChildrenUseCase.self, component: readChannelWithChildrenUseCase!)
-        DiContainer.shared.register(type: (any TemperatureMeasurementItemRepository).self, component: temperatureMeasurementItemRepository!)
-        DiContainer.shared.register(type: (any TempHumidityMeasurementItemRepository).self, component: tempHumidityMeasurementItemRepository!)
-        DiContainer.shared.register(type: (any ProfileRepository).self, component: profileRepository!)
+        DiContainer.shared.register(type: ReadChannelWithChildrenUseCase.self, readChannelWithChildrenUseCase!)
+        DiContainer.shared.register(type: (any TemperatureMeasurementItemRepository).self, temperatureMeasurementItemRepository!)
+        DiContainer.shared.register(type: (any TempHumidityMeasurementItemRepository).self, tempHumidityMeasurementItemRepository!)
+        DiContainer.shared.register(type: (any ProfileRepository).self, profileRepository!)
     }
     
     override func tearDown() {

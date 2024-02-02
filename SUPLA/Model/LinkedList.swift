@@ -83,6 +83,20 @@ public class LinkedList<Value> {
         return sum / count
     }
     
+    func sum(extractor: (Value) -> Double?) -> Double {
+        if (isEmpty) { return 0 }
+        
+        var sum: Double = 0
+        
+        var item = head
+        while (item != nil) {
+            sum += extractor(item!.value)!
+            item = item!.next
+        }
+        
+        return sum
+    }
+    
     func min(extractor: (Value) -> Double?) -> Double? {
         if (isEmpty) { return nil }
         

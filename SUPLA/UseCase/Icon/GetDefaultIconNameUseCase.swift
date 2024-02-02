@@ -105,7 +105,9 @@ final class GetDefaultIconNameUseCaseImpl: GetDefaultIconNameUseCase {
         DigiglassVerticalIconNameProducer(),
         ThermostatIconNameProducer(),
         StaticIconNameProducer(function: SUPLA_CHANNELFNC_HOTELCARDSENSOR, name: "fnc_hotel_card", withSuffix: true),
-        StaticIconNameProducer(function: SUPLA_CHANNELFNC_ALARMARMAMENTSENSOR, name: "fnc_alarm_armament", withSuffix: true)
+        StaticIconNameProducer(function: SUPLA_CHANNELFNC_ALARMARMAMENTSENSOR, name: "fnc_alarm_armament", withSuffix: true),
+        StaticIconNameProducer(function: SUPLA_CHANNELFNC_GENERAL_PURPOSE_MEASUREMENT, name: "fnc_general_purpose_channel", withSuffix: true),
+        StaticIconNameProducer(function: SUPLA_CHANNELFNC_GENERAL_PURPOSE_METER, name: "fnc_general_purpose_channel", withSuffix: true)
     ]
 }
 

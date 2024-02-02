@@ -34,8 +34,8 @@ class AppSettingsVMTests: ViewModelTest<AppSettingsViewState, AppSettingsViewEve
     }()
     
     override func setUp() {
-        DiContainer.shared.register(type: GlobalSettings.self, component: settings!)
-        DiContainer.shared.register(type: UserNotificationCenter.self, component: notificationCenter!)
+        DiContainer.shared.register(type: GlobalSettings.self, settings!)
+        DiContainer.shared.register(type: UserNotificationCenter.self, notificationCenter!)
     }
     
     override func tearDown() {

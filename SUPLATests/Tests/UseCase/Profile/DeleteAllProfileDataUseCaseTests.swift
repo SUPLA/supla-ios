@@ -64,18 +64,18 @@ final class DeleteAllProfileDataUseCaseTests: UseCaseTest<Void> {
     }()
     
     override func setUp() {
-        DiContainer.shared.register(type: (any ChannelExtendedValueRepository).self, component: channelExtendedValueRepository!)
-        DiContainer.shared.register(type: (any ChannelValueRepository).self, component: channelValueRepository!)
-        DiContainer.shared.register(type: (any ChannelRepository).self, component: channelRepository!)
-        DiContainer.shared.register(type: (any GroupRepository).self, component: groupRepository!)
-        DiContainer.shared.register(type: (any ElectricityMeasurementItemRepository).self, component: electricityMeasurementItemRepository!)
-        DiContainer.shared.register(type: (any ImpulseCounterMeasurementItemRepository).self, component: impulseCounterMeasurementItemRepository!)
-        DiContainer.shared.register(type: (any LocationRepository).self, component: locationRepository!)
-        DiContainer.shared.register(type: (any SceneRepository).self, component: sceneRepository!)
-        DiContainer.shared.register(type: (any TemperatureMeasurementItemRepository).self, component: temperatureMeasurementItemRepository!)
-        DiContainer.shared.register(type: (any TempHumidityMeasurementItemRepository).self, component: tempHumidityMeasurementItemRepository!)
-        DiContainer.shared.register(type: (any UserIconRepository).self, component: userIconRepository!)
-        DiContainer.shared.register(type: (any ThermostatMeasurementItemRepository).self, component: thermostatMeasurementItemRepository!)
+        DiContainer.shared.register(type: (any ChannelExtendedValueRepository).self, channelExtendedValueRepository!)
+        DiContainer.shared.register(type: (any ChannelValueRepository).self, channelValueRepository!)
+        DiContainer.shared.register(type: (any ChannelRepository).self, channelRepository!)
+        DiContainer.shared.register(type: (any GroupRepository).self, groupRepository!)
+        DiContainer.shared.register(type: (any ElectricityMeasurementItemRepository).self, electricityMeasurementItemRepository!)
+        DiContainer.shared.register(type: (any ImpulseCounterMeasurementItemRepository).self, impulseCounterMeasurementItemRepository!)
+        DiContainer.shared.register(type: (any LocationRepository).self, locationRepository!)
+        DiContainer.shared.register(type: (any SceneRepository).self, sceneRepository!)
+        DiContainer.shared.register(type: (any TemperatureMeasurementItemRepository).self, temperatureMeasurementItemRepository!)
+        DiContainer.shared.register(type: (any TempHumidityMeasurementItemRepository).self, tempHumidityMeasurementItemRepository!)
+        DiContainer.shared.register(type: (any UserIconRepository).self, userIconRepository!)
+        DiContainer.shared.register(type: (any ThermostatMeasurementItemRepository).self, thermostatMeasurementItemRepository!)
     }
     
     override func tearDown() {

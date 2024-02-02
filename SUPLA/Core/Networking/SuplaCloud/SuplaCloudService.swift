@@ -32,6 +32,16 @@ protocol SuplaCloudService {
         remoteId: Int32,
         afterTimestamp: TimeInterval
     ) -> Observable<[SuplaCloudClient.TemperatureAndHumidityMeasurement]>
+    
+    func getGeneralPurposeMeasurement(
+        remoteId: Int32,
+        afterTimestamp: TimeInterval
+    ) -> Observable<[SuplaCloudClient.GeneralPurposeMeasurement]>
+    
+    func getGeneralPurposeMeter(
+        remoteId: Int32,
+        afterTimestamp: TimeInterval
+    ) -> Observable<[SuplaCloudClient.GeneralPurposeMeter]>
 }
 
 final class SuplaCloudServiceImpl: SuplaCloudService {
@@ -104,6 +114,62 @@ final class SuplaCloudServiceImpl: SuplaCloudService {
                 do {
                     let measurements = try SuplaCloudClient.TemperatureAndHumidityMeasurement
                         .fromJson(data: data)
+                    return Observable.just(measurements)
+                } catch {
+                    return Observable.error(error)
+                }
+            }
+    }
+    
+    func getGeneralPurposeMeasurement(
+        remoteId: Int32,
+        afterTimestamp: TimeInterval
+    ) -> Observable<[SuplaCloudClient.GeneralPurposeMeasurement]> {
+        guard let host = configHolder.url else {
+            return Observable.error(SuplaCloudError.urlIsNull)
+        }
+        
+        let urlPath = Constants.urlMeasurements
+            .replacingOccurrences(of: "{remoteId}", with: "\(remoteId)")
+        let urlString = "\(host)\(urlPath)\(Int(afterTimestamp))"
+        
+        return requestHelper.getOAuthRequest(urlString: urlString)
+            .flatMap { (response, data) in
+                if (response.statusCode != 200) {
+                    return Observable<[SuplaCloudClient.GeneralPurposeMeasurement]>
+                        .error(SuplaCloudError.statusCodeNoSuccess(code: response.statusCode))
+                }
+                
+                do {
+                    let measurements = try SuplaCloudClient.GeneralPurposeMeasurement.fromJson(data: data)
+                    return Observable.just(measurements)
+                } catch {
+                    return Observable.error(error)
+                }
+            }
+    }
+    
+    func getGeneralPurposeMeter(
+        remoteId: Int32,
+        afterTimestamp: TimeInterval
+    ) -> Observable<[SuplaCloudClient.GeneralPurposeMeter]> {
+        guard let host = configHolder.url else {
+            return Observable.error(SuplaCloudError.urlIsNull)
+        }
+        
+        let urlPath = Constants.urlMeasurements
+            .replacingOccurrences(of: "{remoteId}", with: "\(remoteId)")
+        let urlString = "\(host)\(urlPath)\(Int(afterTimestamp))"
+        
+        return requestHelper.getOAuthRequest(urlString: urlString)
+            .flatMap { (response, data) in
+                if (response.statusCode != 200) {
+                    return Observable<[SuplaCloudClient.GeneralPurposeMeter]>
+                        .error(SuplaCloudError.statusCodeNoSuccess(code: response.statusCode))
+                }
+                
+                do {
+                    let measurements = try SuplaCloudClient.GeneralPurposeMeter.fromJson(data: data)
                     return Observable.just(measurements)
                 } catch {
                     return Observable.error(error)

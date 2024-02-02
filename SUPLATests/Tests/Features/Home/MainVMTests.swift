@@ -37,9 +37,9 @@ class MainVMTests: ViewModelTest<MainViewState, MainViewEvent> {
     }()
     
     override func setUp() {
-        DiContainer.shared.register(type: (any ProfileRepository).self, component: profileRepository!)
-        DiContainer.shared.register(type: (any ChannelRepository).self, component: channelRepository!)
-        DiContainer.shared.register(type: UpdateEventsManager.self, component: updateEventsManager!)
+        DiContainer.shared.register(type: (any ProfileRepository).self, profileRepository!)
+        DiContainer.shared.register(type: (any ChannelRepository).self, channelRepository!)
+        DiContainer.shared.register(type: UpdateEventsManager.self, updateEventsManager!)
     }
     
     override func tearDown() {

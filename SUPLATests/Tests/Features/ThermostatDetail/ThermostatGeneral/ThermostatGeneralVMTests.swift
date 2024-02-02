@@ -53,16 +53,16 @@ final class ThermostatGeneralVMTests: ViewModelTest<ThermostatGeneralViewState, 
     
     
     override func setUp() {
-        DiContainer.shared.register(type: ReadChannelWithChildrenUseCase.self, component: readChannelWithChildrenUseCase!)
-        DiContainer.shared.register(type: CreateTemperaturesListUseCase.self, component: createTemperaturesListUseCase!)
-        DiContainer.shared.register(type: ChannelConfigEventsManager.self, component: channelConfigEventsManager!)
-        DiContainer.shared.register(type: DeviceConfigEventsManager.self, component: deviceConfigEventsManager!)
-        DiContainer.shared.register(type: GetChannelConfigUseCase.self, component: getChannelConfigUseCase!)
-        DiContainer.shared.register(type: DelayedThermostatActionSubject.self, component: delayedThermostatActionSubject!)
-        DiContainer.shared.register(type: DateProvider.self, component: dateProvider!)
-        DiContainer.shared.register(type: ValuesFormatter.self, component: ValuesFormatterMock())
+        DiContainer.shared.register(type: ReadChannelWithChildrenUseCase.self, readChannelWithChildrenUseCase!)
+        DiContainer.shared.register(type: CreateTemperaturesListUseCase.self, createTemperaturesListUseCase!)
+        DiContainer.shared.register(type: ChannelConfigEventsManager.self, channelConfigEventsManager!)
+        DiContainer.shared.register(type: DeviceConfigEventsManager.self, deviceConfigEventsManager!)
+        DiContainer.shared.register(type: GetChannelConfigUseCase.self, getChannelConfigUseCase!)
+        DiContainer.shared.register(type: DelayedThermostatActionSubject.self, delayedThermostatActionSubject!)
+        DiContainer.shared.register(type: DateProvider.self, dateProvider!)
+        DiContainer.shared.register(type: ValuesFormatter.self, ValuesFormatterMock())
         DiContainer.shared.register(type: LoadingTimeoutManager.self, producer: { self.loadingTimeoutManager! })
-        DiContainer.shared.register(type: GetChannelBaseIconUseCase.self, component: GetChannelBaseIconUseCaseMock())
+        DiContainer.shared.register(type: GetChannelBaseIconUseCase.self, GetChannelBaseIconUseCaseMock())
     }
     
     override func tearDown() {

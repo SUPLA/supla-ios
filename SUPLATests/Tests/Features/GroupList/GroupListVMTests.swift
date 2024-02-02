@@ -43,11 +43,11 @@ final class GroupListVMTests: ViewModelTest<GroupListViewState, GroupListViewEve
     }()
     
     override func setUp() {
-        DiContainer.shared.register(type: CreateProfileGroupsListUseCase.self, component: createProfileGroupsListUseCase!)
-        DiContainer.shared.register(type: SwapGroupPositionsUseCase.self, component: swapGroupPositionsUseCase!)
-        DiContainer.shared.register(type: ProvideDetailTypeUseCase.self, component: provideDetailTypeUseCase!)
-        DiContainer.shared.register(type: ToggleLocationUseCase.self, component: toggleLocationUseCase!)
-        DiContainer.shared.register(type: UpdateEventsManager.self, component: updateEventsManager!)
+        DiContainer.shared.register(type: CreateProfileGroupsListUseCase.self, createProfileGroupsListUseCase!)
+        DiContainer.shared.register(type: SwapGroupPositionsUseCase.self, swapGroupPositionsUseCase!)
+        DiContainer.shared.register(type: ProvideDetailTypeUseCase.self, provideDetailTypeUseCase!)
+        DiContainer.shared.register(type: ToggleLocationUseCase.self, toggleLocationUseCase!)
+        DiContainer.shared.register(type: UpdateEventsManager.self, updateEventsManager!)
     }
     
     override func tearDown() {

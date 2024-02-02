@@ -35,16 +35,16 @@ final class DownloadTemperatureMeasurementsUseCaseTests: UseCaseTest<Float> {
         TemperatureMeasurementItemRepositoryMock()
     }()
     
-    private lazy var useCase: DownloadTemperatureMeasurementsUseCase! = {
-        DownloadTemperatureMeasurementsUseCaseImpl()
+    private lazy var useCase: DownloadTemperatureLogUseCase! = {
+        DownloadTemperatureLogUseCaseImpl(temperatureMeasurementItemRepository)
     }()
     
     override func setUp() {
         super.setUp()
         
-        DiContainer.shared.register(type: SuplaCloudService.self, component: suplaCloudService!)
-        DiContainer.shared.register(type: (any ProfileRepository).self, component: profileRepository!)
-        DiContainer.shared.register(type: (any TemperatureMeasurementItemRepository).self, component: temperatureMeasurementItemRepository!)
+        DiContainer.shared.register(type: SuplaCloudService.self, suplaCloudService!)
+        DiContainer.shared.register(type: (any ProfileRepository).self, profileRepository!)
+        DiContainer.shared.register(type: (any TemperatureMeasurementItemRepository).self, temperatureMeasurementItemRepository!)
     }
     
     override func tearDown() {
@@ -131,7 +131,7 @@ final class DownloadTemperatureMeasurementsUseCaseTests: UseCaseTest<Float> {
             response: mockedHttpResponse(),
             data: mockedData()
         ))
-        suplaCloudService.temperatureMeasurementsReturns = [Observable.just([])]
+        temperatureMeasurementItemRepository.getMeasurementsReturns = [Observable.just([])]
         
         // when
         useCase.invoke(remoteId: remoteId).subscribe(observer).disposed(by: disposeBag)
@@ -156,7 +156,7 @@ final class DownloadTemperatureMeasurementsUseCaseTests: UseCaseTest<Float> {
             response: mockedHttpResponse(count: 1),
             data: mockedData(measurements: [measurement])
         ))
-        suplaCloudService.temperatureMeasurementsReturns = [
+        temperatureMeasurementItemRepository.getMeasurementsReturns = [
             Observable.just([measurement]),
             Observable.just([])
         ]
@@ -185,11 +185,9 @@ final class DownloadTemperatureMeasurementsUseCaseTests: UseCaseTest<Float> {
             response: mockedHttpResponse(count: 1),
             data: mockedData(measurements: [measurement])
         ))
-        suplaCloudService.temperatureMeasurementsReturns = [
-            Observable.just([])
-        ]
         temperatureMeasurementItemRepository.findMinTimestampReturns = .just(measurementDate.timeIntervalSince1970)
         temperatureMeasurementItemRepository.findMaxTimestampReturns = .just(measurementDate.timeIntervalSince1970)
+        temperatureMeasurementItemRepository.getMeasurementsReturns = [Observable.just([])]
         
         // when
         useCase.invoke(remoteId: remoteId).subscribe(observer).disposed(by: disposeBag)
@@ -198,7 +196,7 @@ final class DownloadTemperatureMeasurementsUseCaseTests: UseCaseTest<Float> {
         assertEvents([
             .completed
         ])
-        XCTAssertTuples(suplaCloudService.temperatureMeasurementsParameters, [(remoteId, measurementDate.timeIntervalSince1970)])
+        XCTAssertTuples(temperatureMeasurementItemRepository.getMeasurementsParameters, [(remoteId, measurementDate.timeIntervalSince1970)])
     }
     
     func test_shouldSkipImportWhenDbAndCloudAreSimilar() {
@@ -242,12 +240,10 @@ final class DownloadTemperatureMeasurementsUseCaseTests: UseCaseTest<Float> {
             response: mockedHttpResponse(count: 1),
             data: mockedData(measurements: [measurement])
         ))
-        suplaCloudService.temperatureMeasurementsReturns = [
-            Observable.just([])
-        ]
         let oldDate = Date.create(year: 2018)!.timeIntervalSince1970
         temperatureMeasurementItemRepository.findMinTimestampReturns = .just(oldDate)
         temperatureMeasurementItemRepository.findMaxTimestampReturns = .just(oldDate)
+        temperatureMeasurementItemRepository.getMeasurementsReturns = [Observable.just([])]
         
         // when
         useCase.invoke(remoteId: remoteId).subscribe(observer).disposed(by: disposeBag)
@@ -256,7 +252,7 @@ final class DownloadTemperatureMeasurementsUseCaseTests: UseCaseTest<Float> {
         assertEvents([
             .completed
         ])
-        XCTAssertTuples(suplaCloudService.temperatureMeasurementsParameters, [(remoteId, oldDate)])
+        XCTAssertTuples(temperatureMeasurementItemRepository.getMeasurementsParameters, [(remoteId, oldDate)])
         XCTAssertEqual(temperatureMeasurementItemRepository.deleteAllCounter, 1)
     }
     

@@ -35,8 +35,8 @@ final class ThermostatProgramInfoTests: XCTestCase {
     }()
     
     override func setUp() {
-        DiContainer.shared.register(type: DateProvider.self, component: dateProvider!)
-        DiContainer.shared.register(type: ValuesFormatter.self, component: valuesFormatter!)
+        DiContainer.shared.register(type: DateProvider.self, dateProvider!)
+        DiContainer.shared.register(type: ValuesFormatter.self, valuesFormatter!)
     }
     
     override func tearDown() {

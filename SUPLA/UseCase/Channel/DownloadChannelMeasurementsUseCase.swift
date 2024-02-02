@@ -23,10 +23,11 @@ protocol DownloadChannelMeasurementsUseCase {
 }
 
 final class DownloadChannelMeasurementsUseCaseImpl: DownloadChannelMeasurementsUseCase {
-    
     @Singleton<DownloadEventsManager> private var downloadEventsManager
-    @Singleton<DownloadTemperatureMeasurementsUseCase> private var downloadTemperatureMeasurementsUseCase
-    @Singleton<DownloadTempHumidityMeasurementsUseCase> private var downloadTempHumidityMeasurementsUseCase
+    @Singleton<DownloadTemperatureLogUseCase> private var downloadTemperatureLogUseCase
+    @Singleton<DownloadTempHumidityLogUseCase> private var downloadTempHumidityLogUseCase
+    @Singleton<DownloadGeneralPurposeMeasurementLogUseCase> private var downloadGeneralPurposeMeasurementLogUseCase
+    @Singleton<DownloadGeneralPurposeMeterLogUseCase> private var downloadGeneralPurposeMeterLogUseCase
     @Singleton<SuplaSchedulers> private var schedulers
     
     private let syncedQueue = DispatchQueue(label: "MeasurementsPrivateQueue", attributes: .concurrent)
@@ -51,6 +52,10 @@ final class DownloadChannelMeasurementsUseCaseImpl: DownloadChannelMeasurementsU
             startTemperatureDownload(remoteId)
         case SUPLA_CHANNELFNC_HUMIDITYANDTEMPERATURE:
             startTemperatureAndHumidityDownload(remoteId)
+        case SUPLA_CHANNELFNC_GENERAL_PURPOSE_MEASUREMENT:
+            startGeneralPurposeMeasurementDownload(remoteId)
+        case SUPLA_CHANNELFNC_GENERAL_PURPOSE_METER:
+            startGeneralPurposeMeterDownload(remoteId)
         default: break // Do nothing
         }
     }
@@ -58,14 +63,28 @@ final class DownloadChannelMeasurementsUseCaseImpl: DownloadChannelMeasurementsU
     private func startTemperatureDownload(_ remoteId: Int32) {
         setupObservable(
             remoteId: remoteId,
-            observable: downloadTemperatureMeasurementsUseCase.invoke(remoteId: remoteId)
+            observable: downloadTemperatureLogUseCase.invoke(remoteId: remoteId)
         )
     }
     
     private func startTemperatureAndHumidityDownload(_ remoteId: Int32) {
         setupObservable(
             remoteId: remoteId,
-            observable: downloadTempHumidityMeasurementsUseCase.invoke(remoteId: remoteId)
+            observable: downloadTempHumidityLogUseCase.invoke(remoteId: remoteId)
+        )
+    }
+    
+    private func startGeneralPurposeMeasurementDownload(_ remoteId: Int32) {
+        setupObservable(
+            remoteId: remoteId,
+            observable: downloadGeneralPurposeMeasurementLogUseCase.invoke(remoteId: remoteId)
+        )
+    }
+    
+    private func startGeneralPurposeMeterDownload(_ remoteId: Int32) {
+        setupObservable(
+            remoteId: remoteId,
+            observable: downloadGeneralPurposeMeterLogUseCase.invoke(remoteId: remoteId)
         )
     }
     
@@ -88,14 +107,14 @@ final class DownloadChannelMeasurementsUseCaseImpl: DownloadChannelMeasurementsU
                     self.removeFromWorkingList(remoteId)
                     
                     let errorMessage = String(describing: error)
-                    NSLog("Temperatures download for \(remoteId) failed with \(error.localizedDescription)")
+                    NSLog("Measurements download for \(remoteId) failed with \(error.localizedDescription)")
                     NSLog(errorMessage)
                 },
                 onCompleted: {
                     self.downloadEventsManager.emitProgressState(remoteId: remoteId, state: .finished)
                     self.removeFromWorkingList(remoteId)
                     
-                    NSLog("Temperatures download for \(remoteId) finished successfully")
+                    NSLog("Measurements download for \(remoteId) finished successfully")
                 }
             )
             .disposed(by: disposeBag)

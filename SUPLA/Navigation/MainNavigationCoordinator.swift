@@ -243,6 +243,10 @@ class MainNavigationCoordinator: BaseNavigationCoordinator {
         startFlow(coordinator: ThermometerDetailNavigatorCoordinator(item: item, pages: pages))
     }
     
+    func navigateToGpmDetail(item: ItemBundle, pages: [DetailPage]) {
+        startFlow(coordinator: GpmDetailNavigatorCoordinator(item: item, pages: pages))
+    }
+    
     // MARK: -
     // MARK: Application life cycle support
     // MARK: -

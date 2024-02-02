@@ -21,7 +21,6 @@ import RxSwift
 @testable import SUPLA
 
 final class TempHumidityMeasurementItemRepositoryMock: BaseRepositoryMock<SATempHumidityMeasurementItem>, TempHumidityMeasurementItemRepository {
-    
     var deleteAllObservable: Observable<Void> = Observable.empty()
     var deleteAllCounter = 0
     
@@ -64,5 +63,28 @@ final class TempHumidityMeasurementItemRepositoryMock: BaseRepositoryMock<SATemp
         storeMeasurementsParameters.append((measurements, timestamp, profile, remoteId))
         return try storeMeasurementsReturns()
     }
+    
+    var getMeasurementsParameters: [(Int32, TimeInterval)] = []
+    var getMeasurementsReturns: [Observable<[SuplaCloudClient.TemperatureAndHumidityMeasurement]>] = []
+    private var getMeasurementsCurrent = 0
+    func getMeasurements(remoteId: Int32, afterTimestamp: TimeInterval) -> Observable<[SuplaCloudClient.TemperatureAndHumidityMeasurement]> {
+        getMeasurementsParameters.append((remoteId, afterTimestamp))
+        let id = getMeasurementsCurrent
+        getMeasurementsCurrent += 1
+        if (id < getMeasurementsReturns.count) {
+            return getMeasurementsReturns[id]
+        } else {
+            return .empty()
+        }
+    }
+    
+    var fromJsonParameters: [Data] = []
+    var fromJsonReturns: [SuplaCloudClient.TemperatureAndHumidityMeasurement]? = nil
+    func fromJson(data: Data) throws -> [SuplaCloudClient.TemperatureAndHumidityMeasurement] {
+        fromJsonParameters.append(data)
+        if let fromJsonReturns = fromJsonReturns {
+            return fromJsonReturns
+        }
+        return try SuplaCloudClient.TemperatureAndHumidityMeasurement.fromJson(data: data)
+    }
 }
-

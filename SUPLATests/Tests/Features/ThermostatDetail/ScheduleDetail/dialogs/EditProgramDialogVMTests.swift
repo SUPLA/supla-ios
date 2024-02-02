@@ -37,7 +37,7 @@ final class EditProgramDialogVMTests: ViewModelTest<EditProgramDialogViewState, 
     }()
     
     override func setUp() {
-        DiContainer.shared.register(type: ValuesFormatter.self, component: ValuesFormatterMock())
+        DiContainer.shared.register(type: ValuesFormatter.self, ValuesFormatterMock())
     }
     
     override func tearDown() {

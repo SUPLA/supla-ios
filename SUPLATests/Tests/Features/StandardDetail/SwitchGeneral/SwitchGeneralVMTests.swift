@@ -40,10 +40,10 @@ final class SwitchGeneralVMTest: ViewModelTest<SwitchGeneralViewState, SwitchGen
     }()
     
     override func setUp() {
-        DiContainer.shared.register(type: ReadChannelByRemoteIdUseCase.self, component: readChannelByRemoteIdUseCase!)
-        DiContainer.shared.register(type: GetChannelBaseStateUseCase.self, component: getChannelBaseStateUseCase!)
-        DiContainer.shared.register(type: ExecuteSimpleActionUseCase.self, component: executeSimpleActionUseCase!)
-        DiContainer.shared.register(type: DateProvider.self, component: dateProvider!)
+        DiContainer.shared.register(type: ReadChannelByRemoteIdUseCase.self, readChannelByRemoteIdUseCase!)
+        DiContainer.shared.register(type: GetChannelBaseStateUseCase.self, getChannelBaseStateUseCase!)
+        DiContainer.shared.register(type: ExecuteSimpleActionUseCase.self, executeSimpleActionUseCase!)
+        DiContainer.shared.register(type: DateProvider.self, dateProvider!)
     }
     
     override func tearDown() {

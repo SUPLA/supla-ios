@@ -33,8 +33,8 @@ final class ChannelConfigEventsManagerMock: ChannelConfigEventsManager {
         return toReturn
     }
     
-    var emitConfigParameters: [(UInt8, TSCS_ChannelConfig)] = []
-    func emitConfig(result: UInt8, config: TSCS_ChannelConfig) {
-        emitConfigParameters.append((result, config))
+    var emitConfigParameters: [(UInt8, TSCS_ChannelConfig, Int64)] = []
+    func emitConfig(result: UInt8, config: TSCS_ChannelConfig, crc32: Int64) {
+        emitConfigParameters.append((result, config, crc32))
     }
 }

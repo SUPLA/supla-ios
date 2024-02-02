@@ -31,7 +31,7 @@ final class ThermostatDetailVMTests: ViewModelTest<ThermostatDetailViewState, Th
     }()
     
     override func setUp() {
-        DiContainer.shared.register(type: ReadChannelByRemoteIdUseCase.self, component: readChannelByRemoteIdUseCase!)
+        DiContainer.shared.register(type: ReadChannelByRemoteIdUseCase.self, readChannelByRemoteIdUseCase!)
     }
     
     override func tearDown() {
