@@ -28,11 +28,11 @@ protocol GeneralPurposeMeterItemRepository:
     func findCount(remoteId: Int32, profile: AuthProfileItem) -> Observable<Int>
     func storeMeasurements(
         measurements: [SuplaCloudClient.GeneralPurposeMeter],
-        latestItem: SAGeneralPurposeMeterItem?,
+        latestItem: DownloadGeneralPurposeMeterLogUseCaseImpl.Latest?,
         profile: AuthProfileItem,
         remoteId: Int32,
         channelConfig: SuplaChannelGeneralPurposeMeterConfig
-    ) throws -> SAGeneralPurposeMeterItem?
+    ) throws -> DownloadGeneralPurposeMeterLogUseCaseImpl.Latest?
     func findOldestEntity(remoteId: Int32, profile: AuthProfileItem) -> Observable<SAGeneralPurposeMeterItem?>
 }
 
@@ -125,31 +125,26 @@ final class GeneralPurposeMeterItemRepositoryImpl: Repository<SAGeneralPurposeMe
     
     func storeMeasurements(
         measurements: [SuplaCloudClient.GeneralPurposeMeter],
-        latestItem: SAGeneralPurposeMeterItem?,
+        latestItem: DownloadGeneralPurposeMeterLogUseCaseImpl.Latest?,
         profile: AuthProfileItem,
         remoteId: Int32,
         channelConfig: SuplaChannelGeneralPurposeMeterConfig
-    ) throws -> SAGeneralPurposeMeterItem? {
+    ) throws -> DownloadGeneralPurposeMeterLogUseCaseImpl.Latest? {
         var oldestEntity = latestItem
         
         var saveError: Error? = nil
         context.performAndWait {
             for measurement in measurements {
-                let entity: SAGeneralPurposeMeterItem
-                
                 if (oldestEntity == nil) {
-                    entity = context.create()
-                    entity.profile = profile
-                    entity.channel_id = remoteId
-                    entity.value = NSDecimalNumber(string: measurement.value)
-                    entity.value_increment = NSDecimalNumber(string: measurement.value)
-                    entity.setDateAndDateParts(measurement.date_timestamp)
+                    oldestEntity = DownloadGeneralPurposeMeterLogUseCaseImpl.Latest(
+                        value: NSDecimalNumber(string: measurement.value),
+                        date: measurement.date_timestamp
+                    )
                 } else {
-                    entity = createEntityAndComplementMissing(measurement, oldestEntity!, remoteId, profile, channelConfig)
-                }
-                
-                if (oldestEntity == nil || oldestEntity!.date!.timeIntervalSince1970 < entity.date!.timeIntervalSince1970) {
-                    oldestEntity = entity
+                    let entity = createEntityAndComplementMissing(measurement, oldestEntity!, remoteId, profile, channelConfig)
+                    if (oldestEntity == nil || oldestEntity!.date!.timeIntervalSince1970 < entity.date!.timeIntervalSince1970) {
+                        oldestEntity = DownloadGeneralPurposeMeterLogUseCaseImpl.Latest(value: entity.value, date: entity.date)
+                    }
                 }
             }
             
@@ -168,7 +163,7 @@ final class GeneralPurposeMeterItemRepositoryImpl: Repository<SAGeneralPurposeMe
     
     private func createEntityAndComplementMissing(
         _ measurement: SuplaCloudClient.GeneralPurposeMeter,
-        _ oldest: SAGeneralPurposeMeterItem,
+        _ oldest: DownloadGeneralPurposeMeterLogUseCaseImpl.Latest,
         _ remoteId: Int32,
         _ profile: AuthProfileItem,
         _ channelConfig: SuplaChannelGeneralPurposeMeterConfig
@@ -184,7 +179,11 @@ final class GeneralPurposeMeterItemRepositoryImpl: Repository<SAGeneralPurposeMe
             false
         }
         let timeDiff = measurement.date_timestamp.timeIntervalSince1970 - oldest.date!.timeIntervalSince1970
-        let valueIncrement = reset ? measurementValue.doubleValue : valueDiff
+        let valueIncrement = switch (channelConfig.counterType) {
+        case .alwaysIncrement: (reset || valueDiff < 0) ? 0 : valueDiff
+        case .alwaysDecrement: (reset || valueDiff > 0) ? 0 : valueDiff
+        case .incrementAndDecrement: valueDiff
+        }
         
         let entity: SAGeneralPurposeMeterItem = context.create()
         entity.profile = profile
@@ -200,7 +199,7 @@ final class GeneralPurposeMeterItemRepositoryImpl: Repository<SAGeneralPurposeMe
             
             entity.value_increment = NSDecimalNumber(value: valueDivided)
         } else {
-            entity.value_increment = NSDecimalNumber(value: valueDiff)
+            entity.value_increment = NSDecimalNumber(value: valueIncrement)
         }
         
         return entity

@@ -25,6 +25,18 @@ final class GpmHistoryDetailVM: BaseHistoryDetailVM {
     @Singleton<LoadChannelMeasurementsUseCase> private var loadChannelMeasurementsUseCase
     @Singleton<LoadChannelMeasurementsDateRangeUseCase> private var loadChannelMeasurementsDateRangeUseCase
     @Singleton<LoadChannelConfigUseCase> private var loadChannelConfigUseCase
+    @Singleton<ChannelConfigEventsManager> private var channelConfigEventsManager
+    
+    override func loadData(remoteId: Int32) {
+        super.loadData(remoteId: remoteId)
+        
+        channelConfigEventsManager.observeConfig(id: remoteId)
+            .asDriverWithoutError()
+            .drive(
+                onNext: { [weak self] _ in self?.reloadMeasurements() }
+            )
+            .disposed(by: self)
+    }
     
     override func triggerDataLoad(remoteId: Int32) {
         Observable.zip(

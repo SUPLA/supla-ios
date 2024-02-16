@@ -985,6 +985,9 @@ void sasuplaclient_device_config_update_or_result(void *_suplaclient,
 - (void) onChannelConfigUpdateOrResult: (TSC_ChannelConfigUpdateOrResult*) config crc32: (unsigned _supla_int_t) crc32 {
     [UseCaseLegacyWrapper insertChannelConfig:config->Result :config->Config :crc32];
     [[DiContainer channelConfigEventsManager] emitConfigWithResult: config->Result config: config->Config crc32: crc32];
+    if (config != nil && config->Result == SUPLA_CONFIG_RESULT_TRUE) {
+        [[DiContainer updateEventsManager] emitChannelUpdateWithRemoteId: config->Config.ChannelId];
+    }
 }
 
 - (void) onDeviceConfigUpdateOrResult: (TSC_DeviceConfigUpdateOrResult*) config {

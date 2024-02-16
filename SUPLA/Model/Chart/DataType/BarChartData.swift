@@ -48,9 +48,7 @@ final class BarChartData: ChartData {
         let set = BarChartDataSet(entries: set, label: "")
         set.drawValuesEnabled = false
         set.colors = [color]
-        set.barBorderColor = .chartGpmBorder
-        set.barBorderWidth = 0.25
-        set.barShadowColor = .chartGpmShadow
+        set.barShadowColor = .transparent
 
         return set
     }

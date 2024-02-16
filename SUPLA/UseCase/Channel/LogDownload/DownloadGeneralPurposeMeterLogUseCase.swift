@@ -42,7 +42,8 @@ final class DownloadGeneralPurposeMeterLogUseCaseImpl:
         var importedEntries = 0
         var lastEntity = generalPurposeMeterItemRepository
             .findOldestEntity(remoteId: remoteId, profile: profile)
-            .subscribeSynchronous(defaultValue: nil)
+            .subscribeSynchronous(defaultValue: nil)?
+            .toLatest()
         var afterTimestamp = lastEntity?.date?.timeIntervalSince1970 ?? 0
         guard let channelConfig = loadChannelConfigUseCase
             .invoke(remoteId: remoteId)
@@ -74,5 +75,16 @@ final class DownloadGeneralPurposeMeterLogUseCaseImpl:
             importedEntries += measurements.count
             observer.on(.next(Float(importedEntries) / Float(entriesToImport)))
         }
+    }
+    
+    struct Latest {
+        let value: NSDecimalNumber?
+        let date: Date?
+    }
+}
+
+fileprivate extension SAGeneralPurposeMeterItem {
+    func toLatest() -> DownloadGeneralPurposeMeterLogUseCaseImpl.Latest {
+        DownloadGeneralPurposeMeterLogUseCaseImpl.Latest(value: value, date: date)
     }
 }
