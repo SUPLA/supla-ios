@@ -632,16 +632,16 @@
                 case 1:
                     return @"powerstation";
             }
-            return @"electricitymeter";
+            return @"fnc_electricitymeter";
             
         case SUPLA_CHANNELFNC_IC_GAS_METER:
-            return @"gasmeter";
+            return @"fnc_gasemeter";
             
         case SUPLA_CHANNELFNC_IC_WATER_METER:
-            return @"watermeter";
+            return @"fnc_watermeter";
         
         case SUPLA_CHANNELFNC_IC_HEAT_METER:
-            return @"heatmeter";
+            return @"fnc_heatmeter";
             
         case SUPLA_CHANNELFNC_THERMOSTAT_HEATPOL_HOMEPLUS:
             n2 = @"thermostat_hp_homeplus";

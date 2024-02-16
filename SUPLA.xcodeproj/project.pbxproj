@@ -18,7 +18,6 @@
 		0103C098292E732A00566A23 /* digiglassv1-transparent-nightmode@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0103BFFE292E731F00566A23 /* digiglassv1-transparent-nightmode@3x.png */; };
 		0103C099292E732A00566A23 /* noliquid-nightmode@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0103BFFF292E731F00566A23 /* noliquid-nightmode@3x.png */; };
 		0103C09A292E732A00566A23 /* garagedoor-closed-nightmode@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0103C000292E731F00566A23 /* garagedoor-closed-nightmode@2x.png */; };
-		0103C09B292E732A00566A23 /* electricitymeter-nightmode@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0103C001292E732000566A23 /* electricitymeter-nightmode@2x.png */; };
 		0103C09C292E732A00566A23 /* depth-nightmode@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0103C002292E732000566A23 /* depth-nightmode@3x.png */; };
 		0103C09D292E732A00566A23 /* staircasetimer-off-nightmode@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0103C003292E732000566A23 /* staircasetimer-off-nightmode@3x.png */; };
 		0103C09E292E732A00566A23 /* thermometer-nightmode@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0103C004292E732000566A23 /* thermometer-nightmode@2x.png */; };
@@ -32,14 +31,12 @@
 		0103C0A6292E732A00566A23 /* digiglassv1-transparent-nightmode@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0103C00C292E732000566A23 /* digiglassv1-transparent-nightmode@2x.png */; };
 		0103C0A7292E732A00566A23 /* barier-closed-nightmode@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0103C00D292E732000566A23 /* barier-closed-nightmode@3x.png */; };
 		0103C0A8292E732A00566A23 /* digiglass-transparent-nightmode@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0103C00E292E732000566A23 /* digiglass-transparent-nightmode@3x.png */; };
-		0103C0A9292E732A00566A23 /* gasmeter-nightmode@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0103C00F292E732000566A23 /* gasmeter-nightmode@2x.png */; };
 		0103C0AA292E732A00566A23 /* gate-closed-50percent-nightmode@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0103C010292E732100566A23 /* gate-closed-50percent-nightmode@3x.png */; };
 		0103C0AB292E732A00566A23 /* tv-on-nightmode@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0103C011292E732100566A23 /* tv-on-nightmode@2x.png */; };
 		0103C0AC292E732A00566A23 /* barier-closed-nightmode@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0103C012292E732100566A23 /* barier-closed-nightmode@2x.png */; };
 		0103C0AD292E732A00566A23 /* garagedoor-closed-50percent-nightmode@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0103C013292E732100566A23 /* garagedoor-closed-50percent-nightmode@2x.png */; };
 		0103C0AE292E732A00566A23 /* digiglass1-nightmode@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0103C014292E732100566A23 /* digiglass1-nightmode@2x.png */; };
 		0103C0AF292E732A00566A23 /* fan-on-nightmode@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0103C015292E732100566A23 /* fan-on-nightmode@3x.png */; };
-		0103C0B0292E732A00566A23 /* watermeter-nightmode@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0103C016292E732100566A23 /* watermeter-nightmode@3x.png */; };
 		0103C0B1292E732A00566A23 /* door-open-nightmode@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0103C017292E732100566A23 /* door-open-nightmode@2x.png */; };
 		0103C0B2292E732A00566A23 /* wind-nightmode@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0103C018292E732100566A23 /* wind-nightmode@3x.png */; };
 		0103C0B3292E732A00566A23 /* dimmerrgb-onon-nightmode@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0103C019292E732100566A23 /* dimmerrgb-onon-nightmode@3x.png */; };
@@ -97,7 +94,6 @@
 		0103C0E7292E732B00566A23 /* dimmerrgb-onoff-nightmode@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0103C04D292E732400566A23 /* dimmerrgb-onoff-nightmode@3x.png */; };
 		0103C0E8292E732B00566A23 /* dimmerrgb-offon-nightmode@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0103C04E292E732400566A23 /* dimmerrgb-offon-nightmode@2x.png */; };
 		0103C0E9292E732B00566A23 /* thermostat_hp_homeplus2-on-nightmode@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0103C04F292E732400566A23 /* thermostat_hp_homeplus2-on-nightmode@2x.png */; };
-		0103C0EA292E732B00566A23 /* gasmeter-nightmode@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0103C050292E732400566A23 /* gasmeter-nightmode@3x.png */; };
 		0103C0EB292E732B00566A23 /* uv-on-nightmode@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0103C051292E732400566A23 /* uv-on-nightmode@2x.png */; };
 		0103C0EC292E732B00566A23 /* rollershutter-closed-nightmode@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0103C052292E732400566A23 /* rollershutter-closed-nightmode@3x.png */; };
 		0103C0ED292E732B00566A23 /* wind-nightmode@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0103C053292E732500566A23 /* wind-nightmode@2x.png */; };
@@ -117,7 +113,6 @@
 		0103C0FB292E732B00566A23 /* gatealt1-open-nightmode@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0103C061292E732600566A23 /* gatealt1-open-nightmode@3x.png */; };
 		0103C0FC292E732B00566A23 /* valve-open-nightmode@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0103C062292E732600566A23 /* valve-open-nightmode@2x.png */; };
 		0103C0FD292E732B00566A23 /* fan-on-nightmode@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0103C063292E732600566A23 /* fan-on-nightmode@2x.png */; };
-		0103C0FE292E732B00566A23 /* electricitymeter-nightmode@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0103C064292E732700566A23 /* electricitymeter-nightmode@3x.png */; };
 		0103C0FF292E732B00566A23 /* pressure-nightmode@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0103C065292E732700566A23 /* pressure-nightmode@2x.png */; };
 		0103C100292E732B00566A23 /* roofwindow-closed-nightmode@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0103C066292E732700566A23 /* roofwindow-closed-nightmode@3x.png */; };
 		0103C101292E732B00566A23 /* dimmerrgb-onoff-nightmode@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0103C067292E732700566A23 /* dimmerrgb-onoff-nightmode@2x.png */; };
@@ -143,10 +138,8 @@
 		0103C115292E732B00566A23 /* door-closed-nightmode@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0103C07B292E732800566A23 /* door-closed-nightmode@3x.png */; };
 		0103C116292E732B00566A23 /* liquid-nightmode@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0103C07C292E732900566A23 /* liquid-nightmode@2x.png */; };
 		0103C117292E732B00566A23 /* mail-nightmode@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0103C07D292E732900566A23 /* mail-nightmode@2x.png */; };
-		0103C118292E732B00566A23 /* heatmeter-nightmode@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0103C07E292E732900566A23 /* heatmeter-nightmode@3x.png */; };
 		0103C119292E732B00566A23 /* power-off-nightmode@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0103C07F292E732900566A23 /* power-off-nightmode@2x.png */; };
 		0103C11A292E732B00566A23 /* gatealt1-closed-50percent-nightmode@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0103C080292E732900566A23 /* gatealt1-closed-50percent-nightmode@3x.png */; };
-		0103C11B292E732B00566A23 /* heatmeter-nightmode@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0103C081292E732900566A23 /* heatmeter-nightmode@2x.png */; };
 		0103C11C292E732B00566A23 /* power-on-nightmode@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0103C082292E732900566A23 /* power-on-nightmode@3x.png */; };
 		0103C11D292E732B00566A23 /* pc-off-nightmode@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0103C083292E732900566A23 /* pc-off-nightmode@3x.png */; };
 		0103C11E292E732B00566A23 /* gatealt1-closed-nightmode@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0103C084292E732900566A23 /* gatealt1-closed-nightmode@3x.png */; };
@@ -158,7 +151,6 @@
 		0103C124292E732B00566A23 /* thermostat_hp_homeplus1-off-nightmode@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0103C08A292E732A00566A23 /* thermostat_hp_homeplus1-off-nightmode@2x.png */; };
 		0103C125292E732B00566A23 /* thermostat_hp_homeplus2-off-nightmode@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0103C08B292E732A00566A23 /* thermostat_hp_homeplus2-off-nightmode@2x.png */; };
 		0103C126292E732B00566A23 /* tv-off-nightmode@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0103C08C292E732A00566A23 /* tv-off-nightmode@3x.png */; };
-		0103C127292E732B00566A23 /* watermeter-nightmode@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0103C08D292E732A00566A23 /* watermeter-nightmode@2x.png */; };
 		0103C128292E732B00566A23 /* window-closed-nightmode@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0103C08E292E732A00566A23 /* window-closed-nightmode@3x.png */; };
 		0103C129292E732B00566A23 /* tv-on-nightmode@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0103C08F292E732A00566A23 /* tv-on-nightmode@3x.png */; };
 		010714732656A6FB009C119F /* SAZWaveWakeupSettingsDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = 010714722656A6FB009C119F /* SAZWaveWakeupSettingsDialog.m */; };
@@ -274,8 +266,6 @@
 		0182FCA72464691D00270CDC /* channel_warning_level2@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0182FCA32464691C00270CDC /* channel_warning_level2@3x.png */; };
 		0182FCA82464691D00270CDC /* channel_warning_level1@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0182FCA42464691D00270CDC /* channel_warning_level1@3x.png */; };
 		0182FCA92464691D00270CDC /* channel_warning_level1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0182FCA52464691D00270CDC /* channel_warning_level1@2x.png */; };
-		018574262411234B00CEDF16 /* heatmeter@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 018574242411234B00CEDF16 /* heatmeter@2x.png */; };
-		018574272411234B00CEDF16 /* heatmeter@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 018574252411234B00CEDF16 /* heatmeter@3x.png */; };
 		0186054725BF48C500C1332A /* z_wave@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0186054625BF48C500C1332A /* z_wave@3x.png */; };
 		0186054B25BF673800C1332A /* time@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0186054A25BF673700C1332A /* time@3x.png */; };
 		0186055125BF74E100C1332A /* zwave_reset@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0186054E25BF74E100C1332A /* zwave_reset@3x.png */; };
@@ -349,12 +339,6 @@
 		01D2C38E22C3B0A700BF1A10 /* graphoff.png in Resources */ = {isa = PBXBuildFile; fileRef = 01D2C38C22C3B0A700BF1A10 /* graphoff.png */; };
 		01D32F3225C999CF00793A72 /* btnbackl@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 01D32F3125C999CF00793A72 /* btnbackl@2x.png */; };
 		01D3FF6724A20E26000EBE77 /* backbtn@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 01D3FF6624A20E26000EBE77 /* backbtn@3x.png */; };
-		01D4293322AAA83E0050C1A2 /* electricitymeter@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 01D4292D22AAA83D0050C1A2 /* electricitymeter@3x.png */; };
-		01D4293422AAA83E0050C1A2 /* watermeter@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 01D4292E22AAA83D0050C1A2 /* watermeter@3x.png */; };
-		01D4293522AAA83E0050C1A2 /* gasmeter@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 01D4292F22AAA83D0050C1A2 /* gasmeter@2x.png */; };
-		01D4293622AAA83E0050C1A2 /* gasmeter@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 01D4293022AAA83D0050C1A2 /* gasmeter@3x.png */; };
-		01D4293722AAA83E0050C1A2 /* watermeter@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 01D4293122AAA83D0050C1A2 /* watermeter@2x.png */; };
-		01D4293822AAA83E0050C1A2 /* electricitymeter@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 01D4293222AAA83D0050C1A2 /* electricitymeter@2x.png */; };
 		01D4293A22AAAA450050C1A2 /* IncrementalMeterCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 01D4293922AAAA450050C1A2 /* IncrementalMeterCell.xib */; };
 		01D5E0C822DB7FAF00FBE1DC /* SAChartMarkerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01D5E0C722DB7FAF00FBE1DC /* SAChartMarkerView.swift */; };
 		01D5E0CA22DB8F0A00FBE1DC /* SAChartMarkerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 01D5E0C922DB8F0A00FBE1DC /* SAChartMarkerView.xib */; };
@@ -823,6 +807,9 @@
 		A553862B29E0202700B5CF3F /* Singleton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A553862A29E0202700B5CF3F /* Singleton.swift */; };
 		A553862D29E021AE00B5CF3F /* DiContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A553862C29E021AE00B5CF3F /* DiContainer.swift */; };
 		A553862F29E0297400B5CF3F /* Inject.swift in Sources */ = {isa = PBXBuildFile; fileRef = A553862E29E0297400B5CF3F /* Inject.swift */; };
+		A55501E62B7F952E00FD3296 /* GeneralPurposeMeasurementIconNameProducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A55501E52B7F952E00FD3296 /* GeneralPurposeMeasurementIconNameProducer.swift */; };
+		A55501E82B7F96E600FD3296 /* Icons.swift in Sources */ = {isa = PBXBuildFile; fileRef = A55501E72B7F96E600FD3296 /* Icons.swift */; };
+		A55501EA2B7FC38500FD3296 /* GeneralPurposeMeterIconNameProducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A55501E92B7FC38500FD3296 /* GeneralPurposeMeterIconNameProducer.swift */; };
 		A56091752AE685A800AFE14F /* ThermostatHistoryDetailVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = A56091742AE685A800AFE14F /* ThermostatHistoryDetailVM.swift */; };
 		A56091772AE685B600AFE14F /* ThermostatHistoryDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A56091762AE685B600AFE14F /* ThermostatHistoryDetailVC.swift */; };
 		A56233D82AB054EA001CB948 /* SeparatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A56233D72AB054EA001CB948 /* SeparatorView.swift */; };
@@ -1211,7 +1198,6 @@
 		0103BFFE292E731F00566A23 /* digiglassv1-transparent-nightmode@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "digiglassv1-transparent-nightmode@3x.png"; sourceTree = "<group>"; };
 		0103BFFF292E731F00566A23 /* noliquid-nightmode@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "noliquid-nightmode@3x.png"; sourceTree = "<group>"; };
 		0103C000292E731F00566A23 /* garagedoor-closed-nightmode@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "garagedoor-closed-nightmode@2x.png"; sourceTree = "<group>"; };
-		0103C001292E732000566A23 /* electricitymeter-nightmode@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "electricitymeter-nightmode@2x.png"; sourceTree = "<group>"; };
 		0103C002292E732000566A23 /* depth-nightmode@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "depth-nightmode@3x.png"; sourceTree = "<group>"; };
 		0103C003292E732000566A23 /* staircasetimer-off-nightmode@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "staircasetimer-off-nightmode@3x.png"; sourceTree = "<group>"; };
 		0103C004292E732000566A23 /* thermometer-nightmode@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "thermometer-nightmode@2x.png"; sourceTree = "<group>"; };
@@ -1225,14 +1211,12 @@
 		0103C00C292E732000566A23 /* digiglassv1-transparent-nightmode@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "digiglassv1-transparent-nightmode@2x.png"; sourceTree = "<group>"; };
 		0103C00D292E732000566A23 /* barier-closed-nightmode@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "barier-closed-nightmode@3x.png"; sourceTree = "<group>"; };
 		0103C00E292E732000566A23 /* digiglass-transparent-nightmode@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "digiglass-transparent-nightmode@3x.png"; sourceTree = "<group>"; };
-		0103C00F292E732000566A23 /* gasmeter-nightmode@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "gasmeter-nightmode@2x.png"; sourceTree = "<group>"; };
 		0103C010292E732100566A23 /* gate-closed-50percent-nightmode@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "gate-closed-50percent-nightmode@3x.png"; sourceTree = "<group>"; };
 		0103C011292E732100566A23 /* tv-on-nightmode@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tv-on-nightmode@2x.png"; sourceTree = "<group>"; };
 		0103C012292E732100566A23 /* barier-closed-nightmode@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "barier-closed-nightmode@2x.png"; sourceTree = "<group>"; };
 		0103C013292E732100566A23 /* garagedoor-closed-50percent-nightmode@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "garagedoor-closed-50percent-nightmode@2x.png"; sourceTree = "<group>"; };
 		0103C014292E732100566A23 /* digiglass1-nightmode@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "digiglass1-nightmode@2x.png"; sourceTree = "<group>"; };
 		0103C015292E732100566A23 /* fan-on-nightmode@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "fan-on-nightmode@3x.png"; sourceTree = "<group>"; };
-		0103C016292E732100566A23 /* watermeter-nightmode@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "watermeter-nightmode@3x.png"; sourceTree = "<group>"; };
 		0103C017292E732100566A23 /* door-open-nightmode@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "door-open-nightmode@2x.png"; sourceTree = "<group>"; };
 		0103C018292E732100566A23 /* wind-nightmode@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "wind-nightmode@3x.png"; sourceTree = "<group>"; };
 		0103C019292E732100566A23 /* dimmerrgb-onon-nightmode@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dimmerrgb-onon-nightmode@3x.png"; sourceTree = "<group>"; };
@@ -1290,7 +1274,6 @@
 		0103C04D292E732400566A23 /* dimmerrgb-onoff-nightmode@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dimmerrgb-onoff-nightmode@3x.png"; sourceTree = "<group>"; };
 		0103C04E292E732400566A23 /* dimmerrgb-offon-nightmode@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dimmerrgb-offon-nightmode@2x.png"; sourceTree = "<group>"; };
 		0103C04F292E732400566A23 /* thermostat_hp_homeplus2-on-nightmode@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "thermostat_hp_homeplus2-on-nightmode@2x.png"; sourceTree = "<group>"; };
-		0103C050292E732400566A23 /* gasmeter-nightmode@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "gasmeter-nightmode@3x.png"; sourceTree = "<group>"; };
 		0103C051292E732400566A23 /* uv-on-nightmode@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "uv-on-nightmode@2x.png"; sourceTree = "<group>"; };
 		0103C052292E732400566A23 /* rollershutter-closed-nightmode@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "rollershutter-closed-nightmode@3x.png"; sourceTree = "<group>"; };
 		0103C053292E732500566A23 /* wind-nightmode@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "wind-nightmode@2x.png"; sourceTree = "<group>"; };
@@ -1310,7 +1293,6 @@
 		0103C061292E732600566A23 /* gatealt1-open-nightmode@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "gatealt1-open-nightmode@3x.png"; sourceTree = "<group>"; };
 		0103C062292E732600566A23 /* valve-open-nightmode@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "valve-open-nightmode@2x.png"; sourceTree = "<group>"; };
 		0103C063292E732600566A23 /* fan-on-nightmode@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "fan-on-nightmode@2x.png"; sourceTree = "<group>"; };
-		0103C064292E732700566A23 /* electricitymeter-nightmode@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "electricitymeter-nightmode@3x.png"; sourceTree = "<group>"; };
 		0103C065292E732700566A23 /* pressure-nightmode@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pressure-nightmode@2x.png"; sourceTree = "<group>"; };
 		0103C066292E732700566A23 /* roofwindow-closed-nightmode@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "roofwindow-closed-nightmode@3x.png"; sourceTree = "<group>"; };
 		0103C067292E732700566A23 /* dimmerrgb-onoff-nightmode@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dimmerrgb-onoff-nightmode@2x.png"; sourceTree = "<group>"; };
@@ -1336,10 +1318,8 @@
 		0103C07B292E732800566A23 /* door-closed-nightmode@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "door-closed-nightmode@3x.png"; sourceTree = "<group>"; };
 		0103C07C292E732900566A23 /* liquid-nightmode@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "liquid-nightmode@2x.png"; sourceTree = "<group>"; };
 		0103C07D292E732900566A23 /* mail-nightmode@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "mail-nightmode@2x.png"; sourceTree = "<group>"; };
-		0103C07E292E732900566A23 /* heatmeter-nightmode@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "heatmeter-nightmode@3x.png"; sourceTree = "<group>"; };
 		0103C07F292E732900566A23 /* power-off-nightmode@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "power-off-nightmode@2x.png"; sourceTree = "<group>"; };
 		0103C080292E732900566A23 /* gatealt1-closed-50percent-nightmode@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "gatealt1-closed-50percent-nightmode@3x.png"; sourceTree = "<group>"; };
-		0103C081292E732900566A23 /* heatmeter-nightmode@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "heatmeter-nightmode@2x.png"; sourceTree = "<group>"; };
 		0103C082292E732900566A23 /* power-on-nightmode@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "power-on-nightmode@3x.png"; sourceTree = "<group>"; };
 		0103C083292E732900566A23 /* pc-off-nightmode@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pc-off-nightmode@3x.png"; sourceTree = "<group>"; };
 		0103C084292E732900566A23 /* gatealt1-closed-nightmode@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "gatealt1-closed-nightmode@3x.png"; sourceTree = "<group>"; };
@@ -1351,7 +1331,6 @@
 		0103C08A292E732A00566A23 /* thermostat_hp_homeplus1-off-nightmode@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "thermostat_hp_homeplus1-off-nightmode@2x.png"; sourceTree = "<group>"; };
 		0103C08B292E732A00566A23 /* thermostat_hp_homeplus2-off-nightmode@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "thermostat_hp_homeplus2-off-nightmode@2x.png"; sourceTree = "<group>"; };
 		0103C08C292E732A00566A23 /* tv-off-nightmode@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tv-off-nightmode@3x.png"; sourceTree = "<group>"; };
-		0103C08D292E732A00566A23 /* watermeter-nightmode@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "watermeter-nightmode@2x.png"; sourceTree = "<group>"; };
 		0103C08E292E732A00566A23 /* window-closed-nightmode@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "window-closed-nightmode@3x.png"; sourceTree = "<group>"; };
 		0103C08F292E732A00566A23 /* tv-on-nightmode@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tv-on-nightmode@3x.png"; sourceTree = "<group>"; };
 		010714712656A6FB009C119F /* SAZWaveWakeupSettingsDialog.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SAZWaveWakeupSettingsDialog.h; sourceTree = "<group>"; };
@@ -1587,8 +1566,6 @@
 		0182FCA32464691C00270CDC /* channel_warning_level2@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "channel_warning_level2@3x.png"; sourceTree = "<group>"; };
 		0182FCA42464691D00270CDC /* channel_warning_level1@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "channel_warning_level1@3x.png"; sourceTree = "<group>"; };
 		0182FCA52464691D00270CDC /* channel_warning_level1@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "channel_warning_level1@2x.png"; sourceTree = "<group>"; };
-		018574242411234B00CEDF16 /* heatmeter@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "heatmeter@2x.png"; sourceTree = "<group>"; };
-		018574252411234B00CEDF16 /* heatmeter@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "heatmeter@3x.png"; sourceTree = "<group>"; };
 		0186054625BF48C500C1332A /* z_wave@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "z_wave@3x.png"; sourceTree = "<group>"; };
 		0186054A25BF673700C1332A /* time@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "time@3x.png"; sourceTree = "<group>"; };
 		0186054E25BF74E100C1332A /* zwave_reset@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "zwave_reset@3x.png"; sourceTree = "<group>"; };
@@ -1777,12 +1754,6 @@
 		01D2C38C22C3B0A700BF1A10 /* graphoff.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = graphoff.png; sourceTree = "<group>"; };
 		01D32F3125C999CF00793A72 /* btnbackl@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btnbackl@2x.png"; sourceTree = "<group>"; };
 		01D3FF6624A20E26000EBE77 /* backbtn@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "backbtn@3x.png"; sourceTree = "<group>"; };
-		01D4292D22AAA83D0050C1A2 /* electricitymeter@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "electricitymeter@3x.png"; sourceTree = "<group>"; };
-		01D4292E22AAA83D0050C1A2 /* watermeter@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "watermeter@3x.png"; sourceTree = "<group>"; };
-		01D4292F22AAA83D0050C1A2 /* gasmeter@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "gasmeter@2x.png"; sourceTree = "<group>"; };
-		01D4293022AAA83D0050C1A2 /* gasmeter@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "gasmeter@3x.png"; sourceTree = "<group>"; };
-		01D4293122AAA83D0050C1A2 /* watermeter@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "watermeter@2x.png"; sourceTree = "<group>"; };
-		01D4293222AAA83D0050C1A2 /* electricitymeter@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "electricitymeter@2x.png"; sourceTree = "<group>"; };
 		01D4293922AAAA450050C1A2 /* IncrementalMeterCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = IncrementalMeterCell.xib; sourceTree = "<group>"; };
 		01D5E0C622DB7FAE00FBE1DC /* SUPLA-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SUPLA-Bridging-Header.h"; sourceTree = "<group>"; };
 		01D5E0C722DB7FAF00FBE1DC /* SAChartMarkerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SAChartMarkerView.swift; sourceTree = "<group>"; };
@@ -2356,6 +2327,9 @@
 		A553862A29E0202700B5CF3F /* Singleton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Singleton.swift; sourceTree = "<group>"; };
 		A553862C29E021AE00B5CF3F /* DiContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiContainer.swift; sourceTree = "<group>"; };
 		A553862E29E0297400B5CF3F /* Inject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Inject.swift; sourceTree = "<group>"; };
+		A55501E52B7F952E00FD3296 /* GeneralPurposeMeasurementIconNameProducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralPurposeMeasurementIconNameProducer.swift; sourceTree = "<group>"; };
+		A55501E72B7F96E600FD3296 /* Icons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Icons.swift; sourceTree = "<group>"; };
+		A55501E92B7FC38500FD3296 /* GeneralPurposeMeterIconNameProducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralPurposeMeterIconNameProducer.swift; sourceTree = "<group>"; };
 		A56091742AE685A800AFE14F /* ThermostatHistoryDetailVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThermostatHistoryDetailVM.swift; sourceTree = "<group>"; };
 		A56091762AE685B600AFE14F /* ThermostatHistoryDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThermostatHistoryDetailVC.swift; sourceTree = "<group>"; };
 		A56233D72AB054EA001CB948 /* SeparatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeparatorView.swift; sourceTree = "<group>"; };
@@ -2862,8 +2836,6 @@
 				0103C07B292E732800566A23 /* door-closed-nightmode@3x.png */,
 				0103C017292E732100566A23 /* door-open-nightmode@2x.png */,
 				0103C05D292E732600566A23 /* door-open-nightmode@3x.png */,
-				0103C001292E732000566A23 /* electricitymeter-nightmode@2x.png */,
-				0103C064292E732700566A23 /* electricitymeter-nightmode@3x.png */,
 				0103C04B292E732400566A23 /* fan-off-nightmode@2x.png */,
 				0103C02D292E732200566A23 /* fan-off-nightmode@3x.png */,
 				0103C063292E732600566A23 /* fan-on-nightmode@2x.png */,
@@ -2874,8 +2846,6 @@
 				0103C086292E732A00566A23 /* garagedoor-closed-nightmode@3x.png */,
 				0103BFF7292E731F00566A23 /* garagedoor-open-nightmode@2x.png */,
 				0103C02A292E732200566A23 /* garagedoor-open-nightmode@3x.png */,
-				0103C00F292E732000566A23 /* gasmeter-nightmode@2x.png */,
-				0103C050292E732400566A23 /* gasmeter-nightmode@3x.png */,
 				0103C05F292E732600566A23 /* gate-closed-50percent-nightmode@2x.png */,
 				0103C010292E732100566A23 /* gate-closed-50percent-nightmode@3x.png */,
 				0103C026292E732200566A23 /* gate-closed-nightmode@2x.png */,
@@ -2888,8 +2858,6 @@
 				0103C084292E732900566A23 /* gatealt1-closed-nightmode@3x.png */,
 				0103C044292E732400566A23 /* gatealt1-open-nightmode@2x.png */,
 				0103C061292E732600566A23 /* gatealt1-open-nightmode@3x.png */,
-				0103C081292E732900566A23 /* heatmeter-nightmode@2x.png */,
-				0103C07E292E732900566A23 /* heatmeter-nightmode@3x.png */,
 				0103C04A292E732400566A23 /* humidity-nightmode@2x.png */,
 				0103C06E292E732700566A23 /* humidity-nightmode@3x.png */,
 				0103C01A292E732100566A23 /* light-off-nightmode@2x.png */,
@@ -2968,8 +2936,6 @@
 				0103C046292E732400566A23 /* valve-closed-nightmode@3x.png */,
 				0103C062292E732600566A23 /* valve-open-nightmode@2x.png */,
 				0103C043292E732400566A23 /* valve-open-nightmode@3x.png */,
-				0103C08D292E732A00566A23 /* watermeter-nightmode@2x.png */,
-				0103C016292E732100566A23 /* watermeter-nightmode@3x.png */,
 				0103C047292E732400566A23 /* weight-nightmode@2x.png */,
 				0103C037292E732300566A23 /* weight-nightmode@3x.png */,
 				0103C053292E732500566A23 /* wind-nightmode@2x.png */,
@@ -3272,22 +3238,45 @@
 		405AC4011BC15878004F7311 /* Img */ = {
 			isa = PBXGroup;
 			children = (
-				0103BFF5292E72FB00566A23 /* Nightmode */,
-				01FE611226BFF45400CEE7A5 /* recalibrate@2x.png */,
-				015A9836265587E800B6E6C6 /* refresh@3x.png */,
-				01147CE8264C09D8002B2E1C /* powerstation@2x.png */,
-				01147CE7264C09D7002B2E1C /* powerstation@3x.png */,
-				0167C440260CD80700732220 /* garagedoor-closed-50percent@2x.png */,
-				0167C441260CD80700732220 /* garagedoor-closed-50percent@3x.png */,
+				40A87DDE1FADDFF800918B54 /* add_device@2x.png */,
+				405AC4031BC15898004F7311 /* app_icon-1024.png */,
+				405AC4041BC15898004F7311 /* app_icon@2x.png */,
+				405AC4051BC15898004F7311 /* app_icon@3x.png */,
+				407D4AF41BC6C7DE009A5505 /* app_icon29x29.png */,
+				407D4AF51BC6C7DE009A5505 /* app_icon57x57.png */,
+				407D4AE61BC6C57E009A5505 /* app_icon58x58@2x.png */,
+				407D4AEA1BC6C64D009A5505 /* app_icon80x80@2x.png */,
+				407D4AE81BC6C5C7009A5505 /* app_icon87x87@3x.png */,
+				407D4AF61BC6C7DE009A5505 /* app_icon114x114@2x.png */,
+				407D4AF21BC6C6CB009A5505 /* app_icon120x120@2x.png */,
+				407D4AEB1BC6C64D009A5505 /* app_icon120x120@3x.png */,
+				407D4AEF1BC6C6A4009A5505 /* app_icon180x180@3x.png */,
+				01D3FF6624A20E26000EBE77 /* backbtn@3x.png */,
+				40B9ED6B1FACD94200403B1A /* barier-closed@2x.png */,
+				40B9ED6A1FACD94200403B1A /* barier-closed@3x.png */,
+				40B9ED6C1FACD94300403B1A /* barier-open@2x.png */,
+				40B9ED691FACD94200403B1A /* barier-open@3x.png */,
+				013F7EC323EB4B500061A497 /* battery@2x.png */,
+				013F7EC223EB4B500061A497 /* battery@3x.png */,
 				011021AD25CC337500621D41 /* bridge_disconnected@3x.png */,
-				011021AE25CC337500621D41 /* zwave_timeout@3x.png */,
-				0186055625BF80AC00C1332A /* wakeup@3x.png */,
-				0186054F25BF74E100C1332A /* zwave_add@3x.png */,
-				0186055025BF74E100C1332A /* zwave_remove@3x.png */,
-				0186054E25BF74E100C1332A /* zwave_reset@3x.png */,
-				0186054A25BF673700C1332A /* time@3x.png */,
-				0186054625BF48C500C1332A /* z_wave@3x.png */,
-				013AB91725E85CFA00C55E33 /* menu_cloud@2x.png */,
+				01D32F3125C999CF00793A72 /* btnbackl@2x.png */,
+				4091AF3C1FC8405200EFF357 /* btnnextl@2x.png */,
+				4091AF3B1FC8405100EFF357 /* btnnextr@2x.png */,
+				4091AF3D1FC8405200EFF357 /* btnnextr2@2x.png */,
+				0148932825AA03EE00B9974E /* btnOK_disabled@2x.png */,
+				0148932925AA03EE00B9974E /* btnOK_disabled@3x.png */,
+				406C92D31BCD8518007BA87A /* btnOK@2x.png */,
+				407D4AFA1BC6D6AA009A5505 /* btnOK@3x.png */,
+				0182FCA52464691D00270CDC /* channel_warning_level1@2x.png */,
+				0182FCA42464691D00270CDC /* channel_warning_level1@3x.png */,
+				0182FCA22464691C00270CDC /* channel_warning_level2@2x.png */,
+				0182FCA32464691C00270CDC /* channel_warning_level2@3x.png */,
+				0180440924C2001A005E53EB /* channelstateinfo@3x.png */,
+				017554F922F1D2BE00EB58B7 /* clock@3x.png */,
+				012119142368C3B2004C1993 /* collapsed@3x.png */,
+				016EE77323074DDC00FD301C /* consumption@3x.png */,
+				40CE7C671DCBBD5700BBACE4 /* depth@2x.png */,
+				40CE7C681DCBBD5700BBACE4 /* depth@3x.png */,
 				01CEAC2425B9AA71009C3BFD /* dgfopaque@3x.png */,
 				01CEAC2325B9AA71009C3BFD /* dgftransparent@3x.png */,
 				01CEAC0225B99A57009C3BFD /* digiglass-transparent@2x.png */,
@@ -3302,96 +3291,151 @@
 				01CEAC0425B99A57009C3BFD /* digiglassv-transparent@3x.png */,
 				01CEAC0725B99A57009C3BFD /* digiglassv1-transparent@2x.png */,
 				01CEAC0625B99A57009C3BFD /* digiglassv1-transparent@3x.png */,
+				4052D9F91DC515AE000B8C45 /* dimmer-off@2x.png */,
+				4052D9F81DC515AE000B8C45 /* dimmer-off@3x.png */,
+				4052D9FB1DC515AE000B8C45 /* dimmer-on@2x.png */,
+				4052D9FA1DC515AE000B8C45 /* dimmer-on@3x.png */,
+				4052D9F11DC515AE000B8C45 /* dimmerrgb-offoff@2x.png */,
+				4052D9F01DC515AE000B8C45 /* dimmerrgb-offoff@3x.png */,
+				4052D9F31DC515AE000B8C45 /* dimmerrgb-offon@2x.png */,
+				4052D9F21DC515AE000B8C45 /* dimmerrgb-offon@3x.png */,
+				4052D9F51DC515AE000B8C45 /* dimmerrgb-onoff@2x.png */,
+				4052D9F41DC515AE000B8C45 /* dimmerrgb-onoff@3x.png */,
+				4052D9F71DC515AE000B8C45 /* dimmerrgb-onon@2x.png */,
+				4052D9F61DC515AE000B8C45 /* dimmerrgb-onon@3x.png */,
+				40CE7C661DCBBD5700BBACE4 /* distance@2x.png */,
+				40CE7C651DCBBD5700BBACE4 /* distance@3x.png */,
+				40A87DDD1FADDFF800918B54 /* donate@2x.png */,
+				40CF96881BC7D4E70030EFFF /* door-closed@2x.png */,
+				40CF96891BC7D4E70030EFFF /* door-closed@3x.png */,
+				40CF968A1BC7D4E70030EFFF /* door-open@2x.png */,
+				40CF968B1BC7D4E70030EFFF /* door-open@3x.png */,
+				40CF96D41BC81A470030EFFF /* error@2x.png */,
+				40CF96D51BC81A470030EFFF /* error@3x.png */,
+				40B9ED5B1FACD14000403B1A /* fan-off@2x.png */,
+				40B9ED5C1FACD14000403B1A /* fan-off@3x.png */,
+				40B9ED591FACD13F00403B1A /* fan-on@2x.png */,
+				40B9ED5A1FACD14000403B1A /* fan-on@3x.png */,
+				40DE1A241BCCFF8A004CF43B /* feedback@2x.png */,
+				40DE1A251BCCFF8A004CF43B /* feedback@3x.png */,
+				0167C440260CD80700732220 /* garagedoor-closed-50percent@2x.png */,
+				0167C441260CD80700732220 /* garagedoor-closed-50percent@3x.png */,
+				40CF968C1BC7D4E70030EFFF /* garagedoor-closed@2x.png */,
+				40CF968D1BC7D4E70030EFFF /* garagedoor-closed@3x.png */,
+				40CF968E1BC7D4E70030EFFF /* garagedoor-open@2x.png */,
+				40CF968F1BC7D4E70030EFFF /* garagedoor-open@3x.png */,
+				40477B4D20C6CF2500E995E6 /* gate-closed-50percent@2x.png */,
+				40477B4F20C6CF2600E995E6 /* gate-closed-50percent@3x.png */,
+				40CF96901BC7D4E70030EFFF /* gate-closed@2x.png */,
+				40CF96911BC7D4E70030EFFF /* gate-closed@3x.png */,
+				40CF96921BC7D4E70030EFFF /* gate-open@2x.png */,
+				40CF96931BC7D4E70030EFFF /* gate-open@3x.png */,
+				40477B4E20C6CF2500E995E6 /* gatealt1-closed-50percent@2x.png */,
+				40477B5020C6CF2600E995E6 /* gatealt1-closed-50percent@3x.png */,
+				40B9ED711FACE15500403B1A /* gatealt1-closed@2x.png */,
+				40B9ED721FACE15500403B1A /* gatealt1-closed@3x.png */,
+				40B9ED751FACE15600403B1A /* gatealt1-open@2x.png */,
+				40B9ED7A1FACE15700403B1A /* gatealt1-open@3x.png */,
+				40CF96941BC7D4E70030EFFF /* gateway-closed@2x.png */,
+				40CF96951BC7D4E70030EFFF /* gateway-closed@3x.png */,
+				40CF96961BC7D4E70030EFFF /* gateway-open@2x.png */,
+				40CF96971BC7D4E70030EFFF /* gateway-open@3x.png */,
+				40766C2A1FC9BC78009E00BE /* generalsettings@2x.png */,
+				01D2C38C22C3B0A700BF1A10 /* graphoff.png */,
+				01D2C38B22C3B0A700BF1A10 /* graphon.png */,
+				4091AF491FC88BFA00EFF357 /* greendot@2x.png */,
+				40477B5D20C6F62900E995E6 /* groupsoff@2x.png */,
+				40477B5E20C6F62900E995E6 /* groupson@2x.png */,
+				017554F722F1CDB900EB58B7 /* heatpollogo@3x.png */,
+				4014ADFB1FE01EC700297A9E /* help@2x.png */,
+				4014ADFC1FE01EC800297A9E /* help@3x.png */,
+				017554FE22F1DDA300EB58B7 /* hp_minus@3x.png */,
+				017554FD22F1DDA300EB58B7 /* hp_plus@3x.png */,
+				4038A5551CE32CD700180B5D /* humidity@2x.png */,
+				4038A5561CE32CD700180B5D /* humidity@3x.png */,
 				0148933B25AA19DA00B9974E /* infinity@3x.png */,
 				0148933D25AA19DA00B9974E /* infinitywhite@3x.png */,
-				0148933E25AA19DA00B9974E /* p100@3x.png */,
-				0148933C25AA19DA00B9974E /* p100white@3x.png */,
-				0148933725AA163F00B9974E /* zamel_logo.png */,
-				0148932825AA03EE00B9974E /* btnOK_disabled@2x.png */,
-				0148932925AA03EE00B9974E /* btnOK_disabled@3x.png */,
+				40DE1A261BCCFF8A004CF43B /* info@2x.png */,
+				40DE1A271BCCFF8A004CF43B /* info@3x.png */,
+				010C8782249A6471002FE526 /* infoclose@2x.png */,
+				40766C2C1FC9C36C009E00BE /* iossettings.png */,
 				015839692576A82A005E615D /* ledalwaysoff@3x.png */,
 				015839642576A82A005E615D /* ledalwaysoffwhite@3x.png */,
 				015839662576A82A005E615D /* ledoff@3x.png */,
 				015839652576A82A005E615D /* ledoffwhite@3x.png */,
 				015839672576A82A005E615D /* ledon@3x.png */,
 				015839682576A82A005E615D /* ledonwhite@3x.png */,
-				01996AC0254B6B380034C6F1 /* z_wave_btn@2x.png */,
+				40CF96981BC7D4E70030EFFF /* light-off@2x.png */,
+				40CF96991BC7D4E70030EFFF /* light-off@3x.png */,
+				40CF969A1BC7D4E70030EFFF /* light-on@2x.png */,
+				40CF969B1BC7D4E70030EFFF /* light-on@3x.png */,
+				40CF969C1BC7D4E70030EFFF /* liquid@2x.png */,
+				40CF969D1BC7D4E70030EFFF /* liquid@3x.png */,
+				405AC4331BC15C08004F7311 /* logo-supla@2x.png */,
+				40CF96D11BC8034E0030EFFF /* logo-supla@3x.png */,
+				407D31A51FD1B75E0062FB80 /* logo-white@2x.png */,
+				407D31A61FD1B75E0062FB80 /* logo-white@3x.png */,
+				4091AF451FC86D7A00EFF357 /* look@2x.png */,
+				01793C5424D76EBB00CD2533 /* lookblack@2x.png */,
+				40B9ED731FACE15500403B1A /* mail@2x.png */,
+				40B9ED791FACE15700403B1A /* mail@3x.png */,
+				013AB91725E85CFA00C55E33 /* menu_cloud@2x.png */,
+				4067782A1BCBC647008DD37F /* menu@2x.png */,
+				4067782B1BCBC647008DD37F /* menu@3x.png */,
+				0103BFF5292E72FB00566A23 /* Nightmode */,
+				40CF969E1BC7D4E70030EFFF /* noliquid@2x.png */,
+				40CF969F1BC7D4E70030EFFF /* noliquid@3x.png */,
+				40B9ED771FACE15600403B1A /* nomail@2x.png */,
+				40B9ED741FACE15600403B1A /* nomail@3x.png */,
+				0148933E25AA19DA00B9974E /* p100@3x.png */,
+				0148933C25AA19DA00B9974E /* p100white@3x.png */,
+				40B9ED511FACD0A000403B1A /* pc-off@2x.png */,
+				40B9ED541FACD0A100403B1A /* pc-off@3x.png */,
+				40B9ED531FACD0A100403B1A /* pc-on@2x.png */,
+				40B9ED521FACD0A000403B1A /* pc-on@3x.png */,
+				4091AF471FC88A8900EFF357 /* plug@2x.png */,
+				40CF96A01BC7D4E70030EFFF /* power-off@2x.png */,
+				40CF96A11BC7D4E70030EFFF /* power-off@3x.png */,
+				40CF96A21BC7D4E70030EFFF /* power-on@2x.png */,
+				40CF96A31BC7D4E70030EFFF /* power-on@3x.png */,
+				01147CE8264C09D8002B2E1C /* powerstation@2x.png */,
+				01147CE7264C09D7002B2E1C /* powerstation@3x.png */,
+				017A3CAD23635DF7004AD1FC /* pressure@2x.png */,
+				017A3CAE23635DF7004AD1FC /* pressure@3x.png */,
+				016EE77223074DDC00FD301C /* production@3x.png */,
+				40B9ED4B1FACCF8100403B1A /* radio-off@2x.png */,
+				40B9ED4C1FACCF8100403B1A /* radio-off@3x.png */,
+				40B9ED491FACCF8000403B1A /* radio-on@2x.png */,
+				40B9ED4A1FACCF8100403B1A /* radio-on@3x.png */,
+				017A3CA923635DF6004AD1FC /* rain@2x.png */,
+				017A3CAA23635DF6004AD1FC /* rain@3x.png */,
+				01FE611226BFF45400CEE7A5 /* recalibrate@2x.png */,
+				015A9836265587E800B6E6C6 /* refresh@3x.png */,
+				40D397AC1FAF547B00BF477D /* retry@3x.png */,
+				4052D9FD1DC515AE000B8C45 /* rgb-off@2x.png */,
+				4052D9FC1DC515AE000B8C45 /* rgb-off@3x.png */,
+				4052D9FF1DC515AE000B8C45 /* rgb-on@2x.png */,
+				4052D9FE1DC515AE000B8C45 /* rgb-on@3x.png */,
+				012BD7232499173600E64F25 /* rgbwinfo@3x.png */,
+				012BD7222499173500E64F25 /* rgbwpoweroff@3x.png */,
+				012BD7242499173600E64F25 /* rgbwpoweron@3x.png */,
+				012BD7292499183700E64F25 /* rgbwsettings@3x.png */,
+				4091AF411FC84ADF00EFF357 /* rocket@2x.png */,
+				40CF96A41BC7D4E70030EFFF /* rollershutter-closed@2x.png */,
+				40CF96A51BC7D4E70030EFFF /* rollershutter-closed@3x.png */,
+				40CF96A61BC7D4E70030EFFF /* rollershutter-open@2x.png */,
+				40CF96A71BC7D4E70030EFFF /* rollershutter-open@3x.png */,
 				013A1BFA2538BAA0000583A2 /* roofwindow-closed@2x.png */,
 				013A1BF82538BAA0000583A2 /* roofwindow-closed@3x.png */,
 				013A1BF92538BAA0000583A2 /* roofwindow-open@2x.png */,
 				013A1BF72538BAA0000583A2 /* roofwindow-open@3x.png */,
-				01793C5424D76EBB00CD2533 /* lookblack@2x.png */,
-				0180440924C2001A005E53EB /* channelstateinfo@3x.png */,
-				018D2E5024BF258B00773D2F /* uv-off@2x.png */,
-				018D2E4E24BF258B00773D2F /* uv-off@3x.png */,
-				018D2E4D24BF258A00773D2F /* uv-on@2x.png */,
-				018D2E4F24BF258B00773D2F /* uv-on@3x.png */,
-				01D3FF6624A20E26000EBE77 /* backbtn@3x.png */,
-				01D6A105249C0EAC006B3757 /* vlinfo@3.png */,
-				010C8782249A6471002FE526 /* infoclose@2x.png */,
-				012BD7292499183700E64F25 /* rgbwsettings@3x.png */,
-				012BD7232499173600E64F25 /* rgbwinfo@3x.png */,
-				012BD7222499173500E64F25 /* rgbwpoweroff@3x.png */,
-				012BD7242499173600E64F25 /* rgbwpoweron@3x.png */,
-				0182FCA52464691D00270CDC /* channel_warning_level1@2x.png */,
-				0182FCA42464691D00270CDC /* channel_warning_level1@3x.png */,
-				0182FCA22464691C00270CDC /* channel_warning_level2@2x.png */,
-				0182FCA32464691C00270CDC /* channel_warning_level2@3x.png */,
-				018574242411234B00CEDF16 /* heatmeter@2x.png */,
-				018574252411234B00CEDF16 /* heatmeter@3x.png */,
-				012E341023DF5FB800F17D39 /* valve-closed@2x.png */,
-				013F7EC323EB4B500061A497 /* battery@2x.png */,
-				013F7EC223EB4B500061A497 /* battery@3x.png */,
-				012E341223DF5FB800F17D39 /* valve-closed@3x.png */,
-				012E341323DF5FB800F17D39 /* valve-open@2x.png */,
-				012E341123DF5FB800F17D39 /* valve-open@3x.png */,
-				012119142368C3B2004C1993 /* collapsed@3x.png */,
-				017A3CA523635C22004AD1FC /* weight@2x.png */,
-				017A3CA623635C22004AD1FC /* weight@3x.png */,
-				017A3CAD23635DF7004AD1FC /* pressure@2x.png */,
-				017A3CAE23635DF7004AD1FC /* pressure@3x.png */,
-				017A3CA923635DF6004AD1FC /* rain@2x.png */,
-				017A3CAA23635DF6004AD1FC /* rain@3x.png */,
-				017A3CAB23635DF6004AD1FC /* wind@2x.png */,
-				017A3CAC23635DF6004AD1FC /* wind@3x.png */,
-				016EE77323074DDC00FD301C /* consumption@3x.png */,
-				016EE77223074DDC00FD301C /* production@3x.png */,
-				017554FE22F1DDA300EB58B7 /* hp_minus@3x.png */,
-				017554FD22F1DDA300EB58B7 /* hp_plus@3x.png */,
-				017554F922F1D2BE00EB58B7 /* clock@3x.png */,
+				409165491F3CBAF200F49193 /* rs_close.png */,
+				409165481F3CBAF200F49193 /* rs_down.png */,
+				4091654A1F3CBAF200F49193 /* rs_open.png */,
+				409165461F3CBAF200F49193 /* rs_stop.png */,
+				409165471F3CBAF200F49193 /* rs_up.png */,
+				40DE1A281BCCFF8A004CF43B /* settings@2x.png */,
 				017554FA22F1D2BE00EB58B7 /* settings2@3x.png */,
-				017554F722F1CDB900EB58B7 /* heatpollogo@3x.png */,
-				01F9110C22EF964900BFF91D /* thermostat_hp_homeplus1-on@2x.png */,
-				01F9110D22EF964900BFF91D /* thermostat_hp_homeplus1-on@3x.png */,
-				01F910F422EF954300BFF91D /* thermostat_hp_homeplus-off@2x.png */,
-				01F910F722EF954300BFF91D /* thermostat_hp_homeplus-off@3x.png */,
-				01F910F522EF954300BFF91D /* thermostat_hp_homeplus-on@2x.png */,
-				01F910FC22EF954400BFF91D /* thermostat_hp_homeplus-on@3x.png */,
-				01F910F222EF954300BFF91D /* thermostat_hp_homeplus1-off@2x.png */,
-				01F910FA22EF954300BFF91D /* thermostat_hp_homeplus1-off@3x.png */,
-				01F910F622EF954300BFF91D /* thermostat_hp_homeplus2-off@2x.png */,
-				01F910F322EF954300BFF91D /* thermostat_hp_homeplus2-off@3x.png */,
-				01F910F022EF954200BFF91D /* thermostat_hp_homeplus2-on@2x.png */,
-				01F910FD22EF954400BFF91D /* thermostat_hp_homeplus2-on@3x.png */,
-				01F910F922EF954300BFF91D /* thermostat_hp_homeplus3-off@2x.png */,
-				01F910F122EF954300BFF91D /* thermostat_hp_homeplus3-off@3x.png */,
-				01F910F822EF954300BFF91D /* thermostat_hp_homeplus3-on@2x.png */,
-				01F910FB22EF954300BFF91D /* thermostat_hp_homeplus3-on@3x.png */,
-				01D2C38C22C3B0A700BF1A10 /* graphoff.png */,
-				01D2C38B22C3B0A700BF1A10 /* graphon.png */,
-				01D4293222AAA83D0050C1A2 /* electricitymeter@2x.png */,
-				01D4292D22AAA83D0050C1A2 /* electricitymeter@3x.png */,
-				01D4292F22AAA83D0050C1A2 /* gasmeter@2x.png */,
-				01D4293022AAA83D0050C1A2 /* gasmeter@3x.png */,
-				01D4293122AAA83D0050C1A2 /* watermeter@2x.png */,
-				01D4292E22AAA83D0050C1A2 /* watermeter@3x.png */,
-				40CEB66320CA95DF009FA2EE /* unknown_channel@3x.png */,
-				40477B5D20C6F62900E995E6 /* groupsoff@2x.png */,
-				40477B5E20C6F62900E995E6 /* groupson@2x.png */,
-				40477B4D20C6CF2500E995E6 /* gate-closed-50percent@2x.png */,
-				40477B4F20C6CF2600E995E6 /* gate-closed-50percent@3x.png */,
-				40477B4E20C6CF2500E995E6 /* gatealt1-closed-50percent@2x.png */,
-				40477B5020C6CF2600E995E6 /* gatealt1-closed-50percent@3x.png */,
 				40477B4520C6C5FD00E995E6 /* staircasetimer_1-off@2x.png */,
 				40477B4720C6C5FE00E995E6 /* staircasetimer_1-off@3x.png */,
 				40477B4820C6C5FE00E995E6 /* staircasetimer_1-on@2x.png */,
@@ -3400,150 +3444,64 @@
 				40477B3520C6C57500E995E6 /* staircasetimer-off@3x.png */,
 				40477B3920C6C57600E995E6 /* staircasetimer-on@2x.png */,
 				40477B3A20C6C57600E995E6 /* staircasetimer-on@3x.png */,
-				4014ADFB1FE01EC700297A9E /* help@2x.png */,
-				4014ADFC1FE01EC800297A9E /* help@3x.png */,
-				407D31A51FD1B75E0062FB80 /* logo-white@2x.png */,
-				01D6A107249C0F40006B3757 /* vlrestore@3.png */,
-				407D31A61FD1B75E0062FB80 /* logo-white@3x.png */,
-				407D31921FD17C4B0062FB80 /* wifigeneral@2x.png */,
-				405C499E1FCAFFD100C15602 /* wizard_error@2x.png */,
-				405C499F1FCAFFD200C15602 /* wizard_ok@2x.png */,
-				40766C2C1FC9C36C009E00BE /* iossettings.png */,
-				40766C2A1FC9BC78009E00BE /* generalsettings@2x.png */,
-				4091AF491FC88BFA00EFF357 /* greendot@2x.png */,
-				4091AF471FC88A8900EFF357 /* plug@2x.png */,
-				4091AF451FC86D7A00EFF357 /* look@2x.png */,
-				4091AF431FC856C100EFF357 /* wifi@2x.png */,
-				4091AF411FC84ADF00EFF357 /* rocket@2x.png */,
-				4091AF3C1FC8405200EFF357 /* btnnextl@2x.png */,
-				01D32F3125C999CF00793A72 /* btnbackl@2x.png */,
-				4091AF3B1FC8405100EFF357 /* btnnextr@2x.png */,
-				4091AF3D1FC8405200EFF357 /* btnnextr2@2x.png */,
-				40D397AC1FAF547B00BF477D /* retry@3x.png */,
-				40A87DDE1FADDFF800918B54 /* add_device@2x.png */,
-				40A87DDD1FADDFF800918B54 /* donate@2x.png */,
-				40B9ED711FACE15500403B1A /* gatealt1-closed@2x.png */,
-				40B9ED721FACE15500403B1A /* gatealt1-closed@3x.png */,
-				40B9ED751FACE15600403B1A /* gatealt1-open@2x.png */,
-				40B9ED7A1FACE15700403B1A /* gatealt1-open@3x.png */,
-				40B9ED731FACE15500403B1A /* mail@2x.png */,
-				40B9ED791FACE15700403B1A /* mail@3x.png */,
-				40B9ED771FACE15600403B1A /* nomail@2x.png */,
-				40B9ED741FACE15600403B1A /* nomail@3x.png */,
-				40B9ED781FACE15700403B1A /* window-closed@3x.png */,
-				40B9ED761FACE15600403B1A /* window-open@3x.png */,
-				40B9ED6B1FACD94200403B1A /* barier-closed@2x.png */,
-				40B9ED6A1FACD94200403B1A /* barier-closed@3x.png */,
-				40B9ED6C1FACD94300403B1A /* barier-open@2x.png */,
-				40B9ED691FACD94200403B1A /* barier-open@3x.png */,
-				40B9ED641FACD34C00403B1A /* xmastree-off@2x.png */,
-				40B9ED631FACD34C00403B1A /* xmastree-off@3x.png */,
-				40B9ED621FACD34B00403B1A /* xmastree-on@2x.png */,
-				40B9ED611FACD34B00403B1A /* xmastree-on@3x.png */,
-				40B9ED5B1FACD14000403B1A /* fan-off@2x.png */,
-				40B9ED5C1FACD14000403B1A /* fan-off@3x.png */,
-				40B9ED591FACD13F00403B1A /* fan-on@2x.png */,
-				40B9ED5A1FACD14000403B1A /* fan-on@3x.png */,
-				40B9ED511FACD0A000403B1A /* pc-off@2x.png */,
-				40B9ED541FACD0A100403B1A /* pc-off@3x.png */,
-				40B9ED531FACD0A100403B1A /* pc-on@2x.png */,
-				40B9ED521FACD0A000403B1A /* pc-on@3x.png */,
-				40B9ED4B1FACCF8100403B1A /* radio-off@2x.png */,
-				40B9ED4C1FACCF8100403B1A /* radio-off@3x.png */,
-				40B9ED491FACCF8000403B1A /* radio-on@2x.png */,
-				40B9ED4A1FACCF8100403B1A /* radio-on@3x.png */,
+				40CF96A81BC7D4E70030EFFF /* thermometer@2x.png */,
+				40CF96A91BC7D4E70030EFFF /* thermometer@3x.png */,
+				01F910F422EF954300BFF91D /* thermostat_hp_homeplus-off@2x.png */,
+				01F910F722EF954300BFF91D /* thermostat_hp_homeplus-off@3x.png */,
+				01F910F522EF954300BFF91D /* thermostat_hp_homeplus-on@2x.png */,
+				01F910FC22EF954400BFF91D /* thermostat_hp_homeplus-on@3x.png */,
+				01F910F222EF954300BFF91D /* thermostat_hp_homeplus1-off@2x.png */,
+				01F910FA22EF954300BFF91D /* thermostat_hp_homeplus1-off@3x.png */,
+				01F9110C22EF964900BFF91D /* thermostat_hp_homeplus1-on@2x.png */,
+				01F9110D22EF964900BFF91D /* thermostat_hp_homeplus1-on@3x.png */,
+				01F910F622EF954300BFF91D /* thermostat_hp_homeplus2-off@2x.png */,
+				01F910F322EF954300BFF91D /* thermostat_hp_homeplus2-off@3x.png */,
+				01F910F022EF954200BFF91D /* thermostat_hp_homeplus2-on@2x.png */,
+				01F910FD22EF954400BFF91D /* thermostat_hp_homeplus2-on@3x.png */,
+				01F910F922EF954300BFF91D /* thermostat_hp_homeplus3-off@2x.png */,
+				01F910F122EF954300BFF91D /* thermostat_hp_homeplus3-off@3x.png */,
+				01F910F822EF954300BFF91D /* thermostat_hp_homeplus3-on@2x.png */,
+				01F910FB22EF954300BFF91D /* thermostat_hp_homeplus3-on@3x.png */,
+				0186054A25BF673700C1332A /* time@3x.png */,
 				40B9ED431FACCE8700403B1A /* tv-off@2x.png */,
 				40B9ED411FACCE8600403B1A /* tv-off@3x.png */,
 				40B9ED421FACCE8700403B1A /* tv-on@2x.png */,
 				40B9ED441FACCE8700403B1A /* tv-on@3x.png */,
-				409165461F3CBAF200F49193 /* rs_stop.png */,
-				409165471F3CBAF200F49193 /* rs_up.png */,
-				409165481F3CBAF200F49193 /* rs_down.png */,
-				409165491F3CBAF200F49193 /* rs_close.png */,
-				4091654A1F3CBAF200F49193 /* rs_open.png */,
-				40CE7C651DCBBD5700BBACE4 /* distance@3x.png */,
-				40CE7C661DCBBD5700BBACE4 /* distance@2x.png */,
-				40CE7C671DCBBD5700BBACE4 /* depth@2x.png */,
-				40CE7C681DCBBD5700BBACE4 /* depth@3x.png */,
-				4052D9F01DC515AE000B8C45 /* dimmerrgb-offoff@3x.png */,
-				4052D9F11DC515AE000B8C45 /* dimmerrgb-offoff@2x.png */,
-				4052D9F21DC515AE000B8C45 /* dimmerrgb-offon@3x.png */,
-				4052D9F31DC515AE000B8C45 /* dimmerrgb-offon@2x.png */,
-				4052D9F41DC515AE000B8C45 /* dimmerrgb-onoff@3x.png */,
-				4052D9F51DC515AE000B8C45 /* dimmerrgb-onoff@2x.png */,
-				4052D9F61DC515AE000B8C45 /* dimmerrgb-onon@3x.png */,
-				4052D9F71DC515AE000B8C45 /* dimmerrgb-onon@2x.png */,
-				4052D9F81DC515AE000B8C45 /* dimmer-off@3x.png */,
-				4052D9F91DC515AE000B8C45 /* dimmer-off@2x.png */,
-				4052D9FA1DC515AE000B8C45 /* dimmer-on@3x.png */,
-				4052D9FB1DC515AE000B8C45 /* dimmer-on@2x.png */,
-				4052D9FC1DC515AE000B8C45 /* rgb-off@3x.png */,
-				4052D9FD1DC515AE000B8C45 /* rgb-off@2x.png */,
-				4052D9FE1DC515AE000B8C45 /* rgb-on@3x.png */,
-				4052D9FF1DC515AE000B8C45 /* rgb-on@2x.png */,
-				4038A5551CE32CD700180B5D /* humidity@2x.png */,
-				4038A5561CE32CD700180B5D /* humidity@3x.png */,
-				406C92D31BCD8518007BA87A /* btnOK@2x.png */,
-				40DE1A241BCCFF8A004CF43B /* feedback@2x.png */,
-				40DE1A251BCCFF8A004CF43B /* feedback@3x.png */,
-				40DE1A261BCCFF8A004CF43B /* info@2x.png */,
-				40DE1A271BCCFF8A004CF43B /* info@3x.png */,
-				40DE1A281BCCFF8A004CF43B /* settings@2x.png */,
-				4067782A1BCBC647008DD37F /* menu@2x.png */,
-				4067782B1BCBC647008DD37F /* menu@3x.png */,
-				40CF96D41BC81A470030EFFF /* error@2x.png */,
-				40CF96D51BC81A470030EFFF /* error@3x.png */,
+				40CEB66320CA95DF009FA2EE /* unknown_channel@3x.png */,
+				018D2E5024BF258B00773D2F /* uv-off@2x.png */,
+				018D2E4E24BF258B00773D2F /* uv-off@3x.png */,
+				018D2E4D24BF258A00773D2F /* uv-on@2x.png */,
+				018D2E4F24BF258B00773D2F /* uv-on@3x.png */,
+				012E341023DF5FB800F17D39 /* valve-closed@2x.png */,
+				012E341223DF5FB800F17D39 /* valve-closed@3x.png */,
+				012E341323DF5FB800F17D39 /* valve-open@2x.png */,
+				012E341123DF5FB800F17D39 /* valve-open@3x.png */,
+				01D6A105249C0EAC006B3757 /* vlinfo@3.png */,
+				01D6A107249C0F40006B3757 /* vlrestore@3.png */,
+				0186055625BF80AC00C1332A /* wakeup@3x.png */,
 				40CF96D61BC81A470030EFFF /* warning@2x.png */,
 				40CF96D71BC81A470030EFFF /* warning@3x.png */,
-				40CF96D11BC8034E0030EFFF /* logo-supla@3x.png */,
-				40CF96881BC7D4E70030EFFF /* door-closed@2x.png */,
-				40CF96891BC7D4E70030EFFF /* door-closed@3x.png */,
-				40CF968A1BC7D4E70030EFFF /* door-open@2x.png */,
-				40CF968B1BC7D4E70030EFFF /* door-open@3x.png */,
-				40CF968C1BC7D4E70030EFFF /* garagedoor-closed@2x.png */,
-				40CF968D1BC7D4E70030EFFF /* garagedoor-closed@3x.png */,
-				40CF968E1BC7D4E70030EFFF /* garagedoor-open@2x.png */,
-				40CF968F1BC7D4E70030EFFF /* garagedoor-open@3x.png */,
-				40CF96901BC7D4E70030EFFF /* gate-closed@2x.png */,
-				40CF96911BC7D4E70030EFFF /* gate-closed@3x.png */,
-				40CF96921BC7D4E70030EFFF /* gate-open@2x.png */,
-				40CF96931BC7D4E70030EFFF /* gate-open@3x.png */,
-				40CF96941BC7D4E70030EFFF /* gateway-closed@2x.png */,
-				40CF96951BC7D4E70030EFFF /* gateway-closed@3x.png */,
-				40CF96961BC7D4E70030EFFF /* gateway-open@2x.png */,
-				40CF96971BC7D4E70030EFFF /* gateway-open@3x.png */,
-				40CF96981BC7D4E70030EFFF /* light-off@2x.png */,
-				40CF96991BC7D4E70030EFFF /* light-off@3x.png */,
-				40CF969A1BC7D4E70030EFFF /* light-on@2x.png */,
-				40CF969B1BC7D4E70030EFFF /* light-on@3x.png */,
-				40CF969C1BC7D4E70030EFFF /* liquid@2x.png */,
-				40CF969D1BC7D4E70030EFFF /* liquid@3x.png */,
-				40CF969E1BC7D4E70030EFFF /* noliquid@2x.png */,
-				40CF969F1BC7D4E70030EFFF /* noliquid@3x.png */,
-				40CF96A01BC7D4E70030EFFF /* power-off@2x.png */,
-				40CF96A11BC7D4E70030EFFF /* power-off@3x.png */,
-				40CF96A21BC7D4E70030EFFF /* power-on@2x.png */,
-				40CF96A31BC7D4E70030EFFF /* power-on@3x.png */,
-				40CF96A41BC7D4E70030EFFF /* rollershutter-closed@2x.png */,
-				40CF96A51BC7D4E70030EFFF /* rollershutter-closed@3x.png */,
-				40CF96A61BC7D4E70030EFFF /* rollershutter-open@2x.png */,
-				40CF96A71BC7D4E70030EFFF /* rollershutter-open@3x.png */,
-				40CF96A81BC7D4E70030EFFF /* thermometer@2x.png */,
-				40CF96A91BC7D4E70030EFFF /* thermometer@3x.png */,
-				407D4AFA1BC6D6AA009A5505 /* btnOK@3x.png */,
-				407D4AF41BC6C7DE009A5505 /* app_icon29x29.png */,
-				407D4AF51BC6C7DE009A5505 /* app_icon57x57.png */,
-				407D4AF61BC6C7DE009A5505 /* app_icon114x114@2x.png */,
-				407D4AF21BC6C6CB009A5505 /* app_icon120x120@2x.png */,
-				407D4AEF1BC6C6A4009A5505 /* app_icon180x180@3x.png */,
-				407D4AEA1BC6C64D009A5505 /* app_icon80x80@2x.png */,
-				407D4AEB1BC6C64D009A5505 /* app_icon120x120@3x.png */,
-				407D4AE81BC6C5C7009A5505 /* app_icon87x87@3x.png */,
-				407D4AE61BC6C57E009A5505 /* app_icon58x58@2x.png */,
-				405AC4331BC15C08004F7311 /* logo-supla@2x.png */,
-				405AC4031BC15898004F7311 /* app_icon-1024.png */,
-				405AC4041BC15898004F7311 /* app_icon@2x.png */,
-				405AC4051BC15898004F7311 /* app_icon@3x.png */,
+				017A3CA523635C22004AD1FC /* weight@2x.png */,
+				017A3CA623635C22004AD1FC /* weight@3x.png */,
+				4091AF431FC856C100EFF357 /* wifi@2x.png */,
+				407D31921FD17C4B0062FB80 /* wifigeneral@2x.png */,
+				017A3CAB23635DF6004AD1FC /* wind@2x.png */,
+				017A3CAC23635DF6004AD1FC /* wind@3x.png */,
+				40B9ED781FACE15700403B1A /* window-closed@3x.png */,
+				40B9ED761FACE15600403B1A /* window-open@3x.png */,
+				405C499E1FCAFFD100C15602 /* wizard_error@2x.png */,
+				405C499F1FCAFFD200C15602 /* wizard_ok@2x.png */,
+				40B9ED641FACD34C00403B1A /* xmastree-off@2x.png */,
+				40B9ED631FACD34C00403B1A /* xmastree-off@3x.png */,
+				40B9ED621FACD34B00403B1A /* xmastree-on@2x.png */,
+				40B9ED611FACD34B00403B1A /* xmastree-on@3x.png */,
+				01996AC0254B6B380034C6F1 /* z_wave_btn@2x.png */,
+				0186054625BF48C500C1332A /* z_wave@3x.png */,
+				0148933725AA163F00B9974E /* zamel_logo.png */,
+				0186054F25BF74E100C1332A /* zwave_add@3x.png */,
+				0186055025BF74E100C1332A /* zwave_remove@3x.png */,
+				0186054E25BF74E100C1332A /* zwave_reset@3x.png */,
+				011021AE25CC337500621D41 /* zwave_timeout@3x.png */,
 			);
 			path = Img;
 			sourceTree = "<group>";
@@ -3653,6 +3611,7 @@
 				0196E82C258CEEEC0016E8DC /* InfoPlist.strings */,
 				AEF79D902713088100D7554B /* Strings.swift */,
 				A5AE7A802A39AF410097FA8B /* Default.strings */,
+				A55501E72B7F96E600FD3296 /* Icons.swift */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -4049,6 +4008,8 @@
 				A530EE2D2A57E23D00F8DAEE /* DigiglassHorizontalIconNameProducer.swift */,
 				A530EE2F2A57E2B900F8DAEE /* DigiglassVerticalIconNameProducer.swift */,
 				A56233FE2ABAC488001CB948 /* ThermostatIconNameProducer.swift */,
+				A55501E52B7F952E00FD3296 /* GeneralPurposeMeasurementIconNameProducer.swift */,
+				A55501E92B7FC38500FD3296 /* GeneralPurposeMeterIconNameProducer.swift */,
 			);
 			path = IconNameProducers;
 			sourceTree = "<group>";
@@ -5709,7 +5670,6 @@
 				01F9110522EF954400BFF91D /* thermostat_hp_homeplus-off@3x.png in Resources */,
 				0103C0B8292E732A00566A23 /* uv-off-nightmode@2x.png in Resources */,
 				40CF96B21BC7D4E70030EFFF /* gate-closed@2x.png in Resources */,
-				0103C127292E732B00566A23 /* watermeter-nightmode@2x.png in Resources */,
 				4091654D1F3CBAF200F49193 /* rs_down.png in Resources */,
 				0103C0B9292E732A00566A23 /* roofwindow-open-nightmode@3x.png in Resources */,
 				01F9110422EF954400BFF91D /* thermostat_hp_homeplus2-off@2x.png in Resources */,
@@ -5756,7 +5716,6 @@
 				40B9ED5E1FACD14000403B1A /* fan-on@3x.png in Resources */,
 				0103C126292E732B00566A23 /* tv-off-nightmode@3x.png in Resources */,
 				407D4AF31BC6C6CB009A5505 /* app_icon120x120@2x.png in Resources */,
-				0103C11B292E732B00566A23 /* heatmeter-nightmode@2x.png in Resources */,
 				015A9837265587E800B6E6C6 /* refresh@3x.png in Resources */,
 				4091AF421FC84AE000EFF357 /* rocket@2x.png in Resources */,
 				016EE77523074DDC00FD301C /* consumption@3x.png in Resources */,
@@ -5768,7 +5727,6 @@
 				0103C0C0292E732B00566A23 /* gate-closed-nightmode@2x.png in Resources */,
 				01D5E0CA22DB8F0A00FBE1DC /* SAChartMarkerView.xib in Resources */,
 				405AC41A1BC15898004F7311 /* app_icon@2x.png in Resources */,
-				0103C0EA292E732B00566A23 /* gasmeter-nightmode@3x.png in Resources */,
 				013AB91825E85CFB00C55E33 /* menu_cloud@2x.png in Resources */,
 				40CF96BA1BC7D4E70030EFFF /* light-off@2x.png in Resources */,
 				0148934125AA19DA00B9974E /* infinitywhite@3x.png in Resources */,
@@ -5779,21 +5737,18 @@
 				406778561BCBF9F4008DD37F /* SectionCell.xib in Resources */,
 				40CF96C01BC7D4E70030EFFF /* noliquid@2x.png in Resources */,
 				4091AF461FC86D7B00EFF357 /* look@2x.png in Resources */,
-				0103C0FE292E732B00566A23 /* electricitymeter-nightmode@3x.png in Resources */,
 				013F7EC423EB4B500061A497 /* battery@3x.png in Resources */,
 				0103C0E8292E732B00566A23 /* dimmerrgb-offon-nightmode@2x.png in Resources */,
 				407D4AE91BC6C5C7009A5505 /* app_icon87x87@3x.png in Resources */,
 				0103C0DB292E732B00566A23 /* dimmer-off-nightmode@3x.png in Resources */,
 				0182FCA62464691D00270CDC /* channel_warning_level2@2x.png in Resources */,
 				0148933F25AA19DA00B9974E /* infinity@3x.png in Resources */,
-				01D4293722AAA83E0050C1A2 /* watermeter@2x.png in Resources */,
 				40CF96B61BC7D4E70030EFFF /* gateway-closed@2x.png in Resources */,
 				0103C0BC292E732B00566A23 /* dimmer-off-nightmode@2x.png in Resources */,
 				40CF96BE1BC7D4E70030EFFF /* liquid@2x.png in Resources */,
 				4091AF401FC8405200EFF357 /* btnnextr2@2x.png in Resources */,
 				40B397E21BCED7C000BE7D5A /* OpenSans-Regular.ttf in Resources */,
 				017A3CB023635DF7004AD1FC /* rain@3x.png in Resources */,
-				01D4293622AAA83E0050C1A2 /* gasmeter@3x.png in Resources */,
 				4052DA0C1DC515AE000B8C45 /* rgb-off@3x.png in Resources */,
 				0103C0D1292E732B00566A23 /* weight-nightmode@3x.png in Resources */,
 				407D4AE71BC6C57E009A5505 /* app_icon58x58@2x.png in Resources */,
@@ -5859,7 +5814,6 @@
 				0103C120292E732B00566A23 /* garagedoor-closed-nightmode@3x.png in Resources */,
 				0103C107292E732B00566A23 /* dimmerrgb-offoff-nightmode@2x.png in Resources */,
 				40B9ED671FACD34C00403B1A /* xmastree-off@3x.png in Resources */,
-				0103C0B0292E732A00566A23 /* watermeter-nightmode@3x.png in Resources */,
 				40B9ED581FACD0A100403B1A /* pc-off@3x.png in Resources */,
 				01CEABFE25B9925E009C3BFD /* DigiglassDetailView.xib in Resources */,
 				0103C109292E732B00566A23 /* barier-open-nightmode@2x.png in Resources */,
@@ -5899,9 +5853,7 @@
 				40CF96BB1BC7D4E70030EFFF /* light-off@3x.png in Resources */,
 				01D4293A22AAAA450050C1A2 /* IncrementalMeterCell.xib in Resources */,
 				40CF96C91BC7D4E70030EFFF /* rollershutter-open@3x.png in Resources */,
-				01D4293822AAA83E0050C1A2 /* electricitymeter@2x.png in Resources */,
 				40477B5320C6CF2600E995E6 /* gate-closed-50percent@3x.png in Resources */,
-				0103C118292E732B00566A23 /* heatmeter-nightmode@3x.png in Resources */,
 				0103C0C9292E732B00566A23 /* thermostat_hp_homeplus1-on-nightmode@2x.png in Resources */,
 				0103C0ED292E732B00566A23 /* wind-nightmode@2x.png in Resources */,
 				40CF96B81BC7D4E70030EFFF /* gateway-open@2x.png in Resources */,
@@ -5928,7 +5880,6 @@
 				0103C104292E732B00566A23 /* xmastree-off-nightmode@2x.png in Resources */,
 				0103C123292E732B00566A23 /* garagedoor-closed-50percent-nightmode@3x.png in Resources */,
 				40B9ED661FACD34C00403B1A /* xmastree-on@2x.png in Resources */,
-				01D4293322AAA83E0050C1A2 /* electricitymeter@3x.png in Resources */,
 				40CF96B51BC7D4E70030EFFF /* gate-open@3x.png in Resources */,
 				0103C128292E732B00566A23 /* window-closed-nightmode@3x.png in Resources */,
 				017A3CB123635DF7004AD1FC /* wind@2x.png in Resources */,
@@ -5974,7 +5925,6 @@
 				40CF96CA1BC7D4E70030EFFF /* thermometer@2x.png in Resources */,
 				012BD7282499173600E64F25 /* rgbwpoweron@3x.png in Resources */,
 				0158396D2576A82A005E615D /* ledon@3x.png in Resources */,
-				018574272411234B00CEDF16 /* heatmeter@3x.png in Resources */,
 				0103C0CF292E732B00566A23 /* digiglass1-nightmode@3x.png in Resources */,
 				0103C11D292E732B00566A23 /* pc-off-nightmode@3x.png in Resources */,
 				01D2C38E22C3B0A700BF1A10 /* graphoff.png in Resources */,
@@ -6004,7 +5954,6 @@
 				0103C113292E732B00566A23 /* dimmer-on-nightmode@2x.png in Resources */,
 				40CF96D31BC8034E0030EFFF /* logo-supla@3x.png in Resources */,
 				0103C0D6292E732B00566A23 /* pressure-nightmode@3x.png in Resources */,
-				0103C0A9292E732A00566A23 /* gasmeter-nightmode@2x.png in Resources */,
 				0167C442260CD80700732220 /* garagedoor-closed-50percent@2x.png in Resources */,
 				40CF96CB1BC7D4E70030EFFF /* thermometer@3x.png in Resources */,
 				0103C10F292E732B00566A23 /* powerstation-nightmode@3x.png in Resources */,
@@ -6057,7 +6006,6 @@
 				40477B4120C6C57700E995E6 /* staircasetimer-on@2x.png in Resources */,
 				012BD72A2499183700E64F25 /* rgbwsettings@3x.png in Resources */,
 				4014ADFE1FE01ECD00297A9E /* help@3x.png in Resources */,
-				0103C09B292E732A00566A23 /* electricitymeter-nightmode@2x.png in Resources */,
 				40CF96AA1BC7D4E70030EFFF /* door-closed@2x.png in Resources */,
 				40D397AD1FAF547B00BF477D /* retry@3x.png in Resources */,
 				019F4CAC2354DC3300286139 /* ImpulseCounterDetailView.xib in Resources */,
@@ -6083,7 +6031,6 @@
 				405C49A01FCAFFD400C15602 /* wizard_error@2x.png in Resources */,
 				407D31941FD1A7070062FB80 /* AddWizardVC.xib in Resources */,
 				0103C0AC292E732A00566A23 /* barier-closed-nightmode@2x.png in Resources */,
-				018574262411234B00CEDF16 /* heatmeter@2x.png in Resources */,
 				0103C111292E732B00566A23 /* thermostat_hp_homeplus1-on-nightmode@3x.png in Resources */,
 				0103C0E6292E732B00566A23 /* gate-closed-nightmode@3x.png in Resources */,
 				01147CEA264C09D8002B2E1C /* powerstation@2x.png in Resources */,
@@ -6150,9 +6097,7 @@
 				0103C0CA292E732B00566A23 /* gate-open-nightmode@2x.png in Resources */,
 				0103C117292E732B00566A23 /* mail-nightmode@2x.png in Resources */,
 				0103C0BB292E732A00566A23 /* xmastree-off-nightmode@3x.png in Resources */,
-				01D4293522AAA83E0050C1A2 /* gasmeter@2x.png in Resources */,
 				01F9111122EF989100BFF91D /* HomePlusCell.xib in Resources */,
-				01D4293422AAA83E0050C1A2 /* watermeter@3x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -6386,6 +6331,7 @@
 				A5D837DD2AF12B5B002A420D /* BaseLoadMeasurementsUseCase.swift in Sources */,
 				40AB8BDE1DCB32EB0030F3DE /* SARateApp.m in Sources */,
 				AE5A60E6270E2A7A00F2B780 /* AccountCreationVC.swift in Sources */,
+				A55501E82B7F96E600FD3296 /* Icons.swift in Sources */,
 				A51BE9162AAB022400718F2F /* DayOfWeek.swift in Sources */,
 				01C1719122C7F3A2005983E1 /* SAElectricityMeasurementItem+CoreDataClass.m in Sources */,
 				A52ACD4929CB940B0092729F /* ActionParameters.swift in Sources */,
@@ -6536,6 +6482,7 @@
 				A5477DB92AA1F56400220B4A /* ChannelChild.swift in Sources */,
 				A57668D52AE94A060025509D /* DownloadEventsManager.swift in Sources */,
 				A5F29BCE2A26232900ED700A /* ElectricityMeasurementItemRepository.swift in Sources */,
+				A55501EA2B7FC38500FD3296 /* GeneralPurposeMeterIconNameProducer.swift in Sources */,
 				A52BFEE22B113BD700A2F64C /* TrippleNumberSelectorView.swift in Sources */,
 				AE74528B2827E38900A3AFAD /* ProfilesVC.swift in Sources */,
 				A52BFEE02B109F5A00A2F64C /* ThermostatTimerConfigurationView.swift in Sources */,
@@ -6544,6 +6491,7 @@
 				01E3966E25A78B8B00A0DB18 /* SADimmerCalibrationTool.m in Sources */,
 				01392B3A235CA8B1003A2BAD /* ChartDetailView.m in Sources */,
 				A5F29B7E2A1E36C200ED700A /* SceneRepository.swift in Sources */,
+				A55501E62B7F952E00FD3296 /* GeneralPurposeMeasurementIconNameProducer.swift in Sources */,
 				01567446232FCFD700397393 /* SAIncrementalMeterExtendedValue.m in Sources */,
 				AE5332E227648E770050E690 /* SuplaNavigationController.swift in Sources */,
 				A5B3CC0A2B6282B800F95AC3 /* WindValueStringProvider.swift in Sources */,
