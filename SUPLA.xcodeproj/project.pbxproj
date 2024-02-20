@@ -813,6 +813,11 @@
 		A55501EC2B8357F000FD3296 /* Migration15to16ModelMapping.xcmappingmodel in Sources */ = {isa = PBXBuildFile; fileRef = A55501EB2B8357F000FD3296 /* Migration15to16ModelMapping.xcmappingmodel */; };
 		A55501EE2B835B4600FD3296 /* CounterLog15to16MigrationPolicy.swift in Sources */ = {isa = PBXBuildFile; fileRef = A55501ED2B835B4600FD3296 /* CounterLog15to16MigrationPolicy.swift */; };
 		A55501F02B836D0B00FD3296 /* ElectricityMeterLog15to16MigrationPolicy.swift in Sources */ = {isa = PBXBuildFile; fileRef = A55501EF2B836D0B00FD3296 /* ElectricityMeterLog15to16MigrationPolicy.swift */; };
+		A55501F32B8382C500FD3296 /* NotificationsLogVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = A55501F22B8382C500FD3296 /* NotificationsLogVM.swift */; };
+		A55501F52B83842000FD3296 /* NotificationsLogVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A55501F42B83842000FD3296 /* NotificationsLogVC.swift */; };
+		A55501F72B8384DF00FD3296 /* NotificationsLogNavigationCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A55501F62B8384DF00FD3296 /* NotificationsLogNavigationCoordinator.swift */; };
+		A55501F92B838E7300FD3296 /* NotificationRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = A55501F82B838E7300FD3296 /* NotificationRepository.swift */; };
+		A55501FC2B83F28800FD3296 /* InsertNotificationUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A55501FB2B83F28800FD3296 /* InsertNotificationUseCase.swift */; };
 		A56091752AE685A800AFE14F /* ThermostatHistoryDetailVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = A56091742AE685A800AFE14F /* ThermostatHistoryDetailVM.swift */; };
 		A56091772AE685B600AFE14F /* ThermostatHistoryDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A56091762AE685B600AFE14F /* ThermostatHistoryDetailVC.swift */; };
 		A56233D82AB054EA001CB948 /* SeparatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A56233D72AB054EA001CB948 /* SeparatorView.swift */; };
@@ -1043,6 +1048,8 @@
 		A5D837E12AF132F6002A420D /* LoadChannelMeasurementsDateRangeUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D837E02AF132F6002A420D /* LoadChannelMeasurementsDateRangeUseCase.swift */; };
 		A5D837E32AF3A728002A420D /* LinkedList.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D837E22AF3A728002A420D /* LinkedList.swift */; };
 		A5DA31072AC16B21008179DB /* InsertChannelRelationForProfileUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5DA31062AC16B21008179DB /* InsertChannelRelationForProfileUseCaseTests.swift */; };
+		A5E34CE42B848C6100DE511F /* NotificationViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E34CE32B848C6100DE511F /* NotificationViewCell.swift */; };
+		A5E40B4C2B84EA9300DB6ABE /* ApplicationEventsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E40B4B2B84EA9300DB6ABE /* ApplicationEventsManager.swift */; };
 		A5E4904A2A3C6215006801FE /* ChannelHeight.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E490492A3C6215006801FE /* ChannelHeight.swift */; };
 		A5E4904D2A3C6250006801FE /* TemperatureUnit.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E4904C2A3C6250006801FE /* TemperatureUnit.swift */; };
 		A5E490502A3C79A4006801FE /* UserNotificationCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E4904F2A3C79A4006801FE /* UserNotificationCenter.swift */; };
@@ -2336,6 +2343,11 @@
 		A55501EB2B8357F000FD3296 /* Migration15to16ModelMapping.xcmappingmodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcmappingmodel; path = Migration15to16ModelMapping.xcmappingmodel; sourceTree = "<group>"; };
 		A55501ED2B835B4600FD3296 /* CounterLog15to16MigrationPolicy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CounterLog15to16MigrationPolicy.swift; sourceTree = "<group>"; };
 		A55501EF2B836D0B00FD3296 /* ElectricityMeterLog15to16MigrationPolicy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElectricityMeterLog15to16MigrationPolicy.swift; sourceTree = "<group>"; };
+		A55501F22B8382C500FD3296 /* NotificationsLogVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsLogVM.swift; sourceTree = "<group>"; };
+		A55501F42B83842000FD3296 /* NotificationsLogVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsLogVC.swift; sourceTree = "<group>"; };
+		A55501F62B8384DF00FD3296 /* NotificationsLogNavigationCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsLogNavigationCoordinator.swift; sourceTree = "<group>"; };
+		A55501F82B838E7300FD3296 /* NotificationRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationRepository.swift; sourceTree = "<group>"; };
+		A55501FB2B83F28800FD3296 /* InsertNotificationUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsertNotificationUseCase.swift; sourceTree = "<group>"; };
 		A56091742AE685A800AFE14F /* ThermostatHistoryDetailVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThermostatHistoryDetailVM.swift; sourceTree = "<group>"; };
 		A56091762AE685B600AFE14F /* ThermostatHistoryDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThermostatHistoryDetailVC.swift; sourceTree = "<group>"; };
 		A56233D72AB054EA001CB948 /* SeparatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeparatorView.swift; sourceTree = "<group>"; };
@@ -2570,6 +2582,8 @@
 		A5D837E02AF132F6002A420D /* LoadChannelMeasurementsDateRangeUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadChannelMeasurementsDateRangeUseCase.swift; sourceTree = "<group>"; };
 		A5D837E22AF3A728002A420D /* LinkedList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinkedList.swift; sourceTree = "<group>"; };
 		A5DA31062AC16B21008179DB /* InsertChannelRelationForProfileUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsertChannelRelationForProfileUseCaseTests.swift; sourceTree = "<group>"; };
+		A5E34CE32B848C6100DE511F /* NotificationViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationViewCell.swift; sourceTree = "<group>"; };
+		A5E40B4B2B84EA9300DB6ABE /* ApplicationEventsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationEventsManager.swift; sourceTree = "<group>"; };
 		A5E490492A3C6215006801FE /* ChannelHeight.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelHeight.swift; sourceTree = "<group>"; };
 		A5E4904C2A3C6250006801FE /* TemperatureUnit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemperatureUnit.swift; sourceTree = "<group>"; };
 		A5E4904F2A3C79A4006801FE /* UserNotificationCenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserNotificationCenter.swift; sourceTree = "<group>"; };
@@ -4337,6 +4351,25 @@
 			path = AccountCreation;
 			sourceTree = "<group>";
 		};
+		A55501F12B83828100FD3296 /* NotificationsLog */ = {
+			isa = PBXGroup;
+			children = (
+				A55501F22B8382C500FD3296 /* NotificationsLogVM.swift */,
+				A55501F42B83842000FD3296 /* NotificationsLogVC.swift */,
+				A55501F62B8384DF00FD3296 /* NotificationsLogNavigationCoordinator.swift */,
+				A5E34CE32B848C6100DE511F /* NotificationViewCell.swift */,
+			);
+			path = NotificationsLog;
+			sourceTree = "<group>";
+		};
+		A55501FA2B83F26C00FD3296 /* Notification */ = {
+			isa = PBXGroup;
+			children = (
+				A55501FB2B83F28800FD3296 /* InsertNotificationUseCase.swift */,
+			);
+			path = Notification;
+			sourceTree = "<group>";
+		};
 		A55E353929E68DEE00F88252 /* Config */ = {
 			isa = PBXGroup;
 			children = (
@@ -4444,6 +4477,7 @@
 		A5756F7F29DC0FE900C32A1B /* Features */ = {
 			isa = PBXGroup;
 			children = (
+				A55501F12B83828100FD3296 /* NotificationsLog */,
 				A54149242B6302B100B44BD6 /* Details */,
 				A553863029E02C4300B5CF3F /* AccountCreation */,
 				A5756F8029DC0FFC00C32A1B /* AccountRemoval */,
@@ -5264,6 +5298,7 @@
 				A54149322B63B73700B44BD6 /* GeneralPurposeMeasurementItemRepository.swift */,
 				A503ABB22B6A9ED9008CDA1F /* GeneralPurposeMeterItemRepository.swift */,
 				A503ABB42B6B7713008CDA1F /* BaseMeasurementRepository.swift */,
+				A55501F82B838E7300FD3296 /* NotificationRepository.swift */,
 			);
 			path = Repositories;
 			sourceTree = "<group>";
@@ -5293,6 +5328,7 @@
 		A5F29B842A1F95B100ED700A /* UseCase */ = {
 			isa = PBXGroup;
 			children = (
+				A55501FA2B83F26C00FD3296 /* Notification */,
 				A5A14A3B2B6130E9004B1598 /* ChannelConfig */,
 				A56233F12AB3A375001CB948 /* Thermostat */,
 				A5F29B942A20B74B00ED700A /* Channel */,
@@ -5398,6 +5434,7 @@
 				A57668D42AE94A060025509D /* DownloadEventsManager.swift */,
 				A52BFEB42B0659FD00A2F64C /* BaseConfigEventsManager.swift */,
 				A52BFEB62B065B9400A2F64C /* DeviceConfigEventsManager.swift */,
+				A5E40B4B2B84EA9300DB6ABE /* ApplicationEventsManager.swift */,
 			);
 			path = Events;
 			sourceTree = "<group>";
@@ -6285,6 +6322,7 @@
 				A57C4AB02AAB3E3400D9C695 /* SuplaChannelHvacConfig.swift in Sources */,
 				A51BE8F72AA71E3E00718F2F /* ScheduleDetailVM.swift in Sources */,
 				A530EE022A5441F300F8DAEE /* SwitchTimerDetailVC.swift in Sources */,
+				A55501FC2B83F28800FD3296 /* InsertNotificationUseCase.swift in Sources */,
 				01C1719922C7F55B005983E1 /* SAMeasurementItem+CoreDataClass.m in Sources */,
 				A5F29BE62A27739000ED700A /* MoveableCell.swift in Sources */,
 				A5AE7A8F2A3AE0290097FA8B /* TitleArrowButtonCell.swift in Sources */,
@@ -6335,6 +6373,7 @@
 				A52BFEC22B078BB200A2F64C /* SuplaLedStatusField.swift in Sources */,
 				A56233FB2AB88722001CB948 /* DelayedWeeklyScheduleConfigSubject.swift in Sources */,
 				A530EE432A58AA6E00F8DAEE /* DeviceStateHelperVCI.swift in Sources */,
+				A55501F52B83842000FD3296 /* NotificationsLogVC.swift in Sources */,
 				0148933425AA12DB00B9974E /* SADiwCalibrationTool.m in Sources */,
 				01C1719222C7F3A2005983E1 /* SAElectricityMeasurementItem+CoreDataProperties.m in Sources */,
 				A5D837DD2AF12B5B002A420D /* BaseLoadMeasurementsUseCase.swift in Sources */,
@@ -6400,6 +6439,7 @@
 				A503ABB12B6A9B43008CDA1F /* GeneralPurposeMeter.swift in Sources */,
 				AE348E66277F348700F363A3 /* SAMoveTableView.m in Sources */,
 				01EE9BBB22BA50D90029A142 /* SAChannelValueBase+CoreDataClass.m in Sources */,
+				A5E34CE42B848C6100DE511F /* NotificationViewCell.swift in Sources */,
 				AE7452892827E37600A3AFAD /* ProfilesVM.swift in Sources */,
 				A541492E2B63055700B44BD6 /* GpmHistoryDetailVM.swift in Sources */,
 				A57668EB2AEA81C00025509D /* ChartRange.swift in Sources */,
@@ -6461,6 +6501,7 @@
 				A5D837CB2AF1034E002A420D /* ThermometerDetailVC.swift in Sources */,
 				A51BE8E72AA705AD00718F2F /* StandardDetailVM.swift in Sources */,
 				019D9E2C25F271CF00881C99 /* SACaptionEditor.m in Sources */,
+				A55501F72B8384DF00FD3296 /* NotificationsLogNavigationCoordinator.swift in Sources */,
 				A57668D72AE98FCA0025509D /* TemperatureAndHumidityMeasurement.swift in Sources */,
 				A52BFED02B07AF5500A2F64C /* GetDeviceConfigUseCase.swift in Sources */,
 				A5AE7A912A3B17AF0097FA8B /* PermissionCell.swift in Sources */,
@@ -6749,13 +6790,16 @@
 				403150FB1DC769430075D2D2 /* RGBWDetailView.m in Sources */,
 				01F8856A22E5E79100D18373 /* SATempHumidityMeasurementItem+CoreDataProperties.m in Sources */,
 				01478826265317B000CC8A01 /* SACalCfgProgressReport.m in Sources */,
+				A5E40B4C2B84EA9300DB6ABE /* ApplicationEventsManager.swift in Sources */,
 				A57785BF29E80406001C631E /* SuplaAppWrapper.swift in Sources */,
 				A5E490502A3C79A4006801FE /* UserNotificationCenter.swift in Sources */,
 				A51BE9112AAAFFC200718F2F /* SuplaChannelWeeklyScheduleConfig.swift in Sources */,
+				A55501F32B8382C500FD3296 /* NotificationsLogVM.swift in Sources */,
 				AEB195DE276E5A040091D314 /* FadeTransition.swift in Sources */,
 				A530EE062A5575D700F8DAEE /* DeviceStateView.swift in Sources */,
 				40E8BE881FC06A5600FB2FE6 /* TFHpple.m in Sources */,
 				A5E4905F2A401020006801FE /* SAUserIcon+Ext.swift in Sources */,
+				A55501F92B838E7300FD3296 /* NotificationRepository.swift in Sources */,
 				A5B3CBE92B625CB300F95AC3 /* DepthValueProvider.swift in Sources */,
 				A57C4AB32AAF374900D9C695 /* EditProgramDialogVC.swift in Sources */,
 				01CEABFA25B9920A009C3BFD /* SADigiglassDetailView.m in Sources */,

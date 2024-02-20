@@ -149,6 +149,12 @@
             <fetchIndexElement property="date" type="Binary" order="ascending"/>
         </fetchIndex>
     </entity>
+    <entity name="SANotification" representedClassName="SANotification" syncable="YES" codeGenerationType="class">
+        <attribute name="date" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="message" attributeType="String"/>
+        <attribute name="profileName" optional="YES" attributeType="String"/>
+        <attribute name="title" attributeType="String"/>
+    </entity>
     <entity name="SAScene" representedClassName="SAScene" syncable="YES" codeGenerationType="class">
         <attribute name="alticon" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="caption" optional="YES" attributeType="String"/>

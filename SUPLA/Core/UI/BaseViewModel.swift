@@ -24,7 +24,7 @@ class BaseViewModel<S : ViewState, E : ViewEvent> {
     
     fileprivate let disposeBag = DisposeBag()
     private let events = PublishSubject<E>()
-    private lazy var state: BehaviorSubject<S> = {
+    lazy var state: BehaviorSubject<S> = {
         BehaviorSubject(value: defaultViewState())
     }()
     

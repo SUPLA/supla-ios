@@ -16,19 +16,32 @@
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 
-#import "proto.h"
-#import <Foundation/Foundation.h>
+import RxRelay
+import RxSwift
 
-#ifndef SingleCallWrapper_h
-#define SingleCallWrapper_h
+protocol ApplicationEventsManager {
+    func emit(_ event: ApplicationEvent)
+    func observe() -> Observable<ApplicationEvent>
+    func observe(event: ApplicationEvent) -> Observable<Void>
+}
 
-@class AuthProfileItem;
+class ApplicationEventsManagerImpl: ApplicationEventsManager {
+    
+    private let subject = PublishRelay<ApplicationEvent>()
+    
+    func emit(_ event: ApplicationEvent) {
+        subject.accept(event)
+    }
+    
+    func observe() -> Observable<ApplicationEvent> {
+        subject.asObservable()
+    }
+    
+    func observe(event: ApplicationEvent) -> Observable<Void> {
+        subject.asObservable().filter { $0 == event }.map { _ in () }
+    }
+}
 
-@interface SingleCallWrapper : NSObject { }
-
-+ (TCS_ClientAuthorizationDetails) prepareAuthorizationDetailsFor: (AuthProfileItem*) profile;
-+ (TCS_PnClientToken) prepareClientTokenFor: (NSData*) token andProfile: (NSString*) profileName;
-+ (TCS_RegisterPnClientToken) prepareRegisterStructureFor: (AuthProfileItem*) profile with: (NSData*) token;
-@end
-
-#endif /* SingleCallWrapper_h */
+enum ApplicationEvent {
+    case newNotification
+}

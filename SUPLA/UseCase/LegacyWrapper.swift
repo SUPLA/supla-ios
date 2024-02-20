@@ -194,4 +194,15 @@ final class UseCaseLegacyWrapper: NSObject {
             NSLog("Could not insert config of channel id `\(config.remoteId)`")
         }
     }
+    
+    @objc
+    static func insertNotification(_ userInfo: [AnyHashable : Any]) {
+        @Singleton<InsertNotificationUseCase> var insertNotificationUseCase
+        
+        do {
+            try insertNotificationUseCase.invoke(userInfo: userInfo).subscribeSynchronous()
+        } catch {
+            NSLog("Could not insert notification: \(String(describing: error))")
+        }
+    }
 }

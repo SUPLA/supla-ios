@@ -240,6 +240,15 @@ struct Strings {
         static let arrowInfo = "thermostat_detail_arrow_info".toLocalized()
     }
     
+    struct Notifications {
+        static let menu = "menu_notifications".toLocalized()
+        static let profile = "notifications_log_profile".toLocalized()
+        static let date = "notifications_log_date".toLocalized()
+        static let deleteAllTitile = "notification_delete_all_title".toLocalized()
+        static let deleteAllMessage = "notification_delete_all_message".toLocalized()
+        static let deleteAllProceed = "notification_delete_all_proceed".toLocalized()
+    }
+    
     struct General {
         static let cancel = NSLocalizedString("Cancel", comment: "")
         static let close = NSLocalizedString("Close", comment: "")

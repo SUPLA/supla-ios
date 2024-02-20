@@ -43,6 +43,7 @@ extension String {
         static let sensorAlertCircle = "icon_sensor_alert_circle"
         static let sensorAlert = "icon_sensor_alert"
         static let close = "icon_close"
+        static let delete = "icon_delete"
         
         static let warning = "channel_warning_level1"
         static let error = "channel_warning_level2"

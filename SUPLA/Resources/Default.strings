@@ -175,3 +175,11 @@
 "Days" = "Dni";
 "Months" = "Miesiące";
 "Years" = "Lata";
+
+/* Notifications */
+"menu_notifications" = "Notifications log";
+"notifications_log_profile" = "Profile:";
+"notifications_log_date" = "Date:";
+"notification_delete_all_title" = "Delete all logs?";
+"notification_delete_all_message" = "Deletion of all log entries is irreversible, do you want to continue?";
+"notification_delete_all_proceed" = "Delete";

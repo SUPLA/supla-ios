@@ -40,6 +40,7 @@ extension UIImage {
     static let iconSensorAlertCircle = UIImage(named: .Icons.sensorAlertCircle)
     static let iconSensorAlert = UIImage(named: .Icons.sensorAlert)
     static let iconClose = UIImage(named: .Icons.close)
+    static let iconDelete = UIImage(named: .Icons.delete)
     
     static let iconWarning = UIImage(named: .Icons.warning)
     static let iconError = UIImage(named: .Icons.error)

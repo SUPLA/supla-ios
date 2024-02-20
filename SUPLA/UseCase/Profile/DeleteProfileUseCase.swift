@@ -68,7 +68,7 @@ final class DeleteProfileUseCaseImpl: DeleteProfileUseCase {
         if let authInfo = profile.authInfo,
            authInfo.isAuthDataComplete {
             var authDetails = SingleCallWrapper.prepareAuthorizationDetails(for: profile)
-            var tokenDetails = SingleCallWrapper.prepareClientToken(for: nil)
+            var tokenDetails = SingleCallWrapper.prepareClientToken(for: nil, andProfile: profile.name)
             
             do {
                 try singleCall.registerPushToken(&authDetails, Int32(authInfo.preferredProtocolVersion), &tokenDetails)

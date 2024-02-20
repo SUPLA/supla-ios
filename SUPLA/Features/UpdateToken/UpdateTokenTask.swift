@@ -27,14 +27,14 @@ class UpdateTokenTask: NSObject {
     @Singleton<DateProvider> private var dateProvider
     
     @objc
-    func update(token: Data, updateSelf: Bool, completionHandler: @escaping () -> Void) {
+    func update(token: Data, completionHandler: @escaping () -> Void) {
         DispatchQueue.global(qos: .default).async {
-            self.doUpdate(token: token, updateSelf: updateSelf)
+            self.doUpdate(token: token)
             completionHandler()
         }
     }
     
-    private func doUpdate(token: Data, updateSelf: Bool) {
+    private func doUpdate(token: Data) {
         var settings = settings
         if (settings.pushToken == token && tokenUpdateNotNeeded()) {
             NSLog("Token update skipped. Tokens are equal")
@@ -51,10 +51,6 @@ class UpdateTokenTask: NSObject {
             var allProfilesUpdated = true
             profiles?.forEach { profile in
                 let name = profile.name ?? "<<>>"
-                if (updateSelf == false && profile.isActive) {
-                    NSLog("Active profile `\(name)` skipped because of updateSelf: `\(updateSelf)`")
-                    return
-                }
                 
                 NSLog("Updating token for profile `\(name)`")
                 if (!updateToken(token: token, forProfile: profile)) {
@@ -74,7 +70,7 @@ class UpdateTokenTask: NSObject {
         let name = profile.name ?? "<<>>"
         do {
             var authDetails = SingleCallWrapper.prepareAuthorizationDetails(for: profile)
-            var tokenDetails = SingleCallWrapper.prepareClientToken(for: token)
+            var tokenDetails = SingleCallWrapper.prepareClientToken(for: token, andProfile: profile.name)
             
             if let authInfo = profile.authInfo, authInfo.isAuthDataComplete {
                 try singleCall.registerPushToken(&authDetails, Int32(authInfo.preferredProtocolVersion), &tokenDetails)

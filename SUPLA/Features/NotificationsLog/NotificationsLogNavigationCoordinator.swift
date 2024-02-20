@@ -16,19 +16,10 @@
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 
-#import "proto.h"
-#import <Foundation/Foundation.h>
+class NotificationsLogNavigationCoordinator: BaseNavigationCoordinator {
+    override var viewController: UIViewController {
+        _viewController
+    }
 
-#ifndef SingleCallWrapper_h
-#define SingleCallWrapper_h
-
-@class AuthProfileItem;
-
-@interface SingleCallWrapper : NSObject { }
-
-+ (TCS_ClientAuthorizationDetails) prepareAuthorizationDetailsFor: (AuthProfileItem*) profile;
-+ (TCS_PnClientToken) prepareClientTokenFor: (NSData*) token andProfile: (NSString*) profileName;
-+ (TCS_RegisterPnClientToken) prepareRegisterStructureFor: (AuthProfileItem*) profile with: (NSData*) token;
-@end
-
-#endif /* SingleCallWrapper_h */
+    private lazy var _viewController: NotificationsLogVC = .init(navigator: self)
+}

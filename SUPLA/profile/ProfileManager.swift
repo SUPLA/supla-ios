@@ -20,10 +20,7 @@ import Foundation
 
 @objc
 protocol ProfileManager {
-    func create() -> AuthProfileItem
     func read(id: ProfileID) -> AuthProfileItem?
-    func update(_ profile: AuthProfileItem) -> Bool
-    func delete(id: ProfileID) -> Bool
     
     func getAllProfiles() -> [AuthProfileItem]
     

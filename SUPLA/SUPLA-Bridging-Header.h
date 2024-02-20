@@ -43,5 +43,6 @@
 #import "SAGeneralPurposeMeasurementItem+CoreDataClass.h"
 #import "SAGeneralPurposeMeterItem+CoreDataClass.h"
 #import "SAChannelConfig+CoreDataClass.h"
+#import "SANotification+CoreDataClass.h"
 
 #import "supla-client.h"

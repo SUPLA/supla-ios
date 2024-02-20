@@ -82,7 +82,7 @@ class GlobalSettingsImpl: GlobalSettings {
         set { defaults.set(newValue, forKey: pushTokenKey) }
     }
     
-    private let pushTokenLastUpdateKey = "GlobalSettings.pushTokenLastUpdateKey"
+    private let pushTokenLastUpdateKey = "GlobalSettings.pushTokenLastUpdateNewKey"
     var pushTokenLastUpdate: Double {
         get { defaults.double(forKey: pushTokenLastUpdateKey) }
         set { defaults.set(newValue, forKey: pushTokenLastUpdateKey) }

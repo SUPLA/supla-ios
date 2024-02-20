@@ -61,7 +61,7 @@ final class UpdateTokenTaskTests: XCTestCase {
         let expectation = XCTestExpectation(description: "Update task finished")
         
         // when
-        updateTokenTask.update(token: token, updateSelf: false) {
+        updateTokenTask.update(token: token) {
             expectation.fulfill()
         }
         
@@ -80,7 +80,7 @@ final class UpdateTokenTaskTests: XCTestCase {
         let expectation = XCTestExpectation(description: "Update task finished")
         
         // when
-        updateTokenTask.update(token: token, updateSelf: false) {
+        updateTokenTask.update(token: token) {
             expectation.fulfill()
         }
         
@@ -98,7 +98,7 @@ final class UpdateTokenTaskTests: XCTestCase {
         let expectation = XCTestExpectation(description: "Update task finished")
         
         // when
-        updateTokenTask.update(token: Data([1]), updateSelf: false) {
+        updateTokenTask.update(token: Data([1])) {
             expectation.fulfill()
         }
         
@@ -119,7 +119,7 @@ final class UpdateTokenTaskTests: XCTestCase {
         let expectation = XCTestExpectation(description: "Update task finished")
         
         // when
-        updateTokenTask.update(token: Data([1]), updateSelf: false) {
+        updateTokenTask.update(token: Data([1])) {
             expectation.fulfill()
         }
         
@@ -150,7 +150,7 @@ final class UpdateTokenTaskTests: XCTestCase {
         let expectation = XCTestExpectation(description: "Update task finished")
         
         // when
-        updateTokenTask.update(token: Data([1]), updateSelf: false) {
+        updateTokenTask.update(token: Data([1])) {
             expectation.fulfill()
         }
         
@@ -173,7 +173,7 @@ final class UpdateTokenTaskTests: XCTestCase {
         let expectation = XCTestExpectation(description: "Update task finished")
         
         // when
-        updateTokenTask.update(token: Data([1]), updateSelf: false) {
+        updateTokenTask.update(token: Data([1])) {
             expectation.fulfill()
         }
         

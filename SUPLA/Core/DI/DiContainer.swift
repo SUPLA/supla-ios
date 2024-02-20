@@ -64,10 +64,6 @@ extension DiContainer {
         register(SuplaClientProvider.self, SuplaClientProviderImpl())
         register(SuplaAppWrapper.self, SuplaAppWrapperImpl())
         register(VibrationService.self, VibrationServiceImpl())
-        register(UpdateEventsManager.self, UpdateEventsManagerImpl())
-        register(ChannelConfigEventsManager.self, ChannelConfigEventsManagerImpl())
-        register(DeviceConfigEventsManager.self, DeviceConfigEventsManagerImpl())
-        register(DownloadEventsManager.self, DownloadEventsManagerImpl())
         register(SingleCall.self, SingleCallImpl())
         register(DateProvider.self, DateProviderImpl())
         register(UserNotificationCenter.self, UserNotificationCenterImpl())
@@ -80,6 +76,12 @@ extension DiContainer {
         register(UserStateHolder.self, UserStateHolderImpl())
         register(SessionResponseProvider.self, SessionResponseProviderImpl())
         register(SuplaSchedulers.self, SuplaSchedulersImpl())
+        // Managers
+        register(UpdateEventsManager.self, UpdateEventsManagerImpl())
+        register(ChannelConfigEventsManager.self, ChannelConfigEventsManagerImpl())
+        register(DeviceConfigEventsManager.self, DeviceConfigEventsManagerImpl())
+        register(DownloadEventsManager.self, DownloadEventsManagerImpl())
+        register(ApplicationEventsManager.self, ApplicationEventsManagerImpl())
         
         // MARK: Repositories
 
@@ -106,6 +108,7 @@ extension DiContainer {
         register((any GeneralPurposeMeasurementItemRepository).self, generalPurposeMeasurementItemRepository)
         let generalPurposeMeterItemRepository = GeneralPurposeMeterItemRepositoryImpl()
         register((any GeneralPurposeMeterItemRepository).self, generalPurposeMeterItemRepository)
+        register((any NotificationRepository).self, NotificationRepositoryImpl())
         
         // MARK: Usecases
 
@@ -175,6 +178,8 @@ extension DiContainer {
         register(CreateProfileScenesListUseCase.self, CreateProfileScenesListUseCaseImpl())
         register(SwapScenePositionsUseCase.self, SwapScenePositionsUseCaseImpl())
         register(CreateChannelWithChildrenUseCase.self, CreateChannelWithChildrenUseCaseImpl())
+        // Usecases - Notification
+        register(InsertNotificationUseCase.self, InsertNotificationUseCaseImpl())
         
         // MARK: Not singletons
 
