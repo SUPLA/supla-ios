@@ -246,6 +246,24 @@ final class ProvideDetailTypeUseCaseTests: XCTestCase {
         }
     }
     
+    func test_shouldProvideGpmHistory_forGeneralPurposeMeter() {
+        doTest(expectedResult: .gpmDetail(pages: [.gpmHistory])) {
+            let channel = SAChannel(testContext: nil)
+            channel.func = SUPLA_CHANNELFNC_GENERAL_PURPOSE_METER
+            
+            return channel
+        }
+    }
+    
+    func test_shouldProvideGpmHistory_forGeneralPurposeMeteasurement() {
+        doTest(expectedResult: .gpmDetail(pages: [.gpmHistory])) {
+            let channel = SAChannel(testContext: nil)
+            channel.func = SUPLA_CHANNELFNC_GENERAL_PURPOSE_MEASUREMENT
+            
+            return channel
+        }
+    }
+    
     private func doTest(expectedResult: DetailType?, provider: () -> SAChannelBase) {
         // given
         let channel = provider()

@@ -74,6 +74,7 @@ extension String {
         static let fncGpmFan2 = "fnc_gpm_fan_2"
         static let fncGpmInsolation1 = "fnc_gpm_insolation_1"
         static let fncGpmInsolation2 = "fnc_gpm_insolation_2"
+        static let fncGpmKlop = "fnc_gpm_klop"
         static let fncGpmMultimeter = "fnc_gpm_multimeter"
         static let fncGpmPm1 = "fnc_gpm_pm_1"
         static let fncGpmPm2_5 = "fnc_gpm_pm_2_5"
@@ -103,6 +104,14 @@ extension String {
         static let fncHeatmeter = "fnc_heatmeter"
         // Waterneter
         static let fncWatermeter = "fnc_watermeter"
+        // Thermometer
+        static let fncThermometerCooling = "fnc_thermometer_cooling"
+        static let fncThermometerFloor = "fnc_thermometer_floor"
+        static let fncThermometerHeater = "fnc_thermometer_heater"
+        static let fncThermometerHeating = "fnc_thermometer_heating"
+        static let fncThermometerHome = "fnc_thermometer_home"
+        static let fncThermometerTap = "fnc_thermometer_tap"
+        static let fncThermometerWater = "fnc_thermometer_water"
         // Thermostat
         static let fncThermostatHeat = "fnc_thermostat_heat"
         static let fncThermostatCool = "fnc_thermostat_cool"

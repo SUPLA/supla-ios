@@ -53,8 +53,8 @@ final class DownloadGeneralPurposeMeterLogUseCaseImpl:
         }
         
         while (!disposable.isDisposed) {
-            let measurements = try cloudService
-                .getGeneralPurposeMeter(remoteId: remoteId, afterTimestamp: afterTimestamp)
+            let measurements = try generalPurposeMeterItemRepository
+                .getMeasurements(remoteId: remoteId, afterTimestamp: afterTimestamp)
                 .toBlocking()
                 .single()
             if (measurements.isEmpty) {

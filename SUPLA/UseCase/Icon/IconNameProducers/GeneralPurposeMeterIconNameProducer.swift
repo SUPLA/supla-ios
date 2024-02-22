@@ -40,6 +40,7 @@ final class GeneralPurposeMeterIconNameProducer: IconNameProducer {
         case 11: .Icons.fncGpmWaterTank3
         case 12: .Icons.fncGpmCoal
         case 13: .Icons.fncGpmSalt
+        case 14: .Icons.fncGpmKlop
         default: .Icons.fncGpm5
         }
     }

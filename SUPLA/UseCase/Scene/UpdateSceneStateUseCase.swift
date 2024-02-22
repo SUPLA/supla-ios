@@ -100,13 +100,3 @@ final class UpdateSceneStateUseCase {
         return (saved, scene)
     }
 }
-
-extension String {
-    static func fromC<T>(_ address: T) -> String {
-        return withUnsafePointer(to: address) {
-            $0.withMemoryRebound(to: UInt8.self, capacity: MemoryLayout.size(ofValue: $0)) {
-                String(cString: $0)
-            }
-        }
-    }
-}

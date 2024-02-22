@@ -55,10 +55,6 @@ final class ThermometerHistoryDetailVMTests: ViewModelTest<BaseHistoryDetailView
         LoadChannelMeasurementsDateRangeUseCaseMock()
     }()
     
-    private lazy var channelValueFormatter: ChannelValueFormatterMock! = {
-        ChannelValueFormatterMock()
-    }()
-    
     private lazy var viewModel: ThermometerHistoryDetailVM! = {
         ThermometerHistoryDetailVM()
     }()
@@ -166,7 +162,7 @@ final class ThermometerHistoryDetailVMTests: ViewModelTest<BaseHistoryDetailView
     
     func test_shouldChangeActiveSet() {
         let setId = HistoryDataSet.Id(remoteId: 123, type: .temperature)
-        let set = HistoryDataSet(setId: setId, icon: nil, value: "", valueFormatter: channelValueFormatter, color: .red, entries: [], active: true)
+        let set = HistoryDataSet(setId: setId, icon: nil, value: "", valueFormatter: ChannelValueFormatterMock(), color: .red, entries: [], active: true)
         let state = mockState(remoteId: 123, chartData: LineChartData(nil, nil, nil, [set]))
         viewModel.updateView { _ in state }
         

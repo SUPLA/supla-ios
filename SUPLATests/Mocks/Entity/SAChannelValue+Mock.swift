@@ -20,6 +20,13 @@
 
 extension SAChannelValue {
     
+    static func mock(online: Bool = false, value: NSObject? = nil) -> SAChannelValue {
+        let channelValue = SAChannelValue(testContext: nil)
+        channelValue.online = online
+        channelValue.value = value
+        return channelValue
+    }
+    
     static func mockThermostat(
         mode: SuplaHvacMode = .heat,
         setpointHeat: Int16 = 0,
@@ -38,10 +45,7 @@ extension SAChannelValue {
             Flags: UInt16(flagsInt)
         )
         
-        let channelValue = SAChannelValue(testContext: nil)
-        channelValue.value = NSData(bytes: &hvacValue, length: MemoryLayout<THVACValue>.size)
-        channelValue.online = true
-        
-        return channelValue
+        let value = NSData(bytes: &hvacValue, length: MemoryLayout<THVACValue>.size)
+        return SAChannelValue.mock(online: true, value: value)
     }
 }

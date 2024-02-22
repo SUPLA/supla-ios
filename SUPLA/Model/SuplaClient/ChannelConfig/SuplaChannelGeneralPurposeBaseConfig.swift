@@ -124,6 +124,10 @@ class SuplaChannelGeneralPurposeBaseConfig: SuplaChannelConfig {
         try super.encode(to: encoder)
     }
     
+    func toJson() -> String? {
+        fatalError("toJson() needs to be implemented")
+    }
+    
     private enum CodingKeys : String, CodingKey {
         case crc32
         case valueDivider
