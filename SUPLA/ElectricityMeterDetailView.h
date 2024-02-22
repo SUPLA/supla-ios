@@ -21,7 +21,7 @@
 #import "SAChartFilterField.h"
 #import "SAPreloader.h"
 #import "SAWarningIcon.h"
-@import Charts;
+@import DGCharts;
 
 NS_ASSUME_NONNULL_BEGIN
 

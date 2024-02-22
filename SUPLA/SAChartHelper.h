@@ -18,7 +18,7 @@
 
 #import <Foundation/Foundation.h>
 #import "Database.h"
-@import Charts;
+@import DGCharts;
 
 NS_ASSUME_NONNULL_BEGIN
 

@@ -23,7 +23,7 @@
 #import "SAChartFilterField.h"
 
 NS_ASSUME_NONNULL_BEGIN
-@import Charts;
+@import DGCharts;
 
 @class HomePlusRefreshEvent;
 

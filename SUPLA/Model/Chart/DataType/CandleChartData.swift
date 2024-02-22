@@ -49,7 +49,7 @@ final class CandleChartData: ChartData {
         }
         
         let data = CombinedChartData()
-        data.candleData = Charts.CandleChartData(dataSets: candleDataSets)
+        data.candleData = DGCharts.CandleChartData(dataSets: candleDataSets)
         return data
     }
     

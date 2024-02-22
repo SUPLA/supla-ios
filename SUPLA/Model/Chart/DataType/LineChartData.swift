@@ -34,7 +34,7 @@ final class LineChartData: ChartData {
         }
         
         let data = CombinedChartData()
-        data.lineData = Charts.LineChartData(dataSets: lineDataSets)
+        data.lineData = DGCharts.LineChartData(dataSets: lineDataSets)
         return data
     }
     

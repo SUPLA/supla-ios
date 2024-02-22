@@ -35,7 +35,7 @@ final class BarChartData: ChartData {
         }
 
         let data = CombinedChartData()
-        data.barData = Charts.BarChartData(dataSets: barDataSets)
+        data.barData = DGCharts.BarChartData(dataSets: barDataSets)
         data.barData.barWidth = (aggregation?.timeInSec ?? 1) * 0.8
         return data
     }
