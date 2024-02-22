@@ -1,0 +1,12 @@
+{
+  "images" : [
+    {
+      "filename" : "fnc_thermometer_water_nm.svg",
+      "idiom" : "universal"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}

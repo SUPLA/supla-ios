@@ -16,14 +16,14 @@
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 
-import Charts
+import DGCharts
 import RxRelay
 import RxSwift
 
 class SuplaCombinedChartView: UIView {
     var parametersObservable: Observable<ChartParameters> { parametersRelay.asObservable() }
     
-    var combinedData: Charts.CombinedChartData? = nil
+    var combinedData: DGCharts.CombinedChartData? = nil
     
     var data: ChartData? {
         didSet {
@@ -91,8 +91,8 @@ class SuplaCombinedChartView: UIView {
     
     var channelFunction: Int32? = nil
     
-    private lazy var combinedChart: Charts.CombinedChartView = {
-        let view = Charts.CombinedChartView()
+    private lazy var combinedChart: DGCharts.CombinedChartView = {
+        let view = DGCharts.CombinedChartView()
         
         view.translatesAutoresizingMaskIntoConstraints = false
         view.backgroundColor = .background
@@ -218,7 +218,7 @@ private class AxisXFormatter: NSObject, AxisValueFormatter {
         self.converter = converter
     }
     
-    func stringForValue(_ value: Double, axis: Charts.AxisBase?) -> String {
+    func stringForValue(_ value: Double, axis: DGCharts.AxisBase?) -> String {
         let distanceInDays = converter.distanceInDays ?? 1
         return if (distanceInDays <= 1) {
             formatter.getHourString(date: Date(timeIntervalSince1970: value)) ?? ""
@@ -235,7 +235,7 @@ private class AxisYFormatter: NSObject, AxisValueFormatter {
         self.formatter = formatter
     }
     
-    func stringForValue(_ value: Double, axis: Charts.AxisBase?) -> String {
+    func stringForValue(_ value: Double, axis: DGCharts.AxisBase?) -> String {
         formatter.format(value, withUnit: false, precision: 1)
     }
 }

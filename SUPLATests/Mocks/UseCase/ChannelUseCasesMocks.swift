@@ -128,6 +128,33 @@ final class GetChannelValueStringUseCaseMock: GetChannelValueStringUseCase {
     }
 }
 
+final class DownloadGeneralPurposeMeasurementLogUseCaseMock: DownloadGeneralPurposeMeasurementLogUseCase {
+    var parameters: [Int32] = []
+    var returns: Observable<Float> = Observable.empty()
+    func invoke(remoteId: Int32) -> Observable<Float> {
+        parameters.append(remoteId)
+        return returns
+    }
+}
+
+final class DownloadGeneralPurposeMeterLogUseCaseMock: DownloadGeneralPurposeMeterLogUseCase {
+    var parameters: [Int32] = []
+    var returns: Observable<Float> = Observable.empty()
+    func invoke(remoteId: Int32) -> Observable<Float> {
+        parameters.append(remoteId)
+        return returns
+    }
+}
+
+final class LoadChannelConfigUseCaseMock: LoadChannelConfigUseCase {
+    var parameters: [Int32] = []
+    var returns: Observable<SuplaChannelConfig?> = Observable.empty()
+    func invoke(remoteId: Int32) -> Observable<SuplaChannelConfig?> {
+        parameters.append(remoteId)
+        return returns
+    }
+}
+
 // MARK: - Channel Values Formatter Mocks -
 
 final class ChannelValueFormatterMock: ChannelValueFormatter {

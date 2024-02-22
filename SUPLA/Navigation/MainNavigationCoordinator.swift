@@ -143,6 +143,10 @@ class MainNavigationCoordinator: BaseNavigationCoordinator {
         startFlow(coordinator: ProfilesNavigationCoordinator())
     }
     
+    func showNotificationsLog() {
+        startFlow(coordinator: NotificationsLogNavigationCoordinator())
+    }
+    
     func showAddWizard() {
         let avc = SAAddWizardVC(nibName: "AddWizardVC", bundle: nil)
         avc.modalPresentationStyle = .fullScreen

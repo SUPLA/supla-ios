@@ -23,8 +23,21 @@ final class HumidityAndThermometerIconNameProducer: IconNameProducer {
     
     func produce(iconData: IconData) -> String {
         switch (iconData.type) {
-        case .single, .first: return "thermometer"
-        case .second: return "humidity"
+        case .single, .first: thermometerIcon(iconData.altIcon)
+        case .second: "humidity"
+        }
+    }
+    
+    private func thermometerIcon(_ altIcon: Int32) -> String {
+        switch (altIcon) {
+        case 1: .Icons.fncThermometerTap
+        case 2: .Icons.fncThermometerFloor
+        case 3: .Icons.fncThermometerWater
+        case 4: .Icons.fncThermometerHeating
+        case 5: .Icons.fncThermometerCooling
+        case 6: .Icons.fncThermometerHeater
+        case 7: .Icons.fncThermometerHome
+        default: "thermometer"
         }
     }
 }

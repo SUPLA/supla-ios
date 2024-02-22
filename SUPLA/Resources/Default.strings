@@ -175,3 +175,12 @@
 "Days" = "Dni";
 "Months" = "Miesiące";
 "Years" = "Lata";
+
+/* Notifications */
+"menu_notifications" = "Notifications log";
+"notifications_log_profile" = "Profile:";
+"notifications_log_date" = "Date:";
+"notification_delete_all_title" = "Delete logs?";
+"notification_delete_all_message" = "This can't be undone";
+"notification_delete_button_delete_all" = "Delete all";
+"notification_delete_button_delete_older_than_month" = "Delete older than 30 days";

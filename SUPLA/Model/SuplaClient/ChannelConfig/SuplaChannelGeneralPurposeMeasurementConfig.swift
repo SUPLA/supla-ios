@@ -80,6 +80,15 @@ final class SuplaChannelGeneralPurposeMeasurementConfig: SuplaChannelGeneralPurp
         try super.encode(to: encoder)
     }
     
+    override func toJson() -> String? {
+        let jsonEncoder = JSONEncoder()
+        if let jsonData = try? jsonEncoder.encode(self) {
+            return String(data: jsonData, encoding: String.Encoding.utf8)
+        }
+        
+        return nil
+    }
+    
     static func from(
         remoteId: Int32,
         function: Int32,

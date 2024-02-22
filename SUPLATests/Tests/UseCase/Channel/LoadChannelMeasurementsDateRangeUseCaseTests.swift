@@ -33,6 +33,14 @@ final class LoadChannelMeasurementsDateRangeUseCaseTests: UseCaseTest<DaysRange?
         TempHumidityMeasurementItemRepositoryMock()
     }()
     
+    private lazy var generalPurposeMeasurementItemRepository: GeneralPurposeMeasurementItemRepositoryMock! = {
+        GeneralPurposeMeasurementItemRepositoryMock()
+    }()
+    
+    private lazy var generalPurposeMeterItemRepository: GeneralPurposeMeterItemRepositoryMock! = {
+        GeneralPurposeMeterItemRepositoryMock()
+    }()
+    
     private lazy var profileRepository: ProfileRepositoryMock! = {
         ProfileRepositoryMock()
     }()
@@ -48,6 +56,8 @@ final class LoadChannelMeasurementsDateRangeUseCaseTests: UseCaseTest<DaysRange?
         DiContainer.shared.register(type: (any TemperatureMeasurementItemRepository).self, temperatureMeasurementItemRepository!)
         DiContainer.shared.register(type: (any TempHumidityMeasurementItemRepository).self, tempHumidityMeasurementItemRepository!)
         DiContainer.shared.register(type: (any ProfileRepository).self, profileRepository!)
+        DiContainer.shared.register(type: (any GeneralPurposeMeasurementItemRepository).self, generalPurposeMeasurementItemRepository!)
+        DiContainer.shared.register(type: (any GeneralPurposeMeterItemRepository).self, generalPurposeMeterItemRepository!)
     }
     
     override func tearDown() {
@@ -55,6 +65,8 @@ final class LoadChannelMeasurementsDateRangeUseCaseTests: UseCaseTest<DaysRange?
         readChannelByRemoteIdUseCase = nil
         temperatureMeasurementItemRepository = nil
         tempHumidityMeasurementItemRepository = nil
+        generalPurposeMeasurementItemRepository = nil
+        generalPurposeMeterItemRepository = nil
         profileRepository = nil
         
         super.tearDown()
@@ -116,6 +128,64 @@ final class LoadChannelMeasurementsDateRangeUseCaseTests: UseCaseTest<DaysRange?
         XCTAssertEqual(readChannelByRemoteIdUseCase.remoteIdArray, [remoteId])
         XCTAssertTuples(tempHumidityMeasurementItemRepository.findMinTimestampParameters, [(remoteId, profile)])
         XCTAssertTuples(tempHumidityMeasurementItemRepository.findMaxTimestampParameters, [(remoteId, profile)])
+    }
+    
+    func test_shouldFindRangeForGeneralPurposeMeasurement() {
+        // given
+        let remoteId: Int32 = 123
+        let channel = SAChannel(testContext: nil)
+        channel.remote_id = remoteId
+        channel.func = SUPLA_CHANNELFNC_GENERAL_PURPOSE_MEASUREMENT
+        
+        let profile = AuthProfileItem(testContext: nil)
+        
+        let minDate = Date.create(year: 2018)!
+        let maxDate = Date.create(year: 2020)!
+        
+        readChannelByRemoteIdUseCase.returns = .just(channel)
+        profileRepository.activeProfileObservable = .just(profile)
+        generalPurposeMeasurementItemRepository.findMinTimestampReturns = .just(minDate.timeIntervalSince1970)
+        generalPurposeMeasurementItemRepository.findMaxTimestampReturns = .just(maxDate.timeIntervalSince1970)
+        
+        // when
+        useCase.invoke(remoteId: remoteId).subscribe(observer).disposed(by: disposeBag)
+        
+        // then
+        assertEventsCount(2)
+        XCTAssertEqual(observer.events[0].value.element??.start, minDate)
+        XCTAssertEqual(observer.events[0].value.element??.end, maxDate)
+        XCTAssertEqual(readChannelByRemoteIdUseCase.remoteIdArray, [remoteId])
+        XCTAssertTuples(generalPurposeMeasurementItemRepository.findMinTimestampParameters, [(remoteId, profile)])
+        XCTAssertTuples(generalPurposeMeasurementItemRepository.findMaxTimestampParameters, [(remoteId, profile)])
+    }
+    
+    func test_shouldFindRangeForGeneralPurposeMeter() {
+        // given
+        let remoteId: Int32 = 123
+        let channel = SAChannel(testContext: nil)
+        channel.remote_id = remoteId
+        channel.func = SUPLA_CHANNELFNC_GENERAL_PURPOSE_METER
+        
+        let profile = AuthProfileItem(testContext: nil)
+        
+        let minDate = Date.create(year: 2018)!
+        let maxDate = Date.create(year: 2020)!
+        
+        readChannelByRemoteIdUseCase.returns = .just(channel)
+        profileRepository.activeProfileObservable = .just(profile)
+        generalPurposeMeterItemRepository.findMinTimestampReturns = .just(minDate.timeIntervalSince1970)
+        generalPurposeMeterItemRepository.findMaxTimestampReturns = .just(maxDate.timeIntervalSince1970)
+        
+        // when
+        useCase.invoke(remoteId: remoteId).subscribe(observer).disposed(by: disposeBag)
+        
+        // then
+        assertEventsCount(2)
+        XCTAssertEqual(observer.events[0].value.element??.start, minDate)
+        XCTAssertEqual(observer.events[0].value.element??.end, maxDate)
+        XCTAssertEqual(readChannelByRemoteIdUseCase.remoteIdArray, [remoteId])
+        XCTAssertTuples(generalPurposeMeterItemRepository.findMinTimestampParameters, [(remoteId, profile)])
+        XCTAssertTuples(generalPurposeMeterItemRepository.findMaxTimestampParameters, [(remoteId, profile)])
     }
     
     func test_shouldGetNilWhenTemperatureNotFound() {

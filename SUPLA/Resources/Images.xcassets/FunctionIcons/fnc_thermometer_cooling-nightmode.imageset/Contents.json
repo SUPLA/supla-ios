@@ -1,0 +1,12 @@
+{
+  "images" : [
+    {
+      "filename" : "fnc_thermometer_cooling_nm.svg",
+      "idiom" : "universal"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}

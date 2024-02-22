@@ -78,7 +78,7 @@ final class InsertChannelConfigUseCaseImpl: InsertChannelConfigUseCase {
                 {
                     NSLog("Triggering history deletion for \(channelRemoteId)")
                     return self.profileRepository.getActiveProfile()
-                        .flatMap { self.generalPurposeMeterItemRepository.deleteAll(for: $0) }
+                        .flatMap { self.generalPurposeMeterItemRepository.deleteAll(for: $0, and: channelRemoteId) }
                         .map { _ in
                             self.downloadEventManager.emitProgressState(remoteId: channelRemoteId, state: .refresh)
                             return config
@@ -140,27 +140,5 @@ final class InsertChannelConfigUseCaseImpl: InsertChannelConfigUseCase {
         }
         
         return true
-    }
-}
-
-private extension SuplaChannelGeneralPurposeMeasurementConfig {
-    func toJson() -> String? {
-        let jsonEncoder = JSONEncoder()
-        if let jsonData = try? jsonEncoder.encode(self) {
-            return String(data: jsonData, encoding: String.Encoding.utf8)
-        }
-        
-        return nil
-    }
-}
-
-private extension SuplaChannelGeneralPurposeMeterConfig {
-    func toJson() -> String? {
-        let jsonEncoder = JSONEncoder()
-        if let jsonData = try? jsonEncoder.encode(self) {
-            return String(data: jsonData, encoding: String.Encoding.utf8)
-        }
-        
-        return nil
     }
 }

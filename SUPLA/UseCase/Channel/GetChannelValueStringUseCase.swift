@@ -52,7 +52,7 @@ final class GetChannelValueStringUseCaseImpl: GetChannelValueStringUseCase {
             }
         }
         
-        NSLog("No value formatter for channel function `\(channel.func)`")
+        NSLog("No value provider for channel function `\(channel.func)`")
         return NO_VALUE_TEXT
     }
 }

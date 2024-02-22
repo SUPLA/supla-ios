@@ -41,59 +41,10 @@ class MultiAccountProfileManager: NSObject {
 
 extension MultiAccountProfileManager: ProfileManager {
 
-    func create() -> AuthProfileItem {
-        return try! profileRepository.create()
-            .flatMapFirst { profile in
-                profile.advancedSetup = false
-                profile.isActive = true
-                profile.authInfo = AuthInfo.empty()
-                
-                return self.profileRepository.save(profile)
-                    .map {
-                        return profile
-                    }
-            }
-            .subscribeSynchronous()!
-    }
-    
     func read(id: ProfileID) -> AuthProfileItem? {
         return try? profileRepository.queryItem(id).subscribeSynchronous()!
     }
     
-    func update(_ profile: AuthProfileItem) -> Bool {
-        do {
-            try profileRepository.save(profile).toBlocking().first()
-            return true
-        } catch {
-            return false
-        }
-    }
-    
-    func delete(id: ProfileID) -> Bool {
-        do {
-            try profileRepository.queryItem(id)
-                .compactMap { $0 }
-                .map { profile in
-                    if let authInfo = profile.authInfo, authInfo.isAuthDataComplete {
-                        self.deletePushToken(
-                            SingleCallWrapper.prepareAuthorizationDetails(for: profile),
-                            Int32(authInfo.preferredProtocolVersion)
-                        )
-                    } else {
-                        NSLog("Push token removal skipped because of incomplete data")
-                    }
-                    return profile
-                }
-                .flatMapFirst { profile in self.profileRepository.delete(profile).map { profile } }
-                .flatMapFirst { self.deleteAllProfileDataUseCase.invoke(profile: $0) }
-                .subscribeSynchronous()
-            
-            return true
-        } catch {
-            return false
-        }
-    }
-
     func getCurrentProfile() -> AuthProfileItem? {
         try? profileRepository.getActiveProfile().subscribeSynchronous()
     }
@@ -196,11 +147,11 @@ extension MultiAccountProfileManager: ProfileManager {
         client.reconnect()
     }
     
-    private func deletePushToken(_ authDetails: TCS_ClientAuthorizationDetails, _ protocolVersion: Int32) {
+    private func deletePushToken(_ authDetails: TCS_ClientAuthorizationDetails, _ protocolVersion: Int32, _ profileName: String?) {
         DispatchQueue.global(qos: .default).async {
             do {
                 var authDetails = authDetails
-                var tokenDetails = SingleCallWrapper.prepareClientToken(for: nil)
+                var tokenDetails = SingleCallWrapper.prepareClientToken(for: nil, andProfile: profileName)
                 try self.singleCall.registerPushToken(&authDetails, protocolVersion, &tokenDetails)
             } catch {
                 NSLog("Push token removal failed with error: \(error)")

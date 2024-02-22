@@ -17,10 +17,19 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 */
 
 extension SAChannel {
-    static func mock(_ remoteId: Int32, _ channelFunction: Int32 = 0) -> SAChannel {
+    static func mock(
+        _ remoteId: Int32 = 0,
+        function: Int32 = 0,
+        caption: String? = nil,
+        value: SAChannelValue? = nil,
+        config: SAChannelConfig? = nil
+    ) -> SAChannel {
         let channel = SAChannel(testContext: nil)
         channel.remote_id = remoteId
-        channel.func = channelFunction
+        channel.func = function
+        channel.caption = caption
+        channel.value = value
+        channel.config = config
         return channel
     }
 }

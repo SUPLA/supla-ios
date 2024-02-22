@@ -104,7 +104,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
                                     MENUITEM_HEIGHT)];
     btn.tag = btnId;
     btn.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
-    [btn setTitle:[NSLocalizedString(text, nil) uppercaseString] forState:UIControlStateNormal];
+    [btn setTitle:[text uppercaseString] forState:UIControlStateNormal];
     btn.titleLabel.font = [UIFont fontWithName:@"OpenSans" size: MENUITEM_TEXT_SIZE];
     [btn addTarget:self action:@selector(onButtonTouch:) forControlEvents:UIControlEventTouchDown];
     [self addSubview:btn];
@@ -127,15 +127,16 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         accountLabel = @"Your account";
     }
     
-    [self addBtnWithId:SAMenuItemIdProfile imageNamed:@"profile" text:accountLabel];
-    [self addBtnWithId:SAMenuItemIdSettings imageNamed:@"settings" text:@"Settings"];
-    [self addBtnWithId:SAMenuItemIdAddDevice imageNamed:@"add_device" text:@"Add I/O device"];
-    [self addBtnWithId:SAMenuItemIdZWave imageNamed:@"z_wave_btn" text:@"Z-Wave bridge"];
-    [self addBtnWithId:SAMenuItemIdAbout imageNamed:@"info" text:@"About"];
+    [self addBtnWithId:SAMenuItemIdProfile imageNamed:@"profile" text:NSLocalizedString(accountLabel, nil)];
+    [self addBtnWithId:SAMenuItemIdSettings imageNamed:@"settings" text:NSLocalizedString(@"Settings", nil)];
+    [self addBtnWithId:SAMenuItemIdAddDevice imageNamed:@"add_device" text:NSLocalizedString(@"Add I/O device", nil)];
+    [self addBtnWithId:SAMenuItemIdZWave imageNamed:@"z_wave_btn" text:NSLocalizedString(@"Z-Wave bridge", nil)];
+    [self addBtnWithId:SAMenuItemIdNotifications imageNamed:@"icon_notification" text:[LegacyStrings localized:@"menu_notifications"]];
+    [self addBtnWithId:SAMenuItemIdAbout imageNamed:@"info" text:NSLocalizedString(@"About", nil)];
     // Apple Play Policy
     // [self addBtnWithId:SAMenuItemIdDonate imageNamed:@"donate" text:@"Donate"];
-    [self addBtnWithId:SAMenuItemIdHelp imageNamed:@"help" text:@"Help"];
-    [self addBtnWithId:SAMenuItemIdCloud imageNamed:@"menu_cloud" text:@"Supla Cloud"];
+    [self addBtnWithId:SAMenuItemIdHelp imageNamed:@"help" text:NSLocalizedString(@"Help", nil)];
+    [self addBtnWithId:SAMenuItemIdCloud imageNamed:@"menu_cloud" text:NSLocalizedString(@"Supla Cloud", nil)];
   
     CGFloat top = _btnCount * (MENUITEM_HEIGHT+SEPARATOR_HEIGHT);
     CGFloat height = top;

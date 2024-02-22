@@ -52,7 +52,7 @@
 - (void) onRegistered:(SARegResult *)result;
 - (void) onRegisterError:(int)code;
 - (void) locationUpdate:(TSC_SuplaLocation *)location;
-- (void) channelUpdate:(TSC_SuplaChannel_D *)channel;
+- (void) channelUpdate:(TSC_SuplaChannel_E *)channel;
 - (void) channelValueUpdate:(TSC_SuplaChannelValue_B *)channel_value;
 - (void) channelExtendedValueUpdate:(TSC_SuplaChannelExtendedValue *)channel_extendedvalue;
 - (void) channelGroupUpdate:(TSC_SuplaChannelGroup_B *)cgroup;
@@ -776,7 +776,7 @@ void sasuplaclient_device_config_update_or_result(void *_suplaclient,
     
     _client_id = result.ClientID;
     NSData* pushToken = [DiContainer getPushToken];
-    [self registerPushNotificationClientToken:pushToken];
+    [self registerPushNotificationClientToken:pushToken forProfile: profile];
     [DiContainer setOAuthUrlWithUrl: ai.serverUrlString];
 
     [self performSelectorOnMainThread:@selector(_onRegistered:) withObject:result waitUntilDone:NO];
@@ -1657,10 +1657,10 @@ void sasuplaclient_device_config_update_or_result(void *_suplaclient,
     return supla_client_timer_arm(_sclient, remoteId, on ? 1 : 0, milis);
 }
 
-- (void) registerPushNotificationClientToken:(NSData *)token {
+- (void) registerPushNotificationClientToken:(NSData *)token forProfile: (AuthProfileItem*) profile {
     @synchronized(self) {
         if ( _sclient ) {
-            TCS_RegisterPnClientToken reg = [SingleCallWrapper prepareRegisterStructureFor: nil with: token];
+            TCS_RegisterPnClientToken reg = [SingleCallWrapper prepareRegisterStructureFor: profile with: token];
             supla_client_pn_register_client_token(_sclient, &reg);
         }
     }
