@@ -456,6 +456,7 @@
 "menu_notifications" = "Historia powiadomień";
 "notifications_log_profile" = "Profil:";
 "notifications_log_date" = "Data:";
-"notification_delete_all_title" = "Usunąć wszystko?";
-"notification_delete_all_message" = "Usunięcie całej historii jest nieodwracalne, kontynuować?";
-"notification_delete_all_proceed" = "Usuń";
+"notification_delete_all_title" = "Usunąć?";
+"notification_delete_all_message" = "Usunięcie powiadomień jest nieodwracalne, kontynuować?";
+"notification_delete_button_delete_all" = "Usuń wszystkie";
+"notification_delete_button_delete_older_than_month" = "Usuń starsze niż 30 dni";

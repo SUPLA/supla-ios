@@ -424,6 +424,7 @@
 /* Notifications */
 "notifications_log_profile" = "Konto:";
 "notifications_log_date" = "Datum:";
-"notification_delete_all_title" = "Alle Einträge löschen?";
+"notification_delete_all_title" = "Einträge löschen?";
 "notification_delete_all_message" = "Das Löschen ist unumkehrbar, fortfahren?";
-"notification_delete_all_proceed" = "Löschen";
+"notification_delete_button_delete_all" = "Alles löschen";
+"notification_delete_button_delete_older_than_month" = "Ältere als 30 Tage löschen";

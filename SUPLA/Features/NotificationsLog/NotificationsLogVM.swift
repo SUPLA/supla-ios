@@ -45,6 +45,10 @@ class NotificationsLogVM: BaseViewModel<NotificationsLogViewState, Notifications
         observeAndReloadList { notificationRepository.deleteAll() }
     }
     
+    func deleteOlderThanMonth() {
+        observeAndReloadList { notificationRepository.deleteOlderThanMonth() }
+    }
+    
     private func observeAndReloadList(_ observable: () -> Observable<Void>) {
         observable()
             .flatMap { [weak self] _ in

@@ -79,13 +79,20 @@ class NotificationsLogVC: BaseViewControllerVM<NotificationsLogViewState, Notifi
         let alert = UIAlertController(
             title: Strings.Notifications.deleteAllTitile,
             message: Strings.Notifications.deleteAllMessage,
-            preferredStyle: .alert
+            preferredStyle: .actionSheet
         )
         alert.addAction(
             UIAlertAction(
-                title: Strings.Notifications.deleteAllProceed,
+                title: Strings.Notifications.buttonDeleteAll,
                 style: .destructive,
                 handler: { [weak self] _ in self?.viewModel.deleteAll() }
+            )
+        )
+        alert.addAction(
+            UIAlertAction(
+                title: Strings.Notifications.buttonDeleteOlderThanMonth,
+                style: .destructive,
+                handler: { [weak self] _ in self?.viewModel.deleteOlderThanMonth() }
             )
         )
         alert.addAction(UIAlertAction(title: Strings.General.cancel, style: .cancel))

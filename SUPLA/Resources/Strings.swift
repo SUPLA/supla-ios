@@ -246,7 +246,8 @@ struct Strings {
         static let date = "notifications_log_date".toLocalized()
         static let deleteAllTitile = "notification_delete_all_title".toLocalized()
         static let deleteAllMessage = "notification_delete_all_message".toLocalized()
-        static let deleteAllProceed = "notification_delete_all_proceed".toLocalized()
+        static let buttonDeleteAll = "notification_delete_button_delete_all".toLocalized()
+        static let buttonDeleteOlderThanMonth = "notification_delete_button_delete_older_than_month".toLocalized()
     }
     
     struct General {

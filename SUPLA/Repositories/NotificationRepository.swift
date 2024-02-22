@@ -19,24 +19,12 @@
 import RxSwift
 
 protocol NotificationRepository: RepositoryProtocol where T == SANotification {
-    func insert(title: String, message: String, profileName: String?) -> Observable<Void>
     func getAll() -> Observable<[SANotification]>
     func deleteAll() -> Observable<Void>
+    func deleteOlderThanMonth() -> Observable<Void>
 }
 
 class NotificationRepositoryImpl: Repository<SANotification>, NotificationRepository {
-    func insert(title: String, message: String, profileName: String?) -> Observable<Void> {
-        create()
-            .map {
-                $0.title = title
-                $0.message = message
-                $0.profileName = profileName
-                $0.date = Date()
-                
-                return $0
-            }
-            .flatMap { self.save($0) }
-    }
     
     func getAll() -> Observable<[SANotification]> {
         query(SANotification.fetchRequest().ordered(by: "date", ascending: false))
@@ -44,5 +32,12 @@ class NotificationRepositoryImpl: Repository<SANotification>, NotificationReposi
     
     func deleteAll() -> Observable<Void> {
         deleteAll(SANotification.fetchRequest())
+    }
+    
+    func deleteOlderThanMonth() -> Observable<Void> {
+        deleteAll(
+            SANotification.fetchRequest()
+                .filtered(by: NSPredicate(format: "date < %@", Date().shift(days: -30) as NSDate))
+        )
     }
 }
