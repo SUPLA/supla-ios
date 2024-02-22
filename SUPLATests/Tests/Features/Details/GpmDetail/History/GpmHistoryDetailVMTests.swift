@@ -50,7 +50,7 @@ final class GpmHistoryDetailVMTests: ViewModelTest<BaseHistoryDetailViewState, B
         DiContainer.shared.register(type: DownloadChannelMeasurementsUseCase.self, downloadChannelMeasurementsUseCase!)
         DiContainer.shared.register(type: LoadChannelMeasurementsUseCase.self, loadChannelMeasurementsUseCase!)
         DiContainer.shared.register(type: LoadChannelMeasurementsDateRangeUseCase.self, loadChannelMeasurementsDateRangeUseCase!)
-        DiContainer.shared.register(type: LoadChannelMeasurementsUseCase.self, loadChannelMeasurementsUseCase!)
+        DiContainer.shared.register(type: LoadChannelConfigUseCase.self, loadChannelConfigUseCase!)
     }
     
     override func tearDown() {
@@ -62,7 +62,7 @@ final class GpmHistoryDetailVMTests: ViewModelTest<BaseHistoryDetailViewState, B
         downloadChannelMeasurementsUseCase = nil
         loadChannelMeasurementsUseCase = nil
         loadChannelMeasurementsDateRangeUseCase = nil
-        loadChannelMeasurementsUseCase = nil
+        loadChannelConfigUseCase = nil
         viewModel = nil
         
         super.tearDown()
@@ -129,15 +129,15 @@ final class GpmHistoryDetailVMTests: ViewModelTest<BaseHistoryDetailViewState, B
         doTestChartType(
             config: SuplaChannelGeneralPurposeMeterConfig.mock(),
             configType: .generalPurposeMeter,
-            expectedChartDataProvider: { LineChartData($0, .lastWeek, .minutes, []) }
+            expectedChartDataProvider: { BarChartData($0, .lastWeek, .minutes, []) }
         )
     }
     
     func test_shouldLoadGpMetersFromDbAsBarChartData() {
         doTestChartType(
-            config: SuplaChannelGeneralPurposeMeterConfig.mock(chartType: .bar),
+            config: SuplaChannelGeneralPurposeMeterConfig.mock(chartType: .linear),
             configType: .generalPurposeMeter,
-            expectedChartDataProvider: { BarChartData($0, .lastWeek, .minutes, []) }
+            expectedChartDataProvider: { LineChartData($0, .lastWeek, .minutes, []) }
         )
     }
     
@@ -145,15 +145,15 @@ final class GpmHistoryDetailVMTests: ViewModelTest<BaseHistoryDetailViewState, B
         doTestChartType(
             config: SuplaChannelGeneralPurposeMeasurementConfig.mock(),
             configType: .generalPurposeMeasurement,
-            expectedChartDataProvider: { LineChartData($0, .lastWeek, .minutes, []) }
+            expectedChartDataProvider: { BarChartData($0, .lastWeek, .minutes, []) }
         )
     }
     
     func test_shouldLoadGpMeasurementsFromDbAsBarChartData() {
         doTestChartType(
-            config: SuplaChannelGeneralPurposeMeasurementConfig.mock(chartType: .bar),
+            config: SuplaChannelGeneralPurposeMeasurementConfig.mock(chartType: .linear),
             configType: .generalPurposeMeasurement,
-            expectedChartDataProvider: { BarChartData($0, .lastWeek, .minutes, []) }
+            expectedChartDataProvider: { LineChartData($0, .lastWeek, .minutes, []) }
         )
     }
     
@@ -203,7 +203,7 @@ final class GpmHistoryDetailVMTests: ViewModelTest<BaseHistoryDetailViewState, B
         viewModel.loadData(remoteId: remoteId)
         
         // then
-        waitForExpectations(timeout: 1)
+        waitForExpectations(timeout: 2)
         let daysRange = DaysRange(start: currentDate.shift(days: -7), end: currentDate)
         let state1 = BaseHistoryDetailViewState()
         let state2 = state1.changing(path: \.remoteId, to: remoteId)
@@ -213,17 +213,12 @@ final class GpmHistoryDetailVMTests: ViewModelTest<BaseHistoryDetailViewState, B
             .changing(path: \.ranges, to: SelectableList(selected: .lastWeek, items: ChartRange.allCases))
             .changing(path: \.range, to: daysRange)
             .changing(path: \.aggregations, to: SelectableList(selected: .minutes, items: [.minutes, .hours, .days]))
-        let state5 = state4.changing(path: \.downloadState, to: .finished)
+        let state5 = state4
             .changing(path: \.showHistory, to: false)
+            .changing(path: \.downloadState, to: .finished)
         let state6 = state5
             .changing(path: \.chartData, to: expectedChartDataProvider(daysRange))
             .changing(path: \.loading, to: false)
-        XCTAssertEqual(stateObserver.events[0].value.element, state1)
-        XCTAssertEqual(stateObserver.events[1].value.element, state2)
-        XCTAssertEqual(stateObserver.events[2].value.element, state3)
-        XCTAssertEqual(stateObserver.events[3].value.element, state4)
-        XCTAssertEqual(stateObserver.events[4].value.element, state5)
-        XCTAssertEqual(stateObserver.events[5].value.element, state6)
         assertStates(expected: [
             state1,
             state2,

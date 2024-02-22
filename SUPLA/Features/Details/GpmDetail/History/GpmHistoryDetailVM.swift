@@ -100,9 +100,11 @@ final class GpmHistoryDetailVM: BaseHistoryDetailVM {
             startInitialDataLoad(channel: channel)
         } else {
             updateView {
-                triggerMeasurementsLoad(state: $0)
-                return $0.changing(path: \.showHistory, to: false)
+                $0.changing(path: \.showHistory, to: false)
                     .changing(path: \.downloadState, to: .finished)
+            }
+            if let state = currentState() {
+                triggerMeasurementsLoad(state: state)
             }
         }
     }
