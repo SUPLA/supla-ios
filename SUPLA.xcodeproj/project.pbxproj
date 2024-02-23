@@ -810,9 +810,6 @@
 		A55501E62B7F952E00FD3296 /* GeneralPurposeMeasurementIconNameProducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A55501E52B7F952E00FD3296 /* GeneralPurposeMeasurementIconNameProducer.swift */; };
 		A55501E82B7F96E600FD3296 /* Icons.swift in Sources */ = {isa = PBXBuildFile; fileRef = A55501E72B7F96E600FD3296 /* Icons.swift */; };
 		A55501EA2B7FC38500FD3296 /* GeneralPurposeMeterIconNameProducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A55501E92B7FC38500FD3296 /* GeneralPurposeMeterIconNameProducer.swift */; };
-		A55501EC2B8357F000FD3296 /* Migration15to16ModelMapping.xcmappingmodel in Sources */ = {isa = PBXBuildFile; fileRef = A55501EB2B8357F000FD3296 /* Migration15to16ModelMapping.xcmappingmodel */; };
-		A55501EE2B835B4600FD3296 /* CounterLog15to16MigrationPolicy.swift in Sources */ = {isa = PBXBuildFile; fileRef = A55501ED2B835B4600FD3296 /* CounterLog15to16MigrationPolicy.swift */; };
-		A55501F02B836D0B00FD3296 /* ElectricityMeterLog15to16MigrationPolicy.swift in Sources */ = {isa = PBXBuildFile; fileRef = A55501EF2B836D0B00FD3296 /* ElectricityMeterLog15to16MigrationPolicy.swift */; };
 		A55501F32B8382C500FD3296 /* NotificationsLogVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = A55501F22B8382C500FD3296 /* NotificationsLogVM.swift */; };
 		A55501F52B83842000FD3296 /* NotificationsLogVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A55501F42B83842000FD3296 /* NotificationsLogVC.swift */; };
 		A55501F72B8384DF00FD3296 /* NotificationsLogNavigationCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A55501F62B8384DF00FD3296 /* NotificationsLogNavigationCoordinator.swift */; };
@@ -2357,9 +2354,6 @@
 		A55501E52B7F952E00FD3296 /* GeneralPurposeMeasurementIconNameProducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralPurposeMeasurementIconNameProducer.swift; sourceTree = "<group>"; };
 		A55501E72B7F96E600FD3296 /* Icons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Icons.swift; sourceTree = "<group>"; };
 		A55501E92B7FC38500FD3296 /* GeneralPurposeMeterIconNameProducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralPurposeMeterIconNameProducer.swift; sourceTree = "<group>"; };
-		A55501EB2B8357F000FD3296 /* Migration15to16ModelMapping.xcmappingmodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcmappingmodel; path = Migration15to16ModelMapping.xcmappingmodel; sourceTree = "<group>"; };
-		A55501ED2B835B4600FD3296 /* CounterLog15to16MigrationPolicy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CounterLog15to16MigrationPolicy.swift; sourceTree = "<group>"; };
-		A55501EF2B836D0B00FD3296 /* ElectricityMeterLog15to16MigrationPolicy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElectricityMeterLog15to16MigrationPolicy.swift; sourceTree = "<group>"; };
 		A55501F22B8382C500FD3296 /* NotificationsLogVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsLogVM.swift; sourceTree = "<group>"; };
 		A55501F42B83842000FD3296 /* NotificationsLogVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsLogVC.swift; sourceTree = "<group>"; };
 		A55501F62B8384DF00FD3296 /* NotificationsLogNavigationCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsLogNavigationCoordinator.swift; sourceTree = "<group>"; };
@@ -4942,7 +4936,6 @@
 				A5F8361C2A2E004C00E5CA71 /* Migration10to11ModelMapping.xcmappingmodel */,
 				A56F15EE2A2E68BA00C2E21B /* Migration11to12ModelMapping.xcmappingmodel */,
 				A56F15F42A2E6E3C00C2E21B /* Migration12to13ModelMapping.xcmappingmodel */,
-				A55501EB2B8357F000FD3296 /* Migration15to16ModelMapping.xcmappingmodel */,
 			);
 			path = Mappings;
 			sourceTree = "<group>";
@@ -4953,8 +4946,6 @@
 				A5F8361E2A2E008C00E5CA71 /* AuthProfileItemInitialMigrationPolicy.swift */,
 				A56F15F02A2E698400C2E21B /* DeleteEntitiesMigrationPolicy.swift */,
 				A56F15F62A2E721F00C2E21B /* ActiveAccount12to13MigrationPolicy.swift */,
-				A55501ED2B835B4600FD3296 /* CounterLog15to16MigrationPolicy.swift */,
-				A55501EF2B836D0B00FD3296 /* ElectricityMeterLog15to16MigrationPolicy.swift */,
 			);
 			path = Policies;
 			sourceTree = "<group>";
@@ -6621,7 +6612,6 @@
 				A5477DB92AA1F56400220B4A /* ChannelChild.swift in Sources */,
 				A57668D52AE94A060025509D /* DownloadEventsManager.swift in Sources */,
 				A5F29BCE2A26232900ED700A /* ElectricityMeasurementItemRepository.swift in Sources */,
-				A55501EE2B835B4600FD3296 /* CounterLog15to16MigrationPolicy.swift in Sources */,
 				A55501EA2B7FC38500FD3296 /* GeneralPurposeMeterIconNameProducer.swift in Sources */,
 				A52BFEE22B113BD700A2F64C /* TrippleNumberSelectorView.swift in Sources */,
 				AE74528B2827E38900A3AFAD /* ProfilesVC.swift in Sources */,
@@ -6706,7 +6696,6 @@
 				AE929A8B2761487700B75715 /* NavigationCoordinator.swift in Sources */,
 				01BDAC7522C518DE00915646 /* SARestApiClientTask.m in Sources */,
 				401CA1BF1BA067DB00117AF4 /* main.m in Sources */,
-				A55501F02B836D0B00FD3296 /* ElectricityMeterLog15to16MigrationPolicy.swift in Sources */,
 				A5F29BFE2A2DC19500ED700A /* CoreDataMigrationVersion.swift in Sources */,
 				018CFD2623281AF900888CB7 /* SAThermostatHPExtendedValue.m in Sources */,
 				A530EE112A56E5F300F8DAEE /* ChannelState.swift in Sources */,
@@ -6847,7 +6836,6 @@
 				A57668CD2AE8F87D0025509D /* SuplaCloudConfigHolder.swift in Sources */,
 				01F8857022E5E79100D18373 /* SATemperatureMeasurementItem+CoreDataProperties.m in Sources */,
 				A5477DCF2AA616FD00220B4A /* CellButton.swift in Sources */,
-				A55501EC2B8357F000FD3296 /* Migration15to16ModelMapping.xcmappingmodel in Sources */,
 				A57669012AEFD4420025509D /* UsetStateHolder.swift in Sources */,
 				A58A9BFE2AA0A4BD00D28848 /* UIView+Ext.swift in Sources */,
 				A5477DC92AA5E6EE00220B4A /* ChannelWithChildren.swift in Sources */,

@@ -74,7 +74,8 @@ final class LoadChannelMeasurementsUseCaseImpl: LoadChannelMeasurementsUseCase, 
             let humidityColor = humidityColors.nextColor()
             return temperatureAndHumiditySets(channel, profile, startDate, endDate, aggregation, temperatureColor, humidityColor)
         } else if (channel.func == SUPLA_CHANNELFNC_GENERAL_PURPOSE_MEASUREMENT) {
-            return generalPurposeMeasurementSets(channel, profile, startDate, endDate, aggregation)
+            let color = temperatureColors.nextColor()
+            return generalPurposeMeasurementSets(channel, profile, startDate, endDate, aggregation, color)
         } else if (channel.func == SUPLA_CHANNELFNC_GENERAL_PURPOSE_METER) {
             return generalPurposeMeterSets(channel, profile, startDate, endDate, aggregation)
         } else {
@@ -132,7 +133,8 @@ final class LoadChannelMeasurementsUseCaseImpl: LoadChannelMeasurementsUseCase, 
         _ profile: AuthProfileItem,
         _ startDate: Date,
         _ endDate: Date,
-        _ aggregation: ChartDataAggregation
+        _ aggregation: ChartDataAggregation,
+        _ color: UIColor
     ) -> Observable<[HistoryDataSet]> {
         return generalPurposeMeasurementItemRepository.findMeasurements(
             remoteId: channel.remote_id,
@@ -141,7 +143,7 @@ final class LoadChannelMeasurementsUseCaseImpl: LoadChannelMeasurementsUseCase, 
             endDate: endDate
         )
         .map { entities in self.aggregatingGeneralPurposeMeasurement(entities, aggregation) }
-        .map { [self.historyDataSet(channel, .generalPurposeMeasurement, .chartGpm, aggregation, $0)] }
+        .map { [self.historyDataSet(channel, .generalPurposeMeasurement, color, aggregation, $0)] }
     }
 
     func aggregatingGeneralPurposeMeasurement(
