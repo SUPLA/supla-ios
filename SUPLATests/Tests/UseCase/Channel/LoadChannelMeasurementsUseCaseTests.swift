@@ -270,7 +270,7 @@ final class LoadChannelMeasurementsUseCaseTests: UseCaseTest<[HistoryDataSet]> {
         
         XCTAssertEqual(historyDataSets.count, 1)
         XCTAssertEqual(historyDataSets[0].setId, HistoryDataSet.Id(remoteId: remotId, type: .generalPurposeMeasurement))
-        XCTAssertEqual(historyDataSets[0].color, .chartGpm)
+        XCTAssertEqual(historyDataSets[0].color, .chartTemperature1)
         XCTAssertEqual(historyDataSets[0].active, true)
         XCTAssertEqual(historyDataSets[0].value, "0.0°")
         XCTAssertTuples(

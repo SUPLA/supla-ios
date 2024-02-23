@@ -311,6 +311,7 @@ class BaseHistoryDetailVM: BaseViewModel<BaseHistoryDetailViewState, BaseHistory
             guard let range = $0.ranges?.selected else { return $0 }
             return $0.shiftRange(chartRange: range, forward: forward)
                 .changing(path: \.loading, to: true)
+                .changing(path: \.chartData, to: $0.chartData.empty())
         }
     }
     

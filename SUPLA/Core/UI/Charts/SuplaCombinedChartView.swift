@@ -28,7 +28,7 @@ class SuplaCombinedChartView: UIView {
     var data: ChartData? {
         didSet {
             combinedData = data?.combinedData()
-            if (combinedData == nil) {
+            if (combinedData == nil || data?.isEmpty == true) {
                 combinedChart.highlightValue(nil)
             }
             combinedChart.data = combinedData

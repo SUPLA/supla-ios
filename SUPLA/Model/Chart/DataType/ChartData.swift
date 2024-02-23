@@ -50,6 +50,19 @@ class ChartData: CoordinatesConverter, Equatable {
     let chartRange: ChartRange?
     let aggregation: ChartDataAggregation?
     let sets: [HistoryDataSet]
+    
+    var isEmpty: Bool {
+        get {
+            var empty = true
+            sets.forEach {
+                if (!$0.entries.isEmpty) {
+                    empty = false
+                    return
+                }
+            }
+            return empty
+        }
+    }
 
     init(
         _ dateRange: DaysRange?,
