@@ -61,6 +61,7 @@ class MainVC : SuplaTabBarController<MainViewState, MainViewEvent, MainViewModel
         viewModel.onViewAppear()
         showNewGestureInfoView()
         SARateApp().showDialog(withDelay: 1)
+        updateBottomBarLabels()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -106,21 +107,21 @@ class MainVC : SuplaTabBarController<MainViewState, MainViewEvent, MainViewModel
         let channelListVC = ChannelListVC()
         channelListVC.navigationCoordinator = navigator
         channelListVC.tabBarItem = UITabBarItem(
-            title: Strings.Main.channels,
+            title: settings.showBottomLabels ? Strings.Main.channels : nil,
             image: UIImage(named: "list"),
             tag: HomeTabTag.Channels.rawValue
         )
         let groupListVC = GroupListVC()
         groupListVC.navigationCoordinator = navigator
         groupListVC.tabBarItem = UITabBarItem(
-            title: Strings.Main.groups,
+            title: settings.showBottomLabels ? Strings.Main.groups : nil,
             image: UIImage(named: "bottom_bar_groups"),
             tag: HomeTabTag.Groups.rawValue
         )
         let sceneListVC = SceneListVC()
         sceneListVC.navigationCoordinator = navigator
         sceneListVC.tabBarItem = UITabBarItem(
-            title: Strings.Main.scenes,
+            title: settings.showBottomLabels ? Strings.Main.scenes : nil,
             image: UIImage(named: "coffee"),
             tag: HomeTabTag.Scenes.rawValue
         )
@@ -146,6 +147,20 @@ class MainVC : SuplaTabBarController<MainViewState, MainViewEvent, MainViewModel
     private func showNewGestureInfoView() {
         if (!settings.newGestureInfoShown && settings.shouldShowNewGestureInfo) {
             newGestureInfoView.isHidden = false
+        }
+    }
+    
+    private func updateBottomBarLabels() {
+        viewControllers?.forEach {
+            if let channels = $0 as? ChannelListVC {
+                channels.tabBarItem.title = settings.showBottomLabels ? Strings.Main.channels : nil
+            }
+            if let groups = $0 as? GroupListVC {
+                groups.tabBarItem.title = settings.showBottomLabels ? Strings.Main.groups : nil
+            }
+            if let scenes = $0 as? SceneListVC {
+                scenes.tabBarItem.title = settings.showBottomLabels ? Strings.Main.scenes : nil
+            }
         }
     }
     

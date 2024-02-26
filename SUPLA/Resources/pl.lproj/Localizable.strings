@@ -326,10 +326,6 @@
 "push_notification_limit_exceeded" = "Przekroczono limit wysłanych wiadomości PUSH, który wynosi %@ na godzinę.";
 "dialog_new_gesture_info_text" = "Usunęliśmy gest przesunięcia otwierający szczegóły, aby je zobaczyć dotknij wybrany kanał.";
 
-"app_settings.permissions_header" = "Uprawnienia";
-"app_settings.notifications_label" = "Powiadomienia";
-"app_settings.location_label" = "Lokalizacja";
-
 /* General */
 "General.error" = "Błąd";
 "save" = "Zapisz";
@@ -357,6 +353,13 @@
 "channel_caption_alarm_armament" = "Czujnik uzbrojenia alarmu";
 "channel_caption_general_purpose_measurment" = "Kanał pomiarowy";
 "channel_caption_general_purpose_meter" = "Kanał licznikowy";
+
+/* App Settings */
+"app_settings.permissions_header" = "Uprawnienia";
+"app_settings.notifications_label" = "Powiadomienia";
+"app_settings.location_label" = "Lokalizacja";
+
+"settings_show_labels" = "Pokazuj labelki w dolnym menu";
 
 /* Standard Detail */
 "standard_detail_general_tab" = "Ogólne";

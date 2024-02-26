@@ -54,6 +54,7 @@ struct Strings {
         static let permissionsHeader = "app_settings.permissions_header".toLocalized()
         static let notificationsLabel = "app_settings.notifications_label".toLocalized()
         static let locationLabel = "app_settings.location_label".toLocalized()
+        static let showLabels = "settings_show_labels".toLocalized()
     }
     
     struct AccountCreation {

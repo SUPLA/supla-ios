@@ -38,10 +38,6 @@
 
 "dialog_new_gesture_info_text" = "Swipe gesture to open details was removed, tap on particular channel to open it.";
 
-"app_settings.permissions_header" = "Permissions";
-"app_settings.notifications_label" = "Notifications";
-"app_settings.location_label" = "Location";
-
 /* General */
 "General.error" = "Error";
 "General.hour_format" = "HH:mm:ss";
@@ -71,6 +67,12 @@
 "channel_caption_alarm_armament" = "Alarm armament sensor";
 "channel_caption_general_purpose_measurment" = "Measurement channel";
 "channel_caption_general_purpose_meter" = "Meter channel";
+
+/* App Settings */
+"app_settings.permissions_header" = "Permissions";
+"app_settings.notifications_label" = "Notifications";
+"app_settings.location_label" = "Location";
+"settings_show_labels" = "Show bottom menu labels";
 
 /* Standard Detail */
 "standard_detail_general_tab" = "General";

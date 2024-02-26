@@ -17,13 +17,12 @@
  */
 
 import Foundation
-import RxSwift
 import RxCocoa
 import RxDataSources
+import RxSwift
 import UserNotifications
 
 class AppSettingsVM: BaseViewModel<AppSettingsViewState, AppSettingsViewEvent> {
-    
     @Singleton<GlobalSettings> private var settings
     @Singleton<UserNotificationCenter> private var notificationCenter
     
@@ -33,7 +32,7 @@ class AppSettingsVM: BaseViewModel<AppSettingsViewState, AppSettingsViewEvent> {
         createListObservable()
             .asDriverWithoutError()
             .drive(onNext: { list in
-                self.updateView { $0.changing(path: \.list, to: list)}
+                self.updateView { $0.changing(path: \.list, to: list) }
             })
             .disposed(by: self)
     }
@@ -73,12 +72,17 @@ class AppSettingsVM: BaseViewModel<AppSettingsViewState, AppSettingsViewEvent> {
             .switchItem(
                 title: Strings.Cfg.buttonAutoHide,
                 selected: settings.autohideButtons,
-                callback: { settings.autohideButtons = $0}
+                callback: { settings.autohideButtons = $0 }
             ),
             .switchItem(
                 title: Strings.Cfg.showChannelInfo,
                 selected: settings.showChannelInfo,
-                callback: { settings.showChannelInfo = $0}
+                callback: { settings.showChannelInfo = $0 }
+            ),
+            .switchItem(
+                title: Strings.AppSettings.showLabels,
+                selected: settings.showBottomLabels,
+                callback: { settings.showBottomLabels = $0 }
             ),
             .rsOpeningPercentageItem(
                 opening: settings.showOpeningPercent,
@@ -96,21 +100,21 @@ class AppSettingsVM: BaseViewModel<AppSettingsViewState, AppSettingsViewEvent> {
             .permissionItem(
                 title: Strings.AppSettings.notificationsLabel,
                 active: notificationsAllowed,
-                callback: { self.send(event: .navigateToAppPreferences)}
+                callback: { self.send(event: .navigateToAppPreferences) }
             )
         ])
     }
     
     private func updateChannelHeight(selectedItem: Int) {
         var settings = settings
-        if let height = ChannelHeight.allCases.enumerated().first(where: { (i, height) in i == selectedItem })?.element {
+        if let height = ChannelHeight.allCases.enumerated().first(where: { (i, _) in i == selectedItem })?.element {
             settings.channelHeight = height
         }
     }
     
     private func updateTemperatureUnit(selectedItem: Int) {
         var settings = settings
-        if let unit = TemperatureUnit.allCases.enumerated().first(where: { (i, height) in i == selectedItem })?.element {
+        if let unit = TemperatureUnit.allCases.enumerated().first(where: { (i, _) in i == selectedItem })?.element {
             settings.temperatureUnit = unit
         }
     }
@@ -149,7 +153,7 @@ enum SettingsListItem: Equatable {
     }
 }
 
-extension SettingsList : SectionModelType {
+extension SettingsList: SectionModelType {
     typealias Item = SettingsListItem
     
     var items: [SettingsListItem] {
@@ -165,7 +169,6 @@ extension SettingsList : SectionModelType {
         switch original {
         case .preferences(let items):
             self = .preferences(items: items)
-            break
         case .permissions(let items):
             self = .permissions(items: items)
         }
