@@ -131,6 +131,25 @@ import Charts
         ])
     }
     
+    override func offsetForDrawing(atPoint point: CGPoint) -> CGPoint {
+        guard let chart = chartView else { return self.offset }
+        
+        var top = -frame.size.height - 20
+        if (point.y + top < 0) {
+            top = -point.y
+        }
+        
+        let halfWidth = frame.size.width / 2
+        var left = -halfWidth
+        if (point.x + left < 0) {
+            left = -point.x
+        } else if (point.x + halfWidth > chart.bounds.maxX) {
+            left = chart.bounds.maxX - frame.size.width - point.x
+        }
+        
+        return CGPoint(x: left, y: top)
+    }
+    
     override func refreshContent(entry: ChartDataEntry, highlight: Highlight) {
         if let details = entry.data as? ChartEntryDetails {
             switch (details.aggregation) {
@@ -162,7 +181,8 @@ import Charts
             
             if let open = details.open,
                let close = details.close,
-               details.type == .generalPurposeMeasurement {
+               details.type == .generalPurposeMeasurement
+            {
                 firstRowTitle.text = Strings.Charts.markerOpening
                 firstRowValue.text = details.valueFormatter.format(open, withUnit: false)
                 secondRowTitle.text = Strings.Charts.markerClosing
@@ -206,7 +226,7 @@ import Charts
     }
     
     private func getTableHeight(_ data: ChartEntryDetails?) -> CGFloat {
-        if(data != nil && data!.type == .generalPurposeMeasurement) {
+        if (data != nil && data!.type == .generalPurposeMeasurement) {
             return firstRowTitle.intrinsicContentSize.height + secondRowTitle.intrinsicContentSize.height
         } else {
             return 0.0

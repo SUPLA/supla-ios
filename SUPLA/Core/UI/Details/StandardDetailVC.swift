@@ -19,6 +19,7 @@
 class StandardDetailVC<S : ViewState, E : ViewEvent, VM : StandardDetailVM<S, E>> : SuplaTabBarController<S, E, VM> {
     
     @Singleton<RuntimeConfig> private var runtimeConfig
+    @Singleton<GlobalSettings> private var settings
     
     private let item: ItemBundle
     private let pages: [DetailPage]
@@ -102,7 +103,7 @@ class StandardDetailVC<S : ViewState, E : ViewEvent, VM : StandardDetailVM<S, E>
         let vc = SwitchGeneralVC(remoteId: item.remoteId)
         vc.navigationCoordinator = navigationCoordinator
         vc.tabBarItem = UITabBarItem(
-            title: Strings.StandardDetail.tabGeneral,
+            title: settings.showBottomLabels ? Strings.StandardDetail.tabGeneral : nil,
             image: .iconGeneral,
             tag: DetailTabTag.Switch.rawValue
         )
@@ -113,7 +114,7 @@ class StandardDetailVC<S : ViewState, E : ViewEvent, VM : StandardDetailVM<S, E>
         let vc = SwitchTimerDetailVC(remoteId: item.remoteId)
         vc.navigationCoordinator = navigationCoordinator
         vc.tabBarItem = UITabBarItem(
-            title: Strings.StandardDetail.tabTimer,
+            title: settings.showBottomLabels ? Strings.StandardDetail.tabTimer : nil,
             image: .iconTimer,
             tag: DetailTabTag.Timer.rawValue
         )
@@ -124,7 +125,7 @@ class StandardDetailVC<S : ViewState, E : ViewEvent, VM : StandardDetailVM<S, E>
         let vc = DetailViewController(detailViewType: type, remoteId: item.remoteId)
         vc.navigationCoordinator = navigationCoordinator
         vc.tabBarItem = UITabBarItem(
-            title: Strings.StandardDetail.tabMetrics,
+            title: settings.showBottomLabels ? Strings.StandardDetail.tabMetrics : nil,
             image: .iconMetrics,
             tag: DetailTabTag.History.rawValue
         )
@@ -135,7 +136,7 @@ class StandardDetailVC<S : ViewState, E : ViewEvent, VM : StandardDetailVM<S, E>
         let vc = ThermostatGeneralVC(item: item)
         vc.navigationCoordinator = navigationCoordinator
         vc.tabBarItem = UITabBarItem(
-            title: Strings.StandardDetail.tabGeneral,
+            title: settings.showBottomLabels ? Strings.StandardDetail.tabGeneral : nil,
             image: .iconGeneral,
             tag: DetailTabTag.Thermostat.rawValue
         )
@@ -146,7 +147,7 @@ class StandardDetailVC<S : ViewState, E : ViewEvent, VM : StandardDetailVM<S, E>
         let vc = ScheduleDetailVC(item: item)
         vc.navigationCoordinator = navigationCoordinator
         vc.tabBarItem = UITabBarItem(
-            title: Strings.StandardDetail.tabSchedule,
+            title: settings.showBottomLabels ? Strings.StandardDetail.tabSchedule : nil,
             image: .iconSchedule,
             tag: DetailTabTag.Schedule.rawValue
         )
@@ -157,7 +158,7 @@ class StandardDetailVC<S : ViewState, E : ViewEvent, VM : StandardDetailVM<S, E>
         let vc = ThermostatHistoryDetailVC(remoteId: item.remoteId)
         vc.navigationCoordinator = navigationCoordinator
         vc.tabBarItem = UITabBarItem(
-            title: Strings.StandardDetail.tabHistory,
+            title: settings.showBottomLabels ? Strings.StandardDetail.tabHistory : nil,
             image: .iconHistory,
             tag: DetailTabTag.ThermostatHistory.rawValue
         )
@@ -168,7 +169,7 @@ class StandardDetailVC<S : ViewState, E : ViewEvent, VM : StandardDetailVM<S, E>
         let vc = ThermometerHistoryDetailVC(remoteId: item.remoteId)
         vc.navigationCoordinator = navigationCoordinator
         vc.tabBarItem = UITabBarItem(
-            title: Strings.StandardDetail.tabHistory,
+            title: settings.showBottomLabels ? Strings.StandardDetail.tabHistory : nil,
             image: .iconHistory,
             tag: DetailTabTag.ThermostatHistory.rawValue
         )
@@ -179,7 +180,7 @@ class StandardDetailVC<S : ViewState, E : ViewEvent, VM : StandardDetailVM<S, E>
         let vc = ThermostatTimerDetailVC(remoteId: item.remoteId)
         vc.navigationCoordinator = navigationCoordinator
         vc.tabBarItem = UITabBarItem(
-            title: Strings.StandardDetail.tabTimer,
+            title: settings.showBottomLabels ? Strings.StandardDetail.tabTimer : nil,
             image: .iconTimer,
             tag: DetailTabTag.Timer.rawValue
         )
@@ -191,7 +192,7 @@ class StandardDetailVC<S : ViewState, E : ViewEvent, VM : StandardDetailVM<S, E>
         let vc = GpmHistoryDetailVC(remoteId: item.remoteId)
         vc.navigationCoordinator = navigationCoordinator
         vc.tabBarItem = UITabBarItem(
-            title: Strings.StandardDetail.tabHistory,
+            title: settings.showBottomLabels ? Strings.StandardDetail.tabHistory : nil,
             image: .iconHistory,
             tag: DetailTabTag.History.rawValue
         )

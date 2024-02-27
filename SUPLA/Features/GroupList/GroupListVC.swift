@@ -25,6 +25,8 @@ class GroupListVC : ChannelBaseTableViewController<GroupListViewState, GroupList
     convenience init() {
         self.init(nibName: nil, bundle: nil)
         viewModel = GroupListViewModel()
+        
+        setupView()
     }
     
     override func getCollapsedFlag() -> CollapsedFlag { .group }
@@ -33,6 +35,8 @@ class GroupListVC : ChannelBaseTableViewController<GroupListViewState, GroupList
         switch(event) {
         case let .navigateToDetail(legacy: legacyDetailType, channelBase: channelBase):
             navigator?.navigateToLegacyDetail(legacyDetailType: legacyDetailType, channelBase: channelBase)
+        case .openCloud:
+            navigator?.openCloud()
         }
     }
     
@@ -50,6 +54,18 @@ class GroupListVC : ChannelBaseTableViewController<GroupListViewState, GroupList
         } else {
             super.captionEditorDidFinish(editor)
         }
+    }
+    
+    override func showEmptyMessage(_ tableView: UITableView?) {
+        guard let tableView = tableView else { return }
+        
+        if (tableView.backgroundView == nil) {
+            tableView.backgroundView = createNoContentView(Strings.Groups.emptyListButton)
+        }
+    }
+    
+    private func setupView() {
+        viewModel.bind(noContentButton.rx.tap) { [weak self] in self?.viewModel.onNoContentButtonClicked() }
     }
 }
 

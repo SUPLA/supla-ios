@@ -17,11 +17,11 @@
  */
 
 import Foundation
-import RxDataSources
 import RxCocoa
+import RxDataSources
+import RxSwift
 
-class BaseTableViewController<S : ViewState, E : ViewEvent, VM : BaseTableViewModel<S, E>>: BaseViewControllerVM<S, E, VM>, SASectionCellDelegate, UITableViewDelegate, UITableViewDragDelegate, UITableViewDropDelegate, SACaptionEditorDelegate {
-    
+class BaseTableViewController<S: ViewState, E: ViewEvent, VM: BaseTableViewModel<S, E>>: BaseViewControllerVM<S, E, VM>, SASectionCellDelegate, UITableViewDelegate, UITableViewDragDelegate, UITableViewDropDelegate, SACaptionEditorDelegate {
     private var captionEditor: LocationCaptionEditor? = nil
     
     @Singleton<VibrationService> var vibrationService
@@ -38,6 +38,7 @@ class BaseTableViewController<S : ViewState, E : ViewEvent, VM : BaseTableViewMo
             }
         }
     }
+
     var showChannelInfo: Bool = false {
         didSet {
             if (oldValue != showChannelInfo) {
@@ -45,14 +46,28 @@ class BaseTableViewController<S : ViewState, E : ViewEvent, VM : BaseTableViewMo
             }
         }
     }
+
     var navigator: MainNavigationCoordinator? {
-        get {
-            navigationCoordinator as? MainNavigationCoordinator
-        }
+        navigationCoordinator as? MainNavigationCoordinator
     }
     
+    lazy var noContentButton: UIBorderedButton = {
+        let button = UIBorderedButton()
+        button.translatesAutoresizingMaskIntoConstraints = false
+        return button
+    }()
+    
+    private lazy var noContentLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.text = Strings.Main.noEntries
+        label.font = .h4
+        label.textColor = .gray
+        return label
+    }()
+    
     override func loadView() {
-        self.view = tableView
+        view = tableView
     }
     
     override func viewDidLoad() {
@@ -81,7 +96,16 @@ class BaseTableViewController<S : ViewState, E : ViewEvent, VM : BaseTableViewMo
         
         viewModel.listItems
             .asDriverWithoutError()
-            .drive(tableView.rx.items(dataSource: dataSource))
+            .do(
+                onNext: { [weak self] in
+                    if ($0.isEmpty == true) {
+                        self?.showEmptyMessage(self?.tableView)
+                    } else {
+                        self?.tableView.backgroundView = nil
+                    }
+                }
+            )
+            .drive() { tableView.rx.items(dataSource: dataSource)($0) }
             .disposed(by: self)
         
         tableView.rx.itemMoved
@@ -94,7 +118,7 @@ class BaseTableViewController<S : ViewState, E : ViewEvent, VM : BaseTableViewMo
     
     func createDataSource() -> RxTableViewSectionedReloadDataSource<List> {
         return RxTableViewSectionedReloadDataSource<List>(
-            configureCell: { dataSource, tableView, indexPath, _ in
+            configureCell: { dataSource, _, indexPath, _ in
                 switch dataSource[indexPath] {
                 case let .scene(scene: scene):
                     return self.configureCell(scene: scene, indexPath: indexPath)
@@ -141,6 +165,26 @@ class BaseTableViewController<S : ViewState, E : ViewEvent, VM : BaseTableViewMo
     
     func getCollapsedFlag() -> CollapsedFlag {
         fatalError("getCollapsedFlag() has not been implemented")
+    }
+    
+    func showEmptyMessage(_ tableView: UITableView?) {}
+    
+    func createNoContentView(_ buttonLabel: String) -> UIView {
+        noContentButton.setAttributedTitle(buttonLabel)
+        
+        let content = UIView()
+        content.addSubview(noContentLabel)
+        content.addSubview(noContentButton)
+        
+        NSLayoutConstraint.activate([
+            noContentLabel.bottomAnchor.constraint(equalTo: content.centerYAnchor, constant: -Dimens.distanceDefault),
+            noContentLabel.centerXAnchor.constraint(equalTo: content.centerXAnchor),
+            
+            noContentButton.topAnchor.constraint(equalTo: content.centerYAnchor, constant: Dimens.distanceDefault),
+            noContentButton.centerXAnchor.constraint(equalTo: content.centerXAnchor)
+        ])
+        
+        return content
     }
     
     // MARK: SACaptionEditorDelegate
@@ -211,7 +255,6 @@ class BaseTableViewController<S : ViewState, E : ViewEvent, VM : BaseTableViewMo
     }
     
     func tableView(_ tableView: UITableView, dropSessionDidUpdate session: UIDropSession, withDestinationIndexPath destinationIndexPath: IndexPath?) -> UITableViewDropProposal {
-        
         let forbidden = UITableViewDropProposal(operation: .forbidden)
         if (session.items.count != 1) {
             return forbidden
@@ -220,8 +263,8 @@ class BaseTableViewController<S : ViewState, E : ViewEvent, VM : BaseTableViewMo
         if
             let sourceCell = session.items.first?.localObject as? MoveableCell,
             let destinationIndexPath = destinationIndexPath,
-            let destinationCell = tableView.cellForRow(at: destinationIndexPath) as? MoveableCell {
-            
+            let destinationCell = tableView.cellForRow(at: destinationIndexPath) as? MoveableCell
+        {
             if (sourceCell.dropAllowed(to: destinationCell)) {
                 return UITableViewDropProposal(operation: .move, intent: .insertAtDestinationIndexPath)
             }
@@ -233,8 +276,8 @@ class BaseTableViewController<S : ViewState, E : ViewEvent, VM : BaseTableViewMo
     func handleItemMovedEvent(event: ItemMovedEvent) {
         if
             let sourceCell = tableView.cellForRow(at: event.sourceIndex) as? MoveableCell,
-            let destinationCell = tableView.cellForRow(at: event.destinationIndex) as? MoveableCell {
-            
+            let destinationCell = tableView.cellForRow(at: event.destinationIndex) as? MoveableCell
+        {
             viewModel.swapItems(
                 firstItem: sourceCell.getRemoteId()!,
                 secondItem: destinationCell.getRemoteId()!,
@@ -243,19 +286,16 @@ class BaseTableViewController<S : ViewState, E : ViewEvent, VM : BaseTableViewMo
         }
     }
     
-    func tableView(_ tableView: UITableView, performDropWith coordinator: UITableViewDropCoordinator) {
-    }
+    func tableView(_ tableView: UITableView, performDropWith coordinator: UITableViewDropCoordinator) {}
     
     // MARK: Click event
     
     func handleItemClicked(indexPath: IndexPath) {
-        switch(dataSource[indexPath]) {
+        switch (dataSource[indexPath]) {
         case let .scene(scene: scene):
             viewModel.onClicked(onItem: scene)
-            break
         case let .channelBase(channelBase: channelBase, _):
             viewModel.onClicked(onItem: channelBase)
-            break
         default:
             break
         }

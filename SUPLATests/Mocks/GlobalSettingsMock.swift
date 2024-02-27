@@ -82,6 +82,13 @@ class GlobalSettingsMock: GlobalSettings {
         get { showChannelInfoReturns }
         set { showChannelInfoValues.append(newValue) }
     }
+    
+    var showBottomLabelsReturns: Bool = true
+    var showBottomLabelsValues: [Bool] = []
+    var showBottomLabels: Bool {
+        get { showBottomLabelsReturns }
+        set { showBottomLabelsValues.append(newValue) }
+    }
 
     var channelHeightReturns: ChannelHeight = .height150
     var channelHeightValues: [ChannelHeight] = []

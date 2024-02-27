@@ -54,6 +54,7 @@ struct Strings {
         static let permissionsHeader = "app_settings.permissions_header".toLocalized()
         static let notificationsLabel = "app_settings.notifications_label".toLocalized()
         static let locationLabel = "app_settings.location_label".toLocalized()
+        static let showLabels = "settings_show_labels".toLocalized()
     }
     
     struct AccountCreation {
@@ -144,6 +145,7 @@ struct Strings {
         struct RenameDialog {
             static let sceneName = NSLocalizedString("scene name", comment: "")
         }
+        static let emptyListButton = "scenes_empty_list_button".toLocalized()
     }
     
     struct Main {
@@ -151,6 +153,11 @@ struct Strings {
         static let groups = NSLocalizedString("Groups", comment: "")
         static let scenes = NSLocalizedString("Scenes", comment: "")
         static let newGestureInfo = "dialog_new_gesture_info_text".toLocalized()
+        static let noEntries = "main_no_entries".toLocalized()
+    }
+    
+    struct Groups {
+        static let emptyListButton = "groups_empty_list_button".toLocalized()
     }
     
     struct StandardDetail {
@@ -288,6 +295,10 @@ struct Strings {
             static let captionGeneralPurposeMeasurement = "channel_caption_general_purpose_measurment".toLocalized()
             static let captionGeneralPurposeMeter = "channel_caption_general_purpose_meter".toLocalized()
         }
+    }
+    
+    struct Menu {
+        static let addDevice = NSLocalizedString("Add I/O device", comment: "")
     }
 }
 

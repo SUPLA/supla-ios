@@ -95,6 +95,10 @@ class ChannelListViewModel: BaseTableViewModel<ChannelListViewState, ChannelList
         }
     }
     
+    func onNoContentButtonClicked() {
+        send(event: .showAddWizard)
+    }
+    
     private func isAvailableInOffline(_ channel: SAChannel) -> Bool {
         switch (channel.func) {
         case SUPLA_CHANNELFNC_THERMOMETER,
@@ -131,6 +135,7 @@ enum ChannelListViewEvent: ViewEvent {
     case navigateToThermostatDetail(item: ItemBundle, pages: [DetailPage])
     case navigateToThermometerDetail(item: ItemBundle, pages: [DetailPage])
     case navigateToGpmDetail(item: ItemBundle, pages: [DetailPage])
+    case showAddWizard
 }
 
 struct ChannelListViewState: ViewState {}
