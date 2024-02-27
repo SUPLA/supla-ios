@@ -16,14 +16,14 @@
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 
-import Foundation
-
 class ChannelListVC: ChannelBaseTableViewController<ChannelListViewState, ChannelListViewEvent, ChannelListViewModel> {
     private var captionEditor: ChannelCaptionEditor? = nil
     
     convenience init() {
         self.init(nibName: nil, bundle: nil)
         viewModel = ChannelListViewModel()
+        
+        setupView()
     }
     
     override func getCollapsedFlag() -> CollapsedFlag { .channel }
@@ -40,6 +40,8 @@ class ChannelListVC: ChannelBaseTableViewController<ChannelListViewState, Channe
             navigator?.navigateToThermometerDetail(item: item, pages: pages)
         case .navigateToGpmDetail(let item, let pages):
             navigator?.navigateToGpmDetail(item: item, pages: pages)
+        case .showAddWizard:
+            navigator?.showAddWizard()
         }
     }
     
@@ -66,6 +68,18 @@ class ChannelListVC: ChannelBaseTableViewController<ChannelListViewState, Channe
         } else {
             super.captionEditorDidFinish(editor)
         }
+    }
+    
+    override func showEmptyMessage(_ tableView: UITableView?) {
+        guard let tableView = tableView else { return }
+        
+        if (tableView.backgroundView == nil) {
+            tableView.backgroundView = createNoContentView(Strings.Menu.addDevice)
+        }
+    }
+    
+    private func setupView() {
+        viewModel.bind(noContentButton.rx.tap) { [weak self] in self?.viewModel.onNoContentButtonClicked() }
     }
 }
 
@@ -108,5 +122,4 @@ extension ChannelListVC: ThermostatCellDelgate {
     }
 }
 
-extension ChannelListVC: MeasurementCellDelegate {
-}
+extension ChannelListVC: MeasurementCellDelegate {}

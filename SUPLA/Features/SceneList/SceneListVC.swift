@@ -18,23 +18,30 @@
 
 import Foundation
 import RxCocoa
-import RxSwift
 import RxDataSources
+import RxSwift
 
-class SceneListVC : BaseTableViewController<SceneListViewState, SceneListViewEvent, SceneListVM> {
-    
+class SceneListVC: BaseTableViewController<SceneListViewState, SceneListViewEvent, SceneListVM> {
     static let cellIdForScene = "SceneCell"
     private var captionEditor: SceneCaptionEditor? = nil
     
     convenience init() {
         self.init(nibName: nil, bundle: nil)
         viewModel = SceneListVM()
+        
+        setupView()
     }
     
     override func getCollapsedFlag() -> CollapsedFlag { .scene }
     
+    override func handle(event: SceneListViewEvent) {
+        switch (event) {
+        case .openCloud: navigator?.openCloud()
+        }
+    }
+    
     override func setupTableView() {
-        tableView.register(SceneCell.self,forCellReuseIdentifier: SceneListVC.cellIdForScene)
+        tableView.register(SceneCell.self, forCellReuseIdentifier: SceneListVC.cellIdForScene)
         super.setupTableView()
     }
     
@@ -45,7 +52,7 @@ class SceneListVC : BaseTableViewController<SceneListViewState, SceneListViewEve
         ) as! SceneCell
         
         cell.delegate = self
-        cell.scaleFactor = self.scaleFactor
+        cell.scaleFactor = scaleFactor
         cell.data = scene
         cell.selectionStyle = .none
         
@@ -60,15 +67,26 @@ class SceneListVC : BaseTableViewController<SceneListViewState, SceneListViewEve
             super.captionEditorDidFinish(editor)
         }
     }
+    
+    override func showEmptyMessage(_ tableView: UITableView?) {
+        guard let tableView = tableView else { return }
+        
+        if (tableView.backgroundView == nil) {
+            tableView.backgroundView = createNoContentView(Strings.Scenes.emptyListButton)
+        }
+    }
+    
+    private func setupView() {
+        viewModel.bind(noContentButton.rx.tap) { [weak self] in self?.viewModel.onNoContentButtonClicked() }
+    }
 }
 
 extension SceneListVC: SceneCellDelegate {
-    
     func onButtonTapped(buttonType: CellButtonType, remoteId: Int32, data: Any?) {
         viewModel.onButtonClicked(buttonType: buttonType, sceneId: remoteId)
     }
     
-    func onIssueIconTapped(issueMessage: String) {  } // Not relevant for scene
+    func onIssueIconTapped(issueMessage: String) {} // Not relevant for scene
     
     func onCaptionLongPress(_ remoteId: Int32) {
         vibrationService.vibrate()

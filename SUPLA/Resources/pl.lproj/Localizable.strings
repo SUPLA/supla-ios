@@ -324,7 +324,6 @@
 "Cfg.removal.dialog.incomplete" = "Uzupełnij wymagane dane";
 
 "push_notification_limit_exceeded" = "Przekroczono limit wysłanych wiadomości PUSH, który wynosi %@ na godzinę.";
-"dialog_new_gesture_info_text" = "Usunęliśmy gest przesunięcia otwierający szczegóły, aby je zobaczyć dotknij wybrany kanał.";
 
 /* General */
 "General.error" = "Błąd";
@@ -353,6 +352,16 @@
 "channel_caption_alarm_armament" = "Czujnik uzbrojenia alarmu";
 "channel_caption_general_purpose_measurment" = "Kanał pomiarowy";
 "channel_caption_general_purpose_meter" = "Kanał licznikowy";
+
+/* Main */
+"dialog_new_gesture_info_text" = "Usunęliśmy gest przesunięcia otwierający szczegóły, aby je zobaczyć dotknij wybrany kanał.";
+"main_no_entries" = "Pusto";
+
+/* Groups */
+"groups_empty_list_button" = "Dodaj grupę na Supla Cloud";
+
+/* Scenes */
+"scenes_empty_list_button" = "Dodaj scenę na Supla Cloud";
 
 /* App Settings */
 "app_settings.permissions_header" = "Uprawnienia";

@@ -159,6 +159,11 @@ class MainNavigationCoordinator: BaseNavigationCoordinator {
         pushLegacyViewController(named: "AboutVC", of: SAAboutVC.self)
     }
     
+    func openCloud() {
+        let url = URL(string: "https://cloud.supla.org")!
+        UIApplication.shared.open(url, options: [:], completionHandler: nil)
+    }
+    
     private func pushLegacyViewController<T>(named: String, of: T.Type)
         where T: BaseViewController {
             if currentCoordinator !== self {

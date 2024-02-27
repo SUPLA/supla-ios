@@ -65,6 +65,10 @@ class SceneListVM: BaseTableViewModel<SceneListViewState, SceneListViewEvent> {
         }
     }
     
+    func onNoContentButtonClicked() {
+        send(event: .openCloud)
+    }
+    
     private func executeScene(sceneId: Int32) {
         executeSimpleActionUseCase.invoke(action: .execute, type: .scene, remoteId: sceneId)
             .subscribe()
@@ -78,6 +82,8 @@ class SceneListVM: BaseTableViewModel<SceneListViewState, SceneListViewEvent> {
     }
 }
 
-enum SceneListViewEvent: ViewEvent {}
+enum SceneListViewEvent: ViewEvent {
+    case openCloud
+}
 
 struct SceneListViewState: ViewState {}

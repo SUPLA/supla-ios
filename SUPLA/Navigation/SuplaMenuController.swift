@@ -131,8 +131,7 @@ extension SuplaMenuController: SAMenuItemsDelegate {
             }
         case .cloud:
             performDeferredAction {
-                let url = URL(string: "https://cloud.supla.org")!
-                UIApplication.shared.open(url, options: [:], completionHandler: nil)
+                SAApp.mainNavigationCoordinator()?.openCloud()
             }
         case .zWave:
             performDeferredAction {

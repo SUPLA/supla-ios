@@ -36,8 +36,6 @@
 
 "push_notification_limit_exceeded" = "The push notification limit of %@ per hour has been exceeded.";
 
-"dialog_new_gesture_info_text" = "Swipe gesture to open details was removed, tap on particular channel to open it.";
-
 /* General */
 "General.error" = "Error";
 "General.hour_format" = "HH:mm:ss";
@@ -67,6 +65,16 @@
 "channel_caption_alarm_armament" = "Alarm armament sensor";
 "channel_caption_general_purpose_measurment" = "Measurement channel";
 "channel_caption_general_purpose_meter" = "Meter channel";
+
+/* Main */
+"dialog_new_gesture_info_text" = "Swipe gesture to open details was removed, tap on particular channel to open it.";
+"main_no_entries" = "Empty";
+
+/* Groups */
+"groups_empty_list_button" = "Add group in Supla Cloud";
+
+/* Scenes */
+"scenes_empty_list_button" = "Add scene in Supla Cloud";
 
 /* App Settings */
 "app_settings.permissions_header" = "Permissions";
