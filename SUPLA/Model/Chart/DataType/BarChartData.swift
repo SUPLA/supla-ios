@@ -43,6 +43,18 @@ final class BarChartData: ChartData {
     override func newInstance(sets: [HistoryDataSet]) -> ChartData {
         BarChartData(dateRange, chartRange, aggregation, sets)
     }
+    
+    override func getAxisMaxValue(_ filter: (ChartEntryType) -> Bool) -> Double? {
+        let maxValue = super.getAxisMaxValue(filter)
+        
+        if let maxValue = maxValue, maxValue <= 0 {
+            if let minValue = getAxisMinValueRaw(filter) {
+                return abs(minValue) * CHART_TOP_MARGIN
+            }
+        }
+        
+        return maxValue
+    }
 
     private func barDataSet(_ set: [ChartDataEntry], _ color: UIColor, _ type: ChartEntryType) -> BarChartDataSet {
         let set = BarChartDataSet(entries: set, label: "")

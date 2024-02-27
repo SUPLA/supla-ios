@@ -347,41 +347,16 @@ class BaseHistoryDetailVM: BaseViewModel<BaseHistoryDetailViewState, BaseHistory
     private func handleMeasurements(data: ChartData, range: DaysRange?, chartState: TemperatureChartState) {
         updateView {
             let dataWithActiveSet = data.activateSets(setIds: chartState.visibleSets)
-            let minLeftValue = dataWithActiveSet.sets
-                .filter { $0.setId.type.leftAxis() }
-                .map { $0.entries.map { $0.map { $0.value } }.minOrNull() }
-                .minOrNull()
-            let maxLeftValue = dataWithActiveSet.sets
-                .filter { $0.setId.type.leftAxis() }
-                .map { $0.entries.map { $0.map { $0.value } }.maxOrNull() }
-                .maxOrNull()
-            let minRightValue = dataWithActiveSet.sets
-                .filter { $0.setId.type.rightAxis() }
-                .map { $0.entries.map { $0.map { $0.value } }.minOrNull() }
-                .minOrNull()
-            let maxRightValue = dataWithActiveSet.sets
-                .filter { $0.setId.type.rightAxis() }
-                .map { $0.entries.map { $0.map { $0.value } }.maxOrNull() }
-                .maxOrNull()
             
             return $0.changing(path: \.chartData, to: dataWithActiveSet)
                 .changing(path: \.withRightAxis, to: dataWithActiveSet.sets.first(where: { $0.setId.type.rightAxis() && $0.active }) != nil)
                 .changing(path: \.withLeftAxis, to: dataWithActiveSet.sets.first(where: { $0.setId.type.leftAxis() && $0.active }) != nil)
-                .changing(path: \.maxLeftAxis, to: getMaxAxisValue(minLeftValue, maxLeftValue))
-                .changing(path: \.minLeftAxis, to: minLeftValue?.minus(2))
-                .changing(path: \.maxRightAxis, to: getMaxAxisValue(minRightValue, maxRightValue))
+                .changing(path: \.maxLeftAxis, to: dataWithActiveSet.getAxisMaxValue({ $0.leftAxis() }))
+                .changing(path: \.minLeftAxis, to: dataWithActiveSet.getAxisMinValueRaw({ $0.leftAxis() })?.minus(2))
+                .changing(path: \.maxRightAxis, to: dataWithActiveSet.getAxisMaxValue({ $0.rightAxis() }))
                 .changing(path: \.minDate, to: range?.start ?? $0.minDate)
                 .changing(path: \.maxDate, to: range?.end ?? $0.maxDate)
                 .changing(path: \.loading, to: false)
-        }
-    }
-    
-    private func getMaxAxisValue(_ min: Double?, _ max: Double?) -> Double? {
-        if let min = min,
-           let max = max {
-            return max * 1.2 - (min * 0.2)
-        } else {
-            return nil
         }
     }
     
