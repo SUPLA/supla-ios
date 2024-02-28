@@ -16,6 +16,8 @@
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 
+let CHART_TOP_MARGIN = 0.2
+
 /**
  For bar chart we need to place all values next to each other
  (distance between values must be equal to 1: x2-x1 = 1).
@@ -52,16 +54,14 @@ class ChartData: CoordinatesConverter, Equatable {
     let sets: [HistoryDataSet]
     
     var isEmpty: Bool {
-        get {
-            var empty = true
-            sets.forEach {
-                if (!$0.entries.isEmpty) {
-                    empty = false
-                    return
-                }
+        var empty = true
+        for set in sets {
+            if (!set.entries.isEmpty) {
+                empty = false
+                continue
             }
-            return empty
         }
+        return empty
     }
 
     init(
@@ -130,6 +130,38 @@ class ChartData: CoordinatesConverter, Equatable {
     
     func newInstance(sets: [HistoryDataSet]) -> ChartData {
         fatalError("newInstance(sets:) has not been implented!")
+    }
+    
+    func getAxisMaxValue(_ filter: (ChartEntryType) -> Bool) -> Double? {
+        if let maxValue = getAxisMaxValueRaw(filter),
+           let minValue = getAxisMinValueRaw(filter)
+        {
+            if (maxValue == minValue) {
+                if (maxValue == 0.0) {
+                    return 2.0
+                } else {
+                    return maxValue - (maxValue * CHART_TOP_MARGIN)
+                }
+            } else {
+                return (maxValue * (CHART_TOP_MARGIN + 1)) - (minValue * CHART_TOP_MARGIN)
+            }
+        }
+        
+        return nil
+    }
+    
+    func getAxisMinValueRaw(_ filter: (ChartEntryType) -> Bool) -> Double? {
+        sets
+            .filter { filter($0.setId.type) }
+            .map { $0.entries.map { $0.map { $0.value } }.minOrNull() }
+            .minOrNull()
+    }
+    
+    func getAxisMaxValueRaw(_ filter: (ChartEntryType) -> Bool) -> Double? {
+        sets
+            .filter { filter($0.setId.type) }
+            .map { $0.entries.map { $0.map { $0.value } }.maxOrNull() }
+            .maxOrNull()
     }
     
     private func toCoordinate(_ x: Double?) -> Double? {
