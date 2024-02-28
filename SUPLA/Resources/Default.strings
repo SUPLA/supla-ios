@@ -36,12 +36,6 @@
 
 "push_notification_limit_exceeded" = "The push notification limit of %@ per hour has been exceeded.";
 
-"dialog_new_gesture_info_text" = "Swipe gesture to open details was removed, tap on particular channel to open it.";
-
-"app_settings.permissions_header" = "Permissions";
-"app_settings.notifications_label" = "Notifications";
-"app_settings.location_label" = "Location";
-
 /* General */
 "General.error" = "Error";
 "General.hour_format" = "HH:mm:ss";
@@ -69,6 +63,24 @@
 /* General - Channels */
 "channel_caption_hotelcard" = "Hotel card sensor";
 "channel_caption_alarm_armament" = "Alarm armament sensor";
+"channel_caption_general_purpose_measurment" = "Measurement channel";
+"channel_caption_general_purpose_meter" = "Meter channel";
+
+/* Main */
+"dialog_new_gesture_info_text" = "Swipe gesture to open details was removed, tap on particular channel to open it.";
+"main_no_entries" = "Empty";
+
+/* Groups */
+"groups_empty_list_button" = "Add group in Supla Cloud";
+
+/* Scenes */
+"scenes_empty_list_button" = "Add scene in Supla Cloud";
+
+/* App Settings */
+"app_settings.permissions_header" = "Permissions";
+"app_settings.notifications_label" = "Notifications";
+"app_settings.location_label" = "Location";
+"settings_show_labels" = "Show bottom menu labels";
 
 /* Standard Detail */
 "standard_detail_general_tab" = "General";
@@ -147,7 +159,7 @@
 "thermostat_detail_box_info" = "Tap to set selected program. Press long to set quarters.";
 "thermostat_detail_arrow_info" = "Black corner indicates current day and hour.";
 
-/* Thermometer Chart */
+/* Combined Chart */
 "history_range_label" = "Range";
 "history_aggregation_label" = "Aggregation";
 "history_range_last_day" = "Last 24 hours";
@@ -165,8 +177,20 @@
 "history_no_data_selected" = "No data set selected.";
 "history_no_data_available" = "There are no measurements available yet";
 "history_no_data_in_selected_period" = "No chart data available in selected time period.";
+"history_disabled" = "History is disabled for this channel.";
+"chart_marker_opening" = "Open";
+"chart_marker_closing" = "Close";
 "Minutes" = "Minuty";
 "Hours" = "Godziny";
 "Days" = "Dni";
 "Months" = "Miesiące";
 "Years" = "Lata";
+
+/* Notifications */
+"menu_notifications" = "Notifications log";
+"notifications_log_profile" = "Profile:";
+"notifications_log_date" = "Date:";
+"notification_delete_all_title" = "Delete logs?";
+"notification_delete_all_message" = "This can't be undone";
+"notification_delete_button_delete_all" = "Delete all";
+"notification_delete_button_delete_older_than_month" = "Delete older than 30 days";

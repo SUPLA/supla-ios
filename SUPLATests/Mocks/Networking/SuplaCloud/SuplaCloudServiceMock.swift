@@ -58,5 +58,33 @@ final class SuplaCloudServiceMock: SuplaCloudService {
         }
     }
     
+    var generalPurposeMeasurementParameters: [(Int32, TimeInterval)] = []
+    var genenralPurposeMeasurementReturns: [Observable<[SuplaCloudClient.GeneralPurposeMeasurement]>] = []
+    private var generalPurposeMeasurementCurrent = 0
+    func getGeneralPurposeMeasurement(remoteId: Int32, afterTimestamp: TimeInterval) -> Observable<[SuplaCloudClient.GeneralPurposeMeasurement]> {
+        generalPurposeMeasurementParameters.append((remoteId, afterTimestamp))
+        
+        let id = generalPurposeMeasurementCurrent
+        generalPurposeMeasurementCurrent += 1
+        if (id < genenralPurposeMeasurementReturns.count) {
+            return genenralPurposeMeasurementReturns[id]
+        } else {
+            return .empty()
+        }
+    }
     
+    var generalPurposeMeterParameters: [(Int32, TimeInterval)] = []
+    var generalPurposeMeterReturns: [Observable<[SuplaCloudClient.GeneralPurposeMeter]>] = []
+    private var generalPurposeMeterCurrent = 0
+    func getGeneralPurposeMeter(remoteId: Int32, afterTimestamp: TimeInterval) -> Observable<[SuplaCloudClient.GeneralPurposeMeter]> {
+        generalPurposeMeterParameters.append((remoteId, afterTimestamp))
+        
+        let id = generalPurposeMeterCurrent
+        generalPurposeMeterCurrent += 1
+        if (id < generalPurposeMeterReturns.count) {
+            return generalPurposeMeterReturns[id]
+        } else {
+            return .empty()
+        }
+    }
 }

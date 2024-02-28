@@ -56,12 +56,12 @@ final class MultiAccountProfileManagerTests: XCTestCase {
     override func setUp() {
         super.setUp()
         
-        DiContainer.shared.register(type: (any ProfileRepository).self, component: profileRepository!)
-        DiContainer.shared.register(type: DeleteAllProfileDataUseCase.self, component: deleteAllProfileDataUseCase!)
-        DiContainer.shared.register(type: RuntimeConfig.self, component: runtimeConfig!)
-        DiContainer.shared.register(type: SingleCall.self, component: singleCall!)
-        DiContainer.shared.register(type: SuplaCloudConfigHolder.self, component: suplaCloudConfigHolder!)
-        DiContainer.shared.register(type: SuplaClientProvider.self, component: suplaClientProvider!)
+        DiContainer.shared.register(type: (any ProfileRepository).self, profileRepository!)
+        DiContainer.shared.register(type: DeleteAllProfileDataUseCase.self, deleteAllProfileDataUseCase!)
+        DiContainer.shared.register(type: RuntimeConfig.self, runtimeConfig!)
+        DiContainer.shared.register(type: SingleCall.self, singleCall!)
+        DiContainer.shared.register(type: SuplaCloudConfigHolder.self, suplaCloudConfigHolder!)
+        DiContainer.shared.register(type: SuplaClientProvider.self, suplaClientProvider!)
         
         profileRepository.activeProfileObservable = .just(currentProfile)
     }

@@ -56,6 +56,7 @@ enum DownloadEventsManagerState: Equatable {
     case inProgress(progress: Float)
     case failed
     case finished
+    case refresh
 
     var order: Int {
         get {
@@ -65,6 +66,7 @@ enum DownloadEventsManagerState: Equatable {
             case .inProgress(_): 3
             case .failed: 4
             case .finished: 5
+            case .refresh: 6
             }
         }
     }

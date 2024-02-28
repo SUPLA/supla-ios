@@ -40,21 +40,20 @@ struct IconData: Changeable, Equatable {
 extension IconNameProducer {
     func addStateSufix(name: String, state: ChannelState) -> String {
         switch (state) {
-        case .opened: return String.init(format: "%@-%@", name, "open")
-        case .partialyOpened, .closed: return String.init(format: "%@-%@", name, "closed")
-        case .on: return String.init(format: "%@-%@", name, "on")
-        case .off: return String.init(format: "%@-%@", name, "off")
-        case .transparent: return String.init(format: "%@-%@", name, "transparent")
+        case .opened: return String(format: "%@-%@", name, "open")
+        case .partialyOpened, .closed: return String(format: "%@-%@", name, "closed")
+        case .on: return String(format: "%@-%@", name, "on")
+        case .off: return String(format: "%@-%@", name, "off")
+        case .transparent: return String(format: "%@-%@", name, "transparent")
         default: return name
         }
     }
 }
 
 final class GetDefaultIconNameUseCaseImpl: GetDefaultIconNameUseCase {
-    
     func invoke(iconData: IconData) -> String {
         var name: String? = nil
-        producers.forEach { producer in
+        for producer in producers {
             if (producer.accepts(function: iconData.function)) {
                 name = producer.produce(iconData: iconData)
             }
@@ -65,7 +64,7 @@ final class GetDefaultIconNameUseCaseImpl: GetDefaultIconNameUseCase {
             return CHANNEL_UNKNOWN_ICON_NAME
         }
     }
-    
+
     let producers: [IconNameProducer] = [
         StaticIconNameProducer(function: SUPLA_CHANNELFNC_OPENINGSENSOR_GATEWAY, name: "gateway"),
         StaticIconNameProducer(function: SUPLA_CHANNELFNC_CONTROLLINGTHEGATEWAYLOCK, name: "gateway"),
@@ -89,9 +88,9 @@ final class GetDefaultIconNameUseCaseImpl: GetDefaultIconNameUseCase {
         StaticIconNameProducer(function: SUPLA_CHANNELFNC_OPENINGSENSOR_WINDOW, name: "window"),
         MailSensorIconNameProducer(),
         ElelectricityMeterIconNameProducer(),
-        StaticIconNameProducer(function: SUPLA_CHANNELFNC_IC_GAS_METER, name: "gasmeter", withSuffix: false),
-        StaticIconNameProducer(function: SUPLA_CHANNELFNC_IC_WATER_METER, name: "watermeter", withSuffix: false),
-        StaticIconNameProducer(function: SUPLA_CHANNELFNC_IC_HEAT_METER, name: "heatmeter", withSuffix: false),
+        StaticIconNameProducer(function: SUPLA_CHANNELFNC_IC_GAS_METER, name: .Icons.fncGasemeter, withSuffix: false),
+        StaticIconNameProducer(function: SUPLA_CHANNELFNC_IC_WATER_METER, name: .Icons.fncWatermeter, withSuffix: false),
+        StaticIconNameProducer(function: SUPLA_CHANNELFNC_IC_HEAT_METER, name: .Icons.fncHeatmeter, withSuffix: false),
         HeatpolHomeplusIconNameProducer(),
         StaticIconNameProducer(function: SUPLA_CHANNELFNC_DISTANCESENSOR, name: "distance", withSuffix: false),
         StaticIconNameProducer(function: SUPLA_CHANNELFNC_DEPTHSENSOR, name: "depth", withSuffix: false),
@@ -105,7 +104,8 @@ final class GetDefaultIconNameUseCaseImpl: GetDefaultIconNameUseCase {
         DigiglassVerticalIconNameProducer(),
         ThermostatIconNameProducer(),
         StaticIconNameProducer(function: SUPLA_CHANNELFNC_HOTELCARDSENSOR, name: "fnc_hotel_card", withSuffix: true),
-        StaticIconNameProducer(function: SUPLA_CHANNELFNC_ALARMARMAMENTSENSOR, name: "fnc_alarm_armament", withSuffix: true)
+        StaticIconNameProducer(function: SUPLA_CHANNELFNC_ALARMARMAMENTSENSOR, name: "fnc_alarm_armament", withSuffix: true),
+        GeneralPurposeMeasurementIconNameProducer(),
+        GeneralPurposeMeterIconNameProducer()
     ]
 }
-

@@ -63,12 +63,11 @@ final class ValuesFormatterImpl: ValuesFormatter {
     
     @Singleton<GlobalSettings> private var settings
     
-    var decimalSeparator = Locale.current.decimalSeparator
     let dateFormatter = DateFormatter()
     
     private lazy var formatter: NumberFormatter! = {
         let formatter = NumberFormatter()
-        formatter.decimalSeparator = decimalSeparator
+        formatter.decimalSeparator = Locale.current.decimalSeparator
         return formatter
     }()
     

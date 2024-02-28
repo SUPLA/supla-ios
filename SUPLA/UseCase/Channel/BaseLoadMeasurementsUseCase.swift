@@ -22,43 +22,79 @@ private let MAX_ALLOWED_DISTANCE_MUTLIPLIER = 1.5
 // Server provides data for each 10 minutes
 private let AGGREGATING_MINUTES_DISTANCE_SEC = 600 * MAX_ALLOWED_DISTANCE_MUTLIPLIER
 
-protocol BaseLoadMeasurementsUseCase {
-}
+protocol BaseLoadMeasurementsUseCase {}
 
 extension BaseLoadMeasurementsUseCase {
+    func aggregatingTemperature(
+        _ measurements: [SATemperatureMeasurementItem],
+        _ aggregation: ChartDataAggregation
+    ) -> [AggregatedEntity] {
+        if (aggregation == .minutes) {
+            return measurements
+                .filter { $0.temperature != nil }
+                .map { $0.toAggregatedEntity(aggregation) }
+        }
+        
+        return measurements
+            .filter { $0.temperature != nil }
+            .reduce([TimeInterval: LinkedList<SATemperatureMeasurementItem>]()) { reductor(aggregation, $0, $1) }
+            .map { group in
+                AggregatedEntity(
+                    type: .temperature,
+                    aggregation: aggregation,
+                    date: aggregation.groupTimeProvider(date: group.value.head!.value.date!),
+                    value: group.value.avg { $0.temperature!.toDouble() },
+                    min: group.value.min { $0.temperature!.toDouble() },
+                    max: group.value.max { $0.temperature!.toDouble() },
+                    open: group.value.head!.value.temperature!.toDouble(),
+                    close: group.value.tail!.value.temperature!.toDouble()
+                )
+            }
+            .sorted { $0.date < $1.date }
+    }
     
-    func aggregating<T: SAMeasurementItem>(
-        _ measurements: [T],
+    func aggregatingTemperatureOrHumidity(
+        _ measurements: [SATempHumidityMeasurementItem],
         _ aggregation: ChartDataAggregation,
-        _ extractor: (T) -> Double?
+        _ type: ChartEntryType,
+        _ extractor: (SATempHumidityMeasurementItem) -> Double?
     ) -> [AggregatedEntity] {
         if (aggregation == .minutes) {
             return measurements
                 .filter { extractor($0) != nil }
-                .map {
-                    AggregatedEntity(
-                        aggregation: aggregation,
-                        date: $0.date!.timeIntervalSince1970,
-                        value: extractor($0)!,
-                        min: nil,
-                        max: nil
-                    )
-                }
+                .map { $0.toAggregatedEntity(aggregation, type, extractor) }
         }
         
         return measurements
             .filter { extractor($0) != nil }
-            .reduce([TimeInterval: LinkedList<T>]()) {
-                var map = $0
-                let aggregator = aggregation.aggregator(item: $1)
-                if (map[aggregator] == nil) {
-                    map[aggregator] = LinkedList<T>()
-                }
-                map[aggregator]?.append($1)
-                return map
+            .reduce([TimeInterval: LinkedList<SATempHumidityMeasurementItem>]()) { reductor(aggregation, $0, $1) }
+            .map { group in
+                AggregatedEntity(
+                    type: type,
+                    aggregation: aggregation,
+                    date: aggregation.groupTimeProvider(date: group.value.head!.value.date!),
+                    value: group.value.avg { extractor($0) },
+                    min: group.value.min { extractor($0) },
+                    max: group.value.max { extractor($0) },
+                    open: extractor(group.value.head!.value),
+                    close: extractor(group.value.tail!.value)
+                )
             }
-            .map { self.toAggregatedEntities($0, aggregation: aggregation, extractor: extractor) }
             .sorted { $0.date < $1.date }
+    }
+    
+    func reductor<T: SAMeasurementItem>(
+        _ aggregation: ChartDataAggregation,
+        _ map: [TimeInterval: LinkedList<T>],
+        _ item: T
+    ) -> [TimeInterval: LinkedList<T>] {
+        var map = map
+        let aggregator = aggregation.aggregator(item: item)
+        if (map[aggregator] == nil) {
+            map[aggregator] = LinkedList<T>()
+        }
+        map[aggregator]?.append(item)
+        return map
     }
     
     func historyDataSet(
@@ -72,6 +108,7 @@ extension BaseLoadMeasurementsUseCase {
             setId: HistoryDataSet.Id(remoteId: channel.remote_id, type: type),
             icon: channelIcon(channel, type),
             value: channelValueText(channel, type),
+            valueFormatter: getValueFormatter(type, config: channel.config),
             color: color,
             entries: divideSetToSubsets(measurements, aggregation, type),
             active: true
@@ -81,15 +118,19 @@ extension BaseLoadMeasurementsUseCase {
     private func toAggregatedEntities<T: SAMeasurementItem>(
         _ group: Dictionary<TimeInterval, LinkedList<T>>.Element,
         aggregation: ChartDataAggregation,
-        extractor: (T) -> Double?
+        extractor: (T) -> Double?,
+        type: ChartEntryType
     ) -> AggregatedEntity {
         let date = aggregation.groupTimeProvider(date: group.value.head!.value.date!)
-        return AggregatedEntity (
+        return AggregatedEntity(
+            type: type,
             aggregation: aggregation,
             date: date,
             value: group.value.avg { extractor($0) },
             min: group.value.min { extractor($0)! },
-            max: group.value.max { extractor($0)! }
+            max: group.value.max { extractor($0)! },
+            open: extractor(group.value.head!.value),
+            close: extractor(group.value.tail!.value)
         )
     }
     
@@ -97,11 +138,15 @@ extension BaseLoadMeasurementsUseCase {
         if (!channel.isOnline()) {
             return NO_VALUE_TEXT
         }
-        @Singleton<ValuesFormatter> var formatter
         
-        return switch(type) {
-        case .temperature: formatter.temperatureToString(channel.temperatureValue(), withUnit: false)
-        case .humidity: formatter.humidityToString(channel.humidityValue())
+        @Singleton<ValuesFormatter> var formatter
+        @Singleton<GetChannelValueStringUseCase> var getChannelValueStringUseCase
+        
+        return switch (type) {
+        case .humidity: getChannelValueStringUseCase.invoke(channel, valueType: .second)
+        case .generalPurposeMeter,
+             .temperature,
+             .generalPurposeMeasurement: getChannelValueStringUseCase.invoke(channel)
         }
     }
     
@@ -109,29 +154,38 @@ extension BaseLoadMeasurementsUseCase {
         @Singleton<ValuesFormatter> var formatter
         @Singleton<GetChannelBaseIconUseCase> var getChannelBaseIconUseCase
         
-        return switch(type) {
-        case .temperature: getChannelBaseIconUseCase.invoke(channel: channel)
+        return switch (type) {
         case .humidity: getChannelBaseIconUseCase.invoke(channel: channel, type: .second)
+        case .generalPurposeMeasurement,
+             .temperature,
+             .generalPurposeMeter: getChannelBaseIconUseCase.invoke(channel: channel)
         }
     }
     
-    private func divideSetToSubsets(_ entities: [AggregatedEntity], _ aggregation: ChartDataAggregation, _ type: ChartEntryType) -> [[ChartDataEntry]] {
-        var result: [[ChartDataEntry]] = []
-        var currentSet: [ChartDataEntry] = []
+    private func getValueFormatter(_ type: ChartEntryType, config: SAChannelConfig?) -> ChannelValueFormatter {
+        switch (type) {
+        case .humidity: HumidityValueFormatter()
+        case .temperature: ThermometerValueFormatter()
+        case .generalPurposeMeasurement, .generalPurposeMeter:
+            GpmValueFormatter(config: config?.configAsSuplaConfig() as? SuplaChannelGeneralPurposeBaseConfig)
+        }
+    }
+    
+    private func divideSetToSubsets(_ entities: [AggregatedEntity], _ aggregation: ChartDataAggregation, _ type: ChartEntryType) -> [[AggregatedEntity]] {
+        var result: [[AggregatedEntity]] = []
+        var currentSet: [AggregatedEntity] = []
         
-        entities.forEach { entity in
-            let entry = ChartDataEntry(x: entity.date, y: entity.value, data: entity.toDetails(type: type))
-            
+        for entity in entities {
             if let lastInCurrentSet = currentSet.last {
                 let distance = aggregation == .minutes ? AGGREGATING_MINUTES_DISTANCE_SEC : aggregation.timeInSec * MAX_ALLOWED_DISTANCE_MUTLIPLIER
                 
-                if (entry.x - lastInCurrentSet.x > distance) {
+                if (entity.date - lastInCurrentSet.date > distance) {
                     result.append(currentSet)
                     currentSet = []
                 }
             }
             
-            currentSet.append(entry)
+            currentSet.append(entity)
         }
         
         if (!currentSet.isEmpty) {
@@ -175,21 +229,47 @@ final class HumidityColors: Colors {
     }
 }
 
-struct AggregatedEntity {
+struct AggregatedEntity: Equatable {
+    let type: ChartEntryType
     let aggregation: ChartDataAggregation
     let date: TimeInterval
     let value: Double
     let min: Double?
     let max: Double?
-    
-    func toDetails(type: ChartEntryType) -> EntryDetails {
-        EntryDetails(aggregation: aggregation, type: type, min: min, max: max)
+    let open: Double?
+    let close: Double?
+}
+
+private extension SATemperatureMeasurementItem {
+    func toAggregatedEntity(_ aggregation: ChartDataAggregation) -> AggregatedEntity {
+        AggregatedEntity(
+            type: .temperature,
+            aggregation: aggregation,
+            date: date!.timeIntervalSince1970,
+            value: temperature!.toDouble(),
+            min: nil,
+            max: nil,
+            open: nil,
+            close: nil
+        )
     }
 }
 
-struct EntryDetails: Equatable {
-    let aggregation: ChartDataAggregation
-    let type: ChartEntryType
-    let min: Double?
-    let max: Double?
+private extension SATempHumidityMeasurementItem {
+    func toAggregatedEntity(
+        _ aggregation: ChartDataAggregation,
+        _ type: ChartEntryType,
+        _ extractor: (SATempHumidityMeasurementItem) -> Double?
+    ) -> AggregatedEntity {
+        AggregatedEntity(
+            type: type,
+            aggregation: aggregation,
+            date: date!.timeIntervalSince1970,
+            value: extractor(self)!,
+            min: nil,
+            max: nil,
+            open: nil,
+            close: nil
+        )
+    }
 }

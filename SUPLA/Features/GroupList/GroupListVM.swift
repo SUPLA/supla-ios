@@ -71,10 +71,15 @@ class GroupListViewModel: BaseTableViewModel<GroupListViewState, GroupListViewEv
     }
     
     override func getCollapsedFlag() -> CollapsedFlag { .group }
+    
+    func onNoContentButtonClicked() {
+        send(event: .openCloud)
+    }
 }
 
 enum GroupListViewEvent: ViewEvent {
     case navigateToDetail(legacy: LegacyDetailType, channelBase: SAChannelBase)
+    case openCloud
 }
 
 struct GroupListViewState: ViewState {}

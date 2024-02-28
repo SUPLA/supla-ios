@@ -36,9 +36,9 @@ class AccountCreationVMTests: ViewModelTest<AccountCreationViewState, AccountCre
     }()
     
     override func setUp() {
-        DiContainer.shared.register(type: GlobalSettings.self, component: globalSettings!)
-        DiContainer.shared.register(type: DeleteProfileUseCase.self, component: deleteProfileUseCase!)
-        DiContainer.shared.register(type: SaveOrCreateProfileUseCase.self, component: saveOrCreateProfileUseCase!)
+        DiContainer.shared.register(type: GlobalSettings.self, globalSettings!)
+        DiContainer.shared.register(type: DeleteProfileUseCase.self, deleteProfileUseCase!)
+        DiContainer.shared.register(type: SaveOrCreateProfileUseCase.self, saveOrCreateProfileUseCase!)
     }
     
     override func tearDown() {

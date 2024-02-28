@@ -18,42 +18,45 @@
 
 extension UIImage {
     
-    // Bars
-    static let iconGeneral = UIImage(named: "icon_general")
-    static let iconTimer = UIImage(named: "icon_timer")
-    static let iconMetrics = UIImage(named: "icon_metrics")
-    static let iconSchedule = UIImage(named: "icon_schedule")
-    static let iconHistory = UIImage(named: "icon_history")
+    // MARK: Bars
+    static let iconGeneral = UIImage(named: .Icons.general)
+    static let iconTimer = UIImage(named: .Icons.timer)
+    static let iconMetrics = UIImage(named: .Icons.metrics)
+    static let iconSchedule = UIImage(named: .Icons.schedule)
+    static let iconHistory = UIImage(named: .Icons.history)
     
-    // Icons
-    static let pencil = UIImage(named: "pencil")
-    static let iconInfo = UIImage(named: "channelstateinfo")
-    static let iconHeating = UIImage(named: "icon_heating")
-    static let iconCooling = UIImage(named: "icon_cooling")
-    static let iconStandby = UIImage(named: "icon_standby")
-    static let iconPowerButton = UIImage(named: "icon_power_button")
-    static let iconHeat = UIImage(named: "icon_heat")
-    static let iconCool = UIImage(named: "icon_cool")
-    static let iconMinus = UIImage(named: "icon_minus")
-    static let iconPlus = UIImage(named: "icon_plus")
-    static let iconManual = UIImage(named: "icon_manual")
-    static let iconSensorAlertCircle = UIImage(named: "icon_sensor_alert_circle")
-    static let iconSensorAlert = UIImage(named: "icon_sensor_alert")
-    static let iconClose = UIImage(named: "icon_close")
+    // MARK: Icons
+    static let pencil = UIImage(named: .Icons.pencil)
+    static let iconInfo = UIImage(named: .Icons.info)
+    static let iconHeating = UIImage(named: .Icons.heating)
+    static let iconCooling = UIImage(named: .Icons.cooling)
+    static let iconStandby = UIImage(named: .Icons.standby)
+    static let iconPowerButton = UIImage(named: .Icons.powerButton)
+    static let iconHeat = UIImage(named: .Icons.heat)
+    static let iconCool = UIImage(named: .Icons.cool)
+    static let iconMinus = UIImage(named: .Icons.minus)
+    static let iconPlus = UIImage(named: .Icons.plus)
+    static let iconManual = UIImage(named: .Icons.manual)
+    static let iconSensorAlertCircle = UIImage(named: .Icons.sensorAlertCircle)
+    static let iconSensorAlert = UIImage(named: .Icons.sensorAlert)
+    static let iconClose = UIImage(named: .Icons.close)
+    static let iconDelete = UIImage(named: .Icons.delete)
     
-    // Functions
-    static let fncUnknown = UIImage(named: "unknown_channel")
-    static let fncThermostatHeat = UIImage(named: "fnc_thermostat_heat")
-    static let fncThermostatCool = UIImage(named: "fnc_thermostat_cool")
-    static let fncThermostatDhw = UIImage(named: "fnc_thermostat_dhw")
+    static let iconWarning = UIImage(named: .Icons.warning)
+    static let iconError = UIImage(named: .Icons.error)
     
-    static let iconWarning = UIImage(named: "channel_warning_level1")
-    static let iconError = UIImage(named: "channel_warning_level2")
+    static let iconArrowRight = UIImage(named: .Icons.arrowRight)
+    static let iconArrowDoubleRight = UIImage(named: .Icons.arrowDoubleRight)
     
-    static let iconArrowRight = UIImage(named: "icon_arrow_right")
-    static let iconArrowDoubleRight = UIImage(named: "icon_arrow_double_right")
+    // MARK: Functions
+    static let fncUnknown = UIImage(named: .Icons.fncUnknown)
+    // Thermostat
+    static let fncThermostatHeat = UIImage(named: .Icons.fncThermostatHeat)
+    static let fncThermostatCool = UIImage(named: .Icons.fncThermostatCool)
+    static let fncThermostatDhw = UIImage(named: .Icons.fncThermostatDhw)
     
-    // other
-    static let thumbHeat = UIImage(named: "thumb_heat")
-    static let thumbCool = UIImage(named: "thumb_cool")
+    
+    // MARK: other
+    static let thumbHeat = UIImage(named: .Icons.thumbHeat)
+    static let thumbCool = UIImage(named: .Icons.thumbCool)
 }

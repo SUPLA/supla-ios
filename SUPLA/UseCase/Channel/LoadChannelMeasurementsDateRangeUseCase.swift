@@ -23,19 +23,20 @@ protocol LoadChannelMeasurementsDateRangeUseCase {
 }
 
 final class LoadChannelMeasurementsDateRangeUseCaseImpl: LoadChannelMeasurementsDateRangeUseCase {
-    
     @Singleton<ReadChannelByRemoteIdUseCase> private var readChannelByRemoteIdUseCase
     @Singleton<TemperatureMeasurementItemRepository> private var temperatureMeasurementItemRepository
     @Singleton<TempHumidityMeasurementItemRepository> private var tempHumidityMeasurementItemRepository
+    @Singleton<GeneralPurposeMeasurementItemRepository> private var generalPurposeMeasurementItemRepository
+    @Singleton<GeneralPurposeMeterItemRepository> private var generalPurposeMeterItemRepository
     @Singleton<ProfileRepository> private var profileRepository
-    
+
     func invoke(remoteId: Int32) -> Observable<DaysRange?> {
         readChannelByRemoteIdUseCase.invoke(remoteId: remoteId)
             .flatMapFirst { channel in
                 self.profileRepository.getActiveProfile().map { (channel, $0) }
             }
             .flatMapFirst {
-                if ($0.0.isThermometer()) {
+                if ($0.0.isThermometer() || $0.0.isGpm()) {
                     return Observable.zip(
                         self.findMinTime(channel: $0.0, profile: $0.1),
                         self.findMaxTime(channel: $0.0, profile: $0.1)
@@ -43,13 +44,14 @@ final class LoadChannelMeasurementsDateRangeUseCaseImpl: LoadChannelMeasurements
                         var result: DaysRange? = nil
                         if let start = min,
                            let end = max,
-                           (start > 0 && end > 0) {
+                           (start > 0 && end > 0)
+                        {
                             result = DaysRange(
                                 start: Date(timeIntervalSince1970: start),
                                 end: Date(timeIntervalSince1970: end)
                             )
                         }
-                        
+
                         return result
                     }
                 } else {
@@ -59,22 +61,30 @@ final class LoadChannelMeasurementsDateRangeUseCaseImpl: LoadChannelMeasurements
                 }
             }
     }
-    
+
     private func findMinTime(channel: SAChannel, profile: AuthProfileItem) -> Observable<Double?> {
         if (channel.func == SUPLA_CHANNELFNC_THERMOMETER) {
             return temperatureMeasurementItemRepository.findMinTimestamp(remoteId: channel.remote_id, profile: profile)
         } else if (channel.func == SUPLA_CHANNELFNC_HUMIDITYANDTEMPERATURE) {
             return tempHumidityMeasurementItemRepository.findMinTimestamp(remoteId: channel.remote_id, profile: profile)
+        } else if (channel.func == SUPLA_CHANNELFNC_GENERAL_PURPOSE_MEASUREMENT) {
+            return generalPurposeMeasurementItemRepository.findMinTimestamp(remoteId: channel.remote_id, profile: profile)
+        } else if (channel.func == SUPLA_CHANNELFNC_GENERAL_PURPOSE_METER) {
+            return generalPurposeMeterItemRepository.findMinTimestamp(remoteId: channel.remote_id, profile: profile)
         } else {
             return Observable.just(nil)
         }
     }
-    
+
     private func findMaxTime(channel: SAChannel, profile: AuthProfileItem) -> Observable<Double?> {
         if (channel.func == SUPLA_CHANNELFNC_THERMOMETER) {
             return temperatureMeasurementItemRepository.findMaxTimestamp(remoteId: channel.remote_id, profile: profile)
         } else if (channel.func == SUPLA_CHANNELFNC_HUMIDITYANDTEMPERATURE) {
             return tempHumidityMeasurementItemRepository.findMaxTimestamp(remoteId: channel.remote_id, profile: profile)
+        } else if (channel.func == SUPLA_CHANNELFNC_GENERAL_PURPOSE_MEASUREMENT) {
+            return generalPurposeMeasurementItemRepository.findMaxTimestamp(remoteId: channel.remote_id, profile: profile)
+        } else if (channel.func == SUPLA_CHANNELFNC_GENERAL_PURPOSE_METER) {
+            return generalPurposeMeterItemRepository.findMaxTimestamp(remoteId: channel.remote_id, profile: profile)
         } else {
             return Observable.just(nil)
         }

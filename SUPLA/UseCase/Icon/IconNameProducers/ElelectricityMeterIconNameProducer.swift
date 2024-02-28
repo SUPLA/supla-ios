@@ -24,7 +24,7 @@ final class ElelectricityMeterIconNameProducer: IconNameProducer {
     func produce(iconData: IconData) -> String {
         switch (iconData.altIcon) {
         case 1: return "powerstation"
-        default: return "electricitymeter"
+        default: return .Icons.fncElectricitymeter
         }
     }
 }

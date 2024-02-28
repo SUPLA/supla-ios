@@ -143,6 +143,10 @@ class MainNavigationCoordinator: BaseNavigationCoordinator {
         startFlow(coordinator: ProfilesNavigationCoordinator())
     }
     
+    func showNotificationsLog() {
+        startFlow(coordinator: NotificationsLogNavigationCoordinator())
+    }
+    
     func showAddWizard() {
         let avc = SAAddWizardVC(nibName: "AddWizardVC", bundle: nil)
         avc.modalPresentationStyle = .fullScreen
@@ -153,6 +157,11 @@ class MainNavigationCoordinator: BaseNavigationCoordinator {
    
     func showAbout() {
         pushLegacyViewController(named: "AboutVC", of: SAAboutVC.self)
+    }
+    
+    func openCloud() {
+        let url = URL(string: "https://cloud.supla.org")!
+        UIApplication.shared.open(url, options: [:], completionHandler: nil)
     }
     
     private func pushLegacyViewController<T>(named: String, of: T.Type)
@@ -241,6 +250,10 @@ class MainNavigationCoordinator: BaseNavigationCoordinator {
     
     func navigateToThermometerDetail(item: ItemBundle, pages: [DetailPage]) {
         startFlow(coordinator: ThermometerDetailNavigatorCoordinator(item: item, pages: pages))
+    }
+    
+    func navigateToGpmDetail(item: ItemBundle, pages: [DetailPage]) {
+        startFlow(coordinator: GpmDetailNavigatorCoordinator(item: item, pages: pages))
     }
     
     // MARK: -

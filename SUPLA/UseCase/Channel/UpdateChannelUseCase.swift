@@ -25,9 +25,11 @@ final class UpdateChannelUseCase {
     @Singleton<ChannelRepository> private var channelRepository
     @Singleton<ProfileRepository> private var profileRepository
     @Singleton<UpdateEventsManager> private var updateEventsManager
+    @Singleton<ChannelConfigRepository> private var channelConfigRepository
+    @Singleton<GetChannelConfigUseCase> private var getChannelConfigUseCase
     
     @available(*, deprecated, message: "Only for legacy code")
-    func invoke(suplaChannel: TSC_SuplaChannel_D) -> Bool {
+    func invoke(suplaChannel: TSC_SuplaChannel_E) -> Bool {
         var changed = false
         
         do {
@@ -39,16 +41,22 @@ final class UpdateChannelUseCase {
                             self.channelRepository
                                 .getChannel(for: profile, with: suplaChannel.Id)
                                 .ifEmpty(switchTo: self.createChannel(remoteId: suplaChannel.Id))
-                                .map { scene in (location, scene) }
+                                .map { (location, $0) }
                         }
-                }
-                .map { tuple in self.updateChannel(channel: tuple.1, suplaChannel: suplaChannel, location: tuple.0) }
-                .flatMapFirst { tuple in
-                    if (tuple.0) {
-                        return self.channelRepository.save(tuple.1).map { true }
-                    }
-                    
-                    return Observable.just(false)
+                        .map { (location, channel) in
+                            self.updateChannel(channel: channel, suplaChannel: suplaChannel, location: location)
+                        }
+                        .flatMapFirst { (changed, channel) in
+                            if (changed) {
+                                return self.channelRepository.save(channel).map { true }
+                            }
+                            
+                            return Observable.just(false)
+                        }
+                        .flatMap { changed in
+                            self.checkConfigUpdateNeeded(suplaChannel: suplaChannel, profile: profile)
+                                .map { _ in changed }
+                        }
                 }
                 .toBlocking()
                 .first() ?? false
@@ -76,7 +84,7 @@ final class UpdateChannelUseCase {
             }
     }
     
-    private func updateChannel(channel: SAChannel, suplaChannel: TSC_SuplaChannel_D, location: _SALocation) -> (Bool, SAChannel) {
+    private func updateChannel(channel: SAChannel, suplaChannel: TSC_SuplaChannel_E, location: _SALocation) -> (Bool, SAChannel) {
         var changed = false
         
         let caption = String.fromC(suplaChannel.Caption)
@@ -120,10 +128,34 @@ final class UpdateChannelUseCase {
         if (channel.setChannelType(suplaChannel.Type)) {
             changed = true
         }
-        if (channel.setChannelFlags(Int32(suplaChannel.Flags))) {
+        if (channel.setChannelFlags(Int64(suplaChannel.Flags))) {
             changed = true
         }
         
         return (changed, channel)
+    }
+    
+    private func checkConfigUpdateNeeded(suplaChannel: TSC_SuplaChannel_E, profile: AuthProfileItem) -> Observable<Void> {
+        if (shouldObserveChannelConfig(suplaChannel)) {
+            return channelConfigRepository.getConfig(channelRemoteId: suplaChannel.Id)
+                .flatMap { config in
+                    if (config == nil || config!.config_crc32 != suplaChannel.DefaultConfigCRC32) {
+                        NSLog("Channel config asked (remoteId: `\(suplaChannel.Id)`")
+                        return self.getChannelConfigUseCase
+                            .invoke(remoteId: suplaChannel.Id, type: .defaultConfig)
+                            .flatMap { _ in Observable.just(()) }
+                    }
+                    
+                    NSLog("Channel config not asked (remoteId: `\(suplaChannel.Id)`")
+                    return Observable.just(())
+                }
+        }
+        
+        return Observable.just(())
+    }
+    
+    private func shouldObserveChannelConfig(_ suplaChannel: TSC_SuplaChannel_E) -> Bool {
+        suplaChannel.Func == SUPLA_CHANNELFNC_GENERAL_PURPOSE_METER
+        || suplaChannel.Func == SUPLA_CHANNELFNC_GENERAL_PURPOSE_MEASUREMENT
     }
 }

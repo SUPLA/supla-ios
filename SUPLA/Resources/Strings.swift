@@ -54,6 +54,7 @@ struct Strings {
         static let permissionsHeader = "app_settings.permissions_header".toLocalized()
         static let notificationsLabel = "app_settings.notifications_label".toLocalized()
         static let locationLabel = "app_settings.location_label".toLocalized()
+        static let showLabels = "settings_show_labels".toLocalized()
     }
     
     struct AccountCreation {
@@ -119,12 +120,16 @@ struct Strings {
         static let noDataAvailable = "history_no_data_available".toLocalized()
         static let noDataInSelectedPeriod = "history_no_data_in_selected_period".toLocalized()
         static let loading = "Retrieving data from the server...".toLocalized()
+        static let historyDisabled = "history_disabled".toLocalized()
         
         static let minutes = "Minutes".toLocalized()
         static let hours = "Hours".toLocalized()
         static let days = "Days".toLocalized()
         static let months = "Months".toLocalized()
         static let years = "Years".toLocalized()
+        
+        static let markerOpening = "chart_marker_opening".toLocalized()
+        static let markerClosing = "chart_marker_closing".toLocalized()
         
         struct Electricity {
             static let allPhasesTitle = NSLocalizedString("Phase 1+2+3", comment: "")
@@ -140,6 +145,7 @@ struct Strings {
         struct RenameDialog {
             static let sceneName = NSLocalizedString("scene name", comment: "")
         }
+        static let emptyListButton = "scenes_empty_list_button".toLocalized()
     }
     
     struct Main {
@@ -147,6 +153,11 @@ struct Strings {
         static let groups = NSLocalizedString("Groups", comment: "")
         static let scenes = NSLocalizedString("Scenes", comment: "")
         static let newGestureInfo = "dialog_new_gesture_info_text".toLocalized()
+        static let noEntries = "main_no_entries".toLocalized()
+    }
+    
+    struct Groups {
+        static let emptyListButton = "groups_empty_list_button".toLocalized()
     }
     
     struct StandardDetail {
@@ -236,6 +247,16 @@ struct Strings {
         static let arrowInfo = "thermostat_detail_arrow_info".toLocalized()
     }
     
+    struct Notifications {
+        static let menu = "menu_notifications".toLocalized()
+        static let profile = "notifications_log_profile".toLocalized()
+        static let date = "notifications_log_date".toLocalized()
+        static let deleteAllTitile = "notification_delete_all_title".toLocalized()
+        static let deleteAllMessage = "notification_delete_all_message".toLocalized()
+        static let buttonDeleteAll = "notification_delete_button_delete_all".toLocalized()
+        static let buttonDeleteOlderThanMonth = "notification_delete_button_delete_older_than_month".toLocalized()
+    }
+    
     struct General {
         static let cancel = NSLocalizedString("Cancel", comment: "")
         static let close = NSLocalizedString("Close", comment: "")
@@ -269,9 +290,15 @@ struct Strings {
         static let time_hours_and_mintes = "time_hours_and_minutes".toLocalized()
         
         struct Channel {
-            static let channelCaptionHotelCard = "channel_caption_hotelcard".toLocalized()
-            static let channelCaptionAlarmArmament = "channel_caption_alarm_armament".toLocalized()
+            static let captionHotelCard = "channel_caption_hotelcard".toLocalized()
+            static let captionAlarmArmament = "channel_caption_alarm_armament".toLocalized()
+            static let captionGeneralPurposeMeasurement = "channel_caption_general_purpose_measurment".toLocalized()
+            static let captionGeneralPurposeMeter = "channel_caption_general_purpose_meter".toLocalized()
         }
+    }
+    
+    struct Menu {
+        static let addDevice = NSLocalizedString("Add I/O device", comment: "")
     }
 }
 

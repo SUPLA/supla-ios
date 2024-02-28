@@ -32,9 +32,9 @@ final class CreateTemperaturesListUseCaseTests: XCTestCase {
     override func setUp() {
         super.setUp()
         
-        DiContainer.shared.register(type: GetChannelBaseIconUseCase.self, component: getChannelBaseIconUseCaseMock!)
-        DiContainer.shared.register(type: GlobalSettings.self, component: GlobalSettingsImpl())
-        DiContainer.shared.register(type: ValuesFormatter.self, component: ValuesFormatterImpl())
+        DiContainer.shared.register(type: GetChannelBaseIconUseCase.self, getChannelBaseIconUseCaseMock!)
+        DiContainer.shared.register(type: GlobalSettings.self, GlobalSettingsImpl())
+        DiContainer.shared.register(type: ValuesFormatter.self, ValuesFormatterImpl())
     }
     
     override func tearDown() {
@@ -46,9 +46,9 @@ final class CreateTemperaturesListUseCaseTests: XCTestCase {
     func test_createTemperaturesList() {
         // given
         let channelWithChildren = ChannelWithChildren(channel: SAChannel.mock(123), children: [
-            ChannelChild(channel: SAChannel.mock(234, SUPLA_CHANNELFNC_THERMOMETER), relationType: .mainThermometer),
+            ChannelChild(channel: SAChannel.mock(234, function: SUPLA_CHANNELFNC_THERMOMETER), relationType: .mainThermometer),
             ChannelChild(channel: SAChannel.mock(345), relationType: .defaultType),
-            ChannelChild(channel: SAChannel.mock(456, SUPLA_CHANNELFNC_HUMIDITYANDTEMPERATURE), relationType: .auxThermometerFloor)
+            ChannelChild(channel: SAChannel.mock(456, function: SUPLA_CHANNELFNC_HUMIDITYANDTEMPERATURE), relationType: .auxThermometerFloor)
         ])
         
         // when
@@ -65,7 +65,7 @@ final class CreateTemperaturesListUseCaseTests: XCTestCase {
     func test_createTemperaturesList_oneThermometer() {
         // given
         let channelWithChildren = ChannelWithChildren(channel: SAChannel.mock(123), children: [
-            ChannelChild(channel: SAChannel.mock(234, SUPLA_CHANNELFNC_THERMOMETER), relationType: .mainThermometer),
+            ChannelChild(channel: SAChannel.mock(234, function: SUPLA_CHANNELFNC_THERMOMETER), relationType: .mainThermometer),
             ChannelChild(channel: SAChannel.mock(345), relationType: .defaultType),
         ])
         
@@ -84,7 +84,7 @@ final class CreateTemperaturesListUseCaseTests: XCTestCase {
         let value = SAChannelValue(testContext: nil)
         value.online = true
         value.value = NSData(bytes: &temperature, length: MemoryLayout<Int>.size)
-        let channel = SAChannel.mock(234, SUPLA_CHANNELFNC_HUMIDITYANDTEMPERATURE)
+        let channel = SAChannel.mock(234, function: SUPLA_CHANNELFNC_HUMIDITYANDTEMPERATURE)
         channel.value = value
         
         let channelWithChildren = ChannelWithChildren(channel: SAChannel.mock(123), children: [

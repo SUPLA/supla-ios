@@ -23,9 +23,8 @@ protocol ProvideDetailTypeUseCase {
 }
 
 final class ProvideDetailTypeUseCaseImpl: ProvideDetailTypeUseCase {
-    
     func invoke(channelBase: SAChannelBase) -> DetailType? {
-        switch(channelBase.func) {
+        switch channelBase.func {
         case
             SUPLA_CHANNELFNC_DIMMER,
             SUPLA_CHANNELFNC_RGBLIGHTING,
@@ -64,6 +63,10 @@ final class ProvideDetailTypeUseCaseImpl: ProvideDetailTypeUseCase {
             SUPLA_CHANNELFNC_HVAC_THERMOSTAT,
             SUPLA_CHANNELFNC_HVAC_DOMESTIC_HOT_WATER:
             return .thermostatDetail(pages: [.thermostatGeneral, .schedule, .thermostatTimer, .thermostatHistory])
+        case
+            SUPLA_CHANNELFNC_GENERAL_PURPOSE_METER,
+            SUPLA_CHANNELFNC_GENERAL_PURPOSE_MEASUREMENT:
+            return .gpmDetail(pages: [.gpmHistory])
         default:
             return nil
         }
@@ -75,15 +78,15 @@ final class ProvideDetailTypeUseCaseImpl: ProvideDetailTypeUseCase {
         
         var pages: [DetailPage] = [.switchGeneral]
         
-        if (channel.flags & SUPLA_CHANNEL_FLAG_COUNTDOWN_TIMER_SUPPORTED > 0 && channel.func != SUPLA_CHANNELFNC_STAIRCASETIMER) {
+        if channel.flags & Int64(SUPLA_CHANNEL_FLAG_COUNTDOWN_TIMER_SUPPORTED) > 0 && channel.func != SUPLA_CHANNELFNC_STAIRCASETIMER {
             pages.append(.switchTimer)
         }
         
         if let type = channel.value?.sub_value_type {
-            if (type == SUBV_TYPE_IC_MEASUREMENTS) {
+            if type == SUBV_TYPE_IC_MEASUREMENTS {
                 pages.append(.historyIc)
             }
-            if (type == SUBV_TYPE_ELECTRICITY_MEASUREMENTS) {
+            if type == SUBV_TYPE_ELECTRICITY_MEASUREMENTS {
                 pages.append(.historyEm)
             }
         }
@@ -97,6 +100,7 @@ enum DetailType: Equatable {
     case switchDetail(pages: [DetailPage])
     case thermostatDetail(pages: [DetailPage])
     case thermometerDetail(pages: [DetailPage])
+    case gpmDetail(pages: [DetailPage])
 }
 
 enum LegacyDetailType {
@@ -118,4 +122,7 @@ enum DetailPage {
     
     // Thermometers
     case thermometerHistory
+    
+    // GPM
+    case gpmHistory
 }

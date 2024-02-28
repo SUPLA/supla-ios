@@ -18,7 +18,7 @@
 import Foundation
 
 protocol DiContainerProtocol {
-    func register<Component>(type: Component.Type, component: Any)
+    func register<Component>(type: Component.Type, _ component: Any)
     func resolve<Component>(type: Component.Type) -> Component?
 }
 
@@ -26,12 +26,12 @@ protocol DiContainerProtocol {
 final class DiContainer: NSObject, DiContainerProtocol {
     static let shared = DiContainer()
     
-    private override init() {}
+    override private init() {}
     
     var components: [String: Any] = [:]
     var producers: [String: () -> Any] = [:]
     
-    func register<Component>(type: Component.Type, component: Any) {
+    func register<Component>(type: Component.Type, _ component: Any) {
         if (!(component is Component)) {
             fatalError("Registered component (type: `\(type)` does not implement defined protocol")
         }
@@ -58,114 +58,164 @@ final class DiContainer: NSObject, DiContainerProtocol {
 extension DiContainer {
     @objc static func start() {
         // MARK: General
-        DiContainer.shared.register(type: GlobalSettings.self, component: GlobalSettingsImpl())
-        DiContainer.shared.register(type: RuntimeConfig.self, component: RuntimeConfigImpl())
-        DiContainer.shared.register(type: SuplaClientProvider.self, component: SuplaClientProviderImpl())
-        DiContainer.shared.register(type: SuplaAppWrapper.self, component: SuplaAppWrapperImpl())
-        DiContainer.shared.register(type: VibrationService.self, component: VibrationServiceImpl())
-        DiContainer.shared.register(type: UpdateEventsManager.self, component: UpdateEventsManagerImpl())
-        DiContainer.shared.register(type: ChannelConfigEventsManager.self, component: ChannelConfigEventsManagerImpl())
-        DiContainer.shared.register(type: DeviceConfigEventsManager.self, component: DeviceConfigEventsManagerImpl())
-        DiContainer.shared.register(type: DownloadEventsManager.self, component: DownloadEventsManagerImpl())
-        DiContainer.shared.register(type: SingleCall.self, component: SingleCallImpl())
-        DiContainer.shared.register(type: DateProvider.self, component: DateProviderImpl())
-        DiContainer.shared.register(type: UserNotificationCenter.self, component: UserNotificationCenterImpl())
-        DiContainer.shared.register(type: RequestHelper.self, component: RequestHelperImpl())
-        DiContainer.shared.register(type: ValuesFormatter.self, component: ValuesFormatterImpl())
-        DiContainer.shared.register(type: DelayedThermostatActionSubject.self, component: DelayedThermostatActionSubjectImpl())
-        DiContainer.shared.register(type: DelayedWeeklyScheduleConfigSubject.self, component: DelayedWeeklyScheduleConfigSubjectImpl())
-        DiContainer.shared.register(type: SuplaCloudService.self, component: SuplaCloudServiceImpl())
-        DiContainer.shared.register(type: SuplaCloudConfigHolder.self, component: SuplaCloudConfigHolderImpl())
-        DiContainer.shared.register(type: UserStateHolder.self, component: UserStateHolderImpl())
-        DiContainer.shared.register(type: SessionResponseProvider.self, component: SessionResponseProviderImpl())
-        DiContainer.shared.register(type: SuplaSchedulers.self, component: SuplaSchedulersImpl())
+
+        register(GlobalSettings.self, GlobalSettingsImpl())
+        register(RuntimeConfig.self, RuntimeConfigImpl())
+        register(SuplaClientProvider.self, SuplaClientProviderImpl())
+        register(SuplaAppWrapper.self, SuplaAppWrapperImpl())
+        register(VibrationService.self, VibrationServiceImpl())
+        register(SingleCall.self, SingleCallImpl())
+        register(DateProvider.self, DateProviderImpl())
+        register(UserNotificationCenter.self, UserNotificationCenterImpl())
+        register(RequestHelper.self, RequestHelperImpl())
+        register(ValuesFormatter.self, ValuesFormatterImpl())
+        register(DelayedThermostatActionSubject.self, DelayedThermostatActionSubjectImpl())
+        register(DelayedWeeklyScheduleConfigSubject.self, DelayedWeeklyScheduleConfigSubjectImpl())
+        register(SuplaCloudService.self, SuplaCloudServiceImpl())
+        register(SuplaCloudConfigHolder.self, SuplaCloudConfigHolderImpl())
+        register(UserStateHolder.self, UserStateHolderImpl())
+        register(SessionResponseProvider.self, SessionResponseProviderImpl())
+        register(SuplaSchedulers.self, SuplaSchedulersImpl())
+        // Managers
+        register(UpdateEventsManager.self, UpdateEventsManagerImpl())
+        register(ChannelConfigEventsManager.self, ChannelConfigEventsManagerImpl())
+        register(DeviceConfigEventsManager.self, DeviceConfigEventsManagerImpl())
+        register(DownloadEventsManager.self, DownloadEventsManagerImpl())
+        register(ApplicationEventsManager.self, ApplicationEventsManagerImpl())
         
         // MARK: Repositories
-        DiContainer.shared.register(type: (any ProfileRepository).self, component: ProfileRepositoryImpl())
-        DiContainer.shared.register(type: (any SceneRepository).self, component: SceneRepositoryImpl())
-        DiContainer.shared.register(type: (any LocationRepository).self, component: LocationRepositoryImpl())
-        DiContainer.shared.register(type: (any ChannelRepository).self, component: ChannelRepositoryImpl())
-        DiContainer.shared.register(type: (any GroupRepository).self, component: GroupRepositoryImpl())
-        DiContainer.shared.register(type: (any ChannelValueRepository).self, component: ChannelValueRepositoryImpl())
-        DiContainer.shared.register(type: (any ChannelGroupRelationRepository).self, component: ChannelGroupRelationRepositoryImpl())
-        DiContainer.shared.register(type: (any ChannelExtendedValueRepository).self, component: ChannelExtendedValueRepositoryImpl())
-        DiContainer.shared.register(type: (any ElectricityMeasurementItemRepository).self, component: ElectricityMeasurementItemRepositoryImpl())
-        DiContainer.shared.register(type: (any ImpulseCounterMeasurementItemRepository).self, component: ImpulseCounterMeasurementItemRepositoryImpl())
-        DiContainer.shared.register(type: (any TemperatureMeasurementItemRepository).self, component: TemperatureMeasurementItemRepositoryImpl())
-        DiContainer.shared.register(type: (any TempHumidityMeasurementItemRepository).self, component: TempHumidityMeasurementItemRepositoryImpl())
-        DiContainer.shared.register(type: (any UserIconRepository).self, component: UserIconRepositoryImpl())
-        DiContainer.shared.register(type: (any ThermostatMeasurementItemRepository).self, component: ThermostatMeasurementItemRepositoryImpl())
-        DiContainer.shared.register(type: (any SuplaCloudClientRepository).self, component: SuplaCloudClientRepositoryImpl())
-        DiContainer.shared.register(type: (any ChannelRelationRepository).self, component: ChannelRelationRepositoryImpl())
+
+        register((any ProfileRepository).self, ProfileRepositoryImpl())
+        register((any SceneRepository).self, SceneRepositoryImpl())
+        register((any LocationRepository).self, LocationRepositoryImpl())
+        register((any ChannelRepository).self, ChannelRepositoryImpl())
+        register((any GroupRepository).self, GroupRepositoryImpl())
+        register((any ChannelValueRepository).self, ChannelValueRepositoryImpl())
+        register((any ChannelGroupRelationRepository).self, ChannelGroupRelationRepositoryImpl())
+        register((any ChannelExtendedValueRepository).self, ChannelExtendedValueRepositoryImpl())
+        register((any ElectricityMeasurementItemRepository).self, ElectricityMeasurementItemRepositoryImpl())
+        register((any ImpulseCounterMeasurementItemRepository).self, ImpulseCounterMeasurementItemRepositoryImpl())
+        register((any UserIconRepository).self, UserIconRepositoryImpl())
+        register((any ThermostatMeasurementItemRepository).self, ThermostatMeasurementItemRepositoryImpl())
+        register((any SuplaCloudClientRepository).self, SuplaCloudClientRepositoryImpl())
+        register((any ChannelRelationRepository).self, ChannelRelationRepositoryImpl())
+        register((any ChannelConfigRepository).self, ChannelConfigRepositoryImpl())
+        let temperatureMeasurementItemRepository = TemperatureMeasurementItemRepositoryImpl()
+        register((any TemperatureMeasurementItemRepository).self, temperatureMeasurementItemRepository)
+        let tempHumidityMeasurementItemRepository = TempHumidityMeasurementItemRepositoryImpl()
+        register((any TempHumidityMeasurementItemRepository).self, tempHumidityMeasurementItemRepository)
+        let generalPurposeMeasurementItemRepository = GeneralPurposeMeasurementItemRepositoryImpl()
+        register((any GeneralPurposeMeasurementItemRepository).self, generalPurposeMeasurementItemRepository)
+        let generalPurposeMeterItemRepository = GeneralPurposeMeterItemRepositoryImpl()
+        register((any GeneralPurposeMeterItemRepository).self, generalPurposeMeterItemRepository)
+        register((any NotificationRepository).self, NotificationRepositoryImpl())
         
         // MARK: Usecases
+
         // Usecases - Channel
-        DiContainer.shared.register(type: SwapChannelPositionsUseCase.self, component: SwapChannelPositionsUseCaseImpl())
-        DiContainer.shared.register(type: CreateProfileChannelsListUseCase.self, component: CreateProfileChannelsListUseCaseImpl())
-        DiContainer.shared.register(type: ReadChannelByRemoteIdUseCase.self, component: ReadChannelByRemoteIdUseCaseImpl())
-        DiContainer.shared.register(type: ReadChannelWithChildrenUseCase.self, component: ReadChannelWithChildrenUseCaseImpl())
-        DiContainer.shared.register(type: CreateTemperaturesListUseCase.self, component: CreateTemperaturesListUseCaseImpl())
-        DiContainer.shared.register(type: DownloadChannelMeasurementsUseCase.self, component: DownloadChannelMeasurementsUseCaseImpl())
-        DiContainer.shared.register(type: DownloadTemperatureMeasurementsUseCase.self, component: DownloadTemperatureMeasurementsUseCaseImpl())
-        DiContainer.shared.register(type: DownloadTempHumidityMeasurementsUseCase.self, component: DownloadTempHumidityMeasurementsUseCaseImpl())
-        DiContainer.shared.register(type: LoadChannelMeasurementsUseCase.self, component: LoadChannelMeasurementsUseCaseImpl())
-        DiContainer.shared.register(type: LoadChannelMeasurementsDateRangeUseCase.self, component: LoadChannelMeasurementsDateRangeUseCaseImpl())
+        register(SwapChannelPositionsUseCase.self, SwapChannelPositionsUseCaseImpl())
+        register(CreateProfileChannelsListUseCase.self, CreateProfileChannelsListUseCaseImpl())
+        register(ReadChannelByRemoteIdUseCase.self, ReadChannelByRemoteIdUseCaseImpl())
+        register(ReadChannelWithChildrenUseCase.self, ReadChannelWithChildrenUseCaseImpl())
+        register(CreateTemperaturesListUseCase.self, CreateTemperaturesListUseCaseImpl())
+        register(DownloadChannelMeasurementsUseCase.self, DownloadChannelMeasurementsUseCaseImpl())
+        register(DownloadTemperatureLogUseCase.self,
+                 DownloadTemperatureLogUseCaseImpl(temperatureMeasurementItemRepository))
+        register(DownloadTempHumidityLogUseCase.self,
+                 DownloadTempHumidityLogUseCaseImpl(tempHumidityMeasurementItemRepository))
+        register(DownloadGeneralPurposeMeasurementLogUseCase.self,
+                 DownloadGeneralPurposeMeasurementLogUseCaseImpl(generalPurposeMeasurementItemRepository))
+        register(DownloadGeneralPurposeMeterLogUseCase.self,
+                 DownloadGeneralPurposeMeterLogUseCaseImpl(generalPurposeMeterItemRepository))
+        register(LoadChannelMeasurementsUseCase.self, LoadChannelMeasurementsUseCaseImpl())
+        register(LoadChannelMeasurementsDateRangeUseCase.self, LoadChannelMeasurementsDateRangeUseCaseImpl())
+        register(GetChannelValueUseCase.self, GetChannelValueUseCaseImpl())
+        register(GetChannelValueStringUseCase.self, GetChannelValueStringUseCaseImpl())
+        register(LoadChannelConfigUseCase.self, LoadChannelConfigUseCaseImpl())
+        // Usecases - Channel - ValueProvider
+        register(DepthValueProvider.self, DepthValueProviderImpl())
+        register(DistanceValueProvider.self, DistanceValueProviderImpl())
+        register(GpmValueProvider.self, GpmValueProviderImpl())
+        register(HumidityValueProvider.self, HumidityValueProviderImpl())
+        register(PressureValueProvider.self, PressureValueProviderImpl())
+        register(RainValueProvider.self, RainValueProviderImpl())
+        register(ThermometerAndHumidityValueProvider.self, ThermometerAndHumidityValueProviderImpl())
+        register(ThermometerValueProvider.self, ThermometerValueProviderImpl())
+        register(WeightValueProvider.self, WeightValueProviderImpl())
+        register(WindValueProvider.self, WindValueProviderImpl())
         // Usecases - ChannelBase
-        DiContainer.shared.register(type: GetChannelBaseStateUseCase.self, component: GetChannelBaseStateUseCaseImpl())
-        DiContainer.shared.register(type: GetChannelBaseIconUseCase.self, component: GetChannelBaseIconUseCaseImpl())
-        DiContainer.shared.register(type: LoadChannelWithChildrenMeasurementsUseCase.self, component: LoadChannelWithChildrenMeasurementsUseCaseImpl())
-        DiContainer.shared.register(type: LoadChannelWithChildrenMeasurementsDateRangeUseCase.self, component: LoadChannelWithChildrenMeasurementsDateRangeUseCaseImpl())
+        register(GetChannelBaseStateUseCase.self, GetChannelBaseStateUseCaseImpl())
+        register(GetChannelBaseIconUseCase.self, GetChannelBaseIconUseCaseImpl())
+        register(LoadChannelWithChildrenMeasurementsUseCase.self, LoadChannelWithChildrenMeasurementsUseCaseImpl())
+        register(LoadChannelWithChildrenMeasurementsDateRangeUseCase.self, LoadChannelWithChildrenMeasurementsDateRangeUseCaseImpl())
+        register(GetChannelBaseDefaultCaptionUseCase.self, GetChannelBaseDefaultCaptionUseCaseImpl())
+        register(GetChannelBaseCaptionUseCase.self, GetChannelBaseCaptionUseCaseImpl())
+        // Usecases - ChannelConfig
+        register(InsertChannelConfigUseCase.self, InsertChannelConfigUseCaseImpl())
         // Usecases - Client
-        DiContainer.shared.register(type: ExecuteSimpleActionUseCase.self, component: ExecuteSimpleActionUseCaseImpl())
-        DiContainer.shared.register(type: StartTimerUseCase.self, component: StartTimerUseCaseImpl())
-        DiContainer.shared.register(type: GetChannelConfigUseCase.self, component: GetChannelConfigUseCaseImpl())
-        DiContainer.shared.register(type: SetChannelConfigUseCase.self, component: SetChannelConfigUseCaseImpl())
-        DiContainer.shared.register(type: GetDeviceConfigUseCase.self, component: GetDeviceConfigUseCaseImpl())
-        DiContainer.shared.register(type: ExecuteThermostatActionUseCase.self, component: ExecuteThermostatActionUseCaseImpl())
+        register(ExecuteSimpleActionUseCase.self, ExecuteSimpleActionUseCaseImpl())
+        register(StartTimerUseCase.self, StartTimerUseCaseImpl())
+        register(GetChannelConfigUseCase.self, GetChannelConfigUseCaseImpl())
+        register(SetChannelConfigUseCase.self, SetChannelConfigUseCaseImpl())
+        register(GetDeviceConfigUseCase.self, GetDeviceConfigUseCaseImpl())
+        register(ExecuteThermostatActionUseCase.self, ExecuteThermostatActionUseCaseImpl())
         // Usecases - Detail
-        DiContainer.shared.register(type: ProvideDetailTypeUseCase.self, component: ProvideDetailTypeUseCaseImpl())
+        register(ProvideDetailTypeUseCase.self, ProvideDetailTypeUseCaseImpl())
         // Usecases - Group
-        DiContainer.shared.register(type: SwapGroupPositionsUseCase.self, component: SwapGroupPositionsUseCaseImpl())
-        DiContainer.shared.register(type: CreateProfileGroupsListUseCase.self, component: CreateProfileGroupsListUseCaseImpl())
+        register(SwapGroupPositionsUseCase.self, SwapGroupPositionsUseCaseImpl())
+        register(CreateProfileGroupsListUseCase.self, CreateProfileGroupsListUseCaseImpl())
         // Usecases - Icon
-        DiContainer.shared.register(type: GetDefaultIconNameUseCase.self, component: GetDefaultIconNameUseCaseImpl())
+        register(GetDefaultIconNameUseCase.self, GetDefaultIconNameUseCaseImpl())
         // Usecases - Location
-        DiContainer.shared.register(type: ToggleLocationUseCase.self, component: ToggleLocationUseCaseImpl())
+        register(ToggleLocationUseCase.self, ToggleLocationUseCaseImpl())
         // Usecases - Profile
-        DiContainer.shared.register(type: DeleteAllProfileDataUseCase.self, component: DeleteAllProfileDataUseCaseImpl())
-        DiContainer.shared.register(type: ReadProfileByIdUseCase.self, component: ReadProfileByIdUseCaseImpl())
-        DiContainer.shared.register(type: SaveOrCreateProfileUseCase.self, component: SaveOrCreateProfileUseCaseImpl())
-        DiContainer.shared.register(type: DeleteProfileUseCase.self, component: DeleteProfileUseCaseImpl())
-        DiContainer.shared.register(type: ActivateProfileUseCase.self, component: ActivateProfileUseCaseImpl())
+        register(DeleteAllProfileDataUseCase.self, DeleteAllProfileDataUseCaseImpl())
+        register(ReadProfileByIdUseCase.self, ReadProfileByIdUseCaseImpl())
+        register(SaveOrCreateProfileUseCase.self, SaveOrCreateProfileUseCaseImpl())
+        register(DeleteProfileUseCase.self, DeleteProfileUseCaseImpl())
+        register(ActivateProfileUseCase.self, ActivateProfileUseCaseImpl())
         // Usecases - Profile
-        DiContainer.shared.register(type: CreateProfileScenesListUseCase.self, component: CreateProfileScenesListUseCaseImpl())
-        DiContainer.shared.register(type: SwapScenePositionsUseCase.self, component: SwapScenePositionsUseCaseImpl())
-        DiContainer.shared.register(type: CreateChannelWithChildrenUseCase.self, component: CreateChannelWithChildrenUseCaseImpl())
+        register(CreateProfileScenesListUseCase.self, CreateProfileScenesListUseCaseImpl())
+        register(SwapScenePositionsUseCase.self, SwapScenePositionsUseCaseImpl())
+        register(CreateChannelWithChildrenUseCase.self, CreateChannelWithChildrenUseCaseImpl())
+        // Usecases - Notification
+        register(InsertNotificationUseCase.self, InsertNotificationUseCaseImpl())
         
         // MARK: Not singletons
+
         DiContainer.shared.register(type: LoadingTimeoutManager.self, producer: { LoadingTimeoutManagerImpl() })
+    }
+    
+    static func register<Component>(_ type: Component.Type, _ component: Any) {
+        DiContainer.shared.register(type: type, component)
     }
     
     @objc static func updateEventsManager() -> UpdateEventsManagerEmitter? {
         return DiContainer.shared.resolve(type: UpdateEventsManager.self)
     }
+
     @objc static func channelConfigEventsManager() -> ChannelConfigEventsManagerEmitter? {
         return DiContainer.shared.resolve(type: ChannelConfigEventsManager.self)
     }
+
     @objc static func deviceConfigEventsManager() -> DeviceConfigEventsManagerEmitter? {
         return DiContainer.shared.resolve(type: DeviceConfigEventsManager.self)
     }
+
     @objc static func setPushToken(token: Data?) {
         var settings = DiContainer.shared.resolve(type: GlobalSettings.self)
         settings?.pushToken = token
     }
+
     @objc static func getPushToken() -> Data? {
         DiContainer.shared.resolve(type: GlobalSettings.self)?.pushToken
     }
+
     @objc static func setOAuthToken(token: SAOAuthToken) {
         var configHolder = DiContainer.shared.resolve(type: SuplaCloudConfigHolder.self)
         configHolder?.token = token
     }
+
     @objc static func setOAuthUrl(url: String) {
         var configHolder = DiContainer.shared.resolve(type: SuplaCloudConfigHolder.self)
         configHolder?.url = url

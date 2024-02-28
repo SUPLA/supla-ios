@@ -30,6 +30,7 @@ protocol GlobalSettings {
     var temperatureUnit: TemperatureUnit { get set }
     var autohideButtons: Bool { get set }
     var showChannelInfo: Bool { get set }
+    var showBottomLabels: Bool { get set }
     var channelHeight: ChannelHeight { get set }
     var showOpeningPercent: Bool { get set }
 }
@@ -43,7 +44,8 @@ class GlobalSettingsImpl: GlobalSettings {
     init() {
         defaults.register(defaults: [
             showChannelInfoKey: true,
-            shouldShowNewGestureInfoKey: false
+            shouldShowNewGestureInfoKey: false,
+            showBottomLabelsKey: true
         ])
     }
     
@@ -82,7 +84,7 @@ class GlobalSettingsImpl: GlobalSettings {
         set { defaults.set(newValue, forKey: pushTokenKey) }
     }
     
-    private let pushTokenLastUpdateKey = "GlobalSettings.pushTokenLastUpdateKey"
+    private let pushTokenLastUpdateKey = "GlobalSettings.pushTokenLastUpdateNewKey"
     var pushTokenLastUpdate: Double {
         get { defaults.double(forKey: pushTokenLastUpdateKey) }
         set { defaults.set(newValue, forKey: pushTokenLastUpdateKey) }
@@ -112,6 +114,18 @@ class GlobalSettingsImpl: GlobalSettings {
             }
             defaults.set(newValue, forKey: showChannelInfoKey)
         }
+    }
+    
+    private let showBottomLabelsKey = "supla_config_show_bottom_labels"
+    var showBottomLabels: Bool {
+        get {
+            if (defaults.object(forKey: showBottomLabelsKey) == nil) {
+                return true
+            }
+            
+            return defaults.bool(forKey: showBottomLabelsKey)
+        }
+        set { defaults.set(newValue, forKey: showBottomLabelsKey) }
     }
     
     private let channelHeightKey = "supla_config_channel_height"

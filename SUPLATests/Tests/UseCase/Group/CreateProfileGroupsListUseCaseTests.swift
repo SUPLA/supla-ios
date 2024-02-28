@@ -34,8 +34,8 @@ final class CreateProfileGroupsListUseCaseTests: UseCaseTest<[List]> {
     }()
     
     override func setUp() {
-        DiContainer.shared.register(type: (any GroupRepository).self, component: groupRepository!)
-        DiContainer.shared.register(type: (any ProfileRepository).self, component: profileRepository!)
+        DiContainer.shared.register(type: (any GroupRepository).self, groupRepository!)
+        DiContainer.shared.register(type: (any ProfileRepository).self, profileRepository!)
     }
     
     override func tearDown() {

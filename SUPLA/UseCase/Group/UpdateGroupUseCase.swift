@@ -112,7 +112,7 @@ final class UpdateGroupUseCase {
         if (group.setUserIconId(suplaGroup.UserIcon)) {
             changed = true
         }
-        if (group.setChannelFlags(Int32(suplaGroup.Flags))) {
+        if (group.setChannelFlags(Int64(suplaGroup.Flags))) {
             changed = true
         }
         

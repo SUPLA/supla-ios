@@ -18,7 +18,10 @@
 
 import RxSwift
 
-protocol TempHumidityMeasurementItemRepository: RepositoryProtocol where T == SATempHumidityMeasurementItem {
+protocol TempHumidityMeasurementItemRepository:
+    BaseMeasurementRepository<SuplaCloudClient.TemperatureAndHumidityMeasurement, SATempHumidityMeasurementItem>
+    where T == SATempHumidityMeasurementItem
+{
     func deleteAll(for profile: AuthProfileItem) -> Observable<Void>
     func findMeasurements(remoteId: Int32, profile: AuthProfileItem, startDate: Date, endDate: Date) -> Observable<[SATempHumidityMeasurementItem]>
     func findMinTimestamp(remoteId: Int32, profile: AuthProfileItem) -> Observable<TimeInterval?>
@@ -36,9 +39,7 @@ protocol TempHumidityMeasurementItemRepository: RepositoryProtocol where T == SA
 }
 
 final class TempHumidityMeasurementItemRepositoryImpl: Repository<SATempHumidityMeasurementItem>, TempHumidityMeasurementItemRepository {
-    typealias Dto = SuplaCloudClient.TemperatureAndHumidityMeasurement
-    
-    @Singleton<SuplaCloudService> private var service
+    @Singleton<SuplaCloudService> private var cloudService
     
     func deleteAll(for profile: AuthProfileItem) -> Observable<Void> {
         deleteAll(SATempHumidityMeasurementItem.fetchRequest().filtered(by: NSPredicate(format: "profile = %@", profile)))
@@ -87,7 +88,7 @@ final class TempHumidityMeasurementItemRepositoryImpl: Repository<SATempHumidity
     }
     
     func getMeasurements(remoteId: Int32, afterTimestamp: TimeInterval) -> Observable<[SuplaCloudClient.TemperatureAndHumidityMeasurement]> {
-        return service.getTemperatureAndHumidityMeasurements(
+        return cloudService.getTemperatureAndHumidityMeasurements(
             remoteId: remoteId,
             afterTimestamp: afterTimestamp
         )
@@ -98,7 +99,7 @@ final class TempHumidityMeasurementItemRepositoryImpl: Repository<SATempHumidity
         
         var saveError: Error? = nil
         context.performAndWait {
-            measurements.forEach { measurement in
+            for measurement in measurements {
                 if (timestampToReturn.isLess(than: measurement.date_timestamp.timeIntervalSince1970)) {
                     timestampToReturn = measurement.date_timestamp.timeIntervalSince1970
                 }
@@ -122,5 +123,9 @@ final class TempHumidityMeasurementItemRepositoryImpl: Repository<SATempHumidity
         }
         
         return timestampToReturn
+    }
+    
+    func fromJson(data: Data) throws -> [SuplaCloudClient.TemperatureAndHumidityMeasurement] {
+        try SuplaCloudClient.TemperatureAndHumidityMeasurement.fromJson(data: data)
     }
 }

@@ -34,8 +34,8 @@ class AppSettingsVMTests: ViewModelTest<AppSettingsViewState, AppSettingsViewEve
     }()
     
     override func setUp() {
-        DiContainer.shared.register(type: GlobalSettings.self, component: settings!)
-        DiContainer.shared.register(type: UserNotificationCenter.self, component: notificationCenter!)
+        DiContainer.shared.register(type: GlobalSettings.self, settings!)
+        DiContainer.shared.register(type: UserNotificationCenter.self, notificationCenter!)
     }
     
     override func tearDown() {
@@ -71,6 +71,7 @@ class AppSettingsVMTests: ViewModelTest<AppSettingsViewState, AppSettingsViewEve
                 .temperatureUnitItem(temperatureUnit: .fahrenheit, callback: {_ in }),
                 .switchItem(title: Strings.Cfg.buttonAutoHide, selected: true, callback: {_ in }),
                 .switchItem(title: Strings.Cfg.showChannelInfo, selected: false, callback: {_ in }),
+                .switchItem(title: Strings.AppSettings.showLabels, selected: true, callback: {_ in }),
                 .rsOpeningPercentageItem(opening: true, callback: {_ in }),
                 .arrowButtonItem(title: Strings.Cfg.locationOrdering, callback: {})
             ]),
@@ -111,6 +112,7 @@ class AppSettingsVMTests: ViewModelTest<AppSettingsViewState, AppSettingsViewEve
                 .temperatureUnitItem(temperatureUnit: .celsius, callback: {_ in }),
                 .switchItem(title: Strings.Cfg.buttonAutoHide, selected: false, callback: {_ in }),
                 .switchItem(title: Strings.Cfg.showChannelInfo, selected: true, callback: {_ in }),
+                .switchItem(title: Strings.AppSettings.showLabels, selected: true, callback: {_ in }),
                 .rsOpeningPercentageItem(opening: false, callback: {_ in }),
                 .arrowButtonItem(title: Strings.Cfg.locationOrdering, callback: {})
             ]),
@@ -148,6 +150,7 @@ class AppSettingsVMTests: ViewModelTest<AppSettingsViewState, AppSettingsViewEve
         XCTAssertEqual(settings.temperatureUnitValues.count, 0)
         XCTAssertEqual(settings.autohideButtonsValues.count, 0)
         XCTAssertEqual(settings.showChannelInfoValues.count, 0)
+        XCTAssertEqual(settings.showBottomLabelsValues.count, 0)
         XCTAssertEqual(settings.showOpeningPercentValues.count, 0)
     }
     
@@ -179,6 +182,7 @@ class AppSettingsVMTests: ViewModelTest<AppSettingsViewState, AppSettingsViewEve
         XCTAssertEqual(settings.temperatureUnitValues[0], .celsius)
         XCTAssertEqual(settings.autohideButtonsValues.count, 0)
         XCTAssertEqual(settings.showChannelInfoValues.count, 0)
+        XCTAssertEqual(settings.showBottomLabelsValues.count, 0)
         XCTAssertEqual(settings.showOpeningPercentValues.count, 0)
     }
     
@@ -210,6 +214,7 @@ class AppSettingsVMTests: ViewModelTest<AppSettingsViewState, AppSettingsViewEve
         XCTAssertEqual(settings.temperatureUnitValues.count, 0)
         XCTAssertEqual(settings.autohideButtonsValues[0], true)
         XCTAssertEqual(settings.showChannelInfoValues.count, 0)
+        XCTAssertEqual(settings.showBottomLabelsValues.count, 0)
         XCTAssertEqual(settings.showOpeningPercentValues.count, 0)
     }
     
@@ -241,6 +246,39 @@ class AppSettingsVMTests: ViewModelTest<AppSettingsViewState, AppSettingsViewEve
         XCTAssertEqual(settings.temperatureUnitValues.count, 0)
         XCTAssertEqual(settings.autohideButtonsValues.count, 0)
         XCTAssertEqual(settings.showChannelInfoValues[0], false)
+        XCTAssertEqual(settings.showBottomLabelsValues.count, 0)
+        XCTAssertEqual(settings.showOpeningPercentValues.count, 0)
+    }
+    
+    func test_shouldSaveShowBottomLabels() {
+        // given
+        setupViewData()
+        
+        // when
+        observe(viewModel)
+        viewModel.onViewDidLoad()
+        
+        guard let list = stateObserver.events[1].value.element?.list
+        else {
+            XCTFail("No list")
+            return
+        }
+        
+        switch (list[0].items[4]) {
+        case .switchItem(_, _, let callback):
+            callback(false)
+        default:
+            XCTFail("No list")
+        }
+        
+        // then
+        XCTAssertEqual(stateObserver.events.count, 2)
+        XCTAssertEqual(eventObserver.events.count, 0)
+        XCTAssertEqual(settings.channelHeightValues.count, 0)
+        XCTAssertEqual(settings.temperatureUnitValues.count, 0)
+        XCTAssertEqual(settings.autohideButtonsValues.count, 0)
+        XCTAssertEqual(settings.showChannelInfoValues.count, 0)
+        XCTAssertEqual(settings.showBottomLabelsValues[0], false)
         XCTAssertEqual(settings.showOpeningPercentValues.count, 0)
     }
     
@@ -258,7 +296,7 @@ class AppSettingsVMTests: ViewModelTest<AppSettingsViewState, AppSettingsViewEve
             return
         }
         
-        switch (list[0].items[4]) {
+        switch (list[0].items[5]) {
         case .rsOpeningPercentageItem(_, let callback):
             callback(true)
         default:
@@ -272,6 +310,7 @@ class AppSettingsVMTests: ViewModelTest<AppSettingsViewState, AppSettingsViewEve
         XCTAssertEqual(settings.temperatureUnitValues.count, 0)
         XCTAssertEqual(settings.autohideButtonsValues.count, 0)
         XCTAssertEqual(settings.showChannelInfoValues.count, 0)
+        XCTAssertEqual(settings.showBottomLabelsValues.count, 0)
         XCTAssertEqual(settings.showOpeningPercentValues[0], true)
     }
     
@@ -289,7 +328,7 @@ class AppSettingsVMTests: ViewModelTest<AppSettingsViewState, AppSettingsViewEve
             return
         }
         
-        switch (list[0].items[5]) {
+        switch (list[0].items[6]) {
         case .arrowButtonItem(_, let callback):
             callback()
         default:
@@ -303,6 +342,7 @@ class AppSettingsVMTests: ViewModelTest<AppSettingsViewState, AppSettingsViewEve
         XCTAssertEqual(settings.temperatureUnitValues.count, 0)
         XCTAssertEqual(settings.autohideButtonsValues.count, 0)
         XCTAssertEqual(settings.showChannelInfoValues.count, 0)
+        XCTAssertEqual(settings.showBottomLabelsValues.count, 0)
         XCTAssertEqual(settings.showOpeningPercentValues.count, 0)
     }
     
@@ -334,6 +374,7 @@ class AppSettingsVMTests: ViewModelTest<AppSettingsViewState, AppSettingsViewEve
         XCTAssertEqual(settings.temperatureUnitValues.count, 0)
         XCTAssertEqual(settings.autohideButtonsValues.count, 0)
         XCTAssertEqual(settings.showChannelInfoValues.count, 0)
+        XCTAssertEqual(settings.showBottomLabelsValues.count, 0)
         XCTAssertEqual(settings.showOpeningPercentValues.count, 0)
     }
     

@@ -34,8 +34,8 @@ final class ToggleLocationUseCaseTests: UseCaseTest<Void> {
     }()
     
     override func setUp() {
-        DiContainer.shared.register(type: (any LocationRepository).self, component: locationRepository!)
-        DiContainer.shared.register(type: (any ProfileRepository).self, component: profileRepository!)
+        DiContainer.shared.register(type: (any LocationRepository).self, locationRepository!)
+        DiContainer.shared.register(type: (any ProfileRepository).self, profileRepository!)
     }
     
     override func tearDown() {

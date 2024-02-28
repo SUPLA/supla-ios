@@ -43,7 +43,7 @@
     return authInfo;
 }
 
-+ (TCS_PnClientToken) prepareClientTokenFor: (NSData*) token {
++ (TCS_PnClientToken) prepareClientTokenFor: (NSData*) token andProfile: (NSString*) profileName {
     TCS_PnClientToken clientToken = {};
     clientToken.AppId = APP_ID;
 #ifdef DEBUG
@@ -65,6 +65,12 @@
             clientToken.TokenSize = SUPLA_PN_CLIENT_TOKEN_MAXSIZE;
         }
         snprintf((char*)clientToken.Token, clientToken.TokenSize, "%s", [_token UTF8String]);
+        
+        unsigned long profileNameLenght = profileName.length + 1;
+        if (profileNameLenght >= SUPLA_PN_PROFILE_NAME_MAXSIZE) {
+            profileNameLenght = SUPLA_PN_PROFILE_NAME_MAXSIZE;
+        }
+        snprintf((char*)clientToken.ProfileName, profileNameLenght, "%s", [profileName UTF8String]);
     }
     
     return clientToken;
@@ -72,7 +78,7 @@
 
 + (TCS_RegisterPnClientToken) prepareRegisterStructureFor: (AuthProfileItem*) profile with: (NSData*) token {
     TCS_RegisterPnClientToken reg = {};
-    reg.Token = [SingleCallWrapper prepareClientTokenFor: token];
+    reg.Token = [SingleCallWrapper prepareClientTokenFor: token andProfile: profile.name];
     reg.Auth = [SingleCallWrapper prepareAuthorizationDetailsFor: profile];
     
     return reg;

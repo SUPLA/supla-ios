@@ -27,6 +27,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic) BOOL complement;
 @property (nonatomic) BOOL divided;
+@property (nonatomic) BOOL counter_reset;
 
 @end
 

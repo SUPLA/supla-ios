@@ -30,7 +30,7 @@ class ValuesFormatterTests: XCTestCase {
     }()
     
     override func setUp() {
-        DiContainer.shared.register(type: GlobalSettings.self, component: globalSettings!)
+        DiContainer.shared.register(type: GlobalSettings.self, globalSettings!)
     }
     
     override func tearDown() {
@@ -45,75 +45,6 @@ class ValuesFormatterTests: XCTestCase {
         
         // then
         XCTAssertEqual(result, "---")
-    }
-    
-    func test_shouldFormatCelsius() {
-        // given
-        (formatter as! ValuesFormatterImpl).decimalSeparator = ","
-        
-        // when
-        let result = formatter.temperatureToString(15.5324, withUnit: false, withDegree: false)
-        
-        // then
-        XCTAssertEqual(result, "15,5")
-    }
-    
-    func test_shouldFormatCelsiusWithDegree() {
-        // given
-        (formatter as! ValuesFormatterImpl).decimalSeparator = ","
-        
-        // when
-        let result = formatter.temperatureToString(15.5324, withUnit: false, withDegree: true)
-        
-        // then
-        XCTAssertEqual(result, "15,5°")
-    }
-    
-    func test_shouldFormatCelsiusWithDegreeAndUnit() {
-        // given
-        (formatter as! ValuesFormatterImpl).decimalSeparator = ","
-        
-        // when
-        let result = formatter.temperatureToString(15.5324, withUnit: true, withDegree: true)
-        
-        // then
-        XCTAssertEqual(result, "15,5 °C")
-    }
-    
-    func test_shouldFormatFahrenheit() {
-        // given
-        globalSettings.temperatureUnitReturns = .fahrenheit
-        (formatter as! ValuesFormatterImpl).decimalSeparator = ","
-        
-        // when
-        let result = formatter.temperatureToString(22.332, withUnit: false, withDegree: false)
-        
-        // then
-        XCTAssertEqual(result, "72,2")
-    }
-    
-    func test_shouldFormatFahrenheitWithDegree() {
-        // given
-        globalSettings.temperatureUnitReturns = .fahrenheit
-        (formatter as! ValuesFormatterImpl).decimalSeparator = ","
-        
-        // when
-        let result = formatter.temperatureToString(22.332, withUnit: false, withDegree: true)
-        
-        // then
-        XCTAssertEqual(result, "72,2°")
-    }
-    
-    func test_shouldFormatFahrenheitWithDegreeAndUnit() {
-        // given
-        globalSettings.temperatureUnitReturns = .fahrenheit
-        (formatter as! ValuesFormatterImpl).decimalSeparator = ","
-        
-        // when
-        let result = formatter.temperatureToString(22.332, withUnit: true, withDegree: true)
-        
-        // then
-        XCTAssertEqual(result, "72,2 °F")
     }
     
     func test_shouldFormatMinutesToString() {

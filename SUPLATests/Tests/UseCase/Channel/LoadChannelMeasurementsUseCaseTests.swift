@@ -20,37 +20,35 @@
 import XCTest
 
 final class LoadChannelMeasurementsUseCaseTests: UseCaseTest<[HistoryDataSet]> {
+    private lazy var readChannelByRemoteIdUseCase: ReadChannelByRemoteIdUseCaseMock! = ReadChannelByRemoteIdUseCaseMock()
     
-    private lazy var readChannelByRemoteIdUseCase: ReadChannelByRemoteIdUseCaseMock! = {
-        ReadChannelByRemoteIdUseCaseMock()
-    }()
+    private lazy var temperatureMeasurementItemRepository: TemperatureMeasurementItemRepositoryMock! = TemperatureMeasurementItemRepositoryMock()
     
-    private lazy var temperatureMeasurementItemRepository: TemperatureMeasurementItemRepositoryMock! = {
-        TemperatureMeasurementItemRepositoryMock()
-    }()
+    private lazy var tempHumidityMeasurementItemRepository: TempHumidityMeasurementItemRepositoryMock! = TempHumidityMeasurementItemRepositoryMock()
     
-    private lazy var tempHumidityMeasurementItemRepository: TempHumidityMeasurementItemRepositoryMock! = {
-        TempHumidityMeasurementItemRepositoryMock()
-    }()
+    private lazy var generalPurposeMeasurementItemRepository: GeneralPurposeMeasurementItemRepositoryMock! = GeneralPurposeMeasurementItemRepositoryMock()
     
-    private lazy var profileRepository: ProfileRepositoryMock! = {
-        ProfileRepositoryMock()
-    }()
+    private lazy var generalPurposeMeterItemRepository: GeneralPurposeMeterItemRepositoryMock! = GeneralPurposeMeterItemRepositoryMock()
     
-    private lazy var useCase: LoadChannelMeasurementsUseCase! = {
-        LoadChannelMeasurementsUseCaseImpl()
-    }()
+    private lazy var profileRepository: ProfileRepositoryMock! = ProfileRepositoryMock()
+    
+    private lazy var getChannelValueStringUseCase: GetChannelValueStringUseCaseMock! = GetChannelValueStringUseCaseMock()
+    
+    private lazy var useCase: LoadChannelMeasurementsUseCase! = LoadChannelMeasurementsUseCaseImpl()
     
     override func setUp() {
         super.setUp()
         
-        DiContainer.shared.register(type: ReadChannelByRemoteIdUseCase.self, component: readChannelByRemoteIdUseCase!)
-        DiContainer.shared.register(type: (any TemperatureMeasurementItemRepository).self, component: temperatureMeasurementItemRepository!)
-        DiContainer.shared.register(type: (any TempHumidityMeasurementItemRepository).self, component: tempHumidityMeasurementItemRepository!)
-        DiContainer.shared.register(type: (any ProfileRepository).self, component: profileRepository!)
+        DiContainer.shared.register(type: ReadChannelByRemoteIdUseCase.self, readChannelByRemoteIdUseCase!)
+        DiContainer.shared.register(type: GetChannelValueStringUseCase.self, getChannelValueStringUseCase!)
+        DiContainer.shared.register(type: (any TemperatureMeasurementItemRepository).self, temperatureMeasurementItemRepository!)
+        DiContainer.shared.register(type: (any TempHumidityMeasurementItemRepository).self, tempHumidityMeasurementItemRepository!)
+        DiContainer.shared.register(type: (any GeneralPurposeMeasurementItemRepository).self, generalPurposeMeasurementItemRepository!)
+        DiContainer.shared.register(type: (any GeneralPurposeMeterItemRepository).self, generalPurposeMeterItemRepository!)
+        DiContainer.shared.register(type: (any ProfileRepository).self, profileRepository!)
         
-        DiContainer.shared.register(type: GlobalSettings.self, component: GlobalSettingsMock())
-        DiContainer.shared.register(type: ValuesFormatter.self, component: ValuesFormatterImpl())
+        DiContainer.shared.register(type: GlobalSettings.self, GlobalSettingsMock())
+        DiContainer.shared.register(type: ValuesFormatter.self, ValuesFormatterImpl())
     }
     
     override func tearDown() {
@@ -58,6 +56,8 @@ final class LoadChannelMeasurementsUseCaseTests: UseCaseTest<[HistoryDataSet]> {
         readChannelByRemoteIdUseCase = nil
         temperatureMeasurementItemRepository = nil
         tempHumidityMeasurementItemRepository = nil
+        generalPurposeMeasurementItemRepository = nil
+        generalPurposeMeterItemRepository = nil
         profileRepository = nil
         
         super.tearDown()
@@ -85,6 +85,7 @@ final class LoadChannelMeasurementsUseCaseTests: UseCaseTest<[HistoryDataSet]> {
             SATemperatureMeasurementItem.mock(endDate, 10.9)
         ]
         temperatureMeasurementItemRepository.findMeasurementsReturns = .just(measurements)
+        getChannelValueStringUseCase.returns = "0.0°"
         
         // when
         useCase.invoke(remoteId: remotId, startDate: startDate, endDate: endDate, aggregation: .minutes).subscribe(observer).disposed(by: disposeBag)
@@ -98,15 +99,11 @@ final class LoadChannelMeasurementsUseCaseTests: UseCaseTest<[HistoryDataSet]> {
         XCTAssertEqual(historyDataSets[0].color, .chartTemperature1)
         XCTAssertEqual(historyDataSets[0].active, true)
         XCTAssertEqual(historyDataSets[0].value, "0.0°")
-        XCTAssertEqual(
-            historyDataSets[0].entries[0].map { $0.x },
-            [startDate.timeIntervalSince1970, endDate.timeIntervalSince1970]
-        )
-        XCTAssertEqual(
-            historyDataSets[0].entries[0].map { $0.data as! EntryDetails },
+        XCTAssertTuples(
+            historyDataSets[0].entries[0].map { ($0.date, Int(($0.value * 10).rounded())) },
             [
-                EntryDetails(aggregation: .minutes, type: .temperature, min: nil, max: nil),
-                EntryDetails(aggregation: .minutes, type: .temperature, min: nil, max: nil)
+                (startDate.timeIntervalSince1970, 107),
+                (endDate.timeIntervalSince1970, 109)
             ]
         )
     }
@@ -142,9 +139,9 @@ final class LoadChannelMeasurementsUseCaseTests: UseCaseTest<[HistoryDataSet]> {
         XCTAssertEqual(historyDataSets[0].setId, HistoryDataSet.Id(remoteId: remotId, type: .temperature))
         XCTAssertEqual(historyDataSets[0].color, .chartTemperature1)
         XCTAssertEqual(historyDataSets[0].active, true)
-        XCTAssertEqual(
-            historyDataSets[0].entries[0].map { $0.x },
-            [Date.create(2017, 8, 10, 19, 00, 00)?.timeIntervalSince1970]
+        XCTAssertTuples(
+            historyDataSets[0].entries[0].map { ($0.date, Int(($0.value * 10).rounded())) },
+            [(Date.create(2017, 8, 10, 19, 00, 00)?.timeIntervalSince1970, 108)]
         )
     }
     
@@ -179,8 +176,8 @@ final class LoadChannelMeasurementsUseCaseTests: UseCaseTest<[HistoryDataSet]> {
         XCTAssertEqual(historyDataSets[0].setId, HistoryDataSet.Id(remoteId: remotId, type: .temperature))
         XCTAssertEqual(historyDataSets[0].color, .chartTemperature1)
         XCTAssertEqual(historyDataSets[0].active, true)
-        XCTAssertEqual(historyDataSets[0].entries[0].map { $0.x }, [startDate.timeIntervalSince1970])
-        XCTAssertEqual(historyDataSets[0].entries[1].map { $0.x }, [endDate.timeIntervalSince1970])
+        XCTAssertEqual(historyDataSets[0].entries[0].map { $0.date }, [startDate.timeIntervalSince1970])
+        XCTAssertEqual(historyDataSets[0].entries[1].map { $0.date }, [endDate.timeIntervalSince1970])
     }
     
     func test_shouldLoadTemperatureAndHumidityMeasurementsWithoutAggregating() {
@@ -205,6 +202,7 @@ final class LoadChannelMeasurementsUseCaseTests: UseCaseTest<[HistoryDataSet]> {
             SATempHumidityMeasurementItem.mock(endDate, 10.9, 55.8)
         ]
         tempHumidityMeasurementItemRepository.findMeasurementsReturns = .just(measurements)
+        getChannelValueStringUseCase.returns = "0"
         
         // when
         useCase.invoke(remoteId: remotId, startDate: startDate, endDate: endDate, aggregation: .minutes).subscribe(observer).disposed(by: disposeBag)
@@ -219,16 +217,12 @@ final class LoadChannelMeasurementsUseCaseTests: UseCaseTest<[HistoryDataSet]> {
         XCTAssertEqual(historyDataSets[0].setId, HistoryDataSet.Id(remoteId: remotId, type: .temperature))
         XCTAssertEqual(historyDataSets[0].color, .chartTemperature1)
         XCTAssertEqual(historyDataSets[0].active, true)
-        XCTAssertEqual(historyDataSets[0].value, "-273.0°")
-        XCTAssertEqual(
-            historyDataSets[0].entries[0].map { $0.x },
-            [startDate.timeIntervalSince1970, endDate.timeIntervalSince1970]
-        )
-        XCTAssertEqual(
-            historyDataSets[0].entries[0].map { $0.data as! EntryDetails },
+        XCTAssertEqual(historyDataSets[0].value, "0")
+        XCTAssertTuples(
+            historyDataSets[0].entries[0].map { ($0.date, Int(($0.value * 10).rounded())) },
             [
-                EntryDetails(aggregation: .minutes, type: .temperature, min: nil, max: nil),
-                EntryDetails(aggregation: .minutes, type: .temperature, min: nil, max: nil)
+                (startDate.timeIntervalSince1970, 107),
+                (endDate.timeIntervalSince1970, 109)
             ]
         )
         
@@ -236,16 +230,98 @@ final class LoadChannelMeasurementsUseCaseTests: UseCaseTest<[HistoryDataSet]> {
         XCTAssertEqual(historyDataSets[1].setId, HistoryDataSet.Id(remoteId: remotId, type: .humidity))
         XCTAssertEqual(historyDataSets[1].color, .chartHumidity1)
         XCTAssertEqual(historyDataSets[1].active, true)
-        XCTAssertEqual(historyDataSets[1].value, "---")
-        XCTAssertEqual(
-            historyDataSets[1].entries[0].map { $0.x },
-            [startDate.timeIntervalSince1970, endDate.timeIntervalSince1970]
-        )
-        XCTAssertEqual(
-            historyDataSets[1].entries[0].map { $0.data as! EntryDetails },
+        XCTAssertEqual(historyDataSets[1].value, "0")
+        XCTAssertTuples(
+            historyDataSets[1].entries[0].map { ($0.date, Int(($0.value * 10).rounded())) },
             [
-                EntryDetails(aggregation: .minutes, type: .humidity, min: nil, max: nil),
-                EntryDetails(aggregation: .minutes, type: .humidity, min: nil, max: nil)
+                (startDate.timeIntervalSince1970, 554),
+                (endDate.timeIntervalSince1970, 558)
+            ]
+        )
+    }
+    
+    func test_shouldLoadGeneralPurposeMeasurementsWithoutAggregating() {
+        // given
+        let remotId: Int32 = 12
+        let function = SUPLA_CHANNELFNC_GENERAL_PURPOSE_MEASUREMENT
+        let value = SAChannelValue.mock(online: true)
+        let channel = SAChannel.mock(remotId, function: function, value: value)
+        let profile = AuthProfileItem.mock()
+        
+        readChannelByRemoteIdUseCase.returns = .just(channel)
+        profileRepository.activeProfileObservable = .just(profile)
+        
+        let startDate: Date = .create(2017, 8, 10, 19, 33, 00)!
+        let endDate: Date = .create(2017, 8, 10, 19, 43, 00)!
+        
+        let measurements = [
+            SAGeneralPurposeMeasurementItem.mock(date: startDate, valueAverage: 10.7, valueMin: 5, valueMax: 12, valueOpen: 10, valueClose: 11),
+            SAGeneralPurposeMeasurementItem.mock(date: endDate, valueAverage: 10.9)
+        ]
+        generalPurposeMeasurementItemRepository.findMeasurementsReturns = .just(measurements)
+        getChannelValueStringUseCase.returns = "0.0°"
+        
+        // when
+        useCase.invoke(remoteId: remotId, startDate: startDate, endDate: endDate, aggregation: .minutes).subscribe(observer).disposed(by: disposeBag)
+        
+        // then
+        XCTAssertEqual(observer.events.count, 2)
+        let historyDataSets = observer.events[0].value.element!
+        
+        XCTAssertEqual(historyDataSets.count, 1)
+        XCTAssertEqual(historyDataSets[0].setId, HistoryDataSet.Id(remoteId: remotId, type: .generalPurposeMeasurement))
+        XCTAssertEqual(historyDataSets[0].color, .chartTemperature1)
+        XCTAssertEqual(historyDataSets[0].active, true)
+        XCTAssertEqual(historyDataSets[0].value, "0.0°")
+        XCTAssertTuples(
+            historyDataSets[0].entries[0].map {
+                ($0.date, Int(($0.value * 10).rounded()), $0.min, $0.max, $0.open, $0.close)
+            }, [
+                (startDate.timeIntervalSince1970, 107, 5, 12, 10, 11),
+                (endDate.timeIntervalSince1970, 109, 0, 0, 0, 0)
+            ]
+        )
+    }
+    
+    func test_shouldLoadGeneralPurposeMeterWithoutAggregating() {
+        // given
+        let remotId: Int32 = 12
+        let function = SUPLA_CHANNELFNC_GENERAL_PURPOSE_METER
+        let value = SAChannelValue.mock(online: true)
+        let channel = SAChannel.mock(remotId, function: function, value: value)
+        let profile = AuthProfileItem.mock()
+        
+        readChannelByRemoteIdUseCase.returns = .just(channel)
+        profileRepository.activeProfileObservable = .just(profile)
+        
+        let startDate: Date = .create(2017, 8, 10, 19, 33, 00)!
+        let endDate: Date = .create(2017, 8, 10, 19, 43, 00)!
+        
+        let measurements = [
+            SAGeneralPurposeMeterItem.mock(date: startDate, valueIncrement: 10.7),
+            SAGeneralPurposeMeterItem.mock(date: endDate, valueIncrement: 10.9)
+        ]
+        generalPurposeMeterItemRepository.findMeasurementsReturns = .just(measurements)
+        getChannelValueStringUseCase.returns = "0.0°"
+        
+        // when
+        useCase.invoke(remoteId: remotId, startDate: startDate, endDate: endDate, aggregation: .minutes).subscribe(observer).disposed(by: disposeBag)
+        
+        // then
+        XCTAssertEqual(observer.events.count, 2)
+        let historyDataSets = observer.events[0].value.element!
+        
+        XCTAssertEqual(historyDataSets.count, 1)
+        XCTAssertEqual(historyDataSets[0].setId, HistoryDataSet.Id(remoteId: remotId, type: .generalPurposeMeter))
+        XCTAssertEqual(historyDataSets[0].color, .chartGpm)
+        XCTAssertEqual(historyDataSets[0].active, true)
+        XCTAssertEqual(historyDataSets[0].value, "0.0°")
+        XCTAssertTuples(
+            historyDataSets[0].entries[0].map {
+                ($0.date, Int(($0.value * 10).rounded()))
+            }, [
+                (startDate.timeIntervalSince1970, 107),
+                (endDate.timeIntervalSince1970, 109)
             ]
         )
     }

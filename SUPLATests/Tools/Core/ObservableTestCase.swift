@@ -31,7 +31,7 @@ class ObservableTestCase: XCTestCase {
     lazy var disposeBag: DisposeBag! = { DisposeBag() }()
     
     override func setUp() {
-        DiContainer.shared.register(type: SuplaSchedulers.self, component: schedulers!)
+        DiContainer.shared.register(type: SuplaSchedulers.self, schedulers!)
     }
     
     override func tearDown() {

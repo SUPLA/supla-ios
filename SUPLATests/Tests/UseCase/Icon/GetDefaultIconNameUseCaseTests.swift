@@ -958,7 +958,7 @@ final class GetDefaultIconNameUseCaseTests: XCTestCase {
         )
         
         // then
-        XCTAssertEqual(iconName, "electricitymeter")
+        XCTAssertEqual(iconName, .Icons.fncElectricitymeter)
     }
     
     func test_electricityMeterAltIcon1() {
@@ -994,7 +994,7 @@ final class GetDefaultIconNameUseCaseTests: XCTestCase {
         )
         
         // then
-        XCTAssertEqual(iconName, "gasmeter")
+        XCTAssertEqual(iconName, "fnc_gasmeter")
     }
     
     func test_watermeterIcon() {
@@ -1012,7 +1012,7 @@ final class GetDefaultIconNameUseCaseTests: XCTestCase {
         )
         
         // then
-        XCTAssertEqual(iconName, "watermeter")
+        XCTAssertEqual(iconName, "fnc_watermeter")
     }
     
     func test_heatmeterIcon() {
@@ -1030,7 +1030,7 @@ final class GetDefaultIconNameUseCaseTests: XCTestCase {
         )
         
         // then
-        XCTAssertEqual(iconName, "heatmeter")
+        XCTAssertEqual(iconName, "fnc_heatmeter")
     }
     
     func test_heatpolHomeplusAltIcon0() {

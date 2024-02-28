@@ -39,10 +39,10 @@ final class UpdateTokenTaskTests: XCTestCase {
     }()
     
     override func setUp() {
-        DiContainer.shared.register(type: (any ProfileRepository).self, component: profileRepository!)
-        DiContainer.shared.register(type: SingleCall.self, component: singleCall!)
-        DiContainer.shared.register(type: GlobalSettings.self, component: settings!)
-        DiContainer.shared.register(type: DateProvider.self, component: dateProvider!)
+        DiContainer.shared.register(type: (any ProfileRepository).self, profileRepository!)
+        DiContainer.shared.register(type: SingleCall.self, singleCall!)
+        DiContainer.shared.register(type: GlobalSettings.self, settings!)
+        DiContainer.shared.register(type: DateProvider.self, dateProvider!)
     }
     
     override func tearDown() {
@@ -61,7 +61,7 @@ final class UpdateTokenTaskTests: XCTestCase {
         let expectation = XCTestExpectation(description: "Update task finished")
         
         // when
-        updateTokenTask.update(token: token, updateSelf: false) {
+        updateTokenTask.update(token: token) {
             expectation.fulfill()
         }
         
@@ -80,7 +80,7 @@ final class UpdateTokenTaskTests: XCTestCase {
         let expectation = XCTestExpectation(description: "Update task finished")
         
         // when
-        updateTokenTask.update(token: token, updateSelf: false) {
+        updateTokenTask.update(token: token) {
             expectation.fulfill()
         }
         
@@ -98,7 +98,7 @@ final class UpdateTokenTaskTests: XCTestCase {
         let expectation = XCTestExpectation(description: "Update task finished")
         
         // when
-        updateTokenTask.update(token: Data([1]), updateSelf: false) {
+        updateTokenTask.update(token: Data([1])) {
             expectation.fulfill()
         }
         
@@ -119,7 +119,7 @@ final class UpdateTokenTaskTests: XCTestCase {
         let expectation = XCTestExpectation(description: "Update task finished")
         
         // when
-        updateTokenTask.update(token: Data([1]), updateSelf: false) {
+        updateTokenTask.update(token: Data([1])) {
             expectation.fulfill()
         }
         
@@ -150,7 +150,7 @@ final class UpdateTokenTaskTests: XCTestCase {
         let expectation = XCTestExpectation(description: "Update task finished")
         
         // when
-        updateTokenTask.update(token: Data([1]), updateSelf: false) {
+        updateTokenTask.update(token: Data([1])) {
             expectation.fulfill()
         }
         
@@ -173,7 +173,7 @@ final class UpdateTokenTaskTests: XCTestCase {
         let expectation = XCTestExpectation(description: "Update task finished")
         
         // when
-        updateTokenTask.update(token: Data([1]), updateSelf: false) {
+        updateTokenTask.update(token: Data([1])) {
             expectation.fulfill()
         }
         

@@ -35,11 +35,11 @@ class ChannelBaseTableViewController<S : ViewState, E : ViewEvent, VM : BaseTabl
         register(nib: Nibs.channelCell, for: cellIdForChannel)
         register(nib: Nibs.thermometerCell, for: cellIdForThermometer)
         register(nib: Nibs.tempHumidityCell, for: cellIdForTempHumidity)
-        register(nib: Nibs.measurementCell, for: cellIdForMeasurement)
         register(nib: Nibs.distanceCell, for: cellIdForDistance)
         register(nib: Nibs.incrementalMeterCell, for: cellIdForIncremental)
         register(nib: Nibs.homePlusCell, for: cellIdForHomePlus)
         tableView.register(ThermostatCell.self, forCellReuseIdentifier: cellIdForHvacThermostat)
+        tableView.register(MeasurementCell.self, forCellReuseIdentifier: cellIdForMeasurement)
         
         super.setupTableView()
     }
@@ -50,6 +50,8 @@ class ChannelBaseTableViewController<S : ViewState, E : ViewEvent, VM : BaseTabl
         
         if (cellId == cellIdForHvacThermostat) {
             return setupThermostatCell(cell, channelBase: channelBase, children: children)
+        } else if (cellId == cellIdForMeasurement) {
+            return setupMeasurementCell(cell, channelBase: channelBase, children: children)
         } else {
             return setupLegacyCell(cell, cellId: cellId, channelBase: channelBase, indexPath: indexPath)
         }
@@ -61,6 +63,16 @@ class ChannelBaseTableViewController<S : ViewState, E : ViewEvent, VM : BaseTabl
         thermostatCell.scaleFactor = scaleFactor
         thermostatCell.data = ChannelWithChildren(channel: channelBase as! SAChannel, children: children)
         thermostatCell.showChannelInfo = showChannelInfo
+        
+        return cell
+    }
+    
+    private func setupMeasurementCell(_ cell: UITableViewCell, channelBase: SAChannelBase, children: [ChannelChild]) -> UITableViewCell {
+        let measurementCell = cell as! MeasurementCell
+        
+        measurementCell.scaleFactor = scaleFactor
+        measurementCell.data = ChannelWithChildren(channel: channelBase as! SAChannel, children: children)
+        measurementCell.showChannelInfo = showChannelInfo
         
         return cell
     }
@@ -166,6 +178,8 @@ class ChannelBaseTableViewController<S : ViewState, E : ViewEvent, VM : BaseTabl
             SUPLA_CHANNELFNC_WEIGHTSENSOR,
             SUPLA_CHANNELFNC_PRESSURESENSOR,
             SUPLA_CHANNELFNC_RAINSENSOR,
+            SUPLA_CHANNELFNC_GENERAL_PURPOSE_METER,
+            SUPLA_CHANNELFNC_GENERAL_PURPOSE_MEASUREMENT,
         SUPLA_CHANNELFNC_HUMIDITY:
             return cellIdForMeasurement
         case SUPLA_CHANNELFNC_DISTANCESENSOR:

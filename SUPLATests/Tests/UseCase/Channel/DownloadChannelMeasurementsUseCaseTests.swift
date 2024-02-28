@@ -34,17 +34,27 @@ final class DownloadChannelMeasurementsUseCaseTests: UseCaseTest<Void> {
         DownloadTempHumidityMeasurementsUseCaseMock()
     }()
     
+    private lazy var downloadGeneralPurposeMeasurementLogUseCase: DownloadGeneralPurposeMeasurementLogUseCaseMock! = {
+        DownloadGeneralPurposeMeasurementLogUseCaseMock()
+    }()
+    
+    private lazy var downloadGeneralPurposeMeterLogUseCase: DownloadGeneralPurposeMeterLogUseCaseMock! = {
+        DownloadGeneralPurposeMeterLogUseCaseMock()
+    }()
+    
     private lazy var useCase: DownloadChannelMeasurementsUseCase! = {
         DownloadChannelMeasurementsUseCaseImpl()
     }()
     
     override func setUp() {
         // super.setUp() intentionally commented out
-        DiContainer.shared.register(type: SuplaSchedulers.self, component: SuplaSchedulersImpl())
+        DiContainer.shared.register(type: SuplaSchedulers.self, SuplaSchedulersImpl())
         
-        DiContainer.shared.register(type: DownloadEventsManager.self, component: downloadEventsManager!)
-        DiContainer.shared.register(type: DownloadTemperatureMeasurementsUseCase.self, component: downloadTemperatureMeasurementsUseCase!)
-        DiContainer.shared.register(type: DownloadTempHumidityMeasurementsUseCase.self, component: downloadTempHumidityMeasurementsUseCase!)
+        DiContainer.shared.register(type: DownloadEventsManager.self, downloadEventsManager!)
+        DiContainer.shared.register(type: DownloadTemperatureLogUseCase.self, downloadTemperatureMeasurementsUseCase!)
+        DiContainer.shared.register(type: DownloadTempHumidityLogUseCase.self, downloadTempHumidityMeasurementsUseCase!)
+        DiContainer.shared.register(type: DownloadGeneralPurposeMeasurementLogUseCase.self, downloadGeneralPurposeMeasurementLogUseCase!)
+        DiContainer.shared.register(type: DownloadGeneralPurposeMeterLogUseCase.self, downloadGeneralPurposeMeterLogUseCase!)
     }
     
     override func tearDown() {
@@ -52,6 +62,8 @@ final class DownloadChannelMeasurementsUseCaseTests: UseCaseTest<Void> {
         downloadEventsManager = nil
         downloadTemperatureMeasurementsUseCase = nil
         downloadTempHumidityMeasurementsUseCase = nil
+        downloadGeneralPurposeMeasurementLogUseCase = nil
+        downloadGeneralPurposeMeterLogUseCase = nil
         
         super.tearDown()
     }
@@ -70,6 +82,8 @@ final class DownloadChannelMeasurementsUseCaseTests: UseCaseTest<Void> {
             (remoteId, .started)
         ])
         XCTAssertEqual(downloadTempHumidityMeasurementsUseCase.parameters.count, 0)
+        XCTAssertEqual(downloadGeneralPurposeMeasurementLogUseCase.parameters.count, 0)
+        XCTAssertEqual(downloadGeneralPurposeMeterLogUseCase.parameters.count, 0)
     }
     
     func test_shouldStartThermometerAndHumidityDownload() {
@@ -86,5 +100,43 @@ final class DownloadChannelMeasurementsUseCaseTests: UseCaseTest<Void> {
             (remoteId, .started)
         ])
         XCTAssertEqual(downloadTemperatureMeasurementsUseCase.parameters.count, 0)
+        XCTAssertEqual(downloadGeneralPurposeMeasurementLogUseCase.parameters.count, 0)
+        XCTAssertEqual(downloadGeneralPurposeMeterLogUseCase.parameters.count, 0)
+    }
+    
+    func test_shouldStartGeneralPurposeMeasurementDownload() {
+        // given
+        let remoteId: Int32 = 123
+        let function = SUPLA_CHANNELFNC_GENERAL_PURPOSE_MEASUREMENT
+        
+        // when
+        useCase.invoke(remoteId: remoteId, function: function)
+        
+        // then
+        XCTAssertEqual(downloadGeneralPurposeMeasurementLogUseCase.parameters, [remoteId])
+        XCTAssertTuples(downloadEventsManager.emitProgressStateParameters, [
+            (remoteId, .started)
+        ])
+        XCTAssertEqual(downloadTemperatureMeasurementsUseCase.parameters.count, 0)
+        XCTAssertEqual(downloadTempHumidityMeasurementsUseCase.parameters.count, 0)
+        XCTAssertEqual(downloadGeneralPurposeMeterLogUseCase.parameters.count, 0)
+    }
+    
+    func test_shouldStartGeneralPurposeMeterDownload() {
+        // given
+        let remoteId: Int32 = 123
+        let function = SUPLA_CHANNELFNC_GENERAL_PURPOSE_METER
+        
+        // when
+        useCase.invoke(remoteId: remoteId, function: function)
+        
+        // then
+        XCTAssertEqual(downloadGeneralPurposeMeterLogUseCase.parameters, [remoteId])
+        XCTAssertTuples(downloadEventsManager.emitProgressStateParameters, [
+            (remoteId, .started)
+        ])
+        XCTAssertEqual(downloadTemperatureMeasurementsUseCase.parameters.count, 0)
+        XCTAssertEqual(downloadTempHumidityMeasurementsUseCase.parameters.count, 0)
+        XCTAssertEqual(downloadGeneralPurposeMeasurementLogUseCase.parameters.count, 0)
     }
 }

@@ -58,7 +58,7 @@ final class UseCaseLegacyWrapper: NSObject {
     }
     
     @objc
-    static func updateChannel(suplaChannel: TSC_SuplaChannel_D) -> Bool {
+    static func updateChannel(suplaChannel: TSC_SuplaChannel_E) -> Bool {
         return UpdateChannelUseCase().invoke(suplaChannel: suplaChannel)
     }
     
@@ -179,6 +179,30 @@ final class UseCaseLegacyWrapper: NSObject {
             try UpdatePreferredProtocolVersionUseCase().invoke(version: version).subscribeSynchronous()
         } catch {
             NSLog("Could not update preferred protocol version to \(version)")
+        }
+    }
+    
+    @objc
+    static func insertChannelConfig(_ suplaResult: UInt8, _ suplaConfig: TSCS_ChannelConfig, _ crc32: Int64) {
+        @Singleton<InsertChannelConfigUseCase> var insertChannelConfigUseCase
+        let result = SuplaConfigResult.from(value: suplaResult)
+        let config = SuplaChannelConfig.from(suplaConfig: suplaConfig, crc32: crc32)
+        
+        do {
+            try insertChannelConfigUseCase.invoke(config: config, result: result).subscribeSynchronous()
+        } catch {
+            NSLog("Could not insert config of channel id `\(config.remoteId)`")
+        }
+    }
+    
+    @objc
+    static func insertNotification(_ userInfo: [AnyHashable : Any]) {
+        @Singleton<InsertNotificationUseCase> var insertNotificationUseCase
+        
+        do {
+            try insertNotificationUseCase.invoke(userInfo: userInfo).subscribeSynchronous()
+        } catch {
+            NSLog("Could not insert notification: \(String(describing: error))")
         }
     }
 }

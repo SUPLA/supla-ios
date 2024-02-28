@@ -52,7 +52,7 @@
 - (void) onRegistered:(SARegResult *)result;
 - (void) onRegisterError:(int)code;
 - (void) locationUpdate:(TSC_SuplaLocation *)location;
-- (void) channelUpdate:(TSC_SuplaChannel_D *)channel;
+- (void) channelUpdate:(TSC_SuplaChannel_E *)channel;
 - (void) channelValueUpdate:(TSC_SuplaChannelValue_B *)channel_value;
 - (void) channelExtendedValueUpdate:(TSC_SuplaChannelExtendedValue *)channel_extendedvalue;
 - (void) channelGroupUpdate:(TSC_SuplaChannelGroup_B *)cgroup;
@@ -80,7 +80,7 @@
 - (void) onZwaveOnAssignNodeIdResult:(SAZWaveNodeIdResult*)result;
 - (void) onZwaveWakeupSettingsReport:(SAZWaveWakeupSettingsReport*)report;
 - (void) onZWaveSetWakeUpTimeResult:(NSNumber *)result;
-- (void) onChannelConfigUpdateOrResult: (TSC_ChannelConfigUpdateOrResult*) config;
+- (void) onChannelConfigUpdateOrResult: (TSC_ChannelConfigUpdateOrResult*) config crc32: (unsigned _supla_int_t) crc32;
 - (void) onDeviceConfigUpdateOrResult: (TSC_DeviceConfigUpdateOrResult*) config;
 @end
 
@@ -153,7 +153,7 @@ void sasuplaclient_location_update(void *_suplaclient, void *user_data, TSC_Supl
 
 #pragma mark Channels callbacks
 
-void sasuplaclient_channel_update(void *_suplaclient, void *user_data, TSC_SuplaChannel_D *channel) {
+void sasuplaclient_channel_update(void *_suplaclient, void *user_data, TSC_SuplaChannel_E *channel) {
     SASuplaClient *sc = (__bridge SASuplaClient*)user_data;
     if ( sc != nil )
         [sc channelUpdate: channel];
@@ -389,10 +389,11 @@ void sasuplaclient_scene_state_update(void *_suplaclient,
 
 void sasuplaclient_channel_config_update_or_result(void *_suplaclient,
                                                    void *user_data,
-                                                   TSC_ChannelConfigUpdateOrResult *config) {
+                                                   TSC_ChannelConfigUpdateOrResult *config,
+                                                   unsigned _supla_int_t crc32) {
     SASuplaClient *sc = (__bridge SASuplaClient*) user_data;
     if ( sc != nil ) {
-        [sc onChannelConfigUpdateOrResult: config];
+        [sc onChannelConfigUpdateOrResult: config crc32:crc32];
     }
 }
 
@@ -775,7 +776,7 @@ void sasuplaclient_device_config_update_or_result(void *_suplaclient,
     
     _client_id = result.ClientID;
     NSData* pushToken = [DiContainer getPushToken];
-    [self registerPushNotificationClientToken:pushToken];
+    [self registerPushNotificationClientToken:pushToken forProfile: profile];
     [DiContainer setOAuthUrlWithUrl: ai.serverUrlString];
 
     [self performSelectorOnMainThread:@selector(_onRegistered:) withObject:result waitUntilDone:NO];
@@ -835,12 +836,12 @@ void sasuplaclient_device_config_update_or_result(void *_suplaclient,
     
 }
 
-- (BOOL) isChannelExcluded:(TSC_SuplaChannel_D *)channel {
+- (BOOL) isChannelExcluded:(TSC_SuplaChannel_E *)channel {
     // For partner applications
     return NO;
 }
 
-- (void) channelUpdate:(TSC_SuplaChannel_D *)channel {
+- (void) channelUpdate:(TSC_SuplaChannel_E *)channel {
     
     BOOL DataChanged = NO;
     BOOL ChannelValueChanged = NO;
@@ -981,8 +982,12 @@ void sasuplaclient_device_config_update_or_result(void *_suplaclient,
     }
 }
 
-- (void) onChannelConfigUpdateOrResult: (TSC_ChannelConfigUpdateOrResult*) config {
-    [[DiContainer channelConfigEventsManager] emitConfigWithResult: config->Result config: config->Config];
+- (void) onChannelConfigUpdateOrResult: (TSC_ChannelConfigUpdateOrResult*) config crc32: (unsigned _supla_int_t) crc32 {
+    [UseCaseLegacyWrapper insertChannelConfig:config->Result :config->Config :crc32];
+    [[DiContainer channelConfigEventsManager] emitConfigWithResult: config->Result config: config->Config crc32: crc32];
+    if (config != nil && config->Result == SUPLA_CONFIG_RESULT_TRUE) {
+        [[DiContainer updateEventsManager] emitChannelUpdateWithRemoteId: config->Config.ChannelId];
+    }
 }
 
 - (void) onDeviceConfigUpdateOrResult: (TSC_DeviceConfigUpdateOrResult*) config {
@@ -1652,10 +1657,10 @@ void sasuplaclient_device_config_update_or_result(void *_suplaclient,
     return supla_client_timer_arm(_sclient, remoteId, on ? 1 : 0, milis);
 }
 
-- (void) registerPushNotificationClientToken:(NSData *)token {
+- (void) registerPushNotificationClientToken:(NSData *)token forProfile: (AuthProfileItem*) profile {
     @synchronized(self) {
         if ( _sclient ) {
-            TCS_RegisterPnClientToken reg = [SingleCallWrapper prepareRegisterStructureFor: nil with: token];
+            TCS_RegisterPnClientToken reg = [SingleCallWrapper prepareRegisterStructureFor: profile with: token];
             supla_client_pn_register_client_token(_sclient, &reg);
         }
     }

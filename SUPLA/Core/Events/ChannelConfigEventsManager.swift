@@ -19,7 +19,7 @@
 import RxSwift
 
 @objc protocol ChannelConfigEventsManagerEmitter {
-    func emitConfig(result: UInt8, config: TSCS_ChannelConfig)
+    func emitConfig(result: UInt8, config: TSCS_ChannelConfig, crc32: Int64)
 }
 
 protocol ChannelConfigEventsManager: ChannelConfigEventsManagerEmitter {
@@ -32,8 +32,8 @@ final class ChannelConfigEventsManagerImpl: BaseConfigEventsManager<ChannelConfi
         super.init(queueLabel: "ChannelConfigEventsPrivateQueue")
     }
     
-    func emitConfig(result: UInt8, config: TSCS_ChannelConfig) {
-        let convertedConfig = SuplaChannelConfig.from(suplaConfig: config)
+    func emitConfig(result: UInt8, config: TSCS_ChannelConfig, crc32: Int64) {
+        let convertedConfig = SuplaChannelConfig.from(suplaConfig: config, crc32: crc32)
         let convertedResult = SuplaConfigResult.from(value: result)
         
         let subject = getSubject(id: convertedConfig.remoteId)

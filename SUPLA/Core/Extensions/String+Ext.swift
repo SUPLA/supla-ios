@@ -39,4 +39,28 @@ extension String {
             return nil
         }
     }
+    
+    func copyToCharArray<T>(array: inout T, capacity: Int) {
+        withUnsafeMutablePointer(to: &array) {
+            $0.withMemoryRebound(to: Int8.self, capacity: capacity) { pointer in
+                var lenght = count + 1
+                if (lenght > capacity) {
+                    lenght = capacity
+                }
+                
+                withCString {
+                    _ = snprintf(ptr: pointer, lenght, $0)
+                }
+                
+            }
+        }
+    }
+    
+    static func fromC<T>(_ address: T) -> String {
+        return withUnsafePointer(to: address) {
+            $0.withMemoryRebound(to: UInt8.self, capacity: MemoryLayout.size(ofValue: $0)) {
+                String(cString: $0)
+            }
+        }
+    }
 }

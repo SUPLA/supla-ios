@@ -47,6 +47,9 @@ extension UIColor {
     static let chartTemperature2 = UIColor(argb: 0xFFFF8C53)
     static let chartHumidity1 = UIColor(argb: 0xFF57A0FF)
     static let chartHumidity2 = UIColor(argb: 0xFF33FFEC)
+    static let chartGpm = UIColor(argb: 0xFF01C2FB)
+    static let chartGpmBorder = UIColor(argb: 0xFF005F6E)
+    static let chartGpmShadow = UIColor(argb: 0x3398C4CA)
     
     static let border = UIColor(red: 180/255.0, green: 183/255.0, blue: 186/255.0, alpha: 1)
     static let separator = UIColor.from(red: 170, green: 170, blue: 170, alpha: 1)

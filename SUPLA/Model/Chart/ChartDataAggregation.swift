@@ -32,7 +32,7 @@ enum ChartDataAggregation: Equatable, Codable, CaseIterable {
     var timeInSec: TimeInterval {
         get {
             switch (self) {
-            case .minutes: 60
+            case .minutes: 600
             case .hours: 3600
             case .days: 86400
             case .months: 2592000

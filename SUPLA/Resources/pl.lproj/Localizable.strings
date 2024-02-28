@@ -324,11 +324,6 @@
 "Cfg.removal.dialog.incomplete" = "Uzupełnij wymagane dane";
 
 "push_notification_limit_exceeded" = "Przekroczono limit wysłanych wiadomości PUSH, który wynosi %@ na godzinę.";
-"dialog_new_gesture_info_text" = "Usunęliśmy gest przesunięcia otwierający szczegóły, aby je zobaczyć dotknij wybrany kanał.";
-
-"app_settings.permissions_header" = "Uprawnienia";
-"app_settings.notifications_label" = "Powiadomienia";
-"app_settings.location_label" = "Lokalizacja";
 
 /* General */
 "General.error" = "Błąd";
@@ -355,6 +350,25 @@
 /* General - Channels */
 "channel_caption_hotelcard" = "Czytnik karty hotelowej";
 "channel_caption_alarm_armament" = "Czujnik uzbrojenia alarmu";
+"channel_caption_general_purpose_measurment" = "Kanał pomiarowy";
+"channel_caption_general_purpose_meter" = "Kanał licznikowy";
+
+/* Main */
+"dialog_new_gesture_info_text" = "Usunęliśmy gest przesunięcia otwierający szczegóły, aby je zobaczyć dotknij wybrany kanał.";
+"main_no_entries" = "Pusto";
+
+/* Groups */
+"groups_empty_list_button" = "Dodaj grupę na Supla Cloud";
+
+/* Scenes */
+"scenes_empty_list_button" = "Dodaj scenę na Supla Cloud";
+
+/* App Settings */
+"app_settings.permissions_header" = "Uprawnienia";
+"app_settings.notifications_label" = "Powiadomienia";
+"app_settings.location_label" = "Lokalizacja";
+
+"settings_show_labels" = "Pokazuj labelki w dolnym menu";
 
 /* Standard Detail */
 "standard_detail_general_tab" = "Ogólne";
@@ -428,7 +442,7 @@
 "thermostat_detail_box_info" = "Dotknij, aby ustawić wybrany program. Przytrzymaj, aby ustawić wybrane kwadranse.";
 "thermostat_detail_arrow_info" = "Czarny narożnik informuje o aktualnej godzinie i dniu.";
 
-/* Thermometer Chart */
+/* Combined Chart */
 "history_range_label" = "Zakres";
 "history_aggregation_label" = "Agregacja";
 "history_range_last_day" = "Ostatnie 24 godziny";
@@ -446,3 +460,15 @@
 "history_no_data_selected" = "Nie wybrano danych do wyświetlenia.";
 "history_no_data_available" = "Brak pomiarów";
 "history_no_data_in_selected_period" = "Brak danych w wybranym okresie czasu.";
+"history_disabled" = "Historia jest wyłączona dla tego kanału.";
+"chart_marker_opening" = "Otwarcie";
+"chart_marker_closing" = "Zamknięcie";
+
+/* Notifications */
+"menu_notifications" = "Historia powiadomień";
+"notifications_log_profile" = "Profil:";
+"notifications_log_date" = "Data:";
+"notification_delete_all_title" = "Usunąć?";
+"notification_delete_all_message" = "Usunięcie powiadomień jest nieodwracalne, kontynuować?";
+"notification_delete_button_delete_all" = "Usuń wszystkie";
+"notification_delete_button_delete_older_than_month" = "Usuń starsze niż 30 dni";

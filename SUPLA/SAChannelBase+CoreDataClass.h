@@ -34,7 +34,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (BOOL) setChannelCaption:(char*)caption;
 - (BOOL) setItemVisible:(int)visible;
 - (BOOL) setChannelAltIcon:(int)altIcon;
-- (BOOL) setChannelFlags:(int)flags;
+- (BOOL) setChannelFlags:(long long)flags;
 - (BOOL) setLocationId:(int)locationId;
 - (BOOL) setRemoteId:(int)remoteId;
 - (BOOL) setUserIconId:(int)userIconId;

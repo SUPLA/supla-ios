@@ -29,7 +29,7 @@ class SuplaChannelConfigTests: XCTestCase {
         config.Func = SUPLA_CHANNELFNC_HUMIDITY
         
         // when
-        let result = SuplaChannelConfig.from(suplaConfig: config)
+        let result = SuplaChannelConfig.from(suplaConfig: config, crc32: 0)
         
         // then
         XCTAssertTrue(type(of: result) == SuplaChannelConfig.self)
@@ -42,9 +42,11 @@ class SuplaChannelConfigTests: XCTestCase {
         var config = getHvacConfig()
         config.ChannelId = 123
         config.Func = SUPLA_CHANNELFNC_HVAC_THERMOSTAT
+        config.ConfigType = UInt8(SUPLA_CONFIG_TYPE_DEFAULT)
+        config.ConfigSize = UInt16(MemoryLayout<TChannelConfig_HVAC>.size)
         
         // when
-        let result = SuplaChannelConfig.from(suplaConfig: config)
+        let result = SuplaChannelConfig.from(suplaConfig: config, crc32: 0)
         
         // then
         XCTAssertTrue(type(of: result) == SuplaChannelHvacConfig.self)
@@ -89,9 +91,10 @@ class SuplaChannelConfigTests: XCTestCase {
         config.ChannelId = 123
         config.Func = SUPLA_CHANNELFNC_HVAC_THERMOSTAT
         config.ConfigType = UInt8(SUPLA_CONFIG_TYPE_WEEKLY_SCHEDULE)
+        config.ConfigSize = UInt16(MemoryLayout<TChannelConfig_WeeklySchedule>.size)
         
         // when
-        let result = SuplaChannelConfig.from(suplaConfig: config)
+        let result = SuplaChannelConfig.from(suplaConfig: config, crc32: 0)
         
         // then
         XCTAssertTrue(type(of: result) == SuplaChannelWeeklyScheduleConfig.self)
@@ -142,11 +145,149 @@ class SuplaChannelConfigTests: XCTestCase {
         }
     }
     
+    func test_shouldGetGeneralPurposeMeterConfig() {
+        // given
+        var config = getGpMeterConfig()
+        config.ChannelId = 123
+        config.Func = SUPLA_CHANNELFNC_GENERAL_PURPOSE_METER
+        config.ConfigType = UInt8(SUPLA_CONFIG_TYPE_DEFAULT)
+        
+        // when
+        let result = SuplaChannelConfig.from(suplaConfig: config, crc32: 0)
+        
+        // then
+        XCTAssertTrue(type(of: result) == SuplaChannelGeneralPurposeMeterConfig.self)
+        XCTAssertEqual(result.remoteId, 123)
+        XCTAssertEqual(result.channelFunc, SUPLA_CHANNELFNC_GENERAL_PURPOSE_METER)
+        
+        let gpmConfig = result as! SuplaChannelGeneralPurposeMeterConfig
+        XCTAssertEqual(gpmConfig.valueDivider, 10)
+        XCTAssertEqual(gpmConfig.valueMultiplier, 20)
+        XCTAssertEqual(gpmConfig.valueAdded, 30)
+        XCTAssertEqual(gpmConfig.valuePrecision, 40)
+        XCTAssertEqual(gpmConfig.unitBeforValue, "Test before")
+        XCTAssertEqual(gpmConfig.unitAfterValue, "Test after")
+        
+        XCTAssertEqual(gpmConfig.noSpaceBeforeValue, true)
+        XCTAssertEqual(gpmConfig.noSpaceAfterValue, false)
+        XCTAssertEqual(gpmConfig.keepHistory, true)
+        XCTAssertEqual(gpmConfig.defaultValueDivider, 50)
+        XCTAssertEqual(gpmConfig.defaultValueMultiplier, 60)
+        XCTAssertEqual(gpmConfig.defaultValueAdded, 70)
+        XCTAssertEqual(gpmConfig.defaultValuePrecision, 80)
+        XCTAssertEqual(gpmConfig.defaultUnitBeforeValue, "Test def bef")
+        XCTAssertEqual(gpmConfig.defaultUnitAfterValue, "Test def aft")
+        XCTAssertEqual(gpmConfig.refreshIntervalMs, 100)
+        XCTAssertEqual(gpmConfig.counterType, .alwaysDecrement)
+        XCTAssertEqual(gpmConfig.chartType, .bar)
+        XCTAssertEqual(gpmConfig.includeValueAddedInHistory, false)
+        XCTAssertEqual(gpmConfig.fillMissingData, true)
+    }
+    
+    func test_shouldGetGeneralPurposeMeasurementConfig() {
+        // given
+        var config = getGpMeasurementConfig()
+        config.ChannelId = 123
+        config.Func = SUPLA_CHANNELFNC_GENERAL_PURPOSE_MEASUREMENT
+        config.ConfigType = UInt8(SUPLA_CONFIG_TYPE_DEFAULT)
+        
+        // when
+        let result = SuplaChannelConfig.from(suplaConfig: config, crc32: 0)
+        
+        // then
+        XCTAssertTrue(type(of: result) == SuplaChannelGeneralPurposeMeasurementConfig.self)
+        XCTAssertEqual(result.remoteId, 123)
+        XCTAssertEqual(result.channelFunc, SUPLA_CHANNELFNC_GENERAL_PURPOSE_MEASUREMENT)
+        
+        let gpmConfig = result as! SuplaChannelGeneralPurposeMeasurementConfig
+        XCTAssertEqual(gpmConfig.valueDivider, 10)
+        XCTAssertEqual(gpmConfig.valueMultiplier, 20)
+        XCTAssertEqual(gpmConfig.valueAdded, 30)
+        XCTAssertEqual(gpmConfig.valuePrecision, 40)
+        XCTAssertEqual(gpmConfig.unitBeforValue, "Test before")
+        XCTAssertEqual(gpmConfig.unitAfterValue, "Test after")
+        
+        XCTAssertEqual(gpmConfig.noSpaceBeforeValue, true)
+        XCTAssertEqual(gpmConfig.noSpaceAfterValue, false)
+        XCTAssertEqual(gpmConfig.keepHistory, true)
+        XCTAssertEqual(gpmConfig.defaultValueDivider, 50)
+        XCTAssertEqual(gpmConfig.defaultValueMultiplier, 60)
+        XCTAssertEqual(gpmConfig.defaultValueAdded, 70)
+        XCTAssertEqual(gpmConfig.defaultValuePrecision, 80)
+        XCTAssertEqual(gpmConfig.defaultUnitBeforeValue, "Test def bef")
+        XCTAssertEqual(gpmConfig.defaultUnitAfterValue, "Test def aft")
+        XCTAssertEqual(gpmConfig.refreshIntervalMs, 100)
+        XCTAssertEqual(gpmConfig.chartType, .candle)
+    }
+    
     private func getHvacConfig() -> TSCS_ChannelConfig {
         return SuplaConfigIntegrator.mockHvacConfig()
     }
     
     private func getWeeklScheduleConfig() -> TSCS_ChannelConfig {
         return SuplaConfigIntegrator.mockWeeklyScheduleConfig()
+    }
+    
+    private func getGpMeterConfig() -> TSCS_ChannelConfig {
+        var config = TChannelConfig_GeneralPurposeMeter()
+        config.ValueDivider = 10
+        config.ValueMultiplier = 20
+        config.ValueAdded = 30
+        config.ValuePrecision = 40
+        "Test before".copyToCharArray(array: &config.UnitBeforeValue, capacity: Int(SUPLA_GENERAL_PURPOSE_UNIT_SIZE))
+        "Test after".copyToCharArray(array: &config.UnitAfterValue, capacity: Int(SUPLA_GENERAL_PURPOSE_UNIT_SIZE))
+        config.NoSpaceBeforeValue = 1
+        config.NoSpaceAfterValue = 0
+        config.KeepHistory = 1
+        config.DefaultValueDivider = 50
+        config.DefaultValueMultiplier = 60
+        config.DefaultValueAdded = 70
+        config.DefaultValuePrecision = 80
+        "Test def bef".copyToCharArray(array: &config.DefaultUnitBeforeValue, capacity: Int(SUPLA_GENERAL_PURPOSE_UNIT_SIZE))
+        "Test def aft".copyToCharArray(array: &config.DefaultUnitAfterValue, capacity: Int(SUPLA_GENERAL_PURPOSE_UNIT_SIZE))
+        config.RefreshIntervalMs = 100
+        config.CounterType = 2
+        config.ChartType = 0
+        config.IncludeValueAddedInHistory = 0
+        config.FillMissingData = 1
+        
+        var channelConfig = TSCS_ChannelConfig()
+        channelConfig.ConfigSize = UInt16(MemoryLayout<TChannelConfig_GeneralPurposeMeter>.size)
+        
+        var sourcePointer = withUnsafeMutablePointer(to: &config) { UnsafeRawPointer($0) }
+        var destPointer = withUnsafeMutablePointer(to: &channelConfig.Config) { UnsafeMutableRawPointer($0) }
+        memcpy(destPointer, sourcePointer, MemoryLayout<TChannelConfig_GeneralPurposeMeter>.size)
+        
+        return channelConfig
+    }
+    
+    private func getGpMeasurementConfig() -> TSCS_ChannelConfig {
+        var config = TChannelConfig_GeneralPurposeMeasurement()
+        config.ValueDivider = 10
+        config.ValueMultiplier = 20
+        config.ValueAdded = 30
+        config.ValuePrecision = 40
+        "Test before".copyToCharArray(array: &config.UnitBeforeValue, capacity: Int(SUPLA_GENERAL_PURPOSE_UNIT_SIZE))
+        "Test after".copyToCharArray(array: &config.UnitAfterValue, capacity: Int(SUPLA_GENERAL_PURPOSE_UNIT_SIZE))
+        config.NoSpaceBeforeValue = 1
+        config.NoSpaceAfterValue = 0
+        config.KeepHistory = 1
+        config.DefaultValueDivider = 50
+        config.DefaultValueMultiplier = 60
+        config.DefaultValueAdded = 70
+        config.DefaultValuePrecision = 80
+        "Test def bef".copyToCharArray(array: &config.DefaultUnitBeforeValue, capacity: Int(SUPLA_GENERAL_PURPOSE_UNIT_SIZE))
+        "Test def aft".copyToCharArray(array: &config.DefaultUnitAfterValue, capacity: Int(SUPLA_GENERAL_PURPOSE_UNIT_SIZE))
+        config.RefreshIntervalMs = 100
+        config.ChartType = 2
+        
+        var channelConfig = TSCS_ChannelConfig()
+        channelConfig.ConfigSize = UInt16(MemoryLayout<TChannelConfig_GeneralPurposeMeasurement>.size)
+        
+        var sourcePointer = withUnsafeMutablePointer(to: &config) { UnsafeRawPointer($0) }
+        var destPointer = withUnsafeMutablePointer(to: &channelConfig.Config) { UnsafeMutableRawPointer($0) }
+        memcpy(destPointer, sourcePointer, MemoryLayout<TChannelConfig_GeneralPurposeMeasurement>.size)
+        
+        return channelConfig
     }
 }

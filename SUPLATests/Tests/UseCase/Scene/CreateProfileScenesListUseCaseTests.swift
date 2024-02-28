@@ -34,8 +34,8 @@ final class CreateProfileScenesListUseCaseTests: UseCaseTest<[List]> {
     }()
     
     override func setUp() {
-        DiContainer.shared.register(type: (any SceneRepository).self, component: sceneRepository!)
-        DiContainer.shared.register(type: (any ProfileRepository).self, component: profileRepository!)
+        DiContainer.shared.register(type: (any SceneRepository).self, sceneRepository!)
+        DiContainer.shared.register(type: (any ProfileRepository).self, profileRepository!)
     }
     
     override func tearDown() {

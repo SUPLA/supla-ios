@@ -19,14 +19,13 @@
 import UIKit
 
 class SuplaMenuController: UIViewController, NavigationCoordinatorAware {
-    
     weak var navigationCoordinator: NavigationCoordinator?
     
     private let _menuItems = SAMenuItems()
     private let _fakeConstraint = NSLayoutConstraint()
     private let _tapGR = UITapGestureRecognizer()
     
-    private var _deferredMenuAction: (()->Void)?
+    private var _deferredMenuAction: (() -> Void)?
     
     convenience init() {
         self.init(nibName: nil, bundle: nil)
@@ -63,7 +62,7 @@ class SuplaMenuController: UIViewController, NavigationCoordinatorAware {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         let v = navBarSnapshotView()
-        self._menuItems.slideDown(true) {
+        _menuItems.slideDown(true) {
             v.removeFromSuperview()
         }
     }
@@ -74,7 +73,7 @@ class SuplaMenuController: UIViewController, NavigationCoordinatorAware {
     }
     
     // Perform an action after dismissing the menu
-    private func performDeferredAction(_ action: @escaping ()->Void) {
+    private func performDeferredAction(_ action: @escaping () -> Void) {
         _deferredMenuAction = action
         navigationCoordinator?.finish()
     }
@@ -106,7 +105,7 @@ class SuplaMenuController: UIViewController, NavigationCoordinatorAware {
         repeat {
             if let wnd = cv as? UIWindow { return wnd }
             cv = cv?.superview
-        } while(cv != nil)
+        } while (cv != nil)
         fatalError("currentWindow() called when not attached to window")
     }
 }
@@ -124,24 +123,22 @@ extension SuplaMenuController: SAMenuItemsDelegate {
             SAApp.mainNavigationCoordinator()?.showAbout()
         case .help:
             if let url = URL(string: NSLocalizedString("https://en-forum.supla.org", comment: "")) {
-                performDeferredAction {
-                    UIApplication.shared.openURL(url)
-                }
+                performDeferredAction { UIApplication.shared.open(url, options: [:], completionHandler: nil) }
             }
         case .homepage:
             if let url = URL(string: _menuItems.homepageUrl) {
-                performDeferredAction {
-                    UIApplication.shared.openURL(url)
-                }
+                performDeferredAction { UIApplication.shared.open(url, options: [:], completionHandler: nil) }
             }
         case .cloud:
             performDeferredAction {
-                UIApplication.shared.openURL(URL(string: "https://cloud.supla.org")!)
+                SAApp.mainNavigationCoordinator()?.openCloud()
             }
         case .zWave:
             performDeferredAction {
                 SAZWaveConfigurationWizardVC.globalInstance().show()
             }
+        case .notifications:
+            SAApp.mainNavigationCoordinator()?.showNotificationsLog()
         default: break
         }
     }
@@ -161,7 +158,6 @@ extension SuplaMenuController: PresentationCoordinatorPeer {
         _deferredMenuAction = nil
     }
 }
-
 
 extension SuplaMenuController: UIGestureRecognizerDelegate {
     func gestureRecognizer(_ gr: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {

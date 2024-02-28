@@ -26,7 +26,7 @@ final class GetChannelBaseIconUseCaseTests: XCTestCase {
     private lazy var getDefaultIconNameUseCase: GetDefaultIconNameUseCaseMock! = { GetDefaultIconNameUseCaseMock() }()
     
     override func setUp() {
-        DiContainer.shared.register(type: GetDefaultIconNameUseCase.self, component: getDefaultIconNameUseCase!)
+        DiContainer.shared.register(type: GetDefaultIconNameUseCase.self, getDefaultIconNameUseCase!)
     }
     
     override func tearDown() {

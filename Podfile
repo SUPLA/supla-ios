@@ -4,7 +4,7 @@ target 'SUPLA' do
   use_frameworks!
 
   # Pods for SUPLA
-  pod 'Charts', '4.1.0'
+  pod 'DGCharts', '5.1.0'
   pod 'RxSwift'
   pod 'RxSwiftExt'
   pod 'RxDataSources'
