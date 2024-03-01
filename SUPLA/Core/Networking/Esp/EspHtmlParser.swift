@@ -86,7 +86,7 @@ class EspHtmlParser: NSObject {
                 result.mac = html.substring(range: match.range(at: 5))
             }
         } catch {
-            NSLog("Could not parse state pattern")
+            SALog.error("Could not parse state pattern \(error)")
         }
         
         return result

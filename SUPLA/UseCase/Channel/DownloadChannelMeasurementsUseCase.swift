@@ -37,7 +37,7 @@ final class DownloadChannelMeasurementsUseCaseImpl: DownloadChannelMeasurementsU
     func invoke(remoteId: Int32, function: Int32) {
         syncedQueue.sync {
             if (workingList.contains(remoteId)) {
-                NSLog("Download skipped as the \(remoteId) is on working list")
+                SALog.debug("Download skipped as the \(remoteId) is on working list")
                 return
             }
             
@@ -107,14 +107,14 @@ final class DownloadChannelMeasurementsUseCaseImpl: DownloadChannelMeasurementsU
                     self.removeFromWorkingList(remoteId)
                     
                     let errorMessage = String(describing: error)
-                    NSLog("Measurements download for \(remoteId) failed with \(error.localizedDescription)")
+                    SALog.error("Measurements download for \(remoteId) failed with \(error.localizedDescription)")
                     NSLog(errorMessage)
                 },
                 onCompleted: {
                     self.downloadEventsManager.emitProgressState(remoteId: remoteId, state: .finished)
                     self.removeFromWorkingList(remoteId)
                     
-                    NSLog("Measurements download for \(remoteId) finished successfully")
+                    SALog.info("Measurements download for \(remoteId) finished successfully")
                 }
             )
             .disposed(by: disposeBag)

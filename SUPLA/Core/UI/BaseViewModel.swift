@@ -104,7 +104,7 @@ class BaseViewModel<S : ViewState, E : ViewEvent> {
 #if DEBUG
     deinit {
         let className = NSStringFromClass(type(of: self))
-        NSLog("[DEINIT] VM:\(className)")
+        SALog.debug("[DEINIT] VM:\(className)")
     }
 #endif
 }

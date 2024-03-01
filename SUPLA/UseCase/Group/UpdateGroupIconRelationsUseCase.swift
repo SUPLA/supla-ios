@@ -49,7 +49,7 @@ final class UpdateGroupIconRelationsUseCase {
                 .first()
             
         } catch {
-            NSLog("Groups icons update failed with error \(error)")
+            SALog.error("Groups icons update failed with error \(error)")
         }
     }
     

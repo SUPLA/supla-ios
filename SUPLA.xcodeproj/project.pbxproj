@@ -1006,6 +1006,7 @@
 		A5AE7A8D2A3ADFAD0097FA8B /* RsOpenningClosingPersentageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5AE7A8C2A3ADFAD0097FA8B /* RsOpenningClosingPersentageCell.swift */; };
 		A5AE7A8F2A3AE0290097FA8B /* TitleArrowButtonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5AE7A8E2A3AE0290097FA8B /* TitleArrowButtonCell.swift */; };
 		A5AE7A912A3B17AF0097FA8B /* PermissionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5AE7A902A3B17AF0097FA8B /* PermissionCell.swift */; };
+		A5AF25A42B91FBB90026DA27 /* SALog.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5AF25A32B91FBB90026DA27 /* SALog.swift */; };
 		A5B3CBDF2B62504D00F95AC3 /* GetChannelValueUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5B3CBDE2B62504D00F95AC3 /* GetChannelValueUseCase.swift */; };
 		A5B3CBE22B62525500F95AC3 /* DefaultDoubleValueProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5B3CBE12B62525500F95AC3 /* DefaultDoubleValueProvider.swift */; };
 		A5B3CBE52B62546800F95AC3 /* DoubleValueParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5B3CBE42B62546800F95AC3 /* DoubleValueParser.swift */; };
@@ -2554,6 +2555,7 @@
 		A5AE7A8C2A3ADFAD0097FA8B /* RsOpenningClosingPersentageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RsOpenningClosingPersentageCell.swift; sourceTree = "<group>"; };
 		A5AE7A8E2A3AE0290097FA8B /* TitleArrowButtonCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleArrowButtonCell.swift; sourceTree = "<group>"; };
 		A5AE7A902A3B17AF0097FA8B /* PermissionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PermissionCell.swift; sourceTree = "<group>"; };
+		A5AF25A32B91FBB90026DA27 /* SALog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SALog.swift; sourceTree = "<group>"; };
 		A5B3CBDE2B62504D00F95AC3 /* GetChannelValueUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetChannelValueUseCase.swift; sourceTree = "<group>"; };
 		A5B3CBE12B62525500F95AC3 /* DefaultDoubleValueProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultDoubleValueProvider.swift; sourceTree = "<group>"; };
 		A5B3CBE42B62546800F95AC3 /* DoubleValueParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoubleValueParser.swift; sourceTree = "<group>"; };
@@ -4502,6 +4504,7 @@
 				A5F14B7729DED97400682FA6 /* UI */,
 				A573B38B29DE9F5600EBAFC4 /* BaseViewControllerExtensions.swift */,
 				A57785BE29E80406001C631E /* SuplaAppWrapper.swift */,
+				A5AF25A32B91FBB90026DA27 /* SALog.swift */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -6280,6 +6283,7 @@
 				"${BUILT_PRODUCTS_DIR}/RxRelay/RxRelay.framework",
 				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/RxSwiftExt/RxSwiftExt.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftyBeaver/SwiftyBeaver.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
@@ -6294,6 +6298,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxRelay.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwiftExt.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyBeaver.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -6647,6 +6652,7 @@
 				A597271129DAEA480090A044 /* SAScene+Ext.swift in Sources */,
 				A57668C82AE7CE890025509D /* SuplaCombinedChartView.swift in Sources */,
 				A5477DBD2AA52F5700220B4A /* ThermostatValue.swift in Sources */,
+				A5AF25A42B91FBB90026DA27 /* SALog.swift in Sources */,
 				A51BE9132AAAFFEB00718F2F /* SuplaChannelConfig.swift in Sources */,
 				A51BE9182AAB027400718F2F /* QuarterOfHour.swift in Sources */,
 				A530EE4E2A5C357100F8DAEE /* StartTimerUseCase.swift in Sources */,

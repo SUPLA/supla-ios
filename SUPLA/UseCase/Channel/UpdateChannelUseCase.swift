@@ -140,13 +140,13 @@ final class UpdateChannelUseCase {
             return channelConfigRepository.getConfig(channelRemoteId: suplaChannel.Id)
                 .flatMap { config in
                     if (config == nil || config!.config_crc32 != suplaChannel.DefaultConfigCRC32) {
-                        NSLog("Channel config asked (remoteId: `\(suplaChannel.Id)`")
+                        SALog.debug("Channel config asked (remoteId: `\(suplaChannel.Id)`")
                         return self.getChannelConfigUseCase
                             .invoke(remoteId: suplaChannel.Id, type: .defaultConfig)
                             .flatMap { _ in Observable.just(()) }
                     }
                     
-                    NSLog("Channel config not asked (remoteId: `\(suplaChannel.Id)`")
+                    SALog.debug("Channel config not asked (remoteId: `\(suplaChannel.Id)`")
                     return Observable.just(())
                 }
         }

@@ -174,7 +174,7 @@ enum SuplaChannelConfigMeterChartType: Int32, CaseIterable, Codable {
             }
         }
         
-        NSLog("Invalid SuplaChannelConfigMeterChartType value `\(chartType)'")
+        SALog.error("Invalid SuplaChannelConfigMeterChartType value `\(chartType)'")
         return .linear
     }
 }

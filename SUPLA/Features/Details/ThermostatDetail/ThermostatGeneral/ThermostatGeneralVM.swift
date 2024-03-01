@@ -257,7 +257,7 @@ class ThermostatGeneralVM: BaseViewModel<ThermostatGeneralViewState, ThermostatG
     }
     
     private func handleData(data: ((ChannelWithChildren, [MeasurementValue]?), SuplaChannelHvacConfig?, SuplaChannelWeeklyScheduleConfig?, SuplaDeviceConfig)) {
-        NSLog("General handle data")
+        SALog.debug("General handle data")
         let channel = data.0.0
         
         guard let temperatures = data.0.1,
@@ -267,18 +267,18 @@ class ThermostatGeneralVM: BaseViewModel<ThermostatGeneralViewState, ThermostatG
         
         updateView { state in
             if (state.changing) {
-                NSLog("ThermostatGeneralVM: update skipped because of changing")
+                SALog.info("Update skipped because of changing")
                 return state // Do not change anything, when user makes manual operations
             }
             
             if let lastInteractionTime = state.lastInteractionTime,
                lastInteractionTime + REFRESH_DELAY_S > dateProvider.currentTimestamp() {
-                NSLog("ThermostatGeneralVM: update skipped because of last interaction time")
+                SALog.info("Update skipped because of last interaction time")
                 updateRelay.accept(())
                 return state // Do not change anything during 3 secs after last user interaction
             }
             
-            NSLog("ThermostatGeneralVM: updating state with data")
+            SALog.debug("Updating state with data")
             
             var changedState = state
                 .changing(path: \.remoteId, to: channel.channel.remote_id)

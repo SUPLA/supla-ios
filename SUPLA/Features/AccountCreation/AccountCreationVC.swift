@@ -371,7 +371,7 @@ class AccountCreationVC: BaseViewControllerVM<AccountCreationViewState, AccountC
             self?.viewModel.removeAccount()
         }))
         actionSheet.addAction(UIAlertAction(title: Strings.General.cancel, style: .cancel, handler: { action in
-            NSLog("User canceled removal action")
+            SALog.debug("User canceled removal action")
         }))
         self.present(actionSheet, animated: true)
     }

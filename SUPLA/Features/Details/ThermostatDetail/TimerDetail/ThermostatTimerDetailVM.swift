@@ -192,7 +192,7 @@ class ThermostatTimerDetailVM: BaseViewModel<ThermostatTimerDetailViewState, The
     }
     
     private func handleData(_ channel: SAChannel, _ config: SuplaChannelHvacConfig) {
-        NSLog("Handle data")
+        SALog.debug("Handle data")
         let currentDate = dateProvider.currentDate()
         let timerEndDate = channel.getTimerEndDate()
         let isTimerOn = timerEndDate != nil && timerEndDate!.timeIntervalSince1970 > currentDate.timeIntervalSince1970

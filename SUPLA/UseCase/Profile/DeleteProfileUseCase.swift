@@ -73,10 +73,10 @@ final class DeleteProfileUseCaseImpl: DeleteProfileUseCase {
             do {
                 try singleCall.registerPushToken(&authDetails, Int32(authInfo.preferredProtocolVersion), &tokenDetails)
             } catch {
-                NSLog("Push token removal failed with error: \(error)")
+                SALog.error("Push token removal failed with error: \(error)")
             }
         } else {
-            NSLog("Push token removal skipped because of incomplete data")
+            SALog.info("Push token removal skipped because of incomplete data")
         }
     }
     

@@ -71,7 +71,7 @@ extension MultiAccountProfileManager: ProfileManager {
             var config = runtimeConfig
             config.activeProfileId = profile.objectID
         } catch {
-            NSLog("Error occured by saving \(error)")
+            SALog.error("Error occured by saving \(error)")
             return false;
         }
         cloudConfigHolder.clean()
@@ -132,7 +132,7 @@ extension MultiAccountProfileManager: ProfileManager {
                 
                 return true
             } catch {
-                NSLog("Could not restore account because of \(error)")
+                SALog.error("Could not restore account because of \(error)")
             }
         }
         
@@ -154,7 +154,7 @@ extension MultiAccountProfileManager: ProfileManager {
                 var tokenDetails = SingleCallWrapper.prepareClientToken(for: nil, andProfile: profileName)
                 try self.singleCall.registerPushToken(&authDetails, protocolVersion, &tokenDetails)
             } catch {
-                NSLog("Push token removal failed with error: \(error)")
+                SALog.error("Push token removal failed with error: \(error)")
             }
         }
     }

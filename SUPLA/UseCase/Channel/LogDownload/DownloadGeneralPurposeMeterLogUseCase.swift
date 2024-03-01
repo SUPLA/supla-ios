@@ -58,11 +58,11 @@ final class DownloadGeneralPurposeMeterLogUseCaseImpl:
                 .toBlocking()
                 .single()
             if (measurements.isEmpty) {
-                NSLog("Measurements end reached")
+                SALog.debug("Measurements end reached")
                 return
             }
             
-            NSLog("Measurements fetched \(measurements.count)")
+            SALog.info("Measurements fetched \(measurements.count)")
             lastEntity = try generalPurposeMeterItemRepository.storeMeasurements(
                 measurements: measurements,
                 latestItem: lastEntity,
