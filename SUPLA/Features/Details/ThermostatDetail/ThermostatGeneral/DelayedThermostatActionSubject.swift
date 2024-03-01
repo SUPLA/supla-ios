@@ -28,7 +28,7 @@ final class DelayedThermostatActionSubjectImpl: DelayedCommandSubject<Thermostat
     @Singleton<ExecuteThermostatActionUseCase> private var executeThermostatActionUseCase
     
     override func execute(data: ThermostatActionData) -> Observable<RequestResult> {
-        NSLog("Executing delayed thermostat action with \(data)")
+        SALog.debug("Executing delayed thermostat action with \(data)")
         
         return executeThermostatActionUseCase.invoke(
             type: .channel,

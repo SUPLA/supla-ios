@@ -49,7 +49,7 @@ final class UpdateSceneIconRelationsUseCase {
                 .first()
             
         } catch {
-            NSLog("Scenes icons update failed with error \(error)")
+            SALog.error("Scenes icons update failed with error \(error)")
         }
     }
     

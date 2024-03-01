@@ -21,7 +21,6 @@ import RxCocoa
 import RxDataSources
 
 class SceneListVM: BaseTableViewModel<SceneListViewState, SceneListViewEvent> {
-    
     @Singleton<CreateProfileScenesListUseCase> private var createProfileScenesListUseCase
     @Singleton<SwapScenePositionsUseCase> private var swapScenePositionsUseCase
     @Singleton<UpdateEventsManager> private var updateEventsManager
@@ -58,10 +57,8 @@ class SceneListVM: BaseTableViewModel<SceneListViewState, SceneListViewEvent> {
         switch (buttonType) {
         case .leftButton:
             abortScene(sceneId: sceneId)
-            break
         case .rightButton:
             executeScene(sceneId: sceneId)
-            break
         }
     }
     

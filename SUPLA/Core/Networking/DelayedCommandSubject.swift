@@ -35,7 +35,7 @@ class DelayedCommandSubject<T: DelayableData> {
                     return Observable.just(RequestResult.success)
                 }
             }
-            .subscribe(onError: { NSLog("Could not execute delayed request \($0)")})
+            .subscribe(onError: { SALog.error("Could not execute delayed request \($0)")})
             .disposed(by: disposeBag)
     }
     

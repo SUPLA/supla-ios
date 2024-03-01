@@ -99,9 +99,13 @@ class BaseTableViewController<S: ViewState, E: ViewEvent, VM: BaseTableViewModel
             .do(
                 onNext: { [weak self] in
                     if ($0.isEmpty == true) {
-                        self?.showEmptyMessage(self?.tableView)
+                        self?.showLoading(self?.tableView)
                     } else {
-                        self?.tableView.backgroundView = nil
+                        if ($0[0].items.isEmpty) {
+                            self?.showEmptyMessage(self?.tableView)
+                        } else {
+                            self?.tableView.backgroundView = nil
+                        }
                     }
                 }
             )
@@ -169,6 +173,10 @@ class BaseTableViewController<S: ViewState, E: ViewEvent, VM: BaseTableViewModel
     
     func showEmptyMessage(_ tableView: UITableView?) {}
     
+    func showLoading(_ tableView: UITableView?) {
+        tableView?.backgroundView = createLoadingView()
+    }
+    
     func createNoContentView(_ buttonLabel: String) -> UIView {
         noContentButton.setAttributedTitle(buttonLabel)
         
@@ -183,6 +191,23 @@ class BaseTableViewController<S: ViewState, E: ViewEvent, VM: BaseTableViewModel
             noContentButton.topAnchor.constraint(equalTo: content.centerYAnchor, constant: Dimens.distanceDefault),
             noContentButton.centerXAnchor.constraint(equalTo: content.centerXAnchor)
         ])
+        
+        return content
+    }
+    
+    func createLoadingView() -> UIView {
+        let loadingIndicatorView = UIActivityIndicatorView()
+        loadingIndicatorView.translatesAutoresizingMaskIntoConstraints = false
+        
+        let content = UIView()
+        content.addSubview(loadingIndicatorView)
+        
+        NSLayoutConstraint.activate([
+            loadingIndicatorView.centerYAnchor.constraint(equalTo: content.centerYAnchor),
+            loadingIndicatorView.centerXAnchor.constraint(equalTo: content.centerXAnchor)
+        ])
+        
+        loadingIndicatorView.startAnimating()
         
         return content
     }

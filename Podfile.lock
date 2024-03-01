@@ -28,6 +28,7 @@ PODS:
     - RxSwiftExt/Core
   - RxTest (6.6.0):
     - RxSwift (= 6.6.0)
+  - SwiftyBeaver (1.9.5)
 
 DEPENDENCIES:
   - DGCharts (= 5.1.0)
@@ -40,6 +41,7 @@ DEPENDENCIES:
   - RxSwift
   - RxSwiftExt
   - RxTest
+  - SwiftyBeaver (= 1.9.5)
 
 SPEC REPOS:
   trunk:
@@ -55,6 +57,7 @@ SPEC REPOS:
     - RxSwift
     - RxSwiftExt
     - RxTest
+    - SwiftyBeaver
 
 SPEC CHECKSUMS:
   DGCharts: 1c6daf585b6cfc78807af44ea690d357c410627f
@@ -69,7 +72,8 @@ SPEC CHECKSUMS:
   RxSwift: a4b44f7d24599f674deebd1818eab82e58410632
   RxSwiftExt: 43aaacb6a4d3c69c55e9d1cf4f79920043d13583
   RxTest: a23f26bb53a5e146a0a69db4f0fa0b69001ce7f4
+  SwiftyBeaver: 84069991dd5dca07d7069100985badaca7f0ce82
 
-PODFILE CHECKSUM: 763a4a1369084e8ba5d91a633263d8d5859b3920
+PODFILE CHECKSUM: a74bba934370ff0bc37899facb84cc5e3cf9d6df
 
 COCOAPODS: 1.11.3

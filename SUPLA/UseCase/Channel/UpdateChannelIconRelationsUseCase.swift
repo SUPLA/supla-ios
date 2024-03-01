@@ -49,7 +49,7 @@ final class UpdateChannelIconRelationsUseCase {
                 .first()
             
         } catch {
-            NSLog("Channels icons update failed with error \(error)")
+            SALog.error("Channels icons update failed with error \(error)")
         }
     }
     

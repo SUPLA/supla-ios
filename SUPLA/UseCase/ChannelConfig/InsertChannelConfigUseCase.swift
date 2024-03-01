@@ -35,20 +35,20 @@ final class InsertChannelConfigUseCaseImpl: InsertChannelConfigUseCase {
         }
         
         if let suplaConfig = config as? SuplaChannelGeneralPurposeMeasurementConfig {
-            NSLog("Saving config (remoteId: `\(suplaConfig.remoteId)`, function: `\(suplaConfig.channelFunc ?? -1)`")
+            SALog.info("Saving config (remoteId: `\(suplaConfig.remoteId)`, function: `\(suplaConfig.channelFunc ?? -1)`")
             return getOrCreateConfig(suplaConfig.remoteId)
                 .map { self.updateConfig($0, suplaConfig) }
                 .flatMap { self.channelConfigRepository.save($0) }
         }
         
         if let suplaConfig = config as? SuplaChannelGeneralPurposeMeterConfig {
-            NSLog("Saving config (remoteId: `\(suplaConfig.remoteId)`, function: `\(suplaConfig.channelFunc ?? -1)`)")
+            SALog.info("Saving config (remoteId: `\(suplaConfig.remoteId)`, function: `\(suplaConfig.channelFunc ?? -1)`)")
             return getOrCreateConfig(suplaConfig.remoteId, suplaConfig: suplaConfig)
                 .map { self.updateConfig($0, suplaConfig) }
                 .flatMap { self.channelConfigRepository.save($0) }
         }
         
-        NSLog("Got config which cannot be stored (remoteId: `\(config?.remoteId ?? -1)`, function: `\(config?.channelFunc ?? -1)`)")
+        SALog.info("Got config which cannot be stored (remoteId: `\(config?.remoteId ?? -1)`, function: `\(config?.channelFunc ?? -1)`)")
         
         if let config = config,
            shouldHandle(config)
@@ -76,7 +76,7 @@ final class InsertChannelConfigUseCaseImpl: InsertChannelConfigUseCase {
                    let meterConfig = config.configAsSuplaConfig() as? SuplaChannelGeneralPurposeMeterConfig,
                    self.shouldCleanupHistory(meterConfig, suplaConfig)
                 {
-                    NSLog("Triggering history deletion for \(channelRemoteId)")
+                    SALog.info("Triggering history deletion for \(channelRemoteId)")
                     return self.profileRepository.getActiveProfile()
                         .flatMap { self.generalPurposeMeterItemRepository.deleteAll(for: $0, and: channelRemoteId) }
                         .map { _ in

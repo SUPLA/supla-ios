@@ -126,7 +126,7 @@ final class UseCaseLegacyWrapper: NSObject {
         do {
             try InsertChannelRelationForProfileUseCase().invoke(suplaRelation: relation).subscribeSynchronous()
         } catch {
-            NSLog("Could not insert relation `\(relation)` because of `\(error)`")
+            SALog.error("Could not insert relation `\(relation)` because of `\(error)`")
         }
     }
     
@@ -135,7 +135,7 @@ final class UseCaseLegacyWrapper: NSObject {
         do {
             try MarkChannelRelationsAsRemovableUseCase().invoke().subscribeSynchronous()
         } catch {
-            NSLog("Could not mark relations as removable because of `\(error)`")
+            SALog.error("Could not mark relations as removable because of `\(error)`")
         }
     }
     
@@ -144,7 +144,7 @@ final class UseCaseLegacyWrapper: NSObject {
         do {
             try DeleteRemovableChannelRelationsUseCase().invoke().subscribeSynchronous()
         } catch {
-            NSLog("Could not delete removable relations because of `\(error)`")
+            SALog.error("Could not delete removable relations because of `\(error)`")
         }
     }
     
@@ -168,7 +168,7 @@ final class UseCaseLegacyWrapper: NSObject {
         do {
             return try UpdateServerHostNameUseCase().invoke().subscribeSynchronous()
         } catch {
-            NSLog("Could not load server address because of \(error)")
+            SALog.error("Could not load server address because of \(error)")
             return nil
         }
     }
@@ -178,7 +178,7 @@ final class UseCaseLegacyWrapper: NSObject {
         do {
             try UpdatePreferredProtocolVersionUseCase().invoke(version: version).subscribeSynchronous()
         } catch {
-            NSLog("Could not update preferred protocol version to \(version)")
+            SALog.error("Could not update preferred protocol version to \(version)")
         }
     }
     
@@ -191,7 +191,7 @@ final class UseCaseLegacyWrapper: NSObject {
         do {
             try insertChannelConfigUseCase.invoke(config: config, result: result).subscribeSynchronous()
         } catch {
-            NSLog("Could not insert config of channel id `\(config.remoteId)`")
+            SALog.error("Could not insert config of channel id `\(config.remoteId)`")
         }
     }
     
@@ -202,7 +202,7 @@ final class UseCaseLegacyWrapper: NSObject {
         do {
             try insertNotificationUseCase.invoke(userInfo: userInfo).subscribeSynchronous()
         } catch {
-            NSLog("Could not insert notification: \(String(describing: error))")
+            SALog.error("Could not insert notification: \(String(describing: error))")
         }
     }
 }

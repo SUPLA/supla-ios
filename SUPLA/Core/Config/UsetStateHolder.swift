@@ -37,7 +37,7 @@ final class UserStateHolderImpl: UserStateHolder {
                 return try decoder.decode(TemperatureChartState.self, from: data)
             } catch {
                 let errorString = String(describing: error)
-                NSLog("Could not decode state: \(errorString)")
+                SALog.error("Could not decode state: \(errorString)")
             }
         }
         
@@ -51,7 +51,7 @@ final class UserStateHolderImpl: UserStateHolder {
             userDefaults.set(try encoder.encode(state), forKey: key)
         } catch {
             let errorString = String(describing: error)
-            NSLog("Could not encode state: \(errorString)")
+            SALog.error("Could not encode state: \(errorString)")
         }
     }
     
