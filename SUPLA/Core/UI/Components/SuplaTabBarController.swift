@@ -80,7 +80,7 @@ class SuplaTabBarController<S : ViewState, E : ViewEvent, VM : BaseViewModel<S, 
 #if DEBUG
     deinit {
         let className = NSStringFromClass(type(of: self))
-        NSLog("[DEINIT] BC:\(className)")
+        SALog.debug("[DEINIT] BC:\(className)")
     }
 #endif
 }

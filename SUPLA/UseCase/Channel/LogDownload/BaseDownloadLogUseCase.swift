@@ -43,7 +43,7 @@ class BaseDownloadLogUseCase<M: SuplaCloudMeasurement, E: SAMeasurementItem> {
                 return disposable
             }
             
-            NSLog("Found initial remote entries (count: \(measurements.count), total count: \(totalCount))")
+            SALog.info("Found initial remote entries (count: \(measurements.count), total count: \(totalCount))")
             
             guard let cleanMeasurements = self.checkCleanNeeded(measurements, remoteId, profile) else {
                 observer.onError(GeneralError.illegalState(message: "Could not verify if clean needed"))
@@ -77,7 +77,7 @@ class BaseDownloadLogUseCase<M: SuplaCloudMeasurement, E: SAMeasurementItem> {
                 .subscribeSynchronous()
             guard let code = firstMeasurements?.response.statusCode else { return nil }
             if (code != 200) {
-                NSLog("Initial measurements load failed: \(code)")
+                SALog.error("Initial measurements load failed: \(code)")
                 return nil
             }
             
@@ -90,8 +90,8 @@ class BaseDownloadLogUseCase<M: SuplaCloudMeasurement, E: SAMeasurementItem> {
             
             return (measurements: try baseMeasurementRepository.fromJson(data: data), totalCount: count)
         } catch {
-            NSLog(String(describing: error))
-            NSLog("Initial measurements load failed: \(error.localizedDescription)")
+            SALog.error("Initial measurements load failed: \(error.localizedDescription)")
+            SALog.error(String(describing: error))
             return nil
         }
     }
@@ -103,7 +103,7 @@ class BaseDownloadLogUseCase<M: SuplaCloudMeasurement, E: SAMeasurementItem> {
     ) -> Bool? {
         do {
             if (measurements.isEmpty) {
-                NSLog("No entries to get - cleaning measurements")
+                SALog.info("No entries to get - cleaning measurements")
                 return true
             }
             
@@ -114,11 +114,11 @@ class BaseDownloadLogUseCase<M: SuplaCloudMeasurement, E: SAMeasurementItem> {
             guard let firstUnwrap = timestamp,
                   let minTimestamp = firstUnwrap
             else {
-                NSLog("No entries in DB - no cleaning needed")
+                SALog.info("No entries in DB - no cleaning needed")
                 return false
             }
             
-            NSLog("Found local minimal timestamp \(minTimestamp)")
+            SALog.debug("Found local minimal timestamp \(minTimestamp)")
             for measurement in measurements {
                 let difference = abs(minTimestamp - measurement.date_timestamp.timeIntervalSince1970)
                 if (difference.isLess(than: ALLOWED_TIME_DIFFERENCE)) {
@@ -129,7 +129,7 @@ class BaseDownloadLogUseCase<M: SuplaCloudMeasurement, E: SAMeasurementItem> {
             
             return true
         } catch {
-            NSLog("Could not verify if clean needed: \(error.localizedDescription)")
+            SALog.error("Could not verify if clean needed: \(error.localizedDescription)")
             return nil
         }
     }
@@ -142,7 +142,7 @@ class BaseDownloadLogUseCase<M: SuplaCloudMeasurement, E: SAMeasurementItem> {
         _ observer: AnyObserver<Float>,
         _ disposable: BooleanDisposable
     ) throws {
-        NSLog("Check for cleaning (cleanMeasurements: `\(cleanMeasurements))`")
+        SALog.debug("Check for cleaning (cleanMeasurements: `\(cleanMeasurements))`")
         if (cleanMeasurements) {
             try baseMeasurementRepository.deleteAll(for: profile).subscribeSynchronous()
         }
@@ -152,11 +152,11 @@ class BaseDownloadLogUseCase<M: SuplaCloudMeasurement, E: SAMeasurementItem> {
             profile: profile
         ).subscribeSynchronous(defaultValue: 0)
         if (databaseCount == totalCount && !cleanMeasurements) {
-            NSLog("Database and cloud has same size of measurements. Import skipped")
+            SALog.info("Database and cloud has same size of measurements. Import skipped")
             return
         }
         
-        NSLog("Measurements import started (db count: \(databaseCount), remote count: \(totalCount))")
+        SALog.info("Measurements import started (db count: \(databaseCount), remote count: \(totalCount))")
         try iterateAndImport(totalCount, databaseCount, cleanMeasurements, remoteId, profile, observer, disposable)
     }
     
@@ -178,11 +178,11 @@ class BaseDownloadLogUseCase<M: SuplaCloudMeasurement, E: SAMeasurementItem> {
         while (!disposable.isDisposed) {
             let measurements = try baseMeasurementRepository.getMeasurements(remoteId: remoteId, afterTimestamp: afterTimestamp).toBlocking().single()
             if (measurements.isEmpty) {
-                NSLog("Measurements end reached")
+                SALog.debug("Measurements end reached")
                 return
             }
             
-            NSLog("Measurements fetched \(measurements.count)")
+            SALog.info("Measurements fetched \(measurements.count)")
             afterTimestamp = try baseMeasurementRepository.storeMeasurements(
                 measurements: measurements,
                 timestamp: afterTimestamp,

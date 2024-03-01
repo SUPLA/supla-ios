@@ -168,14 +168,14 @@ class ScheduleDetailVM: BaseViewModel<ScheduleDetailViewState, ScheduleDetailVie
     
     private func onConfigLoaded(configs: (SuplaChannelWeeklyScheduleConfig, SuplaConfigResult, SuplaChannelHvacConfig, SuplaConfigResult, SuplaDeviceConfig)) {
         
-        NSLog("Schedule detail got data: `\(configs)`")
+        SALog.debug("Schedule detail got data: `\(configs)`")
         let weeklyScheduleConfig = configs.0
         let weeklyScheduleResult = configs.1
         let hvacConfig = configs.2
         let hvacResult = configs.3
         
         if (weeklyScheduleResult != .resultTrue || hvacResult != .resultTrue) {
-            NSLog("Got unsuccessfull result (schedule: \(weeklyScheduleResult), hvac: \(hvacResult))")
+            SALog.info("Got unsuccessfull result (schedule: \(weeklyScheduleResult), hvac: \(hvacResult))")
             return
         }
         guard let configMin = hvacConfig.temperatures.roomMin?.fromSuplaTemperature(),

@@ -205,7 +205,7 @@ class AccountCreationVM: BaseViewModel<AccountCreationViewState, AccountCreation
                         }
                     } else {
                         let description = String(describing: error)
-                        NSLog("Could not create account: \(description)")
+                        SALog.warning("Could not create account: \(description)")
                         self?.send(event: .showRequiredDataMisingDialog)
                     }
                 }

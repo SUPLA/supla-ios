@@ -37,14 +37,14 @@ class UpdateTokenTask: NSObject {
     private func doUpdate(token: Data) {
         var settings = settings
         if (settings.pushToken == token && tokenUpdateNotNeeded()) {
-            NSLog("Token update skipped. Tokens are equal")
+            SALog.info("Token update skipped. Tokens are equal")
             return
         }
         
         do {
             let profiles = try profileRepository.getAllProfiles().toBlocking().first()
             if (profiles == nil || profiles?.count == 0) {
-                NSLog("Skipping token update - no profiles found")
+                SALog.info("Skipping token update - no profiles found")
                 return
             }
             
@@ -52,7 +52,7 @@ class UpdateTokenTask: NSObject {
             profiles?.forEach { profile in
                 let name = profile.name ?? "<<>>"
                 
-                NSLog("Updating token for profile `\(name)`")
+                SALog.info("Updating token for profile `\(name)`")
                 if (!updateToken(token: token, forProfile: profile)) {
                     allProfilesUpdated = false
                 }
@@ -62,7 +62,7 @@ class UpdateTokenTask: NSObject {
                 settings.pushTokenLastUpdate = dateProvider.currentTimestamp()
             }
         } catch {
-            NSLog("Token update task failed with error \(error)")
+            SALog.warning("Token update task failed with error \(error)")
         }
     }
     
@@ -75,11 +75,11 @@ class UpdateTokenTask: NSObject {
             if let authInfo = profile.authInfo, authInfo.isAuthDataComplete {
                 try singleCall.registerPushToken(&authDetails, Int32(authInfo.preferredProtocolVersion), &tokenDetails)
             } else {
-                NSLog("Token update skipped for profile with incomplete data \(name)")
+                SALog.debug("Token update skipped for profile with incomplete data \(name)")
             }
             return true
         } catch {
-            NSLog("Token update for porfile `\(name)` failed with error \(error)")
+            SALog.warning("Token update for porfile `\(name)` failed with error \(error)")
             return false
         }
     }

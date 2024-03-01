@@ -23,9 +23,8 @@ import RxCocoa
 extension ObservableType {
     func asDriverWithoutError() -> Driver<Element> {
         return asDriver { error in
-            let errorDescription = String(describing: error)
-            NSLog("Driver got error: \(error.localizedDescription)")
-            NSLog(errorDescription)
+            SALog.error("Driver got error: \(error.localizedDescription)")
+            SALog.error(String(describing: error))
             
             return Driver.empty()
         }
@@ -35,9 +34,8 @@ extension ObservableType {
 extension Single {
     func asDriverWithoutError() -> Driver<Element> {
         return asDriver { error in
-            let errorDescription = String(describing: error)
-            NSLog("Driver got error: \(error.localizedDescription)")
-            NSLog(errorDescription)
+            SALog.error("Driver got error: \(error.localizedDescription)")
+            SALog.error(String(describing: error))
             
             return Driver.empty()
         }

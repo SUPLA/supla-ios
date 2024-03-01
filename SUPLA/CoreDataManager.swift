@@ -40,7 +40,7 @@ class CoreDataManager: NSObject {
         description?.type = storeType
         
 #if DEBUG
-        NSLog("Database path: \(dbUrl.absoluteString)")
+        SALog.info("Database path: \(dbUrl.absoluteString)")
 #endif
         
         return container

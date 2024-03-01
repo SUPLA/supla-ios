@@ -37,6 +37,7 @@
 }
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    [SALogWrapper setup];
 
 #ifdef DEBUG
     // Short-circuit starting app if running unit tests
