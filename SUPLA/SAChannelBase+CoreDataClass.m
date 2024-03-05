@@ -635,7 +635,7 @@
             return @"fnc_electricitymeter";
             
         case SUPLA_CHANNELFNC_IC_GAS_METER:
-            return @"fnc_gasemeter";
+            return @"fnc_gasmeter";
             
         case SUPLA_CHANNELFNC_IC_WATER_METER:
             return @"fnc_watermeter";
