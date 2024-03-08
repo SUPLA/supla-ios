@@ -21,17 +21,55 @@ import Foundation
 protocol SuplaCloudConfigHolder {
     var token: SAOAuthToken? { get set }
     var url: String? { get set }
-    
+
     func clean()
+    func requireUrl() throws -> String
+    func requireToken() throws -> SAOAuthToken
 }
 
-final class SuplaCloudConfigHolderImpl : SuplaCloudConfigHolder {
-    
+final class SuplaCloudConfigHolderImpl: SuplaCloudConfigHolder {
+    @Singleton<SuplaClientProvider> private var clientProvider
+
+    private let syncedQueue = DispatchQueue(label: "RequestPrivateQueue", attributes: .concurrent)
+
     var token: SAOAuthToken? = nil
     var url: String? = nil
-    
     func clean() {
         token = nil
-        url = nil
+    }
+
+    func requireUrl() throws -> String {
+        let token = try requireToken()
+        let tokenUrl: String? = token.url()
+        if let url = tokenUrl {
+            return url
+        }
+
+        if let url = url {
+            return url
+        }
+
+        throw GeneralError.illegalState(message: "Url could not by retrieved")
+    }
+
+    func requireToken() throws -> SAOAuthToken {
+        return try syncedQueue.sync {
+            if let token = token, token.isAlive() {
+                return token
+            }
+
+            clientProvider.provide().oAuthTokenRequest()
+
+            let rounds: Int32 = ProcessInfo.processInfo.environment["XCTestConfigurationFilePath"] != nil ? 1 : 50
+
+            for _ in 0 ... rounds {
+                if let token = token, token.isAlive() {
+                    return token
+                }
+                usleep(100000)
+            }
+
+            throw GeneralError.illegalState(message: "Token could not by retrieved")
+        }
     }
 }

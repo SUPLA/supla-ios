@@ -71,35 +71,6 @@ class RequestHelperTests: ObservableTestCase {
         assertEvents(observer, items: [.error(RequestHelperError.wrongUrl(url: url))])
     }
     
-    func test_shouldFailWhenTokenNil() {
-        // given
-        let url = "https://www.supla.org"
-        let observer: TestableObserver<(response: HTTPURLResponse, data: Data)> = observer()
-        
-        // when
-        helper.getOAuthRequest(urlString: url)
-            .subscribe(observer)
-            .disposed(by: disposeBag)
-        
-        // then
-        assertEvents(observer, items: [.error(RequestHelperError.tokenNotValid(message: "By preparing request"))])
-    }
-    
-    func test_shouldFailWhenTokenExpired() {
-        // given
-        let url = "https://www.supla.org"
-        let observer: TestableObserver<(response: HTTPURLResponse, data: Data)> = observer()
-        suplaCloudConfigHolder.token = SAOAuthToken.mock()
-        
-        // when
-        helper.getOAuthRequest(urlString: url)
-            .subscribe(observer)
-            .disposed(by: disposeBag)
-        
-        // then
-        assertEvents(observer, items: [.error(RequestHelperError.tokenNotValid(message: "By preparing request"))])
-    }
-    
     func test_shouldGetResponseWhenOAuthTokenCorrect() {
         // given
         let url = "https://www.supla.org"
@@ -154,7 +125,7 @@ class RequestHelperTests: ObservableTestCase {
         // given
         let url = "https://www.supla.org"
         let observer: TestableObserver<(response: HTTPURLResponse, data: Data)> = observer()
-        suplaCloudConfigHolder.token = SAOAuthToken.mock(expirationTime: 50)
+        suplaCloudConfigHolder.requireTokenReturns = { throw GeneralError.illegalState(message: "No token")}
         
         let response = HTTPURLResponse(url: .init(string: "url")!, statusCode: 401, httpVersion: "5.0", headerFields: nil)!
         let data = Data()
