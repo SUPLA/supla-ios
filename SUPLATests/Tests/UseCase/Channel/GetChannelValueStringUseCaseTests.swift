@@ -210,7 +210,7 @@ final class GetChannelValueStringUseCaseTests: XCTestCase {
     func test_shouldGetGpmValueString() {
         // given
         let config = SuplaChannelGeneralPurposeMeterConfig.mock(
-            valuePrecision: 100,
+            valuePrecision: 2,
             unitBeforValue: "$",
             unitAfterValue: "k",
             noSpaceBeforeValue: true
@@ -226,7 +226,7 @@ final class GetChannelValueStringUseCaseTests: XCTestCase {
         let valueText = useCase.invoke(channel)
         
         // then
-        XCTAssertEqual(valueText, "$12.5 k")
+        XCTAssertEqual(valueText, "$12.50 k")
     }
     
     func test_shouldGetGpmValueString_whenValueIsNan() {

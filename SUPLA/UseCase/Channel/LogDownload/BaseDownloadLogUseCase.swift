@@ -82,7 +82,7 @@ class BaseDownloadLogUseCase<M: SuplaCloudMeasurement, E: SAMeasurementItem> {
             }
             
             guard
-                let countAny = firstMeasurements?.response.allHeaderFields["X-Total-Count"],
+                let countAny = getTotalCount(firstMeasurements),
                 let countString = countAny as? String,
                 let count = Int(countString),
                 let data = firstMeasurements?.data
@@ -193,5 +193,16 @@ class BaseDownloadLogUseCase<M: SuplaCloudMeasurement, E: SAMeasurementItem> {
             importedEntries += measurements.count
             observer.on(.next(Float(importedEntries) / Float(entriesToImport)))
         }
+    }
+    
+    private func getTotalCount(_ responseData: (response: HTTPURLResponse, data: Data)?) -> Any? {
+        if let count = responseData?.response.allHeaderFields["X-Total-Count"] {
+            return count
+        }
+        if let count = responseData?.response.allHeaderFields["x-total-count"] {
+            return count
+        }
+        
+        return nil
     }
 }

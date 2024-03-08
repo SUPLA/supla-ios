@@ -19,13 +19,6 @@
 class GpmValueStringProvider: ChannelValueStringProvider {
     @Singleton<GpmValueProvider> private var gpmValueProvider
     
-    private lazy var formatter: NumberFormatter! = {
-        let formatter = NumberFormatter()
-        formatter.minimumFractionDigits = 0
-        formatter.decimalSeparator = Locale.current.decimalSeparator
-        return formatter
-    }()
-    
     func handle(function: Int32) -> Bool {
         function == SUPLA_CHANNELFNC_GENERAL_PURPOSE_METER
             || function == SUPLA_CHANNELFNC_GENERAL_PURPOSE_MEASUREMENT

@@ -52,7 +52,7 @@ class SuplaCloudServiceTests: ObservableTestCase {
     func test_shoulGetInitialMeasurements() {
         // given
         let remoteId: Int32 = 123
-        configHolder.url = "supla.org"
+        configHolder.requireUrlReturns = { "supla.org" }
         let observer = schedulers.testScheduler.createObserver((response: HTTPURLResponse, data: Data).self)
         
         // when
@@ -69,10 +69,27 @@ class SuplaCloudServiceTests: ObservableTestCase {
         )
     }
     
+    func test_shoulGetErrorWhenTokenMissing() {
+        // given
+        let remoteId: Int32 = 123
+        configHolder.requireUrlReturns = { throw GeneralError.illegalState(message: "No Token") }
+        let observer = schedulers.testScheduler.createObserver((response: HTTPURLResponse, data: Data).self)
+        
+        // when
+        service.getInitialMeasurements(remoteId: remoteId)
+            .subscribe(observer)
+            .disposed(by: disposeBag)
+        schedulers.testScheduler.start()
+        
+        // then
+        assertEvents(observer, items: [.error(GeneralError.illegalState(message: "No Token"))])
+        XCTAssertEqual(requestHelper.oauthRequestParameters, [])
+    }
+    
     func test_shoulGetTemperatureMeasurements() {
         // given
         let remoteId: Int32 = 123
-        configHolder.url = "supla.org"
+        configHolder.requireUrlReturns = { "supla.org" }
         let observer = schedulers.testScheduler.createObserver([SuplaCloudClient.TemperatureMeasurement].self)
         let measurement = SuplaCloudClient.TemperatureMeasurement(
             date_timestamp: Date(),
@@ -102,7 +119,7 @@ class SuplaCloudServiceTests: ObservableTestCase {
     func test_shoulEmitErrorWhenCouldNotParseTemperatureMeasurements() {
         // given
         let remoteId: Int32 = 123
-        configHolder.url = "supla.org"
+        configHolder.requireUrlReturns = { "supla.org" }
         let observer = schedulers.testScheduler.createObserver([SuplaCloudClient.TemperatureMeasurement].self)
         let response = HTTPURLResponse(url: .init(string: "url")!, statusCode: 200, httpVersion: nil, headerFields: nil)
         requestHelper.oauthRequestReturns = Observable.just((response: response!, data: Data()))
@@ -136,7 +153,7 @@ class SuplaCloudServiceTests: ObservableTestCase {
     func test_shoulEmitErrorWhenTemperatureMeasurementsRequestFails() {
         // given
         let remoteId: Int32 = 123
-        configHolder.url = "supla.org"
+        configHolder.requireUrlReturns = { "supla.org" }
         let observer = schedulers.testScheduler.createObserver([SuplaCloudClient.TemperatureMeasurement].self)
         let response = HTTPURLResponse(url: .init(string: "url")!, statusCode: 404, httpVersion: nil, headerFields: nil)
         requestHelper.oauthRequestReturns = Observable.just((response: response!, data: Data()))
@@ -160,7 +177,7 @@ class SuplaCloudServiceTests: ObservableTestCase {
     func test_shoulGetTemperatureAndHumidityMeasurements() {
         // given
         let remoteId: Int32 = 123
-        configHolder.url = "supla.org"
+        configHolder.requireUrlReturns = { "supla.org" }
         let observer = schedulers.testScheduler.createObserver([SuplaCloudClient.TemperatureAndHumidityMeasurement].self)
         let measurement = SuplaCloudClient.TemperatureAndHumidityMeasurement(
             date_timestamp: Date(),
@@ -191,7 +208,7 @@ class SuplaCloudServiceTests: ObservableTestCase {
     func test_shoulEmitErrorWhenTemperatureAndHumidityMeasurementsRequestFails() {
         // given
         let remoteId: Int32 = 123
-        configHolder.url = "supla.org"
+        configHolder.requireUrlReturns = { "supla.org" }
         let observer = schedulers.testScheduler.createObserver([SuplaCloudClient.TemperatureAndHumidityMeasurement].self)
         let response = HTTPURLResponse(url: .init(string: "url")!, statusCode: 404, httpVersion: nil, headerFields: nil)
         requestHelper.oauthRequestReturns = Observable.just((response: response!, data: Data()))
@@ -215,7 +232,7 @@ class SuplaCloudServiceTests: ObservableTestCase {
     func test_shoulEmitErrorWhenCouldNotParseTemperatureAndHumidityMeasurements() {
         // given
         let remoteId: Int32 = 123
-        configHolder.url = "supla.org"
+        configHolder.requireUrlReturns = { "supla.org" }
         let observer = schedulers.testScheduler.createObserver([SuplaCloudClient.TemperatureAndHumidityMeasurement].self)
         let response = HTTPURLResponse(url: .init(string: "url")!, statusCode: 200, httpVersion: nil, headerFields: nil)
         requestHelper.oauthRequestReturns = Observable.just((response: response!, data: Data()))
