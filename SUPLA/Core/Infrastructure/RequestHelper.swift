@@ -20,17 +20,14 @@ import RxSwift
 
 protocol RequestHelper {
     func getRequest(urlString: String) -> Observable<Data>
-    func getOAuthRequest(urlString: String) -> Observable<(response: HTTPURLResponse, data: Data)> 
+    func getOAuthRequest(urlString: String) -> Observable<(response: HTTPURLResponse, data: Data)>
 }
 
 final class RequestHelperImpl: NSObject, RequestHelper {
-    
     @Singleton<SuplaCloudConfigHolder> private var configHolder
     @Singleton<SuplaClientProvider> private var clientProvider
     @Singleton<SessionResponseProvider> private var sessionResponseProvider
     @Singleton<SuplaSchedulers> private var schedulers
-    
-    private let syncedQueue = DispatchQueue(label: "RequestPrivateQueue", attributes: .concurrent)
     
     func getRequest(urlString: String) -> Observable<Data> {
         guard let url: URL = .init(string: urlString)
@@ -53,12 +50,6 @@ final class RequestHelperImpl: NSObject, RequestHelper {
     func getOAuthRequest(urlString: String) -> Observable<(response: HTTPURLResponse, data: Data)> {
         guard let url: URL = .init(string: urlString) else {
             return Observable.error(RequestHelperError.wrongUrl(url: urlString))
-        }
-        
-        if (configHolder.token == nil || configHolder.token?.isAlive() == false) {
-            if (!updateToken()) {
-                return Observable.error(RequestHelperError.tokenNotValid(message: "By preparing request"))
-            }
         }
         
         return sessionResponseProvider.response(oauthRequest(url))
@@ -90,24 +81,17 @@ final class RequestHelperImpl: NSObject, RequestHelper {
     }
     
     private func updateToken() -> Bool {
-        return syncedQueue.sync(execute: {
-            clientProvider.provide().oAuthTokenRequest()
-            
-            let rounds: Int32 = ProcessInfo.processInfo.environment["XCTestConfigurationFilePath"] != nil ? 1 : 50
-            
-            for _ in 0...rounds {
-                if (self.configHolder.token != nil && self.configHolder.token?.isAlive() == true) {
-                    return true
-                }
-                usleep(100000)
-            }
-            
+        do {
+            _ = try configHolder.requireToken()
+            return true
+        } catch {
+            SALog.error("Could not update token")
             return false
-        })
+        }
     }
 }
 
 enum RequestHelperError: Error {
-    case wrongUrl(url: String)
+    case wrongUrl(url: String?)
     case tokenNotValid(message: String)
 }

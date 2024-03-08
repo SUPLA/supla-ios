@@ -237,7 +237,7 @@ final class DownloadTemperatureMeasurementsUseCaseTests: UseCaseTest<Float> {
         )
         profileRepository.activeProfileObservable = Observable.just(profile)
         suplaCloudService.initialMeasurementsReturns = Observable.just((
-            response: mockedHttpResponse(count: 1),
+            response: mockedHttpResponse(count: 1, "x-total-count"),
             data: mockedData(measurements: [measurement])
         ))
         let oldDate = Date.create(year: 2018)!.timeIntervalSince1970
@@ -256,8 +256,8 @@ final class DownloadTemperatureMeasurementsUseCaseTests: UseCaseTest<Float> {
         XCTAssertEqual(temperatureMeasurementItemRepository.deleteAllCounter, 1)
     }
     
-    private func mockedHttpResponse(count: Int = 0) -> HTTPURLResponse {
-        let headers: [String:String] = ["X-Total-Count" : "\(count)"]
+    private func mockedHttpResponse(count: Int = 0, _ totalCountHeader: String = "X-Total-Count") -> HTTPURLResponse {
+        let headers: [String:String] = [totalCountHeader : "\(count)"]
         return HTTPURLResponse(url: .init(string: "url")!, statusCode: 200, httpVersion: nil, headerFields: headers)!
     }
     

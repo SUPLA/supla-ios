@@ -27,10 +27,10 @@ final class GpmValueFormatter: ChannelValueFormatter {
         self.beforeValue = config?.noSpaceBeforeValue ?? false ? unitBefore : "\(unitBefore) "
         let unitAfter = config?.unitAfterValue ?? ""
         self.afterValue = config?.noSpaceAfterValue ?? false ? unitAfter : " \(unitAfter)"
-        self.precision = Int(config?.valuePrecision ?? 0)
+        self.precision = Int(config?.valuePrecision ?? 2)
         self.valueFormatter = NumberFormatter()
         valueFormatter.decimalSeparator = Locale.current.decimalSeparator
-        valueFormatter.minimumFractionDigits = 0
+        valueFormatter.minimumFractionDigits = precision
         valueFormatter.maximumFractionDigits = precision
     }
 

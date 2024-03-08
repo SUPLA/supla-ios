@@ -27,4 +27,18 @@ class SuplaCloudConfigHolderMock: SuplaCloudConfigHolder {
     func clean() {
         cleanCalls += 1
     }
+    
+    var requireUrlCalls: Int = 0
+    var requireUrlReturns: () throws -> String = { "" }
+    func requireUrl() throws -> String {
+        requireUrlCalls += 1
+        return try requireUrlReturns()
+    }
+    
+    var requireTokenCalls: Int = 0
+    var requireTokenReturns: () throws -> SAOAuthToken = { SAOAuthToken() }
+    func requireToken() throws -> SAOAuthToken {
+        requireTokenCalls += 1
+        return try requireTokenReturns()
+    }
 }
