@@ -59,18 +59,14 @@
             [_token appendFormat:@"%02.2hhx", bytes[i]];
         }
         
-        clientToken.TokenSize = _token.length + 1;
+        snprintf((char*)clientToken.Token, sizeof(clientToken.Token), "%s", [_token UTF8String]);
+        snprintf((char*)clientToken.ProfileName, sizeof(clientToken.ProfileName), "%s", [profileName UTF8String]);
+        
+        clientToken.TokenSize = strnlen((char*)clientToken.Token, sizeof(clientToken.Token)) + 1;
         clientToken.RealTokenSize = clientToken.TokenSize;
         if (clientToken.TokenSize > SUPLA_PN_CLIENT_TOKEN_MAXSIZE) {
             clientToken.TokenSize = SUPLA_PN_CLIENT_TOKEN_MAXSIZE;
         }
-        snprintf((char*)clientToken.Token, clientToken.TokenSize, "%s", [_token UTF8String]);
-        
-        unsigned long profileNameLenght = profileName.length + 1;
-        if (profileNameLenght >= SUPLA_PN_PROFILE_NAME_MAXSIZE) {
-            profileNameLenght = SUPLA_PN_PROFILE_NAME_MAXSIZE;
-        }
-        snprintf((char*)clientToken.ProfileName, profileNameLenght, "%s", [profileName UTF8String]);
     }
     
     return clientToken;
