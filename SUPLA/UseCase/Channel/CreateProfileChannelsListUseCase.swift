@@ -47,12 +47,18 @@ final class CreateProfileChannelsListUseCaseImpl: CreateProfileChannelsListUseCa
             return []
         }
         
+        let allChildrenIds = parentsMap.reduce([Int32]()) { list, item in
+            var result = list
+            result.append(contentsOf: item.value.map{ $0.channel_id })
+            return result
+        }
+        
         var lastLocation: _SALocation = channels[0].location!
         var items = [ListItem]()
         items.append(.location(location: lastLocation))
         
         for channel in channels {
-            if (channel.flags & Int64(SUPLA_CHANNEL_FLAG_HAS_PARENT) > 0) {
+            if (allChildrenIds.contains(channel.remote_id)) {
                 // skip channels which have parent ID.
                 continue
             }

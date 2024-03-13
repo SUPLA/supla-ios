@@ -944,11 +944,15 @@ void sasuplaclient_device_config_update_or_result(void *_suplaclient,
 }
 
 - (void) channelRelationUpdate: (TSC_SuplaChannelRelation *) relation {
+    NSLog(@"Relation for channel `%i` setting parent to `%i` (S/OEL: %d)", relation->Id, relation->ParentId, relation->EOL);
     
-    NSLog(@"Relation for channel `%i` setting parent to `%i`", relation->Id, relation->ParentId);
+    if ((relation->EOL & 0x2) > 0) {
+        [UseCaseLegacyWrapper markChannelRelationsAsRemovable];
+    }
+    
     [UseCaseLegacyWrapper insertChannelRelationWithRelation: *relation];
     
-    if (relation->EOL == 1) {
+    if ((relation->EOL & 0x1) > 0) {
         [UseCaseLegacyWrapper deleteRemovableRelations];
         [DiContainer.updateEventsManager emitChannelsUpdate];
     }
