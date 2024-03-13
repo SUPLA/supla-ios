@@ -104,13 +104,13 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         
         [self.lMeterValue setText:[_formatter doubleToString: icev.calculatedValue
                                                     withUnit: icev.unit
-                                                maxPrecision: 2]];
+                                                maxPrecision: 3]];
         [self.lTotalCost setText:[_formatter doubleToString: icev.totalCost
                                                    withUnit: icev.currency
                                                maxPrecision: 2]];
         [self.lCurrentConsumption setText:[_formatter doubleToString: currentConsumption
                                                             withUnit: icev.unit
-                                                        maxPrecision: 2]];
+                                                        maxPrecision: 3]];
         [self.lCurrentCost setText:[_formatter doubleToString: currentCost
                                                      withUnit: icev.currency
                                                  maxPrecision: 2]];
