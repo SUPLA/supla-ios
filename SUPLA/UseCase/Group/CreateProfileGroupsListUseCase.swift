@@ -37,7 +37,7 @@ final class CreateProfileGroupsListUseCaseImpl: CreateProfileGroupsListUseCase {
     
     private func toList(_ channels: [SAChannelGroup]) -> [List] {
         if (channels.isEmpty) {
-            return []
+            return [.list(items: [])]
         }
         
         var lastLocation: _SALocation = channels[0].location!

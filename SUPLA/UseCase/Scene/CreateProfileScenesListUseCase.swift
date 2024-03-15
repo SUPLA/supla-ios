@@ -37,7 +37,7 @@ final class CreateProfileScenesListUseCaseImpl: CreateProfileScenesListUseCase {
     
     private func toList(_ scenes: [SAScene]) -> [List] {
         if (scenes.isEmpty) {
-            return []
+            return [.list(items: [])]
         }
         
         var lastLocation: _SALocation = scenes[0].location!

@@ -70,10 +70,7 @@ class SceneListVC: BaseTableViewController<SceneListViewState, SceneListViewEven
     
     override func showEmptyMessage(_ tableView: UITableView?) {
         guard let tableView = tableView else { return }
-        
-        if (tableView.backgroundView == nil) {
-            tableView.backgroundView = createNoContentView(Strings.Scenes.emptyListButton)
-        }
+        tableView.backgroundView = createNoContentView(Strings.Scenes.emptyListButton)
     }
     
     private func setupView() {
