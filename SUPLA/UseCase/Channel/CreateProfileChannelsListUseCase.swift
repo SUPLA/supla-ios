@@ -44,7 +44,7 @@ final class CreateProfileChannelsListUseCaseImpl: CreateProfileChannelsListUseCa
     
     private func toList(_ channels: [SAChannel], _ parentsMap: [Int32: [SAChannelRelation]]) -> [List] {
         if (channels.isEmpty) {
-            return []
+            return [.list(items: [])]
         }
         
         let allChildrenIds = parentsMap.reduce([Int32]()) { list, item in
