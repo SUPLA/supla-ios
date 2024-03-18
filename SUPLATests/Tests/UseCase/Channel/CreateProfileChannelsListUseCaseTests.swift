@@ -60,19 +60,24 @@ final class CreateProfileChannelsListUseCaseTests: UseCaseTest<[List]> {
         location1.caption = "Caption 1"
         location1.location_id = 1
         let channel1 = SAChannel(testContext: nil)
+        channel1.remote_id = 1
         channel1.location = location1
         
         let location2 = _SALocation(testContext: nil)
         location2.caption = "Caption 2"
         location2.location_id = 2
         let channel2 = SAChannel(testContext: nil)
+        channel2.remote_id = 2
         channel2.location = location2
         let channel3 = SAChannel(testContext: nil)
+        channel3.remote_id = 3
         channel3.location_id = 2
-        channel3.flags = Int64(SUPLA_CHANNEL_FLAG_HAS_PARENT)
         
         channelRepository.allVisibleChannelsObservable = Observable.just([ channel1, channel2, channel3 ])
-        channelRelationRepository.getParentsMapReturns = Observable.just([:])
+        
+        let relation = SAChannelRelation(testContext: nil)
+        relation.channel_id = 3
+        channelRelationRepository.getParentsMapReturns = Observable.just([1 : [relation]])
         
         // when
         useCase.invoke().subscribe(observer).disposed(by: disposeBag)
@@ -87,7 +92,7 @@ final class CreateProfileChannelsListUseCaseTests: UseCaseTest<[List]> {
         XCTAssertEqual(items.count, 4)
         XCTAssertEqual(items, [
             .location(location: location1),
-            .channelBase(channelBase: channel1, children: []),
+            .channelBase(channelBase: channel1, children: [ChannelChild(channel: channel3, relationType: .defaultType)]),
             .location(location: location2),
             .channelBase(channelBase: channel2, children: [])
         ])

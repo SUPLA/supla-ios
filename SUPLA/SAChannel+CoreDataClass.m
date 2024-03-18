@@ -234,7 +234,7 @@
     NSNumberFormatter *n2fmt = [[NSNumberFormatter alloc] init];
     n2fmt.maximumFractionDigits = 2;
     n2fmt.minimumIntegerDigits = 1;
-    n2fmt.minimumFractionDigits = 1;
+    n2fmt.minimumFractionDigits = 2;
 
     if (self.value) {
         if (self.value.sub_value_type == SUBV_TYPE_IC_MEASUREMENTS) {

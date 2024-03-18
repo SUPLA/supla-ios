@@ -18,8 +18,7 @@
 
 import Foundation
 
-class GroupListVC : ChannelBaseTableViewController<GroupListViewState, GroupListViewEvent, GroupListViewModel> {
-    
+class GroupListVC: ChannelBaseTableViewController<GroupListViewState, GroupListViewEvent, GroupListViewModel> {
     private var captionEditor: GroupCaptionEditor? = nil
     
     convenience init() {
@@ -32,7 +31,7 @@ class GroupListVC : ChannelBaseTableViewController<GroupListViewState, GroupList
     override func getCollapsedFlag() -> CollapsedFlag { .group }
     
     override func handle(event: GroupListViewEvent) {
-        switch(event) {
+        switch (event) {
         case let .navigateToDetail(legacy: legacyDetailType, channelBase: channelBase):
             navigator?.navigateToLegacyDetail(legacyDetailType: legacyDetailType, channelBase: channelBase)
         case .openCloud:
@@ -58,10 +57,7 @@ class GroupListVC : ChannelBaseTableViewController<GroupListViewState, GroupList
     
     override func showEmptyMessage(_ tableView: UITableView?) {
         guard let tableView = tableView else { return }
-        
-        if (tableView.backgroundView == nil) {
-            tableView.backgroundView = createNoContentView(Strings.Groups.emptyListButton)
-        }
+        tableView.backgroundView = createNoContentView(Strings.Groups.emptyListButton)
     }
     
     private func setupView() {
@@ -70,8 +66,7 @@ class GroupListVC : ChannelBaseTableViewController<GroupListViewState, GroupList
 }
 
 extension GroupListVC: SAChannelCellDelegate {
-    func channelButtonClicked(_ cell: SAChannelCell!) {
-    }
+    func channelButtonClicked(_ cell: SAChannelCell!) {}
     
     func channelCaptionLongPressed(_ remoteId: Int32) {
         vibrationService.vibrate()
@@ -81,4 +76,3 @@ extension GroupListVC: SAChannelCellDelegate {
         captionEditor?.editCaption(withRecordId: remoteId)
     }
 }
-
