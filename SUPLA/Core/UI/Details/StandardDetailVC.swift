@@ -39,7 +39,7 @@ class StandardDetailVC<S : ViewState, E : ViewEvent, VM : StandardDetailVM<S, E>
         edgesForExtendedLayout = []
         view.backgroundColor = .background
         
-        viewModel.loadChannel(remoteId: item.remoteId)
+        viewModel.loadData(remoteId: item.remoteId, type: item.subjectType)
         
         setupViewController()
     }
@@ -82,8 +82,9 @@ class StandardDetailVC<S : ViewState, E : ViewEvent, VM : StandardDetailVM<S, E>
             case .thermostatTimer:
                 viewControllers.append(thermostatTimerDetail())
             case .gpmHistory:
-                viewControllers.append(gpmHistoryDetail()
-                )
+                viewControllers.append(gpmHistoryDetail())
+            case .rollerShutterGeneral:
+                viewControllers.append(rollerShutterGeneralDetail())
             }
         }
         
@@ -197,6 +198,17 @@ class StandardDetailVC<S : ViewState, E : ViewEvent, VM : StandardDetailVM<S, E>
             tag: DetailTabTag.History.rawValue
         )
         
+        return vc
+    }
+    
+    private func rollerShutterGeneralDetail() -> RollerShutterGeneralVC {
+        let vc = RollerShutterGeneralVC(itemBundle: item)
+        vc.navigationCoordinator = navigationCoordinator
+        vc.tabBarItem = UITabBarItem(
+            title: settings.showBottomLabels ? Strings.StandardDetail.tabGeneral : nil,
+            image: .iconGeneral,
+            tag: DetailTabTag.Switch.rawValue
+        )
         return vc
     }
 }

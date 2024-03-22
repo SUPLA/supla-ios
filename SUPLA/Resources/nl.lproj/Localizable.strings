@@ -84,7 +84,6 @@
 "Configuration Failed!" = "Configuratie mislukt!";
 "Connection with the device cannot be set!" = "U kunt geen verbinding maken met het apparaat!";
 "Make sure, if the Wi-fi connection has been set for the I/O device." = "Zorg ervoor dat de verbinding met het WiFi-netwerk van het uitvoerende toestel tot stand is gebracht.";
-"[Calibration]" = "[Kalibratie]";
 "Help" = "Help";
 "https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=L4N7RSWME6LG2" = "https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=QYN932S5UQG8N";
 "Staircase timer" = "Trap automaat";
@@ -251,10 +250,6 @@
 "Z-Wave bridge" = "Z-wave brug";
 "opened / closed the roof window" = "het dakvenster werd geopend/gesloten door";
 "The power was turned off after the set threshold of the allowable current was exceeded." = "De stroomvoorziening werd uitgeschakeld toen de ingestelde stroomlimiet werd overschreden.";
-"Are you sure you want to start calibration?" = "Weet je zeker dat je met het ijken wilt beginnen?";
-"Calibration lost." = "De ijking is mislukt.";
-"Calibration failed." = "De ijking is verloren gegaan.";
-"Motor problem / Unexpected stop." = "Motorprobleem / Onverwachte stilstand.";
 "0: unknown" = "0: onbekend";
 "1: server timeout" = "1: geen antwoord van de server";
 "2: Wi-Fi connection lost" = "2: verlies van WiFi verbinding";
@@ -308,7 +303,14 @@
 "Cfg.removal.dialog.duplicated_name" = "Er is al een rekening met deze naam";
 "Cfg.removal.dialog.incomplete" = "Vul de vereiste gegevens in";
 
-"General.error" = "Fout";
+"general_error" = "Fout";
 
 /* Thermometer Chart */
 "history_no_data_in_selected_period" = "Er zijn geen gegevens voor de grafiek.";
+
+/* Roller shutter detail */
+"roller_shutter_calibration_lost" = "De ijking is mislukt.";
+"roller_shutter_calibration_failed" = "De ijking is verloren gegaan.";
+"roller_shutter_motor_problem" = "Motorprobleem / Onverwachte stilstand.";
+"roller_shutter_calibration" = "Kalibratie";
+"roller_shutter_start_calibration_message" = "Weet je zeker dat je met het ijken wilt beginnen?";

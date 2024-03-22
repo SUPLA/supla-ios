@@ -84,7 +84,6 @@
 "Configuration Failed!" = "Konfiguracja zakończona niepowodzeniem!";
 "Connection with the device cannot be set!" = "Nie można nawiązać połączenia z urządzeniem!";
 "Make sure, if the Wi-fi connection has been set for the I/O device." = "Upewnij się, że połączenie z siecią WiFi urządzenia wykonawczego zostało nawiązane.";
-"[Calibration]" = "[Kalibracja]";
 "Help" = "Pomoc";
 "https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=L4N7RSWME6LG2" = "https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=QYN932S5UQG8N";
 "Staircase timer" = "Automat schodowy";
@@ -251,10 +250,6 @@
 "Z-Wave bridge" = "Most z-wave";
 "opened / closed the roof window" = "otworzył / zamknął okno dachowe";
 "The power was turned off after the set threshold of the allowable current was exceeded." = "Zasilanie zostało wyłączone po przekroczeniu ustawionego progu dopuszczalnego natężenia prądu.";
-"Are you sure you want to start calibration?" = "Czy na pewno chcesz rozpocząć kalibrację ?";
-"Calibration lost." = "Kalibracja nie powiodła się.";
-"Calibration failed." = "Kalibracja została utracona.";
-"Motor problem / Unexpected stop." = "Problem z silnikiem / Nieoczekiwane zatrzymanie.";
 "0: unknown" = "0: nieznany";
 "1: server timeout" = "1: brak odpowiedzi serwera";
 "2: Wi-Fi connection lost" = "2: utrata połączenia WiFi";
@@ -326,7 +321,7 @@
 "push_notification_limit_exceeded" = "Przekroczono limit wysłanych wiadomości PUSH, który wynosi %@ na godzinę.";
 
 /* General */
-"General.error" = "Błąd";
+"general_error" = "Błąd";
 "save" = "Zapisz";
 "turn_on" = "Włącz";
 "turn_off" = "Wyłącz";
@@ -472,3 +467,13 @@
 "notification_delete_all_message" = "Usunięcie powiadomień jest nieodwracalne, kontynuować?";
 "notification_delete_button_delete_all" = "Usuń wszystkie";
 "notification_delete_button_delete_older_than_month" = "Usuń starsze niż 30 dni";
+
+/* Roller shutter detail */
+"roller_shutter_calibration_lost" = "Kalibracja nie powiodła się.";
+"roller_shutter_calibration_failed" = "Kalibracja została utracona.";
+"roller_shutter_motor_problem" = "Problem z silnikiem / Nieoczekiwane zatrzymanie.";
+"roller_shutter_calibration" = "Kalibracja";
+"roller_shutter_start_calibration_message" = "Czy na pewno chcesz rozpocząć kalibrację?";
+"roller_shutter_closing_percentage" = "Zamknięcie:";
+"roller_shutter_opening_percentage" = "Otwarcie:";
+"roller_shutter_calibration_needed" = "Wymagana kalibracja";

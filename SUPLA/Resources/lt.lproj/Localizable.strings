@@ -86,7 +86,6 @@
 "Configuration Failed!" = "Nepavyko sėkmingai baigti konfigūravimo!";
 "Connection with the device cannot be set!" = "Negalima užmegzti ryšio su įrenginiu!";
 "Make sure, if the Wi-fi connection has been set for the I/O device." = "Įsitikinkite, kad vykdomasis įrenginys prisijungė prie Wi-Fi tinklo.";
-"[Calibration]" = "[Kalibravimas]";
 "Help" = "Pagalba";
 "https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=L4N7RSWME6LG2" = "https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=QYN932S5UQG8N";
 "Staircase timer" = "Laiptų automatas";
@@ -253,10 +252,6 @@
 "Z-Wave bridge" = "Z-wave tiltas";
 "opened / closed the roof window" = "atidarė / uždarė stoglangį";
 "The power was turned off after the set threshold of the allowable current was exceeded." = "Maitinimas buvo atjungtas viršijus nustatytą leistinos elektros srovės ribą.";
-"Are you sure you want to start calibration?" = "Ar tikrai norite pradėti kalibravimą?";
-"Calibration lost." = "Kalibravimas nepavyko.";
-"Calibration failed." = "Kalibravimas buvo prarastas.";
-"Motor problem / Unexpected stop." = "Variklio problema / Netikėtas sustojimas.";
 "0: unknown" = "0: nežinoma";
 "1: server timeout" = "1: serveris neatsako";
 "2: Wi-Fi connection lost" = "2: prarastas Wi-Fi ryšys";
@@ -310,7 +305,14 @@
 "Cfg.removal.dialog.duplicated_name" = "Paskyra su tokiu pavadinimu jau yra";
 "Cfg.removal.dialog.incomplete" = "Užpildykite privalomus duomenis";
 
-"General.error" = "Klaida";
+"general_error" = "Klaida";
 
 /* Thermometer Chart */
 "history_no_data_in_selected_period" = "Nėra duomenų diagramai.";
+
+/* Roller shutter detail */
+"roller_shutter_calibration_lost" = "Kalibravimas nepavyko.";
+"roller_shutter_calibration_failed" = "Kalibravimas buvo prarastas.";
+"roller_shutter_motor_problem" = "Variklio problema / Netikėtas sustojimas.";
+"roller_shutter_calibration" = "Kalibravimas";
+"roller_shutter_start_calibration_message" = "Ar tikrai norite pradėti kalibravimą?";

@@ -84,7 +84,6 @@
 "Configuration Failed!" = "Η διαμόρφωση απέτυχε!";
 "Connection with the device cannot be set!" = "Δεν είναι δυνατή η σύνδεση με τη συσκευή!";
 "Make sure, if the Wi-fi connection has been set for the I/O device." = "Βεβαιωθείτε ότι έχει δημιουργηθεί η σύνδεση του ενεργοποιητή με το δίκτυο WiFi.";
-"[Calibration]" = "[Βαθμονόμηση]";
 "Help" = "Βοήθεια";
 "https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=L4N7RSWME6LG2" = "https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=QYN932S5UQG8N";
 "Staircase timer" = "Αυτόματη σκάλα";
@@ -251,10 +250,6 @@
 "Z-Wave bridge" = "Γέφυρα κύματος Ζ";
 "opened / closed the roof window" = "άνοιξε / έκλεισε το παράθυρο της οροφής";
 "The power was turned off after the set threshold of the allowable current was exceeded." = "Η παροχή ρεύματος απενεργοποιήθηκε όταν ξεπεράστηκε το καθορισμένο όριο επιτρεπόμενου ρεύματος.";
-"Are you sure you want to start calibration?" = "Είστε βέβαιοι ότι θέλετε να ξεκινήσετε τη βαθμονόμηση;";
-"Calibration lost." = "Η βαθμονόμηση απέτυχε.";
-"Calibration failed." = "Η βαθμονόμηση έχει χαθεί.";
-"Motor problem / Unexpected stop." = "Πρόβλημα κινητήρα / Απροσδόκητη διακοπή.";
 "0: unknown" = "0: άγνωστο";
 "1: server timeout" = "1: δεν υπάρχει απόκριση διακομιστή";
 "2: Wi-Fi connection lost" = "2: απώλεια σύνδεσης WiFi";
@@ -308,7 +303,14 @@
 "Cfg.removal.dialog.duplicated_name" = "Υπάρχει ήδη ένας λογαριασμός με αυτό το όνομα";
 "Cfg.removal.dialog.incomplete" = "Συμπληρώστε τα απαιτούμενα δεδομένα";
 
-"General.error" = "Λάθος";
+"general_error" = "Λάθος";
 
 /* Thermometer Chart */
 "history_no_data_in_selected_period" = "Δεν υπάρχουν δεδομένα για το γράφημα.";
+
+/* Roller shutter detail */
+"roller_shutter_calibration_lost" = "Η βαθμονόμηση απέτυχε.";
+"roller_shutter_calibration_failed" = "Η βαθμονόμηση έχει χαθεί.";
+"roller_shutter_motor_problem" = "Πρόβλημα κινητήρα / Απροσδόκητη διακοπή.";
+"roller_shutter_calibration" = "Βαθμονόμηση";
+"roller_shutter_start_calibration_message" = "Είστε βέβαιοι ότι θέλετε να ξεκινήσετε τη βαθμονόμηση;";

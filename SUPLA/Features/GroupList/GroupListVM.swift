@@ -53,7 +53,7 @@ class GroupListViewModel: BaseTableViewModel<GroupListViewState, GroupListViewEv
     override func onClicked(onItem item: Any) {
         guard let item = item as? SAChannelGroup else { return }
         
-        if (!item.isOnline()) {
+        if (!isAvailableInOffline(item.func) && !item.isOnline()) {
             return // do not open details for offline channels
         }
         
@@ -66,6 +66,8 @@ class GroupListViewModel: BaseTableViewModel<GroupListViewState, GroupListViewEv
         switch (detailType) {
         case let .legacy(type: legacyDetailType):
             send(event: .navigateToDetail(legacy: legacyDetailType, channelBase: item))
+        case let .rollerShutterDetail(pages):
+            send(event: .naviagetToRollerShutterDetail(item: item.item(), pages: pages))
         default: break
         }
     }
@@ -79,6 +81,7 @@ class GroupListViewModel: BaseTableViewModel<GroupListViewState, GroupListViewEv
 
 enum GroupListViewEvent: ViewEvent {
     case navigateToDetail(legacy: LegacyDetailType, channelBase: SAChannelBase)
+    case naviagetToRollerShutterDetail(item: ItemBundle, pages: [DetailPage])
     case openCloud
 }
 

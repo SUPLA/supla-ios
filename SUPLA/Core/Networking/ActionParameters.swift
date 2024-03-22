@@ -18,32 +18,26 @@
 
 import Foundation
 
-public enum SubjectType: Int32, Equatable {
-    case channel = 1
-    case group = 2
-    case scene = 3
-}
-
 public enum Action: Int32, Equatable {
     case open = 10
     case close = 20
     case shut = 30
     case reveal = 40
-    case reveal_partially = 50
-    case shut_partially = 51
-    case turn_on = 60
-    case turn_off = 70
-    case set_rgbw_parameters = 80
-    case open_close = 90
+    case revealPartially = 50
+    case shutPartially = 51
+    case turnOn = 60
+    case turnOff = 70
+    case setRgbwParameters = 80
+    case openClose = 90
     case stop = 100
     case toggle = 110
-    case up_or_stop = 140
-    case down_or_stop = 150
-    case step_by_step = 160
-    case set_hvac_parameters = 230
+    case upOrStop = 140
+    case downOrStop = 150
+    case stepByStep = 160
+    case setHvacParameters = 230
     case execute = 3000
     case interrupt = 3001
-    case interrupt_and_execute = 3002
+    case interruptAndExecute = 3002
 }
 
 public enum ActionParameters {

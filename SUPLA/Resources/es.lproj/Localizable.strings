@@ -84,7 +84,6 @@
 "Configuration Failed!" = "¡Configuración no completada con éxito!";
 "Connection with the device cannot be set!" = "¡No se puede establecer una conexión con el dispositivo!";
 "Make sure, if the Wi-fi connection has been set for the I/O device." = "Asegúrate de que se haya establecido la conexión a la red WiFi del dispositivo ejecutivo.";
-"[Calibration]" = "[Calibración]";
 "Help" = "Ayuda";
 
 "Staircase timer" = "Automático de escalera";
@@ -251,10 +250,6 @@
 "Z-Wave bridge" = "Puente z-wave";
 "opened / closed the roof window" = "abrió / cerró la ventana de techo";
 "The power was turned off after the set threshold of the allowable current was exceeded." = "La alimentación se desactivo al superar el umbral establecido de la corriente permitida.";
-"Are you sure you want to start calibration?" = "¿Está seguro de que desea iniciar la calibración?";
-"Calibration lost." = "Calibración perdida.";
-"Calibration failed." = "La calibración falló.";
-"Motor problem / Unexpected stop." = "Problema de motor / Parada inesperada.";
 "0: unknown" = "0: desconocido";
 "1: server timeout" = "1: sin respuesta del servidor";
 "2: Wi-Fi connection lost" = "2: Conexión WiFi perdida";
@@ -308,7 +303,14 @@
 "Cfg.removal.dialog.duplicated_name" = "La cuenta con este nombre ya existe";
 "Cfg.removal.dialog.incomplete" = "Completar los datos requeridos";
 
-"General.error" = "Error";
+"general_error" = "Error";
 
 /* Thermometer Chart */
 "history_no_data_in_selected_period" = "No hay datos para el gráfico.";
+
+/* Roller shutter detail */
+"roller_shutter_calibration_lost" = "Calibración perdida.";
+"roller_shutter_calibration_failed" = "La calibración falló.";
+"roller_shutter_motor_problem" = "Problema de motor / Parada inesperada.";
+"roller_shutter_calibration" = "Calibración";
+"roller_shutter_start_calibration_message" = "¿Está seguro de que desea iniciar la calibración?";

@@ -53,7 +53,8 @@ class ChannelListViewModel: BaseTableViewModel<ChannelListViewState, ChannelList
     override func onClicked(onItem item: Any) {
         guard let item = item as? SAChannel else { return }
         
-        if (!isAvailableInOffline(item) && !item.isOnline()) {
+        let subValueType = item.value?.sub_value_type ?? 0
+        if (!isAvailableInOffline(item.func, subValueType: Int32(subValueType)) && !item.isOnline()) {
             return // do not open details for offline channels
         }
         
@@ -74,6 +75,8 @@ class ChannelListViewModel: BaseTableViewModel<ChannelListViewState, ChannelList
             send(event: .navigateToThermometerDetail(item: item.item(), pages: pages))
         case let .gpmDetail(pages):
             send(event: .navigateToGpmDetail(item: item.item(), pages: pages))
+        case let .rollerShutterDetail(pages):
+            send(event: .navigateToRollerShutterDetail(item: item.item(), pages: pages))
         }
     }
     
@@ -84,11 +87,11 @@ class ChannelListViewModel: BaseTableViewModel<ChannelListViewState, ChannelList
         if let channelWithChildren = data as? ChannelWithChildren {
             switch (buttonType) {
             case .leftButton:
-                executeSimpleActionUseCase.invoke(action: .turn_off, type: .channel, remoteId: channelWithChildren.channel.remote_id)
+                executeSimpleActionUseCase.invoke(action: .turnOff, type: .channel, remoteId: channelWithChildren.channel.remote_id)
                     .subscribe()
                     .disposed(by: self)
             case .rightButton:
-                executeSimpleActionUseCase.invoke(action: .turn_on, type: .channel, remoteId: channelWithChildren.channel.remote_id)
+                executeSimpleActionUseCase.invoke(action: .turnOn, type: .channel, remoteId: channelWithChildren.channel.remote_id)
                     .subscribe()
                     .disposed(by: self)
             }
@@ -98,35 +101,6 @@ class ChannelListViewModel: BaseTableViewModel<ChannelListViewState, ChannelList
     func onNoContentButtonClicked() {
         send(event: .showAddWizard)
     }
-    
-    private func isAvailableInOffline(_ channel: SAChannel) -> Bool {
-        switch (channel.func) {
-        case SUPLA_CHANNELFNC_THERMOMETER,
-             SUPLA_CHANNELFNC_HUMIDITYANDTEMPERATURE,
-             SUPLA_CHANNELFNC_ELECTRICITY_METER,
-             SUPLA_CHANNELFNC_IC_ELECTRICITY_METER,
-             SUPLA_CHANNELFNC_IC_GAS_METER,
-             SUPLA_CHANNELFNC_IC_WATER_METER,
-             SUPLA_CHANNELFNC_IC_HEAT_METER,
-             SUPLA_CHANNELFNC_HVAC_DOMESTIC_HOT_WATER,
-             SUPLA_CHANNELFNC_HVAC_THERMOSTAT,
-             SUPLA_CHANNELFNC_GENERAL_PURPOSE_METER,
-             SUPLA_CHANNELFNC_GENERAL_PURPOSE_MEASUREMENT:
-            return true
-        case SUPLA_CHANNELFNC_LIGHTSWITCH,
-             SUPLA_CHANNELFNC_POWERSWITCH,
-             SUPLA_CHANNELFNC_STAIRCASETIMER:
-            switch channel.value?.sub_value_type {
-            case Int16(SUBV_TYPE_IC_MEASUREMENTS),
-                 Int16(SUBV_TYPE_ELECTRICITY_MEASUREMENTS):
-                return true
-            default:
-                return false
-            }
-        default:
-            return false
-        }
-    }
 }
 
 enum ChannelListViewEvent: ViewEvent {
@@ -135,6 +109,7 @@ enum ChannelListViewEvent: ViewEvent {
     case navigateToThermostatDetail(item: ItemBundle, pages: [DetailPage])
     case navigateToThermometerDetail(item: ItemBundle, pages: [DetailPage])
     case navigateToGpmDetail(item: ItemBundle, pages: [DetailPage])
+    case navigateToRollerShutterDetail(item: ItemBundle, pages: [DetailPage])
     case showAddWizard
 }
 

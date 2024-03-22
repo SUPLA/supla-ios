@@ -44,12 +44,22 @@ extension String {
         static let sensorAlert = "icon_sensor_alert"
         static let close = "icon_close"
         static let delete = "icon_delete"
+        static let calibrate = "icon_calibrate"
+        static let offline = "icon_offline"
+        static let stop = "icon_stop"
+        static let touchHand = "icon_touch_hand"
+        static let visible = "icon_visible"
+        static let invisible = "icon_invisible"
         
         static let warning = "channel_warning_level1"
         static let error = "channel_warning_level2"
         
         static let arrowRight = "icon_arrow_right"
         static let arrowDoubleRight = "icon_arrow_double_right"
+        static let arrowOpen = "icon_arrow_open"
+        static let arrowClose = "icon_arrow_close"
+        static let arrowUp = "icon_arrow_up"
+        static let arrowDown = "icon_arrow_down"
         
         // MARK: Functions
         static let fncUnknown = "unknown_channel"

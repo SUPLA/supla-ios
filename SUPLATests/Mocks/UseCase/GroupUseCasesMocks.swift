@@ -47,3 +47,12 @@ final class SwapGroupPositionsUseCaseMock: SwapGroupPositionsUseCase {
     }
 }
 
+final class ReadGroupByRemoteIdUseCaseMock: ReadGroupByRemoteIdUseCase {
+    
+    var returns: Observable<SAChannelGroup> = Observable.empty()
+    var remoteIdArray: [Int32] = []
+    func invoke(remoteId: Int32) -> Observable<SAChannelGroup> {
+        remoteIdArray.append(remoteId)
+        return returns
+    }
+}

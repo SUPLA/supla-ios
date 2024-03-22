@@ -16,45 +16,40 @@
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 
-import XCTest
-import RxTest
 import RxSwift
+import RxTest
+import XCTest
 
 @testable import SUPLA
 
 class UseCaseTest<R>: ObservableTestCase {
-    
-    lazy var observer: TestableObserver<R>! = {
-        schedulers.testScheduler.createObserver(R.self)
-    }()
-    
+    lazy var observer: TestableObserver<R>! = observer()
+
     override func tearDown() {
         super.tearDown()
         observer = nil
     }
-    
+
     func assertEventsCount(_ count: Int) {
         assertEvents(observer, count: count)
     }
-    
+
     func assertEvents(_ items: [Event<R>]) {
         assertEvents(observer, items: items)
     }
 }
 
-extension UseCaseTest where R:Equatable {
+extension UseCaseTest where R: Equatable {
     func assertEvents(_ items: [Event<R>]) {
         let events = observer.events
         XCTAssertEqual(events.count, items.count)
-        
+
         for (event, item) in zip(events, items) {
             switch (event.value, item) {
             case (.error(let e1), .error(let e2)):
                 XCTAssertEqual("\(e1)", "\(e2)")
-                break
             case (.next(let firstElement), .next(let secondElement)):
                 XCTAssertEqual(firstElement, secondElement)
-                break
             case (.completed, .completed):
                 break
             default:

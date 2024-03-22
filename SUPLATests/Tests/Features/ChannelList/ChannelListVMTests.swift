@@ -260,7 +260,7 @@ class ChannelListVMTests: ViewModelTest<ChannelListViewState, ChannelListViewEve
         XCTAssertEqual(eventObserver.events.count, 1)
         
         XCTAssertEqual(eventObserver.events, [
-            .next(0, .navigateToSwitchDetail(item: ItemBundle(remoteId: remoteId, deviceId: deviceId), pages: [.switchGeneral]))
+            .next(0, .navigateToSwitchDetail(item: ItemBundle(remoteId: remoteId, deviceId: deviceId, subjectType: .channel), pages: [.switchGeneral]))
         ])
     }
     
@@ -285,7 +285,7 @@ class ChannelListVMTests: ViewModelTest<ChannelListViewState, ChannelListViewEve
         XCTAssertEqual(eventObserver.events.count, 1)
         
         XCTAssertEqual(eventObserver.events, [
-            .next(0, .navigateToThermostatDetail(item: ItemBundle(remoteId: remoteId, deviceId: deviceId), pages: [.thermostatGeneral]))
+            .next(0, .navigateToThermostatDetail(item: ItemBundle(remoteId: remoteId, deviceId: deviceId, subjectType: .channel), pages: [.thermostatGeneral]))
         ])
     }
     
@@ -310,7 +310,7 @@ class ChannelListVMTests: ViewModelTest<ChannelListViewState, ChannelListViewEve
         XCTAssertEqual(eventObserver.events.count, 1)
         
         XCTAssertEqual(eventObserver.events, [
-            .next(0, .navigateToThermometerDetail(item: ItemBundle(remoteId: remoteId, deviceId: deviceId), pages: [.thermometerHistory]))
+            .next(0, .navigateToThermometerDetail(item: ItemBundle(remoteId: remoteId, deviceId: deviceId, subjectType: .channel), pages: [.thermometerHistory]))
         ])
     }
     
@@ -335,7 +335,7 @@ class ChannelListVMTests: ViewModelTest<ChannelListViewState, ChannelListViewEve
         XCTAssertEqual(eventObserver.events.count, 1)
         
         XCTAssertEqual(eventObserver.events, [
-            .next(0, .navigateToGpmDetail(item: ItemBundle(remoteId: remoteId, deviceId: deviceId), pages: [.gpmHistory]))
+            .next(0, .navigateToGpmDetail(item: ItemBundle(remoteId: remoteId, deviceId: deviceId, subjectType: .channel), pages: [.gpmHistory]))
         ])
     }
     
@@ -354,7 +354,7 @@ class ChannelListVMTests: ViewModelTest<ChannelListViewState, ChannelListViewEve
         XCTAssertEqual(eventObserver.events.count, 0)
         
         XCTAssertTuples(executeSimpleActionUseCase.parameters, [
-            (Action.turn_off, SUPLA.SubjectType.channel, channel.remote_id)
+            (Action.turnOff, SUPLA.SubjectType.channel, channel.remote_id)
         ])
     }
     
@@ -373,7 +373,7 @@ class ChannelListVMTests: ViewModelTest<ChannelListViewState, ChannelListViewEve
         XCTAssertEqual(eventObserver.events.count, 0)
         
         XCTAssertTuples(executeSimpleActionUseCase.parameters, [
-            (Action.turn_on, SUPLA.SubjectType.channel, channel.remote_id)
+            (Action.turnOn, SUPLA.SubjectType.channel, channel.remote_id)
         ])
     }
 }

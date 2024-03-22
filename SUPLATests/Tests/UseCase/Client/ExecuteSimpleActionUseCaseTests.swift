@@ -45,7 +45,7 @@ final class ExecuteSimpleActionUseCaseTests: UseCaseTest<Void> {
     
     func test_execute_positive() {
         // given
-        let action: Action = .turn_on
+        let action: Action = .turnOn
         let type: SubjectType = .channel
         let remoteId: Int32 = 3234
         
@@ -66,7 +66,7 @@ final class ExecuteSimpleActionUseCaseTests: UseCaseTest<Void> {
     
     func test_execute_negative() {
         // given
-        let action: Action = .turn_on
+        let action: Action = .turnOn
         let type: SubjectType = .channel
         let remoteId: Int32 = 3234
         

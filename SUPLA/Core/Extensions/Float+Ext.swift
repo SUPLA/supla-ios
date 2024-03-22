@@ -37,18 +37,24 @@ extension Float {
     }
 }
 
-extension CGFloat {
+extension CGFloat: ScopeFunctions {
+    typealias T = CGFloat
+    
     var float: Float {
         get { Float(self) }
     }
     
-    func toPercentage() -> CGFloat {
-        if (self > 1) {
-            return 1
+    func toPercentage(max: CGFloat = 1) -> CGFloat {
+        if (self > max) {
+            return max
         } else if (self < 0) {
             return 0
         } else {
             return self
         }
+    }
+    
+    func divideToPercentage(value: CGFloat) -> CGFloat {
+        self / value * 100
     }
 }

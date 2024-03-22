@@ -76,6 +76,7 @@ extension DiContainer {
         register(UserStateHolder.self, UserStateHolderImpl())
         register(SessionResponseProvider.self, SessionResponseProviderImpl())
         register(SuplaSchedulers.self, SuplaSchedulersImpl())
+        register(ThreadHandler.self, ThreadHandlerImpl())
         // Managers
         register(UpdateEventsManager.self, UpdateEventsManagerImpl())
         register(ChannelConfigEventsManager.self, ChannelConfigEventsManagerImpl())
@@ -159,11 +160,16 @@ extension DiContainer {
         register(SetChannelConfigUseCase.self, SetChannelConfigUseCaseImpl())
         register(GetDeviceConfigUseCase.self, GetDeviceConfigUseCaseImpl())
         register(ExecuteThermostatActionUseCase.self, ExecuteThermostatActionUseCaseImpl())
+        register(CallSuplaClientOperationUseCase.self, CallSuplaClientOperationUseCaseImpl())
+        register(ExecuteRollerShutterActionUseCase.self, ExecuteRollerShutterActionUseCaseImpl())
+        register(AuthorizeUseCase.self, AuthorizeUseCaseImpl())
         // Usecases - Detail
         register(ProvideDetailTypeUseCase.self, ProvideDetailTypeUseCaseImpl())
         // Usecases - Group
         register(SwapGroupPositionsUseCase.self, SwapGroupPositionsUseCaseImpl())
         register(CreateProfileGroupsListUseCase.self, CreateProfileGroupsListUseCaseImpl())
+        register(ReadGroupByRemoteIdUseCase.self, ReadGroupByRemoteIdUseCaseImpl())
+        register(GetGroupOnlineSummaryUseCase.self, GetGroupOnlineSummaryUseCaseImpl())
         // Usecases - Icon
         register(GetDefaultIconNameUseCase.self, GetDefaultIconNameUseCaseImpl())
         // Usecases - Location
@@ -180,6 +186,7 @@ extension DiContainer {
         register(CreateChannelWithChildrenUseCase.self, CreateChannelWithChildrenUseCaseImpl())
         // Usecases - Notification
         register(InsertNotificationUseCase.self, InsertNotificationUseCaseImpl())
+        register(NotificationCenterWrapper.self, NotificationCenterWrapperImpl())
         
         // MARK: Not singletons
 

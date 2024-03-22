@@ -41,12 +41,22 @@ extension UIImage {
     static let iconSensorAlert = UIImage(named: .Icons.sensorAlert)
     static let iconClose = UIImage(named: .Icons.close)
     static let iconDelete = UIImage(named: .Icons.delete)
+    static let iconCalibrate = UIImage(named: .Icons.calibrate)
+    static let iconOffline = UIImage(named: .Icons.offline)
+    static let iconStop = UIImage(named: .Icons.stop)
+    static let iconTouchHand = UIImage(named: .Icons.touchHand)
+    static let iconVisible = UIImage(named: .Icons.visible)
+    static let iconInvisible = UIImage(named: .Icons.invisible)
     
     static let iconWarning = UIImage(named: .Icons.warning)
     static let iconError = UIImage(named: .Icons.error)
     
     static let iconArrowRight = UIImage(named: .Icons.arrowRight)
     static let iconArrowDoubleRight = UIImage(named: .Icons.arrowDoubleRight)
+    static let iconArrowOpen = UIImage(named: .Icons.arrowOpen)
+    static let iconArrowClose = UIImage(named: .Icons.arrowClose)
+    static let iconArrowUp = UIImage(named: .Icons.arrowUp)
+    static let iconArrowDown = UIImage(named: .Icons.arrowDown)
     
     // MARK: Functions
     static let fncUnknown = UIImage(named: .Icons.fncUnknown)

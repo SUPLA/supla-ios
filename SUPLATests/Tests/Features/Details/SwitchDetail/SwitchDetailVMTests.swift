@@ -30,13 +30,19 @@ final class SwitchDetailVMTests: ViewModelTest<SwitchDetailViewState, SwitchDeta
         ReadChannelByRemoteIdUseCaseMock()
     }()
     
+    private lazy var readGroupByRemoteIdUseCase: ReadGroupByRemoteIdUseCaseMock! = {
+        ReadGroupByRemoteIdUseCaseMock()
+    }()
+    
     override func setUp() {
         DiContainer.shared.register(type: ReadChannelByRemoteIdUseCase.self, readChannelByRemoteIdUseCase!)
+        DiContainer.shared.register(type: ReadGroupByRemoteIdUseCase.self, readGroupByRemoteIdUseCase!)
     }
     
     override func tearDown() {
         viewModel = nil
         readChannelByRemoteIdUseCase = nil
+        readGroupByRemoteIdUseCase = nil
         super.tearDown()
     }
     
@@ -50,7 +56,7 @@ final class SwitchDetailVMTests: ViewModelTest<SwitchDetailViewState, SwitchDeta
         
         // when
         observe(viewModel)
-        viewModel.loadChannel(remoteId: 123)
+        viewModel.loadData(remoteId: 123, type: .channel)
         
         // then
         XCTAssertEqual(stateObserver.events.count, 2)
@@ -58,5 +64,25 @@ final class SwitchDetailVMTests: ViewModelTest<SwitchDetailViewState, SwitchDeta
         XCTAssertEqual(stateObserver.events[1].value.element?.title, name)
         
         XCTAssertEqual(readChannelByRemoteIdUseCase.remoteIdArray[0], 123)
+    }
+    
+    func test_shouldSetTitleFromGroup() {
+        // given
+        let name = "testname"
+        let group = SAChannelGroup(testContext: nil)
+        group.caption = name
+        
+        readGroupByRemoteIdUseCase.returns = Observable.just(group)
+        
+        // when
+        observe(viewModel)
+        viewModel.loadData(remoteId: 123, type: .group)
+        
+        // then
+        XCTAssertEqual(stateObserver.events.count, 2)
+        XCTAssertEqual(eventObserver.events.count, 0)
+        XCTAssertEqual(stateObserver.events[1].value.element?.title, name)
+        
+        XCTAssertEqual(readGroupByRemoteIdUseCase.remoteIdArray[0], 123)
     }
 }

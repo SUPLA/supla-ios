@@ -52,18 +52,18 @@ extension SAChannelCell {
     
     @objc
     func turnOn(_ channelBase: SAChannelBase) {
-        executeSimpleAction(channelBase: channelBase, action: .turn_on)
+        executeSimpleAction(channelBase: channelBase, action: .turnOn)
     }
     
     @objc
     func turnOff(_ channelBase: SAChannelBase) {
-        executeSimpleAction(channelBase: channelBase, action: .turn_off)
+        executeSimpleAction(channelBase: channelBase, action: .turnOff)
     }
     
     @objc
     func shut(_ channelBase: SAChannelBase) {
         if (channelBase.flags & Int64(SUPLA_CHANNEL_FLAG_RS_SBS_AND_STOP_ACTIONS) > 0) {
-            executeSimpleAction(channelBase: channelBase, action: .down_or_stop)
+            executeSimpleAction(channelBase: channelBase, action: .downOrStop)
         } else {
             executeSimpleAction(channelBase: channelBase, action: .shut)
         }
@@ -72,7 +72,7 @@ extension SAChannelCell {
     @objc
     func reveal(_ channelBase: SAChannelBase) {
         if (channelBase.flags & Int64(SUPLA_CHANNEL_FLAG_RS_SBS_AND_STOP_ACTIONS) > 0) {
-            executeSimpleAction(channelBase: channelBase, action: .up_or_stop)
+            executeSimpleAction(channelBase: channelBase, action: .upOrStop)
         } else {
             executeSimpleAction(channelBase: channelBase, action: .reveal)
         }

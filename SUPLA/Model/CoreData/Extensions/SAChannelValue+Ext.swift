@@ -23,6 +23,10 @@ extension SAChannelValue {
         ThermostatValue.from(hvacValue: hvacValue())
     }
     
+    func asRollerShutterValue() -> RollerShutterValue {
+        RollerShutterValue.from(dataValue(), online: online)
+    }
+    
     @objc func isThermostatSubfunctionHeat() -> Bool {
         asThermostatValue().subfunction == .heat
     }

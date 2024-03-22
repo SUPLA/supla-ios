@@ -86,7 +86,7 @@ class SwitchTimerDetailVM: BaseViewModel<SwitchTimerDetailViewState, SwitchTimer
     
     private func doAbort(remoteId: Int32, turnOn: Bool) -> Observable<Void> {
         executeSimpleAxtionUseCase.invoke(
-            action: turnOn ? .turn_on : .turn_off,
+            action: turnOn ? .turnOn : .turnOff,
             type: .channel,
             remoteId: remoteId
         )

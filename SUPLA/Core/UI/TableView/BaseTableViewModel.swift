@@ -20,31 +20,60 @@ import Foundation
 import RxCocoa
 import RxDataSources
 
-class BaseTableViewModel<S : ViewState, E : ViewEvent>: BaseViewModel<S, E> {
-    
+class BaseTableViewModel<S: ViewState, E: ViewEvent>: BaseViewModel<S, E> {
     let listItems = BehaviorRelay<[List]>(value: [])
-    
+
     @Singleton<ToggleLocationUseCase> private var toggleLocationUseCase
-    
+
     func toggleLocation(remoteId: Int32) {
         toggleLocationUseCase.invoke(remoteId: remoteId, collapsedFlag: getCollapsedFlag())
             .subscribe(onNext: { self.reloadTable() })
             .disposed(by: self)
     }
-    
+
     func reloadTable() {
         fatalError("reloadTable() has not been implemented")
     }
-    
+
     func getCollapsedFlag() -> CollapsedFlag {
         fatalError("getCollapsedFlag() has not been implemented")
     }
-    
+
     func swapItems(firstItem: Int32, secondItem: Int32, locationCaption: String) {
         fatalError("swapItems(firstItem: secondItem: locationId:) has not been implemented")
     }
-    
-    func onClicked(onItem item: Any) {
+
+    func onClicked(onItem item: Any) {}
+
+    func isAvailableInOffline(_ function: Int32, subValueType: Int32? = nil) -> Bool {
+        switch (function) {
+        case SUPLA_CHANNELFNC_THERMOMETER,
+             SUPLA_CHANNELFNC_HUMIDITYANDTEMPERATURE,
+             SUPLA_CHANNELFNC_ELECTRICITY_METER,
+             SUPLA_CHANNELFNC_IC_ELECTRICITY_METER,
+             SUPLA_CHANNELFNC_IC_GAS_METER,
+             SUPLA_CHANNELFNC_IC_WATER_METER,
+             SUPLA_CHANNELFNC_IC_HEAT_METER,
+             SUPLA_CHANNELFNC_HVAC_DOMESTIC_HOT_WATER,
+             SUPLA_CHANNELFNC_HVAC_THERMOSTAT,
+             SUPLA_CHANNELFNC_GENERAL_PURPOSE_METER,
+             SUPLA_CHANNELFNC_GENERAL_PURPOSE_MEASUREMENT,
+             SUPLA_CHANNELFNC_CONTROLLINGTHEROLLERSHUTTER,
+             SUPLA_CHANNELFNC_CONTROLLINGTHEROOFWINDOW:
+            return true
+        case SUPLA_CHANNELFNC_LIGHTSWITCH,
+             SUPLA_CHANNELFNC_POWERSWITCH,
+             SUPLA_CHANNELFNC_STAIRCASETIMER:
+            switch subValueType {
+            case SUBV_TYPE_IC_MEASUREMENTS,
+                 SUBV_TYPE_ELECTRICITY_MEASUREMENTS:
+                return true
+            default:
+                return false
+            }
+        default:
+            return false
+        }
     }
 }
 
@@ -58,16 +87,16 @@ enum ListItem: Equatable {
     case channelBase(channelBase: SAChannelBase, children: [ChannelChild])
 }
 
-extension List : SectionModelType {
+extension List: SectionModelType {
     typealias Item = ListItem
-    
+
     var items: [ListItem] {
         switch self {
         case .list(let items):
             return items.map { $0 }
         }
     }
-    
+
     init(original: List, items: [ListItem]) {
         switch original {
         case .list:

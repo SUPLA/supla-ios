@@ -16,11 +16,19 @@
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 
-@testable import SUPLA
 import RxSwift
+@testable import SUPLA
+
+final class ExecuteSimpleActionUseCaseMock: ExecuteSimpleActionUseCase {
+    var returns: Observable<Void> = Observable.empty()
+    var parameters: [(Action, SUPLA.SubjectType, Int32)] = []
+    func invoke(action: Action, type: SUPLA.SubjectType, remoteId: Int32) -> Observable<Void> {
+        parameters.append((action, type, remoteId))
+        return returns
+    }
+}
 
 final class ExecuteThermostatActionUseCaseMock: ExecuteThermostatActionUseCase {
-    
     var parameters: [(SUPLA.SubjectType, Int32, SuplaHvacMode?, Float?, Float?, Int32?)] = []
     var returns: Observable<RequestResult> = .empty()
     func invoke(
@@ -32,6 +40,15 @@ final class ExecuteThermostatActionUseCaseMock: ExecuteThermostatActionUseCase {
         durationInSec: Int32?
     ) -> Observable<RequestResult> {
         parameters.append((type, remoteId, mode, setpointTemperatureHeat, setpointTemperatureCool, durationInSec))
+        return returns
+    }
+}
+
+final class AuthorizeUseCaseMock: AuthorizeUseCase {
+    var parameters: [(String, String)] = []
+    var returns: Completable = .empty()
+    func invoke(userName: String, password: String) -> Completable {
+        parameters.append((userName, password))
         return returns
     }
 }
