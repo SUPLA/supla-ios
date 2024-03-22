@@ -84,7 +84,6 @@
 "Configuration Failed!" = "Konfigurace se nezdařila!";
 "Connection with the device cannot be set!" = "Nelze se připojit k zařízení! Ujistěte se, že došlo k připojení vykonívajícího zařízení k WiFi síti.";
 "Make sure, if the Wi-fi connection has been set for the I/O device." = "Ujistěte se, že bylo navázáno připojení k síti WiFi pracovního zařízení.";
-"[Calibration]" = "[Kalibrace]";
 "Help" = "Pomoc";
 "https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=L4N7RSWME6LG2" = "https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=QYN932S5UQG8N";
 "Staircase timer" = "Schodišťový automat";
@@ -251,10 +250,6 @@
 "Z-Wave bridge" = "Z-wave můstek";
 "opened / closed the roof window" = "otevření / zavření střešní okno";
 "The power was turned off after the set threshold of the allowable current was exceeded." = "Při překročení nastaveného proudového limitu došlo k vypnutí napájení.";
-"Are you sure you want to start calibration?" = "Určitě chcete začít s kalibrací?";
-"Calibration lost." = "Kalibrace se nezdařila.";
-"Calibration failed." = "Kalibrace byla zrušena.";
-"Motor problem / Unexpected stop." = "Problém s motorem / Neočekávané zastavení.";
 "0: unknown" = "0: neznámý";
 "1: server timeout" = "1: žádná odpověď serveru";
 "2: Wi-Fi connection lost" = "2: ztráta WiFi připojení ";
@@ -308,7 +303,14 @@
 "Cfg.removal.dialog.duplicated_name" = "Účet s tímto názvem již existuje";
 "Cfg.removal.dialog.incomplete" = "Vyplnit požadované údaje";
 
-"General.error" = "Chyba";
+"general_error" = "Chyba";
 
 /* Thermometer Chart */
 "history_no_data_in_selected_period" = "Žádné údaje o graf.";
+
+/* Roller shutter detail */
+"roller_shutter_calibration_lost" = "Kalibrace se nezdařila.";
+"roller_shutter_calibration_failed" = "Kalibrace byla zrušena.";
+"roller_shutter_motor_problem" = "Problém s motorem / Neočekávané zastavení.";
+"roller_shutter_calibration" = "Kalibrace";
+"roller_shutter_start_calibration_message" = "Určitě chcete začít s kalibrací?";

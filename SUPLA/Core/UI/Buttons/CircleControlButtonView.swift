@@ -23,8 +23,8 @@ final class CircleControlButtonView: BaseControlButtonView {
     
     static let SIZE: CGFloat = 120
     
-    init() {
-        super.init(height: CircleControlButtonView.SIZE)
+    init(size: CGFloat = CircleControlButtonView.SIZE) {
+        super.init(height: size)
     }
     
     required init?(coder aDecoder: NSCoder) {

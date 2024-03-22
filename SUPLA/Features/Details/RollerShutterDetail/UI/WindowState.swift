@@ -16,17 +16,25 @@
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 
-import RxSwift
-@testable import SUPLA
-
-final class ExecuteSimpleActionUseCaseMock: ExecuteSimpleActionUseCase {
+struct WindowState: Equatable {
+    /**
+     * As the percentage value - 0 up to 100
+     */
+    let position: CGFloat
     
-    var returns: Observable<Void> = Observable.empty()
-    var parameters: [(Action, SUPLA.SubjectType, Int32)] = []
-    func invoke(action: Action, type: SUPLA.SubjectType, remoteId: Int32) -> Observable<Void> {
-        parameters.append((action, type, remoteId))
-        return returns
+    /**
+     * As the percentage value - 0 up to 100
+     */
+    let bottomPosition: CGFloat
+    
+    /**
+     * User for groups - shows positions of single blinds/roof windows
+     */
+    let markers: [CGFloat]
+    
+    init(position: CGFloat, bottomPosition: CGFloat = 100, markers: [CGFloat] = []) {
+        self.position = position
+        self.bottomPosition = bottomPosition
+        self.markers = markers
     }
-    
-    
 }

@@ -84,7 +84,6 @@
 "Configuration Failed!" = "Die Konfiguration war nicht erfolgreich!";
 "Connection with the device cannot be set!" = "Es gelang nicht, die Verbindung mit dem Gerät herzustellen!";
 "Make sure, if the Wi-fi connection has been set for the I/O device." = "Versichern Sie sich, dass die Verbindung des Ausführungsgeräts mit dem WiFi-Netzwerk hergestellt wurde.";
-"[Calibration]" = "[Kalibrierung]";
 "Help" = "Hilfe";
 "Staircase timer" = "Treppenlichtsensor";
 "https://cloud.supla.org/register" = "https://cloud.supla.org/register?lang=de";
@@ -251,10 +250,6 @@
 "Z-Wave bridge" = "Brücke z-Wave";
 "opened / closed the roof window" = "Öffnete / schloss das Dachfenster";
 "The power was turned off after the set threshold of the allowable current was exceeded." = "Die Versorgung wurde nach dem Überschreiten der eingestellten zulässigen Stromstärke abgeschaltet.";
-"Are you sure you want to start calibration?" = "Wollen Sie wirklich die Kalibrierung beginnen?";
-"Calibration lost." = "Kalibrierung ist nicht gelungen.";
-"Calibration failed." = "Kalibrierung wurde verloren.";
-"Motor problem / Unexpected stop." = "Problem mit dem Motor / Unerwartetes Anhalten";
 "0: unknown" = "0: unbekannt";
 "1: server timeout" = "1: keine Serverantwort";
 "2: Wi-Fi connection lost" = "2: Unterbrechung der WiFi-Verbindung";
@@ -317,7 +312,7 @@
 "Cfg.removal.dialog.incomplete" = "Bitte die erforderliche Angaben vervollständigen";
 
 /* General */
-"General.error" = "Fehler";
+"general_error" = "Fehler";
 "turn_on" = "Einschalten";
 "turn_off" = "Auschalten";
 "time_just_mintes" = "%d Min.";
@@ -436,3 +431,13 @@
 "notification_delete_all_message" = "Das Löschen ist unumkehrbar, fortfahren?";
 "notification_delete_button_delete_all" = "Alles löschen";
 "notification_delete_button_delete_older_than_month" = "Ältere als 30 Tage löschen";
+
+/* Roller shutter detail */
+"roller_shutter_calibration_lost" = "Kalibrierung ist nicht gelungen.";
+"roller_shutter_calibration_failed" = "Kalibrierung wurde verloren.";
+"roller_shutter_motor_problem" = "Problem mit dem Motor / Unerwartetes Anhalten";
+"roller_shutter_calibration" = "Kalibrierung";
+"roller_shutter_start_calibration_message" = "Wollen Sie wirklich die Kalibrierung beginnen?";
+"roller_shutter_closing_percentage" = "Geschlossen:";
+"roller_shutter_opening_percentage" = "Geöffnet:";
+"roller_shutter_calibration_needed" = "Kalibrierung nötig";

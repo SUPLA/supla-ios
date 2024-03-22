@@ -16,13 +16,8 @@
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 
-import Foundation
-
-class SuplaCustomDialogVC<S : ViewState, E : ViewEvent, VM : BaseViewModel<S, E>>: BaseViewControllerVM<S, E, VM> {
-    
-    var container: UIView {
-        get { containerView }
-    }
+class SACustomDialogVC<S: ViewState, E: ViewEvent, VM: BaseViewModel<S, E>>: BaseViewControllerVM<S, E, VM> {
+    var container: UIView { containerView }
     
     private lazy var containerView = {
         let view = UIView()
@@ -33,9 +28,11 @@ class SuplaCustomDialogVC<S : ViewState, E : ViewEvent, VM : BaseViewModel<S, E>
         return view
     }()
     
-    private lazy var backgroundTapGestureDelegate = {
-        FilteredTapGestureDelegate() { !self.container.frame.contains($0.location(in: self.view))}
-    }()
+    private lazy var backgroundTapGestureDelegate = FilteredTapGestureDelegate { [weak self] in
+        guard let self = self else { return false }
+        return !self.container.frame.contains($0.location(in: self.view))
+    }
+
     private lazy var backgroundTapGestureRecognizer = {
         let recognizer = UITapGestureRecognizer(target: self, action: #selector(onBackgroundTap))
         recognizer.delegate = backgroundTapGestureDelegate
@@ -47,6 +44,7 @@ class SuplaCustomDialogVC<S : ViewState, E : ViewEvent, VM : BaseViewModel<S, E>
         modalPresentationStyle = .overFullScreen
     }
     
+    @available(*, unavailable)
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -67,7 +65,7 @@ class SuplaCustomDialogVC<S : ViewState, E : ViewEvent, VM : BaseViewModel<S, E>
         NSLayoutConstraint.activate([
             containerView.centerXAnchor.constraint(equalTo: super.view.centerXAnchor),
             containerView.centerYAnchor.constraint(equalTo: super.view.centerYAnchor),
-            containerView.widthAnchor.constraint(greaterThanOrEqualToConstant: 320)
+            containerView.widthAnchor.constraint(equalToConstant: 320)
         ])
     }
     

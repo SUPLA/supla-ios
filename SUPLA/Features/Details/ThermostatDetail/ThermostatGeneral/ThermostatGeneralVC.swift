@@ -396,66 +396,7 @@ fileprivate class ThermostatGeneralButtons: UIView {
     }
 }
 
-// MARK: - Issue view -
-
-fileprivate class IssueView: UIView {
-    
-    override var intrinsicContentSize: CGSize {
-        CGSize(width: UIView.noIntrinsicMetric, height: Dimens.iconSizeList)
-    }
-    
-    var icon: UIImage? {
-        get { iconView.image }
-        set { iconView.image = newValue }
-    }
-    
-    var text: String? {
-        get { textLabel.text }
-        set { textLabel.text = newValue }
-    }
-    
-    private lazy var iconView: UIImageView = {
-        let view = UIImageView()
-        view.translatesAutoresizingMaskIntoConstraints = false
-        view.contentMode = .scaleAspectFit
-        return view
-    }()
-    
-    private lazy var textLabel: UILabel = {
-        let view = UILabel()
-        view.translatesAutoresizingMaskIntoConstraints = false
-        view.font = .body2
-        return view
-    }()
-    
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        setupView()
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-    private func setupView() {
-        addSubview(iconView)
-        addSubview(textLabel)
-        
-        setLayout()
-    }
-    
-    private func setLayout() {
-        NSLayoutConstraint.activate([
-            iconView.topAnchor.constraint(equalTo: topAnchor),
-            iconView.leftAnchor.constraint(equalTo: leftAnchor),
-            iconView.heightAnchor.constraint(equalToConstant: Dimens.iconSizeList),
-            iconView.widthAnchor.constraint(equalToConstant: Dimens.iconSizeList),
-            
-            textLabel.centerYAnchor.constraint(equalTo: centerYAnchor),
-            textLabel.leftAnchor.constraint(equalTo: iconView.rightAnchor, constant: Dimens.distanceSmall)
-        ])
-    }
-}
+// MARK: - Program view -
 
 fileprivate class ProgramView: UIView {
     

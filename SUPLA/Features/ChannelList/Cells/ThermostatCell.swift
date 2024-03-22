@@ -60,14 +60,14 @@ final class ThermostatCell: BaseCell<ChannelWithChildren> {
     override func leftButtonSettings() -> CellButtonSettings {
         CellButtonSettings(
             visible: data?.channel.isOnline() ?? false,
-            title: NSLocalizedString("Off", comment: "")
+            title: Strings.General.off
         )
     }
     
     override func rightButtonSettings() -> CellButtonSettings {
         CellButtonSettings(
             visible: data?.channel.isOnline() ?? false,
-            title: NSLocalizedString("On", comment: "")
+            title: Strings.General.on
         )
     }
     

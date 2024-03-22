@@ -78,6 +78,8 @@ extern NSString *kSAEventNotification;
 extern NSString *kSAConnErrorNotification;
 extern NSString *kSAChannelValueChangedNotification;
 extern NSString *kSARegistrationEnabledNotification;
+extern NSString *kSASuperuserAuthorizationNotification;
+
 extern NSString *kSAOAuthTokenRequestResult;
 extern NSString *kSASuperuserAuthorizationResult;
 extern NSString *kSACalCfgResult;

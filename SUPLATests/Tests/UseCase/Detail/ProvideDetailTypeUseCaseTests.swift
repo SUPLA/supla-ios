@@ -56,7 +56,7 @@ final class ProvideDetailTypeUseCaseTests: XCTestCase {
     }
     
     func test_shouldProvideRs_forRollerShutterFunction() {
-        doTest(expectedResult: .legacy(type: .rs)) {
+        doTest(expectedResult: .rollerShutterDetail(pages: [.rollerShutterGeneral])) {
             let channel = SAChannel(testContext: nil)
             channel.func = SUPLA_CHANNELFNC_CONTROLLINGTHEROLLERSHUTTER
             
@@ -65,7 +65,7 @@ final class ProvideDetailTypeUseCaseTests: XCTestCase {
     }
     
     func test_shouldProvideRs_forRoofWindowFunction() {
-        doTest(expectedResult: .legacy(type: .rs)) {
+        doTest(expectedResult: .rollerShutterDetail(pages: [.rollerShutterGeneral])) {
             let channel = SAChannel(testContext: nil)
             channel.func = SUPLA_CHANNELFNC_CONTROLLINGTHEROOFWINDOW
             

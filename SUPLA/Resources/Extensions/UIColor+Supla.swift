@@ -67,6 +67,9 @@ extension UIColor {
     
     static let progressPointShadow = UIColor(red: 178/255.0, green: 244/255.0, blue: 184/255.0, alpha: 0.6)
     
+    static let windowGlassTopColor = UIColor(argb: 0xFFC9EEFF)
+    static let windowGlassBottomColor = UIColor(argb: 0xFFD8F3FF)
+    
     @objc static let suplaGreenBackground = #colorLiteral(red: 0, green: 0.6549019608, blue: 0.1176470588, alpha: 1)
     
     @objc static let suplaGreen = UIColor(red: 0, green: 209.0/255.0, blue: 81.0/255.0, alpha: 1)

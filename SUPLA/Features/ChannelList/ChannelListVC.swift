@@ -40,6 +40,8 @@ class ChannelListVC: ChannelBaseTableViewController<ChannelListViewState, Channe
             navigator?.navigateToThermometerDetail(item: item, pages: pages)
         case .navigateToGpmDetail(let item, let pages):
             navigator?.navigateToGpmDetail(item: item, pages: pages)
+        case .navigateToRollerShutterDetail(let item, let pages):
+            navigator?.navigateToRollerShutterDetail(item: item, pages: pages)
         case .showAddWizard:
             navigator?.showAddWizard()
         }
