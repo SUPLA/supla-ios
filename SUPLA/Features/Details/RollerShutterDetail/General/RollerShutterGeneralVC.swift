@@ -26,9 +26,11 @@ class RollerShutterGeneralVC: BaseViewControllerVM<RollerShutterGeneralViewState
     
     private lazy var topView: BlindsTopView = .init()
     
-    private lazy var rollerShutterView: RollerShutterView = {
-        let view = RollerShutterView()
-        return view
+    private lazy var rollerShutterView: BaseWindowView = {
+        switch (itemBundle.toWindowType()) {
+        case .rollerShutter: RollerShutterView()
+        case .roofWindow: RoofWindowView()
+        }
     }()
     
     private let buttonsPositionGuide: UILayoutGuide = .init()
@@ -206,11 +208,9 @@ class RollerShutterGeneralVC: BaseViewControllerVM<RollerShutterGeneralViewState
             rollerShutterView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 42),
             rollerShutterView.topAnchor.constraint(equalTo: topView.bottomAnchor, constant: Dimens.distanceDefault),
             rollerShutterView.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -42),
-            rollerShutterView.heightAnchor.constraint(lessThanOrEqualTo: rollerShutterView.widthAnchor, multiplier: 1 / ROLLER_SHUTTER_VIEW_RATIO),
             
             buttonsPositionGuide.topAnchor.constraint(equalTo: rollerShutterView.bottomAnchor, constant: Dimens.distanceSmall),
-            buttonsPositionGuide.bottomAnchor.constraint(equalTo: issuesView.topAnchor, constant: -Dimens.distanceSmall),
-            buttonsPositionGuide.heightAnchor.constraint(greaterThanOrEqualToConstant: UP_DOWN_CONTROLL_BUTTON_HEIGHT),
+            buttonsPositionGuide.heightAnchor.constraint(equalToConstant: UP_DOWN_CONTROLL_BUTTON_HEIGHT),
             
             leftControlButton.centerYAnchor.constraint(equalTo: buttonsPositionGuide.centerYAnchor),
             leftControlButton.rightAnchor.constraint(equalTo: view.centerXAnchor, constant: -56),
@@ -224,9 +224,10 @@ class RollerShutterGeneralVC: BaseViewControllerVM<RollerShutterGeneralViewState
             moveTimeView.topAnchor.constraint(equalTo: rollerShutterView.bottomAnchor, constant: Dimens.distanceDefault),
             moveTimeView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             
+            issuesView.topAnchor.constraint(equalTo: buttonsPositionGuide.bottomAnchor, constant: Dimens.distanceSmall),
             issuesView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: Dimens.distanceDefault),
             issuesView.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -Dimens.distanceDefault),
-            issuesView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
+            issuesView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -Dimens.distanceDefault)
         ])
     }
     
@@ -573,6 +574,18 @@ extension ControlButtonType {
         switch (self) {
         case .up: .open
         case .down: .close
+        }
+    }
+}
+
+private extension ItemBundle {
+    func toWindowType() -> WindowType {
+        switch (function) {
+        case SUPLA_CHANNELFNC_CONTROLLINGTHEROLLERSHUTTER:
+            .rollerShutter
+        case SUPLA_CHANNELFNC_CONTROLLINGTHEROOFWINDOW:
+            .roofWindow
+        default: fatalError("No window for function \(function)")
         }
     }
 }

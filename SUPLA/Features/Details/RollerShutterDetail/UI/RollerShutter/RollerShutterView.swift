@@ -51,11 +51,10 @@ private enum DefaultDimens {
 
 // MARK: - RollerShutterView
 
-class RollerShutterView: UIView {
-    var isEnabled: Bool {
-        get { fatalError("Not implemented!") }
-        set {
-            if (newValue) {
+class RollerShutterView: BaseWindowView {
+    override var isEnabled: Bool {
+        didSet {
+            if (isEnabled) {
                 colors = WindowColors.standard()
             } else {
                 colors = WindowColors.offline()
@@ -64,19 +63,19 @@ class RollerShutterView: UIView {
         }
     }
     
-    var position: CGFloat = 95 {
+    override var position: CGFloat {
         didSet {
             setNeedsDisplay()
         }
     }
     
-    var bottomPosition: CGFloat = 80 {
+    override var bottomPosition: CGFloat {
         didSet {
             setNeedsDisplay()
         }
     }
     
-    var markers: [CGFloat] = [] {
+    override var markers: [CGFloat] {
         didSet {
             if (oldValue.count != markers.count) {
                 dimens.setMarkers(markers.count)
@@ -89,6 +88,8 @@ class RollerShutterView: UIView {
     override var intrinsicContentSize: CGSize {
         CGSize(width: DefaultDimens.width, height: DefaultDimens.height)
     }
+    
+    override var touchRect: CGRect { dimens.windowRect }
     
     private lazy var windowLayer: CAShapeLayer = {
         let layer = CAShapeLayer()
@@ -135,12 +136,6 @@ class RollerShutterView: UIView {
     private let dimens = RuntimeDimens()
     private var colors = WindowColors.standard()
     
-    // Touch handling
-    private var startPosition: CGPoint? = nil
-    private var startPercentage: CGFloat? = nil
-    fileprivate let positionRelay: PublishRelay<CGFloat> = PublishRelay()
-    fileprivate let positionChangeRelay: PublishRelay<CGFloat> = PublishRelay()
-    
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupView()
@@ -160,33 +155,6 @@ class RollerShutterView: UIView {
         updateSlatsPositions()
         topLineLayer.frame = dimens.topLineRect
         updateMarkersPositions()
-    }
-    
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        guard let point = event?.allTouches?.first?.location(in: self) else { return }
-        if (dimens.canvasRect.contains(point)) {
-            startPosition = point
-            startPercentage = position
-        }
-    }
-    
-    override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
-        guard let startPosition = startPosition,
-              let startPercentage = startPercentage,
-              let currentPosition = event?.allTouches?.first?.location(in: self) else { return }
-        
-        let positionDiffAsPercentage = (currentPosition.y - startPosition.y)
-            .divideToPercentage(value: dimens.windowRect.height)
-        position = (startPercentage + positionDiffAsPercentage).toPercentage(max: 100)
-        positionRelay.accept(position)
-    }
-    
-    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-        if (startPosition != nil && startPercentage != nil) {
-            positionChangeRelay.accept(position)
-            startPosition = nil
-            startPercentage = nil
-        }
     }
     
     override func draw(_ rect: CGRect) {
@@ -238,11 +206,15 @@ class RollerShutterView: UIView {
     }
     
     private func updateMarkersPositions() {
-        for i in 0 ..< markers.count {
-            let topCorrection = (dimens.windowRect.height - dimens.topLineRect.height/2) * markers[i] / 100
-            let frame = dimens.markers[i].offsetBy(dx: 0, dy: topCorrection)
-            markersLayers[i].path = dimens.markerPath.cgPath
-            markersLayers[i].frame = frame
+        if (isMoving) {
+            markersLayers.forEach { $0.path = nil }
+        } else {
+            for i in 0 ..< markers.count {
+                let topCorrection = (dimens.windowRect.height - dimens.topLineRect.height / 2) * markers[i] / 100
+                let frame = dimens.markers[i].offsetBy(dx: 0, dy: topCorrection)
+                markersLayers[i].path = dimens.markerPath.cgPath
+                markersLayers[i].frame = frame
+            }
         }
     }
     
@@ -282,16 +254,6 @@ class RollerShutterView: UIView {
     
     override class var requiresConstraintBasedLayout: Bool {
         return true
-    }
-}
-
-extension Reactive where Base: RollerShutterView {
-    var position: Observable<CGFloat> {
-        base.positionRelay.asObservable()
-    }
-    
-    var positionChange: Observable<CGFloat> {
-        base.positionChangeRelay.asObservable()
     }
 }
 

@@ -16,9 +16,7 @@
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 
-struct ItemBundle: Equatable {
-    let remoteId: Int32
-    let deviceId: Int32
-    let subjectType: SubjectType
-    let function: Int32
+enum WindowType {
+    case rollerShutter
+    case roofWindow
 }

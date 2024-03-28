@@ -18,6 +18,6 @@
 
 extension SAChannelGroup {
     func item() -> ItemBundle {
-        ItemBundle(remoteId: remote_id, deviceId: 0, subjectType: .group)
+        ItemBundle(remoteId: remote_id, deviceId: 0, subjectType: .group, function: self.func)
     }
 }
