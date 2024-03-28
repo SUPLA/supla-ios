@@ -26,9 +26,11 @@ class RollerShutterGeneralVC: BaseViewControllerVM<RollerShutterGeneralViewState
     
     private lazy var topView: BlindsTopView = .init()
     
-    private lazy var rollerShutterView: RollerShutterView = {
-        let view = RollerShutterView()
-        return view
+    private lazy var rollerShutterView: BaseWindowView = {
+        switch (itemBundle.toWindowType()) {
+        case .rollerShutter: RollerShutterView()
+        case .roofWindow: RoofWindowView()
+        }
     }()
     
     private let buttonsPositionGuide: UILayoutGuide = .init()
@@ -573,6 +575,18 @@ extension ControlButtonType {
         switch (self) {
         case .up: .open
         case .down: .close
+        }
+    }
+}
+
+private extension ItemBundle {
+    func toWindowType() -> WindowType {
+        switch (function) {
+        case SUPLA_CHANNELFNC_CONTROLLINGTHEROLLERSHUTTER:
+            .rollerShutter
+        case SUPLA_CHANNELFNC_CONTROLLINGTHEROOFWINDOW:
+            .roofWindow
+        default: fatalError("No window for function \(function)")
         }
     }
 }
