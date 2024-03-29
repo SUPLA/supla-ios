@@ -20,7 +20,7 @@ import Foundation
 import RxRelay
 import RxSwift
 
-final class EditQuartersDialogVC: SuplaCustomDialogVC<EditQuartersDialogViewState, EditQuartersDialogViewEvent, EditQuartersDialogVM> {
+final class EditQuartersDialogVC: SACustomDialogVC<EditQuartersDialogViewState, EditQuartersDialogViewEvent, EditQuartersDialogVM> {
     
     var onFinishCallback: ((ScheduleDetailBoxValue, SuplaScheduleProgram?) -> Void)? = nil
     

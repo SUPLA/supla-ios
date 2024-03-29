@@ -29,7 +29,9 @@ extension Int16 {
     }
 }
 
-extension Int {
+extension Int: ScopeFunctions {
+    typealias T = Int
+    
     var withLeadingZero: String {
         get {
             if (self < 10) {

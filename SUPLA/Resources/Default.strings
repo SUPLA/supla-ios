@@ -37,9 +37,9 @@
 "push_notification_limit_exceeded" = "The push notification limit of %@ per hour has been exceeded.";
 
 /* General */
-"General.error" = "Error";
-"General.hour_format" = "HH:mm:ss";
-"General.ok" = "OK";
+"general_error" = "Error";
+"general_hour_format" = "HH:mm:ss";
+"general_ok" = "OK";
 "turn_on" = "Turn on";
 "turn_off" = "Turn off";
 "save" = "Save";
@@ -194,3 +194,13 @@
 "notification_delete_all_message" = "This can't be undone";
 "notification_delete_button_delete_all" = "Delete all";
 "notification_delete_button_delete_older_than_month" = "Delete older than 30 days";
+
+/* Roller shutter detail */
+"roller_shutter_motor_problem" = "Motor problem / Unexpected stop.";
+"roller_shutter_calibration_lost" = "Calibration lost.";
+"roller_shutter_calibration_failed" = "Calibration failed.";
+"roller_shutter_calibration" = "Calibration";
+"roller_shutter_start_calibration_message" = "Are you sure you want to start calibration?";
+"roller_shutter_closing_percentage" = "Close:";
+"roller_shutter_opening_percentage" = "Open:";
+"roller_shutter_calibration_needed" = "Calibration needed";

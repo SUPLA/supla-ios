@@ -39,11 +39,11 @@ class SwitchGeneralVM: BaseViewModel<SwitchGeneralViewState, SwitchGeneralViewEv
     }
     
     func turnOn(remoteId: Int32) {
-        performAction(action: .turn_on, remoteId: remoteId)
+        performAction(action: .turnOn, remoteId: remoteId)
     }
     
     func turnOff(remoteId: Int32) {
-        performAction(action: .turn_off, remoteId: remoteId)
+        performAction(action: .turnOff, remoteId: remoteId)
     }
 
     private func performAction(action: Action, remoteId: Int32) {

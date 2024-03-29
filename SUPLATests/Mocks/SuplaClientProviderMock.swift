@@ -16,7 +16,6 @@
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 
-
 @testable import SUPLA
 
 class SuplaClientProviderMock: SuplaClientProvider {
@@ -26,7 +25,6 @@ class SuplaClientProviderMock: SuplaClientProvider {
 }
 
 class SuplaClientProtocolMock: NSObject, SuplaClientProtocol {
-    
     var cancelCalls: Int = 0
     func cancel() { cancelCalls += 1 }
     
@@ -36,7 +34,6 @@ class SuplaClientProtocolMock: NSObject, SuplaClientProtocol {
     var executeActionParameters: [(Int32, Int32, Int32, UnsafeMutableRawPointer?, Int32)] = []
     var executeActionReturns = false
     func executeAction(_ actionId: Int32, subjecType subjectType: Int32, subjectId: Int32, parameters: UnsafeMutableRawPointer!, length: Int32) -> Bool {
-        
         // As the parametets memory is fried after end of the execute action we need to make
         // a copy of it to assert values inside the object
         var parametersCopy: UnsafeMutableRawPointer? = nil
@@ -59,7 +56,6 @@ class SuplaClientProtocolMock: NSObject, SuplaClientProtocol {
     var getChannelConfigParameters: [UnsafeMutablePointer<TCS_GetChannelConfigRequest>] = []
     var getChannelConfigReturns = false
     func getChannelConfig(_ configRequest: UnsafeMutablePointer<TCS_GetChannelConfigRequest>!) -> Bool {
-        
         // As the parametets memory is fried after end of the execute action we need to make
         // a copy of it to assert values inside the object
         let configRequestCopy = UnsafeMutablePointer<TCS_GetChannelConfigRequest>.allocate(capacity: 1)
@@ -72,7 +68,6 @@ class SuplaClientProtocolMock: NSObject, SuplaClientProtocol {
     var setChannelConfigParameters: [UnsafeMutablePointer<TSCS_ChannelConfig>] = []
     var setChannelConfigReturns = false
     func setChannelConfig(_ config: UnsafeMutablePointer<TSCS_ChannelConfig>!) -> Bool {
-        
         // As the parametets memory is fried after end of the execute action we need to make
         // a copy of it to assert values inside the object
         let configRequestCopy = UnsafeMutablePointer<TSCS_ChannelConfig>.allocate(capacity: 1)
@@ -85,17 +80,50 @@ class SuplaClientProtocolMock: NSObject, SuplaClientProtocol {
     var oAuthTokenRequestCalls = 0
     var oAuthTokenRequestReturns = false
     func oAuthTokenRequest() -> Bool {
-        oAuthTokenRequestReturns
+        oAuthTokenRequestCalls += 1
+        return oAuthTokenRequestReturns
     }
     
     var getDeficeConfigParameters: [UnsafeMutablePointer<TCS_GetDeviceConfigRequest>] = []
     var getDeviceConfigReturns = false
     func getDeviceConfig(_ configRequest: UnsafeMutablePointer<TCS_GetDeviceConfigRequest>!) -> Bool {
-        
         let configRequestCopy = UnsafeMutablePointer<TCS_GetDeviceConfigRequest>.allocate(capacity: 1)
         configRequestCopy.update(from: configRequest, count: 1)
         getDeficeConfigParameters.append(configRequestCopy)
         
         return getDeviceConfigReturns
+    }
+    
+    var cgParameters: [(Int32, CChar, Bool)] = []
+    var cgReturns: Bool = false
+    func cg(_ ID: Int32, open: CChar, group: Bool) -> Bool {
+        cgParameters.append((ID, open, group))
+        return cgReturns
+    }
+    
+    var deviceCalCfgCommandParameters: [(Int32, Int32, Bool)] = []
+    var deviceCalCfgCommandReturns: Bool = false
+    func deviceCalCfgCommand(_ command: Int32, cg ID: Int32, group: Bool) -> Bool {
+        deviceCalCfgCommandParameters.append((command, ID, group))
+        return deviceCalCfgCommandReturns
+    }
+    
+    var isRegisteredCalls = 0
+    var isRegisteredReturns = false
+    func isRegistered() -> Bool {
+        isRegisteredCalls += 1
+        return isRegisteredReturns
+    }
+    
+    var isSuperuserAuthorizedCalls = 0
+    var isSuperuserAuthorizedReturns = false
+    func isSuperuserAuthorized() -> Bool {
+        isSuperuserAuthorizedCalls += 1
+        return isSuperuserAuthorizedReturns
+    }
+    
+    var superuserAuthorizationRequestParameters: [(String, String)] = []
+    func superuserAuthorizationRequest(withEmail email: String!, andPassword password: String!) {
+        superuserAuthorizationRequestParameters.append((email, password))
     }
 }

@@ -79,7 +79,6 @@
 "The connected device is not compatible with this Wizard!" = "Il dispositivo con il quale è stata stabilita la connessione non è compatibile con questa procedura guidata!";
 "Configuration Failed!" = "Configurazione fallita!";
 "Connection with the device cannot be set!" = "Impossibile stabilire una connessione con il dispositivo!";
-"[Calibration]" = "[Calibrazione]";
 "Help" = "Aiuto";
 "Staircase timer" = "Temporizzatore luce scale";
 "https://cloud.supla.org/register" = "https://cloud.supla.org/register?lang=it";
@@ -201,10 +200,6 @@
 "The glass sections are exposed for more than 20 hours, which may adversely affect their life. It is recommended to cover all sections for a minimum of 4 hours in order to regenerate them." = "Le sezioni di vetro sono esposte per più di 20 ore, questo può influire negativamente sulla loro durata. Si consiglia di coprire tutte le sezioni per un minimo di 4 ore per rigenerarle.";
 "Planned regeneration is in progress." = "Rigenerazione pianificata in corso.";
 "Regeneration initiated after 20 hours of operation is in progress." = "Rigenerazione avviata dopo 20 ore di funzionamento in corso.";
-"Are you sure you want to start calibration?" = "Confermi di voler avviare la calibrazione?";
-"Calibration lost." = "Calibrazione fallita.";
-"Calibration failed." = "Calibrazione persa.";
-"Motor problem / Unexpected stop." = "Problema al motore / Arresto inaspettato.";
 "Timeout for enabling registration has expired!" = "Tempo per l'abilitazione della registrazione scaduto!";
 "Device setup" = "Impostazioni dispositivo";
 "This device does not have any channels visible in the application. To finish configuration go to cloud.supla.org" = "Il dispositivo non ha alcun canale visibile per l'applicazione. Per completare la configurazione accedi a cloud.supla.org";
@@ -324,7 +319,14 @@
 "Cfg.removal.dialog.duplicated_name" = "Un account con lo stesso nome è già esistente";
 "Cfg.removal.dialog.incomplete" = "Informazioni richieste mancanti";
 
-"General.error" = "Errore";
+"general_error" = "Errore";
 
 /* Thermometer Chart */
 "history_no_data_in_selected_period" = "Nessun dato per il grafico.";
+
+/* Roller shutter detail */
+"roller_shutter_calibration_lost" = "Calibrazione fallita.";
+"roller_shutter_calibration_failed" = "Calibrazione persa.";
+"roller_shutter_motor_problem" = "Problema al motore / Arresto inaspettato.";
+"roller_shutter_calibration" = "Calibrazione";
+"roller_shutter_start_calibration_message" = "Confermi di voler avviare la calibrazione?";

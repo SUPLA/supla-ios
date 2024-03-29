@@ -81,4 +81,14 @@ extension Array where Iterator.Element: Equatable {
         }
         return nil
     }
+    
+    func contains(all: [Element]) -> Bool {
+        for item in all {
+            if (!contains(item)) {
+                return false
+            }
+        }
+        
+        return true
+    }
 }

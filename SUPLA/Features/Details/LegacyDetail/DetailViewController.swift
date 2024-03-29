@@ -108,8 +108,6 @@ class DetailViewController: BaseViewController {
             return Bundle.main.loadNibNamed("ImpulseCounterDetailView", owner: self, options: nil)?[0] as? SADetailView
         case .rgbw:
             return Bundle.main.loadNibNamed("RGBWDetail", owner: self, options: nil)?[0] as? SADetailView
-        case .rs:
-            return Bundle.main.loadNibNamed("RSDetail", owner: self, options: nil)?[0] as? SADetailView
         case .thermostat_hp:
             return Bundle.main.loadNibNamed("HomePlusDetailView", owner: self, options: nil)?[0] as? SADetailView
         case .digiglass:

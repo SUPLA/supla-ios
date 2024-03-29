@@ -31,6 +31,9 @@ extension UIFont {
     static let caption = openSansRegular(style: .caption2, size: 12)
     static let captionSemiBold = openSansSemiBold(style: .caption2, size: 12)
     
+    // custom variation
+    static let body2Bold = openSansBold(style: .body, size: 14)
+    
     @objc
     class StaticSize: NSObject {
         static let h1 = UIFont(name: "OpenSans-Light", size: 96)!

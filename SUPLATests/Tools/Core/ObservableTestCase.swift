@@ -16,42 +16,38 @@
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 
-import XCTest
-import RxTest
 import RxSwift
+import RxTest
+import XCTest
 
 @testable import SUPLA
 
 class ObservableTestCase: XCTestCase {
-    
-    lazy var schedulers: SuplaSchedulersMock! = {
-        SuplaSchedulersMock()
-    }()
-    
-    lazy var disposeBag: DisposeBag! = { DisposeBag() }()
-    
+    lazy var schedulers: SuplaSchedulersMock! = SuplaSchedulersMock()
+
+    lazy var disposeBag: DisposeBag! = DisposeBag()
+
     override func setUp() {
         DiContainer.shared.register(type: SuplaSchedulers.self, schedulers!)
     }
-    
+
     override func tearDown() {
         schedulers = nil
         disposeBag = nil
     }
-    
+
     func assertEvents<T>(_ observer: TestableObserver<T>, count: Int) {
         XCTAssertEqual(observer.events.count, count)
     }
-    
+
     func assertEvents<T>(_ observer: TestableObserver<T>, items: [Event<T>]) {
         let events = observer.events
         XCTAssertEqual(events.count, items.count)
-        
+
         for (event, item) in zip(events, items) {
             switch (event.value, item) {
             case (.error(let e1), .error(let e2)):
                 XCTAssertEqual("\(e1)", "\(e2)")
-                break
             case (.next, .next), (.completed, .completed):
                 break
             default:
@@ -59,7 +55,7 @@ class ObservableTestCase: XCTestCase {
             }
         }
     }
-    
+
     func observer<T>() -> TestableObserver<T> {
         schedulers.testScheduler.createObserver(T.self)
     }

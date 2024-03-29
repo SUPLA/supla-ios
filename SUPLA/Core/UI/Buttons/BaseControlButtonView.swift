@@ -145,9 +145,7 @@ class BaseControlButtonView: UIView {
         super.touchesBegan(touches, with: event)
         
         if (isEnabled && isClickable) {
-            layer.shadowRadius = 6
-            layer.shadowColor = type.pressedColor.cgColor
-            layer.borderColor = type.pressedColor.cgColor
+            BaseControlButtonView.setupPressedLayer(layer, type)
             textView.textColor = type.textColor
             iconView.tintColor = type.textColor
             innerShadowView.isHidden = false
@@ -158,17 +156,9 @@ class BaseControlButtonView: UIView {
         addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(onTap)))
         addGestureRecognizer(UILongPressGestureRecognizer(target: self, action: #selector(onLongPress)))
 
-        backgroundColor = .surface
-        
         layer.cornerRadius = height / 2
         
-        layer.shadowColor = UIColor.black.cgColor
-        layer.shadowOffset = CGSizeMake(0, 4)
-        layer.shadowRadius = 3
-        layer.shadowOpacity = 0.2
-        
-        layer.borderColor = UIColor.border.cgColor
-        layer.borderWidth = 1
+        BaseControlButtonView.setupLayer(layer)
         
         addSubview(innerShadowView)
         addSubview(textView)
@@ -278,6 +268,24 @@ class BaseControlButtonView: UIView {
                 }
             }
         }
+    }
+    
+    static func setupLayer(_ layer: CALayer) {
+        layer.backgroundColor = UIColor.surface.cgColor
+        
+        layer.shadowColor = UIColor.black.cgColor
+        layer.shadowOffset = CGSizeMake(0, 4)
+        layer.shadowRadius = 3
+        layer.shadowOpacity = 0.2
+        
+        layer.borderColor = UIColor.border.cgColor
+        layer.borderWidth = 1
+    }
+    
+    static func setupPressedLayer(_ layer: CALayer, _ type: ButtonType) {
+        layer.shadowRadius = 6
+        layer.shadowColor = type.pressedColor.cgColor
+        layer.borderColor = type.pressedColor.cgColor
     }
 }
 

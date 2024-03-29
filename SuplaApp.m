@@ -41,6 +41,8 @@ NSString *kSAEventNotification = @"kSA-N09";
 NSString *kSAConnErrorNotification = @"kSA-N10";
 NSString *kSAChannelValueChangedNotification = @"KSA-N11";
 NSString *kSARegistrationEnabledNotification = @"KSA-N12";
+NSString *kSASuperuserAuthorizationNotification = @"KSA-N14";
+
 NSString *kSAOAuthTokenRequestResult = @"KSA-N13";
 NSString *kSASuperuserAuthorizationResult = @"KSA-N14";
 NSString *kSACalCfgResult = @"KSA-N15";

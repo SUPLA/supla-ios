@@ -40,6 +40,8 @@ class ChannelListVC: ChannelBaseTableViewController<ChannelListViewState, Channe
             navigator?.navigateToThermometerDetail(item: item, pages: pages)
         case .navigateToGpmDetail(let item, let pages):
             navigator?.navigateToGpmDetail(item: item, pages: pages)
+        case .navigateToRollerShutterDetail(let item, let pages):
+            navigator?.navigateToRollerShutterDetail(item: item, pages: pages)
         case .showAddWizard:
             navigator?.showAddWizard()
         }
@@ -72,10 +74,7 @@ class ChannelListVC: ChannelBaseTableViewController<ChannelListViewState, Channe
     
     override func showEmptyMessage(_ tableView: UITableView?) {
         guard let tableView = tableView else { return }
-        
-        if (tableView.backgroundView == nil) {
-            tableView.backgroundView = createNoContentView(Strings.Menu.addDevice)
-        }
+        tableView.backgroundView = createNoContentView(Strings.Menu.addDevice)
     }
     
     private func setupView() {

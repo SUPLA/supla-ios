@@ -234,8 +234,8 @@ final class ThermostatGeneralVMTests: ViewModelTest<ThermostatGeneralViewState, 
                 .changing(path: \.currentTemperaturePercentage, to: 0.32666665)
                 .changing(path: \.childrenIds, to: [0])
                 .changing(path: \.issues, to: [
-                    ThermostatIssueItem(issueIconType: .error, description: Strings.ThermostatDetail.thermometerError),
-                    ThermostatIssueItem(issueIconType: .warning, description: Strings.ThermostatDetail.clockError)
+                    ChannelIssueItem(issueIconType: .error, description: Strings.ThermostatDetail.thermometerError),
+                    ChannelIssueItem(issueIconType: .warning, description: Strings.ThermostatDetail.clockError)
                 ])
                 .changing(path: \.subfunction, to: .cool)
         ])

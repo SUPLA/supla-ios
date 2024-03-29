@@ -19,4 +19,6 @@
 struct ItemBundle: Equatable {
     let remoteId: Int32
     let deviceId: Int32
+    let subjectType: SubjectType
+    let function: Int32
 }

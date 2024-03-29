@@ -84,7 +84,6 @@
 "Configuration Failed!" = "Konfiguracija ni bila uspešna!";
 "Connection with the device cannot be set!" = "Povezave z napravo ni mogoče nastaviti!";
 "Make sure, if the Wi-fi connection has been set for the I/O device." = "Prepričajte se, da je vzpostavljena povezava z omrežjem WiFi izvršne naprave.";
-"[Calibration]" = "[Kalibracija]";
 "Help" = "Pomoč";
 "https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=L4N7RSWME6LG2" = "https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=QYN932S5UQG8N";
 "Staircase timer" = "Stopniščni avtomat";
@@ -251,10 +250,6 @@
 "Z-Wave bridge" = "Most z-wave";
 "opened / closed the roof window" = "Odprl / zaprl je strešno okno";
 "The power was turned off after the set threshold of the allowable current was exceeded." = "Napeljava je bila onemogočena po prekoračitvi nastavljenega praga dovoljenega električnega toka.";
-"Are you sure you want to start calibration?" = "Ali ste prepričani, da želite začeti umerjanje?";
-"Calibration lost." = "Umerjanje ni bilo uspešno.";
-"Calibration failed." = "Umerjanje je bilo izgubljeno.";
-"Motor problem / Unexpected stop." = "Težava z motorjem / Nepričakovana zaustavitev.";
 "0: unknown" = "0: neznan";
 "1: server timeout" = "1: ni odgovora strežnika";
 "2: Wi-Fi connection lost" = "2: izguba WiFi povezave";
@@ -308,7 +303,14 @@
 "Cfg.removal.dialog.duplicated_name" = "Račun s takšim imenom že obstaja";
 "Cfg.removal.dialog.incomplete" = "Izpolnite zahtevane podatke";
 
-"General.error" = "Napaka";
+"general_error" = "Napaka";
 
 /* Thermometer Chart */
 "history_no_data_in_selected_period" = "Za tabelo ni podatkov.";
+
+/* Roller shutter detail */
+"roller_shutter_calibration_lost" = "Umerjanje ni bilo uspešno.";
+"roller_shutter_calibration_failed" = "Umerjanje je bilo izgubljeno.";
+"roller_shutter_motor_problem" = "Težava z motorjem / Nepričakovana zaustavitev.";
+"roller_shutter_calibration" = "Kalibracija";
+"roller_shutter_start_calibration_message" = "Ali ste prepričani, da želite začeti umerjanje?";

@@ -39,5 +39,5 @@
 "dialog_new_gesture_info_text" = "Swipe gesture to open details was removed, tap on particular channel to open it.";
 
 /* General */
-"General.error" = "Error";
-"General.hour_format" = "h:mm:ss a";
+"general_error" = "Error";
+"general_hour_format" = "h:mm:ss a";

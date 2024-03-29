@@ -59,7 +59,7 @@ class ViewModelTest<S : ViewState, E : ViewEvent>: XCTestCase {
         
         if (states.count == expected.count) {
             for i in 0..<states.count {
-                XCTAssertEqual(states[i], expected[i])
+                XCTAssertEqual(states[i], expected[i], "\(i) item validation")
             }
         }
     }

@@ -18,19 +18,27 @@
 
 import Foundation
 
-@objc public class SAIncrementalMeterChartMarkerView: SAChartMarkerView
-{
-    
-    open override func getValue1(entry: ChartDataEntry) -> String {
+@objc public class SAIncrementalMeterChartMarkerView: SAChartMarkerView {
+    private let formatter = SAFormatter()
+     
+    override open func getValue1(entry: ChartDataEntry) -> String {
         if (chartHelper != nil && chartHelper is SAIncrementalMeterChartHelper) {
-            
             let helper: SAIncrementalMeterChartHelper =
-                chartHelper as! SAIncrementalMeterChartHelper;
+                chartHelper as! SAIncrementalMeterChartHelper
             
             if (helper.currency != nil) {
-                return String(format: "%.2f %@", entry.y*helper.pricePerUnit, helper.currency!);
+                return String(format: "%.2f %@", entry.y * helper.pricePerUnit, helper.currency!)
             }
         }
-        return "";
+        return ""
+    }
+    
+    override open func getValue2(entry: ChartDataEntry) -> String {
+        var unit = ""
+        if (chartHelper != nil && chartHelper?.unit != nil) {
+            unit = String(chartHelper!.unit)
+        }
+        
+        return formatter.double(toString: entry.y, withUnit: unit, maxPrecision: 3)
     }
 }
