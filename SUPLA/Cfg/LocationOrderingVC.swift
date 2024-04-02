@@ -32,6 +32,7 @@ class LocationOrderingVC: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = Strings.Cfg.locationOrdering
+        _tableView.backgroundColor = .background
         _viewModel?.onViewDidLoad()
 
         _tableView.translatesAutoresizingMaskIntoConstraints = false

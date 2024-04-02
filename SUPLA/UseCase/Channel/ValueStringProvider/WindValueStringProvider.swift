@@ -37,7 +37,7 @@ final class WindValueStringProvider: ChannelValueStringProvider {
            value > WindValueProviderImpl.UNKNOWN_VALUE,
            let stringValue = formatter.string(from: NSNumber(value: value))
         {
-            return withUnit ? "\(stringValue) l/m²" : "\(stringValue)"
+            return withUnit ? "\(stringValue) m/s" : "\(stringValue)"
         } else {
             return NO_VALUE_TEXT
         }

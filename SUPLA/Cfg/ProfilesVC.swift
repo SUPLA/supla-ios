@@ -78,7 +78,7 @@ class ProfilesVC: BaseViewController {
         super.viewDidLoad()
         
         title = Strings.Profiles.Title.short
-        view.backgroundColor = .viewBackground
+        view.backgroundColor = .background
         
         navigationItem.hidesBackButton = !settings.anyAccountRegistered
 

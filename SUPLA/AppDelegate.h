@@ -17,8 +17,9 @@
  */
 
 #import <UIKit/UIKit.h>
-#import "SUPLA-Swift.h"
+
 @import UserNotifications;
+@protocol NavigationCoordinator;
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate, UNUserNotificationCenterDelegate>
 

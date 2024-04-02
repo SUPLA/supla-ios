@@ -361,6 +361,6 @@ final class GetChannelValueStringUseCaseTests: XCTestCase {
         let valueText = useCase.invoke(channel)
         
         // then
-        XCTAssertEqual(valueText, "25.0 l/m²")
+        XCTAssertEqual(valueText, "25.0 m/s")
     }
 }

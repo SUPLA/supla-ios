@@ -56,6 +56,7 @@ class BaseControlButtonView: UIView {
             switch (icon) {
             case .suplaIcon(let icon):
                 iconView.image = icon?.withRenderingMode(.alwaysTemplate)
+                iconView.tintColor = iconColor
             case .userIcon(let icon) :
                 iconView.image = icon
             default:
@@ -67,7 +68,7 @@ class BaseControlButtonView: UIView {
         }
     }
 
-    var iconColor: UIColor = .black {
+    var iconColor: UIColor = .onBackground {
         didSet {
             iconView.tintColor = iconColor
         }
@@ -83,8 +84,8 @@ class BaseControlButtonView: UIView {
     var active: Bool = false {
         didSet {
             layer.shadowColor = active ? type.pressedColor.cgColor : UIColor.black.cgColor
-            layer.borderColor = active ? type.pressedColor.cgColor : UIColor.border.cgColor
-            textView.textColor = active ? type.textColor : .black
+            layer.borderColor = active ? type.pressedColor.cgColor : UIColor.disabled.cgColor
+            textView.textColor = active ? type.textColor : .onBackground
             iconView.tintColor = active ? type.textColor : iconColor
             innerShadowView.isHidden = !active
 
@@ -215,8 +216,8 @@ class BaseControlButtonView: UIView {
 
         layer.shadowRadius = 3
         layer.shadowColor = active ? type.pressedColor.cgColor : UIColor.black.cgColor
-        layer.borderColor = active ? type.pressedColor.cgColor : UIColor.border.cgColor
-        textView.textColor = active ? type.textColor : .black
+        layer.borderColor = active ? type.pressedColor.cgColor : UIColor.disabled.cgColor
+        textView.textColor = active ? type.textColor : .onBackground
         iconView.tintColor = active ? type.textColor : iconColor
         innerShadowView.isHidden = active ? false : true
     }
@@ -236,8 +237,8 @@ class BaseControlButtonView: UIView {
 
         layer.shadowRadius = 3
         layer.shadowColor = active ? type.pressedColor.cgColor : UIColor.black.cgColor
-        layer.borderColor = active ? type.pressedColor.cgColor : UIColor.border.cgColor
-        textView.textColor = active ? type.textColor : .black
+        layer.borderColor = active ? type.pressedColor.cgColor : UIColor.disabled.cgColor
+        textView.textColor = active ? type.textColor : .onBackground
         iconView.tintColor = active ? type.textColor : iconColor
         innerShadowView.isHidden = active ? false : true
     }
@@ -278,7 +279,7 @@ class BaseControlButtonView: UIView {
         layer.shadowRadius = 3
         layer.shadowOpacity = 0.2
         
-        layer.borderColor = UIColor.border.cgColor
+        layer.borderColor = UIColor.disabled.cgColor
         layer.borderWidth = 1
     }
     

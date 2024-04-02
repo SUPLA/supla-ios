@@ -55,9 +55,9 @@ class RollerShutterView: BaseWindowView {
     override var isEnabled: Bool {
         didSet {
             if (isEnabled) {
-                colors = WindowColors.standard()
+                colors = WindowColors.standard(traitCollection)
             } else {
-                colors = WindowColors.offline()
+                colors = WindowColors.offline(traitCollection)
             }
             updateColors()
         }
@@ -134,7 +134,7 @@ class RollerShutterView: BaseWindowView {
     private lazy var markersLayers: [CAShapeLayer] = []
     
     private let dimens = RuntimeDimens()
-    private var colors = WindowColors.standard()
+    private lazy var colors = WindowColors.standard(traitCollection)
     
     override init(frame: CGRect) {
         super.init(frame: frame)

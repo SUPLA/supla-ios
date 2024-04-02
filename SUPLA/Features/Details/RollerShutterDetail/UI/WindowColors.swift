@@ -26,27 +26,27 @@ struct WindowColors {
     let markerBorder: UIColor
     let markerBackground: UIColor
     
-    static func standard() -> WindowColors {
+    static func standard(_ traitCollection: UITraitCollection) -> WindowColors {
         WindowColors(
-            window: .surface,
+            window: .rollerShutterWindow.resolvedColor(with: traitCollection),
             shadow: .black,
-            glassTop: .windowGlassTopColor,
-            glassBottom: .windowGlassBottomColor,
-            slatBackground: .separatorLight,
-            slatBorder: .disabled,
+            glassTop: .rollerShutterGlassTop.resolvedColor(with: traitCollection),
+            glassBottom: .rollerShutterGlassBottom.resolvedColor(with: traitCollection),
+            slatBackground: .rollerShutterSlatBackground.resolvedColor(with: traitCollection),
+            slatBorder: .rollerShutterSlatBorder.resolvedColor(with: traitCollection),
             markerBorder: .black,
             markerBackground: .primaryVariant
         )
     }
     
-    static func offline() -> WindowColors {
+    static func offline(_ traitCollection: UITraitCollection) -> WindowColors {
         WindowColors(
-            window: .surface,
+            window: .surface.resolvedColor(with: traitCollection),
             shadow: .black,
-            glassTop: UIColor(argb: 0xffeffaff),
-            glassBottom: UIColor(argb: 0xfff3fbff),
-            slatBackground: UIColor(argb: 0xfff5f5f6),
-            slatBorder: UIColor(argb: 0xffe9e9ea),
+            glassTop: .rollerShutterDisabledGlassTop.resolvedColor(with: traitCollection),
+            glassBottom: .rollerShutterDisabledGlassBottom.resolvedColor(with: traitCollection),
+            slatBackground: .rollerShutterDisabledSlatBackground.resolvedColor(with: traitCollection),
+            slatBorder: .rollerShutterDisabledSlatBorder.resolvedColor(with: traitCollection),
             markerBorder: .black,
             markerBackground: UIColor(argb: 0xffb3f1cb)
         )

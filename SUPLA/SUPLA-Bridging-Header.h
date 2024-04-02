@@ -45,5 +45,6 @@
 #import "SAChannelConfig+CoreDataClass.h"
 #import "SANotification+CoreDataClass.h"
 #import "SASuperuserAuthorizationResult.h"
+#import "AppDelegate.h"
 
 #import "supla-client.h"

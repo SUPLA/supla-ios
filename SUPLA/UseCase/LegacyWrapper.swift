@@ -117,8 +117,8 @@ final class UseCaseLegacyWrapper: NSObject {
     }
     
     @objc
-    static func saveIcon(remoteId: NSNumber, images: [String]) {
-        SaveIconUseCase().invoke(remoteId: Int32(remoteId as! Int), images: images)
+    static func saveIcon(remoteId: NSNumber, images: [String], darkImages: [String]?) {
+        SaveIconUseCase().invoke(remoteId: Int32(remoteId as! Int), images: images, darkImages: darkImages)
     }
     
     @objc
@@ -204,5 +204,11 @@ final class UseCaseLegacyWrapper: NSObject {
         } catch {
             SALog.error("Could not insert notification: \(String(describing: error))")
         }
+    }
+    
+    @objc
+    static func getChannelIcon(_ channel: SAChannelBase, _ iconType: IconType) -> UIImage? {
+        @Singleton<GetChannelBaseIconUseCase> var getChannelBaseIconUseCase
+        return getChannelBaseIconUseCase.invoke(channel: channel, type: iconType)
     }
 }

@@ -81,6 +81,7 @@
 "app_settings.notifications_label" = "Notifications";
 "app_settings.location_label" = "Location";
 "settings_show_labels" = "Show bottom menu labels";
+"settings_dark_mode" = "Dark mode";
 
 /* Standard Detail */
 "standard_detail_general_tab" = "General";

@@ -24,6 +24,9 @@
 - (IBAction)wwwTouch:(id)sender;
 - (IBAction)btnTouch:(id)sender;
 @property (weak, nonatomic) IBOutlet UITextView *textView;
+@property (weak, nonatomic) IBOutlet UITextView *lSupla;
+@property (weak, nonatomic) IBOutlet UIButton *suplaButton;
+@property (weak, nonatomic) IBOutlet UIImageView *suplaLogo;
 
 
 @end

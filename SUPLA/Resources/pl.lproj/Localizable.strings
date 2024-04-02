@@ -362,8 +362,8 @@
 "app_settings.permissions_header" = "Uprawnienia";
 "app_settings.notifications_label" = "Powiadomienia";
 "app_settings.location_label" = "Lokalizacja";
-
 "settings_show_labels" = "Pokazuj labelki w dolnym menu";
+"settings_dark_mode" = "Tryb nocny";
 
 /* Standard Detail */
 "standard_detail_general_tab" = "Ogólne";

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina3_5" orientation="portrait" appearance="light"/>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="22505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22504"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -19,14 +19,14 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="dkW-tZ-abH" customClass="SADiwCalibrationTool">
-            <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+            <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HzR-pg-cae" userLabel="vTabsInputMode">
-                    <rect key="frame" x="15" y="355" width="245" height="35"/>
+                    <rect key="frame" x="15" y="727" width="318" height="35"/>
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" selected="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="grA-oG-zkU" userLabel="tabMonostable">
-                            <rect key="frame" x="2" y="2" width="119.5" height="31"/>
+                            <rect key="frame" x="2" y="2" width="156" height="31"/>
                             <color key="backgroundColor" red="0.00028004610790000002" green="0.67520374059999999" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                             <fontDescription key="fontDescription" name="OpenSans-Bold" family="Open Sans" pointSize="10"/>
                             <state key="normal" title="MONOSTABLE">
@@ -48,7 +48,7 @@
                             </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hbe-vz-NMH" userLabel="tabBistable">
-                            <rect key="frame" x="123.5" y="2" width="119.5" height="31"/>
+                            <rect key="frame" x="160" y="2" width="156" height="31"/>
                             <fontDescription key="fontDescription" name="OpenSans-Bold" family="Open Sans" pointSize="10"/>
                             <state key="normal" title="BISTABLE">
                                 <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -95,7 +95,7 @@
                     </constraints>
                 </imageView>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XlL-pj-uXL">
-                    <rect key="frame" x="185" y="20" width="50" height="50"/>
+                    <rect key="frame" x="258" y="20" width="50" height="50"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="50" id="4WJ-74-1CX"/>
                         <constraint firstAttribute="height" constant="50" id="7ps-9B-6nj"/>
@@ -106,7 +106,7 @@
                     </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oti-ho-ixi">
-                    <rect key="frame" x="255" y="20" width="50" height="50"/>
+                    <rect key="frame" x="328" y="20" width="50" height="50"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="50" id="SAt-Fl-Csu"/>
                         <constraint firstAttribute="width" constant="50" id="qOG-Gr-bU7"/>
@@ -117,29 +117,30 @@
                     </connections>
                 </button>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Input" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MT9-II-b0z">
-                    <rect key="frame" x="15" y="335" width="33" height="18"/>
+                    <rect key="frame" x="15" y="707" width="32.333333333333336" height="18"/>
                     <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="13"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TEY-z0-Bgf" customClass="SARangeCalibrationWheel">
-                    <rect key="frame" x="15" y="105" width="290" height="220"/>
+                    <rect key="frame" x="15" y="105" width="363" height="592"/>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                 </view>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Status LED" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5I7-oA-HK8">
-                    <rect key="frame" x="15" y="400" width="65" height="18"/>
+                    <rect key="frame" x="15" y="772" width="65" height="18"/>
                     <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="13"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aXl-vP-Qiz" userLabel="vTabsLedConfig">
-                    <rect key="frame" x="15" y="420" width="290" height="35"/>
+                    <rect key="frame" x="15" y="792" width="363" height="35"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6rp-Nq-VWx">
-                            <rect key="frame" x="2" y="2" width="94" height="31"/>
+                            <rect key="frame" x="2" y="2" width="118.33333333333333" height="31"/>
                             <subviews>
                                 <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ledonwhite.png" translatesAutoresizingMaskIntoConstraints="NO" id="93h-Oq-qJl">
-                                    <rect key="frame" x="0.0" y="5" width="94" height="21"/>
+                                    <rect key="frame" x="0.0" y="5" width="118.33333333333333" height="21"/>
+                                    <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </imageView>
                             </subviews>
                             <color key="backgroundColor" red="0.0" green="0.61571538449999996" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -156,10 +157,11 @@
                             </userDefinedRuntimeAttributes>
                         </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PmI-JM-ppY">
-                            <rect key="frame" x="98" y="2" width="94" height="31"/>
+                            <rect key="frame" x="122.33333333333334" y="2" width="118.33333333333334" height="31"/>
                             <subviews>
-                                <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ledoff.png" translatesAutoresizingMaskIntoConstraints="NO" id="Ydt-ts-LKP">
-                                    <rect key="frame" x="0.0" y="5" width="94" height="21"/>
+                                <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ledoff" translatesAutoresizingMaskIntoConstraints="NO" id="Ydt-ts-LKP">
+                                    <rect key="frame" x="0.0" y="5" width="118.33333333333333" height="21"/>
+                                    <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </imageView>
                             </subviews>
                             <constraints>
@@ -175,10 +177,11 @@
                             </userDefinedRuntimeAttributes>
                         </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NrF-kf-83Y">
-                            <rect key="frame" x="194" y="2" width="94" height="31"/>
+                            <rect key="frame" x="242.66666666666671" y="2" width="118.33333333333334" height="31"/>
                             <subviews>
-                                <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ledalwaysoff.png" translatesAutoresizingMaskIntoConstraints="NO" id="MzK-m3-rQP">
-                                    <rect key="frame" x="0.0" y="5" width="94" height="21"/>
+                                <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ledalwaysoff" translatesAutoresizingMaskIntoConstraints="NO" id="MzK-m3-rQP">
+                                    <rect key="frame" x="0.0" y="5" width="118.33333333333333" height="21"/>
+                                    <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </imageView>
                             </subviews>
                             <constraints>
@@ -217,19 +220,20 @@
                     </userDefinedRuntimeAttributes>
                 </view>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tx0-C5-XvM">
-                    <rect key="frame" x="305" y="457" width="0.0" height="0.0"/>
+                    <rect key="frame" x="378" y="829" width="0.0" height="0.0"/>
                     <fontDescription key="fontDescription" type="system" pointSize="10"/>
                     <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Hdb-5u-142" userLabel="vTabsInOptions">
-                    <rect key="frame" x="265" y="355" width="40" height="35"/>
+                    <rect key="frame" x="338" y="727" width="40" height="35"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tVP-Mv-4Ca" userLabel="Tab Input Option">
                             <rect key="frame" x="2" y="2" width="36" height="31"/>
                             <subviews>
-                                <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="infinity.png" translatesAutoresizingMaskIntoConstraints="NO" id="fhQ-Cv-BZY">
+                                <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="infinity" translatesAutoresizingMaskIntoConstraints="NO" id="fhQ-Cv-BZY">
                                     <rect key="frame" x="5" y="5" width="26" height="21"/>
+                                    <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </imageView>
                             </subviews>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -319,9 +323,9 @@
     </objects>
     <resources>
         <image name="btnOK.png" width="65" height="65"/>
-        <image name="infinity.png" width="114.89361572265625" height="114.89361572265625"/>
-        <image name="ledalwaysoff.png" width="112.5" height="112.5"/>
-        <image name="ledoff.png" width="112.5" height="112.5"/>
+        <image name="infinity" width="150" height="150"/>
+        <image name="ledalwaysoff" width="150" height="150"/>
+        <image name="ledoff" width="150" height="150"/>
         <image name="ledonwhite.png" width="112.5" height="112.5"/>
         <image name="vlinfo@3.png" width="200" height="200"/>
         <image name="zamel_logo.png" width="109" height="30"/>

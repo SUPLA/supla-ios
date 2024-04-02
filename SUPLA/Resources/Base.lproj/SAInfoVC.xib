@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="32700.99.1234" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina6_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
-        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22684"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -61,13 +61,13 @@
                                     </constraints>
                                 </view>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Information" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XIr-wJ-ncG">
-                                    <rect key="frame" x="10" y="18.666666666666682" width="142.33333333333334" height="32.666666666666657"/>
+                                    <rect key="frame" x="10" y="17.666666666666686" width="151.33333333333334" height="35"/>
                                     <fontDescription key="fontDescription" name="Quicksand-Regular" family="Quicksand" pointSize="28"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                             </subviews>
-                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            <color key="backgroundColor" name="Colors/surface"/>
                             <constraints>
                                 <constraint firstItem="xEu-uf-NfM" firstAttribute="leading" secondItem="VgA-cP-YPd" secondAttribute="leading" id="1Gg-Yk-EDp"/>
                                 <constraint firstAttribute="trailing" secondItem="9k0-Og-QUL" secondAttribute="trailing" constant="10" id="6kz-2I-WKU"/>
@@ -97,7 +97,7 @@
                             <color key="textColor" red="0.37643486259999998" green="0.37649342419999998" blue="0.37642204759999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="rgbwpoweroff.png" translatesAutoresizingMaskIntoConstraints="NO" id="Emy-SK-Ytc">
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_off" translatesAutoresizingMaskIntoConstraints="NO" id="Emy-SK-Ytc">
                             <rect key="frame" x="6" y="152" width="25" height="25"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="25" id="E8i-CR-gvV"/>
@@ -113,7 +113,7 @@
                             <color key="textColor" red="0.37643486259999998" green="0.37649342419999998" blue="0.37642204759999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="rgbwsettings.png" translatesAutoresizingMaskIntoConstraints="NO" id="EsP-j2-C1t">
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_settings" translatesAutoresizingMaskIntoConstraints="NO" id="EsP-j2-C1t">
                             <rect key="frame" x="6" y="249" width="25" height="25"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="25" id="Yq8-Kv-JCx"/>
@@ -130,7 +130,7 @@
                             <nil key="highlightedColor"/>
                         </label>
                     </subviews>
-                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <color key="backgroundColor" name="Colors/surface"/>
                     <constraints>
                         <constraint firstItem="7Ve-N3-qrQ" firstAttribute="top" secondItem="4OO-1Q-8uX" secondAttribute="bottom" constant="2" id="1jH-Md-YN2"/>
                         <constraint firstAttribute="trailing" secondItem="VgA-cP-YPd" secondAttribute="trailing" id="2ae-8D-wAv"/>
@@ -202,7 +202,7 @@
                                     <nil key="highlightedColor"/>
                                 </label>
                             </subviews>
-                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            <color key="backgroundColor" name="Colors/surface"/>
                             <constraints>
                                 <constraint firstAttribute="bottom" secondItem="Uyo-1X-jLW" secondAttribute="bottom" id="5nS-vw-Q3n"/>
                                 <constraint firstItem="Uyo-1X-jLW" firstAttribute="leading" secondItem="469-hN-HJf" secondAttribute="leading" id="RMB-46-9ZZ"/>
@@ -332,8 +332,9 @@
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ledon.png" translatesAutoresizingMaskIntoConstraints="NO" id="Zjw-YE-e2T">
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ledon" translatesAutoresizingMaskIntoConstraints="NO" id="Zjw-YE-e2T">
                                             <rect key="frame" x="10" y="444" width="25" height="25"/>
+                                            <color key="tintColor" name="Colors/on_background"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="25" id="Ya2-56-8ff"/>
                                                 <constraint firstAttribute="height" constant="25" id="yTw-XU-HE9"/>
@@ -348,22 +349,24 @@
                                             <color key="textColor" red="0.37643486259999998" green="0.37649342419999998" blue="0.37642204759999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ledoff.png" translatesAutoresizingMaskIntoConstraints="NO" id="ie0-2a-dpL">
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ledoff" translatesAutoresizingMaskIntoConstraints="NO" id="ie0-2a-dpL">
                                             <rect key="frame" x="10" y="484.33333333333337" width="25" height="25"/>
+                                            <color key="tintColor" name="Colors/on_background"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="25" id="1Xc-Il-1JI"/>
                                                 <constraint firstAttribute="width" constant="25" id="e7m-4r-dKG"/>
                                             </constraints>
                                         </imageView>
-                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ledalwaysoff.png" translatesAutoresizingMaskIntoConstraints="NO" id="lnF-zx-GSf">
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ledalwaysoff" translatesAutoresizingMaskIntoConstraints="NO" id="lnF-zx-GSf">
                                             <rect key="frame" x="10" y="527.66666666666663" width="25" height="25"/>
+                                            <color key="tintColor" name="Colors/on_background"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="25" id="l51-kf-Z2x"/>
                                                 <constraint firstAttribute="height" constant="25" id="xQH-2f-fSs"/>
                                             </constraints>
                                         </imageView>
                                     </subviews>
-                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                    <color key="backgroundColor" name="Colors/surface"/>
                                     <constraints>
                                         <constraint firstItem="0xu-kG-dd0" firstAttribute="top" secondItem="2bB-RD-kAw" secondAttribute="bottom" constant="2" id="28a-wG-tee"/>
                                         <constraint firstItem="Xe0-nk-NzR" firstAttribute="top" secondItem="ie0-2a-dpL" secondAttribute="top" id="67o-7S-uzz"/>
@@ -423,7 +426,7 @@
                             </constraints>
                         </scrollView>
                     </subviews>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <color key="backgroundColor" name="Colors/surface"/>
                     <constraints>
                         <constraint firstItem="fYh-Ni-s4b" firstAttribute="trailing" secondItem="469-hN-HJf" secondAttribute="trailing" id="2p0-Uh-sGe"/>
                         <constraint firstItem="469-hN-HJf" firstAttribute="leading" secondItem="bNb-hT-Qln" secondAttribute="leading" id="CVw-ef-D9U"/>
@@ -484,13 +487,13 @@
                                     </constraints>
                                 </view>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Information" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jyz-3V-0h0">
-                                    <rect key="frame" x="10" y="17.666666666666657" width="151.33333333333334" height="35"/>
+                                    <rect key="frame" x="10" y="18.666666666666682" width="142.33333333333334" height="32.666666666666657"/>
                                     <fontDescription key="fontDescription" name="Quicksand-Regular" family="Quicksand" pointSize="28"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                             </subviews>
-                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            <color key="backgroundColor" name="Colors/surface"/>
                             <constraints>
                                 <constraint firstAttribute="trailing" secondItem="Xgf-Fk-DlF" secondAttribute="trailing" constant="10" id="GoI-7F-FzM"/>
                                 <constraint firstItem="Jyz-3V-0h0" firstAttribute="leading" secondItem="VQd-g3-uQM" secondAttribute="leading" constant="10" id="cug-IB-Bw0"/>
@@ -519,7 +522,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="wordWrap" numberOfLines="6" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TPI-HM-L6F">
-                                            <rect key="frame" x="10" y="31.999999999999993" width="300" height="76.333333333333314"/>
+                                            <rect key="frame" x="10" y="32" width="300" height="49"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="10" id="NMZ-1o-UGb"/>
                                             </constraints>
@@ -529,7 +532,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Input options" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7Pp-Da-Sq6">
-                                            <rect key="frame" x="10" y="123.33333333333331" width="94.333333333333329" height="20"/>
+                                            <rect key="frame" x="10" y="96" width="82.666666666666671" height="20"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="20" id="8j6-X3-iT8"/>
                                                 <constraint firstAttribute="height" constant="20" id="GDb-ms-DAR"/>
@@ -538,8 +541,9 @@
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="infinity.png" translatesAutoresizingMaskIntoConstraints="NO" id="iWU-gr-W7t">
-                                            <rect key="frame" x="10" y="145.33333333333331" width="25" height="25"/>
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="infinity" translatesAutoresizingMaskIntoConstraints="NO" id="iWU-gr-W7t">
+                                            <rect key="frame" x="10" y="118" width="25" height="25"/>
+                                            <color key="tintColor" name="Colors/on_background"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="25" id="4EB-Ao-zTH"/>
                                                 <constraint firstAttribute="width" constant="25" id="rDy-pB-14V"/>
@@ -548,7 +552,7 @@
                                             </constraints>
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="wordWrap" numberOfLines="14" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yBd-Ha-yfd">
-                                            <rect key="frame" x="45" y="145.33333333333331" width="260" height="267"/>
+                                            <rect key="frame" x="45" y="117.99999999999999" width="260" height="228.66666666666663"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="10" id="PhP-GE-WGq"/>
                                             </constraints>
@@ -557,8 +561,9 @@
                                             <color key="textColor" red="0.37643486259999998" green="0.37649342419999998" blue="0.37642204759999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="p100.png" translatesAutoresizingMaskIntoConstraints="NO" id="7aQ-nh-Uuu">
-                                            <rect key="frame" x="15" y="422.33333333333337" width="25" height="25"/>
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="p100" translatesAutoresizingMaskIntoConstraints="NO" id="7aQ-nh-Uuu">
+                                            <rect key="frame" x="15" y="356.66666666666663" width="25" height="25"/>
+                                            <color key="tintColor" name="Colors/on_background"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="25" id="9Pa-Iy-sPD"/>
                                                 <constraint firstAttribute="height" relation="lessThanOrEqual" constant="25" id="Br4-K4-eFh"/>
@@ -569,7 +574,7 @@
                                             </constraints>
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="wordWrap" numberOfLines="9" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NGz-cs-cov">
-                                            <rect key="frame" x="50" y="422.33333333333337" width="255" height="171.66666666666663"/>
+                                            <rect key="frame" x="50" y="356.66666666666663" width="255" height="147"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="10" id="pC0-h9-cJx"/>
                                             </constraints>
@@ -579,7 +584,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="The LED is always off, unless the device is in wifi configuration mode (AP Mode)." lineBreakMode="wordWrap" numberOfLines="7" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6dw-or-dvd">
-                                            <rect key="frame" x="45" y="717.66666666666674" width="265" height="38.333333333333371"/>
+                                            <rect key="frame" x="45" y="616" width="265" height="32.666666666666629"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="20" id="XG5-BW-lsq"/>
                                             </constraints>
@@ -588,7 +593,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="The LED is off if there is a connection to the server." lineBreakMode="wordWrap" numberOfLines="7" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hEW-P7-NJd">
-                                            <rect key="frame" x="45" y="674.33333333333337" width="265" height="38.333333333333371"/>
+                                            <rect key="frame" x="45" y="578.33333333333337" width="265" height="32.666666666666629"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="20" id="nNU-ey-Y2e"/>
                                             </constraints>
@@ -597,7 +602,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Status LED" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i9I-y3-jJD">
-                                            <rect key="frame" x="10" y="609" width="300" height="20"/>
+                                            <rect key="frame" x="10" y="518.66666666666663" width="300" height="20"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="20" id="1Zp-ah-EoL"/>
                                                 <constraint firstAttribute="height" constant="20" id="se2-fp-XGH"/>
@@ -606,15 +611,16 @@
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ledon.png" translatesAutoresizingMaskIntoConstraints="NO" id="qlp-tg-Z3q">
-                                            <rect key="frame" x="10" y="634" width="25" height="25"/>
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ledon" translatesAutoresizingMaskIntoConstraints="NO" id="qlp-tg-Z3q">
+                                            <rect key="frame" x="10" y="543.66666666666663" width="25" height="25"/>
+                                            <color key="tintColor" name="Colors/on_background"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="25" id="3GS-zh-Ubv"/>
                                                 <constraint firstAttribute="height" constant="25" id="Dqh-67-2zX"/>
                                             </constraints>
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="The LED is on if there is a connection to the server." lineBreakMode="wordWrap" numberOfLines="7" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7JR-5s-b4L">
-                                            <rect key="frame" x="45" y="631" width="265" height="38.333333333333371"/>
+                                            <rect key="frame" x="45" y="540.66666666666663" width="265" height="32.666666666666629"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="20" id="0o3-J6-ISb"/>
                                             </constraints>
@@ -622,22 +628,24 @@
                                             <color key="textColor" red="0.37643486259999998" green="0.37649342419999998" blue="0.37642204759999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ledoff.png" translatesAutoresizingMaskIntoConstraints="NO" id="LiP-6R-WPN">
-                                            <rect key="frame" x="10" y="674.33333333333337" width="25" height="25"/>
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ledoff" translatesAutoresizingMaskIntoConstraints="NO" id="LiP-6R-WPN">
+                                            <rect key="frame" x="10" y="578.33333333333337" width="25" height="25"/>
+                                            <color key="tintColor" name="Colors/on_background"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="25" id="NZc-UB-fDI"/>
                                                 <constraint firstAttribute="width" constant="25" id="Waf-xA-yey"/>
                                             </constraints>
                                         </imageView>
-                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ledalwaysoff.png" translatesAutoresizingMaskIntoConstraints="NO" id="wvr-16-Qyg">
-                                            <rect key="frame" x="10" y="717.66666666666674" width="25" height="25"/>
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ledalwaysoff" translatesAutoresizingMaskIntoConstraints="NO" id="wvr-16-Qyg">
+                                            <rect key="frame" x="10" y="616" width="25" height="25"/>
+                                            <color key="tintColor" name="Colors/on_background"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="25" id="8UY-Dg-6It"/>
                                                 <constraint firstAttribute="width" constant="25" id="BX2-v4-gBh"/>
                                             </constraints>
                                         </imageView>
                                     </subviews>
-                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                    <color key="backgroundColor" name="Colors/surface"/>
                                     <constraints>
                                         <constraint firstItem="7JR-5s-b4L" firstAttribute="leading" secondItem="qlp-tg-Z3q" secondAttribute="trailing" constant="10" id="4P5-0n-Wyd"/>
                                         <constraint firstAttribute="trailing" secondItem="TPI-HM-L6F" secondAttribute="trailing" constant="10" id="54g-Uv-LFT"/>
@@ -688,7 +696,7 @@
                             </constraints>
                         </scrollView>
                     </subviews>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <color key="backgroundColor" name="Colors/surface"/>
                     <constraints>
                         <constraint firstItem="VQd-g3-uQM" firstAttribute="leading" secondItem="uFn-25-GB1" secondAttribute="leading" id="70G-5c-9ns"/>
                         <constraint firstItem="hxT-et-Mel" firstAttribute="leading" secondItem="uFn-25-GB1" secondAttribute="leading" id="PhS-nG-2WU"/>
@@ -707,20 +715,23 @@
                 <constraint firstItem="uFn-25-GB1" firstAttribute="centerY" secondItem="dmK-mn-bNd" secondAttribute="centerY" id="RbZ-Ft-1vB"/>
                 <constraint firstItem="uFn-25-GB1" firstAttribute="centerX" secondItem="dmK-mn-bNd" secondAttribute="centerX" id="fHe-OV-tPP"/>
             </constraints>
-            <point key="canvasLocation" x="1914.375" y="613.125"/>
+            <point key="canvasLocation" x="1913.5514018691588" y="612.95896328293736"/>
         </view>
     </objects>
     <resources>
-        <image name="infinity.png" width="114.89361572265625" height="114.89361572265625"/>
+        <image name="icon_off" width="24" height="24"/>
+        <image name="icon_settings" width="24" height="24"/>
+        <image name="infinity" width="150" height="150"/>
         <image name="infoclose.png" width="50" height="50"/>
-        <image name="ledalwaysoff.png" width="112.5" height="112.5"/>
-        <image name="ledoff.png" width="112.5" height="112.5"/>
-        <image name="ledon.png" width="112.5" height="112.5"/>
-        <image name="p100.png" width="112.5" height="61.5"/>
-        <image name="rgbwpoweroff.png" width="50" height="50"/>
-        <image name="rgbwsettings.png" width="50" height="50"/>
-        <systemColor name="systemBackgroundColor">
-            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
+        <image name="ledalwaysoff" width="150" height="150"/>
+        <image name="ledoff" width="150" height="150"/>
+        <image name="ledon" width="150" height="150"/>
+        <image name="p100" width="150" height="82"/>
+        <namedColor name="Colors/on_background">
+            <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="Colors/surface">
+            <color red="0.99607843137254903" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
     </resources>
 </document>

@@ -86,6 +86,10 @@
     [_btnPhase2 setFont: StaticSize.body2];
     [_btnPhase3 setFont: StaticSize.body2];
     [_btnPhaseSum setFont: StaticSize.body2];
+    [_btnPhase1 setTitleColor: [UIColor onBackground] forState: UIControlStateNormal];
+    [_btnPhase2 setTitleColor: [UIColor onBackground] forState: UIControlStateNormal];
+    [_btnPhase3 setTitleColor: [UIColor onBackground] forState: UIControlStateNormal];
+    [_btnPhaseSum setTitleColor: [UIColor onBackground] forState: UIControlStateNormal];
 }
 
 - (void)setLabel:(UILabel*)label Visible:(BOOL)visible withConstraint:(NSLayoutConstraint*)cns {

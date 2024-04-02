@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="22505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="32700.99.1234" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22504"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22684"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -95,7 +96,7 @@
                             </connections>
                         </button>
                     </subviews>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <color key="backgroundColor" name="Colors/surface"/>
                     <constraints>
                         <constraint firstItem="5NZ-KI-0CD" firstAttribute="top" secondItem="nN6-QF-5He" secondAttribute="top" constant="2" id="2T3-jN-M1X"/>
                         <constraint firstItem="5NZ-KI-0CD" firstAttribute="width" secondItem="rvo-jc-7PF" secondAttribute="width" id="75Z-P2-diO"/>
@@ -171,7 +172,7 @@
                             </connections>
                         </button>
                     </subviews>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <color key="backgroundColor" name="Colors/surface"/>
                     <constraints>
                         <constraint firstItem="0Qk-BM-JC5" firstAttribute="leading" secondItem="b2V-rw-W6a" secondAttribute="trailing" constant="2" id="1YW-KS-NxI"/>
                         <constraint firstAttribute="height" constant="35" id="4cu-NQ-mj6"/>
@@ -246,7 +247,7 @@
                             </constraints>
                             <fontDescription key="fontDescription" name="OpenSans-Bold" family="Open Sans" pointSize="10"/>
                             <state key="normal" title="OPERATING RANGE">
-                                <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="titleColor" name="Colors/on_background"/>
                             </state>
                             <state key="selected">
                                 <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -262,7 +263,7 @@
                             </constraints>
                             <fontDescription key="fontDescription" name="OpenSans-Bold" family="Open Sans" pointSize="10"/>
                             <state key="normal" title="BOOST">
-                                <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="titleColor" name="Colors/on_background"/>
                             </state>
                             <state key="selected">
                                 <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -307,6 +308,7 @@
                             <subviews>
                                 <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ledonwhite.png" translatesAutoresizingMaskIntoConstraints="NO" id="42K-Co-MUa">
                                     <rect key="frame" x="0.0" y="5" width="118.33333333333333" height="21"/>
+                                    <color key="tintColor" name="Colors/on_background"/>
                                 </imageView>
                             </subviews>
                             <color key="backgroundColor" red="0.0" green="0.61571538449999996" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -325,8 +327,9 @@
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="U3N-nO-5uO">
                             <rect key="frame" x="122.33333333333334" y="2" width="118.33333333333334" height="31"/>
                             <subviews>
-                                <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ledoff.png" translatesAutoresizingMaskIntoConstraints="NO" id="CaR-OH-mHg">
+                                <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ledoff" translatesAutoresizingMaskIntoConstraints="NO" id="CaR-OH-mHg">
                                     <rect key="frame" x="0.0" y="5" width="118.33333333333333" height="21"/>
+                                    <color key="tintColor" name="Colors/on_background"/>
                                 </imageView>
                             </subviews>
                             <constraints>
@@ -344,8 +347,9 @@
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JUl-3S-kXy">
                             <rect key="frame" x="242.66666666666671" y="2" width="118.33333333333334" height="31"/>
                             <subviews>
-                                <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ledalwaysoff.png" translatesAutoresizingMaskIntoConstraints="NO" id="B4u-Qg-gww">
+                                <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ledalwaysoff" translatesAutoresizingMaskIntoConstraints="NO" id="B4u-Qg-gww">
                                     <rect key="frame" x="0.0" y="5" width="118.33333333333333" height="21"/>
+                                    <color key="tintColor" name="Colors/on_background"/>
                                 </imageView>
                             </subviews>
                             <constraints>
@@ -361,7 +365,7 @@
                             </userDefinedRuntimeAttributes>
                         </view>
                     </subviews>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <color key="backgroundColor" name="Colors/surface"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="35" id="06E-Tl-7Id"/>
                         <constraint firstItem="U3N-nO-5uO" firstAttribute="top" secondItem="233-mb-2Sc" secondAttribute="top" constant="2" id="6Qb-i4-pmm"/>
@@ -452,11 +456,17 @@
     </objects>
     <resources>
         <image name="btnOK.png" width="65" height="65"/>
-        <image name="ledalwaysoff.png" width="112.5" height="112.5"/>
-        <image name="ledoff.png" width="112.5" height="112.5"/>
+        <image name="ledalwaysoff" width="150" height="150"/>
+        <image name="ledoff" width="150" height="150"/>
         <image name="ledonwhite.png" width="112.5" height="112.5"/>
         <image name="vlinfo@3.png" width="200" height="200"/>
         <image name="vlrestore@3.png" width="200" height="200"/>
+        <namedColor name="Colors/on_background">
+            <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="Colors/surface">
+            <color red="0.99607843137254903" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

@@ -16,17 +16,14 @@
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 
-import UIKit
+import RxDataSources
 import RxSwift
 import RxSwiftExt
-import RxDataSources
+import UIKit
 
-class AppSettingsVC: BaseViewControllerVM<AppSettingsViewState, AppSettingsViewEvent, AppSettingsVM>  {
-    
+class AppSettingsVC: BaseViewControllerVM<AppSettingsViewState, AppSettingsViewEvent, AppSettingsVM> {
     let tableView = UITableView(frame: .zero, style: .grouped)
-    private var navigator: AppSettingsNavigationCoordinator? {
-        get { navigationCoordinator as? AppSettingsNavigationCoordinator }
-    }
+    private var navigator: AppSettingsNavigationCoordinator? { navigationCoordinator as? AppSettingsNavigationCoordinator }
     
     convenience init() {
         self.init(nibName: nil, bundle: nil)
@@ -35,13 +32,14 @@ class AppSettingsVC: BaseViewControllerVM<AppSettingsViewState, AppSettingsViewE
     }
     
     override func loadView() {
-        self.view = tableView
+        view = tableView
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         edgesForExtendedLayout = []
         statusBarBackgroundView.isHidden = true
+        view.backgroundColor = .background
         
         setupTableView()
     }
@@ -50,10 +48,11 @@ class AppSettingsVC: BaseViewControllerVM<AppSettingsViewState, AppSettingsViewE
         switch (event) {
         case .navigateToLocationOrdering:
             navigator?.navigateToLocationOrdering()
-            break
         case .navigateToAppPreferences:
             openAppSettings()
-            break
+        case .changeInterfaceStyle(let style):
+            (UIApplication.shared.delegate as? AppDelegate)?.window.overrideUserInterfaceStyle = style
+            overrideUserInterfaceStyle = style
         }
     }
     
@@ -64,6 +63,7 @@ class AppSettingsVC: BaseViewControllerVM<AppSettingsViewState, AppSettingsViewE
         tableView.register(RsOpenningClosingPersentageCell.self, forCellReuseIdentifier: RsOpenningClosingPersentageCell.id)
         tableView.register(TitleArrowButtonCell.self, forCellReuseIdentifier: TitleArrowButtonCell.id)
         tableView.register(PermissionCell.self, forCellReuseIdentifier: PermissionCell.id)
+        tableView.register(NightModeCell.self, forCellReuseIdentifier: NightModeCell.id)
         
         viewModel.stateObservable()
             .map { $0.list }
@@ -75,7 +75,7 @@ class AppSettingsVC: BaseViewControllerVM<AppSettingsViewState, AppSettingsViewE
     
     private func createDataSource() -> RxTableViewSectionedReloadDataSource<SettingsList> {
         return RxTableViewSectionedReloadDataSource(
-            configureCell: { dataSource, tableView, indexPath, _ in
+            configureCell: { dataSource, _, indexPath, _ in
                 switch dataSource[indexPath] {
                 case .heightItem(let channelHeight, let callback):
                     return ChannelHeightCell.configure(channelHeight, callback) {
@@ -100,6 +100,10 @@ class AppSettingsVC: BaseViewControllerVM<AppSettingsViewState, AppSettingsViewE
                 case .permissionItem(let title, let active, let callback):
                     return PermissionCell.configure(title, active, callback) {
                         self.getCell(for: PermissionCell.id, indexPath)
+                    }
+                case .darkModeItem(let nightModeSetting, let callback):
+                    return NightModeCell.configure(nightModeSetting, callback) {
+                        self.getCell(for: NightModeCell.id, indexPath)
                     }
                 }
             }, titleForHeaderInSection: { dataSource, sectionIndex in

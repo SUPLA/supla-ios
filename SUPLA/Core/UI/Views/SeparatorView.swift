@@ -24,10 +24,10 @@ final class SeparatorView: UIView {
         get { CGSize(width: UIView.noIntrinsicMetric, height: 1) }
     }
     
-    override init(frame: CGRect) {
-        super.init(frame: frame)
+    init(color: UIColor = .separatorLight) {
+        super.init(frame: .zero)
         
-        backgroundColor = .separatorLight
+        backgroundColor = color
         translatesAutoresizingMaskIntoConstraints = false
     }
     

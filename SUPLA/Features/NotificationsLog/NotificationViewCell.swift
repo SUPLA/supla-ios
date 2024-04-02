@@ -62,6 +62,11 @@ final class NotificationViewCell: UITableViewCell {
         return label
     }()
     
+    private lazy var separatorView: SeparatorView = {
+        let view = SeparatorView(color: .background)
+        return view
+    }()
+    
     var profileName: String? {
         get { profileNameView.text }
         set {
@@ -105,6 +110,7 @@ final class NotificationViewCell: UITableViewCell {
         contentView.addSubview(dateView)
         contentView.addSubview(titleView)
         contentView.addSubview(messageView)
+        contentView.addSubview(separatorView)
         
         setupLayout()
     }
@@ -130,7 +136,11 @@ final class NotificationViewCell: UITableViewCell {
             messageView.topAnchor.constraint(equalTo: titleView.bottomAnchor, constant: Dimens.distanceTiny),
             messageView.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: Dimens.distanceDefault),
             messageView.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -Dimens.distanceDefault),
-            messageView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -Dimens.distanceDefault)
+            messageView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -Dimens.distanceDefault),
+            
+            separatorView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
+            separatorView.leftAnchor.constraint(equalTo: contentView.leftAnchor),
+            separatorView.rightAnchor.constraint(equalTo: contentView.rightAnchor)
         ])
     }
 }

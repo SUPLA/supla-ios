@@ -305,6 +305,7 @@
     }
     
     self.combinedChart.hidden = NO;
+    self.combinedChart.backgroundColor = [UIColor background];
     [self.combinedChart.xAxis setValueFormatter:self];
     self.combinedChart.xAxis.labelCount = 3;
     self.combinedChart.leftAxis.drawLabelsEnabled = NO;
@@ -390,6 +391,7 @@
     }
     
     pieChart.hidden = NO;
+    pieChart.backgroundColor = [UIColor background];
     pieChart.data = nil;
     [self.pieChart clear];
     

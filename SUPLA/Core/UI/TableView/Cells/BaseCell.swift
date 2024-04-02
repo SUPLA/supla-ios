@@ -97,6 +97,7 @@ class BaseCell<T>: MGSwipeTableCell {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.isUserInteractionEnabled = true
         label.addGestureRecognizer(captionLongPressRecongizer)
+        label.textColor = .onBackground
         return label
     }()
     
@@ -104,6 +105,7 @@ class BaseCell<T>: MGSwipeTableCell {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textColor = .gray
+        label.textColor = .onBackground
         return label
     }()
     
@@ -111,6 +113,7 @@ class BaseCell<T>: MGSwipeTableCell {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textColor = .gray
+        label.textColor = .onBackground
         return label
     }()
     
@@ -264,7 +267,7 @@ class BaseCell<T>: MGSwipeTableCell {
     func isCaptionTouched() -> Bool { captionTouched }
     
     func setupView() {
-        contentView.backgroundColor = .listItemBackground
+        contentView.backgroundColor = .channelCell
         
         captionView.font = .cellCaptionFont.withSize(scale(Dimens.Fonts.caption, limit: .lower(1)))
         timerView.font = .formLabelFont.withSize(scale(Dimens.Fonts.label, limit: .upper(1)))

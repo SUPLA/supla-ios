@@ -53,6 +53,7 @@
                 for(int a=0;a<items.count;a++) {
                     NSDictionary *i = [items objectAtIndex:a];
                     NSArray *images = nil;
+                    NSArray *darkImages = nil;
                     NSNumber *remote_id = nil;
                     
                     if (i != nil
@@ -62,7 +63,11 @@
                         && (remote_id = [i valueForKey:@"id"])
                         && [remote_id isKindOfClass:[NSNumber class]]) {
                         
-                        [UseCaseLegacyWrapper saveIconWithRemoteId:remote_id images: images];
+                        if ([[i valueForKey:@"imagesDark"] isKindOfClass:[NSArray class]]) {
+                            darkImages = [i valueForKey:@"imagesDark"];
+                        }
+                        
+                        [UseCaseLegacyWrapper saveIconWithRemoteId:remote_id images: images darkImages: darkImages];
                     
                     }
                 }
