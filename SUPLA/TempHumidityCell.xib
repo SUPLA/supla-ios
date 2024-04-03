@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="22505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22504"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -151,6 +151,7 @@
                 </variation>
             </tableViewCellContentView>
             <connections>
+                <outlet property="bottomLine" destination="dBx-Oa-uvc" id="9IH-V7-1ET"/>
                 <outlet property="caption" destination="5YC-RH-PM5" id="5Jz-QT-4kl"/>
                 <outlet property="channelStateIcon" destination="dQB-Sb-fjG" id="Zhw-ZO-Rx7"/>
                 <outlet property="humidity" destination="lPY-xq-yar" id="0qW-7M-qbG"/>

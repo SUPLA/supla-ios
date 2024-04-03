@@ -27,7 +27,7 @@ extension UIImage {
     
     // MARK: Icons
     static let pencil = UIImage(named: .Icons.pencil)
-    static let iconInfo = UIImage(named: .Icons.info)
+    @objc static let iconInfo = UIImage(named: .Icons.info)
     static let iconHeating = UIImage(named: .Icons.heating)
     static let iconCooling = UIImage(named: .Icons.cooling)
     static let iconStandby = UIImage(named: .Icons.standby)
@@ -69,4 +69,6 @@ extension UIImage {
     // MARK: other
     static let thumbHeat = UIImage(named: .Icons.thumbHeat)
     static let thumbCool = UIImage(named: .Icons.thumbCool)
+    
+    @objc static let logo = UIImage(named: .Image.logo)
 }

@@ -81,6 +81,9 @@
     self.right_OnlineStatus.onlineColor = [UIColor onLine];
     self.right_OnlineStatus.offlineColor = [UIColor offLine];
     self.right_OnlineStatus.borderColor = [UIColor statusBorder];
+    self.contentView.backgroundColor = [UIColor channelCell];
+    self.backgroundColor = [UIColor channelCell];
+    self.bottomLine.backgroundColor = [UIColor separator];
     
     [self.left_OnlineStatus assignColors:self.right_OnlineStatus];
     [self.right_ActiveStatus assignColors:self.right_OnlineStatus];
@@ -107,6 +110,11 @@
     self.durationTimer.textColor = UIColor.gray;
     
     [self.caption setFont: UIFont.cellCaptionFont];
+    self.caption.textColor = [UIColor onBackground];
+    self.measuredValue.textColor = [UIColor onBackground];
+    self.temp.textColor = [UIColor onBackground];
+    self.humidity.textColor = [UIColor onBackground];
+    self.distance.textColor = [UIColor onBackground];
 }
 
 - (DisposeBagContainer *) getDisposeBagContainer {
@@ -143,7 +151,7 @@
     CGFloat offset = 5;
     UIView *bg = [[UIView alloc] init];
     bg.translatesAutoresizingMaskIntoConstraints = NO;
-    bg.backgroundColor = [UIColor whiteColor];
+    bg.backgroundColor = [UIColor channelCell];
     [btn addSubview: bg];
     [bg.bottomAnchor constraintEqualToAnchor: btn.bottomAnchor].active = YES;
     [bg.leftAnchor constraintEqualToAnchor: btn.leftAnchor].active = YES;

@@ -24,7 +24,7 @@ final class SaveIconUseCase {
     @Singleton<ProfileRepository> private var profileRepository
     
     @available(*, deprecated, message: "Only for legacy code")
-    func invoke(remoteId: Int32, images: [String]) {
+    func invoke(remoteId: Int32, images: [String], darkImages: [String]?) {
         do {
             try profileRepository.getActiveProfile()
                 .flatMapFirst { profile in
@@ -36,6 +36,13 @@ final class SaveIconUseCase {
                     icon.uimage2 = self.image(at: 1, in: images)
                     icon.uimage3 = self.image(at: 2, in: images)
                     icon.uimage4 = self.image(at: 3, in: images)
+                    
+                    if let darkImages = darkImages {
+                        icon.uimage1_dark = self.image(at: 0, in: darkImages)
+                        icon.uimage2_dark = self.image(at: 1, in: darkImages)
+                        icon.uimage3_dark = self.image(at: 2, in: darkImages)
+                        icon.uimage4_dark = self.image(at: 3, in: darkImages)
+                    }
                     
                     return icon
                 }

@@ -17,6 +17,7 @@
  */
 
 #import "SAThermostatCalendar.h"
+#import "SUPLA-Swift.h"
 #define TC_SPACING 2.5
 
 typedef struct {
@@ -54,6 +55,7 @@ typedef struct {
     _program1Label = @"P1";
     _textSize = 12.0;
     _textColor = nil;
+    self.backgroundColor = [UIColor background];
     
     NSDateFormatter * formatter = [[NSDateFormatter alloc] init];
     _dayNames = [formatter shortWeekdaySymbols];
@@ -194,7 +196,7 @@ typedef struct {
     return day;
 }
 
--(void)drawText:(NSString *)txt inRect:(CGRect)rect context:(CGContextRef)ctx {
+-(void)drawText:(NSString *)txt inRect:(CGRect)rect context:(CGContextRef)ctx color:(bool) color {
     CGContextSetTextDrawingMode(ctx, kCGTextFill);
     
     UIFont *font = [UIFont fontWithName:@"OpenSans" size:self.textSize];
@@ -202,7 +204,8 @@ typedef struct {
     [pStyle setAlignment:NSTextAlignmentCenter];
     
     NSDictionary *attr = @{NSFontAttributeName:font,
-                         NSParagraphStyleAttributeName:pStyle};
+                         NSParagraphStyleAttributeName:pStyle,
+                           NSForegroundColorAttributeName: color ? [UIColor onBackground] : [UIColor blackColor]};
         
     CGFloat height = [txt sizeWithAttributes:attr].height;
     rect.origin.y += (rect.size.height - height) / 2;
@@ -222,7 +225,7 @@ typedef struct {
         [path fill];
         
         [self.textColor setFill];
-        [self drawText:txt inRect:r1 context:ctx];
+        [self drawText:txt inRect:r1 context:ctx color:NO];
         offset+=3;
     }
     return offset;
@@ -255,7 +258,7 @@ typedef struct {
                 }
                 
                 [self.textColor setFill];
-                [self drawText:label inRect:rect context:context];
+                [self drawText:label inRect:rect context:context color:YES];
             } else {
                 path = [UIBezierPath bezierPathWithRoundedRect:rect cornerRadius:6];
                 [(_HourProgramGrid[dayIdx][h] ? self.program1Color : self.program0Color) setFill];

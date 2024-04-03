@@ -18,6 +18,7 @@
 
 #import "DetailView.h"
 #import "SAChannelGroup+CoreDataClass.h"
+#import "SUPLA-Swift.h"
 
 #import "SuplaApp.h"
 #import "Database.h"
@@ -33,6 +34,7 @@
 }
 
 -(void) detailViewInit {
+    self.backgroundColor = [UIColor background];
     
     if ( _initialized )
         return;

@@ -444,7 +444,7 @@ fileprivate class ScheduleDetailTableView: UIView {
         label.fontSize = 12
         label.string = text
         label.alignmentMode = .center
-        label.foregroundColor = UIColor.black.cgColor
+        label.foregroundColor = UIColor.onBackground.cgColor
         label.contentsScale = UIScreen.main.scale
         
         return label

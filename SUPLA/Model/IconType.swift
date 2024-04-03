@@ -18,6 +18,7 @@
 
 import Foundation
 
-enum IconType {
+@objc
+enum IconType: Int {
     case single, first, second
 }

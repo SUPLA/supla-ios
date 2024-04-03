@@ -19,6 +19,7 @@
 
 #import "AboutVC.h"
 #import "SuplaApp.h"
+#import "SUPLA-Swift.h"
 
 @interface SAAboutVC ()
 
@@ -30,10 +31,25 @@
     [super viewDidLoad];
     [self.version setText:[NSString stringWithFormat:@"%@ %@", NSLocalizedString(@"version", nil), [[NSBundle mainBundle] objectForInfoDictionaryKey: @"CFBundleShortVersionString"]]];
     self.title = @"supla";
+    
+    self.view.backgroundColor = [UIColor background];
+    self.textView.textColor = [UIColor onBackground];
+    self.version.textColor = [UIColor onBackground];
+    self.lSupla.textColor = [UIColor onBackground];
+    [self.suplaButton setTitleColor: [UIColor onBackground] forState: UIControlStateNormal];
+    self.suplaLogo.image = [UIImage logo];
+    self.suplaLogo.tintColor = [UIColor onBackground];
 }
 
 -(void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
+    self.view.backgroundColor = [UIColor background];
+    self.textView.textColor = [UIColor onBackground];
+    self.version.textColor = [UIColor onBackground];
+    self.lSupla.textColor = [UIColor onBackground];
+    [self.suplaButton setTitleColor: [UIColor onBackground] forState: UIControlStateNormal];
+    self.suplaLogo.image = [UIImage logo];
+    self.suplaLogo.tintColor = [UIColor onBackground];
     
     if ( self.textView.frame.size.height < 100 ) {
         self.textView.hidden = YES;

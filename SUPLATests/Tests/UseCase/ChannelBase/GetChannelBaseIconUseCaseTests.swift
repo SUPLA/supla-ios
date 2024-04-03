@@ -37,15 +37,14 @@ final class GetChannelBaseIconUseCaseTests: XCTestCase {
     
     func test_noIconForFirstType_whenNotHumidityAndTemperature() {
         // when
-        expectFatalError(expectedMessage: "Wrong icon configuration (iconType: 'first', function: '140'") {
+        expectFatalError(expectedMessage: "Wrong icon configuration (iconType: 'IconType(rawValue: 1)', function: '140'") {
             _ = self.useCase.invoke(
                 iconData: IconData(
                     function: SUPLA_CHANNELFNC_LIGHTSWITCH,
                     altIcon: 123,
                     state: .notUsed,
                     type: .first,
-                    userIcon: nil,
-                    nightMode: false
+                    userIcon: nil
                 )
             )
         }
@@ -62,35 +61,13 @@ final class GetChannelBaseIconUseCaseTests: XCTestCase {
                 altIcon: 123,
                 state: .on,
                 type: .single,
-                userIcon: nil,
-                nightMode: false
+                userIcon: nil
             )
         )
         
         // then
         XCTAssertNotNil(icon)
         XCTAssertEqual(icon, .suplaIcon(icon: UIImage(named: "uv-on")))
-    }
-    
-    func test_defaultIconInNightMode_whenThereIsNoUserIcon() {
-        // given
-        getDefaultIconNameUseCase.returns = "uv-on"
-        
-        // when
-        let icon = useCase.invoke(
-            iconData: IconData(
-                function: SUPLA_CHANNELFNC_LIGHTSWITCH,
-                altIcon: 123,
-                state: .on,
-                type: .single,
-                userIcon: nil,
-                nightMode: true
-            )
-        )
-        
-        // then
-        XCTAssertNotNil(icon)
-        XCTAssertEqual(icon, .suplaIcon(icon: UIImage(named: "uv-on-nightmode")))
     }
     
     func test_userIcon_activeState() {
@@ -105,8 +82,7 @@ final class GetChannelBaseIconUseCaseTests: XCTestCase {
                 altIcon: 123,
                 state: .on,
                 type: .single,
-                userIcon: userIcon,
-                nightMode: false
+                userIcon: userIcon
             )
         )
         
@@ -127,8 +103,7 @@ final class GetChannelBaseIconUseCaseTests: XCTestCase {
                 altIcon: 123,
                 state: .off,
                 type: .single,
-                userIcon: userIcon,
-                nightMode: false
+                userIcon: userIcon
             )
         )
         
@@ -149,8 +124,7 @@ final class GetChannelBaseIconUseCaseTests: XCTestCase {
                 altIcon: 123,
                 state: .notUsed,
                 type: .first,
-                userIcon: userIcon,
-                nightMode: false
+                userIcon: userIcon
             )
         )
         
@@ -171,8 +145,7 @@ final class GetChannelBaseIconUseCaseTests: XCTestCase {
                 altIcon: 123,
                 state: .notUsed,
                 type: .second,
-                userIcon: userIcon,
-                nightMode: false
+                userIcon: userIcon
             )
         )
         
@@ -193,8 +166,7 @@ final class GetChannelBaseIconUseCaseTests: XCTestCase {
                 altIcon: 123,
                 state: .notUsed,
                 type: .single,
-                userIcon: userIcon,
-                nightMode: false
+                userIcon: userIcon
             )
         )
         
@@ -215,8 +187,7 @@ final class GetChannelBaseIconUseCaseTests: XCTestCase {
                 altIcon: 123,
                 state: .opened,
                 type: .single,
-                userIcon: userIcon,
-                nightMode: false
+                userIcon: userIcon
             )
         )
         
@@ -237,8 +208,7 @@ final class GetChannelBaseIconUseCaseTests: XCTestCase {
                 altIcon: 123,
                 state: .partialyOpened,
                 type: .single,
-                userIcon: userIcon,
-                nightMode: false
+                userIcon: userIcon
             )
         )
         
@@ -259,8 +229,7 @@ final class GetChannelBaseIconUseCaseTests: XCTestCase {
                 altIcon: 123,
                 state: .closed,
                 type: .single,
-                userIcon: userIcon,
-                nightMode: false
+                userIcon: userIcon
             )
         )
         

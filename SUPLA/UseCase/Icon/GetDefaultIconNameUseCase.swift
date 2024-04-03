@@ -33,7 +33,6 @@ struct IconData: Changeable, Equatable {
     var state: ChannelState = .notUsed
     var type: IconType = .single
     var userIcon: SAUserIcon? = nil
-    var nightMode = false
     var subfunction: ThermostatSubfunction? = nil // Thermostat specific parameter
 }
 

@@ -19,6 +19,19 @@
 import Foundation
 
 extension SAChannelBase {
+    func getIconData(type: IconType = .single, subfunction: ThermostatSubfunction? = nil) -> IconData {
+        @Singleton<GetChannelBaseStateUseCase> var getChannelBaseStateUseCase
+        
+        return IconData(
+            function: self.func,
+            altIcon: self.alticon,
+            state: getChannelBaseStateUseCase.invoke(function: self.func, activeValue: self.imgIsActive()),
+            type: type,
+            userIcon: self.usericon,
+            subfunction: subfunction
+        )
+    }
+    
     func isThermometer() -> Bool {
         return self.func == SUPLA_CHANNELFNC_THERMOMETER || self.func == SUPLA_CHANNELFNC_HUMIDITYANDTEMPERATURE
     }

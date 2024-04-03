@@ -708,68 +708,10 @@
         return nil;
     }
     
-    if (self.usericon != nil) {
-        NSObject *data = nil;
-        
-        switch(self.func) {
-            case SUPLA_CHANNELFNC_HUMIDITYANDTEMPERATURE:
-            data = idx == 0 ? self.usericon.uimage2 : self.usericon.uimage1;
-            break;
-            case SUPLA_CHANNELFNC_THERMOMETER:
-            data = self.usericon.uimage1;
-            break;
-            case SUPLA_CHANNELFNC_CONTROLLINGTHEGARAGEDOOR:
-            case SUPLA_CHANNELFNC_CONTROLLINGTHEGATE:
-                if (([self imgIsActive] & 0x1) > 0) {
-                    data = self.usericon.uimage2;
-                } else if (([self imgIsActive] & 0x2) > 0) {
-                    data = self.usericon.uimage3;
-                } else {
-                    data = self.usericon.uimage1;
-                }
-            break;
-            case SUPLA_CHANNELFNC_DIMMERANDRGBLIGHTING:
-                if (([self imgIsActive] & 0x1) == 0x1
-                    && ([self imgIsActive] & 0x2) == 0x2) {
-                    data = self.usericon.uimage4;
-                } else if (([self imgIsActive] & 0x1) == 0x1) {
-                    data = self.usericon.uimage2;
-                } else if (([self imgIsActive] & 0x2) == 0x2) {
-                    data = self.usericon.uimage3;
-                } else {
-                    data = self.usericon.uimage1;
-                }
-                break;
-            default:
-                data = [self imgIsActive]
-                ? self.usericon.uimage2 : self.usericon.uimage1;
-            break;
-        }
-        
-        UIImage *img = nil;
-        @try {
-            if (data != nil && [data isKindOfClass:[NSData class]]) {
-                img = [UIImage imageWithData:(NSData*)data];
-            }
-        } @catch (NSException *exception) {
-          img = nil;
-        }
-        
-        if (img != nil) {
-            return img;
-        }
+    if (idx == 1) {
+        return [UseCaseLegacyWrapper getChannelIcon:self :IconTypeSecond];
     }
- 
-    bool nigheMode = NO; // TODO: Needs completion
-    
-    NSString *imageName = [self getImageNameWithIdx:idx];
-    if (imageName == nil) {
-        imageName = @"unknown_channel";
-    } else if (nigheMode) {
-        imageName = [NSString stringWithFormat:@"%@-nightmode", imageName];
-    }
-    
-    return [UIImage imageNamed:imageName];
+    return [UseCaseLegacyWrapper getChannelIcon:self :IconTypeSingle];
 }
 
 - (UIImage*) getIcon {

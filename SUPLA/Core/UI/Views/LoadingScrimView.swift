@@ -41,7 +41,7 @@ final class LoadingScrimView: UIView {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.layer.cornerRadius = Dimens.radiusDefault
-        view.backgroundColor = .white
+        view.backgroundColor = .surface
         return view
     }()
     

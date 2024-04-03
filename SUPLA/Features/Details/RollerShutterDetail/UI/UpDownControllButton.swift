@@ -154,7 +154,7 @@ private class ControlButton: UIView {
     private lazy var iconView: UIImageView = {
         let view = UIImageView()
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.tintColor = .black
+        view.tintColor = .onBackground
         view.contentMode = .scaleAspectFit
         return view
     }()
@@ -211,7 +211,7 @@ private class ControlButton: UIView {
         if (isEnabled) {
             BaseControlButtonView.setupLayer(layer)
             innerShadowView.isHidden = true
-            iconView.tintColor = .black
+            iconView.tintColor = .onBackground
             
             touchUpRelay.accept(())
             

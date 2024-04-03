@@ -36,11 +36,17 @@ final class GetGroupOnlineSummaryUseCaseImpl: GetGroupOnlineSummaryUseCase {
             .flatMapFirst { profile in
                 self.channelGroupRelationRepository.getRelations(for: profile, andGroup: remoteId)
             }.map { relations in
-                var online = 0
+                var onlineIds: [Int32] = []
+                var allIds: [Int32] = []
                 for relation in relations {
-                    online += relation.value?.online == true ? 1 : 0
+                    if (!allIds.contains(relation.channel_id)) {
+                        allIds.append(relation.channel_id)
+                    }
+                    if (relation.value?.online == true && !onlineIds.contains(relation.channel_id)) {
+                        onlineIds.append(relation.channel_id)
+                    }
                 }
-                return GroupOnlineSummary(onlineCount: online, count: relations.count)
+                return GroupOnlineSummary(onlineCount: onlineIds.count, count: allIds.count)
             }
     }
 }

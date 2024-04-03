@@ -29,5 +29,9 @@
 @dynamic uimage2;
 @dynamic uimage3;
 @dynamic uimage4;
+@dynamic uimage1_dark;
+@dynamic uimage2_dark;
+@dynamic uimage3_dark;
+@dynamic uimage4_dark;
 @dynamic profile;
 @end

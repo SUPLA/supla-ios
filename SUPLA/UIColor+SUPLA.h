@@ -32,7 +32,6 @@ NS_ASSUME_NONNULL_BEGIN
 +(nonnull UIColor*)rgbwDetailBackground;
 +(nonnull UIColor*)rgbwSelectedTabColor;
 +(nonnull UIColor*)rgbwNormalTabColor;
-+(nonnull UIColor*)rsDetailBackground;
 +(nonnull UIColor*)statusBorder;
 +(nonnull UIColor*)rsMarkerColor;
 +(nonnull UIColor*)phase1Color;

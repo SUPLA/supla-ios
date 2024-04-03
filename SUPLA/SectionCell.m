@@ -17,6 +17,7 @@
  */
 
 #import "SectionCell.h"
+#import "SUPLA-Swift.h"
 
 @implementation SASectionCell {
     UITapGestureRecognizer *_tap;
@@ -39,6 +40,8 @@
         self.label.userInteractionEnabled = YES;
         [self.label addGestureRecognizer:_longPressGr];
     }
+    self.contentView.backgroundColor = [UIColor channelSectionCell];
+    self.label.textColor = [UIColor onBackground];
 }
 
 - (void)awakeFromNib {

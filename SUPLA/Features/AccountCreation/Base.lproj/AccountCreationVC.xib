@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="22505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="32700.99.1234" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22504"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22684"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -96,7 +97,6 @@
                                     <nil key="highlightedColor"/>
                                 </label>
                             </subviews>
-                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             <constraints>
                                 <constraint firstAttribute="trailing" secondItem="nOM-Nr-jHb" secondAttribute="trailing" id="27i-pm-XsK"/>
                                 <constraint firstAttribute="bottom" secondItem="nOM-Nr-jHb" secondAttribute="bottom" constant="-4" id="KtR-FT-vkF"/>
@@ -130,7 +130,6 @@
                                     <nil key="highlightedColor"/>
                                 </label>
                             </subviews>
-                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             <constraints>
                                 <constraint firstItem="cZS-4u-QMr" firstAttribute="top" secondItem="PRT-ei-V80" secondAttribute="top" id="CRB-DI-jPC"/>
                                 <constraint firstItem="kkM-HY-JhI" firstAttribute="top" secondItem="cZS-4u-QMr" secondAttribute="bottom" constant="4" id="JZe-xs-pmq"/>
@@ -158,7 +157,7 @@
                         <constraint firstAttribute="height" constant="50" id="Q4f-Ty-Dfg"/>
                     </constraints>
                     <fontDescription key="fontDescription" name="Quicksand-Regular" family="Quicksand" pointSize="36"/>
-                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <color key="textColor" name="Colors/on_background"/>
                     <nil key="highlightedColor"/>
                 </label>
             </subviews>
@@ -205,7 +204,6 @@
                                     <nil key="highlightedColor"/>
                                 </label>
                             </subviews>
-                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             <constraints>
                                 <constraint firstItem="NaO-7C-Klr" firstAttribute="top" secondItem="sQy-U9-wLs" secondAttribute="top" constant="4" id="1zr-sX-XpN"/>
                                 <constraint firstItem="j2a-lm-YMc" firstAttribute="leading" secondItem="sQy-U9-wLs" secondAttribute="leading" id="3lE-Ki-pyl"/>
@@ -224,11 +222,9 @@
                         </segmentedControl>
                         <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="agv-fZ-ApW">
                             <rect key="frame" x="0.0" y="497" width="393" height="265"/>
-                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         </view>
                         <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="CD3-bI-bDT">
                             <rect key="frame" x="0.0" y="762" width="393" height="133"/>
-                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         </view>
                     </subviews>
                     <constraints>
@@ -253,23 +249,22 @@
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
                 <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="CLE-eZ-RoC">
-                    <rect key="frame" x="310" y="65" width="51" height="31"/>
+                    <rect key="frame" x="310" y="65" width="51" height="28"/>
                 </switch>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" text="Advanced settings" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9LH-es-n4B">
-                    <rect key="frame" x="183.33333333333334" y="71.666666666666671" width="118.66666666666666" height="17.666666666666671"/>
+                    <rect key="frame" x="183.33333333333334" y="70.333333333333329" width="118.66666666666666" height="17.666666666666671"/>
                     <fontDescription key="fontDescription" name="Quicksand-Regular" family="Quicksand" pointSize="14"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="APj-NV-55D">
-                    <rect key="frame" x="33" y="102" width="326" height="730"/>
+                    <rect key="frame" x="33" y="99" width="326" height="733"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pLe-rf-dtD">
-                            <rect key="frame" x="0.0" y="0.0" width="326" height="596.33333333333337"/>
-                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <rect key="frame" x="0.0" y="0.0" width="326" height="599.33333333333337"/>
                         </view>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LE2-dM-R7U" userLabel="Confirm" customClass="RoundedButton" customModule="SUPLA" customModuleProvider="target">
-                            <rect key="frame" x="0.0" y="596.33333333333337" width="326" height="44"/>
+                            <rect key="frame" x="0.0" y="599.33333333333337" width="326" height="44"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="44" id="TmF-Jz-Dmb"/>
                             </constraints>
@@ -279,7 +274,7 @@
                             </attributedString>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1X3-nE-82h" userLabel="Delete" customClass="RoundedButton" customModule="SUPLA" customModuleProvider="target">
-                            <rect key="frame" x="0.0" y="640.33333333333337" width="326" height="44"/>
+                            <rect key="frame" x="0.0" y="643.33333333333337" width="326" height="44"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="44" id="EYg-pe-IkR"/>
                             </constraints>
@@ -289,13 +284,13 @@
                             </state>
                         </button>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="1000" text="Don't have an account in Supla Cloud yet?" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qva-Ft-tLE">
-                            <rect key="frame" x="0.0" y="684.33333333333337" width="326" height="19.333333333333371"/>
+                            <rect key="frame" x="0.0" y="687.33333333333337" width="326" height="19.333333333333371"/>
                             <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="14"/>
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <button opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2Up-5L-11x" userLabel="Create link">
-                            <rect key="frame" x="0.0" y="703.66666666666663" width="326" height="26.333333333333371"/>
+                            <rect key="frame" x="0.0" y="706.66666666666663" width="326" height="26.333333333333371"/>
                             <state key="normal">
                                 <attributedString key="attributedTitle">
                                     <fragment content="Create">
@@ -320,7 +315,7 @@
                     <color key="backgroundColor" white="0.48620191206331964" alpha="0.25227659151408904" colorSpace="calibratedWhite"/>
                 </stackView>
             </subviews>
-            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+            <color key="backgroundColor" name="Colors/background"/>
             <constraints>
                 <constraint firstAttribute="bottom" secondItem="dz1-kR-mmc" secondAttribute="bottom" id="0Aa-G0-uYl"/>
                 <constraint firstAttribute="trailing" secondItem="dz1-kR-mmc" secondAttribute="trailing" id="49H-5E-y1l"/>
@@ -373,7 +368,7 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SERVER ADDRESS" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qxw-Mq-ReH">
-                    <rect key="frame" x="12" y="106" width="84" height="14"/>
+                    <rect key="frame" x="12" y="106" width="87.666666666666671" height="14"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="14" id="xTg-oI-KaA"/>
                     </constraints>
@@ -414,7 +409,7 @@
                 <constraint firstItem="xgL-iM-kmw" firstAttribute="leading" secondItem="Qxw-Mq-ReH" secondAttribute="leading" constant="-12" id="jTj-9V-V00"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <point key="canvasLocation" x="-1516.875" y="-490"/>
+            <point key="canvasLocation" x="-2050" y="-470"/>
         </view>
         <view contentMode="scaleToFill" id="6LZ-hf-ytq" userLabel="Access id auth form">
             <rect key="frame" x="0.0" y="0.0" width="318" height="372"/>
@@ -429,7 +424,7 @@
                     <textInputTraits key="textInputTraits" autocorrectionType="no" keyboardType="URL" returnKeyType="next"/>
                 </textField>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ACCESS IDENTIFIER" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b9q-7p-zBF">
-                    <rect key="frame" x="12" y="29" width="93.666666666666671" height="14"/>
+                    <rect key="frame" x="12" y="29" width="93.333333333333329" height="14"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="14" id="zIv-wF-jLJ"/>
                     </constraints>
@@ -527,6 +522,12 @@
         </designable>
     </designables>
     <resources>
+        <namedColor name="Colors/background">
+            <color red="0.96078431372549022" green="0.96470588235294119" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="Colors/on_background">
+            <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

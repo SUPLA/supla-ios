@@ -411,7 +411,7 @@ fileprivate class TemperatureCircleLayer: CAShapeLayer {
     }
     
     private func setupView() {
-        fillColor = UIColor.white.cgColor
+        fillColor = UIColor.surface.cgColor
         
         // shadow
         shadowRadius = 12
@@ -443,7 +443,7 @@ fileprivate class ControlCircleLayer: CAShapeLayer {
     
     override init() {
         super.init()
-        fillColor = UIColor.white.cgColor
+        fillColor = UIColor.surface.cgColor
     }
     
     required init?(coder: NSCoder) {

@@ -440,7 +440,7 @@
                 }
             }
             
-            return [UIImage imageNamed:@"channelstateinfo"];
+            return [UIImage iconInfo];
         }
         
     }

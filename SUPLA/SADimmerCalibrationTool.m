@@ -18,6 +18,7 @@
 #import "SAPreloaderPopup.h"
 #import "SACalCfgResult.h"
 #import "UIColor+SUPLA.h"
+#import "SUPLA-Swift.h"
 
 #define LED_ON_WHEN_CONNECTED 0
 #define LED_OFF_WHEN_CONNECTED 1
@@ -110,6 +111,7 @@
     self.translatesAutoresizingMaskIntoConstraints = YES;
     self.frame = CGRectMake(0, 0, detailView.frame.size.width, detailView.frame.size.height);
     _detailView = detailView;
+    self.backgroundColor = [UIColor background];
     
     _sueruserAuthoriztionStarted = YES;
     [SASuperuserAuthorizationDialog.globalInstance authorizeWithDelegate:self];

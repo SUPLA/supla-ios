@@ -55,6 +55,7 @@ struct Strings {
         static let notificationsLabel = "app_settings.notifications_label".toLocalized()
         static let locationLabel = "app_settings.location_label".toLocalized()
         static let showLabels = "settings_show_labels".toLocalized()
+        static let nightMode = "settings_dark_mode".toLocalized()
     }
     
     struct AccountCreation {

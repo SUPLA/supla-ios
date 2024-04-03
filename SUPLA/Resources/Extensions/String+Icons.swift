@@ -30,7 +30,7 @@ extension String {
         
         // MARK: Icons
         static let pencil = "pencil"
-        static let info = "channelstateinfo"
+        static let info = "icon_info"
         static let heating = "icon_heating"
         static let cooling = "icon_cooling"
         static let standby = "icon_standby"
@@ -64,7 +64,7 @@ extension String {
         // MARK: Functions
         static let fncUnknown = "unknown_channel"
         // Electricitymeter
-        static let fncElectricitymeter = "fnc_gpm_electricitymeter"
+        static let fncElectricitymeter = "fnc_electricitymeter"
         // Gasmeter
         static let fncGasemeter = "fnc_gasmeter"
         // GPM
@@ -130,5 +130,9 @@ extension String {
         // MARK: other
         static let thumbHeat = "thumb_heat"
         static let thumbCool = "thumb_cool"
+    }
+    
+    struct Image {
+        static let logo = "logo"
     }
 }

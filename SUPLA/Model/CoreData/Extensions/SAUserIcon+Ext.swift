@@ -20,4 +20,13 @@ extension SAUserIcon {
     func isEmpty() -> Bool {
         return uimage1 == nil && uimage2 == nil && uimage3 == nil && uimage4 == nil
     }
+
+    func getIcon(_ icon: UserIcon, darkMode: Bool) -> NSObject? {
+        return switch (icon) {
+        case .icon1: darkMode && uimage1_dark != nil ? uimage1_dark : uimage1
+        case .icon2: darkMode && uimage2_dark != nil ? uimage2_dark : uimage2
+        case .icon3: darkMode && uimage3_dark != nil ? uimage3_dark : uimage3
+        case .icon4: darkMode && uimage4_dark != nil ? uimage4_dark : uimage4
+        }
+    }
 }

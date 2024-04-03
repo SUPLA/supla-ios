@@ -29,6 +29,8 @@ static SASuperuserAuthorizationDialog *_superuserAuthorizationDialogGlobalRef = 
 @property (weak, nonatomic) IBOutlet UITextField *edPassword;
 @property (weak, nonatomic) IBOutlet UIButton *btnOK;
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *actIndictor;
+@property (weak, nonatomic) IBOutlet UILabel *lEmail;
+@property (weak, nonatomic) IBOutlet UILabel *lPassword;
 - (IBAction)btnOkTouch:(id)sender;
 - (IBAction)btnPasswordViewtouchDown:(id)sender;
 - (IBAction)onPasswordChange:(id)sender;
@@ -63,6 +65,8 @@ static SASuperuserAuthorizationDialog *_superuserAuthorizationDialogGlobalRef = 
                     [serverName containsString:@"supla.org"] ?
                     @"Please enter your Supla Cloud login details."
                     : @"Enter superuser credentials", nil);
+    self.lEmail.textColor = [UIColor onBackground];
+    self.lPassword.textColor = [UIColor onBackground];
     
 }
 

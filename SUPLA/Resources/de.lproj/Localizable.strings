@@ -333,6 +333,9 @@
 /* Scenes */
 "scenes_empty_list_button" = "Szene in Supla Cloud hinzufügen";
 
+/* App Settings */
+"settings_dark_mode" = "Nacht-Modus";
+
 /* Standard Detail */
 "standard_detail_general_tab" = "Allgemein";
 "standard_detail_timer_tab" = "Timer";
