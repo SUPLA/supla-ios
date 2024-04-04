@@ -326,8 +326,8 @@ class BaseCell<T>: MGSwipeTableCell {
             containerView.bottomAnchor.constraint(equalTo: captionView.topAnchor),
             containerView.widthAnchor.constraint(lessThanOrEqualTo: contentView.widthAnchor, multiplier: 0.6),
             
-            infoView.widthAnchor.constraint(equalToConstant: Dimens.iconSizeList),
-            infoView.heightAnchor.constraint(equalToConstant: Dimens.iconSizeList),
+            infoView.widthAnchor.constraint(equalToConstant: Dimens.iconInfoSize),
+            infoView.heightAnchor.constraint(equalToConstant: Dimens.iconInfoSize),
             infoView.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
             infoView.leftAnchor.constraint(equalTo: leftStatusIndicatorView.rightAnchor, constant: 20),
             

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="22505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="32700.99.1234" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22504"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22684"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -56,7 +56,7 @@
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="depth.png" translatesAutoresizingMaskIntoConstraints="NO" id="ykT-QS-vKJ">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="depth" translatesAutoresizingMaskIntoConstraints="NO" id="ykT-QS-vKJ">
                                         <rect key="frame" x="0.0" y="0.0" width="100" height="50"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50" identifier="measurementImageHeight" id="8zx-6p-FyV"/>
@@ -82,11 +82,11 @@
                             <constraint firstItem="9al-tU-sg2" firstAttribute="centerX" secondItem="Y27-JR-JZK" secondAttribute="centerX" id="Za7-CG-j6b"/>
                         </constraints>
                     </view>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="channelstateinfo.png" translatesAutoresizingMaskIntoConstraints="NO" id="FT7-5G-q73">
-                        <rect key="frame" x="20" y="36.5" width="30" height="30"/>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_info" translatesAutoresizingMaskIntoConstraints="NO" id="FT7-5G-q73">
+                        <rect key="frame" x="20" y="39.5" width="24" height="24"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="30" id="IXw-GF-LM6"/>
-                            <constraint firstAttribute="width" constant="30" id="T2x-2v-bh2"/>
+                            <constraint firstAttribute="height" constant="24" id="IXw-GF-LM6"/>
+                            <constraint firstAttribute="width" constant="24" id="T2x-2v-bh2"/>
                         </constraints>
                     </imageView>
                 </subviews>
@@ -122,7 +122,7 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="channelstateinfo.png" width="107.25" height="107.25"/>
-        <image name="depth.png" width="22.399999618530273" height="72"/>
+        <image name="depth" width="14" height="45"/>
+        <image name="icon_info" width="24" height="24"/>
     </resources>
 </document>
