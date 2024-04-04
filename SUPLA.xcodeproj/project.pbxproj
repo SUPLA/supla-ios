@@ -1553,6 +1553,7 @@
 		A503ABBB2B6BB7FF008CDA1F /* ThermometerValueFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThermometerValueFormatter.swift; sourceTree = "<group>"; };
 		A503ABBD2B6BBA1B008CDA1F /* HumidityValueFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HumidityValueFormatter.swift; sourceTree = "<group>"; };
 		A503ABBF2B6BD27F008CDA1F /* ChartEntryDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartEntryDetails.swift; sourceTree = "<group>"; };
+		A5074B9F2BBE853E0081B6B1 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = PrivacyInfo.xcprivacy; path = "/Users/michalpolanski/Workspace/supla-ios/SUPLA/PrivacyInfo.xcprivacy"; sourceTree = "<absolute>"; };
 		A50CD3D02A4D78610012DD9B /* libc++abi.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++abi.tbd"; path = "usr/lib/libc++abi.tbd"; sourceTree = SDKROOT; };
 		A50CD3D22A4D82ED0012DD9B /* DateProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateProvider.swift; sourceTree = "<group>"; };
 		A50CD3D52A4D99E60012DD9B /* UpdateTokenTaskTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateTokenTaskTests.swift; sourceTree = "<group>"; };
@@ -2472,6 +2473,7 @@
 		401CA1BC1BA067DB00117AF4 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				A5074B9F2BBE853E0081B6B1 /* PrivacyInfo.xcprivacy */,
 				401CA1BD1BA067DB00117AF4 /* Info.plist */,
 				401CA1BE1BA067DB00117AF4 /* main.m */,
 			);

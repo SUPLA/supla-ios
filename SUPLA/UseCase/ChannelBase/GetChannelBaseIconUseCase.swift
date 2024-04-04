@@ -68,7 +68,7 @@ final class GetChannelBaseIconUseCaseImpl: GetChannelBaseIconUseCase {
             return userIcon?.getIcon(.icon1, darkMode: darkMode)
         case SUPLA_CHANNELFNC_CONTROLLINGTHEGARAGEDOOR,
         SUPLA_CHANNELFNC_CONTROLLINGTHEGATE:
-            if (channelState == .opened) {
+            if (channelState == .closed) {
                 return userIcon?.getIcon(.icon2, darkMode: darkMode)
             } else if (channelState == .partialyOpened) {
                 return userIcon?.getIcon(.icon3, darkMode: darkMode)
