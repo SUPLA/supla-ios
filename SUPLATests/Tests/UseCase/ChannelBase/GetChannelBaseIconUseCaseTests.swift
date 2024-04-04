@@ -88,6 +88,7 @@ final class GetChannelBaseIconUseCaseTests: XCTestCase {
         
         // then
         XCTAssertNotNil(icon)
+        // no call to get default icon means that the user icon was properly loaded.
         XCTAssertEqual(getDefaultIconNameUseCase.parameters, [])
     }
     
@@ -109,6 +110,7 @@ final class GetChannelBaseIconUseCaseTests: XCTestCase {
         
         // then
         XCTAssertNotNil(icon)
+        // no call to get default icon means that the user icon was properly loaded.
         XCTAssertEqual(getDefaultIconNameUseCase.parameters, [])
     }
     
@@ -130,6 +132,7 @@ final class GetChannelBaseIconUseCaseTests: XCTestCase {
         
         // then
         XCTAssertNotNil(icon)
+        // no call to get default icon means that the user icon was properly loaded.
         XCTAssertEqual(getDefaultIconNameUseCase.parameters, [])
     }
     
@@ -151,6 +154,7 @@ final class GetChannelBaseIconUseCaseTests: XCTestCase {
         
         // then
         XCTAssertNotNil(icon)
+        // no call to get default icon means that the user icon was properly loaded.
         XCTAssertEqual(getDefaultIconNameUseCase.parameters, [])
     }
     
@@ -172,13 +176,14 @@ final class GetChannelBaseIconUseCaseTests: XCTestCase {
         
         // then
         XCTAssertNotNil(icon)
+        // no call to get default icon means that the user icon was properly loaded.
         XCTAssertEqual(getDefaultIconNameUseCase.parameters, [])
     }
     
     func test_userIcon_garageDoorOpened() {
         // given
         let userIcon = SAUserIcon(testContext: nil)
-        userIcon.uimage2 = NSData(data: (UIImage.iconTimer?.pngData())!)
+        userIcon.uimage1 = NSData(data: (UIImage.iconTimer?.pngData())!)
         
         // when
         let icon = useCase.invoke(
@@ -193,6 +198,7 @@ final class GetChannelBaseIconUseCaseTests: XCTestCase {
         
         // then
         XCTAssertNotNil(icon)
+        // no call to get default icon means that the user icon was properly loaded.
         XCTAssertEqual(getDefaultIconNameUseCase.parameters, [])
     }
     
@@ -214,13 +220,14 @@ final class GetChannelBaseIconUseCaseTests: XCTestCase {
         
         // then
         XCTAssertNotNil(icon)
+        // no call to get default icon means that the user icon was properly loaded.
         XCTAssertEqual(getDefaultIconNameUseCase.parameters, [])
     }
     
     func test_userIcon_garageDoorClosed() {
         // given
         let userIcon = SAUserIcon(testContext: nil)
-        userIcon.uimage1 = NSData(data: (UIImage.iconTimer?.pngData())!)
+        userIcon.uimage2 = NSData(data: (UIImage.iconTimer?.pngData())!)
         
         // when
         let icon = useCase.invoke(
@@ -235,6 +242,7 @@ final class GetChannelBaseIconUseCaseTests: XCTestCase {
         
         // then
         XCTAssertNotNil(icon)
+        // no call to get default icon means that the user icon was properly loaded.
         XCTAssertEqual(getDefaultIconNameUseCase.parameters, [])
     }
 }
