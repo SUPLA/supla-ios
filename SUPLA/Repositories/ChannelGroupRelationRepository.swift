@@ -43,7 +43,7 @@ final class ChannelGroupRelationRepositoryImpl: Repository<SAChannelGroupRelatio
     
     func getRelations(for profile: AuthProfileItem, andGroup id: Int32) -> Observable<[SAChannelGroupRelation]> {
         let request = SAChannelGroupRelation.fetchRequest()
-            .filtered(by: NSPredicate(format: "group_id = %i AND profile = %@", id, profile))
+            .filtered(by: NSPredicate(format: "group_id = %i AND profile = %@ AND visible > 0", id, profile))
             .ordered(by: "group_id")
         
         return query(request)
