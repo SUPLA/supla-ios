@@ -159,6 +159,10 @@ class SuplaCombinedChartView: UIView {
         )
     }
     
+    func clearHighlight() {
+        combinedChart.highlightValue(nil)
+    }
+    
     private func setupView() {
         translatesAutoresizingMaskIntoConstraints = false
         
