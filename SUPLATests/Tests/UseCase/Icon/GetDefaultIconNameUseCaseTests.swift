@@ -420,7 +420,7 @@ final class GetDefaultIconNameUseCaseTests: XCTestCase {
         )
         
         // then
-        XCTAssertEqual(iconName, "power-on")
+        XCTAssertEqual(iconName, "fnc_power-on")
     }
     
     func test_powerSwitchAltIcon1() {

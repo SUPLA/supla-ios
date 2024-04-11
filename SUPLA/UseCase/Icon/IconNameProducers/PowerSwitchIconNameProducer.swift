@@ -31,7 +31,7 @@ final class PowerSwitchIconNameProducer: IconNameProducer {
         case 2: return "radio"
         case 3: return "pc"
         case 4: return "fan"
-        default: return "power"
+        default: return "fnc_power"
         }
     }
 }

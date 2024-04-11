@@ -18,8 +18,6 @@
 
 final class LoadingScrimView: UIView {
     
-    let dialogScrim = UIColor.from(red: 245, green: 246, blue: 247, alpha: 0.5)
-    
     override var isHidden: Bool {
         didSet {
             if (isHidden) {
@@ -55,7 +53,7 @@ final class LoadingScrimView: UIView {
     }
     
     private func setupView() {
-        backgroundColor = dialogScrim
+        backgroundColor = .dialogScrim
         addSubview(loaderBackground)
         addSubview(loaderView)
         

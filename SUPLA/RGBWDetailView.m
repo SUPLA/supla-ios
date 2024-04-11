@@ -244,7 +244,7 @@
     [self setExtraButtonsHidden:!_varilight && !_zamel_diw_01 && !_comelit_wdim100];
     [self setWheelSliderTabsHidden:NO];
     self.tabRGB.selected = NO;
-    self.tabRGB.backgroundColor = [UIColor rgbwNormalTabColor];
+    self.tabRGB.backgroundColor = [UIColor surface];
     self.tabDimmer.selected = YES;
     self.tabDimmer.backgroundColor = [UIColor rgbwSelectedTabColor];
     self.cbPicker.brightness = _brightness;
@@ -261,7 +261,7 @@
     self.tabRGB.selected = YES;
     self.tabRGB.backgroundColor = [UIColor rgbwSelectedTabColor];
     self.tabDimmer.selected = NO;
-    self.tabDimmer.backgroundColor = [UIColor rgbwNormalTabColor];
+    self.tabDimmer.backgroundColor = [UIColor surface];
     self.cbPicker.brightness = _colorBrightness;
 }
 
@@ -452,10 +452,10 @@
         self.tabWheel.selected = YES;
         self.tabWheel.backgroundColor = [UIColor rgbwSelectedTabColor];
         self.tabSlider.selected = NO;
-        self.tabSlider.backgroundColor = [UIColor rgbwNormalTabColor];
+        self.tabSlider.backgroundColor = [UIColor surface];
     } else {
         self.tabWheel.selected = NO;
-        self.tabWheel.backgroundColor = [UIColor rgbwNormalTabColor];
+        self.tabWheel.backgroundColor = [UIColor surface];
         self.tabSlider.selected = YES;
         self.tabSlider.backgroundColor = [UIColor rgbwSelectedTabColor];
     }
@@ -476,7 +476,7 @@
 }
 
 - (void)setPowerButtonOn:(BOOL)on {
-    [self.btnPowerOnOff setImage:[UIImage imageNamed:on ? @"rgbwpoweron.png" : @"rgbwpoweroff.png"] forState:UIControlStateNormal];
+    [self.btnPowerOnOff setImage:[UIImage imageNamed:on ? @"rgbwpoweron" : @"rgbwpoweroff"] forState:UIControlStateNormal];
     self.cbPicker.powerButtonOn = on;
 }
 - (IBAction)onSettingsTouch:(id)sender {
