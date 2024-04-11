@@ -41,7 +41,7 @@ extension UIColor {
     static let lightGreen = UIColor.from(red: 176, green: 224, blue: 168, alpha: 1)
     static let lightOrange = UIColor.from(red: 255, green: 209, blue: 154, alpha: 1)
     static let lightRed = UIColor.from(red: 224, green: 152, blue: 146, alpha: 1)
-    static let darkRed = UIColor(argb: 0xFF800000)
+    static let darkRed = UIColor(named: "Colors/dark_red")!
     static let darkBlue = UIColor(named: "Colors/dark_blue")!
     static let chartTemperature1 = error
     static let chartTemperature2 = UIColor(argb: 0xFFFF8C53)
@@ -54,7 +54,7 @@ extension UIColor {
     @objc static let separator = UIColor(named: "Colors/separator")!
     static let separatorLight = UIColor(named: "Colors/separator_light")!
     
-    static let dialogScrim = UIColor(white: 0, alpha: 0.3)
+    static let dialogScrim = UIColor(named: "Colors/dialog_scrim")!
     static let transparent = UIColor(argb: 0x00FFFFFF)
     
     // View specific colors

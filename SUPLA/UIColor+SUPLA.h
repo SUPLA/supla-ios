@@ -31,7 +31,6 @@ NS_ASSUME_NONNULL_BEGIN
 +(nonnull UIColor*)cellBackground;
 +(nonnull UIColor*)rgbwDetailBackground;
 +(nonnull UIColor*)rgbwSelectedTabColor;
-+(nonnull UIColor*)rgbwNormalTabColor;
 +(nonnull UIColor*)statusBorder;
 +(nonnull UIColor*)rsMarkerColor;
 +(nonnull UIColor*)phase1Color;
@@ -39,7 +38,6 @@ NS_ASSUME_NONNULL_BEGIN
 +(nonnull UIColor*)phase3Color;
 +(nonnull UIColor*)chartValuePositiveColor;
 +(nonnull UIColor*)chartValueNegativeColor;
-+(nonnull UIColor*)pickerViewColor;
 +(nonnull UIColor*)chartRoomTemperature;
 +(nonnull UIColor*)hpBtnOn;
 +(nonnull UIColor*)hpBtnOff;

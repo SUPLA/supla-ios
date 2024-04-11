@@ -33,8 +33,6 @@
 		01215A7324C8AECC00429947 /* SALightsourceLifespanSettingsDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = 01215A7124C8AECC00429947 /* SALightsourceLifespanSettingsDialog.m */; };
 		0122613922F396440013E6A2 /* SAThermostatCalendar.m in Sources */ = {isa = PBXBuildFile; fileRef = 0122613822F396440013E6A2 /* SAThermostatCalendar.m */; };
 		0126B84125BDFF2F0027D88A /* SAZWaveConfigurationWizardVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0126B83F25BDFF2F0027D88A /* SAZWaveConfigurationWizardVC.m */; };
-		012BD7262499173600E64F25 /* rgbwpoweroff@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 012BD7222499173500E64F25 /* rgbwpoweroff@3x.png */; };
-		012BD7282499173600E64F25 /* rgbwpoweron@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 012BD7242499173600E64F25 /* rgbwpoweron@3x.png */; };
 		012E81D924C9A31B008E0690 /* SALightsourceLifespanSettingsDialog.xib in Resources */ = {isa = PBXBuildFile; fileRef = 012E81DB24C9A31B008E0690 /* SALightsourceLifespanSettingsDialog.xib */; };
 		012F722C22DF3E2300E5F72E /* ChartFilterFieldTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 012F722822DF3CF000E5F72E /* ChartFilterFieldTests.m */; };
 		012F722E22DFA0BE00E5F72E /* SABarChartDataSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 012F722D22DFA0BE00E5F72E /* SABarChartDataSet.swift */; };
@@ -68,7 +66,6 @@
 		0158396A2576A82A005E615D /* ledalwaysoffwhite@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 015839642576A82A005E615D /* ledalwaysoffwhite@3x.png */; };
 		0158396B2576A82A005E615D /* ledoffwhite@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 015839652576A82A005E615D /* ledoffwhite@3x.png */; };
 		0158396E2576A82A005E615D /* ledonwhite@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 015839682576A82A005E615D /* ledonwhite@3x.png */; };
-		015A9837265587E800B6E6C6 /* refresh@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 015A9836265587E800B6E6C6 /* refresh@3x.png */; };
 		015A983C265594B300B6E6C6 /* NSNumber+SUPLA.m in Sources */ = {isa = PBXBuildFile; fileRef = 015A983B265594B300B6E6C6 /* NSNumber+SUPLA.m */; };
 		015A98412655958500B6E6C6 /* NSDictionary+SUPLA.m in Sources */ = {isa = PBXBuildFile; fileRef = 015A98402655958500B6E6C6 /* NSDictionary+SUPLA.m */; };
 		015A9846265595E300B6E6C6 /* UIButton+SUPLA.m in Sources */ = {isa = PBXBuildFile; fileRef = 015A9845265595E300B6E6C6 /* UIButton+SUPLA.m */; };
@@ -93,9 +90,6 @@
 		0182FCA92464691D00270CDC /* channel_warning_level1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0182FCA52464691D00270CDC /* channel_warning_level1@2x.png */; };
 		0186054725BF48C500C1332A /* z_wave@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0186054625BF48C500C1332A /* z_wave@3x.png */; };
 		0186054B25BF673800C1332A /* time@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0186054A25BF673700C1332A /* time@3x.png */; };
-		0186055125BF74E100C1332A /* zwave_reset@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0186054E25BF74E100C1332A /* zwave_reset@3x.png */; };
-		0186055225BF74E100C1332A /* zwave_add@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0186054F25BF74E100C1332A /* zwave_add@3x.png */; };
-		0186055325BF74E100C1332A /* zwave_remove@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0186055025BF74E100C1332A /* zwave_remove@3x.png */; };
 		0186055725BF80AC00C1332A /* wakeup@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0186055625BF80AC00C1332A /* wakeup@3x.png */; };
 		018CFD2023281A5900888CB7 /* SAElectricityMeterExtendedValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 018CFD1F23281A5900888CB7 /* SAElectricityMeterExtendedValue.m */; };
 		018CFD2323281ADB00888CB7 /* SAThermostatExtendedValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 018CFD2223281ADB00888CB7 /* SAThermostatExtendedValue.m */; };
@@ -1016,8 +1010,6 @@
 		0122613822F396440013E6A2 /* SAThermostatCalendar.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SAThermostatCalendar.m; sourceTree = "<group>"; };
 		0126B83E25BDFF2F0027D88A /* SAZWaveConfigurationWizardVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SAZWaveConfigurationWizardVC.h; sourceTree = "<group>"; };
 		0126B83F25BDFF2F0027D88A /* SAZWaveConfigurationWizardVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SAZWaveConfigurationWizardVC.m; sourceTree = "<group>"; };
-		012BD7222499173500E64F25 /* rgbwpoweroff@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "rgbwpoweroff@3x.png"; sourceTree = "<group>"; };
-		012BD7242499173600E64F25 /* rgbwpoweron@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "rgbwpoweron@3x.png"; sourceTree = "<group>"; };
 		012E81DA24C9A31B008E0690 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Resources/Base.lproj/SALightsourceLifespanSettingsDialog.xib; sourceTree = "<group>"; };
 		012E81DD24C9A320008E0690 /* pl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pl; path = Resources/pl.lproj/SALightsourceLifespanSettingsDialog.strings; sourceTree = "<group>"; };
 		012F722822DF3CF000E5F72E /* ChartFilterFieldTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChartFilterFieldTests.m; sourceTree = "<group>"; };
@@ -1072,7 +1064,6 @@
 		015839742576AA40005E615D /* pl */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = pl; path = Resources/pl.lproj/SAInfoVC.xib; sourceTree = "<group>"; };
 		015839792576F866005E615D /* pl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pl; path = Resources/pl.lproj/SAVLCalibrationTool.strings; sourceTree = "<group>"; };
 		015988AB268E617600FABBD0 /* SUPLA 10.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "SUPLA 10.xcdatamodel"; sourceTree = "<group>"; };
-		015A9836265587E800B6E6C6 /* refresh@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "refresh@3x.png"; sourceTree = "<group>"; };
 		015A983A265594B300B6E6C6 /* NSNumber+SUPLA.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSNumber+SUPLA.h"; sourceTree = "<group>"; };
 		015A983B265594B300B6E6C6 /* NSNumber+SUPLA.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSNumber+SUPLA.m"; sourceTree = "<group>"; };
 		015A983F2655958500B6E6C6 /* NSDictionary+SUPLA.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+SUPLA.h"; sourceTree = "<group>"; };
@@ -1140,9 +1131,6 @@
 		0182FCA52464691D00270CDC /* channel_warning_level1@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "channel_warning_level1@2x.png"; sourceTree = "<group>"; };
 		0186054625BF48C500C1332A /* z_wave@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "z_wave@3x.png"; sourceTree = "<group>"; };
 		0186054A25BF673700C1332A /* time@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "time@3x.png"; sourceTree = "<group>"; };
-		0186054E25BF74E100C1332A /* zwave_reset@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "zwave_reset@3x.png"; sourceTree = "<group>"; };
-		0186054F25BF74E100C1332A /* zwave_add@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "zwave_add@3x.png"; sourceTree = "<group>"; };
-		0186055025BF74E100C1332A /* zwave_remove@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "zwave_remove@3x.png"; sourceTree = "<group>"; };
 		0186055625BF80AC00C1332A /* wakeup@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "wakeup@3x.png"; sourceTree = "<group>"; };
 		018CFD1E23281A5900888CB7 /* SAElectricityMeterExtendedValue.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SAElectricityMeterExtendedValue.h; sourceTree = "<group>"; };
 		018CFD1F23281A5900888CB7 /* SAElectricityMeterExtendedValue.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SAElectricityMeterExtendedValue.m; sourceTree = "<group>"; };
@@ -2630,10 +2618,7 @@
 				0148933C25AA19DA00B9974E /* p100white@3x.png */,
 				4091AF471FC88A8900EFF357 /* plug@2x.png */,
 				016EE77223074DDC00FD301C /* production@3x.png */,
-				015A9836265587E800B6E6C6 /* refresh@3x.png */,
 				40D397AC1FAF547B00BF477D /* retry@3x.png */,
-				012BD7222499173500E64F25 /* rgbwpoweroff@3x.png */,
-				012BD7242499173600E64F25 /* rgbwpoweron@3x.png */,
 				4091AF411FC84ADF00EFF357 /* rocket@2x.png */,
 				40DE1A281BCCFF8A004CF43B /* settings@2x.png */,
 				017554FA22F1D2BE00EB58B7 /* settings2@3x.png */,
@@ -2650,9 +2635,6 @@
 				01996AC0254B6B380034C6F1 /* z_wave_btn@2x.png */,
 				0186054625BF48C500C1332A /* z_wave@3x.png */,
 				0148933725AA163F00B9974E /* zamel_logo.png */,
-				0186054F25BF74E100C1332A /* zwave_add@3x.png */,
-				0186055025BF74E100C1332A /* zwave_remove@3x.png */,
-				0186054E25BF74E100C1332A /* zwave_reset@3x.png */,
 				011021AE25CC337500621D41 /* zwave_timeout@3x.png */,
 			);
 			path = Img;
@@ -5044,23 +5026,19 @@
 				017554F822F1CDB900EB58B7 /* heatpollogo@3x.png in Resources */,
 				40DE1A2D1BCCFF8A004CF43B /* settings@2x.png in Resources */,
 				012119152368C3B2004C1993 /* collapsed@3x.png in Resources */,
-				012BD7262499173600E64F25 /* rgbwpoweroff@3x.png in Resources */,
 				0182FCA92464691D00270CDC /* channel_warning_level1@2x.png in Resources */,
 				011021AF25CC337500621D41 /* bridge_disconnected@3x.png in Resources */,
 				405AC4341BC15C08004F7311 /* logo-supla@2x.png in Resources */,
 				405C49A11FCAFFD400C15602 /* wizard_ok@2x.png in Resources */,
-				0186055325BF74E100C1332A /* zwave_remove@3x.png in Resources */,
 				01D0617122C296850043C947 /* ElectricityMeterDetailView.xib in Resources */,
 				407D4AED1BC6C64D009A5505 /* app_icon120x120@3x.png in Resources */,
 				0196E82A258CEEEC0016E8DC /* InfoPlist.strings in Resources */,
 				40A87DDF1FADDFF900918B54 /* donate@2x.png in Resources */,
 				40DE1A381BCD5E9B004CF43B /* AboutVC.xib in Resources */,
-				0186055225BF74E100C1332A /* zwave_add@3x.png in Resources */,
 				A530EDFB2A54063F00F8DAEE /* OpenSans-Light.ttf in Resources */,
 				0186054B25BF673800C1332A /* time@3x.png in Resources */,
 				01943EBE249D1C8800DA2B8F /* SASuperuserAuthorizationDialog.xib in Resources */,
 				407D4AF31BC6C6CB009A5505 /* app_icon120x120@2x.png in Resources */,
-				015A9837265587E800B6E6C6 /* refresh@3x.png in Resources */,
 				4091AF421FC84AE000EFF357 /* rocket@2x.png in Resources */,
 				016EE77523074DDC00FD301C /* consumption@3x.png in Resources */,
 				405AC4191BC15898004F7311 /* app_icon-1024.png in Resources */,
@@ -5093,7 +5071,6 @@
 				407D4AF11BC6C6A4009A5505 /* app_icon180x180@3x.png in Resources */,
 				0180440C24C254CF005E53EB /* SAChannelStatePopup.xib in Resources */,
 				40DE1A291BCCFF8A004CF43B /* feedback@2x.png in Resources */,
-				0186055125BF74E100C1332A /* zwave_reset@3x.png in Resources */,
 				01CEABFE25B9925E009C3BFD /* DigiglassDetailView.xib in Resources */,
 				0186055725BF80AC00C1332A /* wakeup@3x.png in Resources */,
 				405AC4321BC158E8004F7311 /* Quicksand-Regular.ttf in Resources */,
@@ -5123,7 +5100,6 @@
 				406C92D41BCD8518007BA87A /* btnOK@2x.png in Resources */,
 				01D32F3225C999CF00793A72 /* btnbackl@2x.png in Resources */,
 				401CA1CD1BA067DB00117AF4 /* Resources.xcassets in Resources */,
-				012BD7282499173600E64F25 /* rgbwpoweron@3x.png in Resources */,
 				01D2C38E22C3B0A700BF1A10 /* graphoff.png in Resources */,
 				017554FC22F1D2BE00EB58B7 /* settings2@3x.png in Resources */,
 				407D4AEC1BC6C64D009A5505 /* app_icon80x80@2x.png in Resources */,
