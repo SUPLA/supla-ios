@@ -88,7 +88,12 @@ class BaseHistoryDetailVC: BaseViewControllerVM<BaseHistoryDetailViewState, Base
         setupView()
     }
     
-    override func handle(event: BaseHistoryDetailViewEvent) {}
+    override func handle(event: BaseHistoryDetailViewEvent) {
+        switch(event) {
+        case .clearHighlight:
+            chartView.clearHighlight()
+        }
+    }
     
     override func handle(state: BaseHistoryDetailViewState) {
         filtersRow.ranges = state.ranges?.items ?? []

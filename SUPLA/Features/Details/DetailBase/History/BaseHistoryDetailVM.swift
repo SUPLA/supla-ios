@@ -50,6 +50,7 @@ class BaseHistoryDetailVM: BaseViewModel<BaseHistoryDetailViewState, BaseHistory
     }
     
     func changeSetActive(setId: HistoryDataSet.Id) {
+        send(event: .clearHighlight)
         updateView { state in
             let chartData = state.chartData.activateSet(setId: setId)
             
@@ -385,6 +386,7 @@ class BaseHistoryDetailVM: BaseViewModel<BaseHistoryDetailViewState, BaseHistory
 }
 
 enum BaseHistoryDetailViewEvent: ViewEvent {
+    case clearHighlight
 }
 
 struct BaseHistoryDetailViewState: ViewState {

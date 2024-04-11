@@ -55,6 +55,10 @@ class ChartData: CoordinatesConverter, Equatable {
     
     var isEmpty: Bool {
         var empty = true
+        if (sets.isEmpty) {
+            return empty
+        }
+        
         for set in sets {
             if (!set.entries.isEmpty) {
                 empty = false
