@@ -1,40 +1,37 @@
 /*
  Copyright (C) AC SOFTWARE SP. Z O.O.
- 
+
  This program is free software; you can redistribute it and/or
  modify it under the terms of the GNU General Public License
  as published by the Free Software Foundation; either version 2
  of the License, or (at your option) any later version.
- 
+
  This program is distributed in the hope that it will be useful,
  but WITHOUT ANY WARRANTY; without even the implied warranty of
  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  GNU General Public License for more details.
- 
+
  You should have received a copy of the GNU General Public License
  along with this program; if not, write to the Free Software
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 
-import UIKit
-import WebKit
+class DeviceCatalogVC: WebContentVC<DeviceCatalogViewState, DeviceCatalogViewEvent, DeviceCatalogVM> {
+    private var navigator: DeviceCatalogNavigationCoordinator? {
+        navigationCoordinator as? DeviceCatalogNavigationCoordinator
+    }
 
-class AccountRemovalVC: WebContentVC<AccountRemovalViewState, AccountRemovalViewEvent, AccountRemovalVM> {
-    private var navigator: AccountRemovalNavigationCoordinator? {
-        navigationCoordinator as? AccountRemovalNavigationCoordinator
+    override init(navigationCoordinator: NavigationCoordinator) {
+        super.init(navigationCoordinator: navigationCoordinator)
+        viewModel = DeviceCatalogVM()
+        
+        title = Strings.DeviceCatalog.menu
     }
-    
-    convenience init(navigationCoordinator: NavigationCoordinator, needsRestart: Bool, serverAddress: String?) {
-        self.init(navigationCoordinator: navigationCoordinator)
-        viewModel = AccountRemovalVM(needsRestart: needsRestart, serverAddress: serverAddress)
-    }
-    
-    override func handle(event: AccountRemovalViewEvent) {
+
+    override func handle(event: DeviceCatalogViewEvent) {
         switch (event) {
-        case .finishAndRestart:
-            navigator?.finishWithRestart()
-        case .finish:
-            navigator?.finish()
+        case .openUrl(let url):
+            navigator?.navigateToWeb(url: url)
         }
     }
 }

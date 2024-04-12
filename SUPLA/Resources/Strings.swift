@@ -327,6 +327,10 @@ struct Strings {
         static let emailAddress = NSLocalizedString("E-MAIL ADDRESS", comment: "")
         static let password = NSLocalizedString("PASSWORD", comment: "")
     }
+    
+    struct DeviceCatalog {
+        static let menu = "menu_device_catalog".toLocalized()
+    }
 }
 
 extension String {

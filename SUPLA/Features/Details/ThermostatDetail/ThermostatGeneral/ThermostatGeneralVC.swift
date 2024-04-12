@@ -79,11 +79,7 @@ class ThermostatGeneralVC: BaseViewControllerVM<ThermostatGeneralViewState, Ther
         return button
     }()
     
-    private lazy var loaderView: LoadingScrimView = {
-        let view = LoadingScrimView()
-        view.translatesAutoresizingMaskIntoConstraints = false
-        return view
-    }()
+    private lazy var loaderView: LoadingScrimView = LoadingScrimView()
     
     private lazy var firstIssueRowView: IssueView = {
         let view = IssueView()

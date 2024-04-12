@@ -70,6 +70,10 @@
 "dialog_new_gesture_info_text" = "Swipe gesture to open details was removed, tap on particular channel to open it.";
 "main_no_entries" = "Empty";
 
+/* Menu */
+"menu_notifications" = "Notifications log";
+"menu_device_catalog" = "Device Catalog";
+
 /* Groups */
 "groups_empty_list_button" = "Add group in Supla Cloud";
 
@@ -188,7 +192,6 @@
 "Years" = "Lata";
 
 /* Notifications */
-"menu_notifications" = "Notifications log";
 "notifications_log_profile" = "Profile:";
 "notifications_log_date" = "Date:";
 "notification_delete_all_title" = "Delete logs?";

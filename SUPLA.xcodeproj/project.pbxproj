@@ -39,7 +39,6 @@
 		012FCBD323217DE000AC6FF6 /* ThermostatCalendarTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 012FCBD223217DE000AC6FF6 /* ThermostatCalendarTests.m */; };
 		0130894523395F4C00F46FCD /* ThermostatScheduleCfgTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 0130894423395F4C00F46FCD /* ThermostatScheduleCfgTests.m */; };
 		01392B3A235CA8B1003A2BAD /* ChartDetailView.m in Sources */ = {isa = PBXBuildFile; fileRef = 01392B39235CA8B1003A2BAD /* ChartDetailView.m */; };
-		013AB91825E85CFB00C55E33 /* menu_cloud@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 013AB91725E85CFA00C55E33 /* menu_cloud@2x.png */; };
 		013D1C5D22CE47D5000C0784 /* SAChartHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 013D1C5C22CE47D5000C0784 /* SAChartHelper.m */; };
 		013D1C6022CE757F000C0784 /* SAIncrementalMeterChartHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 013D1C5F22CE757F000C0784 /* SAIncrementalMeterChartHelper.m */; };
 		013D1C6322CE75A3000C0784 /* SAElectricityChartHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 013D1C6222CE75A3000C0784 /* SAElectricityChartHelper.m */; };
@@ -101,7 +100,6 @@
 		01943EBE249D1C8800DA2B8F /* SASuperuserAuthorizationDialog.xib in Resources */ = {isa = PBXBuildFile; fileRef = 01943EC0249D1C8800DA2B8F /* SASuperuserAuthorizationDialog.xib */; };
 		0194D80A264DC8580094A857 /* SAZWaveNodeIdResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 0194D809264DC8580094A857 /* SAZWaveNodeIdResult.m */; };
 		0196E82A258CEEEC0016E8DC /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0196E82C258CEEEC0016E8DC /* InfoPlist.strings */; };
-		01996AC1254B6B390034C6F1 /* z_wave_btn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 01996AC0254B6B380034C6F1 /* z_wave_btn@2x.png */; };
 		019D22F0233CC2D000F17135 /* SAPreloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 019D22EF233CC2D000F17135 /* SAPreloader.m */; };
 		019D9E2C25F271CF00881C99 /* SACaptionEditor.m in Sources */ = {isa = PBXBuildFile; fileRef = 019D9E2A25F271CF00881C99 /* SACaptionEditor.m */; };
 		019F4AAF2614B75800065420 /* SAAbstractPickerField.m in Sources */ = {isa = PBXBuildFile; fileRef = 019F4AAE2614B75800065420 /* SAAbstractPickerField.m */; };
@@ -176,8 +174,6 @@
 		01FCDA7D264F2BC3002D776F /* SAZWaveNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 01FCDA7C264F2BC3002D776F /* SAZWaveNode.m */; };
 		4004DE8D1DC4E270009C34E3 /* SAColorBrightnessPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 4004DE8C1DC4E270009C34E3 /* SAColorBrightnessPicker.m */; };
 		4006E90A1DC62D0A00C4456D /* DetailView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4006E9091DC62D0A00C4456D /* DetailView.m */; };
-		4014ADFD1FE01ECD00297A9E /* help@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4014ADFB1FE01EC700297A9E /* help@2x.png */; };
-		4014ADFE1FE01ECD00297A9E /* help@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4014ADFC1FE01EC800297A9E /* help@3x.png */; };
 		4017E12C1BB9CE2900570AC8 /* ChannelCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4017E12A1BB9CE2900570AC8 /* ChannelCell.m */; };
 		401CA1BF1BA067DB00117AF4 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 401CA1BE1BA067DB00117AF4 /* main.m */; };
 		401CA1C21BA067DB00117AF4 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 401CA1C11BA067DB00117AF4 /* AppDelegate.m */; };
@@ -236,7 +232,6 @@
 		4091AF4A1FC88BFB00EFF357 /* greendot@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4091AF491FC88BFA00EFF357 /* greendot@2x.png */; };
 		40A6757F1BA1A5B6004A51C4 /* SuplaApp.m in Sources */ = {isa = PBXBuildFile; fileRef = 40A6757E1BA1A5B6004A51C4 /* SuplaApp.m */; };
 		40A87DDF1FADDFF900918B54 /* donate@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 40A87DDD1FADDFF800918B54 /* donate@2x.png */; };
-		40A87DE01FADDFF900918B54 /* add_device@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 40A87DDE1FADDFF800918B54 /* add_device@2x.png */; };
 		40AB8BDE1DCB32EB0030F3DE /* SARateApp.m in Sources */ = {isa = PBXBuildFile; fileRef = 40AB8BDD1DCB32EB0030F3DE /* SARateApp.m */; };
 		40B397CF1BCE7F3200BE7D5A /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 40B397CE1BCE7F3200BE7D5A /* Launch Screen.storyboard */; };
 		40B397D81BCEA25700BE7D5A /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 40B397D71BCEA25700BE7D5A /* CFNetwork.framework */; };
@@ -268,8 +263,6 @@
 		40DB208D1DC9049400FAFAB0 /* RGBWDetail.xib in Resources */ = {isa = PBXBuildFile; fileRef = 40DB208F1DC9049400FAFAB0 /* RGBWDetail.xib */; };
 		40DE1A291BCCFF8A004CF43B /* feedback@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 40DE1A241BCCFF8A004CF43B /* feedback@2x.png */; };
 		40DE1A2A1BCCFF8A004CF43B /* feedback@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 40DE1A251BCCFF8A004CF43B /* feedback@3x.png */; };
-		40DE1A2B1BCCFF8A004CF43B /* info@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 40DE1A261BCCFF8A004CF43B /* info@2x.png */; };
-		40DE1A2C1BCCFF8A004CF43B /* info@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 40DE1A271BCCFF8A004CF43B /* info@3x.png */; };
 		40DE1A2D1BCCFF8A004CF43B /* settings@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 40DE1A281BCCFF8A004CF43B /* settings@2x.png */; };
 		40DE1A361BCD1B55004CF43B /* AboutVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 40DE1A341BCD1B55004CF43B /* AboutVC.m */; };
 		40DE1A381BCD5E9B004CF43B /* AboutVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 40DE1A3A1BCD5E9B004CF43B /* AboutVC.xib */; };
@@ -301,6 +294,12 @@
 		A503ABC02B6BD27F008CDA1F /* ChartEntryDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = A503ABBF2B6BD27F008CDA1F /* ChartEntryDetails.swift */; };
 		A5074BA22BC819390081B6B1 /* LoadActiveProfileUrlUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5074BA12BC819390081B6B1 /* LoadActiveProfileUrlUseCase.swift */; };
 		A5074BA42BC90C800081B6B1 /* LoadActiveProfileUrlUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5074BA32BC90C800081B6B1 /* LoadActiveProfileUrlUseCaseTests.swift */; };
+		A5074BA82BC923AE0081B6B1 /* BrandingConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5074BA72BC923AE0081B6B1 /* BrandingConfiguration.swift */; };
+		A5074BAA2BC945DA0081B6B1 /* WebContentVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5074BA92BC945DA0081B6B1 /* WebContentVM.swift */; };
+		A5074BAC2BC9489D0081B6B1 /* WebContentVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5074BAB2BC9489D0081B6B1 /* WebContentVC.swift */; };
+		A5074BAF2BC954CB0081B6B1 /* DeviceCatalogVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5074BAE2BC954CB0081B6B1 /* DeviceCatalogVM.swift */; };
+		A5074BB12BC957370081B6B1 /* DeviceCatalogVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5074BB02BC957370081B6B1 /* DeviceCatalogVC.swift */; };
+		A5074BB32BC957E70081B6B1 /* DeviceCatalogNavigationCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5074BB22BC957E70081B6B1 /* DeviceCatalogNavigationCoordinator.swift */; };
 		A50CD3D12A4D78610012DD9B /* libc++abi.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = A50CD3D02A4D78610012DD9B /* libc++abi.tbd */; };
 		A50CD3D32A4D82ED0012DD9B /* DateProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A50CD3D22A4D82ED0012DD9B /* DateProvider.swift */; };
 		A50CD3D62A4D99E60012DD9B /* UpdateTokenTaskTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A50CD3D52A4D99E60012DD9B /* UpdateTokenTaskTests.swift */; };
@@ -1021,7 +1020,6 @@
 		0130894423395F4C00F46FCD /* ThermostatScheduleCfgTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ThermostatScheduleCfgTests.m; sourceTree = "<group>"; };
 		01392B38235CA8B1003A2BAD /* ChartDetailView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChartDetailView.h; sourceTree = "<group>"; };
 		01392B39235CA8B1003A2BAD /* ChartDetailView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChartDetailView.m; sourceTree = "<group>"; };
-		013AB91725E85CFA00C55E33 /* menu_cloud@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "menu_cloud@2x.png"; sourceTree = "<group>"; };
 		013C8C6725F79265009519B6 /* SUPLA 7.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "SUPLA 7.xcdatamodel"; sourceTree = "<group>"; };
 		013D1C5B22CE47D5000C0784 /* SAChartHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SAChartHelper.h; sourceTree = "<group>"; };
 		013D1C5C22CE47D5000C0784 /* SAChartHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SAChartHelper.m; sourceTree = "<group>"; };
@@ -1154,7 +1152,6 @@
 		0194D809264DC8580094A857 /* SAZWaveNodeIdResult.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SAZWaveNodeIdResult.m; sourceTree = "<group>"; };
 		0196E81D258CD2480016E8DC /* pl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pl; path = Resources/pl.lproj/AddWizardVC.strings; sourceTree = "<group>"; };
 		0196E82B258CEEEC0016E8DC /* pl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pl; path = pl.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		01996AC0254B6B380034C6F1 /* z_wave_btn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "z_wave_btn@2x.png"; sourceTree = "<group>"; };
 		019D22EE233CC2D000F17135 /* SAPreloader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SAPreloader.h; sourceTree = "<group>"; };
 		019D22EF233CC2D000F17135 /* SAPreloader.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SAPreloader.m; sourceTree = "<group>"; };
 		019D9E2925F271CF00881C99 /* SACaptionEditor.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SACaptionEditor.h; sourceTree = "<group>"; };
@@ -1354,8 +1351,6 @@
 		4004DE8C1DC4E270009C34E3 /* SAColorBrightnessPicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SAColorBrightnessPicker.m; sourceTree = "<group>"; };
 		4006E9081DC62D0A00C4456D /* DetailView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailView.h; sourceTree = "<group>"; };
 		4006E9091DC62D0A00C4456D /* DetailView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailView.m; sourceTree = "<group>"; };
-		4014ADFB1FE01EC700297A9E /* help@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "help@2x.png"; sourceTree = "<group>"; };
-		4014ADFC1FE01EC800297A9E /* help@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "help@3x.png"; sourceTree = "<group>"; };
 		4017E1291BB9CE2900570AC8 /* ChannelCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChannelCell.h; sourceTree = "<group>"; };
 		4017E12A1BB9CE2900570AC8 /* ChannelCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChannelCell.m; sourceTree = "<group>"; };
 		401CA1B91BA067DB00117AF4 /* SUPLA.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SUPLA.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -1447,7 +1442,6 @@
 		40A6757D1BA1A5B6004A51C4 /* SuplaApp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SuplaApp.h; path = ../SuplaApp.h; sourceTree = "<group>"; };
 		40A6757E1BA1A5B6004A51C4 /* SuplaApp.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SuplaApp.m; path = ../SuplaApp.m; sourceTree = "<group>"; };
 		40A87DDD1FADDFF800918B54 /* donate@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "donate@2x.png"; sourceTree = "<group>"; };
-		40A87DDE1FADDFF800918B54 /* add_device@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "add_device@2x.png"; sourceTree = "<group>"; };
 		40AB8BDC1DCB32EB0030F3DE /* SARateApp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SARateApp.h; sourceTree = "<group>"; };
 		40AB8BDD1DCB32EB0030F3DE /* SARateApp.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SARateApp.m; sourceTree = "<group>"; };
 		40AC4F342094B23C004DB7CD /* lt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = lt; path = Resources/lt.lproj/AboutVC.strings; sourceTree = "<group>"; };
@@ -1503,8 +1497,6 @@
 		40DB209A1DC904BF00FAFAB0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Resources/Base.lproj/RGBWDetail.xib; sourceTree = "<group>"; };
 		40DE1A241BCCFF8A004CF43B /* feedback@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "feedback@2x.png"; sourceTree = "<group>"; };
 		40DE1A251BCCFF8A004CF43B /* feedback@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "feedback@3x.png"; sourceTree = "<group>"; };
-		40DE1A261BCCFF8A004CF43B /* info@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "info@2x.png"; sourceTree = "<group>"; };
-		40DE1A271BCCFF8A004CF43B /* info@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "info@3x.png"; sourceTree = "<group>"; };
 		40DE1A281BCCFF8A004CF43B /* settings@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "settings@2x.png"; sourceTree = "<group>"; };
 		40DE1A331BCD1B55004CF43B /* AboutVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutVC.h; sourceTree = "<group>"; };
 		40DE1A341BCD1B55004CF43B /* AboutVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutVC.m; sourceTree = "<group>"; };
@@ -1546,6 +1538,12 @@
 		A5074B9F2BBE853E0081B6B1 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = PrivacyInfo.xcprivacy; path = "/Users/michalpolanski/Workspace/supla-ios/SUPLA/PrivacyInfo.xcprivacy"; sourceTree = "<absolute>"; };
 		A5074BA12BC819390081B6B1 /* LoadActiveProfileUrlUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadActiveProfileUrlUseCase.swift; sourceTree = "<group>"; };
 		A5074BA32BC90C800081B6B1 /* LoadActiveProfileUrlUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadActiveProfileUrlUseCaseTests.swift; sourceTree = "<group>"; };
+		A5074BA72BC923AE0081B6B1 /* BrandingConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrandingConfiguration.swift; sourceTree = "<group>"; };
+		A5074BA92BC945DA0081B6B1 /* WebContentVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebContentVM.swift; sourceTree = "<group>"; };
+		A5074BAB2BC9489D0081B6B1 /* WebContentVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebContentVC.swift; sourceTree = "<group>"; };
+		A5074BAE2BC954CB0081B6B1 /* DeviceCatalogVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceCatalogVM.swift; sourceTree = "<group>"; };
+		A5074BB02BC957370081B6B1 /* DeviceCatalogVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceCatalogVC.swift; sourceTree = "<group>"; };
+		A5074BB22BC957E70081B6B1 /* DeviceCatalogNavigationCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceCatalogNavigationCoordinator.swift; sourceTree = "<group>"; };
 		A50CD3D02A4D78610012DD9B /* libc++abi.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++abi.tbd"; path = "usr/lib/libc++abi.tbd"; sourceTree = SDKROOT; };
 		A50CD3D22A4D82ED0012DD9B /* DateProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateProvider.swift; sourceTree = "<group>"; };
 		A50CD3D52A4D99E60012DD9B /* UpdateTokenTaskTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateTokenTaskTests.swift; sourceTree = "<group>"; };
@@ -2556,7 +2554,6 @@
 		405AC4011BC15878004F7311 /* Img */ = {
 			isa = PBXGroup;
 			children = (
-				40A87DDE1FADDFF800918B54 /* add_device@2x.png */,
 				405AC4031BC15898004F7311 /* app_icon-1024.png */,
 				405AC4041BC15898004F7311 /* app_icon@2x.png */,
 				405AC4051BC15898004F7311 /* app_icon@3x.png */,
@@ -2600,13 +2597,9 @@
 				01D2C38B22C3B0A700BF1A10 /* graphon.png */,
 				4091AF491FC88BFA00EFF357 /* greendot@2x.png */,
 				017554F722F1CDB900EB58B7 /* heatpollogo@3x.png */,
-				4014ADFB1FE01EC700297A9E /* help@2x.png */,
-				4014ADFC1FE01EC800297A9E /* help@3x.png */,
 				017554FE22F1DDA300EB58B7 /* hp_minus@3x.png */,
 				017554FD22F1DDA300EB58B7 /* hp_plus@3x.png */,
 				0148933D25AA19DA00B9974E /* infinitywhite@3x.png */,
-				40DE1A261BCCFF8A004CF43B /* info@2x.png */,
-				40DE1A271BCCFF8A004CF43B /* info@3x.png */,
 				010C8782249A6471002FE526 /* infoclose@2x.png */,
 				40766C2C1FC9C36C009E00BE /* iossettings.png */,
 				015839642576A82A005E615D /* ledalwaysoffwhite@3x.png */,
@@ -2616,7 +2609,6 @@
 				40CF96D11BC8034E0030EFFF /* logo-supla@3x.png */,
 				407D31A51FD1B75E0062FB80 /* logo-white@2x.png */,
 				407D31A61FD1B75E0062FB80 /* logo-white@3x.png */,
-				013AB91725E85CFA00C55E33 /* menu_cloud@2x.png */,
 				4067782A1BCBC647008DD37F /* menu@2x.png */,
 				4067782B1BCBC647008DD37F /* menu@3x.png */,
 				0148933C25AA19DA00B9974E /* p100white@3x.png */,
@@ -2636,7 +2628,6 @@
 				407D31921FD17C4B0062FB80 /* wifigeneral@2x.png */,
 				405C499E1FCAFFD100C15602 /* wizard_error@2x.png */,
 				405C499F1FCAFFD200C15602 /* wizard_ok@2x.png */,
-				01996AC0254B6B380034C6F1 /* z_wave_btn@2x.png */,
 				0186054625BF48C500C1332A /* z_wave@3x.png */,
 				0148933725AA163F00B9974E /* zamel_logo.png */,
 				011021AE25CC337500621D41 /* zwave_timeout@3x.png */,
@@ -2894,6 +2885,33 @@
 				A503ABBD2B6BBA1B008CDA1F /* HumidityValueFormatter.swift */,
 			);
 			path = ValueFormatter;
+			sourceTree = "<group>";
+		};
+		A5074BA52BC922E70081B6B1 /* WebContent */ = {
+			isa = PBXGroup;
+			children = (
+				A5074BA92BC945DA0081B6B1 /* WebContentVM.swift */,
+				A5074BAB2BC9489D0081B6B1 /* WebContentVC.swift */,
+			);
+			path = WebContent;
+			sourceTree = "<group>";
+		};
+		A5074BA62BC9239C0081B6B1 /* Branding */ = {
+			isa = PBXGroup;
+			children = (
+				A5074BA72BC923AE0081B6B1 /* BrandingConfiguration.swift */,
+			);
+			path = Branding;
+			sourceTree = "<group>";
+		};
+		A5074BAD2BC954A10081B6B1 /* DeviceCatalog */ = {
+			isa = PBXGroup;
+			children = (
+				A5074BAE2BC954CB0081B6B1 /* DeviceCatalogVM.swift */,
+				A5074BB02BC957370081B6B1 /* DeviceCatalogVC.swift */,
+				A5074BB22BC957E70081B6B1 /* DeviceCatalogNavigationCoordinator.swift */,
+			);
+			path = DeviceCatalog;
 			sourceTree = "<group>";
 		};
 		A50CD3D42A4D99CF0012DD9B /* UpdateToken */ = {
@@ -3720,6 +3738,7 @@
 		A573B39029DEB24400EBAFC4 /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				A5074BA62BC9239C0081B6B1 /* Branding */,
 				A52ACD4229CB92BB0092729F /* Networking */,
 				A5E4904E2A3C7987006801FE /* Infrastructure */,
 				A5F29BF82A2DC11E00ED700A /* CoreData */,
@@ -3740,6 +3759,8 @@
 		A5756F7F29DC0FE900C32A1B /* Features */ = {
 			isa = PBXGroup;
 			children = (
+				A5074BAD2BC954A10081B6B1 /* DeviceCatalog */,
+				A5074BA52BC922E70081B6B1 /* WebContent */,
 				A55501F12B83828100FD3296 /* NotificationsLog */,
 				A54149242B6302B100B44BD6 /* Details */,
 				A553863029E02C4300B5CF3F /* AccountCreation */,
@@ -5050,7 +5071,6 @@
 				405AC4191BC15898004F7311 /* app_icon-1024.png in Resources */,
 				01D5E0CA22DB8F0A00FBE1DC /* SAChartMarkerView.xib in Resources */,
 				405AC41A1BC15898004F7311 /* app_icon@2x.png in Resources */,
-				013AB91825E85CFB00C55E33 /* menu_cloud@2x.png in Resources */,
 				0148934125AA19DA00B9974E /* infinitywhite@3x.png in Resources */,
 				407D4B001BC6E491009A5505 /* StatusVC.xib in Resources */,
 				406778561BCBF9F4008DD37F /* SectionCell.xib in Resources */,
@@ -5072,7 +5092,6 @@
 				407D4AF81BC6C7DE009A5505 /* app_icon57x57.png in Resources */,
 				40BE3E621BCA7AEF00153680 /* ChannelCell.xib in Resources */,
 				4067782C1BCBC647008DD37F /* menu@2x.png in Resources */,
-				40DE1A2C1BCCFF8A004CF43B /* info@3x.png in Resources */,
 				407D31A81FD1B75F0062FB80 /* logo-white@3x.png in Resources */,
 				407D4AF11BC6C6A4009A5505 /* app_icon180x180@3x.png in Resources */,
 				0180440C24C254CF005E53EB /* SAChannelStatePopup.xib in Resources */,
@@ -5094,7 +5113,6 @@
 				01D2C38D22C3B0A700BF1A10 /* graphon.png in Resources */,
 				40DE1A401BCD6F06004CF43B /* Localizable.strings in Resources */,
 				407D31931FD17C4D0062FB80 /* wifigeneral@2x.png in Resources */,
-				40DE1A2B1BCCFF8A004CF43B /* info@2x.png in Resources */,
 				407D4AFB1BC6D6AA009A5505 /* btnOK@3x.png in Resources */,
 				0158396B2576A82A005E615D /* ledoffwhite@3x.png in Resources */,
 				407D4AF71BC6C7DE009A5505 /* app_icon29x29.png in Resources */,
@@ -5125,10 +5143,8 @@
 				011E736824A1367B004D99EE /* SAVLCalibrationTool.xib in Resources */,
 				4091AF441FC856C200EFF357 /* wifi@2x.png in Resources */,
 				406778291BCBBC84008DD37F /* ThermometerCell.xib in Resources */,
-				4014ADFD1FE01ECD00297A9E /* help@2x.png in Resources */,
 				0158396E2576A82A005E615D /* ledonwhite@3x.png in Resources */,
 				4038A5541CE32B6800180B5D /* TempHumidityCell.xib in Resources */,
-				4014ADFE1FE01ECD00297A9E /* help@3x.png in Resources */,
 				40D397AD1FAF547B00BF477D /* retry@3x.png in Resources */,
 				019F4CAC2354DC3300286139 /* ImpulseCounterDetailView.xib in Resources */,
 				01D6A106249C0EAC006B3757 /* vlinfo@3.png in Resources */,
@@ -5145,8 +5161,6 @@
 				01C8EBCD23422AC50072AB8C /* HomePlusDetailViewGroupCell.xib in Resources */,
 				40CF96D91BC81A470030EFFF /* error@3x.png in Resources */,
 				0182FCA82464691D00270CDC /* channel_warning_level1@3x.png in Resources */,
-				40A87DE01FADDFF900918B54 /* add_device@2x.png in Resources */,
-				01996AC1254B6B390034C6F1 /* z_wave_btn@2x.png in Resources */,
 				01C8EBFA234232EC0072AB8C /* HomePlusDetailView.xib in Resources */,
 				405AC4311BC158E8004F7311 /* Quicksand-Light.ttf in Resources */,
 				01D6A109249C0F40006B3757 /* vlrestore@3.png in Resources */,
@@ -5306,6 +5320,7 @@
 				40C7BA8820C0492500ACEE42 /* SAChannelBase+CoreDataProperties.m in Sources */,
 				A530EE472A5BEBFA00F8DAEE /* SwitchTimerConfigurationView.swift in Sources */,
 				A57668FB2AEB999F0025509D /* SuplaChartMarkerView.swift in Sources */,
+				A5074BB12BC957370081B6B1 /* DeviceCatalogVC.swift in Sources */,
 				A530EE2A2A57E0BA00F8DAEE /* ElelectricityMeterIconNameProducer.swift in Sources */,
 				A530EE3B2A5801AB00F8DAEE /* GetChannelBaseIconUseCase.swift in Sources */,
 				A5F29B672A1E268E00ED700A /* GroupListVC.swift in Sources */,
@@ -5346,6 +5361,7 @@
 				A5F14B7229DED06400682FA6 /* AccountRemovalVM.swift in Sources */,
 				A5A14A362B611863004B1598 /* GetChannelBaseDefaultCaptionUseCase.swift in Sources */,
 				A5756F8229DC102800C32A1B /* AccountRemovalVC.swift in Sources */,
+				A5074BB32BC957E70081B6B1 /* DeviceCatalogNavigationCoordinator.swift in Sources */,
 				A5E490652A401A7D006801FE /* UpdateSceneIconRelationsUseCase.swift in Sources */,
 				A5B3CC082B62817B00F95AC3 /* WeigthValueStringProvider.swift in Sources */,
 				A57668DB2AE992310025509D /* Measurement.swift in Sources */,
@@ -5505,6 +5521,7 @@
 				A5F29B5D2A1E161500ED700A /* MainVM.swift in Sources */,
 				A56233F92AB85CA1001CB948 /* ExecuteThermostatActionUseCase.swift in Sources */,
 				A57668E92AEA7AF50025509D /* SelectableList.swift in Sources */,
+				A5074BAC2BC9489D0081B6B1 /* WebContentVC.swift in Sources */,
 				A5B3CC062B62802600F95AC3 /* RainValueStringProvider.swift in Sources */,
 				A530EE002A54417400F8DAEE /* SwitchTimerDetailVM.swift in Sources */,
 				A52BFECE2B0796BC00A2F64C /* SuplaHomeScreenContentField.swift in Sources */,
@@ -5514,6 +5531,7 @@
 				A5F29B892A1F985A00ED700A /* LocationRepository.swift in Sources */,
 				A5FE675C2A65CA1700147D1F /* SuplaCloudClientRepository.swift in Sources */,
 				01BE3C87233EAFEC00201B47 /* HomePlusDetailViewGroupCell.m in Sources */,
+				A5074BAF2BC954CB0081B6B1 /* DeviceCatalogVM.swift in Sources */,
 				01CEAC1E25B99DAC009C3BFD /* SADigiglassValue.m in Sources */,
 				AEED1FD42737F71C00DE6289 /* MultiAccountProfileManager.swift in Sources */,
 				A5B3CBE22B62525500F95AC3 /* DefaultDoubleValueProvider.swift in Sources */,
@@ -5679,8 +5697,10 @@
 				A54149332B63B73700B44BD6 /* GeneralPurposeMeasurementItemRepository.swift in Sources */,
 				A530EDF02A53F8E100F8DAEE /* SuplaTabBarController.swift in Sources */,
 				A5F29BF72A2A29BE00ED700A /* LocationCaptionEditor.swift in Sources */,
+				A5074BAA2BC945DA0081B6B1 /* WebContentVM.swift in Sources */,
 				A503ABB32B6A9ED9008CDA1F /* GeneralPurposeMeterItemRepository.swift in Sources */,
 				A57668ED2AEA85150025509D /* Array+Ext.swift in Sources */,
+				A5074BA82BC923AE0081B6B1 /* BrandingConfiguration.swift in Sources */,
 				A51BE90D2AAAF82000718F2F /* GetChannelConfigUseCase.swift in Sources */,
 				A5F29B5B2A1E15D600ED700A /* MainVC.swift in Sources */,
 				011021D325CC4DE700621D41 /* SAChannelBasicCfg.m in Sources */,

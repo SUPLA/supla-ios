@@ -352,6 +352,10 @@
 "dialog_new_gesture_info_text" = "Usunęliśmy gest przesunięcia otwierający szczegóły, aby je zobaczyć dotknij wybrany kanał.";
 "main_no_entries" = "Pusto";
 
+/* Menu */
+"menu_notifications" = "Historia powiadomień";
+"menu_device_catalog" = "Katalog urządzeń";
+
 /* Groups */
 "groups_empty_list_button" = "Dodaj grupę na Supla Cloud";
 
@@ -460,7 +464,6 @@
 "chart_marker_closing" = "Zamknięcie";
 
 /* Notifications */
-"menu_notifications" = "Historia powiadomień";
 "notifications_log_profile" = "Profil:";
 "notifications_log_date" = "Data:";
 "notification_delete_all_title" = "Usunąć?";
