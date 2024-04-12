@@ -180,6 +180,7 @@ extension DiContainer {
         register(SaveOrCreateProfileUseCase.self, SaveOrCreateProfileUseCaseImpl())
         register(DeleteProfileUseCase.self, DeleteProfileUseCaseImpl())
         register(ActivateProfileUseCase.self, ActivateProfileUseCaseImpl())
+        register(LoadActiveProfileUrlUseCase.self, LoadActiveProfileUrlUseCaseImpl())
         // Usecases - Profile
         register(CreateProfileScenesListUseCase.self, CreateProfileScenesListUseCaseImpl())
         register(SwapScenePositionsUseCase.self, SwapScenePositionsUseCaseImpl())

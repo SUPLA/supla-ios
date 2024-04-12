@@ -53,7 +53,7 @@ final class LoadingScrimView: UIView {
     }
     
     private func setupView() {
-        backgroundColor = .dialogScrim
+        backgroundColor = .loadingScrim
         addSubview(loaderBackground)
         addSubview(loaderView)
         

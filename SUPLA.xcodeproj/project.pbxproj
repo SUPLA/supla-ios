@@ -299,6 +299,8 @@
 		A503ABBC2B6BB7FF008CDA1F /* ThermometerValueFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A503ABBB2B6BB7FF008CDA1F /* ThermometerValueFormatter.swift */; };
 		A503ABBE2B6BBA1B008CDA1F /* HumidityValueFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A503ABBD2B6BBA1B008CDA1F /* HumidityValueFormatter.swift */; };
 		A503ABC02B6BD27F008CDA1F /* ChartEntryDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = A503ABBF2B6BD27F008CDA1F /* ChartEntryDetails.swift */; };
+		A5074BA22BC819390081B6B1 /* LoadActiveProfileUrlUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5074BA12BC819390081B6B1 /* LoadActiveProfileUrlUseCase.swift */; };
+		A5074BA42BC90C800081B6B1 /* LoadActiveProfileUrlUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5074BA32BC90C800081B6B1 /* LoadActiveProfileUrlUseCaseTests.swift */; };
 		A50CD3D12A4D78610012DD9B /* libc++abi.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = A50CD3D02A4D78610012DD9B /* libc++abi.tbd */; };
 		A50CD3D32A4D82ED0012DD9B /* DateProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A50CD3D22A4D82ED0012DD9B /* DateProvider.swift */; };
 		A50CD3D62A4D99E60012DD9B /* UpdateTokenTaskTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A50CD3D52A4D99E60012DD9B /* UpdateTokenTaskTests.swift */; };
@@ -1542,6 +1544,8 @@
 		A503ABBD2B6BBA1B008CDA1F /* HumidityValueFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HumidityValueFormatter.swift; sourceTree = "<group>"; };
 		A503ABBF2B6BD27F008CDA1F /* ChartEntryDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartEntryDetails.swift; sourceTree = "<group>"; };
 		A5074B9F2BBE853E0081B6B1 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = PrivacyInfo.xcprivacy; path = "/Users/michalpolanski/Workspace/supla-ios/SUPLA/PrivacyInfo.xcprivacy"; sourceTree = "<absolute>"; };
+		A5074BA12BC819390081B6B1 /* LoadActiveProfileUrlUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadActiveProfileUrlUseCase.swift; sourceTree = "<group>"; };
+		A5074BA32BC90C800081B6B1 /* LoadActiveProfileUrlUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadActiveProfileUrlUseCaseTests.swift; sourceTree = "<group>"; };
 		A50CD3D02A4D78610012DD9B /* libc++abi.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++abi.tbd"; path = "usr/lib/libc++abi.tbd"; sourceTree = SDKROOT; };
 		A50CD3D22A4D82ED0012DD9B /* DateProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateProvider.swift; sourceTree = "<group>"; };
 		A50CD3D52A4D99E60012DD9B /* UpdateTokenTaskTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateTokenTaskTests.swift; sourceTree = "<group>"; };
@@ -4083,6 +4087,7 @@
 				A52BFEF32B18832D00A2F64C /* SaveOrCreateProfileUseCaseTests.swift */,
 				A52BFEF72B189ECC00A2F64C /* ActivateProfileUseCaseTests.swift */,
 				A52BFEF92B18A43000A2F64C /* DeleteProfileUseCaseTests.swift */,
+				A5074BA32BC90C800081B6B1 /* LoadActiveProfileUrlUseCaseTests.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -4796,6 +4801,7 @@
 				A52BFEED2B174AFE00A2F64C /* SaveOrCreateProfileUseCase.swift */,
 				A52BFEEF2B1754FD00A2F64C /* DeleteProfileUseCase.swift */,
 				A52BFEF12B175AB300A2F64C /* ActivateProfileUseCase.swift */,
+				A5074BA12BC819390081B6B1 /* LoadActiveProfileUrlUseCase.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -5486,6 +5492,7 @@
 				40C7BA7920C047CF00ACEE42 /* SAChannelGroup+CoreDataProperties.m in Sources */,
 				A57668C52AE79BA40025509D /* HorizontalyScrollableView.swift in Sources */,
 				A5F29B8D2A20AD8100ED700A /* Nibs.swift in Sources */,
+				A5074BA22BC819390081B6B1 /* LoadActiveProfileUrlUseCase.swift in Sources */,
 				A55A8DA22BAC2A9800C540D4 /* SAAlertDialogVC.swift in Sources */,
 				A52BFED22B07B8BC00A2F64C /* ItemBundle.swift in Sources */,
 				A530EDED2A53F6A800F8DAEE /* SwitchDetailVC.swift in Sources */,
@@ -5926,6 +5933,7 @@
 				A59AB8B52A30795B00D91F1F /* SceneUseCasesMocks.swift in Sources */,
 				A5DA31072AC16B21008179DB /* InsertChannelRelationForProfileUseCaseTests.swift in Sources */,
 				A54A068C2AF97E0000C03DBC /* LoadChannelWithChildrenMeasurementsDateRangeUseCaseTests.swift in Sources */,
+				A5074BA42BC90C800081B6B1 /* LoadActiveProfileUrlUseCaseTests.swift in Sources */,
 				A57638C629E5D4C9003E15A3 /* XCTestCaseExtensions.swift in Sources */,
 				A59AB8EB2A30AA2600D91F1F /* CreateProfileScenesListUseCaseTests.swift in Sources */,
 				A55A8DC32BB2F4E000C540D4 /* NotificationCenterWrapperMock.swift in Sources */,
