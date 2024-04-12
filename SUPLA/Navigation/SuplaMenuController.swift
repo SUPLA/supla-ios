@@ -139,6 +139,8 @@ extension SuplaMenuController: SAMenuItemsDelegate {
             }
         case .notifications:
             SAApp.mainNavigationCoordinator()?.showNotificationsLog()
+        case .deviceCatalog:
+            SAApp.mainNavigationCoordinator()?.showDeviceCatalog()
         default: break
         }
     }

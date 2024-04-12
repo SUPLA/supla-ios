@@ -23,11 +23,11 @@ typedef NS_OPTIONS(NSUInteger, SAMenuItemIds) {
     SAMenuItemIdAddDevice  = 1 << 1,
     SAMenuItemIdZWave  = 1 << 2,
     SAMenuItemIdAbout  = 1 << 3,
-    SAMenuItemIdDonate  = 1 << 4,
     SAMenuItemIdHelp  = 1 << 5,
     SAMenuItemIdCloud  = 1 << 6,
     SAMenuItemIdHomepage  = 1 << 7,
     SAMenuItemIdNotifications  = 1 << 8,
+    SAMenuItemIdDeviceCatalog  = 1 << 9,
     SAMenuItemIdProfile = 0x1000,
     SAMenuItemIdAll = 0xFFFF
 };

@@ -327,6 +327,10 @@
 "dialog_new_gesture_info_text" = "Wischgeste zum Öffnen der Kanaldetails wurde gelöscht, tippe auf dem Kanal, um sie zu sehen.";
 "main_no_entries" = "Lehr";
 
+/* Menu */
+"menu_notifications" = "Benachrichtigungsprotokoll";
+"menu_device_catalog" = "Gerätekatalog";
+
 /* Groups */
 "groups_empty_list_button" = "Gruppe in Supla Cloud hinzufügen";
 

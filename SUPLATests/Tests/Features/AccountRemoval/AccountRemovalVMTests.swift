@@ -48,7 +48,7 @@ class AccountRemovalVMTest: XCTestCase {
         sut.eventsObervable().subscribe(observer).disposed(by: disposeBag)
         
         // when
-        sut.handleUrl(url: "https://cloud.supla.org/db99845855b2ecbfecca9a095062b96c3e27703f?ack=true")
+        _ = sut.shouldHandle(url: "https://cloud.supla.org/db99845855b2ecbfecca9a095062b96c3e27703f?ack=true")
         
         // then
         
@@ -63,7 +63,7 @@ class AccountRemovalVMTest: XCTestCase {
         sut.eventsObervable().subscribe(observer).disposed(by: disposeBag)
         
         // when
-        sut.handleUrl(url: "https://cloud.supla.org/db99845855b2ecbfecca9a095062b96c3e27703f?ack=true")
+        _ = sut.shouldHandle(url: "https://cloud.supla.org/db99845855b2ecbfecca9a095062b96c3e27703f?ack=true")
         
         // then
         
@@ -78,8 +78,8 @@ class AccountRemovalVMTest: XCTestCase {
         sut.eventsObervable().subscribe(observer).disposed(by: disposeBag)
         
         // when
-        sut.handleUrl(url: "https://cloud.supla.org/home")
-        sut.handleUrl(url: "https://googl.com")
+        _ = sut.shouldHandle(url: "https://cloud.supla.org/home")
+        _ = sut.shouldHandle(url: "https://googl.com")
         
         // then
         
@@ -94,7 +94,7 @@ class AccountRemovalVMTest: XCTestCase {
         let url = sut.provideUrl()
         
         // then
-        XCTAssertTrue(url.starts(with: "https://beta-cloud.supla.org/db99845855b2ecbfecca9a095062b96c3e27703f"))
+        XCTAssertTrue(url.absoluteString.starts(with: "https://beta-cloud.supla.org/db99845855b2ecbfecca9a095062b96c3e27703f"))
     }
     
     func test_shouldUseSuplaWhenNoAddressProvided() {
@@ -105,6 +105,6 @@ class AccountRemovalVMTest: XCTestCase {
         let url = sut.provideUrl()
         
         // then
-        XCTAssertTrue(url.starts(with: "https://cloud.supla.org/db99845855b2ecbfecca9a095062b96c3e27703f"))
+        XCTAssertTrue(url.absoluteString.starts(with: "https://cloud.supla.org/db99845855b2ecbfecca9a095062b96c3e27703f"))
     }
 }
