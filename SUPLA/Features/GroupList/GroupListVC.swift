@@ -38,6 +38,8 @@ class GroupListVC: ChannelBaseTableViewController<GroupListViewState, GroupListV
             navigator?.navigateToRollerShutterDetail(item: item, pages: pages)
         case .openCloud:
             navigator?.openCloud()
+        case .openPrivateCloud(let url):
+            navigator?.openWeb(url: url)
         }
     }
     

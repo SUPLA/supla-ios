@@ -160,7 +160,10 @@ class MainNavigationCoordinator: BaseNavigationCoordinator {
     }
     
     func openCloud() {
-        let url = URL(string: "https://cloud.supla.org")!
+        openWeb(url: URL(string: "https://cloud.supla.org")!)
+    }
+    
+    func openWeb(url: URL) {
         UIApplication.shared.open(url, options: [:], completionHandler: nil)
     }
     

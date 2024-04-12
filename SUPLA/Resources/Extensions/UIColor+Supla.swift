@@ -54,6 +54,7 @@ extension UIColor {
     @objc static let separator = UIColor(named: "Colors/separator")!
     static let separatorLight = UIColor(named: "Colors/separator_light")!
     
+    static let loadingScrim = UIColor(named: "Colors/loading_scrim")!
     static let dialogScrim = UIColor(named: "Colors/dialog_scrim")!
     static let transparent = UIColor(argb: 0x00FFFFFF)
     

@@ -16,31 +16,26 @@
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 
-import XCTest
-import RxTest
 import RxSwift
+import RxTest
+import XCTest
 
 @testable import SUPLA
 
 final class GroupListVMTests: ViewModelTest<GroupListViewState, GroupListViewEvent> {
+    private lazy var viewModel: GroupListViewModel! = GroupListViewModel()
     
-    private lazy var viewModel: GroupListViewModel! = { GroupListViewModel() }()
-    
-    private lazy var createProfileGroupsListUseCase: CreateProfileGroupsListUseCaseMock! = {
-        CreateProfileGroupsListUseCaseMock()
-    }()
-    private lazy var swapGroupPositionsUseCase: SwapGroupPositionsUseCaseMock! = {
-        SwapGroupPositionsUseCaseMock()
-    }()
-    private lazy var toggleLocationUseCase: ToggleLocationUseCaseMock! = {
-        ToggleLocationUseCaseMock()
-    }()
-    private lazy var provideDetailTypeUseCase: ProvideDetailTypeUseCaseMock! = {
-        ProvideDetailTypeUseCaseMock()
-    }()
-    private lazy var updateEventsManager: UpdateEventsManagerMock! = {
-        UpdateEventsManagerMock()
-    }()
+    private lazy var createProfileGroupsListUseCase: CreateProfileGroupsListUseCaseMock! = CreateProfileGroupsListUseCaseMock()
+
+    private lazy var swapGroupPositionsUseCase: SwapGroupPositionsUseCaseMock! = SwapGroupPositionsUseCaseMock()
+
+    private lazy var toggleLocationUseCase: ToggleLocationUseCaseMock! = ToggleLocationUseCaseMock()
+
+    private lazy var provideDetailTypeUseCase: ProvideDetailTypeUseCaseMock! = ProvideDetailTypeUseCaseMock()
+
+    private lazy var updateEventsManager: UpdateEventsManagerMock! = UpdateEventsManagerMock()
+
+    private lazy var loadActiveProfileUrlUseCase: LoadActiveProfileUrlUseCaseMock! = LoadActiveProfileUrlUseCaseMock()
     
     override func setUp() {
         DiContainer.shared.register(type: CreateProfileGroupsListUseCase.self, createProfileGroupsListUseCase!)
@@ -48,6 +43,7 @@ final class GroupListVMTests: ViewModelTest<GroupListViewState, GroupListViewEve
         DiContainer.shared.register(type: ProvideDetailTypeUseCase.self, provideDetailTypeUseCase!)
         DiContainer.shared.register(type: ToggleLocationUseCase.self, toggleLocationUseCase!)
         DiContainer.shared.register(type: UpdateEventsManager.self, updateEventsManager!)
+        DiContainer.shared.register(type: LoadActiveProfileUrlUseCase.self, loadActiveProfileUrlUseCase!)
     }
     
     override func tearDown() {
@@ -58,6 +54,7 @@ final class GroupListVMTests: ViewModelTest<GroupListViewState, GroupListViewEve
         provideDetailTypeUseCase = nil
         toggleLocationUseCase = nil
         updateEventsManager = nil
+        loadActiveProfileUrlUseCase = nil
         
         super.tearDown()
     }
@@ -185,5 +182,42 @@ final class GroupListVMTests: ViewModelTest<GroupListViewState, GroupListViewEve
         XCTAssertEqual(toggleLocationUseCase.collapsedFlagArray[0], .group)
         
         XCTAssertEqual(createProfileGroupsListUseCase.invokeCounter, 1)
+    }
+    
+    func test_shouldLoadSuplaCloudUrl() {
+        // given
+        let url: CloudUrl = .suplaCloud
+        loadActiveProfileUrlUseCase.returns = .just(url)
+        
+        // when
+        observe(viewModel)
+        viewModel.onNoContentButtonClicked()
+        
+        // then
+        assertEvents(expected: [
+            .openCloud
+        ])
+        assertStates(expected: [
+            GroupListViewState()
+        ])
+    }
+    
+    func test_shouldLoadPrivateCloudUrl() {
+        // given
+        let url = URL(string: "https://test.url")!
+        let cloudUrl: CloudUrl = .privateCloud(url: url)
+        loadActiveProfileUrlUseCase.returns = .just(cloudUrl)
+        
+        // when
+        observe(viewModel)
+        viewModel.onNoContentButtonClicked()
+        
+        // then
+        assertEvents(expected: [
+            .openPrivateCloud(url: url)
+        ])
+        assertStates(expected: [
+            GroupListViewState()
+        ])
     }
 }

@@ -25,6 +25,7 @@ class SceneListVM: BaseTableViewModel<SceneListViewState, SceneListViewEvent> {
     @Singleton<SwapScenePositionsUseCase> private var swapScenePositionsUseCase
     @Singleton<UpdateEventsManager> private var updateEventsManager
     @Singleton<ExecuteSimpleActionUseCase> private var executeSimpleActionUseCase
+    @Singleton<LoadActiveProfileUrlUseCase> private var loadActiveProfileUrlUseCase
     
     override init() {
         super.init()
@@ -63,7 +64,17 @@ class SceneListVM: BaseTableViewModel<SceneListViewState, SceneListViewEvent> {
     }
     
     func onNoContentButtonClicked() {
-        send(event: .openCloud)
+        loadActiveProfileUrlUseCase.invoke()
+            .asDriverWithoutError()
+            .drive(
+                onNext: { [weak self] url in
+                    switch (url) {
+                    case .suplaCloud: self?.send(event: .openCloud)
+                    case let .privateCloud(url): self?.send(event: .openPrivateCloud(url: url))
+                    }
+                }
+            )
+            .disposed(by: self)
     }
     
     private func executeScene(sceneId: Int32) {
@@ -80,6 +91,7 @@ class SceneListVM: BaseTableViewModel<SceneListViewState, SceneListViewEvent> {
 }
 
 enum SceneListViewEvent: ViewEvent {
+    case openPrivateCloud(url: URL)
     case openCloud
 }
 

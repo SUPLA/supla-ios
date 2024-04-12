@@ -36,6 +36,7 @@ class SceneListVC: BaseTableViewController<SceneListViewState, SceneListViewEven
     
     override func handle(event: SceneListViewEvent) {
         switch (event) {
+        case .openPrivateCloud(let url): navigator?.openWeb(url: url)
         case .openCloud: navigator?.openCloud()
         }
     }

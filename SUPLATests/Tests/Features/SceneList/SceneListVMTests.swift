@@ -16,31 +16,26 @@
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 
-import XCTest
-import RxTest
 import RxSwift
+import RxTest
+import XCTest
 
 @testable import SUPLA
 
 final class SceneListVMTests: ViewModelTest<SceneListViewState, SceneListViewEvent> {
+    private lazy var viewModel: SceneListVM! = SceneListVM()
     
-    private lazy var viewModel: SceneListVM! = { SceneListVM() }()
+    private lazy var createProfileScenesListUseCase: CreateProfileScenesListUseCaseMock! = CreateProfileScenesListUseCaseMock()
+
+    private lazy var swapScenePositionsUseCase: SwapScenePositionsUseCaseMock! = SwapScenePositionsUseCaseMock()
+
+    private lazy var toggleLocationUseCase: ToggleLocationUseCaseMock! = ToggleLocationUseCaseMock()
+
+    private lazy var updateEventsManager: UpdateEventsManagerMock! = UpdateEventsManagerMock()
+
+    private lazy var executeSimpleActionUseCase: ExecuteSimpleActionUseCaseMock! = ExecuteSimpleActionUseCaseMock()
     
-    private lazy var createProfileScenesListUseCase: CreateProfileScenesListUseCaseMock! = {
-        CreateProfileScenesListUseCaseMock()
-    }()
-    private lazy var swapScenePositionsUseCase: SwapScenePositionsUseCaseMock! = {
-        SwapScenePositionsUseCaseMock()
-    }()
-    private lazy var toggleLocationUseCase: ToggleLocationUseCaseMock! = {
-        ToggleLocationUseCaseMock()
-    }()
-    private lazy var updateEventsManager: UpdateEventsManagerMock! = {
-        UpdateEventsManagerMock()
-    }()
-    private lazy var executeSimpleActionUseCase: ExecuteSimpleActionUseCaseMock! = {
-        ExecuteSimpleActionUseCaseMock()
-    }()
+    private lazy var loadActiveProfileUrlUseCase: LoadActiveProfileUrlUseCaseMock! = LoadActiveProfileUrlUseCaseMock()
     
     override func setUp() {
         DiContainer.shared.register(type: CreateProfileScenesListUseCase.self, createProfileScenesListUseCase!)
@@ -48,6 +43,7 @@ final class SceneListVMTests: ViewModelTest<SceneListViewState, SceneListViewEve
         DiContainer.shared.register(type: ToggleLocationUseCase.self, toggleLocationUseCase!)
         DiContainer.shared.register(type: UpdateEventsManager.self, updateEventsManager!)
         DiContainer.shared.register(type: ExecuteSimpleActionUseCase.self, executeSimpleActionUseCase!)
+        DiContainer.shared.register(type: LoadActiveProfileUrlUseCase.self, loadActiveProfileUrlUseCase!)
     }
     
     override func tearDown() {
@@ -58,6 +54,7 @@ final class SceneListVMTests: ViewModelTest<SceneListViewState, SceneListViewEve
         toggleLocationUseCase = nil
         updateEventsManager = nil
         executeSimpleActionUseCase = nil
+        loadActiveProfileUrlUseCase = nil
         
         super.tearDown()
     }
@@ -167,6 +164,43 @@ final class SceneListVMTests: ViewModelTest<SceneListViewState, SceneListViewEve
         
         XCTAssertTuples(executeSimpleActionUseCase.parameters, [
             (Action.execute, SUPLA.SubjectType.scene, sceneId)
+        ])
+    }
+    
+    func test_shouldLoadSuplaCloudUrl() {
+        // given
+        let url: CloudUrl = .suplaCloud
+        loadActiveProfileUrlUseCase.returns = .just(url)
+        
+        // when
+        observe(viewModel)
+        viewModel.onNoContentButtonClicked()
+        
+        // then
+        assertEvents(expected: [
+            .openCloud
+        ])
+        assertStates(expected: [
+            SceneListViewState()
+        ])
+    }
+    
+    func test_shouldLoadPrivateCloudUrl() {
+        // given
+        let url = URL(string: "https://test.url")!
+        let cloudUrl: CloudUrl = .privateCloud(url: url)
+        loadActiveProfileUrlUseCase.returns = .just(cloudUrl)
+        
+        // when
+        observe(viewModel)
+        viewModel.onNoContentButtonClicked()
+        
+        // then
+        assertEvents(expected: [
+            .openPrivateCloud(url: url)
+        ])
+        assertStates(expected: [
+            SceneListViewState()
         ])
     }
 }

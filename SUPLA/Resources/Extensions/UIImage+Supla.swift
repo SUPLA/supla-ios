@@ -47,6 +47,7 @@ extension UIImage {
     static let iconTouchHand = UIImage(named: .Icons.touchHand)
     static let iconVisible = UIImage(named: .Icons.visible)
     static let iconInvisible = UIImage(named: .Icons.invisible)
+    static let iconEmpty = UIImage(named: .Icons.empty)
     
     static let iconWarning = UIImage(named: .Icons.warning)
     static let iconError = UIImage(named: .Icons.error)

@@ -50,6 +50,7 @@ extension String {
         static let touchHand = "icon_touch_hand"
         static let visible = "icon_visible"
         static let invisible = "icon_invisible"
+        static let empty = "icon_empty"
         
         static let warning = "channel_warning_level1"
         static let error = "channel_warning_level2"
