@@ -18,8 +18,7 @@
 
 import RxSwift
 
-final class MeasurementCell: BaseCell<ChannelWithChildren> {
-    
+final class IconCell: BaseCell<ChannelWithChildren> {
     @Singleton<GetChannelBaseIconUseCase> private var getChannelBaseIconUseCase
     @Singleton<GetChannelBaseCaptionUseCase> private var getChannelBaseCaptionUseCase
     @Singleton<GetChannelValueStringUseCase> private var getChannelValueStringUseCase
@@ -28,14 +27,6 @@ final class MeasurementCell: BaseCell<ChannelWithChildren> {
         let view = UIImageView()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.contentMode = .scaleAspectFit
-        return view
-    }()
-    
-    private lazy var valueView: UILabel = {
-        let view = UILabel()
-        view.translatesAutoresizingMaskIntoConstraints = false
-        view.font = .cellValueFont
-        view.textColor = .onBackground
         return view
     }()
     
@@ -50,24 +41,19 @@ final class MeasurementCell: BaseCell<ChannelWithChildren> {
     override func online() -> Bool { data?.channel.isOnline() ?? false }
     
     override func derivedClassControls() -> [UIView] {
-        return [
-            iconView,
-            valueView
-        ]
+        return [iconView]
     }
     
     override func onInfoPress(_ gr: UITapGestureRecognizer) {
-        if let delegate = delegate as? MeasurementCellDelegate,
-           let channel = data?.channel {
+        if let delegate = delegate as? BaseCellDelegate,
+           let channel = data?.channel
+        {
             delegate.onInfoIconTapped(channel)
         }
     }
     
     override func setupView() {
-        valueView.font = .cellValueFont.withSize(scale(Dimens.Fonts.value, limit: .lower(1)))
-        
         container.addSubview(iconView)
-        container.addSubview(valueView)
         
         super.setupView()
     }
@@ -78,10 +64,7 @@ final class MeasurementCell: BaseCell<ChannelWithChildren> {
             iconView.heightAnchor.constraint(equalToConstant: scale(Dimens.ListItem.iconHeight)),
             iconView.leftAnchor.constraint(equalTo: container.leftAnchor),
             iconView.topAnchor.constraint(equalTo: container.topAnchor),
-            
-            valueView.leftAnchor.constraint(equalTo: iconView.rightAnchor, constant: 4),
-            valueView.centerYAnchor.constraint(equalTo: iconView.centerYAnchor),
-            valueView.rightAnchor.constraint(equalTo: container.rightAnchor)
+            iconView.rightAnchor.constraint(equalTo: container.rightAnchor)
         ]
     }
     
@@ -92,16 +75,45 @@ final class MeasurementCell: BaseCell<ChannelWithChildren> {
         
         caption = getChannelBaseCaptionUseCase.invoke(channelBase: channel)
         
-        leftStatusIndicatorView.configure(filled: false, online: channel.isOnline())
-        rightStatusIndicatorView.configure(filled: false, online: channel.isOnline())
+        leftStatusIndicatorView.configure(filled: hasLeftButton(), online: channel.isOnline())
+        rightStatusIndicatorView.configure(filled: hasRightButton(), online: channel.isOnline())
         
         iconView.image = getChannelBaseIconUseCase.invoke(channel: channel)
-        valueView.text = getChannelValueStringUseCase.invoke(channel)
         
         issueIcon = nil
     }
-}
-
-protocol MeasurementCellDelegate: BaseCellDelegate {
-    func onInfoIconTapped(_ channel: SAChannel)
+    
+    override func leftButtonSettings() -> CellButtonSettings {
+        if (hasLeftButton()) {
+            return CellButtonSettings(visible: online(), title: Strings.General.close)
+        } else {
+            return super.leftButtonSettings()
+        }
+    }
+    
+    override func rightButtonSettings() -> CellButtonSettings {
+        if (hasLeftButton()) {
+            return CellButtonSettings(visible: online(), title: Strings.General.close)
+        } else {
+            return super.rightButtonSettings()
+        }
+    }
+    
+    private func hasLeftButton() -> Bool {
+        switch (data?.channel.func) {
+        case SUPLA_CHANNELFNC_CONTROLLINGTHEROOFWINDOW,
+             SUPLA_CHANNELFNC_CONTROLLINGTHEFACADEBLIND,
+             SUPLA_CHANNELFNC_CONTROLLINGTHEROLLERSHUTTER: true
+        default: false
+        }
+    }
+    
+    private func hasRightButton() -> Bool {
+        switch (data?.channel.func) {
+        case SUPLA_CHANNELFNC_CONTROLLINGTHEROOFWINDOW,
+             SUPLA_CHANNELFNC_CONTROLLINGTHEFACADEBLIND,
+             SUPLA_CHANNELFNC_CONTROLLINGTHEROLLERSHUTTER: true
+        default: false
+        }
+    }
 }

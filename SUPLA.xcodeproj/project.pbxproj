@@ -300,6 +300,7 @@
 		A5074BAF2BC954CB0081B6B1 /* DeviceCatalogVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5074BAE2BC954CB0081B6B1 /* DeviceCatalogVM.swift */; };
 		A5074BB12BC957370081B6B1 /* DeviceCatalogVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5074BB02BC957370081B6B1 /* DeviceCatalogVC.swift */; };
 		A5074BB32BC957E70081B6B1 /* DeviceCatalogNavigationCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5074BB22BC957E70081B6B1 /* DeviceCatalogNavigationCoordinator.swift */; };
+		A5074BB52BCCFD2B0081B6B1 /* IconCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5074BB42BCCFD2B0081B6B1 /* IconCell.swift */; };
 		A50CD3D12A4D78610012DD9B /* libc++abi.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = A50CD3D02A4D78610012DD9B /* libc++abi.tbd */; };
 		A50CD3D32A4D82ED0012DD9B /* DateProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A50CD3D22A4D82ED0012DD9B /* DateProvider.swift */; };
 		A50CD3D62A4D99E60012DD9B /* UpdateTokenTaskTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A50CD3D52A4D99E60012DD9B /* UpdateTokenTaskTests.swift */; };
@@ -683,7 +684,7 @@
 		A59AB8EB2A30AA2600D91F1F /* CreateProfileScenesListUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A59AB8EA2A30AA2600D91F1F /* CreateProfileScenesListUseCaseTests.swift */; };
 		A59AB8ED2A30AAFA00D91F1F /* SwapScenePositionsUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A59AB8EC2A30AAFA00D91F1F /* SwapScenePositionsUseCaseTests.swift */; };
 		A59AB8F02A30ACB500D91F1F /* ToggleLocationUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A59AB8EF2A30ACB500D91F1F /* ToggleLocationUseCaseTests.swift */; };
-		A5A14A312B60F76A004B1598 /* MeasurementCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5A14A302B60F76A004B1598 /* MeasurementCell.swift */; };
+		A5A14A312B60F76A004B1598 /* IconValueCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5A14A302B60F76A004B1598 /* IconValueCell.swift */; };
 		A5A14A362B611863004B1598 /* GetChannelBaseDefaultCaptionUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5A14A352B611863004B1598 /* GetChannelBaseDefaultCaptionUseCase.swift */; };
 		A5A14A382B61220C004B1598 /* GetChannelBaseCaptionUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5A14A372B61220C004B1598 /* GetChannelBaseCaptionUseCase.swift */; };
 		A5A14A3A2B612F1C004B1598 /* ChannelConfigRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5A14A392B612F1C004B1598 /* ChannelConfigRepository.swift */; };
@@ -1544,6 +1545,7 @@
 		A5074BAE2BC954CB0081B6B1 /* DeviceCatalogVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceCatalogVM.swift; sourceTree = "<group>"; };
 		A5074BB02BC957370081B6B1 /* DeviceCatalogVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceCatalogVC.swift; sourceTree = "<group>"; };
 		A5074BB22BC957E70081B6B1 /* DeviceCatalogNavigationCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceCatalogNavigationCoordinator.swift; sourceTree = "<group>"; };
+		A5074BB42BCCFD2B0081B6B1 /* IconCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconCell.swift; sourceTree = "<group>"; };
 		A50CD3D02A4D78610012DD9B /* libc++abi.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++abi.tbd"; path = "usr/lib/libc++abi.tbd"; sourceTree = SDKROOT; };
 		A50CD3D22A4D82ED0012DD9B /* DateProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateProvider.swift; sourceTree = "<group>"; };
 		A50CD3D52A4D99E60012DD9B /* UpdateTokenTaskTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateTokenTaskTests.swift; sourceTree = "<group>"; };
@@ -1933,7 +1935,7 @@
 		A59AB8EA2A30AA2600D91F1F /* CreateProfileScenesListUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateProfileScenesListUseCaseTests.swift; sourceTree = "<group>"; };
 		A59AB8EC2A30AAFA00D91F1F /* SwapScenePositionsUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwapScenePositionsUseCaseTests.swift; sourceTree = "<group>"; };
 		A59AB8EF2A30ACB500D91F1F /* ToggleLocationUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToggleLocationUseCaseTests.swift; sourceTree = "<group>"; };
-		A5A14A302B60F76A004B1598 /* MeasurementCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeasurementCell.swift; sourceTree = "<group>"; };
+		A5A14A302B60F76A004B1598 /* IconValueCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconValueCell.swift; sourceTree = "<group>"; };
 		A5A14A322B61005F004B1598 /* SUPLA 16.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "SUPLA 16.xcdatamodel"; sourceTree = "<group>"; };
 		A5A14A352B611863004B1598 /* GetChannelBaseDefaultCaptionUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetChannelBaseDefaultCaptionUseCase.swift; sourceTree = "<group>"; };
 		A5A14A372B61220C004B1598 /* GetChannelBaseCaptionUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetChannelBaseCaptionUseCase.swift; sourceTree = "<group>"; };
@@ -3906,7 +3908,8 @@
 			isa = PBXGroup;
 			children = (
 				A58A9C002AA0AD0E00D28848 /* ThermostatCell.swift */,
-				A5A14A302B60F76A004B1598 /* MeasurementCell.swift */,
+				A5A14A302B60F76A004B1598 /* IconValueCell.swift */,
+				A5074BB42BCCFD2B0081B6B1 /* IconCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -5676,6 +5679,7 @@
 				A57777CD29E6907C004513E6 /* RuntimeConfig.swift in Sources */,
 				A57668DD2AE995590025509D /* GeneralError.swift in Sources */,
 				A55A8D882BAAFFE700C540D4 /* ChannelIssueItem.swift in Sources */,
+				A5074BB52BCCFD2B0081B6B1 /* IconCell.swift in Sources */,
 				A530EDEB2A53F60400F8DAEE /* SwitchDetailVM.swift in Sources */,
 				01F8857122E5E79100D18373 /* SATemperatureMeasurementItem+CoreDataClass.m in Sources */,
 				A56233EB2AB31A45001CB948 /* CALayer+Ext.swift in Sources */,
@@ -5876,7 +5880,7 @@
 				A503ABA92B679C66008CDA1F /* BarChartData.swift in Sources */,
 				A57668DF2AE99CCD0025509D /* LoadChannelWithChildrenMeasurementsUseCase.swift in Sources */,
 				A56233F32AB3A386001CB948 /* CreateTemperaturesListUseCase.swift in Sources */,
-				A5A14A312B60F76A004B1598 /* MeasurementCell.swift in Sources */,
+				A5A14A312B60F76A004B1598 /* IconValueCell.swift in Sources */,
 				A5AE7A852A3AC7020097FA8B /* BaseSettingsCell.swift in Sources */,
 				A52BFEEC2B173F7100A2F64C /* ReadProfileByIdUseCase.swift in Sources */,
 				A530EE242A57006A00F8DAEE /* LiquidSensorIconNameProducer.swift in Sources */,

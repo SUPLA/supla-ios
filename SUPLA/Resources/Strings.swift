@@ -261,6 +261,7 @@ struct Strings {
     struct General {
         static let cancel = NSLocalizedString("Cancel", comment: "")
         static let close = NSLocalizedString("Close", comment: "")
+        static let open = NSLocalizedString("Open", comment: "")
         static let unknownError = NSLocalizedString("Unknown error", comment: "")
         static let save = "save".toLocalized()
         

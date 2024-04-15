@@ -22,3 +22,9 @@ struct ChannelWithChildren: Equatable {
     let channel: SAChannel
     let children: [ChannelChild]
 }
+
+extension ChannelWithChildren: BaseCellData {
+    var infoSupported: Bool {
+        channel.flags & Int64(SUPLA_CHANNEL_FLAG_CHANNELSTATE) > 0
+    }
+}
