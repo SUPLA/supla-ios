@@ -19,8 +19,11 @@
 import Foundation
 import RxSwift
 
-class BaseCell<T>: MGSwipeTableCell {
-    
+protocol BaseCellData {
+    var infoSupported: Bool { get }
+}
+
+class BaseCell<T: BaseCellData>: MGSwipeTableCell {
     @Singleton<GlobalSettings> private var settings
     @Singleton<UpdateEventsManager> private var updateEventsManager
     
@@ -30,6 +33,7 @@ class BaseCell<T>: MGSwipeTableCell {
             resetCell()
         }
     }
+
     var data: T? {
         didSet {
             guard let data = data else { return }
@@ -54,13 +58,16 @@ class BaseCell<T>: MGSwipeTableCell {
         set { initiatorView.text = newValue }
     }
     
-    var container: UIView {
-        get { containerView }
-    }
+    var container: UIView { containerView }
     
-    var showChannelInfo: Bool {
-        get { !infoView.isHidden }
-        set { infoView.isHidden = !newValue || !online() }
+    var showChannelInfo: Bool = false {
+        didSet {
+            guard let data = data else {
+                infoView.isHidden = !showChannelInfo
+                return
+            }
+            infoView.isHidden = !showChannelInfo || !data.infoSupported || !online()
+        }
     }
     
     var issueIcon: IssueIconType? {
@@ -90,7 +97,7 @@ class BaseCell<T>: MGSwipeTableCell {
         recognizer.allowableMovement = 5
         recognizer.minimumPressDuration = 0.8
         return recognizer
-    } ()
+    }()
     
     private lazy var captionView: UILabel = {
         let label = UILabel()
@@ -143,19 +150,20 @@ class BaseCell<T>: MGSwipeTableCell {
         view.contentMode = .scaleAspectFit
         view.isHidden = true
         view.isUserInteractionEnabled = true
-        view .addGestureRecognizer(
+        view.addGestureRecognizer(
             UITapGestureRecognizer(target: self, action: #selector(onIssuePress(_:)))
         )
         return view
     }()
     
     private lazy var leftButton: CellButton = {
-        let button: CellButton = CellButton(title: "", backgroundColor: .onLine())
+        let button = CellButton(title: "", backgroundColor: .onLine())!
         button.addTarget(self, action: #selector(onButtonTap(_:)), for: .touchUpInside)
         return button
     }()
+
     private lazy var rightButton: CellButton = {
-        let button: CellButton = CellButton(title: "", backgroundColor: .onLine())
+        let button = CellButton(title: "", backgroundColor: .onLine())!
         button.addTarget(self, action: #selector(onButtonTap(_:)), for: .touchUpInside)
         return button
     }()
@@ -209,7 +217,7 @@ class BaseCell<T>: MGSwipeTableCell {
         if (leftButtonSettings.visible) {
             leftButton.setTitle(leftButtonSettings.title, for: .normal)
             leftButton.buttonWidth = Dimens.ListItem.buttonWidth
-            leftButtons = [ leftButton as Any ]
+            leftButtons = [leftButton as Any]
         } else {
             leftButtons = []
         }
@@ -218,7 +226,7 @@ class BaseCell<T>: MGSwipeTableCell {
         if (rightButtonSettings.visible) {
             rightButton.setTitle(rightButtonSettings.title, for: .normal)
             rightButton.buttonWidth = Dimens.ListItem.buttonWidth
-            rightButtons = [ rightButton as Any ]
+            rightButtons = [rightButton as Any]
         } else {
             rightButtons = []
         }
@@ -230,8 +238,8 @@ class BaseCell<T>: MGSwipeTableCell {
         }
         
         if let timerEndDate = timerEndDate(),
-           timerEndDate.timeIntervalSinceNow > 0 {
-            
+           timerEndDate.timeIntervalSinceNow > 0
+        {
             updateTimerLabel(endTime: timerEndDate)
             timer = Timer.scheduledTimer(
                 timeInterval: 1,
@@ -245,7 +253,7 @@ class BaseCell<T>: MGSwipeTableCell {
     
     func timerEndDate() -> Date? { nil }
     
-    func onTimerStopped() { }
+    func onTimerStopped() {}
     
     // MARK: Public content
     
@@ -254,10 +262,8 @@ class BaseCell<T>: MGSwipeTableCell {
         switch (limit) {
         case .lower(let val):
             if (scaleFactor < val) { scale = val }
-            break;
         case .upper(let val):
             if (scaleFactor > val) { scale = val }
-            break;
         default: break
         }
         
@@ -273,8 +279,8 @@ class BaseCell<T>: MGSwipeTableCell {
         timerView.font = .formLabelFont.withSize(scale(Dimens.Fonts.label, limit: .upper(1)))
         initiatorView.font = .formLabelFont.withSize(scale(Dimens.Fonts.label))
         
-        self.leftSwipeSettings.transition = MGSwipeTransition.rotate3D
-        self.rightSwipeSettings.transition = MGSwipeTransition.rotate3D
+        leftSwipeSettings.transition = MGSwipeTransition.rotate3D
+        rightSwipeSettings.transition = MGSwipeTransition.rotate3D
         
         contentView.addSubview(captionView)
         contentView.addSubview(timerView)
@@ -349,8 +355,8 @@ class BaseCell<T>: MGSwipeTableCell {
             currentConstraints.removeAll()
         }
         
-        allControls().forEach {
-            $0.removeFromSuperview()
+        for control in allControls() {
+            control.removeFromSuperview()
         }
         
         setupView()
@@ -373,7 +379,7 @@ class BaseCell<T>: MGSwipeTableCell {
         return controls
     }
     
-    @objc func onInfoPress(_ gr: UITapGestureRecognizer) { }
+    @objc func onInfoPress(_ gr: UITapGestureRecognizer) {}
     
     @objc private func onCaptionLongPress(_ gr: UILongPressGestureRecognizer) {
         if (gr.state != .began) {
@@ -439,12 +445,11 @@ class BaseCell<T>: MGSwipeTableCell {
     private func updateTimerLabel(endTime: Date) {
         if (endTime.timeIntervalSinceNow < 0) {
             timerView.text = nil
-            self.timer?.invalidate()
-            self.timer = nil
+            timer?.invalidate()
+            timer = nil
             
             onTimerStopped()
-        }
-        else {
+        } else {
             @Singleton<ValuesFormatter> var formatter
             let timeDiff = endTime.differenceInSeconds(Date())
             
@@ -460,7 +465,7 @@ class BaseCell<T>: MGSwipeTableCell {
                 timerView.text = "\(daysString) ⏱️"
             } else {
                 let daysString = Strings.TimerDetail.daysPattern.arguments(days)
-                timerView.text =  "\(daysString) ⏱️"
+                timerView.text = "\(daysString) ⏱️"
             }
         }
     }
@@ -479,8 +484,11 @@ protocol BaseCellDelegate: MGSwipeTableCellDelegate {
     func onButtonTapped(buttonType: CellButtonType, remoteId: Int32, data: Any?)
 }
 
+extension BaseCellDelegate {
+    func onInfoIconTapped(_ channel: SAChannel) {}
+}
+
 extension BaseCell: MoveableCell {
-    
     func movementEnabled() -> Bool {
         !isCaptionTouched()
     }
@@ -497,7 +505,6 @@ enum CellScalingLimit {
 }
 
 class CellStatusIndicatorView: UIView {
-    
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupView()
