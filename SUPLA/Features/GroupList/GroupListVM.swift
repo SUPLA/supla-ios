@@ -66,7 +66,7 @@ class GroupListViewModel: BaseTableViewModel<GroupListViewState, GroupListViewEv
         switch (detailType) {
         case let .legacy(type: legacyDetailType):
             send(event: .navigateToDetail(legacy: legacyDetailType, channelBase: item))
-        case let .rollerShutterDetail(pages):
+        case let .windowDetail(pages):
             send(event: .naviagetToRollerShutterDetail(item: item.item(), pages: pages))
         default: break
         }

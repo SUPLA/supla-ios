@@ -26,7 +26,7 @@ final class RollerShutterValueTests: XCTestCase {
         
         // then
         XCTAssertEqual(value.online, false)
-        XCTAssertEqual(value.position, RollerShutterValue.invalidPosition)
+        XCTAssertEqual(value.position, SHADING_SYSTEM_INVALID_VALUE)
         XCTAssertEqual(value.bottomPosition, 0)
         XCTAssertEqual(value.flags, [])
         XCTAssertEqual(value.hasValidPosition, false)
@@ -34,7 +34,7 @@ final class RollerShutterValueTests: XCTestCase {
     
     func test_parseWhenSizeCorrect() {
         // given
-        let data = mockData(position: 22, bottomPosition: 88)
+        let data = RollerShutterValue.mockData(position: 22, bottomPosition: 88)
         
         // when
         let value = RollerShutterValue.from(data, online: true)
@@ -49,7 +49,7 @@ final class RollerShutterValueTests: XCTestCase {
     
     func test_parseWhenSizeCorrect_invalidPosition() {
         // given
-        let data = mockData(position: 120, bottomPosition: 88, flags: 4)
+        let data = RollerShutterValue.mockData(position: 120, bottomPosition: 88, flags: 4)
         
         // when
         let value = RollerShutterValue.from(data, online: true)
@@ -60,18 +60,5 @@ final class RollerShutterValueTests: XCTestCase {
         XCTAssertEqual(value.bottomPosition, 88)
         XCTAssertEqual(value.flags, [.calibrationLost])
         XCTAssertEqual(value.hasValidPosition, false)
-    }
-    
-    private func mockData(position: Int, bottomPosition: Int, flags: Int16 = 0) -> Data {
-        var cValue = TDSC_RollerShutterValue(
-            position: Int8(position),
-            reserved1: 0,
-            bottom_position: Int8(bottomPosition),
-            flags: flags,
-            reserved2: 0,
-            reserved3: 0,
-            reserved4: 0
-        )
-        return Data(bytes: &cValue, count: MemoryLayout<TDSC_RollerShutterValue>.size)
     }
 }

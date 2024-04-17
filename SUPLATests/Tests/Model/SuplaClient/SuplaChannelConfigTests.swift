@@ -220,6 +220,56 @@ class SuplaChannelConfigTests: XCTestCase {
         XCTAssertEqual(gpmConfig.chartType, .candle)
     }
     
+    func test_shouldGetRollerShutterConfig() {
+        // given
+        var config = getRollerShutterConfig()
+        config.ChannelId = 234
+        config.Func = SUPLA_CHANNELFNC_CONTROLLINGTHEROLLERSHUTTER
+        config.ConfigType = UInt8(SUPLA_CONFIG_TYPE_DEFAULT)
+        
+        // when
+        let result = SuplaChannelConfig.from(suplaConfig: config, crc32: 0)
+        
+        // then
+        XCTAssertTrue(result is SuplaChannelRollerShutterConfig)
+        XCTAssertEqual(result.remoteId, 234)
+        XCTAssertEqual(result.channelFunc, SUPLA_CHANNELFNC_CONTROLLINGTHEROLLERSHUTTER)
+        
+        let rollerShutterConfig = result as! SuplaChannelRollerShutterConfig
+        XCTAssertEqual(rollerShutterConfig.buttonUpsideDown, true)
+        XCTAssertEqual(rollerShutterConfig.closingTimeMs, 10000)
+        XCTAssertEqual(rollerShutterConfig.motorUpsideDown, true)
+        XCTAssertEqual(rollerShutterConfig.openingTimeMs, 10500)
+        XCTAssertEqual(rollerShutterConfig.timeMargin, 10)
+    }
+    
+    func test_shouldGetFacadeBlindConfig() {
+        // given
+        var config = getFacadeBlindConfig()
+        config.ChannelId = 234
+        config.Func = SUPLA_CHANNELFNC_CONTROLLINGTHEFACADEBLIND
+        config.ConfigType = UInt8(SUPLA_CONFIG_TYPE_DEFAULT)
+        
+        // when
+        let result = SuplaChannelConfig.from(suplaConfig: config, crc32: 0)
+        
+        // then
+        XCTAssertTrue(result is SuplaChannelFacadeBlindConfig)
+        XCTAssertEqual(result.remoteId, 234)
+        XCTAssertEqual(result.channelFunc, SUPLA_CHANNELFNC_CONTROLLINGTHEFACADEBLIND)
+        
+        let rollerShutterConfig = result as! SuplaChannelFacadeBlindConfig
+        XCTAssertEqual(rollerShutterConfig.buttonUpsideDown, true)
+        XCTAssertEqual(rollerShutterConfig.closingTimeMs, 10000)
+        XCTAssertEqual(rollerShutterConfig.motorUpsideDown, true)
+        XCTAssertEqual(rollerShutterConfig.openingTimeMs, 10500)
+        XCTAssertEqual(rollerShutterConfig.timeMargin, 10)
+        XCTAssertEqual(rollerShutterConfig.tilt0Angle, 10)
+        XCTAssertEqual(rollerShutterConfig.tilt100Angle, 80)
+        XCTAssertEqual(rollerShutterConfig.type, .changesPositionWhileTilting)
+        XCTAssertEqual(rollerShutterConfig.tiltingTimeMs, 1200)
+    }
+    
     private func getHvacConfig() -> TSCS_ChannelConfig {
         return SuplaConfigIntegrator.mockHvacConfig()
     }
@@ -254,8 +304,8 @@ class SuplaChannelConfigTests: XCTestCase {
         var channelConfig = TSCS_ChannelConfig()
         channelConfig.ConfigSize = UInt16(MemoryLayout<TChannelConfig_GeneralPurposeMeter>.size)
         
-        var sourcePointer = withUnsafeMutablePointer(to: &config) { UnsafeRawPointer($0) }
-        var destPointer = withUnsafeMutablePointer(to: &channelConfig.Config) { UnsafeMutableRawPointer($0) }
+        let sourcePointer = withUnsafeMutablePointer(to: &config) { UnsafeRawPointer($0) }
+        let destPointer = withUnsafeMutablePointer(to: &channelConfig.Config) { UnsafeMutableRawPointer($0) }
         memcpy(destPointer, sourcePointer, MemoryLayout<TChannelConfig_GeneralPurposeMeter>.size)
         
         return channelConfig
@@ -284,9 +334,51 @@ class SuplaChannelConfigTests: XCTestCase {
         var channelConfig = TSCS_ChannelConfig()
         channelConfig.ConfigSize = UInt16(MemoryLayout<TChannelConfig_GeneralPurposeMeasurement>.size)
         
-        var sourcePointer = withUnsafeMutablePointer(to: &config) { UnsafeRawPointer($0) }
-        var destPointer = withUnsafeMutablePointer(to: &channelConfig.Config) { UnsafeMutableRawPointer($0) }
+        let sourcePointer = withUnsafeMutablePointer(to: &config) { UnsafeRawPointer($0) }
+        let destPointer = withUnsafeMutablePointer(to: &channelConfig.Config) { UnsafeMutableRawPointer($0) }
         memcpy(destPointer, sourcePointer, MemoryLayout<TChannelConfig_GeneralPurposeMeasurement>.size)
+        
+        return channelConfig
+    }
+    
+    private func getRollerShutterConfig() -> TSCS_ChannelConfig {
+        var config = TChannelConfig_RollerShutter()
+        config.ButtonsUpsideDown = 1
+        config.ClosingTimeMS = 10000
+        config.MotorUpsideDown = 1
+        config.OpeningTimeMS = 10500
+        config.TimeMargin = 10
+        config.VisualizationType = 0
+        
+        var channelConfig = TSCS_ChannelConfig()
+        channelConfig.ConfigSize = UInt16(MemoryLayout<TChannelConfig_RollerShutter>.size)
+        
+        let sourcePointer = withUnsafeMutablePointer(to: &config) { UnsafeRawPointer($0) }
+        let destPointer = withUnsafeMutablePointer(to: &channelConfig.Config) { UnsafeMutableRawPointer($0) }
+        memcpy(destPointer, sourcePointer, MemoryLayout<TChannelConfig_RollerShutter>.size)
+        
+        return channelConfig
+    }
+    
+    private func getFacadeBlindConfig() -> TSCS_ChannelConfig {
+        var config = TChannelConfig_FacadeBlind()
+        config.ButtonsUpsideDown = 1
+        config.ClosingTimeMS = 10000
+        config.MotorUpsideDown = 1
+        config.OpeningTimeMS = 10500
+        config.TimeMargin = 10
+        config.VisualizationType = 0
+        config.Tilt0Angle = 10
+        config.Tilt100Angle = 80
+        config.TiltControlType = 2
+        config.TiltingTimeMS = 1200
+        
+        var channelConfig = TSCS_ChannelConfig()
+        channelConfig.ConfigSize = UInt16(MemoryLayout<TChannelConfig_FacadeBlind>.size)
+        
+        let sourcePointer = withUnsafeMutablePointer(to: &config) { UnsafeRawPointer($0) }
+        let destPointer = withUnsafeMutablePointer(to: &channelConfig.Config) { UnsafeMutableRawPointer($0) }
+        memcpy(destPointer, sourcePointer, MemoryLayout<TChannelConfig_FacadeBlind>.size)
         
         return channelConfig
     }

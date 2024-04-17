@@ -34,7 +34,7 @@ final class GetChannelBaseStateUseCaseTests: XCTestCase {
         let activeValue: Int32 = 1
         
         // when
-        let state = useCase.invoke(function: function, activeValue: activeValue)
+        let state = useCase.invoke(function: function, online: true, activeValue: activeValue)
         
         // then
         XCTAssertEqual(state, .closed)
@@ -47,7 +47,7 @@ final class GetChannelBaseStateUseCaseTests: XCTestCase {
         let activeValue: Int32 = 0
         
         // when
-        let state = useCase.invoke(function: function, activeValue: activeValue)
+        let state = useCase.invoke(function: function, online: true, activeValue: activeValue)
         
         // then
         XCTAssertEqual(state, .opened)
@@ -60,7 +60,7 @@ final class GetChannelBaseStateUseCaseTests: XCTestCase {
         let activeValue: Int32 = 2
         
         // when
-        let state = useCase.invoke(function: function, activeValue: activeValue)
+        let state = useCase.invoke(function: function, online: true, activeValue: activeValue)
         
         // then
         XCTAssertEqual(state, .partialyOpened)
@@ -73,7 +73,7 @@ final class GetChannelBaseStateUseCaseTests: XCTestCase {
         let activeValue: Int32 = 2
         
         // when
-        let state = useCase.invoke(function: function, activeValue: activeValue)
+        let state = useCase.invoke(function: function, online: true, activeValue: activeValue)
         
         // then
         XCTAssertEqual(state, .closed)
@@ -86,7 +86,7 @@ final class GetChannelBaseStateUseCaseTests: XCTestCase {
         let activeValue: Int32 = 1
         
         // when
-        let state = useCase.invoke(function: function, activeValue: activeValue)
+        let state = useCase.invoke(function: function, online: true, activeValue: activeValue)
         
         // then
         XCTAssertEqual(state, .on)
@@ -99,7 +99,7 @@ final class GetChannelBaseStateUseCaseTests: XCTestCase {
         let activeValue: Int32 = 0
         
         // when
-        let state = useCase.invoke(function: function, activeValue: activeValue)
+        let state = useCase.invoke(function: function, online: true, activeValue: activeValue)
         
         // then
         XCTAssertEqual(state, .off)
@@ -112,7 +112,7 @@ final class GetChannelBaseStateUseCaseTests: XCTestCase {
         let activeValue: Int32 = 1
         
         // when
-        let state = useCase.invoke(function: function, activeValue: activeValue)
+        let state = useCase.invoke(function: function, online: true, activeValue: activeValue)
         
         // then
         XCTAssertEqual(state, .transparent)
@@ -125,7 +125,7 @@ final class GetChannelBaseStateUseCaseTests: XCTestCase {
         let activeValue: Int32 = 0
         
         // when
-        let state = useCase.invoke(function: function, activeValue: activeValue)
+        let state = useCase.invoke(function: function, online: true, activeValue: activeValue)
         
         // then
         XCTAssertEqual(state, .opaque)
@@ -138,7 +138,7 @@ final class GetChannelBaseStateUseCaseTests: XCTestCase {
         let activeValue: Int32 = 3
         
         // when
-        let state = useCase.invoke(function: function, activeValue: activeValue)
+        let state = useCase.invoke(function: function, online: true, activeValue: activeValue)
         
         // then
         XCTAssertEqual(state, .complex([.on, .on]))
@@ -151,7 +151,7 @@ final class GetChannelBaseStateUseCaseTests: XCTestCase {
         let activeValue: Int32 = 1
         
         // when
-        let state = useCase.invoke(function: function, activeValue: activeValue)
+        let state = useCase.invoke(function: function, online: true, activeValue: activeValue)
         
         // then
         XCTAssertEqual(state, .complex([.on, .off]))
@@ -164,7 +164,7 @@ final class GetChannelBaseStateUseCaseTests: XCTestCase {
         let activeValue: Int32 = 2
         
         // when
-        let state = useCase.invoke(function: function, activeValue: activeValue)
+        let state = useCase.invoke(function: function, online: true, activeValue: activeValue)
         
         // then
         XCTAssertEqual(state, .complex([.off, .on]))
@@ -177,7 +177,7 @@ final class GetChannelBaseStateUseCaseTests: XCTestCase {
         let activeValue: Int32 = 0
         
         // when
-        let state = useCase.invoke(function: function, activeValue: activeValue)
+        let state = useCase.invoke(function: function, online: true, activeValue: activeValue)
         
         // then
         XCTAssertEqual(state, .complex([.off, .off]))
@@ -190,7 +190,7 @@ final class GetChannelBaseStateUseCaseTests: XCTestCase {
         let activeValue: Int32 = 0
         
         // when
-        let state = useCase.invoke(function: function, activeValue: activeValue)
+        let state = useCase.invoke(function: function, online: true, activeValue: activeValue)
         
         // then
         XCTAssertEqual(state, .notUsed)
@@ -203,7 +203,7 @@ final class GetChannelBaseStateUseCaseTests: XCTestCase {
         let activeValue: Int32 = 1
         
         // when
-        let state = useCase.invoke(function: function, activeValue: activeValue)
+        let state = useCase.invoke(function: function, online: true, activeValue: activeValue)
         
         // then
         XCTAssertEqual(state, .on)
@@ -216,7 +216,7 @@ final class GetChannelBaseStateUseCaseTests: XCTestCase {
         let activeValue: Int32 = 0
         
         // when
-        let state = useCase.invoke(function: function, activeValue: activeValue)
+        let state = useCase.invoke(function: function, online: true, activeValue: activeValue)
         
         // then
         XCTAssertEqual(state, .off)
@@ -229,7 +229,7 @@ final class GetChannelBaseStateUseCaseTests: XCTestCase {
         let activeValue: Int32 = 1
         
         // when
-        let state = useCase.invoke(function: function, activeValue: activeValue)
+        let state = useCase.invoke(function: function, online: true, activeValue: activeValue)
         
         // then
         XCTAssertEqual(state, .on)
@@ -242,10 +242,58 @@ final class GetChannelBaseStateUseCaseTests: XCTestCase {
         let activeValue: Int32 = 0
         
         // when
-        let state = useCase.invoke(function: function, activeValue: activeValue)
+        let state = useCase.invoke(function: function, online: true, activeValue: activeValue)
         
         // then
         XCTAssertEqual(state, .off)
+        XCTAssertFalse(state.isActive())
+    }
+    
+    func test_gate_offline() {
+        // given
+        let function = SUPLA_CHANNELFNC_OPENINGSENSOR_GATE
+        
+        // when
+        let state = useCase.invoke(function: function, online: false, activeValue: 0)
+        
+        // then
+        XCTAssertEqual(state, .opened)
+        XCTAssertFalse(state.isActive())
+    }
+    
+    func test_switch_offline() {
+        // given
+        let function = SUPLA_CHANNELFNC_POWERSWITCH
+        
+        // when
+        let state = useCase.invoke(function: function, online: false, activeValue: 0)
+        
+        // then
+        XCTAssertEqual(state, .off)
+        XCTAssertFalse(state.isActive())
+    }
+    
+    func test_dimmerAndRgb_offline() {
+        // given
+        let function = SUPLA_CHANNELFNC_DIMMERANDRGBLIGHTING
+        
+        // when
+        let state = useCase.invoke(function: function, online: false, activeValue: 0)
+        
+        // then
+        XCTAssertEqual(state, .complex([.off, .off]))
+        XCTAssertFalse(state.isActive())
+    }
+    
+    func test_digiglass_offline() {
+        // given
+        let function = SUPLA_CHANNELFNC_DIGIGLASS_HORIZONTAL
+        
+        // when
+        let state = useCase.invoke(function: function, online: false, activeValue: 0)
+        
+        // then
+        XCTAssertEqual(state, .opaque)
         XCTAssertFalse(state.isActive())
     }
 }

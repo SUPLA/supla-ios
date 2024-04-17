@@ -236,7 +236,7 @@
     if ( isGroup ) {
         self.cint_LeftStatusWidth.constant = 6;
         self.cint_RightStatusWidth.constant = 6;
-        self.right_ActiveStatus.percent = ((SAChannelGroup*)_channelBase).activePercent;
+        self.right_ActiveStatus.percent = ((SAChannelGroup*)_channelBase).activePercentage;
         self.right_ActiveStatus.singleColor = YES;
         self.right_ActiveStatus.hidden = NO;
         self.right_OnlineStatus.shapeType = stLinearVertical;
@@ -290,10 +290,14 @@
         case SUPLA_CHANNELFNC_RGBLIGHTING:
         case SUPLA_CHANNELFNC_DIMMER:
         case SUPLA_CHANNELFNC_DIMMERANDRGBLIGHTING:
-        case SUPLA_CHANNELFNC_CONTROLLINGTHEROLLERSHUTTER:
-        case SUPLA_CHANNELFNC_CONTROLLINGTHEROOFWINDOW:
         case SUPLA_CHANNELFNC_THERMOSTAT_HEATPOL_HOMEPLUS:
             self.left_OnlineStatus.hidden = NO;
+            self.right_OnlineStatus.hidden = NO;
+            break;
+        case SUPLA_CHANNELFNC_CONTROLLINGTHEROLLERSHUTTER:
+        case SUPLA_CHANNELFNC_CONTROLLINGTHEROOFWINDOW:
+        case SUPLA_CHANNELFNC_CONTROLLINGTHEFACADEBLIND:
+            self.left_OnlineStatus.hidden = YES;
             self.right_OnlineStatus.hidden = NO;
             break;
         case SUPLA_CHANNELFNC_NOLIQUIDSENSOR:

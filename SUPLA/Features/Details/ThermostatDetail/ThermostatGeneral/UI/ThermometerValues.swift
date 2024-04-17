@@ -46,10 +46,7 @@ final class ThermometerValues: UIStackView {
     }
     
     private func setupView() {
-        layer.shadowColor = UIColor.black.cgColor
-        layer.shadowRadius = Dimens.Shadow.radius
-        layer.shadowOpacity = Dimens.Shadow.opacity
-        layer.shadowOffset = Dimens.Shadow.offset
+        ShadowValues.apply(toLayer: layer)
         backgroundColor = .surface
         
         axis = .horizontal

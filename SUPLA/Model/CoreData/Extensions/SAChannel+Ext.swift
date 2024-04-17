@@ -20,8 +20,16 @@ extension SAChannel {
     func item() -> ItemBundle {
         ItemBundle(remoteId: remote_id, deviceId: device_id, subjectType: .channel, function: self.func)
     }
-    
+
     func getTimerEndDate() -> Date? {
         ev?.channelState().countdownEndsAt()
+    }
+
+    @objc func isFacadeBlindClosed() -> Bool {
+        if (self.func == SUPLA_CHANNELFNC_CONTROLLINGTHEFACADEBLIND) {
+            value?.asFacadeBlindValue().position ?? 0 >= 100
+        } else {
+            false
+        }
     }
 }

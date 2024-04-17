@@ -264,7 +264,7 @@ class MainNavigationCoordinator: BaseNavigationCoordinator {
     }
     
     func navigateToRollerShutterDetail(item: ItemBundle, pages: [DetailPage]) {
-        startFlow(coordinator: RollerShutterDetailVC.Coordinator(item: item, pages: pages))
+        startFlow(coordinator: WindowDetailVC.Coordinator(item: item, pages: pages))
     }
     
     // MARK: -

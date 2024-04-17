@@ -42,4 +42,11 @@ final class ChannelGroupRelationRepositoryMock: BaseRepositoryMock<SAChannelGrou
         getRelationsParameters.append((profile, id))
         return getRelationsReturns
     }
+    
+    var getAllVisibleRelationsForActiveProfileCalls = 0
+    var getAllVisibleRelationsForActiveProfileReturns: Observable<[SAChannelGroupRelation]> = .empty()
+    func getAllVisibleRelationsForActiveProfile() -> Observable<[SAChannelGroupRelation]> {
+        getAllVisibleRelationsForActiveProfileCalls += 1
+        return getAllVisibleRelationsForActiveProfileReturns
+    }
 }

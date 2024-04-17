@@ -322,6 +322,7 @@
 "channel_caption_alarm_armament" = "Alarmsensor";
 "channel_caption_general_purpose_measurment" = "Messungskanal";
 "channel_caption_general_purpose_meter" = "Zählerkanal";
+"channel_caption_facade_blinds" = "Fassadenjalousien";
 
 /* Main */
 "dialog_new_gesture_info_text" = "Wischgeste zum Öffnen der Kanaldetails wurde gelöscht, tippe auf dem Kanal, um sie zu sehen.";
@@ -448,3 +449,7 @@
 "roller_shutter_closing_percentage" = "Geschlossen:";
 "roller_shutter_opening_percentage" = "Geöffnet:";
 "roller_shutter_calibration_needed" = "Kalibrierung nötig";
+
+/* Facade blind detail */
+"facade_blinds_slat_tilt" = "Neigung: ";
+"facade_blinds_no_tilt" = "Fehlende Konfiguration";

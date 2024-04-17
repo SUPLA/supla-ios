@@ -35,6 +35,7 @@ final class DelayedWeeklyScheduleConfigSubjectImpl: DelayedCommandSubject<Weekly
             config: SuplaChannelWeeklyScheduleConfig(
                 remoteId: data.remoteId,
                 channelFunc: nil,
+                crc32: 0,
                 programConfigurations: data.programs,
                 schedule: data.schedule
             )

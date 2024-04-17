@@ -19,10 +19,12 @@
 class SuplaChannelConfig: Codable {
     let remoteId: Int32
     let channelFunc: Int32?
+    let crc32: Int64
     
-    init(remoteId: Int32, channelFunc: Int32? = nil) {
+    init(remoteId: Int32, channelFunc: Int32? = nil, crc32: Int64 = 0) {
         self.remoteId = remoteId
         self.channelFunc = channelFunc
+        self.crc32 = crc32
     }
     
     static func from(suplaConfig: TSCS_ChannelConfig, crc32: Int64) -> SuplaChannelConfig {
@@ -30,21 +32,23 @@ class SuplaChannelConfig: Codable {
             return SuplaChannelHvacConfig.from(
                 remoteId: suplaConfig.ChannelId,
                 channelFunc: suplaConfig.Func,
-                suplaConfig: suplaConfig.asHvacConfig()
+                crc32: crc32,
+                suplaConfig: suplaConfig.cast()
             )
         }
         if (suplaConfig.isWeeklyConfig()) {
             return SuplaChannelWeeklyScheduleConfig.from(
                 remoteId: suplaConfig.ChannelId,
                 channelFunc: suplaConfig.Func,
-                suplaConfig: suplaConfig.asWeeklyConfig()
+                crc32: crc32,
+                suplaConfig: suplaConfig.cast()
             )
         }
         if (suplaConfig.isGpMeterConfig()) {
             return SuplaChannelGeneralPurposeMeterConfig.from(
                 remoteId: suplaConfig.ChannelId,
                 function: suplaConfig.Func,
-                config: suplaConfig.asGpMeterConfig(),
+                config: suplaConfig.cast(),
                 crc32: crc32
             )
         }
@@ -52,12 +56,28 @@ class SuplaChannelConfig: Codable {
             return SuplaChannelGeneralPurposeMeasurementConfig.from(
                 remoteId: suplaConfig.ChannelId,
                 function: suplaConfig.Func,
-                config: suplaConfig.asGpMeasurementConfig(),
+                config: suplaConfig.cast(),
+                crc32: crc32
+            )
+        }
+        if (suplaConfig.isRollerShutterConfig()) {
+            return SuplaChannelRollerShutterConfig.from(
+                suplaConfig.cast(),
+                remoteId: suplaConfig.ChannelId,
+                channelFunc: suplaConfig.Func,
+                crc32: crc32
+            )
+        }
+        if (suplaConfig.isFacadeBlindConfig()) {
+            return SuplaChannelFacadeBlindConfig.from(
+                suplaConfig.cast(),
+                remoteId: suplaConfig.ChannelId,
+                channelFunc: suplaConfig.Func,
                 crc32: crc32
             )
         }
         
-        return SuplaChannelConfig(remoteId: suplaConfig.ChannelId, channelFunc: suplaConfig.Func)
+        return SuplaChannelConfig(remoteId: suplaConfig.ChannelId, channelFunc: suplaConfig.Func, crc32: crc32)
     }
 }
 
@@ -111,6 +131,25 @@ fileprivate extension TSCS_ChannelConfig {
         var config = Config
         return withUnsafePointer(to: &config) { pointee in
             UnsafeRawPointer(pointee).assumingMemoryBound(to: TChannelConfig_GeneralPurposeMeasurement.self).pointee
+        }
+    }
+    
+    func isRollerShutterConfig() -> Bool {
+        Func == SUPLA_CHANNELFNC_CONTROLLINGTHEROLLERSHUTTER
+        && ConfigType == UInt8(SUPLA_CONFIG_TYPE_DEFAULT)
+        && ConfigSize == MemoryLayout<TChannelConfig_RollerShutter>.size
+    }
+    
+    func isFacadeBlindConfig() -> Bool {
+        Func == SUPLA_CHANNELFNC_CONTROLLINGTHEFACADEBLIND
+        && ConfigType == UInt8(SUPLA_CONFIG_TYPE_DEFAULT)
+        && ConfigSize == MemoryLayout<TChannelConfig_FacadeBlind>.size
+    }
+    
+    func cast<T>() -> T {
+        var config = Config
+        return withUnsafePointer(to: &config) { pointee in
+            UnsafeRawPointer(pointee).assumingMemoryBound(to: T.self).pointee
         }
     }
     

@@ -51,16 +51,37 @@ extension SuplaClientProtocol {
                 length: Int32(MemoryLayout<TAction_RGBW_Parameters>.size)
             )
         case let .rollerShutter(action, subjectType, subjectId, percentage, delta):
-            var parameters = TAction_RS_Parameters()
+            var parameters = TAction_ShadingSystem_Parameters()
             parameters.Percentage = percentage
-            parameters.Delta = delta ? 1 : 0
+            parameters.Tilt = Int8(VALUE_IGNORE)
+            if (delta) {
+                parameters.Flags = UInt8(SSP_FLAG_PERCENTAGE_AS_DELTA)
+            }
             
             return executeAction(
                 action.rawValue,
                 subjecType: subjectType.rawValue,
                 subjectId: subjectId,
                 parameters: &parameters,
-                length: Int32(MemoryLayout<TAction_RGBW_Parameters>.size)
+                length: Int32(MemoryLayout<TAction_ShadingSystem_Parameters>.size)
+            )
+        case let .facadeBlind(action, subjectType, subjectId, percentage, tilt, percentageAsDelta, tiltAsDelta):
+            var parameters = TAction_ShadingSystem_Parameters()
+            parameters.Percentage = percentage
+            if (percentageAsDelta) {
+                parameters.Flags = UInt8(SSP_FLAG_PERCENTAGE_AS_DELTA)
+            }
+            parameters.Tilt = tilt
+            if (tiltAsDelta) {
+                parameters.Flags |= UInt8(SSP_FLAG_TILT_AS_DELTA)
+            }
+            
+            return executeAction(
+                action.rawValue,
+                subjecType: subjectType.rawValue,
+                subjectId: subjectId,
+                parameters: &parameters,
+                length: Int32(MemoryLayout<TAction_ShadingSystem_Parameters>.size)
             )
         case let .hvac(subjectType, subjectId, durationInSec, mode, setpointTemperatureHeat, setpointTemperatureCool):
             var parameters = TAction_HVAC_Parameters()

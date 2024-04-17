@@ -26,8 +26,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, readonly)int resultCode;
 @property (nonatomic, readonly)NSString *caption;
 
-- (id)initWithResult:(TSC_SetCaptionResult *)result;
-+ (SAChannelCaptionSetResult*) resultWithResult:(TSC_SetCaptionResult *)result;
+- (id)initWithResult:(TSCD_SetCaptionResult *)result;
++ (SAChannelCaptionSetResult*) resultWithResult:(TSCD_SetCaptionResult *)result;
 + (SAChannelCaptionSetResult *)notificationToCaptionSetResult:(NSNotification *)notification;
 @end
 

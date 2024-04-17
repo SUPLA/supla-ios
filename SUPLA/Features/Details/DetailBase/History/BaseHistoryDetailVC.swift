@@ -288,10 +288,7 @@ private class DataSetsRowView: HorizontalyScrollableView<DataSetItem> {
     }
     
     private func setupView() {
-        layer.shadowColor = UIColor.black.cgColor
-        layer.shadowRadius = Dimens.Shadow.radius
-        layer.shadowOpacity = Dimens.Shadow.opacity
-        layer.shadowOffset = Dimens.Shadow.offset
+        ShadowValues.apply(toLayer: layer)
         layer.masksToBounds = false
         backgroundColor = .surface
     }

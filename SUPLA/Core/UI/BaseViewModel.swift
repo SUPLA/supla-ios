@@ -98,6 +98,12 @@ class BaseViewModel<S: ViewState, E: ViewEvent> {
             .disposed(by: disposeBag)
     }
     
+    func bind<T>(_ observable: ControlProperty<T>, _ action: @escaping (T) -> Void) {
+        observable
+            .subscribe(onNext: { action($0) })
+            .disposed(by: disposeBag)
+    }
+    
     #if DEBUG
         deinit {
             let className = NSStringFromClass(type(of: self))

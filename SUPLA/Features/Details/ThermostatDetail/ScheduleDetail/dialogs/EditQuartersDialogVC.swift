@@ -239,7 +239,7 @@ fileprivate class ButtonsRowView: UIView {
     }
     
     private func setupView() {
-        backgroundColor = .grayLight
+        backgroundColor = .grayLighter
     }
     
     override func layoutSubviews() {

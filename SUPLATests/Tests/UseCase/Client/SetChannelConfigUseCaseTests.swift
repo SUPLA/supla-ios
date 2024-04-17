@@ -52,6 +52,7 @@ final class SetChannelConfigUseCaseTests: UseCaseTest<RequestResult> {
         let weeklyConfig = SuplaChannelWeeklyScheduleConfig(
             remoteId: 123,
             channelFunc: nil,
+            crc32: 0,
             programConfigurations: [
                 SuplaWeeklyScheduleProgram(
                     program: .program1,
@@ -101,6 +102,7 @@ final class SetChannelConfigUseCaseTests: UseCaseTest<RequestResult> {
         let weeklyConfig = SuplaChannelWeeklyScheduleConfig(
             remoteId: 123,
             channelFunc: nil,
+            crc32: 0,
             programConfigurations: [
                 SuplaWeeklyScheduleProgram(
                     program: .off,

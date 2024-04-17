@@ -35,11 +35,20 @@ extension DeviceStateHelperVMI {
     private func createIconData(_ channel: SAChannelBase) -> IconData {
         @Singleton<GetChannelBaseStateUseCase> var getChannelBaseStateUseCase
         
+        let online = if let channel = channel as? SAChannel {
+            channel.value?.online ?? false
+        } else if let channel = channel as? SAChannelGroup {
+            channel.isOnline()
+        } else {
+            false
+        }
+        
         return IconData(
             function: channel.func,
             altIcon: channel.alticon,
             state: getChannelBaseStateUseCase.invoke(
                 function: channel.func,
+                online: online,
                 activeValue: channel.imgIsActive()
             ),
             userIcon: channel.usericon

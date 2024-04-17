@@ -24,6 +24,7 @@ extension SuplaChannelHvacConfig {
         return SuplaChannelHvacConfig(
             remoteId: remoteId,
             channelFunc: channelFunction,
+            crc32: 0,
             mainThermometerRemoteId: 111,
             auxThermometerRemoteId: 111,
             auxThermometerType: .floor,

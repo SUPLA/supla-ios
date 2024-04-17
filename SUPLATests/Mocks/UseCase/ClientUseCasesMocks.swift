@@ -44,6 +44,35 @@ final class ExecuteThermostatActionUseCaseMock: ExecuteThermostatActionUseCase {
     }
 }
 
+final class ExecuteRollerShutterActionUseCaseMock: ExecuteRollerShutterActionUseCase {
+    var parameters: [(Action, SUPLA.SubjectType, Int32, CGFloat)] = []
+    var returns: Completable = .empty()
+    func invoke(action: Action, type: SUPLA.SubjectType, remoteId: Int32, percentage: CGFloat) -> Completable {
+        parameters.append((action, type, remoteId, percentage))
+        return returns
+    }
+}
+
+final class CallSuplaClientOperationUseCaseMock: CallSuplaClientOperationUseCase {
+    var parameters: [(Int32, SUPLA.SubjectType, SuplaClientOperation)] = []
+    var returns: Completable = .empty()
+    func invoke(remoteId: Int32, type: SUPLA.SubjectType, operation: SuplaClientOperation) -> Completable {
+        parameters.append((remoteId, type, operation))
+        return returns
+    }
+}
+
+final class ExecuteFacadeBlindActionUseCaseMock: ExecuteFacadeBlindActionUseCase {
+    var parameters: [(Action, SUPLA.SubjectType, Int32, CGFloat, CGFloat)] = []
+    var returns: Completable = .empty()
+    func invoke(action: Action, type: SUPLA.SubjectType, remoteId: Int32, position: CGFloat, tilt: CGFloat) -> Completable {
+        parameters.append((action, type, remoteId, position, tilt))
+        return returns
+    }
+    
+    
+}
+
 final class AuthorizeUseCaseMock: AuthorizeUseCase {
     var parameters: [(String, String)] = []
     var returns: Completable = .empty()

@@ -83,8 +83,12 @@ class StandardDetailVC<S : ViewState, E : ViewEvent, VM : StandardDetailVM<S, E>
                 viewControllers.append(thermostatTimerDetail())
             case .gpmHistory:
                 viewControllers.append(gpmHistoryDetail())
-            case .rollerShutterGeneral:
-                viewControllers.append(rollerShutterGeneralDetail())
+            case .rollerShutter:
+                viewControllers.append(rollerShutterDetail())
+            case .roofWindow:
+                viewControllers.append(roofWindowDetail())
+            case .facadeBlind:
+                viewControllers.append(facadeBlindDetail())
             }
         }
         
@@ -201,13 +205,35 @@ class StandardDetailVC<S : ViewState, E : ViewEvent, VM : StandardDetailVM<S, E>
         return vc
     }
     
-    private func rollerShutterGeneralDetail() -> RollerShutterGeneralVC {
-        let vc = RollerShutterGeneralVC(itemBundle: item)
+    private func rollerShutterDetail() -> RollerShutterVC {
+        let vc = RollerShutterVC(itemBundle: item)
         vc.navigationCoordinator = navigationCoordinator
         vc.tabBarItem = UITabBarItem(
             title: settings.showBottomLabels ? Strings.StandardDetail.tabGeneral : nil,
             image: .iconGeneral,
-            tag: DetailTabTag.Switch.rawValue
+            tag: DetailTabTag.Window.rawValue
+        )
+        return vc
+    }
+    
+    private func roofWindowDetail() -> RoofWindowVC {
+        let vc = RoofWindowVC(itemBundle: item)
+        vc.navigationCoordinator = navigationCoordinator
+        vc.tabBarItem = UITabBarItem(
+            title: settings.showBottomLabels ? Strings.StandardDetail.tabGeneral : nil,
+            image: .iconGeneral,
+            tag: DetailTabTag.Window.rawValue
+        )
+        return vc
+    }
+    
+    private func facadeBlindDetail() -> FacadeBlindsVC {
+        let vc = FacadeBlindsVC(itemBundle: item)
+        vc.navigationCoordinator = navigationCoordinator
+        vc.tabBarItem = UITabBarItem(
+            title: settings.showBottomLabels ? Strings.StandardDetail.tabGeneral : nil,
+            image: .iconGeneral,
+            tag: DetailTabTag.Window.rawValue
         )
         return vc
     }
@@ -220,4 +246,5 @@ fileprivate enum DetailTabTag: Int {
     case Thermostat = 4
     case Schedule = 5
     case ThermostatHistory = 6
+    case Window = 7
 }

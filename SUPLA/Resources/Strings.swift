@@ -300,6 +300,7 @@ struct Strings {
             static let captionAlarmArmament = "channel_caption_alarm_armament".toLocalized()
             static let captionGeneralPurposeMeasurement = "channel_caption_general_purpose_measurment".toLocalized()
             static let captionGeneralPurposeMeter = "channel_caption_general_purpose_meter".toLocalized()
+            static let captionFacadeBlinds = "channel_caption_facade_blinds".toLocalized()
         }
     }
     
@@ -316,6 +317,11 @@ struct Strings {
         static let closingPercentage = "roller_shutter_closing_percentage".toLocalized()
         static let openingPercentage = "roller_shutter_opening_percentage".toLocalized()
         static let calibrationNeeded = "roller_shutter_calibration_needed".toLocalized()
+    }
+    
+    struct FacadeBlindsDetail {
+        static let slatTilt = "facade_blinds_slat_tilt".toLocalized()
+        static let noTilt = "facade_blinds_no_tilt".toLocalized()
     }
     
     struct AuthorizationDialog {

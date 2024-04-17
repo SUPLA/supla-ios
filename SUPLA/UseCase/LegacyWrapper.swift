@@ -100,8 +100,14 @@ final class UseCaseLegacyWrapper: NSObject {
     }
     
     @objc
-    static func updateChannelGroups() -> [NSNumber] {
-        return MagicUpdateGroupsUseCase().invoke()
+    static func updateChannelGroups() -> [Int32] {
+        @Singleton<UpdateChannelGroupTotalValueUseCase> var updateChannelGroupTotalValueUseCase
+        do {
+            return try updateChannelGroupTotalValueUseCase.invoke().subscribeSynchronous() ?? []
+        } catch {
+            SALog.error("Group total count update failed \(error)")
+            return []
+        }
     }
     
     @objc
@@ -210,5 +216,11 @@ final class UseCaseLegacyWrapper: NSObject {
     static func getChannelIcon(_ channel: SAChannelBase, _ iconType: IconType) -> UIImage? {
         @Singleton<GetChannelBaseIconUseCase> var getChannelBaseIconUseCase
         return getChannelBaseIconUseCase.invoke(channel: channel, type: iconType)
+    }
+    
+    @objc
+    static func getChannelBaseCaption(_ channelBase: SAChannelBase) -> String {
+        @Singleton<GetChannelBaseCaptionUseCase> var getChannelBaseCaptionUseCase
+        return getChannelBaseCaptionUseCase.invoke(channelBase: channelBase)
     }
 }
