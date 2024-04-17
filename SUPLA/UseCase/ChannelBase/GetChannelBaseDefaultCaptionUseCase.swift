@@ -21,15 +21,14 @@ protocol GetChannelBaseDefaultCaptionUseCase {
 }
 
 final class GetChannelBaseDefaultCaptionUseCaseImpl: GetChannelBaseDefaultCaptionUseCase {
-    
     func invoke(function: Int32) -> String {
-        switch(function) {
+        switch (function) {
         case SUPLA_CHANNELFNC_OPENINGSENSOR_GATEWAY:
             return NSLocalizedString("Gateway opening sensor", comment: "")
         case SUPLA_CHANNELFNC_CONTROLLINGTHEGATEWAYLOCK:
             return NSLocalizedString("Gateway", comment: "")
         case SUPLA_CHANNELFNC_OPENINGSENSOR_GATE:
-            return NSLocalizedString("Gate opening sensor",comment:  "")
+            return NSLocalizedString("Gate opening sensor", comment: "")
         case SUPLA_CHANNELFNC_CONTROLLINGTHEGATE:
             return NSLocalizedString("Gate", comment: "")
         case SUPLA_CHANNELFNC_OPENINGSENSOR_GARAGEDOOR:
@@ -89,7 +88,7 @@ final class GetChannelBaseDefaultCaptionUseCaseImpl: GetChannelBaseDefaultCaptio
         case SUPLA_CHANNELFNC_OPENINGSENSOR_WINDOW:
             return NSLocalizedString("Window opening sensor", comment: "")
         case SUPLA_CHANNELFNC_ELECTRICITY_METER,
-        SUPLA_CHANNELFNC_IC_ELECTRICITY_METER:
+             SUPLA_CHANNELFNC_IC_ELECTRICITY_METER:
             return NSLocalizedString("Electricity Meter", comment: "")
         case SUPLA_CHANNELFNC_IC_GAS_METER:
             return NSLocalizedString("Gas Meter", comment: "")
@@ -100,18 +99,20 @@ final class GetChannelBaseDefaultCaptionUseCaseImpl: GetChannelBaseDefaultCaptio
         case SUPLA_CHANNELFNC_THERMOSTAT_HEATPOL_HOMEPLUS:
             return NSLocalizedString("Home+ Heater", comment: "")
         case SUPLA_CHANNELFNC_VALVE_OPENCLOSE,
-        SUPLA_CHANNELFNC_VALVE_PERCENTAGE:
+             SUPLA_CHANNELFNC_VALVE_PERCENTAGE:
             return NSLocalizedString("Valve", comment: "")
         case SUPLA_CHANNELFNC_DIGIGLASS_VERTICAL,
-        SUPLA_CHANNELFNC_DIGIGLASS_HORIZONTAL:
+             SUPLA_CHANNELFNC_DIGIGLASS_HORIZONTAL:
             return NSLocalizedString("Digiglass", comment: "")
         case SUPLA_CHANNELFNC_HVAC_THERMOSTAT,
-        SUPLA_CHANNELFNC_HVAC_DOMESTIC_HOT_WATER:
+             SUPLA_CHANNELFNC_HVAC_DOMESTIC_HOT_WATER:
             return NSLocalizedString("Thermostat", comment: "")
         case SUPLA_CHANNELFNC_GENERAL_PURPOSE_MEASUREMENT:
             return Strings.General.Channel.captionGeneralPurposeMeasurement
         case SUPLA_CHANNELFNC_GENERAL_PURPOSE_METER:
             return Strings.General.Channel.captionGeneralPurposeMeter
+        case SUPLA_CHANNELFNC_CONTROLLINGTHEFACADEBLIND:
+            return Strings.General.Channel.captionFacadeBlinds
         default:
             return NSLocalizedString("Not supported function", comment: "")
         }

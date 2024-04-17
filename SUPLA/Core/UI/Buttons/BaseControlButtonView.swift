@@ -274,10 +274,7 @@ class BaseControlButtonView: UIView {
     static func setupLayer(_ layer: CALayer) {
         layer.backgroundColor = UIColor.surface.cgColor
         
-        layer.shadowColor = UIColor.black.cgColor
-        layer.shadowOffset = CGSizeMake(0, 4)
-        layer.shadowRadius = 3
-        layer.shadowOpacity = 0.2
+        ShadowValues.apply(toButton: layer)
         
         layer.borderColor = UIColor.disabled.cgColor
         layer.borderWidth = 1

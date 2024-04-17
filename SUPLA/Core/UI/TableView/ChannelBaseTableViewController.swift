@@ -148,6 +148,10 @@ class ChannelBaseTableViewController<S: ViewState, E: ViewEvent, VM: BaseTableVi
     }
     
     private func getCellId(_ channelBase: SAChannelBase) -> String {
+        if (channelBase is SAChannelGroup) {
+            return cellIdForChannel
+        }
+        
         switch (channelBase.func) {
         case SUPLA_CHANNELFNC_POWERSWITCH,
              SUPLA_CHANNELFNC_LIGHTSWITCH,

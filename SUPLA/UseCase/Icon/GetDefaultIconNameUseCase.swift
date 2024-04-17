@@ -75,6 +75,7 @@ final class GetDefaultIconNameUseCaseImpl: GetDefaultIconNameUseCase {
         StaticIconNameProducer(function: SUPLA_CHANNELFNC_CONTROLLINGTHEROLLERSHUTTER, name: "rollershutter"),
         StaticIconNameProducer(function: SUPLA_CHANNELFNC_OPENINGSENSOR_ROOFWINDOW, name: "roofwindow"),
         StaticIconNameProducer(function: SUPLA_CHANNELFNC_CONTROLLINGTHEROOFWINDOW, name: "roofwindow"),
+        StaticIconNameProducer(function: SUPLA_CHANNELFNC_CONTROLLINGTHEFACADEBLIND, name: "fnc_facade_blind"),
         PowerSwitchIconNameProducer(),
         LightSwitchIconNameProducer(),
         StaircaseTimerIconNameProducer(),

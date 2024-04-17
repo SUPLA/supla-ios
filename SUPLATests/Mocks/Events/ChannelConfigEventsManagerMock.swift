@@ -28,6 +28,10 @@ final class ChannelConfigEventsManagerMock: ChannelConfigEventsManager {
     func observeConfig(id: Int32) -> Observable<ChannelConfigEvent> {
         observeConfigParameters.append(id)
         
+        if (observeConfigReturnsIdx >= observeConfigReturns.count) {
+            return .empty()
+        }
+        
         let toReturn = observeConfigReturns[observeConfigReturnsIdx]
         observeConfigReturnsIdx += 1
         return toReturn

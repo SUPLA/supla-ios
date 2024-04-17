@@ -19,7 +19,6 @@
 import UIKit
 
 extension UIColor {
-    
     // App primary colors
     
     static let primary = UIColor(red: 18/255.0, green: 167/255.0, blue: 30/255.0, alpha: 1)
@@ -36,6 +35,7 @@ extension UIColor {
     
     @objc static let gray = UIColor(red: 126/255.0, green: 128/255.0, blue: 130/255.0, alpha: 1)
     static let grayLight = UIColor(named: "Colors/gray_light")!
+    static let grayLighter = UIColor(named: "Colors/gray_lighter")!
     static let blue = UIColor(red: 0, green: 122/255.0, blue: 1, alpha: 1)
     static let lightBlue = UIColor.from(red: 140, green: 157, blue: 255, alpha: 1)
     static let lightGreen = UIColor.from(red: 176, green: 224, blue: 168, alpha: 1)
@@ -91,21 +91,21 @@ extension UIColor {
 }
 
 extension UIColor {
-    convenience init (alpha: Int, red: Int, green: Int, blue: Int) {
+    convenience init(alpha: Int, red: Int, green: Int, blue: Int) {
         assert(alpha >= 0 && alpha <= 255, "Invalid red component")
         assert(red >= 0 && red <= 255, "Invalid red component")
         assert(green >= 0 && green <= 255, "Invalid green component")
         assert(blue >= 0 && blue <= 255, "Invalid blue component")
         
         self.init(
-            red: CGFloat(red) / 255.0,
-            green: CGFloat(green) / 255.0,
-            blue: CGFloat(blue) / 255.0,
-            alpha: CGFloat(alpha) / 255.0
+            red: CGFloat(red)/255.0,
+            green: CGFloat(green)/255.0,
+            blue: CGFloat(blue)/255.0,
+            alpha: CGFloat(alpha)/255.0
         )
     }
     
-    convenience init (argb: Int) {
+    convenience init(argb: Int) {
         self.init(
             alpha: (argb >> 24) & 0xFF,
             red: (argb >> 16) & 0xFF,
@@ -122,6 +122,22 @@ extension UIColor {
         getRed(&red, green: &green, blue: &blue, alpha: &alpha)
         
         return (red, green, blue, alpha)
+    }
+    
+    var argbInt: Int {
+        var red: CGFloat = 0
+        var green: CGFloat = 0
+        var blue: CGFloat = 0
+        var alpha: CGFloat = 0
+        if getRed(&red, green: &green, blue: &blue, alpha: &alpha) {
+            return
+                (Int(alpha * 255.0) << 24) +
+                (Int(red * 255.0) << 16) +
+                (Int(green * 255.0) << 8) +
+                Int(blue * 255.0)
+        } else {
+            return 0xFFFFFF
+        }
     }
     
     func copy(alpha: CGFloat) -> UIColor {

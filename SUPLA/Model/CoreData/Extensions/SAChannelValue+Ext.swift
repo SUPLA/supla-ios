@@ -27,6 +27,14 @@ extension SAChannelValue {
         RollerShutterValue.from(dataValue(), online: online)
     }
     
+    func asFacadeBlindValue() -> FacadeBlindValue {
+        FacadeBlindValue.from(dataValue(), online: online)
+    }
+    
+    func asHeatpolThermostatValue() -> HeatpolThermostatValue {
+        HeatpolThermostatValue.from(dataValue(), online: online)
+    }
+    
     @objc func isThermostatSubfunctionHeat() -> Bool {
         asThermostatValue().subfunction == .heat
     }

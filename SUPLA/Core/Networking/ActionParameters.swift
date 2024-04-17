@@ -18,6 +18,8 @@
 
 import Foundation
 
+let VALUE_IGNORE = -1
+
 public enum Action: Int32, Equatable {
     case open = 10
     case close = 20
@@ -34,6 +36,8 @@ public enum Action: Int32, Equatable {
     case upOrStop = 140
     case downOrStop = 150
     case stepByStep = 160
+    case up = 170
+    case down = 180
     case setHvacParameters = 230
     case execute = 3000
     case interrupt = 3001
@@ -58,6 +62,15 @@ public enum ActionParameters {
         subjectId: Int32,
         percentage: Int8,
         delta: Bool
+    )
+    case facadeBlind(
+        action: Action,
+        subjectType: SubjectType,
+        subjectId: Int32,
+        percentage: Int8,
+        tilt: Int8,
+        percentageAsDelta: Bool,
+        tiltAsDelta: Bool
     )
     case hvac(
         subjectType: SubjectType,

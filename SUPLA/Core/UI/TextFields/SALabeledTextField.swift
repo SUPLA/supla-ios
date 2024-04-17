@@ -36,7 +36,7 @@ class SALabeledTextField: UIView {
             if (newValue) {
                 layer.borderColor = UIColor.error.cgColor
             } else {
-                layer.borderColor = UIColor.grayLight.cgColor
+                layer.borderColor = UIColor.grayLighter.cgColor
             }
         }
     }
@@ -79,7 +79,7 @@ class SALabeledTextField: UIView {
         addSubview(textField)
         
         layer.borderWidth = 1
-        layer.borderColor = UIColor.grayLight.cgColor
+        layer.borderColor = UIColor.grayLighter.cgColor
         layer.cornerRadius = Dimens.radiusDefault
         
         setupLayout()

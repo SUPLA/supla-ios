@@ -20,12 +20,10 @@
 
 final class GetChannelBaseStateUseCaseMock: GetChannelBaseStateUseCase {
     
+    var parameters: [(Int32, Bool, Int32)] = []
     var returns: ChannelState = .notUsed
-    var functionsArray: [Int32] = []
-    var activeValuesArray: [Int32] = []
-    func invoke(function: Int32, activeValue: Int32) -> ChannelState {
-        functionsArray.append(function)
-        activeValuesArray.append(activeValue)
+    func invoke(function: Int32, online: Bool, activeValue: Int32) -> ChannelState {
+        parameters.append((function, online, activeValue))
         return returns
     }
 }

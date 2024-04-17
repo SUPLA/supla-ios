@@ -405,6 +405,42 @@ final class GetDefaultIconNameUseCaseTests: XCTestCase {
         XCTAssertEqual(iconName, "roofwindow-closed")
     }
     
+    func test_facadeBlindSensorOpened() {
+        // given
+        let function = SUPLA_CHANNELFNC_CONTROLLINGTHEFACADEBLIND
+        
+        // when
+        let iconName = useCase.invoke(
+            iconData: IconData(
+                function: function,
+                altIcon: 0,
+                state: .opened,
+                type: .single
+            )
+        )
+        
+        // then
+        XCTAssertEqual(iconName, "fnc_facade_blind-open")
+    }
+    
+    func test_facadeBlindSensorClosed() {
+        // given
+        let function = SUPLA_CHANNELFNC_CONTROLLINGTHEFACADEBLIND
+        
+        // when
+        let iconName = useCase.invoke(
+            iconData: IconData(
+                function: function,
+                altIcon: 0,
+                state: .closed,
+                type: .single
+            )
+        )
+        
+        // then
+        XCTAssertEqual(iconName, "fnc_facade_blind-closed")
+    }
+    
     func test_powerSwitchAltIcon0() {
         // given
         let function = SUPLA_CHANNELFNC_POWERSWITCH

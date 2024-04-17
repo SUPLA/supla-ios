@@ -163,6 +163,7 @@ extension DiContainer {
         register(CallSuplaClientOperationUseCase.self, CallSuplaClientOperationUseCaseImpl())
         register(ExecuteRollerShutterActionUseCase.self, ExecuteRollerShutterActionUseCaseImpl())
         register(AuthorizeUseCase.self, AuthorizeUseCaseImpl())
+        register(ExecuteFacadeBlindActionUseCase.self, ExecuteFacadeBlindActionUseCaseImpl())
         // Usecases - Detail
         register(ProvideDetailTypeUseCase.self, ProvideDetailTypeUseCaseImpl())
         // Usecases - Group
@@ -170,6 +171,7 @@ extension DiContainer {
         register(CreateProfileGroupsListUseCase.self, CreateProfileGroupsListUseCaseImpl())
         register(ReadGroupByRemoteIdUseCase.self, ReadGroupByRemoteIdUseCaseImpl())
         register(GetGroupOnlineSummaryUseCase.self, GetGroupOnlineSummaryUseCaseImpl())
+        register(UpdateChannelGroupTotalValueUseCase.self, UpdateChannelGroupTotalValueUseCaseImpl())
         // Usecases - Icon
         register(GetDefaultIconNameUseCase.self, GetDefaultIconNameUseCaseImpl())
         // Usecases - Location

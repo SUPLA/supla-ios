@@ -93,7 +93,7 @@ final class IconCell: BaseCell<ChannelWithChildren> {
     
     override func rightButtonSettings() -> CellButtonSettings {
         if (hasLeftButton()) {
-            return CellButtonSettings(visible: online(), title: Strings.General.close)
+            return CellButtonSettings(visible: online(), title: Strings.General.open)
         } else {
             return super.rightButtonSettings()
         }

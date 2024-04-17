@@ -73,6 +73,11 @@ class CoreDataManager: NSObject {
     @objc func setup(completion: @escaping () -> Void) {
         removeOldDatabases()
         
+        ValueTransformer.setValueTransformer(
+            GroupTotalValueTransformer(),
+            forName: NSValueTransformerName("GroupTotalValueTransformer")
+        )
+        
         loadPersistentStore {
             completion()
         }

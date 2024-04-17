@@ -37,7 +37,7 @@ extension SAChannelConfig {
         }
         
         if let channel = channel {
-            return SuplaChannelConfig(remoteId: channel.remote_id, channelFunc: channel.func)
+            return SuplaChannelConfig(remoteId: channel.remote_id, channelFunc: channel.func, crc32: 0)
         } else {
             return nil
         }

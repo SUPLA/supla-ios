@@ -29,6 +29,7 @@ extension SuplaChannelWeeklyScheduleConfig {
         SuplaChannelWeeklyScheduleConfig(
             remoteId: remoteId,
             channelFunc: channelFunc,
+            crc32: 0,
             programConfigurations: withPrograms ? mockProgramConfigurations() : [],
             schedule: withSchedule ? mockSchedule(secondProgram: secondProgram) : []
         )

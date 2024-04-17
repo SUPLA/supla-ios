@@ -300,7 +300,7 @@ fileprivate class EditTemperatureView: UIView, UITextFieldDelegate {
     
     func setValueCorrect(_ correct: Bool) {
         if (correct) {
-            temperatureTextField.layer.borderColor = UIColor.grayLight.cgColor
+            temperatureTextField.layer.borderColor = UIColor.grayLighter.cgColor
             (temperatureTextField.rightView as? UILabel)?.textColor = .gray
         } else {
             temperatureTextField.layer.borderColor = UIColor.error.cgColor

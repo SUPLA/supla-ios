@@ -238,8 +238,8 @@ void sasuplaclient_on_device_channel_state(void *_suplaclient, void *user_data, 
 }
 
 void sasuplaclient_on_channel_basic_cfg(void *_suplaclient,
-                                         void *user_data,
-                                         TSC_ChannelBasicCfg *cfg) {
+                                        void *user_data,
+                                        TSC_ChannelBasicCfg *cfg) {
     SASuplaClient *sc = (__bridge SASuplaClient*)user_data;
     if ( sc != nil && cfg != NULL) {
         [sc onChannelBasicCfg:[[SAChannelBasicCfg alloc] initWithCfg:cfg]];
@@ -247,8 +247,8 @@ void sasuplaclient_on_channel_basic_cfg(void *_suplaclient,
 }
 
 void sasuplaclient_on_channel_caption_set_result(void *_suplaclient,
-                                         void *user_data,
-                                         TSC_SetCaptionResult *result) {
+                                                 void *user_data,
+                                                 TSCD_SetCaptionResult *result) {
     SASuplaClient *sc = (__bridge SASuplaClient*)user_data;
     if ( sc != nil && result != NULL) {
         [sc onChannelCaptionSetResult:[[SAChannelCaptionSetResult alloc] initWithResult:result]];
@@ -256,8 +256,8 @@ void sasuplaclient_on_channel_caption_set_result(void *_suplaclient,
 }
 
 void sasuplaclient_on_channel_group_caption_set_result(void *_suplaclient,
-                                         void *user_data,
-                                         TSC_SetCaptionResult *result) {
+                                                       void *user_data,
+                                                       TSCD_SetCaptionResult *result) {
     SASuplaClient *sc = (__bridge SASuplaClient*)user_data;
     if ( sc != nil && result != NULL) {
         [sc onChannelGroupCaptionSetResult:[[SAChannelCaptionSetResult alloc] initWithResult:result]];
