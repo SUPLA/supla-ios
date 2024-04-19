@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="32700.99.1234" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22684"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -44,12 +44,12 @@
                         </constraints>
                     </view>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qX1-QW-Fkf">
-                        <rect key="frame" x="66" y="0.0" width="274" height="71.5"/>
+                        <rect key="frame" x="60" y="0.0" width="280" height="71.5"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FPm-tK-XjK">
-                                <rect key="frame" x="72" y="11" width="100" height="50"/>
+                                <rect key="frame" x="75" y="11" width="100" height="50"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="thermometer.png" translatesAutoresizingMaskIntoConstraints="NO" id="6qf-O5-kUK">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="thermometer" translatesAutoresizingMaskIntoConstraints="NO" id="6qf-O5-kUK">
                                         <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="50" identifier="thermometerImageWidth" id="0DI-h7-cJu"/>
@@ -77,11 +77,11 @@
                                     <constraint firstItem="eE4-A3-beA" firstAttribute="leading" secondItem="6qf-O5-kUK" secondAttribute="trailing" id="yt2-AA-22G"/>
                                 </constraints>
                             </view>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="channelstateinfo.png" translatesAutoresizingMaskIntoConstraints="NO" id="qHg-Sn-alH">
-                                <rect key="frame" x="-6" y="37" width="30" height="30"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="icon_info" translatesAutoresizingMaskIntoConstraints="NO" id="qHg-Sn-alH">
+                                <rect key="frame" x="-6" y="39.5" width="24" height="24"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="Nbo-t4-GYf"/>
-                                    <constraint firstAttribute="width" constant="30" id="qeL-6l-oif"/>
+                                    <constraint firstAttribute="height" constant="24" id="Nbo-t4-GYf"/>
+                                    <constraint firstAttribute="width" constant="24" id="qeL-6l-oif"/>
                                 </constraints>
                             </imageView>
                         </subviews>
@@ -142,6 +142,7 @@
                 </variation>
             </tableViewCellContentView>
             <connections>
+                <outlet property="bottomLine" destination="gIU-gW-WyK" id="0Rq-b6-IDk"/>
                 <outlet property="caption" destination="6kK-vn-eyZ" id="lv9-7b-UK8"/>
                 <outlet property="channelStateIcon" destination="qHg-Sn-alH" id="g5r-aQ-Ymh"/>
                 <outlet property="image1" destination="6qf-O5-kUK" id="Lle-bD-aUf"/>
@@ -158,7 +159,7 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="channelstateinfo.png" width="107.25" height="107.25"/>
-        <image name="thermometer.png" width="22.5" height="45"/>
+        <image name="icon_info" width="24" height="24"/>
+        <image name="thermometer" width="22.5" height="45"/>
     </resources>
 </document>

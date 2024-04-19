@@ -30,6 +30,11 @@ final class GetChannelBaseStateUseCaseImpl: GetChannelBaseStateUseCase {
             if ((activeValue & 0x2) == 0x2 && (activeValue & 0x1) == 0) {
                 return .partialyOpened
             }
+            if (activeValue != 0) {
+                return .closed
+            } else {
+                return .opened
+            }
         case SUPLA_CHANNELFNC_OPENINGSENSOR_GATEWAY,
             SUPLA_CHANNELFNC_OPENINGSENSOR_GATE,
             SUPLA_CHANNELFNC_OPENINGSENSOR_DOOR,
@@ -75,7 +80,5 @@ final class GetChannelBaseStateUseCaseImpl: GetChannelBaseStateUseCase {
             }
         default: return .notUsed
         }
-        
-        return .notUsed
     }
 }

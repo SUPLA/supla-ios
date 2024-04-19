@@ -30,6 +30,10 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nullable, nonatomic, retain) NSObject *uimage2;
 @property (nullable, nonatomic, retain) NSObject *uimage3;
 @property (nullable, nonatomic, retain) NSObject *uimage4;
+@property (nullable, nonatomic, retain) NSObject *uimage1_dark;
+@property (nullable, nonatomic, retain) NSObject *uimage2_dark;
+@property (nullable, nonatomic, retain) NSObject *uimage3_dark;
+@property (nullable, nonatomic, retain) NSObject *uimage4_dark;
 @property (nonatomic, retain) AuthProfileItem *profile;
 @end
 

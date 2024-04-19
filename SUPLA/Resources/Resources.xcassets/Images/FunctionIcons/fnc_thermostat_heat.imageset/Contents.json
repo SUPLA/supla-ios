@@ -1,0 +1,22 @@
+{
+  "images" : [
+    {
+      "filename" : "Mode=Warming, States=Warming.svg",
+      "idiom" : "universal"
+    },
+    {
+      "appearances" : [
+        {
+          "appearance" : "luminosity",
+          "value" : "dark"
+        }
+      ],
+      "filename" : "fnc_thermostat_heat_nightmode.svg",
+      "idiom" : "universal"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}

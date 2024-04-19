@@ -944,11 +944,15 @@ void sasuplaclient_device_config_update_or_result(void *_suplaclient,
 }
 
 - (void) channelRelationUpdate: (TSC_SuplaChannelRelation *) relation {
+    NSLog(@"Relation for channel `%i` setting parent to `%i` (S/EOL: %d)", relation->Id, relation->ParentId, relation->EOL);
     
-    NSLog(@"Relation for channel `%i` setting parent to `%i`", relation->Id, relation->ParentId);
+    if ((relation->EOL & 0x2) > 0) {
+        [UseCaseLegacyWrapper markChannelRelationsAsRemovable];
+    }
+    
     [UseCaseLegacyWrapper insertChannelRelationWithRelation: *relation];
     
-    if (relation->EOL == 1) {
+    if ((relation->EOL & 0x1) > 0) {
         [UseCaseLegacyWrapper deleteRemovableRelations];
         [DiContainer.updateEventsManager emitChannelsUpdate];
     }
@@ -1226,12 +1230,14 @@ void sasuplaclient_device_config_update_or_result(void *_suplaclient,
     return result;
 }
 
-- (void) cg:(int)ID Open:(char)open group:(BOOL)group {
+- (BOOL) cg:(int)ID Open:(char)open group:(BOOL)group {
     @synchronized(self) {
         if ( _sclient ) {
-            supla_client_open(_sclient, ID, group, open);
+            return supla_client_open(_sclient, ID, group, open) == 1;
         }
     }
+    
+    return NO;
 }
 
 - (void) channel:(int)ChannelID Open:(char)open {
@@ -1250,15 +1256,17 @@ void sasuplaclient_device_config_update_or_result(void *_suplaclient,
     return [self cg:GroupID setRGB:color colorBrightness:color_brightness brightness:brightness group:YES turnOnOff:NO];
 }
 
-- (void) deviceCalCfgRequest:(TCS_DeviceCalCfgRequest_B*)request {
+- (BOOL) deviceCalCfgRequest:(TCS_DeviceCalCfgRequest_B*)request {
     @synchronized(self) {
         if ( _sclient ) {
-            supla_client_device_calcfg_request(_sclient, request);
+            return supla_client_device_calcfg_request(_sclient, request) == 1;
         }
     }
+    
+    return NO;
 }
 
-- (void) deviceCalCfgCommand:(int)command cg:(int)ID group:(BOOL)group data:(char*)data dataSize:(unsigned int)size {
+- (BOOL) deviceCalCfgCommand:(int)command cg:(int)ID group:(BOOL)group data:(char*)data dataSize:(unsigned int)size {
     TCS_DeviceCalCfgRequest_B request;
     memset(&request, 0, sizeof(TCS_DeviceCalCfgRequest_B));
     request.Id = ID;
@@ -1269,11 +1277,11 @@ void sasuplaclient_device_config_update_or_result(void *_suplaclient,
         memcpy(request.Data, data, size);
     }
     
-    [self deviceCalCfgRequest:&request];
+    return [self deviceCalCfgRequest:&request];
 }
 
-- (void) deviceCalCfgCommand:(int)command cg:(int)ID group:(BOOL)group {
-    [self deviceCalCfgCommand:command cg:ID group:group data:NULL dataSize:0];
+- (BOOL) deviceCalCfgCommand:(int)command cg:(int)ID group:(BOOL)group {
+    return [self deviceCalCfgCommand:command cg:ID group:group data:NULL dataSize:0];
 }
 
 - (void) deviceCalCfgCommand:(int)command cg:(int)ID group:(BOOL)group charValue:(char)c {

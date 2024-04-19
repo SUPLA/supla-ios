@@ -33,7 +33,7 @@ final class ProvideDetailTypeUseCaseImpl: ProvideDetailTypeUseCase {
         case
             SUPLA_CHANNELFNC_CONTROLLINGTHEROLLERSHUTTER,
             SUPLA_CHANNELFNC_CONTROLLINGTHEROOFWINDOW:
-            return .legacy(type: .rs)
+            return .rollerShutterDetail(pages: [.rollerShutterGeneral])
         case
             SUPLA_CHANNELFNC_LIGHTSWITCH,
             SUPLA_CHANNELFNC_POWERSWITCH,
@@ -101,10 +101,11 @@ enum DetailType: Equatable {
     case thermostatDetail(pages: [DetailPage])
     case thermometerDetail(pages: [DetailPage])
     case gpmDetail(pages: [DetailPage])
+    case rollerShutterDetail(pages: [DetailPage])
 }
 
 enum LegacyDetailType {
-    case rgbw, rs, ic, em, thermostat_hp, digiglass
+    case rgbw, ic, em, thermostat_hp, digiglass
 }
 
 enum DetailPage {
@@ -125,4 +126,7 @@ enum DetailPage {
     
     // GPM
     case gpmHistory
+    
+    // Roller shutter
+    case rollerShutterGeneral
 }

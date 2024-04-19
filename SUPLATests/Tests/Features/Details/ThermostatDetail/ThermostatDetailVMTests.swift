@@ -50,7 +50,7 @@ final class ThermostatDetailVMTests: ViewModelTest<ThermostatDetailViewState, Th
         
         // when
         observe(viewModel)
-        viewModel.loadChannel(remoteId: 123)
+        viewModel.loadData(remoteId: 123, type: .channel)
         
         // then
         XCTAssertEqual(stateObserver.events.count, 2)

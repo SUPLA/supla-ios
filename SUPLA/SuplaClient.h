@@ -31,10 +31,16 @@
 - (BOOL) getDeviceConfig: (TCS_GetDeviceConfigRequest*) configRequest;
 - (BOOL) OAuthTokenRequest;
 
+- (BOOL) cg:(int)ID Open:(char)open group:(BOOL)group;
+- (BOOL) deviceCalCfgCommand:(int)command cg:(int)ID group:(BOOL)group;
+- (BOOL) isRegistered;
+- (BOOL) isSuperuserAuthorized;
+- (void) superuserAuthorizationRequestWithEmail:(NSString*)email andPassword:(NSString*)password;
+
 @end
 
 @class SASuplaClient;
-@protocol SASuplaClientDelegate <NSObject, SuplaClientProtocol>
+@protocol SASuplaClientDelegate <NSObject>
 
 @required
 -(void) onSuplaClientTerminated: (SASuplaClient*)client;
@@ -54,14 +60,14 @@
 - (BOOL) isConnected;
 - (BOOL) isRegistered;
 - (BOOL) cg:(int)ID setRGB:(UIColor*)color colorBrightness:(int)color_brightness brightness:(int)brightness group:(BOOL)group turnOnOff:(BOOL)turnOnOff;
-- (void) cg:(int)ID Open:(char)open group:(BOOL)group;
+- (BOOL) cg:(int)ID Open:(char)open group:(BOOL)group;
 - (void) channel:(int)ChannelID Open:(char)open;
 - (BOOL) channel:(int)ChannelID setRGB:(UIColor*)color colorBrightness:(int)color_brightness brightness:(int)brightness;
 - (void) group:(int)GroupID Open:(char)open;
 - (BOOL) group:(int)GroupID setRGB:(UIColor*)color colorBrightness:(int)color_brightness brightness:(int)brightness;
-- (void) deviceCalCfgRequest:(TCS_DeviceCalCfgRequest_B*)request;
-- (void) deviceCalCfgCommand:(int)command cg:(int)ID group:(BOOL)group data:(char*)data dataSize:(unsigned int)size;
-- (void) deviceCalCfgCommand:(int)command cg:(int)ID group:(BOOL)group;
+- (BOOL) deviceCalCfgRequest:(TCS_DeviceCalCfgRequest_B*)request;
+- (BOOL) deviceCalCfgCommand:(int)command cg:(int)ID group:(BOOL)group data:(char*)data dataSize:(unsigned int)size;
+- (BOOL) deviceCalCfgCommand:(int)command cg:(int)ID group:(BOOL)group;
 - (void) deviceCalCfgCommand:(int)command cg:(int)ID group:(BOOL)group charValue:(char)c;
 - (void) deviceCalCfgCommand:(int)command cg:(int)ID group:(BOOL)group shortValue:(short)s;
 - (void) thermostatScheduleCfgRequest:(SAThermostatScheduleCfg *)cfg cg:(int)ID group:(BOOL)group;

@@ -56,6 +56,7 @@ class BaseControlButtonView: UIView {
             switch (icon) {
             case .suplaIcon(let icon):
                 iconView.image = icon?.withRenderingMode(.alwaysTemplate)
+                iconView.tintColor = iconColor
             case .userIcon(let icon) :
                 iconView.image = icon
             default:
@@ -67,7 +68,7 @@ class BaseControlButtonView: UIView {
         }
     }
 
-    var iconColor: UIColor = .black {
+    var iconColor: UIColor = .onBackground {
         didSet {
             iconView.tintColor = iconColor
         }
@@ -83,8 +84,8 @@ class BaseControlButtonView: UIView {
     var active: Bool = false {
         didSet {
             layer.shadowColor = active ? type.pressedColor.cgColor : UIColor.black.cgColor
-            layer.borderColor = active ? type.pressedColor.cgColor : UIColor.border.cgColor
-            textView.textColor = active ? type.textColor : .black
+            layer.borderColor = active ? type.pressedColor.cgColor : UIColor.disabled.cgColor
+            textView.textColor = active ? type.textColor : .onBackground
             iconView.tintColor = active ? type.textColor : iconColor
             innerShadowView.isHidden = !active
 
@@ -145,9 +146,7 @@ class BaseControlButtonView: UIView {
         super.touchesBegan(touches, with: event)
         
         if (isEnabled && isClickable) {
-            layer.shadowRadius = 6
-            layer.shadowColor = type.pressedColor.cgColor
-            layer.borderColor = type.pressedColor.cgColor
+            BaseControlButtonView.setupPressedLayer(layer, type)
             textView.textColor = type.textColor
             iconView.tintColor = type.textColor
             innerShadowView.isHidden = false
@@ -158,17 +157,9 @@ class BaseControlButtonView: UIView {
         addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(onTap)))
         addGestureRecognizer(UILongPressGestureRecognizer(target: self, action: #selector(onLongPress)))
 
-        backgroundColor = .surface
-        
         layer.cornerRadius = height / 2
         
-        layer.shadowColor = UIColor.black.cgColor
-        layer.shadowOffset = CGSizeMake(0, 4)
-        layer.shadowRadius = 3
-        layer.shadowOpacity = 0.2
-        
-        layer.borderColor = UIColor.border.cgColor
-        layer.borderWidth = 1
+        BaseControlButtonView.setupLayer(layer)
         
         addSubview(innerShadowView)
         addSubview(textView)
@@ -225,8 +216,8 @@ class BaseControlButtonView: UIView {
 
         layer.shadowRadius = 3
         layer.shadowColor = active ? type.pressedColor.cgColor : UIColor.black.cgColor
-        layer.borderColor = active ? type.pressedColor.cgColor : UIColor.border.cgColor
-        textView.textColor = active ? type.textColor : .black
+        layer.borderColor = active ? type.pressedColor.cgColor : UIColor.disabled.cgColor
+        textView.textColor = active ? type.textColor : .onBackground
         iconView.tintColor = active ? type.textColor : iconColor
         innerShadowView.isHidden = active ? false : true
     }
@@ -246,8 +237,8 @@ class BaseControlButtonView: UIView {
 
         layer.shadowRadius = 3
         layer.shadowColor = active ? type.pressedColor.cgColor : UIColor.black.cgColor
-        layer.borderColor = active ? type.pressedColor.cgColor : UIColor.border.cgColor
-        textView.textColor = active ? type.textColor : .black
+        layer.borderColor = active ? type.pressedColor.cgColor : UIColor.disabled.cgColor
+        textView.textColor = active ? type.textColor : .onBackground
         iconView.tintColor = active ? type.textColor : iconColor
         innerShadowView.isHidden = active ? false : true
     }
@@ -278,6 +269,24 @@ class BaseControlButtonView: UIView {
                 }
             }
         }
+    }
+    
+    static func setupLayer(_ layer: CALayer) {
+        layer.backgroundColor = UIColor.surface.cgColor
+        
+        layer.shadowColor = UIColor.black.cgColor
+        layer.shadowOffset = CGSizeMake(0, 4)
+        layer.shadowRadius = 3
+        layer.shadowOpacity = 0.2
+        
+        layer.borderColor = UIColor.disabled.cgColor
+        layer.borderWidth = 1
+    }
+    
+    static func setupPressedLayer(_ layer: CALayer, _ type: ButtonType) {
+        layer.shadowRadius = 6
+        layer.shadowColor = type.pressedColor.cgColor
+        layer.borderColor = type.pressedColor.cgColor
     }
 }
 

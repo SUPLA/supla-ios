@@ -55,6 +55,7 @@ struct Strings {
         static let notificationsLabel = "app_settings.notifications_label".toLocalized()
         static let locationLabel = "app_settings.location_label".toLocalized()
         static let showLabels = "settings_show_labels".toLocalized()
+        static let nightMode = "settings_dark_mode".toLocalized()
     }
     
     struct AccountCreation {
@@ -260,13 +261,17 @@ struct Strings {
     struct General {
         static let cancel = NSLocalizedString("Cancel", comment: "")
         static let close = NSLocalizedString("Close", comment: "")
+        static let unknownError = NSLocalizedString("Unknown error", comment: "")
         static let save = "save".toLocalized()
-        static let error = "General.error".toLocalized()
-        static let hourFormat = "General.hour_format".toLocalized()
-        static let ok = "General.ok".toLocalized()
         
+        static let hourFormat = "general_hour_format".toLocalized()
+        
+        static let error = "general_error".toLocalized()
+        static let ok = "general_ok".toLocalized()
         static let on = "On".toLocalized()
         static let off = "Off".toLocalized()
+        static let yes = NSLocalizedString("Yes", comment: "")
+        static let no = NSLocalizedString("No", comment: "")
         static let turnOn = "turn_on".toLocalized()
         static let turnOff = "turn_off".toLocalized()
         
@@ -299,6 +304,28 @@ struct Strings {
     
     struct Menu {
         static let addDevice = NSLocalizedString("Add I/O device", comment: "")
+    }
+    
+    struct RollerShutterDetail {
+        static let motorProblem = "roller_shutter_motor_problem".toLocalized()
+        static let calibrationLost = "roller_shutter_calibration_lost".toLocalized()
+        static let calibrationFailed = "roller_shutter_calibration_failed".toLocalized()
+        static let calibration = "roller_shutter_calibration".toLocalized()
+        static let startCalibrationMessage = "roller_shutter_start_calibration_message".toLocalized()
+        static let closingPercentage = "roller_shutter_closing_percentage".toLocalized()
+        static let openingPercentage = "roller_shutter_opening_percentage".toLocalized()
+        static let calibrationNeeded = "roller_shutter_calibration_needed".toLocalized()
+    }
+    
+    struct AuthorizationDialog {
+        static let unauthorized = NSLocalizedString("Incorrect Email Address or Password", comment: "")
+        static let unavailable = NSLocalizedString("Service temporarily unavailable", comment: "")
+        static let timeout = NSLocalizedString("Time exceeded. Try again.", comment: "")
+        static let cloudTitle = NSLocalizedString("Please enter your Supla Cloud login details.", comment: "")
+        static let privateTitle = NSLocalizedString("Enter superuser credentials", comment: "")
+        
+        static let emailAddress = NSLocalizedString("E-MAIL ADDRESS", comment: "")
+        static let password = NSLocalizedString("PASSWORD", comment: "")
     }
 }
 

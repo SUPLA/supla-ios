@@ -73,6 +73,7 @@ class AppSettingsVMTests: ViewModelTest<AppSettingsViewState, AppSettingsViewEve
                 .switchItem(title: Strings.Cfg.showChannelInfo, selected: false, callback: {_ in }),
                 .switchItem(title: Strings.AppSettings.showLabels, selected: true, callback: {_ in }),
                 .rsOpeningPercentageItem(opening: true, callback: {_ in }),
+                .darkModeItem(darkModeSetting: .unset, callback: { _ in }),
                 .arrowButtonItem(title: Strings.Cfg.locationOrdering, callback: {})
             ]),
             .permissions(items: [
@@ -114,6 +115,7 @@ class AppSettingsVMTests: ViewModelTest<AppSettingsViewState, AppSettingsViewEve
                 .switchItem(title: Strings.Cfg.showChannelInfo, selected: true, callback: {_ in }),
                 .switchItem(title: Strings.AppSettings.showLabels, selected: true, callback: {_ in }),
                 .rsOpeningPercentageItem(opening: false, callback: {_ in }),
+                .darkModeItem(darkModeSetting: .unset, callback: { _ in }),
                 .arrowButtonItem(title: Strings.Cfg.locationOrdering, callback: {})
             ]),
             .permissions(items: [
@@ -152,6 +154,7 @@ class AppSettingsVMTests: ViewModelTest<AppSettingsViewState, AppSettingsViewEve
         XCTAssertEqual(settings.showChannelInfoValues.count, 0)
         XCTAssertEqual(settings.showBottomLabelsValues.count, 0)
         XCTAssertEqual(settings.showOpeningPercentValues.count, 0)
+        XCTAssertEqual(settings.darkModeValues.count, 0)
     }
     
     func test_shouldSaveTemperatureUnit() {
@@ -184,6 +187,7 @@ class AppSettingsVMTests: ViewModelTest<AppSettingsViewState, AppSettingsViewEve
         XCTAssertEqual(settings.showChannelInfoValues.count, 0)
         XCTAssertEqual(settings.showBottomLabelsValues.count, 0)
         XCTAssertEqual(settings.showOpeningPercentValues.count, 0)
+        XCTAssertEqual(settings.darkModeValues.count, 0)
     }
     
     func test_shouldSaveButtonAutoHide() {
@@ -216,6 +220,7 @@ class AppSettingsVMTests: ViewModelTest<AppSettingsViewState, AppSettingsViewEve
         XCTAssertEqual(settings.showChannelInfoValues.count, 0)
         XCTAssertEqual(settings.showBottomLabelsValues.count, 0)
         XCTAssertEqual(settings.showOpeningPercentValues.count, 0)
+        XCTAssertEqual(settings.darkModeValues.count, 0)
     }
     
     func test_shouldSaveShowChannelInfo() {
@@ -248,6 +253,7 @@ class AppSettingsVMTests: ViewModelTest<AppSettingsViewState, AppSettingsViewEve
         XCTAssertEqual(settings.showChannelInfoValues[0], false)
         XCTAssertEqual(settings.showBottomLabelsValues.count, 0)
         XCTAssertEqual(settings.showOpeningPercentValues.count, 0)
+        XCTAssertEqual(settings.darkModeValues.count, 0)
     }
     
     func test_shouldSaveShowBottomLabels() {
@@ -280,6 +286,7 @@ class AppSettingsVMTests: ViewModelTest<AppSettingsViewState, AppSettingsViewEve
         XCTAssertEqual(settings.showChannelInfoValues.count, 0)
         XCTAssertEqual(settings.showBottomLabelsValues[0], false)
         XCTAssertEqual(settings.showOpeningPercentValues.count, 0)
+        XCTAssertEqual(settings.darkModeValues.count, 0)
     }
     
     func test_shouldSaveOpeningClosingPercentage() {
@@ -312,6 +319,40 @@ class AppSettingsVMTests: ViewModelTest<AppSettingsViewState, AppSettingsViewEve
         XCTAssertEqual(settings.showChannelInfoValues.count, 0)
         XCTAssertEqual(settings.showBottomLabelsValues.count, 0)
         XCTAssertEqual(settings.showOpeningPercentValues[0], true)
+        XCTAssertEqual(settings.darkModeValues.count, 0)
+    }
+    
+    func test_shouldSaveDarkModeSetting() {
+        // given
+        setupViewData()
+        
+        // when
+        observe(viewModel)
+        viewModel.onViewDidLoad()
+        
+        guard let list = stateObserver.events[1].value.element?.list
+        else {
+            XCTFail("No list")
+            return
+        }
+        
+        switch (list[0].items[6]) {
+        case .darkModeItem(_, let callback):
+            callback(.always)
+        default:
+            XCTFail("No list")
+        }
+        
+        // then
+        XCTAssertEqual(stateObserver.events.count, 2)
+        XCTAssertEqual(eventObserver.events, [.next(0, .changeInterfaceStyle(style: .dark))])
+        XCTAssertEqual(settings.channelHeightValues.count, 0)
+        XCTAssertEqual(settings.temperatureUnitValues.count, 0)
+        XCTAssertEqual(settings.autohideButtonsValues.count, 0)
+        XCTAssertEqual(settings.showChannelInfoValues.count, 0)
+        XCTAssertEqual(settings.showBottomLabelsValues.count, 0)
+        XCTAssertEqual(settings.showOpeningPercentValues.count, 0)
+        XCTAssertEqual(settings.darkModeValues, [.always])
     }
     
     func test_shouldNavigateToLocationOrdering() {
@@ -328,7 +369,7 @@ class AppSettingsVMTests: ViewModelTest<AppSettingsViewState, AppSettingsViewEve
             return
         }
         
-        switch (list[0].items[6]) {
+        switch (list[0].items[7]) {
         case .arrowButtonItem(_, let callback):
             callback()
         default:
@@ -344,6 +385,7 @@ class AppSettingsVMTests: ViewModelTest<AppSettingsViewState, AppSettingsViewEve
         XCTAssertEqual(settings.showChannelInfoValues.count, 0)
         XCTAssertEqual(settings.showBottomLabelsValues.count, 0)
         XCTAssertEqual(settings.showOpeningPercentValues.count, 0)
+        XCTAssertEqual(settings.darkModeValues.count, 0)
     }
     
     func test_shouldNavigateToAppPreferences() {
@@ -376,6 +418,7 @@ class AppSettingsVMTests: ViewModelTest<AppSettingsViewState, AppSettingsViewEve
         XCTAssertEqual(settings.showChannelInfoValues.count, 0)
         XCTAssertEqual(settings.showBottomLabelsValues.count, 0)
         XCTAssertEqual(settings.showOpeningPercentValues.count, 0)
+        XCTAssertEqual(settings.darkModeValues.count, 0)
     }
     
     private func setupViewData(

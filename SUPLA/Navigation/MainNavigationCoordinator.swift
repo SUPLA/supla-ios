@@ -256,6 +256,10 @@ class MainNavigationCoordinator: BaseNavigationCoordinator {
         startFlow(coordinator: GpmDetailNavigatorCoordinator(item: item, pages: pages))
     }
     
+    func navigateToRollerShutterDetail(item: ItemBundle, pages: [DetailPage]) {
+        startFlow(coordinator: RollerShutterDetailVC.Coordinator(item: item, pages: pages))
+    }
+    
     // MARK: -
     // MARK: Application life cycle support
     // MARK: -

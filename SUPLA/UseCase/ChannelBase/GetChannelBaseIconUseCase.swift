@@ -22,18 +22,18 @@ protocol GetChannelBaseIconUseCase {
 
 extension GetChannelBaseIconUseCase {
     func invoke(
-        channel: SAChannel,
+        channel: SAChannelBase,
         type: IconType = .single,
-        nightMode: Bool = false,
         subfunction: ThermostatSubfunction? = nil
     ) -> UIImage? {
-        return invoke(iconData: channel.getIconData(type: type, nightMode: nightMode, subfunction: subfunction)).icon
+        return invoke(iconData: channel.getIconData(type: type, subfunction: subfunction)).icon
     }
 }
 
 final class GetChannelBaseIconUseCaseImpl: GetChannelBaseIconUseCase {
     
     @Singleton<GetDefaultIconNameUseCase> private var getDefaultIconNameUseCase
+    @Singleton<GlobalSettings> private var settings
     
     func invoke(iconData: IconData) -> IconResult {
         if (iconData.type != .single && iconData.function != SUPLA_CHANNELFNC_HUMIDITYANDTEMPERATURE) {
@@ -47,9 +47,6 @@ final class GetChannelBaseIconUseCaseImpl: GetChannelBaseIconUseCase {
         
         let name = getDefaultIconNameUseCase.invoke(iconData: iconData)
         
-        if (iconData.nightMode) {
-            return .suplaIcon(icon: .init(named: .init(format: "%@-nightmode", name)))
-        }
         return .suplaIcon(icon: .init(named: name))
     }
     
@@ -62,29 +59,31 @@ final class GetChannelBaseIconUseCaseImpl: GetChannelBaseIconUseCase {
     }
     
     private func findUserIcon(_ function: Int32, _ userIcon: SAUserIcon?, _ channelState: ChannelState, _ iconType: IconType, _ subfunction: ThermostatSubfunction?) -> NSObject? {
+        let darkMode = settings.darkMode == .always || (settings.darkMode == .auto && UITraitCollection.current.userInterfaceStyle == .dark)
+        
         switch (function) {
         case SUPLA_CHANNELFNC_HUMIDITYANDTEMPERATURE:
-            return iconType == .second ? userIcon?.uimage1 : userIcon?.uimage2
+            return iconType == .second ? userIcon?.getIcon(.icon1, darkMode: darkMode) : userIcon?.getIcon(.icon2, darkMode: darkMode)
         case SUPLA_CHANNELFNC_THERMOMETER:
-            return userIcon?.uimage1
+            return userIcon?.getIcon(.icon1, darkMode: darkMode)
         case SUPLA_CHANNELFNC_CONTROLLINGTHEGARAGEDOOR,
         SUPLA_CHANNELFNC_CONTROLLINGTHEGATE:
-            if (channelState == .opened) {
-                return userIcon?.uimage2
+            if (channelState == .closed) {
+                return userIcon?.getIcon(.icon2, darkMode: darkMode)
             } else if (channelState == .partialyOpened) {
-                return userIcon?.uimage3
+                return userIcon?.getIcon(.icon3, darkMode: darkMode)
             } else {
-                return userIcon?.uimage1
+                return userIcon?.getIcon(.icon1, darkMode: darkMode)
             }
         case SUPLA_CHANNELFNC_HVAC_THERMOSTAT,
         SUPLA_CHANNELFNC_HVAC_DOMESTIC_HOT_WATER:
             if (subfunction == nil || subfunction == .heat) {
-                return userIcon?.uimage1
+                return userIcon?.getIcon(.icon1, darkMode: darkMode)
             } else {
-                return userIcon?.uimage2
+                return userIcon?.getIcon(.icon2, darkMode: darkMode)
             }
         default:
-            return channelState.isActive() ? userIcon?.uimage2 : userIcon?.uimage1
+            return channelState.isActive() ? userIcon?.getIcon(.icon2, darkMode: darkMode) : userIcon?.getIcon(.icon1, darkMode: darkMode)
         }
     }
 }

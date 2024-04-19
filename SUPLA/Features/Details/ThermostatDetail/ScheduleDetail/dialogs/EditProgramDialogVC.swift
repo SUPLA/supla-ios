@@ -19,7 +19,7 @@
 import Foundation
 import RxSwift
 
-final class EditProgramDialogVC : SuplaCustomDialogVC<EditProgramDialogViewState, EditProgramDialogViewEvent, EditProgramDialogVM> {
+final class EditProgramDialogVC : SACustomDialogVC<EditProgramDialogViewState, EditProgramDialogViewEvent, EditProgramDialogVM> {
     
     @Singleton<GlobalSettings> private var settings
     

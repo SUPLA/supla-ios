@@ -183,7 +183,7 @@ final class SwitchGeneralVMTest: ViewModelTest<SwitchGeneralViewState, SwitchGen
         XCTAssertEqual(eventObserver.events.count, 0)
         
         XCTAssertTuples(executeSimpleActionUseCase.parameters, [
-            (Action.turn_on, SUPLA.SubjectType.channel, remoteId)
+            (Action.turnOn, SUPLA.SubjectType.channel, remoteId)
         ])
     }
     
@@ -200,7 +200,7 @@ final class SwitchGeneralVMTest: ViewModelTest<SwitchGeneralViewState, SwitchGen
         XCTAssertEqual(eventObserver.events.count, 0)
         
         XCTAssertTuples(executeSimpleActionUseCase.parameters, [
-            (Action.turn_off, SUPLA.SubjectType.channel, remoteId)
+            (Action.turnOff, SUPLA.SubjectType.channel, remoteId)
         ])
     }
 }

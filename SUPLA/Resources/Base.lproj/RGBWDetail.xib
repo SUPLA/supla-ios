@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
-    <device id="retina3_5" orientation="portrait" appearance="light"/>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="32700.99.1234" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22684"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -15,14 +17,14 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="SARGBWDetailView">
-            <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+            <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tyr-Ao-Ful" userLabel="vTabsRgbDimmer">
-                    <rect key="frame" x="15" y="15" width="290" height="35"/>
+                    <rect key="frame" x="15" y="15" width="363" height="35"/>
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" selected="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZfE-Sn-N5Y" userLabel="tabRGB">
-                            <rect key="frame" x="2" y="2" width="142" height="31"/>
+                            <rect key="frame" x="2" y="2" width="178.66666666666666" height="31"/>
                             <color key="backgroundColor" red="0.00028004610790000002" green="0.67520374059999999" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="31" id="fi1-VJ-qkH"/>
@@ -44,7 +46,7 @@
                             </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CmH-xi-e3y" userLabel="tabDimmer">
-                            <rect key="frame" x="146" y="2" width="142" height="31"/>
+                            <rect key="frame" x="182.66666666666663" y="2" width="178.33333333333337" height="31"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="31" id="jRT-43-FKW"/>
                             </constraints>
@@ -82,10 +84,10 @@
                     </userDefinedRuntimeAttributes>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hGF-sg-Xa0" userLabel="vTabsWheelSlider">
-                    <rect key="frame" x="15" y="344" width="290" height="35"/>
+                    <rect key="frame" x="15" y="716" width="363" height="35"/>
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" selected="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wKr-No-fLI" userLabel="tabWheel">
-                            <rect key="frame" x="2" y="2" width="142" height="31"/>
+                            <rect key="frame" x="2" y="2" width="178.66666666666666" height="31"/>
                             <color key="backgroundColor" red="0.00028004610790000002" green="0.67520374059999999" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                             <constraints>
                                 <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="31" id="3sr-Jx-dbN"/>
@@ -108,7 +110,7 @@
                             </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yOa-IT-DZF" userLabel="tabSlider">
-                            <rect key="frame" x="146" y="2" width="142" height="31"/>
+                            <rect key="frame" x="182.66666666666663" y="2" width="178.33333333333337" height="31"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="31" id="FC8-QS-4MS"/>
                                 <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="31" id="IvN-b5-NPI"/>
@@ -147,7 +149,7 @@
                     </userDefinedRuntimeAttributes>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="423-RM-o46" customClass="SAColorBrightnessPicker">
-                    <rect key="frame" x="15" y="65" width="290" height="199"/>
+                    <rect key="frame" x="15" y="65" width="363" height="571"/>
                     <subviews>
                         <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="O0k-Bs-rUY" userLabel="onlineStatus" customClass="SAUIChannelStatus">
                             <rect key="frame" x="0.0" y="0.0" width="10" height="50"/>
@@ -158,14 +160,14 @@
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pA2-nT-bk6" userLabel="Cl Picker" customClass="SAColorListPicker">
-                    <rect key="frame" x="15" y="414" width="290" height="31"/>
+                    <rect key="frame" x="15" y="786" width="363" height="31"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="31" id="CVK-GN-Sc1"/>
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gny-hI-jTV" userLabel="Extra Buttons">
-                    <rect key="frame" x="15" y="269" width="290" height="70"/>
+                    <rect key="frame" x="15" y="641" width="363" height="70"/>
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9AX-Zy-WZn">
                             <rect key="frame" x="0.0" y="10" width="50" height="50"/>
@@ -173,18 +175,20 @@
                                 <constraint firstAttribute="width" constant="50" id="1Lc-cn-hb1"/>
                                 <constraint firstAttribute="height" constant="50" id="eeJ-te-WWj"/>
                             </constraints>
-                            <state key="normal" image="rgbwinfo.png"/>
+                            <color key="tintColor" name="Colors/on_background"/>
+                            <state key="normal" image="rgbwinfo"/>
                             <connections>
                                 <action selector="rgbInfoTouch:" destination="iN0-l3-epB" eventType="touchDown" id="jtI-Qw-fMq"/>
                             </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="903-YP-lmB">
-                            <rect key="frame" x="240" y="10" width="50" height="50"/>
+                            <rect key="frame" x="313" y="10" width="50" height="50"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="50" id="Xi2-Uy-TfB"/>
                                 <constraint firstAttribute="height" constant="50" id="hoo-An-74X"/>
                             </constraints>
-                            <state key="normal" image="rgbwsettings.png"/>
+                            <color key="tintColor" name="Colors/on_background"/>
+                            <state key="normal" image="rgbwsettings"/>
                             <connections>
                                 <action selector="onSettingsTouch:" destination="iN0-l3-epB" eventType="touchDown" id="eAs-op-n2l"/>
                             </connections>
@@ -200,11 +204,12 @@
                     </constraints>
                 </view>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="byQ-th-xcl">
-                    <rect key="frame" x="255" y="204" width="50" height="50"/>
+                    <rect key="frame" x="328" y="576" width="50" height="50"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="50" id="6T0-T2-0UZ"/>
                         <constraint firstAttribute="width" constant="50" id="8kl-dE-TVT"/>
                     </constraints>
+                    <color key="tintColor" name="Colors/on_background"/>
                     <state key="normal" image="rgbwpoweroff.png"/>
                     <connections>
                         <action selector="onPowerBtnTouch:" destination="iN0-l3-epB" eventType="touchDown" id="YtN-3B-2aq"/>
@@ -253,15 +258,21 @@
             <point key="canvasLocation" x="-800.625" y="-113.75"/>
         </view>
         <view contentMode="scaleToFill" id="FzW-UN-VI5">
-            <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+            <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-            <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <point key="canvasLocation" x="-12" y="-114"/>
         </view>
     </objects>
     <resources>
-        <image name="rgbwinfo.png" width="50" height="50"/>
+        <image name="rgbwinfo" width="150" height="150"/>
         <image name="rgbwpoweroff.png" width="50" height="50"/>
-        <image name="rgbwsettings.png" width="50" height="50"/>
+        <image name="rgbwsettings" width="150" height="150"/>
+        <namedColor name="Colors/on_background">
+            <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
     </resources>
 </document>

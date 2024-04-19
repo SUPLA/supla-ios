@@ -88,7 +88,6 @@
 "Configuration Failed!" = "Конфигурация завершена с ошибкой!";
 "Connection with the device cannot be set!" = "Не удается установить соединение с устройством!";
 "Make sure, if the Wi-fi connection has been set for the I/O device." = "Убедитесь, что соединение с сетью Wi-Fi исполнительного устройства установлено.";
-"[Calibration]" = "[калибровка]";
 "Help" = "Помощь";
 
 "Staircase timer" = "Лестничный автомат";
@@ -255,10 +254,6 @@
 "Z-Wave bridge" = "Мост z-wave";
 "opened / closed the roof window" = "открыл/закрыл окно крыши";
 "The power was turned off after the set threshold of the allowable current was exceeded." = "Питание отключено после превышения установленного порога допустимого тока.";
-"Are you sure you want to start calibration?" = "Вы уверены, что хотите начать калибровку?";
-"Calibration lost." = "Калибровка не удалась.";
-"Calibration failed." = "Калибровка потеряна.";
-"Motor problem / Unexpected stop." = "Проблема с двигателем / Неожиданная остановка.";
 "0: unknown" = "0: неизвестно";
 "1: server timeout" = "1: нет ответа от сервера";
 "2: Wi-Fi connection lost" = "2: потеряно соединение Wi-Fi";
@@ -312,7 +307,14 @@
 "Cfg.removal.dialog.duplicated_name" = "Учётная запись с таким названием уже существует";
 "Cfg.removal.dialog.incomplete" = "Заполните необходимые данные";
 
-"General.error" = "Ошибка";
+"general_error" = "Ошибка";
 
 /* Thermometer Chart */
 "history_no_data_in_selected_period" = "Нет данных для графика.";
+
+/* Roller shutter detail */
+"roller_shutter_calibration_lost" = "Калибровка не удалась.";
+"roller_shutter_calibration_failed" = "Калибровка потеряна.";
+"roller_shutter_motor_problem" = "Проблема с двигателем / Неожиданная остановка.";
+"roller_shutter_calibration" = "калибровка";
+"roller_shutter_start_calibration_message" = "Вы уверены, что хотите начать калибровку?";

@@ -48,7 +48,6 @@
                                     <state key="normal" image="hp_plus.png"/>
                                 </button>
                             </subviews>
-                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
                                 <constraint firstItem="vza-ZU-52a" firstAttribute="leading" secondItem="Qxh-vw-MlA" secondAttribute="leading" id="4aA-YN-MB3"/>
                                 <constraint firstAttribute="height" constant="30" id="FEl-4P-OLj"/>
@@ -110,7 +109,6 @@
                                     <state key="normal" image="hp_plus.png"/>
                                 </button>
                             </subviews>
-                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
                                 <constraint firstItem="Sky-DD-zTq" firstAttribute="centerY" secondItem="WGj-bH-DmZ" secondAttribute="centerY" id="CbV-58-8fZ"/>
                                 <constraint firstItem="WYq-lY-x5t" firstAttribute="centerY" secondItem="WGj-bH-DmZ" secondAttribute="centerY" id="HRA-eF-WRT"/>
@@ -148,7 +146,6 @@
                                     <state key="normal" image="hp_plus.png"/>
                                 </button>
                             </subviews>
-                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
                                 <constraint firstItem="K4V-cj-2JI" firstAttribute="leading" secondItem="acF-NT-6KJ" secondAttribute="leading" id="0k8-2U-vxv"/>
                                 <constraint firstAttribute="trailing" secondItem="BLb-Y2-T8U" secondAttribute="trailing" id="7OV-9g-6Fw"/>
@@ -192,7 +189,6 @@
                                     <state key="normal" image="hp_plus.png"/>
                                 </button>
                             </subviews>
-                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
                                 <constraint firstItem="3nb-Gw-sT9" firstAttribute="leading" secondItem="We7-JK-U3d" secondAttribute="leading" id="68L-oX-3Gt"/>
                                 <constraint firstAttribute="trailing" secondItem="Z09-tG-Dpw" secondAttribute="trailing" id="Ea9-Ol-O2S"/>
@@ -230,7 +226,6 @@
                                     <state key="normal" image="hp_plus.png"/>
                                 </button>
                             </subviews>
-                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
                                 <constraint firstItem="2h7-yV-VOx" firstAttribute="leading" secondItem="VVz-p0-3af" secondAttribute="leading" id="F0s-vl-2Lq"/>
                                 <constraint firstItem="2h7-yV-VOx" firstAttribute="centerY" secondItem="VVz-p0-3af" secondAttribute="centerY" id="I7X-hz-144"/>
@@ -243,7 +238,6 @@
                             </constraints>
                         </view>
                     </subviews>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstAttribute="trailing" secondItem="acF-NT-6KJ" secondAttribute="trailing" constant="45" id="0sf-VC-zEz"/>
                         <constraint firstItem="q66-xm-DaZ" firstAttribute="top" secondItem="Qxh-vw-MlA" secondAttribute="bottom" constant="10" id="6jw-zD-vzE"/>
@@ -274,7 +268,6 @@
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3b4-Uj-Mw6" userLabel="vCalendar" customClass="SAThermostatCalendar">
                     <rect key="frame" x="10" y="45" width="373" height="772"/>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ipw-iZ-DB9" userLabel="vHader">
                     <rect key="frame" x="5" y="0.0" width="383" height="40"/>
@@ -316,7 +309,6 @@
                             </connections>
                         </button>
                     </subviews>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstItem="diP-1z-4Wt" firstAttribute="centerY" secondItem="ipw-iZ-DB9" secondAttribute="centerY" id="9zM-XR-6X3"/>
                         <constraint firstAttribute="trailing" secondItem="GY8-ih-kht" secondAttribute="trailing" constant="10" id="LEb-v9-70P"/>
@@ -349,7 +341,6 @@
                                     <nil key="highlightedColor"/>
                                 </label>
                             </subviews>
-                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="60" id="4NM-h7-o12"/>
                                 <constraint firstItem="1SC-7w-YLd" firstAttribute="centerY" secondItem="zLk-yd-cUR" secondAttribute="centerY" id="84e-p9-UbC"/>

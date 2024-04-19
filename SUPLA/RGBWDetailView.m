@@ -26,6 +26,7 @@
 #import "SAVLCalibrationTool.h"
 #import "SADiwCalibrationTool.h"
 #import "UIColor+SUPLA.h"
+#import "SUPLA-Swift.h"
 
 #define MIN_REMOTE_UPDATE_PERIOD 0.25
 #define MIN_UPDATE_DELAY 3

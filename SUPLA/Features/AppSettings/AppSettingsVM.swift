@@ -88,6 +88,13 @@ class AppSettingsVM: BaseViewModel<AppSettingsViewState, AppSettingsViewEvent> {
                 opening: settings.showOpeningPercent,
                 callback: { settings.showOpeningPercent = $0 }
             ),
+            .darkModeItem(
+                darkModeSetting: settings.darkMode,
+                callback: { [weak self] in
+                    settings.darkMode = $0
+                    self?.send(event: .changeInterfaceStyle(style: $0.interfaceStyle))
+                }
+            ),
             .arrowButtonItem(
                 title: Strings.Cfg.locationOrdering,
                 callback: { self.send(event: .navigateToLocationOrdering) }
@@ -132,6 +139,7 @@ enum SettingsListItem: Equatable {
     case rsOpeningPercentageItem(opening: Bool, callback: (Bool) -> Void)
     case arrowButtonItem(title: String, callback: () -> Void)
     case permissionItem(title: String, active: Bool, callback: () -> Void)
+    case darkModeItem(darkModeSetting: DarkModeSetting, callback: (DarkModeSetting) -> Void)
     
     static func == (lhs: SettingsListItem, rhs: SettingsListItem) -> Bool {
         switch (lhs, rhs) {
@@ -147,6 +155,8 @@ enum SettingsListItem: Equatable {
             return lValue == rValue
         case (.permissionItem(let lTitle, let lValue, _), .permissionItem(let rTitle, let rValue, _)):
             return lTitle == rTitle && lValue == rValue
+        case (.darkModeItem(let leftSetting, _), .darkModeItem(let rightSetting, _)):
+            return leftSetting == rightSetting
         default:
             return false
         }
@@ -178,6 +188,7 @@ extension SettingsList: SectionModelType {
 enum AppSettingsViewEvent: ViewEvent {
     case navigateToLocationOrdering
     case navigateToAppPreferences
+    case changeInterfaceStyle(style: UIUserInterfaceStyle)
 }
 
 struct AppSettingsViewState: ViewState {

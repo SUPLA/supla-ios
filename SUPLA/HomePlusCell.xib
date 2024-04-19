@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="22154" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="32700.99.1234" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22130"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22684"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -41,12 +41,12 @@
                         </constraints>
                     </view>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SH7-Yf-nDr">
-                        <rect key="frame" x="81" y="0.0" width="259" height="71.5"/>
+                        <rect key="frame" x="75" y="0.0" width="265" height="71.5"/>
                         <subviews>
                             <view autoresizesSubviews="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Du8-jj-g2Y">
-                                <rect key="frame" x="11.5" y="11" width="206.5" height="50"/>
+                                <rect key="frame" x="14.5" y="11" width="206.5" height="50"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="thermostat_hp_homeplus-off.png" translatesAutoresizingMaskIntoConstraints="NO" id="vas-Pf-ydY">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="thermostat_hp_homeplus-off" translatesAutoresizingMaskIntoConstraints="NO" id="vas-Pf-ydY">
                                         <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50" identifier="thermometerImageHeight" id="eRb-zG-p0J"/>
@@ -86,11 +86,11 @@
                             <constraint firstAttribute="width" constant="10" id="lX7-9M-7c3"/>
                         </constraints>
                     </view>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="channelstateinfo.png" translatesAutoresizingMaskIntoConstraints="NO" id="s4m-te-fua">
-                        <rect key="frame" x="51" y="36.5" width="30" height="30"/>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_info" translatesAutoresizingMaskIntoConstraints="NO" id="s4m-te-fua">
+                        <rect key="frame" x="51" y="39.5" width="24" height="24"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="30" id="8CO-8i-Obi"/>
-                            <constraint firstAttribute="width" constant="30" id="Qck-lo-wua"/>
+                            <constraint firstAttribute="height" constant="24" id="8CO-8i-Obi"/>
+                            <constraint firstAttribute="width" constant="24" id="Qck-lo-wua"/>
                         </constraints>
                     </imageView>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="l2U-oS-tNM" userLabel="onlineLeft" customClass="SAUIChannelStatus">
@@ -136,6 +136,7 @@
                 </variation>
             </tableViewCellContentView>
             <connections>
+                <outlet property="bottomLine" destination="UA9-tP-0Yk" id="j0X-ND-Znz"/>
                 <outlet property="caption" destination="L5d-BB-YAV" id="669-4A-HPf"/>
                 <outlet property="channelStateIcon" destination="s4m-te-fua" id="gOA-ZI-1cC"/>
                 <outlet property="image1" destination="vas-Pf-ydY" id="zbe-4e-NzY"/>
@@ -151,7 +152,7 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="channelstateinfo.png" width="107.25" height="107.25"/>
-        <image name="thermostat_hp_homeplus-off.png" width="72" height="72"/>
+        <image name="icon_info" width="24" height="24"/>
+        <image name="thermostat_hp_homeplus-off" width="45" height="45"/>
     </resources>
 </document>

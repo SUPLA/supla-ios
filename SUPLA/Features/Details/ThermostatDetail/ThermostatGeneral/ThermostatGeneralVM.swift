@@ -418,16 +418,16 @@ class ThermostatGeneralVM: BaseViewModel<ThermostatGeneralViewState, ThermostatG
             )
     }
     
-    private func createThermostatIssues(flags: [SuplaThermostatFlag]) -> [ThermostatIssueItem] {
-        var result: [ThermostatIssueItem] = []
+    private func createThermostatIssues(flags: [SuplaThermostatFlag]) -> [ChannelIssueItem] {
+        var result: [ChannelIssueItem] = []
         if (flags.contains(.thermometerError)) {
-            result.append(ThermostatIssueItem(
+            result.append(ChannelIssueItem(
                 issueIconType: .error,
                 description: Strings.ThermostatDetail.thermometerError
             ))
         }
         if (flags.contains(.clockError)) {
-            result.append(ThermostatIssueItem(
+            result.append(ChannelIssueItem(
                 issueIconType: .warning,
                 description: Strings.ThermostatDetail.clockError
             ))
@@ -528,7 +528,7 @@ struct ThermostatGeneralViewState: ViewState {
     var plusMinusHidden: Bool = false
     var temporaryChangeActive: Bool = false
     var programInfo: [ThermostatProgramInfo] = []
-    var issues: [ThermostatIssueItem] = []
+    var issues: [ChannelIssueItem] = []
     var sensorIssue: SensorIssue? = nil
     
     /* All calculated properties below */
@@ -659,11 +659,6 @@ fileprivate extension SAChannel {
     func isThermostat() -> Bool {
         return self.func == SUPLA_CHANNELFNC_HVAC_THERMOSTAT
     }
-}
-
-struct ThermostatIssueItem: Equatable {
-    let issueIconType: IssueIconType
-    let description: String
 }
 
 struct SensorIssue: Equatable {

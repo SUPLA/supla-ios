@@ -22,6 +22,8 @@ import RxSwift
 
 final class SceneCell: BaseCell<SAScene> {
     
+    @Singleton<GlobalSettings> private var settings
+    
     private lazy var sceneIconView: UIImageView = {
         let view = UIImageView()
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -86,10 +88,12 @@ final class SceneCell: BaseCell<SAScene> {
     override func updateContent(data: SAScene) {
         super.updateContent(data: data)
         
-        caption = data.caption ?? ""
+        caption = data.caption ?? "" 
         
         if data.usericon_id != 0 {
-            if let imageData = data.usericon?.uimage1 as? Data {
+            let darkMode = settings.darkMode == .always || (settings.darkMode == .auto && UITraitCollection.current.userInterfaceStyle == .dark)
+            
+            if let imageData = data.usericon?.getIcon(.icon1, darkMode: darkMode) as? Data {
                 sceneIconView.image = UIImage(data: imageData as Data)
             } else {
                 sceneIconView.image = UIImage(named: "scene_0")

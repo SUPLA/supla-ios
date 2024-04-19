@@ -1,0 +1,22 @@
+{
+  "images" : [
+    {
+      "filename" : "Mode=Cooling, States=Cooling.svg",
+      "idiom" : "universal"
+    },
+    {
+      "appearances" : [
+        {
+          "appearance" : "luminosity",
+          "value" : "dark"
+        }
+      ],
+      "filename" : "fnc_thermostat_cool_nm.svg",
+      "idiom" : "universal"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}

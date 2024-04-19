@@ -21,12 +21,15 @@ import RxSwift
 
 class BaseViewControllerVM<S : ViewState, E : ViewEvent, VM : BaseViewModel<S, E>> : BaseViewController {
     
+    @Singleton<GlobalSettings> private var settings
+    
     fileprivate let disposeBag = DisposeBag()
     var viewModel: VM!
     var stateDisposable: Disposable? = nil
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        overrideUserInterfaceStyle = settings.darkMode.interfaceStyle
         viewModel.onViewDidLoad()
         
         viewModel.eventsObervable()
@@ -36,6 +39,7 @@ class BaseViewControllerVM<S : ViewState, E : ViewEvent, VM : BaseViewModel<S, E
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        overrideUserInterfaceStyle = settings.darkMode.interfaceStyle
         var attributes: [NSAttributedString.Key : Any] = [.foregroundColor: UIColor.white]
         if (navigationCoordinator is MainNavigationCoordinator) {
             attributes[.font] = UIFont.suplaTitleBarFont

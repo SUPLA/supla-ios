@@ -17,22 +17,8 @@
  */
 
 extension SAChannel {
-    func getIconData(type: IconType = .single, nightMode: Bool = false, subfunction: ThermostatSubfunction? = nil) -> IconData {
-        @Singleton<GetChannelBaseStateUseCase> var getChannelBaseStateUseCase
-        
-        return IconData(
-            function: self.func,
-            altIcon: self.alticon,
-            state: getChannelBaseStateUseCase.invoke(function: self.func, activeValue: self.imgIsActive()),
-            type: type,
-            userIcon: self.usericon,
-            nightMode: nightMode,
-            subfunction: subfunction
-        )
-    }
-    
     func item() -> ItemBundle {
-        ItemBundle(remoteId: remote_id, deviceId: device_id)
+        ItemBundle(remoteId: remote_id, deviceId: device_id, subjectType: .channel, function: self.func)
     }
     
     func getTimerEndDate() -> Date? {

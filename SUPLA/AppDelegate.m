@@ -50,6 +50,7 @@
     // Override point for customization after application launch.
     self.navigation = [[MainNavigationCoordinator alloc] init];
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    self.window.overrideUserInterfaceStyle = [GlobalSettingsLegacy new].darkMode;
     [self.navigation attachTo: self.window];
     
     [CoreDataManager.shared setupWithCompletion: ^() {

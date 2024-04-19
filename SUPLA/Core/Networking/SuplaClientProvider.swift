@@ -80,7 +80,7 @@ extension SuplaClientProtocol {
             }
             
             return executeAction(
-                Action.set_hvac_parameters.rawValue,
+                Action.setHvacParameters.rawValue,
                 subjecType: subjectType.rawValue,
                 subjectId: subjectId,
                 parameters: &parameters,

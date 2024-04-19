@@ -19,6 +19,7 @@
 #import "SuplaClient.h"
 #import "SACalCfgResult.h"
 #import "UIColor+SUPLA.h"
+#import "SUPLA-Swift.h"
 
 #define PIC_HEX_VER_MAX_SIZE 20
 
@@ -120,15 +121,18 @@ typedef struct {
 }
 
 - (void)modeToUI {
-    self.tabMode1.backgroundColor = [UIColor whiteColor];
+    self.tabMode1.backgroundColor = [UIColor surface];
     self.tabMode1.selected = NO;
     self.tabMode1.enabled = (_config.vl_main_config.mode_mask & VL_MASK_MODE_1_DISABLED) == 0;
-    self.tabMode2.backgroundColor = [UIColor whiteColor];
+    [self.tabMode1 setTitleColor: [UIColor onBackground] forState: UIControlStateNormal];
+    self.tabMode2.backgroundColor = [UIColor surface];
     self.tabMode2.selected = NO;
     self.tabMode2.enabled = (_config.vl_main_config.mode_mask & VL_MASK_MODE_2_DISABLED) == 0;
-    self.tabMode3.backgroundColor = [UIColor whiteColor];
+    [self.tabMode2 setTitleColor: [UIColor onBackground] forState: UIControlStateNormal];
+    self.tabMode3.backgroundColor = [UIColor surface];
     self.tabMode3.selected = NO;
     self.tabMode3.enabled = (_config.vl_main_config.mode_mask & VL_MASK_MODE_3_DISABLED) == 0;
+    [self.tabMode3 setTitleColor: [UIColor onBackground] forState: UIControlStateNormal];
     
     switch(_config.vl_main_config.mode) {
         case MODE_1:
@@ -147,12 +151,14 @@ typedef struct {
 }
 
 - (void)boostToUI {
-    self.tabBoostYes.backgroundColor = [UIColor whiteColor];
+    self.tabBoostYes.backgroundColor = [UIColor surface];
     self.tabBoostYes.selected = NO;
     self.tabBoostYes.enabled = (_config.vl_main_config.boost_mask & VL_MASK_BOOST_YES_DISABLED) == 0;
-    self.tabBoostNo.backgroundColor = [UIColor whiteColor];
+    [self.tabBoostYes setTitleColor: [UIColor onBackground] forState: UIControlStateNormal];
+    self.tabBoostNo.backgroundColor = [UIColor surface];
     self.tabBoostNo.selected = NO;
     self.tabBoostNo.enabled = (_config.vl_main_config.boost_mask & VL_MASK_BOOST_NO_DISABLED) == 0;
+    [self.tabBoostNo setTitleColor: [UIColor onBackground] forState: UIControlStateNormal];
     self.tabBoost.hidden = YES;
     
     switch(_config.vl_main_config.boost) {
@@ -174,15 +180,18 @@ typedef struct {
 }
 
 - (IBAction)tabBoostTouch:(id)sender {
-    self.tabBoost.backgroundColor = [UIColor whiteColor];
+    self.tabBoost.backgroundColor = [UIColor surface];
     self.tabOpRange.backgroundColor = [UIColor clearColor];
     self.rangeCalibrationWheel.boostHidden = NO;
 }
 
 - (IBAction)tabOpRangeTouch:(id)sender {
     self.tabBoost.backgroundColor = [UIColor clearColor];
-    self.tabOpRange.backgroundColor = [UIColor whiteColor];
+    self.tabOpRange.backgroundColor = [UIColor surface];
     self.rangeCalibrationWheel.boostHidden = YES;
+    
+    [self.tabOpRange setTitleColor: [UIColor onBackground] forState: UIControlStateNormal];
+    [self.tabOpRange setTitleColor: [UIColor onBackground] forState: UIControlStateSelected];
 }
 
 - (IBAction)tabBoostYesNoTouch:(id)sender {

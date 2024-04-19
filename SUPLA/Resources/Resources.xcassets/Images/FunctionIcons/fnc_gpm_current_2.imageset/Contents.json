@@ -1,0 +1,22 @@
+{
+  "images" : [
+    {
+      "filename" : "fnc_gpm_current_2.svg",
+      "idiom" : "universal"
+    },
+    {
+      "appearances" : [
+        {
+          "appearance" : "luminosity",
+          "value" : "dark"
+        }
+      ],
+      "filename" : "fnc_gpm_current_2_nm.svg",
+      "idiom" : "universal"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}

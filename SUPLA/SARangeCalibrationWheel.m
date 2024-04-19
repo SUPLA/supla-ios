@@ -14,6 +14,7 @@
  */
 
 #import "SARangeCalibrationWheel.h"
+#import "SUPLA-Swift.h"
 
 #define DEGREES_TO_RADIANS(degrees)((M_PI * degrees)/180.0)
 #define RADIANS_TO_DEGREES(angrad)(angrad * 180.0 / M_PI)
@@ -88,6 +89,7 @@
     
     [self addGestureRecognizer:_panGr];
     [self addGestureRecognizer:_tapGr];
+    self.backgroundColor = [UIColor surface];
     
     initialized = YES;
 }

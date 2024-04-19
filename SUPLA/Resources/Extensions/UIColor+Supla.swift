@@ -25,24 +25,24 @@ extension UIColor {
     static let primary = UIColor(red: 18/255.0, green: 167/255.0, blue: 30/255.0, alpha: 1)
     static let primaryVariant = UIColor(red: 0, green: 209/255.0, blue: 81/255.0, alpha: 1)
     
-    static let onBackground = UIColor(red: 0, green: 0, blue: 0, alpha: 1)
+    @objc static let onBackground = UIColor(named: "Colors/on_background")!
     static let onPrimary = UIColor(red: 255, green: 255, blue: 255, alpha: 1)
     
-    static let surface = UIColor(red: 1, green: 1, blue: 1, alpha: 1)
-    @objc static let background = UIColor(red: 245/255.0, green: 246/255.0, blue: 247/255.0, alpha: 1)
+    @objc static let surface = UIColor(named: "Colors/surface")!
+    @objc static let background = UIColor(named: "Colors/background")!
     
-    static let disabled = UIColor(red: 180/255.0, green: 183/255.0, blue: 186/255.0, alpha: 1)
+    static let disabled = UIColor(named: "Colors/disabled")!
     static let error = UIColor(red: 235.0/255.0, green: 58.0/255.0, blue: 40.0/255.0, alpha: 1)
     
     @objc static let gray = UIColor(red: 126/255.0, green: 128/255.0, blue: 130/255.0, alpha: 1)
-    static let grayLight = UIColor(red: 239/255.0, green: 239/255.0, blue: 240/255.0, alpha: 1)
+    static let grayLight = UIColor(named: "Colors/gray_light")!
     static let blue = UIColor(red: 0, green: 122/255.0, blue: 1, alpha: 1)
     static let lightBlue = UIColor.from(red: 140, green: 157, blue: 255, alpha: 1)
     static let lightGreen = UIColor.from(red: 176, green: 224, blue: 168, alpha: 1)
     static let lightOrange = UIColor.from(red: 255, green: 209, blue: 154, alpha: 1)
     static let lightRed = UIColor.from(red: 224, green: 152, blue: 146, alpha: 1)
     static let darkRed = UIColor(argb: 0xFF800000)
-    static let darkBlue = UIColor(argb: 0xFF000080)
+    static let darkBlue = UIColor(named: "Colors/dark_blue")!
     static let chartTemperature1 = error
     static let chartTemperature2 = UIColor(argb: 0xFFFF8C53)
     static let chartHumidity1 = UIColor(argb: 0xFF57A0FF)
@@ -51,30 +51,38 @@ extension UIColor {
     static let chartGpmBorder = UIColor(argb: 0xFF005F6E)
     static let chartGpmShadow = UIColor(argb: 0x3398C4CA)
     
-    static let border = UIColor(red: 180/255.0, green: 183/255.0, blue: 186/255.0, alpha: 1)
-    static let separator = UIColor.from(red: 170, green: 170, blue: 170, alpha: 1)
-    static let separatorLight = UIColor(argb: 0xFFDCDEE0)
+    @objc static let separator = UIColor(named: "Colors/separator")!
+    static let separatorLight = UIColor(named: "Colors/separator_light")!
     
     static let dialogScrim = UIColor(white: 0, alpha: 0.3)
     static let transparent = UIColor(argb: 0x00FFFFFF)
     
     // View specific colors
-    static let listItemBackground = UIColor(red: 249/255.0, green: 250/255.0, blue: 251/255.0, alpha: 1)
+    @objc static let channelCell = UIColor(named: "Colors/channel_cell")!
+    @objc static let channelSectionCell = UIColor(named: "Colors/channel_section_cell")!
     
     static let innerShadow = UIColor(red: 0, green: 0, blue: 0, alpha: 0.25) // CircleControlButtonView
     static let negativeBorder = UIColor(red: 235/255.0, green: 58/255.0, blue: 40/255.0, alpha: 1) // CircleControlButtonView
-    static let disabledOverlay = UIColor(red: 1, green: 1, blue: 1, alpha: 221/255.0) // CircleControlButtonView
+    static let disabledOverlay = UIColor(named: "Colors/disabled_overlay")! // CircleControlButtonView
     
     static let progressPointShadow = UIColor(red: 178/255.0, green: 244/255.0, blue: 184/255.0, alpha: 0.6)
+    
+    static let rollerShutterWindow = UIColor(named: "Colors/RollerShutter/window")!
+    static let rollerShutterGlassTop = UIColor(named: "Colors/RollerShutter/glass_top")!
+    static let rollerShutterGlassBottom = UIColor(named: "Colors/RollerShutter/glass_bottom")!
+    static let rollerShutterSlatBackground = UIColor(named: "Colors/RollerShutter/slat_background")!
+    static let rollerShutterSlatBorder = UIColor(named: "Colors/RollerShutter/slat_border")!
+    static let rollerShutterDisabledGlassTop = UIColor(named: "Colors/RollerShutter/disabled_glass_top")!
+    static let rollerShutterDisabledGlassBottom = UIColor(named: "Colors/RollerShutter/disabled_glass_bottom")!
+    static let rollerShutterDisabledSlatBackground = UIColor(named: "Colors/RollerShutter/disabled_slat_background")!
+    static let rollerShutterDisabledSlatBorder = UIColor(named: "Colors/RollerShutter/disabled_slat_border")!
     
     @objc static let suplaGreenBackground = #colorLiteral(red: 0, green: 0.6549019608, blue: 0.1176470588, alpha: 1)
     
     @objc static let suplaGreen = UIColor(red: 0, green: 209.0/255.0, blue: 81.0/255.0, alpha: 1)
     static let ctrlBorder = UIColor(red: 118.0/255.0, green: 120.0/255.0, blue: 128.0/255.0, alpha: 0.12)
-    static let viewBackground = UIColor(red: 0.898, green: 0.898, blue: 0.898, alpha: 1)
     static let switcherBackground = UIColor(red: 118.0/255.0, green: 120.0/255.0, blue: 128.0/255.0, alpha: 0.12)
     
-    @objc static let textLight = UIColor(red: 0, green: 0, blue: 0, alpha: 1)
     @objc static let yellow = UIColor(red: 254, green: 231, blue: 0, alpha: 1)
     
     static let newGestureBackgroundDarker = UIColor(red: 54.0/255.0, green: 55.0/255.0, blue: 56.0/255.0, alpha: 0.87)

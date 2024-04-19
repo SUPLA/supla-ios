@@ -84,7 +84,6 @@
 "Configuration Failed!" = "Konfigurasjon mislykket!";
 "Connection with the device cannot be set!" = "Kunne ikke koble til enheten!";
 "Make sure, if the Wi-fi connection has been set for the I/O device." = "Sørg for at tilkoblingen til WiFi-nettverket til den utøvende enheten er opprettet.";
-"[Calibration]" = "[Kalibrering]";
 "Help" = "Hjelp";
 "https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=L4N7RSWME6LG2" = "https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=QYN932S5UQG8N";
 "Staircase timer" = "Trappeautomat";
@@ -251,10 +250,6 @@
 "Z-Wave bridge" = "Z-wave bro";
 "opened / closed the roof window" = "åpnet / lukket takvinduet";
 "The power was turned off after the set threshold of the allowable current was exceeded." = "Strømmen ble slått av etter at den innstilte terskelen for den tillatte strømmen ble overskredet.";
-"Are you sure you want to start calibration?" = "Er du sikker på at du vil starte kalibrering?";
-"Calibration lost." = "Kalibrering mislyktes.";
-"Calibration failed." = "Kalibrering tapt.";
-"Motor problem / Unexpected stop." = "Motorproblem / Uventet stopp.";
 "0: unknown" = "0: ukjent";
 "1: server timeout" = "1: ingen respons fra serveren";
 "2: Wi-Fi connection lost" = "2: Mistet WiFi-tilkobling";
@@ -308,7 +303,14 @@
 "Cfg.removal.dialog.duplicated_name" = "En konto med dette navnet eksisterer allerede";
 "Cfg.removal.dialog.incomplete" = "Fyll ut de nødvendige dataene";
 
-"General.error" = "Feil";
+"general_error" = "Feil";
 
 /* Thermometer Chart */
 "history_no_data_in_selected_period" = "Manglende data for diagrammet.";
+
+/* Roller shutter detail */
+"roller_shutter_calibration_lost" = "Kalibrering mislyktes.";
+"roller_shutter_calibration_failed" = "Kalibrering tapt.";
+"roller_shutter_motor_problem" = "Motorproblem / Uventet stopp.";
+"roller_shutter_calibration" = "Kalibrering";
+"roller_shutter_start_calibration_message" = "Er du sikker på at du vil starte kalibrering?";

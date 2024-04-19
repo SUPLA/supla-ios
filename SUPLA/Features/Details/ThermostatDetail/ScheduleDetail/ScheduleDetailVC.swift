@@ -317,7 +317,8 @@ fileprivate class ScheduleDetailTableView: UIView {
         layer.addSublayer(currentItemIndicatorLayer)
     }
     
-    override func layoutSubviews() {let date = Date()
+    override func layoutSubviews() {
+        let date = Date()
         let calendar = Calendar.current
         let currentDay = calendar.component(.weekday, from: date) - 1
         let currentHour = calendar.component(.hour, from: date)
@@ -443,7 +444,7 @@ fileprivate class ScheduleDetailTableView: UIView {
         label.fontSize = 12
         label.string = text
         label.alignmentMode = .center
-        label.foregroundColor = UIColor.black.cgColor
+        label.foregroundColor = UIColor.onBackground.cgColor
         label.contentsScale = UIScreen.main.scale
         
         return label

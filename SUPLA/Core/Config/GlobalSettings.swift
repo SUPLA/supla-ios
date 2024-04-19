@@ -33,6 +33,7 @@ protocol GlobalSettings {
     var showBottomLabels: Bool { get set }
     var channelHeight: ChannelHeight { get set }
     var showOpeningPercent: Bool { get set }
+    var darkMode: DarkModeSetting { get set }
 }
 
 class GlobalSettingsImpl: GlobalSettings {
@@ -149,6 +150,12 @@ class GlobalSettingsImpl: GlobalSettings {
         get { return defaults.bool(forKey: showOpeningPercentKey) }
         set { defaults.set(newValue, forKey: showOpeningPercentKey) }
     }
+    
+    private let darkModeKey = "supla_config_dark_mode"
+    var darkMode: DarkModeSetting {
+        get { return DarkModeSetting.from(defaults.integer(forKey: darkModeKey)) }
+        set { defaults.set(newValue.rawValue, forKey: darkModeKey) }
+    }
 }
 
 @objc class GlobalSettingsLegacy: NSObject {
@@ -177,5 +184,10 @@ class GlobalSettingsImpl: GlobalSettings {
             locale: .autoupdatingCurrent,
             shouldDisplayUnit: true
         )
+    }
+    
+    @objc
+    var darkMode: UIUserInterfaceStyle {
+        settings.darkMode.interfaceStyle
     }
 }

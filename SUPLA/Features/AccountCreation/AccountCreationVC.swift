@@ -202,7 +202,7 @@ class AccountCreationVC: BaseViewControllerVM<AccountCreationViewState, AccountC
         adAccessIdWizardWarning.layer.borderWidth = 1
         
         deleteButton.setTitle(Strings.Profiles.delete, for: .normal)
-        deleteButton.backgroundColor = .white
+        deleteButton.backgroundColor = .background
         deleteButton.layer.borderWidth = 1
         deleteButton.layer.borderColor = UIColor.suplaGreenBackground.cgColor
 

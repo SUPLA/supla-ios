@@ -107,7 +107,7 @@ fileprivate class ProfileChooserVC: UIViewController {
         view.addSubview(containerView)
         containerView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         containerView.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
-        containerView.backgroundColor = .white
+        containerView.backgroundColor = .surface
         
         [titleLabel, profileList].forEach {
             $0.translatesAutoresizingMaskIntoConstraints = false

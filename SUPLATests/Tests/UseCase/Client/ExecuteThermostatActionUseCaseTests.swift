@@ -64,7 +64,7 @@ final class ExecuteThermostatActionUseCaseTests: UseCaseTest<RequestResult> {
         XCTAssertEqual(suplaClientProvider.suplaClientMock.executeActionParameters.count, 1)
         
         let parameters = suplaClientProvider.suplaClientMock.executeActionParameters[0]
-        XCTAssertEqual(parameters.0, Action.set_hvac_parameters.rawValue)
+        XCTAssertEqual(parameters.0, Action.setHvacParameters.rawValue)
         XCTAssertEqual(parameters.1, type.rawValue)
         XCTAssertEqual(parameters.2, remoteId)
         XCTAssertEqual(parameters.4, Int32(MemoryLayout<TAction_HVAC_Parameters>.size))
@@ -99,7 +99,7 @@ final class ExecuteThermostatActionUseCaseTests: UseCaseTest<RequestResult> {
         XCTAssertEqual(suplaClientProvider.suplaClientMock.executeActionParameters.count, 1)
         
         let parameters = suplaClientProvider.suplaClientMock.executeActionParameters[0]
-        XCTAssertEqual(parameters.0, Action.set_hvac_parameters.rawValue)
+        XCTAssertEqual(parameters.0, Action.setHvacParameters.rawValue)
         XCTAssertEqual(parameters.1, type.rawValue)
         XCTAssertEqual(parameters.2, remoteId)
         XCTAssertEqual(parameters.4, Int32(MemoryLayout<TAction_HVAC_Parameters>.size))
@@ -135,7 +135,7 @@ final class ExecuteThermostatActionUseCaseTests: UseCaseTest<RequestResult> {
         XCTAssertEqual(suplaClientProvider.suplaClientMock.executeActionParameters.count, 1)
         
         let parameters = suplaClientProvider.suplaClientMock.executeActionParameters[0]
-        XCTAssertEqual(parameters.0, Action.set_hvac_parameters.rawValue)
+        XCTAssertEqual(parameters.0, Action.setHvacParameters.rawValue)
         XCTAssertEqual(parameters.1, type.rawValue)
         XCTAssertEqual(parameters.2, remoteId)
         XCTAssertEqual(parameters.4, Int32(MemoryLayout<TAction_HVAC_Parameters>.size))
@@ -170,7 +170,7 @@ final class ExecuteThermostatActionUseCaseTests: UseCaseTest<RequestResult> {
         XCTAssertEqual(suplaClientProvider.suplaClientMock.executeActionParameters.count, 1)
         
         let parameters = suplaClientProvider.suplaClientMock.executeActionParameters[0]
-        XCTAssertEqual(parameters.0, Action.set_hvac_parameters.rawValue)
+        XCTAssertEqual(parameters.0, Action.setHvacParameters.rawValue)
         XCTAssertEqual(parameters.1, type.rawValue)
         XCTAssertEqual(parameters.2, remoteId)
         XCTAssertEqual(parameters.4, Int32(MemoryLayout<TAction_HVAC_Parameters>.size))
