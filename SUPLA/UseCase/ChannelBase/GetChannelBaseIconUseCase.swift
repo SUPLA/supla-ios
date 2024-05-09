@@ -31,43 +31,42 @@ extension GetChannelBaseIconUseCase {
 }
 
 final class GetChannelBaseIconUseCaseImpl: GetChannelBaseIconUseCase {
-    
     @Singleton<GetDefaultIconNameUseCase> private var getDefaultIconNameUseCase
     @Singleton<GlobalSettings> private var settings
-    
+
     func invoke(iconData: IconData) -> IconResult {
         if (iconData.type != .single && iconData.function != SUPLA_CHANNELFNC_HUMIDITYANDTEMPERATURE) {
             // Currently only humidity and temperature may have multiple icons
             fatalError("Wrong icon configuration (iconType: '\(iconData.type)', function: '\(iconData.function)'")
         }
-        
+
         if let icon = getUserIcon(iconData.function, iconData.userIcon, iconData.state, iconData.type, iconData.subfunction) {
             return .userIcon(icon: icon)
         }
-        
+
         let name = getDefaultIconNameUseCase.invoke(iconData: iconData)
-        
+
         return .suplaIcon(icon: .init(named: name))
     }
-    
+
     private func getUserIcon(_ function: Int32, _ userIcon: SAUserIcon?, _ channelState: ChannelState, _ iconType: IconType, _ subfunction: ThermostatSubfunction?) -> UIImage? {
         if let data = findUserIcon(function, userIcon, channelState, iconType, subfunction) as? Data {
             return UIImage(data: data)
         }
-        
+
         return nil
     }
-    
+
     private func findUserIcon(_ function: Int32, _ userIcon: SAUserIcon?, _ channelState: ChannelState, _ iconType: IconType, _ subfunction: ThermostatSubfunction?) -> NSObject? {
         let darkMode = settings.darkMode == .always || (settings.darkMode == .auto && UITraitCollection.current.userInterfaceStyle == .dark)
-        
+
         switch (function) {
         case SUPLA_CHANNELFNC_HUMIDITYANDTEMPERATURE:
             return iconType == .second ? userIcon?.getIcon(.icon1, darkMode: darkMode) : userIcon?.getIcon(.icon2, darkMode: darkMode)
         case SUPLA_CHANNELFNC_THERMOMETER:
             return userIcon?.getIcon(.icon1, darkMode: darkMode)
         case SUPLA_CHANNELFNC_CONTROLLINGTHEGARAGEDOOR,
-        SUPLA_CHANNELFNC_CONTROLLINGTHEGATE:
+             SUPLA_CHANNELFNC_CONTROLLINGTHEGATE:
             if (channelState == .closed) {
                 return userIcon?.getIcon(.icon2, darkMode: darkMode)
             } else if (channelState == .partialyOpened) {
@@ -76,11 +75,29 @@ final class GetChannelBaseIconUseCaseImpl: GetChannelBaseIconUseCase {
                 return userIcon?.getIcon(.icon1, darkMode: darkMode)
             }
         case SUPLA_CHANNELFNC_HVAC_THERMOSTAT,
-        SUPLA_CHANNELFNC_HVAC_DOMESTIC_HOT_WATER:
+             SUPLA_CHANNELFNC_HVAC_DOMESTIC_HOT_WATER:
             if (subfunction == nil || subfunction == .heat) {
                 return userIcon?.getIcon(.icon1, darkMode: darkMode)
             } else {
                 return userIcon?.getIcon(.icon2, darkMode: darkMode)
+            }
+        case SUPLA_CHANNELFNC_DIMMERANDRGBLIGHTING:
+            switch (channelState) {
+            case .complex(let states):
+                switch (states) {
+                case [.off, .off]:
+                    return userIcon?.getIcon(.icon1, darkMode: darkMode)
+                case [.on, .off]:
+                    return userIcon?.getIcon(.icon2, darkMode: darkMode)
+                case [.off, .on]:
+                    return userIcon?.getIcon(.icon3, darkMode: darkMode)
+                case [.on, .on]:
+                    return userIcon?.getIcon(.icon4, darkMode: darkMode)
+                default:
+                    return channelState.isActive() ? userIcon?.getIcon(.icon2, darkMode: darkMode) : userIcon?.getIcon(.icon1, darkMode: darkMode)
+                }
+            default: 
+                return channelState.isActive() ? userIcon?.getIcon(.icon2, darkMode: darkMode) : userIcon?.getIcon(.icon1, darkMode: darkMode)
             }
         default:
             return channelState.isActive() ? userIcon?.getIcon(.icon2, darkMode: darkMode) : userIcon?.getIcon(.icon1, darkMode: darkMode)
@@ -95,11 +112,9 @@ enum IconResult: Equatable {
 
 extension IconResult {
     var icon: UIImage? {
-        get {
-            switch(self) {
-            case .suplaIcon(let icon): return icon
-            case .userIcon(let icon): return icon
-            }
+        switch (self) {
+        case .suplaIcon(let icon): return icon
+        case .userIcon(let icon): return icon
         }
     }
 }
