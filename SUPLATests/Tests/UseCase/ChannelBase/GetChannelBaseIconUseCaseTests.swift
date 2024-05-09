@@ -245,4 +245,100 @@ final class GetChannelBaseIconUseCaseTests: XCTestCase {
         // no call to get default icon means that the user icon was properly loaded.
         XCTAssertEqual(getDefaultIconNameUseCase.parameters, [])
     }
+    
+    func test_userIcon_dimmerAndRgb_icon1() {
+        // given
+        let userIcon = SAUserIcon(testContext: nil)
+        let image = NSData(data: (UIImage.iconTimer?.pngData())!)
+        
+        userIcon.uimage1 = image
+        
+        // when
+        let icon = useCase.invoke(
+            iconData: IconData(
+                function: SUPLA_CHANNELFNC_DIMMERANDRGBLIGHTING,
+                altIcon: 123,
+                state: .complex([.off, .off]),
+                type: .single,
+                userIcon: userIcon
+            )
+        )
+        
+        // then
+        XCTAssertNotNil(icon)
+        // no call to get default icon means that the user icon was properly loaded.
+        XCTAssertEqual(getDefaultIconNameUseCase.parameters, [])
+    }
+    
+    func test_userIcon_dimmerAndRgb_icon2() {
+        // given
+        let userIcon = SAUserIcon(testContext: nil)
+        let image = NSData(data: (UIImage.iconTimer?.pngData())!)
+        
+        userIcon.uimage2 = image
+        
+        // when
+        let icon = useCase.invoke(
+            iconData: IconData(
+                function: SUPLA_CHANNELFNC_DIMMERANDRGBLIGHTING,
+                altIcon: 123,
+                state: .complex([.on, .off]),
+                type: .single,
+                userIcon: userIcon
+            )
+        )
+        
+        // then
+        XCTAssertNotNil(icon)
+        // no call to get default icon means that the user icon was properly loaded.
+        XCTAssertEqual(getDefaultIconNameUseCase.parameters, [])
+    }
+    
+    func test_userIcon_dimmerAndRgb_icon3() {
+        // given
+        let userIcon = SAUserIcon(testContext: nil)
+        let image = NSData(data: (UIImage.iconTimer?.pngData())!)
+        
+        userIcon.uimage3 = image
+        
+        // when
+        let icon = useCase.invoke(
+            iconData: IconData(
+                function: SUPLA_CHANNELFNC_DIMMERANDRGBLIGHTING,
+                altIcon: 123,
+                state: .complex([.off, .on]),
+                type: .single,
+                userIcon: userIcon
+            )
+        )
+        
+        // then
+        XCTAssertNotNil(icon)
+        // no call to get default icon means that the user icon was properly loaded.
+        XCTAssertEqual(getDefaultIconNameUseCase.parameters, [])
+    }
+    
+    func test_userIcon_dimmerAndRgb_icon4() {
+        // given
+        let userIcon = SAUserIcon(testContext: nil)
+        let image = NSData(data: (UIImage.iconTimer?.pngData())!)
+        
+        userIcon.uimage4 = image
+        
+        // when
+        let icon = useCase.invoke(
+            iconData: IconData(
+                function: SUPLA_CHANNELFNC_DIMMERANDRGBLIGHTING,
+                altIcon: 123,
+                state: .complex([.on, .on]),
+                type: .single,
+                userIcon: userIcon
+            )
+        )
+        
+        // then
+        XCTAssertNotNil(icon)
+        // no call to get default icon means that the user icon was properly loaded.
+        XCTAssertEqual(getDefaultIconNameUseCase.parameters, [])
+    }
 }
