@@ -144,7 +144,7 @@ class BaseDownloadLogUseCase<M: SuplaCloudMeasurement, E: SAMeasurementItem> {
     ) throws {
         SALog.debug("Check for cleaning (cleanMeasurements: `\(cleanMeasurements))`")
         if (cleanMeasurements) {
-            try baseMeasurementRepository.deleteAll(for: profile).subscribeSynchronous()
+            try baseMeasurementRepository.deleteAll(remoteId: remoteId, profile: profile).subscribeSynchronous()
         }
         
         let databaseCount = baseMeasurementRepository.findCount(

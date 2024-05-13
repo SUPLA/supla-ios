@@ -133,6 +133,7 @@ extension DiContainer {
         register(GetChannelValueUseCase.self, GetChannelValueUseCaseImpl())
         register(GetChannelValueStringUseCase.self, GetChannelValueStringUseCaseImpl())
         register(LoadChannelConfigUseCase.self, LoadChannelConfigUseCaseImpl())
+        register(DeleteChannelMeasurementsUseCase.self, DeleteChannelMeasurementsUseCaseImpl())
         // Usecases - Channel - ValueProvider
         register(DepthValueProvider.self, DepthValueProviderImpl())
         register(DistanceValueProvider.self, DistanceValueProviderImpl())

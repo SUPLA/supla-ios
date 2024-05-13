@@ -22,7 +22,9 @@ protocol TemperatureMeasurementItemRepository:
     BaseMeasurementRepository<SuplaCloudClient.TemperatureMeasurement, SATemperatureMeasurementItem> where
     T == SATemperatureMeasurementItem
 {
+    
     func deleteAll(for profile: AuthProfileItem) -> Observable<Void>
+    func deleteAll(remoteId: Int32, profile: AuthProfileItem) -> Observable<Void>
     func findMeasurements(remoteId: Int32, profile: AuthProfileItem, startDate: Date, endDate: Date) -> Observable<[SATemperatureMeasurementItem]>
     func findMinTimestamp(remoteId: Int32, profile: AuthProfileItem) -> Observable<TimeInterval?>
     func findMaxTimestamp(remoteId: Int32, profile: AuthProfileItem) -> Observable<TimeInterval?>
@@ -40,6 +42,10 @@ final class TemperatureMeasurementItemRepositoryImpl: Repository<SATemperatureMe
     
     func deleteAll(for profile: AuthProfileItem) -> Observable<Void> {
         deleteAll(SATemperatureMeasurementItem.fetchRequest().filtered(by: NSPredicate(format: "profile = %@", profile)))
+    }
+    
+    func deleteAll(remoteId: Int32, profile: AuthProfileItem) -> Observable<Void> {
+        deleteAll(SATemperatureMeasurementItem.fetchRequest().filtered(by: NSPredicate(format: "channel_id = %d AND profile = %@", remoteId, profile)))
     }
     
     func findMeasurements(remoteId: Int32, profile: AuthProfileItem, startDate: Date, endDate: Date) -> Observable<[SATemperatureMeasurementItem]> {
