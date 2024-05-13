@@ -111,6 +111,7 @@ fileprivate final class ThermometerValueView: UIView {
         view.translatesAutoresizingMaskIntoConstraints = false
         view.font = small ? .body1 : .h5
         view.isHidden = true
+        view.textColor = .onBackground
         return view
     }()
     

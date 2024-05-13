@@ -185,12 +185,14 @@ final class ThermostatControlView: UIView {
     private lazy var minTemperatureView: UILabel = {
         let label = UILabel()
         label.font = .body2
+        label.textColor = .onBackground
         return label
     }()
     
     private lazy var maxTemperatureView: UILabel = {
         let label = UILabel()
         label.font = .body2
+        label.textColor = .onBackground
         return label
     }()
     
@@ -198,6 +200,7 @@ final class ThermostatControlView: UIView {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = .thermostatControlBigTemperature
+        label.textColor = .onBackground
         return label
     }()
     

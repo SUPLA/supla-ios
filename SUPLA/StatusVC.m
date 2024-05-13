@@ -68,9 +68,8 @@
 }
 
 -(void)GreenTheme {
-    UIColor *greenColor = [UIColor colorWithRed:0.071 green:0.655 blue:0.118 alpha:1.000];
-    [self.view setBackgroundColor:greenColor];
-    [self.statusBarBackgroundView setBackgroundColor:greenColor];
+    [self.view setBackgroundColor: [UIColor primary]];
+    [self.statusBarBackgroundView setBackgroundColor: [UIColor primary]];
     [self.progress setHidden:NO];
     
     [self.image setImage:[UIImage imageNamed:@"logo-white"]];

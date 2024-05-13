@@ -62,7 +62,7 @@ class TimerProgressView: UIView {
             ).reversing()
         )
         layer.path = path.cgPath
-        layer.fillColor = UIColor.white.cgColor
+        layer.fillColor = UIColor.surface.cgColor
         return layer
     }()
     
@@ -70,11 +70,11 @@ class TimerProgressView: UIView {
         let layer = CAShapeLayer()
         layer.fillColor = nil
         layer.lineCap = .round
-        layer.strokeColor = UIColor.primaryVariant.cgColor
+        layer.strokeColor = UIColor.primary.cgColor
         layer.lineWidth = 6
         layer.shadowRadius = 9
         layer.shadowOpacity = 0.8
-        layer.shadowColor = UIColor.primaryVariant.cgColor
+        layer.shadowColor = UIColor.primary.cgColor
         return layer
     }()
     

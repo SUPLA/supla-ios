@@ -20,9 +20,11 @@ import UIKit
 
 extension UIColor {
     // App primary colors
+    @objc static let suplaGreen = UIColor(argb: 0xFF12A71E)
+    @objc static let green = UIColor(argb: 0xFF00D151)
     
-    static let primary = UIColor(red: 18/255.0, green: 167/255.0, blue: 30/255.0, alpha: 1)
-    static let primaryVariant = UIColor(red: 0, green: 209/255.0, blue: 81/255.0, alpha: 1)
+    @objc static let primary = UIColor(named: "Colors/primary")!
+    @objc static let primaryVariant = UIColor(red: 0, green: 209/255.0, blue: 81/255.0, alpha: 1)
     
     @objc static let onBackground = UIColor(named: "Colors/on_background")!
     static let onPrimary = UIColor(red: 255, green: 255, blue: 255, alpha: 1)
@@ -78,9 +80,6 @@ extension UIColor {
     static let rollerShutterDisabledSlatBackground = UIColor(named: "Colors/RollerShutter/disabled_slat_background")!
     static let rollerShutterDisabledSlatBorder = UIColor(named: "Colors/RollerShutter/disabled_slat_border")!
     
-    @objc static let suplaGreenBackground = #colorLiteral(red: 0, green: 0.6549019608, blue: 0.1176470588, alpha: 1)
-    
-    @objc static let suplaGreen = UIColor(red: 0, green: 209.0/255.0, blue: 81.0/255.0, alpha: 1)
     static let ctrlBorder = UIColor(red: 118.0/255.0, green: 120.0/255.0, blue: 128.0/255.0, alpha: 0.12)
     static let switcherBackground = UIColor(red: 118.0/255.0, green: 120.0/255.0, blue: 128.0/255.0, alpha: 0.12)
     

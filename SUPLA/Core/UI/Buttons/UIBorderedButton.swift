@@ -35,8 +35,8 @@ class UIBorderedButton: UIButton {
     }
     
     private func setupView() {
-        backgroundColor = .surface
-        setTitleColor(.primary, for: .normal)
+        backgroundColor = .transparent
+        setTitleColor(.primaryVariant, for: .normal)
         setTitleColor(.primaryVariant, for: .highlighted)
         layer.borderWidth = 1
         layer.borderColor = UIColor.primary.cgColor

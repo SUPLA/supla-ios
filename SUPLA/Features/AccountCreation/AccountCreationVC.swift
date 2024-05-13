@@ -204,7 +204,7 @@ class AccountCreationVC: BaseViewControllerVM<AccountCreationViewState, AccountC
         deleteButton.setTitle(Strings.Profiles.delete, for: .normal)
         deleteButton.backgroundColor = .background
         deleteButton.layer.borderWidth = 1
-        deleteButton.layer.borderColor = UIColor.suplaGreenBackground.cgColor
+        deleteButton.layer.borderColor = UIColor.primary.cgColor
 
         [adFormEmailAuth, adFormAccessIdAuth].forEach {
             $0?.translatesAutoresizingMaskIntoConstraints = false

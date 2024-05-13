@@ -289,7 +289,7 @@ final class UpdateChannelGroupTotalValueUseCaseTests: UseCaseTest<[Int32]> {
            let firstRelationValue = groupTotalValue.values[0] as? RgbLightingGroupValue
         {
             XCTAssertEqual(groupTotalValue.values.count, 1)
-            XCTAssertEqual(firstRelationValue.color, UIColor.suplaGreen)
+            XCTAssertEqual(firstRelationValue.color, UIColor.primaryVariant)
             XCTAssertEqual(firstRelationValue.brightness, 15)
         } else {
             XCTFail("First group total value not created!")
@@ -326,7 +326,7 @@ final class UpdateChannelGroupTotalValueUseCaseTests: UseCaseTest<[Int32]> {
            let firstRelationValue = groupTotalValue.values[0] as? DimmerAndRgbLightingGroupValue
         {
             XCTAssertEqual(groupTotalValue.values.count, 1)
-            XCTAssertEqual(firstRelationValue.color, UIColor.suplaGreen)
+            XCTAssertEqual(firstRelationValue.color, UIColor.primaryVariant)
             XCTAssertEqual(firstRelationValue.brightness, 22)
             XCTAssertEqual(firstRelationValue.colorBrightness, 15)
         } else {

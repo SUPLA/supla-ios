@@ -170,7 +170,7 @@
                             </connections>
                         </button>
                     </subviews>
-                    <color key="backgroundColor" red="0.074509803920000006" green="0.65490196079999996" blue="0.1176470588" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <color key="backgroundColor" name="Colors/primary"/>
                     <constraints>
                         <constraint firstItem="WXz-xQ-dRF" firstAttribute="top" secondItem="Q9O-G8-Bs6" secondAttribute="top" constant="5" id="AWf-mA-qHA"/>
                         <constraint firstItem="rhE-dh-0nI" firstAttribute="top" secondItem="Q9O-G8-Bs6" secondAttribute="top" constant="5" id="Kh3-mm-eHD"/>
@@ -189,7 +189,7 @@
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rBR-By-Axn">
                     <rect key="frame" x="0.0" y="0.0" width="414" height="816"/>
-                    <color key="backgroundColor" red="0.074509803920000006" green="0.65490196079999996" blue="0.1176470588" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <color key="backgroundColor" name="Colors/primary"/>
                 </view>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -209,22 +209,22 @@
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fuT-LN-d5P">
-                    <rect key="frame" x="20" y="226" width="374" height="384"/>
+                    <rect key="frame" x="20" y="217" width="374" height="402"/>
                     <subviews>
                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="z_wave.png" translatesAutoresizingMaskIntoConstraints="NO" id="RUX-ah-dRw">
-                            <rect key="frame" x="40" y="0.0" width="294" height="179"/>
+                            <rect key="frame" x="40" y="0.0" width="294" height="179.5"/>
                             <constraints>
                                 <constraint firstAttribute="width" secondItem="RUX-ah-dRw" secondAttribute="height" multiplier="200:122" id="7Z9-Ld-awx"/>
                             </constraints>
                         </imageView>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="Z-Wave wizard" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TtI-D6-hIQ">
-                            <rect key="frame" x="0.0" y="229" width="374" height="41"/>
+                            <rect key="frame" x="0.0" y="229.5" width="374" height="44"/>
                             <fontDescription key="fontDescription" name="Quicksand-Regular" family="Quicksand" pointSize="35"/>
                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="8" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="nNP-Gd-gOi">
-                            <rect key="frame" x="10" y="300" width="354" height="84"/>
+                            <rect key="frame" x="10" y="303.5" width="354" height="98.5"/>
                             <string key="text">Welcome to the z-wave bridge configuration wizard. It will allow you to connect your z-wave devices to Supla. Tap "Next" to continue.</string>
                             <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="18"/>
                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -247,7 +247,7 @@
                     </constraints>
                 </view>
             </subviews>
-            <color key="backgroundColor" red="0.073665045200000001" green="0.65493297579999998" blue="0.1176083907" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color key="backgroundColor" name="Colors/primary"/>
             <constraints>
                 <constraint firstItem="fuT-LN-d5P" firstAttribute="leading" secondItem="2cU-pa-qd7" secondAttribute="leading" constant="20" id="6DA-Wg-kdf"/>
                 <constraint firstItem="fuT-LN-d5P" firstAttribute="centerY" secondItem="2cU-pa-qd7" secondAttribute="centerY" constant="-30" id="ECW-cA-q6P"/>
@@ -288,7 +288,7 @@
                     </constraints>
                 </view>
             </subviews>
-            <color key="backgroundColor" red="0.073665045200000001" green="0.65493297579999998" blue="0.1176083907" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color key="backgroundColor" name="Colors/primary"/>
             <constraints>
                 <constraint firstItem="cYl-uh-nSI" firstAttribute="leading" secondItem="rEs-AX-DWu" secondAttribute="leading" constant="20" id="9AP-VF-95a"/>
                 <constraint firstAttribute="trailing" secondItem="cYl-uh-nSI" secondAttribute="trailing" constant="20" id="kMO-0J-n5u"/>
@@ -373,7 +373,7 @@
                     </constraints>
                 </view>
             </subviews>
-            <color key="backgroundColor" red="0.073665045200000001" green="0.65493297579999998" blue="0.1176083907" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color key="backgroundColor" name="Colors/primary"/>
             <constraints>
                 <constraint firstItem="jzk-ZR-zz6" firstAttribute="top" relation="greaterThanOrEqual" secondItem="ydc-hf-0Ix" secondAttribute="top" constant="2" id="QRo-Tz-uiG"/>
                 <constraint firstAttribute="trailing" secondItem="jzk-ZR-zz6" secondAttribute="trailing" constant="20" id="R6Y-sf-qc9"/>
@@ -588,7 +588,7 @@
                     </constraints>
                 </view>
             </subviews>
-            <color key="backgroundColor" red="0.073665045200000001" green="0.65493297579999998" blue="0.1176083907" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color key="backgroundColor" name="Colors/primary"/>
             <constraints>
                 <constraint firstItem="Seq-PA-Mcb" firstAttribute="top" relation="greaterThanOrEqual" secondItem="Spn-8Q-4Px" secondAttribute="top" constant="5" id="7Ei-LA-fPP"/>
                 <constraint firstItem="Seq-PA-Mcb" firstAttribute="centerY" secondItem="Spn-8Q-4Px" secondAttribute="centerY" constant="-20" id="Afy-jQ-F1g"/>
@@ -640,7 +640,7 @@
                     </constraints>
                 </view>
             </subviews>
-            <color key="backgroundColor" red="0.073665045200000001" green="0.65493297579999998" blue="0.1176083907" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color key="backgroundColor" name="Colors/primary"/>
             <constraints>
                 <constraint firstItem="kmE-Ux-uFD" firstAttribute="leading" secondItem="4BU-4j-Xo1" secondAttribute="leading" constant="20" id="ElK-kc-VI1"/>
                 <constraint firstAttribute="trailing" secondItem="kmE-Ux-uFD" secondAttribute="trailing" constant="20" id="NUd-8l-REz"/>
@@ -901,7 +901,7 @@
                     </constraints>
                 </view>
             </subviews>
-            <color key="backgroundColor" red="0.073665045200000001" green="0.65493297579999998" blue="0.1176083907" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color key="backgroundColor" name="Colors/primary"/>
             <constraints>
                 <constraint firstItem="VWX-4j-B4k" firstAttribute="top" relation="greaterThanOrEqual" secondItem="WES-2i-Jt6" secondAttribute="top" id="Mh4-X8-iWI"/>
                 <constraint firstItem="VWX-4j-B4k" firstAttribute="leading" secondItem="WES-2i-Jt6" secondAttribute="leading" id="O95-1a-823"/>
@@ -982,7 +982,7 @@
                     </constraints>
                 </view>
             </subviews>
-            <color key="backgroundColor" red="0.073665045200000001" green="0.65493297579999998" blue="0.1176083907" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color key="backgroundColor" name="Colors/primary"/>
             <constraints>
                 <constraint firstItem="ihJ-TQ-zp5" firstAttribute="top" relation="greaterThanOrEqual" secondItem="Vtw-LY-8e7" secondAttribute="top" constant="5" id="7TN-vz-nzY"/>
                 <constraint firstAttribute="trailing" secondItem="ihJ-TQ-zp5" secondAttribute="trailing" constant="20" id="DvX-Qu-z34"/>
@@ -1008,11 +1008,14 @@
         <namedColor name="Colors/on_background">
             <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
+        <namedColor name="Colors/primary">
+            <color red="0.070588235294117646" green="0.65490196078431373" blue="0.11764705882352941" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <namedColor name="Colors/surface">
             <color red="0.99607843137254903" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <systemColor name="systemRedColor">
-            <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

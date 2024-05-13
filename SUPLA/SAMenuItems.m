@@ -37,7 +37,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 - (void)menuItemsInit {
     _btnCount = 0;
-    self.backgroundColor = [UIColor mainMenuColor];
+    self.backgroundColor = [UIColor primary];
     self.translatesAutoresizingMaskIntoConstraints = YES;
 }
 
@@ -137,7 +137,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         [self addBtnWithId:SAMenuItemIdDeviceCatalog imageNamed:@"Menu/icon_device_catalog" text:[LegacyStrings localized:@"menu_device_catalog"]];
     }
     if (BrandingConfigurationMenu.Z_WAVE_OPTION_VISIBLE) {
-        [self addBtnWithId:SAMenuItemIdZWave imageNamed:@"z_wave_btn" text:NSLocalizedString(@"Z-Wave bridge", nil)];
+        [self addBtnWithId:SAMenuItemIdZWave imageNamed:@"Menu/icon_z_wave" text:NSLocalizedString(@"Z-Wave bridge", nil)];
     }
     [self addBtnWithId:SAMenuItemIdNotifications imageNamed:@"icon_notification" text:[LegacyStrings localized:@"menu_notifications"]];
     if (BrandingConfigurationMenu.ABOUT_OPTION_VISIBLE) {

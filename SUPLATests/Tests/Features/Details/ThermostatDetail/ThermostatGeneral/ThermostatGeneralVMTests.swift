@@ -158,7 +158,7 @@ final class ThermostatGeneralVMTests: ViewModelTest<ThermostatGeneralViewState, 
             XCTAssertEqual($0.plusButtonEnabled, true)
             XCTAssertEqual($0.minusButtonEnabled, true)
             XCTAssertEqual($0.modeIndicatorColor, .primary)
-            XCTAssertEqual($0.powerIconColor, .primary)
+            XCTAssertEqual($0.powerIconColor, .suplaGreen)
             XCTAssertEqual($0.controlButtonsEnabled, true)
             XCTAssertEqual($0.configMinMaxHidden, false)
         }
@@ -245,7 +245,7 @@ final class ThermostatGeneralVMTests: ViewModelTest<ThermostatGeneralViewState, 
             XCTAssertEqual($0.setpointText, "23.0")
             XCTAssertEqual($0.plusButtonEnabled, true)
             XCTAssertEqual($0.minusButtonEnabled, true)
-            XCTAssertEqual($0.powerIconColor, .primary)
+            XCTAssertEqual($0.powerIconColor, .suplaGreen)
             XCTAssertEqual($0.controlButtonsEnabled, true)
             XCTAssertEqual($0.configMinMaxHidden, false)
         }

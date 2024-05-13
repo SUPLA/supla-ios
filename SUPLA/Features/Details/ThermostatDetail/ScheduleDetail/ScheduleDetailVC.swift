@@ -199,6 +199,8 @@ fileprivate class ButtonsRowView: HorizontalyScrollableView<RoundedControlButton
             buttonView.translatesAutoresizingMaskIntoConstraints = false
             buttonView.icon = program.icon != nil ? .suplaIcon(icon: program.icon) : nil
             buttonView.text = program.text
+            buttonView.iconColor = .black
+            buttonView.active = false
             buttonView.textFont = .scheduleDetailButton
             buttonView.type = .neutral
             buttonView.tapObservable
