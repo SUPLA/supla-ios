@@ -21,7 +21,8 @@ protocol GeneralPurposeMeterItemRepository:
     BaseMeasurementRepository<SuplaCloudClient.GeneralPurposeMeter, SAGeneralPurposeMeterItem> where
     T == SAGeneralPurposeMeterItem
 {
-    func deleteAll(for profile: AuthProfileItem, and channelRemoteId: Int32) -> Observable<Void>
+    func deleteAll(for profile: AuthProfileItem) -> Observable<Void>
+    func deleteAll(remoteId: Int32, profile: AuthProfileItem) -> Observable<Void>
     func findMeasurements(remoteId: Int32, profile: AuthProfileItem, startDate: Date, endDate: Date) -> Observable<[SAGeneralPurposeMeterItem]>
     func findMinTimestamp(remoteId: Int32, profile: AuthProfileItem) -> Observable<TimeInterval?>
     func findMaxTimestamp(remoteId: Int32, profile: AuthProfileItem) -> Observable<TimeInterval?>
@@ -40,14 +41,14 @@ final class GeneralPurposeMeterItemRepositoryImpl: Repository<SAGeneralPurposeMe
     
     @Singleton<SuplaCloudService> private var cloudService
     
-    func deleteAll(for profile: AuthProfileItem, and channelRemoteId: Int32) -> Observable<Void> {
+    func deleteAll(remoteId: Int32, profile: AuthProfileItem) -> Observable<Void> {
         deleteAll(
             SAGeneralPurposeMeterItem
                 .fetchRequest()
-                .filtered(by: NSPredicate(format: "profile = %@ AND channel_id = %d", profile, channelRemoteId))
+                .filtered(by: NSPredicate(format: "profile = %@ AND channel_id = %d", profile, remoteId))
         )
     }
-    
+
     func deleteAll(for profile: AuthProfileItem) -> RxSwift.Observable<Void> {
         deleteAll(
             SAGeneralPurposeMeterItem

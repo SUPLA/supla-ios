@@ -338,6 +338,9 @@
 		A50B5D1A2BECC7DF00918D18 /* FacadeBlindValue+Test.swift in Sources */ = {isa = PBXBuildFile; fileRef = A50B5D192BECC7DF00918D18 /* FacadeBlindValue+Test.swift */; };
 		A50B5D1D2BECDAAE00918D18 /* RollerShutterVMTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A50B5D1C2BECDAAE00918D18 /* RollerShutterVMTests.swift */; };
 		A50B5D202BECE8C500918D18 /* FacadeBlindsVMTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A50B5D1F2BECE8C500918D18 /* FacadeBlindsVMTests.swift */; };
+		A50B5D222BEE167300918D18 /* DeleteChannelMeasurementsUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A50B5D212BEE167300918D18 /* DeleteChannelMeasurementsUseCase.swift */; };
+		A50B5D242BEE4CE600918D18 /* UIViewController+Toast.swift in Sources */ = {isa = PBXBuildFile; fileRef = A50B5D232BEE4CE600918D18 /* UIViewController+Toast.swift */; };
+		A50B5D262BEE59B700918D18 /* DeleteChannelMeasurementsUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A50B5D252BEE59B700918D18 /* DeleteChannelMeasurementsUseCaseTests.swift */; };
 		A50CD3D12A4D78610012DD9B /* libc++abi.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = A50CD3D02A4D78610012DD9B /* libc++abi.tbd */; };
 		A50CD3D32A4D82ED0012DD9B /* DateProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A50CD3D22A4D82ED0012DD9B /* DateProvider.swift */; };
 		A50CD3D62A4D99E60012DD9B /* UpdateTokenTaskTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A50CD3D52A4D99E60012DD9B /* UpdateTokenTaskTests.swift */; };
@@ -1620,6 +1623,9 @@
 		A50B5D192BECC7DF00918D18 /* FacadeBlindValue+Test.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FacadeBlindValue+Test.swift"; sourceTree = "<group>"; };
 		A50B5D1C2BECDAAE00918D18 /* RollerShutterVMTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RollerShutterVMTests.swift; sourceTree = "<group>"; };
 		A50B5D1F2BECE8C500918D18 /* FacadeBlindsVMTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacadeBlindsVMTests.swift; sourceTree = "<group>"; };
+		A50B5D212BEE167300918D18 /* DeleteChannelMeasurementsUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteChannelMeasurementsUseCase.swift; sourceTree = "<group>"; };
+		A50B5D232BEE4CE600918D18 /* UIViewController+Toast.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Toast.swift"; sourceTree = "<group>"; };
+		A50B5D252BEE59B700918D18 /* DeleteChannelMeasurementsUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteChannelMeasurementsUseCaseTests.swift; sourceTree = "<group>"; };
 		A50CD3D02A4D78610012DD9B /* libc++abi.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++abi.tbd"; path = "usr/lib/libc++abi.tbd"; sourceTree = SDKROOT; };
 		A50CD3D22A4D82ED0012DD9B /* DateProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateProvider.swift; sourceTree = "<group>"; };
 		A50CD3D52A4D99E60012DD9B /* UpdateTokenTaskTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateTokenTaskTests.swift; sourceTree = "<group>"; };
@@ -4403,6 +4409,7 @@
 				A54A068D2AFB6F9200C03DBC /* LoadChannelWithChildrenMeasurementsUseCaseTests.swift */,
 				A5E40B5A2B8606F400DB6ABE /* GetChannelValueStringUseCaseTests.swift */,
 				A5E40B702B8699CC00DB6ABE /* LoadChannelConfigUseCaseTests.swift */,
+				A50B5D252BEE59B700918D18 /* DeleteChannelMeasurementsUseCaseTests.swift */,
 			);
 			path = Channel;
 			sourceTree = "<group>";
@@ -4948,6 +4955,7 @@
 				A57668FE2AEFB96A0025509D /* Double+Ext.swift */,
 				A55A8D7C2BA9A15200C540D4 /* UIImageView+Ext.swift */,
 				A55A8D972BAB28CC00C540D4 /* ScopeFunctions.swift */,
+				A50B5D232BEE4CE600918D18 /* UIViewController+Toast.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -5033,6 +5041,7 @@
 				A5B3CBDE2B62504D00F95AC3 /* GetChannelValueUseCase.swift */,
 				A5B3CBF72B6260DD00F95AC3 /* GetChannelValueStringUseCase.swift */,
 				A503ABAC2B67AC44008CDA1F /* LoadChannelConfigUseCase.swift */,
+				A50B5D212BEE167300918D18 /* DeleteChannelMeasurementsUseCase.swift */,
 			);
 			path = Channel;
 			sourceTree = "<group>";
@@ -5930,6 +5939,7 @@
 				010C8780249A4D55002FE526 /* SAInfoVC.m in Sources */,
 				01F8857522E6167100D18373 /* SADownloadUserIcons.m in Sources */,
 				AEED1FD12737F3BE00DE6289 /* ProfileManager.swift in Sources */,
+				A50B5D242BEE4CE600918D18 /* UIViewController+Toast.swift in Sources */,
 				018E67CF22C8CA0A00FF1427 /* SADownloadElectricityMeasurements.m in Sources */,
 				A55A8D8E2BAB101600C540D4 /* ReadGroupByRemoteIdUseCase.swift in Sources */,
 				A5B3CBE72B6258F900F95AC3 /* GpmValueProvider.swift in Sources */,
@@ -6184,6 +6194,7 @@
 				A5B3CBE52B62546800F95AC3 /* DoubleValueParser.swift in Sources */,
 				A5E4904A2A3C6215006801FE /* ChannelHeight.swift in Sources */,
 				A57668F72AEAA8870025509D /* ChartParameters.swift in Sources */,
+				A50B5D222BEE167300918D18 /* DeleteChannelMeasurementsUseCase.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -6299,6 +6310,7 @@
 				A573B0A62A600733001E19D0 /* TimerDetailVMTests.swift in Sources */,
 				A50B5D202BECE8C500918D18 /* FacadeBlindsVMTests.swift in Sources */,
 				A54A066F2AF540AD00C03DBC /* ChartDataAggregationTests.swift in Sources */,
+				A50B5D262BEE59B700918D18 /* DeleteChannelMeasurementsUseCaseTests.swift in Sources */,
 				A5519B342B6D32DE00811747 /* ThermometerAndHumidityValueProviderTest.swift in Sources */,
 				A573B0AA2A601A57001E19D0 /* ReadChannelByRemoteIdUseCaseTests.swift in Sources */,
 				A59AB8A82A306B4E00D91F1F /* NSManagedObject+Test.swift in Sources */,

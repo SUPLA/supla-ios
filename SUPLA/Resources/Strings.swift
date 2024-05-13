@@ -122,6 +122,8 @@ struct Strings {
         static let noDataInSelectedPeriod = "history_no_data_in_selected_period".toLocalized()
         static let loading = "Retrieving data from the server...".toLocalized()
         static let historyDisabled = "history_disabled".toLocalized()
+        static let historyDeleteData = "history_delete_data".toLocalized()
+        static let historyWaitForDownload = "history_wait_for_download_completed".toLocalized()
         
         static let minutes = "Minutes".toLocalized()
         static let hours = "Hours".toLocalized()

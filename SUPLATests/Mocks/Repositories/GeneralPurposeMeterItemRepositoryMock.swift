@@ -20,18 +20,18 @@ import RxSwift
 @testable import SUPLA
 
 final class GeneralPurposeMeterItemRepositoryMock: BaseRepositoryMock<SAGeneralPurposeMeterItem>, GeneralPurposeMeterItemRepository {
-    var deleteAllParameters: [AuthProfileItem] = []
-    var deleteAllReturns: Observable<Void> = .empty()
-    func deleteAll(for profile: AuthProfileItem) -> Observable<Void> {
-        deleteAllParameters.append(profile)
-        return deleteAllReturns
+    var deleteAllForRemoteIdAndProfileParameters: [(Int32, AuthProfileItem)] = []
+    var deleteAllForRemoteIdAndProfileReturns: Observable<Void> = .empty()
+    func deleteAll(remoteId: Int32, profile: AuthProfileItem) -> RxSwift.Observable<Void> {
+        deleteAllForRemoteIdAndProfileParameters.append((remoteId, profile))
+        return deleteAllForRemoteIdAndProfileReturns
     }
     
-    var deleteAllForProfileAndChannelParameters: [(AuthProfileItem, Int32)] = []
-    var deleteAllForProfileAndChannelReturns: Observable<Void> = .empty()
-    func deleteAll(for profile: AuthProfileItem, and channelRemoteId: Int32) -> Observable<Void> {
-        deleteAllForProfileAndChannelParameters.append((profile, channelRemoteId))
-        return deleteAllForProfileAndChannelReturns
+    var deleteAllForProfileParameters: [AuthProfileItem] = []
+    var deleteAllForProfileReturns: Observable<Void> = .empty()
+    func deleteAll(for profile: AuthProfileItem) -> Observable<Void> {
+        deleteAllForProfileParameters.append(profile)
+        return deleteAllForProfileReturns
     }
     
     var findMeasurementsParameters: [(Int32, AuthProfileItem, Date, Date)] = []

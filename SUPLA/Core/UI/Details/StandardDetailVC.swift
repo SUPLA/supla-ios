@@ -16,7 +16,7 @@
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 
-class StandardDetailVC<S : ViewState, E : ViewEvent, VM : StandardDetailVM<S, E>> : SuplaTabBarController<S, E, VM> {
+class StandardDetailVC<S : ViewState, E : ViewEvent, VM : StandardDetailVM<S, E>> : SuplaTabBarController<S, E, VM>, NavigationItemProvider {
     
     @Singleton<RuntimeConfig> private var runtimeConfig
     @Singleton<GlobalSettings> private var settings
@@ -160,7 +160,7 @@ class StandardDetailVC<S : ViewState, E : ViewEvent, VM : StandardDetailVM<S, E>
     }
     
     private func thermostatHistoryDetail() -> ThermostatHistoryDetailVC {
-        let vc = ThermostatHistoryDetailVC(remoteId: item.remoteId)
+        let vc = ThermostatHistoryDetailVC(remoteId: item.remoteId, navigationItemProvider: self)
         vc.navigationCoordinator = navigationCoordinator
         vc.tabBarItem = UITabBarItem(
             title: settings.showBottomLabels ? Strings.StandardDetail.tabHistory : nil,
@@ -171,7 +171,7 @@ class StandardDetailVC<S : ViewState, E : ViewEvent, VM : StandardDetailVM<S, E>
     }
     
     private func thermometerHistoryDetail() -> ThermometerHistoryDetailVC {
-        let vc = ThermometerHistoryDetailVC(remoteId: item.remoteId)
+        let vc = ThermometerHistoryDetailVC(remoteId: item.remoteId, navigationItemProvider: self)
         vc.navigationCoordinator = navigationCoordinator
         vc.tabBarItem = UITabBarItem(
             title: settings.showBottomLabels ? Strings.StandardDetail.tabHistory : nil,
@@ -194,7 +194,7 @@ class StandardDetailVC<S : ViewState, E : ViewEvent, VM : StandardDetailVM<S, E>
     }
     
     private func gpmHistoryDetail() -> GpmHistoryDetailVC {
-        let vc = GpmHistoryDetailVC(remoteId: item.remoteId)
+        let vc = GpmHistoryDetailVC(remoteId: item.remoteId, navigationItemProvider: self)
         vc.navigationCoordinator = navigationCoordinator
         vc.tabBarItem = UITabBarItem(
             title: settings.showBottomLabels ? Strings.StandardDetail.tabHistory : nil,
@@ -237,6 +237,10 @@ class StandardDetailVC<S : ViewState, E : ViewEvent, VM : StandardDetailVM<S, E>
         )
         return vc
     }
+}
+
+protocol NavigationItemProvider: AnyObject {
+    var navigationItem: UINavigationItem { get }
 }
 
 fileprivate enum DetailTabTag: Int {

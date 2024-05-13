@@ -461,6 +461,8 @@
 "history_no_data_available" = "Brak pomiarów";
 "history_no_data_in_selected_period" = "Brak danych w wybranym okresie czasu.";
 "history_disabled" = "Historia jest wyłączona dla tego kanału.";
+"history_delete_data" = "Usuń historię i pobierz ponownie";
+"history_wait_for_download_completed" = "Proszę czekać, pobieram...";
 "chart_marker_opening" = "Otwarcie";
 "chart_marker_closing" = "Zamknięcie";
 

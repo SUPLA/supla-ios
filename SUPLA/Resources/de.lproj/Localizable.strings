@@ -431,6 +431,8 @@
 "history_no_data_available" = "Kein Daten verfügbar";
 "history_no_data_in_selected_period" = "Keine Daten für das Diagramm in ausgewälte Zeitraum.";
 "history_disabled" = "Der Verlauf ist für diesen Kanal deaktiviert.";
+"history_delete_data" = "Historie löschen und neuladen";
+"history_wait_for_download_completed" = "Bitte warten, herunterladen...";
 
 /* Notifications */
 "notifications_log_profile" = "Konto:";

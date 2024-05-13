@@ -23,6 +23,7 @@ protocol TempHumidityMeasurementItemRepository:
     where T == SATempHumidityMeasurementItem
 {
     func deleteAll(for profile: AuthProfileItem) -> Observable<Void>
+    func deleteAll(remoteId: Int32, profile: AuthProfileItem) -> Observable<Void>
     func findMeasurements(remoteId: Int32, profile: AuthProfileItem, startDate: Date, endDate: Date) -> Observable<[SATempHumidityMeasurementItem]>
     func findMinTimestamp(remoteId: Int32, profile: AuthProfileItem) -> Observable<TimeInterval?>
     
@@ -43,6 +44,10 @@ final class TempHumidityMeasurementItemRepositoryImpl: Repository<SATempHumidity
     
     func deleteAll(for profile: AuthProfileItem) -> Observable<Void> {
         deleteAll(SATempHumidityMeasurementItem.fetchRequest().filtered(by: NSPredicate(format: "profile = %@", profile)))
+    }
+    
+    func deleteAll(remoteId: Int32, profile: AuthProfileItem) -> Observable<Void> {
+        deleteAll(SATempHumidityMeasurementItem.fetchRequest().filtered(by: NSPredicate(format: "channel_id = %d AND profile = %@", remoteId, profile)))
     }
     
     func findMeasurements(remoteId: Int32, profile: AuthProfileItem, startDate: Date, endDate: Date) -> Observable<[SATempHumidityMeasurementItem]> {

@@ -48,6 +48,7 @@ extension UIImage {
     static let iconVisible = UIImage(named: .Icons.visible)
     static let iconInvisible = UIImage(named: .Icons.invisible)
     static let iconEmpty = UIImage(named: .Icons.empty)
+    static let iconMore = UIImage(named: .Icons.more)
     
     static let iconWarning = UIImage(named: .Icons.warning)
     static let iconError = UIImage(named: .Icons.error)

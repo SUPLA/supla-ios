@@ -22,12 +22,18 @@ import RxSwift
 
 final class TemperatureMeasurementItemRepositoryMock: BaseRepositoryMock<SATemperatureMeasurementItem>, TemperatureMeasurementItemRepository {
     
-    var deleteAllObservable: Observable<Void> = Observable.empty()
-    var deleteAllCounter = 0
+    var deleteAllForRemoteIdAndProfileReturns: Observable<Void> = Observable.empty()
+    var deleteAllForRemoteIdAndProfileParameters: [(Int32, AuthProfileItem)] = []
+    func deleteAll(remoteId: Int32, profile: AuthProfileItem) -> RxSwift.Observable<Void> {
+        deleteAllForRemoteIdAndProfileParameters.append((remoteId, profile))
+        return deleteAllForRemoteIdAndProfileReturns
+    }
     
+    var deleteAllForProfileReturns: Observable<Void> = Observable.empty()
+    var deleteAllForProfileParameters: [AuthProfileItem] = []
     func deleteAll(for profile: AuthProfileItem) -> Observable<Void> {
-        deleteAllCounter += 1
-        return deleteAllObservable
+        deleteAllForProfileParameters.append(profile)
+        return deleteAllForProfileReturns
     }
     
     var findMeasurementsParameters: [(Int32, AuthProfileItem, Date, Date)] = []

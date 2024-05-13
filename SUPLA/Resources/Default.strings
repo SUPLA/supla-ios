@@ -184,6 +184,8 @@
 "history_no_data_available" = "There are no measurements available yet";
 "history_no_data_in_selected_period" = "No chart data available in selected time period.";
 "history_disabled" = "History is disabled for this channel.";
+"history_delete_data" = "Delete history and download again";
+"history_wait_for_download_completed" = "Please wait, downloading...";
 "chart_marker_opening" = "Open";
 "chart_marker_closing" = "Close";
 "Minutes" = "Minuty";

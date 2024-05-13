@@ -32,4 +32,14 @@ extension SAChannel {
             false
         }
     }
+
+    func hasHistory() -> Bool {
+        switch (self.func) {
+            case SUPLA_CHANNELFNC_THERMOMETER,
+                 SUPLA_CHANNELFNC_HUMIDITYANDTEMPERATURE,
+                 SUPLA_CHANNELFNC_GENERAL_PURPOSE_METER,
+                 SUPLA_CHANNELFNC_GENERAL_PURPOSE_MEASUREMENT: true
+            default: false
+        }
+    }
 }
