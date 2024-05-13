@@ -619,7 +619,7 @@ struct ThermostatGeneralViewState: ViewState {
             if ((off && !weeklyScheduleActive) || offline) {
                 return .red
             } else {
-                return .primary
+                return .suplaGreen
             }
         }
     }

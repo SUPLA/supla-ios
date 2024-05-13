@@ -48,11 +48,11 @@ class SuplaNavigationController: UINavigationController {
     }
     
     private func configure() {
-        view.backgroundColor = .suplaGreenBackground
+        view.backgroundColor = .primary
         navigationBar.tintColor = .white
-        navigationBar.backgroundColor = .suplaGreenBackground
+        navigationBar.backgroundColor = .primary
         extendedLayoutIncludesOpaqueBars = false
-        navigationBar.barTintColor = .suplaGreenBackground
+        navigationBar.barTintColor = .primary
     }
     
     

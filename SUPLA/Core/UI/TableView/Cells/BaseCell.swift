@@ -157,13 +157,13 @@ class BaseCell<T: BaseCellData>: MGSwipeTableCell {
     }()
     
     private lazy var leftButton: CellButton = {
-        let button = CellButton(title: "", backgroundColor: .onLine())!
+        let button = CellButton(title: "", backgroundColor: .primary)!
         button.addTarget(self, action: #selector(onButtonTap(_:)), for: .touchUpInside)
         return button
     }()
 
     private lazy var rightButton: CellButton = {
-        let button = CellButton(title: "", backgroundColor: .onLine())!
+        let button = CellButton(title: "", backgroundColor: .primary)!
         button.addTarget(self, action: #selector(onButtonTap(_:)), for: .touchUpInside)
         return button
     }()
@@ -516,7 +516,7 @@ class CellStatusIndicatorView: UIView {
     }
     
     func configure(filled: Bool, online: Bool) {
-        let color = online ? UIColor.primary : UIColor.error
+        let color = online ? UIColor.primaryVariant : UIColor.error
         if (filled) {
             layer.borderColor = color.cgColor
             backgroundColor = color

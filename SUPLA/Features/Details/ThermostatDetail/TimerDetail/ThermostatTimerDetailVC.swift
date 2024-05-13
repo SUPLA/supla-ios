@@ -62,6 +62,7 @@ class ThermostatTimerDetailVC: BaseViewControllerVM<ThermostatTimerDetailViewSta
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = .body2
         label.text = Strings.TimerDetail.cancelThermostat
+        label.textColor = .onBackground
         return label
     }()
     

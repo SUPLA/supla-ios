@@ -47,7 +47,6 @@ NS_ASSUME_NONNULL_BEGIN
 +(nonnull UIColor*)chartHumidityColor;
 +(nonnull UIColor*)chartIncrementalValueColor;
 +(nonnull UIColor*)menuSeparatorColor;
-+(nonnull UIColor*)mainMenuColor;
 +(nonnull UIColor*)vlCfgButtonColor;
 +(nonnull UIColor*)diwInputOptionSelected;
 +(UIColor*)transformToColor:(id)obj;

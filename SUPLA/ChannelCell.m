@@ -78,7 +78,7 @@
     self.leftSwipeSettings.transition = MGSwipeTransitionRotate3D;
     self.rightSwipeSettings.transition = MGSwipeTransitionRotate3D;
     
-    self.right_OnlineStatus.onlineColor = [UIColor onLine];
+    self.right_OnlineStatus.onlineColor = [UIColor primaryVariant];
     self.right_OnlineStatus.offlineColor = [UIColor offLine];
     self.right_OnlineStatus.borderColor = [UIColor statusBorder];
     self.contentView.backgroundColor = [UIColor channelCell];
@@ -393,7 +393,7 @@
             if ( br ) {
                 [br setButtonWidth:105];
                 [br.titleLabel setFont:[UIFont fontWithName:@"Quicksand" size:16]];
-                br.backgroundColor = [UIColor onLine];
+                br.backgroundColor = [UIColor primary];
                 [self btn:br SetAction:@selector(rightTouchDown:)];
                 self.rightButtons = @[br];
             }
@@ -401,7 +401,7 @@
             if ( bl ) {
                 [bl setButtonWidth:105];
                 [bl.titleLabel setFont:[UIFont fontWithName:@"Quicksand" size:16]];
-                bl.backgroundColor = [UIColor onLine];
+                bl.backgroundColor = [UIColor primary];
                 [self btn:bl SetAction:@selector(leftTouchDown:)];
                 self.leftButtons = @[bl];
             }

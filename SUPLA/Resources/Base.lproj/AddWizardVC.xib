@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="22505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="32700.99.1234" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22504"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22684"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -162,7 +162,7 @@
                             </connections>
                         </button>
                     </subviews>
-                    <color key="backgroundColor" red="0.074509803921568626" green="0.65490196078431373" blue="0.11764705882352941" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <color key="backgroundColor" name="Colors/primary"/>
                     <constraints>
                         <constraint firstItem="kEz-V1-szv" firstAttribute="leading" secondItem="fGm-C1-0WE" secondAttribute="trailing" id="ANb-5B-o79"/>
                         <constraint firstItem="kEz-V1-szv" firstAttribute="top" secondItem="jQ6-hO-PdQ" secondAttribute="top" constant="5" id="KHu-SC-aiv"/>
@@ -181,10 +181,10 @@
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iPy-YB-RiH">
                     <rect key="frame" x="0.0" y="0.0" width="393" height="772"/>
-                    <color key="backgroundColor" red="0.074509803920000006" green="0.65490196079999996" blue="0.1176470588" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <color key="backgroundColor" name="Colors/primary"/>
                 </view>
             </subviews>
-            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color key="backgroundColor" name="Colors/primary"/>
             <constraints>
                 <constraint firstItem="iPy-YB-RiH" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="C1w-su-JV1"/>
                 <constraint firstAttribute="trailing" secondItem="iPy-YB-RiH" secondAttribute="trailing" id="FQX-zH-3rb"/>
@@ -226,7 +226,7 @@
                     <nil key="highlightedColor"/>
                 </label>
             </subviews>
-            <color key="backgroundColor" red="0.074509803920000006" green="0.65490196079999996" blue="0.1176470588" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color key="backgroundColor" name="Colors/primary"/>
             <constraints>
                 <constraint firstItem="BIm-R9-3vC" firstAttribute="centerY" secondItem="7B1-OE-46N" secondAttribute="centerY" priority="750" constant="-140" id="5vP-hM-Q4B"/>
                 <constraint firstAttribute="trailing" secondItem="vbb-Xd-lIx" secondAttribute="trailing" constant="15" id="7nF-7Q-4De"/>
@@ -331,7 +331,7 @@
                     </constraints>
                 </view>
             </subviews>
-            <color key="backgroundColor" red="0.074509803920000006" green="0.65490196079999996" blue="0.1176470588" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color key="backgroundColor" name="Colors/primary"/>
             <constraints>
                 <constraint firstItem="Igv-nx-eY7" firstAttribute="centerX" secondItem="S8z-fu-dma" secondAttribute="centerX" id="39g-jf-2Q4"/>
                 <constraint firstAttribute="trailing" secondItem="z7z-ZO-PdB" secondAttribute="trailing" constant="30" id="3fJ-tZ-14S"/>
@@ -441,7 +441,7 @@ Press Next to continue.
                     <nil key="highlightedColor"/>
                 </label>
             </subviews>
-            <color key="backgroundColor" red="0.074509803920000006" green="0.65490196079999996" blue="0.1176470588" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color key="backgroundColor" name="Colors/primary"/>
             <constraints>
                 <constraint firstItem="Ej4-ru-hOy" firstAttribute="leading" secondItem="x6e-cq-S7L" secondAttribute="leading" constant="5" id="37q-c9-7pb"/>
                 <constraint firstItem="ulw-KV-Mde" firstAttribute="centerY" secondItem="x6e-cq-S7L" secondAttribute="centerY" priority="750" constant="-140" id="5o3-2T-L3X"/>
@@ -501,7 +501,7 @@ When the connection has been set, go back to the application and  continue addin
                     <nil key="highlightedColor"/>
                 </label>
             </subviews>
-            <color key="backgroundColor" red="0.074509803920000006" green="0.65490196079999996" blue="0.1176470588" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color key="backgroundColor" name="Colors/primary"/>
             <constraints>
                 <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="a01-dG-nhT" secondAttribute="bottom" constant="10" id="2Iu-Iv-Q7m"/>
                 <constraint firstItem="a01-dG-nhT" firstAttribute="top" secondItem="LmT-sv-XIj" secondAttribute="bottom" constant="20" id="2Qv-Q2-WQA"/>
@@ -534,7 +534,7 @@ When the connection has been set, go back to the application and  continue addin
                     <nil key="highlightedColor"/>
                 </label>
             </subviews>
-            <color key="backgroundColor" red="0.074509803920000006" green="0.65490196079999996" blue="0.1176470588" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color key="backgroundColor" name="Colors/primary"/>
             <constraints>
                 <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="J9f-5g-EoU" secondAttribute="bottom" constant="20" id="1Bl-79-Uha"/>
                 <constraint firstAttribute="trailing" secondItem="J9f-5g-EoU" secondAttribute="trailing" constant="15" id="TSm-EN-BzN"/>
@@ -730,7 +730,7 @@ When the connection has been set, go back to the application and  continue addin
                     </constraints>
                 </view>
             </subviews>
-            <color key="backgroundColor" red="0.074509803920000006" green="0.65490196079999996" blue="0.1176470588" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color key="backgroundColor" name="Colors/primary"/>
             <constraints>
                 <constraint firstItem="aLR-E7-2Hi" firstAttribute="leading" secondItem="O29-9p-F9i" secondAttribute="leading" constant="15" id="34G-Uv-APN"/>
                 <constraint firstAttribute="trailing" secondItem="aLR-E7-2Hi" secondAttribute="trailing" constant="15" id="KPc-gP-5fl"/>
@@ -756,6 +756,9 @@ When the connection has been set, go back to the application and  continue addin
         <image name="wizard_ok.png" width="199.5" height="199.5"/>
         <namedColor name="Colors/on_primary">
             <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="Colors/primary">
+            <color red="0.070588235294117646" green="0.65490196078431373" blue="0.11764705882352941" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
     </resources>
 </document>

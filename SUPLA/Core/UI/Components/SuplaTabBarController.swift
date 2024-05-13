@@ -67,7 +67,7 @@ class SuplaTabBarController<S : ViewState, E : ViewEvent, VM : BaseViewModel<S, 
     
     private func setupView() {
         tabBar.barTintColor = .background
-        tabBar.tintColor = .primary
+        tabBar.tintColor = .suplaGreen
         tabBar.unselectedItemTintColor = .onBackground
         tabBar.isTranslucent = false
         ShadowValues.apply(toLayer: tabBar.layer)
