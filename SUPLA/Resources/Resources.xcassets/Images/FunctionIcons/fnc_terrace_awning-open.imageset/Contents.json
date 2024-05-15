@@ -1,0 +1,22 @@
+{
+  "images" : [
+    {
+      "filename" : "fnc_terrase_awning-closed.svg",
+      "idiom" : "universal"
+    },
+    {
+      "appearances" : [
+        {
+          "appearance" : "luminosity",
+          "value" : "dark"
+        }
+      ],
+      "filename" : "fnc_terrase_awning-closed-nm.svg",
+      "idiom" : "universal"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}

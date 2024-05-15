@@ -193,7 +193,8 @@ class ChannelBaseTableViewController<S: ViewState, E: ViewEvent, VM: BaseTableVi
             return cellIdForHvacThermostat
         case SUPLA_CHANNELFNC_CONTROLLINGTHEROOFWINDOW,
              SUPLA_CHANNELFNC_CONTROLLINGTHEFACADEBLIND,
-             SUPLA_CHANNELFNC_CONTROLLINGTHEROLLERSHUTTER:
+             SUPLA_CHANNELFNC_CONTROLLINGTHEROLLERSHUTTER,
+             SUPLA_CHANNELFNC_TERRACE_AWNING:
             return cellIdForIcon
         default:
             return cellIdForChannel

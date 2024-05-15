@@ -39,4 +39,22 @@ extension UIView {
         NSLayoutConstraint.deactivate(self.constraints)
         self.removeConstraints(self.constraints)
     }
+    
+    func drawPath(_ context: CGContext, fillColor: UIColor? = nil, strokeColor: UIColor? = nil, withShadow: Bool = false, _ pathProducer: () -> CGPath) {
+        context.beginPath()
+        context.addPath(pathProducer())
+        if (withShadow) {
+            context.setShadow(offset: ShadowValues.offset, blur: ShadowValues.blur)
+        } else {
+            context.setShadow(offset: .zero, blur: 0)
+        }
+        if let color = fillColor {
+            context.setFillColor(color.cgColor)
+            context.drawPath(using: .fill)
+        }
+        if let color = strokeColor {
+            context.setStrokeColor(color.cgColor)
+            context.drawPath(using: .stroke)
+        }
+    }
 }

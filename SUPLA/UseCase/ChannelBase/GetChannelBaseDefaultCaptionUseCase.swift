@@ -113,6 +113,8 @@ final class GetChannelBaseDefaultCaptionUseCaseImpl: GetChannelBaseDefaultCaptio
             return Strings.General.Channel.captionGeneralPurposeMeter
         case SUPLA_CHANNELFNC_CONTROLLINGTHEFACADEBLIND:
             return Strings.General.Channel.captionFacadeBlinds
+        case SUPLA_CHANNELFNC_TERRACE_AWNING:
+            return Strings.General.Channel.captionTerraceAwning
         default:
             return NSLocalizedString("Not supported function", comment: "")
         }
