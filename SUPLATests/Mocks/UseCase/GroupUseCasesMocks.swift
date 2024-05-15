@@ -56,3 +56,13 @@ final class ReadGroupByRemoteIdUseCaseMock: ReadGroupByRemoteIdUseCase {
         return returns
     }
 }
+
+final class GetGroupOnlineSummaryUseCaseMock: GetGroupOnlineSummaryUseCase {
+    
+    var returns: Observable<GroupOnlineSummary> = .empty()
+    var parameters: [Int32] = []
+    func invoke(remoteId: Int32) -> Observable<GroupOnlineSummary> {
+        parameters.append(remoteId)
+        return returns
+    }
+}

@@ -24,7 +24,7 @@
 @synthesize resultCode = _resultCode;
 @synthesize caption = _caption;
 
--(id)initWithResult:(TSC_SetCaptionResult *)result {
+-(id)initWithResult:(TSCD_SetCaptionResult *)result {
     if ([self init]) {
         if (result) {
             _remoteId = result->ID;
@@ -35,7 +35,7 @@
     return self;
 }
 
-+(SAChannelCaptionSetResult*) resultWithResult:(TSC_SetCaptionResult *)result {
++(SAChannelCaptionSetResult*) resultWithResult:(TSCD_SetCaptionResult *)result {
     return [[SAChannelCaptionSetResult alloc] initWithResult:result];
 }
 

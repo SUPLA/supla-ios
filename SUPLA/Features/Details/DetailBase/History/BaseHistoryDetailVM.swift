@@ -19,9 +19,9 @@
 import RxSwift
 
 class BaseHistoryDetailVM: BaseViewModel<BaseHistoryDetailViewState, BaseHistoryDetailViewEvent> {
-    
     @Singleton<DateProvider> var dateProvider
     @Singleton<ProfileRepository> var profileRepository
+    @Singleton<DeleteChannelMeasurementsUseCase> var deleteChannelMeasurementsUseCase
     
     override func defaultViewState() -> BaseHistoryDetailViewState { BaseHistoryDetailViewState() }
     
@@ -50,6 +50,7 @@ class BaseHistoryDetailVM: BaseViewModel<BaseHistoryDetailViewState, BaseHistory
     }
     
     func changeSetActive(setId: HistoryDataSet.Id) {
+        send(event: .clearHighlight)
         updateView { state in
             let chartData = state.chartData.activateSet(setId: setId)
             
@@ -145,7 +146,7 @@ class BaseHistoryDetailVM: BaseViewModel<BaseHistoryDetailViewState, BaseHistory
     
     func updateChartPosition(parameters: ChartParameters) {
         updateView {
-            return $0.changing(path: \.chartParameters, to: HideableValue(parameters, hide: true))
+            $0.changing(path: \.chartParameters, to: HideableValue(parameters, hide: true))
         }
         updateUserState()
     }
@@ -167,20 +168,20 @@ class BaseHistoryDetailVM: BaseViewModel<BaseHistoryDetailViewState, BaseHistory
             chartRange: chartRange,
             aggregation: aggregation
         )
-            .asDriverWithoutError()
-            .drive(onNext: { [weak self] in
-                @Singleton<UserStateHolder> var userStateHolder
+        .asDriverWithoutError()
+        .drive(onNext: { [weak self] in
+            @Singleton<UserStateHolder> var userStateHolder
                 
-                self?.handleMeasurements(
-                    data: $0.0,
-                    range: $0.1,
-                    chartState: userStateHolder.getTemperatureChartState(
-                        profileId: profileId,
-                        remoteId: remoteId
-                    )
+            self?.handleMeasurements(
+                data: $0.0,
+                range: $0.1,
+                chartState: userStateHolder.getTemperatureChartState(
+                    profileId: profileId,
+                    remoteId: remoteId
                 )
-            })
-            .disposed(by: self)
+            )
+        })
+        .disposed(by: self)
     }
     
     func restoreRange(chartState: TemperatureChartState) {
@@ -233,7 +234,7 @@ class BaseHistoryDetailVM: BaseViewModel<BaseHistoryDetailViewState, BaseHistory
     
     func customRangeEditSave(_ date: Date?) {
         updateView { state in
-            guard 
+            guard
                 let editValueType = state.editDate,
                 let range = state.range,
                 let date = date
@@ -255,6 +256,28 @@ class BaseHistoryDetailVM: BaseViewModel<BaseHistoryDetailViewState, BaseHistory
         
         if let state = currentState() { triggerMeasurementsLoad(state: state) }
         updateUserState()
+    }
+    
+    func deleteAndDownloadData(remoteId: Int32) {
+        if let state = currentState(),
+           state.downloadState?.isInProgress() == true
+        {
+            send(event: .showDownloadInProgress)
+            return
+        }
+        
+        updateView {
+            $0.changing(path: \.loading, to: true)
+                .changing(path: \.initialLoadStarted, to: false)
+                .changing(path: \.chartData, to: $0.chartData.empty())
+        }
+        
+        deleteChannelMeasurementsUseCase.invoke(remoteId: remoteId)
+            .asDriverWithoutError()
+            .drive(
+                onCompleted: { [weak self] in self?.triggerDataLoad(remoteId: remoteId) }
+            )
+            .disposed(by: self)
     }
     
     private func aggregations(_ currentRange: DaysRange, _ selectedAggregation: ChartDataAggregation? = .minutes) -> SelectableList<ChartDataAggregation> {
@@ -318,7 +341,7 @@ class BaseHistoryDetailVM: BaseViewModel<BaseHistoryDetailViewState, BaseHistory
     private func moveToDate(state: BaseHistoryDetailViewState, date: Date?) -> BaseHistoryDetailViewState {
         guard let range = state.ranges?.selected else { return state }
         
-        let rangeStart: Date? = switch(range) {
+        let rangeStart: Date? = switch (range) {
         case .day: date?.dayStart()
         case .week: date?.weekStart()
         case .month: date?.monthStart()
@@ -327,7 +350,7 @@ class BaseHistoryDetailVM: BaseViewModel<BaseHistoryDetailViewState, BaseHistory
         default: nil
         }
         
-        let rangeEnd: Date? = switch(range) {
+        let rangeEnd: Date? = switch (range) {
         case .day: date?.dayEnd()
         case .week: date?.weekEnd()
         case .month: date?.monthEnd()
@@ -351,9 +374,9 @@ class BaseHistoryDetailVM: BaseViewModel<BaseHistoryDetailViewState, BaseHistory
             return $0.changing(path: \.chartData, to: dataWithActiveSet)
                 .changing(path: \.withRightAxis, to: dataWithActiveSet.sets.first(where: { $0.setId.type.rightAxis() && $0.active }) != nil)
                 .changing(path: \.withLeftAxis, to: dataWithActiveSet.sets.first(where: { $0.setId.type.leftAxis() && $0.active }) != nil)
-                .changing(path: \.maxLeftAxis, to: dataWithActiveSet.getAxisMaxValue({ $0.leftAxis() }))
-                .changing(path: \.minLeftAxis, to: dataWithActiveSet.getAxisMinValueRaw({ $0.leftAxis() })?.minus(2))
-                .changing(path: \.maxRightAxis, to: dataWithActiveSet.getAxisMaxValue({ $0.rightAxis() }))
+                .changing(path: \.maxLeftAxis, to: dataWithActiveSet.getAxisMaxValue { $0.leftAxis() })
+                .changing(path: \.minLeftAxis, to: dataWithActiveSet.getAxisMinValueRaw { $0.leftAxis() }?.minus(2))
+                .changing(path: \.maxRightAxis, to: dataWithActiveSet.getAxisMaxValue { $0.rightAxis() })
                 .changing(path: \.minDate, to: range?.start ?? $0.minDate)
                 .changing(path: \.maxDate, to: range?.end ?? $0.maxDate)
                 .changing(path: \.loading, to: false)
@@ -385,6 +408,8 @@ class BaseHistoryDetailVM: BaseViewModel<BaseHistoryDetailViewState, BaseHistory
 }
 
 enum BaseHistoryDetailViewEvent: ViewEvent {
+    case clearHighlight
+    case showDownloadInProgress
 }
 
 struct BaseHistoryDetailViewState: ViewState {
@@ -413,75 +438,65 @@ struct BaseHistoryDetailViewState: ViewState {
     var editDate: RangeValueType? = nil
     
     var shiftRightEnabled: Bool {
-        get {
-            guard let endDate = range?.end,
-                  let maxDate = maxDate else { return false }
-            return endDate.timeIntervalSince1970 < maxDate.timeIntervalSince1970
-        }
+        guard let endDate = range?.end,
+              let maxDate = maxDate else { return false }
+        return endDate.timeIntervalSince1970 < maxDate.timeIntervalSince1970
     }
     
     var shiftLeftEnabled: Bool {
-        get {
-            guard let startDate = range?.start,
-                  let minDate = minDate else { return false }
-            return startDate.timeIntervalSince1970 > minDate.timeIntervalSince1970
-        }
+        guard let startDate = range?.start,
+              let minDate = minDate else { return false }
+        return startDate.timeIntervalSince1970 > minDate.timeIntervalSince1970
     }
     
     var emptyChartMessage: String {
-        get {
-            @Singleton<ValuesFormatter> var formatter
+        @Singleton<ValuesFormatter> var formatter
             
-            switch (downloadState) {
-            case .started: return Strings.Charts.refreshing
-            case .inProgress(let progress):
-                let percentage = formatter.percentageToString(progress)
-                return "\(Strings.Charts.loading) \(percentage)"
-            case .finished:
-                if (loading) {
-                    return Strings.Charts.refreshing
-                } else if (chartData.sets.first(where: { $0.active }) == nil) {
-                    return Strings.Charts.noDataSelected
-                } else if (minDate == nil && maxDate == nil) {
-                    return Strings.Charts.noDataAvailable
-                } else {
-                    return Strings.Charts.noDataInSelectedPeriod
-                }
-            case .failed: return Strings.Charts.refreshingFailed
-            default:
-                if (!loading && chartData.sets.isEmpty) {
-                    return Strings.Charts.noDataAvailable
-                } else {
-                    return Strings.Charts.refreshing
-                }
+        switch (downloadState) {
+        case .started: return Strings.Charts.refreshing
+        case .inProgress(let progress):
+            let percentage = formatter.percentageToString(progress)
+            return "\(Strings.Charts.loading) \(percentage)"
+        case .finished:
+            if (loading) {
+                return Strings.Charts.refreshing
+            } else if (chartData.sets.first(where: { $0.active }) == nil) {
+                return Strings.Charts.noDataSelected
+            } else if (minDate == nil && maxDate == nil) {
+                return Strings.Charts.noDataAvailable
+            } else {
+                return Strings.Charts.noDataInSelectedPeriod
+            }
+        case .failed: return Strings.Charts.refreshingFailed
+        default:
+            if (!loading && chartData.sets.isEmpty) {
+                return Strings.Charts.noDataAvailable
+            } else {
+                return Strings.Charts.refreshing
             }
         }
     }
     
     var paginationHidden: Bool {
-        get {
-            guard let range = ranges?.selected else { return true }
+        guard let range = ranges?.selected else { return true }
             
-            return switch (range) {
-            case .day, .week, .month, .quarter, .year, .allHistory: false
-            default: true
-            }
+        return switch (range) {
+        case .day, .week, .month, .quarter, .year, .allHistory: false
+        default: true
         }
     }
     
     var paginationAllowed: Bool {
-        get {
-            guard let range = ranges?.selected else { return false }
+        guard let range = ranges?.selected else { return false }
             
-            return switch (range) {
-            case .day, .week, .month, .quarter, .year: true
-            default: false
-            }
+        return switch (range) {
+        case .day, .week, .month, .quarter, .year: true
+        default: false
         }
     }
     
     var dateForEdit: Date? {
-        switch(editDate) {
+        switch (editDate) {
         case .start: range?.start
         case .end: range?.end
         default: nil

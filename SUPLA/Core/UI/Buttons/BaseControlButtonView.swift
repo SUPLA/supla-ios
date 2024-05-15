@@ -85,7 +85,7 @@ class BaseControlButtonView: UIView {
         didSet {
             layer.shadowColor = active ? type.pressedColor.cgColor : UIColor.black.cgColor
             layer.borderColor = active ? type.pressedColor.cgColor : UIColor.disabled.cgColor
-            textView.textColor = active ? type.textColor : .onBackground
+            textView.textColor = active ? type.textColor : type.inactiveColor
             iconView.tintColor = active ? type.textColor : iconColor
             innerShadowView.isHidden = !active
 
@@ -99,6 +99,7 @@ class BaseControlButtonView: UIView {
         text.font = .button
         text.isHidden = true
         text.textAlignment = .center
+        text.textColor = active ? type.textColor : type.inactiveColor
         return text
     }()
     
@@ -217,7 +218,7 @@ class BaseControlButtonView: UIView {
         layer.shadowRadius = 3
         layer.shadowColor = active ? type.pressedColor.cgColor : UIColor.black.cgColor
         layer.borderColor = active ? type.pressedColor.cgColor : UIColor.disabled.cgColor
-        textView.textColor = active ? type.textColor : .onBackground
+        textView.textColor = active ? type.textColor : type.inactiveColor
         iconView.tintColor = active ? type.textColor : iconColor
         innerShadowView.isHidden = active ? false : true
     }
@@ -253,9 +254,9 @@ class BaseControlButtonView: UIView {
         var pressedColor: UIColor {
             get {
                 switch(self) {
-                case .positive: return .primaryVariant
+                case .positive: return .green
                 case .negative: return .negativeBorder
-                case .neutral: return .onBackground
+                case .neutral: return .black
                 }
             }
         }
@@ -263,9 +264,19 @@ class BaseControlButtonView: UIView {
         var textColor: UIColor {
             get {
                 switch(self) {
-                case .positive: return .primary
+                case .positive: return .suplaGreen
                 case .negative: return .negativeBorder
-                case .neutral: return .onBackground
+                case .neutral: return .black
+                }
+            }
+        }
+        
+        var inactiveColor: UIColor {
+            get {
+                switch(self) {
+                case .positive: return .onBackground
+                case .negative: return .onBackground
+                case .neutral: return .black
                 }
             }
         }
@@ -274,10 +285,7 @@ class BaseControlButtonView: UIView {
     static func setupLayer(_ layer: CALayer) {
         layer.backgroundColor = UIColor.surface.cgColor
         
-        layer.shadowColor = UIColor.black.cgColor
-        layer.shadowOffset = CGSizeMake(0, 4)
-        layer.shadowRadius = 3
-        layer.shadowOpacity = 0.2
+        ShadowValues.apply(toButton: layer)
         
         layer.borderColor = UIColor.disabled.cgColor
         layer.borderWidth = 1

@@ -147,6 +147,10 @@ class MainNavigationCoordinator: BaseNavigationCoordinator {
         startFlow(coordinator: NotificationsLogNavigationCoordinator())
     }
     
+    func showDeviceCatalog() {
+        startFlow(coordinator: DeviceCatalogNavigationCoordinator())
+    }
+    
     func showAddWizard() {
         let avc = SAAddWizardVC(nibName: "AddWizardVC", bundle: nil)
         avc.modalPresentationStyle = .fullScreen
@@ -160,7 +164,10 @@ class MainNavigationCoordinator: BaseNavigationCoordinator {
     }
     
     func openCloud() {
-        let url = URL(string: "https://cloud.supla.org")!
+        openWeb(url: URL(string: "https://cloud.supla.org")!)
+    }
+    
+    func openWeb(url: URL) {
         UIApplication.shared.open(url, options: [:], completionHandler: nil)
     }
     
@@ -257,7 +264,7 @@ class MainNavigationCoordinator: BaseNavigationCoordinator {
     }
     
     func navigateToRollerShutterDetail(item: ItemBundle, pages: [DetailPage]) {
-        startFlow(coordinator: RollerShutterDetailVC.Coordinator(item: item, pages: pages))
+        startFlow(coordinator: WindowDetailVC.Coordinator(item: item, pages: pages))
     }
     
     // MARK: -

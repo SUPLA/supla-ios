@@ -21,7 +21,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #define SHORT_SEPARATOR_LEFT_MARGIN 70
 #define MENUITEM_HEIGHT 50
 #define FOOTER_HEIGHT 45
-#define IMAGE_SIZE 28
+#define IMAGE_SIZE 32
 #define MENUITEM_TEXT_SIZE 16
 #define HOMEPAGE_TEXT_SIZE 13
 #define HOMEPAGE @"www.supla.org"
@@ -37,7 +37,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 - (void)menuItemsInit {
     _btnCount = 0;
-    self.backgroundColor = [UIColor mainMenuColor];
+    self.backgroundColor = [UIColor primary];
     self.translatesAutoresizingMaskIntoConstraints = YES;
 }
 
@@ -94,6 +94,9 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     btn.tag = btnId;
     [btn setImage:image forState:UIControlStateNormal];
     [btn setImage:image forState:UIControlStateHighlighted];
+    btn.imageView.contentMode = UIViewContentModeScaleToFill;
+    btn.contentVerticalAlignment = UIControlContentVerticalAlignmentFill;
+    btn.contentHorizontalAlignment = UIControlContentHorizontalAlignmentFill;
     [btn addTarget:self action:@selector(onButtonTouch:) forControlEvents:UIControlEventTouchDown];
     [self addSubview:btn];
     
@@ -127,16 +130,23 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         accountLabel = @"Your account";
     }
     
-    [self addBtnWithId:SAMenuItemIdProfile imageNamed:@"profile" text:NSLocalizedString(accountLabel, nil)];
-    [self addBtnWithId:SAMenuItemIdSettings imageNamed:@"settings" text:NSLocalizedString(@"Settings", nil)];
-    [self addBtnWithId:SAMenuItemIdAddDevice imageNamed:@"add_device" text:NSLocalizedString(@"Add I/O device", nil)];
-    [self addBtnWithId:SAMenuItemIdZWave imageNamed:@"z_wave_btn" text:NSLocalizedString(@"Z-Wave bridge", nil)];
+    [self addBtnWithId:SAMenuItemIdProfile imageNamed:@"Menu/icon_profile" text:NSLocalizedString(accountLabel, nil)];
+    [self addBtnWithId:SAMenuItemIdSettings imageNamed:@"Menu/icon_settings" text:NSLocalizedString(@"Settings", nil)];
+    [self addBtnWithId:SAMenuItemIdAddDevice imageNamed:@"Menu/icon_add_device" text:NSLocalizedString(@"Add I/O device", nil)];
+    if (BrandingConfigurationMenu.DEVICES_OPTION_VISIBLE) {
+        [self addBtnWithId:SAMenuItemIdDeviceCatalog imageNamed:@"Menu/icon_device_catalog" text:[LegacyStrings localized:@"menu_device_catalog"]];
+    }
+    if (BrandingConfigurationMenu.Z_WAVE_OPTION_VISIBLE) {
+        [self addBtnWithId:SAMenuItemIdZWave imageNamed:@"Menu/icon_z_wave" text:NSLocalizedString(@"Z-Wave bridge", nil)];
+    }
     [self addBtnWithId:SAMenuItemIdNotifications imageNamed:@"icon_notification" text:[LegacyStrings localized:@"menu_notifications"]];
-    [self addBtnWithId:SAMenuItemIdAbout imageNamed:@"info" text:NSLocalizedString(@"About", nil)];
-    // Apple Play Policy
-    // [self addBtnWithId:SAMenuItemIdDonate imageNamed:@"donate" text:@"Donate"];
-    [self addBtnWithId:SAMenuItemIdHelp imageNamed:@"help" text:NSLocalizedString(@"Help", nil)];
-    [self addBtnWithId:SAMenuItemIdCloud imageNamed:@"menu_cloud" text:NSLocalizedString(@"Supla Cloud", nil)];
+    if (BrandingConfigurationMenu.ABOUT_OPTION_VISIBLE) {
+        [self addBtnWithId:SAMenuItemIdAbout imageNamed:@"Menu/icon_about" text:NSLocalizedString(@"About", nil)];
+    }
+    if (BrandingConfigurationMenu.HELP_OPTION_VISIBLE) {
+        [self addBtnWithId:SAMenuItemIdHelp imageNamed:@"Menu/icon_help" text:NSLocalizedString(@"Help", nil)];
+    }
+    [self addBtnWithId:SAMenuItemIdCloud imageNamed:@"Menu/icon_cloud" text:NSLocalizedString(@"Supla Cloud", nil)];
   
     CGFloat top = _btnCount * (MENUITEM_HEIGHT+SEPARATOR_HEIGHT);
     CGFloat height = top;

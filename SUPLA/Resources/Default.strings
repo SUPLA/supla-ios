@@ -65,10 +65,15 @@
 "channel_caption_alarm_armament" = "Alarm armament sensor";
 "channel_caption_general_purpose_measurment" = "Measurement channel";
 "channel_caption_general_purpose_meter" = "Meter channel";
+"channel_caption_facade_blinds" = "Facade blinds";
 
 /* Main */
 "dialog_new_gesture_info_text" = "Swipe gesture to open details was removed, tap on particular channel to open it.";
 "main_no_entries" = "Empty";
+
+/* Menu */
+"menu_notifications" = "Notifications log";
+"menu_device_catalog" = "Device Catalog";
 
 /* Groups */
 "groups_empty_list_button" = "Add group in Supla Cloud";
@@ -179,6 +184,8 @@
 "history_no_data_available" = "There are no measurements available yet";
 "history_no_data_in_selected_period" = "No chart data available in selected time period.";
 "history_disabled" = "History is disabled for this channel.";
+"history_delete_data" = "Delete history and download again";
+"history_wait_for_download_completed" = "Please wait, downloading...";
 "chart_marker_opening" = "Open";
 "chart_marker_closing" = "Close";
 "Minutes" = "Minuty";
@@ -188,7 +195,6 @@
 "Years" = "Lata";
 
 /* Notifications */
-"menu_notifications" = "Notifications log";
 "notifications_log_profile" = "Profile:";
 "notifications_log_date" = "Date:";
 "notification_delete_all_title" = "Delete logs?";
@@ -205,3 +211,7 @@
 "roller_shutter_closing_percentage" = "Close:";
 "roller_shutter_opening_percentage" = "Open:";
 "roller_shutter_calibration_needed" = "Calibration needed";
+
+/* Facade blind detail */
+"facade_blinds_slat_tilt" = "Tilt: ";
+"facade_blinds_no_tilt" = "Missing configuration";

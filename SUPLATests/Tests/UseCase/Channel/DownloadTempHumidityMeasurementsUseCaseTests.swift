@@ -140,7 +140,7 @@ final class DownloadTempHumidityMeasurementsUseCaseTests: UseCaseTest<Float> {
         assertEvents([
             .completed
         ])
-        XCTAssertEqual(tempHumidityMeasurementItemRepository.deleteAllCounter, 1)
+        XCTAssertTuples(tempHumidityMeasurementItemRepository.deleteAllForRemoteIdAndProfileParameters, [(remoteId, profile)])
     }
     
     func test_shouldImportDataWhenDbIsEmpty() {
@@ -262,7 +262,7 @@ final class DownloadTempHumidityMeasurementsUseCaseTests: UseCaseTest<Float> {
             .completed
         ])
         XCTAssertTuples(tempHumidityMeasurementItemRepository.getMeasurementsParameters, [(remoteId, oldDate)])
-        XCTAssertEqual(tempHumidityMeasurementItemRepository.deleteAllCounter, 1)
+        XCTAssertTuples(tempHumidityMeasurementItemRepository.deleteAllForRemoteIdAndProfileParameters, [(remoteId, profile)])
     }
     
     private func mockedHttpResponse(count: Int = 0) -> HTTPURLResponse {

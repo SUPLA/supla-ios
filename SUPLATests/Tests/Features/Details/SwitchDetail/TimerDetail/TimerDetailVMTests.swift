@@ -111,8 +111,7 @@ final class TimerDetailVMTests: ViewModelTest<SwitchTimerDetailViewState, Switch
         assertState(1, withPath: \.editMode, equalTo: false)
         
         XCTAssertEqual(readChannelByRemoteIdUseCase.remoteIdArray[0], 123)
-        XCTAssertEqual(getChannelBaseStateUseCase.functionsArray[0], function)
-        XCTAssertEqual(getChannelBaseStateUseCase.activeValuesArray[0], 0)
+        XCTAssertTuples(getChannelBaseStateUseCase.parameters, [(function, true, 0)])
     }
     
     func test_shouldLoadChannelAndSetEditModeToFalse() {
@@ -166,8 +165,7 @@ final class TimerDetailVMTests: ViewModelTest<SwitchTimerDetailViewState, Switch
         assertState(2, withPath: \.editMode, equalTo: false)
         
         XCTAssertEqual(readChannelByRemoteIdUseCase.remoteIdArray[0], 123)
-        XCTAssertEqual(getChannelBaseStateUseCase.functionsArray[0], function)
-        XCTAssertEqual(getChannelBaseStateUseCase.activeValuesArray[0], 0)
+        XCTAssertTuples(getChannelBaseStateUseCase.parameters, [(function, true, 0)])
     }
     
     func test_shouldStopEditMode() {

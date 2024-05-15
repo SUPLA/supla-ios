@@ -133,6 +133,7 @@ extension DiContainer {
         register(GetChannelValueUseCase.self, GetChannelValueUseCaseImpl())
         register(GetChannelValueStringUseCase.self, GetChannelValueStringUseCaseImpl())
         register(LoadChannelConfigUseCase.self, LoadChannelConfigUseCaseImpl())
+        register(DeleteChannelMeasurementsUseCase.self, DeleteChannelMeasurementsUseCaseImpl())
         // Usecases - Channel - ValueProvider
         register(DepthValueProvider.self, DepthValueProviderImpl())
         register(DistanceValueProvider.self, DistanceValueProviderImpl())
@@ -163,6 +164,7 @@ extension DiContainer {
         register(CallSuplaClientOperationUseCase.self, CallSuplaClientOperationUseCaseImpl())
         register(ExecuteRollerShutterActionUseCase.self, ExecuteRollerShutterActionUseCaseImpl())
         register(AuthorizeUseCase.self, AuthorizeUseCaseImpl())
+        register(ExecuteFacadeBlindActionUseCase.self, ExecuteFacadeBlindActionUseCaseImpl())
         // Usecases - Detail
         register(ProvideDetailTypeUseCase.self, ProvideDetailTypeUseCaseImpl())
         // Usecases - Group
@@ -170,6 +172,7 @@ extension DiContainer {
         register(CreateProfileGroupsListUseCase.self, CreateProfileGroupsListUseCaseImpl())
         register(ReadGroupByRemoteIdUseCase.self, ReadGroupByRemoteIdUseCaseImpl())
         register(GetGroupOnlineSummaryUseCase.self, GetGroupOnlineSummaryUseCaseImpl())
+        register(UpdateChannelGroupTotalValueUseCase.self, UpdateChannelGroupTotalValueUseCaseImpl())
         // Usecases - Icon
         register(GetDefaultIconNameUseCase.self, GetDefaultIconNameUseCaseImpl())
         // Usecases - Location
@@ -180,6 +183,7 @@ extension DiContainer {
         register(SaveOrCreateProfileUseCase.self, SaveOrCreateProfileUseCaseImpl())
         register(DeleteProfileUseCase.self, DeleteProfileUseCaseImpl())
         register(ActivateProfileUseCase.self, ActivateProfileUseCaseImpl())
+        register(LoadActiveProfileUrlUseCase.self, LoadActiveProfileUrlUseCaseImpl())
         // Usecases - Profile
         register(CreateProfileScenesListUseCase.self, CreateProfileScenesListUseCaseImpl())
         register(SwapScenePositionsUseCase.self, SwapScenePositionsUseCaseImpl())

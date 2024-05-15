@@ -57,4 +57,8 @@ extension CGFloat: ScopeFunctions {
     func divideToPercentage(value: CGFloat) -> CGFloat {
         self / value * 100
     }
+    
+    func also(_ transformation: (CGFloat) -> CGFloat) -> CGFloat {
+        return transformation(self)
+    }
 }

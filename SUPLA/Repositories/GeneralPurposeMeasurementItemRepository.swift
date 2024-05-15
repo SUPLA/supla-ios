@@ -24,6 +24,7 @@ protocol GeneralPurposeMeasurementItemRepository: BaseMeasurementRepository wher
     T == SAGeneralPurposeMeasurementItem
 {
     func deleteAll(for profile: AuthProfileItem) -> Observable<Void>
+    func deleteAll(remoteId: Int32, profile: AuthProfileItem) -> Observable<Void>
     func findMeasurements(remoteId: Int32, profile: AuthProfileItem, startDate: Date, endDate: Date) -> Observable<[SAGeneralPurposeMeasurementItem]>
     func findMinTimestamp(remoteId: Int32, profile: AuthProfileItem) -> Observable<TimeInterval?>
     func findMaxTimestamp(remoteId: Int32, profile: AuthProfileItem) -> Observable<TimeInterval?>
@@ -44,7 +45,15 @@ final class GeneralPurposeMeasurementItemRepositoryImpl: Repository<SAGeneralPur
         deleteAll(
             SAGeneralPurposeMeasurementItem
                 .fetchRequest()
-                .filtered(by: NSPredicate(format: "profile = %@", profile))
+                .filtered(by: NSPredicate(format: "AND profile = %@", profile))
+        )
+    }
+    
+    func deleteAll(remoteId: Int32, profile: AuthProfileItem) -> Observable<Void> {
+        deleteAll(
+            SAGeneralPurposeMeasurementItem
+                .fetchRequest()
+                .filtered(by: NSPredicate(format: "channel_id = %d AND profile = %@", remoteId, profile))
         )
     }
     

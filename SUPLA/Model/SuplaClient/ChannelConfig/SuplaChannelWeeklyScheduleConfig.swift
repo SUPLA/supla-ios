@@ -23,17 +23,17 @@ final class SuplaChannelWeeklyScheduleConfig: SuplaChannelConfig {
     let programConfigurations: [SuplaWeeklyScheduleProgram]
     let schedule: [SuplaWeeklyScheduleEntry]
     
-    init(remoteId: Int32, channelFunc: Int32?, programConfigurations: [SuplaWeeklyScheduleProgram], schedule: [SuplaWeeklyScheduleEntry]) {
+    init(remoteId: Int32, channelFunc: Int32?, crc32: Int64, programConfigurations: [SuplaWeeklyScheduleProgram], schedule: [SuplaWeeklyScheduleEntry]) {
         self.programConfigurations = programConfigurations
         self.schedule = schedule
-        super.init(remoteId: remoteId, channelFunc: channelFunc)
+        super.init(remoteId: remoteId, channelFunc: channelFunc, crc32: crc32)
     }
     
     required init(from decoder: Decoder) throws {
         fatalError("init(from:) has not been implemented")
     }
     
-    static func from(remoteId: Int32, channelFunc: Int32?, suplaConfig: TChannelConfig_WeeklySchedule) -> SuplaChannelWeeklyScheduleConfig {
+    static func from(remoteId: Int32, channelFunc: Int32?, crc32: Int64, suplaConfig: TChannelConfig_WeeklySchedule) -> SuplaChannelWeeklyScheduleConfig {
         
         var programConfigurations: [SuplaWeeklyScheduleProgram] = []
         let size = SUPLA_WEEKLY_SCHEDULE_PROGRAMS_MAX_SIZE
@@ -77,6 +77,7 @@ final class SuplaChannelWeeklyScheduleConfig: SuplaChannelConfig {
         return SuplaChannelWeeklyScheduleConfig(
             remoteId: remoteId,
             channelFunc: channelFunc,
+            crc32: crc32,
             programConfigurations: programConfigurations,
             schedule: schedule
         )

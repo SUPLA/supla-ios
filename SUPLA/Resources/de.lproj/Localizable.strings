@@ -322,10 +322,15 @@
 "channel_caption_alarm_armament" = "Alarmsensor";
 "channel_caption_general_purpose_measurment" = "Messungskanal";
 "channel_caption_general_purpose_meter" = "Zählerkanal";
+"channel_caption_facade_blinds" = "Fassadenjalousien";
 
 /* Main */
 "dialog_new_gesture_info_text" = "Wischgeste zum Öffnen der Kanaldetails wurde gelöscht, tippe auf dem Kanal, um sie zu sehen.";
 "main_no_entries" = "Lehr";
+
+/* Menu */
+"menu_notifications" = "Benachrichtigungsprotokoll";
+"menu_device_catalog" = "Gerätekatalog";
 
 /* Groups */
 "groups_empty_list_button" = "Gruppe in Supla Cloud hinzufügen";
@@ -426,6 +431,8 @@
 "history_no_data_available" = "Kein Daten verfügbar";
 "history_no_data_in_selected_period" = "Keine Daten für das Diagramm in ausgewälte Zeitraum.";
 "history_disabled" = "Der Verlauf ist für diesen Kanal deaktiviert.";
+"history_delete_data" = "Historie löschen und neuladen";
+"history_wait_for_download_completed" = "Bitte warten, herunterladen...";
 
 /* Notifications */
 "notifications_log_profile" = "Konto:";
@@ -444,3 +451,7 @@
 "roller_shutter_closing_percentage" = "Geschlossen:";
 "roller_shutter_opening_percentage" = "Geöffnet:";
 "roller_shutter_calibration_needed" = "Kalibrierung nötig";
+
+/* Facade blind detail */
+"facade_blinds_slat_tilt" = "Neigung: ";
+"facade_blinds_no_tilt" = "Fehlende Konfiguration";

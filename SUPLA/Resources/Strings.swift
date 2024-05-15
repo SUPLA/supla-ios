@@ -122,6 +122,8 @@ struct Strings {
         static let noDataInSelectedPeriod = "history_no_data_in_selected_period".toLocalized()
         static let loading = "Retrieving data from the server...".toLocalized()
         static let historyDisabled = "history_disabled".toLocalized()
+        static let historyDeleteData = "history_delete_data".toLocalized()
+        static let historyWaitForDownload = "history_wait_for_download_completed".toLocalized()
         
         static let minutes = "Minutes".toLocalized()
         static let hours = "Hours".toLocalized()
@@ -261,6 +263,7 @@ struct Strings {
     struct General {
         static let cancel = NSLocalizedString("Cancel", comment: "")
         static let close = NSLocalizedString("Close", comment: "")
+        static let open = NSLocalizedString("Open", comment: "")
         static let unknownError = NSLocalizedString("Unknown error", comment: "")
         static let save = "save".toLocalized()
         
@@ -299,6 +302,7 @@ struct Strings {
             static let captionAlarmArmament = "channel_caption_alarm_armament".toLocalized()
             static let captionGeneralPurposeMeasurement = "channel_caption_general_purpose_measurment".toLocalized()
             static let captionGeneralPurposeMeter = "channel_caption_general_purpose_meter".toLocalized()
+            static let captionFacadeBlinds = "channel_caption_facade_blinds".toLocalized()
         }
     }
     
@@ -317,6 +321,11 @@ struct Strings {
         static let calibrationNeeded = "roller_shutter_calibration_needed".toLocalized()
     }
     
+    struct FacadeBlindsDetail {
+        static let slatTilt = "facade_blinds_slat_tilt".toLocalized()
+        static let noTilt = "facade_blinds_no_tilt".toLocalized()
+    }
+    
     struct AuthorizationDialog {
         static let unauthorized = NSLocalizedString("Incorrect Email Address or Password", comment: "")
         static let unavailable = NSLocalizedString("Service temporarily unavailable", comment: "")
@@ -326,6 +335,10 @@ struct Strings {
         
         static let emailAddress = NSLocalizedString("E-MAIL ADDRESS", comment: "")
         static let password = NSLocalizedString("PASSWORD", comment: "")
+    }
+    
+    struct DeviceCatalog {
+        static let menu = "menu_device_catalog".toLocalized()
     }
 }
 

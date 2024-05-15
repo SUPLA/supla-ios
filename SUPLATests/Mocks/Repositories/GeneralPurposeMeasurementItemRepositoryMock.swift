@@ -20,11 +20,18 @@ import RxSwift
 @testable import SUPLA
 
 final class GeneralPurposeMeasurementItemRepositoryMock: BaseRepositoryMock<SAGeneralPurposeMeasurementItem>, GeneralPurposeMeasurementItemRepository {
-    var deleteAllParameters: [AuthProfileItem] = []
-    var deleteAllReturns: Observable<Void> = .empty()
+    var deleteAllForRemoteIdAndProfileParameters: [(Int32, AuthProfileItem)] = []
+    var deleteAllForRemoteIdAndProfileReturns: Observable<Void> = .empty()
+    func deleteAll(remoteId: Int32, profile: AuthProfileItem) -> RxSwift.Observable<Void> {
+        deleteAllForRemoteIdAndProfileParameters.append((remoteId, profile))
+        return deleteAllForRemoteIdAndProfileReturns
+    }
+    
+    var deleteAllForProfileParameters: [AuthProfileItem] = []
+    var deleteAllForProfileReturns: Observable<Void> = .empty()
     func deleteAll(for profile: AuthProfileItem) -> Observable<Void> {
-        deleteAllParameters.append(profile)
-        return deleteAllReturns
+        deleteAllForProfileParameters.append(profile)
+        return deleteAllForProfileReturns
     }
     
     var findMeasurementsParameters: [(Int32, AuthProfileItem, Date, Date)] = []

@@ -19,6 +19,7 @@
 #import "SAAbstractPickerField.h"
 #import "SuplaApp.h"
 #import "UIColor+SUPLA.h"
+#import "SUPLA-Swift.h"
 
 @interface SAAbstractPickerField () <UITextFieldDelegate, UIGestureRecognizerDelegate, UIPickerViewDataSource, UIPickerViewDelegate>
 @end
@@ -59,7 +60,7 @@
     _pickerView = [[UIPickerView alloc] init];
     _pickerView.showsSelectionIndicator = YES;
     _pickerView.delegate = self;
-    _pickerView.backgroundColor = [UIColor pickerViewColor];
+    _pickerView.backgroundColor = [UIColor background];
     self.inputView = _pickerView;
 
     UITapGestureRecognizer *tapgr = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapped:)];

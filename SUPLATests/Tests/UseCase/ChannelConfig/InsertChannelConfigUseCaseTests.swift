@@ -80,7 +80,7 @@ final class InsertChannelConfigUseCaseTests: UseCaseTest<Void> {
         XCTAssertEqual(channelConfigRepository.getConfigParameters, [remoteId])
         XCTAssertEqual(channelConfigRepository.createCounter, 1)
         XCTAssertEqual(channelConfigRepository.saveParameters, [channelConfig])
-        XCTAssertEqual(generalPurposeMeterItemRepository.deleteAllParameters, [])
+        XCTAssertEqual(generalPurposeMeterItemRepository.deleteAllForProfileParameters, [])
         XCTAssertEqual(downloadEventManager.emitProgressStateParameters.count, 0)
         XCTAssertEqual(profileRepository.activeProfileCalls, 1)
         XCTAssertEqual(channelRepository.channelProfiles, [profile])
@@ -115,7 +115,7 @@ final class InsertChannelConfigUseCaseTests: UseCaseTest<Void> {
         XCTAssertEqual(channelConfigRepository.getConfigParameters, [remoteId])
         XCTAssertEqual(channelConfigRepository.createCounter, 1)
         XCTAssertEqual(channelConfigRepository.saveParameters, [channelConfig])
-        XCTAssertEqual(generalPurposeMeterItemRepository.deleteAllParameters, [])
+        XCTAssertEqual(generalPurposeMeterItemRepository.deleteAllForProfileParameters, [])
         XCTAssertEqual(downloadEventManager.emitProgressStateParameters.count, 0)
         XCTAssertEqual(profileRepository.activeProfileCalls, 1)
         XCTAssertEqual(channelRepository.channelProfiles, [profile])
@@ -145,7 +145,7 @@ final class InsertChannelConfigUseCaseTests: UseCaseTest<Void> {
         XCTAssertEqual(channelConfigRepository.getConfigParameters, [remoteId])
         XCTAssertEqual(channelConfigRepository.createCounter, 0)
         XCTAssertEqual(channelConfigRepository.saveParameters, [channelConfig])
-        XCTAssertEqual(generalPurposeMeterItemRepository.deleteAllParameters, [])
+        XCTAssertEqual(generalPurposeMeterItemRepository.deleteAllForProfileParameters, [])
         XCTAssertEqual(downloadEventManager.emitProgressStateParameters.count, 0)
         XCTAssertEqual(profileRepository.activeProfileCalls, 1)
         XCTAssertEqual(channelRepository.channelProfiles, [])
@@ -173,7 +173,7 @@ final class InsertChannelConfigUseCaseTests: UseCaseTest<Void> {
         XCTAssertEqual(channelConfigRepository.getConfigParameters, [remoteId])
         XCTAssertEqual(channelConfigRepository.createCounter, 0)
         XCTAssertEqual(channelConfigRepository.saveParameters, [channelConfig])
-        XCTAssertEqual(generalPurposeMeterItemRepository.deleteAllParameters, [])
+        XCTAssertEqual(generalPurposeMeterItemRepository.deleteAllForProfileParameters, [])
         XCTAssertEqual(downloadEventManager.emitProgressStateParameters.count, 0)
         XCTAssertEqual(profileRepository.activeProfileCalls, 1)
         XCTAssertEqual(channelRepository.channelProfiles, [])
@@ -205,7 +205,7 @@ final class InsertChannelConfigUseCaseTests: UseCaseTest<Void> {
         XCTAssertEqual(channelConfigRepository.getConfigParameters, [])
         XCTAssertEqual(channelConfigRepository.createCounter, 0)
         XCTAssertEqual(channelConfigRepository.saveParameters, [])
-        XCTAssertEqual(generalPurposeMeterItemRepository.deleteAllParameters, [])
+        XCTAssertEqual(generalPurposeMeterItemRepository.deleteAllForProfileParameters, [])
         XCTAssertEqual(downloadEventManager.emitProgressStateParameters.count, 0)
         XCTAssertEqual(profileRepository.activeProfileCalls, 1)
         XCTAssertEqual(channelRepository.channelProfiles, [profile])
@@ -229,7 +229,7 @@ final class InsertChannelConfigUseCaseTests: UseCaseTest<Void> {
         XCTAssertEqual(channelConfigRepository.getConfigParameters, [])
         XCTAssertEqual(channelConfigRepository.createCounter, 0)
         XCTAssertEqual(channelConfigRepository.saveParameters, [])
-        XCTAssertEqual(generalPurposeMeterItemRepository.deleteAllParameters, [])
+        XCTAssertEqual(generalPurposeMeterItemRepository.deleteAllForProfileParameters, [])
         XCTAssertEqual(downloadEventManager.emitProgressStateParameters.count, 0)
         XCTAssertEqual(profileRepository.activeProfileCalls, 0)
         XCTAssertEqual(channelRepository.channelProfiles, [])
@@ -258,7 +258,7 @@ final class InsertChannelConfigUseCaseTests: UseCaseTest<Void> {
         channelConfigRepository.getConfigReturns = .just(channelConfig)
         profileRepository.activeProfileObservable = .just(profile)
         channelRepository.channelObservable = .just(channel)
-        generalPurposeMeterItemRepository.deleteAllForProfileAndChannelReturns = .just(())
+        generalPurposeMeterItemRepository.deleteAllForRemoteIdAndProfileReturns = .just(())
         
         // when
         useCase.invoke(config: config, result: .resultTrue).subscribe(observer).disposed(by: disposeBag)
@@ -268,8 +268,8 @@ final class InsertChannelConfigUseCaseTests: UseCaseTest<Void> {
         XCTAssertEqual(channelConfigRepository.getConfigParameters, [remoteId])
         XCTAssertEqual(channelConfigRepository.createCounter, 0)
         XCTAssertEqual(channelConfigRepository.saveParameters, [channelConfig])
-        XCTAssertTuples(generalPurposeMeterItemRepository.deleteAllForProfileAndChannelParameters, [
-            (profile, remoteId)
+        XCTAssertTuples(generalPurposeMeterItemRepository.deleteAllForRemoteIdAndProfileParameters, [
+            (remoteId, profile)
         ])
         XCTAssertTuples(downloadEventManager.emitProgressStateParameters, [(remoteId, .refresh)])
         XCTAssertEqual(profileRepository.activeProfileCalls, 2)
@@ -301,7 +301,7 @@ final class InsertChannelConfigUseCaseTests: UseCaseTest<Void> {
         channelConfigRepository.getConfigReturns = .just(channelConfig)
         profileRepository.activeProfileObservable = .just(profile)
         channelRepository.channelObservable = .just(channel)
-        generalPurposeMeterItemRepository.deleteAllForProfileAndChannelReturns = .just(())
+        generalPurposeMeterItemRepository.deleteAllForRemoteIdAndProfileReturns = .just(())
         
         // when
         useCase.invoke(config: config, result: .resultTrue).subscribe(observer).disposed(by: disposeBag)
@@ -311,8 +311,8 @@ final class InsertChannelConfigUseCaseTests: UseCaseTest<Void> {
         XCTAssertEqual(channelConfigRepository.getConfigParameters, [remoteId])
         XCTAssertEqual(channelConfigRepository.createCounter, 0)
         XCTAssertEqual(channelConfigRepository.saveParameters, [channelConfig])
-        XCTAssertTuples(generalPurposeMeterItemRepository.deleteAllForProfileAndChannelParameters, [
-            (profile, remoteId)
+        XCTAssertTuples(generalPurposeMeterItemRepository.deleteAllForRemoteIdAndProfileParameters, [
+            (remoteId, profile)
         ])
         XCTAssertTuples(downloadEventManager.emitProgressStateParameters, [(remoteId, .refresh)])
         XCTAssertEqual(profileRepository.activeProfileCalls, 2)

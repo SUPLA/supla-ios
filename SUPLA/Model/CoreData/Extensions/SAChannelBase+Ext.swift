@@ -22,16 +22,24 @@ extension SAChannelBase {
     func getIconData(type: IconType = .single, subfunction: ThermostatSubfunction? = nil) -> IconData {
         @Singleton<GetChannelBaseStateUseCase> var getChannelBaseStateUseCase
         
+        let online = if let channel = self as? SAChannel {
+            channel.value?.online ?? false
+        } else if let channel = self as? SAChannelGroup {
+            channel.isOnline()
+        } else {
+            false
+        }
+
         return IconData(
             function: self.func,
             altIcon: self.alticon,
-            state: getChannelBaseStateUseCase.invoke(function: self.func, activeValue: self.imgIsActive()),
+            state: getChannelBaseStateUseCase.invoke(function: self.func, online: online, activeValue: self.imgIsActive()),
             type: type,
             userIcon: self.usericon,
             subfunction: subfunction
         )
     }
-    
+
     func isThermometer() -> Bool {
         return self.func == SUPLA_CHANNELFNC_THERMOMETER || self.func == SUPLA_CHANNELFNC_HUMIDITYANDTEMPERATURE
     }
@@ -52,7 +60,9 @@ extension SAChannelBase {
 
     @objc
     func isRollerShutter() -> Bool {
-        return self.func == SUPLA_CHANNELFNC_CONTROLLINGTHEROLLERSHUTTER || self.func == SUPLA_CHANNELFNC_CONTROLLINGTHEROOFWINDOW
+        return self.func == SUPLA_CHANNELFNC_CONTROLLINGTHEROLLERSHUTTER ||
+            self.func == SUPLA_CHANNELFNC_CONTROLLINGTHEROOFWINDOW ||
+            self.func == SUPLA_CHANNELFNC_CONTROLLINGTHEFACADEBLIND
     }
 
     func hasMeasurements() -> Bool {

@@ -44,7 +44,7 @@ class GreenPointLayers: LayerGroup {
     
     private lazy var pointShape: CAShapeLayer = {
         let layer = CAShapeLayer()
-        layer.fillColor = UIColor.primary.cgColor
+        layer.fillColor = UIColor.suplaGreen.cgColor
         return layer
     }()
     

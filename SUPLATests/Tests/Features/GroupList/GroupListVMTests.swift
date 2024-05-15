@@ -16,31 +16,26 @@
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 
-import XCTest
-import RxTest
 import RxSwift
+import RxTest
+import XCTest
 
 @testable import SUPLA
 
 final class GroupListVMTests: ViewModelTest<GroupListViewState, GroupListViewEvent> {
+    private lazy var viewModel: GroupListViewModel! = GroupListViewModel()
     
-    private lazy var viewModel: GroupListViewModel! = { GroupListViewModel() }()
-    
-    private lazy var createProfileGroupsListUseCase: CreateProfileGroupsListUseCaseMock! = {
-        CreateProfileGroupsListUseCaseMock()
-    }()
-    private lazy var swapGroupPositionsUseCase: SwapGroupPositionsUseCaseMock! = {
-        SwapGroupPositionsUseCaseMock()
-    }()
-    private lazy var toggleLocationUseCase: ToggleLocationUseCaseMock! = {
-        ToggleLocationUseCaseMock()
-    }()
-    private lazy var provideDetailTypeUseCase: ProvideDetailTypeUseCaseMock! = {
-        ProvideDetailTypeUseCaseMock()
-    }()
-    private lazy var updateEventsManager: UpdateEventsManagerMock! = {
-        UpdateEventsManagerMock()
-    }()
+    private lazy var createProfileGroupsListUseCase: CreateProfileGroupsListUseCaseMock! = CreateProfileGroupsListUseCaseMock()
+
+    private lazy var swapGroupPositionsUseCase: SwapGroupPositionsUseCaseMock! = SwapGroupPositionsUseCaseMock()
+
+    private lazy var toggleLocationUseCase: ToggleLocationUseCaseMock! = ToggleLocationUseCaseMock()
+
+    private lazy var provideDetailTypeUseCase: ProvideDetailTypeUseCaseMock! = ProvideDetailTypeUseCaseMock()
+
+    private lazy var updateEventsManager: UpdateEventsManagerMock! = UpdateEventsManagerMock()
+
+    private lazy var loadActiveProfileUrlUseCase: LoadActiveProfileUrlUseCaseMock! = LoadActiveProfileUrlUseCaseMock()
     
     override func setUp() {
         DiContainer.shared.register(type: CreateProfileGroupsListUseCase.self, createProfileGroupsListUseCase!)
@@ -48,6 +43,7 @@ final class GroupListVMTests: ViewModelTest<GroupListViewState, GroupListViewEve
         DiContainer.shared.register(type: ProvideDetailTypeUseCase.self, provideDetailTypeUseCase!)
         DiContainer.shared.register(type: ToggleLocationUseCase.self, toggleLocationUseCase!)
         DiContainer.shared.register(type: UpdateEventsManager.self, updateEventsManager!)
+        DiContainer.shared.register(type: LoadActiveProfileUrlUseCase.self, loadActiveProfileUrlUseCase!)
     }
     
     override func tearDown() {
@@ -58,6 +54,7 @@ final class GroupListVMTests: ViewModelTest<GroupListViewState, GroupListViewEve
         provideDetailTypeUseCase = nil
         toggleLocationUseCase = nil
         updateEventsManager = nil
+        loadActiveProfileUrlUseCase = nil
         
         super.tearDown()
     }
@@ -153,6 +150,60 @@ final class GroupListVMTests: ViewModelTest<GroupListViewState, GroupListViewEve
         XCTAssertEqual(eventObserver.events.count, 0)
     }
     
+    func test_shouldOpenWindowDetail_whenGroupIsOnline() {
+        // given
+        let remoteId: Int32 = 123
+        let function = SUPLA_CHANNELFNC_CONTROLLINGTHEFACADEBLIND
+        let group = SAChannelGroup(testContext: nil)
+        group.remote_id = remoteId
+        group.func = function
+        group.online = 1
+        
+        let pages: [DetailPage] = [.facadeBlind]
+        
+        provideDetailTypeUseCase.detailType = .windowDetail(pages: pages)
+        
+        // when
+        observe(viewModel)
+        viewModel.onClicked(onItem: group)
+        
+        // then
+        XCTAssertEqual(stateObserver.events.count, 1)
+        XCTAssertEqual(eventObserver.events.count, 1)
+        
+        let itemBundle = ItemBundle(remoteId: remoteId, deviceId: 0, subjectType: .group, function: function)
+        XCTAssertEqual(eventObserver.events, [
+            .next(0, .naviagetToRollerShutterDetail(item: itemBundle, pages: pages))
+        ])
+    }
+    
+    func test_shouldOpenWindowDetail_whenGroupIsOffline() {
+        // given
+        let remoteId: Int32 = 123
+        let function = SUPLA_CHANNELFNC_CONTROLLINGTHEFACADEBLIND
+        let group = SAChannelGroup(testContext: nil)
+        group.remote_id = remoteId
+        group.func = function
+        group.online = 0
+        
+        let pages: [DetailPage] = [.facadeBlind]
+        
+        provideDetailTypeUseCase.detailType = .windowDetail(pages: pages)
+        
+        // when
+        observe(viewModel)
+        viewModel.onClicked(onItem: group)
+        
+        // then
+        XCTAssertEqual(stateObserver.events.count, 1)
+        XCTAssertEqual(eventObserver.events.count, 1)
+        
+        let itemBundle = ItemBundle(remoteId: remoteId, deviceId: 0, subjectType: .group, function: function)
+        XCTAssertEqual(eventObserver.events, [
+            .next(0, .naviagetToRollerShutterDetail(item: itemBundle, pages: pages))
+        ])
+    }
+    
     func test_shouldNotOpenLegacyDetail_whenNotAssinged() {
         // given
         let group = SAChannelGroup(testContext: nil)
@@ -185,5 +236,42 @@ final class GroupListVMTests: ViewModelTest<GroupListViewState, GroupListViewEve
         XCTAssertEqual(toggleLocationUseCase.collapsedFlagArray[0], .group)
         
         XCTAssertEqual(createProfileGroupsListUseCase.invokeCounter, 1)
+    }
+    
+    func test_shouldLoadSuplaCloudUrl() {
+        // given
+        let url: CloudUrl = .suplaCloud
+        loadActiveProfileUrlUseCase.returns = .just(url)
+        
+        // when
+        observe(viewModel)
+        viewModel.onNoContentButtonClicked()
+        
+        // then
+        assertEvents(expected: [
+            .openCloud
+        ])
+        assertStates(expected: [
+            GroupListViewState()
+        ])
+    }
+    
+    func test_shouldLoadPrivateCloudUrl() {
+        // given
+        let url = URL(string: "https://test.url")!
+        let cloudUrl: CloudUrl = .privateCloud(url: url)
+        loadActiveProfileUrlUseCase.returns = .just(cloudUrl)
+        
+        // when
+        observe(viewModel)
+        viewModel.onNoContentButtonClicked()
+        
+        // then
+        assertEvents(expected: [
+            .openPrivateCloud(url: url)
+        ])
+        assertStates(expected: [
+            GroupListViewState()
+        ])
     }
 }

@@ -22,6 +22,7 @@ final class ThermostatCell: BaseCell<ChannelWithChildren> {
     
     @Singleton<ValuesFormatter> private var formatter
     @Singleton<GetChannelBaseIconUseCase> private var getChannelBaseIconUseCase
+    @Singleton<GetChannelBaseCaptionUseCase> private var getChannelBaseCaptionUseCase
     
     private lazy var thermostatIconView: UIImageView = {
         let view = UIImageView()
@@ -97,7 +98,7 @@ final class ThermostatCell: BaseCell<ChannelWithChildren> {
     }
     
     override func onInfoPress(_ gr: UITapGestureRecognizer) {
-        if let delegate = delegate as? ThermostatCellDelgate,
+        if let delegate = delegate as? BaseCellDelegate,
            let channel = data?.channel {
             delegate.onInfoIconTapped(channel)
         }
@@ -161,7 +162,7 @@ final class ThermostatCell: BaseCell<ChannelWithChildren> {
         let channel = data.channel
         let thermostatValue = channel.value?.asThermostatValue()
         
-        caption = channel.getNonEmptyCaption()
+        caption = getChannelBaseCaptionUseCase.invoke(channelBase: channel)
         
         leftStatusIndicatorView.configure(filled: true, online: channel.isOnline())
         rightStatusIndicatorView.configure(filled: true, online: channel.isOnline())
@@ -225,8 +226,4 @@ final class ThermostatCell: BaseCell<ChannelWithChildren> {
             return nil
         }
     }
-}
-
-protocol ThermostatCellDelgate: BaseCellDelegate {
-    func onInfoIconTapped(_ channel: SAChannel)
 }

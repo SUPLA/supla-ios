@@ -18,12 +18,12 @@
 
 import Foundation
 
-class ChannelBaseTableViewController<S : ViewState, E : ViewEvent, VM : BaseTableViewModel<S, E>>: BaseTableViewController<S, E, VM> {
-    
+class ChannelBaseTableViewController<S: ViewState, E: ViewEvent, VM: BaseTableViewModel<S, E>>: BaseTableViewController<S, E, VM> {
     let cellIdForChannel = "ChannelCell"
     let cellIdForThermometer = "ThermometerCell"
     let cellIdForTempHumidity = "TempHumidityCell"
-    let cellIdForMeasurement = "MeasurementCell"
+    let cellIdForIconValue = "IconValueCell"
+    let cellIdForIcon = "IconCell"
     let cellIdForDistance = "DistanceCell"
     let cellIdForIncremental = "IncrementalCell"
     let cellIdForHomePlus = "HomePlusCell"
@@ -39,7 +39,8 @@ class ChannelBaseTableViewController<S : ViewState, E : ViewEvent, VM : BaseTabl
         register(nib: Nibs.incrementalMeterCell, for: cellIdForIncremental)
         register(nib: Nibs.homePlusCell, for: cellIdForHomePlus)
         tableView.register(ThermostatCell.self, forCellReuseIdentifier: cellIdForHvacThermostat)
-        tableView.register(MeasurementCell.self, forCellReuseIdentifier: cellIdForMeasurement)
+        tableView.register(IconValueCell.self, forCellReuseIdentifier: cellIdForIconValue)
+        tableView.register(IconCell.self, forCellReuseIdentifier: cellIdForIcon)
         
         super.setupTableView()
     }
@@ -48,27 +49,18 @@ class ChannelBaseTableViewController<S : ViewState, E : ViewEvent, VM : BaseTabl
         let cellId = getCellId(channelBase)
         let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath)
         
-        if (cellId == cellIdForHvacThermostat) {
-            return setupThermostatCell(cell, channelBase: channelBase, children: children)
-        } else if (cellId == cellIdForMeasurement) {
-            return setupMeasurementCell(cell, channelBase: channelBase, children: children)
-        } else {
+        switch (cellId) {
+        case cellIdForHvacThermostat,
+             cellIdForIconValue,
+             cellIdForIcon:
+            return setupBaseCell(cell, channelBase: channelBase, children: children)
+        default:
             return setupLegacyCell(cell, cellId: cellId, channelBase: channelBase, indexPath: indexPath)
         }
     }
     
-    private func setupThermostatCell(_ cell: UITableViewCell, channelBase: SAChannelBase, children: [ChannelChild]) -> UITableViewCell {
-        let thermostatCell = cell as! ThermostatCell
-        
-        thermostatCell.scaleFactor = scaleFactor
-        thermostatCell.data = ChannelWithChildren(channel: channelBase as! SAChannel, children: children)
-        thermostatCell.showChannelInfo = showChannelInfo
-        
-        return cell
-    }
-    
-    private func setupMeasurementCell(_ cell: UITableViewCell, channelBase: SAChannelBase, children: [ChannelChild]) -> UITableViewCell {
-        let measurementCell = cell as! MeasurementCell
+    private func setupBaseCell(_ cell: UITableViewCell, channelBase: SAChannelBase, children: [ChannelChild]) -> UITableViewCell {
+        let measurementCell = cell as! BaseCell<ChannelWithChildren>
         
         measurementCell.scaleFactor = scaleFactor
         measurementCell.data = ChannelWithChildren(channel: channelBase as! SAChannel, children: children)
@@ -112,8 +104,7 @@ class ChannelBaseTableViewController<S : ViewState, E : ViewEvent, VM : BaseTabl
             if (constraint.identifier == "durationToTop") {
                 value = 9
                 channelCell.durationTimer.font = channelCell.durationTimer.font.withSize(14 * scaleFactorLocal)
-            }
-            else if (constraint.firstItem is UILabel || constraint.secondItem is UILabel) {
+            } else if (constraint.firstItem is UILabel || constraint.secondItem is UILabel) {
                 let label = (constraint.firstItem is UILabel ? constraint.firstItem : constraint.secondItem) as! UILabel
                 var scaleFactorCopy = scaleFactorLocal
                 if (label === channelCell.caption) {
@@ -157,14 +148,20 @@ class ChannelBaseTableViewController<S : ViewState, E : ViewEvent, VM : BaseTabl
     }
     
     private func getCellId(_ channelBase: SAChannelBase) -> String {
-        switch(channelBase.func) {
+        if (channelBase is SAChannelGroup) {
+            return cellIdForChannel
+        }
+        
+        switch (channelBase.func) {
         case SUPLA_CHANNELFNC_POWERSWITCH,
-            SUPLA_CHANNELFNC_LIGHTSWITCH,
-        SUPLA_CHANNELFNC_STAIRCASETIMER:
+             SUPLA_CHANNELFNC_LIGHTSWITCH,
+             SUPLA_CHANNELFNC_STAIRCASETIMER:
             if let channel = channelBase as? SAChannel,
-               let channelValue = channel.value {
+               let channelValue = channel.value
+            {
                 if (channelValue.sub_value_type == SUBV_TYPE_IC_MEASUREMENTS
-                    || channelValue.sub_value_type == SUBV_TYPE_ELECTRICITY_MEASUREMENTS) {
+                    || channelValue.sub_value_type == SUBV_TYPE_ELECTRICITY_MEASUREMENTS)
+                {
                     return cellIdForIncremental
                 }
             }
@@ -174,27 +171,30 @@ class ChannelBaseTableViewController<S : ViewState, E : ViewEvent, VM : BaseTabl
         case SUPLA_CHANNELFNC_HUMIDITYANDTEMPERATURE:
             return cellIdForTempHumidity
         case SUPLA_CHANNELFNC_DEPTHSENSOR,
-            SUPLA_CHANNELFNC_WINDSENSOR,
-            SUPLA_CHANNELFNC_WEIGHTSENSOR,
-            SUPLA_CHANNELFNC_PRESSURESENSOR,
-            SUPLA_CHANNELFNC_RAINSENSOR,
-            SUPLA_CHANNELFNC_GENERAL_PURPOSE_METER,
-            SUPLA_CHANNELFNC_GENERAL_PURPOSE_MEASUREMENT,
-        SUPLA_CHANNELFNC_HUMIDITY:
-            return cellIdForMeasurement
-        case SUPLA_CHANNELFNC_DISTANCESENSOR:
-            return cellIdForDistance
+             SUPLA_CHANNELFNC_WINDSENSOR,
+             SUPLA_CHANNELFNC_WEIGHTSENSOR,
+             SUPLA_CHANNELFNC_PRESSURESENSOR,
+             SUPLA_CHANNELFNC_RAINSENSOR,
+             SUPLA_CHANNELFNC_GENERAL_PURPOSE_METER,
+             SUPLA_CHANNELFNC_GENERAL_PURPOSE_MEASUREMENT,
+             SUPLA_CHANNELFNC_HUMIDITY,
+             SUPLA_CHANNELFNC_DISTANCESENSOR:
+            return cellIdForIconValue
         case SUPLA_CHANNELFNC_ELECTRICITY_METER,
-            SUPLA_CHANNELFNC_IC_ELECTRICITY_METER,
-            SUPLA_CHANNELFNC_IC_GAS_METER,
-            SUPLA_CHANNELFNC_IC_WATER_METER,
-        SUPLA_CHANNELFNC_IC_HEAT_METER:
+             SUPLA_CHANNELFNC_IC_ELECTRICITY_METER,
+             SUPLA_CHANNELFNC_IC_GAS_METER,
+             SUPLA_CHANNELFNC_IC_WATER_METER,
+             SUPLA_CHANNELFNC_IC_HEAT_METER:
             return cellIdForIncremental
         case SUPLA_CHANNELFNC_THERMOSTAT_HEATPOL_HOMEPLUS:
             return cellIdForHomePlus
         case SUPLA_CHANNELFNC_HVAC_THERMOSTAT,
-        SUPLA_CHANNELFNC_HVAC_DOMESTIC_HOT_WATER:
+             SUPLA_CHANNELFNC_HVAC_DOMESTIC_HOT_WATER:
             return cellIdForHvacThermostat
+        case SUPLA_CHANNELFNC_CONTROLLINGTHEROOFWINDOW,
+             SUPLA_CHANNELFNC_CONTROLLINGTHEFACADEBLIND,
+             SUPLA_CHANNELFNC_CONTROLLINGTHEROLLERSHUTTER:
+            return cellIdForIcon
         default:
             return cellIdForChannel
         }

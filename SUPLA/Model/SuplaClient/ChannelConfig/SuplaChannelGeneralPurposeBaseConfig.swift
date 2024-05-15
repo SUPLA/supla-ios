@@ -19,7 +19,6 @@
 
 class SuplaChannelGeneralPurposeBaseConfig: SuplaChannelConfig {
     
-    let crc32: Int64
     let valueDivider: Int32
     let valueMultiplier: Int32
     let valueAdded: Int64
@@ -58,7 +57,6 @@ class SuplaChannelGeneralPurposeBaseConfig: SuplaChannelConfig {
         defaultUnitAfterValue: String,
         refreshIntervalMs: UInt16
     ) {
-        self.crc32 = crc32
         self.valueDivider = valueDivider
         self.valueMultiplier = valueMultiplier
         self.valueAdded = valueAdded
@@ -76,12 +74,11 @@ class SuplaChannelGeneralPurposeBaseConfig: SuplaChannelConfig {
         self.defaultUnitAfterValue = defaultUnitAfterValue
         self.refreshIntervalMs = refreshIntervalMs
         
-        super.init(remoteId: remoteId, channelFunc: channelFunc)
+        super.init(remoteId: remoteId, channelFunc: channelFunc, crc32: crc32)
     }
     
     required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        crc32 = try container.decode(Int64.self, forKey: .crc32)
         valueDivider = try container.decode(Int32.self, forKey: .valueDivider)
         valueMultiplier = try container.decode(Int32.self, forKey: .valueMultiplier)
         valueAdded = try container.decode(Int64.self, forKey: .valueAdded)
@@ -103,7 +100,6 @@ class SuplaChannelGeneralPurposeBaseConfig: SuplaChannelConfig {
     
     override func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(crc32, forKey: .crc32)
         try container.encode(valueDivider, forKey: .valueDivider)
         try container.encode(valueMultiplier, forKey: .valueMultiplier)
         try container.encode(valueAdded, forKey: .valueAdded)

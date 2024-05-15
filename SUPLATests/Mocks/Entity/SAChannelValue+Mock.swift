@@ -48,4 +48,48 @@ extension SAChannelValue {
         let value = NSData(bytes: &hvacValue, length: MemoryLayout<THVACValue>.size)
         return SAChannelValue.mock(online: true, value: value)
     }
+    
+    static func mockRollerShutter(
+        online: Bool = true,
+        position: Int = 0,
+        bottomPosition: Int = 100,
+        flags: [SuplaRollerShutterFlag] = []
+    ) -> SAChannelValue {
+        var flagsInt = 0
+        flags.forEach { flagsInt ^= 1 << $0.rawValue }
+        
+        var rollerShutterValue = TDSC_RollerShutterValue(
+            position: Int8(position),
+            reserved1: 0,
+            bottom_position: Int8(bottomPosition),
+            flags: Int16(flagsInt),
+            reserved2: 0,
+            reserved3: 0,
+            reserved4: 0
+        )
+        
+        let value = NSData(bytes: &rollerShutterValue, length: MemoryLayout<TDSC_RollerShutterValue>.size)
+        return SAChannelValue.mock(online: online, value: value)
+    }
+    
+    static func mockFacadeBlind(
+        online: Bool = true,
+        position: Int = 0,
+        tilt: Int = 100,
+        flags: [SuplaRollerShutterFlag] = []
+    ) -> SAChannelValue {
+        var flagsInt = 0
+        flags.forEach { flagsInt ^= 1 << $0.rawValue }
+        
+        var facadeBlindValue = TDSC_FacadeBlindValue(
+            position: Int8(position),
+            tilt: Int8(tilt),
+            reserved: 0,
+            flags: Int16(flagsInt),
+            reserved2: (0, 0, 0)
+        )
+        
+        let value = NSData(bytes: &facadeBlindValue, length: MemoryLayout<TDSC_FacadeBlindValue>.size)
+        return SAChannelValue.mock(online: online, value: value)
+    }
 }

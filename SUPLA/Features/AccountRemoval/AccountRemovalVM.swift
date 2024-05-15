@@ -16,11 +16,7 @@
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 
-import Foundation
-import RxSwift
-
-class AccountRemovalVM : BaseViewModel<AccountRemovalViewState, AccountRemovalViewEvent> {
-    
+class AccountRemovalVM: WebContentVM<AccountRemovalViewState, AccountRemovalViewEvent> {
     private static let REMOVAL_FINISHED_SUFIX = "ack=true"
     
     private let needsRestart: Bool
@@ -31,8 +27,8 @@ class AccountRemovalVM : BaseViewModel<AccountRemovalViewState, AccountRemovalVi
         self.serverAddress = serverAddress
     }
     
-    func handleUrl(url: String?) {
-        guard let url = url else { return }
+    override func shouldHandle(url: String?) -> Bool {
+        guard let url = url else { return true }
         
         if (url.hasSuffix(AccountRemovalVM.REMOVAL_FINISHED_SUFIX)) {
             if (needsRestart) {
@@ -41,17 +37,23 @@ class AccountRemovalVM : BaseViewModel<AccountRemovalViewState, AccountRemovalVi
                 send(event: .finish)
             }
         }
+        
+        return true
     }
     
-    func provideUrl() -> String {
+    override func provideUrl() -> URL {
         if let server = serverAddress {
-            return Strings.AccountRemoval.url.replacingOccurrences(of: "{SERVER_ADDRESS}", with: server)
+            return URL(string: Strings.AccountRemoval.url.replacingOccurrences(of: "{SERVER_ADDRESS}", with: server))!
         } else {
-            return Strings.AccountRemoval.url.replacingOccurrences(of: "{SERVER_ADDRESS}", with: "cloud.supla.org")
+            return URL(string: Strings.AccountRemoval.url.replacingOccurrences(of: "{SERVER_ADDRESS}", with: "cloud.supla.org"))!
         }
     }
     
     override func defaultViewState() -> AccountRemovalViewState { AccountRemovalViewState() }
+    
+    override func updateLoading(_ loading: Bool) {
+        updateView { $0.changing(path: \.loading, to: loading) }
+    }
 }
 
 enum AccountRemovalViewEvent: ViewEvent {
@@ -59,4 +61,6 @@ enum AccountRemovalViewEvent: ViewEvent {
     case finishAndRestart
 }
 
-struct AccountRemovalViewState: ViewState {}
+struct AccountRemovalViewState: WebContentViewState {
+    var loading: Bool = true
+}

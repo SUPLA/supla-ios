@@ -75,7 +75,7 @@ class ChannelListViewModel: BaseTableViewModel<ChannelListViewState, ChannelList
             send(event: .navigateToThermometerDetail(item: item.item(), pages: pages))
         case let .gpmDetail(pages):
             send(event: .navigateToGpmDetail(item: item.item(), pages: pages))
-        case let .rollerShutterDetail(pages):
+        case let .windowDetail(pages):
             send(event: .navigateToRollerShutterDetail(item: item.item(), pages: pages))
         }
     }

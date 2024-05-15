@@ -62,10 +62,6 @@
     return [UIColor colorWithRed: 1.00 green: 0.60 blue: 0.00 alpha: 1.00];
 }
 
-+(UIColor*)rgbwNormalTabColor {
-    return [UIColor whiteColor];
-}
-
 +(nonnull UIColor*)statusBorder {
     return [UIColor blackColor];
 }
@@ -92,10 +88,6 @@
 
 +(nonnull UIColor*)chartValueNegativeColor {
     return [UIColor colorWithRed:0.18 green:0.80 blue:0.44 alpha:1.0];
-}
-
-+(nonnull UIColor*)pickerViewColor {
-    return [UIColor colorWithRed:0.96 green:0.96 blue:0.96 alpha:1.0];
 }
 
 +(nonnull UIColor*)chartRoomTemperature {
@@ -132,10 +124,6 @@
 
 +(nonnull UIColor*)menuSeparatorColor {
     return [UIColor colorWithRed: 0.98 green: 0.98 blue: 0.99 alpha: 0.4];
-}
-
-+(nonnull UIColor*)mainMenuColor {
-    return [UIColor colorWithRed: 0.07 green: 0.65 blue: 0.12 alpha: 1.00];
 }
 
 +(nonnull UIColor*)vlCfgButtonColor {

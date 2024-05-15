@@ -60,15 +60,14 @@ final class ExecuteRollerShutterActionUseCaseTests: CompletableTestCase {
         
         XCTAssertEqual(vibrationService.vibrateCalls, 1)
         XCTAssertEqual(suplaClientProvider.suplaClientMock.executeActionParameters.count, 1)
-        var parameters = suplaClientProvider.suplaClientMock.executeActionParameters[0]
+        let parameters = suplaClientProvider.suplaClientMock.executeActionParameters[0]
         XCTAssertEqual(parameters.0, action.rawValue)
         XCTAssertEqual(parameters.1, type.rawValue)
         XCTAssertEqual(parameters.2, remoteId)
-        XCTAssertEqual(parameters.4, Int32(MemoryLayout<TAction_RS_Parameters>.size))
+        XCTAssertEqual(parameters.4, Int32(MemoryLayout<TAction_ShadingSystem_Parameters>.size))
         
-        let nativeParameters = parameters.3!.assumingMemoryBound(to: TAction_RS_Parameters.self).pointee
+        let nativeParameters = parameters.3!.assumingMemoryBound(to: TAction_ShadingSystem_Parameters.self).pointee
         XCTAssertEqual(nativeParameters.Percentage, Int8(percentage))
-        XCTAssertEqual(nativeParameters.Delta, 0)
     }
     
     func test_shouldExectionAction_withoutVibration() {
@@ -88,14 +87,13 @@ final class ExecuteRollerShutterActionUseCaseTests: CompletableTestCase {
         
         XCTAssertEqual(vibrationService.vibrateCalls, 0)
         XCTAssertEqual(suplaClientProvider.suplaClientMock.executeActionParameters.count, 1)
-        var parameters = suplaClientProvider.suplaClientMock.executeActionParameters[0]
+        let parameters = suplaClientProvider.suplaClientMock.executeActionParameters[0]
         XCTAssertEqual(parameters.0, action.rawValue)
         XCTAssertEqual(parameters.1, type.rawValue)
         XCTAssertEqual(parameters.2, remoteId)
-        XCTAssertEqual(parameters.4, Int32(MemoryLayout<TAction_RS_Parameters>.size))
+        XCTAssertEqual(parameters.4, Int32(MemoryLayout<TAction_ShadingSystem_Parameters>.size))
         
-        let nativeParameters = parameters.3!.assumingMemoryBound(to: TAction_RS_Parameters.self).pointee
+        let nativeParameters = parameters.3!.assumingMemoryBound(to: TAction_ShadingSystem_Parameters.self).pointee
         XCTAssertEqual(nativeParameters.Percentage, Int8(percentage))
-        XCTAssertEqual(nativeParameters.Delta, 0)
     }
 }

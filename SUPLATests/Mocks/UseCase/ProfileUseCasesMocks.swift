@@ -53,6 +53,13 @@ final class ActivateProfileUseCaseMock: ActivateProfileUseCase {
         parameters.append((profileId, force))
         return returns
     }
-    
-    
+}
+
+final class LoadActiveProfileUrlUseCaseMock: LoadActiveProfileUrlUseCase {
+    var calls: Int = 0
+    var returns: Single<CloudUrl> = .never()
+    func invoke() -> Single<CloudUrl> {
+        calls += 1
+        return returns
+    }
 }

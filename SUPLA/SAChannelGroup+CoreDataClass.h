@@ -24,15 +24,6 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface SAChannelGroup : SAChannelBase
-- (void) resetBuffer;
-- (void) addValueToBuffer:(SAChannelValue*)value;
-- (BOOL) diffWithBuffer;
-- (void) assignBuffer;
-- (int) activePercent;
-- (NSMutableArray*) positions;
-- (NSMutableArray*) colors;
-- (NSMutableArray*) colorBrightness;
-- (NSMutableArray*) brightness;
 @end
 
 NS_ASSUME_NONNULL_END

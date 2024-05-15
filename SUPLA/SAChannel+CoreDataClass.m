@@ -186,6 +186,9 @@
         && self.rollerShutterValue.position >= 100) {
         return 1;
     }
+    if ([self isOnline] && self.func == SUPLA_CHANNELFNC_CONTROLLINGTHEFACADEBLIND) {
+        return [self isFacadeBlindClosed] ? 1 : 0;
+    }
     
     return [super imgIsActive];
 }

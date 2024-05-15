@@ -16,57 +16,25 @@
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 
-import Foundation
 import UIKit
 import WebKit
 
-class AccountRemovalVC : BaseViewControllerVM<AccountRemovalViewState, AccountRemovalViewEvent, AccountRemovalVM>, WKUIDelegate {
-    
+class AccountRemovalVC: WebContentVC<AccountRemovalViewState, AccountRemovalViewEvent, AccountRemovalVM> {
     private var navigator: AccountRemovalNavigationCoordinator? {
-        get {
-            navigationCoordinator as? AccountRemovalNavigationCoordinator
-        }
+        navigationCoordinator as? AccountRemovalNavigationCoordinator
     }
     
-    private var webView: WKWebView!
-    
     convenience init(navigationCoordinator: NavigationCoordinator, needsRestart: Bool, serverAddress: String?) {
-        self.init(nibName: nil, bundle: nil)
-        self.navigationCoordinator = navigationCoordinator
-        
+        self.init(navigationCoordinator: navigationCoordinator)
         viewModel = AccountRemovalVM(needsRestart: needsRestart, serverAddress: serverAddress)
     }
     
-    override func loadView() {
-        let webConfiguration = WKWebViewConfiguration()
-        webView = WKWebView(frame: .zero, configuration: webConfiguration)
-        webView.uiDelegate = self
-        webView.navigationDelegate = self
-        view = webView
-    }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        let url = URL(string: viewModel.provideUrl())!
-        let urlRequet = URLRequest(url: url)
-        webView.load(urlRequet)
-    }
-    
     override func handle(event: AccountRemovalViewEvent) {
-        switch(event) {
+        switch (event) {
         case .finishAndRestart:
             navigator?.finishWithRestart()
         case .finish:
             navigator?.finish()
-            break
         }
-    }
-}
-
-extension AccountRemovalVC : WKNavigationDelegate {
-    func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
-        viewModel.handleUrl(url: navigationAction.request.url?.absoluteString)
-        decisionHandler(.allow)
     }
 }

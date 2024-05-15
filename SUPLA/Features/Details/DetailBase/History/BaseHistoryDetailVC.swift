@@ -68,8 +68,11 @@ class BaseHistoryDetailVC: BaseViewControllerVM<BaseHistoryDetailViewState, Base
         return view
     }()
     
-    init(remoteId: Int32) {
+    private unowned var navigationItemProvider: NavigationItemProvider
+    
+    init(remoteId: Int32, navigationItemProvider: NavigationItemProvider) {
         self.remoteId = remoteId
+        self.navigationItemProvider = navigationItemProvider
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -88,7 +91,33 @@ class BaseHistoryDetailVC: BaseViewControllerVM<BaseHistoryDetailViewState, Base
         setupView()
     }
     
-    override func handle(event: BaseHistoryDetailViewEvent) {}
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        if #available(iOS 14.0, *) {
+            let barButton = UIBarButtonItem(image: .iconMore, style: .plain, target: nil, action: nil)
+            let deleteAction = UIAction(title: Strings.Charts.historyDeleteData, handler: { [weak self] (_) in
+                if let self = self {
+                    self.viewModel.deleteAndDownloadData(remoteId: self.remoteId)
+                }
+            })
+            barButton.menu = UIMenu(children: [deleteAction])
+            navigationItemProvider.navigationItem.rightBarButtonItem = barButton
+        }
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        navigationItemProvider.navigationItem.rightBarButtonItem = nil
+    }
+    
+    override func handle(event: BaseHistoryDetailViewEvent) {
+        switch (event) {
+        case .clearHighlight:
+            chartView.clearHighlight()
+        case .showDownloadInProgress:
+            showToast(Strings.Charts.historyWaitForDownload)
+        }
+    }
     
     override func handle(state: BaseHistoryDetailViewState) {
         filtersRow.ranges = state.ranges?.items ?? []
@@ -283,10 +312,7 @@ private class DataSetsRowView: HorizontalyScrollableView<DataSetItem> {
     }
     
     private func setupView() {
-        layer.shadowColor = UIColor.black.cgColor
-        layer.shadowRadius = Dimens.Shadow.radius
-        layer.shadowOpacity = Dimens.Shadow.opacity
-        layer.shadowOffset = Dimens.Shadow.offset
+        ShadowValues.apply(toLayer: layer)
         layer.masksToBounds = false
         backgroundColor = .surface
     }

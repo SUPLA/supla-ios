@@ -51,7 +51,7 @@ final class TrippleNumberSelectorView: UIView {
     private lazy var selectedPickerRowView: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.backgroundColor = .grayLight
+        view.backgroundColor = .grayLighter
         view.layer.cornerRadius = Dimens.buttonRadius
         return view
     }()

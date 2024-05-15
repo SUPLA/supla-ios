@@ -22,7 +22,7 @@ protocol BaseMeasurementRepository<M, E>: RepositoryProtocol {
     associatedtype M: SuplaCloudMeasurement
     associatedtype E: SAMeasurementItem
     
-    func deleteAll(for profile: AuthProfileItem) -> Observable<Void>
+    func deleteAll(remoteId: Int32, profile: AuthProfileItem) -> Observable<Void>
     func findMinTimestamp(remoteId: Int32, profile: AuthProfileItem) -> Observable<TimeInterval?>
     func findMaxTimestamp(remoteId: Int32, profile: AuthProfileItem) -> Observable<TimeInterval?>
     func findCount(remoteId: Int32, profile: AuthProfileItem) -> Observable<Int>

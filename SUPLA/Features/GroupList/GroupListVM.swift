@@ -19,11 +19,11 @@
 import Foundation
 
 class GroupListViewModel: BaseTableViewModel<GroupListViewState, GroupListViewEvent> {
-    
     @Singleton<CreateProfileGroupsListUseCase> private var createProfileGroupsListUseCase
     @Singleton<SwapGroupPositionsUseCase> private var swapGroupPositionsUseCase
     @Singleton<ProvideDetailTypeUseCase> private var provideDetailTypeUseCase
     @Singleton<UpdateEventsManager> private var updateEventsManager
+    @Singleton<LoadActiveProfileUrlUseCase> private var loadActiveProfileUrlUseCase
     
     override init() {
         super.init()
@@ -66,7 +66,7 @@ class GroupListViewModel: BaseTableViewModel<GroupListViewState, GroupListViewEv
         switch (detailType) {
         case let .legacy(type: legacyDetailType):
             send(event: .navigateToDetail(legacy: legacyDetailType, channelBase: item))
-        case let .rollerShutterDetail(pages):
+        case let .windowDetail(pages):
             send(event: .naviagetToRollerShutterDetail(item: item.item(), pages: pages))
         default: break
         }
@@ -75,13 +75,24 @@ class GroupListViewModel: BaseTableViewModel<GroupListViewState, GroupListViewEv
     override func getCollapsedFlag() -> CollapsedFlag { .group }
     
     func onNoContentButtonClicked() {
-        send(event: .openCloud)
+        loadActiveProfileUrlUseCase.invoke()
+            .asDriverWithoutError()
+            .drive(
+                onNext: { [weak self] url in
+                    switch (url) {
+                    case .suplaCloud: self?.send(event: .openCloud)
+                    case let .privateCloud(url): self?.send(event: .openPrivateCloud(url: url))
+                    }
+                }
+            )
+            .disposed(by: self)
     }
 }
 
 enum GroupListViewEvent: ViewEvent {
     case navigateToDetail(legacy: LegacyDetailType, channelBase: SAChannelBase)
     case naviagetToRollerShutterDetail(item: ItemBundle, pages: [DetailPage])
+    case openPrivateCloud(url: URL)
     case openCloud
 }
 

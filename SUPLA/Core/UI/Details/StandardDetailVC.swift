@@ -16,7 +16,7 @@
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 
-class StandardDetailVC<S : ViewState, E : ViewEvent, VM : StandardDetailVM<S, E>> : SuplaTabBarController<S, E, VM> {
+class StandardDetailVC<S : ViewState, E : ViewEvent, VM : StandardDetailVM<S, E>> : SuplaTabBarController<S, E, VM>, NavigationItemProvider {
     
     @Singleton<RuntimeConfig> private var runtimeConfig
     @Singleton<GlobalSettings> private var settings
@@ -83,8 +83,12 @@ class StandardDetailVC<S : ViewState, E : ViewEvent, VM : StandardDetailVM<S, E>
                 viewControllers.append(thermostatTimerDetail())
             case .gpmHistory:
                 viewControllers.append(gpmHistoryDetail())
-            case .rollerShutterGeneral:
-                viewControllers.append(rollerShutterGeneralDetail())
+            case .rollerShutter:
+                viewControllers.append(rollerShutterDetail())
+            case .roofWindow:
+                viewControllers.append(roofWindowDetail())
+            case .facadeBlind:
+                viewControllers.append(facadeBlindDetail())
             }
         }
         
@@ -156,7 +160,7 @@ class StandardDetailVC<S : ViewState, E : ViewEvent, VM : StandardDetailVM<S, E>
     }
     
     private func thermostatHistoryDetail() -> ThermostatHistoryDetailVC {
-        let vc = ThermostatHistoryDetailVC(remoteId: item.remoteId)
+        let vc = ThermostatHistoryDetailVC(remoteId: item.remoteId, navigationItemProvider: self)
         vc.navigationCoordinator = navigationCoordinator
         vc.tabBarItem = UITabBarItem(
             title: settings.showBottomLabels ? Strings.StandardDetail.tabHistory : nil,
@@ -167,7 +171,7 @@ class StandardDetailVC<S : ViewState, E : ViewEvent, VM : StandardDetailVM<S, E>
     }
     
     private func thermometerHistoryDetail() -> ThermometerHistoryDetailVC {
-        let vc = ThermometerHistoryDetailVC(remoteId: item.remoteId)
+        let vc = ThermometerHistoryDetailVC(remoteId: item.remoteId, navigationItemProvider: self)
         vc.navigationCoordinator = navigationCoordinator
         vc.tabBarItem = UITabBarItem(
             title: settings.showBottomLabels ? Strings.StandardDetail.tabHistory : nil,
@@ -190,7 +194,7 @@ class StandardDetailVC<S : ViewState, E : ViewEvent, VM : StandardDetailVM<S, E>
     }
     
     private func gpmHistoryDetail() -> GpmHistoryDetailVC {
-        let vc = GpmHistoryDetailVC(remoteId: item.remoteId)
+        let vc = GpmHistoryDetailVC(remoteId: item.remoteId, navigationItemProvider: self)
         vc.navigationCoordinator = navigationCoordinator
         vc.tabBarItem = UITabBarItem(
             title: settings.showBottomLabels ? Strings.StandardDetail.tabHistory : nil,
@@ -201,16 +205,42 @@ class StandardDetailVC<S : ViewState, E : ViewEvent, VM : StandardDetailVM<S, E>
         return vc
     }
     
-    private func rollerShutterGeneralDetail() -> RollerShutterGeneralVC {
-        let vc = RollerShutterGeneralVC(itemBundle: item)
+    private func rollerShutterDetail() -> RollerShutterVC {
+        let vc = RollerShutterVC(itemBundle: item)
         vc.navigationCoordinator = navigationCoordinator
         vc.tabBarItem = UITabBarItem(
             title: settings.showBottomLabels ? Strings.StandardDetail.tabGeneral : nil,
             image: .iconGeneral,
-            tag: DetailTabTag.Switch.rawValue
+            tag: DetailTabTag.Window.rawValue
         )
         return vc
     }
+    
+    private func roofWindowDetail() -> RoofWindowVC {
+        let vc = RoofWindowVC(itemBundle: item)
+        vc.navigationCoordinator = navigationCoordinator
+        vc.tabBarItem = UITabBarItem(
+            title: settings.showBottomLabels ? Strings.StandardDetail.tabGeneral : nil,
+            image: .iconGeneral,
+            tag: DetailTabTag.Window.rawValue
+        )
+        return vc
+    }
+    
+    private func facadeBlindDetail() -> FacadeBlindsVC {
+        let vc = FacadeBlindsVC(itemBundle: item)
+        vc.navigationCoordinator = navigationCoordinator
+        vc.tabBarItem = UITabBarItem(
+            title: settings.showBottomLabels ? Strings.StandardDetail.tabGeneral : nil,
+            image: .iconGeneral,
+            tag: DetailTabTag.Window.rawValue
+        )
+        return vc
+    }
+}
+
+protocol NavigationItemProvider: AnyObject {
+    var navigationItem: UINavigationItem { get }
 }
 
 fileprivate enum DetailTabTag: Int {
@@ -220,4 +250,5 @@ fileprivate enum DetailTabTag: Int {
     case Thermostat = 4
     case Schedule = 5
     case ThermostatHistory = 6
+    case Window = 7
 }

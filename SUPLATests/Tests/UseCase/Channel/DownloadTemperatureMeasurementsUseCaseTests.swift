@@ -140,7 +140,8 @@ final class DownloadTemperatureMeasurementsUseCaseTests: UseCaseTest<Float> {
         assertEvents([
             .completed
         ])
-        XCTAssertEqual(temperatureMeasurementItemRepository.deleteAllCounter, 1)
+        XCTAssertTuples(temperatureMeasurementItemRepository.deleteAllForRemoteIdAndProfileParameters, [(remoteId, profile)]
+        )
     }
     
     func test_shouldImportDataWhenDbIsEmpty() {
@@ -253,7 +254,7 @@ final class DownloadTemperatureMeasurementsUseCaseTests: UseCaseTest<Float> {
             .completed
         ])
         XCTAssertTuples(temperatureMeasurementItemRepository.getMeasurementsParameters, [(remoteId, oldDate)])
-        XCTAssertEqual(temperatureMeasurementItemRepository.deleteAllCounter, 1)
+        XCTAssertTuples(temperatureMeasurementItemRepository.deleteAllForRemoteIdAndProfileParameters, [(remoteId, profile)])
     }
     
     private func mockedHttpResponse(count: Int = 0, _ totalCountHeader: String = "X-Total-Count") -> HTTPURLResponse {

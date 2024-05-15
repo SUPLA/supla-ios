@@ -16,29 +16,24 @@
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 
-struct RollerShutterValue {
+struct RollerShutterValue : ShadingSystemValue {
     let online: Bool
     let position: Int
     let bottomPosition: Int
     let flags: [SuplaRollerShutterFlag]
     
-    var hasValidPosition: Bool {
-        position != RollerShutterValue.invalidPosition
-    }
-    
-    static let invalidPosition = -1
     static let invalidBottomPosition = 0 // more precisely <= 0
     static let maxPosition = 100
     
     static func from(_ data: Data, online: Bool) -> RollerShutterValue {
         if (data.count < MemoryLayout<TDSC_RollerShutterValue>.size) {
-            return RollerShutterValue(online: online, position: invalidPosition, bottomPosition: 0, flags: [])
+            return RollerShutterValue(online: online, position: SHADING_SYSTEM_INVALID_VALUE, bottomPosition: 0, flags: [])
         }
         let value = data.withUnsafeBytes { $0.load(as: TDSC_RollerShutterValue.self) }
         
         return RollerShutterValue(
             online: online,
-            position: Int(value.position).run { $0 < invalidPosition || $0 > maxPosition ? invalidPosition : $0 },
+            position: Int(value.position).run { $0 < SHADING_SYSTEM_INVALID_VALUE || $0 > maxPosition ? SHADING_SYSTEM_INVALID_VALUE : $0 },
             bottomPosition: Int(value.bottom_position)
                 .run { $0 <= invalidBottomPosition || $0 > maxPosition ? maxPosition : $0 },
             flags: SuplaRollerShutterFlag.from(flags: value.flags)

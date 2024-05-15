@@ -1,0 +1,12 @@
+{
+  "images" : [
+    {
+      "filename" : "Menu icon help.svg",
+      "idiom" : "universal"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}

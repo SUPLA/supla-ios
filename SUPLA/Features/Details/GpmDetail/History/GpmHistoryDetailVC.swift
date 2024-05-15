@@ -19,8 +19,8 @@
 final class GpmHistoryDetailVC: BaseHistoryDetailVC {
     private var navigator: GpmDetailNavigatorCoordinator? { navigationCoordinator as? GpmDetailNavigatorCoordinator }
 
-    override init(remoteId: Int32) {
-        super.init(remoteId: remoteId)
+    override init(remoteId: Int32, navigationItemProvider: NavigationItemProvider) {
+        super.init(remoteId: remoteId, navigationItemProvider: navigationItemProvider)
         viewModel = GpmHistoryDetailVM()
     }
 

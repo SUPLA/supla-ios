@@ -62,6 +62,12 @@ final class DeleteAllProfileDataUseCaseTests: UseCaseTest<Void> {
     private lazy var thermostatMeasurementItemRepository: ThermostatMeasurementItemRepositoryMock! = {
         ThermostatMeasurementItemRepositoryMock()
     }()
+    private lazy var generalPurposeMeterItemRepository: GeneralPurposeMeterItemRepositoryMock! = {
+        GeneralPurposeMeterItemRepositoryMock()
+    }()
+    private lazy var generalPurposeMeasurementItemRepository: GeneralPurposeMeasurementItemRepositoryMock! = {
+        GeneralPurposeMeasurementItemRepositoryMock()
+    }()
     
     override func setUp() {
         DiContainer.shared.register(type: (any ChannelExtendedValueRepository).self, channelExtendedValueRepository!)
@@ -76,6 +82,8 @@ final class DeleteAllProfileDataUseCaseTests: UseCaseTest<Void> {
         DiContainer.shared.register(type: (any TempHumidityMeasurementItemRepository).self, tempHumidityMeasurementItemRepository!)
         DiContainer.shared.register(type: (any UserIconRepository).self, userIconRepository!)
         DiContainer.shared.register(type: (any ThermostatMeasurementItemRepository).self, thermostatMeasurementItemRepository!)
+        DiContainer.shared.register(type: (any GeneralPurposeMeterItemRepository).self, generalPurposeMeterItemRepository!)
+        DiContainer.shared.register(type: (any GeneralPurposeMeasurementItemRepository).self, generalPurposeMeasurementItemRepository!)
     }
     
     override func tearDown() {
@@ -93,6 +101,8 @@ final class DeleteAllProfileDataUseCaseTests: UseCaseTest<Void> {
         tempHumidityMeasurementItemRepository = nil
         userIconRepository = nil
         thermostatMeasurementItemRepository = nil
+        generalPurposeMeterItemRepository = nil
+        generalPurposeMeasurementItemRepository = nil
         
         super.tearDown()
     }
@@ -100,18 +110,20 @@ final class DeleteAllProfileDataUseCaseTests: UseCaseTest<Void> {
     func test() {
         // given
         let profile = AuthProfileItem(testContext: nil)
-        channelExtendedValueRepository.deleteAllObservable = Observable.just(())
-        channelValueRepository.deleteAllObservable = Observable.just(())
-        channelRepository.deleteAllObservable = Observable.just(())
-        groupRepository.deleteAllObservable = Observable.just(())
-        electricityMeasurementItemRepository.deleteAllObservable = Observable.just(())
-        impulseCounterMeasurementItemRepository.deleteAllObservable = Observable.just(())
-        locationRepository.deleteAllObservable = Observable.just(())
-        sceneRepository.deleteAllObservable = Observable.just(())
-        temperatureMeasurementItemRepository.deleteAllObservable = Observable.just(())
-        tempHumidityMeasurementItemRepository.deleteAllObservable = Observable.just(())
-        userIconRepository.deleteAllObservable = Observable.just(())
-        thermostatMeasurementItemRepository.deleteAllObservable = Observable.just(())
+        channelExtendedValueRepository.deleteAllObservable = .just(())
+        channelValueRepository.deleteAllObservable = .just(())
+        channelRepository.deleteAllObservable = .just(())
+        groupRepository.deleteAllObservable = .just(())
+        electricityMeasurementItemRepository.deleteAllObservable = .just(())
+        impulseCounterMeasurementItemRepository.deleteAllObservable = .just(())
+        locationRepository.deleteAllObservable = .just(())
+        sceneRepository.deleteAllObservable = .just(())
+        temperatureMeasurementItemRepository.deleteAllForProfileReturns = .just(())
+        tempHumidityMeasurementItemRepository.deleteAllForProfileReturns = .just(())
+        userIconRepository.deleteAllObservable = .just(())
+        thermostatMeasurementItemRepository.deleteAllObservable = .just(())
+        generalPurposeMeterItemRepository.deleteAllForProfileReturns = .just(())
+        generalPurposeMeasurementItemRepository.deleteAllForProfileReturns = .just(())
         
         // when
         useCase.invoke(profile: profile).subscribe(observer).disposed(by: disposeBag)
@@ -126,10 +138,12 @@ final class DeleteAllProfileDataUseCaseTests: UseCaseTest<Void> {
         XCTAssertEqual(impulseCounterMeasurementItemRepository.deleteAllCounter, 1)
         XCTAssertEqual(locationRepository.deleteAllCounter, 1)
         XCTAssertEqual(sceneRepository.deleteAllCounter, 1)
-        XCTAssertEqual(temperatureMeasurementItemRepository.deleteAllCounter, 1)
-        XCTAssertEqual(tempHumidityMeasurementItemRepository.deleteAllCounter, 1)
+        XCTAssertEqual(temperatureMeasurementItemRepository.deleteAllForProfileParameters, [profile])
+        XCTAssertEqual(tempHumidityMeasurementItemRepository.deleteAllForProfileParameters, [profile])
         XCTAssertEqual(userIconRepository.deleteAllCounter, 1)
         XCTAssertEqual(thermostatMeasurementItemRepository.deleteAllCounter, 1)
+        XCTAssertEqual(generalPurposeMeterItemRepository.deleteAllForProfileParameters, [profile])
+        XCTAssertEqual(generalPurposeMeasurementItemRepository.deleteAllForProfileParameters, [profile])
         
     }
 }

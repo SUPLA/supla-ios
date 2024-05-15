@@ -113,8 +113,7 @@ final class SwitchGeneralVMTest: ViewModelTest<SwitchGeneralViewState, SwitchGen
         XCTAssertEqual(stateObserver.events[1].value.element?.deviceState?.iconData.state, .opened)
         
         XCTAssertEqual(readChannelByRemoteIdUseCase.remoteIdArray[0], 123)
-        XCTAssertEqual(getChannelBaseStateUseCase.functionsArray[0], function)
-        XCTAssertEqual(getChannelBaseStateUseCase.activeValuesArray[0], 0)
+        XCTAssertTuples(getChannelBaseStateUseCase.parameters, [(function, true, 0)])
     }
     
     func test_loadChannel_timerEndDateBeforeCurrentTimestamp() {
@@ -166,8 +165,7 @@ final class SwitchGeneralVMTest: ViewModelTest<SwitchGeneralViewState, SwitchGen
         XCTAssertEqual(stateObserver.events[1].value.element?.deviceState?.iconData.state, .opened)
         
         XCTAssertEqual(readChannelByRemoteIdUseCase.remoteIdArray[0], 123)
-        XCTAssertEqual(getChannelBaseStateUseCase.functionsArray[0], function)
-        XCTAssertEqual(getChannelBaseStateUseCase.activeValuesArray[0], 0)
+        XCTAssertTuples(getChannelBaseStateUseCase.parameters, [(function, false, 0)])
     }
     
     func test_shouldInvokeTurnOn() {

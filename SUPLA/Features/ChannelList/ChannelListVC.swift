@@ -53,11 +53,8 @@ class ChannelListVC: ChannelBaseTableViewController<ChannelListViewState, Channe
         if let channelCell = cell as? SAChannelCell {
             channelCell.delegate = self
         }
-        if let thermostatCell = cell as? ThermostatCell {
-            thermostatCell.delegate = self
-        }
-        if let measurementCell = cell as? MeasurementCell {
-            measurementCell.delegate = self
+        if let baseCell = cell as? MGSwipeTableCell {
+            baseCell.delegate = self
         }
         
         return cell
@@ -94,7 +91,7 @@ extension ChannelListVC: SAChannelCellDelegate {
     }
 }
 
-extension ChannelListVC: ThermostatCellDelgate {
+extension ChannelListVC: BaseCellDelegate {
     func onButtonTapped(buttonType: CellButtonType, remoteId: Int32, data: Any?) {
         viewModel.onButtonClicked(buttonType: buttonType, data: data)
     }
@@ -120,5 +117,3 @@ extension ChannelListVC: ThermostatCellDelgate {
         SAChannelStatePopup.globalInstance().show(channel)
     }
 }
-
-extension ChannelListVC: MeasurementCellDelegate {}

@@ -18,8 +18,6 @@
 
 final class LoadingScrimView: UIView {
     
-    let dialogScrim = UIColor.from(red: 245, green: 246, blue: 247, alpha: 0.5)
-    
     override var isHidden: Bool {
         didSet {
             if (isHidden) {
@@ -34,6 +32,7 @@ final class LoadingScrimView: UIView {
         let view = UIActivityIndicatorView()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.transform = CGAffineTransform(scaleX: 2, y: 2)
+        view.color = .primary
         return view
     }()
     
@@ -55,7 +54,9 @@ final class LoadingScrimView: UIView {
     }
     
     private func setupView() {
-        backgroundColor = dialogScrim
+        translatesAutoresizingMaskIntoConstraints = false
+        
+        backgroundColor = .loadingScrim
         addSubview(loaderBackground)
         addSubview(loaderView)
         
@@ -72,5 +73,9 @@ final class LoadingScrimView: UIView {
             loaderBackground.widthAnchor.constraint(equalToConstant: 100),
             loaderBackground.heightAnchor.constraint(equalToConstant: 100)
         ])
+    }
+    
+    override class var requiresConstraintBasedLayout: Bool {
+        true
     }
 }

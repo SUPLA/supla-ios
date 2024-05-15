@@ -51,10 +51,13 @@ class BaseTableViewController<S: ViewState, E: ViewEvent, VM: BaseTableViewModel
         navigationCoordinator as? MainNavigationCoordinator
     }
     
-    lazy var noContentButton: UIBorderedButton = {
-        let button = UIBorderedButton()
-        button.translatesAutoresizingMaskIntoConstraints = false
-        return button
+    private lazy var noContentIcon: UIImageView = {
+        let view = UIImageView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.image = .iconEmpty
+        view.tintColor = .gray
+        view.contentMode = .scaleAspectFit
+        return view
     }()
     
     private lazy var noContentLabel: UILabel = {
@@ -64,6 +67,12 @@ class BaseTableViewController<S: ViewState, E: ViewEvent, VM: BaseTableViewModel
         label.font = .h4
         label.textColor = .gray
         return label
+    }()
+    
+    lazy var noContentButton: UIBorderedButton = {
+        let button = UIBorderedButton()
+        button.translatesAutoresizingMaskIntoConstraints = false
+        return button
     }()
     
     override func loadView() {
@@ -181,14 +190,20 @@ class BaseTableViewController<S: ViewState, E: ViewEvent, VM: BaseTableViewModel
         noContentButton.setAttributedTitle(buttonLabel)
         
         let content = UIView()
+        content.addSubview(noContentIcon)
         content.addSubview(noContentLabel)
         content.addSubview(noContentButton)
         
         NSLayoutConstraint.activate([
-            noContentLabel.bottomAnchor.constraint(equalTo: content.centerYAnchor, constant: -Dimens.distanceDefault),
+            noContentIcon.centerXAnchor.constraint(equalTo: content.centerXAnchor),
+            noContentIcon.bottomAnchor.constraint(equalTo: noContentLabel.topAnchor),
+            noContentIcon.widthAnchor.constraint(equalToConstant: 64),
+            noContentIcon.heightAnchor.constraint(equalToConstant: 64),
+            
+            noContentLabel.bottomAnchor.constraint(equalTo: content.centerYAnchor, constant: -Dimens.distanceSmall),
             noContentLabel.centerXAnchor.constraint(equalTo: content.centerXAnchor),
             
-            noContentButton.topAnchor.constraint(equalTo: content.centerYAnchor, constant: Dimens.distanceDefault),
+            noContentButton.topAnchor.constraint(equalTo: content.centerYAnchor, constant: Dimens.distanceSmall),
             noContentButton.centerXAnchor.constraint(equalTo: content.centerXAnchor)
         ])
         

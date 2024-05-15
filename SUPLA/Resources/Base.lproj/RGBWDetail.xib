@@ -31,7 +31,7 @@
                             </constraints>
                             <fontDescription key="fontDescription" name="OpenSans-Bold" family="Open Sans" pointSize="10"/>
                             <state key="normal" title="RGB">
-                                <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="titleColor" name="Colors/on_background"/>
                             </state>
                             <state key="selected">
                                 <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -52,7 +52,7 @@
                             </constraints>
                             <fontDescription key="fontDescription" name="OpenSans-Bold" family="Open Sans" pointSize="10"/>
                             <state key="normal" title="DIMMER">
-                                <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="titleColor" name="Colors/on_background"/>
                             </state>
                             <state key="selected">
                                 <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -67,7 +67,7 @@
                             </connections>
                         </button>
                     </subviews>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <color key="backgroundColor" name="Colors/surface"/>
                     <constraints>
                         <constraint firstItem="ZfE-Sn-N5Y" firstAttribute="leading" secondItem="tyr-Ao-Ful" secondAttribute="leading" constant="2" id="0im-li-iDP"/>
                         <constraint firstItem="ZfE-Sn-N5Y" firstAttribute="centerY" secondItem="tyr-Ao-Ful" secondAttribute="centerY" id="1H6-U5-le4"/>
@@ -95,7 +95,7 @@
                             </constraints>
                             <fontDescription key="fontDescription" name="OpenSans-Bold" family="Open Sans" pointSize="10"/>
                             <state key="normal" title="WHEEL">
-                                <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="titleColor" name="Colors/on_background"/>
                             </state>
                             <state key="selected">
                                 <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -117,7 +117,7 @@
                             </constraints>
                             <fontDescription key="fontDescription" name="OpenSans-Bold" family="Open Sans" pointSize="10"/>
                             <state key="normal" title="SLIDER">
-                                <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="titleColor" name="Colors/on_background"/>
                             </state>
                             <state key="selected">
                                 <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -132,7 +132,7 @@
                             </connections>
                         </button>
                     </subviews>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <color key="backgroundColor" name="Colors/surface"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="35" id="9ME-wE-hUw"/>
                         <constraint firstItem="wKr-No-fLI" firstAttribute="leading" secondItem="hGF-sg-Xa0" secondAttribute="leading" constant="2" id="BLL-Bh-E03"/>
@@ -203,14 +203,15 @@
                         <constraint firstAttribute="trailing" secondItem="903-YP-lmB" secondAttribute="trailing" id="bAj-5L-8zX"/>
                     </constraints>
                 </view>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="byQ-th-xcl">
+                <button opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="byQ-th-xcl">
                     <rect key="frame" x="328" y="576" width="50" height="50"/>
+                    <rect key="contentStretch" x="0.0" y="0.0" width="0.94999999999999996" height="1"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="50" id="6T0-T2-0UZ"/>
                         <constraint firstAttribute="width" constant="50" id="8kl-dE-TVT"/>
                     </constraints>
                     <color key="tintColor" name="Colors/on_background"/>
-                    <state key="normal" image="rgbwpoweroff.png"/>
+                    <state key="normal" image="rgbwpoweron"/>
                     <connections>
                         <action selector="onPowerBtnTouch:" destination="iN0-l3-epB" eventType="touchDown" id="YtN-3B-2aq"/>
                     </connections>
@@ -266,10 +267,13 @@
     </objects>
     <resources>
         <image name="rgbwinfo" width="150" height="150"/>
-        <image name="rgbwpoweroff.png" width="50" height="50"/>
+        <image name="rgbwpoweron" width="48" height="48"/>
         <image name="rgbwsettings" width="150" height="150"/>
         <namedColor name="Colors/on_background">
             <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="Colors/surface">
+            <color red="0.99607843137254903" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

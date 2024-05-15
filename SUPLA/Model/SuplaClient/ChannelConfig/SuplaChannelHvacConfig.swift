@@ -35,6 +35,7 @@ final class SuplaChannelHvacConfig: SuplaChannelConfig {
     init(
         remoteId: Int32,
         channelFunc: Int32?,
+        crc32: Int64,
         mainThermometerRemoteId: Int32,
         auxThermometerRemoteId: Int32,
         auxThermometerType: SuplaHvacThermometerType,
@@ -58,17 +59,18 @@ final class SuplaChannelHvacConfig: SuplaChannelConfig {
         self.outputValueOnError = outputValueOnError
         self.temperatures = temperatures
         self.subfunction = subfunction
-        super.init(remoteId: remoteId, channelFunc: channelFunc)
+        super.init(remoteId: remoteId, channelFunc: channelFunc, crc32: crc32)
     }
     
     required init(from decoder: Decoder) throws {
         fatalError("init(from:) has not been implemented")
     }
     
-    static func from(remoteId: Int32, channelFunc: Int32?, suplaConfig: TChannelConfig_HVAC) -> SuplaChannelHvacConfig {
+    static func from(remoteId: Int32, channelFunc: Int32?, crc32: Int64, suplaConfig: TChannelConfig_HVAC) -> SuplaChannelHvacConfig {
         return SuplaChannelHvacConfig(
             remoteId: remoteId,
             channelFunc: channelFunc,
+            crc32: crc32,
             mainThermometerRemoteId: suplaConfig.MainThermometerChannelId,
             auxThermometerRemoteId: suplaConfig.AuxThermometerChannelId,
             auxThermometerType: SuplaHvacThermometerType.from(value: suplaConfig.AuxThermometerType),
