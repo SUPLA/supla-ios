@@ -19,7 +19,7 @@
 @objc public final class BrandingConfiguration: NSObject {
     
     @objc(BrandingConfigurationMenu) public final class Menu: NSObject {
-        @objc static let DEVICES_OPTION_VISIBLE = true
+        @objc static let DEVICES_OPTION_VISIBLE = false
         @objc static let Z_WAVE_OPTION_VISIBLE = true
         @objc static let ABOUT_OPTION_VISIBLE = true
         @objc static let HELP_OPTION_VISIBLE = true
