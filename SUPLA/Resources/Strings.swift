@@ -303,6 +303,7 @@ struct Strings {
             static let captionGeneralPurposeMeasurement = "channel_caption_general_purpose_measurment".toLocalized()
             static let captionGeneralPurposeMeter = "channel_caption_general_purpose_meter".toLocalized()
             static let captionFacadeBlinds = "channel_caption_facade_blinds".toLocalized()
+            static let captionTerraceAwning = "channel_caption_terrace_awning".toLocalized()
         }
     }
     

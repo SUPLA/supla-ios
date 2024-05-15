@@ -82,6 +82,15 @@ final class ProvideDetailTypeUseCaseTests: XCTestCase {
         }
     }
     
+    func test_shouldProvideRs_forTerraceAwningFunction() {
+        doTest(expectedResult: .windowDetail(pages: [.terraceAwning])) {
+            let channel = SAChannel(testContext: nil)
+            channel.func = SUPLA_CHANNELFNC_TERRACE_AWNING
+            
+            return channel
+        }
+    }
+    
     func test_shouldProvideEm_forEmFunction() {
         doTest(expectedResult: .legacy(type: .em)) {
             let channel = SAChannel(testContext: nil)

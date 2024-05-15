@@ -128,6 +128,8 @@ extension String {
         static let fncThermostatHeat = "fnc_thermostat_heat"
         static let fncThermostatCool = "fnc_thermostat_cool"
         static let fncThermostatDhw = "fnc_thermostat_dhw"
+        // ShadingSystems
+        static let fncTerraceAwning = "fnc_terrace_awning"
         
         // MARK: other
         static let thumbHeat = "thumb_heat"

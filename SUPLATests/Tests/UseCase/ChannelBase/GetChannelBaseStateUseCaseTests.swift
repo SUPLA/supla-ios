@@ -296,4 +296,43 @@ final class GetChannelBaseStateUseCaseTests: XCTestCase {
         XCTAssertEqual(state, .opaque)
         XCTAssertFalse(state.isActive())
     }
+    
+    func test_terraceAwningClosedState() {
+        // given
+        let function = SUPLA_CHANNELFNC_TERRACE_AWNING
+        let activeValue: Int32 = 1
+        
+        // when
+        let state = useCase.invoke(function: function, online: true, activeValue: activeValue)
+        
+        // then
+        XCTAssertEqual(state, .closed)
+        XCTAssertTrue(state.isActive())
+    }
+    
+    func test_terraceAwningOpenedState() {
+        // given
+        let function = SUPLA_CHANNELFNC_TERRACE_AWNING
+        let activeValue: Int32 = 0
+        
+        // when
+        let state = useCase.invoke(function: function, online: true, activeValue: activeValue)
+        
+        // then
+        XCTAssertEqual(state, .opened)
+        XCTAssertFalse(state.isActive())
+    }
+    
+    func test_terraceAwningOfflineState() {
+        // given
+        let function = SUPLA_CHANNELFNC_TERRACE_AWNING
+        let activeValue: Int32 = 0
+        
+        // when
+        let state = useCase.invoke(function: function, online: false, activeValue: activeValue)
+        
+        // then
+        XCTAssertEqual(state, .opened)
+        XCTAssertFalse(state.isActive())
+    }
 }

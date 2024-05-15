@@ -50,7 +50,8 @@ final class GetChannelBaseStateUseCaseImpl: GetChannelBaseStateUseCase {
              SUPLA_CHANNELFNC_VALVE_OPENCLOSE,
              SUPLA_CHANNELFNC_VALVE_PERCENTAGE,
              SUPLA_CHANNELFNC_CONTROLLINGTHEFACADEBLIND,
-             SUPLA_CHANNELFNC_CONTROLLINGTHEGATEWAYLOCK:
+             SUPLA_CHANNELFNC_CONTROLLINGTHEGATEWAYLOCK,
+             SUPLA_CHANNELFNC_TERRACE_AWNING:
             if (activeValue != 0) {
                 return .closed
             } else {
@@ -102,6 +103,7 @@ final class GetChannelBaseStateUseCaseImpl: GetChannelBaseStateUseCase {
              SUPLA_CHANNELFNC_OPENINGSENSOR_ROLLERSHUTTER,
              SUPLA_CHANNELFNC_OPENINGSENSOR_WINDOW,
              SUPLA_CHANNELFNC_OPENINGSENSOR_ROOFWINDOW,
+             SUPLA_CHANNELFNC_TERRACE_AWNING,
              SUPLA_CHANNELFNC_VALVE_OPENCLOSE,
              SUPLA_CHANNELFNC_VALVE_PERCENTAGE: .opened
         case SUPLA_CHANNELFNC_POWERSWITCH,

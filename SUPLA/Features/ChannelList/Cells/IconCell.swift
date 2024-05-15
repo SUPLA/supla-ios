@@ -103,7 +103,8 @@ final class IconCell: BaseCell<ChannelWithChildren> {
         switch (data?.channel.func) {
         case SUPLA_CHANNELFNC_CONTROLLINGTHEROOFWINDOW,
              SUPLA_CHANNELFNC_CONTROLLINGTHEFACADEBLIND,
-             SUPLA_CHANNELFNC_CONTROLLINGTHEROLLERSHUTTER: true
+             SUPLA_CHANNELFNC_CONTROLLINGTHEROLLERSHUTTER,
+             SUPLA_CHANNELFNC_TERRACE_AWNING: true
         default: false
         }
     }
@@ -112,7 +113,8 @@ final class IconCell: BaseCell<ChannelWithChildren> {
         switch (data?.channel.func) {
         case SUPLA_CHANNELFNC_CONTROLLINGTHEROOFWINDOW,
              SUPLA_CHANNELFNC_CONTROLLINGTHEFACADEBLIND,
-             SUPLA_CHANNELFNC_CONTROLLINGTHEROLLERSHUTTER: true
+             SUPLA_CHANNELFNC_CONTROLLINGTHEROLLERSHUTTER,
+             SUPLA_CHANNELFNC_TERRACE_AWNING: true
         default: false
         }
     }

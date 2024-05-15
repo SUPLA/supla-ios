@@ -66,6 +66,7 @@
 "channel_caption_general_purpose_measurment" = "Measurement channel";
 "channel_caption_general_purpose_meter" = "Meter channel";
 "channel_caption_facade_blinds" = "Facade blinds";
+"channel_caption_terrace_awning" = "Terrace awning";
 
 /* Main */
 "dialog_new_gesture_info_text" = "Swipe gesture to open details was removed, tap on particular channel to open it.";

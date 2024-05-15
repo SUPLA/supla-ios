@@ -348,6 +348,7 @@
 "channel_caption_general_purpose_measurment" = "Kanał pomiarowy";
 "channel_caption_general_purpose_meter" = "Kanał licznikowy";
 "channel_caption_facade_blinds" = "Żaluzja fasadowa";
+"channel_caption_terrace_awning" = "Markiza tarasowa";
 
 /* Main */
 "dialog_new_gesture_info_text" = "Usunęliśmy gest przesunięcia otwierający szczegóły, aby je zobaczyć dotknij wybrany kanał.";

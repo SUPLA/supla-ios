@@ -1579,4 +1579,42 @@ final class GetDefaultIconNameUseCaseTests: XCTestCase {
         // then
         XCTAssertEqual(iconName, "fnc_alarm_armament-off")
     }
+    
+    func test_terraceAwningOpened() {
+        // given
+        let function = SUPLA_CHANNELFNC_TERRACE_AWNING
+        
+        // when
+        let iconName = useCase.invoke(
+            iconData: IconData(
+                function: function,
+                altIcon: 0,
+                state: .opened,
+                type: .single,
+                subfunction: .notSet
+            )
+        )
+        
+        // then
+        XCTAssertEqual(iconName, "fnc_terrace_awning-open")
+    }
+    
+    func test_terraceAwningClose() {
+        // given
+        let function = SUPLA_CHANNELFNC_TERRACE_AWNING
+        
+        // when
+        let iconName = useCase.invoke(
+            iconData: IconData(
+                function: function,
+                altIcon: 0,
+                state: .closed,
+                type: .single,
+                subfunction: .notSet
+            )
+        )
+        
+        // then
+        XCTAssertEqual(iconName, "fnc_terrace_awning-closed")
+    }
 }
