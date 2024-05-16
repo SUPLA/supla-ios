@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="32700.99.1234" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22684"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -22,26 +23,26 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label #1" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Uuz-MN-REw">
-                        <rect key="frame" x="18" y="6" width="117.5" height="30"/>
+                        <rect key="frame" x="18" y="6" width="100" height="30"/>
                         <constraints>
                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="100" id="aQB-zF-jnu"/>
                         </constraints>
-                        <fontDescription key="fontDescription" name="Quicksand-Regular" family="Quicksand" pointSize="31"/>
+                        <fontDescription key="fontDescription" name="Quicksand-Regular" family="Quicksand" pointSize="24"/>
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MSR-t5-TxP" userLabel="bottomLine">
-                        <rect key="frame" x="8" y="36" width="304" height="1"/>
-                        <color key="backgroundColor" red="0.66666666666666663" green="0.66666666666666663" blue="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <rect key="frame" x="8" y="39" width="304" height="1"/>
+                        <color key="backgroundColor" name="Colors/separator"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="1" id="vp8-u9-vHj"/>
                         </constraints>
                     </view>
                     <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="collapsed.png" translatesAutoresizingMaskIntoConstraints="NO" id="Qli-HA-Vy6">
-                        <rect key="frame" x="270" y="5" width="30" height="30"/>
+                        <rect key="frame" x="276" y="8" width="24" height="24"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="30" id="U5C-ay-7HW"/>
-                            <constraint firstAttribute="height" constant="30" id="jj4-fk-m2g"/>
+                            <constraint firstAttribute="width" constant="24" id="U5C-ay-7HW"/>
+                            <constraint firstAttribute="height" constant="24" id="jj4-fk-m2g"/>
                         </constraints>
                     </imageView>
                 </subviews>
@@ -55,7 +56,7 @@
                     <constraint firstAttribute="bottomMargin" secondItem="Uuz-MN-REw" secondAttribute="bottom" constant="-7" id="YPM-iY-VNb"/>
                     <constraint firstItem="Qli-HA-Vy6" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="mSI-TI-E0v"/>
                     <constraint firstItem="MSR-t5-TxP" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="-8" id="mum-eM-25d"/>
-                    <constraint firstAttribute="bottomMargin" secondItem="MSR-t5-TxP" secondAttribute="bottom" constant="-8" id="xfL-ln-ooF"/>
+                    <constraint firstAttribute="bottom" secondItem="MSR-t5-TxP" secondAttribute="bottom" id="xfL-ln-ooF"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
@@ -67,5 +68,8 @@
     </objects>
     <resources>
         <image name="collapsed.png" width="200" height="124.80000305175781"/>
+        <namedColor name="Colors/separator">
+            <color red="0.66666666666666663" green="0.66666666666666663" blue="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
     </resources>
 </document>
