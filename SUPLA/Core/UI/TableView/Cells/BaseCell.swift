@@ -483,10 +483,7 @@ protocol BaseCellDelegate: MGSwipeTableCellDelegate {
     func onCaptionLongPress(_ remoteId: Int32)
     func onIssueIconTapped(issueMessage: String)
     func onButtonTapped(buttonType: CellButtonType, remoteId: Int32, data: Any?)
-}
-
-extension BaseCellDelegate {
-    func onInfoIconTapped(_ channel: SAChannel) {}
+    func onInfoIconTapped(_ channel: SAChannel)
 }
 
 extension BaseCell: MoveableCell {
