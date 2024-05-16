@@ -86,6 +86,8 @@ extension SceneListVC: SceneCellDelegate {
     
     func onIssueIconTapped(issueMessage: String) {} // Not relevant for scene
     
+    func onInfoIconTapped(_ channel: SAChannel) {} // Not relevant for scene
+    
     func onCaptionLongPress(_ remoteId: Int32) {
         vibrationService.vibrate()
         
