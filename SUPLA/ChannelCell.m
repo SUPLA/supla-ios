@@ -252,6 +252,7 @@
             if (_showChannelInfo && [channel isOnline]) {
                 UIImage *stateIcon = channel.stateIcon;
                 if (stateIcon) {
+                    self.channelStateIcon.tintColor = UIColor.onBackground;
                     self.channelStateIcon.hidden = NO;
                     self.channelStateIcon.image = stateIcon;
                 }

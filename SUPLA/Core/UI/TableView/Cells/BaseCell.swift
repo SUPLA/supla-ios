@@ -136,6 +136,7 @@ class BaseCell<T: BaseCellData>: MGSwipeTableCell {
         view.translatesAutoresizingMaskIntoConstraints = false
         view.contentMode = .scaleAspectFit
         view.image = .iconInfo
+        view.tintColor = .onBackground
         view.isHidden = true
         view.isUserInteractionEnabled = true
         view.addGestureRecognizer(
