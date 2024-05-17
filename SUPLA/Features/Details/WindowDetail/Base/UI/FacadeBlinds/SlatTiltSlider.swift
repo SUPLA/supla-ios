@@ -128,6 +128,8 @@ final class SlatTiltSlider: UISlider {
         let margin = (SlatTiltSlider.thumbRectSize - SlatTiltSlider.thumbSize) / 2
         layer.frame = CGRect(x: margin, y: margin, width: SlatTiltSlider.thumbSize, height: SlatTiltSlider.thumbSize)
         layer.backgroundColor = UIColor.surface.cgColor
+        layer.borderColor = UIColor.disabled.cgColor
+        layer.borderWidth = 1
         layer.cornerRadius = 20
         
         return layer
