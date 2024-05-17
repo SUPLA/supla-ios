@@ -79,7 +79,7 @@ enum WindowGroupedValue: Equatable {
     
     private func differentAsString(_ format: WindowGroupedValueFormat, _ min: CGFloat, _ max: CGFloat, _ value0: CGFloat?, _ value100: CGFloat?) -> String {
         switch (format) {
-        case .openingPercentage: String(format: "%.0f%% - %.0f%%", 100 - min, 100 - max)
+        case .openingPercentage: String(format: "%.0f%% - %.0f%%", 100 - max, 100 - min)
         case .percentage: String(format: "%.0f%% - %.0f%%", min, max)
         case .degree:
             if let value0 = value0, let value100 = value100 {
