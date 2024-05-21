@@ -21,19 +21,10 @@ import Foundation
 extension SAChannelBase {
     func getIconData(type: IconType = .single, subfunction: ThermostatSubfunction? = nil) -> IconData {
         @Singleton<GetChannelBaseStateUseCase> var getChannelBaseStateUseCase
-        
-        let online = if let channel = self as? SAChannel {
-            channel.value?.online ?? false
-        } else if let channel = self as? SAChannelGroup {
-            channel.isOnline()
-        } else {
-            false
-        }
-
         return IconData(
             function: self.func,
             altIcon: self.alticon,
-            state: getChannelBaseStateUseCase.invoke(function: self.func, online: online, activeValue: self.imgIsActive()),
+            state: getChannelBaseStateUseCase.invoke(channelBase: self),
             type: type,
             userIcon: self.usericon,
             subfunction: subfunction

@@ -35,9 +35,9 @@ final class RoofWindowView: BaseWindowView<RoofWindowState> {
     override var isEnabled: Bool {
         didSet {
             if (isEnabled) {
-                colors = WindowColors.standard(traitCollection)
+                colors = RoofWindowColors.standard(traitCollection)
             } else {
-                colors = WindowColors.offline(traitCollection)
+                colors = RoofWindowColors.offline(traitCollection)
             }
             setNeedsDisplay()
         }
@@ -58,7 +58,7 @@ final class RoofWindowView: BaseWindowView<RoofWindowState> {
     private var openedOffset: CGFloat { toXOffset(windowState?.position.value ?? 0) }
 
     private let dimens = RuntimeDimens()
-    private lazy var colors = WindowColors.standard(traitCollection)
+    private lazy var colors = RoofWindowColors.standard(traitCollection)
     
     override init(frame: CGRect) {
         super.init(frame: frame)

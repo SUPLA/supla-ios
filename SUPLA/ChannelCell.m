@@ -236,7 +236,7 @@
     if ( isGroup ) {
         self.cint_LeftStatusWidth.constant = 6;
         self.cint_RightStatusWidth.constant = 6;
-        self.right_ActiveStatus.percent = ((SAChannelGroup*)_channelBase).activePercentage;
+        self.right_ActiveStatus.percent = [UseCaseLegacyWrapper getActivePercentage:(SAChannelGroup*)_channelBase];
         self.right_ActiveStatus.singleColor = YES;
         self.right_ActiveStatus.hidden = NO;
         self.right_OnlineStatus.shapeType = stLinearVertical;

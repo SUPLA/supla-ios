@@ -91,8 +91,8 @@ final class TerraceAwningVMTests: ViewModelTest<TerraceAwningViewState, BaseWind
         group.remote_id = 234
         group.online = 1
         group.total_value = GroupTotalValue(values: [
-            RollerShutterGroupValue(position: 50, openSensorActive: false),
-            RollerShutterGroupValue(position: 80, openSensorActive: false)
+            RollerShutterGroupValue(position: 50, closedSensorActive: false),
+            RollerShutterGroupValue(position: 80, closedSensorActive: false)
         ])
         
         settings.showOpeningPercentReturns = true

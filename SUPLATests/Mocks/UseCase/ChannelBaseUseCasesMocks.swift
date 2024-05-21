@@ -20,10 +20,10 @@ import RxSwift
 @testable import SUPLA
 
 final class GetChannelBaseStateUseCaseMock: GetChannelBaseStateUseCase {
-    var parameters: [(Int32, Bool, Int32)] = []
+    var parameters: [SAChannelBase] = []
     var returns: ChannelState = .notUsed
-    func invoke(function: Int32, online: Bool, activeValue: Int32) -> ChannelState {
-        parameters.append((function, online, activeValue))
+    func invoke(channelBase: SAChannelBase) -> ChannelState {
+        parameters.append(channelBase)
         return returns
     }
 }

@@ -69,9 +69,9 @@ class GroupTotalValue: NSObject, NSSecureCoding {
     @objc let position: Int
     @objc let closedSensorActive: Bool
     
-    init(position: Int, openSensorActive: Bool) {
+    init(position: Int, closedSensorActive: Bool) {
         self.position = position
-        self.closedSensorActive = openSensorActive
+        self.closedSensorActive = closedSensorActive
         super.init()
     }
     

@@ -28,4 +28,8 @@ extension ShadingSystemValue {
     var hasValidPosition: Bool {
         position != SHADING_SYSTEM_INVALID_VALUE
     }
+    
+    var alwaysValidPosition: Int {
+        max(0, position)
+    }
 }

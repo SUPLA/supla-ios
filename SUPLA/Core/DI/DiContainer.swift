@@ -174,6 +174,7 @@ extension DiContainer {
         register(ReadGroupByRemoteIdUseCase.self, ReadGroupByRemoteIdUseCaseImpl())
         register(GetGroupOnlineSummaryUseCase.self, GetGroupOnlineSummaryUseCaseImpl())
         register(UpdateChannelGroupTotalValueUseCase.self, UpdateChannelGroupTotalValueUseCaseImpl())
+        register(GetGroupActivePercentageUseCase.self, GetGroupActivePercentageUseCaseImpl())
         // Usecases - Icon
         register(GetDefaultIconNameUseCase.self, GetDefaultIconNameUseCaseImpl())
         // Usecases - Location

@@ -23,9 +23,9 @@ final class TerraceAwningView: BaseWindowView<TerraceAwningWindowState> {
     override var isEnabled: Bool {
         didSet {
             if (isEnabled) {
-                colors = WindowColors.standard(traitCollection)
+                colors = TerraceAwningColors.standard(traitCollection)
             } else {
-                colors = WindowColors.offline(traitCollection)
+                colors = TerraceAwningColors.offline(traitCollection)
             }
             setNeedsDisplay()
         }
@@ -34,7 +34,7 @@ final class TerraceAwningView: BaseWindowView<TerraceAwningWindowState> {
     override var touchRect: CGRect { dimens.touchRect }
     
     private let dimens = RuntimeDimens()
-    private lazy var colors = WindowColors.standard(traitCollection)
+    private lazy var colors = TerraceAwningColors.standard(traitCollection)
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -141,8 +141,8 @@ final class TerraceAwningView: BaseWindowView<TerraceAwningWindowState> {
         path.addLine(to: CGPoint(x: awningLeft - widthDeltaByPosition / 2, y: awningTop + deepByPosition))
         path.close()
         
-        drawPath(context, fillColor: colors.slatBackground) { path.cgPath }
-        drawPath(context, strokeColor: colors.slatBorder) { path.cgPath }
+        drawPath(context, fillColor: colors.awningBackground) { path.cgPath }
+        drawPath(context, strokeColor: colors.awningBorder) { path.cgPath }
         
         let frontHeight = frontMinHeight + (dimens.awningFrontHeight - frontMinHeight) * position / 100
         let frontRect = CGRect(
@@ -151,8 +151,8 @@ final class TerraceAwningView: BaseWindowView<TerraceAwningWindowState> {
         )
         let frontPath = UIBezierPath(rect: frontRect)
         
-        drawPath(context, fillColor: colors.slatBackground) { frontPath.cgPath }
-        drawPath(context, strokeColor: colors.slatBorder) { frontPath.cgPath }
+        drawPath(context, fillColor: colors.awningBackground) { frontPath.cgPath }
+        drawPath(context, strokeColor: colors.awningBorder) { frontPath.cgPath }
     }
     
     private func drawAwningLikeMarker(_ context: CGContext, position: CGFloat, withFront: Bool) {
@@ -172,8 +172,8 @@ final class TerraceAwningView: BaseWindowView<TerraceAwningWindowState> {
         path.addLine(to: CGPoint(x: awningLeft - widthDeltaByPosition / 2, y: awningTop + deepByPosition))
         path.close()
         
-        drawPath(context, fillColor: colors.slatBackground.copy(alpha: 0.06)) { path.cgPath }
-        drawPath(context, strokeColor: colors.slatBorder) { path.cgPath }
+        drawPath(context, fillColor: colors.awningBackground.copy(alpha: 0.06)) { path.cgPath }
+        drawPath(context, strokeColor: colors.awningBorder) { path.cgPath }
         
         if (withFront) {
             let frontHeight = frontMinHeight + (dimens.awningFrontHeight - frontMinHeight) * position / 100
@@ -183,20 +183,18 @@ final class TerraceAwningView: BaseWindowView<TerraceAwningWindowState> {
             )
             let frontPath = UIBezierPath(rect: frontRect)
             
-            drawPath(context, fillColor: colors.slatBackground) { frontPath.cgPath }
-            drawPath(context, strokeColor: colors.slatBorder) { frontPath.cgPath }
+            drawPath(context, fillColor: colors.awningBackground) { frontPath.cgPath }
+            drawPath(context, strokeColor: colors.awningBorder) { frontPath.cgPath }
         }
     }
     
     private func drawAwningShadow(_ context: CGContext, position: CGFloat) {
         let shadowLeft = (dimens.canvasRect.width - dimens.awningClosedWidth) / 2
         let shadowTop = dimens.windowRect.maxY
-        let frontMinHeight = dimens.awningFrontHeight * 0.6
         
         let deepByPosition = dimens.awninigMaxDepp * position / 100
         let widthDeltaByPosition = (dimens.awningOpenedWidth - dimens.awningClosedWidth) * position / 100
         let maxWidthByPosition = dimens.awningClosedWidth + widthDeltaByPosition
-        let maxWidthMarginByPosition = (dimens.canvasRect.width - maxWidthByPosition) / 2
         
         let path = UIBezierPath()
         path.move(to: CGPoint(x: shadowLeft, y: shadowTop))
@@ -205,7 +203,7 @@ final class TerraceAwningView: BaseWindowView<TerraceAwningWindowState> {
         path.addLine(to: CGPoint(x: shadowLeft - widthDeltaByPosition / 2, y: shadowTop + deepByPosition))
         path.close()
         
-        drawPath(context, fillColor: colors.slatBackground.copy(alpha: 0.06)) { path.cgPath }
+        drawPath(context, fillColor: colors.awningBackground.copy(alpha: 0.06)) { path.cgPath }
     }
 
     override class var requiresConstraintBasedLayout: Bool {

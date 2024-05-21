@@ -55,7 +55,7 @@ final class UpdateChannelGroupTotalValueUseCaseTests: UseCaseTest<[Int32]> {
         thirdGroup.remote_id = 33
         thirdGroup.func = SUPLA_CHANNELFNC_CONTROLLINGTHEROOFWINDOW
         thirdGroup.online = 100
-        thirdGroup.total_value = GroupTotalValue(values: [RollerShutterGroupValue(position: 10, openSensorActive: false)])
+        thirdGroup.total_value = GroupTotalValue(values: [RollerShutterGroupValue(position: 10, closedSensorActive: false)])
         
         let firstGroupRelation1 = SAChannelGroupRelation(testContext: nil)
         firstGroupRelation1.group = firstGroup
