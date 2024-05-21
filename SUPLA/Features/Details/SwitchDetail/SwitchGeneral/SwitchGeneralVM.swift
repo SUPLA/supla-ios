@@ -19,7 +19,6 @@
 class SwitchGeneralVM: BaseViewModel<SwitchGeneralViewState, SwitchGeneralViewEvent>, DeviceStateHelperVMI {
     
     @Singleton<ReadChannelByRemoteIdUseCase> private var readChannelByRemoteIdUseCase
-    @Singleton<GetChannelBaseStateUseCase> private var getChannelBaseStateUseCase
     @Singleton<ExecuteSimpleActionUseCase> private var executeSimpleActionUseCase
     @Singleton<DateProvider> private var dateProvider
     

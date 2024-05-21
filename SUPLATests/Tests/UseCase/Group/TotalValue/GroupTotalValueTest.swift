@@ -25,8 +25,8 @@ class GroupTotalValueTest: XCTestCase {
     
     func testShouldArchiveGroupTotalValue() {
         let totalValue = GroupTotalValue(values: [
-            RollerShutterGroupValue(position: 10, openSensorActive: false),
-            RollerShutterGroupValue(position: 30, openSensorActive: true),
+            RollerShutterGroupValue(position: 10, closedSensorActive: false),
+            RollerShutterGroupValue(position: 30, closedSensorActive: true),
             FacadeBlindGroupValue(position: 10, tilt: 20),
             IntegerGroupValue(value: 33),
             RgbLightingGroupValue(color: .background, brightness: 88),
@@ -41,7 +41,7 @@ class GroupTotalValueTest: XCTestCase {
     }
     
     func testShouldArchiveRollerShutterGroupValue() {
-        let value = RollerShutterGroupValue(position: 10, openSensorActive: true)
+        let value = RollerShutterGroupValue(position: 10, closedSensorActive: true)
         
         let archive = try! NSKeyedArchiver.archivedData(withRootObject: value, requiringSecureCoding: false)
         let result = try! NSKeyedUnarchiver.unarchivedObject(ofClass: RollerShutterGroupValue.self, from: archive)

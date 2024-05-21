@@ -324,6 +324,7 @@
 "channel_caption_general_purpose_meter" = "Zählerkanal";
 "channel_caption_facade_blinds" = "Fassadenjalousien";
 "channel_caption_terrace_awning" = "Terrassenmarkise";
+"channel_caption_projector_screen" = "Leinwand";
 
 /* Main */
 "dialog_new_gesture_info_text" = "Wischgeste zum Öffnen der Kanaldetails wurde gelöscht, tippe auf dem Kanal, um sie zu sehen.";

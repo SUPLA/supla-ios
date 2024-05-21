@@ -21,7 +21,6 @@ import RxSwift
 class SwitchTimerDetailVM: BaseViewModel<SwitchTimerDetailViewState, SwitchTimerDetailViewEvent>, DeviceStateHelperVMI {
     
     @Singleton<ReadChannelByRemoteIdUseCase> private var readChannelByRemoteIdUseCase
-    @Singleton<GetChannelBaseStateUseCase> private var getChannelBaseStateUseCase
     @Singleton<StartTimerUseCase> private var startTimerUseCase
     @Singleton<ExecuteSimpleActionUseCase> private var executeSimpleAxtionUseCase
     @Singleton<DateProvider> private var dateProvider

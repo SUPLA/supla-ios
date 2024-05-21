@@ -223,4 +223,10 @@ final class UseCaseLegacyWrapper: NSObject {
         @Singleton<GetChannelBaseCaptionUseCase> var getChannelBaseCaptionUseCase
         return getChannelBaseCaptionUseCase.invoke(channelBase: channelBase)
     }
+    
+    @objc
+    static func getActivePercentage(_ channelGroup: SAChannelGroup) -> Int32 {
+        @Singleton<GetGroupActivePercentageUseCase> var getGroupActivePercentageUseCase
+        return Int32(getGroupActivePercentageUseCase.invoke(channelGroup))
+    }
 }

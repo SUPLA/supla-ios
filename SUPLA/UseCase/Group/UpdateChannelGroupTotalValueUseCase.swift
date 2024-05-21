@@ -120,16 +120,18 @@ private extension SAChannelGroup {
                 return BoolGroupValue(value: value.hiValue() == 1)
             case SUPLA_CHANNELFNC_VALVE_PERCENTAGE:
                 return IntegerGroupValue(value: Int(value.percentValue()))
+            case SUPLA_CHANNELFNC_PROJECTOR_SCREEN:
+                return IntegerGroupValue(value: value.asRollerShutterValue().alwaysValidPosition)
             case SUPLA_CHANNELFNC_CONTROLLINGTHEROLLERSHUTTER,
                  SUPLA_CHANNELFNC_CONTROLLINGTHEROOFWINDOW:
                 return RollerShutterGroupValue(
-                    position: value.asRollerShutterValue().position,
-                    openSensorActive: value.hiSubValue() == 1
+                    position: value.asRollerShutterValue().alwaysValidPosition,
+                    closedSensorActive: value.hiSubValue() == 1
                 )
             case SUPLA_CHANNELFNC_CONTROLLINGTHEFACADEBLIND:
                 let facadeBlindValue = value.asFacadeBlindValue()
                 return FacadeBlindGroupValue(
-                    position: facadeBlindValue.position,
+                    position: facadeBlindValue.alwaysValidPosition,
                     tilt: facadeBlindValue.tilt
                 )
             case SUPLA_CHANNELFNC_DIMMER:

@@ -346,11 +346,28 @@
 		A50B5D2D2BF49F7700918D18 /* TerraceAwningWindowState.swift in Sources */ = {isa = PBXBuildFile; fileRef = A50B5D2C2BF49F7700918D18 /* TerraceAwningWindowState.swift */; };
 		A50B5D302BF4A10200918D18 /* TerraceAwningView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A50B5D2F2BF4A10200918D18 /* TerraceAwningView.swift */; };
 		A50B5D332BF54FF300918D18 /* TerraceAwningVMTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A50B5D322BF54FF300918D18 /* TerraceAwningVMTests.swift */; };
+		A50B5D362BFB6CD100918D18 /* ProjectorScreenVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = A50B5D352BFB6CD100918D18 /* ProjectorScreenVM.swift */; };
+		A50B5D382BFB6D1400918D18 /* ProjectorScreenState.swift in Sources */ = {isa = PBXBuildFile; fileRef = A50B5D372BFB6D1400918D18 /* ProjectorScreenState.swift */; };
+		A50B5D3A2BFB6E3500918D18 /* ProjectorScreenVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A50B5D392BFB6E3500918D18 /* ProjectorScreenVC.swift */; };
+		A50B5D3D2BFB6EA200918D18 /* ProjectorScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A50B5D3C2BFB6EA200918D18 /* ProjectorScreenView.swift */; };
+		A50B5D3F2BFC8BEA00918D18 /* ProjectorScreenColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = A50B5D3E2BFC8BEA00918D18 /* ProjectorScreenColors.swift */; };
+		A50B5D412BFC914000918D18 /* TerraceAwningColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = A50B5D402BFC914000918D18 /* TerraceAwningColors.swift */; };
+		A50B5D432BFC921B00918D18 /* RoofWindowColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = A50B5D422BFC921B00918D18 /* RoofWindowColors.swift */; };
+		A50B5D452BFCB3EF00918D18 /* GetGroupActivePercentageUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A50B5D442BFCB3EF00918D18 /* GetGroupActivePercentageUseCase.swift */; };
+		A50B5D482BFCB9B800918D18 /* DimmerAndRgbGroupActivePercentageProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A50B5D472BFCB9B800918D18 /* DimmerAndRgbGroupActivePercentageProvider.swift */; };
+		A50B5D4A2BFCBCDF00918D18 /* DimmerGroupActivePercentageProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A50B5D492BFCBCDF00918D18 /* DimmerGroupActivePercentageProvider.swift */; };
+		A50B5D4C2BFCBD3F00918D18 /* FacadeBlindGroupActivePercentageProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A50B5D4B2BFCBD3F00918D18 /* FacadeBlindGroupActivePercentageProvider.swift */; };
+		A50B5D4E2BFCBDAE00918D18 /* HeatpolThermostatGroupActivePercentageProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A50B5D4D2BFCBDAE00918D18 /* HeatpolThermostatGroupActivePercentageProvider.swift */; };
+		A50B5D502BFCBDFB00918D18 /* OpenedClosedGroupActivePercentageProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A50B5D4F2BFCBDFB00918D18 /* OpenedClosedGroupActivePercentageProvider.swift */; };
+		A50B5D522BFCBEAD00918D18 /* PercentageChannelActivePercentageProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A50B5D512BFCBEAD00918D18 /* PercentageChannelActivePercentageProvider.swift */; };
+		A50B5D542BFCC23400918D18 /* RgbGroupActivePercentageProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A50B5D532BFCC23400918D18 /* RgbGroupActivePercentageProvider.swift */; };
+		A50B5D562BFCC28200918D18 /* ShadingSystemGroupActivePercentageProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A50B5D552BFCC28200918D18 /* ShadingSystemGroupActivePercentageProvider.swift */; };
 		A50CD3D12A4D78610012DD9B /* libc++abi.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = A50CD3D02A4D78610012DD9B /* libc++abi.tbd */; };
 		A50CD3D32A4D82ED0012DD9B /* DateProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A50CD3D22A4D82ED0012DD9B /* DateProvider.swift */; };
 		A50CD3D62A4D99E60012DD9B /* UpdateTokenTaskTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A50CD3D52A4D99E60012DD9B /* UpdateTokenTaskTests.swift */; };
 		A50CD3D82A4D9A040012DD9B /* SingleCallMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = A50CD3D72A4D9A040012DD9B /* SingleCallMock.swift */; };
 		A50CD3DA2A4D9AFC0012DD9B /* DateProviderMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = A50CD3D92A4D9AFC0012DD9B /* DateProviderMock.swift */; };
+		A5112F212BFD30CB0081EBC3 /* GetGroupActivePercentageUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5112F202BFD30CB0081EBC3 /* GetGroupActivePercentageUseCaseTests.swift */; };
 		A50E5D7C2BFFD67D00303BAE /* ChannelBaseActionUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A50E5D7B2BFFD67D00303BAE /* ChannelBaseActionUseCase.swift */; };
 		A50E5D7E2BFFDA7800303BAE /* ChannelBaseActionUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A50E5D7D2BFFDA7800303BAE /* ChannelBaseActionUseCaseTests.swift */; };
 		A51BE8E72AA705AD00718F2F /* StandardDetailVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51BE8E52AA705AD00718F2F /* StandardDetailVM.swift */; };
@@ -1638,11 +1655,28 @@
 		A50B5D2C2BF49F7700918D18 /* TerraceAwningWindowState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TerraceAwningWindowState.swift; sourceTree = "<group>"; };
 		A50B5D2F2BF4A10200918D18 /* TerraceAwningView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TerraceAwningView.swift; sourceTree = "<group>"; };
 		A50B5D322BF54FF300918D18 /* TerraceAwningVMTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TerraceAwningVMTests.swift; sourceTree = "<group>"; };
+		A50B5D352BFB6CD100918D18 /* ProjectorScreenVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectorScreenVM.swift; sourceTree = "<group>"; };
+		A50B5D372BFB6D1400918D18 /* ProjectorScreenState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectorScreenState.swift; sourceTree = "<group>"; };
+		A50B5D392BFB6E3500918D18 /* ProjectorScreenVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectorScreenVC.swift; sourceTree = "<group>"; };
+		A50B5D3C2BFB6EA200918D18 /* ProjectorScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectorScreenView.swift; sourceTree = "<group>"; };
+		A50B5D3E2BFC8BEA00918D18 /* ProjectorScreenColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectorScreenColors.swift; sourceTree = "<group>"; };
+		A50B5D402BFC914000918D18 /* TerraceAwningColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TerraceAwningColors.swift; sourceTree = "<group>"; };
+		A50B5D422BFC921B00918D18 /* RoofWindowColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoofWindowColors.swift; sourceTree = "<group>"; };
+		A50B5D442BFCB3EF00918D18 /* GetGroupActivePercentageUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetGroupActivePercentageUseCase.swift; sourceTree = "<group>"; };
+		A50B5D472BFCB9B800918D18 /* DimmerAndRgbGroupActivePercentageProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DimmerAndRgbGroupActivePercentageProvider.swift; sourceTree = "<group>"; };
+		A50B5D492BFCBCDF00918D18 /* DimmerGroupActivePercentageProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DimmerGroupActivePercentageProvider.swift; sourceTree = "<group>"; };
+		A50B5D4B2BFCBD3F00918D18 /* FacadeBlindGroupActivePercentageProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacadeBlindGroupActivePercentageProvider.swift; sourceTree = "<group>"; };
+		A50B5D4D2BFCBDAE00918D18 /* HeatpolThermostatGroupActivePercentageProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeatpolThermostatGroupActivePercentageProvider.swift; sourceTree = "<group>"; };
+		A50B5D4F2BFCBDFB00918D18 /* OpenedClosedGroupActivePercentageProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenedClosedGroupActivePercentageProvider.swift; sourceTree = "<group>"; };
+		A50B5D512BFCBEAD00918D18 /* PercentageChannelActivePercentageProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PercentageChannelActivePercentageProvider.swift; sourceTree = "<group>"; };
+		A50B5D532BFCC23400918D18 /* RgbGroupActivePercentageProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RgbGroupActivePercentageProvider.swift; sourceTree = "<group>"; };
+		A50B5D552BFCC28200918D18 /* ShadingSystemGroupActivePercentageProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShadingSystemGroupActivePercentageProvider.swift; sourceTree = "<group>"; };
 		A50CD3D02A4D78610012DD9B /* libc++abi.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++abi.tbd"; path = "usr/lib/libc++abi.tbd"; sourceTree = SDKROOT; };
 		A50CD3D22A4D82ED0012DD9B /* DateProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateProvider.swift; sourceTree = "<group>"; };
 		A50CD3D52A4D99E60012DD9B /* UpdateTokenTaskTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateTokenTaskTests.swift; sourceTree = "<group>"; };
 		A50CD3D72A4D9A040012DD9B /* SingleCallMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleCallMock.swift; sourceTree = "<group>"; };
 		A50CD3D92A4D9AFC0012DD9B /* DateProviderMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateProviderMock.swift; sourceTree = "<group>"; };
+		A5112F202BFD30CB0081EBC3 /* GetGroupActivePercentageUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetGroupActivePercentageUseCaseTests.swift; sourceTree = "<group>"; };
 		A50E5D7B2BFFD67D00303BAE /* ChannelBaseActionUseCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChannelBaseActionUseCase.swift; sourceTree = "<group>"; };
 		A50E5D7D2BFFDA7800303BAE /* ChannelBaseActionUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelBaseActionUseCaseTests.swift; sourceTree = "<group>"; };
 		A51BE8E52AA705AD00718F2F /* StandardDetailVM.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StandardDetailVM.swift; sourceTree = "<group>"; };
@@ -3024,13 +3058,13 @@
 		A5074BBB2BCE5CBF0081B6B1 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				A50B5D3B2BFB6E9100918D18 /* ProjectorScreen */,
 				A50B5D2E2BF4A02B00918D18 /* TerraceAwning */,
 				A5074BCA2BCE6F2C0081B6B1 /* FacadeBlinds */,
 				A5074BC32BCE64A30081B6B1 /* WindowView */,
 				A5B3A4B72BB57B4D0001D006 /* RoofWindow */,
 				A5B3A4B62BB57B410001D006 /* RollerShutter */,
 				A55A8D832BAAD06C00C540D4 /* UpDownControllButton.swift */,
-				A55A8D812BA9B6B400C540D4 /* WindowColors.swift */,
 				A5B3A4BA2BB5B8F20001D006 /* WindowType.swift */,
 				A50B5D012BEA41D700918D18 /* WindowGroupedValue.swift */,
 			);
@@ -3049,6 +3083,7 @@
 		A5074BC32BCE64A30081B6B1 /* WindowView */ = {
 			isa = PBXGroup;
 			children = (
+				A55A8D812BA9B6B400C540D4 /* WindowColors.swift */,
 				A5B3A4B22BB552590001D006 /* BaseWindowView.swift */,
 				A5074BC42BCE66070081B6B1 /* DefaultWindowDimens.swift */,
 				A5074BC62BCE66930081B6B1 /* RuntimeWindowDimens.swift */,
@@ -3206,6 +3241,7 @@
 			isa = PBXGroup;
 			children = (
 				A50B5D2F2BF4A10200918D18 /* TerraceAwningView.swift */,
+				A50B5D402BFC914000918D18 /* TerraceAwningColors.swift */,
 			);
 			path = TerraceAwning;
 			sourceTree = "<group>";
@@ -3216,6 +3252,39 @@
 				A50B5D322BF54FF300918D18 /* TerraceAwningVMTests.swift */,
 			);
 			path = TerraceAwning;
+			sourceTree = "<group>";
+		};
+		A50B5D342BFB6BDB00918D18 /* ProjectorScreen */ = {
+			isa = PBXGroup;
+			children = (
+				A50B5D352BFB6CD100918D18 /* ProjectorScreenVM.swift */,
+				A50B5D392BFB6E3500918D18 /* ProjectorScreenVC.swift */,
+			);
+			path = ProjectorScreen;
+			sourceTree = "<group>";
+		};
+		A50B5D3B2BFB6E9100918D18 /* ProjectorScreen */ = {
+			isa = PBXGroup;
+			children = (
+				A50B5D3C2BFB6EA200918D18 /* ProjectorScreenView.swift */,
+				A50B5D3E2BFC8BEA00918D18 /* ProjectorScreenColors.swift */,
+			);
+			path = ProjectorScreen;
+			sourceTree = "<group>";
+		};
+		A50B5D462BFCB9A500918D18 /* ActivePercentage */ = {
+			isa = PBXGroup;
+			children = (
+				A50B5D472BFCB9B800918D18 /* DimmerAndRgbGroupActivePercentageProvider.swift */,
+				A50B5D492BFCBCDF00918D18 /* DimmerGroupActivePercentageProvider.swift */,
+				A50B5D4B2BFCBD3F00918D18 /* FacadeBlindGroupActivePercentageProvider.swift */,
+				A50B5D4D2BFCBDAE00918D18 /* HeatpolThermostatGroupActivePercentageProvider.swift */,
+				A50B5D4F2BFCBDFB00918D18 /* OpenedClosedGroupActivePercentageProvider.swift */,
+				A50B5D512BFCBEAD00918D18 /* PercentageChannelActivePercentageProvider.swift */,
+				A50B5D532BFCC23400918D18 /* RgbGroupActivePercentageProvider.swift */,
+				A50B5D552BFCC28200918D18 /* ShadingSystemGroupActivePercentageProvider.swift */,
+			);
+			path = ActivePercentage;
 			sourceTree = "<group>";
 		};
 		A50CD3D42A4D99CF0012DD9B /* UpdateToken */ = {
@@ -3823,6 +3892,7 @@
 		A55A8D6C2BA831AD00C540D4 /* WindowDetail */ = {
 			isa = PBXGroup;
 			children = (
+				A50B5D342BFB6BDB00918D18 /* ProjectorScreen */,
 				A50B5D272BF49F0D00918D18 /* TerraceAwning */,
 				A5074BB62BCE58B30081B6B1 /* Base */,
 				A5074BCD2BCE72110081B6B1 /* FacadeBlinds */,
@@ -3892,6 +3962,7 @@
 				A50B5D072BEA4E2A00918D18 /* FacadeBlindWindowState.swift */,
 				A50B5D092BEA4EC700918D18 /* FacadeBlindMarker.swift */,
 				A50B5D2C2BF49F7700918D18 /* TerraceAwningWindowState.swift */,
+				A50B5D372BFB6D1400918D18 /* ProjectorScreenState.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -4431,6 +4502,7 @@
 				A59AB8E22A30A35000D91F1F /* SwapGroupPositionsUseCaseTests.swift */,
 				A55A8DCA2BB4349600C540D4 /* GetGroupOnlineSummaryUseCaseTests.swift */,
 				A50B5CF82BE9FD4700918D18 /* UpdateChannelGroupTotalValueUseCaseTests.swift */,
+				A5112F202BFD30CB0081EBC3 /* GetGroupActivePercentageUseCaseTests.swift */,
 			);
 			path = Group;
 			sourceTree = "<group>";
@@ -4637,6 +4709,7 @@
 			children = (
 				A5B3A4B42BB558B70001D006 /* RoofWindowView.swift */,
 				A5B3A4B82BB57B690001D006 /* RoofWindowDimensBuilder.swift */,
+				A50B5D422BFC921B00918D18 /* RoofWindowColors.swift */,
 			);
 			path = RoofWindow;
 			sourceTree = "<group>";
@@ -5094,6 +5167,7 @@
 		A5F29B9B2A20D2DD00ED700A /* Group */ = {
 			isa = PBXGroup;
 			children = (
+				A50B5D462BFCB9A500918D18 /* ActivePercentage */,
 				A5074BEF2BDA721A0081B6B1 /* TotalValue */,
 				A5F29B9C2A20D2F300ED700A /* CreateProfileGroupsListUseCase.swift */,
 				A5F29BBD2A24DB1300ED700A /* UpdateGroupUseCase.swift */,
@@ -5105,6 +5179,7 @@
 				A5E490622A4019E6006801FE /* UpdateGroupIconRelationsUseCase.swift */,
 				A55A8D8D2BAB101600C540D4 /* ReadGroupByRemoteIdUseCase.swift */,
 				A55A8DB82BADB29A00C540D4 /* GetGroupOnlineSummaryUseCase.swift */,
+				A50B5D442BFCB3EF00918D18 /* GetGroupActivePercentageUseCase.swift */,
 			);
 			path = Group;
 			sourceTree = "<group>";
@@ -5620,6 +5695,7 @@
 				A530EE142A56F5CE00F8DAEE /* StaticIconNameProducer.swift in Sources */,
 				40C7BA6C20C045A800ACEE42 /* SAChannelGroup+CoreDataClass.m in Sources */,
 				AE1874C2290C581D00437146 /* SceneCaptionEditor.swift in Sources */,
+				A50B5D562BFCC28200918D18 /* ShadingSystemGroupActivePercentageProvider.swift in Sources */,
 				A530EE162A56F82A00F8DAEE /* GateIconNameProducer.swift in Sources */,
 				A5074BF12BDA73250081B6B1 /* GroupTotalValue.swift in Sources */,
 				A51BE8FF2AA73A5900718F2F /* MeasurementValue.swift in Sources */,
@@ -5649,6 +5725,7 @@
 				A530EE0F2A56E52000F8DAEE /* GetDefaultIconNameUseCase.swift in Sources */,
 				A5074BBA2BCE5C520081B6B1 /* BaseWindowVC.swift in Sources */,
 				A56F15F72A2E721F00C2E21B /* ActiveAccount12to13MigrationPolicy.swift in Sources */,
+				A50B5D482BFCB9B800918D18 /* DimmerAndRgbGroupActivePercentageProvider.swift in Sources */,
 				01D6A102249BEC8C006B3757 /* SAVLCalibrationTool.m in Sources */,
 				A5F29BDE2A2737DA00ED700A /* SwapChannelPositionsUseCase.swift in Sources */,
 				404749BE20BC608B005DA345 /* _SALocation+CoreDataClass.m in Sources */,
@@ -5678,6 +5755,7 @@
 				A5F29BE62A27739000ED700A /* MoveableCell.swift in Sources */,
 				A5AE7A8F2A3AE0290097FA8B /* TitleArrowButtonCell.swift in Sources */,
 				A5CE73292B4607AE003F882C /* EspConfigResult.swift in Sources */,
+				A50B5D382BFB6D1400918D18 /* ProjectorScreenState.swift in Sources */,
 				A55A8D752BA84D5400C540D4 /* RollerShutterVM.swift in Sources */,
 				A530EE1A2A56FBBC00F8DAEE /* PowerSwitchIconNameProducer.swift in Sources */,
 				A5F29B962A20B97B00ED700A /* CreateProfileChannelsListUseCase.swift in Sources */,
@@ -5791,6 +5869,7 @@
 				A50B5D022BEA41D700918D18 /* WindowGroupedValue.swift in Sources */,
 				A54149372B63BC0500B44BD6 /* DownloadGeneralPurposeMeasurementLogUseCase.swift in Sources */,
 				01511CFA24F50B470081A1EC /* SAPreloaderPopup.m in Sources */,
+				A50B5D412BFC914000918D18 /* TerraceAwningColors.swift in Sources */,
 				A52BFEAF2B060EAA00A2F64C /* Hour.swift in Sources */,
 				A530EE1C2A56FC5000F8DAEE /* LightSwitchIconNameProducer.swift in Sources */,
 				A530EE2E2A57E23D00F8DAEE /* DigiglassHorizontalIconNameProducer.swift in Sources */,
@@ -5818,6 +5897,7 @@
 				A530EE282A57E02C00F8DAEE /* MailSensorIconNameProducer.swift in Sources */,
 				01D0616E22C294D90043C947 /* ElectricityMeterDetailView.m in Sources */,
 				A5FE67692A666FF800147D1F /* RequestHelper.swift in Sources */,
+				A50B5D362BFB6CD100918D18 /* ProjectorScreenVM.swift in Sources */,
 				01F8856C22E5E79100D18373 /* SAUserIcon+CoreDataClass.m in Sources */,
 				013D73B022DD105400E3515A /* SAChartFilterField.m in Sources */,
 				A5F29C022A2DC56600ED700A /* NSPersistentStoreCoordinator+Ext.swift in Sources */,
@@ -5869,6 +5949,7 @@
 				A5812CBA2BBC2DB500FC5998 /* DarkModeSetting.swift in Sources */,
 				4004DE8D1DC4E270009C34E3 /* SAColorBrightnessPicker.m in Sources */,
 				A530EDF32A54018A00F8DAEE /* SwitchGeneralVM.swift in Sources */,
+				A50B5D4C2BFCBD3F00918D18 /* FacadeBlindGroupActivePercentageProvider.swift in Sources */,
 				A5F29B782A1E34C700ED700A /* ContextScheduler.swift in Sources */,
 				A57668C32AE799AC0025509D /* ChartEntryType.swift in Sources */,
 				A51BE8F52AA7190500718F2F /* ThermostatGeneralVC.swift in Sources */,
@@ -5910,6 +5991,7 @@
 				A55A8D7D2BA9A15200C540D4 /* UIImageView+Ext.swift in Sources */,
 				A57668D52AE94A060025509D /* DownloadEventsManager.swift in Sources */,
 				A5F29BCE2A26232900ED700A /* ElectricityMeasurementItemRepository.swift in Sources */,
+				A50B5D522BFCBEAD00918D18 /* PercentageChannelActivePercentageProvider.swift in Sources */,
 				A55501EA2B7FC38500FD3296 /* GeneralPurposeMeterIconNameProducer.swift in Sources */,
 				A52BFEE22B113BD700A2F64C /* TrippleNumberSelectorView.swift in Sources */,
 				AE74528B2827E38900A3AFAD /* ProfilesVC.swift in Sources */,
@@ -5954,6 +6036,7 @@
 				A51BE9132AAAFFEB00718F2F /* SuplaChannelConfig.swift in Sources */,
 				A51BE9182AAB027400718F2F /* QuarterOfHour.swift in Sources */,
 				A530EE4E2A5C357100F8DAEE /* StartTimerUseCase.swift in Sources */,
+				A50B5D3A2BFB6E3500918D18 /* ProjectorScreenVC.swift in Sources */,
 				A56233E92AB31A26001CB948 /* CGPoint+Ext.swift in Sources */,
 				A5B3CC0E2B62934D00F95AC3 /* SAChannelConfig+Ext.swift in Sources */,
 				A530EE4C2A5C2A3E00F8DAEE /* UIBorderedButton.swift in Sources */,
@@ -6046,6 +6129,7 @@
 				A5074BAA2BC945DA0081B6B1 /* WebContentVM.swift in Sources */,
 				A503ABB32B6A9ED9008CDA1F /* GeneralPurposeMeterItemRepository.swift in Sources */,
 				A57668ED2AEA85150025509D /* Array+Ext.swift in Sources */,
+				A50B5D3F2BFC8BEA00918D18 /* ProjectorScreenColors.swift in Sources */,
 				A5074BA82BC923AE0081B6B1 /* BrandingConfiguration.swift in Sources */,
 				A51BE90D2AAAF82000718F2F /* GetChannelConfigUseCase.swift in Sources */,
 				A5F29B5B2A1E15D600ED700A /* MainVC.swift in Sources */,
@@ -6053,6 +6137,7 @@
 				A573B0962A5FD152001E19D0 /* FatalError.swift in Sources */,
 				A5AE7A8D2A3ADFAD0097FA8B /* RsOpenningClosingPersentageCell.swift in Sources */,
 				A57B03C62B29D68B00C22966 /* HomePlusDetailRefreshHelper.swift in Sources */,
+				A50B5D432BFC921B00918D18 /* RoofWindowColors.swift in Sources */,
 				A5F29B742A1E33AC00ED700A /* NSManagedObjectContext+Rx.swift in Sources */,
 				40E8BE8A1FC06A5600FB2FE6 /* XPathQuery.m in Sources */,
 				01EE9BBC22BA50D90029A142 /* SAChannelValueBase+CoreDataProperties.m in Sources */,
@@ -6085,6 +6170,7 @@
 				A5477DCB2AA5EC4000220B4A /* CreateChannelWithChildrenUseCase.swift in Sources */,
 				A5E4904D2A3C6250006801FE /* TemperatureUnit.swift in Sources */,
 				A5F29BB02A24C12500ED700A /* UpdateLocationUseCase.swift in Sources */,
+				A50B5D542BFCC23400918D18 /* RgbGroupActivePercentageProvider.swift in Sources */,
 				A56233F72AB85B37001CB948 /* DelayedThermostatActionSubject.swift in Sources */,
 				A5074BF62BDC42F30081B6B1 /* GroupTotalValueTransformer.swift in Sources */,
 				A5F29BC62A24E5DE00ED700A /* ChangeChannelGroupRelationsVisibilityUseCase.swift in Sources */,
@@ -6094,6 +6180,7 @@
 				A57C88302ACAA445000B0F10 /* ValuesFormatter.swift in Sources */,
 				A52BFEB92B065BF800A2F64C /* SuplaConfigResult.swift in Sources */,
 				40A6757F1BA1A5B6004A51C4 /* SuplaApp.m in Sources */,
+				A50B5D502BFCBDFB00918D18 /* OpenedClosedGroupActivePercentageProvider.swift in Sources */,
 				018CFD2023281A5900888CB7 /* SAElectricityMeterExtendedValue.m in Sources */,
 				A5FE67632A65D56300147D1F /* UpdateServerHostNameUseCase.swift in Sources */,
 				A5074BC52BCE66070081B6B1 /* DefaultWindowDimens.swift in Sources */,
@@ -6102,6 +6189,7 @@
 				A5F29BD82A26240E00ED700A /* ThermostatMeasurementItemRepository.swift in Sources */,
 				A5F29BC42A24E35C00ED700A /* ChangeGroupsVisibilityUseCase.swift in Sources */,
 				A5B3CBEF2B625D9000F95AC3 /* WeightValueProvider.swift in Sources */,
+				A50B5D4E2BFCBDAE00918D18 /* HeatpolThermostatGroupActivePercentageProvider.swift in Sources */,
 				A56F15EF2A2E68BA00C2E21B /* Migration11to12ModelMapping.xcmappingmodel in Sources */,
 				A530EDF52A5401BE00F8DAEE /* SwitchGeneralVC.swift in Sources */,
 				A5F29B602A1E18E600ED700A /* ChannelListVC.swift in Sources */,
@@ -6167,6 +6255,7 @@
 				A55A8D8C2BAB0CAC00C540D4 /* SubjectType.swift in Sources */,
 				01F8856B22E5E79100D18373 /* SAThermostatMeasurementItem+CoreDataProperties.m in Sources */,
 				40DA56901DCA1908008F05DE /* _SALocation+CoreDataProperties.m in Sources */,
+				A50B5D452BFCB3EF00918D18 /* GetGroupActivePercentageUseCase.swift in Sources */,
 				A57668CD2AE8F87D0025509D /* SuplaCloudConfigHolder.swift in Sources */,
 				01F8857022E5E79100D18373 /* SATemperatureMeasurementItem+CoreDataProperties.m in Sources */,
 				A5477DCF2AA616FD00220B4A /* CellButton.swift in Sources */,
@@ -6209,6 +6298,7 @@
 				A57785BF29E80406001C631E /* SuplaAppWrapper.swift in Sources */,
 				A5E490502A3C79A4006801FE /* UserNotificationCenter.swift in Sources */,
 				A55A8D702BA831D900C540D4 /* WindowDetailVM.swift in Sources */,
+				A50B5D3D2BFB6EA200918D18 /* ProjectorScreenView.swift in Sources */,
 				A51BE9112AAAFFC200718F2F /* SuplaChannelWeeklyScheduleConfig.swift in Sources */,
 				A55501F32B8382C500FD3296 /* NotificationsLogVM.swift in Sources */,
 				AEB195DE276E5A040091D314 /* FadeTransition.swift in Sources */,
@@ -6222,6 +6312,7 @@
 				01CEABFA25B9920A009C3BFD /* SADigiglassDetailView.m in Sources */,
 				013F7EC123EB33E30061A497 /* SAChannelStateExtendedValue.m in Sources */,
 				A52BFEB52B0659FD00A2F64C /* BaseConfigEventsManager.swift in Sources */,
+				A50B5D4A2BFCBCDF00918D18 /* DimmerGroupActivePercentageProvider.swift in Sources */,
 				A573B39229DEB25900EBAFC4 /* ViewState.swift in Sources */,
 				019170A4233D67E900820BDB /* SAThermostatChartHelper.m in Sources */,
 				A56233DD2AB065AD001CB948 /* EditQuartersDialogVC.swift in Sources */,
@@ -6406,6 +6497,7 @@
 				A50B5D1A2BECC7DF00918D18 /* FacadeBlindValue+Test.swift in Sources */,
 				A59AB8B02A30721D00D91F1F /* GroupUseCasesMocks.swift in Sources */,
 				A573B0992A5FD869001E19D0 /* SwitchDetailVMTests.swift in Sources */,
+				A5112F212BFD30CB0081EBC3 /* GetGroupActivePercentageUseCaseTests.swift in Sources */,
 				A5ABE5C42ABCD3F600FFA50B /* ThermostatDetailVMTests.swift in Sources */,
 				012FCBD323217DE000AC6FF6 /* ThermostatCalendarTests.m in Sources */,
 				A5E40B4F2B85EB2100DB6ABE /* DownloadGeneralPurposeMeterLogUseCaseTests.swift in Sources */,
