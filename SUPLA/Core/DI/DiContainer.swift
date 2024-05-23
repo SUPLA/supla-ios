@@ -152,6 +152,7 @@ extension DiContainer {
         register(LoadChannelWithChildrenMeasurementsDateRangeUseCase.self, LoadChannelWithChildrenMeasurementsDateRangeUseCaseImpl())
         register(GetChannelBaseDefaultCaptionUseCase.self, GetChannelBaseDefaultCaptionUseCaseImpl())
         register(GetChannelBaseCaptionUseCase.self, GetChannelBaseCaptionUseCaseImpl())
+        register(ChannelBaseActionUseCase.self, ChannelBaseActionUseCaseImpl())
         // Usecases - ChannelConfig
         register(InsertChannelConfigUseCase.self, InsertChannelConfigUseCaseImpl())
         // Usecases - Client

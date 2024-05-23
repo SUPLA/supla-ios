@@ -16,10 +16,10 @@
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 
+import RxSwift
 @testable import SUPLA
 
 final class GetChannelBaseStateUseCaseMock: GetChannelBaseStateUseCase {
-    
     var parameters: [(Int32, Bool, Int32)] = []
     var returns: ChannelState = .notUsed
     func invoke(function: Int32, online: Bool, activeValue: Int32) -> ChannelState {
@@ -29,11 +29,19 @@ final class GetChannelBaseStateUseCaseMock: GetChannelBaseStateUseCase {
 }
 
 final class GetChannelBaseIconUseCaseMock: GetChannelBaseIconUseCase {
-    
     var returns: IconResult = .suplaIcon(icon: nil)
     var parameters: [IconData] = []
     func invoke(iconData: IconData) -> IconResult {
         parameters.append(iconData)
+        return returns
+    }
+}
+
+final class ChannelBaseActionUseCaseMock: ChannelBaseActionUseCase {
+    var returns: Observable<Void> = .empty()
+    var parameters: [(SAChannelBase, CellButtonType)] = []
+    func invoke(_ channelBase: SAChannelBase, _ buttonType: CellButtonType) -> Observable<Void> {
+        parameters.append((channelBase, buttonType))
         return returns
     }
 }
