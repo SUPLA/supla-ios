@@ -461,7 +461,7 @@
         [self hideSwipeMaybe];
         return;
     }
-    if (_channelBase.isRollerShutter) {
+    if (_channelBase.isShadingSystem) {
         [self reveal: self.channelBase];
         [self hideSwipeMaybe];
         return;
@@ -497,7 +497,7 @@
         [self hideSwipeMaybe];
         return;
     }
-    if (_channelBase.isRollerShutter) {
+    if (_channelBase.isShadingSystem) {
         [self shut: self.channelBase];
         [self hideSwipeMaybe];
         return;

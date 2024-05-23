@@ -346,6 +346,8 @@
 		A50CD3D62A4D99E60012DD9B /* UpdateTokenTaskTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A50CD3D52A4D99E60012DD9B /* UpdateTokenTaskTests.swift */; };
 		A50CD3D82A4D9A040012DD9B /* SingleCallMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = A50CD3D72A4D9A040012DD9B /* SingleCallMock.swift */; };
 		A50CD3DA2A4D9AFC0012DD9B /* DateProviderMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = A50CD3D92A4D9AFC0012DD9B /* DateProviderMock.swift */; };
+		A50E5D7C2BFFD67D00303BAE /* ChannelBaseActionUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A50E5D7B2BFFD67D00303BAE /* ChannelBaseActionUseCase.swift */; };
+		A50E5D7E2BFFDA7800303BAE /* ChannelBaseActionUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A50E5D7D2BFFDA7800303BAE /* ChannelBaseActionUseCaseTests.swift */; };
 		A51BE8E72AA705AD00718F2F /* StandardDetailVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51BE8E52AA705AD00718F2F /* StandardDetailVM.swift */; };
 		A51BE8E82AA705AD00718F2F /* StandardDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51BE8E62AA705AD00718F2F /* StandardDetailVC.swift */; };
 		A51BE8EB2AA7136000718F2F /* ThermostatDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51BE8EA2AA7136000718F2F /* ThermostatDetailVC.swift */; };
@@ -1631,6 +1633,8 @@
 		A50CD3D52A4D99E60012DD9B /* UpdateTokenTaskTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateTokenTaskTests.swift; sourceTree = "<group>"; };
 		A50CD3D72A4D9A040012DD9B /* SingleCallMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleCallMock.swift; sourceTree = "<group>"; };
 		A50CD3D92A4D9AFC0012DD9B /* DateProviderMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateProviderMock.swift; sourceTree = "<group>"; };
+		A50E5D7B2BFFD67D00303BAE /* ChannelBaseActionUseCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChannelBaseActionUseCase.swift; sourceTree = "<group>"; };
+		A50E5D7D2BFFDA7800303BAE /* ChannelBaseActionUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelBaseActionUseCaseTests.swift; sourceTree = "<group>"; };
 		A51BE8E52AA705AD00718F2F /* StandardDetailVM.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StandardDetailVM.swift; sourceTree = "<group>"; };
 		A51BE8E62AA705AD00718F2F /* StandardDetailVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StandardDetailVC.swift; sourceTree = "<group>"; };
 		A51BE8EA2AA7136000718F2F /* ThermostatDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThermostatDetailVC.swift; sourceTree = "<group>"; };
@@ -3441,6 +3445,7 @@
 		A530EE342A57F64100F8DAEE /* ChannelBase */ = {
 			isa = PBXGroup;
 			children = (
+				A50E5D7B2BFFD67D00303BAE /* ChannelBaseActionUseCase.swift */,
 				A530EE352A57F65F00F8DAEE /* GetChannelBaseStateUseCase.swift */,
 				A530EE3A2A5801AB00F8DAEE /* GetChannelBaseIconUseCase.swift */,
 				A5A14A352B611863004B1598 /* GetChannelBaseDefaultCaptionUseCase.swift */,
@@ -3456,6 +3461,7 @@
 				A573B0AB2A601DB6001E19D0 /* GetChannelBaseIconUseCaseTests.swift */,
 				A5E40B562B85FA6800DB6ABE /* GetChannelBaseDefaultCaptionUseCaseTests.swift */,
 				A5E40B582B85FF8A00DB6ABE /* GetChannelBaseCaptionUseCaseTests.swift */,
+				A50E5D7D2BFFDA7800303BAE /* ChannelBaseActionUseCaseTests.swift */,
 			);
 			path = ChannelBase;
 			sourceTree = "<group>";
@@ -5948,6 +5954,7 @@
 				A51BE90B2AAAF29D00718F2F /* SetpointType.swift in Sources */,
 				A56233E12AB0F5B1001CB948 /* EditQuartersDialogVM.swift in Sources */,
 				A5074BB82BCE58CA0081B6B1 /* BaseWindowVM.swift in Sources */,
+				A50E5D7C2BFFD67D00303BAE /* ChannelBaseActionUseCase.swift in Sources */,
 				A5D837D22AF1061C002A420D /* ThermometerHistoryDetailVM.swift in Sources */,
 				408034C41BC83D1A007666E7 /* MGSwipeButton.m in Sources */,
 				016ABE16236D8363001BF5FB /* SAKeychain.m in Sources */,
@@ -6310,6 +6317,7 @@
 				A573B0A62A600733001E19D0 /* TimerDetailVMTests.swift in Sources */,
 				A50B5D202BECE8C500918D18 /* FacadeBlindsVMTests.swift in Sources */,
 				A54A066F2AF540AD00C03DBC /* ChartDataAggregationTests.swift in Sources */,
+				A50E5D7E2BFFDA7800303BAE /* ChannelBaseActionUseCaseTests.swift in Sources */,
 				A50B5D262BEE59B700918D18 /* DeleteChannelMeasurementsUseCaseTests.swift in Sources */,
 				A5519B342B6D32DE00811747 /* ThermometerAndHumidityValueProviderTest.swift in Sources */,
 				A573B0AA2A601A57001E19D0 /* ReadChannelByRemoteIdUseCaseTests.swift in Sources */,

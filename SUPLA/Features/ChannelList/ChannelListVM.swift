@@ -23,8 +23,8 @@ class ChannelListViewModel: BaseTableViewModel<ChannelListViewState, ChannelList
     @Singleton<SwapChannelPositionsUseCase> private var swapChannelPositionsUseCase
     @Singleton<ProvideDetailTypeUseCase> private var provideDetailTypeUseCase
     @Singleton<UpdateEventsManager> private var updateEventsManager
-    @Singleton<ExecuteSimpleActionUseCase> private var executeSimpleActionUseCase
-    
+    @Singleton<ChannelBaseActionUseCase> private var channelBaseActionUseCase
+
     override init() {
         super.init()
         
@@ -83,18 +83,11 @@ class ChannelListViewModel: BaseTableViewModel<ChannelListViewState, ChannelList
     override func getCollapsedFlag() -> CollapsedFlag { .channel }
     
     func onButtonClicked(buttonType: CellButtonType, data: Any?) {
-        // currently used only by TermostatCell
         if let channelWithChildren = data as? ChannelWithChildren {
-            switch (buttonType) {
-            case .leftButton:
-                executeSimpleActionUseCase.invoke(action: .turnOff, type: .channel, remoteId: channelWithChildren.channel.remote_id)
-                    .subscribe()
-                    .disposed(by: self)
-            case .rightButton:
-                executeSimpleActionUseCase.invoke(action: .turnOn, type: .channel, remoteId: channelWithChildren.channel.remote_id)
-                    .subscribe()
-                    .disposed(by: self)
-            }
+            channelBaseActionUseCase.invoke(channelWithChildren.channel, buttonType)
+                .asDriverWithoutError()
+                .drive()
+                .disposed(by: self)
         }
     }
     

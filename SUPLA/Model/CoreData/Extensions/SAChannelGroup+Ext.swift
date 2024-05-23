@@ -24,7 +24,7 @@ extension SAChannelGroup {
     @objc var positions: [Int] {
         guard let totalValue = total_value as? GroupTotalValue else { return [] }
         
-        if (!isRollerShutter()) {
+        if (!isShadingSystem()) {
             return []
         }
         
