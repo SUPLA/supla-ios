@@ -57,4 +57,26 @@ extension UIView {
             context.drawPath(using: .stroke)
         }
     }
+    
+    func drawGlass(_ context: CGContext, _ glassRect: CGRect, _ colors: [CGColor]) {
+        context.saveGState()
+        
+        context.beginPath()
+        context.addRect(glassRect)
+        context.closePath()
+        context.clip()
+    
+        let colorSpace = CGColorSpaceCreateDeviceRGB()
+        let colorLocations: [CGFloat] = [0.0, 1.0]
+        
+        let startPoint = CGPoint(x: 0, y: glassRect.minY)
+        let endPoint = CGPoint(x: 0, y: glassRect.maxY)
+        
+        let gradient = CGGradient(colorsSpace: colorSpace, colors: colors as CFArray, locations: colorLocations)!
+        
+        context.drawLinearGradient(gradient, start: startPoint, end: endPoint, options: [])
+        context.fillPath()
+        
+        context.restoreGState()
+    }
 }

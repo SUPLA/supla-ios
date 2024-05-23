@@ -20,122 +20,10 @@ import RxCocoa
 import RxRelay
 import RxSwift
 
-private let BUTTON_WIDTH: CGFloat = 64
-private let BUTTON_HEIGHT: CGFloat = 94
-
-let UP_DOWN_CONTROLL_BUTTON_HEIGHT = BUTTON_HEIGHT * 2
-
-// MARK: - Button type
-
-enum ControlButtonType {
-    case up, down
-    
-    fileprivate var maskedCorners: CACornerMask {
-        switch (self) {
-        case .up:
-            [.layerMinXMinYCorner, .layerMaxXMinYCorner]
-        case .down:
-            [.layerMinXMaxYCorner, .layerMaxXMaxYCorner]
-        }
-    }
-    
-    fileprivate var roundingCorners: UIRectCorner {
-        switch (self) {
-        case .up:
-            [.topLeft, .topRight]
-        case .down:
-            [.bottomLeft, .bottomRight]
-        }
-    }
-}
-
-// MARK: - Button self
-
-class UpDownControlButton: UIView {
-    override var intrinsicContentSize: CGSize {
-        CGSize(width: BUTTON_WIDTH, height: UP_DOWN_CONTROLL_BUTTON_HEIGHT)
-    }
-    
-    var isEnabled: Bool = true {
-        didSet {
-            upButton.isEnabled = isEnabled
-            downButton.isEnabled = isEnabled
-        }
-    }
-    
-    var upIcon: UIImage? {
-        get { upButton.icon }
-        set { upButton.icon = newValue }
-    }
-    
-    var downIcon: UIImage? {
-        get { downButton.icon }
-        set { downButton.icon = newValue }
-    }
-    
-    fileprivate lazy var upButton: ControlButton = .init(buttonType: .up)
-    fileprivate lazy var downButton: ControlButton = .init(buttonType: .down)
-    
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        setupView()
-    }
-    
-    @available(*, unavailable)
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-    private func setupView() {
-        translatesAutoresizingMaskIntoConstraints = false
-        
-        addSubview(upButton)
-        addSubview(downButton)
-        
-        setupLayout()
-    }
-    
-    private func setupLayout() {
-        NSLayoutConstraint.activate([
-            upButton.leftAnchor.constraint(equalTo: leftAnchor),
-            upButton.topAnchor.constraint(equalTo: topAnchor),
-            
-            downButton.leftAnchor.constraint(equalTo: leftAnchor),
-            downButton.bottomAnchor.constraint(equalTo: bottomAnchor)
-        ])
-    }
-    
-    override class var requiresConstraintBasedLayout: Bool {
-        return true
-    }
-}
-
-extension Reactive where Base: UpDownControlButton {
-    var tap: Observable<ControlButtonType> {
-        Observable.merge(
-            base.upButton.rx.tap.map { .up },
-            base.downButton.rx.tap.map { .down }
-        )
-    }
-
-    var touchDown: Observable<ControlButtonType> {
-        Observable.merge(
-            base.upButton.rx.touchDown.map { .up },
-            base.downButton.rx.touchDown.map { .down }
-        )
-    }
-
-    var touchUp: Observable<ControlButtonType> {
-        Observable.merge(
-            base.upButton.rx.touchUp.map { .up },
-            base.downButton.rx.touchUp.map { .down }
-        )
-    }
-}
 
 // MARK: - Control button
 
-private class ControlButton: UIView {
+class WindowControlButton: UIView {
     var isEnabled: Bool = true {
         didSet {
             disabledOverlay.isHidden = isEnabled
@@ -148,7 +36,7 @@ private class ControlButton: UIView {
     }
     
     override var intrinsicContentSize: CGSize {
-        CGSize(width: BUTTON_WIDTH, height: BUTTON_HEIGHT)
+        CGSize(width: controlType.width, height: controlType.height)
     }
     
     private lazy var iconView: UIImageView = {
@@ -169,7 +57,7 @@ private class ControlButton: UIView {
     private lazy var disabledOverlay: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.layer.cornerRadius = BUTTON_WIDTH / 2
+        view.layer.cornerRadius = controlType.cornerRadius
         view.backgroundColor = .disabledOverlay
         view.isHidden = true
         return view
@@ -228,7 +116,7 @@ private class ControlButton: UIView {
         
         BaseControlButtonView.setupLayer(layer)
         
-        layer.cornerRadius = BUTTON_WIDTH / 2
+        layer.cornerRadius = controlType.cornerRadius
         layer.maskedCorners = controlType.maskedCorners
         disabledOverlay.layer.maskedCorners = controlType.maskedCorners
         
@@ -261,7 +149,7 @@ private class ControlButton: UIView {
     }
 }
 
-extension Reactive where Base: ControlButton {
+extension Reactive where Base: WindowControlButton {
     var tap: Observable<Void> { base.tapRelay.asObservable() }
 
     var touchDown: Observable<Void> { base.touchDownRelay.asObservable() }
@@ -300,19 +188,19 @@ private class InnerShadowView: UIView {
         innerShadow.shadowOffset = CGSize(width: 0, height: 3)
         innerShadow.shadowOpacity = 0.4
         innerShadow.shadowRadius = 3
-        innerShadow.cornerRadius = frame.size.width / 2
+        innerShadow.cornerRadius = type.cornerRadius
         innerShadow.maskedCorners = type.maskedCorners
     }
     
     private func setupView() {
         layer.addSublayer(innerShadow)
-        layer.cornerRadius = BUTTON_WIDTH / 2
+        layer.cornerRadius = type.cornerRadius
         layer.maskedCorners = type.maskedCorners
     }
 
     private func createPath() -> CGPath {
         // Shadow path (1pt ring around bounds)
-        let radius = frame.size.width / 2
+        let radius = type.cornerRadius
         let radiusSize = CGSize(width: radius, height: radius)
         
         let path = UIBezierPath(roundedRect: innerShadow.frame.insetBy(dx: -3, dy: -3), byRoundingCorners: type.roundingCorners, cornerRadii: radiusSize)

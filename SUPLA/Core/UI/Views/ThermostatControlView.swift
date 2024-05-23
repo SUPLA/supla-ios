@@ -39,7 +39,7 @@ final class ThermostatControlView: UIView {
     var setpointHeatPercentage: CGFloat? {
         get { setpointHeat }
         set {
-            setpointHeat = newValue?.toPercentage()
+            setpointHeat = newValue?.limit()
             setpointHeatPoint.isHidden = newValue == nil
             setNeedsDisplay()
         }
@@ -48,7 +48,7 @@ final class ThermostatControlView: UIView {
     var setpointCoolPercentage: CGFloat? {
         get { setpointCool }
         set {
-            setpointCool = newValue?.toPercentage()
+            setpointCool = newValue?.limit()
             setpointCoolPoint.isHidden = newValue == nil
             setNeedsDisplay()
         }
@@ -57,7 +57,7 @@ final class ThermostatControlView: UIView {
     var temperaturePercentage: CGFloat? {
         get { temperature }
         set {
-            temperature = newValue?.toPercentage() ?? 0
+            temperature = newValue?.limit() ?? 0
             currentTemperaturePoint.isHidden = newValue == nil
             setNeedsDisplay()
         }

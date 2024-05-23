@@ -44,11 +44,11 @@ extension CGFloat: ScopeFunctions {
         get { Float(self) }
     }
     
-    func toPercentage(max: CGFloat = 1) -> CGFloat {
+    func limit(min: CGFloat = 0, max: CGFloat = 1) -> CGFloat {
         if (self > max) {
             return max
-        } else if (self < 0) {
-            return 0
+        } else if (self < min) {
+            return min
         } else {
             return self
         }

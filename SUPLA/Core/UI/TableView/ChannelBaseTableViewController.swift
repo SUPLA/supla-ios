@@ -195,7 +195,8 @@ class ChannelBaseTableViewController<S: ViewState, E: ViewEvent, VM: BaseTableVi
              SUPLA_CHANNELFNC_CONTROLLINGTHEFACADEBLIND,
              SUPLA_CHANNELFNC_CONTROLLINGTHEROLLERSHUTTER,
              SUPLA_CHANNELFNC_TERRACE_AWNING,
-             SUPLA_CHANNELFNC_PROJECTOR_SCREEN:
+             SUPLA_CHANNELFNC_PROJECTOR_SCREEN,
+             SUPLA_CHANNELFNC_CURTAIN:
             return cellIdForIcon
         default:
             return cellIdForChannel

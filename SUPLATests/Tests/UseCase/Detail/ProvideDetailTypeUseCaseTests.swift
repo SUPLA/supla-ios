@@ -91,6 +91,24 @@ final class ProvideDetailTypeUseCaseTests: XCTestCase {
         }
     }
     
+    func test_shouldProvideRs_forProjectorScreenFunction() {
+        doTest(expectedResult: .windowDetail(pages: [.projectorScreen])) {
+            let channel = SAChannel(testContext: nil)
+            channel.func = SUPLA_CHANNELFNC_PROJECTOR_SCREEN
+            
+            return channel
+        }
+    }
+    
+    func test_shouldProvideRs_forCurtainFunction() {
+        doTest(expectedResult: .windowDetail(pages: [.curtain])) {
+            let channel = SAChannel(testContext: nil)
+            channel.func = SUPLA_CHANNELFNC_CURTAIN
+            
+            return channel
+        }
+    }
+    
     func test_shouldProvideEm_forEmFunction() {
         doTest(expectedResult: .legacy(type: .em)) {
             let channel = SAChannel(testContext: nil)

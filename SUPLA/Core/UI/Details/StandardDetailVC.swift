@@ -93,6 +93,9 @@ class StandardDetailVC<S : ViewState, E : ViewEvent, VM : StandardDetailVM<S, E>
                 viewControllers.append(terraceAwningDetail())
             case .projectorScreen:
                 viewControllers.append(projectorScreenDetail())
+            case .curtain:
+                viewControllers.append(curtainDetail())
+
             }
         }
         
@@ -255,6 +258,17 @@ class StandardDetailVC<S : ViewState, E : ViewEvent, VM : StandardDetailVM<S, E>
     
     private func projectorScreenDetail() -> ProjectorScreenVC {
         let vc = ProjectorScreenVC(itemBundle: item)
+        vc.navigationCoordinator = navigationCoordinator
+        vc.tabBarItem = UITabBarItem(
+            title: settings.showBottomLabels ? Strings.StandardDetail.tabGeneral : nil,
+            image: .iconGeneral,
+            tag: DetailTabTag.Window.rawValue
+        )
+        return vc
+    }
+    
+    private func curtainDetail() -> CurtainVC {
+        let vc = CurtainVC(itemBundle: item)
         vc.navigationCoordinator = navigationCoordinator
         vc.tabBarItem = UITabBarItem(
             title: settings.showBottomLabels ? Strings.StandardDetail.tabGeneral : nil,

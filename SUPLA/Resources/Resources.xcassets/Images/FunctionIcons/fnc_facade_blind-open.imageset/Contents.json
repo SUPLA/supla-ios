@@ -1,7 +1,7 @@
 {
   "images" : [
     {
-      "filename" : "facade_blind-open.svg",
+      "filename" : "facade blinders-1.svg",
       "idiom" : "universal"
     },
     {
@@ -11,7 +11,7 @@
           "value" : "dark"
         }
       ],
-      "filename" : "facade_blind-open-nm.svg",
+      "filename" : "facade blinders-2.svg",
       "idiom" : "universal"
     }
   ],

@@ -41,7 +41,7 @@ final class UpdateChannelGroupTotalValueUseCaseTests: UseCaseTest<[Int32]> {
         useCase = nil
     }
     
-    func testIfTotalStringIsCreated() {
+    func testIfTotalValueIsCreated() {
         // given
         let firstGroup = SAChannelGroup(testContext: nil)
         firstGroup.remote_id = 11
@@ -120,7 +120,7 @@ final class UpdateChannelGroupTotalValueUseCaseTests: UseCaseTest<[Int32]> {
         ])
     }
     
-    func testIfTotalStringIsCreatedForGate() {
+    func testIfTotalValueIsCreatedForGate() {
         // given
         let firstGroup = SAChannelGroup(testContext: nil)
         firstGroup.remote_id = 11
@@ -156,7 +156,7 @@ final class UpdateChannelGroupTotalValueUseCaseTests: UseCaseTest<[Int32]> {
         ])
     }
     
-    func testIfTotalStringIsCreatedForPowerSwitch() {
+    func testIfTotalValueIsCreatedForPowerSwitch() {
         // given
         let firstGroup = SAChannelGroup(testContext: nil)
         firstGroup.remote_id = 11
@@ -192,7 +192,7 @@ final class UpdateChannelGroupTotalValueUseCaseTests: UseCaseTest<[Int32]> {
         ])
     }
     
-    func testIfTotalStringIsCreatedForValvePercentage() {
+    func testIfTotalValueIsCreatedForValvePercentage() {
         // given
         let firstGroup = SAChannelGroup(testContext: nil)
         firstGroup.remote_id = 11
@@ -228,7 +228,7 @@ final class UpdateChannelGroupTotalValueUseCaseTests: UseCaseTest<[Int32]> {
         ])
     }
     
-    func testIfTotalStringIsCreatedForDimmer() {
+    func testIfTotalValueIsCreatedForDimmer() {
         // given
         let firstGroup = SAChannelGroup(testContext: nil)
         firstGroup.remote_id = 11
@@ -264,7 +264,7 @@ final class UpdateChannelGroupTotalValueUseCaseTests: UseCaseTest<[Int32]> {
         ])
     }
     
-    func testIfTotalStringIsCreatedForRgbLighting() {
+    func testIfTotalValueIsCreatedForRgbLighting() {
         // given
         let firstGroup = SAChannelGroup(testContext: nil)
         firstGroup.remote_id = 11
@@ -301,7 +301,7 @@ final class UpdateChannelGroupTotalValueUseCaseTests: UseCaseTest<[Int32]> {
         ])
     }
     
-    func testIfTotalStringIsCreatedForDimmerAndRgbLighting() {
+    func testIfTotalValueIsCreatedForDimmerAndRgbLighting() {
         // given
         let firstGroup = SAChannelGroup(testContext: nil)
         firstGroup.remote_id = 11
@@ -339,7 +339,7 @@ final class UpdateChannelGroupTotalValueUseCaseTests: UseCaseTest<[Int32]> {
         ])
     }
     
-    func testIfTotalStringIsCreatedForHeatpolThermostat() {
+    func testIfTotalValueIsCreatedForHeatpolThermostat() {
         // given
         let firstGroup = SAChannelGroup(testContext: nil)
         firstGroup.remote_id = 11
@@ -373,6 +373,42 @@ final class UpdateChannelGroupTotalValueUseCaseTests: UseCaseTest<[Int32]> {
         
         assertEvents([
             .next([11]),
+            .completed
+        ])
+    }
+    
+    func testIfTotalValueIsCreatedForCurtain() {
+        // given
+        let group = SAChannelGroup(testContext: nil)
+        group.remote_id = 11
+        group.func = SUPLA_CHANNELFNC_CURTAIN
+        
+        let groupRelation = SAChannelGroupRelation(testContext: nil)
+        groupRelation.group = group
+        groupRelation.value = SAChannelValue.mockRollerShutter(position: 18)
+        
+        channelGroupRelationRepository.getAllVisibleRelationsForActiveProfileReturns = .just([
+            groupRelation,
+        ])
+        channelGroupRelationRepository.saveObservable = .just(())
+        
+        // when
+        useCase.invoke().subscribe(observer).disposed(by: disposeBag)
+        
+        // then
+        XCTAssertEqual(group.online, 100)
+        XCTAssertTrue(group.total_value is GroupTotalValue)
+        if let groupTotalValue = group.total_value as? GroupTotalValue,
+           let firstRelationValue = groupTotalValue.values[0] as? RollerShutterGroupValue
+        {
+            XCTAssertEqual(groupTotalValue.values.count, 1)
+            XCTAssertEqual(firstRelationValue.position, 18)
+        } else {
+            XCTFail("First group total value not created!")
+        }
+        
+        assertEvents([
+            .next([11]), // in third group there are no changes so it should not be present here.
             .completed
         ])
     }

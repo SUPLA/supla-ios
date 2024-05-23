@@ -21,7 +21,7 @@ import RxSwift
 
 // MARK: - RollerShutterView
 
-class FacadeBlindsView: BaseWallWindowView<FacadeBlindWindowState> {
+class FacadeBlindsView: BaseWallWindowView<FacadeBlindWindowState, FacadeBlindRuntimeDimens> {
     
     override var windowState: FacadeBlindWindowState? {
         didSet {
@@ -50,7 +50,7 @@ class FacadeBlindsView: BaseWallWindowView<FacadeBlindWindowState> {
     private lazy var markerPath: UIBezierPath = .init()
     
     init() {
-        super.init(RuntimeDimens())
+        super.init(FacadeBlindRuntimeDimens())
     }
     
     @available(*, unavailable)
@@ -58,7 +58,7 @@ class FacadeBlindsView: BaseWallWindowView<FacadeBlindWindowState> {
         fatalError("init(coder:) has not been implemented")
     }
     
-    override func updateSlatsPositions(_ slatsLayers: [CAShapeLayer], _ dimens: RuntimeWindowDimens) {
+    override func drawShadowingElements(_ context: CGContext, _ dimens: FacadeBlindRuntimeDimens) {
         guard let position = windowState?.position.value
         else {
             return
@@ -70,60 +70,28 @@ class FacadeBlindsView: BaseWallWindowView<FacadeBlindWindowState> {
             .also { tiltDegrees <= tiltHalfRangeDegrees ? $0 : -$0 }
         
         var currentCorrection = dimens.windowRect.height * (1 - position / 100)
-        for i in 0 ..< DefaultWindowDimens.slatsCount {
+        
+        for i in 0 ..< SlatDimens.count {
             let frame = dimens.slats[i].offsetBy(dx: 0, dy: -currentCorrection)
             
             let maxSlatCorrection = frame.height - 4
             let verticalSlatCorrection = maxSlatCorrection * correctedTilt / tiltHalfRangeDegrees / 2
             
-            if (frame.maxY < 0) {
-                slatsLayers[i].frame = CGRect(x: frame.minX, y: 0, width: frame.width, height: 0)
+            let rect = if (frame.maxY < 0) {
+                CGRect(x: frame.minX, y: 0, width: frame.width, height: 0)
             } else if (frame.minY < 0) {
-                slatsLayers[i].frame = CGRect(x: frame.minX, y: 0, width: frame.width, height: frame.maxY)
+                CGRect(x: frame.minX, y: 0, width: frame.width, height: frame.maxY)
             } else {
-                slatsLayers[i].frame = frame
+                frame
             }
             
-            if (frame.maxY < dimens.topLineRect.maxY) {
-                slatsLayers[i].path = nil
-            } else {
-                let path = UIBezierPath()
-                path.move(
-                    to: CGPoint(
-                        x: horizontalSlatCorrection,
-                        y: 1 + verticalSlatCorrection
-                    )
-                )
-                path.addLine(
-                    to: CGPoint(
-                        x: slatsLayers[i].frame.width - horizontalSlatCorrection,
-                        y: 1 + verticalSlatCorrection
-                    )
-                )
-                path.addLine(
-                    to: CGPoint(
-                        x: slatsLayers[i].frame.width + horizontalSlatCorrection,
-                        y: frame.height - verticalSlatCorrection
-                    )
-                )
-                path.addLine(
-                    to: CGPoint(
-                        x: -horizontalSlatCorrection,
-                        y: frame.height - verticalSlatCorrection
-                    )
-                )
-                path.close()
-                slatsLayers[i].path = path.cgPath
+            if (rect.maxY > dimens.topLineRect.maxY) {
+                let path = getSlatPath(rect, horizontalSlatCorrection, verticalSlatCorrection)
+                
+                drawPath(context, fillColor: colors.slatBackground) { path }
+                drawPath(context, strokeColor: colors.slatBorder) { path }
             }
-            
-            currentCorrection -= dimens.slatDistance
         }
-    }
-    
-    override func setupSlat(_ layer: CAShapeLayer, _ colors: WindowColors) {
-        layer.fillColor = colors.slatBackground.cgColor
-        layer.strokeColor = colors.slatBorder.cgColor
-        layer.lineWidth = 1
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -137,8 +105,13 @@ class FacadeBlindsView: BaseWallWindowView<FacadeBlindWindowState> {
         }
     }
     
-    override func handleMovement(_ startPosition: CGPoint, _ startPercentage: CGFloat, _ currentPosition: CGPoint) {
-        super.handleMovement(startPosition, startPercentage, currentPosition)
+    override func handleMovement(
+        _ positionRelay: PublishRelay<CGFloat>,
+        _ startPosition: CGPoint,
+        _ startPercentage: CGFloat,
+        _ currentPosition: CGPoint
+    ) {
+        super.handleMovement(positionRelay, startPosition, startPercentage, currentPosition)
         
         guard let startTilt = startTilt else { return }
         
@@ -147,7 +120,7 @@ class FacadeBlindsView: BaseWallWindowView<FacadeBlindWindowState> {
         
         let tiltDiffAsPercentage = (currentPosition.x - startPosition.x)
             .divideToPercentage(value: touchRect.width / 2)
-        let tilt = (startTilt + tiltDiffAsPercentage).toPercentage(max: 100)
+        let tilt = (startTilt + tiltDiffAsPercentage).limit(max: 100)
         
         let position = windowState?.position.value ?? 0
         if (tiltChangeAllowed) {
@@ -229,6 +202,40 @@ class FacadeBlindsView: BaseWallWindowView<FacadeBlindWindowState> {
             markersLayers.append(markerLayer)
         }
     }
+    
+    private func getSlatPath(
+        _ rect: CGRect,
+        _ horizontalSlatCorrection: CGFloat,
+        _ verticalSlatCorrection: CGFloat
+    ) -> CGPath {
+        dimens.slatPath.removeAllPoints()
+        dimens.slatPath.move(
+            to: CGPoint(
+                x: rect.minX + horizontalSlatCorrection,
+                y: rect.minY + 1 + verticalSlatCorrection
+            )
+        )
+        dimens.slatPath.addLine(
+            to: CGPoint(
+                x: rect.maxX - horizontalSlatCorrection,
+                y: rect.minY + 1 + verticalSlatCorrection
+            )
+        )
+        dimens.slatPath.addLine(
+            to: CGPoint(
+                x: rect.maxX + horizontalSlatCorrection,
+                y: rect.maxY - verticalSlatCorrection
+            )
+        )
+        dimens.slatPath.addLine(
+            to: CGPoint(
+                x: rect.minX - horizontalSlatCorrection,
+                y: rect.maxY - verticalSlatCorrection
+            )
+        )
+        dimens.slatPath.close()
+        return dimens.slatPath.cgPath
+    }
 }
 
 extension Reactive where Base: FacadeBlindsView {
@@ -243,19 +250,38 @@ extension Reactive where Base: FacadeBlindsView {
 
 // MARK: - Runtime dimensions
 
-private class RuntimeDimens: RuntimeWindowDimens {
-    override func getSlatDistance() -> CGFloat { 0 }
+class FacadeBlindRuntimeDimens: BaseWallWindowDimens {
     
-    override func createSlatRects() {
-        let slatHorizontalMargin = DefaultWindowDimens.slatHorizontalMargin * scale
+    static let markerInfoRadius: CGFloat = 14
+    
+    var slats: [CGRect] = .init(repeating: .zero, count: SlatDimens.count)
+    var markerInfoRadius: CGFloat = 0
+    var markers: [CGRect] = []
+    var slatPath: UIBezierPath = .init()
+    
+    override func update(_ frame: CGRect) {
+        super.update(frame)
+        
+        createSlatRects()
+        
+        markerInfoRadius = FacadeBlindRuntimeDimens.markerInfoRadius * scale
+        createMarkersRects()
+    }
+    
+    func setMarkers(_ markersCount: Int) {
+        markers = .init(repeating: .zero, count: markersCount)
+    }
+    
+    private func createSlatRects() {
+        let slatHorizontalMargin = SlatDimens.horizontalMargin * scale
         let slatSize = CGSize(
             width: canvasRect.width - slatHorizontalMargin * 2,
-            height: DefaultWindowDimens.slatHeight * scale
+            height: SlatDimens.height * scale
         )
         
-        let top = windowRect.maxY - CGFloat(DefaultWindowDimens.slatsCount) * slatSize.height
+        let top = windowRect.maxY - CGFloat(SlatDimens.count) * slatSize.height
         
-        for i in 0 ..< DefaultWindowDimens.slatsCount {
+        for i in 0 ..< SlatDimens.count {
             slats[i] = CGRect(
                 origin: CGPoint(x: canvasRect.minX + slatHorizontalMargin, y: top + CGFloat(i) * slatSize.height),
                 size: slatSize
@@ -263,7 +289,7 @@ private class RuntimeDimens: RuntimeWindowDimens {
         }
     }
     
-    override func createMarkersRects() {
+    private func createMarkersRects() {
         let markerDiameter = markerInfoRadius * 2
         for i in 0 ..< markers.count {
             markers[i] = CGRect(

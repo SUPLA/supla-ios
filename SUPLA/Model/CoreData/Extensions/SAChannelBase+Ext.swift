@@ -53,7 +53,9 @@ extension SAChannelBase {
     func isShadingSystem() -> Bool {
         return self.func == SUPLA_CHANNELFNC_CONTROLLINGTHEROLLERSHUTTER ||
             self.func == SUPLA_CHANNELFNC_CONTROLLINGTHEROOFWINDOW ||
-            self.func == SUPLA_CHANNELFNC_CONTROLLINGTHEFACADEBLIND
+            self.func == SUPLA_CHANNELFNC_CONTROLLINGTHEFACADEBLIND ||
+            self.func == SUPLA_CHANNELFNC_TERRACE_AWNING ||
+            self.func == SUPLA_CHANNELFNC_CURTAIN
     }
 
     func hasMeasurements() -> Bool {
