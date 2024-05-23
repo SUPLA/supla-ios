@@ -62,6 +62,10 @@ extension String {
         static let arrowClose = "icon_arrow_close"
         static let arrowUp = "icon_arrow_up"
         static let arrowDown = "icon_arrow_down"
+        static let arrowCoverTap = "icon_arrow_cover_tap"
+        static let arrowCoverHold = "icon_arrow_cover_hold"
+        static let arrowRevealTap = "icon_arrow_reveal_tap"
+        static let arrowRevealHold = "icon_arrow_reveal_hold"
         
         // MARK: Functions
         static let fncUnknown = "unknown_channel"

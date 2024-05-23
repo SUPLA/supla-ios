@@ -83,7 +83,7 @@ final class TerraceAwningView: BaseWindowView<TerraceAwningWindowState> {
     }
     
     private func drawWindow(_ context: CGContext) {
-        let path = UIBezierPath(roundedRect: dimens.windowRect, cornerRadius: DefaultWindowDimens.windowCornerRadius)
+        let path = UIBezierPath(roundedRect: dimens.windowRect, cornerRadius: WindowDimens.cornerRadius)
         
         drawPath(context, fillColor: colors.window, withShadow: true) { path.cgPath }
         
@@ -96,31 +96,9 @@ final class TerraceAwningView: BaseWindowView<TerraceAwningWindowState> {
             size: CGSize(width: glassWidth, height: glassHeight)
         )
         
-        drawGlass(context, glassRect)
-        drawGlass(context, glassRect.offsetBy(dx: glassWidth + glassMargin, dy: 0))
-    }
-    
-    private func drawGlass(_ context: CGContext, _ glassRect: CGRect) {
-        context.saveGState()
-        
-        context.beginPath()
-        context.addRect(glassRect)
-        context.closePath()
-        context.clip()
-    
-        let colors = [colors.glassTop.cgColor, colors.glassBottom.cgColor] as CFArray
-        let colorSpace = CGColorSpaceCreateDeviceRGB()
-        let colorLocations: [CGFloat] = [0.0, 1.0]
-        
-        let startPoint = CGPoint(x: 0, y: glassRect.minY)
-        let endPoint = CGPoint(x: 0, y: glassRect.maxY)
-        
-        let gradient = CGGradient(colorsSpace: colorSpace, colors: colors, locations: colorLocations)!
-        
-        context.drawLinearGradient(gradient, start: startPoint, end: endPoint, options: [])
-        context.fillPath()
-        
-        context.restoreGState()
+        let colors = [colors.glassTop.cgColor, colors.glassBottom.cgColor]
+        drawGlass(context, glassRect, colors)
+        drawGlass(context, glassRect.offsetBy(dx: glassWidth + glassMargin, dy: 0), colors)
     }
     
     private func drawAwning(_ context: CGContext) {

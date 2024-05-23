@@ -64,7 +64,7 @@ class BaseWindowView<T: WindowState>: UIView {
               let startPercentage = startPercentage,
               let currentPosition = event?.allTouches?.first?.location(in: self) else { return }
         
-        handleMovement(startPosition, startPercentage, currentPosition)
+        handleMovement(positionRelay, startPosition, startPercentage, currentPosition)
     }
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -77,11 +77,16 @@ class BaseWindowView<T: WindowState>: UIView {
         }
     }
     
-    func handleMovement(_ startPosition: CGPoint, _ startPercentage: CGFloat, _ currentPosition: CGPoint) {
+    func handleMovement(
+        _ positionRelay: PublishRelay<CGFloat>,
+        _ startPosition: CGPoint,
+        _ startPercentage: CGFloat,
+        _ currentPosition: CGPoint
+    ) {
         let positionDiffAsPercentage = (currentPosition.y - startPosition.y)
             .divideToPercentage(value: touchRect.height)
         
-        let position = (startPercentage + positionDiffAsPercentage).toPercentage(max: 100)
+        let position = (startPercentage + positionDiffAsPercentage).limit(max: 100)
         windowState?.position = .similar(position)
         positionRelay.accept(position)
     }

@@ -59,6 +59,10 @@ extension UIImage {
     static let iconArrowClose = UIImage(named: .Icons.arrowClose)
     static let iconArrowUp = UIImage(named: .Icons.arrowUp)
     static let iconArrowDown = UIImage(named: .Icons.arrowDown)
+    static let iconArrowCoverTap = UIImage(named: .Icons.arrowCoverTap)
+    static let iconArrowCoverHold = UIImage(named: .Icons.arrowCoverHold)
+    static let iconArrowRevealTap = UIImage(named: .Icons.arrowRevealTap)
+    static let iconArrowRevealHold = UIImage(named: .Icons.arrowRevealHold)
     
     // MARK: Functions
     static let fncUnknown = UIImage(named: .Icons.fncUnknown)

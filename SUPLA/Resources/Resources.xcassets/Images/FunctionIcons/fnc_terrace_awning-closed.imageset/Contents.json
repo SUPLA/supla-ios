@@ -1,7 +1,7 @@
 {
   "images" : [
     {
-      "filename" : "fnc_terrase_awning-open.svg",
+      "filename" : "awnings.svg",
       "idiom" : "universal"
     },
     {
@@ -11,7 +11,7 @@
           "value" : "dark"
         }
       ],
-      "filename" : "fnc_terrase_awning-open-nm.svg",
+      "filename" : "awnings_dark mode.svg",
       "idiom" : "universal"
     }
   ],

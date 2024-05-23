@@ -446,4 +446,46 @@ final class GetChannelBaseStateUseCaseTests: XCTestCase {
         XCTAssertEqual(state, .closed)
         XCTAssertTrue(state.isActive())
     }
+    
+    func test_curtainScreenClosedState() {
+        // given
+        let channel = SAChannel(testContext: nil)
+        channel.func = SUPLA_CHANNELFNC_CURTAIN
+        channel.value = mockChannelValue(byte0: 100)
+
+        // when
+        let state = useCase.invoke(channelBase: channel)
+
+        // then
+        XCTAssertEqual(state, .closed)
+        XCTAssertTrue(state.isActive())
+    }
+
+    func test_curtainOpenedState() {
+        // given
+        let channel = SAChannel(testContext: nil)
+        channel.func = SUPLA_CHANNELFNC_CURTAIN
+        channel.value = mockChannelValue()
+
+        // when
+        let state = useCase.invoke(channelBase: channel)
+
+        // then
+        XCTAssertEqual(state, .opened)
+        XCTAssertFalse(state.isActive())
+    }
+
+    func test_curtainOfflineState() {
+        // given
+        let channel = SAChannel(testContext: nil)
+        channel.func = SUPLA_CHANNELFNC_CURTAIN
+        channel.value = mockChannelValue(online: false)
+
+        // when
+        let state = useCase.invoke(channelBase: channel)
+
+        // then
+        XCTAssertEqual(state, .opened)
+        XCTAssertFalse(state.isActive())
+    }
 }

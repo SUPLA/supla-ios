@@ -1,7 +1,7 @@
 {
   "images" : [
     {
-      "filename" : "projector screenclosed.svg",
+      "filename" : "projector screen-1.svg",
       "idiom" : "universal"
     },
     {
@@ -11,7 +11,7 @@
           "value" : "dark"
         }
       ],
-      "filename" : "projector screen_dark modeclosed.svg",
+      "filename" : "projector screen_dark mode-1.svg",
       "idiom" : "universal"
     }
   ],

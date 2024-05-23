@@ -24,37 +24,11 @@ private let TOP_VIEW_HEIGHT: CGFloat = 80
 class BaseWindowVC<WS: WindowState, WV: BaseWindowView<WS>, S: BaseWindowViewState, VM: BaseWindowVM<S>>: BaseViewControllerVM<S, BaseWindowViewEvent, VM> {
     let itemBundle: ItemBundle
     
+    var windowControls: WindowControls
+    
     lazy var topView: BlindsTopView = .init()
     
     lazy var windowView: WV = getWindowView()
-    
-    private let buttonsPositionGuide: UILayoutGuide = .init()
-    
-    private lazy var leftControlButton: UpDownControlButton = {
-        let button = UpDownControlButton()
-        button.upIcon = .iconArrowUp
-        button.downIcon = .iconArrowDown
-        return button
-    }()
-    
-    private lazy var rightControlButton: UpDownControlButton = {
-        let button = UpDownControlButton()
-        button.upIcon = .iconArrowOpen
-        button.downIcon = .iconArrowClose
-        return button
-    }()
-    
-    private lazy var stopControlButton: CircleControlButtonView = {
-        let button = CircleControlButtonView(size: 64)
-        button.translatesAutoresizingMaskIntoConstraints = false
-        button.icon = .suplaIcon(icon: .iconStop)
-        return button
-    }()
-    
-    private lazy var moveTimeView: MoveTimeView = {
-        let view = MoveTimeView()
-        return view
-    }()
     
     private lazy var issuesView: IssuesView = {
         let view = IssuesView()
@@ -69,8 +43,9 @@ class BaseWindowVC<WS: WindowState, WV: BaseWindowView<WS>, S: BaseWindowViewSta
     
     private lazy var dynamicConstraints: [NSLayoutConstraint] = []
     
-    init(itemBundle: ItemBundle, viewModel: VM) {
+    init(itemBundle: ItemBundle, viewModel: VM, windowControls: WindowControls = WindowVerticalControls()) {
         self.itemBundle = itemBundle
+        self.windowControls = windowControls
         super.init(nibName: nil, bundle: nil)
         self.viewModel = viewModel
     }
@@ -146,16 +121,11 @@ class BaseWindowVC<WS: WindowState, WV: BaseWindowView<WS>, S: BaseWindowViewSta
             topView.valueBottom = nil
         }
         
-        leftControlButton.isEnabled = !state.offline
-        rightControlButton.isEnabled = !state.offline
-        stopControlButton.isEnabled = !state.offline
+        windowControls.isEnabled = !state.offline
         topView.offline = state.offline
         windowView.isEnabled = !state.offline
         
-        moveTimeView.isHidden = state.touchTime == nil
-        if let touchTime = state.touchTime {
-            moveTimeView.value = String(format: "%.1fs", touchTime)
-        }
+        windowControls.moveTime = state.touchTime
         
         updateDynamicConstraints()
     }
@@ -163,12 +133,8 @@ class BaseWindowVC<WS: WindowState, WV: BaseWindowView<WS>, S: BaseWindowViewSta
     private func setupView() {
         view.addSubview(topView)
         view.addSubview(windowView)
-        view.addSubview(leftControlButton)
-        view.addSubview(rightControlButton)
-        view.addSubview(stopControlButton)
-        view.addSubview(moveTimeView)
+        view.addSubview(windowControls)
         view.addSubview(issuesView)
-        view.addLayoutGuide(buttonsPositionGuide)
         view.addSubview(slatTiltSlider)
         
         setupWindowGesturesObservers()
@@ -176,21 +142,9 @@ class BaseWindowVC<WS: WindowState, WV: BaseWindowView<WS>, S: BaseWindowViewSta
         windowView.rxPosition
             .subscribe(onNext: { [weak self] in self?.topView.valueTop = self?.viewModel.positionToString($0) })
             .disposed(by: self)
-        viewModel.bind(leftControlButton.rx.touchDown) { [weak self] type in
+        viewModel.bind(windowControls.action) { [weak self] action in
             guard let bundle = self?.itemBundle else { return }
-            self?.viewModel.handleAction(type.leftAction, remoteId: bundle.remoteId, type: bundle.subjectType)
-        }
-        viewModel.bind(leftControlButton.rx.touchUp) { [weak self] _ in
-            guard let bundle = self?.itemBundle else { return }
-            self?.viewModel.handleAction(.stop, remoteId: bundle.remoteId, type: bundle.subjectType)
-        }
-        viewModel.bind(rightControlButton.rx.tap) { [weak self] type in
-            guard let bundle = self?.itemBundle else { return }
-            self?.viewModel.handleAction(type.rightAction, remoteId: bundle.remoteId, type: bundle.subjectType)
-        }
-        viewModel.bind(stopControlButton.tapObservable) { [weak self] in
-            guard let bundle = self?.itemBundle else { return }
-            self?.viewModel.handleAction(.stop, remoteId: bundle.remoteId, type: bundle.subjectType)
+            self?.viewModel.handleAction(action, remoteId: bundle.remoteId, type: bundle.subjectType)
         }
         viewModel.bind(topView.rx.calibrate) { [weak self] in
             guard let bundle = self?.itemBundle else { return }
@@ -230,20 +184,9 @@ class BaseWindowVC<WS: WindowState, WV: BaseWindowView<WS>, S: BaseWindowViewSta
             windowView.topAnchor.constraint(equalTo: topView.bottomAnchor, constant: Dimens.distanceDefault),
             windowView.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -42),
             
-            buttonsPositionGuide.topAnchor.constraint(equalTo: windowView.bottomAnchor, constant: Dimens.distanceSmall),
-            buttonsPositionGuide.heightAnchor.constraint(equalToConstant: UP_DOWN_CONTROLL_BUTTON_HEIGHT),
-            
-            leftControlButton.centerYAnchor.constraint(equalTo: buttonsPositionGuide.centerYAnchor),
-            leftControlButton.rightAnchor.constraint(equalTo: view.centerXAnchor, constant: -56),
-            
-            rightControlButton.centerYAnchor.constraint(equalTo: buttonsPositionGuide.centerYAnchor),
-            rightControlButton.leftAnchor.constraint(equalTo: view.centerXAnchor, constant: 56),
-            
-            stopControlButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            stopControlButton.centerYAnchor.constraint(equalTo: buttonsPositionGuide.centerYAnchor),
-            
-            moveTimeView.topAnchor.constraint(equalTo: windowView.bottomAnchor, constant: Dimens.distanceDefault),
-            moveTimeView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            windowControls.topAnchor.constraint(equalTo: windowView.bottomAnchor, constant: Dimens.distanceSmall),
+            windowControls.leftAnchor.constraint(equalTo: view.leftAnchor, constant: Dimens.distanceDefault),
+            windowControls.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -Dimens.distanceDefault),
             
             issuesView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: Dimens.distanceDefault),
             issuesView.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -Dimens.distanceDefault),
@@ -265,11 +208,12 @@ class BaseWindowVC<WS: WindowState, WV: BaseWindowView<WS>, S: BaseWindowViewSta
         
         if (slatTiltSlider.isHidden) {
             dynamicConstraints.append(
-                issuesView.topAnchor.constraint(equalTo: buttonsPositionGuide.bottomAnchor, constant: Dimens.distanceSmall)
+                issuesView.topAnchor.constraint(equalTo: windowControls.bottomAnchor, constant: Dimens.distanceSmall)
+                
             )
         } else {
             dynamicConstraints.append(contentsOf: [
-                slatTiltSlider.topAnchor.constraint(equalTo: buttonsPositionGuide.bottomAnchor, constant: Dimens.distanceSmall),
+                slatTiltSlider.topAnchor.constraint(equalTo: windowControls.bottomAnchor, constant: Dimens.distanceSmall),
                 slatTiltSlider.widthAnchor.constraint(equalToConstant: 240),
                 slatTiltSlider.heightAnchor.constraint(equalToConstant: 40),
                 slatTiltSlider.centerXAnchor.constraint(equalTo: view.centerXAnchor),
@@ -553,64 +497,6 @@ class TopView: UIView {
     }
 }
 
-private class MoveTimeView: UIView {
-    var value: String? {
-        get { label.text }
-        set {
-            label.text = newValue
-            setNeedsLayout() // because label width will change
-        }
-    }
-    
-    private lazy var iconView: UIImageView = {
-        let view = UIImageView()
-        view.translatesAutoresizingMaskIntoConstraints = false
-        view.image = .iconTouchHand?.withRenderingMode(.alwaysTemplate)
-        view.tintColor = .black
-        return view
-    }()
-    
-    private lazy var label: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = .body2
-        return label
-    }()
-    
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        setupView()
-    }
-    
-    @available(*, unavailable)
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-    private func setupView() {
-        translatesAutoresizingMaskIntoConstraints = false
-        
-        addSubview(iconView)
-        addSubview(label)
-        
-        setupLayout()
-    }
-    
-    private func setupLayout() {
-        NSLayoutConstraint.activate([
-            iconView.centerXAnchor.constraint(equalTo: centerXAnchor),
-            iconView.topAnchor.constraint(equalTo: topAnchor),
-            
-            label.topAnchor.constraint(equalTo: iconView.bottomAnchor),
-            label.centerXAnchor.constraint(equalTo: centerXAnchor)
-        ])
-    }
-    
-    override class var requiresConstraintBasedLayout: Bool {
-        return true
-    }
-}
-
 private class IssuesView: UIStackView {
     override var intrinsicContentSize: CGSize {
         CGSize(width: UIView.noIntrinsicMetric, height: Dimens.iconSizeList * CGFloat(issues.count))
@@ -661,17 +547,19 @@ private class IssuesView: UIStackView {
 }
 
 extension ControlButtonType {
-    var leftAction: RollerShutterAction {
+    var holdAction: RollerShutterAction {
         switch (self) {
-        case .up: .moveUp
-        case .down: .moveDown
+        case .up, .left: .moveUp
+        case .down, .right: .moveDown
+        case .middle: .stop
         }
     }
     
-    var rightAction: RollerShutterAction {
+    var pressAction: RollerShutterAction {
         switch (self) {
-        case .up: .open
-        case .down: .close
+        case .up, .left: .open
+        case .down, .right: .close
+        case .middle: .stop
         }
     }
 }

@@ -325,6 +325,7 @@
 "channel_caption_facade_blinds" = "Fassadenjalousien";
 "channel_caption_terrace_awning" = "Terrassenmarkise";
 "channel_caption_projector_screen" = "Leinwand";
+"channel_caption_curtain" = "Vorhang";
 
 /* Main */
 "dialog_new_gesture_info_text" = "Wischgeste zum Öffnen der Kanaldetails wurde gelöscht, tippe auf dem Kanal, um sie zu sehen.";

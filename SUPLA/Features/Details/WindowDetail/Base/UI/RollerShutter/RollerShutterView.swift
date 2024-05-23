@@ -21,7 +21,7 @@ import RxSwift
 
 // MARK: - RollerShutterView
 
-class RollerShutterView: BaseWallWindowView<RollerShutterWindowState> {
+class RollerShutterView: BaseWallWindowView<RollerShutterWindowState, RollerShutterRuntimeDimens> {
     override var windowState: RollerShutterWindowState? {
         didSet {
             if let markers = windowState?.markers,
@@ -37,7 +37,7 @@ class RollerShutterView: BaseWallWindowView<RollerShutterWindowState> {
     private lazy var markersLayers: [CAShapeLayer] = []
     
     init() {
-        super.init(RuntimeDimens())
+        super.init(RollerShutterRuntimeDimens())
     }
     
     @available(*, unavailable)
@@ -45,7 +45,7 @@ class RollerShutterView: BaseWallWindowView<RollerShutterWindowState> {
         fatalError("init(coder:) has not been implemented")
     }
     
-    override func updateSlatsPositions(_ slatsLayers: [CAShapeLayer], _ dimens: RuntimeWindowDimens) {
+    override func drawShadowingElements(_ context: CGContext, _ dimens: RollerShutterRuntimeDimens) {
         guard let position = windowState?.position.value,
               let bottomPosition = windowState?.bottomPosition
         else {
@@ -62,15 +62,19 @@ class RollerShutterView: BaseWallWindowView<RollerShutterWindowState> {
         
         var availableSpaceForDistances = dimens.slatsDistances * slatDistancesPercentage
         var currentCorrection = topCorrection + dimens.slatsDistances * slatDistancesPercentage
-        for i in 0 ..< DefaultWindowDimens.slatsCount {
+        
+        for i in 0 ..< SlatDimens.count {
             let frame = dimens.slats[i].offsetBy(dx: 0, dy: -currentCorrection)
-            if (frame.maxY < 0) {
-                slatsLayers[i].frame = CGRect(x: frame.minX, y: 0, width: frame.width, height: 0)
+            let rect = if (frame.maxY < 0) {
+                CGRect(x: frame.minX, y: 0, width: frame.width, height: 0)
             } else if (frame.minY < 0) {
-                slatsLayers[i].frame = CGRect(x: frame.minX, y: 0, width: frame.width, height: frame.maxY)
+                CGRect(x: frame.minX, y: 0, width: frame.width, height: frame.maxY)
             } else {
-                slatsLayers[i].frame = frame
+                frame
             }
+            
+            drawPath(context, fillColor: colors.slatBackground) { UIBezierPath(rect: rect).cgPath }
+            drawPath(context, strokeColor: colors.slatBorder) { UIBezierPath(rect: rect).cgPath }
             
             if (availableSpaceForDistances > dimens.slatDistance) {
                 currentCorrection -= dimens.slatDistance
@@ -118,19 +122,44 @@ class RollerShutterView: BaseWallWindowView<RollerShutterWindowState> {
 
 // MARK: - Runtime dimensions
 
-private class RuntimeDimens: RuntimeWindowDimens {
-    override func getSlatDistance() -> CGFloat { DefaultWindowDimens.slatDistance * scale }
+class RollerShutterRuntimeDimens: BaseWallWindowDimens {
     
-    override func createSlatRects() {
-        let slatHorizontalMargin = DefaultWindowDimens.slatHorizontalMargin * scale
+    static let markerHeight: CGFloat = 8
+    static let markerWidth: CGFloat = 28
+    
+    var slats: [CGRect] = .init(repeating: .zero, count: SlatDimens.count)
+    var markerPath: UIBezierPath = .init()
+    var markers: [CGRect] = []
+    var slatDistance: CGFloat = 0
+    var slatsDistances: CGFloat = 0
+    
+    override func update(_ frame: CGRect) {
+        super.update(frame)
+        
+        createSlatRects()
+        
+        slatDistance = getSlatDistance()
+        slatsDistances = slatDistance * CGFloat(SlatDimens.count - 1)
+        
+        createMarkersRects()
+    }
+    
+    func setMarkers(_ markersCount: Int) {
+        markers = .init(repeating: .zero, count: markersCount)
+    }
+    
+    private func getSlatDistance() -> CGFloat { SlatDimens.distance * scale }
+    
+    private func createSlatRects() {
+        let slatHorizontalMargin = SlatDimens.horizontalMargin * scale
         let slatSize = CGSize(
             width: canvasRect.width - slatHorizontalMargin * 2,
-            height: DefaultWindowDimens.slatHeight * scale
+            height: SlatDimens.height * scale
         )
         
-        let top = windowRect.maxY - CGFloat(DefaultWindowDimens.slatsCount) * slatSize.height
+        let top = windowRect.maxY - CGFloat(SlatDimens.count) * slatSize.height
         
-        for i in 0 ..< DefaultWindowDimens.slatsCount {
+        for i in 0 ..< SlatDimens.count {
             slats[i] = CGRect(
                 origin: CGPoint(x: canvasRect.minX + slatHorizontalMargin, y: top + CGFloat(i) * slatSize.height),
                 size: slatSize
@@ -138,9 +167,9 @@ private class RuntimeDimens: RuntimeWindowDimens {
         }
     }
     
-    override func createMarkersRects() {
-        let markerWidth = DefaultWindowDimens.markerWidth * scale
-        let markerHeight = DefaultWindowDimens.markerHeight * scale
+    private func createMarkersRects() {
+        let markerWidth = RollerShutterRuntimeDimens.markerWidth * scale
+        let markerHeight = RollerShutterRuntimeDimens.markerHeight * scale
         let halfHeight = markerHeight / 2
         
         markerPath.removeAllPoints()

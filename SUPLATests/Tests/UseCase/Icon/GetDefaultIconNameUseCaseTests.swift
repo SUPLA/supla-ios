@@ -1617,4 +1617,80 @@ final class GetDefaultIconNameUseCaseTests: XCTestCase {
         // then
         XCTAssertEqual(iconName, "fnc_terrace_awning-closed")
     }
+    
+    func test_projectorScreenOpened() {
+        // given
+        let function = SUPLA_CHANNELFNC_PROJECTOR_SCREEN
+        
+        // when
+        let iconName = useCase.invoke(
+            iconData: IconData(
+                function: function,
+                altIcon: 0,
+                state: .opened,
+                type: .single,
+                subfunction: .notSet
+            )
+        )
+        
+        // then
+        XCTAssertEqual(iconName, "fnc_projector_screen-open")
+    }
+    
+    func test_projectorScreenClose() {
+        // given
+        let function = SUPLA_CHANNELFNC_PROJECTOR_SCREEN
+        
+        // when
+        let iconName = useCase.invoke(
+            iconData: IconData(
+                function: function,
+                altIcon: 0,
+                state: .closed,
+                type: .single,
+                subfunction: .notSet
+            )
+        )
+        
+        // then
+        XCTAssertEqual(iconName, "fnc_projector_screen-closed")
+    }
+    
+    func test_curtainOpened() {
+        // given
+        let function = SUPLA_CHANNELFNC_CURTAIN
+        
+        // when
+        let iconName = useCase.invoke(
+            iconData: IconData(
+                function: function,
+                altIcon: 0,
+                state: .opened,
+                type: .single,
+                subfunction: .notSet
+            )
+        )
+        
+        // then
+        XCTAssertEqual(iconName, "fnc_curtain-open")
+    }
+    
+    func test_curtainClose() {
+        // given
+        let function = SUPLA_CHANNELFNC_CURTAIN
+        
+        // when
+        let iconName = useCase.invoke(
+            iconData: IconData(
+                function: function,
+                altIcon: 0,
+                state: .closed,
+                type: .single,
+                subfunction: .notSet
+            )
+        )
+        
+        // then
+        XCTAssertEqual(iconName, "fnc_curtain-closed")
+    }
 }

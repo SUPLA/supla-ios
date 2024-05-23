@@ -2,6 +2,6 @@
 <rect x="96" y="184" width="320" height="316" rx="4" stroke="#1F211F" stroke-width="20"/>
 <rect x="136" y="184" width="106" height="280.78" stroke="#1F211F" stroke-width="20" stroke-linejoin="round"/>
 <rect x="274" y="184" width="106" height="280.78" stroke="#1F211F" stroke-width="20" stroke-linejoin="round"/>
-<path d="M106.61 11.0039H405.39L501 144.004H11L106.61 11.0039Z" stroke="#1F211F" stroke-width="20" stroke-linejoin="round"/>
-<rect x="11" y="144" width="490" height="40" stroke="#1F211F" stroke-width="20" stroke-linejoin="round"/>
+<path d="M106.61 11.0039H405.39L501 144.004H11L106.61 11.0039Z" stroke="#00D151" stroke-width="20" stroke-linejoin="round"/>
+<rect x="11" y="144" width="490" height="40" stroke="#00D151" stroke-width="20" stroke-linejoin="round"/>
 </svg>

@@ -306,7 +306,7 @@
 		A5074BC02BCE61C20081B6B1 /* RoofWindowVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5074BBF2BCE61C20081B6B1 /* RoofWindowVM.swift */; };
 		A5074BC22BCE61E60081B6B1 /* RoofWindowVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5074BC12BCE61E60081B6B1 /* RoofWindowVC.swift */; };
 		A5074BC52BCE66070081B6B1 /* DefaultWindowDimens.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5074BC42BCE66070081B6B1 /* DefaultWindowDimens.swift */; };
-		A5074BC72BCE66930081B6B1 /* RuntimeWindowDimens.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5074BC62BCE66930081B6B1 /* RuntimeWindowDimens.swift */; };
+		A5074BC72BCE66930081B6B1 /* BaseWallWindowDimens.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5074BC62BCE66930081B6B1 /* BaseWallWindowDimens.swift */; };
 		A5074BC92BCE682C0081B6B1 /* BaseWallWindowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5074BC82BCE682C0081B6B1 /* BaseWallWindowView.swift */; };
 		A5074BCC2BCE6F690081B6B1 /* FacadeBlindsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5074BCB2BCE6F690081B6B1 /* FacadeBlindsView.swift */; };
 		A5074BCF2BCE72250081B6B1 /* FacadeBlindsVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5074BCE2BCE72250081B6B1 /* FacadeBlindsVM.swift */; };
@@ -367,9 +367,14 @@
 		A50CD3D62A4D99E60012DD9B /* UpdateTokenTaskTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A50CD3D52A4D99E60012DD9B /* UpdateTokenTaskTests.swift */; };
 		A50CD3D82A4D9A040012DD9B /* SingleCallMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = A50CD3D72A4D9A040012DD9B /* SingleCallMock.swift */; };
 		A50CD3DA2A4D9AFC0012DD9B /* DateProviderMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = A50CD3D92A4D9AFC0012DD9B /* DateProviderMock.swift */; };
-		A5112F212BFD30CB0081EBC3 /* GetGroupActivePercentageUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5112F202BFD30CB0081EBC3 /* GetGroupActivePercentageUseCaseTests.swift */; };
+		A50E5D702BFF4CAF00303BAE /* ChannelBaseActionUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A50E5D6F2BFF4CAF00303BAE /* ChannelBaseActionUseCase.swift */; };
+		A50E5D732BFF543500303BAE /* CurtainVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = A50E5D722BFF543500303BAE /* CurtainVM.swift */; };
+		A50E5D752BFF543D00303BAE /* CurtainVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A50E5D742BFF543D00303BAE /* CurtainVC.swift */; };
+		A50E5D772BFF548200303BAE /* CurtainWindowState.swift in Sources */ = {isa = PBXBuildFile; fileRef = A50E5D762BFF548200303BAE /* CurtainWindowState.swift */; };
+		A50E5D7A2BFF552C00303BAE /* CurtainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A50E5D792BFF552C00303BAE /* CurtainView.swift */; };
 		A50E5D7C2BFFD67D00303BAE /* ChannelBaseActionUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A50E5D7B2BFFD67D00303BAE /* ChannelBaseActionUseCase.swift */; };
 		A50E5D7E2BFFDA7800303BAE /* ChannelBaseActionUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A50E5D7D2BFFDA7800303BAE /* ChannelBaseActionUseCaseTests.swift */; };
+		A5112F212BFD30CB0081EBC3 /* GetGroupActivePercentageUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5112F202BFD30CB0081EBC3 /* GetGroupActivePercentageUseCaseTests.swift */; };
 		A51BE8E72AA705AD00718F2F /* StandardDetailVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51BE8E52AA705AD00718F2F /* StandardDetailVM.swift */; };
 		A51BE8E82AA705AD00718F2F /* StandardDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51BE8E62AA705AD00718F2F /* StandardDetailVC.swift */; };
 		A51BE8EB2AA7136000718F2F /* ThermostatDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51BE8EA2AA7136000718F2F /* ThermostatDetailVC.swift */; };
@@ -776,6 +781,16 @@
 		A5ABE5CB2ABCD80300FFA50B /* DelayedThermostatActionSubjectMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5ABE5CA2ABCD80300FFA50B /* DelayedThermostatActionSubjectMock.swift */; };
 		A5ABE5CD2ABCD89400FFA50B /* LoadingTimoutManagerMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5ABE5CC2ABCD89400FFA50B /* LoadingTimoutManagerMock.swift */; };
 		A5ABE5CF2ABD696900FFA50B /* DataMocks.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5ABE5CE2ABD696900FFA50B /* DataMocks.swift */; };
+		A5AD70182C00766400A36318 /* CGRect+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5AD70172C00766400A36318 /* CGRect+Ext.swift */; };
+		A5AD701B2C00B1D700A36318 /* ControlButtonType.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5AD701A2C00B1D700A36318 /* ControlButtonType.swift */; };
+		A5AD701D2C00B2CC00A36318 /* LeftRightControlButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5AD701C2C00B2CC00A36318 /* LeftRightControlButton.swift */; };
+		A5AD701F2C00B45E00A36318 /* WindowControlButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5AD701E2C00B45E00A36318 /* WindowControlButton.swift */; };
+		A5AD70212C00B6AF00A36318 /* WindowVerticalControls.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5AD70202C00B6AF00A36318 /* WindowVerticalControls.swift */; };
+		A5AD70232C00C71200A36318 /* WindowHorizontalControls.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5AD70222C00C71200A36318 /* WindowHorizontalControls.swift */; };
+		A5AD70252C012F5300A36318 /* WindowControls.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5AD70242C012F5300A36318 /* WindowControls.swift */; };
+		A5AD70272C04656700A36318 /* LeftMiddleRightControlButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5AD70262C04656700A36318 /* LeftMiddleRightControlButton.swift */; };
+		A5AD70292C04691100A36318 /* MoveTimeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5AD70282C04691100A36318 /* MoveTimeView.swift */; };
+		A5AD702C2C04773F00A36318 /* CurtainVMTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5AD702B2C04773F00A36318 /* CurtainVMTests.swift */; };
 		A5AE7A7F2A3998260097FA8B /* NewGestureInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5AE7A7E2A3998260097FA8B /* NewGestureInfoView.swift */; };
 		A5AE7A812A39AF410097FA8B /* Default.strings in Resources */ = {isa = PBXBuildFile; fileRef = A5AE7A802A39AF410097FA8B /* Default.strings */; };
 		A5AE7A852A3AC7020097FA8B /* BaseSettingsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5AE7A842A3AC7020097FA8B /* BaseSettingsCell.swift */; };
@@ -1615,7 +1630,7 @@
 		A5074BBF2BCE61C20081B6B1 /* RoofWindowVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoofWindowVM.swift; sourceTree = "<group>"; };
 		A5074BC12BCE61E60081B6B1 /* RoofWindowVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoofWindowVC.swift; sourceTree = "<group>"; };
 		A5074BC42BCE66070081B6B1 /* DefaultWindowDimens.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultWindowDimens.swift; sourceTree = "<group>"; };
-		A5074BC62BCE66930081B6B1 /* RuntimeWindowDimens.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RuntimeWindowDimens.swift; sourceTree = "<group>"; };
+		A5074BC62BCE66930081B6B1 /* BaseWallWindowDimens.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseWallWindowDimens.swift; sourceTree = "<group>"; };
 		A5074BC82BCE682C0081B6B1 /* BaseWallWindowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseWallWindowView.swift; sourceTree = "<group>"; };
 		A5074BCB2BCE6F690081B6B1 /* FacadeBlindsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacadeBlindsView.swift; sourceTree = "<group>"; };
 		A5074BCE2BCE72250081B6B1 /* FacadeBlindsVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacadeBlindsVM.swift; sourceTree = "<group>"; };
@@ -1676,9 +1691,14 @@
 		A50CD3D52A4D99E60012DD9B /* UpdateTokenTaskTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateTokenTaskTests.swift; sourceTree = "<group>"; };
 		A50CD3D72A4D9A040012DD9B /* SingleCallMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleCallMock.swift; sourceTree = "<group>"; };
 		A50CD3D92A4D9AFC0012DD9B /* DateProviderMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateProviderMock.swift; sourceTree = "<group>"; };
-		A5112F202BFD30CB0081EBC3 /* GetGroupActivePercentageUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetGroupActivePercentageUseCaseTests.swift; sourceTree = "<group>"; };
+		A50E5D6F2BFF4CAF00303BAE /* ChannelBaseActionUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelBaseActionUseCase.swift; sourceTree = "<group>"; };
+		A50E5D722BFF543500303BAE /* CurtainVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurtainVM.swift; sourceTree = "<group>"; };
+		A50E5D742BFF543D00303BAE /* CurtainVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurtainVC.swift; sourceTree = "<group>"; };
+		A50E5D762BFF548200303BAE /* CurtainWindowState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurtainWindowState.swift; sourceTree = "<group>"; };
+		A50E5D792BFF552C00303BAE /* CurtainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurtainView.swift; sourceTree = "<group>"; };
 		A50E5D7B2BFFD67D00303BAE /* ChannelBaseActionUseCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChannelBaseActionUseCase.swift; sourceTree = "<group>"; };
 		A50E5D7D2BFFDA7800303BAE /* ChannelBaseActionUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelBaseActionUseCaseTests.swift; sourceTree = "<group>"; };
+		A5112F202BFD30CB0081EBC3 /* GetGroupActivePercentageUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetGroupActivePercentageUseCaseTests.swift; sourceTree = "<group>"; };
 		A51BE8E52AA705AD00718F2F /* StandardDetailVM.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StandardDetailVM.swift; sourceTree = "<group>"; };
 		A51BE8E62AA705AD00718F2F /* StandardDetailVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StandardDetailVC.swift; sourceTree = "<group>"; };
 		A51BE8EA2AA7136000718F2F /* ThermostatDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThermostatDetailVC.swift; sourceTree = "<group>"; };
@@ -2092,6 +2112,16 @@
 		A5ABE5CA2ABCD80300FFA50B /* DelayedThermostatActionSubjectMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DelayedThermostatActionSubjectMock.swift; sourceTree = "<group>"; };
 		A5ABE5CC2ABCD89400FFA50B /* LoadingTimoutManagerMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingTimoutManagerMock.swift; sourceTree = "<group>"; };
 		A5ABE5CE2ABD696900FFA50B /* DataMocks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataMocks.swift; sourceTree = "<group>"; };
+		A5AD70172C00766400A36318 /* CGRect+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGRect+Ext.swift"; sourceTree = "<group>"; };
+		A5AD701A2C00B1D700A36318 /* ControlButtonType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControlButtonType.swift; sourceTree = "<group>"; };
+		A5AD701C2C00B2CC00A36318 /* LeftRightControlButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeftRightControlButton.swift; sourceTree = "<group>"; };
+		A5AD701E2C00B45E00A36318 /* WindowControlButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WindowControlButton.swift; sourceTree = "<group>"; };
+		A5AD70202C00B6AF00A36318 /* WindowVerticalControls.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WindowVerticalControls.swift; sourceTree = "<group>"; };
+		A5AD70222C00C71200A36318 /* WindowHorizontalControls.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WindowHorizontalControls.swift; sourceTree = "<group>"; };
+		A5AD70242C012F5300A36318 /* WindowControls.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WindowControls.swift; sourceTree = "<group>"; };
+		A5AD70262C04656700A36318 /* LeftMiddleRightControlButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeftMiddleRightControlButton.swift; sourceTree = "<group>"; };
+		A5AD70282C04691100A36318 /* MoveTimeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoveTimeView.swift; sourceTree = "<group>"; };
+		A5AD702B2C04773F00A36318 /* CurtainVMTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurtainVMTests.swift; sourceTree = "<group>"; };
 		A5AE7A7E2A3998260097FA8B /* NewGestureInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewGestureInfoView.swift; sourceTree = "<group>"; };
 		A5AE7A802A39AF410097FA8B /* Default.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = Default.strings; sourceTree = "<group>"; };
 		A5AE7A842A3AC7020097FA8B /* BaseSettingsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseSettingsCell.swift; sourceTree = "<group>"; };
@@ -3058,13 +3088,14 @@
 		A5074BBB2BCE5CBF0081B6B1 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				A5AD70192C00B1C300A36318 /* Controls */,
+				A50E5D782BFF551B00303BAE /* Curtain */,
 				A50B5D3B2BFB6E9100918D18 /* ProjectorScreen */,
 				A50B5D2E2BF4A02B00918D18 /* TerraceAwning */,
 				A5074BCA2BCE6F2C0081B6B1 /* FacadeBlinds */,
 				A5074BC32BCE64A30081B6B1 /* WindowView */,
 				A5B3A4B72BB57B4D0001D006 /* RoofWindow */,
 				A5B3A4B62BB57B410001D006 /* RollerShutter */,
-				A55A8D832BAAD06C00C540D4 /* UpDownControllButton.swift */,
 				A5B3A4BA2BB5B8F20001D006 /* WindowType.swift */,
 				A50B5D012BEA41D700918D18 /* WindowGroupedValue.swift */,
 			);
@@ -3086,8 +3117,9 @@
 				A55A8D812BA9B6B400C540D4 /* WindowColors.swift */,
 				A5B3A4B22BB552590001D006 /* BaseWindowView.swift */,
 				A5074BC42BCE66070081B6B1 /* DefaultWindowDimens.swift */,
-				A5074BC62BCE66930081B6B1 /* RuntimeWindowDimens.swift */,
+				A5074BC62BCE66930081B6B1 /* BaseWallWindowDimens.swift */,
 				A5074BC82BCE682C0081B6B1 /* BaseWallWindowView.swift */,
+				A5AD70282C04691100A36318 /* MoveTimeView.swift */,
 			);
 			path = WindowView;
 			sourceTree = "<group>";
@@ -3171,6 +3203,7 @@
 		A50B5D102BECC58800918D18 /* WindowDetail */ = {
 			isa = PBXGroup;
 			children = (
+				A5AD702A2C04771500A36318 /* Curtain */,
 				A50B5D312BF54FE600918D18 /* TerraceAwning */,
 				A50B5D1E2BECE8B100918D18 /* FacadeBlinds */,
 				A50B5D1B2BECDAA100918D18 /* RollerShutter */,
@@ -3293,6 +3326,23 @@
 				A50CD3D52A4D99E60012DD9B /* UpdateTokenTaskTests.swift */,
 			);
 			path = UpdateToken;
+			sourceTree = "<group>";
+		};
+		A50E5D712BFF540700303BAE /* Curtain */ = {
+			isa = PBXGroup;
+			children = (
+				A50E5D722BFF543500303BAE /* CurtainVM.swift */,
+				A50E5D742BFF543D00303BAE /* CurtainVC.swift */,
+			);
+			path = Curtain;
+			sourceTree = "<group>";
+		};
+		A50E5D782BFF551B00303BAE /* Curtain */ = {
+			isa = PBXGroup;
+			children = (
+				A50E5D792BFF552C00303BAE /* CurtainView.swift */,
+			);
+			path = Curtain;
 			sourceTree = "<group>";
 		};
 		A51BE8E42AA7054F00718F2F /* Details */ = {
@@ -3556,6 +3606,7 @@
 				A530EE3A2A5801AB00F8DAEE /* GetChannelBaseIconUseCase.swift */,
 				A5A14A352B611863004B1598 /* GetChannelBaseDefaultCaptionUseCase.swift */,
 				A5A14A372B61220C004B1598 /* GetChannelBaseCaptionUseCase.swift */,
+				A50E5D6F2BFF4CAF00303BAE /* ChannelBaseActionUseCase.swift */,
 			);
 			path = ChannelBase;
 			sourceTree = "<group>";
@@ -3892,6 +3943,7 @@
 		A55A8D6C2BA831AD00C540D4 /* WindowDetail */ = {
 			isa = PBXGroup;
 			children = (
+				A50E5D712BFF540700303BAE /* Curtain */,
 				A50B5D342BFB6BDB00918D18 /* ProjectorScreen */,
 				A50B5D272BF49F0D00918D18 /* TerraceAwning */,
 				A5074BB62BCE58B30081B6B1 /* Base */,
@@ -3963,6 +4015,7 @@
 				A50B5D092BEA4EC700918D18 /* FacadeBlindMarker.swift */,
 				A50B5D2C2BF49F7700918D18 /* TerraceAwningWindowState.swift */,
 				A50B5D372BFB6D1400918D18 /* ProjectorScreenState.swift */,
+				A50E5D762BFF548200303BAE /* CurtainWindowState.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -4670,6 +4723,29 @@
 			path = ThermostatGeneral;
 			sourceTree = "<group>";
 		};
+		A5AD70192C00B1C300A36318 /* Controls */ = {
+			isa = PBXGroup;
+			children = (
+				A55A8D832BAAD06C00C540D4 /* UpDownControllButton.swift */,
+				A5AD701A2C00B1D700A36318 /* ControlButtonType.swift */,
+				A5AD701C2C00B2CC00A36318 /* LeftRightControlButton.swift */,
+				A5AD701E2C00B45E00A36318 /* WindowControlButton.swift */,
+				A5AD70202C00B6AF00A36318 /* WindowVerticalControls.swift */,
+				A5AD70222C00C71200A36318 /* WindowHorizontalControls.swift */,
+				A5AD70242C012F5300A36318 /* WindowControls.swift */,
+				A5AD70262C04656700A36318 /* LeftMiddleRightControlButton.swift */,
+			);
+			path = Controls;
+			sourceTree = "<group>";
+		};
+		A5AD702A2C04771500A36318 /* Curtain */ = {
+			isa = PBXGroup;
+			children = (
+				A5AD702B2C04773F00A36318 /* CurtainVMTests.swift */,
+			);
+			path = Curtain;
+			sourceTree = "<group>";
+		};
 		A5AE7A822A39E6C20097FA8B /* AppSettings */ = {
 			isa = PBXGroup;
 			children = (
@@ -5074,6 +5150,7 @@
 				A55A8D7C2BA9A15200C540D4 /* UIImageView+Ext.swift */,
 				A55A8D972BAB28CC00C540D4 /* ScopeFunctions.swift */,
 				A50B5D232BEE4CE600918D18 /* UIViewController+Toast.swift */,
+				A5AD70172C00766400A36318 /* CGRect+Ext.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -5697,6 +5774,7 @@
 				AE1874C2290C581D00437146 /* SceneCaptionEditor.swift in Sources */,
 				A50B5D562BFCC28200918D18 /* ShadingSystemGroupActivePercentageProvider.swift in Sources */,
 				A530EE162A56F82A00F8DAEE /* GateIconNameProducer.swift in Sources */,
+				A50E5D772BFF548200303BAE /* CurtainWindowState.swift in Sources */,
 				A5074BF12BDA73250081B6B1 /* GroupTotalValue.swift in Sources */,
 				A51BE8FF2AA73A5900718F2F /* MeasurementValue.swift in Sources */,
 				A56234012ABACEAF001CB948 /* SAChannel+Ext.swift in Sources */,
@@ -5708,6 +5786,7 @@
 				010714782656C605009C119F /* SAZWaveWakeupSettingsReport.m in Sources */,
 				40C7BA5420C008DB00ACEE42 /* SAChannelGroupRelation+CoreDataClass.m in Sources */,
 				A5F29BB62A24CAAB00ED700A /* UpdateChannelValueUseCase.swift in Sources */,
+				A50E5D752BFF543D00303BAE /* CurtainVC.swift in Sources */,
 				A55A8D792BA850B800C540D4 /* SAChannelGroup+Ext.swift in Sources */,
 				A56233D82AB054EA001CB948 /* SeparatorView.swift in Sources */,
 				A5477DB42AA1EF0600220B4A /* MarkChannelRelationsAsRemovableUseCase.swift in Sources */,
@@ -5718,6 +5797,7 @@
 				A530EE472A5BEBFA00F8DAEE /* SwitchTimerConfigurationView.swift in Sources */,
 				A57668FB2AEB999F0025509D /* SuplaChartMarkerView.swift in Sources */,
 				A5074BB12BC957370081B6B1 /* DeviceCatalogVC.swift in Sources */,
+				A5AD701B2C00B1D700A36318 /* ControlButtonType.swift in Sources */,
 				A530EE2A2A57E0BA00F8DAEE /* ElelectricityMeterIconNameProducer.swift in Sources */,
 				A530EE3B2A5801AB00F8DAEE /* GetChannelBaseIconUseCase.swift in Sources */,
 				A5F29B672A1E268E00ED700A /* GroupListVC.swift in Sources */,
@@ -5759,6 +5839,7 @@
 				A55A8D752BA84D5400C540D4 /* RollerShutterVM.swift in Sources */,
 				A530EE1A2A56FBBC00F8DAEE /* PowerSwitchIconNameProducer.swift in Sources */,
 				A5F29B962A20B97B00ED700A /* CreateProfileChannelsListUseCase.swift in Sources */,
+				A5AD70232C00C71200A36318 /* WindowHorizontalControls.swift in Sources */,
 				A5F14B7229DED06400682FA6 /* AccountRemovalVM.swift in Sources */,
 				A5A14A362B611863004B1598 /* GetChannelBaseDefaultCaptionUseCase.swift in Sources */,
 				A5756F8229DC102800C32A1B /* AccountRemovalVC.swift in Sources */,
@@ -5998,7 +6079,7 @@
 				A52BFEE02B109F5A00A2F64C /* ThermostatTimerConfigurationView.swift in Sources */,
 				A55A8DB92BADB29A00C540D4 /* GetGroupOnlineSummaryUseCase.swift in Sources */,
 				A503ABB82B6BB082008CDA1F /* ChannelValueFormatter.swift in Sources */,
-				A5074BC72BCE66930081B6B1 /* RuntimeWindowDimens.swift in Sources */,
+				A5074BC72BCE66930081B6B1 /* BaseWallWindowDimens.swift in Sources */,
 				A50B5CFD2BEA147100918D18 /* SuplaHeatpolThermostatFlag.swift in Sources */,
 				A530EE042A555AFA00F8DAEE /* ReadChannelByRemoteIdUseCase.swift in Sources */,
 				01E3966E25A78B8B00A0DB18 /* SADimmerCalibrationTool.m in Sources */,
@@ -6043,6 +6124,7 @@
 				AE535356276927690077BFFB /* LocationOrderingVC.swift in Sources */,
 				A5F29B632A1E18FA00ED700A /* ChannelListVM.swift in Sources */,
 				A5B3CBFB2B62693F00F95AC3 /* DepthValueStringProvider.swift in Sources */,
+				A5AD701D2C00B2CC00A36318 /* LeftRightControlButton.swift in Sources */,
 				AEF79D8D2712FF8D00D7554B /* AppSettingsVC.swift in Sources */,
 				A55A8D9F2BAC263000C540D4 /* ExecuteRollerShutterActionUseCase.swift in Sources */,
 				A5F14B7429DED41000682FA6 /* BaseViewModel.swift in Sources */,
@@ -6064,6 +6146,7 @@
 				408034C51BC83D1A007666E7 /* MGSwipeTableCell.m in Sources */,
 				A55A8DB32BAC65E500C540D4 /* SADialogNegativeButton.swift in Sources */,
 				AEF79D8B2712FE1800D7554B /* AppSettingsVM.swift in Sources */,
+				A5AD70182C00766400A36318 /* CGRect+Ext.swift in Sources */,
 				A5F29BCC2A2622BD00ED700A /* DeleteAllProfileDataUseCase.swift in Sources */,
 				010C8780249A4D55002FE526 /* SAInfoVC.m in Sources */,
 				01F8857522E6167100D18373 /* SADownloadUserIcons.m in Sources */,
@@ -6077,6 +6160,7 @@
 				A51BE90B2AAAF29D00718F2F /* SetpointType.swift in Sources */,
 				A56233E12AB0F5B1001CB948 /* EditQuartersDialogVM.swift in Sources */,
 				A5074BB82BCE58CA0081B6B1 /* BaseWindowVM.swift in Sources */,
+				A5AD701F2C00B45E00A36318 /* WindowControlButton.swift in Sources */,
 				A50E5D7C2BFFD67D00303BAE /* ChannelBaseActionUseCase.swift in Sources */,
 				A5D837D22AF1061C002A420D /* ThermometerHistoryDetailVM.swift in Sources */,
 				408034C41BC83D1A007666E7 /* MGSwipeButton.m in Sources */,
@@ -6092,6 +6176,7 @@
 				A5F29B6F2A1E305500ED700A /* Repository.swift in Sources */,
 				AE929A8B2761487700B75715 /* NavigationCoordinator.swift in Sources */,
 				01BDAC7522C518DE00915646 /* SARestApiClientTask.m in Sources */,
+				A5AD70272C04656700A36318 /* LeftMiddleRightControlButton.swift in Sources */,
 				401CA1BF1BA067DB00117AF4 /* main.m in Sources */,
 				A5F29BFE2A2DC19500ED700A /* CoreDataMigrationVersion.swift in Sources */,
 				018CFD2623281AF900888CB7 /* SAThermostatHPExtendedValue.m in Sources */,
@@ -6167,6 +6252,7 @@
 				A52BFEB12B06163B00A2F64C /* SADateTimePicker.swift in Sources */,
 				A57668F92AEAB12D0025509D /* HideableValue.swift in Sources */,
 				A58317002B645814006113F8 /* ThermometerAndHumidityValueStringProvider.swift in Sources */,
+				A50E5D702BFF4CAF00303BAE /* ChannelBaseActionUseCase.swift in Sources */,
 				A5477DCB2AA5EC4000220B4A /* CreateChannelWithChildrenUseCase.swift in Sources */,
 				A5E4904D2A3C6250006801FE /* TemperatureUnit.swift in Sources */,
 				A5F29BB02A24C12500ED700A /* UpdateLocationUseCase.swift in Sources */,
@@ -6176,6 +6262,7 @@
 				A5F29BC62A24E5DE00ED700A /* ChangeChannelGroupRelationsVisibilityUseCase.swift in Sources */,
 				A530EE532A5D437C00F8DAEE /* TimerProgressView.swift in Sources */,
 				A55A8D962BAB14A700C540D4 /* SuplaRollerShutterFlag.swift in Sources */,
+				A50E5D7A2BFF552C00303BAE /* CurtainView.swift in Sources */,
 				A530EE082A557EE400F8DAEE /* CircleControlButtonView.swift in Sources */,
 				A57C88302ACAA445000B0F10 /* ValuesFormatter.swift in Sources */,
 				A52BFEB92B065BF800A2F64C /* SuplaConfigResult.swift in Sources */,
@@ -6221,6 +6308,7 @@
 				A5F29BDA2A268DDE00ED700A /* DisposeBagContainer.swift in Sources */,
 				A5B3CBFE2B6274B800F95AC3 /* BaseDistanceValueStringProvider.swift in Sources */,
 				A5F29BD62A2623E500ED700A /* UserIconRepository.swift in Sources */,
+				A5AD70252C012F5300A36318 /* WindowControls.swift in Sources */,
 				A56D5ACD2A4C304C004F45DA /* SingleCall.swift in Sources */,
 				A5A14A442B6143AC004B1598 /* SuplaChannelGeneralPurposeMeterConfig.swift in Sources */,
 				AED6395E270CA3A800E5105B /* RoundedButton.swift in Sources */,
@@ -6286,6 +6374,7 @@
 				01E517C622C6AD7D000FE77A /* SADownloadMeasurements.m in Sources */,
 				A58316FE2B6452AB006113F8 /* ThermometerAndHumidityValueProvider.swift in Sources */,
 				A5B3CBF62B625E2400F95AC3 /* HumidityValueProvider.swift in Sources */,
+				A50E5D732BFF543500303BAE /* CurtainVM.swift in Sources */,
 				A56F15F12A2E698400C2E21B /* DeleteEntitiesMigrationPolicy.swift in Sources */,
 				A56233E32AB1903C001CB948 /* Float+Ext.swift in Sources */,
 				A5477DB62AA1F17600220B4A /* DeleteRemovableChannelRelationsUseCase.swift in Sources */,
@@ -6311,6 +6400,7 @@
 				A5074BC92BCE682C0081B6B1 /* BaseWallWindowView.swift in Sources */,
 				01CEABFA25B9920A009C3BFD /* SADigiglassDetailView.m in Sources */,
 				013F7EC123EB33E30061A497 /* SAChannelStateExtendedValue.m in Sources */,
+				A5AD70292C04691100A36318 /* MoveTimeView.swift in Sources */,
 				A52BFEB52B0659FD00A2F64C /* BaseConfigEventsManager.swift in Sources */,
 				A50B5D4A2BFCBCDF00918D18 /* DimmerGroupActivePercentageProvider.swift in Sources */,
 				A573B39229DEB25900EBAFC4 /* ViewState.swift in Sources */,
@@ -6329,6 +6419,7 @@
 				A55A8D912BAB13B300C540D4 /* RollerShutterValue.swift in Sources */,
 				A530EDFD2A54153000F8DAEE /* SwitchDetailNavigationCoordinator.swift in Sources */,
 				AEBCD8FC26E4D247001904F3 /* TemperaturePresenter.swift in Sources */,
+				A5AD70212C00B6AF00A36318 /* WindowVerticalControls.swift in Sources */,
 				A51BE91B2AAB0DF900718F2F /* SuplaConfigIntegrator.m in Sources */,
 				A503ABBC2B6BB7FF008CDA1F /* ThermometerValueFormatter.swift in Sources */,
 				407D4AFF1BC6E491009A5505 /* StatusVC.m in Sources */,
@@ -6404,6 +6495,7 @@
 				A54A065B2AF4E3C300C03DBC /* SAOAuthToken+Mock.swift in Sources */,
 				A59AB8B52A30795B00D91F1F /* SceneUseCasesMocks.swift in Sources */,
 				A5DA31072AC16B21008179DB /* InsertChannelRelationForProfileUseCaseTests.swift in Sources */,
+				A5AD702C2C04773F00A36318 /* CurtainVMTests.swift in Sources */,
 				A54A068C2AF97E0000C03DBC /* LoadChannelWithChildrenMeasurementsDateRangeUseCaseTests.swift in Sources */,
 				A5074BA42BC90C800081B6B1 /* LoadActiveProfileUrlUseCaseTests.swift in Sources */,
 				A57638C629E5D4C9003E15A3 /* XCTestCaseExtensions.swift in Sources */,
