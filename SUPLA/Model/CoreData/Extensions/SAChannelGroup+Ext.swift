@@ -24,7 +24,7 @@ extension SAChannelGroup {
     @objc var positions: [Int] {
         guard let totalValue = total_value as? GroupTotalValue else { return [] }
         
-        if (!isRollerShutter()) {
+        if (!isShadingSystem()) {
             return []
         }
         
@@ -243,13 +243,13 @@ extension SAChannelGroup {
             return groupTotalValue.values
                 .map { $0 as! IntegerGroupValue }
                 .reduce(0) { result, value in
-                    value.value >= 0 ? result + 1 : result
+                    value.value > 0 ? result + 1 : result
                 } * 100 / groupTotalValue.values.count
         case SUPLA_CHANNELFNC_RGBLIGHTING:
             return groupTotalValue.values
                 .map { $0 as! RgbLightingGroupValue }
                 .reduce(0) { result, value in
-                    value.brightness >= 0 ? result + 1 : result
+                    value.brightness > 0 ? result + 1 : result
                 } * 100 / groupTotalValue.values.count
         case SUPLA_CHANNELFNC_DIMMERANDRGBLIGHTING:
             return groupTotalValue.values

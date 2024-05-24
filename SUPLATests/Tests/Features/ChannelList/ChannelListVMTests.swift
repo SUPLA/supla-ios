@@ -16,34 +16,26 @@
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 
-import XCTest
-import RxTest
 import RxSwift
+import RxTest
+import XCTest
 
 @testable import SUPLA
 
 class ChannelListVMTests: ViewModelTest<ChannelListViewState, ChannelListViewEvent> {
+    private lazy var viewModel: ChannelListViewModel! = ChannelListViewModel()
     
-    private lazy var viewModel: ChannelListViewModel! = { ChannelListViewModel() }()
-    
-    private lazy var createProfileChannelsListUseCase: CreateProfileChannelsListUseCaseMock! = {
-        CreateProfileChannelsListUseCaseMock()
-    }()
-    private lazy var swapChannelPositionsUseCase: SwapChannelPositionsUseCaseMock! = {
-        SwapChannelPositionsUseCaseMock()
-    }()
-    private lazy var toggleLocationUseCase: ToggleLocationUseCaseMock! = {
-        ToggleLocationUseCaseMock()
-    }()
-    private lazy var provideDetailTypeUseCase: ProvideDetailTypeUseCaseMock! = {
-        ProvideDetailTypeUseCaseMock()
-    }()
-    private lazy var updateEventsManager: UpdateEventsManagerMock! = {
-        UpdateEventsManagerMock()
-    }()
-    private lazy var executeSimpleActionUseCase: ExecuteSimpleActionUseCaseMock! = {
-        ExecuteSimpleActionUseCaseMock()
-    }()
+    private lazy var createProfileChannelsListUseCase: CreateProfileChannelsListUseCaseMock! = CreateProfileChannelsListUseCaseMock()
+
+    private lazy var swapChannelPositionsUseCase: SwapChannelPositionsUseCaseMock! = SwapChannelPositionsUseCaseMock()
+
+    private lazy var toggleLocationUseCase: ToggleLocationUseCaseMock! = ToggleLocationUseCaseMock()
+
+    private lazy var provideDetailTypeUseCase: ProvideDetailTypeUseCaseMock! = ProvideDetailTypeUseCaseMock()
+
+    private lazy var updateEventsManager: UpdateEventsManagerMock! = UpdateEventsManagerMock()
+
+    private lazy var channelBaseActionUseCase: ChannelBaseActionUseCaseMock! = ChannelBaseActionUseCaseMock()
     
     override func setUp() {
         DiContainer.shared.register(type: CreateProfileChannelsListUseCase.self, createProfileChannelsListUseCase!)
@@ -51,7 +43,7 @@ class ChannelListVMTests: ViewModelTest<ChannelListViewState, ChannelListViewEve
         DiContainer.shared.register(type: ProvideDetailTypeUseCase.self, provideDetailTypeUseCase!)
         DiContainer.shared.register(type: ToggleLocationUseCase.self, toggleLocationUseCase!)
         DiContainer.shared.register(type: UpdateEventsManager.self, updateEventsManager!)
-        DiContainer.shared.register(type: ExecuteSimpleActionUseCase.self, executeSimpleActionUseCase!)
+        DiContainer.shared.register(type: ChannelBaseActionUseCase.self, channelBaseActionUseCase!)
     }
     
     override func tearDown() {
@@ -62,7 +54,7 @@ class ChannelListVMTests: ViewModelTest<ChannelListViewState, ChannelListViewEve
         provideDetailTypeUseCase = nil
         toggleLocationUseCase = nil
         updateEventsManager = nil
-        executeSimpleActionUseCase = nil
+        channelBaseActionUseCase = nil
         
         super.tearDown()
     }
@@ -361,27 +353,6 @@ class ChannelListVMTests: ViewModelTest<ChannelListViewState, ChannelListViewEve
         XCTAssertEqual(stateObserver.events.count, 0)
         XCTAssertEqual(eventObserver.events.count, 0)
         
-        XCTAssertTuples(executeSimpleActionUseCase.parameters, [
-            (Action.turnOff, SUPLA.SubjectType.channel, channel.remote_id)
-        ])
-    }
-    
-    func test_rightButtonClicked() {
-        // given
-        let buttonType: CellButtonType = .rightButton
-        let channel = SAChannel(testContext: nil)
-        channel.remote_id = 321
-        let data = ChannelWithChildren(channel: channel, children: [])
-        
-        // when
-        viewModel.onButtonClicked(buttonType: buttonType, data: data)
-        
-        // then
-        XCTAssertEqual(stateObserver.events.count, 0)
-        XCTAssertEqual(eventObserver.events.count, 0)
-        
-        XCTAssertTuples(executeSimpleActionUseCase.parameters, [
-            (Action.turnOn, SUPLA.SubjectType.channel, channel.remote_id)
-        ])
+        XCTAssertTuples(channelBaseActionUseCase.parameters, [(channel, buttonType)])
     }
 }

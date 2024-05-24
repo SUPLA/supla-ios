@@ -72,6 +72,7 @@ import Charts
             label.text = ""
             label.isHidden = true
         }
+        label.textColor = .black
         
         label.sizeToFit()
   
