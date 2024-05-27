@@ -44,6 +44,7 @@ final class ChannelBaseActionUseCaseTests: UseCaseTest<Void> {
         let channel = SAChannel(testContext: nil)
         channel.remote_id = remoteId
         channel.func = SUPLA_CHANNELFNC_CONTROLLINGTHEROOFWINDOW
+        channel.flags = Int64(SUPLA_CHANNEL_FLAG_RS_SBS_AND_STOP_ACTIONS)
         
         // when
         useCase.invoke(channel, .rightButton).subscribe(observer).disposed(by: disposeBag)
@@ -53,7 +54,38 @@ final class ChannelBaseActionUseCaseTests: UseCaseTest<Void> {
         XCTAssertTuples(executeSimpleActionUseCase.parameters, [(Action.upOrStop, SubjectType.channel, remoteId)])
     }
     
+    func test_shouldOpenRoofWindow_oldFirmware() {
+        // given
+        let remoteId: Int32 = 123
+        let channel = SAChannel(testContext: nil)
+        channel.remote_id = remoteId
+        channel.func = SUPLA_CHANNELFNC_CONTROLLINGTHEROOFWINDOW
+        
+        // when
+        useCase.invoke(channel, .rightButton).subscribe(observer).disposed(by: disposeBag)
+        
+        // then
+        assertEvents([.next(()), .completed])
+        XCTAssertTuples(executeSimpleActionUseCase.parameters, [(Action.reveal, SubjectType.channel, remoteId)])
+    }
+    
     func test_shouldCloseRollerShutter() {
+        // given
+        let remoteId: Int32 = 123
+        let channel = SAChannel(testContext: nil)
+        channel.remote_id = remoteId
+        channel.func = SUPLA_CHANNELFNC_CONTROLLINGTHEROLLERSHUTTER
+        channel.flags = Int64(SUPLA_CHANNEL_FLAG_RS_SBS_AND_STOP_ACTIONS)
+        
+        // when
+        useCase.invoke(channel, .leftButton).subscribe(observer).disposed(by: disposeBag)
+        
+        // then
+        assertEvents([.next(()), .completed])
+        XCTAssertTuples(executeSimpleActionUseCase.parameters, [(Action.downOrStop, SubjectType.channel, remoteId)])
+    }
+    
+    func test_shouldCloseRollerShutter_oldFirmware() {
         // given
         let remoteId: Int32 = 123
         let channel = SAChannel(testContext: nil)
@@ -65,7 +97,7 @@ final class ChannelBaseActionUseCaseTests: UseCaseTest<Void> {
         
         // then
         assertEvents([.next(()), .completed])
-        XCTAssertTuples(executeSimpleActionUseCase.parameters, [(Action.downOrStop, SubjectType.channel, remoteId)])
+        XCTAssertTuples(executeSimpleActionUseCase.parameters, [(Action.shut, SubjectType.channel, remoteId)])
     }
     
     func test_shouldOpenFacadeBlind() {
@@ -74,6 +106,7 @@ final class ChannelBaseActionUseCaseTests: UseCaseTest<Void> {
         let channel = SAChannel(testContext: nil)
         channel.remote_id = remoteId
         channel.func = SUPLA_CHANNELFNC_CONTROLLINGTHEFACADEBLIND
+        channel.flags = Int64(SUPLA_CHANNEL_FLAG_RS_SBS_AND_STOP_ACTIONS)
         
         // when
         useCase.invoke(channel, .rightButton).subscribe(observer).disposed(by: disposeBag)
@@ -149,6 +182,7 @@ final class ChannelBaseActionUseCaseTests: UseCaseTest<Void> {
         let channel = SAChannelGroup(testContext: nil)
         channel.remote_id = remoteId
         channel.func = SUPLA_CHANNELFNC_CONTROLLINGTHEROOFWINDOW
+        channel.flags = Int64(SUPLA_CHANNEL_FLAG_RS_SBS_AND_STOP_ACTIONS)
         
         // when
         useCase.invoke(channel, .leftButton).subscribe(observer).disposed(by: disposeBag)

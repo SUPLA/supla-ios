@@ -24,20 +24,27 @@ protocol ChannelBaseActionUseCase {
 
 final class ChannelBaseActionUseCaseImpl: ChannelBaseActionUseCase {
     @Singleton<ExecuteSimpleActionUseCase> private var executeSimpleActionUseCase
-    
+
     func invoke(_ channelBase: SAChannelBase, _ buttonType: CellButtonType) -> Observable<Void> {
         if let action = getAction(channelBase, buttonType) {
             return executeSimpleActionUseCase.invoke(action: action, type: getSubjectType(channelBase), remoteId: channelBase.remote_id)
         }
-        
+
         return Observable.just(())
     }
-    
+
     private func getAction(_ channelBase: SAChannelBase, _ buttonType: CellButtonType) -> Action? {
         if (channelBase.isShadingSystem()) {
-            return switch (buttonType) {
-            case .leftButton: Action.downOrStop
-            case .rightButton: Action.upOrStop
+            if (channelBase.flags & Int64(SUPLA_CHANNEL_FLAG_RS_SBS_AND_STOP_ACTIONS) > 0) {
+                return switch (buttonType) {
+                case .leftButton: Action.downOrStop
+                case .rightButton: Action.upOrStop
+                }
+            } else {
+                return switch (buttonType) {
+                case .leftButton: Action.shut
+                case .rightButton: Action.reveal
+                }
             }
         }
         if (channelBase.func == SUPLA_CHANNELFNC_PROJECTOR_SCREEN) {
@@ -54,7 +61,7 @@ final class ChannelBaseActionUseCaseImpl: ChannelBaseActionUseCase {
         }
         return nil
     }
-    
+
     private func getSubjectType(_ channelBase: SAChannelBase) -> SubjectType {
         if (channelBase is SAChannel) {
             return .channel
@@ -62,7 +69,7 @@ final class ChannelBaseActionUseCaseImpl: ChannelBaseActionUseCase {
         if (channelBase is SAChannelGroup) {
             return .group
         }
-        
+
         fatalError("Unknown instance of SAChannelBase!")
     }
 }
