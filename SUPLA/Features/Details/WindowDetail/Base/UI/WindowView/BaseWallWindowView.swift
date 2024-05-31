@@ -86,13 +86,13 @@ class BaseWallWindowView<T: WindowState, D: BaseWallWindowDimens>: BaseWindowVie
         drawShadowingElements(context, dimens)
         context.restoreGState()
         
-        // markers - for groups
-        drawMarkers(context, dimens)
-        
         // top line rect
         drawPath(context, fillColor: colors.window, withShadow: true) {
             UIBezierPath(rect: dimens.topLineRect).cgPath
         }
+        
+        // markers - for groups
+        drawMarkers(context, dimens)
     }
     
     func drawShadowingElements(_ context: CGContext, _ dimens: D) {

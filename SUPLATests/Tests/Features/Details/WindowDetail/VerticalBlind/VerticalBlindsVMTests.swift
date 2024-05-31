@@ -19,7 +19,7 @@
 @testable import SUPLA
 import XCTest
 
-final class FacadeBlindsVMTests: ViewModelTest<FacadeBlindsViewState, BaseWindowViewEvent> {
+final class VerticalBlindsVMTests: ViewModelTest<VerticalBlindsViewState, BaseWindowViewEvent> {
     private lazy var readChannelByRemoteIdUseCase: ReadChannelByRemoteIdUseCaseMock! = ReadChannelByRemoteIdUseCaseMock()
     
     private lazy var readGroupByRemoteIdUseCase: ReadGroupByRemoteIdUseCaseMock! = ReadGroupByRemoteIdUseCaseMock()
@@ -32,7 +32,7 @@ final class FacadeBlindsVMTests: ViewModelTest<FacadeBlindsViewState, BaseWindow
     
     private lazy var settings: GlobalSettingsMock! = GlobalSettingsMock()
     
-    private lazy var viewModel: FacadeBlindsVM! = FacadeBlindsVM()
+    private lazy var viewModel: VerticalBlindsVM! = VerticalBlindsVM()
     
     override func setUp() {
         DiContainer.register(ReadChannelByRemoteIdUseCase.self, readChannelByRemoteIdUseCase!)
@@ -73,11 +73,11 @@ final class FacadeBlindsVMTests: ViewModelTest<FacadeBlindsViewState, BaseWindow
         
         // then
         assertStates(expected: [
-            FacadeBlindsViewState(),
-            FacadeBlindsViewState(
+            VerticalBlindsViewState(),
+            VerticalBlindsViewState(
                 lastPosition: 50,
                 remoteId: 123,
-                facadeBlindWindowState: FacadeBlindWindowState(
+                verticalBlindWindowState: VerticalBlindWindowState(
                     position: .similar(50),
                     slatTilt: .similar(70)
                 ),
@@ -117,17 +117,17 @@ final class FacadeBlindsVMTests: ViewModelTest<FacadeBlindsViewState, BaseWindow
         
         // then
         assertStates(expected: [
-            FacadeBlindsViewState(),
-            FacadeBlindsViewState(
+            VerticalBlindsViewState(),
+            VerticalBlindsViewState(
                 lastPosition: 0,
                 remoteId: 234,
-                facadeBlindWindowState: FacadeBlindWindowState(
+                verticalBlindWindowState: VerticalBlindWindowState(
                     position: .different(min: 50, max: 80),
                     positionTextFormat: .openingPercentage,
                     slatTilt: .different(min: 20, max: 50),
                     markers: [
-                        FacadeBlindMarker(position: 50, tilt: 50),
-                        FacadeBlindMarker(position: 80, tilt: 20)
+                        VerticalBlindMarker(position: 50, tilt: 50),
+                        VerticalBlindMarker(position: 80, tilt: 20)
                     ]
                 ),
                 offline: false,
@@ -164,13 +164,13 @@ final class FacadeBlindsVMTests: ViewModelTest<FacadeBlindsViewState, BaseWindow
         
         // then
         assertStates(expected: [
-            FacadeBlindsViewState(),
-            FacadeBlindsViewState(
-                facadeBlindType: .tiltsOnlyWhenFullyClosed,
+            VerticalBlindsViewState(),
+            VerticalBlindsViewState(
+                tiltControlType: .tiltsOnlyWhenFullyClosed,
                 tiltingTime: 1500,
                 openingTime: 10500,
                 closingTime: 10000,
-                facadeBlindWindowState: FacadeBlindWindowState(
+                verticalBlindWindowState: VerticalBlindWindowState(
                     position: .similar(0),
                     tilt0Angle: 10,
                     tilt100Angle: 80
@@ -187,10 +187,10 @@ final class FacadeBlindsVMTests: ViewModelTest<FacadeBlindsViewState, BaseWindow
         
         // then
         assertStates(expected: [
-            FacadeBlindsViewState(remoteId: 111),
-            FacadeBlindsViewState(
+            VerticalBlindsViewState(remoteId: 111),
+            VerticalBlindsViewState(
                 remoteId: 111,
-                facadeBlindWindowState: FacadeBlindWindowState(position: .similar(0), slatTilt: .similar(10)),
+                verticalBlindWindowState: VerticalBlindWindowState(position: .similar(0), slatTilt: .similar(10)),
                 manualMoving: true
             )
         ])
@@ -198,14 +198,14 @@ final class FacadeBlindsVMTests: ViewModelTest<FacadeBlindsViewState, BaseWindow
     
     func test_shouldTiltToDefinedValue_andUpdateMarkers() {
         // given
-        let initialState = FacadeBlindsViewState(
+        let initialState = VerticalBlindsViewState(
             remoteId: 111,
-            facadeBlindWindowState: FacadeBlindWindowState(
+            verticalBlindWindowState: VerticalBlindWindowState(
                 position: .different(min: 10, max: 20),
                 slatTilt: .different(min: 40, max: 60),
                 markers: [
-                    FacadeBlindMarker(position: 10, tilt: 40),
-                    FacadeBlindMarker(position: 20, tilt: 60)
+                    VerticalBlindMarker(position: 10, tilt: 40),
+                    VerticalBlindMarker(position: 20, tilt: 60)
                 ]
             )
         )
@@ -220,12 +220,12 @@ final class FacadeBlindsVMTests: ViewModelTest<FacadeBlindsViewState, BaseWindow
             initialState,
             initialState
                 .changing(
-                    path: \.facadeBlindWindowState,
-                    to: initialState.facadeBlindWindowState
+                    path: \.verticalBlindWindowState,
+                    to: initialState.verticalBlindWindowState
                         .changing(path: \.slatTilt, to: .similar(50))
                         .changing(path: \.markers, to: [
-                            FacadeBlindMarker(position: 10, tilt: 50),
-                            FacadeBlindMarker(position: 20, tilt: 50)
+                            VerticalBlindMarker(position: 10, tilt: 50),
+                            VerticalBlindMarker(position: 20, tilt: 50)
                         ])
                 )
                 .changing(path: \.manualMoving, to: true)
@@ -234,10 +234,10 @@ final class FacadeBlindsVMTests: ViewModelTest<FacadeBlindsViewState, BaseWindow
     
     func test_shouldTiltToDefinedValue_andSetPositionToClosedWhenTiltsOnlyWhenFullyClosed() {
         // given
-        let initialState = FacadeBlindsViewState(
-            facadeBlindType: .tiltsOnlyWhenFullyClosed,
+        let initialState = VerticalBlindsViewState(
+            tiltControlType: .tiltsOnlyWhenFullyClosed,
             remoteId: 111,
-            facadeBlindWindowState: FacadeBlindWindowState(
+            verticalBlindWindowState: VerticalBlindWindowState(
                 position: .similar(50),
                 slatTilt: .similar(50)
             )
@@ -253,8 +253,8 @@ final class FacadeBlindsVMTests: ViewModelTest<FacadeBlindsViewState, BaseWindow
             initialState,
             initialState
                 .changing(
-                    path: \.facadeBlindWindowState,
-                    to: initialState.facadeBlindWindowState
+                    path: \.verticalBlindWindowState,
+                    to: initialState.verticalBlindWindowState
                         .changing(path: \.position, to: .similar(100))
                         .changing(path: \.slatTilt, to: .similar(60))
                 )
@@ -263,7 +263,7 @@ final class FacadeBlindsVMTests: ViewModelTest<FacadeBlindsViewState, BaseWindow
     }
     
     func test_shouldSetTilt() {
-        let initialState = FacadeBlindsViewState(
+        let initialState = VerticalBlindsViewState(
             manualMoving: true
         )
         viewModel.updateView { _ in initialState }
@@ -284,10 +284,10 @@ final class FacadeBlindsVMTests: ViewModelTest<FacadeBlindsViewState, BaseWindow
     
     func test_shouldMoveAndTiltToDefinedValue() {
         // given
-        let initialState = FacadeBlindsViewState(
-            facadeBlindType: .standsInPositionWhileTilting,
+        let initialState = VerticalBlindsViewState(
+            tiltControlType: .standsInPositionWhileTilting,
             remoteId: 111,
-            facadeBlindWindowState: FacadeBlindWindowState(
+            verticalBlindWindowState: VerticalBlindWindowState(
                 position: .similar(10),
                 slatTilt: .similar(50)
             )
@@ -303,8 +303,8 @@ final class FacadeBlindsVMTests: ViewModelTest<FacadeBlindsViewState, BaseWindow
             initialState,
             initialState
                 .changing(
-                    path: \.facadeBlindWindowState,
-                    to: initialState.facadeBlindWindowState
+                    path: \.verticalBlindWindowState,
+                    to: initialState.verticalBlindWindowState
                         .changing(path: \.position, to: .similar(20))
                         .changing(path: \.slatTilt, to: .similar(90))
                 )
@@ -314,10 +314,10 @@ final class FacadeBlindsVMTests: ViewModelTest<FacadeBlindsViewState, BaseWindow
     
     func test_shouldMoveAndTiltToDefinedValue_whenTiltNotSet() {
         // given
-        let initialState = FacadeBlindsViewState(
-            facadeBlindType: .standsInPositionWhileTilting,
+        let initialState = VerticalBlindsViewState(
+            tiltControlType: .standsInPositionWhileTilting,
             remoteId: 111,
-            facadeBlindWindowState: FacadeBlindWindowState(
+            verticalBlindWindowState: VerticalBlindWindowState(
                 position: .similar(10)
             )
         )
@@ -332,8 +332,8 @@ final class FacadeBlindsVMTests: ViewModelTest<FacadeBlindsViewState, BaseWindow
             initialState,
             initialState
                 .changing(
-                    path: \.facadeBlindWindowState,
-                    to: initialState.facadeBlindWindowState
+                    path: \.verticalBlindWindowState,
+                    to: initialState.verticalBlindWindowState
                         .changing(path: \.position, to: .similar(20))
                 )
                 .changing(path: \.manualMoving, to: true)
@@ -342,14 +342,14 @@ final class FacadeBlindsVMTests: ViewModelTest<FacadeBlindsViewState, BaseWindow
     
     func test_shouldMoveAndTiltToDefinedValue_andLimitTiltWhenChangesPositionWhileTilting_onTop() {
         // given
-        let initialState = FacadeBlindsViewState(
-            facadeBlindType: .changesPositionWhileTilting,
+        let initialState = VerticalBlindsViewState(
+            tiltControlType: .changesPositionWhileTilting,
             tiltingTime: 2000,
             openingTime: 20000,
             closingTime: 20000,
             lastPosition: 10,
             remoteId: 111,
-            facadeBlindWindowState: FacadeBlindWindowState(
+            verticalBlindWindowState: VerticalBlindWindowState(
                 position: .similar(10),
                 slatTilt: .similar(50)
             )
@@ -365,8 +365,8 @@ final class FacadeBlindsVMTests: ViewModelTest<FacadeBlindsViewState, BaseWindow
             initialState,
             initialState
                 .changing(
-                    path: \.facadeBlindWindowState,
-                    to: initialState.facadeBlindWindowState
+                    path: \.verticalBlindWindowState,
+                    to: initialState.verticalBlindWindowState
                         .changing(path: \.position, to: .similar(2.5))
                         .changing(path: \.slatTilt, to: .similar(25))
                 )
@@ -376,14 +376,14 @@ final class FacadeBlindsVMTests: ViewModelTest<FacadeBlindsViewState, BaseWindow
     
     func test_shouldMoveAndTiltToDefinedValue_andLimitTiltWhenChangesPositionWhileTilting_onBottom() {
         // given
-        let initialState = FacadeBlindsViewState(
-            facadeBlindType: .changesPositionWhileTilting,
+        let initialState = VerticalBlindsViewState(
+            tiltControlType: .changesPositionWhileTilting,
             tiltingTime: 2000,
             openingTime: 20000,
             closingTime: 20000,
             lastPosition: 10,
             remoteId: 111,
-            facadeBlindWindowState: FacadeBlindWindowState(
+            verticalBlindWindowState: VerticalBlindWindowState(
                 position: .similar(10),
                 slatTilt: .similar(50)
             )
@@ -399,8 +399,8 @@ final class FacadeBlindsVMTests: ViewModelTest<FacadeBlindsViewState, BaseWindow
             initialState,
             initialState
                 .changing(
-                    path: \.facadeBlindWindowState,
-                    to: initialState.facadeBlindWindowState
+                    path: \.verticalBlindWindowState,
+                    to: initialState.verticalBlindWindowState
                         .changing(path: \.position, to: .similar(95))
                         .changing(path: \.slatTilt, to: .similar(50))
                 )
@@ -410,10 +410,10 @@ final class FacadeBlindsVMTests: ViewModelTest<FacadeBlindsViewState, BaseWindow
     
     func test_shouldSetPositionAndTiltToDefinedValue() {
         // given
-        let initialState = FacadeBlindsViewState(
-            facadeBlindType: .standsInPositionWhileTilting,
+        let initialState = VerticalBlindsViewState(
+            tiltControlType: .standsInPositionWhileTilting,
             remoteId: 111,
-            facadeBlindWindowState: FacadeBlindWindowState(
+            verticalBlindWindowState: VerticalBlindWindowState(
                 position: .similar(10),
                 slatTilt: .similar(50)
             ),
@@ -437,10 +437,10 @@ final class FacadeBlindsVMTests: ViewModelTest<FacadeBlindsViewState, BaseWindow
     
     func test_shouldSetPositionAndTiltToDefinedValue_whenTiltNotSet() {
         // given
-        let initialState = FacadeBlindsViewState(
-            facadeBlindType: .standsInPositionWhileTilting,
+        let initialState = VerticalBlindsViewState(
+            tiltControlType: .standsInPositionWhileTilting,
             remoteId: 111,
-            facadeBlindWindowState: FacadeBlindWindowState(
+            verticalBlindWindowState: VerticalBlindWindowState(
                 position: .similar(10)
             )
         )
@@ -463,14 +463,14 @@ final class FacadeBlindsVMTests: ViewModelTest<FacadeBlindsViewState, BaseWindow
     
     func test_shouldSetPositionAndTiltToDefinedValue_andLimitTiltWhenChangesPositionWhileTilting_onTop() {
         // given
-        let initialState = FacadeBlindsViewState(
-            facadeBlindType: .changesPositionWhileTilting,
+        let initialState = VerticalBlindsViewState(
+            tiltControlType: .changesPositionWhileTilting,
             tiltingTime: 2000,
             openingTime: 20000,
             closingTime: 20000,
             lastPosition: 10,
             remoteId: 111,
-            facadeBlindWindowState: FacadeBlindWindowState(
+            verticalBlindWindowState: VerticalBlindWindowState(
                 position: .similar(10),
                 slatTilt: .similar(50)
             )
@@ -493,14 +493,14 @@ final class FacadeBlindsVMTests: ViewModelTest<FacadeBlindsViewState, BaseWindow
     
     func test_shouldSetPositionAndTiltToDefinedValue_andLimitTiltWhenChangesPositionWhileTilting_onBottom() {
         // given
-        let initialState = FacadeBlindsViewState(
-            facadeBlindType: .changesPositionWhileTilting,
+        let initialState = VerticalBlindsViewState(
+            tiltControlType: .changesPositionWhileTilting,
             tiltingTime: 2000,
             openingTime: 20000,
             closingTime: 20000,
             lastPosition: 10,
             remoteId: 111,
-            facadeBlindWindowState: FacadeBlindWindowState(
+            verticalBlindWindowState: VerticalBlindWindowState(
                 position: .similar(10),
                 slatTilt: .similar(50)
             )

@@ -35,7 +35,7 @@ final class GetGroupActivePercentageUseCaseImpl: GetGroupActivePercentageUseCase
     let providers: [GroupActivePercentageProvider] = [
         DimmerAndRgbGroupActivePercentageProvider(),
         DimmerGroupActivePercentageProvider(),
-        FacadeBlindGroupActivePercentageProvider(),
+        BlindsGroupActivePercentageProvider(),
         HeatpolThermostatGroupActivePercentageProvider(),
         OpenedClosedGroupActivePercentageProvider(),
         PercentageChannelActivePercentageProvider(),

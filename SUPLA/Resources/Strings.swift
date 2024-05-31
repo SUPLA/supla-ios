@@ -306,6 +306,7 @@ struct Strings {
             static let captionTerraceAwning = "channel_caption_terrace_awning".toLocalized()
             static let captionProjectorScreen = "channel_caption_projector_screen".toLocalized()
             static let captionCurtain = "channel_caption_curtain".toLocalized()
+            static let captionVerticalBlind = "channel_caption_vertical_blind".toLocalized()
         }
     }
     

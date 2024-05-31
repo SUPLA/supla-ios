@@ -351,6 +351,7 @@
 "channel_caption_terrace_awning" = "Markiza tarasowa";
 "channel_caption_projector_screen" = "Ekran projekcyjny";
 "channel_caption_curtain" = "Zasłona";
+"channel_caption_vertical_blind" = "Żaluzja pionowa";
 
 /* Main */
 "dialog_new_gesture_info_text" = "Usunęliśmy gest przesunięcia otwierający szczegóły, aby je zobaczyć dotknij wybrany kanał.";

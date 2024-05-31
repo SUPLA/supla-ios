@@ -109,6 +109,15 @@ final class ProvideDetailTypeUseCaseTests: XCTestCase {
         }
     }
     
+    func test_shouldProvideRs_forVerticalBlindFunction() {
+        doTest(expectedResult: .windowDetail(pages: [.verticalBlind])) {
+            let channel = SAChannel(testContext: nil)
+            channel.func = SUPLA_CHANNELFNC_VERTICAL_BLIND
+            
+            return channel
+        }
+    }
+    
     func test_shouldProvideEm_forEmFunction() {
         doTest(expectedResult: .legacy(type: .em)) {
             let channel = SAChannel(testContext: nil)

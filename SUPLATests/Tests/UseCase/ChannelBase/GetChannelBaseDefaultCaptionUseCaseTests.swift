@@ -86,6 +86,7 @@ final class GetChannelBaseDefaultCaptionUseCaseTests: XCTestCase {
         doTest(function: SUPLA_CHANNELFNC_TERRACE_AWNING, Strings.General.Channel.captionTerraceAwning)
         doTest(function: SUPLA_CHANNELFNC_PROJECTOR_SCREEN, Strings.General.Channel.captionProjectorScreen)
         doTest(function: SUPLA_CHANNELFNC_CURTAIN, Strings.General.Channel.captionCurtain)
+        doTest(function: SUPLA_CHANNELFNC_VERTICAL_BLIND, Strings.General.Channel.captionVerticalBlind)
         doTest(function: -1, "Not supported function")
     }
     

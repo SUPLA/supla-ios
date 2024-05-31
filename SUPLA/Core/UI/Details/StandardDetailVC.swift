@@ -95,7 +95,8 @@ class StandardDetailVC<S : ViewState, E : ViewEvent, VM : StandardDetailVM<S, E>
                 viewControllers.append(projectorScreenDetail())
             case .curtain:
                 viewControllers.append(curtainDetail())
-
+            case .verticalBlind:
+                viewControllers.append(verticalBlindDetail())
             }
         }
         
@@ -269,6 +270,17 @@ class StandardDetailVC<S : ViewState, E : ViewEvent, VM : StandardDetailVM<S, E>
     
     private func curtainDetail() -> CurtainVC {
         let vc = CurtainVC(itemBundle: item)
+        vc.navigationCoordinator = navigationCoordinator
+        vc.tabBarItem = UITabBarItem(
+            title: settings.showBottomLabels ? Strings.StandardDetail.tabGeneral : nil,
+            image: .iconGeneral,
+            tag: DetailTabTag.Window.rawValue
+        )
+        return vc
+    }
+    
+    private func verticalBlindDetail() -> VerticalBlindsVC {
+        let vc = VerticalBlindsVC(itemBundle: item)
         vc.navigationCoordinator = navigationCoordinator
         vc.tabBarItem = UITabBarItem(
             title: settings.showBottomLabels ? Strings.StandardDetail.tabGeneral : nil,

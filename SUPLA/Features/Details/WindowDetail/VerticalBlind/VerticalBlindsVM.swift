@@ -18,12 +18,12 @@
 
 import RxSwift
 
-final class FacadeBlindsVM: BaseWindowVM<FacadeBlindsViewState> {
+final class VerticalBlindsVM: BaseWindowVM<VerticalBlindsViewState> {
     @Singleton<GetChannelConfigUseCase> private var getChannelConfigUseCase
     @Singleton<ChannelConfigEventsManager> private var channelConfigEventsManager
     @Singleton<ExecuteFacadeBlindActionUseCase> private var executeFacadeBlindActionUseCase
     
-    override func defaultViewState() -> FacadeBlindsViewState { FacadeBlindsViewState() }
+    override func defaultViewState() -> VerticalBlindsViewState { VerticalBlindsViewState() }
     
     override func handleAction(_ action: RollerShutterAction, remoteId: Int32, type: SubjectType) {
         switch (action) {
@@ -35,20 +35,20 @@ final class FacadeBlindsVM: BaseWindowVM<FacadeBlindsViewState> {
                     return $0
                 }
                 
-                let markers: [FacadeBlindMarker] = if ($0.facadeBlindType == .tiltsOnlyWhenFullyClosed) {
+                let markers: [VerticalBlindMarker] = if ($0.tiltControlType == .tiltsOnlyWhenFullyClosed) {
                     []
                 } else if ($0.windowState.position.isDifferent()) {
-                    $0.facadeBlindWindowState.markers.map { marker in FacadeBlindMarker(position: marker.position, tilt: tilt) }
+                    $0.verticalBlindWindowState.markers.map { marker in VerticalBlindMarker(position: marker.position, tilt: tilt) }
                 } else {
                     []
                 }
-                let position: WindowGroupedValue = $0.facadeBlindType == .tiltsOnlyWhenFullyClosed ? .similar(100) : $0.windowState.position
+                let position: WindowGroupedValue = $0.tiltControlType == .tiltsOnlyWhenFullyClosed ? .similar(100) : $0.windowState.position
                 
-                let windowState = $0.facadeBlindWindowState
+                let windowState = $0.verticalBlindWindowState
                     .changing(path: \.position, to: position)
                     .changing(path: \.slatTilt, to: .similar(tilt))
                     .changing(path: \.markers, to: markers)
-                return $0.changing(path: \.facadeBlindWindowState, to: windowState)
+                return $0.changing(path: \.verticalBlindWindowState, to: windowState)
                     .changing(path: \.manualMoving, to: true)
                     .changing(path: \.positionUnknown, to: false)
             }
@@ -70,20 +70,20 @@ final class FacadeBlindsVM: BaseWindowVM<FacadeBlindsViewState> {
                 if ($0.calibrating) {
                     return $0
                 }
-                let tilt: CGFloat? = if ($0.facadeBlindWindowState.slatTilt == nil) {
+                let tilt: CGFloat? = if ($0.verticalBlindWindowState.slatTilt == nil) {
                     nil
-                } else if ($0.facadeBlindType == .changesPositionWhileTilting) {
+                } else if ($0.tiltControlType == .changesPositionWhileTilting) {
                     limitTilt(tilt: tilt, position: position, state: $0)
-                } else if ($0.facadeBlindType != .tiltsOnlyWhenFullyClosed || position == 100) {
+                } else if ($0.tiltControlType != .tiltsOnlyWhenFullyClosed || position == 100) {
                     tilt
                 } else {
                     0
                 }
-                let windowState = $0.facadeBlindWindowState
+                let windowState = $0.verticalBlindWindowState
                     .changing(path: \.position, to: .similar(position))
                     .changing(path: \.slatTilt, to: tilt?.run { .similar($0) })
                     .changing(path: \.markers, to: [])
-                return $0.changing(path: \.facadeBlindWindowState, to: windowState)
+                return $0.changing(path: \.verticalBlindWindowState, to: windowState)
                     .changing(path: \.manualMoving, to: true)
                     .changing(path: \.positionUnknown, to: false)
             }
@@ -92,11 +92,11 @@ final class FacadeBlindsVM: BaseWindowVM<FacadeBlindsViewState> {
                 if ($0.calibrating) {
                     return $0
                 }
-                let tilt: CGFloat = if ($0.facadeBlindWindowState.slatTilt == nil) {
+                let tilt: CGFloat = if ($0.verticalBlindWindowState.slatTilt == nil) {
                     CGFloat(VALUE_IGNORE)
-                } else if ($0.facadeBlindType == .changesPositionWhileTilting) {
+                } else if ($0.tiltControlType == .changesPositionWhileTilting) {
                     limitTilt(tilt: tilt, position: position, state: $0)
-                } else if ($0.facadeBlindType != .tiltsOnlyWhenFullyClosed || position == 100) {
+                } else if ($0.tiltControlType != .tiltsOnlyWhenFullyClosed || position == 100) {
                     tilt
                 } else {
                     0
@@ -140,12 +140,12 @@ final class FacadeBlindsVM: BaseWindowVM<FacadeBlindsViewState> {
             
             let position = value.hasValidPosition ? value.position : 0
             let tilt = value.hasValidTilt && value.flags.contains(.tiltIsSet) ? CGFloat(value.tilt) : nil
-            let windowState = $0.facadeBlindWindowState
+            let windowState = $0.verticalBlindWindowState
                 .changing(path: \.position, to: .similar(value.online ? CGFloat(position) : 25))
                 .changing(path: \.slatTilt, to: tilt?.run { .similar(value.online ? $0 : 50) })
             
             return updateChannel($0, channel, value) {
-                $0.changing(path: \.facadeBlindWindowState, to: windowState)
+                $0.changing(path: \.verticalBlindWindowState, to: windowState)
                     .changing(path: \.lastPosition, to: CGFloat(position))
             }
         }
@@ -158,26 +158,26 @@ final class FacadeBlindsVM: BaseWindowVM<FacadeBlindsViewState> {
             }
             
             let positions = group.getFacadeBlindPositions()
-            let overallPosition = getGroupPercentage(positions, !$0.facadeBlindWindowState.markers.isEmpty) { CGFloat($0.position) }
-            let overallTilt = getGroupPercentage(positions, !$0.facadeBlindWindowState.markers.isEmpty) { CGFloat($0.tilt) }
+            let overallPosition = getGroupPercentage(positions, !$0.verticalBlindWindowState.markers.isEmpty) { CGFloat($0.position) }
+            let overallTilt = getGroupPercentage(positions, !$0.verticalBlindWindowState.markers.isEmpty) { CGFloat($0.tilt) }
             let markers = (overallPosition.isDifferent() ? positions : [])
-                .map { FacadeBlindMarker(position: CGFloat($0.position), tilt: CGFloat($0.tilt)) }
-            let windowState = $0.facadeBlindWindowState
+                .map { VerticalBlindMarker(position: CGFloat($0.position), tilt: CGFloat($0.tilt)) }
+            let windowState = $0.verticalBlindWindowState
                 .changing(path: \.position, to: group.isOnline() ? overallPosition : .similar(25))
                 .changing(path: \.slatTilt, to: group.isOnline() ? overallTilt : .similar(50))
                 .changing(path: \.markers, to: group.isOnline() ? markers : [])
                 .changing(path: \.positionTextFormat, to: positionTextFormat)
             
             return updateGroup($0, group, onlineSummary) {
-                $0.changing(path: \.facadeBlindWindowState, to: windowState)
+                $0.changing(path: \.verticalBlindWindowState, to: windowState)
                     .changing(path: \.positionUnknown, to: overallPosition == .invalid)
                     .changing(path: \.lastPosition, to: overallPosition.value)
             }
         }
     }
     
-    override func canShowMoveTime(_ state: FacadeBlindsViewState) -> Bool {
-        state.positionUnknown || state.facadeBlindWindowState.slatTilt == nil
+    override func canShowMoveTime(_ state: VerticalBlindsViewState) -> Bool {
+        state.positionUnknown || state.verticalBlindWindowState.slatTilt == nil
     }
     
     private func handleConfig(_ config: ChannelConfigEvent) {
@@ -190,18 +190,18 @@ final class FacadeBlindsVM: BaseWindowVM<FacadeBlindsViewState> {
         }
         
         updateView {
-            let windowState = $0.facadeBlindWindowState
+            let windowState = $0.verticalBlindWindowState
                 .changing(path: \.tilt0Angle, to: tilt0)
                 .changing(path: \.tilt100Angle, to: tilt100)
-            return $0.changing(path: \.facadeBlindWindowState, to: windowState)
+            return $0.changing(path: \.verticalBlindWindowState, to: windowState)
                 .changing(path: \.tiltingTime, to: CGFloat(facadeConfig.tiltingTimeMs))
                 .changing(path: \.openingTime, to: CGFloat(facadeConfig.openingTimeMs))
                 .changing(path: \.closingTime, to: CGFloat(facadeConfig.closingTimeMs))
-                .changing(path: \.facadeBlindType, to: facadeConfig.type)
+                .changing(path: \.tiltControlType, to: facadeConfig.type)
         }
     }
     
-    private func limitTilt(tilt: CGFloat, position: CGFloat, state: FacadeBlindsViewState) -> CGFloat {
+    private func limitTilt(tilt: CGFloat, position: CGFloat, state: VerticalBlindsViewState) -> CGFloat {
         guard let tiltingTime = state.tiltingTime,
               let openingTime = state.openingTime,
               let closingTime = state.closingTime,
@@ -225,22 +225,22 @@ final class FacadeBlindsVM: BaseWindowVM<FacadeBlindsViewState> {
 }
 
 private extension Completable {
-    func run(_ viewModel: FacadeBlindsVM) {
+    func run(_ viewModel: VerticalBlindsVM) {
         asDriverWithoutError()
             .drive()
             .disposed(by: viewModel)
     }
 }
 
-struct FacadeBlindsViewState: BaseWindowViewState {
-    var facadeBlindType: SuplaTiltControlType? = nil
+struct VerticalBlindsViewState: BaseWindowViewState {
+    var tiltControlType: SuplaTiltControlType? = nil
     var tiltingTime: CGFloat? = nil
     var openingTime: CGFloat? = nil
     var closingTime: CGFloat? = nil
     var lastPosition: CGFloat? = nil
     
     var remoteId: Int32? = nil
-    var facadeBlindWindowState: FacadeBlindWindowState = .init(position: .similar(0))
+    var verticalBlindWindowState: VerticalBlindWindowState = .init(position: .similar(0))
     var issues: [ChannelIssueItem] = []
     var offline: Bool = true
     var showClosingPercentage: Bool = false
@@ -254,7 +254,7 @@ struct FacadeBlindsViewState: BaseWindowViewState {
     var manualMoving: Bool = false
     
     var windowState: any WindowState {
-        facadeBlindWindowState
+        verticalBlindWindowState
     }
 }
 
