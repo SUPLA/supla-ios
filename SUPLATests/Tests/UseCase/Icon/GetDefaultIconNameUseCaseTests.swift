@@ -1731,4 +1731,42 @@ final class GetDefaultIconNameUseCaseTests: XCTestCase {
         // then
         XCTAssertEqual(iconName, "fnc_vertical_blind-closed")
     }
+    
+    func test_garageDoorOpened() {
+        // given
+        let function = SUPLA_CHANNELFNC_ROLLER_GARAGE_DOOR
+        
+        // when
+        let iconName = useCase.invoke(
+            iconData: IconData(
+                function: function,
+                altIcon: 0,
+                state: .opened,
+                type: .single,
+                subfunction: .notSet
+            )
+        )
+        
+        // then
+        XCTAssertEqual(iconName, "fnc_garage_door-open")
+    }
+    
+    func test_garageDoorClose() {
+        // given
+        let function = SUPLA_CHANNELFNC_ROLLER_GARAGE_DOOR
+        
+        // when
+        let iconName = useCase.invoke(
+            iconData: IconData(
+                function: function,
+                altIcon: 0,
+                state: .closed,
+                type: .single,
+                subfunction: .notSet
+            )
+        )
+        
+        // then
+        XCTAssertEqual(iconName, "fnc_garage_door-closed")
+    }
 }

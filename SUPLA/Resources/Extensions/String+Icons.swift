@@ -142,5 +142,6 @@ extension String {
     
     struct Image {
         static let logo = "logo"
+        static let garageContent = "garage_content"
     }
 }

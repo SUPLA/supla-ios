@@ -49,7 +49,8 @@ final class GetChannelBaseStateUseCaseImpl: GetChannelBaseStateUseCase {
              SUPLA_CHANNELFNC_CONTROLLINGTHEFACADEBLIND,
              SUPLA_CHANNELFNC_TERRACE_AWNING,
              SUPLA_CHANNELFNC_CURTAIN,
-             SUPLA_CHANNELFNC_VERTICAL_BLIND:
+             SUPLA_CHANNELFNC_VERTICAL_BLIND,
+             SUPLA_CHANNELFNC_ROLLER_GARAGE_DOOR:
             return valueWrapper.rollerShutterClosed ? .closed : .opened
         case SUPLA_CHANNELFNC_PROJECTOR_SCREEN:
             return valueWrapper.projectorScreenClosed ? .closed : .opened
@@ -106,6 +107,7 @@ final class GetChannelBaseStateUseCaseImpl: GetChannelBaseStateUseCase {
              SUPLA_CHANNELFNC_TERRACE_AWNING,
              SUPLA_CHANNELFNC_CURTAIN,
              SUPLA_CHANNELFNC_VERTICAL_BLIND,
+             SUPLA_CHANNELFNC_ROLLER_GARAGE_DOOR,
              SUPLA_CHANNELFNC_VALVE_OPENCLOSE,
              SUPLA_CHANNELFNC_VALVE_PERCENTAGE: .opened
         case SUPLA_CHANNELFNC_PROJECTOR_SCREEN: .closed

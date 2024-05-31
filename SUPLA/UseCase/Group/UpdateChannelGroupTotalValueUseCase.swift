@@ -124,8 +124,9 @@ private extension SAChannelGroup {
                 return IntegerGroupValue(value: value.asRollerShutterValue().alwaysValidPosition)
             case SUPLA_CHANNELFNC_CONTROLLINGTHEROLLERSHUTTER,
                  SUPLA_CHANNELFNC_CONTROLLINGTHEROOFWINDOW,
-                 SUPLA_CHANNELFNC_CURTAIN:
-                return RollerShutterGroupValue(
+                 SUPLA_CHANNELFNC_CURTAIN,
+                 SUPLA_CHANNELFNC_ROLLER_GARAGE_DOOR:
+                return ShadingSystemGroupValue(
                     position: value.asRollerShutterValue().alwaysValidPosition,
                     closedSensorActive: value.hiSubValue() == 1
                 )

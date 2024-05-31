@@ -302,6 +302,7 @@
         case SUPLA_CHANNELFNC_PROJECTOR_SCREEN:
         case SUPLA_CHANNELFNC_CURTAIN:
         case SUPLA_CHANNELFNC_VERTICAL_BLIND:
+        case SUPLA_CHANNELFNC_ROLLER_GARAGE_DOOR:
             self.left_OnlineStatus.hidden = YES;
             self.right_OnlineStatus.hidden = NO;
             break;
@@ -394,6 +395,7 @@
                 case SUPLA_CHANNELFNC_PROJECTOR_SCREEN:
                 case SUPLA_CHANNELFNC_CURTAIN:
                 case SUPLA_CHANNELFNC_VERTICAL_BLIND:
+                case SUPLA_CHANNELFNC_ROLLER_GARAGE_DOOR:
                     br = [MGSwipeButton buttonWithTitle:NSLocalizedString(@"Open", nil) icon:nil backgroundColor:[UIColor blackColor]];
                     bl = [MGSwipeButton buttonWithTitle:NSLocalizedString(@"Close", nil) icon:nil backgroundColor:[UIColor blackColor]];
                     break;

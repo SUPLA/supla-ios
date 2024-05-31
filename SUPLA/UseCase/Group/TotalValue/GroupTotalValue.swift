@@ -35,7 +35,7 @@ class GroupTotalValue: NSObject, NSSecureCoding {
         values = coder.decodeObject(
             of: [
                 NSArray.self,
-                RollerShutterGroupValue.self,
+                ShadingSystemGroupValue.self,
                 ShadowingBlindGroupValue.self,
                 IntegerGroupValue.self,
                 BoolGroupValue.self,
@@ -63,7 +63,7 @@ class GroupTotalValue: NSObject, NSSecureCoding {
 
 @objc class BaseGroupValue: NSObject {}
 
-@objc class RollerShutterGroupValue: BaseGroupValue, NSSecureCoding {
+@objc class ShadingSystemGroupValue: BaseGroupValue, NSSecureCoding {
     static var supportsSecureCoding: Bool = true
     
     @objc let position: Int
@@ -86,7 +86,7 @@ class GroupTotalValue: NSObject, NSSecureCoding {
     }
     
     override func isEqual(_ object: Any?) -> Bool {
-        guard let other = object as? RollerShutterGroupValue else { return false }
+        guard let other = object as? ShadingSystemGroupValue else { return false }
         return other.position == position && other.closedSensorActive == closedSensorActive
     }
     

@@ -107,7 +107,8 @@ final class IconCell: BaseCell<ChannelWithChildren> {
              SUPLA_CHANNELFNC_TERRACE_AWNING,
              SUPLA_CHANNELFNC_PROJECTOR_SCREEN,
              SUPLA_CHANNELFNC_CURTAIN,
-             SUPLA_CHANNELFNC_VERTICAL_BLIND: true
+             SUPLA_CHANNELFNC_VERTICAL_BLIND,
+             SUPLA_CHANNELFNC_ROLLER_GARAGE_DOOR: true
         default: false
         }
     }
@@ -120,7 +121,8 @@ final class IconCell: BaseCell<ChannelWithChildren> {
              SUPLA_CHANNELFNC_TERRACE_AWNING,
              SUPLA_CHANNELFNC_PROJECTOR_SCREEN,
              SUPLA_CHANNELFNC_CURTAIN,
-             SUPLA_CHANNELFNC_VERTICAL_BLIND: true
+             SUPLA_CHANNELFNC_VERTICAL_BLIND,
+             SUPLA_CHANNELFNC_ROLLER_GARAGE_DOOR: true
         default: false
         }
     }
