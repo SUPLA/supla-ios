@@ -106,7 +106,7 @@ final class UpdateChannelGroupTotalValueUseCaseTests: UseCaseTest<[Int32]> {
         XCTAssertEqual(secondGroup.online, 100)
         XCTAssertTrue(secondGroup.total_value is GroupTotalValue)
         if let groupTotalValue = secondGroup.total_value as? GroupTotalValue,
-           let firstRelationValue = groupTotalValue.values[0] as? FacadeBlindGroupValue
+           let firstRelationValue = groupTotalValue.values[0] as? ShadowingBlindGroupValue
         {
             XCTAssertEqual(groupTotalValue.values.count, 1)
             XCTAssertEqual(firstRelationValue.position, 10)

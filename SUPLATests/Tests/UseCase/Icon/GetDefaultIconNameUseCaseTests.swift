@@ -1693,4 +1693,42 @@ final class GetDefaultIconNameUseCaseTests: XCTestCase {
         // then
         XCTAssertEqual(iconName, "fnc_curtain-closed")
     }
+    
+    func test_verticalBlindOpened() {
+        // given
+        let function = SUPLA_CHANNELFNC_VERTICAL_BLIND
+        
+        // when
+        let iconName = useCase.invoke(
+            iconData: IconData(
+                function: function,
+                altIcon: 0,
+                state: .opened,
+                type: .single,
+                subfunction: .notSet
+            )
+        )
+        
+        // then
+        XCTAssertEqual(iconName, "fnc_vertical_blind-open")
+    }
+    
+    func test_verticalBlindClose() {
+        // given
+        let function = SUPLA_CHANNELFNC_VERTICAL_BLIND
+        
+        // when
+        let iconName = useCase.invoke(
+            iconData: IconData(
+                function: function,
+                altIcon: 0,
+                state: .closed,
+                type: .single,
+                subfunction: .notSet
+            )
+        )
+        
+        // then
+        XCTAssertEqual(iconName, "fnc_vertical_blind-closed")
+    }
 }

@@ -42,6 +42,8 @@ final class ProvideDetailTypeUseCaseImpl: ProvideDetailTypeUseCase {
             return .windowDetail(pages: [.projectorScreen])
         case SUPLA_CHANNELFNC_CURTAIN:
             return .windowDetail(pages: [.curtain])
+        case SUPLA_CHANNELFNC_VERTICAL_BLIND:
+            return .windowDetail(pages: [.verticalBlind])
         case
             SUPLA_CHANNELFNC_LIGHTSWITCH,
             SUPLA_CHANNELFNC_POWERSWITCH,
@@ -142,4 +144,5 @@ enum DetailPage {
     case terraceAwning
     case projectorScreen
     case curtain
+    case verticalBlind
 }

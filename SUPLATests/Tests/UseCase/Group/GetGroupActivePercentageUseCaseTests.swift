@@ -64,10 +64,10 @@ final class GroupActivePercentageUseCaseTests: XCTestCase {
         let group = SAChannelGroup(testContext: nil)
         group.func = SUPLA_CHANNELFNC_CONTROLLINGTHEFACADEBLIND
         group.total_value = GroupTotalValue(values: [
-            FacadeBlindGroupValue(position: 100, tilt: 10),
-            FacadeBlindGroupValue(position: 0, tilt: 30),
-            FacadeBlindGroupValue(position: 20, tilt: 0),
-            FacadeBlindGroupValue(position: 80, tilt: 90)
+            ShadowingBlindGroupValue(position: 100, tilt: 10),
+            ShadowingBlindGroupValue(position: 0, tilt: 30),
+            ShadowingBlindGroupValue(position: 20, tilt: 0),
+            ShadowingBlindGroupValue(position: 80, tilt: 90)
         ])
         
         // when

@@ -129,9 +129,10 @@ private extension SAChannelGroup {
                     position: value.asRollerShutterValue().alwaysValidPosition,
                     closedSensorActive: value.hiSubValue() == 1
                 )
-            case SUPLA_CHANNELFNC_CONTROLLINGTHEFACADEBLIND:
+            case SUPLA_CHANNELFNC_CONTROLLINGTHEFACADEBLIND,
+                 SUPLA_CHANNELFNC_VERTICAL_BLIND:
                 let facadeBlindValue = value.asFacadeBlindValue()
-                return FacadeBlindGroupValue(
+                return ShadowingBlindGroupValue(
                     position: facadeBlindValue.alwaysValidPosition,
                     tilt: facadeBlindValue.tilt
                 )

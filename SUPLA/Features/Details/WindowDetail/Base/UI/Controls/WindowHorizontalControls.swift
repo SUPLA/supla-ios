@@ -20,7 +20,9 @@ import RxSwift
 
 class WindowHorizontalControls: WindowControls {
     override var intrinsicContentSize: CGSize {
-        return CGSize(width: ControlButtonType.left.width * 2, height: ControlButtonType.up.height * 2)
+        let touchTimeIconHeight: CGFloat = 25
+        let height = ControlButtonType.left.height * 2 + Dimens.distanceTiny + Dimens.distanceDefault + touchTimeIconHeight
+        return CGSize(width: ControlButtonType.left.width * 2, height: height)
     }
     
     override var isEnabled: Bool {
@@ -90,16 +92,17 @@ class WindowHorizontalControls: WindowControls {
     
     private func setupLayout() {
         NSLayoutConstraint.activate([
-            holdToMoveButton.centerYAnchor.constraint(equalTo: centerYAnchor),
+            moveTimeView.topAnchor.constraint(equalTo: topAnchor),
+            moveTimeView.centerXAnchor.constraint(equalTo: centerXAnchor),
+            
             holdToMoveButton.leftAnchor.constraint(equalTo: leftAnchor),
             holdToMoveButton.rightAnchor.constraint(equalTo: rightAnchor),
+            holdToMoveButton.topAnchor.constraint(equalTo: moveTimeView.bottomAnchor, constant: Dimens.distanceTiny),
             
-            pressToMoveButton.topAnchor.constraint(equalTo: holdToMoveButton.bottomAnchor, constant: Dimens.distanceSmall),
+            pressToMoveButton.topAnchor.constraint(equalTo: holdToMoveButton.bottomAnchor, constant: Dimens.distanceDefault),
             pressToMoveButton.leftAnchor.constraint(equalTo: leftAnchor),
             pressToMoveButton.rightAnchor.constraint(equalTo: rightAnchor),
-            
-            moveTimeView.centerXAnchor.constraint(equalTo: centerXAnchor),
-            moveTimeView.bottomAnchor.constraint(equalTo: holdToMoveButton.topAnchor, constant: -Dimens.distanceSmall)
+            pressToMoveButton.bottomAnchor.constraint(equalTo: bottomAnchor)
         ])
     }
 }

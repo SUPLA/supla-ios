@@ -27,7 +27,7 @@ extension SAChannelGroup {
         
         return totalValue.values
             .map {
-                if let value = $0 as? FacadeBlindGroupValue {
+                if let value = $0 as? ShadowingBlindGroupValue {
                     return value.position
                 }
                 if let value = $0 as? RollerShutterGroupValue {

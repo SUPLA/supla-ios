@@ -301,6 +301,7 @@
         case SUPLA_CHANNELFNC_TERRACE_AWNING:
         case SUPLA_CHANNELFNC_PROJECTOR_SCREEN:
         case SUPLA_CHANNELFNC_CURTAIN:
+        case SUPLA_CHANNELFNC_VERTICAL_BLIND:
             self.left_OnlineStatus.hidden = YES;
             self.right_OnlineStatus.hidden = NO;
             break;
@@ -392,6 +393,7 @@
                 case SUPLA_CHANNELFNC_TERRACE_AWNING:
                 case SUPLA_CHANNELFNC_PROJECTOR_SCREEN:
                 case SUPLA_CHANNELFNC_CURTAIN:
+                case SUPLA_CHANNELFNC_VERTICAL_BLIND:
                     br = [MGSwipeButton buttonWithTitle:NSLocalizedString(@"Open", nil) icon:nil backgroundColor:[UIColor blackColor]];
                     bl = [MGSwipeButton buttonWithTitle:NSLocalizedString(@"Close", nil) icon:nil backgroundColor:[UIColor blackColor]];
                     break;

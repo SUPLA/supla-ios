@@ -16,20 +16,7 @@
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 
-final class BlindsGroupActivePercentageProvider: GroupActivePercentageProvider {
-    func handleFunction(_ function: Int32) -> Bool {
-        switch (function) {
-            case SUPLA_CHANNELFNC_CONTROLLINGTHEFACADEBLIND,
-                 SUPLA_CHANNELFNC_VERTICAL_BLIND: true
-            default: false
-        }
-    }
-
-    func getActivePercentage(_ valueIndex: Int, _ totalValue: GroupTotalValue) -> Int {
-        return totalValue.values
-            .map { $0 as! ShadowingBlindGroupValue }
-            .reduce(0) { result, value in
-                value.position >= 100 ? result + 1 : result
-            } * 100 / totalValue.values.count
-    }
+struct VerticalBlindMarker: Equatable {
+    let position: CGFloat
+    let tilt: CGFloat
 }

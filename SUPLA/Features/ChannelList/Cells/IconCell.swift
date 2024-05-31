@@ -106,7 +106,8 @@ final class IconCell: BaseCell<ChannelWithChildren> {
              SUPLA_CHANNELFNC_CONTROLLINGTHEROLLERSHUTTER,
              SUPLA_CHANNELFNC_TERRACE_AWNING,
              SUPLA_CHANNELFNC_PROJECTOR_SCREEN,
-             SUPLA_CHANNELFNC_CURTAIN: true
+             SUPLA_CHANNELFNC_CURTAIN,
+             SUPLA_CHANNELFNC_VERTICAL_BLIND: true
         default: false
         }
     }
@@ -118,7 +119,8 @@ final class IconCell: BaseCell<ChannelWithChildren> {
              SUPLA_CHANNELFNC_CONTROLLINGTHEROLLERSHUTTER,
              SUPLA_CHANNELFNC_TERRACE_AWNING,
              SUPLA_CHANNELFNC_PROJECTOR_SCREEN,
-             SUPLA_CHANNELFNC_CURTAIN: true
+             SUPLA_CHANNELFNC_CURTAIN,
+             SUPLA_CHANNELFNC_VERTICAL_BLIND: true
         default: false
         }
     }

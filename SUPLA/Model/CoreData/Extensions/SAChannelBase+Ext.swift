@@ -55,7 +55,8 @@ extension SAChannelBase {
             self.func == SUPLA_CHANNELFNC_CONTROLLINGTHEROOFWINDOW ||
             self.func == SUPLA_CHANNELFNC_CONTROLLINGTHEFACADEBLIND ||
             self.func == SUPLA_CHANNELFNC_TERRACE_AWNING ||
-            self.func == SUPLA_CHANNELFNC_CURTAIN
+            self.func == SUPLA_CHANNELFNC_CURTAIN ||
+            self.func == SUPLA_CHANNELFNC_VERTICAL_BLIND
     }
 
     func hasMeasurements() -> Bool {

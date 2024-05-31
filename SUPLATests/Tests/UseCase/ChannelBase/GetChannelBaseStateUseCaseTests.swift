@@ -488,4 +488,46 @@ final class GetChannelBaseStateUseCaseTests: XCTestCase {
         XCTAssertEqual(state, .opened)
         XCTAssertFalse(state.isActive())
     }
+    
+    func test_verticalBlindClosedState() {
+        // given
+        let channel = SAChannel(testContext: nil)
+        channel.func = SUPLA_CHANNELFNC_VERTICAL_BLIND
+        channel.value = mockChannelValue(byte0: 100)
+
+        // when
+        let state = useCase.invoke(channelBase: channel)
+
+        // then
+        XCTAssertEqual(state, .closed)
+        XCTAssertTrue(state.isActive())
+    }
+
+    func test_verticalBlindOpenedState() {
+        // given
+        let channel = SAChannel(testContext: nil)
+        channel.func = SUPLA_CHANNELFNC_VERTICAL_BLIND
+        channel.value = mockChannelValue()
+
+        // when
+        let state = useCase.invoke(channelBase: channel)
+
+        // then
+        XCTAssertEqual(state, .opened)
+        XCTAssertFalse(state.isActive())
+    }
+
+    func test_verticalBlindOfflineState() {
+        // given
+        let channel = SAChannel(testContext: nil)
+        channel.func = SUPLA_CHANNELFNC_VERTICAL_BLIND
+        channel.value = mockChannelValue(online: false)
+
+        // when
+        let state = useCase.invoke(channelBase: channel)
+
+        // then
+        XCTAssertEqual(state, .opened)
+        XCTAssertFalse(state.isActive())
+    }
 }
