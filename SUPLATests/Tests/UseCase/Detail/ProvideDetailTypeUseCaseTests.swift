@@ -118,6 +118,15 @@ final class ProvideDetailTypeUseCaseTests: XCTestCase {
         }
     }
     
+    func test_shouldProvideRs_forGarageDoorFunction() {
+        doTest(expectedResult: .windowDetail(pages: [.garageDoor])) {
+            let channel = SAChannel(testContext: nil)
+            channel.func = SUPLA_CHANNELFNC_ROLLER_GARAGE_DOOR
+            
+            return channel
+        }
+    }
+    
     func test_shouldProvideEm_forEmFunction() {
         doTest(expectedResult: .legacy(type: .em)) {
             let channel = SAChannel(testContext: nil)

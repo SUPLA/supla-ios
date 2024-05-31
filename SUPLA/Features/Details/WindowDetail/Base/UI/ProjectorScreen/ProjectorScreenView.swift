@@ -75,6 +75,7 @@ final class ProjectorScreenView: BaseWindowView<ProjectorScreenState> {
         // Logo
         if let logo = logo {
             let verticalCorrection = screenHeight - dimens.screenMaxHeight
+            context.setShadow(offset: .zero, blur: 0)
             logo.draw(in: dimens.logoRect.offsetBy(dx: 0, dy: verticalCorrection))
         }
         // top part

@@ -710,6 +710,12 @@
 		A58A630B2C071ACB00A9D02D /* VerticalBlindsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58A630A2C071ACB00A9D02D /* VerticalBlindsVC.swift */; };
 		A58A630E2C071B0600A9D02D /* VerticalBlindsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58A630D2C071B0600A9D02D /* VerticalBlindsView.swift */; };
 		A58A63132C09B56000A9D02D /* VerticalBlindsVMTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58A63122C09B56000A9D02D /* VerticalBlindsVMTests.swift */; };
+		A58A63172C09BFAF00A9D02D /* GarageDoorVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58A63162C09BFAF00A9D02D /* GarageDoorVM.swift */; };
+		A58A63192C09C03500A9D02D /* GarageDoorState.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58A63182C09C03500A9D02D /* GarageDoorState.swift */; };
+		A58A631B2C09C09100A9D02D /* GarageDoorVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58A631A2C09C09100A9D02D /* GarageDoorVC.swift */; };
+		A58A631D2C09C0D600A9D02D /* GarageDoorColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58A631C2C09C0D600A9D02D /* GarageDoorColors.swift */; };
+		A58A631F2C09C0F200A9D02D /* GarageDoorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58A631E2C09C0F200A9D02D /* GarageDoorView.swift */; };
+		A58A63222C09E6C400A9D02D /* GarageDoorVMTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58A63212C09E6C400A9D02D /* GarageDoorVMTests.swift */; };
 		A58A9BFA2A9F77BB00D28848 /* BaseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58A9BF92A9F77BB00D28848 /* BaseCell.swift */; };
 		A58A9BFE2AA0A4BD00D28848 /* UIView+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58A9BFD2AA0A4BD00D28848 /* UIView+Ext.swift */; };
 		A58A9C012AA0AD0E00D28848 /* ThermostatCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58A9C002AA0AD0E00D28848 /* ThermostatCell.swift */; };
@@ -2045,6 +2051,12 @@
 		A58A630A2C071ACB00A9D02D /* VerticalBlindsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VerticalBlindsVC.swift; sourceTree = "<group>"; };
 		A58A630D2C071B0600A9D02D /* VerticalBlindsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VerticalBlindsView.swift; sourceTree = "<group>"; };
 		A58A63122C09B56000A9D02D /* VerticalBlindsVMTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerticalBlindsVMTests.swift; sourceTree = "<group>"; };
+		A58A63162C09BFAF00A9D02D /* GarageDoorVM.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GarageDoorVM.swift; sourceTree = "<group>"; };
+		A58A63182C09C03500A9D02D /* GarageDoorState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GarageDoorState.swift; sourceTree = "<group>"; };
+		A58A631A2C09C09100A9D02D /* GarageDoorVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GarageDoorVC.swift; sourceTree = "<group>"; };
+		A58A631C2C09C0D600A9D02D /* GarageDoorColors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GarageDoorColors.swift; sourceTree = "<group>"; };
+		A58A631E2C09C0F200A9D02D /* GarageDoorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GarageDoorView.swift; sourceTree = "<group>"; };
+		A58A63212C09E6C400A9D02D /* GarageDoorVMTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GarageDoorVMTests.swift; sourceTree = "<group>"; };
 		A58A9BF92A9F77BB00D28848 /* BaseCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCell.swift; sourceTree = "<group>"; };
 		A58A9BFD2AA0A4BD00D28848 /* UIView+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Ext.swift"; sourceTree = "<group>"; };
 		A58A9C002AA0AD0E00D28848 /* ThermostatCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThermostatCell.swift; sourceTree = "<group>"; };
@@ -3100,6 +3112,7 @@
 		A5074BBB2BCE5CBF0081B6B1 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				A58A63142C09BCCE00A9D02D /* GarageDoor */,
 				A58A630C2C071AF400A9D02D /* VerticalBlind */,
 				A5AD70192C00B1C300A36318 /* Controls */,
 				A50E5D782BFF551B00303BAE /* Curtain */,
@@ -3216,6 +3229,7 @@
 		A50B5D102BECC58800918D18 /* WindowDetail */ = {
 			isa = PBXGroup;
 			children = (
+				A58A63202C09E6A000A9D02D /* GarageDoor */,
 				A58A63112C09B54B00A9D02D /* VerticalBlind */,
 				A5AD702A2C04771500A36318 /* Curtain */,
 				A50B5D312BF54FE600918D18 /* TerraceAwning */,
@@ -3957,6 +3971,7 @@
 		A55A8D6C2BA831AD00C540D4 /* WindowDetail */ = {
 			isa = PBXGroup;
 			children = (
+				A58A63152C09BCE600A9D02D /* GarageDoor */,
 				A58A63032C07154700A9D02D /* VerticalBlind */,
 				A50E5D712BFF540700303BAE /* Curtain */,
 				A50B5D342BFB6BDB00918D18 /* ProjectorScreen */,
@@ -4032,6 +4047,7 @@
 				A58A63082C07168400A9D02D /* VerticalBlindMarker.swift */,
 				A50B5D2C2BF49F7700918D18 /* TerraceAwningWindowState.swift */,
 				A50B5D372BFB6D1400918D18 /* ProjectorScreenState.swift */,
+				A58A63182C09C03500A9D02D /* GarageDoorState.swift */,
 				A50E5D762BFF548200303BAE /* CurtainWindowState.swift */,
 			);
 			path = Model;
@@ -4366,6 +4382,32 @@
 				A58A63122C09B56000A9D02D /* VerticalBlindsVMTests.swift */,
 			);
 			path = VerticalBlind;
+			sourceTree = "<group>";
+		};
+		A58A63142C09BCCE00A9D02D /* GarageDoor */ = {
+			isa = PBXGroup;
+			children = (
+				A58A631C2C09C0D600A9D02D /* GarageDoorColors.swift */,
+				A58A631E2C09C0F200A9D02D /* GarageDoorView.swift */,
+			);
+			path = GarageDoor;
+			sourceTree = "<group>";
+		};
+		A58A63152C09BCE600A9D02D /* GarageDoor */ = {
+			isa = PBXGroup;
+			children = (
+				A58A63162C09BFAF00A9D02D /* GarageDoorVM.swift */,
+				A58A631A2C09C09100A9D02D /* GarageDoorVC.swift */,
+			);
+			path = GarageDoor;
+			sourceTree = "<group>";
+		};
+		A58A63202C09E6A000A9D02D /* GarageDoor */ = {
+			isa = PBXGroup;
+			children = (
+				A58A63212C09E6C400A9D02D /* GarageDoorVMTests.swift */,
+			);
+			path = GarageDoor;
 			sourceTree = "<group>";
 		};
 		A58A9BF82A9F77A400D28848 /* Cells */ = {
@@ -5967,6 +6009,7 @@
 				A5F29BC22A24E30100ED700A /* ChangeChannelsVisibilityUseCase.swift in Sources */,
 				A57C4AB72AAF4F7600D9C695 /* FilteredTapGestureDelegate.swift in Sources */,
 				AE7452912827F49100A3AFAD /* ProfilesNavigationCoordinator.swift in Sources */,
+				A58A631F2C09C0F200A9D02D /* GarageDoorView.swift in Sources */,
 				A55A8DAF2BAC64A700C540D4 /* SADialogTitleLabel.swift in Sources */,
 				0172677D234FAF78000F1CFB /* SADownloadImpulseCounterMeasurements.m in Sources */,
 				A56233FF2ABAC488001CB948 /* ThermostatIconNameProducer.swift in Sources */,
@@ -6088,6 +6131,7 @@
 				A5074BE42BD251590081B6B1 /* ExecuteFacadeBlindActionUseCase.swift in Sources */,
 				A51BE9032AA746C100718F2F /* RoundedControlButtonView.swift in Sources */,
 				401CA1C21BA067DB00117AF4 /* AppDelegate.m in Sources */,
+				A58A63192C09C03500A9D02D /* GarageDoorState.swift in Sources */,
 				A5E490632A4019E6006801FE /* UpdateGroupIconRelationsUseCase.swift in Sources */,
 				A5F29BAE2A24BA5800ED700A /* LegacyWrapper.swift in Sources */,
 				A5F29B9A2A20C26900ED700A /* BaseTableViewController.swift in Sources */,
@@ -6151,6 +6195,7 @@
 				A5F29B9D2A20D2F300ED700A /* CreateProfileGroupsListUseCase.swift in Sources */,
 				A566398D2ABADFD700BA51D7 /* LoadingScrimView.swift in Sources */,
 				40B9ED3A1FAC79FC00403B1A /* SUPLA.xcdatamodeld in Sources */,
+				A58A63172C09BFAF00A9D02D /* GarageDoorVM.swift in Sources */,
 				40B610CC20C7E263002B762A /* SAUIChannelStatus.m in Sources */,
 				AECB1BE727109EA3001A9714 /* CheckBox.swift in Sources */,
 				A5A14A3D2B6134C4004B1598 /* InsertChannelConfigUseCase.swift in Sources */,
@@ -6229,6 +6274,7 @@
 				A5B3A4B52BB558B70001D006 /* RoofWindowView.swift in Sources */,
 				A5AE7A7F2A3998260097FA8B /* NewGestureInfoView.swift in Sources */,
 				A57777CD29E6907C004513E6 /* RuntimeConfig.swift in Sources */,
+				A58A631B2C09C09100A9D02D /* GarageDoorVC.swift in Sources */,
 				A57668DD2AE995590025509D /* GeneralError.swift in Sources */,
 				A55A8D882BAAFFE700C540D4 /* ChannelIssueItem.swift in Sources */,
 				A5074BB52BCCFD2B0081B6B1 /* IconCell.swift in Sources */,
@@ -6313,6 +6359,7 @@
 				A58A63052C0715E500A9D02D /* VerticalBlindsVM.swift in Sources */,
 				40A6757F1BA1A5B6004A51C4 /* SuplaApp.m in Sources */,
 				A50B5D502BFCBDFB00918D18 /* OpenedClosedGroupActivePercentageProvider.swift in Sources */,
+				A58A631D2C09C0D600A9D02D /* GarageDoorColors.swift in Sources */,
 				018CFD2023281A5900888CB7 /* SAElectricityMeterExtendedValue.m in Sources */,
 				A5FE67632A65D56300147D1F /* UpdateServerHostNameUseCase.swift in Sources */,
 				A5074BC52BCE66070081B6B1 /* DefaultWindowDimens.swift in Sources */,
@@ -6530,6 +6577,7 @@
 				A59AB8BD2A30806800D91F1F /* BaseRepositoryMock.swift in Sources */,
 				A50B5CF92BE9FD4700918D18 /* UpdateChannelGroupTotalValueUseCaseTests.swift in Sources */,
 				A54A06662AF5271900C03DBC /* ThermometerHistoryDetailVMTests.swift in Sources */,
+				A58A63222C09E6C400A9D02D /* GarageDoorVMTests.swift in Sources */,
 				A59AB8D52A3092C500D91F1F /* TempHumidityMeasurementItemRepositoryMock.swift in Sources */,
 				A5CE732F2B469C36003F882C /* EspHtmlParserTests.swift in Sources */,
 				A59AB8AB2A306FC700D91F1F /* ViewModelTest.swift in Sources */,

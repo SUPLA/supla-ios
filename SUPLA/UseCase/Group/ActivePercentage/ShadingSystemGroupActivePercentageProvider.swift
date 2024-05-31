@@ -22,14 +22,15 @@ final class ShadingSystemGroupActivePercentageProvider: GroupActivePercentagePro
         case SUPLA_CHANNELFNC_CONTROLLINGTHEROLLERSHUTTER,
              SUPLA_CHANNELFNC_CONTROLLINGTHEROOFWINDOW,
              SUPLA_CHANNELFNC_TERRACE_AWNING,
-             SUPLA_CHANNELFNC_CURTAIN: true
+             SUPLA_CHANNELFNC_CURTAIN,
+             SUPLA_CHANNELFNC_ROLLER_GARAGE_DOOR: true
         default: false
         }
     }
 
     func getActivePercentage(_ valueIndex: Int, _ totalValue: GroupTotalValue) -> Int {
         totalValue.values
-            .map { $0 as! RollerShutterGroupValue }
+            .map { $0 as! ShadingSystemGroupValue }
             .reduce(0) { result, value in
                 value.position >= 100 || value.closedSensorActive ? result + 1 : result
             } * 100 / totalValue.values.count

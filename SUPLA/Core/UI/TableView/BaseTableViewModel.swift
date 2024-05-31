@@ -64,7 +64,8 @@ class BaseTableViewModel<S: ViewState, E: ViewEvent>: BaseViewModel<S, E> {
              SUPLA_CHANNELFNC_TERRACE_AWNING,
              SUPLA_CHANNELFNC_PROJECTOR_SCREEN,
              SUPLA_CHANNELFNC_CURTAIN,
-             SUPLA_CHANNELFNC_VERTICAL_BLIND:
+             SUPLA_CHANNELFNC_VERTICAL_BLIND,
+             SUPLA_CHANNELFNC_ROLLER_GARAGE_DOOR:
             return true
         case SUPLA_CHANNELFNC_LIGHTSWITCH,
              SUPLA_CHANNELFNC_POWERSWITCH,

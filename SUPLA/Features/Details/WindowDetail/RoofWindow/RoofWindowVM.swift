@@ -85,7 +85,7 @@ private extension SAChannelGroup {
     }
 
     private func valueToPosition(_ baseGroupValue: BaseGroupValue) -> CGFloat? {
-        guard let value = baseGroupValue as? RollerShutterGroupValue else { return nil }
+        guard let value = baseGroupValue as? ShadingSystemGroupValue else { return nil }
 
         return if (value.position < 100 && value.closedSensorActive) {
             CGFloat(100)

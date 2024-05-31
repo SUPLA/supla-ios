@@ -46,10 +46,10 @@ final class GroupActivePercentageUseCaseTests: XCTestCase {
         let group = SAChannelGroup(testContext: nil)
         group.func = SUPLA_CHANNELFNC_CONTROLLINGTHEROLLERSHUTTER
         group.total_value = GroupTotalValue(values: [
-            RollerShutterGroupValue(position: 100, closedSensorActive: false),
-            RollerShutterGroupValue(position: 0, closedSensorActive: false),
-            RollerShutterGroupValue(position: 0, closedSensorActive: true),
-            RollerShutterGroupValue(position: 100, closedSensorActive: true)
+            ShadingSystemGroupValue(position: 100, closedSensorActive: false),
+            ShadingSystemGroupValue(position: 0, closedSensorActive: false),
+            ShadingSystemGroupValue(position: 0, closedSensorActive: true),
+            ShadingSystemGroupValue(position: 100, closedSensorActive: true)
         ])
         
         // when

@@ -70,6 +70,7 @@
 "channel_caption_projector_screen" = "Projector screen";
 "channel_caption_curtain" = "Curtain";
 "channel_caption_vertical_blind" = "Vertical blind";
+"channel_caption_garage_door" = "Garage door";
 
 /* Main */
 "dialog_new_gesture_info_text" = "Swipe gesture to open details was removed, tap on particular channel to open it.";

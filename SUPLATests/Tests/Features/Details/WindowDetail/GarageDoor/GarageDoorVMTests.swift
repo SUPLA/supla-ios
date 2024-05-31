@@ -19,7 +19,7 @@
 @testable import SUPLA
 import XCTest
 
-final class TerraceAwningVMTests: ViewModelTest<TerraceAwningViewState, BaseWindowViewEvent> {
+final class GarageDoorVMTests: ViewModelTest<GarageDoorViewState, BaseWindowViewEvent> {
     
     private lazy var readChannelByRemoteIdUseCase: ReadChannelByRemoteIdUseCaseMock! = ReadChannelByRemoteIdUseCaseMock()
     
@@ -29,7 +29,7 @@ final class TerraceAwningVMTests: ViewModelTest<TerraceAwningViewState, BaseWind
     
     private lazy var settings: GlobalSettingsMock! = GlobalSettingsMock()
     
-    private lazy var viewModel: TerraceAwningVM! = TerraceAwningVM()
+    private lazy var viewModel: GarageDoorVM! = GarageDoorVM()
     
     override func setUp() {
         
@@ -65,10 +65,10 @@ final class TerraceAwningVMTests: ViewModelTest<TerraceAwningViewState, BaseWind
         
         // then
         assertStates(expected: [
-            TerraceAwningViewState(),
-            TerraceAwningViewState(
+            GarageDoorViewState(),
+            GarageDoorViewState(
                 remoteId: 123,
-                terraceAwningWindowState: TerraceAwningWindowState(position: .similar(50)),
+                garageDoorState: GarageDoorState(position: .similar(50)),
                 issues: [
                     ChannelIssueItem(
                         issueIconType: .warning,
@@ -105,10 +105,10 @@ final class TerraceAwningVMTests: ViewModelTest<TerraceAwningViewState, BaseWind
         
         // then
         assertStates(expected: [
-            TerraceAwningViewState(),
-            TerraceAwningViewState(
+            GarageDoorViewState(),
+            GarageDoorViewState(
                 remoteId: 234,
-                terraceAwningWindowState: TerraceAwningWindowState(
+                garageDoorState: GarageDoorState(
                     position: .different(min: 50, max: 80),
                     positionTextFormat: .openingPercentage,
                     markers: [50, 80]

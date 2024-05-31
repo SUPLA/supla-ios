@@ -80,6 +80,7 @@ final class GetDefaultIconNameUseCaseImpl: GetDefaultIconNameUseCase {
         StaticIconNameProducer(function: SUPLA_CHANNELFNC_PROJECTOR_SCREEN, name: "fnc_projector_screen"),
         StaticIconNameProducer(function: SUPLA_CHANNELFNC_CURTAIN, name: "fnc_curtain"),
         StaticIconNameProducer(function: SUPLA_CHANNELFNC_VERTICAL_BLIND, name: "fnc_vertical_blind"),
+        StaticIconNameProducer(function: SUPLA_CHANNELFNC_ROLLER_GARAGE_DOOR, name: "fnc_garage_door"),
         PowerSwitchIconNameProducer(),
         LightSwitchIconNameProducer(),
         StaircaseTimerIconNameProducer(),

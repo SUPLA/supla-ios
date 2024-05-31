@@ -97,6 +97,8 @@ class StandardDetailVC<S : ViewState, E : ViewEvent, VM : StandardDetailVM<S, E>
                 viewControllers.append(curtainDetail())
             case .verticalBlind:
                 viewControllers.append(verticalBlindDetail())
+            case .garageDoor:
+                viewControllers.append(garageDoorDetail())
             }
         }
         
@@ -281,6 +283,17 @@ class StandardDetailVC<S : ViewState, E : ViewEvent, VM : StandardDetailVM<S, E>
     
     private func verticalBlindDetail() -> VerticalBlindsVC {
         let vc = VerticalBlindsVC(itemBundle: item)
+        vc.navigationCoordinator = navigationCoordinator
+        vc.tabBarItem = UITabBarItem(
+            title: settings.showBottomLabels ? Strings.StandardDetail.tabGeneral : nil,
+            image: .iconGeneral,
+            tag: DetailTabTag.Window.rawValue
+        )
+        return vc
+    }
+    
+    private func garageDoorDetail() -> GarageDoorVC {
+        let vc = GarageDoorVC(itemBundle: item)
         vc.navigationCoordinator = navigationCoordinator
         vc.tabBarItem = UITabBarItem(
             title: settings.showBottomLabels ? Strings.StandardDetail.tabGeneral : nil,

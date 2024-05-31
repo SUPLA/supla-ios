@@ -77,4 +77,5 @@ extension UIImage {
     static let thumbCool = UIImage(named: .Icons.thumbCool)
     
     @objc static let logo = UIImage(named: .Image.logo)
+    @objc static let garageContent = UIImage(named: .Image.garageContent)
 }

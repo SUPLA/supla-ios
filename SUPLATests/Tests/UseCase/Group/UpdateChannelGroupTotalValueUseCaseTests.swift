@@ -55,7 +55,7 @@ final class UpdateChannelGroupTotalValueUseCaseTests: UseCaseTest<[Int32]> {
         thirdGroup.remote_id = 33
         thirdGroup.func = SUPLA_CHANNELFNC_CONTROLLINGTHEROOFWINDOW
         thirdGroup.online = 100
-        thirdGroup.total_value = GroupTotalValue(values: [RollerShutterGroupValue(position: 10, closedSensorActive: false)])
+        thirdGroup.total_value = GroupTotalValue(values: [ShadingSystemGroupValue(position: 10, closedSensorActive: false)])
         
         let firstGroupRelation1 = SAChannelGroupRelation(testContext: nil)
         firstGroupRelation1.group = firstGroup
@@ -93,8 +93,8 @@ final class UpdateChannelGroupTotalValueUseCaseTests: UseCaseTest<[Int32]> {
         XCTAssertEqual(firstGroup.online, 66)
         XCTAssertTrue(firstGroup.total_value is GroupTotalValue)
         if let groupTotalValue = firstGroup.total_value as? GroupTotalValue,
-           let firstRelationValue = groupTotalValue.values[0] as? RollerShutterGroupValue,
-           let secondRelationValue = groupTotalValue.values[1] as? RollerShutterGroupValue
+           let firstRelationValue = groupTotalValue.values[0] as? ShadingSystemGroupValue,
+           let secondRelationValue = groupTotalValue.values[1] as? ShadingSystemGroupValue
         {
             XCTAssertEqual(groupTotalValue.values.count, 2)
             XCTAssertEqual(firstRelationValue.position, 18)
@@ -399,7 +399,43 @@ final class UpdateChannelGroupTotalValueUseCaseTests: UseCaseTest<[Int32]> {
         XCTAssertEqual(group.online, 100)
         XCTAssertTrue(group.total_value is GroupTotalValue)
         if let groupTotalValue = group.total_value as? GroupTotalValue,
-           let firstRelationValue = groupTotalValue.values[0] as? RollerShutterGroupValue
+           let firstRelationValue = groupTotalValue.values[0] as? ShadingSystemGroupValue
+        {
+            XCTAssertEqual(groupTotalValue.values.count, 1)
+            XCTAssertEqual(firstRelationValue.position, 18)
+        } else {
+            XCTFail("First group total value not created!")
+        }
+        
+        assertEvents([
+            .next([11]), // in third group there are no changes so it should not be present here.
+            .completed
+        ])
+    }
+    
+    func testIfTotalValueIsCreatedForGarageDoor() {
+        // given
+        let group = SAChannelGroup(testContext: nil)
+        group.remote_id = 11
+        group.func = SUPLA_CHANNELFNC_ROLLER_GARAGE_DOOR
+        
+        let groupRelation = SAChannelGroupRelation(testContext: nil)
+        groupRelation.group = group
+        groupRelation.value = SAChannelValue.mockRollerShutter(position: 18)
+        
+        channelGroupRelationRepository.getAllVisibleRelationsForActiveProfileReturns = .just([
+            groupRelation,
+        ])
+        channelGroupRelationRepository.saveObservable = .just(())
+        
+        // when
+        useCase.invoke().subscribe(observer).disposed(by: disposeBag)
+        
+        // then
+        XCTAssertEqual(group.online, 100)
+        XCTAssertTrue(group.total_value is GroupTotalValue)
+        if let groupTotalValue = group.total_value as? GroupTotalValue,
+           let firstRelationValue = groupTotalValue.values[0] as? ShadingSystemGroupValue
         {
             XCTAssertEqual(groupTotalValue.values.count, 1)
             XCTAssertEqual(firstRelationValue.position, 18)

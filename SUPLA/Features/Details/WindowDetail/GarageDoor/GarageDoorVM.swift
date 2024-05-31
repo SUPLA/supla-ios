@@ -16,8 +16,8 @@
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 
-final class RollerShutterVM: BaseWindowVM<RollerShutterViewState> {
-    override func defaultViewState() -> RollerShutterViewState { RollerShutterViewState() }
+final class GarageDoorVM: BaseWindowVM<GarageDoorViewState> {
+    override func defaultViewState() -> GarageDoorViewState { GarageDoorViewState() }
 
     override func handleChannel(_ channel: SAChannel) {
         guard let value = channel.value?.asRollerShutterValue() else { return }
@@ -29,13 +29,12 @@ final class RollerShutterVM: BaseWindowVM<RollerShutterViewState> {
 
             let position = value.hasValidPosition ? value.position : 0
             let positionValue: WindowGroupedValue = .similar(value.online ? CGFloat(position) : 25)
-            let windowState = $0.rollerShutterWindowState
+            let windowState = $0.garageDoorState
                 .changing(path: \.position, to: positionValue)
                 .changing(path: \.positionTextFormat, to: positionTextFormat)
-                .changing(path: \.bottomPosition, to: CGFloat(value.bottomPosition))
 
             return updateChannel($0, channel, value) {
-                $0.changing(path: \.rollerShutterWindowState, to: windowState)
+                $0.changing(path: \.garageDoorState, to: windowState)
             }
         }
     }
@@ -47,23 +46,23 @@ final class RollerShutterVM: BaseWindowVM<RollerShutterViewState> {
             }
 
             let positions = group.getRollerShutterPositions()
-            let overallPosition = getGroupPercentage(positions, !$0.rollerShutterWindowState.markers.isEmpty)
-            let windowState = $0.rollerShutterWindowState
+            let overallPosition = getGroupPercentage(positions, !$0.garageDoorState.markers.isEmpty)
+            let windowState = $0.garageDoorState
                 .changing(path: \.position, to: group.isOnline() ? overallPosition : .similar(25))
                 .changing(path: \.positionTextFormat, to: positionTextFormat)
                 .changing(path: \.markers, to: overallPosition.isDifferent() ? positions : [])
 
             return updateGroup($0, group, onlineSummary) {
-                $0.changing(path: \.rollerShutterWindowState, to: windowState)
+                $0.changing(path: \.garageDoorState, to: windowState)
                     .changing(path: \.positionUnknown, to: overallPosition == .invalid)
             }
         }
     }
 }
 
-struct RollerShutterViewState: BaseWindowViewState {
+struct GarageDoorViewState: BaseWindowViewState {
     var remoteId: Int32? = nil
-    var rollerShutterWindowState: RollerShutterWindowState = .init(position: .similar(0))
+    var garageDoorState: GarageDoorState = .init(position: .similar(0))
     var issues: [ChannelIssueItem] = []
     var offline: Bool = true
     var showClosingPercentage: Bool = false
@@ -76,7 +75,7 @@ struct RollerShutterViewState: BaseWindowViewState {
     var moveStartTime: TimeInterval? = nil
     var manualMoving: Bool = false
 
-    var windowState: any WindowState { rollerShutterWindowState }
+    var windowState: any WindowState { garageDoorState }
 }
 
 private extension SAChannelGroup {

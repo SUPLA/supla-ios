@@ -30,7 +30,7 @@ extension SAChannelGroup {
                 if let value = $0 as? ShadowingBlindGroupValue {
                     return value.position
                 }
-                if let value = $0 as? RollerShutterGroupValue {
+                if let value = $0 as? ShadingSystemGroupValue {
                     return value.closedSensorActive ? 100 : value.position
                 }
                 

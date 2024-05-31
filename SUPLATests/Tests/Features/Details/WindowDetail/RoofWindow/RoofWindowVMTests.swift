@@ -91,8 +91,8 @@ final class RoofWindowVMTests: ViewModelTest<RoofWindowViewState, BaseWindowView
         group.remote_id = 234
         group.online = 1
         group.total_value = GroupTotalValue(values: [
-            RollerShutterGroupValue(position: 50, closedSensorActive: false),
-            RollerShutterGroupValue(position: 80, closedSensorActive: false)
+            ShadingSystemGroupValue(position: 50, closedSensorActive: false),
+            ShadingSystemGroupValue(position: 80, closedSensorActive: false)
         ])
         
         settings.showOpeningPercentReturns = true
