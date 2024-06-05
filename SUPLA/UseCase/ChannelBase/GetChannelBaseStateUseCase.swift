@@ -47,13 +47,13 @@ final class GetChannelBaseStateUseCaseImpl: GetChannelBaseStateUseCase {
         case SUPLA_CHANNELFNC_CONTROLLINGTHEROLLERSHUTTER,
              SUPLA_CHANNELFNC_CONTROLLINGTHEROOFWINDOW,
              SUPLA_CHANNELFNC_CONTROLLINGTHEFACADEBLIND,
-             SUPLA_CHANNELFNC_TERRACE_AWNING,
              SUPLA_CHANNELFNC_CURTAIN,
              SUPLA_CHANNELFNC_VERTICAL_BLIND,
              SUPLA_CHANNELFNC_ROLLER_GARAGE_DOOR:
             return valueWrapper.rollerShutterClosed ? .closed : .opened
-        case SUPLA_CHANNELFNC_PROJECTOR_SCREEN:
-            return valueWrapper.projectorScreenClosed ? .closed : .opened
+        case SUPLA_CHANNELFNC_PROJECTOR_SCREEN,
+             SUPLA_CHANNELFNC_TERRACE_AWNING:
+            return valueWrapper.shadingSystemReversedClosed ? .closed : .opened
         case SUPLA_CHANNELFNC_OPENINGSENSOR_GATEWAY,
              SUPLA_CHANNELFNC_OPENINGSENSOR_GATE,
              SUPLA_CHANNELFNC_OPENINGSENSOR_GARAGEDOOR,
@@ -147,7 +147,7 @@ protocol ValueStateWrapper {
     var colorBrightness: Int32 { get }
     var transparent: Bool { get }
     var rollerShutterClosed: Bool { get }
-    var projectorScreenClosed: Bool { get }
+    var shadingSystemReversedClosed: Bool { get }
 }
 
 private class ChannelValueStateWrapper: ValueStateWrapper {
@@ -181,9 +181,9 @@ private class ChannelValueStateWrapper: ValueStateWrapper {
         return (subValueHi > 0 && percentage < 100) || percentage >= 100
     }
     
-    var projectorScreenClosed: Bool {
+    var shadingSystemReversedClosed: Bool {
         let percentage = channelValue.asRollerShutterValue().position
-        return percentage <= 0
+        return percentage < 100
     }
     
     private let channelValue: SAChannelValue
@@ -220,8 +220,8 @@ private class ChannelGroupStateWrapper: ValueStateWrapper {
         getActivePercentage() >= 100
     }
     
-    var projectorScreenClosed: Bool {
-        getActivePercentage() <= 0
+    var shadingSystemReversedClosed: Bool {
+        getActivePercentage() < 100
     }
     
     private let channelGroup: SAChannelGroup

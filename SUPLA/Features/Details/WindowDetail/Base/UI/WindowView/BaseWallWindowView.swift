@@ -19,11 +19,6 @@
 class BaseWallWindowView<T: WindowState, D: BaseWallWindowDimens>: BaseWindowView<T> {
     override var isEnabled: Bool {
         didSet {
-            if (isEnabled) {
-                colors = WindowColors.standard(traitCollection)
-            } else {
-                colors = WindowColors.offline(traitCollection)
-            }
             setNeedsDisplay()
         }
     }
@@ -93,6 +88,11 @@ class BaseWallWindowView<T: WindowState, D: BaseWallWindowDimens>: BaseWindowVie
         
         // markers - for groups
         drawMarkers(context, dimens)
+        
+        if (!isEnabled) {
+            context.setBlendMode(.destinationOut)
+            drawPath(context, fillColor: colors.disabledOverlay) { UIBezierPath(rect: dimens.frame).cgPath }
+        }
     }
     
     func drawShadowingElements(_ context: CGContext, _ dimens: D) {

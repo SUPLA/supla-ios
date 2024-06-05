@@ -22,11 +22,6 @@ final class TerraceAwningView: BaseWindowView<TerraceAwningWindowState> {
     
     override var isEnabled: Bool {
         didSet {
-            if (isEnabled) {
-                colors = TerraceAwningColors.standard(traitCollection)
-            } else {
-                colors = TerraceAwningColors.offline(traitCollection)
-            }
             setNeedsDisplay()
         }
     }
@@ -74,6 +69,11 @@ final class TerraceAwningView: BaseWindowView<TerraceAwningWindowState> {
             }
         } else {
             drawAwning(context)
+        }
+        
+        if (!isEnabled) {
+            context.setBlendMode(.destinationOut)
+            drawPath(context, fillColor: colors.disabledOverlay) { UIBezierPath(rect: dimens.frame).cgPath }
         }
     }
 
@@ -124,7 +124,7 @@ final class TerraceAwningView: BaseWindowView<TerraceAwningWindowState> {
         
         let frontHeight = frontMinHeight + (dimens.awningFrontHeight - frontMinHeight) * position / 100
         let frontRect = CGRect(
-            origin: CGPoint(x: maxWidthMarginByPosition, y: deepByPosition),
+            origin: CGPoint(x: maxWidthMarginByPosition, y: awningTop + deepByPosition),
             size: CGSize(width: maxWidthByPosition, height: frontHeight)
         )
         let frontPath = UIBezierPath(rect: frontRect)
@@ -156,7 +156,7 @@ final class TerraceAwningView: BaseWindowView<TerraceAwningWindowState> {
         if (withFront) {
             let frontHeight = frontMinHeight + (dimens.awningFrontHeight - frontMinHeight) * position / 100
             let frontRect = CGRect(
-                origin: CGPoint(x: maxWidthMarginByPosition, y: deepByPosition),
+                origin: CGPoint(x: maxWidthMarginByPosition, y: awningTop + deepByPosition),
                 size: CGSize(width: maxWidthByPosition, height: frontHeight)
             )
             let frontPath = UIBezierPath(rect: frontRect)
@@ -172,7 +172,6 @@ final class TerraceAwningView: BaseWindowView<TerraceAwningWindowState> {
         
         let deepByPosition = dimens.awninigMaxDepp * position / 100
         let widthDeltaByPosition = (dimens.awningOpenedWidth - dimens.awningClosedWidth) * position / 100
-        let maxWidthByPosition = dimens.awningClosedWidth + widthDeltaByPosition
         
         let path = UIBezierPath()
         path.move(to: CGPoint(x: shadowLeft, y: shadowTop))
@@ -206,10 +205,7 @@ private enum DefaultDimens {
     static let glassMargin: CGFloat = 14
 }
 
-private class RuntimeDimens {
-    var scale: CGFloat = 1
-    
-    var canvasRect: CGRect = .zero
+private class RuntimeDimens: BaseWindowViewDimens {
     var windowRect: CGRect = .zero
     var touchRect: CGRect = .zero
     var awningClosedWidth: CGFloat = 0
@@ -217,7 +213,7 @@ private class RuntimeDimens {
     var awninigMaxDepp: CGFloat = 0
     var awningFrontHeight: CGFloat = 0
     
-    func update(_ frame: CGRect) {
+    override func calculateDimens(_ frame: CGRect) {
         createCanvasRect(frame)
         scale = canvasRect.width / DefaultDimens.width
         createWindowRect()
@@ -230,14 +226,14 @@ private class RuntimeDimens {
     
     private func createCanvasRect(_ frame: CGRect) {
         let size = getSize(frame)
-        canvasRect = CGRect(origin: CGPoint(x: 0.0, y: 0.0), size: size)
+        canvasRect = CGRect(origin: CGPoint(x: (frame.width - size.width) / 2, y: (frame.height - size.height) / 2), size: size)
     }
     
     private func createWindowRect() {
         let windowWidth = DefaultDimens.windowWidth * scale
         let windowHeight = DefaultDimens.windowHeight * scale
-        let windowTop = DefaultDimens.windowTopDistance * scale
-        let windowLeft = (canvasRect.width - windowWidth) / 2
+        let windowTop = canvasRect.minY + DefaultDimens.windowTopDistance * scale
+        let windowLeft = canvasRect.minX + (canvasRect.width - windowWidth) / 2
         
         windowRect = CGRect(
             origin: CGPoint(x: windowLeft, y: windowTop),

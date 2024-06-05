@@ -16,19 +16,7 @@
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 
-enum SuplaTiltControlType: UInt8, CaseIterable, Codable {
-    case unknown = 0
-    case standsInPositionWhileTilting = 1
-    case changesPositionWhileTilting = 2
-    case tiltsOnlyWhenFullyClosed = 3
-    
-    static func from(_ value: UInt8) -> SuplaTiltControlType {
-        for type in SuplaTiltControlType.allCases {
-            if (type.rawValue == value) {
-                return type
-            }
-        }
-        
-        return .unknown
-    }
+struct ShadingBlindMarker: Equatable {
+    let position: CGFloat
+    let tilt: CGFloat
 }

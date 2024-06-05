@@ -30,9 +30,15 @@ final class ChannelConfigRepositoryMock: BaseRepositoryMock<SAChannelConfig>, Ch
     
     var getConfigParameters: [Int32] = []
     var getConfigReturns: Observable<SAChannelConfig?> = .empty()
+    var getConfigReturnsMap: [Int32: Observable<SAChannelConfig?>] = [:]
     func getConfig(channelRemoteId: Int32) -> Observable<SAChannelConfig?> {
         getConfigParameters.append(channelRemoteId)
-        return getConfigReturns
+        
+        if (getConfigReturnsMap.isEmpty) {
+            return getConfigReturns
+        }
+        
+        return getConfigReturnsMap[channelRemoteId]!
     }
     
 }

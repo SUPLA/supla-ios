@@ -98,8 +98,10 @@ class BaseWindowVM<S: BaseWindowViewState>: BaseViewModel<S, BaseWindowViewEvent
     }
     
     func positionToString(_ position: CGFloat) -> String {
-        let showOpening = settings.showOpeningPercent
-        return String(format: "%.0f%%", showOpening ? (100 - position) : position)
+        switch (getPositionPresentation()) {
+        case .asOpened: String(format: "%.0f%%", 100 - position)
+        default: String(format: "%.0f%%", position)
+        }
     }
     
     private func loadChannel(_ remoteId: Int32) {
@@ -115,7 +117,7 @@ class BaseWindowVM<S: BaseWindowViewState>: BaseViewModel<S, BaseWindowViewEvent
                 .changing(path: \.remoteId, to: channel.remote_id)
                 .changing(path: \.issues, to: createIssues(value.flags))
                 .changing(path: \.offline, to: !value.online)
-                .changing(path: \.showClosingPercentage, to: !settings.showOpeningPercent)
+                .changing(path: \.positionPresentation, to: getPositionPresentation())
                 .changing(path: \.positionUnknown, to: !value.hasValidPosition)
                 .changing(path: \.calibrating, to: value.flags.contains(.calibrationInProgress))
                 .changing(path: \.calibrationPossible, to: (channel.flags & Int64(SUPLA_CHANNEL_FLAG_CALCFG_RECALIBRATE)) > 0)
@@ -140,7 +142,7 @@ class BaseWindowVM<S: BaseWindowViewState>: BaseViewModel<S, BaseWindowViewEvent
         customHandler(
             state.changing(path: \.remoteId, to: group.remote_id)
                 .changing(path: \.offline, to: !group.isOnline())
-                .changing(path: \.showClosingPercentage, to: !settings.showOpeningPercent)
+                .changing(path: \.positionPresentation, to: getPositionPresentation())
                 .changing(path: \.calibrating, to: false)
                 .changing(path: \.calibrationPossible, to: false)
                 .changing(path: \.isGroup, to: true)
@@ -159,6 +161,10 @@ class BaseWindowVM<S: BaseWindowViewState>: BaseViewModel<S, BaseWindowViewEvent
     
     func canShowMoveTime(_ state: S) -> Bool {
         state.positionUnknown
+    }
+    
+    func getPositionPresentation() -> ShadingSystemPositionPresentation {
+        settings.showOpeningPercent ? .asOpened : .asClosed
     }
     
     private func updateMoveStartTime(_ state: S) -> S {
@@ -247,7 +253,7 @@ protocol BaseWindowViewState: ViewState {
     
     var issues: [ChannelIssueItem] { get set }
     var offline: Bool { get set }
-    var showClosingPercentage: Bool { get set }
+    var positionPresentation: ShadingSystemPositionPresentation { get set }
     var calibrating: Bool { get set }
     var calibrationPossible: Bool { get set }
     var positionUnknown: Bool { get set }

@@ -109,10 +109,10 @@ class BaseWindowVC<WS: WindowState, WV: BaseWindowView<WS>, S: BaseWindowViewSta
             topView.valueTop = nil
             topView.valueBottom = nil
         } else if (!state.positionUnknown) {
-            topView.labelTop = state.showClosingPercentage ? Strings.RollerShutterDetail.closingPercentage : Strings.RollerShutterDetail.openingPercentage
+            topView.labelTop = state.positionPresentation.string()
             topView.valueTop = state.windowState.positionText
         } else if (state.isGroup) {
-            topView.labelTop = state.showClosingPercentage ? Strings.RollerShutterDetail.closingPercentage : Strings.RollerShutterDetail.openingPercentage
+            topView.labelTop = state.positionPresentation.string()
             topView.valueTop = "---"
             topView.valueBottom = nil
         } else {

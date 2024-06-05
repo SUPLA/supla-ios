@@ -88,7 +88,7 @@ final class VerticalBlindsVMTests: ViewModelTest<VerticalBlindsViewState, BaseWi
                     )
                 ],
                 offline: false,
-                showClosingPercentage: true,
+                positionPresentation: .asClosed,
                 calibrating: false,
                 calibrationPossible: true
             )
@@ -124,13 +124,14 @@ final class VerticalBlindsVMTests: ViewModelTest<VerticalBlindsViewState, BaseWi
                 verticalBlindWindowState: VerticalBlindWindowState(
                     position: .different(min: 50, max: 80),
                     positionTextFormat: .openingPercentage,
-                    slatTilt: .different(min: 20, max: 50),
+                    slatTilt: .similar(50),
                     markers: [
-                        VerticalBlindMarker(position: 50, tilt: 50),
-                        VerticalBlindMarker(position: 80, tilt: 20)
+                        ShadingBlindMarker(position: 50, tilt: 50),
+                        ShadingBlindMarker(position: 80, tilt: 20)
                     ]
                 ),
                 offline: false,
+                positionPresentation: .asOpened,
                 isGroup: true,
                 onlineStatusString: "2/3"
             )
@@ -204,8 +205,8 @@ final class VerticalBlindsVMTests: ViewModelTest<VerticalBlindsViewState, BaseWi
                 position: .different(min: 10, max: 20),
                 slatTilt: .different(min: 40, max: 60),
                 markers: [
-                    VerticalBlindMarker(position: 10, tilt: 40),
-                    VerticalBlindMarker(position: 20, tilt: 60)
+                    ShadingBlindMarker(position: 10, tilt: 40),
+                    ShadingBlindMarker(position: 20, tilt: 60)
                 ]
             )
         )
@@ -224,8 +225,8 @@ final class VerticalBlindsVMTests: ViewModelTest<VerticalBlindsViewState, BaseWi
                     to: initialState.verticalBlindWindowState
                         .changing(path: \.slatTilt, to: .similar(50))
                         .changing(path: \.markers, to: [
-                            VerticalBlindMarker(position: 10, tilt: 50),
-                            VerticalBlindMarker(position: 20, tilt: 50)
+                            ShadingBlindMarker(position: 10, tilt: 50),
+                            ShadingBlindMarker(position: 20, tilt: 50)
                         ])
                 )
                 .changing(path: \.manualMoving, to: true)

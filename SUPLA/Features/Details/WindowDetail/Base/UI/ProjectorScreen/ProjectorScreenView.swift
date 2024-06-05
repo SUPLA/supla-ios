@@ -19,14 +19,8 @@
 import Foundation
 
 final class ProjectorScreenView: BaseWindowView<ProjectorScreenState> {
-    
     override var isEnabled: Bool {
         didSet {
-            if (isEnabled) {
-                colors = ProjectorScreenColors.standard(traitCollection)
-            } else {
-                colors = ProjectorScreenColors.offline(traitCollection)
-            }
             logo = UIImage.logo?.withTintColor(colors.logoColor)
             setNeedsDisplay()
         }
@@ -68,16 +62,19 @@ final class ProjectorScreenView: BaseWindowView<ProjectorScreenState> {
         let bottomRectRadius = bottomRect.height / 2
         
         // screen
+        let screenRect = CGRect(origin: dimens.screenTopLeft, size: CGSize(width: dimens.screenWidth, height: screenHeight))
         drawPath(context, fillColor: colors.screen) {
-            let rect = CGRect(origin: dimens.screenTopLeft, size: CGSize(width: dimens.screenWidth, height: screenHeight))
-            return UIBezierPath(rect: rect).cgPath
+            return UIBezierPath(rect: screenRect).cgPath
         }
         // Logo
+        context.saveGState()
+        context.clip(to: screenRect)
         if let logo = logo {
             let verticalCorrection = screenHeight - dimens.screenMaxHeight
             context.setShadow(offset: .zero, blur: 0)
             logo.draw(in: dimens.logoRect.offsetBy(dx: 0, dy: verticalCorrection))
         }
+        context.restoreGState()
         // top part
         drawPath(context, fillColor: colors.topRect, withShadow: true) {
             UIBezierPath(rect: dimens.topRect).cgPath
@@ -90,6 +87,10 @@ final class ProjectorScreenView: BaseWindowView<ProjectorScreenState> {
         // Markers
         drawMarkers(context, bottomRect, position)
         
+        if (!isEnabled) {
+            context.setBlendMode(.destinationOut)
+            drawPath(context, fillColor: colors.disabledOverlay) { UIBezierPath(rect: dimens.frame).cgPath }
+        }
     }
     
     private func drawHandle(_ context: CGContext, _ bottomRect: CGRect, _ color: UIColor) {
@@ -108,7 +109,7 @@ final class ProjectorScreenView: BaseWindowView<ProjectorScreenState> {
         if let markers = windowState?.markers, !markers.isEmpty {
             let markerColor = colors.bottomRect.copy(alpha: 0.5)
             let radius = bottomRect.height / 2
-            markers.forEach { marker in
+            for marker in markers {
                 if (marker != position) {
                     let markerScreenHeight = dimens.screenMaxHeight * marker / 100
                     let markerBottomRect = dimens.bottomRect.offsetBy(dx: 0, dy: markerScreenHeight)
@@ -147,10 +148,7 @@ private enum DefaultDimens {
     static let logoTopMargin: CGFloat = 50
 }
 
-private class RuntimeDimens {
-    var scale: CGFloat = 1
-    
-    var canvasRect: CGRect = .zero
+private class RuntimeDimens: BaseWindowViewDimens {
     var topRect: CGRect = .zero
     var bottomRect: CGRect = .zero
     var screenTopLeft: CGPoint = .zero
@@ -158,7 +156,7 @@ private class RuntimeDimens {
     var screenMaxHeight: CGFloat = 0
     var logoRect: CGRect = .zero
     
-    func update(_ frame: CGRect) {
+    override func calculateDimens(_ frame: CGRect) {
         createCanvasRect(frame)
         scale = canvasRect.width / DefaultDimens.width
         topRect = CGRect(origin: canvasRect.origin, size: CGSize(width: canvasRect.width, height: DefaultDimens.topRectHeight * scale))
@@ -171,7 +169,7 @@ private class RuntimeDimens {
     
     private func createCanvasRect(_ frame: CGRect) {
         let size = getSize(frame)
-        canvasRect = CGRect(origin: CGPoint(x: 0.0, y: 0.0), size: size)
+        canvasRect = CGRect(origin: CGPoint(x: (frame.width - size.width) / 2, y: (frame.height - size.height) / 2), size: size)
     }
     
     private func createBottomRect() -> CGRect {

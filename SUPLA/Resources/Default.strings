@@ -208,6 +208,7 @@
 "notification_delete_button_delete_older_than_month" = "Delete older than 30 days";
 
 /* Roller shutter detail */
+"rs_display_mode" = "Roller shutter, facade blind, curtain %";
 "roller_shutter_motor_problem" = "Motor problem / Unexpected stop.";
 "roller_shutter_calibration_lost" = "Calibration lost.";
 "roller_shutter_calibration_failed" = "Calibration failed.";
@@ -215,6 +216,7 @@
 "roller_shutter_start_calibration_message" = "Are you sure you want to start calibration?";
 "roller_shutter_closing_percentage" = "Close:";
 "roller_shutter_opening_percentage" = "Open:";
+"roller_shutter_extension_percentage" = "Extension:";
 "roller_shutter_calibration_needed" = "Calibration needed";
 
 /* Facade blind detail */

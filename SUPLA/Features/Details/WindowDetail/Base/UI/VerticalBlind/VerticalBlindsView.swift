@@ -261,8 +261,8 @@ class VerticalBlindRuntimeDimens: BaseWallWindowDimens {
     var slatHeight: CGFloat = 0
     var slatDistance: CGFloat = 0
     
-    override func update(_ frame: CGRect) {
-        super.update(frame)
+    override func calculateDimens(_ frame: CGRect) {
+        super.calculateDimens(frame)
         
         slatDistance = VerticalBlindRuntimeDimens.slatDistance * scale
         slatWidth = VerticalBlindRuntimeDimens.slatWidth * scale

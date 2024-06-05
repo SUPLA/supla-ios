@@ -23,6 +23,7 @@ struct TerraceAwningColors {
     let glassBottom: UIColor
     let awningBackground: UIColor
     let awningBorder: UIColor
+    let disabledOverlay: UIColor
     
     static func standard(_ traitCollection: UITraitCollection) -> TerraceAwningColors {
         TerraceAwningColors(
@@ -31,18 +32,8 @@ struct TerraceAwningColors {
             glassTop: .rollerShutterGlassTop.resolvedColor(with: traitCollection),
             glassBottom: .rollerShutterGlassBottom.resolvedColor(with: traitCollection),
             awningBackground: .rollerShutterSlatBackground.resolvedColor(with: traitCollection),
-            awningBorder: .rollerShutterSlatBorder.resolvedColor(with: traitCollection)
-        )
-    }
-    
-    static func offline(_ traitCollection: UITraitCollection) -> TerraceAwningColors {
-        TerraceAwningColors(
-            window: .surface.resolvedColor(with: traitCollection),
-            shadow: .black,
-            glassTop: .rollerShutterDisabledGlassTop.resolvedColor(with: traitCollection),
-            glassBottom: .rollerShutterDisabledGlassBottom.resolvedColor(with: traitCollection),
-            awningBackground: .rollerShutterDisabledSlatBackground.resolvedColor(with: traitCollection),
-            awningBorder: .rollerShutterDisabledSlatBorder.resolvedColor(with: traitCollection)
+            awningBorder: .rollerShutterSlatBorder.resolvedColor(with: traitCollection),
+            disabledOverlay: .rollerShutterDisabledOverlay.resolvedColor(with: traitCollection)
         )
     }
 }

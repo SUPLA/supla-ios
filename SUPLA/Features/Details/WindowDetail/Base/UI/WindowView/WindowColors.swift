@@ -25,6 +25,7 @@ struct WindowColors {
     let slatBorder: UIColor
     let markerBorder: UIColor
     let markerBackground: UIColor
+    let disabledOverlay: UIColor
     
     static func standard(_ traitCollection: UITraitCollection) -> WindowColors {
         WindowColors(
@@ -35,20 +36,8 @@ struct WindowColors {
             slatBackground: .rollerShutterSlatBackground.resolvedColor(with: traitCollection),
             slatBorder: .rollerShutterSlatBorder.resolvedColor(with: traitCollection),
             markerBorder: .black,
-            markerBackground: .primaryVariant
-        )
-    }
-    
-    static func offline(_ traitCollection: UITraitCollection) -> WindowColors {
-        WindowColors(
-            window: .surface.resolvedColor(with: traitCollection),
-            shadow: .black,
-            glassTop: .rollerShutterDisabledGlassTop.resolvedColor(with: traitCollection),
-            glassBottom: .rollerShutterDisabledGlassBottom.resolvedColor(with: traitCollection),
-            slatBackground: .rollerShutterDisabledSlatBackground.resolvedColor(with: traitCollection),
-            slatBorder: .rollerShutterDisabledSlatBorder.resolvedColor(with: traitCollection),
-            markerBorder: .black,
-            markerBackground: UIColor(argb: 0xffb3f1cb)
+            markerBackground: .primaryVariant,
+            disabledOverlay: .rollerShutterDisabledOverlay
         )
     }
 }

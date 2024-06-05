@@ -76,7 +76,6 @@ final class TerraceAwningVMTests: ViewModelTest<TerraceAwningViewState, BaseWind
                     )
                 ],
                 offline: false,
-                showClosingPercentage: true,
                 calibrating: false,
                 calibrationPossible: true
             )
@@ -95,7 +94,6 @@ final class TerraceAwningVMTests: ViewModelTest<TerraceAwningViewState, BaseWind
             ShadingSystemGroupValue(position: 80, closedSensorActive: false)
         ])
         
-        settings.showOpeningPercentReturns = true
         readGroupByRemoteIdUseCase.returns = .just(group)
         getGroupOnlineSummaryUseCase.returns = .just(groupOnlineSummary)
         
@@ -110,7 +108,6 @@ final class TerraceAwningVMTests: ViewModelTest<TerraceAwningViewState, BaseWind
                 remoteId: 234,
                 terraceAwningWindowState: TerraceAwningWindowState(
                     position: .different(min: 50, max: 80),
-                    positionTextFormat: .openingPercentage,
                     markers: [50, 80]
                 ),
                 offline: false,

@@ -20,20 +20,14 @@ struct RoofWindowColors {
     let window: UIColor
     let shadow: UIColor
     let glassTop: UIColor
+    let disabledOverlay: UIColor
     
     static func standard(_ traitCollection: UITraitCollection) -> RoofWindowColors {
         RoofWindowColors(
             window: .rollerShutterWindow.resolvedColor(with: traitCollection),
             shadow: .black,
-            glassTop: .rollerShutterGlassTop.resolvedColor(with: traitCollection)
-        )
-    }
-    
-    static func offline(_ traitCollection: UITraitCollection) -> RoofWindowColors {
-        RoofWindowColors(
-            window: .surface.resolvedColor(with: traitCollection),
-            shadow: .black,
-            glassTop: .rollerShutterDisabledGlassTop.resolvedColor(with: traitCollection)
+            glassTop: .rollerShutterGlassTop.resolvedColor(with: traitCollection),
+            disabledOverlay: .rollerShutterDisabledOverlay.resolvedColor(with: traitCollection)
         )
     }
 }

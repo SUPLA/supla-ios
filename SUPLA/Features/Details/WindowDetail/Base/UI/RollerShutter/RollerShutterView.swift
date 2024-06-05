@@ -133,8 +133,8 @@ class RollerShutterRuntimeDimens: BaseWallWindowDimens {
     var slatDistance: CGFloat = 0
     var slatsDistances: CGFloat = 0
     
-    override func update(_ frame: CGRect) {
-        super.update(frame)
+    override func calculateDimens(_ frame: CGRect) {
+        super.calculateDimens(frame)
         
         createSlatRects()
         

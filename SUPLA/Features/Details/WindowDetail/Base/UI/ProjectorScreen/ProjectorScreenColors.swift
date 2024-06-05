@@ -22,6 +22,7 @@ struct ProjectorScreenColors {
     let bottomRect: UIColor
     let topRect: UIColor
     let logoColor: UIColor
+    let disabledOverlay: UIColor
 
     static func standard(_ traitCollection: UITraitCollection) -> ProjectorScreenColors {
         ProjectorScreenColors(
@@ -29,17 +30,8 @@ struct ProjectorScreenColors {
             shadow: .black,
             bottomRect: .rollerShutterSlatBackground.resolvedColor(with: traitCollection),
             topRect: .gray.resolvedColor(with: traitCollection),
-            logoColor: .primaryVariant.copy(alpha: 0.2)
-        )
-    }
-
-    static func offline(_ traitCollection: UITraitCollection) -> ProjectorScreenColors {
-        ProjectorScreenColors(
-            screen: .surface.resolvedColor(with: traitCollection),
-            shadow: .black,
-            bottomRect: .rollerShutterSlatBackground.resolvedColor(with: traitCollection),
-            topRect: .disabled.resolvedColor(with: traitCollection),
-            logoColor: .disabled.copy(alpha: 0.2)
+            logoColor: .primaryVariant.copy(alpha: 0.2),
+            disabledOverlay: .rollerShutterDisabledOverlay.resolvedColor(with: traitCollection)
         )
     }
 }

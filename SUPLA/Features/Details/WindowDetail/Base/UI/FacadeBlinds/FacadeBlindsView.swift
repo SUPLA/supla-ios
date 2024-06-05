@@ -259,8 +259,8 @@ class FacadeBlindRuntimeDimens: BaseWallWindowDimens {
     var markers: [CGRect] = []
     var slatPath: UIBezierPath = .init()
     
-    override func update(_ frame: CGRect) {
-        super.update(frame)
+    override func calculateDimens(_ frame: CGRect) {
+        super.calculateDimens(frame)
         
         createSlatRects()
         

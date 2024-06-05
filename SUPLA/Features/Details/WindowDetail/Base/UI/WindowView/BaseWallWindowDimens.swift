@@ -16,16 +16,13 @@
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 
-class BaseWallWindowDimens {
-    var scale: CGFloat = 0
-    
-    var canvasRect: CGRect = .zero
+class BaseWallWindowDimens: BaseWindowViewDimens {
     var topLineRect: CGRect = .zero
     var windowRect: CGRect = .zero
     var leftGlassRect: CGRect = .zero
     var rightGlassRect: CGRect = .zero
-    
-    func update(_ frame: CGRect) {
+
+    override func calculateDimens(_ frame: CGRect) {
         createCanvasRect(frame)
         
         scale = canvasRect.width / WindowDimens.width

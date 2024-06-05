@@ -31,9 +31,9 @@ struct Strings {
         static let showChannelInfo = NSLocalizedString("Show ⓘ button", comment: "label for show channel info setting")
         
         static let locationOrdering = NSLocalizedString("Location order", comment: "settings menu label for location order")
-        static let showOpeningMode = NSLocalizedString("Roller shutter %", comment: "settings label for reporting opening % rather than closing % in detail views")
         static let showOpeningModeOpening = NSLocalizedString("Opening", comment: "")
         static let showOpeningModeClosing = NSLocalizedString("Closing", comment: "")
+        static let rsDisplayMode = "rs_display_mode".toLocalized()
 
         static let removalConfirmationTitle = "Cfg.removal.title".toLocalized()
         static let removalActionLogout = "Cfg.removal.action.logout".toLocalized()
@@ -323,6 +323,7 @@ struct Strings {
         static let startCalibrationMessage = "roller_shutter_start_calibration_message".toLocalized()
         static let closingPercentage = "roller_shutter_closing_percentage".toLocalized()
         static let openingPercentage = "roller_shutter_opening_percentage".toLocalized()
+        static let extensionPercentage = "roller_shutter_extension_percentage".toLocalized()
         static let calibrationNeeded = "roller_shutter_calibration_needed".toLocalized()
     }
     

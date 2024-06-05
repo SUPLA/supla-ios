@@ -92,7 +92,7 @@ final class RollerShutterVMTests: ViewModelTest<RollerShutterViewState, BaseWind
                     )
                 ],
                 offline: false,
-                showClosingPercentage: true,
+                positionPresentation: .asClosed,
                 calibrating: false,
                 calibrationPossible: true
             )
@@ -130,6 +130,7 @@ final class RollerShutterVMTests: ViewModelTest<RollerShutterViewState, BaseWind
                     markers: [50, 80]
                 ),
                 offline: false,
+                positionPresentation: .asOpened,
                 isGroup: true,
                 onlineStatusString: "2/3"
             )

@@ -19,7 +19,7 @@
 let DEFAULT_TILT_0_ANGLE: CGFloat = 0
 let DEFAULT_TILT_100_ANGLE: CGFloat = 180
 
-struct FacadeBlindWindowState: WindowState, Equatable, Changeable {
+struct FacadeBlindWindowState: ShadingBlindWindowState, Equatable, Changeable {
     /**
      * The blind roller position in percentage
      * 0 - open
@@ -40,7 +40,7 @@ struct FacadeBlindWindowState: WindowState, Equatable, Changeable {
     
     var tilt100Angle: CGFloat? = nil
     
-    var markers: [FacadeBlindMarker] = []
+    var markers: [ShadingBlindMarker] = []
     
     var slatTiltDegrees: CGFloat? {
         guard let tilt = slatTilt else { return nil }
