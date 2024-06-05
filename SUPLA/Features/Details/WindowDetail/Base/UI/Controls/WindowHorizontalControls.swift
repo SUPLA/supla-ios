@@ -29,6 +29,7 @@ class WindowHorizontalControls: WindowControls {
         get { holdToMoveButton.isEnabled }
         set {
             holdToMoveButton.isEnabled = newValue
+            pressToMoveButton.isEnabled = newValue
         }
     }
     

@@ -16,7 +16,16 @@
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 
-struct FacadeBlindMarker: Equatable {
-    let position: CGFloat
-    let tilt: CGFloat
+enum ShadingSystemPositionPresentation {
+    case asOpened
+    case asClosed
+    case asExtension
+
+    func string() -> String {
+        switch (self) {
+        case .asClosed: Strings.RollerShutterDetail.closingPercentage
+        case .asOpened: Strings.RollerShutterDetail.openingPercentage
+        case .asExtension: Strings.RollerShutterDetail.extensionPercentage
+        }
+    }
 }

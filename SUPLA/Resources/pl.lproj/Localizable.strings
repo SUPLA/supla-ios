@@ -277,7 +277,6 @@
 "Don't have an account in Supla Cloud yet?" = "Nie masz jeszcze konta w Supla Cloud?";
 "Create" = "Utwórz konto";
 "Location order" = "Kolejność lokalizacji";
-"Roller shutter %" = "Rolety %";
 "Opening" = "Otwarcia";
 "Closing" = "Zamknięcia";
 "Percent of opening" = "Procent otwarcia";
@@ -480,6 +479,7 @@
 "notification_delete_button_delete_older_than_month" = "Usuń starsze niż 30 dni";
 
 /* Roller shutter detail */
+"rs_display_mode" = "Rolety, żaluzje, zasłony %";
 "roller_shutter_calibration_lost" = "Kalibracja nie powiodła się.";
 "roller_shutter_calibration_failed" = "Kalibracja została utracona.";
 "roller_shutter_motor_problem" = "Problem z silnikiem / Nieoczekiwane zatrzymanie.";
@@ -487,6 +487,7 @@
 "roller_shutter_start_calibration_message" = "Czy na pewno chcesz rozpocząć kalibrację?";
 "roller_shutter_closing_percentage" = "Zamknięcie:";
 "roller_shutter_opening_percentage" = "Otwarcie:";
+"roller_shutter_extension_percentage" = "Rozwinięcie:";
 "roller_shutter_calibration_needed" = "Wymagana kalibracja";
 
 /* Facade blind detail */

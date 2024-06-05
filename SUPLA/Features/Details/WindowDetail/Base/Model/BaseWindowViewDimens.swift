@@ -16,7 +16,24 @@
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 
-struct VerticalBlindMarker: Equatable {
-    let position: CGFloat
-    let tilt: CGFloat
+class BaseWindowViewDimens {
+    var parentFrame = CGRect()
+    var scale: CGFloat = 0
+    
+    var frame: CGRect = .zero
+    var canvasRect: CGRect = .zero
+    
+    final func update(_ frame: CGRect) {
+        if (self.parentFrame == frame) {
+            return // Frame is not changed - no calculations needed
+        }
+        self.parentFrame = frame
+        self.frame = CGRect(origin: CGPoint(x: 0, y: 0), size: frame.size)
+        
+        calculateDimens(frame)
+    }
+    
+    func calculateDimens(_ frame: CGRect) {
+        fatalError("calculateDimens(frame:) needs to be implemented!")
+    }
 }

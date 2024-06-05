@@ -17,7 +17,11 @@
  */
 
 final class ProjectorScreenVM: BaseWindowVM<ProjectorScreenViewState> {
+    override var positionTextFormat: WindowGroupedValueFormat { .percentage }
+    
     override func defaultViewState() -> ProjectorScreenViewState { ProjectorScreenViewState() }
+    
+    override func getPositionPresentation() -> ShadingSystemPositionPresentation { .asExtension }
 
     override func handleChannel(_ channel: SAChannel) {
         guard let value = channel.value?.asRollerShutterValue() else { return }
@@ -65,7 +69,7 @@ struct ProjectorScreenViewState: BaseWindowViewState {
     var projectorScreenState: ProjectorScreenState = .init(position: .similar(0))
     var issues: [ChannelIssueItem] = []
     var offline: Bool = true
-    var showClosingPercentage: Bool = false
+    var positionPresentation: ShadingSystemPositionPresentation = .asClosed
     var calibrating: Bool = false
     var calibrationPossible: Bool = false
     var positionUnknown: Bool = false

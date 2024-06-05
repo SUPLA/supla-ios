@@ -114,6 +114,7 @@ extension DiContainer {
         // MARK: Usecases
 
         // Usecases - Channel
+        register(UpdateChannelUseCase.self, UpdateChannelUseCaseImpl())
         register(SwapChannelPositionsUseCase.self, SwapChannelPositionsUseCaseImpl())
         register(CreateProfileChannelsListUseCase.self, CreateProfileChannelsListUseCaseImpl())
         register(ReadChannelByRemoteIdUseCase.self, ReadChannelByRemoteIdUseCaseImpl())
@@ -155,6 +156,7 @@ extension DiContainer {
         register(ChannelBaseActionUseCase.self, ChannelBaseActionUseCaseImpl())
         // Usecases - ChannelConfig
         register(InsertChannelConfigUseCase.self, InsertChannelConfigUseCaseImpl())
+        register(RequestChannelConfigUseCase.self, RequestChannelConfigUseCaseImpl())
         // Usecases - Client
         register(ExecuteSimpleActionUseCase.self, ExecuteSimpleActionUseCaseImpl())
         register(StartTimerUseCase.self, StartTimerUseCaseImpl())
@@ -175,6 +177,7 @@ extension DiContainer {
         register(GetGroupOnlineSummaryUseCase.self, GetGroupOnlineSummaryUseCaseImpl())
         register(UpdateChannelGroupTotalValueUseCase.self, UpdateChannelGroupTotalValueUseCaseImpl())
         register(GetGroupActivePercentageUseCase.self, GetGroupActivePercentageUseCaseImpl())
+        register(ReadGroupTiltingDetailsUseCase.self, ReadGroupTiltingDetailsUseCaseImpl())
         // Usecases - Icon
         register(GetDefaultIconNameUseCase.self, GetDefaultIconNameUseCaseImpl())
         // Usecases - Location

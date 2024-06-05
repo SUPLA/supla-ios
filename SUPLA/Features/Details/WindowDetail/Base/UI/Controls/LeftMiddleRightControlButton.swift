@@ -32,6 +32,7 @@ class LeftMiddleRightControlButton: UIView {
         didSet {
             leftButton.isEnabled = isEnabled
             rightButton.isEnabled = isEnabled
+            middleButton.isEnabled = isEnabled
         }
     }
     

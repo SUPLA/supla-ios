@@ -66,3 +66,12 @@ final class GetGroupOnlineSummaryUseCaseMock: GetGroupOnlineSummaryUseCase {
         return returns
     }
 }
+
+final class ReadGroupTiltingDetailsUseCaseMock: ReadGroupTiltingDetailsUseCase {
+    var returns: Observable<TiltingDetails> = .empty()
+    var parameters: [Int32] = []
+    func invoke(remoteId: Int32) -> Observable<TiltingDetails> {
+        parameters.append(remoteId)
+        return returns
+    }
+}

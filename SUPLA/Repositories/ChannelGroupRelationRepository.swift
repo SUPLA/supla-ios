@@ -23,6 +23,7 @@ protocol ChannelGroupRelationRepository: RepositoryProtocol where T == SAChannel
     func getAllRelations(for profile: AuthProfileItem) -> Observable<[SAChannelGroupRelation]>
     func getRelation(for profile: AuthProfileItem, groupId: Int32, channelId: Int32) -> Observable<SAChannelGroupRelation>
     func getRelations(for profile: AuthProfileItem, andGroup id: Int32) -> Observable<[SAChannelGroupRelation]>
+    func getRelations(forGroup id: Int32) -> Observable<[SAChannelGroupRelation]>
     func getAllVisibleRelationsForActiveProfile() -> Observable<[SAChannelGroupRelation]>
 }
 
@@ -45,6 +46,14 @@ final class ChannelGroupRelationRepositoryImpl: Repository<SAChannelGroupRelatio
     func getRelations(for profile: AuthProfileItem, andGroup id: Int32) -> Observable<[SAChannelGroupRelation]> {
         let request = SAChannelGroupRelation.fetchRequest()
             .filtered(by: NSPredicate(format: "group_id = %i AND profile = %@ AND visible > 0", id, profile))
+            .ordered(by: "group_id")
+        
+        return query(request)
+    }
+    
+    func getRelations(forGroup id: Int32) -> Observable<[SAChannelGroupRelation]> {
+        let request = SAChannelGroupRelation.fetchRequest()
+            .filtered(by: NSPredicate(format: "group_id = %i AND profile.isActive = 1", id))
             .ordered(by: "group_id")
         
         return query(request)

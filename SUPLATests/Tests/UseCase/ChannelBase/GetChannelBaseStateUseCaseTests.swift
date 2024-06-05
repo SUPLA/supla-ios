@@ -367,7 +367,7 @@ final class GetChannelBaseStateUseCaseTests: XCTestCase {
         // given
         let channel = SAChannel(testContext: nil)
         channel.func = SUPLA_CHANNELFNC_TERRACE_AWNING
-        channel.value = mockChannelValue(byte0: 100)
+        channel.value = mockChannelValue()
 
         // when
         let state = useCase.invoke(channelBase: channel)
@@ -381,7 +381,7 @@ final class GetChannelBaseStateUseCaseTests: XCTestCase {
         // given
         let channel = SAChannel(testContext: nil)
         channel.func = SUPLA_CHANNELFNC_TERRACE_AWNING
-        channel.value = mockChannelValue()
+        channel.value = mockChannelValue(byte0: 100)
 
         // when
         let state = useCase.invoke(channelBase: channel)

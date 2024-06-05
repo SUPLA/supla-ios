@@ -42,6 +42,30 @@ class SuplaChannelShadingSystemBaseConfig: SuplaChannelConfig {
     }
     
     required init(from decoder: any Decoder) throws {
-        fatalError("init(from:) has not been implemented")
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        closingTimeMs = try container.decode(Int32.self, forKey: .closingTimeMs)
+        openingTimeMs = try container.decode(Int32.self, forKey: .openingTimeMs)
+        motorUpsideDown = try container.decode(Bool.self, forKey: .motorUpsideDown)
+        buttonUpsideDown = try container.decode(Bool.self, forKey: .buttonUpsideDown)
+        timeMargin = try container.decode(Int8.self, forKey: .timeMargin)
+        try super.init(from: decoder)
+    }
+    
+    override func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(closingTimeMs, forKey: .closingTimeMs)
+        try container.encode(openingTimeMs, forKey: .openingTimeMs)
+        try container.encode(motorUpsideDown, forKey: .motorUpsideDown)
+        try container.encode(buttonUpsideDown, forKey: .buttonUpsideDown)
+        try container.encode(timeMargin, forKey: .timeMargin)
+        try super.encode(to: encoder)
+    }
+    
+    private enum CodingKeys : String, CodingKey {
+        case closingTimeMs
+        case openingTimeMs
+        case motorUpsideDown
+        case buttonUpsideDown
+        case timeMargin
     }
 }

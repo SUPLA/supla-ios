@@ -76,7 +76,7 @@ final class RoofWindowVMTests: ViewModelTest<RoofWindowViewState, BaseWindowView
                     )
                 ],
                 offline: false,
-                showClosingPercentage: true,
+                positionPresentation: .asClosed,
                 calibrating: false,
                 calibrationPossible: true
             )
@@ -114,6 +114,7 @@ final class RoofWindowVMTests: ViewModelTest<RoofWindowViewState, BaseWindowView
                     markers: [50, 80]
                 ),
                 offline: false,
+                positionPresentation: .asOpened,
                 isGroup: true,
                 onlineStatusString: "2/3"
             )

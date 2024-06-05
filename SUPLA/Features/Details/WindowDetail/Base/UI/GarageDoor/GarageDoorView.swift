@@ -21,11 +21,6 @@ import Foundation
 final class GarageDoorView: BaseWindowView<GarageDoorState> {
     override var isEnabled: Bool {
         didSet {
-            if (isEnabled) {
-                colors = GarageDoorColors.standard(traitCollection)
-            } else {
-                colors = GarageDoorColors.offline(traitCollection)
-            }
             setNeedsDisplay()
         }
     }
@@ -97,6 +92,11 @@ final class GarageDoorView: BaseWindowView<GarageDoorState> {
                 dimens.markerPath.apply(CGAffineTransform(translationX: 0, y: -markerTopCorrection))
             }
         }
+        
+        if (!isEnabled) {
+            context.setBlendMode(.destinationOut)
+            drawPath(context, fillColor: colors.disabledOverlay) { UIBezierPath(rect: dimens.frame).cgPath }
+        }
     }
     
     private func setupView() {
@@ -125,11 +125,7 @@ private enum DefaultDimens {
     static let markerWidth: CGFloat = 28
 }
 
-private class RuntimeDimens {
-    var frame = CGRect()
-    var scale: CGFloat = 1
-    
-    var canvasRect: CGRect = .zero
+private class RuntimeDimens: BaseWindowViewDimens {
     let garagePath: UIBezierPath = .init()
     var doorRect: CGRect = .zero
     var doorClipingPath: UIBezierPath = .init()
@@ -137,12 +133,7 @@ private class RuntimeDimens {
     var movementMaxHeight: CGFloat = 0
     var markerPath: UIBezierPath = .init()
     
-    func update(_ frame: CGRect) {
-        if (frame == self.frame) {
-            return // skip calcuation when frame is same as previous
-        }
-        self.frame = frame
-        
+    override func calculateDimens(_ frame: CGRect) {
         createCanvasRect(frame)
         scale = canvasRect.width / DefaultDimens.width
         

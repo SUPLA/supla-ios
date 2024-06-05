@@ -16,77 +16,71 @@
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 
-import Foundation
 import RxSwift
 
-final class UpdateChannelUseCase {
-    
+protocol UpdateChannelUseCase {
+    func invoke(suplaChannel: TSC_SuplaChannel_E) -> Observable<Bool>
+}
+
+final class UpdateChannelUseCaseImpl: UpdateChannelUseCase {
     @Singleton<LocationRepository> private var locationRepository
     @Singleton<ChannelRepository> private var channelRepository
     @Singleton<ProfileRepository> private var profileRepository
     @Singleton<UpdateEventsManager> private var updateEventsManager
     @Singleton<ChannelConfigRepository> private var channelConfigRepository
-    @Singleton<GetChannelConfigUseCase> private var getChannelConfigUseCase
-    
-    @available(*, deprecated, message: "Only for legacy code")
-    func invoke(suplaChannel: TSC_SuplaChannel_E) -> Bool {
-        var changed = false
-        
-        do {
-            changed = try profileRepository.getActiveProfile()
-                .flatMapFirst { profile in
-                    self.locationRepository
-                        .getLocation(for: profile, with: suplaChannel.LocationID)
-                        .flatMapFirst { location in
-                            self.channelRepository
-                                .getChannel(for: profile, with: suplaChannel.Id)
-                                .ifEmpty(switchTo: self.createChannel(remoteId: suplaChannel.Id))
-                                .map { (location, $0) }
+    @Singleton<RequestChannelConfigUseCase> private var requestChannelConfigUseCase
+
+    func invoke(suplaChannel: TSC_SuplaChannel_E) -> Observable<Bool> {
+        return profileRepository.getActiveProfile()
+            .flatMapFirst { profile in
+                self.locationRepository
+                    .getLocation(for: profile, with: suplaChannel.LocationID)
+                    .flatMapFirst { location in
+                        self.channelRepository
+                            .getChannel(for: profile, with: suplaChannel.Id)
+                            .ifEmpty(switchTo: self.createChannel(remoteId: suplaChannel.Id))
+                            .map { (location, $0) }
+                    }
+                    .map { (location, channel) in
+                        self.updateChannel(channel: channel, suplaChannel: suplaChannel, location: location)
+                    }
+                    .flatMapFirst { (changed, channel) in
+                        if (changed) {
+                            return self.channelRepository.save(channel).map { true }
                         }
-                        .map { (location, channel) in
-                            self.updateChannel(channel: channel, suplaChannel: suplaChannel, location: location)
-                        }
-                        .flatMapFirst { (changed, channel) in
-                            if (changed) {
-                                return self.channelRepository.save(channel).map { true }
-                            }
-                            
-                            return Observable.just(false)
-                        }
-                        .flatMap { changed in
-                            self.checkConfigUpdateNeeded(suplaChannel: suplaChannel, profile: profile)
-                                .map { _ in changed }
-                        }
-                }
-                .toBlocking()
-                .first() ?? false
-            
-            if (changed) {
-                updateEventsManager.emitChannelUpdate(remoteId: Int(suplaChannel.Id))
+
+                        return Observable.just(false)
+                    }
+                    .flatMap { changed in
+                        self.requestChannelConfigUseCase.invoke(suplaChannel: suplaChannel, profile: profile)
+                            .map { _ in changed }
+                    }
             }
-        } catch {
-            changed = false
-        }
-        
-        return changed
+            .do(
+                onNext: {
+                    if ($0) {
+                        self.updateEventsManager.emitChannelUpdate(remoteId: Int(suplaChannel.Id))
+                    }
+                }
+            )
     }
-    
+
     private func createChannel(remoteId: Int32) -> Observable<SAChannel> {
         return channelRepository.create()
             .flatMapFirst { channel in
-                return self.profileRepository.getActiveProfile()
+                self.profileRepository.getActiveProfile()
                     .map { profile in
                         channel.remote_id = remoteId
                         channel.profile = profile
-                        
+
                         return channel
                     }
             }
     }
-    
+
     private func updateChannel(channel: SAChannel, suplaChannel: TSC_SuplaChannel_E, location: _SALocation) -> (Bool, SAChannel) {
         var changed = false
-        
+
         let caption = String.fromC(suplaChannel.Caption)
         if (channel.caption != caption) {
             channel.caption = caption
@@ -131,31 +125,7 @@ final class UpdateChannelUseCase {
         if (channel.setChannelFlags(Int64(suplaChannel.Flags))) {
             changed = true
         }
-        
+
         return (changed, channel)
-    }
-    
-    private func checkConfigUpdateNeeded(suplaChannel: TSC_SuplaChannel_E, profile: AuthProfileItem) -> Observable<Void> {
-        if (shouldObserveChannelConfig(suplaChannel)) {
-            return channelConfigRepository.getConfig(channelRemoteId: suplaChannel.Id)
-                .flatMap { config in
-                    if (config == nil || config!.config_crc32 != suplaChannel.DefaultConfigCRC32) {
-                        SALog.debug("Channel config asked (remoteId: `\(suplaChannel.Id)`")
-                        return self.getChannelConfigUseCase
-                            .invoke(remoteId: suplaChannel.Id, type: .defaultConfig)
-                            .flatMap { _ in Observable.just(()) }
-                    }
-                    
-                    SALog.debug("Channel config not asked (remoteId: `\(suplaChannel.Id)`")
-                    return Observable.just(())
-                }
-        }
-        
-        return Observable.just(())
-    }
-    
-    private func shouldObserveChannelConfig(_ suplaChannel: TSC_SuplaChannel_E) -> Bool {
-        suplaChannel.Func == SUPLA_CHANNELFNC_GENERAL_PURPOSE_METER
-        || suplaChannel.Func == SUPLA_CHANNELFNC_GENERAL_PURPOSE_MEASUREMENT
     }
 }

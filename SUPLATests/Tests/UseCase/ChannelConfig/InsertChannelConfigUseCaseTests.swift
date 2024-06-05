@@ -127,6 +127,41 @@ final class InsertChannelConfigUseCaseTests: UseCaseTest<Void> {
         XCTAssertEqual(channelConfig.config_type, Int32(ChannelConfigType.generalPurposeMeter.rawValue))
     }
     
+    func test_shouldInsertFacadeBlindConfig() {
+        // given
+        let remoteId: Int32 = 231
+        let crc32: Int64 = 123
+        let profile = AuthProfileItem.mock()
+        let channel = SAChannel.mock()
+        let config = SuplaChannelFacadeBlindConfig.mock(remoteId: remoteId, crc32: crc32)
+        let channelConfig = SAChannelConfig.mock()
+        
+        channelConfigRepository.getConfigReturns = .just(nil)
+        profileRepository.activeProfileObservable = .just(profile)
+        channelRepository.channelObservable = .just(channel)
+        channelConfigRepository.createObservable = .just(channelConfig)
+        channelConfigRepository.saveObservable = .just(())
+        
+        // when
+        useCase.invoke(config: config, result: .resultTrue).subscribe(observer).disposed(by: disposeBag)
+        
+        // then
+        assertEvents([.next(()), .completed])
+        XCTAssertEqual(channelConfigRepository.getConfigParameters, [remoteId])
+        XCTAssertEqual(channelConfigRepository.createCounter, 1)
+        XCTAssertEqual(channelConfigRepository.saveParameters, [channelConfig])
+        XCTAssertEqual(generalPurposeMeterItemRepository.deleteAllForProfileParameters, [])
+        XCTAssertEqual(downloadEventManager.emitProgressStateParameters.count, 0)
+        XCTAssertEqual(profileRepository.activeProfileCalls, 1)
+        XCTAssertEqual(channelRepository.channelProfiles, [profile])
+        XCTAssertEqual(channelRepository.channelRemoteIds, [remoteId])
+        
+        XCTAssertEqual(channelConfig.profile, profile)
+        XCTAssertEqual(channelConfig.channel, channel)
+        XCTAssertEqual(channelConfig.config_crc32, crc32)
+        XCTAssertEqual(channelConfig.config_type, Int32(ChannelConfigType.facadeBlind.rawValue))
+    }
+    
     func test_shouldUpdateGeneralPurposeMeasurementConfig() {
         // given
         let remoteId: Int32 = 231
@@ -181,6 +216,34 @@ final class InsertChannelConfigUseCaseTests: UseCaseTest<Void> {
         
         XCTAssertEqual(channelConfig.config_crc32, crc32)
         XCTAssertEqual(channelConfig.config_type, Int32(ChannelConfigType.generalPurposeMeter.rawValue))
+    }
+    
+    func test_shouldUpdateFacadeBlindConfig() {
+        // given
+        let remoteId: Int32 = 231
+        let crc32: Int64 = 123
+        let config = SuplaChannelFacadeBlindConfig.mock(remoteId: remoteId, crc32: crc32)
+        let channelConfig = SAChannelConfig.mock()
+        
+        channelConfigRepository.getConfigReturns = .just(channelConfig)
+        channelConfigRepository.saveObservable = .just(())
+        
+        // when
+        useCase.invoke(config: config, result: .resultTrue).subscribe(observer).disposed(by: disposeBag)
+        
+        // then
+        assertEvents([.next(()), .completed])
+        XCTAssertEqual(channelConfigRepository.getConfigParameters, [remoteId])
+        XCTAssertEqual(channelConfigRepository.createCounter, 0)
+        XCTAssertEqual(channelConfigRepository.saveParameters, [channelConfig])
+        XCTAssertEqual(generalPurposeMeterItemRepository.deleteAllForProfileParameters, [])
+        XCTAssertEqual(downloadEventManager.emitProgressStateParameters.count, 0)
+        XCTAssertEqual(profileRepository.activeProfileCalls, 1)
+        XCTAssertEqual(channelRepository.channelProfiles, [])
+        XCTAssertEqual(channelRepository.channelRemoteIds, [])
+        
+        XCTAssertEqual(channelConfig.config_crc32, crc32)
+        XCTAssertEqual(channelConfig.config_type, Int32(ChannelConfigType.facadeBlind.rawValue))
     }
     
     func test_shouldRemoveConfigWhenNotHandled() {

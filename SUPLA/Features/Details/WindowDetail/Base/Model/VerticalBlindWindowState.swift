@@ -16,7 +16,7 @@
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 
-struct VerticalBlindWindowState: WindowState, Equatable, Changeable {
+struct VerticalBlindWindowState: ShadingBlindWindowState, Equatable, Changeable {
     /**
      * The blind roller position in percentage
      * 0 - open
@@ -37,7 +37,7 @@ struct VerticalBlindWindowState: WindowState, Equatable, Changeable {
     
     var tilt100Angle: CGFloat? = nil
     
-    var markers: [VerticalBlindMarker] = []
+    var markers: [ShadingBlindMarker] = []
     
     var slatTiltDegrees: CGFloat? {
         guard let tilt = slatTilt else { return nil }

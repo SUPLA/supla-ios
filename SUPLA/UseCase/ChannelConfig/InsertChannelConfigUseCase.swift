@@ -48,6 +48,13 @@ final class InsertChannelConfigUseCaseImpl: InsertChannelConfigUseCase {
                 .flatMap { self.channelConfigRepository.save($0) }
         }
         
+        if let suplaConfig = config as? SuplaChannelFacadeBlindConfig {
+            SALog.info("Saving config (remoteId: `\(suplaConfig.remoteId)`, function: `\(suplaConfig.channelFunc ?? -1)`)")
+            return getOrCreateConfig(suplaConfig.remoteId, suplaConfig: suplaConfig)
+                .map { self.updateConfig($0, suplaConfig) }
+                .flatMap { self.channelConfigRepository.save($0) }
+        }
+        
         SALog.info("Got config which cannot be stored (remoteId: `\(config?.remoteId ?? -1)`, function: `\(config?.channelFunc ?? -1)`)")
         
         if let config = config,
@@ -67,12 +74,12 @@ final class InsertChannelConfigUseCaseImpl: InsertChannelConfigUseCase {
     
     private func getOrCreateConfig(
         _ channelRemoteId: Int32,
-        suplaConfig: SuplaChannelGeneralPurposeMeterConfig? = nil
+        suplaConfig: SuplaChannelConfig? = nil
     ) -> Observable<(SAChannelConfig)> {
         return channelConfigRepository.getConfig(channelRemoteId: channelRemoteId)
             .compactMap { $0 }
             .flatMap { config in
-                if let suplaConfig = suplaConfig,
+                if let suplaConfig = suplaConfig as? SuplaChannelGeneralPurposeMeterConfig,
                    let meterConfig = config.configAsSuplaConfig() as? SuplaChannelGeneralPurposeMeterConfig,
                    self.shouldCleanupHistory(meterConfig, suplaConfig)
                 {
@@ -129,9 +136,22 @@ final class InsertChannelConfigUseCaseImpl: InsertChannelConfigUseCase {
         return config
     }
     
+    private func updateConfig(
+        _ config: SAChannelConfig,
+        _ suplaConfig: SuplaChannelFacadeBlindConfig
+    ) -> SAChannelConfig {
+        config.config = suplaConfig.toJson()
+        config.config_type = Int32(ChannelConfigType.facadeBlind.rawValue)
+        config.config_crc32 = suplaConfig.crc32
+        
+        return config
+    }
+    
     private func shouldHandle(_ config: SuplaChannelConfig) -> Bool {
         config.channelFunc == SUPLA_CHANNELFNC_GENERAL_PURPOSE_METER
             || config.channelFunc == SUPLA_CHANNELFNC_GENERAL_PURPOSE_MEASUREMENT
+            || config.channelFunc == SUPLA_CHANNELFNC_VERTICAL_BLIND
+            || config.channelFunc == SUPLA_CHANNELFNC_CONTROLLINGTHEFACADEBLIND
     }
     
     private func shouldCleanupHistory(_ oldConfig: SuplaChannelConfig, _ newConfig: SuplaChannelGeneralPurposeMeterConfig) -> Bool {

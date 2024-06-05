@@ -75,10 +75,7 @@ extension UIColor {
     static let rollerShutterGlassBottom = UIColor(named: "Colors/RollerShutter/glass_bottom")!
     static let rollerShutterSlatBackground = UIColor(named: "Colors/RollerShutter/slat_background")!
     static let rollerShutterSlatBorder = UIColor(named: "Colors/RollerShutter/slat_border")!
-    static let rollerShutterDisabledGlassTop = UIColor(named: "Colors/RollerShutter/disabled_glass_top")!
-    static let rollerShutterDisabledGlassBottom = UIColor(named: "Colors/RollerShutter/disabled_glass_bottom")!
-    static let rollerShutterDisabledSlatBackground = UIColor(named: "Colors/RollerShutter/disabled_slat_background")!
-    static let rollerShutterDisabledSlatBorder = UIColor(named: "Colors/RollerShutter/disabled_slat_border")!
+    static let rollerShutterDisabledOverlay = UIColor(named: "Colors/RollerShutter/disabled_overlay")!
     
     static let ctrlBorder = UIColor(red: 118.0/255.0, green: 120.0/255.0, blue: 128.0/255.0, alpha: 0.12)
     static let switcherBackground = UIColor(red: 118.0/255.0, green: 120.0/255.0, blue: 128.0/255.0, alpha: 0.12)

@@ -53,7 +53,30 @@ class SuplaChannelFacadeBlindConfig: SuplaChannelShadingSystemBaseConfig {
     }
     
     required init(from decoder: any Decoder) throws {
-        fatalError("init(from:) has not been implemented")
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        tiltingTimeMs = try container.decode(Int32.self, forKey: .tiltingTimeMs)
+        tilt0Angle = try container.decode(UInt16.self, forKey: .tilt0Angle)
+        tilt100Angle = try container.decode(UInt16.self, forKey: .tilt100Angle)
+        type = try container.decode(SuplaTiltControlType.self, forKey: .type)
+        try super.init(from: decoder)
+    }
+    
+    override func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(tiltingTimeMs, forKey: .tiltingTimeMs)
+        try container.encode(tilt0Angle, forKey: .tilt0Angle)
+        try container.encode(tilt100Angle, forKey: .tilt100Angle)
+        try container.encode(type, forKey: .type)
+        try super.encode(to: encoder)
+    }
+    
+    func toJson() -> String? {
+        let jsonEncoder = JSONEncoder()
+        if let jsonData = try? jsonEncoder.encode(self) {
+            return String(data: jsonData, encoding: String.Encoding.utf8)
+        }
+        
+        return nil
     }
     
     static func from(_ config: TChannelConfig_FacadeBlind, remoteId: Int32, channelFunc: Int32?, crc32: Int64) -> SuplaChannelFacadeBlindConfig {
@@ -71,5 +94,12 @@ class SuplaChannelFacadeBlindConfig: SuplaChannelShadingSystemBaseConfig {
             tilt100Angle: config.Tilt100Angle,
             type: SuplaTiltControlType.from(config.TiltControlType)
         )
+    }
+    
+    private enum CodingKeys : String, CodingKey {
+        case tiltingTimeMs
+        case tilt0Angle
+        case tilt100Angle
+        case type
     }
 }

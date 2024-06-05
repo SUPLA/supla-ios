@@ -105,8 +105,8 @@ class CurtainRuntimeDimens: BaseWallWindowDimens {
     var markerPath: UIBezierPath = .init()
     var halfMarkerWidth: CGFloat = 0
     
-    override func update(_ frame: CGRect) {
-        super.update(frame)
+    override func calculateDimens(_ frame: CGRect) {
+        super.calculateDimens(frame)
         
         curtainMinWidth = CurtainRuntimeDimens.curtainMinWidth * scale
         

@@ -34,11 +34,6 @@ private enum DefaultDimens {
 final class RoofWindowView: BaseWindowView<RoofWindowState> {
     override var isEnabled: Bool {
         didSet {
-            if (isEnabled) {
-                colors = RoofWindowColors.standard(traitCollection)
-            } else {
-                colors = RoofWindowColors.offline(traitCollection)
-            }
             setNeedsDisplay()
         }
     }
@@ -96,6 +91,11 @@ final class RoofWindowView: BaseWindowView<RoofWindowState> {
             drawSash(context)
         }
         drawJamb(context)
+        
+        if (!isEnabled) {
+            context.setBlendMode(.destinationOut)
+            drawPath(context, fillColor: colors.disabledOverlay) { UIBezierPath(rect: dimens.frame).cgPath }
+        }
     }
     
     private func setupView() {
@@ -194,15 +194,12 @@ final class RoofWindowView: BaseWindowView<RoofWindowState> {
     }
 }
 
-private class RuntimeDimens {
-    var scale: CGFloat = 1
-    
-    var canvasRect: CGRect = .zero
+private class RuntimeDimens: BaseWindowViewDimens {
     
     var windowFrameWidth: CGFloat = 0
     var windowTopCoverWidth: CGFloat = 0
     
-    func update(_ frame: CGRect) {
+    override func calculateDimens(_ frame: CGRect) {
         createCanvasRect(frame)
         scale = canvasRect.width / DefaultDimens.width
         windowFrameWidth = DefaultDimens.windowFrameWidth * scale

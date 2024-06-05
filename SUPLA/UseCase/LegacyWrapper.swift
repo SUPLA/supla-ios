@@ -20,7 +20,6 @@ import RxSwift
 
 @objc
 final class UseCaseLegacyWrapper: NSObject {
-    
     // MARK: Scenes
     
     @objc
@@ -59,7 +58,13 @@ final class UseCaseLegacyWrapper: NSObject {
     
     @objc
     static func updateChannel(suplaChannel: TSC_SuplaChannel_E) -> Bool {
-        return UpdateChannelUseCase().invoke(suplaChannel: suplaChannel)
+        @Singleton<UpdateChannelUseCase> var updateChannelUseCase
+        do {
+            return try updateChannelUseCase.invoke(suplaChannel: suplaChannel).subscribeSynchronous() ?? false
+        } catch {
+            SALog.error("Group total count update failed \(error)")
+            return false
+        }
     }
     
     @objc
@@ -202,7 +207,7 @@ final class UseCaseLegacyWrapper: NSObject {
     }
     
     @objc
-    static func insertNotification(_ userInfo: [AnyHashable : Any]) {
+    static func insertNotification(_ userInfo: [AnyHashable: Any]) {
         @Singleton<InsertNotificationUseCase> var insertNotificationUseCase
         
         do {

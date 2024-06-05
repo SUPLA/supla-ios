@@ -65,7 +65,7 @@ struct GarageDoorViewState: BaseWindowViewState {
     var garageDoorState: GarageDoorState = .init(position: .similar(0))
     var issues: [ChannelIssueItem] = []
     var offline: Bool = true
-    var showClosingPercentage: Bool = false
+    var positionPresentation: ShadingSystemPositionPresentation = .asClosed
     var calibrating: Bool = false
     var calibrationPossible: Bool = false
     var positionUnknown: Bool = false
