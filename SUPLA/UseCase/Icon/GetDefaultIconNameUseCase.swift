@@ -108,8 +108,8 @@ final class GetDefaultIconNameUseCaseImpl: GetDefaultIconNameUseCase {
         DigiglassHorizontalIconNameProducer(),
         DigiglassVerticalIconNameProducer(),
         ThermostatIconNameProducer(),
-        StaticIconNameProducer(function: SUPLA_CHANNELFNC_HOTELCARDSENSOR, name: "fnc_hotel_card", withSuffix: true),
-        StaticIconNameProducer(function: SUPLA_CHANNELFNC_ALARMARMAMENTSENSOR, name: "fnc_alarm_armament", withSuffix: true),
+        StaticIconNameProducer(function: SUPLA_CHANNELFNC_HOTELCARDSENSOR, name: "fnc_hotel_card"),
+        AlarmArmamentIconNameProducer(),
         GeneralPurposeMeasurementIconNameProducer(),
         GeneralPurposeMeterIconNameProducer()
     ]

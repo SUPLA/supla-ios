@@ -773,6 +773,7 @@
 		A5A14A402B613742004B1598 /* SuplaChannelGeneralPurposeBaseConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5A14A3F2B613742004B1598 /* SuplaChannelGeneralPurposeBaseConfig.swift */; };
 		A5A14A422B614242004B1598 /* SuplaChannelGeneralPurposeMeasurementConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5A14A412B614242004B1598 /* SuplaChannelGeneralPurposeMeasurementConfig.swift */; };
 		A5A14A442B6143AC004B1598 /* SuplaChannelGeneralPurposeMeterConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5A14A432B6143AC004B1598 /* SuplaChannelGeneralPurposeMeterConfig.swift */; };
+		A5A15FE32C22FEAE0049AA73 /* AlarmArmamentIconNameProducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5A15FE22C22FEAE0049AA73 /* AlarmArmamentIconNameProducer.swift */; };
 		A5A1C0A829F2AAFA0083818D /* VibrationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5A1C0A729F2AAFA0083818D /* VibrationService.swift */; };
 		A5A23C2D2ABD96DB00233542 /* SuplaChannelConfigTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5A23C2C2ABD96DB00233542 /* SuplaChannelConfigTests.swift */; };
 		A5A23C2F2ABDAF8E00233542 /* ValuesFormatterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5A23C2E2ABDAF8E00233542 /* ValuesFormatterTests.swift */; };
@@ -2124,6 +2125,7 @@
 		A5A14A3F2B613742004B1598 /* SuplaChannelGeneralPurposeBaseConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuplaChannelGeneralPurposeBaseConfig.swift; sourceTree = "<group>"; };
 		A5A14A412B614242004B1598 /* SuplaChannelGeneralPurposeMeasurementConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuplaChannelGeneralPurposeMeasurementConfig.swift; sourceTree = "<group>"; };
 		A5A14A432B6143AC004B1598 /* SuplaChannelGeneralPurposeMeterConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuplaChannelGeneralPurposeMeterConfig.swift; sourceTree = "<group>"; };
+		A5A15FE22C22FEAE0049AA73 /* AlarmArmamentIconNameProducer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlarmArmamentIconNameProducer.swift; sourceTree = "<group>"; };
 		A5A1C0A729F2AAFA0083818D /* VibrationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VibrationService.swift; sourceTree = "<group>"; };
 		A5A23C2C2ABD96DB00233542 /* SuplaChannelConfigTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuplaChannelConfigTests.swift; sourceTree = "<group>"; };
 		A5A23C2E2ABDAF8E00233542 /* ValuesFormatterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValuesFormatterTests.swift; sourceTree = "<group>"; };
@@ -3619,6 +3621,7 @@
 				A530EE152A56F82A00F8DAEE /* GateIconNameProducer.swift */,
 				A530EE172A56FADF00F8DAEE /* GarageDoorIconNameProducer.swift */,
 				A530EE192A56FBBC00F8DAEE /* PowerSwitchIconNameProducer.swift */,
+				A5A15FE22C22FEAE0049AA73 /* AlarmArmamentIconNameProducer.swift */,
 				A530EE1B2A56FC5000F8DAEE /* LightSwitchIconNameProducer.swift */,
 				A530EE1D2A56FD4300F8DAEE /* StaircaseTimerIconNameProducer.swift */,
 				A530EE212A56FF2200F8DAEE /* HumidityAndThermometerIconNameProducer.swift */,
@@ -6212,6 +6215,7 @@
 				AE68E73227739D8500E55DB7 /* SwipeTransition.swift in Sources */,
 				A52BFEB32B063EAC00A2F64C /* RangeValueType.swift in Sources */,
 				017554F622F1A62500EB58B7 /* HomePlusDetailView.m in Sources */,
+				A5A15FE32C22FEAE0049AA73 /* AlarmArmamentIconNameProducer.swift in Sources */,
 				013D1C6322CE75A3000C0784 /* SAElectricityChartHelper.m in Sources */,
 				A5F29BFC2A2DC16100ED700A /* CoreDataMigration.swift in Sources */,
 				A5F29BA12A20D6DD00ED700A /* ChannelBaseTableViewController.swift in Sources */,
