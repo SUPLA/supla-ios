@@ -348,7 +348,7 @@ final class GetDefaultIconNameUseCaseTests: XCTestCase {
         )
         
         // then
-        XCTAssertEqual(iconName, "rollershutter-open")
+        XCTAssertEqual(iconName, "fnc_roller_shutter-open")
     }
     
     func test_rollershutterSensorClosed() {
@@ -366,7 +366,7 @@ final class GetDefaultIconNameUseCaseTests: XCTestCase {
         )
         
         // then
-        XCTAssertEqual(iconName, "rollershutter-closed")
+        XCTAssertEqual(iconName, "fnc_roller_shutter-closed")
     }
     
     func test_roofwindowSensorOpened() {
