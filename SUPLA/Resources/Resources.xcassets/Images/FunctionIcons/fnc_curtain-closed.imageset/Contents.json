@@ -1,7 +1,7 @@
 {
   "images" : [
     {
-      "filename" : "curtain-1.svg",
+      "filename" : "curtain-closed.svg",
       "idiom" : "universal"
     },
     {
@@ -11,7 +11,7 @@
           "value" : "dark"
         }
       ],
-      "filename" : "curtain - dark mode-1.svg",
+      "filename" : "curtain-closed-nm.svg",
       "idiom" : "universal"
     }
   ],

@@ -24,7 +24,7 @@ private let TOP_VIEW_HEIGHT: CGFloat = 80
 class BaseWindowVC<WS: WindowState, WV: BaseWindowView<WS>, S: BaseWindowViewState, VM: BaseWindowVM<S>>: BaseViewControllerVM<S, BaseWindowViewEvent, VM> {
     let itemBundle: ItemBundle
     
-    var windowControls: WindowControls
+    lazy var windowControls: WindowControls = { getWindowControls() }()
     
     lazy var topView: BlindsTopView = .init()
     
@@ -43,9 +43,8 @@ class BaseWindowVC<WS: WindowState, WV: BaseWindowView<WS>, S: BaseWindowViewSta
     
     private lazy var dynamicConstraints: [NSLayoutConstraint] = []
     
-    init(itemBundle: ItemBundle, viewModel: VM, windowControls: WindowControls = WindowVerticalControls()) {
+    init(itemBundle: ItemBundle, viewModel: VM) {
         self.itemBundle = itemBundle
-        self.windowControls = windowControls
         super.init(nibName: nil, bundle: nil)
         self.viewModel = viewModel
     }
@@ -58,6 +57,8 @@ class BaseWindowVC<WS: WindowState, WV: BaseWindowView<WS>, S: BaseWindowViewSta
     func getWindowView() -> WV {
         fatalError("getWindowView() needs to be implemented")
     }
+    
+    func getWindowControls() -> WindowControls { WindowVerticalControls() }
     
     override func viewDidLoad() {
         super.viewDidLoad()

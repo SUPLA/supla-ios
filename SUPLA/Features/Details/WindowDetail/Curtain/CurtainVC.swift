@@ -18,17 +18,19 @@
 
 final class CurtainVC: BaseWindowVC<CurtainWindowState, CurtainView, CurtainViewState, CurtainVM> {
     init(itemBundle: ItemBundle) {
-        super.init(itemBundle: itemBundle, viewModel: CurtainVM(), windowControls: WindowHorizontalControls())
+        super.init(itemBundle: itemBundle, viewModel: CurtainVM())
     }
-    
+
     override func getWindowView() -> CurtainView { CurtainView() }
-    
+
     override func handle(state: CurtainViewState) {
         windowView.windowState = state.curtainWindowState
-        
+
         slatTiltSlider.isHidden = true
         topView.valueBottom = nil
-        
+
         super.handle(state: state)
     }
+
+    override func getWindowControls() -> WindowControls { WindowHorizontalControls() }
 }
