@@ -18,7 +18,7 @@
 
 final class VerticalBlindsVC: BaseWindowVC<VerticalBlindWindowState, VerticalBlindsView, VerticalBlindsViewState, VerticalBlindsVM> {
     init(itemBundle: ItemBundle) {
-        super.init(itemBundle: itemBundle, viewModel: VerticalBlindsVM(), windowControls: WindowHorizontalControls())
+        super.init(itemBundle: itemBundle, viewModel: VerticalBlindsVM())
     }
     
     override func getWindowView() -> VerticalBlindsView { VerticalBlindsView() }
@@ -66,4 +66,6 @@ final class VerticalBlindsVC: BaseWindowVC<VerticalBlindWindowState, VerticalBli
             )
         }
     }
+    
+    override func getWindowControls() -> WindowControls { WindowHorizontalControls() }
 }

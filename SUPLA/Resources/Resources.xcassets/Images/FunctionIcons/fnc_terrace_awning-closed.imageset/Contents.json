@@ -1,7 +1,7 @@
 {
   "images" : [
     {
-      "filename" : "awnings.svg",
+      "filename" : "awnings-1.svg",
       "idiom" : "universal"
     },
     {
@@ -11,7 +11,7 @@
           "value" : "dark"
         }
       ],
-      "filename" : "awnings_dark mode.svg",
+      "filename" : "awnings_dark mode-1.svg",
       "idiom" : "universal"
     }
   ],
