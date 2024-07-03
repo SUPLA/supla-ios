@@ -55,6 +55,7 @@ extension String {
         
         static let warning = "channel_warning_level1"
         static let error = "channel_warning_level2"
+        static let statusError = "icon_status_error"
         
         static let arrowRight = "icon_arrow_right"
         static let arrowDoubleRight = "icon_arrow_double_right"
@@ -66,6 +67,8 @@ extension String {
         static let arrowCoverHold = "icon_arrow_cover_hold"
         static let arrowRevealTap = "icon_arrow_reveal_tap"
         static let arrowRevealHold = "icon_arrow_reveal_hold"
+        
+        static let fingerprint = "icon_fingerprint"
         
         // MARK: Functions
         static let fncUnknown = "unknown_channel"
@@ -142,6 +145,8 @@ extension String {
     
     struct Image {
         static let logo = "logo"
+        static let logoLight = "logo_light"
+        static let logoWithName = "logo_with_name"
         static let garageContent = "garage_content"
     }
 }

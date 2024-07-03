@@ -27,6 +27,8 @@ import RxCocoa
  */
 class AccountCreationVC: BaseViewControllerVM<AccountCreationViewState, AccountCreationViewEvent, AccountCreationVM> {
     
+    @Singleton<SuplaAppCoordinator> private var coordinator
+    
     // MARK: UI variables
     @IBOutlet private var controlStack: UIStackView!
     @IBOutlet private var loadingStack: UIStackView!
@@ -89,15 +91,9 @@ class AccountCreationVC: BaseViewControllerVM<AccountCreationViewState, AccountC
     private weak var activeContentView: UIView?
     private var profileId: NSManagedObjectID?
     
-    private var navigator: AuthCfgNavigationCoordinator? {
-        get {
-            navigationCoordinator as? AuthCfgNavigationCoordinator
-        }
-    }
     
-    convenience init(navigationCoordinator: NavigationCoordinator, profileId: NSManagedObjectID?) {
+    convenience init(profileId: NSManagedObjectID?) {
         self.init(nibName: "AccountCreationVC", bundle: nil)
-        self.navigationCoordinator = navigationCoordinator
         self.profileId = profileId
         
         viewModel = AccountCreationVM()
@@ -147,14 +143,6 @@ class AccountCreationVC: BaseViewControllerVM<AccountCreationViewState, AccountC
         }
     }
 
-    override func adjustsStatusBarBackground() -> Bool {
-        return true
-    }
-    
-    override func hidesNavigationBar() -> Bool {
-        return !adjustsStatusBarBackground()
-    }
-    
     private func configureUI() {
         [vBasic, vAdvanced, adFormHostView, adFormEmailAuth,
          adFormAccessIdAuth].forEach {
@@ -304,18 +292,17 @@ class AccountCreationVC: BaseViewControllerVM<AccountCreationViewState, AccountC
             handleFormSavedEvent(needsReauth)
             break
         case .navigateToCreateAccount:
-            navigator?.navigateToCreateAccount()
+            coordinator.navigateToCreateAccountWeb()
             break
         case .navigateToRemoveAccount(let needsRestart, let serverAddress):
-            navigator?.navigateToRemoveAccount(needsRestart: needsRestart, serverAddress: serverAddress)
+            coordinator.popViewController()
+            coordinator.navigateToRemoveAccountWeb(needsRestart: needsRestart, serverAddress: serverAddress)
             break
         case .finish(let needsRestart, let needsReauth):
-            if (needsRestart) {
-                navigator?.restartAppFlow()
-            } else if(needsReauth) {
-                navigator?.finish(shouldReauthenticate: true)
+            if (needsRestart || needsReauth) {
+                coordinator.popToStatus()
             } else {
-                navigator?.finish()
+                coordinator.popViewController()
             }
             break
         case .showRemovalFailure:
@@ -380,7 +367,11 @@ class AccountCreationVC: BaseViewControllerVM<AccountCreationViewState, AccountC
         if (needsReauth) {
             SAApp.revokeOAuthToken()
         }
-        navigator?.finish(shouldReauthenticate: needsReauth)
+        if (needsReauth) {
+            coordinator.popToStatus()
+        } else {
+            coordinator.popViewController()
+        }
         if (needsReauth || !SAApp.suplaClientConnected()) {
             NotificationCenter.default.post(name: .saConnecting, object: self, userInfo: nil)
         }
@@ -433,7 +424,7 @@ class AccountCreationVC: BaseViewControllerVM<AccountCreationViewState, AccountC
     }
     
     @objc private func onBackButtonPressed(_ n: Notification) {
-        navigationCoordinator?.finish()
+        coordinator.popViewController()
     }
     
     @objc private func didTapBackground(_ gr: UITapGestureRecognizer) {
@@ -459,5 +450,11 @@ extension AccountCreationVC: UITextFieldDelegate {
             tf.becomeFirstResponder()
         }
         return true
+    }
+}
+
+extension AccountCreationVC: NavigationSubcontroller {
+    func screenTakeoverAllowed() -> Bool {
+        return false
     }
 }

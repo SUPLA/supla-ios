@@ -22,8 +22,10 @@ import RxSwiftExt
 import UIKit
 
 class AppSettingsVC: BaseViewControllerVM<AppSettingsViewState, AppSettingsViewEvent, AppSettingsVM> {
+    
+    @Singleton<SuplaAppCoordinator> private var coordinator
+    
     let tableView = UITableView(frame: .zero, style: .grouped)
-    private var navigator: AppSettingsNavigationCoordinator? { navigationCoordinator as? AppSettingsNavigationCoordinator }
     
     convenience init() {
         self.init(nibName: nil, bundle: nil)
@@ -37,9 +39,6 @@ class AppSettingsVC: BaseViewControllerVM<AppSettingsViewState, AppSettingsViewE
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        edgesForExtendedLayout = []
-        statusBarBackgroundView.isHidden = true
-        view.backgroundColor = .background
         
         setupTableView()
     }
@@ -47,11 +46,13 @@ class AppSettingsVC: BaseViewControllerVM<AppSettingsViewState, AppSettingsViewE
     override func handle(event: AppSettingsViewEvent) {
         switch (event) {
         case .navigateToLocationOrdering:
-            navigator?.navigateToLocationOrdering()
+            coordinator.navigateToLocationOrdering()
         case .navigateToAppPreferences:
             openAppSettings()
+        case .navigateToPinSetup(let scope): coordinator.navigateToPinSetup(lockScreenScope: scope)
+        case .navigateToPinVerification(let unlockAction): coordinator.navigateToLockScreen(unlockAction: unlockAction)
         case .changeInterfaceStyle(let style):
-            (UIApplication.shared.delegate as? AppDelegate)?.window.overrideUserInterfaceStyle = style
+            (UIApplication.shared.delegate as? AppDelegate)?.window?.overrideUserInterfaceStyle = style
             overrideUserInterfaceStyle = style
         }
     }
@@ -64,6 +65,7 @@ class AppSettingsVC: BaseViewControllerVM<AppSettingsViewState, AppSettingsViewE
         tableView.register(TitleArrowButtonCell.self, forCellReuseIdentifier: TitleArrowButtonCell.id)
         tableView.register(PermissionCell.self, forCellReuseIdentifier: PermissionCell.id)
         tableView.register(NightModeCell.self, forCellReuseIdentifier: NightModeCell.id)
+        tableView.register(LockScreenCell.self, forCellReuseIdentifier: LockScreenCell.id)
         
         viewModel.stateObservable()
             .map { $0.list }
@@ -104,6 +106,10 @@ class AppSettingsVC: BaseViewControllerVM<AppSettingsViewState, AppSettingsViewE
                 case .darkModeItem(let nightModeSetting, let callback):
                     return NightModeCell.configure(nightModeSetting, callback) {
                         self.getCell(for: NightModeCell.id, indexPath)
+                    }
+                case .lockScreenItem(let lockScreenScope, let callback):
+                    return LockScreenCell.configure(lockScreenScope, callback) {
+                        self.getCell(for: LockScreenCell.id, indexPath)
                     }
                 }
             }, titleForHeaderInSection: { dataSource, sectionIndex in

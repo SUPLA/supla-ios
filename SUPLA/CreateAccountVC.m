@@ -31,7 +31,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self.webView setDelegate:self];
-    self.statusBarBackgroundView.backgroundColor = [UIColor primary];
+    self.statusBarBackgroundView.backgroundColor = [UIColor toolbar];
     self.title = @"supla";
 }
 

@@ -95,6 +95,7 @@ final class SwitchGeneralVMTest: ViewModelTest<SwitchGeneralViewState, SwitchGen
         
         readChannelByRemoteIdUseCase.returns = Observable.just(channel)
         getChannelBaseStateUseCase.returns = ChannelState.opened
+        dateProvider.currentTimestampReturns = .single(0)
         
         // when
         observe(viewModel)
@@ -146,7 +147,7 @@ final class SwitchGeneralVMTest: ViewModelTest<SwitchGeneralViewState, SwitchGen
         
         readChannelByRemoteIdUseCase.returns = Observable.just(channel)
         getChannelBaseStateUseCase.returns = ChannelState.opened
-        dateProvider.currentTimestampReturns = 124
+        dateProvider.currentTimestampReturns = .single(124)
         
         // when
         observe(viewModel)

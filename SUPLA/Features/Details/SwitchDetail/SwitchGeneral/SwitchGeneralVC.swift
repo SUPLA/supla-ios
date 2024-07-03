@@ -57,9 +57,6 @@ class SwitchGeneralVC : BaseViewControllerVM<SwitchGeneralViewState, SwitchGener
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        statusBarBackgroundView.isHidden = true
-        view.backgroundColor = .background
-        
         setupView()
     }
     

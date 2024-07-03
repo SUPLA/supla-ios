@@ -43,10 +43,6 @@ class ScheduleDetailVC: BaseViewControllerVM<ScheduleDetailViewState, ScheduleDe
         return view
     }()
     
-    private var navigator: ThermostatDetailNavigationCoordinator? {
-        get { navigationCoordinator as? ThermostatDetailNavigationCoordinator }
-    }
-    
     init(item: ItemBundle) {
         self.item = item
         super.init(nibName: nil, bundle: nil)
@@ -59,8 +55,6 @@ class ScheduleDetailVC: BaseViewControllerVM<ScheduleDetailViewState, ScheduleDe
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        statusBarBackgroundView.isHidden = true
-        view.backgroundColor = .background
         
         viewModel.observeConfig(remoteId: item.remoteId, deviceId: item.deviceId)
         

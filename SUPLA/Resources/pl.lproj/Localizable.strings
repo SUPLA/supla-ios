@@ -45,17 +45,7 @@
 "Garage door opening sensor" = "Czujnik otwarcia bramy garażowej";
 "Door opening sensor" = "Czujnik otwarcia drzwi";
 "Roller shutter opening sensor" = "Czujnik otwarcia rolet";
-"Connecting..." = "Łączenie...";
-"Unknown error" = "Nieznany błąd";
-"Service temporarily unavailable" = "Usługa tymczasowo niedostępna";
-"Bad credentials" = "Błędne poświadczenia";
-"Client limit exceeded" = "Przekroczony limit aplikacji klienckich";
-"Device disabled. Please log in to \"Supla Cloud\" and enable this device in “Smartphone” section of the website." = "Urządzenie jest wyłączone. Zaloguj się do \"Supla Cloud\" i włącz ten smrtfon w zakładce \"Smartfony\".";
-"Access Identifier is disabled" = "Identyfikator dostępu jest wyłączony";
-"New client registration disabled. Please log in to \"Supla Cloud\" and enable \"New client registration\" in \"Smartphone\" section of the website." = "Rejestracja jest obecnie wyłączona. Zaloguj się do \"Supla Cloud\" i przełącz rejestrację klientów na AKTYWNĄ w zakładce \"Smartfony\".";
-"Client activation required. Please log in to \"Supla Cloud\" and assign an “Access ID” for this device in “Smartphone” section of the website." = "To urządzenie nie ma przypisanego identyfikatora dostępu. Przejdź na stronę \"Supla Cloud\" i w zakładce \"Smartfony\" przypisz odpowiedni identyfikator.";
 "Incompatible server version" = "Niekompatybilna wersja serwera";
-"Host not found. Make sure you are connected to the internet and that an account with the entered email address has been created." = "Adres serwera nie został znaleziony. Upewnij się, że posiadasz połączenie z internetem oraz, że konto o wprowadzonym adresie email zostało utworzone.";
 "RGB Lighting" = "Oświetlenie RGB";
 "Dimmer and RGB lighting" = "Ściemniacz i oświetlenie RGB";
 "Dimmer" = "Ściemniacz";
@@ -199,7 +189,6 @@
 "The glass sections are exposed for more than 20 hours, which may adversely affect their life. It is recommended to cover all sections for a minimum of 4 hours in order to regenerate them." = "Sekcje szyby są odsłonięte dłużej niż 20 godzin co może negatywnie wpłynąć na ich żywotność. Zalecane jest zasłonięcie wszystkich sekcji na minimum 4 godziny w celu ich regeneracji.";
 "Planned regeneration is in progress." = "Trwa zaplanowana regeneracja.";
 "Regeneration initiated after 20 hours of operation is in progress." = "Trwa regeneracja zainicjowana po 20h pracy.";
-"Incorrect Email Address or Password" = "Błędny adres email lub hasło";
 "Channel Id" = "Id kanału";
 "Back" = "Wstecz";
 "The z-wave bridge is not responding. Check if the bridge is connected to the server." = "Most z-wave nie odpowiada. Sprawdź czy most jest połączony z serwerem.";
@@ -281,7 +270,6 @@
 "Closing" = "Zamknięcia";
 "Percent of opening" = "Procent otwarcia";
 "Percent of closing" = "Procent zamknięcia";
-"Access Identifier inactive." = "Identyfikator dostępu nieaktywny.";
 "Your account" = "Twoje konto";
 "Your accounts" = "Twoje konta";
 "Accounts" = "Konta";
@@ -373,6 +361,10 @@
 "app_settings.location_label" = "Lokalizacja";
 "settings_show_labels" = "Pokazuj etykiety w dolnym menu";
 "settings_dark_mode" = "Tryb nocny";
+"settings_lock_screen" = "Ekran blokady";
+"settings_lock_screen_none" = "Brak";
+"settings_lock_screen_app" = "Aplikacja";
+"settings_lock_screen_accounts" = "Konta";
 
 /* Standard Detail */
 "standard_detail_general_tab" = "Ogólne";
@@ -493,3 +485,43 @@
 /* Facade blind detail */
 "facade_blinds_slat_tilt" = "Nachylenie: ";
 "facade_blinds_no_tilt" = "Brak konfiguracji";
+
+/* Status */
+"status_initializing" = "Uruchamianie...";
+"status_connecting" = "Łączenie...";
+"status_disconnecting" = "Rozłączanie...";
+"status_awaiting_network" = "Oczekiwanie na sieć...";
+"status_try_again" = "Spróbuj ponownie";
+"status_unknown_error" = "Nieznany błąd";
+"status_temporarily_unavailable" = "Usługa tymczasowo niedostępna";
+"status_incorrect_data" = "Błędny adres email lub hasło";
+"status_bad_credentials" = "Błędne poświadczenia";
+"status_client_limit_exceeded" = "Przekroczony limit aplikacji klienckich";
+"status_device_disabled" = "Urządzenie jest wyłączone. Zaloguj się do \"Supla Cloud\" i włącz ten smrtfon w zakładce \"Smartfony\".";
+"status_access_id_disabled" = "Identyfikator dostępu jest wyłączony";
+"status_registration_disabled" = "Rejestracja jest obecnie wyłączona. Zaloguj się do \"Supla Cloud\" i przełącz rejestrację klientów na AKTYWNĄ w zakładce \"Smartfony\".";
+"status_access_id_not_assigned" = "To urządzenie nie ma przypisanego identyfikatora dostępu. Przejdź na stronę \"Supla Cloud\" i w zakładce \"Smartfony\" przypisz odpowiedni identyfikator.";
+"status_access_id_inactive" = "Identyfikator dostępu nieaktywny.";
+"status_host_not_found" = "Adres serwera nie został znaleziony. Upewnij się, że posiadasz połączenie z internetem oraz, że konto o wprowadzonym adresie email zostało utworzone.";
+
+/* Pin setup */
+"pin_setup_title" = "Konfiguracja PIN";
+"pin_setup_header" = "Zdefiniuj swój kod PIN";
+"pin_setup_repeat" = "Powtórz PIN";
+"pin_setup_entry_different" = "Wprowadzone kody różnią się!";
+"pin_setup_use_biometric" = "Uwierzytelnianie biometryczne: ";
+"pin_setup_biometric_not_enrolled" = "Uwierzytalnienie biometryczne nie zostało skonfigurowane. Jeżeli chcesz skorzystać z biometrii skonfiguruj ją najpierw w ustawieniach systemowych.";
+
+/* Lock screen */
+"lock_screen_hello" = "Witaj ponownie!";
+"lock_screen_enter_pin" = "Wprowadź PIN";
+"lock_screen_remove_pin" = "Usuwanie kodu PIN";
+"lock_screen_confirm_authorize_app" = "Zmiana zakresu autoryzacji - aplikacja";
+"lock_screen_confirm_authorize_accounts" = "Zmiana zakresu autoryzacji - konta";
+"lock_screen_wrong_pin" = "Wprowadzono nieprawidłowy kod PIN!";
+"lock_screen_forgotten_code" = "Nie pamiętam kodu dostępu";
+"lock_screen_forgotten_code_title" = "Kod dostępu";
+"lock_screen_forgotten_code_message" = "Jeśli nie pamiętasz kodu dostępu, odinstaluj aplikację z telefonu, a następnie zainstaluj ją ponownie. Po ponownej instalacji, dodaj konfigurację konta z Supla Cloud.\n\nNie zakładaj nowego konta. Dane historyczne i wszystkie urządzenia nie zostaną stracone.";
+"lock_screen_forgotten_code_button" = "Rozumiem";
+"biometric_prompt_subtitle" = "Odblokuj używając biometrii";
+"lock_screen_pin_locked" = "Zbyt wiele błędnych prób. Pin został zablokowany na %@.";

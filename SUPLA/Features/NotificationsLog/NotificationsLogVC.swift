@@ -21,7 +21,6 @@ import RxDataSources
 private let CELL_ID = "NotificationCell"
 
 class NotificationsLogVC: BaseViewControllerVM<NotificationsLogViewState, NotificationsLogViewEvent, NotificationsLogVM> {
-    private var navigator: NotificationsLogNavigationCoordinator? { navigationCoordinator as? NotificationsLogNavigationCoordinator }
     
     private lazy var tableView: UITableView = {
         let tableView = UITableView()
@@ -39,9 +38,8 @@ class NotificationsLogVC: BaseViewControllerVM<NotificationsLogViewState, Notifi
         canEditRowAtIndexPath: { _, _ in true }
     )
     
-    init(navigator: NotificationsLogNavigationCoordinator) {
+    init() {
         super.init(nibName: nil, bundle: nil)
-        self.navigationCoordinator = navigator
         self.viewModel = NotificationsLogVM()
     }
     
@@ -57,9 +55,8 @@ class NotificationsLogVC: BaseViewControllerVM<NotificationsLogViewState, Notifi
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        edgesForExtendedLayout = []
         title = Strings.Notifications.menu
-        view.backgroundColor = .background
+        
         navigationItem.rightBarButtonItem = UIBarButtonItem(
             barButtonSystemItem: .trash,
             target: self,

@@ -16,6 +16,104 @@
  along with this program; if not, write to the Free Software
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
-    
 
 import Foundation
+
+class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate {
+    
+    var window: UIWindow? = nil
+    
+    @Singleton private var settings: GlobalSettings
+    @Singleton private var insertNotificationUseCase: InsertNotificationUseCase
+    @Singleton private var coordinator: SuplaAppCoordinator
+    @Singleton private var suplaAppStateHolder: SuplaAppStateHolder
+    @Singleton private var disconnectUseCase: DisconnectUseCase
+    
+    private var clientStopWork: DispatchWorkItem? = nil
+    
+    override init() {
+        SALogWrapper.setup()
+        DiContainer.start()
+    }
+
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]? = nil) -> Bool {
+        #if DEBUG
+        // Short-circuit starting app if running unit tests
+        if (ProcessInfo.processInfo.environment["XCTestConfigurationFilePath"] != nil) {
+            return true
+        }
+        #endif
+        
+        window = UIWindow(frame: UIScreen.main.bounds)
+        if let window = window {
+            window.overrideUserInterfaceStyle = settings.darkMode.interfaceStyle
+            coordinator.attachToWindow(window)
+            coordinator.start(animated: true)
+        }
+        
+        registerForNotifications()
+        
+        DispatchQueue.global(qos: .userInitiated).async {
+            InitializationUseCase.invoke()
+        }
+        
+        return true
+    }
+    
+    func applicationDidEnterBackground(_ application: UIApplication) {
+        disconnectUseCase.invokeSynchronous()
+        suplaAppStateHolder.handle(event: .finish(reason: .appInBackground))
+    }
+    
+    func applicationDidBecomeActive(_ application: UIApplication) {
+        #if DEBUG
+        if (ProcessInfo.processInfo.environment["XCTestConfigurationFilePath"] != nil) {
+            return
+        }
+        #endif
+        
+        suplaAppStateHolder.handle(event: .onStart)
+    }
+    
+    func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
+        #if DEBUG
+        let token = deviceToken.map { String(format: "%02.2hhx", $0) }.joined()
+        SALog.debug("Push token: \(token)")
+        #endif
+        var settings = settings
+        
+        settings.pushToken = deviceToken
+        UpdateTokenTask().update(token: deviceToken) { SALog.info("Token update task finished") }
+    }
+    
+    func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: any Error) {
+        SALog.error("Failed to register for remote notifications with error \(error)")
+    }
+    
+    func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable: Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
+        do {
+            try insertNotificationUseCase.invoke(userInfo: userInfo).subscribeSynchronous()
+        } catch {
+            SALog.error("Could not insert notification: \(String(describing: error))")
+        }
+        completionHandler(.newData)
+    }
+    
+    func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+        completionHandler(.alert)
+    }
+    
+    private func registerForNotifications() {
+        UNUserNotificationCenter.current().delegate = self
+        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound]) { [weak self] (granted, error) in
+            
+            if (granted) {
+                DispatchQueue.main.async { UIApplication.shared.registerForRemoteNotifications() }
+            } else {
+                SALog.error("Notifications not allowed \(String(describing: error))")
+                var settings = self?.settings
+                settings?.pushToken = nil
+            }
+        }
+    }
+}

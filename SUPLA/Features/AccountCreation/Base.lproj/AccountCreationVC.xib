@@ -88,7 +88,7 @@
                                     </connections>
                                 </textField>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="PROFILE NAME" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9au-9F-i69">
-                                    <rect key="frame" x="0.0" y="4" width="73.666666666666671" height="14"/>
+                                    <rect key="frame" x="0.0" y="4" width="72.333333333333329" height="14"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="14" id="heA-Vt-SJE"/>
                                     </constraints>
@@ -121,7 +121,7 @@
                                     </connections>
                                 </textField>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="E-MAIL ADDRESS" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cZS-4u-QMr">
-                                    <rect key="frame" x="0.0" y="0.0" width="81.666666666666671" height="14"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="82.666666666666671" height="14"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="14" id="8lj-Au-yNb"/>
                                     </constraints>
@@ -152,7 +152,7 @@
                     </constraints>
                 </stackView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" text="Your account" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Ji-Wu-NuM">
-                    <rect key="frame" x="43.666666666666657" y="24" width="217.99999999999997" height="50"/>
+                    <rect key="frame" x="46.333333333333329" y="24" width="212.33333333333343" height="50"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="50" id="Q4f-Ty-Dfg"/>
                     </constraints>
@@ -195,7 +195,7 @@
                                     </connections>
                                 </textField>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="PROFILE NAME" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NaO-7C-Klr">
-                                    <rect key="frame" x="12" y="4" width="73.666666666666671" height="14"/>
+                                    <rect key="frame" x="12" y="4" width="72.333333333333329" height="14"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="14" id="KYx-ft-23n"/>
                                     </constraints>
@@ -249,16 +249,16 @@
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
                 <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="CLE-eZ-RoC">
-                    <rect key="frame" x="310" y="65" width="51" height="28"/>
+                    <rect key="frame" x="310" y="65" width="51" height="31"/>
                 </switch>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" text="Advanced settings" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9LH-es-n4B">
-                    <rect key="frame" x="183.33333333333334" y="70.333333333333329" width="118.66666666666666" height="17.666666666666671"/>
+                    <rect key="frame" x="185.66666666666666" y="72.333333333333329" width="116.33333333333334" height="16.333333333333329"/>
                     <fontDescription key="fontDescription" name="Quicksand-Regular" family="Quicksand" pointSize="14"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="APj-NV-55D">
-                    <rect key="frame" x="33" y="99" width="326" height="733"/>
+                    <rect key="frame" x="33" y="102" width="326" height="730"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pLe-rf-dtD">
                             <rect key="frame" x="0.0" y="0.0" width="326" height="599.33333333333337"/>
@@ -284,13 +284,13 @@
                             </state>
                         </button>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="1000" text="Don't have an account in Supla Cloud yet?" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qva-Ft-tLE">
-                            <rect key="frame" x="0.0" y="687.33333333333337" width="326" height="19.333333333333371"/>
+                            <rect key="frame" x="0.0" y="687.33333333333337" width="326" height="16.333333333333371"/>
                             <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="14"/>
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <button opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2Up-5L-11x" userLabel="Create link">
-                            <rect key="frame" x="0.0" y="706.66666666666663" width="326" height="26.333333333333371"/>
+                            <rect key="frame" x="0.0" y="703.66666666666663" width="326" height="26.333333333333371"/>
                             <state key="normal">
                                 <attributedString key="attributedTitle">
                                     <fragment content="Create">
@@ -518,7 +518,7 @@
     </objects>
     <designables>
         <designable name="YqR-3f-Ofb">
-            <size key="intrinsicContentSize" width="49.333333333333336" height="24.333333333333332"/>
+            <size key="intrinsicContentSize" width="41.333333333333336" height="20.333333333333332"/>
         </designable>
     </designables>
     <resources>

@@ -25,8 +25,8 @@ protocol SaveOrCreateProfileUseCase {
 final class SaveOrCreateProfileUseCaseImpl: SaveOrCreateProfileUseCase {
     
     @Singleton<ProfileRepository> private var profileRepository
-    @Singleton<SuplaClientProvider> private var suplaClientProvider
     @Singleton<GlobalSettings> private var globalSettings
+    @Singleton<SuplaAppStateHolder> private var stateHolder
     
     func invoke(profileId: ProfileID?, name: String, advancedMode: Bool, authInfo: AuthInfo) -> Observable<SaveOrCreateProfileResult> {
         self.profileRepository.getAllProfiles()
@@ -59,7 +59,7 @@ final class SaveOrCreateProfileUseCaseImpl: SaveOrCreateProfileUseCase {
                         
                         let needsReauth = profile.isActive && authDataChanged
                         if (needsReauth) {
-                            self.suplaClientProvider.provide().reconnect()
+                            self.stateHolder.handle(event: .connecting)
                         }
                         
                         return SaveOrCreateProfileResult(

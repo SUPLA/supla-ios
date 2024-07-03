@@ -92,6 +92,10 @@
 "app_settings.location_label" = "Location";
 "settings_show_labels" = "Show bottom menu labels";
 "settings_dark_mode" = "Dark mode";
+"settings_lock_screen" = "Lock screen";
+"settings_lock_screen_none" = "None";
+"settings_lock_screen_app" = "App";
+"settings_lock_screen_accounts" = "Accounts";
 
 /* Standard Detail */
 "standard_detail_general_tab" = "General";
@@ -222,3 +226,43 @@
 /* Facade blind detail */
 "facade_blinds_slat_tilt" = "Tilt: ";
 "facade_blinds_no_tilt" = "Missing configuration";
+
+/* Status */
+"status_initializing" = "Starting...";
+"status_connecting" = "Connecting...";
+"status_disconnecting" = "Disconnecting...";
+"status_awaiting_network" = "Awaiting network...";
+"status_try_again" = "Try again";
+"status_unknown_error" = "Unknown error";
+"status_temporarily_unavailable" = "Service temporarily unavailable";
+"status_incorrect_data" = "Incorrect Email Address or Password";
+"status_bad_credentials" = "Bad credentials";
+"status_client_limit_exceeded" = "Client limit exceeded";
+"status_device_disabled" = "Device disabled. Please log in to \"Supla Cloud\" and enable this device in “Smartphone” section of the website.";
+"status_access_id_disabled" = "Access Identifier is disabled";
+"status_registration_disabled" = "New client registration disabled. Please log in to \"Supla Cloud\" and enable \"New client registration\" in \"Smartphone\" section of the website.";
+"status_access_id_not_assigned" = "Client activation required. Please log in to \"Supla Cloud\" and assign an “Access ID” for this device in “Smartphone” section of the website.";
+"status_access_id_inactive" = "Access Identifier inactive.";
+"status_host_not_found" = "Host not found. Make sure you are connected to the internet and that an account with the entered email address has been created.";
+
+/* Pin setup */
+"pin_setup_title" = "Configure PIN";
+"pin_setup_header" = "Define your PIN code";
+"pin_setup_repeat" = "Repeat the PIN";
+"pin_setup_entry_different" = "PIN's are not equal!";
+"pin_setup_use_biometric" = "Biometric Authentication: ";
+"pin_setup_biometric_not_enrolled" = "Biometric not available. If you want to use biometric go to settings and enrol your biometrics.";
+
+/* Lock screen */
+"lock_screen_hello" = "Welcome back!";
+"lock_screen_enter_pin" = "Enter PIN";
+"lock_screen_remove_pin" = "PIN removal";
+"lock_screen_confirm_authorize_app" = "Authorization scope change - application";
+"lock_screen_confirm_authorize_accounts" = "Authorization scope change - accounts";
+"lock_screen_wrong_pin" = "Entered PIN is wrong!";
+"lock_screen_forgotten_code" = "I don\'t remember my PIN code";
+"lock_screen_forgotten_code_title" = "Access code";
+"lock_screen_forgotten_code_message" = "If you don\'t remember the code, uninstall app and install it again. After that configure your Supla Cloud account again.\n\nDon\'t create new account. All your data and devices will stay registered in your Supla Cloud account.";
+"lock_screen_forgotten_code_button" = "OK";
+"biometric_prompt_subtitle" = "Unlock using biometric";
+"lock_screen_pin_locked" = "To many failures. PIN entry locked for %@.";

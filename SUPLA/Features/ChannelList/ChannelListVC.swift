@@ -17,6 +17,8 @@
  */
 
 class ChannelListVC: ChannelBaseTableViewController<ChannelListViewState, ChannelListViewEvent, ChannelListViewModel> {
+    @Singleton<SuplaAppCoordinator> private var coordinator
+    
     private var captionEditor: ChannelCaptionEditor? = nil
     
     convenience init() {
@@ -31,19 +33,19 @@ class ChannelListVC: ChannelBaseTableViewController<ChannelListViewState, Channe
     override func handle(event: ChannelListViewEvent) {
         switch (event) {
         case .navigateToDetail(let legacyDetailType, let channelBase):
-            navigator?.navigateToLegacyDetail(legacyDetailType: legacyDetailType, channelBase: channelBase)
+            coordinator.navigateToLegacyDetail(legacyDetailType, channelBase: channelBase)
         case .navigateToSwitchDetail(let item, let pages):
-            navigator?.navigateToSwitchDetail(item: item, pages: pages)
+            coordinator.navigateToSwitchDetail(item: item, pages: pages)
         case .navigateToThermostatDetail(let item, let pages):
-            navigator?.navigateToThermostatDetail(item: item, pages: pages)
+            coordinator.navigateToThermostatDetail(item: item, pages: pages)
         case .navigateToThermometerDetail(let item, let pages):
-            navigator?.navigateToThermometerDetail(item: item, pages: pages)
+            coordinator.navigateToThermometerDetail(item: item, pages: pages)
         case .navigateToGpmDetail(let item, let pages):
-            navigator?.navigateToGpmDetail(item: item, pages: pages)
+            coordinator.navigateToGpmDetail(item: item, pages: pages)
         case .navigateToRollerShutterDetail(let item, let pages):
-            navigator?.navigateToRollerShutterDetail(item: item, pages: pages)
+            coordinator.navigateToWindowDetail(item: item, pages: pages)
         case .showAddWizard:
-            navigator?.showAddWizard()
+            coordinator.navigateToAddWizard()
         }
     }
     
@@ -102,7 +104,7 @@ extension ChannelListVC: BaseCellDelegate {
         
         alert.title = NSLocalizedString("Warning", comment: "")
         alert.addAction(okButton)
-        navigationCoordinator?.viewController.present(alert, animated: true)
+        coordinator.present(alert, animated: true)
     }
     
     func onCaptionLongPress(_ remoteId: Int32) {

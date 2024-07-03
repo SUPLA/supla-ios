@@ -83,7 +83,7 @@ final class AuthorizeUseCaseTests: CompletableTestCase {
         useCase.invoke(userName: username, password: password).subscribe(observer).disposed(by: disposeBag)
         
         // then
-        assertEvents(contains: [.error(AuthorizationError(errorMessage: Strings.AuthorizationDialog.unauthorized))])
+        assertEvents(contains: [.error(AuthorizationError(errorMessage: Strings.Status.errorInvalidData))])
         
         XCTAssertEqual(notificationCenterWrapper.registerObserverParameters.count, 1)
         XCTAssertEqual(notificationCenterWrapper.unregisterObserverParameters.count, 2)
@@ -107,7 +107,7 @@ final class AuthorizeUseCaseTests: CompletableTestCase {
         useCase.invoke(userName: username, password: password).subscribe(observer).disposed(by: disposeBag)
         
         // then
-        assertEvents(contains: [.error(AuthorizationError(errorMessage: Strings.AuthorizationDialog.unavailable))])
+        assertEvents(contains: [.error(AuthorizationError(errorMessage: Strings.Status.errorUnavailable))])
         
         XCTAssertEqual(notificationCenterWrapper.registerObserverParameters.count, 1)
         XCTAssertEqual(notificationCenterWrapper.unregisterObserverParameters.count, 2)
@@ -131,7 +131,7 @@ final class AuthorizeUseCaseTests: CompletableTestCase {
         useCase.invoke(userName: username, password: password).subscribe(observer).disposed(by: disposeBag)
         
         // then
-        assertEvents(contains: [.error(AuthorizationError(errorMessage: Strings.General.unknownError))])
+        assertEvents(contains: [.error(AuthorizationError(errorMessage: Strings.Status.errorUnknown))])
         
         XCTAssertEqual(notificationCenterWrapper.registerObserverParameters.count, 1)
         XCTAssertEqual(notificationCenterWrapper.unregisterObserverParameters.count, 2)

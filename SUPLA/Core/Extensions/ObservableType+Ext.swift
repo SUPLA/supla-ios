@@ -64,6 +64,13 @@ extension Observable {
             return element
         }
     }
+    
+    func flatMapCompletable(_ selector: @escaping (Element) throws -> Completable) -> Completable {
+        flatMap {
+            try selector($0).asObservable()
+        }
+        .asCompletable()
+    }
 }
 
 final class SynchronousSubscriber<T> {

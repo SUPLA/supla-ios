@@ -16,12 +16,11 @@
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 
-import Foundation
 import CoreData
+import Foundation
 
 @objc
 class CoreDataManager: NSObject {
-    
     @Singleton<GlobalSettings> private var settings
     
     let migrator: CoreDataMigrator
@@ -70,7 +69,7 @@ class CoreDataManager: NSObject {
         self.migrator = migrator
     }
     
-    @objc func setup(completion: @escaping () -> Void) {
+    @objc func setup() {
         removeOldDatabases()
         
         ValueTransformer.setValueTransformer(
@@ -78,61 +77,39 @@ class CoreDataManager: NSObject {
             forName: NSValueTransformerName("GroupTotalValueTransformer")
         )
         
-        loadPersistentStore {
-            completion()
-        }
-    }
-    
-    private func loadPersistentStore(completion: @escaping () -> Void) {
-        migrateStoreIfNeeded {
-            self.persistentContainer.loadPersistentStores { description, error in
-                guard error == nil else {
-                    fatalError("Not able to load store \(error!)")
-                }
+        migrateStoreIfNeeded()
+        
+        persistentContainer.loadPersistentStores { _, error in
+            guard error == nil else {
+                fatalError("Not able to load store \(error!)")
+            }
                 
-                if(self.tryRecreateAccount) {
-                    DispatchQueue.global(qos: .userInitiated).async {
-                        if (SAApp.profileManager().restoreProfileFromDefaults()) {
-                            var settings = self.settings
-                            settings.anyAccountRegistered = true
-                        }
-                        DispatchQueue.main.async {
-                            completion()
-                        }
-                    }
-                }
-                else {
-                    completion()
+            if (self.tryRecreateAccount) {
+                if (SAApp.profileManager().restoreProfileFromDefaults()) {
+                    var settings = self.settings
+                    settings.anyAccountRegistered = true
                 }
             }
         }
     }
     
-    private func migrateStoreIfNeeded(completion: @escaping () -> Void) {
+    private func migrateStoreIfNeeded() {
         guard let storeUrl = persistentContainer.persistentStoreDescriptions.first?.url else {
             fatalError("persistentContainer was not set up properly")
         }
         
         if migrator.requiresMigration(at: storeUrl, toVersion: CoreDataMigrationVersion.current) {
-            DispatchQueue.global(qos: .userInitiated).async {
-                do {
-                    try self.migrator.migrateStore(at: storeUrl, toVersion: CoreDataMigrationVersion.current)
-                } catch {
+            do {
+                try migrator.migrateStore(at: storeUrl, toVersion: CoreDataMigrationVersion.current)
+            } catch {
 #if DEBUG
-                    fatalError("Migration failed with error \(error)")
+                fatalError("Migration failed with error \(error)")
 #else
-                    // If migration fails in production we want to delete the database so the
-                    // user is able to create account again
-                    self.removeCurrentDatabase()
+                // If migration fails in production we want to delete the database so the
+                // user is able to create account again
+                removeCurrentDatabase()
 #endif
-                }
-                
-                DispatchQueue.main.async {
-                    completion()
-                }
             }
-        } else {
-            completion()
         }
     }
     
@@ -150,8 +127,8 @@ class CoreDataManager: NSObject {
         if let removed = try? removeDatabase(with: "SUPLA_DB.sqlite"), removed {
             tryRecreateAccount = true
         }
-        for i in 0..<14 {
-            if let removed = try? removeDatabase(with: String.init(format: "SUPLA_DB%i.sqlite", i)), removed {
+        for i in 0 ..< 14 {
+            if let removed = try? removeDatabase(with: String(format: "SUPLA_DB%i.sqlite", i)), removed {
                 tryRecreateAccount = true
             }
         }
@@ -168,4 +145,3 @@ class CoreDataManager: NSObject {
         return false
     }
 }
-

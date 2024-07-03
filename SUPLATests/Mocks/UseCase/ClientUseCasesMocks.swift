@@ -81,3 +81,26 @@ final class AuthorizeUseCaseMock: AuthorizeUseCase {
         return returns
     }
 }
+
+final class DisconnectUseCaseMock: DisconnectUseCase {
+    var invokeCounter = 0
+    var invokeReturns: Completable = .empty()
+    func invoke() -> Completable {
+        invokeCounter += 1
+        return invokeReturns
+    }
+    
+    var invokeSynchronousCounter = 0
+    func invokeSynchronous() {
+        invokeSynchronousCounter += 1
+    }
+}
+
+final class ReconnectUseCaseMock: ReconnectUseCase {
+    var invokeCounter = 0
+    var returns: Completable = .empty()
+    func invoke() -> Completable {
+        invokeCounter += 1
+        return returns
+    }
+}

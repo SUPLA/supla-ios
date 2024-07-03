@@ -28,6 +28,13 @@ final class ChannelConfigRepositoryMock: BaseRepositoryMock<SAChannelConfig>, Ch
         return deleteAllReturns
     }
     
+    var deleteAllForProfileParameters: [AuthProfileItem] = []
+    var deleteAllForProfileReturns: Observable<Void> = .empty()
+    func deleteAllFor(profile: AuthProfileItem) -> Observable<Void> {
+        deleteAllForProfileParameters.append(profile)
+        return deleteAllForProfileReturns
+    }
+    
     var getConfigParameters: [Int32] = []
     var getConfigReturns: Observable<SAChannelConfig?> = .empty()
     var getConfigReturnsMap: [Int32: Observable<SAChannelConfig?>] = [:]

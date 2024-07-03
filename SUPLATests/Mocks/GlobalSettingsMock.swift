@@ -19,6 +19,7 @@
 @testable import SUPLA
 
 class GlobalSettingsMock: GlobalSettings {
+    
     var anyAccountRegisteredReturns: Bool = false
     var anyAccountRegisteredValues: [Bool] = []
     var anyAccountRegistered: Bool {
@@ -108,5 +109,12 @@ class GlobalSettingsMock: GlobalSettings {
     var darkMode: DarkModeSetting {
         get { darkModeReturns }
         set { darkModeValues.append(newValue) }
+    }
+    
+    var lockScreenSettingsReturns: LockScreenSettings = LockScreenSettings.DEFAULT
+    var lockScreenSettingsValues: [LockScreenSettings] = []
+    var lockScreenSettings: LockScreenSettings {
+        get { lockScreenSettingsReturns }
+        set { lockScreenSettingsValues.append(newValue) }
     }
 }

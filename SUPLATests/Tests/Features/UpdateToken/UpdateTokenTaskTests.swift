@@ -16,27 +16,22 @@
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 
-import XCTest
-import RxTest
 import RxSwift
+import RxTest
+import XCTest
 
 @testable import SUPLA
 
 final class UpdateTokenTaskTests: XCTestCase {
-    private lazy var updateTokenTask: UpdateTokenTask! = { UpdateTokenTask() }()
+    private lazy var updateTokenTask: UpdateTokenTask! = UpdateTokenTask()
     
-    private lazy var profileRepository: ProfileRepositoryMock! = {
-        ProfileRepositoryMock()
-    }()
-    private lazy var singleCall: SingleCallMock! = {
-        SingleCallMock()
-    }()
-    private lazy var settings: GlobalSettingsMock! = {
-        GlobalSettingsMock()
-    }()
-    private lazy var dateProvider: DateProviderMock! = {
-        DateProviderMock()
-    }()
+    private lazy var profileRepository: ProfileRepositoryMock! = ProfileRepositoryMock()
+
+    private lazy var singleCall: SingleCallMock! = SingleCallMock()
+
+    private lazy var settings: GlobalSettingsMock! = GlobalSettingsMock()
+
+    private lazy var dateProvider: DateProviderMock! = DateProviderMock()
     
     override func setUp() {
         DiContainer.shared.register(type: (any ProfileRepository).self, profileRepository!)
@@ -59,6 +54,7 @@ final class UpdateTokenTaskTests: XCTestCase {
         let token = Data()
         settings.pushTokenReturns = token
         let expectation = XCTestExpectation(description: "Update task finished")
+        dateProvider.currentTimestampReturns = .single(0)
         
         // when
         updateTokenTask.update(token: token) {
@@ -76,7 +72,7 @@ final class UpdateTokenTaskTests: XCTestCase {
         // given
         let token = Data()
         settings.pushTokenReturns = token
-        dateProvider.currentTimestampReturns = 8 * 24 * 60 * 60.0
+        dateProvider.currentTimestampReturns = .single(8 * 24 * 60 * 60.0)
         let expectation = XCTestExpectation(description: "Update task finished")
         
         // when
@@ -113,6 +109,7 @@ final class UpdateTokenTaskTests: XCTestCase {
         // given
         let token = Data()
         settings.pushTokenReturns = token
+        dateProvider.currentTimestampReturns = .single(0)
         
         let profile = AuthProfileItem(testContext: nil)
         profileRepository.allProfilesObservable = Observable.just([profile])
@@ -134,7 +131,7 @@ final class UpdateTokenTaskTests: XCTestCase {
         // given
         let token = Data()
         settings.pushTokenReturns = token
-        dateProvider.currentTimestampReturns = 12.0
+        dateProvider.currentTimestampReturns = .single(12.0)
         
         let profile = AuthProfileItem(testContext: nil)
         profile.authInfo = AuthInfo(
@@ -166,6 +163,7 @@ final class UpdateTokenTaskTests: XCTestCase {
         // given
         let token = Data()
         settings.pushTokenReturns = token
+        dateProvider.currentTimestampReturns = .single(0)
         
         let profile = AuthProfileItem(testContext: nil)
         profile.isActive = true

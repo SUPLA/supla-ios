@@ -30,6 +30,8 @@ final class ValuesFormatterMock: ValuesFormatter {
     
     func minutesToString(minutes: Int) -> String { "\(minutes)" }
     
+    func secondsToString(_ time: TimeInterval) -> String { "\(time)" }
+    
     func getHourString(hour: Hour?) -> String? {
         guard let hour = hour else { return "nil" }
         return "\(hour.hour):\(hour.minute)"

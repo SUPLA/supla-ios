@@ -37,7 +37,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 - (void)menuItemsInit {
     _btnCount = 0;
-    self.backgroundColor = [UIColor primary];
+    self.backgroundColor = [UIColor toolbar];
     self.translatesAutoresizingMaskIntoConstraints = YES;
 }
 

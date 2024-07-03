@@ -45,17 +45,7 @@
 "Garage door opening sensor" = "Garagentor-Öffnungssensor";
 "Door opening sensor" = "Tür-Öffnungssensor";
 "Roller shutter opening sensor" = "Rolladen-Öffnungssensor";
-"Connecting..." = "Verbindung...";
-"Unknown error" = "Unbekannter Fehler";
-"Service temporarily unavailable" = "Service momentan nicht verfügbar";
-"Bad credentials" = "Schlechte Referenzen";
-"Client limit exceeded" = "Klient-Grenze überschritten";
-"Device disabled. Please log in to \"Supla Cloud\" and enable this device in “Smartphone” section of the website." = "Gerät ist deaktiviert";
-"Access Identifier is disabled" = "Die Zugriffskennung ist deaktiviert";
-"New client registration disabled. Please log in to \"Supla Cloud\" and enable \"New client registration\" in \"Smartphone\" section of the website." = "Die Client-Registrierung ist deaktiviert. Bitte gehen Sie zu \"Smartphones\" auf \"Supla Cloud\", um es zu aktivieren.";
-"Client activation required. Please log in to \"Supla Cloud\" and assign an “Access ID” for this device in “Smartphone” section of the website." = "Diesem Client wurde keine Zugriffskennung zugewiesen. Bitte gehen Sie zu \"Smartphones\" auf \"Supla Cloud\" und holen Sie sich eine gültige ID.";
 "Incompatible server version" = "Nicht kompatible Server-Version";
-"Host not found. Make sure you are connected to the internet and that an account with the entered email address has been created." = "Host nicht gefunden";
 "RGB Lighting" = "RGB- Beleuchtungskontroller";
 "Dimmer and RGB lighting" = "Helligkeitsregler und RGB-Beleuchtungskontroller";
 "Dimmer" = "Helligkeitsregler";
@@ -199,7 +189,6 @@
 "The glass sections are exposed for more than 20 hours, which may adversely affect their life. It is recommended to cover all sections for a minimum of 4 hours in order to regenerate them." = "Die Scheibensektionen sind über 20 h aufgedeckt, was negativ ihre Lebensdauer beeinflussen kann. Verdeckung aller Sektionen für mind. 4 h zu ihrer Regeneration ist empfohlen.";
 "Planned regeneration is in progress." = "Geplante Regeneration läuft.";
 "Regeneration initiated after 20 hours of operation is in progress." = "Es läuft die nach 20 Betriebsstunden begonnene Regeneration.";
-"Incorrect Email Address or Password" = "Falsche E-Mail-Adresse oder Kennwort";
 "Channel Id" = "Kanal-ID";
 "Back" = "Zurück";
 "The z-wave bridge is not responding. Check if the bridge is connected to the server." = "Die Z-Wave-Brücke reagiert nicht.";
@@ -279,7 +268,6 @@
 "Closing" = "Schließungen";
 "Percent of opening" = "Prozentsatz der Öffnung";
 "Percent of closing" = "Prozentsatz des Schließens";
-"Access Identifier inactive." = "Zugriffskennung nicht aktiv";
 "Your account" = "Ihr Konto";
 "Your accounts" = "Ihre Kontos";
 "Accounts" = "Kontos";
@@ -344,6 +332,10 @@
 
 /* App Settings */
 "settings_dark_mode" = "Nacht-Modus";
+"settings_lock_screen" = "PIN Eingabe";
+"settings_lock_screen_none" = "Keine";
+"settings_lock_screen_app" = "Anwendung";
+"settings_lock_screen_accounts" = "Konten";
 
 /* Standard Detail */
 "standard_detail_general_tab" = "Allgemein";
@@ -461,3 +453,43 @@
 /* Facade blind detail */
 "facade_blinds_slat_tilt" = "Neigung: ";
 "facade_blinds_no_tilt" = "Fehlende Konfiguration";
+
+/* Status */
+"status_initializing" = "Starten...";
+"status_connecting" = "Verbindung...";
+"status_disconnecting" = "Abschalten...";
+"status_awaiting_network" = "Warten auf netzwerk...";
+"status_try_again" = "Erneut versuchen";
+"status_unknown_error" = "Unbekannter Fehler";
+"status_temporarily_unavailable" = "Service momentan nicht verfügbar";
+"status_incorrect_data" = "Falsche E-Mail-Adresse oder Kennwort";
+"status_bad_credentials" = "Schlechte Referenzen";
+"status_client_limit_exceeded" = "Klient-Grenze überschritten";
+"status_device_disabled" = "Gerät ist deaktiviert. Bitte in \"Supla Cloud\" einlogen und dieses Gerät einschalten.";
+"status_access_id_disabled" = "Die Zugriffskennung ist deaktiviert";
+"status_registration_disabled" = "Die Client-Registrierung ist deaktiviert. Bitte gehen Sie zu \"Smartphones\" auf \"Supla Cloud\", um es zu aktivieren.";
+"status_access_id_not_assigned" = "Diesem Client wurde keine Zugriffskennung zugewiesen. Bitte gehen Sie zu \"Smartphones\" auf \"Supla Cloud\" und holen Sie sich eine gültige ID.";
+"status_access_id_inactive" = "Zugriffskennung nicht aktiv.";
+"status_host_not_found" = "Host nicht gefunden. Überprüfen Sie bitte ob die Internetverbindung korrekt funktioniert und das Konto korrekt erstellt wurde.";
+
+/* Pin setup */
+"pin_setup_title" = "PIN konfigurieren";
+"pin_setup_header" = "Definieren Sie Ihren PIN-Code";
+"pin_setup_repeat" = "PIN-Code wiederholen";
+"pin_setup_entry_different" = "PIN-Codes sind unterschiedlich!";
+"pin_setup_use_biometric" = "Biometrische Authentifizierung: ";
+"pin_setup_biometric_not_enrolled" = "Biometrische Authentifizierung nicht verfügbar. Wenn Sie die biometrische Authentifizierung nuthen wollen, bitte zuerst in System Einstellungen konfigurieren.";
+
+/* Lock screen */
+"lock_screen_hello" = "Willkommen zurück!";
+"lock_screen_enter_pin" = "PIN Eingabe";
+"lock_screen_remove_pin" = "PIN Löschen";
+"lock_screen_confirm_authorize_app" = "Änderung des Berechtigungsumfangs - Anwendung";
+"lock_screen_confirm_authorize_accounts" = "Änderung des Berechtigungsumfangs - Konten";
+"lock_screen_wrong_pin" = "Eingegebenes PIN-Code ist falsch!";
+"lock_screen_forgotten_code" = "PIN-Code vergessen";
+"lock_screen_forgotten_code_title" = "Zugangscode";
+"lock_screen_forgotten_code_message" = "Wenn Sie sich nicht an Ihren Zugangscode erinnern können, bitte die App löschen und neu installieren. Wenn die App neu installiert wird, bitte Ihres Kontodaten nochmal eingeben.\n\nSie sollten kein neues Konto anlegen. Die Daten und Geräte bleiben verfügbar in das Supla Cloud Konto.";
+"lock_screen_forgotten_code_button" = "Einverstanden";
+"biometric_prompt_subtitle" = "Entsperren mittels Biometrie";
+"lock_screen_pin_locked" = "Zu viele Fehlversuche. PIN-Eingabe für %@ gesperrt.";

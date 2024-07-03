@@ -469,7 +469,7 @@ final class ThermostatGeneralVMTests: ViewModelTest<ThermostatGeneralViewState, 
             result: .resultTrue,
             config: SuplaDeviceConfig.mock())
         )
-        dateProvider.currentTimestampReturns = 1001
+        dateProvider.currentTimestampReturns = .single(1001)
         
         let initialState = ThermostatGeneralViewState(lastInteractionTime: 1000)
         viewModel.updateView { _ in initialState }
@@ -510,7 +510,7 @@ final class ThermostatGeneralVMTests: ViewModelTest<ThermostatGeneralViewState, 
         
         viewModel.updateView { _ in initialState }
         
-        dateProvider.currentTimestampReturns = 1100
+        dateProvider.currentTimestampReturns = .single(1100)
         
         // when
         observe(viewModel)
@@ -540,7 +540,7 @@ final class ThermostatGeneralVMTests: ViewModelTest<ThermostatGeneralViewState, 
         
         viewModel.updateView { _ in initialState }
         
-        dateProvider.currentTimestampReturns = 1100
+        dateProvider.currentTimestampReturns = .single(1100)
         
         // when
         observe(viewModel)
@@ -593,7 +593,7 @@ final class ThermostatGeneralVMTests: ViewModelTest<ThermostatGeneralViewState, 
         
         viewModel.updateView { _ in initialState }
         
-        dateProvider.currentTimestampReturns = 1100
+        dateProvider.currentTimestampReturns = .single(1100)
         
         // when
         observe(viewModel)
@@ -626,7 +626,7 @@ final class ThermostatGeneralVMTests: ViewModelTest<ThermostatGeneralViewState, 
         
         viewModel.updateView { _ in initialState }
         
-        dateProvider.currentTimestampReturns = 1100
+        dateProvider.currentTimestampReturns = .single(1100)
         
         // when
         observe(viewModel)
@@ -661,7 +661,7 @@ final class ThermostatGeneralVMTests: ViewModelTest<ThermostatGeneralViewState, 
         
         viewModel.updateView { _ in initialState }
         
-        dateProvider.currentTimestampReturns = 1100
+        dateProvider.currentTimestampReturns = .single(1100)
         
         // when
         observe(viewModel)
@@ -694,7 +694,7 @@ final class ThermostatGeneralVMTests: ViewModelTest<ThermostatGeneralViewState, 
         
         viewModel.updateView { _ in initialState }
         
-        dateProvider.currentTimestampReturns = 1100
+        dateProvider.currentTimestampReturns = .single(1100)
         
         // when
         observe(viewModel)
@@ -727,6 +727,7 @@ final class ThermostatGeneralVMTests: ViewModelTest<ThermostatGeneralViewState, 
             .changing(path: \.offline, to: false)
         
         viewModel.updateView { _ in initialState }
+        dateProvider.currentTimestampReturns = .single(0)
         
         // when
         observe(viewModel)
@@ -752,6 +753,7 @@ final class ThermostatGeneralVMTests: ViewModelTest<ThermostatGeneralViewState, 
             .changing(path: \.offline, to: false)
         
         viewModel.updateView { _ in initialState }
+        dateProvider.currentTimestampReturns = .single(0)
         
         // when
         observe(viewModel)
@@ -778,6 +780,7 @@ final class ThermostatGeneralVMTests: ViewModelTest<ThermostatGeneralViewState, 
             .changing(path: \.offline, to: false)
         
         viewModel.updateView { _ in initialState }
+        dateProvider.currentTimestampReturns = .single(0)
         
         // when
         observe(viewModel)
@@ -804,6 +807,7 @@ final class ThermostatGeneralVMTests: ViewModelTest<ThermostatGeneralViewState, 
             .changing(path: \.weeklyScheduleActive, to: true)
         
         viewModel.updateView { _ in initialState }
+        dateProvider.currentTimestampReturns = .single(0)
         
         // when
         observe(viewModel)
@@ -853,6 +857,7 @@ final class ThermostatGeneralVMTests: ViewModelTest<ThermostatGeneralViewState, 
             .changing(path: \.manualActive, to: true)
         
         viewModel.updateView { _ in initialState }
+        dateProvider.currentTimestampReturns = .single(0)
         
         // when
         observe(viewModel)

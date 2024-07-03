@@ -17,13 +17,16 @@
  */
 
 class DeviceCatalogVC: WebContentVC<DeviceCatalogViewState, DeviceCatalogViewEvent, DeviceCatalogVM> {
-    private var navigator: DeviceCatalogNavigationCoordinator? {
-        navigationCoordinator as? DeviceCatalogNavigationCoordinator
-    }
+    
+    @Singleton<SuplaAppCoordinator> private var coordinator
 
-    override init(navigationCoordinator: NavigationCoordinator) {
-        super.init(navigationCoordinator: navigationCoordinator)
+    override init() {
+        super.init()
         viewModel = DeviceCatalogVM()
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
         
         title = Strings.DeviceCatalog.menu
     }
@@ -31,7 +34,7 @@ class DeviceCatalogVC: WebContentVC<DeviceCatalogViewState, DeviceCatalogViewEve
     override func handle(event: DeviceCatalogViewEvent) {
         switch (event) {
         case .openUrl(let url):
-            navigator?.navigateToWeb(url: url)
+            coordinator.openUrl(url: url)
         }
     }
 }

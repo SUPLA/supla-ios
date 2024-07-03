@@ -20,14 +20,52 @@ import Foundation
 import RxCocoa
 import RxSwift
 
-class BaseViewModel<S: ViewState, E: ViewEvent> {
-    fileprivate let disposeBag = DisposeBag()
+protocol BaseViewModelBinder {
+    var disposeBag: DisposeBag { get }
+}
+
+extension BaseViewModelBinder {
+    func bind(_ observable: Observable<Void>, _ action: @escaping () -> Void) {
+        observable
+            .subscribe(onNext: { action() })
+            .disposed(by: disposeBag)
+    }
+    
+    func bind(_ single: Single<Void>, _ action: @escaping () -> Void) {
+        single
+            .subscribe(onSuccess: { action() })
+            .disposed(by: disposeBag)
+    }
+    
+    func bind<T>(_ observable: Observable<T>, _ action: @escaping (T) -> Void) {
+        observable
+            .subscribe(onNext: { action($0) })
+            .disposed(by: disposeBag)
+    }
+    
+    func bind(_ observable: ControlEvent<Void>, _ action: @escaping () -> Void) {
+        observable
+            .subscribe(onNext: { action() })
+            .disposed(by: disposeBag)
+    }
+    
+    func bind<T>(_ observable: ControlProperty<T>, _ action: @escaping (T) -> Void) {
+        observable
+            .subscribe(onNext: { action($0) })
+            .disposed(by: disposeBag)
+    }
+}
+
+class BaseViewModel<S: ViewState, E: ViewEvent>: BaseViewModelBinder {
+    let disposeBag = DisposeBag()
+    
     private let events = PublishSubject<E>()
     lazy var state: BehaviorSubject<S> = BehaviorSubject(value: defaultViewState())
     
     func defaultViewState() -> S { fatalError("defaultViewState() has not been implemented!") }
     
     func onViewDidLoad() {}
+    func onViewWillAppear() {}
     
     func eventsObervable() -> Observable<E> { events.asObserver() }
     func stateObservable() -> Observable<S> { state.asObserver() }
@@ -71,36 +109,6 @@ class BaseViewModel<S: ViewState, E: ViewEvent> {
                 guard let value = value else { return }
                 self?.updateView() { state in state.changing(path: path, to: value) }
             })
-            .disposed(by: disposeBag)
-    }
-    
-    func bind(_ observable: Observable<Void>, _ action: @escaping () -> Void) {
-        observable
-            .subscribe(onNext: { action() })
-            .disposed(by: disposeBag)
-    }
-    
-    func bind(_ single: Single<Void>, _ action: @escaping () -> Void) {
-        single
-            .subscribe(onSuccess: { action() })
-            .disposed(by: disposeBag)
-    }
-    
-    func bind<T>(_ observable: Observable<T>, _ action: @escaping (T) -> Void) {
-        observable
-            .subscribe(onNext: { action($0) })
-            .disposed(by: disposeBag)
-    }
-    
-    func bind(_ observable: ControlEvent<Void>, _ action: @escaping () -> Void) {
-        observable
-            .subscribe(onNext: { action() })
-            .disposed(by: disposeBag)
-    }
-    
-    func bind<T>(_ observable: ControlProperty<T>, _ action: @escaping (T) -> Void) {
-        observable
-            .subscribe(onNext: { action($0) })
             .disposed(by: disposeBag)
     }
     

@@ -23,6 +23,8 @@
 @protocol SuplaClientProtocol <NSObject>
 
 - (void) cancel;
+- (BOOL) isCancelled;
+- (BOOL) isFinished;
 - (void) reconnect;
 - (BOOL) executeAction: (int)actionId subjecType: (int)subjectType subjectId: (int)subjectId parameters: (void*)parameters length: (int)length;
 - (BOOL) timerArmFor: (int) remoteId withTurnOn: (BOOL) on withTime: (int) milis;

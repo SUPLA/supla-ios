@@ -21,6 +21,7 @@ import Foundation
 class MainVC : SuplaTabBarController<MainViewState, MainViewEvent, MainViewModel> {
     
     @Singleton<GlobalSettings> private var settings
+    @Singleton<SuplaAppCoordinator> private var coordinator
     
     private let notificationView: NotificationView = NotificationView()
     private let newGestureInfoView: NewGestureInfoView = NewGestureInfoView()
@@ -28,16 +29,11 @@ class MainVC : SuplaTabBarController<MainViewState, MainViewEvent, MainViewModel
     
     private var notificationTimer: Timer? = nil
     private var profileChooser: ProfileChooser? = nil
-    private var navigator: MainNavigationCoordinator? {
-        get {
-            navigationCoordinator as? MainNavigationCoordinator
-        }
-    }
     
     private var iconsDownloadTask: SADownloadUserIcons? = nil
     
-    init(navigator: MainNavigationCoordinator) {
-        super.init(navigationCoordinator: navigator, viewModel: MainViewModel())
+    init() {
+        super.init(viewModel: MainViewModel())
     }
     
     required init?(coder: NSCoder) {
@@ -46,8 +42,6 @@ class MainVC : SuplaTabBarController<MainViewState, MainViewEvent, MainViewModel
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        edgesForExtendedLayout = []
-        
         self.title = Strings.NavBar.titleSupla
         
         setupTabBarController()
@@ -105,26 +99,26 @@ class MainVC : SuplaTabBarController<MainViewState, MainViewEvent, MainViewModel
     
     private func setupTabBarController() {
         let channelListVC = ChannelListVC()
-        channelListVC.navigationCoordinator = navigator
         channelListVC.tabBarItem = UITabBarItem(
             title: settings.showBottomLabels ? Strings.Main.channels : nil,
             image: UIImage(named: "list"),
             tag: HomeTabTag.Channels.rawValue
         )
+        channelListVC.navigationBarMaintainedByParent = true
         let groupListVC = GroupListVC()
-        groupListVC.navigationCoordinator = navigator
         groupListVC.tabBarItem = UITabBarItem(
             title: settings.showBottomLabels ? Strings.Main.groups : nil,
             image: UIImage(named: "bottom_bar_groups"),
             tag: HomeTabTag.Groups.rawValue
         )
+        groupListVC.navigationBarMaintainedByParent = true
         let sceneListVC = SceneListVC()
-        sceneListVC.navigationCoordinator = navigator
         sceneListVC.tabBarItem = UITabBarItem(
             title: settings.showBottomLabels ? Strings.Main.scenes : nil,
             image: UIImage(named: "coffee"),
             tag: HomeTabTag.Scenes.rawValue
         )
+        sceneListVC.navigationBarMaintainedByParent = true
         
         self.viewControllers = [channelListVC, groupListVC, sceneListVC]
     }
@@ -205,7 +199,7 @@ class MainVC : SuplaTabBarController<MainViewState, MainViewEvent, MainViewModel
     
     @objc
     private func onMenuToggle() {
-        navigator?.toggleMenuBar()
+        coordinator.showMenu()
     }
     
     @objc

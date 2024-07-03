@@ -19,7 +19,7 @@
 import RxSwift
 
 protocol ActivateProfileUseCase {
-    func invoke(profileId: ProfileID, force: Bool) -> Observable<Bool>
+    func invoke(profileId: ProfileID, force: Bool) -> Completable
 }
 
 final class ActivateProfileUseCaseImpl: ActivateProfileUseCase {
@@ -27,43 +27,38 @@ final class ActivateProfileUseCaseImpl: ActivateProfileUseCase {
     @Singleton<ProfileRepository> private var profileRepository
     @Singleton<RuntimeConfig> private var runtimeConfig
     @Singleton<SuplaCloudConfigHolder> private var cloudConfigHolder
-    @Singleton<SuplaAppWrapper> private var suplaApp
-    @Singleton<SuplaClientProvider> private var suplaClientProvider
+    @Singleton<ReconnectUseCase> private var reconnectUseCase
     
-    func invoke(profileId: ProfileID, force: Bool) -> Observable<Bool> {
+    func invoke(profileId: ProfileID, force: Bool) ->  Completable {
         profileRepository.queryItem(profileId)
-            .flatMap {
+            .flatMapCompletable {
                 guard let profile = $0 else {
-                    return Observable.just(false)
+                    return Completable.complete()
                 }
-                
+           
                 if (profile.isActive && !force) {
-                    return Observable.just(false)
+                    return Completable.complete()
                 }
                 
                 return self.activateProfile(profile)
             }
     }
     
-    private func activateProfile(_ profile: AuthProfileItem) -> Observable<Bool> {
+    private func activateProfile(_ profile: AuthProfileItem) -> Completable {
         profileRepository.getAllProfiles()
             .map { profiles in
                 profiles.forEach { $0.isActive = $0.objectID == profile.objectID }
                 return profiles
             }
-            .flatMapFirst { profiles in
+            .flatMapFirst { _ in
                 self.profileRepository.save()
-            }.map {
+            }
+            .flatMapCompletable { _ in
                 var config = self.runtimeConfig
                 config.activeProfileId = profile.objectID
                 self.cloudConfigHolder.clean()
                 
-                // reconect
-                self.suplaApp.cancelAllRestApiClientTasks()
-                self.suplaClientProvider.provide().reconnect()
-                
-                return true
+                return self.reconnectUseCase.invoke()
             }
     }
-    
 }

@@ -207,17 +207,6 @@ final class UseCaseLegacyWrapper: NSObject {
     }
     
     @objc
-    static func insertNotification(_ userInfo: [AnyHashable: Any]) {
-        @Singleton<InsertNotificationUseCase> var insertNotificationUseCase
-        
-        do {
-            try insertNotificationUseCase.invoke(userInfo: userInfo).subscribeSynchronous()
-        } catch {
-            SALog.error("Could not insert notification: \(String(describing: error))")
-        }
-    }
-    
-    @objc
     static func getChannelIcon(_ channel: SAChannelBase, _ iconType: IconType) -> UIImage? {
         @Singleton<GetChannelBaseIconUseCase> var getChannelBaseIconUseCase
         return getChannelBaseIconUseCase.invoke(channel: channel, type: iconType)

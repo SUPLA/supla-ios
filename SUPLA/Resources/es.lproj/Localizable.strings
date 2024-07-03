@@ -45,17 +45,7 @@
 "Garage door opening sensor" = "Sensor de apertura de la puerta de garaje";
 "Door opening sensor" = "Sensor de apertura de la puerta";
 "Roller shutter opening sensor" = "Sensor de apertura de las persianas";
-"Connecting..." = "Conectando...";
-"Unknown error" = "Error desconocido";
-"Service temporarily unavailable" = "Servicio temporalmente no disponible";
-"Bad credentials" = "Credenciales incorrectas";
-"Client limit exceeded" = "Se ha superado el límite de aplicaciones del cliente";
-"Device disabled. Please log in to \"Supla Cloud\" and enable this device in “Smartphone” section of the website." = "El dispositivo está deshabilitado";
-"Access Identifier is disabled" = "El identificador de acceso está deshabilitado";
-"New client registration disabled. Please log in to \"Supla Cloud\" and enable \"New client registration\" in \"Smartphone\" section of the website." = "El registro está actualmente desactivado. Para activarlo, vaya a la pestaña \"Smartphones\" en la página \"Supla Cloud\"";
-"Client activation required. Please log in to \"Supla Cloud\" and assign an “Access ID” for this device in “Smartphone” section of the website." = "Este dispositivo no tiene un identificador de acceso asignado. Vaya a la página \"Supla Cloud\" y asigne el identificador adecuado en la pestaña \"Smartphones\".";
 "Incompatible server version" = "Versión del servidor incompatible";
-"Host not found. Make sure you are connected to the internet and that an account with the entered email address has been created." = "No se ha encontrado la dirección del servidor";
 "RGB Lighting" = "Alumbrado RGB";
 "Dimmer and RGB lighting" = "Atenuador y alumbrado RGB";
 "Dimmer" = "Atenuador";
@@ -199,7 +189,6 @@
 "The glass sections are exposed for more than 20 hours, which may adversely affect their life. It is recommended to cover all sections for a minimum of 4 hours in order to regenerate them." = "Las secciones de vidrio están expuestas durante más de 20 horas, lo que puede tener un impacto negativo en su vida útil. Se recomienda cubrir todas las secciones durante un mínimo de 4 horas para regenerarlas.";
 "Planned regeneration is in progress." = "La regeneración planificada está en curso.";
 "Regeneration initiated after 20 hours of operation is in progress." = "La regeneración está en curso, iniciada después de 20 horas de funcionamiento.";
-"Incorrect Email Address or Password" = "Dirección de correo electrónico o contraseña incorrecta";
 "Channel Id" = "ID del Canal";
 "Back" = "Atrás";
 "The z-wave bridge is not responding. Check if the bridge is connected to the server." = "Puente z-wave no responde. Verifica si el puente está conectado con al servidor.";
@@ -279,7 +268,6 @@
 "Closing" = "Cierres";
 "Percent of opening" = "Porcentaje de apertura";
 "Percent of closing" = "Porcentaje de cierre";
-"Access Identifier inactive." = "Identificación de acceso inactiva.";
 "Your account" = "Tu cuenta";
 "Your accounts" = "Tus cuentas";
 "Accounts" = "Cuentas";
@@ -313,3 +301,17 @@
 "roller_shutter_motor_problem" = "Problema de motor / Parada inesperada.";
 "roller_shutter_calibration" = "Calibración";
 "roller_shutter_start_calibration_message" = "¿Está seguro de que desea iniciar la calibración?";
+
+/* Status */
+"status_connecting" = "Conectando...";
+"status_unknown_error" = "Error desconocido";
+"status_temporarily_unavailable" = "Servicio temporalmente no disponible";
+"status_incorrect_data" = "Dirección de correo electrónico o contraseña incorrecta";
+"status_bad_credentials" = "Credenciales incorrectas";
+"status_client_limit_exceeded" = "Se ha superado el límite de aplicaciones del cliente";
+"status_device_disabled" = "El dispositivo está deshabilitado";
+"status_access_id_disabled" = "El identificador de acceso está deshabilitado";
+"status_registration_disabled" = "El registro está actualmente desactivado. Para activarlo, vaya a la pestaña \"Smartphones\" en la página \"Supla Cloud\"";
+"status_access_id_not_assigned" = "Este dispositivo no tiene un identificador de acceso asignado. Vaya a la página \"Supla Cloud\" y asigne el identificador adecuado en la pestaña \"Smartphones\".";
+"status_access_id_inactive" = "Identificación de acceso inactiva.";
+"status_host_not_found" = "No se ha encontrado la dirección del servidor";

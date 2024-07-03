@@ -47,10 +47,6 @@ class BaseTableViewController<S: ViewState, E: ViewEvent, VM: BaseTableViewModel
         }
     }
 
-    var navigator: MainNavigationCoordinator? {
-        navigationCoordinator as? MainNavigationCoordinator
-    }
-    
     private lazy var noContentIcon: UIImageView = {
         let view = UIImageView()
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -92,6 +88,8 @@ class BaseTableViewController<S: ViewState, E: ViewEvent, VM: BaseTableViewModel
         super.viewWillAppear(animated)
         viewModel.reloadTable()
     }
+    
+    override func getToolbarFont() -> UIFont { .suplaTitleBarFont }
     
     func setupTableView() {
         tableView.register(UINib(nibName: Nibs.locationCell, bundle: nil), forCellReuseIdentifier: cellIdForLocation)

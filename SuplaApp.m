@@ -24,7 +24,6 @@
 #import "SASuperuserAuthorizationDialog.h"
 #import "NSNumber+SUPLA.h"
 #import "SUPLA-Swift.h"
-#import "AppDelegate.h"
 #import "AuthProfileItem+CoreDataClass.h"
 
 static SAApp* _Globals = nil;
@@ -88,38 +87,6 @@ NSString *kSAOnChannelGroupCaptionSetResult = @"OnChannelGroupCaptionSetResult";
         _RestApiClientTasks = [[NSMutableArray alloc] init];
         
         [[NSNotificationCenter defaultCenter]
-         addObserver:self selector:@selector(onDisconnected)
-         name:kSADisconnectedNotification object:nil];
-        
-        [[NSNotificationCenter defaultCenter]
-         addObserver:self selector:@selector(onConnecting)
-         name:kSAConnectingNotification object:nil];
-        
-        [[NSNotificationCenter defaultCenter]
-         addObserver:self selector:@selector(onConnected)
-         name:kSAConnectedNotification object:nil];
-        
-        [[NSNotificationCenter defaultCenter]
-         addObserver:self selector:@selector(onConnError:)
-         name:kSAConnErrorNotification object:nil];
-        
-        [[NSNotificationCenter defaultCenter]
-         addObserver:self selector:@selector(onRegistering)
-         name:kSARegisteringNotification object:nil];
-        
-        [[NSNotificationCenter defaultCenter]
-         addObserver:self selector:@selector(onRegistered:)
-         name:kSARegisteredNotification object:nil];
-        
-        [[NSNotificationCenter defaultCenter]
-         addObserver:self selector:@selector(onRegisterError:)
-         name:kSARegisterErrorNotification object:nil];
-        
-        [[NSNotificationCenter defaultCenter]
-         addObserver:self selector:@selector(onVersionError:)
-         name:kSAVersionErrorNotification object:nil];
-        
-        [[NSNotificationCenter defaultCenter]
          addObserver:self selector:@selector(onOAuthTokenRequestResult:)
          name:kSAOAuthTokenRequestResult object:nil];
     
@@ -135,20 +102,6 @@ NSString *kSAOnChannelGroupCaptionSetResult = @"OnChannelGroupCaptionSetResult";
      }
     
     return _Globals;
-}
-
-+(id<NavigationCoordinator>)currentNavigationCoordinator {
-    return [[((AppDelegate *)[UIApplication sharedApplication].delegate) navigation]
-            currentCoordinator];
-}
-
-+(MainNavigationCoordinator*)mainNavigationCoordinator {
-    id coordinator = [((AppDelegate *)[UIApplication sharedApplication].delegate) navigation];
-    if([coordinator isKindOfClass:[MainNavigationCoordinator class]]) {
-        return (MainNavigationCoordinator*)coordinator;
-    } else {
-        return nil;
-    }
 }
 
 -(BOOL) getRandom:(char*)key size:(int)size forPrefKey:(NSString*)pref_key {
@@ -333,6 +286,29 @@ NSString *kSAOnChannelGroupCaptionSetResult = @"OnChannelGroupCaptionSetResult";
     
 }
 
+-(BOOL) isClientWorking {
+    BOOL result = NO;
+    
+    @synchronized(self) {
+        if ( _SuplaClient != nil) {
+            result = ![_SuplaClient isCancelled];
+        }
+    }
+    
+    return result;
+}
+
+-(BOOL) isClientAuthorized {
+    BOOL result = NO;
+    @synchronized(self) {
+        if ( _SuplaClient != nil) {
+            result = [_SuplaClient isRegistered] && [_SuplaClient isSuperuserAuthorized];
+        }
+    }
+    
+    return result;
+}
+
 +(SASuplaClient*) SuplaClient {
     return [[self instance] SuplaClientWithOneTimePassword:nil];
 }
@@ -374,8 +350,9 @@ NSString *kSAOnChannelGroupCaptionSetResult = @"OnChannelGroupCaptionSetResult";
 +(void) SuplaClientWaitForTerminate {
     
     NSDate *deadline = [NSDate dateWithTimeIntervalSinceNow: 3];
+    BOOL working = [[self instance] SuplaClientTerminate];
     
-    while([[self instance] SuplaClientTerminate]) {
+    while(working && [[self instance] isClientWorking]) {
         @autoreleasepool {
             NSDate *cDate = [NSDate date];
             if([cDate earlierDate: deadline] == deadline)
@@ -427,107 +404,6 @@ NSString *kSAOnChannelGroupCaptionSetResult = @"OnChannelGroupCaptionSetResult";
     } else {
         return hostname;
     }
-}
-
--(BOOL)canChangeView {
-    NSObject<NavigationCoordinator> *nav = [SAApp currentNavigationCoordinator];
-    if(nav == [SAApp mainNavigationCoordinator] ||
-       ([nav isKindOfClass: [PresentationNavigationCoordinator class]] &&
-        [nav.viewController isKindOfClass: [SAStatusVC class]]))
-        return YES;
-    else
-        return NO;
-//    return [self.UI addWizardIsVisible] != YES && [self.UI createAccountVCisVisible] != YES && ![self.UI settingsVCisVisible];
-    
-}
-
--(void)onDisconnected {
-    if ( ![self canChangeView] ) {
-        return;
-    }
-    
-    [[SAApp mainNavigationCoordinator] showStatusViewWithProgress: @-1];
-}
-
--(void)onConnecting {
-    if ( ![self canChangeView] ) {
-        return;
-    }
-    [[SAApp mainNavigationCoordinator] showStatusViewWithProgress:@0.25];
-}
-
--(void)onConnected {
-    if ( ![self canChangeView] ) {
-        return;
-    }
-    [[SAApp mainNavigationCoordinator] showStatusViewWithProgress:@0.5];
-}
-
--(void)onConnError:(NSNotification *)notification {
-    if ( ![self canChangeView] ) {
-        return;
-    }
-    
-    NSNumber *code = [NSNumber codeNotificationToNumber:notification];
-    
-    if ( code && [code intValue] == SUPLA_RESULT_HOST_NOT_FOUND ) {
-        
-        [self SuplaClientTerminate];
-        [[SAApp mainNavigationCoordinator] showStatusViewWithError:NSLocalizedString(@"Host not found. Make sure you are connected to the internet and that an account with the entered email address has been created.", nil) completion: nil];
-    }
-}
-
--(void)onRegistering {
-    if ( ![self canChangeView] ) {
-        return;
-    }
-    
-    [[SAApp mainNavigationCoordinator] showStatusViewWithProgress:@0.75];
-}
-
--(void)onRegistered:(NSNotification *)notification {
-    if ( ![self canChangeView] ) {
-        return;
-    }
-    
-    [[SAApp mainNavigationCoordinator] showStatusViewWithProgress:@1];
-}
-
--(void)onRegisterError:(NSNotification *)notification {
-    
-    if ( ![self canChangeView] ) {
-        return;
-    }
-    
-    [self SuplaClientTerminate];
-    
-    NSNumber *code = [NSNumber codeNotificationToNumber:notification];
-    [[SAApp mainNavigationCoordinator] showStatusViewWithError:[SASuplaClient codeToString:code]
-                                                    completion: ^{
-        int cint = [code intValue];
-        
-        AuthProfileItem *profile = [SAApp.profileManager getCurrentProfile];
-        if ((cint == SUPLA_RESULTCODE_REGISTRATION_DISABLED
-            || cint == SUPLA_RESULTCODE_ACCESSID_NOT_ASSIGNED)
-            && profile.authInfo.isAuthDataComplete
-            && profile.authInfo.emailAuth
-            && ![SASuperuserAuthorizationDialog.globalInstance isVisible]) {
-            [SASuperuserAuthorizationDialog.globalInstance authorizeWithDelegate:nil];
-        }
-    }];
-    
-}
-
--(void)onVersionError:(NSNotification *)notification {
-    
-    if ( ![self canChangeView] ) {
-        return;
-    }
-    
-    [self SuplaClientTerminate];
-    
-    [[SAApp mainNavigationCoordinator] showStatusViewWithError: NSLocalizedString(@"Incompatible server version", nil)
-                                                    completion: nil];
 }
 
 -(void)onOAuthTokenRequestResult:(NSNotification *)notification {
