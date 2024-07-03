@@ -18,11 +18,15 @@
 
 protocol ThreadHandler {
     func sleep(_ timeInterval: TimeInterval)
+    func usleepProxy(_ microseconds: UInt32)
 }
 
 final class ThreadHandlerImpl: ThreadHandler {
-    
     func sleep(_ timeInterval: TimeInterval) {
         Thread.sleep(forTimeInterval: timeInterval)
+    }
+
+    func usleepProxy(_ microseconds: UInt32) {
+        usleep(microseconds)
     }
 }

@@ -18,14 +18,8 @@
 
 class SwitchDetailVC : StandardDetailVC<SwitchDetailViewState, SwitchDetailViewEvent, SwitchDetailVM> {
     
-    private var navigator: SwitchDetailNavigationCoordinator? {
-        get {
-            navigationCoordinator as? SwitchDetailNavigationCoordinator
-        }
-    }
-    
-    init(navigator: SwitchDetailNavigationCoordinator, item: ItemBundle, pages: [DetailPage]) {
-        super.init(navigator: navigator, viewModel: SwitchDetailVM(), item: item, pages: pages)
+    init(item: ItemBundle, pages: [DetailPage]) {
+        super.init(viewModel: SwitchDetailVM(), item: item, pages: pages)
     }
     
     required init?(coder: NSCoder) {

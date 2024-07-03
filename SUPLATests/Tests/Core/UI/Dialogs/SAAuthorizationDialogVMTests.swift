@@ -21,25 +21,25 @@ import RxSwift
 
 @testable import SUPLA
 
-final class SAAuthorizationDialogVMTests: ViewModelTest<SAAuthorizationDialogViewState, SAAuthorizationDialogViewEvent> {
+final class SAAuthorizationDialogVMTests: ViewModelTest<SACredentialsDialogViewState, SACredentialsDialogViewEvent> {
     private lazy var profileRepository: ProfileRepositoryMock! = ProfileRepositoryMock()
-    private lazy var suplaClientProvider: SuplaClientProviderMock! = SuplaClientProviderMock()
     private lazy var authorizeUseCase: AuthorizeUseCaseMock! = AuthorizeUseCaseMock()
+    private lazy var suplaAppProvider: SuplaAppProviderMock! = SuplaAppProviderMock()
     private lazy var schedulers: SuplaSchedulersMock! = SuplaSchedulersMock()
     
     private lazy var viewModel: SAAuthorizationDialogVM! = SAAuthorizationDialogVM()
     
     override func setUp() {
         DiContainer.shared.register(type: (any ProfileRepository).self, profileRepository!)
-        DiContainer.shared.register(type: SuplaClientProvider.self, suplaClientProvider!)
         DiContainer.shared.register(type: AuthorizeUseCase.self, authorizeUseCase!)
+        DiContainer.shared.register(type: SuplaAppProvider.self, suplaAppProvider!)
         DiContainer.shared.register(type: SuplaSchedulers.self, schedulers!)
     }
     
     override func tearDown() {
         profileRepository = nil
-        suplaClientProvider = nil
         authorizeUseCase = nil
+        suplaAppProvider = nil
         schedulers = nil
         viewModel = nil
         
@@ -58,8 +58,8 @@ final class SAAuthorizationDialogVMTests: ViewModelTest<SAAuthorizationDialogVie
         
         // then
         assertStates(expected: [
-            SAAuthorizationDialogViewState(),
-            SAAuthorizationDialogViewState(
+            SACredentialsDialogViewState(),
+            SACredentialsDialogViewState(
                 userName: email,
                 isCloudAccount: true
             )
@@ -71,7 +71,7 @@ final class SAAuthorizationDialogVMTests: ViewModelTest<SAAuthorizationDialogVie
         let email = "test@supla.org"
         let profile = mockProfile(email: email, server: "some.url")
         profileRepository.activeProfileObservable = .just(profile)
-        suplaClientProvider.suplaClientMock.isRegisteredReturns = true
+        suplaAppProvider.suplaAppMock.isClientRegisteredReturns = true
         
         // when
         observe(viewModel)
@@ -79,8 +79,8 @@ final class SAAuthorizationDialogVMTests: ViewModelTest<SAAuthorizationDialogVie
         
         // then
         assertStates(expected: [
-            SAAuthorizationDialogViewState(),
-            SAAuthorizationDialogViewState(
+            SACredentialsDialogViewState(),
+            SACredentialsDialogViewState(
                 userName: email,
                 isCloudAccount: false,
                 userNameEnabled: true
@@ -91,8 +91,8 @@ final class SAAuthorizationDialogVMTests: ViewModelTest<SAAuthorizationDialogVie
     func test_shouldNotStartAuthorization_whenAuthorized() {
         // given
         var authorized = false
-        suplaClientProvider.suplaClientMock.isRegisteredReturns = true
-        suplaClientProvider.suplaClientMock.isSuperuserAuthorizedReturns = true
+        suplaAppProvider.suplaAppMock.isClientRegisteredReturns = true
+        suplaAppProvider.suplaAppMock.isClientAuthroziedReturns = true
         
         // when
         observe(viewModel)
@@ -116,9 +116,9 @@ final class SAAuthorizationDialogVMTests: ViewModelTest<SAAuthorizationDialogVie
         
         // then
         assertStates(expected: [
-            SAAuthorizationDialogViewState(),
-            SAAuthorizationDialogViewState(loading: true),
-            SAAuthorizationDialogViewState()
+            SACredentialsDialogViewState(),
+            SACredentialsDialogViewState(loading: true),
+            SACredentialsDialogViewState()
         ])
         XCTAssertEqual(authorized, true)
         XCTAssertTuples(authorizeUseCase.parameters, [(user, password)])
@@ -140,10 +140,10 @@ final class SAAuthorizationDialogVMTests: ViewModelTest<SAAuthorizationDialogVie
         
         // then
         assertStates(expected: [
-            SAAuthorizationDialogViewState(),
-            SAAuthorizationDialogViewState(loading: true),
-            SAAuthorizationDialogViewState(error: error, loading: true),
-            SAAuthorizationDialogViewState(error: error)
+            SACredentialsDialogViewState(),
+            SACredentialsDialogViewState(loading: true),
+            SACredentialsDialogViewState(error: error, loading: true),
+            SACredentialsDialogViewState(error: error)
         ])
         XCTAssertEqual(authorized, false)
         XCTAssertTuples(authorizeUseCase.parameters, [(user, password)])
@@ -164,10 +164,10 @@ final class SAAuthorizationDialogVMTests: ViewModelTest<SAAuthorizationDialogVie
         
         // then
         assertStates(expected: [
-            SAAuthorizationDialogViewState(),
-            SAAuthorizationDialogViewState(loading: true),
-            SAAuthorizationDialogViewState(error: Strings.General.unknownError, loading: true),
-            SAAuthorizationDialogViewState(error: Strings.General.unknownError)
+            SACredentialsDialogViewState(),
+            SACredentialsDialogViewState(loading: true),
+            SACredentialsDialogViewState(error: Strings.Status.errorUnknown, loading: true),
+            SACredentialsDialogViewState(error: Strings.Status.errorUnknown)
         ])
         XCTAssertEqual(authorized, false)
         XCTAssertTuples(authorizeUseCase.parameters, [(user, password)])

@@ -18,6 +18,7 @@
 
 @testable import SUPLA
 import XCTest
+import RxSwift
 
 final class DeleteProfileUseCaseTests: UseCaseTest<DeleteProfileResult> {
     
@@ -37,10 +38,6 @@ final class DeleteProfileUseCaseTests: UseCaseTest<DeleteProfileResult> {
         ActivateProfileUseCaseMock()
     }()
     
-    private lazy var suplaApp: SuplaAppWrapperMock! = {
-        SuplaAppWrapperMock()
-    }()
-    
     private lazy var runtimeConfig: RuntimeConfigMock! = {
         RuntimeConfigMock()
     }()
@@ -48,6 +45,10 @@ final class DeleteProfileUseCaseTests: UseCaseTest<DeleteProfileResult> {
     private lazy var settings: GlobalSettingsMock! = {
         GlobalSettingsMock()
     }()
+    
+    private lazy var disconnectUseCase: DisconnectUseCaseMock! = DisconnectUseCaseMock()
+    
+    private lazy var suplaAppStateHolder: SuplaAppStateHolderMock! = SuplaAppStateHolderMock()
     
     private lazy var useCase: DeleteProfileUseCase! = {
         DeleteProfileUseCaseImpl()
@@ -60,9 +61,10 @@ final class DeleteProfileUseCaseTests: UseCaseTest<DeleteProfileResult> {
         DiContainer.shared.register(type: SingleCall.self, singleCall!)
         DiContainer.shared.register(type: DeleteAllProfileDataUseCase.self, deleteAllProfileDataUseCase!)
         DiContainer.shared.register(type: ActivateProfileUseCase.self, activateProfileUseCase!)
-        DiContainer.shared.register(type: SuplaAppWrapper.self, suplaApp!)
         DiContainer.shared.register(type: RuntimeConfig.self, runtimeConfig!)
         DiContainer.shared.register(type: GlobalSettings.self, settings!)
+        DiContainer.shared.register(type: DisconnectUseCase.self, disconnectUseCase!)
+        DiContainer.shared.register(type: SuplaAppStateHolder.self, suplaAppStateHolder!)
     }
     
     override func tearDown() {
@@ -72,9 +74,10 @@ final class DeleteProfileUseCaseTests: UseCaseTest<DeleteProfileResult> {
         singleCall = nil
         deleteAllProfileDataUseCase = nil
         activateProfileUseCase = nil
-        suplaApp = nil
         runtimeConfig = nil
         settings = nil
+        disconnectUseCase = nil
+        suplaAppStateHolder = nil
         
         useCase = nil
     }
@@ -104,6 +107,7 @@ final class DeleteProfileUseCaseTests: UseCaseTest<DeleteProfileResult> {
         
         profileRepository.queryItemByIdObservable = .just(profile)
         profileRepository.deleteObservable = .just(())
+        profileRepository.saveObservable = .just(())
         deleteAllProfileDataUseCase.returns = .just(())
         
         // when
@@ -131,7 +135,9 @@ final class DeleteProfileUseCaseTests: UseCaseTest<DeleteProfileResult> {
         profileRepository.queryItemByIdObservable = .just(profile)
         profileRepository.allProfilesObservable = .just([profile])
         profileRepository.deleteObservable = .just(())
+        profileRepository.saveObservable = .just(())
         deleteAllProfileDataUseCase.returns = .just(())
+        disconnectUseCase.invokeReturns = .complete()
         
         // when
         useCase.invoke(profileId: profile.objectID)
@@ -162,8 +168,10 @@ final class DeleteProfileUseCaseTests: UseCaseTest<DeleteProfileResult> {
         profileRepository.queryItemByIdObservable = .just(profile)
         profileRepository.allProfilesObservable = .just([profile, otherProfile])
         profileRepository.deleteObservable = .just(())
+        profileRepository.saveObservable = .just(())
         deleteAllProfileDataUseCase.returns = .just(())
-        activateProfileUseCase.returns = .just(true)
+        activateProfileUseCase.returns = .complete()
+        disconnectUseCase.invokeReturns = .complete()
         
         // when
         useCase.invoke(profileId: profile.objectID)
@@ -190,13 +198,17 @@ final class DeleteProfileUseCaseTests: UseCaseTest<DeleteProfileResult> {
         profile.isActive = true
         profile.authInfo = AuthInfo.mock(email: "some@email.com")
         
+        var profileRemoved: Bool? = nil
+        var profileDataRemoved: Bool? = nil
+        
         let otherProfile = AuthProfileItem(testContext: nil)
         
         profileRepository.queryItemByIdObservable = .just(profile)
         profileRepository.allProfilesObservable = .just([profile, otherProfile])
-        profileRepository.deleteObservable = .just(())
-        deleteAllProfileDataUseCase.returns = .just(())
-        activateProfileUseCase.returns = .just(false)
+        profileRepository.deleteObservable = .mocked { profileRemoved = true }
+        deleteAllProfileDataUseCase.returns = .mocked { profileDataRemoved = true }
+        activateProfileUseCase.returns = .error(DeleteProfileError.otherProfileNotActivated)
+        disconnectUseCase.invokeReturns = .complete()
         
         // when
         useCase.invoke(profileId: profile.objectID)
@@ -210,7 +222,9 @@ final class DeleteProfileUseCaseTests: UseCaseTest<DeleteProfileResult> {
         
         XCTAssertEqual(singleCall.registerPushTokenCalls, 0)
         XCTAssertEqual(profileRepository.deleteParameters, [])
-        XCTAssertEqual(deleteAllProfileDataUseCase.parameters, [])
+        XCTAssertEqual(deleteAllProfileDataUseCase.parameters, [profile])
+        XCTAssertNil(profileRemoved)
+        XCTAssertNil(profileDataRemoved)
         XCTAssertEqual(runtimeConfig.activeProfileIdValues, [])
         XCTAssertEqual(settings.anyAccountRegisteredValues, [])
         XCTAssertTuples(activateProfileUseCase.parameters, [(otherProfile.objectID, true)])
@@ -221,10 +235,14 @@ final class DeleteProfileUseCaseTests: UseCaseTest<DeleteProfileResult> {
         let profile = AuthProfileItem(testContext: nil)
         profile.authInfo = AuthInfo.mock()
         
+        var profileRemoved: Bool? = nil
+        var profileDataRemoved: Bool? = nil
+        
         profileRepository.queryItemByIdObservable = .just(profile)
         profileRepository.allProfilesObservable = .just([profile])
-        profileRepository.deleteObservable = .just(())
-        deleteAllProfileDataUseCase.returns = .just(())
+        profileRepository.saveObservable = .just((()))
+        profileRepository.deleteObservable = .mocked { profileRemoved = true }
+        deleteAllProfileDataUseCase.returns = .mocked { profileDataRemoved = true }
         
         // when
         useCase.invoke(profileId: profile.objectID)
@@ -240,5 +258,7 @@ final class DeleteProfileUseCaseTests: UseCaseTest<DeleteProfileResult> {
         XCTAssertEqual(singleCall.registerPushTokenCalls, 0)
         XCTAssertEqual(profileRepository.deleteParameters, [profile])
         XCTAssertEqual(deleteAllProfileDataUseCase.parameters, [profile])
+        XCTAssertTrue(profileRemoved == true)
+        XCTAssertTrue(profileDataRemoved == true)
     }
 }

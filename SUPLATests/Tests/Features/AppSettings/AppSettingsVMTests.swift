@@ -16,22 +16,18 @@
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 
-import XCTest
-import RxTest
 import RxSwift
+import RxTest
+import XCTest
 
 @testable import SUPLA
 
 class AppSettingsVMTests: ViewModelTest<AppSettingsViewState, AppSettingsViewEvent> {
+    private lazy var viewModel: AppSettingsVM! = AppSettingsVM()
     
-    private lazy var viewModel: AppSettingsVM! = { AppSettingsVM() }()
-    
-    private lazy var settings: GlobalSettingsMock! = {
-        GlobalSettingsMock()
-    }()
-    private lazy var notificationCenter: UserNotificationCenterMock! = {
-        UserNotificationCenterMock()
-    }()
+    private lazy var settings: GlobalSettingsMock! = GlobalSettingsMock()
+
+    private lazy var notificationCenter: UserNotificationCenterMock! = UserNotificationCenterMock()
     
     override func setUp() {
         DiContainer.shared.register(type: GlobalSettings.self, settings!)
@@ -53,7 +49,7 @@ class AppSettingsVMTests: ViewModelTest<AppSettingsViewState, AppSettingsViewEve
         
         // when
         observe(viewModel)
-        viewModel.onViewDidLoad()
+        viewModel.onViewWillAppear()
         
         // then
         XCTAssertEqual(stateObserver.events.count, 2)
@@ -67,13 +63,14 @@ class AppSettingsVMTests: ViewModelTest<AppSettingsViewState, AppSettingsViewEve
         
         XCTAssertEqual(list, [
             .preferences(items: [
-                .heightItem(channelHeight: .height100, callback: {_ in }),
-                .temperatureUnitItem(temperatureUnit: .fahrenheit, callback: {_ in }),
-                .switchItem(title: Strings.Cfg.buttonAutoHide, selected: true, callback: {_ in }),
-                .switchItem(title: Strings.Cfg.showChannelInfo, selected: false, callback: {_ in }),
-                .switchItem(title: Strings.AppSettings.showLabels, selected: true, callback: {_ in }),
-                .rsOpeningPercentageItem(opening: true, callback: {_ in }),
+                .heightItem(channelHeight: .height100, callback: { _ in }),
+                .temperatureUnitItem(temperatureUnit: .fahrenheit, callback: { _ in }),
+                .switchItem(title: Strings.Cfg.buttonAutoHide, selected: true, callback: { _ in }),
+                .switchItem(title: Strings.Cfg.showChannelInfo, selected: false, callback: { _ in }),
+                .switchItem(title: Strings.AppSettings.showLabels, selected: true, callback: { _ in }),
+                .rsOpeningPercentageItem(opening: true, callback: { _ in }),
                 .darkModeItem(darkModeSetting: .unset, callback: { _ in }),
+                .lockScreenItem(lockScreenScope: .none, callback: { _ in }),
                 .arrowButtonItem(title: Strings.Cfg.locationOrdering, callback: {})
             ]),
             .permissions(items: [
@@ -95,7 +92,7 @@ class AppSettingsVMTests: ViewModelTest<AppSettingsViewState, AppSettingsViewEve
         
         // when
         observe(viewModel)
-        viewModel.onViewDidLoad()
+        viewModel.onViewWillAppear()
         
         // then
         XCTAssertEqual(stateObserver.events.count, 2)
@@ -109,13 +106,14 @@ class AppSettingsVMTests: ViewModelTest<AppSettingsViewState, AppSettingsViewEve
         
         XCTAssertEqual(list, [
             .preferences(items: [
-                .heightItem(channelHeight: .height150, callback: {_ in }),
-                .temperatureUnitItem(temperatureUnit: .celsius, callback: {_ in }),
-                .switchItem(title: Strings.Cfg.buttonAutoHide, selected: false, callback: {_ in }),
-                .switchItem(title: Strings.Cfg.showChannelInfo, selected: true, callback: {_ in }),
-                .switchItem(title: Strings.AppSettings.showLabels, selected: true, callback: {_ in }),
-                .rsOpeningPercentageItem(opening: false, callback: {_ in }),
+                .heightItem(channelHeight: .height150, callback: { _ in }),
+                .temperatureUnitItem(temperatureUnit: .celsius, callback: { _ in }),
+                .switchItem(title: Strings.Cfg.buttonAutoHide, selected: false, callback: { _ in }),
+                .switchItem(title: Strings.Cfg.showChannelInfo, selected: true, callback: { _ in }),
+                .switchItem(title: Strings.AppSettings.showLabels, selected: true, callback: { _ in }),
+                .rsOpeningPercentageItem(opening: false, callback: { _ in }),
                 .darkModeItem(darkModeSetting: .unset, callback: { _ in }),
+                .lockScreenItem(lockScreenScope: .none, callback: { _ in }),
                 .arrowButtonItem(title: Strings.Cfg.locationOrdering, callback: {})
             ]),
             .permissions(items: [
@@ -130,7 +128,7 @@ class AppSettingsVMTests: ViewModelTest<AppSettingsViewState, AppSettingsViewEve
         
         // when
         observe(viewModel)
-        viewModel.onViewDidLoad()
+        viewModel.onViewWillAppear()
         
         guard let list = stateObserver.events[1].value.element?.list
         else {
@@ -155,6 +153,7 @@ class AppSettingsVMTests: ViewModelTest<AppSettingsViewState, AppSettingsViewEve
         XCTAssertEqual(settings.showBottomLabelsValues.count, 0)
         XCTAssertEqual(settings.showOpeningPercentValues.count, 0)
         XCTAssertEqual(settings.darkModeValues.count, 0)
+        XCTAssertEqual(settings.lockScreenSettingsValues.count, 0)
     }
     
     func test_shouldSaveTemperatureUnit() {
@@ -163,7 +162,7 @@ class AppSettingsVMTests: ViewModelTest<AppSettingsViewState, AppSettingsViewEve
         
         // when
         observe(viewModel)
-        viewModel.onViewDidLoad()
+        viewModel.onViewWillAppear()
         
         guard let list = stateObserver.events[1].value.element?.list
         else {
@@ -188,6 +187,7 @@ class AppSettingsVMTests: ViewModelTest<AppSettingsViewState, AppSettingsViewEve
         XCTAssertEqual(settings.showBottomLabelsValues.count, 0)
         XCTAssertEqual(settings.showOpeningPercentValues.count, 0)
         XCTAssertEqual(settings.darkModeValues.count, 0)
+        XCTAssertEqual(settings.lockScreenSettingsValues.count, 0)
     }
     
     func test_shouldSaveButtonAutoHide() {
@@ -196,7 +196,7 @@ class AppSettingsVMTests: ViewModelTest<AppSettingsViewState, AppSettingsViewEve
         
         // when
         observe(viewModel)
-        viewModel.onViewDidLoad()
+        viewModel.onViewWillAppear()
         
         guard let list = stateObserver.events[1].value.element?.list
         else {
@@ -221,6 +221,7 @@ class AppSettingsVMTests: ViewModelTest<AppSettingsViewState, AppSettingsViewEve
         XCTAssertEqual(settings.showBottomLabelsValues.count, 0)
         XCTAssertEqual(settings.showOpeningPercentValues.count, 0)
         XCTAssertEqual(settings.darkModeValues.count, 0)
+        XCTAssertEqual(settings.lockScreenSettingsValues.count, 0)
     }
     
     func test_shouldSaveShowChannelInfo() {
@@ -229,7 +230,7 @@ class AppSettingsVMTests: ViewModelTest<AppSettingsViewState, AppSettingsViewEve
         
         // when
         observe(viewModel)
-        viewModel.onViewDidLoad()
+        viewModel.onViewWillAppear()
         
         guard let list = stateObserver.events[1].value.element?.list
         else {
@@ -254,6 +255,7 @@ class AppSettingsVMTests: ViewModelTest<AppSettingsViewState, AppSettingsViewEve
         XCTAssertEqual(settings.showBottomLabelsValues.count, 0)
         XCTAssertEqual(settings.showOpeningPercentValues.count, 0)
         XCTAssertEqual(settings.darkModeValues.count, 0)
+        XCTAssertEqual(settings.lockScreenSettingsValues.count, 0)
     }
     
     func test_shouldSaveShowBottomLabels() {
@@ -262,7 +264,7 @@ class AppSettingsVMTests: ViewModelTest<AppSettingsViewState, AppSettingsViewEve
         
         // when
         observe(viewModel)
-        viewModel.onViewDidLoad()
+        viewModel.onViewWillAppear()
         
         guard let list = stateObserver.events[1].value.element?.list
         else {
@@ -287,6 +289,7 @@ class AppSettingsVMTests: ViewModelTest<AppSettingsViewState, AppSettingsViewEve
         XCTAssertEqual(settings.showBottomLabelsValues[0], false)
         XCTAssertEqual(settings.showOpeningPercentValues.count, 0)
         XCTAssertEqual(settings.darkModeValues.count, 0)
+        XCTAssertEqual(settings.lockScreenSettingsValues.count, 0)
     }
     
     func test_shouldSaveOpeningClosingPercentage() {
@@ -295,7 +298,7 @@ class AppSettingsVMTests: ViewModelTest<AppSettingsViewState, AppSettingsViewEve
         
         // when
         observe(viewModel)
-        viewModel.onViewDidLoad()
+        viewModel.onViewWillAppear()
         
         guard let list = stateObserver.events[1].value.element?.list
         else {
@@ -320,6 +323,7 @@ class AppSettingsVMTests: ViewModelTest<AppSettingsViewState, AppSettingsViewEve
         XCTAssertEqual(settings.showBottomLabelsValues.count, 0)
         XCTAssertEqual(settings.showOpeningPercentValues[0], true)
         XCTAssertEqual(settings.darkModeValues.count, 0)
+        XCTAssertEqual(settings.lockScreenSettingsValues.count, 0)
     }
     
     func test_shouldSaveDarkModeSetting() {
@@ -328,7 +332,7 @@ class AppSettingsVMTests: ViewModelTest<AppSettingsViewState, AppSettingsViewEve
         
         // when
         observe(viewModel)
-        viewModel.onViewDidLoad()
+        viewModel.onViewWillAppear()
         
         guard let list = stateObserver.events[1].value.element?.list
         else {
@@ -353,15 +357,17 @@ class AppSettingsVMTests: ViewModelTest<AppSettingsViewState, AppSettingsViewEve
         XCTAssertEqual(settings.showBottomLabelsValues.count, 0)
         XCTAssertEqual(settings.showOpeningPercentValues.count, 0)
         XCTAssertEqual(settings.darkModeValues, [.always])
+        XCTAssertEqual(settings.lockScreenSettingsValues.count, 0)
     }
     
-    func test_shouldNavigateToLocationOrdering() {
+    func test_shouldNavigateToPinVerification_scopeChangeToApplication() {
         // given
         setupViewData()
+        settings.lockScreenSettingsReturns = LockScreenSettings(scope: .accounts, pinSum: "sum", biometricAllowed: false)
         
         // when
         observe(viewModel)
-        viewModel.onViewDidLoad()
+        viewModel.onViewWillAppear()
         
         guard let list = stateObserver.events[1].value.element?.list
         else {
@@ -370,6 +376,144 @@ class AppSettingsVMTests: ViewModelTest<AppSettingsViewState, AppSettingsViewEve
         }
         
         switch (list[0].items[7]) {
+        case .lockScreenItem(_, let callback):
+            callback(.application)
+        default:
+            XCTFail("No list")
+        }
+        
+        // then
+        XCTAssertEqual(stateObserver.events.count, 2)
+        XCTAssertEqual(eventObserver.events, [.next(0, .navigateToPinVerification(unlockAction: .confirmAuthorizeApplication))])
+        XCTAssertEqual(settings.channelHeightValues.count, 0)
+        XCTAssertEqual(settings.temperatureUnitValues.count, 0)
+        XCTAssertEqual(settings.autohideButtonsValues.count, 0)
+        XCTAssertEqual(settings.showChannelInfoValues.count, 0)
+        XCTAssertEqual(settings.showBottomLabelsValues.count, 0)
+        XCTAssertEqual(settings.showOpeningPercentValues.count, 0)
+        XCTAssertEqual(settings.darkModeValues.count, 0)
+        XCTAssertEqual(settings.lockScreenSettingsValues.count, 0)
+    }
+    
+    func test_shouldNavigateToPinVerification_scopeChangeToAccounts() {
+        // given
+        setupViewData()
+        settings.lockScreenSettingsReturns = LockScreenSettings(scope: .application, pinSum: "sum", biometricAllowed: false)
+        
+        // when
+        observe(viewModel)
+        viewModel.onViewWillAppear()
+        
+        guard let list = stateObserver.events[1].value.element?.list
+        else {
+            XCTFail("No list")
+            return
+        }
+        
+        switch (list[0].items[7]) {
+        case .lockScreenItem(_, let callback):
+            callback(.accounts)
+        default:
+            XCTFail("No list")
+        }
+        
+        // then
+        XCTAssertEqual(stateObserver.events.count, 2)
+        XCTAssertEqual(eventObserver.events, [.next(0, .navigateToPinVerification(unlockAction: .confirmAuthorizeAccounts))])
+        XCTAssertEqual(settings.channelHeightValues.count, 0)
+        XCTAssertEqual(settings.temperatureUnitValues.count, 0)
+        XCTAssertEqual(settings.autohideButtonsValues.count, 0)
+        XCTAssertEqual(settings.showChannelInfoValues.count, 0)
+        XCTAssertEqual(settings.showBottomLabelsValues.count, 0)
+        XCTAssertEqual(settings.showOpeningPercentValues.count, 0)
+        XCTAssertEqual(settings.darkModeValues.count, 0)
+        XCTAssertEqual(settings.lockScreenSettingsValues.count, 0)
+    }
+    
+    func test_shouldNavigateToPinVerification_turnPinOff() {
+        // given
+        setupViewData()
+        settings.lockScreenSettingsReturns = LockScreenSettings(scope: .application, pinSum: "sum", biometricAllowed: false)
+        
+        // when
+        observe(viewModel)
+        viewModel.onViewWillAppear()
+        
+        guard let list = stateObserver.events[1].value.element?.list
+        else {
+            XCTFail("No list")
+            return
+        }
+        
+        switch (list[0].items[7]) {
+        case .lockScreenItem(_, let callback):
+            callback(.none)
+        default:
+            XCTFail("No list")
+        }
+        
+        // then
+        XCTAssertEqual(stateObserver.events.count, 2)
+        XCTAssertEqual(eventObserver.events, [.next(0, .navigateToPinVerification(unlockAction: .turnOffPin))])
+        XCTAssertEqual(settings.channelHeightValues.count, 0)
+        XCTAssertEqual(settings.temperatureUnitValues.count, 0)
+        XCTAssertEqual(settings.autohideButtonsValues.count, 0)
+        XCTAssertEqual(settings.showChannelInfoValues.count, 0)
+        XCTAssertEqual(settings.showBottomLabelsValues.count, 0)
+        XCTAssertEqual(settings.showOpeningPercentValues.count, 0)
+        XCTAssertEqual(settings.darkModeValues.count, 0)
+        XCTAssertEqual(settings.lockScreenSettingsValues.count, 0)
+    }
+    
+    func test_shouldNavigateToPinSetup() {
+        // given
+        setupViewData()
+        
+        // when
+        observe(viewModel)
+        viewModel.onViewWillAppear()
+        
+        guard let list = stateObserver.events[1].value.element?.list
+        else {
+            XCTFail("No list")
+            return
+        }
+        
+        switch (list[0].items[7]) {
+        case .lockScreenItem(_, let callback):
+            callback(.application)
+        default:
+            XCTFail("No list")
+        }
+        
+        // then
+        XCTAssertEqual(stateObserver.events.count, 2)
+        XCTAssertEqual(eventObserver.events, [.next(0, .navigateToPinSetup(scope: .application))])
+        XCTAssertEqual(settings.channelHeightValues.count, 0)
+        XCTAssertEqual(settings.temperatureUnitValues.count, 0)
+        XCTAssertEqual(settings.autohideButtonsValues.count, 0)
+        XCTAssertEqual(settings.showChannelInfoValues.count, 0)
+        XCTAssertEqual(settings.showBottomLabelsValues.count, 0)
+        XCTAssertEqual(settings.showOpeningPercentValues.count, 0)
+        XCTAssertEqual(settings.darkModeValues.count, 0)
+        XCTAssertEqual(settings.lockScreenSettingsValues.count, 0)
+    }
+    
+    func test_shouldNavigateToLocationOrdering() {
+        // given
+        setupViewData()
+        
+        // when
+        observe(viewModel)
+        viewModel.onViewWillAppear()
+        
+        guard let list = stateObserver.events[1].value.element?.list
+        else {
+            XCTFail("No list")
+            return
+        }
+        
+        switch (list[0].items[8]) {
         case .arrowButtonItem(_, let callback):
             callback()
         default:
@@ -386,6 +530,7 @@ class AppSettingsVMTests: ViewModelTest<AppSettingsViewState, AppSettingsViewEve
         XCTAssertEqual(settings.showBottomLabelsValues.count, 0)
         XCTAssertEqual(settings.showOpeningPercentValues.count, 0)
         XCTAssertEqual(settings.darkModeValues.count, 0)
+        XCTAssertEqual(settings.lockScreenSettingsValues.count, 0)
     }
     
     func test_shouldNavigateToAppPreferences() {
@@ -394,7 +539,7 @@ class AppSettingsVMTests: ViewModelTest<AppSettingsViewState, AppSettingsViewEve
         
         // when
         observe(viewModel)
-        viewModel.onViewDidLoad()
+        viewModel.onViewWillAppear()
         
         guard let list = stateObserver.events[1].value.element?.list
         else {
@@ -419,6 +564,7 @@ class AppSettingsVMTests: ViewModelTest<AppSettingsViewState, AppSettingsViewEve
         XCTAssertEqual(settings.showBottomLabelsValues.count, 0)
         XCTAssertEqual(settings.showOpeningPercentValues.count, 0)
         XCTAssertEqual(settings.darkModeValues.count, 0)
+        XCTAssertEqual(settings.lockScreenSettingsValues.count, 0)
     }
     
     private func setupViewData(
@@ -441,14 +587,10 @@ class AppSettingsVMTests: ViewModelTest<AppSettingsViewState, AppSettingsViewEve
 }
 
 class AppSettingsTestUserNotificationSettings: UNNotificationSettings {
-    
     var status: UNAuthorizationStatus = .notDetermined
     
-    override var authorizationStatus: UNAuthorizationStatus {
-        get { status }
-    }
+    override var authorizationStatus: UNAuthorizationStatus { status }
 }
-
 
 class AppSettingsTestCoder: NSCoder {
     override func decodeInt64(forKey key: String) -> Int64 { 0 }

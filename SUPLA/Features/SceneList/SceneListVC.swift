@@ -22,6 +22,8 @@ import RxDataSources
 import RxSwift
 
 class SceneListVC: BaseTableViewController<SceneListViewState, SceneListViewEvent, SceneListVM> {
+    @Singleton<SuplaAppCoordinator> private var coordinator
+    
     static let cellIdForScene = "SceneCell"
     private var captionEditor: SceneCaptionEditor? = nil
     
@@ -36,8 +38,8 @@ class SceneListVC: BaseTableViewController<SceneListViewState, SceneListViewEven
     
     override func handle(event: SceneListViewEvent) {
         switch (event) {
-        case .openPrivateCloud(let url): navigator?.openWeb(url: url)
-        case .openCloud: navigator?.openCloud()
+        case .openPrivateCloud(let url): coordinator.openUrl(url: url)
+        case .openCloud: coordinator.openCloud()
         }
     }
     

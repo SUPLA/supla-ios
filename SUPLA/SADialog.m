@@ -112,12 +112,12 @@
 }
 
 + (BOOL)viewControllerIsPresented:(UIViewController*)vc {
-    UIViewController *rootVC = [SAApp currentNavigationCoordinator].viewController;
+    UIViewController *rootVC = [SuplaAppCoordinatorLegacyWrapper currentViewController];
     return vc != nil && rootVC != nil && rootVC.presentedViewController == vc;
 }
 
 + (void)showModal:(SADialog*)dialogVC {
-    UIViewController *rootVC = [SAApp currentNavigationCoordinator].viewController;
+    UIViewController *rootVC = [SuplaAppCoordinatorLegacyWrapper currentViewController];
     dialogVC.modalPresentationStyle = UIModalPresentationOverCurrentContext;
     
     if (@available(iOS 13.0, *)) {

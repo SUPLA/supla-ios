@@ -28,9 +28,8 @@ class WebContentVC<S: WebContentViewState, E: ViewEvent, VM: WebContentVM<S, E>>
     
     private lazy var loadingView: LoadingScrimView! = LoadingScrimView()
     
-    init(navigationCoordinator: NavigationCoordinator) {
+    init() {
         super.init(nibName: nil, bundle: nil)
-        self.navigationCoordinator = navigationCoordinator
     }
     
     @available(*, unavailable)

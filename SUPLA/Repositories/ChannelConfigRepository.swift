@@ -22,6 +22,7 @@ import RxSwift
 protocol ChannelConfigRepository: RepositoryProtocol where T == SAChannelConfig {
     func deleteAllFor(channel: SAChannel, profile: AuthProfileItem) -> Observable<Void>
     func getConfig(channelRemoteId: Int32) -> Observable<SAChannelConfig?>
+    func deleteAllFor(profile: AuthProfileItem) -> Observable<Void>
 }
 
 final class ChannelConfigRepositoryImpl: Repository<SAChannelConfig>, ChannelConfigRepository {
@@ -34,6 +35,14 @@ final class ChannelConfigRepositoryImpl: Repository<SAChannelConfig>, ChannelCon
         deleteAll(
             SAChannelConfig.fetchRequest()
                 .filtered(by: NSPredicate(format: "profile = %@ AND channel = %@", profile, channel))
+                .ordered(by: "channel.remote_id")
+        )
+    }
+    
+    func deleteAllFor(profile: AuthProfileItem) -> Observable<Void> {
+        deleteAll(
+            SAChannelConfig.fetchRequest()
+                .filtered(by: NSPredicate(format: "profile = %@", profile))
                 .ordered(by: "channel.remote_id")
         )
     }

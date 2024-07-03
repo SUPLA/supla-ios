@@ -105,8 +105,6 @@ class ThermostatGeneralVC: BaseViewControllerVM<ThermostatGeneralViewState, Ther
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        statusBarBackgroundView.isHidden = true
-        view.backgroundColor = .background
         
         viewModel.observeData(remoteId: item.remoteId, deviceId: item.deviceId)
         

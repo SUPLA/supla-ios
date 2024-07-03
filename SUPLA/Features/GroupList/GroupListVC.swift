@@ -19,6 +19,8 @@
 import Foundation
 
 class GroupListVC: ChannelBaseTableViewController<GroupListViewState, GroupListViewEvent, GroupListViewModel> {
+    @Singleton<SuplaAppCoordinator> private var coordinator
+    
     private var captionEditor: GroupCaptionEditor? = nil
     
     convenience init() {
@@ -33,13 +35,13 @@ class GroupListVC: ChannelBaseTableViewController<GroupListViewState, GroupListV
     override func handle(event: GroupListViewEvent) {
         switch (event) {
         case let .navigateToDetail(legacy: legacyDetailType, channelBase: channelBase):
-            navigator?.navigateToLegacyDetail(legacyDetailType: legacyDetailType, channelBase: channelBase)
+            coordinator.navigateToLegacyDetail(legacyDetailType, channelBase: channelBase)
         case let .naviagetToRollerShutterDetail(item, pages):
-            navigator?.navigateToRollerShutterDetail(item: item, pages: pages)
+            coordinator.navigateToWindowDetail(item: item, pages: pages)
         case .openCloud:
-            navigator?.openCloud()
+            coordinator.openCloud()
         case .openPrivateCloud(let url):
-            navigator?.openWeb(url: url)
+            coordinator.openUrl(url: url)
         }
     }
     

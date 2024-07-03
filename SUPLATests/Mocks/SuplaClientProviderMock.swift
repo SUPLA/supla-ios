@@ -25,11 +25,26 @@ class SuplaClientProviderMock: SuplaClientProvider {
 }
 
 class SuplaClientProtocolMock: NSObject, SuplaClientProtocol {
+    
     var cancelCalls: Int = 0
     func cancel() { cancelCalls += 1 }
     
     var reconnectCalls: Int = 0
     func reconnect() { reconnectCalls += 1 }
+    
+    var isCancelledCalls = 0
+    var isCancelledReturns = false
+    func isCancelled() -> Bool {
+        isCancelledCalls += 1
+        return isCancelledReturns
+    }
+    
+    var isFinishedCalls = 0
+    var isFinishedReturns = false
+    func isFinished() -> Bool {
+        isFinishedCalls += 1
+        return isFinishedReturns
+    }
     
     var executeActionParameters: [(Int32, Int32, Int32, UnsafeMutableRawPointer?, Int32)] = []
     var executeActionReturns = false

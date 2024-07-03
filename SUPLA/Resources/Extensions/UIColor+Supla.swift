@@ -53,6 +53,8 @@ extension UIColor {
     static let chartGpmBorder = UIColor(argb: 0xFF005F6E)
     static let chartGpmShadow = UIColor(argb: 0x3398C4CA)
     
+    @objc static let toolbar = UIColor(named: "Colors/toolbar")!
+    
     @objc static let separator = UIColor(named: "Colors/separator")!
     static let separatorLight = UIColor(named: "Colors/separator_light")!
     

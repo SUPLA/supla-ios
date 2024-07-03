@@ -20,14 +20,8 @@ import Foundation
 
 class ThermostatDetailVC : StandardDetailVC<ThermostatDetailViewState, ThermostatDetailViewEvent, ThermostatDetailVM> {
     
-    private var navigator: ThermostatDetailNavigationCoordinator? {
-        get {
-            navigationCoordinator as? ThermostatDetailNavigationCoordinator
-        }
-    }
-    
-    init(navigator: ThermostatDetailNavigationCoordinator, item: ItemBundle, pages: [DetailPage]) {
-        super.init(navigator: navigator, viewModel: ThermostatDetailVM(), item: item, pages: pages)
+    init(item: ItemBundle, pages: [DetailPage]) {
+        super.init(viewModel: ThermostatDetailVM(), item: item, pages: pages)
     }
     
     required init?(coder: NSCoder) {

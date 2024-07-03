@@ -93,6 +93,7 @@ final class TimerDetailVMTests: ViewModelTest<SwitchTimerDetailViewState, Switch
         
         readChannelByRemoteIdUseCase.returns = Observable.just(channel)
         getChannelBaseStateUseCase.returns = ChannelState.opened
+        dateProvider.currentTimestampReturns = .single(0)
         
         // when
         observe(viewModel)
@@ -145,6 +146,7 @@ final class TimerDetailVMTests: ViewModelTest<SwitchTimerDetailViewState, Switch
         
         readChannelByRemoteIdUseCase.returns = Observable.just(channel)
         getChannelBaseStateUseCase.returns = ChannelState.opened
+        dateProvider.currentTimestampReturns = .single(0)
         
         // when
         observe(viewModel)

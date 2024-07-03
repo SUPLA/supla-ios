@@ -20,10 +20,6 @@ import Foundation
 
 final class ThermometerHistoryDetailVC: BaseHistoryDetailVC {
     
-    private var navigator: ThermometerDetailNavigatorCoordinator? {
-        get { navigationCoordinator as? ThermometerDetailNavigatorCoordinator }
-    }
-    
     override init(remoteId: Int32, navigationItemProvider: NavigationItemProvider) {
         super.init(remoteId: remoteId, navigationItemProvider: navigationItemProvider)
         viewModel = ThermometerHistoryDetailVM()

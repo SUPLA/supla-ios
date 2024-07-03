@@ -28,7 +28,7 @@ class AppSettingsVM: BaseViewModel<AppSettingsViewState, AppSettingsViewEvent> {
     
     override func defaultViewState() -> AppSettingsViewState { AppSettingsViewState(list: []) }
     
-    override func onViewDidLoad() {
+    override func onViewWillAppear() {
         createListObservable()
             .asDriverWithoutError()
             .drive(onNext: { list in
@@ -63,11 +63,11 @@ class AppSettingsVM: BaseViewModel<AppSettingsViewState, AppSettingsViewEvent> {
         return .preferences(items: [
             .heightItem(
                 channelHeight: settings.channelHeight,
-                callback: { self.updateChannelHeight(selectedItem: $0) }
+                callback: { [weak self] in self?.updateChannelHeight(selectedItem: $0) }
             ),
             .temperatureUnitItem(
                 temperatureUnit: settings.temperatureUnit,
-                callback: { self.updateTemperatureUnit(selectedItem: $0) }
+                callback: { [weak self] in self?.updateTemperatureUnit(selectedItem: $0) }
             ),
             .switchItem(
                 title: Strings.Cfg.buttonAutoHide,
@@ -94,6 +94,10 @@ class AppSettingsVM: BaseViewModel<AppSettingsViewState, AppSettingsViewEvent> {
                     settings.darkMode = $0
                     self?.send(event: .changeInterfaceStyle(style: $0.interfaceStyle))
                 }
+            ),
+            .lockScreenItem(
+                lockScreenScope: settings.lockScreenSettings.scope,
+                callback: { [weak self] in self?.updateLockScreen(scope: $0) }
             ),
             .arrowButtonItem(
                 title: Strings.Cfg.locationOrdering,
@@ -125,6 +129,24 @@ class AppSettingsVM: BaseViewModel<AppSettingsViewState, AppSettingsViewEvent> {
             settings.temperatureUnit = unit
         }
     }
+    
+    private func updateLockScreen(scope: LockScreenScope) {
+        let lockScreenSettings = settings.lockScreenSettings
+        if (lockScreenSettings.scope == scope) {
+            return // No change
+        }
+        let pinSum = lockScreenSettings.pinSum
+        
+        if (scope == .none) {
+            send(event: .navigateToPinVerification(unlockAction: .turnOffPin))
+        } else if (pinSum != nil && scope == .accounts) {
+            send(event: .navigateToPinVerification(unlockAction: .confirmAuthorizeAccounts))
+        } else if (pinSum != nil && scope == .application) {
+            send(event: .navigateToPinVerification(unlockAction: .confirmAuthorizeApplication))
+        } else {
+            send(event: .navigateToPinSetup(scope: scope))
+        }
+    }
 }
 
 enum SettingsList: Equatable {
@@ -140,6 +162,7 @@ enum SettingsListItem: Equatable {
     case arrowButtonItem(title: String, callback: () -> Void)
     case permissionItem(title: String, active: Bool, callback: () -> Void)
     case darkModeItem(darkModeSetting: DarkModeSetting, callback: (DarkModeSetting) -> Void)
+    case lockScreenItem(lockScreenScope: LockScreenScope, callback: (LockScreenScope) -> Void)
     
     static func == (lhs: SettingsListItem, rhs: SettingsListItem) -> Bool {
         switch (lhs, rhs) {
@@ -157,6 +180,8 @@ enum SettingsListItem: Equatable {
             return lTitle == rTitle && lValue == rValue
         case (.darkModeItem(let leftSetting, _), .darkModeItem(let rightSetting, _)):
             return leftSetting == rightSetting
+        case (.lockScreenItem(let leftScope, _), .lockScreenItem(let rightScope, _)):
+            return leftScope == rightScope
         default:
             return false
         }
@@ -189,6 +214,8 @@ enum AppSettingsViewEvent: ViewEvent {
     case navigateToLocationOrdering
     case navigateToAppPreferences
     case changeInterfaceStyle(style: UIUserInterfaceStyle)
+    case navigateToPinSetup(scope: LockScreenScope)
+    case navigateToPinVerification(unlockAction: LockScreenFeature.UnlockAction)
 }
 
 struct AppSettingsViewState: ViewState {

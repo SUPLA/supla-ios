@@ -17,8 +17,8 @@
  */
 
 class WindowDetailVC: StandardDetailVC<WindowDetailViewState, WindowDetailViewEvent, WindowDetailVM> {
-    init(navigator: WindowDetailVC.Coordinator, item: ItemBundle, pages: [DetailPage]) {
-        super.init(navigator: navigator, viewModel: WindowDetailVM(), item: item, pages: pages)
+    init(item: ItemBundle, pages: [DetailPage]) {
+        super.init(viewModel: WindowDetailVM(), item: item, pages: pages)
     }
     
     @available(*, unavailable)
@@ -31,21 +31,4 @@ class WindowDetailVC: StandardDetailVC<WindowDetailViewState, WindowDetailViewEv
     }
     
     override func handle(event: WindowDetailViewEvent) {}
-    
-    class Coordinator: BaseNavigationCoordinator {
-        private let item: ItemBundle
-        private let pages: [DetailPage]
-        
-        override var viewController: UIViewController { _viewController }
-        
-        private lazy var _viewController: WindowDetailVC = {
-            let controller = WindowDetailVC(navigator: self, item: item, pages: pages)
-            return controller
-        }()
-        
-        init(item: ItemBundle, pages: [DetailPage]) {
-            self.item = item
-            self.pages = pages
-        }
-    }
 }

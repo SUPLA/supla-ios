@@ -45,17 +45,7 @@
 "Garage door opening sensor" = "Senzor odprtja garažnih vrat";
 "Door opening sensor" = "Senzor odprtja vrat";
 "Roller shutter opening sensor" = "Senzor odprtja rolet";
-"Connecting..." = "Povezovanje...";
-"Unknown error" = "Neznana napaka";
-"Service temporarily unavailable" = "Storitev trenutno ni na voljo";
-"Bad credentials" = "Napačne poverilnice";
-"Client limit exceeded" = "Omejitev odjemalskih aplikacij je presežena";
-"Device disabled. Please log in to \"Supla Cloud\" and enable this device in “Smartphone” section of the website." = "Naprava je izklopljena";
-"Access Identifier is disabled" = "Identifikator dostopa je izklopljen";
-"New client registration disabled. Please log in to \"Supla Cloud\" and enable \"New client registration\" in \"Smartphone\" section of the website." = "Registracija je trenutno izklopljena. Če jo želite omogočiti, pojdite na zavihek \"Pametni telefoni\" na strani \"Supla Cloud\"";
-"Client activation required. Please log in to \"Supla Cloud\" and assign an “Access ID” for this device in “Smartphone” section of the website." = "Ta naprava nima dodeljenega identifikatorja dostopa. Pojdite na stran \"Supla Cloud\" in na zavihku \"Pametni telefoni\" dodelite ustrezen identifikator.";
 "Incompatible server version" = "Nezdružljiva različica strežnika";
-"Host not found. Make sure you are connected to the internet and that an account with the entered email address has been created." = "Naslova strežnika ni mogoče najti";
 "RGB Lighting" = "RGB osvetlitev";
 "Dimmer and RGB lighting" = "Zatemnilnik in RGB osvetlitev";
 "Dimmer" = "Zatemnilnik";
@@ -199,7 +189,6 @@
 "The glass sections are exposed for more than 20 hours, which may adversely affect their life. It is recommended to cover all sections for a minimum of 4 hours in order to regenerate them." = "Stekleni deli so izpostavljeni več kot 20 ur, kar lahko negativno vpliva na njihovo življenjsko dobo. Priporočljivo je, da vse dele prekrijete za najmanj 4 ure, da se obnovijo.";
 "Planned regeneration is in progress." = "Načrtovana obnova je v teku.";
 "Regeneration initiated after 20 hours of operation is in progress." = "Obnova je v teku po 20 urah dela.";
-"Incorrect Email Address or Password" = "Napačen e-naslov ali geslo";
 "Channel Id" = "Identifikator kanala";
 "Back" = "Nazaj";
 "The z-wave bridge is not responding. Check if the bridge is connected to the server." = "Most z-wave se ne odziva. Preverite, če je most povezan s strežnikom.";
@@ -279,7 +268,6 @@
 "Closing" = "Zapiranja";
 "Percent of opening" = "Odstotek odpiranja";
 "Percent of closing" = "Odstotek zapiranja";
-"Access Identifier inactive." = "Identifikator dostopa ni na voljo.";
 "Your account" = "Vaš račun";
 "Your accounts" = "Vaši računi";
 "Accounts" = "Računi";
@@ -313,3 +301,17 @@
 "roller_shutter_motor_problem" = "Težava z motorjem / Nepričakovana zaustavitev.";
 "roller_shutter_calibration" = "Kalibracija";
 "roller_shutter_start_calibration_message" = "Ali ste prepričani, da želite začeti umerjanje?";
+
+/* Status */
+"status_connecting" = "Povezovanje...";
+"status_unknown_error" = "Neznana napaka";
+"status_temporarily_unavailable" = "Storitev trenutno ni na voljo";
+"status_incorrect_data" = "Napačen e-naslov ali geslo";
+"status_bad_credentials" = "Napačne poverilnice";
+"status_client_limit_exceeded" = "Omejitev odjemalskih aplikacij je presežena";
+"status_device_disabled" = "Naprava je izklopljena";
+"status_access_id_disabled" = "Identifikator dostopa je izklopljen";
+"status_registration_disabled" = "Registracija je trenutno izklopljena. Če jo želite omogočiti, pojdite na zavihek \"Pametni telefoni\" na strani \"Supla Cloud\"";
+"status_access_id_not_assigned" = "Ta naprava nima dodeljenega identifikatorja dostopa. Pojdite na stran \"Supla Cloud\" in na zavihku \"Pametni telefoni\" dodelite ustrezen identifikator.";
+"status_access_id_inactive" = "Identifikator dostopa ni na voljo.";
+"status_host_not_found" = "Naslova strežnika ni mogoče najti";

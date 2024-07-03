@@ -784,8 +784,7 @@
     [self cleanUp];
     [self.OpQueue cancelAllOperations];
     [self savePrefs];
-    [[SAApp currentNavigationCoordinator] finish];
-    [[SAApp SuplaClient] reconnect];
+    [SuplaAppCoordinatorLegacyWrapper dismissWithAnimated: true];
 }
 
 

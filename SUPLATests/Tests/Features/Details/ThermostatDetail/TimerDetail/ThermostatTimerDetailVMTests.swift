@@ -189,6 +189,7 @@ final class ThermostatTimerDetailVMTests: ViewModelTest<ThermostatTimerDetailVie
         let remoteId: Int32 = 123
         let state = ThermostatTimerDetailViewState(remoteId: remoteId, selectedMode: .off)
         viewModel.updateView(state: state)
+        dateProvider.currentTimestampReturns = .single(0)
         
         // when
         observe(viewModel)
@@ -219,6 +220,7 @@ final class ThermostatTimerDetailVMTests: ViewModelTest<ThermostatTimerDetailVie
             calendarValue: endDate
         )
         viewModel.updateView(state: state)
+        dateProvider.currentTimestampReturns = .single(0)
         dateProvider.currentDateReturns = currentDate
         
         // when
@@ -240,6 +242,7 @@ final class ThermostatTimerDetailVMTests: ViewModelTest<ThermostatTimerDetailVie
         let remoteId: Int32 = 123
         let state = ThermostatTimerDetailViewState(remoteId: remoteId)
         viewModel.updateView(state: state)
+        dateProvider.currentTimestampReturns = .single(0)
         
         // when
         observe(viewModel)
@@ -260,6 +263,7 @@ final class ThermostatTimerDetailVMTests: ViewModelTest<ThermostatTimerDetailVie
         let remoteId: Int32 = 123
         let state = ThermostatTimerDetailViewState(remoteId: remoteId)
         viewModel.updateView(state: state)
+        dateProvider.currentTimestampReturns = .single(0)
         
         // when
         observe(viewModel)

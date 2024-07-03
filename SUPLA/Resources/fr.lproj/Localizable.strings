@@ -45,17 +45,7 @@
 "Garage door opening sensor" = "Capteur d'ouverture de porte garage";
 "Door opening sensor" = "Capteur d'ouverture de porte";
 "Roller shutter opening sensor" = "Capteur d'ouverture des volet";
-"Connecting..." = "Connexion en cours...";
-"Unknown error" = "Erreur inconnue";
-"Service temporarily unavailable" = "Ce service est temporairement indisponible";
-"Bad credentials" = "Informations d'identification invalides";
-"Client limit exceeded" = "Vous avez dépassé la limite des applications client-side";
-"Device disabled. Please log in to \"Supla Cloud\" and enable this device in “Smartphone” section of the website." = "Le dispositif est éteint";
-"Access Identifier is disabled" = "L'identifiant d'accès est désactivé";
-"New client registration disabled. Please log in to \"Supla Cloud\" and enable \"New client registration\" in \"Smartphone\" section of the website." = "L'inscription est actuellement désactivée. Pour l'activer, allez vers l'onglet \"Smartphones\" à la page \"Supla Cloud\"";
-"Client activation required. Please log in to \"Supla Cloud\" and assign an “Access ID” for this device in “Smartphone” section of the website." = "Ce dispositif n'a pas d'identifiant d'accès attribué. Allez à la page \"Supla Cloud\" et dans l'onglet \"Smartphones\"  attribuez l'identifiant approprié.";
 "Incompatible server version" = "Incompatibilité de la version du serveur";
-"Host not found. Make sure you are connected to the internet and that an account with the entered email address has been created." = "Nous n'avons pas pu trouver cette adresse du serveur";
 "RGB Lighting" = "Éclairage RGB";
 "Dimmer and RGB lighting" = "Variateur de luminosité et éclairage RGB";
 "Dimmer" = "Variateur de luminosité";
@@ -199,7 +189,6 @@
 "The glass sections are exposed for more than 20 hours, which may adversely affect their life. It is recommended to cover all sections for a minimum of 4 hours in order to regenerate them." = "Des sections du verre sont exposées pendant plus de 20 heures, ce qui peut affecter leur durée de vie. Il est conseillé de couvrir toutes les sections pendant un minimum de 4 heures pour la régénération.";
 "Planned regeneration is in progress." = "Régénération programmée en cours.";
 "Regeneration initiated after 20 hours of operation is in progress." = "Régénération initiée après 20h de fonctionnement en cours.";
-"Incorrect Email Address or Password" = "Adresse e-mail ou mot de passe incorrect(e)";
 "Channel Id" = "Id du canal";
 "Back" = "Retour";
 "The z-wave bridge is not responding. Check if the bridge is connected to the server." = "Le pont z-wave ne répond pas. Vérifiez si le pont est connecté au serveur.";
@@ -279,7 +268,6 @@
 "Closing" = "Fermetures";
 "Percent of opening" = "Pourcentage d\'ouverture";
 "Percent of closing" = "Pourcentage de clôture";
-"Access Identifier inactive." = "ID d'accès inactif.";
 "Your account" = "Votre compte";
 "Your accounts" = "Vos comptes";
 "Accounts" = "Comptes";
@@ -313,3 +301,17 @@
 "roller_shutter_motor_problem" = "Problème de moteur / Arrêt inattendu.";
 "roller_shutter_calibration" = "Calibration";
 "roller_shutter_start_calibration_message" = "Êtes-vous sûr de vouloir commencer le calibrage ?";
+
+/* Status */
+"status_connecting" = "Connexion en cours...";
+"status_unknown_error" = "Erreur inconnue";
+"status_temporarily_unavailable" = "Ce service est temporairement indisponible";
+"status_incorrect_data" = "Adresse e-mail ou mot de passe incorrect(e)";
+"status_bad_credentials" = "Informations d'identification invalides";
+"status_client_limit_exceeded" = "Vous avez dépassé la limite des applications client-side";
+"status_device_disabled" = "Le dispositif est éteint";
+"status_access_id_disabled" = "L'identifiant d'accès est désactivé";
+"status_registration_disabled" = "L'inscription est actuellement désactivée. Pour l'activer, allez vers l'onglet \"Smartphones\" à la page \"Supla Cloud\".";
+"status_access_id_not_assigned" = "Ce dispositif n'a pas d'identifiant d'accès attribué. Allez à la page \"Supla Cloud\" et dans l'onglet \"Smartphones\"  attribuez l'identifiant approprié.";
+"status_access_id_inactive" = "ID d'accès inactif.";
+"status_host_not_found" = "Nous n'avons pas pu trouver cette adresse du serveur";

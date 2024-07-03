@@ -37,6 +37,8 @@ protocol UpdateEventsManager: UpdateEventsManagerEmitter {
     func observeChannelsUpdate() -> Observable<Void>
     func observeGroupsUpdate() -> Observable<Void>
     func observeScenesUpdate() -> Observable<Void>
+    
+    func cleanup()
 }
 
 final class UpdateEventsManagerImpl: UpdateEventsManager {
@@ -126,6 +128,10 @@ final class UpdateEventsManagerImpl: UpdateEventsManager {
     func observeGroupsUpdate() -> Observable<Void> { groupUpdatesSubject.asObservable() }
     
     func observeScenesUpdate() -> Observable<Void> { sceneUpdatesSubject.asObservable() }
+    
+    func cleanup() {
+        subjects.removeAll()
+    }
     
     private func getSubjectForScene(sceneId: Int) -> BehaviorRelay<Int> {
         return syncedQueue.sync(execute: {

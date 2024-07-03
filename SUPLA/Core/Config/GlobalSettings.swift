@@ -34,6 +34,7 @@ protocol GlobalSettings {
     var channelHeight: ChannelHeight { get set }
     var showOpeningPercent: Bool { get set }
     var darkMode: DarkModeSetting { get set }
+    var lockScreenSettings: LockScreenSettings { get set }
 }
 
 class GlobalSettingsImpl: GlobalSettings {
@@ -155,6 +156,12 @@ class GlobalSettingsImpl: GlobalSettings {
     var darkMode: DarkModeSetting {
         get { return DarkModeSetting.from(defaults.integer(forKey: darkModeKey)) }
         set { defaults.set(newValue.rawValue, forKey: darkModeKey) }
+    }
+    
+    private let lockScreenKey = "supla_config_lock_screen"
+    var lockScreenSettings: LockScreenSettings {
+        get { return LockScreenSettings.from(string: defaults.string(forKey: lockScreenKey)) }
+        set { defaults.set(newValue.asString(), forKey: lockScreenKey) }
     }
 }
 

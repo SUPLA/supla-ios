@@ -189,8 +189,7 @@ static SAZWaveConfigurationWizardVC *_zwaveConfigurationWizardGlobalRef = nil;
 
 -(void) superuserAuthorizationSuccess {
     [SASuperuserAuthorizationDialog.globalInstance close];
-    [(UINavigationController*)[SAApp mainNavigationCoordinator].viewController
-     pushViewController: self animated: YES];
+    [SuplaAppCoordinatorLegacyWrapper push:self];
 }
 
 -(void)show {

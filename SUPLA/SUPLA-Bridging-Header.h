@@ -5,7 +5,6 @@
 #import "SuplaApp.h"
 #import "SAChartHelper.h"
 #import "CreateAccountVC.h"
-#import "StatusVC.h"
 #import "AddWizardVC.h"
 #import "AboutVC.h"
 #import "SAIncrementalMeterChartHelper.h"
@@ -45,6 +44,5 @@
 #import "SAChannelConfig+CoreDataClass.h"
 #import "SANotification+CoreDataClass.h"
 #import "SASuperuserAuthorizationResult.h"
-#import "AppDelegate.h"
 
 #import "supla-client.h"

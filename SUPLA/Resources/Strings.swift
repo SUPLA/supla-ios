@@ -56,6 +56,10 @@ struct Strings {
         static let locationLabel = "app_settings.location_label".toLocalized()
         static let showLabels = "settings_show_labels".toLocalized()
         static let nightMode = "settings_dark_mode".toLocalized()
+        static let lockScreen = "settings_lock_screen".toLocalized()
+        static let lockScreenNone = "settings_lock_screen_none".toLocalized()
+        static let lockScreenApp = "settings_lock_screen_app".toLocalized()
+        static let lockScreenAccounts = "settings_lock_screen_accounts".toLocalized()
     }
     
     struct AccountCreation {
@@ -264,7 +268,6 @@ struct Strings {
         static let cancel = NSLocalizedString("Cancel", comment: "")
         static let close = NSLocalizedString("Close", comment: "")
         static let open = NSLocalizedString("Open", comment: "")
-        static let unknownError = NSLocalizedString("Unknown error", comment: "")
         static let save = "save".toLocalized()
         
         static let hourFormat = "general_hour_format".toLocalized()
@@ -333,8 +336,6 @@ struct Strings {
     }
     
     struct AuthorizationDialog {
-        static let unauthorized = NSLocalizedString("Incorrect Email Address or Password", comment: "")
-        static let unavailable = NSLocalizedString("Service temporarily unavailable", comment: "")
         static let timeout = NSLocalizedString("Time exceeded. Try again.", comment: "")
         static let cloudTitle = NSLocalizedString("Please enter your Supla Cloud login details.", comment: "")
         static let privateTitle = NSLocalizedString("Enter superuser credentials", comment: "")
@@ -345,6 +346,49 @@ struct Strings {
     
     struct DeviceCatalog {
         static let menu = "menu_device_catalog".toLocalized()
+    }
+    
+    struct Status {
+        static let initializing = "status_initializing".toLocalized()
+        static let connecting = "status_connecting".toLocalized()
+        static let disconnecting = "status_disconnecting".toLocalized()
+        static let awaitingNetwork = "status_awaiting_network".toLocalized()
+        static let tryAgain = "status_try_again".toLocalized()
+        static let errorUnknown = "status_unknown_error".toLocalized()
+        static let errorUnavailable = "status_temporarily_unavailable".toLocalized()
+        static let errorInvalidData = "status_incorrect_data".toLocalized()
+        static let errorBadCredentials = "status_bad_credentials".toLocalized()
+        static let errorClientLimitExceeded = "status_client_limit_exceeded".toLocalized()
+        static let errorDeviceDisabled = "status_device_disabled".toLocalized()
+        static let errorAccessIdDisabled = "status_access_id_disabled".toLocalized()
+        static let errorRegistrationDisabled = "status_registration_disabled".toLocalized()
+        static let errorAccessIdNotAssigned = "status_access_id_not_assigned".toLocalized()
+        static let errorAccessIdInactive = "status_access_id_inactive".toLocalized()
+        static let errorHostNotFound = "status_host_not_found".toLocalized()
+    }
+    
+    struct PinSetup {
+        static let title = "pin_setup_title".toLocalized()
+        static let header = "pin_setup_header".toLocalized()
+        static let repeatPin = "pin_setup_repeat".toLocalized()
+        static let different = "pin_setup_entry_different".toLocalized()
+        static let useBiometric = "pin_setup_use_biometric".toLocalized()
+        static let biometricNotEnrolled = "pin_setup_biometric_not_enrolled".toLocalized()
+    }
+    
+    struct LockScreen {
+        static let hello = "lock_screen_hello".toLocalized()
+        static let enterPin = "lock_screen_enter_pin".toLocalized()
+        static let removePin = "lock_screen_remove_pin".toLocalized()
+        static let confirmAuthorizeApp = "lock_screen_confirm_authorize_app".toLocalized()
+        static let confirmAuthorizeAccounts = "lock_screen_confirm_authorize_accounts".toLocalized()
+        static let wrongPin = "lock_screen_wrong_pin".toLocalized()
+        static let forgottenCode = "lock_screen_forgotten_code".toLocalized()
+        static let forgottenCodeTitle = "lock_screen_forgotten_code_title".toLocalized()
+        static let forgottenCodeMessage = "lock_screen_forgotten_code_message".toLocalized()
+        static let forgottenCodeButton = "lock_screen_forgotten_code_button".toLocalized()
+        static let biometricPromptReason = "biometric_prompt_subtitle".toLocalized()
+        static let pinLocked = "lock_screen_pin_locked".toLocalized()
     }
 }
 

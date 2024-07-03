@@ -39,7 +39,7 @@
         CGRect sbFrame;
         sbFrame = [[UIApplication sharedApplication] statusBarFrame];
         statusBarBg = [[UIView alloc] initWithFrame: CGRectZero];
-        statusBarBg.backgroundColor = [UIColor primary];
+        statusBarBg.backgroundColor = [UIColor toolbar];
         statusBarBg.translatesAutoresizingMaskIntoConstraints = NO;
         [self.view addSubview: statusBarBg];
         [statusBarBg.topAnchor constraintEqualToAnchor: self.view.topAnchor].active = YES;

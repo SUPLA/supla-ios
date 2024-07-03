@@ -628,6 +628,7 @@ void sasuplaclient_device_config_update_or_result(void *_suplaclient,
                 usleep(2000000);
             } else {
                 @try {
+                    // TODO: Add network check
                     if ( supla_client_connect(_sclient) == 1 ) {
                         while ( [self isCancelled] == NO
                                && supla_client_iterate(_sclient, 100000) == 1) {
@@ -656,6 +657,7 @@ void sasuplaclient_device_config_update_or_result(void *_suplaclient,
     }
     
     [self performSelectorOnMainThread:@selector(_onTerminated) withObject:nil waitUntilDone:NO];
+    [SuplaAppStateHolderProxy finish];
     //NSLog(@"SuplaClient Finished");
 }
 
@@ -688,6 +690,9 @@ void sasuplaclient_device_config_update_or_result(void *_suplaclient,
     
     [self performSelectorOnMainThread:@selector(_onVersionError:)
                            withObject:ve waitUntilDone:NO];
+    
+    [self cancel];
+    [SuplaAppStateHolderProxy versionError];
 }
 
 - (void) _onConnected {
@@ -704,6 +709,12 @@ void sasuplaclient_device_config_update_or_result(void *_suplaclient,
 
 - (void) onConnError:(int)code {
     [self performSelectorOnMainThread:@selector(_onConnError:) withObject:[NSNumber numberWithInt:code] waitUntilDone:NO];
+    
+    if (code == SUPLA_RESULT_HOST_NOT_FOUND) {
+        [self cancel];
+    }
+    
+    [SuplaAppStateHolderProxy connectionErrorWithCode: code];
 }
 
 - (void) _onDisconnected {
@@ -729,7 +740,11 @@ void sasuplaclient_device_config_update_or_result(void *_suplaclient,
 
 - (void) onRegisterError:(int)code {
     _regTryCounter = 0;
+    
+    [self cancel];
+    
     [self performSelectorOnMainThread:@selector(_onRegisterError:) withObject:[NSNumber numberWithInt:code] waitUntilDone:NO];
+    [SuplaAppStateHolderProxy registerErrorWithCode:code];
 }
 
 - (void) _onRegistered:(SARegResult*)result {
@@ -780,6 +795,8 @@ void sasuplaclient_device_config_update_or_result(void *_suplaclient,
     [DiContainer setOAuthUrlWithUrl: ai.serverUrlString];
 
     [self performSelectorOnMainThread:@selector(_onRegistered:) withObject:result waitUntilDone:NO];
+    
+    [SuplaAppStateHolderProxy connected];
 }
 
 - (void) _onConnecting {
@@ -788,6 +805,7 @@ void sasuplaclient_device_config_update_or_result(void *_suplaclient,
 
 - (void) onConnecting {
     [self performSelectorOnMainThread:@selector(_onConnecting) withObject:nil waitUntilDone:NO];
+    [SuplaAppStateHolderProxy connecting];
 }
 
 - (void) _onDataChanged {
@@ -1672,6 +1690,11 @@ void sasuplaclient_device_config_update_or_result(void *_suplaclient,
             supla_client_pn_register_client_token(_sclient, &reg);
         }
     }
+}
+
+- (void) cancel {
+    [super cancel];
+    [SuplaAppStateHolderProxy cancel];
 }
 
 @end

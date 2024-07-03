@@ -27,11 +27,11 @@ final class DateProviderMock: DateProvider {
         return currentDateReturns
     }
     
-    var currentTimestampReturns = 0.0
+    var currentTimestampReturns: MockReturns<TimeInterval> = .empty()
     var currentTimestampCalls = 0
     func currentTimestamp() -> TimeInterval {
         currentTimestampCalls += 1
-        return currentTimestampReturns
+        return currentTimestampReturns.next()
     }
     
     var currentDayOfWeekCalls = 0
@@ -53,5 +53,48 @@ final class DateProviderMock: DateProvider {
     func currentMinute() -> Int {
         currentMinuteCalls += 1
         return currentMinuteReturns
+    }
+}
+
+class MockReturns<T> {
+    
+    private let values: [T]
+    private let empty: Bool
+    private var idx = 0
+    
+    private init(values: [T]) {
+        self.values = values
+        self.empty = false
+    }
+    
+    private init() {
+        self.values = []
+        self.empty = true
+    }
+    
+    func next() -> T {
+        if (empty) {
+            fatalError("Not mocked!")
+        }
+        
+        if (idx >= values.count) {
+            return values.last!
+        }
+        
+        let returns = values[idx]
+        idx += 1
+        return returns
+    }
+    
+    static func single<V>(_ value: V) -> MockReturns<V> {
+        MockReturns<V>(values: [value])
+    }
+    
+    static func many<V>(_ values: [V]) -> MockReturns<V> {
+        MockReturns<V>(values: values)
+    }
+    
+    static func empty<V>() -> MockReturns<V> {
+        MockReturns<V>()
     }
 }

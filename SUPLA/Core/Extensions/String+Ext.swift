@@ -16,6 +16,7 @@
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 
+import CommonCrypto
 import Foundation
 
 extension String {
@@ -51,9 +52,15 @@ extension String {
                 withCString {
                     _ = snprintf(ptr: pointer, lenght, $0)
                 }
-                
             }
         }
+    }
+    
+    func sha1() -> String {
+        let data = Data(self.utf8)
+        var digest = [UInt8](repeating: 0, count: Int(CC_SHA1_DIGEST_LENGTH))
+        data.withUnsafeBytes { _ = CC_SHA1($0.baseAddress, CC_LONG(data.count), &digest) }
+        return digest.map { String(format: "%02hhx", $0) }.joined()
     }
     
     static func fromC<T>(_ address: T) -> String {
