@@ -17,7 +17,7 @@
  */
 
 class DeviceCatalogVM: WebContentVM<DeviceCatalogViewState, DeviceCatalogViewEvent> {
-    private let url = "https://www.supla.org/pl/"
+    private let url = Strings.DeviceCatalog.url
 
     override func provideUrl() -> URL {
         URL(string: url)!

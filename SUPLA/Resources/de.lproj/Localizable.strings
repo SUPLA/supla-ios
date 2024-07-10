@@ -493,3 +493,6 @@
 "lock_screen_forgotten_code_button" = "Einverstanden";
 "biometric_prompt_subtitle" = "Entsperren mittels Biometrie";
 "lock_screen_pin_locked" = "Zu viele Fehlversuche. PIN-Eingabe für %@ gesperrt.";
+
+/* Device Catalog */
+"device_list_url" = "https://www.supla.org/de/devices";
