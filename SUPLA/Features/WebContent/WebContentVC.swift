@@ -19,7 +19,7 @@
 import WebKit
 
 class WebContentVC<S: WebContentViewState, E: ViewEvent, VM: WebContentVM<S, E>>: BaseViewControllerVM<S, E, VM>, WKNavigationDelegate {
-    private lazy var webView: WKWebView! = {
+    lazy var webView: WKWebView! = {
         let view = WKWebView(frame: .zero, configuration: WKWebViewConfiguration())
         view.translatesAutoresizingMaskIntoConstraints = false
         view.navigationDelegate = self

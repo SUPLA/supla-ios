@@ -17,15 +17,14 @@
  */
 
 class WebContentVM<S: WebContentViewState, E: ViewEvent>: BaseViewModel<S, E> {
-    
     func shouldHandle(url: String?) -> Bool {
         return true
     }
-    
+
     func provideUrl() -> URL {
         fatalError("provideUrl() needs to be implemented")
     }
-    
+
     func updateLoading(_ loading: Bool) {
         fatalError("updateLading(:) needs to be implemented")
     }

@@ -20,7 +20,7 @@
 import SwiftUI
 
 extension SuplaCore {
-    class BaseViewController<S: ObservableObject, V: View, VM: SuplaCore.BaseViewModel<S>>: UIViewController, NavigationBarVisibilityController {
+    class BaseViewController<S: ObservableObject, V: View, VM: BaseViewModel<S>>: UIViewController, NavigationBarVisibilityController {
         @Singleton<GlobalSettings> private var settings
         
         override var preferredStatusBarStyle: UIStatusBarStyle { .lightContent }
@@ -71,7 +71,7 @@ extension SuplaCore {
         
         override func viewDidAppear(_ animated: Bool) {
             super.viewDidAppear(animated)
-            viewModel.onViewAppeared()
+            onViewAppeared()
         }
         
         override func viewWillLayoutSubviews() {
@@ -92,7 +92,7 @@ extension SuplaCore {
         
         override func viewDidDisappear(_ animated: Bool) {
             super.viewDidDisappear(animated)
-            viewModel.onViewDisappeared()
+            onViewDisappeared()
         }
         
         private func setupConstraints() {

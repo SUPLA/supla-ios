@@ -266,3 +266,6 @@
 "lock_screen_forgotten_code_button" = "OK";
 "biometric_prompt_subtitle" = "Unlock using biometric";
 "lock_screen_pin_locked" = "To many failures. PIN entry locked for %@.";
+
+/* Device Catalog */
+"device_list_url" = "https://www.supla.org/en/devices";

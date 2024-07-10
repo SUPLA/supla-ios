@@ -56,6 +56,19 @@ class BaseViewControllerVM<S : ViewState, E : ViewEvent, VM : BaseViewModel<S, E
         
         stateDisposable = viewModel.stateObservable()
             .subscribe(onNext: { [weak self] state in self?.handle(state: state) })
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(onViewAppeared), name: UIApplication.willEnterForegroundNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(onViewDisappeared), name: UIApplication.didEnterBackgroundNotification, object: nil)
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        onViewAppeared()
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        onViewDisappeared()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -64,6 +77,9 @@ class BaseViewControllerVM<S : ViewState, E : ViewEvent, VM : BaseViewModel<S, E
         stateDisposable?.dispose()
         stateDisposable = nil
         NotificationCenter.default.removeObserver(self)
+        
+        NotificationCenter.default.removeObserver(self, name: UIApplication.willEnterForegroundNotification, object: nil)
+        NotificationCenter.default.removeObserver(self, name: UIApplication.didEnterBackgroundNotification, object: nil)
     }
     
     func handle(event: E) { fatalError("handle(event:) has not been implemented!") }
@@ -78,6 +94,12 @@ class BaseViewControllerVM<S : ViewState, E : ViewEvent, VM : BaseViewModel<S, E
         let infoDialog = UIAlertController(title: title, message: message, preferredStyle: .alert)
         infoDialog.addAction(UIAlertAction(title: Strings.General.close, style: .default))
         self.present(infoDialog, animated: true)
+    }
+    
+    @objc func onViewAppeared() {
+    }
+    
+    @objc func onViewDisappeared() {
     }
     
 #if DEBUG

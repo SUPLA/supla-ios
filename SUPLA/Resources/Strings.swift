@@ -346,6 +346,7 @@ struct Strings {
     
     struct DeviceCatalog {
         static let menu = "menu_device_catalog".toLocalized()
+        static let url = "device_list_url".toLocalized()
     }
     
     struct Status {
