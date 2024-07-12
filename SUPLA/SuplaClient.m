@@ -42,6 +42,7 @@
 @import UserNotifications;
 
 #define MINIMUM_WAITING_TIME_SEC 2
+#define CONNECTION_TIMEOUT_MS 5000
 
 @interface SASuplaClient ()
 - (void) onVersionError:(SAVersionError*)ve;
@@ -629,7 +630,7 @@ void sasuplaclient_device_config_update_or_result(void *_suplaclient,
             } else {
                 @try {
                     // TODO: Add network check
-                    if ( supla_client_connect(_sclient) == 1 ) {
+                    if ( supla_client_connect(_sclient, CONNECTION_TIMEOUT_MS) == 1 ) {
                         while ( [self isCancelled] == NO
                                && supla_client_iterate(_sclient, 100000) == 1) {
                         }
