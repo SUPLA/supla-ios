@@ -1,4 +1,3 @@
-//
 /*
  Copyright (C) AC SOFTWARE SP. Z O.O.
 
@@ -18,25 +17,4 @@
  */
     
 
-@testable import SUPLA
-import RxSwift
-
-final class SuplaAppStateHolderMock: SuplaAppStateHolder {
-    
-    var stateCounter = 0
-    var stateReturns: Observable<SuplaAppState> = .empty()
-    func state() -> Observable<SuplaAppState> {
-        stateCounter += 1
-        return stateReturns
-    }
-    
-    var currentStateMock: FunctionMock<Void, SuplaAppState?> = .init()
-    func currentState() -> SuplaAppState? {
-        currentStateMock.handle(())
-    }
-    
-    var handleParameters: [SuplaAppEvent] = []
-    func handle(event: SuplaAppEvent) {
-        handleParameters.append(event)
-    }
-}
+struct AboutFeature {}

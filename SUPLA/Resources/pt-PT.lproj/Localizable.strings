@@ -14,7 +14,6 @@
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 
-"version" = "versão";
 "Open" = "Abrir";
 "Open Close" = "Abrir Fechar";
 "Reveal" = "Esconder";
@@ -315,3 +314,6 @@
 "status_access_id_not_assigned" = "Este dispositivo não possui um ID de acesso atribuído. Vá para a página \"Supla Cloud\" e atribua o ID apropriado na guia \"Smartphones\".";
 "status_access_id_inactive" = "Acesso ao identificador  inativo.";
 "status_host_not_found" = "O endereço do servidor não foi encontrado";
+
+/* About */
+"about_version" = "versão %@";

@@ -6,7 +6,6 @@
 #import "SAChartHelper.h"
 #import "CreateAccountVC.h"
 #import "AddWizardVC.h"
-#import "AboutVC.h"
 #import "SAIncrementalMeterChartHelper.h"
 #import "UIButton+SUPLA.h"
 #import "SuplaApp.h"

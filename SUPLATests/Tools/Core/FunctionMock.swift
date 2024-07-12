@@ -17,26 +17,24 @@
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
     
+import XCTest
 
-@testable import SUPLA
-import RxSwift
-
-final class SuplaAppStateHolderMock: SuplaAppStateHolder {
+class FunctionMock<Parameters, Returns> {
+    var parameters: [Parameters] = []
+    var returns: MockReturns<Returns> = .empty()
     
-    var stateCounter = 0
-    var stateReturns: Observable<SuplaAppState> = .empty()
-    func state() -> Observable<SuplaAppState> {
-        stateCounter += 1
-        return stateReturns
+    func handle(_ parameters: Parameters) -> Returns {
+        self.parameters.append(parameters)
+        return returns.next()
     }
     
-    var currentStateMock: FunctionMock<Void, SuplaAppState?> = .init()
-    func currentState() -> SuplaAppState? {
-        currentStateMock.handle(())
+    func verifyCalls(_ count: Int) {
+        XCTAssertEqual(parameters.count, count)
     }
     
-    var handleParameters: [SuplaAppEvent] = []
-    func handle(event: SuplaAppEvent) {
-        handleParameters.append(event)
+    static func void<P>() -> FunctionMock<P, Void> {
+        let mock = FunctionMock<P, Void>()
+        mock.returns = .single(())
+        return mock
     }
 }

@@ -16,8 +16,6 @@
  Author: Mike Jangolenko 7472945@mail.ru
  */
 
-
-"version" = "версия";
 "Open" = "Открыть";
 "Open Close" = "Открыть Закрыть";
 "Reveal" = "Поднять";
@@ -319,3 +317,7 @@
 "status_access_id_not_assigned" = "Это устройство не имеет назначенного ключа доступа. Перейдите на страницу \"Supla Cloud\" и  на вкладке Смартфоны назначьте соответствующий ключ.";
 "status_access_id_inactive" = "Идентификатор доступа неактивен.";
 "status_host_not_found" = "Хост не найден";
+
+/* About */
+"about_version" = "версия %@";
+"about_license" = "Эта программа с открытым кодом; вы можете использовать ее и/или изменять ее по условиям GNU General Public License которая публикуется Free Software Foundation; по версии 2 Лицензии, или (по вашему усмотрению) любой поздней версии.\n\n Эта пррграмма распространяется в надежде ее полезности, но БЕЗ КАКИХ-ЛИБО ГАРАНТИЙ; безо всяких подразумеваемых гарантий КОММЕРЧЕСКОГО ИЛИ ЧАСТНОГО ПРИМЕНЕНИЯ. Подробнее в тексте\n GNU General Public License.\n\n Если к программе не приложена копия GNU General Public License отправте запрос по адресу: Free Software Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA";

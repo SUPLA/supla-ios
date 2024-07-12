@@ -147,23 +147,3 @@ final class NavigationControllerMock: UINavigationController {
         return nil
     }
 }
-
-class FunctionMock<Parameters, Returns> {
-    var parameters: [Parameters] = []
-    var returns: MockReturns<Returns> = .empty()
-    
-    func handle(_ parameters: Parameters) -> Returns {
-        self.parameters.append(parameters)
-        return returns.next()
-    }
-    
-    func verifyCalls(_ count: Int) {
-        XCTAssertEqual(parameters.count, count)
-    }
-    
-    static func void<P>() -> FunctionMock<P, Void> {
-        let mock = FunctionMock<P, Void>()
-        mock.returns = .single(())
-        return mock
-    }
-}

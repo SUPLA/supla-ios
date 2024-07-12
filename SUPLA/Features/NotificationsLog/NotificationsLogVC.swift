@@ -160,3 +160,7 @@ extension NotificationsLogVC: UITableViewDelegate {
         return .delete
     }
 }
+
+extension NotificationsLogVC: NavigationSubcontroller {
+    func screenTakeoverAllowed() -> Bool { false }
+}

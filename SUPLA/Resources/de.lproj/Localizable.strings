@@ -14,7 +14,6 @@
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 
-"version" = "version";
 "Open" = "Öffnen";
 "Open Close" = "Öffnen Schließen";
 "Reveal" = "Aufdecken";
@@ -496,3 +495,8 @@
 
 /* Device Catalog */
 "device_list_url" = "https://www.supla.org/de/devices";
+
+/* About */
+"about_version" = "version %@";
+"about_license" = "Dieses Programm ist freie Software, es darf weitergegeben und / oder modifiziert werden unter den Bedingungen der GNU General Public License die von der Free Software Foundation veröffentlicht wurde, entweder gemäß Version 2 der Lizenz oder (nach Ihrer Option) jeder späteren Version.\n\nDieses Programm wird vertrieben um nützlich zu sein, aber OHNE IRGENDEINE GARANTIE. Sogar ohne Gewähr Marktgängigkeit oder EIGNUNG FÜR EINEN BESTIMMTEN ZWECK. Lesen Sie bitte General Public License für weitere Details.\n\nSie sollten eine Kopie der GNU General Public License zusammen mit diesem Programm erhalten haben. Falls nicht, schreiben Sie an die Free Software Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA";
+"about_build_time" = "Version des Tages: %@";

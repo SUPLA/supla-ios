@@ -1,4 +1,3 @@
-//
 /*
  Copyright (C) AC SOFTWARE SP. Z O.O.
 
@@ -16,27 +15,18 @@
  along with this program; if not, write to the Free Software
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
-    
 
-@testable import SUPLA
-import RxSwift
+protocol BuildInfo {
+    func compileDate() -> Date?
+}
 
-final class SuplaAppStateHolderMock: SuplaAppStateHolder {
-    
-    var stateCounter = 0
-    var stateReturns: Observable<SuplaAppState> = .empty()
-    func state() -> Observable<SuplaAppState> {
-        stateCounter += 1
-        return stateReturns
-    }
-    
-    var currentStateMock: FunctionMock<Void, SuplaAppState?> = .init()
-    func currentState() -> SuplaAppState? {
-        currentStateMock.handle(())
-    }
-    
-    var handleParameters: [SuplaAppEvent] = []
-    func handle(event: SuplaAppEvent) {
-        handleParameters.append(event)
+class BuildInfoImpl: BuildInfo {
+    func compileDate() -> Date? {
+        let bundleName = Bundle.main.infoDictionary!["CFBundleName"] as? String ?? "Info.plist"
+        if let infoPath = Bundle.main.path(forResource: bundleName, ofType: nil),
+           let infoAttr = try? FileManager.default.attributesOfItem(atPath: infoPath),
+           let infoDate = infoAttr[FileAttributeKey.creationDate] as? Date
+        { return infoDate }
+        return nil
     }
 }

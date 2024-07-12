@@ -135,3 +135,7 @@ class AppSettingsVC: BaseViewControllerVM<AppSettingsViewState, AppSettingsViewE
         tableView.dequeueReusableCell(withIdentifier: id, for: indexPath) as! T
     }
 }
+
+extension AppSettingsVC: NavigationSubcontroller {
+    func screenTakeoverAllowed() -> Bool { false }
+}

@@ -122,7 +122,7 @@ final class SuplaAppCoordinatorImpl: NSObject, SuplaAppCoordinator {
     }
     
     func navigateToAbout() {
-        navigateTo(SAAboutVC(nibName: "AboutVC", bundle: nil))
+        navigateTo(AboutFeature.ViewController.create())
     }
     
     func navigateToNotificationsLog() {
@@ -257,6 +257,11 @@ final class SuplaAppNavigationController: UINavigationController {
             navigationBarHiddenOverride = navBarController.navigationBarHidden
             super.setNavigationBarHidden(navigationBarHiddenOverride, animated: false)
         }
+        
+        if #available(iOS 14.0, *) {
+            navigationBar.topItem?.backButtonDisplayMode = .minimal
+        }
+        
         super.pushViewController(viewController, animated: animated)
     }
     

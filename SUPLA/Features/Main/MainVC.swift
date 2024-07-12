@@ -18,13 +18,13 @@
 
 import Foundation
 
-class MainVC : SuplaTabBarController<MainViewState, MainViewEvent, MainViewModel> {
+class MainVC: SuplaTabBarController<MainViewState, MainViewEvent, MainViewModel> {
+    @Singleton private var settings: GlobalSettings
+    @Singleton private var coordinator: SuplaAppCoordinator
+    @Singleton private var stateHolder: SuplaAppStateHolder
     
-    @Singleton<GlobalSettings> private var settings
-    @Singleton<SuplaAppCoordinator> private var coordinator
-    
-    private let notificationView: NotificationView = NotificationView()
-    private let newGestureInfoView: NewGestureInfoView = NewGestureInfoView()
+    private let notificationView: NotificationView = .init()
+    private let newGestureInfoView: NewGestureInfoView = .init()
     private var notificationViewHeightConstraint: NSLayoutConstraint? = nil
     
     private var notificationTimer: Timer? = nil
@@ -36,13 +36,14 @@ class MainVC : SuplaTabBarController<MainViewState, MainViewEvent, MainViewModel
         super.init(viewModel: MainViewModel())
     }
     
+    @available(*, unavailable)
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.title = Strings.NavBar.titleSupla
+        title = Strings.NavBar.titleSupla
         
         setupTabBarController()
         setupToolbar()
@@ -52,10 +53,15 @@ class MainVC : SuplaTabBarController<MainViewState, MainViewEvent, MainViewModel
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        viewModel.onViewAppear()
-        showNewGestureInfoView()
-        SARateApp().showDialog(withDelay: 1)
-        updateBottomBarLabels()
+        
+        if (stateHolder.currentState() != .connected) {
+            coordinator.popToStatus()
+        } else {
+            viewModel.onViewAppear()
+            showNewGestureInfoView()
+            SARateApp().showDialog(withDelay: 1)
+            updateBottomBarLabels()
+        }
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -65,32 +71,30 @@ class MainVC : SuplaTabBarController<MainViewState, MainViewEvent, MainViewModel
     
     override func handle(state: MainViewState) {
         if (state.showProfilesIcon) {
-            self.navigationItem.rightBarButtonItem = UIBarButtonItem(
+            navigationItem.rightBarButtonItem = UIBarButtonItem(
                 image: UIImage(named: "profile-navbar"),
                 style: .plain,
                 target: self,
                 action: #selector(onProfileButton)
             )
         } else {
-            self.navigationItem.rightBarButtonItem = nil
+            navigationItem.rightBarButtonItem = nil
         }
     }
     
     override func handle(event: MainViewEvent) {
-        switch(event) {
+        switch (event) {
         case let .showNotification(message: message, icon: icon):
             showNotification(message: message, image: icon)
-            break
         case .loadIcons:
             runIconsDownloadTask()
-            break;
         }
     }
     
     // MARK: View controller setup
     
     private func setupToolbar() {
-        self.navigationItem.leftBarButtonItem = UIBarButtonItem(
+        navigationItem.leftBarButtonItem = UIBarButtonItem(
             image: UIImage(named: "menu"),
             style: .plain, target: self,
             action: #selector(onMenuToggle)
@@ -120,7 +124,7 @@ class MainVC : SuplaTabBarController<MainViewState, MainViewEvent, MainViewModel
         )
         sceneListVC.navigationBarMaintainedByParent = true
         
-        self.viewControllers = [channelListVC, groupListVC, sceneListVC]
+        viewControllers = [channelListVC, groupListVC, sceneListVC]
     }
     
     // MARK: Notifications setup
@@ -135,7 +139,6 @@ class MainVC : SuplaTabBarController<MainViewState, MainViewEvent, MainViewModel
         notificationViewHeightConstraint = notificationView.heightAnchor.constraint(equalToConstant: 0)
         notificationViewHeightConstraint?.isActive = true
         notificationView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(onNotificationiTapped)))
-        
     }
     
     private func showNewGestureInfoView() {
@@ -187,8 +190,9 @@ class MainVC : SuplaTabBarController<MainViewState, MainViewEvent, MainViewModel
     
     private func getNotificationHeight() -> CGFloat {
         if #available(iOS 11, *),
-            let keyWindow = UIApplication.shared.keyWindow,
-            keyWindow.safeAreaInsets.bottom > 0 {
+           let keyWindow = UIApplication.shared.keyWindow,
+           keyWindow.safeAreaInsets.bottom > 0
+        {
             return 140
         } else {
             return 110

@@ -1,4 +1,3 @@
-//
 /*
  Copyright (C) AC SOFTWARE SP. Z O.O.
 
@@ -16,23 +15,26 @@
  along with this program; if not, write to the Free Software
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
+    
 
-import SwiftUI
-
-extension StatusFeature {
-    class ViewController: SuplaCore.BaseViewController<ViewState, StatusView, ViewModel> {
-        override var navigationBarHidden: Bool { true }
-        override var preferredStatusBarStyle: UIStatusBarStyle {
-            traitCollection.userInterfaceStyle == .dark ? .lightContent : .darkContent
+extension AboutFeature {
+    class ViewController: SuplaCore.BaseViewController<ViewState, View, ViewModel> {
+        
+        override var toolbarFont: UIFont { .suplaTitleBarFont }
+        
+        override init(viewModel: AboutFeature.ViewModel) {
+            super.init(viewModel: viewModel)
+            
+            contentView = View(
+                viewState: viewModel.state,
+                onHomePageClicked: { viewModel.onHomePageClick() }
+            )
         }
         
-        override init(viewModel: ViewModel) {
-            super.init(viewModel: viewModel)
-            contentView = StatusView(
-                viewState: state,
-                onProfilesClick: { viewModel.goToProfiles() },
-                onTryAgainClick: { viewModel.onTryAgain() }
-            )
+        override func viewDidLoad() {
+            super.viewDidLoad()
+            
+            title = Strings.NavBar.titleSupla
         }
         
         static func create() -> UIViewController {
@@ -40,4 +42,8 @@ extension StatusFeature {
             return ViewController(viewModel: viewModel)
         }
     }
+}
+
+extension AboutFeature.ViewController: NavigationSubcontroller {
+    func screenTakeoverAllowed() -> Bool { false }
 }

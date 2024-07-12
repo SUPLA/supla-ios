@@ -391,6 +391,13 @@ struct Strings {
         static let biometricPromptReason = "biometric_prompt_subtitle".toLocalized()
         static let pinLocked = "lock_screen_pin_locked".toLocalized()
     }
+    
+    struct About {
+        static let version = "about_version".toLocalized()
+        static let license = "about_license".toLocalized()
+        static let address = "about_address".toLocalized()
+        static let buildTime = "about_build_time".toLocalized()
+    }
 }
 
 extension String {
