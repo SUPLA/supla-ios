@@ -19,8 +19,10 @@
 
 import Foundation
 
+private let BACKGROUND_UNLOCKED_TIME_DEBUG_S: Double = 10
+private let BACKGROUND_UNLOCKED_TIME_S: Double = 120
+
 class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate {
-    
     var window: UIWindow? = nil
     
     @Singleton private var settings: GlobalSettings
@@ -28,8 +30,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     @Singleton private var coordinator: SuplaAppCoordinator
     @Singleton private var suplaAppStateHolder: SuplaAppStateHolder
     @Singleton private var disconnectUseCase: DisconnectUseCase
+    @Singleton private var dateProvider: DateProvider
     
     private var clientStopWork: DispatchWorkItem? = nil
+    
+    private var backgroundUnlockedTime: Double {
+        #if DEBUG
+        BACKGROUND_UNLOCKED_TIME_DEBUG_S
+        #else
+        BACKGROUND_UNLOCKED_TIME_S
+        #endif
+    }
     
     override init() {
         SALogWrapper.setup()
@@ -61,6 +72,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     }
     
     func applicationDidEnterBackground(_ application: UIApplication) {
+        var settings = settings
+        settings.backgroundEntryTime = dateProvider.currentTimestamp()
+        
         disconnectUseCase.invokeSynchronous()
         suplaAppStateHolder.handle(event: .finish(reason: .appInBackground))
     }
@@ -72,7 +86,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         }
         #endif
         
-        suplaAppStateHolder.handle(event: .onStart)
+        if let backgroundEntryTime = settings.backgroundEntryTime,
+           dateProvider.currentTimestamp() - backgroundEntryTime > backgroundUnlockedTime
+        {
+            suplaAppStateHolder.handle(event: .lock)
+        } else {
+            suplaAppStateHolder.handle(event: .onStart)
+        }
     }
     
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {

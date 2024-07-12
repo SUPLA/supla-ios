@@ -35,6 +35,7 @@ protocol GlobalSettings {
     var showOpeningPercent: Bool { get set }
     var darkMode: DarkModeSetting { get set }
     var lockScreenSettings: LockScreenSettings { get set }
+    var backgroundEntryTime: Double? { get set }
 }
 
 class GlobalSettingsImpl: GlobalSettings {
@@ -162,6 +163,20 @@ class GlobalSettingsImpl: GlobalSettings {
     var lockScreenSettings: LockScreenSettings {
         get { return LockScreenSettings.from(string: defaults.string(forKey: lockScreenKey)) }
         set { defaults.set(newValue.asString(), forKey: lockScreenKey) }
+    }
+    
+    private let backgroundEntryTimeKey = "supla_background_entry_time"
+    var backgroundEntryTime: Double? {
+        get { return exists(backgroundEntryTimeKey) ? defaults.double(forKey: backgroundEntryTimeKey) : nil }
+        set {
+            if let time = newValue {
+                defaults.set(time, forKey: backgroundEntryTimeKey)
+            }
+        }
+    }
+    
+    private func exists(_ key: String) -> Bool {
+        defaults.object(forKey: key) != nil
     }
 }
 
