@@ -16,7 +16,6 @@
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 
-"version" = "versija";
 "Open" = "Atidaryti";
 "Open Close" = "Atidaryti Uždaryti";
 "Reveal" = "Atidengti";
@@ -317,3 +316,6 @@
 "status_access_id_not_assigned" = "Šis įrenginys neturi priskirto prieigos identifikatoriaus. Eikite į puslapį \"Supla Cloud\" ir žymėje Išmanieji telefonai priskirkite tinkamą identifikatorių.";
 "status_access_id_inactive" = "Prieigos identifikatorius neaktyvus.";
 "status_host_not_found" = "Serverio adresas nerastas";
+
+/* About */
+"about_version" = "versija %@";

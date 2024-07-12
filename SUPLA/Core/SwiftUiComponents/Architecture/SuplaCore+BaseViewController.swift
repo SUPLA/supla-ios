@@ -26,6 +26,7 @@ extension SuplaCore {
         override var preferredStatusBarStyle: UIStatusBarStyle { .lightContent }
         
         var navigationBarHidden: Bool { false }
+        var toolbarFont: UIFont { .suplaSubtitleFont }
         
         var viewModel: VM
         var state: S
@@ -78,7 +79,7 @@ extension SuplaCore {
             super.viewWillLayoutSubviews()
             
             if (!navigationBarHidden) {
-                setupToolbar()
+                setupToolbar(toolbarFont: toolbarFont)
             }
         }
         

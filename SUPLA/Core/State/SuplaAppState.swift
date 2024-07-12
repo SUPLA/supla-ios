@@ -17,7 +17,7 @@
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
     
-enum SuplaAppState {
+enum SuplaAppState: Equatable {
     case initialization
     case locked
     case firstProfileCreation

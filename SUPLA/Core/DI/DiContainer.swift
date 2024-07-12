@@ -80,6 +80,8 @@ extension DiContainer {
         register(ThreadHandler.self, ThreadHandlerImpl())
         register(SuplaAppStateHolder.self, SuplaAppStateHolderImpl())
         register(DatabaseProxy.self, DatabaseProxyImpl())
+        register(BuildInfo.self, BuildInfoImpl())
+        
         // Managers
         register(UpdateEventsManager.self, UpdateEventsManagerImpl())
         register(ChannelConfigEventsManager.self, ChannelConfigEventsManagerImpl())

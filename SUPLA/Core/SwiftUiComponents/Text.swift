@@ -22,6 +22,26 @@ import SwiftUI
 struct Text {
     protocol SuplaText: View {}
     
+    struct HeadlineLarge: SuplaText {
+        var text: String
+        var alignment: SwiftUI.TextAlignment = .center
+        var color: Color = Color.Supla.onBackground
+        
+        var body: some View {
+            if #available(iOS 15.0, *) {
+                SwiftUI.Text(text)
+                    .font(.Supla.headlineLarge)
+                    .foregroundStyle(color)
+                    .multilineTextAlignment(alignment)
+            } else {
+                SwiftUI.Text(text)
+                    .font(.Supla.headlineLarge)
+                    .foregroundColor(color)
+                    .multilineTextAlignment(alignment)
+            }
+        }
+    }
+    
     struct HeadlineSmall: SuplaText {
         var text: String
         var alignment: SwiftUI.TextAlignment = .center
@@ -116,6 +136,26 @@ struct Text {
             } else {
                 SwiftUI.Text(text)
                     .font(.Supla.labelLarge)
+                    .foregroundColor(color)
+                    .multilineTextAlignment(alignment)
+            }
+        }
+    }
+    
+    struct LabelSmall: SuplaText {
+        var text: String
+        var alignment: SwiftUI.TextAlignment = .center
+        var color: Color = Color.Supla.onBackground
+        
+        var body: some View {
+            if #available(iOS 15.0, *) {
+                SwiftUI.Text(text)
+                    .font(.Supla.labelSmall)
+                    .foregroundStyle(color)
+                    .multilineTextAlignment(alignment)
+            } else {
+                SwiftUI.Text(text)
+                    .font(.Supla.labelSmall)
                     .foregroundColor(color)
                     .multilineTextAlignment(alignment)
             }

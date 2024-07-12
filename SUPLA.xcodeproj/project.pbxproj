@@ -261,8 +261,6 @@
 		40DE1A291BCCFF8A004CF43B /* feedback@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 40DE1A241BCCFF8A004CF43B /* feedback@2x.png */; };
 		40DE1A2A1BCCFF8A004CF43B /* feedback@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 40DE1A251BCCFF8A004CF43B /* feedback@3x.png */; };
 		40DE1A2D1BCCFF8A004CF43B /* settings@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 40DE1A281BCCFF8A004CF43B /* settings@2x.png */; };
-		40DE1A361BCD1B55004CF43B /* AboutVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 40DE1A341BCD1B55004CF43B /* AboutVC.m */; };
-		40DE1A381BCD5E9B004CF43B /* AboutVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 40DE1A3A1BCD5E9B004CF43B /* AboutVC.xib */; };
 		40DE1A401BCD6F06004CF43B /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 40DE1A421BCD6F06004CF43B /* Localizable.strings */; };
 		40E8BE881FC06A5600FB2FE6 /* TFHpple.m in Sources */ = {isa = PBXBuildFile; fileRef = 40E8BE831FC06A5500FB2FE6 /* TFHpple.m */; };
 		40E8BE891FC06A5600FB2FE6 /* TFHppleElement.m in Sources */ = {isa = PBXBuildFile; fileRef = 40E8BE851FC06A5500FB2FE6 /* TFHppleElement.m */; };
@@ -879,6 +877,14 @@
 		A5D712852C3EA3A700A8EF52 /* SuplaAppCoordinatorMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D712842C3EA3A700A8EF52 /* SuplaAppCoordinatorMock.swift */; };
 		A5D712882C3EB24900A8EF52 /* PinSetupVMTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D712872C3EB24900A8EF52 /* PinSetupVMTests.swift */; };
 		A5D7128B2C3EB58D00A8EF52 /* StatusVMTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D7128A2C3EB58D00A8EF52 /* StatusVMTests.swift */; };
+		A5D7128E2C4107AF00A8EF52 /* AboutFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D7128D2C4107AF00A8EF52 /* AboutFeature.swift */; };
+		A5D712902C4107C400A8EF52 /* AboutViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D7128F2C4107C400A8EF52 /* AboutViewState.swift */; };
+		A5D712922C41084B00A8EF52 /* AboutVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D712912C41084B00A8EF52 /* AboutVM.swift */; };
+		A5D712942C41088D00A8EF52 /* AboutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D712932C41088D00A8EF52 /* AboutView.swift */; };
+		A5D712962C41198A00A8EF52 /* AboutVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D712952C41198900A8EF52 /* AboutVC.swift */; };
+		A5D712982C411B2E00A8EF52 /* BuildInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D712972C411B2E00A8EF52 /* BuildInfo.swift */; };
+		A5D7129A2C4123C200A8EF52 /* FunctionMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D712992C4123C200A8EF52 /* FunctionMock.swift */; };
+		A5D7129C2C4123EF00A8EF52 /* MockReturns.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D7129B2C4123EF00A8EF52 /* MockReturns.swift */; };
 		A5D837C82AF0F154002A420D /* PullToRefreshView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D837C72AF0F154002A420D /* PullToRefreshView.swift */; };
 		A5D837CB2AF1034E002A420D /* ThermometerDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D837CA2AF1034E002A420D /* ThermometerDetailVC.swift */; };
 		A5D837CD2AF1035E002A420D /* ThermometerDetailVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D837CC2AF1035E002A420D /* ThermometerDetailVM.swift */; };
@@ -1260,7 +1266,6 @@
 		017D392429244A67005F45FA /* uk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = uk; path = Resources/uk.lproj/SALightsourceLifespanSettingsDialog.strings; sourceTree = "<group>"; };
 		017D392529244A67005F45FA /* uk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = uk; path = Resources/uk.lproj/SASuperuserAuthorizationDialog.strings; sourceTree = "<group>"; };
 		017D392629244A68005F45FA /* uk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = uk; path = Resources/uk.lproj/SAZWaveWakeupSettingsDialog.strings; sourceTree = "<group>"; };
-		017D392829244A6A005F45FA /* uk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = uk; path = Resources/uk.lproj/AboutVC.strings; sourceTree = "<group>"; };
 		017D392929244A6A005F45FA /* uk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = uk; path = Resources/uk.lproj/RGBWDetail.strings; sourceTree = "<group>"; };
 		017D392A29244A6B005F45FA /* uk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = uk; path = Resources/uk.lproj/ImpulseCounterDetailView.strings; sourceTree = "<group>"; };
 		017D392B29244A6B005F45FA /* uk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = uk; path = Resources/uk.lproj/ElectricityMeterDetailView.strings; sourceTree = "<group>"; };
@@ -1347,31 +1352,26 @@
 		01BDAC7722C5200600915646 /* SAOAuthToken.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SAOAuthToken.m; sourceTree = "<group>"; };
 		01BE3C85233EAFEC00201B47 /* HomePlusDetailViewGroupCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HomePlusDetailViewGroupCell.h; sourceTree = "<group>"; };
 		01BE3C86233EAFEC00201B47 /* HomePlusDetailViewGroupCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HomePlusDetailViewGroupCell.m; sourceTree = "<group>"; };
-		01BF82C02347558D00C9EE9F /* sk-SK */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "sk-SK"; path = "Resources/sk-SK.lproj/AboutVC.strings"; sourceTree = "<group>"; };
 		01BF82C22347558D00C9EE9F /* sk-SK */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "sk-SK"; path = "Resources/sk-SK.lproj/ElectricityMeterDetailView.strings"; sourceTree = "<group>"; };
 		01BF82C32347558D00C9EE9F /* sk-SK */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "sk-SK"; path = "Resources/sk-SK.lproj/HomePlusDetailView.strings"; sourceTree = "<group>"; };
 		01BF82C52347558D00C9EE9F /* sk-SK */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "sk-SK"; path = "Resources/sk-SK.lproj/AddWizardVC.strings"; sourceTree = "<group>"; };
 		01BF82C62347558D00C9EE9F /* sk-SK */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "sk-SK"; path = "Resources/sk-SK.lproj/HomePlusDetailViewGroupCell.strings"; sourceTree = "<group>"; };
 		01BF82C72347558D00C9EE9F /* sk-SK */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "sk-SK"; path = "sk-SK.lproj/Localizable.strings"; sourceTree = "<group>"; };
-		01BF82C92347567700C9EE9F /* sl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sl; path = Resources/sl.lproj/AboutVC.strings; sourceTree = "<group>"; };
 		01BF82CB2347567700C9EE9F /* sl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sl; path = Resources/sl.lproj/ElectricityMeterDetailView.strings; sourceTree = "<group>"; };
 		01BF82CC2347567800C9EE9F /* sl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sl; path = Resources/sl.lproj/HomePlusDetailView.strings; sourceTree = "<group>"; };
 		01BF82CE2347567800C9EE9F /* sl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sl; path = Resources/sl.lproj/AddWizardVC.strings; sourceTree = "<group>"; };
 		01BF82CF2347567800C9EE9F /* sl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sl; path = Resources/sl.lproj/HomePlusDetailViewGroupCell.strings; sourceTree = "<group>"; };
 		01BF82D02347567800C9EE9F /* sl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sl; path = sl.lproj/Localizable.strings; sourceTree = "<group>"; };
-		01BF82D22347569400C9EE9F /* nb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nb; path = Resources/nb.lproj/AboutVC.strings; sourceTree = "<group>"; };
 		01BF82D42347569400C9EE9F /* nb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nb; path = Resources/nb.lproj/ElectricityMeterDetailView.strings; sourceTree = "<group>"; };
 		01BF82D52347569400C9EE9F /* nb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nb; path = Resources/nb.lproj/HomePlusDetailView.strings; sourceTree = "<group>"; };
 		01BF82D72347569400C9EE9F /* nb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nb; path = Resources/nb.lproj/AddWizardVC.strings; sourceTree = "<group>"; };
 		01BF82D82347569500C9EE9F /* nb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nb; path = Resources/nb.lproj/HomePlusDetailViewGroupCell.strings; sourceTree = "<group>"; };
 		01BF82D92347569500C9EE9F /* nb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nb; path = nb.lproj/Localizable.strings; sourceTree = "<group>"; };
-		01BF82DB2347569F00C9EE9F /* el */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = el; path = Resources/el.lproj/AboutVC.strings; sourceTree = "<group>"; };
 		01BF82DD2347569F00C9EE9F /* el */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = el; path = Resources/el.lproj/ElectricityMeterDetailView.strings; sourceTree = "<group>"; };
 		01BF82DE2347569F00C9EE9F /* el */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = el; path = Resources/el.lproj/HomePlusDetailView.strings; sourceTree = "<group>"; };
 		01BF82E0234756A000C9EE9F /* el */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = el; path = Resources/el.lproj/AddWizardVC.strings; sourceTree = "<group>"; };
 		01BF82E1234756A000C9EE9F /* el */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = el; path = Resources/el.lproj/HomePlusDetailViewGroupCell.strings; sourceTree = "<group>"; };
 		01BF82E2234756A000C9EE9F /* el */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = el; path = el.lproj/Localizable.strings; sourceTree = "<group>"; };
-		01BF82E4234756B500C9EE9F /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = Resources/nl.lproj/AboutVC.strings; sourceTree = "<group>"; };
 		01BF82E6234756B500C9EE9F /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = Resources/nl.lproj/ElectricityMeterDetailView.strings; sourceTree = "<group>"; };
 		01BF82E7234756B500C9EE9F /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = Resources/nl.lproj/HomePlusDetailView.strings; sourceTree = "<group>"; };
 		01BF82E9234756B600C9EE9F /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = Resources/nl.lproj/AddWizardVC.strings; sourceTree = "<group>"; };
@@ -1561,16 +1561,9 @@
 		408034C21BC83D1A007666E7 /* MGSwipeTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MGSwipeTableCell.h; path = ThirdPartyComponents/MGSwipe/MGSwipeTableCell.h; sourceTree = "<group>"; };
 		408034C31BC83D1A007666E7 /* MGSwipeTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MGSwipeTableCell.m; path = ThirdPartyComponents/MGSwipe/MGSwipeTableCell.m; sourceTree = "<group>"; };
 		40844D8A1FB0DF3B00432AA0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/AccountCreationVC.xib; sourceTree = "<group>"; };
-		409165331F3C7B5700F49193 /* pl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pl; path = Resources/pl.lproj/AboutVC.strings; sourceTree = "<group>"; };
-		409165341F3C7B6300F49193 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = Resources/de.lproj/AboutVC.strings; sourceTree = "<group>"; };
-		409165351F3C7B6D00F49193 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = Resources/ru.lproj/AboutVC.strings; sourceTree = "<group>"; };
-		409165371F3C7C0700F49193 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = Resources/it.lproj/AboutVC.strings; sourceTree = "<group>"; };
 		409165391F3C7C0700F49193 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/Localizable.strings; sourceTree = "<group>"; };
-		4091653B1F3C7C0E00F49193 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = Resources/fr.lproj/AboutVC.strings; sourceTree = "<group>"; };
 		4091653D1F3C7C0E00F49193 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Localizable.strings; sourceTree = "<group>"; };
-		4091653F1F3C7C1900F49193 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = Resources/es.lproj/AboutVC.strings; sourceTree = "<group>"; };
 		409165411F3C7C1900F49193 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Localizable.strings; sourceTree = "<group>"; };
-		409165431F3C7C2300F49193 /* pt-PT */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-PT"; path = "Resources/pt-PT.lproj/AboutVC.strings"; sourceTree = "<group>"; };
 		409165451F3C7C2300F49193 /* pt-PT */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-PT"; path = "pt-PT.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		4091AF3B1FC8405100EFF357 /* btnnextr@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btnnextr@2x.png"; sourceTree = "<group>"; };
 		4091AF3C1FC8405200EFF357 /* btnnextl@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btnnextl@2x.png"; sourceTree = "<group>"; };
@@ -1586,7 +1579,6 @@
 		40A87DDD1FADDFF800918B54 /* donate@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "donate@2x.png"; sourceTree = "<group>"; };
 		40AB8BDC1DCB32EB0030F3DE /* SARateApp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SARateApp.h; sourceTree = "<group>"; };
 		40AB8BDD1DCB32EB0030F3DE /* SARateApp.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SARateApp.m; sourceTree = "<group>"; };
-		40AC4F342094B23C004DB7CD /* lt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = lt; path = Resources/lt.lproj/AboutVC.strings; sourceTree = "<group>"; };
 		40AC4F372094B23D004DB7CD /* lt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = lt; path = Resources/lt.lproj/AddWizardVC.strings; sourceTree = "<group>"; };
 		40AC4F382094B23D004DB7CD /* lt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = lt; path = lt.lproj/Localizable.strings; sourceTree = "<group>"; };
 		40B397CE1BCE7F3200BE7D5A /* Launch Screen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
@@ -1624,7 +1616,6 @@
 		40CF96D51BC81A470030EFFF /* error@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "error@3x.png"; sourceTree = "<group>"; };
 		40CF96D61BC81A470030EFFF /* warning@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "warning@2x.png"; sourceTree = "<group>"; };
 		40CF96D71BC81A470030EFFF /* warning@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "warning@3x.png"; sourceTree = "<group>"; };
-		40D2B414207B857600608312 /* cs */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = cs; path = Resources/cs.lproj/AboutVC.strings; sourceTree = "<group>"; };
 		40D2B417207B857700608312 /* cs */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = cs; path = Resources/cs.lproj/AddWizardVC.strings; sourceTree = "<group>"; };
 		40D2B418207B857700608312 /* cs */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = cs; path = cs.lproj/Localizable.strings; sourceTree = "<group>"; };
 		40D397AC1FAF547B00BF477D /* retry@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "retry@3x.png"; sourceTree = "<group>"; };
@@ -1640,9 +1631,6 @@
 		40DE1A241BCCFF8A004CF43B /* feedback@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "feedback@2x.png"; sourceTree = "<group>"; };
 		40DE1A251BCCFF8A004CF43B /* feedback@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "feedback@3x.png"; sourceTree = "<group>"; };
 		40DE1A281BCCFF8A004CF43B /* settings@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "settings@2x.png"; sourceTree = "<group>"; };
-		40DE1A331BCD1B55004CF43B /* AboutVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutVC.h; sourceTree = "<group>"; };
-		40DE1A341BCD1B55004CF43B /* AboutVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutVC.m; sourceTree = "<group>"; };
-		40DE1A3D1BCD5EF0004CF43B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Resources/Base.lproj/AboutVC.xib; sourceTree = "<group>"; };
 		40DE1A431BCD6F08004CF43B /* pl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pl; path = pl.lproj/Localizable.strings; sourceTree = "<group>"; };
 		40DE1A441BCD6F09004CF43B /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
 		40DE1A471BCD7207004CF43B /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -2275,6 +2263,14 @@
 		A5D712842C3EA3A700A8EF52 /* SuplaAppCoordinatorMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuplaAppCoordinatorMock.swift; sourceTree = "<group>"; };
 		A5D712872C3EB24900A8EF52 /* PinSetupVMTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinSetupVMTests.swift; sourceTree = "<group>"; };
 		A5D7128A2C3EB58D00A8EF52 /* StatusVMTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusVMTests.swift; sourceTree = "<group>"; };
+		A5D7128D2C4107AF00A8EF52 /* AboutFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutFeature.swift; sourceTree = "<group>"; };
+		A5D7128F2C4107C400A8EF52 /* AboutViewState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutViewState.swift; sourceTree = "<group>"; };
+		A5D712912C41084B00A8EF52 /* AboutVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutVM.swift; sourceTree = "<group>"; };
+		A5D712932C41088D00A8EF52 /* AboutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutView.swift; sourceTree = "<group>"; };
+		A5D712952C41198900A8EF52 /* AboutVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutVC.swift; sourceTree = "<group>"; };
+		A5D712972C411B2E00A8EF52 /* BuildInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuildInfo.swift; sourceTree = "<group>"; };
+		A5D712992C4123C200A8EF52 /* FunctionMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FunctionMock.swift; sourceTree = "<group>"; };
+		A5D7129B2C4123EF00A8EF52 /* MockReturns.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockReturns.swift; sourceTree = "<group>"; };
 		A5D837C72AF0F154002A420D /* PullToRefreshView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PullToRefreshView.swift; sourceTree = "<group>"; };
 		A5D837CA2AF1034E002A420D /* ThermometerDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThermometerDetailVC.swift; sourceTree = "<group>"; };
 		A5D837CC2AF1035E002A420D /* ThermometerDetailVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThermometerDetailVM.swift; sourceTree = "<group>"; };
@@ -2579,7 +2575,6 @@
 				01943EC0249D1C8800DA2B8F /* SASuperuserAuthorizationDialog.xib */,
 				010714822656EC43009C119F /* SAZWaveWakeupSettingsDialog.xib */,
 				406778541BCBF9F4008DD37F /* SectionCell.xib */,
-				40DE1A3A1BCD5E9B004CF43B /* AboutVC.xib */,
 				40DB208F1DC9049400FAFAB0 /* RGBWDetail.xib */,
 				019F4CAE2354DC3300286139 /* ImpulseCounterDetailView.xib */,
 				01D0617322C296850043C947 /* ElectricityMeterDetailView.xib */,
@@ -3055,8 +3050,6 @@
 			children = (
 				AEB195DC276E59B60091D314 /* Transitions */,
 				AED6395C270CA37A00E5105B /* Controls */,
-				40DE1A331BCD1B55004CF43B /* AboutVC.h */,
-				40DE1A341BCD1B55004CF43B /* AboutVC.m */,
 				403EB1111FBDF47F00AD6460 /* AddWizardVC.h */,
 				403EB1121FBDF47F00AD6460 /* AddWizardVC.m */,
 				4017E1291BB9CE2900570AC8 /* ChannelCell.h */,
@@ -4336,25 +4329,26 @@
 		A5756F7F29DC0FE900C32A1B /* Features */ = {
 			isa = PBXGroup;
 			children = (
-				A5D7125D2C37EA7200A8EF52 /* LockScreen */,
-				A5F5C3F02C36822A0058E255 /* PinSetup */,
-				A5E9CE312C33DC2100509702 /* Menu */,
-				A5E9CE302C33DB8800509702 /* LocationOrdering */,
-				A5E9CE252C32CE0B00509702 /* Authorization */,
-				A58472022C2D9CF400713D36 /* Profiles */,
-				A5A15FEB2C298A580049AA73 /* Status */,
-				A5074BAD2BC954A10081B6B1 /* DeviceCatalog */,
-				A5074BA52BC922E70081B6B1 /* WebContent */,
-				A55501F12B83828100FD3296 /* NotificationsLog */,
-				A54149242B6302B100B44BD6 /* Details */,
+				A5D7128C2C41079500A8EF52 /* About */,
 				A553863029E02C4300B5CF3F /* AccountCreation */,
 				A5756F8029DC0FFC00C32A1B /* AccountRemoval */,
 				A5AE7A822A39E6C20097FA8B /* AppSettings */,
+				A5E9CE252C32CE0B00509702 /* Authorization */,
 				A5F29B5E2A1E18BC00ED700A /* ChannelList */,
+				A54149242B6302B100B44BD6 /* Details */,
+				A5074BAD2BC954A10081B6B1 /* DeviceCatalog */,
 				A5F29B642A1E236000ED700A /* GroupList */,
+				A5E9CE302C33DB8800509702 /* LocationOrdering */,
+				A5D7125D2C37EA7200A8EF52 /* LockScreen */,
 				A5F29B592A1E157A00ED700A /* Main */,
+				A5E9CE312C33DC2100509702 /* Menu */,
+				A55501F12B83828100FD3296 /* NotificationsLog */,
+				A5F5C3F02C36822A0058E255 /* PinSetup */,
+				A58472022C2D9CF400713D36 /* Profiles */,
 				A5F29B652A1E237700ED700A /* SceneList */,
+				A5A15FEB2C298A580049AA73 /* Status */,
 				A56D5AD12A4C68F4004F45DA /* UpdateToken */,
+				A5074BA52BC922E70081B6B1 /* WebContent */,
 			);
 			path = Features;
 			sourceTree = "<group>";
@@ -4673,6 +4667,8 @@
 				A54A06572AF3FDCA00C03DBC /* ObservableTestCase.swift */,
 				A55A8DBE2BB2EED300C540D4 /* CompletableTestCase.swift */,
 				A5D712762C3E769300A8EF52 /* SingleTestCase.swift */,
+				A5D712992C4123C200A8EF52 /* FunctionMock.swift */,
+				A5D7129B2C4123EF00A8EF52 /* MockReturns.swift */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -5242,6 +5238,18 @@
 			path = Status;
 			sourceTree = "<group>";
 		};
+		A5D7128C2C41079500A8EF52 /* About */ = {
+			isa = PBXGroup;
+			children = (
+				A5D7128D2C4107AF00A8EF52 /* AboutFeature.swift */,
+				A5D7128F2C4107C400A8EF52 /* AboutViewState.swift */,
+				A5D712912C41084B00A8EF52 /* AboutVM.swift */,
+				A5D712932C41088D00A8EF52 /* AboutView.swift */,
+				A5D712952C41198900A8EF52 /* AboutVC.swift */,
+			);
+			path = About;
+			sourceTree = "<group>";
+		};
 		A5D837C92AF10335002A420D /* ThermometerDetail */ = {
 			isa = PBXGroup;
 			children = (
@@ -5347,6 +5355,7 @@
 				A55A8DA72BAC50B100C540D4 /* NotificationCenterWrapper.swift */,
 				A55A8DBA2BB2E30900C540D4 /* ThreadHandler.swift */,
 				A5D7127B2C3E916C00A8EF52 /* DatabaseProxy.swift */,
+				A5D712972C411B2E00A8EF52 /* BuildInfo.swift */,
 			);
 			path = Infrastructure;
 			sourceTree = "<group>";
@@ -5930,7 +5939,6 @@
 				407D4AED1BC6C64D009A5505 /* app_icon120x120@3x.png in Resources */,
 				0196E82A258CEEEC0016E8DC /* InfoPlist.strings in Resources */,
 				40A87DDF1FADDFF900918B54 /* donate@2x.png in Resources */,
-				40DE1A381BCD5E9B004CF43B /* AboutVC.xib in Resources */,
 				A530EDFB2A54063F00F8DAEE /* OpenSans-Light.ttf in Resources */,
 				0186054B25BF673800C1332A /* time@3x.png in Resources */,
 				01943EBE249D1C8800DA2B8F /* SASuperuserAuthorizationDialog.xib in Resources */,
@@ -6265,7 +6273,6 @@
 				A57C4AB52AAF458F00D9C695 /* SuplaScheduleProgram.swift in Sources */,
 				A50B5D292BF49F2700918D18 /* TerraceAwningVM.swift in Sources */,
 				A5F8361F2A2E008C00E5CA71 /* AuthProfileItemInitialMigrationPolicy.swift in Sources */,
-				40DE1A361BCD1B55004CF43B /* AboutVC.m in Sources */,
 				A5E4905A2A3FA151006801FE /* GetAllIconsToDownloadUseCase.swift in Sources */,
 				A5A15FE82C2985780049AA73 /* Coordinator.swift in Sources */,
 				4017E12C1BB9CE2900570AC8 /* ChannelCell.m in Sources */,
@@ -6286,6 +6293,7 @@
 				A52BFEC22B078BB200A2F64C /* SuplaLedStatusField.swift in Sources */,
 				A5F5C3EC2C3581BD0058E255 /* LockScreenSettings.swift in Sources */,
 				A50B5D0A2BEA4EC700918D18 /* ShadingBlindMarker.swift in Sources */,
+				A5D712902C4107C400A8EF52 /* AboutViewState.swift in Sources */,
 				A56233FB2AB88722001CB948 /* DelayedWeeklyScheduleConfigSubject.swift in Sources */,
 				A530EE432A58AA6E00F8DAEE /* DeviceStateHelperVCI.swift in Sources */,
 				A55501F52B83842000FD3296 /* NotificationsLogVC.swift in Sources */,
@@ -6373,6 +6381,7 @@
 				A5E34CE42B848C6100DE511F /* NotificationViewCell.swift in Sources */,
 				AE7452892827E37600A3AFAD /* ProfilesVM.swift in Sources */,
 				A5B3A4B92BB57B690001D006 /* RoofWindowDimensBuilder.swift in Sources */,
+				A5D712982C411B2E00A8EF52 /* BuildInfo.swift in Sources */,
 				A541492E2B63055700B44BD6 /* GpmHistoryDetailVM.swift in Sources */,
 				A57668EB2AEA81C00025509D /* ChartRange.swift in Sources */,
 				40F7301120C19BA600167C2D /* SAColorListItem+CoreDataProperties.m in Sources */,
@@ -6433,6 +6442,7 @@
 				01BE3C87233EAFEC00201B47 /* HomePlusDetailViewGroupCell.m in Sources */,
 				A5074BDF2BCFE5CA0081B6B1 /* SuplaChannelFacadeBlindConfig.swift in Sources */,
 				A5074BAF2BC954CB0081B6B1 /* DeviceCatalogVM.swift in Sources */,
+				A5D712962C41198A00A8EF52 /* AboutVC.swift in Sources */,
 				01CEAC1E25B99DAC009C3BFD /* SADigiglassValue.m in Sources */,
 				AEED1FD42737F71C00DE6289 /* MultiAccountProfileManager.swift in Sources */,
 				A5B3CBE22B62525500F95AC3 /* DefaultDoubleValueProvider.swift in Sources */,
@@ -6497,6 +6507,7 @@
 				A5074BC72BCE66930081B6B1 /* BaseWallWindowDimens.swift in Sources */,
 				A50B5CFD2BEA147100918D18 /* SuplaHeatpolThermostatFlag.swift in Sources */,
 				A530EE042A555AFA00F8DAEE /* ReadChannelByRemoteIdUseCase.swift in Sources */,
+				A5D712922C41084B00A8EF52 /* AboutVM.swift in Sources */,
 				01E3966E25A78B8B00A0DB18 /* SADimmerCalibrationTool.m in Sources */,
 				01392B3A235CA8B1003A2BAD /* ChartDetailView.m in Sources */,
 				A5074BCC2BCE6F690081B6B1 /* FacadeBlindsView.swift in Sources */,
@@ -6643,6 +6654,7 @@
 				A5074BAA2BC945DA0081B6B1 /* WebContentVM.swift in Sources */,
 				A503ABB32B6A9ED9008CDA1F /* GeneralPurposeMeterItemRepository.swift in Sources */,
 				A57668ED2AEA85150025509D /* Array+Ext.swift in Sources */,
+				A5D7128E2C4107AF00A8EF52 /* AboutFeature.swift in Sources */,
 				A50B5D3F2BFC8BEA00918D18 /* ProjectorScreenColors.swift in Sources */,
 				A5074BA82BC923AE0081B6B1 /* BrandingConfiguration.swift in Sources */,
 				A51BE90D2AAAF82000718F2F /* GetChannelConfigUseCase.swift in Sources */,
@@ -6829,6 +6841,7 @@
 				403150FB1DC769430075D2D2 /* RGBWDetailView.m in Sources */,
 				01F8856A22E5E79100D18373 /* SATempHumidityMeasurementItem+CoreDataProperties.m in Sources */,
 				01478826265317B000CC8A01 /* SACalCfgProgressReport.m in Sources */,
+				A5D712942C41088D00A8EF52 /* AboutView.swift in Sources */,
 				A5E40B4C2B84EA9300DB6ABE /* ApplicationEventsManager.swift in Sources */,
 				A5E490502A3C79A4006801FE /* UserNotificationCenter.swift in Sources */,
 				A55A8D702BA831D900C540D4 /* WindowDetailVM.swift in Sources */,
@@ -7014,6 +7027,7 @@
 				A5ABE5C72ABCD52500FFA50B /* ThermostatGeneralVMTests.swift in Sources */,
 				A59AB8C32A308AF700D91F1F /* ProvideDetailTypeUseCaseTests.swift in Sources */,
 				A54A06692AF527DB00C03DBC /* UserStateHolderMock.swift in Sources */,
+				A5D7129C2C4123EF00A8EF52 /* MockReturns.swift in Sources */,
 				A5D7127E2C3E9D6D00A8EF52 /* DatabaseProxyMock.swift in Sources */,
 				A59AB8B82A307F3200D91F1F /* MainVMTests.swift in Sources */,
 				A58B2CB62AC197E300764388 /* ChannelBaseUseCasesMocks.swift in Sources */,
@@ -7033,6 +7047,7 @@
 				A56233FD2AB9C01F001CB948 /* ChannelRelationRepositoryMock.swift in Sources */,
 				A50B5D132BECC5A100918D18 /* RoofWindowVMTests.swift in Sources */,
 				A55A8DBD2BB2EC5600C540D4 /* AuthorizeUseCaseTests.swift in Sources */,
+				A5D7129A2C4123C200A8EF52 /* FunctionMock.swift in Sources */,
 				01AC1AD62487C35E00F734DF /* SAColorBrightnessPickerTests.m in Sources */,
 				A54A066C2AF5290900C03DBC /* DownloadEventsManagerMock.swift in Sources */,
 				A5A72E432AC1787200405C41 /* ExecuteThermostatActionUseCaseTests.swift in Sources */,
@@ -7431,29 +7446,6 @@
 				017D392929244A6A005F45FA /* uk */,
 			);
 			name = RGBWDetail.xib;
-			sourceTree = "<group>";
-		};
-		40DE1A3A1BCD5E9B004CF43B /* AboutVC.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				40DE1A3D1BCD5EF0004CF43B /* Base */,
-				409165331F3C7B5700F49193 /* pl */,
-				409165341F3C7B6300F49193 /* de */,
-				409165351F3C7B6D00F49193 /* ru */,
-				409165371F3C7C0700F49193 /* it */,
-				4091653B1F3C7C0E00F49193 /* fr */,
-				4091653F1F3C7C1900F49193 /* es */,
-				409165431F3C7C2300F49193 /* pt-PT */,
-				40D2B414207B857600608312 /* cs */,
-				40AC4F342094B23C004DB7CD /* lt */,
-				01BF82C02347558D00C9EE9F /* sk-SK */,
-				01BF82C92347567700C9EE9F /* sl */,
-				01BF82D22347569400C9EE9F /* nb */,
-				01BF82DB2347569F00C9EE9F /* el */,
-				01BF82E4234756B500C9EE9F /* nl */,
-				017D392829244A6A005F45FA /* uk */,
-			);
-			name = AboutVC.xib;
 			sourceTree = "<group>";
 		};
 		40DE1A421BCD6F06004CF43B /* Localizable.strings */ = {

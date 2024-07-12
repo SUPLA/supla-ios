@@ -19,7 +19,13 @@
 extension LockScreenFeature {
     class ViewController: SuplaCore.BaseViewController<ViewState, View, ViewModel> {
         override var navigationBarHidden: Bool { unlockAction == .authorizeApplication }
-        override var preferredStatusBarStyle: UIStatusBarStyle { unlockAction == .authorizeApplication ? .darkContent : .lightContent }
+        override var preferredStatusBarStyle: UIStatusBarStyle {
+            if (unlockAction == .authorizeApplication) {
+                traitCollection.userInterfaceStyle == .dark ? .lightContent : .darkContent
+            } else {
+                .lightContent
+            }
+        }
 
         private let unlockAction: UnlockAction
 

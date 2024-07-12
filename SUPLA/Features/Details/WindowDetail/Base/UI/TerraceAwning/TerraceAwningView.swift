@@ -103,14 +103,13 @@ final class TerraceAwningView: BaseWindowView<TerraceAwningWindowState> {
     
     private func drawAwning(_ context: CGContext) {
         let position = windowState?.position.value ?? 0
-        let awningLeft = (dimens.canvasRect.width - dimens.awningClosedWidth) / 2
+        let awningLeft = dimens.canvasRect.minX + (dimens.canvasRect.width - dimens.awningClosedWidth) / 2
         let awningTop = dimens.canvasRect.minY + 1
         let frontMinHeight = dimens.awningFrontHeight * 0.6
         
         let deepByPosition = dimens.awninigMaxDepp * position / 100
         let widthDeltaByPosition = (dimens.awningOpenedWidth - dimens.awningClosedWidth) * position / 100
         let maxWidthByPosition = dimens.awningClosedWidth + widthDeltaByPosition
-        let maxWidthMarginByPosition = (dimens.canvasRect.width - maxWidthByPosition) / 2
         
         let path = UIBezierPath()
         path.move(to: CGPoint(x: awningLeft, y: awningTop))
@@ -122,9 +121,10 @@ final class TerraceAwningView: BaseWindowView<TerraceAwningWindowState> {
         drawPath(context, fillColor: colors.awningBackground) { path.cgPath }
         drawPath(context, strokeColor: colors.awningBorder) { path.cgPath }
         
+        let frontLeft = dimens.canvasRect.minX + (dimens.canvasRect.width - maxWidthByPosition) / 2
         let frontHeight = frontMinHeight + (dimens.awningFrontHeight - frontMinHeight) * position / 100
         let frontRect = CGRect(
-            origin: CGPoint(x: maxWidthMarginByPosition, y: awningTop + deepByPosition),
+            origin: CGPoint(x: frontLeft, y: awningTop + deepByPosition),
             size: CGSize(width: maxWidthByPosition, height: frontHeight)
         )
         let frontPath = UIBezierPath(rect: frontRect)
@@ -134,7 +134,7 @@ final class TerraceAwningView: BaseWindowView<TerraceAwningWindowState> {
     }
     
     private func drawAwningLikeMarker(_ context: CGContext, position: CGFloat, withFront: Bool) {
-        let awningLeft = (dimens.canvasRect.width - dimens.awningClosedWidth) / 2
+        let awningLeft = dimens.canvasRect.minX + (dimens.canvasRect.width - dimens.awningClosedWidth) / 2
         let awningTop = dimens.canvasRect.minY + 1
         let frontMinHeight = dimens.awningFrontHeight * 0.6
         
@@ -167,7 +167,7 @@ final class TerraceAwningView: BaseWindowView<TerraceAwningWindowState> {
     }
     
     private func drawAwningShadow(_ context: CGContext, position: CGFloat) {
-        let shadowLeft = (dimens.canvasRect.width - dimens.awningClosedWidth) / 2
+        let shadowLeft = dimens.canvasRect.minX + (dimens.canvasRect.width - dimens.awningClosedWidth) / 2
         let shadowTop = dimens.windowRect.maxY
         
         let deepByPosition = dimens.awninigMaxDepp * position / 100

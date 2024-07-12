@@ -161,8 +161,12 @@ class ProfilesVC: BaseViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        setupToolbar()
         _viewModel.reloadTrigger.on(.next(()))
+    }
+
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+        setupToolbar()
     }
 
     private func dataModel(with items: [ProfileListItem]) -> [ProfilesListModel] {
@@ -190,4 +194,8 @@ class ProfilesVC: BaseViewController {
 
 extension ProfilesVC: NavigationSubcontroller {
     func screenTakeoverAllowed() -> Bool { false }
+}
+
+extension ProfilesVC: NavigationBarVisibilityController {
+    var navigationBarHidden: Bool { false }
 }

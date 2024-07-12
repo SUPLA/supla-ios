@@ -21,6 +21,7 @@ import RxSwift
 
 protocol SuplaAppStateHolder {
     func state() -> Observable<SuplaAppState>
+    func currentState() -> SuplaAppState?
     func handle(event: SuplaAppEvent)
 }
 
@@ -49,6 +50,8 @@ final class SuplaAppStateHolderImpl: SuplaAppStateHolder {
     }
 
     func state() -> Observable<SuplaAppState> { stateSubject.asObservable() }
+    
+    func currentState() -> SuplaAppState? { try? stateSubject.value() }
 
     func handle(event: SuplaAppEvent) {
         synced(self) {

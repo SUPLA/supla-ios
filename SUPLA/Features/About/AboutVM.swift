@@ -1,4 +1,3 @@
-//
 /*
  Copyright (C) AC SOFTWARE SP. Z O.O.
 
@@ -16,28 +15,25 @@
  along with this program; if not, write to the Free Software
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
+    
 
-import SwiftUI
-
-extension StatusFeature {
-    class ViewController: SuplaCore.BaseViewController<ViewState, StatusView, ViewModel> {
-        override var navigationBarHidden: Bool { true }
-        override var preferredStatusBarStyle: UIStatusBarStyle {
-            traitCollection.userInterfaceStyle == .dark ? .lightContent : .darkContent
+extension AboutFeature {
+    class ViewModel: SuplaCore.BaseViewModel<ViewState> {
+        @Singleton private var coordinator: SuplaAppCoordinator
+        @Singleton private var buildInfo: BuildInfo
+        @Singleton private var formatter: ValuesFormatter
+        
+        init() {
+            super.init(state: ViewState())
         }
         
-        override init(viewModel: ViewModel) {
-            super.init(viewModel: viewModel)
-            contentView = StatusView(
-                viewState: state,
-                onProfilesClick: { viewModel.goToProfiles() },
-                onTryAgainClick: { viewModel.onTryAgain() }
-            )
+        override func onViewDidLoad() {
+            state.version = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String ?? "unknown"
+            state.buildTime = formatter.getFullDateString(date: buildInfo.compileDate())
         }
         
-        static func create() -> UIViewController {
-            let viewModel = ViewModel()
-            return ViewController(viewModel: viewModel)
+        func onHomePageClick() {
+            coordinator.openUrl(url: "https://www.supla.org")
         }
     }
 }
