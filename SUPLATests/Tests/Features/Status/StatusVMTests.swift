@@ -25,6 +25,7 @@ final class StatusVMTests: XCTestCase {
     private lazy var stateHolder: SuplaAppStateHolderMock! = SuplaAppStateHolderMock()
     private lazy var coordinator: SuplaAppCoordinatorMock! = SuplaAppCoordinatorMock()
     private lazy var disconnectUseCase: DisconnectUseCaseMock! = DisconnectUseCaseMock()
+    private lazy var schedulers: SuplaSchedulersMock! = SuplaSchedulersMock()
     
     private lazy var viewModel: StatusFeature.ViewModel! = StatusFeature.ViewModel()
     
@@ -32,12 +33,14 @@ final class StatusVMTests: XCTestCase {
         DiContainer.shared.register(type: SuplaAppStateHolder.self, stateHolder!)
         DiContainer.shared.register(type: SuplaAppCoordinator.self, coordinator!)
         DiContainer.shared.register(type: DisconnectUseCase.self, disconnectUseCase!)
+        DiContainer.shared.register(type: SuplaSchedulers.self, schedulers!)
     }
     
     override func tearDown() {
         stateHolder = nil
         coordinator = nil
         disconnectUseCase = nil
+        schedulers = nil
         
         viewModel = nil
     }
@@ -129,6 +132,7 @@ final class StatusVMTests: XCTestCase {
         
         // when
         viewModel.goToProfiles()
+        schedulers.testScheduler.start()
         
         // then
         XCTAssertEqual(disconnectUseCase.invokeCounter, 1)

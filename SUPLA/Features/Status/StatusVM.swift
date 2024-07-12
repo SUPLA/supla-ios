@@ -22,6 +22,7 @@ extension StatusFeature {
         @Singleton<SuplaAppStateHolder> private var stateHolder
         @Singleton<SuplaAppCoordinator> private var coordinator
         @Singleton<DisconnectUseCase> private var disconnectUseCase
+        @Singleton<SuplaSchedulers> private var schedulers
         
         init() {
             super.init(state: ViewState())
@@ -59,6 +60,8 @@ extension StatusFeature {
         
         func goToProfiles() {
             disconnectUseCase.invoke()
+                .subscribe(on: schedulers.background)
+                .observe(on: schedulers.main)
                 .asDriverWithoutError()
                 .drive(
                     onCompleted: { [weak self] in self?.coordinator.navigateToProfiles() }
