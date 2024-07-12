@@ -117,4 +117,11 @@ class GlobalSettingsMock: GlobalSettings {
         get { lockScreenSettingsReturns }
         set { lockScreenSettingsValues.append(newValue) }
     }
+    
+    
+    var backgroundEntryMock: FunctionMock<Double?, Double?> = .init()
+    var backgroundEntryTime: Double? {
+        get { backgroundEntryMock.get() }
+        set { backgroundEntryMock.set(newValue) }
+    }
 }

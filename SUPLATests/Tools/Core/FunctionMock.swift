@@ -28,6 +28,14 @@ class FunctionMock<Parameters, Returns> {
         return returns.next()
     }
     
+    func set(_ parameters: Parameters) {
+        self.parameters.append(parameters)
+    }
+    
+    func get() -> Returns {
+        return returns.next()
+    }
+    
     func verifyCalls(_ count: Int) {
         XCTAssertEqual(parameters.count, count)
     }
