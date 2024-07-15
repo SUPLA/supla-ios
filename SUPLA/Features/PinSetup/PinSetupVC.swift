@@ -27,7 +27,7 @@ extension PinSetupFeature {
             contentView = PinSetupFeature.View(
                 viewState: state,
                 onPinChange: { viewModel.onPinChange($0) },
-                onSave: { viewModel.onSaveClick(.application) },
+                onSave: { viewModel.onSaveClick(scope) },
                 onAppear: { viewModel.onAppear() }
             )
         }

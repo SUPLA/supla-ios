@@ -117,15 +117,9 @@
 }
 
 + (void)showModal:(SADialog*)dialogVC {
-    UIViewController *rootVC = [SuplaAppCoordinatorLegacyWrapper currentViewController];
     dialogVC.modalPresentationStyle = UIModalPresentationOverCurrentContext;
-    
-    if (@available(iOS 13.0, *)) {
-        dialogVC.modalInPresentation = YES;
-        [rootVC presentViewController:dialogVC animated:NO completion:nil];
-    } else {
-        [rootVC presentModalViewController:dialogVC animated:NO];
-    }
+    dialogVC.modalInPresentation = YES;
+    [SuplaAppCoordinatorLegacyWrapper present:dialogVC];
 }
 
 - (void)keyboardDidShow:(NSNotification*)notification {

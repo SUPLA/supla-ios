@@ -33,6 +33,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     @Singleton private var dateProvider: DateProvider
     
     private var clientStopWork: DispatchWorkItem? = nil
+    private var wasInBackground = true
     
     private var backgroundUnlockedTime: Double {
         #if DEBUG
@@ -71,22 +72,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         return true
     }
     
-    func applicationDidEnterBackground(_ application: UIApplication) {
-        var settings = settings
-        settings.backgroundEntryTime = dateProvider.currentTimestamp()
-        
-        disconnectUseCase.invokeSynchronous()
-        suplaAppStateHolder.handle(event: .finish(reason: .appInBackground))
-    }
-    
     func applicationDidBecomeActive(_ application: UIApplication) {
+        SALog.debug("Application did become active")
+        
         #if DEBUG
         if (ProcessInfo.processInfo.environment["XCTestConfigurationFilePath"] != nil) {
             return
         }
         #endif
         
-        if settings.lockScreenSettings.pinForAppRequired,
+        if wasInBackground && settings.lockScreenSettings.pinForAppRequired,
            let backgroundEntryTime = settings.backgroundEntryTime,
            dateProvider.currentTimestamp() - backgroundEntryTime > backgroundUnlockedTime
         {
@@ -94,6 +89,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         } else {
             suplaAppStateHolder.handle(event: .onStart)
         }
+        
+        wasInBackground = false
+    }
+    
+    func applicationDidEnterBackground(_ application: UIApplication) {
+        SALog.debug("Application did enter background")
+        wasInBackground = true
+        
+        var settings = settings
+        settings.backgroundEntryTime = dateProvider.currentTimestamp()
+        
+        disconnectUseCase.invokeSynchronous()
+        suplaAppStateHolder.handle(event: .finish(reason: .appInBackground))
     }
     
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {

@@ -69,6 +69,7 @@ NS_ASSUME_NONNULL_BEGIN
 -(void) unregisterRestApiClientTask:(SARestApiClientTask *)task;
 -(void) cancelAllRestApiClientTasks;
 -(bool) isClientWorking;
+-(SASuplaClient *) optionalSuplaClient;
 @end
 
 extern NSString *kSADataChangedNotification;

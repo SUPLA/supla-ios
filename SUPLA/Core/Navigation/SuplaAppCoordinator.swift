@@ -84,6 +84,10 @@ final class SuplaAppCoordinatorImpl: NSObject, SuplaAppCoordinator {
                 switch ($0) {
                 case .initialization, .connecting(_), .finished:
                     self.navigateToStatusView()
+                case .locked:
+                    self.navigationController.viewControllers.last?.presentedViewController?.dismiss(animated: false)
+                    self.popToViewController(ofClass: StatusFeature.ViewController.self)
+                    self.navigateToLockScreen(unlockAction: .authorizeApplication)
                 default:
                     break
                 }
@@ -115,6 +119,8 @@ final class SuplaAppCoordinatorImpl: NSObject, SuplaAppCoordinator {
     }
     
     func navigateToAddWizard() {
+        navigationController.viewControllers.last?.presentedViewController?.dismiss(animated: false)
+        
         let avc = SAAddWizardVC(nibName: "AddWizardVC", bundle: nil)
         avc.modalPresentationStyle = .fullScreen
         avc.modalTransitionStyle = .crossDissolve
@@ -227,6 +233,7 @@ final class SuplaAppCoordinatorImpl: NSObject, SuplaAppCoordinator {
         if (navigationController.viewControllers.isEmpty) {
             navigateTo(StatusFeature.ViewController.create())
         } else if (navigationToStatusAllowed()) {
+            navigationController.viewControllers.last?.presentedViewController?.dismiss(animated: false)
             popToViewController(ofClass: StatusFeature.ViewController.self)
         }
     }
@@ -237,6 +244,10 @@ final class SuplaAppCoordinatorImpl: NSObject, SuplaAppCoordinator {
         }
         
         if let subcontroller = navigationController.viewControllers.last as? NavigationSubcontroller {
+            return subcontroller.screenTakeoverAllowed()
+        }
+        
+        if let subcontroller = navigationController.viewControllers.last?.presentedViewController as? NavigationSubcontroller {
             return subcontroller.screenTakeoverAllowed()
         }
         
@@ -252,6 +263,8 @@ final class SuplaAppNavigationController: UINavigationController {
     
     override func pushViewController(_ viewController: UIViewController, animated: Bool) {
         statusBarStyle = viewController.preferredStatusBarStyle
+        SALog.debug("[PUSH] \(String(describing: viewController))")
+        
         if let navBarController = viewController as? NavigationBarVisibilityController {
             SALog.debug("[PUSH] Setting navigation bar hidden: \(navBarController.navigationBarHidden)")
             navigationBarHiddenOverride = navBarController.navigationBarHidden
@@ -267,6 +280,8 @@ final class SuplaAppNavigationController: UINavigationController {
     
     override func popViewController(animated: Bool) -> UIViewController? {
         let viewController = super.popViewController(animated: animated)
+        SALog.debug("[POP] \(String(describing: viewController))")
+        
         statusBarStyle = viewControllers.last?.preferredStatusBarStyle ?? .lightContent
         if let navBarController = viewControllers.last as? NavigationBarVisibilityController {
             SALog.debug("[POP] Setting navigation bar hidden: \(navBarController.navigationBarHidden)")
@@ -278,6 +293,8 @@ final class SuplaAppNavigationController: UINavigationController {
     
     override func popToViewController(_ viewController: UIViewController, animated: Bool) -> [UIViewController]? {
         let viewControllers = super.popToViewController(viewController, animated: animated)
+        SALog.debug("[POP] \(String(describing: viewController))")
+        
         statusBarStyle = viewController.preferredStatusBarStyle
         if let navBarController = viewController as? NavigationBarVisibilityController {
             SALog.debug("[POP] Setting navigation bar hidden: \(navBarController.navigationBarHidden)")
@@ -317,5 +334,11 @@ final class SuplaAppCoordinatorLegacyWrapper: NSObject {
     static func push(_ viewController: UIViewController) {
         @Singleton<SuplaAppCoordinator> var coordinator
         coordinator.navigateTo(viewController)
+    }
+    
+    @objc
+    static func present(_ viewController: UIViewController) {
+        @Singleton<SuplaAppCoordinator> var coordinator
+        coordinator.present(viewController)
     }
 }

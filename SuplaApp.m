@@ -298,6 +298,17 @@ NSString *kSAOnChannelGroupCaptionSetResult = @"OnChannelGroupCaptionSetResult";
     return result;
 }
 
+-(SASuplaClient *) optionalSuplaClient {
+    @synchronized(self) {
+        if ( _SuplaClient != nil) {
+            return _SuplaClient;
+        }
+    }
+    
+    return nil;
+    
+}
+
 -(BOOL) isClientAuthorized {
     BOOL result = NO;
     @synchronized(self) {

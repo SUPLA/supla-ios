@@ -352,7 +352,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 }
 
 -(NSDate*) countdownEndsAt {
-    int timeDiff = [SAApp SuplaClient]->serverTimeDiffInSec;
+    SASuplaClient* client = [[SAApp instance] optionalSuplaClient];
+    int timeDiff = client == nil ? 0 : client->serverTimeDiffInSec;
     return [NSDate dateWithTimeIntervalSince1970: _tsev.CountdownEndsAt + timeDiff];
 }
 
