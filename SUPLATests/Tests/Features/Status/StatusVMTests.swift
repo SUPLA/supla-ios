@@ -115,17 +115,6 @@ final class StatusVMTests: XCTestCase {
         XCTAssertEqual(viewModel.state.stateText, .disconnecting)
     }
     
-    func test_shouldNavigateToLockScreen() {
-        // given
-        stateHolder.stateReturns = .just(.locked)
-        
-        // when
-        viewModel.onViewWillAppear()
-        
-        // then
-        XCTAssertEqual(coordinator.navigateToLockScreenMock.parameters, [.authorizeApplication])
-    }
-    
     func test_shouldDisconnectAndGoToProfile() {
         // given
         disconnectUseCase.invokeReturns = .complete()

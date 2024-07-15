@@ -48,7 +48,7 @@ extension StatusFeature {
                         self?.state.viewType = .connecting
                         self?.state.stateText = .disconnecting
                     case .locked:
-                        self?.coordinator.navigateToLockScreen(unlockAction: .authorizeApplication)
+                        break // Logic for locked placed in SuplaAppCoordinator
                     }
                 })
                 .disposedWhenDisappear(by: self)
