@@ -86,7 +86,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         }
         #endif
         
-        if let backgroundEntryTime = settings.backgroundEntryTime,
+        if settings.lockScreenSettings.pinForAppRequired,
+           let backgroundEntryTime = settings.backgroundEntryTime,
            dateProvider.currentTimestamp() - backgroundEntryTime > backgroundUnlockedTime
         {
             suplaAppStateHolder.handle(event: .lock)
@@ -100,8 +101,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         let token = deviceToken.map { String(format: "%02.2hhx", $0) }.joined()
         SALog.debug("Push token: \(token)")
         #endif
-        var settings = settings
         
+        var settings = settings
         settings.pushToken = deviceToken
         UpdateTokenTask().update(token: deviceToken) { SALog.info("Token update task finished") }
     }

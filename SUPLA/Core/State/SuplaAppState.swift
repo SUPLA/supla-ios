@@ -43,16 +43,20 @@ enum SuplaAppState: Equatable {
         }
     }
     
+    enum Error: Swift.Error {
+        case illegalEvent(message: String)
+    }
+    
     func nextState(event: SuplaAppEvent) -> SuplaAppState? {
         switch (self) {
-        case .initialization: initializationNextState(for: event)
+        case .initialization: try! initializationNextState(for: event)
         case .locked: lockedNextState(for: event)
-        case .firstProfileCreation: firstProfileCreationNextState(for: event)
-        case .connecting(let reason): connectingNextState(for: event, previousReason: reason)
-        case .connected: connectedNextState(for: event)
-        case .disconnecting: disconnectingNextState(for: event)
-        case .locking: lockingNextState(for: event)
-        case .finished(let reason): finishedNextState(for: event, previousReason: reason)
+        case .firstProfileCreation: try! firstProfileCreationNextState(for: event)
+        case .connecting(let reason): try! connectingNextState(for: event, previousReason: reason)
+        case .connected: try! connectedNextState(for: event)
+        case .disconnecting: try! disconnectingNextState(for: event)
+        case .locking: try! lockingNextState(for: event)
+        case .finished(let reason): try! finishedNextState(for: event, previousReason: reason)
         }
     }
     
@@ -62,7 +66,12 @@ enum SuplaAppState: Equatable {
         case .lock: .locked
         case .initialized: .connecting()
         case .noAccount: .firstProfileCreation
-        default: fatalError("Unexpected event in Initialization: \(event)")
+        case .connecting: try! illegalConnectingEvent()
+        case .connected: try! illegalConnectedEvent()
+        case .cancel: try! illegalCancelEvent()
+        case .unlock: try! illegalUnlockEvent()
+        case .finish: try! illegalFinishEvent()
+        case .error: try! illegalErrorEvent()
         }
     }
     
@@ -71,7 +80,11 @@ enum SuplaAppState: Equatable {
         case .lock, .onStart, .networkConnected, .finish: nil
         case .unlock: .connecting()
         case .noAccount: .firstProfileCreation
-        default: fatalError("Unexpected event in Locked: \(event)")
+        case .initialized: try! illegalInitializedEvent()
+        case .connecting: try! illegalConnectingEvent()
+        case .connected: try! illegalConnectedEvent()
+        case .cancel: try! illegalCancelEvent()
+        case .error: try! illegalErrorEvent()
         }
     }
     
@@ -79,7 +92,14 @@ enum SuplaAppState: Equatable {
         switch (event) {
         case .onStart, .networkConnected: nil
         case .connecting: .connecting()
-        default: fatalError("Unexpected event in FirstProfileCreation: \(event)")
+        case .connected: try! illegalConnectedEvent()
+        case .cancel: try! illegalCancelEvent()
+        case .unlock: try! illegalUnlockEvent()
+        case .finish: try! illegalFinishEvent()
+        case .error: try! illegalErrorEvent()
+        case .initialized: try! illegalInitializedEvent()
+        case .noAccount: try! illegalNoAccountEvent()
+        case .lock: try! illegalLockEvent()
         }
     }
     
@@ -92,11 +112,12 @@ enum SuplaAppState: Equatable {
         case .networkConnected: .connecting()
         case .error(let reason): .connecting(reason: reason)
         case .finish(let reason): .finished(reason: reason == nil ? previousReason : reason)
-        default: fatalError("Unexpected event in Connecting: \(event)")
+        case .noAccount: try! illegalNoAccountEvent()
+        case .unlock: try! illegalUnlockEvent()
         }
     }
     
-    private func connectedNextState(for event: SuplaAppEvent) -> SuplaAppState? {
+    private func connectedNextState(for event: SuplaAppEvent) throws -> SuplaAppState? {
         switch (event) {
         case .onStart, .networkConnected: nil
         case .connecting: .connecting()
@@ -104,7 +125,10 @@ enum SuplaAppState: Equatable {
         case .cancel: .disconnecting
         case .finish(let reason): .finished(reason: reason)
         case .error(let reason): .finished(reason: reason)
-        default: fatalError("Unexpected event in Connected: \(event)")
+        case .initialized: try! illegalInitializedEvent()
+        case .noAccount: try! illegalNoAccountEvent()
+        case .connected: try! illegalConnectedEvent()
+        case .unlock: try! illegalUnlockEvent()
         }
     }
     
@@ -114,15 +138,22 @@ enum SuplaAppState: Equatable {
         case .lock: .locking
         case .finish(let reason): .finished(reason: reason)
         case .error(let reason): .finished(reason: reason)
-        default: fatalError("Unexpected event in Disconnecting: \(event)")
+        case .initialized: try! illegalInitializedEvent()
+        case .noAccount: try! illegalNoAccountEvent()
+        case .unlock: try! illegalUnlockEvent()
         }
     }
     
     private func lockingNextState(for event: SuplaAppEvent) -> SuplaAppState? {
         switch (event) {
         case .onStart, .lock, .cancel, .networkConnected: nil
-        case .finish(_): .locked
-        default: fatalError("Unexpected event in Locking: \(event)")
+        case .finish: .locked
+        case .initialized: try! illegalInitializedEvent()
+        case .noAccount: try! illegalNoAccountEvent()
+        case .connected: try! illegalConnectedEvent()
+        case .unlock: try! illegalUnlockEvent()
+        case .connecting: try! illegalConnectingEvent()
+        case .error(_): try! illegalErrorEvent()
         }
     }
     
@@ -135,7 +166,44 @@ enum SuplaAppState: Equatable {
         case .noAccount: .firstProfileCreation
         case .error(let reason): reason != previousReason ? .finished(reason: reason) : nil
         case .finish(let reason): reason != previousReason ? .finished(reason: reason ?? previousReason) : nil
-        default: fatalError("Unexpected event in Finished: \(event)")
+        case .connected: try! illegalConnectedEvent()
+        case .unlock: try! illegalUnlockEvent()
         }
+    }
+    
+    private func illegalInitializedEvent() throws -> SuplaAppState? {
+        throw Error.illegalEvent(message: "Unexpected initialized event!")
+    }
+    
+    private func illegalConnectingEvent() throws -> SuplaAppState? {
+        throw Error.illegalEvent(message: "Unexpected connecting event!")
+    }
+    
+    private func illegalConnectedEvent() throws -> SuplaAppState? {
+        throw Error.illegalEvent(message: "Unexpected connected event!")
+    }
+    
+    private func illegalCancelEvent() throws -> SuplaAppState? {
+        throw Error.illegalEvent(message: "Unexpected cancel event!")
+    }
+    
+    private func illegalErrorEvent() throws -> SuplaAppState? {
+        throw Error.illegalEvent(message: "Unexpected error event!")
+    }
+    
+    private func illegalUnlockEvent() throws -> SuplaAppState? {
+        throw Error.illegalEvent(message: "Unexpected unlock event!")
+    }
+    
+    private func illegalFinishEvent() throws -> SuplaAppState? {
+        throw Error.illegalEvent(message: "Unexpected finish event!")
+    }
+    
+    private func illegalNoAccountEvent() throws -> SuplaAppState? {
+        throw Error.illegalEvent(message: "Unexpected no account event!")
+    }
+    
+    private func illegalLockEvent() throws -> SuplaAppState? {
+        throw Error.illegalEvent(message: "Unexpected lock event!")
     }
 }
