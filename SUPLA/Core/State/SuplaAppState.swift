@@ -90,12 +90,11 @@ enum SuplaAppState: Equatable {
     
     private func firstProfileCreationNextState(for event: SuplaAppEvent) -> SuplaAppState? {
         switch (event) {
-        case .onStart, .networkConnected: nil
+        case .onStart, .networkConnected, .finish: nil
         case .connecting: .connecting()
         case .connected: try! illegalConnectedEvent()
         case .cancel: try! illegalCancelEvent()
         case .unlock: try! illegalUnlockEvent()
-        case .finish: try! illegalFinishEvent()
         case .error: try! illegalErrorEvent()
         case .initialized: try! illegalInitializedEvent()
         case .noAccount: try! illegalNoAccountEvent()

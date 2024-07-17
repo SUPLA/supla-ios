@@ -76,7 +76,7 @@ class LockScreenVMTests: XCTestCase {
         // then
         XCTAssertTuples(checkPinUseCase.parameters, [(action, CheckPinAction.checkPin(pin: pin))])
         XCTAssertTuples(coordinator.navigateToProfileWithLockCheckMock.parameters, [(nil, false)])
-        coordinator.verifyPopViewController([true])
+        coordinator.verifyPopViewController([])
     }
     
     func test_shouldVerifyPin_andNavigateToEditProfile() {
@@ -95,7 +95,7 @@ class LockScreenVMTests: XCTestCase {
         // then
         XCTAssertTuples(checkPinUseCase.parameters, [(action, CheckPinAction.checkPin(pin: pin))])
         XCTAssertTuples(coordinator.navigateToProfileWithLockCheckMock.parameters, [(profileId, false)])
-        coordinator.verifyPopViewController([true])
+        coordinator.verifyPopViewController([])
     }
     
     func test_shouldVerifyPin_andDoNothingWhenNoAccount() {
@@ -113,7 +113,7 @@ class LockScreenVMTests: XCTestCase {
         // then
         XCTAssertTuples(checkPinUseCase.parameters, [(action, CheckPinAction.checkPin(pin: pin))])
         XCTAssertTuples(coordinator.navigateToProfileWithLockCheckMock.parameters, [])
-        coordinator.verifyPopViewController([])
+        coordinator.verifyPopViewController([true])
     }
     
     func test_shouldRejectPin() {

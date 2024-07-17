@@ -44,7 +44,6 @@ protocol UpdateEventsManager: UpdateEventsManagerEmitter {
 final class UpdateEventsManagerImpl: UpdateEventsManager {
     
     private var subjects: [Id: BehaviorRelay<Int>] = [:]
-    private let syncedQueue = DispatchQueue(label: "ListsEventsPrivateQueue", attributes: .concurrent)
     
     private let channelUpdatesSubject = BehaviorRelay(value: ())
     private let groupUpdatesSubject = BehaviorRelay(value: ())
@@ -134,21 +133,15 @@ final class UpdateEventsManagerImpl: UpdateEventsManager {
     }
     
     private func getSubjectForScene(sceneId: Int) -> BehaviorRelay<Int> {
-        return syncedQueue.sync(execute: {
-            getSubject(id: sceneId, type: .scene)
-        })
+        return synced(self) { getSubject(id: sceneId, type: .scene) }
     }
     
     private func getSubjectForChannel(channelId: Int) -> BehaviorRelay<Int> {
-        return syncedQueue.sync(execute: {
-            getSubject(id: channelId, type: .channel)
-        })
+        return synced(self) { getSubject(id: channelId, type: .channel) }
     }
     
     private func getSubjectForGroup(groupId: Int) -> BehaviorRelay<Int> {
-        return syncedQueue.sync(execute: {
-            getSubject(id: groupId, type: .group)
-        })
+        return synced(self) { getSubject(id: groupId, type: .group) }
     }
     
     private func getSubject(id: Int, type: IdType) -> BehaviorRelay<Int> {
