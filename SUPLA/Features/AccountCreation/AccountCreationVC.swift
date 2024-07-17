@@ -28,6 +28,7 @@ import RxCocoa
 class AccountCreationVC: BaseViewControllerVM<AccountCreationViewState, AccountCreationViewEvent, AccountCreationVM> {
     
     @Singleton<SuplaAppCoordinator> private var coordinator
+    @Singleton<SuplaAppStateHolder> private var stateHolder
     
     // MARK: UI variables
     @IBOutlet private var controlStack: UIStackView!
@@ -102,12 +103,7 @@ class AccountCreationVC: BaseViewControllerVM<AccountCreationViewState, AccountC
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        NotificationCenter.default.addObserver(
-            self,
-            selector: #selector(onBackButtonPressed(_:)),
-            name: Notification.Name(kSAMenubarBackButtonPressed),
-            object: nil
-        )
+        navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "backbtn"), style: .done, target: self, action: #selector(onBackButtonPressed))
 
         configureUI()
         bindVM()
@@ -295,14 +291,14 @@ class AccountCreationVC: BaseViewControllerVM<AccountCreationViewState, AccountC
             coordinator.navigateToCreateAccountWeb()
             break
         case .navigateToRemoveAccount(let needsRestart, let serverAddress):
-            coordinator.popViewController()
+            popToProfiles()
             coordinator.navigateToRemoveAccountWeb(needsRestart: needsRestart, serverAddress: serverAddress)
             break
         case .finish(let needsRestart, let needsReauth):
             if (needsRestart || needsReauth) {
                 coordinator.popToStatus()
             } else {
-                coordinator.popViewController()
+                popToProfiles()
             }
             break
         case .showRemovalFailure:
@@ -370,7 +366,7 @@ class AccountCreationVC: BaseViewControllerVM<AccountCreationViewState, AccountC
         if (needsReauth) {
             coordinator.popToStatus()
         } else {
-            coordinator.popViewController()
+            popToProfiles()
         }
         if (needsReauth || !SAApp.suplaClientConnected()) {
             NotificationCenter.default.post(name: .saConnecting, object: self, userInfo: nil)
@@ -423,8 +419,12 @@ class AccountCreationVC: BaseViewControllerVM<AccountCreationViewState, AccountC
         present(alert, animated: true)
     }
     
-    @objc private func onBackButtonPressed(_ n: Notification) {
-        coordinator.popViewController()
+    @objc private func onBackButtonPressed() {
+        if (stateHolder.currentState() == .firstProfileCreation) {
+            coordinator.popToStatus()
+        } else {
+            popToProfiles()
+        }
     }
     
     @objc private func didTapBackground(_ gr: UITapGestureRecognizer) {
@@ -437,6 +437,10 @@ class AccountCreationVC: BaseViewControllerVM<AccountCreationViewState, AccountC
         case adAccessPwd: return adServerAddrAccessId
         default: return nil
         }
+    }
+    
+    private func popToProfiles() {
+        coordinator.popToViewController(ofClass: ProfilesVC.self)
     }
 }
 

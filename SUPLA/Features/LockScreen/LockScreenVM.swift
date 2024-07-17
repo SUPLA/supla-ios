@@ -95,18 +95,21 @@ extension LockScreenFeature {
                     onNext: { [weak self] in
                         switch ($0) {
                         case .unlocked:
-                            self?.coordinator.popViewController()
-                            
                             switch (unlockAction) {
                             case .authorizeAccountsCreate:
                                 self?.coordinator.navigateToProfile(profileId: nil, withLockCheck: false)
                             case .authorizeAccountsEdit(let profileId):
                                 self?.coordinator.navigateToProfile(profileId: profileId, withLockCheck: false)
-                            default: break
+                            default: 
+                                self?.coordinator.popViewController()
                             }
                         case .unlockedNoAccount:
-                            if (unlockAction == .authorizeAccountsCreate) {
+                            switch (unlockAction) {
+                            case .authorizeAccountsCreate:
                                 self?.coordinator.navigateToProfile(profileId: nil, withLockCheck: false)
+                            case .authorizeApplication:
+                                self?.coordinator.popViewController()
+                            default: break
                             }
                         case .failure:
                             if let self = self {

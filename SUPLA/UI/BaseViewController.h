@@ -22,8 +22,6 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface BaseViewController : UIViewController
-@property (readonly,nonatomic) UIView *statusBarBackgroundView;
-- (BOOL)adjustsStatusBarBackground;
 - (BOOL)hidesNavigationBar;
 - (void)addChildView: (UIView *)v;
 - (BOOL)shouldUpdateTitleFont;
