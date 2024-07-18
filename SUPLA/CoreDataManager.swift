@@ -69,7 +69,7 @@ class CoreDataManager: NSObject {
         self.migrator = migrator
     }
     
-    @objc func setup() {
+    @objc func setup(completion: @escaping () -> Void) {
         removeOldDatabases()
         
         ValueTransformer.setValueTransformer(
@@ -77,39 +77,60 @@ class CoreDataManager: NSObject {
             forName: NSValueTransformerName("GroupTotalValueTransformer")
         )
         
-        migrateStoreIfNeeded()
-        
-        persistentContainer.loadPersistentStores { _, error in
-            guard error == nil else {
-                fatalError("Not able to load store \(error!)")
-            }
+        loadPersistentStore {
+            completion()
+        }
+    }
+
+    private func loadPersistentStore(completion: @escaping () -> Void) {
+        migrateStoreIfNeeded {
+            self.persistentContainer.loadPersistentStores { _, error in
+                guard error == nil else {
+                    fatalError("Not able to load store \(error!)")
+                }
                 
-            if (self.tryRecreateAccount) {
-                if (SAApp.profileManager().restoreProfileFromDefaults()) {
-                    var settings = self.settings
-                    settings.anyAccountRegistered = true
+                if (self.tryRecreateAccount) {
+                    DispatchQueue.global(qos: .userInitiated).async {
+                        if (SAApp.profileManager().restoreProfileFromDefaults()) {
+                            var settings = self.settings
+                            settings.anyAccountRegistered = true
+                        }
+                        DispatchQueue.main.async {
+                            completion()
+                        }
+                    }
+                } else {
+                    completion()
                 }
             }
         }
     }
     
-    private func migrateStoreIfNeeded() {
+    private func migrateStoreIfNeeded(completion: @escaping () -> Void) {
         guard let storeUrl = persistentContainer.persistentStoreDescriptions.first?.url else {
             fatalError("persistentContainer was not set up properly")
         }
         
         if migrator.requiresMigration(at: storeUrl, toVersion: CoreDataMigrationVersion.current) {
-            do {
-                try migrator.migrateStore(at: storeUrl, toVersion: CoreDataMigrationVersion.current)
-            } catch {
+            DispatchQueue.global(qos: .userInitiated).async {
+                do {
+                    try self.migrator.migrateStore(at: storeUrl, toVersion: CoreDataMigrationVersion.current)
+                } catch {
 #if DEBUG
-                fatalError("Migration failed with error \(error)")
+                    fatalError("Migration failed with error \(error)")
 #else
-                // If migration fails in production we want to delete the database so the
-                // user is able to create account again
-                removeCurrentDatabase()
+                    // If migration fails in production we want to delete the database so the
+                    // user is able to create account again
+                    self.removeCurrentDatabase()
 #endif
+                }
+
+                DispatchQueue.main.async {
+                    completion()
+                }
             }
+        } else {
+            completion()
         }
     }
     

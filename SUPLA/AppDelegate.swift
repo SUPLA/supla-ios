@@ -49,6 +49,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     }
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]? = nil) -> Bool {
+        SALog.debug("Application did finish launching with options")
+        
         #if DEBUG
         // Short-circuit starting app if running unit tests
         if (ProcessInfo.processInfo.environment["XCTestConfigurationFilePath"] != nil) {
@@ -63,12 +65,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             coordinator.start(animated: true)
         }
         
-        registerForNotifications()
-        
-        DispatchQueue.global(qos: .userInitiated).async {
-            InitializationUseCase.invoke()
+        CoreDataManager.shared.setup {
+            DispatchQueue.global(qos: .userInitiated).async {
+                InitializationUseCase.invoke()
+            }
         }
         
+        registerForNotifications()
         return true
     }
     
@@ -120,6 +123,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     }
     
     func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable: Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
+        SALog.debug("Application did receive remote notification")
+        
         do {
             try insertNotificationUseCase.invoke(userInfo: userInfo).subscribeSynchronous()
         } catch {
