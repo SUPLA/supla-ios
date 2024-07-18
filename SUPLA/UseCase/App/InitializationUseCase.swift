@@ -25,13 +25,9 @@ enum InitializationUseCase {
         @Singleton<ProfileRepository> var profileRepository
         @Singleton<SuplaAppStateHolder> var stateHolder
         @Singleton<GlobalSettings> var settings
-        @Singleton<DatabaseProxy> var databaseProxy
         @Singleton<ThreadHandler> var threadHandler
             
         let initializationStartTime = dateProvider.currentTimestamp()
-            
-        // Migrate database if needed
-        databaseProxy.setup()
             
         // Check if there is an active profile
         let profileFound = (try? profileRepository.getActiveProfile().subscribeSynchronous()?.isActive) ?? false

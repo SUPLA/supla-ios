@@ -871,8 +871,6 @@
 		A5D712752C3E708900A8EF52 /* CheckPinUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D712742C3E708900A8EF52 /* CheckPinUseCaseTests.swift */; };
 		A5D712772C3E769300A8EF52 /* SingleTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D712762C3E769300A8EF52 /* SingleTestCase.swift */; };
 		A5D7127A2C3E8F8500A8EF52 /* InitializationUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D712792C3E8F8500A8EF52 /* InitializationUseCaseTests.swift */; };
-		A5D7127C2C3E916C00A8EF52 /* DatabaseProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D7127B2C3E916C00A8EF52 /* DatabaseProxy.swift */; };
-		A5D7127E2C3E9D6D00A8EF52 /* DatabaseProxyMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D7127D2C3E9D6D00A8EF52 /* DatabaseProxyMock.swift */; };
 		A5D712812C3EA2E300A8EF52 /* LockScreenVMTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D712802C3EA2E300A8EF52 /* LockScreenVMTests.swift */; };
 		A5D712852C3EA3A700A8EF52 /* SuplaAppCoordinatorMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D712842C3EA3A700A8EF52 /* SuplaAppCoordinatorMock.swift */; };
 		A5D712882C3EB24900A8EF52 /* PinSetupVMTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D712872C3EB24900A8EF52 /* PinSetupVMTests.swift */; };
@@ -2257,8 +2255,6 @@
 		A5D712742C3E708900A8EF52 /* CheckPinUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckPinUseCaseTests.swift; sourceTree = "<group>"; };
 		A5D712762C3E769300A8EF52 /* SingleTestCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleTestCase.swift; sourceTree = "<group>"; };
 		A5D712792C3E8F8500A8EF52 /* InitializationUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitializationUseCaseTests.swift; sourceTree = "<group>"; };
-		A5D7127B2C3E916C00A8EF52 /* DatabaseProxy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseProxy.swift; sourceTree = "<group>"; };
-		A5D7127D2C3E9D6D00A8EF52 /* DatabaseProxyMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseProxyMock.swift; sourceTree = "<group>"; };
 		A5D712802C3EA2E300A8EF52 /* LockScreenVMTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LockScreenVMTests.swift; sourceTree = "<group>"; };
 		A5D712842C3EA3A700A8EF52 /* SuplaAppCoordinatorMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuplaAppCoordinatorMock.swift; sourceTree = "<group>"; };
 		A5D712872C3EB24900A8EF52 /* PinSetupVMTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinSetupVMTests.swift; sourceTree = "<group>"; };
@@ -4274,7 +4270,6 @@
 				A54A06622AF50E8A00C03DBC /* RequestHelperMock.swift */,
 				A55A8DC02BB2F46F00C540D4 /* ThreadHandlerMock.swift */,
 				A55A8DC22BB2F4E000C540D4 /* NotificationCenterWrapperMock.swift */,
-				A5D7127D2C3E9D6D00A8EF52 /* DatabaseProxyMock.swift */,
 			);
 			path = Infrastructure;
 			sourceTree = "<group>";
@@ -5354,7 +5349,6 @@
 				A54A064B2AF3E55700C03DBC /* SuplaSchedulers.swift */,
 				A55A8DA72BAC50B100C540D4 /* NotificationCenterWrapper.swift */,
 				A55A8DBA2BB2E30900C540D4 /* ThreadHandler.swift */,
-				A5D7127B2C3E916C00A8EF52 /* DatabaseProxy.swift */,
 				A5D712972C411B2E00A8EF52 /* BuildInfo.swift */,
 			);
 			path = Infrastructure;
@@ -6487,7 +6481,6 @@
 				A553862D29E021AE00B5CF3F /* DiContainer.swift in Sources */,
 				A5477DBF2AA5B40C00220B4A /* SuplaHvacMode.swift in Sources */,
 				A503ABC02B6BD27F008CDA1F /* ChartEntryDetails.swift in Sources */,
-				A5D7127C2C3E916C00A8EF52 /* DatabaseProxy.swift in Sources */,
 				A50B5D062BEA4DA700918D18 /* RollerShutterWindowState.swift in Sources */,
 				A5F5C3FC2C3698040058E255 /* PinSetupVC.swift in Sources */,
 				A58316FA2B64507D006113F8 /* ThermometerValueProvider.swift in Sources */,
@@ -7028,7 +7021,6 @@
 				A59AB8C32A308AF700D91F1F /* ProvideDetailTypeUseCaseTests.swift in Sources */,
 				A54A06692AF527DB00C03DBC /* UserStateHolderMock.swift in Sources */,
 				A5D7129C2C4123EF00A8EF52 /* MockReturns.swift in Sources */,
-				A5D7127E2C3E9D6D00A8EF52 /* DatabaseProxyMock.swift in Sources */,
 				A59AB8B82A307F3200D91F1F /* MainVMTests.swift in Sources */,
 				A58B2CB62AC197E300764388 /* ChannelBaseUseCasesMocks.swift in Sources */,
 				A5E9CE392C35385700509702 /* SuplaAppStateHolderMock.swift in Sources */,

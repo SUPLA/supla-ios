@@ -79,7 +79,6 @@ extension DiContainer {
         register(SuplaSchedulers.self, SuplaSchedulersImpl())
         register(ThreadHandler.self, ThreadHandlerImpl())
         register(SuplaAppStateHolder.self, SuplaAppStateHolderImpl())
-        register(DatabaseProxy.self, DatabaseProxyImpl())
         register(BuildInfo.self, BuildInfoImpl())
         
         // Managers

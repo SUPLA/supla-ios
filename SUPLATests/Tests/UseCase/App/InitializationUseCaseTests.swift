@@ -27,7 +27,6 @@ final class InitializationUseCaseTests: XCTestCase {
     private lazy var stateHolder: SuplaAppStateHolderMock! = SuplaAppStateHolderMock()
     private lazy var settings: GlobalSettingsMock! = GlobalSettingsMock()
     private lazy var threadHandler: ThreadHandlerMock! = ThreadHandlerMock()
-    private lazy var databaseProxy: DatabaseProxyMock! = DatabaseProxyMock()
     
     override func setUp() {
         DiContainer.shared.register(type: DateProvider.self, dateProvider!)
@@ -35,7 +34,6 @@ final class InitializationUseCaseTests: XCTestCase {
         DiContainer.shared.register(type: SuplaAppStateHolder.self, stateHolder!)
         DiContainer.shared.register(type: GlobalSettings.self, settings!)
         DiContainer.shared.register(type: ThreadHandler.self, threadHandler!)
-        DiContainer.shared.register(type: DatabaseProxy.self, databaseProxy!)
     }
     
     override func tearDown() {
@@ -44,7 +42,6 @@ final class InitializationUseCaseTests: XCTestCase {
         stateHolder = nil
         settings = nil
         threadHandler = nil
-        databaseProxy = nil
     }
     
     func test_shouldRequirePin() {
@@ -59,7 +56,6 @@ final class InitializationUseCaseTests: XCTestCase {
         XCTAssertEqual(stateHolder.handleParameters, [.lock])
         XCTAssertEqual(dateProvider.currentTimestampCalls, 2)
         XCTAssertEqual(threadHandler.usleepParameters, [800_000])
-        XCTAssertEqual(databaseProxy.setupCalls, 1)
         XCTAssertEqual(profileRepository.activeProfileCalls, 1)
     }
     
@@ -75,7 +71,6 @@ final class InitializationUseCaseTests: XCTestCase {
         XCTAssertEqual(stateHolder.handleParameters, [.noAccount])
         XCTAssertEqual(dateProvider.currentTimestampCalls, 2)
         XCTAssertEqual(threadHandler.usleepParameters, [800_000])
-        XCTAssertEqual(databaseProxy.setupCalls, 1)
         XCTAssertEqual(profileRepository.activeProfileCalls, 1)
     }
     
@@ -94,7 +89,6 @@ final class InitializationUseCaseTests: XCTestCase {
         XCTAssertEqual(stateHolder.handleParameters, [.initialized])
         XCTAssertEqual(dateProvider.currentTimestampCalls, 2)
         XCTAssertEqual(threadHandler.usleepParameters, [])
-        XCTAssertEqual(databaseProxy.setupCalls, 1)
         XCTAssertEqual(profileRepository.activeProfileCalls, 1)
     }
 }
