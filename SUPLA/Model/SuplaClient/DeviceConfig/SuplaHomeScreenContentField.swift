@@ -48,7 +48,8 @@ enum SuplaHomeScreenContent: Int, CaseIterable {
             }
         }
         
-        fatalError("SuplaHomeScreenContent not expected value `\(value)`")
+        SALog.error("Invalid SuplaHomeScreenContent value `\(value)'")
+        return .none
     }
 }
 
