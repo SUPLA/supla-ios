@@ -101,7 +101,8 @@ enum SuplaHvacThermometerType: UInt8, CaseIterable {
             }
         }
         
-        fatalError("Could not convert value `\(value)` to SuplaHvacThermometerType")
+        SALog.error("Invalid SuplaHvacThermometerType value `\(value)'")
+        return .notSet
     }
 }
 
@@ -117,7 +118,8 @@ enum SuplaHvacAlgorithm: UInt16, CaseIterable {
             }
         }
         
-        fatalError("Could not convert value `\(value)` to SuplaHvacAlgorithm")
+        SALog.error("Invalid SuplaHvacAlgorithm value `\(value)'")
+        return .notSet
     }
     
     static func from(flags: UInt16) -> [SuplaHvacAlgorithm] {
@@ -203,6 +205,7 @@ enum ThermostatSubfunction: UInt8, CaseIterable {
             }
         }
         
-        fatalError("Could not convert value `\(value)` to ThermostatSubfunction")
+        SALog.error("Invalid ThermostatSubfunction value `\(value)'")
+        return .notSet
     }
 }

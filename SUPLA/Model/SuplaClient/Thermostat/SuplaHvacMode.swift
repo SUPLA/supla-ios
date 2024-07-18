@@ -54,7 +54,8 @@ public enum SuplaHvacMode: UInt8, CaseIterable {
                 return mode
             }
         }
-
-        fatalError("Invalid SuplaHvacMode value `\(hvacMode)`")
+        
+        SALog.error("Invalid SuplaHvacMode value `\(hvacMode)'")
+        return .notSet
     }
 }

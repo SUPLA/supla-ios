@@ -28,7 +28,8 @@ enum SuplaUiDisabledType: UInt8, CaseIterable {
             }
         }
         
-        fatalError("SuplaUiDisabledType not expected value `\(value)`")
+        SALog.error("Invalid SuplaUiDisabledType value `\(value)'")
+        return .no
     }
 }
 

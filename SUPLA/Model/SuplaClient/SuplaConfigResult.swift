@@ -33,6 +33,7 @@ enum SuplaConfigResult: UInt8, CaseIterable {
             }
         }
         
-        fatalError("Could not convert value `\(value)` to ChannelConfigResult")
+        SALog.error("Invalid SuplaConfigResult value `\(value)'")
+        return .resultFalse
     }
 }

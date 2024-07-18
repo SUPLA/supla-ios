@@ -60,6 +60,7 @@ enum ChannelConfigType: UInt8, CaseIterable {
             }
         }
         
-        fatalError("Invalid ChannelConfigType value `\(value)`")
+        SALog.error("Invalid ChannelConfigType value `\(value)'")
+        return .defaultConfig
     }
 }

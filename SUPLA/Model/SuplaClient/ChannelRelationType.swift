@@ -62,6 +62,7 @@ extension ChannelRelationType {
             }
         }
         
-        fatalError("Invalid value for ChannelRelationType `\(value)`")
+        SALog.error("Invalid ChannelRelationType value `\(value)'")
+        return .defaultType
     }
 }
