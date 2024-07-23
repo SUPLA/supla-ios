@@ -618,7 +618,7 @@ final class GetDefaultIconNameUseCaseTests: XCTestCase {
         )
         
         // then
-        XCTAssertEqual(iconName, "staircasetimer_1-off")
+        XCTAssertEqual(iconName, "fnc_staircasetimer_1-off")
     }
     
     func test_thermometerIcon() {

@@ -581,7 +581,7 @@ fileprivate class ScheduleInfoView: UIView {
         let button = UIIconButton(
             config: .transparent(
                 size: Dimens.buttonHeight,
-                contentColor: .white,
+                contentColor: .onPrimaryContainer,
                 contentPressedColor: .disabled
             )
         )
@@ -723,7 +723,7 @@ fileprivate class ScheduleInfoView: UIView {
     
     private func setupView() {
         translatesAutoresizingMaskIntoConstraints = false
-        backgroundColor = .onBackground.copy(alpha: 0.8)
+        backgroundColor = .infoScrim
         
         addSubview(closeButton)
         addSubview(sampleProgramButton)
@@ -845,7 +845,7 @@ fileprivate class ScheduleInfoView: UIView {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = .body1
-        label.textColor = .onPrimary
+        label.textColor = .onPrimaryContainer
         label.numberOfLines = 0
         label.textAlignment = .center
         

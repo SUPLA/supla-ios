@@ -59,7 +59,7 @@ class FacadeBlindsView: BaseWallWindowView<FacadeBlindWindowState, FacadeBlindRu
     }
     
     override func drawShadowingElements(_ context: CGContext, _ dimens: FacadeBlindRuntimeDimens) {
-        guard let position = windowState?.position.value
+        guard let position = windowState?.markers.isEmpty == true || isMoving ? windowState?.position.value : windowState?.markers.map({ $0.position }).max()
         else {
             return
         }
@@ -69,7 +69,7 @@ class FacadeBlindsView: BaseWallWindowView<FacadeBlindWindowState, FacadeBlindRu
         let horizontalSlatCorrection = ((maxTilt * correctedTilt / tiltHalfRangeDegrees / 2) + minTilt)
             .also { tiltDegrees <= tiltHalfRangeDegrees ? $0 : -$0 }
         
-        var currentCorrection = dimens.windowRect.height * (1 - position / 100)
+        let currentCorrection = dimens.windowRect.height * (1 - position / 100)
         
         for i in 0 ..< SlatDimens.count {
             let frame = dimens.slats[i].offsetBy(dx: 0, dy: -currentCorrection)

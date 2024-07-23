@@ -55,7 +55,7 @@ final class GarageDoorView: BaseWindowView<GarageDoorState> {
         context.setShouldAntialias(true)
         context.setLineWidth(1)
         
-        let position = (windowState?.markers.isEmpty == true ? windowState?.position.value : windowState?.markers.max()) ?? 0
+        let position = (windowState?.markers.isEmpty == true || isMoving ? windowState?.position.value : windowState?.markers.max()) ?? 0
         let topCorrection = dimens.movementMaxHeight * (100 - position) / 100
         
         // Garage

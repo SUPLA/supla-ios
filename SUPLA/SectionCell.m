@@ -40,8 +40,8 @@
         self.label.userInteractionEnabled = YES;
         [self.label addGestureRecognizer:_longPressGr];
     }
-    self.contentView.backgroundColor = [UIColor channelSectionCell];
-    self.label.textColor = [UIColor onBackground];
+    self.contentView.backgroundColor = [UIColor surfaceVariant];
+    self.label.textColor = [UIColor onSurfaceVariant];
 }
 
 - (void)awakeFromNib {

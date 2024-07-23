@@ -30,7 +30,7 @@ class GroupTotalValueTest: XCTestCase {
             ShadowingBlindGroupValue(position: 10, tilt: 20),
             IntegerGroupValue(value: 33),
             RgbLightingGroupValue(color: .background, brightness: 88),
-            DimmerAndRgbLightingGroupValue(color: .channelCell, colorBrightness: 32, brightness: 92),
+            DimmerAndRgbLightingGroupValue(color: .surface, colorBrightness: 32, brightness: 92),
             HeatpolThermostatGroupValue(on: true, measuredTemperature: 10.3, presetTemperature: 12.5)
         ])
 

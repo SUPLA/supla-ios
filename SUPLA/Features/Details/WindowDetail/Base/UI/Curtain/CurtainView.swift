@@ -38,7 +38,7 @@ class CurtainView: BaseWallWindowView<CurtainWindowState, CurtainRuntimeDimens> 
     }
 
     override func drawShadowingElements(_ context: CGContext, _ dimens: CurtainRuntimeDimens) {
-        guard let positionValue = windowState?.position.value,
+        guard let positionValue = windowState?.markers.isEmpty == true || isMoving ? windowState?.position.value : windowState?.markers.max(),
               let markers = windowState?.markers
         else { return }
         

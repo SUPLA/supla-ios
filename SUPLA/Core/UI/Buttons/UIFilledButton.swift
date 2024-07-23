@@ -43,7 +43,7 @@ class UIFilledButton: UIButton {
     private func setupView() {
         translatesAutoresizingMaskIntoConstraints = false
         backgroundColor = .primary
-        setTitleColor(.white, for: .normal)
+        setTitleColor(.onPrimary, for: .normal)
         layer.borderWidth = 1
         layer.borderColor = UIColor(red: 118/255.0, green: 120/255.0, blue: 128/255.0, alpha: 0.12).cgColor
         layer.cornerRadius = Dimens.buttonRadius

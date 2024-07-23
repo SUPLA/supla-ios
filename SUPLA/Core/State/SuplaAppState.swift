@@ -49,20 +49,20 @@ enum SuplaAppState: Equatable {
     
     func nextState(event: SuplaAppEvent) -> SuplaAppState? {
         switch (self) {
-        case .initialization: try! initializationNextState(for: event)
+        case .initialization: initializationNextState(for: event)
         case .locked: lockedNextState(for: event)
-        case .firstProfileCreation: try! firstProfileCreationNextState(for: event)
-        case .connecting(let reason): try! connectingNextState(for: event, previousReason: reason)
+        case .firstProfileCreation: firstProfileCreationNextState(for: event)
+        case .connecting(let reason): connectingNextState(for: event, previousReason: reason)
         case .connected: try! connectedNextState(for: event)
-        case .disconnecting: try! disconnectingNextState(for: event)
-        case .locking: try! lockingNextState(for: event)
-        case .finished(let reason): try! finishedNextState(for: event, previousReason: reason)
+        case .disconnecting: disconnectingNextState(for: event)
+        case .locking: lockingNextState(for: event)
+        case .finished(let reason): finishedNextState(for: event, previousReason: reason)
         }
     }
     
     private func initializationNextState(for event: SuplaAppEvent) -> SuplaAppState? {
         switch (event) {
-        case .onStart, .networkConnected: nil
+        case .onStart, .networkConnected, .finish: nil
         case .lock: .locked
         case .initialized: .connecting()
         case .noAccount: .firstProfileCreation
@@ -70,7 +70,6 @@ enum SuplaAppState: Equatable {
         case .connected: try! illegalConnectedEvent()
         case .cancel: try! illegalCancelEvent()
         case .unlock: try! illegalUnlockEvent()
-        case .finish: try! illegalFinishEvent()
         case .error: try! illegalErrorEvent()
         }
     }

@@ -4,6 +4,7 @@
  */
 
 #import "MGSwipeButton.h"
+#import "SUPLA-Swift.h"
 
 @class MGSwipeTableCell;
 
@@ -71,7 +72,7 @@
     button.titleLabel.lineBreakMode = NSLineBreakByWordWrapping;
     button.titleLabel.textAlignment = NSTextAlignmentCenter;
     [button setTitle:title forState:UIControlStateNormal];
-    [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [button setTitleColor:[UIColor onPrimary] forState:UIControlStateNormal];
     [button setImage:icon forState:UIControlStateNormal];
     button.callback = callback;
     [button setEdgeInsets:insets];

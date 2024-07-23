@@ -23,16 +23,16 @@ import Foundation
 extension UIViewController {
     func setupToolbar(toolbarFont: UIFont = .suplaSubtitleFont) {
         let appearance = UINavigationBarAppearance()
-        appearance.backgroundColor = .toolbar
+        appearance.backgroundColor = .primaryContainer
         appearance.titleTextAttributes = [
-            .foregroundColor: UIColor.onPrimary,
+            .foregroundColor: UIColor.onPrimaryContainer,
             .font: toolbarFont
         ]
         
         navigationController?.navigationBar.standardAppearance = appearance
         navigationController?.navigationBar.compactAppearance = appearance
         navigationController?.navigationBar.scrollEdgeAppearance = appearance
-        navigationController?.navigationBar.tintColor = .onPrimary
+        navigationController?.navigationBar.tintColor = .onPrimaryContainer
         
         if #available(iOS 14.0, *) {
             navigationController?.navigationBar.topItem?.backButtonDisplayMode = .minimal

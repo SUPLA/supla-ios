@@ -24,16 +24,34 @@ extension UIColor {
     @objc static let green = UIColor(argb: 0xFF00D151)
     
     @objc static let primary = UIColor(named: "Colors/primary")!
-    @objc static let primaryVariant = UIColor(red: 0, green: 209/255.0, blue: 81/255.0, alpha: 1)
+    @objc static let onPrimary = UIColor(named: "Colors/on_primary")!
     
-    @objc static let onBackground = UIColor(named: "Colors/on_background")!
-    static let onPrimary = UIColor(red: 255, green: 255, blue: 255, alpha: 1)
+    @objc static let primaryVariant = UIColor(named: "Colors/primary_variant")!
+    
+    @objc static let primaryContainer = UIColor(named: "Colors/primary_container")!
+    @objc static let onPrimaryContainer = UIColor(named: "Colors/on_primary_container")!
+    
+    static let secondary = UIColor(named: "Colors/secondary")!
+    static let secondaryContainer = UIColor(named: "Colors/secondary_container")!
+    
     
     @objc static let surface = UIColor(named: "Colors/surface")!
+    static let onSurface = UIColor(named: "Colors/on_surface")!
+    
+    @objc static let surfaceVariant = UIColor(named: "Colors/surface_variant")!
+    @objc static let onSurfaceVariant = UIColor(named: "Colors/on_surface_variant")!
+    
     @objc static let background = UIColor(named: "Colors/background")!
+    @objc static let onBackground = UIColor(named: "Colors/on_background")!
+    
+    static let outline = UIColor(named: "Colors/outline")!
+    static let outlineVariant = UIColor(named: "Colors/outline_variant")!
     
     static let disabled = UIColor(named: "Colors/disabled")!
     static let error = UIColor(red: 235.0/255.0, green: 58.0/255.0, blue: 40.0/255.0, alpha: 1)
+    static let errorContainer = UIColor(named: "Colors/error_container")!
+    
+    static let suplaButtonBackgroundOutside = UIColor(named: "Colors/supla_button_background_outside")!
     
     @objc static let gray = UIColor(red: 126/255.0, green: 128/255.0, blue: 130/255.0, alpha: 1)
     static let grayLight = UIColor(named: "Colors/gray_light")!
@@ -53,18 +71,13 @@ extension UIColor {
     static let chartGpmBorder = UIColor(argb: 0xFF005F6E)
     static let chartGpmShadow = UIColor(argb: 0x3398C4CA)
     
-    @objc static let toolbar = UIColor(named: "Colors/toolbar")!
-    
     @objc static let separator = UIColor(named: "Colors/separator")!
     static let separatorLight = UIColor(named: "Colors/separator_light")!
     
     static let loadingScrim = UIColor(named: "Colors/loading_scrim")!
     static let dialogScrim = UIColor(named: "Colors/dialog_scrim")!
+    static let infoScrim = UIColor(named: "Colors/info_scrim")!
     static let transparent = UIColor(argb: 0x00FFFFFF)
-    
-    // View specific colors
-    @objc static let channelCell = UIColor(named: "Colors/channel_cell")!
-    @objc static let channelSectionCell = UIColor(named: "Colors/channel_section_cell")!
     
     static let innerShadow = UIColor(red: 0, green: 0, blue: 0, alpha: 0.25) // CircleControlButtonView
     static let negativeBorder = UIColor(red: 235/255.0, green: 58/255.0, blue: 40/255.0, alpha: 1) // CircleControlButtonView

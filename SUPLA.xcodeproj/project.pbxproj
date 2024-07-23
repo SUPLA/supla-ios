@@ -1057,7 +1057,6 @@
 		AECB1BE727109EA3001A9714 /* CheckBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = AECB1BE627109EA3001A9714 /* CheckBox.swift */; };
 		AECB1BE92710A785001A9714 /* AccountCreationVMTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AECB1BE82710A785001A9714 /* AccountCreationVMTests.swift */; };
 		AECB1BEB2711CB67001A9714 /* AuthInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = AECB1BEA2711CB67001A9714 /* AuthInfo.swift */; };
-		AED6395E270CA3A800E5105B /* RoundedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = AED6395D270CA3A800E5105B /* RoundedButton.swift */; };
 		AED63961270CA46C00E5105B /* UIColor+Supla.swift in Sources */ = {isa = PBXBuildFile; fileRef = AED63960270CA46C00E5105B /* UIColor+Supla.swift */; };
 		AEED1FD12737F3BE00DE6289 /* ProfileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEED1FD02737F3BE00DE6289 /* ProfileManager.swift */; };
 		AEED1FD42737F71C00DE6289 /* MultiAccountProfileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEED1FD32737F71C00DE6289 /* MultiAccountProfileManager.swift */; };
@@ -2443,7 +2442,6 @@
 		AECB1BE627109EA3001A9714 /* CheckBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckBox.swift; sourceTree = "<group>"; };
 		AECB1BE82710A785001A9714 /* AccountCreationVMTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountCreationVMTests.swift; sourceTree = "<group>"; };
 		AECB1BEA2711CB67001A9714 /* AuthInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthInfo.swift; sourceTree = "<group>"; };
-		AED6395D270CA3A800E5105B /* RoundedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedButton.swift; sourceTree = "<group>"; };
 		AED63960270CA46C00E5105B /* UIColor+Supla.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Supla.swift"; sourceTree = "<group>"; };
 		AEDC40B02857B60500FA8A9B /* SUPLA 12.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "SUPLA 12.xcdatamodel"; sourceTree = "<group>"; };
 		AEED1FD02737F3BE00DE6289 /* ProfileManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileManager.swift; sourceTree = "<group>"; };
@@ -4038,7 +4036,6 @@
 		A553863029E02C4300B5CF3F /* AccountCreation */ = {
 			isa = PBXGroup;
 			children = (
-				AED6395D270CA3A800E5105B /* RoundedButton.swift */,
 				AECB1BE627109EA3001A9714 /* CheckBox.swift */,
 				40844D811FB0DDB000432AA0 /* AccountCreationVC.xib */,
 				AE5A60E5270E2A7A00F2B780 /* AccountCreationVC.swift */,
@@ -6757,7 +6754,6 @@
 				A5D712632C37EB4900A8EF52 /* LockScreenVM.swift in Sources */,
 				A56D5ACD2A4C304C004F45DA /* SingleCall.swift in Sources */,
 				A5A14A442B6143AC004B1598 /* SuplaChannelGeneralPurposeMeterConfig.swift in Sources */,
-				AED6395E270CA3A800E5105B /* RoundedButton.swift in Sources */,
 				A5F29C002A2DC50000ED700A /* CoreDataMigrationStep.swift in Sources */,
 				A5FE675F2A65CC4300147D1F /* Autodiscover.swift in Sources */,
 				A55A8D802BA9AD8000C540D4 /* RollerShutterView.swift in Sources */,

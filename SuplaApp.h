@@ -52,7 +52,6 @@ NS_ASSUME_NONNULL_BEGIN
 +(BOOL) isBrightnessPickerTypeSet;
 +(BOOL) isBrightnessPickerTypeSlider;
 
-+(void)initClientDelayed:(double)time;
 +(SASuplaClient *) SuplaClient;
 +(SASuplaClient *) SuplaClientWithOneTimePassword:(NSString*)password;
 +(BOOL) isClientRegistered;
