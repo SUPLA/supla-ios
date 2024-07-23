@@ -56,7 +56,7 @@ private struct ConnectionStatusView: View {
                 .resizable()
                 .aspectRatio(contentMode: .fit)
                 .frame(width: 140, height: 140)
-                .foregroundColor(.Supla.primary)
+                .foregroundColor(.Supla.primaryVariant)
             Text.BodyMedium(text: text)
             Spacer()
         }

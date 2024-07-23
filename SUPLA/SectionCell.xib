@@ -46,7 +46,7 @@
                         </constraints>
                     </imageView>
                 </subviews>
-                <color key="backgroundColor" red="0.92931526900000005" green="0.98436766860000002" blue="0.93322169779999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                <color key="backgroundColor" name="Colors/surface_variant"/>
                 <constraints>
                     <constraint firstItem="Uuz-MN-REw" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="2" id="DAu-tZ-AdI"/>
                     <constraint firstAttribute="trailing" secondItem="Qli-HA-Vy6" secondAttribute="trailing" constant="20" id="FIB-aG-0t0"/>
@@ -70,6 +70,9 @@
         <image name="collapsed.png" width="200" height="124.80000305175781"/>
         <namedColor name="Colors/separator">
             <color red="0.66666666666666663" green="0.66666666666666663" blue="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="Colors/surface_variant">
+            <color red="0.92941176470588238" green="0.98431372549019602" blue="0.93333333333333335" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
     </resources>
 </document>

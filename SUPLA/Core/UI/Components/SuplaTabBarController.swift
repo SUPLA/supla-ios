@@ -64,12 +64,12 @@ class SuplaTabBarController<S : ViewState, E : ViewEvent, VM : BaseViewModel<S, 
     func getToolbarFont() -> UIFont { UIFont.suplaTitleBarFont }
     
     private func setupView() {
-        tabBar.barTintColor = .background
-        tabBar.tintColor = .suplaGreen
+        tabBar.barTintColor = .surface
+        tabBar.tintColor = .primary
         tabBar.unselectedItemTintColor = .onBackground
         tabBar.isTranslucent = false
         ShadowValues.apply(toLayer: tabBar.layer)
-        tabBar.backgroundColor = .background
+        tabBar.backgroundColor = .surface
     }
     
 #if DEBUG

@@ -81,8 +81,8 @@
     self.right_OnlineStatus.onlineColor = [UIColor primaryVariant];
     self.right_OnlineStatus.offlineColor = [UIColor offLine];
     self.right_OnlineStatus.borderColor = [UIColor statusBorder];
-    self.contentView.backgroundColor = [UIColor channelCell];
-    self.backgroundColor = [UIColor channelCell];
+    self.contentView.backgroundColor = [UIColor surface];
+    self.backgroundColor = [UIColor surface];
     self.bottomLine.backgroundColor = [UIColor separator];
     
     [self.left_OnlineStatus assignColors:self.right_OnlineStatus];
@@ -151,7 +151,7 @@
     CGFloat offset = 5;
     UIView *bg = [[UIView alloc] init];
     bg.translatesAutoresizingMaskIntoConstraints = NO;
-    bg.backgroundColor = [UIColor channelCell];
+    bg.backgroundColor = [UIColor surface];
     [btn addSubview: bg];
     [bg.bottomAnchor constraintEqualToAnchor: btn.bottomAnchor].active = YES;
     [bg.leftAnchor constraintEqualToAnchor: btn.leftAnchor].active = YES;

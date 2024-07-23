@@ -150,6 +150,7 @@ final class ThermostatGeneralVMTests: ViewModelTest<ThermostatGeneralViewState, 
                 .changing(path: \.childrenIds, to: [0, 0])
                 .changing(path: \.sensorIssue, to: SensorIssue(sensorIcon: nil, message: Strings.ThermostatDetail.offByCard))
                 .changing(path: \.subfunction, to: .heat)
+                .changing(path: \.currentPower, to: 1)
         ])
 
         assertState(1) {
@@ -157,8 +158,8 @@ final class ThermostatGeneralVMTests: ViewModelTest<ThermostatGeneralViewState, 
             XCTAssertEqual($0.setpointText, "21.2")
             XCTAssertEqual($0.plusButtonEnabled, true)
             XCTAssertEqual($0.minusButtonEnabled, true)
-            XCTAssertEqual($0.modeIndicatorColor, .primary)
-            XCTAssertEqual($0.powerIconColor, .suplaGreen)
+            XCTAssertEqual($0.operationalMode, .standby)
+            XCTAssertEqual($0.powerIconColor, .primary)
             XCTAssertEqual($0.controlButtonsEnabled, true)
             XCTAssertEqual($0.configMinMaxHidden, false)
         }
@@ -238,6 +239,7 @@ final class ThermostatGeneralVMTests: ViewModelTest<ThermostatGeneralViewState, 
                     ChannelIssueItem(issueIconType: .warning, description: Strings.ThermostatDetail.clockError)
                 ])
                 .changing(path: \.subfunction, to: .cool)
+                .changing(path: \.currentPower, to: 1)
         ])
         
         assertState(1) {
@@ -245,7 +247,7 @@ final class ThermostatGeneralVMTests: ViewModelTest<ThermostatGeneralViewState, 
             XCTAssertEqual($0.setpointText, "23.0")
             XCTAssertEqual($0.plusButtonEnabled, true)
             XCTAssertEqual($0.minusButtonEnabled, true)
-            XCTAssertEqual($0.powerIconColor, .suplaGreen)
+            XCTAssertEqual($0.powerIconColor, .primary)
             XCTAssertEqual($0.controlButtonsEnabled, true)
             XCTAssertEqual($0.configMinMaxHidden, false)
         }
@@ -323,7 +325,7 @@ final class ThermostatGeneralVMTests: ViewModelTest<ThermostatGeneralViewState, 
             XCTAssertEqual($0.plusButtonEnabled, false)
             XCTAssertEqual($0.minusButtonEnabled, false)
             XCTAssertEqual($0.powerIconColor, .red)
-            XCTAssertEqual($0.modeIndicatorColor, .black)
+            XCTAssertEqual($0.operationalMode, .off)
             XCTAssertEqual($0.controlButtonsEnabled, true)
             XCTAssertEqual($0.configMinMaxHidden, false)
         }
@@ -396,7 +398,7 @@ final class ThermostatGeneralVMTests: ViewModelTest<ThermostatGeneralViewState, 
             XCTAssertEqual($0.plusButtonEnabled, false)
             XCTAssertEqual($0.minusButtonEnabled, false)
             XCTAssertEqual($0.powerIconColor, .red)
-            XCTAssertEqual($0.modeIndicatorColor, .black)
+            XCTAssertEqual($0.operationalMode, .offline)
             XCTAssertEqual($0.controlButtonsEnabled, false)
             XCTAssertEqual($0.configMinMaxHidden, true)
         }

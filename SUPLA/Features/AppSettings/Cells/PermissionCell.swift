@@ -31,7 +31,7 @@ final class PermissionCell: BaseSettingsCell<UIImageView> {
     
     override func provideActionView() -> UIImageView {
         let view = UIImageView(image: .iconArrowRight)
-        view.tintColor = .suplaGreen
+        view.tintColor = .primary
         return view
     }
     
@@ -69,7 +69,7 @@ final class PermissionCell: BaseSettingsCell<UIImageView> {
         
         if (active) {
             cell.status.text = "✓"
-            cell.status.textColor = .suplaGreen
+            cell.status.textColor = .primary
         } else {
             cell.status.text = "𐄂"
             cell.status.textColor = .red

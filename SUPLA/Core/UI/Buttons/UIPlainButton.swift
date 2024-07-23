@@ -35,7 +35,7 @@ class UIPlainButton: UIButton {
         set {
             if let newIcon = newValue {
                 setImage(newIcon.withRenderingMode(.alwaysTemplate))
-                tintColor = .primaryVariant
+                tintColor = .primary
             }
         }
     }

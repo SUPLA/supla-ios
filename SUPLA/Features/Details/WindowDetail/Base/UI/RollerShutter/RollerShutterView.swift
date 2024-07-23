@@ -46,7 +46,7 @@ class RollerShutterView: BaseWallWindowView<RollerShutterWindowState, RollerShut
     }
     
     override func drawShadowingElements(_ context: CGContext, _ dimens: RollerShutterRuntimeDimens) {
-        guard let position = windowState?.position.value,
+        guard let position = windowState?.markers.isEmpty == true || isMoving ? windowState?.position.value : windowState?.markers.max(),
               let bottomPosition = windowState?.bottomPosition
         else {
             return

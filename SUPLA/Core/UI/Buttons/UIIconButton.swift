@@ -152,11 +152,11 @@ class UIIconButton: UIButton {
             )
         }
         
-        static func bordered(color: UIColor) -> Configuration {
+        static func bordered(color: UIColor, backgroundColor: UIColor = .transparent) -> Configuration {
             Configuration(
-                backgroundColor: .transparent,
-                backgroundDisabledColor: .transparent,
-                backgroundPressedColor: .transparent,
+                backgroundColor: backgroundColor,
+                backgroundDisabledColor: backgroundColor,
+                backgroundPressedColor: backgroundColor,
                 contentColor: color,
                 contentDisabledColor: color,
                 contentPressedColor: color,

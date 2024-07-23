@@ -66,14 +66,14 @@ class ThermostatGeneralVC: BaseViewControllerVM<ThermostatGeneralViewState, Ther
     }()
     
     private lazy var plusButton: UIIconButton = {
-        let button = UIIconButton(config: .bordered(color: .disabled))
+        let button = UIIconButton(config: .bordered(color: .disabled, backgroundColor: .surface))
         button.translatesAutoresizingMaskIntoConstraints = false
         button.icon = .iconPlus
         return button
     }()
     
     private lazy var minusButton: UIIconButton = {
-        let button = UIIconButton(config: .bordered(color: .disabled))
+        let button = UIIconButton(config: .bordered(color: .disabled, backgroundColor: .surface))
         button.translatesAutoresizingMaskIntoConstraints = false
         button.icon = .iconMinus
         return button
@@ -136,9 +136,8 @@ class ThermostatGeneralVC: BaseViewControllerVM<ThermostatGeneralViewState, Ther
         thermostatControlView.setpointHeatPercentage = state.setpointHeatPercentage?.cg
         thermostatControlView.setpointCoolPercentage = state.setpointCoolPercentage?.cg
         thermostatControlView.temperaturePercentage = state.currentTemperaturePercentage?.cg
-        thermostatControlView.indicatorCoolingHidden = state.coolingIndicatorInactive ?? false
-        thermostatControlView.indicatorHeatingHidden = state.heatingIndicatorInactive ?? false
-        thermostatControlView.indicationColor = state.modeIndicatorColor.cgColor
+        thermostatControlView.operationalMode = state.operationalMode
+        thermostatControlView.currentPower = state.currentPower
         thermostatControlView.greyOutSetpoins = state.grayOutSetpoints
         minusButton.isEnabled = state.minusButtonEnabled
         minusButton.isHidden = state.plusMinusHidden

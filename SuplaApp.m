@@ -228,31 +228,6 @@ NSString *kSAOnChannelGroupCaptionSetResult = @"OnChannelGroupCaptionSetResult";
    return [[self instance] isBrightnessPickerTypeSlider];
 }
 
--(void)onInitTimer:(NSTimer *)timer {
-    [self SuplaClientWithOneTimePassword:nil];
-}
-
-
--(void)initClientDelayed:(double)time {
-    
-    @synchronized(self) {
-        
-        if ( _SuplaClient == nil ) {
-            [NSTimer scheduledTimerWithTimeInterval:time
-                                                     target:self
-                                                     selector:@selector(onInitTimer:)
-                                                     userInfo:nil
-                                                     repeats:NO];
-        }
-
-    }
-    
-}
-
-+(void)initClientDelayed:(double)time {
-    [[self instance] initClientDelayed:time];
-}
-
 -(SASuplaClient*) SuplaClientWithOneTimePassword:(NSString *)password {
     
     SASuplaClient *result = nil;

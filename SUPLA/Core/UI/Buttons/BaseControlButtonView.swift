@@ -16,33 +16,32 @@
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 
-import RxSwift
 import RxRelay
+import RxSwift
 
 class BaseControlButtonView: UIView {
-
     var tapObservable: Observable<Void> {
         tapRelay.asObservable()
     }
+
     var longPress: PublishRelay<Void> {
-        get {
-            longPressEnabled = true
-            return longPressRelay
-        }
+        longPressEnabled = true
+        return longPressRelay
     }
 
     let iconSize: CGFloat = 20
     let height: CGFloat
 
     var type = ButtonType.positive
-    
+
     var isEnabled: Bool = true {
         didSet {
             disabledOverlay.isHidden = isEnabled
         }
     }
+
     var isClickable: Bool = true
-    
+
     var text: String? = nil {
         didSet {
             textView.text = text
@@ -50,14 +49,14 @@ class BaseControlButtonView: UIView {
             setupLayout()
         }
     }
-    
+
     var icon: IconResult? = nil {
         didSet {
             switch (icon) {
             case .suplaIcon(let icon):
                 iconView.image = icon?.withRenderingMode(.alwaysTemplate)
                 iconView.tintColor = iconColor
-            case .userIcon(let icon) :
+            case .userIcon(let icon):
                 iconView.image = icon
             default:
                 iconView.image = icon?.icon
@@ -102,7 +101,7 @@ class BaseControlButtonView: UIView {
         text.textColor = active ? type.textColor : type.inactiveColor
         return text
     }()
-    
+
     private lazy var iconView: UIImageView = {
         let view = UIImageView()
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -111,14 +110,14 @@ class BaseControlButtonView: UIView {
         view.contentMode = .scaleAspectFit
         return view
     }()
-    
+
     private lazy var innerShadowView: InnerShadowView = {
         let view = InnerShadowView(height: height)
         view.translatesAutoresizingMaskIntoConstraints = false
         view.isHidden = true
         return view
     }()
-    
+
     private lazy var disabledOverlay: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -127,7 +126,7 @@ class BaseControlButtonView: UIView {
         view.isHidden = true
         return view
     }()
-    
+
     private let tapRelay: PublishRelay<Void> = PublishRelay()
     private let longPressRelay: PublishRelay<Void> = PublishRelay()
     private var longPressEnabled = false
@@ -138,14 +137,15 @@ class BaseControlButtonView: UIView {
         super.init(frame: CGRect.zero)
         setupView()
     }
-    
+
+    @available(*, unavailable)
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
 
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         super.touchesBegan(touches, with: event)
-        
+
         if (isEnabled && isClickable) {
             BaseControlButtonView.setupPressedLayer(layer, type)
             textView.textColor = type.textColor
@@ -159,9 +159,9 @@ class BaseControlButtonView: UIView {
         addGestureRecognizer(UILongPressGestureRecognizer(target: self, action: #selector(onLongPress)))
 
         layer.cornerRadius = height / 2
-        
+
         BaseControlButtonView.setupLayer(layer)
-        
+
         addSubview(innerShadowView)
         addSubview(textView)
         addSubview(iconView)
@@ -169,7 +169,7 @@ class BaseControlButtonView: UIView {
 
         setupLayout()
     }
-    
+
     private func setupLayout() {
         if (!activeConstraints.isEmpty) {
             NSLayoutConstraint.deactivate(activeConstraints)
@@ -184,7 +184,7 @@ class BaseControlButtonView: UIView {
 
             iconView.widthAnchor.constraint(equalToConstant: iconSize),
             iconView.heightAnchor.constraint(equalToConstant: iconSize),
-            
+
             disabledOverlay.leftAnchor.constraint(equalTo: leftAnchor),
             disabledOverlay.rightAnchor.constraint(equalTo: rightAnchor),
             disabledOverlay.topAnchor.constraint(equalTo: topAnchor),
@@ -231,7 +231,7 @@ class BaseControlButtonView: UIView {
         if (isEnabled) {
             if (longPressEnabled) {
                 longPressRelay.accept(())
-            } else if(isClickable) {
+            } else if (isClickable) {
                 tapRelay.accept(())
             }
         }
@@ -247,50 +247,44 @@ class BaseControlButtonView: UIView {
     override class var requiresConstraintBasedLayout: Bool {
         return true
     }
-    
+
     enum ButtonType {
         case positive, negative, neutral
 
         var pressedColor: UIColor {
-            get {
-                switch(self) {
-                case .positive: return .green
-                case .negative: return .negativeBorder
-                case .neutral: return .black
-                }
+            switch (self) {
+            case .positive: return .green
+            case .negative: return .negativeBorder
+            case .neutral: return .black
             }
         }
 
         var textColor: UIColor {
-            get {
-                switch(self) {
-                case .positive: return .suplaGreen
-                case .negative: return .negativeBorder
-                case .neutral: return .black
-                }
+            switch (self) {
+            case .positive: return .onBackground
+            case .negative: return .negativeBorder
+            case .neutral: return .black
             }
         }
-        
+
         var inactiveColor: UIColor {
-            get {
-                switch(self) {
-                case .positive: return .onBackground
-                case .negative: return .onBackground
-                case .neutral: return .black
-                }
+            switch (self) {
+            case .positive: return .onBackground
+            case .negative: return .onBackground
+            case .neutral: return .black
             }
         }
     }
-    
+
     static func setupLayer(_ layer: CALayer) {
         layer.backgroundColor = UIColor.surface.cgColor
-        
+
         ShadowValues.apply(toButton: layer)
-        
+
         layer.borderColor = UIColor.disabled.cgColor
         layer.borderWidth = 1
     }
-    
+
     static func setupPressedLayer(_ layer: CALayer, _ type: ButtonType) {
         layer.shadowRadius = 6
         layer.shadowColor = type.pressedColor.cgColor
@@ -298,13 +292,12 @@ class BaseControlButtonView: UIView {
     }
 }
 
-fileprivate class InnerShadowView: UIView {
-    
+private class InnerShadowView: UIView {
     private lazy var innerShadow: CALayer = {
         let innerShadow = CALayer()
         return innerShadow
     }()
-    
+
     private let height: CGFloat
 
     init(height: CGFloat) {
@@ -312,11 +305,12 @@ fileprivate class InnerShadowView: UIView {
         super.init(frame: CGRect.zero)
         setupView()
     }
-    
+
+    @available(*, unavailable)
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
     override func layoutSubviews() {
         super.layoutSubviews()
 
@@ -327,9 +321,9 @@ fileprivate class InnerShadowView: UIView {
         innerShadow.shadowOffset = CGSize(width: 0, height: 3)
         innerShadow.shadowOpacity = 0.4
         innerShadow.shadowRadius = 3
-        innerShadow.cornerRadius = self.frame.size.height/2
+        innerShadow.cornerRadius = frame.size.height / 2
     }
-    
+
     private func setupView() {
         layer.addSublayer(innerShadow)
         layer.cornerRadius = height / 2
@@ -337,9 +331,9 @@ fileprivate class InnerShadowView: UIView {
 
     private func createPath() -> CGPath {
         // Shadow path (1pt ring around bounds)
-        let radius = self.frame.size.height/2
-        let path = UIBezierPath(roundedRect: innerShadow.frame.insetBy(dx: -3, dy:-3), cornerRadius:radius)
-        let cutout = UIBezierPath(roundedRect: innerShadow.frame, cornerRadius:radius).reversing()
+        let radius = frame.size.height / 2
+        let path = UIBezierPath(roundedRect: innerShadow.frame.insetBy(dx: -3, dy: -3), cornerRadius: radius)
+        let cutout = UIBezierPath(roundedRect: innerShadow.frame, cornerRadius: radius).reversing()
         path.append(cutout)
 
         return path.cgPath

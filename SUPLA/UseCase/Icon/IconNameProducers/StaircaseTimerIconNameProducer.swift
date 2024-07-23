@@ -27,7 +27,7 @@ final class StaircaseTimerIconNameProducer: IconNameProducer {
     
     private func switchIcon(_ altIcon: Int32) -> String {
         switch (altIcon) {
-        case 1: return "staircasetimer_1"
+        case 1: return "fnc_staircasetimer_1"
         default: return "staircasetimer"
         }
     }

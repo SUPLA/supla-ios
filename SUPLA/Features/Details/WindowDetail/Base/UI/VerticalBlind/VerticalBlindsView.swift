@@ -53,7 +53,7 @@ class VerticalBlindsView: BaseWallWindowView<VerticalBlindWindowState, VerticalB
     }
     
     override func drawShadowingElements(_ context: CGContext, _ dimens: VerticalBlindRuntimeDimens) {
-        guard let position = windowState?.position.value else { return }
+        guard let position = windowState?.markers.isEmpty == true || isMoving ? windowState?.position.value : windowState?.markers.map({ $0.position }).max() else { return }
         let tiltDegrees = windowState?.slatTiltDegrees ?? 0
         
         let correctedTilt = tiltDegrees <= tiltHalfRangeDegrees ? tiltDegrees : tiltRangeDegrees - tiltDegrees

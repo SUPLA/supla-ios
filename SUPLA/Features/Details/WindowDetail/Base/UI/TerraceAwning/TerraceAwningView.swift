@@ -102,7 +102,7 @@ final class TerraceAwningView: BaseWindowView<TerraceAwningWindowState> {
     }
     
     private func drawAwning(_ context: CGContext) {
-        let position = windowState?.position.value ?? 0
+        let position = (windowState?.markers.isEmpty == true || isMoving ? windowState?.position.value : windowState?.markers.max()) ?? 0
         let awningLeft = dimens.canvasRect.minX + (dimens.canvasRect.width - dimens.awningClosedWidth) / 2
         let awningTop = dimens.canvasRect.minY + 1
         let frontMinHeight = dimens.awningFrontHeight * 0.6

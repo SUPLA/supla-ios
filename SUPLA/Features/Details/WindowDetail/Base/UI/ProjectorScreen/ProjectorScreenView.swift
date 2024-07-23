@@ -56,7 +56,7 @@ final class ProjectorScreenView: BaseWindowView<ProjectorScreenState> {
         context.setShouldAntialias(true)
         context.setLineWidth(1)
         
-        let position = (windowState?.markers.isEmpty == true ? windowState?.position.value : windowState?.markers.max()) ?? 0
+        let position = (windowState?.markers.isEmpty == true || isMoving ? windowState?.position.value : windowState?.markers.max()) ?? 0
         let screenHeight = dimens.screenMaxHeight * position / 100
         let bottomRect = dimens.bottomRect.offsetBy(dx: 0, dy: screenHeight)
         let bottomRectRadius = bottomRect.height / 2

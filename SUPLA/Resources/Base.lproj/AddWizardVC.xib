@@ -162,7 +162,7 @@
                             </connections>
                         </button>
                     </subviews>
-                    <color key="backgroundColor" name="Colors/toolbar"/>
+                    <color key="backgroundColor" name="Colors/primary_container"/>
                     <constraints>
                         <constraint firstItem="kEz-V1-szv" firstAttribute="leading" secondItem="fGm-C1-0WE" secondAttribute="trailing" id="ANb-5B-o79"/>
                         <constraint firstItem="kEz-V1-szv" firstAttribute="top" secondItem="jQ6-hO-PdQ" secondAttribute="top" constant="5" id="KHu-SC-aiv"/>
@@ -181,7 +181,7 @@
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iPy-YB-RiH">
                     <rect key="frame" x="0.0" y="0.0" width="393" height="772"/>
-                    <color key="backgroundColor" name="Colors/toolbar"/>
+                    <color key="backgroundColor" name="Colors/primary_container"/>
                 </view>
             </subviews>
             <color key="backgroundColor" name="Colors/primary"/>
@@ -213,7 +213,7 @@
                         <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="40" id="WbV-QM-MV7"/>
                     </constraints>
                     <fontDescription key="fontDescription" name="Quicksand-Regular" family="Quicksand" pointSize="18"/>
-                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <color key="textColor" name="Colors/on_primary_container"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Press Next to continue." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3bd-Xm-Rok">
@@ -222,11 +222,11 @@
                         <constraint firstAttribute="height" constant="30" id="lWL-YF-H8X"/>
                     </constraints>
                     <fontDescription key="fontDescription" name="Quicksand-Regular" family="Quicksand" pointSize="18"/>
-                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <color key="textColor" name="Colors/on_primary_container"/>
                     <nil key="highlightedColor"/>
                 </label>
             </subviews>
-            <color key="backgroundColor" name="Colors/toolbar"/>
+            <color key="backgroundColor" name="Colors/primary_container"/>
             <constraints>
                 <constraint firstItem="BIm-R9-3vC" firstAttribute="centerY" secondItem="7B1-OE-46N" secondAttribute="centerY" priority="750" constant="-140" id="5vP-hM-Q4B"/>
                 <constraint firstAttribute="trailing" secondItem="vbb-Xd-lIx" secondAttribute="trailing" constant="15" id="7nF-7Q-4De"/>
@@ -258,7 +258,7 @@
                         <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="80" id="70s-QL-5si"/>
                     </constraints>
                     <fontDescription key="fontDescription" name="Quicksand-Regular" family="Quicksand" pointSize="18"/>
-                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <color key="textColor" name="Colors/on_primary_container"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7Bs-NP-71g">
@@ -331,7 +331,7 @@
                     </constraints>
                 </view>
             </subviews>
-            <color key="backgroundColor" name="Colors/toolbar"/>
+            <color key="backgroundColor" name="Colors/primary_container"/>
             <constraints>
                 <constraint firstItem="Igv-nx-eY7" firstAttribute="centerX" secondItem="S8z-fu-dma" secondAttribute="centerX" id="39g-jf-2Q4"/>
                 <constraint firstAttribute="trailing" secondItem="z7z-ZO-PdB" secondAttribute="trailing" constant="30" id="3fJ-tZ-14S"/>
@@ -387,7 +387,7 @@
 Press Next to continue.
 </string>
                             <fontDescription key="fontDescription" name="Quicksand-Regular" family="Quicksand" pointSize="18"/>
-                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <color key="textColor" name="Colors/on_primary_container"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Power up your I/O Device and make sure it is configuration mode - the status LED should be flashing rapidly" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="7" baselineAdjustment="alignBaselines" minimumFontSize="7" translatesAutoresizingMaskIntoConstraints="NO" id="QQN-Ba-rnP">
@@ -396,7 +396,7 @@ Press Next to continue.
                                 <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="10" id="sr1-z1-Lpe"/>
                             </constraints>
                             <fontDescription key="fontDescription" name="Quicksand-Regular" family="Quicksand" pointSize="18"/>
-                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <color key="textColor" name="Colors/on_primary_container"/>
                             <nil key="highlightedColor"/>
                         </label>
                     </subviews>
@@ -441,7 +441,7 @@ Press Next to continue.
                     <nil key="highlightedColor"/>
                 </label>
             </subviews>
-            <color key="backgroundColor" name="Colors/toolbar"/>
+            <color key="backgroundColor" name="Colors/primary_container"/>
             <constraints>
                 <constraint firstItem="Ej4-ru-hOy" firstAttribute="leading" secondItem="x6e-cq-S7L" secondAttribute="leading" constant="5" id="37q-c9-7pb"/>
                 <constraint firstItem="ulw-KV-Mde" firstAttribute="centerY" secondItem="x6e-cq-S7L" secondAttribute="centerY" priority="750" constant="-140" id="5o3-2T-L3X"/>
@@ -501,7 +501,7 @@ When the connection has been set, go back to the application and  continue addin
                     <nil key="highlightedColor"/>
                 </label>
             </subviews>
-            <color key="backgroundColor" name="Colors/toolbar"/>
+            <color key="backgroundColor" name="Colors/primary_container"/>
             <constraints>
                 <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="a01-dG-nhT" secondAttribute="bottom" constant="10" id="2Iu-Iv-Q7m"/>
                 <constraint firstItem="a01-dG-nhT" firstAttribute="top" secondItem="LmT-sv-XIj" secondAttribute="bottom" constant="20" id="2Qv-Q2-WQA"/>
@@ -534,7 +534,7 @@ When the connection has been set, go back to the application and  continue addin
                     <nil key="highlightedColor"/>
                 </label>
             </subviews>
-            <color key="backgroundColor" name="Colors/toolbar"/>
+            <color key="backgroundColor" name="Colors/primary_container"/>
             <constraints>
                 <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="J9f-5g-EoU" secondAttribute="bottom" constant="20" id="1Bl-79-Uha"/>
                 <constraint firstAttribute="trailing" secondItem="J9f-5g-EoU" secondAttribute="trailing" constant="15" id="TSm-EN-BzN"/>
@@ -544,7 +544,7 @@ When the connection has been set, go back to the application and  continue addin
                 <constraint firstItem="d6Q-IP-jA4" firstAttribute="centerY" secondItem="uTS-MU-A22" secondAttribute="centerY" priority="748" constant="-140" id="li5-tN-XTz"/>
                 <constraint firstItem="J9f-5g-EoU" firstAttribute="top" secondItem="d6Q-IP-jA4" secondAttribute="bottom" constant="60" id="yJk-wd-MTs"/>
             </constraints>
-            <point key="canvasLocation" x="2724" y="14"/>
+            <point key="canvasLocation" x="3115" y="54"/>
         </view>
         <view contentMode="scaleToFill" id="O29-9p-F9i" userLabel="vDone">
             <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
@@ -558,7 +558,7 @@ When the connection has been set, go back to the application and  continue addin
                             <gestureRecognizers/>
                             <string key="text">If your new I/O device fails to appear in the Supla app please run “Add I/O Device” wizard again and refer to the “Previous State” information on this page for troubleshooting. “SSID Not Found” is displayed when the chosen 2.4 GHz network is ether not in range or its name was incorrect.</string>
                             <fontDescription key="fontDescription" name="Quicksand-Regular" family="Quicksand" pointSize="20"/>
-                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <color key="textColor" name="Colors/on_primary_container"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="E58-RD-4NN">
@@ -697,7 +697,7 @@ When the connection has been set, go back to the application and  continue addin
                                 <constraint firstAttribute="height" relation="greaterThanOrEqual" priority="750" constant="15" id="J2u-ra-mAR"/>
                             </constraints>
                             <fontDescription key="fontDescription" name="Quicksand-Regular" family="Quicksand" pointSize="22"/>
-                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <color key="textColor" name="Colors/on_primary_container"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Bqs-Hx-BiC">
@@ -730,7 +730,7 @@ When the connection has been set, go back to the application and  continue addin
                     </constraints>
                 </view>
             </subviews>
-            <color key="backgroundColor" name="Colors/toolbar"/>
+            <color key="backgroundColor" name="Colors/primary_container"/>
             <constraints>
                 <constraint firstItem="aLR-E7-2Hi" firstAttribute="leading" secondItem="O29-9p-F9i" secondAttribute="leading" constant="15" id="34G-Uv-APN"/>
                 <constraint firstAttribute="trailing" secondItem="aLR-E7-2Hi" secondAttribute="trailing" constant="15" id="KPc-gP-5fl"/>
@@ -757,10 +757,16 @@ When the connection has been set, go back to the application and  continue addin
         <namedColor name="Colors/on_primary">
             <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
+        <namedColor name="Colors/on_primary_container">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <namedColor name="Colors/primary">
             <color red="0.070588235294117646" green="0.65490196078431373" blue="0.11764705882352941" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
-        <namedColor name="Colors/toolbar">
+        <namedColor name="Colors/primary_container">
+            <color red="0.070588235294117646" green="0.65490196078431373" blue="0.11764705882352941" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="Colors/primary_container">
             <color red="0.070588235294117646" green="0.65490196078431373" blue="0.11764705882352941" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
     </resources>
