@@ -40,7 +40,7 @@ extension Coordinator {
         navigationController.present(view, animated: animated)
     }
 
-    func dismiss(animated: Bool = false) {
-        navigationController.dismiss(animated: animated)
+    func dismiss(animated: Bool = false, completion: (() -> Void)? = nil) {
+        navigationController.dismiss(animated: animated, completion: completion)
     }
 }

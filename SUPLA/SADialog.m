@@ -113,13 +113,15 @@
 
 + (BOOL)viewControllerIsPresented:(UIViewController*)vc {
     UIViewController *rootVC = [SuplaAppCoordinatorLegacyWrapper currentViewController];
-    return vc != nil && rootVC != nil && rootVC.presentedViewController == vc;
+    return rootVC == vc;
 }
 
 + (void)showModal:(SADialog*)dialogVC {
     dialogVC.modalPresentationStyle = UIModalPresentationOverCurrentContext;
     dialogVC.modalInPresentation = YES;
-    [SuplaAppCoordinatorLegacyWrapper present:dialogVC];
+    
+    UIViewController *rootVC = [SuplaAppCoordinatorLegacyWrapper currentViewController];
+    [rootVC presentViewController: dialogVC animated:true completion: nil];
 }
 
 - (void)keyboardDidShow:(NSNotification*)notification {
