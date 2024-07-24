@@ -113,30 +113,32 @@ class SuplaMenuController: UIViewController {
 
 extension SuplaMenuController: SAMenuItemsDelegate {
     func menuItemTouched(_ btnId: SAMenuItemIds) {
-        coordinator.dismiss()
-        
-        switch btnId {
-        case .settings:
-            coordinator.navigateToSettings()
-        case .profile:
-            coordinator.navigateToProfiles()
-        case .addDevice:
-            coordinator.navigateToAddWizard()
-        case .about:
-            coordinator.navigateToAbout()
-        case .help:
-            coordinator.openForum()
-        case .homepage:
-            coordinator.openUrl(url: _menuItems.homepageUrl)
-        case .cloud:
-            coordinator.openCloud()
-        case .zWave:
-            SAZWaveConfigurationWizardVC.globalInstance().show()
-        case .notifications:
-            coordinator.navigateToNotificationsLog()
-        case .deviceCatalog:
-            coordinator.navigateToDeviceCatalog()
-        default: break
+        coordinator.dismiss() { [weak self] in
+            guard let self = self else { return }
+            
+            switch btnId {
+            case .settings:
+                self.coordinator.navigateToSettings()
+            case .profile:
+                self.coordinator.navigateToProfiles()
+            case .addDevice:
+                self.coordinator.navigateToAddWizard()
+            case .about:
+                self.coordinator.navigateToAbout()
+            case .help:
+                self.coordinator.openForum()
+            case .homepage:
+                self.coordinator.openUrl(url: self._menuItems.homepageUrl)
+            case .cloud:
+                self.coordinator.openCloud()
+            case .zWave:
+                SAZWaveConfigurationWizardVC.globalInstance().show()
+            case .notifications:
+                self.coordinator.navigateToNotificationsLog()
+            case .deviceCatalog:
+                self.coordinator.navigateToDeviceCatalog()
+            default: break
+            }
         }
     }
 }
