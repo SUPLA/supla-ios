@@ -96,9 +96,16 @@ final class SuplaAppCoordinatorImpl: NSObject, SuplaAppCoordinator {
     
     func currentController() -> UIViewController? {
         if let presentedController = navigationController.viewControllers.last?.presentedViewController {
-            return presentedController
+            return getPresentedController(presentedController)
         }
         return navigationController.viewControllers.last
+    }
+    
+    private func getPresentedController(_ controller: UIViewController) -> UIViewController {
+        if let presentedController = controller.presentedViewController {
+            return getPresentedController(presentedController)
+        }
+        return controller
     }
     
     func navigateToMain() {

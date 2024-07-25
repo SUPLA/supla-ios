@@ -81,7 +81,7 @@
         
         self.backgroundColor = [UIColor rgbwDetailBackground];
         
-        self.onlineStatus.onlineColor = [UIColor onLine];
+        self.onlineStatus.onlineColor = [UIColor primary];
         self.onlineStatus.offlineColor = [UIColor offLine];
         self.onlineStatus.borderColor = [UIColor statusBorder];
         
