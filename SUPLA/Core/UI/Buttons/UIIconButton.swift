@@ -127,7 +127,7 @@ class UIIconButton: UIButton {
             Configuration(
                 backgroundColor: .primary,
                 backgroundDisabledColor: .disabled,
-                backgroundPressedColor: .primaryVariant,
+                backgroundPressedColor: .buttonPressed,
                 contentColor: .white,
                 contentDisabledColor: .white,
                 contentPressedColor: .white,
@@ -138,7 +138,7 @@ class UIIconButton: UIButton {
         static func transparent(
             size: CGFloat = Dimens.buttonSmallHeight,
             contentColor: UIColor = .primary,
-            contentPressedColor: UIColor = .primaryVariant
+            contentPressedColor: UIColor = .buttonPressed
         ) -> Configuration {
             Configuration(
                 backgroundColor: .transparent,

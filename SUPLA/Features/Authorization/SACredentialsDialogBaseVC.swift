@@ -60,6 +60,7 @@ class SACredentialsDialogVC<VM: SACredentialsDialogVM>: SACustomDialogVC<SACrede
         let view = UIActivityIndicatorView()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.isHidden = true
+        view.color = .onBackground
         return view
     }()
     

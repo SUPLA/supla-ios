@@ -72,7 +72,7 @@ class UIPlainButton: UIButton {
         if (!isEnabled) {
             return .disabled
         } else if (isHighlighted) {
-            return .primaryVariant
+            return .buttonPressed
         } else {
             return textColor
         }

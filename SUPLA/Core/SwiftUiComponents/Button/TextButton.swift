@@ -23,7 +23,7 @@ struct TextButton: View {
     var title: String
     
     var normalColor: Color = .Supla.primary
-    var pressedColor: Color = .Supla.primaryVariant
+    var pressedColor: Color = .Supla.buttonPressed
     
     var action: () -> Void
 
