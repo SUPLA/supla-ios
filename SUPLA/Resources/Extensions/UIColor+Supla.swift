@@ -26,14 +26,11 @@ extension UIColor {
     @objc static let primary = UIColor(named: "Colors/primary")!
     @objc static let onPrimary = UIColor(named: "Colors/on_primary")!
     
-    @objc static let primaryVariant = UIColor(named: "Colors/primary_variant")!
-    
     @objc static let primaryContainer = UIColor(named: "Colors/primary_container")!
     @objc static let onPrimaryContainer = UIColor(named: "Colors/on_primary_container")!
     
     static let secondary = UIColor(named: "Colors/secondary")!
     static let secondaryContainer = UIColor(named: "Colors/secondary_container")!
-    
     
     @objc static let surface = UIColor(named: "Colors/surface")!
     static let onSurface = UIColor(named: "Colors/on_surface")!
@@ -48,10 +45,11 @@ extension UIColor {
     static let outlineVariant = UIColor(named: "Colors/outline_variant")!
     
     static let disabled = UIColor(named: "Colors/disabled")!
-    static let error = UIColor(red: 235.0/255.0, green: 58.0/255.0, blue: 40.0/255.0, alpha: 1)
+    @objc static let error = UIColor(red: 235.0/255.0, green: 58.0/255.0, blue: 40.0/255.0, alpha: 1)
     static let errorContainer = UIColor(named: "Colors/error_container")!
     
     static let suplaButtonBackgroundOutside = UIColor(named: "Colors/supla_button_background_outside")!
+    @objc static let buttonPressed = UIColor(argb: 0xFF59E866)
     
     @objc static let gray = UIColor(red: 126/255.0, green: 128/255.0, blue: 130/255.0, alpha: 1)
     static let grayLight = UIColor(named: "Colors/gray_light")!
@@ -99,6 +97,21 @@ extension UIColor {
     
     static let newGestureBackgroundDarker = UIColor(red: 54.0/255.0, green: 55.0/255.0, blue: 56.0/255.0, alpha: 0.87)
     static let newGestureBackgroundLighter = UIColor(red: 54.0/255.0, green: 55.0/255.0, blue: 56.0/255.0, alpha: 0.27)
+    
+    @objc static let colorPickerDefault = UIColor(red: 0, green: 255, blue: 0, alpha: 1)
+    @objc static let rgbwSelectedTabColor = UIColor(red: 0.07, green: 0.65, blue: 0.12, alpha: 1.00)
+    @objc static let diwInputOptionSelected = UIColor(red: 1.00, green: 0.60, blue: 0.00, alpha: 1.00)
+    @objc static let phase1Color = UIColor(red: 0.56, green: 0.92, blue: 1.00, alpha: 1.0)
+    @objc static let phase2Color = UIColor(red: 0.59, green: 0.57, blue: 1.00, alpha: 1.0)
+    @objc static let phase3Color = UIColor(red: 1.00, green: 0.82, blue: 0.57, alpha: 1.0)
+    @objc static let chartValuePositiveColor = UIColor(red: 0.91, green: 0.30, blue: 0.24, alpha: 1.0)
+    @objc static let chartValueNegativeColor = UIColor(red: 0.18, green: 0.80, blue: 0.44, alpha: 1.0)
+    @objc static let chartRoomTemperature = UIColor(red: 0.00, green: 0.76, blue: 0.99, alpha: 1.0)
+    @objc static let hpBtnOn = UIColor(red: 0.14, green: 0.75, blue: 0.13, alpha: 1.0)
+    @objc static let hpBtnOff = UIColor(red: 0.94, green: 0.27, blue: 0.29, alpha: 1.0)
+    @objc static let hpBtnUnknown = UIColor(red: 0.90, green: 0.74, blue: 0.49, alpha: 1.0)
+    @objc static let menuSeparatorColor = UIColor(red: 0.98, green: 0.98, blue: 0.99, alpha: 0.4)
+    @objc static let vlCfgButtonColor = UIColor(red: 0.07, green: 0.65, blue: 0.12, alpha: 1.00)
 }
 
 extension UIColor {
@@ -158,5 +171,31 @@ extension UIColor {
     
     class func from(red: Int, green: Int, blue: Int, alpha: CGFloat) -> UIColor {
         return UIColor(red: CGFloat(red)/255.0, green: CGFloat(green)/255.0, blue: CGFloat(blue)/255.0, alpha: alpha)
+    }
+    
+    @objc func toDictonary() -> [String: NSNumber] {
+        let (red, green, blue, alpha) = rgba
+        return [
+            "red": NSNumber(value: red),
+            "green": NSNumber(value: green),
+            "blue": NSNumber(value: blue),
+            "alpha": NSNumber(value: alpha)
+        ]
+    }
+    
+    @objc static func fromDictonary(_ value: NSObject?) -> UIColor? {
+        guard let dictonary = value as? [String: NSNumber],
+              let red = dictonary["red"],
+              let green = dictonary["green"],
+              let blue = dictonary["blue"],
+              let alpha = dictonary["alpha"]
+        else { return nil }
+        
+        return UIColor(
+            red: CGFloat(red.floatValue),
+            green: CGFloat(green.floatValue),
+            blue: CGFloat(blue.floatValue),
+            alpha: CGFloat(alpha.floatValue)
+        )
     }
 }

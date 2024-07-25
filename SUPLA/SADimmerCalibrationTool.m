@@ -17,7 +17,6 @@
 #import "SuplaApp.h"
 #import "SAPreloaderPopup.h"
 #import "SACalCfgResult.h"
-#import "UIColor+SUPLA.h"
 #import "SUPLA-Swift.h"
 
 #define LED_ON_WHEN_CONNECTED 0

@@ -30,7 +30,7 @@ struct ProjectorScreenColors {
             shadow: .black,
             bottomRect: .rollerShutterSlatBackground.resolvedColor(with: traitCollection),
             topRect: .gray.resolvedColor(with: traitCollection),
-            logoColor: .primaryVariant.copy(alpha: 0.2),
+            logoColor: .primary.copy(alpha: 0.2),
             disabledOverlay: .rollerShutterDisabledOverlay.resolvedColor(with: traitCollection)
         )
     }

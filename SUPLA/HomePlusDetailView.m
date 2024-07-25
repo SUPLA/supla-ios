@@ -24,7 +24,6 @@
 #import "SAThermostatChartHelper.h"
 #import "HomePlusDetailViewGroupCell.h"
 #import "SAChannelGroup+CoreDataClass.h"
-#import "UIColor+SUPLA.h"
 #import "SUPLA-Swift.h"
 
 #define CFGID_TURBO_TIME 1

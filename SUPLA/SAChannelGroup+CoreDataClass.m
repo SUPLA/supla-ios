@@ -18,7 +18,6 @@
 
 #import "SAChannelGroup+CoreDataClass.h"
 #import "SAChannelValue+CoreDataClass.h"
-#import "UIColor+SUPLA.h"
 #include "proto.h"
 
 @implementation SAChannelGroup

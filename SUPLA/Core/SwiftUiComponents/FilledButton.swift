@@ -57,7 +57,7 @@ struct FilledButtonStyle: ButtonStyle {
         let backgroundColor = if(!isEnabled) {
             Color.Supla.disabled
         } else if (configuration.isPressed) {
-            Color.Supla.primaryVariant
+            Color.Supla.buttonPressed
         } else {
             Color.Supla.primary
         }

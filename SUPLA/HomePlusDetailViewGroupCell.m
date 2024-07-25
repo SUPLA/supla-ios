@@ -20,7 +20,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #import "SAThermostatHPExtendedValue.h"
 #import "SAChannel+CoreDataClass.h"
 
-#import "UIColor+SUPLA.h"
+#import "SUPLA-Swift.h"
 #import "UIButton+SUPLA.h"
 
 @implementation HomePlusDetailViewGroupCell {

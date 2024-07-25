@@ -26,7 +26,6 @@
 #import "SAChannelStatePopup.h"
 #import "SuplaApp.h"
 #import "proto.h"
-#import "UIColor+SUPLA.h"
 #import "SUPLA-Swift.h"
 
 
@@ -78,9 +77,9 @@
     self.leftSwipeSettings.transition = MGSwipeTransitionRotate3D;
     self.rightSwipeSettings.transition = MGSwipeTransitionRotate3D;
     
-    self.right_OnlineStatus.onlineColor = [UIColor primaryVariant];
-    self.right_OnlineStatus.offlineColor = [UIColor offLine];
-    self.right_OnlineStatus.borderColor = [UIColor statusBorder];
+    self.right_OnlineStatus.onlineColor = [UIColor primary];
+    self.right_OnlineStatus.offlineColor = [UIColor error];
+    self.right_OnlineStatus.borderColor = [UIColor blackColor];
     self.contentView.backgroundColor = [UIColor surface];
     self.backgroundColor = [UIColor surface];
     self.bottomLine.backgroundColor = [UIColor separator];
@@ -461,7 +460,7 @@
 }
 
 - (IBAction)rightTouchDown:(id)sender {
-    [sender setBackgroundColor: [UIColor btnTouched]];
+    [sender setBackgroundColor: [UIColor buttonPressed]];
     [sender setBackgroundColor: [UIColor primary] withDelay:0.2];
 
     BOOL group = [self.channelBase isKindOfClass:[SAChannelGroup class]];
@@ -499,7 +498,7 @@
 }
 
 - (IBAction)leftTouchDown:(id)sender {
-    [sender setBackgroundColor: [UIColor btnTouched]];
+    [sender setBackgroundColor: [UIColor buttonPressed]];
     [sender setBackgroundColor: [UIColor primary] withDelay:0.2];
     
     if (_channelBase.isRGBW || _channelBase.func == SUPLA_CHANNELFNC_THERMOSTAT_HEATPOL_HOMEPLUS) {

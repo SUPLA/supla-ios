@@ -56,7 +56,7 @@ final class LineChartData: ChartData {
         case .humidity: set.axisDependency = .right
         default: set.axisDependency = .left
         }
-        set.highlightColor = .primaryVariant
+        set.highlightColor = .primary
         
         set.drawFilledEnabled = true
         set.fillColor = color

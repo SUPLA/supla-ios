@@ -36,7 +36,7 @@ struct WindowColors {
             slatBackground: .rollerShutterSlatBackground.resolvedColor(with: traitCollection),
             slatBorder: .rollerShutterSlatBorder.resolvedColor(with: traitCollection),
             markerBorder: .black,
-            markerBackground: .primaryVariant,
+            markerBackground: .primary,
             disabledOverlay: .rollerShutterDisabledOverlay
         )
     }

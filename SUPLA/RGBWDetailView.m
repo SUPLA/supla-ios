@@ -25,7 +25,6 @@
 #import "SAInfoVC.h"
 #import "SAVLCalibrationTool.h"
 #import "SADiwCalibrationTool.h"
-#import "UIColor+SUPLA.h"
 #import "SUPLA-Swift.h"
 
 #define MIN_REMOTE_UPDATE_PERIOD 0.25
@@ -79,11 +78,11 @@
         [self.clPicker addItem];
         self.clPicker.delegate = self;
         
-        self.backgroundColor = [UIColor rgbwDetailBackground];
+        self.backgroundColor = [UIColor background];
         
         self.onlineStatus.onlineColor = [UIColor primary];
-        self.onlineStatus.offlineColor = [UIColor offLine];
-        self.onlineStatus.borderColor = [UIColor statusBorder];
+        self.onlineStatus.offlineColor = [UIColor error];
+        self.onlineStatus.borderColor = [UIColor blackColor];
         
     }
     
@@ -319,7 +318,7 @@
             [self.clPicker itemAtIndex:a setPercent:0];
         } else {
             
-            [self.clPicker itemAtIndex:a setColor:item.color == nil ? [UIColor clearColor] : [UIColor transformToColor:item.color]];
+            [self.clPicker itemAtIndex:a setColor:item.color == nil ? [UIColor clearColor] : [UIColor fromDictonary:item.color]];
             [self.clPicker itemAtIndex:a setPercent:[item.brightness floatValue]];
         }
     }
@@ -437,7 +436,7 @@
     
     if ( item != nil ) {
         item.brightness = [NSNumber numberWithFloat:self.cbPicker.brightness];
-        item.color = [UIColor transformToDictionary:self.cbPicker.color];
+        item.color = self.cbPicker.color.toDictonary;
         
         [[SAApp DB] updateColorListItem:item];
     }

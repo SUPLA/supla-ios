@@ -56,7 +56,7 @@ class UIFilledButton: UIButton {
         if (!isEnabled) {
             return .disabled
         } else if (isHighlighted) {
-            return .primaryVariant
+            return .buttonPressed
         } else {
             return .primary
         }

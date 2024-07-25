@@ -65,7 +65,7 @@ final class CandleChartData: ChartData {
         case .humidity: set.axisDependency = .right
         default: set.axisDependency = .left
         }
-        set.highlightColor = .primaryVariant
+        set.highlightColor = .primary
         set.shadowColor = .onBackground
         set.shadowWidth = 0.7
         set.decreasingColor = .red

@@ -23,7 +23,6 @@ import SwiftUI
 extension Color {
     struct Supla {
         static let primary = Color(UIColor.primary)
-        static let primaryVariant = Color(UIColor.primaryVariant)
         
         static let background = Color(UIColor.background)
         static let surface = Color(UIColor.surface)
@@ -34,5 +33,6 @@ extension Color {
         static let blue = Color(UIColor.blue)
         static let disabled = Color(UIColor.disabled)
         static let error = Color(UIColor.error)
+        static let buttonPressed = Color(UIColor.buttonPressed)
     }
 }

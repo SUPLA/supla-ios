@@ -409,7 +409,7 @@ class BaseCell<T: BaseCellData>: MGSwipeTableCell {
     }
     
     @objc private func onButtonTap(_ btn: MGSwipeButton) {
-        btn.backgroundColor = .btnTouched()
+        btn.backgroundColor = .buttonPressed
         DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(200)) {
             btn.backgroundColor = .primary
             
@@ -514,7 +514,7 @@ class CellStatusIndicatorView: UIView {
     }
     
     func configure(filled: Bool, online: Bool) {
-        let color = online ? UIColor.primaryVariant : UIColor.error
+        let color = online ? UIColor.primary : UIColor.error
         if (filled) {
             layer.borderColor = color.cgColor
             backgroundColor = color

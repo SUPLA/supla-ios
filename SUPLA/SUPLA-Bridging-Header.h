@@ -25,7 +25,6 @@
 #import "SectionCell.h"
 #import "MGSwipeTableCell.h"
 #import "MGSwipeButton.h"
-#import "UIColor+SUPLA.h"
 #import "SACaptionEditor.h"
 #import "ChannelCell.h"
 #import "SAChannelGroup+CoreDataClass.h"

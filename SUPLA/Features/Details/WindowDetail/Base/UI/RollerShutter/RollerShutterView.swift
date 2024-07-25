@@ -93,8 +93,8 @@ class RollerShutterView: BaseWallWindowView<RollerShutterWindowState, RollerShut
             let markers = windowState?.markers ?? []
             
             for i in 0 ..< markers.count {
-                let topCorrection = (dimens.windowRect.height - dimens.topLineRect.height / 2) * markers[i] / 100
-                let frame = dimens.markers[i].offsetBy(dx: 0, dy: topCorrection)
+                let topCorrection = (dimens.markers[i].height / 2) + dimens.topLineRect.maxY + ((dimens.windowRect.height - dimens.topLineRect.height) * markers[i] / 100)
+                let frame = dimens.markers[i].offsetBy(dx: dimens.windowRect.minX, dy: topCorrection)
                 markersLayers[i].path = dimens.markerPath.cgPath
                 markersLayers[i].frame = frame
             }
@@ -111,7 +111,7 @@ class RollerShutterView: BaseWallWindowView<RollerShutterWindowState, RollerShut
             let markerLayer = CAShapeLayer()
             markerLayer.strokeColor = UIColor.black.cgColor
             markerLayer.lineWidth = 1
-            markerLayer.fillColor = UIColor.primaryVariant.cgColor
+            markerLayer.fillColor = UIColor.primary.cgColor
     
             layer.addSublayer(markerLayer)
     
@@ -173,18 +173,18 @@ class RollerShutterRuntimeDimens: BaseWallWindowDimens {
         let halfHeight = markerHeight / 2
         
         markerPath.removeAllPoints()
-        markerPath.move(to: CGPoint(x: 0, y: halfHeight))
-        markerPath.addLine(to: CGPoint(x: halfHeight, y: 0))
-        markerPath.addLine(to: CGPoint(x: markerWidth, y: 0))
-        markerPath.addLine(to: CGPoint(x: markerWidth, y: markerHeight))
-        markerPath.addLine(to: CGPoint(x: halfHeight, y: markerHeight))
-        markerPath.addLine(to: CGPoint(x: 0, y: halfHeight))
+        markerPath.move(to: CGPoint(x: 0, y: 0))
+        markerPath.addLine(to: CGPoint(x: halfHeight, y: -halfHeight))
+        markerPath.addLine(to: CGPoint(x: markerWidth, y: -halfHeight))
+        markerPath.addLine(to: CGPoint(x: markerWidth, y: halfHeight))
+        markerPath.addLine(to: CGPoint(x: halfHeight, y: halfHeight))
+        markerPath.addLine(to: CGPoint(x: 0, y: 0))
         markerPath.close()
         
         for i in 0 ..< markers.count {
             markers[i] = CGRect(
-                x: windowRect.minX,
-                y: topLineRect.maxY - halfHeight,
+                x: 0,
+                y: -halfHeight,
                 width: markerWidth,
                 height: markerHeight
             )

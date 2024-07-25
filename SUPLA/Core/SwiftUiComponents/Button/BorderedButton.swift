@@ -35,9 +35,9 @@ struct BorderedButton: View {
 
 struct BorderedButtonStyle: ButtonStyle {
     func makeBody(configuration: Configuration) -> some View {
-        let color = configuration.isPressed ? Color(UIColor.primaryVariant) : Color(UIColor.primary)
+        let color = configuration.isPressed ? Color(UIColor.buttonPressed) : Color(UIColor.primary)
         configuration.label
-            .foregroundColor(color)
+            .foregroundColor(.Supla.onBackground)
             .font(.Supla.labelLarge)
             .cornerRadius(Dimens.buttonRadius)
             .padding(EdgeInsets(top: 8, leading: 24, bottom: 8, trailing: 24))
