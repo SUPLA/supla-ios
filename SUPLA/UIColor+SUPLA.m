@@ -26,10 +26,6 @@
                            alpha:1.0];
 }
 
-+(UIColor*)onLine {
-    return [UIColor colorWithRed:0.071 green:0.655 blue:0.118 alpha:1.000];
-}
-
 +(UIColor*)offLine {
     return [UIColor redColor];
 }

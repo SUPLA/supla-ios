@@ -462,7 +462,7 @@
 
 - (IBAction)rightTouchDown:(id)sender {
     [sender setBackgroundColor: [UIColor btnTouched]];
-    [sender setBackgroundColor: [UIColor onLine] withDelay:0.2];
+    [sender setBackgroundColor: [UIColor primary] withDelay:0.2];
 
     BOOL group = [self.channelBase isKindOfClass:[SAChannelGroup class]];
     
@@ -500,7 +500,7 @@
 
 - (IBAction)leftTouchDown:(id)sender {
     [sender setBackgroundColor: [UIColor btnTouched]];
-    [sender setBackgroundColor: [UIColor onLine] withDelay:0.2];
+    [sender setBackgroundColor: [UIColor primary] withDelay:0.2];
     
     if (_channelBase.isRGBW || _channelBase.func == SUPLA_CHANNELFNC_THERMOSTAT_HEATPOL_HOMEPLUS) {
         [self turnOff: self.channelBase];
@@ -526,7 +526,7 @@
 }
 
 - (IBAction)rlTouchCancel:(id)sender {
-    [sender setBackgroundColor: [UIColor onLine] withDelay:0.2];
+    [sender setBackgroundColor: [UIColor primary] withDelay:0.2];
     if([GlobalSettingsLegacy new].autohideButtons)
         [self resetButtonState];
 }

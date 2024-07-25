@@ -411,7 +411,7 @@ class BaseCell<T: BaseCellData>: MGSwipeTableCell {
     @objc private func onButtonTap(_ btn: MGSwipeButton) {
         btn.backgroundColor = .btnTouched()
         DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(200)) {
-            btn.backgroundColor = .onLine()
+            btn.backgroundColor = .primary
             
             if (self.settings.autohideButtons) {
                 self.hideSwipe(animated: true)
