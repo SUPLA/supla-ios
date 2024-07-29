@@ -23,14 +23,14 @@ protocol DeleteProfileUseCase {
 }
 
 final class DeleteProfileUseCaseImpl: DeleteProfileUseCase {
-    
     @Singleton<ProfileRepository> private var profileRepository
     @Singleton<SingleCall> private var singleCall
     @Singleton<DeleteAllProfileDataUseCase> private var deleteAllProfileDataUseCase
     @Singleton<ActivateProfileUseCase> private var activateProfileUseCase
-    @Singleton<SuplaAppWrapper> private var suplaApp
     @Singleton<RuntimeConfig> private var runtimeConfig
     @Singleton<GlobalSettings> var settings
+    @Singleton<DisconnectUseCase> private var disconnectUseCase
+    @Singleton<SuplaAppStateHolder> private var suplaAppStateHolder
     
     func invoke(profileId: ProfileID) -> Observable<DeleteProfileResult> {
         profileRepository.queryItem(profileId)
@@ -40,14 +40,13 @@ final class DeleteProfileUseCaseImpl: DeleteProfileUseCase {
                 }
                 
                 if (profile.isActive) {
-                    self.suplaApp.terminateSuplaClient()
-                    
-                    return self.activateAndRemove(profile: profile)
+                    return self.disconnectUseCase.invoke()
+                        .andThen(self.activateAndRemove(profile: profile))
                 } else {
                     let serverAddress = self.getServerAddress(profile)
                     return self.removeLocally(profile: profile)
                         .map {
-                            return DeleteProfileResult(
+                            DeleteProfileResult(
                                 restartNeeded: false,
                                 reauthNeeded: false,
                                 servertAddress: serverAddress
@@ -59,24 +58,31 @@ final class DeleteProfileUseCaseImpl: DeleteProfileUseCase {
     
     private func removeLocally(profile: AuthProfileItem) -> Observable<Void> {
         removeToken(profile: profile)
-        
-        return profileRepository.delete(profile)
-            .flatMap { _ in self.deleteAllProfileDataUseCase.invoke(profile: profile) }
+            .andThen(deleteAllProfileDataUseCase.invoke(profile: profile))
+            .flatMap { self.profileRepository.delete(profile) }
+            .flatMap { self.profileRepository.save() }
     }
     
-    private func removeToken(profile: AuthProfileItem) {
-        if let authInfo = profile.authInfo,
-           authInfo.isAuthDataComplete {
-            var authDetails = SingleCallWrapper.prepareAuthorizationDetails(for: profile)
-            var tokenDetails = SingleCallWrapper.prepareClientToken(for: nil, andProfile: profile.name)
+    private func removeToken(profile: AuthProfileItem) -> Completable {
+        Completable.create { completable in
             
-            do {
-                try singleCall.registerPushToken(&authDetails, Int32(authInfo.preferredProtocolVersion), &tokenDetails)
-            } catch {
-                SALog.error("Push token removal failed with error: \(error)")
+            if let authInfo = profile.authInfo,
+               authInfo.isAuthDataComplete
+            {
+                var authDetails = SingleCallWrapper.prepareAuthorizationDetails(for: profile)
+                var tokenDetails = SingleCallWrapper.prepareClientToken(for: nil, andProfile: profile.name)
+                
+                do {
+                    try self.singleCall.registerPushToken(&authDetails, Int32(authInfo.preferredProtocolVersion), &tokenDetails)
+                } catch {
+                    SALog.error("Push token removal failed with error: \(error)")
+                }
+            } else {
+                SALog.info("Push token removal skipped because of incomplete data")
             }
-        } else {
-            SALog.info("Push token removal skipped because of incomplete data")
+            
+            completable(.completed)
+            return Disposables.create()
         }
     }
     
@@ -89,20 +95,17 @@ final class DeleteProfileUseCaseImpl: DeleteProfileUseCase {
                     return self.activateProfileUseCase.invoke(
                         profileId: inactiveProfile.objectID,
                         force: true
-                    ).flatMap { activated in
-                        if (activated) {
-                            return self.removeLocally(profile: profile)
-                                .map {
-                                    DeleteProfileResult(
-                                        restartNeeded: false,
-                                        reauthNeeded: true,
-                                        servertAddress: serverAddress
-                                    )
-                                }
-                        }
-                        
-                        return Observable<DeleteProfileResult>.error(DeleteProfileError.otherProfileNotActivated)
-                    }
+                    )
+                    .andThen(
+                        self.removeLocally(profile: profile)
+                            .map {
+                                DeleteProfileResult(
+                                    restartNeeded: false,
+                                    reauthNeeded: true,
+                                    servertAddress: serverAddress
+                                )
+                            }
+                    )
                 } else {
                     // Removing last account
                     return self.removeLocally(profile: profile)
@@ -112,6 +115,7 @@ final class DeleteProfileUseCaseImpl: DeleteProfileUseCase {
                             
                             config.activeProfileId = nil
                             settings.anyAccountRegistered = false
+                            self.suplaAppStateHolder.handle(event: .noAccount)
                             
                             return DeleteProfileResult(
                                 restartNeeded: true,

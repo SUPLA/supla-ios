@@ -16,8 +16,6 @@
  Author: Mike Jangolenko 7472945@mail.ru
  */
 
-
-"version" = "версия";
 "Open" = "Открыть";
 "Open Close" = "Открыть Закрыть";
 "Reveal" = "Поднять";
@@ -49,17 +47,7 @@
 "Garage door opening sensor" = "Датчик открытия гаражных ворот";
 "Door opening sensor" = "Датчик открытия двери";
 "Roller shutter opening sensor" = "Датчик открытия роллет";
-"Connecting..." = "Подключение...";
-"Unknown error" = "Непонятная ошибка";
-"Service temporarily unavailable" = "Сервис временно не доступен";
-"Bad credentials" = "Неправильные логин/пароль";
-"Client limit exceeded" = "Ограничение количества пользователей";
-"Device disabled. Please log in to \"Supla Cloud\" and enable this device in “Smartphone” section of the website." = "Устройство выключено";
-"Access Identifier is disabled" = "Ключ доступа отключен";
-"New client registration disabled. Please log in to \"Supla Cloud\" and enable \"New client registration\" in \"Smartphone\" section of the website." = "Регистрация в настоящее время отключена. Для ее включения перейдите на вкладку Смартфоны на странице \"Supla Cloud\"";
-"Client activation required. Please log in to \"Supla Cloud\" and assign an “Access ID” for this device in “Smartphone” section of the website." = "Это устройство не имеет назначенного ключа доступа. Перейдите на страницу \"Supla Cloud\" и  на вкладке Смартфоны назначьте соответствующий ключ.";
 "Incompatible server version" = "Несовместимая версия сервера";
-"Host not found. Make sure you are connected to the internet and that an account with the entered email address has been created." = "Хост не найден";
 "RGB Lighting" = "Контроллер освещения RGB";
 "Dimmer and RGB lighting" = "Диммер и контроллер освещения RGB";
 "Dimmer" = "Диммер";
@@ -203,7 +191,6 @@
 "The glass sections are exposed for more than 20 hours, which may adversely affect their life. It is recommended to cover all sections for a minimum of 4 hours in order to regenerate them." = "Стеклянные секции открыты более 20 часов, что может отрицательно сказаться на их сроке действия. Рекомендуется закрыть все секции не менее чем на 4 часа для их регенерации.";
 "Planned regeneration is in progress." = "Идёт плановая регенерация.";
 "Regeneration initiated after 20 hours of operation is in progress." = "Выполняется регенерация, начатая после 20 часов работы.";
-"Incorrect Email Address or Password" = "Неверный адрес email или пароль";
 "Channel Id" = "Id канала";
 "Back" = "Назад";
 "The z-wave bridge is not responding. Check if the bridge is connected to the server." = "Мост z-wave не отвечает. Проверьте подключение моста к серверу.";
@@ -279,12 +266,10 @@
 "Don't have an account in Supla Cloud yet?" = "У вас еще нет учётной записи в Supla Cloud?";
 "Create" = "Создать учетку";
 "Location order" = "Порядок локализации";
-"Roller shutter %" = "Роллеты %";
 "Opening" = "Открытия";
 "Closing" = "Закрытия";
 "Percent of opening" = "Процент открытия";
 "Percent of closing" = "Процент закрытия";
-"Access Identifier inactive." = "Идентификатор доступа неактивен.";
 "Your account" = "Ваша учётная запись";
 "Your accounts" = "Ваши учётные записи";
 "Accounts" = "Учётные записи";
@@ -318,3 +303,21 @@
 "roller_shutter_motor_problem" = "Проблема с двигателем / Неожиданная остановка.";
 "roller_shutter_calibration" = "калибровка";
 "roller_shutter_start_calibration_message" = "Вы уверены, что хотите начать калибровку?";
+
+/* Status */
+"status_connecting" = "Подключение...";
+"status_unknown_error" = "Непонятная ошибка";
+"status_temporarily_unavailable" = "Сервис временно не доступен";
+"status_incorrect_data" = "Неверный адрес email или пароль";
+"status_bad_credentials" = "Неправильные логин/пароль";
+"status_client_limit_exceeded" = "Ограничение количества пользователей";
+"status_device_disabled" = "Устройство выключено";
+"status_access_id_disabled" = "Ключ доступа отключен";
+"status_registration_disabled" = "Регистрация в настоящее время отключена. Для ее включения перейдите на вкладку Смартфоны на странице \"Supla Cloud\".";
+"status_access_id_not_assigned" = "Это устройство не имеет назначенного ключа доступа. Перейдите на страницу \"Supla Cloud\" и  на вкладке Смартфоны назначьте соответствующий ключ.";
+"status_access_id_inactive" = "Идентификатор доступа неактивен.";
+"status_host_not_found" = "Хост не найден";
+
+/* About */
+"about_version" = "версия %@";
+"about_license" = "Эта программа с открытым кодом; вы можете использовать ее и/или изменять ее по условиям GNU General Public License которая публикуется Free Software Foundation; по версии 2 Лицензии, или (по вашему усмотрению) любой поздней версии.\n\n Эта пррграмма распространяется в надежде ее полезности, но БЕЗ КАКИХ-ЛИБО ГАРАНТИЙ; безо всяких подразумеваемых гарантий КОММЕРЧЕСКОГО ИЛИ ЧАСТНОГО ПРИМЕНЕНИЯ. Подробнее в тексте\n GNU General Public License.\n\n Если к программе не приложена копия GNU General Public License отправте запрос по адресу: Free Software Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA";

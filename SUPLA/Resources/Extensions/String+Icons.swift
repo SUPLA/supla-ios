@@ -55,6 +55,7 @@ extension String {
         
         static let warning = "channel_warning_level1"
         static let error = "channel_warning_level2"
+        static let statusError = "icon_status_error"
         
         static let arrowRight = "icon_arrow_right"
         static let arrowDoubleRight = "icon_arrow_double_right"
@@ -62,6 +63,12 @@ extension String {
         static let arrowClose = "icon_arrow_close"
         static let arrowUp = "icon_arrow_up"
         static let arrowDown = "icon_arrow_down"
+        static let arrowCoverTap = "icon_arrow_cover_tap"
+        static let arrowCoverHold = "icon_arrow_cover_hold"
+        static let arrowRevealTap = "icon_arrow_reveal_tap"
+        static let arrowRevealHold = "icon_arrow_reveal_hold"
+        
+        static let fingerprint = "icon_fingerprint"
         
         // MARK: Functions
         static let fncUnknown = "unknown_channel"
@@ -128,6 +135,8 @@ extension String {
         static let fncThermostatHeat = "fnc_thermostat_heat"
         static let fncThermostatCool = "fnc_thermostat_cool"
         static let fncThermostatDhw = "fnc_thermostat_dhw"
+        // ShadingSystems
+        static let fncTerraceAwning = "fnc_terrace_awning"
         
         // MARK: other
         static let thumbHeat = "thumb_heat"
@@ -136,5 +145,8 @@ extension String {
     
     struct Image {
         static let logo = "logo"
+        static let logoLight = "logo_light"
+        static let logoWithName = "logo_with_name"
+        static let garageContent = "garage_content"
     }
 }

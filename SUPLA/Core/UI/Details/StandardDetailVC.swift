@@ -24,10 +24,10 @@ class StandardDetailVC<S : ViewState, E : ViewEvent, VM : StandardDetailVM<S, E>
     private let item: ItemBundle
     private let pages: [DetailPage]
     
-    init(navigator: NavigationCoordinator, viewModel: VM, item: ItemBundle, pages: [DetailPage]) {
+    init(viewModel: VM, item: ItemBundle, pages: [DetailPage]) {
         self.item = item
         self.pages = pages
-        super.init(navigationCoordinator: navigator, viewModel: viewModel)
+        super.init(viewModel: viewModel)
     }
     
     required init?(coder: NSCoder) {
@@ -36,12 +36,14 @@ class StandardDetailVC<S : ViewState, E : ViewEvent, VM : StandardDetailVM<S, E>
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        edgesForExtendedLayout = []
-        view.backgroundColor = .background
-        
         viewModel.loadData(remoteId: item.remoteId, type: item.subjectType)
         
         setupViewController()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        setupToolbar()
     }
     
     override func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
@@ -89,6 +91,16 @@ class StandardDetailVC<S : ViewState, E : ViewEvent, VM : StandardDetailVM<S, E>
                 viewControllers.append(roofWindowDetail())
             case .facadeBlind:
                 viewControllers.append(facadeBlindDetail())
+            case .terraceAwning:
+                viewControllers.append(terraceAwningDetail())
+            case .projectorScreen:
+                viewControllers.append(projectorScreenDetail())
+            case .curtain:
+                viewControllers.append(curtainDetail())
+            case .verticalBlind:
+                viewControllers.append(verticalBlindDetail())
+            case .garageDoor:
+                viewControllers.append(garageDoorDetail())
             }
         }
         
@@ -106,29 +118,28 @@ class StandardDetailVC<S : ViewState, E : ViewEvent, VM : StandardDetailVM<S, E>
     
     private func switchGeneral() -> SwitchGeneralVC {
         let vc = SwitchGeneralVC(remoteId: item.remoteId)
-        vc.navigationCoordinator = navigationCoordinator
         vc.tabBarItem = UITabBarItem(
             title: settings.showBottomLabels ? Strings.StandardDetail.tabGeneral : nil,
             image: .iconGeneral,
             tag: DetailTabTag.Switch.rawValue
         )
+        vc.navigationBarMaintainedByParent = true
         return vc
     }
     
     private func switchTimerDetail() -> SwitchTimerDetailVC {
         let vc = SwitchTimerDetailVC(remoteId: item.remoteId)
-        vc.navigationCoordinator = navigationCoordinator
         vc.tabBarItem = UITabBarItem(
             title: settings.showBottomLabels ? Strings.StandardDetail.tabTimer : nil,
             image: .iconTimer,
             tag: DetailTabTag.Timer.rawValue
         )
+        vc.navigationBarMaintainedByParent = true
         return vc
     }
     
     private func legacyDetail(type: LegacyDetailType) -> DetailViewController {
         let vc = DetailViewController(detailViewType: type, remoteId: item.remoteId)
-        vc.navigationCoordinator = navigationCoordinator
         vc.tabBarItem = UITabBarItem(
             title: settings.showBottomLabels ? Strings.StandardDetail.tabMetrics : nil,
             image: .iconMetrics,
@@ -139,102 +150,155 @@ class StandardDetailVC<S : ViewState, E : ViewEvent, VM : StandardDetailVM<S, E>
     
     private func thermostatGeneral() -> ThermostatGeneralVC {
         let vc = ThermostatGeneralVC(item: item)
-        vc.navigationCoordinator = navigationCoordinator
         vc.tabBarItem = UITabBarItem(
             title: settings.showBottomLabels ? Strings.StandardDetail.tabGeneral : nil,
             image: .iconGeneral,
             tag: DetailTabTag.Thermostat.rawValue
         )
+        vc.navigationBarMaintainedByParent = true
         return vc
     }
     
     private func scheduleDetail() -> ScheduleDetailVC {
         let vc = ScheduleDetailVC(item: item)
-        vc.navigationCoordinator = navigationCoordinator
         vc.tabBarItem = UITabBarItem(
             title: settings.showBottomLabels ? Strings.StandardDetail.tabSchedule : nil,
             image: .iconSchedule,
             tag: DetailTabTag.Schedule.rawValue
         )
+        vc.navigationBarMaintainedByParent = true
         return vc
     }
     
     private func thermostatHistoryDetail() -> ThermostatHistoryDetailVC {
         let vc = ThermostatHistoryDetailVC(remoteId: item.remoteId, navigationItemProvider: self)
-        vc.navigationCoordinator = navigationCoordinator
         vc.tabBarItem = UITabBarItem(
             title: settings.showBottomLabels ? Strings.StandardDetail.tabHistory : nil,
             image: .iconHistory,
             tag: DetailTabTag.ThermostatHistory.rawValue
         )
+        vc.navigationBarMaintainedByParent = true
         return vc
     }
     
     private func thermometerHistoryDetail() -> ThermometerHistoryDetailVC {
         let vc = ThermometerHistoryDetailVC(remoteId: item.remoteId, navigationItemProvider: self)
-        vc.navigationCoordinator = navigationCoordinator
         vc.tabBarItem = UITabBarItem(
             title: settings.showBottomLabels ? Strings.StandardDetail.tabHistory : nil,
             image: .iconHistory,
             tag: DetailTabTag.ThermostatHistory.rawValue
         )
+        vc.navigationBarMaintainedByParent = true
         return vc
     }
     
     private func thermostatTimerDetail() -> ThermostatTimerDetailVC {
         let vc = ThermostatTimerDetailVC(remoteId: item.remoteId)
-        vc.navigationCoordinator = navigationCoordinator
         vc.tabBarItem = UITabBarItem(
             title: settings.showBottomLabels ? Strings.StandardDetail.tabTimer : nil,
             image: .iconTimer,
             tag: DetailTabTag.Timer.rawValue
         )
-        
+        vc.navigationBarMaintainedByParent = true
         return vc
     }
     
     private func gpmHistoryDetail() -> GpmHistoryDetailVC {
         let vc = GpmHistoryDetailVC(remoteId: item.remoteId, navigationItemProvider: self)
-        vc.navigationCoordinator = navigationCoordinator
         vc.tabBarItem = UITabBarItem(
             title: settings.showBottomLabels ? Strings.StandardDetail.tabHistory : nil,
             image: .iconHistory,
             tag: DetailTabTag.History.rawValue
         )
-        
+        vc.navigationBarMaintainedByParent = true
         return vc
     }
     
     private func rollerShutterDetail() -> RollerShutterVC {
         let vc = RollerShutterVC(itemBundle: item)
-        vc.navigationCoordinator = navigationCoordinator
         vc.tabBarItem = UITabBarItem(
             title: settings.showBottomLabels ? Strings.StandardDetail.tabGeneral : nil,
             image: .iconGeneral,
             tag: DetailTabTag.Window.rawValue
         )
+        vc.navigationBarMaintainedByParent = true
         return vc
     }
     
     private func roofWindowDetail() -> RoofWindowVC {
         let vc = RoofWindowVC(itemBundle: item)
-        vc.navigationCoordinator = navigationCoordinator
         vc.tabBarItem = UITabBarItem(
             title: settings.showBottomLabels ? Strings.StandardDetail.tabGeneral : nil,
             image: .iconGeneral,
             tag: DetailTabTag.Window.rawValue
         )
+        vc.navigationBarMaintainedByParent = true
         return vc
     }
     
     private func facadeBlindDetail() -> FacadeBlindsVC {
         let vc = FacadeBlindsVC(itemBundle: item)
-        vc.navigationCoordinator = navigationCoordinator
         vc.tabBarItem = UITabBarItem(
             title: settings.showBottomLabels ? Strings.StandardDetail.tabGeneral : nil,
             image: .iconGeneral,
             tag: DetailTabTag.Window.rawValue
         )
+        vc.navigationBarMaintainedByParent = true
+        return vc
+    }
+    
+    private func terraceAwningDetail() -> TerraceAwningVC {
+        let vc = TerraceAwningVC(itemBundle: item)
+        vc.tabBarItem = UITabBarItem(
+            title: settings.showBottomLabels ? Strings.StandardDetail.tabGeneral : nil,
+            image: .iconGeneral,
+            tag: DetailTabTag.Window.rawValue
+        )
+        vc.navigationBarMaintainedByParent = true
+        return vc
+    }
+    
+    private func projectorScreenDetail() -> ProjectorScreenVC {
+        let vc = ProjectorScreenVC(itemBundle: item)
+        vc.tabBarItem = UITabBarItem(
+            title: settings.showBottomLabels ? Strings.StandardDetail.tabGeneral : nil,
+            image: .iconGeneral,
+            tag: DetailTabTag.Window.rawValue
+        )
+        vc.navigationBarMaintainedByParent = true
+        return vc
+    }
+    
+    private func curtainDetail() -> CurtainVC {
+        let vc = CurtainVC(itemBundle: item)
+        vc.tabBarItem = UITabBarItem(
+            title: settings.showBottomLabels ? Strings.StandardDetail.tabGeneral : nil,
+            image: .iconGeneral,
+            tag: DetailTabTag.Window.rawValue
+        )
+        vc.navigationBarMaintainedByParent = true
+        return vc
+    }
+    
+    private func verticalBlindDetail() -> VerticalBlindsVC {
+        let vc = VerticalBlindsVC(itemBundle: item)
+        vc.tabBarItem = UITabBarItem(
+            title: settings.showBottomLabels ? Strings.StandardDetail.tabGeneral : nil,
+            image: .iconGeneral,
+            tag: DetailTabTag.Window.rawValue
+        )
+        vc.navigationBarMaintainedByParent = true
+        return vc
+    }
+    
+    private func garageDoorDetail() -> GarageDoorVC {
+        let vc = GarageDoorVC(itemBundle: item)
+        vc.tabBarItem = UITabBarItem(
+            title: settings.showBottomLabels ? Strings.StandardDetail.tabGeneral : nil,
+            image: .iconGeneral,
+            tag: DetailTabTag.Window.rawValue
+        )
+        vc.navigationBarMaintainedByParent = true
         return vc
     }
 }

@@ -27,6 +27,7 @@ protocol ValuesFormatter {
     
     // Time
     func minutesToString(minutes: Int) -> String
+    func secondsToString(_ time: TimeInterval) -> String
     func getHourString(hour: Hour?) -> String?
     func getTimeString(hour: Int?, minute: Int?, second: Int?) -> String
     func getDateString(date: Date?) -> String?
@@ -151,6 +152,14 @@ final class ValuesFormatterImpl: ValuesFormatter {
         }
         
         return result
+    }
+    
+    func secondsToString(_ time: TimeInterval) -> String {
+        let hours = time / Double(HOUR_IN_SEC)
+        let minutes = (time.truncatingRemainder(dividingBy: Double(HOUR_IN_SEC))) / Double(MINUTE_IN_SEC)
+        let seconds = time.truncatingRemainder(dividingBy: Double(MINUTE_IN_SEC))
+        
+        return getTimeString(hour: Int(hours), minute: Int(minutes), second: Int(seconds))
     }
     
     func getDateString(date: Date?) -> String? {

@@ -45,7 +45,7 @@ final class GeneralPurposeMeasurementItemRepositoryImpl: Repository<SAGeneralPur
         deleteAll(
             SAGeneralPurposeMeasurementItem
                 .fetchRequest()
-                .filtered(by: NSPredicate(format: "AND profile = %@", profile))
+                .filtered(by: NSPredicate(format: "profile = %@", profile))
         )
     }
     

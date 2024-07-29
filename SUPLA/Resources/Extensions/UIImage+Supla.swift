@@ -52,6 +52,7 @@ extension UIImage {
     
     static let iconWarning = UIImage(named: .Icons.warning)
     static let iconError = UIImage(named: .Icons.error)
+    static let iconStatusError = UIImage(named: .Icons.statusError)
     
     static let iconArrowRight = UIImage(named: .Icons.arrowRight)
     static let iconArrowDoubleRight = UIImage(named: .Icons.arrowDoubleRight)
@@ -59,6 +60,12 @@ extension UIImage {
     static let iconArrowClose = UIImage(named: .Icons.arrowClose)
     static let iconArrowUp = UIImage(named: .Icons.arrowUp)
     static let iconArrowDown = UIImage(named: .Icons.arrowDown)
+    static let iconArrowCoverTap = UIImage(named: .Icons.arrowCoverTap)
+    static let iconArrowCoverHold = UIImage(named: .Icons.arrowCoverHold)
+    static let iconArrowRevealTap = UIImage(named: .Icons.arrowRevealTap)
+    static let iconArrowRevealHold = UIImage(named: .Icons.arrowRevealHold)
+    
+    static let iconFingerprint = UIImage(named: .Icons.fingerprint)
     
     // MARK: Functions
     static let fncUnknown = UIImage(named: .Icons.fncUnknown)
@@ -73,4 +80,6 @@ extension UIImage {
     static let thumbCool = UIImage(named: .Icons.thumbCool)
     
     @objc static let logo = UIImage(named: .Image.logo)
+    @objc static let logoLight = UIImage(named: .Image.logoLight)
+    @objc static let garageContent = UIImage(named: .Image.garageContent)
 }

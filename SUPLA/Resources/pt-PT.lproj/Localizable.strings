@@ -14,7 +14,6 @@
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 
-"version" = "versão";
 "Open" = "Abrir";
 "Open Close" = "Abrir Fechar";
 "Reveal" = "Esconder";
@@ -45,17 +44,7 @@
 "Garage door opening sensor" = "Sensor de abertura da garagem";
 "Door opening sensor" = "Sensor de abertura da porta";
 "Roller shutter opening sensor" = "Sensor de abertura dos estores";
-"Connecting..." = "Está a ligar...";
-"Unknown error" = "Erro indefinido";
-"Service temporarily unavailable" = "Serviço temporariamente indisponível";
-"Bad credentials" = "Dados de identificação errados";
-"Client limit exceeded" = "Excedeu o limite de aplicações de clientes";
-"Device disabled. Please log in to \"Supla Cloud\" and enable this device in “Smartphone” section of the website." = "O dispositivo está desligado";
-"Access Identifier is disabled" = "O ID de acesso está desativado";
-"New client registration disabled. Please log in to \"Supla Cloud\" and enable \"New client registration\" in \"Smartphone\" section of the website." = "Atualmente o registro está desativado. Para activá-lo, vá para a guia \"Smartphones\" na página \"Supla Cloud\"";
-"Client activation required. Please log in to \"Supla Cloud\" and assign an “Access ID” for this device in “Smartphone” section of the website." = "Este dispositivo não possui um ID de acesso atribuído. Vá para a página \"Supla Cloud\" e atribua o ID apropriado na guia \"Smartphones\".";
 "Incompatible server version" = "Versão do servidor incompátivel";
-"Host not found. Make sure you are connected to the internet and that an account with the entered email address has been created." = "O endereço do servidor não foi encontrado";
 "RGB Lighting" = "Iluminação RGB";
 "Dimmer and RGB lighting" = "Controlador de luz e iluminação RGB";
 "Dimmer" = "Controlador de luz";
@@ -199,7 +188,6 @@
 "The glass sections are exposed for more than 20 hours, which may adversely affect their life. It is recommended to cover all sections for a minimum of 4 hours in order to regenerate them." = "As secções do vidro são expostas por mais de 20 horas, o que pode afetar negativamente a sua vida útil. Recomenda-se cobrir todas as secções durante um mínimo de 4 horas para as regenerar.";
 "Planned regeneration is in progress." = "A regeneração planeada está em curso.";
 "Regeneration initiated after 20 hours of operation is in progress." = "A regeneração iniciará  após 20 horas de trabalho.";
-"Incorrect Email Address or Password" = "Erro de morada de emailou de palavra passe";
 "Channel Id" = "ID do Canal";
 "Back" = "Voltar";
 "The z-wave bridge is not responding. Check if the bridge is connected to the server." = "A ponte z-wave não responde. Verifique se a ponte está conectada ao servidor.";
@@ -275,12 +263,10 @@
 "Don't have an account in Supla Cloud yet?" = "Ainda não tem uma conta Supla Cloud?";
 "Create" = "Abrir conta";
 "Location order" = "Ordem de localização";
-"Roller shutter %" = "Persianas %";
 "Opening" = "Aberto";
 "Closing" = "Encerramentos";
 "Percent of opening" = "Percentagem de abertura";
 "Percent of closing" = "Percentagem de encerramento";
-"Access Identifier inactive." = "Acesso ao identificador  inativo.";
 "Your account" = "A sua conta";
 "Your accounts" = "As suas contas";
 "Accounts" = "Conta";
@@ -314,3 +300,20 @@
 "roller_shutter_motor_problem" = "Problema do motor / Paragem inesperada.";
 "roller_shutter_calibration" = "Calibrar";
 "roller_shutter_start_calibration_message" = "Tem certeza que quer começar a calibrar?";
+
+/* Status */
+"status_connecting" = "Está a ligar...";
+"status_unknown_error" = "Erro indefinido";
+"status_temporarily_unavailable" = "Serviço temporariamente indisponível";
+"status_incorrect_data" = "Erro de morada de emailou de palavra passe";
+"status_bad_credentials" = "Dados de identificação errados";
+"status_client_limit_exceeded" = "Excedeu o limite de aplicações de clientes";
+"status_device_disabled" = "O dispositivo está desligado";
+"status_access_id_disabled" = "O ID de acesso está desativado";
+"status_registration_disabled" = "Atualmente o registro está desativado. Para activá-lo, vá para a guia \"Smartphones\" na página \"Supla Cloud\"";
+"status_access_id_not_assigned" = "Este dispositivo não possui um ID de acesso atribuído. Vá para a página \"Supla Cloud\" e atribua o ID apropriado na guia \"Smartphones\".";
+"status_access_id_inactive" = "Acesso ao identificador  inativo.";
+"status_host_not_found" = "O endereço do servidor não foi encontrado";
+
+/* About */
+"about_version" = "versão %@";

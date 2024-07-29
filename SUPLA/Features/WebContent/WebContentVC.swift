@@ -19,7 +19,7 @@
 import WebKit
 
 class WebContentVC<S: WebContentViewState, E: ViewEvent, VM: WebContentVM<S, E>>: BaseViewControllerVM<S, E, VM>, WKNavigationDelegate {
-    private lazy var webView: WKWebView! = {
+    lazy var webView: WKWebView! = {
         let view = WKWebView(frame: .zero, configuration: WKWebViewConfiguration())
         view.translatesAutoresizingMaskIntoConstraints = false
         view.navigationDelegate = self
@@ -28,9 +28,8 @@ class WebContentVC<S: WebContentViewState, E: ViewEvent, VM: WebContentVM<S, E>>
     
     private lazy var loadingView: LoadingScrimView! = LoadingScrimView()
     
-    init(navigationCoordinator: NavigationCoordinator) {
+    init() {
         super.init(nibName: nil, bundle: nil)
-        self.navigationCoordinator = navigationCoordinator
     }
     
     @available(*, unavailable)

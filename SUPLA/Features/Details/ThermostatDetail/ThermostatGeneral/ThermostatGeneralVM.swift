@@ -295,6 +295,7 @@ class ThermostatGeneralVM: BaseViewModel<ThermostatGeneralViewState, ThermostatG
                 .changing(path: \.temporaryChangeActive, to: channel.channel.isOnline() && thermostatValue.flags.contains(.weeklyScheduleTemporalOverride))
                 .changing(path: \.programInfo, to: createProgramInfo(data.2, thermostatValue, channel.channel.isOnline(), data.3))
                 .changing(path: \.timerEndDate, to: channel.channel.getTimerEndDate())
+                .changing(path: \.currentPower, to: Int(thermostatValue.state.value))
             
             changedState = handleSetpoints(changedState, channel: channel.channel)
             changedState = handleFlags(changedState, value: thermostatValue, isOnline: channel.channel.isOnline())
@@ -516,6 +517,7 @@ struct ThermostatGeneralViewState: ViewState {
     
     /* View properties */
     
+    var currentPower: Int = 0
     var measurements: [MeasurementValue] = []
     var setpointHeat: Float? = nil
     var setpointCool: Float? = nil
@@ -532,6 +534,20 @@ struct ThermostatGeneralViewState: ViewState {
     var sensorIssue: SensorIssue? = nil
     
     /* All calculated properties below */
+    
+    var operationalMode: ThermostatOperationalMode {
+        if (offline) {
+            .offline
+        } else if (mode == .off || mode == .notSet) {
+            .off
+        } else if (heatingIndicatorInactive == false) {
+            .heating
+        } else if (coolingIndicatorInactive == false) {
+            .cooling
+        } else {
+            .standby
+        }
+    }
     
     var off: Bool {
         get {
@@ -599,27 +615,12 @@ struct ThermostatGeneralViewState: ViewState {
             }
         }
     }
-    var modeIndicatorColor: UIColor {
-        get {
-            if (offline) {
-                return .black
-            } else if (heatingIndicatorInactive == false) {
-                return .red
-            } else if (coolingIndicatorInactive == false) {
-                return .blue
-            } else if (off) {
-                return .black
-            } else {
-                return .primary
-            }
-        }
-    }
     var powerIconColor: UIColor {
         get {
             if ((off && !weeklyScheduleActive) || offline) {
                 return .red
             } else {
-                return .suplaGreen
+                return .primary
             }
         }
     }
@@ -639,6 +640,27 @@ struct ThermostatGeneralViewState: ViewState {
             heatSetpoint: setpointHeat,
             coolSetpoint: setpointCool
         )
+    }
+}
+
+enum ThermostatOperationalMode {
+    case offline, off, heating, cooling, standby
+    
+    var foregroundColor: UIColor {
+        switch (self) {
+        case .offline, .off: .black
+        case .heating: .error
+        case .cooling: .secondary
+        case .standby: .primary
+        }
+    }
+    
+    var backgroundColor: UIColor {
+        switch (self) {
+        case .heating: .errorContainer
+        case .cooling: .secondaryContainer
+        default: .transparent
+        }
     }
 }
 

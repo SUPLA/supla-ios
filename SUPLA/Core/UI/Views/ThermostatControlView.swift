@@ -17,29 +17,26 @@
  */
 
 import Foundation
-import RxSwift
 import RxRelay
+import RxSwift
 
-fileprivate let OUTER_RADIUS = CGFloat(136)
+private let OUTER_RADIUS = CGFloat(136)
 
 final class ThermostatControlView: UIView {
-    
     private let desiredSize = CGFloat(280)
     private let setpointRadius = CGFloat(128)
-    private let innerShadow = UIColor(red: 209/255.0, green: 209/255.0, blue: 209/255.0, alpha: 1)
+    private let innerShadow = UIColor(red: 209 / 255.0, green: 209 / 255.0, blue: 209 / 255.0, alpha: 1)
     
     override var intrinsicContentSize: CGSize {
         CGSize(width: desiredSize, height: desiredSize)
     }
     
-    var setpointPositionEvents: Observable<SetpointEvent> {
-        get { positionRelay.asObservable() }
-    }
+    var setpointPositionEvents: Observable<SetpointEvent> { positionRelay.asObservable() }
     
     var setpointHeatPercentage: CGFloat? {
         get { setpointHeat }
         set {
-            setpointHeat = newValue?.toPercentage()
+            setpointHeat = newValue?.limit()
             setpointHeatPoint.isHidden = newValue == nil
             setNeedsDisplay()
         }
@@ -48,7 +45,7 @@ final class ThermostatControlView: UIView {
     var setpointCoolPercentage: CGFloat? {
         get { setpointCool }
         set {
-            setpointCool = newValue?.toPercentage()
+            setpointCool = newValue?.limit()
             setpointCoolPoint.isHidden = newValue == nil
             setNeedsDisplay()
         }
@@ -57,7 +54,7 @@ final class ThermostatControlView: UIView {
     var temperaturePercentage: CGFloat? {
         get { temperature }
         set {
-            temperature = newValue?.toPercentage() ?? 0
+            temperature = newValue?.limit() ?? 0
             currentTemperaturePoint.isHidden = newValue == nil
             setNeedsDisplay()
         }
@@ -92,39 +89,7 @@ final class ThermostatControlView: UIView {
                 }
             }
             setpointTemperatureView.text = newValue
-            
         }
-    }
-    
-    var indicatorHeatingHidden: Bool {
-        get { indicatorHeatingShape.isHidden }
-        set {
-            indicatorHeatingShape.isHidden = newValue
-            if (newValue) {
-                indicatorHeatingShape.removeAllAnimations()
-            } else {
-                indicatorHeatingShape.add(blinkingAnimation, forKey: "heat blinking")
-            }
-            setNeedsDisplay()
-        }
-    }
-    
-    var indicatorCoolingHidden: Bool {
-        get { indicatorCoolingShape.isHidden }
-        set {
-            indicatorCoolingShape.isHidden = newValue
-            if (newValue) {
-                indicatorCoolingShape.removeAllAnimations()
-            } else {
-                indicatorCoolingShape.add(blinkingAnimation, forKey: "cool blinking")
-            }
-            setNeedsDisplay()
-        }
-    }
-    
-    var indicationColor: CGColor? {
-        get { temperatureCircleShape.shadowColor }
-        set { temperatureCircleShape.shadowColor = newValue }
     }
     
     var greyOutSetpoins: Bool {
@@ -137,23 +102,51 @@ final class ThermostatControlView: UIView {
     
     var setpointToDrag: SetpointType? = nil
     
+    var operationalMode: ThermostatOperationalMode = .offline {
+        didSet {
+            temperatureCircleShape.operationalMode = operationalMode
+            indicatorHeatingShape.isHidden = operationalMode != .heating
+            indicatorCoolingShape.isHidden = operationalMode != .cooling
+            currentPowerLabel.isHidden = operationalMode != .heating && operationalMode != .cooling || currentPower <= 1
+            
+            if (oldValue == .heating && operationalMode != .heating) {
+                indicatorHeatingShape.removeAllAnimations()
+            } else if (operationalMode == .heating && oldValue != .heating) {
+                indicatorHeatingShape.add(blinkingAnimation, forKey: "heat blinking")
+            }
+            if (oldValue == .cooling && operationalMode != .cooling) {
+                indicatorCoolingShape.removeAllAnimations()
+            } else if (operationalMode == .cooling && oldValue != .cooling) {
+                indicatorCoolingShape.add(blinkingAnimation, forKey: "cool blinking")
+            }
+            
+            setNeedsLayout()
+        }
+    }
+    
+    var currentPower: Int = 0 {
+        didSet {
+            temperatureCircleShape.currentPower = currentPower
+            currentPowerLabel.isHidden = operationalMode != .heating && operationalMode != .cooling || currentPower <= 1
+            currentPowerLabel.text = "\(currentPower - 1)%"
+            
+            setNeedsLayout()
+        }
+    }
+    
     private var setpointHeat: CGFloat? = 0
     private var setpointCool: CGFloat? = 0
     private var temperature: CGFloat = 0.2
     private var isDragging: Bool = false
     private var positionRelay: PublishRelay<SetpointEvent> = PublishRelay()
     
-    private lazy var temperatureCircleShape: CAShapeLayer = { TemperatureCircleLayer() }()
+    private lazy var temperatureCircleShape: TemperatureCircleLayer = .init()
     
-    private lazy var controlCircleShape: CAShapeLayer = { ControlCircleLayer() }()
+    private lazy var controlCircleShape: CAShapeLayer = ControlCircleLayer()
     
-    private lazy var controlCircleInnerTopShadowShape: CAShapeLayer = {
-        return ControlCircleInnerTopShadow()
-    }()
+    private lazy var controlCircleInnerTopShadowShape: CAShapeLayer = ControlCircleInnerTopShadow()
     
-    private lazy var controlCircleInnerBottomShadow: CAShapeLayer = {
-        return ControlCircleInnerBottomShadow()
-    }()
+    private lazy var controlCircleInnerBottomShadow: CAShapeLayer = ControlCircleInnerBottomShadow()
     
     // MARK: Setpoint
     
@@ -168,7 +161,7 @@ final class ThermostatControlView: UIView {
     
     private lazy var indicatorHeatingShape: CAShapeLayer = {
         let layer = CAShapeLayer()
-        layer.bounds = CGRect(x: 0,y: 0,width: 24,height: 24)
+        layer.bounds = CGRect(x: 0, y: 0, width: 22, height: 22)
         layer.contents = UIImage.iconHeating?.cgImage
         layer.contentsGravity = .resizeAspectFill
         return layer
@@ -176,7 +169,7 @@ final class ThermostatControlView: UIView {
     
     private lazy var indicatorCoolingShape: CAShapeLayer = {
         let layer = CAShapeLayer()
-        layer.bounds = CGRect(x: 0,y: 0,width: 24,height: 24)
+        layer.bounds = CGRect(x: 0, y: 0, width: 22, height: 22)
         layer.contents = UIImage.iconCooling?.cgImage
         layer.contentsGravity = .resizeAspectFill
         return layer
@@ -190,6 +183,13 @@ final class ThermostatControlView: UIView {
     }()
     
     private lazy var maxTemperatureView: UILabel = {
+        let label = UILabel()
+        label.font = .body2
+        label.textColor = .onBackground
+        return label
+    }()
+    
+    private lazy var currentPowerLabel: UILabel = {
         let label = UILabel()
         label.font = .body2
         label.textColor = .onBackground
@@ -237,19 +237,30 @@ final class ThermostatControlView: UIView {
         setpointHeatPoint.frame = bounds
         setpointCoolPoint.frame = bounds
         minTemperatureView.frame = CGRect(
-            x: self.frame.width / 2 - 120,
-            y: self.frame.height * 0.75 - 6,
+            x: frame.width / 2 - 120,
+            y: frame.height * 0.75 - 6,
             width: minTemperatureView.intrinsicContentSize.width,
             height: minTemperatureView.intrinsicContentSize.height
         )
         maxTemperatureView.frame = CGRect(
-            x: self.frame.width / 2 + 90,
-            y: self.frame.height * 0.75 - 6,
+            x: frame.width / 2 + 90,
+            y: frame.height * 0.75 - 6,
             width: maxTemperatureView.intrinsicContentSize.width,
             height: maxTemperatureView.intrinsicContentSize.height
         )
-        indicatorHeatingShape.position = CGPoint(x: self.frame.width / 2, y: self.frame.height / 2 - 55)
-        indicatorCoolingShape.position = CGPoint(x: self.frame.width / 2, y: self.frame.height / 2 + 55)
+        
+        let correction: CGFloat = currentPower > 1 ? 75 : 55
+        indicatorHeatingShape.position = CGPoint(x: frame.width / 2, y: frame.height / 2 - correction)
+        indicatorCoolingShape.position = CGPoint(x: frame.width / 2, y: frame.height / 2 + correction)
+        
+        let textCorrection: CGFloat = operationalMode == .heating ? -45 : 45
+        currentPowerLabel.frame = CGRect(
+            x: CGFloat(frame.width / 2 - currentPowerLabel.intrinsicContentSize.width / 2),
+            y: CGFloat(frame.height / 2 - currentPowerLabel.intrinsicContentSize.height / 2) + textCorrection,
+            width: currentPowerLabel.intrinsicContentSize.width,
+            height: currentPowerLabel.intrinsicContentSize.height
+        )
+        
     }
     
     override func draw(_ rect: CGRect) {
@@ -258,11 +269,10 @@ final class ThermostatControlView: UIView {
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        
         guard let point = event?.allTouches?.first?.location(in: self) else { return }
         
-        let centerX = self.frame.width / 2
-        let centerY = self.frame.height / 2
+        let centerX = frame.width / 2
+        let centerY = frame.height / 2
         
         let distance = sqrt(pow(centerX - point.x, 2) + pow(centerY - point.y, 2))
         let tolerance: CGFloat = 24
@@ -312,6 +322,7 @@ final class ThermostatControlView: UIView {
         addSubview(minTemperatureView)
         addSubview(maxTemperatureView)
         addSubview(setpointTemperatureView)
+        addSubview(currentPowerLabel)
         
         NSLayoutConstraint.activate([
             setpointTemperatureView.centerXAnchor.constraint(equalTo: centerXAnchor),
@@ -332,8 +343,8 @@ final class ThermostatControlView: UIView {
     private func drawSetpoint() {
         if let setpointHeat = setpointHeat {
             let alpha = (setpointHeat * 4 / 3 * .pi) + (5 / 6.0 * .pi)
-            let x = setpointRadius * cos(alpha) + self.frame.width / 2
-            let y = setpointRadius * sin(alpha) + self.frame.height / 2
+            let x = setpointRadius * cos(alpha) + frame.width / 2
+            let y = setpointRadius * sin(alpha) + frame.height / 2
             
             setpointHeatPoint.move(to: CGPoint(x: x, y: y))
         } else {
@@ -342,8 +353,8 @@ final class ThermostatControlView: UIView {
         
         if let setpointCool = setpointCool {
             let alpha = (setpointCool * 4 / 3 * .pi) + (5 / 6.0 * .pi)
-            let x = setpointRadius * cos(alpha) + self.frame.width / 2
-            let y = setpointRadius * sin(alpha) + self.frame.height / 2
+            let x = setpointRadius * cos(alpha) + frame.width / 2
+            let y = setpointRadius * sin(alpha) + frame.height / 2
             
             setpointCoolPoint.move(to: CGPoint(x: x, y: y))
         } else {
@@ -353,14 +364,14 @@ final class ThermostatControlView: UIView {
     
     private func drawTemperature() {
         let alpha = (temperature * 4 / 3 * .pi) + (5 / 6.0 * .pi)
-        let x = setpointRadius * cos(alpha) + self.frame.width / 2
-        let y = setpointRadius * sin(alpha) + self.frame.height / 2
+        let x = setpointRadius * cos(alpha) + frame.width / 2
+        let y = setpointRadius * sin(alpha) + frame.height / 2
         
         currentTemperaturePoint.move(to: CGPoint(x: x, y: y))
     }
     
     private func alignToCircle(point: CGPoint) -> CGFloat {
-        let circleCenter = CGPoint(x: self.frame.width / 2, y: self.frame.height / 2)
+        let circleCenter = CGPoint(x: frame.width / 2, y: frame.height / 2)
         
         // Move circle center to 0,0
         let correctedPoint = point.insetBy(x: -circleCenter.x, y: -circleCenter.y)
@@ -391,22 +402,62 @@ final class ThermostatControlView: UIView {
 
 // MARK: - Temperature circle
 
-fileprivate class TemperatureCircleLayer: CAShapeLayer {
-    
+private class TemperatureCircleLayer: CAShapeLayer {
     override var frame: CGRect {
         didSet {
             updatePath()
+            updatePowerPath()
+            
+            powerBackgroundSublayer.frame = frame
+            powerIndicatorSublayer.frame = frame
         }
     }
     
+    var operationalMode: ThermostatOperationalMode = .offline {
+        didSet {
+            powerBackgroundSublayer.isHidden = operationalMode != .cooling && operationalMode != .heating || currentPower <= 1
+            powerIndicatorSublayer.isHidden = operationalMode != .cooling && operationalMode != .heating || currentPower <= 1
+            
+            powerBackgroundSublayer.strokeColor = operationalMode.backgroundColor.cgColor
+            powerIndicatorSublayer.strokeColor = operationalMode.foregroundColor.cgColor
+            
+            shadowColor = operationalMode.foregroundColor.cgColor
+        }
+    }
+    
+    var currentPower: Int = 0 {
+        didSet {
+            powerBackgroundSublayer.isHidden = operationalMode != .cooling && operationalMode != .heating || currentPower <= 1
+            powerIndicatorSublayer.isHidden = operationalMode != .cooling && operationalMode != .heating || currentPower <= 1
+            
+            updatePowerPath()
+        }
+    }
     
     private let radius: CGFloat = 100
+    private static let powerStrokeWidth: CGFloat = 4
+    
+    private lazy var powerBackgroundSublayer: CAShapeLayer = {
+        let layer = CAShapeLayer()
+        layer.lineWidth = TemperatureCircleLayer.powerStrokeWidth
+        layer.fillColor = UIColor.transparent.cgColor
+        return layer
+    }()
+    
+    private lazy var powerIndicatorSublayer: CAShapeLayer = {
+        let layer = CAShapeLayer()
+        layer.lineWidth = TemperatureCircleLayer.powerStrokeWidth
+        layer.fillColor = UIColor.transparent.cgColor
+        layer.lineCap = .round
+        return layer
+    }()
     
     override init() {
         super.init()
         setupView()
     }
     
+    @available(*, unavailable)
     required init?(coder: NSCoder) { fatalError("init(coder:) has not been implemented") }
     
     override class func defaultAction(forKey event: String) -> CAAction? {
@@ -421,6 +472,9 @@ fileprivate class TemperatureCircleLayer: CAShapeLayer {
         shadowOpacity = 0.25
         shadowColor = UIColor.primary.cgColor
         shadowOffset = CGSize.zero
+        
+        addSublayer(powerBackgroundSublayer)
+        addSublayer(powerIndicatorSublayer)
     }
     
     private func updatePath() {
@@ -432,12 +486,26 @@ fileprivate class TemperatureCircleLayer: CAShapeLayer {
             clockwise: true
         ).cgPath
     }
+    
+    private func updatePowerPath() {
+        powerBackgroundSublayer.path = calculatePowerPath(100)
+        powerIndicatorSublayer.path = calculatePowerPath(currentPower - 1)
+    }
+    
+    private func calculatePowerPath(_ currentPower: Int) -> CGPath {
+        UIBezierPath(
+            arcCenter: CGPoint(x: frame.width / 2, y: frame.height / 2),
+            radius: radius - TemperatureCircleLayer.powerStrokeWidth / 2,
+            startAngle: -(.pi / 2),
+            endAngle: 2 * .pi * Double(currentPower) / 100.0 - .pi / 2,
+            clockwise: true
+        ).cgPath
+    }
 }
 
 // MARK: - Control circle
 
-fileprivate class ControlCircleLayer: CAShapeLayer {
-    
+private class ControlCircleLayer: CAShapeLayer {
     override var frame: CGRect {
         didSet {
             updatePath()
@@ -449,6 +517,7 @@ fileprivate class ControlCircleLayer: CAShapeLayer {
         fillColor = UIColor.surface.cgColor
     }
     
+    @available(*, unavailable)
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -479,8 +548,7 @@ fileprivate class ControlCircleLayer: CAShapeLayer {
 
 // MARK: - Control circle inner top shadow
 
-fileprivate class ControlCircleInnerTopShadow: CAShapeLayer {
-    
+private class ControlCircleInnerTopShadow: CAShapeLayer {
     override var frame: CGRect {
         didSet {
             updatePaths()
@@ -492,6 +560,7 @@ fileprivate class ControlCircleInnerTopShadow: CAShapeLayer {
         setupView()
     }
     
+    @available(*, unavailable)
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -540,8 +609,7 @@ fileprivate class ControlCircleInnerTopShadow: CAShapeLayer {
 
 // MARK: - Control circle inner bottom shadow
 
-fileprivate class ControlCircleInnerBottomShadow: CAShapeLayer {
-    
+private class ControlCircleInnerBottomShadow: CAShapeLayer {
     override var frame: CGRect {
         didSet {
             updatePath()
@@ -553,6 +621,7 @@ fileprivate class ControlCircleInnerBottomShadow: CAShapeLayer {
         setupView()
     }
     
+    @available(*, unavailable)
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -581,14 +650,13 @@ fileprivate class ControlCircleInnerBottomShadow: CAShapeLayer {
     }
 }
 
-fileprivate func createMask(centerPoint: CGPoint) -> CAShapeLayer {
-    
+private func createMask(centerPoint: CGPoint) -> CAShapeLayer {
     let layer = CAShapeLayer()
     layer.path = UIBezierPath(
         arcCenter: centerPoint,
         radius: OUTER_RADIUS,
-        startAngle: 5/6.0 * .pi,
-        endAngle: 13/6.0 * .pi,
+        startAngle: 5 / 6.0 * .pi,
+        endAngle: 13 / 6.0 * .pi,
         clockwise: true
     ).cgPath
     layer.fillColor = UIColor.white.cgColor
@@ -597,8 +665,7 @@ fileprivate func createMask(centerPoint: CGPoint) -> CAShapeLayer {
 
 // MARK: - Setpoint layers
 
-fileprivate class SetpointLayers: LayerGroup {
-    
+private class SetpointLayers: LayerGroup {
     var frame: CGRect {
         get { fatalError("Not implemented") }
         set {
@@ -616,9 +683,7 @@ fileprivate class SetpointLayers: LayerGroup {
         }
     }
     
-    var position: CGPoint {
-        get { currentPosition }
-    }
+    var position: CGPoint { currentPosition }
     
     var greyOut: Bool {
         get { false }
@@ -654,7 +719,7 @@ fileprivate class SetpointLayers: LayerGroup {
     }()
     
     private var type: SetpointType
-    private var currentPosition: CGPoint = CGPoint()
+    private var currentPosition: CGPoint = .init()
     
     init(type: SetpointType) {
         self.type = type

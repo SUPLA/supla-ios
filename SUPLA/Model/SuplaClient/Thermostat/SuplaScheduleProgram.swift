@@ -42,6 +42,7 @@ enum SuplaScheduleProgram: UInt8, CaseIterable {
             }
         }
         
-        fatalError("Could not convert value `\(value)` to SuplaScheduleProgram")
+        SALog.error("Invalid SuplaScheduleProgram value `\(value)'")
+        return .off
     }
 }

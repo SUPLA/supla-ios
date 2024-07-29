@@ -170,7 +170,7 @@ final class ScheduleDetailVMTests: ViewModelTest<ScheduleDetailViewState, Schedu
                 schedule: schedule
             )
         }
-        dateProvider.currentTimestampReturns = 123
+        dateProvider.currentTimestampReturns = .single(123)
         
         // when
         observe(viewModel)
@@ -272,7 +272,7 @@ final class ScheduleDetailVMTests: ViewModelTest<ScheduleDetailViewState, Schedu
             schedule: schedule
         )
         viewModel.updateView { _ in initialState }
-        dateProvider.currentTimestampReturns = 4321
+        dateProvider.currentTimestampReturns = .single(4321)
         
         // when
         observe(viewModel)
@@ -310,7 +310,7 @@ final class ScheduleDetailVMTests: ViewModelTest<ScheduleDetailViewState, Schedu
             programs: programs
         )
         viewModel.updateView { _ in initialState }
-        dateProvider.currentTimestampReturns = 123
+        dateProvider.currentTimestampReturns = .single(123)
         
         // when
         observe(viewModel)
@@ -523,7 +523,7 @@ final class ScheduleDetailVMTests: ViewModelTest<ScheduleDetailViewState, Schedu
             config: SuplaDeviceConfig.mock()
         ))
         
-        dateProvider.currentTimestampReturns = 1003
+        dateProvider.currentTimestampReturns = .single(1003)
         let initialState = ScheduleDetailViewState(lastInteractionTime: 1000)
         viewModel.updateView { _ in initialState }
         

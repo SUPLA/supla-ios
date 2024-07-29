@@ -59,10 +59,11 @@ extension DiContainer {
     @objc static func start() {
         // MARK: General
 
+        register(SuplaAppCoordinator.self, SuplaAppCoordinatorImpl())
         register(GlobalSettings.self, GlobalSettingsImpl())
         register(RuntimeConfig.self, RuntimeConfigImpl())
         register(SuplaClientProvider.self, SuplaClientProviderImpl())
-        register(SuplaAppWrapper.self, SuplaAppWrapperImpl())
+        register(SuplaAppProvider.self, SuplaAppProviderImpl())
         register(VibrationService.self, VibrationServiceImpl())
         register(SingleCall.self, SingleCallImpl())
         register(DateProvider.self, DateProviderImpl())
@@ -77,6 +78,9 @@ extension DiContainer {
         register(SessionResponseProvider.self, SessionResponseProviderImpl())
         register(SuplaSchedulers.self, SuplaSchedulersImpl())
         register(ThreadHandler.self, ThreadHandlerImpl())
+        register(SuplaAppStateHolder.self, SuplaAppStateHolderImpl())
+        register(BuildInfo.self, BuildInfoImpl())
+        
         // Managers
         register(UpdateEventsManager.self, UpdateEventsManagerImpl())
         register(ChannelConfigEventsManager.self, ChannelConfigEventsManagerImpl())
@@ -114,6 +118,7 @@ extension DiContainer {
         // MARK: Usecases
 
         // Usecases - Channel
+        register(UpdateChannelUseCase.self, UpdateChannelUseCaseImpl())
         register(SwapChannelPositionsUseCase.self, SwapChannelPositionsUseCaseImpl())
         register(CreateProfileChannelsListUseCase.self, CreateProfileChannelsListUseCaseImpl())
         register(ReadChannelByRemoteIdUseCase.self, ReadChannelByRemoteIdUseCaseImpl())
@@ -155,6 +160,7 @@ extension DiContainer {
         register(ChannelBaseActionUseCase.self, ChannelBaseActionUseCaseImpl())
         // Usecases - ChannelConfig
         register(InsertChannelConfigUseCase.self, InsertChannelConfigUseCaseImpl())
+        register(RequestChannelConfigUseCase.self, RequestChannelConfigUseCaseImpl())
         // Usecases - Client
         register(ExecuteSimpleActionUseCase.self, ExecuteSimpleActionUseCaseImpl())
         register(StartTimerUseCase.self, StartTimerUseCaseImpl())
@@ -165,7 +171,10 @@ extension DiContainer {
         register(CallSuplaClientOperationUseCase.self, CallSuplaClientOperationUseCaseImpl())
         register(ExecuteRollerShutterActionUseCase.self, ExecuteRollerShutterActionUseCaseImpl())
         register(AuthorizeUseCase.self, AuthorizeUseCaseImpl())
+        register(LoginUseCase.self, LoginUseCaseImpl())
         register(ExecuteFacadeBlindActionUseCase.self, ExecuteFacadeBlindActionUseCaseImpl())
+        register(DisconnectUseCase.self, DisconnectUseCaseImpl())
+        register(ReconnectUseCase.self, ReconnectUseCaseImpl())
         // Usecases - Detail
         register(ProvideDetailTypeUseCase.self, ProvideDetailTypeUseCaseImpl())
         // Usecases - Group
@@ -174,6 +183,8 @@ extension DiContainer {
         register(ReadGroupByRemoteIdUseCase.self, ReadGroupByRemoteIdUseCaseImpl())
         register(GetGroupOnlineSummaryUseCase.self, GetGroupOnlineSummaryUseCaseImpl())
         register(UpdateChannelGroupTotalValueUseCase.self, UpdateChannelGroupTotalValueUseCaseImpl())
+        register(GetGroupActivePercentageUseCase.self, GetGroupActivePercentageUseCaseImpl())
+        register(ReadGroupTiltingDetailsUseCase.self, ReadGroupTiltingDetailsUseCaseImpl())
         // Usecases - Icon
         register(GetDefaultIconNameUseCase.self, GetDefaultIconNameUseCaseImpl())
         // Usecases - Location
@@ -192,6 +203,8 @@ extension DiContainer {
         // Usecases - Notification
         register(InsertNotificationUseCase.self, InsertNotificationUseCaseImpl())
         register(NotificationCenterWrapper.self, NotificationCenterWrapperImpl())
+        // Usecases - Lock
+        register(CheckPinUseCase.self, CheckPinUseCaseImpl())
         
         // MARK: Not singletons
 
@@ -212,11 +225,6 @@ extension DiContainer {
 
     @objc static func deviceConfigEventsManager() -> DeviceConfigEventsManagerEmitter? {
         return DiContainer.shared.resolve(type: DeviceConfigEventsManager.self)
-    }
-
-    @objc static func setPushToken(token: Data?) {
-        var settings = DiContainer.shared.resolve(type: GlobalSettings.self)
-        settings?.pushToken = token
     }
 
     @objc static func getPushToken() -> Data? {

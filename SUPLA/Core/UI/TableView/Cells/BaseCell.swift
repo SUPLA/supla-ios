@@ -136,7 +136,7 @@ class BaseCell<T: BaseCellData>: MGSwipeTableCell {
         view.translatesAutoresizingMaskIntoConstraints = false
         view.contentMode = .scaleAspectFit
         view.image = .iconInfo
-        view.tintColor = .onBackground
+        view.tintColor = .onSurface
         view.isHidden = true
         view.isUserInteractionEnabled = true
         view.addGestureRecognizer(
@@ -274,7 +274,7 @@ class BaseCell<T: BaseCellData>: MGSwipeTableCell {
     func isCaptionTouched() -> Bool { captionTouched }
     
     func setupView() {
-        contentView.backgroundColor = .channelCell
+        contentView.backgroundColor = .surface
         
         captionView.font = .cellCaptionFont.withSize(scale(Dimens.Fonts.caption, limit: .lower(1)))
         timerView.font = .formLabelFont.withSize(scale(Dimens.Fonts.label, limit: .upper(1)))
@@ -409,9 +409,9 @@ class BaseCell<T: BaseCellData>: MGSwipeTableCell {
     }
     
     @objc private func onButtonTap(_ btn: MGSwipeButton) {
-        btn.backgroundColor = .btnTouched()
+        btn.backgroundColor = .buttonPressed
         DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(200)) {
-            btn.backgroundColor = .onLine()
+            btn.backgroundColor = .primary
             
             if (self.settings.autohideButtons) {
                 self.hideSwipe(animated: true)
@@ -514,7 +514,7 @@ class CellStatusIndicatorView: UIView {
     }
     
     func configure(filled: Bool, online: Bool) {
-        let color = online ? UIColor.primaryVariant : UIColor.error
+        let color = online ? UIColor.primary : UIColor.error
         if (filled) {
             layer.borderColor = color.cgColor
             backgroundColor = color

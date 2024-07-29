@@ -23,4 +23,9 @@ final class ThreadHandlerMock: ThreadHandler {
     func sleep(_ timeInterval: TimeInterval) {
         sleepParameters.append(timeInterval)
     }
+
+    var usleepParameters: [UInt32] = []
+    func usleepProxy(_ microseconds: UInt32) {
+        usleepParameters.append(microseconds)
+    }
 }

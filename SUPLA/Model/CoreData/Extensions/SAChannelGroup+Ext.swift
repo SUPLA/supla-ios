@@ -17,9 +17,6 @@
  */
 
 extension SAChannelGroup {
-    @objc var activePercentage: Int {
-        self.getActivePercentage()
-    }
     
     @objc var positions: [Int] {
         guard let totalValue = total_value as? GroupTotalValue else { return [] }
@@ -30,10 +27,10 @@ extension SAChannelGroup {
         
         return totalValue.values
             .map {
-                if let value = $0 as? FacadeBlindGroupValue {
+                if let value = $0 as? ShadowingBlindGroupValue {
                     return value.position
                 }
-                if let value = $0 as? RollerShutterGroupValue {
+                if let value = $0 as? ShadingSystemGroupValue {
                     return value.closedSensorActive ? 100 : value.position
                 }
                 
@@ -103,21 +100,6 @@ extension SAChannelGroup {
     
     func item() -> ItemBundle {
         ItemBundle(remoteId: remote_id, deviceId: 0, subjectType: .group, function: self.func)
-    }
-    
-    override open func imgIsActive() -> Int32 {
-        if (self.func == SUPLA_CHANNELFNC_DIMMERANDRGBLIGHTING) {
-            var active: Int32 = 0
-            if (self.getActivePercentage(idx: 2) >= 100) {
-                active = 0x1
-            }
-            if (self.getActivePercentage(idx: 1) >= 100) {
-                active = active | 0x2
-            }
-            return active
-        }
-        
-        return self.activePercentage >= 100 ? 1 : 0
     }
     
     override open func measuredTemperatureMin() -> Double {
@@ -210,82 +192,6 @@ extension SAChannelGroup {
                 
                 return result
             }
-    }
-
-    func getActivePercentage(idx: Int = 0) -> Int {
-        guard let groupTotalValue = total_value as? GroupTotalValue else { return 0 }
-        
-        if (groupTotalValue.values.isEmpty) {
-            return 0
-        }
-
-        switch (self.func) {
-        case SUPLA_CHANNELFNC_CONTROLLINGTHEDOORLOCK,
-             SUPLA_CHANNELFNC_CONTROLLINGTHEGATEWAYLOCK,
-             SUPLA_CHANNELFNC_CONTROLLINGTHEGATE,
-             SUPLA_CHANNELFNC_CONTROLLINGTHEGARAGEDOOR,
-             SUPLA_CHANNELFNC_POWERSWITCH,
-             SUPLA_CHANNELFNC_LIGHTSWITCH,
-             SUPLA_CHANNELFNC_STAIRCASETIMER,
-             SUPLA_CHANNELFNC_VALVE_OPENCLOSE:
-            return groupTotalValue.values
-                .map { $0 as! BoolGroupValue }
-                .reduce(0) { result, value in
-                    value.value ? result + 1 : result
-                } * 100 / groupTotalValue.values.count
-        case SUPLA_CHANNELFNC_VALVE_PERCENTAGE:
-            return groupTotalValue.values
-                .map { $0 as! IntegerGroupValue }
-                .reduce(0) { result, value in
-                    value.value >= 100 ? result + 1 : result
-                } * 100 / groupTotalValue.values.count
-        case SUPLA_CHANNELFNC_DIMMER:
-            return groupTotalValue.values
-                .map { $0 as! IntegerGroupValue }
-                .reduce(0) { result, value in
-                    value.value > 0 ? result + 1 : result
-                } * 100 / groupTotalValue.values.count
-        case SUPLA_CHANNELFNC_RGBLIGHTING:
-            return groupTotalValue.values
-                .map { $0 as! RgbLightingGroupValue }
-                .reduce(0) { result, value in
-                    value.brightness > 0 ? result + 1 : result
-                } * 100 / groupTotalValue.values.count
-        case SUPLA_CHANNELFNC_DIMMERANDRGBLIGHTING:
-            return groupTotalValue.values
-                .map { $0 as! DimmerAndRgbLightingGroupValue }
-                .reduce(0) { result, value in
-                    var sum = result
-                    if (idx == 0 || idx == 1) {
-                        sum = value.colorBrightness >= 0 ? result + 1 : result
-                    }
-                    if (idx == 0 || idx == 2) {
-                        sum = value.brightness >= 0 ? result + 1 : result
-                    }
-                    return sum
-                } * 100 / (idx == 0 ? groupTotalValue.values.count * 2 : groupTotalValue.values.count)
-        case SUPLA_CHANNELFNC_CONTROLLINGTHEROLLERSHUTTER,
-             SUPLA_CHANNELFNC_CONTROLLINGTHEROOFWINDOW:
-            return groupTotalValue.values
-                .map { $0 as! RollerShutterGroupValue }
-                .reduce(0) { result, value in
-                    value.position >= 100 || value.closedSensorActive ? result + 1 : result
-                } * 100 / groupTotalValue.values.count
-        case SUPLA_CHANNELFNC_CONTROLLINGTHEFACADEBLIND:
-            return groupTotalValue.values
-                .map { $0 as! FacadeBlindGroupValue }
-                .reduce(0) { result, value in
-                    value.position >= 100 ? result + 1 : result
-                } * 100 / groupTotalValue.values.count
-        case SUPLA_CHANNELFNC_THERMOSTAT_HEATPOL_HOMEPLUS:
-            return groupTotalValue.values
-                .map { $0 as! HeatpolThermostatGroupValue }
-                .reduce(0) { result, value in
-                    value.on ? result + 1 : result
-                } * 100 / groupTotalValue.values.count
-        default:
-            return 0
-        }
     }
 }
 

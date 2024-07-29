@@ -34,11 +34,6 @@ private enum DefaultDimens {
 final class RoofWindowView: BaseWindowView<RoofWindowState> {
     override var isEnabled: Bool {
         didSet {
-            if (isEnabled) {
-                colors = WindowColors.standard(traitCollection)
-            } else {
-                colors = WindowColors.offline(traitCollection)
-            }
             setNeedsDisplay()
         }
     }
@@ -58,7 +53,7 @@ final class RoofWindowView: BaseWindowView<RoofWindowState> {
     private var openedOffset: CGFloat { toXOffset(windowState?.position.value ?? 0) }
 
     private let dimens = RuntimeDimens()
-    private lazy var colors = WindowColors.standard(traitCollection)
+    private lazy var colors = RoofWindowColors.standard(traitCollection)
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -96,6 +91,11 @@ final class RoofWindowView: BaseWindowView<RoofWindowState> {
             drawSash(context)
         }
         drawJamb(context)
+        
+        if (!isEnabled) {
+            context.setBlendMode(.destinationOut)
+            drawPath(context, fillColor: colors.disabledOverlay) { UIBezierPath(rect: dimens.frame).cgPath }
+        }
     }
     
     private func setupView() {
@@ -178,24 +178,6 @@ final class RoofWindowView: BaseWindowView<RoofWindowState> {
         }
     }
     
-    private func drawPath(_ context: CGContext, fillColor: UIColor? = nil, strokeColor: UIColor? = nil, withShadow: Bool = false, _ pathProducer: () -> CGPath) {
-        context.beginPath()
-        context.addPath(pathProducer())
-        if (withShadow) {
-            context.setShadow(offset: ShadowValues.offset, blur: ShadowValues.blur)
-        } else {
-            context.setShadow(offset: .zero, blur: 0)
-        }
-        if let color = fillColor {
-            context.setFillColor(color.cgColor)
-            context.drawPath(using: .fill)
-        }
-        if let color = strokeColor {
-            context.setStrokeColor(color.cgColor)
-            context.drawPath(using: .stroke)
-        }
-    }
-    
     private func dynamicTransformation(_ offset: CGFloat? = nil) -> CGAffineTransform {
         let xOffset = offset == nil ? openedOffset : offset!
         let firstTransformation = CATransform3DMakeRotation(degreesToRadians(windowRotationY), 0, 1, 0)
@@ -212,15 +194,12 @@ final class RoofWindowView: BaseWindowView<RoofWindowState> {
     }
 }
 
-private class RuntimeDimens {
-    var scale: CGFloat = 1
-    
-    var canvasRect: CGRect = .zero
+private class RuntimeDimens: BaseWindowViewDimens {
     
     var windowFrameWidth: CGFloat = 0
     var windowTopCoverWidth: CGFloat = 0
     
-    func update(_ frame: CGRect) {
+    override func calculateDimens(_ frame: CGRect) {
         createCanvasRect(frame)
         scale = canvasRect.width / DefaultDimens.width
         windowFrameWidth = DefaultDimens.windowFrameWidth * scale

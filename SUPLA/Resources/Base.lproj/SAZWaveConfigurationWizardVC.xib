@@ -170,7 +170,7 @@
                             </connections>
                         </button>
                     </subviews>
-                    <color key="backgroundColor" name="Colors/primary"/>
+                    <color key="backgroundColor" name="Colors/primary_container"/>
                     <constraints>
                         <constraint firstItem="WXz-xQ-dRF" firstAttribute="top" secondItem="Q9O-G8-Bs6" secondAttribute="top" constant="5" id="AWf-mA-qHA"/>
                         <constraint firstItem="rhE-dh-0nI" firstAttribute="top" secondItem="Q9O-G8-Bs6" secondAttribute="top" constant="5" id="Kh3-mm-eHD"/>
@@ -189,7 +189,7 @@
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rBR-By-Axn">
                     <rect key="frame" x="0.0" y="0.0" width="414" height="816"/>
-                    <color key="backgroundColor" name="Colors/primary"/>
+                    <color key="backgroundColor" name="Colors/primary_container"/>
                 </view>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -247,7 +247,7 @@
                     </constraints>
                 </view>
             </subviews>
-            <color key="backgroundColor" name="Colors/primary"/>
+            <color key="backgroundColor" name="Colors/primary_container"/>
             <constraints>
                 <constraint firstItem="fuT-LN-d5P" firstAttribute="leading" secondItem="2cU-pa-qd7" secondAttribute="leading" constant="20" id="6DA-Wg-kdf"/>
                 <constraint firstItem="fuT-LN-d5P" firstAttribute="centerY" secondItem="2cU-pa-qd7" secondAttribute="centerY" constant="-30" id="ECW-cA-q6P"/>
@@ -272,7 +272,7 @@
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Press back to return to the previous step or &quot;Exit&quot; to finish." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="8" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OTk-BD-soD">
                             <rect key="frame" x="10" y="300.5" width="354" height="49.5"/>
                             <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="18"/>
-                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <color key="textColor" name="Colors/on_primary_container"/>
                             <nil key="highlightedColor"/>
                         </label>
                     </subviews>
@@ -288,7 +288,7 @@
                     </constraints>
                 </view>
             </subviews>
-            <color key="backgroundColor" name="Colors/primary"/>
+            <color key="backgroundColor" name="Colors/primary_container"/>
             <constraints>
                 <constraint firstItem="cYl-uh-nSI" firstAttribute="leading" secondItem="rEs-AX-DWu" secondAttribute="leading" constant="20" id="9AP-VF-95a"/>
                 <constraint firstAttribute="trailing" secondItem="cYl-uh-nSI" secondAttribute="trailing" constant="20" id="kMO-0J-n5u"/>
@@ -313,7 +313,7 @@
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select the z-wave bridge and then the channel you want to configure." lineBreakMode="tailTruncation" numberOfLines="8" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kif-QE-f8n">
                             <rect key="frame" x="0.0" y="39.5" width="374" height="49.5"/>
                             <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="18"/>
-                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <color key="textColor" name="Colors/on_primary_container"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="pxT-d5-KaX" customClass="SAPickerField">
@@ -329,13 +329,13 @@
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Bridge" lineBreakMode="tailTruncation" numberOfLines="8" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ul5-ub-qWP">
                             <rect key="frame" x="0.0" y="169" width="374" height="25"/>
                             <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="18"/>
-                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <color key="textColor" name="Colors/on_primary_container"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Channel" lineBreakMode="tailTruncation" numberOfLines="8" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sY5-XC-gcM">
                             <rect key="frame" x="0.0" y="250" width="374" height="25"/>
                             <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="18"/>
-                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <color key="textColor" name="Colors/on_primary_container"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="VBf-9j-a2E" customClass="SAPickerField">
@@ -373,7 +373,7 @@
                     </constraints>
                 </view>
             </subviews>
-            <color key="backgroundColor" name="Colors/primary"/>
+            <color key="backgroundColor" name="Colors/primary_container"/>
             <constraints>
                 <constraint firstItem="jzk-ZR-zz6" firstAttribute="top" relation="greaterThanOrEqual" secondItem="ydc-hf-0Ix" secondAttribute="top" constant="2" id="QRo-Tz-uiG"/>
                 <constraint firstAttribute="trailing" secondItem="jzk-ZR-zz6" secondAttribute="trailing" constant="20" id="R6Y-sf-qc9"/>
@@ -392,13 +392,13 @@
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="100" text="Below are the details of the selected channel. Please specify its purpose by selecting the appropriate function." lineBreakMode="tailTruncation" numberOfLines="8" baselineAdjustment="alignBaselines" minimumFontSize="8" translatesAutoresizingMaskIntoConstraints="NO" id="107-YY-mJ9">
                             <rect key="frame" x="0.0" y="39.5" width="374" height="74"/>
                             <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="18"/>
-                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <color key="textColor" name="Colors/on_primary_container"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="300" text="Function" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="kWy-QX-AJU">
                             <rect key="frame" x="0.0" y="0.0" width="374" height="37.5"/>
                             <fontDescription key="fontDescription" name="Quicksand-Regular" family="Quicksand" pointSize="30"/>
-                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <color key="textColor" name="Colors/on_primary_container"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5fs-eX-U92" userLabel="View2">
@@ -528,7 +528,7 @@
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Function" lineBreakMode="tailTruncation" numberOfLines="8" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CrA-tu-0Ln">
                             <rect key="frame" x="0.0" y="289" width="374" height="25"/>
                             <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="18"/>
-                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <color key="textColor" name="Colors/on_primary_container"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="1mL-OH-9y2" customClass="SAPickerField">
@@ -545,7 +545,7 @@
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Caption" lineBreakMode="tailTruncation" numberOfLines="8" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VR4-Zp-AZ8">
                             <rect key="frame" x="0.0" y="365" width="374" height="25"/>
                             <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="18"/>
-                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <color key="textColor" name="Colors/on_primary_container"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Epv-tT-pZV">
@@ -588,7 +588,7 @@
                     </constraints>
                 </view>
             </subviews>
-            <color key="backgroundColor" name="Colors/primary"/>
+            <color key="backgroundColor" name="Colors/primary_container"/>
             <constraints>
                 <constraint firstItem="Seq-PA-Mcb" firstAttribute="top" relation="greaterThanOrEqual" secondItem="Spn-8Q-4Px" secondAttribute="top" constant="5" id="7Ei-LA-fPP"/>
                 <constraint firstItem="Seq-PA-Mcb" firstAttribute="centerY" secondItem="Spn-8Q-4Px" secondAttribute="centerY" constant="-20" id="Afy-jQ-F1g"/>
@@ -613,14 +613,14 @@
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="It will take a while" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="F61-xF-s7k">
                             <rect key="frame" x="0.0" y="229.5" width="374" height="41.5"/>
                             <fontDescription key="fontDescription" name="Quicksand-Regular" family="Quicksand" pointSize="33"/>
-                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <color key="textColor" name="Colors/on_primary_container"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="8" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="l1n-Id-vnO">
                             <rect key="frame" x="10" y="301" width="354" height="123"/>
                             <string key="text">Before continuing, make sure that all your z-wave devices are online. Pressing "Next" will search your z-wave network, which may take from a few seconds to several minutes.</string>
                             <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="18"/>
-                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <color key="textColor" name="Colors/on_primary_container"/>
                             <nil key="highlightedColor"/>
                         </label>
                     </subviews>
@@ -640,7 +640,7 @@
                     </constraints>
                 </view>
             </subviews>
-            <color key="backgroundColor" name="Colors/primary"/>
+            <color key="backgroundColor" name="Colors/primary_container"/>
             <constraints>
                 <constraint firstItem="kmE-Ux-uFD" firstAttribute="leading" secondItem="4BU-4j-Xo1" secondAttribute="leading" constant="20" id="ElK-kc-VI1"/>
                 <constraint firstAttribute="trailing" secondItem="kmE-Ux-uFD" secondAttribute="trailing" constant="20" id="NUd-8l-REz"/>
@@ -901,7 +901,7 @@
                     </constraints>
                 </view>
             </subviews>
-            <color key="backgroundColor" name="Colors/primary"/>
+            <color key="backgroundColor" name="Colors/primary_container"/>
             <constraints>
                 <constraint firstItem="VWX-4j-B4k" firstAttribute="top" relation="greaterThanOrEqual" secondItem="WES-2i-Jt6" secondAttribute="top" id="Mh4-X8-iWI"/>
                 <constraint firstItem="VWX-4j-B4k" firstAttribute="leading" secondItem="WES-2i-Jt6" secondAttribute="leading" id="O95-1a-823"/>
@@ -982,7 +982,7 @@
                     </constraints>
                 </view>
             </subviews>
-            <color key="backgroundColor" name="Colors/primary"/>
+            <color key="backgroundColor" name="Colors/primary_container"/>
             <constraints>
                 <constraint firstItem="ihJ-TQ-zp5" firstAttribute="top" relation="greaterThanOrEqual" secondItem="Vtw-LY-8e7" secondAttribute="top" constant="5" id="7TN-vz-nzY"/>
                 <constraint firstAttribute="trailing" secondItem="ihJ-TQ-zp5" secondAttribute="trailing" constant="20" id="DvX-Qu-z34"/>
@@ -1008,7 +1008,10 @@
         <namedColor name="Colors/on_background">
             <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
-        <namedColor name="Colors/primary">
+        <namedColor name="Colors/on_primary_container">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="Colors/primary_container">
             <color red="0.070588235294117646" green="0.65490196078431373" blue="0.11764705882352941" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="Colors/surface">

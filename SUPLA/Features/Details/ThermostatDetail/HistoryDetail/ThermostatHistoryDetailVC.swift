@@ -23,10 +23,6 @@ import RxCocoa
 
 final class ThermostatHistoryDetailVC: BaseHistoryDetailVC {
     
-    private var navigator: ThermostatDetailNavigationCoordinator? {
-        get { navigationCoordinator as? ThermostatDetailNavigationCoordinator }
-    }
-    
     override init(remoteId: Int32, navigationItemProvider: NavigationItemProvider) {
         super.init(remoteId: remoteId, navigationItemProvider: navigationItemProvider)
         viewModel = ThermostatHistoryDetailVM()

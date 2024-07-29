@@ -29,7 +29,7 @@ final class RsOpenningClosingPersentageCell: BaseSettingsCell<UISegmentedControl
     
     static func configure(_ opening: Bool, _ callback: @escaping (Bool) -> Void, cellProvider: () -> RsOpenningClosingPersentageCell) -> RsOpenningClosingPersentageCell {
         let cell = cellProvider()
-        cell.setLabel(Strings.Cfg.showOpeningMode)
+        cell.setLabel(Strings.Cfg.rsDisplayMode)
         cell.actionView.selectedSegmentIndex = opening ? 0 : 1
         cell.actionView.rx.selectedSegmentIndex
             .subscribe(onNext: { callback($0 == 0) })

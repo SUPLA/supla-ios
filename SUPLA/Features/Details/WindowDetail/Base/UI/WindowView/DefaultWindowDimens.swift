@@ -16,29 +16,30 @@
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 
-enum DefaultWindowDimens {
+
+enum WindowDimens {
+    static let padding: CGFloat = 5 // Needed for shadow
+    
     static let width: CGFloat = 288
     static let height: CGFloat = 336
     static var ratio: CGFloat { width / height }
     
     static let topLineHeight: CGFloat = 16
-    static let slatsCount: Int = .init(ceil((height - topLineHeight) / slatHeight))
-    static let slatHeight: CGFloat = 24
-    static let slatDistance: CGFloat = 5
-    
     static let windowHorizontalMargin: CGFloat = 16
     static let glassMiddelMargin: CGFloat = 20
     static let glassHorizontalMargin: CGFloat = 18
     static let glassVerticalMargin: CGFloat = 24
-    static let slatHorizontalMargin: CGFloat = 8
     
-    static let markerHeight: CGFloat = 8
-    static let markerWidth: CGFloat = 28
-    static let markerInfoRadius: CGFloat = 14
-    
-    static let windowCornerRadius: CGFloat = 8
+    static let cornerRadius: CGFloat = 8
     
     static let shadowRadius: CGFloat = 3
     static let shadowOffset: CGSize = .init(width: 0, height: 1.5)
-    static let shadowOpacity: Float = 0.15
+    static let shadowOpacity: Float = 0.10
+}
+
+enum SlatDimens {
+    static let count: Int = .init(ceil((WindowDimens.height - WindowDimens.topLineHeight) / height))
+    static let height: CGFloat = 24
+    static let distance: CGFloat = 5
+    static let horizontalMargin: CGFloat = 8
 }

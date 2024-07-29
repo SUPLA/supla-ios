@@ -14,7 +14,6 @@
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 
-"version" = "versjon";
 "Open" = "Åpne";
 "Open Close" = "Åpne Steng";
 "Reveal" = "Avdekk";
@@ -45,17 +44,7 @@
 "Garage door opening sensor" = "Garasjeportåpner sensor";
 "Door opening sensor" = "Døråpner sensor";
 "Roller shutter opening sensor" = "Rullegardineråpner sensor";
-"Connecting..." = "Kobling...";
-"Unknown error" = "Ukjent feil";
-"Service temporarily unavailable" = "Tjenesten er midlertidig utilgjengelig";
-"Bad credentials" = "Feil bekreftelser";
-"Client limit exceeded" = "Grensen på antall kundeapplikasjoner er overskredet";
-"Device disabled. Please log in to \"Supla Cloud\" and enable this device in “Smartphone” section of the website." = "Enheten er skrudd av";
-"Access Identifier is disabled" = "Tilgang identifikator er av";
-"New client registration disabled. Please log in to \"Supla Cloud\" and enable \"New client registration\" in \"Smartphone\" section of the website." = "Registering er for tiden ikke på. For å skru den på gå til fanen \"Smarttelefoner\" på nettsiden \"Supla Cloud\"";
-"Client activation required. Please log in to \"Supla Cloud\" and assign an “Access ID” for this device in “Smartphone” section of the website." = "Denne enheten har ikke tilknyttet tilgang identifikator. Gå til nettsiden \"Supla Cloud\" tilpass riktig identifikator i fanen \"Smarttelefoner\".";
 "Incompatible server version" = "Inkompatibel serverversjon";
-"Host not found. Make sure you are connected to the internet and that an account with the entered email address has been created." = "Serveradresse ikke funnet";
 "RGB Lighting" = "RGB belysning";
 "Dimmer and RGB lighting" = "Dimmer og RGB belysning";
 "Dimmer" = "Dimmer";
@@ -199,7 +188,6 @@
 "The glass sections are exposed for more than 20 hours, which may adversely affect their life. It is recommended to cover all sections for a minimum of 4 hours in order to regenerate them." = "Glasspartiene er eksponert i mer enn 20 timer, noe som kan ha negativ innvirkning på levetiden. Det anbefales å dekke alle seksjoner i minimum 4 timer for å regenerere dem.";
 "Planned regeneration is in progress." = "Planlagt regenerering pågår.";
 "Regeneration initiated after 20 hours of operation is in progress." = "Regenerering pågår, startet etter 20 timers drift.";
-"Incorrect Email Address or Password" = "Feil e-postadresse eller passord";
 "Channel Id" = "Kanal-ID";
 "Back" = "Tilbake";
 "The z-wave bridge is not responding. Check if the bridge is connected to the server." = "Z-wave bro svarer ikke. Kontroller om broen er tilkoblet serveren.";
@@ -275,12 +263,10 @@
 "Don't have an account in Supla Cloud yet?" = "Du har ikke en Suppla Cloud-konto ennå?";
 "Create" = "Opprett en konto";
 "Location order" = "Rekkefølgen av plassering";
-"Roller shutter %" = "Rullegardiner %";
 "Opening" = "Åpning";
 "Closing" = "Nedleggelser";
 "Percent of opening" = "Åpningsprosent";
 "Percent of closing" = "Avslutningsprosent";
-"Access Identifier inactive." = "Tilgangs-ID inaktiv.";
 "Your account" = "Kontoen din";
 "Your accounts" = "Dine kontoer";
 "Accounts" = "Kontoer";
@@ -314,3 +300,20 @@
 "roller_shutter_motor_problem" = "Motorproblem / Uventet stopp.";
 "roller_shutter_calibration" = "Kalibrering";
 "roller_shutter_start_calibration_message" = "Er du sikker på at du vil starte kalibrering?";
+
+/* Status */
+"status_connecting" = "Kobling...";
+"status_unknown_error" = "Ukjent feil";
+"status_temporarily_unavailable" = "Tjenesten er midlertidig utilgjengelig";
+"status_incorrect_data" = "Feil e-postadresse eller passord";
+"status_bad_credentials" = "Feil bekreftelser";
+"status_client_limit_exceeded" = "Grensen på antall kundeapplikasjoner er overskredet";
+"status_device_disabled" = "Enheten er skrudd av";
+"status_access_id_disabled" = "Tilgang identifikator er av";
+"status_registration_disabled" = "istering er for tiden ikke på. For å skru den på gå til fanen \"Smarttelefoner\" på nettsiden \"Supla Cloud\"";
+"status_access_id_not_assigned" = "Denne enheten har ikke tilknyttet tilgang identifikator. Gå til nettsiden \"Supla Cloud\" tilpass riktig identifikator i fanen \"Smarttelefoner\".";
+"status_access_id_inactive" = "Tilgangs-ID inaktiv.";
+"status_host_not_found" = "Serveradresse ikke funnet";
+
+/* About */
+"about_version" = "versjon %@";

@@ -55,6 +55,7 @@ static SASuperuserAuthorizationDialog *_superuserAuthorizationDialogGlobalRef = 
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    _actIndictor.color = [UIColor onBackground];
 }
 
 -(void)viewWillAppear:(BOOL)animated {

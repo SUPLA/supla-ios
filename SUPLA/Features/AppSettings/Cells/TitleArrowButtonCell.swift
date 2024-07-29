@@ -23,7 +23,7 @@ final class TitleArrowButtonCell: BaseSettingsCell<UIImageView> {
     
     override func provideActionView() -> UIImageView {
         let view = UIImageView(image: .iconArrowRight)
-        view.tintColor = .suplaGreen
+        view.tintColor = .primary
         return view
     }
     

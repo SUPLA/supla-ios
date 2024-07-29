@@ -16,7 +16,6 @@
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 
-"version" = "versija";
 "Open" = "Atidaryti";
 "Open Close" = "Atidaryti Uždaryti";
 "Reveal" = "Atidengti";
@@ -47,17 +46,7 @@
 "Garage door opening sensor" = "Garažo vartų atidarymo jutiklis";
 "Door opening sensor" = "Durų atidarymo jutiklis";
 "Roller shutter opening sensor" = "Žaliuzių atidengimo jutiklis";
-"Connecting..." = "Jungimasis...";
-"Unknown error" = "Nenustatyta klaida";
-"Service temporarily unavailable" = "Paslauga laikinai nepasiekiama";
-"Bad credentials" = "Klaidingas autentifikavimas";
-"Client limit exceeded" = "Viršutinė klientų programų riba viršyta";
-"Device disabled. Please log in to \"Supla Cloud\" and enable this device in “Smartphone” section of the website." = "Įrenginys išjungtas";
-"Access Identifier is disabled" = "rieigos identifikatorius išjungtas";
-"New client registration disabled. Please log in to \"Supla Cloud\" and enable \"New client registration\" in \"Smartphone\" section of the website." = "Šiuo metu registracija išjungta. Norėdami ją įjungti eikite prie žymės Išmanieji telefonai puslapyje \"Supla Cloud\"";
-"Client activation required. Please log in to \"Supla Cloud\" and assign an “Access ID” for this device in “Smartphone” section of the website." = "Šis įrenginys neturi priskirto prieigos identifikatoriaus. Eikite į puslapį \"Supla Cloud\" ir žymėje Išmanieji telefonai priskirkite tinkamą identifikatorių.";
 "Incompatible server version" = "Nesuderinama serverio versija";
-"Host not found. Make sure you are connected to the internet and that an account with the entered email address has been created." = "Serverio adresas nerastas";
 "RGB Lighting" = "RGB apšvietimas";
 "Dimmer and RGB lighting" = "Šviesos srauto reguliatorius ir RGB apšvietimas";
 "Dimmer" = "Dimmer";
@@ -201,7 +190,6 @@
 "The glass sections are exposed for more than 20 hours, which may adversely affect their life. It is recommended to cover all sections for a minimum of 4 hours in order to regenerate them." = "Stiklo sekcijos atidengtos virš 20 valandų, kas gali neigiamai įtakoti jų tarnavimo laiką. Rekomenduojama uždengti visas sekcijas bent 4 valandoms regeneravimui.";
 "Planned regeneration is in progress." = "Vyksta suplanuotas regeneravimas.";
 "Regeneration initiated after 20 hours of operation is in progress." = "Vyksta regeneravimas, kuris paleidžiamas po 20 darbo valandų.";
-"Incorrect Email Address or Password" = "Neteisingas el. pašto adresas arba slaptažodis";
 "Channel Id" = "Kanalo ID";
 "Back" = "Atgal";
 "The z-wave bridge is not responding. Check if the bridge is connected to the server." = "Z-wave tinklas neatsako. Patikrinkite, ar tiltas prijungtas prie serverio.";
@@ -277,12 +265,10 @@
 "Don't have an account in Supla Cloud yet?" = "Dar neturite paskyros Supla Cloud?";
 "Create" = "Sukurti paskyrą";
 "Location order" = "Vietų eiliškumas";
-"Roller shutter %" = "Roletai %";
 "Opening" = "Atidarymo";
 "Closing" = "Uždarymo";
 "Percent of opening" = "Atidarymo procentas";
 "Percent of closing" = "Uždarymo procentas";
-"Access Identifier inactive." = "Prieigos identifikatorius neaktyvus.";
 "Your account" = "Jūsų paskyra";
 "Your accounts" = "Jūsų paskyros";
 "Accounts" = "Paskyros";
@@ -316,3 +302,20 @@
 "roller_shutter_motor_problem" = "Variklio problema / Netikėtas sustojimas.";
 "roller_shutter_calibration" = "Kalibravimas";
 "roller_shutter_start_calibration_message" = "Ar tikrai norite pradėti kalibravimą?";
+
+/* Status */
+"status_connecting" = "Jungimasis...";
+"status_unknown_error" = "Nenustatyta klaida";
+"status_temporarily_unavailable" = "Paslauga laikinai nepasiekiama";
+"status_incorrect_data" = "Neteisingas el. pašto adresas arba slaptažodis";
+"status_bad_credentials" = "Klaidingas autentifikavimas";
+"status_client_limit_exceeded" = "Viršutinė klientų programų riba viršyta";
+"status_device_disabled" = "Įrenginys išjungtas";
+"status_access_id_disabled" = "Rieigos identifikatorius išjungtas";
+"status_registration_disabled" = "Šiuo metu registracija išjungta. Norėdami ją įjungti eikite prie žymės Išmanieji telefonai puslapyje \"Supla Cloud\"";
+"status_access_id_not_assigned" = "Šis įrenginys neturi priskirto prieigos identifikatoriaus. Eikite į puslapį \"Supla Cloud\" ir žymėje Išmanieji telefonai priskirkite tinkamą identifikatorių.";
+"status_access_id_inactive" = "Prieigos identifikatorius neaktyvus.";
+"status_host_not_found" = "Serverio adresas nerastas";
+
+/* About */
+"about_version" = "versija %@";

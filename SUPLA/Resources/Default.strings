@@ -66,6 +66,11 @@
 "channel_caption_general_purpose_measurment" = "Measurement channel";
 "channel_caption_general_purpose_meter" = "Meter channel";
 "channel_caption_facade_blinds" = "Facade blinds";
+"channel_caption_terrace_awning" = "Terrace awning";
+"channel_caption_projector_screen" = "Projector screen";
+"channel_caption_curtain" = "Curtain";
+"channel_caption_vertical_blind" = "Vertical blind";
+"channel_caption_garage_door" = "Garage door";
 
 /* Main */
 "dialog_new_gesture_info_text" = "Swipe gesture to open details was removed, tap on particular channel to open it.";
@@ -87,6 +92,10 @@
 "app_settings.location_label" = "Location";
 "settings_show_labels" = "Show bottom menu labels";
 "settings_dark_mode" = "Dark mode";
+"settings_lock_screen" = "Lock screen";
+"settings_lock_screen_none" = "None";
+"settings_lock_screen_app" = "App";
+"settings_lock_screen_accounts" = "Accounts";
 
 /* Standard Detail */
 "standard_detail_general_tab" = "General";
@@ -203,6 +212,7 @@
 "notification_delete_button_delete_older_than_month" = "Delete older than 30 days";
 
 /* Roller shutter detail */
+"rs_display_mode" = "Roller shutter, facade blind, curtain %";
 "roller_shutter_motor_problem" = "Motor problem / Unexpected stop.";
 "roller_shutter_calibration_lost" = "Calibration lost.";
 "roller_shutter_calibration_failed" = "Calibration failed.";
@@ -210,8 +220,58 @@
 "roller_shutter_start_calibration_message" = "Are you sure you want to start calibration?";
 "roller_shutter_closing_percentage" = "Close:";
 "roller_shutter_opening_percentage" = "Open:";
+"roller_shutter_extension_percentage" = "Extension:";
 "roller_shutter_calibration_needed" = "Calibration needed";
 
 /* Facade blind detail */
 "facade_blinds_slat_tilt" = "Tilt: ";
 "facade_blinds_no_tilt" = "Missing configuration";
+
+/* Status */
+"status_initializing" = "Starting...";
+"status_connecting" = "Connecting...";
+"status_disconnecting" = "Disconnecting...";
+"status_awaiting_network" = "Awaiting network...";
+"status_try_again" = "Try again";
+"status_unknown_error" = "Unknown error";
+"status_temporarily_unavailable" = "Service temporarily unavailable";
+"status_incorrect_data" = "Incorrect Email Address or Password";
+"status_bad_credentials" = "Bad credentials";
+"status_client_limit_exceeded" = "Client limit exceeded";
+"status_device_disabled" = "Device disabled. Please log in to \"Supla Cloud\" and enable this device in “Smartphone” section of the website.";
+"status_access_id_disabled" = "Access Identifier is disabled";
+"status_registration_disabled" = "New client registration disabled. Please log in to \"Supla Cloud\" and enable \"New client registration\" in \"Smartphone\" section of the website.";
+"status_access_id_not_assigned" = "Client activation required. Please log in to \"Supla Cloud\" and assign an “Access ID” for this device in “Smartphone” section of the website.";
+"status_access_id_inactive" = "Access Identifier inactive.";
+"status_host_not_found" = "Host not found. Make sure you are connected to the internet and that an account with the entered email address has been created.";
+
+/* Pin setup */
+"pin_setup_title" = "Configure PIN";
+"pin_setup_header" = "Define your PIN code";
+"pin_setup_repeat" = "Repeat the PIN";
+"pin_setup_entry_different" = "PIN's are not equal!";
+"pin_setup_use_biometric" = "Biometric Authentication: ";
+"pin_setup_biometric_not_enrolled" = "Biometric not available. If you want to use biometric go to settings and enrol your biometrics.";
+
+/* Lock screen */
+"lock_screen_hello" = "Welcome back!";
+"lock_screen_enter_pin" = "Enter PIN";
+"lock_screen_remove_pin" = "PIN removal";
+"lock_screen_confirm_authorize_app" = "Authorization scope change - application";
+"lock_screen_confirm_authorize_accounts" = "Authorization scope change - accounts";
+"lock_screen_wrong_pin" = "Entered PIN is wrong!";
+"lock_screen_forgotten_code" = "I don\'t remember my PIN code";
+"lock_screen_forgotten_code_title" = "Access code";
+"lock_screen_forgotten_code_message" = "If you don\'t remember the code, uninstall app and install it again. After that configure your Supla Cloud account again.\n\nDon\'t create new account. All your data and devices will stay registered in your Supla Cloud account.";
+"lock_screen_forgotten_code_button" = "OK";
+"biometric_prompt_subtitle" = "Unlock using biometric";
+"lock_screen_pin_locked" = "To many failures. PIN entry locked for %@.";
+
+/* Device Catalog */
+"device_list_url" = "https://www.supla.org/en/devices";
+
+/* About */
+"about_version" = "version %@";
+"about_license" = "This program is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 2 of the License, or (at your option) any later version.\n\nThis program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details.\n\nYou should have received a copy of the GNU General Public License along with this program; if not, write to the Free Software Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA";
+"about_address" = "www.supla.org";
+"about_build_time" = "Version of the day: %@";

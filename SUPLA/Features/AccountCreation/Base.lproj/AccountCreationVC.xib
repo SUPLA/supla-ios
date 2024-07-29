@@ -263,7 +263,7 @@
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pLe-rf-dtD">
                             <rect key="frame" x="0.0" y="0.0" width="326" height="599.33333333333337"/>
                         </view>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LE2-dM-R7U" userLabel="Confirm" customClass="RoundedButton" customModule="SUPLA" customModuleProvider="target">
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LE2-dM-R7U" userLabel="Confirm" customClass="UIFilledButton" customModule="SUPLA" customModuleProvider="target">
                             <rect key="frame" x="0.0" y="599.33333333333337" width="326" height="44"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="44" id="TmF-Jz-Dmb"/>
@@ -273,7 +273,7 @@
                                 <fragment content="confirm button on account screen"/>
                             </attributedString>
                         </button>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1X3-nE-82h" userLabel="Delete" customClass="RoundedButton" customModule="SUPLA" customModuleProvider="target">
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1X3-nE-82h" userLabel="Delete" customClass="UIBorderedButton" customModule="SUPLA" customModuleProvider="target">
                             <rect key="frame" x="0.0" y="643.33333333333337" width="326" height="44"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="44" id="EYg-pe-IkR"/>
@@ -368,7 +368,7 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SERVER ADDRESS" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qxw-Mq-ReH">
-                    <rect key="frame" x="12" y="106" width="87.666666666666671" height="14"/>
+                    <rect key="frame" x="12" y="106" width="84" height="14"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="14" id="xTg-oI-KaA"/>
                     </constraints>

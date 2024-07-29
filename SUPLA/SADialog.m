@@ -112,20 +112,16 @@
 }
 
 + (BOOL)viewControllerIsPresented:(UIViewController*)vc {
-    UIViewController *rootVC = [SAApp currentNavigationCoordinator].viewController;
-    return vc != nil && rootVC != nil && rootVC.presentedViewController == vc;
+    UIViewController *rootVC = [SuplaAppCoordinatorLegacyWrapper currentViewController];
+    return rootVC == vc;
 }
 
 + (void)showModal:(SADialog*)dialogVC {
-    UIViewController *rootVC = [SAApp currentNavigationCoordinator].viewController;
     dialogVC.modalPresentationStyle = UIModalPresentationOverCurrentContext;
+    dialogVC.modalInPresentation = YES;
     
-    if (@available(iOS 13.0, *)) {
-        dialogVC.modalInPresentation = YES;
-        [rootVC presentViewController:dialogVC animated:NO completion:nil];
-    } else {
-        [rootVC presentModalViewController:dialogVC animated:NO];
-    }
+    UIViewController *rootVC = [SuplaAppCoordinatorLegacyWrapper currentViewController];
+    [rootVC presentViewController: dialogVC animated:true completion: nil];
 }
 
 - (void)keyboardDidShow:(NSNotification*)notification {

@@ -17,71 +17,73 @@
  */
 
 protocol GetChannelBaseStateUseCase {
-    func invoke(function: Int32, online: Bool, activeValue: Int32) -> ChannelState
+    func invoke(channelBase: SAChannelBase) -> ChannelState
 }
 
 final class GetChannelBaseStateUseCaseImpl: GetChannelBaseStateUseCase {
-    func invoke(function: Int32, online: Bool, activeValue: Int32) -> ChannelState {
-        if (!online) {
+    func invoke(channelBase: SAChannelBase) -> ChannelState {
+        if let channel = channelBase as? SAChannel {
+            guard let value = channel.value else { return .notUsed }
+            return getChannelState(channel.func, ChannelValueStateWrapper(channelValue: value))
+        }
+        if let group = channelBase as? SAChannelGroup {
+            return getChannelState(group.func, ChannelGroupStateWrapper(channelGroup: group))
+        }
+        
+        fatalError("Channel base is extended by unknown class!")
+    }
+    
+    private func getChannelState(_ function: Int32, _ valueWrapper: ValueStateWrapper) -> ChannelState {
+        if (!valueWrapper.online) {
             return getOfflineState(function)
         }
-
+        
         switch (function) {
-        case SUPLA_CHANNELFNC_CONTROLLINGTHEGATE,
-             SUPLA_CHANNELFNC_OPENINGSENSOR_GARAGEDOOR,
-             SUPLA_CHANNELFNC_CONTROLLINGTHEGARAGEDOOR:
-            if ((activeValue & 0x2) == 0x2 && (activeValue & 0x1) == 0) {
-                return .partialyOpened
-            }
-            if (activeValue != 0) {
-                return .closed
-            } else {
-                return .opened
-            }
+        case SUPLA_CHANNELFNC_CONTROLLINGTHEGATEWAYLOCK,
+             SUPLA_CHANNELFNC_CONTROLLINGTHEGATE,
+             SUPLA_CHANNELFNC_CONTROLLINGTHEGARAGEDOOR,
+             SUPLA_CHANNELFNC_CONTROLLINGTHEDOORLOCK:
+            return getOpenClose(valueWrapper.subValueHi)
+        case SUPLA_CHANNELFNC_CONTROLLINGTHEROLLERSHUTTER,
+             SUPLA_CHANNELFNC_CONTROLLINGTHEROOFWINDOW,
+             SUPLA_CHANNELFNC_CONTROLLINGTHEFACADEBLIND,
+             SUPLA_CHANNELFNC_CURTAIN,
+             SUPLA_CHANNELFNC_VERTICAL_BLIND,
+             SUPLA_CHANNELFNC_ROLLER_GARAGE_DOOR:
+            return valueWrapper.rollerShutterClosed ? .closed : .opened
+        case SUPLA_CHANNELFNC_PROJECTOR_SCREEN,
+             SUPLA_CHANNELFNC_TERRACE_AWNING:
+            return valueWrapper.shadingSystemReversedClosed ? .closed : .opened
         case SUPLA_CHANNELFNC_OPENINGSENSOR_GATEWAY,
              SUPLA_CHANNELFNC_OPENINGSENSOR_GATE,
+             SUPLA_CHANNELFNC_OPENINGSENSOR_GARAGEDOOR,
              SUPLA_CHANNELFNC_OPENINGSENSOR_DOOR,
-             SUPLA_CHANNELFNC_CONTROLLINGTHEDOORLOCK,
              SUPLA_CHANNELFNC_OPENINGSENSOR_ROLLERSHUTTER,
-             SUPLA_CHANNELFNC_CONTROLLINGTHEROLLERSHUTTER,
-             SUPLA_CHANNELFNC_OPENINGSENSOR_ROOFWINDOW,
-             SUPLA_CHANNELFNC_CONTROLLINGTHEROOFWINDOW,
              SUPLA_CHANNELFNC_OPENINGSENSOR_WINDOW,
+             SUPLA_CHANNELFNC_OPENINGSENSOR_ROOFWINDOW,
              SUPLA_CHANNELFNC_VALVE_OPENCLOSE,
-             SUPLA_CHANNELFNC_VALVE_PERCENTAGE,
-             SUPLA_CHANNELFNC_CONTROLLINGTHEFACADEBLIND,
-             SUPLA_CHANNELFNC_CONTROLLINGTHEGATEWAYLOCK:
-            if (activeValue != 0) {
-                return .closed
-            } else {
-                return .opened
-            }
+             SUPLA_CHANNELFNC_VALVE_PERCENTAGE:
+            return valueWrapper.isClosed ? .closed : .opened
         case SUPLA_CHANNELFNC_POWERSWITCH,
              SUPLA_CHANNELFNC_STAIRCASETIMER,
              SUPLA_CHANNELFNC_NOLIQUIDSENSOR,
-             SUPLA_CHANNELFNC_DIMMER,
-             SUPLA_CHANNELFNC_RGBLIGHTING,
              SUPLA_CHANNELFNC_MAILSENSOR,
              SUPLA_CHANNELFNC_THERMOSTAT_HEATPOL_HOMEPLUS,
              SUPLA_CHANNELFNC_HOTELCARDSENSOR,
              SUPLA_CHANNELFNC_ALARMARMAMENTSENSOR,
              SUPLA_CHANNELFNC_LIGHTSWITCH:
-            if (activeValue != 0) {
-                return .on
-            } else {
-                return .off
-            }
+            return valueWrapper.isClosed ? .on : .off
+        case SUPLA_CHANNELFNC_DIMMER:
+            return valueWrapper.brightness > 0 ? .on : .off
+        case SUPLA_CHANNELFNC_RGBLIGHTING:
+            return valueWrapper.colorBrightness > 0 ? .on : .off
         case SUPLA_CHANNELFNC_DIMMERANDRGBLIGHTING:
-            let first: ChannelState = (activeValue & 0x1) != 0 ? .on : .off
-            let second: ChannelState = (activeValue & 0x2) != 0 ? .on : .off
+            let first: ChannelState = valueWrapper.brightness > 0 ? .on : .off
+            let second: ChannelState = valueWrapper.colorBrightness > 0 ? .on : .off
             return .complex([first, second])
         case SUPLA_CHANNELFNC_DIGIGLASS_HORIZONTAL,
              SUPLA_CHANNELFNC_DIGIGLASS_VERTICAL:
-            if (activeValue != 0) {
-                return .transparent
-            } else {
-                return .opaque
-            }
+            return valueWrapper.transparent ? .transparent : .opaque
         default: return .notUsed
         }
     }
@@ -102,8 +104,13 @@ final class GetChannelBaseStateUseCaseImpl: GetChannelBaseStateUseCase {
              SUPLA_CHANNELFNC_OPENINGSENSOR_ROLLERSHUTTER,
              SUPLA_CHANNELFNC_OPENINGSENSOR_WINDOW,
              SUPLA_CHANNELFNC_OPENINGSENSOR_ROOFWINDOW,
+             SUPLA_CHANNELFNC_TERRACE_AWNING,
+             SUPLA_CHANNELFNC_CURTAIN,
+             SUPLA_CHANNELFNC_VERTICAL_BLIND,
+             SUPLA_CHANNELFNC_ROLLER_GARAGE_DOOR,
              SUPLA_CHANNELFNC_VALVE_OPENCLOSE,
              SUPLA_CHANNELFNC_VALVE_PERCENTAGE: .opened
+        case SUPLA_CHANNELFNC_PROJECTOR_SCREEN: .closed
         case SUPLA_CHANNELFNC_POWERSWITCH,
              SUPLA_CHANNELFNC_STAIRCASETIMER,
              SUPLA_CHANNELFNC_NOLIQUIDSENSOR,
@@ -119,5 +126,112 @@ final class GetChannelBaseStateUseCaseImpl: GetChannelBaseStateUseCase {
              SUPLA_CHANNELFNC_DIGIGLASS_VERTICAL: .opaque
         default: .notUsed
         }
+    }
+    
+    private func getOpenClose(_ value: Int32) -> ChannelState {
+        if ((value & 0x2) == 0x2 && (value & 0x1) == 0) {
+            return .partialyOpened
+        } else if (value > 0) {
+            return .closed
+        } else {
+            return .opened
+        }
+    }
+}
+
+protocol ValueStateWrapper {
+    var online: Bool { get }
+    var subValueHi: Int32 { get }
+    var isClosed: Bool { get }
+    var brightness: Int32 { get }
+    var colorBrightness: Int32 { get }
+    var transparent: Bool { get }
+    var rollerShutterClosed: Bool { get }
+    var shadingSystemReversedClosed: Bool { get }
+}
+
+private class ChannelValueStateWrapper: ValueStateWrapper {
+    var online: Bool {
+        channelValue.online
+    }
+    
+    var subValueHi: Int32 {
+        channelValue.hiSubValue()
+    }
+    
+    var isClosed: Bool {
+        channelValue.isClosed()
+    }
+    
+    var brightness: Int32 {
+        channelValue.brightnessValue()
+    }
+    
+    var colorBrightness: Int32 {
+        channelValue.colorBrightnessValue()
+    }
+    
+    var transparent: Bool {
+        channelValue.digiglassValue().isAnySectionTransparent()
+    }
+    
+    var rollerShutterClosed: Bool {
+        let percentage = channelValue.asRollerShutterValue().position
+        let subValueHi = channelValue.hiSubValue()
+        return (subValueHi > 0 && percentage < 100) || percentage >= 100
+    }
+    
+    var shadingSystemReversedClosed: Bool {
+        let percentage = channelValue.asRollerShutterValue().position
+        return percentage < 100
+    }
+    
+    private let channelValue: SAChannelValue
+    
+    init(channelValue: SAChannelValue) {
+        self.channelValue = channelValue
+    }
+}
+
+private class ChannelGroupStateWrapper: ValueStateWrapper {
+    var online: Bool {
+        channelGroup.isOnline()
+    }
+    
+    var subValueHi: Int32 {
+        getActivePercentage() >= 100 ? 1 : 0
+    }
+    
+    var isClosed: Bool {
+        getActivePercentage() >= 100
+    }
+    
+    var brightness: Int32 {
+        getActivePercentage(valueIndex: 2) >= 100 ? 1 : 0
+    }
+    
+    var colorBrightness: Int32 {
+        getActivePercentage(valueIndex: 1) >= 100 ? 1 : 0
+    }
+    
+    var transparent: Bool { false }
+    
+    var rollerShutterClosed: Bool {
+        getActivePercentage() >= 100
+    }
+    
+    var shadingSystemReversedClosed: Bool {
+        getActivePercentage() < 100
+    }
+    
+    private let channelGroup: SAChannelGroup
+    @Singleton<GetGroupActivePercentageUseCase> private var getGroupActivePercentageUseCase
+    
+    init(channelGroup: SAChannelGroup) {
+        self.channelGroup = channelGroup
+    }
+    
+    private func getActivePercentage(valueIndex: Int = 0) -> Int {
+        getGroupActivePercentageUseCase.invoke(channelGroup, valueIndex: valueIndex)
     }
 }

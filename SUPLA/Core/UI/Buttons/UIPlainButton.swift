@@ -35,7 +35,7 @@ class UIPlainButton: UIButton {
         set {
             if let newIcon = newValue {
                 setImage(newIcon.withRenderingMode(.alwaysTemplate))
-                tintColor = .primaryVariant
+                tintColor = .primary
             }
         }
     }
@@ -72,7 +72,7 @@ class UIPlainButton: UIButton {
         if (!isEnabled) {
             return .disabled
         } else if (isHighlighted) {
-            return .primaryVariant
+            return .buttonPressed
         } else {
             return textColor
         }

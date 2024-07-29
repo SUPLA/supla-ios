@@ -127,7 +127,7 @@ class UIIconButton: UIButton {
             Configuration(
                 backgroundColor: .primary,
                 backgroundDisabledColor: .disabled,
-                backgroundPressedColor: .primaryVariant,
+                backgroundPressedColor: .buttonPressed,
                 contentColor: .white,
                 contentDisabledColor: .white,
                 contentPressedColor: .white,
@@ -138,7 +138,7 @@ class UIIconButton: UIButton {
         static func transparent(
             size: CGFloat = Dimens.buttonSmallHeight,
             contentColor: UIColor = .primary,
-            contentPressedColor: UIColor = .primaryVariant
+            contentPressedColor: UIColor = .buttonPressed
         ) -> Configuration {
             Configuration(
                 backgroundColor: .transparent,
@@ -152,11 +152,11 @@ class UIIconButton: UIButton {
             )
         }
         
-        static func bordered(color: UIColor) -> Configuration {
+        static func bordered(color: UIColor, backgroundColor: UIColor = .transparent) -> Configuration {
             Configuration(
-                backgroundColor: .transparent,
-                backgroundDisabledColor: .transparent,
-                backgroundPressedColor: .transparent,
+                backgroundColor: backgroundColor,
+                backgroundDisabledColor: backgroundColor,
+                backgroundPressedColor: backgroundColor,
                 contentColor: color,
                 contentDisabledColor: color,
                 contentPressedColor: color,

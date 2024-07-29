@@ -20,21 +20,20 @@ import UIKit
 import WebKit
 
 class AccountRemovalVC: WebContentVC<AccountRemovalViewState, AccountRemovalViewEvent, AccountRemovalVM> {
-    private var navigator: AccountRemovalNavigationCoordinator? {
-        navigationCoordinator as? AccountRemovalNavigationCoordinator
-    }
     
-    convenience init(navigationCoordinator: NavigationCoordinator, needsRestart: Bool, serverAddress: String?) {
-        self.init(navigationCoordinator: navigationCoordinator)
+    @Singleton<SuplaAppCoordinator> private var coordinator
+    
+    convenience init(needsRestart: Bool, serverAddress: String?) {
+        self.init()
         viewModel = AccountRemovalVM(needsRestart: needsRestart, serverAddress: serverAddress)
     }
     
     override func handle(event: AccountRemovalViewEvent) {
         switch (event) {
         case .finishAndRestart:
-            navigator?.finishWithRestart()
+            coordinator.popToStatus()
         case .finish:
-            navigator?.finish()
+            coordinator.popViewController()
         }
     }
 }

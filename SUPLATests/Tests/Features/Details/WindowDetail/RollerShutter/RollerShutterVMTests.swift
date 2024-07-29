@@ -92,7 +92,7 @@ final class RollerShutterVMTests: ViewModelTest<RollerShutterViewState, BaseWind
                     )
                 ],
                 offline: false,
-                showClosingPercentage: true,
+                positionPresentation: .asClosed,
                 calibrating: false,
                 calibrationPossible: true
             )
@@ -107,8 +107,8 @@ final class RollerShutterVMTests: ViewModelTest<RollerShutterViewState, BaseWind
         group.remote_id = 234
         group.online = 1
         group.total_value = GroupTotalValue(values: [
-            RollerShutterGroupValue(position: 50, openSensorActive: false),
-            RollerShutterGroupValue(position: 80, openSensorActive: false)
+            ShadingSystemGroupValue(position: 50, closedSensorActive: false),
+            ShadingSystemGroupValue(position: 80, closedSensorActive: false)
         ])
         
         settings.showOpeningPercentReturns = true
@@ -130,6 +130,7 @@ final class RollerShutterVMTests: ViewModelTest<RollerShutterViewState, BaseWind
                     markers: [50, 80]
                 ),
                 offline: false,
+                positionPresentation: .asOpened,
                 isGroup: true,
                 onlineStatusString: "2/3"
             )

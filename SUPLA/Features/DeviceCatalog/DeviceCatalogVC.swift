@@ -15,23 +15,54 @@
  along with this program; if not, write to the Free Software
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
+import WebKit
 
 class DeviceCatalogVC: WebContentVC<DeviceCatalogViewState, DeviceCatalogViewEvent, DeviceCatalogVM> {
-    private var navigator: DeviceCatalogNavigationCoordinator? {
-        navigationCoordinator as? DeviceCatalogNavigationCoordinator
-    }
+    @Singleton<SuplaAppCoordinator> private var coordinator
+    
+    private var userInterfaceStyle: UIUserInterfaceStyle? = nil
 
-    override init(navigationCoordinator: NavigationCoordinator) {
-        super.init(navigationCoordinator: navigationCoordinator)
+    override init() {
+        super.init()
         viewModel = DeviceCatalogVM()
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
         
         title = Strings.DeviceCatalog.menu
     }
-
+    
+    override func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
+        super.webView(webView, didFinish: navigation)
+        webView.evaluateJavaScript("document.body.classList.add('mobile');")
+        
+        userInterfaceStyle = traitCollection.userInterfaceStyle
+        if (userInterfaceStyle == .dark) {
+            webView.evaluateJavaScript("document.body.classList.add('darkTheme');")
+        }
+    }
+    
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        if (userInterfaceStyle != traitCollection.userInterfaceStyle) {
+            self.userInterfaceStyle = traitCollection.userInterfaceStyle
+            
+            switch (self.userInterfaceStyle) {
+            case .dark: webView.evaluateJavaScript("document.body.classList.add('darkTheme');")
+            case .light: webView.evaluateJavaScript("document.body.classList.remove('darkTheme');")
+            default: break
+            }
+        }
+    }
+    
     override func handle(event: DeviceCatalogViewEvent) {
         switch (event) {
         case .openUrl(let url):
-            navigator?.navigateToWeb(url: url)
+            coordinator.openUrl(url: url)
         }
     }
+}
+
+extension DeviceCatalogVC: NavigationSubcontroller {
+    func screenTakeoverAllowed() -> Bool { false }
 }

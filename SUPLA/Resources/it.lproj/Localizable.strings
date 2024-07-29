@@ -15,7 +15,6 @@
  
  */
 
-"version" = "versione";
 "Open" = "Apri";
 "Open Close" = "Apri Chiudi";
 "Reveal" = "Apri";
@@ -46,13 +45,7 @@
 "Garage door opening sensor" = "Sensore di apertura del cancello per garage";
 "Door opening sensor" = "Sensore di apertura della porta";
 "Roller shutter opening sensor" = "Sensore di apertura di avvolgibili";
-"Connecting..." = "Connessione in corso...";
-"Unknown error" = "Errore sconosciuto";
-"Service temporarily unavailable" = "Servizio temporaneamente non disponibile";
-"Bad credentials" = "Credenziali non valide";
-"Client limit exceeded" = "Limite delle applicazioni dei clienti superato";
 "Incompatible server version" = "Versione del server non compatibile";
-"Host not found. Make sure you are connected to the internet and that an account with the entered email address has been created." = "L’indirizzo del server non è stato trovato";
 "RGB Lighting" = "Illuminazione RGB";
 "Dimmer and RGB lighting" = "Varialuce e illuminazione RGB";
 "Dimmer" = "Varialuce";
@@ -84,10 +77,6 @@
 "https://cloud.supla.org/register" = "https://cloud.supla.org/register?lang=it";
 
 "Create an account" = "Crea un Account";
-"Device disabled. Please log in to \"Supla Cloud\" and enable this device in “Smartphone” section of the website." = "Il dispositivo è  disabilitato";
-"Access Identifier is disabled" = "L'ID di accesso è disabilitato";
-"New client registration disabled. Please log in to \"Supla Cloud\" and enable \"New client registration\" in \"Smartphone\" section of the website." = "La registrazione è attualmente disabilitata. Per abilitarlo, vai alla scheda \"Smartphone\" a pagina \"Supla Cloud\"";
-"Client activation required. Please log in to \"Supla Cloud\" and assign an “Access ID” for this device in “Smartphone” section of the website." = "A questo dispositivo non è stato assegnato un ID di accesso. Vai a pagina \"Supla Cloud\" e assegna l'identificatore appropriato nella scheda \"Smartphone\"";
 
 "Retrieving data from the server..." = "Scaricamento dati da server...";
 "No chart data available." = "Nessun dato per il grafico.";
@@ -189,7 +178,6 @@
 "Timeout waiting for z-wave bridge response." = "Il tempo di attesa per la risposta del ponte z-wave è scaduto.";
 "Unexpected bridge response. Code: %i" = "Risposta del ponte inaspettata. Codice: %i";
 "Z-Wave bridge" = "Ponte z-wave";
-"Incorrect Email Address or Password" = "Indirizzo Mail o Password errato";
 "Channel name" = "Nome Canale";
 "Location name" = "Nome Ambiente";
 "Default" = "Default";
@@ -229,7 +217,6 @@
 "Don't have an account in Supla Cloud yet?" = "Non hai ancora un account Supla?";
 "Create" = "Crea";
 "Location order" = "Ordine localizzazioni";
-"Roller shutter %" = "% Tapparelle";
 "Opening" = "Apertura";
 "Closing" = "Chiusura";
 "The power was turned off after the set threshold of the allowable current was exceeded." = "L'uscita è stata spenta a causa del superamento della soglia di corrente impostata.";
@@ -330,3 +317,19 @@
 "roller_shutter_motor_problem" = "Problema al motore / Arresto inaspettato.";
 "roller_shutter_calibration" = "Calibrazione";
 "roller_shutter_start_calibration_message" = "Confermi di voler avviare la calibrazione?";
+
+/* Status */
+"status_connecting" = "Connessione in corso...";
+"status_unknown_error" = "Errore sconosciuto";
+"status_temporarily_unavailable" = "Servizio temporaneamente non disponibile";
+"status_incorrect_data" = "Indirizzo Mail o Password errato";
+"status_bad_credentials" = "Credenziali non valide";
+"status_client_limit_exceeded" = "Limite delle applicazioni dei clienti superato";
+"status_device_disabled" = "Il dispositivo è  disabilitato";
+"status_access_id_disabled" = "L'ID di accesso è disabilitato";
+"status_registration_disabled" = "La registrazione è attualmente disabilitata. Per abilitarlo, vai alla scheda \"Smartphone\" a pagina \"Supla Cloud\".";
+"status_access_id_not_assigned" = "A questo dispositivo non è stato assegnato un ID di accesso. Vai a pagina \"Supla Cloud\" e assegna l'identificatore appropriato nella scheda \"Smartphone\"";
+"status_host_not_found" = "L’indirizzo del server non è stato trovato";
+
+/* About */
+"about_version" = "versione %@";

@@ -31,8 +31,8 @@ final class SceneCell: BaseCell<SAScene> {
         return view
     }()
     
-    private let executeButton = CellButton(title: Strings.Scenes.ActionButtons.execute, backgroundColor: .onLine())
-    private let abortButton = CellButton(title: Strings.Scenes.ActionButtons.abort, backgroundColor: .onLine())
+    private let executeButton = CellButton(title: Strings.Scenes.ActionButtons.execute, backgroundColor: .primary)
+    private let abortButton = CellButton(title: Strings.Scenes.ActionButtons.abort, backgroundColor: .primary)
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)

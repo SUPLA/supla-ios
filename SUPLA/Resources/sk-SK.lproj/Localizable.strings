@@ -14,7 +14,6 @@
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 
-"version" = "verzia";
 "Open" = "Otvoriť";
 "Open Close" = "Otvoriť Zatvoriť";
 "Reveal" = "Otvoriť";
@@ -45,17 +44,7 @@
 "Garage door opening sensor" = "Snímač otvorenia garážovej brány";
 "Door opening sensor" = "Snímač otvorenia dverí";
 "Roller shutter opening sensor" = "Snímač otvorenia roliet";
-"Connecting..." = "Pripája sa...";
-"Unknown error" = "Neznáma chyba";
-"Service temporarily unavailable" = "Služba je dočasne nedostupná";
-"Bad credentials" = "Nesprávne autentifikačné údaje";
-"Client limit exceeded" = "Prekročený limit klientskych aplikácií";
-"Device disabled. Please log in to \"Supla Cloud\" and enable this device in “Smartphone” section of the website." = "Zariadenie je vypnuté";
-"Access Identifier is disabled" = "Identifikátor prístupu je vypnutý";
-"New client registration disabled. Please log in to \"Supla Cloud\" and enable \"New client registration\" in \"Smartphone\" section of the website." = "Registrácia je momentálne vypnutá. Ak ju chcete zapnúť, prejdite do záložky \"Smartfóny\" na  stránke \"Supla Cloud\"";
-"Client activation required. Please log in to \"Supla Cloud\" and assign an “Access ID” for this device in “Smartphone” section of the website." = "Toto zariadenie nemá priradený identifikátor prístupu. Prejdite na stránku \"Supla Cloud\" a v záložke \"Smartfóny\" priraďte príslušný identifikátor.";
 "Incompatible server version" = "Nekompatibilná verzia servera";
-"Host not found. Make sure you are connected to the internet and that an account with the entered email address has been created." = "Adresa servera nebola nájdená";
 "RGB Lighting" = "RGB osvetlenie";
 "Dimmer and RGB lighting" = "Stmievač a RGB osvetlenie";
 "Dimmer" = "Stmievač";
@@ -199,7 +188,6 @@
 "The glass sections are exposed for more than 20 hours, which may adversely affect their life. It is recommended to cover all sections for a minimum of 4 hours in order to regenerate them." = "Zasklenie je odhalené viac ako 20 hodín, čo môže mať negatívny vplyv na jeho životnosť. Odporúča sa všetky úseky pokryť minimálne 4 hodiny, aby sa zregenerovali.";
 "Planned regeneration is in progress." = "Prebieha plánovaná regenerácia.";
 "Regeneration initiated after 20 hours of operation is in progress." = "Prebieha regenerácia, ktorá bola spustená po 20 h prevádzky.";
-"Incorrect Email Address or Password" = "Nesprávna e-mailová adresa alebo heslo";
 "Channel Id" = "ID kanála";
 "Back" = "Späť";
 "The z-wave bridge is not responding. Check if the bridge is connected to the server." = "Most z-wave neodpovedá. Skontroluj, či je most spojený so serverom.";
@@ -275,12 +263,10 @@
 "Don't have an account in Supla Cloud yet?" = "Nemáte ešte účet v Supla Cloud?";
 "Create" = "Vytvoriť účet";
 "Location order" = "Poradie miest";
-"Roller shutter %" = "Rolety %";
 "Opening" = "Otvorenia";
 "Closing" = "Zatvorenia";
 "Percent of opening" = "Percento otvorenia";
 "Percent of closing" = "Percento zatvorenia";
-"Access Identifier inactive." = "Prístupový identifikátor nie je aktívny.";
 "Your account" = "Váš účet";
 "Your accounts" = "Vaše účty";
 "Accounts" = "Účty";
@@ -314,3 +300,20 @@
 "roller_shutter_motor_problem" = "Problém s motorom / Neočakávané zastavenie.";
 "roller_shutter_calibration" = "Kalibrácia";
 "roller_shutter_start_calibration_message" = "Naozaj chcete spustiť kalibráciu?";
+
+/* Status */
+"status_connecting" = "Pripája sa...";
+"status_unknown_error" = "Neznáma chyba";
+"status_temporarily_unavailable" = "Služba je dočasne nedostupná";
+"status_incorrect_data" = "Nesprávna e-mailová adresa alebo heslo";
+"status_bad_credentials" = "Nesprávne autentifikačné údaje";
+"status_client_limit_exceeded" = "Prekročený limit klientskych aplikácií";
+"status_device_disabled" = "Zariadenie je vypnuté";
+"status_access_id_disabled" = "Identifikátor prístupu je vypnutý";
+"status_registration_disabled" = "Registrácia je momentálne vypnutá. Ak ju chcete zapnúť, prejdite do záložky \"Smartfóny\" na  stránke \"Supla Cloud\"";
+"status_access_id_not_assigned" = "Toto zariadenie nemá priradený identifikátor prístupu. Prejdite na stránku \"Supla Cloud\" a v záložke \"Smartfóny\" priraďte príslušný identifikátor.";
+"status_access_id_inactive" = "Prístupový identifikátor nie je aktívny.";
+"status_host_not_found" = "Adresa servera nebola nájdená";
+
+/* About */
+"about_version" = "verzia %@";

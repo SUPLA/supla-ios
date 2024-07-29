@@ -41,7 +41,7 @@ final class UpdateChannelGroupTotalValueUseCaseTests: UseCaseTest<[Int32]> {
         useCase = nil
     }
     
-    func testIfTotalStringIsCreated() {
+    func testIfTotalValueIsCreated() {
         // given
         let firstGroup = SAChannelGroup(testContext: nil)
         firstGroup.remote_id = 11
@@ -55,7 +55,7 @@ final class UpdateChannelGroupTotalValueUseCaseTests: UseCaseTest<[Int32]> {
         thirdGroup.remote_id = 33
         thirdGroup.func = SUPLA_CHANNELFNC_CONTROLLINGTHEROOFWINDOW
         thirdGroup.online = 100
-        thirdGroup.total_value = GroupTotalValue(values: [RollerShutterGroupValue(position: 10, openSensorActive: false)])
+        thirdGroup.total_value = GroupTotalValue(values: [ShadingSystemGroupValue(position: 10, closedSensorActive: false)])
         
         let firstGroupRelation1 = SAChannelGroupRelation(testContext: nil)
         firstGroupRelation1.group = firstGroup
@@ -93,8 +93,8 @@ final class UpdateChannelGroupTotalValueUseCaseTests: UseCaseTest<[Int32]> {
         XCTAssertEqual(firstGroup.online, 66)
         XCTAssertTrue(firstGroup.total_value is GroupTotalValue)
         if let groupTotalValue = firstGroup.total_value as? GroupTotalValue,
-           let firstRelationValue = groupTotalValue.values[0] as? RollerShutterGroupValue,
-           let secondRelationValue = groupTotalValue.values[1] as? RollerShutterGroupValue
+           let firstRelationValue = groupTotalValue.values[0] as? ShadingSystemGroupValue,
+           let secondRelationValue = groupTotalValue.values[1] as? ShadingSystemGroupValue
         {
             XCTAssertEqual(groupTotalValue.values.count, 2)
             XCTAssertEqual(firstRelationValue.position, 18)
@@ -106,7 +106,7 @@ final class UpdateChannelGroupTotalValueUseCaseTests: UseCaseTest<[Int32]> {
         XCTAssertEqual(secondGroup.online, 100)
         XCTAssertTrue(secondGroup.total_value is GroupTotalValue)
         if let groupTotalValue = secondGroup.total_value as? GroupTotalValue,
-           let firstRelationValue = groupTotalValue.values[0] as? FacadeBlindGroupValue
+           let firstRelationValue = groupTotalValue.values[0] as? ShadowingBlindGroupValue
         {
             XCTAssertEqual(groupTotalValue.values.count, 1)
             XCTAssertEqual(firstRelationValue.position, 10)
@@ -120,7 +120,7 @@ final class UpdateChannelGroupTotalValueUseCaseTests: UseCaseTest<[Int32]> {
         ])
     }
     
-    func testIfTotalStringIsCreatedForGate() {
+    func testIfTotalValueIsCreatedForGate() {
         // given
         let firstGroup = SAChannelGroup(testContext: nil)
         firstGroup.remote_id = 11
@@ -156,7 +156,7 @@ final class UpdateChannelGroupTotalValueUseCaseTests: UseCaseTest<[Int32]> {
         ])
     }
     
-    func testIfTotalStringIsCreatedForPowerSwitch() {
+    func testIfTotalValueIsCreatedForPowerSwitch() {
         // given
         let firstGroup = SAChannelGroup(testContext: nil)
         firstGroup.remote_id = 11
@@ -192,7 +192,7 @@ final class UpdateChannelGroupTotalValueUseCaseTests: UseCaseTest<[Int32]> {
         ])
     }
     
-    func testIfTotalStringIsCreatedForValvePercentage() {
+    func testIfTotalValueIsCreatedForValvePercentage() {
         // given
         let firstGroup = SAChannelGroup(testContext: nil)
         firstGroup.remote_id = 11
@@ -228,7 +228,7 @@ final class UpdateChannelGroupTotalValueUseCaseTests: UseCaseTest<[Int32]> {
         ])
     }
     
-    func testIfTotalStringIsCreatedForDimmer() {
+    func testIfTotalValueIsCreatedForDimmer() {
         // given
         let firstGroup = SAChannelGroup(testContext: nil)
         firstGroup.remote_id = 11
@@ -264,7 +264,7 @@ final class UpdateChannelGroupTotalValueUseCaseTests: UseCaseTest<[Int32]> {
         ])
     }
     
-    func testIfTotalStringIsCreatedForRgbLighting() {
+    func testIfTotalValueIsCreatedForRgbLighting() {
         // given
         let firstGroup = SAChannelGroup(testContext: nil)
         firstGroup.remote_id = 11
@@ -289,7 +289,7 @@ final class UpdateChannelGroupTotalValueUseCaseTests: UseCaseTest<[Int32]> {
            let firstRelationValue = groupTotalValue.values[0] as? RgbLightingGroupValue
         {
             XCTAssertEqual(groupTotalValue.values.count, 1)
-            XCTAssertEqual(firstRelationValue.color, UIColor.primaryVariant)
+            XCTAssertEqual(firstRelationValue.color, UIColor(argb: 0xFF00D151))
             XCTAssertEqual(firstRelationValue.brightness, 15)
         } else {
             XCTFail("First group total value not created!")
@@ -301,7 +301,7 @@ final class UpdateChannelGroupTotalValueUseCaseTests: UseCaseTest<[Int32]> {
         ])
     }
     
-    func testIfTotalStringIsCreatedForDimmerAndRgbLighting() {
+    func testIfTotalValueIsCreatedForDimmerAndRgbLighting() {
         // given
         let firstGroup = SAChannelGroup(testContext: nil)
         firstGroup.remote_id = 11
@@ -326,7 +326,7 @@ final class UpdateChannelGroupTotalValueUseCaseTests: UseCaseTest<[Int32]> {
            let firstRelationValue = groupTotalValue.values[0] as? DimmerAndRgbLightingGroupValue
         {
             XCTAssertEqual(groupTotalValue.values.count, 1)
-            XCTAssertEqual(firstRelationValue.color, UIColor.primaryVariant)
+            XCTAssertEqual(firstRelationValue.color, UIColor(argb: 0xFF00D151))
             XCTAssertEqual(firstRelationValue.brightness, 22)
             XCTAssertEqual(firstRelationValue.colorBrightness, 15)
         } else {
@@ -339,7 +339,7 @@ final class UpdateChannelGroupTotalValueUseCaseTests: UseCaseTest<[Int32]> {
         ])
     }
     
-    func testIfTotalStringIsCreatedForHeatpolThermostat() {
+    func testIfTotalValueIsCreatedForHeatpolThermostat() {
         // given
         let firstGroup = SAChannelGroup(testContext: nil)
         firstGroup.remote_id = 11
@@ -373,6 +373,78 @@ final class UpdateChannelGroupTotalValueUseCaseTests: UseCaseTest<[Int32]> {
         
         assertEvents([
             .next([11]),
+            .completed
+        ])
+    }
+    
+    func testIfTotalValueIsCreatedForCurtain() {
+        // given
+        let group = SAChannelGroup(testContext: nil)
+        group.remote_id = 11
+        group.func = SUPLA_CHANNELFNC_CURTAIN
+        
+        let groupRelation = SAChannelGroupRelation(testContext: nil)
+        groupRelation.group = group
+        groupRelation.value = SAChannelValue.mockRollerShutter(position: 18)
+        
+        channelGroupRelationRepository.getAllVisibleRelationsForActiveProfileReturns = .just([
+            groupRelation,
+        ])
+        channelGroupRelationRepository.saveObservable = .just(())
+        
+        // when
+        useCase.invoke().subscribe(observer).disposed(by: disposeBag)
+        
+        // then
+        XCTAssertEqual(group.online, 100)
+        XCTAssertTrue(group.total_value is GroupTotalValue)
+        if let groupTotalValue = group.total_value as? GroupTotalValue,
+           let firstRelationValue = groupTotalValue.values[0] as? ShadingSystemGroupValue
+        {
+            XCTAssertEqual(groupTotalValue.values.count, 1)
+            XCTAssertEqual(firstRelationValue.position, 18)
+        } else {
+            XCTFail("First group total value not created!")
+        }
+        
+        assertEvents([
+            .next([11]), // in third group there are no changes so it should not be present here.
+            .completed
+        ])
+    }
+    
+    func testIfTotalValueIsCreatedForGarageDoor() {
+        // given
+        let group = SAChannelGroup(testContext: nil)
+        group.remote_id = 11
+        group.func = SUPLA_CHANNELFNC_ROLLER_GARAGE_DOOR
+        
+        let groupRelation = SAChannelGroupRelation(testContext: nil)
+        groupRelation.group = group
+        groupRelation.value = SAChannelValue.mockRollerShutter(position: 18)
+        
+        channelGroupRelationRepository.getAllVisibleRelationsForActiveProfileReturns = .just([
+            groupRelation,
+        ])
+        channelGroupRelationRepository.saveObservable = .just(())
+        
+        // when
+        useCase.invoke().subscribe(observer).disposed(by: disposeBag)
+        
+        // then
+        XCTAssertEqual(group.online, 100)
+        XCTAssertTrue(group.total_value is GroupTotalValue)
+        if let groupTotalValue = group.total_value as? GroupTotalValue,
+           let firstRelationValue = groupTotalValue.values[0] as? ShadingSystemGroupValue
+        {
+            XCTAssertEqual(groupTotalValue.values.count, 1)
+            XCTAssertEqual(firstRelationValue.position, 18)
+        } else {
+            XCTFail("First group total value not created!")
+        }
+        
+        assertEvents([
+            .next([11]), // in third group there are no changes so it should not be present here.
             .completed
         ])
     }

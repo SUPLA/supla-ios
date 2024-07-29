@@ -16,7 +16,7 @@
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 
-enum SuplaTiltControlType: UInt8, CaseIterable {
+enum SuplaTiltControlType: UInt8, CaseIterable, Codable {
     case unknown = 0
     case standsInPositionWhileTilting = 1
     case changesPositionWhileTilting = 2

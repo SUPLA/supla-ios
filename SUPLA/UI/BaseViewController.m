@@ -24,28 +24,13 @@
 
 @end
 
-@implementation BaseViewController {
-    UIView *statusBarBg;
-}
+@implementation BaseViewController {}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
     if(@available(iOS 14, *)) {
         self.navigationItem.backButtonDisplayMode = UINavigationItemBackButtonDisplayModeMinimal;
-    }
-    
-    if([self adjustsStatusBarBackground]) {
-        CGRect sbFrame;
-        sbFrame = [[UIApplication sharedApplication] statusBarFrame];
-        statusBarBg = [[UIView alloc] initWithFrame: CGRectZero];
-        statusBarBg.backgroundColor = [UIColor primary];
-        statusBarBg.translatesAutoresizingMaskIntoConstraints = NO;
-        [self.view addSubview: statusBarBg];
-        [statusBarBg.topAnchor constraintEqualToAnchor: self.view.topAnchor].active = YES;
-        [statusBarBg.leftAnchor constraintEqualToAnchor: self.view.leftAnchor].active = YES;
-        [statusBarBg.rightAnchor constraintEqualToAnchor: self.view.rightAnchor].active = YES;
-        [statusBarBg.heightAnchor constraintEqualToConstant:sbFrame.size.height].active = YES;
     }
 }
 
@@ -69,9 +54,6 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear: animated];
-    if(statusBarBg) {
-        [self.view bringSubviewToFront: statusBarBg];
-    }
     
     [self.navigationController setNavigationBarHidden: [self hidesNavigationBar]
                                              animated: animated];
@@ -83,16 +65,8 @@
     [self updateNavBarFont];
 }
 
-- (BOOL)adjustsStatusBarBackground {
-    return YES;
-}
-
 - (BOOL)hidesNavigationBar {
     return NO;
-}
-
-- (UIView*)statusBarBackgroundView {
-    return statusBarBg;
 }
 
 - (UIInterfaceOrientationMask)supportedInterfaceOrientations {

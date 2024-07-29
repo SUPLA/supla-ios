@@ -16,59 +16,45 @@
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 
-import XCTest
-import RxTest
 import RxSwift
+import RxTest
+import XCTest
 
 @testable import SUPLA
 
 final class DeleteAllProfileDataUseCaseTests: UseCaseTest<Void> {
-    
-    private lazy var useCase: DeleteAllProfileDataUseCase! = { DeleteAllProfileDataUseCaseImpl() }()
-    
-    private lazy var channelExtendedValueRepository: ChannelExtendedValueRepositorMock! = {
-        ChannelExtendedValueRepositorMock()
-    }()
-    private lazy var channelValueRepository: ChannelValueRepositoryMock! = {
-        ChannelValueRepositoryMock()
-    }()
-    private lazy var channelRepository: ChannelRepositoryMock! = {
-        ChannelRepositoryMock()
-    }()
-    private lazy var groupRepository: GroupRepositoryMock! = {
-        GroupRepositoryMock()
-    }()
-    private lazy var electricityMeasurementItemRepository: ElectricityMeasurementItemRepositoryMock! = {
-        ElectricityMeasurementItemRepositoryMock()
-    }()
-    private lazy var impulseCounterMeasurementItemRepository: ImpulseCounterMeasurementItemRepositoryMock! = {
-        ImpulseCounterMeasurementItemRepositoryMock()
-    }()
-    private lazy var locationRepository: LocationRepositoryMock! = {
-        LocationRepositoryMock()
-    }()
-    private lazy var sceneRepository: SceneRepositoryMock! = {
-        SceneRepositoryMock()
-    }()
-    private lazy var temperatureMeasurementItemRepository: TemperatureMeasurementItemRepositoryMock! = {
-        TemperatureMeasurementItemRepositoryMock()
-    }()
-    private lazy var tempHumidityMeasurementItemRepository: TempHumidityMeasurementItemRepositoryMock! = {
-        TempHumidityMeasurementItemRepositoryMock()
-    }()
-    private lazy var userIconRepository: UserIconRepositoryMock! = {
-        UserIconRepositoryMock()
-    }()
-    private lazy var thermostatMeasurementItemRepository: ThermostatMeasurementItemRepositoryMock! = {
-        ThermostatMeasurementItemRepositoryMock()
-    }()
-    private lazy var generalPurposeMeterItemRepository: GeneralPurposeMeterItemRepositoryMock! = {
-        GeneralPurposeMeterItemRepositoryMock()
-    }()
-    private lazy var generalPurposeMeasurementItemRepository: GeneralPurposeMeasurementItemRepositoryMock! = {
-        GeneralPurposeMeasurementItemRepositoryMock()
-    }()
-    
+    private lazy var useCase: DeleteAllProfileDataUseCase! = DeleteAllProfileDataUseCaseImpl()
+
+    private lazy var channelExtendedValueRepository: ChannelExtendedValueRepositorMock! = ChannelExtendedValueRepositorMock()
+
+    private lazy var channelValueRepository: ChannelValueRepositoryMock! = ChannelValueRepositoryMock()
+
+    private lazy var channelRepository: ChannelRepositoryMock! = ChannelRepositoryMock()
+
+    private lazy var groupRepository: GroupRepositoryMock! = GroupRepositoryMock()
+
+    private lazy var electricityMeasurementItemRepository: ElectricityMeasurementItemRepositoryMock! = ElectricityMeasurementItemRepositoryMock()
+
+    private lazy var impulseCounterMeasurementItemRepository: ImpulseCounterMeasurementItemRepositoryMock! = ImpulseCounterMeasurementItemRepositoryMock()
+
+    private lazy var locationRepository: LocationRepositoryMock! = LocationRepositoryMock()
+
+    private lazy var sceneRepository: SceneRepositoryMock! = SceneRepositoryMock()
+
+    private lazy var temperatureMeasurementItemRepository: TemperatureMeasurementItemRepositoryMock! = TemperatureMeasurementItemRepositoryMock()
+
+    private lazy var tempHumidityMeasurementItemRepository: TempHumidityMeasurementItemRepositoryMock! = TempHumidityMeasurementItemRepositoryMock()
+
+    private lazy var userIconRepository: UserIconRepositoryMock! = UserIconRepositoryMock()
+
+    private lazy var thermostatMeasurementItemRepository: ThermostatMeasurementItemRepositoryMock! = ThermostatMeasurementItemRepositoryMock()
+
+    private lazy var generalPurposeMeterItemRepository: GeneralPurposeMeterItemRepositoryMock! = GeneralPurposeMeterItemRepositoryMock()
+
+    private lazy var generalPurposeMeasurementItemRepository: GeneralPurposeMeasurementItemRepositoryMock! = GeneralPurposeMeasurementItemRepositoryMock()
+
+    private lazy var channelConfigRepository: ChannelConfigRepositoryMock! = ChannelConfigRepositoryMock()
+
     override func setUp() {
         DiContainer.shared.register(type: (any ChannelExtendedValueRepository).self, channelExtendedValueRepository!)
         DiContainer.shared.register(type: (any ChannelValueRepository).self, channelValueRepository!)
@@ -84,11 +70,12 @@ final class DeleteAllProfileDataUseCaseTests: UseCaseTest<Void> {
         DiContainer.shared.register(type: (any ThermostatMeasurementItemRepository).self, thermostatMeasurementItemRepository!)
         DiContainer.shared.register(type: (any GeneralPurposeMeterItemRepository).self, generalPurposeMeterItemRepository!)
         DiContainer.shared.register(type: (any GeneralPurposeMeasurementItemRepository).self, generalPurposeMeasurementItemRepository!)
+        DiContainer.shared.register(type: (any ChannelConfigRepository).self, channelConfigRepository!)
     }
-    
+
     override func tearDown() {
         useCase = nil
-        
+
         channelExtendedValueRepository = nil
         channelValueRepository = nil
         channelRepository = nil
@@ -103,10 +90,11 @@ final class DeleteAllProfileDataUseCaseTests: UseCaseTest<Void> {
         thermostatMeasurementItemRepository = nil
         generalPurposeMeterItemRepository = nil
         generalPurposeMeasurementItemRepository = nil
-        
+        channelConfigRepository = nil
+
         super.tearDown()
     }
-    
+
     func test() {
         // given
         let profile = AuthProfileItem(testContext: nil)
@@ -124,10 +112,11 @@ final class DeleteAllProfileDataUseCaseTests: UseCaseTest<Void> {
         thermostatMeasurementItemRepository.deleteAllObservable = .just(())
         generalPurposeMeterItemRepository.deleteAllForProfileReturns = .just(())
         generalPurposeMeasurementItemRepository.deleteAllForProfileReturns = .just(())
-        
+        channelConfigRepository.deleteAllForProfileReturns = .just(())
+
         // when
         useCase.invoke(profile: profile).subscribe(observer).disposed(by: disposeBag)
-        
+
         // then
         XCTAssertEqual(observer.events.count, 2)
         XCTAssertEqual(channelExtendedValueRepository.deleteAllCounter, 1)
@@ -144,6 +133,6 @@ final class DeleteAllProfileDataUseCaseTests: UseCaseTest<Void> {
         XCTAssertEqual(thermostatMeasurementItemRepository.deleteAllCounter, 1)
         XCTAssertEqual(generalPurposeMeterItemRepository.deleteAllForProfileParameters, [profile])
         XCTAssertEqual(generalPurposeMeasurementItemRepository.deleteAllForProfileParameters, [profile])
-        
+        XCTAssertEqual(channelConfigRepository.deleteAllForProfileParameters, [profile])
     }
 }

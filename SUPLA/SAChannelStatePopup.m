@@ -446,7 +446,10 @@ static SAChannelStatePopup *_channelStatePopupGlobalRef = nil;
     if (_channel == nil) {
         return;
     }
-    [[SAApp SuplaClient] channelStateRequestWithChannelId:_channel.remote_id];
+    SASuplaClient* client = [[SAApp instance] optionalSuplaClient];
+    if (client != nil) {
+        [client channelStateRequestWithChannelId:_channel.remote_id];
+    }
 }
 
 -(void)setChannel:(SAChannel *)channel {

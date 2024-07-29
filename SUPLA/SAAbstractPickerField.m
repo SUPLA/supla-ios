@@ -18,7 +18,6 @@
 
 #import "SAAbstractPickerField.h"
 #import "SuplaApp.h"
-#import "UIColor+SUPLA.h"
 #import "SUPLA-Swift.h"
 
 @interface SAAbstractPickerField () <UITextFieldDelegate, UIGestureRecognizerDelegate, UIPickerViewDataSource, UIPickerViewDelegate>

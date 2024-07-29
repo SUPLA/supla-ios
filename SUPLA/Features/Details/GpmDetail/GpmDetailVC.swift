@@ -18,12 +18,8 @@
 
 class GpmDetailVC: StandardDetailVC<GpmDetailVewState, GpmDetailViewEvent, GpmDetailVM> {
     
-    private var navigator: GpmDetailNavigatorCoordinator? {
-        get { navigationCoordinator as? GpmDetailNavigatorCoordinator }
-    }
-    
-    init(navigator: GpmDetailNavigatorCoordinator, item: ItemBundle, pages: [DetailPage]) {
-        super.init(navigator: navigator, viewModel: GpmDetailVM(), item: item, pages: pages)
+    init(item: ItemBundle, pages: [DetailPage]) {
+        super.init(viewModel: GpmDetailVM(), item: item, pages: pages)
     }
     
     required init?(coder: NSCoder) {

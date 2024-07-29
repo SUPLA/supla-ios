@@ -19,7 +19,7 @@
 @testable import SUPLA
 import XCTest
 
-final class ActivateProfileUseCaseTests: UseCaseTest<Bool> {
+final class ActivateProfileUseCaseTests: CompletableTestCase {
     
     private lazy var profileRepository: ProfileRepositoryMock! = {
         ProfileRepositoryMock()
@@ -33,13 +33,7 @@ final class ActivateProfileUseCaseTests: UseCaseTest<Bool> {
         SuplaCloudConfigHolderMock()
     }()
     
-    private lazy var suplaApp: SuplaAppWrapperMock! = {
-        SuplaAppWrapperMock()
-    }()
-    
-    private lazy var suplaClientProvider: SuplaClientProviderMock! = {
-        SuplaClientProviderMock()
-    }()
+    private lazy var reconnectUseCase: ReconnectUseCaseMock! = ReconnectUseCaseMock()
     
     private lazy var useCase: ActivateProfileUseCaseImpl! = {
         ActivateProfileUseCaseImpl()
@@ -51,8 +45,7 @@ final class ActivateProfileUseCaseTests: UseCaseTest<Bool> {
         DiContainer.shared.register(type: (any ProfileRepository).self, profileRepository!)
         DiContainer.shared.register(type: RuntimeConfig.self, runtimeConfig!)
         DiContainer.shared.register(type: SuplaCloudConfigHolder.self, cloudConfigHolder!)
-        DiContainer.shared.register(type: SuplaAppWrapper.self, suplaApp!)
-        DiContainer.shared.register(type: SuplaClientProvider.self, suplaClientProvider!)
+        DiContainer.shared.register(type: ReconnectUseCase.self, reconnectUseCase!)
     }
     
     override func tearDown() {
@@ -61,8 +54,7 @@ final class ActivateProfileUseCaseTests: UseCaseTest<Bool> {
         profileRepository = nil
         runtimeConfig = nil
         cloudConfigHolder = nil
-        suplaApp = nil
-        suplaClientProvider = nil
+        reconnectUseCase = nil
         
         useCase = nil
     }
@@ -79,10 +71,7 @@ final class ActivateProfileUseCaseTests: UseCaseTest<Bool> {
             .disposed(by: disposeBag)
         
         // then
-        assertEvents([
-            .next(false),
-            .completed
-        ])
+        assertEvents(contains: [ .completed ])
     }
     
     func test_shouldReturnFalseWhenProfileActiveAndForceFalse() {
@@ -98,15 +87,10 @@ final class ActivateProfileUseCaseTests: UseCaseTest<Bool> {
             .disposed(by: disposeBag)
         
         // then
-        assertEvents([
-            .next(false),
-            .completed
-        ])
+        assertEvents(contains: [ .completed ])
         
         XCTAssertEqual(runtimeConfig.activeProfileIdValues, [])
         XCTAssertEqual(cloudConfigHolder.cleanCalls, 0)
-        XCTAssertEqual(suplaApp.cancelAllRestApiClientTasksCalls, 0)
-        XCTAssertEqual(suplaClientProvider.suplaClientMock.reconnectCalls, 0)
     }
     
     func test_shouldActivateOtherProfile() {
@@ -119,6 +103,7 @@ final class ActivateProfileUseCaseTests: UseCaseTest<Bool> {
         profileRepository.queryItemByIdObservable = .just(notActiveProfile)
         profileRepository.allProfilesObservable = .just([activeProfile, notActiveProfile])
         profileRepository.saveObservable = .just(())
+        reconnectUseCase.returns = .complete()
         
         // when
         useCase.invoke(profileId: notActiveProfile.objectID, force: false)
@@ -126,14 +111,9 @@ final class ActivateProfileUseCaseTests: UseCaseTest<Bool> {
             .disposed(by: disposeBag)
         
         // then
-        assertEvents([
-            .next(true),
-            .completed
-        ])
+        assertEvents(contains: [ .completed ])
         XCTAssertEqual(runtimeConfig.activeProfileIdValues, [notActiveProfile.objectID])
         XCTAssertEqual(cloudConfigHolder.cleanCalls, 1)
-        XCTAssertEqual(suplaApp.cancelAllRestApiClientTasksCalls, 1)
-        XCTAssertEqual(suplaClientProvider.suplaClientMock.reconnectCalls, 1)
     }
     
     func test_shouldActivateActiveProfileWhenForceTrue() {
@@ -144,6 +124,7 @@ final class ActivateProfileUseCaseTests: UseCaseTest<Bool> {
         profileRepository.queryItemByIdObservable = .just(activeProfile)
         profileRepository.allProfilesObservable = .just([activeProfile])
         profileRepository.saveObservable = .just(())
+        reconnectUseCase.returns = .complete()
         
         // when
         useCase.invoke(profileId: activeProfile.objectID, force: true)
@@ -151,13 +132,8 @@ final class ActivateProfileUseCaseTests: UseCaseTest<Bool> {
             .disposed(by: disposeBag)
         
         // then
-        assertEvents([
-            .next(true),
-            .completed
-        ])
+        assertEvents(contains: [ .completed ])
         XCTAssertEqual(runtimeConfig.activeProfileIdValues, [activeProfile.objectID])
         XCTAssertEqual(cloudConfigHolder.cleanCalls, 1)
-        XCTAssertEqual(suplaApp.cancelAllRestApiClientTasksCalls, 1)
-        XCTAssertEqual(suplaClientProvider.suplaClientMock.reconnectCalls, 1)
     }
 }

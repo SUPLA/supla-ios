@@ -16,12 +16,11 @@
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 
-import Foundation
 import CoreData
+import Foundation
 
 @objc
 class CoreDataManager: NSObject {
-    
     @Singleton<GlobalSettings> private var settings
     
     let migrator: CoreDataMigrator
@@ -82,15 +81,15 @@ class CoreDataManager: NSObject {
             completion()
         }
     }
-    
+
     private func loadPersistentStore(completion: @escaping () -> Void) {
         migrateStoreIfNeeded {
-            self.persistentContainer.loadPersistentStores { description, error in
+            self.persistentContainer.loadPersistentStores { _, error in
                 guard error == nil else {
                     fatalError("Not able to load store \(error!)")
                 }
                 
-                if(self.tryRecreateAccount) {
+                if (self.tryRecreateAccount) {
                     DispatchQueue.global(qos: .userInitiated).async {
                         if (SAApp.profileManager().restoreProfileFromDefaults()) {
                             var settings = self.settings
@@ -100,8 +99,7 @@ class CoreDataManager: NSObject {
                             completion()
                         }
                     }
-                }
-                else {
+                } else {
                     completion()
                 }
             }
@@ -126,7 +124,7 @@ class CoreDataManager: NSObject {
                     self.removeCurrentDatabase()
 #endif
                 }
-                
+
                 DispatchQueue.main.async {
                     completion()
                 }
@@ -150,8 +148,8 @@ class CoreDataManager: NSObject {
         if let removed = try? removeDatabase(with: "SUPLA_DB.sqlite"), removed {
             tryRecreateAccount = true
         }
-        for i in 0..<14 {
-            if let removed = try? removeDatabase(with: String.init(format: "SUPLA_DB%i.sqlite", i)), removed {
+        for i in 0 ..< 14 {
+            if let removed = try? removeDatabase(with: String(format: "SUPLA_DB%i.sqlite", i)), removed {
                 tryRecreateAccount = true
             }
         }
@@ -168,4 +166,3 @@ class CoreDataManager: NSObject {
         return false
     }
 }
-

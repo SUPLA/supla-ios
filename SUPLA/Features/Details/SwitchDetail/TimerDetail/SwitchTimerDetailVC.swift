@@ -93,9 +93,6 @@ class SwitchTimerDetailVC: BaseViewControllerVM<SwitchTimerDetailViewState, Swit
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        statusBarBackgroundView.isHidden = true
-        view.backgroundColor = .background
-        
         setupView()
     }
     

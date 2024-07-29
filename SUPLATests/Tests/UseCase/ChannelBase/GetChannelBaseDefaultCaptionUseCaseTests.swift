@@ -83,6 +83,11 @@ final class GetChannelBaseDefaultCaptionUseCaseTests: XCTestCase {
         doTest(function: SUPLA_CHANNELFNC_GENERAL_PURPOSE_MEASUREMENT, Strings.General.Channel.captionGeneralPurposeMeasurement)
         doTest(function: SUPLA_CHANNELFNC_GENERAL_PURPOSE_METER, Strings.General.Channel.captionGeneralPurposeMeter)
         doTest(function: SUPLA_CHANNELFNC_CONTROLLINGTHEFACADEBLIND, Strings.General.Channel.captionFacadeBlinds)
+        doTest(function: SUPLA_CHANNELFNC_TERRACE_AWNING, Strings.General.Channel.captionTerraceAwning)
+        doTest(function: SUPLA_CHANNELFNC_PROJECTOR_SCREEN, Strings.General.Channel.captionProjectorScreen)
+        doTest(function: SUPLA_CHANNELFNC_CURTAIN, Strings.General.Channel.captionCurtain)
+        doTest(function: SUPLA_CHANNELFNC_VERTICAL_BLIND, Strings.General.Channel.captionVerticalBlind)
+        doTest(function: SUPLA_CHANNELFNC_ROLLER_GARAGE_DOOR, Strings.General.Channel.captionGarageDoor)
         doTest(function: -1, "Not supported function")
     }
     

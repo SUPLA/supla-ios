@@ -28,27 +28,30 @@
  
 @class SADatabase;
 @class SASettingsVC;
-@class SAStatusVC;
 @class SACreateAccountVC;
-@class MainNavigationCoordinator;
 @protocol ProfileManager;
-@protocol NavigationCoordinator;
+
+@protocol SuplaAppApi <NSObject>
+
+-(void) cancelAllRestApiClientTasks;
+-(BOOL) isClientRegistered;
+-(BOOL) isClientWorking;
+-(BOOL) isClientAuthorized;
+
+@end
 
 NS_ASSUME_NONNULL_BEGIN
-@interface SAApp : NSObject <SASuplaClientDelegate>
+@interface SAApp : NSObject <SASuplaClientDelegate, SuplaAppApi>
 
 +(SAApp*)instance;
-+(nullable id<NavigationCoordinator>)currentNavigationCoordinator;
-+(nullable MainNavigationCoordinator*)mainNavigationCoordinator;
-+(BOOL) getClientGUID:(char[SUPLA_GUID_SIZE])guid DEPRECATED_ATTRIBUTE;
-+(BOOL) getAuthKey:(char[SUPLA_AUTHKEY_SIZE])auth_key DEPRECATED_ATTRIBUTE;
++(BOOL) getClientGUID:(char[_Nullable SUPLA_GUID_SIZE])guid DEPRECATED_ATTRIBUTE;
++(BOOL) getAuthKey:(char[_Nullable SUPLA_AUTHKEY_SIZE])auth_key DEPRECATED_ATTRIBUTE;
 +(void) abstractMethodException:(NSString *)methodName;
 +(NSURL *)applicationDocumentsDirectory;
 +(void) setBrightnessPickerTypeToSlider:(BOOL)slider;
 +(BOOL) isBrightnessPickerTypeSet;
 +(BOOL) isBrightnessPickerTypeSlider;
 
-+(void)initClientDelayed:(double)time;
 +(SASuplaClient *) SuplaClient;
 +(SASuplaClient *) SuplaClientWithOneTimePassword:(NSString*)password;
 +(BOOL) isClientRegistered;
@@ -64,6 +67,8 @@ NS_ASSUME_NONNULL_BEGIN
 -(SAOAuthToken*) registerRestApiClientTask:(SARestApiClientTask *)client;
 -(void) unregisterRestApiClientTask:(SARestApiClientTask *)task;
 -(void) cancelAllRestApiClientTasks;
+-(bool) isClientWorking;
+-(SASuplaClient *) optionalSuplaClient;
 @end
 
 extern NSString *kSADataChangedNotification;

@@ -150,6 +150,7 @@ final class ThermostatGeneralVMTests: ViewModelTest<ThermostatGeneralViewState, 
                 .changing(path: \.childrenIds, to: [0, 0])
                 .changing(path: \.sensorIssue, to: SensorIssue(sensorIcon: nil, message: Strings.ThermostatDetail.offByCard))
                 .changing(path: \.subfunction, to: .heat)
+                .changing(path: \.currentPower, to: 1)
         ])
 
         assertState(1) {
@@ -157,8 +158,8 @@ final class ThermostatGeneralVMTests: ViewModelTest<ThermostatGeneralViewState, 
             XCTAssertEqual($0.setpointText, "21.2")
             XCTAssertEqual($0.plusButtonEnabled, true)
             XCTAssertEqual($0.minusButtonEnabled, true)
-            XCTAssertEqual($0.modeIndicatorColor, .primary)
-            XCTAssertEqual($0.powerIconColor, .suplaGreen)
+            XCTAssertEqual($0.operationalMode, .standby)
+            XCTAssertEqual($0.powerIconColor, .primary)
             XCTAssertEqual($0.controlButtonsEnabled, true)
             XCTAssertEqual($0.configMinMaxHidden, false)
         }
@@ -238,6 +239,7 @@ final class ThermostatGeneralVMTests: ViewModelTest<ThermostatGeneralViewState, 
                     ChannelIssueItem(issueIconType: .warning, description: Strings.ThermostatDetail.clockError)
                 ])
                 .changing(path: \.subfunction, to: .cool)
+                .changing(path: \.currentPower, to: 1)
         ])
         
         assertState(1) {
@@ -245,7 +247,7 @@ final class ThermostatGeneralVMTests: ViewModelTest<ThermostatGeneralViewState, 
             XCTAssertEqual($0.setpointText, "23.0")
             XCTAssertEqual($0.plusButtonEnabled, true)
             XCTAssertEqual($0.minusButtonEnabled, true)
-            XCTAssertEqual($0.powerIconColor, .suplaGreen)
+            XCTAssertEqual($0.powerIconColor, .primary)
             XCTAssertEqual($0.controlButtonsEnabled, true)
             XCTAssertEqual($0.configMinMaxHidden, false)
         }
@@ -323,7 +325,7 @@ final class ThermostatGeneralVMTests: ViewModelTest<ThermostatGeneralViewState, 
             XCTAssertEqual($0.plusButtonEnabled, false)
             XCTAssertEqual($0.minusButtonEnabled, false)
             XCTAssertEqual($0.powerIconColor, .red)
-            XCTAssertEqual($0.modeIndicatorColor, .black)
+            XCTAssertEqual($0.operationalMode, .off)
             XCTAssertEqual($0.controlButtonsEnabled, true)
             XCTAssertEqual($0.configMinMaxHidden, false)
         }
@@ -396,7 +398,7 @@ final class ThermostatGeneralVMTests: ViewModelTest<ThermostatGeneralViewState, 
             XCTAssertEqual($0.plusButtonEnabled, false)
             XCTAssertEqual($0.minusButtonEnabled, false)
             XCTAssertEqual($0.powerIconColor, .red)
-            XCTAssertEqual($0.modeIndicatorColor, .black)
+            XCTAssertEqual($0.operationalMode, .offline)
             XCTAssertEqual($0.controlButtonsEnabled, false)
             XCTAssertEqual($0.configMinMaxHidden, true)
         }
@@ -469,7 +471,7 @@ final class ThermostatGeneralVMTests: ViewModelTest<ThermostatGeneralViewState, 
             result: .resultTrue,
             config: SuplaDeviceConfig.mock())
         )
-        dateProvider.currentTimestampReturns = 1001
+        dateProvider.currentTimestampReturns = .single(1001)
         
         let initialState = ThermostatGeneralViewState(lastInteractionTime: 1000)
         viewModel.updateView { _ in initialState }
@@ -510,7 +512,7 @@ final class ThermostatGeneralVMTests: ViewModelTest<ThermostatGeneralViewState, 
         
         viewModel.updateView { _ in initialState }
         
-        dateProvider.currentTimestampReturns = 1100
+        dateProvider.currentTimestampReturns = .single(1100)
         
         // when
         observe(viewModel)
@@ -540,7 +542,7 @@ final class ThermostatGeneralVMTests: ViewModelTest<ThermostatGeneralViewState, 
         
         viewModel.updateView { _ in initialState }
         
-        dateProvider.currentTimestampReturns = 1100
+        dateProvider.currentTimestampReturns = .single(1100)
         
         // when
         observe(viewModel)
@@ -593,7 +595,7 @@ final class ThermostatGeneralVMTests: ViewModelTest<ThermostatGeneralViewState, 
         
         viewModel.updateView { _ in initialState }
         
-        dateProvider.currentTimestampReturns = 1100
+        dateProvider.currentTimestampReturns = .single(1100)
         
         // when
         observe(viewModel)
@@ -626,7 +628,7 @@ final class ThermostatGeneralVMTests: ViewModelTest<ThermostatGeneralViewState, 
         
         viewModel.updateView { _ in initialState }
         
-        dateProvider.currentTimestampReturns = 1100
+        dateProvider.currentTimestampReturns = .single(1100)
         
         // when
         observe(viewModel)
@@ -661,7 +663,7 @@ final class ThermostatGeneralVMTests: ViewModelTest<ThermostatGeneralViewState, 
         
         viewModel.updateView { _ in initialState }
         
-        dateProvider.currentTimestampReturns = 1100
+        dateProvider.currentTimestampReturns = .single(1100)
         
         // when
         observe(viewModel)
@@ -694,7 +696,7 @@ final class ThermostatGeneralVMTests: ViewModelTest<ThermostatGeneralViewState, 
         
         viewModel.updateView { _ in initialState }
         
-        dateProvider.currentTimestampReturns = 1100
+        dateProvider.currentTimestampReturns = .single(1100)
         
         // when
         observe(viewModel)
@@ -727,6 +729,7 @@ final class ThermostatGeneralVMTests: ViewModelTest<ThermostatGeneralViewState, 
             .changing(path: \.offline, to: false)
         
         viewModel.updateView { _ in initialState }
+        dateProvider.currentTimestampReturns = .single(0)
         
         // when
         observe(viewModel)
@@ -752,6 +755,7 @@ final class ThermostatGeneralVMTests: ViewModelTest<ThermostatGeneralViewState, 
             .changing(path: \.offline, to: false)
         
         viewModel.updateView { _ in initialState }
+        dateProvider.currentTimestampReturns = .single(0)
         
         // when
         observe(viewModel)
@@ -778,6 +782,7 @@ final class ThermostatGeneralVMTests: ViewModelTest<ThermostatGeneralViewState, 
             .changing(path: \.offline, to: false)
         
         viewModel.updateView { _ in initialState }
+        dateProvider.currentTimestampReturns = .single(0)
         
         // when
         observe(viewModel)
@@ -804,6 +809,7 @@ final class ThermostatGeneralVMTests: ViewModelTest<ThermostatGeneralViewState, 
             .changing(path: \.weeklyScheduleActive, to: true)
         
         viewModel.updateView { _ in initialState }
+        dateProvider.currentTimestampReturns = .single(0)
         
         // when
         observe(viewModel)
@@ -853,6 +859,7 @@ final class ThermostatGeneralVMTests: ViewModelTest<ThermostatGeneralViewState, 
             .changing(path: \.manualActive, to: true)
         
         viewModel.updateView { _ in initialState }
+        dateProvider.currentTimestampReturns = .single(0)
         
         // when
         observe(viewModel)

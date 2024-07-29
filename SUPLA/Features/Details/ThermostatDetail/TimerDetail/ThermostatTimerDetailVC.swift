@@ -97,8 +97,6 @@ class ThermostatTimerDetailVC: BaseViewControllerVM<ThermostatTimerDetailViewSta
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        statusBarBackgroundView.isHidden = true
-        view.backgroundColor = .background
         
         viewModel.observeData(remoteId: remoteId)
         

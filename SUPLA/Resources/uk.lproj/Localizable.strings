@@ -14,7 +14,6 @@
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 
-"version" = "версія";
 "Open" = "Відчинити";
 "Open Close" = "Відчинити Зачинити";
 "Reveal" = "Open";
@@ -45,17 +44,7 @@
 "Garage door opening sensor" = "Датчик відчинення гаражних воріт";
 "Door opening sensor" = "Датчик відчинення дверей";
 "Roller shutter opening sensor" = "Датчик відчинення ролет";
-"Connecting..." = "Підключення...";
-"Unknown error" = "Невідома помилка";
-"Service temporarily unavailable" = "Послуга тимчасово недоступна";
-"Bad credentials" = "Неправильні облікові дані";
-"Client limit exceeded" = "Перевищено ліміт клієнтських додатків";
-"Device disabled. Please log in to \"Supla Cloud\" and enable this device in “Smartphone” section of the website." = "Пристрій вимкнено. Увійдіть в \"Supla Cloud\" і включіть цей смартфон на вкладці \"Смартфони\".";
-"Access Identifier is disabled" = "Ідентифікатор доступу вимкнено";
-"New client registration disabled. Please log in to \"Supla Cloud\" and enable \"New client registration\" in \"Smartphone\" section of the website." = "Реєстрація в даний час відключена. Увійдіть в \"Supla Cloud\" і переключіть реєстрацію клієнтів на АКТИВНУ на вкладці \"Смартфони\".";
-"Client activation required. Please log in to \"Supla Cloud\" and assign an “Access ID” for this device in “Smartphone” section of the website." = "Цьому пристрою не присвоєно ідентифікатор доступу. Перейдіть на сторінку \"Supla Cloud\" і на вкладці \"Смартфони\" призначте відповідний ідентифікатор.";
 "Incompatible server version" = "Несумісна версія сервера";
-"Host not found. Make sure you are connected to the internet and that an account with the entered email address has been created." = "Адреса сервера не знайдена. Переконайтеся, що у вас є підключення до Інтернету та що створено обліковий запис із введеною адресою електронної пошти.";
 "RGB Lighting" = "Освітлення RGB";
 "Dimmer and RGB lighting" = "Регулятор освітленості та освітлення RGB";
 "Dimmer" = "Регулятор освітленості";
@@ -199,7 +188,6 @@
 "The glass sections are exposed for more than 20 hours, which may adversely affect their life. It is recommended to cover all sections for a minimum of 4 hours in order to regenerate them." = "Скляні секції експонуються більше 20 годин, що може негативно вплинути на термін їх служби. Рекомендується накрити всі секції мінімум на 4 години для їх регенерації.";
 "Planned regeneration is in progress." = "Виконується планова регенерація.";
 "Regeneration initiated after 20 hours of operation is in progress." = "Триває регенерація, розпочата після 20 годин роботи.";
-"Incorrect Email Address or Password" = "Неправильна адреса електронної пошти або пароль";
 "Channel Id" = "Ідентифікатор каналу";
 "Back" = "Назад";
 "The z-wave bridge is not responding. Check if the bridge is connected to the server." = "Міст z-wave не відповідає. Перевірте, чи підключено міст до сервера.";
@@ -275,12 +263,10 @@
 "Don't have an account in Supla Cloud yet?" = "У вас ще немає облікового запису в Supla Cloud?";
 "Create" = "Створити обліковий запис";
 "Location order" = "Порядок розташування";
-"Roller shutter %" = "Ролети %";
 "Opening" = "Відкриття";
 "Closing" = "Закриття";
 "Percent of opening" = "Відсоток відкриття";
 "Percent of closing" = "Відсоток закриття";
-"Access Identifier inactive." = "Ідентифікатор доступу неактивний.";
 "Your account" = "Ваш обліковий запис";
 "Your accounts" = "Ваші облікові записи";
 "Accounts" = "Облікові записи";
@@ -317,3 +303,20 @@
 "roller_shutter_motor_problem" = "Проблема з двигуном / Несподівана зупинка.";
 "roller_shutter_calibration" = "Калібрування";
 "roller_shutter_start_calibration_message" = "Ви впевнені, що хочете почати калібрування?";
+
+/* Status */
+"status_connecting" = "Підключення...";
+"status_unknown_error" = "Невідома помилка";
+"status_temporarily_unavailable" = "Послуга тимчасово недоступна";
+"status_incorrect_data" = "Неправильна адреса електронної пошти або пароль";
+"status_bad_credentials" = "Неправильні облікові дані";
+"status_client_limit_exceeded" = "Перевищено ліміт клієнтських додатків";
+"status_device_disabled" = "Пристрій вимкнено. Увійдіть в \"Supla Cloud\" і включіть цей смартфон на вкладці \"Смартфони\".";
+"status_access_id_disabled" = "Ідентифікатор доступу вимкнено";
+"status_registration_disabled" = "Реєстрація в даний час відключена. Увійдіть в \"Supla Cloud\" і переключіть реєстрацію клієнтів на АКТИВНУ на вкладці \"Смартфони\".";
+"status_access_id_not_assigned" = "Цьому пристрою не присвоєно ідентифікатор доступу. Перейдіть на сторінку \"Supla Cloud\" і на вкладці \"Смартфони\" призначте відповідний ідентифікатор.";
+"status_access_id_inactive" = "Ідентифікатор доступу неактивний.";
+"status_host_not_found" = "Адреса сервера не знайдена. Переконайтеся, що у вас є підключення до Інтернету та що створено обліковий запис із введеною адресою електронної пошти.";
+
+/* About */
+"about_version" = "версія %@";

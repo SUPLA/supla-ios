@@ -18,13 +18,10 @@
 
 
 #import <UIKit/UIKit.h>
-@protocol NavigationCoordinator, NavigationCoordinatorAware;
+
 NS_ASSUME_NONNULL_BEGIN
 
-@interface BaseViewController : UIViewController<NavigationCoordinatorAware>
-@property (weak,nonatomic) id<NavigationCoordinator> navigationCoordinator;
-@property (readonly,nonatomic) UIView *statusBarBackgroundView;
-- (BOOL)adjustsStatusBarBackground;
+@interface BaseViewController : UIViewController
 - (BOOL)hidesNavigationBar;
 - (void)addChildView: (UIView *)v;
 - (BOOL)shouldUpdateTitleFont;

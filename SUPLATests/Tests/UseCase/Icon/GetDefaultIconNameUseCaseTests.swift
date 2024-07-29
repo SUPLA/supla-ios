@@ -348,7 +348,7 @@ final class GetDefaultIconNameUseCaseTests: XCTestCase {
         )
         
         // then
-        XCTAssertEqual(iconName, "rollershutter-open")
+        XCTAssertEqual(iconName, "fnc_roller_shutter-open")
     }
     
     func test_rollershutterSensorClosed() {
@@ -366,7 +366,7 @@ final class GetDefaultIconNameUseCaseTests: XCTestCase {
         )
         
         // then
-        XCTAssertEqual(iconName, "rollershutter-closed")
+        XCTAssertEqual(iconName, "fnc_roller_shutter-closed")
     }
     
     func test_roofwindowSensorOpened() {
@@ -618,7 +618,7 @@ final class GetDefaultIconNameUseCaseTests: XCTestCase {
         )
         
         // then
-        XCTAssertEqual(iconName, "staircasetimer_1-off")
+        XCTAssertEqual(iconName, "fnc_staircasetimer_1-off")
     }
     
     func test_thermometerIcon() {
@@ -1578,5 +1578,195 @@ final class GetDefaultIconNameUseCaseTests: XCTestCase {
         
         // then
         XCTAssertEqual(iconName, "fnc_alarm_armament-off")
+    }
+    
+    func test_terraceAwningOpened() {
+        // given
+        let function = SUPLA_CHANNELFNC_TERRACE_AWNING
+        
+        // when
+        let iconName = useCase.invoke(
+            iconData: IconData(
+                function: function,
+                altIcon: 0,
+                state: .opened,
+                type: .single,
+                subfunction: .notSet
+            )
+        )
+        
+        // then
+        XCTAssertEqual(iconName, "fnc_terrace_awning-open")
+    }
+    
+    func test_terraceAwningClose() {
+        // given
+        let function = SUPLA_CHANNELFNC_TERRACE_AWNING
+        
+        // when
+        let iconName = useCase.invoke(
+            iconData: IconData(
+                function: function,
+                altIcon: 0,
+                state: .closed,
+                type: .single,
+                subfunction: .notSet
+            )
+        )
+        
+        // then
+        XCTAssertEqual(iconName, "fnc_terrace_awning-closed")
+    }
+    
+    func test_projectorScreenOpened() {
+        // given
+        let function = SUPLA_CHANNELFNC_PROJECTOR_SCREEN
+        
+        // when
+        let iconName = useCase.invoke(
+            iconData: IconData(
+                function: function,
+                altIcon: 0,
+                state: .opened,
+                type: .single,
+                subfunction: .notSet
+            )
+        )
+        
+        // then
+        XCTAssertEqual(iconName, "fnc_projector_screen-open")
+    }
+    
+    func test_projectorScreenClose() {
+        // given
+        let function = SUPLA_CHANNELFNC_PROJECTOR_SCREEN
+        
+        // when
+        let iconName = useCase.invoke(
+            iconData: IconData(
+                function: function,
+                altIcon: 0,
+                state: .closed,
+                type: .single,
+                subfunction: .notSet
+            )
+        )
+        
+        // then
+        XCTAssertEqual(iconName, "fnc_projector_screen-closed")
+    }
+    
+    func test_curtainOpened() {
+        // given
+        let function = SUPLA_CHANNELFNC_CURTAIN
+        
+        // when
+        let iconName = useCase.invoke(
+            iconData: IconData(
+                function: function,
+                altIcon: 0,
+                state: .opened,
+                type: .single,
+                subfunction: .notSet
+            )
+        )
+        
+        // then
+        XCTAssertEqual(iconName, "fnc_curtain-open")
+    }
+    
+    func test_curtainClose() {
+        // given
+        let function = SUPLA_CHANNELFNC_CURTAIN
+        
+        // when
+        let iconName = useCase.invoke(
+            iconData: IconData(
+                function: function,
+                altIcon: 0,
+                state: .closed,
+                type: .single,
+                subfunction: .notSet
+            )
+        )
+        
+        // then
+        XCTAssertEqual(iconName, "fnc_curtain-closed")
+    }
+    
+    func test_verticalBlindOpened() {
+        // given
+        let function = SUPLA_CHANNELFNC_VERTICAL_BLIND
+        
+        // when
+        let iconName = useCase.invoke(
+            iconData: IconData(
+                function: function,
+                altIcon: 0,
+                state: .opened,
+                type: .single,
+                subfunction: .notSet
+            )
+        )
+        
+        // then
+        XCTAssertEqual(iconName, "fnc_vertical_blind-open")
+    }
+    
+    func test_verticalBlindClose() {
+        // given
+        let function = SUPLA_CHANNELFNC_VERTICAL_BLIND
+        
+        // when
+        let iconName = useCase.invoke(
+            iconData: IconData(
+                function: function,
+                altIcon: 0,
+                state: .closed,
+                type: .single,
+                subfunction: .notSet
+            )
+        )
+        
+        // then
+        XCTAssertEqual(iconName, "fnc_vertical_blind-closed")
+    }
+    
+    func test_garageDoorOpened() {
+        // given
+        let function = SUPLA_CHANNELFNC_ROLLER_GARAGE_DOOR
+        
+        // when
+        let iconName = useCase.invoke(
+            iconData: IconData(
+                function: function,
+                altIcon: 0,
+                state: .opened,
+                type: .single,
+                subfunction: .notSet
+            )
+        )
+        
+        // then
+        XCTAssertEqual(iconName, "fnc_garage_door-open")
+    }
+    
+    func test_garageDoorClose() {
+        // given
+        let function = SUPLA_CHANNELFNC_ROLLER_GARAGE_DOOR
+        
+        // when
+        let iconName = useCase.invoke(
+            iconData: IconData(
+                function: function,
+                altIcon: 0,
+                state: .closed,
+                type: .single,
+                subfunction: .notSet
+            )
+        )
+        
+        // then
+        XCTAssertEqual(iconName, "fnc_garage_door-closed")
     }
 }

@@ -82,6 +82,51 @@ final class ProvideDetailTypeUseCaseTests: XCTestCase {
         }
     }
     
+    func test_shouldProvideRs_forTerraceAwningFunction() {
+        doTest(expectedResult: .windowDetail(pages: [.terraceAwning])) {
+            let channel = SAChannel(testContext: nil)
+            channel.func = SUPLA_CHANNELFNC_TERRACE_AWNING
+            
+            return channel
+        }
+    }
+    
+    func test_shouldProvideRs_forProjectorScreenFunction() {
+        doTest(expectedResult: .windowDetail(pages: [.projectorScreen])) {
+            let channel = SAChannel(testContext: nil)
+            channel.func = SUPLA_CHANNELFNC_PROJECTOR_SCREEN
+            
+            return channel
+        }
+    }
+    
+    func test_shouldProvideRs_forCurtainFunction() {
+        doTest(expectedResult: .windowDetail(pages: [.curtain])) {
+            let channel = SAChannel(testContext: nil)
+            channel.func = SUPLA_CHANNELFNC_CURTAIN
+            
+            return channel
+        }
+    }
+    
+    func test_shouldProvideRs_forVerticalBlindFunction() {
+        doTest(expectedResult: .windowDetail(pages: [.verticalBlind])) {
+            let channel = SAChannel(testContext: nil)
+            channel.func = SUPLA_CHANNELFNC_VERTICAL_BLIND
+            
+            return channel
+        }
+    }
+    
+    func test_shouldProvideRs_forGarageDoorFunction() {
+        doTest(expectedResult: .windowDetail(pages: [.garageDoor])) {
+            let channel = SAChannel(testContext: nil)
+            channel.func = SUPLA_CHANNELFNC_ROLLER_GARAGE_DOOR
+            
+            return channel
+        }
+    }
+    
     func test_shouldProvideEm_forEmFunction() {
         doTest(expectedResult: .legacy(type: .em)) {
             let channel = SAChannel(testContext: nil)

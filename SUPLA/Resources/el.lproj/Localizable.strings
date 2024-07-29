@@ -14,7 +14,6 @@
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 
-"version" = "Η έκδοση";
 "Open" = "Άνοιγμα";
 "Open Close" = "Άνοιγμα Κλείσιμο";
 "Reveal" = "Αποκάλυψη";
@@ -45,17 +44,7 @@
 "Garage door opening sensor" = "Αισθητήρας ανοίγματος της γκαραζόπορτας";
 "Door opening sensor" = "Αισθητήρας ανοίγματος πόρτας";
 "Roller shutter opening sensor" = ">Αισθητήρας ανοίγματος περσίδων";
-"Connecting..." = "Σύνδεση...";
-"Unknown error" = "Άγνωστο σφάλμα";
-"Service temporarily unavailable" = "Υπηρεσία προσωρινά μη διαθέσιμη";
-"Bad credentials" = "Λανθασμένα διαπιστευτήρια";
-"Client limit exceeded" = "Υπέρβαση ορίου των εφαρμογών πελάτη";
-"Device disabled. Please log in to \"Supla Cloud\" and enable this device in “Smartphone” section of the website." = "Η συσκευή είναι απενεργοποιημένη";
-"Access Identifier is disabled" = "Το αναγνωριστικό πρόσβασης είναι απενεργοποιημένο";
-"New client registration disabled. Please log in to \"Supla Cloud\" and enable \"New client registration\" in \"Smartphone\" section of the website." = "Η εγγραφή είναι αυτή τη στιγμή απενεργοποιημένη. Για να την ενεργοποιήσετε, μεταβείτε στην καρτέλα \"Smartphones\" στη σελίδα \"Supla Cloud\"";
-"Client activation required. Please log in to \"Supla Cloud\" and assign an “Access ID” for this device in “Smartphone” section of the website." = "Αυτή η συσκευή δεν έχει παραχωρημένο αναγνωριστικό πρόσβασης. Μεταβείτε στη σελίδα \"Supla Cloud\" στην καρτέλα \"Smartphones\" και παραχωρήστε το κατάλληλο αναγνωριστικό.";
 "Incompatible server version" = "Μη συμβατή έκδοση διακομιστή";
-"Host not found. Make sure you are connected to the internet and that an account with the entered email address has been created." = "Η διεύθυνση του διακομιστή δεν βρέθηκε";
 "RGB Lighting" = "Φωτισμός RGB";
 "Dimmer and RGB lighting" = "Ρεοστάτης και φωτισμός RGB";
 "Dimmer" = "Ρεοστάτης";
@@ -199,7 +188,6 @@
 "The glass sections are exposed for more than 20 hours, which may adversely affect their life. It is recommended to cover all sections for a minimum of 4 hours in order to regenerate them." = "Τμήματα του γυαλιού εκτίθενται για περισσότερο από 20 ώρες, γεγονός που μπορεί να επηρεάσει αρνητικά τη διάρκεια ζωής τους. Συνιστάται η κάλυψη όλων των τμημάτων για τουλάχιστον 4 ώρες προκειμένου να αναγεννηθούν.";
 "Planned regeneration is in progress." = "Η προγραμματισμένη αναγέννηση βρίσκεται σε εξέλιξη.";
 "Regeneration initiated after 20 hours of operation is in progress." = "Η αναγέννηση βρίσκεται σε εξέλιξη μετά από 20 ώρες εργασίας.";
-"Incorrect Email Address or Password" = "Λάθος διεύθυνση ηλεκτρονικού ταχυδρομείου ή κωδικός πρόσβασης";
 "Channel Id" = "Αναγνωριστικό καναλιού";
 "Back" = "Επιστροφή";
 "The z-wave bridge is not responding. Check if the bridge is connected to the server." = "Η γέφυρα του κύματος Ζ δεν αποκρίνεται. Ελέγξτε εάν η γέφυρα είναι συνδεδεμένη στον διακομιστή.";
@@ -275,12 +263,10 @@
 "Don't have an account in Supla Cloud yet?" = "Δεν έχετε ακόμα λογαριασμό στο Supla Cloud;";
 "Create" = "Δημιουργία λογαριασμού";
 "Location order" = "Σειρά τοποθεσιών";
-"Roller shutter %" = "Ρολά %";
 "Opening" = "Άνοιγμα";
 "Closing" = "Κλείσιμο";
 "Percent of opening" = "Ποσοστό ανοίγματος";
 "Percent of closing" = "Ποσοστό κλεισίματος";
-"Access Identifier inactive." = "Το αναγνωριστικό πρόσβασης είναι ανενεργό.";
 "Your account" = "Ο λογαριασμός σας";
 "Your accounts" = "Οι λογαριασμοί σας";
 "Accounts" = "Λογαριασμοί";
@@ -314,3 +300,20 @@
 "roller_shutter_motor_problem" = "Πρόβλημα κινητήρα / Απροσδόκητη διακοπή.";
 "roller_shutter_calibration" = "Βαθμονόμηση";
 "roller_shutter_start_calibration_message" = "Είστε βέβαιοι ότι θέλετε να ξεκινήσετε τη βαθμονόμηση;";
+
+/* Status */
+"status_connecting" = "Σύνδεση...";
+"status_unknown_error" = "Άγνωστο σφάλμα";
+"status_temporarily_unavailable" = "Υπηρεσία προσωρινά μη διαθέσιμη";
+"status_incorrect_data" = "Λάθος διεύθυνση ηλεκτρονικού ταχυδρομείου ή κωδικός πρόσβασης";
+"status_bad_credentials" = "Λανθασμένα διαπιστευτήρια";
+"status_client_limit_exceeded" = "Υπέρβαση ορίου των εφαρμογών πελάτη";
+"status_device_disabled" = "Η συσκευή είναι απενεργοποιημένη";
+"status_access_id_disabled" = "Το αναγνωριστικό πρόσβασης είναι απενεργοποιημένο";
+"status_registration_disabled" = "Η εγγραφή είναι αυτή τη στιγμή απενεργοποιημένη. Για να την ενεργοποιήσετε, μεταβείτε στην καρτέλα \"Smartphones\" στη σελίδα \"Supla Cloud\"";
+"status_access_id_not_assigned" = "Αυτή η συσκευή δεν έχει παραχωρημένο αναγνωριστικό πρόσβασης. Μεταβείτε στη σελίδα \"Supla Cloud\" στην καρτέλα \"Smartphones\" και παραχωρήστε το κατάλληλο αναγνωριστικό.";
+"status_access_id_inactive" = "Το αναγνωριστικό πρόσβασης είναι ανενεργό.";
+"status_host_not_found" = "Η διεύθυνση του διακομιστή δεν βρέθηκε";
+
+/* About */
+"about_version" = "Η έκδοση %@";

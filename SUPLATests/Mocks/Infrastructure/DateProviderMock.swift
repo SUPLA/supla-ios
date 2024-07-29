@@ -27,11 +27,11 @@ final class DateProviderMock: DateProvider {
         return currentDateReturns
     }
     
-    var currentTimestampReturns = 0.0
+    var currentTimestampReturns: MockReturns<TimeInterval> = .empty()
     var currentTimestampCalls = 0
     func currentTimestamp() -> TimeInterval {
         currentTimestampCalls += 1
-        return currentTimestampReturns
+        return currentTimestampReturns.next()
     }
     
     var currentDayOfWeekCalls = 0

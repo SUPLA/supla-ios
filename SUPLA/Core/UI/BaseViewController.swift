@@ -19,7 +19,12 @@
 import Foundation
 import RxSwift
 
-class BaseViewControllerVM<S : ViewState, E : ViewEvent, VM : BaseViewModel<S, E>> : BaseViewController {
+class BaseViewControllerVM<S : ViewState, E : ViewEvent, VM : BaseViewModel<S, E>>: UIViewController, NavigationBarVisibilityController {
+    
+    override var preferredStatusBarStyle: UIStatusBarStyle { .lightContent }
+    
+    var navigationBarHidden: Bool { false }
+    var navigationBarMaintainedByParent: Bool = false
     
     @Singleton<GlobalSettings> private var settings
     
@@ -29,7 +34,9 @@ class BaseViewControllerVM<S : ViewState, E : ViewEvent, VM : BaseViewModel<S, E
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.backgroundColor = .background
         overrideUserInterfaceStyle = settings.darkMode.interfaceStyle
+        
         viewModel.onViewDidLoad()
         
         viewModel.eventsObervable()
@@ -40,16 +47,28 @@ class BaseViewControllerVM<S : ViewState, E : ViewEvent, VM : BaseViewModel<S, E
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         overrideUserInterfaceStyle = settings.darkMode.interfaceStyle
-        var attributes: [NSAttributedString.Key : Any] = [.foregroundColor: UIColor.white]
-        if (navigationCoordinator is MainNavigationCoordinator) {
-            attributes[.font] = UIFont.suplaTitleBarFont
-        } else {
-            attributes[.font] = UIFont.suplaSubtitleFont
+        
+        if (!navigationBarHidden && !navigationBarMaintainedByParent) {
+            setupToolbar(toolbarFont: getToolbarFont())
         }
-        navigationController?.navigationBar.titleTextAttributes = attributes
+        
+        viewModel.onViewWillAppear()
         
         stateDisposable = viewModel.stateObservable()
             .subscribe(onNext: { [weak self] state in self?.handle(state: state) })
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(onViewAppeared), name: UIApplication.willEnterForegroundNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(onViewDisappeared), name: UIApplication.didEnterBackgroundNotification, object: nil)
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        onViewAppeared()
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        onViewDisappeared()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -58,15 +77,29 @@ class BaseViewControllerVM<S : ViewState, E : ViewEvent, VM : BaseViewModel<S, E
         stateDisposable?.dispose()
         stateDisposable = nil
         NotificationCenter.default.removeObserver(self)
+        
+        NotificationCenter.default.removeObserver(self, name: UIApplication.willEnterForegroundNotification, object: nil)
+        NotificationCenter.default.removeObserver(self, name: UIApplication.didEnterBackgroundNotification, object: nil)
     }
     
-    override func shouldUpdateTitleFont() -> Bool { false }
- 
     func handle(event: E) { fatalError("handle(event:) has not been implemented!") }
     func handle(state: S) { } // default empty implementation
+    func getToolbarFont() -> UIFont { .suplaSubtitleFont }
     
     func observeNotification(name: NSNotification.Name?, selector: Selector) {
         NotificationCenter.default.addObserver(self, selector: selector, name: name, object: nil)
+    }
+    
+    func showInfoDialog(title: String, message: String) {
+        let infoDialog = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        infoDialog.addAction(UIAlertAction(title: Strings.General.close, style: .default))
+        self.present(infoDialog, animated: true)
+    }
+    
+    @objc func onViewAppeared() {
+    }
+    
+    @objc func onViewDisappeared() {
     }
     
 #if DEBUG

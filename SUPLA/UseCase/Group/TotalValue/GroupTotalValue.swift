@@ -35,8 +35,8 @@ class GroupTotalValue: NSObject, NSSecureCoding {
         values = coder.decodeObject(
             of: [
                 NSArray.self,
-                RollerShutterGroupValue.self,
-                FacadeBlindGroupValue.self,
+                ShadingSystemGroupValue.self,
+                ShadowingBlindGroupValue.self,
                 IntegerGroupValue.self,
                 BoolGroupValue.self,
                 RgbLightingGroupValue.self,
@@ -63,15 +63,15 @@ class GroupTotalValue: NSObject, NSSecureCoding {
 
 @objc class BaseGroupValue: NSObject {}
 
-@objc class RollerShutterGroupValue: BaseGroupValue, NSSecureCoding {
+@objc class ShadingSystemGroupValue: BaseGroupValue, NSSecureCoding {
     static var supportsSecureCoding: Bool = true
     
     @objc let position: Int
     @objc let closedSensorActive: Bool
     
-    init(position: Int, openSensorActive: Bool) {
+    init(position: Int, closedSensorActive: Bool) {
         self.position = position
-        self.closedSensorActive = openSensorActive
+        self.closedSensorActive = closedSensorActive
         super.init()
     }
     
@@ -86,7 +86,7 @@ class GroupTotalValue: NSObject, NSSecureCoding {
     }
     
     override func isEqual(_ object: Any?) -> Bool {
-        guard let other = object as? RollerShutterGroupValue else { return false }
+        guard let other = object as? ShadingSystemGroupValue else { return false }
         return other.position == position && other.closedSensorActive == closedSensorActive
     }
     
@@ -96,7 +96,7 @@ class GroupTotalValue: NSObject, NSSecureCoding {
     }
 }
 
-@objc class FacadeBlindGroupValue: BaseGroupValue, NSSecureCoding {
+@objc class ShadowingBlindGroupValue: BaseGroupValue, NSSecureCoding {
     static var supportsSecureCoding: Bool = true
     
     @objc let position: Int
@@ -119,7 +119,7 @@ class GroupTotalValue: NSObject, NSSecureCoding {
     }
     
     override func isEqual(_ object: Any?) -> Bool {
-        guard let other = object as? FacadeBlindGroupValue else { return false }
+        guard let other = object as? ShadowingBlindGroupValue else { return false }
         return other.position == position && other.tilt == tilt
     }
     

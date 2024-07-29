@@ -61,7 +61,7 @@ final class AuthorizeUseCaseImpl: AuthorizeUseCase {
                 completable(.completed)
                 return Disposables.create()
             }
-            completable(.error(AuthorizationError(errorMessage: result.error ?? Strings.General.unknownError)))
+            completable(.error(AuthorizationError(errorMessage: result.error ?? Strings.Status.errorUnknown)))
             return Disposables.create()
         }
     }
@@ -98,9 +98,9 @@ private class AuthorizationMessageObserver {
     
     private func errorString(_ errorCode: Int32) -> String {
         switch (errorCode) {
-        case SUPLA_RESULTCODE_UNAUTHORIZED: Strings.AuthorizationDialog.unauthorized
-        case SUPLA_RESULTCODE_TEMPORARILY_UNAVAILABLE: Strings.AuthorizationDialog.unavailable
-        default: Strings.General.unknownError
+        case SUPLA_RESULTCODE_UNAUTHORIZED: Strings.Status.errorInvalidData
+        case SUPLA_RESULTCODE_TEMPORARILY_UNAVAILABLE: Strings.Status.errorUnavailable
+        default: Strings.Status.errorUnknown
         }
     }
     

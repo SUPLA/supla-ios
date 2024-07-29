@@ -16,68 +16,23 @@
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 
-class BaseWallWindowView<T: WindowState>: BaseWindowView<T> {
+class BaseWallWindowView<T: WindowState, D: BaseWallWindowDimens>: BaseWindowView<T> {
     override var isEnabled: Bool {
         didSet {
-            if (isEnabled) {
-                colors = WindowColors.standard(traitCollection)
-            } else {
-                colors = WindowColors.offline(traitCollection)
-            }
-            updateColors()
+            setNeedsDisplay()
         }
     }
     
     override var intrinsicContentSize: CGSize {
-        CGSize(width: DefaultWindowDimens.width, height: DefaultWindowDimens.height)
+        CGSize(width: WindowDimens.width, height: WindowDimens.height)
     }
     
     override var touchRect: CGRect { dimens.windowRect }
     
-    private lazy var windowLayer: CAShapeLayer = {
-        let layer = CAShapeLayer()
-        layer.backgroundColor = colors.window.cgColor
-        layer.cornerRadius = DefaultWindowDimens.windowCornerRadius
-        layer.maskedCorners = [.layerMinXMaxYCorner, .layerMaxXMaxYCorner]
-        layer.setupShadow(colors.shadow)
-        return layer
-    }()
-    
-    private lazy var topLineLayer: CAShapeLayer = {
-        let layer = CAShapeLayer()
-        layer.backgroundColor = colors.window.cgColor
-        layer.setupShadow(colors.shadow)
-        return layer
-    }()
-    
-    private lazy var leftGlassLayer: CAGradientLayer = {
-        let layer = CAGradientLayer()
-        layer.colors = [colors.glassTop.cgColor, colors.glassBottom.cgColor]
-        return layer
-    }()
-    
-    private lazy var rightGlassLayer: CAGradientLayer = {
-        let layer = CAGradientLayer()
-        layer.colors = [colors.glassTop.cgColor, colors.glassBottom.cgColor]
-        return layer
-    }()
-    
-    private lazy var slatsLayers: [CAShapeLayer] = {
-        var layers: [CAShapeLayer] = []
-        
-        for i in 0 ..< DefaultWindowDimens.slatsCount {
-            let layer = CAShapeLayer()
-            setupSlat(layer, colors)
-            layers.append(layer)
-        }
-        
-        return layers
-    }()
-    
-    let dimens: RuntimeWindowDimens
+    let dimens: D
     lazy var colors = WindowColors.standard(traitCollection)
     
-    init(_ dimens: RuntimeWindowDimens) {
+    init(_ dimens: D) {
         self.dimens = dimens
         super.init(frame: .zero)
         setupView()
@@ -91,72 +46,75 @@ class BaseWallWindowView<T: WindowState>: BaseWindowView<T> {
     override func layoutSubviews() {
         dimens.update(frame)
         
-        windowLayer.frame = dimens.windowRect
-        leftGlassLayer.frame = dimens.leftGlassRect
-        rightGlassLayer.frame = dimens.rightGlassRect
-        CALayer.performWithoutAnimation {
-            updateSlatsPositions(slatsLayers, dimens)
-        }
-        topLineLayer.frame = dimens.topLineRect
         updateMarkersPositions()
     }
     
     override func draw(_ rect: CGRect) {
+        super.draw(rect)
+        
         CALayer.performWithoutAnimation {
-            updateSlatsPositions(slatsLayers, dimens)
             updateMarkersPositions()
+        }
+        
+        guard let context = UIGraphicsGetCurrentContext() else { return }
+        
+        context.setShouldAntialias(true)
+        context.setLineWidth(1)
+        
+        // window frame
+        drawPath(context, fillColor: colors.window, withShadow: true) {
+            UIBezierPath(roundedRect: dimens.windowRect, cornerRadius: WindowDimens.cornerRadius).cgPath
+        }
+        
+        // glasses
+        let slatColors = [colors.glassTop.cgColor, colors.glassBottom.cgColor]
+        drawGlass(context, dimens.leftGlassRect, slatColors)
+        drawGlass(context, dimens.rightGlassRect, slatColors)
+        
+        // shadowing elemnts (slats, curtain, etc)
+        context.saveGState()
+        let clipingRect = CGRect(
+            origin: CGPoint(x: dimens.topLineRect.minX, y: dimens.topLineRect.maxY),
+            size: CGSize(width: dimens.topLineRect.width, height: dimens.windowRect.height)
+        )
+        context.clip(to: [clipingRect])
+        drawShadowingElements(context, dimens)
+        context.restoreGState()
+        
+        // top line rect
+        drawPath(context, fillColor: colors.window, withShadow: true) {
+            UIBezierPath(rect: dimens.topLineRect).cgPath
+        }
+        
+        // markers - for groups
+        drawMarkers(context, dimens)
+        
+        if (!isEnabled) {
+            context.setBlendMode(.destinationOut)
+            drawPath(context, fillColor: colors.disabledOverlay) { UIBezierPath(rect: dimens.frame).cgPath }
         }
     }
     
-    func updateSlatsPositions(_ slatsLayers: [CAShapeLayer], _ dimens: RuntimeWindowDimens) {
+    func drawShadowingElements(_ context: CGContext, _ dimens: D) {
         fatalError("updateSlatsPositions(:,:) needs to be implemented")
     }
     
-    func setupSlat(_ layer: CAShapeLayer, _ colors: WindowColors) {
-        layer.backgroundColor = colors.slatBackground.cgColor
-        layer.borderWidth = 1
-        layer.borderColor = colors.slatBorder.cgColor
+    func drawMarkers(_ context: CGContext, _ dimens: D) {
+        // intentionally left empty - markers may stay unsupported
     }
     
     private func setupView() {
         translatesAutoresizingMaskIntoConstraints = false
+        backgroundColor = .transparent
+        clipsToBounds = false
         
-        layer.addSublayer(windowLayer)
-        layer.addSublayer(leftGlassLayer)
-        layer.addSublayer(rightGlassLayer)
-        slatsLayers.forEach { layer.addSublayer($0) }
-        layer.addSublayer(topLineLayer)
     }
     
     func updateMarkersPositions() {
         // intentionally left empty
     }
     
-    private func updateColors() {
-        windowLayer.backgroundColor = colors.window.cgColor
-        windowLayer.setupShadow(colors.shadow)
-        
-        topLineLayer.backgroundColor = colors.window.cgColor
-        topLineLayer.setupShadow(colors.shadow)
-        
-        leftGlassLayer.colors = [colors.glassTop.cgColor, colors.glassBottom.cgColor]
-        rightGlassLayer.colors = [colors.glassTop.cgColor, colors.glassBottom.cgColor]
-        
-        for slatLayer in slatsLayers {
-            setupSlat(slatLayer, colors)
-        }
-    }
-    
     override class var requiresConstraintBasedLayout: Bool {
         return true
-    }
-}
-
-private extension CAShapeLayer {
-    func setupShadow(_ color: UIColor) {
-        shadowColor = color.cgColor
-        shadowRadius = DefaultWindowDimens.shadowRadius
-        shadowOpacity = DefaultWindowDimens.shadowOpacity
-        shadowOffset = DefaultWindowDimens.shadowOffset
     }
 }

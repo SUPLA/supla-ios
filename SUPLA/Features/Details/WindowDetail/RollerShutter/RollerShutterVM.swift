@@ -66,7 +66,7 @@ struct RollerShutterViewState: BaseWindowViewState {
     var rollerShutterWindowState: RollerShutterWindowState = .init(position: .similar(0))
     var issues: [ChannelIssueItem] = []
     var offline: Bool = true
-    var showClosingPercentage: Bool = false
+    var positionPresentation: ShadingSystemPositionPresentation = .asClosed
     var calibrating: Bool = false
     var calibrationPossible: Bool = false
     var positionUnknown: Bool = false
@@ -86,7 +86,7 @@ private extension SAChannelGroup {
     }
 
     private func valueToPosition(_ baseGroupValue: BaseGroupValue) -> CGFloat? {
-        guard let value = baseGroupValue as? RollerShutterGroupValue else { return nil }
+        guard let value = baseGroupValue as? ShadingSystemGroupValue else { return nil }
 
         return if (value.position < 100 && value.closedSensorActive) {
             CGFloat(100)

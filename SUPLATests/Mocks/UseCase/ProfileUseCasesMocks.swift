@@ -48,8 +48,8 @@ final class SaveOrCreateProfileUseCaseMock: SaveOrCreateProfileUseCase {
 
 final class ActivateProfileUseCaseMock: ActivateProfileUseCase {
     var parameters: [(ProfileID, Bool)] = []
-    var returns: Observable<Bool> = .empty()
-    func invoke(profileId: ProfileID, force: Bool) -> Observable<Bool> {
+    var returns: Completable = .empty()
+    func invoke(profileId: ProfileID, force: Bool) -> Completable {
         parameters.append((profileId, force))
         return returns
     }

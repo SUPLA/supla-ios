@@ -51,6 +51,7 @@ enum ChannelConfigType: UInt8, CaseIterable {
     case weeklyScheduleConfig = 2
     case generalPurposeMeasurement = 3
     case generalPurposeMeter = 4
+    case facadeBlind = 5
     
     static func from(value: UInt8) -> ChannelConfigType {
         for configType in ChannelConfigType.allCases {
@@ -59,6 +60,7 @@ enum ChannelConfigType: UInt8, CaseIterable {
             }
         }
         
-        fatalError("Invalid ChannelConfigType value `\(value)`")
+        SALog.error("Invalid ChannelConfigType value `\(value)'")
+        return .defaultConfig
     }
 }

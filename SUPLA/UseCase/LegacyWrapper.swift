@@ -20,7 +20,6 @@ import RxSwift
 
 @objc
 final class UseCaseLegacyWrapper: NSObject {
-    
     // MARK: Scenes
     
     @objc
@@ -59,7 +58,13 @@ final class UseCaseLegacyWrapper: NSObject {
     
     @objc
     static func updateChannel(suplaChannel: TSC_SuplaChannel_E) -> Bool {
-        return UpdateChannelUseCase().invoke(suplaChannel: suplaChannel)
+        @Singleton<UpdateChannelUseCase> var updateChannelUseCase
+        do {
+            return try updateChannelUseCase.invoke(suplaChannel: suplaChannel).subscribeSynchronous() ?? false
+        } catch {
+            SALog.error("Group total count update failed \(error)")
+            return false
+        }
     }
     
     @objc
@@ -202,17 +207,6 @@ final class UseCaseLegacyWrapper: NSObject {
     }
     
     @objc
-    static func insertNotification(_ userInfo: [AnyHashable : Any]) {
-        @Singleton<InsertNotificationUseCase> var insertNotificationUseCase
-        
-        do {
-            try insertNotificationUseCase.invoke(userInfo: userInfo).subscribeSynchronous()
-        } catch {
-            SALog.error("Could not insert notification: \(String(describing: error))")
-        }
-    }
-    
-    @objc
     static func getChannelIcon(_ channel: SAChannelBase, _ iconType: IconType) -> UIImage? {
         @Singleton<GetChannelBaseIconUseCase> var getChannelBaseIconUseCase
         return getChannelBaseIconUseCase.invoke(channel: channel, type: iconType)
@@ -222,5 +216,11 @@ final class UseCaseLegacyWrapper: NSObject {
     static func getChannelBaseCaption(_ channelBase: SAChannelBase) -> String {
         @Singleton<GetChannelBaseCaptionUseCase> var getChannelBaseCaptionUseCase
         return getChannelBaseCaptionUseCase.invoke(channelBase: channelBase)
+    }
+    
+    @objc
+    static func getActivePercentage(_ channelGroup: SAChannelGroup) -> Int32 {
+        @Singleton<GetGroupActivePercentageUseCase> var getGroupActivePercentageUseCase
+        return Int32(getGroupActivePercentageUseCase.invoke(channelGroup))
     }
 }

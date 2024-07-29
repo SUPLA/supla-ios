@@ -113,6 +113,16 @@ final class GetChannelBaseDefaultCaptionUseCaseImpl: GetChannelBaseDefaultCaptio
             return Strings.General.Channel.captionGeneralPurposeMeter
         case SUPLA_CHANNELFNC_CONTROLLINGTHEFACADEBLIND:
             return Strings.General.Channel.captionFacadeBlinds
+        case SUPLA_CHANNELFNC_TERRACE_AWNING:
+            return Strings.General.Channel.captionTerraceAwning
+        case SUPLA_CHANNELFNC_PROJECTOR_SCREEN:
+            return Strings.General.Channel.captionProjectorScreen
+        case SUPLA_CHANNELFNC_CURTAIN:
+            return Strings.General.Channel.captionCurtain
+        case SUPLA_CHANNELFNC_VERTICAL_BLIND:
+            return Strings.General.Channel.captionVerticalBlind
+        case SUPLA_CHANNELFNC_ROLLER_GARAGE_DOOR:
+            return Strings.General.Channel.captionGarageDoor
         default:
             return NSLocalizedString("Not supported function", comment: "")
         }

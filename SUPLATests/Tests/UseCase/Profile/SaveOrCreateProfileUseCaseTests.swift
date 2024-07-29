@@ -25,13 +25,11 @@ final class SaveOrCreateProfileUseCaseTests: UseCaseTest<SaveOrCreateProfileResu
         ProfileRepositoryMock()
     }()
     
-    private lazy var suplaClientProvider: SuplaClientProviderMock! = {
-        SuplaClientProviderMock()
-    }()
-    
     private lazy var globalSettings: GlobalSettingsMock! = {
         GlobalSettingsMock()
     }()
+    
+    private lazy var suplaAppStateHolder: SuplaAppStateHolderMock! = SuplaAppStateHolderMock()
     
     private lazy var useCase: SaveOrCreateProfileUseCase! = {
         SaveOrCreateProfileUseCaseImpl()
@@ -41,16 +39,16 @@ final class SaveOrCreateProfileUseCaseTests: UseCaseTest<SaveOrCreateProfileResu
         super.setUp()
         
         DiContainer.shared.register(type: (any ProfileRepository).self, profileRepository!)
-        DiContainer.shared.register(type: SuplaClientProvider.self, suplaClientProvider!)
         DiContainer.shared.register(type: GlobalSettings.self, globalSettings!)
+        DiContainer.shared.register(type: SuplaAppStateHolder.self, suplaAppStateHolder!)
     }
     
     override func tearDown() {
         super.tearDown()
         
         profileRepository = nil
-        suplaClientProvider = nil
         globalSettings = nil
+        suplaAppStateHolder = nil
         
         useCase = nil
     }
@@ -122,7 +120,7 @@ final class SaveOrCreateProfileUseCaseTests: UseCaseTest<SaveOrCreateProfileResu
         XCTAssertEqual(profile.authInfo, authInfo.copy(preferredProtocolVersion: Int(SUPLA_PROTO_VERSION)))
         XCTAssertEqual(profile.isActive, true)
         XCTAssertEqual(globalSettings.anyAccountRegisteredValues, [true])
-        XCTAssertEqual(suplaClientProvider.suplaClientMock.reconnectCalls, 1)
+        XCTAssertEqual(suplaAppStateHolder.handleParameters, [.connecting])
     }
     
     func test_shouldUpdateExistingProfile() {
@@ -153,7 +151,7 @@ final class SaveOrCreateProfileUseCaseTests: UseCaseTest<SaveOrCreateProfileResu
         XCTAssertEqual(profile.authInfo, authInfo)
         XCTAssertEqual(profile.isActive, false)
         XCTAssertEqual(globalSettings.anyAccountRegisteredValues, [true])
-        XCTAssertEqual(suplaClientProvider.suplaClientMock.reconnectCalls, 0)
+        XCTAssertEqual(suplaAppStateHolder.handleParameters, [])
     }
     
     func test_shouldReauthWhenAuthInfoChanged() {
@@ -184,6 +182,6 @@ final class SaveOrCreateProfileUseCaseTests: UseCaseTest<SaveOrCreateProfileResu
         XCTAssertEqual(profile.authInfo, authInfo.copy(preferredProtocolVersion: Int(SUPLA_PROTO_VERSION)))
         XCTAssertEqual(profile.isActive, true)
         XCTAssertEqual(globalSettings.anyAccountRegisteredValues, [true])
-        XCTAssertEqual(suplaClientProvider.suplaClientMock.reconnectCalls, 1)
+        XCTAssertEqual(suplaAppStateHolder.handleParameters, [.connecting])
     }
 }

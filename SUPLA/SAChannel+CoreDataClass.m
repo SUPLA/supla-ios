@@ -178,21 +178,6 @@
     return self.value == nil ? [super motorProblem] : [self.value motorProblem];
 }
 
-- (int) imgIsActive {
-    
-    if ( [self isOnline]
-        && (self.func == SUPLA_CHANNELFNC_CONTROLLINGTHEROLLERSHUTTER
-            || self.func == SUPLA_CHANNELFNC_CONTROLLINGTHEROOFWINDOW)
-        && self.rollerShutterValue.position >= 100) {
-        return 1;
-    }
-    if ([self isOnline] && self.func == SUPLA_CHANNELFNC_CONTROLLINGTHEFACADEBLIND) {
-        return [self isFacadeBlindClosed] ? 1 : 0;
-    }
-    
-    return [super imgIsActive];
-}
-
 - (NSString *) unit {
     
     NSString *result = nil;

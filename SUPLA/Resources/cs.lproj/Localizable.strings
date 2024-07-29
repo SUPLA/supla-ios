@@ -14,7 +14,6 @@
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 
-"version" = "verze";
 "Open" = "Otevřít";
 "Open Close" = "Otevřít Zavřít";
 "Reveal" = "Odkrýt";
@@ -45,17 +44,7 @@
 "Garage door opening sensor" = "CSnímač otevření garážových dveří";
 "Door opening sensor" = "Snímač otevření dveří";
 "Roller shutter opening sensor" = "Snímač otevření rolet";
-"Connecting..." = "Připojování...";
-"Unknown error" = "Neznámá chyba";
-"Service temporarily unavailable" = "Služba dočasně nedostupná";
-"Bad credentials" = "Chybné pověření";
-"Client limit exceeded" = "Limit klientské aplikace překročen";
-"Device disabled. Please log in to \"Supla Cloud\" and enable this device in “Smartphone” section of the website." = "Zařízení je vypnuté";
-"Access Identifier is disabled" = "Identifikátor přístupu je vypnutý";
-"New client registration disabled. Please log in to \"Supla Cloud\" and enable \"New client registration\" in \"Smartphone\" section of the website." = "Registrace je momentálně zakázána. Chcete-li ji povolit, přejděte na kartu \"Smartphone\" na stránce \"Supla Cloud\"";
-"Client activation required. Please log in to \"Supla Cloud\" and assign an “Access ID” for this device in “Smartphone” section of the website." = "Toto zařízení nemá přiřazené ID přístupu. Přejděte na \"Smartphone\" na \"Supla Cloud\" a vyberte příslušné ID na kartě";
 "Incompatible server version" = "Nekompatibilní verze serveru";
-"Host not found. Make sure you are connected to the internet and that an account with the entered email address has been created." = "Adresa serveru nebyla nalezena";
 "RGB Lighting" = "Osvětlení RGB";
 "Dimmer and RGB lighting" = "Reostat a osvětlení RGB";
 "Dimmer" = "Reostat";
@@ -199,7 +188,6 @@
 "The glass sections are exposed for more than 20 hours, which may adversely affect their life. It is recommended to cover all sections for a minimum of 4 hours in order to regenerate them." = "Části skla jsou vystaveny světlu déle než 20 hodin, což může ovlivnit jejich životnost. Pro jejich obnovu se doporučuje zakrýt všechny části na minimálně 4 hodiny.";
 "Planned regeneration is in progress." = "Probíhá plánovaná obnova.";
 "Regeneration initiated after 20 hours of operation is in progress." = "Obnova byla zahájena po 20h provozní činnosti.";
-"Incorrect Email Address or Password" = "Nesprávná e-mailová adresa nebo heslo";
 "Channel Id" = "Id kanálu";
 "Back" = "Zpět";
 "The z-wave bridge is not responding. Check if the bridge is connected to the server." = "Z-wave můstek neodpovídá. Zkontrolujte zda je můstek připojen k serveru.";
@@ -275,12 +263,10 @@
 "Don't have an account in Supla Cloud yet?" = "Nemáte ještě účet Supla Cloud?";
 "Create" = "Vytvořit účet";
 "Location order" = "Pořadí dle umístění";
-"Roller shutter %" = "Rolety %";
 "Opening" = "Otevření";
 "Closing" = "Zavření";
 "Percent of opening" = "Procento otevření";
 "Percent of closing" = "Procento zavření";
-"Access Identifier inactive." = "Identifikátor přístupu není aktivní.";
 "Your account" = "Váš účet";
 "Your accounts" = "Vaše účty";
 "Accounts" = "Účty";
@@ -314,3 +300,20 @@
 "roller_shutter_motor_problem" = "Problém s motorem / Neočekávané zastavení.";
 "roller_shutter_calibration" = "Kalibrace";
 "roller_shutter_start_calibration_message" = "Určitě chcete začít s kalibrací?";
+
+/* Status */
+"status_connecting" = "Připojování...";
+"status_unknown_error" = "Neznámá chyba";
+"status_temporarily_unavailable" = "Služba dočasně nedostupná";
+"status_incorrect_data" = "Nesprávná e-mailová adresa nebo heslo";
+"status_bad_credentials" = "Chybné pověření";
+"status_client_limit_exceeded" = "Limit klientské aplikace překročen";
+"status_device_disabled" = "Zařízení je vypnuté";
+"status_access_id_disabled" = "Identifikátor přístupu je vypnutý";
+"status_registration_disabled" = "Registrace je momentálně zakázána. Chcete-li ji povolit, přejděte na kartu \"Smartphone\" na stránce \"Supla Cloud\"";
+"status_access_id_not_assigned" = "Toto zařízení nemá přiřazené ID přístupu. Přejděte na \"Smartphone\" na \"Supla Cloud\" a vyberte příslušné ID na kartě";
+"status_access_id_inactive" = "Identifikátor přístupu není aktivní.";
+"status_host_not_found" = "Adresa serveru nebyla nalezena";
+
+/* About */
+"about_version" = "verze %@";

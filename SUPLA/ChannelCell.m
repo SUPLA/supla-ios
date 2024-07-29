@@ -26,7 +26,6 @@
 #import "SAChannelStatePopup.h"
 #import "SuplaApp.h"
 #import "proto.h"
-#import "UIColor+SUPLA.h"
 #import "SUPLA-Swift.h"
 
 
@@ -78,11 +77,11 @@
     self.leftSwipeSettings.transition = MGSwipeTransitionRotate3D;
     self.rightSwipeSettings.transition = MGSwipeTransitionRotate3D;
     
-    self.right_OnlineStatus.onlineColor = [UIColor primaryVariant];
-    self.right_OnlineStatus.offlineColor = [UIColor offLine];
-    self.right_OnlineStatus.borderColor = [UIColor statusBorder];
-    self.contentView.backgroundColor = [UIColor channelCell];
-    self.backgroundColor = [UIColor channelCell];
+    self.right_OnlineStatus.onlineColor = [UIColor primary];
+    self.right_OnlineStatus.offlineColor = [UIColor error];
+    self.right_OnlineStatus.borderColor = [UIColor blackColor];
+    self.contentView.backgroundColor = [UIColor surface];
+    self.backgroundColor = [UIColor surface];
     self.bottomLine.backgroundColor = [UIColor separator];
     
     [self.left_OnlineStatus assignColors:self.right_OnlineStatus];
@@ -151,7 +150,7 @@
     CGFloat offset = 5;
     UIView *bg = [[UIView alloc] init];
     bg.translatesAutoresizingMaskIntoConstraints = NO;
-    bg.backgroundColor = [UIColor channelCell];
+    bg.backgroundColor = [UIColor surface];
     [btn addSubview: bg];
     [bg.bottomAnchor constraintEqualToAnchor: btn.bottomAnchor].active = YES;
     [bg.leftAnchor constraintEqualToAnchor: btn.leftAnchor].active = YES;
@@ -236,7 +235,7 @@
     if ( isGroup ) {
         self.cint_LeftStatusWidth.constant = 6;
         self.cint_RightStatusWidth.constant = 6;
-        self.right_ActiveStatus.percent = ((SAChannelGroup*)_channelBase).activePercentage;
+        self.right_ActiveStatus.percent = [UseCaseLegacyWrapper getActivePercentage:(SAChannelGroup*)_channelBase];
         self.right_ActiveStatus.singleColor = YES;
         self.right_ActiveStatus.hidden = NO;
         self.right_OnlineStatus.shapeType = stLinearVertical;
@@ -298,6 +297,11 @@
         case SUPLA_CHANNELFNC_CONTROLLINGTHEROLLERSHUTTER:
         case SUPLA_CHANNELFNC_CONTROLLINGTHEROOFWINDOW:
         case SUPLA_CHANNELFNC_CONTROLLINGTHEFACADEBLIND:
+        case SUPLA_CHANNELFNC_TERRACE_AWNING:
+        case SUPLA_CHANNELFNC_PROJECTOR_SCREEN:
+        case SUPLA_CHANNELFNC_CURTAIN:
+        case SUPLA_CHANNELFNC_VERTICAL_BLIND:
+        case SUPLA_CHANNELFNC_ROLLER_GARAGE_DOOR:
             self.left_OnlineStatus.hidden = YES;
             self.right_OnlineStatus.hidden = NO;
             break;
@@ -386,6 +390,11 @@
                 case SUPLA_CHANNELFNC_VALVE_OPENCLOSE:
                 case SUPLA_CHANNELFNC_CONTROLLINGTHEROOFWINDOW:
                 case SUPLA_CHANNELFNC_CONTROLLINGTHEROLLERSHUTTER:
+                case SUPLA_CHANNELFNC_TERRACE_AWNING:
+                case SUPLA_CHANNELFNC_PROJECTOR_SCREEN:
+                case SUPLA_CHANNELFNC_CURTAIN:
+                case SUPLA_CHANNELFNC_VERTICAL_BLIND:
+                case SUPLA_CHANNELFNC_ROLLER_GARAGE_DOOR:
                     br = [MGSwipeButton buttonWithTitle:NSLocalizedString(@"Open", nil) icon:nil backgroundColor:[UIColor blackColor]];
                     bl = [MGSwipeButton buttonWithTitle:NSLocalizedString(@"Close", nil) icon:nil backgroundColor:[UIColor blackColor]];
                     break;
@@ -451,8 +460,8 @@
 }
 
 - (IBAction)rightTouchDown:(id)sender {
-    [sender setBackgroundColor: [UIColor btnTouched]];
-    [sender setBackgroundColor: [UIColor onLine] withDelay:0.2];
+    [sender setBackgroundColor: [UIColor buttonPressed]];
+    [sender setBackgroundColor: [UIColor primary] withDelay:0.2];
 
     BOOL group = [self.channelBase isKindOfClass:[SAChannelGroup class]];
     
@@ -489,8 +498,8 @@
 }
 
 - (IBAction)leftTouchDown:(id)sender {
-    [sender setBackgroundColor: [UIColor btnTouched]];
-    [sender setBackgroundColor: [UIColor onLine] withDelay:0.2];
+    [sender setBackgroundColor: [UIColor buttonPressed]];
+    [sender setBackgroundColor: [UIColor primary] withDelay:0.2];
     
     if (_channelBase.isRGBW || _channelBase.func == SUPLA_CHANNELFNC_THERMOSTAT_HEATPOL_HOMEPLUS) {
         [self turnOff: self.channelBase];
@@ -516,7 +525,7 @@
 }
 
 - (IBAction)rlTouchCancel:(id)sender {
-    [sender setBackgroundColor: [UIColor onLine] withDelay:0.2];
+    [sender setBackgroundColor: [UIColor primary] withDelay:0.2];
     if([GlobalSettingsLegacy new].autohideButtons)
         [self resetButtonState];
 }

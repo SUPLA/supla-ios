@@ -94,4 +94,9 @@ final class UpdateEventsManagerMock: UpdateEventsManager {
     func emitScenesUpdate() {
         emitSceneUpdateCounter += 1
     }
+    
+    var cleanupCounter = 0
+    func cleanup() {
+        cleanupCounter += 1
+    }
 }

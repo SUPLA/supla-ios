@@ -1,0 +1,22 @@
+{
+  "images" : [
+    {
+      "filename" : "fnc_alarm_armament_2_off.svg",
+      "idiom" : "universal"
+    },
+    {
+      "appearances" : [
+        {
+          "appearance" : "luminosity",
+          "value" : "dark"
+        }
+      ],
+      "filename" : "fnc_alarm_armament_2_off_nm.svg",
+      "idiom" : "universal"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}

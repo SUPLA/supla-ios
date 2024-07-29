@@ -19,7 +19,6 @@
 import RxSwift
 
 final class SAAlertDialogVC: SACustomDialogVC<SAAlertDialogViewState, SAAlertDialogViewEvent, SAAlertDialogVM> {
-    
     private lazy var titleLabel: UILabel = SADialogTitleLabel()
 
     private lazy var topSeparatorView: SeparatorView = .init()
@@ -35,16 +34,22 @@ final class SAAlertDialogVC: SACustomDialogVC<SAAlertDialogViewState, SAAlertDia
     
     private lazy var bottomSeparatorView: SeparatorView = .init()
     
-    fileprivate lazy var negativeButton: SADialogNegativeButton = SADialogNegativeButton()
+    fileprivate lazy var negativeButton: SADialogNegativeButton = .init()
     
-    fileprivate lazy var positiveButton: SADialogPositiveButton = SADialogPositiveButton()
+    fileprivate lazy var positiveButton: SADialogPositiveButton = .init()
+    
+    private let showPositiveButton: Bool
+    private let showNegativeButton: Bool
     
     init(
         title: String,
         message: String,
-        positiveText: String = Strings.General.yes,
-        negativeText: String = Strings.General.no
+        positiveText: String? = Strings.General.yes,
+        negativeText: String? = Strings.General.no
     ) {
+        showPositiveButton = positiveText != nil
+        showNegativeButton = negativeText != nil
+        
         super.init()
         
         viewModel = SAAlertDialogVM()
@@ -54,9 +59,13 @@ final class SAAlertDialogVC: SACustomDialogVC<SAAlertDialogViewState, SAAlertDia
         positiveButton.setTitle(positiveText, for: .normal)
         negativeButton.setTitle(negativeText, for: .normal)
         
+        positiveButton.isHidden = !showPositiveButton
+        negativeButton.isHidden = !showNegativeButton
+        
         setupView()
     }
     
+    @available(*, unavailable)
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -75,7 +84,7 @@ final class SAAlertDialogVC: SACustomDialogVC<SAAlertDialogViewState, SAAlertDia
     }
     
     private func setupLayout() {
-        NSLayoutConstraint.activate([
+        var constraints: [NSLayoutConstraint] = [
             titleLabel.leftAnchor.constraint(equalTo: container.leftAnchor, constant: Dimens.distanceDefault),
             titleLabel.topAnchor.constraint(equalTo: container.topAnchor, constant: Dimens.distanceDefault),
             titleLabel.rightAnchor.constraint(equalTo: container.rightAnchor, constant: -Dimens.distanceDefault),
@@ -93,14 +102,32 @@ final class SAAlertDialogVC: SACustomDialogVC<SAAlertDialogViewState, SAAlertDia
             bottomSeparatorView.rightAnchor.constraint(equalTo: container.rightAnchor),
             
             negativeButton.topAnchor.constraint(equalTo: bottomSeparatorView.bottomAnchor, constant: Dimens.distanceDefault),
-            negativeButton.leftAnchor.constraint(equalTo: container.leftAnchor, constant: Dimens.distanceDefault),
-            negativeButton.rightAnchor.constraint(equalTo: container.centerXAnchor, constant: -Dimens.distanceDefault / 2),
             
             positiveButton.topAnchor.constraint(equalTo: bottomSeparatorView.bottomAnchor, constant: Dimens.distanceDefault),
-            positiveButton.leftAnchor.constraint(equalTo: container.centerXAnchor, constant: Dimens.distanceDefault / 2),
-            positiveButton.rightAnchor.constraint(equalTo: container.rightAnchor, constant: -Dimens.distanceDefault),
             positiveButton.bottomAnchor.constraint(equalTo: container.bottomAnchor, constant: -Dimens.distanceDefault)
-        ])
+        ]
+        
+        if (showPositiveButton && showNegativeButton) {
+            constraints.append(contentsOf: [
+                negativeButton.leftAnchor.constraint(equalTo: container.leftAnchor, constant: Dimens.distanceDefault),
+                negativeButton.rightAnchor.constraint(equalTo: container.centerXAnchor, constant: -Dimens.distanceDefault / 2),
+                
+                positiveButton.leftAnchor.constraint(equalTo: container.centerXAnchor, constant: Dimens.distanceDefault / 2),
+                positiveButton.rightAnchor.constraint(equalTo: container.rightAnchor, constant: -Dimens.distanceDefault)
+            ])
+        } else if (showPositiveButton) {
+            constraints.append(contentsOf: [
+                positiveButton.leftAnchor.constraint(equalTo: container.leftAnchor, constant: Dimens.distanceDefault),
+                positiveButton.rightAnchor.constraint(equalTo: container.rightAnchor, constant: -Dimens.distanceDefault)
+            ])
+        } else if (showNegativeButton) {
+            constraints.append(contentsOf: [
+                negativeButton.leftAnchor.constraint(equalTo: container.leftAnchor, constant: Dimens.distanceDefault),
+                negativeButton.rightAnchor.constraint(equalTo: container.rightAnchor, constant: -Dimens.distanceDefault)
+            ])
+        }
+        
+        NSLayoutConstraint.activate(constraints)
     }
 }
 

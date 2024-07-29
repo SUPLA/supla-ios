@@ -51,7 +51,6 @@ class SACustomDialogVC<S: ViewState, E: ViewEvent, VM: BaseViewModel<S, E>>: Bas
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        statusBarBackgroundView.isHidden = true
         
         view.addGestureRecognizer(backgroundTapGestureRecognizer)
         view.backgroundColor = .dialogScrim

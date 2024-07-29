@@ -22,6 +22,8 @@ import UIKit
 @objc
 class DetailViewController: BaseViewController {
     
+    override var preferredStatusBarStyle: UIStatusBarStyle { .lightContent }
+    
     @Singleton<ReadChannelByRemoteIdUseCase> private var readChannelByRemoteIdUseCase
     
     var interactionController: UIViewControllerInteractiveTransitioning? {
@@ -58,13 +60,14 @@ class DetailViewController: BaseViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         if (inNewDetail) {
-            statusBarBackgroundView.isHidden = true
             view.addSubview(_detailView)
             _detailView.frame = CGRect(x: 0, y: 0, width: view.frame.size.width, height: view.frame.size.height)
         } else {
             addChildView(_detailView)
             title = _detailView.channelBase?.getNonEmptyCaption() ?? ""
+            setupToolbar()
         }
         
         NotificationCenter.default.addObserver(self,

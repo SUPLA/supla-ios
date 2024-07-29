@@ -20,7 +20,6 @@
 #import "SuplaApp.h"
 
 #import "SUPLA-Swift.h"
-#import "UIColor+SUPLA.h"
 
 @implementation SAElectricityChartHelper {
     BOOL singlePhase;

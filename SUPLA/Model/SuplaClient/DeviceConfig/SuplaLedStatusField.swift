@@ -28,7 +28,8 @@ enum SuplaLedStatusType: UInt8, CaseIterable {
             }
         }
         
-        fatalError("SuplaLedStatusType not expected value `\(value)`")
+        SALog.error("Invalid SuplaLedStatusType value `\(value)'")
+        return .onWhenConnected
     }
 }
 

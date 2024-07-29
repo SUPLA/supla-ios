@@ -43,7 +43,6 @@ NS_ASSUME_NONNULL_BEGIN
 + (NSString *)getNonEmptyCaptionOfChannel:(SAChannelBase*)channel customFunc:(NSNumber*)func;
 - (NSString *)getNonEmptyCaption;
 
-- (int) imgIsActive;
 - (BOOL) isOnline;
 - (int) onlinePercent;
 - (int) hiValue;

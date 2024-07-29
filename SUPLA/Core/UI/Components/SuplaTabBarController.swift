@@ -18,17 +18,17 @@
 
 import RxSwift
 
-class SuplaTabBarController<S : ViewState, E : ViewEvent, VM : BaseViewModel<S, E>>: UITabBarController, NavigationCoordinatorAware {
+class SuplaTabBarController<S : ViewState, E : ViewEvent, VM : BaseViewModel<S, E>>: UITabBarController, NavigationBarVisibilityController {
+    
+    let viewModel: VM
+    var navigationBarHidden: Bool { false }
+    override var preferredStatusBarStyle: UIStatusBarStyle { .lightContent }
     
     fileprivate let disposeBag = DisposeBag()
-    let viewModel: VM
-    weak var navigationCoordinator: NavigationCoordinator?
     
-    init(navigationCoordinator: NavigationCoordinator, viewModel: VM) {
+    init(viewModel: VM) {
         self.viewModel = viewModel
-        self.navigationCoordinator = navigationCoordinator
         super.init(nibName: nil, bundle: nil)
-        setupView()
     }
     
     required init?(coder: NSCoder) {
@@ -37,11 +37,9 @@ class SuplaTabBarController<S : ViewState, E : ViewEvent, VM : BaseViewModel<S, 
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        viewModel.onViewDidLoad()
+        edgesForExtendedLayout = []
         
-        if #available(iOS 14, *) {
-            navigationItem.backButtonDisplayMode = .minimal
-        }
+        viewModel.onViewDidLoad()
         
         viewModel.eventsObervable()
             .subscribe(onNext: { [weak self] event in self?.handle(event: event) })
@@ -49,29 +47,29 @@ class SuplaTabBarController<S : ViewState, E : ViewEvent, VM : BaseViewModel<S, 
         viewModel.stateObservable()
             .subscribe(onNext: { [weak self] state in self?.handle(state: state) })
             .disposed(by: disposeBag)
+        
+        setupView()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        var attributes: [NSAttributedString.Key : Any] = [.foregroundColor: UIColor.white]
-        if (navigationCoordinator is MainNavigationCoordinator) {
-            attributes[.font] = UIFont.suplaTitleBarFont
-        } else {
-            attributes[.font] = UIFont.suplaSubtitleFont
+        
+        if (!navigationBarHidden) {
+            setupToolbar(toolbarFont: getToolbarFont())
         }
-        navigationController?.navigationBar.titleTextAttributes = attributes
     }
- 
+    
     func handle(event: E) { fatalError("handle(event:) has not been implemented!") }
     func handle(state: S) { } // default empty implementation
+    func getToolbarFont() -> UIFont { UIFont.suplaTitleBarFont }
     
     private func setupView() {
-        tabBar.barTintColor = .background
-        tabBar.tintColor = .suplaGreen
+        tabBar.barTintColor = .surface
+        tabBar.tintColor = .primary
         tabBar.unselectedItemTintColor = .onBackground
         tabBar.isTranslucent = false
         ShadowValues.apply(toLayer: tabBar.layer)
-        tabBar.backgroundColor = .background
+        tabBar.backgroundColor = .surface
     }
     
 #if DEBUG
