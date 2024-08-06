@@ -73,7 +73,7 @@ class UpdateTokenTask: NSObject {
             var tokenDetails = SingleCallWrapper.prepareClientToken(for: token, andProfile: profile.name)
             
             if let authInfo = profile.authInfo, authInfo.isAuthDataComplete {
-                try singleCall.registerPushToken(&authDetails, Int32(authInfo.preferredProtocolVersion), &tokenDetails)
+                try singleCall.registerPushToken(authDetails, Int32(authInfo.preferredProtocolVersion), tokenDetails)
             } else {
                 SALog.debug("Token update skipped for profile with incomplete data \(name)")
             }

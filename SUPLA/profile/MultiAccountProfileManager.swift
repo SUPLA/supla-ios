@@ -152,7 +152,7 @@ extension MultiAccountProfileManager: ProfileManager {
             do {
                 var authDetails = authDetails
                 var tokenDetails = SingleCallWrapper.prepareClientToken(for: nil, andProfile: profileName)
-                try self.singleCall.registerPushToken(&authDetails, protocolVersion, &tokenDetails)
+                try self.singleCall.registerPushToken(authDetails, protocolVersion, tokenDetails)
             } catch {
                 SALog.error("Push token removal failed with error: \(error)")
             }
