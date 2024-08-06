@@ -24,7 +24,7 @@ class SingleCallImpl: SingleCall {
     
     func registerPushToken(_ authDetails: UnsafeMutablePointer<TCS_ClientAuthorizationDetails>, _ protocolVersion: Int32, _ tokenDetails: UnsafeMutablePointer<TCS_PnClientToken>) throws {
         
-        let result = supla_single_call_register_pn_client_token(authDetails, protocolVersion, tokenDetails)
+        let result = supla_single_call_register_pn_client_token(authDetails, protocolVersion, 5000, tokenDetails)
         
         if (result != SUPLA_RESULTCODE_TRUE) {
             throw SingleCallError.resultException(errorCode: result)
