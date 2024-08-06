@@ -21,7 +21,7 @@
 final class SingleCallMock: SingleCall {
     
     var registerPushTokenCalls = 0
-    func registerPushToken(_ authDetails: UnsafeMutablePointer<TCS_ClientAuthorizationDetails>, _ protocolVersion: Int32, _ tokenDetails: UnsafeMutablePointer<TCS_PnClientToken>) throws {
+    func registerPushToken(_ authDetails: TCS_ClientAuthorizationDetails, _ protocolVersion: Int32, _ tokenDetails: TCS_PnClientToken) throws {
         registerPushTokenCalls += 1
     }
 }
