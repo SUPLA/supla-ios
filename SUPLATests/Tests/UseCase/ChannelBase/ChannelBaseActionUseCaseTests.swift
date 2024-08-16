@@ -16,11 +16,10 @@
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 
-import XCTest
 @testable import SUPLA
+import XCTest
 
 final class ChannelBaseActionUseCaseTests: UseCaseTest<Void> {
-    
     private lazy var executeSimpleActionUseCase: ExecuteSimpleActionUseCaseMock! = ExecuteSimpleActionUseCaseMock()
     
     private lazy var useCase: ChannelBaseActionUseCase! = ChannelBaseActionUseCaseImpl()
@@ -129,6 +128,21 @@ final class ChannelBaseActionUseCaseTests: UseCaseTest<Void> {
         // then
         assertEvents([.next(()), .completed])
         XCTAssertTuples(executeSimpleActionUseCase.parameters, [(Action.downOrStop, SubjectType.channel, remoteId)])
+    }
+    
+    func test_shouldOpenGarageDoor() {
+        // given
+        let remoteId: Int32 = 123
+        let channel = SAChannel(testContext: nil)
+        channel.remote_id = remoteId
+        channel.func = SUPLA_CHANNELFNC_ROLLER_GARAGE_DOOR
+        
+        // when
+        useCase.invoke(channel, .rightButton).subscribe(observer).disposed(by: disposeBag)
+        
+        // then
+        assertEvents([.next(()), .completed])
+        XCTAssertTuples(executeSimpleActionUseCase.parameters, [(Action.upOrStop, SubjectType.channel, remoteId)])
     }
     
     func test_shouldOpenProjectorScreen() {
