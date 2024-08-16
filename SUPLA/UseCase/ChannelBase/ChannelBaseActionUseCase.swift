@@ -53,6 +53,12 @@ final class ChannelBaseActionUseCaseImpl: ChannelBaseActionUseCase {
             case .rightButton: Action.downOrStop
             }
         }
+        if (channelBase.func == SUPLA_CHANNELFNC_ROLLER_GARAGE_DOOR) {
+            return switch (buttonType) {
+            case .leftButton: Action.downOrStop
+            case .rightButton: Action.upOrStop
+            }
+        }
         if (channelBase.isHvacThermostat()) {
             return switch (buttonType) {
             case .leftButton: Action.turnOff
