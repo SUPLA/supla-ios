@@ -87,8 +87,8 @@ class AppSettingsVC: BaseViewControllerVM<AppSettingsViewState, AppSettingsViewE
                     return TemperatureUnitCell.configure(temperatureUnit, callback) {
                         self.getCell(for: TemperatureUnitCell.id, indexPath)
                     }
-                case .switchItem(let title, let selected, let callback):
-                    return TitleSwitchCell.configure(title, selected, callback) {
+                case .switchItem(let title, let selected, let callback, let enabled):
+                    return TitleSwitchCell.configure(title, selected, enabled, callback) {
                         self.getCell(for: TitleSwitchCell.id, indexPath)
                     }
                 case .rsOpeningPercentageItem(let opening, let callback):

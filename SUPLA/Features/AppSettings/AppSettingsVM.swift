@@ -80,6 +80,11 @@ class AppSettingsVM: BaseViewModel<AppSettingsViewState, AppSettingsViewEvent> {
                 callback: { settings.showChannelInfo = $0 }
             ),
             .switchItem(
+                title: Strings.AppSettings.showBottomMenu,
+                selected: settings.showBottomMenu,
+                callback: { settings.showBottomMenu = $0 }
+            ),
+            .switchItem(
                 title: Strings.AppSettings.showLabels,
                 selected: settings.showBottomLabels,
                 callback: { settings.showBottomLabels = $0 }
@@ -157,7 +162,7 @@ enum SettingsList: Equatable {
 enum SettingsListItem: Equatable {
     case heightItem(channelHeight: ChannelHeight, callback: (Int) -> Void)
     case temperatureUnitItem(temperatureUnit: TemperatureUnit, callback: (Int) -> Void)
-    case switchItem(title: String, selected: Bool, callback: (Bool) -> Void)
+    case switchItem(title: String, selected: Bool, callback: (Bool) -> Void, enabled: Bool = true)
     case rsOpeningPercentageItem(opening: Bool, callback: (Bool) -> Void)
     case arrowButtonItem(title: String, callback: () -> Void)
     case permissionItem(title: String, active: Bool, callback: () -> Void)
@@ -170,7 +175,7 @@ enum SettingsListItem: Equatable {
             return lHeight == rHeight
         case (.temperatureUnitItem(let lUnit, _), .temperatureUnitItem(let rUnit, _)):
             return lUnit == rUnit
-        case (.switchItem(let lTitle, let lValue, _), .switchItem(let rTitle, let rValue, _)):
+        case (.switchItem(let lTitle, let lValue, _, _), .switchItem(let rTitle, let rValue, _, _)):
             return lTitle == rTitle && lValue == rValue
         case (.rsOpeningPercentageItem(let lValue, _), .rsOpeningPercentageItem(let rValue, _)):
             return lValue == rValue

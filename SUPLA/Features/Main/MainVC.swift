@@ -61,6 +61,7 @@ class MainVC: SuplaTabBarController<MainViewState, MainViewEvent, MainViewModel>
             showNewGestureInfoView()
             SARateApp().showDialog(withDelay: 1)
             updateBottomBarLabels()
+            tabBar.isHidden = !settings.showBottomMenu
         }
     }
     
