@@ -565,9 +565,9 @@ private class FiltersRowView: UIView, UIPickerViewDelegate, UIPickerViewDataSour
     }
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return if (pickerView == rangePicker) {
+        return if (pickerView == rangePicker && row < ranges.count) {
             ranges[row].label
-        } else if (pickerView == aggregationPicker) {
+        } else if (pickerView == aggregationPicker && row < aggregations.count) {
             aggregations[row].label
         } else {
             nil
