@@ -17,14 +17,16 @@
  */
 
 protocol SingleCall {
-    func registerPushToken(_ authDetails: UnsafeMutablePointer<TCS_ClientAuthorizationDetails>, _ protocolVersion: Int32, _ tokenDetails: UnsafeMutablePointer<TCS_PnClientToken>) throws
+    func registerPushToken(_ authDetails: TCS_ClientAuthorizationDetails, _ protocolVersion: Int32, _ tokenDetails: TCS_PnClientToken) throws
 }
 
 class SingleCallImpl: SingleCall {
     
-    func registerPushToken(_ authDetails: UnsafeMutablePointer<TCS_ClientAuthorizationDetails>, _ protocolVersion: Int32, _ tokenDetails: UnsafeMutablePointer<TCS_PnClientToken>) throws {
+    func registerPushToken(_ authDetails: TCS_ClientAuthorizationDetails, _ protocolVersion: Int32, _ tokenDetails: TCS_PnClientToken) throws {
+        var authDetails = authDetails
+        var tokenDetails = tokenDetails
         
-        let result = supla_single_call_register_pn_client_token(authDetails, protocolVersion, 5000, tokenDetails)
+        let result = supla_single_call_register_pn_client_token(&authDetails, protocolVersion, 5000, &tokenDetails)
         
         if (result != SUPLA_RESULTCODE_TRUE) {
             throw SingleCallError.resultException(errorCode: result)

@@ -90,6 +90,7 @@
 "app_settings.permissions_header" = "Permissions";
 "app_settings.notifications_label" = "Notifications";
 "app_settings.location_label" = "Location";
+"settings_show_bottom_menu" = "Show bottom menu";
 "settings_show_labels" = "Show bottom menu labels";
 "settings_dark_mode" = "Dark mode";
 "settings_lock_screen" = "Lock screen";

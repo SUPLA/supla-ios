@@ -26,13 +26,15 @@ final class TitleSwitchCell: BaseSettingsCell<UISwitch> {
         return view
     }
     
-    static func configure(_ label: String, _ selected: Bool, _ callback: @escaping (Bool) -> Void, cellProvider: () -> TitleSwitchCell) -> TitleSwitchCell {
+    static func configure(_ label: String, _ selected: Bool, _ enabled: Bool, _ callback: @escaping (Bool) -> Void, cellProvider: () -> TitleSwitchCell) -> TitleSwitchCell {
         let cell = cellProvider()
         cell.setLabel(label)
+        cell.labelView.textColor = enabled ? .onBackground : .outline
         cell.actionView.setOn(selected, animated: false)
         cell.actionView.rx.isOn
             .subscribe(onNext: { callback($0) })
             .disposed(by: cell.disposeBag)
+        cell.actionView.isEnabled = enabled
         
         return cell
     }

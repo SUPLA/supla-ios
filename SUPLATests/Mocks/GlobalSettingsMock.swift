@@ -82,6 +82,13 @@ class GlobalSettingsMock: GlobalSettings {
         get { showChannelInfoReturns }
         set { showChannelInfoValues.append(newValue) }
     }
+    
+    var showBottomMenuReturns: Bool = true
+    var showBottomMenuValues: [Bool] = []
+    var showBottomMenu: Bool {
+        get { showBottomMenuReturns }
+        set { showBottomMenuValues.append(newValue) }
+    }
 
     var showBottomLabelsReturns: Bool = true
     var showBottomLabelsValues: [Bool] = []

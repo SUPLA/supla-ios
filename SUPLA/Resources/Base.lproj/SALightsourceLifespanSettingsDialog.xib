@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
-    <device id="retina3_5" orientation="portrait" appearance="light"/>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="32700.99.1234" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22684"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -26,11 +28,11 @@
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="a3m-ko-vz5" userLabel="LifespanSettings">
-            <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+            <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aOC-MG-F4z" userLabel="vMain">
-                    <rect key="frame" x="0.0" y="102.5" width="320" height="275"/>
+                    <rect key="frame" x="36.666666666666657" y="288.66666666666669" width="320" height="275.00000000000006"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Mza-4e-bVb" userLabel="Header">
                             <rect key="frame" x="0.0" y="0.0" width="320" height="70"/>
@@ -58,13 +60,13 @@
                                     </constraints>
                                 </view>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Settings" textAlignment="natural" lineBreakMode="middleTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hKG-BE-jQV">
-                                    <rect key="frame" x="10" y="17.5" width="242" height="35"/>
+                                    <rect key="frame" x="10" y="17.333333333333314" width="242" height="35"/>
                                     <fontDescription key="fontDescription" name="Quicksand-Regular" family="Quicksand" pointSize="28"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                             </subviews>
-                            <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             <constraints>
                                 <constraint firstItem="hKG-BE-jQV" firstAttribute="leading" secondItem="Mza-4e-bVb" secondAttribute="leading" constant="10" id="5nJ-EJ-wse"/>
                                 <constraint firstItem="uGP-mI-Psm" firstAttribute="centerY" secondItem="Mza-4e-bVb" secondAttribute="centerY" id="72V-6b-dGD"/>
@@ -94,7 +96,7 @@
                             <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                         </textField>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Reset the light source usage counter" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ykW-dh-QDo">
-                            <rect key="frame" x="72" y="97.5" width="238" height="16.5"/>
+                            <rect key="frame" x="72" y="97" width="238" height="16.666666666666671"/>
                             <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="12"/>
                             <color key="textColor" red="1" green="0.024649368899999999" blue="0.055923047580000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <nil key="highlightedColor"/>
@@ -105,11 +107,11 @@
                                 <constraint firstAttribute="height" constant="14" id="LyP-rq-ice"/>
                             </constraints>
                             <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="10"/>
-                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <color key="textColor" name="Colors/on_background"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aZZ-F7-rsl">
-                            <rect key="frame" x="10" y="217" width="147.5" height="33"/>
+                            <rect key="frame" x="10" y="217" width="147.33333333333334" height="33"/>
                             <color key="backgroundColor" red="0.83914071320000005" green="0.84318488840000005" blue="0.84303629400000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="33" id="Bzf-iw-ok8"/>
@@ -123,7 +125,7 @@
                             </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XmM-Te-dni">
-                            <rect key="frame" x="162.5" y="217" width="147.5" height="33"/>
+                            <rect key="frame" x="162.33333333333337" y="217" width="147.66666666666663" height="33"/>
                             <color key="backgroundColor" red="0.83914071320000005" green="0.84318488840000005" blue="0.84303629400000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="33" id="WeR-L0-qJs"/>
@@ -137,7 +139,7 @@
                             </connections>
                         </button>
                     </subviews>
-                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     <constraints>
                         <constraint firstItem="aZZ-F7-rsl" firstAttribute="leading" secondItem="aOC-MG-F4z" secondAttribute="leading" constant="10" id="1jf-KP-c9a"/>
                         <constraint firstItem="ykW-dh-QDo" firstAttribute="leading" secondItem="RW9-hP-8Uf" secondAttribute="trailing" constant="15" id="1xQ-bW-RR9"/>
@@ -173,5 +175,11 @@
     </objects>
     <resources>
         <image name="infoclose.png" width="50" height="50"/>
+        <namedColor name="Colors/on_background">
+            <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
     </resources>
 </document>
