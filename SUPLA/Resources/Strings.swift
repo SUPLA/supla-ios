@@ -54,6 +54,7 @@ struct Strings {
         static let permissionsHeader = "app_settings.permissions_header".toLocalized()
         static let notificationsLabel = "app_settings.notifications_label".toLocalized()
         static let locationLabel = "app_settings.location_label".toLocalized()
+        static let showBottomMenu = "settings_show_bottom_menu".toLocalized()
         static let showLabels = "settings_show_labels".toLocalized()
         static let nightMode = "settings_dark_mode".toLocalized()
         static let lockScreen = "settings_lock_screen".toLocalized()

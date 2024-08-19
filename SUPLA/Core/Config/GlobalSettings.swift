@@ -30,6 +30,7 @@ protocol GlobalSettings {
     var temperatureUnit: TemperatureUnit { get set }
     var autohideButtons: Bool { get set }
     var showChannelInfo: Bool { get set }
+    var showBottomMenu: Bool { get set }
     var showBottomLabels: Bool { get set }
     var channelHeight: ChannelHeight { get set }
     var showOpeningPercent: Bool { get set }
@@ -117,6 +118,18 @@ class GlobalSettingsImpl: GlobalSettings {
             }
             defaults.set(newValue, forKey: showChannelInfoKey)
         }
+    }
+    
+    private let showBottomMenuKey = "supla_config_show_bottom_menu"
+    var showBottomMenu: Bool {
+        get {
+            if (defaults.object(forKey: showBottomMenuKey) == nil) {
+                return true
+            }
+            
+            return defaults.bool(forKey: showBottomMenuKey)
+        }
+        set { defaults.set(newValue, forKey: showBottomMenuKey) }
     }
     
     private let showBottomLabelsKey = "supla_config_show_bottom_labels"

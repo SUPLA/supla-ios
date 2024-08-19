@@ -67,6 +67,7 @@ class AppSettingsVMTests: ViewModelTest<AppSettingsViewState, AppSettingsViewEve
                 .temperatureUnitItem(temperatureUnit: .fahrenheit, callback: { _ in }),
                 .switchItem(title: Strings.Cfg.buttonAutoHide, selected: true, callback: { _ in }),
                 .switchItem(title: Strings.Cfg.showChannelInfo, selected: false, callback: { _ in }),
+                .switchItem(title: Strings.AppSettings.showBottomMenu, selected: true, callback: { _ in }),
                 .switchItem(title: Strings.AppSettings.showLabels, selected: true, callback: { _ in }),
                 .rsOpeningPercentageItem(opening: true, callback: { _ in }),
                 .darkModeItem(darkModeSetting: .unset, callback: { _ in }),
@@ -110,6 +111,7 @@ class AppSettingsVMTests: ViewModelTest<AppSettingsViewState, AppSettingsViewEve
                 .temperatureUnitItem(temperatureUnit: .celsius, callback: { _ in }),
                 .switchItem(title: Strings.Cfg.buttonAutoHide, selected: false, callback: { _ in }),
                 .switchItem(title: Strings.Cfg.showChannelInfo, selected: true, callback: { _ in }),
+                .switchItem(title: Strings.AppSettings.showBottomMenu, selected: true, callback: { _ in }),
                 .switchItem(title: Strings.AppSettings.showLabels, selected: true, callback: { _ in }),
                 .rsOpeningPercentageItem(opening: false, callback: { _ in }),
                 .darkModeItem(darkModeSetting: .unset, callback: { _ in }),
@@ -205,7 +207,7 @@ class AppSettingsVMTests: ViewModelTest<AppSettingsViewState, AppSettingsViewEve
         }
         
         switch (list[0].items[2]) {
-        case .switchItem(_, _, let callback):
+        case .switchItem(_, _, let callback, _):
             callback(true)
         default:
             XCTFail("No list")
@@ -239,7 +241,7 @@ class AppSettingsVMTests: ViewModelTest<AppSettingsViewState, AppSettingsViewEve
         }
         
         switch (list[0].items[3]) {
-        case .switchItem(_, _, let callback):
+        case .switchItem(_, _, let callback, _):
             callback(false)
         default:
             XCTFail("No list")
@@ -252,6 +254,41 @@ class AppSettingsVMTests: ViewModelTest<AppSettingsViewState, AppSettingsViewEve
         XCTAssertEqual(settings.temperatureUnitValues.count, 0)
         XCTAssertEqual(settings.autohideButtonsValues.count, 0)
         XCTAssertEqual(settings.showChannelInfoValues[0], false)
+        XCTAssertEqual(settings.showBottomLabelsValues.count, 0)
+        XCTAssertEqual(settings.showOpeningPercentValues.count, 0)
+        XCTAssertEqual(settings.darkModeValues.count, 0)
+        XCTAssertEqual(settings.lockScreenSettingsValues.count, 0)
+    }
+    
+    func test_shouldSaveShowBottomMenu() {
+        // given
+        setupViewData()
+        
+        // when
+        observe(viewModel)
+        viewModel.onViewWillAppear()
+        
+        guard let list = stateObserver.events[1].value.element?.list
+        else {
+            XCTFail("No list")
+            return
+        }
+        
+        switch (list[0].items[4]) {
+        case .switchItem(_, _, let callback, _):
+            callback(true)
+        default:
+            XCTFail("No list")
+        }
+        
+        // then
+        XCTAssertEqual(stateObserver.events.count, 2)
+        XCTAssertEqual(eventObserver.events.count, 0)
+        XCTAssertEqual(settings.channelHeightValues.count, 0)
+        XCTAssertEqual(settings.temperatureUnitValues.count, 0)
+        XCTAssertEqual(settings.autohideButtonsValues.count, 0)
+        XCTAssertEqual(settings.showChannelInfoValues.count, 0)
+        XCTAssertEqual(settings.showBottomMenuValues, [true])
         XCTAssertEqual(settings.showBottomLabelsValues.count, 0)
         XCTAssertEqual(settings.showOpeningPercentValues.count, 0)
         XCTAssertEqual(settings.darkModeValues.count, 0)
@@ -272,8 +309,8 @@ class AppSettingsVMTests: ViewModelTest<AppSettingsViewState, AppSettingsViewEve
             return
         }
         
-        switch (list[0].items[4]) {
-        case .switchItem(_, _, let callback):
+        switch (list[0].items[5]) {
+        case .switchItem(_, _, let callback, _):
             callback(false)
         default:
             XCTFail("No list")
@@ -306,7 +343,7 @@ class AppSettingsVMTests: ViewModelTest<AppSettingsViewState, AppSettingsViewEve
             return
         }
         
-        switch (list[0].items[5]) {
+        switch (list[0].items[6]) {
         case .rsOpeningPercentageItem(_, let callback):
             callback(true)
         default:
@@ -321,7 +358,7 @@ class AppSettingsVMTests: ViewModelTest<AppSettingsViewState, AppSettingsViewEve
         XCTAssertEqual(settings.autohideButtonsValues.count, 0)
         XCTAssertEqual(settings.showChannelInfoValues.count, 0)
         XCTAssertEqual(settings.showBottomLabelsValues.count, 0)
-        XCTAssertEqual(settings.showOpeningPercentValues[0], true)
+        XCTAssertEqual(settings.showOpeningPercentValues, [true])
         XCTAssertEqual(settings.darkModeValues.count, 0)
         XCTAssertEqual(settings.lockScreenSettingsValues.count, 0)
     }
@@ -340,7 +377,7 @@ class AppSettingsVMTests: ViewModelTest<AppSettingsViewState, AppSettingsViewEve
             return
         }
         
-        switch (list[0].items[6]) {
+        switch (list[0].items[7]) {
         case .darkModeItem(_, let callback):
             callback(.always)
         default:
@@ -375,7 +412,7 @@ class AppSettingsVMTests: ViewModelTest<AppSettingsViewState, AppSettingsViewEve
             return
         }
         
-        switch (list[0].items[7]) {
+        switch (list[0].items[8]) {
         case .lockScreenItem(_, let callback):
             callback(.application)
         default:
@@ -410,7 +447,7 @@ class AppSettingsVMTests: ViewModelTest<AppSettingsViewState, AppSettingsViewEve
             return
         }
         
-        switch (list[0].items[7]) {
+        switch (list[0].items[8]) {
         case .lockScreenItem(_, let callback):
             callback(.accounts)
         default:
@@ -445,7 +482,7 @@ class AppSettingsVMTests: ViewModelTest<AppSettingsViewState, AppSettingsViewEve
             return
         }
         
-        switch (list[0].items[7]) {
+        switch (list[0].items[8]) {
         case .lockScreenItem(_, let callback):
             callback(.none)
         default:
@@ -479,7 +516,7 @@ class AppSettingsVMTests: ViewModelTest<AppSettingsViewState, AppSettingsViewEve
             return
         }
         
-        switch (list[0].items[7]) {
+        switch (list[0].items[8]) {
         case .lockScreenItem(_, let callback):
             callback(.application)
         default:
@@ -513,7 +550,7 @@ class AppSettingsVMTests: ViewModelTest<AppSettingsViewState, AppSettingsViewEve
             return
         }
         
-        switch (list[0].items[8]) {
+        switch (list[0].items[9]) {
         case .arrowButtonItem(_, let callback):
             callback()
         default:

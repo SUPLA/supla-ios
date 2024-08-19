@@ -332,6 +332,7 @@
 /* App Settings */
 "settings_dark_mode" = "Nacht-Modus";
 "settings_lock_screen" = "PIN Eingabe";
+"settings_show_bottom_menu" = "Unteres Menü anzeigen";
 "settings_lock_screen_none" = "Keine";
 "settings_lock_screen_app" = "Anwendung";
 "settings_lock_screen_accounts" = "Konten";
