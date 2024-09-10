@@ -18,18 +18,19 @@
  */
     
 
-enum SuplaAppEvent: Equatable {
-    case initialized
-    case noAccount
-    case connecting
-    case connected
-    case lock
-    case unlock
-    case onStart
-    case networkConnected
-    case addWizardFinished
-    
-    case cancel(reason: SuplaAppState.Reason? = nil)
-    case finish(reason: SuplaAppState.Reason? = nil)
-    case error(reason: SuplaAppState.Reason)
+import Foundation
+
+extension SuplaClientProtocol {
+    func cancel(reason: SuplaAppState.Reason?) {
+        (self as? SASuplaClient)?.cancel(reason: reason)
+    }
+}
+
+extension SASuplaClient {
+    func cancel(reason: SuplaAppState.Reason? = nil) {
+        @Singleton var suplaAppStateHolder: SuplaAppStateHolder
+        
+        super.cancel()
+        suplaAppStateHolder.handle(event: .cancel(reason: reason))
+    }
 }

@@ -85,13 +85,13 @@ final class AuthorizeUseCaseMock: AuthorizeUseCase {
 final class DisconnectUseCaseMock: DisconnectUseCase {
     var invokeCounter = 0
     var invokeReturns: Completable = .empty()
-    func invoke() -> Completable {
+    func invoke(reason: SuplaAppState.Reason?) -> Completable {
         invokeCounter += 1
         return invokeReturns
     }
     
     var invokeSynchronousCounter = 0
-    func invokeSynchronous() {
+    func invokeSynchronous(reason: SuplaAppState.Reason?) {
         invokeSynchronousCounter += 1
     }
 }
