@@ -639,12 +639,12 @@
 
 - (void)onRegistrationEnabled:(NSNotification *)notification {
     
-    SARegistrationEnabled *reg_enabled =
-    [SARegistrationEnabled notificationToRegistrationEnabled:notification];
+    SARegistrationEnabled *reg_enabled = [SARegistrationEnabled notificationToRegistrationEnabled:notification];
     
     if ( reg_enabled != nil ) {
         
         if ( [reg_enabled isIODeviceRegistrationEnabled] ) {
+            [DisconnectUseCaseLegacyWrapper cancelWithAddWizardStartedReason];
             [self showPage:PAGE_STEP_3];
         } else {
             [self setStep:STEP_SUPERUSER_AUTHORIZATION];
@@ -658,6 +658,7 @@
     if ( notification.userInfo != nil )  {
         NSNumber *code = (NSNumber *)[notification.userInfo objectForKey:@"code"];
         if (code && [code intValue] == SUPLA_RESULTCODE_TRUE) {
+            [DisconnectUseCaseLegacyWrapper cancelWithAddWizardStartedReason];
             [self showPage:PAGE_STEP_3];
         }
     }
@@ -784,6 +785,7 @@
     [self cleanUp];
     [self.OpQueue cancelAllOperations];
     [self savePrefs];
+    [SuplaAppStateHolderProxy addWizardFinished];
     [SuplaAppCoordinatorLegacyWrapper dismissWithAnimated: true];
 }
 

@@ -93,7 +93,7 @@ final class StatusVMTests: XCTestCase {
     
     func test_shouldShowDisconnecting() {
         // given
-        stateHolder.stateReturns = .just(.disconnecting)
+        stateHolder.stateReturns = .just(.disconnecting())
         
         // when
         viewModel.onViewWillAppear()

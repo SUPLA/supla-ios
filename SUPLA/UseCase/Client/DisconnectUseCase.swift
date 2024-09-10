@@ -20,8 +20,18 @@
 import RxSwift
 
 protocol DisconnectUseCase {
-    func invoke() -> Completable
-    func invokeSynchronous()
+    func invoke(reason: SuplaAppState.Reason?) -> Completable
+    func invokeSynchronous(reason: SuplaAppState.Reason?)
+}
+
+extension DisconnectUseCase {
+    func invoke() -> Completable {
+        self.invoke(reason: nil)
+    }
+    
+    func invokeSynchronous() {
+        invokeSynchronous(reason: nil)
+    }
 }
 
 final class DisconnectUseCaseImpl: DisconnectUseCase {
@@ -30,21 +40,21 @@ final class DisconnectUseCaseImpl: DisconnectUseCase {
     @Singleton<SuplaAppProvider> private var suplaAppProvider
     @Singleton<UpdateEventsManager> private var updateEventsManager
     
-    func invoke() -> Completable {
+    func invoke(reason: SuplaAppState.Reason? = nil) -> Completable {
         Completable.create { completable in
-            self.invokeSynchronous()
+            self.invokeSynchronous(reason: reason)
             
             completable(.completed)
             return Disposables.create()
         }
     }
     
-    func invokeSynchronous() {
+    func invokeSynchronous(reason: SuplaAppState.Reason? = nil) {
         let suplaApp = suplaAppProvider.provide()
         
         if (suplaApp.isClientWorking()) {
             let suplaClient = suplaClientProvider.provide()
-            suplaClient.cancel()
+            suplaClient.cancel(reason: reason)
             
             while (!suplaClient.isFinished()) {
                 usleep(1000)
@@ -58,5 +68,12 @@ final class DisconnectUseCaseImpl: DisconnectUseCase {
         updateEventsManager.emitChannelsUpdate()
         updateEventsManager.emitGroupsUpdate()
         updateEventsManager.emitScenesUpdate()
+    }
+}
+
+@objc class DisconnectUseCaseLegacyWrapper: NSObject {
+    @objc static func cancelWithAddWizardStartedReason() {
+        @Singleton var disconnectUseCase: DisconnectUseCase
+        disconnectUseCase.invokeSynchronous(reason: .addWizardStarted)
     }
 }

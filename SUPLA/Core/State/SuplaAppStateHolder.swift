@@ -79,6 +79,12 @@ final class SuplaAppStateHolderProxy: NSObject {
         @Singleton<SuplaAppStateHolder> var stateHolder
         stateHolder.handle(event: .connecting)
     }
+    
+    @objc
+    static func addWizardFinished() {
+        @Singleton<SuplaAppStateHolder> var stateHolder
+        stateHolder.handle(event: .addWizardFinished)
+    }
 
     @objc
     static func connectionError(code: Int32) {
@@ -101,7 +107,7 @@ final class SuplaAppStateHolderProxy: NSObject {
     @objc
     static func cancel() {
         @Singleton<SuplaAppStateHolder> var stateHolder
-        stateHolder.handle(event: .cancel)
+        stateHolder.handle(event: .cancel())
     }
 
     @objc

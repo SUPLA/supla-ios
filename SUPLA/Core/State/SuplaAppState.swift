@@ -23,7 +23,7 @@ enum SuplaAppState: Equatable {
     case firstProfileCreation
     case connecting(reason: Reason? = nil)
     case connected
-    case disconnecting
+    case disconnecting(reason: Reason? = nil)
     case locking
     case finished(reason: Reason? = nil)
     
@@ -33,6 +33,7 @@ enum SuplaAppState: Equatable {
         case versionError
         case noNetwork
         case appInBackground
+        case addWizardStarted
         
         var shouldAuthorize: Bool {
             switch (self) {
@@ -54,7 +55,7 @@ enum SuplaAppState: Equatable {
         case .firstProfileCreation: firstProfileCreationNextState(for: event)
         case .connecting(let reason): connectingNextState(for: event, previousReason: reason)
         case .connected: try! connectedNextState(for: event)
-        case .disconnecting: disconnectingNextState(for: event)
+        case .disconnecting(let reason): disconnectingNextState(for: event, previousReason: reason)
         case .locking: lockingNextState(for: event)
         case .finished(let reason): finishedNextState(for: event, previousReason: reason)
         }
@@ -71,6 +72,7 @@ enum SuplaAppState: Equatable {
         case .cancel: try! illegalCancelEvent()
         case .unlock: try! illegalUnlockEvent()
         case .error: try! illegalErrorEvent()
+        case .addWizardFinished: try! illegalAddWizardFinishedEvent()
         }
     }
     
@@ -84,6 +86,7 @@ enum SuplaAppState: Equatable {
         case .connected: try! illegalConnectedEvent()
         case .cancel: try! illegalCancelEvent()
         case .error: try! illegalErrorEvent()
+        case .addWizardFinished: try! illegalAddWizardFinishedEvent()
         }
     }
     
@@ -98,6 +101,7 @@ enum SuplaAppState: Equatable {
         case .initialized: try! illegalInitializedEvent()
         case .noAccount: try! illegalNoAccountEvent()
         case .lock: try! illegalLockEvent()
+        case .addWizardFinished: try! illegalAddWizardFinishedEvent()
         }
     }
     
@@ -106,21 +110,22 @@ enum SuplaAppState: Equatable {
         case .connecting, .initialized, .onStart: nil
         case .connected: .connected
         case .lock: .locked
-        case .cancel: .disconnecting
+        case .cancel(let reason): .disconnecting(reason: reason)
         case .networkConnected: .connecting()
         case .error(let reason): .connecting(reason: reason)
         case .finish(let reason): .finished(reason: reason == nil ? previousReason : reason)
         case .noAccount: try! illegalNoAccountEvent()
         case .unlock: try! illegalUnlockEvent()
+        case .addWizardFinished: try! illegalAddWizardFinishedEvent()
         }
     }
     
     private func connectedNextState(for event: SuplaAppEvent) throws -> SuplaAppState? {
         switch (event) {
-        case .onStart, .networkConnected: nil
+        case .onStart, .networkConnected, .addWizardFinished: nil
         case .connecting: .connecting()
         case .lock: .locked
-        case .cancel: .disconnecting
+        case .cancel(let reason): .disconnecting(reason: reason)
         case .finish(let reason): .finished(reason: reason)
         case .error(let reason): .finished(reason: reason)
         case .initialized: try! illegalInitializedEvent()
@@ -130,15 +135,16 @@ enum SuplaAppState: Equatable {
         }
     }
     
-    private func disconnectingNextState(for event: SuplaAppEvent) -> SuplaAppState? {
+    private func disconnectingNextState(for event: SuplaAppEvent, previousReason: Reason?) -> SuplaAppState? {
         switch (event) {
         case .onStart, .cancel, .networkConnected, .connecting, .connected: nil
         case .lock: .locking
-        case .finish(let reason): .finished(reason: reason)
+        case .finish(let reason): .finished(reason: previousReason ?? reason)
         case .error(let reason): .finished(reason: reason)
         case .initialized: try! illegalInitializedEvent()
         case .noAccount: try! illegalNoAccountEvent()
         case .unlock: try! illegalUnlockEvent()
+        case .addWizardFinished: try! illegalAddWizardFinishedEvent()
         }
     }
     
@@ -152,18 +158,32 @@ enum SuplaAppState: Equatable {
         case .unlock: try! illegalUnlockEvent()
         case .connecting: try! illegalConnectingEvent()
         case .error(_): try! illegalErrorEvent()
+        case .addWizardFinished: try! illegalAddWizardFinishedEvent()
         }
     }
     
     private func finishedNextState(for event: SuplaAppEvent, previousReason: Reason?) -> SuplaAppState? {
         switch (event) {
         case .cancel, .networkConnected: nil
-        case .initialized, .connecting: .connecting()
+        case .initialized, .addWizardFinished: .connecting()
+        case .connecting: previousReason == .addWizardStarted ? nil : .connecting()
         case .lock: .locked
-        case .onStart: previousReason == .noNetwork ? .connecting(reason: previousReason) : .connecting()
+        case .onStart:
+            if (previousReason == .addWizardStarted) {
+                nil
+            } else if (previousReason == .noNetwork) {
+                .connecting(reason: previousReason)
+            } else {
+                .connecting()
+            }
         case .noAccount: .firstProfileCreation
         case .error(let reason): reason != previousReason ? .finished(reason: reason) : nil
-        case .finish(let reason): reason != previousReason ? .finished(reason: reason ?? previousReason) : nil
+        case .finish(let reason): 
+            if (previousReason == .addWizardStarted || previousReason == reason) {
+                nil
+            } else {
+                .finished(reason: reason ?? previousReason)
+            }
         case .connected: try! illegalConnectedEvent()
         case .unlock: try! illegalUnlockEvent()
         }
@@ -203,5 +223,9 @@ enum SuplaAppState: Equatable {
     
     private func illegalLockEvent() throws -> SuplaAppState? {
         throw Error.illegalEvent(message: "Unexpected lock event!")
+    }
+    
+    private func illegalAddWizardFinishedEvent() throws -> SuplaAppState? {
+        throw Error.illegalEvent(message: "Unexpected add wizard finished event!")
     }
 }
