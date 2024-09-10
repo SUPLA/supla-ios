@@ -103,8 +103,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         var settings = settings
         settings.backgroundEntryTime = dateProvider.currentTimestamp()
         
-        disconnectUseCase.invokeSynchronous()
-        suplaAppStateHolder.handle(event: .finish(reason: .appInBackground))
+        disconnectUseCase.invokeSynchronous(reason: .appInBackground)
     }
     
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {

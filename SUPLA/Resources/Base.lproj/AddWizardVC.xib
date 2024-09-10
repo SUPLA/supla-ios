@@ -570,7 +570,7 @@ When the connection has been set, go back to the application and  continue addin
                                         <constraint firstAttribute="height" constant="21" id="u8R-mK-XAl"/>
                                     </constraints>
                                     <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="16"/>
-                                    <nil key="textColor"/>
+                                    <color key="textColor" name="Colors/on_background"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qa8-ng-PzX">
@@ -580,7 +580,7 @@ When the connection has been set, go back to the application and  continue addin
                                         <constraint firstAttribute="width" constant="110" id="xQ5-No-Gou"/>
                                     </constraints>
                                     <fontDescription key="fontDescription" name="OpenSans-Bold" family="Open Sans" pointSize="12"/>
-                                    <nil key="textColor"/>
+                                    <color key="textColor" name="Colors/on_background"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Firmware" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ctG-cj-mpZ">
@@ -590,7 +590,7 @@ When the connection has been set, go back to the application and  continue addin
                                         <constraint firstAttribute="width" constant="110" id="zWG-jE-HsP"/>
                                     </constraints>
                                     <fontDescription key="fontDescription" name="OpenSans-Bold" family="Open Sans" pointSize="12"/>
-                                    <nil key="textColor"/>
+                                    <color key="textColor" name="Colors/on_background"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="MAC" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CZ4-G4-iFJ">
@@ -600,7 +600,7 @@ When the connection has been set, go back to the application and  continue addin
                                         <constraint firstAttribute="height" constant="18" id="uf4-k6-3c7"/>
                                     </constraints>
                                     <fontDescription key="fontDescription" name="OpenSans-Bold" family="Open Sans" pointSize="12"/>
-                                    <nil key="textColor"/>
+                                    <color key="textColor" name="Colors/on_background"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Last state" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="6" translatesAutoresizingMaskIntoConstraints="NO" id="HRH-kq-mbQ">
@@ -610,7 +610,7 @@ When the connection has been set, go back to the application and  continue addin
                                         <constraint firstAttribute="height" constant="18" id="oHK-33-Z2e"/>
                                     </constraints>
                                     <fontDescription key="fontDescription" name="OpenSans-Bold" family="Open Sans" pointSize="12"/>
-                                    <nil key="textColor"/>
+                                    <color key="textColor" name="Colors/on_background"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="6" translatesAutoresizingMaskIntoConstraints="NO" id="npR-oM-kAU">
@@ -653,11 +653,11 @@ When the connection has been set, go back to the application and  continue addin
                                         <constraint firstAttribute="height" relation="lessThanOrEqual" constant="18" id="w4Q-eR-CCG"/>
                                     </constraints>
                                     <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="12"/>
-                                    <nil key="textColor"/>
+                                    <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                             </subviews>
-                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <color key="backgroundColor" name="Colors/surface"/>
                             <constraints>
                                 <constraint firstItem="npR-oM-kAU" firstAttribute="top" secondItem="8Da-uK-N1d" secondAttribute="bottom" constant="10" id="0GP-eL-4KL"/>
                                 <constraint firstItem="6o8-Z9-BJq" firstAttribute="top" secondItem="Y1H-Co-hfj" secondAttribute="bottom" constant="3" id="8hP-jl-Ath"/>
@@ -754,6 +754,9 @@ When the connection has been set, go back to the application and  continue addin
         <image name="wifigeneral.png" width="40.5" height="40.5"/>
         <image name="wizard_error.png" width="199.5" height="199.5"/>
         <image name="wizard_ok.png" width="199.5" height="199.5"/>
+        <namedColor name="Colors/on_background">
+            <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <namedColor name="Colors/on_primary">
             <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
@@ -766,8 +769,8 @@ When the connection has been set, go back to the application and  continue addin
         <namedColor name="Colors/primary_container">
             <color red="0.070588235294117646" green="0.65490196078431373" blue="0.11764705882352941" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
-        <namedColor name="Colors/primary_container">
-            <color red="0.070588235294117646" green="0.65490196078431373" blue="0.11764705882352941" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        <namedColor name="Colors/surface">
+            <color red="0.99607843137254903" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
     </resources>
 </document>

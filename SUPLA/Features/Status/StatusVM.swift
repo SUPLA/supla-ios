@@ -88,7 +88,7 @@ extension StatusFeature {
             case .connectionError(let code):
                 code == SUPLA_RESULT_HOST_NOT_FOUND ? Strings.Status.errorHostNotFound : nil
             case .registerError(let code): SuplaResultCode.from(value: code).getTextMessage(authDialog: true)
-            case .noNetwork, .versionError, .appInBackground, .none: nil
+            case .noNetwork, .versionError, .appInBackground, .addWizardStarted, .none: nil
             }
         }
     }
