@@ -108,8 +108,8 @@ final class SceneCell: BaseCell<SAScene> {
     }
     
     private func setActive(_ active: Bool) {
-        leftStatusIndicatorView.configure(filled: active, online: true)
-        rightStatusIndicatorView.configure(filled: active, online: true)
+        leftStatusIndicatorView.configure(filled: active, onlineState: .online)
+        rightStatusIndicatorView.configure(filled: active, onlineState: .online)
     }
 }
 

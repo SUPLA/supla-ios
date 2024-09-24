@@ -19,7 +19,7 @@
 struct ThermostatProgramInfo: Equatable {
     let type: InfoType
     let time: String?
-    let icon: UIImage?
+    let icon: String?
     let iconColor: UIColor?
     let description: String?
     let manualActive: Bool

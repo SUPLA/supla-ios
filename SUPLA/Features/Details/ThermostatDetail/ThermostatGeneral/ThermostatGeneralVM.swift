@@ -23,7 +23,7 @@ private let REFRESH_DELAY_S: Double = 3
 
 class ThermostatGeneralVM: BaseViewModel<ThermostatGeneralViewState, ThermostatGeneralViewEvent> {
     
-    @Singleton<ReadChannelWithChildrenUseCase> private var readChannelWithChildrenUseCase
+    @Singleton<ReadChannelWithChildrenTreeUseCase> private var readChannelWithChildrenTreeUseCase
     @Singleton<CreateTemperaturesListUseCase> private var createTemperaturesListUseCase
     @Singleton<GetChannelConfigUseCase> private var getChannelConfigUseCase
     @Singleton<GetDeviceConfigUseCase> private var getDeviceConfigUseCase
@@ -95,12 +95,12 @@ class ThermostatGeneralVM: BaseViewModel<ThermostatGeneralViewState, ThermostatG
     }
     
     func triggerDataLoad(remoteId: Int32) {
-        readChannelWithChildrenUseCase.invoke(remoteId: remoteId)
+        readChannelWithChildrenTreeUseCase.invoke(remoteId: remoteId)
             .subscribe(onNext: { [weak self] in self?.channelRelay.accept($0) })
             .disposed(by: self)
     }
     
-    func loadTemperatures(remoteId: Int32, otherId: Int32) {
+    func handleDataChangedEvent(remoteId: Int32, otherId: Int32) {
         if let state = currentState(),
            state.childrenIds.contains(otherId) {
             triggerDataLoad(remoteId: remoteId)
@@ -285,7 +285,7 @@ class ThermostatGeneralVM: BaseViewModel<ThermostatGeneralViewState, ThermostatG
                 .changing(path: \.channelFunc, to: channel.channel.func)
                 .changing(path: \.mode, to: thermostatValue.mode)
                 .changing(path: \.measurements, to: temperatures)
-                .changing(path: \.childrenIds, to: channel.children.map { $0.channel.remote_id })
+                .changing(path: \.childrenIds, to: channel.allDescendantFlat.map { $0.channel.remote_id })
                 .changing(path: \.offline, to: !channel.channel.isOnline())
                 .changing(path: \.configMin, to: config.temperatures.roomMin?.fromSuplaTemperature())
                 .changing(path: \.configMax, to: config.temperatures.roomMax?.fromSuplaTemperature())
@@ -298,7 +298,7 @@ class ThermostatGeneralVM: BaseViewModel<ThermostatGeneralViewState, ThermostatG
                 .changing(path: \.currentPower, to: Int(thermostatValue.state.value))
             
             changedState = handleSetpoints(changedState, channel: channel.channel)
-            changedState = handleFlags(changedState, value: thermostatValue, isOnline: channel.channel.isOnline())
+            changedState = handleFlags(changedState, value: thermostatValue, channelWithChildren: channel, isOnline: channel.channel.isOnline())
             changedState = handleButtons(changedState, channel: channel.channel)
             
             if let mainTermometer = channel.children.first(where: { $0.relationType == .mainThermometer }),
@@ -306,6 +306,10 @@ class ThermostatGeneralVM: BaseViewModel<ThermostatGeneralViewState, ThermostatG
                 let temperature = mainTermometer.channel.temperatureValue()
                 changedState = handleCurrentTemperture(changedState, temperature: Float(temperature))
             }
+            
+            changedState = changedState
+                .changing(path: \.pumpSwitchIcon, to: pumpSwitchIcon(channel))
+                .changing(path: \.heatOrColdSourceSwitchIcon, to: heatOrColdSourceSwitchIcon(channel))
             
             return changedState
         }
@@ -389,16 +393,53 @@ class ThermostatGeneralVM: BaseViewModel<ThermostatGeneralViewState, ThermostatG
         return state.changing(path: \.currentTemperaturePercentage, to: temperaturePercentage)
     }
     
-    private func handleFlags(_ state: ThermostatGeneralViewState, value: ThermostatValue, isOnline: Bool) -> ThermostatGeneralViewState {
+    private func handleFlags(_ state: ThermostatGeneralViewState, value: ThermostatValue, channelWithChildren: ChannelWithChildren, isOnline: Bool) -> ThermostatGeneralViewState {
         return state
             .changing(
                 path: \.heatingIndicatorInactive,
-                to: !value.state.isOn() || !value.flags.contains(.heating) || !isOnline
+                to: !isActive(channelWithChildren, .heating)
             )
             .changing(
                 path: \.coolingIndicatorInactive,
-                to: !value.state.isOn() || !value.flags.contains(.cooling) || !isOnline
+                to: !isActive(channelWithChildren, .cooling)
             )
+    }
+    
+    private func isActive(_ channelWithChildren: ChannelWithChildren, _ flag: SuplaThermostatFlag) -> Bool {
+        let children = channelWithChildren.allDescendantFlat.filter { $0.relationType == .masterThermostat }
+        let channelHasFlag = channelWithChildren.channel.isActive(flag)
+        
+        return if (children.isEmpty) {
+            channelHasFlag
+        } else {
+            channelHasFlag || children.reduce(false) { $0 || $1.channel.isActive(flag) }
+        }
+    }
+    
+    private func pumpSwitchIcon(_ channelWithChildren: ChannelWithChildren) -> IconResult? {
+        if let child = channelWithChildren.pumpSwitchChild {
+            return getChannelBaseIconUseCase.invoke(channel: child.channel)
+        }
+        
+        let switches = channelWithChildren.allDescendantFlat.filter({ $0.relationType == .pumpSwitch })
+        if (switches.count == 1) {
+            return getChannelBaseIconUseCase.invoke(channel: switches.first!.channel)
+        }
+        
+        return nil
+    }
+    
+    private func heatOrColdSourceSwitchIcon(_ channelWithChildren: ChannelWithChildren) -> IconResult? {
+        if let child = channelWithChildren.heatOrColdSourceSwitchChild {
+            return getChannelBaseIconUseCase.invoke(channel: child.channel)
+        }
+        
+        let switches = channelWithChildren.allDescendantFlat.filter({ $0.relationType == .heatOrColdSourceSwitch })
+        if (switches.count == 1) {
+            return getChannelBaseIconUseCase.invoke(channel: switches.first!.channel)
+        }
+        
+        return nil
     }
     
     private func handleButtons(_ state: ThermostatGeneralViewState, channel: SAChannel) -> ThermostatGeneralViewState {
@@ -425,6 +466,12 @@ class ThermostatGeneralVM: BaseViewModel<ThermostatGeneralViewState, ThermostatG
             result.append(ChannelIssueItem(
                 issueIconType: .error,
                 description: Strings.ThermostatDetail.thermometerError
+            ))
+        }
+        if (flags.contains(.batterCoverOpen)) {
+            result.append(ChannelIssueItem(
+                issueIconType: .error,
+                description: Strings.ThermostatDetail.batteryCoverOpen
             ))
         }
         if (flags.contains(.clockError)) {
@@ -532,6 +579,8 @@ struct ThermostatGeneralViewState: ViewState {
     var programInfo: [ThermostatProgramInfo] = []
     var issues: [ChannelIssueItem] = []
     var sensorIssue: SensorIssue? = nil
+    var pumpSwitchIcon: IconResult? = nil
+    var heatOrColdSourceSwitchIcon: IconResult? = nil
     
     /* All calculated properties below */
     
@@ -632,7 +681,7 @@ struct ThermostatGeneralViewState: ViewState {
         sensorIssue != nil || timerEndDate == nil || timerEndDate!.timeIntervalSince1970 < Date().timeIntervalSince1970
     }
     var endDateText: String { DeviceState.endDateText(timerEndDate) }
-    var currentStateIcon: UIImage? { DeviceState.currentStateIcon(mode) }
+    var currentStateIcon: UIImage? { DeviceState.currentStateIcon(mode)?.uiImage }
     var currentStateIconColor: UIColor { DeviceState.currentStateIconColor(mode) }
     var currentStateValue: String {
         DeviceState.currentStateValue(
@@ -684,6 +733,13 @@ fileprivate extension SAChannel {
 }
 
 struct SensorIssue: Equatable {
-    let sensorIcon: UIImage?
+    let sensorIcon: IconResult?
     let message: String
+}
+
+fileprivate extension SAChannel {
+    func isActive(_ flag: SuplaThermostatFlag) -> Bool {
+        guard let value = value?.asThermostatValue() else { return false }
+        return isOnline() && value.state.isOn() && value.flags.contains(flag)
+    }
 }

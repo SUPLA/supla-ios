@@ -31,6 +31,7 @@ enum SuplaThermostatFlag: UInt16, CaseIterable {
     case forcedOffBySensor = 9
     case heatOrCool = 10 // if set cool else heat
     case weeklyScheduleTemporalOverride = 11
+    case batterCoverOpen = 12
     
     func value() -> UInt16 { 1 << rawValue }
     

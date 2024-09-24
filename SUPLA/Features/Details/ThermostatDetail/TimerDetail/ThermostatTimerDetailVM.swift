@@ -340,7 +340,7 @@ struct ThermostatTimerDetailViewState: ViewState {
     
     var endDateText: String { DeviceState.endDateText(timerEndDate) }
     
-    var currentStateIcon: UIImage? { DeviceState.currentStateIcon(currentMode) }
+    var currentStateIcon: String? { DeviceState.currentStateIcon(currentMode) }
     
     var currentStateIconColor: UIColor { DeviceState.currentStateIconColor(currentMode) }
     

@@ -16,8 +16,6 @@
  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 
-public let CHANNEL_UNKNOWN_ICON_NAME = "unknown_channel"
-
 protocol GetDefaultIconNameUseCase {
     func invoke(iconData: IconData) -> String
 }
@@ -60,7 +58,7 @@ final class GetDefaultIconNameUseCaseImpl: GetDefaultIconNameUseCase {
         if let name = name {
             return name
         } else {
-            return CHANNEL_UNKNOWN_ICON_NAME
+            return .Icons.fncUnknown
         }
     }
 
@@ -111,6 +109,8 @@ final class GetDefaultIconNameUseCaseImpl: GetDefaultIconNameUseCase {
         StaticIconNameProducer(function: SUPLA_CHANNELFNC_HOTELCARDSENSOR, name: "fnc_hotel_card"),
         AlarmArmamentIconNameProducer(),
         GeneralPurposeMeasurementIconNameProducer(),
-        GeneralPurposeMeterIconNameProducer()
+        GeneralPurposeMeterIconNameProducer(),
+        StaticIconNameProducer(function: SUPLA_CHANNELFNC_PUMPSWITCH, name: .Icons.fncPumpSwitch),
+        HeatOrColdSourceSwitchIconNameProducer()
     ]
 }

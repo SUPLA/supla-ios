@@ -339,6 +339,8 @@
 "channel_caption_curtain" = "Zasłona";
 "channel_caption_vertical_blind" = "Żaluzja pionowa";
 "channel_caption_garage_door" = "Brama garażowa";
+"channel_caption_pump_switch" = "Przełącznik pompy";
+"channel_caption_heat_or_cold_source_switch" = "Przełącznik źródła ciepła lub chłodu";
 
 /* Main */
 "dialog_new_gesture_info_text" = "Usunęliśmy gest przesunięcia otwierający szczegóły, aby je zobaczyć dotknij wybrany kanał.";
@@ -421,6 +423,7 @@
 /* Thermostat Detail */
 "thermostat_thermometer_error" = "Błąd odczytu temperatury";
 "thermostat_clock_error" = "Błąd zegara";
+"thermostat_battery_cover_open" = "Otwarta pokrywa baterii";
 "thermostat_detail_mode_manual" = "Ręczny";
 "thermostat_detail_mode_weekly_schedule" = "Program";
 "schedule_detail_program_dialog_header" = "Ustawienia program %d";
@@ -437,6 +440,9 @@
 "thermostat_detail_program_info" = "Dotknij, aby aktywować program. Przytrzymaj aby modyfikować program.";
 "thermostat_detail_box_info" = "Dotknij, aby ustawić wybrany program. Przytrzymaj, aby ustawić wybrane kwadranse.";
 "thermostat_detail_arrow_info" = "Czarny narożnik informuje o aktualnej godzinie i dniu.";
+"thermostat_detail_list" = "Lista";
+"thermostat_detail_main_thermostat" = "Termostat główny";
+"thermostat_detail_other_thermostats" = "Lista pozostałych";
 
 /* Combined Chart */
 "history_range_label" = "Zakres";

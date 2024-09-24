@@ -20,7 +20,7 @@ import Foundation
 
 struct HistoryDataSet: Equatable, Changeable {
     let setId: Id
-    let icon: UIImage?
+    let icon: IconResult?
     let value: String
     let valueFormatter: ChannelValueFormatter
     let color: UIColor

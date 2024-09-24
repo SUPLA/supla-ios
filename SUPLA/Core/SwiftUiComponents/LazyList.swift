@@ -18,29 +18,28 @@
 
 import SwiftUI
 
-struct BackgroundStack<Content: View>: View {
-    var color: Color = .Supla.background
-    var content: () -> Content
-    
-    init(color: Color = .Supla.background, @ViewBuilder content: @escaping () -> Content) {
-        self.color = color
-        self.content = content
-    }
+struct LazyList<Content: View, Item: Identifiable>: View {
+    var items: [Item]
+    var content: (Item) -> Content
 
     var body: some View {
-        ZStack {
+        ScrollView(.vertical) {
             if #available(iOS 14.0, *) {
-                Color.Supla.background.ignoresSafeArea()
+                LazyVStack(spacing: 1) {
+                    ForEach(items) { item in
+                        content(item)
+                            .listRowInsets(EdgeInsets())
+                            .listRowSeparatorInvisible()
+                    }
+                }
             } else {
-                Color.Supla.background
+                SwiftUI.List(items) { item in
+                    content(item)
+                        .padding([.bottom], 1)
+                        .listRowInsets(EdgeInsets())
+                        .listRowSeparatorInvisible()
+                }.listStyle(.plain)
             }
-            content()
         }
-    }
-}
-
-#Preview {
-    BackgroundStack {
-        SwiftUI.Text("Example background view")
     }
 }

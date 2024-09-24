@@ -68,7 +68,7 @@ class WindowVerticalControls: WindowControls {
     fileprivate lazy var stopControlButton: CircleControlButtonView = {
         let button = CircleControlButtonView(size: ControlButtonType.up.width)
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.icon = .suplaIcon(icon: .iconStop)
+        button.icon = .suplaIcon(name: .Icons.stop)
         return button
     }()
     

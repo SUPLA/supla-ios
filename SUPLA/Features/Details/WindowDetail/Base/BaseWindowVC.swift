@@ -350,7 +350,7 @@ class BlindsTopView: TopView {
         let view = CircleControlButtonView(size: calibrateButtonSize)
         view.translatesAutoresizingMaskIntoConstraints = false
         view.type = .positive
-        view.icon = .suplaIcon(icon: .iconCalibrate)
+        view.icon = .suplaIcon(name: .Icons.calibrate)
         return view
     }()
     

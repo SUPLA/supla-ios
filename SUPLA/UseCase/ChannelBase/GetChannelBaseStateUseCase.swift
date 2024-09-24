@@ -71,7 +71,9 @@ final class GetChannelBaseStateUseCaseImpl: GetChannelBaseStateUseCase {
              SUPLA_CHANNELFNC_THERMOSTAT_HEATPOL_HOMEPLUS,
              SUPLA_CHANNELFNC_HOTELCARDSENSOR,
              SUPLA_CHANNELFNC_ALARMARMAMENTSENSOR,
-             SUPLA_CHANNELFNC_LIGHTSWITCH:
+             SUPLA_CHANNELFNC_LIGHTSWITCH,
+             SUPLA_CHANNELFNC_PUMPSWITCH,
+             SUPLA_CHANNELFNC_HEATORCOLDSOURCESWITCH:
             return valueWrapper.isClosed ? .on : .off
         case SUPLA_CHANNELFNC_DIMMER:
             return valueWrapper.brightness > 0 ? .on : .off
@@ -120,7 +122,9 @@ final class GetChannelBaseStateUseCaseImpl: GetChannelBaseStateUseCase {
              SUPLA_CHANNELFNC_ALARMARMAMENTSENSOR,
              SUPLA_CHANNELFNC_LIGHTSWITCH,
              SUPLA_CHANNELFNC_DIMMER,
-             SUPLA_CHANNELFNC_RGBLIGHTING: .off
+             SUPLA_CHANNELFNC_RGBLIGHTING,
+             SUPLA_CHANNELFNC_PUMPSWITCH,
+             SUPLA_CHANNELFNC_HEATORCOLDSOURCESWITCH: .off
         case SUPLA_CHANNELFNC_DIMMERANDRGBLIGHTING: .complex([.off, .off])
         case SUPLA_CHANNELFNC_DIGIGLASS_HORIZONTAL,
              SUPLA_CHANNELFNC_DIGIGLASS_VERTICAL: .opaque

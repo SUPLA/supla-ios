@@ -35,6 +35,10 @@ extension Float {
     func toSuplaTemperature() -> Int16 {
         return Int16(self * 100)
     }
+    
+    func also<T>(_ transformation: (Float) -> T) -> T {
+        return transformation(self)
+    }
 }
 
 extension CGFloat: ScopeFunctions {

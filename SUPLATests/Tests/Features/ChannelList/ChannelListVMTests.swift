@@ -31,19 +31,22 @@ class ChannelListVMTests: ViewModelTest<ChannelListViewState, ChannelListViewEve
 
     private lazy var toggleLocationUseCase: ToggleLocationUseCaseMock! = ToggleLocationUseCaseMock()
 
-    private lazy var provideDetailTypeUseCase: ProvideDetailTypeUseCaseMock! = ProvideDetailTypeUseCaseMock()
+    private lazy var provideDetailTypeUseCase: ProvideChannelDetailTypeUseCaseMock! = ProvideChannelDetailTypeUseCaseMock()
 
     private lazy var updateEventsManager: UpdateEventsManagerMock! = UpdateEventsManagerMock()
 
     private lazy var channelBaseActionUseCase: ChannelBaseActionUseCaseMock! = ChannelBaseActionUseCaseMock()
     
+    private lazy var readChannelWithChildrenUseCase: ReadChannelWithChildrenUseCaseMock! = ReadChannelWithChildrenUseCaseMock()
+    
     override func setUp() {
         DiContainer.shared.register(type: CreateProfileChannelsListUseCase.self, createProfileChannelsListUseCase!)
         DiContainer.shared.register(type: SwapChannelPositionsUseCase.self, swapChannelPositionsUseCase!)
-        DiContainer.shared.register(type: ProvideDetailTypeUseCase.self, provideDetailTypeUseCase!)
+        DiContainer.shared.register(type: ProvideChannelDetailTypeUseCase.self, provideDetailTypeUseCase!)
         DiContainer.shared.register(type: ToggleLocationUseCase.self, toggleLocationUseCase!)
         DiContainer.shared.register(type: UpdateEventsManager.self, updateEventsManager!)
         DiContainer.shared.register(type: ChannelBaseActionUseCase.self, channelBaseActionUseCase!)
+        DiContainer.shared.register(type: ReadChannelWithChildrenUseCase.self, readChannelWithChildrenUseCase!)
     }
     
     override func tearDown() {
@@ -121,6 +124,7 @@ class ChannelListVMTests: ViewModelTest<ChannelListViewState, ChannelListViewEve
         channel.value = SAChannelValue(testContext: nil)
         channel.value?.online = true
         
+        readChannelWithChildrenUseCase.returns = Observable.just(ChannelWithChildren(channel: channel, children: []))
         provideDetailTypeUseCase.detailType = .legacy(type: .em)
         
         // when
@@ -141,6 +145,7 @@ class ChannelListVMTests: ViewModelTest<ChannelListViewState, ChannelListViewEve
         let channel = SAChannel(testContext: nil)
         channel.func = SUPLA_CHANNELFNC_THERMOMETER
         
+        readChannelWithChildrenUseCase.returns = Observable.just(ChannelWithChildren(channel: channel, children: []))
         provideDetailTypeUseCase.detailType = .legacy(type: .em)
         
         // when
@@ -161,6 +166,7 @@ class ChannelListVMTests: ViewModelTest<ChannelListViewState, ChannelListViewEve
         let channel = SAChannel(testContext: nil)
         channel.func = SUPLA_CHANNELFNC_STAIRCASETIMER
         
+        readChannelWithChildrenUseCase.returns = Observable.just(ChannelWithChildren(channel: channel, children: []))
         provideDetailTypeUseCase.detailType = .legacy(type: .em)
         
         // when
@@ -178,6 +184,8 @@ class ChannelListVMTests: ViewModelTest<ChannelListViewState, ChannelListViewEve
         channel.value = SAChannelValue(testContext: nil)
         channel.value?.online = true
         channel.func = SUPLA_CHANNELFNC_STAIRCASETIMER
+        
+        readChannelWithChildrenUseCase.returns = Observable.just(ChannelWithChildren(channel: channel, children: []))
         
         // when
         observe(viewModel)
@@ -197,6 +205,7 @@ class ChannelListVMTests: ViewModelTest<ChannelListViewState, ChannelListViewEve
         channel.value = SAChannelValue(testContext: nil)
         channel.value?.sub_value_type = Int16(SUBV_TYPE_IC_MEASUREMENTS)
         
+        readChannelWithChildrenUseCase.returns = Observable.just(ChannelWithChildren(channel: channel, children: []))
         provideDetailTypeUseCase.detailType = .legacy(type: .ic)
         
         // when
@@ -243,6 +252,7 @@ class ChannelListVMTests: ViewModelTest<ChannelListViewState, ChannelListViewEve
         channel.device_id = deviceId
         channel.func = function
         
+        readChannelWithChildrenUseCase.returns = Observable.just(ChannelWithChildren(channel: channel, children: []))
         provideDetailTypeUseCase.detailType = .switchDetail(pages: [.switchGeneral])
         
         // when
@@ -270,6 +280,7 @@ class ChannelListVMTests: ViewModelTest<ChannelListViewState, ChannelListViewEve
         channel.device_id = deviceId
         channel.func = function
         
+        readChannelWithChildrenUseCase.returns = Observable.just(ChannelWithChildren(channel: channel, children: []))
         provideDetailTypeUseCase.detailType = .thermostatDetail(pages: [.thermostatGeneral])
         
         // when
@@ -297,6 +308,7 @@ class ChannelListVMTests: ViewModelTest<ChannelListViewState, ChannelListViewEve
         channel.device_id = deviceId
         channel.func = function
         
+        readChannelWithChildrenUseCase.returns = Observable.just(ChannelWithChildren(channel: channel, children: []))
         provideDetailTypeUseCase.detailType = .thermometerDetail(pages: [.thermometerHistory])
         
         // when
@@ -324,6 +336,7 @@ class ChannelListVMTests: ViewModelTest<ChannelListViewState, ChannelListViewEve
         channel.device_id = deviceId
         channel.func = function
         
+        readChannelWithChildrenUseCase.returns = Observable.just(ChannelWithChildren(channel: channel, children: []))
         provideDetailTypeUseCase.detailType = .gpmDetail(pages: [.gpmHistory])
         
         // when

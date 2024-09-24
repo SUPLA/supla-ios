@@ -72,7 +72,7 @@ final class ThermometerValues: UIStackView {
     private func measurementView(value: MeasurementValue, makeSmall: Bool) -> ThermometerValueView {
         let view = ThermometerValueView(small: makeSmall)
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.icon = value.icon
+        view.icon = value.icon.uiImage
         view.label = value.value
         return view
     }
